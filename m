@@ -2,89 +2,92 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 658274C90DB
-	for <lists+amd-gfx@lfdr.de>; Tue,  1 Mar 2022 17:47:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45D0D4C9075
+	for <lists+amd-gfx@lfdr.de>; Tue,  1 Mar 2022 17:35:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52DB610E686;
-	Tue,  1 Mar 2022 16:47:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9177F89C17;
+	Tue,  1 Mar 2022 16:34:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5D8A10E6F2
- for <amd-gfx@lists.freedesktop.org>; Tue,  1 Mar 2022 16:32:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1646152350;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=n44Wo6vgxZpi5bWperlxNMLPYijk8JsTILs9YPWVgno=;
- b=ev/F+9HK1B5n47Khw3eIrrSbtGBzIKfSMiTPlQIzO8XL96Lqhs/+H/mB2j2rjP2NI9dsXd
- DNTrzlwQXpMDtEcULsg0IA31i0LLsg12j6y2thjtmXPzbQlPSZ0pJf7UswziY3a/r3mE9y
- yfcVIVhqoHiZLJ8ONQ90eMXbHasYK3g=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-13-r1gWoUpOOGCuJ00d_BJY3g-1; Tue, 01 Mar 2022 11:32:27 -0500
-X-MC-Unique: r1gWoUpOOGCuJ00d_BJY3g-1
-Received: by mail-wm1-f72.google.com with SMTP id
- l31-20020a05600c1d1f00b00380e3425ba7so1446263wms.9
- for <amd-gfx@lists.freedesktop.org>; Tue, 01 Mar 2022 08:32:27 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=n44Wo6vgxZpi5bWperlxNMLPYijk8JsTILs9YPWVgno=;
- b=Z8dzZTdzFzqLsAbyTfGUcj2KHJrOMr1P/wWdu9ylE4pRAzJIXOvFcQAjbUDHV6HNZA
- iuoSTjTsvfMoD/JtiTGxqvljXrJ6Ig91zuaQ2x3wr1873Y/GL+HPY20fZ0ePNEipYNIf
- tmUY8RDqgdJ5QUGVuhLchp1CXBVF3dp55WxPHgjhEX8uSFi+9qHzHHOp2jzOEagLUShL
- /hBVGGwkmcSVyJJgWYdpKZXtfVZ/XGEnY8/oh58CUlHau1KqQ2fbn3uvLwmpq5XV6/St
- +0aGHkbPItwOYcay/4X3kfnTG6Xa0bdom9MU55oH2fPV66zPAhO83LmnPBr/h6hy1+Ww
- C6VQ==
-X-Gm-Message-State: AOAM533vguBfqchMLx1gT7i34X1bSJvAhIbzJ/RsJjhVETA29ABNXvVF
- s0MaV95KX03dWOIa7ECIGwauaeeqRsa+OhUcZR4xlqE5YAxnqlHK49YzTTnqejiH13dnLEdG39d
- +T8zDq4k+7VNFP4FjoEiCno1Ytw==
-X-Received: by 2002:a05:6000:1b0c:b0:1ef:956e:3210 with SMTP id
- f12-20020a0560001b0c00b001ef956e3210mr10718763wrz.322.1646152346582; 
- Tue, 01 Mar 2022 08:32:26 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJy3kzdNGIIvZpX2C9to3Pb3Y486zu3gVqra59S1lC+acXexuk7wv16jDLZDxszLnYK+EvUsSg==
-X-Received: by 2002:a05:6000:1b0c:b0:1ef:956e:3210 with SMTP id
- f12-20020a0560001b0c00b001ef956e3210mr10718743wrz.322.1646152346319; 
- Tue, 01 Mar 2022 08:32:26 -0800 (PST)
-Received: from ?IPV6:2003:cb:c70e:5e00:88ce:ad41:cb1b:323?
- (p200300cbc70e5e0088cead41cb1b0323.dip0.t-ipconnect.de.
- [2003:cb:c70e:5e00:88ce:ad41:cb1b:323])
- by smtp.gmail.com with ESMTPSA id
- m34-20020a05600c3b2200b00380e3225af9sm3328629wms.0.2022.03.01.08.32.25
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 01 Mar 2022 08:32:25 -0800 (PST)
-Message-ID: <85a68c56-7cce-ef98-7aa6-c68eabf3fa0b@redhat.com>
-Date: Tue, 1 Mar 2022 17:32:24 +0100
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2084.outbound.protection.outlook.com [40.107.244.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A96E989C17
+ for <amd-gfx@lists.freedesktop.org>; Tue,  1 Mar 2022 16:34:57 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LmDt0mFEK+EkXwmnDjFqVULZ3PMT00LowQq6TxrTKV7fM8JpN64GIVgZosRzLyjeJm0EKsxUBc4QQnj+QNeQa6THCwc85B5DlCGIPgzIShcnodF9qt/mTLyo3nWzoKGA0tqgbAQFVqmq9ynTrMghu4EmmGQVsezSqg93T3KD08Iqt2dAChYevmTB84PGHa7hdd3KjbAVIaAyJA9W7RsK20G2z474eqyRyXARHEFIG3uoNOpMSBqazDHL1p2IUKYRipeYyfrjcH5bnnpRHinAQHnQvqrnuhqzoWk49O8EEIOltSReAVjamDYfqut9wJx2gH1LHMfHinkkd6BvEXSjJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NS1hcGjV3Ck/E0J8TfbVSh1CTc0MhM1O+J5l+6vSLiY=;
+ b=cLxe9p4NN9O2ddXqEaraFcuiaeOVRQjUSVGZtIUzvFKjh1rBp0LTMPqMK9hP8LVjd2siAOm7DsYCZF5mLgDLK2l85gRYxng8inIj5NKTY1B6muvBxPArBS1Mj9xVqwo4r1OyQ4y+tdZcxakq8jSX63Mt8pRJ/RGH0tnm0GjXJV4mEA/pnff5+MifODrLoqgLgykb0rQ3mLNZRFUFtlOV+7Y4+WQ19khrVZ/qEnT+61Hx3QJG8G9WwH9atQdpydWleiU1rrzyk9noQC3OM0IW6/F3XDaAbMB2TzUZg5DFZwQVht7Nap+OQ2kwyR5LzuUjSsJ8S8pFb1ZOH9w6d/0L3Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NS1hcGjV3Ck/E0J8TfbVSh1CTc0MhM1O+J5l+6vSLiY=;
+ b=Vreh/ujRC0FZ8ACVPjQlfwFumF8lJsk4j3sgkROlme1u68sx2hOMZkCHmx+lP8AcU+S/pm/qcx3Y4iryLtcVIqLx4ln/WiFdrjQ3WRYtEnkEAAW1l+IaoHEWLLE5TxMJbOi9eloq0P+rMY0YlBJRPjMkPwbiAYplfsO0UKyRdoU=
+Received: from BN9PR03CA0726.namprd03.prod.outlook.com (2603:10b6:408:110::11)
+ by BN9PR12MB5083.namprd12.prod.outlook.com (2603:10b6:408:134::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.24; Tue, 1 Mar
+ 2022 16:34:55 +0000
+Received: from BN8NAM11FT005.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:110:cafe::60) by BN9PR03CA0726.outlook.office365.com
+ (2603:10b6:408:110::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.23 via Frontend
+ Transport; Tue, 1 Mar 2022 16:34:55 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT005.mail.protection.outlook.com (10.13.176.69) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5017.22 via Frontend Transport; Tue, 1 Mar 2022 16:34:55 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Tue, 1 Mar
+ 2022 10:34:54 -0600
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu/discovery: add a comment about ip_discovery
+ firmware
+Date: Tue, 1 Mar 2022 11:34:33 -0500
+Message-ID: <20220301163433.1406960-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] mm: split vm_normal_pages for LRU and non-LRU handling
-To: Felix Kuehling <felix.kuehling@amd.com>, Alex Sierra
- <alex.sierra@amd.com>, jgg@nvidia.com
-References: <20220218192640.GV4160@nvidia.com>
- <20220228203401.7155-1-alex.sierra@amd.com>
- <2a042493-d04d-41b1-ea12-b326d2116861@redhat.com>
- <41469645-55be-1aaa-c1ef-84a123fdb4ea@amd.com>
- <bfae7d17-eb50-55b1-1275-5ba0f86a5273@redhat.com>
- <353c7bbd-b20e-8a7a-029a-cda9b531e5e8@amd.com>
-From: David Hildenbrand <david@redhat.com>
-Organization: Red Hat
-In-Reply-To: <353c7bbd-b20e-8a7a-029a-cda9b531e5e8@amd.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=david@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Tue, 01 Mar 2022 16:47:26 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8172ba77-5bac-4f5f-a109-08d9fba16b1c
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5083:EE_
+X-Microsoft-Antispam-PRVS: <BN9PR12MB5083F3E83646CF57F6392811F7029@BN9PR12MB5083.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: NdSkjRfOD26MxFdHQberXzmi2DefcrBe+7Fa8lSQCaOBC2Tl7TxD3PEreOq664tQgdCXOTjeiq2exZUv2D/wjdC1whXAxezeaT7EXh8SipoJEspKAZMr2WhqI+osJIbONtqjr5mCWQoDBO77qZFRuDI+jgKqeCpsLoAulQKS7lYu4lIQzmuztzUDKYT2FIddXsLAdK3p5XjTZffuzeQBG8ykw10FWoP7dkXWeXNFHM+pxkVv09bZ4RHHqetr80ufH/68CRqDN/FfbmNmKUD8ofua0qtjD2anzd0aU/fS28GidK2TEwdae4GbQdqM9LdIzLalu1/kgY/KupHSWIvd5ESbA31J8ave/w1qcODFVyfdCtSlqBN7suYBOf8LD3WmFR05erCbGcy5SqzA5UpeCGRG7iX2mKX2mg/tA8v22VLyon/9uIZSeER7HYSH3quQw2i9MXquVj/iXCODCGn4YMsuHELha3EBOOG73DbMD9Z9eMWy459Q5bDZafrg22Jq5MnujgWop0LFXBP5TN6fyVktwVHfLaJz5QdkOI4GosUouvudLZponavMDgw0h+gEMLfH1RC9SDrwpeRA1v5Z/WTlFPlYGGXfV5sf36zYKsMdD0OJJdCxtuMa8FYton2SRD1MRPKMwi7Uejqns0uMNqy83jT1T7T+Og8i3SUDsI9VIrp18GA4p3p7xtJCmSaVX8bYdCYd3BloKJcIOoSsPw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(70586007)(8676002)(8936002)(5660300002)(4326008)(70206006)(40460700003)(316002)(2906002)(36756003)(6916009)(508600001)(26005)(7696005)(6666004)(426003)(1076003)(16526019)(186003)(2616005)(336012)(86362001)(82310400004)(356005)(81166007)(47076005)(36860700001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2022 16:34:55.4355 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8172ba77-5bac-4f5f-a109-08d9fba16b1c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT005.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5083
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,45 +99,41 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rcampbell@nvidia.com, amd-gfx@lists.freedesktop.org, apopple@nvidia.com,
- dri-devel@lists.freedesktop.org, linux-xfs@vger.kernel.org, linux-mm@kvack.org,
- jglisse@redhat.com, willy@infradead.org, akpm@linux-foundation.org,
- linux-ext4@vger.kernel.org, hch@lst.de
+Cc: Alex Deucher <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 01.03.22 17:30, Felix Kuehling wrote:
-> Am 2022-03-01 um 11:22 schrieb David Hildenbrand:
->>>>>    		if (PageReserved(page))
->>>>> diff --git a/mm/migrate.c b/mm/migrate.c
->>>>> index c31d04b46a5e..17d049311b78 100644
->>>>> --- a/mm/migrate.c
->>>>> +++ b/mm/migrate.c
->>>>> @@ -1614,7 +1614,7 @@ static int add_page_for_migration(struct mm_struct *mm, unsigned long addr,
->>>>>    		goto out;
->>>>>    
->>>>>    	/* FOLL_DUMP to ignore special (like zero) pages */
->>>>> -	follflags = FOLL_GET | FOLL_DUMP;
->>>>> +	follflags = FOLL_GET | FOLL_DUMP | FOLL_LRU;
->>>>>    	page = follow_page(vma, addr, follflags);
->>>> Why wouldn't we want to dump DEVICE_COHERENT pages? This looks wrong.
->>> This function later calls isolate_lru_page, which is something you can't
->>> do with a device page.
->>>
->> Then, that code might require care instead. We most certainly don't want
->> to have random memory holes in a dump just because some anonymous memory
->> was migrated to DEVICE_COHERENT.
-> I don't think this code is for core dumps. The call chain I see is
-> 
-> SYSCALL_DEFINE6(move_pages, ...) -> kernel_move_pages -> do_pages_move 
-> -> add_page_for_migration
-> 
+The firmware is optional and only used as a fallback when
+the IP discovery table is not available (e.g., during asic
+bring up).  Once the chip goes into production, the
+table will always be available on the part itself.
 
-Ah, sorry, I got mislead by FOLL_DUMP and thought we'd be in
-get_dump_page() . As you said, nothing to do.
+Unfortunately, there is no way to mark a firmware as
+optional.
 
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+index e4fcbb385a62..31d86d083968 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+@@ -67,6 +67,13 @@
+ #include "smuio_v11_0_6.h"
+ #include "smuio_v13_0.h"
+ 
++/* This firmware is optional, but there is no way to
++ * specify a firmware file as optional.  It is only
++ * used as a fallback when the IP discovery table
++ * is not available for some reason (e.g., during
++ * bring up).  Once the product is in production
++ * the IP discovery table is shipped on the part itself.
++ */
+ #define FIRMWARE_IP_DISCOVERY "amdgpu/ip_discovery.bin"
+ MODULE_FIRMWARE(FIRMWARE_IP_DISCOVERY);
+ 
 -- 
-Thanks,
-
-David / dhildenb
+2.35.1
 
