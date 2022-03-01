@@ -2,68 +2,84 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1788B4C8571
-	for <lists+amd-gfx@lfdr.de>; Tue,  1 Mar 2022 08:48:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3A934C86B3
+	for <lists+amd-gfx@lfdr.de>; Tue,  1 Mar 2022 09:41:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73B5B10E527;
-	Tue,  1 Mar 2022 07:48:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D363210EBA2;
+	Tue,  1 Mar 2022 08:41:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com
- [IPv6:2a00:1450:4864:20::530])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9488A10E527;
- Tue,  1 Mar 2022 07:48:19 +0000 (UTC)
-Received: by mail-ed1-x530.google.com with SMTP id h15so20819066edv.7;
- Mon, 28 Feb 2022 23:48:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=MnJLyK92wo1ianqqQrVmdLoec7cz9whmMUPEVRDu+oA=;
- b=CVaydF1H4XMdJDb1BVhWeAbLrkhb9uB/9ed31/P7uXF7fh/h34wU1g/MGHbhXoqq/x
- PlAA6ghBwhXkZz0+3VrZ5uw8cR7wUALpb3C1CE2aTbH7ymko5+P3tfVdexz15pSjAe8l
- 47p28EUON+tDvymCauYnqyXsxHAAZpOOtW8m+9sos3qbT0ZULSdl3B2T0VP2mojFGfJP
- annWU+NbHk+NTBi5VKQ+btY6oC2k6BUdsouzaNAwklrdOGy7DM3k2xiDHropzjZFGyzj
- lJagdy3GeyFFJSAOggSBegP3gf/wrRzBZPpB1KdALfoSnYN8CAESli6mBQgCF+Uq482n
- iQfg==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6136E10E9FF
+ for <amd-gfx@lists.freedesktop.org>; Tue,  1 Mar 2022 08:03:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1646121792;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=g5HcmxS711SnBUiFSO6QPeyhMTExbS2pi4xO3biwyng=;
+ b=QwekiK8GmAri3TS3n7TewZAm7BlmHA084g8Cjf1KZYUwXTSnFUxx9BXEWl1Lx1HUGTyRBT
+ /jPjbn8OQREaStKlta91gWCkpvXZew3m55viraLJyDVprI1azvpxY76JtPGCgOGkqXyQ3S
+ +3parVm/buw0MnMY4roB4lvNZGKou7Q=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-669-PH4-LzZSP2GbS4MUUd50lg-1; Tue, 01 Mar 2022 03:03:11 -0500
+X-MC-Unique: PH4-LzZSP2GbS4MUUd50lg-1
+Received: by mail-wr1-f72.google.com with SMTP id
+ z16-20020adff1d0000000b001ef7dc78b23so1968122wro.12
+ for <amd-gfx@lists.freedesktop.org>; Tue, 01 Mar 2022 00:03:11 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
+ :content-language:to:cc:references:from:organization:in-reply-to
  :content-transfer-encoding;
- bh=MnJLyK92wo1ianqqQrVmdLoec7cz9whmMUPEVRDu+oA=;
- b=S9LT9/GW93E049pJzEpkJZt8Cn4uEGd56TV9b3nYQ0t+95JOdBgeRE4u8Uu+Jh4YTp
- CQ5nyscb0EQV6tqqCgGaTGw+KPith1az8MNDcT1Pmkwu81ljMbAqs95gsn0Dp2YdaoQE
- CH+Y/9VjMx5Gwu89X4qSJg3S9s/hIJiL98uyue6GAsyOYnmVu8Hsm/lo4AZzxnAud0i5
- pltxHxRK5yRLiMuryJMw7sfyqBaP7AkFop6Jq76yVUrC/e7NMKjB85j9EJHjrNl1Lv/D
- mAf4amh7d26gEh20Nbn+EbnmScfrYKBSte0SwE82GkWas0vHBafv3ndHE8mt65qxDJHT
- O+xQ==
-X-Gm-Message-State: AOAM530DWWA1YvxiLWWrbpMiCvX68LSEICVOrYLs6zU+Sssy3lm5MUNG
- ZzKiM8Sln8pkoFDLGl491qQ=
-X-Google-Smtp-Source: ABdhPJxSZWuYz9uwbnnp09wf9QrW8XIJMOh8VgkpQ43KaO8e9NlZYPo3jPs4kTe8Z1mnpOegt8/XsA==
-X-Received: by 2002:a05:6402:2065:b0:407:eb07:740 with SMTP id
- bd5-20020a056402206500b00407eb070740mr22917504edb.406.1646120897282; 
- Mon, 28 Feb 2022 23:48:17 -0800 (PST)
-Received: from [192.168.178.21] (p5b0eab60.dip0.t-ipconnect.de. [91.14.171.96])
+ bh=g5HcmxS711SnBUiFSO6QPeyhMTExbS2pi4xO3biwyng=;
+ b=7ozuuPDD9TYgWNezpCRd3OmUYlFwahgD7VnoJc+ZERTqcxlYCHscKt3oYMbHB3gHMW
+ I42HqryRYkiuIrjjbOZbDPzJBYy0Q+3U/cVuvyxC9ncPAP5oLjaToHI1He/c37+utJxX
+ njHKFsH/D2PYW4bHjCAWx+QzS+iGKkRYuGM1J99ibB+gRTTQGGyiX1lHnSvkLpckWe++
+ qdVG9Jt20n+he43XfwcfxNkAgkckLLlhq3FTrVaEjuyTXB6AnM8tHXOA0amP6T9gVhQM
+ DaR+2ijOUPmcl/4zEC0M9Ug7TkeCwOSbImk2NZCCLb76czLGQKQyspaGvcQM8yXrN9CT
+ Z7hQ==
+X-Gm-Message-State: AOAM531eg7u0zUu3P8kwmlqN1iTxO0RtBSREQPi0y7qwiEpvufadWI8q
+ E41qzrtdJLQ6XqlSJmBxwJvZo1x+V/A9lxBz2oREL+9NZj26bNKPqhdXXGaZKR32905B6NXGdCR
+ RBVwaoVlGIbaGJfeyWPXu85/XXQ==
+X-Received: by 2002:adf:f049:0:b0:1ee:7523:ed53 with SMTP id
+ t9-20020adff049000000b001ee7523ed53mr17566911wro.586.1646121789943; 
+ Tue, 01 Mar 2022 00:03:09 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxpcJ4TqolQDE6BE7vD6rbCwoSwmTCrugFFkBxu6/s97N/cr/HBlvpSmDNAY1B2ylV7rKaSQQ==
+X-Received: by 2002:adf:f049:0:b0:1ee:7523:ed53 with SMTP id
+ t9-20020adff049000000b001ee7523ed53mr17566887wro.586.1646121789674; 
+ Tue, 01 Mar 2022 00:03:09 -0800 (PST)
+Received: from ?IPV6:2003:cb:c70e:5e00:88ce:ad41:cb1b:323?
+ (p200300cbc70e5e0088cead41cb1b0323.dip0.t-ipconnect.de.
+ [2003:cb:c70e:5e00:88ce:ad41:cb1b:323])
  by smtp.gmail.com with ESMTPSA id
- eo8-20020a1709069b0800b006ce6eef6836sm5045690ejc.131.2022.02.28.23.48.16
+ r12-20020a05600c2c4c00b003816932de9csm1668126wmg.24.2022.03.01.00.03.08
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 28 Feb 2022 23:48:16 -0800 (PST)
-Message-ID: <b87fb8ff-a427-491b-5a5e-3b401e1de462@gmail.com>
-Date: Tue, 1 Mar 2022 08:48:15 +0100
+ Tue, 01 Mar 2022 00:03:09 -0800 (PST)
+Message-ID: <2a042493-d04d-41b1-ea12-b326d2116861@redhat.com>
+Date: Tue, 1 Mar 2022 09:03:06 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH] drm/amdgpu: fix suspend/resume hang regression
+Subject: Re: [PATCH] mm: split vm_normal_pages for LRU and non-LRU handling
+To: Alex Sierra <alex.sierra@amd.com>, jgg@nvidia.com
+References: <20220218192640.GV4160@nvidia.com>
+ <20220228203401.7155-1-alex.sierra@amd.com>
+From: David Hildenbrand <david@redhat.com>
+Organization: Red Hat
+In-Reply-To: <20220228203401.7155-1-alex.sierra@amd.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=david@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Language: en-US
-To: Qiang Yu <qiang.yu@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Paul Menzel <pmenzel@molgen.mpg.de>
-References: <20220301062655.232955-1-qiang.yu@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20220301062655.232955-1-qiang.yu@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Tue, 01 Mar 2022 08:41:34 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,40 +91,97 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Cc: rcampbell@nvidia.com, willy@infradead.org, Felix.Kuehling@amd.com,
+ apopple@nvidia.com, amd-gfx@lists.freedesktop.org, linux-xfs@vger.kernel.org,
+ linux-mm@kvack.org, jglisse@redhat.com, dri-devel@lists.freedesktop.org,
+ akpm@linux-foundation.org, linux-ext4@vger.kernel.org, hch@lst.de
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 01.03.22 um 07:26 schrieb Qiang Yu:
-> Regression has been reported that suspend/resume may hang with
-> the previous vm ready check commit:
-> https://gitlab.freedesktop.org/drm/amd/-/issues/1915#note_1278198
->
-> So bring back the evicted list check as a temp fix.
->
-> Fixes: cc8dd2cc1a97 ("drm/amdgpu: check vm ready by amdgpu_vm->evicting flag")
-> Signed-off-by: Qiang Yu <qiang.yu@amd.com>
+On 28.02.22 21:34, Alex Sierra wrote:
+> DEVICE_COHERENT pages introduce a subtle distinction in the way
+> "normal" pages can be used by various callers throughout the kernel.
+> They behave like normal pages for purposes of mapping in CPU page
+> tables, and for COW. But they do not support LRU lists, NUMA
+> migration or THP. Therefore we split vm_normal_page into two
+> functions vm_normal_any_page and vm_normal_lru_page. The latter will
+> only return pages that can be put on an LRU list and that support
+> NUMA migration and THP.
 
-Reviewed-by: Christian König <christian.koenig@amd.com>
-Cc: <stable@vger.kernel.org>
+Why not s/vm_normal_any_page/vm_normal_page/ and avoid code churn?
 
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> index 2cd9f1a2e5fa..fc4563cf2828 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> @@ -779,7 +779,8 @@ bool amdgpu_vm_ready(struct amdgpu_vm *vm)
->   	amdgpu_vm_eviction_lock(vm);
->   	ret = !vm->evicting;
->   	amdgpu_vm_eviction_unlock(vm);
-> -	return ret;
-> +
-> +	return ret && list_empty(&vm->evicted);
->   }
->   
->   /**
+> 
+> We also introduced a FOLL_LRU flag that adds the same behaviour to
+> follow_page and related APIs, to allow callers to specify that they
+> expect to put pages on an LRU list.
+
+[...]
+> -#define FOLL_WRITE	0x01	/* check pte is writable */
+> -#define FOLL_TOUCH	0x02	/* mark page accessed */
+> -#define FOLL_GET	0x04	/* do get_page on page */
+> -#define FOLL_DUMP	0x08	/* give error on hole if it would be zero */
+> -#define FOLL_FORCE	0x10	/* get_user_pages read/write w/o permission */
+> -#define FOLL_NOWAIT	0x20	/* if a disk transfer is needed, start the IO
+> -				 * and return without waiting upon it */
+> -#define FOLL_POPULATE	0x40	/* fault in pages (with FOLL_MLOCK) */
+> -#define FOLL_NOFAULT	0x80	/* do not fault in pages */
+> -#define FOLL_HWPOISON	0x100	/* check page is hwpoisoned */
+> -#define FOLL_NUMA	0x200	/* force NUMA hinting page fault */
+> -#define FOLL_MIGRATION	0x400	/* wait for page to replace migration entry */
+> -#define FOLL_TRIED	0x800	/* a retry, previous pass started an IO */
+> -#define FOLL_MLOCK	0x1000	/* lock present pages */
+> -#define FOLL_REMOTE	0x2000	/* we are working on non-current tsk/mm */
+> -#define FOLL_COW	0x4000	/* internal GUP flag */
+> -#define FOLL_ANON	0x8000	/* don't do file mappings */
+> -#define FOLL_LONGTERM	0x10000	/* mapping lifetime is indefinite: see below */
+> -#define FOLL_SPLIT_PMD	0x20000	/* split huge pmd before returning */
+> -#define FOLL_PIN	0x40000	/* pages must be released via unpin_user_page */
+> -#define FOLL_FAST_ONLY	0x80000	/* gup_fast: prevent fall-back to slow gup */
+> +#define FOLL_WRITE	0x01	 /* check pte is writable */
+> +#define FOLL_TOUCH	0x02	 /* mark page accessed */
+> +#define FOLL_GET	0x04	 /* do get_page on page */
+> +#define FOLL_DUMP	0x08	 /* give error on hole if it would be zero */
+> +#define FOLL_FORCE	0x10	 /* get_user_pages read/write w/o permission */
+> +#define FOLL_NOWAIT	0x20	 /* if a disk transfer is needed, start the IO
+> +				  * and return without waiting upon it */
+> +#define FOLL_POPULATE	0x40	 /* fault in pages (with FOLL_MLOCK) */
+> +#define FOLL_NOFAULT	0x80	 /* do not fault in pages */
+> +#define FOLL_HWPOISON	0x100	 /* check page is hwpoisoned */
+> +#define FOLL_NUMA	0x200	 /* force NUMA hinting page fault */
+> +#define FOLL_MIGRATION	0x400	 /* wait for page to replace migration entry */
+> +#define FOLL_TRIED	0x800	 /* a retry, previous pass started an IO */
+> +#define FOLL_MLOCK	0x1000	 /* lock present pages */
+> +#define FOLL_REMOTE	0x2000	 /* we are working on non-current tsk/mm */
+> +#define FOLL_COW	0x4000	 /* internal GUP flag */
+> +#define FOLL_ANON	0x8000	 /* don't do file mappings */
+> +#define FOLL_LONGTERM	0x10000	 /* mapping lifetime is indefinite: see below */
+> +#define FOLL_SPLIT_PMD	0x20000	 /* split huge pmd before returning */
+> +#define FOLL_PIN	0x40000	 /* pages must be released via unpin_user_page */
+> +#define FOLL_FAST_ONLY	0x80000	 /* gup_fast: prevent fall-back to slow gup */
+> +#define FOLL_LRU	0x100000 /* return only LRU (anon or page cache) */
+>  
+
+Can we minimize code churn, please?
+
+
+>  		if (PageReserved(page))
+> diff --git a/mm/migrate.c b/mm/migrate.c
+> index c31d04b46a5e..17d049311b78 100644
+> --- a/mm/migrate.c
+> +++ b/mm/migrate.c
+> @@ -1614,7 +1614,7 @@ static int add_page_for_migration(struct mm_struct *mm, unsigned long addr,
+>  		goto out;
+>  
+>  	/* FOLL_DUMP to ignore special (like zero) pages */
+> -	follflags = FOLL_GET | FOLL_DUMP;
+> +	follflags = FOLL_GET | FOLL_DUMP | FOLL_LRU;
+>  	page = follow_page(vma, addr, follflags);
+
+Why wouldn't we want to dump DEVICE_COHERENT pages? This looks wrong.
+
+
+-- 
+Thanks,
+
+David / dhildenb
 
