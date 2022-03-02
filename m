@@ -1,69 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCD214CA8B8
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Mar 2022 16:01:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27C214CAADF
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Mar 2022 17:55:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 319BD10E3E7;
-	Wed,  2 Mar 2022 15:01:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AE7610EB21;
+	Wed,  2 Mar 2022 16:55:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com
- [IPv6:2a00:1450:4864:20::336])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A45710E5C4
- for <amd-gfx@lists.freedesktop.org>; Wed,  2 Mar 2022 15:01:30 +0000 (UTC)
-Received: by mail-wm1-x336.google.com with SMTP id
- n33-20020a05600c3ba100b003832caf7f3aso1234852wms.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 02 Mar 2022 07:01:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=zFGBOObgVpjtOUWZKHiRucOQFbiurrZLujRqnrEMH/k=;
- b=hpY1Q7OZCx4x7isCnu4Wd0mByyI5aIwq0dKIcHUsN9Y8lJlMrsuPKvzdvgG2YCf+kK
- en+/Xd+2UCUYuvVhL++7Tx9VCWhcoKAMCwOR0t2yPRxBJNNDauoftWVtdzSZrg9maOJw
- J2apT2FVMwr3xygfLg8KSk5B6ydM9J5cbfNkd17l2y9K0e/55pxT2RAT8mkM/cPHoRxV
- 6Qa2Y/IpN07kepvl7rDknpqIEbiov8wQwDSCa0C9sFlJlzHF2dxE/poGu/x/w31sEXXe
- b01H4Imm0VC5YqtDQhORvk4FI8/uWI/hqRwMJo+vIz+0fRO5u30SwAehCF/rJ23NyB72
- tcEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=zFGBOObgVpjtOUWZKHiRucOQFbiurrZLujRqnrEMH/k=;
- b=6OuDYXDrI9kJVaXaxY127qjo3mBrmPAAdkVqgK+G8wvcwPrWurSzvLZXXLELUGabsw
- h11HwSvo0ht3vGUz2F+4OnIXBN3BZHSwjhp5roy94/a0qZA8ctc8aBjT0cb0KDvo0v0a
- VwH/qbhJeOVuoAkR7zokTo4h9USPmVLVV5Z85Ja0KPMa0hUNW7N1Wu9cG1uXoj0ttXYK
- TXGRJ6Q9w0o87BmOvG/mCRrUOorQJw1mvY0lTSfpZs9/U+mGtnIo2p3Hm+uy6wZTeZI5
- PnAWAeQaoItqKKwQ275TVpSY2xeNhjTsW06o7e6cqj7rDzeQykCPrU4w66TdXIVD3bjf
- E5Sg==
-X-Gm-Message-State: AOAM5317E9fDx6ZVY7WOkJGsn1ssFeMOcWxtrp5C0/CzV2lpW/DjwNiB
- u9vqteF9a72V4qIrG50jyyA=
-X-Google-Smtp-Source: ABdhPJyMVlAQdV+ulKS3CEDHLB1vwM9t5Gcpx8kbPPLjSvSIF0q5iqd8vT3nNz/x1EMnCY+4q9rxGA==
-X-Received: by 2002:a05:600c:1592:b0:381:21b4:d1d8 with SMTP id
- r18-20020a05600c159200b0038121b4d1d8mr125792wmf.119.1646233289002; 
- Wed, 02 Mar 2022 07:01:29 -0800 (PST)
-Received: from ?IPV6:2a02:908:1252:fb60:91d6:cd7c:ea5f:1ff5?
- ([2a02:908:1252:fb60:91d6:cd7c:ea5f:1ff5])
- by smtp.gmail.com with ESMTPSA id
- o12-20020adfa10c000000b001efb97fae48sm11426920wro.80.2022.03.02.07.01.27
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 02 Mar 2022 07:01:28 -0800 (PST)
-Message-ID: <2cf40fb2-6d0f-660b-c238-a8c97511ab22@gmail.com>
-Date: Wed, 2 Mar 2022 16:01:27 +0100
+Received: from eu-smtp-delivery-151.mimecast.com
+ (eu-smtp-delivery-151.mimecast.com [185.58.85.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03B1110E2F2
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Mar 2022 14:04:15 +0000 (UTC)
+Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ uk-mta-196-4Li6Fux3PdyQ14Lo-DMf3A-1; Wed, 02 Mar 2022 14:04:10 +0000
+X-MC-Unique: 4Li6Fux3PdyQ14Lo-DMf3A-1
+Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) by
+ AcuMS.aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) with Microsoft SMTP
+ Server (TLS) id 15.0.1497.28; Wed, 2 Mar 2022 14:04:06 +0000
+Received: from AcuMS.Aculab.com ([fe80::994c:f5c2:35d6:9b65]) by
+ AcuMS.aculab.com ([fe80::994c:f5c2:35d6:9b65%12]) with mapi id
+ 15.00.1497.028; Wed, 2 Mar 2022 14:04:06 +0000
+From: David Laight <David.Laight@ACULAB.COM>
+To: 'Xiaomeng Tong' <xiam0nd.tong@gmail.com>, "torvalds@linux-foundation.org"
+ <torvalds@linux-foundation.org>
+Subject: RE: [PATCH 2/6] treewide: remove using list iterator after loop body
+ as a ptr
+Thread-Topic: [PATCH 2/6] treewide: remove using list iterator after loop body
+ as a ptr
+Thread-Index: AQHYLhg9+DU/OogLf0+tiSFmjztyUKysHu+Q
+Date: Wed, 2 Mar 2022 14:04:06 +0000
+Message-ID: <1077f17e50d34dc2bbfdf4e52a1cb2fd@AcuMS.aculab.com>
+References: <CAHk-=whLK11HyvpUtEftOjc3Gup2V77KpAQ2fycj3uai=qceHw@mail.gmail.com>
+ <20220302093106.8402-1-xiam0nd.tong@gmail.com>
+In-Reply-To: <20220302093106.8402-1-xiam0nd.tong@gmail.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] drm/amdgpu: fix potential null dereference
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=C51A453 smtp.mailfrom=david.laight@aculab.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: aculab.com
 Content-Language: en-US
-To: Alex Deucher <alexdeucher@gmail.com>, Weiguo Li <liwg06@foxmail.com>
-References: <tencent_A4D5E94B44BF0EC4B7CE08BA886C0C1B0F06@qq.com>
- <CADnq5_NOGDTnB+YbN2vLm9mNo1sAn4n=Seowk8vd4wuT5krDow@mail.gmail.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <CADnq5_NOGDTnB+YbN2vLm9mNo1sAn4n=Seowk8vd4wuT5krDow@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Wed, 02 Mar 2022 16:55:36 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,72 +62,98 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <alexander.deucher@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "gustavo@embeddedor.com" <gustavo@embeddedor.com>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "kgdb-bugreport@lists.sourceforge.net" <kgdb-bugreport@lists.sourceforge.net>,
+ "linux@rasmusvillemoes.dk" <linux@rasmusvillemoes.dk>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "c.giuffrida@vu.nl" <c.giuffrida@vu.nl>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "samba-technical@lists.samba.org" <samba-technical@lists.samba.org>,
+ "linux1394-devel@lists.sourceforge.net"
+ <linux1394-devel@lists.sourceforge.net>,
+ "drbd-dev@lists.linbit.com" <drbd-dev@lists.linbit.com>,
+ "linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
+ "linux-cifs@vger.kernel.org" <linux-cifs@vger.kernel.org>,
+ "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+ "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+ "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
+ "linux-staging@lists.linux.dev" <linux-staging@lists.linux.dev>,
+ "h.j.bos@vu.nl" <h.j.bos@vu.nl>, "jgg@ziepe.ca" <jgg@ziepe.ca>,
+ "intel-wired-lan@lists.osuosl.org" <intel-wired-lan@lists.osuosl.org>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "bcm-kernel-feedback-list@broadcom.com"
+ <bcm-kernel-feedback-list@broadcom.com>,
+ "dan.carpenter@oracle.com" <dan.carpenter@oracle.com>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "keescook@chromium.org" <keescook@chromium.org>,
+ "arnd@arndb.de" <arnd@arndb.de>,
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "bjohannesmeyer@gmail.com" <bjohannesmeyer@gmail.com>,
+ "linux-block@vger.kernel.org" <linux-block@vger.kernel.org>,
+ "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
+ "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>,
+ "jakobkoschel@gmail.com" <jakobkoschel@gmail.com>,
+ "v9fs-developer@lists.sourceforge.net" <v9fs-developer@lists.sourceforge.net>,
+ "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+ "tglx@linutronix.de" <tglx@linutronix.de>,
+ "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+ "linux-sgx@vger.kernel.org" <linux-sgx@vger.kernel.org>,
+ "nathan@kernel.org" <nathan@kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+ "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-f2fs-devel@lists.sourceforge.net"
+ <linux-f2fs-devel@lists.sourceforge.net>,
+ "tipc-discussion@lists.sourceforge.net"
+ <tipc-discussion@lists.sourceforge.net>,
+ "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+ "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "akpm@linux-foundation.org" <akpm@linux-foundation.org>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>,
+ "rppt@kernel.org" <rppt@kernel.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Looks like my response never made it through.
+From: Xiaomeng Tong
+> Sent: 02 March 2022 09:31
+>=20
+> On Mon, 28 Feb 2022 16:41:04 -0800, Linus Torvalds
+> <torvalds@linux-foundation.org> wrote:
+> >
+> > But basically to _me_, the important part is that the end result is
+> > maintainable longer-term.
+>=20
+> I couldn't agree more. And because of that, I stick with the following
+> approach because it's maintainable longer-term than "type(pos) pos" one:
+>  Implements a new macro for each list_for_each_entry* with _inside suffix=
+.
+>   #define list_for_each_entry_inside(pos, type, head, member)
 
-This change and the existing check is nonsense. The caller makes sure 
-that ctx is never NULL here.
+I think that it would be better to make any alternate loop macro
+just set the variable to NULL on the loop exit.
+That is easier to code for and the compiler might be persuaded to
+not redo the test.
 
-So the check should probably just be dropped entirely.
+It also doesn't need an extra variable defined in the for() statement
+so can be back-ported to older kernels without required declaration
+in the middle of blocks.
 
-Regards,
-Christian.
+OTOH there may be alternative definitions that can be used to get
+the compiler (or other compiler-like tools) to detect broken code.
+Even if the definition can't possibly generate a working kerrnel.
 
-Am 02.03.22 um 15:21 schrieb Alex Deucher:
-> Applied.  Thanks!
->
-> Alex
->
-> On Wed, Mar 2, 2022 at 3:56 AM Weiguo Li <liwg06@foxmail.com> wrote:
->> "ctx" is dereferenced but null checked later. Swap their positions
->> to avoid potential null dereference.
->>
->> Found using a Coccinelle script:
->> https://coccinelle.gitlabpages.inria.fr/website/rules/mini_null_ref.cocci
->>
->> Signed-off-by: Weiguo Li <liwg06@foxmail.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 6 ++++--
->>   1 file changed, 4 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
->> index f522b52725e4..b4f035ce44bc 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
->> @@ -258,11 +258,12 @@ static void amdgpu_ctx_fini_entity(struct amdgpu_ctx_entity *entity)
->>   static int amdgpu_ctx_get_stable_pstate(struct amdgpu_ctx *ctx,
->>                                          u32 *stable_pstate)
->>   {
->> -       struct amdgpu_device *adev = ctx->adev;
->> +       struct amdgpu_device *adev;
->>          enum amd_dpm_forced_level current_level;
->>
->>          if (!ctx)
->>                  return -EINVAL;
->> +       adev = ctx->adev;
->>
->>          current_level = amdgpu_dpm_get_performance_level(adev);
->>
->> @@ -289,12 +290,13 @@ static int amdgpu_ctx_get_stable_pstate(struct amdgpu_ctx *ctx,
->>   static int amdgpu_ctx_set_stable_pstate(struct amdgpu_ctx *ctx,
->>                                          u32 stable_pstate)
->>   {
->> -       struct amdgpu_device *adev = ctx->adev;
->> +       struct amdgpu_device *adev;
->>          enum amd_dpm_forced_level level;
->>          int r;
->>
->>          if (!ctx)
->>                  return -EINVAL;
->> +       adev = ctx->adev;
->>
->>          mutex_lock(&adev->pm.stable_pstate_ctx_lock);
->>          if (adev->pm.stable_pstate_ctx && adev->pm.stable_pstate_ctx != ctx) {
->> --
->> 2.25.1
->>
+=09David
+
+-
+Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1=
+PT, UK
+Registration No: 1397386 (Wales)
 
