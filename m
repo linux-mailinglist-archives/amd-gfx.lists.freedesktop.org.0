@@ -1,55 +1,55 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F02AE4CAAE0
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Mar 2022 17:55:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 375894CA9F9
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Mar 2022 17:17:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDB4810EB22;
-	Wed,  2 Mar 2022 16:55:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA2E110EC68;
+	Wed,  2 Mar 2022 16:17:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 1131 seconds by postgrey-1.36 at gabe;
- Wed, 02 Mar 2022 16:20:11 UTC
-Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F8BA10E1BA
- for <amd-gfx@lists.freedesktop.org>; Wed,  2 Mar 2022 16:20:11 +0000 (UTC)
-Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
- by localhost (Postfix) with ESMTP id 4K7zPT6j7cz9sSR;
- Wed,  2 Mar 2022 17:01:17 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from pegase2.c-s.fr ([172.26.127.65])
- by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 5joybHOP63Sd; Wed,  2 Mar 2022 17:01:17 +0100 (CET)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
- by pegase2.c-s.fr (Postfix) with ESMTP id 4K7zNw1930z9sSW;
- Wed,  2 Mar 2022 17:00:48 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
- by messagerie.si.c-s.fr (Postfix) with ESMTP id 176128B76D;
- Wed,  2 Mar 2022 17:00:48 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
- by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
- with ESMTP id n6gNmIVrwo7d; Wed,  2 Mar 2022 17:00:48 +0100 (CET)
-Received: from [172.25.230.108] (unknown [172.25.230.108])
- by messagerie.si.c-s.fr (Postfix) with ESMTP id C675B8B763;
- Wed,  2 Mar 2022 17:00:47 +0100 (CET)
-Message-ID: <b89a2255-fb3c-a834-2565-33303645c51e@csgroup.eu>
-Date: Wed, 2 Mar 2022 17:00:47 +0100
+X-Greylist: delayed 42145 seconds by postgrey-1.36 at gabe;
+ Wed, 02 Mar 2022 16:17:48 UTC
+Received: from out162-62-57-137.mail.qq.com (out162-62-57-137.mail.qq.com
+ [162.62.57.137])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 053A810EC68
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Mar 2022 16:17:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
+ s=s201512; t=1646237862;
+ bh=h54ggvRxqi6Eh2jAuKV4V3B+HbRiwHUaT51TNqE38wY=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=hOiGQvML2nea+17fQKH5/3V4wjSL538iXm8la+mlRTfVw7GZR5t3ox17TDoOEyNv/
+ f/JPtYwItjnt85yBabs6hadLBYLiKUkXYNpFDHuo4cR+/fI6ykI8zl8TSUQ1kkc+W/
+ sq3jJ4dmGLS0Qh96HkGqFcnCn0Mqw2rLzl8/LtMk=
+Received: from localhost.localdomain ([111.193.130.237])
+ by newxmesmtplogicsvrszc11.qq.com (NewEsmtp) with SMTP
+ id 4672A85D; Thu, 03 Mar 2022 00:17:39 +0800
+X-QQ-mid: xmsmtpt1646237859tc6wr6jlf
+Message-ID: <tencent_DD9048474C138FE4294644B7CEEDF7D84806@qq.com>
+X-QQ-XMAILINFO: ORuEwgb9eurk6ANUdRyWVVtOmbG3L5aFT0qJovIFMBUKuzeelPatJ/B0gO2LsV
+ g4eElJILrR03NNr7f0WRVqSIo3mlIu4ahjoOG75kWNvRupvOFtwkbWTSOZYsNP8OFSlJdi5yD3o3
+ NRndf5+XAVY7KbuwC/FrsCzM6j64obw3RSWRxburhHT0xBT+zkjpYBjf2HCaUDJNyfWD4oVPM05V
+ ZSwUSy8Q3xAsrBUJxA15wjvx1nIrF1EvvTT+YhL4eaDU8A+3VXtbpwKQNEC/xQuulrMsGDJ/xHMo
+ 8MYJkpTpW95yMBmY9hAaQhJxKkFOumz3HDruWDjqIQP9J/th8f1HzMfx3ik+5LpsWtCLJG1mC0Z2
+ 2DOWuhDQaomsBaSWNlCRwE59y4BHUh0ucRF5CC+JfVI3lYZWr4eCM8PEGd6pBl8kkNykgDq0/u/9
+ qPjtCaUpvnxUEgHR+HYiyHxIhoDoHZK4FWc26cgTgwTnm8+JNksNmkn0FVjQGAgjFbcSdrUSUz9l
+ wqXP9J0cLgEQ6bboM/zczinQjY+ELcofKD5Pm1ahwNUWqoZ7y0s13rsZWvwvfv8dRve565/NXlUN
+ +adTJdEpd1PzLzwZFjolYk/jelBJhaAcXL+rm2Lx+Y0W3kL/j7YByTRQ5zx0NIbgMZqKoT867MhI
+ glfAP9TQIn0Y7iQPdWVw7jD6qGkeCK/E79rafegZXPSRLcbsPJAlic7S9LBUO351SiazK7n1BgEj
+ TZ26HXqVV0jUF3tiyG40bOgnhX11ov+Z/9mTKMWT0VKZUhyJcio3StbPxirJMmF34zfu1dPGf+wy
+ XmGlepw5Wd4aV4JN7Uv+4gX9v06UcEL23av2/mDYTTqJa+tlme+lmeYqa6EJCeM90g6NpZmN2O1G
+ 15I6R0wV6ctUbWuFjY0EI=
+From: Weiguo Li <liwg06@foxmail.com>
+To: alexander.deucher@amd.com
+Subject: [PATCH v2] drm/amdgpu: remove redundant null check
+Date: Thu,  3 Mar 2022 00:17:39 +0800
+X-OQ-MSGID: <20220302161739.617215-1-liwg06@foxmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <CADnq5_Na2UtFUTX5uphZH6THw7PisPM835TLgjB=Ne_3==VJUg@mail.gmail.com>
+References: <CADnq5_Na2UtFUTX5uphZH6THw7PisPM835TLgjB=Ne_3==VJUg@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [RFC 0/2] Add generic FPU api similar to x86
-Content-Language: fr-FR
-To: Anson Jacob <Anson.Jacob@amd.com>, mpe@ellerman.id.au,
- benh@kernel.crashing.org, paulus@samba.org, linuxppc-dev@lists.ozlabs.org,
- amd-gfx@lists.freedesktop.org
-References: <20210719195211.520428-1-Anson.Jacob@amd.com>
-From: Christophe Leroy <christophe.leroy@csgroup.eu>
-In-Reply-To: <20210719195211.520428-1-Anson.Jacob@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 02 Mar 2022 16:55:36 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,34 +61,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, Aurabindo.Pillai@amd.com,
- Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
+Cc: ckoenig.leichtzumerken@gmail.com, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Remove the redundant null check since the caller ensures
+that 'ctx' is never NULL.
 
+Signed-off-by: Weiguo Li <liwg06@foxmail.com>
+---
+v2:
+* take Christian and Alex's suggestion
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 6 ------
+ 1 file changed, 6 deletions(-)
 
-Le 19/07/2021 à 21:52, Anson Jacob a écrit :
-> This is an attempt to have generic FPU enable/disable
-> calls similar to x86.
-> So that we can simplify gpu/drm/amd/display/dc/os_types.h
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+index f522b52725e4..2f38de406937 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+@@ -261,9 +261,6 @@ static int amdgpu_ctx_get_stable_pstate(struct amdgpu_ctx *ctx,
+ 	struct amdgpu_device *adev = ctx->adev;
+ 	enum amd_dpm_forced_level current_level;
+ 
+-	if (!ctx)
+-		return -EINVAL;
+-
+ 	current_level = amdgpu_dpm_get_performance_level(adev);
+ 
+ 	switch (current_level) {
+@@ -293,9 +290,6 @@ static int amdgpu_ctx_set_stable_pstate(struct amdgpu_ctx *ctx,
+ 	enum amd_dpm_forced_level level;
+ 	int r;
+ 
+-	if (!ctx)
+-		return -EINVAL;
+-
+ 	mutex_lock(&adev->pm.stable_pstate_ctx_lock);
+ 	if (adev->pm.stable_pstate_ctx && adev->pm.stable_pstate_ctx != ctx) {
+ 		r = -EBUSY;
+-- 
+2.25.1
 
-Seems like gpu/drm/amd/display/dc/os_types.h has been simplified through 
-another way via commit 96ee63730fa3 ("drm/amd/display: Add control 
-mechanism for FPU")
-
-Are powerpc changes in patch 1 still relevant ? In that case please rebase.
-
-> 
-> Also adds FPU correctness logic seen in x86.
-> 
-> Anson Jacob (2):
->    ppc/fpu: Add generic FPU api similar to x86
->    drm/amd/display: Use PPC FPU functions
-> 
->   arch/powerpc/include/asm/switch_to.h      |  29 ++---
->   arch/powerpc/kernel/process.c             | 130 ++++++++++++++++++++++
->   drivers/gpu/drm/amd/display/dc/os_types.h |  28 +----
->   3 files changed, 139 insertions(+), 48 deletions(-)
-> 
