@@ -1,61 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E84134CA6EB
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Mar 2022 15:03:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 291F24CA7DC
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Mar 2022 15:21:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3649810E7CD;
-	Wed,  2 Mar 2022 14:03:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38AC510E39F;
+	Wed,  2 Mar 2022 14:21:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com
- [IPv6:2607:f8b0:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 283E110F30A;
- Wed,  2 Mar 2022 09:31:31 +0000 (UTC)
-Received: by mail-pf1-x444.google.com with SMTP id p8so1397304pfh.8;
- Wed, 02 Mar 2022 01:31:31 -0800 (PST)
+Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com
+ [IPv6:2607:f8b0:4864:20::c29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8EA010E39F
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Mar 2022 14:21:47 +0000 (UTC)
+Received: by mail-oo1-xc29.google.com with SMTP id
+ s203-20020a4a3bd4000000b003191c2dcbe8so2026155oos.9
+ for <amd-gfx@lists.freedesktop.org>; Wed, 02 Mar 2022 06:21:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=yRnvPGVK9XQdKYPg/H0ecgdZJeSxpiKw/X1pv37GC+w=;
- b=FSwFYVuD0cAwR74FpWh/UVnJlZEuhHuzmEJF2CmWuTU5VQk08y1iQ6Cm+4Kk/IHZ7f
- ykn4dSn+LtVJ/QNPcAOF0Kr9OP0uyQbpGUjZhyE2BsGEuIYzlTgMZwHl/BYpjMpkMG0+
- P9mnuSE0YONb1xqLwPVeO/elgzKWhvv7I7OGEBThyQYghI00EIr5RS9MGp7GsCYrqLUi
- wR7dcG4fdae3Ke7WyU9tBlNyUPSMcC8RmnmBsmKYAmxRcsIUhLqhpYW4uCJTlnf3AogC
- YxEVbABh4/fwCz1Lhf2xi5Cnii6w5cwNjqEkAadiEwyP0C/cLXPnnAaLLll6ns+CdAHq
- Ceuw==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=U/yIEjfRtpo4Xai71w9J7TaVlSpluUQ3gIpN1bxiMJA=;
+ b=EosKVnlcZDZchCP0YmIvdWVOC4GuiwuNPoK2V7449z4yBluo2dR5qqzEu7WGrtOv1E
+ N0r+0VQfYC4ksrWQeevpJX8Mnkrbjf1FnvJn8rNP8ViE4vtxaJQ95YQne7f3Sag5W9/H
+ ynSdBmyJa4qHpfD3vJrqsMR9my2P7Qhz2c8H3mYOuNuKfqjsVHKGVgSrqksGMIyVy6aP
+ o5k+W9eRogqJhJsMSLV+N97PA9q93Gd/UAVxHAgnNSp34Y824pMXYxETtViaMA8f/C3D
+ JXkYwjzkDB2GM5kx5Xpt2BoFRCSazyeOZ+Znh9a82BlqWQwFpriMC7TQT0ChXDZW2eZo
+ 8d7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=yRnvPGVK9XQdKYPg/H0ecgdZJeSxpiKw/X1pv37GC+w=;
- b=AVn/+dEhaFp5DeCDbTgrvMHGGvighq1Z1GogIu1oG/RCpCHIMy1XeChOlDHTBicerw
- UDj7iJbyvWjgcQnqsdcPERpQIeYgmNJ+vH5R/pMmBcNiAmJ3aV6zXWHXDXMU6VySksEv
- JiSUGweBL2vwxbLaOnFA14dpAbkty5venJdMjhhYYPR6jtL8/BX2b2Ry97Na0rBnoGM3
- jtcbxjEgi9jAMi3aFm7jZz1c+M+Y2Z/1UnrJiXBfkrRb5jwkgX5xwGp8VmSak8FEHHiG
- XCrRaGocxCsS6Fm9D17SKZcNJ+NbkzkYWmX7QVTklnBxjWAWqE1Wq8YYcc3txekUBXY9
- di+A==
-X-Gm-Message-State: AOAM533K8NAd3vxBl7hDUJeypX6fcVP+yNUxYdvtdbZXdLoH5e6XOUx2
- YRJotdM1A0Voqj5/Ew876TU=
-X-Google-Smtp-Source: ABdhPJxxYDNcbSMxl56+YduSTiv9ULKN3/PKEO9PEtlxvCfSyuhc7esxotc8paaSBF6ReGk5V/MJxQ==
-X-Received: by 2002:a05:6a00:244b:b0:4c9:319e:ecb7 with SMTP id
- d11-20020a056a00244b00b004c9319eecb7mr31990006pfj.58.1646213490674; 
- Wed, 02 Mar 2022 01:31:30 -0800 (PST)
-Received: from ubuntu.huawei.com ([119.3.119.20])
- by smtp.googlemail.com with ESMTPSA id
- y74-20020a62644d000000b004f129e94f40sm19496506pfb.131.2022.03.02.01.31.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 02 Mar 2022 01:31:30 -0800 (PST)
-From: Xiaomeng Tong <xiam0nd.tong@gmail.com>
-To: torvalds@linux-foundation.org
-Subject: Re: [PATCH 2/6] treewide: remove using list iterator after loop body
- as a ptr
-Date: Wed,  2 Mar 2022 17:31:06 +0800
-Message-Id: <20220302093106.8402-1-xiam0nd.tong@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <CAHk-=whLK11HyvpUtEftOjc3Gup2V77KpAQ2fycj3uai=qceHw@mail.gmail.com>
-References: <CAHk-=whLK11HyvpUtEftOjc3Gup2V77KpAQ2fycj3uai=qceHw@mail.gmail.com>
-X-Mailman-Approved-At: Wed, 02 Mar 2022 14:03:38 +0000
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=U/yIEjfRtpo4Xai71w9J7TaVlSpluUQ3gIpN1bxiMJA=;
+ b=gi7fewKsFvtOONQjJm6wHxPs8Fx9P93FWVZNbiwWCdVXJQa0toMlDxty91Wb4r96Ef
+ bmubtW750TW54y1wZGEkGjqzely8PdIJ/WKE1gUa31zjcNvHfAu5ra2HCl0Vssu7dqYJ
+ 3O+vpP3Pq1QTJX2x4QvzSBuScmVSxCeqQa7mkmbZktAei6yCD2gPpB9rhSZtViwulNdp
+ 9vmjhFWloK4Z1RGdO5cljiKpZMSrHshIzEvspi/ctJ75SYKaRJcnOW7lOi5FN7GXfNKU
+ LComhqCxnv3WMcdr0iYiWZT3f+Ujnr5dX/JMIRIVxpcM13tzYYlxxZsXFvEwB6FSrH0D
+ SKcg==
+X-Gm-Message-State: AOAM5322npQWRxbS2fn6+Q7doi78u4r4vnrfy/AGMNxpXSKMfxD4HUuE
+ tdmcgMh4YBZNjJlIAgTOopzUagmh6NCb6fy6FLRqgpq3
+X-Google-Smtp-Source: ABdhPJwxtoPlNTB4Xp8BV42tOP3iS1P2Lh94lsQm89tEIKvbx8SN/SidsqOl3JhODGavqHC2k0jB/sFr0O8WXwTLA8k=
+X-Received: by 2002:a05:6870:340e:b0:d9:acbf:f961 with SMTP id
+ g14-20020a056870340e00b000d9acbff961mr14607oah.120.1646230907101; Wed, 02 Mar
+ 2022 06:21:47 -0800 (PST)
+MIME-Version: 1.0
+References: <tencent_A4D5E94B44BF0EC4B7CE08BA886C0C1B0F06@qq.com>
+In-Reply-To: <tencent_A4D5E94B44BF0EC4B7CE08BA886C0C1B0F06@qq.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 2 Mar 2022 09:21:36 -0500
+Message-ID: <CADnq5_NOGDTnB+YbN2vLm9mNo1sAn4n=Seowk8vd4wuT5krDow@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: fix potential null dereference
+To: Weiguo Li <liwg06@foxmail.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,120 +62,61 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, kvm@vger.kernel.org, gustavo@embeddedor.com,
- linux-iio@vger.kernel.org, kgdb-bugreport@lists.sourceforge.net,
- linux@rasmusvillemoes.dk, dri-devel@lists.freedesktop.org, c.giuffrida@vu.nl,
- amd-gfx@lists.freedesktop.org, samba-technical@lists.samba.org,
- linux1394-devel@lists.sourceforge.net, drbd-dev@lists.linbit.com,
- linux-arch@vger.kernel.org, linux-cifs@vger.kernel.org,
- linux-aspeed@lists.ozlabs.org, linux-scsi@vger.kernel.org,
- linux-rdma@vger.kernel.org, linux-staging@lists.linux.dev, h.j.bos@vu.nl,
- jgg@ziepe.ca, intel-wired-lan@lists.osuosl.org, nouveau@lists.freedesktop.org,
- bcm-kernel-feedback-list@broadcom.com, dan.carpenter@oracle.com,
- linux-media@vger.kernel.org, keescook@chromium.org, arnd@arndb.de,
- linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- bjohannesmeyer@gmail.com, linux-block@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, christophe.jaillet@wanadoo.fr,
- jakobkoschel@gmail.com, v9fs-developer@lists.sourceforge.net,
- linux-tegra@vger.kernel.org, tglx@linutronix.de,
- andriy.shevchenko@linux.intel.com, linux-arm-kernel@lists.infradead.org,
- linux-sgx@vger.kernel.org, nathan@kernel.org, netdev@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
- tipc-discussion@lists.sourceforge.net, linux-crypto@vger.kernel.org,
- dmaengine@vger.kernel.org, linux-mediatek@lists.infradead.org,
- akpm@linux-foundation.org, linuxppc-dev@lists.ozlabs.org,
- christian.koenig@amd.com, rppt@kernel.org
+Cc: "Deucher, Alexander" <alexander.deucher@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 28 Feb 2022 16:41:04 -0800, Linus Torvalds
-<torvalds@linux-foundation.org> wrote:
+Applied.  Thanks!
+
+Alex
+
+On Wed, Mar 2, 2022 at 3:56 AM Weiguo Li <liwg06@foxmail.com> wrote:
 >
-> But basically to _me_, the important part is that the end result is
-> maintainable longer-term.
-
-I couldn't agree more. And because of that, I stick with the following
-approach because it's maintainable longer-term than "type(pos) pos" one:
- Implements a new macro for each list_for_each_entry* with _inside suffix.
-  #define list_for_each_entry_inside(pos, type, head, member)
-
-I have posted a patch series here to demonstrate this approach:
-https://lore.kernel.org/lkml/20220301075839.4156-3-xiam0nd.tong@gmail.com/
-
-Although we need replace all the use of list_for_each_entry* (15000+)
-with list_for_each_entry*_inside, the work can be done gradually rather
-than all at once. We can incrementally replace these callers until
-all these in the kernel are completely updated with *_inside* one. At
-that time, we can just remove the implements of origin macros and rename
-the *_inside* macro back to the origin name just in one single patch.
-
-And the "type(pos) pos" approach need teach developers to "not initialize
-the iterator variable, otherwise the use-after-loop will not be reported by
-compiler", which is unreasonable and impossible for all developers. 
-
-And it will mess up the following code logic and no warnning reported by
-compiler, even without initializing "ext" at the beginning:
-void foo(struct mem_extent *arg) {
-  struct mem_extent *ext;  // used both for iterator and normal ptr
-  ...
-  ext = arg;  // this assignment can alse be done in another bar() func
-  ...
-  list_for_each_entry(ext, head, member) {
-    if (found(ext))
-       break;
-  }
-  ...
-  // use ext after the loop
-  ret = ext;
-}
-If the loop hit the break, the last "ret" will be the found ext iterator.
-However, if the "type(pos) pos" approach applied, the last "ret" will be
-"arg" which is not the intention of the developers, because the "ext" is
-two different variables inside and outside the loop.
-
-Thus, my idea is *better a finger off than always aching*, let's choose
-the "list_for_each_entry_inside(pos, type, head, member)" approach.
-
-> It turns out that just syntactically, it's really nice to give the
-> type of the iterator from outside the way we do now. Yeah, it may be a
-> bit odd, and maybe it's partly because I'm so used to the
-> "list_for_each_list_entry()" syntax, but moving the type into the loop
-> construct really made it nasty - either one very complex line, or
-> having to split it over two lines which was even worse.
+> "ctx" is dereferenced but null checked later. Swap their positions
+> to avoid potential null dereference.
 >
-> Maybe the place I looked at just happened to have a long typename, but
-> it's basically always going to be a struct, so it's never a _simple_
-> type. And it just looked very odd adn unnatural to have the type as
-> one of the "arguments" to that list_for_each_entry() macro.
-
-we can pass a shorter type name to list_for_each_entry_inside, thus no
-need to split it over two lines. Actually it is not a big problem.
-+ #define t struct sram_bank_info
-- list_for_each_entry(pos, head, member) {
-+ list_for_each_entry_inside(pos, t, head, member) {
-
-I put the type at the second argument not the first to avoid messing up
-the pattern match in some coccinelle scripts.
-
->  (b) gives us a nice warning for any normal use-after-loop case
-> (unless you explicitly initialized it like that
-> sgx_mmu_notifier_release() function did for no good reason
-
-sometimes developers can be confused by the reported warnning:
-"used without having been initialized", and can not figure out immediately
-that "oh, now i am using another different variable but with the same name
-of the loop iterator variable", which has changed the programming habits
-of developers.
-
->  (c) also guarantees that even if you don't get a warning,
-> non-converted (or newly written) bad code won't actually _work_
+> Found using a Coccinelle script:
+> https://coccinelle.gitlabpages.inria.fr/website/rules/mini_null_ref.cocci
 >
-> so you end up getting the new rules without any ambiguity or mistaken
-
-It will lead to a wrong/NULL pointer dereference if the pointer is used
-anywhere else, depend on which value is used to initialized with.
-
-Best regard,
---
-Xiaomeng Tong
+> Signed-off-by: Weiguo Li <liwg06@foxmail.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+> index f522b52725e4..b4f035ce44bc 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+> @@ -258,11 +258,12 @@ static void amdgpu_ctx_fini_entity(struct amdgpu_ctx_entity *entity)
+>  static int amdgpu_ctx_get_stable_pstate(struct amdgpu_ctx *ctx,
+>                                         u32 *stable_pstate)
+>  {
+> -       struct amdgpu_device *adev = ctx->adev;
+> +       struct amdgpu_device *adev;
+>         enum amd_dpm_forced_level current_level;
+>
+>         if (!ctx)
+>                 return -EINVAL;
+> +       adev = ctx->adev;
+>
+>         current_level = amdgpu_dpm_get_performance_level(adev);
+>
+> @@ -289,12 +290,13 @@ static int amdgpu_ctx_get_stable_pstate(struct amdgpu_ctx *ctx,
+>  static int amdgpu_ctx_set_stable_pstate(struct amdgpu_ctx *ctx,
+>                                         u32 stable_pstate)
+>  {
+> -       struct amdgpu_device *adev = ctx->adev;
+> +       struct amdgpu_device *adev;
+>         enum amd_dpm_forced_level level;
+>         int r;
+>
+>         if (!ctx)
+>                 return -EINVAL;
+> +       adev = ctx->adev;
+>
+>         mutex_lock(&adev->pm.stable_pstate_ctx_lock);
+>         if (adev->pm.stable_pstate_ctx && adev->pm.stable_pstate_ctx != ctx) {
+> --
+> 2.25.1
+>
