@@ -2,58 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A13034CA944
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Mar 2022 16:39:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F02AE4CAAE0
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Mar 2022 17:55:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0152789361;
-	Wed,  2 Mar 2022 15:39:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDB4810EB22;
+	Wed,  2 Mar 2022 16:55:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com
- [IPv6:2607:f8b0:4864:20::22d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A48A189361
- for <amd-gfx@lists.freedesktop.org>; Wed,  2 Mar 2022 15:39:20 +0000 (UTC)
-Received: by mail-oi1-x22d.google.com with SMTP id ay7so2020630oib.8
- for <amd-gfx@lists.freedesktop.org>; Wed, 02 Mar 2022 07:39:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=kJ7XgdBjJiXODBrdr9EFafnlFbsAfpl0nd8IyCLbP+E=;
- b=FH+BcERGbn+eeIW0UTPobqVdlrKIXVh0hwdKLL1GTRl+tX+lBjLHTTh4jrzO+XUbsy
- Tsg5feZ+t3RF98kmVf0mru7VBs0JNrl6t6WsrJ2ikRM8bLDO853fbAs3ivoXoc5s9e0S
- ZCnPxGxHgnq637aySV9Do30DFbRmG9IWodXygwpEYEdDgnJxZAh4bNLv0yElsRu/05Iw
- 1TnL6ojMNKToSallqg6H+63mxE146kVc5SK1qGd9/TT4Oz5IID0eb87TCARHbFqXLriQ
- SMpD5W2vPE0QjLlcIPP2VBzBMXf3VYVpz0sq1/eAJxAKkqbB5CODYU9AiuPszKLYAuKS
- lpGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=kJ7XgdBjJiXODBrdr9EFafnlFbsAfpl0nd8IyCLbP+E=;
- b=qIJztXzZWXhux5Oz6I0xG2nYDjb/gj9jHJze5FxNNLycKSve6hWabUbElJ7NL1LLVm
- n/CSB0VC3LJMSv+EPfcsqDSSTLOC+YLzMlLX42ntfDTBUapdMxL4glPXcYvbY2tPDlrE
- HIEJ1fFlAn3/BrlLMD78lw5KH9NXYiGbM6Da5A6ai9eP/hmt1ui/fPgIGJTCwOGZQV9I
- uV3PQXQBYjiQcc+2C8IpcvmxPrChGqG2qdhoHL3yvlRu7hYOcFpBC5r84szEhl6wN5JX
- GnGR8QBIUpwWHcbg8VJL86CDGYLkRUd6qy/KQbaF5uZo3jG8sWDRkG5f1isxtQyTxfx2
- 7A3A==
-X-Gm-Message-State: AOAM532QB5ILXz/NyPQH/LHnxSIOsHXLdcxOS5eBkz5t3J7dqiCWXmFc
- duhFg4E+XLGYXNDtDdRyZrm8ObQ64phHewHysJE=
-X-Google-Smtp-Source: ABdhPJzd82AcZ09eWLdR0tm3vYiXV3i4LXdUtmDE4zYyaPInCeq2HBPUhJJdGsIgz6moxvhUb/X+1K1r4EGsgZudi8I=
-X-Received: by 2002:a05:6808:118d:b0:2d4:be7e:6748 with SMTP id
- j13-20020a056808118d00b002d4be7e6748mr329541oil.123.1646235559909; Wed, 02
- Mar 2022 07:39:19 -0800 (PST)
+X-Greylist: delayed 1131 seconds by postgrey-1.36 at gabe;
+ Wed, 02 Mar 2022 16:20:11 UTC
+Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F8BA10E1BA
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Mar 2022 16:20:11 +0000 (UTC)
+Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
+ by localhost (Postfix) with ESMTP id 4K7zPT6j7cz9sSR;
+ Wed,  2 Mar 2022 17:01:17 +0100 (CET)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from pegase2.c-s.fr ([172.26.127.65])
+ by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 5joybHOP63Sd; Wed,  2 Mar 2022 17:01:17 +0100 (CET)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+ by pegase2.c-s.fr (Postfix) with ESMTP id 4K7zNw1930z9sSW;
+ Wed,  2 Mar 2022 17:00:48 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+ by messagerie.si.c-s.fr (Postfix) with ESMTP id 176128B76D;
+ Wed,  2 Mar 2022 17:00:48 +0100 (CET)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+ by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+ with ESMTP id n6gNmIVrwo7d; Wed,  2 Mar 2022 17:00:48 +0100 (CET)
+Received: from [172.25.230.108] (unknown [172.25.230.108])
+ by messagerie.si.c-s.fr (Postfix) with ESMTP id C675B8B763;
+ Wed,  2 Mar 2022 17:00:47 +0100 (CET)
+Message-ID: <b89a2255-fb3c-a834-2565-33303645c51e@csgroup.eu>
+Date: Wed, 2 Mar 2022 17:00:47 +0100
 MIME-Version: 1.0
-References: <tencent_A4D5E94B44BF0EC4B7CE08BA886C0C1B0F06@qq.com>
- <CADnq5_NOGDTnB+YbN2vLm9mNo1sAn4n=Seowk8vd4wuT5krDow@mail.gmail.com>
- <2cf40fb2-6d0f-660b-c238-a8c97511ab22@gmail.com>
-In-Reply-To: <2cf40fb2-6d0f-660b-c238-a8c97511ab22@gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 2 Mar 2022 10:39:08 -0500
-Message-ID: <CADnq5_Na2UtFUTX5uphZH6THw7PisPM835TLgjB=Ne_3==VJUg@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: fix potential null dereference
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [RFC 0/2] Add generic FPU api similar to x86
+Content-Language: fr-FR
+To: Anson Jacob <Anson.Jacob@amd.com>, mpe@ellerman.id.au,
+ benh@kernel.crashing.org, paulus@samba.org, linuxppc-dev@lists.ozlabs.org,
+ amd-gfx@lists.freedesktop.org
+References: <20210719195211.520428-1-Anson.Jacob@amd.com>
+From: Christophe Leroy <christophe.leroy@csgroup.eu>
+In-Reply-To: <20210719195211.520428-1-Anson.Jacob@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 02 Mar 2022 16:55:36 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,86 +61,34 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Weiguo Li <liwg06@foxmail.com>, "Deucher,
- Alexander" <alexander.deucher@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com, Aurabindo.Pillai@amd.com,
+ Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 2, 2022 at 10:01 AM Christian K=C3=B6nig
-<ckoenig.leichtzumerken@gmail.com> wrote:
->
-> Looks like my response never made it through.
->
-> This change and the existing check is nonsense. The caller makes sure
-> that ctx is never NULL here.
->
-> So the check should probably just be dropped entirely.
 
-agreed and dropped.  Weiguo care to send a patch to drop the checks?
 
-Alex
+Le 19/07/2021 à 21:52, Anson Jacob a écrit :
+> This is an attempt to have generic FPU enable/disable
+> calls similar to x86.
+> So that we can simplify gpu/drm/amd/display/dc/os_types.h
 
->
-> Regards,
-> Christian.
->
-> Am 02.03.22 um 15:21 schrieb Alex Deucher:
-> > Applied.  Thanks!
-> >
-> > Alex
-> >
-> > On Wed, Mar 2, 2022 at 3:56 AM Weiguo Li <liwg06@foxmail.com> wrote:
-> >> "ctx" is dereferenced but null checked later. Swap their positions
-> >> to avoid potential null dereference.
-> >>
-> >> Found using a Coccinelle script:
-> >> https://coccinelle.gitlabpages.inria.fr/website/rules/mini_null_ref.co=
-cci
-> >>
-> >> Signed-off-by: Weiguo Li <liwg06@foxmail.com>
-> >> ---
-> >>   drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 6 ++++--
-> >>   1 file changed, 4 insertions(+), 2 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_ctx.c
-> >> index f522b52725e4..b4f035ce44bc 100644
-> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-> >> @@ -258,11 +258,12 @@ static void amdgpu_ctx_fini_entity(struct amdgpu=
-_ctx_entity *entity)
-> >>   static int amdgpu_ctx_get_stable_pstate(struct amdgpu_ctx *ctx,
-> >>                                          u32 *stable_pstate)
-> >>   {
-> >> -       struct amdgpu_device *adev =3D ctx->adev;
-> >> +       struct amdgpu_device *adev;
-> >>          enum amd_dpm_forced_level current_level;
-> >>
-> >>          if (!ctx)
-> >>                  return -EINVAL;
-> >> +       adev =3D ctx->adev;
-> >>
-> >>          current_level =3D amdgpu_dpm_get_performance_level(adev);
-> >>
-> >> @@ -289,12 +290,13 @@ static int amdgpu_ctx_get_stable_pstate(struct a=
-mdgpu_ctx *ctx,
-> >>   static int amdgpu_ctx_set_stable_pstate(struct amdgpu_ctx *ctx,
-> >>                                          u32 stable_pstate)
-> >>   {
-> >> -       struct amdgpu_device *adev =3D ctx->adev;
-> >> +       struct amdgpu_device *adev;
-> >>          enum amd_dpm_forced_level level;
-> >>          int r;
-> >>
-> >>          if (!ctx)
-> >>                  return -EINVAL;
-> >> +       adev =3D ctx->adev;
-> >>
-> >>          mutex_lock(&adev->pm.stable_pstate_ctx_lock);
-> >>          if (adev->pm.stable_pstate_ctx && adev->pm.stable_pstate_ctx =
-!=3D ctx) {
-> >> --
-> >> 2.25.1
-> >>
->
+Seems like gpu/drm/amd/display/dc/os_types.h has been simplified through 
+another way via commit 96ee63730fa3 ("drm/amd/display: Add control 
+mechanism for FPU")
+
+Are powerpc changes in patch 1 still relevant ? In that case please rebase.
+
+> 
+> Also adds FPU correctness logic seen in x86.
+> 
+> Anson Jacob (2):
+>    ppc/fpu: Add generic FPU api similar to x86
+>    drm/amd/display: Use PPC FPU functions
+> 
+>   arch/powerpc/include/asm/switch_to.h      |  29 ++---
+>   arch/powerpc/kernel/process.c             | 130 ++++++++++++++++++++++
+>   drivers/gpu/drm/amd/display/dc/os_types.h |  28 +----
+>   3 files changed, 139 insertions(+), 48 deletions(-)
+> 
