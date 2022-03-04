@@ -1,98 +1,61 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B63C34CCE1A
-	for <lists+amd-gfx@lfdr.de>; Fri,  4 Mar 2022 07:51:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A27C54CCFC8
+	for <lists+amd-gfx@lfdr.de>; Fri,  4 Mar 2022 09:17:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16A9C10F568;
-	Fri,  4 Mar 2022 06:51:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B377E10F7B3;
+	Fri,  4 Mar 2022 08:17:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2046.outbound.protection.outlook.com [40.107.94.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 755C710F568
- for <amd-gfx@lists.freedesktop.org>; Fri,  4 Mar 2022 06:51:01 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XCtY2M9N64UDDhiRBbvQihtbxFQ18GwW7phTuib/7cNqf92Kka1a/wqnZ2R75kmYNUXdOyI7mZh39TyTfjPSTCE5tH3KdmlUo/OJ+qDx8z8geGjf5Laxfm+3TPVHS4UopZpwioSMpHzqNk33VHaDRvUzWn2Fs3fH2w77w4jctvQI6PfBKQ2mg4bI1/3gMo9FwyM/QZZnO5W/PQakAFOuiE7/AcnE3hC9dhYhnc9lsxJhvG185LSpph1bgXFer1zjUp2LoT41WN1HC/Bu/50n6o/SM5upYVj5ogXr0Z53bcvOcnqBn0YZRaq0ZkN58eOaH1uvgMF++bHWG8SPWICCAA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+ncIp5OnTV74L7f+WeipsJw5Db24aAZ7nIOaXzOruFQ=;
- b=lXStYZg+aob0ybVM4ToIi528PoVqoTC7+PWOUCTANhkOxhAdUh04DVjuITUl5xhNIUJtaYilLFbJMHB+6bawae6hYoyQgsxfPvHMjKr7OGzYgU5ACGNOIWM0H98Sf61YvTdZ4woT3reB2YpuOhJ/5Phfb+AIUMK6iWGhThJUPx+dlFfl4jtpAsOzLYl+0ChvT9/c+PZ+V2bBVDjCAYRCqG0Pl2KrDB9rJfpbvdjvY0IKbe6gUE4PHFL+QfdQYLL1D1fwxeyGW1vL6niNNHGYls2ShyBD1CHkAeE+BR7jHdAcK3cmcmTS1SZ6YsHNyGRYiANq3LslojGPGYSZeoLWJw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+ncIp5OnTV74L7f+WeipsJw5Db24aAZ7nIOaXzOruFQ=;
- b=ZDMx+g7BwcMTw7/sagtLdpqo6xtS3p63qDd/O//3fMblS87MrJ5TaEpzGs7BJJ9aqgxBpALI98P8//TbLgf6SAfwLlsFKk0FjRWSwsz3QPO2E7RIfkpCtK35PFkJ15jnTs5oMlI1BZULIBD5B4xiuPEAm+q+3YhID3xw4P1sHTM=
-Received: from DM6PR03CA0064.namprd03.prod.outlook.com (2603:10b6:5:100::41)
- by MWHPR12MB1536.namprd12.prod.outlook.com (2603:10b6:301:6::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14; Fri, 4 Mar
- 2022 06:50:53 +0000
-Received: from DM6NAM11FT047.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:100:cafe::df) by DM6PR03CA0064.outlook.office365.com
- (2603:10b6:5:100::41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14 via Frontend
- Transport; Fri, 4 Mar 2022 06:50:53 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DM6NAM11FT047.mail.protection.outlook.com (10.13.172.139) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5038.14 via Frontend Transport; Fri, 4 Mar 2022 06:50:52 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Fri, 4 Mar
- 2022 00:50:52 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Fri, 4 Mar
- 2022 00:50:51 -0600
-Received: from stanley-test.amd.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
- Transport; Fri, 4 Mar 2022 00:50:50 -0600
-From: Stanley.Yang <Stanley.Yang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <Hawking.Zhang@amd.com>,
- <Tao.Zhou1@amd.com>, <Maria.Joo@amd.com>
-Subject: [PATCH Review 2/2] drm/amdgpu: message smu to update bad channel info
-Date: Fri, 4 Mar 2022 14:50:37 +0800
-Message-ID: <20220304065037.1050-2-Stanley.Yang@amd.com>
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com
+ [IPv6:2607:f8b0:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EEBC10F1DF;
+ Fri,  4 Mar 2022 07:00:21 +0000 (UTC)
+Received: by mail-pf1-x435.google.com with SMTP id d17so6928086pfl.0;
+ Thu, 03 Mar 2022 23:00:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references;
+ bh=0a+oQu3LYTAbOOyoILb+F/zkApGIum0yjd+xPCLEHo4=;
+ b=UcHSzcmMAevEFsqxc8gimvoSIew96LrW3UYvjfgkcaeLb/Edql9668oTELTgMdhcyh
+ uwTLYgNgPfuwuQfZCbkLtuIX59UkP2xXrD0mK6eOfNdOu/KSihdjQUFHL7gwAFzgpb4Z
+ PeSQfhLMwS3uLkuXfSSL1QQyblGTA4kTyWBkcty1viz6EkWmIbbGn99xu95lY6jAsJ0c
+ CbisDo/RPFGn8gAJnKluj00ht4OQ80XaXmCEvGalnXTnvAWrV5UWFfWh6kgUBnLZJvSQ
+ W0PYU136vUwP4grvjJEIhDxHc0WM1lPQ2cysIXPjh+breTQ07tU9AM0RgZ3Jr4UsSFjT
+ NaGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references;
+ bh=0a+oQu3LYTAbOOyoILb+F/zkApGIum0yjd+xPCLEHo4=;
+ b=hXzdQdFR7uRrMbDpGvxS2ZPGew7M6SJb0ulSwysgx7DWWXsT3bQzprQd9X21VOYFWG
+ tjU5i6+SWz30Kzz5mJjuwSb7gCtAJyzHD11O045UeWjtFbmrnAAuIN1MdUWUdqpQoCPV
+ eH/oJInZYAGMlFtqgHk0MhBQSEIaOAERrAS6tIcN1X+PubhaYyjMgzDzD658gunS0gF7
+ DrQYJeMqf4gjg+eXtXWjIl94TJtJZimrudO6UC/9tPpPcizRkDnaPuwgEuSacEFyOtma
+ BELAeSuFEyTi2gs7VQtnT3lCZanMENYcrHL8DoKzEbM7sJNfFMjxKc/kLeKNsPnrV58H
+ H8pg==
+X-Gm-Message-State: AOAM532SB0yXyGEhnflNiaEmCF7fEIo3+3woOnbr144ZnnNNUOH4nUxP
+ PxSzsoNEXKNNnnkHRV3H3Ao=
+X-Google-Smtp-Source: ABdhPJxBFOb3A6C/RlDh1uHGrWM51HjSkR68cXfNAhNGErUbSC2hd/FilwMHkJmidt1eEHAWD7GVrA==
+X-Received: by 2002:a05:6a00:cc7:b0:4ec:c6f3:ad29 with SMTP id
+ b7-20020a056a000cc700b004ecc6f3ad29mr41958698pfv.66.1646377221067; 
+ Thu, 03 Mar 2022 23:00:21 -0800 (PST)
+Received: from ubuntu.huawei.com ([119.3.119.19])
+ by smtp.googlemail.com with ESMTPSA id
+ f6-20020a654006000000b00346193b405fsm3665134pgp.44.2022.03.03.23.00.01
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 03 Mar 2022 23:00:20 -0800 (PST)
+From: Xiaomeng Tong <xiam0nd.tong@gmail.com>
+To: daniel.thompson@linaro.org
+Subject: Re: [PATCH 2/6] treewide: remove using list iterator after loop body
+ as a ptr
+Date: Fri,  4 Mar 2022 14:59:57 +0800
+Message-Id: <20220304065957.16799-1-xiam0nd.tong@gmail.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220304065037.1050-1-Stanley.Yang@amd.com>
-References: <20220304065037.1050-1-Stanley.Yang@amd.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3b025d0b-e1b9-463d-dabc-08d9fdab532e
-X-MS-TrafficTypeDiagnostic: MWHPR12MB1536:EE_
-X-Microsoft-Antispam-PRVS: <MWHPR12MB153667001C2ED071FB2314529A059@MWHPR12MB1536.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: mIAwbTQa4BOqegwPwtPbFnoLXKOYQhTvv5T+ThBdggUluTTkL10G9hDsFlunRMdtGN8xKCvGyS6Um+GDwZRXTxoj2IMGvbPixubIv0/ULE9gNFO5lmO6k5egpr7nC3Y3vkaNu+WxpzyklmERLunym2es9zfsB8eAtrQksTeeuWkLY9nNzRGp22QxDQ11HiaayMlMKwYeuPraFf4NG1Bj+mDpRQmwgrekYXrM1L9wE5vTzYg8tkqvv+vjNDSYPUIQRCCqAICs+ebSF8s6VJ1ERwdFup1KwQXF0CHjsc3mZQ5s9wj5EWnIoMByO27/LgylNRjjdqCEuNMA5bSmUGGPk22qztSmXzUYclrLvsR4tImNgL+dVyS2pQNAS5rdfU9GA2l/gPLf+2n7+IAhSlOg7leZA7Mpl663FOxxpk0sU+9NwA4v3aFI9+rsuM+zePOgz3XejcQRQeN7NM9zb8z4ynm5IrQEuegLj9zM3fQz+Gl3Q4bvBivGaY5CbguRkgnZzlynBEDWvqWtH1OMTn8Zjk11aikf/mRGwWOt4XrdMBIvDF2Te5SA11VOpZfM7jiCyoawYrJVZ2fInmAx2VLOjMOFUO2rQYQIcDKt2dz6F/5iyBxhJ0wYdUYe1n7mOoDVg+AEA+msWT0dv8rUdzic4SrBoGRtVJAwC5zKAC0ZKoQx90aTUJ9LQWICXUGmlfZoa/hvYxlul16hDfVM9iOlBA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(36840700001)(46966006)(356005)(15650500001)(81166007)(6636002)(40460700003)(7696005)(316002)(8936002)(6666004)(36860700001)(426003)(336012)(26005)(186003)(47076005)(83380400001)(86362001)(5660300002)(36756003)(2906002)(110136005)(508600001)(70586007)(82310400004)(4326008)(2616005)(1076003)(8676002)(70206006)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2022 06:50:52.5356 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3b025d0b-e1b9-463d-dabc-08d9fdab532e
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT047.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1536
+In-Reply-To: <20220303121824.qdyrognluik74iph@maple.lan>
+References: <20220303121824.qdyrognluik74iph@maple.lan>
+X-Mailman-Approved-At: Fri, 04 Mar 2022 08:17:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,174 +67,128 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Stanley.Yang" <Stanley.Yang@amd.com>
+Cc: alsa-devel@alsa-project.org, kvm@vger.kernel.org, gustavo@embeddedor.com,
+ linux-iio@vger.kernel.org, kgdb-bugreport@lists.sourceforge.net,
+ linux@rasmusvillemoes.dk, dri-devel@lists.freedesktop.org, c.giuffrida@vu.nl,
+ amd-gfx@lists.freedesktop.org, torvalds@linux-foundation.org,
+ samba-technical@lists.samba.org, linux1394-devel@lists.sourceforge.net,
+ drbd-dev@lists.linbit.com, linux-arch@vger.kernel.org,
+ linux-cifs@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+ linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
+ linux-staging@lists.linux.dev, h.j.bos@vu.nl, jgg@ziepe.ca,
+ intel-wired-lan@lists.osuosl.org, nouveau@lists.freedesktop.org,
+ bcm-kernel-feedback-list@broadcom.com, dan.carpenter@oracle.com,
+ linux-media@vger.kernel.org, keescook@chromium.org, arnd@arndb.de,
+ linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ bjohannesmeyer@gmail.com, linux-block@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, christophe.jaillet@wanadoo.fr,
+ jakobkoschel@gmail.com, v9fs-developer@lists.sourceforge.net,
+ linux-tegra@vger.kernel.org, tglx@linutronix.de,
+ andriy.shevchenko@linux.intel.com, linux-arm-kernel@lists.infradead.org,
+ linux-sgx@vger.kernel.org, nathan@kernel.org, netdev@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
+ xiam0nd.tong@gmail.com, david.laight@aculab.com,
+ tipc-discussion@lists.sourceforge.net, linux-crypto@vger.kernel.org,
+ dmaengine@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ akpm@linux-foundation.org, linuxppc-dev@lists.ozlabs.org,
+ christian.koenig@amd.com, rppt@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-It should notice SMU to update bad channel info when detected
-uncorrectable error in UMC block
+On Thu, 3 Mar 2022 12:18:24 +0000, Daniel Thompson wrote:
+> On Thu, Mar 03, 2022 at 03:26:57PM +0800, Xiaomeng Tong wrote:
+> > On Thu, 3 Mar 2022 04:58:23 +0000, David Laight wrote:
+> > > on 3 Mar 2022 10:27:29 +0800, Xiaomeng Tong wrote:
+> > > > The problem is the mis-use of iterator outside the loop on exit, and
+> > > > the iterator will be the HEAD's container_of pointer which pointers
+> > > > to a type-confused struct. Sidenote: The *mis-use* here refers to
+> > > > mistakely access to other members of the struct, instead of the
+> > > > list_head member which acutally is the valid HEAD.
+> > >
+> > > The problem is that the HEAD's container_of pointer should never
+> > > be calculated at all.
+> > > This is what is fundamentally broken about the current definition.
+> > 
+> > Yes, the rule is "the HEAD's container_of pointer should never be
+> > calculated at all outside the loop", but how do you make sure everyone
+> > follows this rule?
+> 
+> Your formulation of the rule is correct: never run container_of() on HEAD
+> pointer.
 
-Change-Id: I2dc8848affdb53e52891013953ae9383fff5f20f
-Signed-off-by: Stanley.Yang <Stanley.Yang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c       |  7 ++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h       |  3 +++
- .../gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c    | 25 +++++++++++++++++--
- .../gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h    |  4 +++
- drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c       |  5 ++++
- 5 files changed, 42 insertions(+), 2 deletions(-)
+Actually, it is not my rule. My rule is that never access other members
+of the struct except for the list_head member after the loop, because
+this is a invalid member after loop exit, but valid for the list_head
+member which just is HEAD and the lately caculation (&pos->head) seems
+harmless.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index d3875618ebf5..f9104f99eb9c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -2068,6 +2068,7 @@ int amdgpu_ras_recovery_init(struct amdgpu_device *adev)
- 	mutex_init(&con->recovery_lock);
- 	INIT_WORK(&con->recovery_work, amdgpu_ras_do_recovery);
- 	atomic_set(&con->in_recovery, 0);
-+	con->eeprom_control.bad_channel_bitmap = 0;
- 
- 	max_eeprom_records_count = amdgpu_ras_eeprom_max_record_count();
- 	amdgpu_ras_validate_threshold(adev, max_eeprom_records_count);
-@@ -2092,6 +2093,11 @@ int amdgpu_ras_recovery_init(struct amdgpu_device *adev)
- 			goto free;
- 
- 		amdgpu_dpm_send_hbm_bad_pages_num(adev, con->eeprom_control.ras_num_recs);
-+
-+		if (con->update_channel_flag == true) {
-+			amdgpu_dpm_send_hbm_bad_channel_flag(adev, con->eeprom_control.bad_channel_bitmap);
-+			con->update_channel_flag = false;
-+		}
- 	}
- 
- #ifdef CONFIG_X86_MCE_AMD
-@@ -2285,6 +2291,7 @@ int amdgpu_ras_init(struct amdgpu_device *adev)
- 		goto release_con;
- 	}
- 
-+	con->update_channel_flag = false;
- 	con->features = 0;
- 	INIT_LIST_HEAD(&con->head);
- 	/* Might need get this flag from vbios. */
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-index 7cddaad90d6d..9314fde81e68 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-@@ -374,6 +374,9 @@ struct amdgpu_ras {
- 
- 	/* record umc error info queried from smu */
- 	struct umc_ecc_info umc_ecc;
-+
-+	/* Indicates smu whether need update bad channel info */
-+	bool update_channel_flag;
- };
- 
- struct ras_fs_data {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
-index 2b844a5aafdb..ad5d8667756d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
-@@ -265,6 +265,7 @@ int amdgpu_ras_eeprom_reset_table(struct amdgpu_ras_eeprom_control *control)
- {
- 	struct amdgpu_device *adev = to_amdgpu_device(control);
- 	struct amdgpu_ras_eeprom_table_header *hdr = &control->tbl_hdr;
-+	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
- 	u8 csum;
- 	int res;
- 
-@@ -285,6 +286,10 @@ int amdgpu_ras_eeprom_reset_table(struct amdgpu_ras_eeprom_control *control)
- 
- 	amdgpu_dpm_send_hbm_bad_pages_num(adev, control->ras_num_recs);
- 
-+	control->bad_channel_bitmap = 0;
-+	amdgpu_dpm_send_hbm_bad_channel_flag(adev, control->bad_channel_bitmap);
-+	con->update_channel_flag = false;
-+
- 	amdgpu_ras_debugfs_set_ret_size(control);
- 
- 	mutex_unlock(&control->ras_tbl_mutex);
-@@ -418,6 +423,7 @@ amdgpu_ras_eeprom_append_table(struct amdgpu_ras_eeprom_control *control,
- 			       struct eeprom_table_record *record,
- 			       const u32 num)
- {
-+	struct amdgpu_ras *con = amdgpu_ras_get_context(to_amdgpu_device(control));
- 	u32 a, b, i;
- 	u8 *buf, *pp;
- 	int res;
-@@ -429,9 +435,16 @@ amdgpu_ras_eeprom_append_table(struct amdgpu_ras_eeprom_control *control,
- 	/* Encode all of them in one go.
- 	 */
- 	pp = buf;
--	for (i = 0; i < num; i++, pp += RAS_TABLE_RECORD_SIZE)
-+	for (i = 0; i < num; i++, pp += RAS_TABLE_RECORD_SIZE) {
- 		__encode_table_record_to_buf(control, &record[i], pp);
- 
-+		/* update bad channel bitmap */
-+		if (!(control->bad_channel_bitmap & (1 << record[i].mem_channel))) {
-+			control->bad_channel_bitmap |= 1 << record[i].mem_channel;
-+			con->update_channel_flag = true;
-+		}
-+	}
-+
- 	/* a, first record index to write into.
- 	 * b, last record index to write into.
- 	 * a = first index to read (fri) + number of records in the table,
-@@ -684,6 +697,7 @@ int amdgpu_ras_eeprom_read(struct amdgpu_ras_eeprom_control *control,
- 			   const u32 num)
- {
- 	struct amdgpu_device *adev = to_amdgpu_device(control);
-+	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
- 	int i, res;
- 	u8 *buf, *pp;
- 	u32 g0, g1;
-@@ -751,8 +765,15 @@ int amdgpu_ras_eeprom_read(struct amdgpu_ras_eeprom_control *control,
- 	/* Read up everything? Then transform.
- 	 */
- 	pp = buf;
--	for (i = 0; i < num; i++, pp += RAS_TABLE_RECORD_SIZE)
-+	for (i = 0; i < num; i++, pp += RAS_TABLE_RECORD_SIZE) {
- 		__decode_table_record_from_buf(control, &record[i], pp);
-+
-+		/* update bad channel bitmap */
-+		if (!(control->bad_channel_bitmap & (1 << record[i].mem_channel))) {
-+			control->bad_channel_bitmap |= 1 << record[i].mem_channel;
-+			con->update_channel_flag = true;
-+		}
-+	}
- Out:
- 	kfree(buf);
- 	mutex_unlock(&control->ras_tbl_mutex);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
-index 6bb00578bfbb..54d9bfe0881d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
-@@ -80,6 +80,10 @@ struct amdgpu_ras_eeprom_control {
- 	/* Protect table access via this mutex.
- 	 */
- 	struct mutex ras_tbl_mutex;
-+
-+	/* Record channel info which occurred bad pages
-+	 */
-+	u32 bad_channel_bitmap;
- };
- 
- /*
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c
-index 85da6cbaf3b7..aad3c8b4c810 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c
-@@ -97,6 +97,11 @@ static int amdgpu_umc_do_page_retirement(struct amdgpu_device *adev,
- 			amdgpu_ras_save_bad_pages(adev);
- 
- 			amdgpu_dpm_send_hbm_bad_pages_num(adev, con->eeprom_control.ras_num_recs);
-+
-+			if (con->update_channel_flag == true) {
-+				amdgpu_dpm_send_hbm_bad_channel_flag(adev, con->eeprom_control.bad_channel_bitmap);
-+				con->update_channel_flag = false;
-+			}
- 		}
- 
- 		if (reset)
--- 
-2.17.1
+I have considered the case that the HEAD's container "pos" is layouted
+across the max and the min address boundary, which means the address of
+HEAD is likely 0x60, and the address of pos is likely 0xffffffe0.
+It seems ok to caculate pos with:
+((type *)(__mptr - offsetof(type, member)));
+and it seems ok to caculate head outside the loop with:
+if (&pos->head == &HEAD)
+    return NULL;
 
+The only case I can think of with the rule "never run container_of()
+on HEAD" must be followed is when the first argument (which is &HEAD)
+passing to container_of() is NULL + some offset, it may lead to the
+resulting "pos->member" access being a NULL dereference. But maybe
+the caller can take the responsibility to check if it is NULL, not
+container_of() itself.
+
+Please remind me if i missed somthing, thanks.
+
+> 
+> However the rule that is introduced by list_for_each_entry_inside() is
+> *not* this rule. The rule it introduces is: never access the iterator
+> variable outside the loop.
+
+Sorry for the confusion, indeed, that is two *different* rule.
+
+> 
+> Making the iterator NULL on loop exit does follow the rule you proposed
+> but using a different technique: do not allow HEAD to be stored in the
+> iterator variable after loop exit. This also makes it impossible to run
+> container_of() on the HEAD pointer.
+> 
+
+It does not. My rule is: never access the iterator variable outside the loop.
+The "Making the iterator NULL on loop exit" way still leak the pos with NULL
+outside the loop, may lead to a NULL deference.
+
+> 
+> > Everyone makes mistakes, but we can eliminate them all from the beginning
+> > with the help of compiler which can catch such use-after-loop things.
+> 
+> Indeed but if we introduce new interfaces then we don't have to worry
+> about existing usages and silent regressions. Code will have been
+> written knowing the loop can exit with the iterator set to NULL.
+
+Yes, it is more simple and compatible with existing interfaces. Howerver,
+you should make every developers to remember that "pos will be set NULL on
+loop exit", which is unreasonable and impossible for *every* single person.
+Otherwise the mis-use-after-loop will lead to a NULL dereference.
+But we can kill this problem by declaring iterator inside the loop and the
+complier will catch it if somebody mis-use-after-loop.
+
+> 
+> Sure it is still possible for programmers to make mistakes and
+> dereference the NULL pointer but C programmers are well training w.r.t.
+> NULL pointer checking so such mistakes are much less likely than with
+> the current list_for_each_entry() macro. This risk must be offset
+> against the way a NULLify approach can lead to more elegant code when we
+> are doing a list search.
+> 
+
+Yes, the NULLify approach is better than the current list_for_each_entry()
+macro, but i stick with that the list_for_each_entry_inside() way is best
+and perfect _technically_.
+
+Thus, my idea is *better a finger off than always aching*, let's settle this
+damn problem once and for all, with list_for_each_entry_inside().
+
+--
+Xiaomeng Tong
