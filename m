@@ -1,97 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD4814CF217
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Mar 2022 07:42:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4D724CF383
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Mar 2022 09:26:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61B8910E064;
-	Mon,  7 Mar 2022 06:41:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C98BB10E1C1;
+	Mon,  7 Mar 2022 08:26:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2083.outbound.protection.outlook.com [40.107.223.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E0FE10E064
- for <amd-gfx@lists.freedesktop.org>; Mon,  7 Mar 2022 06:41:57 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IWgBrqXqjWcP5I6f2P1lIY5mQgHy9Y+z+KHDZSLBYASm9cn4gqPfq2LGmTJzm50GkjNhwXKxq+y3NaEH9NJHc3vPVPj9AwEKX63dLANnGnN4sr9LfIMFi9t7Dy9UPXy4JF2XqOlCYORTb8yusqsfS8eaDNbmhfC9pHf1ri1qhtUGSOBp7Pugz9rLKjsGOie0HpPSzdbU5nsgpPPn8IcIFVkCVriUHFB9Ia7H2VGqi2LXMJzAm2J8Y5B57zfjwCsM8a9p+3gSGHTTLtpetJocETkTe15jH9IVyqld0YaQQttup5udDcRU2sIOLYc0BALVW/885e8rLLyl9mnlDE5rMA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Z/J+/GmOvVMcSOSGSxSQvwqmhQ6wps8pIeUqtZrn6qk=;
- b=IXR0r/wrkoc+mJO9m2C3bwogkyv07xYtuE/J3j5ruNOaesSHfA757g3tp//iyIaTfoI/vbRDiXmQ4Ds5xAzUfTo76KUvoQwS5983HHevpc77Qsq2grP/svNBwEhmDksVCbJQ/APudOvO7MQwup2+ZsbuEPWQh1CnOQaqkb0PKDM/KGRD8LEPgvwdrcC7CJvoRgneciyfUp+/SVzPL2R9cGvQd1bD1EdDp1nFSlmXR0BDbzSK5BnUZTEsDRQ61NlTyUB9CqaDlV8Ht9AEdLSPhD2CgNML5Pvh5Vw4ivfvVW8MfnjQRWQgXI3khkYrMNnUhjRcCQaHBtqHwa/GCD6gaQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Z/J+/GmOvVMcSOSGSxSQvwqmhQ6wps8pIeUqtZrn6qk=;
- b=USSYk3dwG/YJXZZbYvfwRexOJHT8hQpU7F857cRKCxJjfSLJGGOLu9lpPMymyS77S22cgh0daox/WJMcAUq5ae2Mf5k8CafirPLzZG89cWdUU0c8dVxGbWI8/pYy8UXd0i3nBU2H0lFW1YZabBVXUb5MnlBdgFopP8hXS2Weaco=
-Received: from DM5PR07CA0080.namprd07.prod.outlook.com (2603:10b6:4:ad::45) by
- MWHPR1201MB0205.namprd12.prod.outlook.com (2603:10b6:301:4e::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14; Mon, 7 Mar
- 2022 06:41:48 +0000
-Received: from DM6NAM11FT021.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:ad:cafe::a3) by DM5PR07CA0080.outlook.office365.com
- (2603:10b6:4:ad::45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14 via Frontend
- Transport; Mon, 7 Mar 2022 06:41:48 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DM6NAM11FT021.mail.protection.outlook.com (10.13.173.76) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5038.14 via Frontend Transport; Mon, 7 Mar 2022 06:41:47 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Mon, 7 Mar
- 2022 00:41:47 -0600
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB08.amd.com
- (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Sun, 6 Mar
- 2022 22:41:46 -0800
-Received: from alan-new-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
- Transport; Mon, 7 Mar 2022 00:41:43 -0600
-From: Alan Liu <HaoPing.Liu@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 02/21] drm/amd/display: cleaning up smu_if to add future
- flexibility
-Date: Tue, 8 Mar 2022 06:02:00 +0800
-Message-ID: <20220307220218.445431-3-HaoPing.Liu@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
+ [IPv6:2a01:488:42:1000:50ed:8234::])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C79A10E471
+ for <amd-gfx@lists.freedesktop.org>; Sun,  6 Mar 2022 15:48:19 +0000 (UTC)
+Received: from ip4d144895.dynamic.kabel-deutschland.de ([77.20.72.149]
+ helo=[192.168.66.200]); authenticated
+ by wp530.webpack.hosteurope.de running ExIM with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ id 1nQt7F-0006pL-Di; Sun, 06 Mar 2022 16:48:13 +0100
+Message-ID: <092b825a-10ff-e197-18a1-d3e3a097b0e3@leemhuis.info>
+Date: Sun, 6 Mar 2022 16:48:12 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 41ab68f7-8be5-42fc-e3a4-08da00058dbc
-X-MS-TrafficTypeDiagnostic: MWHPR1201MB0205:EE_
-X-Microsoft-Antispam-PRVS: <MWHPR1201MB02055440C3E99A6535C908A8F5089@MWHPR1201MB0205.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: T121oHNliEI5pCmAxREUE2U2H3aDvR2K643v/jm+ow16jnHHk30QnsphplqTbfXDKhXdJaUxm51TgM5E+pLxNTFS2Bsda8S96v8uIdTixTIsnQ6USXbMwzFDvOtImv/zK/bTYw8GWfadpCqUUEaOyV1N7RwgT8FyVHa00X4BtCWMNnnUZeoIiJhTrhrzvgqy7rp/5ncMy/2qwErPAmn/FciBiVi0ND04haPq7GqqNjKL8IyMIbLfPPrQgjZbjvf9o6sK/M5g+gL+6efEFlun7AbnPa05Xrmmcw35nQdfu/If76dDc4AfRZVsiLT1/aDIJTCS9/nfzrnK3VkcOE4CPP2pzzeqrx/doWRoqg520vBizkupiKEfKwPC/4+cxvllM0zv1WhJrHz1PmUL4Cku2TAS9YCQcTZoEZkvBknpuNlZwVvfBa/p9Mvk+NU5oSufVrnY73DO+Pv+1a8ezJiKP5kdKMXDd8BigvLjiCMrEQv/pMos7cY0a/csgaTNDVc3D6P9doOUrgc3NUY5fY1yRBHEUbhGT+0F/BRpoJYbftJ9Po6oowzyH0fke92QjRw3haH4ve+wGYtIbfekCJBSDlLq1LoB4tsycjxJ0vHPmu12qVKrLwolT44TfIDxm4pahAHYh5odBSBtqM96x3XZWMISiPwfFNW6Xz5e0BlcDXurOmAi3BWUyfFq+1NGJhB4xl/2K+stlkfWC0MCPriBIg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(36840700001)(46966006)(186003)(26005)(81166007)(5660300002)(8936002)(2616005)(47076005)(316002)(54906003)(6916009)(4326008)(8676002)(86362001)(356005)(70206006)(1076003)(70586007)(83380400001)(40460700003)(6666004)(426003)(336012)(36860700001)(7696005)(2906002)(30864003)(36756003)(82310400004)(508600001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2022 06:41:47.8212 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 41ab68f7-8be5-42fc-e3a4-08da00058dbc
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT021.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB0205
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [REGRESSION] Too-low frequency limit for AMD GPU
+ PCI-passed-through to Windows VM
+Content-Language: en-US
+To: Alex Deucher <alexdeucher@gmail.com>,
+ "James D. Turner" <linuxkernel.foss@dmarc-none.turner.link>
+References: <87ee57c8fu.fsf@turner.link>
+ <acd2fd5e-d622-948c-82ef-629a8030c9d8@leemhuis.info>
+ <87a6ftk9qy.fsf@dmarc-none.turner.link> <87zgnp96a4.fsf@turner.link>
+ <fc2b7593-db8f-091c-67a0-ae5ffce71700@leemhuis.info>
+ <CADnq5_Nr5-FR2zP1ViVsD_ZMiW=UHC1wO8_HEGm26K_EG2KDoA@mail.gmail.com>
+ <87czkk1pmt.fsf@dmarc-none.turner.link>
+ <BYAPR12MB46140BE09E37244AE129C01A975C9@BYAPR12MB4614.namprd12.prod.outlook.com>
+ <87sftfqwlx.fsf@dmarc-none.turner.link>
+ <BYAPR12MB4614E2CFEDDDEAABBAB986A0975E9@BYAPR12MB4614.namprd12.prod.outlook.com>
+ <87ee4wprsx.fsf@turner.link> <4b3ed7f6-d2b6-443c-970e-d963066ebfe3@amd.com>
+ <87pmo8r6ob.fsf@turner.link>
+ <5a68afe4-1e9e-c683-e06d-30afc2156f14@leemhuis.info>
+ <CADnq5_MCKTLOfWKWvi94Q9-d5CGdWBoWVxEYL3YXOpMiPnLOyg@mail.gmail.com>
+ <87pmnnpmh5.fsf@dmarc-none.turner.link>
+ <CADnq5_NG_dQCYwqHM0umjTMg5Uud6zC4=MiscH91Y9v7mW9bJA@mail.gmail.com>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+In-Reply-To: <CADnq5_NG_dQCYwqHM0umjTMg5Uud6zC4=MiscH91Y9v7mW9bJA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1646581699;
+ b1c67397; 
+X-HE-SMSGID: 1nQt7F-0006pL-Di
+X-Mailman-Approved-At: Mon, 07 Mar 2022 08:26:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,325 +62,84 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Alan Liu <HaoPing.Liu@amd.com>, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- Martin Leung <Martin.Leung@amd.com>, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
- Nevenko Stupar <Nevenko.Stupar@amd.com>, wayne.lin@amd.com,
- Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ "regressions@lists.linux.dev" <regressions@lists.linux.dev>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ Greg KH <gregkh@linuxfoundation.org>, "Lazar, Lijo" <lijo.lazar@amd.com>,
+ LKML <linux-kernel@vger.kernel.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Alex Williamson <alex.williamson@redhat.com>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Martin Leung <Martin.Leung@amd.com>
+Hi, this is your Linux kernel regression tracker again. Top-posting once
+more, to make this easily accessible to everyone.
 
-why and how:
-need to hook in new smu interfaces
-cleaning up code that used old variables
+What's the status of this? It looks stuck, or did the discussion
+continue somewhere else? James, it sounded like you wanted to test
+something, did you give it a try? Or is there some reason why I should
+stop tracking this regression?
 
-Reviewed-by: Nevenko Stupar <Nevenko.Stupar@amd.com>
-Acked-by: Alan Liu <HaoPing.Liu@amd.com>
-Signed-off-by: Martin Leung <Martin.Leung@amd.com>
----
- .../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c  | 13 +---
- .../dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.c  |  9 ++-
- .../dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.h  | 67 +----------------
- .../dc/clk_mgr/dcn30/dcn30_smu11_driver_if.h  | 74 +++++++++++++++++++
- .../display/include/grph_object_ctrl_defs.h   | 22 ------
- 5 files changed, 86 insertions(+), 99 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_smu11_driver_if.h
+Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c
-index 220682e45b8d..5ed6a93d1708 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c
-@@ -25,30 +25,23 @@
- 
- #include "dccg.h"
- #include "clk_mgr_internal.h"
--
- #include "dcn30_clk_mgr_smu_msg.h"
- #include "dcn20/dcn20_clk_mgr.h"
- #include "dce100/dce_clk_mgr.h"
-+#include "dcn30/dcn30_clk_mgr.h"
- #include "reg_helper.h"
- #include "core_types.h"
- #include "dm_helpers.h"
--
- #include "atomfirmware.h"
--
--
- #include "sienna_cichlid_ip_offset.h"
- #include "dcn/dcn_3_0_0_offset.h"
- #include "dcn/dcn_3_0_0_sh_mask.h"
--
- #include "nbio/nbio_7_4_offset.h"
--
- #include "dpcs/dpcs_3_0_0_offset.h"
- #include "dpcs/dpcs_3_0_0_sh_mask.h"
--
- #include "mmhub/mmhub_2_0_0_offset.h"
- #include "mmhub/mmhub_2_0_0_sh_mask.h"
--/*we don't have clk folder yet*/
--#include "dcn30/dcn30_clk_mgr.h"
-+#include "dcn30_smu11_driver_if.h"
- 
- #undef FN
- #define FN(reg_name, field_name) \
-@@ -83,7 +76,7 @@ static const struct clk_mgr_mask clk_mgr_mask = {
- 
- 
- /* Query SMU for all clock states for a particular clock */
--static void dcn3_init_single_clock(struct clk_mgr_internal *clk_mgr, PPCLK_e clk, unsigned int *entry_0, unsigned int *num_levels)
-+static void dcn3_init_single_clock(struct clk_mgr_internal *clk_mgr, uint32_t clk, unsigned int *entry_0, unsigned int *num_levels)
- {
- 	unsigned int i;
- 	char *entry_i = (char *)entry_0;
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.c
-index 8ecc708bcd9e..bfc960579760 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.c
-@@ -29,6 +29,7 @@
- #include "clk_mgr_internal.h"
- #include "reg_helper.h"
- #include "dalsmc.h"
-+#include "dcn30_smu11_driver_if.h"
- 
- #define mmDAL_MSG_REG  0x1628A
- #define mmDAL_ARG_REG  0x16273
-@@ -197,7 +198,7 @@ void dcn30_smu_transfer_wm_table_dram_2_smu(struct clk_mgr_internal *clk_mgr)
- }
- 
- /* Returns the actual frequency that was set in MHz, 0 on failure */
--unsigned int dcn30_smu_set_hard_min_by_freq(struct clk_mgr_internal *clk_mgr, PPCLK_e clk, uint16_t freq_mhz)
-+unsigned int dcn30_smu_set_hard_min_by_freq(struct clk_mgr_internal *clk_mgr, uint32_t clk, uint16_t freq_mhz)
- {
- 	uint32_t response = 0;
- 
-@@ -215,7 +216,7 @@ unsigned int dcn30_smu_set_hard_min_by_freq(struct clk_mgr_internal *clk_mgr, PP
- }
- 
- /* Returns the actual frequency that was set in MHz, 0 on failure */
--unsigned int dcn30_smu_set_hard_max_by_freq(struct clk_mgr_internal *clk_mgr, PPCLK_e clk, uint16_t freq_mhz)
-+unsigned int dcn30_smu_set_hard_max_by_freq(struct clk_mgr_internal *clk_mgr, uint32_t clk, uint16_t freq_mhz)
- {
- 	uint32_t response = 0;
- 
-@@ -246,7 +247,7 @@ unsigned int dcn30_smu_set_hard_max_by_freq(struct clk_mgr_internal *clk_mgr, PP
-  *
-  * Returns 0 on failure
-  */
--unsigned int dcn30_smu_get_dpm_freq_by_index(struct clk_mgr_internal *clk_mgr, PPCLK_e clk, uint8_t dpm_level)
-+unsigned int dcn30_smu_get_dpm_freq_by_index(struct clk_mgr_internal *clk_mgr, uint32_t clk, uint8_t dpm_level)
- {
- 	uint32_t response = 0;
- 
-@@ -264,7 +265,7 @@ unsigned int dcn30_smu_get_dpm_freq_by_index(struct clk_mgr_internal *clk_mgr, P
- }
- 
- /* Returns the max DPM frequency in DC mode in MHz, 0 on failure */
--unsigned int dcn30_smu_get_dc_mode_max_dpm_freq(struct clk_mgr_internal *clk_mgr, PPCLK_e clk)
-+unsigned int dcn30_smu_get_dc_mode_max_dpm_freq(struct clk_mgr_internal *clk_mgr, uint32_t clk)
- {
- 	uint32_t response = 0;
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.h b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.h
-index dd2640a3ce5d..ca9f5296be94 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.h
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.h
-@@ -28,65 +28,6 @@
- 
- #include "core_types.h"
- 
--#define SMU11_DRIVER_IF_VERSION 0x1F
--
--typedef enum {
--	PPCLK_GFXCLK = 0,
--	PPCLK_SOCCLK,
--	PPCLK_UCLK,
--	PPCLK_FCLK,
--	PPCLK_DCLK_0,
--	PPCLK_VCLK_0,
--	PPCLK_DCLK_1,
--	PPCLK_VCLK_1,
--	PPCLK_DCEFCLK,
--	PPCLK_DISPCLK,
--	PPCLK_PIXCLK,
--	PPCLK_PHYCLK,
--	PPCLK_DTBCLK,
--	PPCLK_COUNT,
--} PPCLK_e;
--
--typedef struct {
--	uint16_t MinClock; // This is either DCEFCLK or SOCCLK (in MHz)
--	uint16_t MaxClock; // This is either DCEFCLK or SOCCLK (in MHz)
--	uint16_t MinUclk;
--	uint16_t MaxUclk;
--
--	uint8_t  WmSetting;
--	uint8_t  Flags;
--	uint8_t  Padding[2];
--
--} WatermarkRowGeneric_t;
--
--#define NUM_WM_RANGES 4
--
--typedef enum {
--	WM_SOCCLK = 0,
--	WM_DCEFCLK,
--	WM_COUNT,
--} WM_CLOCK_e;
--
--typedef enum {
--	WATERMARKS_CLOCK_RANGE = 0,
--	WATERMARKS_DUMMY_PSTATE,
--	WATERMARKS_MALL,
--	WATERMARKS_COUNT,
--} WATERMARKS_FLAGS_e;
--
--typedef struct {
--	// Watermarks
--	WatermarkRowGeneric_t WatermarkRow[WM_COUNT][NUM_WM_RANGES];
--} Watermarks_t;
--
--typedef struct {
--	Watermarks_t Watermarks;
--
--	uint32_t     MmHubPadding[8]; // SMU internal use
--} WatermarksExternal_t;
--
--#define TABLE_WATERMARKS 1
--
- struct clk_mgr_internal;
- 
- bool         dcn30_smu_test_message(struct clk_mgr_internal *clk_mgr, uint32_t input);
-@@ -97,10 +38,10 @@ void         dcn30_smu_set_dram_addr_high(struct clk_mgr_internal *clk_mgr, uint
- void         dcn30_smu_set_dram_addr_low(struct clk_mgr_internal *clk_mgr, uint32_t addr_low);
- void         dcn30_smu_transfer_wm_table_smu_2_dram(struct clk_mgr_internal *clk_mgr);
- void         dcn30_smu_transfer_wm_table_dram_2_smu(struct clk_mgr_internal *clk_mgr);
--unsigned int dcn30_smu_set_hard_min_by_freq(struct clk_mgr_internal *clk_mgr, PPCLK_e clk, uint16_t freq_mhz);
--unsigned int dcn30_smu_set_hard_max_by_freq(struct clk_mgr_internal *clk_mgr, PPCLK_e clk, uint16_t freq_mhz);
--unsigned int dcn30_smu_get_dpm_freq_by_index(struct clk_mgr_internal *clk_mgr, PPCLK_e clk, uint8_t dpm_level);
--unsigned int dcn30_smu_get_dc_mode_max_dpm_freq(struct clk_mgr_internal *clk_mgr, PPCLK_e clk);
-+unsigned int dcn30_smu_set_hard_min_by_freq(struct clk_mgr_internal *clk_mgr, uint32_t clk, uint16_t freq_mhz);
-+unsigned int dcn30_smu_set_hard_max_by_freq(struct clk_mgr_internal *clk_mgr, uint32_t clk, uint16_t freq_mhz);
-+unsigned int dcn30_smu_get_dpm_freq_by_index(struct clk_mgr_internal *clk_mgr, uint32_t clk, uint8_t dpm_level);
-+unsigned int dcn30_smu_get_dc_mode_max_dpm_freq(struct clk_mgr_internal *clk_mgr, uint32_t clk);
- void         dcn30_smu_set_min_deep_sleep_dcef_clk(struct clk_mgr_internal *clk_mgr, uint32_t freq_mhz);
- void         dcn30_smu_set_num_of_displays(struct clk_mgr_internal *clk_mgr, uint32_t num_displays);
- void         dcn30_smu_set_display_refresh_from_mall(struct clk_mgr_internal *clk_mgr, bool enable, uint8_t cache_timer_delay, uint8_t cache_timer_scale);
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_smu11_driver_if.h b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_smu11_driver_if.h
-new file mode 100644
-index 000000000000..8ea8ee57b39f
---- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_smu11_driver_if.h
-@@ -0,0 +1,74 @@
-+// This is a stripped-down version of the smu11_driver_if.h file for the relevant DAL interfaces.
-+
-+#define SMU11_DRIVER_IF_VERSION 0x40
-+
-+//Only Clks that have DPM descriptors are listed here
-+typedef enum {
-+	PPCLK_GFXCLK = 0,
-+	PPCLK_SOCCLK,
-+	PPCLK_UCLK,
-+	PPCLK_FCLK,
-+	PPCLK_DCLK_0,
-+	PPCLK_VCLK_0,
-+	PPCLK_DCLK_1,
-+	PPCLK_VCLK_1,
-+	PPCLK_DCEFCLK,
-+	PPCLK_DISPCLK,
-+	PPCLK_PIXCLK,
-+	PPCLK_PHYCLK,
-+	PPCLK_DTBCLK,
-+	PPCLK_COUNT,
-+} PPCLK_e;
-+
-+typedef struct {
-+	uint16_t MinClock; // This is either DCEFCLK or SOCCLK (in MHz)
-+	uint16_t MaxClock; // This is either DCEFCLK or SOCCLK (in MHz)
-+	uint16_t MinUclk;
-+	uint16_t MaxUclk;
-+
-+	uint8_t  WmSetting;
-+	uint8_t  Flags;
-+	uint8_t  Padding[2];
-+
-+} WatermarkRowGeneric_t;
-+
-+#define NUM_WM_RANGES 4
-+
-+typedef enum {
-+	WM_SOCCLK = 0,
-+	WM_DCEFCLK,
-+	WM_COUNT,
-+} WM_CLOCK_e;
-+
-+typedef enum {
-+	WATERMARKS_CLOCK_RANGE = 0,
-+	WATERMARKS_DUMMY_PSTATE,
-+	WATERMARKS_MALL,
-+	WATERMARKS_COUNT,
-+} WATERMARKS_FLAGS_e;
-+
-+typedef struct {
-+	// Watermarks
-+	WatermarkRowGeneric_t WatermarkRow[WM_COUNT][NUM_WM_RANGES];
-+} Watermarks_t;
-+
-+typedef struct {
-+	Watermarks_t Watermarks;
-+
-+	uint32_t     MmHubPadding[8]; // SMU internal use
-+} WatermarksExternal_t;
-+
-+// Table types
-+#define TABLE_PPTABLE                 0
-+#define TABLE_WATERMARKS              1
-+#define TABLE_AVFS_PSM_DEBUG          2
-+#define TABLE_AVFS_FUSE_OVERRIDE      3
-+#define TABLE_PMSTATUSLOG             4
-+#define TABLE_SMU_METRICS             5
-+#define TABLE_DRIVER_SMU_CONFIG       6
-+#define TABLE_ACTIVITY_MONITOR_COEFF  7
-+#define TABLE_OVERDRIVE               8
-+#define TABLE_I2C_COMMANDS            9
-+#define TABLE_PACE                   10
-+#define TABLE_ECCINFO                11
-+#define TABLE_COUNT                  12
-diff --git a/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h b/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h
-index dd974c428d23..bc96d0211360 100644
---- a/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h
-+++ b/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h
-@@ -419,28 +419,6 @@ struct integrated_info {
- 	struct edp_info edp2_info;
- };
- 
--/**
--* Power source ids.
--*/
--enum power_source {
--	POWER_SOURCE_AC = 0,
--	POWER_SOURCE_DC,
--	POWER_SOURCE_LIMITED_POWER,
--	POWER_SOURCE_LIMITED_POWER_2,
--	POWER_SOURCE_MAX
--};
--
--struct bios_event_info {
--	uint32_t thermal_state;
--	uint32_t backlight_level;
--	enum power_source powerSource;
--	bool has_thermal_state_changed;
--	bool has_power_source_changed;
--	bool has_forced_mode_changed;
--	bool forced_mode;
--	bool backlight_changed;
--};
--
- /*
-  * DFS-bypass flag
-  */
--- 
-2.25.1
+P.S.: As the Linux kernel's regression tracker I'm getting a lot of
+reports on my table. I can only look briefly into most of them and lack
+knowledge about most of the areas they concern. I thus unfortunately
+will sometimes get things wrong or miss something important. I hope
+that's not the case here; if you think it is, don't hesitate to tell me
+in a public reply, it's in everyone's interest to set the public record
+straight.
 
+#regzbot poke
+
+On 16.02.22 17:37, Alex Deucher wrote:
+> On Tue, Feb 15, 2022 at 9:35 PM James D. Turner
+> <linuxkernel.foss@dmarc-none.turner.link> wrote:
+>>
+>> Hi Alex,
+>>
+>>> I guess just querying the ATIF method does something that negatively
+>>> influences the windows driver in the guest. Perhaps the platform
+>>> thinks the driver has been loaded since the method has been called so
+>>> it enables certain behaviors that require ATIF interaction that never
+>>> happen because the ACPI methods are not available in the guest.
+>>
+>> Do you mean the `amdgpu_atif_pci_probe_handle` function? If it would be
+>> helpful, I could try disabling that function and testing again.
+> 
+> Correct.
+> 
+>>
+>>> I don't really have a good workaround other than blacklisting the
+>>> driver since on bare metal the driver needs to use this interface for
+>>> platform interactions.
+>>
+>> I'm not familiar with ATIF, but should `amdgpu_atif_pci_probe_handle`
+>> really be called for PCI devices which are bound to vfio-pci? I'd expect
+>> amdgpu to ignore such devices.
+>>
+>> As I understand it, starting with
+>> f9b7f3703ff9 ("drm/amdgpu/acpi: make ATPX/ATCS structures global (v2)"),
+>> the `amdgpu_acpi_detect` function loops over all PCI devices in the
+>> `PCI_CLASS_DISPLAY_VGA` and `PCI_CLASS_DISPLAY_OTHER` classes to find
+>> the ATIF and ATCS handles. Maybe skipping over any PCI devices bound to
+>> vfio-pci would fix the issue? On a related note, shouldn't it also skip
+>> over any PCI devices with non-AMD vendor IDs?
+> 
+> The ACPI methods are global.  There's only one instance of each per
+> system and they are relevant to add GPUs on the platform.  That's why
+> they are a global resource in the driver.  They can be hung off of the
+> dGPU or APU ACPI namespace, depending on the platform which is why we
+> check all of the display devices.  Skipping them would prevent them
+> from being available if you later bound the amdgpu driver to the GPU
+> device(s) I think.
+> 
+> Alex
+> 
+>>
+>> Regards,
+>> James
+> 
+> 
