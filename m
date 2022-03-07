@@ -1,95 +1,97 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02A294CF17C
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Mar 2022 06:54:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD4814CF217
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Mar 2022 07:42:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6397910E70E;
-	Mon,  7 Mar 2022 05:54:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61B8910E064;
+	Mon,  7 Mar 2022 06:41:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1anam02on2043.outbound.protection.outlook.com [40.107.96.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2495C10E1A3
- for <amd-gfx@lists.freedesktop.org>; Mon,  7 Mar 2022 05:54:25 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2083.outbound.protection.outlook.com [40.107.223.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E0FE10E064
+ for <amd-gfx@lists.freedesktop.org>; Mon,  7 Mar 2022 06:41:57 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b2ceR1DBEJTtBzEx/+2n7uPlrXZVrOrTooCleURTVGx4sLsmCxoI2zgBMIRgmK439sjpZdoY3y3u7NtkhyZkAjlxLcqSxe4PjiUTRgzkycO2vWiLyDHhQFh0/D47ZsXmEs8peqQmHS11tLoaD6T/HrfH4o6L8OtQDkAC5Giv+GFH855KGhb73+7c40Nx0KKWzVY4eA8ySx0McgFSvF4lgFnfNhRe1WC59d5EehSyX0LtZlgi0acBcG1hwCB+BGLIX3XXSz347tI4K3mO1Ib6ZxXYxEiEcNKAXp1J8/4NeE+t8s6qVkqTBxqZZxIgbIerC6p0Fg6srtGPPW9mjiyV5Q==
+ b=IWgBrqXqjWcP5I6f2P1lIY5mQgHy9Y+z+KHDZSLBYASm9cn4gqPfq2LGmTJzm50GkjNhwXKxq+y3NaEH9NJHc3vPVPj9AwEKX63dLANnGnN4sr9LfIMFi9t7Dy9UPXy4JF2XqOlCYORTb8yusqsfS8eaDNbmhfC9pHf1ri1qhtUGSOBp7Pugz9rLKjsGOie0HpPSzdbU5nsgpPPn8IcIFVkCVriUHFB9Ia7H2VGqi2LXMJzAm2J8Y5B57zfjwCsM8a9p+3gSGHTTLtpetJocETkTe15jH9IVyqld0YaQQttup5udDcRU2sIOLYc0BALVW/885e8rLLyl9mnlDE5rMA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0vHffKKr0aBpfO02ZQMju8ZQ/+mR3SxYjIzRUFE5D8Q=;
- b=i4I2y6HB1cDmuO/+KNGN95vlXIwKGA4IETGIEgG7ufIHTmjG3BB6gAezEw9jvZ0bx6VgrKaKssnEgNDgFazkRyADq8DH3d7++DLh/yXTSMMICNCEAFZtQ7SS/l8/0xrHvqQn6BSSuIKzKJvS9cQD3+yy+jYZGIk1B26O48XbuVOM70qwwiGwgmOE860b5tHq9i7uWCf48lxEuTHAFNkN+aTmOYpamo67iBafK4BPY5RRLlFG/ph2tdY3AAxa386asTMlUZ8SlcAmp2q/DQ+91MFwwSbzsGcA7wIKcIBgfMJIzy0WRg4XtGiGTwgvuxplR+Qrq5b2xxfc3vdENPCNtQ==
+ bh=Z/J+/GmOvVMcSOSGSxSQvwqmhQ6wps8pIeUqtZrn6qk=;
+ b=IXR0r/wrkoc+mJO9m2C3bwogkyv07xYtuE/J3j5ruNOaesSHfA757g3tp//iyIaTfoI/vbRDiXmQ4Ds5xAzUfTo76KUvoQwS5983HHevpc77Qsq2grP/svNBwEhmDksVCbJQ/APudOvO7MQwup2+ZsbuEPWQh1CnOQaqkb0PKDM/KGRD8LEPgvwdrcC7CJvoRgneciyfUp+/SVzPL2R9cGvQd1bD1EdDp1nFSlmXR0BDbzSK5BnUZTEsDRQ61NlTyUB9CqaDlV8Ht9AEdLSPhD2CgNML5Pvh5Vw4ivfvVW8MfnjQRWQgXI3khkYrMNnUhjRcCQaHBtqHwa/GCD6gaQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0vHffKKr0aBpfO02ZQMju8ZQ/+mR3SxYjIzRUFE5D8Q=;
- b=RoWteTEX5cshzuLRBrTjui8QbsaGvIuPx5zFGQU2JMbx4osVDlNHLb1QKdlULNkzPRNqwRfOdS0aGrJprDrBZ7cG2mcaR+SLl78Y16zct2B/hKL5vC5Alzx8TMEIfA7VlW0KkKwRok8Jw2vOB45VaXQuriRuy5bzdjIUZErUqnQ=
-Received: from MW4P221CA0014.NAMP221.PROD.OUTLOOK.COM (2603:10b6:303:8b::19)
- by BYAPR12MB4710.namprd12.prod.outlook.com (2603:10b6:a03:9f::27) with
+ bh=Z/J+/GmOvVMcSOSGSxSQvwqmhQ6wps8pIeUqtZrn6qk=;
+ b=USSYk3dwG/YJXZZbYvfwRexOJHT8hQpU7F857cRKCxJjfSLJGGOLu9lpPMymyS77S22cgh0daox/WJMcAUq5ae2Mf5k8CafirPLzZG89cWdUU0c8dVxGbWI8/pYy8UXd0i3nBU2H0lFW1YZabBVXUb5MnlBdgFopP8hXS2Weaco=
+Received: from DM5PR07CA0080.namprd07.prod.outlook.com (2603:10b6:4:ad::45) by
+ MWHPR1201MB0205.namprd12.prod.outlook.com (2603:10b6:301:4e::17) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.17; Mon, 7 Mar
- 2022 05:54:20 +0000
-Received: from CO1NAM11FT061.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8b:cafe::e6) by MW4P221CA0014.outlook.office365.com
- (2603:10b6:303:8b::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14; Mon, 7 Mar
+ 2022 06:41:48 +0000
+Received: from DM6NAM11FT021.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:4:ad:cafe::a3) by DM5PR07CA0080.outlook.office365.com
+ (2603:10b6:4:ad::45) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14 via Frontend
- Transport; Mon, 7 Mar 2022 05:54:19 +0000
+ Transport; Mon, 7 Mar 2022 06:41:48 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT061.mail.protection.outlook.com (10.13.175.200) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DM6NAM11FT021.mail.protection.outlook.com (10.13.173.76) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5038.14 via Frontend Transport; Mon, 7 Mar 2022 05:54:19 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.5038.14 via Frontend Transport; Mon, 7 Mar 2022 06:41:47 +0000
+Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Mon, 7 Mar
+ 2022 00:41:47 -0600
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB08.amd.com
+ (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Sun, 6 Mar
- 2022 23:54:18 -0600
+ 2022 22:41:46 -0800
 Received: from alan-new-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
- Transport; Sun, 6 Mar 2022 23:54:14 -0600
+ Transport; Mon, 7 Mar 2022 00:41:43 -0600
 From: Alan Liu <HaoPing.Liu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 21/21] drm/amd/display: move FPU code from dcn10 to dml/dcn10
- folder
-Date: Tue, 8 Mar 2022 05:09:45 +0800
-Message-ID: <20220307210942.444808-22-HaoPing.Liu@amd.com>
+Subject: [PATCH 02/21] drm/amd/display: cleaning up smu_if to add future
+ flexibility
+Date: Tue, 8 Mar 2022 06:02:00 +0800
+Message-ID: <20220307220218.445431-3-HaoPing.Liu@amd.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220307210942.444808-4-HaoPing.Liu@amd.com>
-References: <20220307210942.444808-4-HaoPing.Liu@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: af71635e-24ab-4de0-7109-08d9fffeebfb
-X-MS-TrafficTypeDiagnostic: BYAPR12MB4710:EE_
-X-Microsoft-Antispam-PRVS: <BYAPR12MB47104B2F40B0C74985C0C5DFF5089@BYAPR12MB4710.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 41ab68f7-8be5-42fc-e3a4-08da00058dbc
+X-MS-TrafficTypeDiagnostic: MWHPR1201MB0205:EE_
+X-Microsoft-Antispam-PRVS: <MWHPR1201MB02055440C3E99A6535C908A8F5089@MWHPR1201MB0205.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: sibgWXCJTOu6Gj+ki3+sHPDmEgKx/0hGu1BR53KuxMtXfa0lWv1d8l6gc53/d6oEqHxDoQj2PrSMjMtsdIwUqvvm2ZSLRHaHbQOFtYbijJE/9o/RPM8MZ4oNKniyO5sZfSiTT6Vd0ztVSI1xlxPR4d45ia9f5rJL99furcfy1O4cYo0cdYzpdA//iGCWP3lhFs0fXnV53BOoGqAyboyx/tuQwX04AnSYzCdy0rk3tsZMU8nu81LqpmEYgzoriLLeJ5gYUCPGc3QOVssMZfbBGJ9s5wYQKs3BMjzdSI4NnBkFCL4GTtdbgSUIT9SaiNxRQmmYDqvkh6XpvPNSHSfI13k4gVIBbPLvalomQUyGRjGuiTUoU+uvR82CDluQ0iolHtVQalk/a3h1J/bXyqY0e1szUil/BuYOaLjtiNBaqs6Z1q5yxNLP3y3mzTlw5s0I1oWl54AnePz4T1NzNGxkXa7AQvrasuuO07JudBAULMTASzOJLYKX3KPsWl/m7lcjMssa09Cjrev4OIc7esDjGiK2NiWgVru5veDX6G9n7Wm8izqH8W7f3wD92EMKESw0+r9BUDWP8uqiQX5dIb0HqcRBIqN4N4vpsDo2UvB9Kw95eL9ByVdwcXoNshH8yZO6Mpn64i4+PCIX0geilheqR5NFBjIjjoyMX1vWtbxonMqkU66Qw41bxzFTZFmhjKJSdTYK0+B1oznUuDbkmsAo0Q==
+X-Microsoft-Antispam-Message-Info: T121oHNliEI5pCmAxREUE2U2H3aDvR2K643v/jm+ow16jnHHk30QnsphplqTbfXDKhXdJaUxm51TgM5E+pLxNTFS2Bsda8S96v8uIdTixTIsnQ6USXbMwzFDvOtImv/zK/bTYw8GWfadpCqUUEaOyV1N7RwgT8FyVHa00X4BtCWMNnnUZeoIiJhTrhrzvgqy7rp/5ncMy/2qwErPAmn/FciBiVi0ND04haPq7GqqNjKL8IyMIbLfPPrQgjZbjvf9o6sK/M5g+gL+6efEFlun7AbnPa05Xrmmcw35nQdfu/If76dDc4AfRZVsiLT1/aDIJTCS9/nfzrnK3VkcOE4CPP2pzzeqrx/doWRoqg520vBizkupiKEfKwPC/4+cxvllM0zv1WhJrHz1PmUL4Cku2TAS9YCQcTZoEZkvBknpuNlZwVvfBa/p9Mvk+NU5oSufVrnY73DO+Pv+1a8ezJiKP5kdKMXDd8BigvLjiCMrEQv/pMos7cY0a/csgaTNDVc3D6P9doOUrgc3NUY5fY1yRBHEUbhGT+0F/BRpoJYbftJ9Po6oowzyH0fke92QjRw3haH4ve+wGYtIbfekCJBSDlLq1LoB4tsycjxJ0vHPmu12qVKrLwolT44TfIDxm4pahAHYh5odBSBtqM96x3XZWMISiPwfFNW6Xz5e0BlcDXurOmAi3BWUyfFq+1NGJhB4xl/2K+stlkfWC0MCPriBIg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(81166007)(40460700003)(356005)(508600001)(6666004)(83380400001)(82310400004)(36860700001)(47076005)(7696005)(426003)(336012)(26005)(186003)(2616005)(2906002)(70206006)(70586007)(86362001)(36756003)(1076003)(5660300002)(30864003)(8936002)(4326008)(8676002)(54906003)(316002)(6916009)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(40470700004)(36840700001)(46966006)(186003)(26005)(81166007)(5660300002)(8936002)(2616005)(47076005)(316002)(54906003)(6916009)(4326008)(8676002)(86362001)(356005)(70206006)(1076003)(70586007)(83380400001)(40460700003)(6666004)(426003)(336012)(36860700001)(7696005)(2906002)(30864003)(36756003)(82310400004)(508600001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2022 05:54:19.3661 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: af71635e-24ab-4de0-7109-08d9fffeebfb
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2022 06:41:47.8212 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 41ab68f7-8be5-42fc-e3a4-08da00058dbc
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT061.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT021.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB4710
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB0205
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,312 +103,325 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- Melissa Wen <mwen@igalia.com>, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
- wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
- pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, Alan Liu <HaoPing.Liu@amd.com>, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Martin Leung <Martin.Leung@amd.com>, Rodrigo.Siqueira@amd.com,
+ roman.li@amd.com, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
+ Nevenko Stupar <Nevenko.Stupar@amd.com>, wayne.lin@amd.com,
+ Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Melissa Wen <mwen@igalia.com>
+From: Martin Leung <Martin.Leung@amd.com>
 
-FPU operations in dcn10 was already moved to dml folder via calcs code.
-However, dcn1_0_ip and dcn_1_0_soc with FPU componentd remains on dcn10.
-Following previous changes to isolate FPU, this patch creates dcn10_fpu
-files to isolate FPU-specific code and moves those structs to it.
+why and how:
+need to hook in new smu interfaces
+cleaning up code that used old variables
 
-Signed-off-by: Melissa Wen <mwen@igalia.com>
+Reviewed-by: Nevenko Stupar <Nevenko.Stupar@amd.com>
+Acked-by: Alan Liu <HaoPing.Liu@amd.com>
+Signed-off-by: Martin Leung <Martin.Leung@amd.com>
 ---
- .../drm/amd/display/dc/dcn10/dcn10_resource.c |  62 ---------
- .../drm/amd/display/dc/dcn10/dcn10_resource.h |   4 +
- drivers/gpu/drm/amd/display/dc/dml/Makefile   |   2 +
- .../drm/amd/display/dc/dml/dcn10/dcn10_fpu.c  | 123 ++++++++++++++++++
- .../drm/amd/display/dc/dml/dcn10/dcn10_fpu.h  |  30 +++++
- 5 files changed, 159 insertions(+), 62 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.h
+ .../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c  | 13 +---
+ .../dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.c  |  9 ++-
+ .../dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.h  | 67 +----------------
+ .../dc/clk_mgr/dcn30/dcn30_smu11_driver_if.h  | 74 +++++++++++++++++++
+ .../display/include/grph_object_ctrl_defs.h   | 22 ------
+ 5 files changed, 86 insertions(+), 99 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_smu11_driver_if.h
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
-index 858b72149897..ac96242cc474 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
-@@ -70,68 +70,6 @@
- #include "dce/dce_aux.h"
- #include "dce/dce_i2c.h"
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c
+index 220682e45b8d..5ed6a93d1708 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c
+@@ -25,30 +25,23 @@
  
--const struct _vcs_dpi_ip_params_st dcn1_0_ip = {
--	.rob_buffer_size_kbytes = 64,
--	.det_buffer_size_kbytes = 164,
--	.dpte_buffer_size_in_pte_reqs_luma = 42,
--	.dpp_output_buffer_pixels = 2560,
--	.opp_output_buffer_lines = 1,
--	.pixel_chunk_size_kbytes = 8,
--	.pte_enable = 1,
--	.pte_chunk_size_kbytes = 2,
--	.meta_chunk_size_kbytes = 2,
--	.writeback_chunk_size_kbytes = 2,
--	.line_buffer_size_bits = 589824,
--	.max_line_buffer_lines = 12,
--	.IsLineBufferBppFixed = 0,
--	.LineBufferFixedBpp = -1,
--	.writeback_luma_buffer_size_kbytes = 12,
--	.writeback_chroma_buffer_size_kbytes = 8,
--	.max_num_dpp = 4,
--	.max_num_wb = 2,
--	.max_dchub_pscl_bw_pix_per_clk = 4,
--	.max_pscl_lb_bw_pix_per_clk = 2,
--	.max_lb_vscl_bw_pix_per_clk = 4,
--	.max_vscl_hscl_bw_pix_per_clk = 4,
--	.max_hscl_ratio = 4,
--	.max_vscl_ratio = 4,
--	.hscl_mults = 4,
--	.vscl_mults = 4,
--	.max_hscl_taps = 8,
--	.max_vscl_taps = 8,
--	.dispclk_ramp_margin_percent = 1,
--	.underscan_factor = 1.10,
--	.min_vblank_lines = 14,
--	.dppclk_delay_subtotal = 90,
--	.dispclk_delay_subtotal = 42,
--	.dcfclk_cstate_latency = 10,
--	.max_inter_dcn_tile_repeaters = 8,
--	.can_vstartup_lines_exceed_vsync_plus_back_porch_lines_minus_one = 0,
--	.bug_forcing_LC_req_same_size_fixed = 0,
--};
+ #include "dccg.h"
+ #include "clk_mgr_internal.h"
 -
--const struct _vcs_dpi_soc_bounding_box_st dcn1_0_soc = {
--	.sr_exit_time_us = 9.0,
--	.sr_enter_plus_exit_time_us = 11.0,
--	.urgent_latency_us = 4.0,
--	.writeback_latency_us = 12.0,
--	.ideal_dram_bw_after_urgent_percent = 80.0,
--	.max_request_size_bytes = 256,
--	.downspread_percent = 0.5,
--	.dram_page_open_time_ns = 50.0,
--	.dram_rw_turnaround_time_ns = 17.5,
--	.dram_return_buffer_per_channel_bytes = 8192,
--	.round_trip_ping_latency_dcfclk_cycles = 128,
--	.urgent_out_of_order_return_per_channel_bytes = 256,
--	.channel_interleave_bytes = 256,
--	.num_banks = 8,
--	.num_chans = 2,
--	.vmm_page_size_bytes = 4096,
--	.dram_clock_change_latency_us = 17.0,
--	.writeback_dram_clock_change_latency_us = 23.0,
--	.return_bus_width_bytes = 64,
--};
+ #include "dcn30_clk_mgr_smu_msg.h"
+ #include "dcn20/dcn20_clk_mgr.h"
+ #include "dce100/dce_clk_mgr.h"
++#include "dcn30/dcn30_clk_mgr.h"
+ #include "reg_helper.h"
+ #include "core_types.h"
+ #include "dm_helpers.h"
 -
- #ifndef mmDP0_DP_DPHY_INTERNAL_CTRL
- 	#define mmDP0_DP_DPHY_INTERNAL_CTRL		0x210f
- 	#define mmDP0_DP_DPHY_INTERNAL_CTRL_BASE_IDX	2
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.h b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.h
-index 633025ccb870..bf8e33cd8147 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.h
-@@ -27,6 +27,7 @@
- #define __DC_RESOURCE_DCN10_H__
+ #include "atomfirmware.h"
+-
+-
+ #include "sienna_cichlid_ip_offset.h"
+ #include "dcn/dcn_3_0_0_offset.h"
+ #include "dcn/dcn_3_0_0_sh_mask.h"
+-
+ #include "nbio/nbio_7_4_offset.h"
+-
+ #include "dpcs/dpcs_3_0_0_offset.h"
+ #include "dpcs/dpcs_3_0_0_sh_mask.h"
+-
+ #include "mmhub/mmhub_2_0_0_offset.h"
+ #include "mmhub/mmhub_2_0_0_sh_mask.h"
+-/*we don't have clk folder yet*/
+-#include "dcn30/dcn30_clk_mgr.h"
++#include "dcn30_smu11_driver_if.h"
+ 
+ #undef FN
+ #define FN(reg_name, field_name) \
+@@ -83,7 +76,7 @@ static const struct clk_mgr_mask clk_mgr_mask = {
+ 
+ 
+ /* Query SMU for all clock states for a particular clock */
+-static void dcn3_init_single_clock(struct clk_mgr_internal *clk_mgr, PPCLK_e clk, unsigned int *entry_0, unsigned int *num_levels)
++static void dcn3_init_single_clock(struct clk_mgr_internal *clk_mgr, uint32_t clk, unsigned int *entry_0, unsigned int *num_levels)
+ {
+ 	unsigned int i;
+ 	char *entry_i = (char *)entry_0;
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.c
+index 8ecc708bcd9e..bfc960579760 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.c
+@@ -29,6 +29,7 @@
+ #include "clk_mgr_internal.h"
+ #include "reg_helper.h"
+ #include "dalsmc.h"
++#include "dcn30_smu11_driver_if.h"
+ 
+ #define mmDAL_MSG_REG  0x1628A
+ #define mmDAL_ARG_REG  0x16273
+@@ -197,7 +198,7 @@ void dcn30_smu_transfer_wm_table_dram_2_smu(struct clk_mgr_internal *clk_mgr)
+ }
+ 
+ /* Returns the actual frequency that was set in MHz, 0 on failure */
+-unsigned int dcn30_smu_set_hard_min_by_freq(struct clk_mgr_internal *clk_mgr, PPCLK_e clk, uint16_t freq_mhz)
++unsigned int dcn30_smu_set_hard_min_by_freq(struct clk_mgr_internal *clk_mgr, uint32_t clk, uint16_t freq_mhz)
+ {
+ 	uint32_t response = 0;
+ 
+@@ -215,7 +216,7 @@ unsigned int dcn30_smu_set_hard_min_by_freq(struct clk_mgr_internal *clk_mgr, PP
+ }
+ 
+ /* Returns the actual frequency that was set in MHz, 0 on failure */
+-unsigned int dcn30_smu_set_hard_max_by_freq(struct clk_mgr_internal *clk_mgr, PPCLK_e clk, uint16_t freq_mhz)
++unsigned int dcn30_smu_set_hard_max_by_freq(struct clk_mgr_internal *clk_mgr, uint32_t clk, uint16_t freq_mhz)
+ {
+ 	uint32_t response = 0;
+ 
+@@ -246,7 +247,7 @@ unsigned int dcn30_smu_set_hard_max_by_freq(struct clk_mgr_internal *clk_mgr, PP
+  *
+  * Returns 0 on failure
+  */
+-unsigned int dcn30_smu_get_dpm_freq_by_index(struct clk_mgr_internal *clk_mgr, PPCLK_e clk, uint8_t dpm_level)
++unsigned int dcn30_smu_get_dpm_freq_by_index(struct clk_mgr_internal *clk_mgr, uint32_t clk, uint8_t dpm_level)
+ {
+ 	uint32_t response = 0;
+ 
+@@ -264,7 +265,7 @@ unsigned int dcn30_smu_get_dpm_freq_by_index(struct clk_mgr_internal *clk_mgr, P
+ }
+ 
+ /* Returns the max DPM frequency in DC mode in MHz, 0 on failure */
+-unsigned int dcn30_smu_get_dc_mode_max_dpm_freq(struct clk_mgr_internal *clk_mgr, PPCLK_e clk)
++unsigned int dcn30_smu_get_dc_mode_max_dpm_freq(struct clk_mgr_internal *clk_mgr, uint32_t clk)
+ {
+ 	uint32_t response = 0;
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.h b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.h
+index dd2640a3ce5d..ca9f5296be94 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.h
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.h
+@@ -28,65 +28,6 @@
  
  #include "core_types.h"
-+#include "dml/dcn10/dcn10_fpu.h"
  
- #define TO_DCN10_RES_POOL(pool)\
- 	container_of(pool, struct dcn10_resource_pool, base)
-@@ -35,6 +36,9 @@ struct dc;
- struct resource_pool;
- struct _vcs_dpi_display_pipe_params_st;
+-#define SMU11_DRIVER_IF_VERSION 0x1F
+-
+-typedef enum {
+-	PPCLK_GFXCLK = 0,
+-	PPCLK_SOCCLK,
+-	PPCLK_UCLK,
+-	PPCLK_FCLK,
+-	PPCLK_DCLK_0,
+-	PPCLK_VCLK_0,
+-	PPCLK_DCLK_1,
+-	PPCLK_VCLK_1,
+-	PPCLK_DCEFCLK,
+-	PPCLK_DISPCLK,
+-	PPCLK_PIXCLK,
+-	PPCLK_PHYCLK,
+-	PPCLK_DTBCLK,
+-	PPCLK_COUNT,
+-} PPCLK_e;
+-
+-typedef struct {
+-	uint16_t MinClock; // This is either DCEFCLK or SOCCLK (in MHz)
+-	uint16_t MaxClock; // This is either DCEFCLK or SOCCLK (in MHz)
+-	uint16_t MinUclk;
+-	uint16_t MaxUclk;
+-
+-	uint8_t  WmSetting;
+-	uint8_t  Flags;
+-	uint8_t  Padding[2];
+-
+-} WatermarkRowGeneric_t;
+-
+-#define NUM_WM_RANGES 4
+-
+-typedef enum {
+-	WM_SOCCLK = 0,
+-	WM_DCEFCLK,
+-	WM_COUNT,
+-} WM_CLOCK_e;
+-
+-typedef enum {
+-	WATERMARKS_CLOCK_RANGE = 0,
+-	WATERMARKS_DUMMY_PSTATE,
+-	WATERMARKS_MALL,
+-	WATERMARKS_COUNT,
+-} WATERMARKS_FLAGS_e;
+-
+-typedef struct {
+-	// Watermarks
+-	WatermarkRowGeneric_t WatermarkRow[WM_COUNT][NUM_WM_RANGES];
+-} Watermarks_t;
+-
+-typedef struct {
+-	Watermarks_t Watermarks;
+-
+-	uint32_t     MmHubPadding[8]; // SMU internal use
+-} WatermarksExternal_t;
+-
+-#define TABLE_WATERMARKS 1
+-
+ struct clk_mgr_internal;
  
-+extern struct _vcs_dpi_ip_params_st dcn1_0_ip;
-+extern struct _vcs_dpi_soc_bounding_box_st dcn1_0_soc;
+ bool         dcn30_smu_test_message(struct clk_mgr_internal *clk_mgr, uint32_t input);
+@@ -97,10 +38,10 @@ void         dcn30_smu_set_dram_addr_high(struct clk_mgr_internal *clk_mgr, uint
+ void         dcn30_smu_set_dram_addr_low(struct clk_mgr_internal *clk_mgr, uint32_t addr_low);
+ void         dcn30_smu_transfer_wm_table_smu_2_dram(struct clk_mgr_internal *clk_mgr);
+ void         dcn30_smu_transfer_wm_table_dram_2_smu(struct clk_mgr_internal *clk_mgr);
+-unsigned int dcn30_smu_set_hard_min_by_freq(struct clk_mgr_internal *clk_mgr, PPCLK_e clk, uint16_t freq_mhz);
+-unsigned int dcn30_smu_set_hard_max_by_freq(struct clk_mgr_internal *clk_mgr, PPCLK_e clk, uint16_t freq_mhz);
+-unsigned int dcn30_smu_get_dpm_freq_by_index(struct clk_mgr_internal *clk_mgr, PPCLK_e clk, uint8_t dpm_level);
+-unsigned int dcn30_smu_get_dc_mode_max_dpm_freq(struct clk_mgr_internal *clk_mgr, PPCLK_e clk);
++unsigned int dcn30_smu_set_hard_min_by_freq(struct clk_mgr_internal *clk_mgr, uint32_t clk, uint16_t freq_mhz);
++unsigned int dcn30_smu_set_hard_max_by_freq(struct clk_mgr_internal *clk_mgr, uint32_t clk, uint16_t freq_mhz);
++unsigned int dcn30_smu_get_dpm_freq_by_index(struct clk_mgr_internal *clk_mgr, uint32_t clk, uint8_t dpm_level);
++unsigned int dcn30_smu_get_dc_mode_max_dpm_freq(struct clk_mgr_internal *clk_mgr, uint32_t clk);
+ void         dcn30_smu_set_min_deep_sleep_dcef_clk(struct clk_mgr_internal *clk_mgr, uint32_t freq_mhz);
+ void         dcn30_smu_set_num_of_displays(struct clk_mgr_internal *clk_mgr, uint32_t num_displays);
+ void         dcn30_smu_set_display_refresh_from_mall(struct clk_mgr_internal *clk_mgr, bool enable, uint8_t cache_timer_delay, uint8_t cache_timer_scale);
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_smu11_driver_if.h b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_smu11_driver_if.h
+new file mode 100644
+index 000000000000..8ea8ee57b39f
+--- /dev/null
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_smu11_driver_if.h
+@@ -0,0 +1,74 @@
++// This is a stripped-down version of the smu11_driver_if.h file for the relevant DAL interfaces.
 +
- struct dcn10_resource_pool {
- 	struct resource_pool base;
++#define SMU11_DRIVER_IF_VERSION 0x40
++
++//Only Clks that have DPM descriptors are listed here
++typedef enum {
++	PPCLK_GFXCLK = 0,
++	PPCLK_SOCCLK,
++	PPCLK_UCLK,
++	PPCLK_FCLK,
++	PPCLK_DCLK_0,
++	PPCLK_VCLK_0,
++	PPCLK_DCLK_1,
++	PPCLK_VCLK_1,
++	PPCLK_DCEFCLK,
++	PPCLK_DISPCLK,
++	PPCLK_PIXCLK,
++	PPCLK_PHYCLK,
++	PPCLK_DTBCLK,
++	PPCLK_COUNT,
++} PPCLK_e;
++
++typedef struct {
++	uint16_t MinClock; // This is either DCEFCLK or SOCCLK (in MHz)
++	uint16_t MaxClock; // This is either DCEFCLK or SOCCLK (in MHz)
++	uint16_t MinUclk;
++	uint16_t MaxUclk;
++
++	uint8_t  WmSetting;
++	uint8_t  Flags;
++	uint8_t  Padding[2];
++
++} WatermarkRowGeneric_t;
++
++#define NUM_WM_RANGES 4
++
++typedef enum {
++	WM_SOCCLK = 0,
++	WM_DCEFCLK,
++	WM_COUNT,
++} WM_CLOCK_e;
++
++typedef enum {
++	WATERMARKS_CLOCK_RANGE = 0,
++	WATERMARKS_DUMMY_PSTATE,
++	WATERMARKS_MALL,
++	WATERMARKS_COUNT,
++} WATERMARKS_FLAGS_e;
++
++typedef struct {
++	// Watermarks
++	WatermarkRowGeneric_t WatermarkRow[WM_COUNT][NUM_WM_RANGES];
++} Watermarks_t;
++
++typedef struct {
++	Watermarks_t Watermarks;
++
++	uint32_t     MmHubPadding[8]; // SMU internal use
++} WatermarksExternal_t;
++
++// Table types
++#define TABLE_PPTABLE                 0
++#define TABLE_WATERMARKS              1
++#define TABLE_AVFS_PSM_DEBUG          2
++#define TABLE_AVFS_FUSE_OVERRIDE      3
++#define TABLE_PMSTATUSLOG             4
++#define TABLE_SMU_METRICS             5
++#define TABLE_DRIVER_SMU_CONFIG       6
++#define TABLE_ACTIVITY_MONITOR_COEFF  7
++#define TABLE_OVERDRIVE               8
++#define TABLE_I2C_COMMANDS            9
++#define TABLE_PACE                   10
++#define TABLE_ECCINFO                11
++#define TABLE_COUNT                  12
+diff --git a/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h b/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h
+index dd974c428d23..bc96d0211360 100644
+--- a/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h
++++ b/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h
+@@ -419,28 +419,6 @@ struct integrated_info {
+ 	struct edp_info edp2_info;
  };
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/Makefile b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-index 6ab83c3e9c5c..28978ce62f87 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-@@ -58,6 +58,7 @@ CFLAGS_$(AMDDALPATH)/dc/dml/display_mode_lib.o := $(dml_ccflags)
  
- ifdef CONFIG_DRM_AMD_DC_DCN
- CFLAGS_$(AMDDALPATH)/dc/dml/display_mode_vba.o := $(dml_ccflags)
-+CFLAGS_$(AMDDALPATH)/dc/dml/dcn10/dcn10_fpu.o := $(dml_ccflags)
- CFLAGS_$(AMDDALPATH)/dc/dml/dcn20/dcn20_fpu.o := $(dml_ccflags)
- CFLAGS_$(AMDDALPATH)/dc/dml/dcn20/display_mode_vba_20.o := $(dml_ccflags)
- CFLAGS_$(AMDDALPATH)/dc/dml/dcn20/display_mode_vba_20.o := $(dml_ccflags)
-@@ -106,6 +107,7 @@ DML = calcs/dce_calcs.o calcs/custom_float.o calcs/bw_fixed.o
- 
- ifdef CONFIG_DRM_AMD_DC_DCN
- DML += display_mode_lib.o display_rq_dlg_helpers.o dml1_display_rq_dlg_calc.o
-+DML += dcn10/dcn10_fpu.o
- DML += dcn20/dcn20_fpu.o
- DML += display_mode_vba.o dcn20/display_rq_dlg_calc_20.o dcn20/display_mode_vba_20.o
- DML += dcn20/display_rq_dlg_calc_20v2.o dcn20/display_mode_vba_20v2.o
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.c
-new file mode 100644
-index 000000000000..99644d896222
---- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.c
-@@ -0,0 +1,123 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright 2021 Advanced Micro Devices, Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ * Authors: AMD
-+ *
-+ */
-+
-+#include "dcn10/dcn10_resource.h"
-+
-+#include "dcn10_fpu.h"
-+
-+/**
-+ * DOC: DCN10 FPU manipulation Overview
-+ *
-+ * The DCN architecture relies on FPU operations, which require special
-+ * compilation flags and the use of kernel_fpu_begin/end functions; ideally, we
-+ * want to avoid spreading FPU access across multiple files. With this idea in
-+ * mind, this file aims to centralize DCN10 functions that require FPU access
-+ * in a single place. Code in this file follows the following code pattern:
-+ *
-+ * 1. Functions that use FPU operations should be isolated in static functions.
-+ * 2. The FPU functions should have the noinline attribute to ensure anything
-+ *    that deals with FP register is contained within this call.
-+ * 3. All function that needs to be accessed outside this file requires a
-+ *    public interface that not uses any FPU reference.
-+ * 4. Developers **must not** use DC_FP_START/END in this file, but they need
-+ *    to ensure that the caller invokes it before access any function available
-+ *    in this file. For this reason, public functions in this file must invoke
-+ *    dc_assert_fp_enabled();
-+ *
-+ * Let's expand a little bit more the idea in the code pattern. To fully
-+ * isolate FPU operations in a single place, we must avoid situations where
-+ * compilers spill FP values to registers due to FP enable in a specific C
-+ * file. Note that even if we isolate all FPU functions in a single file and
-+ * call its interface from other files, the compiler might enable the use of
-+ * FPU before we call DC_FP_START. Nevertheless, it is the programmer's
-+ * responsibility to invoke DC_FP_START/END in the correct place. To highlight
-+ * situations where developers forgot to use the FP protection before calling
-+ * the DC FPU interface functions, we introduce a helper that checks if the
-+ * function is invoked under FP protection. If not, it will trigger a kernel
-+ * warning.
-+ */
-+
-+struct _vcs_dpi_ip_params_st dcn1_0_ip = {
-+	.rob_buffer_size_kbytes = 64,
-+	.det_buffer_size_kbytes = 164,
-+	.dpte_buffer_size_in_pte_reqs_luma = 42,
-+	.dpp_output_buffer_pixels = 2560,
-+	.opp_output_buffer_lines = 1,
-+	.pixel_chunk_size_kbytes = 8,
-+	.pte_enable = 1,
-+	.pte_chunk_size_kbytes = 2,
-+	.meta_chunk_size_kbytes = 2,
-+	.writeback_chunk_size_kbytes = 2,
-+	.line_buffer_size_bits = 589824,
-+	.max_line_buffer_lines = 12,
-+	.IsLineBufferBppFixed = 0,
-+	.LineBufferFixedBpp = -1,
-+	.writeback_luma_buffer_size_kbytes = 12,
-+	.writeback_chroma_buffer_size_kbytes = 8,
-+	.max_num_dpp = 4,
-+	.max_num_wb = 2,
-+	.max_dchub_pscl_bw_pix_per_clk = 4,
-+	.max_pscl_lb_bw_pix_per_clk = 2,
-+	.max_lb_vscl_bw_pix_per_clk = 4,
-+	.max_vscl_hscl_bw_pix_per_clk = 4,
-+	.max_hscl_ratio = 4,
-+	.max_vscl_ratio = 4,
-+	.hscl_mults = 4,
-+	.vscl_mults = 4,
-+	.max_hscl_taps = 8,
-+	.max_vscl_taps = 8,
-+	.dispclk_ramp_margin_percent = 1,
-+	.underscan_factor = 1.10,
-+	.min_vblank_lines = 14,
-+	.dppclk_delay_subtotal = 90,
-+	.dispclk_delay_subtotal = 42,
-+	.dcfclk_cstate_latency = 10,
-+	.max_inter_dcn_tile_repeaters = 8,
-+	.can_vstartup_lines_exceed_vsync_plus_back_porch_lines_minus_one = 0,
-+	.bug_forcing_LC_req_same_size_fixed = 0,
-+};
-+
-+struct _vcs_dpi_soc_bounding_box_st dcn1_0_soc = {
-+	.sr_exit_time_us = 9.0,
-+	.sr_enter_plus_exit_time_us = 11.0,
-+	.urgent_latency_us = 4.0,
-+	.writeback_latency_us = 12.0,
-+	.ideal_dram_bw_after_urgent_percent = 80.0,
-+	.max_request_size_bytes = 256,
-+	.downspread_percent = 0.5,
-+	.dram_page_open_time_ns = 50.0,
-+	.dram_rw_turnaround_time_ns = 17.5,
-+	.dram_return_buffer_per_channel_bytes = 8192,
-+	.round_trip_ping_latency_dcfclk_cycles = 128,
-+	.urgent_out_of_order_return_per_channel_bytes = 256,
-+	.channel_interleave_bytes = 256,
-+	.num_banks = 8,
-+	.num_chans = 2,
-+	.vmm_page_size_bytes = 4096,
-+	.dram_clock_change_latency_us = 17.0,
-+	.writeback_dram_clock_change_latency_us = 23.0,
-+	.return_bus_width_bytes = 64,
-+};
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.h b/drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.h
-new file mode 100644
-index 000000000000..e74ed4b4ce5b
---- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.h
-@@ -0,0 +1,30 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright 2021 Advanced Micro Devices, Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ * Authors: AMD
-+ *
-+ */
-+
-+#ifndef __DCN10_FPU_H__
-+#define __DCN10_FPU_H__
-+
-+#endif /* __DCN20_FPU_H__ */
+-/**
+-* Power source ids.
+-*/
+-enum power_source {
+-	POWER_SOURCE_AC = 0,
+-	POWER_SOURCE_DC,
+-	POWER_SOURCE_LIMITED_POWER,
+-	POWER_SOURCE_LIMITED_POWER_2,
+-	POWER_SOURCE_MAX
+-};
+-
+-struct bios_event_info {
+-	uint32_t thermal_state;
+-	uint32_t backlight_level;
+-	enum power_source powerSource;
+-	bool has_thermal_state_changed;
+-	bool has_power_source_changed;
+-	bool has_forced_mode_changed;
+-	bool forced_mode;
+-	bool backlight_changed;
+-};
+-
+ /*
+  * DFS-bypass flag
+  */
 -- 
 2.25.1
 
