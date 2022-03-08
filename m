@@ -1,120 +1,121 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2840D4D19D0
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Mar 2022 14:58:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93D014D1990
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Mar 2022 14:48:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6527810E27A;
-	Tue,  8 Mar 2022 13:58:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1392710E764;
+	Tue,  8 Mar 2022 13:48:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2059.outbound.protection.outlook.com [40.107.94.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D40A10E20E
- for <amd-gfx@lists.freedesktop.org>; Tue,  8 Mar 2022 13:58:11 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2082.outbound.protection.outlook.com [40.107.223.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C66510E764;
+ Tue,  8 Mar 2022 13:48:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b0fGRhq3rC5pfI8/Mr7NvYmT7NMw++ozwuw3ufVMxtWtgPohzo3S+LcXCvUkyWDRm23Aw2VCKF08cNq07l28xYebv26fTzQjDIr7HOR4mZW0A2zAclGbION8v+hX7n4/BxG2Lqe1GLl87q2jrbAM9NJxzQJ4jLsW6G9wN58tabU+5NDdh/U9qy75gfwc2lpoU/QaV1QSZKJzg9aYfCpuVcWii3mbB5N35i6QYX8YYq3wf0qaU4kVCZwwn7ZZDEeUUMmmpsOixwY82NGnu2XRmj43vzPlDtnSNqUowtkJ67zkwbbUhpY9pfUZgpFc54bmghKkRtSUMt08ZQBt20Fk1A==
+ b=RoR6qiv3/ZRgnjxa43iI4vD2Osf1zM548jhdjV9PPCLif7WhKPExrZl7qRSGCgmWUdb2z6Afs1h+qlEoDtAUlVnRNFDnhQ9yCbbb1bLtgthgmkoQNQvuJR0i6j4jZLYwoS4ebUORq2yUkPIjSyzBv9aNKB5EzNIbK5rH6NWV4FAyDkA5KooUogbOQFLEp3yCTx8dA7GzHd4D4QKuwnlQVwkcaa6EDLYgAsYwUtTGlPz2Vv3f9FJB8eiDGr74gzm3/t9ZNL9QIII1DRzWki/hHq23cfsBR6NR+qefP3B0wowGi03984aaS5NL60h8n1uOyRuVdJDG2uoDEAOp3eTK4A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KTy8OGEgcm0orrNelVoqRx1OGXVhTI03AC1+jLZHSPQ=;
- b=Y4H3icZhAnfEULS3JitM76pqbi+6PlDQd7q2VC1oS5btgpM9wFeKKupSE6nbnkNPRo2SR6LoeajA5eGlHbAVeKp30hxlhQi/UArJFnuOkLc5ZE8sOJBpm+/rkzGI15xghMnAsKMFfIFh+4YbZflgZWimSmigtEOiN0C+xG+zzohJ6D90bfuSV7vkYg0D5eHGcPO0F2Sllano07nw1o9goBsXjHnyFRCeMFkoA2bjH77fJr/18uJ8xUgidaPmrFVpSxE8wjw1N9ON4Hc9trA826mHFeImnFNLElacAZYBNR9x3HvAli43eKqsOLBrRObBXB9RH9C20Ow/g0w+cndRgA==
+ bh=XSKeaW8bjyTav1RrJyP9ZLqjOgoYt69iqPaqJC2OwPE=;
+ b=nu/3ne0xcPfXmBRkIJyceFcSDsErXauFAORu7EAWku4YOPwr7UYdVanU0gRsaXcXDszgPDDZX3q6FwQgt2rXnPLBu47HRAw1ClKIXuoNx66Jmxv6WQkmxRhM2siE/9oWxbsOvb/KOXPEA7SqG2BwvqFs126Xj8iyW0uItyswk1COnA6eDBqUEUSJxJA+waqkZ0pp+aIALh4WSmkc56yXCCF1UqRnmyDPlfD4Yj87VrtHeDG8D3nAUcTLDPjHwe2RtxMBp6txtpZgzIu0Oe/AnpGGDLY9AM5o7QcD6yUkssFw2SrZEJhr3+ZhkFaKTczyG3bY+4+yqWWo3uW2K5jjyA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KTy8OGEgcm0orrNelVoqRx1OGXVhTI03AC1+jLZHSPQ=;
- b=CKqorZwNmwvYnKUGyeZ2sqhDJYl7KDk3mFXQgMBpr1ulOfS+pGMUiNc+/Glw0t4rys7voE+8Y5VgMiPTVDPQSMAjl8AVvX3b34L+M4PVWuwLQkEf3c3aayIiYVCyE1/wj4mXdLp0pCJoy2w/TPtrRK4cQ+E6Hcc1FPYiLgl2Wjs=
-Received: from DM4PR12MB5294.namprd12.prod.outlook.com (2603:10b6:5:39e::15)
- by BL0PR12MB2369.namprd12.prod.outlook.com (2603:10b6:207:40::31) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14; Tue, 8 Mar
- 2022 13:58:08 +0000
-Received: from DM4PR12MB5294.namprd12.prod.outlook.com
- ([fe80::5c69:23f1:b53a:7436]) by DM4PR12MB5294.namprd12.prod.outlook.com
- ([fe80::5c69:23f1:b53a:7436%5]) with mapi id 15.20.5038.027; Tue, 8 Mar 2022
- 13:58:08 +0000
-From: "Yin, Tianci (Rico)" <Tianci.Yin@amd.com>
-To: "Wentland, Harry" <Harry.Wentland@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amd/display: fix dp kvm can't light up
-Thread-Topic: [PATCH] drm/amd/display: fix dp kvm can't light up
-Thread-Index: AQHYMrjGC3D/DS1v4Uyl7GUZFvWznay1guyAgAAAnmA=
-Date: Tue, 8 Mar 2022 13:58:08 +0000
-Message-ID: <DM4PR12MB5294ED933D4F7C91EB94919D95099@DM4PR12MB5294.namprd12.prod.outlook.com>
-References: <20220308065006.164101-1-tianci.yin@amd.com>
- <a6c477ff-2122-6e10-1ea0-77285af4f3c1@amd.com>
-In-Reply-To: <a6c477ff-2122-6e10-1ea0-77285af4f3c1@amd.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=True;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2022-03-08T13:58:07.484Z;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD
- Official Use
- Only; MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=0;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard; 
-suggested_attachment_session_id: b75b15b5-b9b7-ca60-0fdd-6922e03834f7
-authentication-results: dkim=none (message not signed)
+ bh=XSKeaW8bjyTav1RrJyP9ZLqjOgoYt69iqPaqJC2OwPE=;
+ b=OIklMy/vLCSRKE4PGsMUNwgm2GXlFDrBL5jlQeJavA0dANSrpx4Ey0Zaae2TqOdcThXOTIVyY3a/dS+rnx1qEO8RerdDNyFionREe/VWplKpQ2U2j/KsvHpNTfuavQNPAK81OAlWHJCsGl9ocV90OXWbjWg28318/MnWCXNJtQI=
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 300462b2-6815-47a4-c84a-08da010bad15
-x-ms-traffictypediagnostic: BL0PR12MB2369:EE_
-x-microsoft-antispam-prvs: <BL0PR12MB2369E9E9223190EC6AC5889595099@BL0PR12MB2369.namprd12.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: CCpvJWRSzj5Y+fqivp66F3wIHKClpSBgIfiBoZfeIBor5dztoREg2JX5A/+XWQ2/umwQ6ranxLsjiCaJ5wVbJLr+qFE9oFGL9yh1z+MZwVrYG2VUDlkMoHo2J0xVDXjwmX7ev4G4E0CXB6d/O96E7EFZ4XM56jiR0jk4svG9OR4XtqCaKj4rBo6pN3HXcT6/Xq9jShSZGzFKQcv26ILS0ti0V/+G/NNR8eeIa5R1jg0o8ZrepD1OfFDxCFhcTXJJQTcVWKGV3MwX608yam5wilV0auq9LKsMcZWwMqzgUUrFshsLl+Hv3BzMxyGW50LYKWyr8L3AjpbTgZiWSq7CEh28+XK6+JydHNBWejkzwyOtHuFDiw75EDYtHdznnPUF9oe6X95dVZRh+3SJva4n5jLZSHnGzzrUalWvGkE0Goan1wym0zSJdoNeOeAg0bjTLXReY/FVuxp2SLv9H3oFq1GfIeoHTHfpCTljmwJVWVHTqnVfcqQv4ZykhPWkM+C2jXfEhLlIV/qwZtHy0zZ3qZCN9V9n4+taqfgoLOgRrFiWd2b7iayZ91IBkR2k1GNM0iWoo4TfwdGPrm5lV8dHgqGuqu5qFOXHQ6S9+3mgSqzzMX2xRJ4OWWXcHdELFGYSo5yEVBf1rlGdPU1r1VrIoMiX2/VKjnk7wzltv0YaV2ZZ6KQN6E5qL4wNEN/fFqjGZ5a1NHopPHzN+n7yI24X9g==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5294.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(4636009)(366004)(83380400001)(33656002)(19627405001)(91956017)(508600001)(2906002)(6506007)(53546011)(7696005)(71200400001)(38070700005)(8936002)(26005)(38100700002)(122000001)(186003)(5660300002)(66476007)(66556008)(66946007)(66446008)(86362001)(76116006)(4326008)(8676002)(9686003)(64756008)(110136005)(52536014)(55016003)(316002)(54906003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?WiCM6lfIh3DzrrFeEu3ElRFrMBeMjyCFPxtRler5WEl7gUFnhiiwcVPqj31f?=
- =?us-ascii?Q?AS+abaEAVOH0pxYaFwK1nNap0/8mx279nJi8siU2RxiQHhU+E7fG5i8ZUELx?=
- =?us-ascii?Q?dnOGvZvxTuRS0DHtQXM1sxszzxxeaYIESqJLjYpJiB6/3/+3rWtvvY0X19Wv?=
- =?us-ascii?Q?yyHOvxfyHiu4+bV46X2XWmtf4etOSpHDTK2myf92/lIkf3fIvbs8UO20NUZS?=
- =?us-ascii?Q?KzRlsb9TQCSk5+8XAZNhFVXge3vrY0keKuYPc/Qlf0JfLNQ2zNm7Ipns5tbS?=
- =?us-ascii?Q?7BuFqoOLqo4zIwchpI6hX/lNK7k7jyfqJQVkCXvP2X5nn8lU59Fm8VgsaB3w?=
- =?us-ascii?Q?aUb6gLD56gi4XBCpihjJNP8bcAzjngSERuTTt8aVw6D93A6NgXWJxLobx8j2?=
- =?us-ascii?Q?6vOm04IeadEC5RfT7bnX5igzrJsLepL5AF6g5vcyv9EpJhl/nddcr0CALG5L?=
- =?us-ascii?Q?tcgInPm/GFowxIOmcN80HjSrtRT5lK+IVjthH84kHIlxt/zfrsU4E9oNivc7?=
- =?us-ascii?Q?rhxkl6LpIvlrBvKEgpMuqtw8S97fg6LeUpICe3dWBgAaP9Q1QeuTB2euox3g?=
- =?us-ascii?Q?Oo2V3XPzn8M+t8F11aennfpKpXCmKDUvcSFHX7RAry7fhTTaShA3Mno2raZH?=
- =?us-ascii?Q?Dc63F6hC2nIhxls39mFg9LDzWFL1Ov27iJPOyOVhO7VYXGyFO3NsWskYLBB/?=
- =?us-ascii?Q?gujz9AbH4JcZSqYWfBc4A1kMu/H99Tf87iHVR577zddKCset1FgdRMdzxhNa?=
- =?us-ascii?Q?fg0eQOZrJEgZqZJeZV8dY060Cu8FWM3LFFCY92OCcbUnerYHqs/9rEd9VGa4?=
- =?us-ascii?Q?XtIz0+L2hIrWgqc4LdhqTw6B0BmyLNLDIJM/YVrWgRGA6rrIIzDyEmk97UFO?=
- =?us-ascii?Q?6gaNKgibBRCdCITz42W/hZCCWqeZLazUU5vt5T4qq0SP9H9UILvHTAIRUE16?=
- =?us-ascii?Q?BXr5UBck6uJ+dCTqFSnI8dFJiScI13RbiKAlyD9ZMBRcBB3+4suymV4UWxw3?=
- =?us-ascii?Q?FuWy1inEMA5M9oVzqF8t9EV+yOqFffyWUJNZkK2lBgaRYL34uDw6lIyprBZi?=
- =?us-ascii?Q?V615Lqxqw5C3oJAvB/Ul4GVIrFudteWFDtrGxSHnEc8DjxZ07rj2KTlyQw/f?=
- =?us-ascii?Q?dVJdy0N8f19xmdk/m0MLaPtlW48xJfSjYvoULX1qG+IsTK0EIWlg0+MaZz6S?=
- =?us-ascii?Q?dRLIZr08UzsE7vloLET3ERi3xU6GEaxPrZmCRUm9kTRPnTMWEwlti+6rr6NV?=
- =?us-ascii?Q?R8tPUVbwCUe8zRNAn150pfGSB/LbfLgF0Rqe+jMcuJRXBbisSm/3H+kt3KrV?=
- =?us-ascii?Q?jLilhZxonW77w/3t2w02NWcbXW0o9AhZSAzqfRuiYRTrCPL7kXNm+TkpxLAM?=
- =?us-ascii?Q?CTOqGW0xDuJJe3ZR3/sWIvUoa52qp1vdUhm4peCM+A0oGJe8g/Fghpy0WR2R?=
- =?us-ascii?Q?9k8WLPsgNgBR/zYq05lgJ6WfWKAXozGfjRX5FrdnGvxYmG5jXRUHidTrDcwp?=
- =?us-ascii?Q?pCLoXpSWwPoqK7YiRwksuMxrpnSsE0OtNM1oAdtEH0u6CnKlL7V1OScapsM6?=
- =?us-ascii?Q?BxAu/WvTIWZpY0BZfBAGwLtFDn6+reWfLRpOk6845kd907xsD75Sq8YR4rjI?=
- =?us-ascii?Q?SVUdNDvUC5f5TT3d870zYHs=3D?=
-Content-Type: multipart/alternative;
- boundary="_000_DM4PR12MB5294ED933D4F7C91EB94919D95099DM4PR12MB5294namp_"
+Received: from MN2PR12MB4342.namprd12.prod.outlook.com (2603:10b6:208:264::7)
+ by BY5PR12MB3652.namprd12.prod.outlook.com (2603:10b6:a03:1a7::28)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.16; Tue, 8 Mar
+ 2022 13:48:25 +0000
+Received: from MN2PR12MB4342.namprd12.prod.outlook.com
+ ([fe80::48e2:1306:25a3:5f14]) by MN2PR12MB4342.namprd12.prod.outlook.com
+ ([fe80::48e2:1306:25a3:5f14%5]) with mapi id 15.20.5038.027; Tue, 8 Mar 2022
+ 13:48:25 +0000
+Message-ID: <1ff8a246-8df9-c098-302c-f73b4425ccbf@amd.com>
+Date: Tue, 8 Mar 2022 19:29:16 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Subject: Re: [PATCH] drm: remove min_order BUG_ON check
+Content-Language: en-US
+To: Matthew Auld <matthew.auld@intel.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+References: <20220307143707.3687-1-Arunpravin.PaneerSelvam@amd.com>
+ <78232c15-0d0c-3594-ab59-63560e63eb4e@intel.com>
+From: Arunpravin <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <78232c15-0d0c-3594-ab59-63560e63eb4e@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BM1PR01CA0098.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00::14)
+ To MN2PR12MB4342.namprd12.prod.outlook.com
+ (2603:10b6:208:264::7)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9a41232a-850b-40bf-f8d3-08da010a5142
+X-MS-TrafficTypeDiagnostic: BY5PR12MB3652:EE_
+X-Microsoft-Antispam-PRVS: <BY5PR12MB3652431259C95424F4EB3E34E4099@BY5PR12MB3652.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: eJSnhQujOAQ30A1zWExBKgWT8KhkwkpJ7ZZDbTaikknaJiDyLULeM5tkH+rvX4G/ft+Cpt7a7sR6ilqLvSMBKnBOha/yzQycEZGOwJV1n4owhk+hoT1cA06hfTO2Ex9+/e83JbsaWKGebwRqT9sAGyIyar0GAugFGC2FeEfJaW+8BqKSkUm+THK0c8FrrEvXnZAK5CC8hZ56T9HZVfLlITnr3T5HsLHqiabqt9h6NB9lbMJ8jWEG181A0lWS92itv1L9FQCgiR45NOGgHujhibHyuVZnEmUaW2AleVIBit9ujyoiPcqBqn9/JVJ2ZzapOyKnlMFVV29vKP2BvLuA+RNKel2nx+/5aIU6FfCBptdONU4id25uOP3/QbOXw0kC/ihcqgrXyv0N9qhGnHBVFpaaEott4+yZOWxWKHC9k3ezjKWGyii+G//9zWYGGySg80Nv/Hva8n8yfzDfmtsJr5RT9SABEH7G1NNrA3rSpQ+SEZGQ/X2Lqc6VKTyG9WvxwgTOiFFY4REA+tM9IE2DAZyTpUVc/TzIz1D6wXzwl4F+WZ0xE3/l3vSC49igcJ/ETYKA1qkXLPVwupzIaf9Xcn26B3ciHEi53wrW6aV4v9TooQORrb82MfbhXT8jVslAVWj8v+yvO+nhonPDzDZ+6miDm+BJZBtv0ArYtwep2riJXrJTgrrVnCOmtGR+XPitLptcEGIpRFyoBA68za39EDalz8+hf0ItewYE2jdkYAk=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB4342.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(83380400001)(4326008)(2906002)(36756003)(38100700002)(8676002)(66946007)(66556008)(66476007)(2616005)(186003)(26005)(53546011)(31686004)(316002)(508600001)(6512007)(6666004)(6506007)(86362001)(31696002)(6486002)(5660300002)(8936002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aWRTL0dQNmUydTArTGxqbnBkUlR2NnFHbzY2ampnYUNZTHdhMGlrR1loNTA0?=
+ =?utf-8?B?cDhxTzhOWk56Z0twZU0rOXBCM0JyTWl1QmFPQWV1a3JwU1BwN1NWV3lBanNC?=
+ =?utf-8?B?K3YyT0N4Lzl5U25nZCs2QzVETCs2c2hUWkR3MUFReFA5Y0lROE9CWkZjSVB0?=
+ =?utf-8?B?N1hrNG1SeC8vejB6ZVZNVnJHN1JzczlVcXdrb3RPRUFEZnBlK3p1bWVsZ1I2?=
+ =?utf-8?B?WHZuV2dkRVNpYXlkK1VkWWZ6S0ozV2l6T3U2SlpBcVNYNG9CSVhVQTFNQlJs?=
+ =?utf-8?B?Y051Z2VjUUV2MFluZ3QzN21FYnYrK3MxdWZjSU9pRkVpVzV1TEkyQzZMZHdG?=
+ =?utf-8?B?MzR2NG1lU01XMlZCWk5COWhMekx1WmE4UjRyZFF3ZnVqbFZHd2xEQUdYdUZK?=
+ =?utf-8?B?REY2cnRzVEw5VWZOQXkvUndjaTBzSjcycEQyOU54OGN1Y2pTUUVoNTM5T0hW?=
+ =?utf-8?B?azdvWTVkUGQybEtiaUYwSHhSYkRmVndJUzh1OUJXdHBiSlVpU2tRc1k3NzBP?=
+ =?utf-8?B?ZTdRMFF5M3phZUdxdzJmTUhlU3ByblRKYk5DbWpuYnJibmllQ3BBUHVEYzVP?=
+ =?utf-8?B?RGRTZ2xPWXVmSk55ZDB6VnBpTEs3dktwakJ2dGN5RFdTZFZGVjUwa2pEMUkw?=
+ =?utf-8?B?OVRkaGFvNVV1ZVNGamRoNCtZVGpmK3E3SE83dldoWmxXNWdXWXQ5c1hDVDhr?=
+ =?utf-8?B?dnNOUTNjSTZuZ0pRMnVtRGxKT2ZDOXhyRnBTcTFrd0I0QnFGY0Y5RjE2TlFD?=
+ =?utf-8?B?RDhuTlY5RGVVU0x3MWNJTFA3eGNlSE8yTUNRQXN2b2lGSzM0cGhjN1hZL0hm?=
+ =?utf-8?B?dHFrbWU3QkFTRjU5cTkxM1EyNWx0ZStVcFFTbGhPaDJBbnJEd2NuNE53QzF6?=
+ =?utf-8?B?M0lzVUpnQzhXYXpyVEFsTDZXMEcxRXpmTFNXdEdacVZUVndhTStrbE5QVzNP?=
+ =?utf-8?B?czdDVCtMc1RnY0JyTTJidXRDdGRmN0NjSXRhVlZVNEdIS3EwcWZaRUs4TWdk?=
+ =?utf-8?B?RWR5ZkwwdEhQbnQwR1YvT1R6VTVNdlBub212S2hkMlJsY3FLNzJ3YVJrMktC?=
+ =?utf-8?B?emJQOWxRU3JsdVk4dTVKaVpvRTNzTWJhSFlZU1MwemQ0VFMxRFMrdHlSeUs3?=
+ =?utf-8?B?YTJ4aVlqOFlxYndNak1GUkoyMEpNYVB4UlNvWUVNc1RFRW9RWkRSNUlpMEV0?=
+ =?utf-8?B?MGx5b3lwWUsvYjJKa2oxYVpmejNnY1RaWkE1SWgyU1N0Yzhaam5taWxaTTdi?=
+ =?utf-8?B?SmNvcW1wb3BjUkpQQjJvTU1VbGpLaUFsQTdwN1ZQaWVIM2EwU0F5eWQwbXBo?=
+ =?utf-8?B?VVlSZ3hIZ09CZDA0SmxzRU9NK2YrVDVXWW1Zc0txSjE1c2ZselZjMUFTbDdo?=
+ =?utf-8?B?OUlrejRXN0grc3RHOENmVXJDY0FNR3VFbEM2WG1MNWFsRGVQYzVxY2JjdzFK?=
+ =?utf-8?B?eVFSNzlJSHdDRTJweGE3aUdZTlk3Tk01ellFajdKV2lHaFpDa0p3b2xqcFNC?=
+ =?utf-8?B?eTJYRXcyUnFpaUZTdFZBSk9qYVAvUFFPb3cxNWJYZUVHclNIdW0yUFpjWnVy?=
+ =?utf-8?B?eWptK2RCNVc1T2Ywc1ZHVk1Jd2tzSVFCU3NmNGJZS0JpVlowUUdpUE1lTFdi?=
+ =?utf-8?B?RnhhSnNmS0NyZEVDRGFmd1ZhVXRwTFZJRXUvN1BaUmQ5NUovZWdIdE5MSkpB?=
+ =?utf-8?B?MTQyc3l2V3Z2VnpvTHBrVmtkaVV5SHVwZmNKOElvM0I2K3czTGdTRWYvTmVi?=
+ =?utf-8?B?eDJRSDd2TVZQN0M3bXBQUTFzb0MwOUFSSkUrQXUwNlljNEtUOStadm93eERx?=
+ =?utf-8?B?aVZkbHlUZDN3N3p3czBKYXp3Q01QSk5ZTXRKVXZRa1pGOFVIV0xKSnBOZ1Vy?=
+ =?utf-8?B?a0s0ckM3Y0dKekpFMWF6NDhhdjZIL1dOYTgvWHJ4dFBtRjB0RmQxNi9ieTVT?=
+ =?utf-8?B?WHpQMTc2S2tTWHNVODkzTEpRRFZzNmh2VldFRXhZdms1bit5TjBzOTJ5VElO?=
+ =?utf-8?B?WGxobmNTdkw2aWhoWnUzTVJMUW1qKzZvQXlHeHlrQmE3YVBnODJHUVRMalpy?=
+ =?utf-8?B?WlB0cU1qdkZMZyszbkVLYTlIdWVLLzkzSzk5S253UWo2N3g4VWpxaVVqaGVV?=
+ =?utf-8?B?ZXd3Rm9iRk54R1gzdGhXcDMvL0tiMHM0SzFodGNYYWxzREpUYXVYc1E1c3Fl?=
+ =?utf-8?Q?vl268tFhxTVkYiONJT2NxMs=3D?=
 X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9a41232a-850b-40bf-f8d3-08da010a5142
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4342.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5294.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 300462b2-6815-47a4-c84a-08da010bad15
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Mar 2022 13:58:08.4625 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: NXmKiB1esIHtMKzrt9o7Sf4hAAw+Kv4CSjkNBU5ShgsDrN8+nQ0sZeUprm7/Q7ErQcYdtNxbDXVPx2A8+A2eOw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2369
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Mar 2022 13:48:25.5365 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UrMEwfDUKpr+2Ys2LNag1fn4MtH89FHtwNsPWn6Zz8awWo+QqFRwP1jmolOEZQ77KtbMsUXoBSvAaucbb0WIuw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB3652
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,180 +127,83 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Wang, Yu \(Charlie\)" <Yu.Wang4@amd.com>, "Zhuo,
- Qingqing \(Lillian\)" <Qingqing.Zhuo@amd.com>, "Liu,
- Wenjing" <Wenjing.Liu@amd.com>, "Chen, Guchun" <Guchun.Chen@amd.com>
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com, daniel@ffwll.ch
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---_000_DM4PR12MB5294ED933D4F7C91EB94919D95099DM4PR12MB5294namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-[AMD Official Use Only]
-
-Thank you very much Harry!
-
-Regards,
-Rico
-________________________________
-From: Wentland, Harry <Harry.Wentland@amd.com>
-Sent: Tuesday, March 8, 2022 21:55
-To: Yin, Tianci (Rico) <Tianci.Yin@amd.com>; amd-gfx@lists.freedesktop.org =
-<amd-gfx@lists.freedesktop.org>
-Cc: Wang, Yu (Charlie) <Yu.Wang4@amd.com>; Zhuo, Qingqing (Lillian) <Qingqi=
-ng.Zhuo@amd.com>; Liu, Wenjing <Wenjing.Liu@amd.com>; Chen, Guchun <Guchun.=
-Chen@amd.com>
-Subject: Re: [PATCH] drm/amd/display: fix dp kvm can't light up
-
-On 2022-03-08 01:50, Tianci Yin wrote:
-> From: "Tianci.Yin" <tianci.yin@amd.com>
->
-> [why]
-> The DP KVM failed to light up, since the lttpr_mode is not reset to
-> default value when failed to read LTTPR capabilities, and the
-> variable max_link_rate retains a initial value zero, this cause variable
-> link_rate be assigned to an error value zero, consquently pixel_clock
-> get wrong value zero, and kvm can't light up.
->
-> [how]
-> Reset lttpr_mode to default value when failed to read LTTPR
-> capabilities, so that the link_rate fallbacks to the minimum rate that
-> supported by link encoder and sink.
->
-> Signed-off-by: Tianci.Yin <tianci.yin@amd.com>
-
-Reviewed-by: Harry Wentland <harry.wentland@amd.com>
-
-Harry
-
-> ---
->  drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/g=
-pu/drm/amd/display/dc/core/dc_link_dp.c
-> index 5688b15ca9e6..f9ae06103241 100644
-> --- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-> +++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-> @@ -5101,6 +5101,7 @@ bool dp_retrieve_lttpr_cap(struct dc_link *link)
->                                sizeof(lttpr_dpcd_data));
->                if (status !=3D DC_OK) {
->                        DC_LOG_DP2("%s: Read LTTPR caps data failed.\n", _=
-_func__);
-> +                     link->lttpr_mode =3D LTTPR_MODE_NON_LTTPR;
->                        return false;
->                }
->
 
 
---_000_DM4PR12MB5294ED933D4F7C91EB94919D95099DM4PR12MB5294namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On 07/03/22 10:11 pm, Matthew Auld wrote:
+> On 07/03/2022 14:37, Arunpravin wrote:
+>> place BUG_ON(order < min_order) outside do..while
+>> loop as it fails Unigine Heaven benchmark.
+>>
+>> Unigine Heaven has buffer allocation requests for
+>> example required pages are 161 and alignment request
+>> is 128. To allocate the remaining 33 pages, continues
+>> the iteration to find the order value which is 5 and
+>> when it compares with min_order = 7, enables the
+>> BUG_ON(). To avoid this problem, placed the BUG_ON
+>> check outside of do..while loop.
+>>
+>> Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
+>> ---
+>>   drivers/gpu/drm/drm_buddy.c | 3 ++-
+>>   1 file changed, 2 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+>> index 72f52f293249..ed94c56b720f 100644
+>> --- a/drivers/gpu/drm/drm_buddy.c
+>> +++ b/drivers/gpu/drm/drm_buddy.c
+>> @@ -669,10 +669,11 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+>>   	order = fls(pages) - 1;
+>>   	min_order = ilog2(min_page_size) - ilog2(mm->chunk_size);
+>>   
+>> +	BUG_ON(order < min_order);
+> 
+> Isn't the issue that we are allowing a size that is not aligned to the 
+> requested min_page_size? Should we not fix the caller(and throw a normal 
+> error here), or perhaps add the round_up() here instead?
+> 
+CASE 1:
+when size is not aligned to the requested min_page_size, for instance,
+required size = 161 pages, min_page_size = 128 pages, here we have 3
+possible options,
+a. AFAIK,This kind of situation is common in any workload,the first
+allocation (i.e) 128 pages is aligned to min_page_size, Should we just
+allocate the left over 33 pages (2 pow 5, 2 pow 0) since the caller does
+know the left over pages are not in min_page_size alignment?
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p style=3D"font-family:Arial;font-size:10pt;color:#0000FF;margin:5pt;" ali=
-gn=3D"Left">
-[AMD Official Use Only]<br>
-</p>
-<br>
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Thank you very&nbsp;much Harry!</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Regards,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Rico<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Wentland, Harry &lt;H=
-arry.Wentland@amd.com&gt;<br>
-<b>Sent:</b> Tuesday, March 8, 2022 21:55<br>
-<b>To:</b> Yin, Tianci (Rico) &lt;Tianci.Yin@amd.com&gt;; amd-gfx@lists.fre=
-edesktop.org &lt;amd-gfx@lists.freedesktop.org&gt;<br>
-<b>Cc:</b> Wang, Yu (Charlie) &lt;Yu.Wang4@amd.com&gt;; Zhuo, Qingqing (Lil=
-lian) &lt;Qingqing.Zhuo@amd.com&gt;; Liu, Wenjing &lt;Wenjing.Liu@amd.com&g=
-t;; Chen, Guchun &lt;Guchun.Chen@amd.com&gt;<br>
-<b>Subject:</b> Re: [PATCH] drm/amd/display: fix dp kvm can't light up</fon=
-t>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">On 2022-03-08 01:50, Tianci Yin wrote:<br>
-&gt; From: &quot;Tianci.Yin&quot; &lt;tianci.yin@amd.com&gt;<br>
-&gt; <br>
-&gt; [why]<br>
-&gt; The DP KVM failed to light up, since the lttpr_mode is not reset to<br=
->
-&gt; default value when failed to read LTTPR capabilities, and the<br>
-&gt; variable max_link_rate retains a initial value zero, this cause variab=
-le<br>
-&gt; link_rate be assigned to an error value zero, consquently pixel_clock<=
-br>
-&gt; get wrong value zero, and kvm can't light up.<br>
-&gt; <br>
-&gt; [how]<br>
-&gt; Reset lttpr_mode to default value when failed to read LTTPR<br>
-&gt; capabilities, so that the link_rate fallbacks to the minimum rate that=
-<br>
-&gt; supported by link encoder and sink.<br>
-&gt; <br>
-&gt; Signed-off-by: Tianci.Yin &lt;tianci.yin@amd.com&gt;<br>
-<br>
-Reviewed-by: Harry Wentland &lt;harry.wentland@amd.com&gt;<br>
-<br>
-Harry<br>
-<br>
-&gt; ---<br>
-&gt;&nbsp; drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 1 +<br>
-&gt;&nbsp; 1 file changed, 1 insertion(+)<br>
-&gt; <br>
-&gt; diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/driver=
-s/gpu/drm/amd/display/dc/core/dc_link_dp.c<br>
-&gt; index 5688b15ca9e6..f9ae06103241 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c<br>
-&gt; +++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c<br>
-&gt; @@ -5101,6 +5101,7 @@ bool dp_retrieve_lttpr_cap(struct dc_link *link)=
-<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sizeof(lttpr_dpcd_data));<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; if (status !=3D DC_OK) {<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_LOG_=
-DP2(&quot;%s: Read LTTPR caps data failed.\n&quot;, __func__);<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; link-&gt;lttpr_mode =3D=
- LTTPR_MODE_NON_LTTPR;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return =
-false;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; }<br>
-&gt;&nbsp; <br>
-<br>
-</div>
-</span></font></div>
-</div>
-</body>
-</html>
+b. There are many such instances in unigine heaven workload (there would
+be many such workloads), throwing a normal error would lower the FPS? is
+it possible to fix at caller application?
 
---_000_DM4PR12MB5294ED933D4F7C91EB94919D95099DM4PR12MB5294namp_--
+c. adding the round_up() is possible, but in every such instances we end
+up allocating extra unused memory. For example, if required pages = 1028
+and min_page_size = 1024 pages, we end up round up of left over 4 pages
+to the min_page_size, so the total size would be 2048 pages.
+
+> i.e if someone does:
+> 
+> alloc_blocks(mm, 0, end, 4096, 1<<16, &blocks, flags);
+CASE 2:
+I think this case should be detected (i.e) when min_page_size > size,
+should we return -EINVAL?
+> 
+> This will still trigger the BUG_ON() even if we move it out of the loop, 
+> AFAICT.
+> 
+
+Should we just allow the CASE 1 proceed for the allocation and return
+-EINVAL for the CASE 2?
+
+>> +
+>>   	do {
+>>   		order = min(order, (unsigned int)fls(pages) - 1);
+>>   		BUG_ON(order > mm->max_order);
+>> -		BUG_ON(order < min_order);
+>>   
+>>   		do {
+>>   			if (flags & DRM_BUDDY_RANGE_ALLOCATION)
+>>
+>> base-commit: 8025c79350b90e5a8029234d433578f12abbae2b
