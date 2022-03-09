@@ -2,56 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 990294D3874
-	for <lists+amd-gfx@lfdr.de>; Wed,  9 Mar 2022 19:09:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B1144D387F
+	for <lists+amd-gfx@lfdr.de>; Wed,  9 Mar 2022 19:12:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F52110E2A6;
-	Wed,  9 Mar 2022 18:09:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECFC610E399;
+	Wed,  9 Mar 2022 18:12:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oo1-xc30.google.com (mail-oo1-xc30.google.com
- [IPv6:2607:f8b0:4864:20::c30])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FB3989F2E;
- Wed,  9 Mar 2022 18:09:11 +0000 (UTC)
-Received: by mail-oo1-xc30.google.com with SMTP id
- 6-20020a4a0906000000b0031d7eb98d31so3828112ooa.10; 
- Wed, 09 Mar 2022 10:09:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=QkDWW9U7DMlW8mlewgl7J3b86SIG4tg6kP9Xs14nOvI=;
- b=DyE5XqBCPwsyuT5pdmDd/G4gHoRryBiGLNLB9Elb9D2FrnDE9B+70gUp6LGjcy26I6
- cmpc5jyKGpQReWk3RubNKR92iCFudMIDYZLIxgI9WG7wQXjqCDBisXPWZ5yZDvOnajMo
- euswE0OG88QTNZz4Y8KXgkY2Kfs0niKcu+/mihmS0lbfzntAT5Vx/fkNIix2MzYLcadr
- DbADWQX6klNT8AqeBWZsHasYWmfz0xqheF2xEy2e0Zbv8rLAl6RwFdG3lk2WzozVfwBO
- iPraMftB+FWgntSdu1AjQhu60qYxzeRXOCjtTYWlfCuG2gfqafm+TMMYnq3gkfY1noAe
- WDcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=QkDWW9U7DMlW8mlewgl7J3b86SIG4tg6kP9Xs14nOvI=;
- b=kpECmBS52kTmTwMtYueUzH3DDcvo3VXUOi38E0w0IwNBaltQz/ON+IBNcBb8nMTxP/
- Ht5GMYdUNjSQBf9ZtjDsDP0o+MvKfIkvFbEa3gtQa7W2s3GOz2vWy8hpJ8u2p6kWYwdd
- HdaGtG5E5bcjCm5Wl0w7fJCoFQmaf86Nb5A3h2AQvkwuewXoEjdIJtuZJ6ao7ZkvIv6f
- KTNcvcHxjNnehxXLfg2c6nbODnsjxRqwFQybo6w45BRK26cxqSMXIspNZU4o4z7bsmpK
- PlxoSB+UXud03WcKFRnPRAnrTAkwIKUg4JPkq1DJqDbN/Zd4pTYwMGfQAVrCSBcnBheY
- M4Fw==
-X-Gm-Message-State: AOAM5321oOC1ez64Pt1ssZm5QHHYg+3zbDztSX9Tg2Kh+ZznfPO2P7jR
- BsWlgsXW8PRTWCIOPw9siUiwXcaQ7F5WQPO6GumWMZRz
-X-Google-Smtp-Source: ABdhPJymyK9YDH2ZKXUJo10z3eC5npfp2eFelcbxL6tES5H8LHLiHZ5EnTlMZCYSf79CygZ0RMlHh+jMZsgbVxYkVbE=
-X-Received: by 2002:a05:6870:d250:b0:da:b3f:2b29 with SMTP id
- h16-20020a056870d25000b000da0b3f2b29mr5777139oac.200.1646849350753; Wed, 09
- Mar 2022 10:09:10 -0800 (PST)
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 105BB10E399
+ for <amd-gfx@lists.freedesktop.org>; Wed,  9 Mar 2022 18:12:44 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id A4C45B8214B;
+ Wed,  9 Mar 2022 18:12:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33BD9C340E8;
+ Wed,  9 Mar 2022 18:12:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1646849561;
+ bh=4PTqqLuT0A0jBlDFjGkPjyWFJzJnwzxshFyQXDhoDBM=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=fIk5Te7dML0Wj2jKZVgNYlmwgUp8VcNS6xDWZbos7pfvcqJ5Ssr8gmgxZYZihu03K
+ GEAwRTCShkMJHXBplX7tkFF60zBx7zNqb/KO2od2ijDB9FYtZ4qRNYF2FkwiVOpB9G
+ 8FRbSL/mOzgJ8lV8J4HaVA2Ew0WGnaUPRs2mYWAzqgL7uURyeI0Hiena2rPt9hEsTo
+ wDpZwyN1Y5jJqt+rgZlWZPs0XM4PoXMsxNm42KJCrRfzPS+A12Pk6VigPCJXaqDEDO
+ UQQMyxeyCxhX1Mo1EnP10kBzRDGUQfnV2CK9u70kiF21WKRk9GyujDoeDp03eOi6Ja
+ CO1J6YSp+YWhQ==
+Date: Wed, 9 Mar 2022 11:12:34 -0700
+From: Nathan Chancellor <nathan@kernel.org>
+To: Yifan Zhang <yifan1.zhang@amd.com>
+Subject: Re: [PATCH v2] drm/amkfd: bail out early if no
+ get_atc_vmid_pasid_mapping_info
+Message-ID: <YijuEmuuPZYdBt0I@dev-arch.thelio-3990X>
+References: <20220309022242.2625842-1-yifan1.zhang@amd.com>
 MIME-Version: 1.0
-References: <20220309150606.1877288-1-sean@poorly.run>
- <CACK8Z6GsZd5E74ZB9hRHWVov_cE0AfDNFcEvWeJHmtQAf_vz4A@mail.gmail.com>
-In-Reply-To: <CACK8Z6GsZd5E74ZB9hRHWVov_cE0AfDNFcEvWeJHmtQAf_vz4A@mail.gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 9 Mar 2022 13:08:58 -0500
-Message-ID: <CADnq5_O0+GcVSWRK4YtVxSmU2s57Hnc18c9Ss7pZDsMBe0TMiQ@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/amdgpu: Add support for drm_privacy_screen
-To: Rajat Jain <rajatja@google.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220309022242.2625842-1-yifan1.zhang@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,164 +52,64 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Sean Paul <sean@poorly.run>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Leo Li <sunpeng.li@amd.com>,
- Hans de Goede <hdegoede@redhat.com>, Sean Paul <seanpaul@chromium.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- "Wentland, Harry" <harry.wentland@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Felix.Kuehling@amd.com, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 9, 2022 at 12:54 PM Rajat Jain <rajatja@google.com> wrote:
->
-> On Wed, Mar 9, 2022 at 7:06 AM Sean Paul <sean@poorly.run> wrote:
-> >
-> > From: Sean Paul <seanpaul@chromium.org>
-> >
-> > This patch adds the necessary hooks to make amdgpu aware of privacy
-> > screens. On devices with privacy screen drivers (such as thinkpad-acpi),
-> > the amdgpu driver will defer probe until it's ready and then sync the sw
-> > and hw state on each commit the connector is involved and enabled.
-> >
-> > Changes in v2:
-> > -Tweaked the drm_privacy_screen_get() error check to avoid logging
-> >  errors when privacy screen is absent (Hans)
-> >
-> > Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> > Link: https://patchwork.freedesktop.org/patch/477640/ #v1
-> > ---
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c          |  9 +++++++++
-> >  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c    |  3 +++
-> >  .../amd/display/amdgpu_dm/amdgpu_dm_mst_types.c  | 16 +++++++++++++++-
-> >  3 files changed, 27 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> > index 2ab675123ae3..e2cfae56c020 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> > @@ -26,6 +26,7 @@
-> >  #include <drm/drm_aperture.h>
-> >  #include <drm/drm_drv.h>
-> >  #include <drm/drm_gem.h>
-> > +#include <drm/drm_privacy_screen_consumer.h>
-> >  #include <drm/drm_vblank.h>
-> >  #include <drm/drm_managed.h>
-> >  #include "amdgpu_drv.h"
-> > @@ -1988,6 +1989,7 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
-> >  {
-> >         struct drm_device *ddev;
-> >         struct amdgpu_device *adev;
-> > +       struct drm_privacy_screen *privacy_screen;
-> >         unsigned long flags = ent->driver_data;
-> >         int ret, retry = 0, i;
-> >         bool supports_atomic = false;
-> > @@ -2063,6 +2065,13 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
-> >         size = pci_resource_len(pdev, 0);
-> >         is_fw_fb = amdgpu_is_fw_framebuffer(base, size);
-> >
-> > +       /* If the LCD panel has a privacy screen, defer probe until its ready */
-> > +       privacy_screen = drm_privacy_screen_get(&pdev->dev, NULL);
-> > +       if (IS_ERR(privacy_screen) && PTR_ERR(privacy_screen) == -EPROBE_DEFER)
-> > +               return -EPROBE_DEFER;
-> > +
-> > +       drm_privacy_screen_put(privacy_screen);
-> > +
-> >         /* Get rid of things like offb */
-> >         ret = drm_aperture_remove_conflicting_pci_framebuffers(pdev, &amdgpu_kms_driver);
-> >         if (ret)
-> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > index e1d3db3fe8de..9e2bb6523add 100644
-> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > @@ -9781,6 +9781,9 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
-> >                 if (acrtc) {
-> >                         new_crtc_state = drm_atomic_get_new_crtc_state(state, &acrtc->base);
-> >                         old_crtc_state = drm_atomic_get_old_crtc_state(state, &acrtc->base);
-> > +
-> > +                       /* Sync the privacy screen state between hw and sw */
-> > +                       drm_connector_update_privacy_screen(new_con_state);
-> >                 }
-> >
-> >                 /* Skip any modesets/resets */
-> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> > index 740435ae3997..594a8002975a 100644
-> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> > @@ -27,6 +27,7 @@
-> >  #include <drm/drm_atomic_helper.h>
-> >  #include <drm/dp/drm_dp_mst_helper.h>
-> >  #include <drm/dp/drm_dp_helper.h>
-> > +#include <drm/drm_privacy_screen_consumer.h>
-> >  #include "dm_services.h"
-> >  #include "amdgpu.h"
-> >  #include "amdgpu_dm.h"
-> > @@ -506,6 +507,7 @@ void amdgpu_dm_initialize_dp_connector(struct amdgpu_display_manager *dm,
-> >                                        struct amdgpu_dm_connector *aconnector,
-> >                                        int link_index)
-> >  {
-> > +       struct drm_device *dev = dm->ddev;
-> >         struct dc_link_settings max_link_enc_cap = {0};
-> >
-> >         aconnector->dm_dp_aux.aux.name =
-> > @@ -519,8 +521,20 @@ void amdgpu_dm_initialize_dp_connector(struct amdgpu_display_manager *dm,
-> >         drm_dp_cec_register_connector(&aconnector->dm_dp_aux.aux,
-> >                                       &aconnector->base);
-> >
-> > -       if (aconnector->base.connector_type == DRM_MODE_CONNECTOR_eDP)
-> > +       if (aconnector->base.connector_type == DRM_MODE_CONNECTOR_eDP) {
-> > +               struct drm_privacy_screen *privacy_screen)
-> > +
-> > +               /* Reference given up in drm_connector_cleanup() */
-> > +               privacy_screen = drm_privacy_screen_get(dev->dev, NULL);
->
-> Can we try to be more specific when looking up for privacy screen, e.g.:
->
-> privacy_screen = drm_privacy_screen_get(dev->dev,  "eDP-1");
-> (and then also making the corresponding change in arch_init_data[] in
-> drm_privacy_screen_x86.c"
->
-> My comment applies to this driver as well as to i915. The reason being
-> today there is only 1 internal display with privacy screen so we can
-> just assume that there shall be only 1 privacy-screen and that shall
-> apply to eDP-1/internal display. But dual display systems are not far
-> enough out, and perhaps external monitors with inbuilt
-> privacy-screens?
->
-> Essentially the gap today is that today on Chromeos ACPI side, the
-> device GOOG0010 represents the privacy-screen attached to the internal
-> display/eDP-1, but there isn't a way to make it clear in the i915 and
-> now amdgpu code.
+On Wed, Mar 09, 2022 at 10:22:42AM +0800, Yifan Zhang wrote:
+> it makes no sense to continue with an undefined vmid.
+> 
+> Fixes: d21bcfc01eb1 (drm/amdkfd: judge get_atc_vmid_pasid_mapping_info before call)
+> 
+> Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+> Reported-by: Nathan Chancellor <nathan@kernel.org>
 
-I was wondering the same thing.  There are devices out there today
-that have multiple eDP panels already.  I don't know that there are
-any platforms today with privacy screens and multiple panels, but as
-you say, I suppose it is only a matter of time.  Additionally what if
-you have several eDP panels and only one has a privacy screen?  How do
-you map to the appropriate display?
+Thank you for the quick fix!
 
-Alex
+Reviewed-by: Nathan Chancellor <nathan@kernel.org>
 
->
-> Thanks,
->
-> Rajat
->
->
-> > +               if (!IS_ERR(privacy_screen)) {
-> > +                       drm_connector_attach_privacy_screen_provider(&aconnector->base,
-> > +                                                                    privacy_screen);
-> > +               } else if (PTR_ERR(privacy_screen) != -ENODEV) {
-> > +                       drm_err(dev, "Error getting privacy screen, ret=%d\n",
-> > +                               PTR_ERR(privacy_screen));
-> > +               }
-> >                 return;
-> > +       }
-> >
-> >         dc_link_dp_get_max_link_enc_cap(aconnector->dc_link, &max_link_enc_cap);
-> >         aconnector->mst_mgr.cbs = &dm_mst_cbs;
-> > --
-> > Sean Paul, Software Engineer, Google / Chromium OS
-> >
+> ---
+>  .../drm/amd/amdkfd/kfd_device_queue_manager.c | 21 +++++++++++--------
+>  1 file changed, 12 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+> index 77364afdc606..acf4f7975850 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+> @@ -500,21 +500,24 @@ static int dbgdev_wave_reset_wavefronts(struct kfd_dev *dev, struct kfd_process
+>  
+>  	pr_debug("Killing all process wavefronts\n");
+>  
+> +	if (!dev->kfd2kgd->get_atc_vmid_pasid_mapping_info) {
+> +		pr_err("no vmid pasid mapping supported \n");
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+>  	/* Scan all registers in the range ATC_VMID8_PASID_MAPPING ..
+>  	 * ATC_VMID15_PASID_MAPPING
+>  	 * to check which VMID the current process is mapped to.
+>  	 */
+>  
+> -	if (dev->kfd2kgd->get_atc_vmid_pasid_mapping_info) {
+> -		for (vmid = first_vmid_to_scan; vmid <= last_vmid_to_scan; vmid++) {
+> -			status = dev->kfd2kgd->get_atc_vmid_pasid_mapping_info
+> -					(dev->adev, vmid, &queried_pasid);
+> +	for (vmid = first_vmid_to_scan; vmid <= last_vmid_to_scan; vmid++) {
+> +		status = dev->kfd2kgd->get_atc_vmid_pasid_mapping_info
+> +				(dev->adev, vmid, &queried_pasid);
+>  
+> -			if (status && queried_pasid == p->pasid) {
+> -				pr_debug("Killing wave fronts of vmid %d and pasid 0x%x\n",
+> -						vmid, p->pasid);
+> -				break;
+> -			}
+> +		if (status && queried_pasid == p->pasid) {
+> +			pr_debug("Killing wave fronts of vmid %d and pasid 0x%x\n",
+> +					vmid, p->pasid);
+> +			break;
+>  		}
+>  	}
+>  
+> -- 
+> 2.25.1
+> 
