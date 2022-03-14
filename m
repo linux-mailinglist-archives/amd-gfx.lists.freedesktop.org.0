@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEA724D72CD
-	for <lists+amd-gfx@lfdr.de>; Sun, 13 Mar 2022 06:29:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0D4E4D796D
+	for <lists+amd-gfx@lfdr.de>; Mon, 14 Mar 2022 03:45:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C43610E073;
-	Sun, 13 Mar 2022 05:29:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 031B110E17D;
+	Mon, 14 Mar 2022 02:45:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2041.outbound.protection.outlook.com [40.107.92.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70A7A10E073
- for <amd-gfx@lists.freedesktop.org>; Sun, 13 Mar 2022 05:29:50 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2055.outbound.protection.outlook.com [40.107.223.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0CCD10E17D
+ for <amd-gfx@lists.freedesktop.org>; Mon, 14 Mar 2022 02:45:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=h3vQ34/Sk1RShOq5DTouZ/MSIUD+HW6glW/0MMH1pXB1ZMf5r61QiwM7pbj7lkYigdAsO8LSOSQXk1elXRXIWEqvkioSX2QkvxYWGkyMQMblg0AqaixphkSZ8MbM4uN5uP/iJQv1GLMjuyxxCcA19wvbhUwrMsOPSet5/FlCpVpPhBYvyOeqNZ0antVUCVW/QKg+RR4mf7MnkIMrDldu1KTqS6G5eA8o87t5jCCp4RWqpLSw8K5GskUpIljzSFTQsXID40jZcH5v5LBLEP981WED1CSZf0ybl4WJwujdFNxuk3wLeUzeDC+e1TMMtUnRXgKVTLI4xS2AQ/qPbxyGzg==
+ b=gDTx7kEOSzCkEBMQSSgjwTQFMzFpLo734OS1moUa5bcViHHamEIVa870ziX16FRsw/g02XBHf9Qz+gBmyPwXmjzFJYtgpix7R/vGuoUWankNFPN7HVgwNTws3yPRjrGDL84Zx9ofRb9SJDbAeueufeOxA8QrSw/88/uFbLHAHyN2pdLQVocv3xiQ4M7YFRbNem7uEezPJshYvB5TrxLz+P7aN9hwWrt6CLooD35uznzmSv6eI150/Y6XzsaQ44yHZlL24Ctmnsmg0O3r2XHqCdxEAwCOoXF+BJ7k18rzHMFnV94qbS6g2ES3MRbNpzZj4LEyeOFK/WFsRkIb0VXtLw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RudLwc9Ab6OrjNPXwggKEYqPilyEPHsfZyK2Lt9fh+A=;
- b=k0RocRz0g3waWqFXXqe52l9x9tCkEpx2GlDOt5sOMMyozQswDC3572GKRXKIUNOdMuwqYBlr6lCPbPZQJ9wJzWS5fs5SU/4Uu6x13n2/EEigMW7AXWV7mYbljN4xzMfoGVmpT4Ai/lJ5oWyNoOCXzag4pew0mf9jI9oS88TD4ZB98pLwP/DSq2K6qnvv2BWHK9kByiPkWi1reZ3yiQf7MFRcY3OiHu6ff2nJoEPJF5Z/EupuJViilWd3V/mqDGBWV1MB6cCyHm2PZqdWVsmNcfNXPhnX1KwEIRWu+rEWdxY7Eq7GYIAUq5uatzcywSaInT0whugh3f/VRt7ETQNnjg==
+ bh=aFlDFMze4SahWf2yFIbQcibswvstQbeoglUp2xx5K90=;
+ b=eMuNj7DaXtx2x/gh3xiv7zBuVyd0KK764y0zI4W4WfAw1tdmg3z4dmo6GHzVXvxNGEO4rz3S/hgpgljjGGSIozO8B0yvwYGBCKsjVJW/BBP6hCovCy8q210XVgcb88ar8IvfERcUfhjBued1Xqy/ooV09Rpj/ZEcqiX82fSd5InvnpgVz4JRrXLyw53jKjOSlX8MgtBkOrAJHoAWC/+dNEyRF00d+jRkktiQtd2N7NQOwdu8XiiHU+OdKugjjnF7sYgQ+4l8CAfTYPTxUuuwIKAEC5/X6pslBmN0PBgPenW5Xv0gyh0kch4TnOkaf/t8RvnBi7vOPNASscHR7Xq8Vg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RudLwc9Ab6OrjNPXwggKEYqPilyEPHsfZyK2Lt9fh+A=;
- b=V7lCPnuRlM5HE9y3zcnLKMo5W5ZWfjf1wVCX2jr9GkijuVwOG6pOq8L6FDSvDAVgBHJz4vGQ/HRb6gWNEu/B6WiVg4rQALH1NJ0EUKsoYEu1kho7+rG9aqMrdhCKe7CC7fc4UiGHlbR/xt/GtSsaqNhQYO8Zt7QDvjMCJQxpOEU=
-Received: from BN6PR19CA0074.namprd19.prod.outlook.com (2603:10b6:404:133::12)
- by MWHPR12MB1887.namprd12.prod.outlook.com (2603:10b6:300:111::23)
+ bh=aFlDFMze4SahWf2yFIbQcibswvstQbeoglUp2xx5K90=;
+ b=ngxUxrnol5s6RGRIq5EO3kyDwfk5qrgPOFzVUkhX3umsiXSGPiFqegqteCTFvgpAkhkV/1XaMRQ789L4wVO/BkUQ55xkxJZpK9SNKhO2uQyqduJMqzFXcy9nSf1z036+Zd1CQ6hus1gqUEA77h8sLGNo2nqtCsJA21DcCZ/zRiU=
+Received: from BN6PR11CA0056.namprd11.prod.outlook.com (2603:10b6:404:f7::18)
+ by BY5PR12MB3762.namprd12.prod.outlook.com (2603:10b6:a03:196::24)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5061.22; Sun, 13 Mar
- 2022 05:29:46 +0000
-Received: from BN8NAM11FT007.eop-nam11.prod.protection.outlook.com
- (2603:10b6:404:133:cafe::5b) by BN6PR19CA0074.outlook.office365.com
- (2603:10b6:404:133::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5061.26 via Frontend
- Transport; Sun, 13 Mar 2022 05:29:45 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5061.26; Mon, 14 Mar
+ 2022 02:45:41 +0000
+Received: from BN8NAM11FT063.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:404:f7:cafe::7a) by BN6PR11CA0056.outlook.office365.com
+ (2603:10b6:404:f7::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5061.20 via Frontend
+ Transport; Mon, 14 Mar 2022 02:45:40 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,50 +45,48 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT007.mail.protection.outlook.com (10.13.177.109) with Microsoft SMTP
+ BN8NAM11FT063.mail.protection.outlook.com (10.13.177.110) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5061.24 via Frontend Transport; Sun, 13 Mar 2022 05:29:45 +0000
-Received: from dapowell-ubuntu-200400-1.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Sat, 12 Mar 2022 23:29:42 -0600
-From: Darren Powell <darren.powell@amd.com>
+ 15.20.5061.22 via Frontend Transport; Mon, 14 Mar 2022 02:45:40 +0000
+Received: from lang-desktop.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Sun, 13 Mar
+ 2022 21:45:38 -0500
+From: Lang Yu <Lang.Yu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 2/2] amdgpu/pm: Implement emit_clk_levels for vega10
-Date: Sun, 13 Mar 2022 00:28:39 -0500
-Message-ID: <20220313052839.5777-3-darren.powell@amd.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220313052839.5777-1-darren.powell@amd.com>
-References: <20220313052839.5777-1-darren.powell@amd.com>
+Subject: [PATCH v3] drm/amdgpu: add workarounds for VCN TMZ issue on CHIP_RAVEN
+Date: Mon, 14 Mar 2022 10:45:19 +0800
+Message-ID: <20220314024519.2201231-1-Lang.Yu@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
 X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 75cdd90d-7788-46e2-716b-08da04b27bb6
-X-MS-TrafficTypeDiagnostic: MWHPR12MB1887:EE_
-X-Microsoft-Antispam-PRVS: <MWHPR12MB188753D71F81B72F81E09FA2F00E9@MWHPR12MB1887.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: cfc15485-9187-4b50-53a3-08da0564ba34
+X-MS-TrafficTypeDiagnostic: BY5PR12MB3762:EE_
+X-Microsoft-Antispam-PRVS: <BY5PR12MB3762DB7A8935AFF04B7A057FFB0F9@BY5PR12MB3762.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZrIW9I/U7bO78XRDbY0zr6ZWPPnlzshA+qgW0HjBA2gbDE7ENj5LQyg5lbaGcOKC15x23THdF4u5O/zuplCNysotoBuolrngqtd73YTs7xVCLm5VGOOfiKuCvQVWZppYL6O0KLe/0zI+tH2xVRjGPeinqaqInj8qJl4J1BIHfZgzb5gujvB5+1Benv+K5AilMC1/yibpqcEapA+Hj4GHQ1Jt0t3VJG6mgn73L2k8hvuMUzK+zx/RZgLd7Ss4aziVIL82M25U9En4HfAIT1u0bnYsRR5REKA0KvjwGvAq34iLcR0rnr1PysInQPNn8p3jga0AyBlsVVEkjdypmmn0lKIhHxwTWFER4Oab773wnlwLu5KH5TErFLymnwHlxVSipT5olEhvtM0npfKUPnC1PJ4w41hjag0s48dYFouCY9icpRWEV6JPlHppA7WoDkx03D5cKZaIR9aLs2+rsYIy+KOkCToWobiSO4zr9HGRo8AfgBvG6A8B3FfleC4iADS3SiLazPKvwO61CUUiLRj+MZs7+6S7YDJBd6NnxzyA6LkKHWzz7QhS4PJFI+3BLgrhtcbcLSFiYVg2rBVBrnZSAn0cE9VAkRDg8ulYQZNJm4joD3INyoP2Ir5CUjhBTMfaOuUW2qkoAhLDGbGm91k8MaJQzvOqkCRHTUIlstjbS2P/mME+Q7wcgtQZYBv44ndgk4RgPQqBYR7Gkx1t/XlHNolCivquw/bsX9UhH6DMayo=
+X-Microsoft-Antispam-Message-Info: TZF7en/OlxSnNiW8ni0VW/UvOSvl14wqSPb7VgIo2n5WoDqzge4qF+6OHBEZlIhL94LSGZyDh4F/yfSFq/rTAcfd1RfHs6U3aLFr+/uqhkzuXWsWXeKPuASfUc9q0dXLwu+SaRKuBumGJH/z8zXPg1CS9Ff0LGiwjv8gOzHpZx8sMjyzfn3mA1SXhJXvn4Tx7WbLBOb+lAulL0/am1ZJ/u+2ysB4Z22wcT525vA2mBpRW4Jo1yfBqZT8Z2r+5hSjGOfFZirfqJkPuL9qLXIhrgzG8gXfdJQF+oF3wwTN6kdrZVfNd+i5jHBDgtDMFFOKduPJJ76dEMaqidgqyeZ2RtoqViVj97cAw2KsjJxXOY8/fCaFdCGaEW4DZgFiO4vnAaJcDr6QuZSHbIAzEo0hDyRVu3v5rA4In5Qj5QMGimy3W/r/3Ck3agvDa3M/RnjHvk7RN6bayIy+aOgTemPB3LNuGrZbppO2Dc7gSaG+IdGkgWHmIpogCn7MOvpR12dlLCfffzH+PDnXekbes5mJ/pv0P/zNdvEcjZd8iTlMIiX/rpSCDX9BhYdQTvrdbRyfh7FePLZxCtmbJtXkO+45hlKbe4nL3UGQmpixs2MqpIuko6oCOqo2eENdnCQY4X1B+D+zdS9nT0mWCNU8JxwtcxofJ3Z3PN3k9QsRK/G/jhJy6HdeD4mVuzX9GnfuHaqsPWH24qsYENn46TJoKC+ILg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(70206006)(508600001)(316002)(86362001)(47076005)(6666004)(16526019)(8676002)(4326008)(6916009)(82310400004)(36860700001)(70586007)(1076003)(186003)(26005)(426003)(40460700003)(7696005)(81166007)(356005)(83380400001)(2906002)(36756003)(2616005)(5660300002)(44832011)(8936002)(336012)(21314003)(36900700001);
+ SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(66574015)(7696005)(6666004)(26005)(86362001)(1076003)(2616005)(426003)(16526019)(186003)(81166007)(356005)(336012)(83380400001)(47076005)(6916009)(316002)(5660300002)(36860700001)(4326008)(8676002)(54906003)(82310400004)(70206006)(8936002)(70586007)(508600001)(36756003)(2906002)(40460700003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2022 05:29:45.1496 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 75cdd90d-7788-46e2-716b-08da04b27bb6
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2022 02:45:40.4425 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cfc15485-9187-4b50-53a3-08da0564ba34
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT007.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT063.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1887
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB3762
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,189 +98,125 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Darren Powell <darren.powell@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Huang Rui <ray.huang@amd.com>,
+ Lang Yu <Lang.Yu@amd.com>, Christian Koenig <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-   (v1)
-     - implement emit_clk_levels for vega10, based on print_clk_levels,
-       but using sysfs_emit rather than sprintf
-     - modify local int vars to use uint32_t to match arg type of
-       called functions
-     - add return of error codes
-     - refactor OD_XXX cases to return early with -EOPNOTSUPP if
-       !(hwmgr->od_enabled)
+It is a hardware issue that VCN can't handle a GTT
+backing stored TMZ buffer on CHIP_RAVEN series ASIC.
 
-Signed-off-by: Darren Powell <darren.powell@amd.com>
+Move such a TMZ buffer to VRAM domain before command
+submission as a wrokaround.
+
+v2:
+ - Use patch_cs_in_place callback.
+
+v3:
+ - Bail out early if unsecure IBs.
+
+Suggested-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Lang Yu <Lang.Yu@amd.com>
 ---
- .../drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c | 147 ++++++++++++++++++
- 1 file changed, 147 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c | 71 +++++++++++++++++++++++++++
+ 1 file changed, 71 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
-index 3f040be0d158..a25b984fceb5 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
-@@ -4625,6 +4625,152 @@ static int vega10_get_current_pcie_link_speed_level(struct pp_hwmgr *hwmgr)
- 		>> PSWUSP0_PCIE_LC_SPEED_CNTL__LC_CURRENT_DATA_RATE__SHIFT;
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
+index 7bbb9ba6b80b..1ac9e06d3a4d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
+@@ -24,6 +24,7 @@
+ #include <linux/firmware.h>
  
-+static int vega10_emit_clock_levels(struct pp_hwmgr *hwmgr,
-+				    enum pp_clock_type type, char *buf, int *offset)
+ #include "amdgpu.h"
++#include "amdgpu_cs.h"
+ #include "amdgpu_vcn.h"
+ #include "amdgpu_pm.h"
+ #include "soc15.h"
+@@ -1905,6 +1906,75 @@ static const struct amd_ip_funcs vcn_v1_0_ip_funcs = {
+ 	.set_powergating_state = vcn_v1_0_set_powergating_state,
+ };
+ 
++/*
++ * It is a hardware issue that VCN can't handle a GTT TMZ buffer on
++ * CHIP_RAVEN series ASIC. Move such a GTT TMZ buffer to VRAM domain
++ * before command submission as a workaround.
++ */
++static int vcn_v1_0_validate_bo(struct amdgpu_cs_parser *parser,
++				struct amdgpu_job *job,
++				uint64_t addr)
 +{
-+	struct vega10_hwmgr *data = hwmgr->backend;
-+	struct vega10_single_dpm_table *sclk_table = &(data->dpm_table.gfx_table);
-+	struct vega10_single_dpm_table *mclk_table = &(data->dpm_table.mem_table);
-+	struct vega10_single_dpm_table *soc_table = &(data->dpm_table.soc_table);
-+	struct vega10_single_dpm_table *dcef_table = &(data->dpm_table.dcef_table);
-+	struct vega10_odn_clock_voltage_dependency_table *podn_vdd_dep = NULL;
-+	uint32_t gen_speed, lane_width, current_gen_speed, current_lane_width;
-+	PPTable_t *pptable = &(data->smc_state_table.pp_table);
++	struct ttm_operation_ctx ctx = { false, false };
++	struct amdgpu_fpriv *fpriv = parser->filp->driver_priv;
++	struct amdgpu_vm *vm = &fpriv->vm;
++	struct amdgpu_bo_va_mapping *mapping;
++	struct amdgpu_bo *bo;
++	int r;
 +
-+	uint32_t i, now, count = 0;
-+	int ret = 0;
-+
-+	switch (type) {
-+	case PP_SCLK:
-+		if (data->registry_data.sclk_dpm_key_disabled)
-+			return -EOPNOTSUPP;
-+
-+		ret = smum_send_msg_to_smc(hwmgr, PPSMC_MSG_GetCurrentGfxclkIndex, &now);
-+		if (unlikely(ret != 0))
-+			return ret;
-+
-+		if (hwmgr->pp_one_vf &&
-+		    (hwmgr->dpm_level == AMD_DPM_FORCED_LEVEL_PROFILE_PEAK))
-+			count = 5;
-+		else
-+			count = sclk_table->count;
-+		for (i = 0; i < count; i++)
-+			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
-+					i, sclk_table->dpm_levels[i].value / 100,
-+					(i == now) ? "*" : "");
-+		break;
-+	case PP_MCLK:
-+		if (data->registry_data.mclk_dpm_key_disabled)
-+			return -EOPNOTSUPP;
-+
-+		ret = smum_send_msg_to_smc(hwmgr, PPSMC_MSG_GetCurrentUclkIndex, &now);
-+		if (unlikely(ret != 0))
-+			return ret;
-+
-+		for (i = 0; i < mclk_table->count; i++)
-+			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
-+					i, mclk_table->dpm_levels[i].value / 100,
-+					(i == now) ? "*" : "");
-+		break;
-+	case PP_SOCCLK:
-+		if (data->registry_data.socclk_dpm_key_disabled)
-+			return -EOPNOTSUPP;
-+
-+		ret = smum_send_msg_to_smc(hwmgr, PPSMC_MSG_GetCurrentSocclkIndex, &now);
-+		if (unlikely(ret != 0))
-+			return ret;
-+
-+		for (i = 0; i < soc_table->count; i++)
-+			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
-+					i, soc_table->dpm_levels[i].value / 100,
-+					(i == now) ? "*" : "");
-+		break;
-+	case PP_DCEFCLK:
-+		if (data->registry_data.dcefclk_dpm_key_disabled)
-+			return -EOPNOTSUPP;
-+
-+		ret = smum_send_msg_to_smc_with_parameter(hwmgr,
-+							  PPSMC_MSG_GetClockFreqMHz,
-+							  CLK_DCEFCLK, &now);
-+		if (unlikely(ret != 0))
-+			return ret;
-+
-+		for (i = 0; i < dcef_table->count; i++)
-+			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
-+					i, dcef_table->dpm_levels[i].value / 100,
-+					(dcef_table->dpm_levels[i].value / 100 == now) ?
-+					"*" : "");
-+		break;
-+	case PP_PCIE:
-+		current_gen_speed =
-+			vega10_get_current_pcie_link_speed_level(hwmgr);
-+		current_lane_width =
-+			vega10_get_current_pcie_link_width_level(hwmgr);
-+		for (i = 0; i < NUM_LINK_LEVELS; i++) {
-+			gen_speed = pptable->PcieGenSpeed[i];
-+			lane_width = pptable->PcieLaneCount[i];
-+
-+			*offset += sysfs_emit_at(buf, *offset, "%d: %s %s %s\n", i,
-+					(gen_speed == 0) ? "2.5GT/s," :
-+					(gen_speed == 1) ? "5.0GT/s," :
-+					(gen_speed == 2) ? "8.0GT/s," :
-+					(gen_speed == 3) ? "16.0GT/s," : "",
-+					(lane_width == 1) ? "x1" :
-+					(lane_width == 2) ? "x2" :
-+					(lane_width == 3) ? "x4" :
-+					(lane_width == 4) ? "x8" :
-+					(lane_width == 5) ? "x12" :
-+					(lane_width == 6) ? "x16" : "",
-+					(current_gen_speed == gen_speed) &&
-+					(current_lane_width == lane_width) ?
-+					"*" : "");
-+		}
-+		break;
-+
-+	case OD_SCLK:
-+		if (!hwmgr->od_enabled)
-+			return -EOPNOTSUPP;
-+
-+		*offset += sysfs_emit_at(buf, *offset, "%s:\n", "OD_SCLK");
-+		podn_vdd_dep = &data->odn_dpm_table.vdd_dep_on_sclk;
-+		for (i = 0; i < podn_vdd_dep->count; i++)
-+			*offset += sysfs_emit_at(buf, *offset, "%d: %10uMhz %10umV\n",
-+						 i, podn_vdd_dep->entries[i].clk / 100,
-+						 podn_vdd_dep->entries[i].vddc);
-+		break;
-+	case OD_MCLK:
-+		if (!hwmgr->od_enabled)
-+			return -EOPNOTSUPP;
-+
-+		*offset += sysfs_emit_at(buf, *offset, "%s:\n", "OD_MCLK");
-+		podn_vdd_dep = &data->odn_dpm_table.vdd_dep_on_mclk;
-+		for (i = 0; i < podn_vdd_dep->count; i++)
-+			*offset += sysfs_emit_at(buf, *offset, "%d: %10uMhz %10umV\n",
-+						 i, podn_vdd_dep->entries[i].clk/100,
-+						 podn_vdd_dep->entries[i].vddc);
-+		break;
-+	case OD_RANGE:
-+		if (!hwmgr->od_enabled)
-+			return -EOPNOTSUPP;
-+
-+		*offset += sysfs_emit_at(buf, *offset, "%s:\n", "OD_RANGE");
-+		*offset += sysfs_emit_at(buf, *offset, "SCLK: %7uMHz %10uMHz\n",
-+					 data->golden_dpm_table.gfx_table.dpm_levels[0].value/100,
-+				hwmgr->platform_descriptor.overdriveLimit.engineClock/100);
-+		*offset += sysfs_emit_at(buf, *offset, "MCLK: %7uMHz %10uMHz\n",
-+					 data->golden_dpm_table.mem_table.dpm_levels[0].value/100,
-+				hwmgr->platform_descriptor.overdriveLimit.memoryClock/100);
-+		*offset += sysfs_emit_at(buf, *offset, "VDDC: %7umV %11umV\n",
-+					 data->odn_dpm_table.min_vddc,
-+					 data->odn_dpm_table.max_vddc);
-+		break;
-+	default:
-+		ret = -ENOENT;
-+		break;
++	addr &= AMDGPU_GMC_HOLE_MASK;
++	if (addr & 0x7) {
++		DRM_ERROR("VCN messages must be 8 byte aligned!\n");
++		return -EINVAL;
 +	}
-+	return ret;
++
++	mapping = amdgpu_vm_bo_lookup_mapping(vm, addr/AMDGPU_GPU_PAGE_SIZE);
++	if (!mapping || !mapping->bo_va || !mapping->bo_va->base.bo)
++		return -EINVAL;
++
++	bo = mapping->bo_va->base.bo;
++	if (!(bo->flags & AMDGPU_GEM_CREATE_ENCRYPTED))
++		return 0;
++
++	amdgpu_bo_placement_from_domain(bo, AMDGPU_GEM_DOMAIN_VRAM);
++	r = ttm_bo_validate(&bo->tbo, &bo->placement, &ctx);
++	if (r) {
++		DRM_ERROR("Failed validating the VCN message BO (%d)!\n", r);
++		return r;
++	}
++
++	return r;
 +}
 +
- static int vega10_print_clock_levels(struct pp_hwmgr *hwmgr,
- 		enum pp_clock_type type, char *buf)
- {
-@@ -5551,6 +5697,7 @@ static const struct pp_hwmgr_func vega10_hwmgr_funcs = {
- 	.set_watermarks_for_clocks_ranges = vega10_set_watermarks_for_clocks_ranges,
- 	.display_clock_voltage_request = vega10_display_clock_voltage_request,
- 	.force_clock_level = vega10_force_clock_level,
-+	.emit_clock_levels = vega10_emit_clock_levels,
- 	.print_clock_levels = vega10_print_clock_levels,
- 	.display_config_changed = vega10_display_configuration_changed_task,
- 	.powergate_uvd = vega10_power_gate_uvd,
++static int vcn_v1_0_ring_patch_cs_in_place(struct amdgpu_cs_parser *p,
++					   struct amdgpu_job *job,
++					   struct amdgpu_ib *ib)
++{
++	uint32_t msg_lo = 0, msg_hi = 0;
++	int i, r;
++
++	if (!(ib->flags & AMDGPU_IB_FLAGS_SECURE))
++		return 0;
++
++	for (i = 0; i < ib->length_dw; i += 2) {
++		uint32_t reg = amdgpu_ib_get_value(ib, i);
++		uint32_t val = amdgpu_ib_get_value(ib, i + 1);
++
++		if (reg == PACKET0(p->adev->vcn.internal.data0, 0)) {
++			msg_lo = val;
++		} else if (reg == PACKET0(p->adev->vcn.internal.data1, 0)) {
++			msg_hi = val;
++		} else if (reg == PACKET0(p->adev->vcn.internal.cmd, 0)) {
++			r = vcn_v1_0_validate_bo(p, job,
++						 ((u64)msg_hi) << 32 | msg_lo);
++			if (r)
++				return r;
++		}
++	}
++
++	return 0;
++}
++
+ static const struct amdgpu_ring_funcs vcn_v1_0_dec_ring_vm_funcs = {
+ 	.type = AMDGPU_RING_TYPE_VCN_DEC,
+ 	.align_mask = 0xf,
+@@ -1914,6 +1984,7 @@ static const struct amdgpu_ring_funcs vcn_v1_0_dec_ring_vm_funcs = {
+ 	.get_rptr = vcn_v1_0_dec_ring_get_rptr,
+ 	.get_wptr = vcn_v1_0_dec_ring_get_wptr,
+ 	.set_wptr = vcn_v1_0_dec_ring_set_wptr,
++	.patch_cs_in_place = vcn_v1_0_ring_patch_cs_in_place,
+ 	.emit_frame_size =
+ 		6 + 6 + /* hdp invalidate / flush */
+ 		SOC15_FLUSH_GPU_TLB_NUM_WREG * 6 +
 -- 
-2.35.1
+2.25.1
 
