@@ -2,62 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9A7A4DC8AB
-	for <lists+amd-gfx@lfdr.de>; Thu, 17 Mar 2022 15:23:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF8DA4DC8AE
+	for <lists+amd-gfx@lfdr.de>; Thu, 17 Mar 2022 15:23:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F7AA10E624;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE05110EB6C;
 	Thu, 17 Mar 2022 14:23:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-x104a.google.com (mail-pj1-x104a.google.com
- [IPv6:2607:f8b0:4864:20::104a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B56F10E126
- for <amd-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 14:01:22 +0000 (UTC)
-Received: by mail-pj1-x104a.google.com with SMTP id
- ob7-20020a17090b390700b001c692ec6de4so654127pjb.7
- for <amd-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 07:01:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
- h=date:message-id:mime-version:subject:from:to:cc;
- bh=AmXJz1T+DxTQ8cL3dWsBE4Euit10u/N4HtWuky6pYRE=;
- b=V3L1f0OpwlX27SXl8xzlUHsJrCaxgwXpjZ+thrxdmTARlLRSDFFBJ+xnGGLhlQsqqr
- tbkJyFaGSVmhVw5j9pAG34Rz8abgBSa0naQxCePa/cLUQx3nRMu9coTIGQ4vldyONv2K
- CMCnM93OSf6m0LNZ8U8XdMEZoOuwaLPvngsPbxN4Uxw/Tb/OW4209S1m0e9ri3orbvU/
- lAvYKhGN8KXNAv1FpIFUv/VOJSK3nG1Nx19pmWs7x5bECEHXR2C7f822KvYKqD5zP0M3
- UaNy/efqhy+qXYIxgLxHYB/ZbLn/li1zjGa9muAEbrTmPYtEZKC3/t2JySghT+nFOyXe
- LU9A==
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com
+ [IPv6:2a00:1450:4864:20::335])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3949A10E624
+ for <amd-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 14:19:38 +0000 (UTC)
+Received: by mail-wm1-x335.google.com with SMTP id h16so2637278wmd.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 07:19:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=date:from:to:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=vOnzxJlH628gKK791oOxGy9dmx+tXiUp5rK1D8p/Qyc=;
+ b=kDa19YjHt8tRsYBiCBRfz6pxQ6UQoy4iCEQZlW16D9UkkNnJ5lJWdzG5326YcKXBbe
+ wXqwKuhekffzEpU/DSQxmw8BngtaGdfZqJb+dcnZFsBEvsulNkyI+Ewh6bkGRNbnsNL3
+ iTsuRvUa5JouyV37vWooKUnnwgTmoilWrVXbPZqGYIkHky8DmZ7n4SzCUBsggTqvfvRK
+ 5JwbkPO2e5PRQCviaoDuQaaHS8QpAIMPmrOTTm6DFGb55TOkSyDDwA6xan0PlhGk4R26
+ FPZPX7kc3a+Taa39eA1Ls/isLKM7mMxkqlekhijkOVXc2WWIowYHwAPx9xa+rzaDIC3u
+ 7YSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
- bh=AmXJz1T+DxTQ8cL3dWsBE4Euit10u/N4HtWuky6pYRE=;
- b=yOAkwi6iYTpc1etH1iVOX5P4lyBv1pWEkLbHFcVA74O8lEDxkYsu3p9ZGncY+8ombA
- QEtJG00Px6/nMJ0N/SQFV+2p9axReCvMPujkxssmHCehud2zSZHKHaLYr2FuS8iN+t7v
- mUkvkS8hdWPqxqI5oTeWqkFB9411vv271mM81HhJbdxCDHPrfPsHY58yLBpGZHuURgNE
- ooRVvLOAI663P+dqBg7WMDKZGhjToUBMsxlWdv2PuQhlAtQ3K2w6kG4aoBcoW79YdiW/
- RD8CX6qLXq04WH2r3abLP6yKP6QGURu18ycKGMxRdYvFoYUNmGiWX8VSl8kqiqvxiLPb
- EbkQ==
-X-Gm-Message-State: AOAM531pXwdtx3aPbS0lR9fn2cpVcBqR6ghXwQ6xf+mDPXBq/CDAv6hv
- IlqQxVB8rQeRGqdWbTSzmKXSvXQeL32w
-X-Google-Smtp-Source: ABdhPJxvoaqHM4SNfI3emat8G4zJ6gXkRPEt1XpB5btefTfHzZkskzhJq8f5SToxX3rJ2wl3pkTrR0UzOIew
-X-Received: from ezekiel.c.googlers.com
- ([fda3:e722:ac3:cc00:4f:4b78:c0a8:108e])
- (user=shraash job=sendgmr) by 2002:a62:3896:0:b0:4f7:87dc:de5b with SMTP id
- f144-20020a623896000000b004f787dcde5bmr5201915pfa.49.1647525681892; Thu, 17
- Mar 2022 07:01:21 -0700 (PDT)
-Date: Thu, 17 Mar 2022 19:31:15 +0530
-Message-Id: <20220317140115.541007-1-shraash@google.com>
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.35.1.723.g4982287a31-goog
-Subject: [PATCH] drm/amd/display: Fixed the unused-but-set-variable warning
-From: Aashish Sharma <shraash@google.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Pan Xinhui <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>, 
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>, 
- Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
- Jake Wang <haonan.wang2@amd.com>, 
- Anson Jacob <Anson.Jacob@amd.com>, Guenter Roeck <groeck@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+ h=x-gm-message-state:date:from:to:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=vOnzxJlH628gKK791oOxGy9dmx+tXiUp5rK1D8p/Qyc=;
+ b=55y1EezLapJrui4plXZsi2bQJro6C50WLhJpbyt+lI9XMjzpFsdRJ1fTwpmdO46ffE
+ U4HvBIg9MiykiGaKBDwZ1WmaAcUmaLvN9bgRAkktF6st+ciSLCO/Cp0Mh0REkuv5XEzP
+ PxHYQa48IsZ3X37igEU1dowetvw4JOLO32daDYn8MSdIkNp0WfX7AuYaiUqlFwStMuex
+ cZHWS9hTrT5g9UdqxMJZ3NXLI6oEr0Xq8O+TdUsPkno5nHffrfC+yIvKVk6y4UKyIPGT
+ v/pXuXqSlrr3Lzygt9SSOmLEzGklquj5vCS+mbZbPZBKW0YMO/uJs3lEatQCgn+2Qu/U
+ TV+g==
+X-Gm-Message-State: AOAM532k5mr4DmCJWYJj3q/MsS0avP4asBa0mBf3P8Va0FuQam9NgzJJ
+ tNSNl9P30ITsX5Mrq7tezy8gOMYL9JnsLQ==
+X-Google-Smtp-Source: ABdhPJxHZZo33eVHgCXtOwWiAcwRItKQpqcB0Hn2WCbkLjhRmwjh4xDZTHa0HI9wyEJ/oy2JZF1G3w==
+X-Received: by 2002:a05:600c:3c9f:b0:38c:6dc6:6de2 with SMTP id
+ bg31-20020a05600c3c9f00b0038c6dc66de2mr6739347wmb.132.1647526776607; 
+ Thu, 17 Mar 2022 07:19:36 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net.
+ [86.27.177.88]) by smtp.gmail.com with ESMTPSA id
+ v20-20020a7bcb54000000b0037fa63db8aasm7975546wmj.5.2022.03.17.07.19.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 17 Mar 2022 07:19:35 -0700 (PDT)
+Date: Thu, 17 Mar 2022 14:19:33 +0000
+From: Lee Jones <lee.jones@linaro.org>
+To: linux-kernel@vger.kernel.org, Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 1/1] drm/amdkfd: Protect the Client whilst it is being
+ operated on
+Message-ID: <YjNDdXXOMYNuHJcV@google.com>
+References: <20220317131610.554347-1-lee.jones@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220317131610.554347-1-lee.jones@linaro.org>
 X-Mailman-Approved-At: Thu, 17 Mar 2022 14:23:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,46 +77,83 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Aashish Sharma <shraash@google.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Wayne Lin <wayne.lin@amd.com>,
- Anthony Koo <Anthony.Koo@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fixed this kernel test robot warning:
+On Thu, 17 Mar 2022, Lee Jones wrote:
 
-drivers/gpu/drm/amd/amdgpu/../display/dmub/inc/dmub_cmd.h:2893:12:
-warning: variable 'temp' set but not used [-Wunused-but-set-variable]
+> Presently the Client can be freed whilst still in use.
+> 
+> Use the already provided lock to prevent this.
+> 
+> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: "Christian König" <christian.koenig@amd.com>
+> Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: amd-gfx@lists.freedesktop.org
+> Cc: dri-devel@lists.freedesktop.org
+> Signed-off-by: Lee Jones <lee.jones@linaro.org>
+> ---
 
-Replaced the assignment to the unused temp variable with READ_ONCE()
-macro to flush the writes.
+I should have clarified here, that:
 
-Signed-off-by: Aashish Sharma <shraash@google.com>
----
- drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+This patch has only been *build* tested.
 
-diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-index 873ecd04e01d..b7981a781701 100644
---- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-+++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-@@ -2913,13 +2913,12 @@ static inline void dmub_rb_flush_pending(const struct dmub_rb *rb)
- 	uint32_t wptr = rb->wrpt;
- 
- 	while (rptr != wptr) {
--		uint64_t volatile *data = (uint64_t volatile *)((uint8_t *)(rb->base_address) + rptr);
-+		uint64_t *data = (uint64_t volatile *)((uint8_t *)(rb->base_address) + rptr);
- 		//uint64_t volatile *p = (uint64_t volatile *)data;
--		uint64_t temp;
- 		uint8_t i;
- 
- 		for (i = 0; i < DMUB_RB_CMD_SIZE / sizeof(uint64_t); i++)
--			temp = *data++;
-+			(void)READ_ONCE(*data++);
- 
- 		rptr += DMUB_RB_CMD_SIZE;
- 		if (rptr >= rb->capacity)
+Since I have no way to run this on real H/W.
+
+Please ensure this is tested on real H/W before it gets applied, since
+it *may* have some undesired side-effects.  For instance, I have no
+idea if client->lock plays nicely with dev->smi_lock or whether this
+may well end up in deadlock.
+
+TIA.
+
+>  drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
+> index e4beebb1c80a2..3b9ac1e87231f 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
+> @@ -145,8 +145,11 @@ static int kfd_smi_ev_release(struct inode *inode, struct file *filep)
+>  	spin_unlock(&dev->smi_lock);
+>  
+>  	synchronize_rcu();
+> +
+> +	spin_lock(&client->lock);
+>  	kfifo_free(&client->fifo);
+>  	kfree(client);
+> +	spin_unlock(&client->lock);
+>  
+>  	return 0;
+>  }
+> @@ -247,11 +250,13 @@ int kfd_smi_event_open(struct kfd_dev *dev, uint32_t *fd)
+>  		return ret;
+>  	}
+>  
+> +	spin_lock(&client->lock);
+>  	ret = anon_inode_getfd(kfd_smi_name, &kfd_smi_ev_fops, (void *)client,
+>  			       O_RDWR);
+>  	if (ret < 0) {
+>  		kfifo_free(&client->fifo);
+>  		kfree(client);
+> +		spin_unlock(&client->lock);
+>  		return ret;
+>  	}
+>  	*fd = ret;
+> @@ -264,6 +269,7 @@ int kfd_smi_event_open(struct kfd_dev *dev, uint32_t *fd)
+>  	spin_lock(&dev->smi_lock);
+>  	list_add_rcu(&client->list, &dev->smi_clients);
+>  	spin_unlock(&dev->smi_lock);
+> +	spin_unlock(&client->lock);
+>  
+>  	return 0;
+>  }
+
 -- 
-2.35.1.723.g4982287a31-goog
-
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
