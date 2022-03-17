@@ -2,47 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28F534DC742
-	for <lists+amd-gfx@lfdr.de>; Thu, 17 Mar 2022 14:11:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EB814DC740
+	for <lists+amd-gfx@lfdr.de>; Thu, 17 Mar 2022 14:11:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED10810EBB5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FF7810EBC0;
 	Thu, 17 Mar 2022 13:11:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com
- [IPv6:2607:f8b0:4864:20::112b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4661410E762
- for <amd-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 12:20:00 +0000 (UTC)
-Received: by mail-yw1-x112b.google.com with SMTP id
- 00721157ae682-2dbd8777564so56524927b3.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 05:20:00 -0700 (PDT)
+Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com
+ [IPv6:2607:f8b0:4864:20::112e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 041C010E7DD
+ for <amd-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 12:21:38 +0000 (UTC)
+Received: by mail-yw1-x112e.google.com with SMTP id
+ 00721157ae682-2db2add4516so56318887b3.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 05:21:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
  :cc:content-transfer-encoding;
- bh=hRFBSmO+F9BktgzjPiyzP5OXMwFMtazUK6xfyglCFfY=;
- b=TNasVaKTm0deHRapWFsc2aj4960WOWFvYrJG0wz8Jsig17ssiPSqV1Op9W7TZi31HU
- UpzpPLOhyWx1dKCHun0cssYdQICrlf7C9e4GjVHB3NDG7aHtHlohV2Ti7baf0xBrBiAA
- R7SXceEKuWjupvIU0yOUnql/Kzi56sOs6TPYr+1/eroahJW1qn/aVBaJTBMmD+Bf+/o8
- xbTc1JmCs4B3TtWbRSlzhkDN0K7c9r8nMjVUp5e2bt+nIKLNrWcPUQToP8dofL9gI3Xd
- wyfkjSkYl+tM08HH2gKHUjK7lyfeyM6ZIMnjdubVB9qKFI/9bajLDjlWlenxC6mLE4/u
- OjjA==
+ bh=zW8Vt/51GYWkWp/1BPnDGX4N3NOaenCZ0lYZMx9hMm8=;
+ b=Ct/5cmrQCR/O5ux2Y4oWVdPaxDTcKltOKC/2VuCSyZ4CNgr0yWX5/oKQSiusWUTeSI
+ d4I3fFYN8a+8n6hx0AWF72z1hdtghr+4GYy12gNtdyS3KBtdgwhR8+2aMcLb59ET5u12
+ 3FGIDJsD5T8b+KAC7sQm0LXL/7Bz+JyD+kIDoU78B5ri34bGU1G18KNRP0Outg9x2Z3m
+ 9Evx7SlfnMs5lrog0xFErguo5VyEsVr9WenzdjsGJlcDTYBBk3VUGtlSTkZNKzYznxtS
+ Y3r0WcnxoNu37h9wDmJahhunZXLfPY2PyBd/bwpCQrbrVL3b26TH6VteZJRu2jyq8amj
+ 4pSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc:content-transfer-encoding;
- bh=hRFBSmO+F9BktgzjPiyzP5OXMwFMtazUK6xfyglCFfY=;
- b=NgWzMaebs1Cy0oZvDAqVLYYpEkCCB8dQ84nLUcXY+hPp7cESflpre//f9CKv+U5+Au
- PcJSMKIhWbyXwCTx7aviN6cJkLdfR8CgMF/Dnkr7x9dwnoBmLn3r1RlrHLjH9boMAn8p
- cayl6G8Y2C4ybCcrI2vHwgH/dzP9XD51xz+8eK5xB5Yx1sYupC6M2npbx0TU3tBzQgtH
- B0hhiDRlLK9GTdEuLXQs2vQsC3BnUfRebjx84XZhDFhzneKmcCc4nHM71tZEgjFv9g0r
- repqFk/rh5MoPsIfLJ1BT3rYOeozyoW9Ab+GPsnPkftDma51GJNfnC84pIlJ1tGJ+vIP
- pI+Q==
-X-Gm-Message-State: AOAM533bQkJtreD4pNM5au5vnwkAtGTqrhQKRcQGEPqWTkkj0ZoyfRup
- acyMx2E30P2v8bJ4/ZqNesfMewbwxlXxGenBRUM=
-X-Google-Smtp-Source: ABdhPJxDkXwZSnzAHf8qnjtwE0b2285bqENYd8Txjcx/XOsaMhDz0X5IjwYdYOm5n/s+IcUvixCf5xsvF1HseBQHmso=
-X-Received: by 2002:a0d:c947:0:b0:2e5:c4fa:b5ab with SMTP id
- l68-20020a0dc947000000b002e5c4fab5abmr1348899ywd.241.1647519599176; Thu, 17
- Mar 2022 05:19:59 -0700 (PDT)
+ bh=zW8Vt/51GYWkWp/1BPnDGX4N3NOaenCZ0lYZMx9hMm8=;
+ b=DbDdtRDMPMb6ibfPyHFqSs+F5GdTZEaV+LRvtZo1y4xMoTr0y51xdacx8TH3vG68z+
+ kSG6NPy8K2Yc2XyoVysCk73psd59LeiSHOP4772Iu7Br6WsUU/mHToObNN0bTfceT5ss
+ F+/3vPxZ31h37+lY81XdDhS+lQtvO3ylcB46NGv1uyMHVsj97qtEwMObcWYv8BgNHZkn
+ mcCbHCYNlCVk7e251qFlq57jvjtnFZ+5TdPphcXAPIdXtVFU6tqRQ9EGASh/kvsI1ySD
+ sgz/ab/LiWmvAIAYyjRuFJNmFLJJwDwCl3M4AyWugZciBmZ8fBvVucmsu8rvQ8HV4YUx
+ H0qg==
+X-Gm-Message-State: AOAM531KW/3f95O7+veynffpcOeYUuwAhYxj9yfV6J8Bt56qWfoRQmf3
+ 42sRCgUVZWer6Ph9vyi2IsY9jbHWfjdZ+4Rifz0=
+X-Google-Smtp-Source: ABdhPJxiXcew+TLpHGNoh1atCWS1aETl6txkj2YJiOz0jP+jY1RdAGNyl7kN8l4LTBc0Bbege7DjdOkOohykR2jQbFM=
+X-Received: by 2002:a05:690c:89:b0:2d7:fb7d:db7 with SMTP id
+ be9-20020a05690c008900b002d7fb7d0db7mr5641733ywb.219.1647519696602; Thu, 17
+ Mar 2022 05:21:36 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAMdYzYptw9L=5SECtVkNZruTT-x57+03vj0A+5efvq8cESzLyQ@mail.gmail.com>
  <CADnq5_NXmRr_Q7JuWZxJAjmavVkvJjNcWayQ1x8LhfcX5CS0uA@mail.gmail.com>
@@ -53,13 +53,13 @@ References: <CAMdYzYptw9L=5SECtVkNZruTT-x57+03vj0A+5efvq8cESzLyQ@mail.gmail.com>
  <546bf682-565f-8384-ec80-201ce1c747f4@arm.com>
  <8afb06c4-7601-d0d7-feae-ee5abc9c3641@amd.com>
  <CAMdYzYqH57HuqMMydMtQw2Ep2A_Qhjg3N_gTw6GuO6Kuxd9chQ@mail.gmail.com>
- <ece56cf6-5ef2-6bd4-8e62-7828adca9844@rock-chips.com>
-In-Reply-To: <ece56cf6-5ef2-6bd4-8e62-7828adca9844@rock-chips.com>
+ <a62372c7-d274-a58a-0487-d199312fd7d6@amd.com>
+In-Reply-To: <a62372c7-d274-a58a-0487-d199312fd7d6@amd.com>
 From: Peter Geis <pgwipeout@gmail.com>
-Date: Thu, 17 Mar 2022 08:19:44 -0400
-Message-ID: <CAMdYzYoTz7rbs7pMDTcDzVPVaaP97BkUeMOM0Ab5FVSqOQRgxg@mail.gmail.com>
+Date: Thu, 17 Mar 2022 08:21:22 -0400
+Message-ID: <CAMdYzYr1HysY0Om0Ab111C=pRX-TWgVw8v6=VEJC3CnVX8h-9g@mail.gmail.com>
 Subject: Re: radeon ring 0 test failed on arm64
-To: Kever Yang <kever.yang@rock-chips.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Thu, 17 Mar 2022 13:11:06 +0000
@@ -74,23 +74,21 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tao Huang <huangtao@rock-chips.com>,
- "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+Cc: "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
  =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Shawn Lin <shawn.lin@rock-chips.com>,
+ Shawn Lin <shawn.lin@rock-chips.com>, Kever Yang <kever.yang@rock-chips.com>,
  amd-gfx list <amd-gfx@lists.freedesktop.org>, "Deucher,
  Alexander" <alexander.deucher@amd.com>, Alex Deucher <alexdeucher@gmail.com>,
- Robin Murphy <robin.murphy@arm.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+ Robin Murphy <robin.murphy@arm.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 16, 2022 at 11:08 PM Kever Yang <kever.yang@rock-chips.com> wro=
-te:
+On Thu, Mar 17, 2022 at 5:15 AM Christian K=C3=B6nig
+<christian.koenig@amd.com> wrote:
 >
 > Hi Peter,
 >
-> On 2022/3/17 08:14, Peter Geis wrote:
+> Am 17.03.22 um 01:14 schrieb Peter Geis:
 > > Good Evening,
 > >
 > > I apologize for raising this email chain from the dead, but there have
@@ -102,6 +100,16 @@ te:
 > > the rk3588) were built without any outer coherent cache.
 > > This means (unless Rockchip wants to clarify here) devices such as the
 > > ITS and PCIe cannot utilize cache snooping.
+>
+> well, as far as I know that is a clear violation of the PCIe specificatio=
+n.
+>
+> Coherent access to system memory is simply a must have.
+
+From what I've read of the Arm documentation on the AXI bus, this is
+supposed to be implemented by design as well.
+
+>
 > > This is based on the results of the email chain [2].
 > >
 > > The new circumstances are as follows:
@@ -114,6 +122,14 @@ te:
 > > This is how I got involved.
 > > It seems they found a trivial way to force the Radeon R600 driver to
 > > use Non-Cached memory for everything.
+>
+> Yeah, you basically just force it into AGP mode :)
+>
+> There is just absolutely no guarantee that this works reliable.
+
+Ah, that makes sense.
+
+>
 > > This single line change, combined with using memset_io instead of
 > > memset, allows the ring tests to pass and the card probes successfully
 > > (minus the DMA limitations of the rk356x due to the 32 bit
@@ -131,7 +147,19 @@ te:
 > > start, but with hilarious display corruption (see [3]. [4]).
 > > The CM4 team is convinced this is an issue with memcpy in glibc, but
 > > I'm not convinced it's that simple.
-> >
+>
+> Yes exactly that.
+>
+> Both OpenGL and Vulkan allow the application to mmap() device memory and
+> do any memory access they want with that.
+>
+> This means that changing memcpy is just a futile effort, it's still
+> possible for the application to make an unaligned memory access and that
+> is perfectly valid.
+
+I was afraid of that and it reflects what I see with X11's behavior.
+
+>
 > > On my two hour drive in to work this morning, I got to thinking.
 > > If this was an memcpy fault, this would be universally broken on arm64
 > > which is obviously not the case.
@@ -139,6 +167,12 @@ te:
 o work:
 > > 1. No IOMMU for the PCIe controller.
 > > 2. The Outer Cache Issue.
+>
+> Oh, very good point. I would be interested in that as answer as well.
+>
+> Regards,
+> Christian.
+>
 > >
 > > Robin:
 > > My questions for you, since you're the smartest person I know about
@@ -153,49 +187,38 @@ e fatal?
 > > Rockchip:
 > > Please update on the status for the Outer Cache errata for ITS services=
 .
->
-> Our SoC design team has double check with ARM GIC/ITS IP team for many
-> times, and the GITS_CBASER
-> of GIC600 IP does not support hardware bind or config to a fix value, so
-> they insist this is an IP
-> limitation instead of a SoC bug, software should take  care of it :(
-> I will check again if we can provide errata for this issue.
-
-Thanks. This is necessary as the mbi-alias provides an imperfect
-implementation of the ITS and causes certain PCIe cards (eg x520 Intel
-10G NIC) to misbehave.
-
 > > Please provide an answer to the errata of the PCIe controller, in
 > > regard to cache snooping and buffering, for both the rk356x and the
 > > upcoming rk3588.
->
->
-> Sorry, what is this?
-
-Part of the ITS bug is it expects to be cache coherent with the CPU
-cluster by design.
-Due to the rk356x being implemented without an outer accessible cache,
-the ITS and other devices that require cache coherency (PCIe for
-example) crash in fun ways.
-This means that rk356x cannot implement a specification compliant ITS or PC=
-Ie.
-From the rk3588 source dump it appears it was produced without an
-outer accessible cache, which means if true it also will be unable to
-use any PCIe cards that implement cache coherency as part of their
-design.
-
->
->
-> Thanks,
-> - Kever
 > >
-> > [1] https://github.com/JeffyCN/mirrors/commit/0b985f29304dcb9d644174eda=
-cb67298e8049d4f
-> > [2] https://lore.kernel.org/lkml/871rbdt4tu.wl-maz@kernel.org/T/
-> > [3] https://cdn.discordapp.com/attachments/926487797844541510/953414755=
-970850816/unknown.png
-> > [4] https://cdn.discordapp.com/attachments/926487797844541510/953424952=
-042852422/unknown.png
+> > [1] https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2=
+Fgithub.com%2FJeffyCN%2Fmirrors%2Fcommit%2F0b985f29304dcb9d644174edacb67298=
+e8049d4f&amp;data=3D04%7C01%7Cchristian.koenig%40amd.com%7C4ae2dfa3e8ec4a76=
+5f8a08da07ab1cb2%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C6378307287620=
+44450%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6I=
+k1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=3DZL3jA2VrnynWbUdFG6naaqrZqcnKRq338n=
+%2Bj50DRa74%3D&amp;reserved=3D0
+> > [2] https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2=
+Flore.kernel.org%2Flkml%2F871rbdt4tu.wl-maz%40kernel.org%2FT%2F&amp;data=3D=
+04%7C01%7Cchristian.koenig%40amd.com%7C4ae2dfa3e8ec4a765f8a08da07ab1cb2%7C3=
+dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637830728762044450%7CUnknown%7CTW=
+FpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3=
+D%7C3000&amp;sdata=3DQZy%2Bt%2Fus5f3yxwrHmXpzerXngPpKp3i9ZsF1UJ%2BHvlU%3D&a=
+mp;reserved=3D0
+> > [3] https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2=
+Fcdn.discordapp.com%2Fattachments%2F926487797844541510%2F953414755970850816=
+%2Funknown.png&amp;data=3D04%7C01%7Cchristian.koenig%40amd.com%7C4ae2dfa3e8=
+ec4a765f8a08da07ab1cb2%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C6378307=
+28762044450%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJ=
+BTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=3Dc29bc87hxyIvnsBK3Fo7FbF7RwJc=
+Fr%2FjgBrLIiBb%2FyY%3D&amp;reserved=3D0
+> > [4] https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2=
+Fcdn.discordapp.com%2Fattachments%2F926487797844541510%2F953424952042852422=
+%2Funknown.png&amp;data=3D04%7C01%7Cchristian.koenig%40amd.com%7C4ae2dfa3e8=
+ec4a765f8a08da07ab1cb2%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C6378307=
+28762044450%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJ=
+BTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=3DfwygTk%2BDzdla67rdAYb44vlivl=
+by9lFwtcgjLfJEH4A%3D&amp;reserved=3D0
 > >
 > > Thank you everyone for your time.
 > >
@@ -326,7 +349,3 @@ he
 > >>
 > >>> Robin.
 >
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
