@@ -1,135 +1,67 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDEC34DBCE4
-	for <lists+amd-gfx@lfdr.de>; Thu, 17 Mar 2022 03:13:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B11134DBD70
+	for <lists+amd-gfx@lfdr.de>; Thu, 17 Mar 2022 04:19:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1CE910EA5B;
-	Thu, 17 Mar 2022 02:13:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFC3D10EADB;
+	Thu, 17 Mar 2022 03:19:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2068.outbound.protection.outlook.com [40.107.244.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C960B10EA5B
- for <amd-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 02:13:04 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=l/QQ+7B9Qlvrt1OEPG7xlzferii4jUHLxdBEqNv1KAvlDbbe9WunEjJP+prrf+vDzZB4zGfvDt2hx4ZXXTEV2YMwSrBHVyYutwq2AcGsN+NmHkcCBvh819CtgTt6YFdneI8UswiFrpih3cSpw1jV18snhcOI5DaS0b7qK4pS01khvnUAXgkVkONmCby0ZUnlvrdaK4WeW4mG43Cv8JNjboQuYZUVprBO8VSw/43vvHZafM6tbvNv5atxv237M/qPwPPmUtxJcv+SsgBZtXL9IQ3Wee8874y7m0TdSm/sIpOmwQ0pxQeUAuDMGUYwRALwIuPCm1fvnpOnborqXUPZKQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bhOb5EJQznnmEN6C0fDobylL/Loljia4QaJzrMRdtNk=;
- b=QEnzyZMG4Fi05DNm15EPZ6H6z5s0+GbTER2WX5k68pargZAMuiwWvwSdvdjSwrF7oO+miKN5R7j0c34HMgcy8V5092pTkTlUqohJepfrpiU3jrjn9ehjIRD0qXu1L8oAL6A+ZeunR8yat6mienBSdurTHzwb9iObk99KQykRka99UCnmoAIeeIpWV+HNBg6h7HATUXiX6VHxuQVU0Rhg2tRI3DGchmd4Gj3VK+o5YyyipvYRfROER0wMUbBx1CqtYhwqjg4TGpJj7MmoPT7CFXwEIDhFtb+tezu3dH+VBdJKhY1LSNocWDGkglMEQN053bHV+id9ZgBXwo4q27JN/Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bhOb5EJQznnmEN6C0fDobylL/Loljia4QaJzrMRdtNk=;
- b=ihgiTIyzd4ET+aISGOnXLW/zXKTfqg16JxRVOOHtGxLSASE/6CtKRrqZxhyBUtY2mIq8lgkQOTUXmbwwseIFrY+jLmJkENJr4hhryBSOY9WJHuls4WoXyzK1PHxo0YJTLL/vCA7dj7lzcMrtKWwuVoLftEgKBGE3D7QEAvCbCrY=
-Received: from DM5PR12MB1770.namprd12.prod.outlook.com (2603:10b6:3:108::22)
- by BY5PR12MB3891.namprd12.prod.outlook.com (2603:10b6:a03:1a3::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5061.25; Thu, 17 Mar
- 2022 02:13:02 +0000
-Received: from DM5PR12MB1770.namprd12.prod.outlook.com
- ([fe80::1551:5d31:89de:9e7f]) by DM5PR12MB1770.namprd12.prod.outlook.com
- ([fe80::1551:5d31:89de:9e7f%3]) with mapi id 15.20.5081.017; Thu, 17 Mar 2022
- 02:13:02 +0000
-From: "Zhou1, Tao" <Tao.Zhou1@amd.com>
-To: "Kuehling, Felix" <Felix.Kuehling@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Zhang,
- Hawking" <Hawking.Zhang@amd.com>, "Yang, Stanley" <Stanley.Yang@amd.com>,
- "Chai, Thomas" <YiPeng.Chai@amd.com>
-Subject: RE: [PATCH 1/4] drm/amdkfd: refine event_interrupt_poison_consumption
-Thread-Topic: [PATCH 1/4] drm/amdkfd: refine event_interrupt_poison_consumption
-Thread-Index: AQHYORfxWcWRLFzCXEGnKqr03gRJGqzCC0eAgADKZDA=
-Date: Thu, 17 Mar 2022 02:13:01 +0000
-Message-ID: <DM5PR12MB17702075BF545EF1F3DDAB50B0129@DM5PR12MB1770.namprd12.prod.outlook.com>
-References: <20220316092627.17359-1-tao.zhou1@amd.com>
- <6b278e9f-a443-b297-ab59-c7126d324302@amd.com>
-In-Reply-To: <6b278e9f-a443-b297-ab59-c7126d324302@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=true;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2022-03-17T02:12:59Z; 
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD Official Use
- Only-AIP 2.0;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ActionId=ec5de033-1e09-4f2c-a88a-373c630aca7e;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=1
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_enabled: true
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_setdate: 2022-03-17T02:12:59Z
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_method: Standard
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_name: AMD Official Use
- Only-AIP 2.0
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_actionid: eaab6f8d-025d-4d8f-852b-93a5ec8cc93b
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_contentbits: 0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a70e3e84-9745-4d02-0e15-08da07bbaa2c
-x-ms-traffictypediagnostic: BY5PR12MB3891:EE_
-x-microsoft-antispam-prvs: <BY5PR12MB3891E6904170D4458BA26D8CB0129@BY5PR12MB3891.namprd12.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: /mcOn4RVLkkVDkm+Iw04qNMmYlbuo3SY9Kl1XPWrd83UqolY7Kr1NnC+tKlgKGoreKindLQ+dNDcD0m/nwpeEbMf7KkrFyMaa9oBnI+zf4y8X4V1YbI9F85yiiZDKrSj4Z8b0GpfVvY2CtPTM0dM+8Y8+DhZfR+tR4TBf0Y9lj3bQGdKEtYXr1jm6i+z4++AvowPUmeTQiJsb4PUQ5Ej+SDo3IBZOoHxVSSPwGJJX7UBN8JHQCUDJ8yeB2/5MRRf3CI9mRvmmVuCgEz0C76AjCrX+359fCGiLudlvjdnDnA1DRh0ZKR213DvHbDz1i+PBznoS29V0a0bgAHja7tQTPhSQrFRBdUW3rF5rRXw74tZWQT2yAUPAYDXXGQARuumWN0XPVR0psSup8TogGeRWVsP+Y36XTjO/xTfOEMkqfC8Eo1Fo8HOWhGH0Y1rpROAWr0V47udEmi5TZZHHxg+ev1muS24eDWk54JTUX05aLl8Z+DOCXJOt6Jf8jZf+ri3OMSvJWDJwDNTIw5dEuhfQFBDMQfoC3YnbDSteTGIehOPMj0Ef6oFrXKPmD5A/710Xg5BhpWcxZj2XDEUWV7UE++h9uyGY2f8DgQ+itYW6FshwQZFpjtWU1HLz9v1GuC3v5ijpUetgE9WV9xpe9s53PZvfgi5auvi2oUxRRmPPoEhIZTdBg4z96muQmXSJE6jHd+aJdTk4Au50iPyLaKtSA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR12MB1770.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(4636009)(366004)(53546011)(76116006)(66556008)(66476007)(66446008)(71200400001)(8676002)(64756008)(66946007)(6506007)(7696005)(9686003)(86362001)(38070700005)(55016003)(83380400001)(26005)(186003)(5660300002)(38100700002)(8936002)(52536014)(33656002)(508600001)(122000001)(316002)(6636002)(110136005)(2906002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?dWNsd1AzUlZsWDJpVUFJdlh4TVk3MkY5S0E4T04zVGtXZHU5Tndsa3gyR0hZ?=
- =?utf-8?B?Z1NEZkRKZ3JVeWFHVndOWjZDUlBCZzZWZElpMXhpS0pQRmhDdlRpTUNzdVFa?=
- =?utf-8?B?bmlNWlJhU3ZRUjV1b3dkNGx2SFpsRTB0eWtacGEwdDgvSm40QzFnUFFRSmxZ?=
- =?utf-8?B?YXdlYnhTUDlrK2pQYlBONXM3VXRUNVhwUnc5Ry9PeVdPTktXdmV1dkxqZmJW?=
- =?utf-8?B?N3I0d0FNajVTZ08vSEVrdXE4ODl3dmMwQnMwVFFFWGZpdVJOV3N4OGRBc3Jt?=
- =?utf-8?B?MjEyYnEyNHp0SExEMktRMnFYWEhBc1IzQlI4MFdxN3htR2Q3Q2U2VXdpL3Rt?=
- =?utf-8?B?YTJwOENjMGw0S3BSdXIzOWgzRlBNUmY2ZiswVkFCTTVrM0gzMEQyRWRMaUNk?=
- =?utf-8?B?V2phYUxrMDRPR0dJNVlvVUZFY2dSSEJYOWZydG1xWVVFVDE2dllNZXcvVC9u?=
- =?utf-8?B?WkNvZVBqNHJic0pNVDErODFPL1k3aVJvdGtBdk1pTFplOGxMN0tCSGszYXR5?=
- =?utf-8?B?Z2s5SVhDWVp6U0dMS0RKcTdyd2pYWFordm9FTUNESU9MNjJRVnFsaXlVLzdx?=
- =?utf-8?B?Yk0yZmxKVWdJWGZOWFUzbGI0Q0hiL0RYZ20xanluVEN1c250R2ZsOVBocEI5?=
- =?utf-8?B?ZnVFSUR3MGJEL0dKWTYyRzNEbElDRS91UDVYdkhHUk1ZZ1Zkemg0VGxDdmsz?=
- =?utf-8?B?ejVic09RQUdGQ2hmMFMvQnZwcDk2ZGpkSTZQMUI3b2dJTEpBb0FIcHd2cFhy?=
- =?utf-8?B?SEo0dy9lN3dFTVpQbVRIYWpEL0NJZmdPY0doaEowVDhaT0J0VXcvY1pITFNt?=
- =?utf-8?B?YU80Rk9va3ovYm50TFdaanc1NDZ3S3E1RVMyclkxVmloSVpUT3JXZ1lxTW1i?=
- =?utf-8?B?VE1yMUpVVlV0TGxQbGpxeDliMFBsTHFNTkltVmdUYm5uZnU3TzFYckx6VVhL?=
- =?utf-8?B?RElzeVp5Z1ZBQ0JOa1RTbmlFMXJwMEJiVUlia0plZ1VRdk5FTVdUNGFxQlFW?=
- =?utf-8?B?U1F5SW1WMVppZWtuaFd5U1Z6WmtiTUZKL1hNZ0ZkNFBMZy81Yy9FOE9wNjNB?=
- =?utf-8?B?QnhaZ3MycVBzZitSYTVZT3N5dExwSVcyWVVvZlZNUmJqVzViMzZsdFg0eVIv?=
- =?utf-8?B?SkkzakhFcmFXWkgxQkRXWjhtd2pkMzFFTERqTnFNV1crdEZaOXdwWFJZQnJh?=
- =?utf-8?B?N0h1T2s5NVNUY0h2aHdwTzVPNktDWDJNSElCeFBlS00xSDJlckJWT2x2Mml4?=
- =?utf-8?B?cG1TN1NiL0wwNHhNbmtBTkRKbmxIMzA5U054TWdkQzZxTDd3ZTZLRVVPY3dJ?=
- =?utf-8?B?RFoySHp4QmZxeHRBcC91R3FtWHhyWkZ3d1JZYnE4NnJsNS8xU2p3RXVmTTF4?=
- =?utf-8?B?ZFJPM0FrckE5bFFvbkV4KzVjMnA5SXM4aFVidkw4L0dhVXl0OGlybVBqanpZ?=
- =?utf-8?B?aWs4K3g4RFd6OWREOTZyYkg1K05rSHRFZll5REdYbzZaV3dCNTJ4OTNYWEJq?=
- =?utf-8?B?SzhEalg1ckI5eHkxZThYU2NSOW5sa05hdFFvSnovZzRTdHlJc1hmZCs2VDBT?=
- =?utf-8?B?RXBNcXowNUQwTFBkakZDMUJ5VldaS1JwVGZ1Q0h3TXBDUlNEb0pXZXBJaGdR?=
- =?utf-8?B?SytUaEdyNmxGTHJDUStvM0JKQjZZZ1pQTnJGYmRieXJDT2kvUXdETXA3dFdH?=
- =?utf-8?B?dC9yM09zK2JVZWpkTTFFdGo0OXQ0OVBoQ3F6SStEcTlOdlN0NzZIdlNaK0E4?=
- =?utf-8?B?TEpQeWVzSFFEZmFQdWY3bzU5VDZJb25sMnNXYWpFdHlUd0UrYnJIKzNkYkNr?=
- =?utf-8?B?Wmp1OHpyaEdqTmZEWDdLYTVPdDU3Vk9ENXFrQ2VqcnFXVmFXSC9NSWg4NGF4?=
- =?utf-8?B?enE3L2g3cXB3YytwdXBNZDI5T3dJUkZKdTIwSEdwUUVkMHFKd2ZHS2drYklM?=
- =?utf-8?Q?mjv4bgKCdF0=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com
+ [IPv6:2607:f8b0:4864:20::112b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB84910EA1C
+ for <amd-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 00:14:32 +0000 (UTC)
+Received: by mail-yw1-x112b.google.com with SMTP id
+ 00721157ae682-2e5827a76f4so41648587b3.6
+ for <amd-gfx@lists.freedesktop.org>; Wed, 16 Mar 2022 17:14:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=lc+f5YAlXK2ackZ3hljZOa9RzrDFIwpFZOIUUC3NQnc=;
+ b=Ooxo32rclqRYKkA4V5OVS/sTEnrb56SZ6AxEY1MF9F2pENY5lrHWkZnrldS68hdOgQ
+ nnMdbnZo4AXjAk3J/B/c+Ff+udD9W0VGtFzWhgokh/Jl09dAkw/zAQbEQTAZ4GEVkPmo
+ ZI2Y0AP3OrJL2CPqUCCpCoG21IY9mlV4ufHvsO/JRRVeWfU0N7XqDEaVioF/Gt1wzKAV
+ NOImHn4pkCHdM6VseuzmFEV7HEy39Iw3veA8J66g4XFTp1h0uxhR4J12Wq6PK+TXNZco
+ agfQ81vW353s28J46nhGpvXR/ZER1lLakT/nIEyKcDao8ediiYrOmrRUZOKnzA99MHzX
+ YBxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=lc+f5YAlXK2ackZ3hljZOa9RzrDFIwpFZOIUUC3NQnc=;
+ b=WPO8cyk5knLiV8zERr7aZzttwV28BSuaVD+KcqxKnNUcolud4A1PC2BK3nf87QVCF9
+ u3jUInw4WI2M5W9o6cWJ3zn8+gQuptGiQYs4iIFtrBaSkPKET1IhGXRCW9g7lpi9gCbf
+ xoHZZtkhkDZNPyhzl+33JkC5SprADQiNkMDwkCZcsDZRbVNjW9SztzT/e402hgO7fvjl
+ geD2OJmVXkMi6hwFfplSoQQEoVsqBHEnsz2QEDEi9pE2F+WaVynh6xFLqGTB+KIoc6d0
+ Grtfd2pP6EG05WGttN+aFz82/jf1kmCayJr1kBBTa+TLHFcyc6LLIJ37/w7aJuGPQJb2
+ Ua8g==
+X-Gm-Message-State: AOAM532pvouDrjo9Aq+NZqSTFQkLFREGb7bbUaTaTySQxpx+fh4g3l+/
+ xYOFSduqhGCLhVVc7HOSnPj/QblQ2ixzBiVeKDI=
+X-Google-Smtp-Source: ABdhPJz4FD6B7kIAm7ysXGC3phS5L4Lx2AmSAvUiM6vnEQqkbn8aLot+BN9y65b2BaLBnO9A1VWwoW2TN9Iq9Nb12+8=
+X-Received: by 2002:a81:5a85:0:b0:2dc:6ed4:21f3 with SMTP id
+ o127-20020a815a85000000b002dc6ed421f3mr3138699ywb.519.1647476071905; Wed, 16
+ Mar 2022 17:14:31 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB1770.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a70e3e84-9745-4d02-0e15-08da07bbaa2c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Mar 2022 02:13:01.9764 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: O1XbQ0nJtuZhY+LeeEzfaSK8EvMtsXME6hd3I0zFBZg3cs2kOIis5E3OWS5HgkiK
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB3891
+References: <CAMdYzYptw9L=5SECtVkNZruTT-x57+03vj0A+5efvq8cESzLyQ@mail.gmail.com>
+ <CADnq5_NXmRr_Q7JuWZxJAjmavVkvJjNcWayQ1x8LhfcX5CS0uA@mail.gmail.com>
+ <CAMdYzYoamh-igvBbKaLSJ6bSc3wA29=8mooJDLMJkj9YQ=wj0A@mail.gmail.com>
+ <CADnq5_NXFZPA_z6413FDgr8WRObhCB+HdkHE5P=PAAMV4FiWiA@mail.gmail.com>
+ <20dffd4d-fa54-5bc3-c13b-f8ffbf0fb593@arm.com>
+ <599edb94-8294-c4c5-ff7f-84c7072af3dd@gmail.com>
+ <546bf682-565f-8384-ec80-201ce1c747f4@arm.com>
+ <8afb06c4-7601-d0d7-feae-ee5abc9c3641@amd.com>
+In-Reply-To: <8afb06c4-7601-d0d7-feae-ee5abc9c3641@amd.com>
+From: Peter Geis <pgwipeout@gmail.com>
+Date: Wed, 16 Mar 2022 20:14:18 -0400
+Message-ID: <CAMdYzYqH57HuqMMydMtQw2Ep2A_Qhjg3N_gTw6GuO6Kuxd9chQ@mail.gmail.com>
+Subject: Re: radeon ring 0 test failed on arm64
+To: Kever Yang <kever.yang@rock-chips.com>, Robin Murphy <robin.murphy@arm.com>,
+ Shawn Lin <shawn.lin@rock-chips.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Thu, 17 Mar 2022 03:19:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,46 +73,218 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, "Deucher,
+ Alexander" <alexander.deucher@amd.com>, Alex Deucher <alexdeucher@gmail.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-W0FNRCBPZmZpY2lhbCBVc2UgT25seV0NCg0KDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0t
-LS0NCj4gRnJvbTogS3VlaGxpbmcsIEZlbGl4IDxGZWxpeC5LdWVobGluZ0BhbWQuY29tPg0KPiBT
-ZW50OiBXZWRuZXNkYXksIE1hcmNoIDE2LCAyMDIyIDEwOjA0IFBNDQo+IFRvOiBaaG91MSwgVGFv
-IDxUYW8uWmhvdTFAYW1kLmNvbT47IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBaaGFu
-ZywNCj4gSGF3a2luZyA8SGF3a2luZy5aaGFuZ0BhbWQuY29tPjsgWWFuZywgU3RhbmxleQ0KPiA8
-U3RhbmxleS5ZYW5nQGFtZC5jb20+OyBDaGFpLCBUaG9tYXMgPFlpUGVuZy5DaGFpQGFtZC5jb20+
-DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggMS80XSBkcm0vYW1ka2ZkOiByZWZpbmUNCj4gZXZlbnRf
-aW50ZXJydXB0X3BvaXNvbl9jb25zdW1wdGlvbg0KPiANCj4gQW0gMjAyMi0wMy0xNiB1bSAwNToy
-NiBzY2hyaWViIFRhbyBaaG91Og0KPiA+IENvbWJpbmUgcmVhZGluZyBhbmQgc2V0dGluZyBwb2lz
-b24gZmxhZyBhcyBvbmUgYXRvbWljIG9wZXJhdGlvbiBhbmQNCj4gPiBhZGQgcHJpbnQgbWVzc2Fn
-ZSBmb3IgdGhlIGZ1bmN0aW9uLg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogVGFvIFpob3UgPHRh
-by56aG91MUBhbWQuY29tPg0KPiA+IC0tLQ0KPiA+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRr
-ZmQva2ZkX2ludF9wcm9jZXNzX3Y5LmMgfCAxMSArKysrKy0tLS0tLQ0KPiA+ICAgMSBmaWxlIGNo
-YW5nZWQsIDUgaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlvbnMoLSkNCj4gPg0KPiA+IGRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfaW50X3Byb2Nlc3NfdjkuYw0KPiA+
-IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRrZmQva2ZkX2ludF9wcm9jZXNzX3Y5LmMNCj4gPiBp
-bmRleCA3ZWVkYmNkMTQ4MjguLmE5OTI3OThmZjhiNiAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfaW50X3Byb2Nlc3NfdjkuYw0KPiA+ICsrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9hbWQvYW1ka2ZkL2tmZF9pbnRfcHJvY2Vzc192OS5jDQo+ID4gQEAgLTkzLDIw
-ICs5MywxOSBAQCBlbnVtIFNRX0lOVEVSUlVQVF9FUlJPUl9UWVBFIHsNCj4gPiAgIHN0YXRpYyB2
-b2lkIGV2ZW50X2ludGVycnVwdF9wb2lzb25fY29uc3VtcHRpb24oc3RydWN0IGtmZF9kZXYgKmRl
-diwNCj4gPiAgIAkJCQl1aW50MTZfdCBwYXNpZCwgdWludDE2X3Qgc291cmNlX2lkKQ0KPiA+ICAg
-ew0KPiA+IC0JaW50IHJldCA9IC1FSU5WQUw7DQo+ID4gKwlpbnQgb2xkX3BvaXNvbiwgcmV0ID0g
-LUVJTlZBTDsNCj4gPiAgIAlzdHJ1Y3Qga2ZkX3Byb2Nlc3MgKnAgPSBrZmRfbG9va3VwX3Byb2Nl
-c3NfYnlfcGFzaWQocGFzaWQpOw0KPiA+DQo+ID4gICAJaWYgKCFwKQ0KPiA+ICAgCQlyZXR1cm47
-DQo+ID4NCj4gPiAgIAkvKiBhbGwgcXVldWVzIG9mIGEgcHJvY2VzcyB3aWxsIGJlIHVubWFwcGVk
-IGluIG9uZSB0aW1lICovDQo+ID4gLQlpZiAoYXRvbWljX3JlYWQoJnAtPnBvaXNvbikpIHsNCj4g
-PiAtCQlrZmRfdW5yZWZfcHJvY2VzcyhwKTsNCj4gPiArCW9sZF9wb2lzb24gPSBhdG9taWNfY21w
-eGNoZygmcC0+cG9pc29uLCAwLCAxKTsNCj4gPiArCWtmZF91bnJlZl9wcm9jZXNzKHApOw0KPiA+
-ICsJaWYgKG9sZF9wb2lzb24pDQo+ID4gICAJCXJldHVybjsNCj4gPiAtCX0NCj4gPg0KPiA+IC0J
-YXRvbWljX3NldCgmcC0+cG9pc29uLCAxKTsNCj4gPiAtCWtmZF91bnJlZl9wcm9jZXNzKHApOw0K
-PiA+ICsJcHJfd2FybigiUkFTIHBvaXNvbiBjb25zdW1wdGlvbiBoYW5kbGluZ1xuIik7DQo+IA0K
-PiBJZiB0aGlzIGxlZnQgb3ZlciBmcm9tIGRlYnVnZ2luZz8gT3IgZGlkIHlvdSBtZWFuIHRvIGFk
-ZCBhIHdhcm5pbmcgbWVzc2FnZQ0KPiBoZXJlPyBFaXRoZXIgd2F5LCB0aGUgcGF0Y2ggaXMNCg0K
-Qm90aCBhcmUgbXkgaW50ZW50aW9uLCBwb2lzb24gY29uc3VtcHRpb24gd2lsbCBiZSBleGVjdXRl
-ZCBxdWlldGx5IGlmIGV2ZXJ5dGhpbmcgZ29lcyB3ZWxsLCB0aGUgbWVzc2FnZSBpcyBoZWxwZnVs
-IGZvciBkZWJ1ZyBhbmQgUUEncyB0ZXN0Lg0KDQo+IA0KPiBSZXZpZXdlZC1ieTogRmVsaXggS3Vl
-aGxpbmcgPEZlbGl4Lkt1ZWhsaW5nQGFtZC5jb20+DQo+IA0KPiANCj4gPg0KPiA+ICAgCXN3aXRj
-aCAoc291cmNlX2lkKSB7DQo+ID4gICAJY2FzZSBTT0MxNV9JTlRTUkNfU1FfSU5URVJSVVBUX01T
-RzoNCg==
+Good Evening,
+
+I apologize for raising this email chain from the dead, but there have
+been some developments that have introduced even more questions.
+I've looped the Rockchip mailing list into this too, as this affects
+rk356x, and likely the upcoming rk3588 if [1] is to be believed.
+
+TLDR for those not familiar: It seems the rk356x series (and possibly
+the rk3588) were built without any outer coherent cache.
+This means (unless Rockchip wants to clarify here) devices such as the
+ITS and PCIe cannot utilize cache snooping.
+This is based on the results of the email chain [2].
+
+The new circumstances are as follows:
+The RPi CM4 Adventure Team as I've taken to calling them has been
+attempting to get a dGPU working with the very broken Broadcom
+controller in the RPi CM4.
+Recently they acquired a SoQuartz rk3566 module which is pin
+compatible with the CM4, and have taken to trying it out as well.
+
+This is how I got involved.
+It seems they found a trivial way to force the Radeon R600 driver to
+use Non-Cached memory for everything.
+This single line change, combined with using memset_io instead of
+memset, allows the ring tests to pass and the card probes successfully
+(minus the DMA limitations of the rk356x due to the 32 bit
+interconnect).
+I discovered using this method that we start having unaligned io
+memory access faults (bus errors) when running glmark2-drm (running
+glmark2 directly was impossible, as both X and Wayland crashed too
+early).
+I traced this to using what I thought at the time was an unsafe memcpy
+in the mesa stack.
+Rewriting this function to force aligned writes solved the problem and
+allows glmark2-drm to run to completion.
+With some extensive debugging, I found about half a dozen memcpy
+functions in mesa that if forced to be aligned would allow Wayland to
+start, but with hilarious display corruption (see [3]. [4]).
+The CM4 team is convinced this is an issue with memcpy in glibc, but
+I'm not convinced it's that simple.
+
+On my two hour drive in to work this morning, I got to thinking.
+If this was an memcpy fault, this would be universally broken on arm64
+which is obviously not the case.
+So I started thinking, what is different here than with systems known to wo=
+rk:
+1. No IOMMU for the PCIe controller.
+2. The Outer Cache Issue.
+
+Robin:
+My questions for you, since you're the smartest person I know about
+arm64 memory management:
+Could cache snooping permit unaligned accesses to IO to be safe?
+Or
+Is it the lack of an IOMMU that's causing the alignment faults to become fa=
+tal?
+Or
+Am I insane here?
+
+Rockchip:
+Please update on the status for the Outer Cache errata for ITS services.
+Please provide an answer to the errata of the PCIe controller, in
+regard to cache snooping and buffering, for both the rk356x and the
+upcoming rk3588.
+
+[1] https://github.com/JeffyCN/mirrors/commit/0b985f29304dcb9d644174edacb67=
+298e8049d4f
+[2] https://lore.kernel.org/lkml/871rbdt4tu.wl-maz@kernel.org/T/
+[3] https://cdn.discordapp.com/attachments/926487797844541510/9534147559708=
+50816/unknown.png
+[4] https://cdn.discordapp.com/attachments/926487797844541510/9534249520428=
+52422/unknown.png
+
+Thank you everyone for your time.
+
+Very Respectfully,
+Peter Geis
+
+On Wed, May 26, 2021 at 7:21 AM Christian K=C3=B6nig
+<christian.koenig@amd.com> wrote:
+>
+> Hi Robin,
+>
+> Am 26.05.21 um 12:59 schrieb Robin Murphy:
+> > On 2021-05-26 10:42, Christian K=C3=B6nig wrote:
+> >> Hi Robin,
+> >>
+> >> Am 25.05.21 um 22:09 schrieb Robin Murphy:
+> >>> On 2021-05-25 14:05, Alex Deucher wrote:
+> >>>> On Tue, May 25, 2021 at 8:56 AM Peter Geis <pgwipeout@gmail.com>
+> >>>> wrote:
+> >>>>>
+> >>>>> On Tue, May 25, 2021 at 8:47 AM Alex Deucher
+> >>>>> <alexdeucher@gmail.com> wrote:
+> >>>>>>
+> >>>>>> On Tue, May 25, 2021 at 8:42 AM Peter Geis <pgwipeout@gmail.com>
+> >>>>>> wrote:
+> >>>>>>>
+> >>>>>>> Good Evening,
+> >>>>>>>
+> >>>>>>> I am stress testing the pcie controller on the rk3566-quartz64
+> >>>>>>> prototype SBC.
+> >>>>>>> This device has 1GB available at <0x3 0x00000000> for the PCIe
+> >>>>>>> controller, which makes a dGPU theoretically possible.
+> >>>>>>> While attempting to light off a HD7570 card I manage to get a
+> >>>>>>> modeset
+> >>>>>>> console, but ring0 test fails and disables acceleration.
+> >>>>>>>
+> >>>>>>> Note, we do not have UEFI, so all PCIe setup is from the Linux
+> >>>>>>> kernel.
+> >>>>>>> Any insight you can provide would be much appreciated.
+> >>>>>>
+> >>>>>> Does your platform support PCIe cache coherency with the CPU?  I.e=
+.,
+> >>>>>> does the CPU allow cache snoops from PCIe devices?  That is requir=
+ed
+> >>>>>> for the driver to operate.
+> >>>>>
+> >>>>> Ah, most likely not.
+> >>>>> This issue has come up already as the GIC isn't permitted to snoop =
+on
+> >>>>> the CPUs, so I doubt the PCIe controller can either.
+> >>>>>
+> >>>>> Is there no way to work around this or is it dead in the water?
+> >>>>
+> >>>> It's required by the pcie spec.  You could potentially work around i=
+t
+> >>>> if you can allocate uncached memory for DMA, but I don't think that =
+is
+> >>>> possible currently.  Ideally we'd figure out some way to detect if a
+> >>>> particular platform supports cache snooping or not as well.
+> >>>
+> >>> There's device_get_dma_attr(), although I don't think it will work
+> >>> currently for PCI devices without an OF or ACPI node - we could
+> >>> perhaps do with a PCI-specific wrapper which can walk up and defer
+> >>> to the host bridge's firmware description as necessary.
+> >>>
+> >>> The common DMA ops *do* correctly keep track of per-device coherency
+> >>> internally, but drivers aren't supposed to be poking at that
+> >>> information directly.
+> >>
+> >> That sounds like you underestimate the problem. ARM has unfortunately
+> >> made the coherency for PCI an optional IP.
+> >
+> > Sorry to be that guy, but I'm involved a lot internally with our
+> > system IP and interconnect, and I probably understand the situation
+> > better than 99% of the community ;)
+>
+> I need to apologize, didn't realized who was answering :)
+>
+> It just sounded to me that you wanted to suggest to the end user that
+> this is fixable in software and I really wanted to avoid even more
+> customers coming around asking how to do this.
+>
+> > For the record, the SBSA specification (the closet thing we have to a
+> > "system architecture") does require that PCIe is integrated in an
+> > I/O-coherent manner, but we don't have any control over what people do
+> > in embedded applications (note that we don't make PCIe IP at all, and
+> > there is plenty of 3rd-party interconnect IP).
+>
+> So basically it is not the fault of the ARM IP-core, but people are just
+> stitching together PCIe interconnect IP with a core where it is not
+> supposed to be used with.
+>
+> Do I get that correctly? That's an interesting puzzle piece in the pictur=
+e.
+>
+> >> So we are talking about a hardware limitation which potentially can't
+> >> be fixed without replacing the hardware.
+> >
+> > You expressed interest in "some way to detect if a particular platform
+> > supports cache snooping or not", by which I assumed you meant a
+> > software method for the amdgpu/radeon drivers to call, rather than,
+> > say, a website that driver maintainers can look up SoC names on. I'm
+> > saying that that API already exists (just may need a bit more work).
+> > Note that it is emphatically not a platform-level thing since
+> > coherency can and does vary per device within a system.
+>
+> Well, I think this is not something an individual driver should mess
+> with. What the driver should do is just express that it needs coherent
+> access to all of system memory and if that is not possible fail to load
+> with a warning why it is not possible.
+>
+> >
+> > I wasn't suggesting that Linux could somehow make coherency magically
+> > work when the signals don't physically exist in the interconnect - I
+> > was assuming you'd merely want to do something like throw a big
+> > warning and taint the kernel to help triage bug reports. Some drivers
+> > like ahci_qoriq and panfrost simply need to know so they can program
+> > their device to emit the appropriate memory attributes either way, and
+> > rely on the DMA API to hide the rest of the difference, but if you
+> > want to treat non-coherent use as unsupported because it would require
+> > too invasive changes that's fine by me.
+>
+> Yes exactly that please. I mean not sure how panfrost is doing it, but
+> at least the Vulkan userspace API specification requires devices to have
+> coherent access to system memory.
+>
+> So even if I would want to do this it is simply not possible because the
+> application doesn't tell the driver which memory is accessed by the
+> device and which by the CPU.
+>
+> Christian.
+>
+> >
+> > Robin.
+>
