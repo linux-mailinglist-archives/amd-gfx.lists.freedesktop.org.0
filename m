@@ -1,82 +1,90 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A86254DBFEA
-	for <lists+amd-gfx@lfdr.de>; Thu, 17 Mar 2022 08:03:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA7F94DC212
+	for <lists+amd-gfx@lfdr.de>; Thu, 17 Mar 2022 09:58:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B15F10EC8A;
-	Thu, 17 Mar 2022 07:03:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37F7910E09E;
+	Thu, 17 Mar 2022 08:58:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com
- [IPv6:2a00:1450:4864:20::62d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34CB310EC8A;
- Thu, 17 Mar 2022 07:03:31 +0000 (UTC)
-Received: by mail-ej1-x62d.google.com with SMTP id qx21so8664851ejb.13;
- Thu, 17 Mar 2022 00:03:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=sazQiAWvhpWP9YG0IC5k1xhZbcWvBCfizFO/nBdTn/8=;
- b=bmX9Y33nJ0eaV2XpxFxr35BpyZE+ZPiRnD93sqipXVldSQJ1XfxmghMhzrMx1AoqD0
- Rzhcvb/mUU2Dc7QW4VIkpf8UjUHMprjhfSaM5l+2cxq/qeCTdn7UfHKZni37D/DWF5zg
- qIKuqYAB68DrcuP1DQt0FoxyHin3BW2W7hXpmzi53BcjonAokGvZ0avvIrfGT5eoA1Zf
- hz3+vlp7VIghdKPXOxyXad+3VlWatlR9Bq4B3RHtGgDRIbf80pkq5bI79dvhIJAhMPQH
- mh2veyOk+rWSPCSJIFLsFqO9aG+4lGazWrPkdvv2933NV3FAZa5kXoAgzu36yAmwEXWT
- YCdw==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC46D10EFF2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 08:13:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1647504834;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=xxA0Pce6UnOZWW6gsq8il76yFsehAiTQ6twP7i/3/GQ=;
+ b=i9ocHWQ4ruFxw25UNHFShxytWepuLkCReLw3lss3KN+Ovdfa+ThGwCIDnbPe+jitf0YTPx
+ WF9pB+KJo/PISDHdtLt+ZatBzQgNYNCrmOreUoawU/NJtuLinQHJBwIi1fZ9OVCMcE+0Jf
+ 5bJ3tJrBaRJf/FEfQG8DJeuaU6A6X/Y=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-587-FTECtL8oM6Kq4ohXv9F6Ag-1; Thu, 17 Mar 2022 04:13:53 -0400
+X-MC-Unique: FTECtL8oM6Kq4ohXv9F6Ag-1
+Received: by mail-wm1-f70.google.com with SMTP id
+ f19-20020a7bcd13000000b0038c01defd5aso1846419wmj.7
+ for <amd-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 01:13:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
+ :content-language:to:cc:references:from:organization:in-reply-to
  :content-transfer-encoding;
- bh=sazQiAWvhpWP9YG0IC5k1xhZbcWvBCfizFO/nBdTn/8=;
- b=t1BtqeAw6bkOLW4hGUa2CxD92b8ZKR97Ybrc2Z7bLAFV/kkoZ1ZTFqteyBF2g5f6o4
- jGB19OB7xBy1z4I8WXDrgUhmWd3QaWJ876aKu/C9gL/Ss2e3iXk4FVyPVDJfBYCT5rNd
- xZ1vcUuhS3o2QyWmPOSVWqi6ozVuVH63F1C26I6QBX85n4yFEN011wQK45vS/V7pTdXh
- qsWJ3in73fFPR3KusIcOWGL/1WbKGLlQ4WDGqxjPCK1KzsrnuCkU6w8WEL7DIYytaj6H
- L/8XsmEmsWzfqphAHhCWeVC6eqMlL3ebcNsq2iVtPN0MzcYkyfQgQx2HCeM03oFA6BY3
- uLRg==
-X-Gm-Message-State: AOAM533lrzM0adStKpyYpRAq3eaUJi2GXRPU7qSpbJEY7TGaUeljFDal
- 3haHwYa4Lh+2cZiqpfUCTxU=
-X-Google-Smtp-Source: ABdhPJyIj5JM/G5TiKzbSIPzAdjtd8OoqltNSibx8tieYO6apW+A3UogIi0GzX5CtptM7AKQ03y6eg==
-X-Received: by 2002:a17:907:8687:b0:6d7:8f6a:3c0e with SMTP id
- qa7-20020a170907868700b006d78f6a3c0emr3001484ejc.500.1647500609636; 
- Thu, 17 Mar 2022 00:03:29 -0700 (PDT)
-Received: from [192.168.178.21] (p5b0eab60.dip0.t-ipconnect.de. [91.14.171.96])
+ bh=xxA0Pce6UnOZWW6gsq8il76yFsehAiTQ6twP7i/3/GQ=;
+ b=fHzqKWZeWvxeXFyDbgj07+5xBmh7MAMEzrWvQ9wEt+6rS44ujQflykYcV4BvD5fmSI
+ YzTtKAdYOlpgLofW3sb0yB4vi88kM+6qFuVNISeaqFd/cH8iBWArBZOkVYZOcerQhDAe
+ e5UoJ67f/USfcwmN1b6QUfiJzOeIHYo7pImM86TDlSjVTTgQZNTXh2hJAZ6dsvtHsllj
+ C32Il6FlwhHvRSriG+/CcRGHlbNxGgL+YMXh9CGJZEzgQOUTF4lyb9wZ/ej3u9WY3xfC
+ /3DEYmpSuSjUWMJxl3fzwAu/OoJpj1dtF5T1T2Uk0PK8UnoxQENnTCKvu+DwPITubfKH
+ pHSA==
+X-Gm-Message-State: AOAM532L6mfoEXtPMW7FyjhkGV2lAA9Kp00mAD4tUzdbflH4/dAVLhcE
+ A5cBP0EA6mrRnotRdOt8nmlfG5BpmFvHuzBXpcHMC9oCqxLZIhtZtvqxCpbNX/6oLYzy+R/vBrY
+ 0XGPKxzf8Tf/DKn/LeGdaIRdPTQ==
+X-Received: by 2002:a05:6000:144a:b0:203:8688:35d with SMTP id
+ v10-20020a056000144a00b002038688035dmr2896891wrx.399.1647504832462; 
+ Thu, 17 Mar 2022 01:13:52 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzkIygRnwahr8xhyLvIiK8lTpLSYuqqmv1avWZ31V4hbmg8hvmgWPIvr5DZvtTFDGtJ3e2QVw==
+X-Received: by 2002:a05:6000:144a:b0:203:8688:35d with SMTP id
+ v10-20020a056000144a00b002038688035dmr2896866wrx.399.1647504832168; 
+ Thu, 17 Mar 2022 01:13:52 -0700 (PDT)
+Received: from ?IPV6:2003:cb:c707:d000:22e9:afb1:c890:7468?
+ (p200300cbc707d00022e9afb1c8907468.dip0.t-ipconnect.de.
+ [2003:cb:c707:d000:22e9:afb1:c890:7468])
  by smtp.gmail.com with ESMTPSA id
- bm5-20020a170906c04500b006ce6f8892a5sm1956961ejb.7.2022.03.17.00.03.28
+ j7-20020a05600c410700b0038c72ef3f15sm2542317wmi.38.2022.03.17.01.13.51
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 17 Mar 2022 00:03:28 -0700 (PDT)
-Message-ID: <5e246eb8-0256-c40e-40ea-d865bf99c003@gmail.com>
-Date: Thu, 17 Mar 2022 08:03:27 +0100
+ Thu, 17 Mar 2022 01:13:51 -0700 (PDT)
+Message-ID: <ab26f7a0-728e-9627-796b-e8e850402aae@redhat.com>
+Date: Thu, 17 Mar 2022 09:13:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 1/2] drm: Add GPU reset sysfs event
+ Thunderbird/91.6.2
+Subject: Re: [PATCH v1 1/3] mm: split vm_normal_pages for LRU and non-LRU
+ handling
+To: Alistair Popple <apopple@nvidia.com>,
+ Felix Kuehling <felix.kuehling@amd.com>
+References: <20220310172633.9151-1-alex.sierra@amd.com>
+ <20220310172633.9151-2-alex.sierra@amd.com>
+ <07401a0a-6878-6af2-f663-9f0c3c1d88e5@redhat.com>
+ <1747447c-202d-9195-9d44-57f299be48c4@amd.com>
+ <87lex98dtg.fsf@nvdebian.thelocal>
+From: David Hildenbrand <david@redhat.com>
+Organization: Red Hat
+In-Reply-To: <87lex98dtg.fsf@nvdebian.thelocal>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=david@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Language: en-US
-To: Rob Clark <robdclark@gmail.com>, Alex Deucher <alexdeucher@gmail.com>
-References: <20220308180403.75566-1-contactshashanksharma@gmail.com>
- <4f2b2329-3c57-3895-6732-875db2f98b5a@amd.com>
- <CAF6AEGvvskobh6YOUx55_4rtXJJjPO0PxWY8+EKiVqntT3k+ug@mail.gmail.com>
- <6b400b8b-1b5c-a339-2345-f317f197b4a6@amd.com>
- <CAF6AEGt0XhqzkyEhbNcNVQO_A_Lo4qcsPRZRL6QqYn+NWAfv9A@mail.gmail.com>
- <bf6922f0-da8e-eef6-8217-26c1f50f3c48@quicinc.com>
- <2980e6a0-624e-2b80-c5d0-c40dfce76fb8@amd.com>
- <CAF6AEGvC=k4xLA-0iTSf660X2o04E+ivjnThZA-=WANKzLSvpA@mail.gmail.com>
- <cda15a47-f469-2a7e-87b6-adf00e631ef0@amd.com>
- <CAF6AEGv3Wv+p1j2B-t22eeK+8rx-qrQHCGoXeV1-XPYp2Om7zg@mail.gmail.com>
- <20220311102709.225616cf@eldfell>
- <CADnq5_O1Qktec3kC_rcPZUQPbraBYmdhDwmj=jgp_QsaBFGUZw@mail.gmail.com>
- <20220314172647.223658d2@eldfell>
- <CADnq5_NsxipfFFXfRSXvVQin3e1gj0Q_p9p-shi3VZ2pSCwwfw@mail.gmail.com>
- <20220316104815.11ec2e6c@eldfell>
- <CADnq5_MbOLaZGaQ8fYW_ZL3+gssu3cq7QbzByOWdLuvbdfSAAg@mail.gmail.com>
- <CAF6AEGvoqJmXs0KxXGN4qKD4U6Yeo4gDq6sVxm=noY-TwFoj4w@mail.gmail.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <CAF6AEGvoqJmXs0KxXGN4qKD4U6Yeo4gDq6sVxm=noY-TwFoj4w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Thu, 17 Mar 2022 08:58:31 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,42 +96,71 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, "Sharma,
- Shashank" <shashank.sharma@amd.com>,
- Amaranath Somalapuram <amaranath.somalapuram@amd.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Pekka Paalanen <ppaalanen@gmail.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Alexandar Deucher <alexander.deucher@amd.com>,
- Shashank Sharma <contactshashanksharma@gmail.com>,
- Christian Koenig <christian.koenig@amd.com>
+Cc: Alex Sierra <alex.sierra@amd.com>, rcampbell@nvidia.com,
+ willy@infradead.org, amd-gfx@lists.freedesktop.org, linux-xfs@vger.kernel.org,
+ linux-mm@kvack.org, jglisse@redhat.com, dri-devel@lists.freedesktop.org,
+ jgg@nvidia.com, akpm@linux-foundation.org, linux-ext4@vger.kernel.org,
+ hch@lst.de
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 16.03.22 um 16:36 schrieb Rob Clark:
-> [SNIP]
-> just one point of clarification.. in the msm and i915 case it is
-> purely for debugging and telemetry (ie. sending crash logs back to
-> distro for analysis if user has crash reporting enabled).. it isn't
-> used for triggering any action like killing app or compositor.
+On 17.03.22 03:54, Alistair Popple wrote:
+> Felix Kuehling <felix.kuehling@amd.com> writes:
+> 
+>> On 2022-03-11 04:16, David Hildenbrand wrote:
+>>> On 10.03.22 18:26, Alex Sierra wrote:
+>>>> DEVICE_COHERENT pages introduce a subtle distinction in the way
+>>>> "normal" pages can be used by various callers throughout the kernel.
+>>>> They behave like normal pages for purposes of mapping in CPU page
+>>>> tables, and for COW. But they do not support LRU lists, NUMA
+>>>> migration or THP. Therefore we split vm_normal_page into two
+>>>> functions vm_normal_any_page and vm_normal_lru_page. The latter will
+>>>> only return pages that can be put on an LRU list and that support
+>>>> NUMA migration, KSM and THP.
+>>>>
+>>>> We also introduced a FOLL_LRU flag that adds the same behaviour to
+>>>> follow_page and related APIs, to allow callers to specify that they
+>>>> expect to put pages on an LRU list.
+>>>>
+>>> I still don't see the need for s/vm_normal_page/vm_normal_any_page/. And
+>>> as this patch is dominated by that change, I'd suggest (again) to just
+>>> drop it as I don't see any value of that renaming. No specifier implies any.
+>>
+>> OK. If nobody objects, we can adopts that naming convention.
+> 
+> I'd prefer we avoid the churn too, but I don't think we should make
+> vm_normal_page() the equivalent of vm_normal_any_page(). It would mean
+> vm_normal_page() would return non-LRU device coherent pages, but to me at least
+> device coherent pages seem special and not what I'd expect from a function with
+> "normal" in the name.
+> 
+> So I think it would be better to s/vm_normal_lru_page/vm_normal_page/ and keep
+> vm_normal_any_page() (or perhaps call it vm_any_page?). This is basically what
+> the previous incarnation of this feature did:
+> 
+> struct page *_vm_normal_page(struct vm_area_struct *vma, unsigned long addr,
+>                             pte_t pte, bool with_public_device);
+> #define vm_normal_page(vma, addr, pte) _vm_normal_page(vma, addr, pte, false)
+> 
+> Except we should add:
+> 
+> #define vm_normal_any_page(vma, addr, pte) _vm_normal_page(vma, addr, pte, true)
+> 
 
-By the way, how does msm it's memory management for the devcoredumps?
+"normal" simply tells us that this is not a special mapping -- IOW, we
+want the VM to take a look at the memmap and not treat it like a PFN
+map. What we're changing is that we're now also returning non-lru pages.
+Fair enough, that's why we introduce vm_normal_lru_page() as a
+replacement where we really can only deal with lru pages.
 
-I mean it is strictly forbidden to allocate any memory in the GPU reset 
-path.
+vm_normal_page vs vm_normal_lru_page is good enough. "lru" further
+limits what we get via vm_normal_page, that's even how it's implemented.
 
-> I would however *strongly* recommend devcoredump support in other GPU
-> drivers (i915's thing pre-dates devcoredump by a lot).. I've used it
-> to debug and fix a couple obscure issues that I was not able to
-> reproduce by myself.
+vm_normal_page vs vm_normal_any_page is confusing IMHO.
 
-Yes, completely agree as well.
 
+-- 
 Thanks,
-Christian.
 
->
-> BR,
-> -R
+David / dhildenb
 
