@@ -2,47 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EB814DC740
-	for <lists+amd-gfx@lfdr.de>; Thu, 17 Mar 2022 14:11:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A6554DC743
+	for <lists+amd-gfx@lfdr.de>; Thu, 17 Mar 2022 14:11:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FF7810EBC0;
-	Thu, 17 Mar 2022 13:11:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B84310EBB6;
+	Thu, 17 Mar 2022 13:11:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com
- [IPv6:2607:f8b0:4864:20::112e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 041C010E7DD
- for <amd-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 12:21:38 +0000 (UTC)
-Received: by mail-yw1-x112e.google.com with SMTP id
- 00721157ae682-2db2add4516so56318887b3.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 05:21:37 -0700 (PDT)
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com
+ [IPv6:2607:f8b0:4864:20::b2a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB10E10EB17
+ for <amd-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 12:27:12 +0000 (UTC)
+Received: by mail-yb1-xb2a.google.com with SMTP id y142so9842848ybe.11
+ for <amd-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 05:27:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=zW8Vt/51GYWkWp/1BPnDGX4N3NOaenCZ0lYZMx9hMm8=;
- b=Ct/5cmrQCR/O5ux2Y4oWVdPaxDTcKltOKC/2VuCSyZ4CNgr0yWX5/oKQSiusWUTeSI
- d4I3fFYN8a+8n6hx0AWF72z1hdtghr+4GYy12gNtdyS3KBtdgwhR8+2aMcLb59ET5u12
- 3FGIDJsD5T8b+KAC7sQm0LXL/7Bz+JyD+kIDoU78B5ri34bGU1G18KNRP0Outg9x2Z3m
- 9Evx7SlfnMs5lrog0xFErguo5VyEsVr9WenzdjsGJlcDTYBBk3VUGtlSTkZNKzYznxtS
- Y3r0WcnxoNu37h9wDmJahhunZXLfPY2PyBd/bwpCQrbrVL3b26TH6VteZJRu2jyq8amj
- 4pSA==
+ :cc; bh=LdctqbxEVDhQYvXDWmmeebZ0ThVF6Vvf++/7X2JTCJ8=;
+ b=NgegS/3xXWHhJZ+h+d8E8O7udktNPpwoJowIpEdN96EYhMXLEjnwxKuqGxuZnjG4++
+ q7+4YWF/NHhqwBcf5RwJjrhS50aacDBu9FmkptgQ7Z7cMKaxs3UvgaQmT3M96RTERk4P
+ pYF5uSGmWJcdg9weIdBYJHpd57sZrC4rwyOmp2med4PO8AgZinm46X3xCvMCXzmVWSNO
+ bUnfN74fXkB3dF4tsbIiuYpxP1ufITYwwx3sfW0kQbJ1IfefFnDcoPArd7qgKhWuBgjX
+ RxzRNZ1GoAGJOv1rirRl0ELuAfiPHyZHIibdTGi4fc2OSdkAXz65xr4IJ1bs8l2DOcxm
+ N+Zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=zW8Vt/51GYWkWp/1BPnDGX4N3NOaenCZ0lYZMx9hMm8=;
- b=DbDdtRDMPMb6ibfPyHFqSs+F5GdTZEaV+LRvtZo1y4xMoTr0y51xdacx8TH3vG68z+
- kSG6NPy8K2Yc2XyoVysCk73psd59LeiSHOP4772Iu7Br6WsUU/mHToObNN0bTfceT5ss
- F+/3vPxZ31h37+lY81XdDhS+lQtvO3ylcB46NGv1uyMHVsj97qtEwMObcWYv8BgNHZkn
- mcCbHCYNlCVk7e251qFlq57jvjtnFZ+5TdPphcXAPIdXtVFU6tqRQ9EGASh/kvsI1ySD
- sgz/ab/LiWmvAIAYyjRuFJNmFLJJwDwCl3M4AyWugZciBmZ8fBvVucmsu8rvQ8HV4YUx
- H0qg==
-X-Gm-Message-State: AOAM531KW/3f95O7+veynffpcOeYUuwAhYxj9yfV6J8Bt56qWfoRQmf3
- 42sRCgUVZWer6Ph9vyi2IsY9jbHWfjdZ+4Rifz0=
-X-Google-Smtp-Source: ABdhPJxiXcew+TLpHGNoh1atCWS1aETl6txkj2YJiOz0jP+jY1RdAGNyl7kN8l4LTBc0Bbege7DjdOkOohykR2jQbFM=
-X-Received: by 2002:a05:690c:89:b0:2d7:fb7d:db7 with SMTP id
- be9-20020a05690c008900b002d7fb7d0db7mr5641733ywb.219.1647519696602; Thu, 17
- Mar 2022 05:21:36 -0700 (PDT)
+ :message-id:subject:to:cc;
+ bh=LdctqbxEVDhQYvXDWmmeebZ0ThVF6Vvf++/7X2JTCJ8=;
+ b=Bhn9ECgnjQGj6QcCJQtQKCO2aGAiT1X1d5KOixrjz5Vbl6HfH+m4a3rVlwTLxdqD+s
+ B3IxYY0JuVlNO6J5mp2kJZdW8WulOQBxqLkGYJsvB1iWfcEDPrmuNi7U37Ql6tRd+zbX
+ ZXVZDEJVEQdzfLAFTgxIRwD09yYArFkcp2sG2iGzmuegFvN4BBYXA07yeLQs6aO8NeuK
+ f42xlbqyUsIOwWVWMJN6YfakjRSngdHT2ISrdbRfj4PqpD+7mIn5i8el+M3PIuL4kfd6
+ 4eCufivTLZ5cCGN0A4hTjBOwybyKwkhowdqOBdFOA5XNkw8f3h+28O6CSA2eBwzc97jt
+ THcQ==
+X-Gm-Message-State: AOAM5336YBv9aIlhAat1nzysPVmSxD6ZuCtZj/KWCY+C1y+EXe9Ma5aE
+ Klb7Bwnn+T+pOBXsYbszRNuzP9vRBJbPYeNJ/Gs=
+X-Google-Smtp-Source: ABdhPJwCBKSWEr+iQJyBYOMQKOUXfv83u9thixxmY/S06ul6Wpnil+dZXTcHg6YAnmKn3zkYeTVHkEQstFwI206YOGU=
+X-Received: by 2002:a25:bc87:0:b0:633:806d:9c7d with SMTP id
+ e7-20020a25bc87000000b00633806d9c7dmr4784082ybk.232.1647520031959; Thu, 17
+ Mar 2022 05:27:11 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAMdYzYptw9L=5SECtVkNZruTT-x57+03vj0A+5efvq8cESzLyQ@mail.gmail.com>
  <CADnq5_NXmRr_Q7JuWZxJAjmavVkvJjNcWayQ1x8LhfcX5CS0uA@mail.gmail.com>
@@ -53,15 +51,14 @@ References: <CAMdYzYptw9L=5SECtVkNZruTT-x57+03vj0A+5efvq8cESzLyQ@mail.gmail.com>
  <546bf682-565f-8384-ec80-201ce1c747f4@arm.com>
  <8afb06c4-7601-d0d7-feae-ee5abc9c3641@amd.com>
  <CAMdYzYqH57HuqMMydMtQw2Ep2A_Qhjg3N_gTw6GuO6Kuxd9chQ@mail.gmail.com>
- <a62372c7-d274-a58a-0487-d199312fd7d6@amd.com>
-In-Reply-To: <a62372c7-d274-a58a-0487-d199312fd7d6@amd.com>
+ <c3bd7c08-f7e3-153e-8445-8e867916d03c@arm.com>
+In-Reply-To: <c3bd7c08-f7e3-153e-8445-8e867916d03c@arm.com>
 From: Peter Geis <pgwipeout@gmail.com>
-Date: Thu, 17 Mar 2022 08:21:22 -0400
-Message-ID: <CAMdYzYr1HysY0Om0Ab111C=pRX-TWgVw8v6=VEJC3CnVX8h-9g@mail.gmail.com>
+Date: Thu, 17 Mar 2022 08:26:57 -0400
+Message-ID: <CAMdYzYpt1vOCXiDUHCnuVRKnQ51Qissj9-w75FB6nVrFWS-9iw@mail.gmail.com>
 Subject: Re: radeon ring 0 test failed on arm64
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+To: Robin Murphy <robin.murphy@arm.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Thu, 17 Mar 2022 13:11:06 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,16 +76,13 @@ Cc: "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
  Shawn Lin <shawn.lin@rock-chips.com>, Kever Yang <kever.yang@rock-chips.com>,
  amd-gfx list <amd-gfx@lists.freedesktop.org>, "Deucher,
  Alexander" <alexander.deucher@amd.com>, Alex Deucher <alexdeucher@gmail.com>,
- Robin Murphy <robin.murphy@arm.com>
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 17, 2022 at 5:15 AM Christian K=C3=B6nig
-<christian.koenig@amd.com> wrote:
+On Thu, Mar 17, 2022 at 6:37 AM Robin Murphy <robin.murphy@arm.com> wrote:
 >
-> Hi Peter,
->
-> Am 17.03.22 um 01:14 schrieb Peter Geis:
+> On 2022-03-17 00:14, Peter Geis wrote:
 > > Good Evening,
 > >
 > > I apologize for raising this email chain from the dead, but there have
@@ -100,16 +94,6 @@ On Thu, Mar 17, 2022 at 5:15 AM Christian K=C3=B6nig
 > > the rk3588) were built without any outer coherent cache.
 > > This means (unless Rockchip wants to clarify here) devices such as the
 > > ITS and PCIe cannot utilize cache snooping.
->
-> well, as far as I know that is a clear violation of the PCIe specificatio=
-n.
->
-> Coherent access to system memory is simply a must have.
-
-From what I've read of the Arm documentation on the AXI bus, this is
-supposed to be implemented by design as well.
-
->
 > > This is based on the results of the email chain [2].
 > >
 > > The new circumstances are as follows:
@@ -122,14 +106,6 @@ supposed to be implemented by design as well.
 > > This is how I got involved.
 > > It seems they found a trivial way to force the Radeon R600 driver to
 > > use Non-Cached memory for everything.
->
-> Yeah, you basically just force it into AGP mode :)
->
-> There is just absolutely no guarantee that this works reliable.
-
-Ah, that makes sense.
-
->
 > > This single line change, combined with using memset_io instead of
 > > memset, allows the ring tests to pass and the card probes successfully
 > > (minus the DMA limitations of the rk356x due to the 32 bit
@@ -147,205 +123,54 @@ Ah, that makes sense.
 > > start, but with hilarious display corruption (see [3]. [4]).
 > > The CM4 team is convinced this is an issue with memcpy in glibc, but
 > > I'm not convinced it's that simple.
->
-> Yes exactly that.
->
-> Both OpenGL and Vulkan allow the application to mmap() device memory and
-> do any memory access they want with that.
->
-> This means that changing memcpy is just a futile effort, it's still
-> possible for the application to make an unaligned memory access and that
-> is perfectly valid.
-
-I was afraid of that and it reflects what I see with X11's behavior.
-
->
+> >
 > > On my two hour drive in to work this morning, I got to thinking.
 > > If this was an memcpy fault, this would be universally broken on arm64
 > > which is obviously not the case.
-> > So I started thinking, what is different here than with systems known t=
-o work:
+> > So I started thinking, what is different here than with systems known to work:
 > > 1. No IOMMU for the PCIe controller.
 > > 2. The Outer Cache Issue.
->
-> Oh, very good point. I would be interested in that as answer as well.
->
-> Regards,
-> Christian.
->
 > >
 > > Robin:
 > > My questions for you, since you're the smartest person I know about
 > > arm64 memory management:
 > > Could cache snooping permit unaligned accesses to IO to be safe?
+>
+> No.
+>
 > > Or
-> > Is it the lack of an IOMMU that's causing the alignment faults to becom=
-e fatal?
+> > Is it the lack of an IOMMU that's causing the alignment faults to become fatal?
+>
+> No.
+>
 > > Or
 > > Am I insane here?
-> >
-> > Rockchip:
-> > Please update on the status for the Outer Cache errata for ITS services=
-.
-> > Please provide an answer to the errata of the PCIe controller, in
-> > regard to cache snooping and buffering, for both the rk356x and the
-> > upcoming rk3588.
-> >
-> > [1] https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2=
-Fgithub.com%2FJeffyCN%2Fmirrors%2Fcommit%2F0b985f29304dcb9d644174edacb67298=
-e8049d4f&amp;data=3D04%7C01%7Cchristian.koenig%40amd.com%7C4ae2dfa3e8ec4a76=
-5f8a08da07ab1cb2%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C6378307287620=
-44450%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6I=
-k1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=3DZL3jA2VrnynWbUdFG6naaqrZqcnKRq338n=
-%2Bj50DRa74%3D&amp;reserved=3D0
-> > [2] https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2=
-Flore.kernel.org%2Flkml%2F871rbdt4tu.wl-maz%40kernel.org%2FT%2F&amp;data=3D=
-04%7C01%7Cchristian.koenig%40amd.com%7C4ae2dfa3e8ec4a765f8a08da07ab1cb2%7C3=
-dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637830728762044450%7CUnknown%7CTW=
-FpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3=
-D%7C3000&amp;sdata=3DQZy%2Bt%2Fus5f3yxwrHmXpzerXngPpKp3i9ZsF1UJ%2BHvlU%3D&a=
-mp;reserved=3D0
-> > [3] https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2=
-Fcdn.discordapp.com%2Fattachments%2F926487797844541510%2F953414755970850816=
-%2Funknown.png&amp;data=3D04%7C01%7Cchristian.koenig%40amd.com%7C4ae2dfa3e8=
-ec4a765f8a08da07ab1cb2%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C6378307=
-28762044450%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJ=
-BTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=3Dc29bc87hxyIvnsBK3Fo7FbF7RwJc=
-Fr%2FjgBrLIiBb%2FyY%3D&amp;reserved=3D0
-> > [4] https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2=
-Fcdn.discordapp.com%2Fattachments%2F926487797844541510%2F953424952042852422=
-%2Funknown.png&amp;data=3D04%7C01%7Cchristian.koenig%40amd.com%7C4ae2dfa3e8=
-ec4a765f8a08da07ab1cb2%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C6378307=
-28762044450%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJ=
-BTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=3DfwygTk%2BDzdla67rdAYb44vlivl=
-by9lFwtcgjLfJEH4A%3D&amp;reserved=3D0
-> >
-> > Thank you everyone for your time.
-> >
-> > Very Respectfully,
-> > Peter Geis
-> >
-> > On Wed, May 26, 2021 at 7:21 AM Christian K=C3=B6nig
-> > <christian.koenig@amd.com> wrote:
-> >> Hi Robin,
-> >>
-> >> Am 26.05.21 um 12:59 schrieb Robin Murphy:
-> >>> On 2021-05-26 10:42, Christian K=C3=B6nig wrote:
-> >>>> Hi Robin,
-> >>>>
-> >>>> Am 25.05.21 um 22:09 schrieb Robin Murphy:
-> >>>>> On 2021-05-25 14:05, Alex Deucher wrote:
-> >>>>>> On Tue, May 25, 2021 at 8:56 AM Peter Geis <pgwipeout@gmail.com>
-> >>>>>> wrote:
-> >>>>>>> On Tue, May 25, 2021 at 8:47 AM Alex Deucher
-> >>>>>>> <alexdeucher@gmail.com> wrote:
-> >>>>>>>> On Tue, May 25, 2021 at 8:42 AM Peter Geis <pgwipeout@gmail.com>
-> >>>>>>>> wrote:
-> >>>>>>>>> Good Evening,
-> >>>>>>>>>
-> >>>>>>>>> I am stress testing the pcie controller on the rk3566-quartz64
-> >>>>>>>>> prototype SBC.
-> >>>>>>>>> This device has 1GB available at <0x3 0x00000000> for the PCIe
-> >>>>>>>>> controller, which makes a dGPU theoretically possible.
-> >>>>>>>>> While attempting to light off a HD7570 card I manage to get a
-> >>>>>>>>> modeset
-> >>>>>>>>> console, but ring0 test fails and disables acceleration.
-> >>>>>>>>>
-> >>>>>>>>> Note, we do not have UEFI, so all PCIe setup is from the Linux
-> >>>>>>>>> kernel.
-> >>>>>>>>> Any insight you can provide would be much appreciated.
-> >>>>>>>> Does your platform support PCIe cache coherency with the CPU?  I=
-.e.,
-> >>>>>>>> does the CPU allow cache snoops from PCIe devices?  That is requ=
-ired
-> >>>>>>>> for the driver to operate.
-> >>>>>>> Ah, most likely not.
-> >>>>>>> This issue has come up already as the GIC isn't permitted to snoo=
-p on
-> >>>>>>> the CPUs, so I doubt the PCIe controller can either.
-> >>>>>>>
-> >>>>>>> Is there no way to work around this or is it dead in the water?
-> >>>>>> It's required by the pcie spec.  You could potentially work around=
- it
-> >>>>>> if you can allocate uncached memory for DMA, but I don't think tha=
-t is
-> >>>>>> possible currently.  Ideally we'd figure out some way to detect if=
- a
-> >>>>>> particular platform supports cache snooping or not as well.
-> >>>>> There's device_get_dma_attr(), although I don't think it will work
-> >>>>> currently for PCI devices without an OF or ACPI node - we could
-> >>>>> perhaps do with a PCI-specific wrapper which can walk up and defer
-> >>>>> to the host bridge's firmware description as necessary.
-> >>>>>
-> >>>>> The common DMA ops *do* correctly keep track of per-device coherenc=
-y
-> >>>>> internally, but drivers aren't supposed to be poking at that
-> >>>>> information directly.
-> >>>> That sounds like you underestimate the problem. ARM has unfortunatel=
-y
-> >>>> made the coherency for PCI an optional IP.
-> >>> Sorry to be that guy, but I'm involved a lot internally with our
-> >>> system IP and interconnect, and I probably understand the situation
-> >>> better than 99% of the community ;)
-> >> I need to apologize, didn't realized who was answering :)
-> >>
-> >> It just sounded to me that you wanted to suggest to the end user that
-> >> this is fixable in software and I really wanted to avoid even more
-> >> customers coming around asking how to do this.
-> >>
-> >>> For the record, the SBSA specification (the closet thing we have to a
-> >>> "system architecture") does require that PCIe is integrated in an
-> >>> I/O-coherent manner, but we don't have any control over what people d=
-o
-> >>> in embedded applications (note that we don't make PCIe IP at all, and
-> >>> there is plenty of 3rd-party interconnect IP).
-> >> So basically it is not the fault of the ARM IP-core, but people are ju=
-st
-> >> stitching together PCIe interconnect IP with a core where it is not
-> >> supposed to be used with.
-> >>
-> >> Do I get that correctly? That's an interesting puzzle piece in the pic=
-ture.
-> >>
-> >>>> So we are talking about a hardware limitation which potentially can'=
-t
-> >>>> be fixed without replacing the hardware.
-> >>> You expressed interest in "some way to detect if a particular platfor=
-m
-> >>> supports cache snooping or not", by which I assumed you meant a
-> >>> software method for the amdgpu/radeon drivers to call, rather than,
-> >>> say, a website that driver maintainers can look up SoC names on. I'm
-> >>> saying that that API already exists (just may need a bit more work).
-> >>> Note that it is emphatically not a platform-level thing since
-> >>> coherency can and does vary per device within a system.
-> >> Well, I think this is not something an individual driver should mess
-> >> with. What the driver should do is just express that it needs coherent
-> >> access to all of system memory and if that is not possible fail to loa=
-d
-> >> with a warning why it is not possible.
-> >>
-> >>> I wasn't suggesting that Linux could somehow make coherency magically
-> >>> work when the signals don't physically exist in the interconnect - I
-> >>> was assuming you'd merely want to do something like throw a big
-> >>> warning and taint the kernel to help triage bug reports. Some drivers
-> >>> like ahci_qoriq and panfrost simply need to know so they can program
-> >>> their device to emit the appropriate memory attributes either way, an=
-d
-> >>> rely on the DMA API to hide the rest of the difference, but if you
-> >>> want to treat non-coherent use as unsupported because it would requir=
-e
-> >>> too invasive changes that's fine by me.
-> >> Yes exactly that please. I mean not sure how panfrost is doing it, but
-> >> at least the Vulkan userspace API specification requires devices to ha=
-ve
-> >> coherent access to system memory.
-> >>
-> >> So even if I would want to do this it is simply not possible because t=
-he
-> >> application doesn't tell the driver which memory is accessed by the
-> >> device and which by the CPU.
-> >>
-> >> Christian.
-> >>
-> >>> Robin.
 >
+> No. (probably)
+>
+> CPU access to PCIe has nothing to do with PCIe's access to memory. From
+> what you've described, my guess is that a GPU BAR gets put in a
+> non-prefetchable window, such that it ends up mapped as Device memory
+> (whereas if it were prefetchable it would be Normal Non-Cacheable).
+
+Okay, this is perfect and I think you just put me on the right track
+for identifying the exact issue. Thanks!
+
+I've sliced up the non-prefetchable window and given it a prefetchable window.
+The 256MB BAR now resides in that window.
+However I'm still getting bus errors, so it seems the prefetch isn't
+actually happening.
+The difference is now the GPU realizes that an error has happened and
+initiates recovery, vice before where it seemed to be clueless.
+If I understand everything correctly, that's because before the bus
+error was raised by the CPU due to the memory flag, vice now where
+it's actually the bus raising the alarm.
+
+My next question, is this something the driver should set and isn't,
+or is it just because of the broken cache coherency?
+
+>
+> Robin.
+
+Thanks again!
+Peter
