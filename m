@@ -2,59 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B37A24DC7DF
-	for <lists+amd-gfx@lfdr.de>; Thu, 17 Mar 2022 14:50:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7614E4DC7E2
+	for <lists+amd-gfx@lfdr.de>; Thu, 17 Mar 2022 14:51:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2738210EBDC;
-	Thu, 17 Mar 2022 13:50:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70C5F10EBDD;
+	Thu, 17 Mar 2022 13:50:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com
- [IPv6:2a00:1450:4864:20::529])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93C5310EBD8
- for <amd-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 13:50:54 +0000 (UTC)
-Received: by mail-ed1-x529.google.com with SMTP id t1so6658566edc.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 06:50:54 -0700 (PDT)
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com
+ [IPv6:2a00:1450:4864:20::62e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 871EB10EBD9
+ for <amd-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 13:50:55 +0000 (UTC)
+Received: by mail-ej1-x62e.google.com with SMTP id a8so10852083ejc.8
+ for <amd-gfx@lists.freedesktop.org>; Thu, 17 Mar 2022 06:50:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=f5Hg96guGARQ6KheV+UUCr298aclPxzSLMquwZGQxSk=;
- b=Sd/mvHD00xghKkZqqDzG3/1OcScUXYHbA25LcqgzYuXgjzWOie9JlUEr/UgMhuvxqU
- J/OdOuJ7ofMbABJyARCroNoSrTALsKiY19k81g9hhRmdxigeZgrBt5QubxVm8nssP56+
- vOXs2I84IYUTmZ2TSrHtXdBU0GGEw4HvPSgWgZJRvbjazo8ml9sUuf+P8zhI8mHuoJgJ
- O+8vG/6cKiBJH7Pi9ZtGWEFE0MSis3dT56y/1eEg/1D0bZtsTVCMc61mmuZPQivMDVEL
- 0hzu7eOIIHI/+f1lA08xWh7w2DmB75s+isqrab9rBe9JT5gFn34kT1dkHzxZHkOx7tjv
- FDvA==
+ bh=PvvpAlfWUx4MZsjqJ2ledaQ6ZYxjlMxRZHkgrvDwVbE=;
+ b=UySrgiAM+lrSjr7LgnnWIY6cgjmt6Ro2A0UKhbBOGTXHIGFnCUQeh8oj+wNCqMuZhX
+ Wl6Fp1yECOOm9/VyrQ9MQJXllASCgzWKJA2q4kNljff/AxuszH0MefO+4C2rXBEvn/cQ
+ /brSwF5k3A3aBWKjPogQKsnS/F0KhwxnxPq9F5dV7z2F3KhDejxmu58ACecq6prGkSon
+ OeSTnxGAs/X6lMYs18jmoCGIiGyNbpCoBim0oNR/AZP09cY37wdBA1z00cI+AH8iQMHS
+ xvYYpZE/AwiWr5ORHQRAQIWM9T5M0+Q2TE+Bl8l9gHLpTuFonM/25T9UjyoykT4uuwbG
+ 2cMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=f5Hg96guGARQ6KheV+UUCr298aclPxzSLMquwZGQxSk=;
- b=3exYVjjzhX4KV6ykila9btSdbjnd3docbOFnPdfW90JKoftVulgESdPL3yQLPc/7ZH
- iP3yJTkgRUuqEc1Ac2jp7/UAQqAVks6Weq6/esAVPzpqOM9mbJWSSky2kHU3RA7QMdCy
- I27L7757eOyrxeS5QnECM+J3Pw8dqTzdZoeOwKpO0GT0gM2I4/A9B0LOg+QwsvMliH69
- bUu0mw0sHaW5EWgX4eAgz2HkPDhTMpH25xMKK3HQIaBh7Kz8eHLDUUi+xcbma2HSNqP6
- MXdqJ7lsCLVYdgD5k4zl90riwKRZpppED+JjkyAcmV3sUb90S+/RSQIHOaUqIQKkt36h
- mgeA==
-X-Gm-Message-State: AOAM532hd0XDbOzP46rhYBgLKF04k9rrhZKQEXO8ulqOInfug8OEgjpz
- 8emVqrF64ii97fe/GX2yMhhDPUBT4qs=
-X-Google-Smtp-Source: ABdhPJwvpeCZWr4qOlMa++aTVe4PHb2z5XpYdO40VOcpeT+77dlP9NRH7HG9kWMiZi3Ira0Zb7AiVg==
-X-Received: by 2002:a05:6402:4301:b0:418:585b:cfe1 with SMTP id
- m1-20020a056402430100b00418585bcfe1mr4509763edc.250.1647525053070; 
+ bh=PvvpAlfWUx4MZsjqJ2ledaQ6ZYxjlMxRZHkgrvDwVbE=;
+ b=toBhbTwcuH+BXXW2Sw4TFIQ/UvGR0iLQp+rbLESbzxB5cAbHpd7rvTNpag2n8QoJh5
+ DnWkaWtffjbkqqo1ouEYCtYWKEXNpKO8tnKe2ADZXJBLcmfySfdbfXZAw6sGU6n2ZWbe
+ s/Mqo5Zdz3d8lcWEb9AseV0TQBUbmqcpYTZCJj0L9fwuWr0XvSjlUWkRVCqRFwUH3PVr
+ 0DXoRmzRXxbsvb28gKcJRkLVVi+G5yE53LRNgWDYNTl6x0Fq1DXn6xJvgTuBq2MB69bH
+ iX8vX+VsIWsfI5C/wtDc5K6K4FwXLaiJ0WZdBJmTnZOUDFYVEA5J/XEK9Gh/OoI9CB5e
+ QFgg==
+X-Gm-Message-State: AOAM533DNbbX9qpZmXOk+FK6ojsFr/Or41Ym8QnHe3Zxvxp1urGS0yT0
+ bCMrbjqRVuzF2r8gfsEdY2TDoOu/Y+E=
+X-Google-Smtp-Source: ABdhPJxsQhNrJEYzsUmwy+jSo4dTNa7rJc0MmwJCkkQyMeowKCTRQ76gaP8DuhOO/+EzZjXzLWFo8g==
+X-Received: by 2002:a17:906:58c5:b0:6da:81ae:9eb0 with SMTP id
+ e5-20020a17090658c500b006da81ae9eb0mr4402675ejs.611.1647525053965; 
  Thu, 17 Mar 2022 06:50:53 -0700 (PDT)
 Received: from able.fritz.box (p5b0eab60.dip0.t-ipconnect.de. [91.14.171.96])
  by smtp.gmail.com with ESMTPSA id
- l9-20020a056402254900b00416b0ec98b5sm2706721edb.45.2022.03.17.06.50.52
+ l9-20020a056402254900b00416b0ec98b5sm2706721edb.45.2022.03.17.06.50.53
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 17 Mar 2022 06:50:52 -0700 (PDT)
+ Thu, 17 Mar 2022 06:50:53 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: amd-gfx@lists.freedesktop.org,
 	Felix.Kuehling@amd.com
-Subject: [PATCH 5/7] drm/amdkfd: start using tlb_seq from the VM subsystem
-Date: Thu, 17 Mar 2022 14:50:42 +0100
-Message-Id: <20220317135044.2099-5-christian.koenig@amd.com>
+Subject: [PATCH 6/7] drm/amdkfd: use tlb_seq from the VM subsystem for SVM as
+ well
+Date: Thu, 17 Mar 2022 14:50:43 +0100
+Message-Id: <20220317135044.2099-6-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220317135044.2099-1-christian.koenig@amd.com>
 References: <20220317135044.2099-1-christian.koenig@amd.com>
@@ -76,54 +77,174 @@ Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Instead of trying to figure out if a TLB flush is necessary or not use
-the information provided by the VM subsystem now.
+Instead of hand rolling the table_freed parameter.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_priv.h    | 1 +
- drivers/gpu/drm/amd/amdkfd/kfd_process.c | 7 +++++++
- 2 files changed, 8 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h    |  5 ++---
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c  | 18 ++++++++----------
+ drivers/gpu/drm/amd/amdkfd/kfd_chardev.c      | 19 ++++++++-----------
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c      |  2 +-
+ 4 files changed, 19 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-index f36062be9ca8..945982a5d688 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-@@ -705,6 +705,7 @@ struct kfd_process_device {
- 	/* VM context for GPUVM allocations */
- 	struct file *drm_file;
- 	void *drm_priv;
-+	uint64_t tlb_seq;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+index 4cb14c2fe53f..9fcfb5e1b55c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+@@ -273,9 +273,8 @@ int amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu(
+ int amdgpu_amdkfd_gpuvm_free_memory_of_gpu(
+ 		struct amdgpu_device *adev, struct kgd_mem *mem, void *drm_priv,
+ 		uint64_t *size);
+-int amdgpu_amdkfd_gpuvm_map_memory_to_gpu(
+-		struct amdgpu_device *adev, struct kgd_mem *mem, void *drm_priv,
+-		bool *table_freed);
++int amdgpu_amdkfd_gpuvm_map_memory_to_gpu(struct amdgpu_device *adev,
++					  struct kgd_mem *mem, void *drm_priv);
+ int amdgpu_amdkfd_gpuvm_unmap_memory_from_gpu(
+ 		struct amdgpu_device *adev, struct kgd_mem *mem, void *drm_priv);
+ int amdgpu_amdkfd_gpuvm_sync_memory(
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+index cd89d2e46852..57b521bb1eec 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+@@ -1093,8 +1093,7 @@ static void unmap_bo_from_gpuvm(struct kgd_mem *mem,
  
- 	/* GPUVM allocations storage */
- 	struct idr alloc_idr;
+ static int update_gpuvm_pte(struct kgd_mem *mem,
+ 			    struct kfd_mem_attachment *entry,
+-			    struct amdgpu_sync *sync,
+-			    bool *table_freed)
++			    struct amdgpu_sync *sync)
+ {
+ 	struct amdgpu_bo_va *bo_va = entry->bo_va;
+ 	struct amdgpu_device *adev = entry->adev;
+@@ -1105,7 +1104,7 @@ static int update_gpuvm_pte(struct kgd_mem *mem,
+ 		return ret;
+ 
+ 	/* Update the page tables  */
+-	ret = amdgpu_vm_bo_update(adev, bo_va, false, table_freed);
++	ret = amdgpu_vm_bo_update(adev, bo_va, false, NULL);
+ 	if (ret) {
+ 		pr_err("amdgpu_vm_bo_update failed\n");
+ 		return ret;
+@@ -1117,8 +1116,7 @@ static int update_gpuvm_pte(struct kgd_mem *mem,
+ static int map_bo_to_gpuvm(struct kgd_mem *mem,
+ 			   struct kfd_mem_attachment *entry,
+ 			   struct amdgpu_sync *sync,
+-			   bool no_update_pte,
+-			   bool *table_freed)
++			   bool no_update_pte)
+ {
+ 	int ret;
+ 
+@@ -1135,7 +1133,7 @@ static int map_bo_to_gpuvm(struct kgd_mem *mem,
+ 	if (no_update_pte)
+ 		return 0;
+ 
+-	ret = update_gpuvm_pte(mem, entry, sync, table_freed);
++	ret = update_gpuvm_pte(mem, entry, sync);
+ 	if (ret) {
+ 		pr_err("update_gpuvm_pte() failed\n");
+ 		goto update_gpuvm_pte_failed;
+@@ -1745,7 +1743,7 @@ int amdgpu_amdkfd_gpuvm_free_memory_of_gpu(
+ 
+ int amdgpu_amdkfd_gpuvm_map_memory_to_gpu(
+ 		struct amdgpu_device *adev, struct kgd_mem *mem,
+-		void *drm_priv, bool *table_freed)
++		void *drm_priv)
+ {
+ 	struct amdgpu_vm *avm = drm_priv_to_vm(drm_priv);
+ 	int ret;
+@@ -1832,7 +1830,7 @@ int amdgpu_amdkfd_gpuvm_map_memory_to_gpu(
+ 			 entry->va, entry->va + bo_size, entry);
+ 
+ 		ret = map_bo_to_gpuvm(mem, entry, ctx.sync,
+-				      is_invalid_userptr, table_freed);
++				      is_invalid_userptr);
+ 		if (ret) {
+ 			pr_err("Failed to map bo to gpuvm\n");
+ 			goto out_unreserve;
+@@ -2300,7 +2298,7 @@ static int validate_invalid_user_pages(struct amdkfd_process_info *process_info)
+ 				continue;
+ 
+ 			kfd_mem_dmaunmap_attachment(mem, attachment);
+-			ret = update_gpuvm_pte(mem, attachment, &sync, NULL);
++			ret = update_gpuvm_pte(mem, attachment, &sync);
+ 			if (ret) {
+ 				pr_err("%s: update PTE failed\n", __func__);
+ 				/* make sure this gets validated again */
+@@ -2506,7 +2504,7 @@ int amdgpu_amdkfd_gpuvm_restore_process_bos(void *info, struct dma_fence **ef)
+ 				continue;
+ 
+ 			kfd_mem_dmaunmap_attachment(mem, attachment);
+-			ret = update_gpuvm_pte(mem, attachment, &sync_obj, NULL);
++			ret = update_gpuvm_pte(mem, attachment, &sync_obj);
+ 			if (ret) {
+ 				pr_debug("Memory eviction: update PTE failed. Try again\n");
+ 				goto validate_map_fail;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+index e1e2362841f8..91f82a9ccdaf 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+@@ -1146,7 +1146,6 @@ static int kfd_ioctl_map_memory_to_gpu(struct file *filep,
+ 	long err = 0;
+ 	int i;
+ 	uint32_t *devices_arr = NULL;
+-	bool table_freed = false;
+ 
+ 	if (!args->n_devices) {
+ 		pr_debug("Device IDs array empty\n");
+@@ -1208,7 +1207,7 @@ static int kfd_ioctl_map_memory_to_gpu(struct file *filep,
+ 
+ 		err = amdgpu_amdkfd_gpuvm_map_memory_to_gpu(
+ 			peer_pdd->dev->adev, (struct kgd_mem *)mem,
+-			peer_pdd->drm_priv, &table_freed);
++			peer_pdd->drm_priv);
+ 		if (err) {
+ 			struct pci_dev *pdev = peer_pdd->dev->adev->pdev;
+ 
+@@ -1233,13 +1232,11 @@ static int kfd_ioctl_map_memory_to_gpu(struct file *filep,
+ 	}
+ 
+ 	/* Flush TLBs after waiting for the page table updates to complete */
+-	if (table_freed || !kfd_flush_tlb_after_unmap(dev)) {
+-		for (i = 0; i < args->n_devices; i++) {
+-			peer_pdd = kfd_process_device_data_by_id(p, devices_arr[i]);
+-			if (WARN_ON_ONCE(!peer_pdd))
+-				continue;
+-			kfd_flush_tlb(peer_pdd, TLB_FLUSH_LEGACY);
+-		}
++	for (i = 0; i < args->n_devices; i++) {
++		peer_pdd = kfd_process_device_data_by_id(p, devices_arr[i]);
++		if (WARN_ON_ONCE(!peer_pdd))
++			continue;
++		kfd_flush_tlb(peer_pdd, TLB_FLUSH_LEGACY);
+ 	}
+ 	kfree(devices_arr);
+ 
+@@ -2203,8 +2200,8 @@ static int criu_restore_bo(struct kfd_process *p,
+ 		if (IS_ERR(peer_pdd))
+ 			return PTR_ERR(peer_pdd);
+ 
+-		ret = amdgpu_amdkfd_gpuvm_map_memory_to_gpu(peer->adev, kgd_mem, peer_pdd->drm_priv,
+-							    NULL);
++		ret = amdgpu_amdkfd_gpuvm_map_memory_to_gpu(peer->adev, kgd_mem,
++							    peer_pdd->drm_priv);
+ 		if (ret) {
+ 			pr_err("Failed to map to gpu %d/%d\n", j, p->n_pdds);
+ 			return ret;
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-index 59c04b2d383b..4a8a047b7593 100644
+index 4a8a047b7593..ac8123c1ee8f 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-@@ -1560,6 +1560,7 @@ int kfd_process_device_init_vm(struct kfd_process_device *pdd,
- 		return ret;
- 	}
- 	pdd->drm_priv = drm_file->private_data;
-+	pdd->tlb_seq = 0;
+@@ -722,7 +722,7 @@ static int kfd_process_alloc_gpuvm(struct kfd_process_device *pdd,
+ 		goto err_alloc_mem;
  
- 	ret = kfd_process_device_reserve_ib_mem(pdd);
- 	if (ret)
-@@ -1949,8 +1950,14 @@ int kfd_reserved_mem_mmap(struct kfd_dev *dev, struct kfd_process *process,
+ 	err = amdgpu_amdkfd_gpuvm_map_memory_to_gpu(kdev->adev, *mem,
+-			pdd->drm_priv, NULL);
++			pdd->drm_priv);
+ 	if (err)
+ 		goto err_map_mem;
  
- void kfd_flush_tlb(struct kfd_process_device *pdd, enum TLB_FLUSH_TYPE type)
- {
-+	struct amdgpu_vm *vm = drm_priv_to_vm(pdd->drm_priv);
-+	uint64_t tlb_seq = amdgpu_vm_tlb_seq(vm);
- 	struct kfd_dev *dev = pdd->dev;
- 
-+	if (pdd->tlb_seq == tlb_seq)
-+		return;
-+
-+	pdd->tlb_seq = tlb_seq;
- 	if (dev->dqm->sched_policy == KFD_SCHED_POLICY_NO_HWS) {
- 		/* Nothing to flush until a VMID is assigned, which
- 		 * only happens when the first queue is created.
 -- 
 2.25.1
 
