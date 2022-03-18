@@ -1,51 +1,63 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF9524DDA80
-	for <lists+amd-gfx@lfdr.de>; Fri, 18 Mar 2022 14:28:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36BE44DDA85
+	for <lists+amd-gfx@lfdr.de>; Fri, 18 Mar 2022 14:28:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B91610E78A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C182B10E92D;
 	Fri, 18 Mar 2022 13:28:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-m17662.qiye.163.com (mail-m17662.qiye.163.com
- [59.111.176.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE56510E610
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Mar 2022 07:51:57 +0000 (UTC)
-Received: from [172.16.12.93] (unknown [58.22.7.114])
- by mail-m17662.qiye.163.com (Hmail) with ESMTPA id 21B341405D6;
- Fri, 18 Mar 2022 15:51:55 +0800 (CST)
-Message-ID: <7652b236-238c-4e8a-f1c5-e3b7f7f71be6@rock-chips.com>
-Date: Fri, 18 Mar 2022 15:51:54 +0800
+Received: from mail-ua1-x92c.google.com (mail-ua1-x92c.google.com
+ [IPv6:2607:f8b0:4864:20::92c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 103B510E772
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Mar 2022 08:30:25 +0000 (UTC)
+Received: by mail-ua1-x92c.google.com with SMTP id x19so2992399uaf.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Mar 2022 01:30:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=0ogp3OEFkwZj8QEMXIkrMCD+Y2owy7GvkEn/U8LOX0o=;
+ b=Pf+BOEhya9aXXbYBUeUOBRRU7JhM5PstNvwRvh4CwFFLDHwwrqRxswcdt7fceLlQ9h
+ SbVt99hG/N/i2Yg1eI/N/pWGYA9GiLlX6qOIAZDvSYRQRWu4G4Uag0C3btZqkT4cjcZV
+ PKWRNnFOICcYpYs0aSRQn9QSo4YoxNA0h7fi8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=0ogp3OEFkwZj8QEMXIkrMCD+Y2owy7GvkEn/U8LOX0o=;
+ b=KQ1GU4x9JrQFvSNPbo7mQz9zZxsfLBhDt5xYpja9UtgjXox74LCScza7WMsuy+UD9I
+ z5phEqe/f9KjaK5i/H2oKxe2RuUH02uxE7A6EchFPb6adJkXefCBxFjiUl1s43X6IaWX
+ RfLEU/GsXHvPcZoLUHVkrLd+o/Z51M5saGxEuh1jeP+a/hQ5ZNdIPLjzbFGPdpuYDQL7
+ 02qqeXX3+RwWxeC3hxUo4ZWY0XxR4XiZ9HF2X7u7b0cx3ozrU2zJPsV4m4OAXKcH3P3y
+ yHzrRMqNBY7GReySKNBQmgqlnxn3Mpvnw71ePctaMsb9Yg9POf2FyVMmJhKdvR2NNZzS
+ t/ng==
+X-Gm-Message-State: AOAM533fEg5Ct4ecaqjJh+HOg9RfjSHBh6tnEYdID1IzcMveL65IH70k
+ 8itHqNnRUidNhke3gMobBvYYNh2tLpPb7WQYjuvosg==
+X-Google-Smtp-Source: ABdhPJz/KhorT3W/2hHA0L0YLN68M/lGOSgV2CAcFuel9OThQYS6ptUz2+hFO2ZOAyCDuApFRoXn3SWHOfIQdBeL9ps=
+X-Received: by 2002:ab0:2619:0:b0:354:ccac:32f with SMTP id
+ c25-20020ab02619000000b00354ccac032fmr578951uao.46.1647592223830; Fri, 18 Mar
+ 2022 01:30:23 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: radeon ring 0 test failed on arm64
-Content-Language: en-US
-To: Peter Geis <pgwipeout@gmail.com>
-References: <CAMdYzYptw9L=5SECtVkNZruTT-x57+03vj0A+5efvq8cESzLyQ@mail.gmail.com>
- <CADnq5_NXmRr_Q7JuWZxJAjmavVkvJjNcWayQ1x8LhfcX5CS0uA@mail.gmail.com>
- <CAMdYzYoamh-igvBbKaLSJ6bSc3wA29=8mooJDLMJkj9YQ=wj0A@mail.gmail.com>
- <CADnq5_NXFZPA_z6413FDgr8WRObhCB+HdkHE5P=PAAMV4FiWiA@mail.gmail.com>
- <20dffd4d-fa54-5bc3-c13b-f8ffbf0fb593@arm.com>
- <599edb94-8294-c4c5-ff7f-84c7072af3dd@gmail.com>
- <546bf682-565f-8384-ec80-201ce1c747f4@arm.com>
- <8afb06c4-7601-d0d7-feae-ee5abc9c3641@amd.com>
- <CAMdYzYqH57HuqMMydMtQw2Ep2A_Qhjg3N_gTw6GuO6Kuxd9chQ@mail.gmail.com>
- <ece56cf6-5ef2-6bd4-8e62-7828adca9844@rock-chips.com>
- <CAMdYzYoTz7rbs7pMDTcDzVPVaaP97BkUeMOM0Ab5FVSqOQRgxg@mail.gmail.com>
-From: Kever Yang <kever.yang@rock-chips.com>
-In-Reply-To: <CAMdYzYoTz7rbs7pMDTcDzVPVaaP97BkUeMOM0Ab5FVSqOQRgxg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
- kWDxoPAgseWUFZKDYvK1lXWShZQUlKS0tKN1dZLVlBSVdZDwkaFQgSH1lBWUNMGk5WThoeGUIaTE
- kZSx0fVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktITUpVS1kG
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6ORA6Shw6TD4BGSExFCwdIjEt
- PzYwCxlVSlVKTU9MTkNCQkpOTENNVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
- EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFKT0hCSTcG
-X-HM-Tid: 0a7f9c02fb2cda2ckuws21b341405d6
+References: <20220208084234.1684930-1-hsinyi@chromium.org>
+ <CACvgo53u01BK_D0ZssV+gCepjxSz23Nr5Dy1qXeaAoJuu6VCFQ@mail.gmail.com>
+ <KW6DNh6IRRgVJx9DfOFBnEqc4a0x-AnDXEbMxwpfEbk8dOn_KGVzAfo-slJWq-4nWW728Uc-OVpFh2w4fDE4-bxfkDuz1hFILRVvbcuXqaw=@emersion.fr>
+ <CACvgo532-pC+7DLFCo=DWTX-OnJEJvSoTmQnt3_qLhiT4cqEMg@mail.gmail.com>
+ <GYG6EVT1MqtmfKiPpMhDG9mpuATnmwVDq2PuE_dpDat5oQW_t1tUfm39lSWHj32D5r7mrog27sL4dkgdMYQ5BN830TfVOrgQ4Ts8LcO8Hcs=@emersion.fr>
+ <CACvgo52+o9_ETC+1RKzqKkyw3ZJ28RjH0BqC9DfmNAKqByud8Q@mail.gmail.com>
+ <d3f0cc20-d226-ee42-cc98-b469949cec9e@redhat.com>
+ <YV87l-2XXzmZ2i6GuGd__uf85s2JQkbXt_qTQDYlbBh1kW2COJoNLUDinmLCokKyy-_0ZnIMUcZeW0GdJ8zF690iYi4ThKrjc09omNMe-0g=@emersion.fr>
+ <d4f5e101-3dd5-2f3a-6c14-6b32ee37c223@redhat.com>
+ <DM7TzJ-fZEHjoGXvMG8XLfJ2VxohRxotL40_0Vb4cAUvrELgV9BvPGbK6HAwOYOBCx8qXtY2LQ0xnZ-nlH_IVCyne7tMKfvkqxtoWI6MkTw=@emersion.fr>
+ <16c1886f-d130-b299-9d09-ad11556f3bfd@amd.com>
+In-Reply-To: <16c1886f-d130-b299-9d09-ad11556f3bfd@amd.com>
+From: Hsin-Yi Wang <hsinyi@chromium.org>
+Date: Fri, 18 Mar 2022 16:29:57 +0800
+Message-ID: <CAJMQK-iW6zu7+cjSPHHDcLCj5Zj086qZ+oY62_onOzZcsXtTWQ@mail.gmail.com>
+Subject: Re: [Intel-gfx] [PATCH v8 1/3] gpu: drm: separate panel orientation
+ property creating and value setting
+To: Harry Wentland <harry.wentland@amd.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Fri, 18 Mar 2022 13:28:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,238 +70,154 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tao Huang <huangtao@rock-chips.com>,
- "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Shawn Lin <shawn.lin@rock-chips.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, "Deucher,
- Alexander" <alexander.deucher@amd.com>, Alex Deucher <alexdeucher@gmail.com>,
- Robin Murphy <robin.murphy@arm.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ devicetree <devicetree@vger.kernel.org>, David Airlie <airlied@linux.ie>,
+ Simon Ser <contact@emersion.fr>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Emil Velikov <emil.l.velikov@gmail.com>,
+ "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
+ Maxime Ripard <mripard@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+ Rob Herring <robh+dt@kernel.org>, linux-mediatek@lists.infradead.org,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ LAKML <linux-arm-kernel@lists.infradead.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
-On 2022/3/17 20:19, Peter Geis wrote:
-> On Wed, Mar 16, 2022 at 11:08 PM Kever Yang <kever.yang@rock-chips.com> wrote:
->> Hi Peter,
->>
->> On 2022/3/17 08:14, Peter Geis wrote:
->>> Good Evening,
->>>
->>> I apologize for raising this email chain from the dead, but there have
->>> been some developments that have introduced even more questions.
->>> I've looped the Rockchip mailing list into this too, as this affects
->>> rk356x, and likely the upcoming rk3588 if [1] is to be believed.
->>>
->>> TLDR for those not familiar: It seems the rk356x series (and possibly
->>> the rk3588) were built without any outer coherent cache.
->>> This means (unless Rockchip wants to clarify here) devices such as the
->>> ITS and PCIe cannot utilize cache snooping.
->>> This is based on the results of the email chain [2].
->>>
->>> The new circumstances are as follows:
->>> The RPi CM4 Adventure Team as I've taken to calling them has been
->>> attempting to get a dGPU working with the very broken Broadcom
->>> controller in the RPi CM4.
->>> Recently they acquired a SoQuartz rk3566 module which is pin
->>> compatible with the CM4, and have taken to trying it out as well.
->>>
->>> This is how I got involved.
->>> It seems they found a trivial way to force the Radeon R600 driver to
->>> use Non-Cached memory for everything.
->>> This single line change, combined with using memset_io instead of
->>> memset, allows the ring tests to pass and the card probes successfully
->>> (minus the DMA limitations of the rk356x due to the 32 bit
->>> interconnect).
->>> I discovered using this method that we start having unaligned io
->>> memory access faults (bus errors) when running glmark2-drm (running
->>> glmark2 directly was impossible, as both X and Wayland crashed too
->>> early).
->>> I traced this to using what I thought at the time was an unsafe memcpy
->>> in the mesa stack.
->>> Rewriting this function to force aligned writes solved the problem and
->>> allows glmark2-drm to run to completion.
->>> With some extensive debugging, I found about half a dozen memcpy
->>> functions in mesa that if forced to be aligned would allow Wayland to
->>> start, but with hilarious display corruption (see [3]. [4]).
->>> The CM4 team is convinced this is an issue with memcpy in glibc, but
->>> I'm not convinced it's that simple.
->>>
->>> On my two hour drive in to work this morning, I got to thinking.
->>> If this was an memcpy fault, this would be universally broken on arm64
->>> which is obviously not the case.
->>> So I started thinking, what is different here than with systems known to work:
->>> 1. No IOMMU for the PCIe controller.
->>> 2. The Outer Cache Issue.
->>>
->>> Robin:
->>> My questions for you, since you're the smartest person I know about
->>> arm64 memory management:
->>> Could cache snooping permit unaligned accesses to IO to be safe?
->>> Or
->>> Is it the lack of an IOMMU that's causing the alignment faults to become fatal?
->>> Or
->>> Am I insane here?
->>>
->>> Rockchip:
->>> Please update on the status for the Outer Cache errata for ITS services.
->> Our SoC design team has double check with ARM GIC/ITS IP team for many
->> times, and the GITS_CBASER
->> of GIC600 IP does not support hardware bind or config to a fix value, so
->> they insist this is an IP
->> limitation instead of a SoC bug, software should take  care of it :(
->> I will check again if we can provide errata for this issue.
-> Thanks. This is necessary as the mbi-alias provides an imperfect
-> implementation of the ITS and causes certain PCIe cards (eg x520 Intel
-> 10G NIC) to misbehave.
+On Fri, Feb 18, 2022 at 11:57 PM Harry Wentland <harry.wentland@amd.com> wrote:
 >
->>> Please provide an answer to the errata of the PCIe controller, in
->>> regard to cache snooping and buffering, for both the rk356x and the
->>> upcoming rk3588.
->>
->> Sorry, what is this?
-> Part of the ITS bug is it expects to be cache coherent with the CPU
-> cluster by design.
-> Due to the rk356x being implemented without an outer accessible cache,
-> the ITS and other devices that require cache coherency (PCIe for
-> example) crash in fun ways.
-Then this is still the ITS issue, not PCIe issue.
-PCIe is a peripheral bus controller like USB and other device, the 
-driver should maintain the "cache coherency" if there is any, and there 
-is no requirement for hardware cache coherency between PCIe and CPU.
-We didn't see any transfer error on rk356x PCIe till now, we can take a 
-look if it's easy to reproduce.
-
-Thanks,
-- Kever
-
-
-> This means that rk356x cannot implement a specification compliant ITS or PCIe.
-> >From the rk3588 source dump it appears it was produced without an
-> outer accessible cache, which means if true it also will be unable to
-> use any PCIe cards that implement cache coherency as part of their
-> design.
+> On 2022-02-18 07:12, Simon Ser wrote:
+> > On Friday, February 18th, 2022 at 12:54, Hans de Goede <hdegoede@redhat.com> wrote:
+> >
+> >> On 2/18/22 12:39, Simon Ser wrote:
+> >>> On Friday, February 18th, 2022 at 11:38, Hans de Goede <hdegoede@redhat.com> wrote:
+> >>>
+> >>>> What I'm reading in the above is that it is being considered to allow
+> >>>> changing the panel-orientation value after the connector has been made
+> >>>> available to userspace; and let userspace know about this through a uevent.
+> >>>>
+> >>>> I believe that this is a bad idea, it is important to keep in mind here
+> >>>> what userspace (e.g. plymouth) uses this prorty for. This property is
+> >>>> used to rotate the image being rendered / shown on the framebuffer to
+> >>>> adjust for the panel orientation.
+> >>>>
+> >>>> So now lets assume we apply the correct upside-down orientation later
+> >>>> on a device with an upside-down mounted LCD panel. Then on boot the
+> >>>> following could happen:
+> >>>>
+> >>>> 1. amdgpu exports a connector for the LCD panel to userspace without
+> >>>> setting panel-orient=upside-down
+> >>>> 2. plymouth sees this and renders its splash normally, but since the
+> >>>> panel is upside-down it will now actually show upside-down
+> >>>
+> >>> At this point amdgpu hasn't probed the connector yet. So the connector
+> >>> will be marked as disconnected, and plymouth shouldn't render anything.
+> >>
+> >> If before the initial probe of the connector there is a /dev/dri/card0
+> >> which plymouth can access, then plymouth may at this point decide
+> >> to disable any seemingly unused crtcs, which will make the screen go black...
+> >>
+> >> I'm not sure if plymouth will actually do this, but AFAICT this would
+> >> not be invalid behavior for a userspace kms consumer to do and I
+> >> believe it is likely that mutter will disable unused crtcs.
+> >>
+> >> IMHO it is just a bad idea to register /dev/dri/card0 with userspace
+> >> before the initial connector probe is done. Nothing good can come
+> >> of that.
+> >>
+> >> If all the exposed connectors initially are going to show up as
+> >> disconnected anyways what is the value in registering /dev/dri/card0
+> >> with userspace early ?
+> >
+> > OK. I'm still unsure how I feel about this, but I think I agree with
+> > you. That said, the amdgpu architecture is quite involved with multiple
+> > abstraction levels, so I don't think I'm equipped to write a patch to
+> > fix this...
+> >
 >
->>
->> Thanks,
->> - Kever
->>> [1] https://github.com/JeffyCN/mirrors/commit/0b985f29304dcb9d644174edacb67298e8049d4f
->>> [2] https://lore.kernel.org/lkml/871rbdt4tu.wl-maz@kernel.org/T/
->>> [3] https://cdn.discordapp.com/attachments/926487797844541510/953414755970850816/unknown.png
->>> [4] https://cdn.discordapp.com/attachments/926487797844541510/953424952042852422/unknown.png
->>>
->>> Thank you everyone for your time.
->>>
->>> Very Respectfully,
->>> Peter Geis
->>>
->>> On Wed, May 26, 2021 at 7:21 AM Christian König
->>> <christian.koenig@amd.com> wrote:
->>>> Hi Robin,
->>>>
->>>> Am 26.05.21 um 12:59 schrieb Robin Murphy:
->>>>> On 2021-05-26 10:42, Christian König wrote:
->>>>>> Hi Robin,
->>>>>>
->>>>>> Am 25.05.21 um 22:09 schrieb Robin Murphy:
->>>>>>> On 2021-05-25 14:05, Alex Deucher wrote:
->>>>>>>> On Tue, May 25, 2021 at 8:56 AM Peter Geis <pgwipeout@gmail.com>
->>>>>>>> wrote:
->>>>>>>>> On Tue, May 25, 2021 at 8:47 AM Alex Deucher
->>>>>>>>> <alexdeucher@gmail.com> wrote:
->>>>>>>>>> On Tue, May 25, 2021 at 8:42 AM Peter Geis <pgwipeout@gmail.com>
->>>>>>>>>> wrote:
->>>>>>>>>>> Good Evening,
->>>>>>>>>>>
->>>>>>>>>>> I am stress testing the pcie controller on the rk3566-quartz64
->>>>>>>>>>> prototype SBC.
->>>>>>>>>>> This device has 1GB available at <0x3 0x00000000> for the PCIe
->>>>>>>>>>> controller, which makes a dGPU theoretically possible.
->>>>>>>>>>> While attempting to light off a HD7570 card I manage to get a
->>>>>>>>>>> modeset
->>>>>>>>>>> console, but ring0 test fails and disables acceleration.
->>>>>>>>>>>
->>>>>>>>>>> Note, we do not have UEFI, so all PCIe setup is from the Linux
->>>>>>>>>>> kernel.
->>>>>>>>>>> Any insight you can provide would be much appreciated.
->>>>>>>>>> Does your platform support PCIe cache coherency with the CPU?  I.e.,
->>>>>>>>>> does the CPU allow cache snoops from PCIe devices?  That is required
->>>>>>>>>> for the driver to operate.
->>>>>>>>> Ah, most likely not.
->>>>>>>>> This issue has come up already as the GIC isn't permitted to snoop on
->>>>>>>>> the CPUs, so I doubt the PCIe controller can either.
->>>>>>>>>
->>>>>>>>> Is there no way to work around this or is it dead in the water?
->>>>>>>> It's required by the pcie spec.  You could potentially work around it
->>>>>>>> if you can allocate uncached memory for DMA, but I don't think that is
->>>>>>>> possible currently.  Ideally we'd figure out some way to detect if a
->>>>>>>> particular platform supports cache snooping or not as well.
->>>>>>> There's device_get_dma_attr(), although I don't think it will work
->>>>>>> currently for PCI devices without an OF or ACPI node - we could
->>>>>>> perhaps do with a PCI-specific wrapper which can walk up and defer
->>>>>>> to the host bridge's firmware description as necessary.
->>>>>>>
->>>>>>> The common DMA ops *do* correctly keep track of per-device coherency
->>>>>>> internally, but drivers aren't supposed to be poking at that
->>>>>>> information directly.
->>>>>> That sounds like you underestimate the problem. ARM has unfortunately
->>>>>> made the coherency for PCI an optional IP.
->>>>> Sorry to be that guy, but I'm involved a lot internally with our
->>>>> system IP and interconnect, and I probably understand the situation
->>>>> better than 99% of the community ;)
->>>> I need to apologize, didn't realized who was answering :)
->>>>
->>>> It just sounded to me that you wanted to suggest to the end user that
->>>> this is fixable in software and I really wanted to avoid even more
->>>> customers coming around asking how to do this.
->>>>
->>>>> For the record, the SBSA specification (the closet thing we have to a
->>>>> "system architecture") does require that PCIe is integrated in an
->>>>> I/O-coherent manner, but we don't have any control over what people do
->>>>> in embedded applications (note that we don't make PCIe IP at all, and
->>>>> there is plenty of 3rd-party interconnect IP).
->>>> So basically it is not the fault of the ARM IP-core, but people are just
->>>> stitching together PCIe interconnect IP with a core where it is not
->>>> supposed to be used with.
->>>>
->>>> Do I get that correctly? That's an interesting puzzle piece in the picture.
->>>>
->>>>>> So we are talking about a hardware limitation which potentially can't
->>>>>> be fixed without replacing the hardware.
->>>>> You expressed interest in "some way to detect if a particular platform
->>>>> supports cache snooping or not", by which I assumed you meant a
->>>>> software method for the amdgpu/radeon drivers to call, rather than,
->>>>> say, a website that driver maintainers can look up SoC names on. I'm
->>>>> saying that that API already exists (just may need a bit more work).
->>>>> Note that it is emphatically not a platform-level thing since
->>>>> coherency can and does vary per device within a system.
->>>> Well, I think this is not something an individual driver should mess
->>>> with. What the driver should do is just express that it needs coherent
->>>> access to all of system memory and if that is not possible fail to load
->>>> with a warning why it is not possible.
->>>>
->>>>> I wasn't suggesting that Linux could somehow make coherency magically
->>>>> work when the signals don't physically exist in the interconnect - I
->>>>> was assuming you'd merely want to do something like throw a big
->>>>> warning and taint the kernel to help triage bug reports. Some drivers
->>>>> like ahci_qoriq and panfrost simply need to know so they can program
->>>>> their device to emit the appropriate memory attributes either way, and
->>>>> rely on the DMA API to hide the rest of the difference, but if you
->>>>> want to treat non-coherent use as unsupported because it would require
->>>>> too invasive changes that's fine by me.
->>>> Yes exactly that please. I mean not sure how panfrost is doing it, but
->>>> at least the Vulkan userspace API specification requires devices to have
->>>> coherent access to system memory.
->>>>
->>>> So even if I would want to do this it is simply not possible because the
->>>> application doesn't tell the driver which memory is accessed by the
->>>> device and which by the CPU.
->>>>
->>>> Christian.
->>>>
->>>>> Robin.
->> _______________________________________________
->> Linux-rockchip mailing list
->> Linux-rockchip@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> amdgpu_dm's connector registration already triggers a detection. See the
+> calls to dc_link_detect and amdgpu_dm_update_connector_after_detect in
+> amdgpu_dm_initialize_drm_device.
+>
+> dc_link_detect is supposed to read the edid via
+> dm_helpers_read_local_edid and amdgpu_dm_update_connector_after_detect
+> will update the EDID on the connector via a
+> drm_connector_update_edid_property call.
+>
+> This all happens at driver load.
+>
+> I don't know why you're seeing the embedded connector as disconnected
+> unless the DP-MIPI bridge for some reason doesn't indicate that the panel
+> is connected at driver load.
+>
+> Harry
+>
+> > cc Daniel Vetter: can you confirm probing all connectors is a good thing
+> > to do on driver module load?
+> >
+> >>>> I guess the initial modeline is inherited from the video-bios, but
+> >>>> what about the physical size? Note that you cannot just change the
+> >>>> physical size later either, that gets used to determine the hidpi
+> >>>> scaling factor in the bootsplash, and changing that after the initial
+> >>>> bootsplash dislay will also look ugly
+> >>>>
+> >>>> b) Why you need the edid for the panel-orientation property at all,
+> >>>> typically the edid prom is part of the panel and the panel does not
+> >>>> know that it is mounted e.g. upside down at all, that is a property
+> >>>> of the system as a whole not of the panel as a standalone unit so
+> >>>> in my experience getting panel-orient info is something which comes
+> >>>> from the firmware /video-bios not from edid ?
+> >>>
+> >>> This is an internal DRM thing. The orientation quirks logic uses the
+> >>> mode size advertised by the EDID.
+> >>
+> >> The DMI based quirking does, yes. But e.g. the quirk code directly
+> >> reading this from the Intel VBT does not rely on the mode.
+> >>
+> >> But if you are planning on using a DMI based quirk for the steamdeck
+> >> then yes that needs the mode.
+> >>
+> >> Thee mode check is there for 2 reasons:
+> >>
+> >> 1. To avoid also applying the quirk to external displays, but
+> >> I think that that is also solved in most drivers by only checking for
+> >> a quirk at all on the eDP connector
+> >>
+> >> 2. Some laptop models ship with different panels in different badges
+> >> some of these are portrait (so need a panel-orient) setting and others
+> >> are landscape.
+> >
+> > That makes sense. So yeah the EDID mode based matching logic needs to
+> > stay to accomodate for these cases.
+> >
+> >>> I agree that at least in the Steam
+> >>> Deck case it may not make a lot of sense to use any info from the
+> >>> EDID, but that's needed for the current status quo.
+> >>
+> >> We could extend the DMI quirk mechanism to allow quirks which don't
+> >> do the mode check, for use on devices where we can guarantee neither
+> >> 1 nor 2 happens, then amdgpu could call the quirk code early simply
+> >> passing 0x0 as resolution.
+> >
+> > Yeah. But per the above amdgpu should maybe probe connectors on module
+> > load. If/when amdgpu is fixed to do this, then we don't need to disable
+> > the mode matching logic in panel-orientation quirks anymore.
+>
+
+Hi all,
+
+Thanks for all of the discussion. I'm not sure about how amd drm
+works, but for some SoC, the panel orientation is set in panel[1].
+The goal of this patch is to separate the property creation, so some
+drm can optionally create it earlier before drm_dev_register().
+
+I've sent the v9 to address some issues in v8, but the basic idea is
+still the same. It has no effect to
+drm_connector_set_panel_orientation_with_quirk() used in amdgpu and
+i915, they work the same as before. Do you think this is reasonable?
+
+[1]  https://elixir.bootlin.com/linux/v5.17-rc7/source/drivers/gpu/drm/panel/panel-edp.c#L556
