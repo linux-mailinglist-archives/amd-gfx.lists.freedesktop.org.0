@@ -2,117 +2,83 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFCA84E2523
-	for <lists+amd-gfx@lfdr.de>; Mon, 21 Mar 2022 12:21:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79E1A4E2702
+	for <lists+amd-gfx@lfdr.de>; Mon, 21 Mar 2022 13:55:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2774710E1AA;
-	Mon, 21 Mar 2022 11:21:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94D2A10E2A1;
+	Mon, 21 Mar 2022 12:55:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2077.outbound.protection.outlook.com [40.107.236.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B30110E1AA
- for <amd-gfx@lists.freedesktop.org>; Mon, 21 Mar 2022 11:21:46 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=g6I5KAPVSGfMXjaLkwoalIR6uCrPXKRWG8W8ayJ2fPsPVBKUqdsv1SOuHgILyTL60X0uvf1ogJfdWlxYj4AYZj+UY7/7PEFkD0FIpIUgffflSd3/0g5PwG1mtAMLODkkIk7gf3Ah0rz2JBXhObTsZr5KxV8uJbvddyTkDCSwCztKbY2lHsiOSUNG+uYN6owd3kyw6UQAIW6Zq8gvRzz9NxkTmFttJAg+ByoAB62m/75S/gvH/Zry3mX7Z30JzXvd+zwKplxPTyI4JlMinA4PfT0PtX+UFdbnoLfsS4TPJGz5eTZfhC7qlgcYo+O6w82Ju8qQ6yHIdhfeZUspso4pRg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S3KxNwiOqG/oBtp6jrXKBJjJ5rBzI9EZWEfedGSnbs8=;
- b=ZOOwv/42IEwaHMDJ3+GZMhHFMxn8f3fsXNvZXmUocQdE7M7V/u44dvdMj7NSSixmfGgDv3IBnVgkCcsY0GqyAF7QBKpIyDHG/0wB+RcSccAVeTXH8Wvpd4PKmwgDYFvzvzMRqYgHY83IDStiio5DsUWojXtCJM0RpOyV1TbdEzk2DQ9qINhQEVoI0KIZGxh7ava/NuXZZ6i7OVaCUIom1sfGD/I88QtzfSwg4KeXmADani/SrPv71Jd9/rZZmKe4YrDYIMN4fLDKYEpRr3XlFvjFoIWcmXq7pcioeywcmPReNiUdKb7fZK6b9iScJ7VNWhkjBZCn2CagQ83BK6otAA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S3KxNwiOqG/oBtp6jrXKBJjJ5rBzI9EZWEfedGSnbs8=;
- b=G/BMvVOpt89F9YJkuAqeIcaLhGhd3tb93eqNea3mCb3PhiladcIG4ExBnpXOB39DYSmq+RY7gMj8LRQhVmY6v3GWJqkP5NYtPWMrrVBVnHrbj83WHMsq7NUgxiGxzh9RWAuOLE7QnuHijHwkW/5jVZcFgkjg5JOwY9Olw2rmZ6U=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BYAPR12MB4614.namprd12.prod.outlook.com (2603:10b6:a03:a6::22)
- by CY4PR12MB1573.namprd12.prod.outlook.com (2603:10b6:910:d::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.17; Mon, 21 Mar
- 2022 11:21:43 +0000
-Received: from BYAPR12MB4614.namprd12.prod.outlook.com
- ([fe80::d851:76d6:b1e6:4a06]) by BYAPR12MB4614.namprd12.prod.outlook.com
- ([fe80::d851:76d6:b1e6:4a06%5]) with mapi id 15.20.5081.022; Mon, 21 Mar 2022
- 11:21:43 +0000
-Message-ID: <25fe0aa1-aec0-4dc1-0238-24dc496f3528@amd.com>
-Date: Mon, 21 Mar 2022 16:51:28 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH] drm/amdkfd: print unmap queue status for RAS poison
- consumption (v2)
-Content-Language: en-US
-To: Tao Zhou <tao.zhou1@amd.com>, amd-gfx@lists.freedesktop.org,
- hawking.zhang@amd.com, Felix.Kuehling@amd.com, stanley.yang@amd.com,
- yipeng.chai@amd.com
-References: <20220321093818.24270-1-tao.zhou1@amd.com>
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <20220321093818.24270-1-tao.zhou1@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BM1PR0101CA0003.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:b00:18::13) To BYAPR12MB4614.namprd12.prod.outlook.com
- (2603:10b6:a03:a6::22)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B933F10E294
+ for <amd-gfx@lists.freedesktop.org>; Mon, 21 Mar 2022 11:53:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1647863591;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ESVGJuk8lCQmgWQ1odylDolWMwEV6r0zet9lKX1Kekw=;
+ b=gU7ttwjGgy10gj0FOJNHoeUbOnvFN5zIKndHduN6fYB0jGG2yKrHhu43qMTv8OVu5EeIMs
+ +gp7ns7VHnit9B09yRWpvrjp1RLrVHMujIUOfwnb7sZ37VBzZO55CqHpWpt/f6k27urWOs
+ 56O2iAwbcjVws2wDA9xtJz9mEYoRoR8=
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
+ [209.85.208.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-621-Nqlu-D5qOu-fLVQUOnsjpw-1; Mon, 21 Mar 2022 07:53:09 -0400
+X-MC-Unique: Nqlu-D5qOu-fLVQUOnsjpw-1
+Received: by mail-ed1-f72.google.com with SMTP id
+ f2-20020a50d542000000b00418ed3d95d8so7826048edj.11
+ for <amd-gfx@lists.freedesktop.org>; Mon, 21 Mar 2022 04:53:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=ESVGJuk8lCQmgWQ1odylDolWMwEV6r0zet9lKX1Kekw=;
+ b=CaAVbaWJTUe94IrC6LCPQv2Wx/wP9dYgA1d6DX5t74/aWXw6PCZIg+x3ji45u//8yv
+ 0qFpEwKkp2tIE1WzWjNXvhr65acbk+/qIak/wh30YDQ91ORkVSJh9n7+flpZTwvdcM3p
+ NgeCnuAQ7iJOYGLo6NbYoiuYVIZJ1XIXFbMU5mKGzOz+hJTEdERiJF6wTyrguwDx7cXm
+ iyLq/KMVbvTdBEMB6E/EnmTVCG49nPpJhdSzSV2KceBwIG+iVzOz5ZsY8OfoXFWRNWmv
+ ueGAaBIOu5XBsylWEHACcOBFbrhR29c3YX2HY9D6GbSdi003ZfW5AdcyKuhv+8phlyvd
+ Ap3g==
+X-Gm-Message-State: AOAM531wkHBs2WE6s4yiQmZcS6pgQ6bR0C+z4zfQRw8mBPGT5wUXAU3h
+ NlZtAtFQiTCn+dSeSLyOPyoVYyjO1o2FzOgzz8hOOsDqTEMrViF3+/3qGkaCoTvxKzLXA9UjbYU
+ NybPAqa6SOddRTjMVcGL/3ILF2Q==
+X-Received: by 2002:a17:907:2d06:b0:6e0:2ec:c7bd with SMTP id
+ gs6-20020a1709072d0600b006e002ecc7bdmr5461678ejc.656.1647863587662; 
+ Mon, 21 Mar 2022 04:53:07 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzoI7zowWLm9+Xl2bWtVHyxCQJsEj3lUz5pheYXqdXDQ2sfdQhKLYK0bSqq9yzSYujnBbnc1Q==
+X-Received: by 2002:a17:907:2d06:b0:6e0:2ec:c7bd with SMTP id
+ gs6-20020a1709072d0600b006e002ecc7bdmr5461638ejc.656.1647863587311; 
+ Mon, 21 Mar 2022 04:53:07 -0700 (PDT)
+Received: from [10.40.98.142] ([78.108.130.194])
+ by smtp.gmail.com with ESMTPSA id
+ c5-20020a170906d18500b006ce371f09d4sm6730138ejz.57.2022.03.21.04.53.06
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 21 Mar 2022 04:53:06 -0700 (PDT)
+Message-ID: <b3a4882f-8f50-b32c-5405-0a065c72fa94@redhat.com>
+Date: Mon, 21 Mar 2022 12:53:06 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 725dd3c3-0724-4510-8b34-08da0b2cfa48
-X-MS-TrafficTypeDiagnostic: CY4PR12MB1573:EE_
-X-Microsoft-Antispam-PRVS: <CY4PR12MB1573EB4477B7C07C5E94B18897169@CY4PR12MB1573.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UBHI8PWiy9E9ERvMJSVDF2xiSIqk8c6xDOPzK7Yrjpn2SUTzrAiohxICrPk5tr3kP0oSFupTVMTNi05H/1C3PzeCZqnd1pbHjwZTcxRdNSn+/pcGgMHjZ8wP3EB8q6sczCytcafKkVcnzHVbMHFEfVnQyQmwqyPiXzn5AEXBWlNBY6uOZKFMFMqq9E1k3skswE6WKerFrZ8aD+4xQAkqiwgvoyaopT7oPalT4s+3u77DzCXajp/mxPi+uYd7jqXSavar0ZnGt1SisFgLUpdjVuqTwH/GLfDtL7H0v4vqM0dKrxWeWdJf5k1KOpAM5kiik97cUQno0opUn6JUIQMcUKiIT63z4ltLpG0ptcyX1Z/AEIdlFV4MWYKiGpwZa4vRisDhL1LU4nVotvH8hcYg+yG/6h+0UVaf/oNdrf2wF3uysTxyB8fEnbj3BznoIyI+N+Q2ErHN5yDu7+SmPajFhJrRupWO0DPH6o51A5rzRbLhw+DCtl1U+Ct0penrQoM5PHBdmfjnl3PjXvOqEhX5iQk4qDI1bu5tZUuz2pOVfACppOJv60ApvqRLsygXoSHNyW73VVfbo7UnGObsDl52hLDnyFunIlMGme7vzRClyHRj6tsBgg61/aDOWZctVrMfZGCpOb740sPetAHE/yi/nAInLPDV2Phe7/MxpBe3JQFlLtRa64fPWepqPrNpvJrGQhi8wopfA9UHclBodcvZLd3HcC2E38oECN/JXgsX8tY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR12MB4614.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(4636009)(366004)(6636002)(316002)(6506007)(2616005)(83380400001)(6666004)(6512007)(186003)(26005)(53546011)(31696002)(86362001)(508600001)(36756003)(66556008)(2906002)(66476007)(66946007)(8936002)(5660300002)(31686004)(8676002)(6486002)(38100700002)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WGxiMVZ0T0hoSlpCczk5WWNYQy9kZzdUMC9mS3JmMlpMdTdyR21GNm1RcWRl?=
- =?utf-8?B?NXBoUGxvdWtUZWlQVFFaWGdHOHBQMk12VC92ZjJ1aTVwZ05VcnJSbys5NkEy?=
- =?utf-8?B?dzZSR1I0TzJ6cmZuR1R5bjBkYllONlNFS3hXOWtuaDlVejEvVUpUMDUvWGlD?=
- =?utf-8?B?RlN0T2RBUzZ4Vk45dXpMNHdIZ3pRZXB0dlBycHM4RzdHSlFtUk84dUZubHFo?=
- =?utf-8?B?K0R1NUwzd0MvMUIwUjhwcFgvUnhxdmF5MGtvZjVtenIwUy9DejhiRExOU0lZ?=
- =?utf-8?B?TjhkSGdmSm5Gb0ZmdWFFOEhuZlNhMXI4NlZlM1kzeEFaK0VNbHZIc1cwTFUr?=
- =?utf-8?B?alU3RFE3STVhU1FKbXc3bVZCWnBMbStnOVlHYkFrSnZ4MkhNUG01TS85RS94?=
- =?utf-8?B?elRob3NPQy9YNmlCcE9mT3V4bzIzOHJmV0tnZ0lRb2Uxa0lHTkpSRTlVOER1?=
- =?utf-8?B?RDB2enpMUVVnQlVoVHZrNG52OXNRVTFad0ppYWN1eHN0bThpUnh4dkx1NE5j?=
- =?utf-8?B?cTc0cmczdXEwUTR3a3ZZL1FReTVGc3Fqb1hIeXA4YjdtN0tTMjM1MEF6TG9D?=
- =?utf-8?B?aUtYNHhUZXp1clFKTmhRMlFxWTkvUHp4WlJHK2ZvbkwyZkZPM0VoOEFPSllm?=
- =?utf-8?B?WlVOeTVUQXE3WjVLZzNFcU1vemtsS2F2WDliS2kvbXFmQnoxM05EWmtKaGRz?=
- =?utf-8?B?aENqVzQvZEhYNnd2WURMclEvSm9uN0JpTGNNUDM5SXlJM2owN0JTRmt1TExX?=
- =?utf-8?B?QlNuWk1zM3N4WklpOVh4ZGVPZ3I2OXdoQjhoNmplVStmMWdwSnlCaDF6bVdw?=
- =?utf-8?B?R0xPLzVBVmY5Y3hXZVBZWmczZXl6dGpvZVFTdEk2b0l0c1BmejdlL1F3OC9n?=
- =?utf-8?B?dllobE8yQjVTbXRIcXVsbWo4NG1LTERQM3VIZTBEMmp3SmRMekxaYnBRRVFF?=
- =?utf-8?B?VEtJbC9vT3IvUGg4STVvcnovaVhLTm1MNDNDdnViWHNtMDA2TXJRZkJCRXJx?=
- =?utf-8?B?U2c2eFJKUFc5VXdNYXlLY3lRTGl5UUR3N0FwWW52dnFPZDVRaDVCUTl6SkRG?=
- =?utf-8?B?QXRCNzZzUVVjZS9rRkVrMmFnNU16bWJJMWQ1Zk1kZk0zK3pjbkRvT0NZeWVu?=
- =?utf-8?B?bC9nWnZhdVdhUm4wSFJpRGM0U3k4WTE0cUQ0ZXY0aWhpN01XbHE0MFJzdjBV?=
- =?utf-8?B?Z0RZSWpnbUc3ZmdvbEZEc2RQcUJvTWtOVnk2STVEYldNb2J3Yk5uR2hLUVp0?=
- =?utf-8?B?ZHBWbmN2TEd2SDloR1FSVjVNUnZvMHJOcWJUdUlLOVE3U1pSNStqcFhKeFRi?=
- =?utf-8?B?TkV3eDVkOE9SVjlyM2ZSNVFmelhKMzZBY3NkODdBRXJ4Um10QVphVVBldzAw?=
- =?utf-8?B?bFhtL1c0OW9OeFhvWFdQVTVSNS9ZeXJZQzFWblRKTHY1SUFORGtSb01HOWUz?=
- =?utf-8?B?elVnOHJVSExFVHhGQ1ZyMTI0Y2RMSE4xQmhscTFzRXlFNjRRTzBVSWhtVUJZ?=
- =?utf-8?B?RU9YVWM4cUJTbFlpUnM1VzNEbnlEekNLL2Z2SkViNFU2RCtETEpjZEU5cHBP?=
- =?utf-8?B?V1o2T1UvcEN4OXVGbzVhazdUNDN2UTZuMWRqUUt3UVBXRzRlakZlTS9uN0F1?=
- =?utf-8?B?UXpBbExaVmI1TWlYU3VwOERwZS96RDRFckJrcjh0YWQrRHdudGwrSkxoM3l0?=
- =?utf-8?B?bDJXbGIxSGJTV2V5eUZRNDZ1RzBNbmdKblpNRndtdFphZnhLS1RRcmYwVnAr?=
- =?utf-8?B?eTlDYy84aGdIYmw1Q3M4NHlRZkNtbytvRlB0UFJCZ294WkN6T0p6N1Z5bkcw?=
- =?utf-8?B?aTczWXI1N25aWFJ3eXcwaXhITFc3dStQOWdSSk4vZEpucjdFQUlWcksxOWZ1?=
- =?utf-8?B?cnpjbysxUHBYbEVieWtCR0djNzUramhuT0w3UGpTeFRPeGdSQzlpdWhOcEdC?=
- =?utf-8?Q?QMGV0QiEA+HD2UMV7SGtcbsdCOZbBIby?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 725dd3c3-0724-4510-8b34-08da0b2cfa48
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4614.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2022 11:21:43.4996 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: d3wSlpTZccl8v20jjQfylpiCrRLYapfwlaFzsH1FX9oSOXqdVbqC3lrAB8HvklNf
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1573
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Subject: Re: [PATCH v2] drm/amdgpu: Add support for drm_privacy_screen
+To: Rajat Jain <rajatja@google.com>
+References: <20220309150606.1877288-1-sean@poorly.run>
+ <CACK8Z6GsZd5E74ZB9hRHWVov_cE0AfDNFcEvWeJHmtQAf_vz4A@mail.gmail.com>
+ <b71a3775-a7e2-002d-7f2a-9036695eb172@redhat.com>
+ <CACK8Z6E+xuwHHcyG6AFA6_bSEhDH=QkSw0GG1RKvyMUVYkjRYw@mail.gmail.com>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <CACK8Z6E+xuwHHcyG6AFA6_bSEhDH=QkSw0GG1RKvyMUVYkjRYw@mail.gmail.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 21 Mar 2022 12:55:51 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,61 +90,266 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: David Airlie <airlied@linux.ie>, Sean Paul <sean@poorly.run>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ amd-gfx@lists.freedesktop.org, Leo Li <sunpeng.li@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Sean Paul <seanpaul@chromium.org>,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ alexdeucher@gmail.com, harry.wentland@amd.com,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Hi,
 
-
-On 3/21/2022 3:08 PM, Tao Zhou wrote:
-> Print the status out when it passes, and also tell user gpu reset
-> is triggered when we fallback to legacy way.
+On 3/20/22 21:11, Rajat Jain wrote:
+> () Hello Hans, Sean,
 > 
-> v2: make the message more explicitly.
 > 
-> Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c | 11 +++++++----
->   1 file changed, 7 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c b/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c
-> index 56902b5bb7b6..32c451f21db7 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c
-> @@ -105,8 +105,6 @@ static void event_interrupt_poison_consumption(struct kfd_dev *dev,
->   	if (old_poison)
->   		return;
->   
-> -	pr_warn("RAS poison consumption handling: client id %d\n", client_id);
-> -
->   	switch (client_id) {
->   	case SOC15_IH_CLIENTID_SE0SH:
->   	case SOC15_IH_CLIENTID_SE1SH:
-> @@ -130,10 +128,15 @@ static void event_interrupt_poison_consumption(struct kfd_dev *dev,
->   	/* resetting queue passes, do page retirement without gpu reset
->   	 * resetting queue fails, fallback to gpu reset solution
->   	 */
-> -	if (!ret)
-> +	if (!ret) {
-> +		pr_warn("RAS poison consumption, unmap queue flow succeeds: client id %d\n",
-> +				client_id);
-
-As discussed in another patch, I understand that pr_* is the legacy 
-usage in the file. But it won't be helpful for this case with multiple 
-devices. Would suggest to change to dev_info() - the message here and 
-below seems informational about the handling of this situation rather 
-than warning of something bad.
-
-Thanks,
-Lijo
-
->   		amdgpu_amdkfd_ras_poison_consumption_handler(dev->adev, false);
-> -	else
-> +	} else {
-> +		pr_warn("RAS poison consumption, fallback to gpu reset flow: client id %d\n",
-> +				client_id);
->   		amdgpu_amdkfd_ras_poison_consumption_handler(dev->adev, true);
-> +	}
->   }
->   
->   static bool event_interrupt_isr_v9(struct kfd_dev *dev,
+> On Fri, Mar 11, 2022 at 4:12 AM Hans de Goede <hdegoede@redhat.com> wrote:
+>>
+>> Hi All,
+>>
+>> On 3/9/22 18:53, Rajat Jain wrote:
+>>> On Wed, Mar 9, 2022 at 7:06 AM Sean Paul <sean@poorly.run> wrote:
+>>>>
+>>>> From: Sean Paul <seanpaul@chromium.org>
+>>>>
+>>>> This patch adds the necessary hooks to make amdgpu aware of privacy
+>>>> screens. On devices with privacy screen drivers (such as thinkpad-acpi),
+>>>> the amdgpu driver will defer probe until it's ready and then sync the sw
+>>>> and hw state on each commit the connector is involved and enabled.
+>>>>
+>>>> Changes in v2:
+>>>> -Tweaked the drm_privacy_screen_get() error check to avoid logging
+>>>>  errors when privacy screen is absent (Hans)
+>>>>
+>>>> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+>>>> Link: https://patchwork.freedesktop.org/patch/477640/ #v1
+>>>> ---
+>>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c          |  9 +++++++++
+>>>>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c    |  3 +++
+>>>>  .../amd/display/amdgpu_dm/amdgpu_dm_mst_types.c  | 16 +++++++++++++++-
+>>>>  3 files changed, 27 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+>>>> index 2ab675123ae3..e2cfae56c020 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+>>>> @@ -26,6 +26,7 @@
+>>>>  #include <drm/drm_aperture.h>
+>>>>  #include <drm/drm_drv.h>
+>>>>  #include <drm/drm_gem.h>
+>>>> +#include <drm/drm_privacy_screen_consumer.h>
+>>>>  #include <drm/drm_vblank.h>
+>>>>  #include <drm/drm_managed.h>
+>>>>  #include "amdgpu_drv.h"
+>>>> @@ -1988,6 +1989,7 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
+>>>>  {
+>>>>         struct drm_device *ddev;
+>>>>         struct amdgpu_device *adev;
+>>>> +       struct drm_privacy_screen *privacy_screen;
+>>>>         unsigned long flags = ent->driver_data;
+>>>>         int ret, retry = 0, i;
+>>>>         bool supports_atomic = false;
+>>>> @@ -2063,6 +2065,13 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
+>>>>         size = pci_resource_len(pdev, 0);
+>>>>         is_fw_fb = amdgpu_is_fw_framebuffer(base, size);
+>>>>
+>>>> +       /* If the LCD panel has a privacy screen, defer probe until its ready */
+>>>> +       privacy_screen = drm_privacy_screen_get(&pdev->dev, NULL);
+>>>> +       if (IS_ERR(privacy_screen) && PTR_ERR(privacy_screen) == -EPROBE_DEFER)
+>>>> +               return -EPROBE_DEFER;
+>>>> +
+>>>> +       drm_privacy_screen_put(privacy_screen);
+>>>> +
+>>>>         /* Get rid of things like offb */
+>>>>         ret = drm_aperture_remove_conflicting_pci_framebuffers(pdev, &amdgpu_kms_driver);
+>>>>         if (ret)
+>>>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>>>> index e1d3db3fe8de..9e2bb6523add 100644
+>>>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>>>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>>>> @@ -9781,6 +9781,9 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
+>>>>                 if (acrtc) {
+>>>>                         new_crtc_state = drm_atomic_get_new_crtc_state(state, &acrtc->base);
+>>>>                         old_crtc_state = drm_atomic_get_old_crtc_state(state, &acrtc->base);
+>>>> +
+>>>> +                       /* Sync the privacy screen state between hw and sw */
+>>>> +                       drm_connector_update_privacy_screen(new_con_state);
+>>>>                 }
+>>>>
+>>>>                 /* Skip any modesets/resets */
+>>>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+>>>> index 740435ae3997..594a8002975a 100644
+>>>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+>>>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+>>>> @@ -27,6 +27,7 @@
+>>>>  #include <drm/drm_atomic_helper.h>
+>>>>  #include <drm/dp/drm_dp_mst_helper.h>
+>>>>  #include <drm/dp/drm_dp_helper.h>
+>>>> +#include <drm/drm_privacy_screen_consumer.h>
+>>>>  #include "dm_services.h"
+>>>>  #include "amdgpu.h"
+>>>>  #include "amdgpu_dm.h"
+>>>> @@ -506,6 +507,7 @@ void amdgpu_dm_initialize_dp_connector(struct amdgpu_display_manager *dm,
+>>>>                                        struct amdgpu_dm_connector *aconnector,
+>>>>                                        int link_index)
+>>>>  {
+>>>> +       struct drm_device *dev = dm->ddev;
+>>>>         struct dc_link_settings max_link_enc_cap = {0};
+>>>>
+>>>>         aconnector->dm_dp_aux.aux.name =
+>>>> @@ -519,8 +521,20 @@ void amdgpu_dm_initialize_dp_connector(struct amdgpu_display_manager *dm,
+>>>>         drm_dp_cec_register_connector(&aconnector->dm_dp_aux.aux,
+>>>>                                       &aconnector->base);
+>>>>
+>>>> -       if (aconnector->base.connector_type == DRM_MODE_CONNECTOR_eDP)
+>>>> +       if (aconnector->base.connector_type == DRM_MODE_CONNECTOR_eDP) {
+>>>> +               struct drm_privacy_screen *privacy_screen)
+>>>> +
+>>>> +               /* Reference given up in drm_connector_cleanup() */
+>>>> +               privacy_screen = drm_privacy_screen_get(dev->dev, NULL);
+>>>
+>>> Can we try to be more specific when looking up for privacy screen, e.g.:
+>>>
+>>> privacy_screen = drm_privacy_screen_get(dev->dev,  "eDP-1");
+>>> (and then also making the corresponding change in arch_init_data[] in
+>>> drm_privacy_screen_x86.c"
+>>
+>> So I just checked and yes I think we can be more specific at least
+>> for the thinkpad_acpi supported models. See the attached patch
+>> which has been tested on a ThinkPad T14 gen 1 with a builtin privacy-screen.
+>>
+>> Rajat, can you adjust the chrome code in drivers/gpu/drm/drm_privacy_screen_x86.c
+>> to match and check that with the chrome code changes, my patch does not break
+>> things on chromebooks? (Note your changes will need to be squashed into the
+>> patch so that we change all of this in one go) .
 > 
+> Thanks, I just confirmed that with a change similar to yours (use
+> "eDP-1"), it works fine on the Intel chromebooks at my end, so feel
+> free to do it:
+
+Ok, I've just send out a patch for this including the changes for the
+Chromebook entry in drivers/gpu/drm/drm_privacy_screen_x86.c .
+
+Note I've modified the changes to drivers/gpu/drm/i915/display/intel_display.c
+intel_modeset_probe_defer() a bit to walk over an array of internal-panel
+connector-names, to make it a bit more future proof.  I expect / hope
+this new version to be better liked by the i915 maintainers.
+
+Regards,
+
+Hans
+
+
+
+> ===================================================
+> diff --git a/drivers/gpu/drm/drm_privacy_screen_x86.c
+> b/drivers/gpu/drm/drm_privacy_screen_x86.c
+> index 88802cd7a1ee..894beefb6628 100644
+> --- a/drivers/gpu/drm/drm_privacy_screen_x86.c
+> +++ b/drivers/gpu/drm/drm_privacy_screen_x86.c
+> @@ -69,7 +69,7 @@ static const struct arch_init_data arch_init_data[]
+> __initconst = {
+>         {
+>                 .lookup = {
+>                         .dev_id = NULL,
+> -                       .con_id = NULL,
+> +                       .con_id = "eDP-1",
+>                         .provider = "privacy_screen-GOOG0010:00",
+>                 },
+>                 .detect = detect_chromeos_privacy_screen,
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
+> b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 1682ace5cd53..2666ba7b5a28 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -4250,7 +4250,7 @@ intel_ddi_init_dp_connector(struct
+> intel_digital_port *dig_port)
+>                 struct drm_device *dev = dig_port->base.base.dev;
+>                 struct drm_privacy_screen *privacy_screen;
+> 
+> -               privacy_screen = drm_privacy_screen_get(dev->dev, NULL);
+> +               privacy_screen = drm_privacy_screen_get(dev->dev,
+> connector->base.name);
+>                 if (!IS_ERR(privacy_screen)) {
+> 
+> drm_connector_attach_privacy_screen_provider(&connector->base,
+> 
+> privacy_screen);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> b/drivers/gpu/drm/i915/display/intel_display.c
+> index 89be498127e4..b2903a55f910 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -13360,7 +13360,7 @@ bool intel_modeset_probe_defer(struct pci_dev *pdev)
+>                 return true;
+> 
+>         /* If the LCD panel has a privacy-screen, wait for it */
+> -       privacy_screen = drm_privacy_screen_get(&pdev->dev, NULL);
+> +       privacy_screen = drm_privacy_screen_get(&pdev->dev, "eDP-1");
+>         if (IS_ERR(privacy_screen) && PTR_ERR(privacy_screen) == -EPROBE_DEFER)
+>                 return true;
+>  =================================================
+> 
+> I found it a little surprising though. From what I remembered from my
+> early venture, was that connector->base.name did not get filled in at
+> the time intel_ddi_init_dp_connector() was called, but I guess I was
+> remembering it wrong.
+> 
+>>
+>> Sean, same request to you, can you adjust your amdgpu patch to match
+>> the i915 changes in the attached patch and then check if a kernel
+>> with both changes still works ?
+> 
+> Defer to Sean since I do not have the AMD chromebook to test.
+> 
+> Thanks & Best Regards,
+> 
+> Rajat
+> 
+>>
+>> Regards,
+>>
+>> Hans
+>>
+>>
+>>
+>>>
+>>> My comment applies to this driver as well as to i915. The reason being
+>>> today there is only 1 internal display with privacy screen so we can
+>>> just assume that there shall be only 1 privacy-screen and that shall
+>>> apply to eDP-1/internal display. But dual display systems are not far
+>>> enough out, and perhaps external monitors with inbuilt
+>>> privacy-screens?
+>>>
+>>> Essentially the gap today is that today on Chromeos ACPI side, the
+>>> device GOOG0010 represents the privacy-screen attached to the internal
+>>> display/eDP-1, but there isn't a way to make it clear in the i915 and
+>>> now amdgpu code.
+>>>
+>>> Thanks,
+>>>
+>>> Rajat
+>>>
+>>>
+>>>> +               if (!IS_ERR(privacy_screen)) {
+>>>> +                       drm_connector_attach_privacy_screen_provider(&aconnector->base,
+>>>> +                                                                    privacy_screen);
+>>>> +               } else if (PTR_ERR(privacy_screen) != -ENODEV) {
+>>>> +                       drm_err(dev, "Error getting privacy screen, ret=%d\n",
+>>>> +                               PTR_ERR(privacy_screen));
+>>>> +               }
+>>>>                 return;
+>>>> +       }
+>>>>
+>>>>         dc_link_dp_get_max_link_enc_cap(aconnector->dc_link, &max_link_enc_cap);
+>>>>         aconnector->mst_mgr.cbs = &dm_mst_cbs;
+>>>> --
+>>>> Sean Paul, Software Engineer, Google / Chromium OS
+>>>>
+>>>
+> 
+
