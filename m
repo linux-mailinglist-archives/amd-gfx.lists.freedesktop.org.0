@@ -1,54 +1,92 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2F164E5147
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Mar 2022 12:26:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E9044E5196
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Mar 2022 12:49:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2123710E689;
-	Wed, 23 Mar 2022 11:26:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 608F689DF9;
+	Wed, 23 Mar 2022 11:49:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A65A10E689;
- Wed, 23 Mar 2022 11:26:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1648034790; x=1679570790;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=meqZnbbK7B8BK03iyZi+GqOjfSIM7QAQuJAs9z//UCY=;
- b=jJ2WoaqGww2Op/k0gTgNUXdS5Oip0mLFzyWxgBmYT/xTdH5OrPjQYkzm
- qcEgZDAtzIQ88mVLtsUJDjbzZsrsjhWYVppOUw+w0A7+GWzSfFGIMYokv
- 6B11L1RSU9mUVYzdMA/3x14spzR0LieMZLVOzXCqjXTzfv0JlQ1C5D9yc
- McbEEF8MIFYo1Ijle/rgV+QhDqo2pggTn2Bucb6wL5Y288g6db1STC9Qb
- OmghijSfX5Yt/Af6AQzKjthOtwUXKrshGAmtmzsGsDZ/HdMR00NR2I/Y1
- n9WGjso+rnaAkX9TjWU2DpJsYQwYE9k1Fv/ArYDr39PtPVKJgUOxiB8o1 w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10294"; a="238028784"
-X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="238028784"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2022 04:26:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,204,1643702400"; d="scan'208";a="544154191"
-Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
- by orsmga007.jf.intel.com with ESMTP; 23 Mar 2022 04:26:27 -0700
-Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1nWz8E-000K0P-HM; Wed, 23 Mar 2022 11:26:26 +0000
-Date: Wed, 23 Mar 2022 19:26:17 +0800
-From: kernel test robot <lkp@intel.com>
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v11] drm/amdgpu: add drm buddy support to amdgpu
-Message-ID: <202203231911.crbWBIZj-lkp@intel.com>
-References: <20220323062552.228429-1-Arunpravin.PaneerSelvam@amd.com>
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2067.outbound.protection.outlook.com [40.107.243.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 146BA882C2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 23 Mar 2022 11:49:17 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=be4P3TmcEzjeI1lSq5mXP3DCWyJIOWIcAAOddAkYcCTrilIH/0OLolveARockuzvx7Qt5xDEWVuYsKCxfGVox4t7TCUw2PC7VbcPrCi7uuyiFhNF6BwVD5nRbeIWEzndXp4jRodFQ0jB445ROXnnCespVaUMg0JjApIloKMyHphVRhCP7yGk56dl7mZYy5vzC/eqv+CNzsp1RyJwoid/bDMpnDxljFGTlZdng3fFyxPYsLyZoBP0Mv2S/t9Bv5whOB/WFm1mi35VM6Y2U8/BDa2eygSEZOIpU+UpotU6ng3opG6da7mZ+zv4AGyIp8CcImbgoCuRSErHlGt8O2D9zg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=U5Ii1fVO13U36JP23p71luGJfRO0iaU7Qhdz69xW0pk=;
+ b=KTMoIOP2YhAf+qpqJSI0MqPfLypnhU+O0Fje6NnaqGSqZKQZI15xUZYa3b2VBz79MLBwNRS8tkbxfeUEhH7BSoZ3BZWF4YaWHoHWz87Ftll+5rD0g9ce8db49hOUFZhhidgkqmAAdtSE1x0Ox6fyG4g7KFBsUjzbtDhKL8yNoD1NZsPZWkCtCfjUnSfzblcailGvzl9fzx/Ww06rJr6ibSdPOw7Fa5VfNc6PV0o7TAauG5nN+hy6PnRyBN1E3ZrRudJ4KHxJiIdxcwE97+vykWa2u+2ugO50Op+DeJn/mgBBn8UR1cVY/LajlCotUejropp3AJ8JSouoU/c2Hpu5gA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=U5Ii1fVO13U36JP23p71luGJfRO0iaU7Qhdz69xW0pk=;
+ b=FIPUFmhPte38ut56iv9+IDE0jIh8p5ZE2gQQwt0ayMbfbyrdC7MPVRPKLRd5xoi4kgOq6RjmH7YZ+vpqBQrsfbYyjI4y+Xo56Ol863UEwIdbmKSgGhaB76XXEdlHea2yNQ1tN5GPVI/kl19UzYdM3629DycSLduK6k3As0cdcPQ=
+Received: from DS7PR03CA0148.namprd03.prod.outlook.com (2603:10b6:5:3b4::33)
+ by BL1PR12MB5222.namprd12.prod.outlook.com (2603:10b6:208:31e::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.16; Wed, 23 Mar
+ 2022 11:49:15 +0000
+Received: from DM6NAM11FT062.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:3b4::4) by DS7PR03CA0148.outlook.office365.com
+ (2603:10b6:5:3b4::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.17 via Frontend
+ Transport; Wed, 23 Mar 2022 11:49:15 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT062.mail.protection.outlook.com (10.13.173.40) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5102.17 via Frontend Transport; Wed, 23 Mar 2022 11:49:14 +0000
+Received: from pc-32.home (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Wed, 23 Mar
+ 2022 06:49:07 -0500
+From: Luben Tuikov <luben.tuikov@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 0/6] Complete and add dynamic completion to umr
+Date: Wed, 23 Mar 2022 07:48:36 -0400
+Message-ID: <20220323114842.78516-1-luben.tuikov@amd.com>
+X-Mailer: git-send-email 2.35.1.607.gf01e51a7cf
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220323062552.228429-1-Arunpravin.PaneerSelvam@amd.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 33a58ddb-45ec-4017-eae5-08da0cc32796
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5222:EE_
+X-Microsoft-Antispam-PRVS: <BL1PR12MB5222E83968F042109565F77299189@BL1PR12MB5222.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: gU/1uXwKz0A5+TyiABgYw92dzgmtImWwZLkAkDeL6ynq0UbmeyDEJexSg9H0ngG07GRqxreXHEhbaOfJcRz1lgI6EZgQ81IivqvXs777dLCa/9TefayzJOs8XJ8f0bZSpdoI60uNHwMz5b2s4HeGVeXCBgPfURM3ywuRg/YCODkQxBKWraPkvdMF/pc5jISr0KVX8YpOSyplFxZ6VdVzBGngwPsW0C/+Zm93Isw/5HEY/CoLo7ztKEH/pcmGPTmmFbkMqT6vw4Q3cSAlJD4u1M9SeAoZOmlJ0Sy6clwEzE5uZu1a05JLp/sk5tbMddqzv2vGiJ+20P/259Rx2wLa7MlZGlmo7oXGaVpMIYOu2dhUqnen8KHn83lbEXGayLjuUDVLqP0+SktA+MYvTdD24HEY7QBTdFxYF+DTYJo+64YirgivxDCpRh4Izyi6uW1hKRxygumQwbhZpKqdHUG8LaE+sSUOTxPAZzRULZrUV9FzTqgf2sLenr1AZemGcqdjJGxNqlXjOFjpUtRkoqYZhQGZTiJa5teByhL7ITq8RzTRCdPcryaxKfOd3MYdiXRGpREPjVAIn36tPfZY45hWW8McCJu47wiOMIj5QpHudCuMLinkkcyU4giiJUih19Fe/xhlpopjxhchKWT1aK/8AXKoOvLbBbfyesK6wgBn0s9qeOwRv7qTQATqAjN6yFLiz7Zr09Hn73Iaex6zUfIzlA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(6666004)(5660300002)(86362001)(508600001)(186003)(26005)(426003)(336012)(2616005)(1076003)(16526019)(66574015)(82310400004)(36756003)(70206006)(2906002)(70586007)(44832011)(316002)(356005)(8936002)(40460700003)(54906003)(81166007)(6916009)(8676002)(4326008)(47076005)(83380400001)(36860700001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2022 11:49:14.7610 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 33a58ddb-45ec-4017-eae5-08da0cc32796
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT062.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5222
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,76 +98,52 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, christian.koenig@amd.com,
- kbuild-all@lists.01.org, matthew.auld@intel.com,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+Cc: Alex Deucher <Alexander.Deucher@amd.com>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ Luben Tuikov <luben.tuikov@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Tom StDenis <tom.stdenis@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Arunpravin,
+Complete and add dynamic completion to umr.
 
-Thank you for the patch! Yet something to improve:
+Some of the difficulties seen in this work were,
 
-[auto build test ERROR on a678f97326454b60ffbbde6abf52d23997d71a27]
+*) slightly different output of sysfs files depending on the system
+   configuration and the number of controllers in the system.
 
-url:    https://github.com/0day-ci/linux/commits/Arunpravin-Paneer-Selvam/drm-amdgpu-add-drm-buddy-support-to-amdgpu/20220323-142749
-base:   a678f97326454b60ffbbde6abf52d23997d71a27
-config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20220323/202203231911.crbWBIZj-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/5aa85728d353f9bcca7e25e17f800d014d77dee2
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Arunpravin-Paneer-Selvam/drm-amdgpu-add-drm-buddy-support-to-amdgpu/20220323-142749
-        git checkout 5aa85728d353f9bcca7e25e17f800d014d77dee2
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arc SHELL=/bin/bash
+*) Merging of the IP Discovery sysfs discovery mechanism.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+*) The varied and finicky user input strings.
 
-All errors (new ones prefixed by >>):
+This work was tested on two different systems with different ASICs,
+with three distinct configurations, one of which includes two
+different AMD GPU controllers in the same system.
 
-   In file included from drivers/gpu/drm/amd/amdgpu/amdgpu.h:73,
-                    from drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c:29:
->> drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h:29:10: fatal error: amdgpu_vram_mgr.h: No such file or directory
-      29 | #include "amdgpu_vram_mgr.h"
-         |          ^~~~~~~~~~~~~~~~~~~
-   compilation terminated.
---
-   In file included from drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu.h:73,
-                    from drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu11/arcturus_ppt.c:27:
->> drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_ttm.h:29:10: fatal error: amdgpu_vram_mgr.h: No such file or directory
-      29 | #include "amdgpu_vram_mgr.h"
-         |          ^~~~~~~~~~~~~~~~~~~
-   compilation terminated.
---
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dmub/dmub_srv.h:67,
-                    from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:35:
-   drivers/gpu/drm/amd/amdgpu/../display/dmub/inc/dmub_cmd.h: In function 'dmub_rb_flush_pending':
-   drivers/gpu/drm/amd/amdgpu/../display/dmub/inc/dmub_cmd.h:3049:26: warning: variable 'temp' set but not used [-Wunused-but-set-variable]
-    3049 |                 uint64_t temp;
-         |                          ^~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu.h:73,
-                    from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:44:
-   drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_ttm.h: At top level:
->> drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_ttm.h:29:10: fatal error: amdgpu_vram_mgr.h: No such file or directory
-      29 | #include "amdgpu_vram_mgr.h"
-         |          ^~~~~~~~~~~~~~~~~~~
-   compilation terminated.
+Luben Tuikov (6):
+  umr: Rename "scripts/umr" --> "scripts/umr-completion.bash"
+  umr: Rename completion function
+  umr: Complete umr completion
+  umr: Replace and reuse asic.ipblock.reg completion
+  umr: Replace and reuse ipblock completion
+  umr: Add FILES section to the man page
+
+Cc: Alex Deucher <Alexander.Deucher@amd.com>
+Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+Cc: Tom StDenis <tom.stdenis@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+
+ doc/umr.1                   |  13 +-
+ scripts/umr                 |  83 --------
+ scripts/umr-completion.bash | 402 ++++++++++++++++++++++++++++++++++++
+ src/app/CMakeLists.txt      |   2 +-
+ 4 files changed, 414 insertions(+), 86 deletions(-)
+ delete mode 100644 scripts/umr
+ create mode 100644 scripts/umr-completion.bash
 
 
-vim +29 drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-
-    26	
-    27	#include <linux/dma-direction.h>
-    28	#include <drm/gpu_scheduler.h>
-  > 29	#include "amdgpu_vram_mgr.h"
-    30	#include "amdgpu.h"
-    31	
-
+base-commit: d773ac6b1f529c02d8d2021d69e2dcfad736628d
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.35.1.607.gf01e51a7cf
+
