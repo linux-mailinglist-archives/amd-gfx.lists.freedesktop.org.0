@@ -2,56 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E6AC4E5AC7
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Mar 2022 22:42:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C21774E5C92
+	for <lists+amd-gfx@lfdr.de>; Thu, 24 Mar 2022 02:02:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 723AC10E0A3;
-	Wed, 23 Mar 2022 21:42:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A9DE10E522;
+	Thu, 24 Mar 2022 01:02:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com
- [IPv6:2607:f8b0:4864:20::334])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2608610E072;
- Wed, 23 Mar 2022 21:42:28 +0000 (UTC)
-Received: by mail-ot1-x334.google.com with SMTP id
- d15-20020a9d72cf000000b005cda54187c3so2014834otk.2; 
- Wed, 23 Mar 2022 14:42:28 -0700 (PDT)
+Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com
+ [IPv6:2607:f8b0:4864:20::929])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DB8710E522
+ for <amd-gfx@lists.freedesktop.org>; Thu, 24 Mar 2022 01:02:51 +0000 (UTC)
+Received: by mail-ua1-x929.google.com with SMTP id a28so1432577uaf.7
+ for <amd-gfx@lists.freedesktop.org>; Wed, 23 Mar 2022 18:02:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=gauJU+/Ukt87qElnbOCar/GeP644jnPenO1H+olAZxI=;
- b=cswYNs/WyXAL6DSvgYLR3dF6cUIcVKCxSQGRNXV786efwrusYDE0bclQvwL/1eYS9t
- vThDuK/9GhGm5Ws+5z71Qd6WANakCW1IxYdEHRVO7aP16V8R06I2LqJrdw4RATCO1HP0
- UUGnJhwwcsp+xk/fmmMo/rX+1/XfoPXgN3W38qwm7MH+c8m3HzAOcpFmrbcAhGuFJHfX
- Vw5+f9RS596X3GChcf3jnVR4yHuJTrMPuhPEsnm8gzpHE3KwO/joTbHm5QXM0P67HP7h
- kV7tMbBorXJ887ivq0y7jr9VBFPDYpcw9XRIV3B7VBq9qM221sxbmH/8tVfi1WkmyQp0
- i0dw==
+ h=mime-version:from:date:message-id:subject:to
+ :content-transfer-encoding;
+ bh=IANY+ekVZQgcH0O7joJntQXHOX1ZyJ6j0/bmDm4T7UA=;
+ b=MPLS2FZhiXVpXMHnBJMsVn3d3exSHUuHOmo2EV6zBLh4/hD1YqrXqWw7opwy7TuweZ
+ TEObQr4NRatb5YMoQTURuHKLGD7ZR7W0b8tYdeQ1TmA9179vTK6rkVdzRdTDTOuigBdz
+ qun7t4mvFfx4+V6TJIoJ4JNz6kd2FMKM26qho9kqPD8YsYe1VaaJXE7zeqtEUCXsZOj1
+ vIJ7ieiAckDQmaPRRX1tqHUvOPOqHQ0XFjEtG0HQBuiX38+5hkP+7aSGq9csKcLmoRO9
+ SWZKB0mQzUpspQegxwwvAyqnluLessele3XB+VE+M9qOcPkBtdlI/tj+pE+yRvxCmYzI
+ wtWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=gauJU+/Ukt87qElnbOCar/GeP644jnPenO1H+olAZxI=;
- b=UpkuTs7QPTgCm2fKgTc323YP88GaEhJkYc5C577jH9kRcFck0bGk3UutAoXK4nN+SB
- PH+JjW1VwCq2DIUkjofAJFVb1PXoZkzPuS6NnpTNrLtb9bKyMaw/9kGewZYRDpK2TnVS
- CwaMCSGb/aMzRJfCzQUfBjKDbAVnhU37QJfLOlA30ul954qkkP+gtgZVCmW2Zh1BQoJz
- xryf7T51wGcNrFAfJPdNMy88FbPw0elCkOKuSCy7s43Ku5Zht7+C//2Wg29Lj6QZ1QSG
- pTLMtba1ZVZFr1uPpno50MHwmRQkmosxUTTeYwXfe0etogAY4WW7U3l6G3dLFh81BS8n
- 5m0w==
-X-Gm-Message-State: AOAM533iOB9r5X/9aG0kQdK2IHsqU18iyvWHUh9fKBXz+0AJEu+SzI6g
- f1Kj418w9PMkBfEZl1gsbG0aGHtFWAwBZMU96LcCBDod+bU=
-X-Google-Smtp-Source: ABdhPJxUgqnvMju0kQuK4cFRp3woy6+I3sh81LdOzyl9ntgr/e/GmMKsqkaDy48Yz3SiqBg8bmw7SQ3TapKKosYD62I=
-X-Received: by 2002:a05:6830:10c3:b0:5cd:481a:148a with SMTP id
- z3-20020a05683010c300b005cd481a148amr913080oto.200.1648071747457; Wed, 23 Mar
- 2022 14:42:27 -0700 (PDT)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to
+ :content-transfer-encoding;
+ bh=IANY+ekVZQgcH0O7joJntQXHOX1ZyJ6j0/bmDm4T7UA=;
+ b=g1n8CJvd9Vp40s0DFLfDBiJWS81TfyS15kWZmxuckvnBXAp92+KMC8h5bdrVuyhizp
+ B+FV8sJ0RaEi5TtZBD69PrmbkjCjQcDoDBx3M2tdnQgUoHqkny4g4HNPxKrT3CIOGUYJ
+ LmZF/3934DOKnrpakfCr1rO7FeJ43ZxwAuWgSCiJK13mpgINoIOkK6IPAP+i66kNGoE9
+ BV3HKZgHJFpTu1xdinm13IA189Dvr4JkIVrhlqT/CbAjv33lBKA3N36psYT2Jm/opHUm
+ td3YIDD78iX1NSHjjh3dU4Nq644oTD0G/0k2DstutWipsZMg9VTlt4ftUgi5IwWfsQIr
+ xxNQ==
+X-Gm-Message-State: AOAM5330gQeKZ+Nmtca4jGxtqXZokhNwtkJ144BhI+UOSQO3F2Q5+5lv
+ x13jeAb8WNngKDhxBG2XathM3Cbs/bgM3Q6Mw0KLpZ1/pZw=
+X-Google-Smtp-Source: ABdhPJxW/M0Bs4LNCbnSgfAiYlRbt7oDS7WoJ/tn+9jhLTi5QM8hGP0caq4N7PjUZQoe8OnKL408FQFHj02WTJMvh48=
+X-Received: by 2002:ab0:6647:0:b0:353:7544:1d2d with SMTP id
+ b7-20020ab06647000000b0035375441d2dmr1418730uaq.115.1648083770124; Wed, 23
+ Mar 2022 18:02:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <1647943132-31250-1-git-send-email-baihaowen@meizu.com>
-In-Reply-To: <1647943132-31250-1-git-send-email-baihaowen@meizu.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 23 Mar 2022 17:42:16 -0400
-Message-ID: <CADnq5_PB-SOvbJJiRGvGpeLwfYpuYHPT8_0HRW1R6WUJ8vwKiw@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: use NULL instead of using plain integer
- as pointer
-To: Haowen Bai <baihaowen@meizu.com>
+Received: by 2002:a05:612c:2287:b0:28d:c775:b69f with HTTP; Wed, 23 Mar 2022
+ 18:02:49 -0700 (PDT)
+From: Craig M <cmroanirgo@gmail.com>
+Date: Thu, 24 Mar 2022 12:02:49 +1100
+Message-ID: <CAHtRFGvj1DuYzUUL1P5bvfMpT1WkwUL2ZpZQt1iYf-XH=fJP0Q@mail.gmail.com>
+Subject: ATI Radeon Mobility 3470 fails with Kernel 5
+To: amd-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,45 +63,74 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Leo \(Sunpeng\) Li" <sunpeng.li@amd.com>, xinhui pan <Xinhui.Pan@amd.com>,
- "Siqueira, Rodrigo" <Rodrigo.Siqueira@amd.com>,
- LKML <linux-kernel@vger.kernel.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, "Deucher,
- Alexander" <alexander.deucher@amd.com>, "Wentland,
- Harry" <harry.wentland@amd.com>, Christian Koenig <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Thanks for the patches.  I've already applied fixes from others for
-these issues.
+Hi,
 
-Alex
+I'm trying to track down a problem with an ancient graphics device ATI
+Radeon Mobility 3470.
 
-On Tue, Mar 22, 2022 at 9:05 AM Haowen Bai <baihaowen@meizu.com> wrote:
->
-> This fixes the following sparse warnings:
-> drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dsc/rc_calc_fpu.c:71:40: warning: Using
-> plain integer as NULL pointer
->
-> Signed-off-by: Haowen Bai <baihaowen@meizu.com>
-> ---
->  drivers/gpu/drm/amd/display/dc/dml/dsc/rc_calc_fpu.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/dc/dml/dsc/rc_calc_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dsc/rc_calc_fpu.c
-> index ec636d0..ef75eb7 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dml/dsc/rc_calc_fpu.c
-> +++ b/drivers/gpu/drm/amd/display/dc/dml/dsc/rc_calc_fpu.c
-> @@ -68,7 +68,7 @@ static void get_qp_set(qp_set qps, enum colour_mode cm, enum bits_per_comp bpc,
->         int sel = table_hash(mode, bpc, max_min);
->         int table_size = 0;
->         int index;
-> -       const struct qp_entry *table = 0L;
-> +       const struct qp_entry *table = NULL;
->
->         // alias enum
->         enum { min = DAL_MM_MIN, max = DAL_MM_MAX };
-> --
-> 2.7.4
->
+Ubuntu/Kubuntu 18 is shipped kernel 4.18 and the radeon drivers work well.
+With 18.02 and later it ships with kernel 5.0 and the radeon drivers don't.
+
+What I'm seeing is hard to describe. It looks a lot like the scan
+lines are interleaved and there's a lot of noise. It's not the typical
+screen tearing, nor is it just snow (black and white noise). I can
+*just* make out what it being displayed onscreen, but hurts the eyes a
+lot to try and do so!
+
+If I hold the kernel back at 4.18 things are just fine.
+
+Some detailed info (from a working 4.18 kernel). Note that the
+returned information from a 5.x kernel isn't all that much different:
+
+$ lshw -c video
+*-display
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0description: VGA compatible controller
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0product: RV620/M82 [Mobility Radeon HD =
+3450/3470]
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0vendor: Advanced Micro Devices, Inc. [A=
+MD/ATI]
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0physical id: 0
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0bus info: pci@0000:01:00.0
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0version: 00
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0width: 32 bits
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0clock: 33MHz
+      capabilities: pm pciexpress msi vga_controller bus_master
+cap_list rom =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0configuration: driver=3Dra=
+deon latency=3D0
+resources: irq:26 memory:c0000000-c7ffffff ioport:9000(size=3D256)
+memory:c8020000-c802ffff memory:c0000-dffff
+
+
+$ modinfo radeon
+
+filename:
+/lib/modules/4.18.0-17-generic/kernel/drivers/gpu/drm/radeon/radeon.ko
+license: =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0GPL and additional right=
+s description: =C2=A0=C2=A0=C2=A0ATI Radeon
+author: =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Gareth Hughes, Keit=
+h Whitwell, others.
+
+...
+name: =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0radeon
+vermagic: =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A04.18.0-17-generic SMP mod_unl=
+oad
+signat: =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0PKCS#7
+signer:
+sig_key:
+sig_hashalgo: =C2=A0=C2=A0md4
+....
+
+
+
+I'm just trying to track down the driver changes between 4.18 and 5.0
+to see what I can do to change settings. Any help  would be greatly
+appreciated. I've had a quick look through
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-ati but I don't
+know where to start (as there's no correlation between releases and
+kernels, from what I can see).
+
+Regards,
+Craig.
