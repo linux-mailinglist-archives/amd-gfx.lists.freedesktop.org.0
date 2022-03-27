@@ -2,46 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2882A4E842D
-	for <lists+amd-gfx@lfdr.de>; Sat, 26 Mar 2022 21:25:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E202C4E8743
+	for <lists+amd-gfx@lfdr.de>; Sun, 27 Mar 2022 12:42:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8579410E241;
-	Sat, 26 Mar 2022 20:25:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21C9610E340;
+	Sun, 27 Mar 2022 10:42:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 515EF10E241;
- Sat, 26 Mar 2022 20:25:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=d/86E55HMKhsVqOnAQ00yoI1G5UmX3XveaQwPYykNqw=; b=AJ7hxU04sgKC6xecbXApi8iLuZ
- zJedZnUc2FEo2vZCgG5CmZxlZgv6+AM4LdxKmj7LYYFCcvAvHeGJ+aB1dLvZ3XpZ3B5dOKyfiYzAM
- /DCQRJ9QwNFjwLP4lGzhULd8hwisJpx+mC5FbzFiA8eYtg5lQXePK98Qdq/SWmA81L4yGyoDWZYyK
- Jkgm5N9pb/l+fWZfwGrXRkjbEzzoID2AN3Ooz7lHDotgWuPSoNAQyd9HptPPe8Xh1FEt6OEnHtBuE
- 9ZBxdi8Pg8NXrxpdKsVc6SBI/aMrUl6QCcYNCpW8+illvMZ6EQ0vy69etWG8o5uWWRdQ+53bTuW/2
- 6M89N6qQ==;
-Received: from [165.90.126.25] (helo=killbill.home)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1nYCyf-0007e9-56; Sat, 26 Mar 2022 21:25:37 +0100
-From: Melissa Wen <mwen@igalia.com>
-To: amd-gfx@lists.freedesktop.org, harry.wentland@amd.com, sunpeng.li@amd.com,
- Rodrigo.Siqueira@amd.com, alexander.deucher@amd.com,
- christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@linux.ie,
- daniel@ffwll.ch
-Subject: [PATCH 2/2] drm/amd/display: remove DC_FP_* wrapper from dml folder
-Date: Sat, 26 Mar 2022 19:24:48 -0100
-Message-Id: <20220326202448.2046077-3-mwen@igalia.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220326202448.2046077-1-mwen@igalia.com>
-References: <20220326202448.2046077-1-mwen@igalia.com>
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2068.outbound.protection.outlook.com [40.107.220.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E84E610E337
+ for <amd-gfx@lists.freedesktop.org>; Sun, 27 Mar 2022 10:42:36 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VrKPVWAhUoz8RDHmp3diR/ZzH79Vbp9r9YhvY0CLHhbeIHJLqQEihfGjQjDzEy4aMNiE1SvIn94GDhmp2d750bgnmWNZ32oKIM76tbIGsTZLDWtbBRnX7KOaKBIDZfnsub6A0CiTFqvd8H40EZQs6K7HHvw0FFP5LYd9qP2rWdBSEi38fm7BDPQTt6oaIH35kaXBdroZgvzI/KW/RIU+X6dRwFPbOgOfK2SzAI3yxNMEp15q14rXEm6BP1AFNXUc71VHVKx7fiSR1QAdBq9V9x+rb/eSQ6OKuabiT+vRJ7mtrfjulUmjETAfSCSVPFLRHQbBSN3gzhmEtpUkx91sXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VYuugCKFJHf1mnWvRiX/k1rL5JHQYlISfKnT7i4L8Jc=;
+ b=Toszbghl9KM7P5YB0n+CGXZ9UltBY4bwdfVJknp/lY4KHTrH7/4+SIuZiU7Gxhqagqz20evZMsKsX9uKasJKYUqCYOBNRa2uLYw6wdlh1yfDfok+MwOUJOmqHHKkY71n3XAuzkJwS1jsoiuH4hod9PeA9d8qbMmb8iGxc2XZ8D5CtJvwQuwM80jE60l7YEd8YYhdSIWKyLsKGjJ0TP4ZqaA/xrsisS4kZEYX7YLRJ0IDvuSEsRu/3mX6wJmA6I3RmfJnsZ0nUawD08018mYAJKXzYg9/9YZbaflwPYPvXnZutqGMTlMCOFPGS7TIuyOpFVISpDYVnMmlV0yO1MjMig==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VYuugCKFJHf1mnWvRiX/k1rL5JHQYlISfKnT7i4L8Jc=;
+ b=UCoePZn1lbc5HbV+OoCJg9VMbO0dspbyDC5M/+ytv9ROPGRWTd9LS/vmPuDwLXsZciI1sy7ETzuy43WDmnQW9zukkZh7eCXgkamQfH0dwZQPwbTeCrxbbdtRdTBUeEeEh/mUDc/klTsGVaE2tBLHYBDV9VOmaaup0rNs/z/Bx34=
+Received: from DS7PR03CA0090.namprd03.prod.outlook.com (2603:10b6:5:3bb::35)
+ by DM5PR12MB1259.namprd12.prod.outlook.com (2603:10b6:3:75::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.17; Sun, 27 Mar
+ 2022 10:42:32 +0000
+Received: from DM6NAM11FT024.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:3bb:cafe::9f) by DS7PR03CA0090.outlook.office365.com
+ (2603:10b6:5:3bb::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.26 via Frontend
+ Transport; Sun, 27 Mar 2022 10:42:32 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT024.mail.protection.outlook.com (10.13.172.159) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5102.17 via Frontend Transport; Sun, 27 Mar 2022 10:42:31 +0000
+Received: from pc-32.home (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Sun, 27 Mar
+ 2022 05:42:30 -0500
+From: Luben Tuikov <luben.tuikov@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/5] umr: Add support for "--ppt-read"
+Date: Sun, 27 Mar 2022 06:42:10 -0400
+Message-ID: <20220327104214.106340-1-luben.tuikov@amd.com>
+X-Mailer: git-send-email 2.35.1.607.gf01e51a7cf
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 159e874e-2937-41cd-a479-08da0fde7f5d
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1259:EE_
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1259B83B355043FE2CC0FB73991C9@DM5PR12MB1259.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: A5VY6twt83hCLC0RDx7BKTorxIZs068mmQ5X3Sg7vVVMMjhv88iLfp/nxPbTA0o+jahzmtUEBKgggsXqsQI53IaXoI55GKX6WLkK1+UsdYshEoGACLwBlk9yNHh+SxAYInleoO3fj8697Xpx0toyZirfC6jbANImHTgtr81kNLrRhVwiuMLkYfQm/3rFRFwEReZAiJj1ddlvYA5sA+lxdA7pl6wIYq1Rymnu+pnzIjArircat7YDzUApqHQaQGF6HaUSjeB/0jjeite4juqfyRfRKm1Wpr4ASstRtznUpBlkWtM3Jf0tfmvsXAGSFDxglJ63GPztML5pF3YCzEhArfwh29qu1qXHo8bbLqT0dryNKkIBmNO4fzWhRKXwiNtEP8wJcStKKRs7AdwFappIp93g99v5pKSgmKffEbEX9dwrNpT6shyizUKu7H0g2rXiFKVUJDq4x2fkVEbzXKozVdE6aBmFiASOggfuuEk31H/UT60KWFLVxNXJ7TSbYSoxP3d0cWI6ee9IPzNqfTmFK0vIvswy4H4yh9z/jkqP8DMGwvGZBPUW9/9HsmRyN5wVSWQVUxhUn4IL/UusdvD3AP5zb361Givb8VuJ0ibBKsu0t9CMGVZZ7TC0h1CJyN1Dju5o90r4TGj97pp/NONv7Idyv6KiysN/tK4Nr0IFjduxUokZfW9nJqUQrdlS94uedi7+lw8frBLDtnBiA+DJZQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(26005)(44832011)(186003)(316002)(16526019)(6666004)(54906003)(336012)(86362001)(83380400001)(5660300002)(8936002)(6916009)(356005)(36756003)(40460700003)(47076005)(1076003)(508600001)(82310400004)(2616005)(81166007)(70206006)(4326008)(8676002)(70586007)(2906002)(426003)(36860700001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2022 10:42:31.9252 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 159e874e-2937-41cd-a479-08da0fde7f5d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT024.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1259
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,169 +98,39 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Qingqing Zhuo <qingqing.zhuo@amd.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Melissa Wen <mwen@igalia.com>,
- Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
- Jasdeep Dhillon <jdhillon@amd.com>
+Cc: Tom StDenis <tom.stdenis@amd.com>, "Jinzhou . Su" <Jinzhou.Su@amd.com>,
+ Luben Tuikov <luben.tuikov@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-FPU documentation states that developers must not use DC_FP_START/END
-inside dml files, but use this macro to wrap calls to FPU functions in
-dc folder (outside dml folder). Therefore, this patch removes DC_FP_*
-wrappers from dml folder and wraps calls for these FPU operations
-outside dml, as required.
+Add support for "--ppt-read" to fall in line with the way rest of the
+command line options are formatted. The old "--ppt_read" is still
+supported.
 
-Signed-off-by: Melissa Wen <mwen@igalia.com>
+Cc: Tom StDenis <tom.stdenis@amd.com>
+Cc: Jinzhou.Su <Jinzhou.Su@amd.com>
+Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
 ---
- .../drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c  | 10 ++++++++--
- .../gpu/drm/amd/display/dc/dcn10/dcn10_resource.c  |  2 ++
- .../gpu/drm/amd/display/dc/dml/calcs/dcn_calcs.c   | 14 --------------
- .../gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.c   |  2 --
- 4 files changed, 10 insertions(+), 18 deletions(-)
+ src/app/main.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-index c3e141c19a77..6b4d9917933b 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-@@ -2979,8 +2979,11 @@ void dcn10_prepare_bandwidth(
- 			true);
- 	dcn10_stereo_hw_frame_pack_wa(dc, context);
- 
--	if (dc->debug.pplib_wm_report_mode == WM_REPORT_OVERRIDE)
-+	if (dc->debug.pplib_wm_report_mode == WM_REPORT_OVERRIDE) {
-+		DC_FP_START();
- 		dcn_bw_notify_pplib_of_wm_ranges(dc);
-+		DC_FP_END();
-+	}
- 
- 	if (dc->debug.sanity_checks)
- 		hws->funcs.verify_allow_pstate_change_high(dc);
-@@ -3013,8 +3016,11 @@ void dcn10_optimize_bandwidth(
- 
- 	dcn10_stereo_hw_frame_pack_wa(dc, context);
- 
--	if (dc->debug.pplib_wm_report_mode == WM_REPORT_OVERRIDE)
-+	if (dc->debug.pplib_wm_report_mode == WM_REPORT_OVERRIDE) {
-+		DC_FP_START();
- 		dcn_bw_notify_pplib_of_wm_ranges(dc);
-+		DC_FP_END();
-+	}
- 
- 	if (dc->debug.sanity_checks)
- 		hws->funcs.verify_allow_pstate_change_high(dc);
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
-index 1587a060b55a..bca049b2f867 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
-@@ -1506,6 +1506,7 @@ static bool dcn10_resource_construct(
- 			&& pool->base.pp_smu->rv_funcs.set_pme_wa_enable != NULL)
- 		dc->debug.az_endpoint_mute_only = false;
- 
-+	DC_FP_START();
- 	if (!dc->debug.disable_pplib_clock_request)
- 		dcn_bw_update_from_pplib(dc);
- 	dcn_bw_sync_calcs_and_dml(dc);
-@@ -1513,6 +1514,7 @@ static bool dcn10_resource_construct(
- 		dc->res_pool = &pool->base;
- 		dcn_bw_notify_pplib_of_wm_ranges(dc);
- 	}
-+	DC_FP_END();
- 
- 	{
- 		struct irq_service_init_data init_data;
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/calcs/dcn_calcs.c b/drivers/gpu/drm/amd/display/dc/dml/calcs/dcn_calcs.c
-index c25023f7d604..db3b16b77034 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/calcs/dcn_calcs.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/calcs/dcn_calcs.c
-@@ -639,7 +639,6 @@ static bool dcn_bw_apply_registry_override(struct dc *dc)
- {
- 	bool updated = false;
- 
--	DC_FP_START();
- 	if ((int)(dc->dcn_soc->sr_exit_time * 1000) != dc->debug.sr_exit_time_ns
- 			&& dc->debug.sr_exit_time_ns) {
- 		updated = true;
-@@ -675,7 +674,6 @@ static bool dcn_bw_apply_registry_override(struct dc *dc)
- 		dc->dcn_soc->dram_clock_change_latency =
- 				dc->debug.dram_clock_change_latency_ns / 1000.0;
- 	}
--	DC_FP_END();
- 
- 	return updated;
- }
-@@ -1492,8 +1490,6 @@ void dcn_bw_update_from_pplib(struct dc *dc)
- 	res = dm_pp_get_clock_levels_by_type_with_voltage(
- 			ctx, DM_PP_CLOCK_TYPE_FCLK, &fclks);
- 
--	DC_FP_START();
--
- 	if (res)
- 		res = verify_clock_values(&fclks);
- 
-@@ -1523,13 +1519,9 @@ void dcn_bw_update_from_pplib(struct dc *dc)
- 	} else
- 		BREAK_TO_DEBUGGER();
- 
--	DC_FP_END();
--
- 	res = dm_pp_get_clock_levels_by_type_with_voltage(
- 			ctx, DM_PP_CLOCK_TYPE_DCFCLK, &dcfclks);
- 
--	DC_FP_START();
--
- 	if (res)
- 		res = verify_clock_values(&dcfclks);
- 
-@@ -1540,8 +1532,6 @@ void dcn_bw_update_from_pplib(struct dc *dc)
- 		dc->dcn_soc->dcfclkv_max0p9 = dcfclks.data[dcfclks.num_levels - 1].clocks_in_khz / 1000.0;
- 	} else
- 		BREAK_TO_DEBUGGER();
--
--	DC_FP_END();
- }
- 
- void dcn_bw_notify_pplib_of_wm_ranges(struct dc *dc)
-@@ -1556,11 +1546,9 @@ void dcn_bw_notify_pplib_of_wm_ranges(struct dc *dc)
- 	if (!pp || !pp->set_wm_ranges)
- 		return;
- 
--	DC_FP_START();
- 	min_fclk_khz = dc->dcn_soc->fabric_and_dram_bandwidth_vmin0p65 * 1000000 / 32;
- 	min_dcfclk_khz = dc->dcn_soc->dcfclkv_min0p65 * 1000;
- 	socclk_khz = dc->dcn_soc->socclk * 1000;
--	DC_FP_END();
- 
- 	/* Now notify PPLib/SMU about which Watermarks sets they should select
- 	 * depending on DPM state they are in. And update BW MGR GFX Engine and
-@@ -1611,7 +1599,6 @@ void dcn_bw_notify_pplib_of_wm_ranges(struct dc *dc)
- 
- void dcn_bw_sync_calcs_and_dml(struct dc *dc)
- {
--	DC_FP_START();
- 	DC_LOG_BANDWIDTH_CALCS("sr_exit_time: %f ns\n"
- 			"sr_enter_plus_exit_time: %f ns\n"
- 			"urgent_latency: %f ns\n"
-@@ -1800,5 +1787,4 @@ void dcn_bw_sync_calcs_and_dml(struct dc *dc)
- 	dc->dml.ip.bug_forcing_LC_req_same_size_fixed =
- 		dc->dcn_ip->bug_forcing_luma_and_chroma_request_to_same_size_fixed == dcn_bw_yes;
- 	dc->dml.ip.dcfclk_cstate_latency = dc->dcn_ip->dcfclk_cstate_latency;
--	DC_FP_END();
- }
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.c
-index 2f6122153bdb..36b12a350bbd 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.c
-@@ -1290,9 +1290,7 @@ int dcn20_populate_dml_pipes_from_context(
- 	}
- 
- 	/* populate writeback information */
--	DC_FP_START();
- 	dc->res_pool->funcs->populate_dml_writeback_from_context(dc, res_ctx, pipes);
--	DC_FP_END();
- 
- 	return pipe_cnt;
- }
+diff --git a/src/app/main.c b/src/app/main.c
+index 2f9d6aadd7ff46..62ea2f42145f60 100644
+--- a/src/app/main.c
++++ b/src/app/main.c
+@@ -848,7 +848,9 @@ int main(int argc, char **argv)
+ 			umr_set_clock_performance(asic, "auto");
+ 			if (umr_check_clock_performance(asic, clockperformance, sizeof(clockperformance)) != 0)
+ 				printf("power_dpm_force_performance_level: %s", clockperformance);
+-		} else if (!strcmp(argv[i], "--ppt_read") || !strcmp(argv[i], "-pptr")) {
++		} else if (!strcmp(argv[i], "--ppt-read") ||
++			   !strcmp(argv[i], "--ppt_read") ||
++			   !strcmp(argv[i], "-pptr")) {
+ 			if (!asic)
+ 				asic = get_asic();
+ 			if (i + 1 < argc) {
+
+base-commit: decd91d8eae42d63eda4f6b7c97159b9cc343c26
 -- 
-2.35.1
+2.35.1.607.gf01e51a7cf
 
