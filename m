@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92E664E8744
-	for <lists+amd-gfx@lfdr.de>; Sun, 27 Mar 2022 12:42:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A80F4E8741
+	for <lists+amd-gfx@lfdr.de>; Sun, 27 Mar 2022 12:42:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D71A810E35C;
-	Sun, 27 Mar 2022 10:42:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A218810E339;
+	Sun, 27 Mar 2022 10:42:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2058.outbound.protection.outlook.com [40.107.93.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67B1110E35C
- for <amd-gfx@lists.freedesktop.org>; Sun, 27 Mar 2022 10:42:44 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2076.outbound.protection.outlook.com [40.107.244.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6ADE910E339
+ for <amd-gfx@lists.freedesktop.org>; Sun, 27 Mar 2022 10:42:38 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PQ9hCwpyzYRtCJhdOY6P9Ey9Bb3Dk8stxBry3/fKPq0RL1vNREMLf/BXyugW1zaMUj6gb6MOrlOB5S26+pvK62JEYxxdh2m9NG2dAIVIRGQaztEvnyVl14RTA3uIXMI453bkQvWq1Iibfcr5Zf/s99mvIHAN3DE6f+OUK576GKYXDYkIsS4Iuhi+DYTNp7lV4KOrNzWT+gl4eYvxzyF0rp1qavXHBnQRKbVGlWHlwhbkrzOKbkyvhIYmo+vzz4QJYNkccvUqG4v9pmtEzAkul+CuBeAljId4dVDay8pViZDrk2ikLvTFBwvYjTkovAgt1273T8LaOePKnENhlvgQZg==
+ b=HSHtfYoTvgnwrSDb5V1sq3eX+2DFWbKDVMkGkTwPP5+ZgIh1YzXuEQH6zG9xDAUwgQUjq/4MlZ9q/ptC7iWZmoSrx0HdTU4ojP66zFFYCdC1DdQLQFNYzRx+efOy1eAjxrIaMvN1SIUxVkfxxrih921B04IBC+PazDLnMGhfSid4PwFlhBUYXh/K/iDypY8n37VKP7kZftR4o/SLW3pHbi+h7liNyBiVH0JVpTmGxO7Ev6tMV7t/CBYOgiujJqo1mNZlsDhcxmYL0tda572J+Pm1aPMMNA4xfcGWAL86jqJ21Pkww8f8aQUTz2QIIQ+G7CjevmP5ZTEfXwJxch21Pw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0G9ecNPG7jEqo7P3ZNykEA92Q0SuCQV2HtLv9cyKAn0=;
- b=HwOJRidbzvCasDWNV9NELEpeuK0wFLQDNDpuWQKJtiL9vCBg2tUMP6OiAffVzzEULNlYAZVo9u95X757ZEfq/XZ2G2FhN9N6gPrRPh1WqhP4ux0r87IZvjt9jA30QBueFQ308Oii/0OaoDwjkEsm5HtOhvNEjSKhT0igdall1PZ3fDFlqlzy5i2ja+6R+NtXGJQbj0Y8jorAleu+HEzeX2GIlrVYhGRyp6E4679LO6SJsJUT0AUR4gzVMIgWOnEoyOho8Z31RG1DCdUUjFPapHxd5AYBhBM/XMEnBfWFKQgaOpGDG8WF/128w8npQBhEEyOEBOOb5fBgIhSEGfvVhQ==
+ bh=/j2HMOLdZkDf8TiKwZseJE/1YkYXZAZuS/nHm2AyYSY=;
+ b=mnV5LcWDv4iVafxqajdKoVaF1dBtDTz8NHkCBwqcGurnIuM8HYa/wBT9nfbWaxrZ5bmZyu72FirczCjmGEweiqU7ttozm59r0G3oa3aR1jT7zOA0dtjdueXDwvk5WHtUUEafEf0CdM9aNV7GwBu5RwnUqv8Xvvl+aoMHkpgvTKx1f+RGvT8HYJRgE+H4Kw5uTwSe+sxFrFIt6yQZlKvm95yHRFvZ/M4uZv/hEZtWnUWBazbnK/nAE8ZhPpHd/X5YV6xGr2qk00Q8wzMPdInJ05x8S3AFWMIC9hv2loTSSkQUfhKzndgSKq+HpOF+vfa/OxQieUjxP3wvjHSgOEoIzw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0G9ecNPG7jEqo7P3ZNykEA92Q0SuCQV2HtLv9cyKAn0=;
- b=5BN3TZcuy1oBsgrMMl7LkP8n1Bz7Bf6/6fKLfFdCk1+r9jV0J+8cv5SuAxN0iyaAAO5Wcm9v8Mmxd0wtcQQfXTNV8emD5xT2ZrN0F6r+fW6Du5zgKJ7yHjZExIrRbbxbRQM8FGKx8LhONSlCwn53A64kEghWIndqjE5AxRLp8WM=
-Received: from DM5PR15CA0039.namprd15.prod.outlook.com (2603:10b6:4:4b::25) by
- BL1PR12MB5706.namprd12.prod.outlook.com (2603:10b6:208:385::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.17; Sun, 27 Mar
- 2022 10:42:34 +0000
+ bh=/j2HMOLdZkDf8TiKwZseJE/1YkYXZAZuS/nHm2AyYSY=;
+ b=osOAIL1MfqJ9yzd6dfzDPZmb8TCw/ec7QQp38JY0g3b1d/KVWliXK0Ys7bdc77SmI9LFp//Sx43cSQ9/ezMI+pkMX03jvj4p9t9RQ49F7EHMDYnRM7yOv+CTGsNZRxLPw0spufK+wITpctAKWqKrajdLmynPu5BEU3CLNwaBOD8=
+Received: from DM5PR15CA0038.namprd15.prod.outlook.com (2603:10b6:4:4b::24) by
+ DM6PR12MB3241.namprd12.prod.outlook.com (2603:10b6:5:186::25) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5102.16; Sun, 27 Mar 2022 10:42:35 +0000
 Received: from DM6NAM11FT021.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:4b:cafe::7) by DM5PR15CA0039.outlook.office365.com
- (2603:10b6:4:4b::25) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:4:4b:cafe::e9) by DM5PR15CA0038.outlook.office365.com
+ (2603:10b6:4:4b::24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.17 via Frontend
- Transport; Sun, 27 Mar 2022 10:42:34 +0000
+ Transport; Sun, 27 Mar 2022 10:42:35 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT021.mail.protection.outlook.com (10.13.173.76) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5102.17 via Frontend Transport; Sun, 27 Mar 2022 10:42:34 +0000
+ 15.20.5102.17 via Frontend Transport; Sun, 27 Mar 2022 10:42:35 +0000
 Received: from pc-32.home (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Sun, 27 Mar
- 2022 05:42:32 -0500
+ 2022 05:42:33 -0500
 From: Luben Tuikov <luben.tuikov@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 3/5] umr: Add command line support for "--gpu-metrics"
-Date: Sun, 27 Mar 2022 06:42:12 -0400
-Message-ID: <20220327104214.106340-3-luben.tuikov@amd.com>
+Subject: [PATCH 4/5] umr: Document new format command line options
+Date: Sun, 27 Mar 2022 06:42:13 -0400
+Message-ID: <20220327104214.106340-4-luben.tuikov@amd.com>
 X-Mailer: git-send-email 2.35.1.607.gf01e51a7cf
 In-Reply-To: <20220327104214.106340-1-luben.tuikov@amd.com>
 References: <20220327104214.106340-1-luben.tuikov@amd.com>
@@ -68,27 +68,27 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: dc23c301-c025-4c95-be25-08da0fde80c4
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5706:EE_
-X-Microsoft-Antispam-PRVS: <BL1PR12MB5706ADDB1E93D7EAC0B88905991C9@BL1PR12MB5706.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 6b9a1236-4106-4de1-8ccd-08da0fde8158
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3241:EE_
+X-Microsoft-Antispam-PRVS: <DM6PR12MB324114B37F5AC55C103519AB991C9@DM6PR12MB3241.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vz/KKPU1aIFUyUtAeY94uRdmfYMWmCVnVcCZqL6aLyhtBxrPV+0VIH8Qbums0oj2hdyXgvYAg3Ufpgv8wy08DxQfAK9FvWIATkXRNw/TbWIpxEzTLaHifBiGXw1hQFBvsFFiOS47PQhAC3R6gIKe3IqUJz4lt1wYZ9PEBejhodrfiY4EITHucKMdFu0yiMHKlWujNRHckkIDHkMXkeg048cq6hSuNDDRZkagre5aNlTmI19KImkMPKsnVVAEabnhSls22pB/jPUBghieV5sDUTUPP5ONhNzpq+hbJ0Cm8081SYvXuAkmhyluRWeLyoIz39dYt7XzGuJdB9vaj1R00LIL6HQ1Ok/kK92UYO4C5GtXfS4vwVmxNQUxMNIEUbQ9kR+BkORo6m04HlSyyaH0TrNJ45YabSjX1YI9bVjv8hV6Eb+ONr8c1Lk5iJEX5g/OpzuAD2H6v/ZB6FfT2oRWQDJxhsgdSOzM0i83aBlMF/lIILlZWANapkVoC8QRHPmtlwcZDrrjgy3FAx7R+o7/eTg3BfTiBpla2cxyH9njqHoRHku4RDgSmv+bfFUlrmnV/jzhWQKSS7ieXCyJdVoSgEtaTH3Iq7MlhLPJJn0hzFb0MJWFir1MgubAjK0gEvOGauzm7vNXOuaYpxhKLj+jseBjk2ShGEPhz7EThSy1jfrrAgrNvwpGLAhlL7B6KDPxzZ4drhnILtGpwCkUhJXWKw==
+X-Microsoft-Antispam-Message-Info: Xi28/49nDMI2Acgb8FWQrdyIhDRdQ9wxYY/UaxNz29lkCKAOQ4qKeVMcC7W0h9XMqsypYqd1ovdGcjvUT9gDSRj2LunJpjaPL58/XpMsMlIbwvDDuI/y1fLDJ66wc9soROhfIFiNOWvA7Aam/AbPr+sk4pn8XEagsJ62a75j9lgBwiaQMfurfLS3dzbbAfhd0hWDZ9rqZEqJJVvhqEssbUH3VO4pfJiuEHZ0CNmKhkN8RRaThrvuTDEoXIzdW9RkfBKZbUFInMF6hKDlpoBQ303nU8Ok5lxBrC4zZiU3/HXbQTanoEjRULM2g7NDt+evpB45tMK5O3SELp6VH4yRI3ooDmxxDylJ4q3IDouh0DYal3TUXKR6bETgY1SpZQO6bro/JP02NNN2BUmgPYWVYEMAhZD4Xlk16MRFGGHH2M04wdc/VfKhs5FIpK1p//gEW0j7XErpatLk3cNFM84CNxRsqK3giuBimIknBKfxlYd1uRtWmaOfwrka1dUW4MR0BRARknqFO/JZldOq3JZnwSaSlEyUMTkmZJLSoVRMaYatane8uU0hf4XjqCPFsC1uORRBqRo5PI6AawKUt87QRtO4iNs5H+E8uP6HAy2/0FpI5X1L4e2vCyR11/sS4yvAGFDa1dnu/A72PB0oWb+YIkuvxw3b5t9iGuuFCLc6v+N/hIud1TJJYSOBsVT4e1oPH/OtX88TDO1a0RyxBXHRxg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(36860700001)(4744005)(83380400001)(6666004)(86362001)(6916009)(54906003)(8936002)(40460700003)(36756003)(70206006)(70586007)(8676002)(4326008)(81166007)(316002)(2906002)(26005)(336012)(2616005)(82310400004)(508600001)(44832011)(47076005)(5660300002)(186003)(16526019)(426003)(1076003)(356005)(36900700001);
+ SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(6916009)(40460700003)(186003)(426003)(336012)(54906003)(1076003)(2616005)(8676002)(70206006)(4326008)(36756003)(316002)(2906002)(356005)(26005)(16526019)(83380400001)(81166007)(5660300002)(47076005)(6666004)(44832011)(36860700001)(86362001)(8936002)(508600001)(70586007)(82310400004)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2022 10:42:34.2942 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc23c301-c025-4c95-be25-08da0fde80c4
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2022 10:42:35.2473 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b9a1236-4106-4de1-8ccd-08da0fde8158
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT021.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5706
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3241
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,31 +105,35 @@ Cc: Tom StDenis <tom.stdenis@amd.com>, "Jinzhou . Su" <Jinzhou.Su@amd.com>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add command line support for --gpu-metrics, to fall in line with the rest
-of the command line arguments' format.
+Document new format command line options in the manual page: "--ppt-read"
+and "--gpu-metrics". The old format using underscores is still supported in
+the main app, in case it is used in scripts, and so on.
 
 Cc: Tom StDenis <tom.stdenis@amd.com>
 Cc: Jinzhou.Su <Jinzhou.Su@amd.com>
 Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
 ---
- src/app/main.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ doc/umr.1 | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/src/app/main.c b/src/app/main.c
-index 62ea2f42145f60..6cfbe09bea7b4d 100644
---- a/src/app/main.c
-+++ b/src/app/main.c
-@@ -861,7 +861,9 @@ int main(int argc, char **argv)
- 				if (umr_print_pp_table(asic, NULL) != 0)
- 					fprintf(stderr, "[ERROR]: can not print pp table info.\n");
- 			}
--		} else if (!strcmp(argv[i], "--gpu_metrics") || !strcmp(argv[i], "-gm")) {
-+		} else if (!strcmp(argv[i], "--gpu-metrics") ||
-+			   !strcmp(argv[i], "--gpu_metrics") ||
-+			   !strcmp(argv[i], "-gm")) {
- 			if (!asic)
- 				asic = get_asic();
- 			if (umr_print_gpu_metrics(asic) != 0)
+diff --git a/doc/umr.1 b/doc/umr.1
+index 62eea7db320b88..ad518e0fa7451d 100644
+--- a/doc/umr.1
++++ b/doc/umr.1
+@@ -288,11 +288,11 @@ Set power_dpm_force_performance_level to low.
+ .IP "--clock-auto, -ca"
+ Set power_dpm_force_performance_level to auto.
+ 
+-.IP "--ppt_read, -pptr [ppt_field_name]"
++.IP "--ppt-read, -pptr [ppt_field_name]"
+ Read powerplay table value and print it to stdout.  This command will print all the powerplay table
+ information or the corresponding string in powerplay table.
+ 
+-.IP "--gpu_metrics, -gm"
++.IP "--gpu-metrics, -gm"
+ Print the GPU metrics table for the device.
+ 
+ .SH "Notes"
 -- 
 2.35.1.607.gf01e51a7cf
 
