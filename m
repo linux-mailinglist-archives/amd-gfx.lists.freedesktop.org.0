@@ -2,37 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55E564EA799
-	for <lists+amd-gfx@lfdr.de>; Tue, 29 Mar 2022 08:01:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15B2D4EA8A3
+	for <lists+amd-gfx@lfdr.de>; Tue, 29 Mar 2022 09:42:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C0AB10F041;
-	Tue, 29 Mar 2022 06:01:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95CB310E791;
+	Tue, 29 Mar 2022 07:42:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 826CE10F041;
- Tue, 29 Mar 2022 06:01:27 +0000 (UTC)
-Received: from [192.168.0.4] (ip5f5aef5a.dynamic.kabel-deutschland.de
- [95.90.239.90])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested) (Authenticated sender: pmenzel)
- by mx.molgen.mpg.de (Postfix) with ESMTPSA id A45BF61EA1929;
- Tue, 29 Mar 2022 08:01:25 +0200 (CEST)
-Message-ID: <e0680f5f-c8fe-2bbb-dfee-cf9c148d60da@molgen.mpg.de>
-Date: Tue, 29 Mar 2022 08:01:25 +0200
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FB9010E91B;
+ Mon, 28 Mar 2022 13:20:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1648473657; x=1680009657;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=hQbVk32fxS7+iFd8ykV9cIZgnUbgW0E9CQ+k6Emh+IA=;
+ b=M3rI2+P4Ti2Bw7BeuKCvQn9GEuhNo3agaXN3Fb1crVhhid2m/Iv+Y7Ip
+ YWu2Os9sMKrofnr29sPN2oUsrMStm1vQy79zUSK0erMb4h9WXLP8UoWxs
+ xedajseO+uf6vPQTaUJeQGnjct6+sQKXaUMoelLXhs13C2gEsgbTw0uR2
+ Ci9H1rYdHo1GRbFdfg4wI+Vhnt7BRJR2ReNJtqQTwAzgxQJVXXkooOoh8
+ ks9tMYBXHg1pn5ZzCsob3g+bYzvmZdrX8zl5kUkGJwMLEogtCaGCZhCvf
+ eG25yF4BZ3RHRONHlpg4nWIWdVFZmpQtNj2qP1PfdfwJpLatJc+eyIeo8 A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10299"; a="257823103"
+X-IronPort-AV: E=Sophos;i="5.90,217,1643702400"; d="scan'208";a="257823103"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2022 06:20:57 -0700
+X-IronPort-AV: E=Sophos;i="5.90,217,1643702400"; d="scan'208";a="563651318"
+Received: from aysivtso-mobl.ccr.corp.intel.com (HELO localhost)
+ ([10.252.62.56])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2022 06:20:53 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: kernel test robot <lkp@intel.com>, dri-devel@lists.freedesktop.org
+Subject: Re: [Intel-gfx] [PATCH v2 03/11] drm/edid: slightly restructure
+ timing and non-timing descriptor structs
+In-Reply-To: <202203281926.AthxJpnK-lkp@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <04c8140a780dc02155a16d8acc64dbce756739bb.1648458971.git.jani.nikula@intel.com>
+ <202203281926.AthxJpnK-lkp@intel.com>
+Date: Mon, 28 Mar 2022 16:20:44 +0300
+Message-ID: <87ee2mdxhv.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: =?UTF-8?B?UmU6IOWbnuWkjTogUmU6IFtQQVRDSF0gZHJtL2FtZGdwdTogcmVzb2x2?=
- =?UTF-8?Q?e_s3_hang_for_r7340?=
-Content-Language: en-US
-To: =?UTF-8?B?5p2O55yf6IO9?= <lizhenneng@kylinos.cn>
-References: <1l3bxtj7h5f-1l3d7rcmiz8@nsmail6.0>
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <1l3bxtj7h5f-1l3d7rcmiz8@nsmail6.0>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 29 Mar 2022 07:42:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,112 +59,872 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- Lijo Lazar <lijo.lazar@amd.com>, Guchun Chen <guchun.chen@amd.com>,
- David Airlie <airlied@linux.ie>, Pan Xinhui <Xinhui.Pan@amd.com>,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Sumit Semwal <sumit.semwal@linaro.org>, linaro-mm-sig@lists.linaro.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Kevin Wang <kevin1.wang@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
- Evan Quan <evan.quan@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- linux-media@vger.kernel.org
+Cc: kbuild-all@lists.01.org, Leo Li <sunpeng.li@amd.com>,
+ intel-gfx@lists.freedesktop.org, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ amd-gfx@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
+ ville.syrjala@linux.intel.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Dear 李真,
+
+I think I'm just going to revert back to my original plan of leaving the
+struct restructuring to another time in the future.
+
+BR,
+Jani.
 
 
-[Your mailer formatted the message oddly. Maybe configure it to use only 
-plain text email with no HTML parts – common in Linux kernel community 
-–, or, if not possible, switch to something else (Mozilla Thunderbird, …).]
+On Mon, 28 Mar 2022, kernel test robot <lkp@intel.com> wrote:
+> Hi Jani,
+>
+> I love your patch! Perhaps something to improve:
+>
+> [auto build test WARNING on drm/drm-next]
+> [also build test WARNING on drm-intel/for-linux-next drm-tip/drm-tip v5.1=
+7 next-20220328]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch]
+>
+> url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-ed=
+id-constify-EDID-parsing-with-some-fixes/20220328-171858
+> base:   git://anongit.freedesktop.org/drm/drm drm-next
+> config: x86_64-randconfig-a003-20220328 (https://download.01.org/0day-ci/=
+archive/20220328/202203281926.AthxJpnK-lkp@intel.com/config)
+> compiler: gcc-9 (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0
+> reproduce (this is a W=3D1 build):
+>         # https://github.com/intel-lab-lkp/linux/commit/f538c9296c54ce8f8=
+78432153584a68939ffc111
+>         git remote add linux-review https://github.com/intel-lab-lkp/linux
+>         git fetch --no-tags linux-review Jani-Nikula/drm-edid-constify-ED=
+ID-parsing-with-some-fixes/20220328-171858
+>         git checkout f538c9296c54ce8f878432153584a68939ffc111
+>         # save the config file to linux build tree
+>         mkdir build_dir
+>         make W=3D1 O=3Dbuild_dir ARCH=3Dx86_64 SHELL=3D/bin/bash drivers/=
+gpu/drm/tiny/
+>
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+>
+> All warnings (new ones prefixed by >>):
+>
+>    drivers/gpu/drm/tiny/gm12u320.c:478:4: error: 'struct detailed_timing'=
+ has no member named 'pixel_clock'
+>      478 |   .pixel_clock =3D 3383,
+>          |    ^~~~~~~~~~~
+>>> drivers/gpu/drm/tiny/gm12u320.c:464:36: warning: missing braces around =
+initializer [-Wmissing-braces]
+>      464 | static struct edid gm12u320_edid =3D {
+>          |                                    ^
+>    ......
+>      478 |   .pixel_clock =3D 3383,
+>          |                  {{  }}
+>      479 |   /* hactive =3D 848, hblank =3D 256 */
+>      480 |   .data.pixel_data.hactive_lo =3D 0x50,
+>          |                                     }}
+>      481 |   .data.pixel_data.hblank_lo =3D 0x00,
+>          |                                    }}
+>      482 |   .data.pixel_data.hactive_hblank_hi =3D 0x31,
+>          |                                            }}
+>      483 |   /* vactive =3D 480, vblank =3D 28 */
+>      484 |   .data.pixel_data.vactive_lo =3D 0xe0,
+>          |                                     }}
+>      485 |   .data.pixel_data.vblank_lo =3D 0x1c,
+>          |                                    }}
+>      486 |   .data.pixel_data.vactive_vblank_hi =3D 0x10,
+>          |                                            }}
+>      487 |   /* hsync offset 40 pw 128, vsync offset 1 pw 4 */
+>      488 |   .data.pixel_data.hsync_offset_lo =3D 0x28,
+>          |                                          }}
+>      489 |   .data.pixel_data.hsync_pulse_width_lo =3D 0x80,
+>          |                                               }}
+>      490 |   .data.pixel_data.vsync_offset_pulse_width_lo =3D 0x14,
+>          |                                                      }}
+>      491 |   .data.pixel_data.hsync_vsync_offset_pulse_width_hi =3D 0x00,
+>          |                                                            }}
+>    ......
+>      494 |  }, {
+>          |  }}
+>    drivers/gpu/drm/tiny/gm12u320.c:495:4: error: 'struct detailed_timing'=
+ has no member named 'pixel_clock'
+>      495 |   .pixel_clock =3D 0,
+>          |    ^~~~~~~~~~~
+>    drivers/gpu/drm/tiny/gm12u320.c:496:9: error: 'union <anonymous>' has =
+no member named 'other_data'
+>      496 |   .data.other_data.type =3D 0xfd, /* Monitor ranges */
+>          |         ^~~~~~~~~~
+>    drivers/gpu/drm/tiny/gm12u320.c:496:27: warning: initialized field ove=
+rwritten [-Woverride-init]
+>      496 |   .data.other_data.type =3D 0xfd, /* Monitor ranges */
+>          |                           ^~~~
+>    drivers/gpu/drm/tiny/gm12u320.c:496:27: note: (near initialization for=
+ 'gm12u320_edid.detailed_timings[1].data.pixel_data.pixel_clock')
+>    drivers/gpu/drm/tiny/gm12u320.c:497:9: error: 'union <anonymous>' has =
+no member named 'other_data'
+>      497 |   .data.other_data.data.range.min_vfreq =3D 59,
+>          |         ^~~~~~~~~~
+>    drivers/gpu/drm/tiny/gm12u320.c:497:43: warning: initialized field ove=
+rwritten [-Woverride-init]
+>      497 |   .data.other_data.data.range.min_vfreq =3D 59,
+>          |                                           ^~
+>    drivers/gpu/drm/tiny/gm12u320.c:497:43: note: (near initialization for=
+ 'gm12u320_edid.detailed_timings[1].data.pixel_data.pixel_clock')
+>    drivers/gpu/drm/tiny/gm12u320.c:498:9: error: 'union <anonymous>' has =
+no member named 'other_data'
+>      498 |   .data.other_data.data.range.max_vfreq =3D 61,
+>          |         ^~~~~~~~~~
+>    drivers/gpu/drm/tiny/gm12u320.c:498:43: warning: initialized field ove=
+rwritten [-Woverride-init]
+>      498 |   .data.other_data.data.range.max_vfreq =3D 61,
+>          |                                           ^~
+>    drivers/gpu/drm/tiny/gm12u320.c:498:43: note: (near initialization for=
+ 'gm12u320_edid.detailed_timings[1].data.pixel_data.pixel_clock')
+>    drivers/gpu/drm/tiny/gm12u320.c:499:9: error: 'union <anonymous>' has =
+no member named 'other_data'
+>      499 |   .data.other_data.data.range.min_hfreq_khz =3D 29,
+>          |         ^~~~~~~~~~
+>    drivers/gpu/drm/tiny/gm12u320.c:499:47: warning: initialized field ove=
+rwritten [-Woverride-init]
+>      499 |   .data.other_data.data.range.min_hfreq_khz =3D 29,
+>          |                                               ^~
+>    drivers/gpu/drm/tiny/gm12u320.c:499:47: note: (near initialization for=
+ 'gm12u320_edid.detailed_timings[1].data.pixel_data.pixel_clock')
+>    drivers/gpu/drm/tiny/gm12u320.c:500:9: error: 'union <anonymous>' has =
+no member named 'other_data'
+>      500 |   .data.other_data.data.range.max_hfreq_khz =3D 32,
+>          |         ^~~~~~~~~~
+>    drivers/gpu/drm/tiny/gm12u320.c:500:47: warning: initialized field ove=
+rwritten [-Woverride-init]
+>      500 |   .data.other_data.data.range.max_hfreq_khz =3D 32,
+>          |                                               ^~
+>    drivers/gpu/drm/tiny/gm12u320.c:500:47: note: (near initialization for=
+ 'gm12u320_edid.detailed_timings[1].data.pixel_data.pixel_clock')
+>    drivers/gpu/drm/tiny/gm12u320.c:501:9: error: 'union <anonymous>' has =
+no member named 'other_data'
+>      501 |   .data.other_data.data.range.pixel_clock_mhz =3D 4, /* 40 MHz=
+ */
+>          |         ^~~~~~~~~~
+>    drivers/gpu/drm/tiny/gm12u320.c:501:49: warning: initialized field ove=
+rwritten [-Woverride-init]
+>      501 |   .data.other_data.data.range.pixel_clock_mhz =3D 4, /* 40 MHz=
+ */
+>          |                                                 ^
+>    drivers/gpu/drm/tiny/gm12u320.c:501:49: note: (near initialization for=
+ 'gm12u320_edid.detailed_timings[1].data.pixel_data.pixel_clock')
+>    drivers/gpu/drm/tiny/gm12u320.c:502:9: error: 'union <anonymous>' has =
+no member named 'other_data'
+>      502 |   .data.other_data.data.range.flags =3D 0,
+>          |         ^~~~~~~~~~
+>    drivers/gpu/drm/tiny/gm12u320.c:502:39: warning: initialized field ove=
+rwritten [-Woverride-init]
+>      502 |   .data.other_data.data.range.flags =3D 0,
+>          |                                       ^
+>    drivers/gpu/drm/tiny/gm12u320.c:502:39: note: (near initialization for=
+ 'gm12u320_edid.detailed_timings[1].data.pixel_data.pixel_clock')
+>    drivers/gpu/drm/tiny/gm12u320.c:503:9: error: 'union <anonymous>' has =
+no member named 'other_data'
+>      503 |   .data.other_data.data.range.formula.cvt =3D {
+>          |         ^~~~~~~~~~
+>>> drivers/gpu/drm/tiny/gm12u320.c:464:36: warning: missing braces around =
+initializer [-Wmissing-braces]
+>      464 | static struct edid gm12u320_edid =3D {
+>          |                                    ^
+>    ......
+>      478 |   .pixel_clock =3D 3383,
+>          |                  {{  }}
+>      479 |   /* hactive =3D 848, hblank =3D 256 */
+>      480 |   .data.pixel_data.hactive_lo =3D 0x50,
+>          |                                     }}
+>      481 |   .data.pixel_data.hblank_lo =3D 0x00,
+>          |                                    }}
+>      482 |   .data.pixel_data.hactive_hblank_hi =3D 0x31,
+>          |                                            }}
+>      483 |   /* vactive =3D 480, vblank =3D 28 */
+>      484 |   .data.pixel_data.vactive_lo =3D 0xe0,
+>          |                                     }}
+>      485 |   .data.pixel_data.vblank_lo =3D 0x1c,
+>          |                                    }}
+>      486 |   .data.pixel_data.vactive_vblank_hi =3D 0x10,
+>          |                                            }}
+>      487 |   /* hsync offset 40 pw 128, vsync offset 1 pw 4 */
+>      488 |   .data.pixel_data.hsync_offset_lo =3D 0x28,
+>          |                                          }}
+>      489 |   .data.pixel_data.hsync_pulse_width_lo =3D 0x80,
+>          |                                               }}
+>      490 |   .data.pixel_data.vsync_offset_pulse_width_lo =3D 0x14,
+>          |                                                      }}
+>      491 |   .data.pixel_data.hsync_vsync_offset_pulse_width_hi =3D 0x00,
+>          |                                                            }}
+>    ......
+>      494 |  }, {
+>          |  }}
+>      495 |   .pixel_clock =3D 0,
+>          |                  -
+>          |                  {{0}}
+>      496 |   .data.other_data.type =3D 0xfd, /* Monitor ranges */
+>          |                           {   }}
+>      497 |   .data.other_data.data.range.min_vfreq =3D 59,
+>          |                                           { }}
+>      498 |   .data.other_data.data.range.max_vfreq =3D 61,
+>          |                                           { }}
+>      499 |   .data.other_data.data.range.min_hfreq_khz =3D 29,
+>          |                                               { }}
+>      500 |   .data.other_data.data.range.max_hfreq_khz =3D 32,
+>          |                                               { }}
+>      501 |   .data.other_data.data.range.pixel_clock_mhz =3D 4, /* 40 MHz=
+ */
+>          |                                                 {}}
+>      502 |   .data.other_data.data.range.flags =3D 0,
+>          |                                       {}}
+>    drivers/gpu/drm/tiny/gm12u320.c:503:45: warning: initialized field ove=
+rwritten [-Woverride-init]
+>      503 |   .data.other_data.data.range.formula.cvt =3D {
+>          |                                             ^
+>    drivers/gpu/drm/tiny/gm12u320.c:503:45: note: (near initialization for=
+ 'gm12u320_edid.detailed_timings[1].data.pixel_data')
+>>> drivers/gpu/drm/tiny/gm12u320.c:464:36: warning: missing braces around =
+initializer [-Wmissing-braces]
+>      464 | static struct edid gm12u320_edid =3D {
+>          |                                    ^
+>    ......
+>      478 |   .pixel_clock =3D 3383,
+>          |                  {{  }}
+>      479 |   /* hactive =3D 848, hblank =3D 256 */
+>      480 |   .data.pixel_data.hactive_lo =3D 0x50,
+>          |                                     }}
+>      481 |   .data.pixel_data.hblank_lo =3D 0x00,
+>          |                                    }}
+>      482 |   .data.pixel_data.hactive_hblank_hi =3D 0x31,
+>          |                                            }}
+>      483 |   /* vactive =3D 480, vblank =3D 28 */
+>      484 |   .data.pixel_data.vactive_lo =3D 0xe0,
+>          |                                     }}
+>      485 |   .data.pixel_data.vblank_lo =3D 0x1c,
+>          |                                    }}
+>      486 |   .data.pixel_data.vactive_vblank_hi =3D 0x10,
+>          |                                            }}
+>      487 |   /* hsync offset 40 pw 128, vsync offset 1 pw 4 */
+>      488 |   .data.pixel_data.hsync_offset_lo =3D 0x28,
+>          |                                          }}
+>      489 |   .data.pixel_data.hsync_pulse_width_lo =3D 0x80,
+>          |                                               }}
+>      490 |   .data.pixel_data.vsync_offset_pulse_width_lo =3D 0x14,
+>          |                                                      }}
+>      491 |   .data.pixel_data.hsync_vsync_offset_pulse_width_hi =3D 0x00,
+>          |                                                            }}
+>    ......
+>      494 |  }, {
+>          |  }}
+>      495 |   .pixel_clock =3D 0,
+>          |                  -
+>          |                  {{0}}
+>      496 |   .data.other_data.type =3D 0xfd, /* Monitor ranges */
+>          |                           {   }}
+>      497 |   .data.other_data.data.range.min_vfreq =3D 59,
+>          |                                           { }}
+>      498 |   .data.other_data.data.range.max_vfreq =3D 61,
+>          |                                           { }}
+>      499 |   .data.other_data.data.range.min_hfreq_khz =3D 29,
+>          |                                               { }}
+>      500 |   .data.other_data.data.range.max_hfreq_khz =3D 32,
+>          |                                               { }}
+>      501 |   .data.other_data.data.range.pixel_clock_mhz =3D 4, /* 40 MHz=
+ */
+>          |                                                 {}}
+>      502 |   .data.other_data.data.range.flags =3D 0,
+>          |                                       {}}
+>    ......
+>      505 |  }, {
+>          |  }
+>    drivers/gpu/drm/tiny/gm12u320.c:506:4: error: 'struct detailed_timing'=
+ has no member named 'pixel_clock'
+>      506 |   .pixel_clock =3D 0,
+>          |    ^~~~~~~~~~~
+>    drivers/gpu/drm/tiny/gm12u320.c:507:9: error: 'union <anonymous>' has =
+no member named 'other_data'
+>      507 |   .data.other_data.type =3D 0xfc, /* Model string */
+>          |         ^~~~~~~~~~
+>    drivers/gpu/drm/tiny/gm12u320.c:507:27: warning: initialized field ove=
+rwritten [-Woverride-init]
+>      507 |   .data.other_data.type =3D 0xfc, /* Model string */
+>          |                           ^~~~
+>    drivers/gpu/drm/tiny/gm12u320.c:507:27: note: (near initialization for=
+ 'gm12u320_edid.detailed_timings[2].data.pixel_data.pixel_clock')
+>    drivers/gpu/drm/tiny/gm12u320.c:508:9: error: 'union <anonymous>' has =
+no member named 'other_data'
+>      508 |   .data.other_data.data.str.str =3D {
+>          |         ^~~~~~~~~~
+>>> drivers/gpu/drm/tiny/gm12u320.c:464:36: warning: missing braces around =
+initializer [-Wmissing-braces]
+>      464 | static struct edid gm12u320_edid =3D {
+>          |                                    ^
+>    ......
+>      478 |   .pixel_clock =3D 3383,
+>          |                  {{  }}
+>      479 |   /* hactive =3D 848, hblank =3D 256 */
+>      480 |   .data.pixel_data.hactive_lo =3D 0x50,
+>          |                                     }}
+>      481 |   .data.pixel_data.hblank_lo =3D 0x00,
+>          |                                    }}
+>      482 |   .data.pixel_data.hactive_hblank_hi =3D 0x31,
+>          |                                            }}
+>      483 |   /* vactive =3D 480, vblank =3D 28 */
+>      484 |   .data.pixel_data.vactive_lo =3D 0xe0,
+>          |                                     }}
+>      485 |   .data.pixel_data.vblank_lo =3D 0x1c,
+>          |                                    }}
+>      486 |   .data.pixel_data.vactive_vblank_hi =3D 0x10,
+>          |                                            }}
+>      487 |   /* hsync offset 40 pw 128, vsync offset 1 pw 4 */
+>      488 |   .data.pixel_data.hsync_offset_lo =3D 0x28,
+>          |                                          }}
+>      489 |   .data.pixel_data.hsync_pulse_width_lo =3D 0x80,
+>          |                                               }}
+>      490 |   .data.pixel_data.vsync_offset_pulse_width_lo =3D 0x14,
+>          |                                                      }}
+>      491 |   .data.pixel_data.hsync_vsync_offset_pulse_width_hi =3D 0x00,
+>          |                                                            }}
+>    ......
+>      494 |  }, {
+>          |  }}
+>      495 |   .pixel_clock =3D 0,
+>          |                  -
+>          |                  {{0}}
+>      496 |   .data.other_data.type =3D 0xfd, /* Monitor ranges */
+>          |                           {   }}
+>      497 |   .data.other_data.data.range.min_vfreq =3D 59,
+>          |                                           { }}
+>      498 |   .data.other_data.data.range.max_vfreq =3D 61,
+>          |                                           { }}
+>      499 |   .data.other_data.data.range.min_hfreq_khz =3D 29,
+>          |                                               { }}
+>      500 |   .data.other_data.data.range.max_hfreq_khz =3D 32,
+>          |                                               { }}
+>      501 |   .data.other_data.data.range.pixel_clock_mhz =3D 4, /* 40 MHz=
+ */
+>          |                                                 {}}
+>      502 |   .data.other_data.data.range.flags =3D 0,
+>          |                                       {}}
+>    ......
+>      505 |  }, {
+>          |  }
+>      506 |   .pixel_clock =3D 0,
+>          |                  -
+>          |                  {{0}}
+>      507 |   .data.other_data.type =3D 0xfc, /* Model string */
+>          |                           {   }}
+>    drivers/gpu/drm/tiny/gm12u320.c:508:35: warning: initialized field ove=
+rwritten [-Woverride-init]
+>      508 |   .data.other_data.data.str.str =3D {
+>          |                                   ^
+>    drivers/gpu/drm/tiny/gm12u320.c:508:35: note: (near initialization for=
+ 'gm12u320_edid.detailed_timings[2].data.pixel_data')
+>>> drivers/gpu/drm/tiny/gm12u320.c:464:36: warning: missing braces around =
+initializer [-Wmissing-braces]
+>      464 | static struct edid gm12u320_edid =3D {
+>          |                                    ^
+>    ......
+>      478 |   .pixel_clock =3D 3383,
+>          |                  {{  }}
+>      479 |   /* hactive =3D 848, hblank =3D 256 */
+>      480 |   .data.pixel_data.hactive_lo =3D 0x50,
+>          |                                     }}
+>      481 |   .data.pixel_data.hblank_lo =3D 0x00,
+>          |                                    }}
+>      482 |   .data.pixel_data.hactive_hblank_hi =3D 0x31,
+>          |                                            }}
+>      483 |   /* vactive =3D 480, vblank =3D 28 */
+>      484 |   .data.pixel_data.vactive_lo =3D 0xe0,
+>          |                                     }}
+>      485 |   .data.pixel_data.vblank_lo =3D 0x1c,
+>          |                                    }}
+>      486 |   .data.pixel_data.vactive_vblank_hi =3D 0x10,
+>          |                                            }}
+>      487 |   /* hsync offset 40 pw 128, vsync offset 1 pw 4 */
+>      488 |   .data.pixel_data.hsync_offset_lo =3D 0x28,
+>          |                                          }}
+>      489 |   .data.pixel_data.hsync_pulse_width_lo =3D 0x80,
+>          |                                               }}
+>      490 |   .data.pixel_data.vsync_offset_pulse_width_lo =3D 0x14,
+>          |                                                      }}
+>      491 |   .data.pixel_data.hsync_vsync_offset_pulse_width_hi =3D 0x00,
+>          |                                                            }}
+>    ......
+>      494 |  }, {
+>          |  }}
+>      495 |   .pixel_clock =3D 0,
+>          |                  -
+>          |                  {{0}}
+>      496 |   .data.other_data.type =3D 0xfd, /* Monitor ranges */
+>          |                           {   }}
+>      497 |   .data.other_data.data.range.min_vfreq =3D 59,
+>          |                                           { }}
+>      498 |   .data.other_data.data.range.max_vfreq =3D 61,
+>          |                                           { }}
+>      499 |   .data.other_data.data.range.min_hfreq_khz =3D 29,
+>          |                                               { }}
+>      500 |   .data.other_data.data.range.max_hfreq_khz =3D 32,
+>          |                                               { }}
+>      501 |   .data.other_data.data.range.pixel_clock_mhz =3D 4, /* 40 MHz=
+ */
+>          |                                                 {}}
+>      502 |   .data.other_data.data.range.flags =3D 0,
+>          |                                       {}}
+>    ......
+>      505 |  }, {
+>          |  }
+>      506 |   .pixel_clock =3D 0,
+>          |                  -
+>          |                  {{0}}
+>      507 |   .data.other_data.type =3D 0xfc, /* Model string */
+>          |                           {   }}
+>    ......
+>      511 |  }, {
+>          |  }
+>    drivers/gpu/drm/tiny/gm12u320.c:512:4: error: 'struct detailed_timing'=
+ has no member named 'pixel_clock'
+>      512 |   .pixel_clock =3D 0,
+>          |    ^~~~~~~~~~~
+>    drivers/gpu/drm/tiny/gm12u320.c:513:9: error: 'union <anonymous>' has =
+no member named 'other_data'
+>      513 |   .data.other_data.type =3D 0xfe, /* Unspecified text / paddin=
+g */
+>          |         ^~~~~~~~~~
+>    drivers/gpu/drm/tiny/gm12u320.c:513:27: warning: initialized field ove=
+rwritten [-Woverride-init]
+>      513 |   .data.other_data.type =3D 0xfe, /* Unspecified text / paddin=
+g */
+>          |                           ^~~~
+>    drivers/gpu/drm/tiny/gm12u320.c:513:27: note: (near initialization for=
+ 'gm12u320_edid.detailed_timings[3].data.pixel_data.pixel_clock')
+>    drivers/gpu/drm/tiny/gm12u320.c:514:9: error: 'union <anonymous>' has =
+no member named 'other_data'
+>      514 |   .data.other_data.data.str.str =3D {
+>          |         ^~~~~~~~~~
+>>> drivers/gpu/drm/tiny/gm12u320.c:464:36: warning: missing braces around =
+initializer [-Wmissing-braces]
+>      464 | static struct edid gm12u320_edid =3D {
+>          |                                    ^
+>    ......
+>      478 |   .pixel_clock =3D 3383,
+>          |                  {{  }}
+>      479 |   /* hactive =3D 848, hblank =3D 256 */
+>      480 |   .data.pixel_data.hactive_lo =3D 0x50,
+>          |                                     }}
+>      481 |   .data.pixel_data.hblank_lo =3D 0x00,
+>          |                                    }}
+>      482 |   .data.pixel_data.hactive_hblank_hi =3D 0x31,
+>          |                                            }}
+>      483 |   /* vactive =3D 480, vblank =3D 28 */
+>      484 |   .data.pixel_data.vactive_lo =3D 0xe0,
+>          |                                     }}
+>      485 |   .data.pixel_data.vblank_lo =3D 0x1c,
+>          |                                    }}
+>      486 |   .data.pixel_data.vactive_vblank_hi =3D 0x10,
+>          |                                            }}
+>      487 |   /* hsync offset 40 pw 128, vsync offset 1 pw 4 */
+>      488 |   .data.pixel_data.hsync_offset_lo =3D 0x28,
+>          |                                          }}
+>      489 |   .data.pixel_data.hsync_pulse_width_lo =3D 0x80,
+>          |                                               }}
+>      490 |   .data.pixel_data.vsync_offset_pulse_width_lo =3D 0x14,
+>          |                                                      }}
+>      491 |   .data.pixel_data.hsync_vsync_offset_pulse_width_hi =3D 0x00,
+>          |                                                            }}
+>    ......
+>      494 |  }, {
+>          |  }}
+>      495 |   .pixel_clock =3D 0,
+>          |                  -
+>          |                  {{0}}
+>      496 |   .data.other_data.type =3D 0xfd, /* Monitor ranges */
+>          |                           {   }}
+>      497 |   .data.other_data.data.range.min_vfreq =3D 59,
+>          |                                           { }}
+>      498 |   .data.other_data.data.range.max_vfreq =3D 61,
+>          |                                           { }}
+>      499 |   .data.other_data.data.range.min_hfreq_khz =3D 29,
+>          |                                               { }}
+>      500 |   .data.other_data.data.range.max_hfreq_khz =3D 32,
+>          |                                               { }}
+>      501 |   .data.other_data.data.range.pixel_clock_mhz =3D 4, /* 40 MHz=
+ */
+>          |                                                 {}}
+>      502 |   .data.other_data.data.range.flags =3D 0,
+>          |                                       {}}
+>    ......
+>      505 |  }, {
+>          |  }
+>      506 |   .pixel_clock =3D 0,
+>          |                  -
+>          |                  {{0}}
+>      507 |   .data.other_data.type =3D 0xfc, /* Model string */
+>          |                           {   }}
+>    ......
+>      511 |  }, {
+>          |  }
+>      512 |   .pixel_clock =3D 0,
+>          |                  -
+>          |                  {{0}}
+>      513 |   .data.other_data.type =3D 0xfe, /* Unspecified text / paddin=
+g */
+>          |                           {   }}
+>    drivers/gpu/drm/tiny/gm12u320.c:514:35: warning: initialized field ove=
+rwritten [-Woverride-init]
+>      514 |   .data.other_data.data.str.str =3D {
+>          |                                   ^
+>    drivers/gpu/drm/tiny/gm12u320.c:514:35: note: (near initialization for=
+ 'gm12u320_edid.detailed_timings[3].data.pixel_data')
+>>> drivers/gpu/drm/tiny/gm12u320.c:464:36: warning: missing braces around =
+initializer [-Wmissing-braces]
+>      464 | static struct edid gm12u320_edid =3D {
+>          |                                    ^
+>    ......
+>      478 |   .pixel_clock =3D 3383,
+>          |                  {{  }}
+>      479 |   /* hactive =3D 848, hblank =3D 256 */
+>      480 |   .data.pixel_data.hactive_lo =3D 0x50,
+>          |                                     }}
+>      481 |   .data.pixel_data.hblank_lo =3D 0x00,
+>          |                                    }}
+>      482 |   .data.pixel_data.hactive_hblank_hi =3D 0x31,
+>          |                                            }}
+>      483 |   /* vactive =3D 480, vblank =3D 28 */
+>      484 |   .data.pixel_data.vactive_lo =3D 0xe0,
+>          |                                     }}
+>      485 |   .data.pixel_data.vblank_lo =3D 0x1c,
+>          |                                    }}
+>      486 |   .data.pixel_data.vactive_vblank_hi =3D 0x10,
+>          |                                            }}
+>      487 |   /* hsync offset 40 pw 128, vsync offset 1 pw 4 */
+>      488 |   .data.pixel_data.hsync_offset_lo =3D 0x28,
+>          |                                          }}
+>      489 |   .data.pixel_data.hsync_pulse_width_lo =3D 0x80,
+>          |                                               }}
+>      490 |   .data.pixel_data.vsync_offset_pulse_width_lo =3D 0x14,
+>          |                                                      }}
+>      491 |   .data.pixel_data.hsync_vsync_offset_pulse_width_hi =3D 0x00,
+>          |                                                            }}
+>    ......
+>      494 |  }, {
+>          |  }}
+>      495 |   .pixel_clock =3D 0,
+>          |                  -
+>          |                  {{0}}
+>      496 |   .data.other_data.type =3D 0xfd, /* Monitor ranges */
+>          |                           {   }}
+>      497 |   .data.other_data.data.range.min_vfreq =3D 59,
+>          |                                           { }}
+>      498 |   .data.other_data.data.range.max_vfreq =3D 61,
+>          |                                           { }}
+>      499 |   .data.other_data.data.range.min_hfreq_khz =3D 29,
+>          |                                               { }}
+>      500 |   .data.other_data.data.range.max_hfreq_khz =3D 32,
+>          |                                               { }}
+>      501 |   .data.other_data.data.range.pixel_clock_mhz =3D 4, /* 40 MHz=
+ */
+>          |                                                 {}}
+>      502 |   .data.other_data.data.range.flags =3D 0,
+>          |                                       {}}
+>    ......
+>      505 |  }, {
+>          |  }
+>      506 |   .pixel_clock =3D 0,
+>          |                  -
+>          |                  {{0}}
+>      507 |   .data.other_data.type =3D 0xfc, /* Model string */
+>          |                           {   }}
+>    ......
+>      511 |  }, {
+>          |  }
+>      512 |   .pixel_clock =3D 0,
+>          |                  -
+>          |                  {{0}}
+>      513 |   .data.other_data.type =3D 0xfe, /* Unspecified text / paddin=
+g */
+>          |                           {   }}
+>    ......
+>      517 |  } },
+>          |  }
+>>> drivers/gpu/drm/tiny/gm12u320.c:464:36: warning: missing braces around =
+initializer [-Wmissing-braces]
+>      464 | static struct edid gm12u320_edid =3D {
+>          |                                    ^
+>    ......
+>      478 |   .pixel_clock =3D 3383,
+>          |                  {{  }}
+>      479 |   /* hactive =3D 848, hblank =3D 256 */
+>      480 |   .data.pixel_data.hactive_lo =3D 0x50,
+>          |                                     }}
+>      481 |   .data.pixel_data.hblank_lo =3D 0x00,
+>          |                                    }}
+>      482 |   .data.pixel_data.hactive_hblank_hi =3D 0x31,
+>          |                                            }}
+>      483 |   /* vactive =3D 480, vblank =3D 28 */
+>      484 |   .data.pixel_data.vactive_lo =3D 0xe0,
+>          |                                     }}
+>      485 |   .data.pixel_data.vblank_lo =3D 0x1c,
+>          |                                    }}
+>      486 |   .data.pixel_data.vactive_vblank_hi =3D 0x10,
+>          |                                            }}
+>      487 |   /* hsync offset 40 pw 128, vsync offset 1 pw 4 */
+>      488 |   .data.pixel_data.hsync_offset_lo =3D 0x28,
+>          |                                          }}
+>      489 |   .data.pixel_data.hsync_pulse_width_lo =3D 0x80,
+>          |                                               }}
+>      490 |   .data.pixel_data.vsync_offset_pulse_width_lo =3D 0x14,
+>          |                                                      }}
+>      491 |   .data.pixel_data.hsync_vsync_offset_pulse_width_hi =3D 0x00,
+>          |                                                            }}
+>    ......
+>      494 |  }, {
+>          |  }}
+>      495 |   .pixel_clock =3D 0,
+>          |                  -
+>          |                  {{0}}
+>      496 |   .data.other_data.type =3D 0xfd, /* Monitor ranges */
+>          |                           {   }}
+>      497 |   .data.other_data.data.range.min_vfreq =3D 59,
+>          |                                           { }}
+>      498 |   .data.other_data.data.range.max_vfreq =3D 61,
+>          |                                           { }}
+>      499 |   .data.other_data.data.range.min_hfreq_khz =3D 29,
+>          |                                               { }}
+>      500 |   .data.other_data.data.range.max_hfreq_khz =3D 32,
+>          |                                               { }}
+>      501 |   .data.other_data.data.range.pixel_clock_mhz =3D 4, /* 40 MHz=
+ */
+>          |                                                 {}}
+>      502 |   .data.other_data.data.range.flags =3D 0,
+>          |                                       {}}
+>    ......
+>      505 |  }, {
+>          |  }
+>      506 |   .pixel_clock =3D 0,
+>          |                  -
+>          |                  {{0}}
+>      507 |   .data.other_data.type =3D 0xfc, /* Model string */
+>          |                           {   }}
+>    ......
+>      511 |  }, {
+>          |  }
+>      512 |   .pixel_clock =3D 0,
+>          |                  -
+>          |                  {{0}}
+>      513 |   .data.other_data.type =3D 0xfe, /* Unspecified text / paddin=
+g */
+>          |                           {   }}
+>    ......
+>      517 |  } },
+>          |  }
+>>> drivers/gpu/drm/tiny/gm12u320.c:464:36: warning: missing braces around =
+initializer [-Wmissing-braces]
+>      464 | static struct edid gm12u320_edid =3D {
+>          |                                    ^
+>    ......
+>      478 |   .pixel_clock =3D 3383,
+>          |                  {{  }}
+>      479 |   /* hactive =3D 848, hblank =3D 256 */
+>      480 |   .data.pixel_data.hactive_lo =3D 0x50,
+>          |                                     }}
+>      481 |   .data.pixel_data.hblank_lo =3D 0x00,
+>          |                                    }}
+>      482 |   .data.pixel_data.hactive_hblank_hi =3D 0x31,
+>          |                                            }}
+>      483 |   /* vactive =3D 480, vblank =3D 28 */
+>      484 |   .data.pixel_data.vactive_lo =3D 0xe0,
+>          |                                     }}
+>      485 |   .data.pixel_data.vblank_lo =3D 0x1c,
+>          |                                    }}
+>      486 |   .data.pixel_data.vactive_vblank_hi =3D 0x10,
+>          |                                            }}
+>      487 |   /* hsync offset 40 pw 128, vsync offset 1 pw 4 */
+>      488 |   .data.pixel_data.hsync_offset_lo =3D 0x28,
+>          |                                          }}
+>      489 |   .data.pixel_data.hsync_pulse_width_lo =3D 0x80,
+>          |                                               }}
+>      490 |   .data.pixel_data.vsync_offset_pulse_width_lo =3D 0x14,
+>          |                                                      }}
+>      491 |   .data.pixel_data.hsync_vsync_offset_pulse_width_hi =3D 0x00,
+>          |                                                            }}
+>    ......
+>      494 |  }, {
+>          |  }}
+>      495 |   .pixel_clock =3D 0,
+>          |                  -
+>          |                  {{0}}
+>      496 |   .data.other_data.type =3D 0xfd, /* Monitor ranges */
+>          |                           {   }}
+>      497 |   .data.other_data.data.range.min_vfreq =3D 59,
+>          |                                           { }}
+>      498 |   .data.other_data.data.range.max_vfreq =3D 61,
+>          |                                           { }}
+>      499 |   .data.other_data.data.range.min_hfreq_khz =3D 29,
+>          |                                               { }}
+>      500 |   .data.other_data.data.range.max_hfreq_khz =3D 32,
+>          |                                               { }}
+>      501 |   .data.other_data.data.range.pixel_clock_mhz =3D 4, /* 40 MHz=
+ */
+>          |                                                 {}}
+>      502 |   .data.other_data.data.range.flags =3D 0,
+>          |                                       {}}
+>    ......
+>      505 |  }, {
+>          |  }
+>      506 |   .pixel_clock =3D 0,
+>          |                  -
+>          |                  {{0}}
+>      507 |   .data.other_data.type =3D 0xfc, /* Model string */
+>          |                           {   }}
+>    ......
+>      511 |  }, {
+>          |  }
+>      512 |   .pixel_clock =3D 0,
+>          |                  -
+>          |                  {{0}}
+>      513 |   .data.other_data.type =3D 0xfe, /* Unspecified text / paddin=
+g */
+>          |                           {   }}
+>    ......
+>      517 |  } },
+>          |  }
+>
+>
+> vim +464 drivers/gpu/drm/tiny/gm12u320.c
+>
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  457=20=20
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  458  /*
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  459   *=C2=A0We use fake EDID info so that userspace know that it is d=
+ealing with
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  460   * an Acer projector, rather then listing this as an "unknown" mo=
+nitor.
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  461   * Note this assumes this driver is only ever used with the Acer =
+C120, if we
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  462   * add support for other devices the vendor and model should be p=
+arameterized.
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  463   */
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21 @464  static struct edid gm12u320_edid =3D {
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  465  	.header		=3D { 0x00, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00 },
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  466  	.mfg_id		=3D { 0x04, 0x72 },	/* "ACR" */
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  467  	.prod_code	=3D { 0x20, 0xc1 },	/* C120h */
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  468  	.serial		=3D 0xaa55aa55,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  469  	.mfg_week	=3D 1,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  470  	.mfg_year	=3D 16,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  471  	.version	=3D 1,			/* EDID 1.3 */
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  472  	.revision	=3D 3,			/* EDID 1.3 */
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  473  	.input		=3D 0x08,			/* Analog input */
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  474  	.features	=3D 0x0a,			/* Pref timing in DTD 1 */
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  475  	.standard_timings =3D { { 1, 1 }, { 1, 1 }, { 1, 1 }, { 1, 1 },
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  476  			      { 1, 1 }, { 1, 1 }, { 1, 1 }, { 1, 1 } },
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  477  	.detailed_timings =3D { {
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  478  		.pixel_clock =3D 3383,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  479  		/* hactive =3D 848, hblank =3D 256 */
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  480  		.data.pixel_data.hactive_lo =3D 0x50,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  481  		.data.pixel_data.hblank_lo =3D 0x00,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  482  		.data.pixel_data.hactive_hblank_hi =3D 0x31,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  483  		/* vactive =3D 480, vblank =3D 28 */
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  484  		.data.pixel_data.vactive_lo =3D 0xe0,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  485  		.data.pixel_data.vblank_lo =3D 0x1c,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  486  		.data.pixel_data.vactive_vblank_hi =3D 0x10,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  487  		/* hsync offset 40 pw 128, vsync offset 1 pw 4 */
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  488  		.data.pixel_data.hsync_offset_lo =3D 0x28,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  489  		.data.pixel_data.hsync_pulse_width_lo =3D 0x80,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  490  		.data.pixel_data.vsync_offset_pulse_width_lo =3D 0x14,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  491  		.data.pixel_data.hsync_vsync_offset_pulse_width_hi =3D 0x00,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  492  		/* Digital separate syncs, hsync+, vsync+ */
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  493  		.data.pixel_data.misc =3D 0x1e,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  494  	}, {
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  495  		.pixel_clock =3D 0,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  496  		.data.other_data.type =3D 0xfd, /* Monitor ranges */
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  497  		.data.other_data.data.range.min_vfreq =3D 59,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  498  		.data.other_data.data.range.max_vfreq =3D 61,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  499  		.data.other_data.data.range.min_hfreq_khz =3D 29,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  500  		.data.other_data.data.range.max_hfreq_khz =3D 32,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  501  		.data.other_data.data.range.pixel_clock_mhz =3D 4, /* 40 MHz */
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  502  		.data.other_data.data.range.flags =3D 0,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  503  		.data.other_data.data.range.formula.cvt =3D {
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  504  			0xa0, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 },
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  505  	}, {
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  506  		.pixel_clock =3D 0,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  507  		.data.other_data.type =3D 0xfc, /* Model string */
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  508  		.data.other_data.data.str.str =3D {
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  509  			'P', 'r', 'o', 'j', 'e', 'c', 't', 'o', 'r', '\n',
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  510  			' ', ' ',  ' ' },
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  511  	}, {
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  512  		.pixel_clock =3D 0,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  513  		.data.other_data.type =3D 0xfe, /* Unspecified text / padding */
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  514  		.data.other_data.data.str.str =3D {
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  515  			'\n', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  516  			' ', ' ',  ' ' },
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  517  	} },
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  518  	.checksum =3D 0x13,
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  519  };
+> e4f86e43716443e drivers/gpu/drm/gm12u320/gm12u320.c Hans de Goede 2019-07=
+-21  520=20=20
 
-
-Am 29.03.22 um 04:54 schrieb 李真能:
-
-[…]
-
-> *日　期：*2022-03-28 15:38
-> *发件人：*Paul Menzel
-
-[…]
-
-> Am 28.03.22 um 09:36 schrieb Paul Menzel:
->   > Dear Zhenneng,
->   >
->   >
->   > Thank you for your patch.
->   >
->   > Am 28.03.22 um 06:05 schrieb Zhenneng Li:
->   >> This is a workaround for s3 hang for r7340(amdgpu).
->   >
->   > Is it hanging when resuming from S3?
-> 
-> Yes, this func is a delayed work after init graphics card.
-
-Thank for clarifying it.
-
->   > Maybe also use the line below for
->   > the commit message summary:
->   >
->   > drm/amdgpu: Add 1 ms delay to init handler to fix s3 resume hang
->   >
->   > Also, please add a space before the ( in “r7340(amdgpu)”.
->   >
->   >> When we test s3 with r7340 on arm64 platform, graphics card will hang up,
->   >> the error message are as follows:
->   >> Mar  4 01:14:11 greatwall-GW-XXXXXX-XXX kernel: [    1.599374][ 7] [  T291] amdgpu 0000:02:00.0: fb0: amdgpudrmfb frame buffer device
->   >> Mar  4 01:14:11 greatwall-GW-XXXXXX-XXX kernel: [    1.612869][ 7] [  T291] [drm:amdgpu_device_ip_late_init [amdgpu]] *ERROR* late_init of IP blockfailed -22
->   >> Mar  4 01:14:11 greatwall-GW-XXXXXX-XXX kernel: [    1.623392][ 7] [  T291] amdgpu 0000:02:00.0: amdgpu_device_ip_late_init failed
->   >> Mar  4 01:14:11 greatwall-GW-XXXXXX-XXX kernel: [    1.630696][ 7] [  T291] amdgpu 0000:02:00.0: Fatal error during GPU init
->   >> Mar  4 01:14:11 greatwall-GW-XXXXXX-XXX kernel: [    1.637477][ 7] [  T291] [drm] amdgpu: finishing device.
->   >
->   > The prefix in the beginning is not really needed. Only the stuff after
->   > `kernel: `.
->   >
->   > Maybe also add the output of `lspci -nn -s …` for that r7340 device.
->   >
->   >> Change-Id: I5048b3894c0ca9faf2f4847ddab61f9eb17b4823
->   >
->   > Without the Gerrit instance this belongs to, the Change-Id is of no use
->   > in the public.
->   >
->   >> Signed-off-by: Zhenneng Li
->   >> ---
->   >>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 ++
->   >>   1 file changed, 2 insertions(+)
->   >>
->   >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->   >> b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->   >> index 3987ecb24ef4..1eced991b5b2 100644
->   >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->   >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->   >> @@ -2903,6 +2903,8 @@ static void
->   >> amdgpu_device_delayed_init_work_handler(struct work_struct *work)
->   >>           container_of(work, struct amdgpu_device, delayed_init_work.work);
->   >>       int r;
->   >> +    mdelay(1);
->   >> +
->   >
-> 
->   > Wow, I wonder how long it took you to find that workaround.
-> 
-> About 3 months, I try to add this delay
-> work(amdgpu_device_delayed_init_work_handler) from 2000ms to 2500ms, or use mb()
-> instead of mdelay(1), but it's useless, I don't know the reason，the occurrence
-> probability  of this bug is one ten-thousandth, do you know the possible reasons?
-
-Oh, it’s not even always reproducible. That is hard. Did you try another 
-graphics card or another ARM board to rule out hardware specific issues?
-
-Sorry, I do not. Maybe the developers with access to non-public 
-datasheets and erratas know.
-
->   >>       r = amdgpu_ib_ring_tests(adev);
->   >>       if (r)
->   >>           DRM_ERROR("ib ring test failed (%d).\n", r);
-
-
-Kind regards,
-
-Paul
+--=20
+Jani Nikula, Intel Open Source Graphics Center
