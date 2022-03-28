@@ -2,40 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB8134E8EED
-	for <lists+amd-gfx@lfdr.de>; Mon, 28 Mar 2022 09:25:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93AD24E8E1E
+	for <lists+amd-gfx@lfdr.de>; Mon, 28 Mar 2022 08:25:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4AA610E282;
-	Mon, 28 Mar 2022 07:25:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F130110E5D4;
+	Mon, 28 Mar 2022 06:25:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 303 seconds by postgrey-1.36 at gabe;
- Mon, 28 Mar 2022 05:17:26 UTC
-Received: from nksmu.kylinos.cn (mailgw.kylinos.cn [123.150.8.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BD7D10EC29;
- Mon, 28 Mar 2022 05:17:25 +0000 (UTC)
-X-UUID: fb30e82a4d7c424e9a44f7ee3c6f49f3-20220328
-X-Spam-Fingerprint: 0
-X-GW-Reason: 11101
-X-Policy-Incident: 5pS25Lu25Lq66LaF6L+HNeS6uumcgOimgeWuoeaguA==
-X-Content-Feature: ica/max.line-size 167 audit/email.address 1 meta/cnt.alert 1
-X-UUID: fb30e82a4d7c424e9a44f7ee3c6f49f3-20220328
-Received: from cs2c.com.cn [(172.17.111.24)] by nksmu.kylinos.cn
- (envelope-from <lizhenneng@kylinos.cn>) (Generic MTA)
- with ESMTP id 2131348658; Mon, 28 Mar 2022 12:05:18 +0800
-X-ns-mid: postfix-62413430-3057013324
-Received: from localhost.localdomain (unknown [172.20.108.41])
- by cs2c.com.cn (NSMail) with ESMTPA id D30D23848676;
- Mon, 28 Mar 2022 04:06:07 +0000 (UTC)
-From: Zhenneng Li <lizhenneng@kylinos.cn>
-To: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH] drm/amdgpu: resolve s3 hang for r7340
-Date: Mon, 28 Mar 2022 12:05:36 +0800
-Message-Id: <20220328040536.4121797-1-lizhenneng@kylinos.cn>
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam08on2079.outbound.protection.outlook.com [40.107.102.79])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2495F10E5D4
+ for <amd-gfx@lists.freedesktop.org>; Mon, 28 Mar 2022 06:25:16 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eK/JG+I8fL2OmpuwJYOxBePEWrfjWKtF91jNjZUrFVbMESlKNhAbux0DMB+NMhAALN/F6PFwj7Qalz6HQI8X2Rl6irlWhSlhxVKOdyPi4a9rGmCNPMjKU029tMvL6kOzX59cMnt+GZCvVRD58IGjbI45gYld3XTCU8KSQPocQhasGgJdLftFRPG3FETeWBgN/I9xPMCXYBNmMMhyvWF/u2jKo7cyGf7keITeqLL9o9M6fcmVul0n3QUqjEgN3Fqd5TjClkZAGaMoSxsYFmOe1/30OYwcFaFX6TKYaWKVTtuKcRFPDWbrlWr6iqyqnENDv4yzrWBg23mypSm55PMRMQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3CLGv7vsCa8xvJSRNqL7jiU5VuTsHJHF0OZVUoNVuek=;
+ b=biS51TNNyba1+p2knWgFsZCU3KcDVseo7mZsoa5zryONCKoYg1dL4WxZeboQKkdN4CHQ94x3ELUDpd3dwL3wqFPxfSDvRfF28emo3ohnrO+7pSJI1d5F6Zv7k0O9Y9iAPU3EUOvwKaOLPJPGOZQVi8knn/qp7er/9uvcIngN8Up2Eyfo/0hzLcSCzrmNrE6WUFfbyXRknhiy2IzVJn6qwteIpFjVS6oVKGRXRDAJ/u7lCICpxehLQiWrPR3nIu3LvX4jaTEwAr3yVld5Fi34GLz3zHFfvY+Yr3htqq872Tcg5aVrTzXkLPnbvWEQzsbcD/x5RZFwxXE1xY78d8WUIw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3CLGv7vsCa8xvJSRNqL7jiU5VuTsHJHF0OZVUoNVuek=;
+ b=TNba62HMz5BLgy5JQRRPmdEMgoWSZZBz7NVin75uX887lsFV/JvbpzyCYy4+m3eUkRRXKjKZUhM99HDEFWSGMSJ3h18UyUbPEfWzj4sOGkewlDhzbZUxguAS6mOYoAxJFuzeFp3G2Pu+8DDSiuVRdrwfklxinBX9ulKL0TrFYzA=
+Received: from DM5PR21CA0031.namprd21.prod.outlook.com (2603:10b6:3:ed::17) by
+ DM6PR12MB4879.namprd12.prod.outlook.com (2603:10b6:5:1b5::10) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5102.19; Mon, 28 Mar 2022 06:25:14 +0000
+Received: from DM6NAM11FT017.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:ed:cafe::77) by DM5PR21CA0031.outlook.office365.com
+ (2603:10b6:3:ed::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5123.16 via Frontend
+ Transport; Mon, 28 Mar 2022 06:25:14 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT017.mail.protection.outlook.com (10.13.172.145) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5102.17 via Frontend Transport; Mon, 28 Mar 2022 06:25:13 +0000
+Received: from zafar-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Mon, 28 Mar
+ 2022 01:25:10 -0500
+From: Mohammad Zafar Ziya <Mohammadzafar.ziya@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH v4 0/6] VCN and JPEG RAS poison detection
+Date: Mon, 28 Mar 2022 14:24:47 +0800
+Message-ID: <20220328062453.4156191-1-Mohammadzafar.ziya@amd.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 28 Mar 2022 07:25:47 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 88ea9dce-3f07-430c-7f29-08da1083b7bb
+X-MS-TrafficTypeDiagnostic: DM6PR12MB4879:EE_
+X-Microsoft-Antispam-PRVS: <DM6PR12MB4879F822040B76CFED745BD0981D9@DM6PR12MB4879.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: m1AvmjqXVazSlD5An76WCxkQx8CTiyDSxQUu9UAc1sEsCFnCa69CfF/xIr7S2mf+rCnjfRnbBuOVtpVpsA2Zb+z8GNR8WglTacUocftq8zRPmMJNSPdNzJYnSq1PfE4EoHsbvx+GoD/ImAqonFIjak9owXVyUYJcoCUGxeODjuf7KPg1+9O64vlcorRjCM6dQLbIDKn2XXBVskb/B+BUlqEJY+kilLsSWU6lNLXINndKr/ya04XKbQvqlyoQZBhnnsVtAilR8wMbB9XLHnud5tTvpeP6q/c6wjNgmmZwhp/RqpWSFUEBIeEWylK6pezA/wLnu/k9OQ62KkQPY8BP3s5Rh4kPgHtjzZlBpDu4jzgUG+zcnvnc6y1+RVy7aXA5QUnTKh5rW8QbtBPg5HuHCdCEssKPqFmi9Uuo6TFHwFAI4RnM/MkVOjYlE8xPK1xjKC42ednQfFjPyIoXuFFkA/uIkS+nPd1K//VLKFmIiWEkbGqCcH7bCssDbvAgvgw0hkWMnRYbQiwAa8YBvryICydiiH6osctiQPVzo45RFQgKZtN1dRMGRBfe5Z/jRAzsU+TxtC9rvDop9771CNr+j6oSwJZ+mGfKEgkXHHaZ8Pw6JrTZzB50twPes9b8oTIk1JCkKcvaMlM2oURvrWV5G3iPdJKbeBib8Yh1pvl9NOe5wYe2Bdb4ucR9DSK4pQDdYS/4IgrslHrHdvweRN8q9g==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(86362001)(6916009)(82310400004)(336012)(2906002)(356005)(36756003)(83380400001)(7696005)(8936002)(81166007)(5660300002)(40460700003)(2616005)(36860700001)(6666004)(8676002)(47076005)(316002)(70206006)(70586007)(26005)(508600001)(4326008)(1076003)(426003)(16526019)(186003)(4744005)(54906003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2022 06:25:13.4687 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 88ea9dce-3f07-430c-7f29-08da1083b7bb
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT017.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4879
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,47 +98,33 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- Jack Zhang <Jack.Zhang1@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
- Guchun Chen <guchun.chen@amd.com>, David Airlie <airlied@linux.ie>,
- Pan Xinhui <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Sumit Semwal <sumit.semwal@linaro.org>,
- linaro-mm-sig@lists.linaro.org, Zhenneng Li <lizhenneng@kylinos.cn>,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Kevin Wang <kevin1.wang@amd.com>, Evan Quan <evan.quan@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- linux-media@vger.kernel.org
+Cc: Tao.Zhou1@amd.com, lijo.lazar@amd.com,
+ Mohammad Zafar Ziya <Mohammadzafar.ziya@amd.com>, Hawking.Zhang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is a workaround for s3 hang for r7340(amdgpu).
-When we test s3 with r7340 on arm64 platform, graphics card will hang up,
-the error message are as follows:
-Mar  4 01:14:11 greatwall-GW-XXXXXX-XXX kernel: [    1.599374][ 7] [  T291] amdgpu 0000:02:00.0: fb0: amdgpudrmfb frame buffer device
-Mar  4 01:14:11 greatwall-GW-XXXXXX-XXX kernel: [    1.612869][ 7] [  T291] [drm:amdgpu_device_ip_late_init [amdgpu]] *ERROR* late_init of IP block <si_dpm> failed -22
-Mar  4 01:14:11 greatwall-GW-XXXXXX-XXX kernel: [    1.623392][ 7] [  T291] amdgpu 0000:02:00.0: amdgpu_device_ip_late_init failed
-Mar  4 01:14:11 greatwall-GW-XXXXXX-XXX kernel: [    1.630696][ 7] [  T291] amdgpu 0000:02:00.0: Fatal error during GPU init
-Mar  4 01:14:11 greatwall-GW-XXXXXX-XXX kernel: [    1.637477][ 7] [  T291] [drm] amdgpu: finishing device.
+VCN and JPEG RAS poison detection
 
-Change-Id: I5048b3894c0ca9faf2f4847ddab61f9eb17b4823
-Signed-off-by: Zhenneng Li <lizhenneng@kylinos.cn>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 ++
- 1 file changed, 2 insertions(+)
+Mohammad Zafar Ziya (6):
+  drm/amdgpu: Add vcn and jpeg ras support flag
+  drm/amdgpu/vcn: Add vcn ras support
+  drm/amdgpu/jpeg: Add jpeg block ras support
+  drm/amdgpu/vcn: vcn and jpeg ver 2.6 ras register definition
+  drm/amdgpu/vcn: VCN ras error query support
+  drm/amdgpu/jpeg: jpeg ras error query support
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 3987ecb24ef4..1eced991b5b2 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -2903,6 +2903,8 @@ static void amdgpu_device_delayed_init_work_handler(struct work_struct *work)
- 		container_of(work, struct amdgpu_device, delayed_init_work.work);
- 	int r;
- 
-+	mdelay(1);
-+
- 	r = amdgpu_ib_ring_tests(adev);
- 	if (r)
- 		DRM_ERROR("ib ring test failed (%d).\n", r);
+ drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.h      |  8 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c       |  9 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h       |  3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h       | 10 +++
+ drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c        | 74 +++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.h        |  7 ++
+ drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c         | 71 ++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/vcn_v2_5.h         |  6 ++
+ .../amd/include/asic_reg/vcn/vcn_2_5_offset.h | 13 ++++
+ .../include/asic_reg/vcn/vcn_2_5_sh_mask.h    | 24 ++++++
+ 10 files changed, 225 insertions(+)
+
 -- 
 2.25.1
 
