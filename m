@@ -2,79 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F37A4EA24E
-	for <lists+amd-gfx@lfdr.de>; Mon, 28 Mar 2022 23:18:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C1644EA259
+	for <lists+amd-gfx@lfdr.de>; Mon, 28 Mar 2022 23:20:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8298510E171;
-	Mon, 28 Mar 2022 21:18:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C312410EAEE;
+	Mon, 28 Mar 2022 21:20:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE4BD10E11D
- for <amd-gfx@lists.freedesktop.org>; Mon, 28 Mar 2022 21:18:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1648502315;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=o/20j76lcDPeDTIfcY54M2M3yeP1hzS1Frzdk4vK99I=;
- b=G8RGRjqC9+uChOZKtx5BttR8JSr3hhnwHBOCSNekpDloK0fUbkebC2U0Fb3fl0NJi8oZnp
- N8/ch/UD9wfK/pMI4zesJMgn9odRg0FhERVa7IKQ0YyDjcuoV8fFUmzs3VfgSwzehBb/FL
- 31vKWA+bqkDg3/RExwZA4RRb88j76YU=
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
- [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-330-enHpNaSRPfmBMdWJJIy-Rw-1; Mon, 28 Mar 2022 17:18:29 -0400
-X-MC-Unique: enHpNaSRPfmBMdWJJIy-Rw-1
-Received: by mail-qv1-f72.google.com with SMTP id
- fw9-20020a056214238900b0043522aa5b81so12251276qvb.21
- for <amd-gfx@lists.freedesktop.org>; Mon, 28 Mar 2022 14:18:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:organization
- :user-agent:mime-version:content-transfer-encoding;
- bh=o/20j76lcDPeDTIfcY54M2M3yeP1hzS1Frzdk4vK99I=;
- b=HlHoA9sxUAh9fvdziP8UiYEd+HMS5otRF0yyowWxNXOE87DiVhahwYT3S9c1UB6lXB
- THtpnmCe+q8C2UWn3yEAQr7R2dwv93xp+cOdY7opm0e1tE6m1i6ag+hLAWAlHLC9Os7Z
- jrI6TOVxcU5dtZftzSTlsbFt6pB+U3Ko7xu5XfNsWQkQ8sAWFm7bRTcKcWg8b3c2zOCL
- mWlD7swBo9UkBqL5sR1Um0HwCAwO6TzIpgClN+JVOISNoKFabPw+N/sXx7RYMC5NDYhB
- CSENCK9pPPqlACyrAXaRieadAwob1iRyHoQLudctP9DrLUtw2r6cH2KbjyhuzWdeLjM2
- +wdg==
-X-Gm-Message-State: AOAM531pvzE7jaV8rn4B1kQ7LYwbcw7UjwZURuuJkWFnNwzTAiSAxspi
- xGZ4U3/85aiG/tit9tb+/Opm3rJcn6LEagr9DWPvadk6tmLSMOI0xPVvD4FycFtVYJIMdmOoxEH
- y4A3pPsPrMVMfEMxZOJVvmPiQ6w==
-X-Received: by 2002:a05:6214:29c8:b0:440:fac2:a6c with SMTP id
- gh8-20020a05621429c800b00440fac20a6cmr23153273qvb.96.1648502308563; 
- Mon, 28 Mar 2022 14:18:28 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJx80FvxqgxoMsKHifZxJPlSaASMzEtm2PCjdcW91NHHki6CRsyrlYXzQuiJUFDSkSZnID/Qgg==
-X-Received: by 2002:a05:6214:29c8:b0:440:fac2:a6c with SMTP id
- gh8-20020a05621429c800b00440fac20a6cmr23153243qvb.96.1648502308333; 
- Mon, 28 Mar 2022 14:18:28 -0700 (PDT)
-Received: from [192.168.8.138] (pool-71-126-244-162.bstnma.fios.verizon.net.
- [71.126.244.162]) by smtp.gmail.com with ESMTPSA id
- br13-20020a05620a460d00b00680d020b4cbsm2856816qkb.10.2022.03.28.14.18.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 28 Mar 2022 14:18:27 -0700 (PDT)
-Message-ID: <dc0ead0da30d0ccf8c4c57a2548d293c57407080.camel@redhat.com>
-Subject: 2022 X.org Foundation Election Candidates
-From: Lyude Paul <lyude@redhat.com>
-To: events@lists.x.org, xorg-devel@lists.freedesktop.org, 
- wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- libre-soc-dev@lists.libre-soc.org
-Date: Mon, 28 Mar 2022 17:18:21 -0400
-Organization: Red Hat Inc.
-User-Agent: Evolution 3.42.4 (3.42.4-2.DarkModeFix.fc35)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2059.outbound.protection.outlook.com [40.107.223.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 898EC10EAEE
+ for <amd-gfx@lists.freedesktop.org>; Mon, 28 Mar 2022 21:20:41 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QYbpqkeV7+jkQehU3bpjWAVEnoE1TmC5uCNJTKINxq+sv4YjXCcVK1VWKmTwY67fyRUuyBh4r8JyA3TwcQHXVAYoGY9QQz5Rah4PB7N3Wgfb2OqLhclPtSyWW81XPni3SDENlk2w9qOAta8i7U8YGoanV7EPiQYw5d87sJphoJqZDkBmUkqopYXmzL8fw6NwVxDJzPvDv/l46llULgUiyc+NjEnf7+O0T2iRSI3nNr0XaNreZFcfqAcYoETnEq1lu+ImTFyqFDD5iBKmsFIhOhFasCPPjwPU8vWUjFftgH/fUN9P+LhCy6Wkd01ls4Lz7gf87wfFjhpYNSCiu1Eo9Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bJBKtl3gxa+UbU3EMVdyKrmxC/JNsN9ENNmMM3NlHuI=;
+ b=e3kahGYEJqvzRTm8pLrA1MDcIcV9BAlwFfPv1HVwI5dEbt/w97fBtjhF0kc3Acey82veFy7JYgeZgNnx15N9d8syWYFO125DVIA7zsAr4vfTmYO0NawjqzLpOtZ9S7Qkx7Kv+XFXWMryTr1oxsSqBl3rlF7qjb/9JOXd9O5h1V30ui/wvH6VeBnayoQCalwxZmNzGfseQ4zLhikKSrLp3kdyTB8GgYFiZmSG8mK+wtGTydxCWJax7tcrsWIWlpaM90JGHkdwl3ybJdAOyFiIFAWH+M18Pz9+As3FAvlYvayk2hUVBDRz71skyQjydHqzRgHlVtgTTLTquxe92dK3iw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bJBKtl3gxa+UbU3EMVdyKrmxC/JNsN9ENNmMM3NlHuI=;
+ b=ZHZ/ON/SyHSNQKthw5zsO+wR4KeAf3o1zoPmQRUGnzvrm9Qfw9RnknnIP6gAJIN4609Fg+lMMUtaBfN1DyZ4j7P4mbhyJi0ZddJ6BkbYS29GM4ZFjtC6T8bQ8MwzLgRbFQZOLBbsEA+O0/9LBMiEV0vlSpTzZ1XPkkktWYd/DR0=
+Received: from MW3PR06CA0004.namprd06.prod.outlook.com (2603:10b6:303:2a::9)
+ by BN6PR12MB1153.namprd12.prod.outlook.com (2603:10b6:404:19::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.19; Mon, 28 Mar
+ 2022 21:20:39 +0000
+Received: from CO1NAM11FT065.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:2a:cafe::68) by MW3PR06CA0004.outlook.office365.com
+ (2603:10b6:303:2a::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.17 via Frontend
+ Transport; Mon, 28 Mar 2022 21:20:39 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT065.mail.protection.outlook.com (10.13.174.62) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5102.17 via Frontend Transport; Mon, 28 Mar 2022 21:20:38 +0000
+Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Mon, 28 Mar
+ 2022 16:20:38 -0500
+From: Philip Yang <Philip.Yang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH v3 1/1] drm/amdkfd: Use atomic64_t type for pdd->tlb_seq
+Date: Mon, 28 Mar 2022 17:19:52 -0400
+Message-ID: <20220328211952.21889-1-Philip.Yang@amd.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 343f0f5f-24e4-4a2f-5945-08da1100ce9b
+X-MS-TrafficTypeDiagnostic: BN6PR12MB1153:EE_
+X-Microsoft-Antispam-PRVS: <BN6PR12MB1153456F5285107103FF00BFE61D9@BN6PR12MB1153.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 42TCcBZQ5SRZ8A4Ftz34r3uC7iNBPC/xanTOPERI1UBEAR4dtzX32Yd7r53AyxWNwK6HXOu6HEYfz2iwfCgcc4T5VrL5Xl8bYMxjVtCGdbDc4g/9/qj7VvBFrDVdyffFQQA5UmsOtN737N4mY/3hkA+kGi/aRbO2S+Yc3U7a+HI1rWKGVrOYo0T49q+sTfLGKrUn+uIl2ba/8HsqFu5ijaV+fPBurv8IOb90vUKEyq9+QSxvN3e9/3YT+qMCqrJ13ABX8RBVTg8hS7Hw9ldHQxjIcMOGko/kTyK4MUBYSwXXe7mJ79MISq9LbNoUo/d2LHvjdTzNm4hKzSKlClLYJqhoL+pCQicATuL0cUuAWnbs1decFKJnEYrWGZAgfEshvnYDP7e2mNwXwqEd6bbtrpM3Ul6ViQC1VlH7NrMZ7iznDpzXUykbLkEutpIvI0SoHib8iGhhzUEaUf9G9BxriDIpAsqnxvs64PyBCyIl3hA/vNs0gKOkYSW74T6LJCQiSzCLTvTleuVLL0qxAY3ad6mjhgFu+Kfc6uBfZvuUsDXX9pPm21WtsRA4ZZ7dXu3yGdNlDtlDpyQsGUvMunydWnRIr+3UN8yYx8nkBRMezM6A7NuRtDAs61HNes1tSm+bJ6C9GpcbpDrWMoPWqSiBuxxljzcGzjxTFUXI/gsmQmRAKhebPZxSlxL4os+qVvXm7XEHPTk9UkqPPMilTivu1g==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(6666004)(336012)(426003)(82310400004)(7696005)(81166007)(26005)(356005)(1076003)(2616005)(86362001)(16526019)(186003)(47076005)(36860700001)(83380400001)(8936002)(4326008)(8676002)(70206006)(36756003)(2906002)(508600001)(316002)(40460700003)(5660300002)(54906003)(6916009)(70586007)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2022 21:20:38.8431 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 343f0f5f-24e4-4a2f-5945-08da1100ce9b
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT065.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1153
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,35 +98,58 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: board@foundation.x.org
+Reply-To: 20220328130700.29642-3-Philip.Yang@amd.com
+Cc: Philip Yang <Philip.Yang@amd.com>, felix.kuehling@amd.com,
+ christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-To all X.Org Foundation Members:
+To support multi-thread update page table.
 
-The election for the X.Org Foundation Board of Directors will begin on 04 April
-2022. We have 6 candidates who are running for 4 seats. They are:
+Signed-off-by: Philip Yang <Philip.Yang@amd.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h    | 2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c | 5 ++---
+ 2 files changed, 3 insertions(+), 4 deletions(-)
 
-    Emma Anholt
-    Shashank Sharma
-    Ricardo Garcia
-    Mark Filion
-    Lucas Stach
-    Alyssa Rosenzweig
-
-To be found in the link below below are the Personal Statements each candidate
-submitted for your consideration along with their Statements of Contribution
-that they submitted with the membership application. Please review each of the
-candidates' statements to help you decide whom to vote for during the upcoming
-election.
-
-    https://www.x.org/wiki/BoardOfDirectors/Elections/2022/
-
-If you have questions of the candidates, you should feel free to ask them here
-on the mailing list.
-
-The election committee will provide detailed instructions on how the voting
-system will work when the voting period begins.
-
-Lyude Paul, on behalf of the X.Org elections committee
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+index 945982a5d688..e1b7e6afa920 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+@@ -705,7 +705,7 @@ struct kfd_process_device {
+ 	/* VM context for GPUVM allocations */
+ 	struct file *drm_file;
+ 	void *drm_priv;
+-	uint64_t tlb_seq;
++	atomic64_t tlb_seq;
+ 
+ 	/* GPUVM allocations storage */
+ 	struct idr alloc_idr;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+index ac8123c1ee8f..267ba8c434c0 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+@@ -1560,7 +1560,7 @@ int kfd_process_device_init_vm(struct kfd_process_device *pdd,
+ 		return ret;
+ 	}
+ 	pdd->drm_priv = drm_file->private_data;
+-	pdd->tlb_seq = 0;
++	atomic64_set(&pdd->tlb_seq, 0);
+ 
+ 	ret = kfd_process_device_reserve_ib_mem(pdd);
+ 	if (ret)
+@@ -1954,10 +1954,9 @@ void kfd_flush_tlb(struct kfd_process_device *pdd, enum TLB_FLUSH_TYPE type)
+ 	uint64_t tlb_seq = amdgpu_vm_tlb_seq(vm);
+ 	struct kfd_dev *dev = pdd->dev;
+ 
+-	if (pdd->tlb_seq == tlb_seq)
++	if (atomic64_xchg(&pdd->tlb_seq, tlb_seq) == tlb_seq)
+ 		return;
+ 
+-	pdd->tlb_seq = tlb_seq;
+ 	if (dev->dqm->sched_policy == KFD_SCHED_POLICY_NO_HWS) {
+ 		/* Nothing to flush until a VMID is assigned, which
+ 		 * only happens when the first queue is created.
+-- 
+2.35.1
 
