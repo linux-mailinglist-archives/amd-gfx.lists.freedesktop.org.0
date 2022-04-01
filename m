@@ -1,37 +1,42 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A79D54EE7F5
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Apr 2022 07:54:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F0C74EE909
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Apr 2022 09:23:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F16B910E251;
-	Fri,  1 Apr 2022 05:54:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9530810FE72;
+	Fri,  1 Apr 2022 07:23:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64AEE10E251;
- Fri,  1 Apr 2022 05:54:31 +0000 (UTC)
-Received: from [192.168.0.4] (ip5f5aef67.dynamic.kabel-deutschland.de
- [95.90.239.103])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested) (Authenticated sender: pmenzel)
- by mx.molgen.mpg.de (Postfix) with ESMTPSA id A9F4761EA192A;
- Fri,  1 Apr 2022 07:54:29 +0200 (CEST)
-Message-ID: <2a2b1f76-7e9b-9561-e190-16d808eb5399@molgen.mpg.de>
-Date: Fri, 1 Apr 2022 07:54:29 +0200
+Received: from mail.meizu.com (edge07.meizu.com [112.91.151.210])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A955110F846;
+ Fri,  1 Apr 2022 06:28:16 +0000 (UTC)
+Received: from IT-EXMB-1-125.meizu.com (172.16.1.125) by mz-mail11.meizu.com
+ (172.16.1.15) with Microsoft SMTP Server (TLS) id 14.3.487.0; Fri, 1 Apr 2022
+ 14:28:09 +0800
+Received: from meizu.meizu.com (172.16.137.70) by IT-EXMB-1-125.meizu.com
+ (172.16.1.125) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.14; Fri, 1 Apr
+ 2022 14:28:07 +0800
+From: Haowen Bai <baihaowen@meizu.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Pan, Xinhui"
+ <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>, Daniel Vetter
+ <daniel@ffwll.ch>, Mohammad Zafar Ziya <Mohammadzafar.ziya@amd.com>, Tao Zhou
+ <tao.zhou1@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>
+Subject: [PATCH V2] drm/amdgpu/vcn: Remove unneeded semicolon
+Date: Fri, 1 Apr 2022 14:28:05 +0800
+Message-ID: <1648794486-23302-1-git-send-email-baihaowen@meizu.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <2a2b1f76-7e9b-9561-e190-16d808eb5399@molgen.mpg.de>
+References: <2a2b1f76-7e9b-9561-e190-16d808eb5399@molgen.mpg.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH] drm/amdgpu/vcn: remove Unneeded semicolon
-Content-Language: en-US
-To: Haowen Bai <baihaowen@meizu.com>
-References: <1648706190-4596-1-git-send-email-baihaowen@meizu.com>
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <1648706190-4596-1-git-send-email-baihaowen@meizu.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [172.16.137.70]
+X-ClientProxiedBy: IT-EXMB-1-124.meizu.com (172.16.1.124) To
+ IT-EXMB-1-125.meizu.com (172.16.1.125)
+X-Mailman-Approved-At: Fri, 01 Apr 2022 07:23:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,58 +48,36 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: Haowen Bai <baihaowen@meizu.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Dear Haowen,
+report by coccicheck:
+drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c:1951:2-3: Unneeded semicolon
 
+Fixes: c543dcbe4237 ("drm/amdgpu/vcn: Add VCN ras error query support")
 
-Thank you for your patch.
+Signed-off-by: Haowen Bai <baihaowen@meizu.com>
+---
+V1->V2: change title; change Fixed info;
 
-Am 31.03.22 um 07:56 schrieb Haowen Bai:
+ drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-In the commit message summary, please use:
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
+index 3e1de8c..17d44be 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
+@@ -1948,7 +1948,7 @@ static uint32_t vcn_v2_6_query_poison_by_instance(struct amdgpu_device *adev,
+ 		break;
+ 	default:
+ 		break;
+-	};
++	}
+ 
+ 	if (poison_stat)
+ 		dev_info(adev->dev, "Poison detected in VCN%d, sub_block%d\n",
+-- 
+2.7.4
 
-Remove unneeded semicolon
-
-> report by coccicheck:
-> drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c:1951:2-3: Unneeded semicolon
-> 
-> fixed c543dcb ("drm/amdgpu/vcn: Add VCN ras error query support")
-
-Please use
-
-Fixes: …
-
-and a commit hash length of 12 characters. (`scripts/checkpatch.pl …` 
-should tell you about this.)
-
-
-Kind regards,
-
-Paul
-
-
-> Signed-off-by: Haowen Bai <baihaowen@meizu.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-> index 3e1de8c..17d44be 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-> @@ -1948,7 +1948,7 @@ static uint32_t vcn_v2_6_query_poison_by_instance(struct amdgpu_device *adev,
->   		break;
->   	default:
->   		break;
-> -	};
-> +	}
->   
->   	if (poison_stat)
->   		dev_info(adev->dev, "Poison detected in VCN%d, sub_block%d\n",
