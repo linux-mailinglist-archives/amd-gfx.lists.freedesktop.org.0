@@ -1,71 +1,59 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FB764EEDB2
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Apr 2022 15:02:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF8AB4EEDB0
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Apr 2022 15:02:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5575410E317;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 022A710E2DC;
 	Fri,  1 Apr 2022 13:02:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com
- [IPv6:2a00:1450:4864:20::32f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1722110E074
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Apr 2022 10:48:30 +0000 (UTC)
-Received: by mail-wm1-x32f.google.com with SMTP id
- v64-20020a1cac43000000b0038cfd1b3a6dso3239308wme.5
- for <amd-gfx@lists.freedesktop.org>; Fri, 01 Apr 2022 03:48:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=date:from:to:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=oJkMxMbwxEJasoZlU3TxOexkvpR/xRpBOL5jB5OeKsI=;
- b=n6J4GKYqo32zfnvoBEflZ/pHPRtY5/OtPYELnVlZAGyiF3Op3VAwLta9DInyQbumcy
- 2P0sIHx5NiFMJGl+on4wU9mXTHTXkM6e8u1g55Ukz8vuDIKup21ztoFxcOZhjHV5gxuo
- 9/pSGfwyUEPhqcByQMj5KWTwrcAkYDsdarGgLVoEeKgZWtJQscJHipcCaQK8QVU0bMN7
- /5wtFoE1e+9VtnNlWEQ9JhE2FqrV4TGtuQj5GKzG++vKxtRbCHN6m/puu69+cOTVj6Hk
- JT21G45vA0HIw5ypHPFWvPM3M2cBzbGk4aGjx1CNIgL1BnwSrqk/NMORvkHJHFZyx61P
- Nf0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=oJkMxMbwxEJasoZlU3TxOexkvpR/xRpBOL5jB5OeKsI=;
- b=cmMN2jAHwYWDheuFJmrEnoJ0/IEeoW0V05Sl69kxZ88H48ryjUBK0KTp7OY/KE9z55
- Du1IlS3IKZg0s48cuArROZz0EWyLg5QJ/pmvYO7RihXdezAYyb+7ntYaGXxPu3fCfrBT
- gFaEeEK16mFhHFMQj8F1ioiY8bYtYBrs7/5ZZowMykt1x/or4YPeWv3oisJL/N+9EnZj
- GSjqyKuZYlygy7J2vHxeKFlciVjQlmAJ50p0NcutrriNMHuvm3Ar5TH60OgVxKgdyWe3
- PRoMyCQR6wQ/QbaqVPUcKxZc1rX2Ha3M5+QHIbiu6XSKWjKrTY1wyVRQGp+jdcZ1iD7K
- bZxw==
-X-Gm-Message-State: AOAM532GJxXxjU5sVRqS6Idzd4Z4RGouwlwQ+AYIJpgnhoWNxKxuqoWP
- ltn17IZr0DIzE+hAftf1CTtDaQ==
-X-Google-Smtp-Source: ABdhPJxNae5mtOUlcJ11V8CEEAmEBmIr/8nL58kA+6KZML9ebn7Mi62K14UfN7s2QyBaj6CiP7Da7Q==
-X-Received: by 2002:a1c:4e02:0:b0:38c:8a10:e899 with SMTP id
- g2-20020a1c4e02000000b0038c8a10e899mr8210755wmh.125.1648810108632; 
- Fri, 01 Apr 2022 03:48:28 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net.
- [86.27.177.88]) by smtp.gmail.com with ESMTPSA id
- n15-20020a05600c500f00b0038cfb1a43d6sm1584746wmr.24.2022.04.01.03.48.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 01 Apr 2022 03:48:28 -0700 (PDT)
-Date: Fri, 1 Apr 2022 11:48:26 +0100
-From: Lee Jones <lee.jones@linaro.org>
-To: linux-kernel@vger.kernel.org, Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2 1/1] drm/amdkfd: Create file descriptor after client
- is added to smi_clients list
-Message-ID: <YkbYelifDo4zCf/x@google.com>
-References: <20220401104451.1951544-1-lee.jones@linaro.org>
+Received: from ipmail05.adl3.internode.on.net (ipmail05.adl3.internode.on.net
+ [150.101.137.13])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8311510E242
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 Apr 2022 12:18:51 +0000 (UTC)
+X-SMTP-MATCH: 1
+IronPort-Data: =?us-ascii?q?A9a23=3AmCAkyalCme9UxMi/OR5/EqXo5gyWJ0RdPkR7X?=
+ =?us-ascii?q?Q2eYbSJt1+Wr1GztxIbUW7UO//eamL3Kt90PY21/U9UucOAmtA3GQpupCg2E?=
+ =?us-ascii?q?X8T8cPLXY3DJUv7Mi/DJ8fJR0k/tZlFO4HMIspqFCKMjxr8abKJQVtUjPHQH?=
+ =?us-ascii?q?OCgYALn1oGdfeLXIcsYoUoLd9MR2+aEv/DpW2thhvuqyyHvEAfNNw9cagr42?=
+ =?us-ascii?q?YrawP9clKyaVAcjg7ALTasjUGkyNpUiJMl3yamZdxMUS2TPdwKwb76rILqRp?=
+ =?us-ascii?q?gs18/qxY+5JnIoXcmVSKlLT0eZiiFIPAvjk2EEa4HZjlP9gbJLwam8O49mNt?=
+ =?us-ascii?q?9lr1NVQr9q1QB0yPoXNnvgQSR9fHyw4OqsA/rLbSZS6mZDKlxKYLiO1kp2CC?=
+ =?us-ascii?q?2ltZdZIoLwmaY1UztQVNjkLKAmejuSeybe3DOJrg6wLBc3mLIoZtnx6ix3UE?=
+ =?us-ascii?q?P0mTIrrSqDGo9Rf2V8YrcBUHO3CZsMfLxloYRLBbDVGP1tRA5U79M+Li3/5f?=
+ =?us-ascii?q?iFY7nyYo6Uf6m3figd21dDFFNvXfZquTNdchG6Ro26A9GP8ajkTMdDaxjSV2?=
+ =?us-ascii?q?natnfPU2y3hVY8eGaa76vlyxlqJyQQ7AQcKVUah5/ywkFW+c9NZN0EO/C0io?=
+ =?us-ascii?q?O418gqtQ8WVYvESiGrc61tFA5wIB7RvsEfV3vCBu0DIWTNfWmUUMJp7oJBjf?=
+ =?us-ascii?q?TYuwgbRyoutXSgHXKa9UWqFr+7E6GnrYW1PfCpbPndCRAcBptDvq8Q3iRSKR?=
+ =?us-ascii?q?MxqC/XsyMHtFnfxxSyHti45i7hVishN0ainlW0rSgmE/vDhJjPZLC2NNo590?=
+ =?us-ascii?q?j5EWQ=3D=3D?=
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AYF0FQqvytDDiNb+oi6VpsIJ37skDYdV00z?=
+ =?us-ascii?q?EX/kB9WHVpmwKj+/xG+85rsSMc5wx+ZJhNo7q90ey7MBDhHP1OkOws1MmZPT?=
+ =?us-ascii?q?UO0VHAROpfBMnZsl/d8kbFmdK1u50MT0EHMr3NMWQ=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2AEBACq7EZiAIId0nZagRKBUYwvqyG?=
+ =?us-ascii?q?BfAsBVAQBAYUHAoRYJjUIDgECBBUBAQYBAQEBAQcEEAE5UoV1hkMCAQMnCwF?=
+ =?us-ascii?q?GEFFXgx2zJzKBAYgXgWWBPIk9hRE3gVVEgUuBBoIshAmBCYUyBJkeGSaBawS?=
+ =?us-ascii?q?UG5tQkj00B4NMgTwGDJ4TTahOLZYxoU1yhi4BghMzGi6DL1AoV41VFo5BgRo?=
+ =?us-ascii?q?CBgsBAQMJkWABAQ?=
+Received: from ppp118-210-29-130.adl-adc-lon-bras31.tpg.internode.on.net (HELO
+ localhost) ([118.210.29.130])
+ by ipmail05.adl3.internode.on.net with ESMTP; 01 Apr 2022 22:48:49 +1030
+Received: from amarsh04 by localhost with local (Exim 4.95)
+ (envelope-from <arthur.marsh@internode.on.net>) id 1naGEp-0001Uw-HM;
+ Fri, 01 Apr 2022 22:48:47 +1030
+From: Arthur Marsh <arthur.marsh@internode.on.net>
+To: evan.quan@amd.com
+Subject: [PATCH V4 17/17] drm/amd/pm: unified lock protections in amdgpu_dpm.c
+Date: Fri,  1 Apr 2022 22:48:47 +1030
+Message-Id: <20220401121847.5754-1-amarsh04@internode.on.net>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <BYAPR12MB2615608D66B2894697D8C5FEE4E09@BYAPR12MB2615.namprd12.prod.outlook.com>
+References: <BYAPR12MB2615608D66B2894697D8C5FEE4E09@BYAPR12MB2615.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220401104451.1951544-1-lee.jones@linaro.org>
 X-Mailman-Approved-At: Fri, 01 Apr 2022 13:02:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -78,39 +66,77 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Kenneth.Feng@amd.com, Lijo.Lazar@amd.com, amd-gfx@lists.freedesktop.org,
+ Alexander.Deucher@amd.com, arthur.marsh@internode.on.net,
+ Christian.Koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 01 Apr 2022, Lee Jones wrote:
+Hi, short answer is that with both patches applied, I am successfully running
+the amdgpu kernel module on radeonsi (plasma desktop on X.org).
 
-> This ensures userspace cannot prematurely clean-up the client before
-> it is fully initialised which has been proven to cause issues in the
-> past.
-> 
-> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: "Christian König" <christian.koenig@amd.com>
-> Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: amd-gfx@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org
-> Signed-off-by: Lee Jones <lee.jones@linaro.org>
-> ---
-> 
-> CAVEAT: This patch is completely untested
->         I can't seem to find a configuration strategy to compile test this
->         allyesconfig and allmodconfig do not appear sufficient
-> 
-> v2: Also remove Client from RCU list in error path
-> 
->  drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c | 24 +++++++++++++--------
->  1 file changed, 15 insertions(+), 9 deletions(-)
+I confirmed that CONFIG_LOCKDEP_SUPPORT=y is enabled in the kernel.
 
-Please ignore this re-submission, script error.
+With the first patch applied and remotely connecting to the machine and
+loading amdgpu via:
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+modprobe amdgpu si_support=1 gpu_recovery=1
+
+the last lines of dmesg were:
+
+[  264.095969] [drm] Found UVD firmware Version: 64.0 Family ID: 13
+[  264.097779] [drm] PCIE gen 2 link speeds already enabled
+[  264.648137] [drm] UVD initialized successfully.
+[  264.648696] amdgpu 0000:01:00.0: amdgpu: SE 1, SH per SE 2, CU per SH 5, active_cu_number 8
+[  264.984814] [drm] Initialized amdgpu 3.46.0 20150101 for 0000:01:00.0 on minor 0
+[  265.040280] fbcon: amdgpudrmfb (fb0) is primary device
+
+After applying the second patch and building and restarting with the new
+kernel, I could load amdgpu successfuly and start
+the plasma desktop under X.org, with the last amdgpu load lines being:
+
+[  227.736281] fbcon: amdgpudrmfb (fb0) is primary device
+[  227.760719] Console: switching to colour frame buffer device 240x67
+[  227.765024] amdgpu 0000:01:00.0: [drm] fb0: amdgpudrmfb frame buffer device
+
+I tried building a kernel with just the second patch and that experienced
+a lockup after apparently loading amdgpu alright.
+
+First and second patches combined:
+
+diff --git a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
+index 89fbee568be4..e9ebbc9f4cd2 100644
+--- a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
++++ b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
+@@ -80,8 +80,6 @@ int amdgpu_dpm_set_powergating_by_smu(struct amdgpu_device *adev, uint32_t block
+ 		return 0;
+ 	}
+ 
+-	mutex_lock(&adev->pm.mutex);
+-
+ 	switch (block_type) {
+ 	case AMD_IP_BLOCK_TYPE_UVD:
+ 	case AMD_IP_BLOCK_TYPE_VCE:
+@@ -102,8 +100,6 @@ int amdgpu_dpm_set_powergating_by_smu(struct amdgpu_device *adev, uint32_t block
+ 	if (!ret)
+ 		atomic_set(&adev->pm.pwr_state[block_type], pwr_state);
+ 
+-	mutex_unlock(&adev->pm.mutex);
+-
+ 	return ret;
+ }
+ 
+@@ -423,9 +419,7 @@ void amdgpu_dpm_compute_clocks(struct amdgpu_device *adev)
+ 	if (!pp_funcs->pm_compute_clocks)
+ 		return;
+ 
+-	mutex_lock(&adev->pm.mutex);
+ 	pp_funcs->pm_compute_clocks(adev->powerplay.pp_handle);
+-	mutex_unlock(&adev->pm.mutex);
+ }
+ 
+ void amdgpu_dpm_enable_uvd(struct amdgpu_device *adev, bool enable)
+
+Thanks for the assistance!
+
+Arthur.
