@@ -1,121 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E36F14EEC9E
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Apr 2022 13:53:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA4684EEDB1
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Apr 2022 15:02:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3420810E08E;
-	Fri,  1 Apr 2022 11:53:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D5F510E312;
+	Fri,  1 Apr 2022 13:02:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2083.outbound.protection.outlook.com [40.107.223.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD09A10E08E
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Apr 2022 11:53:17 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lERlDhX275ldWJFQcCxE5QOjuE9NC0ajudma8QMC1EKFKqV0wv+SxBl7JpWNAkAaehqfvxyTf7Twssy0OZdnKu49Yf65lnrWk+YUw+Sj59fYZjYgNae34HaxbKeuXZOIM+BJRGrq2yP1D4V8OzT/CQxRXyY0D/YoKKMskUhwkKRfucxLaKvs20TMwD3Pe2OwCAdkBTuIBPFNfO5QoDI3sTHigG3a74lJCw3HwE3pGwojJNkd/h1cuSxecAUijsQg2do74IKLZKQmtot/7NTWs8Fu4hNmPFsIoAbJggcxnMf8aafvJo7cpqA5gSQ2b2dFQBLCwA/eVAdMo4XbiHvhAw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FDDJOfeoDkwWKTflWi6C+Kc/BFiAF6l7Hp9BLaFxzuU=;
- b=WFWDIkOwmp+pslKayooxNN2u4I7oFMnoKqeia2DFtSrm0GZMR6uE0zTfUvsDWVAjMvbrJ8b8yr1ZuucXvfUtHkPFWV44AEuXtXBu3oX1Kkb+ICzYg5ri61+LYjANxDjpBnOKkRjgOdIJkUKUbSTaPoQORHdNNJt4iYPAANnPupTtSmmNMh3NH4x1Qim7TlT5rNvkOnvv2eN4SYgklQIdlQHjpYkYuWUMRjYl+7d7fDZ6kojAGMwyaDu0w0hDaqSBOr8Gw+pvHf2SjrgOUCdMmZ+HbqgO/lS+gB/w5uxW8jl/LwkVj+7wnMnjONVFVyFRSe/O/4h04rdDJ+9V8QQq4A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FDDJOfeoDkwWKTflWi6C+Kc/BFiAF6l7Hp9BLaFxzuU=;
- b=QdTYpuk529q+qHlCUL8FmtekkJvuXSukRCfJjgyY1HoObMNUalqVTMks9weDa/947HC8r5Q6nBpYtn2e2gj9/R2qQ9EBkG+pkHtqMCL6zIxd3DnAkYUfZ68fYSY9TINVef3knEQzyiypzzbpnFWyMW3CnpM5VEbskWWoVmNqYkM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BYAPR12MB4614.namprd12.prod.outlook.com (2603:10b6:a03:a6::22)
- by CY4PR1201MB0149.namprd12.prod.outlook.com (2603:10b6:910:1c::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5123.25; Fri, 1 Apr
- 2022 11:53:15 +0000
-Received: from BYAPR12MB4614.namprd12.prod.outlook.com
- ([fe80::d851:76d6:b1e6:4a06]) by BYAPR12MB4614.namprd12.prod.outlook.com
- ([fe80::d851:76d6:b1e6:4a06%5]) with mapi id 15.20.5123.025; Fri, 1 Apr 2022
- 11:53:15 +0000
-Message-ID: <3f4eb7d0-2e48-a814-e939-a245f410f9c5@amd.com>
-Date: Fri, 1 Apr 2022 17:22:54 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH] drm/amdgpu: don't use BACO for reset in S3
-Content-Language: en-US
-To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20220331145623.1854199-1-alexander.deucher@amd.com>
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <20220331145623.1854199-1-alexander.deucher@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN3PR01CA0098.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:9b::11) To BYAPR12MB4614.namprd12.prod.outlook.com
- (2603:10b6:a03:a6::22)
+Received: from ipmail05.adl3.internode.on.net (ipmail05.adl3.internode.on.net
+ [150.101.137.13])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8E82D1121A4
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 Apr 2022 08:50:06 +0000 (UTC)
+X-SMTP-MATCH: 1
+IronPort-Data: =?us-ascii?q?A9a23=3Abvm0e6zmdPyJ2nHSaJ96t+chxyrEfRIJ4+Muj?=
+ =?us-ascii?q?C+fZmUNrF6WrkUDxmVNWGnSMv+IM2T3Ltl1YIjk9R9T7ZCBn95hQQNvqyswH?=
+ =?us-ascii?q?34a+MCfWoiQchesbi6ecMOSQB03ssgXYNTLdMppZ3KN/R3F3prJ9Ckkj/vUL?=
+ =?us-ascii?q?lbf5E8oAs3CLONdYH9JZS9LwobVvKY42bBVPCvV0T/Ci5W31G6Ng1aYAEpNg?=
+ =?us-ascii?q?06wgEsHUMDJhd8tlgdWicanHbPpvyJ94Jo3fcldJpZjK2VeNrbSq+3rlNlV8?=
+ =?us-ascii?q?o5FlirBBO9Jkp6jGqELrlA+PyDX0yoQAfH6xEIT4HVpis7XN9JFAatTozyTg?=
+ =?us-ascii?q?9Bs0pNIvIarSS8oOLHBguIaXxQeFCc4O6BakFPCCSTm6ZPJnhaaLRMAxN01V?=
+ =?us-ascii?q?BpmZ9dJkgptOklD6/UebikQZxarjue6hrm8T4FEr8AuPMDtMI4F/F1t0DrZA?=
+ =?us-ascii?q?OwOSJXPBa7N4Ldw9zcqh9tSHP/YIekeZDxuYzzJZhEJMVASYLodkeGui2X/N?=
+ =?us-ascii?q?RNVrl29rK87pWPUyWRZ9LnvN5zxc86DX+1cm0rerWXDl0zwBx1fO9KP4T6E6?=
+ =?us-ascii?q?W63wOHVkC73VZkRCLqgsPlwjzW7z3YPCAAME16yu+K5ok+4R99FLUsY92wpq?=
+ =?us-ascii?q?+40+VDDczVXdwng9Tvd5lhET4MFS6ti/FvYkuyFvF3CEjNRFngcfINzjMUyU?=
+ =?us-ascii?q?WVygwfNx8eB6SdHqKWNECvNs+3N9XboaG1MdjdEbCMACAIJ6Jznp4d2hAjGV?=
+ =?us-ascii?q?Y06VrKtgZv0Hy392TaNoCV4gLNVi8MXv5hXNGvv21qEzqUlhCZuvm07hl6Y0?=
+ =?us-ascii?q?z4=3D?=
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AOpaJyaj0u8TcOsCwS5ZX7JVEX3BQXs0ji2?=
+ =?us-ascii?q?hC6mlwRA09TyVXrayTdZMgpHvJYVkqNk3I9errBEDEewK+yXcX2/h1AV7dZm?=
+ =?us-ascii?q?jbUQKTRekI0WKh+UyDJ8SUzIFgPMlbHpSWcOeRMWRH?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2BQBAA6vEZiAIId0nZaHgEBCxIMSYF?=
+ =?us-ascii?q?GC4IAii+OOJxpgXwLAVQEAQGFBwKEWCY2Bw4BAgQVAQEGAQEBAQEHBBABOVK?=
+ =?us-ascii?q?FdYZDAgEDMgFGEFFXgx2zSYEBiBeBZYE8iT2FETeBVUSBFAE2gzKECYY7BJk?=
+ =?us-ascii?q?ec2xLBDFfkweuETQHg0yBPAYMnhNNqE4tljGhTQ1lhjQNggEzGi6DL1Aojiw?=
+ =?us-ascii?q?WgQQBB401gRoCBgsBAQMJkWABAQ?=
+Received: from ppp118-210-29-130.adl-adc-lon-bras31.tpg.internode.on.net (HELO
+ localhost) ([118.210.29.130])
+ by ipmail05.adl3.internode.on.net with ESMTP; 01 Apr 2022 19:19:54 +1030
+Received: from amarsh04 by localhost with local (Exim 4.95)
+ (envelope-from <arthur.marsh@internode.on.net>) id 1naCyf-0001BI-0C;
+ Fri, 01 Apr 2022 19:19:53 +1030
+From: Arthur Marsh <arthur.marsh@internode.on.net>
+To: evan.quan@amd.com
+Subject: [PATCH V4 17/17] drm/amd/pm: unified lock protections in amdgpu_dpm.c
+Date: Fri,  1 Apr 2022 19:19:52 +1030
+Message-Id: <20220401084952.4536-1-amarsh04@internode.on.net>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <BYAPR12MB2615DA93084138A62E593442E4E09@BYAPR12MB2615.namprd12.prod.outlook.com>
+References: <BYAPR12MB2615DA93084138A62E593442E4E09@BYAPR12MB2615.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8404682f-ac4e-4d64-3207-08da13d633bc
-X-MS-TrafficTypeDiagnostic: CY4PR1201MB0149:EE_
-X-Microsoft-Antispam-PRVS: <CY4PR1201MB014934F6E2748A976A212FD097E09@CY4PR1201MB0149.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: IYHBpVzLJVBxHYLqtjI0Ty2lmUjD7tsR2f8l+KQijXXE1J213xWbnj78Jh2vb9GI0TPxsbpbhEnGB2WecdngRaSisWlNZRrWSVpTgRPzRY/UBz1K8RZpscgfcybg+yxi7kj1GZexBm0iU7cSKTWwbZJUeJqKtN7QmTNbPJXZjOk5xCiX37yy5uCD4Tpj/bj5WMF6YF+z99vEIK3soPoFdcK8NY1/4JJjAGzaoUJ707rapp1BWgmaDPwKR1RnIu9nPDc9SZRhaQHo1Utmv5ggGtRJpv/G1kkIWCoK2a0hdPylQ/q08Kq7cIv2Jz8k4Jc76aSu6Wu1JBgZynvZcXMviMp7wDTCxX/TuI17vSv6hMMStEqXGkpoQjxc8y8z5FtY9HmQ8nrs6QOEC2t2bHVuAi8biu2RJFxL9VDhc2DQmXOPuIw+D36zHnIweqsU1+TiSkdOYHeWvRIocfari6ZObKTR+r3lfg0cloeIpmsig45WrW9t67zJns+237j/cMjpHa/JY/5gQhd7bCSUy+lySMcggnygU//hX5C2bOynmVgLlf38iU5AtWhHDftlowAbb+VKCvlcFqhr+jIqTsSXc2MOqquSuVF8ctXp1Vxw2RJwpKyLrC1SDssfhsRNmqoEbc5KbbdvqH2S033pXFO3Wy3mVE4o6PQQjP4TAhfZosF/pYEQPhwLe0abIJFlnDleesKX3mifs+lkWnGRZagswAqujCywe8gDjoTB8h+chMXwNIk94NI/tRZ1TT+UL5uM
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR12MB4614.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(4636009)(366004)(6666004)(186003)(2906002)(31686004)(2616005)(6506007)(8676002)(36756003)(26005)(66556008)(66476007)(66946007)(316002)(6512007)(508600001)(8936002)(38100700002)(83380400001)(31696002)(966005)(53546011)(6486002)(86362001)(5660300002)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UU5tWllIcmJTY1lYRDhUbDE3UGNXOWZKNFlGYjlUNjB4KzUyK0l1aFEyMDBF?=
- =?utf-8?B?T3QyRFpsODZTUnVEVDVwYnN2SUpETWIwTVVibG1PR3oyVW5OWXMyTFcxdVBk?=
- =?utf-8?B?RGM0YU5MeW1GVXJuaXo5ZUZpc2RLMHhQa2htaEFmNjBJb3EvQjJxQXh1Y3B1?=
- =?utf-8?B?SEpwNFNINkh2SVRxWVBYaHE2VHF4akUweDlXTGk0dVByaWRZV1dSbk9RVzBG?=
- =?utf-8?B?aWdNcWdWTmtOd2x6NFgzNnJSNGcyRVVzaVJsWXYxam8yektzb0RIOGthZ3JM?=
- =?utf-8?B?ZnJjelFQMHJzS29raFJ3VVJmY2daWWJxQ3lkd2xQYjd2aUNkdThhNW9kMytk?=
- =?utf-8?B?L21aaTgzYjIycmhuOVJzSzlDWWc0VGc5emJlUVcwTmRlclBlNkUzcHJMYmtU?=
- =?utf-8?B?b2R0REJackcwblplaXpkbU81RzFWM2Z4VWxQWXVDNkJUbkh2Qk9iNHN1UVNz?=
- =?utf-8?B?UnJBZUVQdk5TV1BVVytlSFJjcGVwWms1bjA0RHg1UHZ2cFN3enFEUm8rSE5N?=
- =?utf-8?B?NjhCNGg0Yy9tYncrdHpNOEV5b0JGMkY0dStyWUR1WDQrUytRZXlKUWhTTDVq?=
- =?utf-8?B?c0lPT1BodlNnQzJ4dm50Zlc3elhGcDA0cjBXQU1kVDkrei8vbkRCMEt1Rk1i?=
- =?utf-8?B?SzhLeVpjWWhFZURpazVoWjUrY0VOUjZMYUl5THNLSzRVN25SNmU1UWU2L04r?=
- =?utf-8?B?ZDhvWStJNnMrREptb0wvbWt3ODBaNmxLWXJPOHhmMk1HMEU4a3RhNUltSjdK?=
- =?utf-8?B?V2JtNWVYTEJRbDN2SWlYM0pCbnkvV1hSS01pMmF5d1p3bURoMlhYRFllSlFS?=
- =?utf-8?B?b0ZMMnBjdEsxQ01taVlyQ0ZaU2d6bDdJV2plS2c5emlkYTVwRkZRNlBRV1M4?=
- =?utf-8?B?NmV3eEdYcTNqbG1HNFZvWnVMNzJpL2JFVVA2NFh5cVNsdW10d3gxNUpsOEVM?=
- =?utf-8?B?bGJjNnhxdkY1TVpuK2k5QUcvZXprOWd6ejNGUjNDSHVsWU5JM2E4czRWY0pl?=
- =?utf-8?B?cWpqTk5qOUVNNVpac29KcTZUOThVNHJsYXZHSUprK0NrUEM3cnYvcEtvZkt5?=
- =?utf-8?B?OStTVGtIenlGM2Exa0FnQkVVYWd3eHZSdndSWXZGVXV2STJZRXdMdVdLSCtv?=
- =?utf-8?B?SXYybzVzRkFKcEtmL2xWZ1hFNnBmVGpMR210aUxmWDhuU0NBdGF4VVJ1QVA0?=
- =?utf-8?B?SDgyR1ovL0c1d094NkxsSEszVmhxNjduZE1rVlNMd3IrbXJQUTM2S1hsdU9x?=
- =?utf-8?B?Z2NwU0oxOVZEZDNlZ3Mwa1BTVHR2ckhiaGpqaW9SSFRLcVlibElUdHZ1Ri9E?=
- =?utf-8?B?NzJoZXBLSzJpTzBueHUraWpqU01GZ3dNU3FablFSdldwaURISFRvYkdad3JG?=
- =?utf-8?B?dUJjQ1U4Ymw2dTJSZ05BVHhKdGs0dGMzSmgvaDc5eWZHTnQ1Z1JJclFJY1lM?=
- =?utf-8?B?eUVQWk5LME5vN25KRUdtWE9KcEVXdmRoMEI0RlZJcnFhL3dkRXBiT2ZpWVh2?=
- =?utf-8?B?RDUvQTVYckZjQnk2MzdSZC9LUURRdHdaMkQ0cnM1K0NOUllZUklZN1NYcXJF?=
- =?utf-8?B?MEwzbU1mbnVKbHpzOVZaS1dNbm52T01wdXd2TEJFK1JUdEhXcVVicEJhSXlQ?=
- =?utf-8?B?OFJBTjFoN2pCYWMvYzlIUTErT0Y5d2FVNUFBd2ZqZDJlbTVSdzAxV29SS2xz?=
- =?utf-8?B?dm16TXkvVFc5SGhjbDhkT3EzSmpDVVduRWJzT1YvMHduMFRJMng3b1RhUVdk?=
- =?utf-8?B?M3hDaVd5cmJDZCtiR1k2MTZJang0NmtUMEVkem04YUd6NVZDMEUzK1A0RWJY?=
- =?utf-8?B?TUVGMGRXWW12M0JLU20zL0dsK2g1dk5XNkp4S3dqbUR0YlJNWElXRklhSWJE?=
- =?utf-8?B?VG50NFJnMkFrQXlXYnA2bVcxRHZXM1djcDA4MXNNR2UzSHV2VDZadERiTU5h?=
- =?utf-8?B?b1ZuTWNCdXkzcTVEdHU2cGlJZzg1ZHRGVDVBWTAyRGZwUjdpcXRYTXB0amcy?=
- =?utf-8?B?YUllYUV3SkVSY0MreVVkNVZmL0w2QWhDUzU1ejU1UFN2Wi9hTGkyUlh5V1Qv?=
- =?utf-8?B?VDJTaDV5a0VnS2VBQ3lBZDRxcUlJa29HU21mZ0t5Q3pGaEVuUmxMQzU5NVI4?=
- =?utf-8?B?YnpxS1NhQjc4Y3lLdkhiR21kVXhaVmJRdUFaOEJxUUhmU3c5Ly90ckxGMVJY?=
- =?utf-8?B?eW85d0dkZjhPdHJHWkdZRVFhcWRvL214TDhld05JMGMyUytOVjF5ZnhUUDRa?=
- =?utf-8?B?aTgxOWZMQ3pVelJYYWdSQVRpaFRQZ3g1RDJjbG1wTHZiWG43NE1rTGZ0MlUy?=
- =?utf-8?B?UklLc3VIU0xwekp1WFNUbk81M0xwT2Q3d1FTUzh3WTJkK3lhS3FUQT09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8404682f-ac4e-4d64-3207-08da13d633bc
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4614.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2022 11:53:14.9652 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4/7hny5dzcezhib7uekaDUXCUZEUT96rbYRRXvCgrOcE7Y4znCqE5P1mGFCCcvQf
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0149
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 01 Apr 2022 13:02:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,41 +66,79 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Kenneth.Feng@amd.com, Lijo.Lazar@amd.com, amd-gfx@lists.freedesktop.org,
+ Alexander.Deucher@amd.com, arthur.marsh@internode.on.net,
+ Christian.Koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Hi Evan, this is what was logged (filtering for drm and amdgpu) when I 
+blacklisted amdgpu then manually did:
 
+modprobe amdgpu si_support=1 gpu_recovery=1
 
-On 3/31/2022 8:26 PM, Alex Deucher wrote:
-> Seems to cause a reboots or hangs on some systems.
-> 
-> Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/1924
-> Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/1953
-> Fixes: daf8de0874ab5b ("drm/amdgpu: always reset the asic in suspend (v2)")
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> ---
->   drivers/gpu/drm/amd/pm/amdgpu_dpm.c | 3 +++
->   1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-> index c73fb73e9628..1ff6c42fb110 100644
-> --- a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-> +++ b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-> @@ -173,6 +173,9 @@ bool amdgpu_dpm_is_baco_supported(struct amdgpu_device *adev)
->   
->   	if (!pp_funcs || !pp_funcs->get_asic_baco_capability)
->   		return false;
-> +	/* don't use baco for reset in S3 */
-> +	if (adev->in_s3)
-> +		return false;
->   
+Apr  1 18:31:14 am64 kernel: [    0.000000] Command line: BOOT_IMAGE=/vmlinuz-5.17.0+ root=UUID=39706f53-7c27-4310-b22a-36c7b042d1a1 ro amdgpu.audio=1 amdgpu.si_support=1 radeon.si_support=0 page_owner=on amdgpu.gpu_recovery=1 udev.log-priority=info rd.udev.log-priority=info
+Apr  1 18:31:14 am64 kernel: [    0.059624] Kernel command line: BOOT_IMAGE=/vmlinuz-5.17.0+ root=UUID=39706f53-7c27-4310-b22a-36c7b042d1a1 ro amdgpu.audio=1 amdgpu.si_support=1 radeon.si_support=0 page_owner=on amdgpu.gpu_recovery=1 udev.log-priority=info rd.udev.log-priority=info
 
-Suggest to add && !adev->runpm to the workaround.  For runpm supported 
-devices, most likely it should work.
+Apr  1 18:33:43 am64 kernel: [  245.724485] ACPI: bus type drm_connector registered
+Apr  1 18:33:44 am64 kernel: [  245.945020] [drm] amdgpu kernel modesetting enabled.
+Apr  1 18:33:44 am64 kernel: [  245.945140] amdgpu 0000:01:00.0: vgaarb: deactivate vga console
+Apr  1 18:33:44 am64 kernel: [  245.946413] [drm] initializing kernel modesetting (VERDE 0x1002:0x682B 0x1458:0x22CA 0x87).
+Apr  1 18:33:44 am64 kernel: [  245.946423] amdgpu 0000:01:00.0: amdgpu: Trusted Memory Zone (TMZ) feature not supported
+Apr  1 18:33:44 am64 kernel: [  245.946448] [drm] register mmio base: 0xFE8C0000
+Apr  1 18:33:44 am64 kernel: [  245.946451] [drm] register mmio size: 262144
+Apr  1 18:33:44 am64 kernel: [  245.946642] [drm] add ip block number 0 <si_common>
+Apr  1 18:33:44 am64 kernel: [  245.946657] [drm] add ip block number 1 <gmc_v6_0>
+Apr  1 18:33:44 am64 kernel: [  245.946660] [drm] add ip block number 2 <si_ih>
+Apr  1 18:33:44 am64 kernel: [  245.946663] [drm] add ip block number 3 <gfx_v6_0>
+Apr  1 18:33:44 am64 kernel: [  245.946666] [drm] add ip block number 4 <si_dma>
+Apr  1 18:33:44 am64 kernel: [  245.946668] [drm] add ip block number 5 <si_dpm>
+Apr  1 18:33:44 am64 kernel: [  245.946671] [drm] add ip block number 6 <dce_v6_0>
+Apr  1 18:33:44 am64 kernel: [  245.946674] [drm] add ip block number 7 <uvd_v3_1>
+Apr  1 18:33:44 am64 kernel: [  245.990113] [drm] BIOS signature incorrect 20 7
+Apr  1 18:33:44 am64 kernel: [  245.990146] amdgpu 0000:01:00.0: No more image in the PCI ROM
+Apr  1 18:33:44 am64 kernel: [  245.991510] amdgpu 0000:01:00.0: amdgpu: Fetched VBIOS from ROM BAR
+Apr  1 18:33:44 am64 kernel: [  245.991516] amdgpu: ATOM BIOS: xxx-xxx-xxx
+Apr  1 18:33:44 am64 kernel: [  245.991539] amdgpu 0000:01:00.0: amdgpu: PCIE atomic ops is not supported
+Apr  1 18:33:44 am64 kernel: [  245.991841] [drm] vm size is 64 GB, 2 levels, block size is 10-bit, fragment size is 9-bit
+Apr  1 18:33:44 am64 kernel: [  246.045705] amdgpu 0000:01:00.0: amdgpu: VRAM: 2048M 0x000000F400000000 - 0x000000F47FFFFFFF (2048M used)
+Apr  1 18:33:44 am64 kernel: [  246.045719] amdgpu 0000:01:00.0: amdgpu: GART: 1024M 0x000000FF00000000 - 0x000000FF3FFFFFFF
+Apr  1 18:33:44 am64 kernel: [  246.045736] [drm] Detected VRAM RAM=2048M, BAR=256M
+Apr  1 18:33:44 am64 kernel: [  246.045739] [drm] RAM width 128bits DDR3
+Apr  1 18:33:44 am64 kernel: [  246.045825] [drm] amdgpu: 2048M of VRAM memory ready
+Apr  1 18:33:44 am64 kernel: [  246.045829] [drm] amdgpu: 3072M of GTT memory ready.
+Apr  1 18:33:44 am64 kernel: [  246.045854] [drm] GART: num cpu pages 262144, num gpu pages 262144
+Apr  1 18:33:44 am64 kernel: [  246.046180] amdgpu 0000:01:00.0: amdgpu: PCIE GART of 1024M enabled (table at 0x000000F400900000).
+Apr  1 18:33:44 am64 kernel: [  246.084159] [drm] Internal thermal controller with fan control
+Apr  1 18:33:44 am64 kernel: [  246.084180] [drm] amdgpu: dpm initialized
+Apr  1 18:33:44 am64 kernel: [  246.084264] [drm] AMDGPU Display Connectors
+Apr  1 18:33:44 am64 kernel: [  246.084268] [drm] Connector 0:
+Apr  1 18:33:44 am64 kernel: [  246.084270] [drm]   HDMI-A-1
+Apr  1 18:33:44 am64 kernel: [  246.084272] [drm]   HPD1
+Apr  1 18:33:44 am64 kernel: [  246.084274] [drm]   DDC: 0x194c 0x194c 0x194d 0x194d 0x194e 0x194e 0x194f 0x194f
+Apr  1 18:33:44 am64 kernel: [  246.084279] [drm]   Encoders:
+Apr  1 18:33:44 am64 kernel: [  246.084281] [drm]     DFP1: INTERNAL_UNIPHY
+Apr  1 18:33:44 am64 kernel: [  246.084283] [drm] Connector 1:
+Apr  1 18:33:44 am64 kernel: [  246.084285] [drm]   DVI-D-1
+Apr  1 18:33:44 am64 kernel: [  246.084287] [drm]   HPD2
+Apr  1 18:33:44 am64 kernel: [  246.084289] [drm]   DDC: 0x1950 0x1950 0x1951 0x1951 0x1952 0x1952 0x1953 0x1953
+Apr  1 18:33:44 am64 kernel: [  246.084293] [drm]   Encoders:
+Apr  1 18:33:44 am64 kernel: [  246.084295] [drm]     DFP2: INTERNAL_UNIPHY
+Apr  1 18:33:44 am64 kernel: [  246.084297] [drm] Connector 2:
+Apr  1 18:33:44 am64 kernel: [  246.084299] [drm]   VGA-1
+Apr  1 18:33:44 am64 kernel: [  246.084301] [drm]   DDC: 0x1970 0x1970 0x1971 0x1971 0x1972 0x1972 0x1973 0x1973
+Apr  1 18:33:44 am64 kernel: [  246.084305] [drm]   Encoders:
+Apr  1 18:33:44 am64 kernel: [  246.084307] [drm]     CRT1: INTERNAL_KLDSCP_DAC1
+Apr  1 18:33:44 am64 kernel: [  246.135615] [drm] Found UVD firmware Version: 64.0 Family ID: 13
+Apr  1 18:33:44 am64 kernel: [  246.137371] [drm] PCIE gen 2 link speeds already enabled
+Apr  1 18:33:44 am64 kernel: [  246.674277] [drm] UVD initialized successfully.
+Apr  1 18:33:44 am64 kernel: [  246.674849] amdgpu 0000:01:00.0: amdgpu: SE 1, SH per SE 2, CU per SH 5, active_cu_number 8
+Apr  1 18:33:45 am64 kernel: [  247.008964] [drm] Initialized amdgpu 3.46.0 20150101 for 0000:01:00.0 on minor 0
+Apr  1 18:33:45 am64 kernel: [  247.068412] fbcon: amdgpudrmfb (fb0) is primary device
 
-Thanks,
-Lijo
+The monitor still went blank but the magic sysreq sync and boot worked,
+allowing capture of the above log but nothing after the line above.
 
->   	mutex_lock(&adev->pm.mutex);
->   
-> 
+Regards,
+
+Arthur Marsh.
