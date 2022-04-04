@@ -1,40 +1,61 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84E854F23E4
-	for <lists+amd-gfx@lfdr.de>; Tue,  5 Apr 2022 09:02:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64C924F2959
+	for <lists+amd-gfx@lfdr.de>; Tue,  5 Apr 2022 11:09:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07E5710EE0F;
-	Tue,  5 Apr 2022 07:02:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84BC010F2A6;
+	Tue,  5 Apr 2022 09:09:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E08D010EE0D;
- Tue,  5 Apr 2022 07:01:58 +0000 (UTC)
-Received: from [192.168.0.2] (ip5f5ae8ff.dynamic.kabel-deutschland.de
- [95.90.232.255])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: pmenzel)
- by mx.molgen.mpg.de (Postfix) with ESMTPSA id 4780461E64846;
- Tue,  5 Apr 2022 09:01:57 +0200 (CEST)
-Message-ID: <226a1c28-2516-7af4-dc19-7236f31128e9@molgen.mpg.de>
-Date: Tue, 5 Apr 2022 09:01:56 +0200
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com
+ [IPv6:2a00:1450:4864:20::232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1377F10E5AD;
+ Mon,  4 Apr 2022 22:22:07 +0000 (UTC)
+Received: by mail-lj1-x232.google.com with SMTP id g24so14772867lja.7;
+ Mon, 04 Apr 2022 15:22:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=e3rwhB1mUhFaCfEgLZjUcCjNm+5f5fkFkvdLOTF0xYk=;
+ b=P0iFhoylKXhVCWdgWMTjMyf65xZiqKqiiqn4536XFm7K4P9Ta0r/nlJa2ZwiC+a12n
+ LSLuT9brEn/BUEFFC5GWAnVhrlfeyA9hIGXUnG9WJiMuq/PLyfQCGF2C66gRnkEK/+/W
+ e0WoLN8Qs1s2zXNPwroDh68ftRZkYO04Dps0QAibdvREzehBAOAGVoxowB38OcI3ESLx
+ IlDiri9w8Pk3RUThqxIFl288Atk6Wf21f7tUH9BmnEH5Aa2eAj6/ATlfCL13xk9EIcr8
+ /Ri3gOybzV17/GnsQmzrsdw3NOaikndrXmGL+yF/PWgFm3YtmhHclJJPI4kygMXUTLX7
+ 0EYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=e3rwhB1mUhFaCfEgLZjUcCjNm+5f5fkFkvdLOTF0xYk=;
+ b=UirSBO4CtlrhYyhc2p4St11opzIBERWRLRwaoL+yh589zARU9D9I83GAJHLr/WaT7F
+ 4ZJZM7uGsI/oR4ECI9CQB5zmGuJ5xy3RWRoWvK7YnSwmr8/YdNouEk7DS/c1Pug3iFNZ
+ Dq3gNrjv7HFi9xhWQuFXnUiVvZntzHMhbB0cF83FfN90vzeRMqIRQZW7jBbNsyIXueR3
+ IDJhpXoe/SaDhy7t3mW6lMI5XLdxvuI1jhtNPj0fPLpem7AECaxuakn8QeuHcsRwFNtL
+ kIzJQMmkmalgA/c9//LqdNxiNQLAlpRTlBmO0lcgKA4Nl4PYaMgeEPgpgyCHu+I4U2hB
+ 3kWQ==
+X-Gm-Message-State: AOAM530BjuwuNMiK9b5ZHY8ab+dZB2pdNglA+nJvhl4EEopehi/GKx1V
+ dveeVSDno8IE3WJ1vUD28ig=
+X-Google-Smtp-Source: ABdhPJwXm5uGlz1Ceov1IiHnrlmRknRoJkFqYNsXAi624p6ZE1sgHZJw6jz9Vbq32Ly/8CU4oucKGw==
+X-Received: by 2002:a2e:9c96:0:b0:249:5f27:591a with SMTP id
+ x22-20020a2e9c96000000b002495f27591amr172674lji.11.1649110925028; 
+ Mon, 04 Apr 2022 15:22:05 -0700 (PDT)
+Received: from noname.. ([2a02:2698:8c2a:1093:6d9:f5ff:fecb:a8ab])
+ by smtp.googlemail.com with ESMTPSA id
+ v10-20020a2ea44a000000b002493831631csm1181068ljn.14.2022.04.04.15.22.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 04 Apr 2022 15:22:04 -0700 (PDT)
+From: Grigory Vasilyev <h0tc0d3@gmail.com>
+To: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Melissa Wen <mwen@igalia.com>
+Subject: [PATCH] drm/amdkfd: Fix potential NULL pointer dereference
+Date: Tue,  5 Apr 2022 01:21:32 +0300
+Message-Id: <20220404222132.12740-1-h0tc0d3@gmail.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Public patches but non-public development branch (Re: [PATCH 1/1]
- drm/amdkfd: Add missing NULL check in svm_range_map_to_gpu)
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-References: <20220404214255.11902-1-Philip.Yang@amd.com>
- <7a0e9d4c-257f-287e-9caf-f4161887ba39@molgen.mpg.de>
- <530f3735-9a82-54af-c090-cc8d5b1510cc@amd.com>
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <530f3735-9a82-54af-c090-cc8d5b1510cc@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 05 Apr 2022 09:09:47 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,69 +67,44 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel@ffwll.ch>, Philip Yang <Philip.Yang@amd.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Cc: Grigory Vasilyev <h0tc0d3@gmail.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Dear Christian,
+In the amdgpu_amdkfd_get_xgmi_bandwidth_mbytes function,
+the peer_adev pointer can be NULL and is passed to amdgpu_xgmi_get_num_links.
 
+In amdgpu_xgmi_get_num_links, peer_adev pointer is dereferenced
+without any checks: peer_adev->gmc.xgmi.node_id .
 
-Am 05.04.22 um 08:54 schrieb Christian König:
-> Am 05.04.22 um 08:45 schrieb Paul Menzel:
+Signed-off-by: Grigory Vasilyev <h0tc0d3@gmail.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
->> Am 04.04.22 um 23:42 schrieb Philip Yang:
->>> bo_adev is NULL for system memory mapping to GPU.
->>>
->>> Fixes: 05fe8eeca92 (drm/amdgpu: fix TLB flushing during eviction)
->>
->> Sorry, where can I find that commit?
-> 
-> Well that's expected, the development branch is not public.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+index be1a55f8b8c5..1a1006b18016 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+@@ -541,11 +541,10 @@ int amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(struct amdgpu_device *dst,
+ 	struct amdgpu_device *adev = dst, *peer_adev;
+ 	int num_links;
+ 
+-	if (adev->asic_type != CHIP_ALDEBARAN)
++	if (!src || adev->asic_type != CHIP_ALDEBARAN)
+ 		return 0;
+ 
+-	if (src)
+-		peer_adev = src;
++	peer_adev = src;
+ 
+ 	/* num links returns 0 for indirect peers since indirect route is unknown. */
+ 	num_links = is_min ? 1 : amdgpu_xgmi_get_num_links(adev, peer_adev);
+-- 
+2.35.1
 
-Well obviously, it was unexpected for me. How should I have known? Where 
-is that documented? If the patches are publicly posted to the mailing 
-list, why is that development branch not public?
-
-The current situation is really frustrating for non-AMD employees. How 
-can the current situation be improved?
-
-
-Kind regards,
-
-Paul
-
-
->> I do not see it in drm-next from agd5f git archive 
->> git@gitlab.freedesktop.org:agd5f/linux.git.
->>
->>     $ git log --oneline -1
->>     e45422695c19 (HEAD, agd5f/drm-next) drm/amdkfd: Create file 
->> descriptor after client is added to smi_clients list
->>
->>
->> Kind regards,
->>
->> Paul
->>
->>
->>> Signed-off-by: Philip Yang <Philip.Yang@amd.com>
->>> ---
->>>   drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 2 +-
->>>   1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c 
->>> b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
->>> index 907b02045824..d3fb2d0b5a25 100644
->>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
->>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
->>> @@ -1281,7 +1281,7 @@ svm_range_map_to_gpu(struct kfd_process_device 
->>> *pdd, struct svm_range *prange,
->>>                          last_start, prange->start + i,
->>>                          pte_flags,
->>>                          last_start - prange->start,
->>> -                       bo_adev->vm_manager.vram_base_offset,
->>> +                       bo_adev ? 
->>> bo_adev->vm_manager.vram_base_offset : 0,
->>>                          NULL, dma_addr, &vm->last_update);
->>>             for (j = last_start - prange->start; j <= i; j++)
