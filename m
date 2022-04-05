@@ -2,59 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F03704F573B
-	for <lists+amd-gfx@lfdr.de>; Wed,  6 Apr 2022 10:13:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77E7D4F5740
+	for <lists+amd-gfx@lfdr.de>; Wed,  6 Apr 2022 10:13:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA19C10F285;
-	Wed,  6 Apr 2022 08:13:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D9D010F28F;
+	Wed,  6 Apr 2022 08:13:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com
- [IPv6:2a00:1450:4864:20::231])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C25C510ED94;
- Tue,  5 Apr 2022 17:36:29 +0000 (UTC)
-Received: by mail-lj1-x231.google.com with SMTP id b43so18015076ljr.10;
- Tue, 05 Apr 2022 10:36:29 -0700 (PDT)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com
+ [IPv6:2a00:1450:4864:20::529])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4EFA10E380
+ for <amd-gfx@lists.freedesktop.org>; Tue,  5 Apr 2022 17:40:06 +0000 (UTC)
+Received: by mail-ed1-x529.google.com with SMTP id c42so8354840edf.3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 05 Apr 2022 10:40:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=hKOYgRsFR0laaLuRCNcCw4kzlI2NLR4gbF3cCQ5uqJo=;
- b=BVr2YLDF7/GGyceZtEIm5ngSV0ZtewWefzWQMZJrDgToXi9Raa7zKK44DLjRVzPSqP
- rsZLh6unBOu9b8DWnbG/ulO/wlcI8YZUN880shObyr6Um/tVfTBF3cpDo2m1IIKVXFXc
- zuEn6HEaMmx6K8GTOTGE4Mblhp0TiZE2FitQh5Rr8gfwTotRoebmdrpUBkbSJQqBH8oj
- W1xHElC1X+BR49CMwpETUiRpdxyPiM6vQ59CHEktyrUKPaIaztu332GBp/js3CB90ZAn
- r78X3f+ujP//edJmpYijII+/KADwpeHvELEGDupRr4+0b1KDmJ35cLhgmUM4MdeHvqp9
- rfDw==
+ h=mime-version:from:date:message-id:subject:to;
+ bh=HofrJDr98CScFReuycNlVD0pUKcZaoJhzWH+9eH1i/M=;
+ b=qeo/NoexJRn3DtZ3ht579GQoivekcsE2eEMqw2bR4Z5tgWp3sfbUgwnzCPmpDi3Z0E
+ XXJrIKXknOzZjkyluCDjqXDCpZWCgMSQJOv1jad2sLeoAbEzIKJrEbv1ZGesUDlRmKfw
+ wrXasCYpW0qXN8iKKTas2UYCmiIch69ndbd8NEfdzZ0aBEASREgeXobShjiwJ+ChdODq
+ 0KGYbeTW3ATtdLiYHkvEvNDFw7oslMxX3B68yaDtYeMeBS5WCS3EGm06NZvWmRIZZntK
+ 5j7yAdj33TtYwpbJQHN8+DZVAiJfXjCsHRV3J+SZPFb7s2JqWCHYAQPdgWaDS3q9ky2W
+ cjxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=hKOYgRsFR0laaLuRCNcCw4kzlI2NLR4gbF3cCQ5uqJo=;
- b=2S5QDRXMqVOtg/SXYzs8aa6E28w7J4ngqzmz9/8GOx5sw582u7dTzzL/AytZmZXy/e
- 7i8Y+Uv3L5rrshJ6r31ZnVOPyYh2roH4ItY/ppx0HmpeOhWWn68SvLWhCw3MKrX0zWWM
- seOxAvuN9ybVxMBDqo9OSPULrBBFhvh9Xa6wcakOBchC7oPrpQtW5bMMcc8SyGk3MMvs
- 175ejgw23cUVI0McvjofGvcyiSWvqhjF87U4LXBURm2H4fpx+mrTZUDnqn6n3m74xOfR
- gIjskO3UFZBQkoqXyL8YnVtcH53DZbB89Tes6PC6XY6SHSb/7wgmVDbrc9EgFeJyP1RG
- tDwQ==
-X-Gm-Message-State: AOAM5336PlTLsNGZkvahB9VOaXBsE4mMsgH/upHPhhxBZvlBGMglUebp
- gmX9Om27ToVgWFn1El2j8Xw=
-X-Google-Smtp-Source: ABdhPJx9gURcfFhpkbU9G9qwJXgvTRqcQU7EZfhQn5YZ/YhwpA3vtsYFCnXigwEL5XUSIkyEiMsvQQ==
-X-Received: by 2002:a2e:a490:0:b0:249:894b:ce20 with SMTP id
- h16-20020a2ea490000000b00249894bce20mr2753320lji.301.1649180187930; 
- Tue, 05 Apr 2022 10:36:27 -0700 (PDT)
-Received: from noname.. ([2a02:2698:8c2a:226e:6d9:f5ff:fecb:a8ab])
- by smtp.googlemail.com with ESMTPSA id
- j11-20020a196e0b000000b0044a3f007893sm1563825lfc.286.2022.04.05.10.36.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 05 Apr 2022 10:36:27 -0700 (PDT)
-From: Grigory Vasilyev <h0tc0d3@gmail.com>
-To: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Melissa Wen <mwen@igalia.com>
-Subject: [PATCH] drm/amdgpu: Senseless code and unnecessary memset
-Date: Tue,  5 Apr 2022 20:36:31 +0300
-Message-Id: <20220405173632.2663-1-h0tc0d3@gmail.com>
-X-Mailer: git-send-email 2.35.1
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=HofrJDr98CScFReuycNlVD0pUKcZaoJhzWH+9eH1i/M=;
+ b=nt9hbfEAZdGX3fa0vMH1r7ykMhydnxYawKNBLgO0RWw+ZhlxEXxQcW1XtkXIP6L6dg
+ Kw4guWU2o1XY9zT4YIJRNRA3SfZ3dpVGCZwytzww0wygZG/JCZD82+OAb5BY0yFN61qg
+ 0NqYMB0wsFiBIrlB5FSvdC5F8KBGTLi1lMp6/cj56oWR96G0gA2ruFOzUpfX005QWbp6
+ LZq1/dOUwCafCMa0Yp+yVZZlUumoXnjMjsVSe2shNFVO1r2YwIIzVgLJrKaqlqOtzPuk
+ tMQc/A3RE1vPyUnFHK2nO4qYpmGHphSaPKVDcyuu2f9vWyn2lWQOV8EC4XsoyiFghDiy
+ fbfQ==
+X-Gm-Message-State: AOAM532Brc5YnGHWqaxxmUEpcRHuGo9bUR2CdMXgvhbYT7QfRnd0DOd6
+ R8t5rb3P0Y97/QUSsnGZUQRPFd4SjnXxR6wnq1Nw6v0Mnlc=
+X-Google-Smtp-Source: ABdhPJytMofr4wGV4r4ssxfHb7dn+HzZzx9qCQh0WoUMMLq/F/y0qtO2Aa+0zg2a7FxVKJO6AWhSwQf/wEos6XdTD6k=
+X-Received: by 2002:a50:f106:0:b0:41c:d793:3ae5 with SMTP id
+ w6-20020a50f106000000b0041cd7933ae5mr4829156edl.390.1649180405163; Tue, 05
+ Apr 2022 10:40:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: Maxime Schmitt <maxime.schmitt91@gmail.com>
+Date: Tue, 5 Apr 2022 19:39:54 +0200
+Message-ID: <CAPdf_3mLX49uBfyJwpMbcyumYQCqjqXB+S3gzWjdS9TCfbEVRw@mail.gmail.com>
+Subject: [Question/Bug?] Why does the sysfs current_link_speed report a
+ different value than pp_dpm_pcie
+To: amd-gfx@lists.freedesktop.org
+Content-Type: multipart/alternative; boundary="000000000000386c8505dbebbca2"
 X-Mailman-Approved-At: Wed, 06 Apr 2022 08:13:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,54 +60,47 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Jiawei Gu <Jiawei.Gu@amd.com>,
- Grigory Vasilyev <h0tc0d3@gmail.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Using memset on local arrays before exiting the function is pointless.
-Compilator will remove this code. Also for local arrays is preferable to
-use {0} instead of memset. Mistakes are often made when working with
-memset.
+--000000000000386c8505dbebbca2
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Grigory Vasilyev <h0tc0d3@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/atom.c | 8 +-------
- 1 file changed, 1 insertion(+), 7 deletions(-)
+Hello,
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/atom.c b/drivers/gpu/drm/amd/amdgpu/atom.c
-index be9d61bcb8ae..537e48fbbe6b 100644
---- a/drivers/gpu/drm/amd/amdgpu/atom.c
-+++ b/drivers/gpu/drm/amd/amdgpu/atom.c
-@@ -1538,11 +1538,9 @@ struct atom_context *amdgpu_atom_parse(struct card_info *card, void *bios)
- int amdgpu_atom_asic_init(struct atom_context *ctx)
- {
- 	int hwi = CU16(ctx->data_table + ATOM_DATA_FWI_PTR);
--	uint32_t ps[16];
-+	uint32_t ps[16] = {0};
- 	int ret;
- 
--	memset(ps, 0, 64);
--
- 	ps[0] = cpu_to_le32(CU32(hwi + ATOM_FWI_DEFSCLK_PTR));
- 	ps[1] = cpu_to_le32(CU32(hwi + ATOM_FWI_DEFMCLK_PTR));
- 	if (!ps[0] || !ps[1])
-@@ -1551,10 +1549,6 @@ int amdgpu_atom_asic_init(struct atom_context *ctx)
- 	if (!CU16(ctx->cmd_table + 4 + 2 * ATOM_CMD_INIT))
- 		return 1;
- 	ret = amdgpu_atom_execute_table(ctx, ATOM_CMD_INIT, ps);
--	if (ret)
--		return ret;
--
--	memset(ps, 0, 64);
- 
- 	return ret;
- }
--- 
-2.35.1
+On my system the sysfs file "current_link_speed" is reporting "16.0 GT/s
+PCIe".
+The GPU has support for PCIe gen 4 (AMD Radeon RX 6800 XT).
+However neither the CPU (AMD Ryzen 7 1700X) nor the motherboard have
+support for PCIe gen 4.
 
+The file "pp_dpm_pcie" returns the following:
+0: 2.5GT/s, x1 310Mhz
+1: 8.0GT/s, x16 619Mhz *
+Which is correct.
+
+Is this the expected behavior?
+
+I am asking because I recently added AMDGPU support to a monitoring tool I
+maintain (nvtop) and I don't know where to get the information from.
+
+Cheers,
+Maxime
+
+--000000000000386c8505dbebbca2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>On my system the sysf=
+s file &quot;current_link_speed&quot; is reporting &quot;16.0 GT/s PCIe&quo=
+t;.</div><div>The GPU has support for PCIe gen 4 (AMD Radeon RX 6800 XT).</=
+div><div>However neither the CPU (AMD Ryzen 7 1700X) nor the motherboard ha=
+ve support for PCIe gen 4.<br></div><div><br></div><div>The file &quot;pp_d=
+pm_pcie&quot; returns the following:</div><div>0: 2.5GT/s, x1 310Mhz <br>1:=
+ 8.0GT/s, x16 619Mhz *</div><div>Which is correct.</div><div><br></div><div=
+>Is this the expected behavior?</div><div><br></div><div>I am asking becaus=
+e I recently added AMDGPU support to a monitoring tool I maintain (nvtop) a=
+nd I don&#39;t know where to get the information from.<br></div><div><br></=
+div><div>Cheers,</div><div>Maxime<br></div><div><br></div></div>
+
+--000000000000386c8505dbebbca2--
