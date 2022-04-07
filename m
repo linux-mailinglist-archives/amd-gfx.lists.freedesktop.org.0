@@ -2,54 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A0A64F8594
-	for <lists+amd-gfx@lfdr.de>; Thu,  7 Apr 2022 19:08:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2851D4F8614
+	for <lists+amd-gfx@lfdr.de>; Thu,  7 Apr 2022 19:28:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C250F10EBB7;
-	Thu,  7 Apr 2022 17:08:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 461F510EAAB;
+	Thu,  7 Apr 2022 17:28:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com
- [IPv6:2607:f8b0:4864:20::233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26F2C10EBB7;
- Thu,  7 Apr 2022 17:08:19 +0000 (UTC)
-Received: by mail-oi1-x233.google.com with SMTP id w127so6251386oig.10;
- Thu, 07 Apr 2022 10:08:19 -0700 (PDT)
+Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com
+ [IPv6:2001:4860:4864:20::33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58F7510E23D;
+ Thu,  7 Apr 2022 17:28:45 +0000 (UTC)
+Received: by mail-oa1-x33.google.com with SMTP id
+ 586e51a60fabf-e1dcc0a327so7127846fac.1; 
+ Thu, 07 Apr 2022 10:28:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=JqDkTinK10x3zeolGbydLx/yEZJP4ImSGKmYcvP6lVQ=;
- b=Cy0VXhmnAEqP0lRJ0KQuwUy715TtVttVKnb19XsHu+WELC6cFz4o3We4LkuxtsJYIR
- Di3N1+8prGyIRhYxREa/bbeMsylUltqSC4+WRA7TqQv1qm8UCzeUwGYDYmw8YKHJEf9Z
- 04x1BYmO7f/FAI3j/O9jTgK0tyiQxdbUurLzX3Ymyxm03m1bvBllSiZgGdEfD0Ryrsyp
- MJHwx0eF5rHTH+brtzbUTyGdYEzq6lvEIZFtsiFGfXDAxewiOFiWrlfPMkot2B56Cw90
- VaHAdRR1AQW3Qw4Ny+MBKI+761GiyxeWIsLhSVsmJLnE+7ZA6n4Q1XYWaV6p6NxlA8jp
- e2kw==
+ :cc; bh=1N3e7+zBRerbyIy8I0yBbprV6Ezo9J/qMAppeug0poA=;
+ b=iJFfJWlP1IpPeuhNJIFwGsz63887gCyYlNl+4Ef0qLDWZtU/raTSE+MNYheRNV+JnY
+ yimrBpVOYAIdG0Xbch/hnOqiwt+0iS99NPllE69BKl/YTW1JMVZ4zYmx4fQmX/hEsUyF
+ EeUFpDdJaH4Zl1ZMa5kFnP5iMnbbzLIX2H30k5WRkYKowowr0gk5+xCeSoeg7ykvxNta
+ I2T4pNXiJc+bhsmqkp3DUvtelKbR7olrNeP6evMKB1C23Mkr8DQJfr0eWmpP03MFJgAW
+ We+3HBF38Vg2n2CUdXWKEOrn6PsavngN3sPxHI5z6w2tjw4CGOZpX+OuR8Vtpmp7NiNU
+ v1sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=JqDkTinK10x3zeolGbydLx/yEZJP4ImSGKmYcvP6lVQ=;
- b=G0VW7XLKnELUY2/ZVxxVrZDuFlMX502PdFWxFm3dJosZBjg6OGPhMh0YD6Q2tCd2Cz
- CTfcTfNalfB0bhCXs2bE+7YC+PHtI1MW2kd7CalRTU01rd4Nt/02HtU4a2w2IdK177KV
- QVDd08K6FaVM4BavR3FVguhwSuJwFrf3wmgpgxt/EZyrHBHcdbFXgMB45DRXKIOLs5ly
- rio1bWOfgHLq75BItkRIRmhCwUxhwYfnSUFBRlT1n8GjSOAO6bPFCeVdEWgwfYaVxdpL
- uc9Pi35ew0d+2F0BcTep4Cgi1aIC4arqjhV5bgruTyQ+KEk8Q81btOOdveJ/WI5tKnfp
- z7Hg==
-X-Gm-Message-State: AOAM530q9YUn/dobdC6ZvZCcu7aLtwxgmCWA7IUqgy44WXbg916i29Om
- /BvXba1NmRphrgu2lO4bvxDRyC85qpk10aC31pw=
-X-Google-Smtp-Source: ABdhPJxylZ9P0pQvwI6USl2YGwdfB/0/fgO3ea3ZdU5f2ipIyl5F1+aUvZ2K86YyCnVCnX962vuWjCpdcgbpRakh+Vw=
-X-Received: by 2002:aca:6006:0:b0:2f9:c685:f4e2 with SMTP id
- u6-20020aca6006000000b002f9c685f4e2mr446739oib.200.1649351298327; Thu, 07 Apr
- 2022 10:08:18 -0700 (PDT)
+ bh=1N3e7+zBRerbyIy8I0yBbprV6Ezo9J/qMAppeug0poA=;
+ b=TVAm+Tv7gHd5fW2+fFQpLYozKZWtIz58YUhDSpLQUfZJ5RdAbjZgNM3d7CCWeooswj
+ ly2U3Z8Nb2QiSakEOwPM0/vE8w/wlN9jjm6G030I/j3EkIJtfvMi0mDL2HBSftAjaM4u
+ 8OmohtQde9D2Nz4O1naF6mEvQ5olZ/OGzUnSSoQ73q8BmaHAKu2R+iI+rQldtcjqVBPQ
+ kCiR/OF/YMYcDF2hZct21FZ0PJRsPcEN9XrgQndwc1IZstXQ1Cqi2VyCI6xRiDit85vW
+ Um1ItxjNkb6akC9xsuauQlm0a72qjJrCI42hY/+auuJgkGSYxtzzZomqJjSx7l/lLxfR
+ RxMg==
+X-Gm-Message-State: AOAM531S39HPAH08Jlef/EPC7QYwsNVKNKHPmfsBQ4O/MmQ9qHwDxjwp
+ 61doboqqqwNu4c/YNiGnJmFBWvchB+8bHkYxH9o=
+X-Google-Smtp-Source: ABdhPJyNOD2ht5NWllAPCYxZmV9hr+8sW6q+V63TMLZza8JlhP09NPnm4xKNqRiUAZvY9SMwAPgw7pfu4DkTPQSvsdk=
+X-Received: by 2002:a05:6870:d683:b0:de:eaa2:3550 with SMTP id
+ z3-20020a056870d68300b000deeaa23550mr7056265oap.253.1649352524685; Thu, 07
+ Apr 2022 10:28:44 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220407121230.132627-1-kai.heng.feng@canonical.com>
-In-Reply-To: <20220407121230.132627-1-kai.heng.feng@canonical.com>
+References: <20220403142137.2234322-1-trix@redhat.com>
+ <513a5993-2cc5-54fa-2d6c-f4162d76ab0e@amd.com>
+ <462e2f2a-0cc8-2e2e-93b6-504cc12aa768@redhat.com>
+ <e0397927-06fc-933e-f73a-794e0629e0fd@amd.com>
+In-Reply-To: <e0397927-06fc-933e-f73a-794e0629e0fd@amd.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 7 Apr 2022 13:08:07 -0400
-Message-ID: <CADnq5_Oq4nS1A8MxosTn=0EztBCDeURmGq9WBW9886E9y-sO7Q@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Ensure HDA function is suspended before ASIC
- reset
-To: Kai-Heng Feng <kai.heng.feng@canonical.com>
+Date: Thu, 7 Apr 2022 13:28:33 -0400
+Message-ID: <CADnq5_P90qk9Daw3jdmap0QZPWdFxjKMPkUWq4xf1eX35CHhsw@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: cleanup extern usage in function
+ definition
+To: Harry Wentland <harry.wentland@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,94 +66,80 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, xinhui pan <Xinhui.Pan@amd.com>,
- LKML <linux-kernel@vger.kernel.org>,
+Cc: Anson Jacob <Anson.Jacob@amd.com>, Kees Cook <keescook@chromium.org>,
+ Yu-ting.Shen@amd.com, "Leo \(Sunpeng\) Li" <sunpeng.li@amd.com>,
+ Tom Rix <trix@redhat.com>, xinhui pan <Xinhui.Pan@amd.com>, "Siqueira,
+ Rodrigo" <Rodrigo.Siqueira@amd.com>, LKML <linux-kernel@vger.kernel.org>,
  Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Solomon Chiu <solomon.chiu@amd.com>, Luben Tuikov <luben.tuikov@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, "Deucher,
- Alexander" <alexander.deucher@amd.com>, Evan Quan <evan.quan@amd.com>,
- Christian Koenig <christian.koenig@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>
+ Wenjing Liu <wenjing.liu@amd.com>, Dave Airlie <airlied@linux.ie>,
+ waynelin@amd.com, amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, "Deucher,
+ Alexander" <alexander.deucher@amd.com>, "Kazlauskas,
+ Nicholas" <nicholas.kazlauskas@amd.com>,
+ Christian Koenig <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 7, 2022 at 8:21 AM Kai-Heng Feng
-<kai.heng.feng@canonical.com> wrote:
->
-> DP/HDMI audio on AMD PRO VII stops working after S3:
-> [  149.450391] amdgpu 0000:63:00.0: amdgpu: MODE1 reset
-> [  149.450395] amdgpu 0000:63:00.0: amdgpu: GPU mode1 reset
-> [  149.450494] amdgpu 0000:63:00.0: amdgpu: GPU psp mode1 reset
-> [  149.983693] snd_hda_intel 0000:63:00.1: refused to change power state from D0 to D3hot
-> [  150.003439] amdgpu 0000:63:00.0: refused to change power state from D0 to D3hot
-> ...
-> [  155.432975] snd_hda_intel 0000:63:00.1: CORB reset timeout#2, CORBRP = 65535
-
-As an aside, shouldn't device links order this properly already?  I
-thought that was the whole point of them.  We have quirks in PCI
-quirks.c to create device links for all GPU integrated peripherals
-(audio, usb, ucsi).
+Applied.  Thanks!
 
 Alex
 
+On Mon, Apr 4, 2022 at 11:57 AM Harry Wentland <harry.wentland@amd.com> wrote:
 >
-> The offending commit is daf8de0874ab5b ("drm/amdgpu: always reset the asic in
-> suspend (v2)"). Commit 34452ac3038a7 ("drm/amdgpu: don't use BACO for
-> reset in S3 ") doesn't help, so the issue is something different.
 >
-> Assuming that to make HDA resume to D0 fully realized, it needs to be
-> successfully put to D3 first. And this guesswork proves working, by
-> moving amdgpu_asic_reset() to noirq callback, so it's called after HDA
-> function is in D3.
 >
-> Fixes: daf8de0874ab5b ("drm/amdgpu: always reset the asic in suspend (v2)")
-> Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 18 ++++++++++++------
->  1 file changed, 12 insertions(+), 6 deletions(-)
+> On 2022-04-04 11:43, Tom Rix wrote:
+> >
+> > On 4/4/22 8:22 AM, Harry Wentland wrote:
+> >>
+> >> On 2022-04-03 10:21, Tom Rix wrote:
+> >>> Smatch reports this issue
+> >>> hdcp1_execution.c:500:29: warning: function
+> >>>    'mod_hdcp_hdcp1_dp_execution' with external linkage
+> >>>    has definition
+> >>>
+> >> Which branch are you using?
+> >
+> > linux-next from 4/1
+> >
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> index bb1c025d90019..31f7229e7ea89 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> @@ -2323,18 +2323,23 @@ static int amdgpu_pmops_suspend(struct device *dev)
->  {
->         struct drm_device *drm_dev = dev_get_drvdata(dev);
->         struct amdgpu_device *adev = drm_to_adev(drm_dev);
-> -       int r;
+> Apologies. I was looking at the wrong function.
 >
->         if (amdgpu_acpi_is_s0ix_active(adev))
->                 adev->in_s0ix = true;
->         else
->                 adev->in_s3 = true;
-> -       r = amdgpu_device_suspend(drm_dev, true);
-> -       if (r)
-> -               return r;
-> +       return amdgpu_device_suspend(drm_dev, true);
-> +}
-> +
-> +static int amdgpu_pmops_suspend_noirq(struct device *dev)
-> +{
-> +       struct drm_device *drm_dev = dev_get_drvdata(dev);
-> +       struct amdgpu_device *adev = drm_to_adev(drm_dev);
-> +
->         if (!adev->in_s0ix)
-> -               r = amdgpu_asic_reset(adev);
-> -       return r;
-> +               return amdgpu_asic_reset(adev);
-> +
-> +       return 0;
->  }
+> Reviewed-by: Harry Wentland <harry.wentland@amd.com>
 >
->  static int amdgpu_pmops_resume(struct device *dev)
-> @@ -2575,6 +2580,7 @@ static const struct dev_pm_ops amdgpu_pm_ops = {
->         .prepare = amdgpu_pmops_prepare,
->         .complete = amdgpu_pmops_complete,
->         .suspend = amdgpu_pmops_suspend,
-> +       .suspend_noirq = amdgpu_pmops_suspend_noirq,
->         .resume = amdgpu_pmops_resume,
->         .freeze = amdgpu_pmops_freeze,
->         .thaw = amdgpu_pmops_thaw,
-> --
-> 2.34.1
+> Harry
+>
+> > Tom
+> >
+> >>
+> >> I don't see the 'extern' on
+> >> https://gitlab.freedesktop.org/agd5f/linux/-/blob/amd-staging-drm-next/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c>>>
+> >> Harry
+> >>
+> >>
+> >>> The storage-class-specifier extern is not needed in a
+> >>> definition, so remove it.
+> >>>
+> >>> Signed-off-by: Tom Rix <trix@redhat.com>
+> >>> ---
+> >>>   drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c | 6 +++---
+> >>>   1 file changed, 3 insertions(+), 3 deletions(-)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c
+> >>> index 6ec918af3bff..1ddb4f5eac8e 100644
+> >>> --- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c
+> >>> +++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c
+> >>> @@ -497,9 +497,9 @@ enum mod_hdcp_status mod_hdcp_hdcp1_execution(struct mod_hdcp *hdcp,
+> >>>       return status;
+> >>>   }
+> >>>   -extern enum mod_hdcp_status mod_hdcp_hdcp1_dp_execution(struct mod_hdcp *hdcp,
+> >>> -        struct mod_hdcp_event_context *event_ctx,
+> >>> -        struct mod_hdcp_transition_input_hdcp1 *input)
+> >>> +enum mod_hdcp_status mod_hdcp_hdcp1_dp_execution(struct mod_hdcp *hdcp,
+> >>> +                         struct mod_hdcp_event_context *event_ctx,
+> >>> +                         struct mod_hdcp_transition_input_hdcp1 *input)
+> >>>   {
+> >>>       enum mod_hdcp_status status = MOD_HDCP_STATUS_SUCCESS;
+> >>>
+> >
 >
