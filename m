@@ -2,40 +2,40 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B4AD4F9BB1
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Apr 2022 19:27:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54E504F9BAF
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Apr 2022 19:27:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6F7B10F118;
-	Fri,  8 Apr 2022 17:27:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A817D10F122;
+	Fri,  8 Apr 2022 17:27:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2089.outbound.protection.outlook.com [40.107.244.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FDFB10F118
- for <amd-gfx@lists.freedesktop.org>; Fri,  8 Apr 2022 17:27:54 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2074.outbound.protection.outlook.com [40.107.220.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4803810F123
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Apr 2022 17:27:53 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=a46YnRGOtoE/NlozALUi2tGBIH8UyARrHITW3s6aPbd4pbFIbgS5FUHUShwdvUBojM8GuNvO8LPX529prOnqtvZBtNT3fNPXGp7q22acquPDTD4pc0F7DyLs8Qi9tjg8pjEFVU66BlPy40vQhx3gZxI9bW8I36HubGJFWN5J3OPQaZ/igbxSvP4A0oriACQIhKWfR6rcSXQRVKycg92aR7v0GIp9G1858uVVuos5DEjM3vjghIqTm6aXnhPMtZ7R2AcbsFbzCLV8wbwg1IzkXubCZ8fyew7CjzowFWhjvmb2LqCcP3oecmpZyJT/pGmlXqv4bayFOPH8Hq3Pg5/WdA==
+ b=QtR6u2/OXLD+6Q0R+dOBm8BweCRj42Pov8JGXZFMeaL+P7E5MnEMfss9rqi4ZfMW/bAfIqYLpUJTbmXYoFX+A9KscmWJt2R3Pw/T4yJY41eOJYbt/cXTOyDRN3SwZt3wtCyN7CKeVR7HuU6ZN0SaWncpNuKJv/OW2UMJvr9Q6+2i9XLVCuBGc0kt36jyPo7edcN/i6kQ3E26OhvZ5tTlLRF9dcKOuP2q1dQmjNi7VTtBa4e3iyO+posgKEmXHsQ0a+xFMroMl/UZeXK7jpRElO3+JmC1wvnmvd884NHmPZvHDDJTZ3tsJuW0NNP8EKY7e0MrIQUN8VG1xGd5NRisvA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Q6h4jkvlgSEu3S0yz2k6YFQfmY6LDElsJABvd+k02fM=;
- b=TJXW/oDAaufi8FmLWGaf6Ls+Ii/x8ItYgSRat2BaWVo7MCY7/Q8Aeup0MT1C000aFpgHVuBujruWv8aYTgAdui94SgdMsjqFXYS8HAqXnaj/JjTJXffSSEsR1Yu9eMqDmJ2v+fFK0r8XH8q/ObfVaBH9NOBxDbqWQtPBJwyYp0L93NrJN4m0oTWbIlYntgep3Q1cz+SOT9h5E2CN3EpALVQ4pPm/3Nh5aY/677tNgVNAyAlcEiGA1PTQYg5hW64DjvHs7/GnXl631bR3VsXbQ6Gl7xPkw2nJ4J5CS0NI+b9FSIfSUd4aOqr3PEHAEUTrXo5QuAgJ9kLnEo4/i6Jvlg==
+ bh=RBX3K0wQu32JI3R+gRwRB0Yb1NSF1RfN5VOBxQG28Ic=;
+ b=SWBbjLB2KZDx9ylUXpMBrbYibc6UEsUZbv2Wcst9W45GSzKUNXDBZDePULat+CUeyqr2s+w9hG+OszfJ/VwD1W5pHfsrsW3O9e79by1RmkqyBH9f9M/+lkL5FGq2vyXKoEtDsMfO2MIQ9DtJtj0fpF2IcLKNxkBUQN6RE4xWccupB3UcVWlYUtzVq9G744mGy/RrJGKPaH4+xDvlgFJIjhfK2IWpFThqK0EbjwaVHfGU94uAq2r5imHcP9LerCLchkbu0MdLhFK1JUgBjNTMnrXeYAOVTdkCWmfUnrAjbLAuSCsQYM2w/mxntYLHioZxSw4dZFhnMGx90MiBHYG4VQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Q6h4jkvlgSEu3S0yz2k6YFQfmY6LDElsJABvd+k02fM=;
- b=QXtM6EPPLfVEOmcotPClUM0cOgyaAf4Vm1OuvEBUgsdYQ7qm+mfogZFTFBVqRe4+76zL+BQ18ZgMEce8jxcJUrxytQMW9+S2/oKVYteVGMl8UcCsLhZNbY7UdXRTUUb7jdqvkNvA8oWo2LGgPY5qv2M2nhUMTTnCfmVjwb4I/J4=
-Received: from DM6PR07CA0123.namprd07.prod.outlook.com (2603:10b6:5:330::24)
- by DM6PR12MB4700.namprd12.prod.outlook.com (2603:10b6:5:35::20) with
+ bh=RBX3K0wQu32JI3R+gRwRB0Yb1NSF1RfN5VOBxQG28Ic=;
+ b=EExBweBVXbdvz8qTJrfhsmBBH0jjG+Ya0cDP/1LulswxU81WRq/cRIqTBJ289rSE0XGSwm65KWP6KXmIycuf4xCOCifI7jjl4ZUZWCLsxRmO4YPdarJWubj8mpDkNaeBDIhGx/0SEBJhluFiZUeYBRaVT2cSwhitq/HliB2iJms=
+Received: from DM6PR07CA0117.namprd07.prod.outlook.com (2603:10b6:5:330::32)
+ by MWHPR12MB1421.namprd12.prod.outlook.com (2603:10b6:300:12::20) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.21; Fri, 8 Apr
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.22; Fri, 8 Apr
  2022 17:27:50 +0000
 Received: from DM6NAM11FT059.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:330:cafe::3e) by DM6PR07CA0123.outlook.office365.com
- (2603:10b6:5:330::24) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:5:330:cafe::a1) by DM6PR07CA0117.outlook.office365.com
+ (2603:10b6:5:330::32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.26 via Frontend
  Transport; Fri, 8 Apr 2022 17:27:50 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT059.mail.protection.outlook.com (10.13.172.92) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5144.20 via Frontend Transport; Fri, 8 Apr 2022 17:27:49 +0000
+ 15.20.5144.20 via Frontend Transport; Fri, 8 Apr 2022 17:27:50 +0000
 Received: from lnxpromo.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Fri, 8 Apr
- 2022 12:27:43 -0500
+ 2022 12:27:44 -0500
 From: Pavle Kotarac <Pavle.Kotarac@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 14/20] drm/amd/display: Fix inconsistent timestamp type
-Date: Fri, 8 Apr 2022 13:19:05 -0400
-Message-ID: <20220408171911.601615-15-Pavle.Kotarac@amd.com>
+Subject: [PATCH 15/20] drm/amd/display: Add dtb clock to dc_clocks
+Date: Fri, 8 Apr 2022 13:19:06 -0400
+Message-ID: <20220408171911.601615-16-Pavle.Kotarac@amd.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220408171911.601615-1-Pavle.Kotarac@amd.com>
 References: <20220408171911.601615-1-Pavle.Kotarac@amd.com>
@@ -68,27 +68,27 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: cb69b837-f504-4a35-a923-08da19851ac9
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4700:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR12MB47005AEC5EDF748C91A2AC56FCE99@DM6PR12MB4700.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 77be15f4-2f8d-49bd-3eec-08da19851b43
+X-MS-TrafficTypeDiagnostic: MWHPR12MB1421:EE_
+X-Microsoft-Antispam-PRVS: <MWHPR12MB1421F6640953F2CDEFD7D97AFCE99@MWHPR12MB1421.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: IxDgtBrz/sAaBkm2ow6KoTlVBdSMfzWHlz70HZYZn/d+AD7RGP9tIaulDn+6RAS+qun+fej1h8Nq/63lmuwoXnXOj2bNL9zczm8JZ36+4vVeFHX4s6cvbb6HTtzQmLp4EN2xbNxWuNTuE6fL8pqLF/lHENXD4KhiXZgmvnaICxXwmSK4CU/Ih3IkD2MQg12AhzJ9SdV8kGyKucDrDPey8uUSRWgqlSQ20x1a8ykainTYOoaGRiCwP0blmKgbjnBOxyPaSnypsLLWDaMVx38ecB2Hk/1fn7QGmoIY6AHByeuUxN8z/gEHqkuC6phhWQutMSbYWlp72a8OpMRoWjcl6S3n1qStnSnbn6PHBDPxFMMgs/YA5gR/KUlf1kwgBPTATNrWACF3H+UPGGQsLF7/dgHIGk/VYoqUiWRXb4PDzb9GT5waHou6ITQT2heSFWnQkCatcme+RujRlwU4PbrX9Pg0ijAJRRd3GrGMpCRv+UT1FJvfYHUaxwQ10fiG9ds+QZeOo+/p09lHI959PbpWwpZFkW/73chK9MQT0ZwICQOnsOQbBbtMMXZf3u2150P6HF8bh94oF3USgxT9MKaTw83MdPe6rprUHxOaz87W5SlkuxVY0Vnw3pl3/Et56GASWkqO743Hp6w4PUnh84ZGIlYwbbaCDpb+gs79RHaw8Ns+qxV0X5/sAZ+KA9TW+A+bFhzz4oZLnP0T4qBk/wVwfQ==
+X-Microsoft-Antispam-Message-Info: rPe4f0AqFng4fNiow8XLOv8IdAKOAkm10P0sDYXYJqNL0fewzk7Sb1hf8UL4qv8ouV8i27CEoUrzO/sahCG8fJI4UNSnQI5AE88X05jd+Q0ErqKQU3eUAE5TScQA8QvmEGjNNtsXyUlCdDD1Hve8gJj7MEM+AkssO3O5UdlTv6k1xsI9l318c4MoWRgp7amHt1zvLDhWNB0G61y/9bmcA3T+Og9May3vqtbq96KlQHlp9wH4UzUWS1jWw2VfuiuVj8+4CK2WwOHFAjvFmf0qqc7nhbMtz5NOO4u/+1YiI3TeEHXD4S1bWj6YI82IWR15eftQEy21rI1YPZAXlotaWP+yvO+4rWd2Wm/1kMbfaI0Nq6MVjwS/6T/LwEbs/NzkVCIAcscMa5VtDSPB7NWKxhFWkFESDF7TT7Sn9GQ86HGbvMNw6cqLRa3xnHbv+RQ+fcACPZCKmwtCS0871vxzJUoglLjpIZ1xQu421QGZut0yaplzMIOlUJ4JM/8xo4cH00iHRZdjzHCO5qsDuZzhTestQ8aWlu+z+idA+AbvZlGaKb04NzpOcIjRj8nLgoni06fS7C2IPQoVe7e2VnFoqHBWt2eNIpRlHRMmoXHYrMzLnjenxXcQXsY3cqn7Evv+x3xT6QP2qcetPgFgeqtcw9VBGfbTujIkCvcIVzHwbXq6bG0/NzuFXTVAUzONTJh+uBNPGFwgDCOoX7Yeo7mkhw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(6916009)(70586007)(8676002)(4326008)(70206006)(2906002)(16526019)(36860700001)(54906003)(36756003)(356005)(86362001)(81166007)(508600001)(186003)(7696005)(83380400001)(316002)(336012)(26005)(1076003)(82310400005)(47076005)(5660300002)(8936002)(40460700003)(6666004)(426003)(2616005)(36900700001);
+ SFS:(13230001)(4636009)(40470700004)(36840700001)(46966006)(316002)(8936002)(4744005)(1076003)(16526019)(426003)(6916009)(8676002)(54906003)(26005)(7696005)(186003)(6666004)(2616005)(86362001)(2906002)(82310400005)(336012)(508600001)(36860700001)(83380400001)(40460700003)(5660300002)(36756003)(47076005)(81166007)(356005)(70206006)(70586007)(4326008)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2022 17:27:49.6021 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cb69b837-f504-4a35-a923-08da19851ac9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2022 17:27:50.3989 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 77be15f4-2f8d-49bd-3eec-08da19851b43
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT059.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4700
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1421
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,55 +100,36 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Aric Cyr <Aric.Cyr@amd.com>, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
- Angus Wang <Angus.Wang@amd.com>, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com, Pavle Kotarac <Pavle.Kotarac@amd.com>
+Cc: stylon.wang@amd.com, Dillon Varone <dillon.varone@amd.com>,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
+ Aurabindo.Pillai@amd.com, Ariel Bernstein <Eric.Bernstein@amd.com>,
+ wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, Pavle
+ Kotarac <Pavle.Kotarac@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Angus Wang <Angus.Wang@amd.com>
+From: Dillon Varone <dillon.varone@amd.com>
 
-[WHY]
-An unsigned int timestamp variable is assigned with an unsigned
-long long value. Also, the assignment directly converts the
-tick value to us without using built-in get elapsed time function.
-
-[HOW]
-Cast the assigned value correctly and also use built-in function
-to get the timestamp in the unit we want.
-
-Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
+Reviewed-by: Ariel Bernstein <Eric.Bernstein@amd.com>
 Acked-by: Pavle Kotarac <Pavle.Kotarac@amd.com>
-Signed-off-by: Angus Wang <Angus.Wang@amd.com>
+Signed-off-by: Dillon Varone <dillon.varone@amd.com>
 ---
- drivers/gpu/drm/amd/display/modules/freesync/freesync.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/dc.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
-index 0130f1879116..c1d540f017a8 100644
---- a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
-+++ b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
-@@ -1230,6 +1230,7 @@ void mod_freesync_handle_v_update(struct mod_freesync *mod_freesync,
- {
- 	struct core_freesync *core_freesync = NULL;
- 	unsigned int cur_timestamp_in_us;
-+	unsigned long long cur_tick;
- 
- 	if ((mod_freesync == NULL) || (stream == NULL) || (in_out_vrr == NULL))
- 		return;
-@@ -1239,7 +1240,9 @@ void mod_freesync_handle_v_update(struct mod_freesync *mod_freesync,
- 	if (in_out_vrr->supported == false)
- 		return;
- 
--	cur_timestamp_in_us = dm_get_timestamp(core_freesync->dc->ctx)/10;
-+	cur_tick = dm_get_timestamp(core_freesync->dc->ctx);
-+	cur_timestamp_in_us = (unsigned int)
-+			(dm_get_elapse_time_in_ns(core_freesync->dc->ctx, cur_tick, 0)/1000);
- 
- 	in_out_vrr->flip_interval.vsyncs_between_flip++;
- 	in_out_vrr->flip_interval.v_update_timestamp_in_us = cur_timestamp_in_us;
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 863d90bec61b..544d58260269 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -417,6 +417,7 @@ struct dc_clocks {
+ #if defined(CONFIG_DRM_AMD_DC_DCN)
+ 	enum dcn_zstate_support_state zstate_support;
+ 	bool dtbclk_en;
++	int dtbclk_khz;
+ #endif
+ 	enum dcn_pwr_state pwr_state;
+ 	/*
 -- 
 2.32.0
 
