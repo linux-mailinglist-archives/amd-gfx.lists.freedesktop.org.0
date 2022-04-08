@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 951614F9BB4
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Apr 2022 19:28:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 347254F9BB6
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Apr 2022 19:28:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BB6610F131;
-	Fri,  8 Apr 2022 17:27:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0E5F10F150;
+	Fri,  8 Apr 2022 17:28:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2081.outbound.protection.outlook.com [40.107.93.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45A1010F131
- for <amd-gfx@lists.freedesktop.org>; Fri,  8 Apr 2022 17:27:58 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2063.outbound.protection.outlook.com [40.107.237.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30C9310F150
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Apr 2022 17:28:07 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Nj0sJVFfVDsfYKygGe4pAZ8TE8XCtL7Gj2okT4OAocQ4mI3rr4VblycLXDiFEp/BJw1pGQfsq2ZvfVwez0W4kwcr2ssmE+zbUgGBGbvC6sXrPyUBMFIJ0xmjpSuzgBEWXgx2Ht3Q4Cl+jNC7ZOhT4QUeud/fi0o5Gl+n6t9RUGXnXH6uljOsRmNSMuh16DcU4SurJ1qmBcAJ7N0ihBaFhorVOvjckcKJvNX70wRICSv3C3ljbSGs+Kn5c95xOyPIjJrtSDsi5vtF0ZhxQb5u01A3UM/NXPwSL09PayvSdhHc1fsUCihRimanF+NUl1vLMVVI5oA96uixyDHPg38liw==
+ b=aJSqFFfGJXxSGrtz/7XU+leERGsKl03lv4v+pzAsBwyf+zBUXXU8PfeQa4WInAlBEKZxiA3zFvqWwCWy7inZvo7neQbl4BTWir11Vof4XJH9O6ghtTpAvY5dhqiZyDm1ttkHthfaj6bp8obwFdnmymnNA7x75VX5j54gH5mnIB5CxkflyiaOz1NX26gSt97OHHx7hW9OXt1djo9fSoXMqeYBogCzuR+bqzekSJZZDsmvzR1rBsnJRuP5l/pArhftImV4jJrmvd1M8ctuJrT/Lo3dtVBuyRQ1i1CbwI/oawYyQTueNiEqFlZYRUDFIIc70A5qtkUxm+VSVAotzPjwsA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EGe+ZqxfUAgGcEFxgrkQLdd1Z9ulmkktW3jaGr23vJQ=;
- b=eUQtpLungT7kJIXm1Vg8mkg12p2Gsk8uctdlYA5T6naSfxGzTzoJJURCyuatLFlMjdQ8bNEbI8VHJGrok2kuCj3mcN8O6ptmW6UbYy4CNd6gwrUDfZyUYcig+LcdbIb1hEMj6DPefU6KI0iEuTtj4RehtfAITK8owvhy32qgdqD4WCAQ9S1Unr3t+lQDpYMhBG5mtGIjgo5tkpOQBGHnFx36yS9zbELrkGvpbFXVQkLfay07NvKYXibrM2tAStvWgB7p1RGvtwrxSm0Ko6djYYjUIg03rTqiaGS8nBcvmijLPiaj9a1AgOrwQr1g6Pe/ePSuQ0Ah4BC2Yb5rU4Ec8A==
+ bh=zKZOxqoW9bXvJISMZeZMIDfZSORQ7hTHAGkZecYkchI=;
+ b=gLA8qJLB2+542ZAcdTwZcCs+gcuchhq0BXnTjsFJD/qJU1SJ1mCQyWBlRXQb3eaU/r1dxj1N12z7ne0iee4XLtdex3jsc0+MIi7bcHd8z/fxSyBrfs6iMdOP5kDu6ocOmPLfD0KDx78xGNq1+N8QlIjEOz3HzaJ72Ce+6Po0wsXWg91GZWIjB5MUAiRX/qcYa5A0/yv+/1ndGEN5iGEb9G3xcwkLsxyNuSEPy1ayt0z/0iLBi5TilgalUr0w02R8iBx49q2Gc1jxXo4ZU3PQpX/W3iAjsELrCfM4USru+AoJftCyQhvi9EggUdK++wjVAmjw5+Anl+4+QWA/1cUqZw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EGe+ZqxfUAgGcEFxgrkQLdd1Z9ulmkktW3jaGr23vJQ=;
- b=xHmYh0sM6IxfEo5oQl1L+otdRjnxHw/O5KlsDWFFFuaMVXRKun4E++mLXypHMk6VQup5zXW15sI2wxFChQy7pVK52/xr41vzR8sP01FMwv+LRZbQIAYzvdJVTneCQ4fmyXmKAEhAWOYebCy7YbmHx9NdDJZvMlLs6kYYsi+NlRY=
-Received: from DS7PR03CA0094.namprd03.prod.outlook.com (2603:10b6:5:3b7::9) by
- BYAPR12MB2933.namprd12.prod.outlook.com (2603:10b6:a03:138::21) with
+ bh=zKZOxqoW9bXvJISMZeZMIDfZSORQ7hTHAGkZecYkchI=;
+ b=v6zAkgXsxOKAAAh8+XGKSM0P7Gym2mVPDKt8VMSexxAIFEdiVz4W4B0npMjN3S9ZNco+zHf8vIBJDxriR8vOK4gUhXfcJ/YE6Qsu1X14DMWj7xHmYGnLK6z6Vt/RX+jnFM0GSHs2AbA0uB+QmwwHKoC+cQpSAbUggwg7ulCHYuU=
+Received: from DM6PR07CA0121.namprd07.prod.outlook.com (2603:10b6:5:330::33)
+ by MWHPR1201MB0143.namprd12.prod.outlook.com (2603:10b6:301:54::16) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5123.31; Fri, 8 Apr
- 2022 17:27:54 +0000
-Received: from DM6NAM11FT004.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:3b7:cafe::6b) by DS7PR03CA0094.outlook.office365.com
- (2603:10b6:5:3b7::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.22 via Frontend
- Transport; Fri, 8 Apr 2022 17:27:54 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.26; Fri, 8 Apr
+ 2022 17:28:02 +0000
+Received: from DM6NAM11FT059.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:330:cafe::a4) by DM6PR07CA0121.outlook.office365.com
+ (2603:10b6:5:330::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.25 via Frontend
+ Transport; Fri, 8 Apr 2022 17:28:02 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,18 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT004.mail.protection.outlook.com (10.13.172.217) with Microsoft SMTP
+ DM6NAM11FT059.mail.protection.outlook.com (10.13.172.92) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5144.20 via Frontend Transport; Fri, 8 Apr 2022 17:27:54 +0000
+ 15.20.5144.20 via Frontend Transport; Fri, 8 Apr 2022 17:28:01 +0000
 Received: from lnxpromo.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Fri, 8 Apr
- 2022 12:27:48 -0500
+ 2022 12:27:49 -0500
 From: Pavle Kotarac <Pavle.Kotarac@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 19/20] drm/amd/display: 3.2.181
-Date: Fri, 8 Apr 2022 13:19:10 -0400
-Message-ID: <20220408171911.601615-20-Pavle.Kotarac@amd.com>
+Subject: [PATCH 20/20] drm/amd/display: implement shared PSR-SU sink
+ validation helper
+Date: Fri, 8 Apr 2022 13:19:11 -0400
+Message-ID: <20220408171911.601615-21-Pavle.Kotarac@amd.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220408171911.601615-1-Pavle.Kotarac@amd.com>
 References: <20220408171911.601615-1-Pavle.Kotarac@amd.com>
@@ -68,27 +69,27 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 25ddbe82-1e65-43e9-f27d-08da19851d8b
-X-MS-TrafficTypeDiagnostic: BYAPR12MB2933:EE_
-X-Microsoft-Antispam-PRVS: <BYAPR12MB293336A9D780B4B05D4B0523FCE99@BYAPR12MB2933.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 45bb5674-20af-4d86-5a0f-08da19852214
+X-MS-TrafficTypeDiagnostic: MWHPR1201MB0143:EE_
+X-Microsoft-Antispam-PRVS: <MWHPR1201MB0143EB729B28973B6352BC8FFCE99@MWHPR1201MB0143.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Si8p5QlKm53PMXsw6cfpfiEmRNhx3Rlmgv/AwGG5FCGyqMBwhNO+n81mua38B8sHO8zDK7gcSU1veyyHI6ajKB/9mXFyng0atrZ0BGXNKAmm0GQQmnIhdd4UR5S8o2cV5Ka6S4/EJB/TieF2UCBziDFq7VAWxmv6+yjQfrl34QtfJREuVSKaKiGoJ5esB0+MQd47W2RoRRCYRVWNcSLBXc2fcWUisDdVEjF6GtfCpPbKd/jU1chtyOBoA+RjzkIwcVn6DswH0+10Sztmb5ZGkAy8wMT2lW+D8OlGQV2YS/Tyzt9sSFeLlpZ34bSqxzwiZqxwEQuz6mHXGpZyVX6E/CwzhOw0WnWhDP6+95kt05txB3LXtPM0EPiy/rUbFUBefZA5F+wf0YsnRm3uJFI924rFFyoHaesAZTIwM+jae03KEfj/klQjgPo7joemRu12AO7cAxVlIZHgbTUzeKOM1d3M0TdVf3Kg52uKQ6bK9VRMSk2VTov11nSfU8mxPmYH3Jg23yZQ/gb5ikPc9YdRCTkoikoPm4Q2HVZcelYlaW7BEilYZz+GDmq2q5x1gViI5NozS0Ufw2Yz38T2j1GVcW0la9ijzM6Vqx5bCOuQ396xyPfCgHz6ozmkDHg6yPee9BcxJzm+xn+55LSs5GClf+5I/x7ceLPmtRHocTa8xW4B4z33UGShclkl/gt7oy57UO162IobBBTG7/PjxQk9NQ==
+X-Microsoft-Antispam-Message-Info: s2w/RrYRQ13IPCQHSmc4kYzn0so9u2EeJb31X8YiLS2EMrGTjapp2UCN2fDzUfVNK37G3NOaXG1ZIO9Fw+EsCuCSdqw5zNwUi/62t7d3Y4LYfcrqWwxgjmsXSFo5GLw5qXaVqEHxbI8ZTqu8vL5zy4r9F5VsoNB3IiMY+y/BopVUbeoFI99EKGgBWYvuWOBs7/bQRY21MpbFSH2kib0K5BkY+mZVmFCjCgEGVov2/iMq6qqwqjqZGVkdPKzaifydt2+xLAvm4gIvPdZElRpB/MJ4uMIquyv92wwi1Ar0/HIQAuLjZvKNy1kGo7aS9OpcI/J65tI5j8Mi973plO5xkT35uP51EnUEFOdNdwbxiF8S22kRYB5FLUuik3sHFUcU2yujzmJzsQsqfUtqqra8Xqmm3ls6oTBjHmhW63rbOewc6LUNRtCWOOa/DPjZkFEopYHXOb/IdVo9ezZEMFZ1xvGgjDPWz9hWFM9Ug5co6gsB5E/nBBQvk2UbcWX4N7uldoQRYKySjelCItSXuTlkXHT1Rq277uch/rK3X4cXHyzKvXZ6THS/l1X4tVIACpfuCkyaxsINrbffCBGCZXtS8g==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(7696005)(6666004)(508600001)(70206006)(36756003)(426003)(82310400005)(70586007)(16526019)(83380400001)(26005)(186003)(1076003)(40460700003)(336012)(5660300002)(86362001)(2616005)(4326008)(8936002)(8676002)(81166007)(6916009)(316002)(356005)(2906002)(36860700001)(47076005)(54906003)(36900700001);
+ SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(1076003)(426003)(8936002)(336012)(2616005)(5660300002)(26005)(83380400001)(508600001)(186003)(40460700003)(6666004)(16526019)(86362001)(6916009)(54906003)(2906002)(356005)(316002)(36860700001)(82310400005)(81166007)(70586007)(70206006)(36756003)(47076005)(4326008)(8676002)(7696005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2022 17:27:54.2308 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 25ddbe82-1e65-43e9-f27d-08da19851d8b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2022 17:28:01.8356 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 45bb5674-20af-4d86-5a0f-08da19852214
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT004.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT059.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB2933
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB0143
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,49 +101,126 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Aric Cyr <aric.cyr@amd.com>, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
- wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
- Pavle Kotarac <Pavle.Kotarac@amd.com>
+Cc: stylon.wang@amd.com, David Zhang <dingchen.zhang@amd.com>,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
+ Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
+ Tom Chung <chiahsuan.chung@amd.com>, Bhawanpreet.Lakha@amd.com,
+ agustin.gutierrez@amd.com, Pavle Kotarac <Pavle.Kotarac@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <aric.cyr@amd.com>
+From: David Zhang <dingchen.zhang@amd.com>
 
-Title: DC Patches Apri 6, 2022
+[why]
+creating a generic helper for AMD specific PSR-SU sink validation.
+Moving the function to the power module to reference it across all
+OS.
 
-This DC patchset brings improvements in multiple areas. In summary, we highlight:
-
-*Disabling Z10 on DCN31
-*Fix issue breaking 32bit Linux build
-*Fix inconsistent timestamp type
-*Add DCN30 support FEC init
-*Fix crash on setting VRR with no display connected
-*Disable FEC if DSC not supported for EDP
-*Add odm seamless boot support
-*Select correct DTO source
-*Power down hardware if timer not trigger
+[how]
+- drop PSRSU specific sink validation helper and move to power
+  module by reading PSR version and other PSR caps
+- call the new helper from linux DM (amdgpu_dm_psr)
 
 Acked-by: Pavle Kotarac <Pavle.Kotarac@amd.com>
-Signed-off-by: Aric Cyr <aric.cyr@amd.com>
+Acked-by: Tom Chung <chiahsuan.chung@amd.com>
+Signed-off-by: David Zhang <dingchen.zhang@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c |  9 ++++-
+ .../amd/display/modules/power/power_helpers.c | 38 +++++++++++++++++++
+ .../amd/display/modules/power/power_helpers.h |  1 +
+ 3 files changed, 47 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 544d58260269..2f0c436dae4c 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -47,7 +47,7 @@ struct aux_payload;
- struct set_config_cmd_payload;
- struct dmub_notification;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c
+index 0c923a90615c..13b1751e69bf 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c
+@@ -27,6 +27,7 @@
+ #include "dc.h"
+ #include "dm_helpers.h"
+ #include "amdgpu_dm.h"
++#include "modules/power/power_helpers.h"
  
--#define DC_VER "3.2.180"
-+#define DC_VER "3.2.181"
+ #ifdef CONFIG_DRM_AMD_DC_DCN
+ static bool link_supports_psrsu(struct dc_link *link)
+@@ -39,6 +40,9 @@ static bool link_supports_psrsu(struct dc_link *link)
+ 	if (dc->ctx->dce_version < DCN_VERSION_3_1)
+ 		return false;
  
- #define MAX_SURFACES 3
- #define MAX_PLANES 6
++	if (!is_psr_su_specific_panel(link))
++		return false;
++
+ 	if (!link->dpcd_caps.alpm_caps.bits.AUX_WAKE_ALPM_CAP ||
+ 	    !link->dpcd_caps.psr_info.psr_dpcd_caps.bits.Y_COORDINATE_REQUIRED)
+ 		return false;
+@@ -79,7 +83,10 @@ void amdgpu_dm_set_psr_caps(struct dc_link *link)
+ 		link->psr_settings.psr_feature_enabled = true;
+ 	}
+ 
+-	DRM_INFO("PSR support:%d\n", link->psr_settings.psr_feature_enabled);
++	DRM_INFO("PSR support %d, DC PSR ver %d, sink PSR ver %d\n",
++		link->psr_settings.psr_feature_enabled,
++		link->psr_settings.psr_version,
++		link->dpcd_caps.psr_info.psr_version);
+ 
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
+index 2b00f334e93d..97928d4c3b9a 100644
+--- a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
++++ b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
+@@ -784,3 +784,41 @@ bool dmcu_load_iram(struct dmcu *dmcu,
+ 	return result;
+ }
+ 
++/*
++ * is_psr_su_specific_panel() - check if sink is AMD vendor-specific PSR-SU
++ * supported eDP device.
++ *
++ * @link: dc link pointer
++ *
++ * Return: true if AMDGPU vendor specific PSR-SU eDP panel
++ */
++bool is_psr_su_specific_panel(struct dc_link *link)
++{
++	if (link->dpcd_caps.edp_rev >= DP_EDP_14) {
++		if (link->dpcd_caps.psr_info.psr_version >= DP_PSR2_WITH_Y_COORD_ET_SUPPORTED)
++			return true;
++		/*
++		 * Some panels will report PSR capabilities over additional DPCD bits.
++		 * Such panels are approved despite reporting only PSR v3, as long as
++		 * the additional bits are reported.
++		 */
++		if (link->dpcd_caps.psr_info.psr_version < DP_PSR2_WITH_Y_COORD_IS_SUPPORTED)
++			return false;
++
++		if (link->dpcd_caps.sink_dev_id == DP_BRANCH_DEVICE_ID_001CF8) {
++			/*
++			 * FIXME:
++			 * This is the temporary workaround to disable PSRSU when system turned on
++			 * DSC function on the sepcific sink. Once the PSRSU + DSC is fixed, this
++			 * condition should be removed.
++			 */
++			if (link->dpcd_caps.dsc_caps.dsc_basic_caps.fields.dsc_support.DSC_SUPPORT)
++				return false;
++
++			if (link->dpcd_caps.psr_info.force_psrsu_cap == 0x1)
++				return true;
++		}
++	}
++
++	return false;
++}
+diff --git a/drivers/gpu/drm/amd/display/modules/power/power_helpers.h b/drivers/gpu/drm/amd/display/modules/power/power_helpers.h
+index 2a9f8e2d8080..1a634d8c78c5 100644
+--- a/drivers/gpu/drm/amd/display/modules/power/power_helpers.h
++++ b/drivers/gpu/drm/amd/display/modules/power/power_helpers.h
+@@ -52,4 +52,5 @@ bool dmub_init_abm_config(struct resource_pool *res_pool,
+ 		struct dmcu_iram_parameters params,
+ 		unsigned int inst);
+ 
++bool is_psr_su_specific_panel(struct dc_link *link);
+ #endif /* MODULES_POWER_POWER_HELPERS_H_ */
 -- 
 2.32.0
 
