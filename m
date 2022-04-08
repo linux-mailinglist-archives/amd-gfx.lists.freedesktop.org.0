@@ -1,37 +1,49 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CF554F8EE5
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Apr 2022 08:29:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D14554F8EF5
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Apr 2022 08:56:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DFE110F79C;
-	Fri,  8 Apr 2022 06:29:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5E9610F6FB;
+	Fri,  8 Apr 2022 06:56:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0DA710F7B5
- for <amd-gfx@lists.freedesktop.org>; Fri,  8 Apr 2022 06:29:08 +0000 (UTC)
-Received: from [192.168.0.2] (ip5f5ae932.dynamic.kabel-deutschland.de
- [95.90.233.50])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested) (Authenticated sender: pmenzel)
- by mx.molgen.mpg.de (Postfix) with ESMTPSA id A3C0E61E6478B;
- Fri,  8 Apr 2022 08:29:06 +0200 (CEST)
-Message-ID: <ac14165d-ee61-7fa6-56ad-6c336b710330@molgen.mpg.de>
-Date: Fri, 8 Apr 2022 08:29:06 +0200
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 548E810EA7A;
+ Fri,  8 Apr 2022 06:56:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1649400964; x=1680936964;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vt6vMrMrVTzohy71/f48zr+/GBHY6470J2SAFq82sA4=;
+ b=WWlxEuhjHMiyUIwrShGWpUimJ5MfiGI9USDvCZr8ubd+X6yVzBR3V1sg
+ 730k+5VgP9biwGE3adGgdTH02S1/3sVZrxKUVBebr1fNFp+A2kqL9fgCE
+ ejagSWUJ+Dq/8iGqooX36OCcM/mbzKbT8P1zOwYqXhn041W4idqa9qBC4
+ BV96QqOkROlQ407z/1hEKscA69DzHbozfMklEtPIR6wpSw9NyV06mm6c2
+ LMzr5HpFFhPuFrleXUSitd3zPtk4DCnj+Uaw8wia5INWQesWWHwTKTa3P
+ CPNEFsrcbnqZ/9+N0Z8p+FEeHDOpxe54aJLWRx6mw67LFY2Q2fycKplry A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="261219245"
+X-IronPort-AV: E=Sophos;i="5.90,244,1643702400"; d="scan'208";a="261219245"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2022 23:55:51 -0700
+X-IronPort-AV: E=Sophos;i="5.90,244,1643702400"; d="scan'208";a="506457568"
+Received: from bhanu-nuclab.iind.intel.com ([10.145.162.173])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2022 23:55:48 -0700
+From: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ ville.syrjala@linux.intel.com, harry.wentland@amd.com,
+ swati2.sharma@intel.com
+Subject: [PATCH 0/3] Expose max and current bpc via debugfs
+Date: Fri,  8 Apr 2022 12:23:47 +0530
+Message-Id: <20220408065350.1485328-1-bhanuprakash.modem@intel.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH 1/1] amdgpu/pm: Clarify Documentation of error handling in
- send_smc_mesg
-Content-Language: en-US
-To: Darren Powell <darren.powell@amd.com>
-References: <20220408022639.7909-1-darren.powell@amd.com>
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <20220408022639.7909-1-darren.powell@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -44,63 +56,28 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: andrey.grodzovsky@amd.com, luben.tuikov@amd.com, evan.quan@amd.com,
- amd-gfx@lists.freedesktop.org, wenhui.sheng@amd.com
+Cc: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Dear Darren,
+This series will expose the Connector's max supported bpc via connector
+debugfs and Crtc's current bpc via crtc debugfs. Also move the existing
+vendor specific "output_bpc" logic to drm.
 
+Test-with: 20220408065143.1485069-2-bhanuprakash.modem@intel.com
 
-Thank you for your patch.
+Bhanuprakash Modem (3):
+  drm/debug: Expose connector's max supported bpc via debugfs
+  drm/i915/display/debug: Expose crtc current bpc via debugfs
+  drm/amd/display: Move connector debugfs to drm
 
-Am 08.04.22 um 04:26 schrieb Darren Powell:
->   Contrary to the smu_cmn_send_smc_msg_with_param documentation, two
->   cases exist where messages are silently dropped with no error returned
->   to the caller. These cases occur in unusual situations where either:
->    1. the caller is a virtual GPU, or
->    2. a PCI recovery is underway and the HW is not yet in sync with the SW
-> 
->   For more details see
->    commit 4ea5081c82c4 ("drm/amd/powerplay: enable SMC message filter")
->    commit bf36b52e781d ("drm/amdgpu: Avoid accessing HW when suspending SW state")
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  4 --
+ .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 38 +++++++------------
+ .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.h |  2 -
+ drivers/gpu/drm/drm_debugfs.c                 | 21 ++++++++++
+ .../drm/i915/display/intel_display_debugfs.c  | 28 ++++++++++++++
+ 5 files changed, 62 insertions(+), 31 deletions(-)
 
-Please remove the indentation. If you re-rolled the patch, you could 
-also spell *documentation* lowercase in the commit message summary.
+--
+2.35.1
 
-> Signed-off-by: Darren Powell <darren.powell@amd.com>
-> ---
->   drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c | 7 +++++--
->   1 file changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-> index b8d0c70ff668..b1bd1990c88b 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-> @@ -356,12 +356,15 @@ int smu_cmn_wait_for_response(struct smu_context *smu)
->    * completion of the command, and return back a value from the SMU in
->    * @read_arg pointer.
->    *
-> - * Return 0 on success, -errno on error, if we weren't able to send
-> + * Return 0 on success, or if the message is dropped.
-> + * On error, -errno is returned if we weren't able to send
->    * the message or if the message completed with some kind of
->    * error. See __smu_cmn_reg2errno() for details of the -errno.
->    *
->    * If we weren't able to send the message to the SMU, we also print
-> - * the error to the standard log.
-> + * the error to the standard log. Dropped messages can be caused
-> + * due to PCI slot recovery or attempting to send from a virtual GPU,
-> + * and do not print an error.
->    *
->    * Command completion status is printed only if the -errno is
->    * -EREMOTEIO, indicating that the SMU returned back an
-> 
-> base-commit: 4585c45a6a66cb17cc97f4370457503746e540b7
-
-The diff looks good – despite Mozilla Thunderbird quoting it strangely.
-
-
-Kind regards,
-
-Paul
