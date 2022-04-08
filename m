@@ -2,55 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 431B04F963D
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Apr 2022 14:57:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 661A24F9750
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Apr 2022 15:50:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E958910F15D;
-	Fri,  8 Apr 2022 12:57:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E425D10F223;
+	Fri,  8 Apr 2022 13:50:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F00E010F15C;
- Fri,  8 Apr 2022 12:57:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1649422648; x=1680958648;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=vgrTzyoKMqjmE/kdV28EOKl5RCHZO9YrE934eNG595Q=;
- b=nAiUnlyaarWvsgXxdoZTGeKK35nGQ8Fx8f6kQe5tpVath98+NTZ0PMAD
- hqLf/nEC6ELNGzrJ0ruWSl9vTc8n2AOiqqwn2BG+z4JRcBkemxQjyZz/8
- nPmNgft868uXlF58jJXHmhePzOfs6rDNI6y221Bg9ZNGp6yTfQSW4/kZ9
- SrQt1atXsQHa51+G+9O+hNmzZ+Egh17wonI/I9tNPwkgOK7gBwvtGZHgJ
- D6bx8GN+G0EghNkDmpBspAzhcxi6WLOSwr0DdBV6pSusw1cF6IiGVkI3p
- cvpvuIJQfc9SxH3do56J9erpwqi+G3wT4y5y89Oq1NkwMMsyW7bKR20i0 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10310"; a="286574989"
-X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; d="scan'208";a="286574989"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2022 05:57:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,245,1643702400"; d="scan'208";a="795038516"
-Received: from lkp-server02.sh.intel.com (HELO 7e80bc2a00a0) ([10.239.97.151])
- by fmsmga006.fm.intel.com with ESMTP; 08 Apr 2022 05:57:25 -0700
-Received: from kbuild by 7e80bc2a00a0 with local (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1ncoB2-0000Gt-CX;
- Fri, 08 Apr 2022 12:57:24 +0000
-Date: Fri, 8 Apr 2022 20:56:46 +0800
-From: kernel test robot <lkp@intel.com>
-To: Bhanuprakash Modem <bhanuprakash.modem@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
- ville.syrjala@linux.intel.com, harry.wentland@amd.com,
- swati2.sharma@intel.com
-Subject: Re: [PATCH 3/3] drm/amd/display: Move connector debugfs to drm
-Message-ID: <202204082024.SJWgNUte-lkp@intel.com>
-References: <20220408065350.1485328-4-bhanuprakash.modem@intel.com>
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com
+ [IPv6:2a00:1450:4864:20::629])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EE5710F177;
+ Fri,  8 Apr 2022 13:21:08 +0000 (UTC)
+Received: by mail-ej1-x629.google.com with SMTP id bg10so17351358ejb.4;
+ Fri, 08 Apr 2022 06:21:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=YPyUmvWPJhClpiPWaffqsk3VwK+C7LO2AiimuAuL1Ro=;
+ b=aEjngbWMuGEjH4EmejJTL8nfW0MPlu5EnEsysirIWeHL6wcIbqM/rsJpoG6/zo3m2C
+ KNjMkZlpU+uOua8w7roVr1e7kiu2wEe60HwJD3IJuXNbsg5kY5wrqOi1uFQj6bjhmAQU
+ H5Od0tMND3SzzYECenAG+5rIcMxRtG9HF1bpWrabqGSeA/T0jholG7YCwSYzokS+szVA
+ Us9sBu+b33kGR5i63A2vc3u7BrE0+o9V8+Tf0PhtmpFIGUnL9VlR175cPjKTAJxClp3F
+ CspHFKflvB2bdfOJJe73Rx1J1kBFRMxr7WQjFQCj4Aj295d1LL7Z12/4gzpG8DXxzcp7
+ Lx5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=YPyUmvWPJhClpiPWaffqsk3VwK+C7LO2AiimuAuL1Ro=;
+ b=DKdiq+fq6s3X/EP5v02U615AAwWEIhMe1CKCCzt1iM+HS7eI+cYUXoJShvk9i1USg9
+ WODAxFO3PKrR5lA7o3fybglCfLF9cV7kKrwYL+fgnd45fIlqnVCA0slQ0QIYG/V9/1nm
+ R/t4m/6GEHe5uyoqhYjhPx1zP3CHvOwfzxLPDymCI7ypUvviuTPiev+hQcxZ3arIuax+
+ u6nMlNobGjbSWJBYpF5fztFuaDxyl+tjkmSATYkVFCXeRwEAgQamZCxQRObIF5+e8Jat
+ yU9vIUIvrRo5EgUbhwz4xzafiVtaVdHSDHiRyDv3q+db/n/STfekF/YvGGbgdHM6bZRL
+ 0l3w==
+X-Gm-Message-State: AOAM531sXCKVlL5HNCu1IuYPeVgnlxdWxveSE2KXh5S3szu3tqM8l80N
+ f83Ai52f65WTIi5A75R95HSp6HGPizaqWzq3NLV0z7DvVuCF0g==
+X-Google-Smtp-Source: ABdhPJz5+siwf2gqw3X2rRzoJIanYM41NMCYQCryCJRCwC2NONx2btw2hzLJPUuBprtMbGxfMaoG02PJ8uEuLtKbtJ0=
+X-Received: by 2002:a17:907:9485:b0:6db:331:591e with SMTP id
+ dm5-20020a170907948500b006db0331591emr18204422ejc.478.1649424066578; Fri, 08
+ Apr 2022 06:21:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220408065350.1485328-4-bhanuprakash.modem@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20220408092803.3188-1-h0tc0d3@gmail.com>
+ <4o2YD5id7zhK5g__CUK3Yf-6Dj459XQ0qsydW6wKHdco3YYtl78BqGUfXvQ9UO0AZoAsMPfhFB0jw1BFldiFDcbZXmGgsobuAoTMWmoDqmE=@emersion.fr>
+ <CAP+8YyED70CSqVRaB7JgrAtK-yvBx5EsvrrdR7EpvOG2AVhskQ@mail.gmail.com>
+ <QfKpxmkE_cy9wt5VJruw_TSdnl5KceKM8BxJGmZSBs-KiaRwIYfgc8h_-5h7Wmj6G-NtUJ3A88V5pzPvZuLlpkK-oRO5pSjeTxwHcZWlogs=@emersion.fr>
+In-Reply-To: <QfKpxmkE_cy9wt5VJruw_TSdnl5KceKM8BxJGmZSBs-KiaRwIYfgc8h_-5h7Wmj6G-NtUJ3A88V5pzPvZuLlpkK-oRO5pSjeTxwHcZWlogs=@emersion.fr>
+From: Grigory Vasilyev <h0tc0d3@gmail.com>
+Date: Fri, 8 Apr 2022 16:21:04 +0300
+Message-ID: <CAD5ugGD6QzCUqk7_EVwH9Cc6PQtx_VfjVRWzzP9uKR5tkGh1RQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Fix NULL pointer dereference
+To: Simon Ser <contact@emersion.fr>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Fri, 08 Apr 2022 13:50:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,80 +67,39 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, kbuild-all@lists.01.org,
- Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+Cc: David Airlie <airlied@linux.ie>, Qingqing Zhuo <qingqing.zhuo@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ Melissa Wen <mwen@igalia.com>,
+ =?UTF-8?Q?Michel_D=C3=A4nzer?= <mdaenzer@redhat.com>,
+ Sean Paul <seanpaul@chromium.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
+ Alex Deucher <alexander.deucher@amd.com>, Evan Quan <evan.quan@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Bhanuprakash,
+Simon Ser and Bas Nieuwenhuizen, do you understand that you are
+proposing to make the code less safe in the future? In the future,
+someone might rewrite the code and we'll get an error.
 
-Thank you for the patch! Yet something to improve:
-
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on drm-tip/drm-tip next-20220408]
-[cannot apply to drm/drm-next v5.18-rc1]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Bhanuprakash-Modem/Expose-max-and-current-bpc-via-debugfs/20220408-145638
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-config: s390-randconfig-r022-20220408 (https://download.01.org/0day-ci/archive/20220408/202204082024.SJWgNUte-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/25c70426c3d3454fc0c82bc71b101bf7b8bdf11f
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Bhanuprakash-Modem/Expose-max-and-current-bpc-via-debugfs/20220408-145638
-        git checkout 25c70426c3d3454fc0c82bc71b101bf7b8bdf11f
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=s390 SHELL=/bin/bash drivers/gpu/drm/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dmub/dmub_srv.h:67,
-                    from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:35:
-   drivers/gpu/drm/amd/amdgpu/../display/dmub/inc/dmub_cmd.h: In function 'dmub_rb_flush_pending':
-   drivers/gpu/drm/amd/amdgpu/../display/dmub/inc/dmub_cmd.h:2961:26: warning: variable 'temp' set but not used [-Wunused-but-set-variable]
-    2961 |                 uint64_t temp;
-         |                          ^~~~
-   drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c: In function 'amdgpu_dm_crtc_late_register':
->> drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:6614:9: error: implicit declaration of function 'crtc_debugfs_init'; did you mean 'amdgpu_debugfs_init'? [-Werror=implicit-function-declaration]
-    6614 |         crtc_debugfs_init(crtc);
-         |         ^~~~~~~~~~~~~~~~~
-         |         amdgpu_debugfs_init
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/inc/core_types.h:32,
-                    from drivers/gpu/drm/amd/amdgpu/../display/dc/inc/link_enc_cfg.h:33,
-                    from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:32:
-   At top level:
-   drivers/gpu/drm/amd/amdgpu/../display/include/ddc_service_types.h:128:22: warning: 'SYNAPTICS_DEVICE_ID' defined but not used [-Wunused-const-variable=]
-     128 | static const uint8_t SYNAPTICS_DEVICE_ID[] = "SYNA";
-         |                      ^~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/include/ddc_service_types.h:125:22: warning: 'DP_SINK_DEVICE_STR_ID_2' defined but not used [-Wunused-const-variable=]
-     125 | static const uint8_t DP_SINK_DEVICE_STR_ID_2[] = {7, 1, 8, 7, 5, 0};
-         |                      ^~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/../display/include/ddc_service_types.h:124:22: warning: 'DP_SINK_DEVICE_STR_ID_1' defined but not used [-Wunused-const-variable=]
-     124 | static const uint8_t DP_SINK_DEVICE_STR_ID_1[] = {7, 1, 8, 7, 3, 0};
-         |                      ^~~~~~~~~~~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
-
-
-vim +6614 drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c
-
-e7b07ceef2a650 Harry Wentland 2017-08-10  6611  
-e69231c4451ae0 Wayne Lin      2021-03-08  6612  static int amdgpu_dm_crtc_late_register(struct drm_crtc *crtc)
-86bc221918925a Wayne Lin      2021-03-02  6613  {
-86bc221918925a Wayne Lin      2021-03-02 @6614  	crtc_debugfs_init(crtc);
-86bc221918925a Wayne Lin      2021-03-02  6615  
-86bc221918925a Wayne Lin      2021-03-02  6616  	return 0;
-86bc221918925a Wayne Lin      2021-03-02  6617  }
-86bc221918925a Wayne Lin      2021-03-02  6618  
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+=D0=BF=D1=82, 8 =D0=B0=D0=BF=D1=80. 2022 =D0=B3. =D0=B2 14:48, Simon Ser <c=
+ontact@emersion.fr>:
+>
+> On Friday, April 8th, 2022 at 13:28, Bas Nieuwenhuizen <bas@basnieuwenhui=
+zen.nl> wrote:
+>
+> > On Fri, Apr 8, 2022 at 12:01 PM Simon Ser contact@emersion.fr wrote:
+> >
+> > > Is amdgpu_display_get_fb_info ever called with NULL tiling_flags/tmz_=
+surface?
+> > > If not, there's no point in adding NULL checks.
+> >
+> > It isn't called with NULL anywhere, the NULL checks that already exist
+> > seem redundant.
+>
+> Grigory, would be be willing to submit a v2 which removes the unnecessary
+> NULL checks?
