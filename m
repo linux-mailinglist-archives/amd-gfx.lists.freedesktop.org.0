@@ -2,58 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC8BD4F974F
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Apr 2022 15:50:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57BD94F974C
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Apr 2022 15:50:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BB6110F226;
-	Fri,  8 Apr 2022 13:50:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0328810F225;
+	Fri,  8 Apr 2022 13:50:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com
- [IPv6:2a00:1450:4864:20::12a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09E0B10E3B8;
- Fri,  8 Apr 2022 07:58:20 +0000 (UTC)
-Received: by mail-lf1-x12a.google.com with SMTP id bu29so13789912lfb.0;
- Fri, 08 Apr 2022 00:58:19 -0700 (PDT)
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com
+ [IPv6:2607:f8b0:4864:20::1029])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE80010F0FF
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Apr 2022 08:46:17 +0000 (UTC)
+Received: by mail-pj1-x1029.google.com with SMTP id gt4so8014209pjb.4
+ for <amd-gfx@lists.freedesktop.org>; Fri, 08 Apr 2022 01:46:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=LDg0VuOdkCKm0C8uZKp3vKpTf/VpsO8U9ed6vcjhQTo=;
- b=TAfmtGR4a9a3jgYPSlQ7/KHOY55cHJ2ZPH+9tvKC7XSRQzemgPxT5uuo5NqPmlMrYb
- g7/2IJN9Xzw2TASKcNKcaffTQV8aDR6Vbb4hDIMyK0Mdujx5V4YWTFmXzhnZvDk2UlIi
- tgWzh1dy3QsKgBEpmqFUlP9Bmrxw6qzurk0R1TofqqHib2TrmWnkKE2A/1xWbAcemmnw
- Lbuk3qPIMCx7WSAaZSshBYhR7x+Rhla24TRiM++omihK0V4+pxuPlvFwQyA3OKBaaoKd
- c3z1qXih8x1kjR1ndEVUZej/p/Cne/Zo0XrpIJQLX+9KhYKPnvy4amdrAX6U/aqAnFD6
- 9oCQ==
+ bh=gDyQGG05oDhpXrRcwaGE6a1VBsuGFKHQ1kambJSFz3I=;
+ b=Pjxu8QXJwwMR9rfqqTSPpo7doU7P7YBdJt3uck5MP5ibh8CLNGbb8kVoBwGc85JP7d
+ qdKFjsD1nLMph2KatDPaJF104BB/y1PSmDRY04wVYa5vUY6M1PfXi0VvtmYuu3n7Cwpl
+ U/4TE/rGcXbVvXcsKNf+/mrlckYnFMcxcAZnzCKUK5+Y1LBEn6Sek0EYjgxYO/eG/ck/
+ Yy/Qpwg7lNHzwWpbKsSDpadFsXcOF3ERFQKp958LbfmiKgkCrHDdLG6KST9kYYfzNCTB
+ CscOdfIgLB8DaHmG7gW7v9JXqbwV9/zonFiicStW00AEOjEFnxdMpcgBQ2XGILeZSKtf
+ vSlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=LDg0VuOdkCKm0C8uZKp3vKpTf/VpsO8U9ed6vcjhQTo=;
- b=XLjM4ciLnc4+1MZ2YLPirlR0Gj7Ko+hCO2RPlcrCZkpgkjwq5xrQNVxMOOn+Jld8Q7
- AcnrQ1rU6Hnr+seQ5tYvBE2Jt/dXFLgT1Z5D55xvXiq+Z+6OFKJC0MRx4xRuEKCwF2Z3
- YbmcL7FxR1SLQfZyLTnvc7junG8MK3FbCdzkMsWYUAruK79JjRHVTycJrt5gWzrocdmE
- h5I9+WebGu8IFeInCSOFuk//bHcIM8OmI0aYqbXjzqeNiJM1E4ypUPHuDddP8bQE5cZi
- tEeOBN+jhvrggg4Gui5WJHNbzqqeRTMHFocZbp9KjWC6PkiGcDM0qtErrZghdQedPilU
- fbfA==
-X-Gm-Message-State: AOAM530DWAnRWLH7YZULmEjvLzqa+suC4tOulb0Bi2QMdLrn3uaspGLc
- 419lyqm0GJSPUbSMrR7ZXNNNDo2GZ5rpnA==
-X-Google-Smtp-Source: ABdhPJyYta5aydqTXUvGMWiC0TCQ8PlSIHqgPbTB0TDQ6KifZ6JROMRtolpO3so0hsiB92awnmsKrg==
-X-Received: by 2002:a19:f00f:0:b0:443:ae5c:47d0 with SMTP id
- p15-20020a19f00f000000b00443ae5c47d0mr12061146lfc.332.1649404698181; 
- Fri, 08 Apr 2022 00:58:18 -0700 (PDT)
-Received: from noname.. ([2a02:2698:8c2a:149d:6d9:f5ff:fecb:a8ab])
- by smtp.googlemail.com with ESMTPSA id
- g9-20020a2e9cc9000000b0024afe85d0c8sm2170520ljj.121.2022.04.08.00.58.16
+ bh=gDyQGG05oDhpXrRcwaGE6a1VBsuGFKHQ1kambJSFz3I=;
+ b=6qh3GWW4IJFcFywW3C7Uf98sm25FNZXe0kvLV+5HSGIaTg4BkVT12qexyAFC5DI/TT
+ 2DgydgP30dxut/Kr0vuaOvkimjSal+UwQAoz4tfmEiwhJCwOGr0F4BKHRW543mebAP82
+ DK+1gp9lvyy5EK8oKTP8kcqVeUM+jLFKmLyPenE78S0v6bD1tMBH2tx6076d/SSqs08d
+ Tl3V8Ps07M/3D4RzvbyGL3CN7+f5WSTiMel8qIrCMAZYyabDSutlAKPNCpbgGu8lCCMh
+ rxBBJCpiZnOfiTfJtq2PLQQJdJgd9HTVqQWVF/9ZZeSS3N7m2kW413F4qvfGI2PGpHi3
+ rWSQ==
+X-Gm-Message-State: AOAM5324BhhLqhQHXqwZL5UGdDzkXLy2YYU4+6UDTLnfBCbRXqmipdXa
+ 6VC4lZGDkExJA9uQoMXlDRX9gw2X2TVUHfnATaY=
+X-Google-Smtp-Source: ABdhPJxEuET5uNJakFFSMOkEXCuChvvxtJF9gEX0QxFDiU3vRkvCuj5/jS3j+Al9HH5ToWiapCle2Q==
+X-Received: by 2002:a17:90b:17c5:b0:1c6:3639:7daf with SMTP id
+ me5-20020a17090b17c500b001c636397dafmr20623845pjb.105.1649407577234; 
+ Fri, 08 Apr 2022 01:46:17 -0700 (PDT)
+Received: from netturing-04.corp.microsoft.com ([167.220.233.104])
+ by smtp.gmail.com with ESMTPSA id
+ t38-20020a634626000000b0039cc30b7c93sm4274053pga.82.2022.04.08.01.46.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 08 Apr 2022 00:58:17 -0700 (PDT)
-From: Grigory Vasilyev <h0tc0d3@gmail.com>
-To: Rodrigo.Siqueira@amd.com,
-	Melissa Wen <mwen@igalia.com>
-Subject: [PATCH] drm/amdgpu: Fix incorrect enum type
-Date: Fri,  8 Apr 2022 10:58:17 +0300
-Message-Id: <20220408075820.10396-1-h0tc0d3@gmail.com>
-X-Mailer: git-send-email 2.35.1
+ Fri, 08 Apr 2022 01:46:16 -0700 (PDT)
+From: Shuotao Xu <xushuotao@gmail.com>
+X-Google-Original-From: Shuotao Xu <shuotaoxu@microsoft.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/2] drm/amdkfd: Cleanup IO links during KFD device removal
+Date: Fri,  8 Apr 2022 08:45:43 +0000
+Message-Id: <20220408084544.9313-1-shuotaoxu@microsoft.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 08 Apr 2022 13:50:30 +0000
@@ -68,76 +68,239 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lijo Lazar <lijo.lazar@amd.com>, Yifan Zhang <yifan1.zhang@amd.com>,
- Tao Zhou <tao.zhou1@amd.com>, Chengming Gui <Jack.Gui@amd.com>,
- Guchun Chen <guchun.chen@amd.com>, Grigory Vasilyev <h0tc0d3@gmail.com>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, yipechai <YiPeng.Chai@amd.com>,
- David Airlie <airlied@linux.ie>, Victor Skvortsov <victor.skvortsov@amd.com>,
- Huang Rui <ray.huang@amd.com>, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Joseph Greathouse <Joseph.Greathouse@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Evan Quan <evan.quan@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Mukul Joshi <mukul.joshi@amd.com>, Andrey.Grodzovsky@amd.com,
+ Felix.Kuehling@amd.com, pengc@microsoft.com, Lei.Qu@microsoft.com,
+ Shuotao Xu <shuotaoxu@microsoft.com>, Ran.Shu@microsoft.com,
+ Ziyue.Yang@microsoft.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Instead of the 'amdgpu_ring_priority_level' type,
-the 'amdgpu_gfx_pipe_priority' type was used,
-which is an error when setting ring priority.
-This is a minor error, but may cause problems in the future.
+Currently, the IO-links to the device being removed from topology,
+are not cleared. As a result, there would be dangling links left in
+the KFD topology. This patch aims to fix the following:
+1. Cleanup all IO links to the device being removed.
+2. Ensure that node numbering in sysfs and nodes proximity domain
+   values are consistent after the device is removed:
+   a. Adding a device and removing a GPU device are made mutually
+      exclusive.
+   b. The global proximity domain counter is no longer required to be
+      an atomic counter. A normal 32-bit counter can be used instead.
+3. Update generation_count to let user-mode know that topology has
+   changed due to device removal.
 
-Instead of AMDGPU_RING_PRIO_2 = 2, we can use AMDGPU_RING_PRIO_MAX = 3,
-but AMDGPU_RING_PRIO_2 = 2 is used for compatibility with
-AMDGPU_GFX_PIPE_PRIO_HIGH = 2, and not change the behavior of the
-code.
-
-Signed-off-by: Grigory Vasilyev <h0tc0d3@gmail.com>
+Reviewed-by: Shuotao Xu <shuotaoxu@microsoft.com>
+CC: Shuotao Xu <shuotaoxu@microsoft.com>
+Signed-off-by: Mukul Joshi <mukul.joshi@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 2 +-
- drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c  | 2 +-
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c  | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_crat.c     |  4 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h     |  2 +
+ drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 79 ++++++++++++++++++++---
+ 3 files changed, 74 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-index b3081c28db0a..1d9120a4b3f5 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-@@ -4745,7 +4745,7 @@ static int gfx_v10_0_compute_ring_init(struct amdgpu_device *adev, int ring_id,
- 		+ ((ring->me - 1) * adev->gfx.mec.num_pipe_per_mec)
- 		+ ring->pipe;
- 	hw_prio = amdgpu_gfx_is_high_priority_compute_queue(adev, ring) ?
--			AMDGPU_GFX_PIPE_PRIO_HIGH : AMDGPU_GFX_PIPE_PRIO_NORMAL;
-+			AMDGPU_RING_PRIO_2 : AMDGPU_RING_PRIO_DEFAULT;
- 	/* type-2 packets are deprecated on MEC, use type-3 instead */
- 	r = amdgpu_ring_init(adev, ring, 1024, &adev->gfx.eop_irq, irq_type,
- 			     hw_prio, NULL);
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-index 5554084ec1f1..9bc26395f833 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-@@ -1929,7 +1929,7 @@ static int gfx_v8_0_compute_ring_init(struct amdgpu_device *adev, int ring_id,
- 		+ ring->pipe;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+index 1eaabd2cb41b..afc8a7fcdad8 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+@@ -1056,7 +1056,7 @@ static int kfd_parse_subtype_iolink(struct crat_subtype_iolink *iolink,
+ 	 * table, add corresponded reversed direction link now.
+ 	 */
+ 	if (props && (iolink->flags & CRAT_IOLINK_FLAGS_BI_DIRECTIONAL)) {
+-		to_dev = kfd_topology_device_by_proximity_domain(id_to);
++		to_dev = kfd_topology_device_by_proximity_domain_no_lock(id_to);
+ 		if (!to_dev)
+ 			return -ENODEV;
+ 		/* same everything but the other direction */
+@@ -2225,7 +2225,7 @@ static int kfd_create_vcrat_image_gpu(void *pcrat_image,
+ 	 */
+ 	if (kdev->hive_id) {
+ 		for (nid = 0; nid < proximity_domain; ++nid) {
+-			peer_dev = kfd_topology_device_by_proximity_domain(nid);
++			peer_dev = kfd_topology_device_by_proximity_domain_no_lock(nid);
+ 			if (!peer_dev->gpu)
+ 				continue;
+ 			if (peer_dev->gpu->hive_id != kdev->hive_id)
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+index e1b7e6afa920..8a43def1f638 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+@@ -1016,6 +1016,8 @@ int kfd_topology_add_device(struct kfd_dev *gpu);
+ int kfd_topology_remove_device(struct kfd_dev *gpu);
+ struct kfd_topology_device *kfd_topology_device_by_proximity_domain(
+ 						uint32_t proximity_domain);
++struct kfd_topology_device *kfd_topology_device_by_proximity_domain_no_lock(
++						uint32_t proximity_domain);
+ struct kfd_topology_device *kfd_topology_device_by_id(uint32_t gpu_id);
+ struct kfd_dev *kfd_device_by_id(uint32_t gpu_id);
+ struct kfd_dev *kfd_device_by_pci_dev(const struct pci_dev *pdev);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+index 3bdcae239bc0..874a273b81f7 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+@@ -46,27 +46,38 @@ static struct list_head topology_device_list;
+ static struct kfd_system_properties sys_props;
  
- 	hw_prio = amdgpu_gfx_is_high_priority_compute_queue(adev, ring) ?
--			AMDGPU_GFX_PIPE_PRIO_HIGH : AMDGPU_RING_PRIO_DEFAULT;
-+			AMDGPU_RING_PRIO_2 : AMDGPU_RING_PRIO_DEFAULT;
- 	/* type-2 packets are deprecated on MEC, use type-3 instead */
- 	r = amdgpu_ring_init(adev, ring, 1024, &adev->gfx.eop_irq, irq_type,
- 			     hw_prio, NULL);
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-index 71cf025a2bbd..029c97c92463 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -2278,7 +2278,7 @@ static int gfx_v9_0_compute_ring_init(struct amdgpu_device *adev, int ring_id,
- 		+ ((ring->me - 1) * adev->gfx.mec.num_pipe_per_mec)
- 		+ ring->pipe;
- 	hw_prio = amdgpu_gfx_is_high_priority_compute_queue(adev, ring) ?
--			AMDGPU_GFX_PIPE_PRIO_HIGH : AMDGPU_GFX_PIPE_PRIO_NORMAL;
-+			AMDGPU_RING_PRIO_2 : AMDGPU_RING_PRIO_DEFAULT;
- 	/* type-2 packets are deprecated on MEC, use type-3 instead */
- 	return amdgpu_ring_init(adev, ring, 1024, &adev->gfx.eop_irq, irq_type,
- 				hw_prio, NULL);
+ static DECLARE_RWSEM(topology_lock);
+-static atomic_t topology_crat_proximity_domain;
++static uint32_t topology_crat_proximity_domain;
+ 
+-struct kfd_topology_device *kfd_topology_device_by_proximity_domain(
++struct kfd_topology_device *kfd_topology_device_by_proximity_domain_no_lock(
+ 						uint32_t proximity_domain)
+ {
+ 	struct kfd_topology_device *top_dev;
+ 	struct kfd_topology_device *device = NULL;
+ 
+-	down_read(&topology_lock);
+-
+ 	list_for_each_entry(top_dev, &topology_device_list, list)
+ 		if (top_dev->proximity_domain == proximity_domain) {
+ 			device = top_dev;
+ 			break;
+ 		}
+ 
++	return device;
++}
++
++struct kfd_topology_device *kfd_topology_device_by_proximity_domain(
++						uint32_t proximity_domain)
++{
++	struct kfd_topology_device *device = NULL;
++
++	down_read(&topology_lock);
++
++	device = kfd_topology_device_by_proximity_domain_no_lock(
++							proximity_domain);
+ 	up_read(&topology_lock);
+ 
+ 	return device;
+ }
+ 
++
+ struct kfd_topology_device *kfd_topology_device_by_id(uint32_t gpu_id)
+ {
+ 	struct kfd_topology_device *top_dev = NULL;
+@@ -1060,7 +1071,7 @@ int kfd_topology_init(void)
+ 	down_write(&topology_lock);
+ 	kfd_topology_update_device_list(&temp_topology_device_list,
+ 					&topology_device_list);
+-	atomic_set(&topology_crat_proximity_domain, sys_props.num_devices-1);
++	topology_crat_proximity_domain = sys_props.num_devices-1;
+ 	ret = kfd_topology_update_sysfs();
+ 	up_write(&topology_lock);
+ 
+@@ -1295,8 +1306,6 @@ int kfd_topology_add_device(struct kfd_dev *gpu)
+ 
+ 	pr_debug("Adding new GPU (ID: 0x%x) to topology\n", gpu_id);
+ 
+-	proximity_domain = atomic_inc_return(&topology_crat_proximity_domain);
+-
+ 	/* Include the CPU in xGMI hive if xGMI connected by assigning it the hive ID. */
+ 	if (gpu->hive_id && gpu->adev->gmc.xgmi.connected_to_cpu) {
+ 		struct kfd_topology_device *top_dev;
+@@ -1321,12 +1330,16 @@ int kfd_topology_add_device(struct kfd_dev *gpu)
+ 	 */
+ 	dev = kfd_assign_gpu(gpu);
+ 	if (!dev) {
++		down_write(&topology_lock);
++		proximity_domain = ++topology_crat_proximity_domain;
++
+ 		res = kfd_create_crat_image_virtual(&crat_image, &image_size,
+ 						    COMPUTE_UNIT_GPU, gpu,
+ 						    proximity_domain);
+ 		if (res) {
+ 			pr_err("Error creating VCRAT for GPU (ID: 0x%x)\n",
+ 			       gpu_id);
++			topology_crat_proximity_domain--;
+ 			return res;
+ 		}
+ 		res = kfd_parse_crat_table(crat_image,
+@@ -1335,10 +1348,10 @@ int kfd_topology_add_device(struct kfd_dev *gpu)
+ 		if (res) {
+ 			pr_err("Error parsing VCRAT for GPU (ID: 0x%x)\n",
+ 			       gpu_id);
++			topology_crat_proximity_domain--;
+ 			goto err;
+ 		}
+ 
+-		down_write(&topology_lock);
+ 		kfd_topology_update_device_list(&temp_topology_device_list,
+ 			&topology_device_list);
+ 
+@@ -1485,25 +1498,73 @@ int kfd_topology_add_device(struct kfd_dev *gpu)
+ 	return res;
+ }
+ 
++static void kfd_topology_update_io_links(int proximity_domain)
++{
++	struct kfd_topology_device *dev;
++	struct kfd_iolink_properties *iolink, *p2plink, *tmp;
++	/*
++	 * The topology list currently is arranged in increasing
++	 * order of proximity domain.
++	 *
++	 * Two things need to be done when a device is removed:
++	 * 1. All the IO links to this device need to be
++	 *    removed.
++	 * 2. All nodes after the current device node need to move
++	 *    up once this device node is removed from the topology
++	 *    list. As a result, the proximity domain values for
++	 *    all nodes after the node being deleted reduce by 1.
++	 *    This would also cause the proximity domain values for
++	 *    io links to be updated based on new proximity
++	 *    domain values.
++	 */
++	list_for_each_entry(dev, &topology_device_list, list) {
++		if (dev->proximity_domain > proximity_domain)
++			dev->proximity_domain--;
++
++		list_for_each_entry_safe(iolink, tmp, &dev->io_link_props, list) {
++			/*
++			 * If there is an io link to the dev being deleted
++			 * then remove that IO link also.
++			 */
++			if (iolink->node_to == proximity_domain) {
++				list_del(&iolink->list);
++				dev->io_link_count--;
++				dev->node_props.io_links_count--;
++			} else if (iolink->node_from > proximity_domain) {
++				iolink->node_from--;
++			} else if (iolink->node_to > proximity_domain) {
++				iolink->node_to--;
++			}
++		}
++
++	}
++}
++
+ int kfd_topology_remove_device(struct kfd_dev *gpu)
+ {
+ 	struct kfd_topology_device *dev, *tmp;
+ 	uint32_t gpu_id;
+ 	int res = -ENODEV;
++	int i = 0;
+ 
+ 	down_write(&topology_lock);
+ 
+-	list_for_each_entry_safe(dev, tmp, &topology_device_list, list)
++	list_for_each_entry_safe(dev, tmp, &topology_device_list, list) {
+ 		if (dev->gpu == gpu) {
+ 			gpu_id = dev->gpu_id;
+ 			kfd_remove_sysfs_node_entry(dev);
+ 			kfd_release_topology_device(dev);
+ 			sys_props.num_devices--;
++			kfd_topology_update_io_links(i);
++			topology_crat_proximity_domain = sys_props.num_devices-1;
++			sys_props.generation_count++;
+ 			res = 0;
+ 			if (kfd_topology_update_sysfs() < 0)
+ 				kfd_topology_release_sysfs();
+ 			break;
+ 		}
++		i++;
++	}
+ 
+ 	up_write(&topology_lock);
+ 
 -- 
-2.35.1
+2.25.1
 
