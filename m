@@ -1,33 +1,38 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FC0B4F8FA3
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Apr 2022 09:29:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CF554F8EE5
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Apr 2022 08:29:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92F9F10E097;
-	Fri,  8 Apr 2022 07:29:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DFE110F79C;
+	Fri,  8 Apr 2022 06:29:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-131.freemail.mail.aliyun.com
- (out30-131.freemail.mail.aliyun.com [115.124.30.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 212A610E789;
- Thu,  7 Apr 2022 23:27:59 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R161e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01e04426; MF=yang.lee@linux.alibaba.com;
- NM=1; PH=DS; RN=13; SR=0; TI=SMTPD_---0V9SkWBW_1649374076; 
-Received: from localhost(mailfrom:yang.lee@linux.alibaba.com
- fp:SMTPD_---0V9SkWBW_1649374076) by smtp.aliyun-inc.com(127.0.0.1);
- Fri, 08 Apr 2022 07:27:56 +0800
-From: Yang Li <yang.lee@linux.alibaba.com>
-To: airlied@linux.ie
-Subject: [PATCH -next] drm/amd/display: remove unneeded semicolon
-Date: Fri,  8 Apr 2022 07:27:54 +0800
-Message-Id: <20220407232754.91972-1-yang.lee@linux.alibaba.com>
-X-Mailer: git-send-email 2.20.1.7.g153144c
+Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0DA710F7B5
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Apr 2022 06:29:08 +0000 (UTC)
+Received: from [192.168.0.2] (ip5f5ae932.dynamic.kabel-deutschland.de
+ [95.90.233.50])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested) (Authenticated sender: pmenzel)
+ by mx.molgen.mpg.de (Postfix) with ESMTPSA id A3C0E61E6478B;
+ Fri,  8 Apr 2022 08:29:06 +0200 (CEST)
+Message-ID: <ac14165d-ee61-7fa6-56ad-6c336b710330@molgen.mpg.de>
+Date: Fri, 8 Apr 2022 08:29:06 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH 1/1] amdgpu/pm: Clarify Documentation of error handling in
+ send_smc_mesg
+Content-Language: en-US
+To: Darren Powell <darren.powell@amd.com>
+References: <20220408022639.7909-1-darren.powell@amd.com>
+From: Paul Menzel <pmenzel@molgen.mpg.de>
+In-Reply-To: <20220408022639.7909-1-darren.powell@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 08 Apr 2022 07:29:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,37 +44,63 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sunpeng.li@amd.com, Abaci Robot <abaci@linux.alibaba.com>,
- Xinhui.Pan@amd.com, Rodrigo.Siqueira@amd.com, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Yang Li <yang.lee@linux.alibaba.com>,
- dri-devel@lists.freedesktop.org, daniel@ffwll.ch, alexander.deucher@amd.com,
- harry.wentland@amd.com, christian.koenig@amd.com
+Cc: andrey.grodzovsky@amd.com, luben.tuikov@amd.com, evan.quan@amd.com,
+ amd-gfx@lists.freedesktop.org, wenhui.sheng@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Eliminate the following coccicheck warning:
-./drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_clk_mgr.c:477:2-3:
-Unneeded semicolon
+Dear Darren,
 
-Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
----
- drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_clk_mgr.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_clk_mgr.c
-index 8be4c1970628..707dce6486b9 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_clk_mgr.c
-@@ -474,7 +474,7 @@ static void dcn315_clk_mgr_helper_populate_bw_params(
- 		bw_params->clk_table.entries[i].dispclk_mhz = max_dispclk;
- 		bw_params->clk_table.entries[i].dppclk_mhz = max_dppclk;
- 		bw_params->clk_table.entries[i].wck_ratio = 1;
--	};
-+	}
- 
- 	/* Make sure to include at least one entry and highest pstate */
- 	if (max_pstate != min_pstate) {
--- 
-2.20.1.7.g153144c
+Thank you for your patch.
 
+Am 08.04.22 um 04:26 schrieb Darren Powell:
+>   Contrary to the smu_cmn_send_smc_msg_with_param documentation, two
+>   cases exist where messages are silently dropped with no error returned
+>   to the caller. These cases occur in unusual situations where either:
+>    1. the caller is a virtual GPU, or
+>    2. a PCI recovery is underway and the HW is not yet in sync with the SW
+> 
+>   For more details see
+>    commit 4ea5081c82c4 ("drm/amd/powerplay: enable SMC message filter")
+>    commit bf36b52e781d ("drm/amdgpu: Avoid accessing HW when suspending SW state")
+
+Please remove the indentation. If you re-rolled the patch, you could 
+also spell *documentation* lowercase in the commit message summary.
+
+> Signed-off-by: Darren Powell <darren.powell@amd.com>
+> ---
+>   drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c | 7 +++++--
+>   1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+> index b8d0c70ff668..b1bd1990c88b 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+> @@ -356,12 +356,15 @@ int smu_cmn_wait_for_response(struct smu_context *smu)
+>    * completion of the command, and return back a value from the SMU in
+>    * @read_arg pointer.
+>    *
+> - * Return 0 on success, -errno on error, if we weren't able to send
+> + * Return 0 on success, or if the message is dropped.
+> + * On error, -errno is returned if we weren't able to send
+>    * the message or if the message completed with some kind of
+>    * error. See __smu_cmn_reg2errno() for details of the -errno.
+>    *
+>    * If we weren't able to send the message to the SMU, we also print
+> - * the error to the standard log.
+> + * the error to the standard log. Dropped messages can be caused
+> + * due to PCI slot recovery or attempting to send from a virtual GPU,
+> + * and do not print an error.
+>    *
+>    * Command completion status is printed only if the -errno is
+>    * -EREMOTEIO, indicating that the SMU returned back an
+> 
+> base-commit: 4585c45a6a66cb17cc97f4370457503746e540b7
+
+The diff looks good – despite Mozilla Thunderbird quoting it strangely.
+
+
+Kind regards,
+
+Paul
