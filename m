@@ -2,41 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B4F04FB53B
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Apr 2022 09:49:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D4664FB53D
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Apr 2022 09:49:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E994D10F038;
-	Mon, 11 Apr 2022 07:49:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E5DB10F03E;
+	Mon, 11 Apr 2022 07:49:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
- [IPv6:2a01:488:42:1000:50ed:8234::])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F46C10E1D3;
- Sat,  9 Apr 2022 17:32:44 +0000 (UTC)
-Received: from ip4d144895.dynamic.kabel-deutschland.de ([77.20.72.149]
- helo=[192.168.66.200]); authenticated
- by wp530.webpack.hosteurope.de running ExIM with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- id 1ndEwz-0001ZG-Qa; Sat, 09 Apr 2022 19:32:42 +0200
-Message-ID: <19141ae9-5930-4a53-53b6-9afbf96539b3@leemhuis.info>
-Date: Sat, 9 Apr 2022 19:32:37 +0200
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com
+ [IPv6:2a00:1450:4864:20::535])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55A3B10E134;
+ Sun, 10 Apr 2022 00:50:28 +0000 (UTC)
+Received: by mail-ed1-x535.google.com with SMTP id c64so1981028edf.11;
+ Sat, 09 Apr 2022 17:50:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=7HtVe2guHiIahNbZDnAKk5WaarwcdEBXzqi2lyPe5QI=;
+ b=WebFnt8vxXxGF9+rn0eXifa+Pk7Pg897od0g0G9rMzYZiHzWGLOFv4tzOcSRkloPNk
+ ZfCAmKoJQSs22cv7vAEF9bb/W20yEPZjHeMijK7yMzgq8VPA4sN9R69aGH+XTVaBFsxi
+ EZyeSftXxzY82g2AkJDeYAD6JLrf9mmMCM/RZoI3FHNhyOBEP5rmdL47x2r4QDiUk2nv
+ UWvDfyCz5WC1Mw5oPvGqisRYdouOAht1OJhGaCswEGhFI9vr9+SjpmGUN69q+qp8zCvz
+ d2QdaJVmTk0VPbfQQZ6t/ug+/Y6ojBz+2Qn474YrDwlLhzn5jfp3TjNNa6RBrmy+KQ1I
+ VjHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=7HtVe2guHiIahNbZDnAKk5WaarwcdEBXzqi2lyPe5QI=;
+ b=8EedPnd/nA1E8xwp5CESucDt+Gj4e6PF0AEPMicsWIXGJfmepaeg6f/4Zsl7hr2LPS
+ PYLk7jgwpUvZksRD1IPt18TGftptuRzuzOD0OrueWaq3vFd1ylLuRsxvY7B9xnhRKwNf
+ rv1UbJnOVhJ8hcIX5pRpFFc7e1qSFYjfZPVpJY5Tbxi7ZaKmMEaL0YxxRZY1HU/l8edm
+ 5Mc7w3gUS6aOKc/S7Nl5JtmMlMSPtmu9FKG+YrmWQMRrGglSzStvf1nghHUc9ELFamH+
+ xRdUIE0/Pvg2pL3INAMzV5osMKJ56nJpQs51oKH9geIDASA45nHsTuO6M3KS43jNFe36
+ 7K1Q==
+X-Gm-Message-State: AOAM532pW26HWwzgsUdzSsdOYuSQY2t/mkFH54WA3gFlaUF575FCTfUs
+ lW/yw/ZcC7Rhh+93bBGrdvg/NdizPAPK/0bHM+A=
+X-Google-Smtp-Source: ABdhPJxrqwFrLV44uG+X6bhKQxtFAe//AUKD4xulz+mQi3zOvMiBcpohNfsTapnOWH4OzRPGHvXTS8+L228j29ItyEw=
+X-Received: by 2002:a05:6402:1907:b0:41d:29d9:e3d with SMTP id
+ e7-20020a056402190700b0041d29d90e3dmr10131837edz.250.1649551826678; Sat, 09
+ Apr 2022 17:50:26 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: AMDGPU: regression on 5.17.1 #forregzbot
-Content-Language: en-US
-To: regressions@lists.linux.dev
-References: <20220403132322.51c90903@darkstar.example.org>
- <CADnq5_M+M_iykM0Ag6RF+kxzgpEopUBtp82h7tRM3G+B3AWZ2w@mail.gmail.com>
- <20220404213940.09a56d15@darkstar.example.org>
- <CADnq5_PhaFbVCb=-AUCx4L-sCyPCPOsY3tNpiAg=gfCN7hFcJA@mail.gmail.com>
- <20220409182831.185e5d92@darkstar.example.org>
-From: Thorsten Leemhuis <linux@leemhuis.info>
-In-Reply-To: <20220409182831.185e5d92@darkstar.example.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-bounce-key: webpack.hosteurope.de;linux@leemhuis.info;1649525564;96f01c89;
-X-HE-SMSGID: 1ndEwz-0001ZG-Qa
+References: <20220405173632.2663-1-h0tc0d3@gmail.com>
+ <614a4844-fa5d-8b8e-0628-894394f31608@amd.com>
+ <874k3670ez.fsf@intel.com> <f742b6b8-4056-543c-17a5-ae373ca71b45@amd.com>
+In-Reply-To: <f742b6b8-4056-543c-17a5-ae373ca71b45@amd.com>
+From: Grigory Vasilyev <h0tc0d3@gmail.com>
+Date: Sun, 10 Apr 2022 03:50:25 +0300
+Message-ID: <CAD5ugGBZeA1+7pS2eSyXkCt+DvHY8=6wObD7eJ98UAgY-FPVOw@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Senseless code and unnecessary memset
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 11 Apr 2022 07:49:38 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -49,63 +66,116 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>,
+Cc: Jiawei Gu <Jiawei.Gu@amd.com>, Jani Nikula <jani.nikula@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
  LKML <linux-kernel@vger.kernel.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, Melissa Wen <mwen@igalia.com>,
+ David Airlie <airlied@linux.ie>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-TWIMC: this mail is primarily send for documentation purposes and for
-regzbot, my Linux kernel regression tracking bot. These mails usually
-contain '#forregzbot' in the subject, to make them easy to spot and filter.
+Christian K=C3=B6nig in fact the compiler will very often replace {0} with
+a memset call. I don't see a problem using {0} for local arrays with
+primitive types.
+There should also be no problem with memory alignment. Because the
+compiler understands it. Using sizeof is also not a good idea.
+More often everyone also makes mistakes with sizeof. It's best to
+leave it as is, and there's no errors.
+Indeed, when using structures and {0}, errors may occur, but I am not
+aware of errors when using primitive types. I also looked at the
+amdgpu code and  {0} is used in many places.
+Also from experience malloc+memset is the most dangerous chain, can
+silently damage memory, causing a bunch of subtle problems, and it is
+better to replace them with more safe calloc.
+Such a problem, for example, was recently found by me in fontconfig
+and it crashed intel quartus. Therefore, where possible, I try to
+avoid memset.
 
-On 09.04.22 18:28, Michele Ballabio wrote:
-> On Tue, 5 Apr 2022 10:23:16 -0400
-> Alex Deucher <alexdeucher@gmail.com> wrote:
-> 
->> On Mon, Apr 4, 2022 at 3:39 PM Michele Ballabio
->> <ballabio.m@gmail.com> wrote:
->>>
->>> On Mon, 4 Apr 2022 13:03:41 -0400
->>> Alex Deucher <alexdeucher@gmail.com> wrote:
->>>
->>>> On Sun, Apr 3, 2022 at 10:19 AM Michele Ballabio
->>>> <ballabio.m@gmail.com> wrote:
->>>>>
->>>>> Hi,
->>>>>         I've hit a regression on 5.17.1 (haven't tested 5.17.0,
->>>>> but 5.16-stable didn't have this problem).
->>>>>
->>>>> The machine is a Ryzen 5 1600 with AMD graphics (RX 560).
->>>>>
->>>>> The regression I hit seems to trigger when the machine is left
->>>>> idle at boot (I don't boot straight to X, I boot to a tty, login
->>>>> and then start X). The machine after a while blanks the screen.
->>>>> Usually, the screen unblanks as the keyboard is hit or the mouse
->>>>> moves, but with kernel 5.17.1 the screen does not wake up. The
->>>>> machine seems to run mostly fine: I can login from ssh, but I
->>>>> cannot reboot or halt it: a sysrq sequence is needed for that.
->>>>> Note that if the screen goes blank under X, it wakes up fine.
->>>>>
->>>>> Below a dmesg and two traces from syslog (they're quite
->>>>> similar).
->>>>
->>>> Can you bisect?  Does setting amdgpu.runpm=0 help?
->>>
->>> I can try to bisect, should I narrow the search to drivers/gpu/drm/
->>> ?
->>
->> I would just do a full bisect if possible in case the change happens
->> to be outside of drm.
->>
->>>
->>> Setting amdgpu.runpm=0 works, the display now unblanks without
->>> problems.
->>
-> 
-> Hi,
->     I bisected this, and the first bad commit is
-> [087451f372bf76d971184caa258807b7c35aac8f] drm/amdgpu: use generic fb
-> helpers instead of setting up AMD own's.
+Regards, Grigory.
 
-#regzbot introduced: 087451f372bf76d971184caa258807b7c35aac8f
+=D1=81=D1=80, 6 =D0=B0=D0=BF=D1=80. 2022 =D0=B3. =D0=B2 17:43, Christian K=
+=C3=B6nig <christian.koenig@amd.com>:
+>
+> Am 06.04.22 um 16:26 schrieb Jani Nikula:
+> > On Tue, 05 Apr 2022, Christian K=C3=B6nig <christian.koenig@amd.com> wr=
+ote:
+> >> Am 05.04.22 um 19:36 schrieb Grigory Vasilyev:
+> >>> Using memset on local arrays before exiting the function is pointless=
+.
+> >>> Compilator will remove this code. Also for local arrays is preferable=
+ to
+> >>> use {0} instead of memset. Mistakes are often made when working with
+> >>> memset.
+> >> Well actually memset is preferred when working with structures which a=
+re
+> >> given to the hardware parser because {0} won't initialize paddings.
+> > Not that I'd know anything that's going on here... but it sure seems
+> > strange to me to be passing unpacked structures where the padding might
+> > matter to a "hardware parser".
+>
+> Well to me it is an absolute miracle why the heck compilers don't
+> initialize paddings.
+>
+> We had so many ups moments over the years and I really don't see why it
+> should be more optimal to do this.
+>
+> Anyway, the memset() is used intentionally here and I don't really want
+> to change it. What we could do is removing the second superfluous memset
+> and use sizeof() instead of hard coding the size.
+>
+> Regards,
+> Christian.
+>
+> >
+> > *shrug*
+> >
+> >
+> > BR,
+> > Jani.
+> >
+> >
+> >> So please don't use {0} in any of the atom bios code.
+> >>
+> >> Regards,
+> >> Christian.
+> >>
+> >>> Signed-off-by: Grigory Vasilyev <h0tc0d3@gmail.com>
+> >>> ---
+> >>>    drivers/gpu/drm/amd/amdgpu/atom.c | 8 +-------
+> >>>    1 file changed, 1 insertion(+), 7 deletions(-)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/amd/amdgpu/atom.c b/drivers/gpu/drm/amd/=
+amdgpu/atom.c
+> >>> index be9d61bcb8ae..537e48fbbe6b 100644
+> >>> --- a/drivers/gpu/drm/amd/amdgpu/atom.c
+> >>> +++ b/drivers/gpu/drm/amd/amdgpu/atom.c
+> >>> @@ -1538,11 +1538,9 @@ struct atom_context *amdgpu_atom_parse(struct =
+card_info *card, void *bios)
+> >>>    int amdgpu_atom_asic_init(struct atom_context *ctx)
+> >>>    {
+> >>>     int hwi =3D CU16(ctx->data_table + ATOM_DATA_FWI_PTR);
+> >>> -   uint32_t ps[16];
+> >>> +   uint32_t ps[16] =3D {0};
+> >>>     int ret;
+> >>>
+> >>> -   memset(ps, 0, 64);
+> >>> -
+> >>>     ps[0] =3D cpu_to_le32(CU32(hwi + ATOM_FWI_DEFSCLK_PTR));
+> >>>     ps[1] =3D cpu_to_le32(CU32(hwi + ATOM_FWI_DEFMCLK_PTR));
+> >>>     if (!ps[0] || !ps[1])
+> >>> @@ -1551,10 +1549,6 @@ int amdgpu_atom_asic_init(struct atom_context =
+*ctx)
+> >>>     if (!CU16(ctx->cmd_table + 4 + 2 * ATOM_CMD_INIT))
+> >>>             return 1;
+> >>>     ret =3D amdgpu_atom_execute_table(ctx, ATOM_CMD_INIT, ps);
+> >>> -   if (ret)
+> >>> -           return ret;
+> >>> -
+> >>> -   memset(ps, 0, 64);
+> >>>
+> >>>     return ret;
+> >>>    }
+>
