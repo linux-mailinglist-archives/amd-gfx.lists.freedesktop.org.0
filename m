@@ -1,41 +1,40 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AA7C4FBCC6
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Apr 2022 15:08:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCF4B4FBCC8
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Apr 2022 15:08:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8911110E15F;
-	Mon, 11 Apr 2022 13:08:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2B9410E2AA;
+	Mon, 11 Apr 2022 13:08:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6946E10F798;
- Mon, 11 Apr 2022 09:25:39 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 459E210F7B7;
+ Mon, 11 Apr 2022 09:25:56 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id CF1BC61022;
- Mon, 11 Apr 2022 09:25:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9F28C385A6;
- Mon, 11 Apr 2022 09:25:37 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id B8E046102C;
+ Mon, 11 Apr 2022 09:25:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4D9AC385A4;
+ Mon, 11 Apr 2022 09:25:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1649669138;
- bh=+5lEYOF9N0rIGqT0TOyaWZWgvgN5GN0GzenLWeZyYJ4=;
+ s=korg; t=1649669155;
+ bh=1iRFLlZoFgd/Fo4CzJymJiNyv8a3bnYWnOc1JPLgu58=;
  h=Subject:To:Cc:From:Date:From;
- b=2XzBSqP7n8am6XKwvrWswfLetqpUhgAaQBb614uxqhDdfruhei4TsV2sNx/jbObv3
- zr01o3kP/MqFcw7H82vd2Di+lm5vDnIR3k+ApyBVwJrAz1gbzTHYtbXBYYfMO05ly8
- llo+sfD9M99EDR4OrQMup4CBIXrhC+QpOAqCXVFs=
+ b=HdhD0pZIhmeSQIWonlsCXT+czFW+Zrgfj9KiCb3UNjAwofr2xvijVOdGR5nqs5ULv
+ /1lFOOz4rrVOBp7y43b7yPD0Cjal7nSY3Ufe055D+VUbUVV9Kd1j1XE8V0DWMch62l
+ xNbTqiA+vphuTHmIX+E68t0+//ujxBnG902BJ818=
 Subject: Patch "drm/amdkfd: Create file descriptor after client is added to
- smi_clients list" has been added to the 5.15-stable tree
+ smi_clients list" has been added to the 5.16-stable tree
 To: Felix.Kuehling@amd.com, Xinhui.Pan@amd.com, airlied@linux.ie,
  alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
  christian.koenig@amd.com, daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
  gregkh@linuxfoundation.org, lee.jones@linaro.org
 From: <gregkh@linuxfoundation.org>
-Date: Mon, 11 Apr 2022 11:25:14 +0200
-Message-ID: <1649669114234170@kroah.com>
+Date: Mon, 11 Apr 2022 11:25:19 +0200
+Message-ID: <1649669119122123@kroah.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -62,12 +61,12 @@ This is a note to let you know that I've just added the patch titled
 
     drm/amdkfd: Create file descriptor after client is added to smi_clients list
 
-to the 5.15-stable tree which can be found at:
+to the 5.16-stable tree which can be found at:
     http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
 The filename of the patch is:
      drm-amdkfd-create-file-descriptor-after-client-is-added-to-smi_clients-list.patch
-and it can be found in the queue-5.15 subdirectory.
+and it can be found in the queue-5.16 subdirectory.
 
 If you, or anyone else, feels it should not be added to the stable tree,
 please let <stable@vger.kernel.org> know about it.
@@ -150,4 +149,4 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 Patches currently in stable-queue which might be from lee.jones@linaro.org are
 
-queue-5.15/drm-amdkfd-create-file-descriptor-after-client-is-added-to-smi_clients-list.patch
+queue-5.16/drm-amdkfd-create-file-descriptor-after-client-is-added-to-smi_clients-list.patch
