@@ -1,63 +1,93 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F32164FB53F
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Apr 2022 09:49:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 083044FB4C7
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Apr 2022 09:28:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8993F10F04C;
-	Mon, 11 Apr 2022 07:49:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60B9F10EF7D;
+	Mon, 11 Apr 2022 07:28:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com
- [IPv6:2a00:1450:4864:20::62a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C19910E134;
- Sun, 10 Apr 2022 00:51:42 +0000 (UTC)
-Received: by mail-ej1-x62a.google.com with SMTP id k23so24172272ejd.3;
- Sat, 09 Apr 2022 17:51:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=UumSOi3bVb4/q3h+ATEP8uiyPH1qa/l+xbjDc3aGRoY=;
- b=Wpfv8e/QtYVqq+ae3AXvVreoZ7ZF1txzYHecTrr6f56GfjQtarUN44NuJsrNRyb/pn
- yXdgDWBp+gdex/zmzOXSU+AORuclxUPOTszcK7G6DjWiDLLFThwtIzCB13ekoVvA0jTi
- F12b9sY+ZsI6QCdTC+pzifJnBCrldSU7l2fy/Cx2hsspibI6TSkqO0aJBsqW9KuRz40g
- QIc3LcQacL/TRM1to+DMqQl6wL6CCJNdp/f7PsLM+3gkznrfWcd5WsQptG2mtUyUK27a
- mRx7WK5dYQao28oCwkjSvy7fXVbvaeRGgOlW/V/GBKfTWIdtlRbhA1Kjd06Jxrhgr0iR
- ltKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=UumSOi3bVb4/q3h+ATEP8uiyPH1qa/l+xbjDc3aGRoY=;
- b=Dpg8A10IJoDOVO2cJVKZllWScEBLqVnCqZsle76P29tzVVtVzA3pLynnaW8RtZ+9rf
- NOddEEFpspE450rAYf7y2EF5Gvs6AAelII7OszWiTgj2aMPKJXiuOmcjjmnYBkl17el3
- cp6szfDKoYdOVmReWGnODKFk+7Bhbv+q4y0zbJfGJCRdxMUwHksJi/EDYxYC+gvyClLt
- Nw2J6OrtKzPEr6kNPUWyKXWKGx3Weszlga1Pbd4BuVYvXPxSLpZh7c5iUkJM5dwk+AmP
- SUZLDIm0ciOgMsoc3D12KXpGMQDrUyWAEokwcQSyr2jygplYUqGMNQBuHxXQfb1JIVDw
- 3jPw==
-X-Gm-Message-State: AOAM533GIwL08ix5F1GQyv3WRyNSAnKaLRg5rniOiWjKyhMMjfM6fBSh
- ah9ID4lN81okOT7GlGn+LqPfkA925rp+g49RdRA=
-X-Google-Smtp-Source: ABdhPJxQwID87p/D+o6yfKWz+g3H0+XBvfl8OCx5eFBQpBraG6rnAHk332AH/yFvoDWsBBhKeP5wO3o39UJkUr3VFG0=
-X-Received: by 2002:a17:907:daa:b0:6e4:9b0d:3f1 with SMTP id
- go42-20020a1709070daa00b006e49b0d03f1mr23879729ejc.37.1649551900752; Sat, 09
- Apr 2022 17:51:40 -0700 (PDT)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2059.outbound.protection.outlook.com [40.107.243.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5181510EF9E;
+ Mon, 11 Apr 2022 07:28:38 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VXgXSccE/vt7FYZ3kAmKFrWAXl9I2YPSt3PD+jjxNcZF+ZADkCu0ubZPQW0fYSTeOame+6wgk8KUDmDa0k0LcPI49gyldC0jBDT6GAJpLn4um8xyom6AU9GfjLjfY37hKKiFzeDa9K/dte7mdgkTrIdCiIxICdgceao9WPIJ0W5bPB34CaSSNW/A417O2JTsWiiEb9TNImYmEc2ZC7C8E1ajmdC/m9mHF2e0grzhh7MvkpWckMaL+3Ph3LN2iDlOaFaK1XY6ec/ZH8hYfQ54mGUOY7+K3UHDhYx8/NWq2Bh9+xTpRT7qbkGbydmplDqBLWEuwZZyWlGXYHQ+pXHM6Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3PiBswdLlqiTot9KhqB3nBNPfvGt1aX6CkjA+nRUkp0=;
+ b=EjHEvYgAcvKyK4samlsYF4KEcnQ+iTjSNFEiPhpG7bW0hFRAQmkHYQcAMGGbOT+0dSakD4IsdL0zFp1W5brdvEQNqvO3lkkbwEnXLfNwBPN73Z/q9H5qLCAirOAAqcpnolj2XSKuQ5vSHBObHQH1/voTpDOiGh3hDV8E2OrfysY0kqtnFpMpFYLukvKi/d5b98yKHN0+E8zgbem2akCxlAx8dbnOrVMwQloeBbeOK2/9RF8D/acfc2GJpQcdIpL9OuO6iktXb8Nd8ww8XD9ptrb0QYYBWCGBvdDrOOjvTPpCrS4vqWtupm0gOBBgrd9Qc+k1o1NoMif2JzH7zEyYEA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3PiBswdLlqiTot9KhqB3nBNPfvGt1aX6CkjA+nRUkp0=;
+ b=gw75cS+YsvcKS9Lml1rsCfTT+bchahqxMgYVTVCuNf/hjNJOJ6hHS9SeTU6fWs4JrjIoXCyIrJfwGyknuwDLLDQcNiHax+BvtAbYsXinS7JNRd4JrjBbQorwooGAcTX5RrsGc/ztDS1wHRgzdUyPXg0nZG40BFwNxkYrV4tONBU=
+Received: from BN9PR03CA0230.namprd03.prod.outlook.com (2603:10b6:408:f8::25)
+ by BN9PR12MB5276.namprd12.prod.outlook.com (2603:10b6:408:101::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.29; Mon, 11 Apr
+ 2022 07:28:34 +0000
+Received: from BN8NAM11FT041.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:f8:cafe::32) by BN9PR03CA0230.outlook.office365.com
+ (2603:10b6:408:f8::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.29 via Frontend
+ Transport; Mon, 11 Apr 2022 07:28:34 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT041.mail.protection.outlook.com (10.13.177.18) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5144.20 via Frontend Transport; Mon, 11 Apr 2022 07:28:34 +0000
+Received: from rtg-amd.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Mon, 11 Apr
+ 2022 02:28:31 -0500
+From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+To: <igt-dev@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
+Subject: [PATCH] tests/drm_buddy: Add drm buddy test cases
+Date: Mon, 11 Apr 2022 12:58:01 +0530
+Message-ID: <20220411072801.15097-1-Arunpravin.PaneerSelvam@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220408092803.3188-1-h0tc0d3@gmail.com>
- <4o2YD5id7zhK5g__CUK3Yf-6Dj459XQ0qsydW6wKHdco3YYtl78BqGUfXvQ9UO0AZoAsMPfhFB0jw1BFldiFDcbZXmGgsobuAoTMWmoDqmE=@emersion.fr>
- <CAP+8YyED70CSqVRaB7JgrAtK-yvBx5EsvrrdR7EpvOG2AVhskQ@mail.gmail.com>
- <QfKpxmkE_cy9wt5VJruw_TSdnl5KceKM8BxJGmZSBs-KiaRwIYfgc8h_-5h7Wmj6G-NtUJ3A88V5pzPvZuLlpkK-oRO5pSjeTxwHcZWlogs=@emersion.fr>
- <CAD5ugGD6QzCUqk7_EVwH9Cc6PQtx_VfjVRWzzP9uKR5tkGh1RQ@mail.gmail.com>
- <436116c9-6ce4-87cc-b1cd-f44b72fcfb35@amd.com>
-In-Reply-To: <436116c9-6ce4-87cc-b1cd-f44b72fcfb35@amd.com>
-From: Grigory Vasilyev <h0tc0d3@gmail.com>
-Date: Sun, 10 Apr 2022 03:51:39 +0300
-Message-ID: <CAD5ugGDrDrWWf1xMKTy=56H1AR8cyXMV41f1X8P=HVtYY6idDA@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Fix NULL pointer dereference
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 11 Apr 2022 07:49:38 +0000
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 0154cc28-d6cf-4f48-11ea-08da1b8ce323
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5276:EE_
+X-Microsoft-Antispam-PRVS: <BN9PR12MB5276411342C12D4C66AAE759E4EA9@BN9PR12MB5276.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: nMqcDSMJLYyrrFMsBEBm+ngBWNyJ9auStvI867CXMEuT8qyFgV5XyWWZpzsNgBWoPhP6uTgd68bfIkh1HegGtHYFCg113mliN+PFaTyS+5xJwowEeRRi1/7rRpnlHGJ5+5yRWl5h95sm2AMUHawgFvlFxaumo0iG3E1GBzsu8HL37IUU7bv3YCHsFAvjVC7c6FoJ9p9A31XHuX9BR+scEqkCCxK/x2QQHRamksmEZEC0oe6v2FxSBP4TobsmQM/O4YD02oUKpAn6/nj0pjXVaFAF6/T4cJt3XdWFHk4vm0Wg1cbhCzKceKJv1VLHYFDW1iNrMLJA1Keu8fuCFq51o0KujhrH910eTCDVnnWVOVuppWwcseeJ9MjQnRvX3XJ44LR8RFcMZqYpo1dD59/+Vs+P4ggyOigalDw0+AXVy05yvVQnWG2xXUkbMe6ofrr3GKjA3Pyd7/MeXJ8X6qaMi5x5mWlXBC2qiLCrwmWmzZ/8VDAt+3YpA5RfqupvTs913JIwhX95XWpyXtoiZYPK23gEvyf/qifE89IuSCSxMPbFTzFgVF7fdS/RyCh4t78x+CdTFDEC6SRSR+sIHCrut2iL5WtlfnVJBdx6zYTq00dUR6hr0niA+6qs16Q6BApYHoAtzQRJ40hR4uXX7pJabBp5NTCS7rusFTfUA8kSbeB0Bvy+mbq0yR1jMvv0SyFFHjzy/qho5t+2wdb9wYAhmQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(70586007)(70206006)(8936002)(5660300002)(47076005)(36860700001)(2616005)(1076003)(82310400005)(426003)(7696005)(186003)(16526019)(26005)(6666004)(336012)(508600001)(36756003)(2906002)(40460700003)(86362001)(110136005)(54906003)(83380400001)(8676002)(356005)(4326008)(81166007)(316002)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Apr 2022 07:28:34.5350 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0154cc28-d6cf-4f48-11ea-08da1b8ce323
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT041.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5276
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,64 +99,56 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Simon Ser <contact@emersion.fr>,
- Qingqing Zhuo <qingqing.zhuo@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- LKML <linux-kernel@vger.kernel.org>,
- amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
- Melissa Wen <mwen@igalia.com>,
- =?UTF-8?Q?Michel_D=C3=A4nzer?= <mdaenzer@redhat.com>,
- Sean Paul <seanpaul@chromium.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel@ffwll.ch>, Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
- Alex Deucher <alexander.deucher@amd.com>, Evan Quan <evan.quan@amd.com>
+Cc: alexander.deucher@amd.com,
+ Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ matthew.auld@intel.com, daniel@ffwll.ch, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Christian K=C3=B6nig, Simon Ser In fact, the code looks strange, we return
-the return code, but for some reason we also write false and 0. In my
-opinion, the caller should do this.
-Of course, you are right, but I look from the position that nothing
-should fall in the user system. There may be strange errors that occur
-periodically under certain conditions and do not affect developers.
-Also, the user will not always be able to correctly write a bug report.
+Add a set of drm buddy test cases to validate the
+drm/drm_buddy.c memory allocator.
 
-Regards, Grigory.
+Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+---
+ tests/drm_buddy.c | 14 ++++++++++++++
+ tests/meson.build |  1 +
+ 2 files changed, 15 insertions(+)
+ create mode 100644 tests/drm_buddy.c
 
-=D0=BF=D1=82, 8 =D0=B0=D0=BF=D1=80. 2022 =D0=B3. =D0=B2 17:30, Christian K=
-=C3=B6nig <christian.koenig@amd.com>:
->
-> Am 08.04.22 um 15:21 schrieb Grigory Vasilyev:
-> > Simon Ser and Bas Nieuwenhuizen, do you understand that you are
-> > proposing to make the code less safe in the future? In the future,
-> > someone might rewrite the code and we'll get an error.
->
-> Which is perfectly fine.
->
-> See error handling is to handle userspace or hardware errors and *not*
-> coding errors.
->
-> Testing all pointers for NULL without any reason is not defensive, but
-> rather the exactly opposite since it helps hiding real bugs.
->
-> Regards,
-> Christian.
->
-> >
-> > =D0=BF=D1=82, 8 =D0=B0=D0=BF=D1=80. 2022 =D0=B3. =D0=B2 14:48, Simon Se=
-r <contact@emersion.fr>:
-> >> On Friday, April 8th, 2022 at 13:28, Bas Nieuwenhuizen <bas@basnieuwen=
-huizen.nl> wrote:
-> >>
-> >>> On Fri, Apr 8, 2022 at 12:01 PM Simon Ser contact@emersion.fr wrote:
-> >>>
-> >>>> Is amdgpu_display_get_fb_info ever called with NULL tiling_flags/tmz=
-_surface?
-> >>>> If not, there's no point in adding NULL checks.
-> >>> It isn't called with NULL anywhere, the NULL checks that already exis=
-t
-> >>> seem redundant.
-> >> Grigory, would be be willing to submit a v2 which removes the unnecess=
-ary
-> >> NULL checks?
->
+diff --git a/tests/drm_buddy.c b/tests/drm_buddy.c
+new file mode 100644
+index 00000000..06876e0c
+--- /dev/null
++++ b/tests/drm_buddy.c
+@@ -0,0 +1,14 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2019 Intel Corporation
++ */
++
++#include "igt.h"
++#include "igt_kmod.h"
++
++IGT_TEST_DESCRIPTION("Basic sanity check of DRM's buddy allocator (struct drm_buddy)");
++
++igt_main
++{
++	igt_kselftests("test-drm_buddy", NULL, NULL, NULL);
++}
+diff --git a/tests/meson.build b/tests/meson.build
+index b0eab3d6..4ed8e610 100644
+--- a/tests/meson.build
++++ b/tests/meson.build
+@@ -10,6 +10,7 @@ test_progs = [
+ 	'device_reset',
+ 	'drm_import_export',
+ 	'drm_mm',
++	'drm_buddy',
+ 	'drm_read',
+ 	'fbdev',
+ 	'feature_discovery',
+
+base-commit: 016a7169e66b710a6720ed8ff94815a7e8076541
+-- 
+2.25.1
+
