@@ -1,69 +1,35 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B3154FBC53
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Apr 2022 14:42:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 556A84FBC6E
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Apr 2022 14:50:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AD0F10E484;
-	Mon, 11 Apr 2022 12:42:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC25C10E52B;
+	Mon, 11 Apr 2022 12:50:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
- [IPv6:2a00:1450:4864:20::52a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43ED810E4D4;
- Mon, 11 Apr 2022 12:42:27 +0000 (UTC)
-Received: by mail-ed1-x52a.google.com with SMTP id c64so6059742edf.11;
- Mon, 11 Apr 2022 05:42:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=R6BFNRU2q1XNxEfGm88CIyqAqlzFNs0kRryqmEb8+MA=;
- b=mbahqTcKWODAb57udTkBykSONqmHLxj1kOIm6IAKEqMWMnv0EUekwdqNL9geZAqrG7
- 30Y2AXxVyXQJ+ThE00kInGYavMpFd4si684CkHdbKXWgUHSw6u+w3AR4xey+YD/e7wpO
- i2e0d43QynDfEh62TKYLCtPb2naWlHGoPzau5W8hXOhU3i8wMxc391GKONlGZGoRU7iz
- LadTQgUZWq+o8oxzA7KJ0RWJKkujKipFrKiG/MBMCtH9aZNL5+e84nmU8pAjW3Vyfv8F
- 8UNx7dYKYEXcbJY93q8qmt/xv44eRZxSL/SoHNHbWBD2hKUF7zuPHzYaz4RGNWH9PLdC
- Pl2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=R6BFNRU2q1XNxEfGm88CIyqAqlzFNs0kRryqmEb8+MA=;
- b=LBBaHArXZa23gvsWt0SqIfETkll0w56DB4XSNFwuhQoF0Q27tNzaNXwIW+JuDUHJ7J
- MMizq0NvGY4Anl645+9CLRX49FVAD9P1D5RK3xaUbxMokF713icksw5ErKp2lqOmfjbI
- cwzoO4sFznzBLIaAVZCkvg6efWWaBBgBrH9QiUq+qbxg1r56Huw6fv6VJhllQZDmQH67
- VPlhyEApBIzuxvlSmS6sWHWThpf1xldsbnxdUJG93+48ql8fruVFYqHWVDFyVD7RbtCr
- 6BeBc3reIVtxknXrUXAPqUAPi4diGeKH7Wuhx6r0OcTjbuHxxMhckQlUvztLC9bV//6V
- dRJw==
-X-Gm-Message-State: AOAM530+H5uXIzGSwekqHkw7zvh9mt00IR8CSWETu/ZdAAImHa/yQ+bM
- HadlamE9S9nr+6Xs/e8FwAWVU2P95Mk=
-X-Google-Smtp-Source: ABdhPJzTBJjuCbQaiLn1At+PIXEVw9RxrGMXa4nMxqgo6zGZW1f7D2ORIm1m2yOHVm1mHkE1Pt/5fw==
-X-Received: by 2002:a05:6402:51d2:b0:41c:e157:84f1 with SMTP id
- r18-20020a05640251d200b0041ce15784f1mr33530772edd.135.1649680945724; 
- Mon, 11 Apr 2022 05:42:25 -0700 (PDT)
-Received: from ?IPV6:2a02:908:1252:fb60:b3e9:56a3:6bb9:f974?
- ([2a02:908:1252:fb60:b3e9:56a3:6bb9:f974])
- by smtp.gmail.com with ESMTPSA id
- l11-20020a509dcb000000b0041cbaf0ce2asm13111184edk.6.2022.04.11.05.42.24
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 11 Apr 2022 05:42:24 -0700 (PDT)
-Message-ID: <ca280f24-8efe-e972-4a03-700e002cc6f7@gmail.com>
-Date: Mon, 11 Apr 2022 14:42:23 +0200
+Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0931210E52B
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Apr 2022 12:50:04 +0000 (UTC)
+Received: from [192.168.0.2] (ip5f5ae91f.dynamic.kabel-deutschland.de
+ [95.90.233.31])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: pmenzel)
+ by mx.molgen.mpg.de (Postfix) with ESMTPSA id 422F261EA1923;
+ Mon, 11 Apr 2022 14:50:03 +0200 (CEST)
+Message-ID: <33b35ddf-9468-7029-6c55-9ce990a6556a@molgen.mpg.de>
+Date: Mon, 11 Apr 2022 14:50:02 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v3] drm: add a check to verify the size alignment
+ Thunderbird/91.8.0
+Subject: Re: [PATCH] drm/amdgpu: Release memory when psp sw_init is failed
 Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20220411073834.15210-1-Arunpravin.PaneerSelvam@amd.com>
- <9ecac65c-84d9-9965-4fd3-f86ea572bb9d@intel.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <9ecac65c-84d9-9965-4fd3-f86ea572bb9d@intel.com>
+To: Ma Jun <Jun.Ma2@amd.com>
+References: <20220411124206.1348117-1-Jun.Ma2@amd.com>
+From: Paul Menzel <pmenzel@molgen.mpg.de>
+In-Reply-To: <20220411124206.1348117-1-Jun.Ma2@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -77,41 +43,94 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, christian.koenig@amd.com, daniel@ffwll.ch
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com,
+ amd-gfx@lists.freedesktop.org, Hawking.Zhang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Dear Ma,
 
-Am 11.04.22 um 11:47 schrieb Matthew Auld:
-> On 11/04/2022 08:38, Arunpravin Paneer Selvam wrote:
->> Add a simple check to reject any size not aligned to the
->> min_page_size.
->>
->> when size is not aligned to min_page_size, driver module
->> should handle in their own way either to round_up() the
->> size value to min_page_size or just to enable WARN_ON().
->>
->> If we dont handle the alignment properly, we may hit the
->> following bug, Unigine Heaven has allocation requests for
->> example required pages are 257 and alignment request is 256.
->> To allocate the left over 1 page, continues the iteration to
->> find the order value which is 0 and when it compares with
->> min_order = 8, triggers the BUG_ON(order < min_order).
->>
->> v2: add more commit description
->> v3: remove WARN_ON()
->>
->> Signed-off-by: Arunpravin Paneer Selvam 
->> <Arunpravin.PaneerSelvam@amd.com>
->> Suggested-by: Matthew Auld <matthew.auld@intel.com>
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->
 
-Question here is who will be pushing that to drm-misc-next? Should I 
-take care of that?
+Thank you for your patch.
 
-I think it's time that Arun should request push permission for 
-drm-misc-next.
+Am 11.04.22 um 14:42 schrieb Ma Jun:
+> Release the memory (psp->cmd) when psp initialization is
+> failed in psp_sw_init
 
-Thanks,
-Christian.
+s/is failed/fails/
+
+Period/full stop at the end of sentences, and it still fits into 75 
+characters per line.
+
+Next time you could also add one simple statement like:
+
+Add new label `failure` to jump to in case of the failure.
+
+> Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
+> Change-Id: I2f88b5919142d55dd7d3820a7da94823286db235
+
+Without the URL of the Gerrit instance, the Change-Id is not of much use.
+
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 15 +++++++++------
+>   1 file changed, 9 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> index a6acec1a6155..1227dc014c80 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> @@ -305,9 +305,10 @@ static int psp_sw_init(void *handle)
+>   		ret = psp_init_sriov_microcode(psp);
+>   	else
+>   		ret = psp_init_microcode(psp);
+> +
+
+Unrelated.
+
+>   	if (ret) {
+>   		DRM_ERROR("Failed to load psp firmware!\n");
+> -		return ret;
+> +		goto failure;
+>   	}
+>   
+>   	adev->psp.xgmi_context.supports_extended_data =
+> @@ -339,25 +340,27 @@ static int psp_sw_init(void *handle)
+>   		ret = psp_memory_training_init(psp);
+>   		if (ret) {
+>   			DRM_ERROR("Failed to initialize memory training!\n");
+> -			return ret;
+> +			goto failure;
+>   		}
+>   
+>   		ret = psp_mem_training(psp, PSP_MEM_TRAIN_COLD_BOOT);
+>   		if (ret) {
+>   			DRM_ERROR("Failed to process memory training!\n");
+> -			return ret;
+> +			goto failure;
+>   		}
+>   	}
+>   
+>   	if (adev->ip_versions[MP0_HWIP][0] == IP_VERSION(11, 0, 0) ||
+>   	    adev->ip_versions[MP0_HWIP][0] == IP_VERSION(11, 0, 7)) {
+>   		ret= psp_sysfs_init(adev);
+> -		if (ret) {
+> -			return ret;
+> -		}
+> +		if (ret)
+> +			goto failure;
+>   	}
+>   
+>   	return 0;
+> +failure:
+> +	kfree(psp->cmd);
+> +	return ret;
+>   }
+>   
+>   static int psp_sw_fini(void *handle)
+
+Acked-by: Paul Menzel <pmenzel@molgen.mpg.de>
+
+
+Kind regards,
+
+Paul
