@@ -1,47 +1,42 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AE3C4FC2BE
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Apr 2022 18:51:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C5524FC2C0
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Apr 2022 18:52:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6F6410E381;
-	Mon, 11 Apr 2022 16:51:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52A2F10E7BE;
+	Mon, 11 Apr 2022 16:51:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 721EB10E381
- for <amd-gfx@lists.freedesktop.org>; Mon, 11 Apr 2022 16:49:40 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7F4A10E381
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Apr 2022 16:49:57 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id C9237B8170A;
- Mon, 11 Apr 2022 16:49:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EC09C385AC;
- Mon, 11 Apr 2022 16:49:36 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id E971761716;
+ Mon, 11 Apr 2022 16:49:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CFB0C385B3;
+ Mon, 11 Apr 2022 16:49:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1649695777;
- bh=EnBUkZbeIVCdx3q6qdW94/u6LeiCVS+Yeldz3hosr9I=;
- h=Subject:To:Cc:From:Date:In-Reply-To:From;
- b=Qe3f4Uo6bTkAzMNwMl8+gyx8Og9jhK41Zn2gnvh9UTtAulhDXsANiA+yTTaAGfA0T
- XJ+cE/ySAHRo47aDUClvTxLVh3cU5pbWYmNrSDsOSAVd+qNI2NI7v7hw/HCwg3iPDM
- uCe99+23BNf25aUc4gdGa8BXDMEAcKK7ZUTGEvtY=
-Subject: Patch "drm/amdkfd: add missing void argument to function
- kgd2kfd_init" has been added to the 5.4-stable tree
-To: Felix.Kuehling@amd.com, alexander.deucher@amd.com,
- amd-gfx@lists.freedesktop.org, colin.king@canonical.com,
- gregkh@linuxfoundation.org, llvm@lists.linux.dev, nathan@kernel.org,
- ndesaulniers@google.com, rdunlap@infradead.org, sashal@kernel.org
-From: <gregkh@linuxfoundation.org>
-Date: Mon, 11 Apr 2022 18:49:34 +0200
-In-Reply-To: <20220411164308.2491139-2-nathan@kernel.org>
-Message-ID: <1649695774113231@kroah.com>
+ s=korg; t=1649695796;
+ bh=1jYHZDtKcZN4hrDB4/1MZ7QbbDghduGjzC4q/5suTSU=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=UIjXvBNM24s8ZfHTQmWtfdjigxHEagBE9m8FHFmnq7thxHn495VdI+pKP+3eNq2kJ
+ V2PC/9DkVK77LpuPpUbx1Rps16NpMbDryIBkAGZmLmjUORNIPqtliBSvFjo+flWUy1
+ kMLL/zownJHJfwaUfIxbnNsLBaWD3RKZRQxDlCws=
+Date: Mon, 11 Apr 2022 18:49:45 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Nathan Chancellor <nathan@kernel.org>
+Subject: Re: [PATCH 5.4 0/2] Fix two instances of -Wstrict-prototypes in
+ drm/amd
+Message-ID: <YlRcKVjXGH/uJiqx@kroah.com>
+References: <20220411164308.2491139-1-nathan@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=ANSI_X3.4-1968
-Content-Transfer-Encoding: 8bit
-X-stable: commit
-X-Patchwork-Hint: ignore 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220411164308.2491139-1-nathan@kernel.org>
 X-Mailman-Approved-At: Mon, 11 Apr 2022 16:51:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -54,70 +49,48 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable-commits@vger.kernel.org
+Cc: Sasha Levin <sashal@kernel.org>, Felix Kuehling <Felix.Kuehling@amd.com>,
+ llvm@lists.linux.dev, Nick Desaulniers <ndesaulniers@google.com>,
+ amd-gfx@lists.freedesktop.org, stable@vger.kernel.org,
+ Alex Deucher <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Apr 11, 2022 at 09:43:06AM -0700, Nathan Chancellor wrote:
+> Hi everyone,
+> 
+> These two patches resolve two instances of -Wstrict-prototypes with
+> newer versions of clang that are present in 5.4. The main Makefile makes
+> this a hard error.
+> 
+> The first patch is upstream commit 63617d8b125e ("drm/amdkfd: add
+> missing void argument to function kgd2kfd_init"), which showed up in
+> 5.5.
+> 
+> The second patch has no upstream equivalent, as the code in question was
+> removed in commit e392c887df97 ("drm/amdkfd: Use array to probe
+> kfd2kgd_calls") upstream, which is part of a larger series that did not
+> look reasonable for stable. I opted to just fix the warning in the same
+> manner as the prior patch, which is less risky and accomplishes the same
+> end result of no warning.
+> 
+> Colin Ian King (1):
+>   drm/amdkfd: add missing void argument to function kgd2kfd_init
+> 
+> Nathan Chancellor (1):
+>   drm/amdkfd: Fix -Wstrict-prototypes from
+>     amdgpu_amdkfd_gfx_10_0_get_functions()
+> 
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c | 2 +-
+>  drivers/gpu/drm/amd/amdkfd/kfd_module.c            | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> 
+> base-commit: 2845ff3fd34499603249676495c524a35e795b45
+> -- 
+> 2.35.1
+> 
 
-This is a note to let you know that I've just added the patch titled
+Now queued up, thanks.
 
-    drm/amdkfd: add missing void argument to function kgd2kfd_init
-
-to the 5.4-stable tree which can be found at:
-    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
-
-The filename of the patch is:
-     drm-amdkfd-add-missing-void-argument-to-function-kgd2kfd_init.patch
-and it can be found in the queue-5.4 subdirectory.
-
-If you, or anyone else, feels it should not be added to the stable tree,
-please let <stable@vger.kernel.org> know about it.
-
-
-From foo@baz Mon Apr 11 06:48:58 PM CEST 2022
-From: Nathan Chancellor <nathan@kernel.org>
-Date: Mon, 11 Apr 2022 09:43:07 -0700
-Subject: drm/amdkfd: add missing void argument to function kgd2kfd_init
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Sasha Levin <sashal@kernel.org>
-Cc: Felix Kuehling <Felix.Kuehling@amd.com>, Alex Deucher <alexander.deucher@amd.com>, Nick Desaulniers <ndesaulniers@google.com>, amd-gfx@lists.freedesktop.org, llvm@lists.linux.dev, stable@vger.kernel.org, Colin Ian King <colin.king@canonical.com>, Randy Dunlap <rdunlap@infradead.org>, Nathan Chancellor <nathan@kernel.org>
-Message-ID: <20220411164308.2491139-2-nathan@kernel.org>
-
-From: Nathan Chancellor <nathan@kernel.org>
-
-From: Colin Ian King <colin.king@canonical.com>
-
-commit 63617d8b125ed9f674133dd000b6df58d6b2965a upstream.
-
-Function kgd2kfd_init is missing a void argument, add it
-to clean up the non-ANSI function declaration.
-
-Acked-by: Randy Dunlap <rdunlap@infradead.org>
-Signed-off-by: Colin Ian King <colin.king@canonical.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Nathan Chancellor <nathan@kernel.org>
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- drivers/gpu/drm/amd/amdkfd/kfd_module.c |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
---- a/drivers/gpu/drm/amd/amdkfd/kfd_module.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_module.c
-@@ -82,7 +82,7 @@ static void kfd_exit(void)
- 	kfd_chardev_exit();
- }
- 
--int kgd2kfd_init()
-+int kgd2kfd_init(void)
- {
- 	return kfd_init();
- }
-
-
-Patches currently in stable-queue which might be from nathan@kernel.org are
-
-queue-5.4/drm-amdkfd-fix-wstrict-prototypes-from-amdgpu_amdkfd_gfx_10_0_get_functions.patch
-queue-5.4/drm-amdkfd-add-missing-void-argument-to-function-kgd2kfd_init.patch
-queue-5.4/arm64-module-remove-noload-from-linker-script.patch
-queue-5.4/tools-build-filter-out-options-and-warnings-not-supported-by-clang.patch
-queue-5.4/riscv-module-remove-noload.patch
-queue-5.4/tools-build-use-shell-instead-of-to-get-embedded-libperl-s-ccopts.patch
+greg k-h
