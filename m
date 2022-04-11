@@ -1,52 +1,49 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC1E64FC6DB
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Apr 2022 23:39:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8987B4FC7BD
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 Apr 2022 00:38:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3346210E036;
-	Mon, 11 Apr 2022 21:39:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C9CC10E3E6;
+	Mon, 11 Apr 2022 22:38:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-il1-x135.google.com (mail-il1-x135.google.com
- [IPv6:2607:f8b0:4864:20::135])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A26AE10E036
- for <amd-gfx@lists.freedesktop.org>; Mon, 11 Apr 2022 21:39:46 +0000 (UTC)
-Received: by mail-il1-x135.google.com with SMTP id e1so12393486ile.2
- for <amd-gfx@lists.freedesktop.org>; Mon, 11 Apr 2022 14:39:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:from:date:message-id:subject:to;
- bh=0bIfDh535F17EPoR6l5KVLN12GNis9QLPKagtgcgGkE=;
- b=SgQ/3YNB1kN0GxPiZPAq/vYYGF2quX88cJXLvK61O0qktgWUqzexBpvmRXwI685e0h
- sCYjv/FyalXq/x7HnZ7qJO9/bAYwJMGao5/F+M/sCaL+caGSi0GKpKWRX+z9opbUDs19
- WOENx7fvh1CsGuhANOeaqkF6CAbMEPqA1zVpgxvVn2kGSeDO47gXpehKff++4LenwTBD
- KCjMoO2T/mj6IZXU8QMiNHbzjyS6SxOlEapqSj56rls7dOH6n6IC366VBO/f2kL6j/Sk
- ZyzQaAboQZcae5s+w1s+aHaZJqOSCaE1tBoNIhWkYYyLrCsSP1h+pHhC2LCg50Q9P3mX
- h3bA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=0bIfDh535F17EPoR6l5KVLN12GNis9QLPKagtgcgGkE=;
- b=WqFaVVy4sQoK60x0JVuQKxnQPtS4Kn6MorcN1oRXGSZPdGiqM5H4sMPzD6u0UA4Y5F
- V3VzGk3XK5Up3I1PpUNt9tE6KNeMDw6Sf3xmEffeg67wmuAebA9l+HElLIOT9MQs504r
- KlxsEYqeGUdGl10/Nwauz7RgYlDXTkTScpqxs0BXqOJWfVLLCblDOqge9HKZtx0xbPfS
- URUJMZJal5B6FeCOa6q9XT2SiPFpdfJy4tpQ/bmKSK90EMlLw5uXoeiuZcQ43vc5QEJa
- WKQou3zFVOQRjMlyl500rlSPeJ2ZGc8/DHNjQ2Vj0v0xh2R1+csmR3VvwfPRgxF8qbIu
- DcFg==
-X-Gm-Message-State: AOAM533qNOPcwQONiPfJLFILnHhbPIYtQklJsVzpQHiXTyinl3ZefZUY
- ox/a0P6ilSkARNL5wV5A6j9oCJkIQzict2xmoMr5jw9OwHg=
-X-Google-Smtp-Source: ABdhPJwlrkj0YpWsktKWwnorvs01dELgX1Cv+LFfm/SP0x9rUs+OHuJzIOIFeG8UcS6DI7ShnhwJiXp6A7AtPzCmLDI=
-X-Received: by 2002:a92:602:0:b0:2ca:480a:c19d with SMTP id
- x2-20020a920602000000b002ca480ac19dmr14692148ilg.223.1649713185333; Mon, 11
- Apr 2022 14:39:45 -0700 (PDT)
+X-Greylist: delayed 408 seconds by postgrey-1.36 at gabe;
+ Mon, 11 Apr 2022 22:38:40 UTC
+Received: from mx2.absolutedigital.net (mx2.absolutedigital.net
+ [50.242.207.105])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6C04910E3EF
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Apr 2022 22:38:40 +0000 (UTC)
+Received: from lancer.cnet.absolutedigital.net
+ (lancer.cnet.absolutedigital.net [10.7.5.10])
+ by luxor.inet.absolutedigital.net (8.14.4/8.14.4) with ESMTP id 23BMVXAn016018
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=FAIL);
+ Mon, 11 Apr 2022 18:31:33 -0400
+Received: from localhost (localhost [127.0.0.1])
+ by lancer.cnet.absolutedigital.net (8.14.4/8.14.4) with ESMTP id
+ 23BMVTv9020230
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+ Mon, 11 Apr 2022 18:31:29 -0400
+Date: Mon, 11 Apr 2022 18:31:29 -0400 (EDT)
+From: Cal Peake <cp@absolutedigital.net>
+To: Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: AMDGPU: RX 6500 XT: System reset when loading module [SOLVED]
+In-Reply-To: <CADnq5_Nx9Oski_2A-99QvqFJiUG36=+bfx_0F-eUK0gD56Vqjg@mail.gmail.com>
+Message-ID: <alpine.LNX.2.00.2204111736500.5748@lancer.cnet.absolutedigital.net>
+References: <alpine.LNX.2.00.2202131848490.20545@lancer.cnet.absolutedigital.net>
+ <b30922e2-04f5-2135-695c-2ea84d9307ac@amd.com>
+ <alpine.LNX.2.00.2202141223020.10303@lancer.cnet.absolutedigital.net>
+ <de9952a6-cba1-4927-f8e0-fcd7f115267e@amd.com>
+ <alpine.LNX.2.00.2202171254420.21576@lancer.cnet.absolutedigital.net>
+ <809355d6-ef2a-ca90-5a9a-813beb8ff6d1@amd.com>
+ <alpine.LNX.2.00.2202181444250.8791@lancer.cnet.absolutedigital.net>
+ <8cd9b639-be48-5b2f-bc3d-d6bd49be1830@amd.com>
+ <alpine.LNX.2.00.2202241728250.23253@lancer.cnet.absolutedigital.net>
+ <CADnq5_Nx9Oski_2A-99QvqFJiUG36=+bfx_0F-eUK0gD56Vqjg@mail.gmail.com>
+User-Agent: Alpine 2.00 (LNX 1167 2008-08-23)
 MIME-Version: 1.0
-From: James Dutton <james.dutton@gmail.com>
-Date: Mon, 11 Apr 2022 22:39:09 +0100
-Message-ID: <CAAMvbhF-mcZd+mfSUVpYShvKmFiQ6pb+j2eosBr-kvsxE+202g@mail.gmail.com>
-Subject: Vega 56 failing to process EDID from VR Headset
-To: amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,78 +55,35 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Hi all,
 
-I have an Oculus Rift S, that I am trying to get working in Linux.
-I have an AMD Vega 56  graphics card.
+I wanted to put a capper on this just in case anyone was interested, or in 
+case any future people find this thread, because I did find a resolution.
 
-The VR headset plugs into a display port of the Vega56.
-The amdgpu driver sees the connection, and tries to process it.
-The problem is it cannot process the EDID, so fails to recognise the
-VR headset, and the VR headset does not work as a result.
-Please find the EDID below.
-I am guessing that the following is causing the problem:
-Established Timings I & II: none
-Standard Timings: none
-Forcing the driver to understand the Detailed mode, to which it is failing.
-If it helps, when attached to windows 10, it uses 1440x2560, portrait mode.
-Some dmesg lines that may be useful:
-// We should pick 1440x2560 as Windows picks that, but for some reason
-is rejects it with error 10.
-[10402.650734] [drm:create_validate_stream_for_sink [amdgpu]] Mode
-1440x2560 (clk 571570) failed DC validation with error 10 (No DP link
-bandwidth)
-[10402.650991] [drm:update_stream_scaling_settings [amdgpu]]
-Destination Rectangle x:0  y:0  width:1440  height:2560
-[10402.651225] [drm:create_validate_stream_for_sink [amdgpu]] Mode
-1440x2560 (clk 571570) failed DC validation with error 10 (No DP link
-bandwidth)
+Turns out the way to stop the system from crashing was to disable Global 
+C-State Control in the BIOS.
 
+Christian, Alex, you guys seem to have been on the right track in that it 
+was something power related.
 
-Can anyone help give me with some pointers as to how to get the amdgpu
-driver to accept this EDID?
+I haven't yet been able to figure out what Global C-State Control exactly 
+does.
 
-edid-decode (hex):
+My best guess as to what was happening: once the GPU power management code 
+was loaded and the GPU dropped into a very low power state, the CPU saw 
+this and decided to match it, lowering its own power state to such a point 
+that it hard resets the system. (Just a wild theory anyway :-)
 
-00 ff ff ff ff ff ff 00 3e d2 12 00 00 00 00 00
-01 1d 01 04 a5 00 00 00 0e 00 00 00 00 00 00 00
-00 00 00 00 00 00 01 01 01 01 01 01 01 01 01 01
-01 01 01 01 01 01 45 df a0 38 51 00 ee a5 d2 0c
-f1 0c 00 00 00 00 00 10 00 00 00 ff 00 31 57 4d
-47 48 35 32 30 47 41 39 35 32 00 00 00 fc 00 52
-69 66 74 20 53 0a 20 20 20 20 20 20 00 00 00 10
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 33
+If anyone knows what this feature really does, or has any better theories 
+as to why it doesn't play nice with AMD GPUs, please do share!
 
-----------------
+Thanks and kind regards,
 
-EDID version: 1.4
-Manufacturer: OVR Model 18 Serial Number 0
-Made in week 1 of 2019
-Digital display
-8 bits per primary color channel
-DisplayPort interface
-Image size is variable
-Gamma: 1.00
-Supported color formats: RGB 4:4:4, YCrCb 4:4:4
-Default (sRGB) color space is primary color space
-First detailed timing includes the native pixel format and preferred
-refresh rate
-Color Characteristics
-  Red:   0.0000, 0.0000
-  Green: 0.0000, 0.0000
-  Blue:  0.0000, 0.0000
-  White: 0.0000, 0.0000
-Established Timings I & II: none
-Standard Timings: none
-Detailed mode: Clock 571.570 MHz, digital composite
-               1440 1650 1662 1752 (210  12  90)
-               2560 2623 2624 4078 ( 63   1 1454)
-               -hsync
-               VertFreq: 80.000 Hz, HorFreq: 326.239 kHz
-Display Product Serial Number: 1WMGH520GA952
-Display Product Name: Rift S
-Dummy Descriptor
-Checksum: 0x33
+-- 
+Cal Peake
+
