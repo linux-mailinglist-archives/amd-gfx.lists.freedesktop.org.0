@@ -1,42 +1,40 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DB324FBB29
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Apr 2022 13:45:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19F914FBCC7
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Apr 2022 15:08:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F234310E460;
-	Mon, 11 Apr 2022 11:45:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C4C910E0FB;
+	Mon, 11 Apr 2022 13:08:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F6E910E166;
- Mon, 11 Apr 2022 11:45:40 +0000 (UTC)
-Received: from [192.168.0.7] (ip5f5ae91f.dynamic.kabel-deutschland.de
- [95.90.233.31])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested) (Authenticated sender: pmenzel)
- by mx.molgen.mpg.de (Postfix) with ESMTPSA id B154861EA1923;
- Mon, 11 Apr 2022 13:45:37 +0200 (CEST)
-Message-ID: <ba56a9db-b34f-b2ce-baef-f8861476b3fc@molgen.mpg.de>
-Date: Mon, 11 Apr 2022 13:45:37 +0200
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
+ [IPv6:2a01:488:42:1000:50ed:8234::])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 104F310F329
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Apr 2022 08:31:02 +0000 (UTC)
+Received: from ip4d144895.dynamic.kabel-deutschland.de ([77.20.72.149]
+ helo=[192.168.66.200]); authenticated
+ by wp530.webpack.hosteurope.de running ExIM with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ id 1ndpRr-0004tX-8k; Mon, 11 Apr 2022 10:30:59 +0200
+Message-ID: <5d7ac2a0-00b7-1307-6aeb-1461c79bd6f8@leemhuis.info>
+Date: Mon, 11 Apr 2022 10:30:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCHv2] drm/amdgpu: disable ASPM on Intel AlderLake based
- systems
+ Thunderbird/91.7.0
 Content-Language: en-US
-To: Richard Gong <richard.gong@amd.com>
-References: <20220408190502.4103670-1-richard.gong@amd.com>
- <44354d78-b340-fbc4-fd6c-060d7ad3404e@molgen.mpg.de>
- <45ea5705-71d6-4008-f094-1aa902e5cc41@amd.com>
- <0d0a3f0f-f021-ccc2-a80a-f789cb53a47b@molgen.mpg.de>
- <192375d0-85ac-ced0-43d6-e5ea4e3c0fae@amd.com>
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <192375d0-85ac-ced0-43d6-e5ea4e3c0fae@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Paul Menzel <pmenzel@molgen.mpg.de>, Evan Quan <evan.quan@amd.com>
+References: <20220411074732.36486-1-evan.quan@amd.com>
+ <78cdd8a2-4482-7b1b-2df4-a2983c1b2887@molgen.mpg.de>
+From: Thorsten Leemhuis <linux@leemhuis.info>
+Subject: Re: [PATCH] drm/amd/pm: fix the deadlock issue observed on SI
+In-Reply-To: <78cdd8a2-4482-7b1b-2df4-a2983c1b2887@molgen.mpg.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-bounce-key: webpack.hosteurope.de;linux@leemhuis.info;1649665862;df6de1ba;
+X-HE-SMSGID: 1ndpRr-0004tX-8k
+X-Mailman-Approved-At: Mon, 11 Apr 2022 13:08:02 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,81 +46,33 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, xinhui.pan@amd.com, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- daniel@ffwll.ch, alexander.deucher@amd.com, Dell.Client.Kernel@dell.com,
- christian.koenig@amd.com, mario.limonciello@amd.com
+Cc: Alexander.Deucher@amd.com, arthur.marsh@internode.on.net,
+ regressions@lists.linux.dev, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Dear Richard,
+On 11.04.22 09:59, Paul Menzel wrote:
+> Am 11.04.22 um 09:47 schrieb Evan Quan:
+>
+> As it’s a regression, please follow the documentation, and add the
+> related tags.
 
+Yes please, otherwise you break tools that reply on this, like my
+regression tracking efforts.
 
-Am 11.04.22 um 13:38 schrieb Gong, Richard:
-
-> On 4/11/2022 2:41 AM, Paul Menzel wrote:
->> [Cc: +<Dell.Client.Kernel@dell.com>]
-
->> Am 11.04.22 um 02:27 schrieb Gong, Richard:
->>
->>> On 4/8/2022 7:19 PM, Paul Menzel wrote:
->>
->>>> Am 08.04.22 um 21:05 schrieb Richard Gong:
->>>>> Active State Power Management (ASPM) feature is enabled since 
->>>>> kernel 5.14.
->>>>> There are some AMD GFX cards (such as WX3200 and RX640) that cannot be
->>>>> used with Intel AlderLake based systems to enable ASPM. Using these 
->>>>> GFX
->>>>
->>>> Alder Lake
->>> will correct in the next version.
->>>>
->>>>> cards as video/display output, Intel Alder Lake based systems will hang
->>>>> during suspend/resume.
->>>>
->>>> Please reflow for 75 characters per line.
->>>>
->>>> Also please mention the exact system you had problems with (also 
->>>> firmware versions).
->>>>
->>>>>
->>>>> Add extra check to disable ASPM on Intel AlderLake based systems.
->>>>
->>>> Is that a problem with Intel Alder Lake or the Dell system? 
->>>> Shouldn’t ASPM just be disabled for the problematic cards for the 
->>>> Dell system. You write newer cards worked fine.
->>>
->>> There is a problem with Dell system (Dell Precision DT workstation), 
->>> which is based on Intel Alder Lake.
->>>
->>> ASPM works just fine on these GPU's. It's more of an issue with 
->>> whether the underlying platform supports ASPM or not.
->>
->> At least you didn’t document what the real issue is,
+> Fixes: 3712e7a49459 ("drm/amd/pm: unified lock protections in
+> amdgpu_dpm.c")
+> Reported-by: Paul Menzel <pmenzel@molgen.mpg.de>
+> Reported-by: Arthur Marsh <arthur.marsh@internode.on.net>
+> Link:
+> https://lore.kernel.org/r/9e689fea-6c69-f4b0-8dee-32c4cf7d8f9c@molgen.mpg.de
+> BugLink: https://gitlab.freedesktop.org/drm/amd/-/issues/1957
 > 
-> You can refer to bug tag from the comment messages.
-> 
-> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/1885
+> Also add the link from Arthur.
 
-No, the commit message should be self-contained, and reviewers and 
-readers of the commit message not required to read comments of bug 
-reports. Please add the necessary information to the commit message.
+What is BugLink? That is not in the kernel's documentation afaics (BTW,
+as other people use it as wll: where does that actually come from?
+GitLab?) . It should just be "Link:". Or am I missing something?
 
+Ciao, Thorsten
 
-Kind regards,
-
-Paul
-
-
->> that ASPM does not work. With current information (some GPU graphics 
->> card with the the Dell system and others don’t), it could be the GPU, 
->> the Dell system (firmware, …), a problem with Alder Lake SOC, or 
->> another bug. I hope you are in contact with Dell to analyze it, so 
->> ASPM can be enabled again.
->>
->> […]
->>
->>
->> Kind regards,
->>
->> Paul
