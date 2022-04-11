@@ -1,93 +1,63 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EF1C4FC462
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Apr 2022 20:51:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D05D4FC6F2
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Apr 2022 23:54:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 320E110E9A0;
-	Mon, 11 Apr 2022 18:51:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FBC210E0AD;
+	Mon, 11 Apr 2022 21:54:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2044.outbound.protection.outlook.com [40.107.236.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8AAA10E053;
- Mon, 11 Apr 2022 18:51:04 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FFTdoW8F5j/P9T2NkzZTBgX+OS7JgtRO2O8elxLYs2QoSBeN9DxxGfQbRM+YJQ29YF6pYNo05J3sFxQf6+f5zW3qgZ04LZnv8BI8vqofk7S/hizJhrSaYk4whnQ7cgvwd4COWTktbZhCA2xD5X/PpNECULyfff141l3Zp9kkKkqZdybkDrXrCZektf+zPuE5KhZqTMEQcobBebRPr1YGXA6zhPTIU6B/dnioXXIHmuvKlp5Cn2LOAanxs/fm+BY/aqwfLU045kcchUlYh7cDLFbMZHdnRkzWIYTz30czMYWRc3fr+cQzgrKS+7lFIAF4LpkUyOsiq6KVzP++je9M2w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MNR41bqIRskitPGO6HlBXHwKS0pJXtfRdm3+52Ad1WE=;
- b=WB4JzpCbmp/E6TGsXjc+QOEk3pqRme1pXmobuww38jC62TQCRgn/+aLIMZUXot3rNEVcGZmGlE7AyBvhVjAFOE0NaNXg2DL5XweI+ME/FqPXXsaLgC/UTTgpDonEYLeuptCxGUiT09FFNqN9XmwSoY7Aj+iOVMYBYJV6VRfMrkfxZMFh3SzmxLKivu9X7nzAWjp2DMz6Qgmq5rERI/YKPrMouXsZrpho/j6VXqMAEbbiJroB1/SxXgDm22Pjkh1NWjXIT7GbN+/yw61E2dzJIqPZD+6zYc7qNlltGk8V5Khh+sTD+LFvghhEKRa6nVQE0QAYe9OFxHoLqYbXOOegKw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MNR41bqIRskitPGO6HlBXHwKS0pJXtfRdm3+52Ad1WE=;
- b=ArxTDsEJlultm0kZjVXA/G1qgXQWG33cQ58ZuI4K3LmSBMEuDjpYjRgtcekLAZb39YgFEB/pv43o9sp56czSBkLbBio02tSHpPESKy1OCBW5v6tMRxsgo8INLpA8dIzZFKlNZqmn072LxgiKJ3eQcDw6QcZvfNZixZFnonuLT+A=
-Received: from BN0PR10CA0002.namprd10.prod.outlook.com (2603:10b6:408:143::16)
- by PH7PR12MB5619.namprd12.prod.outlook.com (2603:10b6:510:136::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.29; Mon, 11 Apr
- 2022 18:51:02 +0000
-Received: from BN8NAM11FT054.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:143:cafe::60) by BN0PR10CA0002.outlook.office365.com
- (2603:10b6:408:143::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.29 via Frontend
- Transport; Mon, 11 Apr 2022 18:51:02 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT054.mail.protection.outlook.com (10.13.177.102) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5144.20 via Frontend Transport; Mon, 11 Apr 2022 18:51:02 +0000
-Received: from rtg-amd.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Mon, 11 Apr
- 2022 13:50:59 -0500
-From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-To: <igt-dev@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
-Subject: [igt-dev] [PATCH i-g-t v2] tests/drm_buddy: Add drm buddy test cases
-Date: Tue, 12 Apr 2022 00:20:42 +0530
-Message-ID: <20220411185042.24338-1-Arunpravin.PaneerSelvam@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
+ [IPv6:2a00:1450:4864:20::433])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1F3610F742
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Apr 2022 21:08:18 +0000 (UTC)
+Received: by mail-wr1-x433.google.com with SMTP id u3so24864125wrg.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Apr 2022 14:08:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
+ bh=cuLSn1q/GBIKSgoYE18mr+8Xjjh5E8wzIDAnZC3Kor4=;
+ b=hYlw6pRtzMxtWsAkiIgcWRN+12HL1xIob5XMpA/zejat696Pcxo2DTP/KTwXMKS5vc
+ AYM9+XGhuKlU7EDDi1uqFnQu2pOwhlsxi8Oeo5eht/OrbJqKU5dIe58xJaUA8X8yQbu8
+ PR7Qokl1dStZXC5NNgVAu3P6fnvTw99NVCzlCUbUvvQVVs337EylT+eOp82FHHa+zVMv
+ yFl2NMF+vdPZdVdTIok+zCLZjhXPyHEwKiUjmbxz/FNoWnxVDRczfXn2Z3VqZLANRnY9
+ xM/N3XpVqA7Qv2xRTZEmiK4Wi/3eKNG2M/huJi7rS2Qd/FCzAifUKrzhrQ47KIHXn2vf
+ 2dow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+ :content-disposition;
+ bh=cuLSn1q/GBIKSgoYE18mr+8Xjjh5E8wzIDAnZC3Kor4=;
+ b=R94Ah994L9Qns5mrA8Rgjjj0kBafRJ22X4uJSj+oIgkZZ1x9y/fY1xM2bN9qYxL+5E
+ 79VUEVX8+/HT2pcz36KGl/XIslz2Xw0SFACoGqmx4OdBYTjjVSyxh+4KhSE1ABe3J9/h
+ zlfZnMca1Rah+byK62wELdW64BBNPz9FJ7fQ2g9a1VErmYv7HysFrxN6w9OKlgyqba+7
+ wnPGo1npLI0UqLPYymkkN/IILWOqKSJZKyCfo2+DbS9m0OHtRT+vwa8RV0YP3TyVvfNm
+ BEWZeW7OWPulZXpVyqrXK8LkV/0YjmWVX66ItMQL6uGHuT4EMfj+7XJVf5OXhAb4ke3/
+ 4v5w==
+X-Gm-Message-State: AOAM531DlmwNKrsKA8pWnbGI3+JqUhq6Confz/PWBt5Vlv3Gv/J8oQ6e
+ YuxHC2bMMdn3fnB71hNiUvE=
+X-Google-Smtp-Source: ABdhPJz/VITA/P7SQx1zn0TZYnR++acV4H+Y3dJMoss7AHPZDuvdhr4i36KcTLujykxZPwaT/jxkPg==
+X-Received: by 2002:adf:eb4d:0:b0:1ed:c1f7:a951 with SMTP id
+ u13-20020adfeb4d000000b001edc1f7a951mr26150009wrn.454.1649711296330; 
+ Mon, 11 Apr 2022 14:08:16 -0700 (PDT)
+Received: from nz.home (host81-147-8-147.range81-147.btcentralplus.com.
+ [81.147.8.147]) by smtp.gmail.com with ESMTPSA id
+ 3-20020a5d47a3000000b0020412ba45f6sm32624942wrb.8.2022.04.11.14.08.15
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 11 Apr 2022 14:08:15 -0700 (PDT)
+Received: by nz.home (Postfix, from userid 1000)
+ id 300222C6C320B; Mon, 11 Apr 2022 22:08:15 +0100 (BST)
+Date: Mon, 11 Apr 2022 22:08:15 +0100
+From: Sergei Trofimovich <slyich@gmail.com>
+To: linux-kernel@vger.kernel.org
+Subject: gcc inserts __builtin_popcount, causes 'modpost: "__popcountdi2" ...
+ amdgpu.ko] undefined'
+Message-ID: <YlSYv3d9a5cZR9KE@nz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7317f60e-3d6e-4d0a-b428-08da1bec39c2
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5619:EE_
-X-Microsoft-Antispam-PRVS: <PH7PR12MB56190B0BA81B7FDC46E5609FE4EA9@PH7PR12MB5619.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qpxcJAV6gsPaycz4ACwdsT2B5zV9H2wbmfBcaLm0zKlK7S2T4TjAbFgBM9Mu2hCD6e8J+JqHuKP6J9TTle23mp8uLdR8aJEr76hSxU/YaSZt0QJdhnNlsyEaV0vZFlp5aYyFDrhMLOw0SpYLZViQhJzaL+F+dETq12RqOZ1Hr9sdyFI0RT5T303Gah++DdyjUYA44cMvMcqagCfv+AbObki6Q/ypE3dm0/b4jiN6ASbKKONxGUeHiv/fu6AI8HpwhKje3VK3HjRkJfyxTjO2FB3dMutaoTHpk2bCY76//gAB8x9I4l3zfUNbgA8zkTYaIUQ2E/9usETDGx0ulMgBZIhAIahx6ufqLv37WIAj2yXJeL0ntwY3WR/SUNwaMzQvg/MUAr09aRXwiYqTNFSpo+UXVXIMZqucvUi9+TOqZvhMetl8j7FU6QojPom4hs9uXlztfrAzoSI0qu1G6haGL7rQDzVG1mFn9sh5E6vQBTQy8LgeA1y0Kvmr+dDbDOoJUUZwsTxztgr0GSAk/CeNewAhT0I1j5A6UF8ECw9wtFFkeEils2GaZi+NkCjpN6WYXO/XoMdDiMVIb/sjqwcdp2Bj0aoXdWbm30q3p5QV/rx/f+iI5LCXHDvaZr9chk2+YOXcvCI8L//0waNwZRXgXmXFxecPLhu2njqo2qQJYy9rR7I3U/guG3zJ4T6lE0TtdUXspQ+mkmpuCw+IfhHNOg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(8676002)(5660300002)(70586007)(82310400005)(110136005)(7696005)(36756003)(8936002)(40460700003)(2906002)(81166007)(356005)(316002)(336012)(70206006)(2616005)(4326008)(54906003)(1076003)(36860700001)(6666004)(83380400001)(26005)(47076005)(86362001)(186003)(16526019)(508600001)(426003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Apr 2022 18:51:02.1014 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7317f60e-3d6e-4d0a-b428-08da1bec39c2
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT054.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5619
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Mon, 11 Apr 2022 21:54:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,57 +69,64 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- matthew.auld@intel.com, daniel@ffwll.ch, christian.koenig@amd.com
+Cc: Jakub Jelinek <jakub@redhat.com>,
+ Segher Boessenkool <segher@kernel.crashing.org>, linux-kbuild@vger.kernel.org,
+ Peter Zijlstra <peterz@infradead.org>, amd-gfx@lists.freedesktop.org,
+ Andy Lutomirski <luto@kernel.org>, Joe Perches <joe@perches.com>,
+ Thomas Gleixner <tglx@linutronix.de>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add a set of drm buddy test cases to validate the
-drm/drm_buddy.c memory allocator.
+Current linux-5.17.1 on fresh gcc-12 fails to build with errors like:
 
-v2: sorted in alphabetical order
+    ERROR: modpost: "__popcountdi2" [drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko] undefined!
+    ERROR: modpost: "__popcountdi2" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
 
-Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- tests/drm_buddy.c | 14 ++++++++++++++
- tests/meson.build |  1 +
- 2 files changed, 15 insertions(+)
- create mode 100644 tests/drm_buddy.c
+It is occasionally seen by others on previous gcc versions as well:
 
-diff --git a/tests/drm_buddy.c b/tests/drm_buddy.c
-new file mode 100644
-index 00000000..06876e0c
---- /dev/null
-+++ b/tests/drm_buddy.c
-@@ -0,0 +1,14 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2019 Intel Corporation
-+ */
-+
-+#include "igt.h"
-+#include "igt_kmod.h"
-+
-+IGT_TEST_DESCRIPTION("Basic sanity check of DRM's buddy allocator (struct drm_buddy)");
-+
-+igt_main
-+{
-+	igt_kselftests("test-drm_buddy", NULL, NULL, NULL);
-+}
-diff --git a/tests/meson.build b/tests/meson.build
-index b0eab3d6..7261e9aa 100644
---- a/tests/meson.build
-+++ b/tests/meson.build
-@@ -8,6 +8,7 @@ test_progs = [
- 	'debugfs_test',
- 	'dmabuf',
- 	'device_reset',
-+	'drm_buddy',
- 	'drm_import_export',
- 	'drm_mm',
- 	'drm_read',
+    https://lkml.org/lkml/2021/7/11/261
+    https://lkml.org/lkml/2018/10/24/403
+
+'__popcountdi2' are inserted by gcc for code like the following
+from 'drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c':
+
+    static inline enum mod_hdcp_status validate_bksv(struct mod_hdcp *hdcp)
+    {
+        uint64_t n = 0;
+        uint8_t count = 0;
+        u8 bksv[sizeof(n)] = { };
+
+        memcpy(bksv, hdcp->auth.msg.hdcp1.bksv, sizeof(hdcp->auth.msg.hdcp1.bksv));
+        n = *(uint64_t *)bksv;
+
+        /* Here gcc inserts 'count = __builtin_popcount(n);' */
+        while (n) {
+                count++;
+                n &= (n - 1);
+        }
+
+        return (count == 20) ? MOD_HDCP_STATUS_SUCCESS :
+                               MOD_HDCP_STATUS_HDCP1_INVALID_BKSV;
+    }
+
+Note that gcc can insert it regardless of -mno-* options.
+
+How should linux.git handle it? A few options come to mind:
+
+- Perhaps use libgcc.a directly.
+- Just implement '__popcountdi2'. Example definition from libgcc:
+  https://gcc.gnu.org/git/?p=gcc.git;a=blob;f=libgcc/libgcc2.c;hb=HEAD#l846
+- Or workaround it with -fno-builtin-popcount in Makefiles.
+
+CCing people who can help routing it and/or deciding on the fix:
+amd-gfx@lists.freedesktop.org, Joe Perches, linux-kbuild@vger.kernel.org,
+Jakub Jelinek, Segher Boessenkool, Thomas Gleixner,Peter Zijlstra, Andy
+Lutomirski.
+
+WDYT?
+
+Thanks!
+
 -- 
-2.25.1
 
+  Sergei
