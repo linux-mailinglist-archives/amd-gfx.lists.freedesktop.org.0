@@ -2,58 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EB344FE4EB
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 Apr 2022 17:39:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72FD34FE4ED
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 Apr 2022 17:39:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 712CA10E544;
-	Tue, 12 Apr 2022 15:39:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 067F010E59F;
+	Tue, 12 Apr 2022 15:39:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
- [IPv6:2a00:1450:4864:20::433])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA05010E13C
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 Apr 2022 15:35:34 +0000 (UTC)
-Received: by mail-wr1-x433.google.com with SMTP id b19so28228834wrh.11
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 Apr 2022 08:35:34 -0700 (PDT)
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
+ [IPv6:2a00:1450:4864:20::434])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D160A10E13C
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Apr 2022 15:35:35 +0000 (UTC)
+Received: by mail-wr1-x434.google.com with SMTP id w4so28220833wrg.12
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Apr 2022 08:35:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=R8tCAcef8XwJl9KTqrtg+6fe8UCJe3U1QYYPaYj+qfQ=;
- b=HsVtVNZKO4dILqYqxSUWjS2SGL/4TmifveOGMHwmuTp68q68G1ZeQvPBGddKz698Pe
- IdfBA2pwXuk1WZlvIaG3uPp8OvV8fEelWZnIqsWxfPZffviKxisvegjb0RxBIWFfSOlT
- tmtArcp7kQSq9MNuROSDdRtyVeYmcEExKY2EPeEXIk25RBCvcnVcLBvEm48rfOtcnBlN
- UImguNaMDCY3xdv2jSSXDkybhjngHUeZMX1XkFeGz6N6ZuL/oU5h1GgwGGOg0mjcD+od
- KVoIOFb6jAWpxLQNeE19IW6iHnSALxkS5VB5WyAHrCjbtDVj3GtnAW5ILxbE2/JlRPso
- x3yg==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=VwOMhba2UBHTBdEcSB8ubF3LHDfdwxShkl2jYJGZwac=;
+ b=eOj/bw3wwAIvAAhbgxLLgJ4/I/SsQUTJzUpBZOu+lHI3PxiIDDh2QD0J+zLXJCjmkl
+ ZYVz8u1gr1RshZumc1gkjPhBfi8L8H44zTnz91eV+IKEmbeYoYd1J5Runw81S3Xkp1LT
+ fVb3+gqTsYC0g8fISFaLA6JkzfMfHKgAjVzhslR45IHvlQqFJ1tNe0MfLrAz1WXCmKeL
+ kRPWw7XItDToIH5q/ALTcgDZBB3OcBTOBsWzW8UH/OPkZDCFOHwzRXFCVdhKTF3gtAdD
+ xPRrAhzsmvFg1njgPt0rHrXJhi5qgcpFWiE1YO4I+yEev17rMyhp9DQS+ezm1CdsCGKi
+ BEtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=R8tCAcef8XwJl9KTqrtg+6fe8UCJe3U1QYYPaYj+qfQ=;
- b=sBR/BINXlVfAfG8NGjY0pYxDF+JgfvZHACeGF56o9D7V9m0jb37YgRKg1aO4GSTzHK
- BZ8sPOXFwjwCMQ/6EAIdR7qrqbaV0rFsT/kO/unUKO+qXik/+sZKQutspoyWjePA8NgZ
- 6mrsUTNJCGl/FI+wjp+Hd8j+fmW1E2r8Hi673+mVnLn0oFjywbaPsgIMa7jyCQIuoWX4
- P48NIygi4xoQ5mcZWLxdEGZ7SZUMivuVE3ZcdsgGiUcjlsAce0JLyUK64kuUIcdMqS7C
- 9ibuDEiULXA8ghSLk0lQ86NEWxS+DEUYtNQZu6XgSG5QoYZPWcbSWCxohlUQU1tei6lR
- SWkg==
-X-Gm-Message-State: AOAM531rEef8Ir8zvBbdDGa09THt2Rb6i3YDJ5UBy9uITMzcLA8pduod
- 6C5fBLRLu2/sKuTz3fQRhz75h1xDypiVfg==
-X-Google-Smtp-Source: ABdhPJzUkHNn+3YdLFEMdtBrSdi3OtBRyyIQ73jg0NzUODmGehiltfBY7h/QiG7HYp4qS8+jdX6Qsg==
-X-Received: by 2002:a5d:48c8:0:b0:207:afc8:13fa with SMTP id
- p8-20020a5d48c8000000b00207afc813famr2526733wrs.487.1649777733295; 
- Tue, 12 Apr 2022 08:35:33 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=VwOMhba2UBHTBdEcSB8ubF3LHDfdwxShkl2jYJGZwac=;
+ b=uPsq/w5P9dn1fSQAZaBtHFKNz3BwL4gQbgNMAqd0BS6PuA8ZFVg19bKfJVcB53iGC5
+ kwlbYAkgP06oWbep3pnRkoKP+wLwVhm5A1Z00iFg2QMe3mjEQxxRzkdFbN7OyuyQkg8v
+ n/Ia+/Bllcep9E5BwNtKBP1/SQfZM3BHzb5rKdHvbDrgoyOlcxJHU8u3dE2GgedpldIN
+ a9J9OPxZMGpwUx/n2nXIhezZUBzmLLNWY9pR34iQpMoFrAWOTvDzb2nKyPTUe5sEumsR
+ fCsiMtVrTa2cF3rcKBhqq6kcb6X6w9i6E5GiVRDo5QSDQ2Fpq2NgiFdcoVtYhaWGwP8m
+ ptjA==
+X-Gm-Message-State: AOAM532iCJZ4ueqGNspcjp0kLf8MLeoOCba1+X43KAMcho7nlNFTksv/
+ mtjBhufHp23dSo1GadPI/G8inA==
+X-Google-Smtp-Source: ABdhPJzN2nIUAo8GyjwEfVrI6mSlaVgYt6CfZqC6FHc0/mqgZ//dokwgr/pWS9EpJGKuhyNrsXy7rg==
+X-Received: by 2002:a5d:6dd1:0:b0:207:92c4:eaef with SMTP id
+ d17-20020a5d6dd1000000b0020792c4eaefmr18208780wrz.498.1649777734319; 
+ Tue, 12 Apr 2022 08:35:34 -0700 (PDT)
 Received: from joneslee-l.cable.virginm.net
  (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
  by smtp.gmail.com with ESMTPSA id
- p3-20020adfaa03000000b00207a1db96cfsm8463621wrd.71.2022.04.12.08.35.32
+ p3-20020adfaa03000000b00207a1db96cfsm8463621wrd.71.2022.04.12.08.35.33
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 12 Apr 2022 08:35:32 -0700 (PDT)
+ Tue, 12 Apr 2022 08:35:33 -0700 (PDT)
 From: Lee Jones <lee.jones@linaro.org>
 To: lee.jones@linaro.org
-Subject: [PATCH 4.19 1/2] drm/amdgpu: Check if fd really is an amdgpu fd.
-Date: Tue, 12 Apr 2022 16:35:28 +0100
-Message-Id: <20220412153529.1173412-1-lee.jones@linaro.org>
+Subject: [PATCH 4.19 2/2] drm/amdgpu: Ensure the AMDGPU file descriptor is
+ legitimate
+Date: Tue, 12 Apr 2022 16:35:29 +0100
+Message-Id: <20220412153529.1173412-2-lee.jones@linaro.org>
 X-Mailer: git-send-email 2.35.1.1178.g4f1659d476-goog
+In-Reply-To: <20220412153529.1173412-1-lee.jones@linaro.org>
+References: <20220412153529.1173412-1-lee.jones@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -72,18 +75,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
  Felix Kuehling <Felix.Kuehling@amd.com>, stable@vger.kernel.org,
  amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
  Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+[ Upstream commit b40a6ab2cf9213923bf8e821ce7fa7f6a0a26990 ]
 
-[ Upstream commit 021830d24ba55a578f602979274965344c8e6284 ]
+This is a partial cherry-pick of the above upstream commit.
 
-Otherwise we interpret the file private data as drm & amdgpu data
-while it might not be, possibly allowing one to get memory corruption.
+It ensures the file descriptor passed in by userspace is a valid one.
 
 Cc: Felix Kuehling <Felix.Kuehling@amd.com>
 Cc: Alex Deucher <alexander.deucher@amd.com>
@@ -92,84 +93,34 @@ Cc: David Airlie <airlied@linux.ie>
 Cc: Daniel Vetter <daniel@ffwll.ch>
 Cc: amd-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org
-Signed-off-by: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
-Reviewed-by: Christian König <christian.koenig@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Lee Jones <lee.jones@linaro.org>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h       |  2 ++
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c   | 16 ++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c | 10 +++++++---
- 3 files changed, 25 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 447c4c7a36d68..acbd33fcb73d3 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -955,6 +955,8 @@ struct amdgpu_gfx {
- 	DECLARE_BITMAP			(pipe_reserve_bitmap, AMDGPU_MAX_COMPUTE_QUEUES);
- };
- 
-+int amdgpu_file_to_fpriv(struct file *filp, struct amdgpu_fpriv **fpriv);
-+
- int amdgpu_ib_get(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 		  unsigned size, struct amdgpu_ib *ib);
- void amdgpu_ib_free(struct amdgpu_device *adev, struct amdgpu_ib *ib,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 63b1e325b45c5..b3b22a87b232b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -1132,6 +1132,22 @@ static const struct file_operations amdgpu_driver_kms_fops = {
- #endif
- };
- 
-+int amdgpu_file_to_fpriv(struct file *filp, struct amdgpu_fpriv **fpriv)
-+{
-+        struct drm_file *file;
-+
-+	if (!filp)
-+		return -EINVAL;
-+
-+	if (filp->f_op != &amdgpu_driver_kms_fops) {
-+		return -EINVAL;
-+	}
-+
-+	file = filp->private_data;
-+	*fpriv = file->driver_priv;
-+	return 0;
-+}
-+
- static bool
- amdgpu_get_crtc_scanout_position(struct drm_device *dev, unsigned int pipe,
- 				 bool in_vblank_irq, int *vpos, int *hpos,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c
-index 1cafe8d83a4db..0b70410488b66 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c
-@@ -54,16 +54,20 @@ static int amdgpu_sched_process_priority_override(struct amdgpu_device *adev,
- 						  enum drm_sched_priority priority)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+index f92597c292fe5..4488aad64643b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+@@ -1044,11 +1044,15 @@ int amdgpu_amdkfd_gpuvm_acquire_process_vm(struct kgd_dev *kgd,
+ 					   struct dma_fence **ef)
  {
- 	struct file *filp = fget(fd);
--	struct drm_file *file;
- 	struct amdgpu_fpriv *fpriv;
- 	struct amdgpu_ctx *ctx;
- 	uint32_t id;
-+	int r;
+ 	struct amdgpu_device *adev = get_amdgpu_device(kgd);
+-	struct drm_file *drm_priv = filp->private_data;
+-	struct amdgpu_fpriv *drv_priv = drm_priv->driver_priv;
+-	struct amdgpu_vm *avm = &drv_priv->vm;
++	struct amdgpu_fpriv *drv_priv;
++	struct amdgpu_vm *avm;
+ 	int ret;
  
- 	if (!filp)
- 		return -EINVAL;
- 
--	file = filp->private_data;
--	fpriv = file->driver_priv;
-+	r = amdgpu_file_to_fpriv(filp, &fpriv);
-+	if (r) {
-+		fput(filp);
-+		return r;
-+	}
++	ret = amdgpu_file_to_fpriv(filp, &drv_priv);
++	if (ret)
++		return ret;
++	avm = &drv_priv->vm;
 +
- 	idr_for_each_entry(&fpriv->ctx_mgr.ctx_handles, ctx, id)
- 		amdgpu_ctx_priority_override(ctx, priority);
- 
+ 	/* Already a compute VM? */
+ 	if (avm->process_info)
+ 		return -EINVAL;
 -- 
 2.35.1.1178.g4f1659d476-goog
 
