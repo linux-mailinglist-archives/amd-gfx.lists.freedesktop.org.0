@@ -2,38 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 568E14FCF56
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 Apr 2022 08:20:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F21434FD283
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 Apr 2022 09:16:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4D8B10FC3F;
-	Tue, 12 Apr 2022 06:20:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05FAE10FC82;
+	Tue, 12 Apr 2022 07:16:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7C8210FC3F
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 Apr 2022 06:20:24 +0000 (UTC)
-Received: from [192.168.0.2] (ip5f5aef95.dynamic.kabel-deutschland.de
- [95.90.239.149])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested) (Authenticated sender: pmenzel)
- by mx.molgen.mpg.de (Postfix) with ESMTPSA id E41E961EA1929;
- Tue, 12 Apr 2022 08:20:22 +0200 (CEST)
-Message-ID: <e187b36c-2761-321b-4aae-ba2f78143b2c@molgen.mpg.de>
-Date: Tue, 12 Apr 2022 08:20:22 +0200
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C72E210FBCA;
+ Tue, 12 Apr 2022 06:40:14 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id BF57CB81B44;
+ Tue, 12 Apr 2022 06:40:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA6CCC385A6;
+ Tue, 12 Apr 2022 06:40:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1649745610;
+ bh=sXMl2ZYE8rt5NfFeBPGIcHAYJuUylPNTH8SOiNKZ7n8=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=co0f5NxJYrfor9fzZvdB5gWN2wZcgqXXdWdxdwIJquzUH170m70FQqrKg6KJeIH1i
+ INvlrU5F9cUxib7UxRu4nk0VuGCaxcLDjl9Wad+OPH7qoL4UeNtIrxgItZvKFiI8eT
+ +7uTUIlDKnlMuGWMQgyrMCYrNPSRdbxkMMlGi/J4=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: linux-kernel@vger.kernel.org
+Subject: [PATCH 5.10 154/171] drm/amdkfd: Create file descriptor after client
+ is added to smi_clients list
+Date: Tue, 12 Apr 2022 08:30:45 +0200
+Message-Id: <20220412062932.350937910@linuxfoundation.org>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220412062927.870347203@linuxfoundation.org>
+References: <20220412062927.870347203@linuxfoundation.org>
+User-Agent: quilt/0.66
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH 04/13] drm/amd/display: FEC check in timing validation
-Content-Language: en-US
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-To: Alexander Deucher <Alexander.Deucher@amd.com>
-References: <20220318214800.3565679-1-alex.hung@amd.com>
- <20220318214800.3565679-5-alex.hung@amd.com>
- <85d909aa-3d02-fc43-47a4-2c321ad15dec@molgen.mpg.de>
-In-Reply-To: <85d909aa-3d02-fc43-47a4-2c321ad15dec@molgen.mpg.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 12 Apr 2022 07:16:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,69 +52,80 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, solomon.chiu@amd.com, Alex Hung <alex.hung@amd.com>,
- Bhawanpreet.Lakha@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, amd-gfx@lists.freedesktop.org,
- Chiawen Huang <chiawen.huang@amd.com>, Sunpeng.Li@amd.com,
- Aurabindo.Pillai@amd.com, agustin.gutierrez@amd.com, wayne.lin@amd.com,
- Harry.Wentland@amd.com, Anthony Koo <Anthony.Koo@amd.com>,
- pavle.kotarac@amd.com
+Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Felix Kuehling <Felix.Kuehling@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ stable@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ Lee Jones <lee.jones@linaro.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Dear Alex,
+From: Lee Jones <lee.jones@linaro.org>
+
+commit e79a2398e1b2d47060474dca291542368183bc0f upstream.
+
+This ensures userspace cannot prematurely clean-up the client before
+it is fully initialised which has been proven to cause issues in the
+past.
+
+Cc: Felix Kuehling <Felix.Kuehling@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: "Christian König" <christian.koenig@amd.com>
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+Cc: David Airlie <airlied@linux.ie>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: amd-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Signed-off-by: Lee Jones <lee.jones@linaro.org>
+Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Cc: stable@vger.kernel.org
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c |   24 +++++++++++++++---------
+ 1 file changed, 15 insertions(+), 9 deletions(-)
+
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
+@@ -270,15 +270,6 @@ int kfd_smi_event_open(struct kfd_dev *d
+ 		return ret;
+ 	}
+ 
+-	ret = anon_inode_getfd(kfd_smi_name, &kfd_smi_ev_fops, (void *)client,
+-			       O_RDWR);
+-	if (ret < 0) {
+-		kfifo_free(&client->fifo);
+-		kfree(client);
+-		return ret;
+-	}
+-	*fd = ret;
+-
+ 	init_waitqueue_head(&client->wait_queue);
+ 	spin_lock_init(&client->lock);
+ 	client->events = 0;
+@@ -288,5 +279,20 @@ int kfd_smi_event_open(struct kfd_dev *d
+ 	list_add_rcu(&client->list, &dev->smi_clients);
+ 	spin_unlock(&dev->smi_lock);
+ 
++	ret = anon_inode_getfd(kfd_smi_name, &kfd_smi_ev_fops, (void *)client,
++			       O_RDWR);
++	if (ret < 0) {
++		spin_lock(&dev->smi_lock);
++		list_del_rcu(&client->list);
++		spin_unlock(&dev->smi_lock);
++
++		synchronize_rcu();
++
++		kfifo_free(&client->fifo);
++		kfree(client);
++		return ret;
++	}
++	*fd = ret;
++
+ 	return 0;
+ }
 
 
-Am 19.03.22 um 08:43 schrieb Paul Menzel:
-> Dear Alex, dear Chiawen,
-> 
-> 
-> Thank you for your patch.
-> 
-> Am 18.03.22 um 22:47 schrieb Alex Hung:
->> From: Chiawen Huang <chiawen.huang@amd.com>
->>
->> [Why]
->> disable/enable leads fec mismatch between hw/sw fec state.
-> 
-> 1.  Disable/enable of what?
-> 2.  How can this be reproduced?
-> 3.  s/fec/FEC/
-> 
->> [How]
->> check fec status to fastboot on/off.
-> 
-> What do you mean by “to fastboot on/off”?
-> 
->> Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
->> Acked-by: Alex Hung <alex.hung@amd.com>
->> Signed-off-by: Chiawen Huang <chiawen.huang@amd.com>
->> ---
->>   drivers/gpu/drm/amd/display/dc/core/dc.c | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c 
->> b/drivers/gpu/drm/amd/display/dc/core/dc.c
->> index f6e19efea756..75f9c97bebb0 100644
->> --- a/drivers/gpu/drm/amd/display/dc/core/dc.c
->> +++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
->> @@ -1496,6 +1496,10 @@ bool dc_validate_boot_timing(const struct dc *dc,
->>       if (!link->link_enc->funcs->is_dig_enabled(link->link_enc))
->>           return false;
->> +    /* Check for FEC status*/
-> 
-> Missing space before `*/`.
-> 
->> +    if (link->link_enc->funcs->fec_is_active(link->link_enc))
->> +        return false;
->> +
->>       enc_inst = link->link_enc->funcs->get_dig_frontend(link->link_enc);
->>       if (enc_inst == ENGINE_ID_UNKNOWN)
-
-I just saw, that this patch was committed on March 25th, 2022 (commit 
-7d56a154e22f) with my comments ignored. Could you please explain why?
-
-
-Kind regards,
-
-Paul
