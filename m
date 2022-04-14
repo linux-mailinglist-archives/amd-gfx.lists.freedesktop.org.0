@@ -2,58 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D029C500E62
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Apr 2022 15:11:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94178500F9E
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 Apr 2022 15:34:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E605C10FC17;
-	Thu, 14 Apr 2022 13:11:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E328010E349;
+	Thu, 14 Apr 2022 13:34:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com
- [IPv6:2607:f8b0:4864:20::231])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC13A10E071;
- Thu, 14 Apr 2022 13:11:26 +0000 (UTC)
-Received: by mail-oi1-x231.google.com with SMTP id r85so116310oie.7;
- Thu, 14 Apr 2022 06:11:26 -0700 (PDT)
+Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com
+ [IPv6:2001:4860:4864:20::33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9657610E349;
+ Thu, 14 Apr 2022 13:34:14 +0000 (UTC)
+Received: by mail-oa1-x33.google.com with SMTP id
+ 586e51a60fabf-ddfa38f1c1so5227499fac.11; 
+ Thu, 14 Apr 2022 06:34:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
  :cc:content-transfer-encoding;
- bh=FJTqqynozRlFhZj6zQE6SI9JAXhhpX1MJOvb4vtV6bk=;
- b=b0VXhbb5s9tmmkoY9HD0UOaq4Nn461oG+PsAXbQQhdIuaxr9c2qvZveP19JJwNO6gd
- MFvH13UWVGq6UqdEvMht9odRsCXK++sZ0pz1duuz2/2QqHh+iCDCL6WnX8UZh0teINV3
- qBhJKCiwiH4Ekk5J8aKj54TsAxeHiTaVt0y3HDmIViIqlTBSJ1YHBVlYSxr8q78GiphC
- w2mtnHLDX6jFxDn+9Aztz+DNx1rH1XEUeyG4+X4FLa9fV/yDjrafl3B2fAhEZNMHmy7+
- 4nK0m0Ex/+TUnsUT9Te6rYgcj2UAO86sefVgXCkbyrL9Y6FlQglzoOpwvbh1EMMQvtda
- W8QA==
+ bh=XCfsT0LfAlICAD9oZRhAUrFRwEA1PH1SFubMtLshPaE=;
+ b=VMo/42PEboafArOZ5d0CVuOpvvGgylH/Q9DYRAhJcDngzoqbYx4UGGbF9GunfDpcfm
+ Nft2g73lEJxKHe7GghognHhM4JIK6qXQdbxN3bim3K7LVt3SFVtnJkFQxqFfW2yetUJ3
+ LFdjxA9qdRNEJidANl+1HZnDtWla425zvuLocqMb5dSMjFgd/LWTSzOWeBN+0AsgdIdz
+ mWYorUrZxAzX8ymVkpMQdeScjwYDqIUmulI3ZnvNaOUrLAOhTB9+AG38hcOmCPUy8Yqo
+ MegA8R4iVVMo48fefPFICpYkpipV/FHyKMlEwxqHKz1MZ06sxvqQOPMHf8L1BqPCPNTq
+ 5UQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc:content-transfer-encoding;
- bh=FJTqqynozRlFhZj6zQE6SI9JAXhhpX1MJOvb4vtV6bk=;
- b=HvXYvTmwowflH3DNI6KFRUoIVCIEnZvKswPYX9lzOwugza2nrtWgNeBSpru3AX+LqX
- q+kuJxGmLC4iq8Nw9juub7EdG0dkc8efjvKRKHnVzWtOm+ZdQWJFKZMAvIDl496WP0DF
- PtPZ6hDzVG6jRl9d6r4Rm0NJKrS6HFoXM9Xvxt3dYa4OeHzH2WRPFSzbrKkOwHaLvc2Y
- 0XxQ/pO91cY6JE/vyGU7fDjjeCy3ndJwRGSgBk0LV93KB4svRBeJMo1AUFFhimP8qD/v
- r6/PNwZrb24HXmr2PQ0Skfi6/kZuWPm93gEqd0pRHNCSHAV9LrChOKYa0NHSY/fVDgGw
- 2UEA==
-X-Gm-Message-State: AOAM533RMDCXnBT0seWMzDr6NRLgHKgmjeOo4OzXYWFSyOGf34U9gLvt
- KSpC6KahYk3Q9L6IjXrTfSJRTXVke6/cAnGmcw8=
-X-Google-Smtp-Source: ABdhPJylCbYVBm3BfzEiRvj1FrCDnwDBCv10i0cu00almCCBVRtEVezMTYQm0DJI1RRgTvCyd2GsFEdwvVO1QzqvPZE=
-X-Received: by 2002:a05:6808:1486:b0:2f9:e821:51d9 with SMTP id
- e6-20020a056808148600b002f9e82151d9mr1319996oiw.253.1649941886069; Thu, 14
- Apr 2022 06:11:26 -0700 (PDT)
+ bh=XCfsT0LfAlICAD9oZRhAUrFRwEA1PH1SFubMtLshPaE=;
+ b=MiBKjFzuLft7IlwPeJCJflACRgmabG1dUVScyBaZfHSSHRw4J940Y7339h1ObMgEy/
+ Fz4IuH9oML0GFrjxWU3s74QAc8h94I6SyREiH86uWNxKP//2cGDMpmfgHXkBwrJTitJK
+ E3KUbJmRSWMV34sj7ddUkvFIQuL6H56GxjpZOGfgmZi7acDNQ359Sb+SzvvykrbvXW6L
+ LR8aLSgiaibfuEgk1roVxPR2JUsxh3Zgvyzh9HpoCGGhE5vkuimSGBSWdu3lrVH/HpTS
+ t8Jc+H6SNOBsZ1v/00r2QmYURDl1QdxVrBITEx/IUsj9r2hsIDlsUfqujPHSbnaslhU9
+ hIOg==
+X-Gm-Message-State: AOAM5331E1wKonSFuo3oi2UIR4Da1uwybghYujW02dLKm8atwBi/sH90
+ OmLXOrb3wGkH5ir07c8DwasF1Auu9cafBHlvh/bjj85kCTM=
+X-Google-Smtp-Source: ABdhPJzsJyQnYKPY4UjDXh6SzDMzDxeLLWqDxaW8O/c5mq1c87UloVcaRCX/jrsbx274SgMZvcWz2hd76YscbXBQOJ8=
+X-Received: by 2002:a05:6870:311d:b0:de:9b6c:362b with SMTP id
+ v29-20020a056870311d00b000de9b6c362bmr1474336oaa.200.1649943253781; Thu, 14
+ Apr 2022 06:34:13 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220412215000.897344-1-richard.gong@amd.com>
- <d4ba3998-34aa-86d2-bde9-bc6ae9d8d08d@molgen.mpg.de>
- <CADnq5_MgvcGPWf2gYn_3qCr+Gq1P39tvv-W-o8NhivvMpMwUBA@mail.gmail.com>
- <91e916e3-d793-b814-6cbf-abee0667f5f8@molgen.mpg.de>
-In-Reply-To: <91e916e3-d793-b814-6cbf-abee0667f5f8@molgen.mpg.de>
+References: <20220413161450.1854370-1-michel@daenzer.net>
+ <f425b789-5081-fa70-555f-7553d7cc5bd5@gmail.com>
+ <ca5ca8ab-9c48-8d81-2dd6-fbdfface6519@mailbox.org>
+ <abd87438-3ff4-6b62-81b4-6162d167348a@gmail.com>
+In-Reply-To: <abd87438-3ff4-6b62-81b4-6162d167348a@gmail.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 14 Apr 2022 09:11:14 -0400
-Message-ID: <CADnq5_MJuH1KEHHWfuF4gY=LOAZ=2adBZ61jqL5k2WnupdFx4Q@mail.gmail.com>
-Subject: Re: [PATCHv4] drm/amdgpu: disable ASPM on Intel Alder Lake based
- systems
-To: Paul Menzel <pmenzel@molgen.mpg.de>
+Date: Thu, 14 Apr 2022 09:34:02 -0400
+Message-ID: <CADnq5_Npy02mWVMOs-TMQ9t6OLV8XFaSQFZ5iB=Y2q3OQgiQvw@mail.gmail.com>
+Subject: Re: [PATCH] drm/radeon: Add build directory to include path
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -67,140 +67,54 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@linux.ie>, Richard Gong <richard.gong@amd.com>,
- xinhui pan <xinhui.pan@amd.com>, LKML <linux-kernel@vger.kernel.org>,
+Cc: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
+ Xinhui Pan <Xinhui.Pan@amd.com>, amd-gfx list <amd-gfx@lists.freedesktop.org>,
  Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
- Alexander Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 14, 2022 at 3:52 AM Paul Menzel <pmenzel@molgen.mpg.de> wrote:
+On Thu, Apr 14, 2022 at 4:44 AM Christian K=C3=B6nig
+<ckoenig.leichtzumerken@gmail.com> wrote:
 >
-> [Cc: -kernel test robot <lkp@intel.com>]
->
-> Dear Alex, dear Richard,
->
->
-> Am 13.04.22 um 15:00 schrieb Alex Deucher:
-> > On Wed, Apr 13, 2022 at 3:43 AM Paul Menzel wrote:
->
-> >> Thank you for sending out v4.
+> Am 14.04.22 um 09:37 schrieb Michel D=C3=A4nzer:
+> > On 2022-04-14 08:24, Christian K=C3=B6nig wrote:
+> >> Am 13.04.22 um 18:14 schrieb Michel D=C3=A4nzer:
+> >>> From: Michel D=C3=A4nzer <mdaenzer@redhat.com>
+> >>>
+> >>> Fixes compile errors with out-of-tree builds, e.g.
+> >>>
+> >>> ../drivers/gpu/drm/radeon/r420.c:38:10: fatal error: r420_reg_safe.h:=
+ No such file or directory
+> >>>      38 | #include "r420_reg_safe.h"
+> >>>         |          ^~~~~~~~~~~~~~~~~
 > >>
-> >> Am 12.04.22 um 23:50 schrieb Richard Gong:
-> >>> Active State Power Management (ASPM) feature is enabled since kernel =
-5.14.
-> >>> There are some AMD GFX cards (such as WX3200 and RX640) that won't wo=
-rk
-> >>> with ASPM-enabled Intel Alder Lake based systems. Using these GFX car=
-ds as
-> >>> video/display output, Intel Alder Lake based systems will hang during
-> >>> suspend/resume.
-> >>
-> >> I am still not clear, what =E2=80=9Chang during suspend/resume=E2=80=
-=9D means. I guess
-> >> suspending works fine? During resume (S3 or S0ix?), where does it hang=
-?
-> >> The system is functional, but there are only display problems?
-> >>
-> >>> The issue was initially reported on one system (Dell Precision 3660 w=
+> >> Well stuff like that usually points to a broken build environment.
+> > Just a separate build directory. Specifically, I'm hitting the errors w=
 ith
-> >>> BIOS version 0.14.81), but was later confirmed to affect at least 4 A=
-lder
-> >>> Lake based systems.
-> >>>
-> >>> Add extra check to disable ASPM on Intel Alder Lake based systems.
-> >>>
-> >>> Fixes: 0064b0ce85bb ("drm/amd/pm: enable ASPM by default")
-> >>> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/1885
-> >>> Reported-by: kernel test robot <lkp@intel.com>
-> >>
-> >> This tag is a little confusing. Maybe clarify that it was for an issue
-> >> in a previous patch iteration?
-> >>
-> >>> Signed-off-by: Richard Gong <richard.gong@amd.com>
-> >>> ---
-> >>> v4: s/CONFIG_X86_64/CONFIG_X86
-> >>>       enhanced check logic
-> >>> v3: s/intel_core_asom_chk/aspm_support_quirk_check
-> >>>       correct build error with W=3D1 option
-> >>> v2: correct commit description
-> >>>       move the check from chip family to problematic platform
-> >>> ---
-> >>>    drivers/gpu/drm/amd/amdgpu/vi.c | 17 ++++++++++++++++-
-> >>>    1 file changed, 16 insertions(+), 1 deletion(-)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/amd/amdgpu/vi.c b/drivers/gpu/drm/amd/am=
-dgpu/vi.c
-> >>> index 039b90cdc3bc..b33e0a9bee65 100644
-> >>> --- a/drivers/gpu/drm/amd/amdgpu/vi.c
-> >>> +++ b/drivers/gpu/drm/amd/amdgpu/vi.c
-> >>> @@ -81,6 +81,10 @@
-> >>>    #include "mxgpu_vi.h"
-> >>>    #include "amdgpu_dm.h"
-> >>>
-> >>> +#if IS_ENABLED(CONFIG_X86)
-> >>> +#include <asm/intel-family.h>
-> >>> +#endif
-> >>> +
-> >>>    #define ixPCIE_LC_L1_PM_SUBSTATE    0x100100C6
-> >>>    #define PCIE_LC_L1_PM_SUBSTATE__LC_L1_SUBSTATES_OVERRIDE_EN_MASK  =
-  0x00000001L
-> >>>    #define PCIE_LC_L1_PM_SUBSTATE__LC_PCI_PM_L1_2_OVERRIDE_MASK      =
-  0x00000002L
-> >>> @@ -1134,13 +1138,24 @@ static void vi_enable_aspm(struct amdgpu_devi=
-ce *adev)
-> >>>                WREG32_PCIE(ixPCIE_LC_CNTL, data);
-> >>>    }
-> >>>
-> >>> +static bool aspm_support_quirk_check(void)
-> >>> +{
-> >>> +     if (IS_ENABLED(CONFIG_X86)) {
-> >>> +             struct cpuinfo_x86 *c =3D &cpu_data(0);
-> >>> +
-> >>> +             return !(c->x86 =3D=3D 6 && c->x86_model =3D=3D INTEL_F=
-AM6_ALDERLAKE);
-> >>> +     }
-> >>> +
-> >>> +     return true;
-> >>> +}
-> >>> +
-> >>>    static void vi_program_aspm(struct amdgpu_device *adev)
-> >>>    {
-> >>>        u32 data, data1, orig;
-> >>>        bool bL1SS =3D false;
-> >>>        bool bClkReqSupport =3D true;
-> >>>
-> >>> -     if (!amdgpu_device_should_use_aspm(adev))
-> >>> +     if (!amdgpu_device_should_use_aspm(adev) || !aspm_support_quirk=
-_check())
-> >>>                return;
-> >>
-> >> Can users still forcefully enable ASPM with the parameter `amdgpu.aspm=
-`?
-> >>
-> >>>
-> >>>        if (adev->flags & AMD_IS_APU ||
-> >>
-> >> If I remember correctly, there were also newer cards, where ASPM worke=
-d
-> >> with Intel Alder Lake, right? Can only the problematic generations for
-> >> WX3200 and RX640 be excluded from ASPM?
 > >
-> > This patch only disables it for the generation that was problematic.
+> >   make -C build-amd64 M=3Ddrivers/gpu/drm
+> >
+> > Generated headers such as r420_reg_safe.h reside in the build directory=
+, so source files in the source directory can't find them without an explic=
+it search path.
 >
-> Could that please be made clear in the commit message summary, and messag=
-e?
-
-Sure.  Richard, please add that this only disables ASPM on VI parts
-when in an alderlake system.
-
+> I'm trying to swap back into my brain how all of this used to work, but
+> that's a really long time ago that I tried this as well.
 >
-> Loosely related, is there a public (or internal issue) to analyze how to
-> get ASPM working for VI generation devices with Intel Alder Lake?
+> > Are you saying that should get added automagically somehow?
+>
+> Yes, exactly that. I'm like 95% sure that used to work, but I don't know
+> why exactly either.
+>
+> > FWIW, this is pretty common in the kernel according to git grep.
+>
+> Maybe Alex or somebody else with some more background in the kernel
+> Makefiles could jump in and help here.
 
-We'd need support from Intel.  I'm not sure where things currently stand.
+I don't remember either.  I vaguely recall the build support for the
+mkregtable stuff being reworked a while ago.  A quick zip through the
+git logs shows a series from Masahiro Yamada from 2020.
 
 Alex
