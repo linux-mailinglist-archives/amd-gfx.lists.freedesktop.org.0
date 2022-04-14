@@ -2,52 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CBF75008F3
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Apr 2022 10:56:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 524F3500E87
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 Apr 2022 15:16:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA85D10FCC7;
-	Thu, 14 Apr 2022 08:56:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0115910FC52;
+	Thu, 14 Apr 2022 13:16:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org
- [IPv6:2001:67c:2050:0:465::202])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A06010FCC6
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 Apr 2022 08:56:26 +0000 (UTC)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [80.241.60.240])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4KfCxM4tkkz9sR6;
- Thu, 14 Apr 2022 10:56:23 +0200 (CEST)
-Message-ID: <2bd105a2-9e55-f6f1-9d62-c4533470b05b@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1649926581;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=g1ZNldq/EyB3mNJsRKqgMP8pcQ4qEP3WnTy07X0W1ek=;
- b=edpTTMLBlCs71+gtLUa5JE5qq4dai3UjdycEZQASCY6Zu4Mz3pK3JCoyRdieXSRU3ZJ7WZ
- cGPlODtsz8SNt7XuSqFb9qjhWpfBTHe/fmvqusco7X1H+NW9Nuas15RKBpxQGsF4NRj7Zs
- ltXuK/pQm9eqzSXWT6ifvdZH963vk0OCAenA9w3vE63mZt7ym+pb2pAy9Et9HuCinET8/+
- JILXzGmWuuhDzCdAIfuPX5IqPcpJ/jGHne4rQBS8+ebj6ehfSoW13KpEY9R5E8fV8T6PVb
- CqobR+2exmpkIHHz2blD11mwuWAdWyG/4du8Tf9TdFDHZiKY0cNXtok4j7uWPw==
-Date: Thu, 14 Apr 2022 10:56:15 +0200
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com
+ [66.111.4.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0601D10E280;
+ Thu, 14 Apr 2022 10:39:16 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+ by mailout.nyi.internal (Postfix) with ESMTP id 7970B5C0220;
+ Thu, 14 Apr 2022 06:39:14 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute2.internal (MEProxy); Thu, 14 Apr 2022 06:39:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=cc
+ :cc:content-transfer-encoding:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to; s=fm1; t=1649932754; x=
+ 1650019154; bh=vLA0u71ZLF0VcyHL0SIWbeMVXZKhWvjOv7ANtqzkCZQ=; b=J
+ cg75aITzxJRy3Zwz1WlT4n4k4zIWc5BQW06/XDxGe9mz7X2rNH3d4R6BmnONxcSr
+ t/a/GFDdULkb3UcjtUfOXmmIGtcuRf2m2Z4zeNUU+L0dXVocXmvkRfE9oHReaVZF
+ O/lca/KQQwAcpTPwq2XwYUn3c10lyh08dqVdNRu2i8291uXb3EDxQkksOrzQvOhS
+ xUIV5drK4lIScAIzIlT/v6bU+KyrKm8fMYY3FxhI2K/XfQey3QtBxnTgbzX6K1Or
+ mgdMpkx6dZx3RsI1zZlFuZbTLoVbE7chNMzZQzaYF4HauJ56qyX6Y2EvkKXrtlzU
+ J0o/oWg0GpoaGwrcWF8Bg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+ :x-sasl-enc; s=fm1; t=1649932754; x=1650019154; bh=vLA0u71ZLF0Vc
+ yHL0SIWbeMVXZKhWvjOv7ANtqzkCZQ=; b=jMC0k3q1bG9Y2+DOGz5mC5xB0Xl5b
+ P1aGUAAgFlKZ4GP1NNd5DUFleq69G4rOq/B/Miy+mP1v+5oNgr26tglNaXcFNGtI
+ p5hBVzKzGx9zZVqXox051CsWdVd0PyHWdU6HwJqyOm9iEZBVzyJOuZqYj8unOEnh
+ /n6Gc6QAWW+yqze+4AVWlfLGdHkKIClE8Ls0FhhrXgLf21XhY8T1EnIpKQYUSOW+
+ fhCvKleHrMEAbkO4M4fEX5LA1wMU7REP0vGzNJyGAs+PbagLblgpQSm9VtitqyOb
+ 316XH10S2ClPPDpsvOxKYsfhDeLkM2kloJ88MnRWyU4p7Ppjy2le1Lbeg==
+X-ME-Sender: <xms:0vlXYkqgg3sEfK03lXvA0wM75Dl_mIRhnwnq6sF8y7bwnxRrU7qQEw>
+ <xme:0vlXYqrXOxGkUjUFXey_EN7QI3Ejb1njY0pSYFagn812bTWQpJNw-i1R3dYkbC96y
+ wVCN8k9V6PTsA>
+X-ME-Received: <xmr:0vlXYpPnVU474PyKh00YakZ9O-opf2mtqJMy5Azs8cdQyRk8AwZT10d4U9Z1uKQbhpHXvyFt9Rjuw0OanBW1nomqgYx0grER>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudelfedgfeduucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvffukfhfgggtugfgjgesthekredttddtudenucfhrhhomhepifhrvghg
+ ucfmjfcuoehgrhgvgheskhhrohgrhhdrtghomheqnecuggftrfgrthhtvghrnhepvedtie
+ elueetgeeggfeufefhvefgtdetgfetgfdtvdegjeehieduvddtkeffheffnecuvehluhhs
+ thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepghhrvghgsehkrhhorg
+ hhrdgtohhm
+X-ME-Proxy: <xmx:0vlXYr4XCcN2oEk53QJEFZxnLQU399Uvi3lk8gqUqMdWXN25lPAhEg>
+ <xmx:0vlXYj6UnxmGcpOKng3omE0CWs6Q6_1KZr2GOtUpr7pOU6YXrK7DwA>
+ <xmx:0vlXYrhuMDZdKYs4aoRMgZAO_KrI2acppWZUtckzQfszLZ4DWMbZ3Q>
+ <xmx:0vlXYnqlYNoxwTpANenJTheHnZBurKMRLIclsQ81NeX5xwX4Hw-_IA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 14 Apr 2022 06:39:13 -0400 (EDT)
+Date: Thu, 14 Apr 2022 12:39:10 +0200
+From: Greg KH <greg@kroah.com>
+To: Lee Jones <lee.jones@linaro.org>
+Subject: Re: [PATCH 5.10 1/1] drm/amdgpu: Ensure the AMDGPU file descriptor
+ is legitimate
+Message-ID: <Ylf5zmP88Lw0md47@kroah.com>
+References: <20220412152057.1170235-1-lee.jones@linaro.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH] drm/radeon: Add build directory to include path
-Content-Language: en-CA
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>
-References: <20220413161450.1854370-1-michel@daenzer.net>
- <f425b789-5081-fa70-555f-7553d7cc5bd5@gmail.com>
- <ca5ca8ab-9c48-8d81-2dd6-fbdfface6519@mailbox.org>
- <abd87438-3ff4-6b62-81b4-6162d167348a@gmail.com>
-From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel.daenzer@mailbox.org>
-In-Reply-To: <abd87438-3ff4-6b62-81b4-6162d167348a@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220412152057.1170235-1-lee.jones@linaro.org>
+X-Mailman-Approved-At: Thu, 14 Apr 2022 13:16:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,38 +83,33 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+ Felix Kuehling <Felix.Kuehling@amd.com>, stable@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2022-04-14 10:44, Christian König wrote:
-> Am 14.04.22 um 09:37 schrieb Michel Dänzer:
->> On 2022-04-14 08:24, Christian König wrote:
->>> Am 13.04.22 um 18:14 schrieb Michel Dänzer:
->>>> From: Michel Dänzer <mdaenzer@redhat.com>
->>>>
->>>> Fixes compile errors with out-of-tree builds, e.g.
->>>>
->>>> ../drivers/gpu/drm/radeon/r420.c:38:10: fatal error: r420_reg_safe.h: No such file or directory
->>>>      38 | #include "r420_reg_safe.h"
->>>>         |          ^~~~~~~~~~~~~~~~~
->>>
->>> Well stuff like that usually points to a broken build environment.
->> Just a separate build directory. Specifically, I'm hitting the errors with
->>
->>   make -C build-amd64 M=drivers/gpu/drm
->>
->> Generated headers such as r420_reg_safe.h reside in the build directory, so source files in the source directory can't find them without an explicit search path.
+On Tue, Apr 12, 2022 at 04:20:57PM +0100, Lee Jones wrote:
+> [ Upstream commit b40a6ab2cf9213923bf8e821ce7fa7f6a0a26990 ]
 > 
-> I'm trying to swap back into my brain how all of this used to work, but that's a really long time ago that I tried this as well.
+> This is a partial cherry-pick of the above upstream commit.
 > 
->> Are you saying that should get added automagically somehow?
+> It ensures the file descriptor passed in by userspace is a valid one.
 > 
-> Yes, exactly that. I'm like 95% sure that used to work, but I don't know why exactly either.
+> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: "Christian K�nig" <christian.koenig@amd.com>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: amd-gfx@lists.freedesktop.org
+> Cc: dri-devel@lists.freedesktop.org
+> Signed-off-by: Lee Jones <lee.jones@linaro.org>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
 
-Maybe it worked at some point, but regressed in the meantime? I only just switched to a separate build directory (so that I can easily build-test for other architectures).
+Now queued up, thanks.
 
-
--- 
-Earthling Michel Dänzer            |                  https://redhat.com
-Libre software enthusiast          |         Mesa and Xwayland developer
+greg k-h
