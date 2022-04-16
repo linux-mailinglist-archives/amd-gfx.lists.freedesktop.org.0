@@ -1,94 +1,78 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 255DD5061B4
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 Apr 2022 03:32:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B775650662B
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 Apr 2022 09:45:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74FFC10E1F5;
-	Tue, 19 Apr 2022 01:32:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD3CF10E786;
+	Tue, 19 Apr 2022 07:45:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1anam02on2056.outbound.protection.outlook.com [40.107.96.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 509B410E1F5
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 Apr 2022 01:32:51 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gd3+abayhHElApn0gpzGTtKaEVXuls6rKBDY+89vQntPmZLXyhlVSLObtXzQYGF2joqFk+2vzUYvAIvIHT+482Mm3XAsdjPaeqq1JhNz8tq0GHWUTKawGkyXUMH22layL8xAmgTCOzbtAs/4VOUaE9p+D9tfczmrZ1bf0KiB3yXcT+irGplsAfeLLDuIcrJcJwezTIQAWu1sGhypvoEWMxZyx4Enj6ODXWgsG97Csus+TUkpxyG4g/nr/g5BnEt5cipGjOrch9gCwkJ13lCinVIgWVX2WE+cS28BF9CqlpFiwgje79pjNpSOLoPcuymjGtAVWcpJesWQ3dREjWe93Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lub0MOyWM/B3xOzH6yYQuwUStQzEjNupK7bjmCY2Cac=;
- b=Oo2HApol4ljyop6RCEhvPmV0+/cmXeF7rIi0dewDQNbE32qTT0qPTB0ihZFbXiHg3RFQkTphEPUZEmu+PvOKD8HZ24Y2xTOPuA/k5lY0Zyx6QCtSG88YfDpRh3AG5cJh2VZ6ZPLt3kFBtjITETtDjpB/TRWfKheGbZMX55p2pBkxTyzitmW0n6GksagduLqKaSKhdPOhehjp5mnkRr+aM6/89OwxO9NR/lLkkczxmfhJUhlP4Ij6NUbebiG/bER0K18IXTdqJjt+g4F6zN/fV8/rbVMO2oEMjOjPYRV1rHBfHmJR5LR43pxtAKgH4A0w1lZHgjWQDVazHyMZF4oveA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lub0MOyWM/B3xOzH6yYQuwUStQzEjNupK7bjmCY2Cac=;
- b=biph0kS2j/6TiS+qQlHcx2ZnEFqSnAX60J4ZCzT1JkXD97CpbV+wP5Wei5dB5BMU3PCR2N63Xvsdm93g9xyuK8Nw8ym2d2+S1jj28LxwkZEVS74VMJehVCuWjYRWvpzMNJoheOIeqGKPPTCHOnPWx5wfcbCfldmtToRzYH6XWzA=
-Received: from DM6PR07CA0132.namprd07.prod.outlook.com (2603:10b6:5:330::25)
- by CY4PR12MB1669.namprd12.prod.outlook.com (2603:10b6:910:3::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5164.18; Tue, 19 Apr
- 2022 01:32:44 +0000
-Received: from DM6NAM11FT056.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:330:cafe::15) by DM6PR07CA0132.outlook.office365.com
- (2603:10b6:5:330::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5164.20 via Frontend
- Transport; Tue, 19 Apr 2022 01:32:44 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT056.mail.protection.outlook.com (10.13.173.99) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5164.19 via Frontend Transport; Tue, 19 Apr 2022 01:32:44 +0000
-Received: from dayatsin-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Mon, 18 Apr
- 2022 20:32:42 -0500
-From: David Yat Sin <david.yatsin@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v3 2/2] drm/amdkfd: CRIU add support for GWS queues
-Date: Mon, 18 Apr 2022 21:32:27 -0400
-Message-ID: <20220419013227.2509204-2-david.yatsin@amd.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220419013227.2509204-1-david.yatsin@amd.com>
-References: <20220419013227.2509204-1-david.yatsin@amd.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CF8210E39D
+ for <amd-gfx@lists.freedesktop.org>; Sat, 16 Apr 2022 18:47:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1650134875;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=eDG0LbiekBUt1CwA8qllwbLEqsP+ta9IQOnbKNS09Qs=;
+ b=Di8H+hUXjUmNUvkY3UfzQkpc/6atToQTphey9wcQIgPZhXnFfswogXq62wyGonLEoTg91H
+ xDKOI2nPgQFV958m5cNpYfAgZsQa9ZkgxyY+tljdoVAIdBoPP4aC1OApoBKIQWXwsgScvd
+ u7t7UaFy99lTX9u/2Xie+a2zlgsYLh4=
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
+ [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-647-zgmNvW9TOTSBteQoAp2nqQ-1; Sat, 16 Apr 2022 14:47:54 -0400
+X-MC-Unique: zgmNvW9TOTSBteQoAp2nqQ-1
+Received: by mail-qv1-f70.google.com with SMTP id
+ t10-20020ad45bca000000b0044457d2bab0so9033829qvt.22
+ for <amd-gfx@lists.freedesktop.org>; Sat, 16 Apr 2022 11:47:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=eDG0LbiekBUt1CwA8qllwbLEqsP+ta9IQOnbKNS09Qs=;
+ b=kwDgE9MFnui4ONVWrIFXA6cpGlxZExLQShq+aifM/ZRbl/Z6gld51vjwx6aqWjibzY
+ isglvUU7oGjwJetUQHf2tfAx0aiCS0VSTuDcVVyHMtsXgSSDOFwgfoBK4z9mwof8VWX6
+ GiSq2AB0lc0H7ydU7oxtW+cwo9vQy9BRLau4TCJXnOauUxpj49+nGAvDYq/coU+xbwn1
+ MSu0BA7gNqCFMdl5wx/k5HvHFqMeHNx+Muz+OjFvnSIhP4tJaf/ib0TCG1fpIUepJCUy
+ KBaH0WmfsKtpmfIfmjKQVK3FIrqdjtptYHlnSOEHuFGiqhBj3W6QpRfbFvm2YtqQd0wH
+ s5Lw==
+X-Gm-Message-State: AOAM5322IS0cpL+SG8zQOZxroFvFxP4K5/YBVpUqNxCXPFca+vG64XPw
+ GmkoqtTS309pFXD3/mBysdhnZx1zmQmbRLF2DZOyzVuVUV7N8bFbgaSJfwaIzc8/UHfa5SU3w/P
+ mDiZhSqK2uRLeBbqDCSTRlWdT7g==
+X-Received: by 2002:a37:b484:0:b0:69b:db47:69a8 with SMTP id
+ d126-20020a37b484000000b0069bdb4769a8mr2712860qkf.460.1650134872572; 
+ Sat, 16 Apr 2022 11:47:52 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx6MpGAtoVZVPZBV4qU5UoHsxOacJe1twA5aTSkMqhKACIkIF321aDa1BHooK2hcBCKSl4NYA==
+X-Received: by 2002:a37:b484:0:b0:69b:db47:69a8 with SMTP id
+ d126-20020a37b484000000b0069bdb4769a8mr2712835qkf.460.1650134872211; 
+ Sat, 16 Apr 2022 11:47:52 -0700 (PDT)
+Received: from dell-per740-01.7a2m.lab.eng.bos.redhat.com
+ (nat-pool-bos-t.redhat.com. [66.187.233.206])
+ by smtp.gmail.com with ESMTPSA id
+ n9-20020a05622a11c900b002f14c97b3f7sm4827785qtk.47.2022.04.16.11.47.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 16 Apr 2022 11:47:51 -0700 (PDT)
+From: Tom Rix <trix@redhat.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@linux.ie, daniel@ffwll.ch
+Subject: [PATCH] drm/radeon/kms: change evergreen_default_state table from
+ global to static
+Date: Sat, 16 Apr 2022 14:47:36 -0400
+Message-Id: <20220416184736.2560013-1-trix@redhat.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: fe7d142a-6d88-437c-6127-08da21a480a6
-X-MS-TrafficTypeDiagnostic: CY4PR12MB1669:EE_
-X-Microsoft-Antispam-PRVS: <CY4PR12MB16690983CBA9CAD06AE093ED95F29@CY4PR12MB1669.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: SPjLN9w0/Jtk9Jip0/yu7G2wZo7ymLFpLTm5ErF3IhuNn66HZJsLfAT04IQC/x7Cinv0D4fhkgqTWDv9hRwGf1ARlSUGly5YIS3wTNxurINeUe8SWMQoqRBqVCeQ2c7re1fPdc+hPenayusPGDbY9ALm4PBhc5M2+klTDAY+KTgUy5qTfe1zJxJJQfMr5eHcAU8BW3pvkm7pdnEhp2Y6z0rpw3txS+RYAq+h2lniPkDVsSE9ImX0HVSZcuCKuxrSyjYnjmX3rDJBil1N9SqE1CXVJzRL5xhUlejD7S1DZ4zRXxgP348FpsRnGgz+BkLBo3bdaKgVAr0ljvj+HLurjVtqr8+1olRaX/5HVgeioQaDIr64/QcfUdzDLFkyxUWbjTE+HUr7lZA7oBObXlARYZIjujTW4jt1UKibDniBcbwPQjKLDSjV8RFXqc27jhhD9Qys7RZBPDF9qwUKvEUNg82/Gipjto6iZxqa+Lck/YxwdEgNP+82urk4erFTyRrnD/V1ADbycDrCwwZuNqgflyJ0+KWiTSZzWYwcPcLhya5tTLnBMXtRut3YtILQ3vOCNNo3ngb83btxtXGuDJYIW2dIFMEoq30Oc6FbJ7WFrVaZnFH4kRsN2cH9mZbRv52tuXuOUJt59JAgyuhPvt1uUhfNjuw8ptwzoLF3iUrbEAmMxMxxoKNQHmmTNuEup5LL8Mrk/IiLW0ZUBSCLzR0rus4029+oD5kzrBgkULfG7E0=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(83380400001)(186003)(16526019)(316002)(54906003)(47076005)(26005)(6916009)(426003)(336012)(86362001)(82310400005)(40460700003)(1076003)(2616005)(4326008)(36860700001)(70206006)(70586007)(8676002)(508600001)(5660300002)(36756003)(8936002)(2906002)(356005)(6666004)(7696005)(81166007)(36900700001)(309714004);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Apr 2022 01:32:44.1837 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fe7d142a-6d88-437c-6127-08da21a480a6
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT056.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1669
+Content-Type: text/plain; charset="US-ASCII"; x-default=true
+X-Mailman-Approved-At: Tue, 19 Apr 2022 07:45:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,71 +84,647 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: pmenzel@molgen.mpg.de, Felix.Kuehling@amd.com
+Cc: Tom Rix <trix@redhat.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Adding support to checkpoint/restore GWS (Global Wave Sync) queues.
+evergreen_default_state and evergreen_default_size are only
+used in evergreen.c.  Single file symbols should be static.
+So move their definitions to evergreen_blit_shaders.h
+and change their storage-class-specifier to static.
 
-Signed-off-by: David Yat Sin <david.yatsin@amd.com>
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+Remove unneeded evergreen_blit_shader.c
+
+evergreen_ps/vs definitions were removed with
+commit 4f8629675800 ("drm/radeon/kms: remove r6xx+ blit copy routines")
+So their declarations in evergreen_blit_shader.h
+are not needed, so remove them.
+
+Signed-off-by: Tom Rix <trix@redhat.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_priv.h                  |  2 +-
- drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c | 10 +++++++---
- 2 files changed, 8 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/radeon/Makefile               |   2 +-
+ .../gpu/drm/radeon/evergreen_blit_shaders.c   | 303 ------------------
+ .../gpu/drm/radeon/evergreen_blit_shaders.h   | 278 +++++++++++++++-
+ 3 files changed, 274 insertions(+), 309 deletions(-)
+ delete mode 100644 drivers/gpu/drm/radeon/evergreen_blit_shaders.c
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-index aff6f598ff2c..33e7ffd8e3b5 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-@@ -1105,7 +1105,7 @@ struct kfd_criu_queue_priv_data {
- 	uint32_t priority;
- 	uint32_t q_percent;
- 	uint32_t doorbell_id;
--	uint32_t is_gws;
-+	uint32_t gws;
- 	uint32_t sdma_id;
- 	uint32_t eop_ring_buffer_size;
- 	uint32_t ctx_save_restore_area_size;
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-index 6eca9509f2e3..4f58e671d39b 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-@@ -636,6 +636,8 @@ static int criu_checkpoint_queue(struct kfd_process_device *pdd,
- 	q_data->ctx_save_restore_area_size =
- 		q->properties.ctx_save_restore_area_size;
+diff --git a/drivers/gpu/drm/radeon/Makefile b/drivers/gpu/drm/radeon/Makefile
+index 4deedaacd655..1045d2c46a76 100644
+--- a/drivers/gpu/drm/radeon/Makefile
++++ b/drivers/gpu/drm/radeon/Makefile
+@@ -41,7 +41,7 @@ radeon-y += radeon_device.o radeon_asic.o radeon_kms.o \
+ 	rs400.o rs600.o rs690.o rv515.o r520.o r600.o rv770.o radeon_test.o \
+ 	r200.o radeon_legacy_tv.o r600_cs.o \
+ 	radeon_pm.o atombios_dp.o r600_hdmi.o dce3_1_afmt.o \
+-	evergreen.o evergreen_cs.o evergreen_blit_shaders.o \
++	evergreen.o evergreen_cs.o \
+ 	evergreen_hdmi.o radeon_trace_points.o ni.o \
+ 	atombios_encoders.o radeon_semaphore.o radeon_sa.o atombios_i2c.o si.o \
+ 	radeon_prime.o cik.o cik_blit_shaders.o \
+diff --git a/drivers/gpu/drm/radeon/evergreen_blit_shaders.c b/drivers/gpu/drm/radeon/evergreen_blit_shaders.c
+deleted file mode 100644
+index 1a96ddb3e5ed..000000000000
+--- a/drivers/gpu/drm/radeon/evergreen_blit_shaders.c
++++ /dev/null
+@@ -1,303 +0,0 @@
+-/*
+- * Copyright 2010 Advanced Micro Devices, Inc.
+- *
+- * Permission is hereby granted, free of charge, to any person obtaining a
+- * copy of this software and associated documentation files (the "Software"),
+- * to deal in the Software without restriction, including without limitation
+- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+- * and/or sell copies of the Software, and to permit persons to whom the
+- * Software is furnished to do so, subject to the following conditions:
+- *
+- * The above copyright notice and this permission notice (including the next
+- * paragraph) shall be included in all copies or substantial portions of the
+- * Software.
+- *
+- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+- * THE COPYRIGHT HOLDER(S) AND/OR ITS SUPPLIERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+- * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+- * DEALINGS IN THE SOFTWARE.
+- *
+- * Authors:
+- *     Alex Deucher <alexander.deucher@amd.com>
+- */
+-
+-#include <linux/bug.h>
+-#include <linux/types.h>
+-#include <linux/kernel.h>
+-
+-/*
+- * evergreen cards need to use the 3D engine to blit data which requires
+- * quite a bit of hw state setup.  Rather than pull the whole 3D driver
+- * (which normally generates the 3D state) into the DRM, we opt to use
+- * statically generated state tables.  The register state and shaders
+- * were hand generated to support blitting functionality.  See the 3D
+- * driver or documentation for descriptions of the registers and
+- * shader instructions.
+- */
+-
+-const u32 evergreen_default_state[] =
+-{
+-	0xc0016900,
+-	0x0000023b,
+-	0x00000000, /* SQ_LDS_ALLOC_PS */
+-
+-	0xc0066900,
+-	0x00000240,
+-	0x00000000, /* SQ_ESGS_RING_ITEMSIZE */
+-	0x00000000,
+-	0x00000000,
+-	0x00000000,
+-	0x00000000,
+-	0x00000000,
+-
+-	0xc0046900,
+-	0x00000247,
+-	0x00000000, /* SQ_GS_VERT_ITEMSIZE */
+-	0x00000000,
+-	0x00000000,
+-	0x00000000,
+-
+-	0xc0026900,
+-	0x00000010,
+-	0x00000000, /* DB_Z_INFO */
+-	0x00000000, /* DB_STENCIL_INFO */
+-
+-	0xc0016900,
+-	0x00000200,
+-	0x00000000, /* DB_DEPTH_CONTROL */
+-
+-	0xc0066900,
+-	0x00000000,
+-	0x00000060, /* DB_RENDER_CONTROL */
+-	0x00000000, /* DB_COUNT_CONTROL */
+-	0x00000000, /* DB_DEPTH_VIEW */
+-	0x0000002a, /* DB_RENDER_OVERRIDE */
+-	0x00000000, /* DB_RENDER_OVERRIDE2 */
+-	0x00000000, /* DB_HTILE_DATA_BASE */
+-
+-	0xc0026900,
+-	0x0000000a,
+-	0x00000000, /* DB_STENCIL_CLEAR */
+-	0x00000000, /* DB_DEPTH_CLEAR */
+-
+-	0xc0016900,
+-	0x000002dc,
+-	0x0000aa00, /* DB_ALPHA_TO_MASK */
+-
+-	0xc0016900,
+-	0x00000080,
+-	0x00000000, /* PA_SC_WINDOW_OFFSET */
+-
+-	0xc00d6900,
+-	0x00000083,
+-	0x0000ffff, /* PA_SC_CLIPRECT_RULE */
+-	0x00000000, /* PA_SC_CLIPRECT_0_TL */
+-	0x20002000, /* PA_SC_CLIPRECT_0_BR */
+-	0x00000000,
+-	0x20002000,
+-	0x00000000,
+-	0x20002000,
+-	0x00000000,
+-	0x20002000,
+-	0xaaaaaaaa, /* PA_SC_EDGERULE */
+-	0x00000000, /* PA_SU_HARDWARE_SCREEN_OFFSET */
+-	0x0000000f, /* CB_TARGET_MASK */
+-	0x0000000f, /* CB_SHADER_MASK */
+-
+-	0xc0226900,
+-	0x00000094,
+-	0x80000000, /* PA_SC_VPORT_SCISSOR_0_TL */
+-	0x20002000, /* PA_SC_VPORT_SCISSOR_0_BR */
+-	0x80000000,
+-	0x20002000,
+-	0x80000000,
+-	0x20002000,
+-	0x80000000,
+-	0x20002000,
+-	0x80000000,
+-	0x20002000,
+-	0x80000000,
+-	0x20002000,
+-	0x80000000,
+-	0x20002000,
+-	0x80000000,
+-	0x20002000,
+-	0x80000000,
+-	0x20002000,
+-	0x80000000,
+-	0x20002000,
+-	0x80000000,
+-	0x20002000,
+-	0x80000000,
+-	0x20002000,
+-	0x80000000,
+-	0x20002000,
+-	0x80000000,
+-	0x20002000,
+-	0x80000000,
+-	0x20002000,
+-	0x80000000,
+-	0x20002000,
+-	0x00000000, /* PA_SC_VPORT_ZMIN_0 */
+-	0x3f800000, /* PA_SC_VPORT_ZMAX_0 */
+-
+-	0xc0016900,
+-	0x000000d4,
+-	0x00000000, /* SX_MISC */
+-
+-	0xc0026900,
+-	0x00000292,
+-	0x00000000, /* PA_SC_MODE_CNTL_0 */
+-	0x00000000, /* PA_SC_MODE_CNTL_1 */
+-
+-	0xc0106900,
+-	0x00000300,
+-	0x00000000, /* PA_SC_LINE_CNTL */
+-	0x00000000, /* PA_SC_AA_CONFIG */
+-	0x00000005, /* PA_SU_VTX_CNTL */
+-	0x3f800000, /* PA_CL_GB_VERT_CLIP_ADJ */
+-	0x3f800000, /* PA_CL_GB_VERT_DISC_ADJ */
+-	0x3f800000, /* PA_CL_GB_HORZ_CLIP_ADJ */
+-	0x3f800000, /* PA_CL_GB_HORZ_DISC_ADJ */
+-	0x00000000, /* PA_SC_AA_SAMPLE_LOCS_0 */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /* PA_SC_AA_SAMPLE_LOCS_7 */
+-	0xffffffff, /* PA_SC_AA_MASK */
+-
+-	0xc00d6900,
+-	0x00000202,
+-	0x00cc0010, /* CB_COLOR_CONTROL */
+-	0x00000210, /* DB_SHADER_CONTROL */
+-	0x00010000, /* PA_CL_CLIP_CNTL */
+-	0x00000004, /* PA_SU_SC_MODE_CNTL */
+-	0x00000100, /* PA_CL_VTE_CNTL */
+-	0x00000000, /* PA_CL_VS_OUT_CNTL */
+-	0x00000000, /* PA_CL_NANINF_CNTL */
+-	0x00000000, /* PA_SU_LINE_STIPPLE_CNTL */
+-	0x00000000, /* PA_SU_LINE_STIPPLE_SCALE */
+-	0x00000000, /* PA_SU_PRIM_FILTER_CNTL */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /* SQ_DYN_GPR_RESOURCE_LIMIT_1 */
+-
+-	0xc0066900,
+-	0x000002de,
+-	0x00000000, /* PA_SU_POLY_OFFSET_DB_FMT_CNTL */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-
+-	0xc0016900,
+-	0x00000229,
+-	0x00000000, /* SQ_PGM_START_FS */
+-
+-	0xc0016900,
+-	0x0000022a,
+-	0x00000000, /* SQ_PGM_RESOURCES_FS */
+-
+-	0xc0096900,
+-	0x00000100,
+-	0x00ffffff, /* VGT_MAX_VTX_INDX */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /* SX_ALPHA_TEST_CONTROL */
+-	0x00000000, /* CB_BLEND_RED */
+-	0x00000000, /* CB_BLEND_GREEN */
+-	0x00000000, /* CB_BLEND_BLUE */
+-	0x00000000, /* CB_BLEND_ALPHA */
+-
+-	0xc0026900,
+-	0x000002a8,
+-	0x00000000, /* VGT_INSTANCE_STEP_RATE_0 */
+-	0x00000000, /*  */
+-
+-	0xc0026900,
+-	0x000002ad,
+-	0x00000000, /* VGT_REUSE_OFF */
+-	0x00000000, /*  */
+-
+-	0xc0116900,
+-	0x00000280,
+-	0x00000000, /* PA_SU_POINT_SIZE */
+-	0x00000000, /* PA_SU_POINT_MINMAX */
+-	0x00000008, /* PA_SU_LINE_CNTL */
+-	0x00000000, /* PA_SC_LINE_STIPPLE */
+-	0x00000000, /* VGT_OUTPUT_PATH_CNTL */
+-	0x00000000, /* VGT_HOS_CNTL */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /* VGT_GS_MODE */
+-
+-	0xc0016900,
+-	0x000002a1,
+-	0x00000000, /* VGT_PRIMITIVEID_EN */
+-
+-	0xc0016900,
+-	0x000002a5,
+-	0x00000000, /* VGT_MULTI_PRIM_IB_RESET_EN */
+-
+-	0xc0016900,
+-	0x000002d5,
+-	0x00000000, /* VGT_SHADER_STAGES_EN */
+-
+-	0xc0026900,
+-	0x000002e5,
+-	0x00000000, /* VGT_STRMOUT_CONFIG */
+-	0x00000000, /*  */
+-
+-	0xc0016900,
+-	0x000001e0,
+-	0x00000000, /* CB_BLEND0_CONTROL */
+-
+-	0xc0016900,
+-	0x000001b1,
+-	0x00000000, /* SPI_VS_OUT_CONFIG */
+-
+-	0xc0016900,
+-	0x00000187,
+-	0x00000000, /* SPI_VS_OUT_ID_0 */
+-
+-	0xc0016900,
+-	0x00000191,
+-	0x00000100, /* SPI_PS_INPUT_CNTL_0 */
+-
+-	0xc00b6900,
+-	0x000001b3,
+-	0x20000001, /* SPI_PS_IN_CONTROL_0 */
+-	0x00000000, /* SPI_PS_IN_CONTROL_1 */
+-	0x00000000, /* SPI_INTERP_CONTROL_0 */
+-	0x00000000, /* SPI_INPUT_Z */
+-	0x00000000, /* SPI_FOG_CNTL */
+-	0x00100000, /* SPI_BARYC_CNTL */
+-	0x00000000, /* SPI_PS_IN_CONTROL_2 */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-	0x00000000, /*  */
+-
+-	0xc0026900,
+-	0x00000316,
+-	0x0000000e, /* VGT_VERTEX_REUSE_BLOCK_CNTL */
+-	0x00000010, /*  */
+-};
+-
+-const u32 evergreen_default_size = ARRAY_SIZE(evergreen_default_state);
+diff --git a/drivers/gpu/drm/radeon/evergreen_blit_shaders.h b/drivers/gpu/drm/radeon/evergreen_blit_shaders.h
+index bb8d6c751595..4492524ee1df 100644
+--- a/drivers/gpu/drm/radeon/evergreen_blit_shaders.h
++++ b/drivers/gpu/drm/radeon/evergreen_blit_shaders.h
+@@ -20,16 +20,284 @@
+  * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+  * DEALINGS IN THE SOFTWARE.
+  *
++ * Authors:
++ *     Alex Deucher <alexander.deucher@amd.com>
+  */
  
-+	q_data->gws = !!q->gws;
+ #ifndef EVERGREEN_BLIT_SHADERS_H
+ #define EVERGREEN_BLIT_SHADERS_H
+ 
+-extern const u32 evergreen_ps[];
+-extern const u32 evergreen_vs[];
+-extern const u32 evergreen_default_state[];
++/*
++ * evergreen cards need to use the 3D engine to blit data which requires
++ * quite a bit of hw state setup.  Rather than pull the whole 3D driver
++ * (which normally generates the 3D state) into the DRM, we opt to use
++ * statically generated state tables.  The register state and shaders
++ * were hand generated to support blitting functionality.  See the 3D
++ * driver or documentation for descriptions of the registers and
++ * shader instructions.
++ */
 +
- 	ret = pqm_checkpoint_mqd(&pdd->process->pqm, q->properties.queue_id, mqd, ctl_stack);
- 	if (ret) {
- 		pr_err("Failed checkpoint queue_mqd (%d)\n", ret);
-@@ -743,7 +745,6 @@ static void set_queue_properties_from_criu(struct queue_properties *qp,
- 					  struct kfd_criu_queue_priv_data *q_data)
- {
- 	qp->is_interop = false;
--	qp->is_gws = q_data->is_gws;
- 	qp->queue_percent = q_data->q_percent;
- 	qp->priority = q_data->priority;
- 	qp->queue_address = q_data->q_address;
-@@ -826,12 +827,15 @@ int kfd_criu_restore_queue(struct kfd_process *p,
- 				NULL);
- 	if (ret) {
- 		pr_err("Failed to create new queue err:%d\n", ret);
--		ret = -EINVAL;
-+		goto exit;
- 	}
- 
-+	if (q_data->gws)
-+		ret = pqm_set_gws(&p->pqm, q_data->q_id, pdd->dev->gws);
++static const u32 evergreen_default_state[] = {
++	0xc0016900,
++	0x0000023b,
++	0x00000000, /* SQ_LDS_ALLOC_PS */
 +
- exit:
- 	if (ret)
--		pr_err("Failed to create queue (%d)\n", ret);
-+		pr_err("Failed to restore queue (%d)\n", ret);
- 	else
- 		pr_debug("Queue id %d was restored successfully\n", queue_id);
++	0xc0066900,
++	0x00000240,
++	0x00000000, /* SQ_ESGS_RING_ITEMSIZE */
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++
++	0xc0046900,
++	0x00000247,
++	0x00000000, /* SQ_GS_VERT_ITEMSIZE */
++	0x00000000,
++	0x00000000,
++	0x00000000,
++
++	0xc0026900,
++	0x00000010,
++	0x00000000, /* DB_Z_INFO */
++	0x00000000, /* DB_STENCIL_INFO */
++
++	0xc0016900,
++	0x00000200,
++	0x00000000, /* DB_DEPTH_CONTROL */
++
++	0xc0066900,
++	0x00000000,
++	0x00000060, /* DB_RENDER_CONTROL */
++	0x00000000, /* DB_COUNT_CONTROL */
++	0x00000000, /* DB_DEPTH_VIEW */
++	0x0000002a, /* DB_RENDER_OVERRIDE */
++	0x00000000, /* DB_RENDER_OVERRIDE2 */
++	0x00000000, /* DB_HTILE_DATA_BASE */
++
++	0xc0026900,
++	0x0000000a,
++	0x00000000, /* DB_STENCIL_CLEAR */
++	0x00000000, /* DB_DEPTH_CLEAR */
++
++	0xc0016900,
++	0x000002dc,
++	0x0000aa00, /* DB_ALPHA_TO_MASK */
++
++	0xc0016900,
++	0x00000080,
++	0x00000000, /* PA_SC_WINDOW_OFFSET */
++
++	0xc00d6900,
++	0x00000083,
++	0x0000ffff, /* PA_SC_CLIPRECT_RULE */
++	0x00000000, /* PA_SC_CLIPRECT_0_TL */
++	0x20002000, /* PA_SC_CLIPRECT_0_BR */
++	0x00000000,
++	0x20002000,
++	0x00000000,
++	0x20002000,
++	0x00000000,
++	0x20002000,
++	0xaaaaaaaa, /* PA_SC_EDGERULE */
++	0x00000000, /* PA_SU_HARDWARE_SCREEN_OFFSET */
++	0x0000000f, /* CB_TARGET_MASK */
++	0x0000000f, /* CB_SHADER_MASK */
++
++	0xc0226900,
++	0x00000094,
++	0x80000000, /* PA_SC_VPORT_SCISSOR_0_TL */
++	0x20002000, /* PA_SC_VPORT_SCISSOR_0_BR */
++	0x80000000,
++	0x20002000,
++	0x80000000,
++	0x20002000,
++	0x80000000,
++	0x20002000,
++	0x80000000,
++	0x20002000,
++	0x80000000,
++	0x20002000,
++	0x80000000,
++	0x20002000,
++	0x80000000,
++	0x20002000,
++	0x80000000,
++	0x20002000,
++	0x80000000,
++	0x20002000,
++	0x80000000,
++	0x20002000,
++	0x80000000,
++	0x20002000,
++	0x80000000,
++	0x20002000,
++	0x80000000,
++	0x20002000,
++	0x80000000,
++	0x20002000,
++	0x80000000,
++	0x20002000,
++	0x00000000, /* PA_SC_VPORT_ZMIN_0 */
++	0x3f800000, /* PA_SC_VPORT_ZMAX_0 */
++
++	0xc0016900,
++	0x000000d4,
++	0x00000000, /* SX_MISC */
++
++	0xc0026900,
++	0x00000292,
++	0x00000000, /* PA_SC_MODE_CNTL_0 */
++	0x00000000, /* PA_SC_MODE_CNTL_1 */
++
++	0xc0106900,
++	0x00000300,
++	0x00000000, /* PA_SC_LINE_CNTL */
++	0x00000000, /* PA_SC_AA_CONFIG */
++	0x00000005, /* PA_SU_VTX_CNTL */
++	0x3f800000, /* PA_CL_GB_VERT_CLIP_ADJ */
++	0x3f800000, /* PA_CL_GB_VERT_DISC_ADJ */
++	0x3f800000, /* PA_CL_GB_HORZ_CLIP_ADJ */
++	0x3f800000, /* PA_CL_GB_HORZ_DISC_ADJ */
++	0x00000000, /* PA_SC_AA_SAMPLE_LOCS_0 */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /* PA_SC_AA_SAMPLE_LOCS_7 */
++	0xffffffff, /* PA_SC_AA_MASK */
++
++	0xc00d6900,
++	0x00000202,
++	0x00cc0010, /* CB_COLOR_CONTROL */
++	0x00000210, /* DB_SHADER_CONTROL */
++	0x00010000, /* PA_CL_CLIP_CNTL */
++	0x00000004, /* PA_SU_SC_MODE_CNTL */
++	0x00000100, /* PA_CL_VTE_CNTL */
++	0x00000000, /* PA_CL_VS_OUT_CNTL */
++	0x00000000, /* PA_CL_NANINF_CNTL */
++	0x00000000, /* PA_SU_LINE_STIPPLE_CNTL */
++	0x00000000, /* PA_SU_LINE_STIPPLE_SCALE */
++	0x00000000, /* PA_SU_PRIM_FILTER_CNTL */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /* SQ_DYN_GPR_RESOURCE_LIMIT_1 */
++
++	0xc0066900,
++	0x000002de,
++	0x00000000, /* PA_SU_POLY_OFFSET_DB_FMT_CNTL */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /*  */
++
++	0xc0016900,
++	0x00000229,
++	0x00000000, /* SQ_PGM_START_FS */
++
++	0xc0016900,
++	0x0000022a,
++	0x00000000, /* SQ_PGM_RESOURCES_FS */
++
++	0xc0096900,
++	0x00000100,
++	0x00ffffff, /* VGT_MAX_VTX_INDX */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /* SX_ALPHA_TEST_CONTROL */
++	0x00000000, /* CB_BLEND_RED */
++	0x00000000, /* CB_BLEND_GREEN */
++	0x00000000, /* CB_BLEND_BLUE */
++	0x00000000, /* CB_BLEND_ALPHA */
++
++	0xc0026900,
++	0x000002a8,
++	0x00000000, /* VGT_INSTANCE_STEP_RATE_0 */
++	0x00000000, /*  */
++
++	0xc0026900,
++	0x000002ad,
++	0x00000000, /* VGT_REUSE_OFF */
++	0x00000000, /*  */
++
++	0xc0116900,
++	0x00000280,
++	0x00000000, /* PA_SU_POINT_SIZE */
++	0x00000000, /* PA_SU_POINT_MINMAX */
++	0x00000008, /* PA_SU_LINE_CNTL */
++	0x00000000, /* PA_SC_LINE_STIPPLE */
++	0x00000000, /* VGT_OUTPUT_PATH_CNTL */
++	0x00000000, /* VGT_HOS_CNTL */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /* VGT_GS_MODE */
++
++	0xc0016900,
++	0x000002a1,
++	0x00000000, /* VGT_PRIMITIVEID_EN */
++
++	0xc0016900,
++	0x000002a5,
++	0x00000000, /* VGT_MULTI_PRIM_IB_RESET_EN */
++
++	0xc0016900,
++	0x000002d5,
++	0x00000000, /* VGT_SHADER_STAGES_EN */
++
++	0xc0026900,
++	0x000002e5,
++	0x00000000, /* VGT_STRMOUT_CONFIG */
++	0x00000000, /*  */
++
++	0xc0016900,
++	0x000001e0,
++	0x00000000, /* CB_BLEND0_CONTROL */
++
++	0xc0016900,
++	0x000001b1,
++	0x00000000, /* SPI_VS_OUT_CONFIG */
++
++	0xc0016900,
++	0x00000187,
++	0x00000000, /* SPI_VS_OUT_ID_0 */
++
++	0xc0016900,
++	0x00000191,
++	0x00000100, /* SPI_PS_INPUT_CNTL_0 */
++
++	0xc00b6900,
++	0x000001b3,
++	0x20000001, /* SPI_PS_IN_CONTROL_0 */
++	0x00000000, /* SPI_PS_IN_CONTROL_1 */
++	0x00000000, /* SPI_INTERP_CONTROL_0 */
++	0x00000000, /* SPI_INPUT_Z */
++	0x00000000, /* SPI_FOG_CNTL */
++	0x00100000, /* SPI_BARYC_CNTL */
++	0x00000000, /* SPI_PS_IN_CONTROL_2 */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /*  */
++	0x00000000, /*  */
++
++	0xc0026900,
++	0x00000316,
++	0x0000000e, /* VGT_VERTEX_REUSE_BLOCK_CNTL */
++	0x00000010, /*  */
++};
  
+-extern const u32 evergreen_ps_size, evergreen_vs_size;
+-extern const u32 evergreen_default_size;
++static const u32 evergreen_default_size = ARRAY_SIZE(evergreen_default_state);
+ 
+ #endif
 -- 
-2.30.2
+2.27.0
 
