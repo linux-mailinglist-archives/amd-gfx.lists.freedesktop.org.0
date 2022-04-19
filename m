@@ -1,39 +1,63 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FBEA5064DE
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 Apr 2022 08:54:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E90B506966
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 Apr 2022 13:06:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BE0510EEA0;
-	Tue, 19 Apr 2022 06:54:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA7AC10EF43;
+	Tue, 19 Apr 2022 11:06:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C322410EEA3
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 Apr 2022 06:54:16 +0000 (UTC)
-Received: from [192.168.0.2] (ip5f5ae90d.dynamic.kabel-deutschland.de
- [95.90.233.13])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested) (Authenticated sender: pmenzel)
- by mx.molgen.mpg.de (Postfix) with ESMTPSA id 20D9F61CCD785;
- Tue, 19 Apr 2022 08:54:15 +0200 (CEST)
-Message-ID: <fdd0477f-0874-3ffc-e46a-bb8b87103f96@molgen.mpg.de>
-Date: Tue, 19 Apr 2022 08:54:14 +0200
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com
+ [IPv6:2a00:1450:4864:20::534])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 052FD10EF43
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 Apr 2022 11:06:37 +0000 (UTC)
+Received: by mail-ed1-x534.google.com with SMTP id c64so20741884edf.11
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 Apr 2022 04:06:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=OMUJixXKyxBse8EdWgqduQjLz8k4qCnv915o/mb6kYM=;
+ b=VzkUrxVMkJ/ZFUjaHiHn4L0713uVoI5wU/jWE/LZQ21FsVfl2X19Ji+wWmcvf6rSf4
+ Q5x8rj96vmW7xB+sQ/NrzElMVAsE9D3543dg6bPdGyDXIhc814A35DD13c4BJ80Rws55
+ HR3amti8SgtEARS8Qox/hq3C38lB4tyafhF4I/sKCcd53y0KdDtD0ktCoRn7urTAoqiF
+ cPdHTrmu6Ryb8k3h2VHhO/YvMzJQwRDdNhfDcS3nnG3ByloHzQAlVkFo1amqxyNhPVJG
+ qaOavn1v0jmw/R0PCxMKypYarQ2DEUePrqNbWfmWKM9NiwrHJBdRCqV3/h+940wxRNhw
+ lyKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=OMUJixXKyxBse8EdWgqduQjLz8k4qCnv915o/mb6kYM=;
+ b=fxGo3xmlrmcvH19ZI9HxYNpQydu4VXjjZAc6oy9T5whzqk9QOJhfjAzXMph6KqmAMn
+ CF5evepXRwF6HoUf5OAECJx7WmTKJtiinbv16p5gFxkewFqsX57sh5gVNB3Vb/sZj2IR
+ UblSyREzNHv58drUKBZ/MTXT6yBz0oofklnCjwyJnfsaS91WKGBgIj+6hrJSSUMVf1Cj
+ NKv5L9CEetygquNPCESf83h16M/lYfHcz1Q63IFg7gOVqcgruBajw9CItMUg183LgKlI
+ +QLr1V14kgHV4LtKyCo1cofAPANNaqboGOZQ+kajHwPf9C7RobFVawXgXZu9NgAFChmK
+ gkMA==
+X-Gm-Message-State: AOAM531PuGWu1sRvLO204xASmMWEuQBKyCYlzQ2xUfn2LvYrsLDhaHmG
+ c8anZ6nlX2DdagdSBZJkebE=
+X-Google-Smtp-Source: ABdhPJzFxn4ZKlGUO2zWwBOiNS12wiDAl/+dTUmqUjAz2cU69Coccu0KaMDDzCupTf9y/MQ0vFb3eA==
+X-Received: by 2002:a05:6402:448a:b0:41d:793d:8252 with SMTP id
+ er10-20020a056402448a00b0041d793d8252mr16520160edb.6.1650366395422; 
+ Tue, 19 Apr 2022 04:06:35 -0700 (PDT)
+Received: from able.fritz.box (p57b0b9e1.dip0.t-ipconnect.de. [87.176.185.225])
+ by smtp.gmail.com with ESMTPSA id
+ z22-20020a1709063ad600b006e8867caa5dsm5533708ejd.72.2022.04.19.04.06.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 19 Apr 2022 04:06:34 -0700 (PDT)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: mikhail.v.gavrilov@gmail.com,
+	amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amdgpu: partial revert "remove ctx->lock" v2
+Date: Tue, 19 Apr 2022 13:06:33 +0200
+Message-Id: <20220419110633.166236-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v2 2/2] drm/amdkfd: CRIU add support for GWS queues
-Content-Language: en-US
-To: David Yat Sin <David.YatSin@amd.com>
-References: <20220418164437.1875319-1-david.yatsin@amd.com>
- <20220418164437.1875319-2-david.yatsin@amd.com>
- <568532d5-e127-2d39-a455-e4102ab240b2@molgen.mpg.de>
- <DM6PR12MB5021D813258265387A23C2B895F29@DM6PR12MB5021.namprd12.prod.outlook.com>
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <DM6PR12MB5021D813258265387A23C2B895F29@DM6PR12MB5021.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -46,124 +70,139 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Felix_K=c3=bchling?= <felix.kuehling@amd.com>,
- amd-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+This reverts commit 461fa7b0ac565ef25c1da0ced31005dd437883a7.
 
-Dear David,
+We are missing some inter dependencies here so re-introduce the lock
+until we have figured out what's missing. Just drop/retake it while
+adding dependencies.
 
+v2: still drop the lock while adding dependencies
 
-Thank you for sending out v3 of these patches.
+Signed-off-by: Christian König <christian.koenig@amd.com>
+Tested-by: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com> (v1)
+Fixes: 461fa7b0ac56 ("drm/amdgpu: remove ctx->lock")
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c  | 21 +++++++++++++++------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c |  2 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h |  1 +
+ 3 files changed, 18 insertions(+), 6 deletions(-)
 
-Am 19.04.22 um 02:04 schrieb Yat Sin, David:
-> 
-> 
->> -----Original Message-----
->> From: Paul Menzel <pmenzel@molgen.mpg.de>
->> Sent: Monday, April 18, 2022 4:23 PM
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+index 970b065e9a6b..d0d0ea565e3d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+@@ -128,6 +128,8 @@ static int amdgpu_cs_parser_init(struct amdgpu_cs_parser *p, union drm_amdgpu_cs
+ 		goto free_chunk;
+ 	}
+ 
++	mutex_lock(&p->ctx->lock);
++
+ 	/* skip guilty context job */
+ 	if (atomic_read(&p->ctx->guilty) == 1) {
+ 		ret = -ECANCELED;
+@@ -709,6 +711,7 @@ static void amdgpu_cs_parser_fini(struct amdgpu_cs_parser *parser, int error,
+ 	dma_fence_put(parser->fence);
+ 
+ 	if (parser->ctx) {
++		mutex_unlock(&parser->ctx->lock);
+ 		amdgpu_ctx_put(parser->ctx);
+ 	}
+ 	if (parser->bo_list)
+@@ -1157,6 +1160,9 @@ static int amdgpu_cs_dependencies(struct amdgpu_device *adev,
+ {
+ 	int i, r;
+ 
++	/* TODO: Investigate why we still need the context lock */
++	mutex_unlock(&p->ctx->lock);
++
+ 	for (i = 0; i < p->nchunks; ++i) {
+ 		struct amdgpu_cs_chunk *chunk;
+ 
+@@ -1167,32 +1173,34 @@ static int amdgpu_cs_dependencies(struct amdgpu_device *adev,
+ 		case AMDGPU_CHUNK_ID_SCHEDULED_DEPENDENCIES:
+ 			r = amdgpu_cs_process_fence_dep(p, chunk);
+ 			if (r)
+-				return r;
++				goto out;
+ 			break;
+ 		case AMDGPU_CHUNK_ID_SYNCOBJ_IN:
+ 			r = amdgpu_cs_process_syncobj_in_dep(p, chunk);
+ 			if (r)
+-				return r;
++				goto out;
+ 			break;
+ 		case AMDGPU_CHUNK_ID_SYNCOBJ_OUT:
+ 			r = amdgpu_cs_process_syncobj_out_dep(p, chunk);
+ 			if (r)
+-				return r;
++				goto out;
+ 			break;
+ 		case AMDGPU_CHUNK_ID_SYNCOBJ_TIMELINE_WAIT:
+ 			r = amdgpu_cs_process_syncobj_timeline_in_dep(p, chunk);
+ 			if (r)
+-				return r;
++				goto out;
+ 			break;
+ 		case AMDGPU_CHUNK_ID_SYNCOBJ_TIMELINE_SIGNAL:
+ 			r = amdgpu_cs_process_syncobj_timeline_out_dep(p, chunk);
+ 			if (r)
+-				return r;
++				goto out;
+ 			break;
+ 		}
+ 	}
+ 
+-	return 0;
++out:
++	mutex_lock(&p->ctx->lock);
++	return r;
+ }
+ 
+ static void amdgpu_cs_post_dependencies(struct amdgpu_cs_parser *p)
+@@ -1368,6 +1376,7 @@ int amdgpu_cs_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
+ 		goto out;
+ 
+ 	r = amdgpu_cs_submit(&parser, cs);
++
+ out:
+ 	amdgpu_cs_parser_fini(&parser, r, reserved_buffers);
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+index 5981c7d9bd48..8f0e6d93bb9c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+@@ -237,6 +237,7 @@ static int amdgpu_ctx_init(struct amdgpu_device *adev,
+ 
+ 	kref_init(&ctx->refcount);
+ 	spin_lock_init(&ctx->ring_lock);
++	mutex_init(&ctx->lock);
+ 
+ 	ctx->reset_counter = atomic_read(&adev->gpu_reset_counter);
+ 	ctx->reset_counter_query = ctx->reset_counter;
+@@ -357,6 +358,7 @@ static void amdgpu_ctx_fini(struct kref *ref)
+ 		drm_dev_exit(idx);
+ 	}
+ 
++	mutex_destroy(&ctx->lock);
+ 	kfree(ctx);
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
+index d0cbfcea90f7..142f2f87d44c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
+@@ -49,6 +49,7 @@ struct amdgpu_ctx {
+ 	bool				preamble_presented;
+ 	int32_t				init_priority;
+ 	int32_t				override_priority;
++	struct mutex			lock;
+ 	atomic_t			guilty;
+ 	unsigned long			ras_counter_ce;
+ 	unsigned long			ras_counter_ue;
+-- 
+2.25.1
 
-[…]
->> Am 18.04.22 um 18:44 schrieb David Yat Sin:
->>
->> In the commit message summary, you could reorder some words:
->>
->> Add CRIU support for GWS queues
->>
->>> Adding support to checkpoint/restore GWS(Global Wave Sync) queues.
->>
->> s/Adding/Add/
-
-Did you miss the two comments above?
-
->> Please add a space before the (.
-> ACK
->>
->> How can this be tested?
-> We have some internal tests that can we be used to specifically test this feature.
-
-Nice. Are you going to publish these in the future?
-
->>> Signed-off-by: David Yat Sin <david.yatsin@amd.com>
->>> ---
->>>    drivers/gpu/drm/amd/amdkfd/kfd_priv.h                  |  2 +-
->>>    drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c | 10 +++++++---
->>>    2 files changed, 8 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
->>> b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
->>> index f36062be9ca8..192dbef04c43 100644
->>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
->>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
->>> @@ -1102,7 +1102,7 @@ struct kfd_criu_queue_priv_data {
->>>    	uint32_t priority;
->>>    	uint32_t q_percent;
->>>    	uint32_t doorbell_id;
->>> -	uint32_t is_gws;
->>> +	uint32_t gws;
->>
->> Why is the new name better?
-> The old variable (is_gws) was obtained from the queue_properties
-> structure during checkpoint and is only used temporarily during queue
-> creation, so this variable cannot be used to determine whether a
-> queue as gws enabled. The new variable (gws) is obtained from the
-> queue structure. The name is changed to better reflect this.
-
-Further down you seem to use it like a boolean though. So a name
-reflecting that would be nice.
-
->>>    	uint32_t sdma_id;
->>>    	uint32_t eop_ring_buffer_size;
->>>    	uint32_t ctx_save_restore_area_size; diff --git
->>> a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
->>> b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
->>> index 6eca9509f2e3..4f58e671d39b 100644
->>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
->>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
->>> @@ -636,6 +636,8 @@ static int criu_checkpoint_queue(struct
->> kfd_process_device *pdd,
->>>    	q_data->ctx_save_restore_area_size =
->>>    		q->properties.ctx_save_restore_area_size;
->>>
->>> +	q_data->gws = !!q->gws;
->>> +
->>>    	ret = pqm_checkpoint_mqd(&pdd->process->pqm, q-> properties.queue_id, mqd, ctl_stack);
->>>    	if (ret) {
->>>    		pr_err("Failed checkpoint queue_mqd (%d)\n", ret); @@ -743,7
->>> +745,6 @@ static void set_queue_properties_from_criu(struct queue_properties *qp,
->>>    					  struct kfd_criu_queue_priv_data *q_data)
->>>    {
->>>    	qp->is_interop = false;
->>> -	qp->is_gws = q_data->is_gws;
->>>    	qp->queue_percent = q_data->q_percent;
->>>    	qp->priority = q_data->priority;
->>>    	qp->queue_address = q_data->q_address; @@ -826,12 +827,15 @@
->> int kfd_criu_restore_queue(struct kfd_process *p,
->>>    				NULL);
->>>    	if (ret) {
->>>    		pr_err("Failed to create new queue err:%d\n", ret);
->>> -		ret = -EINVAL;
->>> +		goto exit;
->>>    	}
->>>
->>> +	if (q_data->gws)
->>> +		ret = pqm_set_gws(&p->pqm, q_data->q_id, pdd->dev->gws);
->>> +
->>>    exit:
->>>    	if (ret)
->>> -		pr_err("Failed to create queue (%d)\n", ret);
->>> +		pr_err("Failed to restore queue (%d)\n", ret);
->>
->> Maybe separate this out, so it can be applied to stable series.
-
-Did you miss this comment?
-
->>>    	else
->>>    		pr_debug("Queue id %d was restored successfully\n", queue_id);
->>>
-
-
-Kind regards,
-
-Paul
