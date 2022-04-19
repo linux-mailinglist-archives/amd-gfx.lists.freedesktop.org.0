@@ -1,80 +1,37 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31E0150662C
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 Apr 2022 09:45:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30AB55064D8
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 Apr 2022 08:49:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E156B10E794;
-	Tue, 19 Apr 2022 07:45:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DBDE10E1B2;
+	Tue, 19 Apr 2022 06:49:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 418D010E19E
- for <amd-gfx@lists.freedesktop.org>; Mon, 18 Apr 2022 19:48:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1650311316;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=xoFC0RlqU29MoZ59ErURITWrPmQFVCqFinpLIIkANfM=;
- b=abm8T/oC3efv8jtDyYYMQHn0xoN0IvtVzF5git/OONh5IaGJcrOEcOsx0iVerxt+DIIfwn
- AuZ07buq2mJVe8uq2yvlgdPjE4zqqrgxuhq5w1vYXP9AcN66IxM4eBZvM3CCBwYcE0Wxnq
- ikDqpMldePS2dvCmtj4cXdWc17aG3Cw=
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
- [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-237-qQMB4uvSNdqpvEym5WcQOg-1; Mon, 18 Apr 2022 15:48:36 -0400
-X-MC-Unique: qQMB4uvSNdqpvEym5WcQOg-1
-Received: by mail-qt1-f198.google.com with SMTP id
- bb32-20020a05622a1b2000b002f1f41e6caeso3301158qtb.19
- for <amd-gfx@lists.freedesktop.org>; Mon, 18 Apr 2022 12:48:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=xoFC0RlqU29MoZ59ErURITWrPmQFVCqFinpLIIkANfM=;
- b=Unvb8+q3xqyw+8T/sgoxQjvhoo0NwdbBTmphcJb3Npq8XYeryrbply1T1JkyAeBN2c
- L2M+YcDdpUa6N1YTvB3kXr1FuVUZzgjelHudaepx+A8ZYj0phRXHOL8jp64PIWghCwKw
- YfP0bj7ydDpVHU92HZu5DTODhs8UNzpAbFVMZElr7FJ97Rhm/6ggdgMdOlz1KY0QbWwG
- HsyDMPnMODBL3yf8LTBtlF/e3yLFgdt36XrzLQ7nWuB31w7iaUIZ2fB0rFWo2bPCV0eY
- I5X8IbAwkPbOSM684lho+LOn6HFKiLQGaCjoWSa9AtAWzDo4QbveiMwrGNJoXsl6xv8g
- 3AKw==
-X-Gm-Message-State: AOAM531RCvy5GhcqKeovnwn+p3iv6RrXewKqIUE3UM96WHE1cmTUnBEO
- Gl3Xk1Rh4I/VPDQ55sXsvLXL6PGVNe7R8gESoELExlPlhb0StsxBhxQSvXnTVUnoREa0O+RdbHv
- WI8v4uL7dsYxCpN2xEKh2sQiogw==
-X-Received: by 2002:a37:5502:0:b0:67e:a143:80da with SMTP id
- j2-20020a375502000000b0067ea14380damr7634841qkb.329.1650311315542; 
- Mon, 18 Apr 2022 12:48:35 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJygpNhttVMJUTFKmX/4Fl6amPuHUl9AtPkfNHtmHbJyX+T1xlwpJ6/GzrDPFtzLWBf4yMrmnA==
-X-Received: by 2002:a37:5502:0:b0:67e:a143:80da with SMTP id
- j2-20020a375502000000b0067ea14380damr7634826qkb.329.1650311315300; 
- Mon, 18 Apr 2022 12:48:35 -0700 (PDT)
-Received: from dell-per740-01.7a2m.lab.eng.bos.redhat.com
- (nat-pool-bos-t.redhat.com. [66.187.233.206])
- by smtp.gmail.com with ESMTPSA id
- 3-20020ac85903000000b002ee83037459sm8393773qty.42.2022.04.18.12.48.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 18 Apr 2022 12:48:34 -0700 (PDT)
-From: Tom Rix <trix@redhat.com>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@linux.ie, daniel@ffwll.ch, stylon.wang@amd.com, Jun.Lei@amd.com,
- wenjing.liu@amd.com
-Subject: [PATCH] drm/amd/display: add virtual_setup_stream_attribute decl to
- header
-Date: Mon, 18 Apr 2022 15:48:30 -0400
-Message-Id: <20220418194830.3266024-1-trix@redhat.com>
-X-Mailer: git-send-email 2.27.0
+Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 999FD10E1B2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 Apr 2022 06:49:25 +0000 (UTC)
+Received: from [192.168.0.2] (ip5f5ae90d.dynamic.kabel-deutschland.de
+ [95.90.233.13])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: pmenzel)
+ by mx.molgen.mpg.de (Postfix) with ESMTPSA id 0D03C61CCD785;
+ Tue, 19 Apr 2022 08:49:23 +0200 (CEST)
+Message-ID: <e159d11b-069d-1c09-40f2-e5438eb9ef5a@molgen.mpg.de>
+Date: Tue, 19 Apr 2022 08:49:22 +0200
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"; x-default=true
-X-Mailman-Approved-At: Tue, 19 Apr 2022 07:45:11 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v3 1/2] drm/amdkfd: Fix GWS queue count
+Content-Language: en-US
+To: David Yat Sin <david.yatsin@amd.com>
+References: <20220419013227.2509204-1-david.yatsin@amd.com>
+From: Paul Menzel <pmenzel@molgen.mpg.de>
+In-Reply-To: <20220419013227.2509204-1-david.yatsin@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,39 +43,232 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tom Rix <trix@redhat.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Felix.Kuehling@amd.com, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Smatch reports this issue
-virtual_link_hwss.c:32:6: warning: symbol
-  'virtual_setup_stream_attribute' was not declared.
-  Should it be static?
+Dear David,
 
-virtual_setup_stream_attribute is only used in
-virtual_link_hwss.c, but the other functions in the
-file are declared in the header file and used elsewhere.
-For consistency, add the virtual_setup_stream_attribute
-decl to virtual_link_hwss.h.
 
-Signed-off-by: Tom Rix <trix@redhat.com>
----
- drivers/gpu/drm/amd/display/dc/virtual/virtual_link_hwss.h | 1 +
- 1 file changed, 1 insertion(+)
+Thank you for rerolling the patches.
 
-diff --git a/drivers/gpu/drm/amd/display/dc/virtual/virtual_link_hwss.h b/drivers/gpu/drm/amd/display/dc/virtual/virtual_link_hwss.h
-index e6bcb4bb0f3a..fbcbc5afb47d 100644
---- a/drivers/gpu/drm/amd/display/dc/virtual/virtual_link_hwss.h
-+++ b/drivers/gpu/drm/amd/display/dc/virtual/virtual_link_hwss.h
-@@ -28,6 +28,7 @@
- #include "core_types.h"
- 
- void virtual_setup_stream_encoder(struct pipe_ctx *pipe_ctx);
-+void virtual_setup_stream_attribute(struct pipe_ctx *pipe_ctx);
- void virtual_reset_stream_encoder(struct pipe_ctx *pipe_ctx);
- const struct link_hwss *get_virtual_link_hwss(void);
- 
--- 
-2.27.0
+Am 19.04.22 um 03:32 schrieb David Yat Sin:
+> dqm->gws_queue_count and pdd->qpd.mapped_gws_queue need to be updated
+> each time the queue gets evicted.
+> 
+> Fixes: b8020b0304c8 ("drm/amdkfd: Enable over-subscription with >1 GWS queue")
+> 
 
+For the future, no blank line is needed to separate the Fixes tag from 
+the rest of the block.
+
+
+Kind regards,
+
+Paul
+
+
+> Signed-off-by: David Yat Sin <david.yatsin@amd.com>
+> Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+> ---
+>   .../drm/amd/amdkfd/kfd_device_queue_manager.c | 83 +++++++++----------
+>   1 file changed, 37 insertions(+), 46 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+> index acf4f7975850..198672264492 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+> @@ -130,19 +130,33 @@ void program_sh_mem_settings(struct device_queue_manager *dqm,
+>   }
+>   
+>   static void increment_queue_count(struct device_queue_manager *dqm,
+> -			enum kfd_queue_type type)
+> +				  struct qcm_process_device *qpd,
+> +				  struct queue *q)
+>   {
+>   	dqm->active_queue_count++;
+> -	if (type == KFD_QUEUE_TYPE_COMPUTE || type == KFD_QUEUE_TYPE_DIQ)
+> +	if (q->properties.type == KFD_QUEUE_TYPE_COMPUTE ||
+> +	    q->properties.type == KFD_QUEUE_TYPE_DIQ)
+>   		dqm->active_cp_queue_count++;
+> +
+> +	if (q->properties.is_gws) {
+> +		dqm->gws_queue_count++;
+> +		qpd->mapped_gws_queue = true;
+> +	}
+>   }
+>   
+>   static void decrement_queue_count(struct device_queue_manager *dqm,
+> -			enum kfd_queue_type type)
+> +				  struct qcm_process_device *qpd,
+> +				  struct queue *q)
+>   {
+>   	dqm->active_queue_count--;
+> -	if (type == KFD_QUEUE_TYPE_COMPUTE || type == KFD_QUEUE_TYPE_DIQ)
+> +	if (q->properties.type == KFD_QUEUE_TYPE_COMPUTE ||
+> +	    q->properties.type == KFD_QUEUE_TYPE_DIQ)
+>   		dqm->active_cp_queue_count--;
+> +
+> +	if (q->properties.is_gws) {
+> +		dqm->gws_queue_count--;
+> +		qpd->mapped_gws_queue = false;
+> +	}
+>   }
+>   
+>   /*
+> @@ -412,7 +426,7 @@ static int create_queue_nocpsch(struct device_queue_manager *dqm,
+>   	list_add(&q->list, &qpd->queues_list);
+>   	qpd->queue_count++;
+>   	if (q->properties.is_active)
+> -		increment_queue_count(dqm, q->properties.type);
+> +		increment_queue_count(dqm, qpd, q);
+>   
+>   	/*
+>   	 * Unconditionally increment this counter, regardless of the queue's
+> @@ -601,13 +615,8 @@ static int destroy_queue_nocpsch_locked(struct device_queue_manager *dqm,
+>   		deallocate_vmid(dqm, qpd, q);
+>   	}
+>   	qpd->queue_count--;
+> -	if (q->properties.is_active) {
+> -		decrement_queue_count(dqm, q->properties.type);
+> -		if (q->properties.is_gws) {
+> -			dqm->gws_queue_count--;
+> -			qpd->mapped_gws_queue = false;
+> -		}
+> -	}
+> +	if (q->properties.is_active)
+> +		decrement_queue_count(dqm, qpd, q);
+>   
+>   	return retval;
+>   }
+> @@ -700,12 +709,11 @@ static int update_queue(struct device_queue_manager *dqm, struct queue *q,
+>   	 * dqm->active_queue_count to determine whether a new runlist must be
+>   	 * uploaded.
+>   	 */
+> -	if (q->properties.is_active && !prev_active)
+> -		increment_queue_count(dqm, q->properties.type);
+> -	else if (!q->properties.is_active && prev_active)
+> -		decrement_queue_count(dqm, q->properties.type);
+> -
+> -	if (q->gws && !q->properties.is_gws) {
+> +	if (q->properties.is_active && !prev_active) {
+> +		increment_queue_count(dqm, &pdd->qpd, q);
+> +	} else if (!q->properties.is_active && prev_active) {
+> +		decrement_queue_count(dqm, &pdd->qpd, q);
+> +	} else if (q->gws && !q->properties.is_gws) {
+>   		if (q->properties.is_active) {
+>   			dqm->gws_queue_count++;
+>   			pdd->qpd.mapped_gws_queue = true;
+> @@ -767,11 +775,7 @@ static int evict_process_queues_nocpsch(struct device_queue_manager *dqm,
+>   		mqd_mgr = dqm->mqd_mgrs[get_mqd_type_from_queue_type(
+>   				q->properties.type)];
+>   		q->properties.is_active = false;
+> -		decrement_queue_count(dqm, q->properties.type);
+> -		if (q->properties.is_gws) {
+> -			dqm->gws_queue_count--;
+> -			qpd->mapped_gws_queue = false;
+> -		}
+> +		decrement_queue_count(dqm, qpd, q);
+>   
+>   		if (WARN_ONCE(!dqm->sched_running, "Evict when stopped\n"))
+>   			continue;
+> @@ -817,7 +821,7 @@ static int evict_process_queues_cpsch(struct device_queue_manager *dqm,
+>   			continue;
+>   
+>   		q->properties.is_active = false;
+> -		decrement_queue_count(dqm, q->properties.type);
+> +		decrement_queue_count(dqm, qpd, q);
+>   	}
+>   	pdd->last_evict_timestamp = get_jiffies_64();
+>   	retval = execute_queues_cpsch(dqm,
+> @@ -888,11 +892,7 @@ static int restore_process_queues_nocpsch(struct device_queue_manager *dqm,
+>   		mqd_mgr = dqm->mqd_mgrs[get_mqd_type_from_queue_type(
+>   				q->properties.type)];
+>   		q->properties.is_active = true;
+> -		increment_queue_count(dqm, q->properties.type);
+> -		if (q->properties.is_gws) {
+> -			dqm->gws_queue_count++;
+> -			qpd->mapped_gws_queue = true;
+> -		}
+> +		increment_queue_count(dqm, qpd, q);
+>   
+>   		if (WARN_ONCE(!dqm->sched_running, "Restore when stopped\n"))
+>   			continue;
+> @@ -950,7 +950,7 @@ static int restore_process_queues_cpsch(struct device_queue_manager *dqm,
+>   			continue;
+>   
+>   		q->properties.is_active = true;
+> -		increment_queue_count(dqm, q->properties.type);
+> +		increment_queue_count(dqm, &pdd->qpd, q);
+>   	}
+>   	retval = execute_queues_cpsch(dqm,
+>   				KFD_UNMAP_QUEUES_FILTER_DYNAMIC_QUEUES, 0);
+> @@ -1378,7 +1378,7 @@ static int create_kernel_queue_cpsch(struct device_queue_manager *dqm,
+>   			dqm->total_queue_count);
+>   
+>   	list_add(&kq->list, &qpd->priv_queue_list);
+> -	increment_queue_count(dqm, kq->queue->properties.type);
+> +	increment_queue_count(dqm, qpd, kq->queue);
+>   	qpd->is_debug = true;
+>   	execute_queues_cpsch(dqm, KFD_UNMAP_QUEUES_FILTER_DYNAMIC_QUEUES, 0);
+>   	dqm_unlock(dqm);
+> @@ -1392,7 +1392,7 @@ static void destroy_kernel_queue_cpsch(struct device_queue_manager *dqm,
+>   {
+>   	dqm_lock(dqm);
+>   	list_del(&kq->list);
+> -	decrement_queue_count(dqm, kq->queue->properties.type);
+> +	decrement_queue_count(dqm, qpd, kq->queue);
+>   	qpd->is_debug = false;
+>   	execute_queues_cpsch(dqm, KFD_UNMAP_QUEUES_FILTER_ALL_QUEUES, 0);
+>   	/*
+> @@ -1467,7 +1467,7 @@ static int create_queue_cpsch(struct device_queue_manager *dqm, struct queue *q,
+>   	qpd->queue_count++;
+>   
+>   	if (q->properties.is_active) {
+> -		increment_queue_count(dqm, q->properties.type);
+> +		increment_queue_count(dqm, qpd, q);
+>   
+>   		execute_queues_cpsch(dqm,
+>   				KFD_UNMAP_QUEUES_FILTER_DYNAMIC_QUEUES, 0);
+> @@ -1683,15 +1683,11 @@ static int destroy_queue_cpsch(struct device_queue_manager *dqm,
+>   	list_del(&q->list);
+>   	qpd->queue_count--;
+>   	if (q->properties.is_active) {
+> -		decrement_queue_count(dqm, q->properties.type);
+> +		decrement_queue_count(dqm, qpd, q);
+>   		retval = execute_queues_cpsch(dqm,
+>   				KFD_UNMAP_QUEUES_FILTER_DYNAMIC_QUEUES, 0);
+>   		if (retval == -ETIME)
+>   			qpd->reset_wavefronts = true;
+> -		if (q->properties.is_gws) {
+> -			dqm->gws_queue_count--;
+> -			qpd->mapped_gws_queue = false;
+> -		}
+>   	}
+>   
+>   	/*
+> @@ -1932,7 +1928,7 @@ static int process_termination_cpsch(struct device_queue_manager *dqm,
+>   	/* Clean all kernel queues */
+>   	list_for_each_entry_safe(kq, kq_next, &qpd->priv_queue_list, list) {
+>   		list_del(&kq->list);
+> -		decrement_queue_count(dqm, kq->queue->properties.type);
+> +		decrement_queue_count(dqm, qpd, kq->queue);
+>   		qpd->is_debug = false;
+>   		dqm->total_queue_count--;
+>   		filter = KFD_UNMAP_QUEUES_FILTER_ALL_QUEUES;
+> @@ -1945,13 +1941,8 @@ static int process_termination_cpsch(struct device_queue_manager *dqm,
+>   		else if (q->properties.type == KFD_QUEUE_TYPE_SDMA_XGMI)
+>   			deallocate_sdma_queue(dqm, q);
+>   
+> -		if (q->properties.is_active) {
+> -			decrement_queue_count(dqm, q->properties.type);
+> -			if (q->properties.is_gws) {
+> -				dqm->gws_queue_count--;
+> -				qpd->mapped_gws_queue = false;
+> -			}
+> -		}
+> +		if (q->properties.is_active)
+> +			decrement_queue_count(dqm, qpd, q);
+>   
+>   		dqm->total_queue_count--;
+>   	}
