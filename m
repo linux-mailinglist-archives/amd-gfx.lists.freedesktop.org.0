@@ -2,69 +2,38 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25BF050A052
-	for <lists+amd-gfx@lfdr.de>; Thu, 21 Apr 2022 15:06:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F189450A056
+	for <lists+amd-gfx@lfdr.de>; Thu, 21 Apr 2022 15:06:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 447AB10E344;
-	Thu, 21 Apr 2022 13:06:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B5AB10E3C2;
+	Thu, 21 Apr 2022 13:06:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com
- [IPv6:2607:f8b0:4864:20::102f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 894A510E370;
- Thu, 21 Apr 2022 09:03:22 +0000 (UTC)
-Received: by mail-pj1-x102f.google.com with SMTP id md4so4372890pjb.4;
- Thu, 21 Apr 2022 02:03:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id;
- bh=B0+tpECkjfe5fDGtISyAD3Lzpd0VL9h6G8D6KejEZfU=;
- b=M0YfVepMgFZBtbJpX/BDsVMwuOn2WMjeOT4HUmLIbWcrytXgyCbKQxwkC9dhJHEkJO
- pMSQBCbUeJRmVfo2LzBSfsIeandEKZhy7N2R7afD+I/CEg9KEKEv+BTPwEiwabZwqWHA
- x8b3Sa3cApk4ujtccHH0jbB1mlS9K1sfLkstVXN67bnZsctpFs6z93FE/df4hAn+UoIw
- 0o3DHlKgvUIIe/f/Rp6+sFnZ9nn5ZUPxzobv9pznpnC8+BVBNd/qfxe/Ql0qPEKex5RC
- wEUSYbKMIjdLUA+ypQr2q/FP1aV7i1TjIxOiDZQ4Eg/pU9g0Bchuxcb+jYsHhu56IeLm
- PxEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=B0+tpECkjfe5fDGtISyAD3Lzpd0VL9h6G8D6KejEZfU=;
- b=igZjprVv7f83U6dCqP3zqlsEnxcx2YhLSx8R5LVRliqBXviGBj/1iW505pg4fqD/zf
- NWhG5jRjDEcJlmiBJeCyyYkEW41lGURT9OE0CGcHAZs59J7ENS08T5bl/nC/FblxtwFB
- 2RBTtWEKGb/4YJXsSssOStchpj93fiIp6K0stSytwgld5FGIXZVigJz6h4fz4cUAeHSI
- 01kr3wZixiTyd8jPj3+5x4CxFaqoLrbjxMWxXC+OhrSgFrYcDZvFGAwf7iOVHWM0UNdI
- Bi0SY3+LPdcXrX39nolGkdlN04lT1P3Oe6zPA6dutl7yQVPuJIBOMTZy0DjJVBrOUKZG
- zMJw==
-X-Gm-Message-State: AOAM533nFnLYCOOTEQT6u35Ox9i1yqA/lqXhVTvf9V8Zrksy0cAv8h4d
- Xp+xNIk4tc1B/Z0d2AbT9ZU=
-X-Google-Smtp-Source: ABdhPJzGWXboLc6+AxBDqQ5cnfywyDHSQdg1utvBr/x/CsXVWXcxoOWHlY8LpPRT4YwB4syhAGVU8Q==
-X-Received: by 2002:a17:90b:3503:b0:1d1:c700:e484 with SMTP id
- ls3-20020a17090b350300b001d1c700e484mr9271071pjb.245.1650531802071; 
- Thu, 21 Apr 2022 02:03:22 -0700 (PDT)
-Received: from localhost.localdomain ([159.226.95.43])
- by smtp.googlemail.com with ESMTPSA id
- 3-20020a17090a190300b001cd4989ff60sm1957980pjg.39.2022.04.21.02.03.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 21 Apr 2022 02:03:21 -0700 (PDT)
-From: Miaoqian Lin <linmq006@gmail.com>
+Received: from mail.meizu.com (edge07.meizu.com [112.91.151.210])
+ by gabe.freedesktop.org (Postfix) with ESMTP id ACDBE10EA82;
+ Thu, 21 Apr 2022 10:29:10 +0000 (UTC)
+Received: from IT-EXMB-1-125.meizu.com (172.16.1.125) by mz-mail11.meizu.com
+ (172.16.1.15) with Microsoft SMTP Server (TLS) id 14.3.487.0; Thu, 21 Apr
+ 2022 18:29:02 +0800
+Received: from meizu.meizu.com (172.16.137.70) by IT-EXMB-1-125.meizu.com
+ (172.16.1.125) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.14; Thu, 21 Apr
+ 2022 18:29:00 +0800
+From: Haowen Bai <baihaowen@meizu.com>
 To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>,
- Laktyushkin Dmytro <dmytro.laktyushkin@amd.com>,
- Solomon Chiu <solomon.chiu@amd.com>, Stylon Wang <stylon.wang@amd.com>,
- Victor Lu <victorchengchi.lu@amd.com>,
- Ilya Bakoulin <Ilya.Bakoulin@amd.com>, Melissa Wen <mwen@igalia.com>,
- Angus Wang <angus.wang@amd.com>, Fangzhi Zuo <Jerry.Zuo@amd.com>,
- Isabella Basso <isabbasso@riseup.net>,
- Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/amd/display: Fix memory leak in dcn21_clock_source_create
-Date: Thu, 21 Apr 2022 17:03:09 +0800
-Message-Id: <20220421090313.24864-1-linmq006@gmail.com>
-X-Mailer: git-send-email 2.17.1
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Alex Deucher
+ <alexander.deucher@amd.com>, =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie
+ <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+Subject: [PATCH] drm/amd/display: Remove useless code
+Date: Thu, 21 Apr 2022 18:28:58 +0800
+Message-ID: <1650536939-13778-1-git-send-email-baihaowen@meizu.com>
+X-Mailer: git-send-email 2.7.4
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [172.16.137.70]
+X-ClientProxiedBy: IT-EXMB-1-126.meizu.com (172.16.1.126) To
+ IT-EXMB-1-125.meizu.com (172.16.1.125)
 X-Mailman-Approved-At: Thu, 21 Apr 2022 13:06:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -77,30 +46,36 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linmq006@gmail.com
+Cc: Haowen Bai <baihaowen@meizu.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When dcn20_clk_src_construct() fails, we need to release clk_src.
+aux_rep only memset but no use at all, so we drop it.
 
-Fixes: 6f4e6361c3ff ("drm/amd/display: Add Renoir resource (v2)")
-Signed-off-by: Miaoqian Lin <linmq006@gmail.com>
+Signed-off-by: Haowen Bai <baihaowen@meizu.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/amd/display/dc/dce/dce_aux.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-index 3fe4bfbb98a0..faab59508d82 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-@@ -997,6 +997,7 @@ static struct clock_source *dcn21_clock_source_create(
- 		return &clk_src->base;
- 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c b/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c
+index 8e814000db62..29e20d92b0bb 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c
+@@ -565,13 +565,11 @@ int dce_aux_transfer_raw(struct ddc_service *ddc,
+ 	struct ddc *ddc_pin = ddc->ddc_pin;
+ 	struct dce_aux *aux_engine;
+ 	struct aux_request_transaction_data aux_req;
+-	struct aux_reply_transaction_data aux_rep;
+ 	uint8_t returned_bytes = 0;
+ 	int res = -1;
+ 	uint32_t status;
  
-+	kfree(clk_src);
- 	BREAK_TO_DEBUGGER();
- 	return NULL;
- }
+ 	memset(&aux_req, 0, sizeof(aux_req));
+-	memset(&aux_rep, 0, sizeof(aux_rep));
+ 
+ 	aux_engine = ddc->ctx->dc->res_pool->engines[ddc_pin->pin_data->en];
+ 	if (!acquire(aux_engine, ddc_pin)) {
 -- 
-2.17.1
+2.7.4
 
