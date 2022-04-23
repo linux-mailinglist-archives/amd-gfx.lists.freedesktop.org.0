@@ -1,60 +1,76 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A254B50DA33
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Apr 2022 09:33:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 614DF50DA2E
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Apr 2022 09:33:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2521310E7C3;
-	Mon, 25 Apr 2022 07:33:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A8B510E5A7;
+	Mon, 25 Apr 2022 07:33:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com
- [IPv6:2a00:1450:4864:20::12b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD10810E489
- for <amd-gfx@lists.freedesktop.org>; Sat, 23 Apr 2022 16:31:56 +0000 (UTC)
-Received: by mail-lf1-x12b.google.com with SMTP id g19so19314339lfv.2
- for <amd-gfx@lists.freedesktop.org>; Sat, 23 Apr 2022 09:31:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=date:from:to:subject:message-id:mime-version;
- bh=A+4bwDc/fxhJPoJinnNWLGQDdeldBdMLh6UUu6Sf/Wo=;
- b=I/yETCcU1EWGcca3bru3w6rEyIcL9mU6w9WXZJeUKRFxueETvMonguraWImj7nmMui
- K3pSEyMP/ifEb3mCTcE+N1CUbJ7ZTcLpLZVh1oxcUHwmxVYU0Tl6jeJtXmDymY/nEvSd
- /OG4ecC2OCpF7HmSMPffwEyNwn60EovbCvENQ3uJPgl2vP6guKdXwu/ZXa6AurLb0xsp
- GArRiEHCex9S8TSUQVdBR/nH1s6zCjmxnvjxux2olA37HFvhvJaM1Dysa4mHQyaCUpbR
- QwulnQWuPCc4fuXHi2t8GwZ1zaPbJgqffQ/UnGfRcZt/OfXp+cAwsDirtLqtArs+7o5E
- 8HwQ==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C910D10E174
+ for <amd-gfx@lists.freedesktop.org>; Sat, 23 Apr 2022 20:02:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1650744126;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=TmI4HuYyRoxvHL+vw/EIwCgtYuWPzs344Ybx3U2pVv8=;
+ b=OyieoyHuQbjMyCFGG4UwDwj/f391pV/30PgVAF2pFiUdon+CZPrpc+eNYQ51lVK12qqEuT
+ WSjBT8MW6wxLgHQe09rKzPwBW/HbhZWJpI4X/P0LZ2T+Lbdq5OJRNvkCC7+agu26FcGL9V
+ go45nFA1sLCkEZBCWUl3o1Cwa1sHcCo=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-602-G63JjZ9WN_6jJmjPtGn2Jg-1; Sat, 23 Apr 2022 16:02:02 -0400
+X-MC-Unique: G63JjZ9WN_6jJmjPtGn2Jg-1
+Received: by mail-qv1-f71.google.com with SMTP id
+ k10-20020ad45bea000000b0044c3ec9f75cso7126569qvc.4
+ for <amd-gfx@lists.freedesktop.org>; Sat, 23 Apr 2022 13:02:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:subject:message-id:mime-version;
- bh=A+4bwDc/fxhJPoJinnNWLGQDdeldBdMLh6UUu6Sf/Wo=;
- b=kBb/2cob9uubb3w/NQqXJXvcE2B/aHioYBH+QBCH1iKaYU10bgLk+V7tnu7+sLOsrN
- XgOLYsb3X6y/t1LelH13QR8ajhBFtI1LbCu+eAcBkgetM+uCF9kUbQMrAZTIbv5Bkzar
- J+NFfI5L44aptWzuxhMjni43GzRM5xnCheeqXb7rXxGRFUURvjF3PLXX9XJBLvaT4B89
- mA+eoksHWXIDZnu3/o6pZTTMZFtsuO7kDdYvJXHiZUnBUXiViXC1UOdtmkD0u6A0ax0S
- +2LTdKtgDlM/bhCZkvGJMQDWa5GsQCdWwTJImMuRgh7oTqAfVCK81r3AHwsJbtdOVLqD
- BUWg==
-X-Gm-Message-State: AOAM533gKN6WVE4cAmZpGNFSkzv9XPIkiQtSzrypeHJaxeiY8r1S+GLF
- uhuTWdnmRfe8HJUJtnxLbjfZORYtLw==
-X-Google-Smtp-Source: ABdhPJykNFrpY+p5YJCA0QcXSLUbwQqWyQo0T+wSZ8IscE4vS4RwvMCJkYT4Eg4Tf0TlP6/pchh+YA==
-X-Received: by 2002:a05:6512:1328:b0:445:cefe:f8b7 with SMTP id
- x40-20020a056512132800b00445cefef8b7mr7042999lfu.34.1650731514225; 
- Sat, 23 Apr 2022 09:31:54 -0700 (PDT)
-Received: from desktop (ppp85-141-144-80.pppoe.mtu-net.ru. [85.141.144.80])
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=TmI4HuYyRoxvHL+vw/EIwCgtYuWPzs344Ybx3U2pVv8=;
+ b=mLdAzRDQBzQ8Gb5TVkfImyOQpA9pUn7cvJAxf5u+C+qStiByGRsDYcEV6re2UMM44R
+ ZulLwGrebXI+FHEiWHyThG3MLmJzrv+MsaWKO6bp4RbVsS9qe7dhKAbqA6JDc7hho6ij
+ FClRxpnWXAsLDChbidnHtyYyxMvkrppP6Fvl7iNZyu2OfCyZ0uY2So58bwu5iTlqN0AU
+ buJ3Q5eDxW85WqWOV5AItat+sGVDfmFioVScem+rCD1PvwMZrn0kA073n2jk6vSPAqMG
+ AYKSxNoxmEChWjMDWGKpo3mY6uyMJA//XLntfbDVKEDk3Q8P6Fh64alfBVqTen2mzAwK
+ c9Ow==
+X-Gm-Message-State: AOAM532leh1POg7+QYYpfc6wJDrgO5aNWDfZFJ2nR3+52InrEFPMTkPw
+ p90cZXXcw10uVkaYQbky1cALGNJiSXIDIXY5Zxn+1IvYBEL4V9jNXk6WoqjldVc5Nz7jBVAGYnS
+ 4XIsjtyj8nOXbj9sAOT4uMRUk7Q==
+X-Received: by 2002:a05:622a:1b91:b0:2f3:45f0:d9fb with SMTP id
+ bp17-20020a05622a1b9100b002f345f0d9fbmr7608099qtb.147.1650744122294; 
+ Sat, 23 Apr 2022 13:02:02 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwmfh+uSxEWKmvVX8l/LATjWvc9VwFZNJueNhicXlKtCgy74l29do1f86Ksx39bNBVQ+S9p3w==
+X-Received: by 2002:a05:622a:1b91:b0:2f3:45f0:d9fb with SMTP id
+ bp17-20020a05622a1b9100b002f345f0d9fbmr7608083qtb.147.1650744122071; 
+ Sat, 23 Apr 2022 13:02:02 -0700 (PDT)
+Received: from dell-per740-01.7a2m.lab.eng.bos.redhat.com
+ (nat-pool-bos-t.redhat.com. [66.187.233.206])
  by smtp.gmail.com with ESMTPSA id
- d11-20020a19384b000000b0046bbd144dfesm671990lfj.125.2022.04.23.09.31.53
- for <amd-gfx@lists.freedesktop.org>
+ e26-20020ac84b5a000000b002f35d11c5dfsm2348748qts.65.2022.04.23.13.02.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 23 Apr 2022 09:31:53 -0700 (PDT)
-Date: Sat, 23 Apr 2022 19:31:45 +0300
-From: Krylov Michael <sqarert@gmail.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: Screen corruption using radeon kernel driver
-Message-ID: <20220423193145.3301ed06@desktop>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-pc-linux-gnu)
+ Sat, 23 Apr 2022 13:02:01 -0700 (PDT)
+From: Tom Rix <trix@redhat.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@linux.ie, daniel@ffwll.ch
+Subject: [PATCH] drm/radeon: change cac_weights_* to static
+Date: Sat, 23 Apr 2022 16:01:55 -0400
+Message-Id: <20220423200155.1735336-1-trix@redhat.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/z0sqPSHN8+i79pqpAS4ynzJ";
- protocol="application/pgp-signature"; micalg=pgp-sha512
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"; x-default=true
 X-Mailman-Approved-At: Mon, 25 Apr 2022 07:33:10 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,73 +83,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Tom Rix <trix@redhat.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---Sig_/z0sqPSHN8+i79pqpAS4ynzJ
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Sparse reports these issues
+si_dpm.c:332:26: warning: symbol 'cac_weights_pitcairn' was not declared. Should it be static?
+si_dpm.c:1088:26: warning: symbol 'cac_weights_oland' was not declared. Should it be static?
 
-Hello!=20
+Both of these variables are only used in si_dpm.c.  Single file variables
+should be static, so change their storage-class specifiers to static.
 
-After updating my Linux kernel from version 4.19 (Debian 10 version) to
-5.10 (packaged with Debian 11), I've noticed that the image
-displayed on my older computer, 32-bit Pentium 4 using ATI Radeon X1950
-AGP video card is severely corrupted in the graphical (Xorg and Wayland)
-mode: all kinds of black and white stripes across the screen, some
-letters missing, etc.
+Signed-off-by: Tom Rix <trix@redhat.com>
+---
+ drivers/gpu/drm/radeon/si_dpm.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-I've checked several options (Xorg drivers, Wayland instead of
-Xorg, radeon.agpmode=3D-1 in kernel command line and so on), but the
-problem persisted. I've managed to find that the problem was in the
-kernel, as everything worked well with 4.19 kernel with everything
-else being from Debian 11.
+diff --git a/drivers/gpu/drm/radeon/si_dpm.c b/drivers/gpu/drm/radeon/si_dpm.c
+index 3add39c1a689..fbf968e3f6d7 100644
+--- a/drivers/gpu/drm/radeon/si_dpm.c
++++ b/drivers/gpu/drm/radeon/si_dpm.c
+@@ -329,7 +329,7 @@ static const struct si_dte_data dte_data_malta =
+ 	true
+ };
+ 
+-struct si_cac_config_reg cac_weights_pitcairn[] =
++static struct si_cac_config_reg cac_weights_pitcairn[] =
+ {
+ 	{ 0x0, 0x0000ffff, 0, 0x8a, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x0, 0xffff0000, 16, 0x0, SISLANDS_CACCONFIG_CGIND },
+@@ -1085,7 +1085,7 @@ static const struct si_dte_data dte_data_venus_pro =
+ 	true
+ };
+ 
+-struct si_cac_config_reg cac_weights_oland[] =
++static struct si_cac_config_reg cac_weights_oland[] =
+ {
+ 	{ 0x0, 0x0000ffff, 0, 0x82, SISLANDS_CACCONFIG_CGIND },
+ 	{ 0x0, 0xffff0000, 16, 0x4F, SISLANDS_CACCONFIG_CGIND },
+-- 
+2.27.0
 
-I have managed to find the culprit of that corruption, that is the
-commit 33b3ad3788aba846fc8b9a065fe2685a0b64f713 on the linux kernel.
-Reverting this commit and building the kernel with that commit reverted
-fixes the problem. Disabling HIMEM also gets rid of that problem. But it
-also leaves the system with less that 1G of RAM, which is, of course,
-undesirable.
-
-Apparently this problem is somewhat known, as I can tell after googling
-for the commit id, see this link for example:
-https://lkml.org/lkml/2020/1/9/518=20
-
-Mageia distro, for example, reverted this commit in the kernel they are
-building:
-
-http://sophie.zarb.org/distrib/Mageia/7/i586/by-pkgid/b9193a4f85192bc57f4d7=
-70fb9bb399c/files/32
-
-I've reported this bug to Debian bugtracker, checked the recent verion
-of the kernel (5.17), bug still persists. Here's a link to the Debian
-bug page:
-
-https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D993670
-
-I'm not sure if reverting this commit is the correct way to go, so if
-you need to check any changes/patches that I could apply and test on
-the real hardware, I'll be glad to do that (but please keep in mind
-that testing could take some time, I don't have access to this computer
-24/7, but I'll do my best to respond ASAP).
-
-Thanks in advance!
-
---Sig_/z0sqPSHN8+i79pqpAS4ynzJ
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEq9zNqT9shXHTn/gRzNfc0dbmrQAFAmJkKfEACgkQzNfc0dbm
-rQC5Igf+MRIOJtqUYPUYBwpQmXbOQimRewkuB593yxmHvaObwREFB4lF02UGL2PJ
-80gGKdqxnsLIqS6g+nLShHVl3tJHBNBT8shai8DONJxIqqWS1F55cp+i22CWLQej
-tpWbxN2+xniLHxFBllmCQljQTO/sHAl6NGNL+kS2EFLmqHUBz44vA7tSkX3YX5Vg
-tKSTOIQTDRofpLeQiVfyGp5NhMWR/vpu+XNTXNwh8qU9bR908Z6EG1gHvZAHM1q0
-AJrT+kfXZSuBbxW35gnxqWWaY6MksNlE1P2EPY0erSAlpYMfJ9h0Tja/cIQC2oDX
-pdxTegJLcq2WiM6xN0Bo4Fzbxdc56A==
-=TRlD
------END PGP SIGNATURE-----
-
---Sig_/z0sqPSHN8+i79pqpAS4ynzJ--
