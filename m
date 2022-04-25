@@ -2,91 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78E9C50D9CF
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Apr 2022 08:56:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F63250DBC7
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Apr 2022 10:56:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA58310E430;
-	Mon, 25 Apr 2022 06:56:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52C5F10E051;
+	Mon, 25 Apr 2022 08:56:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2050.outbound.protection.outlook.com [40.107.92.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE03910E07F
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Apr 2022 06:56:08 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FutToNl6F2+dxpk4KIB5J+9oK3t6MBZFLKjCkmRVmZRtIkHF4Z9QMiXNvzzgX5cAquvOmlik+RHs8UWSJ+D7366qwf1x0PU/Xgo/k8+RQlqdlRojuUaYI6v+7reZ8o2hQwkIuoMXdV//0FyTUqx8RN/xRlUdUGTTICqlwVRGMqwA+z5Zera91LwU1cTt6nuDwlmPyAOiY8gs+Zku1Qp0BkHGhM5MTRLHQUn+Lviu9wuj+6r/IhTfLxTIuG6y52uxIHwJ9bh4z5hF+lQauU8dRtyO+zUHdwGILxldh8H7ci2SbpKOMIshKMj5XLI8fKqGGBsU7KRfexJ8mr4lal5VSg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hACqZkooqHZsdq1iQYHi4AwlXsMdqiy/7V5138zrMSo=;
- b=ha8Gv3VZO/C6G9s764avO+4vmzC5GVOXNBtGRVb2CIxIGsATrVVPS7pLGmMKhm7usqmXniQjq1WLWyo5WpctTmi2AeFUZlKUylg6m8x1ZlZAihEAQm1+jxp2e38bmHQNWSSJCe98ulnMrVH4QYEfFJ0+N/CyKY86hfaOq9K5BsKJgYY+RdDXQ9CNBNVobKJ3NqX6TUTcKoX0CIifLzQjlo0UCxJyztHb8rVgZoUFhwjRKZ4ot8IhaxNlfU8jb7mnhLORk9/lwPmh8NCZ3DM834KXogBS/nU4PlpvWA97mSQ2L6wacW5GR/lLzBdz36fpuOUFhqeiwNVJnb1ZbfC+vA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hACqZkooqHZsdq1iQYHi4AwlXsMdqiy/7V5138zrMSo=;
- b=jPBJ/JCfHA32lmnoBSWswWGZ7XZ/Oni+fMiLCwDpbcXAL5scU2WVZt2/vSh25uzC5mufrpgPCRuP+qvcWWvJ1pBXXFZiJMNpTJr9J18HhqPRFKI0Lix6EQkkxc0rsumQR72mtTJV/n+MPdK1muNwDQeH2HtBSt9OuDkTb09rcjg=
-Received: from BN9PR03CA0096.namprd03.prod.outlook.com (2603:10b6:408:fd::11)
- by CY4PR12MB1287.namprd12.prod.outlook.com (2603:10b6:903:40::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.18; Mon, 25 Apr
- 2022 06:56:05 +0000
-Received: from BN8NAM11FT038.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:fd:cafe::a8) by BN9PR03CA0096.outlook.office365.com
- (2603:10b6:408:fd::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.14 via Frontend
- Transport; Mon, 25 Apr 2022 06:56:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT038.mail.protection.outlook.com (10.13.176.246) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5186.14 via Frontend Transport; Mon, 25 Apr 2022 06:56:04 +0000
-Received: from prike.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Mon, 25 Apr
- 2022 01:56:02 -0500
-From: Prike Liang <Prike.Liang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: keep mmhub clock gating being enabled during
- s2idle suspend
-Date: Mon, 25 Apr 2022 14:52:33 +0800
-Message-ID: <1650869553-28976-1-git-send-email-Prike.Liang@amd.com>
-X-Mailer: git-send-email 2.7.4
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com
+ [IPv6:2607:f8b0:4864:20::62c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D979510E051
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 Apr 2022 08:56:18 +0000 (UTC)
+Received: by mail-pl1-x62c.google.com with SMTP id j8so25493871pll.11
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 Apr 2022 01:56:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:from:date:message-id:subject:to:cc;
+ bh=nTikMFNvmRkqRzBP3pzt0Tft2QZ8Ti1O8GBBlN6MPrE=;
+ b=GRZiGYxgAMrVd5a0RLPWGGYZIJnDDrZ2vvbkLZVlrsxk1esgKgMS+RI4N3ljqNaJNo
+ laArTzYOODeKAEY6zTEp9Vfm2GA2EZSX/8rF+mPQhmFekyOutZyjKp98VNPgHdx+YB4e
+ 6MgGpJNVcpipFL3OhfHsCxR09OsLoxDO9pAeELysdFBG/+pU5YeJxdrpNqQ8StBhMVII
+ h91x78YJcyQRUFUJ42h9Vi/aqa7BsLCSHaEQTnfNDXUSXLCXuCISYlO+mDYkizTR5E1+
+ gC+JcS+A0yE6cXOjQok22iN+EOUQ5r2/6IHJGylZpx5RIdUPGdLn4Z8rBwO5wIpAeryq
+ Eezg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+ bh=nTikMFNvmRkqRzBP3pzt0Tft2QZ8Ti1O8GBBlN6MPrE=;
+ b=P6fvuw/foFd9nAErd3taN0hMHxhsa0N7OT4HvfFFfQoiSsvS6La7yim634Mhv8p8zj
+ 7vibXjxcXJ0w73NHPpQ2NJBqBp8Gjhv75SWOtzNaiMhmGMo1GDGnOSzYok/FdCLMN+FY
+ /hw09SIslq4TYw+UzgqQT4Ume7RLV1vvqrHHdtGwJlKcUHU7APYb3tyVNbvVPHLZAcOj
+ DNf1vuWetp4M4CKf0kS1XrqDhlNlJ24rNBvZtsQ9aGMNsZsWfn0QTLI3yfxAl5/SWPUp
+ 4Vp5qC1JAWP1MW92OqLnJ3liIRXozkFJjz3gBftDdskxuB2JhToFM5dyh5EQ4KtAs1zv
+ +dXg==
+X-Gm-Message-State: AOAM533E0mMJycdiQe7181C8aCKO1j1bMqkqB5ZChOsEgOAwddb6MeJZ
+ +Z4zJBO3s8hNlGBYHPkTsVpRt72sd8C8tPNMTdm/03esOPk=
+X-Google-Smtp-Source: ABdhPJzHCmjOr696cLesQ1RqGP8wIp6s/DLZXQ4qe/CrfMfBC8/IMX8cJKPAIwA4EP2xZJ07itBp4Msx9yRI2gyK0CU=
+X-Received: by 2002:a17:902:8506:b0:154:8692:a7ac with SMTP id
+ bj6-20020a170902850600b001548692a7acmr17030966plb.10.1650876978261; Mon, 25
+ Apr 2022 01:56:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0e15ec4a-9711-4a69-d248-08da2688aad5
-X-MS-TrafficTypeDiagnostic: CY4PR12MB1287:EE_
-X-Microsoft-Antispam-PRVS: <CY4PR12MB1287D6BE1902466C0625E9E0FBF89@CY4PR12MB1287.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TghTl/E8aJdOKN1tsHnmis86Bqgieb5q4pw21xgUAnyJsOx3mR5pPJ0uVfwuBfgtZrYGgWsXjvZoLj2OSnVAAmMjftuJ720t0JUClouArV7yHqcLbnEn1sMv9vyiWj5OApt8lM83XUaA5l290j3rN0okzwVNPg/SVDyA6Xv1AgF5TDk+9s1JKaTi8EKdWsGQK4V3+I6K5YSiWdbDhYTSiNUbwHpTsO+vC4im/0AvKKYmsBaYVtK2oBTxvIkqry6sefSxXN18aVFdNZH4YIGN4CSLsQvggtZZYOYIVv6F6987W2RwMDQF/TSuh8UbaNdz2exbsFvhK8rVJSdPPgMAz6/VJpiRTubntEb4jT9u0oqT/5fvq1PGekPniSYrbPCH4MC1JSoyS/EU3a0tr+lpyVdfEGg6735oegg3AsPYt0GKrsxD8OCH3tMPoQmTdfpebFC9v3whEAF7x36wzg9cG/3FaINTYiJhAq1DsfhGsuuIU1hgGSVyQFcrAfINjatj7UISmvmHsfYGPCQVagQyVlgHaMuXoMWH9t8muxY4nyRAEDjiEiBEkxTBdbXItWGdcu4Cr0rGwbX8nDFL9DHuOI8+YHUPCgJkev0tglcIhyU3KEcYmu9/dRx8sX3gLBQ3S0EzYtN6UvtjWlbBNWa9ZgJ08uHT/xQbEJRci9BwwpqzoM3imzJjOq9a6qU2u2UVFljpOfWNjsZGit5Csk0nsA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(83380400001)(36860700001)(40460700003)(5660300002)(82310400005)(81166007)(356005)(7696005)(6666004)(316002)(26005)(336012)(186003)(6916009)(54906003)(508600001)(426003)(8936002)(15650500001)(2906002)(47076005)(2616005)(16526019)(36756003)(4326008)(8676002)(70206006)(70586007)(86362001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2022 06:56:04.9269 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0e15ec4a-9711-4a69-d248-08da2688aad5
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT038.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1287
+From: Haohui Mai <ricetons@gmail.com>
+Date: Mon, 25 Apr 2022 16:56:05 +0800
+Message-ID: <CAHpOOhHucS2QJSW3-jyGg8v8AMoCp2nV0h7T2rL_TQf6EHRvaA@mail.gmail.com>
+Subject: [PATCH] Fix out-of-bound access for gfx_v10_0_ring_test_ib()
+To: amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,41 +58,33 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, Lijo.Lazar@amd.com,
- Prike Liang <Prike.Liang@amd.com>, ray.huang@amd.com
+Cc: emily.deng@amd.com, ckoenig.leichtzumerken@gmail.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Without MMHUB clock gating being enabled then MMHUB will not disconnect
-from DF and will result in DF C-state entry can't be accessed during S2idle
-suspend, and eventually s0ix entry will be blocked.
+The gfx_v10_0_ring_test_ib() function uses 20 bytes instead of 16
+bytes during the test. The patch sets the size of the allocation to be
+4-byte larger to match the actual usage.
 
-Signed-off-by: Prike Liang <Prike.Liang@amd.com>
+Signed-off-by: Haohui Mai <ricetons@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-index a455e59f41f4..20946bc7fc93 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-@@ -1151,6 +1151,16 @@ static int gmc_v10_0_set_clockgating_state(void *handle,
- 	int r;
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
- 
-+	/*
-+	 * The issue mmhub can't disconnect from DF with MMHUB clock gating being disabled
-+	 * is a new problem observed at DF 3.0.3, however with the same suspend sequence not
-+	 * seen any issue on the DF 3.0.2 series platform.
-+	 */
-+	if (adev->in_s0ix && adev->ip_versions[DF_HWIP][0] > IP_VERSION(3, 0, 2)) {
-+		dev_dbg(adev->dev, "keep mmhub clock gating being enabled for s0ix\n");
-+		return 0;
-+	}
-+
- 	r = adev->mmhub.funcs->set_clockgating(adev, state);
- 	if (r)
- 		return r;
--- 
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 9426e252d8aa..b131235826b1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -3830,7 +3830,7 @@ static int gfx_v10_0_ring_test_ib(struct
+amdgpu_ring *ring, long timeout)
+        gpu_addr = adev->wb.gpu_addr + (index * 4);
+        adev->wb.wb[index] = cpu_to_le32(0xCAFEDEAD);
+        memset(&ib, 0, sizeof(ib));
+-       r = amdgpu_ib_get(adev, NULL, 16,
++       r = amdgpu_ib_get(adev, NULL, 20,
+                                        AMDGPU_IB_POOL_DIRECT, &ib);
+        if (r)
+                goto err1;
+--
 2.25.1
-
