@@ -2,66 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA4065110B8
-	for <lists+amd-gfx@lfdr.de>; Wed, 27 Apr 2022 07:57:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DFD1511227
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 Apr 2022 09:13:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A45D10F868;
-	Wed, 27 Apr 2022 05:57:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A35DC10E332;
+	Wed, 27 Apr 2022 07:13:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com
- [IPv6:2a00:1450:4864:20::529])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B28110F69F
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 05:57:10 +0000 (UTC)
-Received: by mail-ed1-x529.google.com with SMTP id k27so703949edk.4
- for <amd-gfx@lists.freedesktop.org>; Tue, 26 Apr 2022 22:57:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :references:from:in-reply-to:content-transfer-encoding;
- bh=VGv89n+3B9KwwJ5zjZaM9oIa30mfDPNqbxoqSmMOQZE=;
- b=Q3H08rhOr1PgbsEvfvo6tWueTCE3YmNtQf856LLcKRng59MyA/Xk4QdE3JMqxklx87
- v6c+szZYDItD6hdWKZYA5/tNXN0qKoSs7jp4M1T72WEj6wJST4d4gdTjnNBTixyFMKft
- Isy2x3cciJi7zxS7dM8sHUbtRXmZGLtlXyTWnmPgLMiSp5PNFabK5Tyo/bvyhlaHzqVt
- Djqv/UPTPZf8x1Pjg70zon6Q4H52w7XiFzw8hMR56PjZbPTxZkf2vkGU82Cz9QEGKHjU
- Ph2RdrAUsrcR+Raw47EHfxaQsb5gn7IlrVowZA8oo+/cxaBEFYEFBlO4QnH3sWTUPdiu
- vK5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:references:from:in-reply-to
- :content-transfer-encoding;
- bh=VGv89n+3B9KwwJ5zjZaM9oIa30mfDPNqbxoqSmMOQZE=;
- b=f8fH0ZhGPMPl6iznJHgppz81dwok0ezg96Odt4GaepU5kQHL5aRpc5OED8WW+Sysc1
- i75LYkfHLbdvQsfQ0YFwnkwUaBmAH50eFirJiMhMi5+9YzfynKZVHqr8vAB3py0n5eCz
- wAn+7etIxUp73+G3T3swz6RmZz0wN3nFyebQeeaZT8vhd4KwtBjwBGJIJQMmu9gwPbY6
- H5LQQBQqWS2tDr2YhqHRdr8EFZs+6Cet/5olAAproB8+EPGAb0ABQW4jmAyvV9uwOFwO
- JKbWvAgeIgnBaE15c/+GyusLel7eUPPopVwBI7pw29od/iUym94ZKuL/nNvS/gmlGGu7
- gzrw==
-X-Gm-Message-State: AOAM533weRmx05G1SooYj75AEStdvsiw45fobzQqXT3OLgJFwp1CwrbN
- 6uQAPxTZPVvXDnKFM0IaUg8=
-X-Google-Smtp-Source: ABdhPJwNhriaG9pFgf8QPJlIDI/oyYZ+ShQFujnmqJKjs639YuRstDHL8CpOF+e6q/WACUChCCP/nQ==
-X-Received: by 2002:a05:6402:c9c:b0:425:d5e0:b69 with SMTP id
- cm28-20020a0564020c9c00b00425d5e00b69mr19979475edb.271.1651039028633; 
- Tue, 26 Apr 2022 22:57:08 -0700 (PDT)
-Received: from [192.168.178.21] (p57b0b9e1.dip0.t-ipconnect.de.
- [87.176.185.225]) by smtp.gmail.com with ESMTPSA id
- z1-20020a170906434100b006e7efa329fbsm6083283ejm.109.2022.04.26.22.57.07
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 26 Apr 2022 22:57:07 -0700 (PDT)
-Message-ID: <8c22f321-2080-8ab5-58d0-39bcd79c246d@gmail.com>
-Date: Wed, 27 Apr 2022 07:57:06 +0200
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com
+ [64.147.123.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3749A10E1C8;
+ Tue, 26 Apr 2022 23:58:32 +0000 (UTC)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+ by mailout.west.internal (Postfix) with ESMTP id C6C17320010B;
+ Tue, 26 Apr 2022 19:58:27 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute1.internal (MEProxy); Tue, 26 Apr 2022 19:58:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:date:date:from:from:in-reply-to:message-id
+ :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+ 1651017507; x=1651103907; bh=BtMmL7n/JRGJ14Fmmq/dwVsCTg2ZxcEpq+r
+ qW3S1p3A=; b=l/pSzQk4/Td483IRhu1k7tJ1TVQ232yVN5Dup90RCvvWdiwl7qS
+ tEV+CYktZmkdtNEgHzPYugpqqNegKQg5iwBqPA9yrqJgpXEbuU+dOOkxFVeZGec+
+ t6AgtgVI0Z7Yj3C5bqVsTiIseTcGa+VHYrLflHO71MP45hqmhbiQMHVzf6K4Ouc2
+ +XqDsFaZCxYJD5N6qIMSDlhDYzaqSeU3FONhon+UcrfH2Gy4bfXuCHRj6aGwDH70
+ uTWOhqN9WVM8XKKPCAvth+KP3Mo8gl5/uXsCvikSF1/yrErqTYstKWjj6O1PL4XT
+ 3W5MytOZQQuvTKl6G+7eFPss6D4wq5NwEeg==
+X-ME-Sender: <xms:IodoYuFw54edr7sfwoPBUMp_SSCTkN9LpUN0xKzgmvbahtbrXOxDhg>
+ <xme:IodoYvVRV0IpGIAGX5uoe4gqFoMkglqDzj0sOMl-YUyRVqAHn6BKHdEEtNvaLtFYv
+ xAIzBhprYRcZw>
+X-ME-Received: <xmr:IodoYoJbDK65vnlGW8r5Y0eZsdBYAQF59YkN6jn3pVFmlRf0CdcidZLN4NGndrysQsdv-27d>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudeggddvlecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpefhvfevufffkffogggtgfesthekredtredtjeenucfhrhhomhepofgrrhgvkhcu
+ ofgrrhgtiiihkhhofihskhhiqdfikphrvggtkhhiuceomhgrrhhmrghrvghksehinhhvih
+ hsihgslhgvthhhihhnghhslhgrsgdrtghomheqnecuggftrfgrthhtvghrnhepkedvjefg
+ hefhteelkeeiveeihfektdegueehhfehvedvffehtedthfdtgfeufeelnecuffhomhgrih
+ hnpehfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrhfuihiivgeptdenucfr
+ rghrrghmpehmrghilhhfrhhomhepmhgrrhhmrghrvghksehinhhvihhsihgslhgvthhhih
+ hnghhslhgrsgdrtghomh
+X-ME-Proxy: <xmx:IodoYoEuNZIZmlaEHxSQrBCIiBHGsLAU6m6q9usPLfcU-hI4ddR0pg>
+ <xmx:IodoYkV3nAE6sRw6vEV4043rVz_Yye_-9GQlvJRHWdZrvfHvh8-I5w>
+ <xmx:IodoYrNiSY3O0pwr97lRuhLb3H9-urESbKAEQFY8BbtTVr4qUQBxpA>
+ <xmx:I4doYglaXAIgwcBt1yKP2oeeaon2j4egYHnTCG4xeyNwFd_6L2U7gQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 26 Apr 2022 19:58:24 -0400 (EDT)
+From: =?UTF-8?q?Marek=20Marczykowski-G=C3=B3recki?=
+ <marmarek@invisiblethingslab.com>
+To: linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/amdgpu: do not use passthrough mode in Xen dom0
+Date: Wed, 27 Apr 2022 01:57:15 +0200
+Message-Id: <20220426235718.1634359-1-marmarek@invisiblethingslab.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [QUESTION] sdma_v5_2 updates address with an running async dma
- engine
-Content-Language: en-US
-To: Haohui Mai <ricetons@gmail.com>, amd-gfx@lists.freedesktop.org
-References: <CAHpOOhHvr1OkXJ=z9dnm7ES4gXLkWbHzLHqSkipyqCv5HR7Jvg@mail.gmail.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <CAHpOOhHvr1OkXJ=z9dnm7ES4gXLkWbHzLHqSkipyqCv5HR7Jvg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 27 Apr 2022 07:13:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,72 +72,64 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lijo Lazar <lijo.lazar@amd.com>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ Guchun Chen <guchun.chen@amd.com>, David Airlie <airlied@linux.ie>,
+ Bokun Zhang <bokun.zhang@amd.com>, Jingwen Chen <Jingwen.Chen2@amd.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, =?UTF-8?q?Marek=20Marczykowski-G=C3=B3recki?=
+ <marmarek@invisiblethingslab.com>, stable@vger.kernel.org,
+ Victor Skvortsov <victor.skvortsov@amd.com>,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <mdaenzer@redhat.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Bernard Zhao <bernard@vivo.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Candice Li <candice.li@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 27.04.22 um 03:53 schrieb Haohui Mai:
-> Hi,
->
-> I'm looking at the initialization sequences in sdma_v5_2.c. I'm
-> confused on whether the DMA engine should be activated when updating
-> the MMIO registers. Some clarifications are highly appreciated.
->
-> Here is the background:
->   * sdma_v5_2_enable() toggles the HALT bit to enable / disable the
-> async DMA engine
->   * sdma_v5_2_resume() initializes MMIO registers (e.g., queue
-> addresses) of the DMA engine.
->   * sdma_v5_2_start() is called when the kernel initializes the device.
->
-> However, the driver has two paths when updating the MMIO registers,
-> where the DMA engine is activated / deactivated respectively.
->
-> When amdgpu_sriov_vf(adev) is true:
->
->     866         if (amdgpu_sriov_vf(adev)) {
->     867                 sdma_v5_2_ctx_switch_enable(adev, false);
->     868                 sdma_v5_2_enable(adev, false);
->     869
->     870                 /* set RB registers */
->     871                 r = sdma_v5_2_gfx_resume(adev);
->     872                 return r;
->     873         }
->
-> When amdgpu_sriov_vf(adev) is false:
->
->     893         sdma_v5_2_enable(adev, true);
->     894         /* enable sdma ring preemption */
->     895         sdma_v5_2_ctx_switch_enable(adev, true);
->     896
->     897         /* start the gfx rings and rlc compute queues */
->     898         r = sdma_v5_2_gfx_resume(adev);
->
-> Furthermore, sdma_v5_2_gfx_resume() re-enables the already active DMA
-> engine when amdgpu_sriov_vf(adev) is false:
->
->     728                         /* unhalt engine */
->     729                         temp =
-> RREG32(sdma_v5_2_get_reg_offset(adev, i, mmSDMA0_F32_CNTL));
->     730                         temp = REG_SET_FIELD(temp,
-> SDMA0_F32_CNTL, HALT, 0);
->     731                         WREG32(sdma_v5_2_get_reg_offset(adev,
-> i, mmSDMA0_F32_CNTL), temp);
->
-> The behavior seems inconsistent. Looking at the code that re-enables
-> the engine, it seems that the driver assumes a deactivated DMA engine
-> during initialization regardless whether the device is in vf mode or
-> not.
->
-> Just wondering, is the behavior expected or is it a bug?
+While technically Xen dom0 is a virtual machine too, it does have
+access to most of the hardware so it doesn't need to be considered a
+"passthrough". Commit b818a5d37454 ("drm/amdgpu/gmc: use PCI BARs for
+APUs in passthrough") changed how FB is accessed based on passthrough
+mode. This breaks amdgpu in Xen dom0 with message like this:
 
-Off hand that sounds like a bug to me. The SRIOV code paths are in 
-general not that well tested since most testing/bringup happens on bare 
-metal.
+    [drm:dc_dmub_srv_wait_idle [amdgpu]] *ERROR* Error waiting for DMUB idle: status=3
 
-Regards,
-Christian.
+While the reason for this failure is unclear, the passthrough mode is
+not really necessary in Xen dom0 anyway. So, to unbreak booting affected
+kernels, disable passthrough mode in this case.
 
->
-> Thanks,
-> Haohui
+Link: https://gitlab.freedesktop.org/drm/amd/-/issues/1985
+Fixes: b818a5d37454 ("drm/amdgpu/gmc: use PCI BARs for APUs in passthrough")
+Signed-off-by: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
+Cc: stable@vger.kernel.org
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
+index a025f080aa6a..5e3756643da3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
+@@ -24,6 +24,7 @@
+ #include <linux/module.h>
+ 
+ #include <drm/drm_drv.h>
++#include <xen/xen.h>
+ 
+ #include "amdgpu.h"
+ #include "amdgpu_ras.h"
+@@ -710,7 +711,8 @@ void amdgpu_detect_virtualization(struct amdgpu_device *adev)
+ 		adev->virt.caps |= AMDGPU_SRIOV_CAPS_ENABLE_IOV;
+ 
+ 	if (!reg) {
+-		if (is_virtual_machine())	/* passthrough mode exclus sriov mod */
++		/* passthrough mode exclus sriov mod */
++		if (is_virtual_machine() && !xen_initial_domain())
+ 			adev->virt.caps |= AMDGPU_PASSTHROUGH_MODE;
+ 	}
+ 
+-- 
+2.35.1
 
