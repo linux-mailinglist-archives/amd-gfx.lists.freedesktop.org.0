@@ -1,66 +1,129 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9805850FECC
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 Apr 2022 15:22:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89D1150FF9D
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 Apr 2022 15:53:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E21810F32A;
-	Tue, 26 Apr 2022 13:22:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B43910E251;
+	Tue, 26 Apr 2022 13:53:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com
- [IPv6:2a00:1450:4864:20::62c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EE2310F33A;
- Tue, 26 Apr 2022 13:22:23 +0000 (UTC)
-Received: by mail-ej1-x62c.google.com with SMTP id j6so2196879ejc.13;
- Tue, 26 Apr 2022 06:22:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=oMnEBFkcdULE+q/7BiOK0sG48A7P15PmH4FydP/yeEo=;
- b=GOSdDM4wPq9h25zWshCFf5AhPqC+MTVe3ZPgUQJMu6Ku5V3sMU60ncZ/KveyLVkVck
- HXn5/w6Y6RanqUQBe/md5k79gocGtsF7IMHiadaJg7D/xs4wjpYdF0CauCFX27Zc8Jb+
- ArQtNaloLBeQfJEt42bYGNedSF/mBjmy2nHTHdPNhHFgkEFYyyhweuAhptT6qupDrWHA
- Jy7bd7GGoKwK9FjkMBtRYBj6aTKZtJb/9m5dQ8rRIfbIMvUdUQYtDHlX1PW66QDsaYMU
- OhUqYuR5BKz88QvUXdB1Z2ixIyC9wSMsKmhbg4kSLSVMoEmv4gWILoy62GGeME++GZ+P
- ED+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=oMnEBFkcdULE+q/7BiOK0sG48A7P15PmH4FydP/yeEo=;
- b=vLlKfSPammfPNQWEbHEbb5LX7eWudao79U82C/UxLZ/0ndFez7SL8FTVFyUJQurvHe
- X5n7D+Se/qt2K94RDPzhmmm22xyvrdNa4iTOutRKCw8jYQrpSnJrS3VcdXlmVin7pUFn
- wshwLd7f6WwNKWXq5KLUW+N/knJlJOBvbxEd5G4SCGorwZJ64fsgpu2pnBwUZ5tH3CsQ
- wyf9Fjguf2bjx+VGmISYk+qDtkj8xUBqZbcmXdKjg8TGBHu5QMyYXePMoUmpR8W4Whb+
- l1Vax61HT8IlMh4SaVOSRDibzmEbim/cuPLBA7sslrDcsYYS8G+JnQjNE+9h7I6N1Um7
- h5ew==
-X-Gm-Message-State: AOAM530qubewxydcjqAyWA8AsDMSKJonh0XTJR/BAFqimzbU8JM1K9tK
- p2dS/jaONG/s1gQg9XIwHx0ovgh8l9A=
-X-Google-Smtp-Source: ABdhPJzQNEXbhBRa7e8iNa7QtQC6fjs/GFZQ5Cz2eTFloztm1KCDhmA1jOvaEvSwNbbvugmg2tXz2g==
-X-Received: by 2002:a17:906:99c5:b0:6df:8215:4ccd with SMTP id
- s5-20020a17090699c500b006df82154ccdmr21698715ejn.684.1650979341940; 
- Tue, 26 Apr 2022 06:22:21 -0700 (PDT)
-Received: from able.fritz.box (p57b0b9e1.dip0.t-ipconnect.de. [87.176.185.225])
- by smtp.gmail.com with ESMTPSA id
- x1-20020a1709060ee100b006e8a49f215dsm4889914eji.73.2022.04.26.06.22.20
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 26 Apr 2022 06:22:21 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: dri-devel@lists.freedesktop.org,
-	amd-gfx@lists.freedesktop.org
-Subject: [PATCH 5/5] drm/amdgpu: use the new drm_exec object for CS
-Date: Tue, 26 Apr 2022 15:22:08 +0200
-Message-Id: <20220426132208.20801-6-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220426132208.20801-1-christian.koenig@amd.com>
-References: <20220426132208.20801-1-christian.koenig@amd.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2075.outbound.protection.outlook.com [40.107.94.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63D4110E157;
+ Tue, 26 Apr 2022 13:53:23 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=REXcdnB9TyyloKR4E3Xd9rjoUvKLaYtzc/QQIHwEKdyT7EObGZYpyPP+LCVyhyV2MPUncjoUtOKvRJdWAKUyLneL4dMBIYpvky1DFvAYzrOLp9zfEooKz3Wfp+Vuj5CnBCf9Y24/5lGCJjdrHzRbzv5NZHChMwZMDRKidIX3mlANw9a+fOGBhjPX0PW1c8+99vCINfr9Ea6OPf8TQtM4NfFtC9Pet3Vph0EhcsLvnPtIT6YRW6p502tbbgXG/KajQyJCo+CpAdH7SeDzPtZxhVBAC9mKBMyK+Xd5iIvC3y/BHlByAKaV5SEBg3M3gUN/DSdW0G0Xi6gBfIWwA8vfhg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BF2KzYgCablwP47d4neBSayo/Rm5+cKCPZnrmtajTOM=;
+ b=i2CYgzAqWFKbWTnui0xiXBq52ggsPw8FIjC/cxeFt8gnN6N3cTpdL0hePQizzVf711k02P0oval8R6kAvfL71ZS3cnL6psZDetFz3v7YHb9wP6zfTgqLKtpxT+1q+n5xEcRD4doZh7GlQ6f0h3ZCn2Y4Jh9PMUmHIue3hFjxYp8NImcW64ofvlmsTSib4g8TjAe22YZltMaHooDAvzsFEESRkYBfC3fqKpioKRuC77jX7DJTpsx2btPvRvd0O5tUZ1ctdxLLGYrpGBWquDBlvhu+enwdOB1i+OC5SlP+Vp0UvtEtm31Qw3jI1Uzdwr2BsRnzgswPgNX1YPiotcetrQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BF2KzYgCablwP47d4neBSayo/Rm5+cKCPZnrmtajTOM=;
+ b=WQra2n6fxBZ4crUsN5QK/HX1IxYYUbSdaCdF6zHZgk+NnE/z1pJZoXAKDCBzk9EWLSr8Fi3IhHdc+Ju1Yv9Lxbnc5hPA3PO1f449hia81pub1dgfOBIezPh0wPVqIQxmVkZtxZJXlnvecAeIAWrnBU94izrehFI72heh6rHKOsw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SA0PR12MB4526.namprd12.prod.outlook.com (2603:10b6:806:98::23)
+ by BN6PR1201MB0097.namprd12.prod.outlook.com (2603:10b6:405:54::23)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.15; Tue, 26 Apr
+ 2022 13:53:20 +0000
+Received: from SA0PR12MB4526.namprd12.prod.outlook.com
+ ([fe80::8515:3855:bed9:3f05]) by SA0PR12MB4526.namprd12.prod.outlook.com
+ ([fe80::8515:3855:bed9:3f05%9]) with mapi id 15.20.5186.021; Tue, 26 Apr 2022
+ 13:53:20 +0000
+Message-ID: <5adfe067-dc00-6567-e218-c5c68670cf5b@amd.com>
+Date: Tue, 26 Apr 2022 08:53:15 -0500
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Subject: Re: [PATCHv4] drm/amdgpu: disable ASPM on Intel Alder Lake based
+ systems
+Content-Language: en-US
+To: Paul Menzel <pmenzel@molgen.mpg.de>
+References: <20220412215000.897344-1-richard.gong@amd.com>
+ <d4ba3998-34aa-86d2-bde9-bc6ae9d8d08d@molgen.mpg.de>
+ <CADnq5_MgvcGPWf2gYn_3qCr+Gq1P39tvv-W-o8NhivvMpMwUBA@mail.gmail.com>
+ <91e916e3-d793-b814-6cbf-abee0667f5f8@molgen.mpg.de>
+ <94fd858d-1792-9c05-b5c6-1b028427687d@amd.com>
+ <efc1dfd1-2b54-aee5-1497-4b800a468141@molgen.mpg.de>
+ <237da02b-0ed8-6b1c-3eaf-5574aab4f13f@amd.com>
+ <294555b4-2d1b-270f-6682-3a17e9df133c@molgen.mpg.de>
+From: "Gong, Richard" <richard.gong@amd.com>
+In-Reply-To: <294555b4-2d1b-270f-6682-3a17e9df133c@molgen.mpg.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: CH0PR03CA0036.namprd03.prod.outlook.com
+ (2603:10b6:610:b3::11) To SA0PR12MB4526.namprd12.prod.outlook.com
+ (2603:10b6:806:98::23)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 0218428e-f7d4-4729-bd8f-08da278c1f7e
+X-MS-TrafficTypeDiagnostic: BN6PR1201MB0097:EE_
+X-Microsoft-Antispam-PRVS: <BN6PR1201MB009726DD2792E534F3BE9DE395FB9@BN6PR1201MB0097.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: cT8DbLaatH8nnQOv/aZJYWeogeFdBB6hWAwE9FKPiUaSfCUlfNa5XVy+AwuJIMbNCNuhU+Tlk1WTqPBJr5QsDWdoi1zK2+CmJPDvLtHWY2VdHwWE9HX2Bo/xPwRQjekQZEsiEy5Q2nKFxMqdC3UzZXHkyUCmOF01XULukYfQL4uD36hssXjlQBfLLW7zlnnlxur2Nlq6wJgFFWHNgMMH7UE7wz0wS2lDYZ4qGI8PrMPTSvA0DeC8heQBqsg74a2ZCwh2O4ZD/xwZp36tcEGWXL/kM1Jx7G6jGBZxwvSkutdQc5i/T07mWFSI7P87scxiJprcduSdFWNcbJz70ZITg/4Pxi1v5lgodQ1LLHfii2jn5MXbnUrfHkO+mvMtaBSHLySLNeSr0fnPa0+WFwnw83j/lLp5sQwgkf4+j3W3vy/dcxKVG70iFk6FBJohGjxOthtUvDVNLqlS7DVLZw2gL3N/m0b9IUgYiIXJal+8VoX9bzXeFvXH9QJaOBHSE9rfcr4k8i1fqsRbLzUl9Uqh8dnc4dxYuf/2ftD+YvM9cRHzc/IxuuN6j1afTaeEdfMVTKW8/T5g29Sheqf5IIB9XaZIP73FbJOiLGvUg9lwelVwVlfPqRfaDFxZPymsiRCbC/JS4yJaICyLsW77V8Ic0KgsAb8VoOdzN4lspPc7EdXheQfO1u6cPe28LX6wlUHB/6XrRf1oTj1XkNlc65guyX5lWQUkECb1RQllT3Qj2HCIFicpdU6GfA/Wg5yofbwvjPFWFmR2NpnAlBb4MkWpLMtDeH1H1BjA9iOcBUl+WhehA840wC6ddbI26g9qpDVl
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA0PR12MB4526.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(36756003)(6486002)(2616005)(5660300002)(6506007)(53546011)(8936002)(31686004)(83380400001)(186003)(45080400002)(966005)(31696002)(26005)(86362001)(38100700002)(6512007)(6666004)(8676002)(66556008)(4326008)(2906002)(508600001)(66946007)(66476007)(6916009)(316002)(54906003)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bDV2UUdsSmdPdmkzdmphR1pETnZrMkFDQzN3bnc3VTRQcEJVUG9iRnVuS2Y1?=
+ =?utf-8?B?TXJUVkpSS09pQ015enZzalpPNllpZy93SnNTcjhQN2pDZUJWOE0rSHhxYmVn?=
+ =?utf-8?B?UGVrODlqbmJhMTR4cTJ5RXdMejlUdlMza2VkOVp1UmpHMGRnbmd5V1FhSlJI?=
+ =?utf-8?B?d0x0SjVOSHZiaVRwbmdoTkFheVZGUFFMeEplazhwd3hsRWZCR3VhQldqbksv?=
+ =?utf-8?B?bFpmM1h2Slg3VWVNY3Vjd1FxZmJnc01KNittQ2M1SGNzOGx1NFZTZ3ZnMzVM?=
+ =?utf-8?B?dThtUUNLMTlyNWg4Mm9SNzdybnVUYngvRTlYSzZad1BiS2ZEL1JGMVRSWlBI?=
+ =?utf-8?B?S3psZ0hVbjRKWW9ndml1eGRRVWtkZHVnK2oxUDZvSC9iQXZQOEUwcWxCOEhr?=
+ =?utf-8?B?OVA2UDVTK2xBejhNRDUwcUVFaEswLzZYV1RmcXArc1pOWm4yL2U0RTBSRzRh?=
+ =?utf-8?B?ZDZUVEowdkNudTMzdjROM1l0RU5sSWpFQ2xjTXJHZlM5TDlBQndJZWlhdGpV?=
+ =?utf-8?B?UysveW94WmRKb0hVNGl0NmVyVEh6MnNGTDUzYWJxcXFRL00ya3RJNDl4Z2lo?=
+ =?utf-8?B?S05Mc0NiVkhFdkk2OUEvUWJObGdCdm81REhBakFhRGVoaDR3Y2VPdGNEYUJX?=
+ =?utf-8?B?S1E5ckhHL2VlQnA1MkQvSHkzMDFmYWpwN1d6cE9qZHhRbzQrNVRPWWtoT0VQ?=
+ =?utf-8?B?SFBJaUowbjVkNkl1UytmTWoxVW5MakFZbUc1TXZ3dUVya2R1dmtKMzI5SnZH?=
+ =?utf-8?B?eFlvclhNaklTb0dZOHEzb2czVUJORloxdG5YQjZqOG5nS04xc2l3UTZoVU9y?=
+ =?utf-8?B?S3hSQ0k0MmhrUUN6ZjdJNWJiS0xQekkyZzgwUDNKejA5OWdaQXFiOVVMWEJ3?=
+ =?utf-8?B?N1BaSW9ySWd5RlRsVFhVUHo2Yng2K2lvRGFickpvWFpLb25CRTVjaWNmN1hW?=
+ =?utf-8?B?NEl5ZGZNMldRNk1ZcXlyR3dlMUFuZGF1QUVjUlRlUkJvSmR1dkhNdmNDWk1X?=
+ =?utf-8?B?QS9GYkxvbXpUMm5yQ2xDcXVGYy92WFhSUm91QktwUjdkVVlXRkhVT3BtNzBa?=
+ =?utf-8?B?bTArZmdWZytzcnJmcGNFZ1pCYXFENEN1QU81STRtUVNBMXVDYloySW1USTdP?=
+ =?utf-8?B?Mm45WFVabmdWV3U3Vm1JSjhPQVJBUWJaWC9CUUR0VmhnamNmeDkwY0pBc0NJ?=
+ =?utf-8?B?VlRSN0o3RUpXek5zL053Z1NSMEpORlZDWThKMnNJS09wRG4weWllVmNtaVIw?=
+ =?utf-8?B?UmVrQ2JQaFA3WWpFOW9EcVFmVXNCRVZBVERWVWU5cDR6M01hRzhPRGJMR3Ey?=
+ =?utf-8?B?QjhlZXkycFhYTUFadXZuUlJPZ1E1QVVTUWdMRjR0YUhCUFpkelJ5M0ZQTVBG?=
+ =?utf-8?B?WDAvTjlaamVUTno0Y3p2b0djTmNNekZMblBxQkNjbnkxRUZUKzgwQkVjdWF3?=
+ =?utf-8?B?MUkwcDRFOXZkdTNwWmRIRkpyemlmaDM3UlZVR0syaTlFclpiOE1tZThUR3Vx?=
+ =?utf-8?B?d1ptWjlzaXB6aUtjQzNhNXBqcC80V3JsSFZlTWV1WGRTZ2J4ZjJ6S0RxYUMw?=
+ =?utf-8?B?RHp3ZzIzMWNsSFFtQU8yWXZhVHNzcG9oUWVKMkZVNU9yVWd0eDFJYjh4UkNm?=
+ =?utf-8?B?SVNBS0NKN2ZKaVczM21DSGVudFVTb2NCUjVTSnRnc0hRUlFsK1RWcmJSTkxq?=
+ =?utf-8?B?OGJRMkVsM1ZrTEVtRld1Zm9LSFFoV256SEN2VERaN2ljeVcwL2pZeWE5YmVu?=
+ =?utf-8?B?dWNmajZpdGUyaUdyaUgyZ1RlTUI1WUN4SkRDcmtwaU5qQ3podisvZWRuMXlT?=
+ =?utf-8?B?elVSY1R6N2VGRTdkTHpaVVI2ZjBqeTZtcEF1QnJjUHF1K1VzUGJUWk54UlJF?=
+ =?utf-8?B?QnUxVE9Hcm12YUdjRkhJZmhmU2ZYRElVRWh1a2JVbVI5dWoxS1dRUmNXKzB5?=
+ =?utf-8?B?dUc3dnlxZFJ2amUxTHRtZWdrZUVNNXA0L1JvN21pMHpJenFkdTJ2U3lZMmcr?=
+ =?utf-8?B?YzVFVFNtVmNFckhkSDJsTmtxSkcyMGRVd0dEd3hjKy9TRWdXMnMvZFRJMGY1?=
+ =?utf-8?B?c2FLYW45R210eERrdFJRM0ozTlgrUVA1QXk0bmhPNW5VZk5hRUtFNERWL0c2?=
+ =?utf-8?B?WFJla0x0MWRORGRuMFpwcHduc0cxSDFVTHlnS0hFaStHYzVaUldBazFmUTh5?=
+ =?utf-8?B?SVBoa3lxL1c4L2szODAwbHR1UnowUmt0NGhNbmVERmVNdmd4d3hmV014c2ZP?=
+ =?utf-8?B?YmZpOE9jZGZDOWM5ZDM5UU96ZHA3RjhzRkI4US80VGx2NGx6Tmp1emRYZEVX?=
+ =?utf-8?B?Ykk2OEpWOTFXNXd5OWlWNnRDUURCa3dCdDlzQjFTbUdZMXJyK1NIUT09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0218428e-f7d4-4729-bd8f-08da278c1f7e
+X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB4526.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2022 13:53:20.4588 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0MRoHT7Z3PJb2BzFFeq5HBRz2WlgMpiNh9A4oTkRBlKTOBSE04fpwX5342h91Xli5+GUb0wBtxmg8eKSxwY8/w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1201MB0097
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,713 +135,259 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- daniel@ffwll.ch
+Cc: Dave Airlie <airlied@linux.ie>, Xinhui Pan <xinhui.pan@amd.com>,
+ LKML <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
+ Alex Deucher <alexdeucher@gmail.com>, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Alexander Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Use the new component here as well and remove the old handling.
+Hi Paul,
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu.h         |   1 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c |  70 ++----
- drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h |   7 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c      | 236 ++++++++------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.h      |   8 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c      |  22 --
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h      |   3 -
- 7 files changed, 126 insertions(+), 221 deletions(-)
+On 4/21/2022 12:35 AM, Paul Menzel wrote:
+> Dear Richard,
+>
+>
+> Am 21.04.22 um 03:12 schrieb Gong, Richard:
+>
+>> On 4/20/2022 3:29 PM, Paul Menzel wrote:
+>
+>>> Am 19.04.22 um 23:46 schrieb Gong, Richard:
+>>>
+>>>> On 4/14/2022 2:52 AM, Paul Menzel wrote:
+>>>>> [Cc: -kernel test robot <lkp@intel.com>]
+>>>
+>>> […]
+>>>
+>>>>> Am 13.04.22 um 15:00 schrieb Alex Deucher:
+>>>>>> On Wed, Apr 13, 2022 at 3:43 AM Paul Menzel wrote:
+>>>>>
+>>>>>>> Thank you for sending out v4.
+>>>>>>>
+>>>>>>> Am 12.04.22 um 23:50 schrieb Richard Gong:
+>>>>>>>> Active State Power Management (ASPM) feature is enabled since 
+>>>>>>>> kernel 5.14.
+>>>>>>>> There are some AMD GFX cards (such as WX3200 and RX640) that 
+>>>>>>>> won't work
+>>>>>>>> with ASPM-enabled Intel Alder Lake based systems. Using these 
+>>>>>>>> GFX cards as
+>>>>>>>> video/display output, Intel Alder Lake based systems will hang 
+>>>>>>>> during
+>>>>>>>> suspend/resume.
+>>>
+>>> [Your email program wraps lines in cited text for some reason, 
+>>> making the citation harder to read.]
+>>>
+>> Not sure why, I am using Mozila Thunderbird for email. I am not using 
+>> MS Outlook for upstream email.
+>
+> Strange. No idea if there were bugs in Mozilla Thunderbird 91.2.0, 
+> released over half year ago. The current version is 91.8.1. [1]
+>
+>>>>>>> I am still not clear, what “hang during suspend/resume” means. I 
+>>>>>>> guess
+>>>>>>> suspending works fine? During resume (S3 or S0ix?), where does 
+>>>>>>> it hang?
+>>>>>>> The system is functional, but there are only display problems?
+>>>> System freeze after suspend/resume.
+>>>
+>>> But you see certain messages still? At what point does it freeze 
+>>> exactly? In the bug report you posted Linux messages.
+>>
+>> No, the system freeze then users have to recycle power to recover.
+>
+> Then I misread the issue? Did you capture the messages over serial log 
+> then?
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index cdf0818088b3..08aae66557dd 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -55,7 +55,6 @@
- #include <drm/ttm/ttm_bo_api.h>
- #include <drm/ttm/ttm_bo_driver.h>
- #include <drm/ttm/ttm_placement.h>
--#include <drm/ttm/ttm_execbuf_util.h>
- 
- #include <drm/amdgpu_drm.h>
- #include <drm/drm_gem.h>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
-index 714178f1b6c6..cdd0f9995496 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
-@@ -28,6 +28,7 @@
-  *    Christian König <deathsimple@vodafone.de>
-  */
- 
-+#include <linux/sort.h>
- #include <linux/uaccess.h>
- 
- #include "amdgpu.h"
-@@ -50,13 +51,20 @@ static void amdgpu_bo_list_free(struct kref *ref)
- 						   refcount);
- 	struct amdgpu_bo_list_entry *e;
- 
--	amdgpu_bo_list_for_each_entry(e, list) {
--		struct amdgpu_bo *bo = ttm_to_amdgpu_bo(e->tv.bo);
-+	amdgpu_bo_list_for_each_entry(e, list)
-+		amdgpu_bo_unref(&e->bo);
-+	call_rcu(&list->rhead, amdgpu_bo_list_free_rcu);
-+}
- 
--		amdgpu_bo_unref(&bo);
--	}
-+static int amdgpu_bo_list_entry_cmp(const void *_a, const void *_b)
-+{
-+	const struct amdgpu_bo_list_entry *a = _a, *b = _b;
- 
--	call_rcu(&list->rhead, amdgpu_bo_list_free_rcu);
-+	if (a->priority > b->priority)
-+		return 1;
-+	if (a->priority < b->priority)
-+		return -1;
-+	return 0;
- }
- 
- int amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
-@@ -118,7 +126,7 @@ int amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
- 
- 		entry->priority = min(info[i].bo_priority,
- 				      AMDGPU_BO_LIST_MAX_PRIORITY);
--		entry->tv.bo = &bo->tbo;
-+		entry->bo = bo;
- 
- 		if (bo->preferred_domains == AMDGPU_GEM_DOMAIN_GDS)
- 			list->gds_obj = bo;
-@@ -133,6 +141,8 @@ int amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
- 
- 	list->first_userptr = first_userptr;
- 	list->num_entries = num_entries;
-+	sort(array, last_entry, sizeof(struct amdgpu_bo_list_entry),
-+	     amdgpu_bo_list_entry_cmp, NULL);
- 
- 	trace_amdgpu_cs_bo_status(list->num_entries, total_size);
- 
-@@ -140,16 +150,10 @@ int amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
- 	return 0;
- 
- error_free:
--	for (i = 0; i < last_entry; ++i) {
--		struct amdgpu_bo *bo = ttm_to_amdgpu_bo(array[i].tv.bo);
--
--		amdgpu_bo_unref(&bo);
--	}
--	for (i = first_userptr; i < num_entries; ++i) {
--		struct amdgpu_bo *bo = ttm_to_amdgpu_bo(array[i].tv.bo);
--
--		amdgpu_bo_unref(&bo);
--	}
-+	for (i = 0; i < last_entry; ++i)
-+		amdgpu_bo_unref(&array[i].bo);
-+	for (i = first_userptr; i < num_entries; ++i)
-+		amdgpu_bo_unref(&array[i].bo);
- 	kvfree(list);
- 	return r;
- 
-@@ -181,40 +185,6 @@ int amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, int id,
- 	return -ENOENT;
- }
- 
--void amdgpu_bo_list_get_list(struct amdgpu_bo_list *list,
--			     struct list_head *validated)
--{
--	/* This is based on the bucket sort with O(n) time complexity.
--	 * An item with priority "i" is added to bucket[i]. The lists are then
--	 * concatenated in descending order.
--	 */
--	struct list_head bucket[AMDGPU_BO_LIST_NUM_BUCKETS];
--	struct amdgpu_bo_list_entry *e;
--	unsigned i;
--
--	for (i = 0; i < AMDGPU_BO_LIST_NUM_BUCKETS; i++)
--		INIT_LIST_HEAD(&bucket[i]);
--
--	/* Since buffers which appear sooner in the relocation list are
--	 * likely to be used more often than buffers which appear later
--	 * in the list, the sort mustn't change the ordering of buffers
--	 * with the same priority, i.e. it must be stable.
--	 */
--	amdgpu_bo_list_for_each_entry(e, list) {
--		struct amdgpu_bo *bo = ttm_to_amdgpu_bo(e->tv.bo);
--		unsigned priority = e->priority;
--
--		if (!bo->parent)
--			list_add_tail(&e->tv.head, &bucket[priority]);
--
--		e->user_pages = NULL;
--	}
--
--	/* Connect the sorted buckets in the output list. */
--	for (i = 0; i < AMDGPU_BO_LIST_NUM_BUCKETS; i++)
--		list_splice(&bucket[i], validated);
--}
--
- void amdgpu_bo_list_put(struct amdgpu_bo_list *list)
- {
- 	kref_put(&list->refcount, amdgpu_bo_list_free);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h
-index 529d52a204cf..248d9dc6c1fb 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h
-@@ -23,16 +23,17 @@
- #ifndef __AMDGPU_BO_LIST_H__
- #define __AMDGPU_BO_LIST_H__
- 
--#include <drm/ttm/ttm_execbuf_util.h>
- #include <drm/amdgpu_drm.h>
- 
-+struct drm_file;
-+
- struct amdgpu_device;
- struct amdgpu_bo;
- struct amdgpu_bo_va;
- struct amdgpu_fpriv;
- 
- struct amdgpu_bo_list_entry {
--	struct ttm_validate_buffer	tv;
-+	struct amdgpu_bo		*bo;
- 	struct amdgpu_bo_va		*bo_va;
- 	uint32_t			priority;
- 	struct page			**user_pages;
-@@ -51,8 +52,6 @@ struct amdgpu_bo_list {
- 
- int amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, int id,
- 		       struct amdgpu_bo_list **result);
--void amdgpu_bo_list_get_list(struct amdgpu_bo_list *list,
--			     struct list_head *validated);
- void amdgpu_bo_list_put(struct amdgpu_bo_list *list);
- int amdgpu_bo_create_list_entry_array(struct drm_amdgpu_bo_list_in *in,
- 				      struct drm_amdgpu_bo_list_entry **info_param);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index 8de283997769..a28b7947a034 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -44,7 +44,6 @@ static int amdgpu_cs_user_fence_chunk(struct amdgpu_cs_parser *p,
- 				      uint32_t *offset)
- {
- 	struct drm_gem_object *gobj;
--	struct amdgpu_bo *bo;
- 	unsigned long size;
- 	int r;
- 
-@@ -52,21 +51,16 @@ static int amdgpu_cs_user_fence_chunk(struct amdgpu_cs_parser *p,
- 	if (gobj == NULL)
- 		return -EINVAL;
- 
--	bo = amdgpu_bo_ref(gem_to_amdgpu_bo(gobj));
--	p->uf_entry.priority = 0;
--	p->uf_entry.tv.bo = &bo->tbo;
--	/* One for TTM and two for the CS job */
--	p->uf_entry.tv.num_shared = 3;
--
-+	p->uf_bo = amdgpu_bo_ref(gem_to_amdgpu_bo(gobj));
- 	drm_gem_object_put(gobj);
- 
--	size = amdgpu_bo_size(bo);
-+	size = amdgpu_bo_size(p->uf_bo);
- 	if (size != PAGE_SIZE || (data->offset + 8) > size) {
- 		r = -EINVAL;
- 		goto error_unref;
- 	}
- 
--	if (amdgpu_ttm_tt_get_usermm(bo->tbo.ttm)) {
-+	if (amdgpu_ttm_tt_get_usermm(p->uf_bo->tbo.ttm)) {
- 		r = -EINVAL;
- 		goto error_unref;
- 	}
-@@ -76,7 +70,7 @@ static int amdgpu_cs_user_fence_chunk(struct amdgpu_cs_parser *p,
- 	return 0;
- 
- error_unref:
--	amdgpu_bo_unref(&bo);
-+	amdgpu_bo_unref(&p->uf_bo);
- 	return r;
- }
- 
-@@ -115,6 +109,8 @@ static int amdgpu_cs_parser_init(struct amdgpu_cs_parser *p, union drm_amdgpu_cs
- 	int i;
- 	int ret;
- 
-+	drm_exec_init(&p->exec, true);
-+
- 	if (cs->in.num_chunks == 0)
- 		return 0;
- 
-@@ -235,7 +231,7 @@ static int amdgpu_cs_parser_init(struct amdgpu_cs_parser *p, union drm_amdgpu_cs
- 		goto free_all_kdata;
- 	}
- 
--	if (p->uf_entry.tv.bo)
-+	if (p->uf_bo)
- 		p->job->uf_addr = uf_offset;
- 	kvfree(chunk_array);
- 
-@@ -449,57 +445,20 @@ static int amdgpu_cs_bo_validate(void *param, struct amdgpu_bo *bo)
- 	return r;
- }
- 
--static int amdgpu_cs_list_validate(struct amdgpu_cs_parser *p,
--			    struct list_head *validated)
--{
--	struct ttm_operation_ctx ctx = { true, false };
--	struct amdgpu_bo_list_entry *lobj;
--	int r;
--
--	list_for_each_entry(lobj, validated, tv.head) {
--		struct amdgpu_bo *bo = ttm_to_amdgpu_bo(lobj->tv.bo);
--		struct mm_struct *usermm;
--
--		usermm = amdgpu_ttm_tt_get_usermm(bo->tbo.ttm);
--		if (usermm && usermm != current->mm)
--			return -EPERM;
--
--		if (amdgpu_ttm_tt_is_userptr(bo->tbo.ttm) &&
--		    lobj->user_invalidated && lobj->user_pages) {
--			amdgpu_bo_placement_from_domain(bo,
--							AMDGPU_GEM_DOMAIN_CPU);
--			r = ttm_bo_validate(&bo->tbo, &bo->placement, &ctx);
--			if (r)
--				return r;
--
--			amdgpu_ttm_tt_set_user_pages(bo->tbo.ttm,
--						     lobj->user_pages);
--		}
--
--		r = amdgpu_cs_bo_validate(p, bo);
--		if (r)
--			return r;
--
--		kvfree(lobj->user_pages);
--		lobj->user_pages = NULL;
--	}
--	return 0;
--}
--
- static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
- 				union drm_amdgpu_cs *cs)
- {
- 	struct amdgpu_fpriv *fpriv = p->filp->driver_priv;
-+	struct ttm_operation_ctx ctx = { true, false };
- 	struct amdgpu_vm *vm = &fpriv->vm;
- 	struct amdgpu_bo_list_entry *e;
--	struct list_head duplicates;
-+	struct drm_gem_object *obj;
- 	struct amdgpu_bo *gds;
- 	struct amdgpu_bo *gws;
- 	struct amdgpu_bo *oa;
-+	unsigned long index;
- 	int r;
- 
--	INIT_LIST_HEAD(&p->validated);
--
- 	/* p->bo_list could already be assigned if AMDGPU_CHUNK_ID_BO_HANDLES is present */
- 	if (cs->in.bo_list_handle) {
- 		if (p->bo_list)
-@@ -517,25 +476,13 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
- 			return r;
- 	}
- 
--	/* One for TTM and one for the CS job */
--	amdgpu_bo_list_for_each_entry(e, p->bo_list)
--		e->tv.num_shared = 2;
--
--	amdgpu_bo_list_get_list(p->bo_list, &p->validated);
--
--	INIT_LIST_HEAD(&duplicates);
--	amdgpu_vm_get_pd_bo(&fpriv->vm, &p->validated, &p->vm_pd);
--
--	if (p->uf_entry.tv.bo && !ttm_to_amdgpu_bo(p->uf_entry.tv.bo)->parent)
--		list_add(&p->uf_entry.tv.head, &p->validated);
--
- 	/* Get userptr backing pages. If pages are updated after registered
- 	 * in amdgpu_gem_userptr_ioctl(), amdgpu_cs_list_validate() will do
- 	 * amdgpu_ttm_backend_bind() to flush and invalidate new pages
- 	 */
- 	amdgpu_bo_list_for_each_userptr_entry(e, p->bo_list) {
--		struct amdgpu_bo *bo = ttm_to_amdgpu_bo(e->tv.bo);
- 		bool userpage_invalidated = false;
-+		struct amdgpu_bo *bo = e->bo;
- 		int i;
- 
- 		e->user_pages = kvmalloc_array(bo->tbo.ttm->num_pages,
-@@ -562,18 +509,53 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
- 		e->user_invalidated = userpage_invalidated;
- 	}
- 
--	r = ttm_eu_reserve_buffers(&p->ticket, &p->validated, true,
--				   &duplicates);
--	if (unlikely(r != 0)) {
--		if (r != -ERESTARTSYS)
--			DRM_ERROR("ttm_eu_reserve_buffers failed.\n");
--		goto out;
-+	drm_exec_while_not_all_locked(&p->exec) {
-+		r = amdgpu_vm_lock_pd(&fpriv->vm, &p->exec);
-+		drm_exec_continue_on_contention(&p->exec);
-+		if (unlikely(r))
-+			return r;
-+
-+		amdgpu_bo_list_for_each_entry(e, p->bo_list) {
-+			r = drm_exec_prepare_obj(&p->exec, &e->bo->tbo.base, 2);
-+			drm_exec_break_on_contention(&p->exec);
-+			if (unlikely(r))
-+				return r;
-+
-+			e->bo_va = amdgpu_vm_bo_find(vm, e->bo);
-+		}
-+		drm_exec_continue_on_contention(&p->exec);
-+
-+		if (p->uf_bo) {
-+			r = drm_exec_prepare_obj(&p->exec, &p->uf_bo->tbo.base,
-+						 2);
-+			drm_exec_continue_on_contention(&p->exec);
-+			if (unlikely(r))
-+				return r;
-+		}
- 	}
- 
--	amdgpu_bo_list_for_each_entry(e, p->bo_list) {
--		struct amdgpu_bo *bo = ttm_to_amdgpu_bo(e->tv.bo);
-+	amdgpu_bo_list_for_each_userptr_entry(e, p->bo_list) {
-+		struct mm_struct *usermm;
-+
-+		usermm = amdgpu_ttm_tt_get_usermm(e->bo->tbo.ttm);
-+		if (usermm && usermm != current->mm)
-+			return -EPERM;
-+
-+		if (amdgpu_ttm_tt_is_userptr(e->bo->tbo.ttm) &&
-+		    e->user_invalidated && e->user_pages) {
-+			amdgpu_bo_placement_from_domain(e->bo,
-+							AMDGPU_GEM_DOMAIN_CPU);
-+			r = ttm_bo_validate(&e->bo->tbo, &e->bo->placement,
-+					    &ctx);
-+			if (r)
-+				return r;
-+
-+			amdgpu_ttm_tt_set_user_pages(e->bo->tbo.ttm,
-+						     e->user_pages);
-+		}
- 
--		e->bo_va = amdgpu_vm_bo_find(vm, bo);
-+		kvfree(e->user_pages);
-+		e->user_pages = NULL;
- 	}
- 
- 	/* Move fence waiting after getting reservation lock of
-@@ -583,7 +565,7 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
- 	if (unlikely(r != 0)) {
- 		if (r != -ERESTARTSYS)
- 			DRM_ERROR("amdgpu_ctx_wait_prev_fence failed.\n");
--		goto error_validate;
-+		return r;
- 	}
- 
- 	amdgpu_cs_get_threshold_for_moves(p->adev, &p->bytes_moved_threshold,
-@@ -595,16 +577,20 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
- 				      amdgpu_cs_bo_validate, p);
- 	if (r) {
- 		DRM_ERROR("amdgpu_vm_validate_pt_bos() failed.\n");
--		goto error_validate;
-+		return r;
- 	}
- 
--	r = amdgpu_cs_list_validate(p, &duplicates);
--	if (r)
--		goto error_validate;
-+	drm_exec_for_each_duplicate_object(&p->exec, index, obj) {
-+		r = amdgpu_cs_bo_validate(p, gem_to_amdgpu_bo(obj));
-+		if (unlikely(r))
-+			return r;
-+	}
- 
--	r = amdgpu_cs_list_validate(p, &p->validated);
--	if (r)
--		goto error_validate;
-+	drm_exec_for_each_locked_object(&p->exec, index, obj) {
-+		r = amdgpu_cs_bo_validate(p, gem_to_amdgpu_bo(obj));
-+		if (unlikely(r))
-+			return r;
-+	}
- 
- 	amdgpu_cs_report_moved_bytes(p->adev, p->bytes_moved,
- 				     p->bytes_moved_vis);
-@@ -626,28 +612,25 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
- 		p->job->oa_size = amdgpu_bo_size(oa) >> PAGE_SHIFT;
- 	}
- 
--	if (!r && p->uf_entry.tv.bo) {
--		struct amdgpu_bo *uf = ttm_to_amdgpu_bo(p->uf_entry.tv.bo);
-+	if (p->uf_bo) {
-+		r = amdgpu_ttm_alloc_gart(&p->uf_bo->tbo);
-+		if (unlikely(r))
-+			return r;
- 
--		r = amdgpu_ttm_alloc_gart(&uf->tbo);
--		p->job->uf_addr += amdgpu_bo_gpu_offset(uf);
-+		p->job->uf_addr += amdgpu_bo_gpu_offset(p->uf_bo);
- 	}
--
--error_validate:
--	if (r)
--		ttm_eu_backoff_reservation(&p->ticket, &p->validated);
--out:
--	return r;
-+	return 0;
- }
- 
- static int amdgpu_cs_sync_rings(struct amdgpu_cs_parser *p)
- {
- 	struct amdgpu_fpriv *fpriv = p->filp->driver_priv;
--	struct amdgpu_bo_list_entry *e;
-+	struct drm_gem_object *obj;
-+	unsigned long index;
- 	int r;
- 
--	list_for_each_entry(e, &p->validated, tv.head) {
--		struct amdgpu_bo *bo = ttm_to_amdgpu_bo(e->tv.bo);
-+	drm_exec_for_each_locked_object(&p->exec, index, obj) {
-+		struct amdgpu_bo *bo = gem_to_amdgpu_bo(obj);
- 		struct dma_resv *resv = bo->tbo.base.resv;
- 		enum amdgpu_sync_mode sync_mode;
- 
-@@ -664,20 +647,14 @@ static int amdgpu_cs_sync_rings(struct amdgpu_cs_parser *p)
- /**
-  * amdgpu_cs_parser_fini() - clean parser states
-  * @parser:	parser structure holding parsing context.
-- * @error:	error number
-- * @backoff:	indicator to backoff the reservation
-  *
-- * If error is set then unvalidate buffer, otherwise just free memory
-- * used by parsing context.
-+ * Just free memory used by parsing context.
-  **/
--static void amdgpu_cs_parser_fini(struct amdgpu_cs_parser *parser, int error,
--				  bool backoff)
-+static void amdgpu_cs_parser_fini(struct amdgpu_cs_parser *parser)
- {
- 	unsigned i;
- 
--	if (error && backoff)
--		ttm_eu_backoff_reservation(&parser->ticket,
--					   &parser->validated);
-+	drm_exec_fini(&parser->exec);
- 
- 	for (i = 0; i < parser->num_post_deps; i++) {
- 		drm_syncobj_put(parser->post_deps[i].syncobj);
-@@ -698,11 +675,7 @@ static void amdgpu_cs_parser_fini(struct amdgpu_cs_parser *parser, int error,
- 	kvfree(parser->chunks);
- 	if (parser->job)
- 		amdgpu_job_free(parser->job);
--	if (parser->uf_entry.tv.bo) {
--		struct amdgpu_bo *uf = ttm_to_amdgpu_bo(parser->uf_entry.tv.bo);
--
--		amdgpu_bo_unref(&uf);
--	}
-+	amdgpu_bo_unref(&parser->uf_bo);
- }
- 
- static int amdgpu_cs_vm_handling(struct amdgpu_cs_parser *p)
-@@ -806,11 +779,7 @@ static int amdgpu_cs_vm_handling(struct amdgpu_cs_parser *p)
- 	}
- 
- 	amdgpu_bo_list_for_each_entry(e, p->bo_list) {
--		/* ignore duplicates */
--		bo = ttm_to_amdgpu_bo(e->tv.bo);
--		if (!bo)
--			continue;
--
-+		bo = e->bo;
- 		bo_va = e->bo_va;
- 		if (bo_va == NULL)
- 			continue;
-@@ -840,15 +809,8 @@ static int amdgpu_cs_vm_handling(struct amdgpu_cs_parser *p)
- 
- 	if (amdgpu_vm_debug) {
- 		/* Invalidate all BOs to test for userspace bugs */
--		amdgpu_bo_list_for_each_entry(e, p->bo_list) {
--			struct amdgpu_bo *bo = ttm_to_amdgpu_bo(e->tv.bo);
--
--			/* ignore duplicates */
--			if (!bo)
--				continue;
--
--			amdgpu_vm_bo_invalidate(adev, bo, false);
--		}
-+		amdgpu_bo_list_for_each_entry(e, p->bo_list)
-+			amdgpu_vm_bo_invalidate(adev, e->bo, false);
- 	}
- 
- 	return amdgpu_cs_sync_rings(p);
-@@ -1197,7 +1159,9 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser *p,
- 	struct amdgpu_fpriv *fpriv = p->filp->driver_priv;
- 	struct drm_sched_entity *entity = p->entity;
- 	struct amdgpu_bo_list_entry *e;
-+	struct drm_gem_object *gobj;
- 	struct amdgpu_job *job;
-+	unsigned long index;
- 	uint64_t seq;
- 	int r;
- 
-@@ -1219,11 +1183,8 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser *p,
- 	/* If userptr are invalidated after amdgpu_cs_parser_bos(), return
- 	 * -EAGAIN, drmIoctl in libdrm will restart the amdgpu_cs_ioctl.
- 	 */
--	amdgpu_bo_list_for_each_userptr_entry(e, p->bo_list) {
--		struct amdgpu_bo *bo = ttm_to_amdgpu_bo(e->tv.bo);
--
--		r |= !amdgpu_ttm_tt_get_user_pages_done(bo->tbo.ttm);
--	}
-+	amdgpu_bo_list_for_each_userptr_entry(e, p->bo_list)
-+		r |= !amdgpu_ttm_tt_get_user_pages_done(e->bo->tbo.ttm);
- 	if (r) {
- 		r = -EAGAIN;
- 		goto error_abort;
-@@ -1246,16 +1207,20 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser *p,
- 	amdgpu_job_free_resources(job);
- 
- 	trace_amdgpu_cs_ioctl(job);
--	amdgpu_vm_bo_trace_cs(&fpriv->vm, &p->ticket);
-+	amdgpu_vm_bo_trace_cs(&fpriv->vm, &p->exec.ticket);
- 	drm_sched_entity_push_job(&job->base);
- 
- 	amdgpu_vm_move_to_lru_tail(p->adev, &fpriv->vm);
- 
--	/* Make sure all BOs are remembered as writers */
--	amdgpu_bo_list_for_each_entry(e, p->bo_list)
--		e->tv.num_shared = 0;
-+	drm_exec_for_each_duplicate_object(&p->exec, index, gobj) {
-+		ttm_bo_move_to_lru_tail_unlocked(&gem_to_amdgpu_bo(gobj)->tbo);
-+		dma_resv_add_fence(gobj->resv, p->fence, DMA_RESV_USAGE_WRITE);
-+	}
-+	drm_exec_for_each_locked_object(&p->exec, index, gobj) {
-+		ttm_bo_move_to_lru_tail_unlocked(&gem_to_amdgpu_bo(gobj)->tbo);
-+		dma_resv_add_fence(gobj->resv, p->fence, DMA_RESV_USAGE_WRITE);
-+	}
- 
--	ttm_eu_fence_buffer_objects(&p->ticket, &p->validated, p->fence);
- 	mutex_unlock(&p->adev->notifier_lock);
- 
- 	return 0;
-@@ -1285,7 +1250,6 @@ int amdgpu_cs_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
- 	struct amdgpu_device *adev = drm_to_adev(dev);
- 	union drm_amdgpu_cs *cs = data;
- 	struct amdgpu_cs_parser parser = {};
--	bool reserved_buffers = false;
- 	int r;
- 
- 	if (amdgpu_ras_intr_triggered())
-@@ -1323,8 +1287,6 @@ int amdgpu_cs_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
- 		goto out;
- 	}
- 
--	reserved_buffers = true;
--
- 	trace_amdgpu_cs_ibs(&parser);
- 
- 	r = amdgpu_cs_vm_handling(&parser);
-@@ -1333,7 +1295,7 @@ int amdgpu_cs_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
- 
- 	r = amdgpu_cs_submit(&parser, cs);
- out:
--	amdgpu_cs_parser_fini(&parser, r, reserved_buffers);
-+	amdgpu_cs_parser_fini(&parser);
- 
- 	return r;
- }
-@@ -1665,7 +1627,7 @@ int amdgpu_cs_find_mapping(struct amdgpu_cs_parser *parser,
- 	*map = mapping;
- 
- 	/* Double check that the BO is reserved by this CS */
--	if (dma_resv_locking_ctx((*bo)->tbo.base.resv) != &parser->ticket)
-+	if (dma_resv_locking_ctx((*bo)->tbo.base.resv) != &parser->exec.ticket)
- 		return -EINVAL;
- 
- 	if (!((*bo)->flags & AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS)) {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.h
-index 30ecc4917f81..f447a9c533b4 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.h
-@@ -23,6 +23,8 @@
- #ifndef __AMDGPU_CS_H__
- #define __AMDGPU_CS_H__
- 
-+#include <drm/drm_exec.h>
-+
- #include "amdgpu_job.h"
- #include "amdgpu_bo_list.h"
- #include "amdgpu_ring.h"
-@@ -55,11 +57,9 @@ struct amdgpu_cs_parser {
- 	struct drm_sched_entity	*entity;
- 
- 	/* buffer objects */
--	struct ww_acquire_ctx		ticket;
-+	struct drm_exec			exec;
- 	struct amdgpu_bo_list		*bo_list;
- 	struct amdgpu_mn		*mn;
--	struct amdgpu_bo_list_entry	vm_pd;
--	struct list_head		validated;
- 	struct dma_fence		*fence;
- 	uint64_t			bytes_moved_threshold;
- 	uint64_t			bytes_moved_vis_threshold;
-@@ -67,7 +67,7 @@ struct amdgpu_cs_parser {
- 	uint64_t			bytes_moved_vis;
- 
- 	/* user fence */
--	struct amdgpu_bo_list_entry	uf_entry;
-+	struct amdgpu_bo		*uf_bo;
- 
- 	unsigned			num_post_deps;
- 	struct amdgpu_cs_post_dep	*post_deps;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index c82c580f1df5..7e5cc8323329 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -618,28 +618,6 @@ static void amdgpu_vm_pt_next_dfs(struct amdgpu_device *adev,
- 	     amdgpu_vm_pt_continue_dfs((start), (entry));			\
- 	     (entry) = (cursor).entry, amdgpu_vm_pt_next_dfs((adev), &(cursor)))
- 
--/**
-- * amdgpu_vm_get_pd_bo - add the VM PD to a validation list
-- *
-- * @vm: vm providing the BOs
-- * @validated: head of validation list
-- * @entry: entry to add
-- *
-- * Add the page directory to the list of BOs to
-- * validate for command submission.
-- */
--void amdgpu_vm_get_pd_bo(struct amdgpu_vm *vm,
--			 struct list_head *validated,
--			 struct amdgpu_bo_list_entry *entry)
--{
--	entry->priority = 0;
--	entry->tv.bo = &vm->root.bo->tbo;
--	/* Two for VM updates, one for TTM and one for the CS job */
--	entry->tv.num_shared = 4;
--	entry->user_pages = NULL;
--	list_add(&entry->tv.head, validated);
--}
--
- /**
-  * amdgpu_vm_lock_pd - lock PD in drm_exec
-  *
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-index 15d26f442e70..75c8f10b5a39 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-@@ -382,9 +382,6 @@ int amdgpu_vm_init(struct amdgpu_device *adev, struct amdgpu_vm *vm);
- int amdgpu_vm_make_compute(struct amdgpu_device *adev, struct amdgpu_vm *vm);
- void amdgpu_vm_release_compute(struct amdgpu_device *adev, struct amdgpu_vm *vm);
- void amdgpu_vm_fini(struct amdgpu_device *adev, struct amdgpu_vm *vm);
--void amdgpu_vm_get_pd_bo(struct amdgpu_vm *vm,
--			 struct list_head *validated,
--			 struct amdgpu_bo_list_entry *entry);
- int amdgpu_vm_lock_pd(struct amdgpu_vm *vm, struct drm_exec *exec);
- bool amdgpu_vm_ready(struct amdgpu_vm *vm);
- int amdgpu_vm_validate_pt_bos(struct amdgpu_device *adev, struct amdgpu_vm *vm,
--- 
-2.25.1
+I think so. We captured dmesg log.
 
+As mentioned early we need support from Intel on how to get ASPM working 
+for VI generation on Intel Alder Lake, but we don't know where things 
+currently stand.
+
+>
+>>>>>>>> The issue was initially reported on one system (Dell Precision 
+>>>>>>>> 3660 with
+>>>>>>>> BIOS version 0.14.81), but was later confirmed to affect at 
+>>>>>>>> least 4 Alder
+>>>>>>>> Lake based systems.
+>>>>>>>>
+>>>>>>>> Add extra check to disable ASPM on Intel Alder Lake based systems.
+>>>>>>>>
+>>>>>>>> Fixes: 0064b0ce85bb ("drm/amd/pm: enable ASPM by default")
+>>>>>>>> Link: 
+>>>>>>>> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgitlab.freedesktop.org%2Fdrm%2Famd%2F-%2Fissues%2F1885&amp;data=05%7C01%7Crichard.gong%40amd.com%7C5990a9e58af0438b80c308da2358d216%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637861161666341691%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=Ka3NSmXuyji%2F%2FRdH319aFk9ya5UytU8lq3FhiuMd%2FcU%3D&amp;reserved=0 
+>>>>>>>>
+>>>
+>>> Thank you Microsoft Outlook for keeping us safe. :(
+>> I am not using MS Outlook for the email exchanges.
+>
+> I guess, it’s not the client but the Microsoft email service 
+> (Exchange?) no idea adding these protection links. (Making it even 
+> harder for users to actually verify domain. No idea who comes up with 
+> these ideas, and customers actually accepting those.)
+>
+>>>>>>>>
+>>>>>>>> Reported-by: kernel test robot <lkp@intel.com>
+>>>>>>>
+>>>>>>> This tag is a little confusing. Maybe clarify that it was for an 
+>>>>>>> issue
+>>>>>>> in a previous patch iteration?
+>>>>
+>>>> I did describe in change-list version 3 below, which corrected the 
+>>>> build error with W=1 option.
+>>>>
+>>>> It is not good idea to add the description for that to the commit 
+>>>> message, this is why I add descriptions on change-list version 3.
+>>>
+>>> Do as you wish, but the current style is confusing, and readers of 
+>>> the commit are going to think, the kernel test robot reported the 
+>>> problem with AMD VI ASICs and Intel Alder Lake systems.
+>>>
+>>>>>>>
+>>>>>>>> Signed-off-by: Richard Gong <richard.gong@amd.com>
+>>>>>>>> ---
+>>>>>>>> v4: s/CONFIG_X86_64/CONFIG_X86
+>>>>>>>>       enhanced check logic
+>>>>>>>> v3: s/intel_core_asom_chk/aspm_support_quirk_check
+>>>>>>>>       correct build error with W=1 option
+>>>>>>>> v2: correct commit description
+>>>>>>>>       move the check from chip family to problematic platform
+>>>>>>>> ---
+>>>>>>>>    drivers/gpu/drm/amd/amdgpu/vi.c | 17 ++++++++++++++++-
+>>>>>>>>    1 file changed, 16 insertions(+), 1 deletion(-)
+>>>>>>>>
+>>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/vi.c 
+>>>>>>>> b/drivers/gpu/drm/amd/amdgpu/vi.c
+>>>>>>>> index 039b90cdc3bc..b33e0a9bee65 100644
+>>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/vi.c
+>>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/vi.c
+>>>>>>>> @@ -81,6 +81,10 @@
+>>>>>>>>    #include "mxgpu_vi.h"
+>>>>>>>>    #include "amdgpu_dm.h"
+>>>>>>>>
+>>>>>>>> +#if IS_ENABLED(CONFIG_X86)
+>>>>>>>> +#include <asm/intel-family.h>
+>>>>>>>> +#endif
+>>>>>>>> +
+>>>>>>>>    #define ixPCIE_LC_L1_PM_SUBSTATE    0x100100C6
+>>>>>>>>    #define 
+>>>>>>>> PCIE_LC_L1_PM_SUBSTATE__LC_L1_SUBSTATES_OVERRIDE_EN_MASK 
+>>>>>>>> 0x00000001L
+>>>>>>>>    #define PCIE_LC_L1_PM_SUBSTATE__LC_PCI_PM_L1_2_OVERRIDE_MASK 
+>>>>>>>> 0x00000002L
+>>>>>>>> @@ -1134,13 +1138,24 @@ static void vi_enable_aspm(struct 
+>>>>>>>> amdgpu_device *adev)
+>>>>>>>>                WREG32_PCIE(ixPCIE_LC_CNTL, data);
+>>>>>>>>    }
+>>>>>>>>
+>>>>>>>> +static bool aspm_support_quirk_check(void)
+>>>>>>>> +{
+>>>>>>>> +     if (IS_ENABLED(CONFIG_X86)) {
+>>>>>>>> +             struct cpuinfo_x86 *c = &cpu_data(0);
+>>>>>>>> +
+>>>>>>>> +             return !(c->x86 == 6 && c->x86_model == 
+>>>>>>>> INTEL_FAM6_ALDERLAKE);
+>>>>>>>> +     }
+>>>>>>>> +
+>>>>>>>> +     return true;
+>>>>>>>> +}
+>>>>>>>> +
+>>>>>>>>    static void vi_program_aspm(struct amdgpu_device *adev)
+>>>>>>>>    {
+>>>>>>>>        u32 data, data1, orig;
+>>>>>>>>        bool bL1SS = false;
+>>>>>>>>        bool bClkReqSupport = true;
+>>>>>>>>
+>>>>>>>> -     if (!amdgpu_device_should_use_aspm(adev))
+>>>>>>>> +     if (!amdgpu_device_should_use_aspm(adev) || 
+>>>>>>>> !aspm_support_quirk_check())
+>>>>>>>>                return;
+>>>>>>>
+>>>>>>> Can users still forcefully enable ASPM with the parameter 
+>>>>>>> `amdgpu.aspm`?
+>>>>>>>
+>>>> As Mario mentioned in a separate reply, we can't forcefully enable 
+>>>> ASPM with the parameter 'amdgpu.aspm'.
+>>>
+>>> That would be a regression on systems where ASPM used to work. Hmm. 
+>>> I guess, you could say, there are no such systems.
+>>>
+>>>>>>>>
+>>>>>>>>        if (adev->flags & AMD_IS_APU ||
+>>>>>>>
+>>>>>>> If I remember correctly, there were also newer cards, where ASPM 
+>>>>>>> worked
+>>>>>>> with Intel Alder Lake, right? Can only the problematic 
+>>>>>>> generations for
+>>>>>>> WX3200 and RX640 be excluded from ASPM?
+>>>>>>
+>>>>>> This patch only disables it for the generatioaon that was 
+>>>>>> problematic.
+>>>>>
+>>>>> Could that please be made clear in the commit message summary, and 
+>>>>> message?
+>>>>
+>>>> Are you ok with the commit messages below?
+>>>
+>>> Please change the commit message summary. Maybe:
+>>>
+>>> drm/amdgpu: VI: Disable ASPM on Intel Alder Lake based systems
+>>>
+>>>> Active State Power Management (ASPM) feature is enabled since 
+>>>> kernel 5.14.
+>>>>
+>>>> There are some AMD GFX cards (such as WX3200 and RX640) that won't 
+>>>> work
+>>>> with ASPM-enabled Intel Alder Lake based systems. Using these GFX 
+>>>> cards as
+>>>> video/display output, Intel Alder Lake based systems will freeze after
+>>>> suspend/resume.
+>>>
+>>> Something like:
+>>>
+>>> On Intel Alder Lake based systems using ASPM with AMD GFX Volcanic 
+>>> Islands (VI) cards, like WX3200 and RX640, graphics don’t initialize 
+>>> when resuming from S0ix(?).
+>>>
+>>>
+>>>> The issue was initially reported on one system (Dell Precision 3660 
+>>>> with
+>>>> BIOS version 0.14.81), but was later confirmed to affect at least 4 
+>>>> Alder
+>>>> Lake based systems.
+>>>
+>>> Which ones?
+>> those are pre-production Alder Lake based OEM systems
+>
+> Just write that then: at least four pre-production Alder Lake based 
+> systems.
+>
+>>>> Add extra check to disable ASPM on Intel Alder Lake based systems with
+>>>> problematic generation GFX cards.
+>>>
+>>> … with the problematic Volcanic Islands GFX cards.
+>>>
+>>>>>
+>>>>> Loosely related, is there a public (or internal issue) to analyze 
+>>>>> how to get ASPM working for VI generation devices with Intel Alder 
+>>>>> Lake?
+>>>>
+>>>> As Alex mentioned, we need support from Intel. We don't have any 
+>>>> update on that.
+>>>
+>>> It’d be great to get that fixed properly.
+>>>
+>>> Last thing, please don’t hate me, does Linux log, that ASPM is 
+>>> disabled?
+>
+>
+> Kind regards,
+>
+> Paul
+>
+>
+> [1]: 
+> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.thunderbird.net%2Fen-US%2Fthunderbird%2Freleases%2F&amp;data=05%7C01%7Crichard.gong%40amd.com%7C5990a9e58af0438b80c308da2358d216%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637861161666341691%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=HYlNdeVKxSWQto%2BWGAoUc5etFwhdlyTUoox71SQjCtY%3D&amp;reserved=0
