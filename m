@@ -2,51 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B412A510E4C
-	for <lists+amd-gfx@lfdr.de>; Wed, 27 Apr 2022 03:53:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A696F510EE4
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 Apr 2022 04:40:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9577410E0F3;
-	Wed, 27 Apr 2022 01:53:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFA9210EF70;
+	Wed, 27 Apr 2022 02:40:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com
- [IPv6:2607:f8b0:4864:20::102f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F31B110E0F3
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 01:53:53 +0000 (UTC)
-Received: by mail-pj1-x102f.google.com with SMTP id e24so219017pjt.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 26 Apr 2022 18:53:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:from:date:message-id:subject:to:cc;
- bh=zewmh2a9pR2gBklisjmSCPirfFVMf24e+AJpFmctRg4=;
- b=nwJhclTiemvcY1agaZfSO2k0POcRyFeCz5F5E3PKa3ZZsLFPoEYmOnoLEPB+MBGQpw
- eYk0oj48XYgn7pHzxFFaxXQgXPiOE7pgZTKiXXf3cM6z5BJNeAHIvafSNat0NJ2t4yVu
- exzyU2dMO+/4JG7kguJSZhRdItPZVdzcyhaNPnsR5ll2x3mKocqivZt412/VtPzw0ydJ
- /W7AmF4KM9URIVpOsKauFUZThcwKsIY0tco2XYP7Iv/JsDufDV8sOFVH0sg8N3RSv72I
- sRoXIhq116L5giAPnjWbzkwJqhBczoAFGxpZOZNJFrRqT1j0ns/SqCmqrKm2+CytJMj6
- fshw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
- bh=zewmh2a9pR2gBklisjmSCPirfFVMf24e+AJpFmctRg4=;
- b=tRiJ659k4khZOsXMgnEcCwylPyi8+8XZ4UkOHnMpKnQLU8+J60+NJKdepV+5SiFwyi
- hB/ooTzSh4cwcBkPimY1RDMXln4Gjy79VXi3Zpc1Yp5u0c4zTmQJnmNvDkJu9srBhrcw
- CPIzUB7KdH2VccedgsXJ8fGw8BIHNmDOmk2Z4QUt6/v/I+szEXi1+7CHOBt24K1B37Qt
- AjrXz0rnvz6zXhG0S802NHionBTBq81YLjqlnYfHnVJU+NoWaUK3btINd8QhsvITNXiG
- 5hAGbQz/3WxVkjfFqNgwDD6EK9108mLpu7iFSTrFY3OZisVhRjYRU9jnAPFdBS/lwfsU
- 4EJg==
-X-Gm-Message-State: AOAM533NF/jMsslk6vcArnRqqwgovkCHSGtwOhwxfc+UBmpZS1AiwI4Z
- 1MBMAFSoA3CWpX6iGpwYzcE/RhikMfHTpotq/4nuwlGUGG4=
-X-Google-Smtp-Source: ABdhPJxQUICv3NfXrXtbn5SBoilDT6ZJppaMngQjf6qGK68kzNVHCcRunvv3xQRj+qCOjjeY7Pgx4WxbsXw5wXGLkXM=
-X-Received: by 2002:a17:902:f64c:b0:156:4349:7e9b with SMTP id
- m12-20020a170902f64c00b0015643497e9bmr26785164plg.139.1651024433220; Tue, 26
- Apr 2022 18:53:53 -0700 (PDT)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2042.outbound.protection.outlook.com [40.107.93.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C53010EF70
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 02:40:23 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XM1Qz/x0PFosMG/rv9xm7WUy/ClIwSZBHvFBH1RrY5wqJK9vOH5toDOsVSUIidzvoVe/XfGKt9WbbWHHR7vFM+KyYhpKfVrJT3uCfDEKEYffmL3U/6Lc4/yhyB1ypxEUPdtZtp73+Svkp5q7FypJW60z4cHyqNtRDSS/Vl2n1q0BVEaZoTwQ7LKKDaAZJRv+uVMgd4jBEDGoTheKnhg2ydS8ncKToqJ9caTeu8sm/ee8MkZ7cirsrKegpDQrSqYCNJTWmyT9HqhpDG7ofEBWYLMvXg4EaPDlvTqvftYT4/SD0qnhJOD09wuh1BicrzaKXdyYRxLqh0C0ggHIvD1hag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Pd3RSnOYlKWY8J1dfdicbmotxLub6eTtcJPROIFyFrk=;
+ b=HmIrIos/uULXg3AqFmU0I12/lIDiGYimw0evQ+8+tBopfs+sIZDhdntVaka81cBSxfXsdoQTvHPSjiwBZCKOyCsJHQrFbSF0kjzkGCTjeSiaYkMZUsRhiRKU+e4Q0abuHzSOrBm9PWv2lUto0NayXWi/FDL1kJWSCoTdRloxpeiVoV+5qE6RKYkpgwnK86l0R8UOcjCsDQRQxVt83EJ+KIyHI+oF4ex6UfRn/jbCuda/A1cbqCyCS08ORYVpAbcNMSPCJ+1C5fI8dhMusMwxQbw5AJQi1FaSePxcVZ75nXSXDAAB7L9S/YM+lC4VI2Ie38NY73Yj0mgcbOJX3m2vKw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Pd3RSnOYlKWY8J1dfdicbmotxLub6eTtcJPROIFyFrk=;
+ b=b+qqyXAfUYusKLNnNgZnBsc5OmqwQw5HdX+/MfX1mPI6w1o6+CLWBSS8J81/3B0KipBOLVGTEr2B7TuIJKFkNWJEy47nv1YTjd8qd1vb3ksocyBEkvpEYrh3X/tDlXgKCpsePJLiE4ah9oX+dMbfPRIe5hemcB+U3dXe6ztN9FY=
+Received: from MW4PR03CA0118.namprd03.prod.outlook.com (2603:10b6:303:b7::33)
+ by MWHPR12MB1488.namprd12.prod.outlook.com (2603:10b6:301:f::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.15; Wed, 27 Apr
+ 2022 02:40:18 +0000
+Received: from CO1NAM11FT011.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:b7:cafe::38) by MW4PR03CA0118.outlook.office365.com
+ (2603:10b6:303:b7::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.14 via Frontend
+ Transport; Wed, 27 Apr 2022 02:40:18 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT011.mail.protection.outlook.com (10.13.175.186) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5206.12 via Frontend Transport; Wed, 27 Apr 2022 02:40:17 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Tue, 26 Apr
+ 2022 21:40:17 -0500
+Received: from wayne-System-Product-Name.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.24
+ via Frontend Transport; Tue, 26 Apr 2022 21:40:08 -0500
+From: Wayne Lin <Wayne.Lin@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 0/8] DC Patches April 27, 2022
+Date: Wed, 27 Apr 2022 10:39:51 +0800
+Message-ID: <20220427023959.1241450-1-Wayne.Lin@amd.com>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
-From: Haohui Mai <ricetons@gmail.com>
-Date: Wed, 27 Apr 2022 09:53:41 +0800
-Message-ID: <CAHpOOhHvr1OkXJ=z9dnm7ES4gXLkWbHzLHqSkipyqCv5HR7Jvg@mail.gmail.com>
-Subject: [QUESTION] sdma_v5_2 updates address with an running async dma engine
-To: amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: f378622c-768e-4136-059c-08da27f7442b
+X-MS-TrafficTypeDiagnostic: MWHPR12MB1488:EE_
+X-Microsoft-Antispam-PRVS: <MWHPR12MB14888F34D7894EFDCF127832FCFA9@MWHPR12MB1488.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: FPudD3sssSW4uutny5cc4zziBDMhlD6oj6nuFho35Fxd2qxwNekI8dGBVAtrHNJgzL5poUUvZiCXZcYvQNGCpd/OvkI8UrjsmjzbqIFsLW8iFGgplO6Rdlx+IjyxKGtH8ss2AMyUMvVoFBRs0ynz+ZYIJv8zlv1WFcWbbPnxO9rcX8BlqbWdnrSMGkup051bQpyNaWXL4TmouIwjBsjRe13Th6p7a7fNDYh1TZItSJSN9dR2UduSlaExLIfkfFeIV4Yh+N40PadQXQycyvcweWa+5rtjiE1RmwKybbHNpPJSUUZJyJ78oD4GIMcTHLHC+QiRnKKaSgyK2WRhfEdjdUObxnx9gnh4tTz768uRhXDLZKYCgmyH8gTEaidqMwjltDg7ZrFzw0qYH8Hi+wJ/uV8n8JYYM9Rwcoh76yoNPPALxX5ZWYu1A75fSV2rZLpBn4GSjXFgHre7VAwW/t5flrdtRuPvkQre545nWubus9uJQqbmeDqp43AK57cwAGlLAjexUMP6GTesHfsXxrMhKmqvnqPWEbqDBT23KKX8Jf1rOV+vlXcXUUypo+7bCMF7VzFsNigSLj+wkLWYT07jiciQa0WQ/pHMy1JG0DHfecGLxhculwjm4tJCIKcxHF4d2igoWUU/pXpyhVmqwmYKuVQ0H0Ve8YwWr8yY9V0dbk5NTnixKY737+KY/s/5uFyBdvHcHpA7AEPiNeo7XpSZBw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(336012)(47076005)(83380400001)(186003)(1076003)(508600001)(86362001)(426003)(36756003)(356005)(5660300002)(8936002)(2906002)(81166007)(4326008)(2616005)(7696005)(26005)(54906003)(6916009)(70586007)(8676002)(70206006)(36860700001)(40460700003)(316002)(6666004)(82310400005)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2022 02:40:17.8547 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f378622c-768e-4136-059c-08da27f7442b
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT011.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1488
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,63 +98,58 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, Wayne Lin <Wayne.Lin@amd.com>,
+ Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+This DC patchset brings improvements in multiple areas. In summary, we highlight:
 
-I'm looking at the initialization sequences in sdma_v5_2.c. I'm
-confused on whether the DMA engine should be activated when updating
-the MMIO registers. Some clarifications are highly appreciated.
+* Have optc3 function accessible to newer DCN
+* Add CM boot option for USB4 tunneling
+* Fix system hang issue when game resolution is changed
+* Remove outdated register for dcn3+
+* Add new DSC interface to disconnect from pipe
+* Clean up pixel format types in enum surface_pixel_format
 
-Here is the background:
- * sdma_v5_2_enable() toggles the HALT bit to enable / disable the
-async DMA engine
- * sdma_v5_2_resume() initializes MMIO registers (e.g., queue
-addresses) of the DMA engine.
- * sdma_v5_2_start() is called when the kernel initializes the device.
+---
 
-However, the driver has two paths when updating the MMIO registers,
-where the DMA engine is activated / deactivated respectively.
+Anthony Koo (1):
+  drm/amd/display: [FW Promotion] Release 0.0.115.0
 
-When amdgpu_sriov_vf(adev) is true:
+Aric Cyr (2):
+  drm/amd/display: Clean up pixel format types
+  drm/amd/display: 3.2.184
 
-   866         if (amdgpu_sriov_vf(adev)) {
-   867                 sdma_v5_2_ctx_switch_enable(adev, false);
-   868                 sdma_v5_2_enable(adev, false);
-   869
-   870                 /* set RB registers */
-   871                 r = sdma_v5_2_gfx_resume(adev);
-   872                 return r;
-   873         }
+Eric Bernstein (1):
+  drm/amd/display: Add new DSC interface to disconnect from pipe
 
-When amdgpu_sriov_vf(adev) is false:
+Evgenii Krasnikov (1):
+  Revert "drm/amd/display: Reset cached PSR parameters after hibernate"
 
-   893         sdma_v5_2_enable(adev, true);
-   894         /* enable sdma ring preemption */
-   895         sdma_v5_2_ctx_switch_enable(adev, true);
-   896
-   897         /* start the gfx rings and rlc compute queues */
-   898         r = sdma_v5_2_gfx_resume(adev);
+Jimmy Kizito (1):
+  drm/amd/display: Add Connection Manager boot option.
 
-Furthermore, sdma_v5_2_gfx_resume() re-enables the already active DMA
-engine when amdgpu_sriov_vf(adev) is false:
+Lee, Alvin (1):
+  drm/amd/display: Make OPTC3 function accessible to other DCN
 
-   728                         /* unhalt engine */
-   729                         temp =
-RREG32(sdma_v5_2_get_reg_offset(adev, i, mmSDMA0_F32_CNTL));
-   730                         temp = REG_SET_FIELD(temp,
-SDMA0_F32_CNTL, HALT, 0);
-   731                         WREG32(sdma_v5_2_get_reg_offset(adev,
-i, mmSDMA0_F32_CNTL), temp);
+Tse, Kaitlyn (1):
+  drm/amd/display: Remove outdated register for dcn3+
 
-The behavior seems inconsistent. Looking at the code that re-enables
-the engine, it seems that the driver assumes a deactivated DMA engine
-during initialization regardless whether the device is in vf mode or
-not.
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c |  7 +---
+ drivers/gpu/drm/amd/display/dc/dc.h           |  2 +-
+ drivers/gpu/drm/amd/display/dc/dc_hw_types.h  |  3 +-
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c  | 11 ++++++
+ .../gpu/drm/amd/display/dc/dcn30/dcn30_mpc.h  |  5 ---
+ .../gpu/drm/amd/display/dc/dcn30/dcn30_optc.h |  2 +-
+ drivers/gpu/drm/amd/display/dc/inc/hw/dsc.h   |  1 +
+ drivers/gpu/drm/amd/display/dmub/dmub_srv.h   |  1 +
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   | 36 ++++++++++++++++++-
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn31.c |  1 +
+ 10 files changed, 54 insertions(+), 15 deletions(-)
 
-Just wondering, is the behavior expected or is it a bug?
+-- 
+2.36.0
 
-Thanks,
-Haohui
