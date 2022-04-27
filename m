@@ -2,47 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BEAA511226
-	for <lists+amd-gfx@lfdr.de>; Wed, 27 Apr 2022 09:13:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B119B5110D2
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 Apr 2022 08:03:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1455F10E31E;
-	Wed, 27 Apr 2022 07:13:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A23F110F804;
+	Wed, 27 Apr 2022 06:03:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1BBE10E0F9;
- Wed, 27 Apr 2022 01:38:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description;
- bh=EqlJFrirIuN6/jFpvQBt0qkjkLubUZLlF1k8KoDAy4k=; b=uhu0BxlOHFONUbyZvFxJlzeAMW
- kXw4JpR+R/pH8QNJyVrPbbge+XLRJzZAoUdN3Z2PkZHBH2XWYS1a7krBMS7pb9n+A2LNJPhI1QiNK
- hX+/NQW4/6U4rFdwMZ9epoM7TI43iMKifmrse7Db8Ru2VXKiz0XgzbpLE3H571/AdTCQjOLRXipTS
- AaG9IuxWM02eFPoZ0d4Q/lxCAXOy4tiiirhS9yRxu3h4abyfEi5Iw809hEnBC3C6uzZroiBaSWlAN
- DgLLIc6LTREGsB/sELD7dWuYWQ03KvhXI63UcSIoD0Eh9eiH01t2Z+tHPgYHboF+Wv1JGz94haSe0
- SkZGa4+A==;
-Received: from [2601:1c0:6280:3f0::aa0b]
- by casper.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
- id 1njWdi-00ABKS-3m; Wed, 27 Apr 2022 01:38:46 +0000
-Message-ID: <88d7b912-a12f-4bc9-abe6-e221a37f2eb2@infradead.org>
-Date: Tue, 26 Apr 2022 18:38:39 -0700
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com
+ [IPv6:2607:f8b0:4864:20::431])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55A7710F52B
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 Apr 2022 06:03:18 +0000 (UTC)
+Received: by mail-pf1-x431.google.com with SMTP id j17so725557pfi.9
+ for <amd-gfx@lists.freedesktop.org>; Tue, 26 Apr 2022 23:03:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=lGny7vEwo7v5y55PKJOyQZQLPHmlYxnjW85xSYymbI0=;
+ b=aS36Jcr4px8LolbIR+CCUTIiDMZszVSbNcRVJeWZun4TxPE/aQjkV3STbs8MzGZoec
+ Ycvz90YQS6adA14LDeU/V0RL8RqBwJ8HmetranZXbNzOwDc2qQE4ilCbzhTUOpFmjR4q
+ jvIZetiA2IvWsS8SmZZ+9j8WMO+YaLbqnEqAXS8IqIh31ScHg5DymwKRkv/2W70XnTW1
+ 8IwbqHd0EwdyYEhyGOFTg4G9/9VuTX2RH1gmbreyjucQ1gh9n4qkegwK7qfZa+I6M0AL
+ jqG21g93P8fc+ndLwTZihspv2rt7lVyY9vVi6C+YzXInVfbwqOH3EvSVMdwQk50G6ksQ
+ wOwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=lGny7vEwo7v5y55PKJOyQZQLPHmlYxnjW85xSYymbI0=;
+ b=mOG32n5ViUKVjU0fCn8Yjie9Y/RkIbhDsLRIFOrNjFiMpctcuOm7MnpJATdYSkfSqp
+ cKTre+BhaksoYOpPhv/bOIlVqzPFrRiT6Ki16kWBgNyRFAVGkpXCrZad7IyIeZlB0LjS
+ J+YvDZq5W9Bj4aWxgreorBjjq3VsQoZpz2WGKsvCXtfTmrqVDM4+tZU+w72NcU8+VzRj
+ SaevQ4UVnh3QLWtY+CFpyoEZYLkgSj4JTBdzWk35Auvq1vVuISVXIluuc1C1gLXND4A2
+ /b5sITlf4jj1PcyFsAcRpQpEd+FG6dypfOa43USunhAqIx9VI7flHjqZLK5d29O/Av0G
+ /L6A==
+X-Gm-Message-State: AOAM533AYlaRL7n0aTyR8duyxqmFqtDWGWxkGL0enFL+kFK+ndFt6QSC
+ D/8AxqpfLvGKdHc6ONJVvuxpWVUPlxzLXMcgqe4=
+X-Google-Smtp-Source: ABdhPJzUvIoozdzOmURvbqgxN/IXz/xNVJj+Yf4Kvx+R3DsGlfxW5DmFAr/lCMGsbSNzknU1V6cGPEyQYip2a6EFnXM=
+X-Received: by 2002:a63:7702:0:b0:3ab:4d62:b68b with SMTP id
+ s2-20020a637702000000b003ab4d62b68bmr11545371pgc.452.1651039397827; Tue, 26
+ Apr 2022 23:03:17 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 2/2] drm/amdgpu: debugfs: fix NULL dereference in
- ta_if_invoke_debugfs_write()
-Content-Language: en-US
-To: Alex Deucher <alexdeucher@gmail.com>,
- Dan Carpenter <dan.carpenter@oracle.com>
-References: <Ymexw96moFElQvqG@kili> <YmeyEF4djrguNMEF@kili>
- <CADnq5_PmoHWzJ9Mh=-ghMzOexv20h-Du2hGsoaR0owdDBnc8iw@mail.gmail.com>
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <CADnq5_PmoHWzJ9Mh=-ghMzOexv20h-Du2hGsoaR0owdDBnc8iw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Wed, 27 Apr 2022 07:13:09 +0000
+References: <CAHpOOhHvr1OkXJ=z9dnm7ES4gXLkWbHzLHqSkipyqCv5HR7Jvg@mail.gmail.com>
+ <8c22f321-2080-8ab5-58d0-39bcd79c246d@gmail.com>
+In-Reply-To: <8c22f321-2080-8ab5-58d0-39bcd79c246d@gmail.com>
+From: Haohui Mai <ricetons@gmail.com>
+Date: Wed, 27 Apr 2022 14:03:07 +0800
+Message-ID: <CAHpOOhFiHWkPbWpqCY4=6tDiVszt2BfeZZWrgm+Ui_pB8LFGDw@mail.gmail.com>
+Subject: Re: [QUESTION] sdma_v5_2 updates address with an running async dma
+ engine
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,31 +65,80 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tao Zhou <tao.zhou1@amd.com>, David Airlie <airlied@linux.ie>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, kernel-janitors@vger.kernel.org,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- Candice Li <candice.li@amd.com>, John Clements <john.clements@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Alex--
+Great, thanks! I'll work on a patch then.
 
-On 4/26/22 07:47, Alex Deucher wrote:
-> Applied the series.  Thanks!
-> 
-> Alex
-> 
+~Haohui
 
-I just saw a build warning here when CONFIG_DEBUG_FS is not enabled:
-
-../drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c:281:23: warning: 'amdgpu_ta_if_debugfs_create' defined but not used [-Wunused-function]
-  281 | static struct dentry *amdgpu_ta_if_debugfs_create(struct amdgpu_device *adev)
-      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
--- 
-~Randy
+On Wed, Apr 27, 2022 at 1:57 PM Christian K=C3=B6nig
+<ckoenig.leichtzumerken@gmail.com> wrote:
+>
+> Am 27.04.22 um 03:53 schrieb Haohui Mai:
+> > Hi,
+> >
+> > I'm looking at the initialization sequences in sdma_v5_2.c. I'm
+> > confused on whether the DMA engine should be activated when updating
+> > the MMIO registers. Some clarifications are highly appreciated.
+> >
+> > Here is the background:
+> >   * sdma_v5_2_enable() toggles the HALT bit to enable / disable the
+> > async DMA engine
+> >   * sdma_v5_2_resume() initializes MMIO registers (e.g., queue
+> > addresses) of the DMA engine.
+> >   * sdma_v5_2_start() is called when the kernel initializes the device.
+> >
+> > However, the driver has two paths when updating the MMIO registers,
+> > where the DMA engine is activated / deactivated respectively.
+> >
+> > When amdgpu_sriov_vf(adev) is true:
+> >
+> >     866         if (amdgpu_sriov_vf(adev)) {
+> >     867                 sdma_v5_2_ctx_switch_enable(adev, false);
+> >     868                 sdma_v5_2_enable(adev, false);
+> >     869
+> >     870                 /* set RB registers */
+> >     871                 r =3D sdma_v5_2_gfx_resume(adev);
+> >     872                 return r;
+> >     873         }
+> >
+> > When amdgpu_sriov_vf(adev) is false:
+> >
+> >     893         sdma_v5_2_enable(adev, true);
+> >     894         /* enable sdma ring preemption */
+> >     895         sdma_v5_2_ctx_switch_enable(adev, true);
+> >     896
+> >     897         /* start the gfx rings and rlc compute queues */
+> >     898         r =3D sdma_v5_2_gfx_resume(adev);
+> >
+> > Furthermore, sdma_v5_2_gfx_resume() re-enables the already active DMA
+> > engine when amdgpu_sriov_vf(adev) is false:
+> >
+> >     728                         /* unhalt engine */
+> >     729                         temp =3D
+> > RREG32(sdma_v5_2_get_reg_offset(adev, i, mmSDMA0_F32_CNTL));
+> >     730                         temp =3D REG_SET_FIELD(temp,
+> > SDMA0_F32_CNTL, HALT, 0);
+> >     731                         WREG32(sdma_v5_2_get_reg_offset(adev,
+> > i, mmSDMA0_F32_CNTL), temp);
+> >
+> > The behavior seems inconsistent. Looking at the code that re-enables
+> > the engine, it seems that the driver assumes a deactivated DMA engine
+> > during initialization regardless whether the device is in vf mode or
+> > not.
+> >
+> > Just wondering, is the behavior expected or is it a bug?
+>
+> Off hand that sounds like a bug to me. The SRIOV code paths are in
+> general not that well tested since most testing/bringup happens on bare
+> metal.
+>
+> Regards,
+> Christian.
+>
+> >
+> > Thanks,
+> > Haohui
+>
