@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E79E0513BC5
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 Apr 2022 20:45:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC5AD513BC8
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 Apr 2022 20:45:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5151D10E9DD;
-	Thu, 28 Apr 2022 18:45:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DAF910EA09;
+	Thu, 28 Apr 2022 18:45:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2043.outbound.protection.outlook.com [40.107.236.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD92010E996
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 Apr 2022 18:45:41 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1anam02on2061.outbound.protection.outlook.com [40.107.96.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E63010E996
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 Apr 2022 18:45:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Uz//GjPwX4/9QDrqfLrBxJBbEb6nUbq6toosK9P56KCOa1ZvT27euAnE/IYfbmhMGoRiR1rHQ1Aw9jREeqb62mbHJR1ugnAalgdQGo9tqo17i77QYfoGw/IdaygaYF4SE10Ah8Z9eFHm1LVZeOkOpbwwdXmNHC++68BHc+LfH70EqC9f5/6Ji9NBDiUFTAR6UtG8knTkDxgTUeqN0GN7qJ3RiLOn4iKg0h5FNGkM5a+dO/RQgLeeJWyOJKIiiBj+NEnGy1n2wQf5Hd1gaHRx2ox1+NZhOM/+ol1XwvQ/VNwd4mm9BXDOaXSQaMFKyCfGA9SFFOBAI+oNr/WczMIarQ==
+ b=ha8lVRMdKJHo4ijss/6fzLnddX7CsMTXs0jZxs3TiTXLyjH8n4hwjKfj0UOnkOoshWUwmx5x7zCEloTdmmh9uI72QUaihZ4VJLQYSKcTv7adjBPp5126KKtXZyxpaxwMoRErRkRw107cIcfQ++bjPTM734Qfk4t9othd8rWakevhZIbFsRh42HlZk4P5jLlBQnvaHUygWSe+f5jrZsviWE3FBFacnVGhZQJXjj/Qz+PLVf/10rwyKNFdNlVGwuCqCStYMPybeJVJGxPOdm4zKV9kKpWQ7VDI0BS66lmybYrEY3YAYXfCchAyxn3o009jHw36KQVo99Q6+l4eb35tfA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DoUPZpCMyePuxvP/QMPqcrD7+sj7beu3OTMPCKGRJSc=;
- b=OI3HwyU4shCjJ7sDimYd0MAHNjEOeE27KvEdKsNJkS3iwRv28NXjunFqGoETYwOxiPnA3tlD/J/eDg0uSBZBQGOvyJJxF07Z5y2iW0mwJ7h+PihxvU0BL88VXBrh95rws7PJ4q50bHWIcUyQZ0mI5SDROJbw06bQhSgJasOnRkGYBNGTx+6mM6u3vs34Sw37gN1EnBGfOdAszBT6WFP3rIwpe/EOAcBBacoai2Gz1LMxgz4tFPlPvwiHkIXBe/CDRaR12e1k23tM+pxLpDNgQnJq78BFweJFJpHADJTTzEImpcoGsCVXiCgjZ5OnXKP5R4ypidvKwOCWRogjWPIx/g==
+ bh=g9za+gCze//F+y2xbE5OslIP1MXdX2FeoYK5OlmZKiE=;
+ b=OhL8+0SXySl5Z2ykKiwctIosEqkKjUdtViIwd7H3C0lVpAdu75Lx5qAuaQTKnSLDRJglTYn5d3gpaFI6j+BhGI3O64kJSzv01ayjLKDJO268yjcd+OtN5OmJccC4b0soB3kZ3DJmTvJp5GBehFh0Bw0rzXbVwglUyy6PYq3Vrmu6cED7wgWNeo9dfSYwHB+GfHNyMFFk+uwtju/a/CqiMYSEZBtT2/pCO3aNOTB9DaFfveICxSuUY6EniOi5n+DfqqvGoaGvcFb5vFwVma9p6dXjLqFTQkWUQtSglO0kxFpj37asyCTwOBusUesF+efptSwmhUXflOdO43e3O/Ul8g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DoUPZpCMyePuxvP/QMPqcrD7+sj7beu3OTMPCKGRJSc=;
- b=mFhTmcM/4jPi6QkqFyAMYsQXSZEdx6kYfkJeOptaJOMvggj/IWrAyViqeo9uvs+51Vo+LAF9g7gi/rtbILh2oiroj8Y+LAK+uwdbDRG0pPg9AjgdWy2hOgpKEWb8CG5vQ0poW3m4at3CpDxnRoxGYCKIEjMcRtwKkyHWDv2cRKM=
-Received: from DS7PR03CA0203.namprd03.prod.outlook.com (2603:10b6:5:3b6::28)
- by BN8PR12MB4770.namprd12.prod.outlook.com (2603:10b6:408:a1::30) with
+ bh=g9za+gCze//F+y2xbE5OslIP1MXdX2FeoYK5OlmZKiE=;
+ b=yrHhy2fGr3PuPgUxIOljOcL9Ta3BhjZxfvQ/Lqglvcp3N7WgSGCIrU7V0oz+WMShTEHzV+t5TVJZVyMnT4GsG8rFiud4eCMHgH7rrA6DEXxAN+QmKFgVExC9kkOQXIB9TxGalVoCMb1v2CzhcrvByRBpOVZxp+UKdnA6sfkPYYA=
+Received: from DS7PR03CA0193.namprd03.prod.outlook.com (2603:10b6:5:3b6::18)
+ by CH2PR12MB4151.namprd12.prod.outlook.com (2603:10b6:610:78::16) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.15; Thu, 28 Apr
- 2022 18:45:36 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.12; Thu, 28 Apr
+ 2022 18:45:40 +0000
 Received: from DM6NAM11FT012.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:3b6:cafe::58) by DS7PR03CA0203.outlook.office365.com
- (2603:10b6:5:3b6::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.14 via Frontend
- Transport; Thu, 28 Apr 2022 18:45:36 +0000
+ (2603:10b6:5:3b6:cafe::23) by DS7PR03CA0193.outlook.office365.com
+ (2603:10b6:5:3b6::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.23 via Frontend
+ Transport; Thu, 28 Apr 2022 18:45:39 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT012.mail.protection.outlook.com (10.13.173.109) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5206.12 via Frontend Transport; Thu, 28 Apr 2022 18:45:36 +0000
+ 15.20.5206.12 via Frontend Transport; Thu, 28 Apr 2022 18:45:39 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Thu, 28 Apr
  2022 13:45:34 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 5/7] drm/amdgpu: rework psp firmware name
-Date: Thu, 28 Apr 2022 14:45:18 -0400
-Message-ID: <20220428184520.651971-5-alexander.deucher@amd.com>
+Subject: [PATCH 6/7] drm/amdgpu: add tracking for the enablement of SCPM
+Date: Thu, 28 Apr 2022 14:45:19 -0400
+Message-ID: <20220428184520.651971-6-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220428184520.651971-1-alexander.deucher@amd.com>
 References: <20220428184520.651971-1-alexander.deucher@amd.com>
@@ -68,27 +68,27 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 346cc4c5-2b3c-4de9-071d-08da29474889
-X-MS-TrafficTypeDiagnostic: BN8PR12MB4770:EE_
-X-Microsoft-Antispam-PRVS: <BN8PR12MB4770B76C785A5651830E5625F7FD9@BN8PR12MB4770.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 0c3b84aa-3a81-4d39-696e-08da29474ac0
+X-MS-TrafficTypeDiagnostic: CH2PR12MB4151:EE_
+X-Microsoft-Antispam-PRVS: <CH2PR12MB4151A52F86811DC5B492F01CF7FD9@CH2PR12MB4151.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: CfNkv1WJ7df6EJRw6CnHc5gr1EajfiOSWgtTtmLfD8mn9MQ3hpGs8u1LztEyL4MuVe2trQiANYW27LYJtjSJ+490AQXVMITe9Qx8gttW69hpVTjREAfJj9JgKX2BOi7Z4vS4gwGewxD5BXMxrnxu5f3P8DJ5bH2zHyWYCtahTa7q+i5eDPdvO05ZsWOda+Qml4Wn0hyrTl9MBIWj24yWD2+dyspvZUOOZ2Xtw0/43/m9+v+/ToiRYCmmS6Og9HjNGix1jJ+Tz0uj9fRKjg49L5UEwcm+Uk83A7oMRuHHgLCUHSwaLV/PdhYXCcsH2ojg3cO+CM7eo+Q7ZnpbsnViLTVRv5P8IhDMJ+OaDuXaMV8rg7BcxcAfwc5mr9mnG71t1xLu14ULwC9O4Ys/wOR2A4fxXq0W89+yiAIJ/oB0YqyWEXELXZo8DVyIUW82j8+f8/AeprLflJRH8TS6+m/Wep9+jcr464NgkevQVUvaWlvE9aiiKivxhyPKsMzzRvAJbXyCr/N0VOQnbwXVghvmhrz2gDtyQwNX5LyTlWybZC8wsxzUvVzcxOKcMFNfSxAwimjNK8UFihBuWNVGRy20y2j/h8vJ0Wj3jVgmaf0L7PbcQD04n5Tdq0pnAGZUD7HEjhEKb1VN2y/uXUT8T87sy33hL+DBRqZR8+Lf+cAv/DTIrDZSYYheWu3dgfBxb5cS9UVoRXCPCsXOFZYcbrslSA==
+X-Microsoft-Antispam-Message-Info: q2usUrWrf3RFowKHyERizEJMZYeH+85U1ultW+XRRwb5FqCvc+Umrn4Swm+hOf4lfDuoHttMQMhLKindTtbTMkjeW10kcAJy1bivtoowKOPdMDTUsxrkbPKo7H/pybeJ3Pg9n2nObQRgmTLpj5Pkoh96AMqp1AfEBM5k41CJI82RgQszOMVOMYhmpizdn5iST0Nbfz4YFH6Ulvg9JDUHjgrE2hl+Ske3iOtcFHrFQ8uU2Kka3F0Cg+DGganXppLaU9LOO6r2CNXcrUZ2w1wvTK9oyIc0NxrlckuMpaaguaPCyc4uv4NEoFQwM8ApAKNI8cAq1VmGKxnumka4/fSQpWTOJb47g6OBW8p0AV2vvtksmL8NVOGvSgeBC8LkK0felrkI7YrifsUsXNYrOkqvInQ5JBJIVKImwwTpHs9hBcLMbLBHYKC7JLgwZNYK8llCOKi9j/pO2lG2J+ZOOMBt2E0aE7QdnAV045p5jPS3ly0IHgJLHdOi4q55EVFXPtNZsVJFalnEvCLJVzcVLrJUkruPML1yCl3Tz5j4X668ZSTGAo10PylHPbXtsVpZPqucndZofUWS7GnrhsuL8HrOfjuU23q1BO2fngRFZ5RZC8dxdvR0u0+EI+USDrcWOsXD3RJPB1f8tticyZKxGjfLokVFc/igV1Z8H5mjElqHT9OEzzure1TxNeYESTNdc4V62KWdDiEbxpcWrQKL+jinKQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(36840700001)(46966006)(508600001)(6666004)(7696005)(86362001)(47076005)(6916009)(356005)(81166007)(426003)(186003)(1076003)(2616005)(16526019)(336012)(8936002)(8676002)(4326008)(82310400005)(36756003)(2906002)(5660300002)(316002)(70206006)(70586007)(26005)(36860700001)(54906003)(40460700003)(83380400001)(36900700001);
+ SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(82310400005)(8676002)(4326008)(86362001)(54906003)(6916009)(316002)(2906002)(6666004)(36756003)(5660300002)(70586007)(70206006)(8936002)(7696005)(508600001)(47076005)(81166007)(83380400001)(1076003)(336012)(26005)(426003)(2616005)(16526019)(186003)(356005)(40460700003)(36860700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2022 18:45:36.1609 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 346cc4c5-2b3c-4de9-071d-08da29474889
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2022 18:45:39.8949 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0c3b84aa-3a81-4d39-696e-08da29474ac0
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT012.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB4770
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4151
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,57 +100,136 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Likun Gao <Likun.Gao@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Likun Gao <Likun.Gao@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Likun Gao <Likun.Gao@amd.com>
 
-Use the new helper for deriving the fw name from
-the IP version.
+Add parmeter to shows whether SCPM feature is enabled or not, and
+whether is valid.
 
 Signed-off-by: Likun Gao <Likun.Gao@amd.com>
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/psp_v13_0.c | 15 +++++----------
- 1 file changed, 5 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h     |  3 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 28 ++++++++++++++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h | 13 ++++++++++++
+ 3 files changed, 43 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c b/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
-index 024853eb1cd7..8d3cdfe17f56 100644
---- a/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
-@@ -53,6 +53,7 @@ static int psp_v13_0_init_microcode(struct psp_context *psp)
- {
- 	struct amdgpu_device *adev = psp->adev;
- 	const char *chip_name;
-+	char ucode_prefix[30];
- 	int err = 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index 05358c587783..1a598e3247ca 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -1016,6 +1016,9 @@ struct amdgpu_device {
+ 	int                             num_regs;
  
- 	switch (adev->ip_versions[MP0_HWIP][0]) {
-@@ -63,18 +64,12 @@ static int psp_v13_0_init_microcode(struct psp_context *psp)
- 	case IP_VERSION(13, 0, 3):
- 		chip_name = "yellow_carp";
- 		break;
--	case IP_VERSION(13, 0, 5):
--		chip_name = "psp_13_0_5";
--		break;
--	case IP_VERSION(13, 0, 8):
--		chip_name = "psp_13_0_8";
--		break;
--	case IP_VERSION(13, 0, 0):
--		chip_name = "psp_13_0_0";
--		break;
- 	default:
--		BUG();
-+		amdgpu_ucode_ip_version_decode(adev, MP0_HWIP, ucode_prefix, sizeof(ucode_prefix));
-+		chip_name = ucode_prefix;
-+		break;
- 	}
+ 	struct amdgpu_reset_domain	*reset_domain;
 +
- 	switch (adev->ip_versions[MP0_HWIP][0]) {
- 	case IP_VERSION(13, 0, 2):
- 		err = psp_init_sos_microcode(psp, chip_name);
++	bool                            scpm_enabled;
++	uint32_t                        scpm_status;
+ };
+ 
+ static inline struct amdgpu_device *drm_to_adev(struct drm_device *ddev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+index 867ca5be27aa..890259d4414a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -246,7 +246,7 @@ static bool psp_get_runtime_db_entry(struct amdgpu_device *adev,
+ 			case PSP_RUNTIME_ENTRY_TYPE_BOOT_CONFIG:
+ 				if (db_dir.entry_list[i].size < sizeof(struct psp_runtime_boot_cfg_entry)) {
+ 					/* invalid db entry size */
+-					dev_warn(adev->dev, "Invalid PSP runtime database entry size\n");
++					dev_warn(adev->dev, "Invalid PSP runtime database boot cfg entry size\n");
+ 					return false;
+ 				}
+ 				/* read runtime database entry */
+@@ -254,6 +254,17 @@ static bool psp_get_runtime_db_entry(struct amdgpu_device *adev,
+ 							  (uint32_t *)db_entry, sizeof(struct psp_runtime_boot_cfg_entry), false);
+ 				ret = true;
+ 				break;
++			case PSP_RUNTIME_ENTRY_TYPE_PPTABLE_ERR_STATUS:
++				if (db_dir.entry_list[i].size < sizeof(struct psp_runtime_scpm_entry)) {
++					/* invalid db entry size */
++					dev_warn(adev->dev, "Invalid PSP runtime database scpm entry size\n");
++					return false;
++				}
++				/* read runtime database entry */
++				amdgpu_device_vram_access(adev, db_header_pos + db_dir.entry_list[i].offset,
++							  (uint32_t *)db_entry, sizeof(struct psp_runtime_scpm_entry), false);
++				ret = true;
++				break;
+ 			default:
+ 				ret = false;
+ 				break;
+@@ -298,6 +309,7 @@ static int psp_sw_init(void *handle)
+ 	int ret;
+ 	struct psp_runtime_boot_cfg_entry boot_cfg_entry;
+ 	struct psp_memory_training_context *mem_training_ctx = &psp->mem_train_ctx;
++	struct psp_runtime_scpm_entry scpm_entry;
+ 
+ 	psp->cmd = kzalloc(sizeof(struct psp_gfx_cmd_resp), GFP_KERNEL);
+ 	if (!psp->cmd) {
+@@ -318,6 +330,20 @@ static int psp_sw_init(void *handle)
+ 		!adev->gmc.xgmi.connected_to_cpu &&
+ 			adev->ip_versions[MP0_HWIP][0] == IP_VERSION(13, 0, 2);
+ 
++	memset(&scpm_entry, 0, sizeof(scpm_entry));
++	if ((psp_get_runtime_db_entry(adev,
++				PSP_RUNTIME_ENTRY_TYPE_PPTABLE_ERR_STATUS,
++				&scpm_entry)) &&
++	    (SCPM_DISABLE != scpm_entry.scpm_status)) {
++		adev->scpm_enabled = true;
++		adev->scpm_status = scpm_entry.scpm_status;
++	} else {
++		adev->scpm_enabled = false;
++		adev->scpm_status = SCPM_DISABLE;
++	}
++
++	/* TODO: stop gpu driver services and print alarm if scpm is enabled with error status */
++
+ 	memset(&boot_cfg_entry, 0, sizeof(boot_cfg_entry));
+ 	if (psp_get_runtime_db_entry(adev,
+ 				PSP_RUNTIME_ENTRY_TYPE_BOOT_CONFIG,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
+index cf8d3199b35b..a9fe05c38715 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
+@@ -244,6 +244,7 @@ enum psp_runtime_entry_type {
+ 	PSP_RUNTIME_ENTRY_TYPE_MGPU_WAFL	= 0x3,  /* WAFL runtime data */
+ 	PSP_RUNTIME_ENTRY_TYPE_MGPU_XGMI	= 0x4,  /* XGMI runtime data */
+ 	PSP_RUNTIME_ENTRY_TYPE_BOOT_CONFIG	= 0x5,  /* Boot Config runtime data */
++	PSP_RUNTIME_ENTRY_TYPE_PPTABLE_ERR_STATUS = 0x6, /* SCPM validation data */
+ };
+ 
+ /* PSP runtime DB header */
+@@ -278,12 +279,24 @@ enum psp_runtime_boot_cfg_feature {
+ 	BOOT_CFG_FEATURE_TWO_STAGE_DRAM_TRAINING    = 0x2,
+ };
+ 
++/* PSP run time DB SCPM authentication defines */
++enum psp_runtime_scpm_authentication {
++	SCPM_DISABLE                     = 0x0,
++	SCPM_ENABLE                      = 0x1,
++	SCPM_ENABLE_WITH_SCPM_ERR        = 0x2,
++};
++
+ /* PSP runtime DB boot config entry */
+ struct psp_runtime_boot_cfg_entry {
+ 	uint32_t boot_cfg_bitmask;
+ 	uint32_t reserved;
+ };
+ 
++/* PSP runtime DB SCPM entry */
++struct psp_runtime_scpm_entry {
++	enum psp_runtime_scpm_authentication scpm_status;
++};
++
+ struct psp_context
+ {
+ 	struct amdgpu_device            *adev;
 -- 
 2.35.1
 
