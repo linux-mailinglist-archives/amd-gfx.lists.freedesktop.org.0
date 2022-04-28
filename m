@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BAD7513DB2
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 Apr 2022 23:34:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90164513E69
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 00:12:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CE2810EBAD;
-	Thu, 28 Apr 2022 21:34:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0512710E718;
+	Thu, 28 Apr 2022 22:12:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam08on2057.outbound.protection.outlook.com [40.107.101.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DACCA10EBC6
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 Apr 2022 21:34:53 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2076.outbound.protection.outlook.com [40.107.236.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6917510E072
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 Apr 2022 22:12:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VS6WrYNpIrtTe04Es+vEIC2hC23kGKc+O0KBYpN/ctzNCfHOaBVmszUaKqHPkMWOLHlCN6WrVIaOu4DlBIyys52FeWmPyPARfprtSMcQmVCpc6BmVUg0on0uLuK+MXA/DofwxFM3DoY2CHQNApuN9ndlmVHrly2BLet+2xf/qo8zo7zUtJgrx8VTEYfl+PJ9tOCGUuOZ6qJwzmTxiqvM0KUkpEF0s0v66eyKDHigpYfbeO41GTZst/BDrpJsLlO4IVKUh5FVk68z+O/KBYAOfD1zibA4xTtYpHLS+iXmVks0ijJyf81JYYD3i/MsQNUhZIlyALaHFPB0vPSyG3Xtbw==
+ b=nm76kGa/Jvq8elpQoxS9r4SOrPBDlh7A3U/85Vz0UeL1wzWIOBWKosMQqY/IjvAnsNqpkELvpRB7l3UvZMlSCfsvjuCojv7OMT/1+ooemuJ4nSwGbX1G5eGQMC72e5oANYirEWhFXt8CcqmKtuQrtmhJV4dXE9rj4dDlqvchEySyhRfPCJiRCFqnNealbrq1dkh1b5PWCF/P+t8yIi/AhV8R9gFFzy34RhdXiODfa7dWB1H54goPK20YOTijPU5B1cyPxdjWPKyP3v2WO6jbGCpUjZGeutN77t95oYLwG0KexKS6pcl7VulIyU6FxmLxmhVK6zkd3x7saBsaFK4WXg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LGvFjHBRnzT0+Q32yMXZvohwNHH8WuBHVr+zCd5EWuE=;
- b=YrYmO9/ydPnyFw69mY0U5I9E4qWBgU0zBaTcAH91HSJFIKmLYRs/e84uxAZF85uZjyxfTP0b1KNzr/Km/AMPP0HkKokea1j/8LTHfQX3rZQWUEZm4cCLYSclcKseE3WvZ/xIEYU6dBA68Rltv/f5NbVytX+aecScnPgNRcecIJnGH3eWgum/VvNJMFDrnzGMRY60xBuSvn9OKgKxT3meXKvw9z9ePGm0qj2Ms46yQOJSvAUK6aQrvC7Tz5QVnSvVybFmbLnwWs1lKBo/tIYamm2f4DE9eXvlPy75yjeNUb8IsZNhwuf18IBi/RqfD/hcuQy7meyjo7m5h5ijNLunmQ==
+ bh=VEyICsmCi5RD+ShpaWR3rs8SYq6DYV3IQSOSno3j4O0=;
+ b=d+eOWysq8tpu+OO/8vPXSOzRPSQbNVEwOv/hUF0nu2F2Pbdmux5fqCJGSdT5OFJq71kn6m9BLxmLNioV5qfc/NUpCbCiTZxL6x+XsAmDD1BjBEnhqKdMYZ6JMI7g2rQNn8HJJI+jY/o+p201au2IXLkxMv4YRkaLoyjI3NpGqCNSCocR/qJaxR5ehfSoV/F9jJ+0lFxtvRAuVk7X0ky6b1hJPtbiPUN0O/oTsTBP53+PJTzUKopvWXs//5IhuWwncLAURgpO1CEFlSeGA9DVY5Epp+4AN8Zt8nr1FtIKovU3oIXZyWO5OjMkQrycPefnEy6CQTthLhO045Mg7B29Jw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LGvFjHBRnzT0+Q32yMXZvohwNHH8WuBHVr+zCd5EWuE=;
- b=Jz7rnO7N25NMl9GLVAmlotrYgiD+0Fb5X/9sQEr01FEOj5mxFS87E918pHL8L5SXtyxPtZ+oujYCO0/sQj9ZcDzDH7ijv00BHzBmre1eXbpj8BDIZIAPDHfKFPqqBxGz4yBsm56RVG5XiPHmTVGB35JA70Z25k9Bx2N3a05080I=
-Received: from MW4PR03CA0043.namprd03.prod.outlook.com (2603:10b6:303:8e::18)
- by BL0PR12MB2499.namprd12.prod.outlook.com (2603:10b6:207:43::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.15; Thu, 28 Apr
- 2022 21:34:52 +0000
-Received: from CO1NAM11FT044.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8e:cafe::89) by MW4PR03CA0043.outlook.office365.com
- (2603:10b6:303:8e::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.14 via Frontend
- Transport; Thu, 28 Apr 2022 21:34:51 +0000
+ bh=VEyICsmCi5RD+ShpaWR3rs8SYq6DYV3IQSOSno3j4O0=;
+ b=EmBlPWe8v9HfvuLPLVgGR3e/cn4GBcra2hFAz+rWKZCv6AZQGhpE+JeOAzb03s/w0D+D9RHLngNPE5afRIPn6dCGGnIXFDaCWnFwbif4bxjNFZ5jPTUOLW/8Ogksdrlx+19L4H2MCLvTlUk4bC1AahCmS4ltQfsxgmL/uP0KhqQ=
+Received: from DS7PR03CA0250.namprd03.prod.outlook.com (2603:10b6:5:3b3::15)
+ by MWHPR12MB1869.namprd12.prod.outlook.com (2603:10b6:300:111::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.13; Thu, 28 Apr
+ 2022 22:12:43 +0000
+Received: from DM6NAM11FT029.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:3b3:cafe::22) by DS7PR03CA0250.outlook.office365.com
+ (2603:10b6:5:3b3::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.15 via Frontend
+ Transport; Thu, 28 Apr 2022 22:12:43 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,21 +45,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT044.mail.protection.outlook.com (10.13.175.188) with Microsoft SMTP
+ DM6NAM11FT029.mail.protection.outlook.com (10.13.173.23) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5206.12 via Frontend Transport; Thu, 28 Apr 2022 21:34:51 +0000
+ 15.20.5206.12 via Frontend Transport; Thu, 28 Apr 2022 22:12:43 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Thu, 28 Apr
- 2022 16:34:45 -0500
+ 2022 17:12:42 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 4/4] drm/amdgpu/discovery: Enable SMU for SMU 13.0.0
-Date: Thu, 28 Apr 2022 17:34:27 -0400
-Message-ID: <20220428213427.700543-4-alexander.deucher@amd.com>
+Subject: [PATCH 1/5] drm/amdgpu/psp: move PSP memory alloc from hw_init to
+ sw_init
+Date: Thu, 28 Apr 2022 18:12:27 -0400
+Message-ID: <20220428221231.1030104-1-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220428213427.700543-1-alexander.deucher@amd.com>
-References: <20220428213427.700543-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -68,27 +67,27 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: fe2df8b7-05ae-444c-118c-08da295eed67
-X-MS-TrafficTypeDiagnostic: BL0PR12MB2499:EE_
-X-Microsoft-Antispam-PRVS: <BL0PR12MB24990C8E1F4637393E83F3DBF7FD9@BL0PR12MB2499.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 64314afd-4ab7-476f-8ca5-08da296437d1
+X-MS-TrafficTypeDiagnostic: MWHPR12MB1869:EE_
+X-Microsoft-Antispam-PRVS: <MWHPR12MB18695166D195AAA3C1E1ADB0F7FD9@MWHPR12MB1869.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: c+6RNT99eJ4tWE3Leo0faMl28pBeneD04/GUESKik2zxRa+CS4JHso/0N9e+0OyuWiCxEtpUtfVM12Wz7u1Enug/ZZedSHOhw1fwJqol/Ic1NV5GBwHbzfrPAyA4RVfDFEC8HA+mv0zD8YGTtUiTXitrlVTWXA27f9fnDRPRV8d4DbjW2cXcktHVYSbszA14J+n5OqiLEK/ReRGQPHorosx+UfCbZZGeO8WSuVgNoq74qJ1jQgUdC8V+T80nM8vg4DxLKnj+A51hewV6YNmfl4vtsd2Wql+J511fGcLzFtZEJrCmPVZV3edzp+pm/zWKDcbQsgFsiXwy2c5OUlpUv6/EQc8TDlSMyz7oSsGOr58PSLRZiTeDQJVw5mf5iyM4d/xS8gU6eM7fuotYdHCofcZalO4IyjiAEuGFGb9Y2Tbfh3GkD0qHZtMB1wyj5otSCBcwZPkGDdFTbQ27M3qLp7fQ7/4KX1wS1BbLhG5azUzNVSyQ6grij03sKAkMq3zOpBjTMHI/IYfy3vVik4NPK8vxaRm4OW79vLWKtToct+rWYmaGyDE+zgn2AJe2M4MDlkRY7090DjxYU+ugDWjzCEbcY5QVXea+6y4kWpZxGEwgNNfgnWdv/PtaVBHdtluBovMKGq3D6QGCjNLKIzU+SgyD27cZeTvF1QLWpXnH7HJf6gg3jHG2EJ50b2wo30ulCmdzHJGQn/Ylxlk+ff742w==
+X-Microsoft-Antispam-Message-Info: yZlmpQEKJYB5VnWDrTyMtVKH9GiLZclucy9gZN0e+xyADehVo1C5j7hMw9bI4Cqj051k64Wul6btSmS+NGYImTxC3ykJK5N8ZJIZwg+2XyxGZm3kL64e3SA4pnq+a8Y7ZS8MTVy8DOwUwgMyXhMEMSw5yIu9gTwjERfVFNU79x3Eqo+ZMSUlqb+fwm5SZ5wq5Ryo3FzrNDh8iXm1BQG5tKSAVsk2xFnr70DkZHfevQE+cCgUvc/JFm7SLlJRsDcxrZ9ilS5P1ZHfobvHhcqbX4sFIeoIeiSnWQVWnNeKj40Vo52Vu8Dls9eSE9xyfn8QN7XNl4zyV3LNL7Gu4eDhNgiedfs872TVLRcjOA8OgOQSQiuy1ialpB0FNh5fwux4HrjCaU8jR64ELvXjJIWmJ7MM/2UdwgbCyvrTZS1zA8PdCCpbeZX7g5ZGN58DuPZCRGEyRh9iqJ8tn1RNL1VUZWFRVVEhQO20So4m8bFXaWJ06KZ2Z7uTyF8acEP6laft07kfaFeOzX8N+ZoVX2SwUIxfUe5uU5v0mof7KfH33zMA1ZbxSJlKzgKoleJ795lnEP6VZGiPhLyPUWrMZ5EfIQ/C76LRP42MgMcMfr/TEC9hOGwJsGU1YodKvFbZ6RUF33vOfCf+aLyG0sB7XBTXJo5HsDJ0GMXNoK8WSkVzHvPvLtW26hrj9LFhgchtx/wlVwaY9Kfq80FDBLzEPB8JNA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(186003)(6916009)(47076005)(426003)(336012)(54906003)(508600001)(316002)(356005)(4326008)(81166007)(8676002)(82310400005)(86362001)(36756003)(83380400001)(16526019)(8936002)(70206006)(1076003)(2616005)(70586007)(36860700001)(7696005)(5660300002)(2906002)(40460700003)(6666004)(4744005)(26005)(36900700001);
+ SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(2906002)(6666004)(26005)(7696005)(5660300002)(186003)(316002)(6916009)(40460700003)(16526019)(8936002)(508600001)(86362001)(8676002)(2616005)(1076003)(81166007)(336012)(426003)(47076005)(356005)(36756003)(82310400005)(4326008)(36860700001)(83380400001)(70206006)(70586007)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2022 21:34:51.0934 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fe2df8b7-05ae-444c-118c-08da295eed67
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2022 22:12:43.5201 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 64314afd-4ab7-476f-8ca5-08da296437d1
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT044.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT029.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2499
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1869
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,32 +99,154 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Likun Gao <Likun.Gao@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Likun Gao <Likun.Gao@amd.com>
+Memory allocations should be done in sw_init.  hw_init should
+just be hardware programming needed to initialize the IP block.
+This is how most other IP blocks work.  Move the GPU memory
+allocations from psp hw_init to psp sw_init and move the memory
+free to sw_fini.  This also fixes a potential GPU memory leak
+if psp hw_init fails.
 
-Enable SMU on SMU IP version 13.0.0
-
-Signed-off-by: Likun Gao <Likun.Gao@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 95 ++++++++++++-------------
+ 1 file changed, 47 insertions(+), 48 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-index 35598193dc7b..2349617efeee 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-@@ -1634,6 +1634,7 @@ static int amdgpu_discovery_set_smu_ip_blocks(struct amdgpu_device *adev)
- 	case IP_VERSION(12, 0, 1):
- 		amdgpu_device_ip_block_add(adev, &smu_v12_0_ip_block);
- 		break;
-+	case IP_VERSION(13, 0, 0):
- 	case IP_VERSION(13, 0, 1):
- 	case IP_VERSION(13, 0, 2):
- 	case IP_VERSION(13, 0, 3):
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+index 0bd22ebcc3d1..0787f2e36f2a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -356,7 +356,39 @@ static int psp_sw_init(void *handle)
+ 		}
+ 	}
+ 
++	ret = amdgpu_bo_create_kernel(adev, PSP_1_MEG, PSP_1_MEG,
++				      amdgpu_sriov_vf(adev) ?
++				      AMDGPU_GEM_DOMAIN_VRAM : AMDGPU_GEM_DOMAIN_GTT,
++				      &psp->fw_pri_bo,
++				      &psp->fw_pri_mc_addr,
++				      &psp->fw_pri_buf);
++	if (ret)
++		return ret;
++
++	ret = amdgpu_bo_create_kernel(adev, PSP_FENCE_BUFFER_SIZE, PAGE_SIZE,
++				      AMDGPU_GEM_DOMAIN_VRAM,
++				      &psp->fence_buf_bo,
++				      &psp->fence_buf_mc_addr,
++				      &psp->fence_buf);
++	if (ret)
++		goto failed1;
++
++	ret = amdgpu_bo_create_kernel(adev, PSP_CMD_BUFFER_SIZE, PAGE_SIZE,
++				      AMDGPU_GEM_DOMAIN_VRAM,
++				      &psp->cmd_buf_bo, &psp->cmd_buf_mc_addr,
++				      (void **)&psp->cmd_buf_mem);
++	if (ret)
++		goto failed2;
++
+ 	return 0;
++
++failed2:
++	amdgpu_bo_free_kernel(&psp->fw_pri_bo,
++			      &psp->fw_pri_mc_addr, &psp->fw_pri_buf);
++failed1:
++	amdgpu_bo_free_kernel(&psp->fence_buf_bo,
++			      &psp->fence_buf_mc_addr, &psp->fence_buf);
++	return ret;
+ }
+ 
+ static int psp_sw_fini(void *handle)
+@@ -390,6 +422,13 @@ static int psp_sw_fini(void *handle)
+ 	kfree(cmd);
+ 	cmd = NULL;
+ 
++	amdgpu_bo_free_kernel(&psp->fw_pri_bo,
++			      &psp->fw_pri_mc_addr, &psp->fw_pri_buf);
++	amdgpu_bo_free_kernel(&psp->fence_buf_bo,
++			      &psp->fence_buf_mc_addr, &psp->fence_buf);
++	amdgpu_bo_free_kernel(&psp->cmd_buf_bo, &psp->cmd_buf_mc_addr,
++			      (void **)&psp->cmd_buf_mem);
++
+ 	return 0;
+ }
+ 
+@@ -2469,51 +2508,18 @@ static int psp_load_fw(struct amdgpu_device *adev)
+ 	struct psp_context *psp = &adev->psp;
+ 
+ 	if (amdgpu_sriov_vf(adev) && amdgpu_in_reset(adev)) {
+-		psp_ring_stop(psp, PSP_RING_TYPE__KM); /* should not destroy ring, only stop */
+-		goto skip_memalloc;
+-	}
+-
+-	if (amdgpu_sriov_vf(adev)) {
+-		ret = amdgpu_bo_create_kernel(adev, PSP_1_MEG, PSP_1_MEG,
+-						AMDGPU_GEM_DOMAIN_VRAM,
+-						&psp->fw_pri_bo,
+-						&psp->fw_pri_mc_addr,
+-						&psp->fw_pri_buf);
++		/* should not destroy ring, only stop */
++		psp_ring_stop(psp, PSP_RING_TYPE__KM);
+ 	} else {
+-		ret = amdgpu_bo_create_kernel(adev, PSP_1_MEG, PSP_1_MEG,
+-						AMDGPU_GEM_DOMAIN_GTT,
+-						&psp->fw_pri_bo,
+-						&psp->fw_pri_mc_addr,
+-						&psp->fw_pri_buf);
+-	}
+-
+-	if (ret)
+-		goto failed;
+-
+-	ret = amdgpu_bo_create_kernel(adev, PSP_FENCE_BUFFER_SIZE, PAGE_SIZE,
+-					AMDGPU_GEM_DOMAIN_VRAM,
+-					&psp->fence_buf_bo,
+-					&psp->fence_buf_mc_addr,
+-					&psp->fence_buf);
+-	if (ret)
+-		goto failed;
+-
+-	ret = amdgpu_bo_create_kernel(adev, PSP_CMD_BUFFER_SIZE, PAGE_SIZE,
+-				      AMDGPU_GEM_DOMAIN_VRAM,
+-				      &psp->cmd_buf_bo, &psp->cmd_buf_mc_addr,
+-				      (void **)&psp->cmd_buf_mem);
+-	if (ret)
+-		goto failed;
++		memset(psp->fence_buf, 0, PSP_FENCE_BUFFER_SIZE);
+ 
+-	memset(psp->fence_buf, 0, PSP_FENCE_BUFFER_SIZE);
+-
+-	ret = psp_ring_init(psp, PSP_RING_TYPE__KM);
+-	if (ret) {
+-		DRM_ERROR("PSP ring init failed!\n");
+-		goto failed;
++		ret = psp_ring_init(psp, PSP_RING_TYPE__KM);
++		if (ret) {
++			DRM_ERROR("PSP ring init failed!\n");
++			goto failed;
++		}
+ 	}
+ 
+-skip_memalloc:
+ 	ret = psp_hw_start(psp);
+ 	if (ret)
+ 		goto failed;
+@@ -2631,13 +2637,6 @@ static int psp_hw_fini(void *handle)
+ 	psp_tmr_terminate(psp);
+ 	psp_ring_destroy(psp, PSP_RING_TYPE__KM);
+ 
+-	amdgpu_bo_free_kernel(&psp->fw_pri_bo,
+-			      &psp->fw_pri_mc_addr, &psp->fw_pri_buf);
+-	amdgpu_bo_free_kernel(&psp->fence_buf_bo,
+-			      &psp->fence_buf_mc_addr, &psp->fence_buf);
+-	amdgpu_bo_free_kernel(&psp->cmd_buf_bo, &psp->cmd_buf_mc_addr,
+-			      (void **)&psp->cmd_buf_mem);
+-
+ 	return 0;
+ }
+ 
 -- 
 2.35.1
 
