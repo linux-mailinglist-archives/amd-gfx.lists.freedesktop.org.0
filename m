@@ -1,31 +1,59 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD9E9514A32
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 15:03:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73B20514A30
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 15:03:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 219E810ECC5;
-	Fri, 29 Apr 2022 13:03:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9139410ECC0;
+	Fri, 29 Apr 2022 13:03:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from nksmu.kylinos.cn (mailgw.kylinos.cn [123.150.8.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5DE310E120;
- Fri, 29 Apr 2022 01:51:35 +0000 (UTC)
-X-UUID: 2ab20950c02e4493b64e1d83814cadc0-20220429
-X-UUID: 2ab20950c02e4493b64e1d83814cadc0-20220429
-Received: from cs2c.com.cn [(172.17.111.24)] by nksmu.kylinos.cn
- (envelope-from <pengfuyuan@kylinos.cn>) (Generic MTA)
- with ESMTP id 54080229; Fri, 29 Apr 2022 09:49:55 +0800
-X-ns-mid: postfix-626B449E-3508122180
-Received: from localhost.localdomain (unknown [172.20.4.120])
- by cs2c.com.cn (NSMail) with ESMTPA id 20BCC3848647;
- Fri, 29 Apr 2022 01:51:26 +0000 (UTC)
-From: pengfuyuan <pengfuyuan@kylinos.cn>
-To: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH] gpu/drm/radeon: Fix spelling typo in comments
-Date: Fri, 29 Apr 2022 09:51:14 +0800
-Message-Id: <20220429015114.29795-1-pengfuyuan@kylinos.cn>
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com
+ [IPv6:2607:f8b0:4864:20::734])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2DFC10FB5D;
+ Fri, 29 Apr 2022 05:48:49 +0000 (UTC)
+Received: by mail-qk1-x734.google.com with SMTP id b20so2601445qkc.6;
+ Thu, 28 Apr 2022 22:48:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=VRas45N/HJjKkopTpxGekJncxjNBlwm6mL3yMYGLlOo=;
+ b=bc+WNUXF3c5mK3q/tzF4v4JoBy26gajoLNbPDLWyfH0Lj6WYdJCxKSXW7DRkKEfxgf
+ eSEzGQdfD/gk0CK8kbNcBllob6euxIALNnI86XDvGYieK8qr6dgKhAr4DPTyuIki6NMd
+ s7c+4cyP9+Q0UgielsvHPBfJh9ZV40Cfgxmh1e0ER1mRiE0QdJwHJMD4rD/GH7huQooE
+ jhQu3o4gi7C6/IirN9RyFP1WgfX8UC1XCs2p8f+dEwDsdTn1WFODIQ4ZkA+O5mH7iFZh
+ znNNYvUVBQBlraSHDLPriOhQZGoLQ5WSWZctA46uRE02fbX20QJAD2G3X1XrEZguVEXo
+ vRdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=VRas45N/HJjKkopTpxGekJncxjNBlwm6mL3yMYGLlOo=;
+ b=hUv1MVXwEndAozJTt7MU0h0Fl4bedasDqjjE0uEtUm/kLuRH0jXcwUB28VkzPjDEUy
+ m2i4LQgNietnLc3qQ2njzoDrHtqPUyl9EJ7wzsVLZyUi4rDfmf47iqR1K17EaZ6QDc4W
+ B19mSdgrpgGIk1oAqCDSrXQ88VbQm7KlHL7f0jsii64LQL0IjjJ+llz6yyGUB1BVWKsE
+ 6NK9uUl41ZjGU/y10pGd78PjEmC1Yj5OtEgmZ+yu8fMQvEmg4tS/C/J4ToRFvfS4+VFp
+ Ltn16wYy5wMZMaY7MsZHMToWoUhRnASLoIubH4ENPAaBuYdHOiOZVm5dX9hotn8fm//Q
+ tUow==
+X-Gm-Message-State: AOAM5301uA+pEXX9hWRDkwZYYWV4ICpeel9C1S0bCrEkrxP31VCEwVoJ
+ Cncig6Xoxep9lwf/hjdpGV4=
+X-Google-Smtp-Source: ABdhPJynkP2gD+cmS0OSm3ZZXXts2/yMMSLbyMogjKxpLWkfcaqVfWGHjqXfHnAWLyGQEmJ9Yc/AzQ==
+X-Received: by 2002:a05:620a:1981:b0:507:4a52:f310 with SMTP id
+ bm1-20020a05620a198100b005074a52f310mr22121345qkb.611.1651211328690; 
+ Thu, 28 Apr 2022 22:48:48 -0700 (PDT)
+Received: from localhost.localdomain ([193.203.214.57])
+ by smtp.gmail.com with ESMTPSA id
+ y18-20020ac85f52000000b002ed08a7dc8dsm1234094qta.13.2022.04.28.22.48.45
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 28 Apr 2022 22:48:48 -0700 (PDT)
+From: cgel.zte@gmail.com
+X-Google-Original-From: chi.minghao@zte.com.cn
+To: alexander.deucher@amd.com
+Subject: [PATCH] drm/amdgpu: simplify the return expression of
+ iceland_ih_hw_init
+Date: Fri, 29 Apr 2022 05:48:41 +0000
+Message-Id: <20220429054841.3851915-1-chi.minghao@zte.com.cn>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -41,69 +69,44 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Xinhui.Pan@amd.com,
+Cc: airlied@linux.ie, Zeal Robot <zealci@zte.com.cn>, Xinhui.Pan@amd.com,
  linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- pengfuyuan <pengfuyuan@kylinos.cn>, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, christian.koenig@amd.com
+ amd-gfx@lists.freedesktop.org, christian.koenig@amd.com,
+ Minghao Chi <chi.minghao@zte.com.cn>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fix spelling typo in comments.
+From: Minghao Chi <chi.minghao@zte.com.cn>
 
-Signed-off-by: pengfuyuan <pengfuyuan@kylinos.cn>
+Simplify the return expression.
+
+Reported-by: Zeal Robot <zealci@zte.com.cn>
+Signed-off-by: Minghao Chi <chi.minghao@zte.com.cn>
 ---
- drivers/gpu/drm/radeon/atombios.h | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/iceland_ih.c | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/radeon/atombios.h b/drivers/gpu/drm/radeon/atombios.h
-index bd5dc09e860f..da35a970fcc0 100644
---- a/drivers/gpu/drm/radeon/atombios.h
-+++ b/drivers/gpu/drm/radeon/atombios.h
-@@ -3599,7 +3599,7 @@ typedef struct  _ATOM_LCD_RTS_RECORD
-   UCHAR     ucRTSValue;
- }ATOM_LCD_RTS_RECORD;
+diff --git a/drivers/gpu/drm/amd/amdgpu/iceland_ih.c b/drivers/gpu/drm/amd/amdgpu/iceland_ih.c
+index ddfe4eaeea05..aecad530b10a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/iceland_ih.c
++++ b/drivers/gpu/drm/amd/amdgpu/iceland_ih.c
+@@ -308,14 +308,9 @@ static int iceland_ih_sw_fini(void *handle)
  
--//!! If the record below exits, it shoud always be the first record for easy use in command table!!! 
-+//!! If the record below exists, it should always be the first record for easy use in command table!!!
- // The record below is only used when LVDS_Info is present. From ATOM_LVDS_INFO_V12, use ucLCDPanel_SpecialHandlingCap instead.
- typedef struct  _ATOM_LCD_MODE_CONTROL_CAP
+ static int iceland_ih_hw_init(void *handle)
  {
-@@ -3823,7 +3823,7 @@ typedef struct _ATOM_DPCD_INFO
- // Note1: This table is filled by SetBiosReservationStartInFB in CoreCommSubs.asm
- //        at running time.   
- // note2: From RV770, the memory is more than 32bit addressable, so we will change 
--//        ucTableFormatRevision=1,ucTableContentRevision=4, the strcuture remains 
-+//        ucTableFormatRevision=1,ucTableContentRevision=4, the structure remains
- //        exactly same as 1.1 and 1.2 (1.3 is never in use), but ulStartAddrUsedByFirmware 
- //        (in offset to start of memory address) is KB aligned instead of byte aligend.
- /***********************************************************************************/	
-@@ -3858,7 +3858,7 @@ typedef struct _ATOM_VRAM_USAGE_BY_FIRMWARE
-   ATOM_FIRMWARE_VRAM_RESERVE_INFO	asFirmwareVramReserveInfo[ATOM_MAX_FIRMWARE_VRAM_USAGE_INFO];
- }ATOM_VRAM_USAGE_BY_FIRMWARE;
+-	int r;
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
  
--// change verion to 1.5, when allow driver to allocate the vram area for command table access. 
-+// change version to 1.5, when allow driver to allocate the vram area for command table access.
- typedef struct _ATOM_FIRMWARE_VRAM_RESERVE_INFO_V1_5
- {
-   ULONG   ulStartAddrUsedByFirmware;
-@@ -5973,7 +5973,7 @@ typedef struct _ATOM_ASIC_INTERNAL_SS_INFO_V3
- #define CLEAR_ATOM_S7_DOS_8BIT_DAC_EN         ((ATOM_DOS_MODE_INFO_DEF << 8 )|ATOM_S7_DOS_8BIT_DAC_EN_SHIFT | ATOM_FLAG_CLEAR )
+-	r = iceland_ih_irq_init(adev);
+-	if (r)
+-		return r;
+-
+-	return 0;
++	return iceland_ih_irq_init(adev);
+ }
  
- /****************************************************************************/	
--//Portion II: Definitinos only used in Driver
-+//Portion II: Definitions only used in Driver
- /****************************************************************************/
- 
- // Macros used by driver
-@@ -7162,7 +7162,7 @@ typedef struct _DP_ENCODER_SERVICE_PARAMETERS
- 
- // ucAction
- #define ATOM_DP_ACTION_GET_SINK_TYPE							0x01
--/* obselete */
-+/* obsolete */
- #define ATOM_DP_ACTION_TRAINING_START							0x02
- #define ATOM_DP_ACTION_TRAINING_COMPLETE					0x03
- #define ATOM_DP_ACTION_TRAINING_PATTERN_SEL				0x04
+ static int iceland_ih_hw_fini(void *handle)
 -- 
 2.25.1
+
 
