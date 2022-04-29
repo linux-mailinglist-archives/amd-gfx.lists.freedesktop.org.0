@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B342E5152B1
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 19:47:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BEF05152BE
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 19:47:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA5E510F24D;
-	Fri, 29 Apr 2022 17:47:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 360D410F553;
+	Fri, 29 Apr 2022 17:47:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2085.outbound.protection.outlook.com [40.107.223.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6EB110F232
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 17:47:08 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2047.outbound.protection.outlook.com [40.107.94.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08EB910F24D
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 17:47:11 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cXPsUtHM8DHYcZdaC4YaCIqB56QcrfsR/o4ZbbBKQtrHHepSXErigmNtKcXkDUCHTTXbXc5JAqcXMsRrMLIOC+CR1Y/nR0fqf+NBLrMeNy0k8KbLTRfV1GRq/wmDdVTqCY2+q/TW9olKpoH9YNExVUCA/+CwUGX9RoW9OyCaMWRGGF8SSt1DnaNjGVYpC1oERru7/0QPAmDI41bYRLQUlq+/FetSJlCtxNWfx+TStk1UrWM6DaGgMW2r3OGdRRNHnv6hh28au1gOhD9QwHmV/GHd00N5TP/IGMcufGdRQOI1i/01qW5oVdgg1Xc+9FFbxDaH623xdt7bQzHCmO35Gw==
+ b=ZAikhOxVGNTW326j1oNTCbaKCjKvHmFm4Vo91mTMiblc/mvlLtmDm9YIkIFsjs91hx5szQkBC3t0ezWvb0i4J7kEIiR33YpYxsPLxWhMUJcxBuN9cobIe6Qw9rdoPOvBqiCxlq3yuL6OsG6jxrf/Rcn8QpUuLTr14qzyIYGfGT72PcWA9PHaVBtDoNZF5jetGWFt3fUiYbL49oY5FDSNVURQbV1MCfpZngqRnxD3JUZQ5Cl7/RLK561xOX+2JaDwq8cH5qM8zzCChZpnQH2jzm1Eugy/0WiYsLF+vnGgEgfmfaHwKbhz4ldHMbLucm4ZII6ShS2rrZQMsVkeBKSvXw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lsWtiQNE25HQ+srXLpDF6fTtIiyY21GI0+vLkAVwB+4=;
- b=QBV0HdNygooDatx/WhrpvHEkgvYOwnVZeyRrW4yegux3FHCPETqoLg6smMfHveqGlLbwAOJD+Lc4mxpD5LXFKxnYRCBd6mcVhg7BCwB4SCczt1eg0fQc6ea2DzPTxRPfWWsPirOimUinrqri4V9rS9GdzVun4t9u8221P9RRKzvMb0yt4VQSsXAdeSqT0hECq5hGYPulHy5olRuwuc7D8kFAXt4gT2ZgeeosE1oNVoMihJ6hYencT1uUvdk1UvxaOHLZ3fQ/B2YbH9ar76/Xzji5kCTEuE0y8hmhX4CRjGOK4oTqzcClk/zPsOssBrT1Hcyu9IGSMgJXQP95Iurvow==
+ bh=BLD1N39lrQJKKSUUhy/8p0rPfu3XJ2g7nqfl3vML2wM=;
+ b=LZuOPC92taSzEPe3FgXSXHpfUi26N3VgMJTBm6YfA42+pMyS8T5sFP5PWJOLtoEskBZf+tig6VMM6Af6SA555SZ7S5gR2KsR2GMuAZPUYE9YJ+kUMe98SZ1zX/3NAe7nUkySebdAmwqdxPiWWMMuqiaIn3lz/zPvXlIGKUDzfgmR1PttSjIN9bwcqUr01fTb3ERIFMnIbg0VooHhISoey3wkLwbEm0NBR1lIguROTcIEBARxwUPxmqWPct4eIdDtMnHroXjtj/UrdKMdRtlhNPp/uD+FSgPrcjjfVNeujqt0zaOlvtduGBqf1FWLs7RN+Vbcg8eLJoyoXr3D89nN6g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lsWtiQNE25HQ+srXLpDF6fTtIiyY21GI0+vLkAVwB+4=;
- b=NJO8MojeJFA/9/m3spmsT4jSHs86wIGwBNMeQZgBNKSix7OJCQU/RmQC8JY5yy5fnP/ffGJbaYIrfplde4gJJSxUZrCGJN8LUXgZ81qZSFtR45d2kehcxY4Jvitaha4SZNvODOo2mNO0lxeR+6YJZ7Bmi++kr3ZfKpAti822pa4=
-Received: from DM6PR02CA0101.namprd02.prod.outlook.com (2603:10b6:5:1f4::42)
- by SN6PR12MB4672.namprd12.prod.outlook.com (2603:10b6:805:12::17) with
+ bh=BLD1N39lrQJKKSUUhy/8p0rPfu3XJ2g7nqfl3vML2wM=;
+ b=OJp9ZnTyFs2uGtviL9y4AVh+JecMt+00YijX40nLoT3CyeQ2DuJv5AcNHrjcRIu1shtRoU0PnETbrtmTOgGFjd0hU3XOPKY2nq7gn78Wc/BVazRkUszUa9vMqyqZ+wvigIM8MB67TFSbAEC5y3O4cbPIsUelIIMTQ8fgaiXDqFc=
+Received: from DM6PR02CA0089.namprd02.prod.outlook.com (2603:10b6:5:1f4::30)
+ by MN2PR12MB4174.namprd12.prod.outlook.com (2603:10b6:208:15f::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.13; Fri, 29 Apr
- 2022 17:47:06 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.13; Fri, 29 Apr
+ 2022 17:47:07 +0000
 Received: from DM6NAM11FT054.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:1f4:cafe::1e) by DM6PR02CA0101.outlook.office365.com
- (2603:10b6:5:1f4::42) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.13 via Frontend
- Transport; Fri, 29 Apr 2022 17:47:06 +0000
+ (2603:10b6:5:1f4:cafe::92) by DM6PR02CA0089.outlook.office365.com
+ (2603:10b6:5:1f4::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.14 via Frontend
+ Transport; Fri, 29 Apr 2022 17:47:07 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT054.mail.protection.outlook.com (10.13.173.95) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5206.12 via Frontend Transport; Fri, 29 Apr 2022 17:47:06 +0000
+ 15.20.5206.12 via Frontend Transport; Fri, 29 Apr 2022 17:47:07 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Fri, 29 Apr
- 2022 12:47:03 -0500
+ 2022 12:47:04 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 46/73] drm/amdgpu/mes: implement creating mes process v2
-Date: Fri, 29 Apr 2022 13:45:57 -0400
-Message-ID: <20220429174624.459475-47-alexander.deucher@amd.com>
+Subject: [PATCH 47/73] drm/amdgpu/mes: implement destroying mes process
+Date: Fri, 29 Apr 2022 13:45:58 -0400
+Message-ID: <20220429174624.459475-48-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220429174624.459475-1-alexander.deucher@amd.com>
 References: <20220429174624.459475-1-alexander.deucher@amd.com>
@@ -68,27 +68,27 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0f585ee6-b12a-4bf2-7bb0-08da2a0846f9
-X-MS-TrafficTypeDiagnostic: SN6PR12MB4672:EE_
-X-Microsoft-Antispam-PRVS: <SN6PR12MB46724D44DD4DAFE15D59E549F7FC9@SN6PR12MB4672.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 7b7e9b67-935f-4cbd-e984-08da2a08476b
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4174:EE_
+X-Microsoft-Antispam-PRVS: <MN2PR12MB4174F552A2B512CE81A125D9F7FC9@MN2PR12MB4174.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hiEbr166681HNVkegyAEPuDemZqGcqWzQfNfPdXeMj9pX7l1WQ/ScVPOi9xuRYCev3SB2MBHbknIDNYfb7hkc8hWUgIcF8IXuQywB+n2QUhwKzb58JPhyfXkUP/xRRQAMOSQBwtwlANwj5eEJfKd+lEw7VpjIiXeHZKN8Ge6WzwYQqNfn7eLLApsK5Ii5hvror4yxg1W0sFqdP5OHY2ohLKUfNtYvEEYQFerKI+944nz8P45AqDsEj10sODMs+WoUCgfmNsWpZtsknGnuL5q/bjUI4Rs3W5VcsKMD9YoVaoU8C2mEtnusas4GrgU4AJCqisbKIA/MzsN264p4orrhf+HQIerrphprfVqStFrsZqqi3uq4NXrSj9ynZZcI/rhxTq+Qn/W6iy8VimOiRYLXRrnf5o4OcFuGUGo8CGutmFsX96d9+gaKO2RPBgHBMPcpUQU9iT3xUDC09iM8MhCiLIb1/bBXfJ+dDxseqSSRvoM/+OgaCONCnG0VdI3EkKfDUGE4Ly+LINwjjA7T721ENc3kVSnjUL2SpppI3s+8riaOqcbAEEdJM8FOyrzosruuOXA/Jf00fyv/MQYzGul9zyXVm/jxBY0cb/Vb7hHvlrUrPELDE/IPYiVITctaEQ4B2YodXprl8DwpT49n4utGMtQubEPXqgrAzVhG6LjkUaH6W3gIv3TjbtqiaxB0eu1jzt0fboocFB1DGainjknrA==
+X-Microsoft-Antispam-Message-Info: FVX+kwrx9D5Ic0RFsCdG8NFTMmNn6rEEKOC1mNOyc+Q2l3M79D8QSC0mMg2P3deXKZiI27/fJgom/c9l3Tc5NkzwJf8LcNvpCt+PRwDOeObq2f9Bkb77DSLjWx5Ie/lPQyvoXiRbImA0pcnklxWc7d6Y2rg74f/1uPnrslKVfZlZr8LjVKpA+aVX/etSE47y8uVDPU+YSX/3s6nfGTJmNHWZtagax5khjN1yCmFn709Ob6o6sPil4W4mcafIgGm74qrR7QzbuGQYtJk+CExnefdr/5+FqAm908v/pNa6l3vNrlvukjpZZW9nhiBy/4jRvKXTgKUffo0rQjaBJVCxuW4WHgzZ3JLsXxzrr9spPs6cCjFc1bwSGr6+rNndYTtFf3SNmbkDtjK6o8SWlMNgqGFZRsGpAykl1WdfSvy1yxjv87tJG586P9MdCzmOBmGd7LgLtMPtXEEa8FP/3Y9ixYxIHXEBBS6wR5ORoanoEltka4z+vNEZoqf/rxCak0+JkGn79Xa8pZTh79wFuJXs741s7PCzolE6jikU3YeY7sweSUZl+WHKA6U7jw6btA34o1ovofuYKfNRW8Pz3Cgq6+sWO/1IC9aFpwRilHrb4D6oSd6tyxakstZq1kNa4Rlw8Djcf6w3xhFldgNEkH9hFYx5vxry+0QbizC6uJDseOA1RtLlTD6LYJ2w9fQWpVh4oa/wZC9JbEjLBFH8NM0x/Q==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(4326008)(70206006)(70586007)(36756003)(86362001)(508600001)(54906003)(8676002)(7696005)(6666004)(40460700003)(66574015)(6916009)(336012)(316002)(1076003)(186003)(8936002)(26005)(16526019)(83380400001)(426003)(2616005)(356005)(5660300002)(36860700001)(82310400005)(81166007)(2906002)(47076005)(36900700001);
+ SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(47076005)(16526019)(186003)(336012)(66574015)(426003)(6666004)(7696005)(2616005)(1076003)(26005)(356005)(54906003)(81166007)(86362001)(40460700003)(2906002)(36860700001)(83380400001)(82310400005)(508600001)(70586007)(4326008)(8676002)(70206006)(5660300002)(8936002)(36756003)(316002)(6916009)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2022 17:47:06.4113 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0f585ee6-b12a-4bf2-7bb0-08da2a0846f9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2022 17:47:07.1612 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7b7e9b67-935f-4cbd-e984-08da2a08476b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT054.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB4672
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4174
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,116 +108,93 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Jack Xiao <Jack.Xiao@amd.com>
 
-Create a mes process which contains process-related resources,
-like vm, doorbell bitmap, process ctx bo and etc.
-
-v2: move the simple variable to the end
+Destroy the mes process, which free resources of the process.
 
 Signed-off-by: Jack Xiao <Jack.Xiao@amd.com>
 Acked-by: Christian König <christian.koenig@amd.com>
 Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c | 77 +++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h |  3 +
- 2 files changed, 80 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c | 58 +++++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h |  1 +
+ 2 files changed, 59 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-index a988c232b4a3..55005a594be1 100644
+index 55005a594be1..05e27636ce20 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-@@ -214,3 +214,80 @@ void amdgpu_mes_fini(struct amdgpu_device *adev)
- 	ida_destroy(&adev->mes.doorbell_ida);
- 	mutex_destroy(&adev->mes.mutex);
+@@ -291,3 +291,61 @@ int amdgpu_mes_create_process(struct amdgpu_device *adev, int pasid,
+ 	mutex_unlock(&adev->mes.mutex);
+ 	return r;
  }
 +
-+int amdgpu_mes_create_process(struct amdgpu_device *adev, int pasid,
-+			      struct amdgpu_vm *vm)
++void amdgpu_mes_destroy_process(struct amdgpu_device *adev, int pasid)
 +{
 +	struct amdgpu_mes_process *process;
++	struct amdgpu_mes_gang *gang, *tmp1;
++	struct amdgpu_mes_queue *queue, *tmp2;
++	struct mes_remove_queue_input queue_input;
++	unsigned long flags;
 +	int r;
 +
 +	mutex_lock(&adev->mes.mutex);
 +
-+	/* allocate the mes process buffer */
-+	process = kzalloc(sizeof(struct amdgpu_mes_process), GFP_KERNEL);
++	process = idr_find(&adev->mes.pasid_idr, pasid);
 +	if (!process) {
-+		DRM_ERROR("no more memory to create mes process\n");
++		DRM_WARN("pasid %d doesn't exist\n", pasid);
 +		mutex_unlock(&adev->mes.mutex);
-+		return -ENOMEM;
++		return;
 +	}
 +
-+	process->doorbell_bitmap =
-+		kzalloc(DIV_ROUND_UP(AMDGPU_MES_MAX_NUM_OF_QUEUES_PER_PROCESS,
-+				     BITS_PER_BYTE), GFP_KERNEL);
-+	if (!process->doorbell_bitmap) {
-+		DRM_ERROR("failed to allocate doorbell bitmap\n");
-+		kfree(process);
-+		mutex_unlock(&adev->mes.mutex);
-+		return -ENOMEM;
++	/* free all gangs in the process */
++	list_for_each_entry_safe(gang, tmp1, &process->gang_list, list) {
++		/* free all queues in the gang */
++		list_for_each_entry_safe(queue, tmp2, &gang->queue_list, list) {
++			spin_lock_irqsave(&adev->mes.queue_id_lock, flags);
++			idr_remove(&adev->mes.queue_id_idr, queue->queue_id);
++			spin_unlock_irqrestore(&adev->mes.queue_id_lock, flags);
++
++			queue_input.doorbell_offset = queue->doorbell_off;
++			queue_input.gang_context_addr = gang->gang_ctx_gpu_addr;
++
++			r = adev->mes.funcs->remove_hw_queue(&adev->mes,
++							     &queue_input);
++			if (r)
++				DRM_WARN("failed to remove hardware queue\n");
++
++			list_del(&queue->list);
++			kfree(queue);
++		}
++
++		idr_remove(&adev->mes.gang_id_idr, gang->gang_id);
++		amdgpu_bo_free_kernel(&gang->gang_ctx_bo,
++				      &gang->gang_ctx_gpu_addr,
++				      &gang->gang_ctx_cpu_ptr);
++		list_del(&gang->list);
++		kfree(gang);
 +	}
 +
-+	/* add the mes process to idr list */
-+	r = idr_alloc(&adev->mes.pasid_idr, process, pasid, pasid + 1,
-+		      GFP_KERNEL);
-+	if (r < 0) {
-+		DRM_ERROR("failed to lock pasid=%d\n", pasid);
-+		goto clean_up_memory;
-+	}
++	amdgpu_mes_free_process_doorbells(adev, process);
 +
-+	/* allocate the process context bo and map it */
-+	r = amdgpu_bo_create_kernel(adev, AMDGPU_MES_PROC_CTX_SIZE, PAGE_SIZE,
-+				    AMDGPU_GEM_DOMAIN_GTT,
-+				    &process->proc_ctx_bo,
-+				    &process->proc_ctx_gpu_addr,
-+				    &process->proc_ctx_cpu_ptr);
-+	if (r) {
-+		DRM_ERROR("failed to allocate process context bo\n");
-+		goto clean_up_pasid;
-+	}
-+	memset(process->proc_ctx_cpu_ptr, 0, AMDGPU_MES_PROC_CTX_SIZE);
-+
-+	/* allocate the starting doorbell index of the process */
-+	r = amdgpu_mes_alloc_process_doorbells(adev, process);
-+	if (r < 0) {
-+		DRM_ERROR("failed to allocate doorbell for process\n");
-+		goto clean_up_ctx;
-+	}
-+
-+	DRM_DEBUG("process doorbell index = %d\n", process->doorbell_index);
-+
-+	INIT_LIST_HEAD(&process->gang_list);
-+	process->vm = vm;
-+	process->pasid = pasid;
-+	process->process_quantum = adev->mes.default_process_quantum;
-+	process->pd_gpu_addr = amdgpu_bo_gpu_offset(vm->root.bo);
-+
-+	mutex_unlock(&adev->mes.mutex);
-+	return 0;
-+
-+clean_up_ctx:
++	idr_remove(&adev->mes.pasid_idr, pasid);
 +	amdgpu_bo_free_kernel(&process->proc_ctx_bo,
 +			      &process->proc_ctx_gpu_addr,
 +			      &process->proc_ctx_cpu_ptr);
-+clean_up_pasid:
-+	idr_remove(&adev->mes.pasid_idr, pasid);
-+clean_up_memory:
 +	kfree(process->doorbell_bitmap);
 +	kfree(process);
++
 +	mutex_unlock(&adev->mes.mutex);
-+	return r;
 +}
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-index e64b2114c7ba..010a9727cbec 100644
+index 010a9727cbec..fa2f47e4cd5a 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-@@ -213,4 +213,7 @@ struct amdgpu_mes_funcs {
- int amdgpu_mes_init(struct amdgpu_device *adev);
- void amdgpu_mes_fini(struct amdgpu_device *adev);
+@@ -215,5 +215,6 @@ void amdgpu_mes_fini(struct amdgpu_device *adev);
  
-+int amdgpu_mes_create_process(struct amdgpu_device *adev, int pasid,
-+			      struct amdgpu_vm *vm);
-+
+ int amdgpu_mes_create_process(struct amdgpu_device *adev, int pasid,
+ 			      struct amdgpu_vm *vm);
++void amdgpu_mes_destroy_process(struct amdgpu_device *adev, int pasid);
+ 
  #endif /* __AMDGPU_MES_H__ */
 -- 
 2.35.1
