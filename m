@@ -2,121 +2,115 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DF905149FA
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 14:54:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63D46514A54
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 15:18:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B54D610EC11;
-	Fri, 29 Apr 2022 12:54:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3E3810ED03;
+	Fri, 29 Apr 2022 13:18:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2066.outbound.protection.outlook.com [40.107.223.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2EAB110EA0C
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 12:54:20 +0000 (UTC)
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam08on2057.outbound.protection.outlook.com [40.107.102.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C351910ED03
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 13:18:43 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jBMV7WM+HDHwfRFH0SCrAR0F7NSPN+eIBAkW4TZKSgRZSZqQjC7nAZj7kTUi+51IwyjaDIzGFP7A4uxM1+Bwgv2T4b9SDSjwpKI9qYVt04QOBXUqJxbcRki+s9uqvhEDxMlfcru/OhmXXtEv1XteMyRRf5iQAe2sadlUOkXc4IIUVG36F/R3a0QdstB2vBm/2bY2iD1aRSvvLV22ivSGVK5M+eK72xg0QA/N/SDXkWhIGUEls0+gSX6L6ALPO3/09fJo/6HEKXbV8w72uMWmYEr6cM5q1MDnfKh0EcCRMQaVdhL4iMV1MMqddw4GCIcogLjkRu1IEg11T1SvBS/3LA==
+ b=BIJCfBVgmNf9el+IKpurbh9ts93+7Vs62baXks+lXUjKF1nieaOzB8UeO23/5c7uiFEj4gj4hxxdWg7u09gWU4f3CkOstLoeinq08w5uPQMgRdn6o4KpqZxBBzxJFjzexvIx2P9glzNmHef+MPd4tez+3Qzq8XUIGyR2R9VZm04N6R2tQKasCJcbmb1KX+z1zEymEM5YN2BGhqn415IM+s6AvX2bZDxm6ZVOiRtSJKzct+lVW6sF/R76b2wY9vFI8OmK8cNb/VYEUTVfCVZ34qiFR76DutKOzTMD8OHc8naCjogd1ie+PjhYU1o/5Ey/rhhEOtqi4HYrEQ+7DjGQFg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=I1xVquswhXQ1wfqazWIvlEn/Uw/VWSTJzY4LbgroMms=;
- b=j8Qt6B9WtDTIzsavb3EnQXdfBqTvYBkFHmF+lOVhTFnj/eFc7dcEFQZzManVsDzAquR8l9ZCyDTqJ5DuFPvxhz5+HQ2jPnk1eNSXXwnkzFVG5d9TE8zXcS/YFPYcpFImQi1TI156N3B+iXABdCgrkNix6jANucU+TBAiSmC6iArDb413B6baJfz/J9MBpzODymA+fsNaGQBfDYuexhtM1pmvb+tRJBToHzmujLjpsECbAldX3KQ3AM5uQ4aIWPDTgjgRmpv24cFPywNMk9u3ayaMBiopxzpqppz9Tb686ThhN+544obJ+hSrd7UI9hEfgx3TWQXXZnxqsvQyqYaEOA==
+ bh=n2ZuEk5g0SdJlt7XfIbbKPtS6+taPvsEAyufuQkcq3U=;
+ b=UY7zPYVoc9xdnbZ2j3PEj5Y8+mQzYIIDZQDjYtn70tP+3vMw6DqcBAbNHY130GvYXlGGNb1wai3AbncJ5+EobOhTGbi4fRXyeNSSXPKtLlpJu39wuTz7tH1hD5pNX7FUcGp0rhASbbatvq9EsZASm5fjZO10U2shR/U2rArYOsPXVbLawBisbEVXaUwRvI076Vj3xxbg437kIzM0Sf4n2Pgvd/mkbOBhvqeLuhrvqFDHT/IQ1gORAm2F6Wtzj0S8tr6defXvmB0XeuO1uzIjz3YNeJFUW02OsdWNnDbv3OPokSguzd3vc44TvTuubAV6SEs+pGtpwolZU/g9mlZDcg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I1xVquswhXQ1wfqazWIvlEn/Uw/VWSTJzY4LbgroMms=;
- b=UPf7/2TBKi1FJ5tDuKCuSVNogG7ck2kDomPK+LqDn3O5tWH5vrQWClZpc6v5nhZI7jK6M+t4kdcABXsGpwxlLPYcz/6tI4oNwV0cqHYLBDoa7gKyYAn88/qjaC74Nh/WdMXK/g1qoGlnsjhTn9CptKtWVqk8QKRZMkErTKkxpOQ=
+ bh=n2ZuEk5g0SdJlt7XfIbbKPtS6+taPvsEAyufuQkcq3U=;
+ b=kmXV4d456TDDdzUas+Z5eolfGRY301LC3FP9Doh04oKpxO4Pv018X8eE+VIT5LGQGujWtNde9/mCGMOV3hvWhFwjPxoNzVpuCng+p57bhrYQ7RdtFOZcZmxvrNsfeop5Erhd9G7MG1+Qkr9taVoOGVN2nqN7OrAQfMGfmZrzAuo=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BYAPR12MB4614.namprd12.prod.outlook.com (2603:10b6:a03:a6::22)
- by DM5PR1201MB0091.namprd12.prod.outlook.com (2603:10b6:4:57::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.15; Fri, 29 Apr
- 2022 12:54:17 +0000
-Received: from BYAPR12MB4614.namprd12.prod.outlook.com
- ([fe80::88f5:b843:e848:fcf]) by BYAPR12MB4614.namprd12.prod.outlook.com
- ([fe80::88f5:b843:e848:fcf%3]) with mapi id 15.20.5206.013; Fri, 29 Apr 2022
- 12:54:16 +0000
-Message-ID: <8db428ab-3f2a-1e88-0932-058dfcf66812@amd.com>
-Date: Fri, 29 Apr 2022 18:24:06 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH v3] drm/amd/pm: Disable fan control if not supported
-Content-Language: en-US
-To: Elena Sakhnovitch <elena.sakhnovitch@amd.com>,
- amd-gfx@lists.freedesktop.org
-References: <20220428202019.1494874-1-elena.sakhnovitch@amd.com>
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <20220428202019.1494874-1-elena.sakhnovitch@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN3PR01CA0130.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:bf::19) To BYAPR12MB4614.namprd12.prod.outlook.com
- (2603:10b6:a03:a6::22)
+Received: from DM6PR12MB4250.namprd12.prod.outlook.com (2603:10b6:5:21a::9) by
+ BN6PR12MB1218.namprd12.prod.outlook.com (2603:10b6:404:1b::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5186.14; Fri, 29 Apr 2022 13:18:41 +0000
+Received: from DM6PR12MB4250.namprd12.prod.outlook.com
+ ([fe80::cdb7:3025:c623:7e5]) by DM6PR12MB4250.namprd12.prod.outlook.com
+ ([fe80::cdb7:3025:c623:7e5%3]) with mapi id 15.20.5206.013; Fri, 29 Apr 2022
+ 13:18:41 +0000
+Date: Fri, 29 Apr 2022 21:18:32 +0800
+From: Lang Yu <Lang.Yu@amd.com>
+To: Haohui Mai <ricetons@gmail.com>
+Subject: Re: [PATCH v4] drm/amdgpu: Ensure the DMA engine is deactivated
+ during set ups
+Message-ID: <YmvlqJ1Jp+wukdwA@lang-desktop>
+References: <20220428095327.10513-1-ricetons@gmail.com>
+ <YmpsF4F109J3+zzH@lang-desktop>
+ <CAHpOOhG76jY2NYWO-kTwvj7Jugu-e9S+hTW6N2HK8nR-k0+mQg@mail.gmail.com>
+ <YmqfNbHqsuE/erWL@lang-desktop>
+ <CAHpOOhEA-GEgLU9B8RrYo9VnATj62sqnRm+6e3NsHo2H02pD7g@mail.gmail.com>
+ <Ymuin6/LGeiz4SE9@lang-desktop>
+ <CAHpOOhEKWgi93gZy0517Lxgm0W3piiiXd4c5Bzb3_a_91x2Rjw@mail.gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHpOOhEKWgi93gZy0517Lxgm0W3piiiXd4c5Bzb3_a_91x2Rjw@mail.gmail.com>
+X-ClientProxiedBy: HK0PR03CA0109.apcprd03.prod.outlook.com
+ (2603:1096:203:b0::25) To DM6PR12MB4250.namprd12.prod.outlook.com
+ (2603:10b6:5:21a::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ce79f152-e58b-4763-9b4a-08da29df5e5e
-X-MS-TrafficTypeDiagnostic: DM5PR1201MB0091:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR1201MB009137F084040265BD7CAC1A97FC9@DM5PR1201MB0091.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 452fbfcf-f0c4-41e3-065b-08da29e2c742
+X-MS-TrafficTypeDiagnostic: BN6PR12MB1218:EE_
+X-Microsoft-Antispam-PRVS: <BN6PR12MB121877ACEF7AEFDBE0446284FBFC9@BN6PR12MB1218.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MHE74vTsOV/Ekm3SZ1GmjTD7uy09Vvzlkf1UUwCENZoHnFBUiYdHIcqUN4+WPRgXe19QAlAcXvJ80THENtn+k4o+peT9sr6ty9dbWn3LhW0TBf/CVDvPb4yhwMQdywCbgNJvIt18CVH7LXlTJPZ6ZbViaigJmzamRBQTRyGguDSS4ySEQfXtczDG6X7FrDm2H38YRevwahjOZpW+zHNzzsS1OYOPpj3BYRw+BRyh1tNR4DgnZYPaBNuI8soWrr1JBVnf4S2A8GK80hxOUrd/r2BLZU/TJPdN8Sby6gTOwDuUoXsAIy/o7eIFuWdvJZbSaWmxChDe9I1946RERj9zNXEkopQR9w78IKTH92j7dLbkx5m9VJNMExE0XvAEOjjzpRak9A+3oG9HweYVg+zteTwM2G4CLkbn+Ihf4JjrGRyK+POla8SmhYRLfr+omDt01ApZpJpedOuadgWUKW6R2CKjVNSy+Y9E/NW5r6VTIw1Rrgm99sIIIiz2/uuHp5XQ0A5UU+KaQRMp5zirBU9MLsNpOzMANl8cCNpFtihJsaPO9VI+1BFreeTPaKo3FunyFSyvRYKo8evNutUBW2MgruQaHFP0S33V9GB0QLuDqFGvr/EDyn06U84dapueUIDr5oyyr6VHTtxPXFdyZVIu07zJprXIH51DRR+F+3eYHcdfW0tojQ6tniQany1nQ3sMIO5PJldasjSzFbP6NNj0fJs0crCUdkp9sLW/9P/vsa0=
+X-Microsoft-Antispam-Message-Info: a3mEQ33UYI5DHQnpXt0NJAvl1lOsRgqoL2NCO+BGN7wUfN2Nt9fEwTCaIdqU+/zuMnX6d4Xsarif0xz0hapZKT+2dV3AdbXdwMiBZO4nDdXbyFZaet/bVKQ26xCSf1l3AbCKvdzKnaFnrvd82D0WvWt4HPUzd3FmGNW+ry4Hehb1GtpiM/w07+PA+mMhijvLMnLU1ImCeJMhLVCLFm5rUtKHXF+QUqmyGS5yVtgl5PKlAvfuCd6nqBi+fh/GKe8FIIffKedb2a6z1XTbhNJZ/DbxeuWZdlE1tTdV/rW926ToAiGM2/589usdpz/yj1E4sqmkInbcbhukwvp1Mw+vSRK3uuiLH1RG8y19/exDTQREnUQywgvnLvYupMw+BPhUUsi0aZz0IeRseMKMulM0HoX8dRTpyj4DfjDvzLF7IOKV2gB6KmzvW3a7CZBoy9PZ0Y+TStNhHeNEvUGPEBIsuO+18B15YKGLNE92T3jmuq+d+TqFoVoewG+CJlXnHAHp9MGKlx23ymjYVgL8hBtYVyAg1+Fn2ZI4CcKUb6UntwQuUk4pXobDPQn2Ad26zm6W44bqiWYywX3KMPmq6eGEwmX8WFfmoVYtcP5oRT/4l+/pBaDqCpc8NZFk+egajSmrQ3+IjaSitNZGvq7JAO9RyHTKI5deJII+Eaue5lQxNxjk2To4m4svnOpiJzCLsSju
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR12MB4614.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(4636009)(366004)(8936002)(36756003)(83380400001)(86362001)(6666004)(316002)(6486002)(31686004)(31696002)(2616005)(5660300002)(8676002)(6512007)(53546011)(186003)(26005)(66476007)(66556008)(66946007)(508600001)(38100700002)(6506007)(2906002)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB4250.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(7916004)(4636009)(366004)(30864003)(5660300002)(6486002)(8936002)(45080400002)(6506007)(6512007)(26005)(2906002)(53546011)(6666004)(508600001)(9686003)(86362001)(38100700002)(83380400001)(186003)(33716001)(4326008)(54906003)(66946007)(8676002)(6916009)(66476007)(66556008)(316002)(67856001);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eWtySXhDKzhZc09wcmNlVVQ5dVZTbzBzVVRHSzRaSHJ0ekZJdGw5N2xLbHk5?=
- =?utf-8?B?VVA1TzAxalpzZmRZdTZTeG9WRXc2b2NvSi83aktzb0h3aEtaUlhhaXVHcnBz?=
- =?utf-8?B?RlUrOXNCRWtwaUZIK2dMRnFqMmdENDF5cVFmZ0k5LzBnc3dwR0tmQjZwWFNo?=
- =?utf-8?B?M01DTWp2QjMrR242TVZqZGF6RnF1VlN2U2JadU96RkUyM2hlMW5ZZGt6dVFV?=
- =?utf-8?B?cXY5TFJweWFqZWFsU1VSV2NoYVd5WDRBL1J2RkU5ZGY5WVNHN2I1THJieW9l?=
- =?utf-8?B?ZmJwTEI3eGVCMVJBcndWV09pVHRQdzhvdVZHUXZQeG9hZUJYNjRVK2Ezc1Yr?=
- =?utf-8?B?c2MvZ1hMYVhQVFYxQkcwZG0wV3cyeG4ydjU2ZkhPZVBydmltV0duQnFodStV?=
- =?utf-8?B?VlFDdEFNMzRaaHZBNi9FL2ZaS01CZjRoSUNVVHVXMjhQS1FyQkhFUXd0MFdt?=
- =?utf-8?B?L0RXQ0tvQjkzRmdiTk1WSWJDMG1lM3k0M3RLancvUWR2SnRxaG1GUkVjaWls?=
- =?utf-8?B?UXVHcGtiZVdobkhCQWNJMDd3M0ZGTC9WRXczQzEvckJSNnN3cFpLQ21zNGJY?=
- =?utf-8?B?b2dRbEtzUkZNeTk1cVVUVWFETzI2TlNpMGRDUU5MQWtEaFlBeGlNODRUUTVy?=
- =?utf-8?B?R01rOWF5WmZiaVRlWDdOMjRmNTJUNTBiMnhkR0w4OHhSNlkvU2ZSNXVqKzFi?=
- =?utf-8?B?Zi9RODlEZDZvdUxpK3dWcDl0bXU2MXNLT2liSVlEbTRLWnRGUXltUitVZWFo?=
- =?utf-8?B?dUpubkxSWmt0dnBYYk5yS3doNXZxaEg0QWNBT2xuNjVLdWFHM1pSdGxVZzlz?=
- =?utf-8?B?akZlaUFkaUt1VjdtYzN4MVhEdUNkWkgvN1BveEVHeXBsbzhOMDI4RkdEUmpC?=
- =?utf-8?B?NkNhcmNWdDhBR04xR1BkeEFNMGRFR1F1RE1WQmY1MWlkaVNDdnhuWkI1c1pI?=
- =?utf-8?B?Z1hEeEtPM0FvbjZVUmRQV2xKaUJ3bDR3clRCRW5VaEdQZXhhZTYraVV3RW5G?=
- =?utf-8?B?RlZHajZ5aHV0Skd2WjBIVDJ2NzJobW81emZrZkVGcTA5VDdTVS9OOVJGRlZR?=
- =?utf-8?B?QU94YnhYQ2prblNrcEJ0cWVrc1RMaUw0QTVVMGExRXVJSjl0eUhMZDFXR3h1?=
- =?utf-8?B?Smx6Rk9qZnFWT1ZFbGJDUG5maEpDbWdvZEhMeGwvRE00MThPVXVicnlFcXdz?=
- =?utf-8?B?cXcrd21QSlFNYUltaS82eHJFdHdoS1ByTDFDeWZ4dHo0TkJCTHF0MzFaZVpz?=
- =?utf-8?B?dXl2NkdaMTVzbG14YzNKSUlFclNyYlJEa1ozODZQb0NQUXRvd0UwNkx6VTZz?=
- =?utf-8?B?VkN2WEF5M3BlbDBtdm5qaVFiOGhjWVZNZnk5ZXAvYkRpMEFIYkdhWHFCUy9u?=
- =?utf-8?B?RGNmblhwbGRGcTE0L2hSS2c2VlB1V0Y0RGhSZ2x0akR4MUo0T3lUdXNQMjdp?=
- =?utf-8?B?bXhnSUtRL1dXQSt2WG1McjFnWllSSG5NMkxEb1JlSlZyRmZ3UzBub1lmYXRJ?=
- =?utf-8?B?RWMrZTRXMHo5cFY2R1NXVWN2WnpVTEYxSUh5dXhBNnZCLzhmMW5kY1BPREJ4?=
- =?utf-8?B?UkU2anE4SnU3RzE4QzA4QXBwMmZ2Vy9BaGVPMDdUczZpak9yOXRzL2dNQlNw?=
- =?utf-8?B?aWQrMDNkOXRkZk56SUxTOTJzVDV4RktKRHRKQ3BqdGpUTVB1VzRaSUVzK1A2?=
- =?utf-8?B?NmVPc2FKSmNNVFowUjM5RW4rL3hLUlNsWHR2Rk1rNDk2cEhqWCt4azNVc2Ew?=
- =?utf-8?B?ZEJwM1IxZkh5U2c3cCt3SVpTdEdFbXY5TnQ3L2JaeVI5NWltNWh3S0xJc01H?=
- =?utf-8?B?OWU3aFlKYVZxUVVHSW1wQkk2NXJrSkppM2dnY3dURnhTUklDUTI2NUNBOWxJ?=
- =?utf-8?B?U1dQTGxHQjdUVmRtMlVockRRbFA5OGFjbVhKcENEeDNUcjIyVjgwZHRSTFMv?=
- =?utf-8?B?R00reW83ZUhlUEVQYlhxTStUenFKZVg0UVdKODRzM29rMkJ4UzhNaXhHV043?=
- =?utf-8?B?QkJJNGdDMHg5YmdFVzZTb01jZEQzVC96NGY5Vy8wSEZVSTZGU2U1bFFJb0Ry?=
- =?utf-8?B?SVJsVEVXWG1tQ1NtN3orUEJyQy9uSGVKSDYxMm9HOFA3d1RKUTJERzQvMWVJ?=
- =?utf-8?B?UjR2ZlJWdE9pSkp2YWFVVnZZOEJCTm12aS9LVFRCRWFNZlhNN2hFbDY5MC9S?=
- =?utf-8?B?UDhQQXloSlBGc3RCYVQ5UFA2VThRK2wrdU4rYjU4bkVqYWxRRUUvUzVhamc3?=
- =?utf-8?B?aFI2RTNBRUkyazlKY1FWVkhybWdWUzRIQ05aWWUzOGNnZFNPUkdlNzY1UzlV?=
- =?utf-8?B?d2pyeVRydDRKalVZb0VJQ2dhUk5XejBCOCtmMFI3WjBHdlphQ2pEZz09?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PImtFPTY6saa+PXjCVhJflW0fv6v6K2kkVKeU5GUW0Uykx7+yPqFw/34f447?=
+ =?us-ascii?Q?+0LEMtP1HucHWqkRWe8m0tfkWMR0fTtTPBk5E78UnSG7x16b8toAyU/rNHZ1?=
+ =?us-ascii?Q?xKq2AfyjGDUJBd7SgU1Km7kvaaVYiTPCXC/7HJWmwkb2UuwyaQ+si3xDKK74?=
+ =?us-ascii?Q?bC86zZOW6fqCGHeIARRn1c96FVNBmAywCFUmP8GulWyj+uv5dPvQTtA28oXa?=
+ =?us-ascii?Q?U9GmyeDbKrx4Mx2Rl24XJ/YqiG9Ub+fQjfD7UHTRRAoA0bu4F2k+KqntM9Ta?=
+ =?us-ascii?Q?N7SKEzTLpnOwzB80fZRSx3BYBVNqsJZKSH/ROTtXCpZFnOudGVqTwRklE/C8?=
+ =?us-ascii?Q?tykUhjbcua3WBpnEAEEhEAHdvYrzU1W6TumoELx9X9wKoU5f0nJJnmGEePgJ?=
+ =?us-ascii?Q?nD7faEGj1sMxankpE3OpP9m+Fkjxv04dPfBWvQBrlgkjQcrz5ZLG7d4aFHao?=
+ =?us-ascii?Q?2o56srb5TD5YTCxR8dkhnxYKl20JsxREZo6DiQHmjeC6AQYHIxceVt10fB/M?=
+ =?us-ascii?Q?Wrw0rIFUU7xcNs7/1GAchZKf0d0VxjfAEGoMPLMh8b/cQjsFebiuPweFRkLc?=
+ =?us-ascii?Q?8LtjhI1AcJT0NyvMCrOA/e85u/XznbiOmoyPzQ83lJUGcPOjJJ8mfyCsUKDY?=
+ =?us-ascii?Q?UMe7VFHRM5XZP83vZiF5qZcglYLwrbjd3VubaGit+Llc73Zf2ktg8eVVpcfx?=
+ =?us-ascii?Q?ddbmi4zcBotNN0CiFZp/uyW1I/PspxXyy1zZV/2j+GPTXnTXGxdwKJjyUW1Q?=
+ =?us-ascii?Q?XfEpglPnpPtSZFhfnLPDalDUACYopmzLGbsvZGb1yZJIcSq1YyvEpZTO0+Dk?=
+ =?us-ascii?Q?/Wxe0bU6tGC2899Rbzl5lCp3QWU/31uOeBQmX5nmMiEyCoAfOHg10C2kSsf5?=
+ =?us-ascii?Q?fqYJZMRqybhCE4TMzScHeBydrwbtSxvA2JWWt5jimuMDHecmj30vSN0GmBId?=
+ =?us-ascii?Q?e7bQP4NNhgxmwqmaFaH0RplrhSTlgU0TU+H1QABZ14rd8aTCQZuDUz+aB2Bx?=
+ =?us-ascii?Q?cwDcjeQJZWDh2tkty/wO+d/UwAH1YZvZ/s3WEM/s9TbZsAv34O0GZJ/SfvGQ?=
+ =?us-ascii?Q?Ry9NPSJRE4vW3VswfySFWC8F9hl/6Vq7BAQZGFe3MWgp1objP/uMquzzSzG3?=
+ =?us-ascii?Q?xW4lcKlrmQaT60XU7qF1WtNSNO/ueozeU6RacoIhQtDJn68klw9i50DJ55mq?=
+ =?us-ascii?Q?0CR6VRTSpRTjE68tSwl8BjUVOJVLU9Ii3mDwJ8dlAPANk/9Cz5wj7xyJfQ1x?=
+ =?us-ascii?Q?TTSUXf1w9aGT121DgHtjcr3n1X2/x++c11llX/kdn57smJUzxBdpOcLri33Y?=
+ =?us-ascii?Q?qS6F2aawPlxqIDSUi/v8aGPAIFzOsLrGYauUdMeIGkxWv7uXgSpfYr0Ab3A8?=
+ =?us-ascii?Q?jwhv2Xu4y1dAzXHJz3kmKTF8aUHDMbXtRsLvRRm42L7rRMFf/hF2w612io1s?=
+ =?us-ascii?Q?u3s8hNpeHlYS1+YOD2sX7X1ESGgSRgwY6dr912pV6AFBYl1ECEjm71Pdwt0Q?=
+ =?us-ascii?Q?mwE2HaX8ge5T9en+jDTDyyMOj9cPcDlD7Pax4jB/M2E/qZQ78rRSxzTIVte+?=
+ =?us-ascii?Q?nxENBjgHEGX+VVn1P8+GGvmQ4ZGAz0NZ1d1LoSMC008ckm0DLPYw7gbUBJQI?=
+ =?us-ascii?Q?D69EHgqT9Dk4RIMZITOud3sBWG2exsOioY2uKQPaxpliI5PfpGryvc6Dqf2w?=
+ =?us-ascii?Q?E5nRIITdqAt9rnzch4ThZ35OGQxXsfAtqBOMHTfqEXJuT+91yQd0tp4tr7pp?=
+ =?us-ascii?Q?lQsEcbh4ew=3D=3D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ce79f152-e58b-4763-9b4a-08da29df5e5e
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4614.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 452fbfcf-f0c4-41e3-065b-08da29e2c742
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4250.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2022 12:54:16.7488 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2022 13:18:41.1826 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UTduMzGfU8nNbcxwYWYHUHuoT1bcQ38O6tcOqWBhWMDwxoYDIVkVOthe59OIWcW3
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0091
+X-MS-Exchange-CrossTenant-UserPrincipalName: RS/U7K3BBN1UF25+cwkLOjeoh34cwjuvjPeyjrF5+dl/t54ag1I4fHVZHDfF9pJFirXETExUQgEhTc4ADD3P8A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1218
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,66 +122,321 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Yifan Zhang <yifan1.zhang@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ amd-gfx@lists.freedesktop.org, "Chen, Guchun" <Guchun.Chen@amd.com>, "Zhang,
+ Hawking" <Hawking.Zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On 04/29/ , Haohui Mai wrote:
+> Sorry about that. But can you please confirm that the call of
+> sdma_v5_2_ctx_switch_disable_all() is still required to fully disable
+> the engine?
 
+For sdma_v5_2_load_microcode(), I think sdma_v5_2_halt() will suffice.  
 
-On 4/29/2022 1:50 AM, Elena Sakhnovitch wrote:
-> On Sienna Cichild, not all platforms use PMFW based fan control
-> (ex: fanless systems). On such ASICs fan control by PMFW will be
-> disabled in PPTable. Disable hwmon knobs for fan control also as
-> it is not possible to report or control fan speed on such platforms
-> through driver.
+Regards,
+Lang
+
+> Thanks,
+> Haohui
 > 
-> v3: FeaturesToRun casted as uint64_t
-> 
-> Signed-off-by: Elena Sakhnovitch  <elena.sakhnovitch@amd.com>
-> ---
->   .../drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c | 17 +++++++++++++++++
->   1 file changed, 17 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-> index ab3e9d8b831e..9ec44b4e9f83 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-> @@ -371,6 +371,22 @@ static void sienna_cichlid_check_bxco_support(struct smu_context *smu)
->   	}
->   }
->   
-> +static void sienna_cichlid_check_fan_support(struct smu_context *smu)
-> +{
-> +	struct smu_table_context *table_context = &smu->smu_table;
-> +	PPTable_t *pptable = table_context->driver_pptable;
-> +	uint64_t features = *(uint64_t *) pptable->FeaturesToRun;
-> +
-> +	/* Fan control is not possible if PPTable has it disabled */
-> +	smu->adev->pm.no_fan =
-> +		!(features & (1ULL << FEATURE_FAN_CONTROL_BIT));
-> +	if (smu->adev->pm.no_fan)
-> +		dev_info_once(smu->adev->dev,
-> +			      "PMFW based fan control disabled");
-> +
-> +
-
-Please remove extra blank lines. With that
-
-Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
-
-Thanks,
-Lijo
-
-> +}
-> +
->   static int sienna_cichlid_check_powerplay_table(struct smu_context *smu)
->   {
->   	struct smu_table_context *table_context = &smu->smu_table;
-> @@ -381,6 +397,7 @@ static int sienna_cichlid_check_powerplay_table(struct smu_context *smu)
->   		smu->dc_controlled_by_gpio = true;
->   
->   	sienna_cichlid_check_bxco_support(smu);
-> +	sienna_cichlid_check_fan_support(smu);
->   
->   	table_context->thermal_controller_type =
->   		powerplay_table->thermal_controller_type;
-> 
+> On Fri, Apr 29, 2022 at 4:32 PM Lang Yu <Lang.Yu@amd.com> wrote:
+> >
+> > On 04/29/ , Haohui Mai wrote:
+> > > Thanks for pointing it out. The v5 patch added the code back.
+> > >
+> > > ~Haohui
+> >
+> > But you didn't remove the following codes added in v4.
+> >
+> >         if (adev->firmware.load_type == AMDGPU_FW_LOAD_DIRECT) {
+> > +               sdma_v5_2_ctx_switch_disable_all(adev);
+> > +               sdma_v5_2_halt(adev);
+> > +
+> >
+> > sdma_v5_2_halt() has been called in sdma_v5_2_load_microcode().
+> >
+> > No need to call these two functions here.
+> >
+> > Regards,
+> > Lang
+> >
+> > > On Thu, Apr 28, 2022 at 10:05 PM Lang Yu <Lang.Yu@amd.com> wrote:
+> > > >
+> > > > On 04/28/ , Haohui Mai wrote:
+> > > > > If I understand correctly, the original code will disable the HALT bit
+> > > > > of the register mmSDMA0_F32_CNTL twice on other code paths -- one in
+> > > > > the sdma_v5_2_ctx_switch_enable() and the other one in
+> > > > > sdma_v5_2_enable().
+> > > > >
+> > > > > The change ensures that the bit is only disabled once. Just wondering,
+> > > > > which one is the expected behavior?
+> > > > >
+> > > > > ~Haohui
+> > > >
+> > > > The HALT bit of the register mmSDMA0_F32_CNTL is not set/reset in original sdma_v5_2_ctx_switch_enable()
+> > > > (https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgitlab.freedesktop.org%2Fagd5f%2Flinux%2F-%2Fblob%2Famd-staging-drm-next%2Fdrivers%2Fgpu%2Fdrm%2Famd%2Famdgpu%2Fsdma_v5_2.c%23L523&amp;data=05%7C01%7CLang.Yu%40amd.com%7Cd3ebe4ce65f844567b0708da29bf15f2%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637868197938534483%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=rHBvnV49RBwwYqFp8DmaN8lNBLgw4osg2wRFlxgYKSk%3D&amp;reserved=0)
+> > > >
+> > > > Regards,
+> > > > Lang
+> > > >
+> > > > > On Thu, Apr 28, 2022 at 6:27 PM Lang Yu <Lang.Yu@amd.com> wrote:
+> > > > > >
+> > > > > > On 04/28/ , ricetons@gmail.com wrote:
+> > > > > > > From: Haohui Mai <ricetons@gmail.com>
+> > > > > > >
+> > > > > > > The patch fully deactivates the DMA engine before setting up the ring
+> > > > > > > buffer to avoid potential data races and crashes.
+> > > > > > >
+> > > > > > > The v4 patch addresses the comments from Lang Yu <Lang.Yu@amd.com>.
+> > > > > > >
+> > > > > > > Signed-off-by: Haohui Mai <ricetons@gmail.com>
+> > > > > > > ---
+> > > > > > >  drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c | 113 ++++++++++++++-----------
+> > > > > > >  1 file changed, 62 insertions(+), 51 deletions(-)
+> > > > > > >
+> > > > > > > diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
+> > > > > > > index 013d2dec81d0..b000117b77d0 100644
+> > > > > > > --- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
+> > > > > > > +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
+> > > > > > > @@ -459,7 +459,6 @@ static void sdma_v5_2_ring_emit_fence(struct amdgpu_ring *ring, u64 addr, u64 se
+> > > > > > >       }
+> > > > > > >  }
+> > > > > > >
+> > > > > > > -
+> > > > > > >  /**
+> > > > > > >   * sdma_v5_2_gfx_stop - stop the gfx async dma engines
+> > > > > > >   *
+> > > > > > > @@ -505,17 +504,21 @@ static void sdma_v5_2_rlc_stop(struct amdgpu_device *adev)
+> > > > > > >  }
+> > > > > > >
+> > > > > > >  /**
+> > > > > > > - * sdma_v5_2_ctx_switch_enable - stop the async dma engines context switch
+> > > > > > > + * sdma_v5_2_ctx_switch_enable_for_instance - start the async dma engines
+> > > > > > > + * context switch for an instance
+> > > > > > >   *
+> > > > > > >   * @adev: amdgpu_device pointer
+> > > > > > > - * @enable: enable/disable the DMA MEs context switch.
+> > > > > > > + * @instance_idx: the index of the SDMA instance
+> > > > > > >   *
+> > > > > > > - * Halt or unhalt the async dma engines context switch.
+> > > > > > > + * Unhalt the async dma engines context switch.
+> > > > > > >   */
+> > > > > > > -static void sdma_v5_2_ctx_switch_enable(struct amdgpu_device *adev, bool enable)
+> > > > > > > +static void sdma_v5_2_ctx_switch_enable_for_instance(struct amdgpu_device *adev, int instance_idx)
+> > > > > > >  {
+> > > > > > >       u32 f32_cntl, phase_quantum = 0;
+> > > > > > > -     int i;
+> > > > > > > +
+> > > > > > > +     if (WARN_ON(instance_idx >= adev->sdma.num_instances)) {
+> > > > > > > +             return;
+> > > > > > > +     }
+> > > > > > >
+> > > > > > >       if (amdgpu_sdma_phase_quantum) {
+> > > > > > >               unsigned value = amdgpu_sdma_phase_quantum;
+> > > > > > > @@ -539,61 +542,71 @@ static void sdma_v5_2_ctx_switch_enable(struct amdgpu_device *adev, bool enable)
+> > > > > > >               phase_quantum =
+> > > > > > >                       value << SDMA0_PHASE0_QUANTUM__VALUE__SHIFT |
+> > > > > > >                       unit  << SDMA0_PHASE0_QUANTUM__UNIT__SHIFT;
+> > > > > > > -     }
+> > > > > > > -
+> > > > > > > -     for (i = 0; i < adev->sdma.num_instances; i++) {
+> > > > > > > -             if (enable && amdgpu_sdma_phase_quantum) {
+> > > > > > > -                     WREG32_SOC15_IP(GC, sdma_v5_2_get_reg_offset(adev, i, mmSDMA0_PHASE0_QUANTUM),
+> > > > > > > -                            phase_quantum);
+> > > > > > > -                     WREG32_SOC15_IP(GC, sdma_v5_2_get_reg_offset(adev, i, mmSDMA0_PHASE1_QUANTUM),
+> > > > > > > -                            phase_quantum);
+> > > > > > > -                     WREG32_SOC15_IP(GC, sdma_v5_2_get_reg_offset(adev, i, mmSDMA0_PHASE2_QUANTUM),
+> > > > > > > -                            phase_quantum);
+> > > > > > > -             }
+> > > > > > >
+> > > > > > > -             if (!amdgpu_sriov_vf(adev)) {
+> > > > > > > -                     f32_cntl = RREG32(sdma_v5_2_get_reg_offset(adev, i, mmSDMA0_CNTL));
+> > > > > > > -                     f32_cntl = REG_SET_FIELD(f32_cntl, SDMA0_CNTL,
+> > > > > > > -                                     AUTO_CTXSW_ENABLE, enable ? 1 : 0);
+> > > > > > > -                     WREG32(sdma_v5_2_get_reg_offset(adev, i, mmSDMA0_CNTL), f32_cntl);
+> > > > > > > -             }
+> > > > > > > +             WREG32_SOC15_IP(GC,
+> > > > > > > +                     sdma_v5_2_get_reg_offset(adev, instance_idx, mmSDMA0_PHASE0_QUANTUM),
+> > > > > > > +                     phase_quantum);
+> > > > > > > +             WREG32_SOC15_IP(GC,
+> > > > > > > +                     sdma_v5_2_get_reg_offset(adev, instance_idx, mmSDMA0_PHASE1_QUANTUM),
+> > > > > > > +                 phase_quantum);
+> > > > > > > +             WREG32_SOC15_IP(GC,
+> > > > > > > +                     sdma_v5_2_get_reg_offset(adev, instance_idx, mmSDMA0_PHASE2_QUANTUM),
+> > > > > > > +                 phase_quantum);
+> > > > > > >       }
+> > > > > > >
+> > > > > > > +     if (!amdgpu_sriov_vf(adev)) {
+> > > > > > > +             f32_cntl = RREG32(sdma_v5_2_get_reg_offset(adev, instance_idx, mmSDMA0_CNTL));
+> > > > > > > +             f32_cntl = REG_SET_FIELD(f32_cntl, SDMA0_CNTL,
+> > > > > > > +                             AUTO_CTXSW_ENABLE, 1);
+> > > > > > > +             WREG32(sdma_v5_2_get_reg_offset(adev, instance_idx, mmSDMA0_CNTL), f32_cntl);
+> > > > > > > +     }
+> > > > > > >  }
+> > > > > > >
+> > > > > > >  /**
+> > > > > > > - * sdma_v5_2_enable - stop the async dma engines
+> > > > > > > + * sdma_v5_2_ctx_switch_disable_all - stop the async dma engines context switch
+> > > > > > >   *
+> > > > > > >   * @adev: amdgpu_device pointer
+> > > > > > > - * @enable: enable/disable the DMA MEs.
+> > > > > > >   *
+> > > > > > > - * Halt or unhalt the async dma engines.
+> > > > > > > + * Halt the async dma engines context switch.
+> > > > > > >   */
+> > > > > > > -static void sdma_v5_2_enable(struct amdgpu_device *adev, bool enable)
+> > > > > > > +static void sdma_v5_2_ctx_switch_disable_all(struct amdgpu_device *adev)
+> > > > > > >  {
+> > > > > > >       u32 f32_cntl;
+> > > > > > >       int i;
+> > > > > > >
+> > > > > > > -     if (!enable) {
+> > > > > > > -             sdma_v5_2_gfx_stop(adev);
+> > > > > > > -             sdma_v5_2_rlc_stop(adev);
+> > > > > > > -     }
+> > > > > > > +     if (amdgpu_sriov_vf(adev))
+> > > > > > > +             return;
+> > > > > > >
+> > > > > > > -     if (!amdgpu_sriov_vf(adev)) {
+> > > > > > > -             for (i = 0; i < adev->sdma.num_instances; i++) {
+> > > > > > > -                     f32_cntl = RREG32(sdma_v5_2_get_reg_offset(adev, i, mmSDMA0_F32_CNTL));
+> > > > > > > -                     f32_cntl = REG_SET_FIELD(f32_cntl, SDMA0_F32_CNTL, HALT, enable ? 0 : 1);
+> > > > > > > -                     WREG32(sdma_v5_2_get_reg_offset(adev, i, mmSDMA0_F32_CNTL), f32_cntl);
+> > > > > > > -             }
+> > > > > > > +     for (i = 0; i < adev->sdma.num_instances; i++) {
+> > > > > > > +             f32_cntl = RREG32(sdma_v5_2_get_reg_offset(adev, i, mmSDMA0_CNTL));
+> > > > > > > +             f32_cntl = REG_SET_FIELD(f32_cntl, SDMA0_CNTL,
+> > > > > > > +                             AUTO_CTXSW_ENABLE, 0);
+> > > > > > > +             WREG32(sdma_v5_2_get_reg_offset(adev, i, mmSDMA0_CNTL), f32_cntl);
+> > > > > > >       }
+> > > > > > >  }
+> > > > > > >
+> > > > > > > +/**
+> > > > > > > + * sdma_v5_2_halt - stop the async dma engines
+> > > > > > > + *
+> > > > > > > + * @adev: amdgpu_device pointer
+> > > > > > > + *
+> > > > > > > + * Halt the async dma engines.
+> > > > > > > + */
+> > > > > > > +static void sdma_v5_2_halt(struct amdgpu_device *adev)
+> > > > > > > +{
+> > > > > > > +     sdma_v5_2_gfx_stop(adev);
+> > > > > > > +     sdma_v5_2_rlc_stop(adev);
+> > > > > > > +}
+> > > > > > > +
+> > > > > > >  /**
+> > > > > > >   * sdma_v5_2_gfx_resume - setup and start the async dma engines
+> > > > > > >   *
+> > > > > > >   * @adev: amdgpu_device pointer
+> > > > > > >   *
+> > > > > > >   * Set up the gfx DMA ring buffers and enable them.
+> > > > > > > + * It assumes that the dma engine is stopped for each instance.
+> > > > > > > + * The function enables the engine and preemptions sequentially for each instance.
+> > > > > > > + *
+> > > > > > >   * Returns 0 for success, error for failure.
+> > > > > > >   */
+> > > > > > >  static int sdma_v5_2_gfx_resume(struct amdgpu_device *adev)
+> > > > > > > @@ -737,10 +750,7 @@ static int sdma_v5_2_gfx_resume(struct amdgpu_device *adev)
+> > > > > > >
+> > > > > > >               ring->sched.ready = true;
+> > > > > > >
+> > > > > > > -             if (amdgpu_sriov_vf(adev)) { /* bare-metal sequence doesn't need below to lines */
+> > > > > > > -                     sdma_v5_2_ctx_switch_enable(adev, true);
+> > > > > > > -                     sdma_v5_2_enable(adev, true);
+> > > > > > > -             }
+> > > > > > > +             sdma_v5_2_ctx_switch_enable_for_instance(adev, i);
+> > > > > > >
+> > > > > > >               r = amdgpu_ring_test_ring(ring);
+> > > > > > >               if (r) {
+> > > > > > > @@ -784,7 +794,7 @@ static int sdma_v5_2_load_microcode(struct amdgpu_device *adev)
+> > > > > > >       int i, j;
+> > > > > > >
+> > > > > > >       /* halt the MEs */
+> > > > > > > -     sdma_v5_2_enable(adev, false);
+> > > > > > > +     sdma_v5_2_halt(adev);
+> > > > > > >
+> > > > > > >       for (i = 0; i < adev->sdma.num_instances; i++) {
+> > > > > > >               if (!adev->sdma.instance[i].fw)
+> > > > > > > @@ -856,8 +866,8 @@ static int sdma_v5_2_start(struct amdgpu_device *adev)
+> > > > > > >       int r = 0;
+> > > > > > >
+> > > > > > >       if (amdgpu_sriov_vf(adev)) {
+> > > > > > > -             sdma_v5_2_ctx_switch_enable(adev, false);
+> > > > > > > -             sdma_v5_2_enable(adev, false);
+> > > > > > > +             sdma_v5_2_ctx_switch_disable_all(adev);
+> > > > > > > +             sdma_v5_2_halt(adev);
+> > > > > > >
+> > > > > > >               /* set RB registers */
+> > > > > > >               r = sdma_v5_2_gfx_resume(adev);
+> > > > > > > @@ -865,6 +875,9 @@ static int sdma_v5_2_start(struct amdgpu_device *adev)
+> > > > > > >       }
+> > > > > > >
+> > > > > > >       if (adev->firmware.load_type == AMDGPU_FW_LOAD_DIRECT) {
+> > > > > > > +             sdma_v5_2_ctx_switch_disable_all(adev);
+> > > > > > > +             sdma_v5_2_halt(adev);
+> > > > > >
+> > > > > > You don't need call these functions here.
+> > > > > >
+> > > > > > In original code, you can see sdma_v5_2_load_microcode() calls
+> > > > > > sdma_v5_2_enable(adev, false) to halt the engine before load ucode.
+> > > > > >
+> > > > > > What I mean is sdma_v5_2_halt(adev) should have no functional change with
+> > > > > > original sdma_v5_2_enable(adev, false), like this,
+> > > > > >
+> > > > > > static void sdma_v5_2_halt(struct amdgpu_device *adev) {
+> > > > > >         u32 f32_cntl;
+> > > > > >         int i;
+> > > > > >
+> > > > > >         sdma_v5_2_gfx_stop(adev);
+> > > > > >         sdma_v5_2_rlc_stop(adev);
+> > > > > >
+> > > > > >         if (!amdgpu_sriov_vf(adev)) {
+> > > > > >                 for (i = 0; i < adev->sdma.num_instances; i++) {
+> > > > > >                         f32_cntl = RREG32(sdma_v5_2_get_reg_offset(adev, i, mmSDMA0_F32_CNTL));
+> > > > > >                         f32_cntl = REG_SET_FIELD(f32_cntl, SDMA0_F32_CNTL, HALT, 1);
+> > > > > >                         WREG32(sdma_v5_2_get_reg_offset(adev, i, mmSDMA0_F32_CNTL), f32_cntl);
+> > > > > >                 }
+> > > > > >         }
+> > > > > > }
+> > > > > >
+> > > > > > But you remove the codes to set the HLAT bit of register mmSDMA0_F32_CNTL.
+> > > > > >
+> > > > > > Regards,
+> > > > > > Lang
+> > > > > >
+> > > > > > >               r = sdma_v5_2_load_microcode(adev);
+> > > > > > >               if (r)
+> > > > > > >                       return r;
+> > > > > > > @@ -881,12 +894,10 @@ static int sdma_v5_2_start(struct amdgpu_device *adev)
+> > > > > > >               amdgpu_gfx_off_ctrl(adev, false);
+> > > > > > >
+> > > > > > >       sdma_v5_2_soft_reset(adev);
+> > > > > > > -     /* unhalt the MEs */
+> > > > > > > -     sdma_v5_2_enable(adev, true);
+> > > > > > > -     /* enable sdma ring preemption */
+> > > > > > > -     sdma_v5_2_ctx_switch_enable(adev, true);
+> > > > > > >
+> > > > > > > -     /* start the gfx rings and rlc compute queues */
+> > > > > > > +     /* Soft reset supposes to disable the dma engine and preemption.
+> > > > > > > +      * Now start the gfx rings and rlc compute queues.
+> > > > > > > +      */
+> > > > > > >       r = sdma_v5_2_gfx_resume(adev);
+> > > > > > >       if (adev->in_s0ix)
+> > > > > > >               amdgpu_gfx_off_ctrl(adev, true);
+> > > > > > > @@ -1340,8 +1351,8 @@ static int sdma_v5_2_hw_fini(void *handle)
+> > > > > > >       if (amdgpu_sriov_vf(adev))
+> > > > > > >               return 0;
+> > > > > > >
+> > > > > > > -     sdma_v5_2_ctx_switch_enable(adev, false);
+> > > > > > > -     sdma_v5_2_enable(adev, false);
+> > > > > > > +     sdma_v5_2_ctx_switch_disable_all(adev);
+> > > > > > > +     sdma_v5_2_halt(adev);
+> > > > > > >
+> > > > > > >       return 0;
+> > > > > > >  }
+> > > > > > > --
+> > > > > > > 2.25.1
+> > > > > > >
