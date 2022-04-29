@@ -2,61 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB666514A2F
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 15:03:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD2D7514A33
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 15:04:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2726110E83B;
-	Fri, 29 Apr 2022 13:03:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5930110ECC7;
+	Fri, 29 Apr 2022 13:04:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com
- [IPv6:2607:f8b0:4864:20::f36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B43910FB6A;
- Fri, 29 Apr 2022 05:50:44 +0000 (UTC)
-Received: by mail-qv1-xf36.google.com with SMTP id b17so4705931qvf.12;
- Thu, 28 Apr 2022 22:50:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=DklJelbXiO9l3sUAo4sjuOfTEZq9ByjiZR6q47LXluQ=;
- b=iiZWLdnO3B5+JPqgd5k43eNW94FFVOxBc/KOlQYyrvA3iQ/OVJ1wi/WgAZQJGt1+YP
- O1F92kb+g5Gfi113i583WuyQW1HbpKtVt0TYnDBetftZ/F7FwLplyQZifP4LmAteL7GS
- JTAqImUsmRlsc/u+3gq/H9ZQUcH4YOVsPgQYldCh9wrEUvqRbbUjyEMWnBOzZc13RCNl
- JaGWkNDpY7Eqd5ksCcaLsmPXPMPJF3U0PM2yYPNG95WnYAA+sqLM8BlL3ctpiiwwy2zA
- TfnOD37kj/eGBpDCFc3fzahf8qhIdgiE48J7EgJQWUKyifA/pYvv7LgOHm7DLpyMOKzH
- dw5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=DklJelbXiO9l3sUAo4sjuOfTEZq9ByjiZR6q47LXluQ=;
- b=wcJxTbqoL+c1G9cDJgBEe+1Y1CL81VQltb1z2L37DCicesKVEvZ37qjE53K2UPwz15
- N+WjbMSW+50jLCYUDUNFlBJeX3fYd2d1xSXGH7XbIZ1bKgA9kdieDvD8z9du2D3zqQCk
- KjOuKgnk+zpgvNqThjybkcwdM7lG9Gw6JSa/buFV11NFMiL4gOt2UO6ZeZLnAT3c0/s3
- v82c1Y7fsC3hgf8vEIMlEqktkvRYkCpQAiuTcwNngSfBfH+BAVS09OMeBtqVtrNZC3+n
- JrxQWfMP66tuy9nKiqg4DHdMsx4RkN/1IoHoUZvA9f71mNMpcYLOimfRrSr0rOOd22jq
- MQEQ==
-X-Gm-Message-State: AOAM531PO4o4zRSYdeVar5l8trOaqkngNA+QrB6OR+pdnTUBQ8iNAVJP
- T4VsXMXrkKV0h2qUPy9cInI=
-X-Google-Smtp-Source: ABdhPJzCXI2X6OuPnMzQGH6YeEQlUvgt8yFPZags9OQcY0fuj65LaZ0UZaeHOysnyZ+d3Z4GR0KEJA==
-X-Received: by 2002:a05:6214:2025:b0:456:3a96:f443 with SMTP id
- 5-20020a056214202500b004563a96f443mr16579441qvf.86.1651211443556; 
- Thu, 28 Apr 2022 22:50:43 -0700 (PDT)
-Received: from localhost.localdomain ([193.203.214.57])
- by smtp.gmail.com with ESMTPSA id
- bi17-20020a05620a319100b0069fb4fc24d3sm876486qkb.114.2022.04.28.22.50.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 28 Apr 2022 22:50:43 -0700 (PDT)
-From: cgel.zte@gmail.com
-X-Google-Original-From: chi.minghao@zte.com.cn
-To: alexander.deucher@amd.com
-Subject: [PATCH] drm/amdgpu: simplify the return expression of
- navi10_ih_hw_init()
-Date: Fri, 29 Apr 2022 05:50:37 +0000
-Message-Id: <20220429055037.3852147-1-chi.minghao@zte.com.cn>
+X-Greylist: delayed 451 seconds by postgrey-1.36 at gabe;
+ Fri, 29 Apr 2022 09:03:56 UTC
+Received: from zg8tmty1ljiyny4xntqumjca.icoremail.net
+ (zg8tmty1ljiyny4xntqumjca.icoremail.net [165.227.154.27])
+ by gabe.freedesktop.org (Postfix) with SMTP id B484210E737;
+ Fri, 29 Apr 2022 09:03:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=fudan.edu.cn; s=dkim; h=Received:From:To:Cc:Subject:Date:
+ Message-Id:MIME-Version:Content-Transfer-Encoding; bh=amePFdXDy6
+ eKXcLqyO+aJjWEC77R1KGfpX+ipQ86EH0=; b=qBo1feLTejqDETkmTn2w/8cBe1
+ 0+0nMtNrgMmP84QHlG16UoWRSS5eQawwHI96CxFzxYp5XSQEd+KYvf67IZGu7DeZ
+ RNCnTL2hvTA/SZUY7IfOAKUwDdY8j1Wqw6tAn5yFDcs4u96t2YKAZnvIcyV/622J
+ 3C8h7cBLVicVrJ11E=
+Received: from localhost.localdomain (unknown [10.102.183.96])
+ by app1 (Coremail) with SMTP id XAUFCgAXHnYhqGtibix3EQ--.46279S4;
+ Fri, 29 Apr 2022 16:56:05 +0800 (CST)
+From: Xin Xiong <xiongx18@fudan.edu.cn>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Matthew Dawson <matthew@mjdsystems.ca>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/radeon: fix reference count leak in cik_sdma_ib_test()
+Date: Fri, 29 Apr 2022 16:53:32 +0800
+Message-Id: <20220429085331.2515-1-xiongx18@fudan.edu.cn>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: XAUFCgAXHnYhqGtibix3EQ--.46279S4
+X-Coremail-Antispam: 1UD129KBjvJXoW7Cw47JFykXFyrAr4fGrWkXrb_yoW8Cr47pr
+ WS9r9Fyr92yw42gw47ta9rWFyYkw18Ja1xWr4DC398Cw45Zw1vqF13ZryvqryUJrykZryS
+ vF1kWw48Z3W8AF7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUU9C14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26rxl
+ 6s0DM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
+ 0DM2vYz4IE04k24VAvwVAKI4IrM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
+ 64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
+ Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAG
+ YxC7M4IIrI8v6xkF7I0E8cxan2IY04v7MxkIecxEwVCm-wCF04k20xvY0x0EwIxGrwCFx2
+ IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v2
+ 6r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67
+ AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IY
+ s7xG6rWUJVWrZr1UMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI
+ 0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUQZ23UUUUU=
+X-CM-SenderInfo: arytiiqsuqiimz6i3vldqovvfxof0/1tbiAhALEFKp2mkXjwAAsZ
 X-Mailman-Approved-At: Fri, 29 Apr 2022 13:03:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,44 +68,62 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, Zeal Robot <zealci@zte.com.cn>, Xinhui.Pan@amd.com,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, christian.koenig@amd.com,
- Minghao Chi <chi.minghao@zte.com.cn>
+Cc: Xin Tan <tanxin.ctf@gmail.com>, yuanxzhang@fudan.edu.cn,
+ Xin Xiong <xiongx18@fudan.edu.cn>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Minghao Chi <chi.minghao@zte.com.cn>
+The issue takes place in several error handling paths in
+cik_sdma_ib_test(). For example, when radeon_fence_wait_timeout()
+returns a value no greater than zero, the function simply returns an
+error code, forgetting to decrease the reference count of the object
+"ib", which is incremented by radeon_ib_get() earlier. This may
+result in memory leaks.
 
-Simplify the return expression.
+Fix it by decrementing the reference count of "ib" in those paths.
 
-Reported-by: Zeal Robot <zealci@zte.com.cn>
-Signed-off-by: Minghao Chi <chi.minghao@zte.com.cn>
+Fixes: 04db4caf5c83 ("drm/radeon: Avoid double gpu reset by adding a timeout on IB ring tests.")
+Signed-off-by: Xin Xiong <xiongx18@fudan.edu.cn>
+Signed-off-by: Xin Tan <tanxin.ctf@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/navi10_ih.c | 7 +------
- 1 file changed, 1 insertion(+), 6 deletions(-)
+ drivers/gpu/drm/radeon/cik_sdma.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/navi10_ih.c b/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
-index 97201ab0965e..4b5396d3e60f 100644
---- a/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
-+++ b/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
-@@ -593,14 +593,9 @@ static int navi10_ih_sw_fini(void *handle)
+diff --git a/drivers/gpu/drm/radeon/cik_sdma.c b/drivers/gpu/drm/radeon/cik_sdma.c
+index 919b14845c3c..d0e7323cdd42 100644
+--- a/drivers/gpu/drm/radeon/cik_sdma.c
++++ b/drivers/gpu/drm/radeon/cik_sdma.c
+@@ -732,18 +732,18 @@ int cik_sdma_ib_test(struct radeon_device *rdev, struct radeon_ring *ring)
  
- static int navi10_ih_hw_init(void *handle)
- {
--	int r;
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
- 
--	r = navi10_ih_irq_init(adev);
--	if (r)
+ 	r = radeon_ib_schedule(rdev, &ib, NULL, false);
+ 	if (r) {
+-		radeon_ib_free(rdev, &ib);
+ 		DRM_ERROR("radeon: failed to schedule ib (%d).\n", r);
 -		return r;
--
--	return 0;
-+	return navi10_ih_irq_init(adev);
++		goto out;
+ 	}
+ 	r = radeon_fence_wait_timeout(ib.fence, false, usecs_to_jiffies(
+ 		RADEON_USEC_IB_TEST_TIMEOUT));
+ 	if (r < 0) {
+ 		DRM_ERROR("radeon: fence wait failed (%d).\n", r);
+-		return r;
++		goto out;
+ 	} else if (r == 0) {
+ 		DRM_ERROR("radeon: fence wait timed out.\n");
+-		return -ETIMEDOUT;
++		r = -ETIMEDOUT;
++		goto out;
+ 	}
+ 	r = 0;
+ 	for (i = 0; i < rdev->usec_timeout; i++) {
+@@ -758,6 +758,7 @@ int cik_sdma_ib_test(struct radeon_device *rdev, struct radeon_ring *ring)
+ 		DRM_ERROR("radeon: ib test failed (0x%08X)\n", tmp);
+ 		r = -EINVAL;
+ 	}
++out:
+ 	radeon_ib_free(rdev, &ib);
+ 	return r;
  }
- 
- static int navi10_ih_hw_fini(void *handle)
 -- 
 2.25.1
-
 
