@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 722145152E5
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 19:48:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43469515322
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 20:02:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E75310F68C;
-	Fri, 29 Apr 2022 17:48:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55D2510F890;
+	Fri, 29 Apr 2022 18:02:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2042.outbound.protection.outlook.com [40.107.220.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19C7110F3A9
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 17:47:24 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2054.outbound.protection.outlook.com [40.107.92.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E929D10F891
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 18:02:44 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oL8nWja77hEttSm+goNIDXOgI72gngrDBqcQOi6yi2bDr0xX9rSlLmjaQ+ihsOyP5QtyRPNaGWFzWi05KV6o40xhLoojA1npu1eAo8Ufvb/PjyGftAN4XKqeP9QMcL7d2KR6IS8ymYXbY36+e4lZAovItxbRhge4Dk9G0mt0+q3h7xpt1IjXyLdMW568p+ulIIG5RaRGMDqoPqF61TsP8PcJRvcRGqSm1n8YPYAir3FJZ6nLft5jtkY4ZRmx9fhhvpiJxpwBBE/3TnMh6DT3qmyIOkpdj39Uh9JxTS7N4lzzj7oadlL6cl7qcmM8o9hS12opycR9Hd3OaZmTvkH9tA==
+ b=kBu8gTofZDiaGK5NpkcuRzs1R/ZP3/6Snp1vXzpsDrHm1u0QioEpw1KaaGs+hpzcTG73BuaOx6k91O7sC2jJlJ+AxBLK4wYo49bbgsLKumOyccTN9pYenhNwowypwY5J19CE2wrJWF4rHRCdHMrSnnI/a3mt6X63Q+UgyYtIwNPAxkjglkEex3+3hf2GyhDKfIGps8w69wBMsxu+0aWgVNYXiGHodKtwKwFz/nx/LH3Gn//+f+6gS2rOif927NDhyS6BdMP+/AEIEDlXc3umXM/hLlyHaErLe+huZH3p8wW7pizTzqR7AQf0LSWWhiRbD2MKieJhBIpShXSx9fEPXA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=X3/xI2GIyweCsA1t/aJh3g2Afo4NhZ1PaJhQQLfp2og=;
- b=QR4IHjg7zewX2nohUVRTsx3gs5Psaj/9VG5/YNVy+sQW4bKJY3mgic2xMMV/t5EYxlj8uFrsiJYsqug6YekhSPfDRauvwA0Ota+VvR8fCnItvrNfvGqOVyBqSPgka2Dn+pA4bj7Yv3Dv0qM0QEyu81SgVpN0SXfpX3Eny/z0j4rJTMsKvVGjb4d7s2L0FXEnyW6F94lrqKREOvPd4koE9KRiPGMXuxpfV7I9iUR8CSPpdrEl1itsvuPGEyQtA4q6sta0kyYOSJu+9RlBhdvY69vP8kpHLZJGqxak48FfHgX0lBQXzD58/Et04LcqHU1AY8j0Y2LhsTUd+71kNoPmBA==
+ bh=XyiMcTOifKGYpNuFgRTJDboLdtHyzB9oMsdh45EY3AQ=;
+ b=CXZAyrlMx+LjfvI/9rvbkKlU/HREmpYJkjh9GlOMAMBwH4Qb7IO4JMR19xq4tPadAQcZYg5Da1zh0/cS0ogPi0ESbjg9gkwJUOuGiFONBTJ6013KLrg7DcW7+9tIugnRYmgWEKuYF5l02U743QFvinU7aJ45+IKzEeBtuuHIaWjCJwkqfYngi3slVsSY9C5+nQUMiaYOghVuwmPy34AlewA/0lF7NfCnRcyppaN4AYTINPMveyY226ubFtDC5RKprSTMf7WjQUCAGslQOuEaTMYPNFC1cW0RHM9ICubTj7Ab8KO0U/pbRJvWskXoEv0Ddb362KWVJc8jsqUm4pU2Ng==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=X3/xI2GIyweCsA1t/aJh3g2Afo4NhZ1PaJhQQLfp2og=;
- b=F8mCsSDr0aJ2qxnZt8V4KjMula3ws4KDidffLn41g+RAJYOxVD62V/EislTuFaGsHNfDKMhV3dNECCXMM1jJeKyPJhuyh6Y24oXrpY4uDlIsb2Sb3Kn0Zp4Trhi4R5AYcwmvaO9wJByTohxybzdrN25RxGOgrpZCg36tG/mZ/Tc=
-Received: from DM6PR17CA0012.namprd17.prod.outlook.com (2603:10b6:5:1b3::25)
- by DM5PR12MB1947.namprd12.prod.outlook.com (2603:10b6:3:111::23) with
+ bh=XyiMcTOifKGYpNuFgRTJDboLdtHyzB9oMsdh45EY3AQ=;
+ b=IV7xX0fwl3u+cUKLpJ04yCwsugNZ2jfDJcj3+BuE4/sDTfPfkzYZhZgptPxFNnwRx6ilq0VV/bHpDHzkVxNwjMYr6tpQRMqWAjl3OyfsJfzVBHoItJIGn/U/cj1/sfOqBhoujgOIgSsQPtE/0RttP8wCw3Z6esSg/9CtgTk4edA=
+Received: from MW2PR16CA0033.namprd16.prod.outlook.com (2603:10b6:907::46) by
+ BY5PR12MB4195.namprd12.prod.outlook.com (2603:10b6:a03:200::11) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.20; Fri, 29 Apr
- 2022 17:47:22 +0000
-Received: from DM6NAM11FT056.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:1b3:cafe::87) by DM6PR17CA0012.outlook.office365.com
- (2603:10b6:5:1b3::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.14; Fri, 29 Apr
+ 2022 18:02:39 +0000
+Received: from CO1NAM11FT006.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:907:0:cafe::33) by MW2PR16CA0033.outlook.office365.com
+ (2603:10b6:907::46) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.26 via Frontend
- Transport; Fri, 29 Apr 2022 17:47:22 +0000
+ Transport; Fri, 29 Apr 2022 18:02:39 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,21 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT056.mail.protection.outlook.com (10.13.173.99) with Microsoft SMTP
+ CO1NAM11FT006.mail.protection.outlook.com (10.13.174.246) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5206.12 via Frontend Transport; Fri, 29 Apr 2022 17:47:22 +0000
+ 15.20.5206.12 via Frontend Transport; Fri, 29 Apr 2022 18:02:39 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Fri, 29 Apr
- 2022 12:47:20 -0500
+ 2022 13:02:38 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 73/73] drm/amdgpu/mes: Update the doorbell function signatures
-Date: Fri, 29 Apr 2022 13:46:24 -0400
-Message-ID: <20220429174624.459475-74-alexander.deucher@amd.com>
+Subject: [PATCH 00/29] Add support for GC 11.0
+Date: Fri, 29 Apr 2022 14:01:57 -0400
+Message-ID: <20220429180226.536084-1-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220429174624.459475-1-alexander.deucher@amd.com>
-References: <20220429174624.459475-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -68,27 +66,27 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c9dfe52e-8b31-4340-1e4a-08da2a085044
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1947:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR12MB1947729442981762A26EF2F9F7FC9@DM5PR12MB1947.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: e0ea5ad0-b49f-460e-b9c0-08da2a0a732f
+X-MS-TrafficTypeDiagnostic: BY5PR12MB4195:EE_
+X-Microsoft-Antispam-PRVS: <BY5PR12MB4195D396CA06E63F6D5AE1FDF7FC9@BY5PR12MB4195.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cvfoxoCf+rggNhJMlkrPCn3uP2SeNVtoQDIg7AxYUhyc4foPYRlZl8uPaRm9m8KsMtM38hBHLG2/gwtv+gDzL7Gd3oCIQLZIyy2pIeCtvFeawAxKBYSxxRoMbv7w7Z69ZuQZs0MlNvS8lxCF9GlLcyZbwM9j9iHXkdv62eE2erT4+t4PtPpBNEvNiPJVrbCOojjdZ5MFDX5eBl0KLVeltUSqEcb++evjHJPQuFANNbbPqxeZ6X+OaEltmxhTC8NS4FkD1WHInJAs5PEbCJI5jx+gwiQ+Q10K7kUwWeP1q1ygF0Wn/ogpanpQsEM4WcQgd6Hwxruk1YrdnYS8JoukD3RwSzZfYn/LShJ2JbN1GDJtEeinauq+OsITR3r6pTvqt4ymmHotl1rq4hGqqY6HkebmdJLl/c6YtfcmFYuETh+pZPwTxFP43wWPiP47ovJniXAd3KzGgXPd7MuNf27cx3S/ZJgAKV8QJMldKcz2AuZpQpOITKVpG1WuwuMRaeXVDHLiCZFIW2veNBUSSLF6XAENAx7+QkguRnv+46R3O3FX0BmwwgQ6RKJyuv8cM95ZXyth+tcXI4KcRO1KKbtAgfREm4+S1i5xYPyqONHGSOlUSEvglvRyDf/CN71KnUDo/pG+GvOjNN9FznfpQSlb1nyPytgFB5oAdiC3EoMiZm2y3YNZFLcWAhUiPvl0ANhTx8bFSbGWoE1wXHQytLMi5Q==
+X-Microsoft-Antispam-Message-Info: 5vCH6sqNk6o92dWYZRS1n7IRPYEjFukJmSnTJlBLOl+g21Xi9eP6N3GOBkh23EyG0CSTvUPhtA7IPIgxrwC9OoJaCSxAGniY2Emv8G9NQOJS4z96YHuA8mJbeIGrB0h1iOjOHJel3yoqYkKbN3SZWVQ0aGvOHzllV+NjDu2qszY0LDRhD7pGHgZnhfHcrseWr5IoX4mQeRzAoAhxNYc0EYL90oA6U8ed7OGLmOh20OHMkbFHN6uCu1JzUOsc77OdUhQGvrY2g3fAdvCyjxyAweLlaW5W4k3eF7Mg+UEiJYLn+ANUYZvJKu/C5LsdiiWcrnhN1M9MWYh4cOQN2Znv8POt5B535XOQhvEBOCvg+vDyEiDfHpher+Z2Hjz351fU+ELl7HjMRllPPXxOj/N2XI6CQMNRFhYUXwtLh1x/Alg+z+ENEMOanSeYFR3/TfDzkl2o3K9DaR89X3yzgntKH1MCN98fGDomxSckrteUQSDDtZNDPytSxp9VE6zizis1FrVKbIOHGdXVUGFjzLx4ccjLg8ARVDzIvlJUbme5j+kEL7qn+jQxYNve6N26lYyrbtnpYODxItSWHI3qXRVOabCg01sLSsZhPrpmsiUkTyiWMgzfcqgYHbfoKVFkl+5pDLiNqQnoxtekql3IoDn3nAPrj5evCEypjZmZyIjG04x4GL6v7mvWvFbNhw3NtENY7PaKT2rUcBj9fU/1gzGzxQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(186003)(16526019)(1076003)(2906002)(86362001)(26005)(7696005)(15650500001)(6916009)(82310400005)(316002)(8676002)(4326008)(36756003)(70586007)(54906003)(70206006)(508600001)(5660300002)(36860700001)(81166007)(40460700003)(47076005)(426003)(336012)(8936002)(83380400001)(356005)(2616005)(36900700001);
+ SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(81166007)(426003)(336012)(47076005)(83380400001)(70586007)(70206006)(4326008)(8676002)(40460700003)(2616005)(36860700001)(186003)(316002)(1076003)(16526019)(6916009)(2906002)(26005)(86362001)(6666004)(36756003)(82310400005)(5660300002)(356005)(7696005)(8936002)(508600001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2022 17:47:22.0155 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c9dfe52e-8b31-4340-1e4a-08da2a085044
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2022 18:02:39.5018 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e0ea5ad0-b49f-460e-b9c0-08da2a0a732f
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT056.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT006.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1947
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4195
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,135 +98,116 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mukul Joshi <mukul.joshi@amd.com>, Jack Xiao <Jack.Xiao@amd.com>,
- Oak Zeng <Oak.Zeng@amd.com>, Harish
- Kasiviswanathan <Harish.Kasiviswanathan@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Felix
- Kuehling <Felix.Kuehling@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Mukul Joshi <mukul.joshi@amd.com>
+This patch set adds GFX and KFD support for GC 11.0.  GC11 uses MES
+for engine management and has a new microcontroller, IMU, which
+handles power management for the block.
 
-Update the function signatures for process doorbell allocations
-with MES enabled to make them more generic. KFD would need to
-access these functions to allocate/free doorbells when MES is
-enabled.
+Alex Deucher (2):
+  drm/amdgpu/discovery: handle AMDGPU_FW_LOAD_RLC_BACKDOOR_AUTO in SMU
+  drm/amdgpu/discovery: add MES11 support
 
-Signed-off-by: Mukul Joshi <mukul.joshi@amd.com>
-Acked-by: Oak Zeng <Oak.Zeng@amd.com>
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
-Reviewed-by: Jack Xiao <Jack.Xiao@amd.com>
-Reviewed-by: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c | 37 +++++++++++++++----------
- drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h |  9 ++++++
- 2 files changed, 31 insertions(+), 15 deletions(-)
+Chengming Gui (2):
+  drm/amd/amdgpu: adjust the fw load type list
+  drm/amd/amdgpu: add more fw load type to fit new ASICs
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-index e23c864aca11..5be30bf68b0c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-@@ -29,31 +29,40 @@
- #define AMDGPU_MES_MAX_NUM_OF_QUEUES_PER_PROCESS 1024
- #define AMDGPU_ONE_DOORBELL_SIZE 8
- 
--static int amdgpu_mes_doorbell_process_slice(struct amdgpu_device *adev)
-+int amdgpu_mes_doorbell_process_slice(struct amdgpu_device *adev)
- {
- 	return roundup(AMDGPU_ONE_DOORBELL_SIZE *
- 		       AMDGPU_MES_MAX_NUM_OF_QUEUES_PER_PROCESS,
- 		       PAGE_SIZE);
- }
- 
--static int amdgpu_mes_alloc_process_doorbells(struct amdgpu_device *adev,
--				      struct amdgpu_mes_process *process)
-+int amdgpu_mes_alloc_process_doorbells(struct amdgpu_device *adev,
-+				      unsigned int *doorbell_index)
- {
- 	int r = ida_simple_get(&adev->mes.doorbell_ida, 2,
- 			       adev->mes.max_doorbell_slices,
- 			       GFP_KERNEL);
- 	if (r > 0)
--		process->doorbell_index = r;
-+		*doorbell_index = r;
- 
- 	return r;
- }
- 
--static void amdgpu_mes_free_process_doorbells(struct amdgpu_device *adev,
--				      struct amdgpu_mes_process *process)
-+void amdgpu_mes_free_process_doorbells(struct amdgpu_device *adev,
-+				      unsigned int doorbell_index)
- {
--	if (process->doorbell_index)
--		ida_simple_remove(&adev->mes.doorbell_ida,
--				  process->doorbell_index);
-+	if (doorbell_index)
-+		ida_simple_remove(&adev->mes.doorbell_ida, doorbell_index);
-+}
-+
-+unsigned int amdgpu_mes_get_doorbell_dw_offset_in_bar(
-+					struct amdgpu_device *adev,
-+					uint32_t doorbell_index,
-+					unsigned int doorbell_id)
-+{
-+	return ((doorbell_index *
-+		amdgpu_mes_doorbell_process_slice(adev)) / sizeof(u32) +
-+		doorbell_id * 2);
- }
- 
- static int amdgpu_mes_queue_doorbell_get(struct amdgpu_device *adev,
-@@ -79,10 +88,8 @@ static int amdgpu_mes_queue_doorbell_get(struct amdgpu_device *adev,
- 
- 	set_bit(found, process->doorbell_bitmap);
- 
--	*doorbell_index =
--		(process->doorbell_index *
--		 amdgpu_mes_doorbell_process_slice(adev)) / sizeof(u32) +
--		found * 2;
-+	*doorbell_index = amdgpu_mes_get_doorbell_dw_offset_in_bar(adev,
-+				process->doorbell_index, found);
- 
- 	return 0;
- }
-@@ -262,7 +269,7 @@ int amdgpu_mes_create_process(struct amdgpu_device *adev, int pasid,
- 	memset(process->proc_ctx_cpu_ptr, 0, AMDGPU_MES_PROC_CTX_SIZE);
- 
- 	/* allocate the starting doorbell index of the process */
--	r = amdgpu_mes_alloc_process_doorbells(adev, process);
-+	r = amdgpu_mes_alloc_process_doorbells(adev, &process->doorbell_index);
- 	if (r < 0) {
- 		DRM_ERROR("failed to allocate doorbell for process\n");
- 		goto clean_up_ctx;
-@@ -338,7 +345,7 @@ void amdgpu_mes_destroy_process(struct amdgpu_device *adev, int pasid)
- 		kfree(gang);
- 	}
- 
--	amdgpu_mes_free_process_doorbells(adev, process);
-+	amdgpu_mes_free_process_doorbells(adev, process->doorbell_index);
- 
- 	idr_remove(&adev->mes.pasid_idr, pasid);
- 	amdgpu_bo_free_kernel(&process->proc_ctx_bo,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-index a965ace0fd0e..ba039984e431 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-@@ -270,4 +270,13 @@ int amdgpu_mes_ctx_map_meta_data(struct amdgpu_device *adev,
- 
- int amdgpu_mes_self_test(struct amdgpu_device *adev);
- 
-+int amdgpu_mes_alloc_process_doorbells(struct amdgpu_device *adev,
-+					unsigned int *doorbell_index);
-+void amdgpu_mes_free_process_doorbells(struct amdgpu_device *adev,
-+					unsigned int doorbell_index);
-+unsigned int amdgpu_mes_get_doorbell_dw_offset_in_bar(
-+					struct amdgpu_device *adev,
-+					uint32_t doorbell_index,
-+					unsigned int doorbell_id);
-+int amdgpu_mes_doorbell_process_slice(struct amdgpu_device *adev);
- #endif /* __AMDGPU_MES_H__ */
+Evan Quan (2):
+  drm/amdgpu: enable GFX CGCG/CGLS for GC11.0.0
+  drm/amdgpu: enable fgcg for soc21
+
+Hawking Zhang (2):
+  drm/amdgpu: add init support for GFX11 (v2)
+  drm/amdgpu: enable GENERIC0_INT for gfx/compute pipes
+
+Jack Xiao (6):
+  drm/amdgpu: add new CP_MES ucode ids
+  drm/amdgpu: correct cp doorbell range
+  drm/amdgpu: add mes unmap legacy queue routine
+  drm/amdgpu/mes11: initiate mes v11 support
+  drm/amdgpu/gfx10: enable kiq to map mes ring
+  drm/amdgpu/gfx11: enable kiq to map mes ring
+
+Likun Gao (14):
+  drm/amdgpu: support RLCP firmware front door load
+  drm/amdgpu: support RLCV firmware front door load
+  drm/amdgpu: support for new SDMA front door load
+  drm/amdgpu: support IMU front door load
+  drm/amdgpu: add convert for new gfx type
+  drm/amdgpu: init SDMA v6 microcode with PSP load type
+  drm/amdgpu: extend the show ucode name function
+  drm/amdgpu/gfx: refine fw hdr check fuction
+  drm/amdgpu: skip amdgpu_ucode_create_bo for backdoor autoload
+  drm/amdgpu: fix the fw size for sdma
+  drm/amdgpu: renovate sdma fw struct
+  drm/amdgpu: support RS64 CP fw front door load
+  drm/amdgpu: support imu for gfx11
+  drm/amdgpu/discovery: add GFX 11.0 Support
+
+Mukul Joshi (1):
+  drm/amdkfd: Add KFD support for soc21 v3
+
+ drivers/gpu/drm/amd/amdgpu/Makefile           |   10 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c    |   15 +-
+ .../drm/amd/amdgpu/amdgpu_amdkfd_gfx_v11.c    |  625 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c |   30 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell.h  |   11 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |    2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c       |    8 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h       |   17 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_imu.h       |   51 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c       |  335 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h       |   85 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c       |   51 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c     |  140 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h     |   35 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c        |   22 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c        | 6342 +++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.h        |   29 +
+ drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c        |    7 +-
+ drivers/gpu/drm/amd/amdgpu/imu_v11_0.c        |  286 +
+ drivers/gpu/drm/amd/amdgpu/imu_v11_0.h        |   30 +
+ drivers/gpu/drm/amd/amdgpu/mes_v10_1.c        |  175 +-
+ drivers/gpu/drm/amd/amdgpu/mes_v11_0.c        | 1181 +++
+ drivers/gpu/drm/amd/amdgpu/mes_v11_0.h        |   29 +
+ drivers/gpu/drm/amd/amdgpu/nv.c               |    4 +
+ drivers/gpu/drm/amd/amdgpu/soc21.c            |    8 +-
+ drivers/gpu/drm/amd/amdkfd/Makefile           |    3 +
+ drivers/gpu/drm/amd/amdkfd/kfd_crat.c         |    8 +
+ drivers/gpu/drm/amd/amdkfd/kfd_device.c       |   24 +-
+ .../drm/amd/amdkfd/kfd_device_queue_manager.c |  299 +-
+ .../drm/amd/amdkfd/kfd_device_queue_manager.h |    5 +
+ .../amd/amdkfd/kfd_device_queue_manager_v11.c |   81 +
+ drivers/gpu/drm/amd/amdkfd/kfd_doorbell.c     |   56 +-
+ .../gpu/drm/amd/amdkfd/kfd_int_process_v11.c  |  383 +
+ .../gpu/drm/amd/amdkfd/kfd_int_process_v9.c   |    8 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c  |   10 +-
+ .../gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c  |  508 ++
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h         |   13 +
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c      |   19 +
+ .../amd/amdkfd/kfd_process_queue_manager.c    |   21 +
+ drivers/gpu/drm/amd/amdkfd/kfd_topology.c     |    3 +-
+ drivers/gpu/drm/amd/amdkfd/soc15_int.h        |    3 +-
+ .../gpu/drm/amd/include/kgd_kfd_interface.h   |    1 +
+ .../drm/amd/{amdgpu => include}/mes_api_def.h |  167 +-
+ drivers/gpu/drm/amd/include/mes_v11_api_def.h |  579 ++
+ 44 files changed, 11417 insertions(+), 302 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v11.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_imu.h
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/gfx_v11_0.h
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/imu_v11_0.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/imu_v11_0.h
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/mes_v11_0.h
+ create mode 100644 drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager_v11.c
+ create mode 100644 drivers/gpu/drm/amd/amdkfd/kfd_int_process_v11.c
+ create mode 100644 drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c
+ rename drivers/gpu/drm/amd/{amdgpu => include}/mes_api_def.h (68%)
+ create mode 100644 drivers/gpu/drm/amd/include/mes_v11_api_def.h
+
 -- 
 2.35.1
 
