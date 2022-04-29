@@ -2,41 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1927515294
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 19:46:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 943BE515297
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 19:46:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1F5710F108;
-	Fri, 29 Apr 2022 17:46:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2364310F136;
+	Fri, 29 Apr 2022 17:46:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2061.outbound.protection.outlook.com [40.107.220.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3931910F108
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 17:46:40 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2075.outbound.protection.outlook.com [40.107.244.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 892C110F10B
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 17:46:41 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eerHC2+2gh4BZZdd8t8/QRdqSvACc2BpyqiZPj4SrBWoaA0JJA/kStdcXKcW5AgqeTH65xBKtNtvWuxZw36p0+2ozIUO31KvOt3dZyC4aLdZTgyn4V1UniJjpvSQ9vcZxhbZBoSD0Va+W+7RI9kg9zFPYO9NbZEjb3ZWQuEoeBuzCGuX+gQTCRoJPGw6oqm3muEq3ZoMIANp54IeBYsUT4q/tUv3YekC/AGzacE7MagoJ9FoQoe/ypaRpllJ2atCgJQOB65jufJmH0EBnxq8UTPNLq9PwMfThEjU7kYUz3fF3iG8hod26eAtMbpYBMjMfkchXjtRL34LiS/GPcyOoA==
+ b=GpHWGIrHBhR66m+KNpj9w624IgEgdVUT3iZne3mrpkY/dMSOsvK1VwLDjwNY89QEFW0A3U8F20Dhv1155MTOSdnFPuVWQjo04UNWGCQKCpAEZrHEnEaq6hFLS9Q0yeok6EYBg/jTbvdS1wsfH+PHlPMQ6dbT/c7g/iKLImWLZVpR1dxs4TaLqiOBwHab+yUBL3019+fcO0/QjOsqcHy4p68mswXpBQQ9z/JushQDsX29QNgYNI8xG//50I2QrWoX4iuUVH+BnESxKasAFQlSwOXgkqljWsrQO0rgrFK/NejzZtDgEsZFUwSEt2CpZ+kNrC8Nn9HzEOxgAEQFBG2FWA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ca36cMBTqCdCJUESG739PvXRZGFxz80x/T704e0srXk=;
- b=Lxqy6RKr0szCRVI+f9Afj2mXim98oPmznokS24z06xmATKru4S2q0wmEGRhaC38PnyKR/gmQxmkULV2PydetUpyMhC7OLj4oBv6ZqwY1MSFwMlBGRUDnxzPdufITNajJhYkkTJCOIci/eJKar+cDUEnnIYfgtWLDxdPlUW+ClL39y6wYc05hutu2OJ3DKH84SH54Nee5jMIHfFfa9Cgce7kzjkxqGT8piu6LVPuBg60DufEtwXgev37aS75mxxFgNTCzmAz+FcJMzYXNPcwwrkHTZ9Y94PXIx8/ImpRjNz8lYg0Z+UxlZY2OhaOA3NsTrtzQU9OiQRPw+rpYN0rk0g==
+ bh=ZMivSDxcRuJ9M0aMipP9s58pPs/wwC4HgviGGR0Co9A=;
+ b=ft+eWscjDc5GUaxCUL4kqD59UV51q19QL18yF+8qIe0QmFxtDsDDYfhG3O6bgzX2d2+wu4rNBeDIkrU0qDXiXuK7oftNt96fUs9owW0ZBf146UsoB3AASt+snMKz3zA6kOsbD0M1GPUtSBNKoDm2ptCRp7ZFaBGwbQmyljSC6K57eemFXROqchOiRz8dCQpCfCdIH5+xPJycDzpOi88OSFieaL4cgv168ooLLx5ICnMHEuBED24o7Qwvk1beCwdPlPYdUq0/1jn+fTZBTivHFQYt+Uz/vb46bhFhIVD2HK3STJIKS5gdJYzPM4LFOtqKgjY9frJVgdBvViY0lMtOyg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ca36cMBTqCdCJUESG739PvXRZGFxz80x/T704e0srXk=;
- b=Q4+v4ZcRwBAhy3qOeZovsa2GNgruOyEcv88841dW7+7RnhU/o0sQQQvvryqhzQyzz4YGtBlS1+Rlskol7KxHF1dgTl2QASxcbr9Bq6uedbObZfvO2GQ5fDSI/LGf/gr0uGmJlqhq1lCyQjUFeJsMoE3KhMNTmG1xClioAe8vnps=
-Received: from DM5PR08CA0056.namprd08.prod.outlook.com (2603:10b6:4:60::45) by
- CH2PR12MB5530.namprd12.prod.outlook.com (2603:10b6:610:35::14) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5186.15; Fri, 29 Apr 2022 17:46:38 +0000
+ bh=ZMivSDxcRuJ9M0aMipP9s58pPs/wwC4HgviGGR0Co9A=;
+ b=SEL5TS1659e4fSaWUU+xFiEaAOaQdOYLMcFHozn4sQ7RXWC1FxNoo1qInaBBZVfXv6GxNL9kZWOc53OqU3jqlAj+mDiQQg7Cy3ctGZWZLC5qLTERVSvGI8YAKzl8mtPOCmaThtI+37zx2vg3qGkJ/79jpJs9qMXvRzAt3V7KMws=
+Received: from DM5PR08CA0035.namprd08.prod.outlook.com (2603:10b6:4:60::24) by
+ MN2PR12MB3983.namprd12.prod.outlook.com (2603:10b6:208:169::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.13; Fri, 29 Apr
+ 2022 17:46:39 +0000
 Received: from DM6NAM11FT006.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:60:cafe::70) by DM5PR08CA0056.outlook.office365.com
- (2603:10b6:4:60::45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.23 via Frontend
+ (2603:10b6:4:60:cafe::1c) by DM5PR08CA0035.outlook.office365.com
+ (2603:10b6:4:60::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.15 via Frontend
  Transport; Fri, 29 Apr 2022 17:46:38 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -51,12 +51,13 @@ Received: from SATLEXMB04.amd.com (165.204.84.17) by
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Fri, 29 Apr
- 2022 12:46:36 -0500
+ 2022 12:46:37 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 01/73] drm/amdgpu: define MQD abstract layer for hw ip
-Date: Fri, 29 Apr 2022 13:45:12 -0400
-Message-ID: <20220429174624.459475-2-alexander.deucher@amd.com>
+Subject: [PATCH 02/73] drm/amdgpu: add helper function to initialize mqd from
+ ring v4
+Date: Fri, 29 Apr 2022 13:45:13 -0400
+Message-ID: <20220429174624.459475-3-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220429174624.459475-1-alexander.deucher@amd.com>
 References: <20220429174624.459475-1-alexander.deucher@amd.com>
@@ -68,27 +69,27 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c1a275e3-9448-4494-29b1-08da2a08363b
-X-MS-TrafficTypeDiagnostic: CH2PR12MB5530:EE_
-X-Microsoft-Antispam-PRVS: <CH2PR12MB55303EA393D3B8C967E8D1D1F7FC9@CH2PR12MB5530.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 14ff4c64-3dc4-4288-af14-08da2a083682
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3983:EE_
+X-Microsoft-Antispam-PRVS: <MN2PR12MB398355E2AA5C73F85E2DAD48F7FC9@MN2PR12MB3983.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ff4MG5RynWR/IH/8zlWNakOMsFpPgSRsLAAYzTcf0B1RFRZiAvK8CX6xpGEHWCl7MASbkDKADjQHyNGQ8wI/8klN9dkqKhe3HJ9BlqNjT010d6fZGGV6WozkeWzvr0zmEPCd3alTLMYvW6e5Cs2ZE30H67EGvPMWE7se/mdWOIgRSQYwsmDEEjtRG1+iTtTOuqkSDkruYm3wZgsNeu1h5LP02A5OUBvkGChN3ISo8faUCf9IK4m25c4CboM9IPjQ0GTC7Uk7bcGfGbTGAVYiqSoPQVuygeHZvyJy7UlOmVYbFkjUq/lxr3sU1KOhLPAK80yaRZ0re3BFNTzRvhZdsn+weYhAG8LCd6EwrxCrC5JGjDpJNZF4Q0PXCCfMO3E9clsOISlNZqnkZ/g/kTAIds7EkOQsShABjgG6qAMX37jTZMmaEcdOc5KTi264XxWFXdJAbimLH0C9BChj2i/QRiTXG8Juir25cYHX00RW4ycJUFnnq97qEiTR3/7mCXJQOr+addJv7KjUxwwU+i7h7caF7S+SOGuwzXzD2foCaoI2qB2RQbPPuFIg69qW4szLTIA0OEK06pQkdLK/T81YSdfsWrHNxjYjVyDbvquKJ7L7QS57jl1eRaqMs3djM8/Q7apuVUnIHPBcRV1kbK9SHb7U580CR0PyhfKcAcMqMzS4a6VwdgHHDjInrnECtLsMyYm/CYNBszUzyK9O/aF0GQ==
+X-Microsoft-Antispam-Message-Info: t5VCQOS/px/4fG6WAlL+c3antdvefGkUcRrEbXFhf16BfIa3ZblVmErvIXpjcEOUxsFlKnEIBwOjsSYYToBtJIbjFg9bB2cwbjY66UC/oVG7/3Wat5NhBWOJYMpg9/zZov2XrZp+udiV3c6vEddLPHYL7S9Yv5Nv7236g7uABc+JoPCzrwnKA2pZ5iq2vSto4yElB3MCSdkiwYA8h0EDDE/V4lEA67EKnxiCrRPDVHYrB9gr9ECg5CdqnVZ/P58lEhsRSgoJ0D9mmaoGgPbB+lyU3cq9Sr/ffhsACYF0GR4qq0Eme0B71Gn6aeC0fvcQo+Y4UQJUH4aAvs1RudxsKwz1AGfbhG6DAWM8084bc/nb0YUt7UtuRkhs60jnDoJ/NzAabONxmnIznYSAt8BiHSwOWGEtUW3Mz8yH5Qe/5Cfphb1GeyfaFiKTBLE9SjhpaBIzCmDXKoH6ftzKy4nvc2USjyYDXVM9zVRi4WdevcdKZMn76eFvUHciICsESBQQKKKLlB+0X4zEig6ll6KjztBW2516J7dzgkpQy5CP/zhRffAsZokAoXs4uxWywyqownPJ4awuOx0n4fH4ehriKiV8hd8Q4gp5ZOOUIevoc0kT40bwTHDdSyMwluQmy/Gi5qXatTPJMkS8RrxQNc3yC6M7PtHUq3LdZ+Fel6duereAzbEnNaxU2WLHAxU/PYmJrMjKWGuGySfJW7I8tKy5kA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(82310400005)(2906002)(508600001)(4326008)(8676002)(70586007)(70206006)(356005)(40460700003)(316002)(54906003)(5660300002)(36860700001)(81166007)(8936002)(26005)(86362001)(2616005)(36756003)(186003)(16526019)(1076003)(7696005)(47076005)(426003)(336012)(6916009)(6666004)(36900700001);
+ SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(508600001)(36860700001)(8676002)(4326008)(40460700003)(70206006)(70586007)(86362001)(81166007)(316002)(356005)(54906003)(7696005)(26005)(2906002)(6916009)(5660300002)(6666004)(1076003)(426003)(336012)(47076005)(66574015)(2616005)(82310400005)(16526019)(83380400001)(186003)(36756003)(8936002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2022 17:46:38.3360 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c1a275e3-9448-4494-29b1-08da2a08363b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2022 17:46:38.8048 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 14ff4c64-3dc4-4288-af14-08da2a083682
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT006.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB5530
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3983
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,57 +109,90 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Jack Xiao <Jack.Xiao@amd.com>
 
-Define MQD abstract layer for hw ip, for the passing
-mqd configuration not only from ring but more sources,
-like user queue.
+Add the helper function to initialize mqd from ring configuration.
+
+v2: use if/else pair instead of ?/: pair
+v3: use simpler way to judge hqd_active
+v4: fix parameters to amdgpu_gfx_is_high_priority_compute_queue
 
 Signed-off-by: Jack Xiao <Jack.Xiao@amd.com>
 Acked-by: Christian König <christian.koenig@amd.com>
 Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 48 ++++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h |  2 +
+ 2 files changed, 50 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 1a598e3247ca..2eed9479e854 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -720,6 +720,26 @@ struct ip_discovery_top;
- 					  (rid == 0x01) || \
- 					  (rid == 0x10))))
- 
-+struct amdgpu_mqd_prop {
-+	uint64_t mqd_gpu_addr;
-+	uint64_t hqd_base_gpu_addr;
-+	uint64_t rptr_gpu_addr;
-+	uint64_t wptr_gpu_addr;
-+	uint32_t queue_size;
-+	bool use_doorbell;
-+	uint32_t doorbell_index;
-+	uint64_t eop_gpu_addr;
-+	uint32_t hqd_pipe_priority;
-+	uint32_t hqd_queue_priority;
-+	bool hqd_active;
-+};
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+index 7f33ae87cb41..773954318216 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+@@ -458,3 +458,51 @@ int amdgpu_ring_test_helper(struct amdgpu_ring *ring)
+ 	ring->sched.ready = !r;
+ 	return r;
+ }
 +
-+struct amdgpu_mqd {
-+	unsigned mqd_size;
-+	int (*init_mqd)(struct amdgpu_device *adev, void *mqd,
-+			struct amdgpu_mqd_prop *p);
-+};
++static void amdgpu_ring_to_mqd_prop(struct amdgpu_ring *ring,
++				    struct amdgpu_mqd_prop *prop)
++{
++	struct amdgpu_device *adev = ring->adev;
 +
- #define AMDGPU_RESET_MAGIC_NUM 64
- #define AMDGPU_MAX_DF_PERFMONS 4
- #define AMDGPU_PRODUCT_NAME_LEN 64
-@@ -920,6 +940,7 @@ struct amdgpu_device {
- 	/* mes */
- 	bool                            enable_mes;
- 	struct amdgpu_mes               mes;
-+	struct amdgpu_mqd               mqds[AMDGPU_HW_IP_NUM];
++	memset(prop, 0, sizeof(*prop));
++
++	prop->mqd_gpu_addr = ring->mqd_gpu_addr;
++	prop->hqd_base_gpu_addr = ring->gpu_addr;
++	prop->rptr_gpu_addr = ring->rptr_gpu_addr;
++	prop->wptr_gpu_addr = ring->wptr_gpu_addr;
++	prop->queue_size = ring->ring_size;
++	prop->eop_gpu_addr = ring->eop_gpu_addr;
++	prop->use_doorbell = ring->use_doorbell;
++	prop->doorbell_index = ring->doorbell_index;
++
++	/* map_queues packet doesn't need activate the queue,
++	 * so only kiq need set this field.
++	 */
++	prop->hqd_active = ring->funcs->type == AMDGPU_RING_TYPE_KIQ;
++
++	if (ring->funcs->type == AMDGPU_RING_TYPE_COMPUTE) {
++		if (amdgpu_gfx_is_high_priority_compute_queue(adev, ring)) {
++			prop->hqd_pipe_priority = AMDGPU_GFX_PIPE_PRIO_HIGH;
++			prop->hqd_queue_priority =
++				AMDGPU_GFX_QUEUE_PRIORITY_MAXIMUM;
++		}
++	}
++}
++
++int amdgpu_ring_init_mqd(struct amdgpu_ring *ring)
++{
++	struct amdgpu_device *adev = ring->adev;
++	struct amdgpu_mqd *mqd_mgr;
++	struct amdgpu_mqd_prop prop;
++
++	amdgpu_ring_to_mqd_prop(ring, &prop);
++
++	ring->wptr = 0;
++
++	if (ring->funcs->type == AMDGPU_RING_TYPE_KIQ)
++		mqd_mgr = &adev->mqds[AMDGPU_HW_IP_COMPUTE];
++	else
++		mqd_mgr = &adev->mqds[ring->funcs->type];
++
++	return mqd_mgr->init_mqd(adev, ring->mqd_ptr, &prop);
++}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+index 317d80209e95..20dfe5a19a81 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+@@ -369,6 +369,8 @@ int amdgpu_ring_test_helper(struct amdgpu_ring *ring);
+ void amdgpu_debugfs_ring_init(struct amdgpu_device *adev,
+ 			      struct amdgpu_ring *ring);
  
- 	/* df */
- 	struct amdgpu_df                df;
++int amdgpu_ring_init_mqd(struct amdgpu_ring *ring);
++
+ static inline u32 amdgpu_ib_get_value(struct amdgpu_ib *ib, int idx)
+ {
+ 	return ib->ptr[idx];
 -- 
 2.35.1
 
