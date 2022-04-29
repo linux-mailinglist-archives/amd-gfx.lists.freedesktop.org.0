@@ -2,41 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 114AD5152B2
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 19:47:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CBC85152A9
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 19:47:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E62EE10F25B;
-	Fri, 29 Apr 2022 17:47:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5C9E10F243;
+	Fri, 29 Apr 2022 17:47:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2078.outbound.protection.outlook.com [40.107.244.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6284910F1C3
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 17:46:49 +0000 (UTC)
+ (mail-mw2nam12on2074.outbound.protection.outlook.com [40.107.244.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7C1F10F1C3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 17:46:50 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ThOLb3C/0SYESmn4UYAw1RdOzPVqlYhb2oo2A4dz0GcU55Nzz/2Exx8TR51X16ZHJn1j6ZtQjLcc0RUtu1uN+weHtwsaeN3GNJwvHW4Nlfzrot1YbmzVu8J+UTHrQfmmF05s8ysRovzxj8bvH7Cp0bSjIwKVt1zakeoKMFy9iI8oASgsGzId11O3dVJStliiewruiM0fpv2xTu+0Ss4kcTg5mrvEw3D0sASamryVNAqgmdwE6C5sKRFtsjB7/UEEG8mJzfsBc4FC3qFrc11AZZ1sLkvuHuKOHgj9OBDgRNBfzIcKQi++byA9Ke6s0y4sZacBXVAMGtspv3w3uv+rCA==
+ b=aFk8khTSAUWGoDRPG6uerSRH6ng0V4ZfcUkCFxEop9pf/YhonlSKKu9ewTimBtMSD3dXYqaWkgVdvpMkk6f2YsbH7OE3gc/013oMx8li5oe7Kzo/uB78FcOUjlULq7sp741IPRn3mKJ6RyqgDCa7E9CKbKjvKUx2eobIJgu4LkFVUCZ7uuNnviAARIhzuiWPW+KhmWVCtzVhtwtaBAipID6tcLEPRK0F+R6UqnH+gZtyimDQlKWKZ5cuii+CnRDm6M2q4n24hJ57NbQtLnIMCElZ5TSXYrbzk6yzKgsy/P7SlHJHpQQCVR68KFrZpB8fW79PCBCbf5Iju6faq6oTKw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BKXPubOJlcJnJ43uklTxx/RQpBD1dGj5ir7X43hE47c=;
- b=PJbSb7IpK0kJYsMUPYzQyC6HlmSDJBhmMG/WQdyeM0dGVZpH8GC9kwpJq1a+sZ7wGqK7P+xCA4dR1ycfDdiVijCBBHerSgGGLUjyxVKpSXTQuovT4xB6CUC65xFrXmusx8RkmWd+bVK+JyKcFztR0FuimFQ8U2A24EXaWAWSTbNkA/TbiCtBzWFKvzwRa9vfhI5n5KGwZ8bpdBlshHdhCLc0RN9Ua3l2ITIkUkq2nGSljOAWji8WNUZ7TPb22/knc5DQKoh8dUKW+tOEvQNM7QGUhqkg6TA5RRTEQ2eLzDp52sw/7bwZZptFmlcm8R3t3xZ1p04FAqKBvnoVpItzEw==
+ bh=KEqdR0VIwZpk8s1+iOtcB2UAyRbNppQotnMWFYWTl7s=;
+ b=ZeWJ/kFbjMsLZIOOnwSjTwG6j4mVsZ5T8QDxyj6NqefloeCKFjd81zR6ZEw/R/Or/zHovVV/FP5FeMEYCcM7HFdp3EF1kZ936M2WdkKHpBtxZt/yrlKygq4QVeeYem7OOa4L7mZz+TECi2H33UAhZtL4RaTpSfNbpqGkZ9hjozwX5NDoab9DRpRrkvYXYjN81Oze1y1pKgu8y3DcrcTnIUE8JVqONc/bY20LQloFpkxaRYWOZ1tCOPoU1nAuhjj/bYSiT7xN5nqnRJeptYvAHs1tlAYG1q4kffXI/fJAfOhLiKQbavfrB18HEy6kjWJPw8AeADAgcrFWAliAbbnxbA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BKXPubOJlcJnJ43uklTxx/RQpBD1dGj5ir7X43hE47c=;
- b=lOeuus9ux50sVj23hE3HNw43pD3DHyO5WQRtO9xNcuahWj1+yYjAEm4IPAaQTbedi91N4gMeBOXTt/Xqs4ppE+EZYL6N4jh6KpRKuh8bdY3loLtxLUItHdtdxu0hjJYOHpmc8ywd0RuH6lKO6zvQ1aBc7uBdDxBCPOr5D50bq1s=
-Received: from DM6PR12CA0028.namprd12.prod.outlook.com (2603:10b6:5:1c0::41)
- by DM6PR12MB2907.namprd12.prod.outlook.com (2603:10b6:5:183::14) with
+ bh=KEqdR0VIwZpk8s1+iOtcB2UAyRbNppQotnMWFYWTl7s=;
+ b=aBYKVY709MigIaV7p7ZG8RYN2y/nj/I/QVOI1W/czlYzuiQllwLnC671HPakHe5SEii8PdWRkgn0cEtUjJ9Auz4/7U/xu/CIDdOjJ7OFjzs19kvaFrACSCQvj23ecMboaJFdT85kMhBx8JXASwU9xy0YwuVifB9ApvhUe14HjSc=
+Received: from DM6PR12CA0006.namprd12.prod.outlook.com (2603:10b6:5:1c0::19)
+ by BY5PR12MB4113.namprd12.prod.outlook.com (2603:10b6:a03:207::15) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.15; Fri, 29 Apr
- 2022 17:46:47 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.13; Fri, 29 Apr
+ 2022 17:46:48 +0000
 Received: from DM6NAM11FT068.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:1c0:cafe::14) by DM6PR12CA0028.outlook.office365.com
- (2603:10b6:5:1c0::41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.14 via Frontend
+ (2603:10b6:5:1c0:cafe::f4) by DM6PR12CA0006.outlook.office365.com
+ (2603:10b6:5:1c0::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.13 via Frontend
  Transport; Fri, 29 Apr 2022 17:46:47 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -54,9 +54,9 @@ Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  2022 12:46:46 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 16/73] drm/amdgpu: use the whole doorbell space for mes
-Date: Fri, 29 Apr 2022 13:45:27 -0400
-Message-ID: <20220429174624.459475-17-alexander.deucher@amd.com>
+Subject: [PATCH 17/73] drm/amdgpu: update mes process/gang/queue definitions
+Date: Fri, 29 Apr 2022 13:45:28 -0400
+Message-ID: <20220429174624.459475-18-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220429174624.459475-1-alexander.deucher@amd.com>
 References: <20220429174624.459475-1-alexander.deucher@amd.com>
@@ -68,27 +68,27 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 85a217e3-fdf8-4f0f-34f1-08da2a083b8e
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2907:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR12MB290718B5E466193FCCC18064F7FC9@DM6PR12MB2907.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 9f665ece-88b1-4bef-6c33-08da2a083bc7
+X-MS-TrafficTypeDiagnostic: BY5PR12MB4113:EE_
+X-Microsoft-Antispam-PRVS: <BY5PR12MB41134289027580AA6C9FA2DFF7FC9@BY5PR12MB4113.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: A4e4Kzz+SPvN8FlBXXsF4WAWogQEcrLthNBF+jBfVibS4PjEd7Dihj9LvXSte0Cu0I3AzTYEiRrrZOz9BtoRcA/YaFQOGmveuBG+zbbsyinM9KuYnAiL88gb7/20bK6klGr0VKo8v9wenGw7BtdN2mXzvXIaUfoygiVe24CkFVqA5sZa140U6A0TcK20fWOfRMBKQ7L+q1hwFs6M+D0S6jjWaSv+Ud6JRrmtI7EELslpgLLR1ap7k+nHQOmmiYUOGewpOUqrUrTnpX6Q3//NFqUbaWEEBT/0yAreghyNAsSc0xk8mA+fD1pw8dQgZAfy0eE+gR//+KOMuXNk/2NoFUELi8efnOVHiJLCCUVjtxQduGLWDWJEtvICi04UWE1j7Y6uKdkYxV/Jd2K65DTTQziVFUVAA+TiiMtuntZ0qTSAYUiTV0BSt/4dqtkDptALcAoDDk37+BmVVsBI1s/+ANvdSuERMJ2GC+pmyfG20LXH+/4nXEZEQsXYBf55yH0FYV0a1kX9MxnV4PHjgCqi0qY57S/5LMHBGOSzg2dC9Wi7JlDFbL9NesEQbzbreGt8aZO3mXplvokEZj2FTII9tmxw+GVMgFobKpdGcksDlF2UFn7LDup6xxXHdZisTmtQoYDT1CDEIeV5ySWoOPn8xZn4fwCwp63RS4Pi+Rz6lHZ83+miTKbN01ceZR0+YDTL3vSGW+MTua9YofoqmhRedA==
+X-Microsoft-Antispam-Message-Info: 3J0J3uloiihrL3Am42C80U7+fv1oWjvsuXcQxGKGCaUtNNmHY1fQnUZvc+7FZXAPsQZ2lMR5mOvhLjP7SKJ3y4fAllAvrJuZigatd6PLeYCO8LX5jpg0lDPle/2vB3yKZi4rqyBYj4BwXOb3kwCq1tKGxAnEP8XwZq7xnIRICDp+PaEd6jgKmMLDKMZ5wjDDB4IQoolFHVRTMDDnCplse4quUmA01hV0IQWeLCeRlzCiD2/q9wxMtggSs1FdYZAnk6hNk2/j3ZhZnofM2vaI62p81VOrdNIbihRBf3W7UyMN0BiUj7uM0atK2Pi4LAA3eUOFuA/0WKxqcsa6edqs1ZQpPvOWfY/owhM8mQ5wHI0BYNpCJ7PZbkkkq+zvgDdprc6X22W0ta2eFAPoU9h/+Pg1e/m+TqOz3bcXAyqZyP8fdzqpgQLx0ZZ+S7/9jl9RrSqjwiAmAdPEHBnsRMeuJUWon2nkpoT5yQbbKOQrQAd65x/K7SZT8G7IWVdFoV0lxgdZJz6Cqhd1jcMcNypBBLNE6uweQYDkbx9bK9A4xL0dcvLgM1yR4nW/47DgYASPo38TETgJ7kWdnzWa8us+yCgY1oPagRVX+SumbKPgSktiDtKN1b4r5xQAbiRQGisiaf7ecNniZkOrMmk6gPsd7zJf5UpMUFdMMx2P4WX9NZSbDvlaKkdPBB2Fw2bbZgIxW1GFbW2HRubuP27Q0RuC+g==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(36840700001)(46966006)(26005)(54906003)(81166007)(316002)(5660300002)(8936002)(6916009)(70206006)(40460700003)(356005)(6666004)(7696005)(4326008)(508600001)(86362001)(8676002)(70586007)(82310400005)(36756003)(186003)(1076003)(16526019)(47076005)(336012)(426003)(2616005)(83380400001)(36860700001)(2906002)(36900700001);
+ SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(4326008)(8936002)(508600001)(8676002)(6916009)(54906003)(316002)(36860700001)(70206006)(70586007)(83380400001)(16526019)(15650500001)(66574015)(47076005)(36756003)(186003)(336012)(40460700003)(81166007)(2616005)(2906002)(1076003)(426003)(86362001)(5660300002)(7696005)(6666004)(26005)(82310400005)(356005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2022 17:46:47.2533 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 85a217e3-fdf8-4f0f-34f1-08da2a083b8e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2022 17:46:47.6439 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9f665ece-88b1-4bef-6c33-08da2a083bc7
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT068.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2907
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4113
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,60 +108,106 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Jack Xiao <Jack.Xiao@amd.com>
 
-Use the whole doorbell space for mes. Each queue in one process occupies
-one doorbell slot to ring the queue submitting.
+Update the definitions of MES process/gang/queue.
+
+v2: add missing includes
 
 Signed-off-by: Jack Xiao <Jack.Xiao@amd.com>
 Acked-by: Christian König <christian.koenig@amd.com>
 Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 32 +++++++++++++---------
- 1 file changed, 19 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h | 58 +++++++++++++++++++++++++
+ 1 file changed, 58 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index f33e3c341f8f..b9844249d464 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -1044,19 +1044,25 @@ static int amdgpu_device_doorbell_init(struct amdgpu_device *adev)
- 	adev->doorbell.base = pci_resource_start(adev->pdev, 2);
- 	adev->doorbell.size = pci_resource_len(adev->pdev, 2);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
+index 7334982ea702..52483d7ce843 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
+@@ -24,6 +24,10 @@
+ #ifndef __AMDGPU_MES_H__
+ #define __AMDGPU_MES_H__
  
--	adev->doorbell.num_doorbells = min_t(u32, adev->doorbell.size / sizeof(u32),
--					     adev->doorbell_index.max_assignment+1);
--	if (adev->doorbell.num_doorbells == 0)
--		return -EINVAL;
--
--	/* For Vega, reserve and map two pages on doorbell BAR since SDMA
--	 * paging queue doorbell use the second page. The
--	 * AMDGPU_DOORBELL64_MAX_ASSIGNMENT definition assumes all the
--	 * doorbells are in the first page. So with paging queue enabled,
--	 * the max num_doorbells should + 1 page (0x400 in dword)
--	 */
--	if (adev->asic_type >= CHIP_VEGA10)
--		adev->doorbell.num_doorbells += 0x400;
-+	if (adev->enable_mes) {
-+		adev->doorbell.num_doorbells =
-+			adev->doorbell.size / sizeof(u32);
-+	} else {
-+		adev->doorbell.num_doorbells =
-+			min_t(u32, adev->doorbell.size / sizeof(u32),
-+			      adev->doorbell_index.max_assignment+1);
-+		if (adev->doorbell.num_doorbells == 0)
-+			return -EINVAL;
++#include "amdgpu_irq.h"
++#include "kgd_kfd_interface.h"
++#include "amdgpu_gfx.h"
 +
-+		/* For Vega, reserve and map two pages on doorbell BAR since SDMA
-+		 * paging queue doorbell use the second page. The
-+		 * AMDGPU_DOORBELL64_MAX_ASSIGNMENT definition assumes all the
-+		 * doorbells are in the first page. So with paging queue enabled,
-+		 * the max num_doorbells should + 1 page (0x400 in dword)
-+		 */
-+		if (adev->asic_type >= CHIP_VEGA10)
-+			adev->doorbell.num_doorbells += 0x400;
-+	}
+ #define AMDGPU_MES_MAX_COMPUTE_PIPES        8
+ #define AMDGPU_MES_MAX_GFX_PIPES            2
+ #define AMDGPU_MES_MAX_SDMA_PIPES           2
+@@ -37,11 +41,23 @@ enum amdgpu_mes_priority_level {
+ 	AMDGPU_MES_PRIORITY_NUM_LEVELS
+ };
  
- 	adev->doorbell.ptr = ioremap(adev->doorbell.base,
- 				     adev->doorbell.num_doorbells *
++#define AMDGPU_MES_PROC_CTX_SIZE 0x1000 /* one page area */
++#define AMDGPU_MES_GANG_CTX_SIZE 0x1000 /* one page area */
++
+ struct amdgpu_mes_funcs;
+ 
+ struct amdgpu_mes {
+ 	struct amdgpu_device            *adev;
+ 
++	struct mutex                    mutex;
++
++	struct idr                      pasid_idr;
++	struct idr                      gang_id_idr;
++	struct idr                      queue_id_idr;
++	struct ida                      doorbell_ida;
++
++	spinlock_t                      queue_id_lock;
++
+ 	uint32_t                        total_max_queue;
+ 	uint32_t                        doorbell_id_offset;
+ 	uint32_t                        max_doorbell_slices;
+@@ -90,6 +106,48 @@ struct amdgpu_mes {
+ 	const struct amdgpu_mes_funcs   *funcs;
+ };
+ 
++struct amdgpu_mes_process {
++	int			pasid;
++	struct			amdgpu_vm *vm;
++	uint64_t		pd_gpu_addr;
++	struct amdgpu_bo 	*proc_ctx_bo;
++	uint64_t 		proc_ctx_gpu_addr;
++	void 			*proc_ctx_cpu_ptr;
++	uint64_t 		process_quantum;
++	struct 			list_head gang_list;
++	uint32_t 		doorbell_index;
++	unsigned long 		*doorbell_bitmap;
++	struct mutex		doorbell_lock;
++};
++
++struct amdgpu_mes_gang {
++	int 				gang_id;
++	int 				priority;
++	int 				inprocess_gang_priority;
++	int 				global_priority_level;
++	struct list_head 		list;
++	struct amdgpu_mes_process 	*process;
++	struct amdgpu_bo 		*gang_ctx_bo;
++	uint64_t 			gang_ctx_gpu_addr;
++	void 				*gang_ctx_cpu_ptr;
++	uint64_t 			gang_quantum;
++	struct list_head 		queue_list;
++};
++
++struct amdgpu_mes_queue {
++	struct list_head 		list;
++	struct amdgpu_mes_gang 		*gang;
++	int 				queue_id;
++	uint64_t 			doorbell_off;
++	struct amdgpu_bo		*mqd_obj;
++	void				*mqd_cpu_ptr;
++	uint64_t 			mqd_gpu_addr;
++	uint64_t 			wptr_gpu_addr;
++	int 				queue_type;
++	int 				paging;
++	struct amdgpu_ring 		*ring;
++};
++
+ struct mes_add_queue_input {
+ 	uint32_t	process_id;
+ 	uint64_t	page_table_base_addr;
 -- 
 2.35.1
 
