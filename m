@@ -2,40 +2,40 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31BB4515338
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 20:03:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A569515332
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 20:03:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 855DE10F8C0;
-	Fri, 29 Apr 2022 18:02:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF62A10F8B2;
+	Fri, 29 Apr 2022 18:02:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2062.outbound.protection.outlook.com [40.107.220.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFA7A10F89B
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 18:02:50 +0000 (UTC)
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam08on2042.outbound.protection.outlook.com [40.107.101.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9FA810F891
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 18:02:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jFvPc52eLUWi6apZEYubMmklsGw3uFUR92xWTe5v4g1D+nLGpmiw3wAaie6lRI+fL40N63nNQoETjdOWIIQNBmapkOJ9Qs5OLY6btiDW+Mjj2ZZ47vEn6UAaqsfq60ESrV+JP7RP117YPKJzOGROZyx45/nGNwy3cPMhPFOE/FNGmuIckXbL/m+f/vAJlSxV1q1FIVBrA30aeUQ4bydYrF6A8O42axKoDjUzflmrvjNFpNy1GlV7RJQuPIe5Gx9+5qeV4r+7OjqXzDDgsth0a7L799lDTwXlAeHeOp4QZV3Ludcn3+I2PgvNh4Ar0rbhmGPDB/UFgA53GcNwH0AAUw==
+ b=PcVkDurYpkcNya6R/pcCYuHu8nxtz0QwFIXW4TDWb+jFA7wlj46K/4gReJalV9ewDoqyxJTO1TaUmmHRPMNgV5P7bPc+IJ8XaC/ey6PsWpM0wFyFj8znikM4xd0B65tlHi/Q/txMhL0q5JINhjX+38il1yZVdo9gb9DFWInYhwGimGBfQk0IRMMlNLaNZMKF0uPtER2fsQrHmD5W58N7RtLJ9w2A5lf1IdsTnpv7Y9bEYl6VdjciksJw2Sjre9vMQ4eXUUeHmhuAG1y7gM+SbuUKRrhIkjrViuvBetZDOqDI69u2mAoU+Idq9AJqkINlXoyYQ8LDIFbkrF3oWqm/yA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yMab0OpTUf+scsm5/b9L4ze3OM/NkTpEygMcwHm2VjY=;
- b=aw2eQLfDcn01W/lSf+WXwbKGNfl9YOO3copSsdYIoojQeiADoK9obRCpTmHg2Ry5bRsgGnB3me8fxLIu5xfAQT5lxDvU+xJG9bYrLnzi/zro8WNqolpqmiun/RGSq/DA6aeAj0yNyCObdhQ2VmHSv/hI5P5yrBvLcIeOOx3sS0t0qC0ppzkvdNNiWQyIDM8rs+XBl2FlCqAeQOH51MKxxb3fVLR1v9oKSt+zLeg2ciZ7hgKoMgsElFXoCGQ/6sca9m8xwjayWc94sW8n0SxrNUVJvlODah4VMl9BFs4OwHP//cxSkgRrap6BCkfowlEaMRW/oQ+OkAAHcHjE5fKDww==
+ bh=e6xRueFrIzih9ClvwcPc2wxAcil7O8Oi70If+9RUI0c=;
+ b=PpCMWY1VIscM2IndoVzD65XRQMYOIyueQyTtolbfQ54DAvO9s6cQTcaUnRC0AojuBObbQ66r2tz0CiHcFUA6WKfGFOi5t/1KSVomW69VM7r6MjPeAOFj7WRUVNfLmhLpKzw69m9r4w51RM9/+lglW8JAYj7LK3g1boabofoJqWXvg45qSQAhbe5qnNZPNCcCaK1DvhasHcIdia2JsCpnNW6mFrsVV/Pi0aWPAgebjDsymimdgwM/0iPY7Zmf9oY1FiL/k2eapx8uzmyRpMwuTCfj1mOjQJ4PnA1lmQNU4nWzCwX58+Q9ir2YIwpa4cx5e+ZMTRTP1zw2rve9tMvnrA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yMab0OpTUf+scsm5/b9L4ze3OM/NkTpEygMcwHm2VjY=;
- b=jAveyWa+WD6+qpcWbdftJKrAO3NDlz8rLjYK2AeDe5nwtJwXCrHrRICsM2jR/BigaQzAQMcf2h4SVOVyuLl/G9qG5twSjaHE9Xk1hqWYToZ2bEX2cC30vlCPvx+4xuadbiOZW8Pyc8GCx3AsX2z9pfpDH9DatltU9fFOK7CN3AY=
-Received: from MW2PR16CA0063.namprd16.prod.outlook.com (2603:10b6:907:1::40)
- by DM5PR1201MB0138.namprd12.prod.outlook.com (2603:10b6:4:56::21) with
+ bh=e6xRueFrIzih9ClvwcPc2wxAcil7O8Oi70If+9RUI0c=;
+ b=vTbZ1oTvhsHJYsv5hK6jXxmPppsvgd4gWeL4ZKsTP5CS2Jemh4H5o+ac94BNxKYK1tAyHfVnYvDIkt4IENKEpyjlMAihcwYg59UU6lIeRZDF5RSgcZEq7wFmoGvE5RG+TSFvSsSzzr7qrSg03Rz1YfM3pYJIKRlWT1UF3iU9dmQ=
+Received: from MW2PR16CA0058.namprd16.prod.outlook.com (2603:10b6:907:1::35)
+ by CY4PR12MB1846.namprd12.prod.outlook.com (2603:10b6:903:11b::23) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.15; Fri, 29 Apr
  2022 18:02:49 +0000
 Received: from CO1NAM11FT038.eop-nam11.prod.protection.outlook.com
- (2603:10b6:907:1:cafe::a4) by MW2PR16CA0063.outlook.office365.com
- (2603:10b6:907:1::40) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:907:1:cafe::c7) by MW2PR16CA0058.outlook.office365.com
+ (2603:10b6:907:1::35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.13 via Frontend
  Transport; Fri, 29 Apr 2022 18:02:49 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CO1NAM11FT038.mail.protection.outlook.com (10.13.174.231) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5206.12 via Frontend Transport; Fri, 29 Apr 2022 18:02:48 +0000
+ 15.20.5206.12 via Frontend Transport; Fri, 29 Apr 2022 18:02:49 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Fri, 29 Apr
- 2022 13:02:46 -0500
+ 2022 13:02:47 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 16/29] drm/amdgpu: renovate sdma fw struct
-Date: Fri, 29 Apr 2022 14:02:13 -0400
-Message-ID: <20220429180226.536084-17-alexander.deucher@amd.com>
+Subject: [PATCH 17/29] drm/amdgpu: support RS64 CP fw front door load
+Date: Fri, 29 Apr 2022 14:02:14 -0400
+Message-ID: <20220429180226.536084-18-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220429180226.536084-1-alexander.deucher@amd.com>
 References: <20220429180226.536084-1-alexander.deucher@amd.com>
@@ -68,27 +68,27 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 998e686c-0ef5-44e3-96fb-08da2a0a78b9
-X-MS-TrafficTypeDiagnostic: DM5PR1201MB0138:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR1201MB01388ED5A0EBD8FB7458D3C8F7FC9@DM5PR1201MB0138.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 2f536a50-f741-43a4-55ba-08da2a0a791b
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1846:EE_
+X-Microsoft-Antispam-PRVS: <CY4PR12MB1846EECEA692047CF02D7032F7FC9@CY4PR12MB1846.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9sazh5ajzkZVg8axUO3lppKDWuLPT2f6eXZxw1c88OwS8f296ght1W7su1xSTI5202iyr7o0IqxjHu9LY5znOwD6zG72XYzj+6NnYWWH1YSCaekJaXzlEa98h0pjLdJRjFUD7nCN+xWrbKoI1kYgijSvpXueKJIZb3KcdhyZGKUOdVsGhK/NxXVWiDGrBmG99tcW/r9OYyhnifgaGmLQQTjWStS+qNc8m1Yb5SB05kL7k1nGQiYmV1aI+qYGm385nONsz5vfSOe57jSowVInfcshD4Bi494oJDPFyKEf5Sry6qZK5z/s3Wlt+1k+xbgQ3xAvi0MFmSxUAj+C5gSo7UAcPIyOyUMvXL0GcPE0ENyfUtWXEW0QkPg7xznXnlSPEcj/Wf8AfpJanJOE/F2ZjaKjOUpUZgG+MimUTQza8UZGfwoXHaeEAg8fm14MugONkZPmx6XzI7Srmb6/vJOi78dE/V8NbthZExHNb8NsrMKoHfsoB/jDdFSpswyTT6IsB7KXA7MLNaNzHYwdxn13x03OIl6EJmX49o+2lNoXOjPWf9MXI/1D5H5KhYkFtTjIwf9RARJdfzZ9VFXv3NTWy6LnSXNcaxjm3JoDFTDzEokjA62b3rFdBvZDHtkYGgQ7ZekEdbZPQ5pem8m0z5bhJ0BDRiJnAYC6U6mGTTcYyx+LimjUEYUuD6fwNo8zEZN+fmDcY3XKi2tdsBoqXgVH8A==
+X-Microsoft-Antispam-Message-Info: AU15Q/l/DnWpHPCQVIdDPgFS0BBuFpT56N5ggMGDVpbGYozKbvtF8+DkGqpNAXoHXtEwx3OoeZb1V7Bp8+Z1PYMTcOS1JVrRvr5Hn9FjnVBxF4/LndLPNwAbHK5iW4OTdpsqc9orII5qMJ0FFkoibpCkNJujg3ejzExq6y66Ft5uIW3DsfYFjcbrXkIS4cJHye6U0yp2aD8UiNJPZjFGBdaah1lX90H1dxZzDL1auekFQOnH0yZV5phYkieX0O1KTex1VsXRYDJC/29IUYyrsLepYejBwuzq7Ut00wlBjWix6tGjj2fbKwkd2adkXPOrXwPLJqwk+dwy46zgdbPYpRC9LK938WltjDUF2b/Flhz35yXO495uzqmQJ79HfRexo1I2PdcDx4oviQBU2zQxnqtzLtspeOgyRq6pjgjj5mPlQ6KE/UNYtSWoFc/wQaOFymP2gi688e77rfmTcfq2LPO0B+rqQjWe8xizbtHzpWZnwosvLBvEYyMx8hnapAMgXbx/tG8xM8bhZ5EDVbq9oTKgKtZQiARxg4QaXE/G0ivfvkHGGLL+o9sujLcv0MZHX9FEbCM5sxNh+zXY6vgX1CXbYvVvTm2RxMbgkzZghc/tZ20lRqRBF7afR5r47u/Kr9w5n5Ecgt6kaTNPKHcnLHscIntmtaH0zzGyxmCaG4sHwZbQoyy2kGk1lxbMKDAnypYQAGf7obQCbTubAKXcMQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(54906003)(508600001)(70206006)(6916009)(6666004)(356005)(2906002)(7696005)(36756003)(316002)(81166007)(86362001)(4326008)(8676002)(2616005)(70586007)(1076003)(186003)(16526019)(47076005)(426003)(336012)(5660300002)(8936002)(26005)(82310400005)(40460700003)(36860700001)(36900700001);
+ SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(36756003)(8936002)(82310400005)(508600001)(36860700001)(70586007)(8676002)(4326008)(70206006)(316002)(356005)(54906003)(81166007)(6916009)(6666004)(2616005)(26005)(7696005)(1076003)(2906002)(16526019)(186003)(47076005)(336012)(5660300002)(426003)(86362001)(40460700003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2022 18:02:48.7939 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 998e686c-0ef5-44e3-96fb-08da2a0a78b9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2022 18:02:49.4501 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2f536a50-f741-43a4-55ba-08da2a0a791b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT038.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0138
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1846
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,73 +107,97 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Likun Gao <Likun.Gao@amd.com>
 
-Add sdma firmware struct version 2 to support new SDMA v6 and forward
-firmware version.
-
-v2: squash in fix
+Support to load RS64 CP firmware front door load.
 
 Signed-off-by: Likun Gao <Likun.Gao@amd.com>
 Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c | 11 +++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h | 14 ++++++++++++++
- 2 files changed, 25 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c | 57 +++++++++++++++++++++++
+ 1 file changed, 57 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
-index f8ff9128c15b..3d1258fec48e 100644
+index 3d1258fec48e..00fa7822458b 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
-@@ -244,6 +244,17 @@ void amdgpu_ucode_print_sdma_hdr(const struct common_firmware_header *hdr)
- 				container_of(sdma_hdr, struct sdma_firmware_header_v1_1, v1_0);
- 			DRM_DEBUG("digest_size: %u\n", le32_to_cpu(sdma_v1_1_hdr->digest_size));
- 		}
-+	} else if (version_major == 2) {
-+		const struct sdma_firmware_header_v2_0 *sdma_hdr =
-+			container_of(hdr, struct sdma_firmware_header_v2_0, header);
-+
-+		DRM_DEBUG("ucode_feature_version: %u\n",
-+			  le32_to_cpu(sdma_hdr->ucode_feature_version));
-+		DRM_DEBUG("ctx_jt_offset: %u\n", le32_to_cpu(sdma_hdr->ctx_jt_offset));
-+		DRM_DEBUG("ctx_jt_size: %u\n", le32_to_cpu(sdma_hdr->ctx_jt_size));
-+		DRM_DEBUG("ctl_ucode_offset: %u\n", le32_to_cpu(sdma_hdr->ctl_ucode_offset));
-+		DRM_DEBUG("ctl_jt_offset: %u\n", le32_to_cpu(sdma_hdr->ctl_jt_offset));
-+		DRM_DEBUG("ctl_jt_size: %u\n", le32_to_cpu(sdma_hdr->ctl_jt_size));
- 	} else {
- 		DRM_ERROR("Unknown SDMA ucode version: %u.%u\n",
- 			  version_major, version_minor);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h
-index 4439e0119f19..f510b6aa82ab 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h
-@@ -281,6 +281,19 @@ struct sdma_firmware_header_v1_1 {
- 	uint32_t digest_size;
- };
+@@ -672,6 +672,7 @@ static int amdgpu_ucode_init_single_fw(struct amdgpu_device *adev,
+ {
+ 	const struct common_firmware_header *header = NULL;
+ 	const struct gfx_firmware_header_v1_0 *cp_hdr = NULL;
++	const struct gfx_firmware_header_v2_0 *cpv2_hdr = NULL;
+ 	const struct dmcu_firmware_header_v1_0 *dmcu_hdr = NULL;
+ 	const struct dmcub_firmware_header_v1_0 *dmcub_hdr = NULL;
+ 	const struct mes_firmware_header_v1_0 *mes_hdr = NULL;
+@@ -690,6 +691,7 @@ static int amdgpu_ucode_init_single_fw(struct amdgpu_device *adev,
  
-+/* version_major=2, version_minor=0 */
-+struct sdma_firmware_header_v2_0 {
-+	struct common_firmware_header header;
-+	uint32_t ucode_feature_version;
-+	uint32_t ctx_ucode_size_bytes; /* context thread ucode size */
-+	uint32_t ctx_jt_offset; /* context thread jt location */
-+	uint32_t ctx_jt_size; /* context thread size of jt */
-+	uint32_t ctl_ucode_offset;
-+	uint32_t ctl_ucode_size_bytes; /* control thread ucode size */
-+	uint32_t ctl_jt_offset; /* control thread jt location */
-+	uint32_t ctl_jt_size; /* control thread size of jt */
-+};
-+
- /* gpu info payload */
- struct gpu_info_firmware_v1_0 {
- 	uint32_t gc_num_se;
-@@ -364,6 +377,7 @@ union amdgpu_firmware_header {
- 	struct rlc_firmware_header_v2_3 rlc_v2_3;
- 	struct sdma_firmware_header_v1_0 sdma;
- 	struct sdma_firmware_header_v1_1 sdma_v1_1;
-+	struct sdma_firmware_header_v2_0 sdma_v2_0;
- 	struct gpu_info_firmware_header_v1_0 gpu_info;
- 	struct dmcu_firmware_header_v1_0 dmcu;
- 	struct dmcub_firmware_header_v1_0 dmcub;
+ 	header = (const struct common_firmware_header *)ucode->fw->data;
+ 	cp_hdr = (const struct gfx_firmware_header_v1_0 *)ucode->fw->data;
++	cpv2_hdr = (const struct gfx_firmware_header_v2_0 *)ucode->fw->data;
+ 	dmcu_hdr = (const struct dmcu_firmware_header_v1_0 *)ucode->fw->data;
+ 	dmcub_hdr = (const struct dmcub_firmware_header_v1_0 *)ucode->fw->data;
+ 	mes_hdr = (const struct mes_firmware_header_v1_0 *)ucode->fw->data;
+@@ -802,6 +804,61 @@ static int amdgpu_ucode_init_single_fw(struct amdgpu_device *adev,
+ 				le32_to_cpu(imu_hdr->header.ucode_array_offset_bytes) +
+ 				le32_to_cpu(imu_hdr->imu_iram_ucode_size_bytes);
+ 			break;
++		case AMDGPU_UCODE_ID_CP_RS64_PFP:
++			ucode->ucode_size = le32_to_cpu(cpv2_hdr->ucode_size_bytes);
++			ucode_addr = (u8 *)ucode->fw->data +
++				le32_to_cpu(header->ucode_array_offset_bytes);
++			break;
++		case AMDGPU_UCODE_ID_CP_RS64_PFP_P0_STACK:
++			ucode->ucode_size = le32_to_cpu(cpv2_hdr->data_size_bytes);
++			ucode_addr = (u8 *)ucode->fw->data +
++				le32_to_cpu(cpv2_hdr->data_offset_bytes);
++			break;
++		case AMDGPU_UCODE_ID_CP_RS64_PFP_P1_STACK:
++			ucode->ucode_size = le32_to_cpu(cpv2_hdr->data_size_bytes);
++			ucode_addr = (u8 *)ucode->fw->data +
++				le32_to_cpu(cpv2_hdr->data_offset_bytes);
++			break;
++		case AMDGPU_UCODE_ID_CP_RS64_ME:
++			ucode->ucode_size = le32_to_cpu(cpv2_hdr->ucode_size_bytes);
++			ucode_addr = (u8 *)ucode->fw->data +
++				le32_to_cpu(header->ucode_array_offset_bytes);
++			break;
++		case AMDGPU_UCODE_ID_CP_RS64_ME_P0_STACK:
++			ucode->ucode_size = le32_to_cpu(cpv2_hdr->data_size_bytes);
++			ucode_addr = (u8 *)ucode->fw->data +
++				le32_to_cpu(cpv2_hdr->data_offset_bytes);
++			break;
++		case AMDGPU_UCODE_ID_CP_RS64_ME_P1_STACK:
++			ucode->ucode_size = le32_to_cpu(cpv2_hdr->data_size_bytes);
++			ucode_addr = (u8 *)ucode->fw->data +
++				le32_to_cpu(cpv2_hdr->data_offset_bytes);
++			break;
++		case AMDGPU_UCODE_ID_CP_RS64_MEC:
++			ucode->ucode_size = le32_to_cpu(cpv2_hdr->ucode_size_bytes);
++			ucode_addr = (u8 *)ucode->fw->data +
++				le32_to_cpu(header->ucode_array_offset_bytes);
++			break;
++		case AMDGPU_UCODE_ID_CP_RS64_MEC_P0_STACK:
++			ucode->ucode_size = le32_to_cpu(cpv2_hdr->data_size_bytes);
++			ucode_addr = (u8 *)ucode->fw->data +
++				le32_to_cpu(cpv2_hdr->data_offset_bytes);
++			break;
++		case AMDGPU_UCODE_ID_CP_RS64_MEC_P1_STACK:
++			ucode->ucode_size = le32_to_cpu(cpv2_hdr->data_size_bytes);
++			ucode_addr = (u8 *)ucode->fw->data +
++				le32_to_cpu(cpv2_hdr->data_offset_bytes);
++			break;
++		case AMDGPU_UCODE_ID_CP_RS64_MEC_P2_STACK:
++			ucode->ucode_size = le32_to_cpu(cpv2_hdr->data_size_bytes);
++			ucode_addr = (u8 *)ucode->fw->data +
++				le32_to_cpu(cpv2_hdr->data_offset_bytes);
++			break;
++		case AMDGPU_UCODE_ID_CP_RS64_MEC_P3_STACK:
++			ucode->ucode_size = le32_to_cpu(cpv2_hdr->data_size_bytes);
++			ucode_addr = (u8 *)ucode->fw->data +
++				le32_to_cpu(cpv2_hdr->data_offset_bytes);
++			break;
+ 		default:
+ 			ucode->ucode_size = le32_to_cpu(header->ucode_size_bytes);
+ 			ucode_addr = (u8 *)ucode->fw->data +
 -- 
 2.35.1
 
