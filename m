@@ -2,60 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD2D7514A33
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 15:04:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8700514A31
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 15:03:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5930110ECC7;
-	Fri, 29 Apr 2022 13:04:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E06A210ECC3;
+	Fri, 29 Apr 2022 13:03:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 451 seconds by postgrey-1.36 at gabe;
- Fri, 29 Apr 2022 09:03:56 UTC
-Received: from zg8tmty1ljiyny4xntqumjca.icoremail.net
- (zg8tmty1ljiyny4xntqumjca.icoremail.net [165.227.154.27])
- by gabe.freedesktop.org (Postfix) with SMTP id B484210E737;
- Fri, 29 Apr 2022 09:03:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fudan.edu.cn; s=dkim; h=Received:From:To:Cc:Subject:Date:
- Message-Id:MIME-Version:Content-Transfer-Encoding; bh=amePFdXDy6
- eKXcLqyO+aJjWEC77R1KGfpX+ipQ86EH0=; b=qBo1feLTejqDETkmTn2w/8cBe1
- 0+0nMtNrgMmP84QHlG16UoWRSS5eQawwHI96CxFzxYp5XSQEd+KYvf67IZGu7DeZ
- RNCnTL2hvTA/SZUY7IfOAKUwDdY8j1Wqw6tAn5yFDcs4u96t2YKAZnvIcyV/622J
- 3C8h7cBLVicVrJ11E=
-Received: from localhost.localdomain (unknown [10.102.183.96])
- by app1 (Coremail) with SMTP id XAUFCgAXHnYhqGtibix3EQ--.46279S4;
- Fri, 29 Apr 2022 16:56:05 +0800 (CST)
-From: Xin Xiong <xiongx18@fudan.edu.cn>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Matthew Dawson <matthew@mjdsystems.ca>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/radeon: fix reference count leak in cik_sdma_ib_test()
-Date: Fri, 29 Apr 2022 16:53:32 +0800
-Message-Id: <20220429085331.2515-1-xiongx18@fudan.edu.cn>
-X-Mailer: git-send-email 2.25.1
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
+ [IPv6:2a01:488:42:1000:50ed:8234::])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4639110E1C4
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 11:36:33 +0000 (UTC)
+Received: from [2a02:8108:963f:de38:6624:6d8d:f790:d5c]; authenticated
+ by wp530.webpack.hosteurope.de running ExIM with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ id 1nkOvG-0004nQ-4S; Fri, 29 Apr 2022 13:36:30 +0200
+Message-ID: <0b0025c1-107b-8dab-f30a-87b428b45e08@leemhuis.info>
+Date: Fri, 29 Apr 2022 13:36:29 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [REGRESSION] AMD GPU regression in 5.16.18..5.17.4 #forregzbot
+Content-Language: en-US
+To: "regressions@lists.linux.dev" <regressions@lists.linux.dev>
+References: <YmQi7ajZpZ4W7BJL@itl-email> <YmQkCXZEqp6TKrhJ@itl-email>
+ <YmTqYkGEqiz1o2o6@kroah.com>
+ <e1950610-ba09-7c42-4a1a-152ad41015b5@leemhuis.info>
+ <YmXfqrktdufyYC4r@itl-email>
+ <BL1PR12MB5144A5433CD3495A3B74F30AF7F89@BL1PR12MB5144.namprd12.prod.outlook.com>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+In-Reply-To: <BL1PR12MB5144A5433CD3495A3B74F30AF7F89@BL1PR12MB5144.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: XAUFCgAXHnYhqGtibix3EQ--.46279S4
-X-Coremail-Antispam: 1UD129KBjvJXoW7Cw47JFykXFyrAr4fGrWkXrb_yoW8Cr47pr
- WS9r9Fyr92yw42gw47ta9rWFyYkw18Ja1xWr4DC398Cw45Zw1vqF13ZryvqryUJrykZryS
- vF1kWw48Z3W8AF7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUU9C14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26rxl
- 6s0DM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
- 0DM2vYz4IE04k24VAvwVAKI4IrM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
- 64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
- Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAG
- YxC7M4IIrI8v6xkF7I0E8cxan2IY04v7MxkIecxEwVCm-wCF04k20xvY0x0EwIxGrwCFx2
- IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v2
- 6r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67
- AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IY
- s7xG6rWUJVWrZr1UMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI
- 0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUQZ23UUUUU=
-X-CM-SenderInfo: arytiiqsuqiimz6i3vldqovvfxof0/1tbiAhALEFKp2mkXjwAAsZ
+X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1651232193;
+ 96ead357; 
+X-HE-SMSGID: 1nkOvG-0004nQ-4S
 X-Mailman-Approved-At: Fri, 29 Apr 2022 13:03:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,62 +49,64 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Xin Tan <tanxin.ctf@gmail.com>, yuanxzhang@fudan.edu.cn,
- Xin Xiong <xiongx18@fudan.edu.cn>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The issue takes place in several error handling paths in
-cik_sdma_ib_test(). For example, when radeon_fence_wait_timeout()
-returns a value no greater than zero, the function simply returns an
-error code, forgetting to decrease the reference count of the object
-"ib", which is incremented by radeon_ib_get() earlier. This may
-result in memory leaks.
+TWIMC: this mail is primarily send for documentation purposes and for
+regzbot, my Linux kernel regression tracking bot. These mails usually
+contain '#forregzbot' in the subject, to make them easy to spot and filter.
 
-Fix it by decrementing the reference count of "ib" in those paths.
+#regzbot fixed-by: 78b12008f20
 
-Fixes: 04db4caf5c83 ("drm/radeon: Avoid double gpu reset by adding a timeout on IB ring tests.")
-Signed-off-by: Xin Xiong <xiongx18@fudan.edu.cn>
-Signed-off-by: Xin Tan <tanxin.ctf@gmail.com>
----
- drivers/gpu/drm/radeon/cik_sdma.c | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/radeon/cik_sdma.c b/drivers/gpu/drm/radeon/cik_sdma.c
-index 919b14845c3c..d0e7323cdd42 100644
---- a/drivers/gpu/drm/radeon/cik_sdma.c
-+++ b/drivers/gpu/drm/radeon/cik_sdma.c
-@@ -732,18 +732,18 @@ int cik_sdma_ib_test(struct radeon_device *rdev, struct radeon_ring *ring)
- 
- 	r = radeon_ib_schedule(rdev, &ib, NULL, false);
- 	if (r) {
--		radeon_ib_free(rdev, &ib);
- 		DRM_ERROR("radeon: failed to schedule ib (%d).\n", r);
--		return r;
-+		goto out;
- 	}
- 	r = radeon_fence_wait_timeout(ib.fence, false, usecs_to_jiffies(
- 		RADEON_USEC_IB_TEST_TIMEOUT));
- 	if (r < 0) {
- 		DRM_ERROR("radeon: fence wait failed (%d).\n", r);
--		return r;
-+		goto out;
- 	} else if (r == 0) {
- 		DRM_ERROR("radeon: fence wait timed out.\n");
--		return -ETIMEDOUT;
-+		r = -ETIMEDOUT;
-+		goto out;
- 	}
- 	r = 0;
- 	for (i = 0; i < rdev->usec_timeout; i++) {
-@@ -758,6 +758,7 @@ int cik_sdma_ib_test(struct radeon_device *rdev, struct radeon_ring *ring)
- 		DRM_ERROR("radeon: ib test failed (0x%08X)\n", tmp);
- 		r = -EINVAL;
- 	}
-+out:
- 	radeon_ib_free(rdev, &ib);
- 	return r;
- }
--- 
-2.25.1
-
+On 25.04.22 23:29, Deucher, Alexander wrote:
+> [Public]
+> 
+>> -----Original Message-----
+>> From: Demi Marie Obenour <demi@invisiblethingslab.com>
+>> Sent: Sunday, April 24, 2022 7:39 PM
+>> To: Thorsten Leemhuis <regressions@leemhuis.info>; Greg KH 
+>> <gregkh@linuxfoundation.org>
+>> Cc: amd-gfx@lists.freedesktop.org; regressions@lists.linux.dev; 
+>> Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian 
+>> <Christian.Koenig@amd.com>; Pan, Xinhui <Xinhui.Pan@amd.com>
+>> Subject: Re: [REGRESSION] AMD GPU regression in 5.16.18..5.17.4
+>>
+>> On Sun, Apr 24, 2022 at 11:02:43AM +0200, Thorsten Leemhuis wrote:
+>>> CCing the amdgpu maintainers
+>>>
+>>> On 24.04.22 08:12, Greg KH wrote:
+>>>> On Sat, Apr 23, 2022 at 12:06:33PM -0400, Demi Marie Obenour wrote:
+>>>>> Two Qubes OS users reported that their AMD GPU systems did not 
+>>>>> work on 5.17.4, while 5.16.18 worked fine.  Details can be found 
+>>>>> on https://github.com/QubesOS/qubes-issues/issues/7462.  The 
+>>>>> initial report listed the GPU as “Advanced Micro Devices, Inc. 
+>>>>> [AMD/ATI] Renoir [1002:1636} (rev d3) (prog-if 00 [VGA 
+>>>>> controller])” and the CPU as “AMD Ryzen 5 PRO 4650U with Radeon Graphics”.
+>>>>>
+>>>>> #regzbot introduced: v5.16.18..v5.17.4
+>>>>
+>>>> That's a big range, can you use 'git bisect' to track it down?
+>>>
+>>> FWIW, in another mail in this thread and
+>>> https://github.com/QubesOS/qubes-issues/issues/7462#issuecomment-
+>> 11076
+>>> 81126 it was clarified that the problem was introduced between 
+>>> 5.17.3 and 5.17.4, where a few amdgpu changes were applied. Maybe 
+>>> they are the reason.
+>>>
+>>> Anyway: Yes, as Gregkh said, a bisection really would help. But 
+>>> maybe the amdgfx developers might already have an idea what might be 
+>>> wrong here? The QubesOS ticket linked above has some more details.
+>>
+>> The reporter was able to bisect the regression.  I am not surprised 
+>> that this commit caused problems for Qubes OS, as dom0 in Qubes OS is 
+>> technically a guest of Xen.
+>>
+>> #regzbot ^introduced: b818a5d374542ccec73dcfe578a081574029820e
+> 
+> Can you please follow up on the bug ticket:
+> https://gitlab.freedesktop.org/drm/amd/-/issues/1985
+> It will be easier to track everything there.
+> 
+> Alex
