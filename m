@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CBC85152A9
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 19:47:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50A555152AB
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Apr 2022 19:47:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5C9E10F243;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E972910F25E;
 	Fri, 29 Apr 2022 17:47:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2074.outbound.protection.outlook.com [40.107.244.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7C1F10F1C3
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 17:46:50 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2064.outbound.protection.outlook.com [40.107.92.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 436D010F1C3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 Apr 2022 17:46:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aFk8khTSAUWGoDRPG6uerSRH6ng0V4ZfcUkCFxEop9pf/YhonlSKKu9ewTimBtMSD3dXYqaWkgVdvpMkk6f2YsbH7OE3gc/013oMx8li5oe7Kzo/uB78FcOUjlULq7sp741IPRn3mKJ6RyqgDCa7E9CKbKjvKUx2eobIJgu4LkFVUCZ7uuNnviAARIhzuiWPW+KhmWVCtzVhtwtaBAipID6tcLEPRK0F+R6UqnH+gZtyimDQlKWKZ5cuii+CnRDm6M2q4n24hJ57NbQtLnIMCElZ5TSXYrbzk6yzKgsy/P7SlHJHpQQCVR68KFrZpB8fW79PCBCbf5Iju6faq6oTKw==
+ b=i54KJigZheylG3fwjr8235Skkipo/QQSs/UwrrxqGYH37MQBrmk94byd9hWNiZip119qnr9TfFqrp+kLXTe0VtSHleo6rdngjveTOrswSX7TQu+F4DKfBPBS8U9sKD/xzcKi3I0ef+2mQELsqxY/WJdx6CRP91n0W5RRenwMcdt5P0pDXIY5k7VsS5z7JFZRWm9xVnlbffwR0V9dAvk5+FdAXFM1/WqusXmnkPiE3K0Ul6caFB352TegbDY7hKnkvMxVg0uxu3kec3K8tMj5uLNjIkyndZvJAOHFjG+IKLKL5mvOPBGeS/n7U2NSU5BXywDoT2RiilBlqmoCtwg57A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KEqdR0VIwZpk8s1+iOtcB2UAyRbNppQotnMWFYWTl7s=;
- b=ZeWJ/kFbjMsLZIOOnwSjTwG6j4mVsZ5T8QDxyj6NqefloeCKFjd81zR6ZEw/R/Or/zHovVV/FP5FeMEYCcM7HFdp3EF1kZ936M2WdkKHpBtxZt/yrlKygq4QVeeYem7OOa4L7mZz+TECi2H33UAhZtL4RaTpSfNbpqGkZ9hjozwX5NDoab9DRpRrkvYXYjN81Oze1y1pKgu8y3DcrcTnIUE8JVqONc/bY20LQloFpkxaRYWOZ1tCOPoU1nAuhjj/bYSiT7xN5nqnRJeptYvAHs1tlAYG1q4kffXI/fJAfOhLiKQbavfrB18HEy6kjWJPw8AeADAgcrFWAliAbbnxbA==
+ bh=vHzHXWr7l8bR252N5TOBYtK8BKr5g0SbNecLjLHlyU8=;
+ b=IaWLxVibrE2FsjHXiHZ2HRQ+v2cszy48D0QNr3zs9A3YuE7GPdmDrUosmk84Xq2tmM/oM3kKMK/iA4DbNx4jYURo2qUoqJf3Eltpw41VgWcDr71HyMHLZ80d59h+2RJuWHAemRFcgYbKskWnoA+qyE4fqHyxCQ4rMQWoB/Jr7M5MgzQ9qxgwSndKc5FZsOsx0PyKjFfgbKU1jWjDki6MPijGKYlA8qzJVFQoHVEVvOgmj3yk4+/2T3SI1x1h7RUPlcxmLkqmHGxYt+q7PAYs0MP+X1Uww//5oQewQH4Tg96n3jF9iWAq0nPk8na+BipMMPK6FuvOVPUNlyT4gJlPgQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KEqdR0VIwZpk8s1+iOtcB2UAyRbNppQotnMWFYWTl7s=;
- b=aBYKVY709MigIaV7p7ZG8RYN2y/nj/I/QVOI1W/czlYzuiQllwLnC671HPakHe5SEii8PdWRkgn0cEtUjJ9Auz4/7U/xu/CIDdOjJ7OFjzs19kvaFrACSCQvj23ecMboaJFdT85kMhBx8JXASwU9xy0YwuVifB9ApvhUe14HjSc=
-Received: from DM6PR12CA0006.namprd12.prod.outlook.com (2603:10b6:5:1c0::19)
- by BY5PR12MB4113.namprd12.prod.outlook.com (2603:10b6:a03:207::15) with
+ bh=vHzHXWr7l8bR252N5TOBYtK8BKr5g0SbNecLjLHlyU8=;
+ b=BOJJW1Bvq3dk8saVnSjJvKBvv3Gx4Vahi9D+bjHJRmXOOX5WActvgAcY4HfkJzgku7Nglio9PweYX5QIv56lHcUv9LBwNtKeZZ1Pjxgf750h28WxfFCsYth2YrfJU7v9SCyBvCjCZqrP9oXxYcW5lGDk1vdG/fO1YsTZXtvHIgY=
+Received: from DM6PR12CA0036.namprd12.prod.outlook.com (2603:10b6:5:1c0::49)
+ by MW3PR12MB4505.namprd12.prod.outlook.com (2603:10b6:303:5a::24) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.13; Fri, 29 Apr
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.15; Fri, 29 Apr
  2022 17:46:48 +0000
 Received: from DM6NAM11FT068.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:1c0:cafe::f4) by DM6PR12CA0006.outlook.office365.com
- (2603:10b6:5:1c0::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.13 via Frontend
- Transport; Fri, 29 Apr 2022 17:46:47 +0000
+ (2603:10b6:5:1c0:cafe::5e) by DM6PR12CA0036.outlook.office365.com
+ (2603:10b6:5:1c0::49) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.15 via Frontend
+ Transport; Fri, 29 Apr 2022 17:46:48 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT068.mail.protection.outlook.com (10.13.173.67) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5206.12 via Frontend Transport; Fri, 29 Apr 2022 17:46:47 +0000
+ 15.20.5206.12 via Frontend Transport; Fri, 29 Apr 2022 17:46:48 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Fri, 29 Apr
- 2022 12:46:46 -0500
+ 2022 12:46:47 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 17/73] drm/amdgpu: update mes process/gang/queue definitions
-Date: Fri, 29 Apr 2022 13:45:28 -0400
-Message-ID: <20220429174624.459475-18-alexander.deucher@amd.com>
+Subject: [PATCH 18/73] drm/amdgpu: add mes_kiq module parameter v2
+Date: Fri, 29 Apr 2022 13:45:29 -0400
+Message-ID: <20220429174624.459475-19-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220429174624.459475-1-alexander.deucher@amd.com>
 References: <20220429174624.459475-1-alexander.deucher@amd.com>
@@ -68,27 +68,27 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9f665ece-88b1-4bef-6c33-08da2a083bc7
-X-MS-TrafficTypeDiagnostic: BY5PR12MB4113:EE_
-X-Microsoft-Antispam-PRVS: <BY5PR12MB41134289027580AA6C9FA2DFF7FC9@BY5PR12MB4113.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 142cceb5-139d-4535-141c-08da2a083c54
+X-MS-TrafficTypeDiagnostic: MW3PR12MB4505:EE_
+X-Microsoft-Antispam-PRVS: <MW3PR12MB4505648BB0CB4B9550E0340EF7FC9@MW3PR12MB4505.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3J0J3uloiihrL3Am42C80U7+fv1oWjvsuXcQxGKGCaUtNNmHY1fQnUZvc+7FZXAPsQZ2lMR5mOvhLjP7SKJ3y4fAllAvrJuZigatd6PLeYCO8LX5jpg0lDPle/2vB3yKZi4rqyBYj4BwXOb3kwCq1tKGxAnEP8XwZq7xnIRICDp+PaEd6jgKmMLDKMZ5wjDDB4IQoolFHVRTMDDnCplse4quUmA01hV0IQWeLCeRlzCiD2/q9wxMtggSs1FdYZAnk6hNk2/j3ZhZnofM2vaI62p81VOrdNIbihRBf3W7UyMN0BiUj7uM0atK2Pi4LAA3eUOFuA/0WKxqcsa6edqs1ZQpPvOWfY/owhM8mQ5wHI0BYNpCJ7PZbkkkq+zvgDdprc6X22W0ta2eFAPoU9h/+Pg1e/m+TqOz3bcXAyqZyP8fdzqpgQLx0ZZ+S7/9jl9RrSqjwiAmAdPEHBnsRMeuJUWon2nkpoT5yQbbKOQrQAd65x/K7SZT8G7IWVdFoV0lxgdZJz6Cqhd1jcMcNypBBLNE6uweQYDkbx9bK9A4xL0dcvLgM1yR4nW/47DgYASPo38TETgJ7kWdnzWa8us+yCgY1oPagRVX+SumbKPgSktiDtKN1b4r5xQAbiRQGisiaf7ecNniZkOrMmk6gPsd7zJf5UpMUFdMMx2P4WX9NZSbDvlaKkdPBB2Fw2bbZgIxW1GFbW2HRubuP27Q0RuC+g==
+X-Microsoft-Antispam-Message-Info: GXngKG6DLxcaVnYakg0rcRa8NXuQ1rXJFTfLjSZkT8dNrdPF4uEdVLl5BxKqUMlUz0iNSn89NkDrJP9IJQLNQD8tABU+VRXlBM1+uIaDK9comPtGUV9qFY2dc2liB7WJJyjmVMlVhmXhGa0FnN9iDyn4VuqQxktC52r3Bd2GzacXOjKVA2WgLikFsOVC+fDPQimKa3xR+pwSkhfoeBkjQR6BtEsmBCexJFjEvNMc1dc9A0zPeTtlA/n6BNwI27KNqRebYeixGnhEU/NnBc4ELQY7NGY/dAIWtf7wmAZ1JzAnBYS+VVNYytbnQEPuUDm8rr+IRTc7Dz3MCrJ3B8JDyUc9lpkOFU4sr+jKi8pKzrvQw1BoMFl9Nm9O97G8RgxYS6sxFn7m1fUnuVmUrBbhlgJEkvGFAaW83oGzGMjXDe4McYdFLfNKAeEZ8ZkezKHRZ52kenq8OrERsqcLoXDZoNtK4z27U57v8OLK/8R5iaL4WaAHK1OjV2d2uygS04Mect4E9PpQhh9UlwS6qbWYmi1+lfiIfWVQDgR9oP1N2jTQRKYmMTm9xAWg10q9PUirZpsnbK+I1ypeZRHrOzv7mOigdMeN0d38ByzkjIgsXIpowGGH+Yz/rAcUfi4+DbeAcuZIR6e6qU22b094wL+sFA9v5TkFIkXuEf1n78N6XHsCaLHndQFebCYou4h76oC7spvYofaJQ8na5eLOPE29Uw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(4326008)(8936002)(508600001)(8676002)(6916009)(54906003)(316002)(36860700001)(70206006)(70586007)(83380400001)(16526019)(15650500001)(66574015)(47076005)(36756003)(186003)(336012)(40460700003)(81166007)(2616005)(2906002)(1076003)(426003)(86362001)(5660300002)(7696005)(6666004)(26005)(82310400005)(356005)(36900700001);
+ SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(508600001)(86362001)(16526019)(36756003)(8936002)(40460700003)(336012)(5660300002)(47076005)(66574015)(426003)(316002)(36860700001)(186003)(6666004)(83380400001)(7696005)(26005)(2616005)(82310400005)(81166007)(2906002)(1076003)(70586007)(54906003)(4326008)(6916009)(70206006)(8676002)(356005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2022 17:46:47.6439 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9f665ece-88b1-4bef-6c33-08da2a083bc7
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2022 17:46:48.5657 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 142cceb5-139d-4535-141c-08da2a083c54
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT068.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4113
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4505
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,106 +108,90 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Jack Xiao <Jack.Xiao@amd.com>
 
-Update the definitions of MES process/gang/queue.
+mes_kiq parameter is used to enable mes kiq pipe.
+This module parameter is unneccessary or enabled by default
+in final version.
 
-v2: add missing includes
+v2: reword commit message.
 
 Signed-off-by: Jack Xiao <Jack.Xiao@amd.com>
 Acked-by: Christian König <christian.koenig@amd.com>
 Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h | 58 +++++++++++++++++++++++++
- 1 file changed, 58 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  2 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  9 +++++++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 10 ++++++++++
+ 3 files changed, 19 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-index 7334982ea702..52483d7ce843 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-@@ -24,6 +24,10 @@
- #ifndef __AMDGPU_MES_H__
- #define __AMDGPU_MES_H__
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index 24bce7e691a8..4264abc5604d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -208,6 +208,7 @@ extern int amdgpu_async_gfx_ring;
+ extern int amdgpu_mcbp;
+ extern int amdgpu_discovery;
+ extern int amdgpu_mes;
++extern int amdgpu_mes_kiq;
+ extern int amdgpu_noretry;
+ extern int amdgpu_force_asic_type;
+ extern int amdgpu_smartshift_bias;
+@@ -940,6 +941,7 @@ struct amdgpu_device {
  
-+#include "amdgpu_irq.h"
-+#include "kgd_kfd_interface.h"
-+#include "amdgpu_gfx.h"
-+
- #define AMDGPU_MES_MAX_COMPUTE_PIPES        8
- #define AMDGPU_MES_MAX_GFX_PIPES            2
- #define AMDGPU_MES_MAX_SDMA_PIPES           2
-@@ -37,11 +41,23 @@ enum amdgpu_mes_priority_level {
- 	AMDGPU_MES_PRIORITY_NUM_LEVELS
- };
+ 	/* mes */
+ 	bool                            enable_mes;
++	bool                            enable_mes_kiq;
+ 	struct amdgpu_mes               mes;
+ 	struct amdgpu_mqd               mqds[AMDGPU_HW_IP_NUM];
  
-+#define AMDGPU_MES_PROC_CTX_SIZE 0x1000 /* one page area */
-+#define AMDGPU_MES_GANG_CTX_SIZE 0x1000 /* one page area */
-+
- struct amdgpu_mes_funcs;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index b9844249d464..b2366d0d3047 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -3669,8 +3669,13 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+ 	if (amdgpu_mcbp)
+ 		DRM_INFO("MCBP is enabled\n");
  
- struct amdgpu_mes {
- 	struct amdgpu_device            *adev;
+-	if (amdgpu_mes && adev->asic_type >= CHIP_NAVI10)
+-		adev->enable_mes = true;
++	if (adev->asic_type >= CHIP_NAVI10) {
++		if (amdgpu_mes || amdgpu_mes_kiq)
++			adev->enable_mes = true;
++
++		if (amdgpu_mes_kiq)
++			adev->enable_mes_kiq = true;
++	}
  
-+	struct mutex                    mutex;
-+
-+	struct idr                      pasid_idr;
-+	struct idr                      gang_id_idr;
-+	struct idr                      queue_id_idr;
-+	struct ida                      doorbell_ida;
-+
-+	spinlock_t                      queue_id_lock;
-+
- 	uint32_t                        total_max_queue;
- 	uint32_t                        doorbell_id_offset;
- 	uint32_t                        max_doorbell_slices;
-@@ -90,6 +106,48 @@ struct amdgpu_mes {
- 	const struct amdgpu_mes_funcs   *funcs;
- };
+ 	/*
+ 	 * Reset domain needs to be present early, before XGMI hive discovered
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index 80690cbac89f..9e72b3ec5d4d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -171,6 +171,7 @@ int amdgpu_async_gfx_ring = 1;
+ int amdgpu_mcbp;
+ int amdgpu_discovery = -1;
+ int amdgpu_mes;
++int amdgpu_mes_kiq;
+ int amdgpu_noretry = -1;
+ int amdgpu_force_asic_type = -1;
+ int amdgpu_tmz = -1; /* auto */
+@@ -636,6 +637,15 @@ MODULE_PARM_DESC(mes,
+ 	"Enable Micro Engine Scheduler (0 = disabled (default), 1 = enabled)");
+ module_param_named(mes, amdgpu_mes, int, 0444);
  
-+struct amdgpu_mes_process {
-+	int			pasid;
-+	struct			amdgpu_vm *vm;
-+	uint64_t		pd_gpu_addr;
-+	struct amdgpu_bo 	*proc_ctx_bo;
-+	uint64_t 		proc_ctx_gpu_addr;
-+	void 			*proc_ctx_cpu_ptr;
-+	uint64_t 		process_quantum;
-+	struct 			list_head gang_list;
-+	uint32_t 		doorbell_index;
-+	unsigned long 		*doorbell_bitmap;
-+	struct mutex		doorbell_lock;
-+};
++/**
++ * DOC: mes_kiq (int)
++ * Enable Micro Engine Scheduler KIQ. This is a new engine pipe for kiq.
++ * (0 = disabled (default), 1 = enabled)
++ */
++MODULE_PARM_DESC(mes_kiq,
++	"Enable Micro Engine Scheduler KIQ (0 = disabled (default), 1 = enabled)");
++module_param_named(mes_kiq, amdgpu_mes_kiq, int, 0444);
 +
-+struct amdgpu_mes_gang {
-+	int 				gang_id;
-+	int 				priority;
-+	int 				inprocess_gang_priority;
-+	int 				global_priority_level;
-+	struct list_head 		list;
-+	struct amdgpu_mes_process 	*process;
-+	struct amdgpu_bo 		*gang_ctx_bo;
-+	uint64_t 			gang_ctx_gpu_addr;
-+	void 				*gang_ctx_cpu_ptr;
-+	uint64_t 			gang_quantum;
-+	struct list_head 		queue_list;
-+};
-+
-+struct amdgpu_mes_queue {
-+	struct list_head 		list;
-+	struct amdgpu_mes_gang 		*gang;
-+	int 				queue_id;
-+	uint64_t 			doorbell_off;
-+	struct amdgpu_bo		*mqd_obj;
-+	void				*mqd_cpu_ptr;
-+	uint64_t 			mqd_gpu_addr;
-+	uint64_t 			wptr_gpu_addr;
-+	int 				queue_type;
-+	int 				paging;
-+	struct amdgpu_ring 		*ring;
-+};
-+
- struct mes_add_queue_input {
- 	uint32_t	process_id;
- 	uint64_t	page_table_base_addr;
+ /**
+  * DOC: noretry (int)
+  * Disable XNACK retry in the SQ by default on GFXv9 hardware. On ASICs that
 -- 
 2.35.1
 
