@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9655F51A102
-	for <lists+amd-gfx@lfdr.de>; Wed,  4 May 2022 15:36:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EE5351A150
+	for <lists+amd-gfx@lfdr.de>; Wed,  4 May 2022 15:48:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC5C710EC90;
-	Wed,  4 May 2022 13:36:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 126F310ED9C;
+	Wed,  4 May 2022 13:48:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2076.outbound.protection.outlook.com [40.107.223.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 687B310EC90;
- Wed,  4 May 2022 13:36:34 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2060.outbound.protection.outlook.com [40.107.92.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D82010E972;
+ Wed,  4 May 2022 13:48:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oH2mo6hXcBgq2UUcrcl6d4SlY7U5yZEiWYkZH2u3HYi9Ru8FaNxi3wF0YFWimzOJ3ON2gk8x+YlsxBBtk5G88BsmK73NzZOEPtOR1ueZyi8qOmIY3l4u6XYA8K7T1cyGcVPCEPSJ3/PzL0S6+aeuqTZ2q81kWDXhY0eRvX5a1mXmu6FjC4neN3rKoF/i7PCbu2ORafuo0syU1WffznXruQIk9FNe809on/H/6tkXG7hrzojsa5sW/Rynb1kRqlZgXjMZTuPt6zeEY6hrL5RHTafnkzjjTACbSM2uYNISb4ZTPnFnHIfPnGgn9zkcuSrefNrmsruzc9/jFnJzZUbM0Q==
+ b=fb6H2QHb+L8o+xop9Uo9GGnWtDIhK/qHIdM8SQ6e7wu2ZMLa24x9nKD7ZG2RXRMnIdtewVhRt9iasQbc5cSr0o1cCisdGz8BtkKxULJIc7ilBZaIimw2rV4BOgyRxsKsM1dHLis05uv1BNRfHnONpnhC6ZR6PEUNqh5HyMpuKwGOZfYzEUwjwgSfrbTr25tWV6oSUzHNXP03mLUuC8JjabZzQSFG38fgJFVbHQKOfsT+nroOZomAutlkKOhYrt6+0QvtaItq0y3XaY9Qn5ol4JaDi2kLJgvwQOS8PVIXmD8SUQbW52lID6ZO3w2WvgjMt2M53PaqH+LsiZYLCylDIw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zNEwRkM/oeT/JZA1BHdLz+fGM1EKplmX67+VQp95irA=;
- b=ChyCw9MIy7x2W9ny2zRntOAtOwLl6110JVz2kEyeSRtzYIwd/SxG4CrDLbFv/jT7fge370rqryg2OksZBqm80qiH2WCt9ft1dRVANDHP9V5Q3EUH0SlyNScc0O7iX0RRqd3VjvX/Ju1uK0navUuetVzVoN+GShC/HAagB1Zb7vTJWpjRFmy6pbuKvBf8DTO8D0Xf/VOOmNHOlJmB06TPzseUAkRtYA0l0T02h9mkSZ5XYnbl6Exy958fUXgmb8gH1JvgSI6AIKeM0iAjQK3moTLJCPhXzQNqNQFMudGlKdP6D54D7e6kiJ+tKtweOLsJmP3mGUmu8kUuStWcvx+EsA==
+ bh=qj+mXx2NAy9JY3dAi4n7czWCed5Z7PLjZzgRjs/fKhw=;
+ b=KVXvz9+5pHXQaJMpQvwGDl80AI1U3KE1XCJXFSwStqh40xQbdwnm5RlcYzhtLNBXDwM3ak3tuBDikIYOXk+HARD+ZrZp7IZ7Ea1t7oRjnYy8qZKfe8MihHrALWAR42lhGkX1TdsGVYZ8Y9UWqTMaXsz4btVNAKz8ao953LKS+sEDzHnXnWIcZ/DhL4GemcxkXujRPiBkUkel78oAbKo3ZIewD0CT4FFWd7GLsGxJS0O6IUGitJMFOYdwGHL0agS+BN4c/ds3BG2ldv5WPx02kkbO5jMhDVnaW4ddcGpv+5zd29ZjFuUWd/ensvAA7nOdsua0UQtqZ432iXIFz1o7hg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zNEwRkM/oeT/JZA1BHdLz+fGM1EKplmX67+VQp95irA=;
- b=FjLVPG3Zn1bvSJFqA5TbzopLRid+QABmNzE6h9RHQHINR59OnYpUay86n+24m9PtdigiIcqU4y7hR+DsGhOGM3N6/TPQ22TE4jwYkvc6D8vB+B9bLb7hrLQu7ll1cjdeDwmqYcD6mvM6WT5mUfE9iunfEYzd1TAlEPKCZtXpKgM=
-Received: from DS7PR03CA0227.namprd03.prod.outlook.com (2603:10b6:5:3ba::22)
- by DM5PR12MB1163.namprd12.prod.outlook.com (2603:10b6:3:7a::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.15; Wed, 4 May
- 2022 13:36:31 +0000
-Received: from DM6NAM11FT016.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:3ba:cafe::98) by DS7PR03CA0227.outlook.office365.com
- (2603:10b6:5:3ba::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.25 via Frontend
- Transport; Wed, 4 May 2022 13:36:31 +0000
+ bh=qj+mXx2NAy9JY3dAi4n7czWCed5Z7PLjZzgRjs/fKhw=;
+ b=Z7XFx6WLX0G4ODgDiPBNMHH/2jR9RgDv6/u3PLBW3M7nUtnRVlmuqUm6jE5lJCdU4knu9r0HrwPvNJT8VbODQnw57QiB5iDS5rdHcACYoTpm+/jMM8lkLM5uqIjUP5V+8bn6xxUaeQD2momZ0VoYcu9TZ837SH76YJztQJMjVuE=
+Received: from DS7P222CA0013.NAMP222.PROD.OUTLOOK.COM (2603:10b6:8:2e::22) by
+ CH2PR12MB4199.namprd12.prod.outlook.com (2603:10b6:610:a7::13) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5206.13; Wed, 4 May 2022 13:48:45 +0000
+Received: from DM6NAM11FT044.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:8:2e:cafe::f0) by DS7P222CA0013.outlook.office365.com
+ (2603:10b6:8:2e::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.13 via Frontend
+ Transport; Wed, 4 May 2022 13:48:45 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,51 +45,50 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT016.mail.protection.outlook.com (10.13.173.139) with Microsoft SMTP
+ DM6NAM11FT044.mail.protection.outlook.com (10.13.173.185) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5227.15 via Frontend Transport; Wed, 4 May 2022 13:36:31 +0000
+ 15.20.5227.15 via Frontend Transport; Wed, 4 May 2022 13:48:45 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Wed, 4 May
- 2022 08:36:30 -0500
+ 2022 08:48:44 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
-Subject: [PATCH 2/2] Revert "fbdev: fbmem: add a helper to determine if an
- aperture is used by a fw fb"
-Date: Wed, 4 May 2022 09:36:18 -0400
-Message-ID: <20220504133618.1670080-2-alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-fbdev@vger.kernel.org>
+Subject: [PATCH 1/2] Revert "drm/amdgpu: disable runpm if we are the primary
+ adapter"
+Date: Wed, 4 May 2022 09:48:32 -0400
+Message-ID: <20220504134833.1672728-1-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220504133618.1670080-1-alexander.deucher@amd.com>
-References: <20220504133618.1670080-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6b69d8bc-34f6-4ea6-ac34-08da2dd319a9
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1163:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR12MB1163B9319B9A4A5D161CE332F7C39@DM5PR12MB1163.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: bfb7d61d-aaa1-41eb-f1bf-08da2dd4cf05
+X-MS-TrafficTypeDiagnostic: CH2PR12MB4199:EE_
+X-Microsoft-Antispam-PRVS: <CH2PR12MB4199C1B648D24F6F7C547A9DF7C39@CH2PR12MB4199.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MJtC6+MhpAv+XDu+ptUQ1jIp96Xmrxz8NYf036mEUh3PXaKspgtavFC5VYza5UbSerUWmwKDnnQ7HszhC0AA4mQQ+kZkHxiXGj0IcImP6k5IaQaXPzgGh9kh3IUn0e265gNoK19LcQJMH2E3diHQPjWR6PhX7s5VZgiptGcPo98Z6cmktFEz0xIEddPhvOLPOHE2I5UcJT+gvBTG/MmfljYma0nTyG2dJFIJvZADweR5zsU0eDRgrNB+JTsYi7y1XjOdwCYhod2eLNL7ylJ/gU3mPptvyTFQ5CCgGYLEEG21OoFHUQR69tJ+eVROyqRfKuIez9IJUM0NXQMXQQAn6jtnP04+mpqqNfuA2DXh0RAAoEzZsdQutjgfYfc2RyVhZORrfbNNko3EZrIftDuHAbgApf5ml8PfKRdkDVXf9eGUeaTWM2dazVDu9kAUvqg4m3B815oJfS7aY6VrDfy8f+SCy4Hy2s8Hp/nGaOUSdAa2DY+34oRhQ0AnnUBRyJiNbzjKF2lomQgjbTIhywk/1VEeM0MXrIHFRBenE8t/XKObcm61kGL2xVKyJQRlpUYGtjnRlhYkgkvqjNjdw+rDDLMO5aYgdirFYWGFhX5xw8Cn4lUcs8YdEfAY6NqpCw+aoPc2TQQy/QkIwamF+s36ztMkkdWfVbUO4IjP7rSNlYXdGzIz3oS8Gzct/dkgT3jHDk+252gjKX7DZc8JWWKdBA==
+X-Microsoft-Antispam-Message-Info: ujTmJCYpfm1e2PEk+61aIVM2aACIS+mywQEGPL9fZGdzlFWZDE+2d6vwpymDuo162WP6U1M4W56l7O4XjHwe1yAKLunyIrvvcC8QxPoWHrnQ169X28EE5f0kPb5U2oIWxWkWZ8MTviV/YNiWA7f9EGtZCBCMi3X+66MPsme2BhmNWcMTqxXYV1R+zyE5JakOVoN1Ebmxiw2Yu72d36Xz438FYUOWABqfupYAtO36N/Zu0i0jdgM95mKH5D0mpH5fCFGpJx0kjRHLrEj6LVdJz3rsxbmINKNuV80ofD5tXLC5RffwH8HatFfsO0y01zd6IDgMgedlz28hBkhkw7AMNrxXUBBYvpVjqOszubwIvl637UxpteybTOMRySUL7V/qIk8MZ+PANzGXLUooN/k7j7yBfEcyfm6SwknLj/HbZZctQc48KMB+qD8QJ6vG4YLTqaAnFYSafSthOytpfJs9MJKpngHmjiJAPX5M1/EL02zfWzmQDLI+DdujPSxI0kII6GRLZ3OCKSI66gzdQvYKp4/6+rZNm37cls/JxOlHQWofE1eIUHpQIZ2rjZxBF8ymTvfIYEMOS8ZkhSno2Id96XGSPS/yD36n4FvslkKPlXhL7umHHzmtqqhkWpgwurRxS76HFFwrcKskj7d/jPTHJv1nj6vLNyBMraNcG1LZ8x7LTDbAyTODEUxoGnoxEXXYrqc0ORxLoe5+Z0GYzuEqfldVvGuq1yY2wJS6aAkRUQY=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(508600001)(86362001)(8676002)(70586007)(4326008)(450100002)(70206006)(36860700001)(110136005)(316002)(82310400005)(2906002)(36756003)(83380400001)(40460700003)(186003)(47076005)(2616005)(16526019)(1076003)(426003)(336012)(8936002)(81166007)(356005)(6666004)(5660300002)(7696005)(26005)(36900700001);
+ SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(186003)(5660300002)(36756003)(316002)(2906002)(7696005)(36860700001)(16526019)(70206006)(83380400001)(8676002)(4326008)(70586007)(8936002)(110136005)(426003)(40460700003)(47076005)(336012)(86362001)(82310400005)(508600001)(2616005)(356005)(81166007)(6666004)(1076003)(26005)(21314003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2022 13:36:31.7152 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6b69d8bc-34f6-4ea6-ac34-08da2dd319a9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2022 13:48:45.4842 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bfb7d61d-aaa1-41eb-f1bf-08da2dd4cf05
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT016.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT044.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1163
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4199
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,91 +104,114 @@ Cc: Alex Deucher <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit 9a45ac2320d0a6ae01880a30d4b86025fce4061b.
+This reverts commit b95dc06af3e683d6b7ddbbae178b2b2a21ee8b2b.
 
-This was added a helper for amdgpu to workaround a runtime pm regression
-caused by a runtime pm fix in efifb.  We now have a better workarouund
-in amdgpu in
-commit f95af4a9236695 ("drm/amdgpu: don't runtime suspend if there are displays attached (v3)")
-so this workaround is no longer necessary.  Since amdgpu was the only
-user of this interface, we can remove it.
+This workaround is no longer necessary.  We have a better workaround
+in commit f95af4a9236695 ("drm/amdgpu: don't runtime suspend if there are displays attached (v3)").
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/video/fbdev/core/fbmem.c | 47 --------------------------------
- include/linux/fb.h               |  1 -
- 2 files changed, 48 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h     |  1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 28 -------------------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c |  6 ------
+ 3 files changed, 35 deletions(-)
 
-diff --git a/drivers/video/fbdev/core/fbmem.c b/drivers/video/fbdev/core/fbmem.c
-index ad9aac06427a..700ac4a83329 100644
---- a/drivers/video/fbdev/core/fbmem.c
-+++ b/drivers/video/fbdev/core/fbmem.c
-@@ -1783,53 +1783,6 @@ int remove_conflicting_framebuffers(struct apertures_struct *a,
- }
- EXPORT_SYMBOL(remove_conflicting_framebuffers);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index d557f4db2565..682ec660f2c4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -981,7 +981,6 @@ struct amdgpu_device {
+ 	bool                            runpm;
+ 	bool                            in_runpm;
+ 	bool                            has_pr3;
+-	bool                            is_fw_fb;
  
--/**
-- * is_firmware_framebuffer - detect if firmware-configured framebuffer matches
-- * @a: memory range, users of which are to be checked
-- *
-- * This function checks framebuffer devices (initialized by firmware/bootloader)
-- * which use memory range described by @a. If @a matchesm the function returns
-- * true, otherwise false.
-- */
--bool is_firmware_framebuffer(struct apertures_struct *a)
+ 	bool                            pm_sysfs_en;
+ 	bool                            ucode_sysfs_en;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index ebd37fb19cdb..3c198b2a86db 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -38,7 +38,6 @@
+ #include <linux/mmu_notifier.h>
+ #include <linux/suspend.h>
+ #include <linux/cc_platform.h>
+-#include <linux/fb.h>
+ 
+ #include "amdgpu.h"
+ #include "amdgpu_irq.h"
+@@ -1950,26 +1949,6 @@ MODULE_DEVICE_TABLE(pci, pciidlist);
+ 
+ static const struct drm_driver amdgpu_kms_driver;
+ 
+-static bool amdgpu_is_fw_framebuffer(resource_size_t base,
+-				     resource_size_t size)
 -{
--	bool do_free = false;
 -	bool found = false;
--	int i;
+-#if IS_REACHABLE(CONFIG_FB)
+-	struct apertures_struct *a;
 -
--	if (!a) {
--		a = alloc_apertures(1);
--		if (!a)
--			return false;
+-	a = alloc_apertures(1);
+-	if (!a)
+-		return false;
 -
--		a->ranges[0].base = 0;
--		a->ranges[0].size = ~0;
--		do_free = true;
--	}
+-	a->ranges[0].base = base;
+-	a->ranges[0].size = size;
 -
--	mutex_lock(&registration_lock);
--	/* check all firmware fbs and kick off if the base addr overlaps */
--	for_each_registered_fb(i) {
--		struct apertures_struct *gen_aper;
--
--		if (!(registered_fb[i]->flags & FBINFO_MISC_FIRMWARE))
--			continue;
--
--		gen_aper = registered_fb[i]->apertures;
--		if (fb_do_apertures_overlap(gen_aper, a)) {
--			found = true;
--			break;
--		}
--	}
--	mutex_unlock(&registration_lock);
--
--	if (do_free)
--		kfree(a);
--
+-	found = is_firmware_framebuffer(a);
+-	kfree(a);
+-#endif
 -	return found;
 -}
--EXPORT_SYMBOL(is_firmware_framebuffer);
 -
- /**
-  * remove_conflicting_pci_framebuffers - remove firmware-configured framebuffers for PCI devices
-  * @pdev: PCI device
-diff --git a/include/linux/fb.h b/include/linux/fb.h
-index 9a77ab615c36..147d582dab41 100644
---- a/include/linux/fb.h
-+++ b/include/linux/fb.h
-@@ -612,7 +612,6 @@ extern int remove_conflicting_pci_framebuffers(struct pci_dev *pdev,
- 					       const char *name);
- extern int remove_conflicting_framebuffers(struct apertures_struct *a,
- 					   const char *name, bool primary);
--extern bool is_firmware_framebuffer(struct apertures_struct *a);
- extern int fb_prepare_logo(struct fb_info *fb_info, int rotate);
- extern int fb_show_logo(struct fb_info *fb_info, int rotate);
- extern char* fb_get_buffer_offset(struct fb_info *info, struct fb_pixmap *buf, u32 size);
+ static void amdgpu_get_secondary_funcs(struct amdgpu_device *adev)
+ {
+ 	struct pci_dev *p = NULL;
+@@ -2000,8 +1979,6 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
+ 	unsigned long flags = ent->driver_data;
+ 	int ret, retry = 0, i;
+ 	bool supports_atomic = false;
+-	bool is_fw_fb;
+-	resource_size_t base, size;
+ 
+ 	/* skip devices which are owned by radeon */
+ 	for (i = 0; i < ARRAY_SIZE(amdgpu_unsupported_pciidlist); i++) {
+@@ -2068,10 +2045,6 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
+ 	}
+ #endif
+ 
+-	base = pci_resource_start(pdev, 0);
+-	size = pci_resource_len(pdev, 0);
+-	is_fw_fb = amdgpu_is_fw_framebuffer(base, size);
+-
+ 	/* Get rid of things like offb */
+ 	ret = drm_aperture_remove_conflicting_pci_framebuffers(pdev, &amdgpu_kms_driver);
+ 	if (ret)
+@@ -2084,7 +2057,6 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
+ 	adev->dev  = &pdev->dev;
+ 	adev->pdev = pdev;
+ 	ddev = adev_to_drm(adev);
+-	adev->is_fw_fb = is_fw_fb;
+ 
+ 	if (!supports_atomic)
+ 		ddev->driver_features &= ~DRIVER_ATOMIC;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+index 51bb977154eb..497478f8a5d3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+@@ -185,12 +185,6 @@ int amdgpu_driver_load_kms(struct amdgpu_device *adev, unsigned long flags)
+ 			adev->runpm = true;
+ 			break;
+ 		}
+-		/* XXX: disable runtime pm if we are the primary adapter
+-		 * to avoid displays being re-enabled after DPMS.
+-		 * This needs to be sorted out and fixed properly.
+-		 */
+-		if (adev->is_fw_fb)
+-			adev->runpm = false;
+ 
+ 		amdgpu_runtime_pm_quirk(adev);
+ 
 -- 
 2.35.1
 
