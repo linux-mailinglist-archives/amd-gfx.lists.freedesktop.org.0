@@ -2,95 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C77D951A14E
-	for <lists+amd-gfx@lfdr.de>; Wed,  4 May 2022 15:48:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD77951A153
+	for <lists+amd-gfx@lfdr.de>; Wed,  4 May 2022 15:50:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 518BF10E1D6;
-	Wed,  4 May 2022 13:48:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E56010EC9A;
+	Wed,  4 May 2022 13:50:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2065.outbound.protection.outlook.com [40.107.244.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E40CE10E057;
- Wed,  4 May 2022 13:48:47 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Z5nHmusXRB1z8GwcFGhvXCFT4QQJ3KNaO5kO6Daxw7UVq+2obnhdTpeeeG6EHAg2IMFTiJlrlI339OGdNypErjlSn/S62MsRBVeIfG5dIPOf7oeXnaSdFrN+Qw2mTQYXVGoA/IMssm4JGNb+ZjNijm7CqAVseMPsSEKfjFMvRXmW2AQA7H2xj0jdjpoBPS/k37EBKoBN/Et6hyX7Zffr7T7FlURw90827rWyS1CSNkGx+eQ7R+W9CMUjVE+Ziqv8sdKP7stb5DBYLIExyyoAt/lWdVDxRdSuDsYKqoCjYh3KfpsoJFmto6HO9OIUSG+s3Vd6sSANYSo5D1PsaWMt6w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zNEwRkM/oeT/JZA1BHdLz+fGM1EKplmX67+VQp95irA=;
- b=esepTZaxeGhF4Zvf05EgmJ21A8CDWJUtLiM5CDup8bcfhg0jSYp0lZszV2IoE/7AKmXyS2j1N04jdbfdfP/EqNI3vX6sNh73yptc/XNLlkqUs/ZwHlYVvBHe6kMygOdRNt/0iB2bTOCiUcq4AVwW4swMt64870+7heKrpOxOqDW38JIkCBEBDGa5ynccxBRa8YvxlmMKntJ6zbj10R8WpJSjCtGkpSdbylsH1LJ522wUHE7N7VwYe2RsVbnwD2KXBdMHeTat9B2ixWA2nLLzE7f5UpFsX87xZfUfYm9W/8agf/iIFW+GXEUqQp6xKQfn12OHxS/HsT3Wn6PGg1+6TA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zNEwRkM/oeT/JZA1BHdLz+fGM1EKplmX67+VQp95irA=;
- b=aeMnP1QpRyhbLkbbOh7YGqZb9DBJPlcF4iPnkd+oIIjpgp3uw508y2WVHy10Bl53bSYgrVRGBVFUpwCUFI/m3OUiMQM65hfMWTdarlbNtGagVmBFC6Tn/KsoSclG47gdV23pgFSCIJIKHoZFzWLV54lRb704NRep8jV01pu8Z54=
-Received: from DS7P222CA0020.NAMP222.PROD.OUTLOOK.COM (2603:10b6:8:2e::16) by
- BN6PR1201MB0146.namprd12.prod.outlook.com (2603:10b6:405:59::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.24; Wed, 4 May
- 2022 13:48:46 +0000
-Received: from DM6NAM11FT044.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:2e:cafe::40) by DS7P222CA0020.outlook.office365.com
- (2603:10b6:8:2e::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.24 via Frontend
- Transport; Wed, 4 May 2022 13:48:46 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT044.mail.protection.outlook.com (10.13.173.185) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5227.15 via Frontend Transport; Wed, 4 May 2022 13:48:45 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Wed, 4 May
- 2022 08:48:45 -0500
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-fbdev@vger.kernel.org>
-Subject: [PATCH 2/2] Revert "fbdev: fbmem: add a helper to determine if an
- aperture is used by a fw fb"
-Date: Wed, 4 May 2022 09:48:33 -0400
-Message-ID: <20220504134833.1672728-2-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220504134833.1672728-1-alexander.deucher@amd.com>
-References: <20220504134833.1672728-1-alexander.deucher@amd.com>
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com
+ [IPv6:2a00:1450:4864:20::52f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C88110EC9A
+ for <amd-gfx@lists.freedesktop.org>; Wed,  4 May 2022 13:50:33 +0000 (UTC)
+Received: by mail-ed1-x52f.google.com with SMTP id ba17so1777524edb.5
+ for <amd-gfx@lists.freedesktop.org>; Wed, 04 May 2022 06:50:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=message-id:date:mime-version:user-agent:subject:content-language:to
+ :references:from:in-reply-to:content-transfer-encoding;
+ bh=OIV0Vk13qnsFKFz8TPblIh49iz/TgX53JVONyBNdqZ4=;
+ b=ZtSeMuhZ8AG4oTPh7Iyq2zM/X3HEb2p3r4n0wpF6w6snIDMslO+hh4jEIBQR3sjWhl
+ 5bzlfo7rEra0oHAFW3m9YwSfqMUU6bGux3bem4LTceIkcjQWqEH3NGRsu08NdYPhblyA
+ hx1d6MRUqob5wcVjafdtZ/6COUzP3iEpWXPDDmXZRqq8bkWlmQE4r4e2HUPwBBUVAyJx
+ Vw05CxxGErpOpITXjqQQP0DcumHkmXOp5zJb9y7vFuqrtXajjKDsmSErwLgeGJctlDfh
+ xlqglYq57YYOBSOik5a0mD58NPAe64I8ptcT9vNqcdM4D13Xd2nwqIcQV5pZjLs8bGw2
+ 1lGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=OIV0Vk13qnsFKFz8TPblIh49iz/TgX53JVONyBNdqZ4=;
+ b=bjrw28iRWy2Yq7DfCGISrAO8FeB6/0FDj8yZge1HqjgLpU+yBAhJ5zTg5sYW7yzpF4
+ GwtYHlbSnsa/QKitS57oQkTGg49IRhqA5SU5mY3S4F5r0MD7jAlK5Si41iKTkXKjo1k8
+ AIy5QB1axgXXKzP5pQTiIq+wrYQlO2IeU3Z+hYS4bjh+hbMR1GJ29V7DIP+irFwyCJhX
+ O1T337WylUh/fBXshMqFj+MsGpR1eHszqLzCf93XpT7JR3undXJNonYMcaYWr66Ha9fg
+ L55x38jAb/V0dXXFXx65kg/XlQO2QIfrAFMGjWRAx6WN9bVFby9aoTpxogi6G0wawIca
+ dK2w==
+X-Gm-Message-State: AOAM531RkCLDjVQqYuTnmO0mQyHikWBv0vcptD/bhI9Ake0YukkV/noq
+ AXcrG5Za1Cu73eI+yBXI1WA=
+X-Google-Smtp-Source: ABdhPJxGWcTTQtngXs3nK92xBqXi3Wrt65mq8FoYtdMyLKu28BieD3xVEjN/QA5UhSdA53/PlcYB9A==
+X-Received: by 2002:a05:6402:1148:b0:416:a4fb:3c2e with SMTP id
+ g8-20020a056402114800b00416a4fb3c2emr23330014edw.182.1651672231642; 
+ Wed, 04 May 2022 06:50:31 -0700 (PDT)
+Received: from ?IPV6:2a02:908:1256:79a0:808:29f:6aa7:520c?
+ ([2a02:908:1256:79a0:808:29f:6aa7:520c])
+ by smtp.gmail.com with ESMTPSA id
+ o15-20020a50fd8f000000b0042617ba63b0sm9192308edt.58.2022.05.04.06.50.30
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 04 May 2022 06:50:31 -0700 (PDT)
+Message-ID: <31963fb8-0df4-b593-3fa4-b05976855b80@gmail.com>
+Date: Wed, 4 May 2022 15:50:29 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 54ab7a14-707b-4a11-b241-08da2dd4cf48
-X-MS-TrafficTypeDiagnostic: BN6PR1201MB0146:EE_
-X-Microsoft-Antispam-PRVS: <BN6PR1201MB0146836327D47F4CEC5893A5F7C39@BN6PR1201MB0146.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jF8Xx5t4R1RCNzidacs5CDY9jZWvh3AtWK8bpy/zTEjtfWaZyvAU8RpT86KrVVnIwSzaHaqkuecJK8iLlwrZMrSPSYzikWs03b3/louHicsLXISxo/2clxU69loVyI34RhTQh8e7vDq9ZTyyo/XVwGCsgA3QO25SAwArvXAyDAcYxHFUgV65NVQ8tLC6yDQ3+ab6JkYErX3hJu6Rz5gWdu5w8MpKuFB7XOdjJBxikGlaFiwhJdss8YGV7hfGYqB2IEGQZmZ8bRfybIG1YtDQFId9l2z4f9tskjab52+mg9h+1qOqVn7ZsnSTMWcW3CycsnelydEFksEy8n7UxGcZWSvCPUksxm/ecY7hbgolHV6/PjQofo6zN5P+fuhuA+ibC3b3KGfZd7Od+HWRYY0slTihIWS7j/Qx6JrZlFaOa0F5Wq0RrAy2KDQxCYsvMeB0V8aJ+8WYeYLa46tSjuHoSCmEC6NTtFDpzP9Z/sBUT1tc0XsC43uF0uYLvLcO/zRTvJU3QEuUe3ULsyGl5wVZTW5hQDKygNgBfkNRpvy5pQs1iYHHFytZcSJ83BVOzWT4VJKJKlfGqauJ/aSzP9MhbAn8X3cWBSwXe2n5svAu1iAsRrAHaeb8eMKRuOFAycA0q+7gTBJ5/BKxyVCxxca37WDlrc4FzMeeGnuOPVkgUjzyhNu2GNzb1Gl9cy0Tt7G64NxZl09uXz8GmQmaQ1MVJA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(36840700001)(46966006)(4326008)(40460700003)(47076005)(336012)(426003)(70206006)(82310400005)(70586007)(83380400001)(81166007)(8676002)(110136005)(36860700001)(2616005)(16526019)(186003)(1076003)(316002)(2906002)(26005)(86362001)(6666004)(356005)(36756003)(5660300002)(7696005)(508600001)(8936002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 May 2022 13:48:45.9217 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 54ab7a14-707b-4a11-b241-08da2dd4cf48
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT044.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1201MB0146
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 2/3] drm/amdgpu/vcn3: replace ip based software ring
+ decode with common vcn software ring decode
+Content-Language: en-US
+To: James Zhu <James.Zhu@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20220504132326.629117-1-James.Zhu@amd.com>
+ <20220504132326.629117-2-James.Zhu@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20220504132326.629117-2-James.Zhu@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,95 +75,158 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit 9a45ac2320d0a6ae01880a30d4b86025fce4061b.
+Am 04.05.22 um 15:23 schrieb James Zhu:
+> Replace ip based software ring decode with common vcn software ring decode.
+>
+> Signed-off-by: James Zhu <James.Zhu@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c | 82 ++++-----------------------
+>   drivers/gpu/drm/amd/amdgpu/vcn_v3_0.h | 12 ----
+>   2 files changed, 11 insertions(+), 83 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
+> index c7280ca5e836..f761c569fcc6 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
+> @@ -30,6 +30,7 @@
+>   #include "soc15d.h"
+>   #include "vcn_v2_0.h"
+>   #include "mmsch_v3_0.h"
+> +#include "vcn_sw_ring.h"
+>   
+>   #include "vcn/vcn_3_0_0_offset.h"
+>   #include "vcn/vcn_3_0_0_sh_mask.h"
+> @@ -1731,67 +1732,6 @@ static void vcn_v3_0_dec_ring_set_wptr(struct amdgpu_ring *ring)
+>   	}
+>   }
+>   
+> -void vcn_v3_0_dec_sw_ring_emit_fence(struct amdgpu_ring *ring, u64 addr,
+> -      u64 seq, uint32_t flags)
+> -{
+> -	WARN_ON(flags & AMDGPU_FENCE_FLAG_64BIT);
+> -
+> -	amdgpu_ring_write(ring, VCN_DEC_SW_CMD_FENCE);
+> -	amdgpu_ring_write(ring, addr);
+> -	amdgpu_ring_write(ring, upper_32_bits(addr));
+> -	amdgpu_ring_write(ring, seq);
+> -	amdgpu_ring_write(ring, VCN_DEC_SW_CMD_TRAP);
+> -}
+> -
+> -void vcn_v3_0_dec_sw_ring_insert_end(struct amdgpu_ring *ring)
+> -{
+> -	amdgpu_ring_write(ring, VCN_DEC_SW_CMD_END);
+> -}
+> -
+> -void vcn_v3_0_dec_sw_ring_emit_ib(struct amdgpu_ring *ring, struct amdgpu_job *job,
+> -        struct amdgpu_ib *ib, uint32_t flags)
+> -{
+> -	uint32_t vmid = AMDGPU_JOB_GET_VMID(job);
+> -
+> -	amdgpu_ring_write(ring, VCN_DEC_SW_CMD_IB);
+> -	amdgpu_ring_write(ring, vmid);
+> -	amdgpu_ring_write(ring, lower_32_bits(ib->gpu_addr));
+> -	amdgpu_ring_write(ring, upper_32_bits(ib->gpu_addr));
+> -	amdgpu_ring_write(ring, ib->length_dw);
+> -}
+> -
+> -void vcn_v3_0_dec_sw_ring_emit_reg_wait(struct amdgpu_ring *ring, uint32_t reg,
+> -        uint32_t val, uint32_t mask)
+> -{
+> -	amdgpu_ring_write(ring, VCN_DEC_SW_CMD_REG_WAIT);
+> -	amdgpu_ring_write(ring, reg << 2);
+> -	amdgpu_ring_write(ring, mask);
+> -	amdgpu_ring_write(ring, val);
+> -}
+> -
+> -void vcn_v3_0_dec_sw_ring_emit_vm_flush(struct amdgpu_ring *ring,
+> -        uint32_t vmid, uint64_t pd_addr)
+> -{
+> -	struct amdgpu_vmhub *hub = &ring->adev->vmhub[ring->funcs->vmhub];
+> -	uint32_t data0, data1, mask;
+> -
+> -	pd_addr = amdgpu_gmc_emit_flush_gpu_tlb(ring, vmid, pd_addr);
+> -
+> -	/* wait for register write */
+> -	data0 = hub->ctx0_ptb_addr_lo32 + vmid * hub->ctx_addr_distance;
+> -	data1 = lower_32_bits(pd_addr);
+> -	mask = 0xffffffff;
+> -	vcn_v3_0_dec_sw_ring_emit_reg_wait(ring, data0, data1, mask);
+> -}
+> -
+> -void vcn_v3_0_dec_sw_ring_emit_wreg(struct amdgpu_ring *ring, uint32_t reg,
+> -      uint32_t val)
+> -{
+> -	amdgpu_ring_write(ring, VCN_DEC_SW_CMD_REG_WRITE);
+> -	amdgpu_ring_write(ring,	reg << 2);
+> -	amdgpu_ring_write(ring, val);
+> -}
+> -
+>   static const struct amdgpu_ring_funcs vcn_v3_0_dec_sw_ring_vm_funcs = {
+>   	.type = AMDGPU_RING_TYPE_VCN_DEC,
+>   	.align_mask = 0x3f,
+> @@ -1804,22 +1744,22 @@ static const struct amdgpu_ring_funcs vcn_v3_0_dec_sw_ring_vm_funcs = {
+>   	.emit_frame_size =
+>   		SOC15_FLUSH_GPU_TLB_NUM_WREG * 3 +
+>   		SOC15_FLUSH_GPU_TLB_NUM_REG_WAIT * 4 +
+> -		4 + /* vcn_v3_0_dec_sw_ring_emit_vm_flush */
+> -		5 + 5 + /* vcn_v3_0_dec_sw_ring_emit_fdec_swe x2 vm fdec_swe */
+> -		1, /* vcn_v3_0_dec_sw_ring_insert_end */
+> -	.emit_ib_size = 5, /* vcn_v3_0_dec_sw_ring_emit_ib */
+> -	.emit_ib = vcn_v3_0_dec_sw_ring_emit_ib,
+> -	.emit_fence = vcn_v3_0_dec_sw_ring_emit_fence,
+> -	.emit_vm_flush = vcn_v3_0_dec_sw_ring_emit_vm_flush,
+> +		4 + /* vcn_dec_sw_ring_emit_vm_flush */
+> +		5 + 5 + /* vcn_dec_sw_ring_emit_fdec_swe x2 vm fdec_swe */
+> +		1, /* vcn_dec_sw_ring_insert_end */
 
-This was added a helper for amdgpu to workaround a runtime pm regression
-caused by a runtime pm fix in efifb.  We now have a better workarouund
-in amdgpu in
-commit f95af4a9236695 ("drm/amdgpu: don't runtime suspend if there are displays attached (v3)")
-so this workaround is no longer necessary.  Since amdgpu was the only
-user of this interface, we can remove it.
+Maybe add that calculation as define to vcn_sw_ring.h.
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/video/fbdev/core/fbmem.c | 47 --------------------------------
- include/linux/fb.h               |  1 -
- 2 files changed, 48 deletions(-)
+Apart from that looks really good to me.
 
-diff --git a/drivers/video/fbdev/core/fbmem.c b/drivers/video/fbdev/core/fbmem.c
-index ad9aac06427a..700ac4a83329 100644
---- a/drivers/video/fbdev/core/fbmem.c
-+++ b/drivers/video/fbdev/core/fbmem.c
-@@ -1783,53 +1783,6 @@ int remove_conflicting_framebuffers(struct apertures_struct *a,
- }
- EXPORT_SYMBOL(remove_conflicting_framebuffers);
- 
--/**
-- * is_firmware_framebuffer - detect if firmware-configured framebuffer matches
-- * @a: memory range, users of which are to be checked
-- *
-- * This function checks framebuffer devices (initialized by firmware/bootloader)
-- * which use memory range described by @a. If @a matchesm the function returns
-- * true, otherwise false.
-- */
--bool is_firmware_framebuffer(struct apertures_struct *a)
--{
--	bool do_free = false;
--	bool found = false;
--	int i;
--
--	if (!a) {
--		a = alloc_apertures(1);
--		if (!a)
--			return false;
--
--		a->ranges[0].base = 0;
--		a->ranges[0].size = ~0;
--		do_free = true;
--	}
--
--	mutex_lock(&registration_lock);
--	/* check all firmware fbs and kick off if the base addr overlaps */
--	for_each_registered_fb(i) {
--		struct apertures_struct *gen_aper;
--
--		if (!(registered_fb[i]->flags & FBINFO_MISC_FIRMWARE))
--			continue;
--
--		gen_aper = registered_fb[i]->apertures;
--		if (fb_do_apertures_overlap(gen_aper, a)) {
--			found = true;
--			break;
--		}
--	}
--	mutex_unlock(&registration_lock);
--
--	if (do_free)
--		kfree(a);
--
--	return found;
--}
--EXPORT_SYMBOL(is_firmware_framebuffer);
--
- /**
-  * remove_conflicting_pci_framebuffers - remove firmware-configured framebuffers for PCI devices
-  * @pdev: PCI device
-diff --git a/include/linux/fb.h b/include/linux/fb.h
-index 9a77ab615c36..147d582dab41 100644
---- a/include/linux/fb.h
-+++ b/include/linux/fb.h
-@@ -612,7 +612,6 @@ extern int remove_conflicting_pci_framebuffers(struct pci_dev *pdev,
- 					       const char *name);
- extern int remove_conflicting_framebuffers(struct apertures_struct *a,
- 					   const char *name, bool primary);
--extern bool is_firmware_framebuffer(struct apertures_struct *a);
- extern int fb_prepare_logo(struct fb_info *fb_info, int rotate);
- extern int fb_show_logo(struct fb_info *fb_info, int rotate);
- extern char* fb_get_buffer_offset(struct fb_info *info, struct fb_pixmap *buf, u32 size);
--- 
-2.35.1
+Regards,
+Christian.
+
+> +	.emit_ib_size = 5, /* vcn_dec_sw_ring_emit_ib */
+> +	.emit_ib = vcn_dec_sw_ring_emit_ib,
+> +	.emit_fence = vcn_dec_sw_ring_emit_fence,
+> +	.emit_vm_flush = vcn_dec_sw_ring_emit_vm_flush,
+>   	.test_ring = amdgpu_vcn_dec_sw_ring_test_ring,
+>   	.test_ib = NULL,//amdgpu_vcn_dec_sw_ring_test_ib,
+>   	.insert_nop = amdgpu_ring_insert_nop,
+> -	.insert_end = vcn_v3_0_dec_sw_ring_insert_end,
+> +	.insert_end = vcn_dec_sw_ring_insert_end,
+>   	.pad_ib = amdgpu_ring_generic_pad_ib,
+>   	.begin_use = amdgpu_vcn_ring_begin_use,
+>   	.end_use = amdgpu_vcn_ring_end_use,
+> -	.emit_wreg = vcn_v3_0_dec_sw_ring_emit_wreg,
+> -	.emit_reg_wait = vcn_v3_0_dec_sw_ring_emit_reg_wait,
+> +	.emit_wreg = vcn_dec_sw_ring_emit_wreg,
+> +	.emit_reg_wait = vcn_dec_sw_ring_emit_reg_wait,
+>   	.emit_reg_write_reg_wait = amdgpu_ring_emit_reg_write_reg_wait_helper,
+>   };
+>   
+> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.h b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.h
+> index 7a6655d3b79d..31683582d778 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.h
+> @@ -26,16 +26,4 @@
+>   
+>   extern const struct amdgpu_ip_block_version vcn_v3_0_ip_block;
+>   
+> -void vcn_v3_0_dec_sw_ring_emit_fence(struct amdgpu_ring *ring, u64 addr,
+> -      u64 seq, uint32_t flags);
+> -void vcn_v3_0_dec_sw_ring_insert_end(struct amdgpu_ring *ring);
+> -void vcn_v3_0_dec_sw_ring_emit_ib(struct amdgpu_ring *ring, struct amdgpu_job *job,
+> -      struct amdgpu_ib *ib, uint32_t flags);
+> -void vcn_v3_0_dec_sw_ring_emit_reg_wait(struct amdgpu_ring *ring, uint32_t reg,
+> -      uint32_t val, uint32_t mask);
+> -void vcn_v3_0_dec_sw_ring_emit_vm_flush(struct amdgpu_ring *ring,
+> -      uint32_t vmid, uint64_t pd_addr);
+> -void vcn_v3_0_dec_sw_ring_emit_wreg(struct amdgpu_ring *ring, uint32_t reg,
+> -      uint32_t val);
+> -
+>   #endif /* __VCN_V3_0_H__ */
 
