@@ -1,56 +1,63 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C03D751B5C3
-	for <lists+amd-gfx@lfdr.de>; Thu,  5 May 2022 04:22:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A48251B5D1
+	for <lists+amd-gfx@lfdr.de>; Thu,  5 May 2022 04:23:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 788EB10ED31;
-	Thu,  5 May 2022 02:22:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B09D410EDAA;
+	Thu,  5 May 2022 02:23:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com
- [IPv6:2607:f8b0:4864:20::22d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2344F10ED31
- for <amd-gfx@lists.freedesktop.org>; Thu,  5 May 2022 02:22:08 +0000 (UTC)
-Received: by mail-oi1-x22d.google.com with SMTP id m25so3066109oih.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 04 May 2022 19:22:08 -0700 (PDT)
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com
+ [IPv6:2607:f8b0:4864:20::62b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3238510ED5C;
+ Thu,  5 May 2022 02:22:45 +0000 (UTC)
+Received: by mail-pl1-x62b.google.com with SMTP id i1so3117263plg.7;
+ Wed, 04 May 2022 19:22:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=RLwwz1hmLzLVo72mZyQYz/b9Oc0u2pa4zAwGH6/u5uU=;
- b=CKLE1ZWV2K2FBb9mdLIWSEDlsiYf/qfJyvwAqC/zFmiOuTlRdFO5eDo3Ta0N4jNdPd
- J/OTyvkjUSk1ap2/lSp+YQxvKcOOO0hd36Om6D6yCx9pJ+dWPOJSh0lcO15QOHDcSGRg
- 25bI9jP/+1WEy4XivRkc1wQd2+PnF+7LMw2z1zk+bgJ46ngHRYf5sevKrqJkqPNKt/MQ
- qPjpLrxD6G2dPVqPnlJe+Iglky5NHIrGSiiIUuLcyXIPIJFmG7BbFX3DuWqwD+gF5vWq
- femEF18bDsKfn56iplHpQGL6bXVl4SUiLG+AB4ss/+Xl0wB9NPctPTq5nARTd0yRbEnM
- v0fw==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=4kWQfwEbK95xky/d4HhQ+FlkuBESmRWEkmfG0y0k6Yc=;
+ b=E0/AMlIWlX2QfzeIjcII6CLO40b23wuotJIrvhbNd29xWOYF75GL9IxyRjbMEH3naM
+ AsANCB3Fy3cr+5nzf3JHIOq+IjfbunSJufgQwTLzJbcW5i4TNAm/jUfGuve/2eOUzskf
+ qXW4/DtXMQVPBSUo5zeSWcV+yX7YMsXsG4EhHGrVql08nzJ55l01RXDHJxKNwPzdHGQX
+ bebb41ewRaKFw7OVwBKjJJgNLG7ib7GwVPZC3sivigfMwK1dVKPUz4fiEcy+v/U5yArC
+ fIt9K9Ov6hZRs+8jNuT6VW9MPd5jf/P+fNfC7AWpBWs6ybvF7ber7gshyXRhW3tSeJ79
+ NaOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=RLwwz1hmLzLVo72mZyQYz/b9Oc0u2pa4zAwGH6/u5uU=;
- b=WuRn11/zKHxw/L5Rv+YTy9AhFtxIb9Siu2RDn8Kg9VgWib4aQMcqwpD8+j6NrTGVcA
- 8TSqYqMRMEfmo9YnnX7d0UcHPyl0MfSCkC467gfoAfdlBmecYqkT3K0VbfSpu1sGE2Jx
- n1unGMoeOImdS9tBYta3knRy9gtBJEz0QP0z2rRWhTu6yvQWmdeub1nxAThKk06gNsiA
- 6MiybjCQdZUQiVdmCv7TH+19g//H0kysE+DcWaPAQaBHvExxWeenqJzZW0NuFC3Nn+xL
- 92kvUxwjWSifz/4RFn53VB7tBTnm2EDyI6IUfSfruR4hbeGt/FEWk3jVhjFXxW/eblB+
- k4Ig==
-X-Gm-Message-State: AOAM5312CIllegpWieO45acqwYOH4C6Im5rb3yi5adjsLmj6jdXbh/7u
- OvMCXY8ePeBZF/bnf2KFVRbc0DtFM8eg0BCHMRe8JeY8
-X-Google-Smtp-Source: ABdhPJxu+2GsIhJLXZY16V95WEQCol1QLFozm7PscPSSDe6QvNW0xVPi4qCb5CB75vdJ7d0wx6gc6a44CZ5hgP6NCQU=
-X-Received: by 2002:a05:6808:f8d:b0:325:1e81:ffe5 with SMTP id
- o13-20020a0568080f8d00b003251e81ffe5mr1291253oiw.253.1651717327422; Wed, 04
- May 2022 19:22:07 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=4kWQfwEbK95xky/d4HhQ+FlkuBESmRWEkmfG0y0k6Yc=;
+ b=nKghclq9mQuDBjdibymMsVYDrs8a6op0zWRKuBLE5rRnijEYfXjw2zoHdnI+e8egG/
+ +TZ9MT71lG+qThxPTjjA1DPYJtfV+MBYTSfGYYLGvRp9kOJWRqxCeB0xDS+XQlMQHVp1
+ RBr/SgOGANLQeI0Co+5MDYVgKBQq7IPcyHHGkjN1jJTlR56Ey+CvdJPTcLejb8g8Nxdx
+ d4v8Kc4NUxqaqkpf/3E2dQm8l0KTFt15Rsp5prJUANmkLnqT1VvyNmlxkuBbFu6QGeNX
+ wn2yqn1Ag3rNAn6slF8rur6rGCiePmZFhASkLrAvqoXyUPmq+btkUQ+Xixz+KHUpNn34
+ m9Fw==
+X-Gm-Message-State: AOAM530smwzlas9joPEhtW1yirs0SXQfQmRMwdovZ46wow9okEU0coC+
+ 7yX9NkRYBqLJNCCwOAHUIS0=
+X-Google-Smtp-Source: ABdhPJw1cWNP932SAnVrBHZI77Y5r2z3v4pkPgX8TpSZkODTuCZDIKhl7JkWU4n/DJecOdGqzDQ5rw==
+X-Received: by 2002:a17:90b:380b:b0:1dc:6d24:76ff with SMTP id
+ mq11-20020a17090b380b00b001dc6d2476ffmr3271725pjb.42.1651717364762; 
+ Wed, 04 May 2022 19:22:44 -0700 (PDT)
+Received: from localhost.localdomain ([193.203.214.57])
+ by smtp.gmail.com with ESMTPSA id
+ q4-20020a056a00150400b0050dc76281a1sm86482pfu.123.2022.05.04.19.22.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 04 May 2022 19:22:44 -0700 (PDT)
+From: cgel.zte@gmail.com
+X-Google-Original-From: chi.minghao@zte.com.cn
+To: alexander.deucher@amd.com
+Subject: [PATCH] drm/amdgpu: simplify the return expression of
+ vega10_ih_hw_init()
+Date: Thu,  5 May 2022 02:22:39 +0000
+Message-Id: <20220505022239.58334-1-chi.minghao@zte.com.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220504222414.95884-1-mike@fireburn.co.uk>
- <20220504222414.95884-3-mike@fireburn.co.uk>
-In-Reply-To: <20220504222414.95884-3-mike@fireburn.co.uk>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 4 May 2022 22:21:56 -0400
-Message-ID: <CADnq5_NafUq9BWuMBJJ-fSAzXP__YQmd2L=mRm5GBOoi7wgJfA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] drm/amdgpu/gfx11: Avoid uninitialised variable 'index'
-To: Mike Lothian <mike@fireburn.co.uk>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 05 May 2022 02:23:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,51 +69,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: andrey.grodzovsky@amd.com, airlied@linux.ie, Felix.Kuehling@amd.com,
+ Xinhui.Pan@amd.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, Zeal Robot <zealci@zte.com.cn>,
+ dri-devel@lists.freedesktop.org, daniel@ffwll.ch, christian.koenig@amd.com,
+ Minghao Chi <chi.minghao@zte.com.cn>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Applied the series.  Thanks!
+From: Minghao Chi <chi.minghao@zte.com.cn>
 
-Alex
+Simplify the return expression.
 
-On Wed, May 4, 2022 at 6:24 PM Mike Lothian <mike@fireburn.co.uk> wrote:
->
-> This stops clang complaining:
->
-> drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c:376:6: warning: variable 'index' is used uninitialized whenever 'if' condition is true [-Wsometimes-uninitialized]
->         if (ring->is_mes_queue) {
->             ^~~~~~~~~~~~~~~~~~
-> drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c:433:30: note: uninitialized use occurs here
->         amdgpu_device_wb_free(adev, index);
->                                     ^~~~~
-> drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c:376:2: note: remove the 'if' if its condition is always false
->         if (ring->is_mes_queue) {
->         ^~~~~~~~~~~~~~~~~~~~~~~~~
-> drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c:364:16: note: initialize the variable 'index' to silence this warning
->         unsigned index;
->                       ^
->                        = 0
->
-> Signed-off-by: Mike Lothian <mike@fireburn.co.uk>
-> ---
->  drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> index 141c64636577..c5655128fd9c 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> @@ -430,7 +430,8 @@ static int gfx_v11_0_ring_test_ib(struct amdgpu_ring *ring, long timeout)
->                 amdgpu_ib_free(adev, &ib, NULL);
->         dma_fence_put(f);
->  err1:
-> -       amdgpu_device_wb_free(adev, index);
-> +       if (!ring->is_mes_queue)
-> +               amdgpu_device_wb_free(adev, index);
->         return r;
->  }
->
-> --
-> 2.35.1
->
+Reported-by: Zeal Robot <zealci@zte.com.cn>
+Signed-off-by: Minghao Chi <chi.minghao@zte.com.cn>
+---
+ drivers/gpu/drm/amd/amdgpu/vega10_ih.c | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/vega10_ih.c b/drivers/gpu/drm/amd/amdgpu/vega10_ih.c
+index 3070466f54e1..cdd599a08125 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vega10_ih.c
++++ b/drivers/gpu/drm/amd/amdgpu/vega10_ih.c
+@@ -521,14 +521,9 @@ static int vega10_ih_sw_fini(void *handle)
+ 
+ static int vega10_ih_hw_init(void *handle)
+ {
+-	int r;
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+ 
+-	r = vega10_ih_irq_init(adev);
+-	if (r)
+-		return r;
+-
+-	return 0;
++	return vega10_ih_irq_init(adev);
+ }
+ 
+ static int vega10_ih_hw_fini(void *handle)
+-- 
+2.25.1
+
+
