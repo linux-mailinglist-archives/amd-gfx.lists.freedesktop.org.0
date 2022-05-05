@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1152151C9DF
-	for <lists+amd-gfx@lfdr.de>; Thu,  5 May 2022 22:04:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80A1E51C9E1
+	for <lists+amd-gfx@lfdr.de>; Thu,  5 May 2022 22:04:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72D2F10E288;
-	Thu,  5 May 2022 20:04:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 012FA10E222;
+	Thu,  5 May 2022 20:04:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2084.outbound.protection.outlook.com [40.107.223.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF0BF10E222
- for <amd-gfx@lists.freedesktop.org>; Thu,  5 May 2022 20:04:22 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2047.outbound.protection.outlook.com [40.107.92.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47D1510E222
+ for <amd-gfx@lists.freedesktop.org>; Thu,  5 May 2022 20:04:23 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SyHG3JB+yAlFEWk+Y0VngHul5bNTl0h+VaMkZ/J+K+lwtQTr1ASrMJH30ZGqm48vDk3YBK7IGyF1pcizFHB99u+0nfThY/WLlzUQCt8VNwFq+SaGVZnGTd23VDkrIk1xrd7rbIzCLvGrUDSnbhAt3eIfcxJ8C82oLgLcH95K+X15A2fJstAcpzrpsICyGDQYc1sQ2kHdJc5jUTOh+/iVDshHOvrbbSUxE93CmFx/SS86feqUoOmgIzn1LJ6KUVOuSkb8fwiIQnTIKFQbUczc//WlROTqii5ZuYcq2pTie2UMGA4OmQSp8Hz2Wkqc20b1SJtQdY/WCClitpfkiVU7XQ==
+ b=EYtIt6uA3Yt2UWZseGb2qZCJOeiHyFMI0tkekz44ra3fRWO5ER7jcYn4Mf5CH5oOdHi/P1R/xUmzb4Zg5bRhlBdilhDlT0w9mow6KcQACwzASbvJBYHw6ZHts9Fi0W/2h7jGpDhGmEGYKVQJQaHNj2ZjJYYqkgdbEnKfjCEFlH+ZwxqhkNPFEnJNksOoSzCjgJY4KQknwGFOA1xP3jT7Lo75xjRatWhGqntcTu88HHt8tgZQYyCukWkftvttt4V4TqbaV2KFSvzziXZNl2GC9+NA9pQiEYwqSEYfnBQPYILzhN3vIo3S10eQRVTqPwhQUlEAmDRc6f7VdezPf0VdOA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TXlNXGBXIIK/+eSaKqE4SxE4SGFDkeJhKuCWC4OQFzI=;
- b=P6u5K62c/c2za8+jP2b4wD67buipBxZOzRjqdb6KUM16YH4CG/DCg3F/RAPjssAiZqki6/paFv8BRPekiIHK+4xOsLqbXaXrGWIIGnxmIhsPge7ed7hLyt/QprmEtnXef9QNv7a4HEtLa223MEXiWoc4fLJnExs7cxjyv/HRGt1umsoCjm7rkb7PzmFRkuYZ3+OAj55FPXr57tjP2ED87GDhU64C636YbvyUF1PBuJwZsuQHSsaiwQhanWvhaRQg6p1FNbcyCSUZY9XsMfET5lGoqIfJ1SCRUzaZaDQ9J0mYZFIP9o+wPL5Hc0R4uhuiowxgX/Jo+8oVUOapMOsqag==
+ bh=FfX4Q+5QsEgt+v3Ut+itdYizxtDoW9VVQvexi54hYlM=;
+ b=dfd8WFNuyN85qVAUOdbiozppsSGOnlFyamZy3i7AASpX668pb8CpO69k7JbEdvq5P5wKu/bqueKRILI3TzizdnNEurs4dN190jACLWX9bVa6l9teAioTZGU3Md+LtO3Pt31/yBVRDdVQ2i98w1Zx2pn5PYHwp4aYuEcYD6nh0nZY25L6LJWDHDeixPe3/cx6kUMdtSCZb8Nkm5LhPUW0HfqAt0Ez7CQlXemSmtGPUw33wdbciA/5KANvhv0227MsaeBLPngDfQD7nLH5G5plQzXzySeJIh2OADuHS0RxQUIca5DSjXq3+N5xY6OOg2AqlLdKmGASCjzBKMt9RM1cBw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TXlNXGBXIIK/+eSaKqE4SxE4SGFDkeJhKuCWC4OQFzI=;
- b=xEDDHTsQKWl47hywX64j4a+ZCNhKtGEW9YDaekjrHZFamQVoaMvi7S/wWm4KlkjcEtDCzG10JSq+FFG9KSl1P7vPzExq78D65R0KRTjlEoJ00Iprn3Ucfc2XGc0QZoxbyur44XIEoJEWS5l60m63r1/nNSwX3Ac7L4qg9EVjxgs=
+ bh=FfX4Q+5QsEgt+v3Ut+itdYizxtDoW9VVQvexi54hYlM=;
+ b=3nTmHq182Vo9rZ60gxit5zxVfy+gWM1D6Cb6eC6zlvV2JZV53VuY1mangQ7iZlP5vTkyQsiwM3WIzebW9ssVIIv2lsCUhGHjTsASlnOEb/zVC6A6vw7fN3V/BVfYtC93PqgLLCvr8MCNnV/R/WojJQmFSxCSkJ5DnQeWD9HePEU=
 Received: from DM6PR07CA0048.namprd07.prod.outlook.com (2603:10b6:5:74::25) by
- MN0PR12MB6032.namprd12.prod.outlook.com (2603:10b6:208:3cc::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.24; Thu, 5 May
- 2022 20:04:20 +0000
+ BL1PR12MB5921.namprd12.prod.outlook.com (2603:10b6:208:398::5) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5206.24; Thu, 5 May 2022 20:04:21 +0000
 Received: from DM6NAM11FT030.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:74:cafe::de) by DM6PR07CA0048.outlook.office365.com
+ (2603:10b6:5:74:cafe::30) by DM6PR07CA0048.outlook.office365.com
  (2603:10b6:5:74::25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.15 via Frontend
- Transport; Thu, 5 May 2022 20:04:20 +0000
+ Transport; Thu, 5 May 2022 20:04:21 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -51,44 +51,44 @@ Received: from SATLEXMB04.amd.com (165.204.84.17) by
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Thu, 5 May
- 2022 15:04:19 -0500
+ 2022 15:04:20 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 2/8] drm/amdgpu: add lsdma block
-Date: Thu, 5 May 2022 16:04:00 -0400
-Message-ID: <20220505200406.1293467-2-alexander.deucher@amd.com>
+Subject: [PATCH 3/8] drm/amdgpu: support mem copy for LSDMA
+Date: Thu, 5 May 2022 16:04:01 -0400
+Message-ID: <20220505200406.1293467-3-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220505200406.1293467-1-alexander.deucher@amd.com>
 References: <20220505200406.1293467-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
 X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: fe122d29-1208-4576-aa58-08da2ed27157
-X-MS-TrafficTypeDiagnostic: MN0PR12MB6032:EE_
-X-Microsoft-Antispam-PRVS: <MN0PR12MB603251763832A12C4463E35EF7C29@MN0PR12MB6032.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 90929ec1-22b7-493f-cd4c-08da2ed2719c
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5921:EE_
+X-Microsoft-Antispam-PRVS: <BL1PR12MB59210BEAADAA3F11058299EEF7C29@BL1PR12MB5921.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xJp4fMONygeQpC9O6iPqRQAgjsA8z86wfgPn0u+BtAYTjq/76Nhx6Wax3rMfUuLQGMlHGJ2OlaD9nSuaydcEE/+9/wJ+ndCNvGH6MixhGeLY9aTXyjltvoY979BvvNQyMqUEo3+hjr8mzgr2CIJHpcGVDuJgn26z7Q/uiMzHVTav5+Dq4oykaSim4+LGMfyIxvwsXmG23dgrgM/Qm7bJ5bjhPNSyEimNb8qvcDkHR4O36n9Yr+RRIsryf2RMVlmbdKGIm0UfF/pniosUcWYrRmljWP0suHE6UfviQH3tFxDELw0FVw7U4SjDryDZZ25zd+SnDamfHya0Mr1QUHH+f+pf5J/v3lx5nVXZ6Z929d6zsLLN7W7zkzka3PjZFWYqlEjIMZzijiFg9wVK5pPGhhp/tAqZ18OczsNOi/db9SE6V7Aja3nhZHq1rsYFjfSYDCZTJbZ5yOofNU2M44BiZYIHfYBniUo/QlL0AbJULofFGS10OqJCj5MTLhINHKoBXUOfUxRSsKtpqKjARTAIit/mSxQRqFRAFJB218YI2LowQlXAIptcldoX/SlP79yoK3fCL7dU1U7ybdOWBuR0nTwQEEIKqUN68E75+cP1TfpRny0pDrULNU0lCuP0F6sECWdIHuw2Y28waxqAUlK/VhHHLWi9kl0UZloz1uKOCs+HT+umYM2tCdL+P09cBkcGtugAjfd8ExTlykoQg/QY6w==
+X-Microsoft-Antispam-Message-Info: sKxm/Mf+hw9j8aHvIoriZuirfas+C2hOWggIvAwMdT1j40RbNIJDT9bsfyffNCjLBG7GLCun7q4ujuXr2UrDJqrTirtEiyPCghHQXlN5UAG3Ioe9qPZBAxFgs8et1KwVwC61jxtzQzVUyItgXO4CJYTx2SNyxB2mNkY6iusioSd7Bn+Jf0qOFZ+l4+8HyXXnU3lgqSolCY7objWXf4vrzyrxPMX8QsUbnFmU1n8Lc4tWrMHCJJ3SPoFgZf92DVkfyhTH6uBgl9p0FY8GuKtkmeo5UqcPzTvblSZVFM4sQkYd+h5WohgsIFc/KcSkJS7tsNuguZw6lBROdLzn49l4gc1kArKPncOSckM/2b7vzOJUCiTZEpc1DIYSv3wTUMFmaC5In1nPeP7er5oUEBy/7KPnVGyfcnvbrwG0JDVnXIGFtRiphq1P6NBrh8NwJ2vOlLASslGwpFus1GDgCvD22hxoFeSnh3RFD7vIzZCoKjC8RUUOP3go6kH5CJh/UzTzBSgOxYQG+oFbDtOHqLoaN5S0f0zq2fz2Mjl2+nT0J83T5lCTsN2nYZdqM1PROemEwQ+GkltcUe9BspEWhYfeGPr4E4L45Fc3KJaZDNjHon5fvYbWdzeb1cFz8lCfN05ZJzgh1GJKXaDOJwEuo6dqPdZQPsXQ5WlesOSIfS01KXbdBgkS94/TW9UfXtAm5riJYjPCdNDg8wXfsIgmYZiADQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(26005)(356005)(40460700003)(7696005)(336012)(81166007)(426003)(83380400001)(47076005)(316002)(86362001)(82310400005)(186003)(16526019)(30864003)(36756003)(1076003)(36860700001)(4326008)(8936002)(70206006)(70586007)(6666004)(6916009)(8676002)(54906003)(2906002)(508600001)(2616005)(5660300002)(36900700001);
+ SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(426003)(336012)(26005)(2616005)(186003)(47076005)(7696005)(16526019)(54906003)(1076003)(6916009)(8936002)(70586007)(70206006)(4326008)(8676002)(2906002)(6666004)(316002)(5660300002)(508600001)(356005)(40460700003)(81166007)(82310400005)(36860700001)(36756003)(86362001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2022 20:04:20.4989 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fe122d29-1208-4576-aa58-08da2ed27157
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2022 20:04:20.9364 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90929ec1-22b7-493f-cd4c-08da2ed2719c
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT030.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6032
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5921
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,273 +101,127 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Alex Deucher <alexander.deucher@amd.com>, Likun Gao <Likun.Gao@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Likun Gao <Likun.Gao@amd.com>
 
-Add Light SDMA (LSDMA) block and related function. LSDMA
-is a small instance of SDMA mainly for kernel driver use.
+Support memory to memory linear copy in PIO mode for LSDMA.
 
 Signed-off-by: Likun Gao <Likun.Gao@amd.com>
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/Makefile           |  4 +--
- drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  5 +++
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c |  3 ++
- drivers/gpu/drm/amd/amdgpu/amdgpu_lsdma.c     | 25 +++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_lsdma.h     | 35 +++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/lsdma_v6_0.c       | 33 +++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/lsdma_v6_0.h       | 31 ++++++++++++++++
- drivers/gpu/drm/amd/include/soc15_hw_ip.h     |  1 +
- 8 files changed, 135 insertions(+), 2 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_lsdma.c
- create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_lsdma.h
- create mode 100644 drivers/gpu/drm/amd/amdgpu/lsdma_v6_0.c
- create mode 100644 drivers/gpu/drm/amd/amdgpu/lsdma_v6_0.h
+ drivers/gpu/drm/amd/amdgpu/amdgpu_lsdma.c | 26 ++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_lsdma.h |  5 +++
+ drivers/gpu/drm/amd/amdgpu/lsdma_v6_0.c   | 44 +++++++++++++++++++++++
+ 3 files changed, 75 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile b/drivers/gpu/drm/amd/amdgpu/Makefile
-index de7abc7c371f..9ca9f86e04c0 100644
---- a/drivers/gpu/drm/amd/amdgpu/Makefile
-+++ b/drivers/gpu/drm/amd/amdgpu/Makefile
-@@ -58,7 +58,7 @@ amdgpu-y += amdgpu_device.o amdgpu_kms.o \
- 	amdgpu_vm_sdma.o amdgpu_discovery.o amdgpu_ras_eeprom.o amdgpu_nbio.o \
- 	amdgpu_umc.o smu_v11_0_i2c.o amdgpu_fru_eeprom.o amdgpu_rap.o \
- 	amdgpu_fw_attestation.o amdgpu_securedisplay.o \
--	amdgpu_eeprom.o amdgpu_mca.o amdgpu_psp_ta.o
-+	amdgpu_eeprom.o amdgpu_mca.o amdgpu_psp_ta.o amdgpu_lsdma.o
- 
- amdgpu-$(CONFIG_PROC_FS) += amdgpu_fdinfo.o
- 
-@@ -75,7 +75,7 @@ amdgpu-y += \
- 	vi.o mxgpu_vi.o nbio_v6_1.o soc15.o emu_soc.o mxgpu_ai.o nbio_v7_0.o vega10_reg_init.o \
- 	vega20_reg_init.o nbio_v7_4.o nbio_v2_3.o nv.o arct_reg_init.o mxgpu_nv.o \
- 	nbio_v7_2.o hdp_v4_0.o hdp_v5_0.o aldebaran_reg_init.o aldebaran.o soc21.o \
--	nbio_v4_3.o hdp_v6_0.o nbio_v7_7.o hdp_v5_2.o
-+	nbio_v4_3.o hdp_v6_0.o nbio_v7_7.o hdp_v5_2.o lsdma_v6_0.o
- 
- # add DF block
- amdgpu-y += \
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 578a405f777c..058f272e40ee 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -86,6 +86,7 @@
- #include "amdgpu_gmc.h"
- #include "amdgpu_gfx.h"
- #include "amdgpu_sdma.h"
-+#include "amdgpu_lsdma.h"
- #include "amdgpu_nbio.h"
- #include "amdgpu_hdp.h"
- #include "amdgpu_dm.h"
-@@ -643,6 +644,7 @@ enum amd_hw_ip_block_type {
- 	SDMA5_HWIP,
- 	SDMA6_HWIP,
- 	SDMA7_HWIP,
-+	LSDMA_HWIP,
- 	MMHUB_HWIP,
- 	ATHUB_HWIP,
- 	NBIO_HWIP,
-@@ -909,6 +911,9 @@ struct amdgpu_device {
- 	/* sdma */
- 	struct amdgpu_sdma		sdma;
- 
-+	/* lsdma */
-+	struct amdgpu_lsdma		lsdma;
-+
- 	/* uvd */
- 	struct amdgpu_uvd		uvd;
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-index 263fedadbf5b..3f9f2d6cc6c2 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-@@ -66,6 +66,7 @@
- #include "sdma_v5_0.h"
- #include "sdma_v5_2.h"
- #include "sdma_v6_0.h"
-+#include "lsdma_v6_0.h"
- #include "vcn_v2_0.h"
- #include "jpeg_v2_0.h"
- #include "vcn_v3_0.h"
-@@ -124,6 +125,7 @@ static const char *hw_id_names[HW_ID_MAX] = {
- 	[SDMA1_HWID]		= "SDMA1",
- 	[SDMA2_HWID]		= "SDMA2",
- 	[SDMA3_HWID]		= "SDMA3",
-+	[LSDMA_HWID]		= "LSDMA",
- 	[ISP_HWID]		= "ISP",
- 	[DBGU_IO_HWID]		= "DBGU_IO",
- 	[DF_HWID]		= "DF",
-@@ -173,6 +175,7 @@ static int hw_id_map[MAX_HWIP] = {
- 	[SDMA1_HWIP]	= SDMA1_HWID,
- 	[SDMA2_HWIP]    = SDMA2_HWID,
- 	[SDMA3_HWIP]    = SDMA3_HWID,
-+	[LSDMA_HWIP]    = LSDMA_HWID,
- 	[MMHUB_HWIP]	= MMHUB_HWID,
- 	[ATHUB_HWIP]	= ATHUB_HWID,
- 	[NBIO_HWIP]	= NBIF_HWID,
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_lsdma.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_lsdma.c
-new file mode 100644
-index 000000000000..af00a66f8282
---- /dev/null
+index af00a66f8282..3f1c674afe41 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_lsdma.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_lsdma.c
-@@ -0,0 +1,25 @@
-+/*
-+ * Copyright 2022 Advanced Micro Devices, Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ */
+@@ -23,3 +23,29 @@
+ 
+ #include "amdgpu.h"
+ #include "amdgpu_lsdma.h"
 +
-+#include "amdgpu.h"
-+#include "amdgpu_lsdma.h"
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_lsdma.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_lsdma.h
-new file mode 100644
-index 000000000000..4df4da423181
---- /dev/null
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_lsdma.h
-@@ -0,0 +1,35 @@
-+/*
-+ * Copyright 2022 Advanced Micro Devices, Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ */
++#define AMDGPU_LSDMA_MAX_SIZE	0x2000000ULL
 +
-+#ifndef __AMDGPU_LSDMA_H__
-+#define __AMDGPU_LSDMA_H__
-+
-+struct amdgpu_lsdma {
-+	const struct amdgpu_lsdma_funcs      *funcs;
-+};
-+
-+struct amdgpu_lsdma_funcs
++int amdgpu_lsdma_copy_mem(struct amdgpu_device *adev,
++			  uint64_t src_addr,
++			  uint64_t dst_addr,
++			  uint64_t mem_size)
 +{
-+};
++	int ret;
 +
-+#endif
++	if (mem_size == 0)
++		return -EINVAL;
++
++	while(mem_size > 0) {
++		uint64_t current_copy_size = min(mem_size, AMDGPU_LSDMA_MAX_SIZE);
++
++		ret = adev->lsdma.funcs->copy_mem(adev, src_addr, dst_addr, current_copy_size);
++		if (ret)
++			return ret;
++		src_addr += current_copy_size;
++		dst_addr += current_copy_size;
++		mem_size -= current_copy_size;
++	}
++
++	return 0;
++}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_lsdma.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_lsdma.h
+index 4df4da423181..be397666e4c1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_lsdma.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_lsdma.h
+@@ -30,6 +30,11 @@ struct amdgpu_lsdma {
+ 
+ struct amdgpu_lsdma_funcs
+ {
++	int (*copy_mem)(struct amdgpu_device *adev, uint64_t src_addr,
++                    uint64_t dst_addr, uint64_t size);
+ };
+ 
++int amdgpu_lsdma_copy_mem(struct amdgpu_device *adev, uint64_t src_addr,
++                          uint64_t dst_addr, uint64_t mem_size);
++
+ #endif
 diff --git a/drivers/gpu/drm/amd/amdgpu/lsdma_v6_0.c b/drivers/gpu/drm/amd/amdgpu/lsdma_v6_0.c
-new file mode 100644
-index 000000000000..b611ade53be2
---- /dev/null
+index b611ade53be2..0d2bdd04bd76 100644
+--- a/drivers/gpu/drm/amd/amdgpu/lsdma_v6_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/lsdma_v6_0.c
-@@ -0,0 +1,33 @@
-+/*
-+ * Copyright 2022 Advanced Micro Devices, Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ */
+@@ -29,5 +29,49 @@
+ #include "lsdma/lsdma_6_0_0_offset.h"
+ #include "lsdma/lsdma_6_0_0_sh_mask.h"
+ 
++static int lsdma_v6_0_copy_mem(struct amdgpu_device *adev,
++			       uint64_t src_addr,
++			       uint64_t dst_addr,
++			       uint64_t size)
++{
++	uint32_t usec_timeout = 5000;  /* wait for 5ms */
++	uint32_t tmp, expect_val;
++	int i;
 +
-+#include <linux/delay.h>
-+#include "amdgpu.h"
-+#include "lsdma_v6_0.h"
-+#include "amdgpu_lsdma.h"
++	WREG32_SOC15(LSDMA, 0, regLSDMA_PIO_SRC_ADDR_LO, lower_32_bits(src_addr));
++	WREG32_SOC15(LSDMA, 0, regLSDMA_PIO_SRC_ADDR_HI, upper_32_bits(src_addr));
 +
-+#include "lsdma/lsdma_6_0_0_offset.h"
-+#include "lsdma/lsdma_6_0_0_sh_mask.h"
++	WREG32_SOC15(LSDMA, 0, regLSDMA_PIO_DST_ADDR_LO, lower_32_bits(dst_addr));
++	WREG32_SOC15(LSDMA, 0, regLSDMA_PIO_DST_ADDR_HI, upper_32_bits(dst_addr));
 +
-+const struct amdgpu_lsdma_funcs lsdma_v6_0_funcs = {
-+};
-diff --git a/drivers/gpu/drm/amd/amdgpu/lsdma_v6_0.h b/drivers/gpu/drm/amd/amdgpu/lsdma_v6_0.h
-new file mode 100644
-index 000000000000..3ef79be1a9bf
---- /dev/null
-+++ b/drivers/gpu/drm/amd/amdgpu/lsdma_v6_0.h
-@@ -0,0 +1,31 @@
-+/*
-+ * Copyright 2022 Advanced Micro Devices, Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ */
++	WREG32_SOC15(LSDMA, 0, regLSDMA_PIO_CONTROL, 0x0);
 +
-+#ifndef __LSDMA_V6_0_H__
-+#define __LSDMA_V6_0_H__
++	tmp = RREG32_SOC15(LSDMA, 0, regLSDMA_PIO_COMMAND);
++	tmp = REG_SET_FIELD(tmp, LSDMA_PIO_COMMAND, BYTE_COUNT, size);
++	tmp = REG_SET_FIELD(tmp, LSDMA_PIO_COMMAND, SRC_LOCATION, 0);
++	tmp = REG_SET_FIELD(tmp, LSDMA_PIO_COMMAND, DST_LOCATION, 0);
++	tmp = REG_SET_FIELD(tmp, LSDMA_PIO_COMMAND, SRC_ADDR_INC, 0);
++	tmp = REG_SET_FIELD(tmp, LSDMA_PIO_COMMAND, DST_ADDR_INC, 0);
++	tmp = REG_SET_FIELD(tmp, LSDMA_PIO_COMMAND, OVERLAP_DISABLE, 0);
++	tmp = REG_SET_FIELD(tmp, LSDMA_PIO_COMMAND, CONSTANT_FILL, 0);
++	WREG32_SOC15(LSDMA, 0, regLSDMA_PIO_COMMAND, tmp);
 +
-+#include "soc15_common.h"
++	expect_val = LSDMA_PIO_STATUS__PIO_IDLE_MASK | LSDMA_PIO_STATUS__PIO_FIFO_EMPTY_MASK;
++	for (i = 0; i < usec_timeout; i++) {
++		tmp = RREG32_SOC15(LSDMA, 0, regLSDMA_PIO_STATUS);
++		if ((tmp & expect_val) == expect_val)
++			break;
++		udelay(1);
++	}
 +
-+extern const struct amdgpu_lsdma_funcs lsdma_v6_0_funcs;
++	if (i >= usec_timeout) {
++		dev_err(adev->dev, "LSDMA PIO failed to copy memory!\n");
++		return -ETIMEDOUT;
++	}
 +
-+#endif /* __LSDMA_V6_0_H__ */
-diff --git a/drivers/gpu/drm/amd/include/soc15_hw_ip.h b/drivers/gpu/drm/amd/include/soc15_hw_ip.h
-index c1519d20596a..bc9783da7e96 100644
---- a/drivers/gpu/drm/amd/include/soc15_hw_ip.h
-+++ b/drivers/gpu/drm/amd/include/soc15_hw_ip.h
-@@ -86,6 +86,7 @@
- #define PCS_HWID                                          80
- #define DDCL_HWID                                         89
- #define SST_HWID                                          90
-+#define LSDMA_HWID                                        91
- #define IOAGR_HWID                                       100
- #define NBIF_HWID                                        108
- #define IOAPIC_HWID                                      124
++	return 0;
++}
++
+ const struct amdgpu_lsdma_funcs lsdma_v6_0_funcs = {
++	.copy_mem = lsdma_v6_0_copy_mem
+ };
 -- 
 2.35.1
 
