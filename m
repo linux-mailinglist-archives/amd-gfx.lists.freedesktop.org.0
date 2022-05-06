@@ -1,66 +1,63 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE93C51D695
-	for <lists+amd-gfx@lfdr.de>; Fri,  6 May 2022 13:23:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF4F651D8B9
+	for <lists+amd-gfx@lfdr.de>; Fri,  6 May 2022 15:18:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1414112122;
-	Fri,  6 May 2022 11:23:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B0BB8876A;
+	Fri,  6 May 2022 13:18:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com
- [IPv6:2a00:1450:4864:20::531])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B887112120
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 May 2022 11:23:17 +0000 (UTC)
-Received: by mail-ed1-x531.google.com with SMTP id c12so861078edv.10
- for <amd-gfx@lists.freedesktop.org>; Fri, 06 May 2022 04:23:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:subject:date:message-id:in-reply-to:references:mime-version
- :content-transfer-encoding;
- bh=LO1Tr9EEMi+cM0uVuvATx9dFt0sNJGMf9O4+1CkkUTw=;
- b=ZQxRKWWjfq6udVdP+kET7o0Crofb0s4ETNetOtubcWGkaWEvUBe1wwWXLgImIH/os8
- Bu56Pjfe6Ne1Du3AtWyvSSZ4//s3Hh27F81EqKGjv6BlJpRO5SBb1OL6AdoXgAsY17lv
- gPbjISY2+yif0rAZh3iby9XJEHBVFmyblu+jbypIEmNXIotJ409wmngvZQNdbuJXTAA7
- a0Z5FAmaxZc0u97iqbC9H+YHKdFBnDaT4+T0cpHFIxIL33yyYzsB+1u7gzL2Sslk2NyH
- JchPylZct6KMtnsoIqsdn6DTGKuXZazrUwvM2ocnm0neZfQW1wKwic3M56I8ceC7TNdR
- 33Wg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=LO1Tr9EEMi+cM0uVuvATx9dFt0sNJGMf9O4+1CkkUTw=;
- b=jqhUY0P0OwWF+t7lP33eRoS81jDp0+O+9Lu70wnejGccr/UyKTkphhG2YWn8lBR3+H
- 1i0x2zZ0HuPOYtrXpA9PxIWtUhvG3Cu4rWpAAOwCMYGWktCykHwOYZJGDSozb4kf1+OB
- 5CcTYXw7V161RC4oc8ORfpShgdvDZOcWSSsPK3DRQ3JEiSqbfqwoavS4lWK0687/VkOT
- DcoiCkkPe9sp+SoXemmZRmLzKiTcpofl4Txpps4X5o472BVyX7SoZHAqUzskqAfTtYV8
- ngte0H3qTjKFOT70uAyhJrT2l9/6jYiLlVbqGIOQrtg+QIJu5kxSjZFKQP3L1lrhX72u
- Si8g==
-X-Gm-Message-State: AOAM532q+BbSW0WBN3p1ooWQqg4vMnzFBP+blYzFUiJKsPEeSPq0HzTb
- GC7nfiMbtj8BvZ+NnUOqxgepaIPU/Ck=
-X-Google-Smtp-Source: ABdhPJwAxk2lc0mX2j2KPSk2DVADTvDnfeiMO1T8X4Mx0Q2J7fLhcLFXe1xDr0g0q9PhVZFbcr72Ow==
-X-Received: by 2002:a05:6402:2790:b0:427:d09b:df82 with SMTP id
- b16-20020a056402279000b00427d09bdf82mr2929125ede.151.1651836196086; 
- Fri, 06 May 2022 04:23:16 -0700 (PDT)
-Received: from baker.fritz.box (p57b0b3fd.dip0.t-ipconnect.de.
- [87.176.179.253]) by smtp.gmail.com with ESMTPSA id
- a24-20020a170906369800b006f3ef214e37sm1816684ejc.157.2022.05.06.04.23.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 06 May 2022 04:23:15 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: Marek.Olsak@amd.com,
-	amd-gfx@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/amdgpu: bump minor version number
-Date: Fri,  6 May 2022 13:23:12 +0200
-Message-Id: <20220506112312.347519-3-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220506112312.347519-1-christian.koenig@amd.com>
-References: <20220506112312.347519-1-christian.koenig@amd.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9597410E143;
+ Fri,  6 May 2022 10:45:07 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id E609D21A8A;
+ Fri,  6 May 2022 10:45:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1651833905; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=JBwOt1RF8EsTJcYBYl+0GNWlwHFwIOlw9+R5hnEyELE=;
+ b=eSPSjotpfRcOWk0jZW9qANamWjseFdMATaSNtU3/M/YzCU8f/1EGO32s1kLoMfwMEd7sJs
+ SfYKP9rKZm6yNSUYyqwgRjwLu3n1ihRt7/hCRH2HPhyapKVhq3NdcJKuPYBCEq0VweOoCY
+ TrDMoyMTrCpnqtdUFKxFUtZaTLeapIs=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1651833905;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=JBwOt1RF8EsTJcYBYl+0GNWlwHFwIOlw9+R5hnEyELE=;
+ b=8mDMrK8Nueh1reSSRQTYjwoLgqHT8TZPnSaw/2hxkXI2CzfTBgdzkbsenoKH3ZLkLpJoGp
+ ui8lVBkXF0GPJfAg==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 9B56813AA2;
+ Fri,  6 May 2022 10:45:05 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id iWjCIzH8dGImAwAAMHmgww
+ (envelope-from <jroedel@suse.de>); Fri, 06 May 2022 10:45:05 +0000
+Date: Fri, 6 May 2022 12:45:04 +0200
+From: =?iso-8859-1?Q?J=F6rg_R=F6del?= <jroedel@suse.de>
+To: Alex Deucher <alexander.deucher@amd.com>, christian.koenig@amd.com,
+ Xinhui.Pan@amd.com
+Subject: Re: [BUG] Warning and NULL-ptr dereference in amdgpu driver with 5.18
+Message-ID: <YnT8MAjb/jW4ENVS@suse.de>
+References: <YnTAc96Uv0CXcGhD@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <YnTAc96Uv0CXcGhD@suse.de>
+X-Mailman-Approved-At: Fri, 06 May 2022 13:18:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,35 +69,22 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Increase the minor version number to indicate that the new flags are
-avaiable.
+On Fri, May 06, 2022 at 08:30:13AM +0200, Jörg Rödel wrote:
+> [81829.087101] ------------[ cut here ]------------
+> [81829.087105] WARNING: CPU: 4 PID: 644 at drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dce110/dce110_clk_mgr.c:140 dce110_fill_display_configs+0x4a/0x150 [amdgpu]
 
-Signed-off-by: Christian KÃ¶nig <christian.koenig@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+Same just happened with a kernel built from latest upstream, based on
+commit fe27d189e3f42e31d3c8223d5daed7285e334c5e. So it's at least not
+the iommu changes causing it :)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 16871baee784..3dbf406b4194 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -99,10 +99,11 @@
-  * - 3.43.0 - Add device hot plug/unplug support
-  * - 3.44.0 - DCN3 supports DCC independent block settings: !64B && 128B, 64B && 128B
-  * - 3.45.0 - Add context ioctl stable pstate interface
-- * * 3.46.0 - To enable hot plug amdgpu tests in libdrm
-+ * - 3.46.0 - To enable hot plug amdgpu tests in libdrm
-+ * * 3.47.0 - Add AMDGPU_GEM_CREATE_DISCARDABLE and AMDGPU_VM_NOALLOC flags
-  */
- #define KMS_DRIVER_MAJOR	3
--#define KMS_DRIVER_MINOR	46
-+#define KMS_DRIVER_MINOR	47
- #define KMS_DRIVER_PATCHLEVEL	0
- 
- int amdgpu_vram_limit;
--- 
-2.25.1
+Please let me know if I can be of any help debugging this further.
 
+Thanks,
+
+	Joerg
