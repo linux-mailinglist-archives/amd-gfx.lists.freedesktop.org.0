@@ -1,37 +1,47 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82DB8520E5D
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 May 2022 09:30:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CB5B520FA9
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 May 2022 10:24:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B23B410F523;
-	Tue, 10 May 2022 07:30:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA22710F3CF;
+	Tue, 10 May 2022 08:24:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E21CA10F523
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 May 2022 07:30:03 +0000 (UTC)
-Received: from [192.168.0.2] (ip5f5aeae3.dynamic.kabel-deutschland.de
- [95.90.234.227])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested) (Authenticated sender: pmenzel)
- by mx.molgen.mpg.de (Postfix) with ESMTPSA id 4DBA261E6478B;
- Tue, 10 May 2022 09:30:02 +0200 (CEST)
-Message-ID: <661503a2-064f-476d-3683-d7a0bd40fb16@molgen.mpg.de>
-Date: Tue, 10 May 2022 09:30:01 +0200
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD9B410F3CF;
+ Tue, 10 May 2022 08:24:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1652171058; x=1683707058;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZOg0Y5cUcy5gp07l4H0IN65dZHCl9qF1/pDmdGpMyCQ=;
+ b=KUNXdGG3KnY2i2MHBrzmYr0CRc2tUiW84VDDu92nQOuvq2dFxT2bZYBe
+ E+mGWwo/JOugriJVeFWQlI0uLMIMMVvZkNVLEAzmF49B0Gth5cACoSnPz
+ VHvVFUcIhvXfkE3/uMV5UAP0rgyCtwW6HBPIxH84L1zBy5IX9qdiYr55U
+ tJZV9WCSaDdXZSxH0adhpppwsWNeypgWN5xTLjgQg/J3xmsljYXPrpt/g
+ Tx2fhoOQV6apkJqxB5tw/px69+CAoINA5dicl6H3sdBdXEzqs72xUurg2
+ uuDV1mL336w7XjWTWa8lDOh+AG17TDOobf6Xc8uCx0R1PIgjjVcC7c6c4 A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10342"; a="269441472"
+X-IronPort-AV: E=Sophos;i="5.91,213,1647327600"; d="scan'208";a="269441472"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2022 01:24:17 -0700
+X-IronPort-AV: E=Sophos;i="5.91,213,1647327600"; d="scan'208";a="593381270"
+Received: from rcpalaku-mobl1.ger.corp.intel.com (HELO tursulin-mobl2.home)
+ ([10.213.208.196])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2022 01:24:15 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [RFC] drm/amdgpu: Convert to common fdinfo format
+Date: Tue, 10 May 2022 09:23:15 +0100
+Message-Id: <20220510082315.992296-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH] drm/amdgpu/gfx11: fix mes mqd settings and map_queue
- packet
-Content-Language: en-US
-To: Alex Deucher <alexander.deucher@amd.com>
-References: <20220509190657.478625-1-alexander.deucher@amd.com>
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <20220509190657.478625-1-alexander.deucher@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -44,139 +54,147 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jack Xiao <Jack.Xiao@amd.com>, amd-gfx@lists.freedesktop.org,
- Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>, David M Nieto <David.Nieto@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org, Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Dear Alex, dear Jack,
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
+Convert fdinfo format to one documented in drm-usage-stats.rst.
 
-Thank you for the patch.
+Opens/TODO:
+ * Does someone from AMD want to take over this patch?
+    (I have no access to amdgpu hardware so won't be able to test
+     any hypothetical gputop work.)
+ * What are the semantics of AMD engine utilisation reported in percents?
+    * Can it align with what i915 does (same what msm will do) or need
+      to document the alternative in the specification document? Both
+      option are workable with instantaneous percent only needing support
+      to be added to vendor agnostic gputop.
+ * Can amdgpu expose drm-client-id? Without it gputop will not work.
+ * drm-engine-capacity - does the concept translate etc.
 
-Am 09.05.22 um 21:06 schrieb Alex Deucher:
-> From: Jack Xiao <Jack.Xiao@amd.com>
-> 
-> a. use correct mes mqd settings
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: David M Nieto <David.Nieto@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Acked-by: Christian König <christian.koenig@amd.com>
+---
+ Documentation/gpu/amdgpu/usage-stats.rst   | 28 ++++++++++++++++++++++
+ Documentation/gpu/drm-usage-stats.rst      |  7 +++++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c | 18 ++++++++++----
+ 3 files changed, 47 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/gpu/amdgpu/usage-stats.rst
 
-Can you please elaborate? What is wrong with the old ones, and what are 
-the correct ones?
+diff --git a/Documentation/gpu/amdgpu/usage-stats.rst b/Documentation/gpu/amdgpu/usage-stats.rst
+new file mode 100644
+index 000000000000..8be5009bd1a9
+--- /dev/null
++++ b/Documentation/gpu/amdgpu/usage-stats.rst
+@@ -0,0 +1,28 @@
++.. _amdgpu-usage-stats:
++
++============================================
++AMDGPU DRM client usage stats implementation
++============================================
++
++The amdgpu driver implements the DRM client usage stats specification as
++documented in :ref:`drm-client-usage-stats`.
++
++Example of the output showing the implemented key value pairs and entirety of
++the currenly possible format options:
++
++::
++
++      pos:    0
++      flags:  0100002
++      mnt_id: 21
++      drm-driver: amdgpu
++      drm-pdev:   0000:03:00.0
++      drm-memory-vram: 0 KiB
++      drm-memory-gtt: 0 KiB
++      drm-memory-cpu: 0 KiB
++      drm-engine-...: 0 %
++                 ...
++
++Possible `drm-memory-` key names are: `vram`, `gtt`, `cpu`.
++
++Possible `drm-engine-` key names are: ``.
+diff --git a/Documentation/gpu/drm-usage-stats.rst b/Documentation/gpu/drm-usage-stats.rst
+index 6c9f166a8d6f..2d0ff6f2cc74 100644
+--- a/Documentation/gpu/drm-usage-stats.rst
++++ b/Documentation/gpu/drm-usage-stats.rst
+@@ -69,7 +69,7 @@ scope of each device, in which case `drm-pdev` shall be present as well.
+ Userspace should make sure to not double account any usage statistics by using
+ the above described criteria in order to associate data to individual clients.
+ 
+-- drm-engine-<str>: <uint> ns
++- drm-engine-<str>: <uint> [ns|%]
+ 
+ GPUs usually contain multiple execution engines. Each shall be given a stable
+ and unique name (str), with possible values documented in the driver specific
+@@ -84,6 +84,9 @@ larger value within a reasonable period. Upon observing a value lower than what
+ was previously read, userspace is expected to stay with that larger previous
+ value until a monotonic update is seen.
+ 
++Where time unit is given as a percentage...[AMD folks to fill the semantics
++and interpretation of that]...
++
+ - drm-engine-capacity-<str>: <uint>
+ 
+ Engine identifier string must be the same as the one specified in the
+@@ -110,3 +113,5 @@ Driver specific implementations
+ ===============================
+ 
+ :ref:`i915-usage-stats`
++
++:ref:`amdgpu-usage-stats`
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
+index 5a6857c44bb6..8cbae61f1b3b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
+@@ -32,6 +32,7 @@
+ 
+ #include <drm/amdgpu_drm.h>
+ #include <drm/drm_debugfs.h>
++#include <drm/drm_drv.h>
+ 
+ #include "amdgpu.h"
+ #include "amdgpu_vm.h"
+@@ -83,11 +84,18 @@ void amdgpu_show_fdinfo(struct seq_file *m, struct file *f)
+ 	amdgpu_bo_unreserve(root);
+ 	amdgpu_bo_unref(&root);
+ 
+-	seq_printf(m, "pdev:\t%04x:%02x:%02x.%d\npasid:\t%u\n", domain, bus,
++	/*
++	 * ******************************************************************
++	 * For text output format description please see drm-usage-stats.rst!
++	 * ******************************************************************
++	 */
++
++	seq_printf(m, "drm-driver:\t%s\n", file->minor->dev->driver->name);
++	seq_printf(m, "drm-pdev:\t%04x:%02x:%02x.%d\npasid:\t%u\n", domain, bus,
+ 			dev, fn, fpriv->vm.pasid);
+-	seq_printf(m, "vram mem:\t%llu kB\n", vram_mem/1024UL);
+-	seq_printf(m, "gtt mem:\t%llu kB\n", gtt_mem/1024UL);
+-	seq_printf(m, "cpu mem:\t%llu kB\n", cpu_mem/1024UL);
++	seq_printf(m, "drm-memory-vram:\t%llu KiB\n", vram_mem/1024UL);
++	seq_printf(m, "drm-memory-gtt:\t%llu KiB\n", gtt_mem/1024UL);
++	seq_printf(m, "drm-memory-cpu:\t%llu KiB\n", cpu_mem/1024UL);
+ 	for (i = 0; i < AMDGPU_HW_IP_NUM; i++) {
+ 		uint32_t count = amdgpu_ctx_num_entities[i];
+ 		int idx = 0;
+@@ -103,7 +111,7 @@ void amdgpu_show_fdinfo(struct seq_file *m, struct file *f)
+ 			perc = div64_u64(10000 * total, min);
+ 			frac = perc % 100;
+ 
+-			seq_printf(m, "%s%d:\t%d.%d%%\n",
++			seq_printf(m, "drm-engine-%s%d:\t%d.%d %%\n",
+ 					amdgpu_ip_name[i],
+ 					idx, perc/100, frac);
+ 		}
+-- 
+2.32.0
 
-> b. fix me field in map_queue packet
-
-Can you please add some background? The new value is 2. What does it do?
-
-It’d be great, if you could make it two patches.
-
-> Signed-off-by: Jack Xiao <Jack.Xiao@amd.com>
-> Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c |  7 +++++--
->   drivers/gpu/drm/amd/amdgpu/mes_v11_0.c | 20 ++++++++++----------
->   2 files changed, 15 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> index 7614f38ff381..8a1bec70c719 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> @@ -145,16 +145,19 @@ static void gfx11_kiq_map_queues(struct amdgpu_ring *kiq_ring,
->   {
->   	uint64_t mqd_addr = amdgpu_bo_gpu_offset(ring->mqd_obj);
->   	uint64_t wptr_addr = ring->wptr_gpu_addr;
-> -	uint32_t eng_sel = 0;
-> +	uint32_t me = 0, eng_sel = 0;
->   
->   	switch (ring->funcs->type) {
->   	case AMDGPU_RING_TYPE_COMPUTE:
-> +		me = 1;
->   		eng_sel = 0;
->   		break;
->   	case AMDGPU_RING_TYPE_GFX:
-> +		me = 0;
->   		eng_sel = 4;
->   		break;
->   	case AMDGPU_RING_TYPE_MES:
-> +		me = 2;
->   		eng_sel = 5;
->   		break;
->   	default:
-> @@ -168,7 +171,7 @@ static void gfx11_kiq_map_queues(struct amdgpu_ring *kiq_ring,
->   			  PACKET3_MAP_QUEUES_VMID(0) | /* VMID */
->   			  PACKET3_MAP_QUEUES_QUEUE(ring->queue) |
->   			  PACKET3_MAP_QUEUES_PIPE(ring->pipe) |
-> -			  PACKET3_MAP_QUEUES_ME((ring->me == 1 ? 0 : 1)) |
-> +			  PACKET3_MAP_QUEUES_ME((me)) |
->   			  PACKET3_MAP_QUEUES_QUEUE_TYPE(0) | /*queue_type: normal compute queue */
->   			  PACKET3_MAP_QUEUES_ALLOC_FORMAT(0) | /* alloc format: all_on_one_pipe */
->   			  PACKET3_MAP_QUEUES_ENGINE_SEL(eng_sel) |
-> diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-> index 5d4d54cabf70..fcf51947bb18 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-> @@ -29,7 +29,7 @@
->   #include "gc/gc_11_0_0_offset.h"
->   #include "gc/gc_11_0_0_sh_mask.h"
->   #include "gc/gc_11_0_0_default.h"
-> -#include "v10_structs.h"
-> +#include "v11_structs.h"
->   #include "mes_v11_api_def.h"
->   
->   MODULE_FIRMWARE("amdgpu/gc_11_0_0_mes.bin");
-> @@ -637,7 +637,7 @@ static int mes_v11_0_allocate_eop_buf(struct amdgpu_device *adev,
->   
->   static int mes_v11_0_mqd_init(struct amdgpu_ring *ring)
->   {
-> -	struct v10_compute_mqd *mqd = ring->mqd_ptr;
-> +	struct v11_compute_mqd *mqd = ring->mqd_ptr;
->   	uint64_t hqd_gpu_addr, wb_gpu_addr, eop_base_addr;
->   	uint32_t tmp;
->   
-> @@ -724,22 +724,22 @@ static int mes_v11_0_mqd_init(struct amdgpu_ring *ring)
->   	mqd->cp_hqd_vmid = 0;
->   	/* activate the queue */
->   	mqd->cp_hqd_active = 1;
-> -	mqd->cp_hqd_persistent_state = regCP_HQD_PERSISTENT_STATE_DEFAULT;
-> +
-> +	tmp = regCP_HQD_PERSISTENT_STATE_DEFAULT;
-> +	tmp = REG_SET_FIELD(tmp, CP_HQD_PERSISTENT_STATE,
-> +			    PRELOAD_SIZE, 0x55);
-> +	mqd->cp_hqd_persistent_state = tmp;
-> +
->   	mqd->cp_hqd_ib_control = regCP_HQD_IB_CONTROL_DEFAULT;
->   	mqd->cp_hqd_iq_timer = regCP_HQD_IQ_TIMER_DEFAULT;
->   	mqd->cp_hqd_quantum = regCP_HQD_QUANTUM_DEFAULT;
->   
-> -	tmp = regCP_HQD_GFX_CONTROL_DEFAULT;
-> -	tmp = REG_SET_FIELD(tmp, CP_HQD_GFX_CONTROL, DB_UPDATED_MSG_EN, 1);
-> -	/* offset: 184 - this is used for CP_HQD_GFX_CONTROL */
-> -	mqd->cp_hqd_suspend_cntl_stack_offset = tmp;
-> -
-
-What was wrong with this?
-
-
-Kind regards,
-
-Paul
-
-
->   	return 0;
->   }
->   
->   static void mes_v11_0_queue_init_register(struct amdgpu_ring *ring)
->   {
-> -	struct v10_compute_mqd *mqd = ring->mqd_ptr;
-> +	struct v11_compute_mqd *mqd = ring->mqd_ptr;
->   	struct amdgpu_device *adev = ring->adev;
->   	uint32_t data = 0;
->   
-> @@ -910,7 +910,7 @@ static int mes_v11_0_kiq_ring_init(struct amdgpu_device *adev)
->   static int mes_v11_0_mqd_sw_init(struct amdgpu_device *adev,
->   				 enum admgpu_mes_pipe pipe)
->   {
-> -	int r, mqd_size = sizeof(struct v10_compute_mqd);
-> +	int r, mqd_size = sizeof(struct v11_compute_mqd);
->   	struct amdgpu_ring *ring;
->   
->   	if (pipe == AMDGPU_MES_KIQ_PIPE)
