@@ -2,68 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 798505225C6
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 May 2022 22:45:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDD2C5225C9
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 May 2022 22:46:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE58310E85A;
-	Tue, 10 May 2022 20:45:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5168010E8BC;
+	Tue, 10 May 2022 20:46:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2079.outbound.protection.outlook.com [40.107.237.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05DCC10E85A
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 May 2022 20:45:54 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2077.outbound.protection.outlook.com [40.107.236.77])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C69510E8BC
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 May 2022 20:46:13 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QyuEJJWVAa4AdjzbrjWfbXPhgKhWGkWMupNvpxNNPC/hEOaBEim6kx71s3mYioOgCZJ/EtfFb7DIlu7B2jimCWlgYGRGie57HWezqDD5MmZ4qy78OP/uMUILbukzCA3m99mTzkFCwNYc+Fd4ZzWuDbc5rcY/agAzJONH4gdHP4vwcmiWIOCsIE6Vq+QdFWsPrJrVEevn/bVOtQaHXi8rdZx0tbWTR7TmbJjwPv1Fj2u9134uFl18kV4p21mkYcbRLbSCGBr4HOrgRRNyGBXsMUhxRtNZ276xHK+6JwbAj+jd1MUDgGCh7EuC4o6uNdlAWH3IpKXts0rb6/ZSt2LdJA==
+ b=PcbvEBgIVkSVY78LbOW+XxMBlziQoMSSBRuokbTD49v3hfQ2RtKqdDKLDKhu5yxt92igk/9e0Sl7htzmOoX6/VL6hMS1wNWeXh1LEREXmhPmzpVQdQ6khj0+6g/kW8mc/7BFQ/0cZRKp4nRBCTvLVMVzKbMeb4UZ0VVmg7SNz5bJ8wcVKmxfUwxR3+pIFTzACj1EUmpCPRPrsG545dCXzNRliJ3hvAymfDSTs8Jmcmh0vL6l2jn+FnknjUI4vrouAp/Ye2vEW5Dk/8QD0/0Q9PFBDXWwG/3UXdNs+Fmrrj/lzm7yB82Cmf0KGRdvfyWJ4U3G7p8AlKUXdn0eNnSqng==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rK+O3cgbz2v7O5fMetdafrvFUlTWphFUGkZc3Azq0JM=;
- b=gSnNwz5zSkrtUrE7o3cqARnoackqy22dduhRjTo65iHBjH49NoTOjWW0oS5yQ0FUCGiRcZH5V2evpLVCK9GD5O+1gmz5hoW4z+5ZRoQIgeQQg8k7dVBeNRhksb2OyorkU7bfx6oSOwZPamt0mg+pdpPmqXSB9YijSyuiNJC88PQAihrEUu4x1sqcN+hh/qh5J5/uPJ58+MUlJITeUlyEZHEWGoCz0Bz/sghwJjmzjm5zvdA5HrpmN7wd2hb+BB+pWL2mnREptpHP4AfZ3emSL1+3VlTPvIl0QT8Gg516kX3juilvLfmljNk9LwZv8w2f2jq6unqKQJVMuebVlybxJw==
+ bh=0fTd0B3/iIjnI5YCAQyrq5DTlyrYShC0ixJJnZWz5NQ=;
+ b=V2CPG8te3KsFrHSFy9drJp8r+OYpNe8FP0fsDtYiMUrWmO9Swm6bqHZMYpZvRGn2caB2FDUVb4JgYFcrbxiy0XRVnfpvO0mB+eWBJMjqgVbPT6nhWj5Kq01rSAnsuLcxhmNfVgp1NhQc0h1S51beJVtweN87u7/QSm2NRUs5pOGb4pHq+ZmVadBCRFr+Slu0/Yr5RFrqDmfPHDLJCEpk8fnmU0/rtdcq/ca2gwnbF6C49Xahi3cAU905CFXfZPGolVxkBLXsRkdccXGxwCjVvVLTHXmR7ofYXdLjgmCHDOTfCTi/qcPSDahf7lsPc54apOJ0oDqEcvmujhZ7bPvYoQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rK+O3cgbz2v7O5fMetdafrvFUlTWphFUGkZc3Azq0JM=;
- b=X35Xz3DMvI2f+DEqGxcge3LLIXllRoqPq60TaXiUaszhsiDhPePxtrBY0nJ/OUHGoyfpTCISCwS3SX7LQosE3VqVn57Z89nwa+iQ+FS2pHPwBTK+GFnKEl3Bt6Y6G+GmkwtXaq9cJ22fVAWai9/Doy8hVM1OJMdGWKfbl2mXM6Q=
-Received: from MW4P222CA0013.NAMP222.PROD.OUTLOOK.COM (2603:10b6:303:114::18)
- by PH0PR12MB5465.namprd12.prod.outlook.com (2603:10b6:510:ec::11)
+ bh=0fTd0B3/iIjnI5YCAQyrq5DTlyrYShC0ixJJnZWz5NQ=;
+ b=nE7f4HzXRNyT47i2jG8KW8NTVovJQqk4FJtz2R3q/ILD6KgSOtlZgM2hia9osfymIwaLdR2tTBVUxMgAxwlWRW4PAINqzr9cRtaEvLZv3OZQRYP/4C3WdWO5fqFOWKtv2ZimRQWeiLWuQR0eslU5s8JbgQ3SzCrIhVoi6p7hl6Q=
+Received: from BN1PR12CA0010.namprd12.prod.outlook.com (2603:10b6:408:e1::15)
+ by MN2PR12MB3869.namprd12.prod.outlook.com (2603:10b6:208:16f::21)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.21; Tue, 10 May
- 2022 20:45:50 +0000
-Received: from CO1NAM11FT036.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:114:cafe::a9) by MW4P222CA0013.outlook.office365.com
- (2603:10b6:303:114::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.24 via Frontend
- Transport; Tue, 10 May 2022 20:45:50 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.23; Tue, 10 May
+ 2022 20:46:10 +0000
+Received: from BN8NAM11FT050.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:e1:cafe::8) by BN1PR12CA0010.outlook.office365.com
+ (2603:10b6:408:e1::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.22 via Frontend
+ Transport; Tue, 10 May 2022 20:46:10 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT036.mail.protection.outlook.com (10.13.174.124) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BN8NAM11FT050.mail.protection.outlook.com (10.13.177.5) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5250.13 via Frontend Transport; Tue, 10 May 2022 20:45:50 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.5250.13 via Frontend Transport; Tue, 10 May 2022 20:46:10 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Tue, 10 May
- 2022 15:45:49 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Tue, 10 May
- 2022 15:45:48 -0500
+ 2022 15:45:53 -0500
 Received: from xiaoT.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.24 via Frontend
- Transport; Tue, 10 May 2022 15:45:43 -0500
+ Transport; Tue, 10 May 2022 15:45:49 -0500
 From: David Zhang <dingchen.zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2 06/19] drm/amd/display: program PSR2 DPCD Configuration
-Date: Tue, 10 May 2022 16:44:55 -0400
-Message-ID: <20220510204508.506089-7-dingchen.zhang@amd.com>
+Subject: [PATCH v2 07/19] drm/amd/display: Passing Y-granularity to dmub fw
+Date: Tue, 10 May 2022 16:44:56 -0400
+Message-ID: <20220510204508.506089-8-dingchen.zhang@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220510204508.506089-1-dingchen.zhang@amd.com>
 References: <20220510204508.506089-1-dingchen.zhang@amd.com>
@@ -72,27 +68,27 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a3f35788-8022-49c6-6e02-08da32c61197
-X-MS-TrafficTypeDiagnostic: PH0PR12MB5465:EE_
-X-Microsoft-Antispam-PRVS: <PH0PR12MB5465C489491F738ED1BE25C68DC99@PH0PR12MB5465.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 10125812-7714-4df2-b16c-08da32c61d3b
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3869:EE_
+X-Microsoft-Antispam-PRVS: <MN2PR12MB3869495AD9E0874106BE3D7A8DC99@MN2PR12MB3869.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5J8JkfRqZoTTvGapSX1EieLDm8g4rR8m8EIqk7CkCmElZEx7EOUdN0c0C4OeGimY5dIpv1x2Hb//Ao8yizdTK9tpv48Yw0sRkRjbfUQVSHQA0PjX8qHrSX5MH/K9EFuxCpg+Ujm2YRT0+OqLs3NRU1kIWsEL9jRvo7/7qB6VGTqNV66QxczIV6i3eV4ZwQTE5qaevCqxrcy/ltIe5po87Pn03575lyv4xEPL9WUK/TSReAj0VjiBMjBWEEmDgGx82nsKAUBZNjULIRVdqG6wUYoM9OnQmMXMeHBqPXlJ22JduNmOhJQ/JOJoEsDitswSTlBYrKwGB8wVTbKKkIv9vmr/YULKTj6UqbMxgc55pdjf74Im32MbH4kixmbyep+4cosgQ6yv5x/rPJerd6XimiN4i/YEr/nroHEUdCunsleYGULs5e5jDSIMsuHsnVs6MB0/PXXoxnqLFm2LwJyNGLk5N19F1bW12coDbv9CM6VlcvcSGZhrY8FCkf8i+24g756V0ojyNQZemt3fbGAXGJXaQZF9/C7opFdAn6p+WKPbIXvjXpIUs6HZMXg/UeZL22wcA/9h4HHJRJAPAojBvOG8g6e3zFlKDGWkUJ+OxvF1cHhXkLq+R9CI6jzd9d9WUpQjdWIJv3ig6FX6U6E/4UQDTHRFo6p/z9QyxBvSiq6QI6/7ALlet1hOV+6p+BJmVOFXAvfWkz0jlKX7oVmMkw==
+X-Microsoft-Antispam-Message-Info: v3f+2u8JD2BQIPKf8SAXkXEZZK7MlOK+3iw+USm9wuV5/Y9IsU1LysRU0yFa22p9T+BJqskdx2ahBjJay3L+4qr44Pa6gF2/YwvE8mdUHeAZB9bESvmAUDQSjWklXFynYJIBpB0oS0bKLOYP4SgguxBZ9UPoEtzVlMHSHtXOXJptnkjcx9UTDczU4RIBFLn4cHWpBCeaiYRohfg3H6lHlh2VcfX1zOjh3m9/kxaYAGPLasZrvmDoHP1V37PwwRDwBvvePc/N7ZaObz3xeNAxsOOws7JB5nEepw+qwkoSY8nO7muIfFjPbT7RGLfFLq/GpuCyROVjEmRrT1KWOCP2lemzsiOC/3SEYo3EIlo/0evAZ79RDQYe7MqQ5thJXJY8l1VgrHtPMdAgB7mobFVwlAI6OZURaRYKvcUjLfZ/VrA2ba4rBr2YAd1CCy4UuBipjBZf2nFqKPLdi7dMkCSnG5WuERlSHa3pubEyX2qIKqVbQueoqcjZiAaM1u/+SohApwhhwKqyVHe8lc8CnxjBAl1HerABKPFtel5xuDzurydSA2KBd9RI5T1pJ4dPn2/WU1KTlrF6YZYE5NXJczoHMhKyd73VfPEpLIn6mpRPVPKqaf9IgYQlbECehpYhqj71dd6O7sJKp8f63JBfwx0vwGBqQqs2aATtVE/yvBzfANwdciRcbD+JeLviwWbz1xIXCbb8zDhIobjl5ZHvccyaHw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(26005)(70586007)(6666004)(426003)(47076005)(70206006)(316002)(508600001)(7696005)(186003)(81166007)(36860700001)(2906002)(40460700003)(4326008)(54906003)(8676002)(6916009)(336012)(82310400005)(86362001)(356005)(2616005)(8936002)(83380400001)(1076003)(36756003)(5660300002)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(2616005)(1076003)(426003)(86362001)(186003)(316002)(4326008)(336012)(82310400005)(26005)(47076005)(40460700003)(5660300002)(36860700001)(8936002)(81166007)(508600001)(36756003)(70206006)(70586007)(2906002)(7696005)(83380400001)(54906003)(356005)(6916009)(6666004)(8676002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 May 2022 20:45:50.4521 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a3f35788-8022-49c6-6e02-08da32c61197
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 May 2022 20:46:10.1086 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 10125812-7714-4df2-b16c-08da32c61d3b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT036.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT050.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB5465
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3869
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,96 +109,77 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 [Why]
-To support PSR2 Source DPCD configuration
+The Y-granularity panel parameter indicate the grid
+pattern granularity in the Y direction for PSRSU.
 
 [How]
-Update the PSR2 Source DPCD settings while the PSR2 enabled
+Send the Y-granularity data by PSR_COPY_SETTINGS dmub command.
 
 Signed-off-by: David Zhang <dingchen.zhang@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_link.c | 23 ++++++++++++++++++-
- .../drm/amd/display/dc/inc/hw/link_encoder.h  | 13 ++++++++++-
- 2 files changed, 34 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c | 4 ++++
+ drivers/gpu/drm/amd/display/dc/dc_types.h     | 8 ++++++++
+ drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c | 6 ++++++
+ 3 files changed, 18 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-index 67ef357e5798..a391a58252bc 100644
+index a391a58252bc..d972dea21b2d 100644
 --- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
 +++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-@@ -3175,6 +3175,7 @@ bool dc_link_setup_psr(struct dc_link *link,
- 	unsigned int panel_inst;
- 	/* updateSinkPsrDpcdConfig*/
- 	union dpcd_psr_configuration psr_configuration;
-+	union dpcd_alpm_configuration alpm_configuration;
- 
- 	psr_context->controllerId = CONTROLLER_ID_UNDEFINED;
- 
-@@ -3200,7 +3201,7 @@ bool dc_link_setup_psr(struct dc_link *link,
- 			psr_config->psr_frame_capture_indication_req;
- 
- 	/* Check for PSR v2*/
--	if (psr_config->psr_version == 0x2) {
-+	if (link->psr_settings.psr_version == DC_PSR_VERSION_SU_1) {
- 		/* For PSR v2 selective update.
- 		 * Indicates whether sink should start capturing
- 		 * immediately following active scan line,
-@@ -3211,6 +3212,14 @@ bool dc_link_setup_psr(struct dc_link *link,
- 		 * IRQ_HPD when CRC mismatch is detected.
- 		 */
- 		psr_configuration.bits.IRQ_HPD_WITH_CRC_ERROR    = 1;
-+		/* For PSR v2, set the bit when the Source device will
-+		 * be enabling PSR2 operation.
-+		 */
-+		psr_configuration.bits.ENABLE_PSR2    = 1;
-+		/* For PSR v2, the Sink device must be able to receive
-+		 * SU region updates early in the frame time.
-+		 */
-+		psr_configuration.bits.EARLY_TRANSPORT_ENABLE    = 1;
+@@ -3239,6 +3239,10 @@ bool dc_link_setup_psr(struct dc_link *link,
+ 			DP_RECEIVER_ALPM_CONFIG,
+ 			&alpm_configuration.raw,
+ 			sizeof(alpm_configuration.raw));
++		psr_context->su_granularity_required =
++			psr_config->su_granularity_required;
++		psr_context->su_y_granularity =
++			psr_config->su_y_granularity;
  	}
  
- 	dm_helpers_dp_write_dpcd(
-@@ -3220,6 +3229,18 @@ bool dc_link_setup_psr(struct dc_link *link,
- 		&psr_configuration.raw,
- 		sizeof(psr_configuration.raw));
- 
-+	if (link->psr_settings.psr_version == DC_PSR_VERSION_SU_1) {
-+		memset(&alpm_configuration, 0, sizeof(alpm_configuration));
-+
-+		alpm_configuration.bits.ENABLE = 1;
-+		dm_helpers_dp_write_dpcd(
-+			link->ctx,
-+			link,
-+			DP_RECEIVER_ALPM_CONFIG,
-+			&alpm_configuration.raw,
-+			sizeof(alpm_configuration.raw));
-+	}
-+
  	psr_context->channel = link->ddc->ddc_pin->hw_info.ddc_channel;
- 	psr_context->transmitterId = link->link_enc->transmitter;
- 	psr_context->engineId = link->link_enc->preferred_engine;
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/link_encoder.h b/drivers/gpu/drm/amd/display/dc/inc/hw/link_encoder.h
-index 2013a70603ae..66132f3cac42 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/link_encoder.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/link_encoder.h
-@@ -85,7 +85,18 @@ union dpcd_psr_configuration {
- 		unsigned char LINE_CAPTURE_INDICATION   : 1;
- 		/* For eDP 1.4, PSR v2*/
- 		unsigned char IRQ_HPD_WITH_CRC_ERROR    : 1;
--		unsigned char RESERVED                  : 2;
-+		unsigned char ENABLE_PSR2               : 1;
-+		/* For eDP 1.5, PSR v2 w/ early transport */
-+		unsigned char EARLY_TRANSPORT_ENABLE    : 1;
-+	} bits;
-+	unsigned char raw;
-+};
-+
-+union dpcd_alpm_configuration {
-+	struct {
-+		unsigned char ENABLE                    : 1;
-+		unsigned char IRQ_HPD_ENABLE            : 1;
-+		unsigned char RESERVED                  : 6;
- 	} bits;
- 	unsigned char raw;
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_types.h b/drivers/gpu/drm/amd/display/dc/dc_types.h
+index 2ba9f528c0fe..d61ea3e2bfbf 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_types.h
+@@ -672,6 +672,10 @@ struct psr_config {
+ 	unsigned int psr_sdp_transmit_line_num_deadline;
+ 	bool allow_smu_optimizations;
+ 	bool allow_multi_disp_optimizations;
++	/* Panel self refresh 2 selective update granularity required */
++	bool su_granularity_required;
++	/* psr2 selective update y granularity capability */
++	uint8_t su_y_granularity;
  };
+ 
+ union dmcu_psr_level {
+@@ -775,6 +779,10 @@ struct psr_context {
+ 	unsigned int frame_delay;
+ 	bool allow_smu_optimizations;
+ 	bool allow_multi_disp_optimizations;
++	/* Panel self refresh 2 selective update granularity required */
++	bool su_granularity_required;
++	/* psr2 selective update y granularity capability */
++	uint8_t su_y_granularity;
+ };
+ 
+ struct colorspace_transform {
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
+index f1411a22cf1e..6883dd5b80d6 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
+@@ -333,6 +333,12 @@ static bool dmub_psr_copy_settings(struct dmub_psr *dmub,
+ 	copy_settings_data->debug.u32All = 0;
+ 	copy_settings_data->debug.bitfields.visual_confirm	= dc->dc->debug.visual_confirm == VISUAL_CONFIRM_PSR;
+ 	copy_settings_data->debug.bitfields.use_hw_lock_mgr		= 1;
++
++	if (psr_context->su_granularity_required == 0)
++		copy_settings_data->su_y_granularity = 0;
++	else
++		copy_settings_data->su_y_granularity = psr_context->su_y_granularity;
++
+ 	copy_settings_data->fec_enable_status = (link->fec_state == dc_link_fec_enabled);
+ 	copy_settings_data->fec_enable_delay_in100us = link->dc->debug.fec_enable_delay_in100us;
+ 	copy_settings_data->cmd_version =  DMUB_CMD_PSR_CONTROL_VERSION_1;
 -- 
 2.25.1
 
