@@ -1,56 +1,113 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FF4B523CA5
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 May 2022 20:36:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89FF6523D15
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 May 2022 21:07:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C4DF11299C;
-	Wed, 11 May 2022 18:36:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABE86112B30;
+	Wed, 11 May 2022 19:07:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com
- [IPv6:2001:4860:4864:20::2c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 923B911299A;
- Wed, 11 May 2022 18:36:35 +0000 (UTC)
-Received: by mail-oa1-x2c.google.com with SMTP id
- 586e51a60fabf-edf9ddb312so3850391fac.8; 
- Wed, 11 May 2022 11:36:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=c24hMS7WpiIOCU2zBlghi9w7iiPETthn8Oys+Y9A4/M=;
- b=RVrvvjyYi6+uwGJshrvP26QBJ/UhS/zOMuVWL2YjmVKpp2xtdtezDiLcExQZmwZHQV
- ZXtEc4GRUn6P5ti1v/sUPlehQqCSa1c7PaCBjcwcoot1lttaoYfHuQ0Mq3CqGhkymJ90
- SCyCD0WPdPWIELtR0H+QJL2DPJ7pymcVe76xHh9JC+qcXmNgHxJ9wMSWPk7bWXMwVuae
- 59oQ5eHqpVgBQrUs8LofWYBlVup3QkNrZ2JddkjsgLaxOIoJnC2goUXoHxrj6PUQPQh+
- 7x2fv+8m1lQmE263riUnFnXz30Fwot93EFqfuM1/C0UsRgygFchQMTFpY6UQ48D2emGE
- vRcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=c24hMS7WpiIOCU2zBlghi9w7iiPETthn8Oys+Y9A4/M=;
- b=njJNvKxbmRC3gJ9ofJt+OLn7WDOA6p2exVqfitdBrHB9/HJ/yZYt+GCNCG1wkdNr4t
- jqy49PRPawTEBJJ49a52FTao4omRYymZ3qIp73IteWayFNjvPpgjMhYWTyfftBVgWt9D
- mccqhn5mE3AjSEnofnkhRD6Qj35YQEF576Sta9F/EdyAVU4V+zJdkTXheyiQzHxKTAYN
- n6gzWqS96uUoxXUkqBhBF37j6Kbl8Ogej3+WKADL+6X14pMcMqjd/TW5eY69XHFfT48x
- Z8ekgG44HHzvee/x8VZNBgJBNj2I0j4ACFihBYJnNybV54CSQmRFQeox+glucsR2QbRB
- Hogg==
-X-Gm-Message-State: AOAM532R583iymricuRLsUuXaE/LikNwSyhB/3mknCeXKTNZjgeK3YLc
- Yi4G3bDwBaTTCTe4jo2dRgtjAWfbMc6w8GFdo7k=
-X-Google-Smtp-Source: ABdhPJxYls/DZkm0AwI7Mcf85JV3K1161l411LCMOeOvx4/neBkQknKQa22bMjyYmKnal6BpYKfScOVBIl1HTjRCRaE=
-X-Received: by 2002:a05:6870:311d:b0:de:9b6c:362b with SMTP id
- v29-20020a056870311d00b000de9b6c362bmr3285781oaa.200.1652294194845; Wed, 11
- May 2022 11:36:34 -0700 (PDT)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2089.outbound.protection.outlook.com [40.107.93.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 840EE112AA8;
+ Wed, 11 May 2022 18:50:15 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=A16rpWhIJbaWfx2EPe4EmWFiXlxYiYyD6yuCdYCEztCdAv/a8YClUpKDyvFO9tMeBEgRAIt36OQRl8NTRZ+4bClf/aepr1ZZwS0fgF2h34d0yMI8WkIJcaDJmxtsKHON8LV7yirDbYExcQ8Hj4MsbWH1o4fEYlMInPbAkrLn+onGd4WciHEP3pY8/yF6Q6/iMw5IJbpWoE17Wjwk+3sylpQOU3ALhu6wcVARTjCsGCySXaWDbCFS9n2KeIN8zhf1SOdMrlrzMR0kGHAvWYGDBnvgKWIUtabi42Qz8Czjsk6URE6Q1OV8ITUBPQmwUUZb+NuEwjEp5RWeYKhHERqImw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1g0FPoddCsx+E8iv8Wi5XQ+yXn1cAKoxCA2KD2pkSIQ=;
+ b=JPwJybf18e9EbTB0f+OXIvIwj8Ob+H3hGzfO1blKjN69LXt2Yhfvq2U/zYlrTXVSQcL0RCyfQ1Q8VrmU95QFuAeg5SP2eSG4iMd/ZQDOG8XyCt/zybyHeTSqkmgPcegyQ1OxLK7HNLnalDggULdPSZuYizMqXu3KR5fyVhA392wsuqilFDm9oSJ4euwrf6fjxGPFQQFTifRcS9guQm5T/t5sDt5T/3keo6EbhbEwilkNNxKwyi5Z8e/arzVIy69P2XmrY1Ir57pis40Nnv+9VZf5rvn1vUY1mHHsbKL9Qd7Rljv/vSAh69YJFQvza2T18MTrK544e7un1UmHnqXAAw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1g0FPoddCsx+E8iv8Wi5XQ+yXn1cAKoxCA2KD2pkSIQ=;
+ b=Xk9jKwnGYLTbEmCCnJHVYxkzzBjB2xQTxn1+KBtUyTh6b0BBxfG2IpWb7t9hiiXT9c08b6PRbeKgaYIyKQSidB4afaz06tYoY+mSBSDOd9oKX7d+gfKfZU2SvgDf25f+ENg9gcSJe7sgLas8IWAWc7kf0RRLJCdZcpweYltGilUbVRm+W0t1dWa30MrQoeBG4mt8NdJJAY2EIBUi9WahwU95jVSqiHnMH85oKmW37Jr+Pcq96sAPjcGcmhk2yNnVzCykVYhVP/04F0zK168lhfWpNfuMRHMpYmCCpeF3xMe7TZgJSQHCSmPWVTa2Wzt2zx5IEL0za2ALiprgIBVgSw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from MN2PR12MB4192.namprd12.prod.outlook.com (2603:10b6:208:1d5::15)
+ by BN8PR12MB3281.namprd12.prod.outlook.com (2603:10b6:408:6e::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.21; Wed, 11 May
+ 2022 18:50:13 +0000
+Received: from MN2PR12MB4192.namprd12.prod.outlook.com
+ ([fe80::ec2d:9167:1b47:2db2]) by MN2PR12MB4192.namprd12.prod.outlook.com
+ ([fe80::ec2d:9167:1b47:2db2%5]) with mapi id 15.20.5250.013; Wed, 11 May 2022
+ 18:50:13 +0000
+Date: Wed, 11 May 2022 15:50:12 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Alex Sierra <alex.sierra@amd.com>
+Subject: Re: [PATCH v1 13/15] mm: handling Non-LRU pages returned by
+ vm_normal_pages
+Message-ID: <20220511185012.GM49344@nvidia.com>
+References: <20220505213438.25064-1-alex.sierra@amd.com>
+ <20220505213438.25064-14-alex.sierra@amd.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220505213438.25064-14-alex.sierra@amd.com>
+X-ClientProxiedBy: BL0PR05CA0029.namprd05.prod.outlook.com
+ (2603:10b6:208:91::39) To MN2PR12MB4192.namprd12.prod.outlook.com
+ (2603:10b6:208:1d5::15)
 MIME-Version: 1.0
-References: <20220511181935.810735-1-lyude@redhat.com>
-In-Reply-To: <20220511181935.810735-1-lyude@redhat.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 11 May 2022 14:36:23 -0400
-Message-ID: <CADnq5_OWH-Bat3OyCmHz6hTE++7hPLXqqMgg2=Nk6HB_Qk61JA@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Add 'modeset' module parameter
-To: Lyude Paul <lyude@redhat.com>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 975e0cb6-1cae-42e3-6680-08da337f14f1
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3281:EE_
+X-Microsoft-Antispam-PRVS: <BN8PR12MB328109CAC779F7493772B311C2C89@BN8PR12MB3281.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: RF1jQ4Bo30T1It63mDp+LGqs5FV+LetTF+lgQSRzmf2ciGGpJvOVfd1dpJNOW41/2CXuh21hnii9FC1r68z+GTUAIwSc34feYKRjbZVQsScC3G4pvSErZLEA23MeC2E7oiQlAXblJwvysdisRr3oUJSO99sqm3cxnp2WFDIVD9AxT6Fm4GqMEwFluKr37eAyD7XjU6nWQRvxuVp9AGhGw85CzGcgkKLyAV4e34zS6y/fH6Tvfbipc3EYbXlz8vGNEy9l6N0lRLwlnWEZtfTzdZx7perRCWOB2p7sY63RyzEshdqzF8+wyfmIHrRFT2jM9yxxqj1XZN/gir+EJdvdtUqXWy31QweiG+tVeFNWQXseN5PWls/5sE++MCHMTRZYsPFOUO95hX8Om0s0bBTuaGn6VvtajBw/IdcaPFWwWEW8JVkOiBsE3w1LuPn7Kcpsyd+qAl4L+bHGXBFhBK7tLUFiKGHg53oguf3CB3+zS3Am9l3hXmqHqsVKKPUQP6NHuy10iA5PJrXqojrM/cvc8A2iAjG9dkWnNKN57Ki6Xvqwphs30i39Hx8uFm/WZXyXvh9MZxYB9/8EZWwuh0P7e2BPDzomKKArqYTlQoeYw1kULeIS+1Oe9OwcUq2HxKA2mXkd0tkQdU5SzjOwpRuUcA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB4192.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(8676002)(4326008)(6916009)(66476007)(316002)(508600001)(6506007)(38100700002)(66556008)(66946007)(6512007)(26005)(4744005)(36756003)(1076003)(33656002)(2906002)(186003)(5660300002)(6486002)(86362001)(7416002)(8936002)(2616005);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?VXeI4TGIR7OlomdUi3o61UcKGiMx/fblucIB5fmF7gqfjdgBmNp78Pa6VjuD?=
+ =?us-ascii?Q?iQH9XiEoSKntOl/f5DHCwh/a3z/zH9sTSr2L3LvDDKRoILPHlW94lwBtP2SX?=
+ =?us-ascii?Q?N/mzJm/H+bt5okXiynUqz966SZlu/IVy8N13F1LnAuhbzMo5N8oBTPH495+8?=
+ =?us-ascii?Q?E6rxeNpW+btooTwRMocWxTgiiuUJlHHaVpt7SOmZw/OXuOWPZM9wJ1SQJlGD?=
+ =?us-ascii?Q?yElu6BFv5uGkQIyaxctTQ2cFSVW7cp4/jtaj/Uk6DfzADvlvpOd6A67CSAGE?=
+ =?us-ascii?Q?aIQ2r57ltUUHKCt3trm9wOWsHZdYKcSWNvYsWeP4v69c8Jao2wpE/V7wpfdZ?=
+ =?us-ascii?Q?l8+6eVLGriK8A0JqDgYCK7FYm/dM1TVE9m8RS/f6LGUUuhvsShcULL9qx4tR?=
+ =?us-ascii?Q?BBZ2CzKiGUhPzjtn50dNb/zL9fwJdEgVsQq9m5HmNM+AslCdjTaKS4I5zOWa?=
+ =?us-ascii?Q?HuX4UFrTOV27OfIK/0AHLAcyXSFLCbN4vaC9azI9v2oOLIxigoWN0Ffa6LVV?=
+ =?us-ascii?Q?8MpTcrGQzkbV6SgHhTnoILqelX+JNbPZnSBui3YfzwvSIerGvPbDAG4z2RU1?=
+ =?us-ascii?Q?piLu1+n/MzfY5uqVsY3J1uHdV6Qbz/6spR2+KGXX4hDSVpNS6ftjPujqrXtS?=
+ =?us-ascii?Q?v3Ef6pZJIoq0yo17hGyebeOyx673fU1lKC6y9MES/ga3+4xG2NB2wTpWzQSj?=
+ =?us-ascii?Q?xtJJdB8q3Mi+g2Rk7MCtTrVK6Sk1CVemO75RDF/jXPoD98DvKiXfA86L3f8v?=
+ =?us-ascii?Q?rR/i/mEeeVPl2fGderxTpv4yEiwd34Tm+vgxpXNu2PSHKOSt7KC3mqaKLDmV?=
+ =?us-ascii?Q?wyT6xJQ8eyfZj+ly4gilD6lIL2pZDRfkCSiXP4HZ537r6nV66hngFsPgAXEJ?=
+ =?us-ascii?Q?iLeDTLAUCHTZQlhOLJ2tvSzZKqiwOxkgZxbS6Fo44JnbBclT/wCHQ7S2zv7C?=
+ =?us-ascii?Q?AcO1XUOV9SZRJzbWK2Tv0Zx9JYPjKOl6B25Ufis7n7gK8cXz3KY4DJP4dJaP?=
+ =?us-ascii?Q?6C7RPReWiZMkRrk5l1aEPBN92JOWDYfrMNgKRZDsJIV14ZatVrmhvp4l9Yfo?=
+ =?us-ascii?Q?2Hawu9uU3RMz1C0P+YHBeykYaUCzFwPM/YLp0plKswhCT/wykiW17qkVOQNu?=
+ =?us-ascii?Q?bFLP04TvSmTMoKY5rcJPYLjqZH8Fw23Vds/w1i8MBhrSYLzBv/nOnDQaTzXb?=
+ =?us-ascii?Q?XXSZ2jqfOh/bQjswRduA1XUfjPU8Gf2k8uaxBZk58BEb0hCv63yl1Ez7jpjv?=
+ =?us-ascii?Q?5bw9PyFdMrUKnWxGn4lsqXKQjKmxmAFmVrZtCsnDxGWn7IstdFBIAgvPDc1k?=
+ =?us-ascii?Q?KB20uSG2N9Xr3AOCd6GDYiH6TiefGBrVYs9s+Ep+pINyedUYOY0el3ndtk7e?=
+ =?us-ascii?Q?p6fbuPixtsyeT1GYGOIpMyAb/l6M+MVgAaTZHEz9xPou6FQ5N4fisxGpCshM?=
+ =?us-ascii?Q?fCqVWmbd6KVJjiccJLGzZeid9TKMZvAbSqhDILMSh3Phk4ZPCtajtd4QgLFt?=
+ =?us-ascii?Q?utEL1JqYFSwuwb0HKRo0vJQEhG/zmMbaOY7wQMna2LNNA7+iN38WClr4TTPX?=
+ =?us-ascii?Q?A27lsTopsLpVfaVMr2bJLnipGxm6SDAKbCKdgOyf6dccEuc7V/wpAEvXmauj?=
+ =?us-ascii?Q?vk2aYk45pXxKkRIiPCmuNIQXCJRbCq4f4XuTCbOA90GFSw5XI5zc5+aG8CZw?=
+ =?us-ascii?Q?W5hUAoMXK1XwnBAxFQ0tp3x3SK8W/NkJYktic7Dam46q3rfntgqvATw66hNu?=
+ =?us-ascii?Q?IqMxZ8j9zA=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 975e0cb6-1cae-42e3-6680-08da337f14f1
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4192.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2022 18:50:13.3136 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iSzZ/Sju3P7QEIdvF9dnGCNImeuiNe/1R7vKVUcPHkRhwZlvo4+fTw4Q1R3SjIBP
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3281
+X-Mailman-Approved-At: Wed, 11 May 2022 19:07:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,79 +119,34 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- David Airlie <airlied@linux.ie>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- open list <linux-kernel@vger.kernel.org>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- Solomon Chiu <solomon.chiu@amd.com>,
- Kai-Heng Feng <kai.heng.feng@canonical.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>, Evan Quan <evan.quan@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>
+Cc: rcampbell@nvidia.com, willy@infradead.org, david@redhat.com,
+ Felix.Kuehling@amd.com, apopple@nvidia.com, amd-gfx@lists.freedesktop.org,
+ linux-xfs@vger.kernel.org, linux-mm@kvack.org, jglisse@redhat.com,
+ dri-devel@lists.freedesktop.org, akpm@linux-foundation.org,
+ linux-ext4@vger.kernel.org, hch@lst.de
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 11, 2022 at 2:20 PM Lyude Paul <lyude@redhat.com> wrote:
->
-> Many DRM drivers feature a 'modeset' argument, which can be used to
-> enable/disable the entire driver (as opposed to passing nomodeset to the
-> kernel, which would disable modesetting globally and make it difficult to
-> load amdgpu afterwards). Apparently amdgpu is actually missing this
-> however, so let's add it!
+On Thu, May 05, 2022 at 04:34:36PM -0500, Alex Sierra wrote:
 
-You can already do that by passing modprobe.blacklist=amdgpu on the
-kernel command line.  I don't think we need another option to do that.
-
-
->
-> Keep in mind that this currently just lets one enable or disable amdgpu, I
-> haven't bothered adding a headless mode like nouveau has - however I'm sure
-> someone else can add this if needed.
-
-You can do this as well by passing an IP block mask which disables the
-display IP, or media IP, etc.
-
-Alex
-
->
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> index ebd37fb19cdb..24e6fb4517cc 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> @@ -872,6 +872,15 @@ MODULE_PARM_DESC(smu_pptable_id,
->         "specify pptable id to be used (-1 = auto(default) value, 0 = use pptable from vbios, > 0 = soft pptable id)");
->  module_param_named(smu_pptable_id, amdgpu_smu_pptable_id, int, 0444);
->
-> +/**
-> + * DOC: modeset (int)
-> + * Used to enable/disable modesetting for amdgpu exclusively.
+> diff --git a/mm/memory.c b/mm/memory.c
+> index 76e3af9639d9..892c4cc54dc2 100644
+> +++ b/mm/memory.c
+> @@ -621,6 +621,13 @@ struct page *vm_normal_page(struct vm_area_struct *vma, unsigned long addr,
+>  		if (is_zero_pfn(pfn))
+>  			return NULL;
+>  		if (pte_devmap(pte))
+> +/*
+> + * NOTE: Technically this should goto check_pfn label. However, page->_mapcount
+> + * is never incremented for device pages that are mmap through DAX mechanism
+> + * using pmem driver mounted into ext4 filesystem. When these pages are unmap,
+> + * zap_pte_range is called and vm_normal_page return a valid page with
+> + * page_mapcount() = 0, before page_remove_rmap is called.
 > + */
-> +bool amdgpu_enable_modeset = true;
-> +MODULE_PARM_DESC(modeset,
-> +                "Enable or disable display driver (1 = on (default), 0 = off");
-> +module_param_named(modeset, amdgpu_enable_modeset, bool, 0444);
-> +
->  /* These devices are not supported by amdgpu.
->   * They are supported by the mach64, r128, radeon drivers
->   */
-> @@ -2003,6 +2012,11 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
->         bool is_fw_fb;
->         resource_size_t base, size;
->
-> +       if (!amdgpu_enable_modeset) {
-> +               DRM_INFO("modeset=0 passed to amdgpu, driver will not be enabled\n");
-> +               return -ENODEV;
-> +       }
-> +
->         /* skip devices which are owned by radeon */
->         for (i = 0; i < ARRAY_SIZE(amdgpu_unsupported_pciidlist); i++) {
->                 if (amdgpu_unsupported_pciidlist[i] == pdev->device)
-> --
-> 2.35.1
->
+>  			return NULL;
+
+? Where does this series cause device coherent to be returned?
+
+Wasn't the plan to not set pte_devmap() ?
+
+Jason
