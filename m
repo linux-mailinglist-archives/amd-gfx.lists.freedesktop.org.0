@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C102D5259F6
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 May 2022 05:16:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C7735259F4
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 May 2022 05:16:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC15C10EED5;
-	Fri, 13 May 2022 03:16:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECF2B10ED53;
+	Fri, 13 May 2022 03:15:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2064.outbound.protection.outlook.com [40.107.243.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0735110E791
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 May 2022 03:15:59 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2069.outbound.protection.outlook.com [40.107.236.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C70F110E791
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 May 2022 03:15:56 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I4LhMmT32WgS/1J75k3ZbL+sNFlxYoIHEDbL/94lSQgpePxJVLu63zoApbRmAy7bVXjZSKIwwsP3IKFQddvE4vyqya+4GSXgRPUyIm5gpNphYgHwXc9TMdlRKhg3vEJQsCcaDREHg2cZSBVosqF3JcZrtOjDub7qwYj1J+E2L2/l/63PfKr+T/c3V6IF6Wp4BJOzmjvykyWL8Yz74RFkcht188pLMQBNqtz4VZUMWDbzxEFQ1ZEIeik1ZmTSP6h0VmfxcVG/DG7D8/1Hcalf0xTCY7EWod4XuC3BODVPSW33LPNQp6GXKED8NZh1A1JuzZGkYRDoTK2Dauaa7k2d+w==
+ b=d6jLX9brfvHARylpHLyprZvyZiM9Y3HELHOpui9yU6H9oyq0OAYrRvwxYLu4M5obn2qLG9uXDqZvz0HZvdkXifvS7QchiPyxC1E1TQq3l6Jv66oJklRI0rRVQuUZgRB6GF/+/rjkLmRm1K7m5T9x1PJ3b23xAZExqinB5qG7qACt6XvI7cg/6Jv7R2ucHU/gK6CZpuNQmLlympbSSgoSmmTQfzb7YJOtkqSCKpHi4ptU7dCLRe8oTXQ25YjVan7Hnz8cgdGsOoCqF7xujvnP/b8mkqATwm7RDAsIEh4cvPsjxRKsIs/G1NQ3Yo6VkTVW1wtP0MswJAyFVE7qVyVKdw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=foZblIjKlFB+19FmOaSMD/YpP9iqx0+nirUSwXjBWrs=;
- b=FdsVUEmGy/PePrV3En9myzN+278e7IA61o4e44l6M/0ba689RCkRrYIVX1I5Cjek1soXyA1fertrkBd/H5UOnmRN60EwQ1EpsTrLjANi//QMnEaDPhsmLreM2VJzp+r89UIlVkuV7H5MAWrwCyQ31wU1/vqsngvF+jY3I3GbY8TGghhpGdBSGhLC3W/6adhXMO4zH1LvUmq8/9qrp83tmMjLqYRHd2pcFaGHADmaaHvDzQC7RUcc3sNRiarcC/Q9k/bD3/AIDODWRWXHRBlmpaA5gPXV8st2iyPLCEAQyZGn8xZa6tXeSg2NjGO+QnRk9PYpLh6ISfGpk4zKrYHrWQ==
+ bh=D4K7Y9girsdrowe0n4dR42ju7/93UwtbYjDqZdogTv8=;
+ b=QLLWU2bX8oozMJwuoMtu8cnwkeUZkbNBVzhB1UxCvOqgbzda0OTofj1EyRXHNYg7PPMhQBqG/a258uJEyOal5qy+dhXd2nuuTwSxs2ViwZyv7p4uS97+sndWhVfEJoX8lbBsRxx7P4IPOEXO+b5UmxfNNxqxcJpeb1BxETRowDxnUdhRtL1UgKpfzKdHAAXg8Akn86kjcgo6o1ftC0XBn1c1cvHwkJ2YMfqSoAG7mG41VfzYd12vUhuN0CZpMIq4NzeyT4QD+O/0YBCN3Ro5d9zkB8CXshqC7x3+E+PDp0zU0mujlrT7e8B0QRquQxQt3nzVTjwSSnlKBzaec5Ud9Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=foZblIjKlFB+19FmOaSMD/YpP9iqx0+nirUSwXjBWrs=;
- b=VvbNwbG1U3CPOwtBHdTLV9R+5uJLmq2XxVkCrBkhtXJ7u78nA5pV1hSS2juSWRWkcjlyzoW8gRVzRD3HYOm1ewBmApXeHMwTI4/wXMK6m+7+YSDEBfuOZaoNxBwz9D9zOfW+86Yd+r9lpmQRHFBZMpcNumDeBrp4/qjoWkZ1Rj8=
-Received: from MW3PR05CA0012.namprd05.prod.outlook.com (2603:10b6:303:2b::17)
- by BYAPR12MB4631.namprd12.prod.outlook.com (2603:10b6:a03:10d::24)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.14; Fri, 13 May
- 2022 03:15:51 +0000
+ bh=D4K7Y9girsdrowe0n4dR42ju7/93UwtbYjDqZdogTv8=;
+ b=bs3ROM/0k55U3ljTyUQJtAsdHVBZgJPeZ6AoWpmpHUw3XqSGCnY67dKtrQ73jzwyIp9Jo+B9yoqlFhRW/B8NrnJmlpG+NbRlMS5xQgRlUIzDzT/+LT35HCj/KfIPhvCvDfqBUfHuzScjmBXBsNfPuoHONzUQnbNMqKFmInYy4qA=
+Received: from MW3PR05CA0015.namprd05.prod.outlook.com (2603:10b6:303:2b::20)
+ by DM8PR12MB5494.namprd12.prod.outlook.com (2603:10b6:8:24::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5250.14; Fri, 13 May 2022 03:15:52 +0000
 Received: from CO1NAM11FT057.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:2b:cafe::97) by MW3PR05CA0012.outlook.office365.com
- (2603:10b6:303:2b::17) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:303:2b:cafe::d5) by MW3PR05CA0015.outlook.office365.com
+ (2603:10b6:303:2b::20) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.5 via Frontend
- Transport; Fri, 13 May 2022 03:15:51 +0000
+ Transport; Fri, 13 May 2022 03:15:52 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CO1NAM11FT057.mail.protection.outlook.com (10.13.174.205) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5250.13 via Frontend Transport; Fri, 13 May 2022 03:15:51 +0000
+ 15.20.5250.13 via Frontend Transport; Fri, 13 May 2022 03:15:52 +0000
 Received: from dapowell-ubuntu-200400-1.amd.com (10.180.168.240) by
  SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Thu, 12 May 2022 22:15:30 -0500
+ 15.1.2375.24; Thu, 12 May 2022 22:15:31 -0500
 From: Darren Powell <darren.powell@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v1 3/4] amdgpu/pm: Replace print_clock_levels with
- emit_clock_levels for aldebaran
-Date: Thu, 12 May 2022 23:15:05 -0400
-Message-ID: <20220513031506.52099-3-darren.powell@amd.com>
+Subject: [PATCH v1 4/4] amdgpu/pm: Optimize aldebaran_emit_clk_levels
+Date: Thu, 12 May 2022 23:15:06 -0400
+Message-ID: <20220513031506.52099-4-darren.powell@amd.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220513031506.52099-1-darren.powell@amd.com>
 References: <20220513031506.52099-1-darren.powell@amd.com>
@@ -69,27 +68,27 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 81ee41d7-e851-4c85-0c10-08da348ee273
-X-MS-TrafficTypeDiagnostic: BYAPR12MB4631:EE_
-X-Microsoft-Antispam-PRVS: <BYAPR12MB4631A090E9CF5050F1B965BFF0CA9@BYAPR12MB4631.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 2f1e776a-f4b9-4440-2ad8-08da348ee2f6
+X-MS-TrafficTypeDiagnostic: DM8PR12MB5494:EE_
+X-Microsoft-Antispam-PRVS: <DM8PR12MB549476FF015ED9059C325F9CF0CA9@DM8PR12MB5494.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Lzrt0W6xXNLlEw2OXDFPdL7DWY94llVAAe3d8MI4zFocdi1azgsHA5T97KpHL0q7DPvrBW2FwERjvwirCYZjcRGGcjJUmx2rqwjFj+Y6dlawOi6tfc4fhaRrp4pHRbTXf9z/ugRGlFs/qrPvfkEuijlcMIx9J5wqUDnC97sg2t1YtGzBKJizSQxaJx2jTsKV2DXb3buKKYLeIEOXyQrWsYtMhkQu2FpKlILN94sCA/pI4b5JiWjG3efGL7KGQqV9GxK8qGgIx64GMl+UuiGRipB/eSE9MrBAinrVIWqSiBI2xSYAwGlqDu2qmQ1dhr66GLPcPJjamPDTcbme2gC4kbrGFg0Prqi4oW8DlaSAvntYdD7RDw41f0mjggnonaM3PXZUFjBiMqwNMNm6lejSmj+qTJEq7mkKGgSHDTVAhZJU7MKf65oCHDrkA/VDa3tKjNVSLvDhEzHZops6TCTM2JgCLiMxHefkeCBKeQReYfRH8x6qesIJGvwhp+kCa2DpZk4SLzWeQI6ewmNn/c/eOvM/ZgMJ0yuW3tnWAX+k7DgeXqrmwv4mWuXUnkM2F8j7aRF+BnwZFALCIGGoCw/lkzi5rS2lWucD1oLz8k0hUS7AdytTvG0BOBJ4P1kVBUUnzqtzSzc61YQypaWRWVEAZCSGHo//9p9uLT38EzSH+4tQQi3vRE1W3FeclT+qibixI/0LCm/Ix6JMjKbdU19ekA==
+X-Microsoft-Antispam-Message-Info: WyL7gqWDi65BQVDBA2H+ldKjix3bLdJ29wq1juVvIhVejEjqfN05zQ/2pV9f6u1BjMa6MUKkxpMta9nWJ5fFnYITI013RvB43jSNnGDwsCbxpLHf8vSJHbokpupGmvH739wb/P4kfTDB5XxAJE7+QdgUqFQq1S2saMf7YmDtVZclLgDpKOvKGf5DM6DA/APk/83KBlDMVgSg66g+lpGKxQKX1Gv8UaNHgP/bab3sHBANsvM44WWNxUNSdk2ZEiDN7xf1QxgGXV+dh5CAByGarzK6OHriws/qSOwA4+EiIjS2QY/6UFfNPTjWBHUD+VnyWj7kCZ1bsmFZy+xKH2o20GrFbiTgysku3PA6AtULQA2BRJgRkoS+ASwHSJ4E79jK9aMfQmpkJ7jjqll8zEIOn39e8oQtMFTjBaVFPkXwZ3ILpqF2wRVn4BOkt2XYzs8KGTrvzkWlxeXoamHPl7k+OrNXHKg78NPwzi6vkYP1arftx4F4kRP5SzBOgBW6Zcz1TFyycxi9uycs91Hm2nPR0m9Anah/UFEnVU5kc+IVLS2BfFn28wg3kJUccIynQq+jp3al+IoyJBoIm2WCbjChDf5DzsfQSSdJZHrHfW/hWKwhUFQcKPiN2N/bkv1g121yvchZGeogt2RUbWnNARjq//rpC6K+e/ir97dZQjGPYJso3V5JNIc65Q3N72u9GhSLBfsDk8UTAWOSuKCWCu9FlQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(6666004)(508600001)(6916009)(316002)(81166007)(36860700001)(1076003)(44832011)(2906002)(16526019)(5660300002)(8936002)(426003)(336012)(47076005)(2616005)(36756003)(186003)(70586007)(82310400005)(70206006)(8676002)(4326008)(7696005)(86362001)(40460700003)(54906003)(356005)(26005)(83380400001)(36900700001);
+ SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(83380400001)(5660300002)(508600001)(47076005)(186003)(44832011)(7696005)(40460700003)(356005)(16526019)(6666004)(336012)(426003)(2906002)(8936002)(2616005)(316002)(82310400005)(36860700001)(6916009)(54906003)(70586007)(70206006)(4326008)(86362001)(1076003)(8676002)(36756003)(81166007)(26005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2022 03:15:51.3662 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 81ee41d7-e851-4c85-0c10-08da348ee273
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2022 03:15:52.2255 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2f1e776a-f4b9-4440-2ad8-08da348ee2f6
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT057.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB4631
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR12MB5494
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,235 +106,320 @@ Cc: kevin1.wang@amd.com, kenneth.feng@amd.com, lijo.lazar@amd.com, Darren
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Replace print_clock_levels with emit_clock_levels for aldebaran
-  * replace .print_clk_levels with .emit_clk_levels in aldebaran_ppt_funcs
-  * added extra parameter int *offset
-  * removed var size, uses arg *offset instead
-  * removed call to smu_cmn_get_sysfs_buf
-  * errors are returned to caller
-  * returns 0 on success
-additional incidental changes
-  * changed type of vars i, now to remove comparing mismatch types
-  * renamed var s/now/cur_value/
-  * switch statement default now returns -EINVAL
-  * RAS Recovery returns -EBUSY
+aldebaran_get_clk_table cannot fail so convert to void function
+aldebaran_freqs_in_same_level now returns bool
+aldebaran_emit_clk_levels optimized:
+   split into two switch statements to gather vars, then use common output
+   removed impossible error messages for failure of get_clk_table
+   reduce size of string literals by creating static string var
+   changed unsafe loop iterator from single_dpm_table->count to clocks.num_levels
+       in case MAX_DPM_LEVELS > PP_MAX_CLOCK_LEVELS in future code
+   added clock_mhz to remove double divide by 1000
+   collapse duplicate case statements in second switch statement
+   simplified code to output detect frequency level match to current level
 
-Based on
-  commit aa93bbdd1492 ("amdgpu/pm: Implement emit_clk_levels for navi10")
+== Test ==
+LOGFILE=aldebaran.test.log
+AMDGPU_PCI_ADDR=`lspci -nn | grep "VGA\|Display" | cut -d " " -f 1`
+AMDGPU_HWMON=`ls -la /sys/class/hwmon | grep $AMDGPU_PCI_ADDR | awk '{print $9}'`
+HWMON_DIR=/sys/class/hwmon/${AMDGPU_HWMON}
+
+lspci -nn | grep "VGA\|Display"  > $LOGFILE
+FILES="pp_dpm_sclk
+pp_dpm_mclk
+pp_dpm_pcie
+pp_dpm_socclk
+pp_dpm_fclk
+pp_dpm_vclk
+pp_dpm_dclk "
+
+for f in $FILES
+do
+  echo === $f === >> $LOGFILE
+  cat $HWMON_DIR/device/$f >> $LOGFILE
+done
+cat $LOGFILE
 
 Signed-off-by: Darren Powell <darren.powell@amd.com>
 ---
- .../drm/amd/pm/swsmu/smu13/aldebaran_ppt.c    | 66 +++++++++----------
- 1 file changed, 32 insertions(+), 34 deletions(-)
+ .../drm/amd/pm/swsmu/smu13/aldebaran_ppt.c    | 173 +++++++-----------
+ 1 file changed, 62 insertions(+), 111 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
-index 38af648cb857..e593878bc173 100644
+index e593878bc173..23a87bfb4429 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
-@@ -729,25 +729,22 @@ static int aldebaran_get_current_clk_freq_by_table(struct smu_context *smu,
- 					      value);
+@@ -545,9 +545,9 @@ static int aldebaran_populate_umd_state_clk(struct smu_context *smu)
+ 	return 0;
  }
  
--static int aldebaran_print_clk_levels(struct smu_context *smu,
--				      enum smu_clk_type type, char *buf)
-+static int aldebaran_emit_clk_levels(struct smu_context *smu,
-+				     enum smu_clk_type type, char *buf, int *offset)
+-static int aldebaran_get_clk_table(struct smu_context *smu,
+-				   struct pp_clock_levels_with_latency *clocks,
+-				   struct smu_13_0_dpm_table *dpm_table)
++static void aldebaran_get_clk_table(struct smu_context *smu,
++				    struct pp_clock_levels_with_latency *clocks,
++				    struct smu_13_0_dpm_table *dpm_table)
  {
--	int i, now, size = 0;
- 	int ret = 0;
- 	struct smu_umd_pstate_table *pstate_table = &smu->pstate_table;
- 	struct pp_clock_levels_with_latency clocks;
+ 	int i, count;
+ 
+@@ -560,11 +560,11 @@ static int aldebaran_get_clk_table(struct smu_context *smu,
+ 		clocks->data[i].latency_in_us = 0;
+ 	}
+ 
+-	return 0;
++	return;
+ }
+ 
+-static int aldebaran_freqs_in_same_level(int32_t frequency1,
+-					 int32_t frequency2)
++static bool aldebaran_freqs_in_same_level(int32_t frequency1,
++					  int32_t frequency2)
+ {
+ 	return (abs(frequency1 - frequency2) <= EPSILON);
+ }
+@@ -738,9 +738,12 @@ static int aldebaran_emit_clk_levels(struct smu_context *smu,
  	struct smu_13_0_dpm_table *single_dpm_table;
  	struct smu_dpm_context *smu_dpm = &smu->smu_dpm;
  	struct smu_13_0_dpm_context *dpm_context = NULL;
--	uint32_t display_levels;
-+	uint32_t i, display_levels;
+-	uint32_t i, display_levels;
++	uint32_t i, cur_value = 0;
  	uint32_t freq_values[3] = {0};
--	uint32_t min_clk, max_clk;
--
--	smu_cmn_get_sysfs_buf(&buf, &size);
-+	uint32_t min_clk, max_clk, cur_value = 0;
+-	uint32_t min_clk, max_clk, cur_value = 0;
++	uint32_t min_clk, max_clk, display_levels;
++	bool freq_match;
++	unsigned int clock_mhz;
++	static const char attempt_string[] = "Attempt to get current";
  
  	if (amdgpu_ras_intr_triggered()) {
--		size += sysfs_emit_at(buf, size, "unavailable\n");
--		return size;
-+		*offset += sysfs_emit_at(buf, *offset, "unavailable\n");
-+		return -EBUSY;
- 	}
- 
+ 		*offset += sysfs_emit_at(buf, *offset, "unavailable\n");
+@@ -750,23 +753,18 @@ static int aldebaran_emit_clk_levels(struct smu_context *smu,
  	dpm_context = smu_dpm->dpm_context;
-@@ -755,10 +752,10 @@ static int aldebaran_print_clk_levels(struct smu_context *smu,
- 	switch (type) {
  
+ 	switch (type) {
+-
  	case SMU_OD_SCLK:
--		size += sysfs_emit_at(buf, size, "%s:\n", "GFXCLK");
-+		*offset += sysfs_emit_at(buf, *offset, "%s:\n", "GFXCLK");
+ 		*offset += sysfs_emit_at(buf, *offset, "%s:\n", "GFXCLK");
  		fallthrough;
  	case SMU_SCLK:
--		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_GFXCLK, &now);
-+		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_GFXCLK, &cur_value);
+ 		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_GFXCLK, &cur_value);
  		if (ret) {
- 			dev_err(smu->adev->dev, "Attempt to get current gfx clk Failed!");
+-			dev_err(smu->adev->dev, "Attempt to get current gfx clk Failed!");
++			dev_err(smu->adev->dev, "%s gfx clk Failed!", attempt_string);
  			return ret;
-@@ -780,10 +777,10 @@ static int aldebaran_print_clk_levels(struct smu_context *smu,
- 		freq_values[1] = max_clk;
+ 		}
  
- 		/* fine-grained dpm has only 2 levels */
--		if (now > min_clk && now < max_clk) {
-+		if (cur_value > min_clk && cur_value < max_clk) {
- 			display_levels = clocks.num_levels + 1;
+ 		single_dpm_table = &(dpm_context->dpm_tables.gfx_table);
+-		ret = aldebaran_get_clk_table(smu, &clocks, single_dpm_table);
+-		if (ret) {
+-			dev_err(smu->adev->dev, "Attempt to get gfx clk levels Failed!");
+-			return ret;
+-		}
++		aldebaran_get_clk_table(smu, &clocks, single_dpm_table);
+ 
+ 		display_levels = clocks.num_levels;
+ 
+@@ -782,152 +780,105 @@ static int aldebaran_emit_clk_levels(struct smu_context *smu,
  			freq_values[2] = max_clk;
--			freq_values[1] = now;
-+			freq_values[1] = cur_value;
+ 			freq_values[1] = cur_value;
  		}
- 
- 		/*
-@@ -792,27 +789,27 @@ static int aldebaran_print_clk_levels(struct smu_context *smu,
- 		 */
- 		if (display_levels == clocks.num_levels) {
- 			for (i = 0; i < clocks.num_levels; i++)
--				size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n", i,
-+				*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n", i,
- 					freq_values[i],
- 					(clocks.num_levels == 1) ?
- 						"*" :
- 						(aldebaran_freqs_in_same_level(
--							 freq_values[i], now) ?
-+							 freq_values[i], cur_value) ?
- 							 "*" :
- 							 ""));
- 		} else {
- 			for (i = 0; i < display_levels; i++)
--				size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n", i,
-+				*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n", i,
- 						freq_values[i], i == 1 ? "*" : "");
- 		}
- 
+-
+-		/*
+-		 * For DPM disabled case, there will be only one clock level.
+-		 * And it's safe to assume that is always the current clock.
+-		 */
+-		if (display_levels == clocks.num_levels) {
+-			for (i = 0; i < clocks.num_levels; i++)
+-				*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n", i,
+-					freq_values[i],
+-					(clocks.num_levels == 1) ?
+-						"*" :
+-						(aldebaran_freqs_in_same_level(
+-							 freq_values[i], cur_value) ?
+-							 "*" :
+-							 ""));
+-		} else {
+-			for (i = 0; i < display_levels; i++)
+-				*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n", i,
+-						freq_values[i], i == 1 ? "*" : "");
+-		}
+-
  		break;
- 
+-
  	case SMU_OD_MCLK:
--		size += sysfs_emit_at(buf, size, "%s:\n", "MCLK");
-+		*offset += sysfs_emit_at(buf, *offset, "%s:\n", "MCLK");
+ 		*offset += sysfs_emit_at(buf, *offset, "%s:\n", "MCLK");
  		fallthrough;
  	case SMU_MCLK:
--		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_UCLK, &now);
-+		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_UCLK, &cur_value);
+ 		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_UCLK, &cur_value);
  		if (ret) {
- 			dev_err(smu->adev->dev, "Attempt to get current mclk Failed!");
+-			dev_err(smu->adev->dev, "Attempt to get current mclk Failed!");
++			dev_err(smu->adev->dev, "%s mclk Failed!", attempt_string);
  			return ret;
-@@ -826,16 +823,16 @@ static int aldebaran_print_clk_levels(struct smu_context *smu,
  		}
  
- 		for (i = 0; i < clocks.num_levels; i++)
--			size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n",
-+			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
- 					i, clocks.data[i].clocks_in_khz / 1000,
- 					(clocks.num_levels == 1) ? "*" :
- 					(aldebaran_freqs_in_same_level(
- 								       clocks.data[i].clocks_in_khz / 1000,
--								       now) ? "*" : ""));
-+								       cur_value) ? "*" : ""));
+ 		single_dpm_table = &(dpm_context->dpm_tables.uclk_table);
+-		ret = aldebaran_get_clk_table(smu, &clocks, single_dpm_table);
+-		if (ret) {
+-			dev_err(smu->adev->dev, "Attempt to get memory clk levels Failed!");
+-			return ret;
+-		}
+-
+-		for (i = 0; i < clocks.num_levels; i++)
+-			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
+-					i, clocks.data[i].clocks_in_khz / 1000,
+-					(clocks.num_levels == 1) ? "*" :
+-					(aldebaran_freqs_in_same_level(
+-								       clocks.data[i].clocks_in_khz / 1000,
+-								       cur_value) ? "*" : ""));
++		aldebaran_get_clk_table(smu, &clocks, single_dpm_table);
  		break;
- 
+-
  	case SMU_SOCCLK:
--		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_SOCCLK, &now);
-+		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_SOCCLK, &cur_value);
+ 		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_SOCCLK, &cur_value);
  		if (ret) {
- 			dev_err(smu->adev->dev, "Attempt to get current socclk Failed!");
+-			dev_err(smu->adev->dev, "Attempt to get current socclk Failed!");
++			dev_err(smu->adev->dev, "%s socclk Failed!", attempt_string);
  			return ret;
-@@ -849,16 +846,16 @@ static int aldebaran_print_clk_levels(struct smu_context *smu,
  		}
  
- 		for (i = 0; i < clocks.num_levels; i++)
--			size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n",
-+			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
- 					i, clocks.data[i].clocks_in_khz / 1000,
- 					(clocks.num_levels == 1) ? "*" :
- 					(aldebaran_freqs_in_same_level(
- 								       clocks.data[i].clocks_in_khz / 1000,
--								       now) ? "*" : ""));
-+								       cur_value) ? "*" : ""));
+ 		single_dpm_table = &(dpm_context->dpm_tables.soc_table);
+-		ret = aldebaran_get_clk_table(smu, &clocks, single_dpm_table);
+-		if (ret) {
+-			dev_err(smu->adev->dev, "Attempt to get socclk levels Failed!");
+-			return ret;
+-		}
+-
+-		for (i = 0; i < clocks.num_levels; i++)
+-			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
+-					i, clocks.data[i].clocks_in_khz / 1000,
+-					(clocks.num_levels == 1) ? "*" :
+-					(aldebaran_freqs_in_same_level(
+-								       clocks.data[i].clocks_in_khz / 1000,
+-								       cur_value) ? "*" : ""));
++		aldebaran_get_clk_table(smu, &clocks, single_dpm_table);
  		break;
- 
+-
  	case SMU_FCLK:
--		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_FCLK, &now);
-+		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_FCLK, &cur_value);
+ 		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_FCLK, &cur_value);
  		if (ret) {
- 			dev_err(smu->adev->dev, "Attempt to get current fclk Failed!");
+-			dev_err(smu->adev->dev, "Attempt to get current fclk Failed!");
++			dev_err(smu->adev->dev, "%s fclk Failed!", attempt_string);
  			return ret;
-@@ -872,16 +869,16 @@ static int aldebaran_print_clk_levels(struct smu_context *smu,
  		}
  
- 		for (i = 0; i < single_dpm_table->count; i++)
--			size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n",
-+			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
- 					i, single_dpm_table->dpm_levels[i].value,
- 					(clocks.num_levels == 1) ? "*" :
- 					(aldebaran_freqs_in_same_level(
- 								       clocks.data[i].clocks_in_khz / 1000,
--								       now) ? "*" : ""));
-+								       cur_value) ? "*" : ""));
+ 		single_dpm_table = &(dpm_context->dpm_tables.fclk_table);
+-		ret = aldebaran_get_clk_table(smu, &clocks, single_dpm_table);
+-		if (ret) {
+-			dev_err(smu->adev->dev, "Attempt to get fclk levels Failed!");
+-			return ret;
+-		}
+-
+-		for (i = 0; i < single_dpm_table->count; i++)
+-			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
+-					i, single_dpm_table->dpm_levels[i].value,
+-					(clocks.num_levels == 1) ? "*" :
+-					(aldebaran_freqs_in_same_level(
+-								       clocks.data[i].clocks_in_khz / 1000,
+-								       cur_value) ? "*" : ""));
++		aldebaran_get_clk_table(smu, &clocks, single_dpm_table);
  		break;
- 
+-
  	case SMU_VCLK:
--		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_VCLK, &now);
-+		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_VCLK, &cur_value);
+ 		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_VCLK, &cur_value);
  		if (ret) {
- 			dev_err(smu->adev->dev, "Attempt to get current vclk Failed!");
+-			dev_err(smu->adev->dev, "Attempt to get current vclk Failed!");
++			dev_err(smu->adev->dev, "%s vclk Failed!", attempt_string);
  			return ret;
-@@ -895,16 +892,16 @@ static int aldebaran_print_clk_levels(struct smu_context *smu,
  		}
  
- 		for (i = 0; i < single_dpm_table->count; i++)
--			size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n",
-+			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
- 					i, single_dpm_table->dpm_levels[i].value,
- 					(clocks.num_levels == 1) ? "*" :
- 					(aldebaran_freqs_in_same_level(
- 								       clocks.data[i].clocks_in_khz / 1000,
--								       now) ? "*" : ""));
-+								       cur_value) ? "*" : ""));
+ 		single_dpm_table = &(dpm_context->dpm_tables.vclk_table);
+-		ret = aldebaran_get_clk_table(smu, &clocks, single_dpm_table);
+-		if (ret) {
+-			dev_err(smu->adev->dev, "Attempt to get vclk levels Failed!");
+-			return ret;
+-		}
+-
+-		for (i = 0; i < single_dpm_table->count; i++)
+-			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
+-					i, single_dpm_table->dpm_levels[i].value,
+-					(clocks.num_levels == 1) ? "*" :
+-					(aldebaran_freqs_in_same_level(
+-								       clocks.data[i].clocks_in_khz / 1000,
+-								       cur_value) ? "*" : ""));
++		aldebaran_get_clk_table(smu, &clocks, single_dpm_table);
  		break;
- 
+-
  	case SMU_DCLK:
--		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_DCLK, &now);
-+		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_DCLK, &cur_value);
+ 		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_DCLK, &cur_value);
  		if (ret) {
- 			dev_err(smu->adev->dev, "Attempt to get current dclk Failed!");
+-			dev_err(smu->adev->dev, "Attempt to get current dclk Failed!");
++			dev_err(smu->adev->dev, "%s dclk Failed!", attempt_string);
  			return ret;
-@@ -918,19 +915,20 @@ static int aldebaran_print_clk_levels(struct smu_context *smu,
  		}
  
- 		for (i = 0; i < single_dpm_table->count; i++)
--			size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n",
-+			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
- 					i, single_dpm_table->dpm_levels[i].value,
- 					(clocks.num_levels == 1) ? "*" :
- 					(aldebaran_freqs_in_same_level(
- 								       clocks.data[i].clocks_in_khz / 1000,
--								       now) ? "*" : ""));
-+								       cur_value) ? "*" : ""));
- 		break;
- 
- 	default:
+ 		single_dpm_table = &(dpm_context->dpm_tables.dclk_table);
+-		ret = aldebaran_get_clk_table(smu, &clocks, single_dpm_table);
+-		if (ret) {
+-			dev_err(smu->adev->dev, "Attempt to get dclk levels Failed!");
+-			return ret;
++		aldebaran_get_clk_table(smu, &clocks, single_dpm_table);
++		break;
++	default:
 +		return -EINVAL;
- 		break;
- 	}
++	}
++
++	switch (type) {
++	case SMU_OD_SCLK:
++	case SMU_SCLK:
++		/*
++		 * For DPM disabled case, there will be only one clock level.
++		 * And it's safe to assume that is always the current clock.
++		 */
++		if (display_levels == clocks.num_levels) {
++			for (i = 0; i < clocks.num_levels; i++) {
++				clock_mhz = freq_values[i];
++				freq_match = aldebaran_freqs_in_same_level(clock_mhz, cur_value);
++				freq_match |= (clocks.num_levels == 1);
++				*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n", i,
++							 clock_mhz,
++							 freq_match ? "*" : "");
++			}
++		} else {
++			for (i = 0; i < display_levels; i++)
++				*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n", i,
++							 freq_values[i], i == 1 ? "*" : "");
+ 		}
  
--	return size;
-+	return 0;
+-		for (i = 0; i < single_dpm_table->count; i++)
++		break;
++	case SMU_OD_MCLK:
++	case SMU_MCLK:
++	case SMU_SOCCLK:
++	case SMU_FCLK:
++	case SMU_VCLK:
++	case SMU_DCLK:
++		for (i = 0; i < clocks.num_levels; i++) {
++			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
++			freq_match = aldebaran_freqs_in_same_level(clock_mhz, cur_value);
++			freq_match |= (clocks.num_levels == 1);
+ 			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
+-					i, single_dpm_table->dpm_levels[i].value,
+-					(clocks.num_levels == 1) ? "*" :
+-					(aldebaran_freqs_in_same_level(
+-								       clocks.data[i].clocks_in_khz / 1000,
+-								       cur_value) ? "*" : ""));
++					i, clock_mhz,
++					freq_match ? "*" : "");
++		}
+ 		break;
+-
+ 	default:
+ 		return -EINVAL;
+-		break;
+ 	}
+-
+ 	return 0;
  }
  
- static int aldebaran_upload_dpm_level(struct smu_context *smu,
-@@ -2048,7 +2046,7 @@ static const struct pptable_funcs aldebaran_ppt_funcs = {
- 	.set_default_dpm_table = aldebaran_set_default_dpm_table,
- 	.populate_umd_state_clk = aldebaran_populate_umd_state_clk,
- 	.get_thermal_temperature_range = aldebaran_get_thermal_temperature_range,
--	.print_clk_levels = aldebaran_print_clk_levels,
-+	.emit_clk_levels = aldebaran_emit_clk_levels,
- 	.force_clk_levels = aldebaran_force_clk_levels,
- 	.read_sensor = aldebaran_read_sensor,
- 	.set_performance_level = aldebaran_set_performance_level,
 -- 
 2.35.1
 
