@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A61A9526C37
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 May 2022 23:17:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E1B6526C3A
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 May 2022 23:17:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2502210E5BF;
-	Fri, 13 May 2022 21:17:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA94710E5DE;
+	Fri, 13 May 2022 21:17:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2080.outbound.protection.outlook.com [40.107.93.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA81610E59D
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 May 2022 21:17:30 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2045.outbound.protection.outlook.com [40.107.244.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B90F010E5DE
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 May 2022 21:17:36 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LRfeUjDyDnP0YkiG4rP4dvLqyWzLv5TxnJev153ufduDRV8mldIuSX9gw85nmQBH32m3nn+OsVFnSyFU3iP+2IG1yYlxfTfmqB9cCQYXCmGluhQhqngO8nyMcDFzi1xwLcu/FOV895aow+J9EiG+oMqb+MHOib8l3ptOBvNUVFfMV6BI9ekWIk+7+1fRZjF3qYBwaycUvQ2nQUoEjzf9s3SFrwnPToiHqCJCms60G03Km6mmNtmGH+1m4iW4iUDXAVKdAP6IVyoo50ff/nMsbphVQtryCWyeunAv9ggy0S6+1ipKuZR4AWYQPf7Vl5RVYsVSzWQDl8b9BItfBzjERA==
+ b=FKRem7A7Lhm4WWig+8ATutrIr0VUKYG63y2473+7LIsJcMncFohyQc3pN4S9NhUwAg3zSKfTk/XhO+pM6kdrtDR6fmrC2raNwejBk66xFjT5TfSCwMQ7sqWUVvrWtIehoa1h2wOSB29G95IJ1fxxT1F0YYDPNapLphknN+Iw7NvRCtgQeFk10GJfhfvo8IshKtS/nI/AKZxH+/7qw7TvCHdsoFlF/Qfn13ioLbGfF5hzVsX45WZD1y5b7DtqamRTWSEUrBSB36oBnHDUbsRV79Q3jcycAGZSwimGbcT37NtO8sPK73knOLZlbvAdiILS8vmH+EB1V6gqcPKurLC8JA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=H9BA1AkC/w1FSEUSj0YobsSXK9Y+gbOdyDtbdejtWAk=;
- b=N0EGJ+cBIkcJSET8rBycsrSHFJbsFLoDG1wPHT15MMywXsiRs83ODXFFrrtAu0rmHEbPlDjPi5nwkpVV8rWtxZcaHllVyIeu5qJ8wzPIBaCYbGxbUVa88+yllbXZXoOuN+aYlqsyRI4lcKdLZflY5qQ1lEBqVFUXjkLj9YjerWlqVG09IwsErF9kkjvUAZWegmxcRj4/3dBcj8ROJy4pZw4LYkzBwoDnnJvz9wIusrT8EAncOOPMOgFbvMa0OAnI7fqiYqW91tMP6iEtaQTJGGq/zCzypzJzHzgZKxukIuHRs3ePfbr4G7uR22MNZF6APiZ0PBolOBjnKspJCtftcw==
+ bh=i7OKeJbOYyW/0E2OovuUEt4Mi9mfDHPL3PK71zLmSnI=;
+ b=Z3PHOb0c8hOMzIb4rzUwuDMVhqQLw+y1xr8uwU20QOP5NNkZiF9jYlZvMDux2RmEP6UVx3njN+53wK36A3j/TXT/UOSrrZs9l1vcjaQz6qwSmYkLWtIUDq1r4LH4nwu12bGxDdZNwbLIGa53+CixEM6kY7ccO5HyDICstzi/6UuRZVmSpmaccYyRJ7KHy+gfjYnnGoaKjZPJ7nXOpVGTgYAEW+kb/ce+IrV2AtPkJhzqBSfCdBimiXps71m2jOIA3kvddqzj8gHCh8bnrtLd6bTD5t3DFzes4rMihtWA/HtHEmerRWWbJjjF7lwszZJIHvMUS8MWWQYmxy2JngPTGA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=H9BA1AkC/w1FSEUSj0YobsSXK9Y+gbOdyDtbdejtWAk=;
- b=qV1PcLM1P1476/zLpkajllId92EbeH8IohurtBqiDWTh6OrmyJhOX0OsWm5b8dBgR+NQYOfF2DtfdjyNeJSCexCJ53YEIQ4QOWzhPTN4J0fZn4+6XBiJC8LSp88ImXpZCvIVp4unuJhRdxuQxKFXSZgFOyp2pLtFkAoV5SezsmY=
-Received: from MW4PR03CA0023.namprd03.prod.outlook.com (2603:10b6:303:8f::28)
- by DM4PR12MB6638.namprd12.prod.outlook.com (2603:10b6:8:8f::13) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=i7OKeJbOYyW/0E2OovuUEt4Mi9mfDHPL3PK71zLmSnI=;
+ b=3yypywc2UBV0J35usLvbETvsFcETrgPZ9ZnXHAS3RKLcLrCUYDgC1Y8cvpBSpLhHXUSDvjqrVAdtjIcRgPa0ktk1bxFRhRMqR52uwFnhlz+eWVxxtXHZTz877yb284SkMSmDxy7iuiN8YLRnlfvgXyXArsok4QM0Zu+60HpsvAA=
+Received: from MW4P220CA0023.NAMP220.PROD.OUTLOOK.COM (2603:10b6:303:115::28)
+ by CH2PR12MB3959.namprd12.prod.outlook.com (2603:10b6:610:28::21)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.13; Fri, 13 May
- 2022 21:17:29 +0000
-Received: from CO1NAM11FT008.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8f:cafe::37) by MW4PR03CA0023.outlook.office365.com
- (2603:10b6:303:8f::28) with Microsoft SMTP Server (version=TLS1_2,
+ 2022 21:17:31 +0000
+Received: from CO1NAM11FT007.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:115:cafe::92) by MW4P220CA0023.outlook.office365.com
+ (2603:10b6:303:115::28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.14 via Frontend
- Transport; Fri, 13 May 2022 21:17:29 +0000
+ Transport; Fri, 13 May 2022 21:17:30 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,19 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT008.mail.protection.outlook.com (10.13.175.191) with Microsoft SMTP
+ CO1NAM11FT007.mail.protection.outlook.com (10.13.174.131) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5250.13 via Frontend Transport; Fri, 13 May 2022 21:17:28 +0000
+ 15.20.5250.13 via Frontend Transport; Fri, 13 May 2022 21:17:30 +0000
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Fri, 13 May
- 2022 16:17:26 -0500
+ 2022 16:17:28 -0500
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2 09/11] drm/amd/display: Fic incorrect pipe being used for
- clk update
-Date: Fri, 13 May 2022 17:16:49 -0400
-Message-ID: <20220513211651.1312846-10-qingqing.zhuo@amd.com>
+Subject: [PATCH v2 10/11] Revert "drm/amd/display: Refactor LTTPR cap
+ retrieval"
+Date: Fri, 13 May 2022 17:16:50 -0400
+Message-ID: <20220513211651.1312846-11-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220513211651.1312846-1-qingqing.zhuo@amd.com>
 References: <20220513211651.1312846-1-qingqing.zhuo@amd.com>
@@ -69,27 +69,27 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c05f7d6b-f2fb-4027-149f-08da3525fc57
-X-MS-TrafficTypeDiagnostic: DM4PR12MB6638:EE_
-X-Microsoft-Antispam-PRVS: <DM4PR12MB6638A5FDFD709143EF7E472EFBCA9@DM4PR12MB6638.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 5b450d1c-9acc-43af-8035-08da3525fd40
+X-MS-TrafficTypeDiagnostic: CH2PR12MB3959:EE_
+X-Microsoft-Antispam-PRVS: <CH2PR12MB39597588850FABA7F20B51DFFBCA9@CH2PR12MB3959.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qPFHtnS0cAWTLfdFK6xYLh6gY/39Rze+GMnJDlEfsNBBzxu7QdXSqnCJd9oQFEP0UEKLBcrNy7BC15ngmUJ8K19HeiueLEheVkyfFMGFpue9tUZdd97w7RXsjerxXBVdKq0BvfF3Bzfqi40tQND6gFvVTMVyapqRRBom4kNlbdwXu31orUV3VmcUo77cbqWCuChRY8hQZmgZFD+Q0Y9iAqsc7RfeqqXq0xpcQbj6Ty3wtZ9WGrp6KYi5sCE7lWYEppStVHljFVlj9M4Uh+GRTztzidkjgsRupRDXD/WUBOz/qyZ/XQl2r52AR7BgguUMOeAMFDFMYlnQPhtKj7k6j9fLR34Uw0ycpaaC9u9kdYdrIeWX8WGr7MekLUtzLrrfvyELPPqewa7nOxMe+8EvlVT4NMiyaGpXrs5mE/14Kt5Kx4zNrP9450HBBEMU5zCDtLJ2ELCmO6aDPeZF52CWSyRQNOlriQzeAI8wpPddaZYqjkHySRcAi5eD9R5ENvKtW+jwOoynczv3Cj47TQP0hKd9UvF67GrTkhZW0WxWCVVAg63QiOdblCrTimLYScBj7eFxxy9ygbUNgM6u1wdfcY0tSjFGItqYzjsz7uEVpqKW3YUQXcp6OmjawiFtfo6QGscAal4IhYRKMo9o68AqOit8uj/L++lTy14LPv/g1VRjk0VOAezx0Y9dnDj/kYKOoqEXhTeZ6mnxPxF9bCiNnQ==
+X-Microsoft-Antispam-Message-Info: kqQYYhA5dS75nZJ38O6EghMHdqjqVAxStrIXsK2AKsBg8jJRMnbxRfs5BrphGCo8eS0Uigy0rRDyrJa7jsnQ9Gx/cFNxS/kShxq/zmfnVf296GymlA6/qIhO+1Pi8ejRhfI3OfY738w7to/NTnEbgKG0bQN2jVJsbDj1SwJg+QH31Nq7G1Cu5VSvpnVyL6JekjJ32VdxbG4xTaTl74GM3UhpEgJffFT5tTOdMz+w4dpSgI2J6Rkys4nniPw3dINWQGLGcozTMLaT5MrCXYqlsxvhmE+o0eaTy9VuyWT7aVW/NxG+1lSj6XF+9Me4WzyWvz8MEQ1aYoC55Yx2Z7K4/5tawFdJC/k6xWdBHUPhWbfonnmvgh00QTaE8duZ4dI0ecD4n439KtcL9eOWeHTf/9olLJ6PehtFxtFZMpuelg0cOx1ePKZp70gOKHsp1m5/sIVv+kUQCsLlaLJJnBfSCD7M+W2IPVSsSJDZ7xdbdNIpKA5EPtPODcuycn70Ui0Is747EbSvqhlfKJo+8O4hiVUNs2Xc0Lyec0NMtXQWVH4DcIsFJ+JTEKyrZrfARuWaHn3KD8tOMZ3VUsBAIEiLeUFfPfiEPXyu7dw9/OM/EDLVicQ70PbOpanCtvRb+kMtkMdGY2peAlQJt5Zw09H+tjQuzxFGMM6F4Vj3Bzpc2kS+h1wujMSuSA27pDKq6dGGvrXuAEhrfNcmbiSojlb85A==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(54906003)(6916009)(8936002)(4326008)(70586007)(8676002)(316002)(356005)(5660300002)(36756003)(2906002)(15650500001)(44832011)(81166007)(70206006)(82310400005)(6666004)(26005)(86362001)(2616005)(186003)(16526019)(508600001)(36860700001)(47076005)(83380400001)(336012)(426003)(1076003)(40460700003)(36900700001);
+ SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(82310400005)(6916009)(6666004)(86362001)(2616005)(4326008)(26005)(81166007)(8676002)(316002)(36860700001)(508600001)(54906003)(356005)(426003)(83380400001)(336012)(47076005)(16526019)(1076003)(186003)(5660300002)(30864003)(8936002)(44832011)(36756003)(2906002)(70586007)(40460700003)(70206006)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2022 21:17:28.8099 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c05f7d6b-f2fb-4027-149f-08da3525fc57
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2022 21:17:30.3396 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5b450d1c-9acc-43af-8035-08da3525fd40
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT008.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT007.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6638
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3959
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,46 +101,298 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
- Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, Aric Cyr <Aric.Cyr@amd.com>, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ roman.li@amd.com, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
+ Michael Strauss <michael.strauss@amd.com>, wayne.lin@amd.com,
+ Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
+From: Michael Strauss <michael.strauss@amd.com>
 
-[Why]
-we save the prev_dppclk value using "dpp_inst" but
-when reading this value we use the index "i". In
-a case where a pipe is fused off we can end up reading
-the incorrect instance because i != dpp_inst in this
-case.
+This reverts commit f07023c8bb2c596af97dea9995d9f5a0140cddd3.
 
-[How]
-read the prev_dppclk using dpp_inst instead of i
+[WHY]
+Regressions untentionally caused by change,
+reverting until this can be resolved.
 
-Reviewed-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
-Signed-off-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
+Signed-off-by: Michael Strauss <michael.strauss@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 171 +++++++-----------
+ drivers/gpu/drm/amd/display/dc/dc_link.h      |   2 -
+ .../gpu/drm/amd/display/dc/inc/dc_link_dp.h   |   3 +-
+ .../amd/display/include/link_service_types.h  |   6 -
+ 4 files changed, 69 insertions(+), 113 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-index 02943ca65807..cf1b5f354ae9 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-@@ -122,7 +122,7 @@ static void rn_update_clocks_update_dpp_dto(struct clk_mgr_internal *clk_mgr,
- 		dpp_inst = clk_mgr->base.ctx->dc->res_pool->dpps[i]->inst;
- 		dppclk_khz = context->res_ctx.pipe_ctx[i].plane_res.bw.dppclk_khz;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+index d8de8dbf3676..3c9523218c19 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -5126,13 +5126,16 @@ static bool dpcd_read_sink_ext_caps(struct dc_link *link)
+ 	return true;
+ }
  
--		prev_dppclk_khz = clk_mgr->dccg->pipe_dppclk_khz[i];
-+		prev_dppclk_khz = clk_mgr->dccg->pipe_dppclk_khz[dpp_inst];
+-void dp_retrieve_lttpr_cap(struct dc_link *link)
++bool dp_retrieve_lttpr_cap(struct dc_link *link)
+ {
++	uint8_t lttpr_dpcd_data[8];
+ 	bool allow_lttpr_non_transparent_mode = 0;
++	bool vbios_lttpr_enable = link->dc->caps.vbios_lttpr_enable;
+ 	bool vbios_lttpr_interop = link->dc->caps.vbios_lttpr_aware;
+ 	enum dc_status status = DC_ERROR_UNEXPECTED;
++	bool is_lttpr_present = false;
  
- 		if (safe_to_lower || prev_dppclk_khz < dppclk_khz)
- 			clk_mgr->dccg->funcs->update_dpp_dto(
+-	memset(link->lttpr_dpcd_data, '\0', sizeof(link->lttpr_dpcd_data));
++	memset(lttpr_dpcd_data, '\0', sizeof(lttpr_dpcd_data));
+ 
+ 	if ((link->dc->config.allow_lttpr_non_transparent_mode.bits.DP2_0 &&
+ 			link->dpcd_caps.channel_coding_cap.bits.DP_128b_132b_SUPPORTED)) {
+@@ -5142,116 +5145,82 @@ void dp_retrieve_lttpr_cap(struct dc_link *link)
+ 		allow_lttpr_non_transparent_mode = 1;
+ 	}
+ 
+-	link->lttpr_mode = LTTPR_MODE_NON_LTTPR;
+-	link->lttpr_support = LTTPR_UNSUPPORTED;
+-
+ 	/*
+-	 * Logic to determine LTTPR support
++	 * Logic to determine LTTPR mode
+ 	 */
+-	if (vbios_lttpr_interop)
+-		link->lttpr_support = LTTPR_SUPPORTED;
+-	else if (link->dc->config.allow_lttpr_non_transparent_mode.raw == 0
+-			|| !link->dc->caps.extended_aux_timeout_support)
+-			link->lttpr_support = LTTPR_UNSUPPORTED;
+-	else
+-		link->lttpr_support = LTTPR_CHECK_EXT_SUPPORT;
++	link->lttpr_mode = LTTPR_MODE_NON_LTTPR;
++	if (vbios_lttpr_enable && vbios_lttpr_interop)
++		link->lttpr_mode = LTTPR_MODE_NON_TRANSPARENT;
++	else if (!vbios_lttpr_enable && vbios_lttpr_interop) {
++		if (allow_lttpr_non_transparent_mode)
++			link->lttpr_mode = LTTPR_MODE_NON_TRANSPARENT;
++		else
++			link->lttpr_mode = LTTPR_MODE_TRANSPARENT;
++	} else if (!vbios_lttpr_enable && !vbios_lttpr_interop) {
++		if (!allow_lttpr_non_transparent_mode || !link->dc->caps.extended_aux_timeout_support)
++			link->lttpr_mode = LTTPR_MODE_NON_LTTPR;
++		else
++			link->lttpr_mode = LTTPR_MODE_NON_TRANSPARENT;
++	}
+ 
++#if defined(CONFIG_DRM_AMD_DC_DCN)
+ 	/* Check DP tunnel LTTPR mode debug option. */
+ 	if (link->ep_type == DISPLAY_ENDPOINT_USB4_DPIA &&
+ 	    link->dc->debug.dpia_debug.bits.force_non_lttpr)
+-		link->lttpr_support = LTTPR_UNSUPPORTED;
++		link->lttpr_mode = LTTPR_MODE_NON_LTTPR;
++#endif
+ 
+-	if (link->lttpr_support > LTTPR_UNSUPPORTED) {
++	if (link->lttpr_mode == LTTPR_MODE_NON_TRANSPARENT || link->lttpr_mode == LTTPR_MODE_TRANSPARENT) {
+ 		/* By reading LTTPR capability, RX assumes that we will enable
+ 		 * LTTPR extended aux timeout if LTTPR is present.
+ 		 */
+ 		status = core_link_read_dpcd(
+ 				link,
+ 				DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV,
+-				link->lttpr_dpcd_data,
+-				sizeof(link->lttpr_dpcd_data));
+-	}
+-}
+-
+-bool dp_parse_lttpr_mode(struct dc_link *link)
+-{
+-	bool dpcd_allow_lttpr_non_transparent_mode = false;
+-	bool is_lttpr_present = false;
+-
+-	bool vbios_lttpr_enable = link->dc->caps.vbios_lttpr_enable;
+-
+-	if ((link->dc->config.allow_lttpr_non_transparent_mode.bits.DP2_0 &&
+-			link->dpcd_caps.channel_coding_cap.bits.DP_128b_132b_SUPPORTED)) {
+-		dpcd_allow_lttpr_non_transparent_mode = true;
+-	} else if (link->dc->config.allow_lttpr_non_transparent_mode.bits.DP1_4A &&
+-			!link->dpcd_caps.channel_coding_cap.bits.DP_128b_132b_SUPPORTED) {
+-		dpcd_allow_lttpr_non_transparent_mode = true;
++				lttpr_dpcd_data,
++				sizeof(lttpr_dpcd_data));
++
++		link->dpcd_caps.lttpr_caps.revision.raw =
++				lttpr_dpcd_data[DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV -
++								DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
++
++		link->dpcd_caps.lttpr_caps.max_link_rate =
++				lttpr_dpcd_data[DP_MAX_LINK_RATE_PHY_REPEATER -
++								DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
++
++		link->dpcd_caps.lttpr_caps.phy_repeater_cnt =
++				lttpr_dpcd_data[DP_PHY_REPEATER_CNT -
++								DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
++
++		link->dpcd_caps.lttpr_caps.max_lane_count =
++				lttpr_dpcd_data[DP_MAX_LANE_COUNT_PHY_REPEATER -
++								DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
++
++		link->dpcd_caps.lttpr_caps.mode =
++				lttpr_dpcd_data[DP_PHY_REPEATER_MODE -
++								DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
++
++		link->dpcd_caps.lttpr_caps.max_ext_timeout =
++				lttpr_dpcd_data[DP_PHY_REPEATER_EXTENDED_WAIT_TIMEOUT -
++								DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
++		link->dpcd_caps.lttpr_caps.main_link_channel_coding.raw =
++				lttpr_dpcd_data[DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER -
++								DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
++
++		link->dpcd_caps.lttpr_caps.supported_128b_132b_rates.raw =
++				lttpr_dpcd_data[DP_PHY_REPEATER_128B132B_RATES -
++								DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
++
++		/* Attempt to train in LTTPR transparent mode if repeater count exceeds 8. */
++		is_lttpr_present = (link->dpcd_caps.lttpr_caps.max_lane_count > 0 &&
++				link->dpcd_caps.lttpr_caps.max_lane_count <= 4 &&
++				link->dpcd_caps.lttpr_caps.revision.raw >= 0x14);
++		if (is_lttpr_present) {
++			CONN_DATA_DETECT(link, lttpr_dpcd_data, sizeof(lttpr_dpcd_data), "LTTPR Caps: ");
++			configure_lttpr_mode_transparent(link);
++		} else
++			link->lttpr_mode = LTTPR_MODE_NON_LTTPR;
+ 	}
+-
+-	/*
+-	 * Logic to determine LTTPR mode
+-	 */
+-	if (link->lttpr_support == LTTPR_SUPPORTED)
+-		if (vbios_lttpr_enable)
+-			link->lttpr_mode = LTTPR_MODE_NON_TRANSPARENT;
+-		else if (dpcd_allow_lttpr_non_transparent_mode)
+-			link->lttpr_mode = LTTPR_MODE_NON_TRANSPARENT;
+-		else
+-			link->lttpr_mode = LTTPR_MODE_TRANSPARENT;
+-	else	// lttpr_support == LTTPR_CHECK_EXT_SUPPORT
+-		if (dpcd_allow_lttpr_non_transparent_mode) {
+-			link->lttpr_support = LTTPR_SUPPORTED;
+-			link->lttpr_mode = LTTPR_MODE_NON_TRANSPARENT;
+-		} else {
+-			link->lttpr_support = LTTPR_UNSUPPORTED;
+-		}
+-
+-	if (link->lttpr_support == LTTPR_UNSUPPORTED)
+-		return false;
+-
+-	link->dpcd_caps.lttpr_caps.revision.raw =
+-			link->lttpr_dpcd_data[DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV -
+-							DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
+-
+-	link->dpcd_caps.lttpr_caps.max_link_rate =
+-			link->lttpr_dpcd_data[DP_MAX_LINK_RATE_PHY_REPEATER -
+-							DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
+-
+-	link->dpcd_caps.lttpr_caps.phy_repeater_cnt =
+-			link->lttpr_dpcd_data[DP_PHY_REPEATER_CNT -
+-							DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
+-
+-	link->dpcd_caps.lttpr_caps.max_lane_count =
+-			link->lttpr_dpcd_data[DP_MAX_LANE_COUNT_PHY_REPEATER -
+-							DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
+-
+-	link->dpcd_caps.lttpr_caps.mode =
+-			link->lttpr_dpcd_data[DP_PHY_REPEATER_MODE -
+-							DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
+-
+-	link->dpcd_caps.lttpr_caps.max_ext_timeout =
+-			link->lttpr_dpcd_data[DP_PHY_REPEATER_EXTENDED_WAIT_TIMEOUT -
+-							DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
+-
+-	link->dpcd_caps.lttpr_caps.main_link_channel_coding.raw =
+-			link->lttpr_dpcd_data[DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER -
+-							DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
+-
+-	link->dpcd_caps.lttpr_caps.supported_128b_132b_rates.raw =
+-			link->lttpr_dpcd_data[DP_PHY_REPEATER_128B132B_RATES -
+-							DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
+-
+-
+-	/* Attempt to train in LTTPR transparent mode if repeater count exceeds 8. */
+-	is_lttpr_present = (link->dpcd_caps.lttpr_caps.max_lane_count > 0 &&
+-			link->dpcd_caps.lttpr_caps.max_lane_count <= 4 &&
+-			link->dpcd_caps.lttpr_caps.revision.raw >= 0x14);
+-	if (is_lttpr_present) {
+-		CONN_DATA_DETECT(link, link->lttpr_dpcd_data, sizeof(link->lttpr_dpcd_data), "LTTPR Caps: ");
+-		configure_lttpr_mode_transparent(link);
+-	} else
+-		link->lttpr_mode = LTTPR_MODE_NON_LTTPR;
+-
+ 	return is_lttpr_present;
+ }
+ 
+@@ -5403,8 +5372,7 @@ static bool retrieve_link_cap(struct dc_link *link)
+ 		status = wa_try_to_wake_dprx(link, timeout_ms);
+ 	}
+ 
+-	dp_retrieve_lttpr_cap(link);
+-
++	is_lttpr_present = dp_retrieve_lttpr_cap(link);
+ 	/* Read DP tunneling information. */
+ 	status = dpcd_get_tunneling_device_data(link);
+ 
+@@ -5440,9 +5408,6 @@ static bool retrieve_link_cap(struct dc_link *link)
+ 		return false;
+ 	}
+ 
+-	if (link->lttpr_support > LTTPR_UNSUPPORTED)
+-		is_lttpr_present = dp_parse_lttpr_mode(link);
+-
+ 	if (!is_lttpr_present)
+ 		dc_link_aux_try_to_configure_timeout(link->ddc, LINK_AUX_DEFAULT_TIMEOUT_PERIOD);
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_link.h b/drivers/gpu/drm/amd/display/dc/dc_link.h
+index 251f2bbc96b9..a3c37ee3f849 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_link.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_link.h
+@@ -129,8 +129,6 @@ struct dc_link {
+ 	bool link_state_valid;
+ 	bool aux_access_disabled;
+ 	bool sync_lt_in_progress;
+-	uint8_t lttpr_dpcd_data[8];
+-	enum lttpr_support lttpr_support;
+ 	enum lttpr_mode lttpr_mode;
+ 	bool is_internal_display;
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/dc_link_dp.h b/drivers/gpu/drm/amd/display/dc/inc/dc_link_dp.h
+index 78f09893c118..44f167d2584f 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/dc_link_dp.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/dc_link_dp.h
+@@ -217,8 +217,7 @@ void disable_dp_hpo_output(struct dc_link *link,
+ void setup_dp_hpo_stream(struct pipe_ctx *pipe_ctx, bool enable);
+ bool is_dp_128b_132b_signal(struct pipe_ctx *pipe_ctx);
+ 
+-void dp_retrieve_lttpr_cap(struct dc_link *link);
+-bool dp_apply_lttpr_mode(struct dc_link *link);
++bool dp_retrieve_lttpr_cap(struct dc_link *link);
+ void edp_panel_backlight_power_on(struct dc_link *link);
+ void dp_receiver_power_ctrl(struct dc_link *link, bool on);
+ void dp_source_sequence_trace(struct dc_link *link, uint8_t dp_test_mode);
+diff --git a/drivers/gpu/drm/amd/display/include/link_service_types.h b/drivers/gpu/drm/amd/display/include/link_service_types.h
+index 9f465b4d626e..447a56286dd0 100644
+--- a/drivers/gpu/drm/amd/display/include/link_service_types.h
++++ b/drivers/gpu/drm/amd/display/include/link_service_types.h
+@@ -80,12 +80,6 @@ enum link_training_result {
+ 	DP_128b_132b_CDS_DONE_TIMEOUT,
+ };
+ 
+-enum lttpr_support {
+-	LTTPR_UNSUPPORTED,
+-	LTTPR_CHECK_EXT_SUPPORT,
+-	LTTPR_SUPPORTED,
+-};
+-
+ enum lttpr_mode {
+ 	LTTPR_MODE_NON_LTTPR,
+ 	LTTPR_MODE_TRANSPARENT,
 -- 
 2.25.1
 
