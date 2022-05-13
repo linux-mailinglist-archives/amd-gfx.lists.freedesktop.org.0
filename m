@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFD14526BE1
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 May 2022 22:51:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFF17526BE5
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 May 2022 22:51:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47C2710E7FB;
-	Fri, 13 May 2022 20:51:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34D6E10E979;
+	Fri, 13 May 2022 20:51:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam08on2040.outbound.protection.outlook.com [40.107.102.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E42710E7FB
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 May 2022 20:51:32 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2081.outbound.protection.outlook.com [40.107.243.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AEB910E922
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 May 2022 20:51:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nHnwNGXI9lHPNlhY6W06zDHW63jfv2N1ix/03y+8SzErBUyEY+ihvhP9La435UkgvAPy9PSBTnlBmeYjQbF2MOh3fqIp4/8WWVj4IA7n9JOdvF6bFHuHoy86ACtBsDV5VzvITToYC7hBNvLTzByd61Oqjw2emhMZqwn0i95zfwouv3VAlOBc+4D7UUD3gGCDUy7Rzj4yHULl46NUSLnfywYr/vCt/RDfP7dZv3UjFgeKqhX/uf/M0M42P23AB7paNACREZiiW1wo35FV+tga6xwFLLOU9do550E/9txmLHc/GJMBVOQrdy7/a1n7UeZxSu8Ug2PQ0W2B82i9JunY8Q==
+ b=QsnlZjO5I2ZCyYs52IetswzXlAYY/7TEaNkly+H6QK+EhWOpAu8Wr4tWx79VW8Zp/IHv2ISzQzOcTlCNKQX1FrZoeiEbnG14Iuvw/NXM6XYNobWSd7XfGrNhr7uozN/WPBtYHU+7my+WtzD1ckwDSwR4o5oFgHZH3XxAmME6L/z8X3vFIeevsnjiw3DGBezyHKI1LueySDMveaIjISKt5rllFznww6O3H1sfempdTA9PavrPQZgSorhGUI/vqPE/LA65ZaaX29MKXybZemJkVcxz//6/0TuxtcsT2X8ngrmwgxpLiFHNebRVmzdxBa/6dt9mHSkucUkBHTN0cy8HYQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nhsIzhHdWWlSj1PCOmdlXob8J6C0n8G9fbcAMWbEo4E=;
- b=fzmhTz1EYVpGiEkhPqj3+D4pd8IOscyRKKh0huX1YYEvnsR1IEAxOJlV98g6bxWpRKnzzk1XXSKAjhTqD1t426I5VOz42i5OVi7JlklqglwOcvvPvmfT3vuop3lO4AvA4L4Pv8XkaqGTdkVt5Hk8q8dlV8J7rYOYgnkoBUEpwDTwytuGm3I82iQAGtrRxDzgyJp4/VSdIy8oCWa+s67RPusQbWqf77gh/BnZayMlHcUaVQAG8Qh28zKZnBHn1sBoksdz9+z+b/ZIE4sAerNHbmnWkI+PbZq9w5B1BKVgsj6J/sm5nT6R1qm1+JpffGhO3DfZ5A2PRlBotd3VTIsibw==
+ bh=cWCxgivtBajgjAWyXzTRGFNlmQxkyLFWKQZBX/5raXo=;
+ b=W4gA7P6HxhPZcaLtjXyJZtNJ/T4yY+4CHtS+1nB0J94nEYwjBk3FCEc30uKAGFexFaDO6BnoJuWAIRyE3MElnHzdOTshYspzErVsqA3T58kHy60VkFXev4nn2n7Tj8fUA6SF1MfSllyqu0vreMU2vmDX0TSma7pYw3QuLJaNDWmAJ862eLnZw75kY1f0uuqn5AdHoO3mg7TYQFzTB/TIEf+Gv2VuafE2B5y1uonPSHB9yxAqmOnSx66X0gg9l2SEQSWPEaVltHBY4EiqfdSsqGyab00ZQeeb3Owh/7wUldGCdwucMghww4i29njIz998vaDw66XMuCM/3e5swf1WYw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nhsIzhHdWWlSj1PCOmdlXob8J6C0n8G9fbcAMWbEo4E=;
- b=ZVa0MeZ0lyySuFoERXNXGLOHrUzkMLhntQPd8rWBhZ01U9TY8JEkt+3WQ/1UWpbyJEasazWlE7DPJxGOk2EgZrCEpVfR/U7uZDr747tnJZj1eu8tBcNO7VP+Jxk0tOwufnxsMSau2YJOFu5fl8cS+PPGbMZEXTkNp+6/fLDBJTY=
-Received: from MW4PR03CA0297.namprd03.prod.outlook.com (2603:10b6:303:b5::32)
- by BL1PR12MB5288.namprd12.prod.outlook.com (2603:10b6:208:314::23)
+ bh=cWCxgivtBajgjAWyXzTRGFNlmQxkyLFWKQZBX/5raXo=;
+ b=hxsJ/IY92tp/XDjqmXDG1XE8Av00dTMCAc6gNkfY12MN+76RFd6LDMHoUk2ulkslF2Z/fdlwtYBvlF3AiddILeNepTumur+XZb+tQTl9kRWmaxWIQPo2QDiMLxsrIVZiinDsmTO77kXhhySJDAFXqpybEOJVwDtqGbM0JxfF7Uo=
+Received: from MW4PR03CA0280.namprd03.prod.outlook.com (2603:10b6:303:b5::15)
+ by CH2PR12MB5004.namprd12.prod.outlook.com (2603:10b6:610:62::16)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.13; Fri, 13 May
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.14; Fri, 13 May
  2022 20:51:30 +0000
 Received: from CO1NAM11FT048.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:b5:cafe::56) by MW4PR03CA0297.outlook.office365.com
- (2603:10b6:303:b5::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.14 via Frontend
- Transport; Fri, 13 May 2022 20:51:29 +0000
+ (2603:10b6:303:b5:cafe::9d) by MW4PR03CA0280.outlook.office365.com
+ (2603:10b6:303:b5::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.16 via Frontend
+ Transport; Fri, 13 May 2022 20:51:30 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CO1NAM11FT048.mail.protection.outlook.com (10.13.175.148) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5250.13 via Frontend Transport; Fri, 13 May 2022 20:51:29 +0000
+ 15.20.5250.13 via Frontend Transport; Fri, 13 May 2022 20:51:30 +0000
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Fri, 13 May
- 2022 15:51:27 -0500
+ 2022 15:51:28 -0500
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 05/11] drm/amd/display: Check if modulo is 0 before dividing.
-Date: Fri, 13 May 2022 16:50:35 -0400
-Message-ID: <20220513205041.1311639-6-qingqing.zhuo@amd.com>
+Subject: [PATCH 06/11] drm/amd/display: Allow individual control of eDP
+ hotplug support
+Date: Fri, 13 May 2022 16:50:36 -0400
+Message-ID: <20220513205041.1311639-7-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220513205041.1311639-1-qingqing.zhuo@amd.com>
 References: <20220513205041.1311639-1-qingqing.zhuo@amd.com>
@@ -68,27 +69,27 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 71489fab-c4b6-4631-a7b0-08da35225ad4
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5288:EE_
-X-Microsoft-Antispam-PRVS: <BL1PR12MB52888B05B8FA18E81F5671FBFBCA9@BL1PR12MB5288.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: bf151fb3-578d-4f4a-127b-08da35225b85
+X-MS-TrafficTypeDiagnostic: CH2PR12MB5004:EE_
+X-Microsoft-Antispam-PRVS: <CH2PR12MB50045FF37046466AD1F85875FBCA9@CH2PR12MB5004.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +Sei1mEIXWtWKzx6/gvFdUx3exuD11DYyXjg+9UGssKR3YzE8aYGkKHaoV38cXotjQk4xZGefOcdS80uLVyQg0A/cRsHp4dZ9L8rukbmhqJDlIlWkNLOolbZoULcIpqqEQEHt34U1ctBdVLzv0bpyLdgI2AATfcJlct1iNy+Nu96Hej4oMfwbcrALvNRGyknqYAqo1aAEWUJNXA9BZ9x5X+P4QAnsbbwQoBdNerZ0wPbBLIFpvROhuQm+/bWEbjDMkW5tH1j6fuVV0kTt4QF62l9FDPzVaHBr2CuRKFraoMkcQDMhwwM2NCv8J2ogRadASIpjd5YKeXSYdT4fQWM8U5Z69/qoHqp+yGES77k2iZGQx47jcrahvKZQ3YHiMpLIx66G6DfdAK6sQrapxe98wPm8RRnC6AWNHMx91Zily8CGBr1fFgS0djuTbEF5Q5g997tJ/+8KGtm6y/JoigPMTChDGf3RsQkAOQ2KcODraQg6avxSuDbxXWAdhpGuyz7y6zr7z7awesse8WVVDu9QNXEtI9s1liyBEuZhzDqqVdmhnEASGu6/O/7KnjSU7G8LvH4H7hHZe0S2Fk8QQ4cAedZP+g/bYPQwSzBJEb64fzpYfbBNrkOA2iYnouGovG3Nib2FrzCC6zD6cTYq1iBRQIqYKwKEBojz1sNojzVQho35Jbl3sLn0kLt0PN7iTZW0nH0BhkuueoGqYGshiy+bg==
+X-Microsoft-Antispam-Message-Info: qbBtV5vtpEC6T4a+1XVFBI4x0R8wFCC959VdeLFVvTF8sMCMZiMyS7L0zTzxeniqerRECEgaaeRO1oJk6UlIP6MSakwysnCSjyUqEOrS78ygLcRYV69PTCWy4+JXVtxYPsK12Q0AsagQyAaQQ857oJ1p9UUymeKz0tKp6PI6yYkEE/6A/TYShxArhltu7Z2VsLkEawEF8MVv/0zlLFo+UofGA/Pgjl4s+7HIZHgYIrxj23caUHttxgd2U4pVkQyVArgNfhRneXCEQ8hrRp+2TXNnDals2h8s+j2wTIgpTjEWtWy6mVkMcezum5eed/klj1zzqTR+IhkU9GxVA1aQC0h+vhdzaYKO7wWR2CD2GUBGR3hHJlXxbl7TvqUzkz3ahnEYrJIZq4dIZrWXukJWZzxw2N+rnIGvk+DH1wDxuIWFgSRY+MBIPDHFl4kJlWr+4Et7QWTMVEAlqU5qIVL012MFTXPN6XRs8kDOp7yRuBs9m1yQo2gY2S00OGfOS9JtJMWDhxolwbGUup9U8DKNxeJhst+1F9daHCXzooFh8m+P7rxM3As/6oYH5A5jjY8yelJXJBvsLsBIeSdH1BVxRDAAWwJC8wiAcpwRabGfzjIXxPM3Apk4ADvEEPpIRV3if8s75kYbwgNQYi4jV85Du+Mer/2fMAHpBxWxJklhJrrxjpF+lV5rYmjDKNWPBSp4Qas6bcGZ9VFkgyzDdQ2QLg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(36840700001)(46966006)(8936002)(186003)(16526019)(86362001)(356005)(82310400005)(81166007)(44832011)(70206006)(70586007)(508600001)(36860700001)(4326008)(8676002)(40460700003)(26005)(5660300002)(1076003)(6916009)(2616005)(6666004)(54906003)(36756003)(316002)(83380400001)(336012)(426003)(47076005)(2906002)(36900700001);
+ SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(8676002)(2616005)(70586007)(4326008)(44832011)(70206006)(6916009)(82310400005)(16526019)(186003)(426003)(47076005)(5660300002)(336012)(54906003)(6666004)(26005)(356005)(81166007)(86362001)(36756003)(36860700001)(2906002)(83380400001)(8936002)(316002)(40460700003)(1076003)(508600001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2022 20:51:29.3517 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71489fab-c4b6-4631-a7b0-08da35225ad4
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2022 20:51:30.5079 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bf151fb3-578d-4f4a-127b-08da35225b85
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT048.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5288
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB5004
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,47 +101,79 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, David Galiffi <David.Galiffi@amd.com>,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- Martin Leung <Martin.Leung@amd.com>, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
- wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
+Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
+ Derek Lai <Derek.Lai@amd.com>, Bhawanpreet.Lakha@amd.com,
+ Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>, agustin.gutierrez@amd.com,
  pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: David Galiffi <David.Galiffi@amd.com>
+From: Derek Lai <Derek.Lai@amd.com>
 
-[How & Why]
-If a value of 0 is read, then this will cause a divide-by-0 panic.
+[Why]
+Second eDP can send display off notification through HPD
+but DC isn't hooked up to handle. Some primary eDP panels
+will toggle on/off incorrectly if it's enabled generically.
 
-Reviewed-by: Martin Leung <Martin.Leung@amd.com>
+[How]
+Extend the debug option to allow individually enabling hotplug
+either the first eDP or the second eDP in a dual eDP system.
+
+Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
-Signed-off-by: David Galiffi <David.Galiffi@amd.com>
+Signed-off-by: Derek Lai <Derek.Lai@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c | 21 +++++++++++++++++--
+ drivers/gpu/drm/amd/display/dc/dc.h           |  2 +-
+ 2 files changed, 20 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c b/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
-index 5e6fea85a7b5..845aa8a1027d 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
-@@ -1101,9 +1101,12 @@ static bool get_pixel_clk_frequency_100hz(
- 			 * not be programmed equal to DPREFCLK
- 			 */
- 			modulo_hz = REG_READ(MODULO[inst]);
--			*pixel_clk_khz = div_u64((uint64_t)clock_hz*
--				clock_source->ctx->dc->clk_mgr->dprefclk_khz*10,
--				modulo_hz);
-+			if (modulo_hz)
-+				*pixel_clk_khz = div_u64((uint64_t)clock_hz*
-+					clock_source->ctx->dc->clk_mgr->dprefclk_khz*10,
-+					modulo_hz);
-+			else
-+				*pixel_clk_khz = 0;
- 		} else {
- 			/* NOTE: There is agreement with VBIOS here that MODULO is
- 			 * programmed equal to DPREFCLK, in which case PHASE will be
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+index b40abd2bf7f6..a789ea8af27f 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+@@ -1605,8 +1605,25 @@ static bool dc_link_construct_legacy(struct dc_link *link,
+ 		if (link->hpd_gpio) {
+ 			if (!link->dc->config.allow_edp_hotplug_detection)
+ 				link->irq_source_hpd = DC_IRQ_SOURCE_INVALID;
+-			link->irq_source_hpd_rx =
+-					dal_irq_get_rx_source(link->hpd_gpio);
++
++			switch (link->dc->config.allow_edp_hotplug_detection) {
++			case 1: // only the 1st eDP handles hotplug
++				if (link->link_index == 0)
++					link->irq_source_hpd_rx =
++						dal_irq_get_rx_source(link->hpd_gpio);
++				else
++					link->irq_source_hpd = DC_IRQ_SOURCE_INVALID;
++				break;
++			case 2: // only the 2nd eDP handles hotplug
++				if (link->link_index == 1)
++					link->irq_source_hpd_rx =
++						dal_irq_get_rx_source(link->hpd_gpio);
++				else
++					link->irq_source_hpd = DC_IRQ_SOURCE_INVALID;
++				break;
++			default:
++				break;
++			}
+ 		}
+ 
+ 		break;
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 26c24db8f1da..7cfc04a8ef15 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -329,7 +329,7 @@ struct dc_config {
+ 	bool disable_dmcu;
+ 	bool enable_4to1MPC;
+ 	bool enable_windowed_mpo_odm;
+-	bool allow_edp_hotplug_detection;
++	uint32_t allow_edp_hotplug_detection;
+ 	bool clamp_min_dcfclk;
+ 	uint64_t vblank_alignment_dto_params;
+ 	uint8_t  vblank_alignment_max_frame_time_diff;
 -- 
 2.25.1
 
