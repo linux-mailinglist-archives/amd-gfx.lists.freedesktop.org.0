@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 170A2526BE4
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 May 2022 22:51:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFD14526BE1
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 May 2022 22:51:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 665FB10E988;
-	Fri, 13 May 2022 20:51:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47C2710E7FB;
+	Fri, 13 May 2022 20:51:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam08on2049.outbound.protection.outlook.com [40.107.101.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA0CF10E7FB
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 May 2022 20:51:30 +0000 (UTC)
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam08on2040.outbound.protection.outlook.com [40.107.102.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E42710E7FB
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 May 2022 20:51:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iKEoMssFeeDZYa881IXTDXsdJ77AFaWK6419kPTLlwjcswCzA4eBv0iStkJya9pvuj0JGoRwjRVmkOzwy02qTRZvmNTx3vEsFzp1DC6g4NmJoKwy70gO38ko8uNuHpS8oqg9/t2mvfRgRaBBdwafJ/wKdTU9dcODXbV7d0l97h8eUdDf72WP8fTVoRy6XiGyQoKxttT9T5E8IOe27ZdbVq6SFIFXtRCpk6M4y8gmPk7Q0Pk6sfD8teYevbaSjgCJuwO6hgh0Y4ez7U7ThbmsKAzp4Zjs37/5g+iHJISEgP1i2He3hkfJCn25+2/bF0zBHYr+p4NmbAn6m0FwdU+Vog==
+ b=nHnwNGXI9lHPNlhY6W06zDHW63jfv2N1ix/03y+8SzErBUyEY+ihvhP9La435UkgvAPy9PSBTnlBmeYjQbF2MOh3fqIp4/8WWVj4IA7n9JOdvF6bFHuHoy86ACtBsDV5VzvITToYC7hBNvLTzByd61Oqjw2emhMZqwn0i95zfwouv3VAlOBc+4D7UUD3gGCDUy7Rzj4yHULl46NUSLnfywYr/vCt/RDfP7dZv3UjFgeKqhX/uf/M0M42P23AB7paNACREZiiW1wo35FV+tga6xwFLLOU9do550E/9txmLHc/GJMBVOQrdy7/a1n7UeZxSu8Ug2PQ0W2B82i9JunY8Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2Ja0gwT6dkbm40bUytkuTsuI94DQ/KvtrUPsIkTQIlA=;
- b=mrOE9sYFHgdgaKd7kt1cw7UmtCqAFCFo1QV6oyxsW0iS+kQI6rrXLhzxUJJi+0ZbtCpRQWt1kRHt9W2W1cNMsXePBxh/FbC/kzQ+QrksjtGAenKL2LXAYLnXibSbrpULuWFsYdZqzrj+ao7/hYQLusF8OInJ1SB0uA8KojBRpw7I2rEQ7ygTgdlauY8eOC9w0pwhEwhhNsWVjB6OczdPxrL3r1cofhjh8UAHAYLPukaZrjIEFJiNdORFWEY7nrkM+zSZTwKMAoZmOLyn/zWq/1iEXhkbtCxYRbDC0nZ3wZmKO9qrm3QKQZPx/KXqUFSn+Ipnf7YIN6jFZC961LRz7g==
+ bh=nhsIzhHdWWlSj1PCOmdlXob8J6C0n8G9fbcAMWbEo4E=;
+ b=fzmhTz1EYVpGiEkhPqj3+D4pd8IOscyRKKh0huX1YYEvnsR1IEAxOJlV98g6bxWpRKnzzk1XXSKAjhTqD1t426I5VOz42i5OVi7JlklqglwOcvvPvmfT3vuop3lO4AvA4L4Pv8XkaqGTdkVt5Hk8q8dlV8J7rYOYgnkoBUEpwDTwytuGm3I82iQAGtrRxDzgyJp4/VSdIy8oCWa+s67RPusQbWqf77gh/BnZayMlHcUaVQAG8Qh28zKZnBHn1sBoksdz9+z+b/ZIE4sAerNHbmnWkI+PbZq9w5B1BKVgsj6J/sm5nT6R1qm1+JpffGhO3DfZ5A2PRlBotd3VTIsibw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2Ja0gwT6dkbm40bUytkuTsuI94DQ/KvtrUPsIkTQIlA=;
- b=YJ+do8J48/d6DL2JvL6YU9EpZtjbnQDIIbREKnjKE/js657Kl0T6AgS678EdKgFxZrfadUgPMXPz69DG0oPXEHb/HIfWW/98ft/FH8J+apFGytgrRG5bIEk6vwqj/abXcFYoEQEe3g/lIZk3DfNv/P6lEC4NwBbIdUlPFrXnbdY=
-Received: from MW4PR03CA0300.namprd03.prod.outlook.com (2603:10b6:303:b5::35)
- by IA1PR12MB6353.namprd12.prod.outlook.com (2603:10b6:208:3e3::9)
+ bh=nhsIzhHdWWlSj1PCOmdlXob8J6C0n8G9fbcAMWbEo4E=;
+ b=ZVa0MeZ0lyySuFoERXNXGLOHrUzkMLhntQPd8rWBhZ01U9TY8JEkt+3WQ/1UWpbyJEasazWlE7DPJxGOk2EgZrCEpVfR/U7uZDr747tnJZj1eu8tBcNO7VP+Jxk0tOwufnxsMSau2YJOFu5fl8cS+PPGbMZEXTkNp+6/fLDBJTY=
+Received: from MW4PR03CA0297.namprd03.prod.outlook.com (2603:10b6:303:b5::32)
+ by BL1PR12MB5288.namprd12.prod.outlook.com (2603:10b6:208:314::23)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.13; Fri, 13 May
- 2022 20:51:28 +0000
+ 2022 20:51:30 +0000
 Received: from CO1NAM11FT048.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:b5:cafe::5c) by MW4PR03CA0300.outlook.office365.com
- (2603:10b6:303:b5::35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.23 via Frontend
- Transport; Fri, 13 May 2022 20:51:28 +0000
+ (2603:10b6:303:b5:cafe::56) by MW4PR03CA0297.outlook.office365.com
+ (2603:10b6:303:b5::32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.14 via Frontend
+ Transport; Fri, 13 May 2022 20:51:29 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CO1NAM11FT048.mail.protection.outlook.com (10.13.175.148) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5250.13 via Frontend Transport; Fri, 13 May 2022 20:51:28 +0000
+ 15.20.5250.13 via Frontend Transport; Fri, 13 May 2022 20:51:29 +0000
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Fri, 13 May
- 2022 15:51:26 -0500
+ 2022 15:51:27 -0500
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 04/11] drm/amd/display: clear request when release aux engine
-Date: Fri, 13 May 2022 16:50:34 -0400
-Message-ID: <20220513205041.1311639-5-qingqing.zhuo@amd.com>
+Subject: [PATCH 05/11] drm/amd/display: Check if modulo is 0 before dividing.
+Date: Fri, 13 May 2022 16:50:35 -0400
+Message-ID: <20220513205041.1311639-6-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220513205041.1311639-1-qingqing.zhuo@amd.com>
 References: <20220513205041.1311639-1-qingqing.zhuo@amd.com>
@@ -68,27 +68,27 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6598995e-0e28-4476-514e-08da35225a18
-X-MS-TrafficTypeDiagnostic: IA1PR12MB6353:EE_
-X-Microsoft-Antispam-PRVS: <IA1PR12MB6353B8BA376BF85C10D450A2FBCA9@IA1PR12MB6353.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 71489fab-c4b6-4631-a7b0-08da35225ad4
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5288:EE_
+X-Microsoft-Antispam-PRVS: <BL1PR12MB52888B05B8FA18E81F5671FBFBCA9@BL1PR12MB5288.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7t+Av6soeulxgdVAMZhr9otIS+dhIOebzJwcy+P45lBkgyUZfcHJkZXUR/yxYda6jdBNwKy5cDM/kZD0kGgYl7t+jb1RHH/Dlh3ulpqj16MJVazxNUpHZ/5pJe4ECD5jLLoOOi4BY17a4MI6dnQimtEgyliZ3vXu3YJJ9cPOR1az+LE0y3nHIzYAATach1ERUkAztuF+Canpkieq3WoQmwIbbbxrxEDklhIaSVBXX82zXis4IoSvHOOlAfurzTHEfD2GzdhLN0p+PYchhTFPfYcPCTvISN/QDKdlf+63TWGHM7r3jLVNgsQbTomWTbcZs3trNb8A6YZb7z35Sp3G60eLvI6uxzO+ZkD/PK/TUz+EsPqTrSJl4ncb19g0KyRZP6Syt1nskOY+JLo74NwhgS9Krgszg8OgwImXwDyn0sHUdTFsz9WsTFNNRnq8q03mL0PjV4tgY5NINLpiLqhcXaHZcdm1YGHG7Q80JyA9TUGtJ3hyfOY1vDJ1qnRXzsQJSPAgrjhQtgwgSMAoo4yLm0OaVggdN4UnGEo6OfNrfYcsm4f252CbGps8lcv1gKCYT+oCU6dIrC6tAmwh/c6z7ohvP9sG2QAZQIjR3oJpZtuG0dUNeXygyZlz2Jjn3RW4QBq8hXkxEoLM95vZc3Aewv1c1FKTUtb2mNFSEq0f4+NEj1bv2kbIikVbGazrc9zQqDqbGlAJhVq8tM30Fo0g8g==
+X-Microsoft-Antispam-Message-Info: +Sei1mEIXWtWKzx6/gvFdUx3exuD11DYyXjg+9UGssKR3YzE8aYGkKHaoV38cXotjQk4xZGefOcdS80uLVyQg0A/cRsHp4dZ9L8rukbmhqJDlIlWkNLOolbZoULcIpqqEQEHt34U1ctBdVLzv0bpyLdgI2AATfcJlct1iNy+Nu96Hej4oMfwbcrALvNRGyknqYAqo1aAEWUJNXA9BZ9x5X+P4QAnsbbwQoBdNerZ0wPbBLIFpvROhuQm+/bWEbjDMkW5tH1j6fuVV0kTt4QF62l9FDPzVaHBr2CuRKFraoMkcQDMhwwM2NCv8J2ogRadASIpjd5YKeXSYdT4fQWM8U5Z69/qoHqp+yGES77k2iZGQx47jcrahvKZQ3YHiMpLIx66G6DfdAK6sQrapxe98wPm8RRnC6AWNHMx91Zily8CGBr1fFgS0djuTbEF5Q5g997tJ/+8KGtm6y/JoigPMTChDGf3RsQkAOQ2KcODraQg6avxSuDbxXWAdhpGuyz7y6zr7z7awesse8WVVDu9QNXEtI9s1liyBEuZhzDqqVdmhnEASGu6/O/7KnjSU7G8LvH4H7hHZe0S2Fk8QQ4cAedZP+g/bYPQwSzBJEb64fzpYfbBNrkOA2iYnouGovG3Nib2FrzCC6zD6cTYq1iBRQIqYKwKEBojz1sNojzVQho35Jbl3sLn0kLt0PN7iTZW0nH0BhkuueoGqYGshiy+bg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(36756003)(40460700003)(5660300002)(81166007)(36860700001)(356005)(2906002)(83380400001)(44832011)(426003)(336012)(6666004)(47076005)(186003)(16526019)(70586007)(82310400005)(4326008)(1076003)(70206006)(2616005)(8676002)(8936002)(26005)(6916009)(316002)(508600001)(54906003)(86362001)(36900700001);
+ SFS:(13230001)(4636009)(40470700004)(36840700001)(46966006)(8936002)(186003)(16526019)(86362001)(356005)(82310400005)(81166007)(44832011)(70206006)(70586007)(508600001)(36860700001)(4326008)(8676002)(40460700003)(26005)(5660300002)(1076003)(6916009)(2616005)(6666004)(54906003)(36756003)(316002)(83380400001)(336012)(426003)(47076005)(2906002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2022 20:51:28.1174 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6598995e-0e28-4476-514e-08da35225a18
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2022 20:51:29.3517 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 71489fab-c4b6-4631-a7b0-08da35225ad4
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT048.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6353
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5288
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,46 +100,47 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Anthony Koo <Anthony.Koo@amd.com>, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+Cc: stylon.wang@amd.com, David Galiffi <David.Galiffi@amd.com>,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Martin Leung <Martin.Leung@amd.com>, Rodrigo.Siqueira@amd.com,
  roman.li@amd.com, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
- wayne.lin@amd.com, Paul Hsieh <paul.hsieh@amd.com>, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+ wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
+ pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Paul Hsieh <paul.hsieh@amd.com>
+From: David Galiffi <David.Galiffi@amd.com>
 
-[Why]
-when driver and dmub request aux engine at the same time,
-dmub grant the aux engine but driver fail. Then driver
-release aux engine but doesn't clear the request bit.
-Then aux engine will be occupied by driver forever.
+[How & Why]
+If a value of 0 is read, then this will cause a divide-by-0 panic.
 
-[How]
-When driver release aux engine, clear request bit as well.
-
-Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
+Reviewed-by: Martin Leung <Martin.Leung@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
-Signed-off-by: Paul Hsieh <paul.hsieh@amd.com>
+Signed-off-by: David Galiffi <David.Galiffi@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dce/dce_aux.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c b/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c
-index 29e20d92b0bb..9e39cd7b203e 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c
-@@ -87,7 +87,8 @@ static void release_engine(
- 
- 	engine->ddc = NULL;
- 
--	REG_UPDATE(AUX_ARB_CONTROL, AUX_SW_DONE_USING_AUX_REG, 1);
-+	REG_UPDATE_2(AUX_ARB_CONTROL, AUX_SW_DONE_USING_AUX_REG, 1,
-+		AUX_SW_USE_AUX_REG_REQ, 0);
- }
- 
- #define SW_CAN_ACCESS_AUX 1
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c b/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
+index 5e6fea85a7b5..845aa8a1027d 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
+@@ -1101,9 +1101,12 @@ static bool get_pixel_clk_frequency_100hz(
+ 			 * not be programmed equal to DPREFCLK
+ 			 */
+ 			modulo_hz = REG_READ(MODULO[inst]);
+-			*pixel_clk_khz = div_u64((uint64_t)clock_hz*
+-				clock_source->ctx->dc->clk_mgr->dprefclk_khz*10,
+-				modulo_hz);
++			if (modulo_hz)
++				*pixel_clk_khz = div_u64((uint64_t)clock_hz*
++					clock_source->ctx->dc->clk_mgr->dprefclk_khz*10,
++					modulo_hz);
++			else
++				*pixel_clk_khz = 0;
+ 		} else {
+ 			/* NOTE: There is agreement with VBIOS here that MODULO is
+ 			 * programmed equal to DPREFCLK, in which case PHASE will be
 -- 
 2.25.1
 
