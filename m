@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73C32526C2F
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 May 2022 23:17:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E817526C36
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 May 2022 23:17:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDC2A10E4A7;
-	Fri, 13 May 2022 21:17:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BA8510E5DD;
+	Fri, 13 May 2022 21:17:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2065.outbound.protection.outlook.com [40.107.94.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5670B10E4A7
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 May 2022 21:17:20 +0000 (UTC)
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam08on2054.outbound.protection.outlook.com [40.107.100.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D3E510E562
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 May 2022 21:17:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=g6sA56K7qyDil9g53jUtElh6eKT6gw05q7fu+85cB+ExiaxpQoRvX59fxviukmSyJvXwZsnBVuf+5D9qIy+Nq5uacoWx4zlgkex/kb7c0r+6Ho4tXUe3J3aIyGf7N/j5CP6PjtWBMKF84Eo0ZGgkslXOK/Y79r5WYeAl+IQIMWY5NkAMZX4m9ezNc4Np2aTm8jUdJ0pis8UHAydHR4sOca6bgaURNYnLmw41wyRqAfpgub8cbQW224dEpK2GPzNft3Iu7HBJOsaRRi0A0LQ6ckUVi8pj2SlT9x6fpchjzEyPR+EE2F8h0pJUstBVPDjlPcf5HW8GEY+fIvQnGfnTJA==
+ b=joyCunJYZzXoNRLrwtkYhcdL3+ex63ikSIMKsztsn4l2MB4686AcFoVHxhQmj2OtwudDI7dEd7Kuzdx80EsmiaMg6mn134WWMq2s8r2YKaU4A+IYoHMqMklSJSaRWZJ/cSu++GuE3ZITfkKtNnsnqZ6+xqNfh+j93wDFquG3oYuemOfjD5ncBRofKesGs6+wdffvtjkc1iWsnxLuXNJQnxovYmkAu8WTGkThFNkQzLzbnyScoLwRFfSUENfRqoEn/rrbYWuVRw6Di4llJIB9LiCk72/7WEO2zfesrd0Ztipb4g1jE7Sck0WmcFOcTwQnEjN2+vduPu6cG/SjY9k8LA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MpoC+j9ZAI1Hwlt+zlrVhxUyP/4uaKj4wZWUApp8HRk=;
- b=VJA7/q8OkP9t3hp+N+hv43c4SrKUr5w5qcFiIurQpAbxGpnKXN+xzIgzRMH3h9wt0j0fUBf688GGSDy0SSxhw/2r60RkljC9i9Ep+c3147t69AcakUrFQ1P0crFFuqxzCoiVIuVJgRmc8KDWF9sS8/cSoujuD0yeEbr+SuGFGRsSghNSMUfWK9u+VhqhjQRUJU4oJXLg/f07B8eM0xHLhpNiwHjLODkWyY8q1u/Rdr2HLksQrrnGc2P9ewi9UEGrSX3upKeK+Mwzoe/US4CRB3nuyzqqxxeUvqPXK1uXZglLzCDdY69IlvnH9sRfN4psQRIA03usyNXUGKThNqFPYg==
+ bh=cAd4RyUEkqGIKZ5FzfqCNEkOvaCKU8zVG0H5AFoc+do=;
+ b=M/Ejhtpis2Nieo/wcgK1xOlMdNKHoVZai4cbLf5n58JYiEgxe0oqJg05ZHUSm0hQ1xWYIV2jvRxFpgh6r74MJoJj4Sz4UTukH97WlF0fDeudIPcLlYP6QJRelmUO7FI7QMg3wGtwio1nAXdmaKiVb2nX1HZoxn5Vj73flNGzCTi3C7/kZDJDS7tGRpKXehcrcJuLDXsDNFBjAPRB0ZbNKYTsKf2ZwqCALAplZit4PZqOo89TGe1ltr6/QF+Fp0Tc7waVSVDI78/OJWGWx9vZA7qZccEtket097T1ONv9PBKNRQ5xT0+Sn/GgLw4iIKN7xphj5P4X4aURuJH3L0Oohw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MpoC+j9ZAI1Hwlt+zlrVhxUyP/4uaKj4wZWUApp8HRk=;
- b=3GJCXxBgMlLa6s3E425M/hhuHteTwQd58izzeF6wEqjotGHe277vl8uGa2iYud+wSFTCuK7+ZpUcRxdPAdUKvUJ/fHjb/uDzxVQoZbrWe3agU2WLHvvqVacX/P7fEZqkylT8u97q+yMaNui/PEqZA0iiNoGMkiwB2yEhzEB+x2Y=
-Received: from MW4PR04CA0317.namprd04.prod.outlook.com (2603:10b6:303:82::22)
- by IA1PR12MB6650.namprd12.prod.outlook.com (2603:10b6:208:3a1::18)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=cAd4RyUEkqGIKZ5FzfqCNEkOvaCKU8zVG0H5AFoc+do=;
+ b=5iD4JanBnHvJL5VJjD3CmZ7quaDxaEzzu3qFJB9KGw+mBkvWsmY5iR6wl436ikBTNUnNpw27ddIlGXusO4GBRYMQl0Zx97bz3HTy1b+8bQPsBpolB52QmQEww7YOF1TDZUbAjW3K7oXD5W+F/8u8pe/D1PDOfuC/G/YgBjJE5os=
+Received: from MW4P221CA0026.NAMP221.PROD.OUTLOOK.COM (2603:10b6:303:8b::31)
+ by BL0PR12MB4915.namprd12.prod.outlook.com (2603:10b6:208:1c9::20) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.14; Fri, 13 May
- 2022 21:17:18 +0000
-Received: from CO1NAM11FT068.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:82:cafe::9a) by MW4PR04CA0317.outlook.office365.com
- (2603:10b6:303:82::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.16 via Frontend
- Transport; Fri, 13 May 2022 21:17:17 +0000
+ 2022 21:17:20 +0000
+Received: from CO1NAM11FT047.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:8b:cafe::79) by MW4P221CA0026.outlook.office365.com
+ (2603:10b6:303:8b::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.23 via Frontend
+ Transport; Fri, 13 May 2022 21:17:19 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,19 +45,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT068.mail.protection.outlook.com (10.13.175.142) with Microsoft SMTP
+ CO1NAM11FT047.mail.protection.outlook.com (10.13.174.132) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5250.13 via Frontend Transport; Fri, 13 May 2022 21:17:17 +0000
+ 15.20.5250.13 via Frontend Transport; Fri, 13 May 2022 21:17:19 +0000
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Fri, 13 May
- 2022 16:17:15 -0500
+ 2022 16:17:16 -0500
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2 01/11] drm/amd/display: Update link training fallback
- behaviour.
-Date: Fri, 13 May 2022 17:16:41 -0400
-Message-ID: <20220513211651.1312846-2-qingqing.zhuo@amd.com>
+Subject: [PATCH v2 02/11] drm/amd/display: Query DPIA HPD status.
+Date: Fri, 13 May 2022 17:16:42 -0400
+Message-ID: <20220513211651.1312846-3-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220513211651.1312846-1-qingqing.zhuo@amd.com>
 References: <20220513211651.1312846-1-qingqing.zhuo@amd.com>
@@ -69,27 +68,27 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a2c53ed6-e2ec-4655-5e6c-08da3525f581
-X-MS-TrafficTypeDiagnostic: IA1PR12MB6650:EE_
-X-Microsoft-Antispam-PRVS: <IA1PR12MB66501676F3A1D1471E980917FBCA9@IA1PR12MB6650.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: f0ede43c-24ad-4e93-de9e-08da3525f6ba
+X-MS-TrafficTypeDiagnostic: BL0PR12MB4915:EE_
+X-Microsoft-Antispam-PRVS: <BL0PR12MB491597AD332645E160F911EEFBCA9@BL0PR12MB4915.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: S1uXnbnu35NcrzhciU4/qBlNB6yMU4ZwCVkL4Z6egRlfShjZRVS9rshpIt/gekTtQlPyFCjWuceSUJWhyLt91uLZi6pzh7j9ceRRH+XzUxcjuXRGCOJ0BTtyuCPi9P8QghJezxNDO3Rx1LNxGMqnKRzNfCqhZ+6cTiKlf2SVO8VZS7MvN9RlgPUjGgir6MPycQRfNtiX0/5cr/KeLL7iQb52T8jmkqST11xrD6Ha8/oRfXgnR9DY3khCTwEN1b4EM7GpP7lXCCulddtnT7S1zFyR84VlotGHOJtUA5QepuM+bHkQm6sJLYRuQ3e6YCCw4rvsw4FtMJTtljiHSWImeAOUcRae0VsJYGcxOJM6QZSW+F5Zn4pVZQJZb/Vul+FGmpSFpLJBm3SMV+U3laxoqTppt93n94WG9jW96XSwZItJkNnuRnj1Q3TnqHpWfE2LY5zxbpvXYrFbIReXJ9z+i5ziTyiRBjeREwhwTLkn7JqqBVs55lB95nkO0M2hvPzZ5QEbjf9S0OPXexWIvi88Uh8RYohIF5HhupoMno//J/qlzKif2yFO0l1itSbB0SaFz36FSjzXGlOa8a/xP7BQSvLboOlIZZMMAz/DU5tn9uylmQZTewSnzXm7/XlszjuJiBGgJ2D5KAzTPUGVcXbAqMbutplGxkwarS/pHrfcq6VsGPhOr1TcUYNfi6m3DJBeLi2mWhjJTAKgv3bH4mtdVg==
+X-Microsoft-Antispam-Message-Info: bh6aXBPuM/FCGn+GQ+yoBmWl6X4xum5zCF53xxYKznZF80X0YlODotOg/BMibrHzD7TyI1Mg9hLYP3eiGcbeRZCSvyA7tt3rFpeYfFNj8Fo0FpRAL+3BfNUqerU/wdspZSS0X3ULdX9U7N4JpnG9CcmuMwF3PdNddbux27c7tAmmilozl51h6+TKqOhFjRHShjdn9hCo2Vr1DFwfBV6Gd9JxTQczLFbPOEr8qjOkjydL8u5gL9HgLBGfZxTqyV3K/rV5OsdMm7OF8aXaLXkSNOj5pKTBrfCujGIjg89or79dKzofq4VX/Bf9yBCiCB5sN92vMGqu4bbZI0/tc/5NsOdpTqMPAXRmee1bNSgI4/EGuNhhLA6MAxe4uendOvTpOoMI46JYq6mafWQ0Aec5ODkWNjVm9wthoam/1s42NZn7IrqlKBTr7rkNhhZbZvJdzP/5yLLhWw/anW3U/TODOnV3tCh5ckUCPmlKf3kUK2/gMbV+FfZIro7crazWWgcP32F9Op2NzfXOWXQ665QgYrqcX1aRPYqvco0iNtcgrRV3kFwKFIZ9bUU6qPWVW8macRY8LHGNSebbRxqueYDIg6gDuy0SIO9oDoRIkzdwGY3nQ68h9bvD85k4bThEdOAzaS+gvw+LMz6tepDtSIY4Hb2t7SDiR9ajekUAYJj0IsK/ZZz+P7y55cH3cAo2i64TH6XHEUCe5A8BPdkGhb3PUA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(81166007)(2906002)(6666004)(508600001)(86362001)(316002)(356005)(83380400001)(5660300002)(26005)(336012)(4326008)(1076003)(44832011)(70586007)(70206006)(2616005)(47076005)(186003)(426003)(8676002)(16526019)(82310400005)(8936002)(36860700001)(40460700003)(36756003)(54906003)(6916009)(36900700001);
+ SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(6666004)(5660300002)(2906002)(44832011)(508600001)(8936002)(26005)(2616005)(70586007)(70206006)(86362001)(4326008)(8676002)(6916009)(40460700003)(356005)(54906003)(316002)(36860700001)(82310400005)(81166007)(426003)(83380400001)(186003)(336012)(1076003)(36756003)(16526019)(47076005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2022 21:17:17.3429 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a2c53ed6-e2ec-4655-5e6c-08da3525f581
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2022 21:17:19.3975 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0ede43c-24ad-4e93-de9e-08da3525f6ba
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT068.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT047.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6650
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4915
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,187 +102,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: stylon.wang@amd.com, Jun Lei <Jun.Lei@amd.com>, Sunpeng.Li@amd.com,
  Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
- wayne.lin@amd.com, Jimmy Kizito <Jimmy.Kizito@amd.com>,
- Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+ roman.li@amd.com,
+ Meenakshikumar Somasundaram <Meenakshikumar.Somasundaram@amd.com>,
+ solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
+ Jimmy Kizito <Jimmy.Kizito@amd.com>, Bhawanpreet.Lakha@amd.com,
+ agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Jimmy Kizito <Jimmy.Kizito@amd.com>
 
 [Why]
-Some displays may need several link training attempts before
-link training succeeds.
+Driver needs up to date DPIA HPD status.
 
 [How]
-If training succeeds after falling back to lower link bandwidth,
-retry at original link bandwidth instead of abandoning link training
-whenever link bandwidth is less than stream bandwidth.
+Use HPD query command to get DPIA HPD status.
 
+Reviewed-by: Meenakshikumar Somasundaram <Meenakshikumar.Somasundaram@amd.com>
 Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
 Signed-off-by: Jimmy Kizito <Jimmy.Kizito@amd.com>
 ---
- .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 77 +++++++++++++------
- 1 file changed, 53 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c |  3 ++-
+ .../drm/amd/display/dc/core/dc_link_dpia.c    | 19 +++++++++++++++++++
+ .../gpu/drm/amd/display/dc/inc/dc_link_dpia.h |  5 +++++
+ 3 files changed, 26 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-index 975d631534b5..d8de8dbf3676 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-@@ -2783,31 +2783,37 @@ bool perform_link_training_with_retries(
- 	struct dc_link *link = stream->link;
- 	enum dp_panel_mode panel_mode = dp_get_panel_mode(link);
- 	enum link_training_result status = LINK_TRAINING_CR_FAIL_LANE0;
--	struct dc_link_settings current_setting = *link_setting;
-+	struct dc_link_settings cur_link_settings = *link_setting;
- 	const struct link_hwss *link_hwss = get_link_hwss(link, &pipe_ctx->link_res);
- 	int fail_count = 0;
-+	bool is_link_bw_low = false; /* link bandwidth < stream bandwidth */
-+	bool is_link_bw_min = /* RBR x 1 */
-+		(cur_link_settings.link_rate <= LINK_RATE_LOW) &&
-+		(cur_link_settings.lane_count <= LANE_COUNT_ONE);
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+index 67ef357e5798..b40abd2bf7f6 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+@@ -33,6 +33,7 @@
+ #include "gpio_service_interface.h"
+ #include "core_status.h"
+ #include "dc_link_dp.h"
++#include "dc_link_dpia.h"
+ #include "dc_link_ddc.h"
+ #include "link_hwss.h"
+ #include "opp.h"
+@@ -240,7 +241,7 @@ bool dc_link_detect_sink(struct dc_link *link, enum dc_connection_type *type)
  
- 	dp_trace_commit_lt_init(link);
+ 	/* Link may not have physical HPD pin. */
+ 	if (link->ep_type != DISPLAY_ENDPOINT_PHY) {
+-		if (link->is_hpd_pending || !link->hpd_status)
++		if (link->is_hpd_pending || !dc_link_dpia_query_hpd_status(link))
+ 			*type = dc_connection_none;
+ 		else
+ 			*type = dc_connection_single;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dpia.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dpia.c
+index a5765f36d86f..1b7a8774b0c9 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dpia.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dpia.c
+@@ -34,6 +34,7 @@
+ #include "dm_helpers.h"
+ #include "dmub/inc/dmub_cmd.h"
+ #include "inc/link_dpcd.h"
++#include "dc_dmub_srv.h"
  
- 
--	if (dp_get_link_encoding_format(&current_setting) == DP_8b_10b_ENCODING)
-+	if (dp_get_link_encoding_format(&cur_link_settings) == DP_8b_10b_ENCODING)
- 		/* We need to do this before the link training to ensure the idle
- 		 * pattern in SST mode will be sent right after the link training
- 		 */
- 		link_hwss->setup_stream_encoder(pipe_ctx);
- 
- 	dp_trace_set_lt_start_timestamp(link, false);
--	for (j = 0; j < attempts; ++j) {
-+	j = 0;
-+	while (j < attempts && fail_count < (attempts * 10)) {
- 
--		DC_LOG_HW_LINK_TRAINING("%s: Beginning link training attempt %u of %d\n",
--			__func__, (unsigned int)j + 1, attempts);
-+		DC_LOG_HW_LINK_TRAINING("%s: Beginning link training attempt %u of %d @ rate(%d) x lane(%d)\n",
-+			__func__, (unsigned int)j + 1, attempts, cur_link_settings.link_rate,
-+			cur_link_settings.lane_count);
- 
- 		dp_enable_link_phy(
- 			link,
- 			&pipe_ctx->link_res,
- 			signal,
- 			pipe_ctx->clock_source->id,
--			&current_setting);
-+			&cur_link_settings);
- 
- 		if (stream->sink_patches.dppowerup_delay > 0) {
- 			int delay_dp_power_up_in_ms = stream->sink_patches.dppowerup_delay;
-@@ -2832,30 +2838,30 @@ bool perform_link_training_with_retries(
- 		dp_set_panel_mode(link, panel_mode);
- 
- 		if (link->aux_access_disabled) {
--			dc_link_dp_perform_link_training_skip_aux(link, &pipe_ctx->link_res, &current_setting);
-+			dc_link_dp_perform_link_training_skip_aux(link, &pipe_ctx->link_res, &cur_link_settings);
- 			return true;
- 		} else {
- 			/** @todo Consolidate USB4 DP and DPx.x training. */
- 			if (link->ep_type == DISPLAY_ENDPOINT_USB4_DPIA) {
- 				status = dc_link_dpia_perform_link_training(link,
- 						&pipe_ctx->link_res,
--						&current_setting,
-+						&cur_link_settings,
- 						skip_video_pattern);
- 
- 				/* Transmit idle pattern once training successful. */
--				if (status == LINK_TRAINING_SUCCESS)
-+				if (status == LINK_TRAINING_SUCCESS && !is_link_bw_low)
- 					dp_set_hw_test_pattern(link, &pipe_ctx->link_res, DP_TEST_PATTERN_VIDEO_MODE, NULL, 0);
- 			} else {
- 				status = dc_link_dp_perform_link_training(link,
- 						&pipe_ctx->link_res,
--						&current_setting,
-+						&cur_link_settings,
- 						skip_video_pattern);
- 			}
- 
- 			dp_trace_lt_total_count_increment(link, false);
- 			dp_trace_lt_result_update(link, status, false);
- 			dp_trace_set_lt_end_timestamp(link, false);
--			if (status == LINK_TRAINING_SUCCESS)
-+			if (status == LINK_TRAINING_SUCCESS && !is_link_bw_low)
- 				return true;
- 		}
- 
-@@ -2866,8 +2872,9 @@ bool perform_link_training_with_retries(
- 		if (j == (attempts - 1) && link->ep_type == DISPLAY_ENDPOINT_PHY)
- 			break;
- 
--		DC_LOG_WARNING("%s: Link training attempt %u of %d failed\n",
--			__func__, (unsigned int)j + 1, attempts);
-+		DC_LOG_WARNING("%s: Link training attempt %u of %d failed @ rate(%d) x lane(%d)\n",
-+			__func__, (unsigned int)j + 1, attempts, cur_link_settings.link_rate,
-+			cur_link_settings.lane_count);
- 
- 		dp_disable_link_phy(link, &pipe_ctx->link_res, signal);
- 
-@@ -2876,27 +2883,49 @@ bool perform_link_training_with_retries(
- 			enum dc_connection_type type = dc_connection_none;
- 
- 			dc_link_detect_sink(link, &type);
--			if (type == dc_connection_none)
-+			if (type == dc_connection_none) {
-+				DC_LOG_HW_LINK_TRAINING("%s: Aborting training because sink unplugged\n", __func__);
- 				break;
--		} else if (do_fallback) {
-+			}
-+		}
-+
-+		/* Try to train again at original settings if:
-+		 * - not falling back between training attempts;
-+		 * - aborted previous attempt due to reasons other than sink unplug;
-+		 * - successfully trained but at a link rate lower than that required by stream;
-+		 * - reached minimum link bandwidth.
-+		 */
-+		if (!do_fallback || (status == LINK_TRAINING_ABORT) ||
-+				(status == LINK_TRAINING_SUCCESS && is_link_bw_low) ||
-+				is_link_bw_min) {
-+			j++;
-+			cur_link_settings = *link_setting;
-+			delay_between_attempts += LINK_TRAINING_RETRY_DELAY;
-+			is_link_bw_low = false;
-+			is_link_bw_min = (cur_link_settings.link_rate <= LINK_RATE_LOW) &&
-+				(cur_link_settings.lane_count <= LANE_COUNT_ONE);
-+
-+		} else if (do_fallback) { /* Try training at lower link bandwidth if doing fallback. */
- 			uint32_t req_bw;
- 			uint32_t link_bw;
- 
--			decide_fallback_link_setting(link, *link_setting, &current_setting, status);
--			/* Fail link training if reduced link bandwidth no longer meets
--			 * stream requirements.
-+			decide_fallback_link_setting(link, *link_setting, &cur_link_settings, status);
-+			/* Flag if reduced link bandwidth no longer meets stream requirements or fallen back to
-+			 * minimum link bandwidth.
- 			 */
- 			req_bw = dc_bandwidth_in_kbps_from_timing(&stream->timing);
--			link_bw = dc_link_bandwidth_kbps(link, &current_setting);
--			if (req_bw > link_bw)
--				break;
-+			link_bw = dc_link_bandwidth_kbps(link, &cur_link_settings);
-+			is_link_bw_low = (req_bw > link_bw);
-+			is_link_bw_min = ((cur_link_settings.link_rate <= LINK_RATE_LOW) &&
-+				(cur_link_settings.lane_count <= LANE_COUNT_ONE));
-+
-+			if (is_link_bw_low)
-+				DC_LOG_WARNING("%s: Link bandwidth too low after fallback req_bw(%d) > link_bw(%d)\n",
-+					__func__, req_bw, link_bw);
- 		}
- 
- 		msleep(delay_between_attempts);
--
--		delay_between_attempts += LINK_TRAINING_RETRY_DELAY;
- 	}
--
- 	return false;
+ #define DC_LOGGER \
+ 	link->ctx->logger
+@@ -69,6 +70,24 @@ enum dc_status dpcd_get_tunneling_device_data(struct dc_link *link)
+ 	return status;
  }
  
++bool dc_link_dpia_query_hpd_status(struct dc_link *link)
++{
++	union dmub_rb_cmd cmd = {0};
++	struct dc_dmub_srv *dmub_srv = link->ctx->dmub_srv;
++	bool is_hpd_high = false;
++
++	/* prepare QUERY_HPD command */
++	cmd.query_hpd.header.type = DMUB_CMD__QUERY_HPD_STATE;
++	cmd.query_hpd.data.instance = link->link_id.enum_id - ENUM_ID_1;
++	cmd.query_hpd.data.ch_type = AUX_CHANNEL_DPIA;
++
++	/* Return HPD status reported by DMUB if query successfully executed. */
++	if (dc_dmub_srv_cmd_with_reply_data(dmub_srv, &cmd) && cmd.query_hpd.data.status == AUX_RET_SUCCESS)
++		is_hpd_high = cmd.query_hpd.data.result;
++
++	return is_hpd_high;
++}
++
+ /* Configure link as prescribed in link_setting; set LTTPR mode; and
+  * Initialize link training settings.
+  * Abort link training if sink unplug detected.
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/dc_link_dpia.h b/drivers/gpu/drm/amd/display/dc/inc/dc_link_dpia.h
+index 74dafd0f9d3d..39c1d1d07357 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/dc_link_dpia.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/dc_link_dpia.h
+@@ -87,6 +87,11 @@ union dpia_set_config_data {
+  */
+ enum dc_status dpcd_get_tunneling_device_data(struct dc_link *link);
+ 
++/* Query hot plug status of USB4 DP tunnel.
++ * Returns true if HPD high.
++ */
++bool dc_link_dpia_query_hpd_status(struct dc_link *link);
++
+ /* Train DP tunneling link for USB4 DPIA display endpoint.
+  * DPIA equivalent of dc_link_dp_perfrorm_link_training.
+  * Aborts link training upon detection of sink unplug.
 -- 
 2.25.1
 
