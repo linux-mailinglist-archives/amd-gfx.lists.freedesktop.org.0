@@ -1,43 +1,41 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1859152A2EC
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 May 2022 15:13:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78AC352A2EA
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 May 2022 15:13:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4632110F040;
-	Tue, 17 May 2022 13:13:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4C0810F039;
+	Tue, 17 May 2022 13:13:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71C0B112FDF
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 May 2022 10:06:33 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68987112FE6
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 May 2022 10:06:57 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id AEBDF61517;
- Tue, 17 May 2022 10:06:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59AE9C34113;
- Tue, 17 May 2022 10:06:30 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 07E44B81803;
+ Tue, 17 May 2022 10:06:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FF4FC385B8;
+ Tue, 17 May 2022 10:06:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1652781992;
- bh=HhKKBm3wiaE0xpknwdH7ZBGXkWj2DptvFeir39Hw/ek=;
+ s=korg; t=1652782012;
+ bh=NMoilscLmc4PgSYU3AERGYXDODbll8nGlk8mFWQ/E+Q=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=F4nSFNRTu0P8ATljrJdxEj6spDFOWhsmBg7TkrTDh2dqNptrLPUH7PzVSw+aVXFm8
- 0tPHPUBt/fc5Ue24QZByFrUBjiqMeuMx/eLrQHt5bMIT18zYXfATHho/FluGkpmYfU
- lEl1JaLzl7F1l7D07G+6GoGhkDuL5q1uj1UYXfkk=
-Date: Tue, 17 May 2022 12:06:27 +0200
+ b=VDBl6/O+U+ffk25lnOuexCCDsFAZIusrbJup1PFWyJtlhRwaXWmv+h5JNiHWdoJpT
+ XNddlZSGY0izGxPw45GFl9BAJkwVN8bhlBpOEwq+jIQfC3f/0ooWEUZNxvGTtoIoqP
+ Oj8ffsrSXAsvmqwRzSwcO8aDd7iW46/PfQ0x/NGc=
+Date: Tue, 17 May 2022 12:06:47 +0200
 From: Greg KH <gregkh@linuxfoundation.org>
 To: Yuanjun Gong <ruc_gongyuanjun@163.com>
-Subject: Re: [PATCH 1/1] drm/amd/pm: fix a potential gpu_metrics_table memory
- leak
-Message-ID: <YoNzo5QonLeg9CYh@kroah.com>
-References: <20220517095746.7537-1-ruc_gongyuanjun@163.com>
+Subject: Re: [PATCH 1/1] radeon: fix a possible null pointer dereference
+Message-ID: <YoNzt4jkENOakdYF@kroah.com>
+References: <20220517095700.7291-1-ruc_gongyuanjun@163.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220517095746.7537-1-ruc_gongyuanjun@163.com>
+In-Reply-To: <20220517095700.7291-1-ruc_gongyuanjun@163.com>
 X-Mailman-Approved-At: Tue, 17 May 2022 13:13:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -50,36 +48,48 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, Evan Quan <evan.quan@amd.com>,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>, stable@vger.kernel.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 17, 2022 at 05:57:46PM +0800, Yuanjun Gong wrote:
+On Tue, May 17, 2022 at 05:57:00PM +0800, Yuanjun Gong wrote:
 > From: Gong Yuanjun <ruc_gongyuanjun@163.com>
 > 
-> gpu_metrics_table is allocated in yellow_carp_init_smc_tables() but
-> not freed in yellow_carp_fini_smc_tables().
+> In radeon_fp_native_mode(), the return value of drm_mode_duplicate()
+> is assigned to mode, which will lead to a NULL pointer dereference
+> on failure of drm_mode_duplicate(). Add a check to avoid npd.
+> 
+> The failure status of drm_cvt_mode() on the other path is checked too.
 > 
 > Signed-off-by: Gong Yuanjun <ruc_gongyuanjun@163.com>
 > ---
->  drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c | 3 +++
->  1 file changed, 3 insertions(+)
+>  drivers/gpu/drm/radeon/radeon_connectors.c | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
-> index e2d099409123..c66c39ccf19c 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
-> @@ -190,6 +190,9 @@ static int yellow_carp_fini_smc_tables(struct smu_context *smu)
->  	kfree(smu_table->watermarks_table);
->  	smu_table->watermarks_table = NULL;
+> diff --git a/drivers/gpu/drm/radeon/radeon_connectors.c b/drivers/gpu/drm/radeon/radeon_connectors.c
+> index 0cb1345c6ba4..fabe4f4ca124 100644
+> --- a/drivers/gpu/drm/radeon/radeon_connectors.c
+> +++ b/drivers/gpu/drm/radeon/radeon_connectors.c
+> @@ -473,6 +473,8 @@ static struct drm_display_mode *radeon_fp_native_mode(struct drm_encoder *encode
+>  	    native_mode->vdisplay != 0 &&
+>  	    native_mode->clock != 0) {
+>  		mode = drm_mode_duplicate(dev, native_mode);
+> +		if (!mode)
+> +			return NULL;
+>  		mode->type = DRM_MODE_TYPE_PREFERRED | DRM_MODE_TYPE_DRIVER;
+>  		drm_mode_set_name(mode);
 >  
-> +	kfree(smu_table->gpu_metrics_table);
-> +	smu_table->gpu_metrics_table = NULL;
-> +
->  	return 0;
->  }
->  
+> @@ -487,6 +489,8 @@ static struct drm_display_mode *radeon_fp_native_mode(struct drm_encoder *encode
+>  		 * simpler.
+>  		 */
+>  		mode = drm_cvt_mode(dev, native_mode->hdisplay, native_mode->vdisplay, 60, true, false, false);
+> +		if (!mode)
+> +			return NULL;
+>  		mode->type = DRM_MODE_TYPE_PREFERRED | DRM_MODE_TYPE_DRIVER;
+>  		DRM_DEBUG_KMS("Adding cvt approximation of native panel mode %s\n", mode->name);
+>  	}
 > -- 
 > 2.17.1
 > 
