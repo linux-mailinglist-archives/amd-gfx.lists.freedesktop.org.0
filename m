@@ -1,57 +1,45 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D16D52A054
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 May 2022 13:24:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2457252A2ED
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 May 2022 15:13:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D488410E349;
-	Tue, 17 May 2022 11:24:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A7A410F163;
+	Tue, 17 May 2022 13:13:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com
- [IPv6:2607:f8b0:4864:20::52c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B099110E349
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 May 2022 11:24:41 +0000 (UTC)
-Received: by mail-pg1-x52c.google.com with SMTP id h186so14021589pgc.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 May 2022 04:24:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id;
- bh=3pp/XCauLjPTMdIAv4bWe5U3GzgmpHRIaLNWt1Zp+aA=;
- b=gh7TxZaXiQbVRACakD1r6xqEuqC4KCLTAW/uWOx9N36CapHNiDj83rzQguLSddlw6c
- /SzfcE3mc1UySA+M/nxJWzrQZ2jbpWZ65JrUOekYklwIYt1veCaFlizfnytcO35dVl4u
- w9sca9skC7JbvfVaoTKBwc8kINswAxnUnFjfcWjffx2MXqyO0KnymUM5RjEpCynxBp2P
- IqfbRzB/1BvxJPeQ1ARENscVO1Br6GfEwEMU4XmfKAqDX0jAt0ZZJV5kGuMeoVL+umlk
- 60EchJNAlKqXRGOIvxTA2vjMDVgkM4ooEc11LlLRLiBmXiXXhG1gSP3qERhHCmYUNIaU
- r44w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=3pp/XCauLjPTMdIAv4bWe5U3GzgmpHRIaLNWt1Zp+aA=;
- b=luzJlg2oc5jY38rH1p3xtig1HSrDzzbBp4e7LlCfCRHZ9QpRKIlJzCvsgZHP7gr7UG
- 6p0xKwEX1/5UeDUCTUUw69OarVdNVVvYSgh8ufY/0nVX7hj20RgDuz7VdsSwOGTIqhMI
- C5FQqWgGoOLAAgZfl4tBhs8P1S/1leot7nJBh+DUhIA2GhQsWVfqWcP8IK8HaeIkrTda
- edii/9bIQsmJyRZS94UwBMSVu2arxdiDOafIubSeyIDFH97+jr/XNFHWQN7sID80Gnv4
- Rfbkk19fTH2HhUOwUsVz8OrQndEqYHMwzV5TRb6cZcTAVG+o/bRA7VVQ77+YY7QDmlA9
- Pqbw==
-X-Gm-Message-State: AOAM531nBFWHWQDQue13S3QH+AXJKgCstDxPGcFHQQQ4i5dDTClLL2Hu
- d6UTMiylW4/16BTBpLoHeCYFvuQlrexP2mqfQPg=
-X-Google-Smtp-Source: ABdhPJxRHV5mEDuJgEiPKXP5RrJKNKf7L0V1V2+lCzShyTbxnCUAbUMGqGWjnAE33GEk2GzuvsuqQQ==
-X-Received: by 2002:a63:6b42:0:b0:3da:ebd8:2e38 with SMTP id
- g63-20020a636b42000000b003daebd82e38mr19225610pgc.273.1652786680769; 
- Tue, 17 May 2022 04:24:40 -0700 (PDT)
-Received: from chachonne.lan ([2600:1700:8a10:4fd0::e])
- by smtp.gmail.com with ESMTPSA id
- i13-20020a17090a7e0d00b001deb3cbd8f1sm1417987pjl.27.2022.05.17.04.24.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 17 May 2022 04:24:40 -0700 (PDT)
-From: ricetons@gmail.com
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: fully disable the queues and doorbeels in gfx_v10
- before programing the kiq registers
-Date: Tue, 17 May 2022 04:24:38 -0700
-Message-Id: <20220517112438.5223-1-ricetons@gmail.com>
+X-Greylist: delayed 907 seconds by postgrey-1.36 at gabe;
+ Tue, 17 May 2022 10:12:31 UTC
+Received: from m12-12.163.com (m12-12.163.com [220.181.12.12])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9E71A113106
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 May 2022 10:12:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=From:Subject:Date:Message-Id; bh=dAN5rQx//OjLAAbOjO
+ sE0mviFNWECN52JE1qKyTqmK0=; b=DY5Reg58DB4MSpMkgPmXwlujKIKq9An438
+ BIm7spLWaHMUzma0Jh7jO+Uu9RPXv7m4ScAJVq15V8pXmHKFYYmLPAzDzCv2SOBb
+ lQU6J2+Z8yF57uWAhD0xTIom8FHP7Ad8SJcKjVeuO4XmSECZwSKw2DiPka2PH95g
+ sR5jBA2Qs=
+Received: from localhost.localdomain (unknown [202.112.113.212])
+ by smtp8 (Coremail) with SMTP id DMCowAC3cx11cYNi12q8Cw--.34092S4;
+ Tue, 17 May 2022 17:57:19 +0800 (CST)
+From: Yuanjun Gong <ruc_gongyuanjun@163.com>
+To: Yuanjun Gong <ruc_gongyuanjun@163.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/1] radeon: fix a possible null pointer dereference
+Date: Tue, 17 May 2022 17:57:00 +0800
+Message-Id: <20220517095700.7291-1-ruc_gongyuanjun@163.com>
 X-Mailer: git-send-email 2.17.1
+X-CM-TRANSID: DMCowAC3cx11cYNi12q8Cw--.34092S4
+X-Coremail-Antispam: 1Uf129KBjvJXoW7Zw4DZFW8Cw1kZF1xXw43ZFb_yoW8XF43pF
+ W7Gr9Iyr9ag39rGFyxAF9rWryUu348GF18Grn8u3ZrC3Z8Kry7JF17u345J3s3AF98uw1U
+ tr18Ga429F1xCFJanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0piQBMZUUUUU=
+X-Originating-IP: [202.112.113.212]
+X-CM-SenderInfo: 5uxfsw5rqj53pdqm30i6rwjhhfrp/1tbiJw0E5V5vB8SlZwADs4
+X-Mailman-Approved-At: Tue, 17 May 2022 13:13:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,63 +51,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexdeucher@gmail.com, ckoenig.leichtzumerken@gmail.com,
- Haohui Mai <ricetons@gmail.com>
+Cc: stable@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Haohui Mai <ricetons@gmail.com>
+From: Gong Yuanjun <ruc_gongyuanjun@163.com>
 
-Signed-off-by: Haohui Mai <ricetons@gmail.com>
+In radeon_fp_native_mode(), the return value of drm_mode_duplicate()
+is assigned to mode, which will lead to a NULL pointer dereference
+on failure of drm_mode_duplicate(). Add a check to avoid npd.
+
+The failure status of drm_cvt_mode() on the other path is checked too.
+
+Signed-off-by: Gong Yuanjun <ruc_gongyuanjun@163.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 27 +++++++++++++-------------
- 1 file changed, 13 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/radeon/radeon_connectors.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-index dd8f4344eeb8..9a1b42cc8500 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-@@ -6956,20 +6956,6 @@ static int gfx_v10_0_kiq_init_register(struct amdgpu_ring *ring)
- 	/* disable wptr polling */
- 	WREG32_FIELD15(GC, 0, CP_PQ_WPTR_POLL_CNTL, EN, 0);
+diff --git a/drivers/gpu/drm/radeon/radeon_connectors.c b/drivers/gpu/drm/radeon/radeon_connectors.c
+index 0cb1345c6ba4..fabe4f4ca124 100644
+--- a/drivers/gpu/drm/radeon/radeon_connectors.c
++++ b/drivers/gpu/drm/radeon/radeon_connectors.c
+@@ -473,6 +473,8 @@ static struct drm_display_mode *radeon_fp_native_mode(struct drm_encoder *encode
+ 	    native_mode->vdisplay != 0 &&
+ 	    native_mode->clock != 0) {
+ 		mode = drm_mode_duplicate(dev, native_mode);
++		if (!mode)
++			return NULL;
+ 		mode->type = DRM_MODE_TYPE_PREFERRED | DRM_MODE_TYPE_DRIVER;
+ 		drm_mode_set_name(mode);
  
--	/* write the EOP addr */
--	WREG32_SOC15(GC, 0, mmCP_HQD_EOP_BASE_ADDR,
--	       mqd->cp_hqd_eop_base_addr_lo);
--	WREG32_SOC15(GC, 0, mmCP_HQD_EOP_BASE_ADDR_HI,
--	       mqd->cp_hqd_eop_base_addr_hi);
--
--	/* set the EOP size, register value is 2^(EOP_SIZE+1) dwords */
--	WREG32_SOC15(GC, 0, mmCP_HQD_EOP_CONTROL,
--	       mqd->cp_hqd_eop_control);
--
--	/* enable doorbell? */
--	WREG32_SOC15(GC, 0, mmCP_HQD_PQ_DOORBELL_CONTROL,
--	       mqd->cp_hqd_pq_doorbell_control);
--
- 	/* disable the queue if it's active */
- 	if (RREG32_SOC15(GC, 0, mmCP_HQD_ACTIVE) & 1) {
- 		WREG32_SOC15(GC, 0, mmCP_HQD_DEQUEUE_REQUEST, 1);
-@@ -6988,6 +6974,19 @@ static int gfx_v10_0_kiq_init_register(struct amdgpu_ring *ring)
- 		       mqd->cp_hqd_pq_wptr_hi);
+@@ -487,6 +489,8 @@ static struct drm_display_mode *radeon_fp_native_mode(struct drm_encoder *encode
+ 		 * simpler.
+ 		 */
+ 		mode = drm_cvt_mode(dev, native_mode->hdisplay, native_mode->vdisplay, 60, true, false, false);
++		if (!mode)
++			return NULL;
+ 		mode->type = DRM_MODE_TYPE_PREFERRED | DRM_MODE_TYPE_DRIVER;
+ 		DRM_DEBUG_KMS("Adding cvt approximation of native panel mode %s\n", mode->name);
  	}
- 
-+	/* disable doorbells */
-+	WREG32_SOC15(GC, 0, mmCP_HQD_PQ_DOORBELL_CONTROL, 0);
-+
-+	/* write the EOP addr */
-+	WREG32_SOC15(GC, 0, mmCP_HQD_EOP_BASE_ADDR,
-+	       mqd->cp_hqd_eop_base_addr_lo);
-+	WREG32_SOC15(GC, 0, mmCP_HQD_EOP_BASE_ADDR_HI,
-+	       mqd->cp_hqd_eop_base_addr_hi);
-+
-+	/* set the EOP size, register value is 2^(EOP_SIZE+1) dwords */
-+	WREG32_SOC15(GC, 0, mmCP_HQD_EOP_CONTROL,
-+	       mqd->cp_hqd_eop_control);
-+
- 	/* set the pointer to the MQD */
- 	WREG32_SOC15(GC, 0, mmCP_MQD_BASE_ADDR,
- 	       mqd->cp_mqd_base_addr_lo);
 -- 
-2.25.1
+2.17.1
 
