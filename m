@@ -2,126 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ED0A52EA05
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 May 2022 12:36:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9230052ECEF
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 May 2022 15:16:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D21C10E9A8;
-	Fri, 20 May 2022 10:36:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8707D10EA42;
+	Fri, 20 May 2022 13:16:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2054.outbound.protection.outlook.com [40.107.94.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05F8F10E9A8
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 May 2022 10:36:41 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=natJtmpdQw5sU+3rhDMrdODONQBj97OoIO2vWE6CCwi0yhyM/qhHNI5pfYORHlv1+vsB1jVB1AXR7vSVBhyktUDFeUustwGyAcGMf1217CoiOUbPMU6qd+Hn0a/b0pL5E/5zggInWsnNSbMkZQZx+fWsl4CrFn85loWAcfsghef5RsD0aEpGDEuKkt9J8+m1xhOBjRLcRoKUuVXW5Sru5ohnvIu/XwIUrEBWhGxE5CMIRzyQLmEr904YDEN5I5cMBHy9ZthAaUt8jRETMYBFAJWOVRP1y5pLtgH8Ue7Sw5hfX8RpGyO/rMps0eu+nZSTqpTdvc/g08bLJJbvJXQebw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T2Ng88IMZs4Te5DnRDlLglyjGQMJRjsnQjUc4BePxTk=;
- b=MaZvjTUUES6JukhZTnrAq8vDc9h1Pu+OXuz+/7la1fk2Tz/K0I5jnjS45bPc2kP94RO6kio4q8bwMq91skDnAgRGzUuHSsKRvrpCnk6HBmislXDRkdjeVZmXxeGk7W23UAZkdO/qVLz7sC1efRswTkZt9Ltee8DYS5ajkHr+pcHEJ+uIqRG9z6T913W7j0zEjkNgdQ6FlL5wHI1l85aK0vPwVgMjWeObNiOS52P6Df1IB+HeuD+KB0nKrJDq3L9NAifiIJPKlZg0Ra4O0lw4LFPdvTpEf05xtjs3C7CxbxypTO3suizzc0mTqbeXfnzpFmMLJLMkUCO19AebermRDA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=T2Ng88IMZs4Te5DnRDlLglyjGQMJRjsnQjUc4BePxTk=;
- b=S/hJuNY+QnqEnVLQDXCYZb8b1PZtttAjXerQEpHzGFw9NJ/+biS76cMyGvVksqnIDeT/cCjdI5R6F1qoGcPvlwwG+EJBsCiBs19QXAjwePkXHJj3ZeFnD2F8E4FuEamP1+L9jZxQNse2vylZj8oyK6BE5eodV4q2+OyAiN1V/kk=
-Received: from DM5PR12MB2504.namprd12.prod.outlook.com (2603:10b6:4:b5::19) by
- CH0PR12MB5300.namprd12.prod.outlook.com (2603:10b6:610:d7::22) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5273.15; Fri, 20 May 2022 10:36:37 +0000
-Received: from DM5PR12MB2504.namprd12.prod.outlook.com
- ([fe80::b846:d865:5901:f76d]) by DM5PR12MB2504.namprd12.prod.outlook.com
- ([fe80::b846:d865:5901:f76d%7]) with mapi id 15.20.5273.014; Fri, 20 May 2022
- 10:36:37 +0000
-From: "Huang, Ray" <Ray.Huang@amd.com>
-To: "Liang, Prike" <Prike.Liang@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amdgpu: clean up asd on the ta_firmware_header_v2_0
-Thread-Topic: [PATCH] drm/amdgpu: clean up asd on the ta_firmware_header_v2_0
-Thread-Index: AQHYbBEQWQDMAvcXR0SguYf5BGBB+K0nkq6A
-Date: Fri, 20 May 2022 10:36:37 +0000
-Message-ID: <DM5PR12MB2504B33AB28BD08817F243C0ECD39@DM5PR12MB2504.namprd12.prod.outlook.com>
-References: <1653027110-15667-1-git-send-email-Prike.Liang@amd.com>
-In-Reply-To: <1653027110-15667-1-git-send-email-Prike.Liang@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2022-05-20T10:36:05Z; 
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=e168b16d-1066-4263-9f49-db792c3df4c7;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=1
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_enabled: true
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_setdate: 2022-05-20T10:36:35Z
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_method: Standard
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_name: General
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_actionid: 949890fa-de27-4701-b33a-c85a4e61eb7f
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_contentbits: 0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c74f450d-aff5-4b6b-8c38-08da3a4c9e81
-x-ms-traffictypediagnostic: CH0PR12MB5300:EE_
-x-microsoft-antispam-prvs: <CH0PR12MB530083C3FDD382112995A8E8ECD39@CH0PR12MB5300.namprd12.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: lRBmtA7bFJI0Tintx17KHZvSuOV2Dlcs/YKHG3h79qJIrgPoFH4GL6xlHmNf1SVO9uMnJQkJFmBioCEvmK4+jQtM76nVF13ia03E4vFgPCtF8EzcUG+l2UZPpqoyfEIvypWKyxRu0erjp9vPXxsO7mb61Dxgs9mfHIZECt6u/Jc2Qzm6Qq9M4eC9OBajLejEltRmTmAmEc1EWRpU0P76Kdh3OoqonmNN2SLATrsOdpqoQbaQ3GiWPnxDnr2O5TKGuSMfA5PToMeGmWTEKcXd2M+IuNsAD4URvALrlDcgUxf/jQuMrHX4TFVeDryMv0JiMGDabRj+t0vgWFBPhPXqAWswEesKWnrhZo/GrmyAFcCUDgEE500+cbHJ/mmStKUcjJe1NPLBk767Uyul2zCugwm3xZaoM06AhXAMkL3xC4cVOsZSUoG7KRYCHnz+hZ5V+xU0ct9AsdK19gckf5EPymyREJmD5keThzrJO8blz3IvGOTBJGjEl0i2KCqjoPWjnc5gwOu2jkem3gSXY+H9QS6BG2EtUgeauRoqRR7gmza80C4xos1GQvE/bj98OPHUHY8eGBTITAi+YD9HBDAIv22Yy1WAb1bdBDvCcHBxh8Y79KRmX4kDIN/9c4boWKfnD2IVJtNmgh1RQVmNOS1q3KZRuJsPgr904FgYBiZWwthekkkREuHtf1d53qS3A2fsielGQDYcWHbrK9wrM6PtBA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR12MB2504.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(4636009)(366004)(38070700005)(86362001)(186003)(33656002)(316002)(83380400001)(508600001)(38100700002)(71200400001)(53546011)(26005)(7696005)(6506007)(9686003)(110136005)(54906003)(55016003)(8676002)(4326008)(5660300002)(52536014)(2906002)(122000001)(76116006)(64756008)(66446008)(66476007)(66556008)(66946007)(8936002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?a4NYTVE8RvkRw4lMT+FsEXcdFV1RA6BQmVe+rHOu8qe9Q+bZhduB0ySQv9gf?=
- =?us-ascii?Q?oB2rDiiDgkV5uUpcWmuG2Ee3GTD6draITT1tBMud/pceKtupTea3KFHofryi?=
- =?us-ascii?Q?jryo5c53/sEUfux3uPmvTLprTvC2dswUgMreYiWy/2ZJWUNiN9iVKPkQ+jp9?=
- =?us-ascii?Q?5uMeLKiDHsg/MDHSr2FjOtLv60pNhdwBWA96CkdKUDq12902G+UtU56vKjal?=
- =?us-ascii?Q?Xn+3S3rXJSOd2x13z56cbZP1iu7CkdA6EwFM07T8cfU5iu7EWHmEtrDG/im+?=
- =?us-ascii?Q?iDbXWOuC+oFp2/9UsZiip5YiJEKU8I3z3+OoxL/3gbIbfACOG1Vz8kS5hS7P?=
- =?us-ascii?Q?igr0YV31aE0T6AlcTbNX+79gVlfzHq6IGoFqCqX+zFivGW/nBOuz/jLJh5M0?=
- =?us-ascii?Q?RRJwQAu/WoCJ/ATJXLnBvDYoqbJBqNMfuJHd/MTds2c9Lyz+JLnyg4v18ooh?=
- =?us-ascii?Q?Y7lqduGWkEoEG7f5mzKojSiiiW/w8y+Wol5dzE53Q8U+bnpiB2pzDs/9u866?=
- =?us-ascii?Q?lksMSd2dq8Oeln82uy8S4xUG5ugNOruIh2qEQWZiEjYPyDDuF3hsyFDKcRAu?=
- =?us-ascii?Q?4CkxdiCQJfNMXa+MaGSUld/Rb1IhXLDEe0gwgSelzHatuND8lti24QLqJYnb?=
- =?us-ascii?Q?v/R2wX18ULaqnINhBZpvn2FBxEwzyGpZkVrX6UeWZLKrI2iW1SjH54ykT2us?=
- =?us-ascii?Q?5JHnYidcpEsRTefqvi+JrG6z3fz2NaLcDChu/mSrjYqTqyoqnhHSU6mevQkk?=
- =?us-ascii?Q?pVFQCxPchV/GlgmRcuRc8uj9whkkTj7WRt6gG4c7iQjUORFX7v74tjB/OqJT?=
- =?us-ascii?Q?W3AN9No6nVEfMUCedQpGYBWuGZIiok1TQtG39wuEfubzT3Rc9r4oZ2TFCGEY?=
- =?us-ascii?Q?xE2vDstWiDNXQrPXWac6I2Xa4/zOo726JQFxs8LW5SeDFxThe+h1MhurShMA?=
- =?us-ascii?Q?n+/YdF1ezKTnYDxIAdYTvvUVExSlOrbaru7M8+D41ITvfFSVNeN6MjKAtK2D?=
- =?us-ascii?Q?aIsL5VwsczypYkx682uvOqKgUCCg2Be2CAjlx6kXF0K3z/ilge2cozltkoa6?=
- =?us-ascii?Q?i5zrtE5GXrShRdivhNpqOY7J73mMxRfteCUqylZz0W957ZRoAM/wZ7O8qJIK?=
- =?us-ascii?Q?WgJQoQuhHbwQYbiht78zHPIHHKpQ5k8RXCGGHMpMyHZamIl2JvG7bMS29UeE?=
- =?us-ascii?Q?71UgSqJZctWV/HmG9iOLToJGEQoVpgPH5MtGufiRPmiEKded+FDuvnZzRHUY?=
- =?us-ascii?Q?ZaoCzFZhfwbCShxYpbgRVvfLKuenlx3O5tFIMa28hL2Uilp8rFf1T3MzDeKR?=
- =?us-ascii?Q?lrByj8Yjoz3eIZZUz4A8O+SGk3tb6c2LcAHSOlqWRcLqTcbmf81KcZ+2HJpn?=
- =?us-ascii?Q?xLZivv5iwbISL1c04iHP4O0cHBnz500zCTLGSovx+IdYIWlRADxF2+s7antY?=
- =?us-ascii?Q?igbMJYKExRoRAMPH5jY0dDOtTdkwCeJowww5yTwOUxNDvZsHgOm9RP0wjTjk?=
- =?us-ascii?Q?LB8E+RgE7h4ScsUjGTRakqbphuc0CYf/XcJp4abM2+nTTSx3kWULu8uCDWzn?=
- =?us-ascii?Q?6dzTReNM6uhgMLRINPF8mF4S0/AM4UiDZL8A+7gVcq6mt+CiqfReDJjHbZJE?=
- =?us-ascii?Q?iscbowA9K1rsglpYHT4EUJ77Nt+wJZd7cDFC4r5rGUX1X2WTAP/Lou6B9Ohm?=
- =?us-ascii?Q?aORohbZmFJb/d6ErJCC4OKfA+My2toBYRvPioVto/MvhczaxFGaouSDPOy99?=
- =?us-ascii?Q?9p1ou67xcQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com
+ [209.85.219.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C13910FCA5;
+ Fri, 20 May 2022 12:40:34 +0000 (UTC)
+Received: by mail-qv1-f54.google.com with SMTP id e17so6555667qvj.11;
+ Fri, 20 May 2022 05:40:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=AW3WbgwLSP0WZKYPK3Y6DQ8WAhPkJkHKkMhSdaktb4M=;
+ b=oIktYKJy8OXpStZlQucbfcTiSfAhoZL2H6uMl5g6aggdJSSHaDgRsH0A2X72hWq+XQ
+ t7ETPjQf0WRJhoOSJ0e0i3bnVXKRdcP5AfCZsqMeHm8xV6neWiApwl/sxglb1iIY1zw9
+ 57eSkM9c0j35sJejOQEzxqBd8TXENT2mRq7aDX0r5rsVem/7eByrbMI/iwldF6QrII1S
+ xixFUuq5Ry3ZoinFiDOfbLPSRmdiMEsA/KPFJEisIw2q7sldt0txsRp1R5seZ/V7nsro
+ WO/CB9IOJFVl5zjtEAPHRoEC8sPc4rYaOL/duXOPF1sZMIUVyHfHYaBLzkYjlCGKyGHn
+ a0Lg==
+X-Gm-Message-State: AOAM530ZSLcQCBP6bCG72OKF+1Z1m8ZrE2cQRL7mJakE95UYnF1BtoqS
+ eg77SlYf5/eusuzJ21SXKWQlH46jQT619Q==
+X-Google-Smtp-Source: ABdhPJzoDPH4hjveHByZO4pz3tl1VwE2ezVP4OC6WC4yT17OZkzJet8Juxf6Ce8eCd6k7W7/ajCtEQ==
+X-Received: by 2002:a05:6214:1cc5:b0:443:6a15:5894 with SMTP id
+ g5-20020a0562141cc500b004436a155894mr7293846qvd.59.1653050432863; 
+ Fri, 20 May 2022 05:40:32 -0700 (PDT)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com.
+ [209.85.128.180]) by smtp.gmail.com with ESMTPSA id
+ h124-20020a375382000000b0069fc13ce222sm3142448qkb.83.2022.05.20.05.40.32
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 20 May 2022 05:40:32 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id
+ 00721157ae682-2ef5380669cso85618337b3.9; 
+ Fri, 20 May 2022 05:40:32 -0700 (PDT)
+X-Received: by 2002:a81:9b0c:0:b0:2f4:c522:7d3c with SMTP id
+ s12-20020a819b0c000000b002f4c5227d3cmr9969695ywg.316.1653050431948; Fri, 20
+ May 2022 05:40:31 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB2504.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c74f450d-aff5-4b6b-8c38-08da3a4c9e81
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 May 2022 10:36:37.6937 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: d4eKuYOGvl9OUVSda8Ux/x74o2RGp/fbcfStsMaY3sHscA0E8Amr3/AS8U2zAY3aklKWGBp83LwFeWO+LqiHPA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5300
+References: <6285958d.+Z2aDZ4O1Y9eiazd%lkp@intel.com>
+ <0530d502-1291-23f3-64ac-97bd38a26bd4@roeck-us.net>
+In-Reply-To: <0530d502-1291-23f3-64ac-97bd38a26bd4@roeck-us.net>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 20 May 2022 14:40:20 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU3SYOwE5ftDwymQpVwWmpbC=1Ytyp0Y9GaeUS2i1cP+A@mail.gmail.com>
+Message-ID: <CAMuHMdU3SYOwE5ftDwymQpVwWmpbC=1Ytyp0Y9GaeUS2i1cP+A@mail.gmail.com>
+Subject: Re: [linux-next:master] BUILD REGRESSION
+ 736ee37e2e8eed7fe48d0a37ee5a709514d478b3
+To: Guenter Roeck <linux@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Fri, 20 May 2022 13:16:42 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,61 +68,142 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Zhang,
- Yifan" <Yifan1.Zhang@amd.com>, "Liu, Aaron" <Aaron.Liu@amd.com>
+Cc: linux-hwmon@vger.kernel.org,
+ Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ kernel test robot <lkp@intel.com>, KVM list <kvm@vger.kernel.org>,
+ linux-staging@lists.linux.dev, linux-m68k <linux-m68k@lists.linux-m68k.org>,
+ linux-nvme@lists.infradead.org,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ linux-sparse@vger.kernel.org,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "open list:TI ETHERNET SWITCH DRIVER \(CPSW\)" <linux-omap@vger.kernel.org>,
+ Luc Van Oostenryck <luc.vanoostenryck@gmail.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - General]
+Hi G=C3=BCnter
 
-Acked-by: Huang Rui <ray.huang@amd.com>
+On Thu, May 19, 2022 at 8:48 AM Guenter Roeck <linux@roeck-us.net> wrote:
+> On 5/18/22 17:55, kernel test robot wrote:
+> > tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux=
+-next.git master
+> > branch HEAD: 736ee37e2e8eed7fe48d0a37ee5a709514d478b3  Add linux-next s=
+pecific files for 20220518
+> >
+> > Error/Warning reports:
+> >
+> > https://lore.kernel.org/linux-mm/202204291924.vTGZmerI-lkp@intel.com
+> > https://lore.kernel.org/linux-mm/202205041248.WgCwPcEV-lkp@intel.com
+> > https://lore.kernel.org/linux-mm/202205122113.uLKzd3SZ-lkp@intel.com
+> > https://lore.kernel.org/linux-mm/202205172344.3GFeaum1-lkp@intel.com
+> > https://lore.kernel.org/linux-mm/202205190527.o9wVEvHI-lkp@intel.com
+> >
+> > Error/Warning: (recently discovered and may have been fixed)
+> >
+> [ .. ]
+> > drivers/hwmon/nct6775-platform.c:199:9: sparse:    unsigned char
+> > drivers/hwmon/nct6775-platform.c:199:9: sparse:    void
+>
+> This is getting tiresome. Every driver using outb() on m68k will
+> experience that "problem". As far as I can see, it is caused by
+>
+> #define out_8(addr,b) (void)((*(__force volatile u8 *) (unsigned long)(ad=
+dr)) =3D (b))
+>
+> in arch/m68k/include/asm/raw_io.h. I have no idea what the
+> "(void)" is for,
 
------Original Message-----
-From: Liang, Prike <Prike.Liang@amd.com>=20
-Sent: Friday, May 20, 2022 2:12 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Huang, Ray <Ray.Huang@a=
-md.com>; Liu, Aaron <Aaron.Liu@amd.com>; Zhang, Yifan <Yifan1.Zhang@amd.com=
->; Liang, Prike <Prike.Liang@amd.com>
-Subject: [PATCH] drm/amdgpu: clean up asd on the ta_firmware_header_v2_0
+The "(void)" makes sure there is no return value.
+Which matters if the result of a function returning void is propagated
+to another function returning void.
 
-On the psp13 series use ta_firmware_header_v2_0 and the asd firmware was bu=
-ildin ta, so needn't request asd firmware separately.
+> but removing it "fixes" the problem.
 
-Signed-off-by: Prike Liang <Prike.Liang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/psp_v13_0.c | 6 ------
- 1 file changed, 6 deletions(-)
+This introduces new problems (m68k all{mod,yes}config):
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/psp_v13_0.c
-index d6d79e97def9..f2e3b6ede77b 100644
---- a/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
-@@ -32,13 +32,10 @@
- MODULE_FIRMWARE("amdgpu/aldebaran_sos.bin");
- MODULE_FIRMWARE("amdgpu/aldebaran_ta.bin");
- MODULE_FIRMWARE("amdgpu/aldebaran_cap.bin");
--MODULE_FIRMWARE("amdgpu/yellow_carp_asd.bin");
- MODULE_FIRMWARE("amdgpu/yellow_carp_toc.bin");
- MODULE_FIRMWARE("amdgpu/yellow_carp_ta.bin");
--MODULE_FIRMWARE("amdgpu/psp_13_0_5_asd.bin");
- MODULE_FIRMWARE("amdgpu/psp_13_0_5_toc.bin");
- MODULE_FIRMWARE("amdgpu/psp_13_0_5_ta.bin");
--MODULE_FIRMWARE("amdgpu/psp_13_0_8_asd.bin");
- MODULE_FIRMWARE("amdgpu/psp_13_0_8_toc.bin");
- MODULE_FIRMWARE("amdgpu/psp_13_0_8_ta.bin");
- MODULE_FIRMWARE("amdgpu/psp_13_0_0_sos.bin");
-@@ -93,9 +90,6 @@ static int psp_v13_0_init_microcode(struct psp_context *p=
-sp)
- 	case IP_VERSION(13, 0, 3):
- 	case IP_VERSION(13, 0, 5):
- 	case IP_VERSION(13, 0, 8):
--		err =3D psp_init_asd_microcode(psp, chip_name);
--		if (err)
--			return err;
- 		err =3D psp_init_toc_microcode(psp, chip_name);
- 		if (err)
- 			return err;
+    In file included from arch/m68k/include/asm/io_mm.h:25,
+                     from arch/m68k/include/asm/io.h:8,
+                     from include/linux/io.h:13,
+                     from include/linux/of_address.h:7,
+                     from drivers/gpu/drm/msm/adreno/adreno_gpu.c:13:
+    drivers/gpu/drm/msm/adreno/a6xx_gmu.h: In function =E2=80=98gmu_write_r=
+scc=E2=80=99:
+    arch/m68k/include/asm/raw_io.h:34:80: error: =E2=80=98return=E2=80=99 w=
+ith a
+value, in function returning void [-Werror=3Dreturn-type]
+       34 | #define out_le32(addr,l) ((*(__force volatile __le32 *)
+(unsigned long)(addr)) =3D cpu_to_le32(l))
+          |
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+    arch/m68k/include/asm/io_mm.h:397:26: note: in expansion of macro =E2=
+=80=98out_le32=E2=80=99
+      397 | #define writel(val,addr) out_le32((addr),(val))
+          |                          ^~~~~~~~
+    drivers/gpu/drm/msm/msm_drv.h:468:32: note: in expansion of macro =E2=
+=80=98writel=E2=80=99
+      468 | #define msm_writel(data, addr) writel((data), (addr))
+          |                                ^~~~~~
+    /drivers/gpu/drm/msm/adreno/a6xx_gmu.h:141:9: note: in expansion
+of macro =E2=80=98msm_writel=E2=80=99
+      141 |  return msm_writel(value, gmu->rscc + (offset << 2));
+          |         ^~~~~~~~~~
+    In file included from drivers/gpu/drm/msm/adreno/a6xx_gpu.h:11,
+                     from drivers/gpu/drm/msm/adreno/adreno_gpu.c:20:
+    drivers/gpu/drm/msm/adreno/a6xx_gmu.h:139:20: note: declared here
+      139 | static inline void gmu_write_rscc(struct a6xx_gmu *gmu,
+u32 offset, u32 value)
+          |                    ^~~~~~~~~~~~~~
+
+These can be fixed using e.g. (there are more in the Adreno driver):
+
+     static inline void gmu_write(struct a6xx_gmu *gmu, u32 offset, u32 val=
+ue)
+     {
+    -       return msm_writel(value, gmu->mmio + (offset << 2));
+    +       msm_writel(value, gmu->mmio + (offset << 2));
+     }
+
+> Either case, this is not a problem with the nct6775 driver,
+> nor is it a new problem.
+
+Indeed.
+
+For the sparse people:
+
+The full error is:
+
+        drivers/net/appletalk/cops.c:382:17: error: incompatible types
+in conditional expression (different base types):
+        drivers/net/appletalk/cops.c:382:17:    unsigned char
+        drivers/net/appletalk/cops.c:382:17:    void
+
+Basically, sparse doesn't like "a ? b : c", if the return types of
+b and c don't match, even if the resulting value is not used.
+
+E.g. outb() on m68k:
+
+    #define outb(val, port) (((port) < 1024 && ISA_TYPE =3D=3D
+ISA_TYPE_ENEC) ? isa_rom_outb((val), (port)) : isa_outb((val),
+(port)))
+
+where isa_rom_outb() leads to rom_out_8() returning u8, while
+isa_outb() leads to the out_8() that includes the cast to void.
+
+So the best solution seems to be to add more "(void)" casts, to e.g.
+rom_out_8() and friends?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 --
-2.25.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
