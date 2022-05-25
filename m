@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16CE753413D
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 May 2022 18:20:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A65953413B
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 May 2022 18:20:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AED710E686;
-	Wed, 25 May 2022 16:20:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C234A10E2AA;
+	Wed, 25 May 2022 16:20:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1anam02on2051.outbound.protection.outlook.com [40.107.96.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D123910E2AA
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 May 2022 16:20:06 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2087.outbound.protection.outlook.com [40.107.237.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F64110E5F8
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 May 2022 16:20:07 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IcQx15cKTxcqm/bTtmKG6jGEJHPws8SmJZ/EqrUH9PgidaUcKjRwtfRnYltd8zTm626VLeFDNPkNmneEfyu9XmArKCJBGmUbDx2cJY2Nc6EUxj9G9gFKI2gWRQprmr27poVcf2W2018i9XFJkjzn+CUBsYIomH/2wIum2lVWD+HWdYo6sZf0TdpFoG+ueoY4yqUmaPtG9cCbj11YptW2nEvlDslo+nFiNKUMbPdQtOS4medL9j/2Axe1C8jxD+2SL5oJOKin49GQP+FoVjJ4Pcaiv8pyBPluowZGBg6oiEgQ5H8XM0XHp963Q6Z9TsjZqM0nOvIH1YpgiMXjcBLGxQ==
+ b=AM2cdxPKs3dVI3lu/LFzMqmhk8qQrJsTVxj0WXmaDQ1ahJY4kpw/vJwoWB7Z7ZsjKOC1Y0BsLduMvDMbzy6mV0Gs3AgyHvgLxwH4O9Fex9Dn0uD7egpMxmKECaCa4XD4lvLkbgi0lwX5wXuTgDsjpIcs8JNmWXiBEHse6dZ20ZuCkpGp5NEEFVLe9LpsCaL4GW4+RpuWl9v4nmIn8eML4sFpVoS0i8N0og6gETo4xMtkKM6iCfCY+1lO1qr9NvAnaEVRib/+tHDqfNbR890z3rJ/rI3eZvzaln2Jix3BYnjPpdd4prqbUNTS7K9y22qaXFLhEpLmIP5owvznNQbwtw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NsqZOh9+aC8jylrt365BS+lGI/gkthT3bfLMTNvP8/4=;
- b=iNDCY9ojFQKFseyMyKIAeg9uyyqQzs1/wxNxIlRbDGqQ8ZwmrBzfpF9FhVVG2J2kPPUz+cxYgtgOgNejWQpjXZ6SBdyr0yMPbdS2V23s7cKAiTY9S8sGFDBr9QPlk3ZOEpV1/+6PcdcCPG5TVIZ+oWAVVGV0oFDm9cbpFcZRRIwnti6QntNWrPz0lB+1mMMSPpf4JpZuMIb1gRvb93KmlUK3yiqobdJSJ4delDCyBJN37mnxOjNaSjP9MlgOQW9kOqM7kjbytBE5kTPPELcHavgmadPgRvywGUn6JRUqP1yJCWOCu9E2CHrBbzFgZL42n8W76x2no69xc88jrcRZYw==
+ bh=lke/yHXkJd6hLs+56ADoVf7jt+BAFHpLAOGZHK5lX50=;
+ b=T66IPj3nPmqmHIb/H2roDhXlH9up1vMXQjXTFcN1uKweNqIL7YboyjeDxo10gO0bZPquzmFkWEkaL329JgXZR9MOg7IeEMK++ls2I3AYgOJZkSRfZAdU5U+f/pXXw5Ya7a02mlAS+qIg4miYDE9GN2JFEgDLoxGCvR9nZUG39Ae4rBu93n4BUCS4UgQ9kHrg6YxDheCt5GaPpiuhlkrCDkOrIwiOlLSKvxBek71b/XgtqB6c4nKlv1Cmapra/R5nR0BMDzfuBBcw9U4QCPjEjSrXEVdzqDfxBRGHm5HZEMAnkQEQ5de0fJZiW/5ZNVDdvLHu4ZDehaMLV7MIoZa6hg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NsqZOh9+aC8jylrt365BS+lGI/gkthT3bfLMTNvP8/4=;
- b=yOitkPlawEzmiC7jl0yROGMvJnsMIu36CkUaoJY6u4n7zu06DKk/LeXQbs6SPidGvenhYtZaQrqpBMaxHfVMeB4cbrxNr4ulskE0x6g56ohCm5U5BxxtSOnPhNrFjLWxQa6UJjbVU1rWm+Cyd03kBuRYUAmdaujnYSRCYkVslg4=
-Received: from DM6PR04CA0023.namprd04.prod.outlook.com (2603:10b6:5:334::28)
- by MN2PR12MB4391.namprd12.prod.outlook.com (2603:10b6:208:269::21) with
+ bh=lke/yHXkJd6hLs+56ADoVf7jt+BAFHpLAOGZHK5lX50=;
+ b=vto64XmkFyisivvWCC5bIERF9Ywbqwgzd2R0+nwYBTEzAXzUv8TdmY6xXmukY0XwHTwa4XArkUpukFYjJMJCN2fMy2LbgAxIgDwk7E7LwaopG76JzAoOGAynEQO0DrQpvxRkNl9QgsHMIUwjSZxY4skasarRjGSjAEj/ynS26vk=
+Received: from DM6PR04CA0011.namprd04.prod.outlook.com (2603:10b6:5:334::16)
+ by CH2PR12MB4167.namprd12.prod.outlook.com (2603:10b6:610:7a::7) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.15; Wed, 25 May
- 2022 16:20:03 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.17; Wed, 25 May
+ 2022 16:20:04 +0000
 Received: from DM6NAM11FT012.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:334:cafe::8e) by DM6PR04CA0023.outlook.office365.com
- (2603:10b6:5:334::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.13 via Frontend
- Transport; Wed, 25 May 2022 16:20:03 +0000
+ (2603:10b6:5:334:cafe::7a) by DM6PR04CA0011.outlook.office365.com
+ (2603:10b6:5:334::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.16 via Frontend
+ Transport; Wed, 25 May 2022 16:20:04 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT012.mail.protection.outlook.com (10.13.173.109) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5293.13 via Frontend Transport; Wed, 25 May 2022 16:20:03 +0000
+ 15.20.5293.13 via Frontend Transport; Wed, 25 May 2022 16:20:04 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Wed, 25 May
  2022 11:20:01 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 05/43] drm/amd/display: Add DMCUB source files and changes for
- DCN32/321
-Date: Wed, 25 May 2022 12:19:03 -0400
-Message-ID: <20220525161941.2544055-5-alexander.deucher@amd.com>
+Subject: [PATCH 06/43] drm/amd/display: add dcn32 IRQ changes
+Date: Wed, 25 May 2022 12:19:04 -0400
+Message-ID: <20220525161941.2544055-6-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.35.3
 In-Reply-To: <20220525161941.2544055-1-alexander.deucher@amd.com>
 References: <20220525161941.2544055-1-alexander.deucher@amd.com>
@@ -69,27 +68,27 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 24854844-2168-45c6-b1a4-08da3e6a6cb8
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4391:EE_
-X-Microsoft-Antispam-PRVS: <MN2PR12MB4391CD341FA028F8E0AE11D1F7D69@MN2PR12MB4391.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: c48af6f0-7967-4b6e-71fe-08da3e6a6cfb
+X-MS-TrafficTypeDiagnostic: CH2PR12MB4167:EE_
+X-Microsoft-Antispam-PRVS: <CH2PR12MB4167E1D601E9CDAC2486AEA2F7D69@CH2PR12MB4167.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ghe3+YbtYnnlGpj9DIivtOkoPU0uhXNxGvoUMkY1n6BfPILoXdLVbBPtzxw5moYohz3Hka8xltKtOw7X9/kgc6BTbvQUKyqTcpq+tSr0K2+jTOzCeIhPXJlxtdBB49+IY6pY0J9VS5V6YnTKyc8PJeH/c2wOz3NTOuMAaqARonAstDxl73yRNApqP0ABWHbcEYt8WMpjIPls1Skem4pvbNTz4/mDs6OFP3o8ve1PWp1V+aYQcTZNWXfsCb+GJ7UGqZq6yZdhSdBqkC1bgifBZdxlblXAhbPlpenqiRpEfkpOBcTBfvIY/dDIwV1maqhzcn/+NY3iWz9XoJGuqSKGKuCx54nUw2RtlPi8lccT1PkgxQyo5ezbwBLWzx+L4GodIbh6FTXqQdqKYR/AHQN8P2ApQ+AgBGRYKzR10i+MNM5EJO6XnPN5a6YQ0IOGSQrYZKyrtbBMyRUMHs/RRYQ0lq+js1ZkVyJN1EyhOClRAutDeZoKSRSRDAoUgAnE6zoh1ZO+TvDFePKJhxGpFk/H3Q4nX4sACGwAxOj0Qjkdy8UFfa5r3KGiAzNGhiWTn2RYqOTYv5jkrgQ16qHjFrvj8h8H1uerLlaAw7Z4V/zKlLyv7lDLfZPMteU9Yu2t8vlinurgZQJEBUM8iWALNcNUPAGwXzzWM7V5xOvQBeQaE6lvXVurU3ktnP7f8tTWUY21d5pS+5ihu/uhSg0LWIqH8w==
+X-Microsoft-Antispam-Message-Info: WAMy9UadrCJ9KZEUpJXfLU8w9+KmbAu2A2owwUCJI6pUGrW7CbTVHBNR4XaHUO/SLyOxHvRSTi7eMotNhigP7joS8EMdpCSNQ1NGDp8JT5LBcVeB9/NxRpus9bpswAKpfAjeptjB3H0gWCqQFvSRVMKqj0dpVmea/Zix/iD43m/SkEg5ZRqUxRii05xqaXeR048qLy0xXedHHc31pV2R9F3Ce+Kv2B6KnaWiLJ8FcwQkX3WCtOUuz8MO0CWtdGt7yfvR3neGmiX+SPvabalIwf+4WQ66zo3uSC6TGJjAlP+1dfK8K/QLeWJoGBzrtTcHMKoQVqKOHIbj1gYZnZdsdLOHSrIt7LTJ+TA1kmIfrtsJ6ZzdlMoqjWSEyyNZVrVs7iTUWBKt6QLFoyxH6PmNg7d9SSRsnzRo9/s9gxGRqwbU3sw3mn/Kp4bbB7WQooBZuD/S7xgJRndO4UAnnI5nsk5AOBhLEsrjKoQOrRS4TQAnv4kZewl0T6e9Ta4zc4R+7G4MB17OaWNttB5nb7NMqd9ii2Fn0LrPs8knGuyY2gqepTESTPX7VQneHgkTjPGa//Q9VGwYcdsdZGa7LIhLYHjvzvoaJN7R5sMrIitUJzA3QMXns8uvd+69LgrHnih+3QQ5bxgB+QZAhz8oU6F+DkMWUxCOmFro65me6WoJcxdv91UPMIG65eYO6g7OYgc1FBKKIukIaxPsrDtAe9eTog==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(47076005)(336012)(1076003)(16526019)(2616005)(426003)(186003)(86362001)(81166007)(6916009)(356005)(40460700003)(83380400001)(316002)(4326008)(26005)(30864003)(54906003)(36756003)(36860700001)(5660300002)(82310400005)(2906002)(8936002)(8676002)(70586007)(70206006)(508600001)(7696005)(36900700001);
+ SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(7696005)(6916009)(1076003)(54906003)(356005)(36860700001)(8936002)(186003)(4326008)(8676002)(16526019)(36756003)(70586007)(81166007)(2616005)(70206006)(82310400005)(336012)(47076005)(83380400001)(316002)(40460700003)(2906002)(5660300002)(86362001)(30864003)(508600001)(26005)(426003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2022 16:20:03.6751 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 24854844-2168-45c6-b1a4-08da3e6a6cb8
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2022 16:20:04.1126 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c48af6f0-7967-4b6e-71fe-08da3e6a6cfb
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT012.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4391
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4167
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,187 +107,50 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 
-DMCUB is the display engine microcontroller which aids in modesetting
-and other display related features.
+Add DCN3.2.x interrupt support.
 
 Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 Acked-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c  |  31 ++
- drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h  |   2 +
- drivers/gpu/drm/amd/display/dmub/dmub_srv.h   |   6 +
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |  26 +-
- drivers/gpu/drm/amd/display/dmub/src/Makefile |   1 +
- .../gpu/drm/amd/display/dmub/src/dmub_dcn32.c | 488 ++++++++++++++++++
- .../gpu/drm/amd/display/dmub/src/dmub_dcn32.h | 256 +++++++++
- .../gpu/drm/amd/display/dmub/src/dmub_srv.c   |  51 +-
- 8 files changed, 859 insertions(+), 2 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/display/dmub/src/dmub_dcn32.c
- create mode 100644 drivers/gpu/drm/amd/display/dmub/src/dmub_dcn32.h
+ drivers/gpu/drm/amd/display/dc/irq/Makefile   |  10 +-
+ .../display/dc/irq/dcn32/irq_service_dcn32.c  | 367 ++++++++++++++++++
+ .../display/dc/irq/dcn32/irq_service_dcn32.h  |  35 ++
+ 3 files changed, 411 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/amd/display/dc/irq/dcn32/irq_service_dcn32.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/irq/dcn32/irq_service_dcn32.h
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-index 541376fabbef..11597bca966a 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-+++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-@@ -250,6 +250,37 @@ void dc_dmub_trace_event_control(struct dc *dc, bool enable)
- 	dm_helpers_dmub_outbox_interrupt_control(dc->ctx, enable);
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/irq/Makefile b/drivers/gpu/drm/amd/display/dc/irq/Makefile
+index 5f49048dde47..41da81c85fdc 100644
+--- a/drivers/gpu/drm/amd/display/dc/irq/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/irq/Makefile
+@@ -135,7 +135,6 @@ IRQ_DCN31 = irq_service_dcn31.o
+ AMD_DAL_IRQ_DCN31= $(addprefix $(AMDDALPATH)/dc/irq/dcn31/,$(IRQ_DCN31))
  
-+void dc_dmub_srv_query_caps_cmd(struct dmub_srv *dmub)
-+{
-+	union dmub_rb_cmd cmd = { 0 };
-+	enum dmub_status status;
-+
-+	if (!dmub) {
-+		return;
-+	}
-+
-+	memset(&cmd, 0, sizeof(cmd));
-+
-+	/* Prepare fw command */
-+	cmd.query_feature_caps.header.type = DMUB_CMD__QUERY_FEATURE_CAPS;
-+	cmd.query_feature_caps.header.sub_type = 0;
-+	cmd.query_feature_caps.header.ret_status = 1;
-+	cmd.query_feature_caps.header.payload_bytes = sizeof(struct dmub_cmd_query_feature_caps_data);
-+
-+	/* Send command to fw */
-+	status = dmub_srv_cmd_with_reply_data(dmub, &cmd);
-+
-+	ASSERT(status == DMUB_STATUS_OK);
-+
-+	/* If command was processed, copy feature caps to dmub srv */
-+	if (status == DMUB_STATUS_OK &&
-+	    cmd.query_feature_caps.header.ret_status == 0) {
-+		memcpy(&dmub->feature_caps,
-+		       &cmd.query_feature_caps.query_feature_caps_data,
-+		       sizeof(struct dmub_feature_caps));
-+	}
-+}
-+
- bool dc_dmub_srv_get_diagnostic_data(struct dc_dmub_srv *dc_dmub_srv, struct dmub_diagnostic_data *diag_data)
- {
- 	if (!dc_dmub_srv || !dc_dmub_srv->dmub || !diag_data)
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h
-index 7e4e2ec5915d..50e44b53f14c 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h
-@@ -68,6 +68,8 @@ bool dc_dmub_srv_get_dmub_outbox0_msg(const struct dc *dc, struct dmcub_trace_bu
- 
- void dc_dmub_trace_event_control(struct dc *dc, bool enable);
- 
-+void dc_dmub_srv_query_caps_cmd(struct dmub_srv *dmub);
-+
- void dc_dmub_srv_clear_inbox0_ack(struct dc_dmub_srv *dmub_srv);
- void dc_dmub_srv_wait_for_inbox0_ack(struct dc_dmub_srv *dmub_srv);
- void dc_dmub_srv_send_inbox0_cmd(struct dc_dmub_srv *dmub_srv, union dmub_inbox0_data_register data);
-diff --git a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
-index 7dbc9fb55459..04049dc5d9df 100644
---- a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
-+++ b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
-@@ -246,6 +246,7 @@ struct dmub_srv_hw_params {
- 	bool dpia_supported;
- 	bool disable_dpia;
- 	bool usb4_cm_version;
-+	bool fw_in_system_memory;
- };
- 
- /**
-@@ -310,6 +311,9 @@ struct dmub_srv_hw_funcs {
- 			      const struct dmub_window *cw0,
- 			      const struct dmub_window *cw1);
- 
-+	void (*backdoor_load_zfb_mode)(struct dmub_srv *dmub,
-+			      const struct dmub_window *cw0,
-+			      const struct dmub_window *cw1);
- 	void (*setup_windows)(struct dmub_srv *dmub,
- 			      const struct dmub_window *cw2,
- 			      const struct dmub_window *cw3,
-@@ -365,6 +369,7 @@ struct dmub_srv_hw_funcs {
- 
- 	uint32_t (*get_gpint_dataout)(struct dmub_srv *dmub);
- 
-+	void (*configure_dmub_in_system_memory)(struct dmub_srv *dmub);
- 	void (*clear_inbox0_ack_register)(struct dmub_srv *dmub);
- 	uint32_t (*read_inbox0_ack_register)(struct dmub_srv *dmub);
- 	void (*send_inbox0_cmd)(struct dmub_srv *dmub, union dmub_inbox0_data_register data);
-@@ -412,6 +417,7 @@ struct dmub_srv {
- 	/* private: internal use only */
- 	const struct dmub_srv_common_regs *regs;
- 	const struct dmub_srv_dcn31_regs *regs_dcn31;
-+	const struct dmub_srv_dcn32_regs *regs_dcn32;
- 
- 	struct dmub_srv_base_funcs funcs;
- 	struct dmub_srv_hw_funcs hw_funcs;
-diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-index 385c28238beb..8fc1846f0708 100644
---- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-+++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-@@ -641,7 +641,10 @@ enum dmub_cmd_type {
- 	 * Command type used for all panel control commands.
- 	 */
- 	DMUB_CMD__PANEL_CNTL = 74,
+ AMD_DISPLAY_FILES += $(AMD_DAL_IRQ_DCN31)
 -
-+	/**
-+	 * Command type used for <TODO:description>
-+	 */
-+	DMUB_CMD__CAB_FOR_SS = 75,
- 	/**
- 	 * Command type used for interfacing with DPIA.
- 	 */
-@@ -878,6 +881,23 @@ struct dmub_rb_cmd_mall {
- 	uint8_t reserved2; /**< Reserved bits */
- };
+ ###############################################################################
+ # DCN 315
+ ###############################################################################
+@@ -144,3 +143,12 @@ IRQ_DCN315 = irq_service_dcn315.o
+ AMD_DAL_IRQ_DCN315= $(addprefix $(AMDDALPATH)/dc/irq/dcn315/,$(IRQ_DCN315))
  
-+/**
-+ * enum dmub_cmd_cab_type - TODO:
-+ */
-+enum dmub_cmd_cab_type {
-+	DMUB_CMD__CAB_NO_IDLE_OPTIMIZATION = 0,
-+	DMUB_CMD__CAB_NO_DCN_REQ = 1,
-+	DMUB_CMD__CAB_DCN_SS_FIT_IN_CAB = 2,
-+};
+ AMD_DISPLAY_FILES += $(AMD_DAL_IRQ_DCN315)
 +
-+/**
-+ * struct dmub_rb_cmd_cab_for_ss - TODO:
-+ */
-+struct dmub_rb_cmd_cab_for_ss {
-+	struct dmub_cmd_header header;
-+	uint8_t cab_alloc_ways; /* total number of ways */
-+	uint8_t debug_bits;     /* debug bits */
-+};
- /**
-  * enum dmub_cmd_idle_opt_type - Idle optimization command type.
-  */
-@@ -2693,6 +2713,10 @@ union dmub_rb_cmd {
- 	 * Definition of a DMUB_CMD__MALL command.
- 	 */
- 	struct dmub_rb_cmd_mall mall;
-+	/**
-+	 * Definition of a DMUB_CMD__CAB command.
-+	 */
-+	struct dmub_rb_cmd_cab_for_ss cab;
- 	/**
- 	 * Definition of a DMUB_CMD__IDLE_OPT_DCN_RESTORE command.
- 	 */
-diff --git a/drivers/gpu/drm/amd/display/dmub/src/Makefile b/drivers/gpu/drm/amd/display/dmub/src/Makefile
-index 856c7f48de7a..0589ad4778ee 100644
---- a/drivers/gpu/drm/amd/display/dmub/src/Makefile
-+++ b/drivers/gpu/drm/amd/display/dmub/src/Makefile
-@@ -23,6 +23,7 @@
- DMUB = dmub_srv.o dmub_srv_stat.o dmub_reg.o dmub_dcn20.o dmub_dcn21.o
- DMUB += dmub_dcn30.o dmub_dcn301.o dmub_dcn302.o dmub_dcn303.o
- DMUB += dmub_dcn31.o dmub_dcn315.o dmub_dcn316.o
-+DMUB += dmub_dcn32.o
- 
- AMD_DAL_DMUB = $(addprefix $(AMDDALPATH)/dmub/src/,$(DMUB))
- 
-diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn32.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn32.c
++###############################################################################
++# DCN 32
++###############################################################################
++IRQ_DCN32 = irq_service_dcn32.o
++
++AMD_DAL_IRQ_DCN32= $(addprefix $(AMDDALPATH)/dc/irq/dcn32/,$(IRQ_DCN32))
++
++AMD_DISPLAY_FILES += $(AMD_DAL_IRQ_DCN32)
+diff --git a/drivers/gpu/drm/amd/display/dc/irq/dcn32/irq_service_dcn32.c b/drivers/gpu/drm/amd/display/dc/irq/dcn32/irq_service_dcn32.c
 new file mode 100644
-index 000000000000..0a498082ccc6
+index 000000000000..5c87057a6abc
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn32.c
-@@ -0,0 +1,488 @@
++++ b/drivers/gpu/drm/amd/display/dc/irq/dcn32/irq_service_dcn32.c
+@@ -0,0 +1,367 @@
 +/*
 + * Copyright 2022 Advanced Micro Devices, Inc.
 + *
@@ -314,475 +176,354 @@ index 000000000000..0a498082ccc6
 + *
 + */
 +
-+#include "../dmub_srv.h"
-+#include "dmub_reg.h"
-+#include "dmub_dcn32.h"
++#include "dm_services.h"
++#include "include/logger_interface.h"
++#include "../dce110/irq_service_dce110.h"
 +
 +#include "dcn/dcn_3_2_0_offset.h"
 +#include "dcn/dcn_3_2_0_sh_mask.h"
 +
-+#define DCN_BASE__INST0_SEG2                       0x000034C0
++#include "irq_service_dcn32.h"
 +
-+#define BASE_INNER(seg) DCN_BASE__INST0_SEG##seg
-+#define CTX dmub
-+#define REGS dmub->regs_dcn32
-+#define REG_OFFSET_EXP(reg_name) (BASE(reg##reg_name##_BASE_IDX) + reg##reg_name)
++#include "ivsrcid/dcn/irqsrcs_dcn_1_0.h"
 +
-+const struct dmub_srv_dcn32_regs dmub_srv_dcn32_regs = {
-+#define DMUB_SR(reg) REG_OFFSET_EXP(reg),
-+		{ DMUB_DCN32_REGS() },
-+#undef DMUB_SR
++enum dc_irq_source to_dal_irq_source_dcn32(
++		struct irq_service *irq_service,
++		uint32_t src_id,
++		uint32_t ext_id)
++{
++	switch (src_id) {
++	case DCN_1_0__SRCID__DC_D1_OTG_VSTARTUP:
++		return DC_IRQ_SOURCE_VBLANK1;
++	case DCN_1_0__SRCID__DC_D2_OTG_VSTARTUP:
++		return DC_IRQ_SOURCE_VBLANK2;
++	case DCN_1_0__SRCID__DC_D3_OTG_VSTARTUP:
++		return DC_IRQ_SOURCE_VBLANK3;
++	case DCN_1_0__SRCID__DC_D4_OTG_VSTARTUP:
++		return DC_IRQ_SOURCE_VBLANK4;
++	case DCN_1_0__SRCID__DC_D5_OTG_VSTARTUP:
++		return DC_IRQ_SOURCE_VBLANK5;
++	case DCN_1_0__SRCID__DC_D6_OTG_VSTARTUP:
++		return DC_IRQ_SOURCE_VBLANK6;
++	case DCN_1_0__SRCID__HUBP0_FLIP_INTERRUPT:
++		return DC_IRQ_SOURCE_PFLIP1;
++	case DCN_1_0__SRCID__HUBP1_FLIP_INTERRUPT:
++		return DC_IRQ_SOURCE_PFLIP2;
++	case DCN_1_0__SRCID__HUBP2_FLIP_INTERRUPT:
++		return DC_IRQ_SOURCE_PFLIP3;
++	case DCN_1_0__SRCID__HUBP3_FLIP_INTERRUPT:
++		return DC_IRQ_SOURCE_PFLIP4;
++	case DCN_1_0__SRCID__HUBP4_FLIP_INTERRUPT:
++		return DC_IRQ_SOURCE_PFLIP5;
++	case DCN_1_0__SRCID__HUBP5_FLIP_INTERRUPT:
++		return DC_IRQ_SOURCE_PFLIP6;
++	case DCN_1_0__SRCID__OTG0_IHC_V_UPDATE_NO_LOCK_INTERRUPT:
++		return DC_IRQ_SOURCE_VUPDATE1;
++	case DCN_1_0__SRCID__OTG1_IHC_V_UPDATE_NO_LOCK_INTERRUPT:
++		return DC_IRQ_SOURCE_VUPDATE2;
++	case DCN_1_0__SRCID__OTG2_IHC_V_UPDATE_NO_LOCK_INTERRUPT:
++		return DC_IRQ_SOURCE_VUPDATE3;
++	case DCN_1_0__SRCID__OTG3_IHC_V_UPDATE_NO_LOCK_INTERRUPT:
++		return DC_IRQ_SOURCE_VUPDATE4;
++	case DCN_1_0__SRCID__OTG4_IHC_V_UPDATE_NO_LOCK_INTERRUPT:
++		return DC_IRQ_SOURCE_VUPDATE5;
++	case DCN_1_0__SRCID__OTG5_IHC_V_UPDATE_NO_LOCK_INTERRUPT:
++		return DC_IRQ_SOURCE_VUPDATE6;
 +
-+#define DMUB_SF(reg, field) FD_MASK(reg, field),
-+		{ DMUB_DCN32_FIELDS() },
-+#undef DMUB_SF
++	case DCN_1_0__SRCID__DC_HPD1_INT:
++		/* generic src_id for all HPD and HPDRX interrupts */
++		switch (ext_id) {
++		case DCN_1_0__CTXID__DC_HPD1_INT:
++			return DC_IRQ_SOURCE_HPD1;
++		case DCN_1_0__CTXID__DC_HPD2_INT:
++			return DC_IRQ_SOURCE_HPD2;
++		case DCN_1_0__CTXID__DC_HPD3_INT:
++			return DC_IRQ_SOURCE_HPD3;
++		case DCN_1_0__CTXID__DC_HPD4_INT:
++			return DC_IRQ_SOURCE_HPD4;
++		case DCN_1_0__CTXID__DC_HPD5_INT:
++			return DC_IRQ_SOURCE_HPD5;
++		case DCN_1_0__CTXID__DC_HPD6_INT:
++			return DC_IRQ_SOURCE_HPD6;
++		case DCN_1_0__CTXID__DC_HPD1_RX_INT:
++			return DC_IRQ_SOURCE_HPD1RX;
++		case DCN_1_0__CTXID__DC_HPD2_RX_INT:
++			return DC_IRQ_SOURCE_HPD2RX;
++		case DCN_1_0__CTXID__DC_HPD3_RX_INT:
++			return DC_IRQ_SOURCE_HPD3RX;
++		case DCN_1_0__CTXID__DC_HPD4_RX_INT:
++			return DC_IRQ_SOURCE_HPD4RX;
++		case DCN_1_0__CTXID__DC_HPD5_RX_INT:
++			return DC_IRQ_SOURCE_HPD5RX;
++		case DCN_1_0__CTXID__DC_HPD6_RX_INT:
++			return DC_IRQ_SOURCE_HPD6RX;
++		default:
++			return DC_IRQ_SOURCE_INVALID;
++		}
++		break;
 +
-+#define DMUB_SF(reg, field) FD_SHIFT(reg, field),
-+		{ DMUB_DCN32_FIELDS() },
-+#undef DMUB_SF
++	default:
++		return DC_IRQ_SOURCE_INVALID;
++	}
++}
++
++static bool hpd_ack(
++	struct irq_service *irq_service,
++	const struct irq_source_info *info)
++{
++	uint32_t addr = info->status_reg;
++	uint32_t value = dm_read_reg(irq_service->ctx, addr);
++	uint32_t current_status =
++		get_reg_field_value(
++			value,
++			HPD0_DC_HPD_INT_STATUS,
++			DC_HPD_SENSE_DELAYED);
++
++	dal_irq_service_ack_generic(irq_service, info);
++
++	value = dm_read_reg(irq_service->ctx, info->enable_reg);
++
++	set_reg_field_value(
++		value,
++		current_status ? 0 : 1,
++		HPD0_DC_HPD_INT_CONTROL,
++		DC_HPD_INT_POLARITY);
++
++	dm_write_reg(irq_service->ctx, info->enable_reg, value);
++
++	return true;
++}
++
++static const struct irq_source_info_funcs hpd_irq_info_funcs = {
++	.set = NULL,
++	.ack = hpd_ack
 +};
 +
-+static void dmub_dcn32_get_fb_base_offset(struct dmub_srv *dmub,
-+		uint64_t *fb_base,
-+		uint64_t *fb_offset)
-+{
-+	uint32_t tmp;
++static const struct irq_source_info_funcs hpd_rx_irq_info_funcs = {
++	.set = NULL,
++	.ack = NULL
++};
 +
-+	if (dmub->fb_base || dmub->fb_offset) {
-+		*fb_base = dmub->fb_base;
-+		*fb_offset = dmub->fb_offset;
-+		return;
++static const struct irq_source_info_funcs pflip_irq_info_funcs = {
++	.set = NULL,
++	.ack = NULL
++};
++
++static const struct irq_source_info_funcs vupdate_no_lock_irq_info_funcs = {
++	.set = NULL,
++	.ack = NULL
++};
++
++static const struct irq_source_info_funcs vblank_irq_info_funcs = {
++	.set = NULL,
++	.ack = NULL
++};
++
++#undef BASE_INNER
++#define BASE_INNER(seg) DCN_BASE__INST0_SEG ## seg
++
++/* compile time expand base address. */
++#define BASE(seg) \
++	BASE_INNER(seg)
++
++#define SRI(reg_name, block, id)\
++	BASE(reg ## block ## id ## _ ## reg_name ## _BASE_IDX) + \
++			reg ## block ## id ## _ ## reg_name
++
++#define IRQ_REG_ENTRY(block, reg_num, reg1, mask1, reg2, mask2)\
++	.enable_reg = SRI(reg1, block, reg_num),\
++	.enable_mask = \
++		block ## reg_num ## _ ## reg1 ## __ ## mask1 ## _MASK,\
++	.enable_value = {\
++		block ## reg_num ## _ ## reg1 ## __ ## mask1 ## _MASK,\
++		~block ## reg_num ## _ ## reg1 ## __ ## mask1 ## _MASK \
++	},\
++	.ack_reg = SRI(reg2, block, reg_num),\
++	.ack_mask = \
++		block ## reg_num ## _ ## reg2 ## __ ## mask2 ## _MASK,\
++	.ack_value = \
++		block ## reg_num ## _ ## reg2 ## __ ## mask2 ## _MASK \
++
++#define hpd_int_entry(reg_num)\
++	[DC_IRQ_SOURCE_HPD1 + reg_num] = {\
++		IRQ_REG_ENTRY(HPD, reg_num,\
++			DC_HPD_INT_CONTROL, DC_HPD_INT_EN,\
++			DC_HPD_INT_CONTROL, DC_HPD_INT_ACK),\
++		.status_reg = SRI(DC_HPD_INT_STATUS, HPD, reg_num),\
++		.funcs = &hpd_irq_info_funcs\
 +	}
 +
-+	REG_GET(DCN_VM_FB_LOCATION_BASE, FB_BASE, &tmp);
-+	*fb_base = (uint64_t)tmp << 24;
-+
-+	REG_GET(DCN_VM_FB_OFFSET, FB_OFFSET, &tmp);
-+	*fb_offset = (uint64_t)tmp << 24;
-+}
-+
-+static inline void dmub_dcn32_translate_addr(const union dmub_addr *addr_in,
-+		uint64_t fb_base,
-+		uint64_t fb_offset,
-+		union dmub_addr *addr_out)
-+{
-+	addr_out->quad_part = addr_in->quad_part - fb_base + fb_offset;
-+}
-+
-+void dmub_dcn32_reset(struct dmub_srv *dmub)
-+{
-+	union dmub_gpint_data_register cmd;
-+	const uint32_t timeout = 30;
-+	uint32_t in_reset, scratch, i;
-+
-+	REG_GET(DMCUB_CNTL2, DMCUB_SOFT_RESET, &in_reset);
-+
-+	if (in_reset == 0) {
-+		cmd.bits.status = 1;
-+		cmd.bits.command_code = DMUB_GPINT__STOP_FW;
-+		cmd.bits.param = 0;
-+
-+		dmub->hw_funcs.set_gpint(dmub, cmd);
-+
-+		/**
-+		 * Timeout covers both the ACK and the wait
-+		 * for remaining work to finish.
-+		 *
-+		 * This is mostly bound by the PHY disable sequence.
-+		 * Each register check will be greater than 1us, so
-+		 * don't bother using udelay.
-+		 */
-+
-+		for (i = 0; i < timeout; ++i) {
-+			if (dmub->hw_funcs.is_gpint_acked(dmub, cmd))
-+				break;
-+		}
-+
-+		for (i = 0; i < timeout; ++i) {
-+			scratch = dmub->hw_funcs.get_gpint_response(dmub);
-+			if (scratch == DMUB_GPINT__STOP_FW_RESPONSE)
-+				break;
-+		}
-+
-+		/* Clear the GPINT command manually so we don't reset again. */
-+		cmd.all = 0;
-+		dmub->hw_funcs.set_gpint(dmub, cmd);
-+
-+		/* Force reset in case we timed out, DMCUB is likely hung. */
++#define hpd_rx_int_entry(reg_num)\
++	[DC_IRQ_SOURCE_HPD1RX + reg_num] = {\
++		IRQ_REG_ENTRY(HPD, reg_num,\
++			DC_HPD_INT_CONTROL, DC_HPD_RX_INT_EN,\
++			DC_HPD_INT_CONTROL, DC_HPD_RX_INT_ACK),\
++		.status_reg = SRI(DC_HPD_INT_STATUS, HPD, reg_num),\
++		.funcs = &hpd_rx_irq_info_funcs\
++	}
++#define pflip_int_entry(reg_num)\
++	[DC_IRQ_SOURCE_PFLIP1 + reg_num] = {\
++		IRQ_REG_ENTRY(HUBPREQ, reg_num,\
++			DCSURF_SURFACE_FLIP_INTERRUPT, SURFACE_FLIP_INT_MASK,\
++			DCSURF_SURFACE_FLIP_INTERRUPT, SURFACE_FLIP_CLEAR),\
++		.funcs = &pflip_irq_info_funcs\
 +	}
 +
-+	REG_UPDATE(DMCUB_CNTL2, DMCUB_SOFT_RESET, 1);
-+	REG_UPDATE(DMCUB_CNTL, DMCUB_ENABLE, 0);
-+	REG_UPDATE(MMHUBBUB_SOFT_RESET, DMUIF_SOFT_RESET, 1);
-+	REG_WRITE(DMCUB_INBOX1_RPTR, 0);
-+	REG_WRITE(DMCUB_INBOX1_WPTR, 0);
-+	REG_WRITE(DMCUB_OUTBOX1_RPTR, 0);
-+	REG_WRITE(DMCUB_OUTBOX1_WPTR, 0);
-+	REG_WRITE(DMCUB_SCRATCH0, 0);
++/* vupdate_no_lock_int_entry maps to DC_IRQ_SOURCE_VUPDATEx, to match semantic
++ * of DCE's DC_IRQ_SOURCE_VUPDATEx.
++ */
++#define vupdate_no_lock_int_entry(reg_num)\
++	[DC_IRQ_SOURCE_VUPDATE1 + reg_num] = {\
++		IRQ_REG_ENTRY(OTG, reg_num,\
++			OTG_GLOBAL_SYNC_STATUS, VUPDATE_NO_LOCK_INT_EN,\
++			OTG_GLOBAL_SYNC_STATUS, VUPDATE_NO_LOCK_EVENT_CLEAR),\
++		.funcs = &vupdate_no_lock_irq_info_funcs\
++	}
++
++#define vblank_int_entry(reg_num)\
++	[DC_IRQ_SOURCE_VBLANK1 + reg_num] = {\
++		IRQ_REG_ENTRY(OTG, reg_num,\
++			OTG_GLOBAL_SYNC_STATUS, VSTARTUP_INT_EN,\
++			OTG_GLOBAL_SYNC_STATUS, VSTARTUP_EVENT_CLEAR),\
++		.funcs = &vblank_irq_info_funcs\
 +}
 +
-+void dmub_dcn32_reset_release(struct dmub_srv *dmub)
++#define dummy_irq_entry() \
++	{\
++		.funcs = &dummy_irq_info_funcs\
++	}
++
++#define i2c_int_entry(reg_num) \
++	[DC_IRQ_SOURCE_I2C_DDC ## reg_num] = dummy_irq_entry()
++
++#define dp_sink_int_entry(reg_num) \
++	[DC_IRQ_SOURCE_DPSINK ## reg_num] = dummy_irq_entry()
++
++#define gpio_pad_int_entry(reg_num) \
++	[DC_IRQ_SOURCE_GPIOPAD ## reg_num] = dummy_irq_entry()
++
++#define dc_underflow_int_entry(reg_num) \
++	[DC_IRQ_SOURCE_DC ## reg_num ## UNDERFLOW] = dummy_irq_entry()
++
++static const struct irq_source_info_funcs dummy_irq_info_funcs = {
++	.set = dal_irq_service_dummy_set,
++	.ack = dal_irq_service_dummy_ack
++};
++
++static const struct irq_source_info
++irq_source_info_dcn32[DAL_IRQ_SOURCES_NUMBER] = {
++	[DC_IRQ_SOURCE_INVALID] = dummy_irq_entry(),
++	hpd_int_entry(0),
++	hpd_int_entry(1),
++	hpd_int_entry(2),
++	hpd_int_entry(3),
++	hpd_int_entry(4),
++	hpd_rx_int_entry(0),
++	hpd_rx_int_entry(1),
++	hpd_rx_int_entry(2),
++	hpd_rx_int_entry(3),
++	hpd_rx_int_entry(4),
++	i2c_int_entry(1),
++	i2c_int_entry(2),
++	i2c_int_entry(3),
++	i2c_int_entry(4),
++	i2c_int_entry(5),
++	i2c_int_entry(6),
++	dp_sink_int_entry(1),
++	dp_sink_int_entry(2),
++	dp_sink_int_entry(3),
++	dp_sink_int_entry(4),
++	dp_sink_int_entry(5),
++	dp_sink_int_entry(6),
++	[DC_IRQ_SOURCE_TIMER] = dummy_irq_entry(),
++	pflip_int_entry(0),
++	pflip_int_entry(1),
++	pflip_int_entry(2),
++	pflip_int_entry(3),
++	[DC_IRQ_SOURCE_PFLIP5] = dummy_irq_entry(),
++	[DC_IRQ_SOURCE_PFLIP6] = dummy_irq_entry(),
++	[DC_IRQ_SOURCE_PFLIP_UNDERLAY0] = dummy_irq_entry(),
++	gpio_pad_int_entry(0),
++	gpio_pad_int_entry(1),
++	gpio_pad_int_entry(2),
++	gpio_pad_int_entry(3),
++	gpio_pad_int_entry(4),
++	gpio_pad_int_entry(5),
++	gpio_pad_int_entry(6),
++	gpio_pad_int_entry(7),
++	gpio_pad_int_entry(8),
++	gpio_pad_int_entry(9),
++	gpio_pad_int_entry(10),
++	gpio_pad_int_entry(11),
++	gpio_pad_int_entry(12),
++	gpio_pad_int_entry(13),
++	gpio_pad_int_entry(14),
++	gpio_pad_int_entry(15),
++	gpio_pad_int_entry(16),
++	gpio_pad_int_entry(17),
++	gpio_pad_int_entry(18),
++	gpio_pad_int_entry(19),
++	gpio_pad_int_entry(20),
++	gpio_pad_int_entry(21),
++	gpio_pad_int_entry(22),
++	gpio_pad_int_entry(23),
++	gpio_pad_int_entry(24),
++	gpio_pad_int_entry(25),
++	gpio_pad_int_entry(26),
++	gpio_pad_int_entry(27),
++	gpio_pad_int_entry(28),
++	gpio_pad_int_entry(29),
++	gpio_pad_int_entry(30),
++	dc_underflow_int_entry(1),
++	dc_underflow_int_entry(2),
++	dc_underflow_int_entry(3),
++	dc_underflow_int_entry(4),
++	dc_underflow_int_entry(5),
++	dc_underflow_int_entry(6),
++	[DC_IRQ_SOURCE_DMCU_SCP] = dummy_irq_entry(),
++	[DC_IRQ_SOURCE_VBIOS_SW] = dummy_irq_entry(),
++	vupdate_no_lock_int_entry(0),
++	vupdate_no_lock_int_entry(1),
++	vupdate_no_lock_int_entry(2),
++	vupdate_no_lock_int_entry(3),
++	vblank_int_entry(0),
++	vblank_int_entry(1),
++	vblank_int_entry(2),
++	vblank_int_entry(3),
++};
++
++static const struct irq_service_funcs irq_service_funcs_dcn32 = {
++		.to_dal_irq_source = to_dal_irq_source_dcn32
++};
++
++static void dcn32_irq_construct(
++	struct irq_service *irq_service,
++	struct irq_service_init_data *init_data)
 +{
-+	REG_WRITE(DMCUB_GPINT_DATAIN1, 0);
-+	REG_UPDATE(MMHUBBUB_SOFT_RESET, DMUIF_SOFT_RESET, 0);
-+	REG_WRITE(DMCUB_SCRATCH15, dmub->psp_version & 0x001100FF);
-+	REG_UPDATE_2(DMCUB_CNTL, DMCUB_ENABLE, 1, DMCUB_TRACEPORT_EN, 1);
-+	REG_UPDATE(DMCUB_CNTL2, DMCUB_SOFT_RESET, 0);
++	dal_irq_service_construct(irq_service, init_data);
++
++	irq_service->info = irq_source_info_dcn32;
++	irq_service->funcs = &irq_service_funcs_dcn32;
 +}
 +
-+void dmub_dcn32_backdoor_load(struct dmub_srv *dmub,
-+		const struct dmub_window *cw0,
-+		const struct dmub_window *cw1)
++struct irq_service *dal_irq_service_dcn32_create(
++	struct irq_service_init_data *init_data)
 +{
-+	union dmub_addr offset;
-+	uint64_t fb_base, fb_offset;
++	struct irq_service *irq_service = kzalloc(sizeof(*irq_service),
++						  GFP_KERNEL);
 +
-+	dmub_dcn32_get_fb_base_offset(dmub, &fb_base, &fb_offset);
++	if (!irq_service)
++		return NULL;
 +
-+	REG_UPDATE(DMCUB_SEC_CNTL, DMCUB_SEC_RESET, 1);
-+
-+	dmub_dcn32_translate_addr(&cw0->offset, fb_base, fb_offset, &offset);
-+
-+	REG_WRITE(DMCUB_REGION3_CW0_OFFSET, offset.u.low_part);
-+	REG_WRITE(DMCUB_REGION3_CW0_OFFSET_HIGH, offset.u.high_part);
-+	REG_WRITE(DMCUB_REGION3_CW0_BASE_ADDRESS, cw0->region.base);
-+	REG_SET_2(DMCUB_REGION3_CW0_TOP_ADDRESS, 0,
-+			DMCUB_REGION3_CW0_TOP_ADDRESS, cw0->region.top,
-+			DMCUB_REGION3_CW0_ENABLE, 1);
-+
-+	dmub_dcn32_translate_addr(&cw1->offset, fb_base, fb_offset, &offset);
-+
-+	REG_WRITE(DMCUB_REGION3_CW1_OFFSET, offset.u.low_part);
-+	REG_WRITE(DMCUB_REGION3_CW1_OFFSET_HIGH, offset.u.high_part);
-+	REG_WRITE(DMCUB_REGION3_CW1_BASE_ADDRESS, cw1->region.base);
-+	REG_SET_2(DMCUB_REGION3_CW1_TOP_ADDRESS, 0,
-+			DMCUB_REGION3_CW1_TOP_ADDRESS, cw1->region.top,
-+			DMCUB_REGION3_CW1_ENABLE, 1);
-+
-+	REG_UPDATE_2(DMCUB_SEC_CNTL, DMCUB_SEC_RESET, 0, DMCUB_MEM_UNIT_ID,
-+			0x20);
++	dcn32_irq_construct(irq_service, init_data);
++	return irq_service;
 +}
-+
-+void dmub_dcn32_backdoor_load_zfb_mode(struct dmub_srv *dmub,
-+		      const struct dmub_window *cw0,
-+		      const struct dmub_window *cw1)
-+{
-+	union dmub_addr offset;
-+
-+	REG_UPDATE(DMCUB_SEC_CNTL, DMCUB_SEC_RESET, 1);
-+
-+	offset = cw0->offset;
-+
-+	REG_WRITE(DMCUB_REGION3_CW0_OFFSET, offset.u.low_part);
-+	REG_WRITE(DMCUB_REGION3_CW0_OFFSET_HIGH, offset.u.high_part);
-+	REG_WRITE(DMCUB_REGION3_CW0_BASE_ADDRESS, cw0->region.base);
-+	REG_SET_2(DMCUB_REGION3_CW0_TOP_ADDRESS, 0,
-+			DMCUB_REGION3_CW0_TOP_ADDRESS, cw0->region.top,
-+			DMCUB_REGION3_CW0_ENABLE, 1);
-+
-+	offset = cw1->offset;
-+
-+	REG_WRITE(DMCUB_REGION3_CW1_OFFSET, offset.u.low_part);
-+	REG_WRITE(DMCUB_REGION3_CW1_OFFSET_HIGH, offset.u.high_part);
-+	REG_WRITE(DMCUB_REGION3_CW1_BASE_ADDRESS, cw1->region.base);
-+	REG_SET_2(DMCUB_REGION3_CW1_TOP_ADDRESS, 0,
-+			DMCUB_REGION3_CW1_TOP_ADDRESS, cw1->region.top,
-+			DMCUB_REGION3_CW1_ENABLE, 1);
-+
-+	REG_UPDATE_2(DMCUB_SEC_CNTL, DMCUB_SEC_RESET, 0, DMCUB_MEM_UNIT_ID,
-+			0x20);
-+}
-+
-+void dmub_dcn32_setup_windows(struct dmub_srv *dmub,
-+		const struct dmub_window *cw2,
-+		const struct dmub_window *cw3,
-+		const struct dmub_window *cw4,
-+		const struct dmub_window *cw5,
-+		const struct dmub_window *cw6)
-+{
-+	union dmub_addr offset;
-+
-+	offset = cw3->offset;
-+
-+	REG_WRITE(DMCUB_REGION3_CW3_OFFSET, offset.u.low_part);
-+	REG_WRITE(DMCUB_REGION3_CW3_OFFSET_HIGH, offset.u.high_part);
-+	REG_WRITE(DMCUB_REGION3_CW3_BASE_ADDRESS, cw3->region.base);
-+	REG_SET_2(DMCUB_REGION3_CW3_TOP_ADDRESS, 0,
-+			DMCUB_REGION3_CW3_TOP_ADDRESS, cw3->region.top,
-+			DMCUB_REGION3_CW3_ENABLE, 1);
-+
-+	offset = cw4->offset;
-+
-+	REG_WRITE(DMCUB_REGION3_CW4_OFFSET, offset.u.low_part);
-+	REG_WRITE(DMCUB_REGION3_CW4_OFFSET_HIGH, offset.u.high_part);
-+	REG_WRITE(DMCUB_REGION3_CW4_BASE_ADDRESS, cw4->region.base);
-+	REG_SET_2(DMCUB_REGION3_CW4_TOP_ADDRESS, 0,
-+			DMCUB_REGION3_CW4_TOP_ADDRESS, cw4->region.top,
-+			DMCUB_REGION3_CW4_ENABLE, 1);
-+
-+	offset = cw5->offset;
-+
-+	REG_WRITE(DMCUB_REGION3_CW5_OFFSET, offset.u.low_part);
-+	REG_WRITE(DMCUB_REGION3_CW5_OFFSET_HIGH, offset.u.high_part);
-+	REG_WRITE(DMCUB_REGION3_CW5_BASE_ADDRESS, cw5->region.base);
-+	REG_SET_2(DMCUB_REGION3_CW5_TOP_ADDRESS, 0,
-+			DMCUB_REGION3_CW5_TOP_ADDRESS, cw5->region.top,
-+			DMCUB_REGION3_CW5_ENABLE, 1);
-+
-+	REG_WRITE(DMCUB_REGION5_OFFSET, offset.u.low_part);
-+	REG_WRITE(DMCUB_REGION5_OFFSET_HIGH, offset.u.high_part);
-+	REG_SET_2(DMCUB_REGION5_TOP_ADDRESS, 0,
-+			DMCUB_REGION5_TOP_ADDRESS,
-+			cw5->region.top - cw5->region.base - 1,
-+			DMCUB_REGION5_ENABLE, 1);
-+
-+	offset = cw6->offset;
-+
-+	REG_WRITE(DMCUB_REGION3_CW6_OFFSET, offset.u.low_part);
-+	REG_WRITE(DMCUB_REGION3_CW6_OFFSET_HIGH, offset.u.high_part);
-+	REG_WRITE(DMCUB_REGION3_CW6_BASE_ADDRESS, cw6->region.base);
-+	REG_SET_2(DMCUB_REGION3_CW6_TOP_ADDRESS, 0,
-+			DMCUB_REGION3_CW6_TOP_ADDRESS, cw6->region.top,
-+			DMCUB_REGION3_CW6_ENABLE, 1);
-+}
-+
-+void dmub_dcn32_setup_mailbox(struct dmub_srv *dmub,
-+		const struct dmub_region *inbox1)
-+{
-+	REG_WRITE(DMCUB_INBOX1_BASE_ADDRESS, inbox1->base);
-+	REG_WRITE(DMCUB_INBOX1_SIZE, inbox1->top - inbox1->base);
-+}
-+
-+uint32_t dmub_dcn32_get_inbox1_rptr(struct dmub_srv *dmub)
-+{
-+	return REG_READ(DMCUB_INBOX1_RPTR);
-+}
-+
-+void dmub_dcn32_set_inbox1_wptr(struct dmub_srv *dmub, uint32_t wptr_offset)
-+{
-+	REG_WRITE(DMCUB_INBOX1_WPTR, wptr_offset);
-+}
-+
-+void dmub_dcn32_setup_out_mailbox(struct dmub_srv *dmub,
-+		const struct dmub_region *outbox1)
-+{
-+	REG_WRITE(DMCUB_OUTBOX1_BASE_ADDRESS, outbox1->base);
-+	REG_WRITE(DMCUB_OUTBOX1_SIZE, outbox1->top - outbox1->base);
-+}
-+
-+uint32_t dmub_dcn32_get_outbox1_wptr(struct dmub_srv *dmub)
-+{
-+	/**
-+	 * outbox1 wptr register is accessed without locks (dal & dc)
-+	 * and to be called only by dmub_srv_stat_get_notification()
-+	 */
-+	return REG_READ(DMCUB_OUTBOX1_WPTR);
-+}
-+
-+void dmub_dcn32_set_outbox1_rptr(struct dmub_srv *dmub, uint32_t rptr_offset)
-+{
-+	/**
-+	 * outbox1 rptr register is accessed without locks (dal & dc)
-+	 * and to be called only by dmub_srv_stat_get_notification()
-+	 */
-+	REG_WRITE(DMCUB_OUTBOX1_RPTR, rptr_offset);
-+}
-+
-+bool dmub_dcn32_is_hw_init(struct dmub_srv *dmub)
-+{
-+	uint32_t is_hw_init;
-+
-+	REG_GET(DMCUB_CNTL, DMCUB_ENABLE, &is_hw_init);
-+
-+	return is_hw_init != 0;
-+}
-+
-+bool dmub_dcn32_is_supported(struct dmub_srv *dmub)
-+{
-+	uint32_t supported = 0;
-+
-+	REG_GET(CC_DC_PIPE_DIS, DC_DMCUB_ENABLE, &supported);
-+
-+	return supported;
-+}
-+
-+void dmub_dcn32_set_gpint(struct dmub_srv *dmub,
-+		union dmub_gpint_data_register reg)
-+{
-+	REG_WRITE(DMCUB_GPINT_DATAIN1, reg.all);
-+}
-+
-+bool dmub_dcn32_is_gpint_acked(struct dmub_srv *dmub,
-+		union dmub_gpint_data_register reg)
-+{
-+	union dmub_gpint_data_register test;
-+
-+	reg.bits.status = 0;
-+	test.all = REG_READ(DMCUB_GPINT_DATAIN1);
-+
-+	return test.all == reg.all;
-+}
-+
-+uint32_t dmub_dcn32_get_gpint_response(struct dmub_srv *dmub)
-+{
-+	return REG_READ(DMCUB_SCRATCH7);
-+}
-+
-+uint32_t dmub_dcn32_get_gpint_dataout(struct dmub_srv *dmub)
-+{
-+	uint32_t dataout = REG_READ(DMCUB_GPINT_DATAOUT);
-+
-+	REG_UPDATE(DMCUB_INTERRUPT_ENABLE, DMCUB_GPINT_IH_INT_EN, 0);
-+
-+	REG_WRITE(DMCUB_GPINT_DATAOUT, 0);
-+	REG_UPDATE(DMCUB_INTERRUPT_ACK, DMCUB_GPINT_IH_INT_ACK, 1);
-+	REG_UPDATE(DMCUB_INTERRUPT_ACK, DMCUB_GPINT_IH_INT_ACK, 0);
-+
-+	REG_UPDATE(DMCUB_INTERRUPT_ENABLE, DMCUB_GPINT_IH_INT_EN, 1);
-+
-+	return dataout;
-+}
-+
-+union dmub_fw_boot_status dmub_dcn32_get_fw_boot_status(struct dmub_srv *dmub)
-+{
-+	union dmub_fw_boot_status status;
-+
-+	status.all = REG_READ(DMCUB_SCRATCH0);
-+	return status;
-+}
-+
-+void dmub_dcn32_enable_dmub_boot_options(struct dmub_srv *dmub, const struct dmub_srv_hw_params *params)
-+{
-+	union dmub_fw_boot_options boot_options = {0};
-+
-+	boot_options.bits.z10_disable = params->disable_z10;
-+
-+	REG_WRITE(DMCUB_SCRATCH14, boot_options.all);
-+}
-+
-+void dmub_dcn32_skip_dmub_panel_power_sequence(struct dmub_srv *dmub, bool skip)
-+{
-+	union dmub_fw_boot_options boot_options;
-+	boot_options.all = REG_READ(DMCUB_SCRATCH14);
-+	boot_options.bits.skip_phy_init_panel_sequence = skip;
-+	REG_WRITE(DMCUB_SCRATCH14, boot_options.all);
-+}
-+
-+void dmub_dcn32_setup_outbox0(struct dmub_srv *dmub,
-+		const struct dmub_region *outbox0)
-+{
-+	REG_WRITE(DMCUB_OUTBOX0_BASE_ADDRESS, outbox0->base);
-+
-+	REG_WRITE(DMCUB_OUTBOX0_SIZE, outbox0->top - outbox0->base);
-+}
-+
-+uint32_t dmub_dcn32_get_outbox0_wptr(struct dmub_srv *dmub)
-+{
-+	return REG_READ(DMCUB_OUTBOX0_WPTR);
-+}
-+
-+void dmub_dcn32_set_outbox0_rptr(struct dmub_srv *dmub, uint32_t rptr_offset)
-+{
-+	REG_WRITE(DMCUB_OUTBOX0_RPTR, rptr_offset);
-+}
-+
-+uint32_t dmub_dcn32_get_current_time(struct dmub_srv *dmub)
-+{
-+	return REG_READ(DMCUB_TIMER_CURRENT);
-+}
-+
-+void dmub_dcn32_get_diagnostic_data(struct dmub_srv *dmub, struct dmub_diagnostic_data *diag_data)
-+{
-+	uint32_t is_dmub_enabled, is_soft_reset, is_sec_reset;
-+	uint32_t is_traceport_enabled, is_cw0_enabled, is_cw6_enabled;
-+
-+	if (!dmub || !diag_data)
-+		return;
-+
-+	memset(diag_data, 0, sizeof(*diag_data));
-+
-+	diag_data->dmcub_version = dmub->fw_version;
-+
-+	diag_data->scratch[0] = REG_READ(DMCUB_SCRATCH0);
-+	diag_data->scratch[1] = REG_READ(DMCUB_SCRATCH1);
-+	diag_data->scratch[2] = REG_READ(DMCUB_SCRATCH2);
-+	diag_data->scratch[3] = REG_READ(DMCUB_SCRATCH3);
-+	diag_data->scratch[4] = REG_READ(DMCUB_SCRATCH4);
-+	diag_data->scratch[5] = REG_READ(DMCUB_SCRATCH5);
-+	diag_data->scratch[6] = REG_READ(DMCUB_SCRATCH6);
-+	diag_data->scratch[7] = REG_READ(DMCUB_SCRATCH7);
-+	diag_data->scratch[8] = REG_READ(DMCUB_SCRATCH8);
-+	diag_data->scratch[9] = REG_READ(DMCUB_SCRATCH9);
-+	diag_data->scratch[10] = REG_READ(DMCUB_SCRATCH10);
-+	diag_data->scratch[11] = REG_READ(DMCUB_SCRATCH11);
-+	diag_data->scratch[12] = REG_READ(DMCUB_SCRATCH12);
-+	diag_data->scratch[13] = REG_READ(DMCUB_SCRATCH13);
-+	diag_data->scratch[14] = REG_READ(DMCUB_SCRATCH14);
-+	diag_data->scratch[15] = REG_READ(DMCUB_SCRATCH15);
-+
-+	diag_data->undefined_address_fault_addr = REG_READ(DMCUB_UNDEFINED_ADDRESS_FAULT_ADDR);
-+	diag_data->inst_fetch_fault_addr = REG_READ(DMCUB_INST_FETCH_FAULT_ADDR);
-+	diag_data->data_write_fault_addr = REG_READ(DMCUB_DATA_WRITE_FAULT_ADDR);
-+
-+	diag_data->inbox1_rptr = REG_READ(DMCUB_INBOX1_RPTR);
-+	diag_data->inbox1_wptr = REG_READ(DMCUB_INBOX1_WPTR);
-+	diag_data->inbox1_size = REG_READ(DMCUB_INBOX1_SIZE);
-+
-+	diag_data->inbox0_rptr = REG_READ(DMCUB_INBOX0_RPTR);
-+	diag_data->inbox0_wptr = REG_READ(DMCUB_INBOX0_WPTR);
-+	diag_data->inbox0_size = REG_READ(DMCUB_INBOX0_SIZE);
-+
-+	REG_GET(DMCUB_CNTL, DMCUB_ENABLE, &is_dmub_enabled);
-+	diag_data->is_dmcub_enabled = is_dmub_enabled;
-+
-+	REG_GET(DMCUB_CNTL2, DMCUB_SOFT_RESET, &is_soft_reset);
-+	diag_data->is_dmcub_soft_reset = is_soft_reset;
-+
-+	REG_GET(DMCUB_SEC_CNTL, DMCUB_SEC_RESET_STATUS, &is_sec_reset);
-+	diag_data->is_dmcub_secure_reset = is_sec_reset;
-+
-+	REG_GET(DMCUB_CNTL, DMCUB_TRACEPORT_EN, &is_traceport_enabled);
-+	diag_data->is_traceport_en  = is_traceport_enabled;
-+
-+	REG_GET(DMCUB_REGION3_CW0_TOP_ADDRESS, DMCUB_REGION3_CW0_ENABLE, &is_cw0_enabled);
-+	diag_data->is_cw0_enabled = is_cw0_enabled;
-+
-+	REG_GET(DMCUB_REGION3_CW6_TOP_ADDRESS, DMCUB_REGION3_CW6_ENABLE, &is_cw6_enabled);
-+	diag_data->is_cw6_enabled = is_cw6_enabled;
-+}
-+void dmub_dcn32_configure_dmub_in_system_memory(struct dmub_srv *dmub)
-+{
-+	/* DMCUB_REGION3_TMR_AXI_SPACE values:
-+	 * 0b011 (0x3) - FB physical address
-+	 * 0b100 (0x4) - GPU virtual address
-+	 *
-+	 * Default value is 0x3 (FB Physical address for TMR). When programming
-+	 * DMUB to be in system memory, change to 0x4. The system memory allocated
-+	 * is accessible by both GPU and CPU, so we use GPU virtual address.
-+	 */
-+	REG_WRITE(DMCUB_REGION3_TMR_AXI_SPACE, 0x4);
-+}
-+
-+void dmub_dcn32_send_inbox0_cmd(struct dmub_srv *dmub, union dmub_inbox0_data_register data)
-+{
-+	REG_WRITE(DMCUB_INBOX0_WPTR, data.inbox0_cmd_common.all);
-+}
-+
-+void dmub_dcn32_clear_inbox0_ack_register(struct dmub_srv *dmub)
-+{
-+	REG_WRITE(DMCUB_SCRATCH17, 0);
-+}
-+
-+uint32_t dmub_dcn32_read_inbox0_ack_register(struct dmub_srv *dmub)
-+{
-+	return REG_READ(DMCUB_SCRATCH17);
-+}
-diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn32.h b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn32.h
+diff --git a/drivers/gpu/drm/amd/display/dc/irq/dcn32/irq_service_dcn32.h b/drivers/gpu/drm/amd/display/dc/irq/dcn32/irq_service_dcn32.h
 new file mode 100644
-index 000000000000..7d1a6eb4d665
+index 000000000000..a0d9c9e4e17f
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn32.h
-@@ -0,0 +1,256 @@
++++ b/drivers/gpu/drm/amd/display/dc/irq/dcn32/irq_service_dcn32.h
+@@ -0,0 +1,35 @@
 +/*
 + * Copyright 2022 Advanced Micro Devices, Inc.
 + *
@@ -808,327 +549,16 @@ index 000000000000..7d1a6eb4d665
 + *
 + */
 +
-+#ifndef _DMUB_DCN32_H_
-+#define _DMUB_DCN32_H_
 +
-+#include "dmub_dcn31.h"
++#ifndef __DAL_IRQ_SERVICE_DCN32_H__
++#define __DAL_IRQ_SERVICE_DCN32_H__
 +
-+struct dmub_srv;
++#include "../irq_service.h"
 +
-+/* DCN32 register definitions. */
++struct irq_service *dal_irq_service_dcn32_create(
++	struct irq_service_init_data *init_data);
 +
-+#define DMUB_DCN32_REGS() \
-+	DMUB_SR(DMCUB_CNTL) \
-+	DMUB_SR(DMCUB_CNTL2) \
-+	DMUB_SR(DMCUB_SEC_CNTL) \
-+	DMUB_SR(DMCUB_INBOX0_SIZE) \
-+	DMUB_SR(DMCUB_INBOX0_RPTR) \
-+	DMUB_SR(DMCUB_INBOX0_WPTR) \
-+	DMUB_SR(DMCUB_INBOX1_BASE_ADDRESS) \
-+	DMUB_SR(DMCUB_INBOX1_SIZE) \
-+	DMUB_SR(DMCUB_INBOX1_RPTR) \
-+	DMUB_SR(DMCUB_INBOX1_WPTR) \
-+	DMUB_SR(DMCUB_OUTBOX0_BASE_ADDRESS) \
-+	DMUB_SR(DMCUB_OUTBOX0_SIZE) \
-+	DMUB_SR(DMCUB_OUTBOX0_RPTR) \
-+	DMUB_SR(DMCUB_OUTBOX0_WPTR) \
-+	DMUB_SR(DMCUB_OUTBOX1_BASE_ADDRESS) \
-+	DMUB_SR(DMCUB_OUTBOX1_SIZE) \
-+	DMUB_SR(DMCUB_OUTBOX1_RPTR) \
-+	DMUB_SR(DMCUB_OUTBOX1_WPTR) \
-+	DMUB_SR(DMCUB_REGION3_CW0_OFFSET) \
-+	DMUB_SR(DMCUB_REGION3_CW1_OFFSET) \
-+	DMUB_SR(DMCUB_REGION3_CW2_OFFSET) \
-+	DMUB_SR(DMCUB_REGION3_CW3_OFFSET) \
-+	DMUB_SR(DMCUB_REGION3_CW4_OFFSET) \
-+	DMUB_SR(DMCUB_REGION3_CW5_OFFSET) \
-+	DMUB_SR(DMCUB_REGION3_CW6_OFFSET) \
-+	DMUB_SR(DMCUB_REGION3_CW7_OFFSET) \
-+	DMUB_SR(DMCUB_REGION3_CW0_OFFSET_HIGH) \
-+	DMUB_SR(DMCUB_REGION3_CW1_OFFSET_HIGH) \
-+	DMUB_SR(DMCUB_REGION3_CW2_OFFSET_HIGH) \
-+	DMUB_SR(DMCUB_REGION3_CW3_OFFSET_HIGH) \
-+	DMUB_SR(DMCUB_REGION3_CW4_OFFSET_HIGH) \
-+	DMUB_SR(DMCUB_REGION3_CW5_OFFSET_HIGH) \
-+	DMUB_SR(DMCUB_REGION3_CW6_OFFSET_HIGH) \
-+	DMUB_SR(DMCUB_REGION3_CW7_OFFSET_HIGH) \
-+	DMUB_SR(DMCUB_REGION3_CW0_BASE_ADDRESS) \
-+	DMUB_SR(DMCUB_REGION3_CW1_BASE_ADDRESS) \
-+	DMUB_SR(DMCUB_REGION3_CW2_BASE_ADDRESS) \
-+	DMUB_SR(DMCUB_REGION3_CW3_BASE_ADDRESS) \
-+	DMUB_SR(DMCUB_REGION3_CW4_BASE_ADDRESS) \
-+	DMUB_SR(DMCUB_REGION3_CW5_BASE_ADDRESS) \
-+	DMUB_SR(DMCUB_REGION3_CW6_BASE_ADDRESS) \
-+	DMUB_SR(DMCUB_REGION3_CW7_BASE_ADDRESS) \
-+	DMUB_SR(DMCUB_REGION3_CW0_TOP_ADDRESS) \
-+	DMUB_SR(DMCUB_REGION3_CW1_TOP_ADDRESS) \
-+	DMUB_SR(DMCUB_REGION3_CW2_TOP_ADDRESS) \
-+	DMUB_SR(DMCUB_REGION3_CW3_TOP_ADDRESS) \
-+	DMUB_SR(DMCUB_REGION3_CW4_TOP_ADDRESS) \
-+	DMUB_SR(DMCUB_REGION3_CW5_TOP_ADDRESS) \
-+	DMUB_SR(DMCUB_REGION3_CW6_TOP_ADDRESS) \
-+	DMUB_SR(DMCUB_REGION3_CW7_TOP_ADDRESS) \
-+	DMUB_SR(DMCUB_REGION4_OFFSET) \
-+	DMUB_SR(DMCUB_REGION4_OFFSET_HIGH) \
-+	DMUB_SR(DMCUB_REGION4_TOP_ADDRESS) \
-+	DMUB_SR(DMCUB_REGION5_OFFSET) \
-+	DMUB_SR(DMCUB_REGION5_OFFSET_HIGH) \
-+	DMUB_SR(DMCUB_REGION5_TOP_ADDRESS) \
-+	DMUB_SR(DMCUB_SCRATCH0) \
-+	DMUB_SR(DMCUB_SCRATCH1) \
-+	DMUB_SR(DMCUB_SCRATCH2) \
-+	DMUB_SR(DMCUB_SCRATCH3) \
-+	DMUB_SR(DMCUB_SCRATCH4) \
-+	DMUB_SR(DMCUB_SCRATCH5) \
-+	DMUB_SR(DMCUB_SCRATCH6) \
-+	DMUB_SR(DMCUB_SCRATCH7) \
-+	DMUB_SR(DMCUB_SCRATCH8) \
-+	DMUB_SR(DMCUB_SCRATCH9) \
-+	DMUB_SR(DMCUB_SCRATCH10) \
-+	DMUB_SR(DMCUB_SCRATCH11) \
-+	DMUB_SR(DMCUB_SCRATCH12) \
-+	DMUB_SR(DMCUB_SCRATCH13) \
-+	DMUB_SR(DMCUB_SCRATCH14) \
-+	DMUB_SR(DMCUB_SCRATCH15) \
-+	DMUB_SR(DMCUB_SCRATCH16) \
-+	DMUB_SR(DMCUB_SCRATCH17) \
-+	DMUB_SR(DMCUB_GPINT_DATAIN1) \
-+	DMUB_SR(DMCUB_GPINT_DATAOUT) \
-+	DMUB_SR(CC_DC_PIPE_DIS) \
-+	DMUB_SR(MMHUBBUB_SOFT_RESET) \
-+	DMUB_SR(DCN_VM_FB_LOCATION_BASE) \
-+	DMUB_SR(DCN_VM_FB_OFFSET) \
-+	DMUB_SR(DMCUB_TIMER_CURRENT) \
-+	DMUB_SR(DMCUB_INST_FETCH_FAULT_ADDR) \
-+	DMUB_SR(DMCUB_UNDEFINED_ADDRESS_FAULT_ADDR) \
-+	DMUB_SR(DMCUB_DATA_WRITE_FAULT_ADDR) \
-+	DMUB_SR(DMCUB_REGION3_TMR_AXI_SPACE) \
-+	DMUB_SR(DMCUB_INTERRUPT_ENABLE) \
-+	DMUB_SR(DMCUB_INTERRUPT_ACK)
-+
-+#define DMUB_DCN32_FIELDS() \
-+	DMUB_SF(DMCUB_CNTL, DMCUB_ENABLE) \
-+	DMUB_SF(DMCUB_CNTL, DMCUB_TRACEPORT_EN) \
-+	DMUB_SF(DMCUB_CNTL2, DMCUB_SOFT_RESET) \
-+	DMUB_SF(DMCUB_SEC_CNTL, DMCUB_SEC_RESET) \
-+	DMUB_SF(DMCUB_SEC_CNTL, DMCUB_MEM_UNIT_ID) \
-+	DMUB_SF(DMCUB_SEC_CNTL, DMCUB_SEC_RESET_STATUS) \
-+	DMUB_SF(DMCUB_REGION3_CW0_TOP_ADDRESS, DMCUB_REGION3_CW0_TOP_ADDRESS) \
-+	DMUB_SF(DMCUB_REGION3_CW0_TOP_ADDRESS, DMCUB_REGION3_CW0_ENABLE) \
-+	DMUB_SF(DMCUB_REGION3_CW1_TOP_ADDRESS, DMCUB_REGION3_CW1_TOP_ADDRESS) \
-+	DMUB_SF(DMCUB_REGION3_CW1_TOP_ADDRESS, DMCUB_REGION3_CW1_ENABLE) \
-+	DMUB_SF(DMCUB_REGION3_CW2_TOP_ADDRESS, DMCUB_REGION3_CW2_TOP_ADDRESS) \
-+	DMUB_SF(DMCUB_REGION3_CW2_TOP_ADDRESS, DMCUB_REGION3_CW2_ENABLE) \
-+	DMUB_SF(DMCUB_REGION3_CW3_TOP_ADDRESS, DMCUB_REGION3_CW3_TOP_ADDRESS) \
-+	DMUB_SF(DMCUB_REGION3_CW3_TOP_ADDRESS, DMCUB_REGION3_CW3_ENABLE) \
-+	DMUB_SF(DMCUB_REGION3_CW4_TOP_ADDRESS, DMCUB_REGION3_CW4_TOP_ADDRESS) \
-+	DMUB_SF(DMCUB_REGION3_CW4_TOP_ADDRESS, DMCUB_REGION3_CW4_ENABLE) \
-+	DMUB_SF(DMCUB_REGION3_CW5_TOP_ADDRESS, DMCUB_REGION3_CW5_TOP_ADDRESS) \
-+	DMUB_SF(DMCUB_REGION3_CW5_TOP_ADDRESS, DMCUB_REGION3_CW5_ENABLE) \
-+	DMUB_SF(DMCUB_REGION3_CW6_TOP_ADDRESS, DMCUB_REGION3_CW6_TOP_ADDRESS) \
-+	DMUB_SF(DMCUB_REGION3_CW6_TOP_ADDRESS, DMCUB_REGION3_CW6_ENABLE) \
-+	DMUB_SF(DMCUB_REGION3_CW7_TOP_ADDRESS, DMCUB_REGION3_CW7_TOP_ADDRESS) \
-+	DMUB_SF(DMCUB_REGION3_CW7_TOP_ADDRESS, DMCUB_REGION3_CW7_ENABLE) \
-+	DMUB_SF(DMCUB_REGION4_TOP_ADDRESS, DMCUB_REGION4_TOP_ADDRESS) \
-+	DMUB_SF(DMCUB_REGION4_TOP_ADDRESS, DMCUB_REGION4_ENABLE) \
-+	DMUB_SF(DMCUB_REGION5_TOP_ADDRESS, DMCUB_REGION5_TOP_ADDRESS) \
-+	DMUB_SF(DMCUB_REGION5_TOP_ADDRESS, DMCUB_REGION5_ENABLE) \
-+	DMUB_SF(CC_DC_PIPE_DIS, DC_DMCUB_ENABLE) \
-+	DMUB_SF(MMHUBBUB_SOFT_RESET, DMUIF_SOFT_RESET) \
-+	DMUB_SF(DCN_VM_FB_LOCATION_BASE, FB_BASE) \
-+	DMUB_SF(DCN_VM_FB_OFFSET, FB_OFFSET) \
-+	DMUB_SF(DMCUB_INBOX0_WPTR, DMCUB_INBOX0_WPTR) \
-+	DMUB_SF(DMCUB_REGION3_TMR_AXI_SPACE, DMCUB_REGION3_TMR_AXI_SPACE) \
-+	DMUB_SF(DMCUB_INTERRUPT_ENABLE, DMCUB_GPINT_IH_INT_EN) \
-+	DMUB_SF(DMCUB_INTERRUPT_ACK, DMCUB_GPINT_IH_INT_ACK)
-+
-+struct dmub_srv_dcn32_reg_offset {
-+#define DMUB_SR(reg) uint32_t reg;
-+	DMUB_DCN32_REGS()
-+	DMCUB_INTERNAL_REGS()
-+#undef DMUB_SR
-+};
-+
-+struct dmub_srv_dcn32_reg_shift {
-+#define DMUB_SF(reg, field) uint8_t reg##__##field;
-+	DMUB_DCN32_FIELDS()
-+#undef DMUB_SF
-+};
-+
-+struct dmub_srv_dcn32_reg_mask {
-+#define DMUB_SF(reg, field) uint32_t reg##__##field;
-+	DMUB_DCN32_FIELDS()
-+#undef DMUB_SF
-+};
-+
-+struct dmub_srv_dcn32_regs {
-+	const struct dmub_srv_dcn32_reg_offset offset;
-+	const struct dmub_srv_dcn32_reg_mask mask;
-+	const struct dmub_srv_dcn32_reg_shift shift;
-+};
-+
-+extern const struct dmub_srv_dcn32_regs dmub_srv_dcn32_regs;
-+
-+void dmub_dcn32_reset(struct dmub_srv *dmub);
-+
-+void dmub_dcn32_reset_release(struct dmub_srv *dmub);
-+
-+void dmub_dcn32_backdoor_load(struct dmub_srv *dmub,
-+			      const struct dmub_window *cw0,
-+			      const struct dmub_window *cw1);
-+
-+void dmub_dcn32_backdoor_load_zfb_mode(struct dmub_srv *dmub,
-+		      const struct dmub_window *cw0,
-+		      const struct dmub_window *cw1);
-+
-+void dmub_dcn32_setup_windows(struct dmub_srv *dmub,
-+			      const struct dmub_window *cw2,
-+			      const struct dmub_window *cw3,
-+			      const struct dmub_window *cw4,
-+			      const struct dmub_window *cw5,
-+			      const struct dmub_window *cw6);
-+
-+void dmub_dcn32_setup_mailbox(struct dmub_srv *dmub,
-+			      const struct dmub_region *inbox1);
-+
-+uint32_t dmub_dcn32_get_inbox1_rptr(struct dmub_srv *dmub);
-+
-+void dmub_dcn32_set_inbox1_wptr(struct dmub_srv *dmub, uint32_t wptr_offset);
-+
-+void dmub_dcn32_setup_out_mailbox(struct dmub_srv *dmub,
-+			      const struct dmub_region *outbox1);
-+
-+uint32_t dmub_dcn32_get_outbox1_wptr(struct dmub_srv *dmub);
-+
-+void dmub_dcn32_set_outbox1_rptr(struct dmub_srv *dmub, uint32_t rptr_offset);
-+
-+bool dmub_dcn32_is_hw_init(struct dmub_srv *dmub);
-+
-+bool dmub_dcn32_is_supported(struct dmub_srv *dmub);
-+
-+void dmub_dcn32_set_gpint(struct dmub_srv *dmub,
-+			  union dmub_gpint_data_register reg);
-+
-+bool dmub_dcn32_is_gpint_acked(struct dmub_srv *dmub,
-+			       union dmub_gpint_data_register reg);
-+
-+uint32_t dmub_dcn32_get_gpint_response(struct dmub_srv *dmub);
-+
-+uint32_t dmub_dcn32_get_gpint_dataout(struct dmub_srv *dmub);
-+
-+void dmub_dcn32_enable_dmub_boot_options(struct dmub_srv *dmub, const struct dmub_srv_hw_params *params);
-+
-+void dmub_dcn32_skip_dmub_panel_power_sequence(struct dmub_srv *dmub, bool skip);
-+
-+union dmub_fw_boot_status dmub_dcn32_get_fw_boot_status(struct dmub_srv *dmub);
-+
-+void dmub_dcn32_setup_outbox0(struct dmub_srv *dmub,
-+			      const struct dmub_region *outbox0);
-+
-+uint32_t dmub_dcn32_get_outbox0_wptr(struct dmub_srv *dmub);
-+
-+void dmub_dcn32_set_outbox0_rptr(struct dmub_srv *dmub, uint32_t rptr_offset);
-+
-+uint32_t dmub_dcn32_get_current_time(struct dmub_srv *dmub);
-+
-+void dmub_dcn32_get_diagnostic_data(struct dmub_srv *dmub, struct dmub_diagnostic_data *diag_data);
-+
-+void dmub_dcn32_configure_dmub_in_system_memory(struct dmub_srv *dmub);
-+void dmub_dcn32_send_inbox0_cmd(struct dmub_srv *dmub, union dmub_inbox0_data_register data);
-+void dmub_dcn32_clear_inbox0_ack_register(struct dmub_srv *dmub);
-+uint32_t dmub_dcn32_read_inbox0_ack_register(struct dmub_srv *dmub);
-+
-+#endif /* _DMUB_DCN32_H_ */
-diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
-index 66db5e538c7f..4c6a624f04a7 100644
---- a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
-+++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
-@@ -34,6 +34,7 @@
- #include "dmub_dcn31.h"
- #include "dmub_dcn315.h"
- #include "dmub_dcn316.h"
-+#include "dmub_dcn32.h"
- #include "os_types.h"
- /*
-  * Note: the DMUB service is standalone. No additional headers should be
-@@ -260,6 +261,43 @@ static bool dmub_srv_hw_setup(struct dmub_srv *dmub, enum dmub_asic asic)
- 
- 		break;
- 
-+	case DMUB_ASIC_DCN32:
-+	case DMUB_ASIC_DCN321:
-+		dmub->regs_dcn32 = &dmub_srv_dcn32_regs;
-+		funcs->configure_dmub_in_system_memory = dmub_dcn32_configure_dmub_in_system_memory;
-+		funcs->send_inbox0_cmd = dmub_dcn32_send_inbox0_cmd;
-+		funcs->clear_inbox0_ack_register = dmub_dcn32_clear_inbox0_ack_register;
-+		funcs->read_inbox0_ack_register = dmub_dcn32_read_inbox0_ack_register;
-+		funcs->reset = dmub_dcn32_reset;
-+		funcs->reset_release = dmub_dcn32_reset_release;
-+		funcs->backdoor_load = dmub_dcn32_backdoor_load;
-+		funcs->backdoor_load_zfb_mode = dmub_dcn32_backdoor_load_zfb_mode;
-+		funcs->setup_windows = dmub_dcn32_setup_windows;
-+		funcs->setup_mailbox = dmub_dcn32_setup_mailbox;
-+		funcs->get_inbox1_rptr = dmub_dcn32_get_inbox1_rptr;
-+		funcs->set_inbox1_wptr = dmub_dcn32_set_inbox1_wptr;
-+		funcs->setup_out_mailbox = dmub_dcn32_setup_out_mailbox;
-+		funcs->get_outbox1_wptr = dmub_dcn32_get_outbox1_wptr;
-+		funcs->set_outbox1_rptr = dmub_dcn32_set_outbox1_rptr;
-+		funcs->is_supported = dmub_dcn32_is_supported;
-+		funcs->is_hw_init = dmub_dcn32_is_hw_init;
-+		funcs->set_gpint = dmub_dcn32_set_gpint;
-+		funcs->is_gpint_acked = dmub_dcn32_is_gpint_acked;
-+		funcs->get_gpint_response = dmub_dcn32_get_gpint_response;
-+		funcs->get_gpint_dataout = dmub_dcn32_get_gpint_dataout;
-+		funcs->get_fw_status = dmub_dcn32_get_fw_boot_status;
-+		funcs->enable_dmub_boot_options = dmub_dcn32_enable_dmub_boot_options;
-+		funcs->skip_dmub_panel_power_sequence = dmub_dcn32_skip_dmub_panel_power_sequence;
-+
-+		/* outbox0 call stacks */
-+		funcs->setup_outbox0 = dmub_dcn32_setup_outbox0;
-+		funcs->get_outbox0_wptr = dmub_dcn32_get_outbox0_wptr;
-+		funcs->set_outbox0_rptr = dmub_dcn32_set_outbox0_rptr;
-+		funcs->get_current_time = dmub_dcn32_get_current_time;
-+		funcs->get_diagnostic_data = dmub_dcn32_get_diagnostic_data;
-+
-+		break;
-+
- 	default:
- 		return false;
- 	}
-@@ -501,6 +539,9 @@ enum dmub_status dmub_srv_hw_init(struct dmub_srv *dmub,
- 	cw1.region.base = DMUB_CW1_BASE;
- 	cw1.region.top = cw1.region.base + stack_fb->size - 1;
- 
-+	if (params->fw_in_system_memory && dmub->hw_funcs.configure_dmub_in_system_memory)
-+		dmub->hw_funcs.configure_dmub_in_system_memory(dmub);
-+
- 	if (params->load_inst_const && dmub->hw_funcs.backdoor_load) {
- 		/**
- 		 * Read back all the instruction memory so we don't hang the
-@@ -508,7 +549,11 @@ enum dmub_status dmub_srv_hw_init(struct dmub_srv *dmub,
- 		 * flushed yet. This only occurs in backdoor loading.
- 		 */
- 		dmub_flush_buffer_mem(inst_fb);
--		dmub->hw_funcs.backdoor_load(dmub, &cw0, &cw1);
-+
-+		if (params->fw_in_system_memory && dmub->hw_funcs.backdoor_load_zfb_mode)
-+			dmub->hw_funcs.backdoor_load_zfb_mode(dmub, &cw0, &cw1);
-+		else
-+			dmub->hw_funcs.backdoor_load(dmub, &cw0, &cw1);
- 	}
- 
- 	cw2.offset.quad_part = data_fb->gpu_addr;
-@@ -583,6 +628,10 @@ enum dmub_status dmub_srv_hw_init(struct dmub_srv *dmub,
- 	if (dmub->hw_funcs.enable_dmub_boot_options)
- 		dmub->hw_funcs.enable_dmub_boot_options(dmub, params);
- 
-+	if (dmub->hw_funcs.skip_dmub_panel_power_sequence)
-+		dmub->hw_funcs.skip_dmub_panel_power_sequence(dmub,
-+			params->skip_panel_power_sequence);
-+
- 	if (dmub->hw_funcs.reset_release)
- 		dmub->hw_funcs.reset_release(dmub);
- 
++#endif /* __DAL_IRQ_SERVICE_DCN32_H__ */
 -- 
 2.35.3
 
