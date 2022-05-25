@@ -1,41 +1,41 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC63A534159
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 May 2022 18:20:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14A4453414D
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 May 2022 18:20:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03D9010F7FB;
-	Wed, 25 May 2022 16:20:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BB9010F2A7;
+	Wed, 25 May 2022 16:20:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2073.outbound.protection.outlook.com [40.107.236.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B6F310E814
+ (mail-bn8nam11on2061.outbound.protection.outlook.com [40.107.236.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8F3310E7E0
  for <amd-gfx@lists.freedesktop.org>; Wed, 25 May 2022 16:20:17 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ViFqAdKm+PnfNRuqfqG6J3WQ65cOXBYYKDEOfygK7+hFYnSSW1xmJeHEtqhDXuz/Aq7KcOSW1ho+vz/x+qaXu8xeM6SiWA947tpbsnVDi6IPCgObPcB6NaprbpnXYjenD3QyNAzBaYAt/TOBEv1HA/2Lx8odI0s3R6DHAACPf7uf92zNRB0/ANjxogYDJhewWwFx527oJBFM2/UTb1G1DHhNeQpITUpUQ5BY5H2yPClwykdTtCSZemWIfJ6+j8+1aoyqxYf5DMcnoBG9r4nG8qXDBbWJKSHe6FktTOo6/Xiv8saqvuwIdwW0hPjZg3tcMGGN8beekiDwfvSpLLekgw==
+ b=k5n1CX0bRwRxucO5UXZxpBywWMneiUSSlP6kaN+WDKpMQftlT02m/4uv+yXYnaUuJLcF6P+EM2Ohwi5dHYL8vf7D31Es3/2vIBwj2LYmzDP31KFfaW2B6Zbpz7gt+i6TIvkTtzUJyG0Ds3B+dQvKrw08h+TD8GtPRPPym6uZp+UcwdTFiVS7te/ATs+miHDJHtLAA5I9ldUkpep7ZW2+m+RBpKe2rjqymRv17sRdnK0XsMpYIv7Z2T56O5uw7sHwcEsxOVzj45OtvQkdLpTncAGzEINqSln+0xkhFQ2TMnrUuYuvFGrangBurA12W5JVM22zv9CJg+qxU0Gdspph+g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2YNLEjFuE7oepwo0IMYuGh5OS4+8Ra+mMC8DduZ8YLU=;
- b=VilRlD8cC868ebRLuPLn0xJxpMq/jNP4kA+LwPEEgEN5GFsO/zVwch7NMD7zc3ibPQUzUXZZ3ONvQYpwnfHcM8eGtJYJl05kJ6b/zNYjbjEDMspi0Xzqwb7ZCt0c4RkABR5jL6PPV701reJiZ6yHFdCbIDrF7G1AXNwkqiNJDGv2cU5F1sjZBHWcu8q2SPPpEcjcEraIs1I1AS+B5H+cvEBY++4OPOlRoC261Bm3IPVbA1DahCZrz+IZEWR17+ULpRYKl6Tjc7ti4j78jY5vDgl6aXMu64YrmTpccH5+e/a3BjSAE0s7GCLIQuhkTqldG/+y5lidlgLyfMz68oHgOA==
+ bh=FA3tcIgsTGWTW2eGG7lii9yYxNpl6JfKXH9/M6GSBQs=;
+ b=WhY6yGl6nRJgujfvGP0XlAB1JTBaUbMDmcgjDknE9HLiU7PzuN8fIrHoE5lwkfvXhFc4kF/3Gl8/UooYDgMZTGDaiN8MAy2wgbeBnKLbS0Iw/UEdvzi3+p9pJoVZtJd+OhVmYxpRpakrr0EuZz3w/2DOMZEf1lI8+5nM/0J3dCGMEFUixj4YdDdEkK4YRoS5Bi/GLht/jSeHhPQgRyHMp2jdlRTRHvv0AG1DF5NduN6UffRAw2Ambe+latlxagKadHXaBdmdRK/kEaHdGkK9k2dsc2HqgQCQSTBLqwPYM+QJ8Bxkw0qX0IErxeIoEQThhkOPHvFy5p1ac2cUbhNpqw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2YNLEjFuE7oepwo0IMYuGh5OS4+8Ra+mMC8DduZ8YLU=;
- b=2kNMeo8xQeNnbV2Tnh7KAIP0Z1zOigtP66vfDp8CCuAmKLDuhdIHqhvi8wHDROz/9bRK2XqmPjM2T7un5ZH16qV6YTTXOelkj9UYtlUYiAwuQQZG1wkXR8hgW8zATDew6gTsDPHdaE7A2NmwwVP0e75+pznVxir6sE7zhwLPXwg=
-Received: from DS7PR05CA0093.namprd05.prod.outlook.com (2603:10b6:8:56::17) by
- DM6PR12MB4154.namprd12.prod.outlook.com (2603:10b6:5:21d::21) with
+ bh=FA3tcIgsTGWTW2eGG7lii9yYxNpl6JfKXH9/M6GSBQs=;
+ b=oVaKcaN7uVaHvZE/+iCYxnPlixPh42mhchN6DmE161Nh/li+jCfZ2OV5DN27AcxK219XasHoQ7hJ8c1bmzp6bxkbGKnOrLFzoxpeJpZcQYox6oyG4ldgKVa1wQH4ggOYWIQjuYTC/CZoTr/mSbXUsEFSCUK095LYDEbpTazpg2w=
+Received: from DS7PR05CA0096.namprd05.prod.outlook.com (2603:10b6:8:56::28) by
+ BL0PR12MB4706.namprd12.prod.outlook.com (2603:10b6:208:82::25) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5273.14; Wed, 25 May 2022 16:20:15 +0000
+ 15.20.5273.19; Wed, 25 May 2022 16:20:15 +0000
 Received: from DM6NAM11FT057.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:56:cafe::2e) by DS7PR05CA0093.outlook.office365.com
- (2603:10b6:8:56::17) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:8:56:cafe::f9) by DS7PR05CA0096.outlook.office365.com
+ (2603:10b6:8:56::28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.5 via Frontend
  Transport; Wed, 25 May 2022 16:20:15 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -54,10 +54,10 @@ Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  2022 11:20:11 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 20/43] drm/amd/display: Implement WM table transfer for
+Subject: [PATCH 21/43] drm/amd/display: add missing interrupt handlers for
  DCN32/DCN321
-Date: Wed, 25 May 2022 12:19:18 -0400
-Message-ID: <20220525161941.2544055-20-alexander.deucher@amd.com>
+Date: Wed, 25 May 2022 12:19:19 -0400
+Message-ID: <20220525161941.2544055-21-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.35.3
 In-Reply-To: <20220525161941.2544055-1-alexander.deucher@amd.com>
 References: <20220525161941.2544055-1-alexander.deucher@amd.com>
@@ -69,27 +69,27 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 269b5882-71d4-4f26-9e04-08da3e6a7387
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4154:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR12MB4154E35D72B65C30C3B987FFF7D69@DM6PR12MB4154.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 839bcbcc-d61f-4cb6-7307-08da3e6a73be
+X-MS-TrafficTypeDiagnostic: BL0PR12MB4706:EE_
+X-Microsoft-Antispam-PRVS: <BL0PR12MB47061B2AA14B9231F0255439F7D69@BL0PR12MB4706.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qcU7jtAM7Y+TJCDwLu5Wy4tS2CLk6uLoGN0fAWVxGJhLIhznwOdsjeYdnTWQFnWCDwA7E0TRB95CkzvPqdSK9T9gJKL6hLF1S0j//Zg+2uEZ6mDsYVF+r19prYLjYrcxzs6jBQtjTvRXJe56up6fshRKv82XIEStamONLRWb/Fz0IUcUO29yqTy9tNCbh3ONbliQGi5OD4LZDP77dl9NpQFIISkHhE4HRuHcyJy3PLJutJtYeXgX5WSxERDbSC0eT4sYenCaUrOukEqktBb/+IwcKdzqVi6z+iqqT0zcVzXxM2x4BqP++kcEMXJAd7nJI/DsIilmQdiDNQeScWoim8ZHDG0hU3+lWsnBieMhY3Pdu9BnssliYgC3Sxvd8PIhFMjOurd1RoOZxtQ67Zk+YWd8CvSr6C2KZ7pR9QNY13UlURACZ/wDfGD4BLuX3bRbs0+spXtzYsVmScnQzPwm2A2PU/wH4491i+DeZBcC+Pw6I/CrimXpEBVsxV4eM01Ja3l7BNoo+l2oY6Tv20VEQnH85ljang+dk70/1O0QVGg6h0bYoLGPk/UdjaJBFLgLrww2/rOCdJoAU417skCpCfrELZu9SjYfAClNntcf6N5I9krvUi2NOZgFEsdX7bVIMZGGR6TYa7xty17HEYBLMc/xm1EW4Qv5jpPlJfunEipO7rE0sLYatasmjrrh9Uj0WZ4lwYyQDAONfTaD7S0M6Q==
+X-Microsoft-Antispam-Message-Info: zsCN99iTFX+DYmTA6W+bhzeX/h9OHSNp+t8xnl8S9g/5V4z3ADrCGdsravzIOHWABQiZQXVo5Clz9kBBQCNdUShiGCm0c8ixmtqmszi0RVnkfyYzBWE6AZBrT7BN5te0eqchfdzLI53h5E4RdZvF65ofEp82pKj+WQE0B8gtw7YSNGONgZr2t3R2CzRPtXhiJm3y8CPJW+cz7jK0/C2RPczRBdoXEn05qfFvK1XMw4eec1vlNm54V1vvoOaic0773XSzu4xbWS0quCxYpikaIv+WtSIpzmfRjPNzdPdqX29HZ35iuPIHOYqnbh0o5Hkwj9WcDxMTGFKHBIlKxzGHJK1uATMoxxM6MQLdpiQT4Hs7Tc7b8SW2KDjLWzuL4Kp+1mSHVCRcaabp5OJ6s+jtXXfNjViJSqMLHtrnKiML5mzjXJ9bFaI2tfy4JLy/QIMRwzJrHZviHpqZGYldKUV0LXozByV1M8AApM41U0vvwdrNtTvD5mPlADTU1DGN2ZQsdatCk6uScAJrAACnRGz5U9c0smN5SJx2IWe9zWPkV6eBrN+wbdCpX/ikIYlgcyJGgrBM0gOf4KFrCgYW+POtzqQ8rp5l339yE/2K9EPJDxEVTcIJP6GovrPjMiwz50XkepciRGdkb45wpQ/ls0c/Xa6TjwXNHjHFbFxyFQ8ysWufhefiWTRIBr+HuQNgYMui9r/unoADNoTB4kR9+7SWng==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(81166007)(1076003)(36756003)(54906003)(6916009)(316002)(7696005)(356005)(82310400005)(2906002)(16526019)(508600001)(36860700001)(86362001)(47076005)(4326008)(70206006)(8676002)(83380400001)(70586007)(186003)(5660300002)(8936002)(2616005)(426003)(336012)(40460700003)(26005)(36900700001);
+ SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(82310400005)(36860700001)(81166007)(7696005)(8936002)(40460700003)(5660300002)(2906002)(86362001)(70206006)(508600001)(356005)(36756003)(54906003)(336012)(83380400001)(6916009)(26005)(8676002)(316002)(1076003)(4326008)(16526019)(47076005)(2616005)(186003)(426003)(70586007)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2022 16:20:15.0975 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 269b5882-71d4-4f26-9e04-08da3e6a7387
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2022 16:20:15.4569 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 839bcbcc-d61f-4cb6-7307-08da3e6a73be
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT057.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4154
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4706
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,46 +102,137 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Alex Deucher <alexander.deucher@amd.com>, Jerry Zuo <jerry.zuo@amd.com>,
- Alvin Lee <alvin.lee2@amd.com>
+ Aurabindo Pillai <aurabindo.pillai@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alvin Lee <alvin.lee2@amd.com>
+From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 
-Add support for watermark table transfers.
-
-Signed-off-by: Alvin Lee <alvin.lee2@amd.com>
+Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 Acked-by: Jerry Zuo <jerry.zuo@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- .../gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c   | 7 +++++++
- 1 file changed, 7 insertions(+)
+ .../display/dc/irq/dcn32/irq_service_dcn32.c  | 65 ++++++++++++++++++-
+ 1 file changed, 64 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
-index 4ff12b816614..93fbecbc8065 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
-@@ -444,6 +444,7 @@ void dcn32_clock_read_ss_info(struct clk_mgr_internal *clk_mgr)
+diff --git a/drivers/gpu/drm/amd/display/dc/irq/dcn32/irq_service_dcn32.c b/drivers/gpu/drm/amd/display/dc/irq/dcn32/irq_service_dcn32.c
+index 3f9d6531c563..3a213ca2f077 100644
+--- a/drivers/gpu/drm/amd/display/dc/irq/dcn32/irq_service_dcn32.c
++++ b/drivers/gpu/drm/amd/display/dc/irq/dcn32/irq_service_dcn32.c
+@@ -54,6 +54,18 @@ enum dc_irq_source to_dal_irq_source_dcn32(
+ 		return DC_IRQ_SOURCE_VBLANK5;
+ 	case DCN_1_0__SRCID__DC_D6_OTG_VSTARTUP:
+ 		return DC_IRQ_SOURCE_VBLANK6;
++	case DCN_1_0__SRCID__OTG1_VERTICAL_INTERRUPT0_CONTROL:
++		return DC_IRQ_SOURCE_DC1_VLINE0;
++	case DCN_1_0__SRCID__OTG2_VERTICAL_INTERRUPT0_CONTROL:
++		return DC_IRQ_SOURCE_DC2_VLINE0;
++	case DCN_1_0__SRCID__OTG3_VERTICAL_INTERRUPT0_CONTROL:
++		return DC_IRQ_SOURCE_DC3_VLINE0;
++	case DCN_1_0__SRCID__OTG4_VERTICAL_INTERRUPT0_CONTROL:
++		return DC_IRQ_SOURCE_DC4_VLINE0;
++	case DCN_1_0__SRCID__OTG5_VERTICAL_INTERRUPT0_CONTROL:
++		return DC_IRQ_SOURCE_DC5_VLINE0;
++	case DCN_1_0__SRCID__OTG6_VERTICAL_INTERRUPT0_CONTROL:
++		return DC_IRQ_SOURCE_DC6_VLINE0;
+ 	case DCN_1_0__SRCID__HUBP0_FLIP_INTERRUPT:
+ 		return DC_IRQ_SOURCE_PFLIP1;
+ 	case DCN_1_0__SRCID__HUBP1_FLIP_INTERRUPT:
+@@ -78,7 +90,8 @@ enum dc_irq_source to_dal_irq_source_dcn32(
+ 		return DC_IRQ_SOURCE_VUPDATE5;
+ 	case DCN_1_0__SRCID__OTG5_IHC_V_UPDATE_NO_LOCK_INTERRUPT:
+ 		return DC_IRQ_SOURCE_VUPDATE6;
+-
++	case DCN_1_0__SRCID__DMCUB_OUTBOX_LOW_PRIORITY_READY_INT:
++		return DC_IRQ_SOURCE_DMCUB_OUTBOX;
+ 	case DCN_1_0__SRCID__DC_HPD1_INT:
+ 		/* generic src_id for all HPD and HPDRX interrupts */
+ 		switch (ext_id) {
+@@ -168,6 +181,16 @@ static const struct irq_source_info_funcs vblank_irq_info_funcs = {
+ 	.ack = NULL
+ };
+ 
++static const struct irq_source_info_funcs outbox_irq_info_funcs = {
++	.set = NULL,
++	.ack = NULL
++};
++
++static const struct irq_source_info_funcs vline0_irq_info_funcs = {
++	.set = NULL,
++	.ack = NULL
++};
++
+ #undef BASE_INNER
+ #define BASE_INNER(seg) DCN_BASE__INST0_SEG ## seg
+ 
+@@ -179,6 +202,10 @@ static const struct irq_source_info_funcs vblank_irq_info_funcs = {
+ 	BASE(reg ## block ## id ## _ ## reg_name ## _BASE_IDX) + \
+ 			reg ## block ## id ## _ ## reg_name
+ 
++#define SRI_DMUB(reg_name)\
++	BASE(reg ## reg_name ## _BASE_IDX) + \
++			reg ## reg_name
++
+ #define IRQ_REG_ENTRY(block, reg_num, reg1, mask1, reg2, mask2)\
+ 	.enable_reg = SRI(reg1, block, reg_num),\
+ 	.enable_mask = \
+@@ -193,6 +220,20 @@ static const struct irq_source_info_funcs vblank_irq_info_funcs = {
+ 	.ack_value = \
+ 		block ## reg_num ## _ ## reg2 ## __ ## mask2 ## _MASK \
+ 
++#define IRQ_REG_ENTRY_DMUB(reg1, mask1, reg2, mask2)\
++	.enable_reg = SRI_DMUB(reg1),\
++	.enable_mask = \
++		reg1 ## __ ## mask1 ## _MASK,\
++	.enable_value = {\
++		reg1 ## __ ## mask1 ## _MASK,\
++		~reg1 ## __ ## mask1 ## _MASK \
++	},\
++	.ack_reg = SRI_DMUB(reg2),\
++	.ack_mask = \
++		reg2 ## __ ## mask2 ## _MASK,\
++	.ack_value = \
++		reg2 ## __ ## mask2 ## _MASK \
++
+ #define hpd_int_entry(reg_num)\
+ 	[DC_IRQ_SOURCE_HPD1 + reg_num] = {\
+ 		IRQ_REG_ENTRY(HPD, reg_num,\
+@@ -237,6 +278,21 @@ static const struct irq_source_info_funcs vblank_irq_info_funcs = {
+ 		.funcs = &vblank_irq_info_funcs\
  }
- static void dcn32_notify_wm_ranges(struct clk_mgr *clk_mgr_base)
- {
-+	unsigned int i;
- 	struct clk_mgr_internal *clk_mgr = TO_CLK_MGR_INTERNAL(clk_mgr_base);
- 	WatermarksExternal_t *table = (WatermarksExternal_t *) clk_mgr->wm_range_table;
  
-@@ -455,6 +456,12 @@ static void dcn32_notify_wm_ranges(struct clk_mgr *clk_mgr_base)
++#define vline0_int_entry(reg_num)\
++	[DC_IRQ_SOURCE_DC1_VLINE0 + reg_num] = {\
++		IRQ_REG_ENTRY(OTG, reg_num,\
++			OTG_VERTICAL_INTERRUPT0_CONTROL, OTG_VERTICAL_INTERRUPT0_INT_ENABLE,\
++			OTG_VERTICAL_INTERRUPT0_CONTROL, OTG_VERTICAL_INTERRUPT0_CLEAR),\
++		.funcs = &vline0_irq_info_funcs\
++	}
++#define dmub_outbox_int_entry()\
++	[DC_IRQ_SOURCE_DMCUB_OUTBOX] = {\
++		IRQ_REG_ENTRY_DMUB(\
++			DMCUB_INTERRUPT_ENABLE, DMCUB_OUTBOX1_READY_INT_EN,\
++			DMCUB_INTERRUPT_ACK, DMCUB_OUTBOX1_READY_INT_ACK),\
++		.funcs = &outbox_irq_info_funcs\
++	}
++
+ #define dummy_irq_entry() \
+ 	{\
+ 		.funcs = &dummy_irq_info_funcs\
+@@ -339,6 +395,13 @@ irq_source_info_dcn32[DAL_IRQ_SOURCES_NUMBER] = {
+ 	vblank_int_entry(1),
+ 	vblank_int_entry(2),
+ 	vblank_int_entry(3),
++	vline0_int_entry(0),
++	vline0_int_entry(1),
++	vline0_int_entry(2),
++	vline0_int_entry(3),
++	[DC_IRQ_SOURCE_DC5_VLINE1] = dummy_irq_entry(),
++	[DC_IRQ_SOURCE_DC6_VLINE1] = dummy_irq_entry(),
++	dmub_outbox_int_entry(),
+ };
  
- 	memset(table, 0, sizeof(*table));
- 
-+	/* collect valid ranges, place in pmfw table */
-+	for (i = 0; i < WM_SET_COUNT; i++)
-+		if (clk_mgr->base.bw_params->wm_table.nv_entries[i].valid) {
-+			table->Watermarks.WatermarkRow[i].WmSetting = i;
-+			table->Watermarks.WatermarkRow[i].Flags = clk_mgr->base.bw_params->wm_table.nv_entries[i].pmfw_breakdown.wm_type;
-+		}
- 	dcn30_smu_set_dram_addr_high(clk_mgr, clk_mgr->wm_range_table_addr >> 32);
- 	dcn30_smu_set_dram_addr_low(clk_mgr, clk_mgr->wm_range_table_addr & 0xFFFFFFFF);
- 	dcn32_smu_transfer_wm_table_dram_2_smu(clk_mgr);
+ static const struct irq_service_funcs irq_service_funcs_dcn32 = {
 -- 
 2.35.3
 
