@@ -2,40 +2,40 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46D1A534167
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 May 2022 18:21:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73CBA534153
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 May 2022 18:20:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAC6210F29F;
-	Wed, 25 May 2022 16:21:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3E4B10F349;
+	Wed, 25 May 2022 16:20:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2069.outbound.protection.outlook.com [40.107.92.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D36B210E625
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 May 2022 16:20:20 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2065.outbound.protection.outlook.com [40.107.237.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A738410E7E0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 May 2022 16:20:21 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IWj1aEgkkk9jqg4ZJhy4rJCTDm37dgmZAakeCtMbUzQEjM9DRsesuJvfHVZOKbWh14uXtIvo0Kv58aHXc/KVsHhiRZCqhJ+VnRafvV1ELoyvHmMtucvAj5lAVgMltAxQA0RSsyU7ejwsDSUvXYAeBaLUpDwFd7HbLVslT2QrQkRAlUeJtNAzgBTeGMv+lkOsILSInLzIdUMV0woNRTVXfWIEicVocVhPHI+zYzOhuFr61r9f4zydpiSwQs/BA5mhitZga/rAlGcfBXML/ozuwVa0Qc5m244s9FpqV3a2DVeUxnV79Ii8INEa21S0tLyIbBUuDD5THMedh1llSX4SJA==
+ b=aU4z8m6T4K3gnKGsteCZ9gfmfSn9NvGIvvD9OSdC06ivMinrlWMvT1xXUy2hOxPYM/onqg1pMvgsHfbsPJ/aFrs9iNeI6ZB8zzI7DjHcNIZN6btGWg0kSP3JZnevjSIE+jKPqc5Y7BImQcMSdalKn0wajTF5vL7np2pZB/QcR+i5B52MFyTfPQlMD69DpSvTrWax34RH8idnJd4ypniL58EkPqV5Dqrql0JIArdxc9RZduFBf/y1f7hess1+7z4EuaKxTePm1MFnXnw8mjF85Ei401np654IMxnHktqWaYA3G9jf/SEkBDCXXWyFnk8T0VVEL3BA2MswWb5De7F2aA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dCUxC/ZvYC2+ojC2NNrcFlN4ruGZLL9TYHNKNBkUtqg=;
- b=W/ibX6H8lGiZQUxqB/XQLI8h2kFHmJB9flBdLkFunXBYHs02SOeaIVL+Df3+L43Aizfe1mSXHiAAjctZo5ZA16A8YSfZr+GV3NTJxBgmHZ2D2/KsN/Q4TfLuU8sESncQFCZVKJXA4FNejXgb0X48N540G6/3y7uuKJvexmriW0LmAd3vsahkZW0kUzjtedwNjdBqD4NNH/W+ORgm6jqZr06ePSZbXp6zVkpYzpymqE6LBqvREikrMvQMGxLijnOOoMLNVaouj3qyo/8z9mfXzrAOIxE1BaOUvPuc2gvk3C/yneg6qgtEVQw/oY1jMrk+loHEWzMLpBZotUwzOlSJRg==
+ bh=i8j8yqY3IuHm4pZBvadKJZhqq8bXSUPV9trQB/UUN88=;
+ b=l0lzMCSBUPc9sBamn8Zy2e7/cH4LQ/pbRRaaODPFBKVtzyWTQWZjohzHgYiOxhcTQafbO9/+sB8t8XnDgu7vjq8oO+o7H8Hw9GLm6w9Q6HBU7OdnTHV8MuyiCdz5vmOYx4hY0IekHemsnk8Hqr1kMy2HkX1lLv4jzL7jKzXuSUPyqeVGcZrMqvMVUuVMD7Qthjl4JrR/ZI6y/dv+vEHi/h0fhPz2e5xCbEE/L8fZ9Ww0VkCFhNy3KZOUEMKOZV+ElQKUAuJgFBSdZLIZr3f4c/nJHSJp1wsNJWYyIlXvfFQ8caWCH8Asj6tiTcsHq2PyBkZJcx2n7KXjIwKSxAkdVA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dCUxC/ZvYC2+ojC2NNrcFlN4ruGZLL9TYHNKNBkUtqg=;
- b=umHLbBuL1w2bFRS+rpNsoHl379JSqyWBXuF3JhqwtJ4NOqXt5ceVifAfQdnUNSTvAXk0BbOvJU51cemQ/lrztseRG1ry0mzkOea5FrMNZgtv2o7dh1z17F3wsLoBB0EJD7qnIOWuGwY9nsWbzH45OMGMY3KKWQC0EhH3M4IA71g=
-Received: from DM5PR05CA0024.namprd05.prod.outlook.com (2603:10b6:3:d4::34) by
- LV2PR12MB5893.namprd12.prod.outlook.com (2603:10b6:408:175::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.13; Wed, 25 May
- 2022 16:20:17 +0000
-Received: from DM6NAM11FT054.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:d4:cafe::a8) by DM5PR05CA0024.outlook.office365.com
- (2603:10b6:3:d4::34) with Microsoft SMTP Server (version=TLS1_2,
+ bh=i8j8yqY3IuHm4pZBvadKJZhqq8bXSUPV9trQB/UUN88=;
+ b=j/9efyuXVzADFHz6p3nVxRnLQAgKQ7ewUFnQ1/0P7owr5wAvBAbteOc96wOEsRbIckbmZ20l7OLlB3AK4+AF6Qjf4ogjK7yZv3k4gwI13zmYs9MaLPQrhWxDIVZak3rrKZOCo47/rNGTx2bXmSGDon4/RjVYbUqnFMG13P0+2mg=
+Received: from DS7PR05CA0106.namprd05.prod.outlook.com (2603:10b6:8:56::24) by
+ BN7PR12MB2722.namprd12.prod.outlook.com (2603:10b6:408:2e::18) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5293.13; Wed, 25 May 2022 16:20:17 +0000
+Received: from DM6NAM11FT057.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:8:56:cafe::2) by DS7PR05CA0106.outlook.office365.com
+ (2603:10b6:8:56::24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.5 via Frontend
  Transport; Wed, 25 May 2022 16:20:17 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -45,19 +45,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT054.mail.protection.outlook.com (10.13.173.95) with Microsoft SMTP
+ DM6NAM11FT057.mail.protection.outlook.com (10.13.172.252) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.5293.13 via Frontend Transport; Wed, 25 May 2022 16:20:17 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Wed, 25 May
- 2022 11:20:14 -0500
+ 2022 11:20:15 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 26/43] drm/amd/display: Add additional guard for FCLK pstate
- message for DCN321
-Date: Wed, 25 May 2022 12:19:24 -0400
-Message-ID: <20220525161941.2544055-26-alexander.deucher@amd.com>
+Subject: [PATCH 27/43] drm/amd/display: Halve DTB Clock Value for DCN32
+Date: Wed, 25 May 2022 12:19:25 -0400
+Message-ID: <20220525161941.2544055-27-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.35.3
 In-Reply-To: <20220525161941.2544055-1-alexander.deucher@amd.com>
 References: <20220525161941.2544055-1-alexander.deucher@amd.com>
@@ -69,27 +68,27 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c665ad4f-dd10-4494-e4c3-08da3e6a74b4
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5893:EE_
-X-Microsoft-Antispam-PRVS: <LV2PR12MB58939DA2FA206BF9685FB360F7D69@LV2PR12MB5893.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: c7a283fb-abe5-42cc-4d63-08da3e6a74e1
+X-MS-TrafficTypeDiagnostic: BN7PR12MB2722:EE_
+X-Microsoft-Antispam-PRVS: <BN7PR12MB27225021CCB9098C9749C3D1F7D69@BN7PR12MB2722.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: j3Keu2PfdUf6PbuiDILH5WM0TiPR6O1czJwI8Y57dbLfVZr+OltG2IKv7LKgF0bapbeDIZUsVSYsKKE8J6ntYWFtp08YJ6dhCdvuz5WfQwzlcmQb62fuXa9Ag77xzbtwKfn8Lr7kJYlY003cB+UFzG3973t7kBbcxkhABa7XkRJLj00vtj2cfRJ2+wWvSZLR9SVIBLmomNjN6TFLrqrRkUzQsH5XDDzaUGNiV93RBjHyfSdZmB3XHE4QZvEezm1/9Tymo6d1JHLbbAgwCtPYupB4YVji5ok2Gf7X0DJyUsO+/gDY7YTj7NrUe2ALF+SvxCUIsTnt4z/IBQ7MEoHjwnFiTU13DNuScsFqG4yE2dMag57zIG0xk2wicWMIJ/35l7NrdgWJTCXv5EJdxtPk+HatAL8coxNyfpL6SlbL9doPtKCzXK6tDBbCrW2aRMjT2BozxYYCrDkzK19F02687AjT1g4cpuI1jPNd5qmkBVvjudkafRb+qL7fuUN3k1VVovNMxuLJE0Ir/s/ga43cFlT2p38qZL/LojRjQ1ZPGlOIKxX7vj+qYWQKOjNYPQKnb53uwmbRwMengClW8d8n26ELCHv1HuILuMC41rsGpR1/tvvOI9AtQisDe1w2Ouo/DQFpMIkpIp99Pnr6Y4NpvfmMuBH2eUdFTiEDhS0LaTH1OLo2SJb8oL2RxpZSkcbb5I5jwMnVkZ+eSvyPORhvHQ==
+X-Microsoft-Antispam-Message-Info: 26bIURq3tl8I0/Tp2clAjBJdojyO+tVP1NeRZ6cjVGLEnlUtLvmD6s5gDOC9vUthWr/M0stYyw3x3Lb6JmxA8KWjNWYZ1Qa/EKtwhkAk5O3WPQl2mpjFpuGZOu4JeAGQGOZuZsLpfVTB9GM2boZScK6vlkt8sjnjFSkz52r4UrPyNJkNyLoeaMNWYjhkRrjQ9cL93wz8i3hiKNRQUTRU06iYNIHdfodSYOpnAG8c1xyswuDMIKOBM2VGOQKpjvBBQY7V2HNehs6wZxD1CEiAp0ojwLL/m8XWWVym7YG99qFlUqgbl7B1nIV16GncEA/BURFesHE0a1h/lG2YKs+hP8fkYtLbCMex991upyuS4FQW9/1U8njyYACtvp69BYcoiRTBTVOE9cXs45xpsN9Sfw3hkBbVQ6n0vYOyflBHmnoP1cQxLDqUZxJ9vlQTDcFy7O4NZf43GCIoMYtyzM8AVjB8pKiECT4h2M0ylNaYnjYMeOfnGfjtobZnLPGQguQ3VY+nfwsPem9c8tRDRACiGsxr1dIV3KNa67/kAkrOf7xUu4GflHc/gXgEVKUS1pRI21rzr5PgVvLLJHREObEQUFC6TFp9nP5ploCLqQeAzZQgdVFzUQzduNRhZ2VnwOGOWdofE3DXBGfDCPlO16cKw3EDfbdh35n7aokOcn5HlGgaZ3PT2Uk2KP6yBccBPTYuDDwy2PTCODud2RIHJWlMQg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(1076003)(2616005)(15650500001)(81166007)(5660300002)(54906003)(2906002)(8936002)(316002)(508600001)(8676002)(36860700001)(16526019)(426003)(336012)(186003)(36756003)(82310400005)(40460700003)(7696005)(70206006)(70586007)(26005)(86362001)(47076005)(4326008)(6666004)(83380400001)(356005)(6916009)(36900700001);
+ SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(2906002)(36860700001)(82310400005)(5660300002)(8676002)(81166007)(8936002)(4326008)(70586007)(356005)(54906003)(86362001)(16526019)(1076003)(47076005)(6666004)(7696005)(2616005)(316002)(186003)(336012)(426003)(6916009)(70206006)(26005)(40460700003)(83380400001)(508600001)(36756003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2022 16:20:17.0876 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c665ad4f-dd10-4494-e4c3-08da3e6a74b4
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2022 16:20:17.3630 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c7a283fb-abe5-42cc-4d63-08da3e6a74e1
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT054.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT057.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5893
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR12MB2722
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,45 +101,42 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Alex Deucher <alexander.deucher@amd.com>, Fangzhi Zuo <Jerry.Zuo@amd.com>,
- Dillon Varone <dillon.varone@amd.com>,
  Aurabindo Pillai <aurabindo.pillai@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Dillon Varone <dillon.varone@amd.com>
+From: Fangzhi Zuo <Jerry.Zuo@amd.com>
+
+VBIOS default clock value was halved, so the hardcoded dtb value should be
+halved as well.
+
+dtb clock should come from SMU eventually, but now dtb clock switching is not
+fully supported yet in SMU.
+
+Halve the dtb hardcoded value for now to have UHBR10 light up. Will rely on
+SMU for dtb clock switching once available. The w/a is for DCN32 only, DCN321
+should adopt the original value.
 
 Signed-off-by: Fangzhi Zuo <Jerry.Zuo@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- .../gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c   | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
-index 93fbecbc8065..9d2d2cda5543 100644
+index 9d2d2cda5543..774de29fa532 100644
 --- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
 +++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
-@@ -346,8 +346,8 @@ static void dcn32_update_clocks(struct clk_mgr *clk_mgr_base,
- 					clk_mgr_base->bw_params->clk_table.entries[clk_mgr_base->bw_params->clk_table.num_entries - 1].memclk_mhz);
- 	}
+@@ -599,7 +599,7 @@ void dcn32_clk_mgr_construct(
+ 	clk_mgr->dfs_ref_freq_khz = 100000;
  
--	if (should_update_pstate_support(safe_to_lower, fclk_p_state_change_support, clk_mgr_base->clks.fclk_p_state_change_support) &&
--			clk_mgr_base->ctx->dce_version != DCN_VERSION_3_21) {
-+	if (clk_mgr_base->ctx->dce_version != DCN_VERSION_3_21 &&
-+			should_update_pstate_support(safe_to_lower, fclk_p_state_change_support, clk_mgr_base->clks.fclk_p_state_change_support)) {
- 		clk_mgr_base->clks.fclk_p_state_change_support = fclk_p_state_change_support;
+ 	clk_mgr->base.dprefclk_khz = 717000; /* Changed as per DCN3.2_clock_frequency doc */
+-	clk_mgr->dccg->ref_dtbclk_khz = 477800;
++	clk_mgr->dccg->ref_dtbclk_khz = 268750;
  
- 		/* To disable FCLK P-state switching, send FCLK_PSTATE_NOTSUPPORTED message to PMFW */
-@@ -368,7 +368,8 @@ static void dcn32_update_clocks(struct clk_mgr *clk_mgr_base,
- 			(update_uclk || !clk_mgr_base->clks.prev_p_state_change_support))
- 		dcn30_smu_set_hard_min_by_freq(clk_mgr, PPCLK_UCLK, khz_to_mhz_ceil(clk_mgr_base->clks.dramclk_khz));
- 
--	if (clk_mgr_base->clks.fclk_p_state_change_support &&
-+	if (clk_mgr_base->ctx->dce_version != DCN_VERSION_3_21 &&
-+			clk_mgr_base->clks.fclk_p_state_change_support &&
- 			(update_uclk || !clk_mgr_base->clks.fclk_prev_p_state_change_support)) {
- 		/* Handle the code for sending a message to PMFW that FCLK P-state change is supported */
- 		dcn32_smu_send_fclk_pstate_message(clk_mgr, FCLK_PSTATE_SUPPORTED);
+ 	/* integer part is now VCO frequency in kHz */
+ 	clk_mgr->base.dentist_vco_freq_khz = 4300000;//dcn32_get_vco_frequency_from_reg(clk_mgr);
 -- 
 2.35.3
 
