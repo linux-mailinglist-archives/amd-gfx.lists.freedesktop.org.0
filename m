@@ -2,41 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AA59534156
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 May 2022 18:20:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A986253414C
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 May 2022 18:20:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A71B610F7DE;
-	Wed, 25 May 2022 16:20:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0876010EEC7;
+	Wed, 25 May 2022 16:20:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam07on2072.outbound.protection.outlook.com [40.107.212.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9395F10E677
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 May 2022 16:20:26 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2081.outbound.protection.outlook.com [40.107.223.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BA5610E677
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 May 2022 16:20:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nHLvUZkR62OVi4sAJo/seJLJRu/Brtjh9BGJdJXlQxz7399Vfsf777vzcqPpIbLrpRP+O7nGPGUaEYZwjOgQTyHKhqAhZhR0wz0/2LI6MHIwNlgoZdUnnL1IxSaIYaGAQTJbVzYxMZdK/X7DI9T0RRjW8DRBbPbMTtd4o/GUYBLQVz8sEPOWUsphn96Q/a8dH8apvc58CJCKa8InW/HjNHEDwp1SLj5PbzpQEqQy0kOj2ThSw/Ob42UaN3AX/HLvqANj89fiUPA3/sOk/R05GKp4dzxsTNy9O7jNAe1VfPE0M4V0smGbYUD1FGbGmb8E9CyH8GU8Lx7JHekWXdcxCw==
+ b=jaiSrurkZ6mXhiKU0fO5+fxy3Unh9VyOvhf0VsPxErQasYiImpETezv6j4ph4i6Ie5nMCV1720xT13XJ9DgL/gATNZfQDT3dvVNAzFemPXnqAUQxKPZ+0sdS9aIKy8f4gFdzADYUXimTjPCq78yDMeyzTZWiZXuOoKYVXdqCh1O0Upk4Ygy6sR2VLcrqwvqQ2KmgW2re0h9zluPPIleN8/7dNqvulew8RVOUBA01LmAfHZ7F7D5ZTPPgNspnQ1N35ljZfxp8b+rYMZ1HXEpnJGEIK/otfttujD1cWI8Hh5xF99MhneNJBv2umQUShVy9NkObcgfnEduWo6yw973AVQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f08S6WZQFYDrpTBpP/nC7a0acI01nsmDBCnwpzHFSuc=;
- b=IuU+np41Vy28FvPqk2lydQgd97qHxdkaGf5ZZgF+fciX3g+MVHNND/Gtp3jhlqMg886/pcGvGjxnQiO32DD6RE1M9LJvbOwiI3rscLsiPPHJKKwAeJJ5yuQjSMccBHlofM5wdy8IO5tFVKXsFK5JQJbNZSp3K8lJhuZZ4lHM9lrh6qpvgebALPON+cS6gsMh+S9Js5/8JZQCHVb9PHYf26WIQUv3xVfobmQ0h/BeVHpj37o1gc4hav/n67AtmDrnT4lceo55ZukTUrQPVeW2U6q9eTkvwxp2XaVinGoREoK77Pcs55E51PZoZBj0GhCnS4teAx6fq3kEeaPEQEK/5g==
+ bh=p+lB99sogz4TDNDYE/3q+KBFsZj4yl5BhMYQutEWl6k=;
+ b=ZxYB3ghH1AYyfUYvrciPa3tOQnFH10YlUCxI1kPKX40+ux8pqfC7asnlmHGevy7mtLTWoucSiG6XNzWSd/nosElRh7ZlDtVzMbAp/a8JLcQuBDBpL3H7+H4DGPVe7ZewGhvGwoJQBC0I/B420+33E7osEUEs62K544+Z+SJxXYUwaJIhLpH7fjmve3ZVWeoUmS41+pYGynBMI71gh7FDhKZXQLTLXImVzCzv7i0/p6KGIR7ReMyVRVngMmhm5cgaNQXeoOMw+lEamzsO9VRYg5u/cjJYu0XwvOpxupFHY5+cXDb4/CenvIGjOjAVrS1Gtg6KgDhCg5dwj9zutTWLLA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=f08S6WZQFYDrpTBpP/nC7a0acI01nsmDBCnwpzHFSuc=;
- b=FojerS+SsnyGUj3ZenvKaRVV4MKDYKfg4RvWWXT/752sycpWDl8jsd08xTsBH0dR7YL8+/uEvakXJIcyBRjTKdpvgeUtJ+ogpfaH57q9wwgDIHPHJIaXcu6lz363rna1os9/f7Ds0p6DIojjL7wvjoWfUGFvgUILmpIgUj3RZeA=
-Received: from DM5PR05CA0017.namprd05.prod.outlook.com (2603:10b6:3:d4::27) by
- BYAPR12MB3334.namprd12.prod.outlook.com (2603:10b6:a03:df::31) with
+ bh=p+lB99sogz4TDNDYE/3q+KBFsZj4yl5BhMYQutEWl6k=;
+ b=WPBA2KqPnEL/I8ZTGQRTul8N12Wgh5BdhZGdYJgobO7QhFa3zzkBHGTeFx3aFZO9OV6xjVf7rUwI/ZF0wMyoGN3+YwLS4VVX9Vnr3bcvalcv0ltU9HGZl4LCsnivNlb+56SHH8yP32J7eS/mWMSigc8gYaWgKvs8G6DFLtzVxzo=
+Received: from DM5PR05CA0001.namprd05.prod.outlook.com (2603:10b6:3:d4::11) by
+ BN8PR12MB3300.namprd12.prod.outlook.com (2603:10b6:408:6a::32) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5273.22; Wed, 25 May 2022 16:20:23 +0000
+ 15.20.5273.17; Wed, 25 May 2022 16:20:24 +0000
 Received: from DM6NAM11FT054.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:d4:cafe::da) by DM5PR05CA0017.outlook.office365.com
- (2603:10b6:3:d4::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.13 via Frontend
+ (2603:10b6:3:d4:cafe::e0) by DM5PR05CA0001.outlook.office365.com
+ (2603:10b6:3:d4::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.5 via Frontend
  Transport; Wed, 25 May 2022 16:20:23 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -54,9 +54,9 @@ Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  2022 11:20:21 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 38/43] drm/amd/display: Introduce new update_clocks logic
-Date: Wed, 25 May 2022 12:19:36 -0400
-Message-ID: <20220525161941.2544055-38-alexander.deucher@amd.com>
+Subject: [PATCH 39/43] drm/amd/display: FCLK P-state support updates
+Date: Wed, 25 May 2022 12:19:37 -0400
+Message-ID: <20220525161941.2544055-39-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.35.3
 In-Reply-To: <20220525161941.2544055-1-alexander.deucher@amd.com>
 References: <20220525161941.2544055-1-alexander.deucher@amd.com>
@@ -68,27 +68,27 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1560220d-999a-4707-6f21-08da3e6a785b
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3334:EE_
-X-Microsoft-Antispam-PRVS: <BYAPR12MB3334626586AF6703A1C880A7F7D69@BYAPR12MB3334.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: ea7043cd-32ef-4dc5-e013-08da3e6a78ae
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3300:EE_
+X-Microsoft-Antispam-PRVS: <BN8PR12MB330009285B409E7F5871C16FF7D69@BN8PR12MB3300.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zvqcy5ORCj4lTevwZ3MCBLX1zuJBwYgqzwWBw0HjZVL423Jz6t27jDBGCY4yd+g5gJoOeQT9xEeJg2sU4RtoCQnuupZ/j89bRJjZEKqsTUfajlFWT7Ar6h8NjsiGBpWfGMojAYO3gnET5KOi8Bl3odsrCiqN12KBovNoq1Pnnetxg3m4P9soOQ7HfvvEhoQYqHQCn8u8lRy0MFfXlC5jMcob8K3JxSsf2WzjqipuvpQ+y4+KRHTKjgo0Cg+p+tynYF66NCQiFLFos3mjAnqCLsQzKXD8pjpGe0cxkEXGAqQ2g/AqYxSMUPRdQmDZk91U82R0wZtC0UaV5GjBRLGyqfXPxRz06fYXQ0rH9GywieftHrEDoD51hDfrFauypZd9uiMUpRSYpx3IwthfrNM6wlpkLGbj+i/tzuSmf5uwa4WxCPOJWPs8n/CqJeYTIL98BEf7GkVqtBuCbHIyHQcV20pvJ/lCHp+PIJGr3SQg8Zpp68TX/qG1CD/usaHYqbRZ3iXt76OpQ4fp42kwytnYY4qWD7hbREKbrJi08Jr1+db61YKRTrXbgQKpGxSRd8fsAJt2STQs8miQ2Xo9iLZ8fXEp/QFxHBtb2TfQfZMTnZWEgH9zfX37AoSgTc99WNped5yyouyDwqTPDF8Ip2euawX6cKIozHkxOom7buVUCnuT+EYaSoSkxNGP8A3dW9DY/lKuN2384oCEQ0DKdkVs4g==
+X-Microsoft-Antispam-Message-Info: z6t573vlo48tHq38mUFpteX97gog91UYRgmgxSLxPv6HOmLL6VwoqMa7NUkTcZ8td3cDCYz3vPjEflvNoXbzeHhKmUC/N4kuANjUYbl61EYjPVEpxDA//Pap0hx6Bae/V2otwM6NlBYMU09O3mb3Q4SfsrViw17CMIje3oxKF/QDZ5w+wn5LDNtKN9hLyFoEYVJp72vLXbBmop28y43K9NJ0jbSw3G583fnE1dlCoefDyGWGwhm62JTMWd3zJ4BiEi7FTE37FA7waX76hSHd/XdK7hRZdbccV+ZeIGbNggqZXnYCoy6Kmy5zDjCg4JmMR36uRcKsWOouA+jy2A6pdveG9eWE9csGiPjMq4hP7MAla7rZuY6RcTcEhnGfh9Chon36r3S5yFWrVxUon2RYL//m0UEckY/De4ipUrA2U6bH5JeZSnlIuiPbNV/Sq8eHCI0gMmnmQUbn4mlLJQmfmxPjMlAO6DMNqhzZm7mPliaiT9ykEKg3nXQajjqJkQytTjSQku8I5A/ULXOPFBLbjPJsEJ6Rz/PUVkKVgAM4isSHIKLx7tdeIg1oUfMmWDhA8dyP9KUr2jQR4nDeSToaBQIRyw62uSCQcYyyT8ljQoKfPNxykz4LnHuzmrRTnBk90Wk1KTHWFu7fDUR6+/c2h/WQIc6oJ73l6flfRo3DTXNl25VuZIKky7KA7udAcrKwZi7cl28QAnS0dY0xDquPlQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(2616005)(186003)(2906002)(15650500001)(26005)(82310400005)(316002)(81166007)(356005)(54906003)(36756003)(8936002)(6916009)(7696005)(4326008)(508600001)(36860700001)(5660300002)(86362001)(1076003)(40460700003)(83380400001)(336012)(70206006)(47076005)(426003)(6666004)(8676002)(16526019)(70586007)(36900700001);
+ SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(316002)(6916009)(1076003)(336012)(4326008)(83380400001)(356005)(82310400005)(70206006)(70586007)(36860700001)(15650500001)(426003)(47076005)(186003)(16526019)(36756003)(54906003)(2616005)(8676002)(26005)(5660300002)(86362001)(40460700003)(8936002)(2906002)(508600001)(6666004)(7696005)(81166007)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2022 16:20:23.1966 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1560220d-999a-4707-6f21-08da3e6a785b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2022 16:20:23.7591 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ea7043cd-32ef-4dc5-e013-08da3e6a78ae
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT054.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3334
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3300
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,188 +100,75 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Jun Lei <Jun.Lei@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Chaitanya Dhere <chaitanya.dhere@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jun Lei <Jun.Lei@amd.com>
+From: Chaitanya Dhere <chaitanya.dhere@amd.com>
 
-[why]
-DCN has sidebands to control some clocks, it is useful for clk_mgr to
-always update the clocks it explicitly controls rather than skip them
-because it enables more configurations to work without SMU
+[Why]
+Previously we used to send FCLK P-state enable messages upon each call
+to update_clocks based on dml output. This resulted in increased message
+transactions between DC and PMFW.
 
-[how]
-only skip handling clocks where SMU manages the frequency for clocks
-with DENTIST sideband (DISP/DPP), only skip the voltage request when SMU
-not available, but otherwise proceed normally
+[How]
+Update the code to check safe_to_lower status and send the message based
+on dml input only on boot. This reduces message transactions. Also
+remove other unwanted code based on current code status.
 
-Signed-off-by: Jun Lei <Jun.Lei@amd.com>
+Signed-off-by: Chaitanya Dhere <chaitanya.dhere@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- .../display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c  | 125 ++++++++++--------
- 1 file changed, 73 insertions(+), 52 deletions(-)
+ .../drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c  | 11 +++++++----
+ .../display/dc/clk_mgr/dcn32/dcn32_clk_mgr_smu_msg.h  |  1 -
+ 2 files changed, 7 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
-index bd2352e61040..390432537305 100644
+index 390432537305..6a1d7c86e6b7 100644
 --- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
 +++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
-@@ -310,69 +310,84 @@ static void dcn32_update_clocks(struct clk_mgr *clk_mgr_base,
- 	if (display_count == 0)
- 		enter_display_off = true;
- 
--	if (enter_display_off == safe_to_lower)
--		dcn30_smu_set_num_of_displays(clk_mgr, display_count);
-+	if (clk_mgr->smu_present) {
-+		if (enter_display_off == safe_to_lower)
-+			dcn30_smu_set_num_of_displays(clk_mgr, display_count);
- 
--	if (dc->debug.force_min_dcfclk_mhz > 0)
--		new_clocks->dcfclk_khz = (new_clocks->dcfclk_khz > (dc->debug.force_min_dcfclk_mhz * 1000)) ?
--				new_clocks->dcfclk_khz : (dc->debug.force_min_dcfclk_mhz * 1000);
-+		if (dc->debug.force_min_dcfclk_mhz > 0)
-+			new_clocks->dcfclk_khz = (new_clocks->dcfclk_khz > (dc->debug.force_min_dcfclk_mhz * 1000)) ?
-+					new_clocks->dcfclk_khz : (dc->debug.force_min_dcfclk_mhz * 1000);
- 
--	if (should_set_clock(safe_to_lower, new_clocks->dcfclk_khz, clk_mgr_base->clks.dcfclk_khz)) {
--		clk_mgr_base->clks.dcfclk_khz = new_clocks->dcfclk_khz;
--		dcn30_smu_set_hard_min_by_freq(clk_mgr, PPCLK_DCFCLK, khz_to_mhz_ceil(clk_mgr_base->clks.dcfclk_khz));
--	}
-+		if (should_set_clock(safe_to_lower, new_clocks->dcfclk_khz, clk_mgr_base->clks.dcfclk_khz)) {
-+			clk_mgr_base->clks.dcfclk_khz = new_clocks->dcfclk_khz;
-+			dcn30_smu_set_hard_min_by_freq(clk_mgr, PPCLK_DCFCLK, khz_to_mhz_ceil(clk_mgr_base->clks.dcfclk_khz));
-+		}
- 
--	if (should_set_clock(safe_to_lower, new_clocks->dcfclk_deep_sleep_khz, clk_mgr_base->clks.dcfclk_deep_sleep_khz)) {
--		clk_mgr_base->clks.dcfclk_deep_sleep_khz = new_clocks->dcfclk_deep_sleep_khz;
--		dcn30_smu_set_min_deep_sleep_dcef_clk(clk_mgr, khz_to_mhz_ceil(clk_mgr_base->clks.dcfclk_deep_sleep_khz));
--	}
-+		if (should_set_clock(safe_to_lower, new_clocks->dcfclk_deep_sleep_khz, clk_mgr_base->clks.dcfclk_deep_sleep_khz)) {
-+			clk_mgr_base->clks.dcfclk_deep_sleep_khz = new_clocks->dcfclk_deep_sleep_khz;
-+			dcn30_smu_set_min_deep_sleep_dcef_clk(clk_mgr, khz_to_mhz_ceil(clk_mgr_base->clks.dcfclk_deep_sleep_khz));
-+		}
- 
--	if (should_set_clock(safe_to_lower, new_clocks->socclk_khz, clk_mgr_base->clks.socclk_khz))
--		/* We don't actually care about socclk, don't notify SMU of hard min */
--		clk_mgr_base->clks.socclk_khz = new_clocks->socclk_khz;
-+		if (should_set_clock(safe_to_lower, new_clocks->socclk_khz, clk_mgr_base->clks.socclk_khz))
-+			/* We don't actually care about socclk, don't notify SMU of hard min */
-+			clk_mgr_base->clks.socclk_khz = new_clocks->socclk_khz;
- 
--	clk_mgr_base->clks.prev_p_state_change_support = clk_mgr_base->clks.p_state_change_support;
--	clk_mgr_base->clks.fclk_prev_p_state_change_support = clk_mgr_base->clks.fclk_p_state_change_support;
-+		clk_mgr_base->clks.prev_p_state_change_support = clk_mgr_base->clks.p_state_change_support;
-+		clk_mgr_base->clks.fclk_prev_p_state_change_support = clk_mgr_base->clks.fclk_p_state_change_support;
-+		clk_mgr_base->clks.prev_num_ways = clk_mgr_base->clks.num_ways;
- 
--	total_plane_count = clk_mgr_helper_get_active_plane_cnt(dc, context);
--	p_state_change_support = new_clocks->p_state_change_support || (total_plane_count == 0);
--	fclk_p_state_change_support = new_clocks->fclk_p_state_change_support || (total_plane_count == 0);
--	if (should_update_pstate_support(safe_to_lower, p_state_change_support, clk_mgr_base->clks.p_state_change_support)) {
--		clk_mgr_base->clks.p_state_change_support = p_state_change_support;
-+		if (clk_mgr_base->clks.num_ways != new_clocks->num_ways &&
-+				clk_mgr_base->clks.num_ways < new_clocks->num_ways) {
-+			clk_mgr_base->clks.num_ways = new_clocks->num_ways;
-+			dcn32_smu_send_cab_for_uclk_message(clk_mgr, clk_mgr_base->clks.num_ways);
-+		}
- 
--		/* to disable P-State switching, set UCLK min = max */
--		if (!clk_mgr_base->clks.p_state_change_support)
--			dcn30_smu_set_hard_min_by_freq(clk_mgr, PPCLK_UCLK,
--					clk_mgr_base->bw_params->clk_table.entries[clk_mgr_base->bw_params->clk_table.num_entries - 1].memclk_mhz);
--	}
-+		total_plane_count = clk_mgr_helper_get_active_plane_cnt(dc, context);
-+		p_state_change_support = new_clocks->p_state_change_support || (total_plane_count == 0);
-+		fclk_p_state_change_support = new_clocks->fclk_p_state_change_support || (total_plane_count == 0);
-+		if (should_update_pstate_support(safe_to_lower, p_state_change_support, clk_mgr_base->clks.p_state_change_support)) {
-+			clk_mgr_base->clks.p_state_change_support = p_state_change_support;
-+
-+			/* to disable P-State switching, set UCLK min = max */
-+			if (!clk_mgr_base->clks.p_state_change_support)
-+				dcn30_smu_set_hard_min_by_freq(clk_mgr, PPCLK_UCLK,
-+						clk_mgr_base->bw_params->clk_table.entries[clk_mgr_base->bw_params->clk_table.num_entries - 1].memclk_mhz);
-+		}
-+
-+		if (clk_mgr_base->ctx->dce_version != DCN_VERSION_3_21 &&
-+				should_update_pstate_support(safe_to_lower, fclk_p_state_change_support, clk_mgr_base->clks.fclk_p_state_change_support)) {
-+			clk_mgr_base->clks.fclk_p_state_change_support = fclk_p_state_change_support;
- 
--	if (clk_mgr_base->ctx->dce_version != DCN_VERSION_3_21 &&
--			should_update_pstate_support(safe_to_lower, fclk_p_state_change_support, clk_mgr_base->clks.fclk_p_state_change_support)) {
--		clk_mgr_base->clks.fclk_p_state_change_support = fclk_p_state_change_support;
-+			/* To disable FCLK P-state switching, send FCLK_PSTATE_NOTSUPPORTED message to PMFW */
-+			if (!clk_mgr_base->clks.fclk_p_state_change_support) {
-+				/* Handle code for sending a message to PMFW that FCLK P-state change is not supported */
-+				dcn32_smu_send_fclk_pstate_message(clk_mgr, FCLK_PSTATE_NOTSUPPORTED);
-+			}
-+		}
- 
--		/* To disable FCLK P-state switching, send FCLK_PSTATE_NOTSUPPORTED message to PMFW */
--		if (!clk_mgr_base->clks.fclk_p_state_change_support) {
--			/* Handle code for sending a message to PMFW that FCLK P-state change is not supported */
--			dcn32_smu_send_fclk_pstate_message(clk_mgr, FCLK_PSTATE_NOTSUPPORTED);
-+		/* Always update saved value, even if new value not set due to P-State switching unsupported */
-+		if (should_set_clock(safe_to_lower, new_clocks->dramclk_khz, clk_mgr_base->clks.dramclk_khz)) {
-+			clk_mgr_base->clks.dramclk_khz = new_clocks->dramclk_khz;
-+			update_uclk = true;
+@@ -284,7 +284,7 @@ static void dcn32_update_clocks(struct clk_mgr *clk_mgr_base,
+ 	bool dpp_clock_lowered = false;
+ 	struct dmcu *dmcu = clk_mgr_base->ctx->dc->res_pool->dmcu;
+ 	bool force_reset = false;
+-	bool update_uclk = false;
++	bool update_uclk = false, update_fclk = false;
+ 	bool p_state_change_support;
+ 	bool fclk_p_state_change_support;
+ 	int total_plane_count;
+@@ -371,14 +371,17 @@ static void dcn32_update_clocks(struct clk_mgr *clk_mgr_base,
+ 			update_uclk = true;
  		}
--	}
  
--	/* Always update saved value, even if new value not set due to P-State switching unsupported */
--	if (should_set_clock(safe_to_lower, new_clocks->dramclk_khz, clk_mgr_base->clks.dramclk_khz)) {
--		clk_mgr_base->clks.dramclk_khz = new_clocks->dramclk_khz;
--		update_uclk = true;
--	}
-+		/* set UCLK to requested value if P-State switching is supported, or to re-enable P-State switching */
-+		if (clk_mgr_base->clks.p_state_change_support &&
-+				(update_uclk || !clk_mgr_base->clks.prev_p_state_change_support))
-+			dcn30_smu_set_hard_min_by_freq(clk_mgr, PPCLK_UCLK, khz_to_mhz_ceil(clk_mgr_base->clks.dramclk_khz));
-+
-+		if (clk_mgr_base->clks.fclk_p_state_change_support &&
-+				(update_uclk || !clk_mgr_base->clks.fclk_prev_p_state_change_support)) {
- 
--	/* set UCLK to requested value if P-State switching is supported, or to re-enable P-State switching */
--	if (clk_mgr_base->clks.p_state_change_support &&
--			(update_uclk || !clk_mgr_base->clks.prev_p_state_change_support))
--		dcn30_smu_set_hard_min_by_freq(clk_mgr, PPCLK_UCLK, khz_to_mhz_ceil(clk_mgr_base->clks.dramclk_khz));
-+			/* Handle the code for sending a message to PMFW that FCLK P-state change is supported */
-+			dcn32_smu_send_fclk_pstate_message(clk_mgr, FCLK_PSTATE_SUPPORTED);
++		/* Always update saved value, even if new value not set due to P-State switching unsupported. Also check safe_to_lower for FCLK */
++		if (safe_to_lower && (clk_mgr_base->clks.fclk_p_state_change_support != clk_mgr_base->clks.fclk_prev_p_state_change_support)) {
++			update_fclk = true;
 +		}
- 
--	if (clk_mgr_base->ctx->dce_version != DCN_VERSION_3_21 &&
--			clk_mgr_base->clks.fclk_p_state_change_support &&
--			(update_uclk || !clk_mgr_base->clks.fclk_prev_p_state_change_support)) {
--		/* Handle the code for sending a message to PMFW that FCLK P-state change is supported */
--		dcn32_smu_send_fclk_pstate_message(clk_mgr, FCLK_PSTATE_SUPPORTED);
-+		if (clk_mgr_base->clks.num_ways != new_clocks->num_ways &&
-+				clk_mgr_base->clks.num_ways > new_clocks->num_ways) {
-+			clk_mgr_base->clks.num_ways = new_clocks->num_ways;
-+			dcn32_smu_send_cab_for_uclk_message(clk_mgr, clk_mgr_base->clks.num_ways);
-+		}
- 	}
- 
- 	if (should_set_clock(safe_to_lower, new_clocks->dppclk_khz, clk_mgr_base->clks.dppclk_khz)) {
-@@ -380,13 +395,19 @@ static void dcn32_update_clocks(struct clk_mgr *clk_mgr_base,
- 			dpp_clock_lowered = true;
- 
- 		clk_mgr_base->clks.dppclk_khz = new_clocks->dppclk_khz;
--		dcn30_smu_set_hard_min_by_freq(clk_mgr, PPCLK_DPPCLK, khz_to_mhz_ceil(clk_mgr_base->clks.dppclk_khz));
 +
-+		if (clk_mgr->smu_present)
-+			dcn30_smu_set_hard_min_by_freq(clk_mgr, PPCLK_DPPCLK, khz_to_mhz_ceil(clk_mgr_base->clks.dppclk_khz));
-+
- 		update_dppclk = true;
- 	}
+ 		/* set UCLK to requested value if P-State switching is supported, or to re-enable P-State switching */
+ 		if (clk_mgr_base->clks.p_state_change_support &&
+ 				(update_uclk || !clk_mgr_base->clks.prev_p_state_change_support))
+ 			dcn30_smu_set_hard_min_by_freq(clk_mgr, PPCLK_UCLK, khz_to_mhz_ceil(clk_mgr_base->clks.dramclk_khz));
  
- 	if (should_set_clock(safe_to_lower, new_clocks->dispclk_khz, clk_mgr_base->clks.dispclk_khz)) {
- 		clk_mgr_base->clks.dispclk_khz = new_clocks->dispclk_khz;
--		dcn30_smu_set_hard_min_by_freq(clk_mgr, PPCLK_DISPCLK, khz_to_mhz_ceil(clk_mgr_base->clks.dispclk_khz));
-+
-+		if (clk_mgr->smu_present)
-+			dcn30_smu_set_hard_min_by_freq(clk_mgr, PPCLK_DISPCLK, khz_to_mhz_ceil(clk_mgr_base->clks.dispclk_khz));
-+
- 		update_dispclk = true;
- 	}
+-		if (clk_mgr_base->clks.fclk_p_state_change_support &&
+-				(update_uclk || !clk_mgr_base->clks.fclk_prev_p_state_change_support)) {
+-
++		if (clk_mgr_base->ctx->dce_version != DCN_VERSION_3_21 && clk_mgr_base->clks.fclk_p_state_change_support && update_fclk) {
+ 			/* Handle the code for sending a message to PMFW that FCLK P-state change is supported */
+ 			dcn32_smu_send_fclk_pstate_message(clk_mgr, FCLK_PSTATE_SUPPORTED);
+ 		}
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr_smu_msg.h b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr_smu_msg.h
+index ee6259108add..5f69cdcb9885 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr_smu_msg.h
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr_smu_msg.h
+@@ -33,7 +33,6 @@
+ #define FCLK_PSTATE_SUPPORTED          0x01
+ 
+ /* TODO Remove this MSG ID define after it becomes available in dalsmc */
+-#define DALSMC_MSG_SetFclkSwitchAllow	0x11
+ #define DALSMC_MSG_SetCabForUclkPstate	0x12
+ #define DALSMC_Result_OK				0x1
  
 -- 
 2.35.3
