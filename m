@@ -1,95 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9765534397
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 May 2022 21:05:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DE2E53450D
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 May 2022 22:37:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12C4F10E6B3;
-	Wed, 25 May 2022 19:05:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63A6C10EF36;
+	Wed, 25 May 2022 20:37:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2080.outbound.protection.outlook.com [40.107.93.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6F2310E618
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 May 2022 19:05:22 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aTXkxVeg4TkqN2tgvDAgkApTp0P6xQjcTM4HfUiB2Zvx1ZZO+I1A5LlL0VjVRDik4SmFCZchkPPTdgR9CLjGsJdp2zPr5pN7giz67b9GVg6wdvN+Z7WIMBD/cJGx4/FZq8/qwWtJqKCI8dHgFRlPXVkn5JPaErl9hag8/0R4pHnL028yucjNW8CqhqnwZH/YKmRtgerqN6SKpJUma3b9qymaVl34tJuF8ZapVeXB6GY8AlnYSfj/CnzV11QeHmRLqUnVEKVbzSEXN0Pw3+TEckkwf7c0PErlhS3LI56UuU65tSo7GAk9Lf2xttlwgu9hLtC22mQMLmSyojaSOBkBgg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pinRKnbGu2Sqy2aNcrTVqaaq0SZAcpCliKcif3tyCEM=;
- b=b9Locvabe/6onGq6VBPsx2y7MBu6pZox2WDs6pYOzdH5PS9X45e7k2Er4s8Sq1Cw0hPGHqbPc41bS0AX74u3tjvH6XmPJnKd3uZT08XJ//MagdhIDoju1/QdPUXPmP5Kzqht0obGIDZoh//yUTK+Qh5guKa3/oQwfVZLxWq8p6JQ9Lgs6JOpFxfaGWsr4qSiqaM3DHuaDS/nR0h4XOENeJaXLySUH5469UkSJ2whNJHTOaFC+Qt6mGbDpn9ZdBg3qCE+2yLNebcoiQBRlUT3UumVrQJGeKuHZ1Zg7y+bO/6tTaTmIdH3mXE+WJL73lqRpQiSKkfWnyoaVftWIDFPXw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pinRKnbGu2Sqy2aNcrTVqaaq0SZAcpCliKcif3tyCEM=;
- b=Uv5pcINjAER35wXvVB7UIeaMNRjFkVqIR8g4ykHCcGrRBixW/rI6Y8EsfiA55O2HJUrEVll1caIAO+cunHmLuWKhGomSFBymW0VIuDv+rOZ7UUYWbnZPMHyXxwPa4izQRCF+++NMFeKjPVkN53vtOTvWpRIXrfayEdaOC6afQxg=
-Received: from BN0PR04CA0086.namprd04.prod.outlook.com (2603:10b6:408:ea::31)
- by MW4PR12MB5667.namprd12.prod.outlook.com (2603:10b6:303:18a::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.23; Wed, 25 May
- 2022 19:05:20 +0000
-Received: from BN8NAM11FT035.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:ea:cafe::9) by BN0PR04CA0086.outlook.office365.com
- (2603:10b6:408:ea::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.13 via Frontend
- Transport; Wed, 25 May 2022 19:05:20 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT035.mail.protection.outlook.com (10.13.177.116) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5293.13 via Frontend Transport; Wed, 25 May 2022 19:05:19 +0000
-Received: from agrodzovsky-All-Series.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Wed, 25 May 2022 14:05:18 -0500
-From: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v3 7/7] drm/amdgpu: Stop any pending reset if another in
- progress.
-Date: Wed, 25 May 2022 15:04:47 -0400
-Message-ID: <20220525190447.239867-8-andrey.grodzovsky@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220525190447.239867-1-andrey.grodzovsky@amd.com>
-References: <20220525190447.239867-1-andrey.grodzovsky@amd.com>
+X-Greylist: delayed 903 seconds by postgrey-1.36 at gabe;
+ Wed, 25 May 2022 19:24:27 UTC
+Received: from sender4-of-o54.zoho.com (sender4-of-o54.zoho.com
+ [136.143.188.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B873D10E260
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 May 2022 19:24:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1653505760; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=bgLDYqaveJdzb2Qx0GE9mfATAHdQWjJAq8Ak78bUrrCuMTgFH/SQwSSIBXg7fkNNK3vpbx/Wek+u26om4F4IW5g0ksqhXNjkbnFM874fHkMl8SeRXXT8PCA3fPvBrNuW/GdHVwp6xeOhhLh+7WJKaK1ugAR3surC3X958GY/J8A=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1653505760;
+ h=Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+ bh=VKYnTaOCGfhBc578jkFhugpweFkbGpTsCSjATGWkyhw=; 
+ b=NoXWxYoVP2LGAYMg5j3yIe99tbYG+75YUQ4wliVM6fII36Fk8dFdieMkfdBApBJHP/Qv8JBlW7ODu2NwdLH0LExol0fc+Tk5XMQNFbDsHEbEB91bh5Q/trO4157it2GakWfco8PJkpqkdH1n6TVcufzthiAcGCkfaPGBckn5OC0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=mitchellaugustin.com;
+ spf=pass  smtp.mailfrom=kernel@mitchellaugustin.com;
+ dmarc=pass header.from=<kernel@mitchellaugustin.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1653505760; 
+ s=zoho; d=mitchellaugustin.com; i=kernel@mitchellaugustin.com; 
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Transfer-Encoding:Reply-To;
+ bh=VKYnTaOCGfhBc578jkFhugpweFkbGpTsCSjATGWkyhw=;
+ b=hUmu8a1QYmKsKXARKUzyVpWlvy+wqWAXkyJfY14WU2KxFZQ6YyTEDiw6ZAAjbyKA
+ m+d2DiGvIfG69dB/2Jalr7WHuPQdj8G/XglEaJW7ViP6GwxiShHFcwZfLNlXjce0z1i
+ xQZxYdMuXE71OQ56eoPz7UHP9JA72DHRcM7pwGYE=
+Received: from localhost.localdomain (static-68-235-50-228.cust.tzulo.com
+ [68.235.50.228]) by mx.zohomail.com
+ with SMTPS id 1653505759009259.68636689044604;
+ Wed, 25 May 2022 12:09:19 -0700 (PDT)
+From: Mitchell Augustin <kernel@mitchellaugustin.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@linux.ie, daniel@ffwll.ch, sumit.semwal@linaro.org,
+ andrey.grodzovsky@amd.com, guchun.chen@amd.com, evan.quan@amd.com,
+ kevin1.wang@amd.com, lang.yu@amd.com, shaoyun.liu@amd.com
+Subject: [PATCH] amdgpu: amdgpu_device.c: Removed trailing whitespace
+Date: Wed, 25 May 2022 14:09:14 -0500
+Message-Id: <20220525190914.60544-1-kernel@mitchellaugustin.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9d418558-9198-41e2-c66a-08da3e81832f
-X-MS-TrafficTypeDiagnostic: MW4PR12MB5667:EE_
-X-Microsoft-Antispam-PRVS: <MW4PR12MB566730A2DF337766E0CEEF69EAD69@MW4PR12MB5667.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4Oyc/6RrcVCik3eo9m14ulygg5P5qkTxKhrRs0Q/v6hpTrYsHldF8Y+NAik6W80As0SxDnTZtbHG9nfJ15xsrVNM7B1dJ48/foMmwBpwmlv7J8KQYW9p0AZWWpoGWFFQ6zUroBFIs9dhWcwtTjOOU7IqSXVEUyirbPIsfsYtvdzBwBlT/kYmkQKxf+xcqvBQZ8t9U7JjxpfqkYTW8cSWLOETx/O7ynqWqQKPT1tS2st6Kdduxq2zKFSA/0tGaAkzNDVx6MaXhFf4HUFJFhY14VAfPwh6NlXuN0AMKKxkM5X7XJ0LMQ443KVbDBB2j0rSUO0lx1k7VuNyxSXOoBGbloxqSDHbrRNT/qXPEaZMKQY2DBc50d6EOtsUjEPl2Q+7K76q0WblaKeNTV6DDIfYgEsdB/CyPvLN3rPlHy2PEZ7wb0vkPt3zuRDEMwKV/CtR9p3TYE4feLiYBgki4Ap4u0FmMpTtXTQtMnkOVmiE4daGm5q0d9OraAa24cpD22/5L8gfc+aZUyqkYT9BgFtvWkGjndkZc5yz1CRZ1294YaHeuTcAHq/jfY2hiehOqbPEJqiLy5egQzsDqlaCx9TISEZKO/Ync4FKk02w6pHcZ+uJKNiRTRMp1WTEu4DQWHePEWqdb54LmCkBzY+1tBsshYdJOWTnpMOs2hm/BpoWC3IF+CwR7tDR5vSN1PkMkBgIhAlOuCID/D08aqTljrEKTQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(70586007)(86362001)(186003)(508600001)(8936002)(356005)(26005)(4326008)(83380400001)(47076005)(36860700001)(54906003)(8676002)(7696005)(336012)(16526019)(426003)(6916009)(40460700003)(1076003)(2616005)(82310400005)(6666004)(2906002)(44832011)(36756003)(5660300002)(81166007)(70206006)(316002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2022 19:05:19.8371 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9d418558-9198-41e2-c66a-08da3e81832f
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT035.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB5667
+X-ZohoMailClient: External
+X-Mailman-Approved-At: Wed, 25 May 2022 20:37:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,63 +62,41 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Zoy.Bai@amd.com, Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- lijo.lazar@amd.com, Christian.Koenig@amd.com
+Cc: linaro-mm-sig@lists.linaro.org, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-We skip rest requests if another one is already in progress.
+Removed trailing whitespace from end of line in amdgpu_device.c
 
-Signed-off-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+Signed-off-by: Mitchell Augustin <kernel@mitchellaugustin.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 27 ++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 424571e46cf5..e1f7ee604ea4 100644
+index 49f734137f15..c531c05163cf 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -5054,6 +5054,27 @@ static void amdgpu_device_recheck_guilty_jobs(
+@@ -3365,7 +3365,7 @@ bool amdgpu_device_asic_has_dc_support(enum amd_asic_type asic_type)
+  */
+ bool amdgpu_device_has_dc_support(struct amdgpu_device *adev)
+ {
+-	if (amdgpu_sriov_vf(adev) || 
++	if (amdgpu_sriov_vf(adev) ||
+ 	    adev->enable_virtual_display ||
+ 	    (adev->harvest_ip_mask & AMD_HARVEST_IP_DMU_MASK))
+ 		return false;
+@@ -5762,7 +5762,7 @@ int amdgpu_in_reset(struct amdgpu_device *adev)
+ {
+ 	return atomic_read(&adev->reset_domain->in_gpu_reset);
  	}
- }
- 
-+static inline void amdggpu_device_stop_pedning_resets(struct amdgpu_device* adev)
-+{
-+	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
-+
-+#if defined(CONFIG_DEBUG_FS)
-+	if (!amdgpu_sriov_vf(adev))
-+		cancel_work(&adev->reset_work);
-+#endif
-+
-+	if (adev->kfd.dev)
-+		cancel_work(&adev->kfd.reset_work);
-+
-+	if (amdgpu_sriov_vf(adev))
-+		cancel_work(&adev->virt.flr_work);
-+
-+	if (con && adev->ras_enabled)
-+		cancel_work(&con->recovery_work);
-+
-+}
-+
+-	
 +
  /**
-  * amdgpu_device_gpu_recover - reset the asic and recover scheduler
+  * amdgpu_device_halt() - bring hardware to some kind of halt state
   *
-@@ -5209,6 +5230,12 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 				  r, adev_to_drm(tmp_adev)->unique);
- 			tmp_adev->asic_reset_res = r;
- 		}
-+
-+		/*
-+		 * Drop all pending non scheduler resets. Scheduler resets
-+		 * were already dropped during drm_sched_stop
-+		 */
-+		amdggpu_device_stop_pedning_resets(tmp_adev);
- 	}
- 
- 	tmp_vram_lost_counter = atomic_read(&((adev)->vram_lost_counter));
 -- 
-2.25.1
+2.36.1
 
