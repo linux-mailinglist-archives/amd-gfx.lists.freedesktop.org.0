@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23E49534138
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 May 2022 18:20:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C1C753413C
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 May 2022 18:20:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7ABD910E57E;
-	Wed, 25 May 2022 16:20:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4633B10E666;
+	Wed, 25 May 2022 16:20:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam07on2059.outbound.protection.outlook.com [40.107.95.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC62B10E57E
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 May 2022 16:20:04 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2041.outbound.protection.outlook.com [40.107.243.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11EB410E5BF
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 May 2022 16:20:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J5hL868pPA4+37Fyd0XyotBOqqb7Lkcc/5O9a2nR72saLXyeBo/ZThJ9A/eyzT9Avu+smBM76fJQkBaGZPjD/2fdd0vPmilnUDTp4e7DB8IJCwz66L2Q9Dl1+TMDpBOARj/GkAWyJPkbJxhUKQQC6YNCJN9VOqGEN7OqIxwYSDLa7X07XfA+OFfpQYC+CQ8uXJWrUR824aNQfMcO/UbAgXTOZ957QxYDL3E5Ph3VdSoE6l/+X2RjGbR1HOkBgcRw6XCz7cH7Ep5ULtkETPj6MAclYeRIG69LxgOl1yBgbtqWcE1LYcNQlgRW36YBPgNiWsh/2da12RyO7loIeAuDmw==
+ b=Ibd9cqkInogJw2J6ObkYUQ82WRTGidvITYvPz6s4NAaeyosvZGtDe99PkRIbWRpTTrC7Z28AXgHBE3EiZHl8x4vXION+4UFcyWkHT3NMlBvW4/as/yRkiHesyaognhZtu1EBKpZwHYGN+/N/t6Kjq10sykteYgPFObEV1P3JvBxPvAi9FqFofagdjuCNOycZxQt2Xktw0rXh3B63ob6HHN2zQUNWQVjQVn6VD6tz6Sj4nIZw9dlqQj2O9/uAlBDZ+GQJoO9Eo26U1JPCEhPDfODbw89OSWKrBFuGu+W9wxdhxI3YGIVto2T7mHeos55LKWWrZC5v3D94kaRk3wkCpw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HAHazlIV7xJ9/rP73B68c8KYaaRuWK86ytaxCLg2UEs=;
- b=kacOA+32/LV1s/jRsxcmNRUkHS+Q9cpWa3rn3T6KDbnE2x9HE+u96CE8BFfsB6OI4Eh+FjJPMVXKQGIdlEtsAULCMgzhVYeMQ+wTICHCff5W/+WoES3/+rJR1PhiXkvVZbT5IhSA2P2DrIVLn7q85KO34e/jmH0hDUMAwtH3a30XKM+qz52JGI6EZmhLkOVGJupYn31FtvR8zRXEGlvkR5y7EisOHRoy7myBNn/DG86+O+Hmprh+jtRqInlkQVoPvHWW7rYz2xHW7k62lcn1J3Q4xAnIUbi4MY9kghEBvPPI46vAeSQfNcsreFxvMvoK4NfMVEhiY3JsvhPssKRL0Q==
+ bh=OHGUkCTNaR7ccHtVANLA3VC0GtEqBqWI9fpL9k2Tg9k=;
+ b=KhI8wecL8+5tmDq6CyGHpH2eQPlj35DeCqDR7rUXWW+mVccHOlUOQ1qyS5K8wC//TFQwlJs3dPBDSFfgN8wpxuHXmP9b4yNCW2n23OfhOq7dsfFBVvgY9jQ6Rm/qu0GUYBNQM3xiFX/ZBz65GoFpVNiMQTxT1FtrYDRPC2LUMzb4tVt24yzOjYzVW9f990cMNgXaJ87PM9C5Bj7wvJhkH2dnh9ZrFK0y0iAea9yKyhvvBdAhswZIW/HenF0laiUvaTmnJEVI9OdDDcxAU8G+snE6K82LrMGn/5hSKCcULw8FWgWrknGL899SDY9pf9IB195A1tOS2uEYnsbX/A9APA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HAHazlIV7xJ9/rP73B68c8KYaaRuWK86ytaxCLg2UEs=;
- b=GSL1scyJ1tI2Krczr4lRjJKTZ2HZfopOeJIiFZPZr1DrisG8tnNngtrNsv6Sz1m38S05hAGdEZFeK04QdeveOtFosTjxlmPDaa82iKUtPSNig20LSfsGsNhyAWpSYzEdq+nkzExqn/BJUwnt1JU+Teb4XV5idmQg7BcQvmD4O1s=
-Received: from DM6PR04CA0030.namprd04.prod.outlook.com (2603:10b6:5:334::35)
- by SJ0PR12MB5611.namprd12.prod.outlook.com (2603:10b6:a03:426::17) with
+ bh=OHGUkCTNaR7ccHtVANLA3VC0GtEqBqWI9fpL9k2Tg9k=;
+ b=0keNqZN82FNfDD4c1XduBOm687vcuqHBEKvArAomzKm99xwgWVts4S1W4hRClmJUNwantlgK+0gauz3iI6c8DChp6sCOO3JGtb0laiZwLBFVQJaKKwNSrqiOzM1zkV7sibCPTY8teTUlxceGzdo6Eua8LH5A8omr7JCMW8H8i5c=
+Received: from DM6PR04CA0016.namprd04.prod.outlook.com (2603:10b6:5:334::21)
+ by BN8PR12MB3585.namprd12.prod.outlook.com (2603:10b6:408:49::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.22; Wed, 25 May
- 2022 16:20:02 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.13; Wed, 25 May
+ 2022 16:20:03 +0000
 Received: from DM6NAM11FT012.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:334:cafe::ee) by DM6PR04CA0030.outlook.office365.com
- (2603:10b6:5:334::35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.13 via Frontend
- Transport; Wed, 25 May 2022 16:20:02 +0000
+ (2603:10b6:5:334:cafe::d) by DM6PR04CA0016.outlook.office365.com
+ (2603:10b6:5:334::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.18 via Frontend
+ Transport; Wed, 25 May 2022 16:20:03 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT012.mail.protection.outlook.com (10.13.173.109) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5293.13 via Frontend Transport; Wed, 25 May 2022 16:20:02 +0000
+ 15.20.5293.13 via Frontend Transport; Wed, 25 May 2022 16:20:03 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Wed, 25 May
  2022 11:20:00 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 02/43] drm/amd: Add atomfirmware.h definitions needed for
- DCN32/321
-Date: Wed, 25 May 2022 12:19:01 -0400
-Message-ID: <20220525161941.2544055-3-alexander.deucher@amd.com>
+Subject: [PATCH 03/43] drm/amd/display: Add DCN32/321 version identifiers
+Date: Wed, 25 May 2022 12:19:02 -0400
+Message-ID: <20220525161941.2544055-4-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.35.3
 In-Reply-To: <20220525161941.2544055-1-alexander.deucher@amd.com>
 References: <20220525161941.2544055-1-alexander.deucher@amd.com>
@@ -69,27 +68,27 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5c20a8fd-53d3-4f4a-4574-08da3e6a6c27
-X-MS-TrafficTypeDiagnostic: SJ0PR12MB5611:EE_
-X-Microsoft-Antispam-PRVS: <SJ0PR12MB5611A19943A2438989E048BDF7D69@SJ0PR12MB5611.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: bae325a9-adb1-47db-b5f0-08da3e6a6c7a
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3585:EE_
+X-Microsoft-Antispam-PRVS: <BN8PR12MB358526568AF50115D6917673F7D69@BN8PR12MB3585.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: VMsPYfuHOv6WACdyQXZZBDaJv5WajFeHtGdTyEYZxQKVk83HjIrh78Lv61rceA6M0vZD2+F819c8XYnjMl3qzWPuA/mNCf2Je3dmjby1muFURvj44ptEpJ7hhS8w2C+J9VMXXZA8YIHcUSrU2u7K7QKc6mXm7G0/SDr8FVAsqQ9JOFGgySLoqMScidGS5RjDQilh/VRLbOkuzCUGR3xOWiZy5bH+xvHXC21/mnwMi22u09GblMwgtCQDqYIQan4gLriSkHo/F31uWbIlIplSrf/4V+GpQTsjJOzI1O4YgQITnfWg88eXPfTFjl8zQ6Kx6KqpV8UZpIeDnLz3BL6DJd44creCog9FS69H5tz7cYCcjt3K05yx1yE2A6RT25qh9sdpYWx9JIUsxu+WcPOuCmtu3J6Qei5DUBmQj77iGidUmMd0E5i5+rxQ7Pc2pZeSeSjjex7lDpvTDcRLZnNd2pXlu4JlIQuB2p9a3A8X25B/VzZ7YmV+VNmL553Q16J7ej7+XE9jPlBftQJGSqElvixTdCpQtPLTtCDwpfrrnMStt/OsdmdTnUhwWOmFMd8/R5JR7cG3kLpBLtzPBtNEmlJGOIItMHkBtz8A7tADWoplDdSKgQc1ZRJLfZZ3EgVCSm+osXxDo4u3UYK4b6Vl8BX2iZxkatGu1avPDBU/l8FFFLZ92hYJgFr2JbdCHjZE7995bYRNPXQtV7V629ViGQ==
+X-Microsoft-Antispam-Message-Info: rJHJ5pbGovSHLA4XiZE9gxGx5gUvfL4lCabNB8MN0xcS5UvQfS272/e5+bW4oeE6hnwLL0mNDlJCDRCC8DLKUiWalnG3OgjVVTKu2ujfj/1ZLP90WwoqJGsqk14EZFP6cu6xb/zonpfDv1e6fkNP8K+Brc4OF0kEl4bdQjPnn4ksT4Fc1iz0564KU4lztjEwvK1Gz7ezi0WeAKx1WrOjW+6s2APywBKs0Q/fWC2nsuEjhfgRaZpxZuyBcmnp61+8QqdyJwhPwSmL0QePrarxg5r4/qoL1ns5x2GKhsHAW9xNvdkUIiRKCAgatL7Dd7jZLnL3qvFe6pR4yDYcof2wkHyywskASX0t0YK9jIgrrNn7KpohnsoQItrZxJT2tyBEefy/p1CLUP++m0kHItcWbCEH5IJtLLSgwNJWqIksv8NPYtKwWuNX8nmyYjHWCaEgmh9mAEJAeeMPLIv6o6sDwA/y8rkV2Hu2MficozkaJwYwd7T3TZCy2tNOU7qKwt2FrJNWMm7ftFhbH8/DIrb3wClOFGMaNAEIsv6ET1Ka7ybHMfmHjHOnIPJSQ1TkQKtQtmUGPiG3OO7tFwLAffX+/w3ZIfdGMQWrKSgCTQ2neA23kS9Ft13AtyykbyXpY6J4oZdgd8P6FAhZAJsFp98QrTf//7AjRCesI7ah4NJaU2ssV4UowXonb+K0QWr8rmCTuFMOdW50d29dLeuxKNmj9A==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(36840700001)(46966006)(356005)(54906003)(40460700003)(6916009)(47076005)(2616005)(508600001)(1076003)(83380400001)(82310400005)(5660300002)(26005)(426003)(70206006)(70586007)(316002)(36756003)(186003)(16526019)(86362001)(8676002)(4326008)(81166007)(2906002)(36860700001)(8936002)(7696005)(336012)(36900700001);
+ SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(26005)(6916009)(7696005)(70206006)(2616005)(316002)(186003)(336012)(426003)(36756003)(86362001)(1076003)(47076005)(16526019)(54906003)(508600001)(40460700003)(36860700001)(82310400005)(5660300002)(2906002)(8936002)(81166007)(356005)(70586007)(4326008)(8676002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2022 16:20:02.7221 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c20a8fd-53d3-4f4a-4574-08da3e6a6c27
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2022 16:20:03.2689 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bae325a9-adb1-47db-b5f0-08da3e6a6c7a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT012.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5611
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3585
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,278 +107,62 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 
-Add new structures for DCN 3.2.x.
+Add DCN3.2 asic identifiers.
 
 Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 Acked-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/include/atomfirmware.h | 209 ++++++++++++++++++---
- 1 file changed, 187 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/amd/display/dmub/dmub_srv.h       | 2 ++
+ drivers/gpu/drm/amd/display/include/dal_asic_id.h | 8 ++++++++
+ drivers/gpu/drm/amd/display/include/dal_types.h   | 2 ++
+ 3 files changed, 12 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/include/atomfirmware.h b/drivers/gpu/drm/amd/include/atomfirmware.h
-index ae8f6d299ed9..ff855cb21d3f 100644
---- a/drivers/gpu/drm/amd/include/atomfirmware.h
-+++ b/drivers/gpu/drm/amd/include/atomfirmware.h
-@@ -726,18 +726,20 @@ struct vram_usagebyfirmware_v2_1
-   ***************************************************************************
- */
- 
--enum atom_object_record_type_id 
--{
--  ATOM_I2C_RECORD_TYPE =1,
--  ATOM_HPD_INT_RECORD_TYPE =2,
--  ATOM_OBJECT_GPIO_CNTL_RECORD_TYPE =9,
--  ATOM_CONNECTOR_HPDPIN_LUT_RECORD_TYPE =16,
--  ATOM_CONNECTOR_AUXDDC_LUT_RECORD_TYPE =17,
--  ATOM_ENCODER_CAP_RECORD_TYPE=20,
--  ATOM_BRACKET_LAYOUT_RECORD_TYPE=21,
--  ATOM_CONNECTOR_FORCED_TMDS_CAP_RECORD_TYPE=22,
--  ATOM_DISP_CONNECTOR_CAPS_RECORD_TYPE=23,
--  ATOM_RECORD_END_TYPE  =0xFF,
-+enum atom_object_record_type_id {
-+	ATOM_I2C_RECORD_TYPE = 1,
-+	ATOM_HPD_INT_RECORD_TYPE = 2,
-+	ATOM_CONNECTOR_CAP_RECORD_TYPE = 3,
-+	ATOM_CONNECTOR_SPEED_UPTO = 4,
-+	ATOM_OBJECT_GPIO_CNTL_RECORD_TYPE = 9,
-+	ATOM_CONNECTOR_HPDPIN_LUT_RECORD_TYPE = 16,
-+	ATOM_CONNECTOR_AUXDDC_LUT_RECORD_TYPE = 17,
-+	ATOM_ENCODER_CAP_RECORD_TYPE = 20,
-+	ATOM_BRACKET_LAYOUT_RECORD_TYPE = 21,
-+	ATOM_CONNECTOR_FORCED_TMDS_CAP_RECORD_TYPE = 22,
-+	ATOM_DISP_CONNECTOR_CAPS_RECORD_TYPE = 23,
-+	ATOM_BRACKET_LAYOUT_V2_RECORD_TYPE = 25,
-+	ATOM_RECORD_END_TYPE = 0xFF,
+diff --git a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+index f5cb8932bd5c..7dbc9fb55459 100644
+--- a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
++++ b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+@@ -100,6 +100,8 @@ enum dmub_asic {
+ 	DMUB_ASIC_DCN31B,
+ 	DMUB_ASIC_DCN315,
+ 	DMUB_ASIC_DCN316,
++	DMUB_ASIC_DCN32,
++	DMUB_ASIC_DCN321,
+ 	DMUB_ASIC_MAX,
  };
  
- struct atom_common_record_header
-@@ -760,6 +762,19 @@ struct atom_hpd_int_record
-   uint8_t  plugin_pin_state;
- };
+diff --git a/drivers/gpu/drm/amd/display/include/dal_asic_id.h b/drivers/gpu/drm/amd/display/include/dal_asic_id.h
+index 310f8779db67..11391eead954 100644
+--- a/drivers/gpu/drm/amd/display/include/dal_asic_id.h
++++ b/drivers/gpu/drm/amd/display/include/dal_asic_id.h
+@@ -247,6 +247,14 @@ enum {
  
-+struct atom_connector_caps_record {
-+	struct atom_common_record_header
-+		record_header; //record_type = ATOM_CONN_CAP_RECORD_TYPE
-+	uint16_t connector_caps; //01b if internal display is checked; 10b if internal BL is checked; 0 of Not
-+};
+ #define ASICREV_IS_GC_10_3_7(eChipRev) ((eChipRev >= GC_10_3_7_A0) && (eChipRev < GC_10_3_7_UNKNOWN))
+ 
++#define AMDGPU_FAMILY_GC_11_0_0 145
++#define GC_11_0_0_A0 0x1
++#define GC_11_0_2_A0 0x10
++#define GC_11_UNKNOWN 0xFF
 +
-+struct atom_connector_speed_record {
-+	struct atom_common_record_header
-+		record_header; //record_type = ATOM_CONN_SPEED_UPTO
-+	uint32_t connector_max_speed; // connector Max speed attribute, it sets 8100 in Mhz when DP connector @8.1Ghz.
-+	uint16_t reserved;
-+};
++#define ASICREV_IS_GC_11_0_0(eChipRev) (eChipRev < GC_11_0_2_A0)
++#define ASICREV_IS_GC_11_0_2(eChipRev) (eChipRev >= GC_11_0_2_A0 && eChipRev < GC_11_UNKNOWN)
 +
- // Bit maps for ATOM_ENCODER_CAP_RECORD.usEncoderCap
- enum atom_encoder_caps_def
- {
-@@ -885,6 +900,21 @@ struct  atom_bracket_layout_record
-   uint8_t reserved;
-   struct atom_connector_layout_info  conn_info[1];
- };
-+struct atom_bracket_layout_record_v2 {
-+	struct atom_common_record_header
-+		record_header; //record_type =  ATOM_BRACKET_LAYOUT_RECORD_TYPE
-+	uint8_t bracketlen; //Bracket Length in mm
-+	uint8_t bracketwidth; //Bracket Width in mm
-+	uint8_t conn_num; //Connector numbering
-+	uint8_t mini_type; //Mini Type (0 = Normal; 1 = Mini)
-+	uint8_t reserved1;
-+	uint8_t reserved2;
-+};
-+
-+enum atom_connector_layout_info_mini_type_def {
-+	MINI_TYPE_NORMAL = 0,
-+	MINI_TYPE_MINI = 1,
-+};
- 
- enum atom_display_device_tag_def{
-   ATOM_DISPLAY_LCD1_SUPPORT            = 0x0002, //an embedded display is either an LVDS or eDP signal type of display
-@@ -911,6 +941,19 @@ struct atom_display_object_path_v2
-   uint8_t  reserved;
+ /*
+  * ASIC chip ID
+  */
+diff --git a/drivers/gpu/drm/amd/display/include/dal_types.h b/drivers/gpu/drm/amd/display/include/dal_types.h
+index bf9085fc5105..775c640fc820 100644
+--- a/drivers/gpu/drm/amd/display/include/dal_types.h
++++ b/drivers/gpu/drm/amd/display/include/dal_types.h
+@@ -59,6 +59,8 @@ enum dce_version {
+ 	DCN_VERSION_3_1,
+ 	DCN_VERSION_3_15,
+ 	DCN_VERSION_3_16,
++	DCN_VERSION_3_2,
++	DCN_VERSION_3_21,
+ 	DCN_VERSION_MAX
  };
  
-+struct atom_display_object_path_v3 {
-+	uint16_t display_objid; //Connector Object ID or Misc Object ID
-+	uint16_t disp_recordoffset;
-+	uint16_t encoderobjid; //first encoder closer to the connector, could be either an external or intenal encoder
-+	uint16_t reserved1; //only on USBC case, otherwise always = 0
-+	uint16_t reserved2; //reserved and always = 0
-+	uint16_t reserved3; //reserved and always = 0
-+	//a supported device vector, each display path starts with this.the paths are enumerated in the way of priority,
-+	//a path appears first
-+	uint16_t device_tag;
-+	uint16_t reserved4; //reserved and always = 0
-+};
-+
- struct display_object_info_table_v1_4
- {
-   struct    atom_common_table_header  table_header;
-@@ -920,6 +963,15 @@ struct display_object_info_table_v1_4
-   struct    atom_display_object_path_v2 display_path[8];   //the real number of this included in the structure is calculated by using the (whole structure size - the header size- number_of_path)/size of atom_display_object_path
- };
- 
-+struct display_object_info_table_v1_5 {
-+	struct atom_common_table_header table_header;
-+	uint16_t supporteddevices;
-+	uint8_t number_of_path;
-+	uint8_t reserved;
-+	// the real number of this included in the structure is calculated by using the
-+	// (whole structure size - the header size- number_of_path)/size of atom_display_object_path
-+	struct atom_display_object_path_v3 display_path[8];
-+};
- 
- /* 
-   ***************************************************************************
-@@ -1080,17 +1132,73 @@ struct atom_dc_golden_table_v1
- 	uint32_t reserved[23];
- };
- 
--enum dce_info_caps_def
-+enum dce_info_caps_def {
-+	// only for VBIOS
-+	DCE_INFO_CAPS_FORCE_DISPDEV_CONNECTED = 0x02,
-+	// only for VBIOS
-+	DCE_INFO_CAPS_DISABLE_DFP_DP_HBR2 = 0x04,
-+	// only for VBIOS
-+	DCE_INFO_CAPS_ENABLE_INTERLAC_TIMING = 0x08,
-+	// only for VBIOS
-+	DCE_INFO_CAPS_LTTPR_SUPPORT_ENABLE = 0x20,
-+	DCE_INFO_CAPS_VBIOS_LTTPR_TRANSPARENT_ENABLE = 0x40,
-+};
-+
-+struct atom_display_controller_info_v4_5
- {
--  // only for VBIOS
--  DCE_INFO_CAPS_FORCE_DISPDEV_CONNECTED  =0x02,      
--  // only for VBIOS
--  DCE_INFO_CAPS_DISABLE_DFP_DP_HBR2      =0x04,
--  // only for VBIOS
--  DCE_INFO_CAPS_ENABLE_INTERLAC_TIMING   =0x08,
--  // only for VBIOS
--  DCE_INFO_CAPS_LTTPR_SUPPORT_ENABLE	 =0x20,
--  DCE_INFO_CAPS_VBIOS_LTTPR_TRANSPARENT_ENABLE = 0x40,
-+  struct  atom_common_table_header  table_header;
-+  uint32_t display_caps;
-+  uint32_t bootup_dispclk_10khz;
-+  uint16_t dce_refclk_10khz;
-+  uint16_t i2c_engine_refclk_10khz;
-+  uint16_t dvi_ss_percentage;       // in unit of 0.001%
-+  uint16_t dvi_ss_rate_10hz;
-+  uint16_t hdmi_ss_percentage;      // in unit of 0.001%
-+  uint16_t hdmi_ss_rate_10hz;
-+  uint16_t dp_ss_percentage;        // in unit of 0.001%
-+  uint16_t dp_ss_rate_10hz;
-+  uint8_t  dvi_ss_mode;             // enum of atom_spread_spectrum_mode
-+  uint8_t  hdmi_ss_mode;            // enum of atom_spread_spectrum_mode
-+  uint8_t  dp_ss_mode;              // enum of atom_spread_spectrum_mode
-+  uint8_t  ss_reserved;
-+  // DFP hardcode mode number defined in StandardVESA_TimingTable when EDID is not available
-+  uint8_t  dfp_hardcode_mode_num;
-+  // DFP hardcode mode refreshrate defined in StandardVESA_TimingTable when EDID is not available
-+  uint8_t  dfp_hardcode_refreshrate;
-+  // VGA hardcode mode number defined in StandardVESA_TimingTable when EDID is not avablable
-+  uint8_t  vga_hardcode_mode_num;
-+  // VGA hardcode mode number defined in StandardVESA_TimingTable when EDID is not avablable
-+  uint8_t  vga_hardcode_refreshrate;
-+  uint16_t dpphy_refclk_10khz;
-+  uint16_t hw_chip_id;
-+  uint8_t  dcnip_min_ver;
-+  uint8_t  dcnip_max_ver;
-+  uint8_t  max_disp_pipe_num;
-+  uint8_t  max_vbios_active_disp_pipe_num;
-+  uint8_t  max_ppll_num;
-+  uint8_t  max_disp_phy_num;
-+  uint8_t  max_aux_pairs;
-+  uint8_t  remotedisplayconfig;
-+  uint32_t dispclk_pll_vco_freq;
-+  uint32_t dp_ref_clk_freq;
-+  // Worst case blackout duration for a memory clock frequency (p-state) change, units of 100s of ns (0.1 us)
-+  uint32_t max_mclk_chg_lat;
-+  // Worst case memory self refresh exit time, units of 100ns of ns (0.1us)
-+  uint32_t max_sr_exit_lat;
-+  // Worst case memory self refresh entry followed by immediate exit time, units of 100ns of ns (0.1us)
-+  uint32_t max_sr_enter_exit_lat;
-+  uint16_t dc_golden_table_offset;  // point of struct of atom_dc_golden_table_vxx
-+  uint16_t dc_golden_table_ver;
-+  uint32_t aux_dphy_rx_control0_val;
-+  uint32_t aux_dphy_tx_control_val;
-+  uint32_t aux_dphy_rx_control1_val;
-+  uint32_t dc_gpio_aux_ctrl_0_val;
-+  uint32_t dc_gpio_aux_ctrl_1_val;
-+  uint32_t dc_gpio_aux_ctrl_2_val;
-+  uint32_t dc_gpio_aux_ctrl_3_val;
-+  uint32_t dc_gpio_aux_ctrl_4_val;
-+  uint32_t dc_gpio_aux_ctrl_5_val;
-+  uint32_t reserved[26];
- };
- 
- /* 
-@@ -1806,6 +1914,63 @@ struct atom_smu_info_v3_3 {
-   uint32_t reserved;
- };
- 
-+struct atom_smu_info_v3_5
-+{
-+  struct   atom_common_table_header  table_header;
-+  uint8_t  smuip_min_ver;
-+  uint8_t  smuip_max_ver;
-+  uint8_t  waflclk_ss_mode;
-+  uint8_t  gpuclk_ss_mode;
-+  uint16_t sclk_ss_percentage;
-+  uint16_t sclk_ss_rate_10hz;
-+  uint16_t gpuclk_ss_percentage;    // in unit of 0.001%
-+  uint16_t gpuclk_ss_rate_10hz;
-+  uint32_t core_refclk_10khz;
-+  uint32_t syspll0_1_vco_freq_10khz;
-+  uint32_t syspll0_2_vco_freq_10khz;
-+  uint8_t  pcc_gpio_bit;            // GPIO bit shift in SMU_GPIOPAD_A configured for PCC, =0xff means invalid
-+  uint8_t  pcc_gpio_polarity;       // GPIO polarity for CTF
-+  uint16_t smugoldenoffset;
-+  uint32_t syspll0_0_vco_freq_10khz;
-+  uint32_t bootup_smnclk_10khz;
-+  uint32_t bootup_socclk_10khz;
-+  uint32_t bootup_mp0clk_10khz;
-+  uint32_t bootup_mp1clk_10khz;
-+  uint32_t bootup_lclk_10khz;
-+  uint32_t bootup_dcefclk_10khz;
-+  uint32_t ctf_threshold_override_value;
-+  uint32_t syspll3_0_vco_freq_10khz;
-+  uint32_t syspll3_1_vco_freq_10khz;
-+  uint32_t bootup_fclk_10khz;
-+  uint32_t bootup_waflclk_10khz;
-+  uint32_t smu_info_caps;
-+  uint16_t waflclk_ss_percentage;    // in unit of 0.001%
-+  uint16_t smuinitoffset;
-+  uint32_t bootup_dprefclk_10khz;
-+  uint32_t bootup_usbclk_10khz;
-+  uint32_t smb_slave_address;
-+  uint32_t cg_fdo_ctrl0_val;
-+  uint32_t cg_fdo_ctrl1_val;
-+  uint32_t cg_fdo_ctrl2_val;
-+  uint32_t gdfll_as_wait_ctrl_val;
-+  uint32_t gdfll_as_step_ctrl_val;
-+  uint32_t bootup_dtbclk_10khz;
-+  uint32_t fclk_syspll_refclk_10khz;
-+  uint32_t smusvi_svc0_val;
-+  uint32_t smusvi_svc1_val;
-+  uint32_t smusvi_svd0_val;
-+  uint32_t smusvi_svd1_val;
-+  uint32_t smusvi_svt0_val;
-+  uint32_t smusvi_svt1_val;
-+  uint32_t cg_tach_ctrl_val;
-+  uint32_t cg_pump_ctrl1_val;
-+  uint32_t cg_pump_tach_ctrl_val;
-+  uint32_t thm_ctf_delay_val;
-+  uint32_t thm_thermal_int_ctrl_val;
-+  uint32_t thm_tmon_config_val;
-+  uint32_t reserved[16];
-+};
-+
- struct atom_smu_info_v3_6
- {
- 	struct   atom_common_table_header  table_header;
 -- 
 2.35.3
 
