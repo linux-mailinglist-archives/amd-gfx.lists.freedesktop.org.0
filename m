@@ -2,34 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63B8F533E31
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 May 2022 15:48:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99E6B533AB3
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 May 2022 12:37:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 437A110F6CF;
-	Wed, 25 May 2022 13:48:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DFA510FB87;
+	Wed, 25 May 2022 10:37:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-57.freemail.mail.aliyun.com
- (out30-57.freemail.mail.aliyun.com [115.124.30.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7D1E10F29D;
- Wed, 25 May 2022 09:37:10 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R421e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01e04426;
- MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=10; SR=0;
- TI=SMTPD_---0VEN0eTg_1653471423; 
-Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
- fp:SMTPD_---0VEN0eTg_1653471423) by smtp.aliyun-inc.com(127.0.0.1);
- Wed, 25 May 2022 17:37:07 +0800
-From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
-To: alexander.deucher@amd.com
-Subject: [PATCH] drm/amdgpu: make program_imu_rlc_ram static
-Date: Wed, 25 May 2022 17:37:02 +0800
-Message-Id: <20220525093702.57166-1-jiapeng.chong@linux.alibaba.com>
-X-Mailer: git-send-email 2.20.1.7.g153144c
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
+ [IPv6:2a00:1450:4864:20::631])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0037110FB79
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 May 2022 10:37:12 +0000 (UTC)
+Received: by mail-ej1-x631.google.com with SMTP id gh17so27762320ejc.6
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 May 2022 03:37:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=message-id:date:mime-version:user-agent:subject:content-language:to
+ :cc:references:from:in-reply-to:content-transfer-encoding;
+ bh=DnkMgSxUyCDyvGcQQ9rFPWTMQ48F3Vvelx4B1SQ/GOw=;
+ b=Hix+otmA8QYUttXA3Dejqob9pGSapLvHmnzdj81zyxPhe7roDgCho7Unt6mK/QB6XT
+ 13uGIUQvB8Ungop3tX+sv1feFxPpJ1gkrQMBgE2cCoAvMCoJe2QNjPOELUoI+Ion5Yrl
+ HbEit2uj5hqzWS/JQcbjhm/7QgK8supc5AAqvTj9ewQh6/t0t7LIwCPiJ/vt2Neiz7vq
+ aAd/B5xLqTaFMLhCHlyy1knZtEGSEfSRyxAEPFqnOgdMWfjK02eLVN4FBc2HBEL2EGb9
+ ixZOLNApdPAhXzY357WtStXbd0nW7kYL2sVNMO0TMui7gRK6MgRo6nlvJSkWbLCzYJI9
+ qVaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=DnkMgSxUyCDyvGcQQ9rFPWTMQ48F3Vvelx4B1SQ/GOw=;
+ b=EpCTG6x7t0l6IhmzDm9fPFlN1YNmrl7MS0aScgR1d9Nxa2g3FhZs2uvUTM9yQa9RKC
+ +QXLvm0GNGHSrtR8GXHeQu7WoflkJX0lr1mr3xS1sN0GS9pUP5H/NWAUIgqWP5ihqgdN
+ 704DEwiMJWqmgC+irGGNCTCY0yI04Qux7jUwLLWuTIzARdKlyaSwaGMrXxsob1ohc2ny
+ bsk4wMDCKoCh0oui9tgvnoyI6FSEM3XODAzFmUbSjwpjfH77j1x9h6+SBqjfLJWqicZm
+ xdOJIFijRsUFzs+wiOOFBdwFuMdDKe1O9U8IT9Vq0B6luSEspH0GK3ciE6huZp1TzQ6X
+ fQjQ==
+X-Gm-Message-State: AOAM532BuDg9gDwspDBSnQL1GxfrIfOfoPgUEsgxHaAg33cmmVUk4Hxo
+ 71k1xzlmUzHeekKOavpVO6WL9fR1XS8=
+X-Google-Smtp-Source: ABdhPJz40vZvIwG3AIkvUnkmcqol0PYdONREz2/fLVRPkjU2E0Wq4n3AU6INhaIcUAsP7nwAiM8+PQ==
+X-Received: by 2002:a17:906:4fc4:b0:6da:b4c6:fadb with SMTP id
+ i4-20020a1709064fc400b006dab4c6fadbmr29517412ejw.282.1653475031512; 
+ Wed, 25 May 2022 03:37:11 -0700 (PDT)
+Received: from [192.168.178.21] (p57b0bdaa.dip0.t-ipconnect.de.
+ [87.176.189.170]) by smtp.gmail.com with ESMTPSA id
+ n20-20020a509354000000b0042aa23fa93bsm10773958eda.20.2022.05.25.03.37.10
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 25 May 2022 03:37:11 -0700 (PDT)
+Message-ID: <77ece2f1-97e6-f44d-0a30-971b28693c3c@gmail.com>
+Date: Wed, 25 May 2022 12:37:09 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH] drm/amdkfd: don't add DOORBELL and MMIO BOs to validate
+ list
+Content-Language: en-US
+To: Lang Yu <Lang.Yu@amd.com>
+References: <20220525084324.1354886-1-Lang.Yu@amd.com>
+ <eebb0612-6703-9408-ebf6-2813e13139ef@gmail.com>
+ <Yo31/hZQ7qzs2KyO@lang-desktop>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <Yo31/hZQ7qzs2KyO@lang-desktop>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 25 May 2022 13:48:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,40 +75,84 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, airlied@linux.ie,
- Xinhui.Pan@amd.com, Abaci Robot <abaci@linux.alibaba.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, daniel@ffwll.ch, christian.koenig@amd.com
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>, Huang Rui <ray.huang@amd.com>,
+ amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This symbol is not used outside of imu_v11_0.c, so marks it
-static.
+Am 25.05.22 um 11:25 schrieb Lang Yu:
+> On 05/25/ , Christian König wrote:
+>> Am 25.05.22 um 10:43 schrieb Lang Yu:
+>>> DOORBELL and MMIO BOs never move once created.
+>>> No need to validate them after that.
+>> Yeah, but you still need to make sure their page tables are up to date.
+>>
+>> So this here might break horrible.
+> These BOs(and attachments) are validated when allocated and mapped.
+> Their page tables should be determined at this time.
+>
+> The kfd_bo_list is used to restore BOs after evictions.
+>
+> Do you mean their page tabes could be changed? Thanks.
 
-Fixes the following w1 warning:
+Yes, page tables can be destroyed under memory pressure as well.
 
-drivers/gpu/drm/amd/amdgpu/imu_v11_0.c:302:6: warning: no previous
-prototype for ‘program_imu_rlc_ram’ [-Wmissing-prototypes].
+Not sure how the KFD handles that, but in theory we should have every BO 
+used by a process on the validation list. Even the ones pinned.
 
-Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
----
- drivers/gpu/drm/amd/amdgpu/imu_v11_0.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Regards,
+Christian.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/imu_v11_0.c b/drivers/gpu/drm/amd/amdgpu/imu_v11_0.c
-index 5d2dfeff8fe5..d63d3f2b8a16 100644
---- a/drivers/gpu/drm/amd/amdgpu/imu_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/imu_v11_0.c
-@@ -299,7 +299,7 @@ static const struct imu_rlc_ram_golden imu_rlc_ram_golden_11_0_2[] =
- 	IMU_RLC_RAM_GOLDEN_VALUE(GC, 0, regCPG_PSP_DEBUG, CPG_PSP_DEBUG__GPA_OVERRIDE_MASK, 0)
- };
- 
--void program_imu_rlc_ram(struct amdgpu_device *adev,
-+static void program_imu_rlc_ram(struct amdgpu_device *adev,
- 				const struct imu_rlc_ram_golden *regs,
- 				const u32 array_size)
- {
--- 
-2.20.1.7.g153144c
+>
+>
+>> Christian.
+>>
+>>> Signed-off-by: Lang Yu <Lang.Yu@amd.com>
+>>> ---
+>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 14 +++++++++-----
+>>>    1 file changed, 9 insertions(+), 5 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+>>> index 34ba9e776521..45de9cadd771 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+>>> @@ -808,6 +808,10 @@ static void add_kgd_mem_to_kfd_bo_list(struct kgd_mem *mem,
+>>>    	struct ttm_validate_buffer *entry = &mem->validate_list;
+>>>    	struct amdgpu_bo *bo = mem->bo;
+>>> +	if (mem->alloc_flags & (KFD_IOC_ALLOC_MEM_FLAGS_DOORBELL |
+>>> +				KFD_IOC_ALLOC_MEM_FLAGS_MMIO_REMAP))
+>>> +		return;
+>>> +
+>>>    	INIT_LIST_HEAD(&entry->head);
+>>>    	entry->num_shared = 1;
+>>>    	entry->bo = &bo->tbo;
+>>> @@ -824,6 +828,10 @@ static void remove_kgd_mem_from_kfd_bo_list(struct kgd_mem *mem,
+>>>    {
+>>>    	struct ttm_validate_buffer *bo_list_entry;
+>>> +	if (mem->alloc_flags & (KFD_IOC_ALLOC_MEM_FLAGS_DOORBELL |
+>>> +				KFD_IOC_ALLOC_MEM_FLAGS_MMIO_REMAP))
+>>> +		return;
+>>> +
+>>>    	bo_list_entry = &mem->validate_list;
+>>>    	mutex_lock(&process_info->lock);
+>>>    	list_del(&bo_list_entry->head);
+>>> @@ -1649,7 +1657,6 @@ int amdgpu_amdkfd_gpuvm_free_memory_of_gpu(
+>>>    	unsigned long bo_size = mem->bo->tbo.base.size;
+>>>    	struct kfd_mem_attachment *entry, *tmp;
+>>>    	struct bo_vm_reservation_context ctx;
+>>> -	struct ttm_validate_buffer *bo_list_entry;
+>>>    	unsigned int mapped_to_gpu_memory;
+>>>    	int ret;
+>>>    	bool is_imported = false;
+>>> @@ -1677,10 +1684,7 @@ int amdgpu_amdkfd_gpuvm_free_memory_of_gpu(
+>>>    	}
+>>>    	/* Make sure restore workers don't access the BO any more */
+>>> -	bo_list_entry = &mem->validate_list;
+>>> -	mutex_lock(&process_info->lock);
+>>> -	list_del(&bo_list_entry->head);
+>>> -	mutex_unlock(&process_info->lock);
+>>> +	remove_kgd_mem_from_kfd_bo_list(mem, process_info);
+>>>    	/* No more MMU notifiers */
+>>>    	amdgpu_mn_unregister(mem->bo);
 
