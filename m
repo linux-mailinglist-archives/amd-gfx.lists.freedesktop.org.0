@@ -2,52 +2,92 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB56E53505A
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 May 2022 16:06:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5339534CBE
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 May 2022 11:49:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AD8810E04B;
-	Thu, 26 May 2022 14:06:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2D1B10EA96;
+	Thu, 26 May 2022 09:49:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 487 seconds by postgrey-1.36 at gabe;
- Thu, 26 May 2022 09:44:39 UTC
-Received: from out203-205-221-236.mail.qq.com (out203-205-221-236.mail.qq.com
- [203.205.221.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B617F10EA80
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 May 2022 09:44:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
- t=1653558273; bh=YiVO9Z+7BbDvulQLJMKhwpIkzvy8COlR1+pQfWMbqW8=;
- h=From:To:Cc:Subject:Date;
- b=fhrxWVslmrxmohgox4hX4OMR3czZPGf/9F+CqrO8g7BS00IeeRRXImp3RpmFf9gk3
- NHTYG3jSBBYw+GWWZ7GiLxDRi0pI75sy0yiAiLs9N1d8dWjMHohNPrbzrzlBnZOkXy
- sTrhcI3hQtuYqQigu+rxA1VLpvz+tqlWA3wtasNI=
-Received: from localhost.localdomain ([116.128.244.169])
- by newxmesmtplogicsvrsza7.qq.com (NewEsmtp) with SMTP
- id 74B23E43; Thu, 26 May 2022 17:29:11 +0800
-X-QQ-mid: xmsmtpt1653557351t2ogozzdr
-Message-ID: <tencent_9934C5D4CD39D3C35606F674AE61310F2007@qq.com>
-X-QQ-XMAILINFO: MyHh0PQai9Fp6tHOjQ0UYffo5ElvQ5paDEg2XYJB+HIITHW6nzyPwpdeFV1pvb
- 9tSW+PeFMKB8/pGBjoIwkRQqCZGP0YPYVx0uzDxkY6MbHCtUdLVw1TfZ9vfAtG8/nlHUuZ/j552m
- HC1E0JyY1OGC46TuGaPK5PyGWonxJa9mIAn4s5rIZ/uS5Ia5MKTtUIt3MRyark65fIGCcj0e+iy3
- D4Qu//IJhchvyd3VPTfsKIPuazGvYTYsVluUB/wJx9efn2LOKGOsM0e9rs4qlAlsw6kCcd+VoStJ
- pZJE2gPTQUUOzwPcly1dlinwWlV7HMdN9YPAe4XJ2gk28BEapk4nJUKGsl6UOE1JolFQEqks7uxO
- OjvS9tO52WWICLTsPqdpcu32wGU0h4iCtMkDW+rP0cGTE1gyDFmBQD4yT+RGzuX7p6qkvv2KRdnz
- dufEmrwqk2KFSTWfn5qL72dtTeuoFSAPWCqve9WYfvh5ng/5hHjunu8P1ggiR0l2YgRaqvu2853v
- bPFf4LFxaYydBscJ6HT+kWgAJLXAv4Ha+8RkJXCFY9SLdhhtVDWZf5mGPFcSwgABoPPUiPEitNlm
- Lt2QvNQnlqEn/UN3EXL9OOPqu9zIxbzXTZD0a3PvYr7NEhLPZPFOETSOTN+pK74FsMG4mWaM7pry
- WN+n7CztCgbRjnnBHlYRVdWpdLXvOYXGhC7n8lBVnI3g/VBADAzyriEh1ymeRbpGY63L8QX3dmcg
- gfxheZiGVmGkxqvGD/RQSg9ga9KWONY6Mx91IlYOgHqmZTnV2gnBitjPrDFE7Jmzbtrm/gTndjgs
- JI9q/PLht8/zzzMfr+h5NOxr/FyOx4DByyxp31KEZ/PdjI6koewk1yDNSxoFRbFkpuInGjqpi5UQ
- ==
-From: 1064094935@qq.com
-To: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH] drm/amd: Fix spelling typo in comments
-Date: Thu, 26 May 2022 17:29:09 +0800
-X-OQ-MSGID: <20220526092909.1164946-1-1064094935@qq.com>
-X-Mailer: git-send-email 2.25.1
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2041.outbound.protection.outlook.com [40.107.94.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 035F310EA96
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 May 2022 09:49:12 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QQA2rYkvJdXXvYjHzy3najuR1ro33ZcAIyWPFxW9SVFsnIJ8Oed2ExHxRF8h0vdw5JUrd5VAxUxUcZQiZh9UAqoPPTIcUkLLQKawKLEjrypYOZNX2SQEtuGrEMjYdKKyu7uJqRbSeSB82hbdolaO+EGBkJIcRKDBB/aVAD1CP3wowJsmmYicrXuW5OWItb1Jy3uYtP0V1HxLJHrmN9C8MeD04+Gp3F4bxOcA+eq5femmD4TlhLWVqqJEUisNqry4dS3+oaHWIAZhiGZfwZ1Z0tri7Z4MRmbqzfk9gKn1hC/jOiHaFttDrvO8U9TmjMUAADKUCr253Z6JcbpB8004PA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8VIllgd1KJ+73vHRFQngOtf1OIBBkChaaMUdyEzqZKM=;
+ b=A4idKk/adXwjIAuW+XjKgoAy0sYNz+Ol8Zf8ZhGH3Vi7Cilsl3yGSHv0ni61pg6d9P3BLPs/Xg9hPph3UL1YN7uM2YAfzxUSSxaOprhtnjBF20fqGn57RpeJysk0u3eGsLUQ1TvSaZj1r37lhvaffb7+1g0JiH+Mk1SJH12lKbIhHzzdEFfxat7j7Z9NrZMnfXocCgVMpNuvUF6KYgD5ODD6TERT2AHjTtYgb/O/XDp1DRavihIQJjRgeaex7F1hnGJAx8738fAwefntICUOedttSirHaA2UzZ7y0PuUp49Y5xS06UW6uTERSrHhlDP5R2UigOyv7YWEklmLgfGi5w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8VIllgd1KJ+73vHRFQngOtf1OIBBkChaaMUdyEzqZKM=;
+ b=31tJvpiYvQyFUBXbbqjz4VvnODUIbMs83EEfBKyxAdt0lfMTferF7L4m066cMyPsgWsz4Rilf54qR4S+amsu8qOjnjDZTsNGY1aGECQamemxirjJ1jbPZGrwMmkwWknsfGNWNzi4ZKQtandzwZTfvvO1GEIDvCl+V82NVlq7/pI=
+Received: from BN0PR07CA0018.namprd07.prod.outlook.com (2603:10b6:408:141::25)
+ by DM4PR12MB5166.namprd12.prod.outlook.com (2603:10b6:5:395::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.13; Thu, 26 May
+ 2022 09:49:10 +0000
+Received: from BN8NAM11FT036.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:141:cafe::60) by BN0PR07CA0018.outlook.office365.com
+ (2603:10b6:408:141::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.13 via Frontend
+ Transport; Thu, 26 May 2022 09:49:09 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT036.mail.protection.outlook.com (10.13.177.168) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5293.13 via Frontend Transport; Thu, 26 May 2022 09:49:09 +0000
+Received: from amar-X570-AORUS-ELITE.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Thu, 26 May 2022 04:49:05 -0500
+From: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH v2 1/2] drm/amdgpu: save the reset dump register value for
+ devcoredump
+Date: Thu, 26 May 2022 15:18:38 +0530
+Message-ID: <20220526094839.36709-1-Amaranath.Somalapuram@amd.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 26 May 2022 14:06:23 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 760788aa-087b-454f-d681-08da3efcfb5a
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5166:EE_
+X-Microsoft-Antispam-PRVS: <DM4PR12MB51661A96494C55B92115A64EF8D99@DM4PR12MB5166.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7n4WkerTXsHz2Yy3trj18vh/EwBxwD/gldVvA7HOsJs/Dn5YptyJP7cAUqWhlFIDIAVwl1PlSP45NYlwl8wTqablJN1Zr6ADiu95x8hA0vMHyiuRPEs0gfFff6jXmMg3A9C5BXgmTwLlWWxWwSLkWgqUuvEdqwNZsWdI7xG8D2Z1GoaYeidddyCiOEssQnTPEGLooLg++p+KIkPimou9FXRebCaz34bbph9zX5TQpGrRNPEdoMfvcFsk1/9Uz72YzDjnUSOYBHRiy71n1iycpNzK1RNWv/k7ApNWGtb17rLNXrWoJbweteCS0Bex0zB0A05xjNC8IObMHcg1VkuO7PE9nl6tepAQZZYIqC26tQXZfbhDwz8DqgTIq9VXcud12kKVLj7Yl0vmAHMtBCAALaZ4w1V9HmLkGy/utwxwPeP6ewzCmbU9362VDb9Uy/uUccwXo3AjOIZ0VSmgpai3bAQGvAN/Kj8Wj/AJOkBWhxd7ZyUd6z73VHuBuBH6UNJyXsMRP2Do/v09123TD2To8I8K9VDRlQz4clkaPE3617btM5cmHafp9Z/QRvlrdBYglf+kTTPEA/AwZX6yX+Qfa8dD5YXjxXRgo4gKHTOWRbO6uMdnJB9BQf5PyRVYbPH3cDgQTexAyBzN90BnwXXJIeIJBzXeiJQ7fLbZ/DyQ5MBaCnOym5WQ7TRyP1WzxKpQcoiOeRVRrou/PE2borQ78A==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(86362001)(70206006)(70586007)(4326008)(508600001)(36756003)(8676002)(54906003)(316002)(6916009)(82310400005)(36860700001)(47076005)(40460700003)(1076003)(2906002)(2616005)(6666004)(5660300002)(7696005)(26005)(356005)(8936002)(426003)(83380400001)(81166007)(336012)(16526019)(186003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2022 09:49:09.5436 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 760788aa-087b-454f-d681-08da3efcfb5a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT036.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5166
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,119 +99,86 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Xinhui.Pan@amd.com,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- pengfuyuan <pengfuyuan@kylinos.cn>, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, k2ci <kernel-bot@kylinos.cn>,
- christian.koenig@amd.com
+Cc: alexander.deucher@amd.com,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ christian.koenig@amd.com, shashank.sharma@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: pengfuyuan <pengfuyuan@kylinos.cn>
+Allocate memory for register value and use the same values for devcoredump.
+v1 -> V2: Change krealloc_array() to kmalloc_array()
 
-Fix spelling typo in comments.
-
-Reported-by: k2ci <kernel-bot@kylinos.cn>
-Signed-off-by: pengfuyuan <pengfuyuan@kylinos.cn>
+Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h                       | 2 +-
- drivers/gpu/drm/amd/amdgpu/mes_api_def.h                  | 2 +-
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c         | 2 +-
- drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c               | 4 ++--
- drivers/gpu/drm/amd/display/modules/vmid/vmid.c           | 2 +-
- drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/arcturus_ppsmc.h | 2 +-
- 6 files changed, 7 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h         | 1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 7 +++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  | 6 +++---
+ 3 files changed, 11 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 7606e3b6361e..35c303c865be 100644
+index 76df583663c7..c79d9992b113 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -271,7 +271,7 @@ extern int amdgpu_vcnfw_log;
- #define CIK_CURSOR_WIDTH 128
- #define CIK_CURSOR_HEIGHT 128
+@@ -1042,6 +1042,7 @@ struct amdgpu_device {
  
--/* smasrt shift bias level limits */
-+/* smart shift bias level limits */
- #define AMDGPU_SMARTSHIFT_MAX_BIAS (100)
- #define AMDGPU_SMARTSHIFT_MIN_BIAS (-100)
+ 	/* reset dump register */
+ 	uint32_t                        *reset_dump_reg_list;
++	uint32_t			*reset_dump_reg_value;
+ 	int                             num_regs;
  
-diff --git a/drivers/gpu/drm/amd/amdgpu/mes_api_def.h b/drivers/gpu/drm/amd/amdgpu/mes_api_def.h
-index 3f4fca5fd1da..c31abf554878 100644
---- a/drivers/gpu/drm/amd/amdgpu/mes_api_def.h
-+++ b/drivers/gpu/drm/amd/amdgpu/mes_api_def.h
-@@ -33,7 +33,7 @@
-  */
- enum { API_FRAME_SIZE_IN_DWORDS = 64 };
+ 	struct amdgpu_reset_domain	*reset_domain;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+index eedb12f6b8a3..f3ac7912c29c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+@@ -1709,17 +1709,24 @@ static ssize_t amdgpu_reset_dump_register_list_write(struct file *f,
+ 		i++;
+ 	} while (len < size);
  
--/* To avoid command in scheduler context to be overwritten whenenver mutilple
-+/* To avoid command in scheduler context to be overwritten whenever multiple
-  * interrupts come in, this creates another queue.
-  */
- enum { API_NUMBER_OF_COMMAND_MAX = 32 };
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 62139ff35476..8855a75dc75e 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -6705,7 +6705,7 @@ static void dm_disable_vblank(struct drm_crtc *crtc)
- 	dm_set_vblank(crtc, false);
++	new = kmalloc_array(i, sizeof(uint32_t), GFP_KERNEL);
++	if (!new) {
++		ret = -ENOMEM;
++		goto error_free;
++	}
+ 	ret = down_write_killable(&adev->reset_domain->sem);
+ 	if (ret)
+ 		goto error_free;
+ 
+ 	swap(adev->reset_dump_reg_list, tmp);
++	swap(adev->reset_dump_reg_value, new);
+ 	adev->num_regs = i;
+ 	up_write(&adev->reset_domain->sem);
+ 	ret = size;
+ 
+ error_free:
+ 	kfree(tmp);
++	kfree(new);
+ 	return ret;
  }
  
--/* Implemented only the options currently availible for the driver */
-+/* Implemented only the options currently available for the driver */
- static const struct drm_crtc_funcs amdgpu_dm_crtc_funcs = {
- 	.reset = dm_crtc_reset_state,
- 	.destroy = amdgpu_dm_crtc_destroy,
-diff --git a/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c b/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
-index 4385d19bc489..733f99a6e8e6 100644
---- a/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
-+++ b/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
-@@ -619,7 +619,7 @@ static int get_max_dsc_slices(union dsc_enc_slice_caps slice_caps)
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 4daa0e893965..866b4980a6fa 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -4720,15 +4720,15 @@ int amdgpu_device_pre_asic_reset(struct amdgpu_device *adev,
  
- 
--// Increment sice number in available sice numbers stops if possible, or just increment if not
-+// Increment slice number in available slice numbers stops if possible, or just increment if not
- static int inc_num_slices(union dsc_enc_slice_caps slice_caps, int num_slices)
+ static int amdgpu_reset_reg_dumps(struct amdgpu_device *adev)
  {
- 	// Get next bigger num slices available in common caps
-@@ -650,7 +650,7 @@ static int inc_num_slices(union dsc_enc_slice_caps slice_caps, int num_slices)
- }
- 
- 
--// Decrement sice number in available sice numbers stops if possible, or just decrement if not. Stop at zero.
-+// Decrement slice number in available slice numbers stops if possible, or just decrement if not. Stop at zero.
- static int dec_num_slices(union dsc_enc_slice_caps slice_caps, int num_slices)
- {
- 	// Get next bigger num slices available in common caps
-diff --git a/drivers/gpu/drm/amd/display/modules/vmid/vmid.c b/drivers/gpu/drm/amd/display/modules/vmid/vmid.c
-index 61ee4be35d27..2c40212d86da 100644
---- a/drivers/gpu/drm/amd/display/modules/vmid/vmid.c
-+++ b/drivers/gpu/drm/amd/display/modules/vmid/vmid.c
-@@ -66,7 +66,7 @@ static void evict_vmids(struct core_vmid *core_vmid)
- 	}
- }
- 
--// Return value of -1 indicates vmid table unitialized or ptb dne in the table
-+// Return value of -1 indicates vmid table uninitialized or ptb dne in the table
- static int get_existing_vmid_for_ptb(struct core_vmid *core_vmid, uint64_t ptb)
- {
+-	uint32_t reg_value;
  	int i;
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/arcturus_ppsmc.h b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/arcturus_ppsmc.h
-index 45f5d29bc705..15b313baa0ee 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/arcturus_ppsmc.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/arcturus_ppsmc.h
-@@ -120,7 +120,7 @@
- #define PPSMC_MSG_ReadSerialNumTop32		 0x40
- #define PPSMC_MSG_ReadSerialNumBottom32		 0x41
  
--/* paramater for MSG_LightSBR
-+/* parameter for MSG_LightSBR
-  * 1 -- Enable light secondary bus reset, only do nbio respond without further handling,
-  *      leave driver to handle the real reset
-  * 0 -- Disable LightSBR, default behavior, SMU will pass the reset to PSP
+ 	lockdep_assert_held(&adev->reset_domain->sem);
+ 	dump_stack();
+ 
+ 	for (i = 0; i < adev->num_regs; i++) {
+-		reg_value = RREG32(adev->reset_dump_reg_list[i]);
+-		trace_amdgpu_reset_reg_dumps(adev->reset_dump_reg_list[i], reg_value);
++		adev->reset_dump_reg_value[i] = RREG32(adev->reset_dump_reg_list[i]);
++		trace_amdgpu_reset_reg_dumps(adev->reset_dump_reg_list[i],
++				adev->reset_dump_reg_value[i]);
+ 	}
+ 
+ 	return 0;
 -- 
-2.25.1
+2.32.0
 
-
-No virus found
-		Checked by Hillstone Network AntiVirus
