@@ -2,118 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 954D35354FB
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 May 2022 22:46:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC850535A07
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 May 2022 09:15:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C38BD10EBC6;
-	Thu, 26 May 2022 20:46:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40D9E10EE61;
+	Fri, 27 May 2022 07:15:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2042.outbound.protection.outlook.com [40.107.237.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B59BE10EBC6
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 May 2022 20:46:49 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ezJlLdnkE+L96apusUpiYD3uiWg6U+BaktS6BWfGrT2jcaPIvakQA0eZe8Sn7VVXaSl7tBYan5LLtMtgRI9p8K3/uz1CSG2LZ2bqq/jxgbxTBHR6rwSnrV/vwfq6hFCGn3VhKGLD1uup3vAO0L02Eo/aUWeJtVPoNxFB34CC7y0W9+oxPF9QJ+0lZR1+n+O/2fompWPaW68IWbSm5avcF2eZf0xFu8MEQKUoMvUNSkTDux2KmqjEDzbkkx7daQ26LkZyRLs5hWaNlEb6vlXRXezMuowWp68WAZKLbdyVbiZpiSo3y8ftFtPJfBMxbzjTFivYslPUX1Eo2mqbmydjaw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2uKXmhr2FLUb2hMtXY/UjHJIcM3Z4q2xYNM2C/dtEdQ=;
- b=hWoSNouu6dt16jhzHFvoq7Y3/Icw69L6YFgZ4eV3XXix3shai1OlnQBO4nKPnB6z8M3W0/AxDb6DZ4U9qGy0HJtvDPp8uRcS/NJgc7EobRhFVF0hLjEuDNuEINQdVzFP3gouElfa0OGDIZfwxhqiGBH5MsPN750tN1++ZIyQayzDxv+NmZKFvkc6cchQRKvpXpT6WH0pNXOrZtRkY7r2Htkx6XmEXl7Cj7mUsF7NjZjQ8dKvK5FdjnV4DEcPdEUyeIuOcBqdWKPGf7C8S4QwOsPV4pW1sIxiYFMNqt5LSb2tQKVr2Ruo30WbQi1Um/TEXQZ4zfh8p1wFnDCKL/rPRQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2uKXmhr2FLUb2hMtXY/UjHJIcM3Z4q2xYNM2C/dtEdQ=;
- b=mY7cnF/G/XurHDuKHYTrpd6QCzdhlKCuF28ATvnFpm8ZKSLgcqOuf/3BNXnPyvSXVqc1pUOsFX7coNPslE/trvJMIJi4WK4ovj/XNxe9i9RpW2oestKRnf877B7Qxk+tgiojuPn+/pwbad1js1aQ09eVO9+VryfToq/JnvOqHWs=
-Received: from DM8PR12MB5399.namprd12.prod.outlook.com (2603:10b6:8:34::5) by
- DM5PR12MB1162.namprd12.prod.outlook.com (2603:10b6:3:72::13) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5273.15; Thu, 26 May 2022 20:46:46 +0000
-Received: from DM8PR12MB5399.namprd12.prod.outlook.com
- ([fe80::4d97:142:bada:c300]) by DM8PR12MB5399.namprd12.prod.outlook.com
- ([fe80::4d97:142:bada:c300%5]) with mapi id 15.20.5293.013; Thu, 26 May 2022
- 20:46:46 +0000
-From: "Liu, Leo" <Leo.Liu@amd.com>
-To: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amdgpu: update VCN codec support for Yellow Carp
-Thread-Topic: [PATCH] drm/amdgpu: update VCN codec support for Yellow Carp
-Thread-Index: AQHYcUCr1A1jJ8x5lUGPihIWknmQT60xoNEg
-Date: Thu, 26 May 2022 20:46:46 +0000
-Message-ID: <DM8PR12MB53994D22058401B9BF44C42EE5D99@DM8PR12MB5399.namprd12.prod.outlook.com>
-References: <20220526203857.100936-1-alexander.deucher@amd.com>
-In-Reply-To: <20220526203857.100936-1-alexander.deucher@amd.com>
-Accept-Language: en-CA, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=cb1463a5-ec93-47ba-805c-19d61a6137a0;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2022-05-26T20:46:23Z;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d0fb3da1-a548-4f0e-e202-08da3f58d995
-x-ms-traffictypediagnostic: DM5PR12MB1162:EE_
-x-microsoft-antispam-prvs: <DM5PR12MB1162B0F7D68D3321647493E4E5D99@DM5PR12MB1162.namprd12.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: FbPgot5XwyQt/J2RsvU+Em8lRUkgojibBxq4lmQLANXYlKJgPff6LL1ErX08kuBkXCFjdNsv9F3W3bPCfrXV5l8Ehq4Wl2xUY1ToCjMPV1IiZk6owrkCb8DYyijmoIIyEefEcCBLzcXs6sDu4iX29cwNRgQHudILeeNz8S0kjvbiGq7lAxdhgFZ/Qe/2gpmtiYErcnioXf0cu3YPsXaSQ5+e/LjY82fPTU+pVZm+nTu8gyK83UOzCg8CLYVGwwxvOieJFcSySKG82IvmCgRbb/bcclt0pQtqb1ZsIJp18ee42ihhlMhAmwafjpWaTRtiIaDkfrrMKBOT24fBjTAT/1SH4Thr8Bv76u9DcDvDdi+IDlb0n5pwogQgFsHRfTxgMkpHjw+5U1OXRdjBOq2mFi7X1LEpFlPF35Pt5mobY3kI3amsINnDofqdKgB2WrVs0LbvCZ4CXbZFrRskbwmWfcGv57IHB0g/REu4VDpOUZqmUHNPn+J7e+sJnhCtAdDCqcpyNpez8JWvDcpZg1I8sz90pdc4fdm6zToMIlzaHSKdRqAJIKhHb5gdqA4gDgFZ2jjQLJsUwjfJS8jBy+2pi/pTdeNt1cMW81xVVvBrN0/5Bmh7zSD2xdnQYqaLanX7NDt4xCPmJylcmGm0bb7XDkg8R5pilNKml1JGA4VzI58F/NcwFG6oKeA5FjG0VcTnSU7bTZ4PJ0Rk3+m+ACof8g==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM8PR12MB5399.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(4636009)(366004)(55016003)(508600001)(71200400001)(2906002)(15650500001)(83380400001)(86362001)(966005)(45080400002)(186003)(26005)(52536014)(4326008)(38070700005)(66946007)(38100700002)(66556008)(76116006)(64756008)(8676002)(66446008)(6506007)(122000001)(8936002)(7696005)(5660300002)(9686003)(53546011)(110136005)(316002)(33656002)(66476007);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?DBfV2vC/OmU4E6cwLFJKC9qWOqZq8ql5y5bL2YSjF6XXHehV2z16KSRQf4my?=
- =?us-ascii?Q?WGKE35A0UvU5EyfNt6GN78IDaK5FAwIzQpRO19tpHRuFBoZcQRoJEuEGWcaa?=
- =?us-ascii?Q?EwwPrRsGEctGsAlVGiD9GOznsSihKVf9AdL4Z/DwJxvhlVPLJKVGpG7zot+h?=
- =?us-ascii?Q?QvKhds/KgzgZdz053eLsjPEsUbk5YwUcKxzWgxgmZgGyVAsk1bL+BmvqcLcn?=
- =?us-ascii?Q?m/crPhcyGURMJI5p8eQQrlhRkO5xBGFcyLrkTlXDnryTJurDwu24bmPjEt/f?=
- =?us-ascii?Q?0e97tdVebueWx9yKin79zsmzdqLNbmwmZNkoBMkMnjslSfznLyB5VeqSpoYA?=
- =?us-ascii?Q?w2Tu1Y4dZEG8SbdJXffSRYQrmrmtaiPKBPiz8SDLrj6iUKk+f/v0I6TsTsbh?=
- =?us-ascii?Q?VvHzGBZzgK+xqQq0yYiU1/jo+//dIC4AarbqmAKn/Ssp/YJfXBXWbZ5kroQT?=
- =?us-ascii?Q?+ZuKaVZUxHYTJIhkYLeoX0OU3Fsm6sMVhMGc4BSeCJToexlXmNMSBYHyj90u?=
- =?us-ascii?Q?25yMzdCjK3etFpY1SmyTVz69EOsE+lmhktwAfUR6ZRD29vjeP+BQGdtlOXYo?=
- =?us-ascii?Q?2lHKWTD0jPvzJs4gcjN6oSQ+bYxdNVCJH+ZEbRvyCYX16PiqWpTforxiU+E9?=
- =?us-ascii?Q?xDKShXwCSAz9mOqAW+bztOTz/MLvkx3KwfQ1ErKYe82lP3yANuhgRlDOt1db?=
- =?us-ascii?Q?pw/ZAF7yzLTYx+iCaNKQaykM2NDAHwNVgJB5TzKDe6Cj58iBNOIItlbJr4Vb?=
- =?us-ascii?Q?Omrhy4/edn3QKB1CO451ClSRQGgzaf1LBYmsAtVqCleBqa5dR8VKiNC9vXGH?=
- =?us-ascii?Q?aR8SFJ0TN1sTsdS0q5c7BCCnbVr0tezsFuTUSPtRTzTTwU9aEB9vTgbzthmQ?=
- =?us-ascii?Q?exMgXUkC+qJtjpUnfV9h9jKyo+SGTaMogJA1ZTvu069xiMfhu+TKfuSYP/T2?=
- =?us-ascii?Q?EUok8sCGSMGW8bGeokm4RcsYLYguKuckHeXmlQYBNq2VxtVwXX7Gya+Q8jbH?=
- =?us-ascii?Q?6aSoACD/8FoVNF6tqzdNdg+ml7qIoasyqVTBS0hN98qniILENxFBNjBwenz9?=
- =?us-ascii?Q?sKXXnk1rddAK7yQZ75q8kFT+9cXq9duMhQomEwdCwhibqJWA+p6xjM2Xefi6?=
- =?us-ascii?Q?KjzmQ3j9k08jYnLS1m1DKpZoeTLdXPthzFjlFj3vBgsbpsO4fc/FkmVw8VOZ?=
- =?us-ascii?Q?Mk2pfa2KbvsvdJLlikxg4XC/GitJBzueoxsMCvJpuWmhqiIh0iO7qqBAgWPn?=
- =?us-ascii?Q?uZlxn/fjZeLL00AwyHQ+InlpJzne4cLqEfFgyRi6QNpcAEx2jqE3MrcP3axd?=
- =?us-ascii?Q?C8NvDZMuRM1e5qTKFh0OVYh+eFE8W7muAPWvFxCjhNjSUBxsiop7Uk3N/T4q?=
- =?us-ascii?Q?w1XkeEkI1aV8SdGBVJrUs+r7axpKJ+JSdmGvBvnabwQSc8UfgfX7YPuNvTaA?=
- =?us-ascii?Q?Xt6XIcupIH4m73H7m0d6TPtOLTBADxP4WkI3KGVgaVBIcaJS/6w13Sjb4rfV?=
- =?us-ascii?Q?13KlocDv/7bM4sPy6bk3hh7XO+XO8PIPtAshCjBdMCz3uN5paKhG3ciw1vzc?=
- =?us-ascii?Q?Oz8QySQHkOmYRFPEo4xWAyaE/Q+xsB5DLaLTOvYFeEs65h63J0HJvGnrBZBa?=
- =?us-ascii?Q?KNdbTRNGBuii/MDXrlpdi6ECYXxGOxqQVNW45ex+s1Vp9iM1k7JEtoPldXmq?=
- =?us-ascii?Q?NUo9C09SSD76vuSHq5cbtcxy6qMQzDV8WzUqNrCxqjO0afQE?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BA1610EF99;
+ Thu, 26 May 2022 23:54:11 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ (Authenticated sender: dmitry.osipenko) with ESMTPSA id 4483D1F40874
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1653609249;
+ bh=I1kxpdsP20qNcPlQ3S/qdgM736mICTGXs/ZrSWQ9ttc=;
+ h=From:To:Cc:Subject:Date:From;
+ b=SHTmQV0zLXeImrn1UeqN8m/fhyY2ZlGh7b2rESG1aXUjlVDdXNI3FpYp6JOICoEZh
+ 5GQ2IQpyAa6+nUjxNM3vdRz+3PsfbOvfvICH/GRnjGtourjs7kudOWxAtn1fOSFI2c
+ R+Cmmthp+WNj6cUZOnsaaoF4uEoyolk89saEo7fhwOlfATSVvHgar+q2KcmLkKQlw4
+ /5kuYHnGiQH0YLWwcbnz9PEUZNMprm1gTg4gWGImZfS3MwxoibI8dRcVa3r8hbKZgf
+ GV+5b/rY9nDxIHehUUckXeVTx9PGzo1xn8PLR5JL69vXvnYsi5M36LXQgDHFmJHYEw
+ wNCXZkqbwXICA==
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+To: David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Daniel Stone <daniel@fooishbar.org>,
+ Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+ Steven Price <steven.price@arm.com>,
+ Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+ Rob Clark <robdclark@gmail.com>, Emil Velikov <emil.l.velikov@gmail.com>,
+ Robin Murphy <robin.murphy@arm.com>, Qiang Yu <yuq825@gmail.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Tomasz Figa <tfiga@chromium.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Subject: [PATCH v6 00/22] Add generic memory shrinker to VirtIO-GPU and
+ Panfrost DRM drivers
+Date: Fri, 27 May 2022 02:50:18 +0300
+Message-Id: <20220526235040.678984-1-dmitry.osipenko@collabora.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR12MB5399.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d0fb3da1-a548-4f0e-e202-08da3f58d995
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 May 2022 20:46:46.6184 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fTmcu5tSXBufv1iL9U7ocZIvr3tG+cYuErpuU6wlDkCOH9fdyZTtbmMqsQ7l39Ay
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1162
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 27 May 2022 07:15:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,54 +71,272 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linaro-mm-sig@lists.linaro.org, amd-gfx@lists.freedesktop.org,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>, linux-tegra@vger.kernel.org,
+ Dmitry Osipenko <digetx@gmail.com>, kernel@collabora.com,
+ linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - General]
+Hello,
 
-Reviewed-by: Leo Liu <leo.liu@amd.com>
+This patchset introduces memory shrinker for the VirtIO-GPU DRM driver
+and adds memory purging and eviction support to VirtIO-GPU driver.
 
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Alex Deu=
-cher
-Sent: May 26, 2022 4:39 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>
-Subject: [PATCH] drm/amdgpu: update VCN codec support for Yellow Carp
+The new dma-buf locking convention is introduced here as well.
 
-Supports AV1.  Mesa already has support for this and doesn't rely on the ke=
-rnel caps for yellow carp, so this was already working from an application =
-perspective.
+During OOM, the shrinker will release BOs that are marked as "not needed"
+by userspace using the new madvise IOCTL, it will also evict idling BOs
+to SWAP. The userspace in this case is the Mesa VirGL driver, it will mark
+the cached BOs as "not needed", allowing kernel driver to release memory
+of the cached shmem BOs on lowmem situations, preventing OOM kills.
 
-Bug: https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fgi=
-tlab.freedesktop.org%2Fdrm%2Famd%2F-%2Fissues%2F2002&amp;data=3D05%7C01%7Cl=
-eo.liu%40amd.com%7C097e1931973e4c1b9fc308da3f57ccc5%7C3dd8961fe4884e608e11a=
-82d994e183d%7C0%7C0%7C637891943577189959%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC=
-4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&am=
-p;sdata=3DuW264nO7bt01lNcMxyFI0NUGQT5eb3Z2yFuX2pdnvT0%3D&amp;reserved=3D0
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/nv.c | 1 +
- 1 file changed, 1 insertion(+)
+The Panfrost driver is switched to use generic memory shrinker.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/n=
-v.c index d016e3c3e221..b3fba8dea63c 100644
---- a/drivers/gpu/drm/amd/amdgpu/nv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/nv.c
-@@ -170,6 +170,7 @@ static const struct amdgpu_video_codec_info yc_video_co=
-decs_decode_array[] =3D {
-        {codec_info_build(AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_HEVC, 8192, 4352=
-, 186)},
-        {codec_info_build(AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VP9, 8192, 4352,=
- 0)},
-        {codec_info_build(AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_JPEG, 4096, 4096=
-, 0)},
-+       {codec_info_build(AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_AV1, 8192, 4352,
-+0)},
- };
+This patchset includes improvements and fixes for various things that
+I found while was working on the shrinker.
 
- static const struct amdgpu_video_codecs yc_video_codecs_decode =3D {
---
+The Mesa and IGT patches will be kept on hold until this kernel series
+will be approved and merged.
+
+This patchset was tested using Qemu and crosvm, including both cases of
+IOMMU off/on.
+
+Mesa: https://gitlab.freedesktop.org/digetx/mesa/-/commits/virgl-madvise
+IGT:  https://gitlab.freedesktop.org/digetx/igt-gpu-tools/-/commits/virtio-madvise
+      https://gitlab.freedesktop.org/digetx/igt-gpu-tools/-/commits/panfrost-madvise
+
+Changelog:
+
+v6: - Added new VirtIO-related fix patch that previously was sent separately
+      and didn't get much attention:
+
+        drm/gem: Properly annotate WW context on drm_gem_lock_reservations() error
+
+    - Added new patch that fixes mapping of imported dma-bufs for
+      Tegra DRM and other affected drivers. It's also handy to have it
+      for switching to the new dma-buf locking convention scheme:
+
+        drm/gem: Move mapping of imported dma-bufs to drm_gem_mmap_obj()
+
+    - Added new patch that fixes shrinker list corruption for stable Panfrost
+      driver:
+
+        drm/panfrost: Fix shrinker list corruption by madvise IOCTL
+
+    - Added new minor patch-fix for drm-shmem:
+
+        drm/shmem-helper: Add missing vunmap on error
+
+    - Added fixes tag to the "Put mapping ..." patch like was suggested by
+      Steven Price.
+
+    - Added new VirtIO-GPU driver improvement patch:
+
+        drm/virtio: Return proper error codes instead of -1
+
+    - Reworked shrinker patches like was suggested by Daniel Vetter:
+
+        - Introduced the new locking convention for dma-bufs. Tested on
+          VirtIO-GPU, Panfrost, Lima, Tegra and Intel selftests.
+
+        - Dropped separate purge() callback. Now single evict() does
+          everything.
+
+        - Dropped swap_in() callback from drm-shmem objects. DRM drivers
+          now could and should restore only the required mappings.
+
+        - Dropped dynamic counting of evictable pages. This simplifies
+          code in exchange to *potentially* burning more CPU time on OOM.
+
+v5: - Added new for-stable patch "drm/panfrost: Put mapping instead of
+      shmem obj on panfrost_mmu_map_fault_addr() error" that corrects GEM's
+      refcounting in case of error.
+
+    - The drm_gem_shmem_v[un]map() now takes a separate vmap_lock for
+      imported GEMs to avoid recursive locking of DMA reservations.
+      This addresses v4 comment from Thomas Zimmermann about the potential
+      deadlocking of vmapping.
+
+    - Added ack from Thomas Zimmermann to "drm/shmem-helper: Correct
+      doc-comment of drm_gem_shmem_get_sg_table()" patch.
+
+    - Dropped explicit shmem states from the generic shrinker patch as
+      was requested by Thomas Zimmermann.
+
+    - Improved variable names and comments of the generic shrinker code.
+
+    - Extended drm_gem_shmem_print_info() with the shrinker-state info in
+      the "drm/virtio: Support memory shrinking" patch.
+
+    - Moved evict()/swap_in()/purge() callbacks from drm_gem_object_funcs
+      to drm_gem_shmem_object in the generic shrinker patch, for more
+      consistency.
+
+    - Corrected bisectability of the patches that was broken in v4
+      by accident.
+
+    - The virtio_gpu_plane_prepare_fb() now uses drm_gem_shmem_pin() instead
+      of drm_gem_shmem_set_unpurgeable_and_unevictable() and does it only for
+      shmem BOs in the "drm/virtio: Support memory shrinking" patch.
+
+    - Made more functions private to drm_gem_shmem_helper.c as was requested
+      by Thomas Zimmermann. This minimizes number of the public shmem helpers.
+
+v4: - Corrected minor W=1 warnings reported by kernel test robot for v3.
+
+    - Renamed DRM_GEM_SHMEM_PAGES_STATE_ACTIVE/INACTIVE to PINNED/UNPINNED,
+      for more clarity.
+
+v3: - Hardened shrinker's count() with usage of READ_ONCE() since we don't
+      use atomic type for counting and technically compiler is free to
+      re-fetch counter's variable.
+
+    - "Correct drm_gem_shmem_get_sg_table() error handling" now uses
+      PTR_ERR_OR_ZERO(), fixing typo that was made in v2.
+
+    - Removed obsoleted shrinker from the Panfrost driver, which I missed to
+      do in v2 by accident and Alyssa Rosenzweig managed to notice it.
+
+    - CCed stable kernels in all patches that make fixes, even the minor ones,
+      like was suggested by Emil Velikov and added his r-b to the patches.
+
+    - Added t-b from Steven Price to the Panfrost's shrinker patch.
+
+    - Corrected doc-comment of drm_gem_shmem_object.madv, like was suggested
+      by Steven Price. Comment now says that madv=1 means "object is purged"
+      instead of saying that value is unused.
+
+    - Added more doc-comments to the new shmem shrinker API.
+
+    - The "Improve DMA API usage for shmem BOs" patch got more improvements
+      by removing the obsoleted drm_dev_set_unique() quirk and its comment.
+
+    - Added patch that makes Virtio-GPU driver to use common dev_is_pci()
+      helper, which was suggested by Robin Murphy.
+
+    - Added new "drm/shmem-helper: Take GEM reservation lock instead of
+      drm_gem_shmem locks" patch, which was suggested by Daniel Vetter.
+
+    - Added new "drm/virtio: Simplify error handling of
+      virtio_gpu_object_create()" patch.
+
+    - Improved "Correct doc-comment of drm_gem_shmem_get_sg_table()" patch,
+      like was suggested by Daniel Vetter, by saying that function returns
+      ERR_PTR() and not errno.
+
+    - virtio_gpu_purge_object() is fenced properly now, turned out
+      virtio_gpu_notify() doesn't do fencing as I was supposing before.
+      Stress testing of memory eviction revealed that.
+
+    - Added new patch that corrects virtio_gpu_plane_cleanup_fb() to use
+      appropriate atomic plane state.
+
+    - SHMEM shrinker got eviction support.
+
+    - VirtIO-GPU driver now supports memory eviction. It's enabled for a
+      non-blob GEMs only, i.e. for VirGL. The blobs don't support dynamic
+      attaching/detaching of guest's memory, so it's not trivial to enable
+      them.
+
+    - Added patch that removes obsoleted drm_gem_shmem_purge()
+
+    - Added patch that makes drm_gem_shmem_get_pages() private.
+
+    - Added patch that fixes lockup on dma_resv_reserve_fences() error.
+
+v2: - Improved shrinker by using a more fine-grained locking to reduce
+      contention during scan of objects and dropped locking from the
+      'counting' callback by tracking count of shrinkable pages. This
+      was suggested by Rob Clark in the comment to v1.
+
+    - Factored out common shrinker code into drm_gem_shmem_helper.c
+      and switched Panfrost driver to use the new common memory shrinker.
+      This was proposed by Thomas Zimmermann in his prototype series that
+      he shared with us in the comment to v1. Note that I only compile-tested
+      the Panfrost driver.
+
+    - Shrinker now takes object_name_lock during scan to prevent racing
+      with dma-buf exporting.
+
+    - Shrinker now takes vmap_lock during scan to prevent racing with shmem
+      vmap/unmap code.
+
+    - Added "Correct doc-comment of drm_gem_shmem_get_sg_table()" patch,
+      which I sent out previously as a standalone change, since the
+      drm_gem_shmem_helper.c is now touched by this patchset anyways and
+      it doesn't hurt to group all the patches together.
+
+Dmitry Osipenko (22):
+  drm/gem: Properly annotate WW context on drm_gem_lock_reservations()
+    error
+  drm/gem: Move mapping of imported dma-bufs to drm_gem_mmap_obj()
+  drm/panfrost: Put mapping instead of shmem obj on
+    panfrost_mmu_map_fault_addr() error
+  drm/panfrost: Fix shrinker list corruption by madvise IOCTL
+  drm/virtio: Correct drm_gem_shmem_get_sg_table() error handling
+  drm/virtio: Check whether transferred 2D BO is shmem
+  drm/virtio: Unlock reservations on virtio_gpu_object_shmem_init()
+    error
+  drm/virtio: Unlock reservations on dma_resv_reserve_fences() error
+  drm/virtio: Use appropriate atomic state in
+    virtio_gpu_plane_cleanup_fb()
+  drm/shmem-helper: Add missing vunmap on error
+  drm/shmem-helper: Correct doc-comment of drm_gem_shmem_get_sg_table()
+  drm/virtio: Simplify error handling of virtio_gpu_object_create()
+  drm/virtio: Improve DMA API usage for shmem BOs
+  dma-buf: Introduce new locking convention
+  drm/shmem-helper: Don't use vmap_use_count for dma-bufs
+  drm/shmem-helper: Use reservation lock
+  drm/shmem-helper: Add generic memory shrinker
+  drm/gem: Add drm_gem_pin_unlocked()
+  drm/virtio: Support memory shrinking
+  drm/virtio: Use dev_is_pci()
+  drm/virtio: Return proper error codes instead of -1
+  drm/panfrost: Switch to generic memory shrinker
+
+ drivers/dma-buf/dma-buf.c                     | 270 ++++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       |   6 +-
+ drivers/gpu/drm/drm_client.c                  |   4 +-
+ drivers/gpu/drm/drm_gem.c                     |  69 +-
+ drivers/gpu/drm/drm_gem_framebuffer_helper.c  |   6 +-
+ drivers/gpu/drm/drm_gem_shmem_helper.c        | 718 ++++++++++++++----
+ drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |  10 +-
+ drivers/gpu/drm/lima/lima_gem.c               |   8 +-
+ drivers/gpu/drm/lima/lima_sched.c             |   4 +-
+ drivers/gpu/drm/panfrost/Makefile             |   1 -
+ drivers/gpu/drm/panfrost/panfrost_device.h    |   4 -
+ drivers/gpu/drm/panfrost/panfrost_drv.c       |  26 +-
+ drivers/gpu/drm/panfrost/panfrost_gem.c       |  33 +-
+ drivers/gpu/drm/panfrost/panfrost_gem.h       |   9 -
+ .../gpu/drm/panfrost/panfrost_gem_shrinker.c  | 122 ---
+ drivers/gpu/drm/panfrost/panfrost_job.c       |  18 +-
+ drivers/gpu/drm/panfrost/panfrost_mmu.c       |  21 +-
+ drivers/gpu/drm/panfrost/panfrost_perfcnt.c   |   6 +-
+ drivers/gpu/drm/qxl/qxl_object.c              |  17 +-
+ drivers/gpu/drm/qxl/qxl_prime.c               |   4 +-
+ drivers/gpu/drm/tegra/gem.c                   |   4 +
+ drivers/gpu/drm/virtio/virtgpu_drv.c          |  53 +-
+ drivers/gpu/drm/virtio/virtgpu_drv.h          |  23 +-
+ drivers/gpu/drm/virtio/virtgpu_gem.c          |  59 +-
+ drivers/gpu/drm/virtio/virtgpu_ioctl.c        |  37 +
+ drivers/gpu/drm/virtio/virtgpu_kms.c          |  16 +-
+ drivers/gpu/drm/virtio/virtgpu_object.c       | 203 +++--
+ drivers/gpu/drm/virtio/virtgpu_plane.c        |  28 +-
+ drivers/gpu/drm/virtio/virtgpu_vq.c           |  61 +-
+ .../common/videobuf2/videobuf2-dma-contig.c   |  11 +-
+ .../media/common/videobuf2/videobuf2-dma-sg.c |  11 +-
+ .../common/videobuf2/videobuf2-vmalloc.c      |  11 +-
+ include/drm/drm_device.h                      |   4 +
+ include/drm/drm_gem.h                         |   6 +
+ include/drm/drm_gem_shmem_helper.h            |  99 ++-
+ include/linux/dma-buf.h                       |  14 +-
+ include/uapi/drm/virtgpu_drm.h                |  14 +
+ 37 files changed, 1349 insertions(+), 661 deletions(-)
+ delete mode 100644 drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
+
+-- 
 2.35.3
 
