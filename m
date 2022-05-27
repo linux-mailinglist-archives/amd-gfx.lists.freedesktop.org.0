@@ -1,56 +1,42 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1062F536349
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 May 2022 15:22:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A59FA536D17
+	for <lists+amd-gfx@lfdr.de>; Sat, 28 May 2022 15:27:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70C3910EB51;
-	Fri, 27 May 2022 13:22:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F32AF10E253;
+	Sat, 28 May 2022 13:27:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com
- [IPv6:2001:4860:4864:20::33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC48610F6B7
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 May 2022 13:22:32 +0000 (UTC)
-Received: by mail-oa1-x33.google.com with SMTP id
- 586e51a60fabf-e656032735so5782548fac.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 May 2022 06:22:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=b6223VG41YQj2COFt5LSu8VrWTgFAalqG/2PoQbZedk=;
- b=eOLxSt/twHXuswTX1wpKd2SWknRFQmQkOQsMs0ngid/8gvQ4h+iQmt+fUybyUYAVtT
- RXi0JRY3wfA3GJBdT5b1UiZv2o0NuUhmr5kE/wfp0QQZ8jG9G0mznUCHuwBf/gTRmoEK
- kqwh6JML6MMh0PramSSeVP4lCUyZui6sTg8OGewplcLYO6Ny92i9kmVFvsvR7lAMxEQo
- jmmwMctwFFhqcjjTDVxEjfl/gEJwRx6J1LdKBWbi9Xq4OkDXYnZ8TIVnZAZIoU4VJlQW
- fL2vNM33JepGTds77d1tmFXONiOjB6ZtyvIgSAV4WWfgA01ExKCv+hBXgHPhKv3g0qbv
- T1rg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=b6223VG41YQj2COFt5LSu8VrWTgFAalqG/2PoQbZedk=;
- b=edRPFG4C9wUJ32hpGTvexJA5zR9UdizJEdjENVlkhqI/ZJ2FA3V3D+NjPNu8Bbmcgv
- wp9wyP9j7XLbjGFTNf9bhjpwt5HXgTlVo3t2+N1hA551rSagXVArA1MwSp09BGz8XHNq
- DaOs/42ZBa5cINx0wIYQn5vXT8kuU6gMWzOneVXapppwZ5hAclPHdBTr0KNTRp+jmWHZ
- jEqGa3jN7H4ks+EHutvcxvBNrq7P6A9I5W0YFIj7DCgbA/ATbPkVsHOqqO3FCsIDAdP8
- hjekZd/NBgKagtR+AwcCN0SxyCWd12c7bR/GDbajDccLuvqyxFDLo1rdeoIXQ+Vg0rNi
- 2p9A==
-X-Gm-Message-State: AOAM530dMcgKay/0GLkR5B4RqI5h4ukiWA7Lo4XgtHvM5EvsGFgad9gU
- dcZ4EuN6PeMKjozKx14kDhcrpR0A5ifmABn8a3oPcONA
-X-Google-Smtp-Source: ABdhPJwP9cfR/pi1aQmZYRb695aNPAhISMkL8A8KSFJG/KJubKNfpFxv7B8yHZmI2qSITz4E5lVOjKoNoTENj5riLdg=
-X-Received: by 2002:a05:6870:d683:b0:de:eaa2:3550 with SMTP id
- z3-20020a056870d68300b000deeaa23550mr4212146oap.253.1653657752029; Fri, 27
- May 2022 06:22:32 -0700 (PDT)
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92AE010FD3D;
+ Fri, 27 May 2022 15:56:52 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ (Authenticated sender: alyssa) with ESMTPSA id 3D3D51F463CB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1653667011;
+ bh=n5RHKvs6olD8LksjT484qw9Rh0JisRhUIQ7ggPkOqx4=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=Q6kTO5Ap+i5kmaF5um389IzxbauaGndK+JrcD4hEezqh4whcGeSqpoC5zDuWw57KI
+ 8fh+bDAIu8408A79BVtUamQIZPLFV90q8BABnbTh44p5m/jr3XQRDvEP68ncgCedK7
+ iWk55rkqi/komv0pBkw1cQB5acBLw5+u+DvpIejXBAgHDD4NeyeS1JVK49uoVmHCS2
+ mbrHXxwVcX6JnH811NUonPSSXnHqfm2ChKbnZSgvS/P41yiK/z0a3BBHsiTV5+ccK9
+ oLlgD/Myd6w2UL6nCNj7WWOM5ohWFrt2ikdxXL5RtRt+P5YoENL4mecu8Xj8kkWW7F
+ NZnyFvgN0M2lA==
+Date: Fri, 27 May 2022 11:56:36 -0400
+From: Alyssa Rosenzweig <alyssa@collabora.com>
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Subject: Re: [PATCH v6 04/22] drm/panfrost: Fix shrinker list corruption by
+ madvise IOCTL
+Message-ID: <YpD0tCuCd7HzwWg6@maud>
+References: <20220526235040.678984-1-dmitry.osipenko@collabora.com>
+ <20220526235040.678984-5-dmitry.osipenko@collabora.com>
 MIME-Version: 1.0
-References: <20220527094620.3064524-1-kenneth.feng@amd.com>
-In-Reply-To: <20220527094620.3064524-1-kenneth.feng@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 27 May 2022 09:22:21 -0400
-Message-ID: <CADnq5_M0qsjxaiwr2PKVLGfmqCObx3GGPnN59hu-pA9CBOpy+A@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/amdgpu: align the cg and pg settings
-To: Kenneth Feng <kenneth.feng@amd.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220526235040.678984-5-dmitry.osipenko@collabora.com>
+X-Mailman-Approved-At: Sat, 28 May 2022 13:27:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,46 +48,66 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: David Airlie <airlied@linux.ie>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Gurchetan Singh <gurchetansingh@chromium.org>,
+ Thierry Reding <thierry.reding@gmail.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ Dmitry Osipenko <digetx@gmail.com>, kernel@collabora.com,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Rob Herring <robh@kernel.org>,
+ Daniel Stone <daniel@fooishbar.org>, Steven Price <steven.price@arm.com>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+ virtualization@lists.linux-foundation.org, Chia-I Wu <olvaffe@gmail.com>,
+ linux-media@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, linaro-mm-sig@lists.linaro.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-tegra@vger.kernel.org,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>, amd-gfx@lists.freedesktop.org,
+ Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Emil Velikov <emil.l.velikov@gmail.com>, linux-kernel@vger.kernel.org,
+ Tomasz Figa <tfiga@chromium.org>, Rob Clark <robdclark@gmail.com>,
+ Qiang Yu <yuq825@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>, Robin Murphy <robin.murphy@arm.com>,
+ Christian K??nig <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 27, 2022 at 5:46 AM Kenneth Feng <kenneth.feng@amd.com> wrote:
->
-> align the cg and pg settings between gc_v11_0 and gc_v11_2
->
-> Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
+Acked-by: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-
+On Fri, May 27, 2022 at 02:50:22AM +0300, Dmitry Osipenko wrote:
+> Calling madvise IOCTL twice on BO causes memory shrinker list corruption
+> and crashes kernel because BO is already on the list and it's added to
+> the list again, while BO should be removed from from the list before it's
+> re-added. Fix it.
+> 
+> Cc: stable@vger.kernel.org
+> Fixes: 013b65101315 ("drm/panfrost: Add madvise and shrinker support")
+> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
 > ---
->  drivers/gpu/drm/amd/amdgpu/soc21.c | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/soc21.c b/drivers/gpu/drm/amd/amdgpu/soc21.c
-> index 5566ddbfd188..26fda7a170da 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/soc21.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/soc21.c
-> @@ -546,12 +546,17 @@ static int soc21_common_early_init(void *handle)
->                 adev->cg_flags =
->                         AMD_CG_SUPPORT_GFX_CGCG |
->                         AMD_CG_SUPPORT_GFX_CGLS |
-> +                       AMD_CG_SUPPORT_REPEATER_FGCG |
->                         AMD_CG_SUPPORT_VCN_MGCG |
-> -                       AMD_CG_SUPPORT_JPEG_MGCG;
-> +                       AMD_CG_SUPPORT_JPEG_MGCG |
-> +                       AMD_CG_SUPPORT_ATHUB_MGCG |
-> +                       AMD_CG_SUPPORT_ATHUB_LS;
->                 adev->pg_flags =
->                         AMD_PG_SUPPORT_VCN |
->                         AMD_PG_SUPPORT_VCN_DPG |
-> -                       AMD_PG_SUPPORT_JPEG;
-> +                       AMD_PG_SUPPORT_JPEG |
-> +                       AMD_PG_SUPPORT_ATHUB |
-> +                       AMD_PG_SUPPORT_MMHUB;
->                 adev->external_rev_id = adev->rev_id + 0x10;
->                 break;
->         default:
-> --
-> 2.25.1
->
+>  drivers/gpu/drm/panfrost/panfrost_drv.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c b/drivers/gpu/drm/panfrost/panfrost_drv.c
+> index 087e69b98d06..b1e6d238674f 100644
+> --- a/drivers/gpu/drm/panfrost/panfrost_drv.c
+> +++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
+> @@ -433,8 +433,8 @@ static int panfrost_ioctl_madvise(struct drm_device *dev, void *data,
+>  
+>  	if (args->retained) {
+>  		if (args->madv == PANFROST_MADV_DONTNEED)
+> -			list_add_tail(&bo->base.madv_list,
+> -				      &pfdev->shrinker_list);
+> +			list_move_tail(&bo->base.madv_list,
+> +				       &pfdev->shrinker_list);
+>  		else if (args->madv == PANFROST_MADV_WILLNEED)
+>  			list_del_init(&bo->base.madv_list);
+>  	}
+> -- 
+> 2.35.3
+> 
