@@ -2,149 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFF7B535B32
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 May 2022 10:13:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37ED553630F
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 May 2022 14:58:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0493610EECB;
-	Fri, 27 May 2022 08:13:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EA0C10FA6B;
+	Fri, 27 May 2022 12:58:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com
- [205.220.177.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CCCA10EECB
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 May 2022 08:13:21 +0000 (UTC)
-Received: from pps.filterd (m0246632.ppops.net [127.0.0.1])
- by mx0b-00069f02.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24R5sm87001688;
- Fri, 27 May 2022 08:13:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : references : content-type : in-reply-to :
- mime-version; s=corp-2021-07-09;
- bh=OQIBb0Df+qepmDSAXiHZ2bMjt9SUB/7h4fmvz8d3Y7s=;
- b=Frl8dApwfvGk18a7YxVhJWmwgwTDazuJ4PhRF2DSEq3Uqh7m4LF+zmUQ2DmYPY0LwvEP
- A8Zj8pkwk8YC5p3pm9Ioc/pihpK0K4aAzoiHvd2dw7pwJwpgGT2XYZB3/CMPR2wLwY5C
- cFkjB4qTK594XZqYcaSejN3dktvRmNNchYa2tpFPKNkE+7aIvte18RrrpbtTRev7Fnc+
- Vb5+QWeZl8AQXZgzSzp5iMiFZhNMXySMihabnRsrv4wjrL3tbDuSPnCHdeWW+HbcPZew
- FZHUEvjRXN5hNkVVjgGCv+BkGfvjYMdi6tlCgj8014kKqQGrPrAeW4sTjy2/ARk8dUL5 aA== 
-Received: from phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com
- (phxpaimrmta01.appoci.oracle.com [138.1.114.2])
- by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3g93t9xpb6-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Fri, 27 May 2022 08:13:13 +0000
-Received: from pps.filterd
- (phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
- by phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (8.16.1.2/8.16.1.2)
- with SMTP id 24R86Jwe030165; Fri, 27 May 2022 08:13:12 GMT
-Received: from nam11-co1-obe.outbound.protection.outlook.com
- (mail-co1nam11lp2177.outbound.protection.outlook.com [104.47.56.177])
- by phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com with ESMTP id
- 3g93wy57c2-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Fri, 27 May 2022 08:13:12 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=floioqLQ0AYwUbMSYGTI6e7J38OKQ4pEDqgL/jKLp2vm9AZOMVZTPMKi1X3g2IA9ie0HcgcQjNVgLmidQJ6OJQsdJ3aH7kv8pY7AtuhtRbOclhm9NXF3gkmOTe6dMyaxLypBUG/XydwbkKjfwYR2bsKB8z0BBeQD1HdryK4GHtsa1L+yXarorRhKd59B4xcEIIyaWwYNwQpITK1303MgD8L7d4ugiVAGzI3Ra+rev/LBU+3Oknlh0pRPX/pOB983smHk5gWFcUIQLnrvl0gEMia7G7as8nl6du6v3y+Ak0/bLrgW5NuyboT53YECshS4rf2faUNP6cQB37rxlJr2wQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OQIBb0Df+qepmDSAXiHZ2bMjt9SUB/7h4fmvz8d3Y7s=;
- b=PftwUnIXcxPKCZ0JricAJBG7pmbQ7O55g0lWPt2d5XoEhaTXycm3UlNctLRa50Wc2tlsXzBpMbgt6Dh9J11hEMcHSaGoNjzGDJjW+Nr0yBlXCIJqEu4epby4Fp4W78IvY1OtxY1bKQ+3AedUTYme9I4puDpdcstb2A0VZvTfX5jvdmQ2HmY8fFXsVmYxLPG95StQuedhXkpg85XdXVpvuHm45qY8TVNzk/UlUKq7SmRs2btG/LAOxObxjXPZhOhERZYpbsbeVLi9U3bVDyzcr+ajupwhNK52Q9cBfel9lg0rSp5YDZi4cgyxK6bJcs1DQd5wPZUCAwYL8CCZfye6nA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OQIBb0Df+qepmDSAXiHZ2bMjt9SUB/7h4fmvz8d3Y7s=;
- b=sjeGY/wM2VYpKpENFpVfOdMxcFlFx22bevg2rN4HmrXMri5/bfb/KLJWxVriVo6brevm0zAuzfGDniROCFYf4MBIZzVx0VaBSjiI88+30KQXQ+00a+vkSIBAd310nCn+idifoQfngJ+4+yQeEfeDQNh2AS5gm1EUnCg27jwLsIs=
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- (2603:10b6:301:2d::28) by DM4PR10MB6013.namprd10.prod.outlook.com
- (2603:10b6:8:ae::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.18; Fri, 27 May
- 2022 08:13:10 +0000
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::86f:81ba:9951:5a7e]) by MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::86f:81ba:9951:5a7e%2]) with mapi id 15.20.5293.013; Fri, 27 May 2022
- 08:13:10 +0000
-Date: Fri, 27 May 2022 11:12:59 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: "Chen, Guchun" <Guchun.Chen@amd.com>
-Subject: Re: [kbuild] drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c:1433
- amdgpu_discovery_get_vcn_info() error: buffer overflow
- 'adev->vcn.vcn_codec_disable_mask' 2 <= 3
-Message-ID: <20220527081259.GN2168@kadam>
-References: <202205271546.oV14N2r8-lkp@intel.com>
- <DM5PR12MB246988B514599DF631847549F1D89@DM5PR12MB2469.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DM5PR12MB246988B514599DF631847549F1D89@DM5PR12MB2469.namprd12.prod.outlook.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-ClientProxiedBy: MR2P264CA0127.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:500:30::19) To MWHPR1001MB2365.namprd10.prod.outlook.com
- (2603:10b6:301:2d::28)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A47D410EF1A
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 May 2022 09:00:41 +0000 (UTC)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+ by smtp-out2.suse.de (Postfix) with ESMTP id 1A65C1F959;
+ Fri, 27 May 2022 09:00:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1653642040; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=EViVKY2FVjnvr6yQp2UwmTPz4Dn5MavSzLh0EqzU3t4=;
+ b=HeAdzj2ys/dmuUdAEEB2Zva3TnYtnc60Dc7/s5ED/sbWgI5ggMBd+TANkDN5/fFP37cv1z
+ qJpOPMk7nzvJTyB5HxadZR0sfzcSdjjwVnAx+himI2qZ3bmwiwW1dkTSg0jK5GxCrLtBJK
+ tjUrXmXwPYK3B/GADpGTC1mkPlZ7Tg8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1653642040;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=EViVKY2FVjnvr6yQp2UwmTPz4Dn5MavSzLh0EqzU3t4=;
+ b=i26fGCtafYK06ajHsztnc3UvHxEEIPb4VP/hlZ6L67SPGnBvCntWF13m45/RtkZdLuoI5I
+ Ayanzqt6T7uT+1Bw==
+Received: from lion.mk-sys.cz (unknown [10.100.200.14])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by relay2.suse.de (Postfix) with ESMTPS id 0D6CF2C142;
+ Fri, 27 May 2022 09:00:40 +0000 (UTC)
+Received: by lion.mk-sys.cz (Postfix, from userid 1000)
+ id DA6DB608E0; Fri, 27 May 2022 11:00:39 +0200 (CEST)
+Date: Fri, 27 May 2022 11:00:39 +0200
+From: Michal Kubecek <mkubecek@suse.cz>
+To: amd-gfx@lists.freedesktop.org
+Subject: amdgpu errors (VM fault / GPU fault detected) with 5.19 merge window
+ snapshots
+Message-ID: <20220527090039.pdrazo5e6mwgo3d3@lion.mk-sys.cz>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5ac852b9-5710-4756-40ef-08da3fb8bd1d
-X-MS-TrafficTypeDiagnostic: DM4PR10MB6013:EE_
-X-Microsoft-Antispam-PRVS: <DM4PR10MB60131A7EC41E6AC9DA8444328ED89@DM4PR10MB6013.namprd10.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9Fcs58ZEMcgxPYVicl8odjsEdCMl+mK+J7ZXj2KL/VyXyOJGf8oaJQfhcZFkVKi6aDRVsmFtMyx3i5R3aE0GuclvnOZG7C6BWw8VoVY6w1NcmytH696i6bIZv2tekWzaIF+xlISsUVdJ/R76fLfNNR2woc+nkx8HZHL15w1w819qlR4Ql9DG63jxsQPtk6nlFeD1laqRy0FIOIJP2a6y7D7TFQC48p4g+jeO1g2ZwQf72674+CF/zwe1YccLTRWIdERdthiMLuH1s8fUN4jq1AQe/5U2AKQwif76c+aQ0kSQcx75hkIedwxkC2GvPh5rlEGZlNGlmsxA/bvORb32TOFQ2vk5RaJ4v8OcmnWydSWOBCc7uePUwr9KZw0wEquQEVKkUttqKhBaKnOGQlGNclR+7p/khSR0beR3SFOzGMR6wtJssUCDj4ZbC3nHGYxtl68uQcgs/7xhaoDxSlIHhL5121X4qG9Gp+MZdtlClTU8EV7qSd6mOEJWrTkn1+NzPg2wrM8MA1Lt9B3q8FZxLJAMhD3KzobC7BIqLTDqDiTYSc85NY/AkeZ4UAPMEU+DWGBbNE94bhHG82MqDaQz8+HL9Bi1gpB+Bz5099Bs0CZzKnimHcRauCf6KhAwblSSRWLG4hGWT/zm1JVlvqh9At09kkycDT8FIX+hlMPrm1V2lbSGK52ULoFb7LClkcTNGlT7gmS9xErtyfBz377Oww==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR1001MB2365.namprd10.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(7916004)(366004)(6486002)(316002)(38100700002)(38350700002)(54906003)(6916009)(33656002)(6506007)(5660300002)(6666004)(44832011)(52116002)(26005)(6512007)(66556008)(83380400001)(8936002)(9686003)(33716001)(1076003)(66476007)(4326008)(186003)(2906002)(4744005)(508600001)(8676002)(86362001)(966005)(66946007);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?meeI1XuVQNJDMtN+nefpEjB8b89+2DmKM2vuYYP+bwePaV2Hem9xW1NIoMEq?=
- =?us-ascii?Q?rDKKSTO7j7Y1dZldjeRKzBtx3VG8ALwGaZ9R/F0Wm0QJwfoTwLi/n9cEPUPb?=
- =?us-ascii?Q?gwPuCynB5PsxSMWossJ12ixfz0tGCh0DTdAeZ8P/Fp0BE2ir4VZ5LZO2Vv0l?=
- =?us-ascii?Q?GRwpJ7dArOLtd89baHP+MsyCCYtbJU5TCyJa7qfMJTrtKaEfaQ+zb6QRm66U?=
- =?us-ascii?Q?gKg4U2At4rrDP5bDQcwgCOw7MApPyaqHYhv+KIBf0HGIocdV4rfb6DxAUt1H?=
- =?us-ascii?Q?dAnGdmDuGl7BYQ4QhqSF6rJIQFA9YdWRvjC0+5aSGJCUSFmrP3DTOnDhlP3s?=
- =?us-ascii?Q?jbQ8dnTt2kbNq/ZHIahB2pjA8Q5tJUY3vc4Julvpa4xkDkZnRCb/cKMmg2Di?=
- =?us-ascii?Q?tsjYwDAkgrGd0kErS9+oo/S64tI6QDfsCG5ty2zraAZCjf8I/So+TMr2Mp/l?=
- =?us-ascii?Q?/kCIQa5klIB4Dk05njGQRIVCpMmcKhsHT9QQH/hSGxGjB74nBfrWDWkAN6zr?=
- =?us-ascii?Q?4AIuucnG+1g/UYva8RrK/y+61xvALL0vVDHIHmLn1wOozAwQxqiXlog+iMbp?=
- =?us-ascii?Q?KCpcTSTZ0cQfva3+BVFYigUXz2HLSQ4Bh3MDGRQ9rV4rEGsPIh1ynaJSmqJ6?=
- =?us-ascii?Q?00hicB9xOW1TfF/6Zpo2YEVyBRn9V48juFTFGz3blLDgdnDYIuuk1+TgfZ1t?=
- =?us-ascii?Q?tz2x7n/yrxyQSAAckwj0l4wK6s+tzFYhO8TMgKlneTE3eJyikmxuH6WZIMcJ?=
- =?us-ascii?Q?519jxJDEUhOlMafj4YtFG2bpQhuCwBqNqkvMGOvAyG8HuBSwLoPXRtsOR5Qr?=
- =?us-ascii?Q?7IgnmVEuPHMXT5JAXV8+tV0+hTIk4bksPgd2urqnHgFVnbUiaJcl5hD9UG0b?=
- =?us-ascii?Q?8hSv8pvLyQfnNOpBMBtAI8C2trI0jK8LuRq/JRi8eXF1cPzZt9zz78GvZyJl?=
- =?us-ascii?Q?iSni8drh7+autxBibTarGEbLuId7tWjbCXzJv3owZYZNLGSDalvtMWr3xj5z?=
- =?us-ascii?Q?EFI66sqHM8hIEIFjcpuhnbhsq/8RLzR6vzORMAN2entQKtehGMMNsAAxKNVw?=
- =?us-ascii?Q?73NPWFdQsXmXU55dvnxidUcmi0OKB2m5JSo5kIPysx6KYBffGBHUbTwXurvA?=
- =?us-ascii?Q?6xklmZCD5rGeZsMofcsdQ6h9NWvUWgBvEhsTTUL1hyO0vmpBk0RcO7hUwO5v?=
- =?us-ascii?Q?U2iTMDicILaYGgqnwmg0ZsNXSrAgsdjFm48kXuoZ2eYkC5x1Ixx4LQUkn/gd?=
- =?us-ascii?Q?KV7MZVgOV7O3RVF6AMYmwxjdR64WUgKEXq9kwVtqrzRw89dHzzZ4LEA406dm?=
- =?us-ascii?Q?05abB/Q9oGrBzRbcRY2FfMhjLknLeXMmYKNP1YYIQRd3OThEqfIv8wvXMYro?=
- =?us-ascii?Q?0opoMloCI2hs/KHu83QkXPt5F+y0NGyJSM2AntpIf6e6QGJ6Dh1Hv+BfLZfJ?=
- =?us-ascii?Q?nJF/tluIA2xauc6AsbbrU3CyuSMeJd7IHxg6zpq6vvtINwDnMsncrgB5hnQo?=
- =?us-ascii?Q?5A+VGRWL1kEmkCralGzBhWCbQfDNjKXVUeyhX+IvSg3LPJYNULEr6SihJcKF?=
- =?us-ascii?Q?hRt1+N54J8NgfaOR1oSG5ts1qOamWJtpDdIuJNNHc1qZh28fMjuUFoBfq6Lp?=
- =?us-ascii?Q?fh9qzjIkdqrJYKFYGSWPD1jt2neMhIj4uv6g+GkhSSfDHg7HaEtLBGFGYF8m?=
- =?us-ascii?Q?zsByBMF0r4O7tas+f921Zj0qUIMLsd1sJgZ7SoX4B86+nyAJBRRHp7miLeVg?=
- =?us-ascii?Q?hmqqyKP1lBTwuU8nxwupOqYXkCkiLXI=3D?=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5ac852b9-5710-4756-40ef-08da3fb8bd1d
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2365.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 May 2022 08:13:10.6939 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xPCRb8f4QlILFT5F+rLrOnjlaIaJYIec8gMZniNJzSTGNaILV/ZxUipv+OoCiiMUswsKSOWBQjygMkMxZ32vd19eUoTeOHPtCTDKHODBfxc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR10MB6013
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.486, 18.0.874
- definitions=2022-05-27_02:2022-05-25,
- 2022-05-27 signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
- adultscore=0 mlxscore=0
- phishscore=0 spamscore=0 mlxlogscore=664 bulkscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2204290000
- definitions=main-2205270039
-X-Proofpoint-ORIG-GUID: Df39yafjn1ONYdjDSAaJBYWaqLjsnV3K
-X-Proofpoint-GUID: Df39yafjn1ONYdjDSAaJBYWaqLjsnV3K
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature"; boundary="gtypyrxkzavvymbx"
+Content-Disposition: inline
+X-Mailman-Approved-At: Fri, 27 May 2022 12:58:06 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,23 +58,189 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "kbuild-all@lists.01.org" <kbuild-all@lists.01.org>,
- "lkp@intel.com" <lkp@intel.com>, "kbuild@lists.01.org" <kbuild@lists.01.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Deucher,
- Alexander" <Alexander.Deucher@amd.com>
+Cc: linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 27, 2022 at 07:56:48AM +0000, Chen, Guchun wrote:
-> A patch was available already to protect against such scenario.
-> 
-> https://patchwork.freedesktop.org/patch/486289/ , "drm/amdgpu/discovery: validate VCN and SDMA instances"
-> 
 
-What?  That's an unrelated patch and it has already been applied so I
-took it into consideration when doing my analysis.
+--gtypyrxkzavvymbx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-regards,
-dan carpenter
+Hello,
 
+while testing 5.19 merge window snapshots (commits babf0bb978e3 and
+7e284070abe5), I keep getting errors like below. I have not seen them
+with 5.18 final or older.
+
+------------------------------------------------------------------------
+[  247.150333] gmc_v8_0_process_interrupt: 46 callbacks suppressed
+[  247.150336] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x00020802 for process firefox pid 6101 thread firefox:cs0 pid 6116
+[  247.150339] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x00107800
+[  247.150340] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x0D008002
+[  247.150341] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 6, pasid 32780) at page 1079296, write from 'TC2' (0x54433200) (8)
+[  248.866434] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x00120802 for process firefox pid 6101 thread firefox:cs0 pid 6116
+[  248.866438] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x00138802
+[  248.866439] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x0D008002
+[  248.866440] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 6, pasid 32780) at page 1280002, write from 'TC2' (0x54433200) (8)
+[  248.866775] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x000a0802 for process firefox pid 6101 thread firefox:cs0 pid 6116
+[  248.866776] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x00138C01
+[  248.866777] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x0D008002
+[  248.866777] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 6, pasid 32780) at page 1281025, write from 'TC2' (0x54433200) (8)
+[  248.866884] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x00020802 for process firefox pid 6101 thread firefox:cs0 pid 6116
+[  248.866885] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x00139400
+[  248.866885] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x0D008002
+[  248.866886] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 6, pasid 32780) at page 1283072, write from 'TC2' (0x54433200) (8)
+[  248.866939] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x00020802 for process firefox pid 6101 thread firefox:cs0 pid 6116
+[  248.866940] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x00139800
+[  248.866940] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x0D008002
+[  248.866941] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 6, pasid 32780) at page 1284096, write from 'TC2' (0x54433200) (8)
+[  248.867000] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x00020802 for process firefox pid 6101 thread firefox:cs0 pid 6116
+[  248.867001] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x00139C00
+[  248.867001] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x0D008002
+[  248.867002] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 6, pasid 32780) at page 1285120, write from 'TC2' (0x54433200) (8)
+[  248.879700] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x00020802 for process firefox pid 6101 thread firefox:cs0 pid 6116
+[  248.879704] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x0013D600
+[  248.879705] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x03008002
+[  248.879706] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 1, pasid 32780) at page 1299968, write from 'TC2' (0x54433200) (8)
+[  248.883086] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x000a0802 for process firefox pid 6101 thread firefox:cs0 pid 6116
+[  248.883088] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x0013EE01
+[  248.883088] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x03008002
+[  248.883089] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 1, pasid 32780) at page 1306113, write from 'TC2' (0x54433200) (8)
+[  249.191811] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x00020802 for process firefox pid 6101 thread firefox:cs0 pid 6116
+[  249.191815] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x00142C00
+[  249.191816] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x0D008002
+[  249.191817] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 6, pasid 32780) at page 1321984, write from 'TC2' (0x54433200) (8)
+[  249.193491] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x00085202 for process firefox pid 6101 thread firefox:cs0 pid 6116
+[  249.193493] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x00142C01
+[  249.193493] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x0C052002
+[  249.193494] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 6, pasid 32780) at page 1321985, read from 'CBC1' (0x43424331) (82)
+[  249.925909] amdgpu 0000:0c:00.0: amdgpu: IH ring buffer overflow (0x000844C0, 0x00004A00, 0x000044D0)
+[  250.434986] [drm] Fence fallback timer expired on ring sdma0
+[  466.621568] gmc_v8_0_process_interrupt: 122 callbacks suppressed
+[  466.621573] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x000a0802 for process firefox pid 6101 thread firefox:cs0 pid 6116
+[  466.621575] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x00161401
+[  466.621575] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x0B008002
+[  466.621576] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 5, pasid 32780) at page 1446913, write from 'TC2' (0x54433200) (8)
+[ 1044.915401] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x00020802 for process firefox pid 6101 thread firefox:cs0 pid 6116
+[ 1044.915405] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x0016BE00
+[ 1044.915406] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x07008002
+[ 1044.915407] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 3, pasid 32780) at page 1490432, write from 'TC2' (0x54433200) (8)
+[ 1059.900168] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x00020802 for process firefox pid 6101 thread firefox:cs0 pid 6116
+[ 1059.900172] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x0016F600
+[ 1059.900173] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x09008002
+[ 1059.900174] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 4, pasid 32780) at page 1504768, write from 'TC2' (0x54433200) (8)
+[ 3972.123585] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x0ac20402 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 3972.123589] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x0010D958
+[ 3972.123590] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x09004002
+[ 3972.123591] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 4, pasid 32781) at page 1104216, write from 'TC3' (0x54433300) (4)
+[ 3972.123644] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x0ada0802 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 3972.123645] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x0010D95B
+[ 3972.123646] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x09008002
+[ 3972.123646] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 4, pasid 32781) at page 1104219, write from 'TC2' (0x54433200) (8)
+[ 3972.124308] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x02024802 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 3972.124309] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x0010DA40
+[ 3972.124309] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x09048002
+[ 3972.124310] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 4, pasid 32781) at page 1104448, write from 'TC0' (0x54433000) (72)
+[ 3972.124993] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x0ac06202 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 3972.124994] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x0010D958
+[ 3972.124995] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x08062002
+[ 3972.124995] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 4, pasid 32781) at page 1104216, read from 'CBC0' (0x43424330) (98)
+[ 3972.124999] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x0ac02202 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 3972.124999] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x0010D843
+[ 3972.125000] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x09050002
+[ 3972.125000] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 4, pasid 32781) at page 1103939, write from 'CB1' (0x43423100) (80)
+[ 3972.125004] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x0ac01202 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 3972.125005] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x0010D891
+[ 3972.125005] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x09010002
+[ 3972.125005] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 4, pasid 32781) at page 1104017, write from 'CB3' (0x43423300) (16)
+[ 3972.125009] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x0ac05202 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 3972.125010] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x0010D8CB
+[ 3972.125010] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x09050002
+[ 3972.125011] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 4, pasid 32781) at page 1104075, write from 'CB1' (0x43423100) (80)
+[ 3972.125015] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x002a1002 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 3972.125015] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x0010D831
+[ 3972.125016] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x09060002
+[ 3972.125016] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 4, pasid 32781) at page 1103921, write from 'CB0' (0x43423000) (96)
+[ 3972.125020] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x002a2002 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 3972.125021] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x0010D8B0
+[ 3972.125021] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x09050002
+[ 3972.125021] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 4, pasid 32781) at page 1104048, write from 'CB1' (0x43423100) (80)
+[ 3972.129482] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x0ac04802 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 3972.129483] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x0010D958
+[ 3972.129484] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x08048002
+[ 3972.129484] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 4, pasid 32781) at page 1104216, read from 'TC0' (0x54433000) (72)
+[ 3979.889515] gmc_v8_0_process_interrupt: 530 callbacks suppressed
+[ 3979.889519] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x02020802 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 3979.889522] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x00143C40
+[ 3979.889523] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x05008002
+[ 3979.889523] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 2, pasid 32781) at page 1326144, write from 'TC2' (0x54433200) (8)
+[ 3979.889975] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x02001202 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 3979.889976] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x00143C40
+[ 3979.889977] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x04012002
+[ 3979.889977] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 2, pasid 32781) at page 1326144, read from 'CBC3' (0x43424333) (18)
+[ 3979.889982] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x02002202 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 3979.889983] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x00143C05
+[ 3979.889983] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x05020002
+[ 3979.889984] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 2, pasid 32781) at page 1326085, write from 'CB2' (0x43423200) (32)
+[ 3979.889988] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x02005202 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 3979.889989] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x00143C07
+[ 3979.889989] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x05050002
+[ 3979.889990] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 2, pasid 32781) at page 1326087, write from 'CB1' (0x43423100) (80)
+[ 3979.889994] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x02006202 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 3979.889995] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x00143C15
+[ 3979.889995] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x05010002
+[ 3979.889995] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 2, pasid 32781) at page 1326101, write from 'CB3' (0x43423300) (16)
+[ 3979.890000] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x002a2002 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 3979.890001] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x00143C19
+[ 3979.890001] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x05010002
+[ 3979.890002] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 2, pasid 32781) at page 1326105, write from 'CB3' (0x43423300) (16)
+[ 3979.890006] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x002a1002 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 3979.890007] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x00143C30
+[ 3979.890007] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x05010002
+[ 3979.890007] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 2, pasid 32781) at page 1326128, write from 'CB3' (0x43423300) (16)
+[ 3979.890012] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x000a2002 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 3979.890013] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x00143C32
+[ 3979.890013] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x05010002
+[ 3979.890014] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 2, pasid 32781) at page 1326130, write from 'CB3' (0x43423300) (16)
+[ 3979.890017] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x000a1002 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 3979.890018] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x00143C28
+[ 3979.890018] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x05010002
+[ 3979.890019] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 2, pasid 32781) at page 1326120, write from 'CB3' (0x43423300) (16)
+[ 3979.891937] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x02000802 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 3979.891937] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x00143C40
+[ 3979.891938] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x04008002
+[ 3979.891938] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 2, pasid 32781) at page 1326144, read from 'TC2' (0x54433200) (8)
+[ 4062.912573] gmc_v8_0_process_interrupt: 2 callbacks suppressed
+[ 4062.912578] amdgpu 0000:0c:00.0: amdgpu: GPU fault detected: 147 0x00004802 for process stellarium pid 8057 thread stellarium:cs0 pid 8060
+[ 4062.912580] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_ADDR   0x00000800
+[ 4062.912581] amdgpu 0000:0c:00.0: amdgpu:   VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x06048002
+[ 4062.912582] amdgpu 0000:0c:00.0: amdgpu: VM fault (0x02, vmid 3, pasid 32781) at page 2048, read from 'TC0' (0x54433000) (72)
+------------------------------------------------------------------------
+
+There does not seem to be any apparent immediate problem with graphics
+but when running commit babf0bb978e3, there seemed to be a noticeable
+lag in some operations, e.g. when moving a window or repainting large
+part of the terminal window in konsole (no idea if it's related).
+
+My GPU is Radeon Pro WX 2100 (1002:6995). What other information should
+I collect to help debugging the issue?
+
+Michal Kubecek
+
+--gtypyrxkzavvymbx
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEWN3j3bieVmp26mKO538sG/LRdpUFAmKQky8ACgkQ538sG/LR
+dpUKJQf/YzsEap7IRIvU+02H7WbM2LDPPf8ANiZeZGrDRamVjENFE+APOhQGt8gj
+HpydLfoN0AGWz0EMut2eXj7HZPjApn6OHNob6A1GTRAFMWOWFcpQmwBwIAH+jcKz
+MepA0vM7qUnvdQ9MV2ZlF7jIl7SEZVD1FZWPeWXYea+KetKI9WG5XGi5CMIrvF8q
+hLrN1WY6im5DH8dRmimOhGAaGG1WnZaU8d8ffa8Zygx19f4u6GC3icTWsXdLTL7l
+fHk5o2ljNeyWxZhs2oqetu/OhHBELuGrcM8p1YS2/6/tJWc1UkXG4q8063pjpjWB
+j0WtMNXk/LIzsm8WFyTbseHDOEot4g==
+=b/CJ
+-----END PGP SIGNATURE-----
+
+--gtypyrxkzavvymbx--
