@@ -1,70 +1,92 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86376538C3B
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 May 2022 09:45:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D03F5383C8
+	for <lists+amd-gfx@lfdr.de>; Mon, 30 May 2022 16:57:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFB8B10F590;
-	Tue, 31 May 2022 07:45:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8E8C10E7ED;
+	Mon, 30 May 2022 14:57:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C3B310ECFA;
- Mon, 30 May 2022 13:57:30 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: dmitry.osipenko) with ESMTPSA id B98F41F417FE
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1653919049;
- bh=2XRBuky6ctLBMkVpHH42tRbnrHaVzoRJDfOS/8wLl/E=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=mPwSP+W1lUR0EdMvCliWfZoiylZ8CVpOpjwgflCUTZaI9WHJh5tJXhk8DyguPhNeN
- HogdCkNBgtGD2G8U9Ep2K49/vmqE56g1BgD7MA21xGk1ZVBj+VJcIxxm08FCLdNgVK
- RmZOwzc+caJBzV5axbiwKDrCGcHjZmvJd24egZXw9xLh3XfQFPhTT3EpgfN70g8mqC
- 9sjT+smifz0WHNiGEqr7+RZqCI9QQehNyQ19Mpiv9LWCOB9wzR78FM0tska4e7lqKe
- 50oVtOr/eGMjVeh2uPvpXIVZhL/NQ2LFQ3MNEmBcidBDh44gsd28fmmYzNC+2ue0aj
- H9xWHCkQ7dKmg==
-Message-ID: <7372dd1b-06f7-5336-4738-15f9b4d4d4b3@collabora.com>
-Date: Mon, 30 May 2022 16:57:22 +0300
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2084.outbound.protection.outlook.com [40.107.237.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2D2210ED81
+ for <amd-gfx@lists.freedesktop.org>; Mon, 30 May 2022 14:57:47 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DsBsnLrO/6BEcdI6u9x4fXtU3J1he9S9nRrVnwavedJAiHhCYZYSNJGIKXMWpz3qLjNithwH3ZD1FIoLzgCxxmjFMJ2fPLOz0Bpdo948ce4yGWqQOPQqlptcycxV9oWntL2WAcm2YT1EiJNraseg7PyDe23Dbj65fpOR9afd0qm2b2XeDU4qmsfkD3MEf1/o0NgDctqXU94e8Ezae2lk94iLIXpJw8m6WE84KrQrpuiU0lbwhXPPIkkJ/2ySxHxNNYDIpvCAvsVGHemL3OCUQdR+g/tnQHW6diz7YIJrvGs5L0Fr1WttZG6Drq1f0cIznqVcnWI4w2sT8wDTqwscMw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mG4qnXRyObYpDlFhDKAs1Xwf67LuxY2iKjQQ8RxLFBc=;
+ b=Vu1agWd9rFcgisYJXA2WAl+1fq0XZTpo1RVpUPjPY/zgSwY5UZwmdDdelNfafGeb3sQ/TTFB3sZMp9+5a49Zu73iMxTNSj7alBolAGEcBV570oFn9P0mZ+zkYFOqlJ4JOCOnSkZ/rIU8MtIIEZnoGC87pK4Gx0CKrlFS9wy8HX2Xj7eh2L8UEXS01nXppohICY2RTGXvKXFpVQQ0/C+Ea5qYJR2/CzNiWpA8FWloSJ4cj+fePR/8PbBTBMbbBNPcbqKcmToy1NCCDWBXLdUOenlsF4P+xMlQmXmIxiN+sXbeLFaj+0Ah8JFjK5vX0mw1Hcl4hLVhp6qXyniGSIoTgg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mG4qnXRyObYpDlFhDKAs1Xwf67LuxY2iKjQQ8RxLFBc=;
+ b=j9jxeLcIN6ClXF8/H7d05y1FiXekCouy0eDphwAt3DDRfBtdfOCc0z3iBQkqDF4uHk9d1y8O0DMac718oNq2fEi42k1RDr7OQ7ul8Ul9q+0FxEiDMoFPEcMvqECbiXgGMFJqHKsniyjU4Dh16E46S8jsuQSXQXnh8tfunS9ggmw=
+Received: from CO2PR04CA0184.namprd04.prod.outlook.com (2603:10b6:104:5::14)
+ by BN6PR1201MB2465.namprd12.prod.outlook.com (2603:10b6:404:a6::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.13; Mon, 30 May
+ 2022 14:57:42 +0000
+Received: from CO1NAM11FT032.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:104:5:cafe::e) by CO2PR04CA0184.outlook.office365.com
+ (2603:10b6:104:5::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.13 via Frontend
+ Transport; Mon, 30 May 2022 14:57:42 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT032.mail.protection.outlook.com (10.13.174.218) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5293.13 via Frontend Transport; Mon, 30 May 2022 14:57:41 +0000
+Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 30 May
+ 2022 09:57:40 -0500
+From: Philip Yang <Philip.Yang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/2] drm/amdkfd: Use mmget_not_zero in MMU notifier
+Date: Mon, 30 May 2022 10:57:00 -0400
+Message-ID: <20220530145701.3881-1-Philip.Yang@amd.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v6 14/22] dma-buf: Introduce new locking convention
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- Daniel Stone <daniel@fooishbar.org>,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
- Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
- Rob Clark <robdclark@gmail.com>, Emil Velikov <emil.l.velikov@gmail.com>,
- Robin Murphy <robin.murphy@arm.com>, Qiang Yu <yuq825@gmail.com>,
- Sumit Semwal <sumit.semwal@linaro.org>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Thierry Reding <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-References: <20220526235040.678984-1-dmitry.osipenko@collabora.com>
- <20220526235040.678984-15-dmitry.osipenko@collabora.com>
- <0a02a31d-a256-4ca4-0e35-e2ea1868a8ae@amd.com>
- <e6e17c52-43c2-064b-500e-325bb3ba3b2c@collabora.com>
- <02e7946b-34ca-b48e-1ba6-e7b63740a2d9@amd.com>
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <02e7946b-34ca-b48e-1ba6-e7b63740a2d9@amd.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 31 May 2022 07:45:33 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: a72d0785-6aec-43d2-5fa4-08da424cbf27
+X-MS-TrafficTypeDiagnostic: BN6PR1201MB2465:EE_
+X-Microsoft-Antispam-PRVS: <BN6PR1201MB246533099963311E4BBA5DBDE6DD9@BN6PR1201MB2465.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: kleZ8qL0M11VHzRsBlQuGrcen8nKA7S/L64OH/SxHoVgDLszZgvWoXBOR9IT1dghLJ9CnNPrMDXrVafrIbj+HOwJArGwZb3IME7P0gxcvx8mxhBJQq24wr3kngttk/aKHYzRZrahEZY1rAEXw+X50zDc0O00ggkCXdvchWyhACFhrCiK+FH8iz0noJO8p4Q1ERl2izmQsb2qYuf7thTycCWaZfgnWW5IeQ1nVP8sL67OvEcMFN4j34mG7yyZasRdo2dX1JLL7AZ0Y8mBLqTeENknA7/TbVLOYorFGizw52iqCmOXi1NY/DQYtajDuak6tufn5Xr9UiJqvGdLjN+PNzr9Aw5dc9SwYZhPvDSA4npFBKH/Y4HgwUPpHojzzkNgcCO18EwN6PsdZgFuBixfqlQF63UTSZSbWhJ9tbmLaaNFN6X3TkX0zizj+w8Rr7mVYAmQAZBvV982GuyNC0dSPohieE9R+nNOrtOXERihB4AUgVbGbXh8ajFmrLTbbSlBW0TxdGwg538gKAwiNTYKrQ/eCrA6eoXFiHtzIaGLT4kuEMGENLafDCXdLvbWLbg1j5y7rXEI74YsiXuKiulQPQr/4Nqrw/oCd21UFh2i70Y4lBh3G0yjiElFald7w5uBZvDWg5YWinXYi855fkDQqxQauWg8Q1t959uKwsI4+RF2N3qfdN3k5gHzpRRIG3gwNJOMqfRYaGXi/vkF8Z2TwQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(4744005)(6666004)(70206006)(82310400005)(70586007)(356005)(8936002)(8676002)(6916009)(4326008)(54906003)(16526019)(86362001)(316002)(81166007)(36756003)(36860700001)(83380400001)(1076003)(7696005)(508600001)(186003)(5660300002)(26005)(2906002)(336012)(40460700003)(426003)(47076005)(2616005)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2022 14:57:41.6447 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a72d0785-6aec-43d2-5fa4-08da424cbf27
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT032.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1201MB2465
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,93 +98,40 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- linaro-mm-sig@lists.linaro.org, amd-gfx@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, Dmitry Osipenko <digetx@gmail.com>,
- kernel@collabora.com, linux-media@vger.kernel.org
+Cc: Philip Yang <Philip.Yang@amd.com>, felix.kuehling@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 5/30/22 16:41, Christian König wrote:
-> Hi Dmitry,
-> 
-> Am 30.05.22 um 15:26 schrieb Dmitry Osipenko:
->> Hello Christian,
->>
->> On 5/30/22 09:50, Christian König wrote:
->>> Hi Dmitry,
->>>
->>> First of all please separate out this patch from the rest of the series,
->>> since this is a complex separate structural change.
->> I assume all the patches will go via the DRM tree in the end since the
->> rest of the DRM patches in this series depend on this dma-buf change.
->> But I see that separation may ease reviewing of the dma-buf changes, so
->> let's try it.
-> 
-> That sounds like you are underestimating a bit how much trouble this
-> will be.
-> 
->>> I have tried this before and failed because catching all the locks in
->>> the right code paths are very tricky. So expect some fallout from this
->>> and make sure the kernel test robot and CI systems are clean.
->> Sure, I'll fix up all the reported things in the next iteration.
->>
->> BTW, have you ever posted yours version of the patch? Will be great if
->> we could compare the changed code paths.
-> 
-> No, I never even finished creating it after realizing how much work it
-> would be.
-> 
->>>> This patch introduces new locking convention for dma-buf users. From
->>>> now
->>>> on all dma-buf importers are responsible for holding dma-buf
->>>> reservation
->>>> lock around operations performed over dma-bufs.
->>>>
->>>> This patch implements the new dma-buf locking convention by:
->>>>
->>>>     1. Making dma-buf API functions to take the reservation lock.
->>>>
->>>>     2. Adding new locked variants of the dma-buf API functions for
->>>> drivers
->>>>        that need to manage imported dma-bufs under the held lock.
->>> Instead of adding new locked variants please mark all variants which
->>> expect to be called without a lock with an _unlocked postfix.
->>>
->>> This should make it easier to remove those in a follow up patch set and
->>> then fully move the locking into the importer.
->> Do we really want to move all the locks to the importers? Seems the
->> majority of drivers should be happy with the dma-buf helpers handling
->> the locking for them.
-> 
-> Yes, I clearly think so.
-> 
->>
->>>>     3. Converting all drivers to the new locking scheme.
->>> I have strong doubts that you got all of them. At least radeon and
->>> nouveau should grab the reservation lock in their ->attach callbacks
->>> somehow.
->> Radeon and Nouveau use gem_prime_import_sg_table() and they take resv
->> lock already, seems they should be okay (?)
-> 
-> You are looking at the wrong side. You need to fix the export code path,
-> not the import ones.
-> 
-> See for example attach on radeon works like this
-> drm_gem_map_attach->drm_gem_pin->radeon_gem_prime_pin->radeon_bo_reserve->ttm_bo_reserve->dma_resv_lock.
+MMU notifier callback may pass in mm with mm->mm_users==0 when process
+is exiting, use mmget_no_zero to avoid accessing invalid mm in deferred
+list work after mm is gone.
 
-Yeah, I was looking at the both sides, but missed this one.
+Signed-off-by: Philip Yang <Philip.Yang@amd.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-> Same for nouveau and probably a few other exporters as well. That will
-> certainly cause a deadlock if you don't fix it.
-> 
-> I strongly suggest to do this step by step, first attach/detach and then
-> the rest.
-
-Thank you very much for the suggestions. I'll implement them in the next
-version.
-
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+index 835b5187f0b8..2ba3de0fb8aa 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+@@ -2307,6 +2307,8 @@ svm_range_cpu_invalidate_pagetables(struct mmu_interval_notifier *mni,
+ 
+ 	if (range->event == MMU_NOTIFY_RELEASE)
+ 		return true;
++	if (!mmget_not_zero(mni->mm))
++		return true;
+ 
+ 	start = mni->interval_tree.start;
+ 	last = mni->interval_tree.last;
+@@ -2333,6 +2335,7 @@ svm_range_cpu_invalidate_pagetables(struct mmu_interval_notifier *mni,
+ 	}
+ 
+ 	svm_range_unlock(prange);
++	mmput(mni->mm);
+ 
+ 	return true;
+ }
 -- 
-Best regards,
-Dmitry
+2.35.1
+
