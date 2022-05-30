@@ -1,92 +1,63 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A1A15379A4
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 May 2022 13:17:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 490825377BE
+	for <lists+amd-gfx@lfdr.de>; Mon, 30 May 2022 11:41:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72CC110E3E3;
-	Mon, 30 May 2022 11:17:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA63A10E03A;
+	Mon, 30 May 2022 09:41:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2087.outbound.protection.outlook.com [40.107.220.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4061810E3E3;
- Mon, 30 May 2022 11:17:18 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KtsaNEjfdmczm/NVytNKjbrtotoxHBGZi0ik7Ly42SSEF+HS4pUWNfOf6xL5vjzFkCYqQRh4/VDCBKWEDNgBfeUEVs9opdxOp31flJ9DqMcrUkunxxYnAAqovovbjqYyLhtcfyS+S2U69iIPGrtivmZjrJ/id1VpheqzGSDWXvr+Tvr3qTMEsBd+ebjRvNL6r2rK0Pg1VETSyrfLqfR6yeWGCBfTgvucLOOkzd2upvTXyDBMWoj92Q80Wr09ODBOn9bw43S6XaE+0+2a/76qXN2PlBBMpiZE4MR9erqiPTlYVXaGxFKiyOKrhkMTWjz3NO0IDC2SQ+1kFIWzu+bMSQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=c1HqXc6ZUQUfeVE9nPrbhhSXTzga2Uc3FbMfu0n3ncE=;
- b=JMAyopKdXCrKQNervchD1yZrvUGw40HiD2dBp/Jh0DOnMhpYWpYTID3uTYR0AmygkSQN5uGuBbHeFYP0ge061LSRTAsEv63TdKORJ6jjSUBj+W4kBI1puUM78vUljhxSK6q/KITM3zrt5nvjGddy01jA29tNUtn6PMu4oFzsp4gEHYlFObtHMyNg0tr8wj9wX1i0IH1I5pFvuFSOr4GPEhe6Uxae3MXIUQFEnvOtCoko6c86sidlaYtVmGFDlxxxAcj8b5p7ePvxD/uDmCEReDTo948udw14aQRWyB4QkDiH8XSPgiiqu0acxXrFFXchDy2Kr07kXQfX1JRY7x4CyQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=ffwll.ch smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c1HqXc6ZUQUfeVE9nPrbhhSXTzga2Uc3FbMfu0n3ncE=;
- b=gNrR/2bye0KrehEc/pzmaChsbHqX0ShZgbVckTu9UjxAtYpU0KqJ+Dc2JqSEfb9OaGxCQNNutuCd+Skz+s5wad4enJDXRv16MFGIClTVhnyBWGuTG+LV9fAS5zRfOB3TZA5pePcDGKOLW3nRjQOpnmx1pLNquKQO6P+V5JgAPZk=
-Received: from BN0PR03CA0028.namprd03.prod.outlook.com (2603:10b6:408:e6::33)
- by DM6PR12MB4028.namprd12.prod.outlook.com (2603:10b6:5:1ce::29) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.16; Mon, 30 May
- 2022 11:17:14 +0000
-Received: from BN8NAM11FT022.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:e6:cafe::27) by BN0PR03CA0028.outlook.office365.com
- (2603:10b6:408:e6::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.13 via Frontend
- Transport; Mon, 30 May 2022 11:17:14 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BN8NAM11FT022.mail.protection.outlook.com (10.13.176.112) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5293.13 via Frontend Transport; Mon, 30 May 2022 11:17:13 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 30 May
- 2022 06:17:13 -0500
-Received: from Ryan-AMD.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Mon, 30 May 2022 06:16:44 -0500
-From: Ryan Lin <tsung-hua.lin@amd.com>
-To: 
-Subject: [PATCH] BACKPORT: drm/amdgpu/disply: set num_crtc earlier
-Date: Mon, 30 May 2022 17:29:02 +0800
-Message-ID: <20220530092902.810336-1-tsung-hua.lin@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3686510E03A;
+ Mon, 30 May 2022 09:41:49 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5FD46113E;
+ Mon, 30 May 2022 02:41:49 -0700 (PDT)
+Received: from [10.57.34.243] (unknown [10.57.34.243])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C86863F73D;
+ Mon, 30 May 2022 02:41:43 -0700 (PDT)
+Message-ID: <4f86be27-fcf3-e897-701d-bbec79a2dd32@arm.com>
+Date: Mon, 30 May 2022 10:41:42 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5741dfe9-c5db-4581-b1b5-08da422df2ba
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4028:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR12MB4028F45A2810DBCBF835D158B2DD9@DM6PR12MB4028.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GLIgqRbzsCtNrKttQ1bNiwZ+9hYzWbwRrNnwYAhBNIOrLieUYpAHHjberQT/j38Pgsui0eH3NS/l0iWURU+TBglkOkTuDlo/htxGtg0IU48vXHfzkPlRP5Pq3eokUzZ7oPKZxkcQnLUhFz4fLKSqno0R/9Du6ZBf3kMsLEVcYGhSEIdYxnGBorjS7X2+N/OPiGKWya57jjg+b5PlFHAwOjor1xXvprXtJl4FI1KsxJ86aOAIGF1Az1NR+9a4523SAwfjWY0FVwnoPPtZxKYaZCsnwvd2l9V0RizU6wKN6coK3LQR8084g6+ew5T8nRvb/gL2ndkcW3uoS0TEsOb/T5UHIEVedJL+g9AHHNWtCHQoWtny3Hxx3iMCRRQ0o7HsS8VP7n6J6sRKATpagHt7de9MjGTEx+P26aaGb9ia3ZaAwUjl4lnn6ebPxycX/E2hfQnQUZahbiXQuLRVgjeG/eqkEBIn2bVxC17dp7tJ4f86dMZ3onnBWQZAMddNDSxEvpIqhv0Rb3FCuhU7gm+zlWTSrO4+iYg67hD+RsQyWBZ6L+Lfx6v7pqHCGmOGoGGa3DBDF0jy/LPGOk9p7l4/hK1DjpjGDV5oandU6BCf4WR4M2AzTwsko1Qp52xAXNyg8+C3xYCFsy+Dr5eexz/LZrP+vk+dxJ7AJA62Af/svqVztNDUi8eHTVY4jlsD/h8BH5KSjikn3Cp1rY8I5/f3JIlOBJ95vygI+PPWo7HedvKAGoAw+dAkHYlJOiELlmR61vFZHM4Va4/oMW2n4b7r9NSjGZRFuFkNyoK+Ke8jMZUUsUAGkY2wdgv63pn8W3Zb
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(316002)(47076005)(8936002)(54906003)(966005)(426003)(36756003)(336012)(508600001)(86362001)(40460700003)(5660300002)(7416002)(4326008)(82310400005)(70586007)(70206006)(8676002)(26005)(2906002)(6666004)(7696005)(109986005)(186003)(1076003)(2616005)(356005)(83380400001)(81166007)(36860700001)(266003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2022 11:17:13.9004 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5741dfe9-c5db-4581-b1b5-08da422df2ba
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT022.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4028
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v6 04/22] drm/panfrost: Fix shrinker list corruption by
+ madvise IOCTL
+Content-Language: en-GB
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
+ <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Daniel Stone <daniel@fooishbar.org>,
+ Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>,
+ Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+ Rob Clark <robdclark@gmail.com>, Emil Velikov <emil.l.velikov@gmail.com>,
+ Robin Murphy <robin.murphy@arm.com>, Qiang Yu <yuq825@gmail.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, Thierry Reding
+ <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+References: <20220526235040.678984-1-dmitry.osipenko@collabora.com>
+ <20220526235040.678984-5-dmitry.osipenko@collabora.com>
+From: Steven Price <steven.price@arm.com>
+In-Reply-To: <20220526235040.678984-5-dmitry.osipenko@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,80 +69,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, leon.li@amd.com,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Ikshwaku Chauhan <ikshwaku.chauhan@amd.corp-partner.google.com>,
- Sasha Levin <sashal@kernel.org>,
- "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>, amd-gfx@lists.freedesktop.org,
- Harry Wentland <harry.wentland@amd.com>, praful.swarnakar@amd.com,
- Leo Li <sunpeng.li@amd.com>, Sean Paul <seanpaul@chromium.org>,
- ching-shih.li@amd.com, Simon Ser <contact@emersion.fr>,
- Roman Li <Roman.Li@amd.com>, stable@vger.kernel.org, shirish.s@amd.com, Daniel
- Vetter <daniel@ffwll.ch>, Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
- Alex Deucher <alexander.deucher@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Mark
- Yacoub <markyacoub@google.com>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linaro-mm-sig@lists.linaro.org, amd-gfx@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, Dmitry Osipenko <digetx@gmail.com>,
+ kernel@collabora.com, linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alex Deucher <alexander.deucher@amd.com>
+On 27/05/2022 00:50, Dmitry Osipenko wrote:
+> Calling madvise IOCTL twice on BO causes memory shrinker list corruption
+> and crashes kernel because BO is already on the list and it's added to
+> the list again, while BO should be removed from from the list before it's
+> re-added. Fix it.
+> 
+> Cc: stable@vger.kernel.org
+> Fixes: 013b65101315 ("drm/panfrost: Add madvise and shrinker support")
+> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
 
-To avoid a recently added warning:
- Bogus possible_crtcs: [ENCODER:65:TMDS-65] possible_crtcs=0xf (full crtc mask=0x7)
- WARNING: CPU: 3 PID: 439 at drivers/gpu/drm/drm_mode_config.c:617 drm_mode_config_validate+0x178/0x200 [drm]
-In this case the warning is harmless, but confusing to users.
+Reviewed-by: Steven Price <steven.price@arm.com>
 
-Fixes: 0df108237433 ("drm: Validate encoder->possible_crtcs")
-Bug: https://bugzilla.kernel.org/show_bug.cgi?id=209123
-Reviewed-by: Daniel Vetter <daniel@ffwll.ch>
-Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Cc: stable@vger.kernel.org
-
-Conflicts:
-	drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-	[Ryan Lin: Fixed the conflict, remove the non-main changed part
-	of this patch]
-
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index fb918b7890ac..5ef88a2d2161 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -766,9 +766,6 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
- 		goto error;
- 	}
- 
--	/* Update the actual used number of crtc */
--	adev->mode_info.num_crtc = adev->dm.display_indexes_num;
--
- 	/* TODO: Add_display_info? */
- 
- 	/* TODO use dynamic cursor width */
-@@ -2448,6 +2445,10 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
- 	enum dc_connection_type new_connection_type = dc_connection_none;
- 	const struct dc_plane_cap *plane;
- 
-+	dm->display_indexes_num = dm->dc->caps.max_streams;
-+	/* Update the actual used number of crtc */
-+	adev->mode_info.num_crtc = adev->dm.display_indexes_num;
-+
- 	link_cnt = dm->dc->caps.max_links;
- 	if (amdgpu_dm_mode_config_init(dm->adev)) {
- 		DRM_ERROR("DM: Failed to initialize mode config\n");
-@@ -2509,8 +2510,6 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
- 			goto fail;
- 		}
- 
--	dm->display_indexes_num = dm->dc->caps.max_streams;
--
- 	/* loops over all connectors on the board */
- 	for (i = 0; i < link_cnt; i++) {
- 		struct dc_link *link = NULL;
--- 
-2.25.1
+> ---
+>  drivers/gpu/drm/panfrost/panfrost_drv.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c b/drivers/gpu/drm/panfrost/panfrost_drv.c
+> index 087e69b98d06..b1e6d238674f 100644
+> --- a/drivers/gpu/drm/panfrost/panfrost_drv.c
+> +++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
+> @@ -433,8 +433,8 @@ static int panfrost_ioctl_madvise(struct drm_device *dev, void *data,
+>  
+>  	if (args->retained) {
+>  		if (args->madv == PANFROST_MADV_DONTNEED)
+> -			list_add_tail(&bo->base.madv_list,
+> -				      &pfdev->shrinker_list);
+> +			list_move_tail(&bo->base.madv_list,
+> +				       &pfdev->shrinker_list);
+>  		else if (args->madv == PANFROST_MADV_WILLNEED)
+>  			list_del_init(&bo->base.madv_list);
+>  	}
 
