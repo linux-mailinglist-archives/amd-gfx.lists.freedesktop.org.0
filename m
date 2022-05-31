@@ -1,84 +1,96 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 898B153936D
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 May 2022 16:55:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30B85538F6E
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 May 2022 13:06:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A08D10ED8C;
-	Tue, 31 May 2022 14:55:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51AA61127D0;
+	Tue, 31 May 2022 11:06:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 434B6112868
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 May 2022 10:56:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1653994606;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=5AMEdZHq6r8jK1K5fClop/kDp2DOnuh5RSKQmQhnlmo=;
- b=C2eES+l/dXwru1vP0ZJTC8D2kkFc1fpGn4czJDV4moEQxNt5S/il66fhtQ1PjPoPSBxsXd
- fsBuW35Hhr9GdLwzY5aq+txXqEw8HrtGXe5PuIUK6UHagdEqsRPWCkE0GFqpwWwnNyIC2T
- o2Z+joTNtERN3YuoArSEH4QKsFQoMrA=
-Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com
- [209.85.167.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-456-xMC7hYl8NVSFiMuIgskqAA-1; Tue, 31 May 2022 06:56:45 -0400
-X-MC-Unique: xMC7hYl8NVSFiMuIgskqAA-1
-Received: by mail-lf1-f69.google.com with SMTP id
- y22-20020ac24216000000b00478eb3ffbc9so1543005lfh.12
- for <amd-gfx@lists.freedesktop.org>; Tue, 31 May 2022 03:56:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=5AMEdZHq6r8jK1K5fClop/kDp2DOnuh5RSKQmQhnlmo=;
- b=wslPrbzLv0j2lBF6cBGuIiDJ8q9Au/0842juBm378xpimuOQ4eFbbKZGKS9/RtdoZ1
- wpLklptC0WQKPHDfcg2TyjAk9b9NeI1n1fSH0qOnmBe5KHis4+3129c+N2BRy9ZU8oJ9
- MilRMQ4K+XWg46xUVb5XbucAKNN/ZnZtcvyB9rkTC4BBj2eKvQyawyPciZUnEWr9CTGa
- uCqfud/4dk2X54ht7uOowovHYyaZKO68KPzxakVRclEKKG5Okw1NObpayH6tawxJl68Z
- CsqKMBy9gVzqiH6BOoFZ5//z0GRft1XsHnvdc9fkvsLypP+IGgDeCGmrEGFzg/w1GMSS
- 9YSg==
-X-Gm-Message-State: AOAM532A/0BLgh2B/NAeyO53KhZQEjfsOu1lgMurDJLuF3Ll4QnLqY5c
- Ogi5MBTxz4U/gSZqmSy7pyEfDClIi+FxM04f2rdzWDFTTpwruCWWzbC7YiCE8CuU3mK0QVOwQ3D
- w0T8nOgC4HeKwvt3S/rU4lKthDg==
-X-Received: by 2002:a2e:8958:0:b0:255:48a6:b34f with SMTP id
- b24-20020a2e8958000000b0025548a6b34fmr9086911ljk.32.1653994603706; 
- Tue, 31 May 2022 03:56:43 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzT/kJtZFCGg6vVnaOEu+TAnTzoEpR9/PyP/37VarQ8+j7ln571wRc5ni+laLwliCYrgww7xA==
-X-Received: by 2002:a2e:8958:0:b0:255:48a6:b34f with SMTP id
- b24-20020a2e8958000000b0025548a6b34fmr9086904ljk.32.1653994603496; 
- Tue, 31 May 2022 03:56:43 -0700 (PDT)
-Received: from [10.101.1.23] (ip-185-104-137-32.ptr.icomera.net.
- [185.104.137.32]) by smtp.gmail.com with ESMTPSA id
- s22-20020a2e9c16000000b0025567cf8633sm16866lji.85.2022.05.31.03.56.36
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 31 May 2022 03:56:42 -0700 (PDT)
-Message-ID: <5ba0b86a-fa9c-ed97-3b43-7814599deab5@redhat.com>
-Date: Tue, 31 May 2022 12:56:18 +0200
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam07on2048.outbound.protection.outlook.com [40.107.95.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E59F710FC7B
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 May 2022 11:06:06 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fo785wfGW2npqaPDlBh/z6jkjBXdKO45Y8ouS1gN/IZOOR5MKgsM9bVCeELzjJXf7DcVYxLQgSq3GZuBcHVnoUdkezLUCgA1AyFjG7fe46vuUInwKhosg/VMPt7M+D09GI9x33I6uNvg6soPE1+qGlJxqMGICxTiJa4WKhkIyMnuC8wHa0LbFYp12UJMOD8m5vo6yxKlcfet+tSPqAfjWRpcUx2YHPr5/SDNixeHz+AEwkEE5RSkKo85AaorD7mmBMxt12SlvDdM/kiC3HyPDL01hQU+H47lhlXcdiEVAJ5T2Js2KtboFYmvpyHgbTtgXopPNPe/tB9MlP9RQWR6zg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KNYlnL+Xouya8zfpTL5SsVqSz+RFfEkHjcgQash/XAY=;
+ b=lAmuCOC28cIj4UhWiaaQN1odWlncm1di0nsG93+A1pL4RmCC6kUbcY8mOR4J1eKdq0VIKaMAiMPjlHCzPVYG8BBu0HjdSd4/bihPfFmQmZFSJvqTzSmRBz0qkv6Wp0ApgzazCWCMmt5D8kAmoQjoOLGuQHHFbTqC3ftd1FCNnB7JwzNciP5/4U3iqXl08Py1SrkYp5nh9shWO0UmK8AtYZTthFJN/Z8Lnye8wxhxfdCvvZRKT1/L4jL1lSu2yE3GMj7+Mj972ubC1J5GqFHV2E4aDovJv9UjdWiRAQ1xpUBiU/OswlUab0Xd98gIq7FblgGQfbPI0E+YzJC62yAPKw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KNYlnL+Xouya8zfpTL5SsVqSz+RFfEkHjcgQash/XAY=;
+ b=g1/A+G6OIzFrSVX+QGNs3nxdNoTFgL5ir0okDxupskqc0vUB0nqDvYjT+vpbnUXuSXjn5M09YdyiFnew7lViJS03SVbFBPdZikEZ1quAZLC5D+hVfgSimGlsyCuspQ2KR3KY/jYsOL/AN3EXEJIYrFHj2lYQamuGxXrsTvozUOg=
+Received: from DM5PR17CA0069.namprd17.prod.outlook.com (2603:10b6:3:13f::31)
+ by DM5PR1201MB0076.namprd12.prod.outlook.com (2603:10b6:4:55::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.17; Tue, 31 May
+ 2022 11:06:04 +0000
+Received: from DM6NAM11FT030.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:13f:cafe::b1) by DM5PR17CA0069.outlook.office365.com
+ (2603:10b6:3:13f::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.19 via Frontend
+ Transport; Tue, 31 May 2022 11:06:04 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DM6NAM11FT030.mail.protection.outlook.com (10.13.172.146) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5293.13 via Frontend Transport; Tue, 31 May 2022 11:06:04 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 31 May
+ 2022 06:06:04 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
+ (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 31 May
+ 2022 04:06:03 -0700
+Received: from stanley-test.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
+ Transport; Tue, 31 May 2022 06:06:02 -0500
+From: Stanley.Yang <Stanley.Yang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <hawking.zhang@amd.com>,
+ <tao.zhou1@amd.com>
+Subject: [PATCH Review 1/1] drm/amdgpu: fix ras suppoted check
+Date: Tue, 31 May 2022 19:06:00 +0800
+Message-ID: <20220531110600.8514-1-Stanley.Yang@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v10 0/4] Separate panel orientation property creating and
- value setting
-To: Hsin-Yi Wang <hsinyi@chromium.org>
-References: <20220530081910.3947168-1-hsinyi@chromium.org>
- <a8d1fe13-e747-016a-2d45-bfb50f23f2d9@redhat.com>
- <CAJMQK-iM-ip7edA2mBOhp-8maWKG5+kTceZUM5U6BOLLBq1H4Q@mail.gmail.com>
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <CAJMQK-iM-ip7edA2mBOhp-8maWKG5+kTceZUM5U6BOLLBq1H4Q@mail.gmail.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Tue, 31 May 2022 14:55:52 +0000
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c36519b1-9a10-4f38-5dd6-08da42f58e39
+X-MS-TrafficTypeDiagnostic: DM5PR1201MB0076:EE_
+X-Microsoft-Antispam-PRVS: <DM5PR1201MB007618A99D594B73433EE2DB9ADC9@DM5PR1201MB0076.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Pkvu/b5oN3zOEVL5EI7OoSllv7oS4JcZUjnvdO6B850oSTxqFy6AQQtZzUlAq03txIttnT3kdDI4G07i6wtU3W8XGUHxuA3GMETaKFaT3Ysw30FgpLSmLMmZAKpBvkO1SGp9dY+WfSP8wHicgB+t4A1ui1Wi/MA/KkI8ybPxxl4FzDGY9UbgLzjKwaQTot3gsl3MAWPQDsuNRfijspMaUP4TUj0yT7RUboH522CP0Lv6q7Iipkxxv5MjSN7l1bbSuKh9nTcQKPLDfgcPxp9n3OVIY2EKoU4KOYIJm4ZrPM2gA/0npWozOZKr2h7IKJ1rn7XDEgi2ruJtPo5aRhdMuMFW8xSQDRZe2iPLeujUgyVY+lRMh9duQRxTUstMcjtW6qSxOXw9s4h9FsFzvOznBgWUoR69oGrXKhDf2Wn9vN4hpV/Uw3jeSxpd8pUDNdynAzJklusW26Fl3fQCIaKUY8Q5FU1F6u++N3AiwIZ+dyh9iWnErTSSw03xAhdy1OmUnoskFr80mBggwWNQ6gZ0l97G5NRpGntuFuqd22saTpFiHquNCyQlarLbyuByaTcrdVAJeubfbsMfdWNgZ+TfWVbOVbN2Oxq93YzOngvrO8FMjOl69zGAWVDV4pI6EMGtFuO59Ravf0I5dJ0/FaQzAuVabhE+UNzfUbgbYaK2N17NeI97/effa+EY8gGRPSvC7ehicQ3xl4Y6KgwYIGyaCg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(86362001)(4326008)(8676002)(356005)(186003)(70206006)(70586007)(7696005)(5660300002)(508600001)(4744005)(336012)(47076005)(426003)(83380400001)(8936002)(2906002)(316002)(36756003)(6636002)(1076003)(2616005)(36860700001)(81166007)(40460700003)(82310400005)(26005)(110136005)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2022 11:06:04.5954 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c36519b1-9a10-4f38-5dd6-08da42f58e39
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT030.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0076
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,139 +102,35 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Rob Clark <robdclark@chromium.org>, amd-gfx@lists.freedesktop.org,
- Harry Wentland <harry.wentland@amd.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Stephen Boyd <swboyd@chromium.org>,
- Rob Herring <robh+dt@kernel.org>, linux-mediatek@lists.infradead.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, Sean Paul <sean@poorly.run>,
- linux-arm-kernel@lists.infradead.org, Simon Ser <contact@emersion.fr>,
- Emil Velikov <emil.l.velikov@gmail.com>,
- Douglas Anderson <dianders@chromium.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>
+Cc: "Stanley.Yang" <Stanley.Yang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Fix aldebaran ras supported check on SRIOV guest side,
+the previous check conditicon block all ras feature
+on baremetal
 
-On 5/30/22 13:34, Hsin-Yi Wang wrote:
-> On Mon, May 30, 2022 at 4:53 PM Hans de Goede <hdegoede@redhat.com> wrote:
->>
->> Hi,
->>
->> On 5/30/22 10:19, Hsin-Yi Wang wrote:
->>> Some drivers, eg. mtk_drm and msm_drm, rely on the panel to set the
->>> orientation. Panel calls drm_connector_set_panel_orientation() to create
->>> orientation property and sets the value. However, connector properties
->>> can't be created after drm_dev_register() is called. The goal is to
->>> separate the orientation property creation, so drm drivers can create it
->>> earlier before drm_dev_register().
->>
->> Sorry for jumping in pretty late in the discussion (based on the v10
->> I seem to have missed this before).
->>
->> This sounds to me like the real issue here is that drm_dev_register()
->> is getting called too early?
->>
-> Right.
-> 
->> To me it seems sensible to delay calling drm_dev_register() and
->> thus allowing userspace to start detecting available displays +
->> features until after the panel has been probed.
->>
-> 
-> Most panels set this value very late, in .get_modes callback (since it
-> is when the connector is known), though the value was known during
-> panel probe.
+Signed-off-by: Stanley.Yang <Stanley.Yang@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-Hmm I would expect the main drm/kms driver to register the drm_connector
-object after probing the panel, right ?
-
-So maybe this is a problem with the panel API? How about adding 
-separate callback to the panel API to get the orientation, which the
-main drm/kms driver can then call before registering the connector ?
-
-And then have the main drm/kms driver call
-drm_connector_set_panel_orientation() with the returned orientation
-on the connecter before registering it.
-
-The new get_orientation callback for the panel should of course
-be optional (IOW amy be NULL), so we probably want a small
-helper for drivers using panel (sub)drivers to take care of
-the process of getting the panel orientation from the panel
-(if supported) and then setting it on the connector.
-
-
-> I think we can also let drm check if they have remote panel nodes: If
-> there is a panel and the panel sets the orientation, let the drm read
-> this value and set the property. Does this workflow sound reasonable?
-> 
-> The corresponding patch to implement this:
-> https://patchwork.kernel.org/project/linux-mediatek/patch/20220530113033.124072-1-hsinyi@chromium.org/
-
-That is a suprisingly small patch (which is good). I guess that
-my suggestion to add a new panel driver callback to get
-the orientation would be a bit bigget then this. Still I think
-that that would be a bit cleaner, as it would also solve this
-for cases where the orientation comes from the panel itself
-(through say some EDID extenstion) rather then from devicetree.
-
-Still I think either way should be acceptable upstream.
-
-Opinions from other drm devs on the above are very much welcome!
-
-Your small patch nicely avoids the probe ordering problem,
-so it is much better then this patch series.
-
-Regards,
-
-Hans
-
-
-
-> 
-> Thanks
-> 
->> I see a devicetree patch in this series, so I guess that the panel
->> is described in devicetree. Especially in the case of devicetree
->> I would expect the kernel to have enough info to do the right
->> thing and make sure the panel is probed before calling
->> drm_dev_register() ?
->>
->> Regards,
->>
->> Hans
->>
->>
->>
->>
->>>
->>> After this series, drm_connector_set_panel_orientation() works like
->>> before. It won't affect existing callers of
->>> drm_connector_set_panel_orientation(). The only difference is that
->>> some drm drivers can call drm_connector_init_panel_orientation_property()
->>> earlier.
->>>
->>> Hsin-Yi Wang (4):
->>>   gpu: drm: separate panel orientation property creating and value
->>>     setting
->>>   drm/mediatek: init panel orientation property
->>>   drm/msm: init panel orientation property
->>>   arm64: dts: mt8183: Add panel rotation
->>>
->>>  .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |  1 +
->>>  drivers/gpu/drm/drm_connector.c               | 58 ++++++++++++++-----
->>>  drivers/gpu/drm/mediatek/mtk_dsi.c            |  7 +++
->>>  drivers/gpu/drm/msm/dsi/dsi_manager.c         |  4 ++
->>>  include/drm/drm_connector.h                   |  2 +
->>>  5 files changed, 59 insertions(+), 13 deletions(-)
->>>
->>
-> 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+index a9d1cce192b2..8bda285c9e97 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+@@ -2285,8 +2285,9 @@ static void amdgpu_ras_check_supported(struct amdgpu_device *adev)
+ 	    !amdgpu_ras_asic_supported(adev))
+ 		return;
+ 
+-	if (!(amdgpu_sriov_vf(adev) &&
+-		(adev->ip_versions[MP1_HWIP][0] == IP_VERSION(13, 0, 2))))
++	/* If driver run on sriov guest side, only enable ras for aldebaran */
++	if (amdgpu_sriov_vf(adev) &&
++		adev->ip_versions[MP1_HWIP][0] != IP_VERSION(13, 0, 2))
+ 		return;
+ 
+ 	if (!adev->gmc.xgmi.connected_to_cpu) {
+-- 
+2.17.1
 
