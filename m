@@ -1,94 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02C2C53BED3
-	for <lists+amd-gfx@lfdr.de>; Thu,  2 Jun 2022 21:31:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EF7A53BDC1
+	for <lists+amd-gfx@lfdr.de>; Thu,  2 Jun 2022 20:08:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75276112D36;
-	Thu,  2 Jun 2022 19:31:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57856112AAB;
+	Thu,  2 Jun 2022 18:08:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam07on2067.outbound.protection.outlook.com [40.107.212.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37C36112D36
- for <amd-gfx@lists.freedesktop.org>; Thu,  2 Jun 2022 19:31:51 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Q/iKckyCMVskgSxX2CTlDgiPbrd7b9UcVP9sBgOOhp5csewOaxDWS7uDmo18K7Edll4D/28GjI6zwaoF1QWoAzAVeOn9UjffilzjPRxyJ23fCQvzKyGFbG/kRL6cfBdF6M5yM6jksfYZSXsnYyJ6BVLcLCTOglLkwpY7DL7q3slgcm3yNCKeguW3pd45a6aHim0ahox667ozoFR2j+O4CgnHwgfQcZZ08RHtyyXtHAffgR/uJbztwEYEx0SPnMgie819DbD9Xq0kdKjAOPbpEmCTXHK14z5ON77OEVPQKYnHlZgNAXumK3tgkUIllOzOFPAv5Hoyi842o7xc/YT+GQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NvjInr3OSxqm226qkcqwZ7yneWZ1XQr03FUd1o/+3uI=;
- b=F40BoUWotZ2ZOcszH7f1nWds2sI1dgqrkrP6kDFxHnTr+r1I/ttR7wCbO8MF8hHXWNKNrxgELKYngSEbBJFC8FPERresZeF+nmQYFIJAgNAWZv0BJ8GMDkGIBomwCBM04FODXDbEM2Lgh+axuo6jp78WzwkZ9ws9Lf69t4u7vZj4NpDZNEhZs/IGFuyvy8rhKpbqckArCcke8X+F3FrqeiqvK8D317DvzqAUBpLXJBMwfeywaVSLkWuW5+37HnTshTH4DDwJLOjzQWFVKacJB2I2UiNjeUCQrYDvV4FG0gOt35btL8HQq1NiI8n2YHDa/+4XCQmxDmayzPu8fUzUGw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NvjInr3OSxqm226qkcqwZ7yneWZ1XQr03FUd1o/+3uI=;
- b=Uj613RlvIUQx4JO4/q4YJ2w71btmfCtIn8X2HO7w2B6Fuxd6EDyn9x0hxcep4vvTRB2zXfigrZNF5i6aTzNSYbraaR3qEKMX/E+KluouE/JfYaH4Hzu8QUyJiOajjkT25y73+Y7bkSWL3+7/1p0rIelwaFdYpF6dXzBiD66Mlhc=
-Received: from DM6PR02CA0049.namprd02.prod.outlook.com (2603:10b6:5:177::26)
- by BN8PR12MB2849.namprd12.prod.outlook.com (2603:10b6:408:6e::25) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.12; Thu, 2 Jun
- 2022 19:31:49 +0000
-Received: from DM6NAM11FT059.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:177:cafe::fb) by DM6PR02CA0049.outlook.office365.com
- (2603:10b6:5:177::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.13 via Frontend
- Transport; Thu, 2 Jun 2022 19:31:49 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT059.mail.protection.outlook.com (10.13.172.92) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5314.12 via Frontend Transport; Thu, 2 Jun 2022 19:31:48 +0000
-Received: from leodev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 2 Jun
- 2022 14:31:33 -0500
-From: <sunpeng.li@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 4/4] drm/amd/display: refactor dirty rect dmub command decision
-Date: Thu, 2 Jun 2022 14:03:47 -0400
-Message-ID: <20220602180347.754067-5-sunpeng.li@amd.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220602180347.754067-1-sunpeng.li@amd.com>
-References: <20220602180347.754067-1-sunpeng.li@amd.com>
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com
+ [IPv6:2607:f8b0:4864:20::1031])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2CC6112AAB
+ for <amd-gfx@lists.freedesktop.org>; Thu,  2 Jun 2022 18:08:41 +0000 (UTC)
+Received: by mail-pj1-x1031.google.com with SMTP id
+ 3-20020a17090a174300b001e426a02ac5so6986904pjm.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 02 Jun 2022 11:08:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=fireburn-co-uk.20210112.gappssmtp.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=wcpjNlCPmK4q0FuUZ0eELUyq4zYlA5nuUQU01wtqgOM=;
+ b=295Zg87UD+yHGlfc5I43nWPCe1qpaxdsc36MgeOT5eaICTJeyQbwJU6WSFlfScq9uc
+ ErKJJTv626rBEr1CiFssTiozNtlFk5nY987Bcw1E8VQ2BpWioQpsi10MXIgLE0zBKNNU
+ 34eArWuW89a2tTt5xzmA3GV4o6v1R9fSfKFUNHlxrT2aVqPjehrJWGWF39hrp07lECLN
+ Thb5zquu2ELkwfXyG1fQTJBErZFM/ZylOLrF+uqy9x9C3weAnQFQFK5t8SqmAhS+jDij
+ WcogX0xYDOg6T3s+P64Nk8xHntc6W1vc/9QAFhvPsDUvqlwvy4vcr2nZJ5lKVwpP921A
+ gsqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=wcpjNlCPmK4q0FuUZ0eELUyq4zYlA5nuUQU01wtqgOM=;
+ b=6TwK7QX3qOltVVRIYbLDr6zCfwYeLmVZlljTkv12DZ/Tob3BZLh9u12yAU7A5OSdvb
+ VKhpuxGM5z4UsgWIB83ZTW87eeA0PpPlj97W1PysIcI4/onsrWSrwTLB2I01EW1eMRHS
+ PaEBmkyBrnaHfg5LYG/EgF+QfFV13Du3MK5tmKrOd/x2AuYIpccXtyQyoS4UbMojYqjW
+ jPsqNxKt3kPtOBt8wHngtw+9IIBIEkvRrFchf7CMmwBF/Z+VXvrRqTJUjqUliUIfHnPT
+ 8BwZCjMsX4wKxXvZiLAU8tPQN0lmRnnB/DPBgULl+Za5HqC+oZaIOkwUVw+Ii1/sU8dn
+ 3Y1w==
+X-Gm-Message-State: AOAM530PrkzuDiiyw4VXOo0AncK+kqdA5jAcvfnzj+X3SStkWnl+ENOl
+ aMsRIVUHj85lzwz+xe/9I0brRMMD/GrE1sVX7/Pw6A==
+X-Google-Smtp-Source: ABdhPJzn2+5IzduYb/yn2r7HInCfBlaqqn7pR52tpfIlXLwuzKyojH2nvg38zPxpIDaoey+22BIghW9gBociBMoF+Ck=
+X-Received: by 2002:a17:902:e947:b0:163:91e5:d3c with SMTP id
+ b7-20020a170902e94700b0016391e50d3cmr5971890pll.39.1654193321164; Thu, 02 Jun
+ 2022 11:08:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 96d41811-24ce-4567-67ad-08da44ce8999
-X-MS-TrafficTypeDiagnostic: BN8PR12MB2849:EE_
-X-Microsoft-Antispam-PRVS: <BN8PR12MB2849EA429BA4A638A64FB28E82DE9@BN8PR12MB2849.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: mW6YIEbzQLAqJUGRVsm3UnBg3/FZAz3zord3AO+H7GceRASUcjymsupZp5WMH+sfdnOyYesxRelvpJn16j17l+rJBzVPWG2YrjENukxRADW6QnxZSFXWeX+o4A/3T/NcotDEVOoY7EMFLFG95b+utXZxTBkHoYR2HTs4aOPYm+9wL9D+EtyBErjFvIlhB9Vqb5W8LDMy2eZxua/T9NWKylQqOtUmlUn0vxcXb6ljeu2A7HNcVw8Qkwttjf+6mhQ4gBrXC5B+VYR2f+XeRDaJLa00z6MVnNzMEi8lzL10xxmP/mHg+myt+KBPekG1qFxusUQe3prN5fS2au44Gai3f26nNPOLXiRqqGTDt+3CGatdF7fa9NJ40CRQbkSixUJwv/DwGTHyc51N+9xEeRvIPovOt2gtfgUcIQD9K+UuTLYfXHbUStawuaMCcsIGy0h9/ZIjGec91pRymOz01Iz3mZOKiMZj3QHJppaDNseVh6OH4IhR2hGjFyBJq4BXvH1OyimzkfWqtmtRZaJCetJ9RowsYU30pt1Cw8XH2Y6VhyS6z/0rfM/O6ToRdBsWfEZMaJD6FF4RzYC1C9ty8yzM84XEskrkku+fOQdGRBqKZrilim8/0CnGTnx3XgxWhttTBFjd/kbM7PqJ1Xq8XUGKTyR8ENCOF2KaKVVwUYGYNmhZrTO2msN4C/Y6OgiY3H/f+c9ZG+AMZqpcMowd91gTrcdWwz7mDVxwEI0djrLRV3s=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(36756003)(356005)(36860700001)(8936002)(47076005)(2906002)(83380400001)(426003)(2876002)(336012)(16526019)(186003)(82310400005)(6666004)(26005)(2616005)(40460700003)(1076003)(5660300002)(316002)(508600001)(70206006)(81166007)(4326008)(8676002)(54906003)(6916009)(7696005)(70586007)(86362001)(14143004)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2022 19:31:48.7892 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 96d41811-24ce-4567-67ad-08da44ce8999
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT059.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB2849
+References: <20220602154734.7854-1-christian.koenig@amd.com>
+ <CADnq5_MopB5aUpzo_iWz5TXbxAxYXttm8L6L_SwFayUPEyZxhw@mail.gmail.com>
+In-Reply-To: <CADnq5_MopB5aUpzo_iWz5TXbxAxYXttm8L6L_SwFayUPEyZxhw@mail.gmail.com>
+From: Mike Lothian <mike@fireburn.co.uk>
+Date: Thu, 2 Jun 2022 19:08:30 +0100
+Message-ID: <CAHbf0-FZJnD7PQNFhVkg64XqKvwbuhN115yVFDd8_XG54nD_Ow@mail.gmail.com>
+Subject: Re: [PATCH] drm/ttm: fix bulk move handling during resource init
+To: Alex Deucher <alexdeucher@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,100 +66,166 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dingchen.zhang@amd.com, Leo Li <sunpeng.li@amd.com>,
- Robin Chen <po-tchen@amd.com>, roman.li@amd.com, alexander.deucher@amd.com,
- harry.wentland@amd.com
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Arunpravin <Arunpravin.PaneerSelvam@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Robin Chen <po-tchen@amd.com>
+Hi
 
-[Why]
-To wrap the decision logic of sending dirty rect dmub command
-for both frame update and cursor update path.
+I'm still seeing Null pointers against Linus's tree and drm-misc with this =
+patch
 
-Signed-off-by: Robin Chen <po-tchen@amd.com>
-Acked-by: Leo Li <sunpeng.li@amd.com>
----
- drivers/gpu/drm/amd/display/dc/core/dc.c      | 14 ++++++++++-
- .../amd/display/dc/dcn10/dcn10_hw_sequencer.c | 24 ++++++++++++++-----
- 2 files changed, 31 insertions(+), 7 deletions(-)
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: BUG: kernel NULL pointer
+dereference, address: 0000000000000008
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: #PF: supervisor write
+access in kernel mode
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: #PF: error_code(0x0002) -
+not-present page
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: PGD 11ee04067 P4D
+11ee04067 PUD 15eccb067 PMD 0
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: Oops: 0002 [#1] PREEMPT SMP NO=
+PTI
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: CPU: 0 PID: 1021 Comm:
+GravityMark.x64 Tainted: G        W         5.18.0-tip+ #3177
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: Hardware name: ASUSTeK
+COMPUTER INC. ROG Strix G513QY_G513QY/G513QY, BIOS G513QY.318
+03/29/2022
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: RIP:
+0010:ttm_resource_init+0x108/0x210
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: Code: 48 8b 74 0a 08 48
+39 de 0f 84 82 00 00 00 48 8b 7b 38 4c 8b 4b 40 4c 8d 44 0a 08 48 8d
+56 38 4c 89 4f 08 49 89 39 48 8b 4e 38 <48> 89 41 08 48 89 4b 38 48 89
+>
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: RSP:
+0018:ffff888112e73918 EFLAGS: 00010202
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: RAX: ffff888206b715d8
+RBX: ffff888206b715a0 RCX: 0000000000000000
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: RDX: ffff888206b71cf8
+RSI: ffff888206b71cc0 RDI: ffff888110605b00
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: RBP: ffff88816c848c08
+R08: ffff88812235c790 R09: ffff8881306a4bd8
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: R10: 0000000000000000
+R11: ffffffff81851320 R12: ffff888110605ad0
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: R13: ffff888206b715a0
+R14: ffff88816c848c58 R15: ffff888110605ad0
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: FS:
+00007f4c257c1740(0000) GS:ffff888fde400000(0000)
+knlGS:0000000000000000
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: CS:  0010 DS: 0000 ES:
+0000 CR0: 0000000080050033
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: CR2: 0000000000000008
+CR3: 00000001183fc000 CR4: 0000000000350ef0
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: Call Trace:
+Jun 02 19:04:05 axion.fireburn.co.uk kernel:  <TASK>
+Jun 02 19:04:05 axion.fireburn.co.uk kernel:  ? amdgpu_vram_mgr_new+0xbb/0x=
+4b0
+Jun 02 19:04:05 axion.fireburn.co.uk kernel:  ? ttm_bo_mem_space+0x89/0x1e0
+Jun 02 19:04:05 axion.fireburn.co.uk kernel:  ? ttm_bo_validate+0x80/0x1a0
+Jun 02 19:04:05 axion.fireburn.co.uk kernel:  ? amdgpu_cs_bo_validate+0xe9/=
+0x2b0
+Jun 02 19:04:05 axion.fireburn.co.uk kernel:  ?
+amdgpu_syncobj_lookup_and_add_to_sync+0xa0/0xa0
+Jun 02 19:04:05 axion.fireburn.co.uk kernel:  ?
+amdgpu_vm_validate_pt_bos+0xce/0x1c0
+Jun 02 19:04:05 axion.fireburn.co.uk kernel:  ? amdgpu_cs_parser_bos+0x522/=
+0x6e0
+Jun 02 19:04:05 axion.fireburn.co.uk kernel:  ? amdgpu_cs_ioctl+0x7fe/0xd00
+Jun 02 19:04:05 axion.fireburn.co.uk kernel:  ?
+amdgpu_cs_report_moved_bytes+0x60/0x60
+Jun 02 19:04:05 axion.fireburn.co.uk kernel:  ? drm_ioctl_kernel+0xcb/0x130
+Jun 02 19:04:05 axion.fireburn.co.uk kernel:  ? drm_ioctl+0x2f5/0x400
+Jun 02 19:04:05 axion.fireburn.co.uk kernel:  ?
+amdgpu_cs_report_moved_bytes+0x60/0x60
+Jun 02 19:04:05 axion.fireburn.co.uk kernel:  ? amdgpu_drm_ioctl+0x42/0x80
+Jun 02 19:04:05 axion.fireburn.co.uk kernel:  ? __x64_sys_ioctl+0x5e/0xa0
+Jun 02 19:04:05 axion.fireburn.co.uk kernel:  ? do_syscall_64+0x6a/0x90
+Jun 02 19:04:05 axion.fireburn.co.uk kernel:  ?
+exit_to_user_mode_prepare+0x19/0x90
+Jun 02 19:04:05 axion.fireburn.co.uk kernel:  ?
+entry_SYSCALL_64_after_hwframe+0x46/0xb0
+Jun 02 19:04:05 axion.fireburn.co.uk kernel:  </TASK>
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: Modules linked in:
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: CR2: 0000000000000008
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: ---[ end trace
+0000000000000000 ]---
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: RIP:
+0010:ttm_resource_init+0x108/0x210
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: Code: 48 8b 74 0a 08 48
+39 de 0f 84 82 00 00 00 48 8b 7b 38 4c 8b 4b 40 4c 8d 44 0a 08 48 8d
+56 38 4c 89 4f 08 49 89 39 48 8b 4e 38 <48> 89 41 08 48 89 4b 38 48 89
+>
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: RSP:
+0018:ffff888112e73918 EFLAGS: 00010202
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: RAX: ffff888206b715d8
+RBX: ffff888206b715a0 RCX: 0000000000000000
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: RDX: ffff888206b71cf8
+RSI: ffff888206b71cc0 RDI: ffff888110605b00
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: RBP: ffff88816c848c08
+R08: ffff88812235c790 R09: ffff8881306a4bd8
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: R10: 0000000000000000
+R11: ffffffff81851320 R12: ffff888110605ad0
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: R13: ffff888206b715a0
+R14: ffff88816c848c58 R15: ffff888110605ad0
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: FS:
+00007f4c257c1740(0000) GS:ffff888fde400000(0000)
+knlGS:0000000000000000
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: CS:  0010 DS: 0000 ES:
+0000 CR0: 0000000080050033
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: CR2: 0000000000000008
+CR3: 00000001183fc000 CR4: 0000000000350ef0
+Jun 02 19:04:05 axion.fireburn.co.uk kernel: note:
+GravityMark.x64[1021] exited with preempt_count 1
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 31d83297bcb5..645ec5bc3a7d 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -2827,6 +2827,18 @@ static void commit_planes_do_stream_update(struct dc *dc,
- 	}
- }
- 
-+static bool dc_dmub_should_send_dirty_rect_cmd(struct dc *dc, struct dc_stream_state *stream)
-+{
-+	if (stream->link->psr_settings.psr_version == DC_PSR_VERSION_SU_1)
-+		return true;
-+
-+	if (stream->link->psr_settings.psr_version == DC_PSR_VERSION_1 &&
-+	    dc->debug.enable_sw_cntl_psr)
-+		return true;
-+
-+	return false;
-+}
-+
- void dc_dmub_update_dirty_rect(struct dc *dc,
- 			       int surface_count,
- 			       struct dc_stream_state *stream,
-@@ -2839,7 +2851,7 @@ void dc_dmub_update_dirty_rect(struct dc *dc,
- 	unsigned int i, j;
- 	unsigned int panel_inst = 0;
- 
--	if (stream->link->psr_settings.psr_version != DC_PSR_VERSION_SU_1)
-+	if (!dc_dmub_should_send_dirty_rect_cmd(dc, stream))
- 		return;
- 
- 	if (!dc_get_edp_link_panel_inst(dc, stream->link, &panel_inst))
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-index 7fe06a2c0c04..5b5e0dd13fd0 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-@@ -3325,6 +3325,23 @@ static bool dcn10_can_pipe_disable_cursor(struct pipe_ctx *pipe_ctx)
- 	return false;
- }
- 
-+static bool dcn10_dmub_should_update_cursor_data(
-+		struct pipe_ctx *pipe_ctx,
-+		struct dc_debug_options *debug)
-+{
-+	if (pipe_ctx->plane_state->address.type == PLN_ADDR_TYPE_VIDEO_PROGRESSIVE)
-+		return false;
-+
-+	if (pipe_ctx->stream->link->psr_settings.psr_version == DC_PSR_VERSION_SU_1)
-+		return true;
-+
-+	if (pipe_ctx->stream->link->psr_settings.psr_version == DC_PSR_VERSION_1 &&
-+	    debug->enable_sw_cntl_psr)
-+		return true;
-+
-+	return false;
-+}
-+
- static void dcn10_dmub_update_cursor_data(
- 		struct pipe_ctx *pipe_ctx,
- 		struct hubp *hubp,
-@@ -3346,13 +3363,8 @@ static void dcn10_dmub_update_cursor_data(
- 
- 	struct dc_debug_options *debug = &hubp->ctx->dc->debug;
- 
--	if (!debug->enable_sw_cntl_psr && pipe_ctx->stream->link->psr_settings.psr_version != DC_PSR_VERSION_SU_1)
-+	if (!dcn10_dmub_should_update_cursor_data(pipe_ctx, debug))
- 		return;
--
--	if (pipe_ctx->stream->link->psr_settings.psr_version == DC_PSR_VERSION_UNSUPPORTED ||
--		pipe_ctx->plane_state->address.type == PLN_ADDR_TYPE_VIDEO_PROGRESSIVE)
--		return;
--
- 	/**
- 	 * if cur_pos == NULL means the caller is from cursor_set_attribute
- 	 * then driver use previous cursor position data
--- 
-2.36.1
-
+On Thu, 2 Jun 2022 at 17:54, Alex Deucher <alexdeucher@gmail.com> wrote:
+>
+> On Thu, Jun 2, 2022 at 11:47 AM Christian K=C3=B6nig
+> <ckoenig.leichtzumerken@gmail.com> wrote:
+> >
+> > The resource must be on the LRU before ttm_lru_bulk_move_add() is calle=
+d.
+> >
+> > Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+>
+> This should at least fix the null pointer in these bugs:
+>
+> Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/1992
+> Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/2034
+>
+> Alex
+>
+> > ---
+> >  drivers/gpu/drm/ttm/ttm_resource.c | 8 +++++---
+> >  1 file changed, 5 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/t=
+tm_resource.c
+> > index 65889b3caf50..928b9140f3c5 100644
+> > --- a/drivers/gpu/drm/ttm/ttm_resource.c
+> > +++ b/drivers/gpu/drm/ttm/ttm_resource.c
+> > @@ -169,15 +169,17 @@ void ttm_resource_init(struct ttm_buffer_object *=
+bo,
+> >         res->bus.is_iomem =3D false;
+> >         res->bus.caching =3D ttm_cached;
+> >         res->bo =3D bo;
+> > -       INIT_LIST_HEAD(&res->lru);
+> >
+> >         man =3D ttm_manager_type(bo->bdev, place->mem_type);
+> >         spin_lock(&bo->bdev->lru_lock);
+> >         man->usage +=3D res->num_pages << PAGE_SHIFT;
+> > -       if (bo->bulk_move)
+> > +       if (bo->bulk_move) {
+> > +               list_add_tail(&res->lru, &man->lru[bo->priority]);
+> >                 ttm_lru_bulk_move_add(bo->bulk_move, res);
+> > -       else
+> > +       } else {
+> > +               INIT_LIST_HEAD(&res->lru);
+> >                 ttm_resource_move_to_lru_tail(res);
+> > +       }
+> >         spin_unlock(&bo->bdev->lru_lock);
+> >  }
+> >  EXPORT_SYMBOL(ttm_resource_init);
+> > --
+> > 2.25.1
+> >
