@@ -1,33 +1,18 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B900A53C025
-	for <lists+amd-gfx@lfdr.de>; Thu,  2 Jun 2022 23:01:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B80E53C03B
+	for <lists+amd-gfx@lfdr.de>; Thu,  2 Jun 2022 23:07:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB88010F94D;
-	Thu,  2 Jun 2022 21:01:13 +0000 (UTC)
-X-Original-To: amd-gfx@lists.freedesktop.org
-Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5595510F86E
- for <amd-gfx@lists.freedesktop.org>; Thu,  2 Jun 2022 21:01:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1654203671;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=oqtjLES5h9VyqujFfP0LIXi0+7ZX2bu0LxgK1iAi69Q=;
- b=U9avYneDIlBG87XTRH4qQN5K4J2pAN078eK5WNsYk+dnhQzixJEWfP3t2vv+XFc2KYg9HC
- H7tuIVZfeQoIPHWzNNIM4ukrj9wCqciiDPUB59PLDdDwRy92Lv7SDPRM8QCb0zuxVM4adK
- QwJNxZdzKVOq1TVkwG4SvU2d+NYjK5E=
+	by gabe.freedesktop.org (Postfix) with ESMTP id B28D6113339;
+	Thu,  2 Jun 2022 21:07:19 +0000 (UTC)
+X-Original-To: amd-gfx@freedesktop.org
+Delivered-To: amd-gfx@freedesktop.org
 Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-629-niFFMZ9nMa2Ed0rJvorMbQ-1; Thu, 02 Jun 2022 17:01:08 -0400
-X-MC-Unique: niFFMZ9nMa2Ed0rJvorMbQ-1
+ [66.187.233.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91DFF11328D
+ for <amd-gfx@freedesktop.org>; Thu,  2 Jun 2022 21:07:18 +0000 (UTC)
 Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.rdu2.redhat.com
  [10.11.54.7])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
