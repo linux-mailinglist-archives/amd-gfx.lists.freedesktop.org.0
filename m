@@ -2,17 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9525253C03C
-	for <lists+amd-gfx@lfdr.de>; Thu,  2 Jun 2022 23:07:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CF7C53C01C
+	for <lists+amd-gfx@lfdr.de>; Thu,  2 Jun 2022 23:01:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7634611328D;
-	Thu,  2 Jun 2022 21:07:20 +0000 (UTC)
-X-Original-To: amd-gfx@freedesktop.org
-Delivered-To: amd-gfx@freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5065A10F86E;
+	Thu,  2 Jun 2022 21:01:13 +0000 (UTC)
+X-Original-To: amd-gfx@lists.freedesktop.org
+Delivered-To: amd-gfx@lists.freedesktop.org
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4450910E427
+ for <amd-gfx@lists.freedesktop.org>; Thu,  2 Jun 2022 21:01:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1654203670;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=r5MolzJKkbnpxmWaLe/FzIP2Xhwby+9gMYBxVEeA6Pk=;
+ b=TRzrReUBEUO/q3FQd2w/neJdn6+mMbZ7cCkB1GjKJsCfRrnHkfbl/3RTNxK9oIRGAaHq+u
+ UZBdrFYkffiIgxZ/IEyDqz0tG6ckS31zpMUhwQ6BmeCQUWYm1mTVUyFrX/mDQSXe1u281L
+ DixxowpiZ74+AbCMzOSy8+NM0Jjzt7o=
 Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A000211327E
- for <amd-gfx@freedesktop.org>; Thu,  2 Jun 2022 21:07:17 +0000 (UTC)
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-436-3pXaGPQYPyiBfbwExNO2rw-1; Thu, 02 Jun 2022 17:01:06 -0400
+X-MC-Unique: 3pXaGPQYPyiBfbwExNO2rw-1
 Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.rdu2.redhat.com
  [10.11.54.7])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
