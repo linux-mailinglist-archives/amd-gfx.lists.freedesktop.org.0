@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70A7F53D2AB
-	for <lists+amd-gfx@lfdr.de>; Fri,  3 Jun 2022 22:12:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B80B253D2AD
+	for <lists+amd-gfx@lfdr.de>; Fri,  3 Jun 2022 22:12:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2318B1123DE;
-	Fri,  3 Jun 2022 20:12:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4BF51123DC;
+	Fri,  3 Jun 2022 20:12:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2045.outbound.protection.outlook.com [40.107.220.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58CC51123DC
- for <amd-gfx@lists.freedesktop.org>; Fri,  3 Jun 2022 20:12:35 +0000 (UTC)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02on2058.outbound.protection.outlook.com [40.107.95.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CBC21123D8
+ for <amd-gfx@lists.freedesktop.org>; Fri,  3 Jun 2022 20:12:40 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aEv5XDZJMOUQF6m/QGhUI4qLfk9m3PUTbQa+1cOflbdk+h04t6TMXRtu86NFIRYdcXt5f6t5Ru43f7Iy8D/qX3pANQdeOqEMygQkZPwX5Yv66Yx8zYhdX8ls4Hd3DZ/JJxErIdsvKztAJHrr3j7LHtS6m4PEhma2ItFA+mNO78Unt+FK0T7LZaPRmj2W2uSomOn16BHmjZ/87Kf3vU4ulSotaatbIeqjropFyeS+miEyJ6tGG6KoagCSR8NHCY01OivLNRMchcQfTap9Dfz/1SaKpDUW5BmFs58dxEt7A3Y9glgeEHtwvqqH6ZVLEKO6EBP7+/1gAikbqQtywa3kgg==
+ b=aDMFX44TqKKxFqEFd2PNEnlAWDu7oZeLbhb2t/2wo7Ogt0m8A3PwaX0sitpHtzQB89mROBpdoghmSAkIU9EIVeE0iz2PkAUdiBLIQ8AA3bE0i0Bk7A56RlafYNumFt06iu1KNQFgQLbuEGAgAULecTUKALPpHyFTwcqK1WGoJxk+40GOQQS4i1w8Y3dcTOW6hp2tuXyRxTMAIA+zLaI8kQdnqqqf5kMHuBefWKbIyZCVJKb5//O3UHSWq2eHxCsI6ggSXt7QXYFTYswvzWh0D+HrrugOj7+KXyg+jVItHiAe4nEGdUEZthhH/e8hKuA/hSPrhC8ouwkNm4KhwlhY5w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4NfUqZ31RQZK0+xJ3gWCvFrJY+Z3k9KA8hx3HvwE/Xo=;
- b=Ie8CHsHPDZd+PlXYvMB18ZLOPIZK7gBztl35nzfeJLmhVnbSUUJTbOHr2Wlw/C+RV42doVl8TkuK9L5/zRp9NuyAFt64RKffhJzv75aOHqapSE3t0yy5SDIU/TbyTEynlnjV1u49WuxghKI+AWdDN3cIda6rHgy0kdfzaZMxPHS+yoL6nlYHAA40J266+Rg4ndKAWGEEbVsRdlcPIRjYYARyH6lHGda4cDGf3pR72Ck3SZDxmAfUMd+O0khCZzEm4YYjElnBVNEJqYEdIWZYlBcq+rXhN8Ko2sLhEKBbrWaX1T0XW9o7UhLJtzZH7a+j7pMztPbhWxhZegwwYpak6Q==
+ bh=6bTDMjlVzdLdlUYIsKJzBl+HlI3UQngLJrd3ecevxnY=;
+ b=CN80/XHxfK1p21QnW13q/dbT1CsThjGwsi4CxjH7pTjC5jXwkpt++vkxMlpb6p9CpkRexiN8EPh13SzsZJ76r9CBYVNE1iMImfst5YvtTRaVn8FrC6NR8Pchw+w8gR4A30zzcU3xEHpW8qHRyK3S4CQzNtqSqzpZa1Y9pgb8uaXelC0QjkzOP1ci2+1VIBMPqc2jCIiIoHH0lTePQVXDj04ukYtwnoegi0ZgQ+8IkeXh6FhdZAIpCB2RO7c1/7h42puWtSVSt90UBlAG3irpjENPfYXMIM9gGoJH2lPGQYy4A9vuwyKsuXGwcCM48Zt2wsKm7fFuAdk5sH7dWePBGA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4NfUqZ31RQZK0+xJ3gWCvFrJY+Z3k9KA8hx3HvwE/Xo=;
- b=uemyAEIXxaBAgTUbZBsSbPJFROE49a5Cade51oFUnByVLAK+muktab7k60uBtJSE3gDfSie6k4KHNkeX2qXuWP+gM3RbsGMN+wHFPBKB6HbaHUnG8pANhbjE5m2lp32zyOI+mLzKXf3mOYx0MHkfvMS9WUeclGpXu2MzQbMigAg=
-Received: from DM5PR16CA0024.namprd16.prod.outlook.com (2603:10b6:3:c0::34) by
- DM5PR12MB1305.namprd12.prod.outlook.com (2603:10b6:3:75::20) with
+ bh=6bTDMjlVzdLdlUYIsKJzBl+HlI3UQngLJrd3ecevxnY=;
+ b=Q5LlK3OHPD3IStJrMkWUTYW4JBiLkWQRyd624YnrGCW1O+4Sri+BXy/bwtifyeyfbmRafK7PUO4Y/AEZQb4/npnFsJTGT8stGLN3dk7j6RXqvSTwiWQ6IrfYUQKiCf9WyUFF6fx/kIh7DW6eSGWQ4fZVpbqdzPbmFZd974NZya0=
+Received: from DM5PR16CA0002.namprd16.prod.outlook.com (2603:10b6:3:c0::12) by
+ CH2PR12MB4823.namprd12.prod.outlook.com (2603:10b6:610:11::15) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5314.13; Fri, 3 Jun 2022 20:12:33 +0000
+ 15.20.5314.13; Fri, 3 Jun 2022 20:12:34 +0000
 Received: from DM6NAM11FT022.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:c0:cafe::7e) by DM5PR16CA0024.outlook.office365.com
- (2603:10b6:3:c0::34) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:3:c0:cafe::db) by DM5PR16CA0002.outlook.office365.com
+ (2603:10b6:3:c0::12) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.15 via Frontend
- Transport; Fri, 3 Jun 2022 20:12:33 +0000
+ Transport; Fri, 3 Jun 2022 20:12:34 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT022.mail.protection.outlook.com (10.13.172.210) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5314.12 via Frontend Transport; Fri, 3 Jun 2022 20:12:33 +0000
+ 15.20.5314.12 via Frontend Transport; Fri, 3 Jun 2022 20:12:34 +0000
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 3 Jun
- 2022 15:12:31 -0500
+ 2022 15:12:32 -0500
 From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 04/16] drm/amd/display: Blank eDP on enable drv if odm enabled
-Date: Fri, 3 Jun 2022 16:11:35 -0400
-Message-ID: <20220603201147.121817-5-hamza.mahfooz@amd.com>
+Subject: [PATCH 05/16] drm/amd/display: Correct min comp buffer size
+Date: Fri, 3 Jun 2022 16:11:36 -0400
+Message-ID: <20220603201147.121817-6-hamza.mahfooz@amd.com>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20220603201147.121817-1-hamza.mahfooz@amd.com>
 References: <20220603201147.121817-1-hamza.mahfooz@amd.com>
@@ -68,27 +68,27 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: bd31c09a-d2ef-48de-94b9-08da459d6508
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1305:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR12MB1305FBAF95EA15CA35005636F4A19@DM5PR12MB1305.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 75f3d646-4df6-43fd-da98-08da459d6592
+X-MS-TrafficTypeDiagnostic: CH2PR12MB4823:EE_
+X-Microsoft-Antispam-PRVS: <CH2PR12MB48233E555E834739E881D904F4A19@CH2PR12MB4823.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: PcBcOf1Rvdhi4M7ZTwh3fxbpeE6cRYD+9RsidvlsB93wb3MIACUJdZq2PBbSVcT3Lk3+bCdyVdSwYuCvsaY7t8gTXFdaD3ia5lbuuDLwxVbJbILYi5DGdSUVEDWwTTwHgC9HVYAG8ObvH3YETGCGm1UmYK/LZSrkurNn5rZRfNPLcv7QBAIPKAP6YrpTUDA2N0GuR9F3kEhjJFxEXJDyH3xZjblIIM/3C3CNHzDYw+BgrNlLaEBvX+BU/Qh43Pb62Uh6CjciLA5nPXBx8pyGbzWGqKhPkpqP8dotvhIsa9JH5khyD/2hdz2hKCtt8hlOhSO20W67NyqoFE7OGFNr/IDJlxxaiTSO+U5YZN3zAT8V+/qHqFkHT6J2L7XL8Q1SMVQVcqtnLZb3jjK4MI1U3R1q6daMWWaGaJEqCqUZToyweW5fX3FoqGODuIhAxw1IhF9B/uNjlYYQ4nCC5U3iKDUEHSmAiQt3JXMxNmdtUEj5nkRSj6sPK4tJo1g/a+qn6+ZJ5bdvGat+lGmS0PYZJNTqnxyZo4HRliBqxc+wC3667OVsdv9gkFbRSwW0/S3GyClhWRhVQST0dGlaMkiBA+gm+K68s5GL0rHLV2WP+gujRONU3X4cUu7XrmkicPCK2XSMMpGgr9fflJoHizHG3yJDu3vYHgIEMVUgD5KnSTgPAbJvmCVqEhGPCDqtKfpizceh6fsdxScUKw9M2ErDTw==
+X-Microsoft-Antispam-Message-Info: 7tjux2ISnAN2s2QzT2R1cTpuVigRYa215IQYS5usnan9h3ajoA08LISZuZRxmeDYwCtgPLMSTuUsP0jKuyaFZaDj42OAUZbUFTzsgRmX2qwpgqCqfUbX8aYgBXzuWf+rdLAMsT7ngbLt88VfpXcfPJbAfZfK8ouhxYflNsuq6aDzcqWmZvYReurKznnuYpdWTC4szARjl08SXkjNhZ3vhkRdIG833IT9mjEWgZaNRQ6FTkf4V4N7s0andLtnVf0rH/zZsT9SXXIRMlk/3KNKbVCbt53eb/IeWeghezUv9ld4AUAkQNd/UbLI1i9bh4pzjonDQ2dcgsGNdCZetDISUt45CufS10dS+q080qN3mqDlrF4VfP5TKSYH93r5Ja6LvlpnD+uChz4eU213eVwH2f0xh8dwMShTzupaB8ZI+a8rBc2GZIZuM6q3tFsEbdSFYPp/yYPvnlURlwyHvrNQv6b3IL9fSF0RGpG+potsT3pV1JG4wJkmxaVu1HG1q5QZo7rZ7imguIr7+eHH7WtX4nhE3DCVq6XPsyxAY2JDVmefWa95NdKb79fucUoR/ZAwRRbwkFP5Z3Y+exoRYkXGoQBZ5Ogi0GvUVxLxUVWjfIGJtIUu9eK9sYi9Cndttod+xoxgPuxGGmHqdwozOxEHWMYH1ROE94HMlPVAYjjGQdeyqQIW0DW7gRj3lXLeV3qdJDl8VKunkTBjmSVyKx8brQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(70206006)(47076005)(16526019)(336012)(186003)(426003)(44832011)(36756003)(508600001)(5660300002)(82310400005)(2906002)(8936002)(83380400001)(2616005)(26005)(356005)(40460700003)(316002)(1076003)(86362001)(54906003)(6916009)(81166007)(36860700001)(4326008)(70586007)(8676002)(36900700001);
+ SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(316002)(86362001)(5660300002)(6916009)(8936002)(8676002)(4326008)(82310400005)(54906003)(70586007)(81166007)(356005)(40460700003)(70206006)(36860700001)(2906002)(44832011)(16526019)(36756003)(47076005)(83380400001)(426003)(336012)(508600001)(186003)(1076003)(26005)(2616005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2022 20:12:33.2496 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd31c09a-d2ef-48de-94b9-08da459d6508
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2022 20:12:34.1245 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 75f3d646-4df6-43fd-da98-08da459d6592
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT022.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1305
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4823
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,11 +100,11 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- Duncan Ma <duncan.ma@amd.com>, solomon.chiu@amd.com, jerry.zuo@amd.com,
- Aurabindo.Pillai@amd.com, hamza.mahfooz@amd.com, wayne.lin@amd.com,
- Bhawanpreet.Lakha@amd.com, Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>,
+Cc: stylon.wang@amd.com, Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com, Duncan Ma <duncan.ma@amd.com>,
+ solomon.chiu@amd.com, jerry.zuo@amd.com, Aurabindo.Pillai@amd.com,
+ hamza.mahfooz@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
  agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
@@ -112,117 +112,43 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Duncan Ma <duncan.ma@amd.com>
 
 [Why]
-For panels with pixel clock > 1200MHz that require ODM
-in pre-OS, when driver is disabled in OS, odm is enabled.
-Upon driver enablement, corruption is seen if
-odm was originally enabled. DP_PIXEL_COMBINE and
-pixelclk must be programmed prior to programming the
-optc-odm registers. However, eDP displays aren't blanked
-prior to initializing odm in this case.
+In 3-way mpo pipes, there is a case that we
+overbook the CRB buffer size. At rare instances,
+overbooking the crb will cause underflow. This only
+happens when det_size changes dynamically
+based on pipe_cnt.
 
 [How]
-Upon driver enablement, check whether odm is enabled,
-if so, blank eDP prior to programming optc-odm
-registers.
+Set min compbuff size to 1 segment when preparing BW.
 
-Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Reviewed-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 Acked-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
 Signed-off-by: Duncan Ma <duncan.ma@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_link.c | 20 +++++++++++++++++
- drivers/gpu/drm/amd/display/dc/dc.h           |  1 +
- drivers/gpu/drm/amd/display/dc/dc_link.h      |  1 +
- .../drm/amd/display/dc/dcn31/dcn31_hwseq.c    | 22 +++++++++++++++++++
- 4 files changed, 44 insertions(+)
+ drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-index 55a8f58ee239..818a605dcab1 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-@@ -2126,6 +2126,26 @@ void dc_link_blank_all_dp_displays(struct dc *dc)
- 
- }
- 
-+void dc_link_blank_all_edp_displays(struct dc *dc)
-+{
-+	unsigned int i;
-+	uint8_t dpcd_power_state = '\0';
-+	enum dc_status status = DC_ERROR_UNEXPECTED;
-+
-+	for (i = 0; i < dc->link_count; i++) {
-+		if ((dc->links[i]->connector_signal != SIGNAL_TYPE_EDP) ||
-+			(!dc->links[i]->edp_sink_present))
-+			continue;
-+
-+		/* if any of the displays are lit up turn them off */
-+		status = core_link_read_dpcd(dc->links[i], DP_SET_POWER,
-+							&dpcd_power_state, sizeof(dpcd_power_state));
-+
-+		if (status == DC_OK && dpcd_power_state == DP_POWER_STATE_D0)
-+			dc_link_blank_dp_stream(dc->links[i], true);
-+	}
-+}
-+
- void dc_link_blank_dp_stream(struct dc_link *link, bool hw_init)
- {
- 	unsigned int j;
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 11b02a98cf0f..d08550337a09 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -202,6 +202,7 @@ struct dc_caps {
- 	bool vbios_lttpr_aware;
- 	bool vbios_lttpr_enable;
- 	uint32_t max_otg_num;
-+	bool seamless_odm;
- };
- 
- struct dc_bug_wa {
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_link.h b/drivers/gpu/drm/amd/display/dc/dc_link.h
-index a3c37ee3f849..592b1d473cb6 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_link.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_link.h
-@@ -321,6 +321,7 @@ bool dc_link_setup_psr(struct dc_link *dc_link,
- void dc_link_get_psr_residency(const struct dc_link *link, uint32_t *residency);
- 
- void dc_link_blank_all_dp_displays(struct dc *dc);
-+void dc_link_blank_all_edp_displays(struct dc *dc);
- 
- void dc_link_blank_dp_stream(struct dc_link *link, bool hw_init);
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
-index 531dd2c65007..55f2e30b8e5a 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
-@@ -213,6 +213,28 @@ void dcn31_init_hw(struct dc *dc)
- 	 * everything down.
- 	 */
- 	if (dcb->funcs->is_accelerated_mode(dcb) || !dc->config.seamless_boot_edp_requested) {
-+
-+		// we want to turn off edp displays if odm is enabled and no seamless boot
-+		if (!dc->caps.seamless_odm) {
-+			for (i = 0; i < dc->res_pool->timing_generator_count; i++) {
-+				struct timing_generator *tg = dc->res_pool->timing_generators[i];
-+				uint32_t num_opps, opp_id_src0, opp_id_src1;
-+
-+				num_opps = 1;
-+				if (tg) {
-+					if (tg->funcs->is_tg_enabled(tg) && tg->funcs->get_optc_source) {
-+						tg->funcs->get_optc_source(tg, &num_opps,
-+								&opp_id_src0, &opp_id_src1);
-+					}
-+				}
-+
-+				if (num_opps > 1) {
-+					dc_link_blank_all_edp_displays(dc);
-+					break;
-+				}
-+			}
-+		}
-+
- 		hws->funcs.init_pipes(dc, dc->current_state);
- 		if (dc->res_pool->hubbub->funcs->allow_self_refresh_control)
- 			dc->res_pool->hubbub->funcs->allow_self_refresh_control(dc->res_pool->hubbub,
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.c
+index 54db2eca9e6b..1b02f0ebe957 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.c
+@@ -201,7 +201,7 @@ struct _vcs_dpi_ip_params_st dcn3_15_ip = {
+ 	.hostvm_max_page_table_levels = 2,
+ 	.rob_buffer_size_kbytes = 64,
+ 	.det_buffer_size_kbytes = DCN3_15_DEFAULT_DET_SIZE,
+-	.min_comp_buffer_size_kbytes = DCN3_15_MIN_COMPBUF_SIZE_KB,
++	.min_comp_buffer_size_kbytes = 64,
+ 	.config_return_buffer_size_in_kbytes = 1024,
+ 	.compressed_buffer_segment_size_in_kbytes = 64,
+ 	.meta_fifo_size_in_kentries = 32,
+@@ -297,6 +297,7 @@ struct _vcs_dpi_ip_params_st dcn3_16_ip = {
+ 	.hostvm_max_page_table_levels = 2,
+ 	.rob_buffer_size_kbytes = 64,
+ 	.det_buffer_size_kbytes = DCN3_16_DEFAULT_DET_SIZE,
++	.min_comp_buffer_size_kbytes = 64,
+ 	.config_return_buffer_size_in_kbytes = 1024,
+ 	.compressed_buffer_segment_size_in_kbytes = 64,
+ 	.meta_fifo_size_in_kentries = 32,
 -- 
 2.36.1
 
