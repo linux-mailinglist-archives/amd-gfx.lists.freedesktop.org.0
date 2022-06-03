@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B204A53D2B1
-	for <lists+amd-gfx@lfdr.de>; Fri,  3 Jun 2022 22:12:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 963CF53D2B3
+	for <lists+amd-gfx@lfdr.de>; Fri,  3 Jun 2022 22:12:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01EBD112406;
-	Fri,  3 Jun 2022 20:12:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED5C1112422;
+	Fri,  3 Jun 2022 20:12:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2059.outbound.protection.outlook.com [40.107.94.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5511112406
- for <amd-gfx@lists.freedesktop.org>; Fri,  3 Jun 2022 20:12:46 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2059.outbound.protection.outlook.com [40.107.92.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E459112426
+ for <amd-gfx@lists.freedesktop.org>; Fri,  3 Jun 2022 20:12:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LpPIxDzsH1LP8TBTNVQny8xJNZNtxw6XEi2woWQzY3xoWBp8KklEf7IlqDonJVz/+xygoKRjCulKzCufg4lNYAnpgr5vjSBy/v5LV7Mi0sUhrdT06xgHSjbm0fp5rMPfeE2wxL9Ib7m3OJCHPrk1e98onq8Dj59m20skPceHV+yZbWVtzpPWgodmPHuGPATP88lOsrAplts2SqEPfuK7EGeUBUW8xOFqV36Dq64pzq0+RzT2hbym4c9mYN/cHjQS2ZW3iWDEQqpqAAb0ejV4MyAtYhwaBFmv9ehZoWH0VZrA1YVjIZRvnnCoGe3uXbNZBybSkc+FSkOk5hYdVr+O7Q==
+ b=F0mFWNWjlecYvNkkuuFc3oHk9XQdhkx0p5wbFQWWK+j9yxveBHfFkmdCFg360OsY3QmRzsxofosE3+AZ673MZN8w2a3FVfzfTDbl0bQ0UCMpQXwuuYDmx9WhydRB15yEDOHnRQHOoE1pGFdnivbZOmCwQ15sDiuDwseJQHGD/D6LxHGdrgjUAKHZJz8bk+8G53Aurx0YIWkcCPbU1N3HaTeJZq4LJhttOAP0HnSBweWC9oAzr3jjec2sKUFiun1cJsFaDWYzEUTjoZksnBY3PzioXpQmo5tQ9MSoHMr+YaY1/Alq9W+3Te+JYDzXUkjdH3Z3XRm/PjDpeq7vUrVlWA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=buXft95B1nKZfu3+9PowjcGEYw20Jkk6gLLCde4UNbk=;
- b=FUNnMjW6IR9ulIi3UfmoEiOkH9zmIh+zlEt86pm6RTbCC5EZ/u8zJ+prJ2ueKjJOsqdDOSX7EEaipF0nmashSZl9fYxaAYXtkXKrK7xmuSb8yNGtkL4Wn1Iu+we0ViI+VIco0jA5jFxLWPyRzGxfdm8Uggy2QetLNMHRRvB2536IWWM3n6BabvvUkpQeqCUftTaquHsUYCGhqmmGvpYiKCCouJifbglWO00FiMq7egyC2cKSJ2ZeKGESr4pYpG7xzDWgNrK9t9V76E0tdtpUwbU0Sg1VDhBXKAjVMy0U5nNce2XcLoXyvgEGEpnwh3uhe967T1G0RlF56XF99zIE3w==
+ bh=Jtt3spyr7n3PA7iKuQn2e+XbUBB8n5XH4kyuRETLXZg=;
+ b=fT9eagAsQx9ajTQA9/lF5M1ATbUAT1WfkHC83yL7M+cnGb8gvBtojDXfxYydodOuRAUoug0WD94BYHI/chgati1EORBlZVZybaudEhovh2BtSyPxpQnzf8azg6LmOaC376UNkezmRMPPw0VGFxs8SiGdDyKL9mZHhAg8+Od4WDxn8Jz8KrwUC3HYpSIrUqCcPfKljYA/QRiKuhsCG0aj4sguRWSJSgYpjcVdOsK3un9Shn3bK2r6KwKwKAGVdXbXFOaOZVzw7BXds/vJc/n/cGPLdfbkxIl5pr2KdawH1G6coc6dwgqWRizwSA0vvmAYB55aO4X22fdQeqmM3CSxHQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=buXft95B1nKZfu3+9PowjcGEYw20Jkk6gLLCde4UNbk=;
- b=lWbavmTAnr1ULNbf8g7Jrkpy/pLjAL3HOMVN+G6i5tDnCAoGlZINA+2ZyveepGnsq/pTky8ijXrbHgdDCbAqBuCfUq2BlCUUVT4lBT9ywiD6Ru5NdbOrtCjy3PDYwCHtHrBy1IxYBpi+ZVNwH2lsSI0M5OnfrNmg80JFkYCL66c=
-Received: from DM6PR08CA0022.namprd08.prod.outlook.com (2603:10b6:5:80::35) by
- IA1PR12MB6020.namprd12.prod.outlook.com (2603:10b6:208:3d4::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5314.13; Fri, 3 Jun 2022 20:12:45 +0000
-Received: from DM6NAM11FT046.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:80:cafe::fb) by DM6PR08CA0022.outlook.office365.com
- (2603:10b6:5:80::35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.15 via Frontend
- Transport; Fri, 3 Jun 2022 20:12:45 +0000
+ bh=Jtt3spyr7n3PA7iKuQn2e+XbUBB8n5XH4kyuRETLXZg=;
+ b=g0J3lbXsH6pUf3ldvlNP74JnH4clk7AY3xt9YHJytuwGru6Dr0x/GbkflhEMicGa/Np/tgOgby8+RlzTxhoo1IsREKMna+l4br7ij0aN72zC8ckznTRfk6a7xcXwhQwgpAivA8rnffg96Nh+qA792uqft0bkL7/Y3G0sZxNUIC4=
+Received: from DM5PR07CA0033.namprd07.prod.outlook.com (2603:10b6:3:16::19) by
+ BN6PR1201MB2531.namprd12.prod.outlook.com (2603:10b6:404:b2::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.12; Fri, 3 Jun
+ 2022 20:12:46 +0000
+Received: from DM6NAM11FT020.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:16:cafe::9f) by DM5PR07CA0033.outlook.office365.com
+ (2603:10b6:3:16::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.12 via Frontend
+ Transport; Fri, 3 Jun 2022 20:12:46 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,19 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT046.mail.protection.outlook.com (10.13.172.121) with Microsoft SMTP
+ DM6NAM11FT020.mail.protection.outlook.com (10.13.172.224) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5314.12 via Frontend Transport; Fri, 3 Jun 2022 20:12:44 +0000
+ 15.20.5314.12 via Frontend Transport; Fri, 3 Jun 2022 20:12:46 +0000
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 3 Jun
- 2022 15:12:43 -0500
+ 2022 15:12:44 -0500
 From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 12/16] drm/amd/display: Fix entry into transient encoder
- assignment mode.
-Date: Fri, 3 Jun 2022 16:11:43 -0400
-Message-ID: <20220603201147.121817-13-hamza.mahfooz@amd.com>
+Subject: [PATCH 13/16] drm/amd/display: Avoid reading LTTPR caps in non-LTTPR
+ mode.
+Date: Fri, 3 Jun 2022 16:11:44 -0400
+Message-ID: <20220603201147.121817-14-hamza.mahfooz@amd.com>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20220603201147.121817-1-hamza.mahfooz@amd.com>
 References: <20220603201147.121817-1-hamza.mahfooz@amd.com>
@@ -69,27 +69,27 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2e38b5c4-ec8d-481b-e49b-08da459d6bfb
-X-MS-TrafficTypeDiagnostic: IA1PR12MB6020:EE_
-X-Microsoft-Antispam-PRVS: <IA1PR12MB6020DFE9517D181E3ED97A6BF4A19@IA1PR12MB6020.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 32bb5f68-4199-481d-8e14-08da459d6cdf
+X-MS-TrafficTypeDiagnostic: BN6PR1201MB2531:EE_
+X-Microsoft-Antispam-PRVS: <BN6PR1201MB2531D37394D0CE572B9EAD36F4A19@BN6PR1201MB2531.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5oU3weptVeO2GKgo4fI2m5ylYU7f4OO9UcvAGNi7m1YADEVHrH9lsMky/rHwCRKDRbUwQ0JHTBTAzY10hCYf+0bBTAjFm3PQjmnyr6WPU1DSbSOMzW9PW5gN2S53IyiRSuaA4vXxn8V5YOS4GeAIqo8JMc3e7KT8KJBonEKtB7x/rDT9/XVZzuG9UZ6X25AEg7I2BKfkcdhPK/12Lq1kGZXSV6dUaLybKM+b/L7D5JYpj+MPsSXghac5F/OaryPn215MFu7kmE2f12hcUNQL1D4X4U3AU2OOiX2Jdg9ZmR2AFJ8h8bL7f7/9Kavp2J6If3TbVS+RjcFkZB/6mUc5fGt9s6/Sr1QrKoFaq4fSdWzgTJHnexhk2rMKdw9D+bhIET7ML4Y2mr1hYX4BNyfRvGuRKbc3Y0petO1m/njQ6jIvJQ4H08kDURk2nDdrhQgaTNL0x+mDZdNEhiBed09XQlakk800nCsH/d/bUMQHZYJrLWz/MwZbskVyz4RNCBgY7+0xYfMpN36VLF6V1Cb4aw9kTAnX/ssSpDnKP8rzMo74waMGjttIXSeLtZXTDDLo4FHaNbvEFs8ZJBF/1cueOiXuRPKzf3tniQ6uMYnt18Hi5x2v1y6Iqym6gtoTEyRERSZB6Pa+dqaraZC6byqt9olE78yutWqO8aJgqHA8zBXLF2Hq+CwezMFIhDOHFSCzmlXQsmUu1u5bjDe4/7n7Vw==
+X-Microsoft-Antispam-Message-Info: 4XkXTlWotpim5GsH7dtvX/dMc9XAhjXh2Ry2+J16JXfY9hY90T3DcGR6bRRm9tk4hl81QsGWtKCNA8jWBAFWlaUQFTe5GO6UQc+7anxeaNJSJJH/IvvCs1p3qeOYg6scBKIux8Phzvy/MkNIsjOlJQF7TC0jBKkzFs84lJY6Ie+fo9bhXPztM4iPcgM3dMpEJNlystwaXAdwh1Xitgn7sXBZsGQe88gTRmBF4xaDqZHNB/uneHnE8vtko8qxnHvVA9UTgzGwrBVNkAThOczgwar6TIGa/EAJIxvYiT4tTHJ2nEMT73zfo6NKifOr5jLItikbFYPyt07NDq10vdjI/9vC8ZWJPup9i2yTJVZUjSM2u1zaeYpOsaQSTrYYmFHvGlB35Q5LHCzn4OuODbgMMFeDOKcXU6MiPhUN3Rw6dV54/lwAx5qww7kWu1k2lkVOyrO8MjWM/u4Uch//XlmEScUrW6bxnAveIarW21T/bnZTwEsifE92e9WhQY/k7hETuTJfR2RqKWzwzCHNE5GtYfG0oH2kV52nJJSmvaFYkUTcgUXgetHoCsf9AwBsn7c3h/7oPoxfbAuWozehT6ziwoL2v/zWw3Fe5bY1xa+GIxdjRhf4/8/Coq+SazuaajekU/we86cgcWM0+wTefedNckpGyJj/11RF2Vud2fU5OTXyVMIUgS7IMMz+e6iajfBb5grSCZ56simBxbhRtiqmOO0jAF8lPN30ydPyqYbINK4huOFM26Y22UyvkKah/H6K
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(44832011)(81166007)(54906003)(6916009)(356005)(26005)(316002)(40460700003)(86362001)(508600001)(36756003)(186003)(5660300002)(47076005)(336012)(2906002)(70206006)(70586007)(426003)(16526019)(8676002)(4326008)(82310400005)(8936002)(36860700001)(83380400001)(2616005)(1076003)(36900700001);
+ SFS:(13230001)(4636009)(40470700004)(36840700001)(46966006)(36756003)(186003)(70206006)(1076003)(316002)(4326008)(16526019)(54906003)(86362001)(8676002)(6916009)(8936002)(356005)(2616005)(26005)(81166007)(70586007)(44832011)(508600001)(82310400005)(40460700003)(426003)(36860700001)(47076005)(83380400001)(5660300002)(336012)(2906002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2022 20:12:44.9104 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2e38b5c4-ec8d-481b-e49b-08da459d6bfb
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2022 20:12:46.4181 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 32bb5f68-4199-481d-8e14-08da459d6cdf
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT046.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT020.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6020
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1201MB2531
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,12 +101,13 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Jun Lei <Jun.Lei@amd.com>, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, Meenakshikumar
- Somasundaram <Meenakshikumar.Somasundaram@amd.com>, solomon.chiu@amd.com,
- jerry.zuo@amd.com, Aurabindo.Pillai@amd.com, hamza.mahfooz@amd.com,
- wayne.lin@amd.com, Jimmy Kizito <Jimmy.Kizito@amd.com>,
+Cc: stylon.wang@amd.com, Mustapha
+ Ghaddar <Mustapha.Ghaddar@amd.com>, Jun Lei <Jun.Lei@amd.com>,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ Meenakshikumar Somasundaram <Meenakshikumar.Somasundaram@amd.com>,
+ solomon.chiu@amd.com, jerry.zuo@amd.com, Aurabindo.Pillai@amd.com,
+ hamza.mahfooz@amd.com, wayne.lin@amd.com, Jimmy Kizito <Jimmy.Kizito@amd.com>,
  Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
@@ -114,223 +115,107 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Jimmy Kizito <Jimmy.Kizito@amd.com>
 
 [Why]
-In some scenarios it is possible for the encoder assignment module to be
-set to "transient" mode even though there are no new encoder
-assignments.
+LTTPR capable devices on the DisplayPort path may assume that
+extended LTTPR AUX timeouts will be used after LTTPR capabilities
+are read.
 
-This can lead to incorrect results when querying encoder assignment,
-which in turn can cause incorrect displays to be manipulated.
+When DPTX operates in non-LTTPR mode, AUX timeouts are not
+extended and this can result in AUX transactions timing out.
 
 [How]
-Only allow encoder assignment to be in transient mode of operation when
-there are valid new encoder assignments.
+Use shared helper function to determine LTTPR mode and do not
+read LTTPR capabilities in non-LTTPR mode.
 
+Reviewed-by: Mustapha Ghaddar <Mustapha.Ghaddar@amd.com>
 Reviewed-by: Meenakshikumar Somasundaram <Meenakshikumar.Somasundaram@amd.com>
 Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
 Signed-off-by: Jimmy Kizito <Jimmy.Kizito@amd.com>
 ---
- .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 17 ++++---
- .../drm/amd/display/dc/core/dc_link_enc_cfg.c | 45 ++++++++++++++++++-
- .../display/dc/dcn31/dcn31_dio_link_encoder.c |  6 +++
- .../drm/amd/display/dc/dcn31/dcn31_hwseq.c    |  2 +-
- .../gpu/drm/amd/display/dc/inc/link_enc_cfg.h |  7 +++
- 5 files changed, 69 insertions(+), 8 deletions(-)
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 44 +++++++++++++------
+ 1 file changed, 31 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-index b70fdab5a97f..9b20f340c21f 100644
+index 9b20f340c21f..b5b16340fd39 100644
 --- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
 +++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-@@ -2812,8 +2812,8 @@ bool perform_link_training_with_retries(
- 	j = 0;
- 	while (j < attempts && fail_count < (attempts * 10)) {
+@@ -5134,16 +5134,13 @@ static bool dpcd_read_sink_ext_caps(struct dc_link *link)
+ 	return true;
+ }
  
--		DC_LOG_HW_LINK_TRAINING("%s: Beginning link training attempt %u of %d @ rate(%d) x lane(%d)\n",
--			__func__, (unsigned int)j + 1, attempts, cur_link_settings.link_rate,
-+		DC_LOG_HW_LINK_TRAINING("%s: Beginning link(%d) training attempt %u of %d @ rate(%d) x lane(%d)\n",
-+			__func__, link->link_index, (unsigned int)j + 1, attempts, cur_link_settings.link_rate,
- 			cur_link_settings.lane_count);
- 
- 		dp_enable_link_phy(
-@@ -2883,8 +2883,8 @@ bool perform_link_training_with_retries(
- 				break;
- 		}
- 
--		DC_LOG_WARNING("%s: Link training attempt %u of %d failed @ rate(%d) x lane(%d)\n",
--			__func__, (unsigned int)j + 1, attempts, cur_link_settings.link_rate,
-+		DC_LOG_WARNING("%s: Link(%d) training attempt %u of %d failed @ rate(%d) x lane(%d)\n",
-+			__func__, link->link_index, (unsigned int)j + 1, attempts, cur_link_settings.link_rate,
- 			cur_link_settings.lane_count);
- 
- 		dp_disable_link_phy(link, &pipe_ctx->link_res, signal);
-@@ -2927,8 +2927,13 @@ bool perform_link_training_with_retries(
- 			 */
- 			req_bw = dc_bandwidth_in_kbps_from_timing(&stream->timing);
- 			link_bw = dc_link_bandwidth_kbps(link, &cur_link_settings);
--			if (req_bw > link_bw)
--				break;
-+			is_link_bw_low = (req_bw > link_bw);
-+			is_link_bw_min = ((cur_link_settings.link_rate <= LINK_RATE_LOW) &&
-+				(cur_link_settings.lane_count <= LANE_COUNT_ONE));
-+			if (is_link_bw_low)
-+				DC_LOG_WARNING(
-+					"%s: Link(%d) bandwidth too low after fallback req_bw(%d) > link_bw(%d)\n",
-+					__func__, link->link_index, req_bw, link_bw);
- 		}
- 
- 		msleep(delay_between_attempts);
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
-index 42da7f430113..639a0a276a08 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
-@@ -26,6 +26,8 @@
- #include "resource.h"
- #include "dc_link_dp.h"
- 
-+#define DC_LOGGER dc->ctx->logger
-+
- /* Check whether stream is supported by DIG link encoders. */
- static bool is_dig_link_enc_stream(struct dc_stream_state *stream)
+-bool dp_retrieve_lttpr_cap(struct dc_link *link)
++/* Logic to determine LTTPR mode */
++static void determine_lttpr_mode(struct dc_link *link)
  {
-@@ -383,6 +385,30 @@ void link_enc_cfg_link_encs_assign(
- 			state->res_ctx.link_enc_cfg_ctx.link_enc_assignments[i];
+-	uint8_t lttpr_dpcd_data[8];
+ 	bool allow_lttpr_non_transparent_mode = 0;
+ 	bool vbios_lttpr_enable = link->dc->caps.vbios_lttpr_enable;
+ 	bool vbios_lttpr_interop = link->dc->caps.vbios_lttpr_aware;
+-	enum dc_status status = DC_ERROR_UNEXPECTED;
+-	bool is_lttpr_present = false;
+ 
+-	memset(lttpr_dpcd_data, '\0', sizeof(lttpr_dpcd_data));
+ 
+ 	if ((link->dc->config.allow_lttpr_non_transparent_mode.bits.DP2_0 &&
+ 			link->dpcd_caps.channel_coding_cap.bits.DP_128b_132b_SUPPORTED)) {
+@@ -5153,9 +5150,6 @@ bool dp_retrieve_lttpr_cap(struct dc_link *link)
+ 		allow_lttpr_non_transparent_mode = 1;
  	}
  
-+	/* Log encoder assignments. */
-+	for (i = 0; i < MAX_PIPES; i++) {
-+		struct link_enc_assignment assignment =
-+				dc->current_state->res_ctx.link_enc_cfg_ctx.link_enc_assignments[i];
-+
-+		if (assignment.valid)
-+			DC_LOG_DEBUG("%s: CUR %s(%d) - enc_id(%d)\n",
-+					__func__,
-+					assignment.ep_id.ep_type == DISPLAY_ENDPOINT_PHY ? "PHY" : "DPIA",
-+					assignment.ep_id.link_id.enum_id - 1,
-+					assignment.eng_id);
-+	}
-+	for (i = 0; i < MAX_PIPES; i++) {
-+		struct link_enc_assignment assignment =
-+				state->res_ctx.link_enc_cfg_ctx.link_enc_assignments[i];
-+
-+		if (assignment.valid)
-+			DC_LOG_DEBUG("%s: NEW %s(%d) - enc_id(%d)\n",
-+					__func__,
-+					assignment.ep_id.ep_type == DISPLAY_ENDPOINT_PHY ? "PHY" : "DPIA",
-+					assignment.ep_id.link_id.enum_id - 1,
-+					assignment.eng_id);
-+	}
-+
- 	/* Current state mode will be set to steady once this state committed. */
- 	state->res_ctx.link_enc_cfg_ctx.mode = LINK_ENC_CFG_STEADY;
- }
-@@ -658,8 +684,25 @@ bool link_enc_cfg_validate(struct dc *dc, struct dc_state *state)
- 			((valid_uniqueness & 0x1) << 2) |
- 			((valid_avail & 0x1) << 3) |
- 			((valid_streams & 0x1) << 4);
--		dm_error("Invalid link encoder assignments: 0x%x\n", valid_bitmap);
-+		DC_LOG_ERROR("%s: Invalid link encoder assignments - 0x%x\n", __func__, valid_bitmap);
- 	}
- 
- 	return is_valid;
- }
-+
-+void link_enc_cfg_set_transient_mode(struct dc *dc, struct dc_state *current_state, struct dc_state *new_state)
-+{
-+	int i = 0;
-+	int num_transient_assignments = 0;
-+
-+	for (i = 0; i < MAX_PIPES; i++) {
-+		if (current_state->res_ctx.link_enc_cfg_ctx.transient_assignments[i].valid)
-+			num_transient_assignments++;
-+	}
-+
-+	/* Only enter transient mode if the new encoder assignments are valid. */
-+	if (new_state->stream_count == num_transient_assignments) {
-+		current_state->res_ctx.link_enc_cfg_ctx.mode = LINK_ENC_CFG_TRANSIENT;
-+		DC_LOG_DEBUG("%s: current_state(%p) mode(%d)\n", __func__, current_state, LINK_ENC_CFG_TRANSIENT);
-+	}
+-	/*
+-	 * Logic to determine LTTPR mode
+-	 */
+ 	link->lttpr_mode = LTTPR_MODE_NON_LTTPR;
+ 	if (vbios_lttpr_enable && vbios_lttpr_interop)
+ 		link->lttpr_mode = LTTPR_MODE_NON_TRANSPARENT;
+@@ -5177,6 +5171,18 @@ bool dp_retrieve_lttpr_cap(struct dc_link *link)
+ 	    link->dc->debug.dpia_debug.bits.force_non_lttpr)
+ 		link->lttpr_mode = LTTPR_MODE_NON_LTTPR;
+ #endif
 +}
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dio_link_encoder.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dio_link_encoder.c
-index 8b12b4111c88..a788d160953b 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dio_link_encoder.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dio_link_encoder.c
-@@ -458,6 +458,7 @@ void dcn31_link_encoder_enable_dp_output(
- 	/* Enable transmitter and encoder. */
- 	if (!link_enc_cfg_is_transmitter_mappable(enc->ctx->dc, enc)) {
- 
-+		DC_LOG_DEBUG("%s: enc_id(%d)\n", __func__, enc->preferred_engine);
- 		dcn20_link_encoder_enable_dp_output(enc, link_settings, clock_source);
- 
- 	} else {
-@@ -489,6 +490,7 @@ void dcn31_link_encoder_enable_dp_output(
- 			return;
- 		}
- 
-+		DC_LOG_DEBUG("%s: DPIA(%d) - enc_id(%d)\n", __func__, dpia_control.dpia_id, dpia_control.enc_id);
- 		link_dpia_control(enc->ctx, &dpia_control);
- 	}
- }
-@@ -503,6 +505,7 @@ void dcn31_link_encoder_enable_dp_mst_output(
- 	/* Enable transmitter and encoder. */
- 	if (!link_enc_cfg_is_transmitter_mappable(enc->ctx->dc, enc)) {
- 
-+		DC_LOG_DEBUG("%s: enc_id(%d)\n", __func__, enc->preferred_engine);
- 		dcn10_link_encoder_enable_dp_mst_output(enc, link_settings, clock_source);
- 
- 	} else {
-@@ -534,6 +537,7 @@ void dcn31_link_encoder_enable_dp_mst_output(
- 			return;
- 		}
- 
-+		DC_LOG_DEBUG("%s: DPIA(%d) - enc_id(%d)\n", __func__, dpia_control.dpia_id, dpia_control.enc_id);
- 		link_dpia_control(enc->ctx, &dpia_control);
- 	}
- }
-@@ -547,6 +551,7 @@ void dcn31_link_encoder_disable_output(
- 	/* Disable transmitter and encoder. */
- 	if (!link_enc_cfg_is_transmitter_mappable(enc->ctx->dc, enc)) {
- 
-+		DC_LOG_DEBUG("%s: enc_id(%d)\n", __func__, enc->preferred_engine);
- 		dcn10_link_encoder_disable_output(enc, signal);
- 
- 	} else {
-@@ -578,6 +583,7 @@ void dcn31_link_encoder_disable_output(
- 			return;
- 		}
- 
-+		DC_LOG_DEBUG("%s: DPIA(%d) - enc_id(%d)\n", __func__, dpia_control.dpia_id, dpia_control.enc_id);
- 		link_dpia_control(enc->ctx, &dpia_control);
- 
- 		link_encoder_disable(enc10);
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
-index 55f2e30b8e5a..1ed1404e969d 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
-@@ -613,7 +613,7 @@ void dcn31_reset_hw_ctx_wrap(
- 	}
- 
- 	/* New dc_state in the process of being applied to hardware. */
--	dc->current_state->res_ctx.link_enc_cfg_ctx.mode = LINK_ENC_CFG_TRANSIENT;
-+	link_enc_cfg_set_transient_mode(dc, dc->current_state, context);
- }
- 
- void dcn31_setup_hpo_hw_control(const struct dce_hwseq *hws, bool enable)
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/link_enc_cfg.h b/drivers/gpu/drm/amd/display/dc/inc/link_enc_cfg.h
-index c6f6baa6e677..7beb14169f92 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/link_enc_cfg.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/link_enc_cfg.h
-@@ -110,4 +110,11 @@ bool link_enc_cfg_is_link_enc_avail(struct dc *dc, enum engine_id eng_id, struct
- /* Returns true if encoder assignments in supplied state pass validity checks. */
- bool link_enc_cfg_validate(struct dc *dc, struct dc_state *state);
- 
-+/* Set the link encoder assignment mode for the current_state to LINK_ENC_CFG_TRANSIENT mode.
-+ * This indicates that a new_state is in the process of being applied to hardware.
-+ * During this transition, old and new encoder assignments should be accessible from the old_state.
-+ * Only allow transition into transient mode if new encoder assignments are valid.
-+ */
-+void link_enc_cfg_set_transient_mode(struct dc *dc, struct dc_state *current_state, struct dc_state *new_state);
 +
- #endif /* DC_INC_LINK_ENC_CFG_H_ */
++bool dp_retrieve_lttpr_cap(struct dc_link *link)
++{
++	uint8_t lttpr_dpcd_data[8];
++	enum dc_status status = DC_ERROR_UNEXPECTED;
++	bool is_lttpr_present = false;
++
++	memset(lttpr_dpcd_data, '\0', sizeof(lttpr_dpcd_data));
++
++	/* Logic to determine LTTPR mode*/
++	determine_lttpr_mode(link);
+ 
+ 	if (link->lttpr_mode == LTTPR_MODE_NON_TRANSPARENT || link->lttpr_mode == LTTPR_MODE_TRANSPARENT) {
+ 		/* By reading LTTPR capability, RX assumes that we will enable
+@@ -5292,11 +5298,23 @@ static enum dc_status wa_try_to_wake_dprx(struct dc_link *link, uint64_t timeout
+ 	uint64_t time_taken_ms = 0;
+ 	enum dc_connection_type type = dc_connection_none;
+ 
+-	status = core_link_read_dpcd(
+-			link,
+-			DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV,
+-			&dpcd_data,
+-			sizeof(dpcd_data));
++	determine_lttpr_mode(link);
++
++	/* Issue an AUX read to test DPRX responsiveness. If LTTPR is supported the first read is expected to
++	 * be to determine LTTPR capabilities. Otherwise trying to read power state should be an innocuous AUX read.
++	 */
++	if (link->lttpr_mode == LTTPR_MODE_NON_TRANSPARENT || link->lttpr_mode == LTTPR_MODE_TRANSPARENT)
++		status = core_link_read_dpcd(
++				link,
++				DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV,
++				&dpcd_data,
++				sizeof(dpcd_data));
++	else
++		status = core_link_read_dpcd(
++				link,
++				DP_SET_POWER,
++				&dpcd_data,
++				sizeof(dpcd_data));
+ 
+ 	if (status != DC_OK) {
+ 		DC_LOG_WARNING("%s: Read DPCD LTTPR_CAP failed - try to toggle DPCD SET_POWER for %lld ms.",
 -- 
 2.36.1
 
