@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CF7A53D1D1
-	for <lists+amd-gfx@lfdr.de>; Fri,  3 Jun 2022 20:51:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36BCD53D1D8
+	for <lists+amd-gfx@lfdr.de>; Fri,  3 Jun 2022 20:51:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AD8E112230;
-	Fri,  3 Jun 2022 18:51:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7464011222D;
+	Fri,  3 Jun 2022 18:51:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2073.outbound.protection.outlook.com [40.107.244.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3370111222D
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2054.outbound.protection.outlook.com [40.107.237.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 924FE11222D
  for <amd-gfx@lists.freedesktop.org>; Fri,  3 Jun 2022 18:51:04 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=obNuNS8n5M3ZhBwUAp8qaT8ziHCjmdRWfuVUu6uEc9ABhJqydANZvmi+5W0U780yvsdEAXSyv//iTu2WS8n4Bwf5LRkraYPTT9KmFGfVP4rmFUPGF9Qwu+OCUSfAhCg836gKRCg6ciKnNCr8OhP5pGAi183mGdB/nCueyisLnpY4S7VZIC/xo3dljt+NiIis02jqzB3kL3/GB2SSf3Kv7zyFMG9grbP5LuEEpsEXE0BXc1eYbqX8sx8bKqgwmhj1siO2uzzZ2pCSdxLChft0hwdZjdCLJoEgf4XmnVKzu84l2qaOmGwsuiVGuMOZZh1wfSeg9mTDDJkqMqMFsKRoRQ==
+ b=N8Q2UrHileRFUv5OYfzwx/Bf/OM+lS5AVzIFQTBxv6A4oB/dyE0JcQ4PFv5d0BCeYHM/HpxvBUdnvxnsl6J57qHDChCzcOuJz+/CueK2cz0cu4045oS/mTB81KVCXDNPS79cCCERsCvY/bLxdZeg3SlBmRBjO9GqTC3VLX2GTkhf5z8J3oxg1RqNle3CdCLcPipIC+4YW8qBHVvJ8XK57R+u/fkn4MtFylcyyRIZ/6FtV8vnmnGH53ThOTK18VAc34W1zlmPvnYvSXAQ+OWkLUaM8N35CpAfTVUgdYZRjnhfMyOrWoV+Rlqm6Qn5n9YO/MHH7Gp+8Nro93jdN7T87Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Go3J24iF4NKZ2sM0gYVWysFyfcFO3ODADQXyQfrMu0Y=;
- b=BRa9m/QO8KZVwcY4Oi9HUUtQTjJ3eWMqO+6jRr62HoTJ40h72gVX5ZeINGFH06rMFst9FBeqFoYwgBDQa9JPYDqvSRvRpXAHpVI71iE/KoZe+TADJkWp6NjGVs4LwMbPrTak8DEqGzYrELwH4fee7lnP98QYStA9SCwp5nIZrTCJXAL+gELyUGaJyq7L40FtVKoPujKiCKdJ7Fm+yGIpKO269l0UunosUzpBTv5mX/g9iD3UuAkG2Q4MoHLRlNzRbBJpJUUZAFX6qGeXjq6cdsHK9yoAHQjowokB0Xuscv6iV97kbhWCqXbo0OP6EngZUGwefOgZMutOTy9yUqAtUA==
+ bh=cLtuieiwusuBKXlbny+L4HFR99xH7DAm0UFufJVFRNs=;
+ b=hfKS/xLevhmVmtWBid5CSArMTDmViFIRW2F3LCHs+wZp9kGhd1qqmd5ahJlByke6N5LjEQYEiBfiqO7inqHU1tjriULdJMiteQ2/TvNS5nmeHjT+LYIelx/UVZfjHBLQ16vCuRrnPARagrqhYSfS51Mi/g5Qp+Rds7GJUCX1Su+FIpvsHFdg/SnTTL2RCsXPMoucWdhdkrxvYY+a/U3LDnVDqI8xg58MunkFeNxb3NPVAl03jOmoSK3LXNs+iXj5j6QVK0Wvcn6ckSphukhnxPYPhWAnyi8geTbfRJsCH/bH7z17RNPlYQR4aNVHn0S1yqIeet5bK9eWjW5JfY/j/Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Go3J24iF4NKZ2sM0gYVWysFyfcFO3ODADQXyQfrMu0Y=;
- b=dWfHvLvhyu8+hd9DsZ+kBvzaY2RyVCjbDdVnH/oM/1Y2/xvK7h7EkgLINWJhS4lrn+5Vy7zxKKH++HPcr9DRXqTbQBawqstLaDoHapZ2IuyvcUSU+dYLUMmy3/7WlRg06wsmqKImJGWTqUMDp0omo2jlwaWldqePdIFL8VDif/c=
-Received: from BN0PR07CA0011.namprd07.prod.outlook.com (2603:10b6:408:141::32)
- by CY5PR12MB6454.namprd12.prod.outlook.com (2603:10b6:930:36::22)
+ bh=cLtuieiwusuBKXlbny+L4HFR99xH7DAm0UFufJVFRNs=;
+ b=rMnoWRoathY5I/Y06hsLJbShLq4r6ChUXqnjS+OCnchV7Lq0fqzv4mV+QWe7G4X70Wlniy1o5IcoyidRQV+8FkAwShz0s3DK5j+I8Hc8uXiz4DMVv09AzXDNDhv/MI4RQgGOdru5J0uAI0oLFVdtNmEFZT9mplbxcxF5/6vhaR8=
+Received: from BN0PR07CA0013.namprd07.prod.outlook.com (2603:10b6:408:141::19)
+ by SJ1PR12MB6266.namprd12.prod.outlook.com (2603:10b6:a03:457::11)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.15; Fri, 3 Jun
- 2022 18:51:01 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.13; Fri, 3 Jun
+ 2022 18:51:02 +0000
 Received: from BN8NAM11FT036.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:141:cafe::b0) by BN0PR07CA0011.outlook.office365.com
- (2603:10b6:408:141::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.13 via Frontend
- Transport; Fri, 3 Jun 2022 18:51:01 +0000
+ (2603:10b6:408:141:cafe::db) by BN0PR07CA0013.outlook.office365.com
+ (2603:10b6:408:141::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.15 via Frontend
+ Transport; Fri, 3 Jun 2022 18:51:02 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN8NAM11FT036.mail.protection.outlook.com (10.13.177.168) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5314.12 via Frontend Transport; Fri, 3 Jun 2022 18:51:01 +0000
+ 15.20.5314.12 via Frontend Transport; Fri, 3 Jun 2022 18:51:02 +0000
 Received: from atma2.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 3 Jun
- 2022 13:51:00 -0500
+ 2022 13:51:01 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 1/6] drm/amd/display: Remove duplicated macro
-Date: Fri, 3 Jun 2022 14:50:37 -0400
-Message-ID: <20220603185042.3408844-2-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 2/6] drm/amd/display: Reduce frame size in the bouding box for
+ DCN20
+Date: Fri, 3 Jun 2022 14:50:38 -0400
+Message-ID: <20220603185042.3408844-3-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220603185042.3408844-1-Rodrigo.Siqueira@amd.com>
 References: <20220603185042.3408844-1-Rodrigo.Siqueira@amd.com>
@@ -68,27 +69,27 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0a8cf413-fdb0-4d8a-b557-08da4592016a
-X-MS-TrafficTypeDiagnostic: CY5PR12MB6454:EE_
-X-Microsoft-Antispam-PRVS: <CY5PR12MB645414B82B62976815F684DF98A19@CY5PR12MB6454.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 24a2b03e-25e5-4b23-763c-08da459201ad
+X-MS-TrafficTypeDiagnostic: SJ1PR12MB6266:EE_
+X-Microsoft-Antispam-PRVS: <SJ1PR12MB62661B853F4AC641D455BFAC98A19@SJ1PR12MB6266.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uU15JgDV1DojDvicayXRHgptmoFJP1W9bYYu9q/4hm1yiWv2mQarVI9ANaYDihHmNiW2eNv2hv7N7A73i3owGgBCek0mYZSDdQFlLOFnuxI9a5J6NGm5cKd322xIMjo5xCmx71hB3hWwD3eCFXPT/GA7+sJIsFq5UMT3Xfl9joDglzsqvm9JrvfOuMMLSeDf7vUvXDnIdn4tJpU8GjUr/nbmVExWYz41TvZ9NNJp2tRAtP3NFLdju6/CClLyL0GUmmBVaA403NKzlVwbTO9Ecu9JrxUpWXcuy628hszso8WqrEXyVgJj5TLISTKVjufRmxG6Mzb2/Iy+z1CS7mb3TdBvqFylMRSCujrIPhwZCLyaMTliNhhRCn57iHojHjHVZMV68a5PQr1uLKlNDcLglTM6pHKxTUF3dHt61OwM54Fy4Z5n3S0DOj5WbRAJR4AxnFTJdxt0f+B+A0VolVoC4QQxV0OOT943xyAUE6A8uUU12zDIKbE3OWT2WkX9R8FtJFr4zp6hm5X9BIZyNkuVgDqBK7x6iCZWMZizDO12X2n3dJKIzXwi1cMtp7OwZpeEjB2O7WZleE84dv+omgn+t5/GSxRTJOZfR7sLtyNG+jkaI4Wy5rWJ8HDpIlwgza5XaVHPo6tO7AHXhkWvPq7RCcgMu6VRQLE4LDiQMh2g0ksskR0m8bHeWBzS3GqGi/lm/iw0Dln7LZc0soyHFZzx1w==
+X-Microsoft-Antispam-Message-Info: MdsVuvMe81SfEy/qh523QfMtIjfzoU+MJyvWTWovX2oEgkWe6U1Sg7QREJGWG3qkSLpW3eTiLK7mZuJdp6QrNlbQnLSSemftIF66hL/UKroIZLyyczK2d8MxgGuPTUTYAlGMxkBvRDfWUwhNUNM4obIlWcSRWVo6MGeM2SwOxKamA+dpAN77glHyCFJpMA4tWCRM0oG06vdQCdfDlF7wMZpGqwkyd9AGvUjA15WspLTuYkIsQCNFXvkRTEqzPJ1iskKisUr23DB4h15eP/cQX+CWcZ3Ed+oB3C5wsHJuMEyLaN7CyvAW2MQUSI0BJHEN8WFwWrj1ZBfMB5YqhZTTIKvWuFYsfU+3GhpPEMQOxUqpSe5xh+10pdP0XlqSgT+9kEpJOQLKWSK/kY3DyaxJGMVdGI9+5ovbfvC1q6lf268B0XGwlzOL+FcIJWEJIymHTthu/PO9lJcP1+IrL9pblm/dh25ehybOCH073EGveAyVDATE0BKrlH+bbquWqeQ5Z2mmdjO2UG9lREOd94goP5xWymdjmmhWRS6COEPZjqaSna5oSTWaDFjYFWHXG+hixoHzNBii4iV9lBtD4BxgM6HNYLBcCDwrmAkwGLPAGtYsV3Ny+goMcoZo06yHcXjFVGQ1X6PqzpRhbSq2rLjLgktVded8d0WXMjQYFc7g24K645dEvRTAPLCFQh0oBj5HGT02h2sg0P5qa3/1r89apQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(2906002)(1076003)(2616005)(7696005)(36860700001)(186003)(16526019)(5660300002)(36756003)(82310400005)(8936002)(336012)(47076005)(40460700003)(6666004)(426003)(316002)(86362001)(508600001)(83380400001)(26005)(70586007)(4744005)(70206006)(4326008)(8676002)(6916009)(81166007)(356005)(36900700001);
+ SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(356005)(16526019)(2616005)(8676002)(36860700001)(7696005)(6666004)(26005)(47076005)(40460700003)(8936002)(36756003)(70586007)(4326008)(86362001)(82310400005)(1076003)(5660300002)(2906002)(508600001)(83380400001)(426003)(81166007)(54906003)(6916009)(70206006)(336012)(186003)(316002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2022 18:51:01.7033 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0a8cf413-fdb0-4d8a-b557-08da4592016a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2022 18:51:02.1408 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 24a2b03e-25e5-4b23-763c-08da459201ad
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT036.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6454
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6266
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,37 +101,109 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Stephen Rothwell <sfr@canb.auug.org.au>, Aurabindo
+ Pillai <aurabindo.pillai@amd.com>, Hamza Mahfooz <hamza.mahfooz@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+GCC throw warnings for the function dcn20_update_bounding_box due to its
+frame size that looks like this:
+
+ error: the frame size of 1936 bytes is larger than 1024 bytes [-Werror=frame-larger-than=]
+
+This commit fixes this issue by eliminating an intermediary variable
+that creates a large array.
+
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>
+Cc: Hamza Mahfooz <hamza.mahfooz@amd.com>
+Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
 Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/include/dal_asic_id.h | 6 ------
- 1 file changed, 6 deletions(-)
+ .../drm/amd/display/dc/dml/dcn20/dcn20_fpu.c  | 38 +++++++++----------
+ 1 file changed, 18 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/include/dal_asic_id.h b/drivers/gpu/drm/amd/display/include/dal_asic_id.h
-index 11391eead954..a0dffe30b394 100644
---- a/drivers/gpu/drm/amd/display/include/dal_asic_id.h
-+++ b/drivers/gpu/drm/amd/display/include/dal_asic_id.h
-@@ -221,10 +221,6 @@ enum {
- #ifndef ASICREV_IS_VANGOGH
- #define ASICREV_IS_VANGOGH(eChipRev) ((eChipRev >= VANGOGH_A0) && (eChipRev < VANGOGH_UNKNOWN))
- #endif
--#define GREEN_SARDINE_A0 0xA1
--#ifndef ASICREV_IS_GREEN_SARDINE
--#define ASICREV_IS_GREEN_SARDINE(eChipRev) ((eChipRev >= GREEN_SARDINE_A0) && (eChipRev < 0xFF))
--#endif
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.c
+index eeec40f6fd0a..d9cc178f6980 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.c
+@@ -1456,21 +1456,20 @@ void dcn20_calculate_wm(
+ void dcn20_update_bounding_box(struct dc *dc, struct _vcs_dpi_soc_bounding_box_st *bb,
+ 		struct pp_smu_nv_clock_table *max_clocks, unsigned int *uclk_states, unsigned int num_states)
+ {
+-	struct _vcs_dpi_voltage_scaling_st calculated_states[DC__VOLTAGE_STATES];
+-	int i;
+ 	int num_calculated_states = 0;
+ 	int min_dcfclk = 0;
++	int i;
  
- #define FAMILY_YELLOW_CARP                     146
- #define YELLOW_CARP_A0 0x01
-@@ -288,6 +284,4 @@ enum {
+ 	dc_assert_fp_enabled();
  
- #define	FAMILY_UNKNOWN 0xFF
+ 	if (num_states == 0)
+ 		return;
  
--
--
- #endif /* __DAL_ASIC_ID_H__ */
+-	memset(calculated_states, 0, sizeof(calculated_states));
++	memset(bb->clock_limits, 0, sizeof(bb->clock_limits));
+ 
+-	if (dc->bb_overrides.min_dcfclk_mhz > 0)
++	if (dc->bb_overrides.min_dcfclk_mhz > 0) {
+ 		min_dcfclk = dc->bb_overrides.min_dcfclk_mhz;
+-	else {
++	} else {
+ 		if (ASICREV_IS_NAVI12_P(dc->ctx->asic_id.hw_internal_rev))
+ 			min_dcfclk = 310;
+ 		else
+@@ -1481,36 +1480,35 @@ void dcn20_update_bounding_box(struct dc *dc, struct _vcs_dpi_soc_bounding_box_s
+ 
+ 	for (i = 0; i < num_states; i++) {
+ 		int min_fclk_required_by_uclk;
+-		calculated_states[i].state = i;
+-		calculated_states[i].dram_speed_mts = uclk_states[i] * 16 / 1000;
++		bb->clock_limits[i].state = i;
++		bb->clock_limits[i].dram_speed_mts = uclk_states[i] * 16 / 1000;
+ 
+ 		// FCLK:UCLK ratio is 1.08
+ 		min_fclk_required_by_uclk = div_u64(((unsigned long long)uclk_states[i]) * 1080,
+ 			1000000);
+ 
+-		calculated_states[i].fabricclk_mhz = (min_fclk_required_by_uclk < min_dcfclk) ?
++		bb->clock_limits[i].fabricclk_mhz = (min_fclk_required_by_uclk < min_dcfclk) ?
+ 				min_dcfclk : min_fclk_required_by_uclk;
+ 
+-		calculated_states[i].socclk_mhz = (calculated_states[i].fabricclk_mhz > max_clocks->socClockInKhz / 1000) ?
+-				max_clocks->socClockInKhz / 1000 : calculated_states[i].fabricclk_mhz;
++		bb->clock_limits[i].socclk_mhz = (bb->clock_limits[i].fabricclk_mhz > max_clocks->socClockInKhz / 1000) ?
++				max_clocks->socClockInKhz / 1000 : bb->clock_limits[i].fabricclk_mhz;
+ 
+-		calculated_states[i].dcfclk_mhz = (calculated_states[i].fabricclk_mhz > max_clocks->dcfClockInKhz / 1000) ?
+-				max_clocks->dcfClockInKhz / 1000 : calculated_states[i].fabricclk_mhz;
++		bb->clock_limits[i].dcfclk_mhz = (bb->clock_limits[i].fabricclk_mhz > max_clocks->dcfClockInKhz / 1000) ?
++				max_clocks->dcfClockInKhz / 1000 : bb->clock_limits[i].fabricclk_mhz;
+ 
+-		calculated_states[i].dispclk_mhz = max_clocks->displayClockInKhz / 1000;
+-		calculated_states[i].dppclk_mhz = max_clocks->displayClockInKhz / 1000;
+-		calculated_states[i].dscclk_mhz = max_clocks->displayClockInKhz / (1000 * 3);
++		bb->clock_limits[i].dispclk_mhz = max_clocks->displayClockInKhz / 1000;
++		bb->clock_limits[i].dppclk_mhz = max_clocks->displayClockInKhz / 1000;
++		bb->clock_limits[i].dscclk_mhz = max_clocks->displayClockInKhz / (1000 * 3);
+ 
+-		calculated_states[i].phyclk_mhz = max_clocks->phyClockInKhz / 1000;
++		bb->clock_limits[i].phyclk_mhz = max_clocks->phyClockInKhz / 1000;
+ 
+ 		num_calculated_states++;
+ 	}
+ 
+-	calculated_states[num_calculated_states - 1].socclk_mhz = max_clocks->socClockInKhz / 1000;
+-	calculated_states[num_calculated_states - 1].fabricclk_mhz = max_clocks->socClockInKhz / 1000;
+-	calculated_states[num_calculated_states - 1].dcfclk_mhz = max_clocks->dcfClockInKhz / 1000;
++	bb->clock_limits[num_calculated_states - 1].socclk_mhz = max_clocks->socClockInKhz / 1000;
++	bb->clock_limits[num_calculated_states - 1].fabricclk_mhz = max_clocks->socClockInKhz / 1000;
++	bb->clock_limits[num_calculated_states - 1].dcfclk_mhz = max_clocks->dcfClockInKhz / 1000;
+ 
+-	memcpy(bb->clock_limits, calculated_states, sizeof(bb->clock_limits));
+ 	bb->num_states = num_calculated_states;
+ 
+ 	// Duplicate the last state, DML always an extra state identical to max state to work
 -- 
 2.25.1
 
