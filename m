@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7AB353F852
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 Jun 2022 10:39:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE15D53FA04
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 Jun 2022 11:41:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33EDA112BC5;
-	Tue,  7 Jun 2022 08:39:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2753B12AFDC;
+	Tue,  7 Jun 2022 09:41:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2054.outbound.protection.outlook.com [40.107.243.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0A3D112A81
- for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jun 2022 08:39:02 +0000 (UTC)
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam04on2068.outbound.protection.outlook.com [40.107.102.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4102712AFDC
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jun 2022 09:41:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QYSYDGGEeLedi4POXsgMwOuWruBBkTPSqtVIAfmSnik8uJ9wuGBX9XD4hsUVomzaLHCCaubMIUhPY9XL04nnYvoRiCzy+iMrdh2iahGSgmZmR8VfMzh91gXeGi81XRzjhcysCHlfEoGK1Ek3UglDhK6L3zbjSpdEmWeD7VXLx/fkzLF21bh3XivhQLILAS0rrny2SlE/zTzUpP+PQwJJiKXst9J7wZVP2LNuv8Ixt6L5Ph6nUwlb4irIQxuieZdjwWlY4nM6VQCHohmntmNCrH/2JCbJL35bwIu6ln5SV3ZpjKV+2YoYYWaUeEqNMtycV2zqyEF5x0/HXKOk3gb2cA==
+ b=oR3twoO+g8NAeS0si8a7OEvb+EbrieCfQhYX2NXkqvdvsPMO8rb9K/NRrL9zrDqj7lVtvgEGSeFJ78bBwvzEilPFv1PlGhqgHZA4EalaG/0ER56jhXSzflZq0tWZ2MgYqMw8A3359+e8JxA1YoAGSjXcTMdhjB0QDJwaULew7bnMOITJnVFZQ5ftkF+hvCxWYWppObaMp5mwu0EJfHzjfdGdjmrjvdJBUUheTp02MF9NCYlSRDPHdCnXPZIf5fyn/O44VbPcHhwV2lWiqiCsGtwm7RRcmJ1HRrMUAWvfDIqQC60f6rlOkMqTo3M1zlFXnf+Bej2PDCoZpUqHyO6r7Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QvcqHlTvOtrshgQ/3nZu8sb79aOAS5m3OLy/Sd+CrZQ=;
- b=J+C1EHWWc0cQhDwuuVG+Q6FFRi5VuePn3xXIDaJT0EVk8SmlUyauMUr6fax1or5GPlmV4qYIqxnVWnS1srZIyKvoT6I4Ep60LOWRyIwgdGLJUNtPR2lGIe6vRt/H19iaB/NwiT6yhAHKDFHyzTwfFSveT9KlHD0Dq/MpUdq7hvr0blFS5jHiIeyCDKi1XZE+ZGhRDygq+YjRpAZHqXOgaWNNjjZWhvADXJZRWCorT3WaoDw4YXTHvIZcF41ufM1eUKXhj+F7A57nIvPHIVbFWApna3w8KE5tHyX4KKm36w/jtx/BptkzHmuMUjcMyAySktES/4GwgMS8Rp6AezPJEg==
+ bh=9aLpsb3k5Fi5rHlbFyOreFNCaxC4U8eyiOcnMj/7m7M=;
+ b=UF5fg2cZiRuLaYXyQHHF2PCGUb9Mb+vTh9dilNLDWXeinuiD4EiD8lwKrQkmvSt1RQLxWmCWiE84c62OpKBOsJgNrvE5x9pQohy1cLHP9alI4rTghbbA0I2caNpPCIPHa9VzQ88gCr3iHe9NWyLVWQyn2yTNImIrpiPTyQDXdIGxI1DhDFTR9ZMBFNx5q5QIRrX8Rj6ztFDYBoJhflcTvVPw0pVKRRKdBQkmMRhZUAR7EdLxGAsxCE5WORHHUru1TeV1ecfygiRZCDaSx4r8um1csD27THKUBttjjoGcbCoit3m9qkjw42ivBkFd2OhhX5URmfA9PEcAzFtvOw3iMQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QvcqHlTvOtrshgQ/3nZu8sb79aOAS5m3OLy/Sd+CrZQ=;
- b=BxZZWg2BX7ZkqaMnLYvSi6B3xlCHwzY/GIz4oUR9xAwFjdcYN7/Pi9bbLCqicFTk9CHqnJLCSthPaPhCe4zoDCad8VZV9pvK/agDfo2dolWDKnHXxwGSAxV3bmgPm2MR/Nwxlawsthhr6wRJXXxZXXb3yuoCXsvgWmNqC5jZtoc=
-Received: from MWHPR02CA0015.namprd02.prod.outlook.com (2603:10b6:300:4b::25)
- by DM6PR12MB3017.namprd12.prod.outlook.com (2603:10b6:5:3e::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.13; Tue, 7 Jun
- 2022 08:38:58 +0000
-Received: from CO1NAM11FT059.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:4b:cafe::b) by MWHPR02CA0015.outlook.office365.com
- (2603:10b6:300:4b::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.13 via Frontend
- Transport; Tue, 7 Jun 2022 08:38:58 +0000
+ bh=9aLpsb3k5Fi5rHlbFyOreFNCaxC4U8eyiOcnMj/7m7M=;
+ b=NpQ1MAUf6anCcJ5kyZ28v5JqxDDoio39D94nAIF7MsPhFgpt48VX4r68fNjjzjZTThf+bHzgviMoEPMIE0PH6Ze1ttkn3aq7WE9hCNxyjtx6LNCNkYF1qsCFadX7dsmETmJ52beT0IxFunxiGrP1nTsdXuOADa7wR+kPWF3LjeU=
+Received: from MW3PR05CA0023.namprd05.prod.outlook.com (2603:10b6:303:2b::28)
+ by PH7PR12MB6396.namprd12.prod.outlook.com (2603:10b6:510:1fc::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.19; Tue, 7 Jun
+ 2022 09:41:31 +0000
+Received: from CO1NAM11FT060.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:2b:cafe::f9) by MW3PR05CA0023.outlook.office365.com
+ (2603:10b6:303:2b::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5332.4 via Frontend
+ Transport; Tue, 7 Jun 2022 09:41:30 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,48 +45,50 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT059.mail.protection.outlook.com (10.13.174.160) with Microsoft SMTP
+ CO1NAM11FT060.mail.protection.outlook.com (10.13.175.132) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5314.12 via Frontend Transport; Tue, 7 Jun 2022 08:38:58 +0000
-Received: from equan-buildpc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ 15.20.5314.12 via Frontend Transport; Tue, 7 Jun 2022 09:41:30 +0000
+Received: from ETHANOL.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 7 Jun
- 2022 03:38:55 -0500
-From: Evan Quan <evan.quan@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH V3] drm/amdgpu: enable ASPM support for PCIE 7.4.0/7.6.0
-Date: Tue, 7 Jun 2022 16:38:31 +0800
-Message-ID: <20220607083831.1864654-1-evan.quan@amd.com>
-X-Mailer: git-send-email 2.29.0
+ 2022 04:40:51 -0500
+From: Chandan Vurdigere Nataraj <chandan.vurdigerenataraj@amd.com>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ "Alex Deucher" <alexander.deucher@amd.com>
+Subject: [PATCH] drm/amdgpu/display: Remove unnecessary typecasts and fix
+ build issues
+Date: Tue, 7 Jun 2022 15:10:03 +0530
+Message-ID: <20220607094004.946093-1-chandan.vurdigerenataraj@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0cd920c5-967b-4a5b-7de6-08da48612a59
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3017:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR12MB3017D92AE0579A3FBBFF66C8E4A59@DM6PR12MB3017.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 0b776cd8-8701-4c4a-de94-08da4869e6c1
+X-MS-TrafficTypeDiagnostic: PH7PR12MB6396:EE_
+X-Microsoft-Antispam-PRVS: <PH7PR12MB63969E40BC838A9A6D3B48F696A59@PH7PR12MB6396.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WtIgBb+qSVy/NQiD/IvZhygUQClvugJT6doSDi9eAnZY3WQTVe+v/as/VrNhxRWt7XXIu4PJi4nCsNWznmRIqbYWpeMjS9TQp8G1pkEEOlj2IxvRvqqilnnVeN+UyFxVxCEP0crU9eGCcKlLiyJeIZuYUYDwN3teYGP/r78A8VnT1GIKJIFeaG6IqL/hULU/Vcal0MI3xP8MtY8RmlXv84NZcWc9sp2qhncExQtOKDQtcxgU1MyNhVsZha7ZOD8g93HBjGYVQ8quJqFwl3/jPdwwQK59EsL/jUmiMb0gAcG8yQkRtKfSiuwaRbEn0YPBpnaI8qWRA5fcR3NoQu95cvAi7uHDqLYC8MI8ChlkUeMZS1wCasOFesUC3BAyaZDIgNHaABg1hd39vgc4tpJG2/do64N5e3r6CMZd0ZKaujqcDiCXsNoFLXbcn5Sj3KARcBZZVClkDVBEekKV5ospfLpUhUg3lRkF7H66ERhSOPGkyM5DvEwLzZLWZuQ67NrtNildehCZbuKC4VcnChebQexnqV8ggVmDxhJsXixqJYUBzJlm2fW8ytzqIRhLB34ClU5Dy9Z53R7Kud8hTz5Lq3XGu18tl8JKdpc4UeZA5rgAT+EYNjt8lMzrMfcEKBeQcChEyQDzTCXJyxHxlb0vxJPq4Rya+nUgZSqO1nJH9A0njAN/UC/uQSalj/epgySoF5WxMstXZrgGvtRkLCTvpg==
+X-Microsoft-Antispam-Message-Info: KWIkKyR5bjM12AI1Q6mG0vQgDIEYp1vobORuA9FtNxJC+VwlpLfTNy8S1GmnAKr7hJ1TnK4lYAqW6II4wswYTaN1uKMGJLWrb+6gozvOPumMyoNvuYCnp4/1YBHnpsAO7f6FQx/qwN6HEnizm2m/i7FTEq3MSMblktqNAsrP9QKujAEvHXY1kqM2QOH9AGrh9QxpBLBp5XvcdfpfVU2XBxXMppw3eRCEiNV3KviweRQDRNPtTUVoQGtNrNUhHDlk562wHWL647Ne+oDeRYxg4etEnbral1oRyJ7ho0vqfQQYUOtb+nqdKC6xDj6Uiw4Zs6x2/KEyp1UaiqBHXUAwUdv5l0jltjWDKAnhntjAHrisqsZsy+zYPkSCS8BF7Yfb1dX5ttn/C9SBNggNqufiEp6yx3ZtRfeaiBje7e7ujP4SRz9h2CzA6LkPUqOcScqZXZLuAotHPcogoRCN1Q+9cTzwwfV8mb5JPHKoGbTy4D+skgH01mNQsjq4Sse7xIlbIycmLvH8mVuRoKLDgvFCyaPvPrOVSZBWOKdWpBhkP+OjLvpeJk7Pdy9g5W+cVrE8XzyHgA1kYQ8z3qWfRlLantf2FvVWaF2qXIjZIdgJWaPI9HxslC+O31OPZhAeKDsRSJWbE9pXAme1KAHbiUXOMtlhNWh2kmYrkzuU2r/y/wzyQ01vmo+cKXgfeii2i7wPdpwnSGGfIloOBdkaB631oA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(36840700001)(46966006)(4326008)(316002)(8676002)(356005)(44832011)(2906002)(5660300002)(40460700003)(70206006)(8936002)(70586007)(81166007)(86362001)(26005)(426003)(47076005)(1076003)(336012)(186003)(16526019)(508600001)(6666004)(2616005)(7696005)(54906003)(6916009)(82310400005)(83380400001)(36860700001)(36756003)(36900700001);
+ SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(316002)(82310400005)(26005)(186003)(83380400001)(86362001)(8936002)(6636002)(54906003)(110136005)(16526019)(2616005)(47076005)(336012)(426003)(508600001)(2906002)(36756003)(81166007)(1076003)(36860700001)(356005)(7696005)(8676002)(4326008)(40460700003)(5660300002)(70586007)(70206006)(6666004)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2022 08:38:58.4163 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0cd920c5-967b-4a5b-7de6-08da48612a59
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2022 09:41:30.4702 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b776cd8-8701-4c4a-de94-08da4869e6c1
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT059.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT060.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3017
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6396
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,227 +100,118 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, Likun.Gao@amd.com, Lijo.Lazar@amd.com,
- Evan Quan <evan.quan@amd.com>, Hawking.Zhang@amd.com
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Enable ASPM support for PCIE 7.4.0 and 7.6.0.
+[Why]
+Getting below errors:
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_32.c:1414:5: error: implicit conversion from enumeration type 'enum scan_direction_class' to different enumeration type 'enum dm_rotation_angle' [-Werror,-Wenum-conversion]
+                                mode_lib->vba.SourceScan[k],
+                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_32.c:1744:22: error: implicit conversion from enumeration type 'enum scan_direction_class' to different enumeration type 'enum dm_rotation_angle' [-Werror,-Wenum-conversion]
+                        && (!(!IsVertical(mode_lib->vba.SourceScan[k])) || mode_lib->vba.DCCEnable[k] == true)) {
+                               ~~~~~~~~~~ ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+2 errors generated.
 
-Signed-off-by: Evan Quan <evan.quan@amd.com>
-Change-Id: Ib3b0e106ff43ad49f0f815e6eeb5c756b6bf4550
---
-v1->v2:
-  - support LTR disabled scenario(Lijo)
----
- drivers/gpu/drm/amd/amdgpu/amdgpu.h           |   1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c |   1 +
- drivers/gpu/drm/amd/amdgpu/nbio_v4_3.c        | 116 ++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/soc21.c            |   7 +-
- .../include/asic_reg/nbio/nbio_4_3_0_offset.h |   2 +
- .../asic_reg/nbio/nbio_4_3_0_sh_mask.h        |   1 +
- 6 files changed, 125 insertions(+), 3 deletions(-)
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_util_32.c:5484:18: error: implicit conversion from enumeration type 'RequestType' to different enumeration type 'enum RequestType' [-Werror,-Wenum-conversion]
+                        RequestLuma = REQ_256Bytes;
+                                    ~ ^~~~~~~~~~~~
+18 errors of similar kind
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index dc938d4d8616..3eabca826c75 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -689,6 +689,7 @@ enum amd_hw_ip_block_type {
- 	RSMU_HWIP,
- 	XGMI_HWIP,
- 	DCI_HWIP,
-+	PCIE_HWIP,
- 	MAX_HWIP
- };
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-index 3996da88e1fa..44cea9649810 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-@@ -193,6 +193,7 @@ static int hw_id_map[MAX_HWIP] = {
- 	[UMC_HWIP]	= UMC_HWID,
- 	[XGMI_HWIP]	= XGMI_HWID,
- 	[DCI_HWIP]	= DCI_HWID,
-+	[PCIE_HWIP]	= PCIE_HWID,
- };
- 
- static int amdgpu_discovery_read_binary_from_vram(struct amdgpu_device *adev, uint8_t *binary)
-diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v4_3.c b/drivers/gpu/drm/amd/amdgpu/nbio_v4_3.c
-index ed31d133f07a..233be735165a 100644
---- a/drivers/gpu/drm/amd/amdgpu/nbio_v4_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/nbio_v4_3.c
-@@ -344,6 +344,121 @@ static u32 nbio_v4_3_get_rom_offset(struct amdgpu_device *adev)
- 	return rom_offset;
- }
- 
-+#ifdef CONFIG_PCIEASPM
-+static void nbio_v4_3_program_ltr(struct amdgpu_device *adev)
-+{
-+	uint32_t def, data;
-+
-+	def = RREG32_SOC15(NBIO, 0, regRCC_EP_DEV0_0_EP_PCIE_TX_LTR_CNTL);
-+	data = 0x35EB;
-+	data &= ~EP_PCIE_TX_LTR_CNTL__LTR_PRIV_MSG_DIS_IN_PM_NON_D0_MASK;
-+	data &= ~EP_PCIE_TX_LTR_CNTL__LTR_PRIV_RST_LTR_IN_DL_DOWN_MASK;
-+	if (def != data)
-+		WREG32_SOC15(NBIO, 0, regRCC_EP_DEV0_0_EP_PCIE_TX_LTR_CNTL, data);
-+
-+	def = data = RREG32_SOC15(NBIO, 0, regRCC_STRAP0_RCC_BIF_STRAP2);
-+	data &= ~RCC_BIF_STRAP2__STRAP_LTR_IN_ASPML1_DIS_MASK;
-+	if (def != data)
-+		WREG32_SOC15(NBIO, 0, regRCC_STRAP0_RCC_BIF_STRAP2, data);
-+
-+	def = data = RREG32_SOC15(NBIO, 0, regBIF_CFG_DEV0_EPF0_DEVICE_CNTL2);
-+	if (adev->pdev->ltr_path)
-+		data |= BIF_CFG_DEV0_EPF0_DEVICE_CNTL2__LTR_EN_MASK;
-+	else
-+		data &= ~BIF_CFG_DEV0_EPF0_DEVICE_CNTL2__LTR_EN_MASK;
-+	if (def != data)
-+		WREG32_SOC15(NBIO, 0, regBIF_CFG_DEV0_EPF0_DEVICE_CNTL2, data);
-+}
-+#endif
-+
-+static void nbio_v4_3_program_aspm(struct amdgpu_device *adev)
-+{
-+#ifdef CONFIG_PCIEASPM
-+	uint32_t def, data;
-+
-+	if (!(adev->ip_versions[PCIE_HWIP][0] == IP_VERSION(7, 4, 0)) &&
-+	      !(adev->ip_versions[PCIE_HWIP][0] == IP_VERSION(7, 6, 0)))
-+		return;
-+
-+	def = data = RREG32_SOC15(NBIO, 0, regPCIE_LC_CNTL);
-+	data &= ~PCIE_LC_CNTL__LC_L1_INACTIVITY_MASK;
-+	data &= ~PCIE_LC_CNTL__LC_L0S_INACTIVITY_MASK;
-+	data |= PCIE_LC_CNTL__LC_PMI_TO_L1_DIS_MASK;
-+	if (def != data)
-+		WREG32_SOC15(NBIO, 0, regPCIE_LC_CNTL, data);
-+
-+	def = data = RREG32_SOC15(NBIO, 0, regPCIE_LC_CNTL7);
-+	data |= PCIE_LC_CNTL7__LC_NBIF_ASPM_INPUT_EN_MASK;
-+	if (def != data)
-+		WREG32_SOC15(NBIO, 0, regPCIE_LC_CNTL7, data);
-+
-+	def = data = RREG32_SOC15(NBIO, 0, regPCIE_LC_CNTL3);
-+	data |= PCIE_LC_CNTL3__LC_DSC_DONT_ENTER_L23_AFTER_PME_ACK_MASK;
-+	if (def != data)
-+		WREG32_SOC15(NBIO, 0, regPCIE_LC_CNTL3, data);
-+
-+	def = data = RREG32_SOC15(NBIO, 0, regRCC_STRAP0_RCC_BIF_STRAP3);
-+	data &= ~RCC_BIF_STRAP3__STRAP_VLINK_ASPM_IDLE_TIMER_MASK;
-+	data &= ~RCC_BIF_STRAP3__STRAP_VLINK_PM_L1_ENTRY_TIMER_MASK;
-+	if (def != data)
-+		WREG32_SOC15(NBIO, 0, regRCC_STRAP0_RCC_BIF_STRAP3, data);
-+
-+	def = data = RREG32_SOC15(NBIO, 0, regRCC_STRAP0_RCC_BIF_STRAP5);
-+	data &= ~RCC_BIF_STRAP5__STRAP_VLINK_LDN_ENTRY_TIMER_MASK;
-+	if (def != data)
-+		WREG32_SOC15(NBIO, 0, regRCC_STRAP0_RCC_BIF_STRAP5, data);
-+
-+	def = data = RREG32_SOC15(NBIO, 0, regBIF_CFG_DEV0_EPF0_DEVICE_CNTL2);
-+	data &= ~BIF_CFG_DEV0_EPF0_DEVICE_CNTL2__LTR_EN_MASK;
-+	if (def != data)
-+		WREG32_SOC15(NBIO, 0, regBIF_CFG_DEV0_EPF0_DEVICE_CNTL2, data);
-+
-+	WREG32_SOC15(NBIO, 0, regBIF_CFG_DEV0_EPF0_PCIE_LTR_CAP, 0x10011001);
-+
-+	def = data = RREG32_SOC15(NBIO, 0, regPSWUSP0_PCIE_LC_CNTL2);
-+	data |= PSWUSP0_PCIE_LC_CNTL2__LC_ALLOW_PDWN_IN_L1_MASK |
-+		PSWUSP0_PCIE_LC_CNTL2__LC_ALLOW_PDWN_IN_L23_MASK;
-+	data &= ~PSWUSP0_PCIE_LC_CNTL2__LC_RCV_L0_TO_RCV_L0S_DIS_MASK;
-+	if (def != data)
-+		WREG32_SOC15(NBIO, 0, regPSWUSP0_PCIE_LC_CNTL2, data);
-+
-+	def = data = RREG32_SOC15(NBIO, 0, regPCIE_LC_CNTL4);
-+	data |= PCIE_LC_CNTL4__LC_L1_POWERDOWN_MASK;
-+	if (def != data)
-+		WREG32_SOC15(NBIO, 0, regPCIE_LC_CNTL4, data);
-+
-+	def = data = RREG32_SOC15(NBIO, 0, regPCIE_LC_RXRECOVER_RXSTANDBY_CNTL);
-+	data |= PCIE_LC_RXRECOVER_RXSTANDBY_CNTL__LC_RX_L0S_STANDBY_EN_MASK;
-+	if (def != data)
-+		WREG32_SOC15(NBIO, 0, regPCIE_LC_RXRECOVER_RXSTANDBY_CNTL, data);
-+
-+	nbio_v4_3_program_ltr(adev);
-+
-+	def = data = RREG32_SOC15(NBIO, 0, regRCC_STRAP0_RCC_BIF_STRAP3);
-+	data |= 0x5DE0 << RCC_BIF_STRAP3__STRAP_VLINK_ASPM_IDLE_TIMER__SHIFT;
-+	data |= 0x0010 << RCC_BIF_STRAP3__STRAP_VLINK_PM_L1_ENTRY_TIMER__SHIFT;
-+	if (def != data)
-+		WREG32_SOC15(NBIO, 0, regRCC_STRAP0_RCC_BIF_STRAP3, data);
-+
-+	def = data = RREG32_SOC15(NBIO, 0, regRCC_STRAP0_RCC_BIF_STRAP5);
-+	data |= 0x0010 << RCC_BIF_STRAP5__STRAP_VLINK_LDN_ENTRY_TIMER__SHIFT;
-+	if (def != data)
-+		WREG32_SOC15(NBIO, 0, regRCC_STRAP0_RCC_BIF_STRAP5, data);
-+
-+	def = data = RREG32_SOC15(NBIO, 0, regPCIE_LC_CNTL);
-+	data |= 0x0 << PCIE_LC_CNTL__LC_L0S_INACTIVITY__SHIFT;
-+	data |= 0x9 << PCIE_LC_CNTL__LC_L1_INACTIVITY__SHIFT;
-+	data &= ~PCIE_LC_CNTL__LC_PMI_TO_L1_DIS_MASK;
-+	if (def != data)
-+		WREG32_SOC15(NBIO, 0, regPCIE_LC_CNTL, data);
-+
-+	def = data = RREG32_SOC15(NBIO, 0, regPCIE_LC_CNTL3);
-+	data &= ~PCIE_LC_CNTL3__LC_DSC_DONT_ENTER_L23_AFTER_PME_ACK_MASK;
-+	if (def != data)
-+		WREG32_SOC15(NBIO, 0, regPCIE_LC_CNTL3, data);
-+#endif
-+}
-+
- const struct amdgpu_nbio_funcs nbio_v4_3_funcs = {
- 	.get_hdp_flush_req_offset = nbio_v4_3_get_hdp_flush_req_offset,
- 	.get_hdp_flush_done_offset = nbio_v4_3_get_hdp_flush_done_offset,
-@@ -365,4 +480,5 @@ const struct amdgpu_nbio_funcs nbio_v4_3_funcs = {
- 	.init_registers = nbio_v4_3_init_registers,
- 	.remap_hdp_registers = nbio_v4_3_remap_hdp_registers,
- 	.get_rom_offset = nbio_v4_3_get_rom_offset,
-+	.program_aspm = nbio_v4_3_program_aspm,
- };
-diff --git a/drivers/gpu/drm/amd/amdgpu/soc21.c b/drivers/gpu/drm/amd/amdgpu/soc21.c
-index 31caae7c2495..d8a954bd4c50 100644
---- a/drivers/gpu/drm/amd/amdgpu/soc21.c
-+++ b/drivers/gpu/drm/amd/amdgpu/soc21.c
-@@ -380,11 +380,12 @@ static void soc21_pcie_gen3_enable(struct amdgpu_device *adev)
- 
- static void soc21_program_aspm(struct amdgpu_device *adev)
+[How]
+1. Add typecast at relevant places
+2. Move the enum RequestType definition ahead of declarations
+
+Signed-off-by: Chandan Vurdigere Nataraj <chandan.vurdigerenataraj@amd.com>
+
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
+index b77a1ae792d1..5828e60f291d 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
+@@ -1411,7 +1411,7 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
+ 				v->BytePerPixelC[k],
+ 				v->BytePerPixelDETY[k],
+ 				v->BytePerPixelDETC[k],
+-				mode_lib->vba.SourceScan[k],
++				(enum dm_rotation_angle) mode_lib->vba.SourceScan[k],
+ 				/* Output */
+ 				&v->DCCYMaxUncompressedBlock[k],
+ 				&v->DCCCMaxUncompressedBlock[k],
+@@ -1741,7 +1741,8 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 	mode_lib->vba.SourceFormatPixelAndScanSupport = true;
+ 	for (k = 0; k <= mode_lib->vba.NumberOfActiveSurfaces - 1; k++) {
+ 		if (mode_lib->vba.SurfaceTiling[k] == dm_sw_linear
+-			&& (!(!IsVertical(mode_lib->vba.SourceScan[k])) || mode_lib->vba.DCCEnable[k] == true)) {
++			&& (!(!IsVertical((enum dm_rotation_angle) mode_lib->vba.SourceScan[k]))
++				|| mode_lib->vba.DCCEnable[k] == true)) {
+ 			mode_lib->vba.SourceFormatPixelAndScanSupport = false;
+ 		}
+ 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
+index 6509a84eeb64..07f3a85f8edf 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
+@@ -5314,9 +5314,15 @@ void dml32_CalculateDCCConfiguration(
+ 		unsigned int        *IndependentBlockLuma,
+ 		unsigned int        *IndependentBlockChroma)
  {
++	typedef enum {
++		REQ_256Bytes,
++		REQ_128BytesNonContiguous,
++		REQ_128BytesContiguous,
++		REQ_NA
++	} RequestType;
+ 
+-	enum RequestType   RequestLuma;
+-	enum RequestType   RequestChroma;
++	RequestType   RequestLuma;
++	RequestType   RequestChroma;
+ 
+ 	unsigned int   segment_order_horz_contiguous_luma;
+ 	unsigned int   segment_order_horz_contiguous_chroma;
+@@ -5350,13 +5356,6 @@ void dml32_CalculateDCCConfiguration(
+ 	double   detile_buf_vp_horz_limit;
+ 	double   detile_buf_vp_vert_limit;
+ 
+-	typedef enum {
+-		REQ_256Bytes,
+-		REQ_128BytesNonContiguous,
+-		REQ_128BytesContiguous,
+-		REQ_NA
+-	} RequestType;
 -
--	if (amdgpu_aspm == 0)
-+	if (!amdgpu_device_should_use_aspm(adev))
- 		return;
+ 	yuv420 = ((SourcePixelFormat == dm_420_8 || SourcePixelFormat == dm_420_10 ||
+ 			SourcePixelFormat == dm_420_12) ? 1 : 0);
+ 	horz_div_l = 1;
+@@ -5527,11 +5526,11 @@ void dml32_CalculateDCCConfiguration(
+ 			RequestChroma = REQ_128BytesContiguous;
+ 	}
  
--	/* todo */
-+	if (!(adev->flags & AMD_IS_APU) &&
-+	    (adev->nbio.funcs->program_aspm))
-+		adev->nbio.funcs->program_aspm(adev);
- }
+-	if (RequestLuma == (enum RequestType) REQ_256Bytes) {
++	if (RequestLuma == REQ_256Bytes) {
+ 		*MaxUncompressedBlockLuma = 256;
+ 		*MaxCompressedBlockLuma = 256;
+ 		*IndependentBlockLuma = 0;
+-	} else if (RequestLuma == (enum RequestType) REQ_128BytesContiguous) {
++	} else if (RequestLuma == REQ_128BytesContiguous) {
+ 		*MaxUncompressedBlockLuma = 256;
+ 		*MaxCompressedBlockLuma = 128;
+ 		*IndependentBlockLuma = 128;
+@@ -5541,11 +5540,11 @@ void dml32_CalculateDCCConfiguration(
+ 		*IndependentBlockLuma = 64;
+ 	}
  
- static void soc21_enable_doorbell_aperture(struct amdgpu_device *adev,
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/nbio/nbio_4_3_0_offset.h b/drivers/gpu/drm/amd/include/asic_reg/nbio/nbio_4_3_0_offset.h
-index 53802d674e13..4b489d64deaa 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/nbio/nbio_4_3_0_offset.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/nbio/nbio_4_3_0_offset.h
-@@ -6918,6 +6918,8 @@
- #define regPSWUSCFG0_SSID_CAP                                                                           0x2880031
- #define regPSWUSCFG0_SSID_CAP_BASE_IDX                                                                  5
- 
-+#define regPCIE_LC_RXRECOVER_RXSTANDBY_CNTL                                                             0x2890102
-+#define regPCIE_LC_RXRECOVER_RXSTANDBY_CNTL_BASE_IDX                                                    5
- 
- // addressBlock: nbio_nbif0_bif_cfg_dev0_rc_bifcfgdecp
- // base address: 0x10100000
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/nbio/nbio_4_3_0_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/nbio/nbio_4_3_0_sh_mask.h
-index f3cda48bfaeb..d038fd915351 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/nbio/nbio_4_3_0_sh_mask.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/nbio/nbio_4_3_0_sh_mask.h
-@@ -82045,5 +82045,6 @@
- #define BIF_CFG_DEV0_EPF3_1_RTR_DATA2__FLR_TIME_MASK                                                          0x00000FFFL
- #define BIF_CFG_DEV0_EPF3_1_RTR_DATA2__D3HOTD0_TIME_MASK                                                      0x00FFF000L
- 
-+#define PCIE_LC_RXRECOVER_RXSTANDBY_CNTL__LC_RX_L0S_STANDBY_EN_MASK                                           0x00010000L
- 
- #endif
+-	if (RequestChroma == (enum RequestType) REQ_256Bytes) {
++	if (RequestChroma == REQ_256Bytes) {
+ 		*MaxUncompressedBlockChroma = 256;
+ 		*MaxCompressedBlockChroma = 256;
+ 		*IndependentBlockChroma = 0;
+-	} else if (RequestChroma == (enum RequestType) REQ_128BytesContiguous) {
++	} else if (RequestChroma == REQ_128BytesContiguous) {
+ 		*MaxUncompressedBlockChroma = 256;
+ 		*MaxCompressedBlockChroma = 128;
+ 		*IndependentBlockChroma = 128;
 -- 
-2.29.0
+2.25.1
 
