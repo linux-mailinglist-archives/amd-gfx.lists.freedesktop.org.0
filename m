@@ -2,54 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02326540FD0
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 Jun 2022 21:13:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB4F854106F
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 Jun 2022 21:25:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58FEB10F665;
-	Tue,  7 Jun 2022 19:13:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FDF810E128;
+	Tue,  7 Jun 2022 19:25:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE36310F665
- for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jun 2022 19:13:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1654629197;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Zg8yBeGSpujFygwxJkzWzOm3xQkMe4291lxPHo3F32k=;
- b=P8nRQaMBhUoX6MgzOwn1yNTbmxZXYhPEDF+zbQDGdbJhrOZj+n10wpJ2/uclajPzjPMykv
- e0le51srMUX3JzIZZQ2RlOs0oEL/pbVhmUKAueUYuRy/mgT1EHTRGbhg2KZxLdKfXUEZ9C
- ZjgcmXkL7UyWpVRRj4K+XbUekyjYBEo=
-Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
- [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-453-OpJeuyOkPzCxxg239vDSeQ-1; Tue, 07 Jun 2022 15:13:12 -0400
-X-MC-Unique: OpJeuyOkPzCxxg239vDSeQ-1
-Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.rdu2.redhat.com
- [10.11.54.1])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 9A7222999B56;
- Tue,  7 Jun 2022 19:11:46 +0000 (UTC)
-Received: from emerald.redhat.com (unknown [10.22.9.252])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 91FDE412CA4C;
- Tue,  7 Jun 2022 19:11:17 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Subject: [RFC 07/18] drm/display/dp_mst: Add helper for finding payloads in
- atomic MST state
-Date: Tue,  7 Jun 2022 15:07:04 -0400
-Message-Id: <20220607190715.1331124-8-lyude@redhat.com>
-In-Reply-To: <20220607190715.1331124-1-lyude@redhat.com>
-References: <20220607190715.1331124-1-lyude@redhat.com>
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com
+ [IPv6:2607:f8b0:4864:20::531])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A0F910E128
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jun 2022 19:25:16 +0000 (UTC)
+Received: by mail-pg1-x531.google.com with SMTP id g186so7915223pgc.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 07 Jun 2022 12:25:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=sender:date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=szR7r+mhCiyllPHOYpWCvCcgEkcODKa3DHmlzg25Uuc=;
+ b=YxOVYFIXNDL2R9Bp5NP7sFBCXOpoBOSoM2+6V+lnOBnYxPPzfDjs2/v/oTsXj4uhLS
+ 078BRiHzhGwm+ESUcmIhulF8W4QCV6GSulm+/klLNoOsu0JbpU1VZvx/TBp4Fen3EBH7
+ /jj0leaQxRcNbCpvW6hZMD8BLq397vAcPTfDhJe3C26YNJoQkrv87gKE/wcOPh7xxi5o
+ QCRIdWFaPOS4K/eIwD87pekU6QM+YI/CHK5K6Gic1G7v7fGKPzWBpaF3tvNwt42+LPJk
+ KsE7eVpzhBKnfe7hGrCKvIZU5E3bMVAAdH8DHASpfdSkoz6ia8Lr61B9+lKpxySWVQM/
+ emBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+ :references:mime-version:content-disposition:in-reply-to;
+ bh=szR7r+mhCiyllPHOYpWCvCcgEkcODKa3DHmlzg25Uuc=;
+ b=m/KuwbNp+nucmiudhyiD8SrWivp4aq5bAqkjVIXoFtDMSd+PCqf3p05hqZ/aRQ5CoP
+ tzctCtyKhHHTciBqwMZNXaod8uZKzO3aGQGM8ME9jZroSWjthU2dliUMqKj6P9eFzH4j
+ UtFJUj2umWK9QLny/jP4tUE4OIJio4Kc05GpGwfIX902a/PoRITPOj+Tc0fQ6fmGvSOY
+ subYmSx34p+WSvaTruxle6CoDg+xuR/PYgiL2WVJISqGAzfoq4OdSscYPHvbqxsto6D4
+ SDZMxrBGrbhJtyLTAF0unHNBZeKAExLYzAuyIAUtIbSr3gVayguvH3UPBT4to0dE6Kfy
+ 4wcA==
+X-Gm-Message-State: AOAM531UiQXC98pNZuJvwvG9T/uihtE9FR005wHGsUYsdcJ9onewa5aE
+ JvwSOG4LsBeZGr57tshUFss=
+X-Google-Smtp-Source: ABdhPJxjqDVgqTFmIHkJXehL20yGslGE4u+0x03+g4O9N4M8WM3QfKusenD1lbiI3tyXzFjnFuTgcg==
+X-Received: by 2002:a05:6a00:88f:b0:510:7a49:b72f with SMTP id
+ q15-20020a056a00088f00b005107a49b72fmr30639671pfj.21.1654629915579; 
+ Tue, 07 Jun 2022 12:25:15 -0700 (PDT)
+Received: from localhost ([2620:10d:c090:400::4:fa4d])
+ by smtp.gmail.com with ESMTPSA id
+ l5-20020a170902d34500b0015ef27092aasm12865936plk.190.2022.06.07.12.25.14
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 07 Jun 2022 12:25:14 -0700 (PDT)
+Date: Tue, 7 Jun 2022 09:25:13 -1000
+From: Tejun Heo <tj@kernel.org>
+To: Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: [PATCH] Revert "workqueue: remove unused cancel_work()"
+Message-ID: <Yp+mGaY+Ga/wX2h2@slm.duckdns.org>
+References: <20220519135642.83209-1-andrey.grodzovsky@amd.com>
+ <CAJhGHyBQ60Lh3WZCa+2cE4T36t3vjNxYTBCxS7J0xhZr8Eb2wg@mail.gmail.com>
+ <e1e2e63d-a1a9-12ad-97a7-a3771210edda@amd.com>
+ <CAJhGHyC7VLM1PnXMu2zmdX=xtSNKo6VGO5p0AkUnaaMsuZytpA@mail.gmail.com>
+ <045157bb-31a0-2d76-18b7-4272fab218ef@gmail.com>
+ <YodIquufXzK581gw@slm.duckdns.org>
+ <8df16635-658b-b381-9a40-3544828910fc@amd.com>
+ <Yp+HXowR9nTig331@slm.duckdns.org>
+ <CADnq5_OquY8A_nMsCcwMxvDL3r0WzYAxFdrGNzYsKEP7q-Xg7g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 2.84 on 10.11.54.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CADnq5_OquY8A_nMsCcwMxvDL3r0WzYAxFdrGNzYsKEP7q-Xg7g@mail.gmail.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,221 +76,40 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Imre Deak <imre.deak@intel.com>, open list <linux-kernel@vger.kernel.org>,
- Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>, David Airlie <airlied@linux.ie>,
- Fangzhi Zuo <Jerry.Zuo@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
- Wayne Lin <Wayne.Lin@amd.com>, Sean Paul <sean@poorly.run>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Lai Jiangshan <jiangshanlai@gmail.com>, LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Christian Koenig <Christian.Koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-We already open-code this quite often, and will be iterating through
-payloads even more once we've moved all of the payload tracking into the
-atomic state. So, let's add a helper for doing this.
+On Tue, Jun 07, 2022 at 01:39:01PM -0400, Alex Deucher wrote:
+> On Tue, Jun 7, 2022 at 1:14 PM Tejun Heo <tj@kernel.org> wrote:
+> >
+> > On Sat, May 21, 2022 at 12:04:00AM -0400, Andrey Grodzovsky wrote:
+> > > From 78df30cc97f10c885f5159a293e6afe2348aa60c Mon Sep 17 00:00:00 2001
+> > > From: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+> > > Date: Thu, 19 May 2022 09:47:28 -0400
+> > > Subject: Revert "workqueue: remove unused cancel_work()"
+> > >
+> > > This reverts commit 6417250d3f894e66a68ba1cd93676143f2376a6f.
+> > >
+> > > amdpgu need this function in order to prematurly stop pending
+> > > reset works when another reset work already in progress.
+> > >
+> > > Signed-off-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+> >
+> > Applied to wq/for-5.19-fixes.
+> 
+> Could we take it through the drm tree so we can include it with
+> Andrey's patches that depend on it?
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: Wayne Lin <Wayne.Lin@amd.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Fangzhi Zuo <Jerry.Zuo@amd.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Sean Paul <sean@poorly.run>
----
- drivers/gpu/drm/display/drm_dp_mst_topology.c | 109 ++++++++----------
- 1 file changed, 45 insertions(+), 64 deletions(-)
+Oh sure, please go ahead. Imma revert from my tree.
 
-diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-index ec52f91b1f0e..0bc2c7a90c37 100644
---- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-+++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-@@ -1737,6 +1737,19 @@ drm_dp_mst_dump_port_topology_history(struct drm_dp_mst_port *port) {}
- #define save_port_topology_ref(port, type)
- #endif
- 
-+static struct drm_dp_mst_atomic_payload *
-+drm_atomic_get_mst_payload_state(struct drm_dp_mst_topology_state *state,
-+				 struct drm_dp_mst_port *port)
-+{
-+	struct drm_dp_mst_atomic_payload *payload;
-+
-+	list_for_each_entry(payload, &state->payloads, next)
-+		if (payload->port == port)
-+			return payload;
-+
-+	return NULL;
-+}
-+
- static void drm_dp_destroy_mst_branch_device(struct kref *kref)
- {
- 	struct drm_dp_mst_branch *mstb =
-@@ -4381,39 +4394,31 @@ int drm_dp_atomic_find_time_slots(struct drm_atomic_state *state,
- 				  int pbn_div)
- {
- 	struct drm_dp_mst_topology_state *topology_state;
--	struct drm_dp_mst_atomic_payload *pos, *payload = NULL;
--	int prev_slots, prev_bw, req_slots;
-+	struct drm_dp_mst_atomic_payload *payload = NULL;
-+	int prev_slots = 0, prev_bw = 0, req_slots;
- 
- 	topology_state = drm_atomic_get_mst_topology_state(state, mgr);
- 	if (IS_ERR(topology_state))
- 		return PTR_ERR(topology_state);
- 
- 	/* Find the current allocation for this port, if any */
--	list_for_each_entry(pos, &topology_state->payloads, next) {
--		if (pos->port == port) {
--			payload = pos;
--			prev_slots = payload->time_slots;
--			prev_bw = payload->pbn;
--
--			/*
--			 * This should never happen, unless the driver tries
--			 * releasing and allocating the same timeslot allocation,
--			 * which is an error
--			 */
--			if (WARN_ON(!prev_slots)) {
--				drm_err(mgr->dev,
--					"cannot allocate and release time slots on [MST PORT:%p] in the same state\n",
--					port);
--				return -EINVAL;
--			}
-+	payload = drm_atomic_get_mst_payload_state(topology_state, port);
-+	if (payload) {
-+		prev_slots = payload->time_slots;
-+		prev_bw = payload->pbn;
- 
--			break;
-+		/*
-+		 * This should never happen, unless the driver tries
-+		 * releasing and allocating the same timeslot allocation,
-+		 * which is an error
-+		 */
-+		if (WARN_ON(!prev_slots)) {
-+			drm_err(mgr->dev,
-+				"cannot allocate and release time slots on [MST PORT:%p] in the same state\n",
-+				port);
-+			return -EINVAL;
- 		}
- 	}
--	if (!payload) {
--		prev_slots = 0;
--		prev_bw = 0;
--	}
- 
- 	if (pbn_div <= 0)
- 		pbn_div = mgr->pbn_div;
-@@ -4474,30 +4479,24 @@ int drm_dp_atomic_release_time_slots(struct drm_atomic_state *state,
- 				     struct drm_dp_mst_port *port)
- {
- 	struct drm_dp_mst_topology_state *topology_state;
--	struct drm_dp_mst_atomic_payload *pos;
--	bool found = false;
-+	struct drm_dp_mst_atomic_payload *payload;
- 
- 	topology_state = drm_atomic_get_mst_topology_state(state, mgr);
- 	if (IS_ERR(topology_state))
- 		return PTR_ERR(topology_state);
- 
--	list_for_each_entry(pos, &topology_state->payloads, next) {
--		if (pos->port == port) {
--			found = true;
--			break;
--		}
--	}
--	if (WARN_ON(!found)) {
-+	payload = drm_atomic_get_mst_payload_state(topology_state, port);
-+	if (WARN_ON(!payload)) {
- 		drm_err(mgr->dev, "No payload for [MST PORT:%p] found in mst state %p\n",
- 			port, &topology_state->base);
- 		return -EINVAL;
- 	}
- 
--	drm_dbg_atomic(mgr->dev, "[MST PORT:%p] TU %d -> 0\n", port, pos->time_slots);
--	if (pos->time_slots) {
-+	drm_dbg_atomic(mgr->dev, "[MST PORT:%p] TU %d -> 0\n", port, payload->time_slots);
-+	if (payload->time_slots) {
- 		drm_dp_mst_put_port_malloc(port);
--		pos->time_slots = 0;
--		pos->pbn = 0;
-+		payload->time_slots = 0;
-+		payload->pbn = 0;
- 	}
- 
- 	return 0;
-@@ -5194,18 +5193,8 @@ drm_dp_mst_atomic_check_port_bw_limit(struct drm_dp_mst_port *port,
- 		return 0;
- 
- 	if (drm_dp_mst_is_end_device(port->pdt, port->mcs)) {
--		bool found = false;
--
--		list_for_each_entry(payload, &state->payloads, next) {
--			if (payload->port != port)
--				continue;
--			if (!payload->pbn)
--				return 0;
--
--			found = true;
--			break;
--		}
--		if (!found)
-+		payload = drm_atomic_get_mst_payload_state(state, port);
-+		if (!payload)
- 			return 0;
- 
- 		/*
-@@ -5360,34 +5349,26 @@ int drm_dp_mst_atomic_enable_dsc(struct drm_atomic_state *state,
- 				 bool enable)
- {
- 	struct drm_dp_mst_topology_state *mst_state;
--	struct drm_dp_mst_atomic_payload *pos;
--	bool found = false;
-+	struct drm_dp_mst_atomic_payload *payload;
- 	int time_slots = 0;
- 
- 	mst_state = drm_atomic_get_mst_topology_state(state, port->mgr);
--
- 	if (IS_ERR(mst_state))
- 		return PTR_ERR(mst_state);
- 
--	list_for_each_entry(pos, &mst_state->payloads, next) {
--		if (pos->port == port) {
--			found = true;
--			break;
--		}
--	}
--
--	if (!found) {
-+	payload = drm_atomic_get_mst_payload_state(mst_state, port);
-+	if (!payload) {
- 		drm_dbg_atomic(state->dev,
- 			       "[MST PORT:%p] Couldn't find payload in mst state %p\n",
- 			       port, mst_state);
- 		return -EINVAL;
- 	}
- 
--	if (pos->dsc_enabled == enable) {
-+	if (payload->dsc_enabled == enable) {
- 		drm_dbg_atomic(state->dev,
- 			       "[MST PORT:%p] DSC flag is already set to %d, returning %d time slots\n",
--			       port, enable, pos->time_slots);
--		time_slots = pos->time_slots;
-+			       port, enable, payload->time_slots);
-+		time_slots = payload->time_slots;
- 	}
- 
- 	if (enable) {
-@@ -5399,7 +5380,7 @@ int drm_dp_mst_atomic_enable_dsc(struct drm_atomic_state *state,
- 			return -EINVAL;
- 	}
- 
--	pos->dsc_enabled = enable;
-+	payload->dsc_enabled = enable;
- 
- 	return time_slots;
- }
+ Acked-by: Tejun Heo <tj@kernel.org>
+
+Thanks.
+
 -- 
-2.35.3
-
+tejun
