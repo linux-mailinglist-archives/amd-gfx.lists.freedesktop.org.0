@@ -2,43 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 876A754081E
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 Jun 2022 19:55:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5793454084D
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 Jun 2022 19:57:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D086510EE81;
-	Tue,  7 Jun 2022 17:55:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A16CE10F3A2;
+	Tue,  7 Jun 2022 17:57:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9F3110F394;
- Tue,  7 Jun 2022 17:55:49 +0000 (UTC)
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0844910F3A2;
+ Tue,  7 Jun 2022 17:57:46 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 4B984B80B66;
- Tue,  7 Jun 2022 17:55:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1471C34119;
- Tue,  7 Jun 2022 17:55:43 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTPS id 50F03CE2422;
+ Tue,  7 Jun 2022 17:57:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 127A9C36AFE;
+ Tue,  7 Jun 2022 17:57:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1654624547;
- bh=NXa1J+I2sAkxDWNmDYdzt2EPtQnTfLbT30iET12VL7w=;
+ s=k20201202; t=1654624662;
+ bh=UuT5pcuIYfI0vQXMOvXgNqqRRJ+ochAjLD8cGR0HfcE=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=RBWLVvRs8aL1NYIgUlBsNw22dHkznxEEvNus5xohNSOhBVggaVQuVOVjKPPCntxBp
- DwThHQmXJbOT5hcLNUJoDM5SCWPV2lL9M/g1oszb/08cTHwZQoGZojtFHQ9UTm2Spx
- kmsK6cHsjDcxv8xGeu80Scn1U8vAl4EzQlWacAhjNjKkIMynknPuoIhEAU4X13FM7a
- ffYJXTip9scG6mJZB322aure0XtNWjDG8/vhBruuLKpT2jfQmmgsM6I5bdeepLT4Vc
- rzUJwgbZh/6+3yi0dxvUDOfnf+7yLdt8pyJwt33+v1l7E0JL5TFevEOmEueVPA94+N
- K4yhFOq9N0wuA==
+ b=YGnNDzbLoGTV7iErQHLL4YA2cw81OPiD3OoAXMbNMoZvzKQHiQszR1VI3fb+nHx+0
+ IUXEM91sgcu/N2A7BvbX5uP8reb86T7cZDUTKsdy9ahMOyh8UIbmDwa9lasahW0eMu
+ 7w+XuhjJjs00FRRzqT7iZYoD3OKO8t8AYXOSmobjx1W2ZXooSfUgu5QpmxNMHDoJ6X
+ o0XxwDuahEjNYZoSgy2CnUakM8CGQDspoCWG6HXC+Nw8e87VcHPMLx7TpjJPP8MhW8
+ jE2ppP3VExxvNBjm+aNPbBey68CmEyn4h0BfDCDR10PWiUg10NayP1CkSG/pgGocJS
+ u8OlVmMsa0fEA==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.17 59/60] drm/amd/pm: use bitmap_{from,
- to}_arr32 where appropriate
-Date: Tue,  7 Jun 2022 13:52:56 -0400
-Message-Id: <20220607175259.478835-59-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 37/51] drm/amd/display: Check if modulo is 0
+ before dividing.
+Date: Tue,  7 Jun 2022 13:55:36 -0400
+Message-Id: <20220607175552.479948-37-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220607175259.478835-1-sashal@kernel.org>
-References: <20220607175259.478835-1-sashal@kernel.org>
+In-Reply-To: <20220607175552.479948-1-sashal@kernel.org>
+References: <20220607175552.479948-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -54,74 +54,55 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Hildenbrand <david@redhat.com>, airlied@linux.ie, lijo.lazar@amd.com,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>, dri-devel@lists.freedesktop.org,
- Xiaomeng.Hou@amd.com, mario.limonciello@amd.com, darren.powell@amd.com,
- Alexander Gordeev <agordeev@linux.ibm.com>,
- Claudio Imbrenda <imbrenda@linux.ibm.com>, Sasha Levin <sashal@kernel.org>,
- evan.quan@amd.com, Yury Norov <yury.norov@gmail.com>,
- Janosch Frank <frankja@linux.ibm.com>, guchun.chen@amd.com,
- amd-gfx@lists.freedesktop.org,
- Christian Borntraeger <borntraeger@linux.ibm.com>, kenneth.feng@amd.com,
- tim.huang@amd.com, tao.zhou1@amd.com, Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, kevin1.wang@amd.com,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Jack.Gui@amd.com,
- Xinhui.Pan@amd.com, Sven Schnelle <svens@linux.ibm.com>, daniel@ffwll.ch,
- alexander.deucher@amd.com, christian.koenig@amd.com, Hawking.Zhang@amd.com
+Cc: airlied@linux.ie, dri-devel@lists.freedesktop.org,
+ Sasha Levin <sashal@kernel.org>, Charlene.Liu@amd.com, baihaowen@meizu.com,
+ Rodrigo.Siqueira@amd.com, amd-gfx@lists.freedesktop.org, alex.hung@amd.com,
+ harry.wentland@amd.com, HaoPing.Liu@amd.com, sunpeng.li@amd.com,
+ Daniel Wheeler <daniel.wheeler@amd.com>, dillon.varone@amd.com,
+ Martin Leung <Martin.Leung@amd.com>, Pavle.Kotarac@amd.com,
+ Hansen.Dsouza@amd.com, David Galiffi <David.Galiffi@amd.com>,
+ Qingqing Zhuo <qingqing.zhuo@amd.com>, Xinhui.Pan@amd.com, daniel@ffwll.ch,
+ Alex Deucher <alexander.deucher@amd.com>, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Yury Norov <yury.norov@gmail.com>
+From: David Galiffi <David.Galiffi@amd.com>
 
-[ Upstream commit 525d6515604eb1373ce5e6372a6b6640953b2d6a ]
+[ Upstream commit 49947b906a6bd9668eaf4f9cf691973c25c26955 ]
 
-The smu_v1X_0_set_allowed_mask() uses bitmap_copy() to convert
-bitmap to 32-bit array. This may be wrong due to endiannes issues.
-Fix it by switching to bitmap_{from,to}_arr32.
+[How & Why]
+If a value of 0 is read, then this will cause a divide-by-0 panic.
 
-CC: Alexander Gordeev <agordeev@linux.ibm.com>
-CC: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-CC: Christian Borntraeger <borntraeger@linux.ibm.com>
-CC: Claudio Imbrenda <imbrenda@linux.ibm.com>
-CC: David Hildenbrand <david@redhat.com>
-CC: Heiko Carstens <hca@linux.ibm.com>
-CC: Janosch Frank <frankja@linux.ibm.com>
-CC: Rasmus Villemoes <linux@rasmusvillemoes.dk>
-CC: Sven Schnelle <svens@linux.ibm.com>
-CC: Vasily Gorbik <gor@linux.ibm.com>
-Signed-off-by: Yury Norov <yury.norov@gmail.com>
+Reviewed-by: Martin Leung <Martin.Leung@amd.com>
+Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
+Signed-off-by: David Galiffi <David.Galiffi@amd.com>
+Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c | 2 +-
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-index 4e9e2cf39859..5fcbec9dd45d 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-@@ -777,7 +777,7 @@ int smu_v11_0_set_allowed_mask(struct smu_context *smu)
- 		goto failed;
- 	}
- 
--	bitmap_copy((unsigned long *)feature_mask, feature->allowed, 64);
-+	bitmap_to_arr32(feature_mask, feature->allowed, 64);
- 
- 	ret = smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_SetAllowedFeaturesMaskHigh,
- 					  feature_mask[1], NULL);
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-index b54790d3483e..4a5e91b59f0c 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-@@ -726,7 +726,7 @@ int smu_v13_0_set_allowed_mask(struct smu_context *smu)
- 	if (bitmap_empty(feature->allowed, SMU_FEATURE_MAX) || feature->feature_num < 64)
- 		goto failed;
- 
--	bitmap_copy((unsigned long *)feature_mask, feature->allowed, 64);
-+	bitmap_to_arr32(feature_mask, feature->allowed, 64);
- 
- 	ret = smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_SetAllowedFeaturesMaskHigh,
- 					      feature_mask[1], NULL);
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c b/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
+index 2c7eb982eabc..054823d12403 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
+@@ -1013,9 +1013,12 @@ static bool get_pixel_clk_frequency_100hz(
+ 			 * not be programmed equal to DPREFCLK
+ 			 */
+ 			modulo_hz = REG_READ(MODULO[inst]);
+-			*pixel_clk_khz = div_u64((uint64_t)clock_hz*
+-				clock_source->ctx->dc->clk_mgr->dprefclk_khz*10,
+-				modulo_hz);
++			if (modulo_hz)
++				*pixel_clk_khz = div_u64((uint64_t)clock_hz*
++					clock_source->ctx->dc->clk_mgr->dprefclk_khz*10,
++					modulo_hz);
++			else
++				*pixel_clk_khz = 0;
+ 		} else {
+ 			/* NOTE: There is agreement with VBIOS here that MODULO is
+ 			 * programmed equal to DPREFCLK, in which case PHASE will be
 -- 
 2.35.1
 
