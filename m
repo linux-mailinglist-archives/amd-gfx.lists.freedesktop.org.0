@@ -2,64 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F008D54322F
-	for <lists+amd-gfx@lfdr.de>; Wed,  8 Jun 2022 16:06:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D425154382B
+	for <lists+amd-gfx@lfdr.de>; Wed,  8 Jun 2022 17:56:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C1C911239E;
-	Wed,  8 Jun 2022 14:06:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD3761120C3;
+	Wed,  8 Jun 2022 15:56:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oo1-xc32.google.com (mail-oo1-xc32.google.com
- [IPv6:2607:f8b0:4864:20::c32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8D1011239E
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jun 2022 14:06:21 +0000 (UTC)
-Received: by mail-oo1-xc32.google.com with SMTP id
- r9-20020a4acb09000000b0041b6abb517fso2210208ooq.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 08 Jun 2022 07:06:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=cLpDzOAVYHNAYUsUEXGzHDnomyRL28MsmfLQ0BDJD5o=;
- b=Df0kOzx8LnzQUe6K9g6x3sdraIJ1VShB+5o3/Qr/Ub7PnUqPpC6GRomrqiq0vdIIcH
- U8tjOth+ppudoFN6FLscMJ7Iz+rmZWPgemFhTwWu0Hk83ukqe8IJj1Y+ZgQ+xksGrBVB
- YvddIMeIvrX9/vU4JSP3RmDFFMk6LlytT78r1frBuaByZ71IsNk0hEcvJEphRYN+/z7E
- bYJ51IrFr2+3aGHe5JOLhnxztrsreL9JEYXsB0Q8gaA/KOTgy03SZRNfeFtcBq0TM0cX
- 2jqOkEm46AYownFIw6FuTJ+LWYZhbcL0hUePgM7yTw1zLnfF+irZblQHERTdejttJwGm
- s1Wg==
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com
+ [IPv6:2a00:1450:4864:20::42c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F13010EFA7
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jun 2022 15:56:51 +0000 (UTC)
+Received: by mail-wr1-x42c.google.com with SMTP id k16so28960325wrg.7
+ for <amd-gfx@lists.freedesktop.org>; Wed, 08 Jun 2022 08:56:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=hvjv3fnVF8/pJboCz6mWgtVEtXjO0iOOfBgaF/yNVMo=;
+ b=ahT9YKwEeR+XSeONSXQTycUR9Rwmkdy7lCR5zYJRh4X5bG9rUUhmTMOSm37a1x2dQg
+ sMSmyJrsx3DNYa++Z88Bhsarj8eGiDNj6lZ14rsnqIbYC6BOHbBt5Y+tBBLl0+ML7RHn
+ Ih5H8wQKW1wJh2UK/djICTHx/r/bY8cS7pAc8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=cLpDzOAVYHNAYUsUEXGzHDnomyRL28MsmfLQ0BDJD5o=;
- b=PMCl05m0wGSmviziBiAbHctwMAWd4kH5vuNsOLldaedizfA+85m9CaK6hM2CgNi0jd
- hlzJ14y2RAPUX/UeHnbHelT1JyjT/1P7qql3Uf/r7MJlIwIjQg5e1kKb5X3mbQLfEZTf
- DwP3mGgAJiBKgoemAD3lhoxBt6jLiVdQO+179YyK8LK0+fblUWblKdp1VAL4PtKru6Vp
- 6JGU51sr/hXStd2xAlYUfZUGNF95WZHcYzsmOQnG0ldIOhmCWMOgL4NZBIOOXoN0rjm6
- 9xSRZ7VBl58ZpbNsU+DbZAdDW3LGUXlpkjDP0h9IVAtpOCsohRPF3uS9snF1/pVdLRa4
- Cg1A==
-X-Gm-Message-State: AOAM530fgGmptS6/knLuejqd3Y19jLuIx1gMDms+eRs8lygCiMV5OARF
- NvAURaJ85YXDvAbwSmhkaTydvSkrT1Vc1/t5oJQ=
-X-Google-Smtp-Source: ABdhPJwEtCpIr4XaHw3d3OYgwcxTrPN3p1x5L6WNco7P3ODohmsN6KlsSbKippbTMj//p/pOjyUtWR3GqeSut0/xpWk=
-X-Received: by 2002:a4a:3448:0:b0:41b:a69a:39fc with SMTP id
- n8-20020a4a3448000000b0041ba69a39fcmr1456556oof.23.1654697180957; Wed, 08 Jun
- 2022 07:06:20 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=hvjv3fnVF8/pJboCz6mWgtVEtXjO0iOOfBgaF/yNVMo=;
+ b=Te4GQvsrPaOZUREN7A8OBEIRBnIVqaQN2G8OoPldQjHRShdbKlG5krsiNH89nceXDt
+ NFKAukk/u2c380Cxq9T+k+e8OltRtyQq/NB6P8HpZmtRafUGVqPoD8udDXr77EUAzB3c
+ USYk+3nKkcjvLdXKCaj77CRpYiNaR4PnZGh4m1KQ5KEfE/0KD6MTjXF5yWOKWbWaaRM/
+ trCrB0PUpdvcDVPP6tuD7v8iGyOZCN83ph6tJnTxr/XjPUbVG9dK4xj03gmf3tPHT+nM
+ IyqMFdkxpwVHLJwIyc80TLIGYIbI69tUPilzElcRAYUhUKFwjSdAgcTqjAHwIwF2dsB8
+ BgHg==
+X-Gm-Message-State: AOAM530ikbM/FEOfcqT1vxqoYLbDBsBIzUKn0YzpPDMAS8akGor9AIJ4
+ /nWq7UxylsCniifT3EqGGG6OdA==
+X-Google-Smtp-Source: ABdhPJwAMheQ1yFKSE/vSoH57NTuCuUEEt5+IEndiXLbnF/iIe54uouTXcKfsDHA5SD7lcSxX7tXDQ==
+X-Received: by 2002:a5d:594f:0:b0:213:d715:cec7 with SMTP id
+ e15-20020a5d594f000000b00213d715cec7mr28858360wri.44.1654703809923; 
+ Wed, 08 Jun 2022 08:56:49 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id
+ m19-20020a05600c4f5300b003942a244f2esm30998208wmq.7.2022.06.08.08.56.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 08 Jun 2022 08:56:47 -0700 (PDT)
+Date: Wed, 8 Jun 2022 17:56:44 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: jim.cromie@gmail.com
+Subject: Re: [RFC PATCH v2 00/27] DRM.debug on DYNAMIC_DEBUG, add trace events
+Message-ID: <YqDGvJtNjDFIViQu@phenom.ffwll.local>
+Mail-Followup-To: jim.cromie@gmail.com, Jason Baron <jbaron@akamai.com>,
+ LKML <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ intel-gvt-dev@lists.freedesktop.org,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Greg KH <gregkh@linuxfoundation.org>,
+ Sean Paul <seanpaul@chromium.org>, robdclark@gmail.com,
+ Steven Rostedt <rostedt@goodmis.org>,
+ mathieu.desnoyers@efficios.com, quic_saipraka@quicinc.com,
+ Will Deacon <will@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ quic_psodagud@quicinc.com, Marc Zyngier <maz@kernel.org>,
+ Arnd Bergmann <arnd@arndb.de>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ linux-arm-msm@vger.kernel.org, Ingo Molnar <mingo@redhat.com>,
+ David Airlie <airlied@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Pekka Paalanen <ppaalanen@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+References: <20220516225640.3102269-1-jim.cromie@gmail.com>
+ <Yo5FFMbNG1Viirj1@phenom.ffwll.local>
+ <CAJfuBxzQPeYvpzd_=WkQasKJceHrUYK8umG6gWbTmoAUfApJ8w@mail.gmail.com>
 MIME-Version: 1.0
-References: <20220603102106.149508-1-christian.koenig@amd.com>
- <cd4958ab-897e-d8b0-76bb-0f6045a542d3@amd.com>
- <5f7710f2-7d66-e48f-dab8-c99177743c92@gmail.com>
- <CADnq5_NS49jdkQuXK58CdfShNW9j1q4HwXtBZtqJ2m3MACD8uA@mail.gmail.com>
- <CADnq5_OEsnjhmp_g0zXjNjAfv=0uN2jq79wTMtxnae_OYjUEjw@mail.gmail.com>
- <CH2PR12MB3927CE81E4A14A41359DC1FB95A59@CH2PR12MB3927.namprd12.prod.outlook.com>
- <CADnq5_Pq8M4AgjtwknyKmb1p8RqFYuxYb0b2B2-tpiVTqqWKDA@mail.gmail.com>
- <04afbaac-8c8f-3b8a-6e76-036043d07cfa@gmail.com>
-In-Reply-To: <04afbaac-8c8f-3b8a-6e76-036043d07cfa@gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 8 Jun 2022 10:06:09 -0400
-Message-ID: <CADnq5_PhSzF0zJ+aXPLVV-S5_eVfjqZoXGDzyoKunVa3MZ1O-A@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: fix limiting AV1 to the first instance on VCN3
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAJfuBxzQPeYvpzd_=WkQasKJceHrUYK8umG6gWbTmoAUfApJ8w@mail.gmail.com>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,166 +92,324 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Dong, Ruijing" <Ruijing.Dong@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, "Pelloux-Prayer,
- Pierre-Eric" <Pierre-eric.Pelloux-prayer@amd.com>
+Cc: quic_saipraka@quicinc.com, Catalin Marinas <catalin.marinas@arm.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, David Airlie <airlied@gmail.com>,
+ Will Deacon <will@kernel.org>,
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ Marc Zyngier <maz@kernel.org>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ Ingo Molnar <mingo@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Arnd Bergmann <arnd@arndb.de>,
+ linux-arm-msm@vger.kernel.org,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Jason Baron <jbaron@akamai.com>,
+ Sean Paul <seanpaul@chromium.org>, Steven Rostedt <rostedt@goodmis.org>,
+ intel-gvt-dev@lists.freedesktop.org,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Pekka Paalanen <ppaalanen@gmail.com>, Greg KH <gregkh@linuxfoundation.org>,
+ LKML <linux-kernel@vger.kernel.org>, robdclark@gmail.com,
+ quic_psodagud@quicinc.com, mathieu.desnoyers@efficios.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-I'll push this with the TLB fix.
-
-Alex
-
-On Wed, Jun 8, 2022 at 9:47 AM Christian K=C3=B6nig
-<ckoenig.leichtzumerken@gmail.com> wrote:
->
-> I need to look into this more deeply when I'm back from sick leave.
->
-> Till then this workaround should be sufficient since VCN3 is the only
-> callback which tries to adjust the instance.
->
-> Regards,
-> Christian.
->
-> Am 07.06.22 um 22:22 schrieb Alex Deucher:
-> > We'll need to implement the parse callbacks for vcn4 as well if we
-> > haven't already.
+On Mon, Jun 06, 2022 at 08:59:36AM -0600, jim.cromie@gmail.com wrote:
+> On Wed, May 25, 2022 at 9:02 AM Daniel Vetter <daniel@ffwll.ch> wrote:
+> 
+> > On Mon, May 16, 2022 at 04:56:13PM -0600, Jim Cromie wrote:
+> > > DRM.debug API is 23 macros, issuing 10 exclusive categories of debug
+> > > messages.  By rough count, they are used 5140 times in the kernel.
+> > > These all call drm_dbg or drm_devdbg, which call drm_debug_enabled(),
+> > > which checks bits in global __drm_debug.  Some of these are page-flips
+> > > and vblanks, and get called often.
+> > >
+> > > DYNAMIC_DEBUG (with CONFIG_JUMP_LABEL) is built to avoid this kind of
+> > > work, with NOOPd jump/callsites.
+> > >
+> > > This patchset is RFC because:
+> > > - it touches 2.5 subsystems: dyndbg, drm, tracefs (new events)
+> > > - dyndbg class support is built for drm, needs it for validation
+> > > - new api, used by drm
+> > > - big memory impact, with 5100 new pr-debug callsites.
+> > > - drm class bikeshedding opportunities
+> > > - others, names etc.
 > >
-> > Alex
+> > Thanks a lot for keeping on pushing this!
+> 
+> 
+> > >
+> > > DYNAMIC_DEBUG:
+> > >
+> 
+> 
+> 
+> > > RFC:
+> > >
+> > > dynamic_debug_register_classes() cannot act early enough to be in
+> > > effect at module-load.  So this will not work as you'd reasonably
+> > > expect:
+> > >
+> > >   modprobe test_dynamic_debug dyndbg='+pfm; class FOO +pfmlt'
+> > >
+> > > The 1st query:+pfm will be enabled during load, but in the 2nd query,
+> > > "class FOO" will be unknown at load time.  Early class enablement
+> > > would be nice.  DYNAMIC_DEBUG_CLASSES is a static initializer, which
+> > > is certainly early enough, but Im missing a trick, suggestions?
 > >
-> > On Tue, Jun 7, 2022 at 4:20 PM Dong, Ruijing <Ruijing.Dong@amd.com> wro=
-te:
-> >> [AMD Official Use Only - General]
-> >>
-> >> I can see for VCN4, AV1 dec/enc also need to limit to the first instan=
-ce.
-> >>
-> >> Thanks,
-> >> Ruijing
-> >>
-> >> -----Original Message-----
-> >> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Ale=
-x Deucher
-> >> Sent: Friday, June 3, 2022 10:12 AM
-> >> To: Christian K=C3=B6nig <ckoenig.leichtzumerken@gmail.com>
-> >> Cc: Pelloux-Prayer, Pierre-Eric <Pierre-eric.Pelloux-prayer@amd.com>; =
-amd-gfx list <amd-gfx@lists.freedesktop.org>
-> >> Subject: Re: [PATCH] drm/amdgpu: fix limiting AV1 to the first instanc=
-e on VCN3
-> >>
-> >> Do the other uvd/vce/vcn ring parse functions need a similar fix?
-> >>
-> >> Alex
-> >>
-> >>
-> >> On Fri, Jun 3, 2022 at 10:08 AM Alex Deucher <alexdeucher@gmail.com> w=
-rote:
-> >>> On Fri, Jun 3, 2022 at 8:10 AM Christian K=C3=B6nig
-> >>> <ckoenig.leichtzumerken@gmail.com> wrote:
-> >>>> Am 03.06.22 um 14:08 schrieb Pierre-Eric Pelloux-Prayer:
-> >>>>> Hi Christian,
-> >>>>>
-> >>>>> The patch is: Tested-by: Pierre-Eric Pelloux-Prayer
-> >>>>> <pierre-eric.pelloux-prayer@amd.com>
-> >>>>>
-> >>>>> Could you add a reference to https://nam11.safelinks.protection.out=
-look.com/?url=3Dhttps%3A%2F%2Fgitlab.freedesktop.org%2Fdrm%2Famd%2F-%2Fissu=
-es%2F2037&amp;data=3D05%7C01%7CRuijing.Dong%40amd.com%7C5ba73dfe91ba47e21dd=
-608da456b0609%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C6378986232218060=
-51%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1h=
-aWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=3DWgIZD299Xe0XVG%2Ftb2rn14njS%=
-2FgHIhtIHIDAZ2Fj40k%3D&amp;reserved=3D0 in the commit message?
-> >>>> Sure, can you also give me an rb or acked-by so that I can push it?
-> >>> Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-> >>>
-> >>>> Thanks,
-> >>>> Christian.
-> >>>>
-> >>>>> Thanks,
-> >>>>> Pierre-Eric
-> >>>>>
-> >>>>> On 03/06/2022 12:21, Christian K=C3=B6nig wrote:
-> >>>>>> The job is not yet initialized here.
-> >>>>>>
-> >>>>>> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> >>>>>> Fixes: 1027d5d791b7 ("drm/amdgpu: use job and ib structures
-> >>>>>> directly in CS parsers")
-> >>>>>> ---
-> >>>>>>    drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c | 17 +++++++----------
-> >>>>>>    1 file changed, 7 insertions(+), 10 deletions(-)
-> >>>>>>
-> >>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-> >>>>>> b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-> >>>>>> index 3cabceee5f57..39405f0db824 100644
-> >>>>>> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-> >>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-> >>>>>> @@ -1761,23 +1761,21 @@ static const struct amdgpu_ring_funcs vcn_=
-v3_0_dec_sw_ring_vm_funcs =3D {
-> >>>>>>       .emit_reg_write_reg_wait =3D amdgpu_ring_emit_reg_write_reg_=
-wait_helper,
-> >>>>>>    };
-> >>>>>>
-> >>>>>> -static int vcn_v3_0_limit_sched(struct amdgpu_cs_parser *p,
-> >>>>>> -                            struct amdgpu_job *job)
-> >>>>>> +static int vcn_v3_0_limit_sched(struct amdgpu_cs_parser *p)
-> >>>>>>    {
-> >>>>>>       struct drm_gpu_scheduler **scheds;
-> >>>>>>
-> >>>>>>       /* The create msg must be in the first IB submitted */
-> >>>>>> -    if (atomic_read(&job->base.entity->fence_seq))
-> >>>>>> +    if (atomic_read(&p->entity->fence_seq))
-> >>>>>>               return -EINVAL;
-> >>>>>>
-> >>>>>>       scheds =3D p->adev->gpu_sched[AMDGPU_HW_IP_VCN_DEC]
-> >>>>>>               [AMDGPU_RING_PRIO_DEFAULT].sched;
-> >>>>>> -    drm_sched_entity_modify_sched(job->base.entity, scheds, 1);
-> >>>>>> +    drm_sched_entity_modify_sched(p->entity, scheds, 1);
-> >>>>>>       return 0;
-> >>>>>>    }
-> >>>>>>
-> >>>>>> -static int vcn_v3_0_dec_msg(struct amdgpu_cs_parser *p, struct am=
-dgpu_job *job,
-> >>>>>> -                        uint64_t addr)
-> >>>>>> +static int vcn_v3_0_dec_msg(struct amdgpu_cs_parser *p, uint64_t
-> >>>>>> +addr)
-> >>>>>>    {
-> >>>>>>       struct ttm_operation_ctx ctx =3D { false, false };
-> >>>>>>       struct amdgpu_bo_va_mapping *map; @@ -1848,7 +1846,7 @@
-> >>>>>> static int vcn_v3_0_dec_msg(struct amdgpu_cs_parser *p, struct amd=
-gpu_job *job,
-> >>>>>>               if (create[0] =3D=3D 0x7 || create[0] =3D=3D 0x10 ||=
- create[0] =3D=3D 0x11)
-> >>>>>>                       continue;
-> >>>>>>
-> >>>>>> -            r =3D vcn_v3_0_limit_sched(p, job);
-> >>>>>> +            r =3D vcn_v3_0_limit_sched(p);
-> >>>>>>               if (r)
-> >>>>>>                       goto out;
-> >>>>>>       }
-> >>>>>> @@ -1862,7 +1860,7 @@ static int vcn_v3_0_ring_patch_cs_in_place(s=
-truct amdgpu_cs_parser *p,
-> >>>>>>                                          struct amdgpu_job *job,
-> >>>>>>                                          struct amdgpu_ib *ib)
-> >>>>>>    {
-> >>>>>> -    struct amdgpu_ring *ring =3D to_amdgpu_ring(job->base.sched);
-> >>>>>> +    struct amdgpu_ring *ring =3D
-> >>>>>> + to_amdgpu_ring(p->entity->rq->sched);
-> >>>>>>       uint32_t msg_lo =3D 0, msg_hi =3D 0;
-> >>>>>>       unsigned i;
-> >>>>>>       int r;
-> >>>>>> @@ -1881,8 +1879,7 @@ static int vcn_v3_0_ring_patch_cs_in_place(s=
-truct amdgpu_cs_parser *p,
-> >>>>>>                       msg_hi =3D val;
-> >>>>>>               } else if (reg =3D=3D PACKET0(p->adev->vcn.internal.=
-cmd, 0) &&
-> >>>>>>                          val =3D=3D 0) {
-> >>>>>> -                    r =3D vcn_v3_0_dec_msg(p, job,
-> >>>>>> -                                         ((u64)msg_hi) << 32 | ms=
-g_lo);
-> >>>>>> +                    r =3D vcn_v3_0_dec_msg(p, ((u64)msg_hi) << 32
-> >>>>>> + | msg_lo);
-> >>>>>>                       if (r)
-> >>>>>>                               return r;
-> >>>>>>               }
-> >>>>>>
->
+> > So maybe I'm just totally overloading this work here so feel free to
+> > ignore or postpone, but: Could we do the dynamic_debug_register_classes()
+> > automatically at module load as a new special section? And then throw in a
+> > bit of kbuild so that in a given subsystem every driver gets the same
+> > class names by default and everything would just work, without having to
+> > sprinkle calls to dynamic_debug_register_classes() all over the place?
+> >
+> 
+> This is now done; Ive added __dyndbg_classes section.
+> load_module() now grabs it from the .ko
+> and ddebug_add_module() attaches it to the module's ddebug_table record.
+> for builtins, dynamic_debug_init feeds the builtin class-maps to
+> ddebug_add_module
+> 
+> bash-5.1# modprobe test_dynamic_debug dyndbg="class FOO +p"
+> [   88.374722] dyndbg: class[0]: nm:test_dynamic_debug base:20 len:7 ty:1
+> [   88.375158] dyndbg:  0: EMERG
+> [   88.375345] dyndbg:  1: DANGER
+> [   88.375540] dyndbg:  2: ERROR
+> [   88.375726] dyndbg:  3: WARNING
+> [   88.375930] dyndbg:  4: NOTICE
+> [   88.376130] dyndbg:  5: INFO
+> [   88.376310] dyndbg:  6: DEBUG
+> [   88.376499] dyndbg: class[1]: nm:test_dynamic_debug base:12 len:3 ty:1
+> [   88.376903] dyndbg:  0: ONE
+> [   88.377079] dyndbg:  1: TWO
+> [   88.377253] dyndbg:  2: THREE
+> [   88.377441] dyndbg: class[2]: nm:test_dynamic_debug base:8 len:3 ty:0
+> [   88.377837] dyndbg:  0: bing
+> [   88.378022] dyndbg:  1: bong
+> [   88.378203] dyndbg:  2: boom
+> [   88.378387] dyndbg: class[3]: nm:test_dynamic_debug base:4 len:3 ty:0
+> [   88.378800] dyndbg:  0: Foo
+> [   88.378986] dyndbg:  1: Bar
+> [   88.379167] dyndbg:  2: Buzz
+> [   88.379348] dyndbg: class[4]: nm:test_dynamic_debug base:0 len:3 ty:0
+> [   88.379757] dyndbg:  0: FOO
+> [   88.379938] dyndbg:  1: BAR
+> [   88.380136] dyndbg:  2: BUZZ
+> [   88.380410] dyndbg: module:test_dynamic_debug attached 5 classes
+> [   88.380881] dyndbg:  24 debug prints in module test_dynamic_debug
+> [   88.381315] dyndbg: module: test_dynamic_debug dyndbg="class FOO +p"
+> [   88.381714] dyndbg: query 0: "class FOO +p" mod:test_dynamic_debug
+> [   88.382109] dyndbg: split into words: "class" "FOO" "+p"
+> [   88.382445] dyndbg: op='+'
+> [   88.382616] dyndbg: flags=0x1
+> [   88.382802] dyndbg: *flagsp=0x1 *maskp=0xffffffff
+> [   88.383101] dyndbg: parsed: func="" file="" module="test_dynamic_debug"
+> format="" lineno=0-0 class=FOO
+> [   88.383740] dyndbg: applied: func="" file="" module="test_dynamic_debug"
+> format="" lineno=0-0 class=FOO
+> [   88.384324] dyndbg: processed 1 queries, with 2 matches, 0 errs
+> bash-5.1#
+> 
+> so its working at module-load time.
+
+Awesome!
+
+> > For the entire class approach, did you spot another subsystem that could
+> > benefit from this and maybe make a more solid case that this is something
+> > good?
+> >
+> 
+> I had been working on the premise that ~4k drm*dbg callsites was a good
+> case.
+
+Oh I'm happy with just drm, but occasionally we've done stuff in drm that
+the wider kernel community found a bit silly. So bit more acks/validation
+from outside the dri-devel echo chamber would be great, whatever form it
+is.
+
+> verbosity-levels - with x<y logic instead of x==y is what's currently
+> missing.
+> 
+> the next revision adds something, which "kinda works".
+> But I think I'll rip it out, and do this simpler approach instead:
+> 
+> implement a verbose/levels  param & callback, which takes
+> 
+>    echo 3 > /sys/module/foo/parameters/debug_verbosity
+> 
+> and effectively does
+> 
+>   echo <<EOQRY  > /proc/dynamic_debug/control
+> module foo class V1 +p
+> module foo class V2 +p
+> module foo class V3 +p
+> module foo class V4 -p
+> module foo class V5 -p
+> module foo class V6 -p
+> module foo class V7 -p
+> module foo class V8 -p
+> EOQRY
+> 
+> since only real +/-p changes incur kernel-patching costs,
+> the remaining overheads are minimal.
+> 
+> 
+> > RFC for DRM:
+> >
+> > - decoration flags "fmlt" do not work on drm_*dbg().
+> >   (drm_*dbg() dont use pr_debug, they *become* one flavor of them)
+> >   this could (should?) be added, and maybe tailored for drm.
+> >   some of the device prefixes are very long, a "d" flag could optionalize
+> them.
+> 
+> I'm lost what the fmlt decoration flags are?
+> 
+> 
+> The flags are::
+> 
+>   p    enables the pr_debug() callsite.
+>   f    Include the function name in the printed message
+>   l    Include line number in the printed message
+>   m    Include module name in the printed message
+>   t    Include thread ID in messages not generated from interrupt context
+>   _    No flags are set. (Or'd with others on input)
+> 
+> 
+> the fmlt flags add a "decoration" prefix to enabled/printed log messages
+
+Oh I was just confused and thought fmlt was some special format thing, and
+not just the list of letters that wond work due to the implementation.
+
+If you havent, maybe just spell the above list out (like you do here) in
+the docs?
+
+> > - api use needs review wrt drm life-cycle.
+> > >   enum drm_debug_category and DYNAMIC_DEBUG_CLASSES could be together?
+> >
+> > Hm if they're tied to module lifetime we should be good? Not sure what
+> > could go wrong here.
+> >
+> >
+> with the new __section, "life-cycle" doesnt really pertain.
+> the new issue is how the class-maps are shared across the subsystem;
+> the current class-maps list for each module will probably break;
+> a list item cannot be on N different lists of different modules.
+> Altering the list-items to ref the class-map (not contain it) should solve
+> the problem.
+> 
+> 
+> 
+> 
+> > > - class-names could stand review, perhaps extension
+> > >   "drm:core:" etc have appeared (maybe just from me)
+> > >   or a "plan" to look at it later
+> >
+> > Yeah it's been a bit sprawling. I'm kinda hoping that by firmly
+> > establishing dyndbg as the drm debug approach we can cut down for the need
+> > for ad-hoc flags a bit.
+> >
+> > yeah thats why I kept the DRM_UT_* names.
+> OTOH - the symbolic names patch exposes the choices,
+> which locks the names as API ??
+
+Yeah that part is fine. It's more because the flags was the only thing we
+ever had, any debug need was solved with them. With dyndbg we should have
+a lot more and a lot more precise options for handling this.
+
+So I'm not worried about the flags and their names per-se, more that we
+had some pressure to add more flags for specific files and libraries.
+Dyndbg should give us a much more powerful tool for these problems.
+
+> > > - i915 & amdgpu have pr_debugs (DC_LOG_*, gvt_dbg_*) that have
+> > > class-ish prefixes that are separate from, but similar to DRM_UT_*,
+> > > and could stand review and possible unification with reformed or
+> > > extended drm categories.
+> >
+> > Yeah drm is not entirely consistent with how exactly driver debug printing
+> > should be done. Another reason why I'm hoping that the kitchen sync with
+> > everything approach you're doing here could help unify things.
+> >
+> 
+> 
+> the decoration flags can help here; they loosely/precisely describe
+> the elements of most/all the current debug format-prefix variations.
+> So case by case, the ad-hoc variations should map onto these flags,
+> 
+> The flags allow selectively dropping the prefix info from some of the log
+> entries,
+> after you've seen the module name and function a dozen times,
+> it's helpful to reduce screen clutter.
+> 
+> It might make sense to add a new flag for device,
+> so that dev_dbg() flavors can shorten-or-skip the longer device strings,
+> maybe some drm specific flavors.
+> 
+> 
+> 
+> >
+> > > - the change to enum drm_debug_category from bitmask values to 0..31
+> > >   means that we foreclose this possiblility:
+> > >
+> > >    drm_dbg(DRM_UT_CORE|DRM_UT_KMS, "wierd double-cat experiment");
+> >
+> > Yeah no, that doesn't make much sense to me :-)
+> >
+> > no chuckles for the schrodinger's cat joke ?
+> (maybe "yeah no" is the artful superpositional reply, I just caught :)
+> 
+> 
+> > > - nouveau has very few drm.debug calls,
+> > >   has NV_DEBUG, VMM_DEBUG, nvkm_printk_, I havent looked deeply.
+> >
+> >
+> nouveau has like levels, man ..
+> test_dynamic_debug implements its priority-style names as a POC
+> 
+> patch 18 converts nvkm_debug/trace to use dev_dbg instead of dev_info
+> it probably could adapt to use drm_devdbg
+> 
+> 
+> 
+> 
+> > Yeah see above. There's a pile more drivers (more on the armsoc side of
+> > things) which are quite big on the raw debug call approach.
+> >
+> >
+> LOW, MID, HI has been proposed at least once wrt dyndbg.
+> that probably fits well with current disjoint classes.
+> level/verbose classes should be practical too, as described above.
+> 
+> NB: The symbolic names should also work
+> 
+>    echo +MID > /sys/module/foobar/parameters/debug_verbosity
+> 
+> though theres some ambiguity with
+> 
+>    echo -V3 > /sys/module/foobar/parameters/debug_verbosity
+> 
+> that should turn off V4,5,6,
+> but what about V1,2 ?
+> it could leave them alone (whatever their previous settings are)
+> 
+> anyway, lkp-robot and igt-trybot should be grinding on the latest patchset
+> soon,
+> I'll send it after I fix whatever breaks.
+
+Awesome, like I said I'm a bit drowned in everything, but I'm really happy
+you're pushing this!
+-Daniel
+
+> 
+> 
+> 
+> > Cheers, Daniel
+> >
+> 
+> thanks,
+> Jim
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
