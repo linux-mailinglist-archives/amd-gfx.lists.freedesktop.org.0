@@ -1,92 +1,59 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C28854214B
-	for <lists+amd-gfx@lfdr.de>; Wed,  8 Jun 2022 07:36:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44465542895
+	for <lists+amd-gfx@lfdr.de>; Wed,  8 Jun 2022 09:54:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E1B210EE9D;
-	Wed,  8 Jun 2022 05:36:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2768510E829;
+	Wed,  8 Jun 2022 07:54:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2059.outbound.protection.outlook.com [40.107.94.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 156AA10EE9D
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jun 2022 05:36:56 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TFyT1hUNDRz7a/i5lSijC3GCFQawxeROnZ8Mf2IT7zi0kX3KVypoD1X9TmgQ2HUgrnSLZVVWtnZ5m10H5CR/1raxH+Yz5Pn5h5X6JFd77xKydjB3ivWkllObGOVijVXhH6ggToakdqOg6bB4T7k7/ApSzd3ldgxFnHTFNxCGiGyBo9n21jOOEVE82RD2DkdvDULP/FR2P5YhgUVuDF+SDfa/0GJcbFVHytPUC74l71vtPnYU733JdBNHRKKuzTJ3DfmlVN0knSdFgNVwUOJE2iwCJR47tJS83lJubE2d9PMR1fo+2DKG/I4+boOwnGuUiqqOzGH4EJ9J5FKrg1cJ1Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gKKa4bRi4u5U7ADXfemhqScBMDjq8y6kCdl8FA+K4+c=;
- b=hA6efahlMPEhkCwKbPUJu8mvgkL/41CpIc/o6c1g+jj25ji0DQl70I1m4rz7CzrnVqsmhNFpsT0LN4j1sNdJFmTX6GDUswFtnK2G2EPVd2deG0pwGyfXYHBmRbMVGSALSR5aJYz2Et62uY4vxu/w/zSu0Ib2k/o86TT5uqW3os2EhETepCDNTKyM4WQIvCWeyx7ZSR+0VtbohapnKACOm8i68lZQKSrhuOxNULT94qzCy8kq+9Fep3zdpZT53B5J6mlqM9uUAmhMvoDdJ2wtMloYV+qS9IcOL4GUEms2oX8bA/dwYZgwgtzGMKDKbwuoRV2YIHynyfbtTtN71+tVZw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gKKa4bRi4u5U7ADXfemhqScBMDjq8y6kCdl8FA+K4+c=;
- b=vPGXOvWLlbQUBRZ1I1Mvv3CCM1EBmdvvwVfQtO8fFMvs/zNONrRCYoZhn4nz6TVsCMRvbLVbajtF3Vs4KWSveiDG8qld1X+YEAModYv0p1qJB4Q8azOUHCfpMExvznRhaIewI5PE0z0M8nfQd/6ja8mCgLEGuhe4qTmS3t17hH4=
-Received: from BN9P222CA0001.NAMP222.PROD.OUTLOOK.COM (2603:10b6:408:10c::6)
- by BL1PR12MB5849.namprd12.prod.outlook.com (2603:10b6:208:384::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.19; Wed, 8 Jun
- 2022 05:36:54 +0000
-Received: from BN8NAM11FT060.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:10c:cafe::9d) by BN9P222CA0001.outlook.office365.com
- (2603:10b6:408:10c::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.13 via Frontend
- Transport; Wed, 8 Jun 2022 05:36:54 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT060.mail.protection.outlook.com (10.13.177.211) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5332.12 via Frontend Transport; Wed, 8 Jun 2022 05:36:53 +0000
-Received: from zafar-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 8 Jun
- 2022 00:36:50 -0500
-From: Mohammad Zafar Ziya <Mohammadzafar.ziya@amd.com>
-To: <lijo.lazar@amd.com>, <James.Zhu@amd.com>, <Alexander.Deucher@amd.com>
-Subject: [PATCH 1/1] drm/amdgpu/jpeg2: Add jpeg vmid update under IB submit
-Date: Wed, 8 Jun 2022 13:36:19 +0800
-Message-ID: <20220608053618.3484143-1-Mohammadzafar.ziya@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com
+ [IPv6:2a00:1450:4864:20::629])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B61C9112899
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jun 2022 02:36:40 +0000 (UTC)
+Received: by mail-ej1-x629.google.com with SMTP id bg6so18903982ejb.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 07 Jun 2022 19:36:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=3PNQE7ifO0DggXcwYs9YFh34R1R2x1W2ohTO1J3pgNk=;
+ b=bIkpGxR1KslYHpBjcwf9MLkVbruN/ZgKY5HSQxF9H7oW5FX5aEZL6xhhasOj5FYFKx
+ fTcOEQgpCsavi/64twjKFY1aYhERK9BdnsprP6w9FBdXxwTR4p16/Q0Dbq6/4AHLjVGS
+ RJL+N/H67Sa5kBX4bq+piQVn8ArHPHYxLjt+5C+VQ2qB44zqNy05+VTP7Z0jPLc3j/OT
+ kmyRqJcbnm9vrbCdlU7300OQ5qELvLijaIJSrPowKuU8L0uckSV0EIFUG2ZIZBQ63+DC
+ BmfQrRWhXQyAhHXulr98ZHvXGOMUz/z3Uxi/JVGFi2f8h4rNbj3w5HelZJKfU8MehF2D
+ 1HjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=3PNQE7ifO0DggXcwYs9YFh34R1R2x1W2ohTO1J3pgNk=;
+ b=6zpS2ihHqows70ieekaggeCDsa1d8Xe/cuG+E/ActgnjxLbNEfd1HWfXhxA8WAr5tK
+ E93zcLPYZJa81UeS1b9knupgEArXhe7bDp+ro4xet7iW+SBuAKSu6kINFzSTh4iIlEas
+ zriMDTJg5pr48eOjHxeip+g1Za2QCnnNsrd7byOTCVS7egbmjTnU1pwgzOTUE1Qe5ejG
+ yGkgA6HB9PeFcBzqOFGHJONXTXe2l5DRumBKvin9w1yREmTGN9qrWx1LquxxBY10DKRr
+ b9nSvOtGpundWmtzgtP2CqTlqcfywhMY/82lHgftDqDf2q818+ghOhb8xkfUPb58oMjO
+ OTQQ==
+X-Gm-Message-State: AOAM531JQHPauPQ6NRQWSbWwEEkBn8hylfv4lP6qiHI2z9sjvSKGurAT
+ 9xMkynGllYyVzInB2/AxwxSiaufbNiVYh1bs7eaCKw==
+X-Google-Smtp-Source: ABdhPJx9GQvWIrjjffvcBYMYjDyP2zTc0R9z72LxUj4TwlQBDpCMSnLZEgRRIwlPcg8coyaljwc9iYKmlpUTHxAU2+8=
+X-Received: by 2002:a17:906:7308:b0:710:dabe:d651 with SMTP id
+ di8-20020a170906730800b00710dabed651mr19042504ejc.75.1654655798153; Tue, 07
+ Jun 2022 19:36:38 -0700 (PDT)
 MIME-Version: 1.0
+References: <20220608010709.272962-1-maira.canal@usp.br>
+ <20220608010709.272962-2-maira.canal@usp.br>
+In-Reply-To: <20220608010709.272962-2-maira.canal@usp.br>
+From: Daniel Latypov <dlatypov@google.com>
+Date: Tue, 7 Jun 2022 19:36:26 -0700
+Message-ID: <CAGS_qxpiBOJ5OnQREo33LCtgROSuvTNWgwgkKN4P7TF1+4kcSQ@mail.gmail.com>
+Subject: Re: [RFC 1/3] drm/amd/display: Introduce KUnit to DML
+To: =?UTF-8?B?TWHDrXJhIENhbmFs?= <maira.canal@usp.br>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: bc22f373-ce49-451d-8c63-08da4910e501
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5849:EE_
-X-Microsoft-Antispam-PRVS: <BL1PR12MB5849EF8233EBA997C286AEBA98A49@BL1PR12MB5849.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +3VcGumLtBGXEZt+3wA3aNiQweBvuZhxk1NdBwhL9IperOqQFivbFurK2SjkaUgym3otkEpLT3afU8oN/CJI8p2XzxMTHjaU1bldwGYLV6PSNVueUgaI2wvz9Ym8rTrGQp92uAInin9pEl967+yCu0UhHanZ98vqiAg6U4papV6ZMD49Fl28HhOQ5gPKLAaVblva4vU5a8CUmaYdWcXj7qUVxKL8kuhgsXT+k8PU8mOoOb93FT03HNHW9Uj8qiMklao5XuFgP4t2MN2Q4kIrRvdg7uCQlouk3aksmsZ3awwz3csMMGqyZHjVkhYjl43Qlg+6AT/Wh6dsnKpTUB2mQbhFndZMfFcYbUxDyB8++Wbf4JDkGdyeI20khL7JTtKHNuNuCoLEHLde7V1L9vyQFdi05+2Sm1K0tfC0DdWBhNkHSnCn/sedll8bpi8fRYvq+Vvl3EmDTig6Veeqcz9iVZB9WpG9fUcPSS4ryV4+5LIe0ks7Nxklwvrw1kCzngrR2OkUGSHNeOTzRSmju9KJdQHJIyjYoo/M0Ne2zoldPDVqJbEFj5skPDU6S5K8SI9gEn1ucp6HOEhrsDoaqhtzICa3cYSWyroZGb0b0h5xcYm8l7CwdEnHpBYHi7NJiDFSYaWfZ43V1zNLLD3WQfOaNAuN15Mh61FQmVbW10bHu2zfw0Nw/xvBkkldO3QaF1KQhzsrfnZo8vGWdn1I+4SNEw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(81166007)(6636002)(36756003)(83380400001)(15650500001)(316002)(86362001)(6666004)(36860700001)(8936002)(47076005)(66574015)(426003)(5660300002)(26005)(16526019)(186003)(54906003)(7696005)(82310400005)(508600001)(2616005)(356005)(1076003)(40460700003)(336012)(70586007)(70206006)(4326008)(8676002)(2906002)(110136005)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2022 05:36:53.6109 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bc22f373-ce49-451d-8c63-08da4910e501
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT060.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5849
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Wed, 08 Jun 2022 07:54:44 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,57 +65,393 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mohammad Zafar Ziya <Mohammadzafar.ziya@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org
+Cc: Harrison Chiu <harrison.chiu@amd.com>, brendanhiggins@google.com,
+ dri-devel@lists.freedesktop.org, Isabella Basso <isabbasso@riseup.net>,
+ andrealmeid@riseup.net, Jun Lei <jun.lei@amd.com>, magalilemes00@gmail.com,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Javier Martinez Canillas <javierm@redhat.com>, amd-gfx@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ mwen@igalia.com, Sean Paul <seanpaul@chromium.org>,
+ David Gow <davidgow@google.com>, kunit-dev@googlegroups.com,
+ Mark Yacoub <markyacoub@chromium.org>, linux-kernel@vger.kernel.org,
+ Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
+ Nicholas Choi <Nicholas.Choi@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
+ tales.aparecida@gmail.com, Alex Deucher <alexander.deucher@amd.com>,
+ christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add jpeg vmid update under IB submit
+On Tue, Jun 7, 2022 at 6:09 PM Ma=C3=ADra Canal <maira.canal@usp.br> wrote:
+>
+> KUnit unifies the test structure and provides helper tools that simplify
+> the development. Basic use case allows running tests as regular
 
-Signed-off-by: Mohammad Zafar Ziya <Mohammadzafar.ziya@amd.com>
-Acked-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c | 6 +++++-
- drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.h | 1 +
- 2 files changed, 6 insertions(+), 1 deletion(-)
+Thanks for sending this out!
+I've added some comments on the KUnit side of things.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c
-index d2722adabd1b..f3c1af5130ab 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c
-@@ -535,6 +535,10 @@ void jpeg_v2_0_dec_ring_emit_ib(struct amdgpu_ring *ring,
- {
- 	unsigned vmid = AMDGPU_JOB_GET_VMID(job);
- 
-+	amdgpu_ring_write(ring,	PACKETJ(mmUVD_JPEG_IH_CTRL_INTERNAL_OFFSET,
-+		0, 0, PACKETJ_TYPE0));
-+	amdgpu_ring_write(ring, (vmid << JPEG_IH_CTRL__IH_VMID__SHIFT));
-+
- 	amdgpu_ring_write(ring, PACKETJ(mmUVD_LMI_JRBC_IB_VMID_INTERNAL_OFFSET,
- 		0, 0, PACKETJ_TYPE0));
- 	amdgpu_ring_write(ring, (vmid | (vmid << 4)));
-@@ -768,7 +772,7 @@ static const struct amdgpu_ring_funcs jpeg_v2_0_dec_ring_vm_funcs = {
- 		8 + /* jpeg_v2_0_dec_ring_emit_vm_flush */
- 		18 + 18 + /* jpeg_v2_0_dec_ring_emit_fence x2 vm fence */
- 		8 + 16,
--	.emit_ib_size = 22, /* jpeg_v2_0_dec_ring_emit_ib */
-+	.emit_ib_size = 24, /* jpeg_v2_0_dec_ring_emit_ib */
- 	.emit_ib = jpeg_v2_0_dec_ring_emit_ib,
- 	.emit_fence = jpeg_v2_0_dec_ring_emit_fence,
- 	.emit_vm_flush = jpeg_v2_0_dec_ring_emit_vm_flush,
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.h b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.h
-index 1a03baa59755..654e43e83e2c 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.h
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.h
-@@ -41,6 +41,7 @@
- #define mmUVD_JRBC_RB_REF_DATA_INTERNAL_OFFSET				0x4084
- #define mmUVD_JRBC_STATUS_INTERNAL_OFFSET				0x4089
- #define mmUVD_JPEG_PITCH_INTERNAL_OFFSET				0x401f
-+#define mmUVD_JPEG_IH_CTRL_INTERNAL_OFFSET				0x4149
- 
- #define JRBC_DEC_EXTERNAL_REG_WRITE_ADDR				0x18000
- 
--- 
-2.25.1
+Wording nit: was this meant to be "the development of tests." ?
 
+> processes, which makes easier to run unit tests on a development machine
+> and to integrate the tests in a CI system.
+>
+> This commit introduce a basic unit test to one part of the Display Mode
+
+Also very minor typo: "introduces"
+
+> Library: display_mode_lib, in order to introduce the basic structure of t=
+he
+> tests on the DML.
+>
+> Signed-off-by: Ma=C3=ADra Canal <maira.canal@usp.br>
+> ---
+>  drivers/gpu/drm/amd/display/Kconfig           |  1 +
+>  .../gpu/drm/amd/display/amdgpu_dm/Makefile    |  5 ++
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  3 +
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  3 +
+>  .../drm/amd/display/amdgpu_dm/tests/Kconfig   | 29 +++++++
+>  .../drm/amd/display/amdgpu_dm/tests/Makefile  | 14 ++++
+>  .../amdgpu_dm/tests/display_mode_lib_test.c   | 83 +++++++++++++++++++
+>  .../amd/display/amdgpu_dm/tests/dml_test.c    | 23 +++++
+>  .../amd/display/amdgpu_dm/tests/dml_test.h    | 13 +++
+>  9 files changed, 174 insertions(+)
+>  create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/Kconfig
+>  create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/Makefile
+>  create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/display_m=
+ode_lib_test.c
+>  create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/dml_test.=
+c
+>  create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/dml_test.=
+h
+>
+> diff --git a/drivers/gpu/drm/amd/display/Kconfig b/drivers/gpu/drm/amd/di=
+splay/Kconfig
+> index 127667e549c1..83042e2e4d22 100644
+> --- a/drivers/gpu/drm/amd/display/Kconfig
+> +++ b/drivers/gpu/drm/amd/display/Kconfig
+> @@ -53,5 +53,6 @@ config DRM_AMD_SECURE_DISPLAY
+>              of crc of specific region via debugfs.
+>              Cooperate with specific DMCU FW.
+>
+> +source "drivers/gpu/drm/amd/display/amdgpu_dm/tests/Kconfig"
+>
+>  endmenu
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/Makefile b/drivers/gpu=
+/drm/amd/display/amdgpu_dm/Makefile
+> index 718e123a3230..d25b63566640 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/Makefile
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/Makefile
+> @@ -24,6 +24,11 @@
+>  # It provides the control and status of dm blocks.
+>
+>
+> +AMDGPU_DM_LIBS =3D tests
+> +
+> +AMD_DM =3D $(addsuffix /Makefile, $(addprefix $(FULL_AMD_DISPLAY_PATH)/a=
+mdgpu_dm/,$(AMDGPU_DM_LIBS)))
+> +
+> +include $(AMD_DM)
+>
+>  AMDGPUDM =3D amdgpu_dm.o amdgpu_dm_irq.o amdgpu_dm_mst_types.o amdgpu_dm=
+_color.o
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/=
+gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index cb1e9bb60db2..f73da1e0088f 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -1655,6 +1655,7 @@ static int amdgpu_dm_init(struct amdgpu_device *ade=
+v)
+>                 goto error;
+>         }
+>
+> +       amdgpu_dml_test_init();
+>
+>         DRM_DEBUG_DRIVER("KMS initialized.\n");
+>
+> @@ -1678,6 +1679,8 @@ static void amdgpu_dm_fini(struct amdgpu_device *ad=
+ev)
+>  {
+>         int i;
+>
+> +       amdgpu_dml_test_exit();
+> +
+>         if (adev->dm.vblank_control_workqueue) {
+>                 destroy_workqueue(adev->dm.vblank_control_workqueue);
+>                 adev->dm.vblank_control_workqueue =3D NULL;
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/=
+gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+> index 3cc5c15303e6..e586d3a3d2f0 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+> @@ -749,4 +749,7 @@ int dm_atomic_get_state(struct drm_atomic_state *stat=
+e,
+>  struct amdgpu_dm_connector *
+>  amdgpu_dm_find_first_crtc_matching_connector(struct drm_atomic_state *st=
+ate,
+>                                              struct drm_crtc *crtc);
+> +
+> +int amdgpu_dml_test_init(void);
+> +void amdgpu_dml_test_exit(void);
+>  #endif /* __AMDGPU_DM_H__ */
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/Kconfig b/driver=
+s/gpu/drm/amd/display/amdgpu_dm/tests/Kconfig
+> new file mode 100644
+> index 000000000000..bd1d971d4452
+> --- /dev/null
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/Kconfig
+> @@ -0,0 +1,29 @@
+> +# SPDX-License-Identifier: MIT
+> +menu "DML Unit Tests"
+> +       depends on DRM_AMD_DC && KUNIT=3Dm
+> +
+> +config DISPLAY_MODE_LIB_KUNIT_TEST
+> +       bool "Enable unit tests for dml/display_mode_lib" if !DML_KUNIT_T=
+EST
+> +       default y if DML_KUNIT_TEST
+> +       help
+> +               Enables unit tests for the dml/display_mode_lib. Only use=
+ful for kernel
+> +               devs running KUnit.
+> +
+> +               For more information on KUnit and unit tests in general p=
+lease refer to
+> +               the KUnit documentation in Documentation/dev-tools/kunit/=
+.
+> +
+> +               If unsure, say N.
+> +
+> +config DML_KUNIT_TEST
+> +       bool "Run all unit tests for DML" if !KUNIT_ALL_TESTS
+> +       default KUNIT_ALL_TESTS
+> +       help
+> +               Enables unit tests for the Display Mode Library. Only use=
+ful for kernel
+> +               devs running KUnit.
+> +
+> +               For more information on KUnit and unit tests in general p=
+lease refer to
+> +               the KUnit documentation in Documentation/dev-tools/kunit/=
+.
+> +
+> +               If unsure, say N.
+> +
+> +endmenu
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/Makefile b/drive=
+rs/gpu/drm/amd/display/amdgpu_dm/tests/Makefile
+> new file mode 100644
+> index 000000000000..53b38e340564
+> --- /dev/null
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/Makefile
+> @@ -0,0 +1,14 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +#
+> +# Makefile for the KUnit Tests for DML
+> +#
+> +
+> +DML_TESTS =3D dml_test.o
+> +
+> +ifdef CONFIG_DISPLAY_MODE_LIB_KUNIT_TEST
+> +DML_TESTS +=3D display_mode_lib_test.o
+> +endif
+> +
+> +AMD_DAL_DML_TESTS =3D $(addprefix $(AMDDALPATH)/amdgpu_dm/tests/,$(DML_T=
+ESTS))
+> +
+> +AMD_DISPLAY_FILES +=3D $(AMD_DAL_DML_TESTS)
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/display_mode_lib=
+_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/display_mode_lib_test=
+.c
+> new file mode 100644
+> index 000000000000..3ea0e7fb13e3
+> --- /dev/null
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/display_mode_lib_test.c
+> @@ -0,0 +1,83 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * KUnit tests for dml/display_mode_lib.h
+> + *
+> + * Copyright (C) 2022, Ma=C3=ADra Canal <mairacanal@riseup.net>
+> + */
+> +
+> +#include <kunit/test.h>
+> +#include "../../dc/dml/display_mode_lib.h"
+> +#include "../../dc/dml/display_mode_enums.h"
+> +#include "dml_test.h"
+> +
+> +/**
+> + * DOC: Unit tests for AMDGPU DML display_mode_lib.h
+> + *
+> + * The display_mode_lib.h holds the functions responsible for the instan=
+tiation
+> + * and logging of the Display Mode Library (DML).
+> + *
+> + * These KUnit tests were implemented with the intention of assuring the=
+ proper
+> + * logging of the DML.
+> + *
+> + */
+> +
+> +static void dml_get_status_message_test(struct kunit *test)
+> +{
+
+I think this is a case where an exhaustive test might not be warranted.
+The function under test is entirely just a switch statement with
+return statements, so the chances of things going wrong is minimal.
+But that's just my personal preference.
+
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_VALIDATION_OK=
+), "Validation OK");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_SCALE_RA=
+TIO_TAP), "Scale ratio/tap");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_SOURCE_P=
+IXEL_FORMAT), "Source pixel format");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_VIEWPORT=
+_SIZE), "Viewport size");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_TOTAL_V_=
+ACTIVE_BW), "Total vertical active bandwidth");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_DIO_SUPP=
+ORT), "DIO support");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_NOT_ENOU=
+GH_DSC), "Not enough DSC Units");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_DSC_CLK_=
+REQUIRED), "DSC clock required");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_URGENT_L=
+ATENCY), "Urgent latency");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_REORDERI=
+NG_BUFFER), "Re-ordering buffer");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_DISPCLK_=
+DPPCLK), "Dispclk and Dppclk");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_TOTAL_AV=
+AILABLE_PIPES), "Total available pipes");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_NUM_OTG)=
+, "Number of OTG");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_WRITEBAC=
+K_MODE), "Writeback mode");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_WRITEBAC=
+K_LATENCY), "Writeback latency");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_WRITEBAC=
+K_SCALE_RATIO_TAP), "Writeback scale ratio/tap");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_CURSOR_S=
+UPPORT), "Cursor support");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_PITCH_SU=
+PPORT), "Pitch support");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_PTE_BUFF=
+ER_SIZE), "PTE buffer size");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_DSC_INPU=
+T_BPC), "DSC input bpc");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_PREFETCH=
+_SUPPORT), "Prefetch support");
+> +       KUNIT_EXPECT_STREQ(test, dml_get_status_message(DML_FAIL_V_RATIO_=
+PREFETCH), "Vertical ratio prefetch");
+
+Hmm, perhaps we could add a test like checking that
+dml_get_status_message(-1) gives the expected value ("Unknown
+Status")?
+Checking values that are too small and too big is generally a nice
+thing to check as some of these enum->str funcs are implemented as
+array lookups.
+
+> +}
+> +
+> +static struct kunit_case display_mode_library_test_cases[] =3D {
+> +       KUNIT_CASE(dml_get_status_message_test),
+> +       {  }
+> +};
+> +
+> +static struct kunit_suite display_mode_lib_test_suite =3D {
+> +       .name =3D "dml-display-mode-lib",
+
+Perhaps "display_mode_lib"?
+
+It sounds like DML stands for that, so having both might not be necessary.
+Also, it seems like the agreed upon convention is to use "_" instead
+of "-" per https://www.kernel.org/doc/html/latest/dev-tools/kunit/style.htm=
+l#suites.
+
+> +       .test_cases =3D display_mode_library_test_cases,
+> +};
+> +
+> +static struct kunit_suite *display_mode_lib_test_suites[] =3D { &display=
+_mode_lib_test_suite, NULL };
+> +
+> +int display_mode_lib_test_init(void)
+> +{
+> +       pr_info("=3D=3D=3D> Running display_mode_lib KUnit Tests");
+> +       pr_info("********************************************************=
+**");
+> +       pr_info("**   NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE   =
+**");
+> +       pr_info("**                                                      =
+**");
+> +       pr_info("** display_mode_lib KUnit Tests are being run. This     =
+**");
+> +       pr_info("** means that this is a TEST kernel and should not be   =
+**");
+> +       pr_info("** used for production.                                 =
+**");
+> +       pr_info("**                                                      =
+**");
+> +       pr_info("** If you see this message and you are not debugging    =
+**");
+> +       pr_info("** the kernel, report this immediately to your vendor!  =
+**");
+> +       pr_info("**                                                      =
+**");
+> +       pr_info("********************************************************=
+**");
+
+David Gow proposed tainting the kernel if we ever try to run a KUnit
+test suite here:
+https://lore.kernel.org/linux-kselftest/20220513083212.3537869-2-davidgow@g=
+oogle.com/
+
+If that goes in, then this logging might not be as necessary.
+I'm not sure what the status of that change is, but we're at least
+waiting on a v4, I think.
+
+> +
+> +       return __kunit_test_suites_init(display_mode_lib_test_suites);
+> +}
+> +
+> +void display_mode_lib_test_exit(void)
+> +{
+> +       return __kunit_test_suites_exit(display_mode_lib_test_suites);
+> +}
+
+Other tests have used `return` here, but it's void, so it's not really
+necessary.
+
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/dml_test.c b/dri=
+vers/gpu/drm/amd/display/amdgpu_dm/tests/dml_test.c
+> new file mode 100644
+> index 000000000000..9a5d47597c10
+> --- /dev/null
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/dml_test.c
+> @@ -0,0 +1,23 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +
+> +#include "dml_test.h"
+> +
+> +/**
+> + * amdgpu_dml_test_init() - Initialise KUnit Tests for DML
+> + *
+> + * It aggregates all KUnit Tests related to the Display Mode Library (DM=
+L).
+> + * The DML contains multiple modules, and to assure the modularity of th=
+e
+> + * tests, the KUnit Tests for a DML module are also gathered in a separa=
+ted
+> + * module. Each KUnit Tests module is initiated in this function.
+> + *
+> + */
+> +int amdgpu_dml_test_init(void)
+> +{
+> +       display_mode_lib_test_init();
+> +       return 0;
+
+Optional: we can make this func void.
+It looks like we're never looking at the return value of this func and
+we don't need it to make a certain signature (since we're not using it
+for module_init).
+
+Daniel
