@@ -2,50 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 944F954688C
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jun 2022 16:41:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D867C5469A2
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jun 2022 17:43:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF4B3113385;
-	Fri, 10 Jun 2022 14:41:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EC23112221;
+	Fri, 10 Jun 2022 15:43:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E85DE11327A;
- Fri, 10 Jun 2022 14:40:25 +0000 (UTC)
-Received: from [192.168.2.145] (109-252-136-92.dynamic.spd-mgts.ru
- [109.252.136.92])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 83A966601719;
- Fri, 10 Jun 2022 15:40:21 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1654872024;
- bh=6JgrTd9VkJ1ZFFosiAo/vV8cwTThuk9Z72vQ6NWys/g=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=AoLXW6oXSBZwVImhJc2GgACmS9jxP2XcuDIfwZPyAahSDTWPlU1wD8yk7JJvjWsc2
- bRtW7PEsjkxYyL6DYiSQiQLBfGY6I28c6IXYBWoKS+b3ou3e+emkaBD13uUfhcbyMc
- t4Y7QprkwXCAf/16y1ntNhQzLenrm6CHAFKuzz9B/GnS11eLHlUdVSMaXE1am3becO
- 2HsjdndjPfrc2INjygEllHPErAcYv8vO6XcQXpGc+iPioJk88YGxLr5+kaLuwVKeUL
- MJWGxd3oDU0Qt4wPhngT0udvhy6ensZb+rkAYM95t+RSj84huKHQwUmhFJ2AiUpThg
- e1CXYy5Aubqog==
-Message-ID: <3cbc42df-fff1-5325-6c6f-17dfc6899283@collabora.com>
-Date: Fri, 10 Jun 2022 17:40:18 +0300
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2065.outbound.protection.outlook.com [40.107.220.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D14A3112220
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jun 2022 15:43:05 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fwG9uDFaFwRuDYYPu/p6izEi8D3toPr2briCCthpZmmG5hUG4z5+A0iDGRXXx2lQTM2avb0JDcTaC37HGqsdVdZ7FMZ4vp4DIx3YVYXm4/S/bBlIt2fbCrmD2Gz6xrZaJWLWk3wqsLUsLp7yHmXGdw8yRJ1J4yjVklDz4mSYfSPWygTsohV6iY75fC5ky7SN08c/ODpQm1wFtKg6OxhT49Y1IbXYpSlKjiFhL9xuvc3rx/98VwSu92dAXgStjT/K0FkVc/+QT7P1NP6Unvt7kRqnzjmQWg1Jab1jmpLsmUXpviauLs8Nl0iQZBXZ0YU4aMGj+mbySEm5kFNNegpLug==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FHbYagYexPqr8+1thynRZW5xy9lfzsYQuKMtJhn3NOw=;
+ b=jebiNZU2R0nyeDkxgyJAvcKL8ZJVJwpAf3rrb93n4hI80rLPlkCSxjWphXBFsTnDbJNIFaltapQmUdcjSzdFLnlj8lv3vXHUR8C2NmuzoqUgiO5ZAonJOIlU2CtqFLj8cimBFIEqRZn0VsrvF+GRIN6l0W6dVPn9Ei3fRGuAxPM5n/KtaOXVkXPkg59cqQMMvorWDzgjZgsz2Z0HvzTHjsCyBS0LucPJ1ZEMsnNS5KppVUos5DLaTd+d5tC//HfvlfsrgZGfLJmVVRffhLq3thNlhP1FaHQBcZGOwaHQuadthwZFEYgpHDagWHCucZcAxgB87uL7ERea0bKYz+26sg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FHbYagYexPqr8+1thynRZW5xy9lfzsYQuKMtJhn3NOw=;
+ b=ue1zCCj4qmtpoCJ5gDVLBl1nt0i+QF+h3/TDy3oA986gzf0L/QzpomLiMCTaplHF31wavsZphrPc7vXYLlO9LGImZbYAQsdoyKkpc+0DlVUNq8b9BoJMrCvRVi5vYdfzitgFkYMSST+qn7zd0690X9vRF2iMqTrzFUayZr02ENI=
+Received: from DS7PR05CA0037.namprd05.prod.outlook.com (2603:10b6:8:2f::24) by
+ MWHPR1201MB0191.namprd12.prod.outlook.com (2603:10b6:301:56::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5332.13; Fri, 10 Jun
+ 2022 15:43:04 +0000
+Received: from DM6NAM11FT041.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:8:2f:cafe::a8) by DS7PR05CA0037.outlook.office365.com
+ (2603:10b6:8:2f::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.6 via Frontend
+ Transport; Fri, 10 Jun 2022 15:43:04 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT041.mail.protection.outlook.com (10.13.172.98) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5332.12 via Frontend Transport; Fri, 10 Jun 2022 15:43:03 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 10 Jun
+ 2022 10:43:02 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu/display: make FP handling in Makefiles consistent
+Date: Fri, 10 Jun 2022 11:42:46 -0400
+Message-ID: <20220610154247.338073-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v6 00/22] Add generic memory shrinker to VirtIO-GPU and
- Panfrost DRM drivers
-Content-Language: en-US
-To: Thomas Zimmermann <tzimmermann@suse.de>
-References: <20220526235040.678984-1-dmitry.osipenko@collabora.com>
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <20220526235040.678984-1-dmitry.osipenko@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Fri, 10 Jun 2022 14:41:10 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 614be1d9-6bcd-4115-d1ef-08da4af7e83f
+X-MS-TrafficTypeDiagnostic: MWHPR1201MB0191:EE_
+X-Microsoft-Antispam-PRVS: <MWHPR1201MB019168D95F03D14DB1D65AD8F7A69@MWHPR1201MB0191.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: UmdmxUwNhsuGtwOIx5eHIT81J7VNnHeFRt4OEagmYI2gzOqlW0WKBhb5rlF5tptMgr2OJ0KU7zASbjTxyLbh7F2GYxQBhrxlze33uA9FDLOuLbebpq/Qobo7Fppbv3wSOWxDrJ9NYoVuEpQBaRlA1mM2pA7VEYKQ6+dlcoSoKF4noKI+E8ue/N0Gk3d7lduR1pYwLyYjXzIt/pszl+hrmIkYhXxVnaQEzfKmKi5jZr2yELhUBSUbMH0FGx6XlzWF1Zp4e7IUlMe9RakbMjDDMCEQCWTG5OodylCPa1yOc6GexU4gSk+QSM+panGwxWgCHbUv5x5i6173nxB09oSoxwQbCZqgWWZZ2GCuPabYCq9ybe8W1n7/eGYFK3oHmREBeFmchTWmMUy/w05Ka7FzLwyDXKW9pWPL7amUaL8i04vohRb1xJDUi9bdnK80pDj3RXOYw+LxowXv/0Q9huJBjadb9j0ve6+4K1YzX2YIURSWq6RfTv7t0XfRtIv4KUgKLte+c0fZT7sTV54UXBqK2KdrDmnVwThX83IiMdlnsLzpyhj64BuHVKB8PSdd0dWeCRi3jkj10hz2fpF0Vr3Wlic967ueC3lP4m//kXS75CnA+x3W34gekdjOuLfd8NWyv0avRamVAmoVeD92hQ4krtq6nO5HGzNzbE5rMFOIjo93Lfqj1bOWKo4J2A2sQff//0nc4e55z+SyzJlyGGIDtg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(40470700004)(36840700001)(46966006)(316002)(83380400001)(81166007)(70206006)(2906002)(8676002)(5660300002)(70586007)(4326008)(86362001)(36756003)(6666004)(26005)(356005)(7696005)(16526019)(336012)(47076005)(426003)(508600001)(2616005)(82310400005)(1076003)(6916009)(40460700003)(186003)(8936002)(36860700001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2022 15:43:03.9283 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 614be1d9-6bcd-4115-d1ef-08da4af7e83f
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT041.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB0191
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,258 +98,170 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- Thierry Reding <thierry.reding@gmail.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <digetx@gmail.com>, kernel@collabora.com,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Rob Herring <robh@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Daniel Stone <daniel@fooishbar.org>, Steven Price <steven.price@arm.com>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
- Chia-I Wu <olvaffe@gmail.com>, linux-media@vger.kernel.org,
- intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, linaro-mm-sig@lists.linaro.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-tegra@vger.kernel.org,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Daniel Almeida <daniel.almeida@collabora.com>, amd-gfx@lists.freedesktop.org,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Emil Velikov <emil.l.velikov@gmail.com>, linux-kernel@vger.kernel.org,
- Tomasz Figa <tfiga@chromium.org>, Rob Clark <robdclark@gmail.com>,
- Qiang Yu <yuq825@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>, Robin Murphy <robin.murphy@arm.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 5/27/22 02:50, Dmitry Osipenko wrote:
-> Hello,
-> 
-> This patchset introduces memory shrinker for the VirtIO-GPU DRM driver
-> and adds memory purging and eviction support to VirtIO-GPU driver.
-> 
-> The new dma-buf locking convention is introduced here as well.
-> 
-> During OOM, the shrinker will release BOs that are marked as "not needed"
-> by userspace using the new madvise IOCTL, it will also evict idling BOs
-> to SWAP. The userspace in this case is the Mesa VirGL driver, it will mark
-> the cached BOs as "not needed", allowing kernel driver to release memory
-> of the cached shmem BOs on lowmem situations, preventing OOM kills.
-> 
-> The Panfrost driver is switched to use generic memory shrinker.
-> 
-> This patchset includes improvements and fixes for various things that
-> I found while was working on the shrinker.
-> 
-> The Mesa and IGT patches will be kept on hold until this kernel series
-> will be approved and merged.
-> 
-> This patchset was tested using Qemu and crosvm, including both cases of
-> IOMMU off/on.
-> 
-> Mesa: https://gitlab.freedesktop.org/digetx/mesa/-/commits/virgl-madvise
-> IGT:  https://gitlab.freedesktop.org/digetx/igt-gpu-tools/-/commits/virtio-madvise
->       https://gitlab.freedesktop.org/digetx/igt-gpu-tools/-/commits/panfrost-madvise
-> 
-> Changelog:
-> 
-> v6: - Added new VirtIO-related fix patch that previously was sent separately
->       and didn't get much attention:
-> 
->         drm/gem: Properly annotate WW context on drm_gem_lock_reservations() error
-> 
->     - Added new patch that fixes mapping of imported dma-bufs for
->       Tegra DRM and other affected drivers. It's also handy to have it
->       for switching to the new dma-buf locking convention scheme:
-> 
->         drm/gem: Move mapping of imported dma-bufs to drm_gem_mmap_obj()
-> 
->     - Added new patch that fixes shrinker list corruption for stable Panfrost
->       driver:
-> 
->         drm/panfrost: Fix shrinker list corruption by madvise IOCTL
-> 
->     - Added new minor patch-fix for drm-shmem:
-> 
->         drm/shmem-helper: Add missing vunmap on error
-> 
->     - Added fixes tag to the "Put mapping ..." patch like was suggested by
->       Steven Price.
-> 
->     - Added new VirtIO-GPU driver improvement patch:
-> 
->         drm/virtio: Return proper error codes instead of -1
-> 
->     - Reworked shrinker patches like was suggested by Daniel Vetter:
-> 
->         - Introduced the new locking convention for dma-bufs. Tested on
->           VirtIO-GPU, Panfrost, Lima, Tegra and Intel selftests.
-> 
->         - Dropped separate purge() callback. Now single evict() does
->           everything.
-> 
->         - Dropped swap_in() callback from drm-shmem objects. DRM drivers
->           now could and should restore only the required mappings.
-> 
->         - Dropped dynamic counting of evictable pages. This simplifies
->           code in exchange to *potentially* burning more CPU time on OOM.
-> 
-> v5: - Added new for-stable patch "drm/panfrost: Put mapping instead of
->       shmem obj on panfrost_mmu_map_fault_addr() error" that corrects GEM's
->       refcounting in case of error.
-> 
->     - The drm_gem_shmem_v[un]map() now takes a separate vmap_lock for
->       imported GEMs to avoid recursive locking of DMA reservations.
->       This addresses v4 comment from Thomas Zimmermann about the potential
->       deadlocking of vmapping.
-> 
->     - Added ack from Thomas Zimmermann to "drm/shmem-helper: Correct
->       doc-comment of drm_gem_shmem_get_sg_table()" patch.
-> 
->     - Dropped explicit shmem states from the generic shrinker patch as
->       was requested by Thomas Zimmermann.
-> 
->     - Improved variable names and comments of the generic shrinker code.
-> 
->     - Extended drm_gem_shmem_print_info() with the shrinker-state info in
->       the "drm/virtio: Support memory shrinking" patch.
-> 
->     - Moved evict()/swap_in()/purge() callbacks from drm_gem_object_funcs
->       to drm_gem_shmem_object in the generic shrinker patch, for more
->       consistency.
-> 
->     - Corrected bisectability of the patches that was broken in v4
->       by accident.
-> 
->     - The virtio_gpu_plane_prepare_fb() now uses drm_gem_shmem_pin() instead
->       of drm_gem_shmem_set_unpurgeable_and_unevictable() and does it only for
->       shmem BOs in the "drm/virtio: Support memory shrinking" patch.
-> 
->     - Made more functions private to drm_gem_shmem_helper.c as was requested
->       by Thomas Zimmermann. This minimizes number of the public shmem helpers.
-> 
-> v4: - Corrected minor W=1 warnings reported by kernel test robot for v3.
-> 
->     - Renamed DRM_GEM_SHMEM_PAGES_STATE_ACTIVE/INACTIVE to PINNED/UNPINNED,
->       for more clarity.
-> 
-> v3: - Hardened shrinker's count() with usage of READ_ONCE() since we don't
->       use atomic type for counting and technically compiler is free to
->       re-fetch counter's variable.
-> 
->     - "Correct drm_gem_shmem_get_sg_table() error handling" now uses
->       PTR_ERR_OR_ZERO(), fixing typo that was made in v2.
-> 
->     - Removed obsoleted shrinker from the Panfrost driver, which I missed to
->       do in v2 by accident and Alyssa Rosenzweig managed to notice it.
-> 
->     - CCed stable kernels in all patches that make fixes, even the minor ones,
->       like was suggested by Emil Velikov and added his r-b to the patches.
-> 
->     - Added t-b from Steven Price to the Panfrost's shrinker patch.
-> 
->     - Corrected doc-comment of drm_gem_shmem_object.madv, like was suggested
->       by Steven Price. Comment now says that madv=1 means "object is purged"
->       instead of saying that value is unused.
-> 
->     - Added more doc-comments to the new shmem shrinker API.
-> 
->     - The "Improve DMA API usage for shmem BOs" patch got more improvements
->       by removing the obsoleted drm_dev_set_unique() quirk and its comment.
-> 
->     - Added patch that makes Virtio-GPU driver to use common dev_is_pci()
->       helper, which was suggested by Robin Murphy.
-> 
->     - Added new "drm/shmem-helper: Take GEM reservation lock instead of
->       drm_gem_shmem locks" patch, which was suggested by Daniel Vetter.
-> 
->     - Added new "drm/virtio: Simplify error handling of
->       virtio_gpu_object_create()" patch.
-> 
->     - Improved "Correct doc-comment of drm_gem_shmem_get_sg_table()" patch,
->       like was suggested by Daniel Vetter, by saying that function returns
->       ERR_PTR() and not errno.
-> 
->     - virtio_gpu_purge_object() is fenced properly now, turned out
->       virtio_gpu_notify() doesn't do fencing as I was supposing before.
->       Stress testing of memory eviction revealed that.
-> 
->     - Added new patch that corrects virtio_gpu_plane_cleanup_fb() to use
->       appropriate atomic plane state.
-> 
->     - SHMEM shrinker got eviction support.
-> 
->     - VirtIO-GPU driver now supports memory eviction. It's enabled for a
->       non-blob GEMs only, i.e. for VirGL. The blobs don't support dynamic
->       attaching/detaching of guest's memory, so it's not trivial to enable
->       them.
-> 
->     - Added patch that removes obsoleted drm_gem_shmem_purge()
-> 
->     - Added patch that makes drm_gem_shmem_get_pages() private.
-> 
->     - Added patch that fixes lockup on dma_resv_reserve_fences() error.
-> 
-> v2: - Improved shrinker by using a more fine-grained locking to reduce
->       contention during scan of objects and dropped locking from the
->       'counting' callback by tracking count of shrinkable pages. This
->       was suggested by Rob Clark in the comment to v1.
-> 
->     - Factored out common shrinker code into drm_gem_shmem_helper.c
->       and switched Panfrost driver to use the new common memory shrinker.
->       This was proposed by Thomas Zimmermann in his prototype series that
->       he shared with us in the comment to v1. Note that I only compile-tested
->       the Panfrost driver.
-> 
->     - Shrinker now takes object_name_lock during scan to prevent racing
->       with dma-buf exporting.
-> 
->     - Shrinker now takes vmap_lock during scan to prevent racing with shmem
->       vmap/unmap code.
-> 
->     - Added "Correct doc-comment of drm_gem_shmem_get_sg_table()" patch,
->       which I sent out previously as a standalone change, since the
->       drm_gem_shmem_helper.c is now touched by this patchset anyways and
->       it doesn't hurt to group all the patches together.
-> 
-> Dmitry Osipenko (22):
->   drm/gem: Properly annotate WW context on drm_gem_lock_reservations()
->     error
->   drm/gem: Move mapping of imported dma-bufs to drm_gem_mmap_obj()
->   drm/panfrost: Put mapping instead of shmem obj on
->     panfrost_mmu_map_fault_addr() error
->   drm/panfrost: Fix shrinker list corruption by madvise IOCTL
->   drm/virtio: Correct drm_gem_shmem_get_sg_table() error handling
->   drm/virtio: Check whether transferred 2D BO is shmem
->   drm/virtio: Unlock reservations on virtio_gpu_object_shmem_init()
->     error
->   drm/virtio: Unlock reservations on dma_resv_reserve_fences() error
->   drm/virtio: Use appropriate atomic state in
->     virtio_gpu_plane_cleanup_fb()
->   drm/shmem-helper: Add missing vunmap on error
->   drm/shmem-helper: Correct doc-comment of drm_gem_shmem_get_sg_table()
-...
+Use the same pattern as the DML Makefile and while we are here
+add a missing x86 guard around the msse flags for DCN3.2.x.
 
-Thomas, do you think it will be possible for you to take the fix patches
-1-11 into the drm-fixes or would you prefer me to re-send them separately?
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/display/dc/clk_mgr/Makefile | 3 +--
+ drivers/gpu/drm/amd/display/dc/dcn201/Makefile  | 1 -
+ drivers/gpu/drm/amd/display/dc/dcn30/Makefile   | 6 ++----
+ drivers/gpu/drm/amd/display/dc/dcn302/Makefile  | 8 +++++++-
+ drivers/gpu/drm/amd/display/dc/dcn32/Makefile   | 5 +++--
+ drivers/gpu/drm/amd/display/dc/dcn321/Makefile  | 5 +++--
+ 6 files changed, 16 insertions(+), 12 deletions(-)
 
-The VirtIO patches 12-13 also are good to go into drm-next, IMO.
-
-I'm going to factor out the new dma-buf convention into a separate
-patchset, like was suggested by Christian. But it will take me some time
-to get the dma-buf patches ready and I also will be on a vacation soon.
-
-At minimum nothing should hold the fixes, so will be great if they could
-land sooner.
-
-Thank you!
-
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/Makefile b/drivers/gpu/drm/amd/display/dc/clk_mgr/Makefile
+index c935c10b5f4f..7b505e1e9308 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/Makefile
+@@ -180,7 +180,7 @@ CLK_MGR_DCN32 = dcn32_clk_mgr.o dcn32_clk_mgr_smu_msg.o
+ AMD_DAL_CLK_MGR_DCN32 = $(addprefix $(AMDDALPATH)/dc/clk_mgr/dcn32/,$(CLK_MGR_DCN32))
+ 
+ ifdef CONFIG_X86
+-CFLAGS_$(AMDDALPATH)/dc/clk_mgr/dcn32/dcn32_clk_mgr.o := -msse
++CFLAGS_$(AMDDALPATH)/dc/clk_mgr/dcn32/dcn32_clk_mgr.o := -mhard-float -msse
+ endif
+ 
+ ifdef CONFIG_PPC64
+@@ -191,7 +191,6 @@ ifdef CONFIG_CC_IS_GCC
+ ifeq ($(call cc-ifversion, -lt, 0701, y), y)
+ IS_OLD_GCC = 1
+ endif
+-CFLAGS_$(AMDDALPATH)/dc/clk_mgr/dcn32/dcn32_clk_mgr.o := -mhard-float
+ endif
+ 
+ ifdef CONFIG_X86
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn201/Makefile b/drivers/gpu/drm/amd/display/dc/dcn201/Makefile
+index f68038ceb1b1..96cbd4ccd344 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn201/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/dcn201/Makefile
+@@ -18,7 +18,6 @@ ifdef CONFIG_CC_IS_GCC
+ ifeq ($(call cc-ifversion, -lt, 0701, y), y)
+ IS_OLD_GCC = 1
+ endif
+-CFLAGS_$(AMDDALPATH)/dc/dcn201/dcn201_resource.o += -mhard-float
+ endif
+ 
+ ifdef CONFIG_X86
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/Makefile b/drivers/gpu/drm/amd/display/dc/dcn30/Makefile
+index dfd77b3cc84d..c20331eb62e0 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/Makefile
+@@ -32,8 +32,8 @@ DCN30 = dcn30_init.o dcn30_hubbub.o dcn30_hubp.o dcn30_dpp.o dcn30_optc.o \
+ 
+ 
+ ifdef CONFIG_X86
+-CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_resource.o := -msse
+-CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_optc.o := -msse
++CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_resource.o := -mhard-float -msse
++CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_optc.o := -mhard-float -msse
+ endif
+ 
+ ifdef CONFIG_PPC64
+@@ -45,8 +45,6 @@ ifdef CONFIG_CC_IS_GCC
+ ifeq ($(call cc-ifversion, -lt, 0701, y), y)
+ IS_OLD_GCC = 1
+ endif
+-CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_resource.o += -mhard-float
+-CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_optc.o += -mhard-float
+ endif
+ 
+ ifdef CONFIG_X86
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn302/Makefile b/drivers/gpu/drm/amd/display/dc/dcn302/Makefile
+index f9561d7f97a1..e4b69ad0dde5 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn302/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/dcn302/Makefile
+@@ -8,7 +8,7 @@
+ DCN3_02 = dcn302_init.o dcn302_hwseq.o dcn302_resource.o
+ 
+ ifdef CONFIG_X86
+-CFLAGS_$(AMDDALPATH)/dc/dcn302/dcn302_resource.o := -msse
++CFLAGS_$(AMDDALPATH)/dc/dcn302/dcn302_resource.o := -mhard-float -msse
+ endif
+ 
+ ifdef CONFIG_PPC64
+@@ -16,6 +16,12 @@ CFLAGS_$(AMDDALPATH)/dc/dcn302/dcn302_resource.o := -mhard-float -maltivec
+ endif
+ 
+ ifdef CONFIG_X86
++ifdef CONFIG_CC_IS_GCC
++ifeq ($(call cc-ifversion, -lt, 0701, y), y)
++IS_OLD_GCC = 1
++endif
++endif
++
+ ifdef IS_OLD_GCC
+ # Stack alignment mismatch, proceed with caution.
+ # GCC < 7.1 cannot compile code using `double` and -mpreferred-stack-boundary=3
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/Makefile b/drivers/gpu/drm/amd/display/dc/dcn32/Makefile
+index 3d09db3070f4..34f2e37b6704 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn32/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/dcn32/Makefile
+@@ -16,7 +16,7 @@ DCN32 = dcn32_resource.o dcn32_hubbub.o dcn32_hwseq.o dcn32_init.o \
+ 		dcn32_mpc.o
+ 
+ ifdef CONFIG_X86
+-CFLAGS_$(AMDDALPATH)/dc/dcn32/dcn32_resource.o := -msse
++CFLAGS_$(AMDDALPATH)/dc/dcn32/dcn32_resource.o := -mhard-float -msse
+ endif
+ 
+ ifdef CONFIG_PPC64
+@@ -27,9 +27,9 @@ ifdef CONFIG_CC_IS_GCC
+ ifeq ($(call cc-ifversion, -lt, 0701, y), y)
+ IS_OLD_GCC = 1
+ endif
+-CFLAGS_$(AMDDALPATH)/dc/dcn32/dcn32_resource.o += -mhard-float
+ endif
+ 
++ifdef CONFIG_X86
+ ifdef IS_OLD_GCC
+ # Stack alignment mismatch, proceed with caution.
+ # GCC < 7.1 cannot compile code using `double` and -mpreferred-stack-boundary=3
+@@ -38,6 +38,7 @@ CFLAGS_$(AMDDALPATH)/dc/dcn32/dcn32_resource.o += -mpreferred-stack-boundary=4
+ else
+ CFLAGS_$(AMDDALPATH)/dc/dcn32/dcn32_resource.o += -msse2
+ endif
++endif
+ 
+ AMD_DAL_DCN32 = $(addprefix $(AMDDALPATH)/dc/dcn32/,$(DCN32))
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn321/Makefile b/drivers/gpu/drm/amd/display/dc/dcn321/Makefile
+index 5896ca303e39..e554fd6c16f2 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn321/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/dcn321/Makefile
+@@ -13,7 +13,7 @@
+ DCN321 = dcn321_resource.o dcn321_dio_link_encoder.o
+ 
+ ifdef CONFIG_X86
+-CFLAGS_$(AMDDALPATH)/dc/dcn321/dcn321_resource.o := -msse
++CFLAGS_$(AMDDALPATH)/dc/dcn321/dcn321_resource.o := -mhard-float -msse
+ endif
+ 
+ ifdef CONFIG_PPC64
+@@ -24,9 +24,9 @@ ifdef CONFIG_CC_IS_GCC
+ ifeq ($(call cc-ifversion, -lt, 0701, y), y)
+ IS_OLD_GCC = 1
+ endif
+-CFLAGS_$(AMDDALPATH)/dc/dcn321/dcn321_resource.o += -mhard-float
+ endif
+ 
++ifdef CONFIG_X86
+ ifdef IS_OLD_GCC
+ # Stack alignment mismatch, proceed with caution.
+ # GCC < 7.1 cannot compile code using `double` and -mpreferred-stack-boundary=3
+@@ -35,6 +35,7 @@ CFLAGS_$(AMDDALPATH)/dc/dcn321/dcn321_resource.o += -mpreferred-stack-boundary=4
+ else
+ CFLAGS_$(AMDDALPATH)/dc/dcn321/dcn321_resource.o += -msse2
+ endif
++endif
+ 
+ AMD_DAL_DCN321 = $(addprefix $(AMDDALPATH)/dc/dcn321/,$(DCN321))
+ 
 -- 
-Best regards,
-Dmitry
+2.35.3
+
