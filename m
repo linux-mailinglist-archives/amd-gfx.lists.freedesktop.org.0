@@ -1,93 +1,92 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34F0C546B7C
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jun 2022 19:13:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1959D546BA3
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jun 2022 19:26:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D45E10E8C1;
-	Fri, 10 Jun 2022 17:13:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E92310E249;
+	Fri, 10 Jun 2022 17:26:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2084.outbound.protection.outlook.com [40.107.93.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1BD210E1AC
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jun 2022 17:13:34 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2054.outbound.protection.outlook.com [40.107.92.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 779AF10E249
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jun 2022 17:26:15 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FUsBqNZWGbzVALhwVmDplQltm5tpCZedgzuTgMHxgufm2vKCuKlqBW5MMHKKtSLCsCXe75wJST1xmMjeYZzdmlrijy61+ZjZOz5JLlOxq+M5yLrvYH1AINwxBmpfEY9kB+T0MuNeOtCivKr4dJR9QNAXU00YkNcKvY/dPmjvMWhf1De+XBYbL1E4OEMF6UVbr5JL0jZK9l4bZkTRGvjUOYqg/tvgZllbYjOPIj7WcjFVyY5CWNasX5ky6aJmdWTr3bG//AHswDffuQb/RZg0UqpcnSDDFAjNOIIiBDB2FeMyyP7+CypdPqSEednECZADqmaoAQC1LHn0XKRsrTyQsA==
+ b=Ls4G5QKs/FL/adP3Vk93/wo7uw43ZqDjPTbXLIoSEc2F8O1NQAt2swqJCqTv4TeZeN4ZNwiuY3rlyBq9K3zLVE3vJAQqFcjZXQf8taxSefUJSQlVZLSLSxVtJnUW0vzByZll2Vs8J3KS8OfujOScZSjn7Je+BT17JzGt8RSdITvxTh4KXSN6/unsK46qrw0PchvSmlcqcYAgwb6H5Iz/TDN52WeWAXR3zvCRneV3FIZdBKNtpE3a2Zf8REd4UTChkspjcU8gdtP4F2m9yaBz22rrAHy87WQLRzAIPO6NDvP8clrL6y5psg13IUMnG8yLzB33IozL59fe1SU+Jgz1Yw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0JAckWAYybg8lH4hVhc7gTG3/Z1uPUAccczjsxz6QNo=;
- b=UH6TjRrGgWd3yT/2/neXbRgrl/IeFvGd9vu/ECjkvjno6IHqFQzZ85sGJvokoGamnPmxIl1z5z0x99TaAUFxgBuBpkLKfaYjQtH0cxFXMsWFFD6xrT24MTkU6mSqj/ma5AeZX9aOqqSPgV9FonJJi4MuiwnOSDxC+idnHSBR4ydAk3m/I/1VS1U0vToXYsqC4Hx+Er7FJm2pqJ+J8bIdvHAna3/O/oe0JVBA+Hnr9O/VSyRTIr63eGEilXSVnw5x4uaNRj3DgYtoErvBBKrL+0cgcoO9CP2Lnv8aSh+3CxvapPUJBgg4puca/7Gx1y+q6en1RBk2IkS5edSKt+GBXA==
+ bh=O8s0kwOugJHtREL1rt8QMi4JrjOKdKCraZmY9MilRpI=;
+ b=f9Q/KfD8fEWRTVBwuF67dCEpedx6labnAisFBa+u1l6E885ZthcEwX8IaBXAkRc86GqjKj3mFNy4e3HHMCdwA0LucTV5kfkBrH9gIf89kOMVwnHjs+Rwwc0djgkIfRriKa7PaEhT1Z6Ccj2sSglAs6bi0FD18YF/DgLRE2rnk64I++4EVBZ1oKnGeXA1sNW7K7w9Skz3pr1C6hj8qpcDnApQoB/BgkTt854jp5/vMxHmullTwXehNKZikIwU5n55VGsvp9Baqxdqh0ur54wYo4MZEpXYcaWo23d/1mc5/R3CLW19GnubFHsrdn/kZ3f0c97Uc+6yG+noAg+x04xW8Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0JAckWAYybg8lH4hVhc7gTG3/Z1uPUAccczjsxz6QNo=;
- b=huWwVou9FHB2DaPAe+CivbGisn7Ljz9m3vtJtC8xbge19RfpsMdnbGaB0/UbG+joGvUh1wZ+lIyRbZO4HKQFG9ZfKbQfL/62ZktIrJTjMoj02MCX9DkgRA8rzMOmYX9kwLQvkSRH/RN0bu1jnaG8ZuGUkdQx7lBAnUxgWIL1PRs=
-Received: from MW4P222CA0003.NAMP222.PROD.OUTLOOK.COM (2603:10b6:303:114::8)
- by DM5PR12MB1465.namprd12.prod.outlook.com (2603:10b6:4:7::21) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5332.12; Fri, 10 Jun 2022 17:13:32 +0000
-Received: from CO1NAM11FT046.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:114:cafe::18) by MW4P222CA0003.outlook.office365.com
- (2603:10b6:303:114::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.15 via Frontend
- Transport; Fri, 10 Jun 2022 17:13:32 +0000
+ bh=O8s0kwOugJHtREL1rt8QMi4JrjOKdKCraZmY9MilRpI=;
+ b=b4FJ7EtHlJiXqmnigNRIhN+xilHYgU/Tb58utMQI8cHlrgsjT7N9axx9qCKxyJSvFixMW+06i0rEH6dlmdJDctRiLIWg7iiwKYux384dqzhqTBetd1CRsLhbuPgoeyV+6Wc5Sr3ISeHgp1jqzUUsx4Xy11RZSrM7wUUFCudNoVk=
+Received: from MW4PR04CA0160.namprd04.prod.outlook.com (2603:10b6:303:85::15)
+ by DM6PR12MB2602.namprd12.prod.outlook.com (2603:10b6:5:4a::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5332.14; Fri, 10 Jun
+ 2022 17:26:12 +0000
+Received: from CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:85:cafe::5e) by MW4PR04CA0160.outlook.office365.com
+ (2603:10b6:303:85::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5332.13 via Frontend
+ Transport; Fri, 10 Jun 2022 17:26:11 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT046.mail.protection.outlook.com (10.13.174.203) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CO1NAM11FT064.mail.protection.outlook.com (10.13.175.77) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5332.12 via Frontend Transport; Fri, 10 Jun 2022 17:13:32 +0000
-Received: from mkgs-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.5332.12 via Frontend Transport; Fri, 10 Jun 2022 17:26:11 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 10 Jun
- 2022 12:13:30 -0500
-From: Graham Sider <Graham.Sider@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2 3/3] drm/amdgpu: Update mes_v11_api_def.h
-Date: Fri, 10 Jun 2022 13:13:16 -0400
-Message-ID: <20220610171316.2668611-3-Graham.Sider@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220610171316.2668611-1-Graham.Sider@amd.com>
-References: <20220610171316.2668611-1-Graham.Sider@amd.com>
+ 2022 12:26:09 -0500
+Received: from aaurabin-elitedesk-arch.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28
+ via Frontend Transport; Fri, 10 Jun 2022 12:26:09 -0500
+From: Aurabindo Pillai <aurabindo.pillai@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <alexander.deucher@amd.com>
+Subject: [PATCH] drm/amd/display: dml: move some variables to heap
+Date: Fri, 10 Jun 2022 13:26:03 -0400
+Message-ID: <20220610172603.529561-1-aurabindo.pillai@amd.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8b43c789-a10e-48d7-0bb1-08da4b048be1
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1465:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR12MB14651469D1523AFC4A7B3F6F8AA69@DM5PR12MB1465.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 4c05b73f-93d0-4872-75ca-08da4b065069
+X-MS-TrafficTypeDiagnostic: DM6PR12MB2602:EE_
+X-Microsoft-Antispam-PRVS: <DM6PR12MB2602E9848178241F285462288BA69@DM6PR12MB2602.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hUPyx6k0urn1pivAk91T9rcJMzqYgQ/OA24dDaTPo+VcwFgPh0DLFvpCc6hW2JFEjToHFDE+5zbiYNFLnltCOfU5ILscQZgpTHR8B21pqSkOxLhLtfCkOS8qpGRZDkJixNuzOkfisMLLZVebubVFtWdJ9BktetVoa9u3ShPcaChWvDBYohiRh9Q/lT1Qve6J18dd5v9GgRkuSgw09iArAXuLLkro/5AtN52bTMSGsprDQP/iA58SYGbzSjzr0JgAIAOinBpsauDAqwOH0CMQdwlejMqWymZpM+eMEwcIPqUBPfK86DCogDtRtKjOz4LW8bXBQrdrkfKjacWuUZo/MArHYifUOT9o7Q9N7hZ2qmFf7+lSwp1LpnOvj19ReoZPUUw07Ja3mTiySOjCJGUIoPQ9ZAMNjcG81bRJluIKoZwMTPoj0RLUUpwrQuRbWuOsEJyIrozX35h/jmAOX7ztKK+T8J1mgLduSIhH8rNacjkyhMmyy6Z13gNYwckaK3I73//T4tVvnwVPyBD7Fcv6fDn3GlQqxFV2vfjHXrXZMu98hgzbt65tafWqif7/bNC0dUpGt4In+QLLZCMkfRJTHFR9R1eyO3rQIABHJ9b1SNV40mk9pbWYuOIEaUT7nQC8/DxBdG/uI0PQN5FT6gh/GnVZ2wrz1dcz+abBwIsPXosey6hMVzLy2lvPmnDBmFeKi9J4p3Bb+wWcMGpQDdlM6Q==
+X-Microsoft-Antispam-Message-Info: GU3t7pa2JcgfmRa6fxqJwt06GJcGMbYfNjGkTEDQtqb0isk28JCGXyTuABEwl8A2NjkN4L6smH1VYmUCHcvter7C2RLOw/G2gZ4arzLgJ9WrFJ3QrKZxbGxmgOFGW+f08FVUMDUqFxnShbjKrWwV4W7tEKGGK3xYmM8tj70Vpf/kVv7oGZjETyBskw3+sZ6z9Fk6t5bcHXCEgJKtz90N+xCXqwvlP/2PD3zSip0JBMf3KDXcekvmSJBv51w2pqNXsMt4eHI5J+R57uF+qyDCjDeLK3KskGTeW6Nt6PMPEo+i6TbsajzWaVADFm+D/ZamTqjdN7FS9Ldo0xLj6AQ+h8stxjY7MW0MRo0Q3eBPzf+74IyvCX1cyAxSofEZTM+x5gvodrIV2PvU3/tt6M3J69ACsMjeTVAcX9Cmnjqs7PmvlMuBQq9z/EmGhHCDRgqSO93oAF7AqePmA26Yh6qVZW1z80WLf95A0vamwIWUul58G+x7dSMM4OAkoq3rqrmQalkQ7iur9hpbhbnkbxACcMbhu7/YysIfwSGbmeVir1xRtBdxhfF7V9JjCiBE0dddi0jtJull+CoFYC/J63zf17LQJXPhrb/MoS0lG9DepJfkWKiMeKbEI7w9X6k3KhlF6GARrEe/cxvgiN1+75MRHdfjQI1xwTdOEbFLCjDDemyKXoTZOc/Ik+CtCJiWGSIqKkHdujJcs3MhX3+njRziC/Cx1pQviYnS/EIdfs9Xs/o=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(2906002)(7696005)(6666004)(26005)(15650500001)(16526019)(40460700003)(47076005)(508600001)(426003)(2616005)(1076003)(336012)(86362001)(186003)(83380400001)(8936002)(356005)(36756003)(36860700001)(82310400005)(5660300002)(316002)(6916009)(54906003)(81166007)(70206006)(4326008)(8676002)(70586007)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(8936002)(83380400001)(2906002)(19627235002)(44832011)(6636002)(54906003)(36860700001)(316002)(110136005)(8676002)(86362001)(5660300002)(356005)(36756003)(508600001)(4326008)(81166007)(186003)(2616005)(70586007)(1076003)(70206006)(82310400005)(7696005)(47076005)(426003)(26005)(40460700003)(6666004)(336012)(2101003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2022 17:13:32.3205 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b43c789-a10e-48d7-0bb1-08da4b048be1
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2022 17:26:11.5447 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c05b73f-93d0-4872-75ca-08da4b065069
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT046.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1465
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2602
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,103 +98,93 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mukul.Joshi@amd.com, Felix.Kuehling@amd.com,
- Graham Sider <Graham.Sider@amd.com>, Philip.Yang@amd.com
+Cc: rodrigo.siqueira@amd.com, harry.wentland@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Update MES API to support oversubscription without aggregated doorbell
-for usermode queues.
+[Why&How]
+To reduce stack usage, move some variables into heap in the DML function
+dml32_ModeSupportAndSystemConfigurationFull()
 
-Signed-off-by: Graham Sider <Graham.Sider@amd.com>
+Fixes: d03037269bf2d ("drm/amd/display: DML changes for DCN32/321")
+Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c               | 1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h               | 1 +
- drivers/gpu/drm/amd/amdgpu/mes_v11_0.c                | 3 +++
- drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 2 ++
- drivers/gpu/drm/amd/include/mes_v11_api_def.h         | 4 +++-
- 5 files changed, 10 insertions(+), 1 deletion(-)
+ .../display/dc/dml/dcn32/display_mode_vba_32.c  | 17 +++++++----------
+ .../drm/amd/display/dc/dml/display_mode_vba.h   |  3 +++
+ 2 files changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-index 2e86baa32c55..3d9a81a8fa1c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-@@ -681,6 +681,7 @@ int amdgpu_mes_add_hw_queue(struct amdgpu_device *adev, int gang_id,
- 	queue_input.wptr_addr = qprops->wptr_gpu_addr;
- 	queue_input.queue_type = qprops->queue_type;
- 	queue_input.paging = qprops->paging;
-+	queue_input.oversubscription_no_aggregated_en = 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
+index 5828e60f291d..b9f5bfa67791 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
+@@ -1675,9 +1675,6 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 	bool FullFrameMALLPStateMethod;
+ 	bool SubViewportMALLPStateMethod;
+ 	bool PhantomPipeMALLPStateMethod;
+-	double MaxTotalVActiveRDBandwidth;
+-	double DSTYAfterScaler[DC__NUM_DPP__MAX];
+-	double DSTXAfterScaler[DC__NUM_DPP__MAX];
+ 	unsigned int MaximumMPCCombine;
  
- 	r = adev->mes.funcs->add_hw_queue(&adev->mes, &queue_input);
- 	if (r) {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-index aa06c8396ee0..26765a9946a9 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-@@ -207,6 +207,7 @@ struct mes_add_queue_input {
- 	uint32_t        debug_vmid;
- 	uint64_t	tba_addr;
- 	uint64_t	tma_addr;
-+	uint64_t	oversubscription_no_aggregated_en;
+ #ifdef __DML_VBA_DEBUG__
+@@ -3095,10 +3092,10 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 	}
+ 
+ 	//Vertical Active BW support check
+-	MaxTotalVActiveRDBandwidth = 0;
++	v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.MaxTotalVActiveRDBandwidth = 0;
+ 
+ 	for (k = 0; k < mode_lib->vba.NumberOfActiveSurfaces; ++k) {
+-		MaxTotalVActiveRDBandwidth = MaxTotalVActiveRDBandwidth + mode_lib->vba.ReadBandwidthLuma[k]
++		v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.MaxTotalVActiveRDBandwidth += mode_lib->vba.ReadBandwidthLuma[k]
+ 				+ mode_lib->vba.ReadBandwidthChroma[k];
+ 	}
+ 
+@@ -3115,7 +3112,7 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 					* mode_lib->vba.DRAMChannelWidth
+ 					* (i < 2 ? mode_lib->vba.MaxAveragePercentOfIdealDRAMBWDisplayCanUseInNormalSystemOperationSTROBE : mode_lib->vba.MaxAveragePercentOfIdealDRAMBWDisplayCanUseInNormalSystemOperation) / 100);
+ 
+-			if (MaxTotalVActiveRDBandwidth
++			if (v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.MaxTotalVActiveRDBandwidth
+ 					<= mode_lib->vba.MaxTotalVerticalActiveAvailableBandwidth[i][j]) {
+ 				mode_lib->vba.TotalVerticalActiveBandwidthSupport[i][j] = true;
+ 			} else {
+@@ -3281,8 +3278,8 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 							mode_lib->vba.SwathHeightCThisState[k], mode_lib->vba.TWait,
+ 
+ 							/* Output */
+-							&DSTXAfterScaler[k],
+-							&DSTYAfterScaler[k],
++							&v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.DSTXAfterScaler[k],
++							&v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.DSTYAfterScaler[k],
+ 							&mode_lib->vba.LineTimesForPrefetch[k],
+ 							&mode_lib->vba.PrefetchBW[k],
+ 							&mode_lib->vba.LinesForMetaPTE[k],
+@@ -3579,8 +3576,8 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 						mode_lib->vba.NoOfDPPThisState,
+ 						mode_lib->vba.BytePerPixelInDETY,
+ 						mode_lib->vba.BytePerPixelInDETC,
+-						DSTXAfterScaler,
+-						DSTYAfterScaler,
++						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.DSTXAfterScaler,
++						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.DSTYAfterScaler,
+ 						mode_lib->vba.WritebackEnable,
+ 						mode_lib->vba.WritebackPixelFormat,
+ 						mode_lib->vba.WritebackDestinationWidth,
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
+index 43e327080552..9ad49ad38814 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
++++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
+@@ -204,6 +204,9 @@ struct dml32_ModeSupportAndSystemConfigurationFull {
+ 	SOCParametersList mSOCParameters;
+ 	unsigned int MaximumSwathWidthSupportLuma;
+ 	unsigned int MaximumSwathWidthSupportChroma;
++	double DSTYAfterScaler[DC__NUM_DPP__MAX];
++	double DSTXAfterScaler[DC__NUM_DPP__MAX];
++	double MaxTotalVActiveRDBandwidth;
  };
  
- struct mes_remove_queue_input {
-diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-index 2a9ef308e71c..95a1394d3943 100644
---- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-@@ -163,6 +163,8 @@ static int mes_v11_0_add_hw_queue(struct amdgpu_mes *mes,
- 	mes_add_queue_pkt.gws_size = input->gws_size;
- 	mes_add_queue_pkt.trap_handler_addr = input->tba_addr;
- 	mes_add_queue_pkt.tma_addr = input->tma_addr;
-+	mes_add_queue_pkt.oversubscription_no_aggregated_en =
-+		input->oversubscription_no_aggregated_en;
- 
- 	mes_add_queue_pkt.api_status.api_completion_fence_addr =
- 		mes->ring.fence_drv.gpu_addr;
-@@ -341,6 +343,7 @@ static int mes_v11_0_set_hw_resources(struct amdgpu_mes *mes)
- 	mes_set_hw_res_pkt.disable_reset = 1;
- 	mes_set_hw_res_pkt.disable_mes_log = 1;
- 	mes_set_hw_res_pkt.use_different_vmid_compute = 1;
-+	mes_set_hw_res_pkt.oversubscription_timer = 50;
- 
- 	mes_set_hw_res_pkt.api_status.api_completion_fence_addr =
- 		mes->ring.fence_drv.gpu_addr;
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index d8de2fbdfc7d..762bc6059387 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -235,6 +235,8 @@ static int add_queue_mes(struct device_queue_manager *dqm, struct queue *q,
- 	} else
- 		queue_input.wptr_addr = (uint64_t)q->properties.write_ptr;
- 
-+	queue_input.oversubscription_no_aggregated_en = 1;
-+
- 	queue_input.paging = false;
- 	queue_input.tba_addr = qpd->tba_addr;
- 	queue_input.tma_addr = qpd->tma_addr;
-diff --git a/drivers/gpu/drm/amd/include/mes_v11_api_def.h b/drivers/gpu/drm/amd/include/mes_v11_api_def.h
-index f9d02d7bdf77..95f0246eb045 100644
---- a/drivers/gpu/drm/amd/include/mes_v11_api_def.h
-+++ b/drivers/gpu/drm/amd/include/mes_v11_api_def.h
-@@ -226,6 +226,7 @@ union MESAPI_SET_HW_RESOURCES {
- 			};
- 			uint32_t	uint32_t_all;
- 		};
-+		uint32_t	oversubscription_timer;
- 	};
- 
- 	uint32_t	max_dwords_in_api[API_FRAME_SIZE_IN_DWORDS];
-@@ -265,7 +266,8 @@ union MESAPI__ADD_QUEUE {
- 			uint32_t is_gang_suspended	: 1;
- 			uint32_t is_tmz_queue		: 1;
- 			uint32_t map_kiq_utility_queue  : 1;
--			uint32_t reserved		: 23;
-+			uint32_t oversubscription_no_aggregated_en : 1;
-+			uint32_t reserved		: 22;
- 		};
- 		struct MES_API_STATUS		api_status;
- 		uint64_t                        tma_addr;
+ struct dummy_vars {
 -- 
-2.25.1
+2.36.1
 
