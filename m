@@ -2,56 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CAC9547CFD
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jun 2022 01:54:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7E4A54810D
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jun 2022 10:00:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3874510E168;
-	Sun, 12 Jun 2022 23:54:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BF9110E663;
+	Mon, 13 Jun 2022 08:00:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com
- [IPv6:2607:f8b0:4864:20::b29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3760F10E168
- for <amd-gfx@lists.freedesktop.org>; Sun, 12 Jun 2022 23:54:25 +0000 (UTC)
-Received: by mail-yb1-xb29.google.com with SMTP id k2so7382561ybj.3
- for <amd-gfx@lists.freedesktop.org>; Sun, 12 Jun 2022 16:54:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=basnieuwenhuizen.nl; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=JioLri/XVUog/8EjMoRUKYPX8JJJUn5q2SaBCv4eOLA=;
- b=PBfX2ZeO7jyH1q+beDeLGu0FpvWyjZOaZp6wVBXcS6AGqZWyQJYklgrxH9fVav6O3y
- bWyJxfZGZqrv9iqyeN8RMX1r2cJmXz5umGfa7ylmQwMS4/tZL7+zhYAxyOZ9sUCMt5/+
- s0P1/1QV2FeW2xp+CT4eBxXmsa6xUw2asTKGzNjvz2bCW672xxBS3u/mWFbIZs0s0fW2
- XEyOcP05/OS3ZfMvZeNUea5bd4v81FvrcNSyxZ4jqHf/7Na0K4ZM+lsRXVXaCmCNW9aK
- Tt839q9qg5OxPoT7fm565SVSznQflOQoTM3MOqSVf6iS/50NXpRkX7VvKGB66gWgXlba
- myoA==
+Received: from mail-pj1-f66.google.com (mail-pj1-f66.google.com
+ [209.85.216.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0AE710F63B
+ for <amd-gfx@lists.freedesktop.org>; Sun, 12 Jun 2022 06:40:58 +0000 (UTC)
+Received: by mail-pj1-f66.google.com with SMTP id
+ o33-20020a17090a0a2400b001ea806e48c6so3116273pjo.1
+ for <amd-gfx@lists.freedesktop.org>; Sat, 11 Jun 2022 23:40:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=JioLri/XVUog/8EjMoRUKYPX8JJJUn5q2SaBCv4eOLA=;
- b=gLZSXrJ5qXJKMpA0ZCP0eggvphjdFpN9T/QnfL1mHbAIaE1PJB6BGDEevGZXay/F/L
- 8v9gCp4eiiQnZgSvezYjVJOA2HwbMMvY09LqCGZhNjQPgxfajDhljfqD3+gaaIIYOslv
- 2fS9LFg5pyIaU3bhBM6RiM0DG0Vr5OFm+0fAj4s1kf3qV3oW20rNP/3qSaGrYyPiG/CD
- tDKkDmnwXxzDLstAxcIDBEmWiGTnr/EFCihWCeOtU+e9EN5qQHhRpPYEKcNzmWUaYahS
- GrXhewJYUMsHVQURyqFBVuB77Bg5Qv103VN1/0jQRbGENRC0AM5LPWUaQTXXJICt+gGv
- B3JA==
-X-Gm-Message-State: AOAM531p8SqP0P4HjYVab7Jv/P9WCTKYMEnunOaCa/Hx9iwnPFWHRCn7
- HqDAqNpBl+oHB6IFZhj657NefnKnAPpzeySQTPDQ5A==
-X-Google-Smtp-Source: ABdhPJyn59DvqlwMAh3ueNnsB9TplgY404cfcbNJ+fIRc6rfb86lx22jedNdOVII25tlWOeCUDsfKwYVh8rY7Mq/2nQ=
-X-Received: by 2002:a25:d044:0:b0:65c:b987:d884 with SMTP id
- h65-20020a25d044000000b0065cb987d884mr57586225ybg.399.1655078064237; Sun, 12
- Jun 2022 16:54:24 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=ZGrF/sve7KFTJf3GJ9QVEDMMBvkar/b8XuDD6PWfLjk=;
+ b=k9YbY6DNSsjvTV5tG3MXhR727t/+sYBPmKjHpPFsVN+dZtxy2xHxJowGzIV14p6sxd
+ 6yspz504AGqcQ51cxaaA6cAR2kT6Mtj3FfbntyCKfFqjPcGTMwn1XLo70gs0tUTEG/CQ
+ RroYT1yRa4kx3lD9IawS5oGMgp3ajq/BCgLSSuD0QCp1MAGtyDwlc/jwtkHGDft6gg8T
+ ux1t6ZtKvRHuGh2LoYw41Had+hLtfOtVjl5DPkoJD02jJoNYZ/8FGY0hMYS076s1YOzp
+ AvKqZ5UxGjesJww3gI73RviD7EI0Q4iimJVbm0GdR0oRMbUAVY1l0bXkkS707o30lCPJ
+ s6Tw==
+X-Gm-Message-State: AOAM533zrmdLiy36lseWl+Rube2BK3e85tRaaT4VK7OCu5dhh37cWoQ7
+ T8thzCZxnidITecBUOAQig==
+X-Google-Smtp-Source: ABdhPJwFLlxOzFRm3zYN+pfdVaQQ14/wpp5IKt/Iov6tYmXs3jpaO5Ajn67yFNmbIkCe3meGlR22Rg==
+X-Received: by 2002:a17:902:d2c1:b0:165:d4cd:e118 with SMTP id
+ n1-20020a170902d2c100b00165d4cde118mr54076180plc.4.1655016058351; 
+ Sat, 11 Jun 2022 23:40:58 -0700 (PDT)
+Received: from localhost.localdomain ([156.146.53.107])
+ by smtp.gmail.com with ESMTPSA id
+ p10-20020a056a000a0a00b0051c157f83e3sm2691628pfh.96.2022.06.11.23.40.55
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 11 Jun 2022 23:40:58 -0700 (PDT)
+From: sunliming <sunliming@kylinos.cn>
+To: Ramesh.Errabolu@amd.com, alexander.deucher@amd.com, Felix.Kuehling@amd.com
+Subject: [PATCH] drm/amdkfd: Add missing #if defined(CONFIG_HSA_AMD_P2P)
+Date: Sun, 12 Jun 2022 14:40:50 +0800
+Message-Id: <20220612064050.1175083-1-sunliming@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220609142725.28973-1-aurabindo.pillai@amd.com>
-In-Reply-To: <20220609142725.28973-1-aurabindo.pillai@amd.com>
-From: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
-Date: Mon, 13 Jun 2022 01:54:38 +0200
-Message-ID: <CAP+8YyE1reTB-G=Wkkx2v=eTJUuUCbpAgmEc2Y5ePJLVXYkZKA@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: ignore modifiers when checking for
- format support
-To: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 13 Jun 2022 08:00:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,112 +58,50 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Leo \(Sunpeng\) Li" <sunpeng.li@amd.com>,
- =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <marek.olsak@amd.com>, "Siqueira,
- Rodrigo" <rodrigo.siqueira@amd.com>, roman.li@amd.com,
- amd-gfx mailing list <amd-gfx@lists.freedesktop.org>, ken.qiao@amd.com,
- Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>
+Cc: kelulanainsley@gmail.com, sunliming@kylinos.cn,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ kernel test robot <lkp@intel.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 9, 2022 at 4:27 PM Aurabindo Pillai
-<aurabindo.pillai@amd.com> wrote:
->
-> [Why&How]
-> There are cases where swizzle modes are set but modifiers arent. For
-> such a userspace, we need not check modifiers while checking
-> compatibilty in the drm hook for checking plane format.
->
-> Ignore checking modifiers but check the DCN generation for the
-> supported swizzle mode.
->
-> Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-> ---
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 51 +++++++++++++++++--
->  1 file changed, 46 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index 2023baf41b7e..1322df491736 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -4938,6 +4938,7 @@ static bool dm_plane_format_mod_supported(struct drm_plane *plane,
->  {
->         struct amdgpu_device *adev = drm_to_adev(plane->dev);
->         const struct drm_format_info *info = drm_format_info(format);
-> +       struct hw_asic_id asic_id = adev->dm.dc->ctx->asic_id;
->         int i;
->
->         enum dm_micro_swizzle microtile = modifier_gfx9_swizzle_mode(modifier) & 3;
-> @@ -4955,13 +4956,53 @@ static bool dm_plane_format_mod_supported(struct drm_plane *plane,
->                 return true;
->         }
->
-> -       /* Check that the modifier is on the list of the plane's supported modifiers. */
-> -       for (i = 0; i < plane->modifier_count; i++) {
-> -               if (modifier == plane->modifiers[i])
-> +       /* check if swizzle mode is supported by this version of DCN */
-> +       switch (asic_id.chip_family) {
-> +               case FAMILY_SI:
-> +               case FAMILY_CI:
-> +               case FAMILY_KV:
-> +               case FAMILY_CZ:
-> +               case FAMILY_VI:
-> +                       /* AI and earlier asics does not have modifier support */
-> +                       return false;
-> +                       break;
-> +               case FAMILY_AI:
-> +               case FAMILY_RV:
-> +               case FAMILY_NV:
-> +               case FAMILY_VGH:
-> +               case FAMILY_YELLOW_CARP:
-> +               case AMDGPU_FAMILY_GC_10_3_6:
-> +               case AMDGPU_FAMILY_GC_10_3_7:
-> +                       switch (AMD_FMT_MOD_GET(TILE, modifier)) {
-> +                               case AMD_FMT_MOD_TILE_GFX9_64K_R_X:
-> +                               case AMD_FMT_MOD_TILE_GFX9_64K_D_X:
-> +                               case AMD_FMT_MOD_TILE_GFX9_64K_S_X:
-> +                               case AMD_FMT_MOD_TILE_GFX9_64K_D:
-> +                                       return true;
-> +                                       break;
-> +                               default:
-> +                                       return false;
-> +                                       break;
-> +                       }
-> +                       break;
-> +               case AMDGPU_FAMILY_GC_11_0_0:
-> +                       switch (AMD_FMT_MOD_GET(TILE, modifier)) {
-> +                               case AMD_FMT_MOD_TILE_GFX11_256K_R_X:
-> +                               case AMD_FMT_MOD_TILE_GFX9_64K_R_X:
-> +                               case AMD_FMT_MOD_TILE_GFX9_64K_D_X:
-> +                               case AMD_FMT_MOD_TILE_GFX9_64K_S_X:
-> +                               case AMD_FMT_MOD_TILE_GFX9_64K_D:
-> +                                       return true;
-> +                                       break;
-> +                               default:
-> +                                       return false;
-> +                                       break;
-> +                       }
-> +                       break;
-> +               default:
-> +                       ASSERT(0); /* Unknown asic */
->                         break;
->         }
+The variable 'i' in function kfd_dev_create_p2p_links is only used in
+codes that gaurded by '#if defined(CONFIG_HSA_AMD_P2P)' check. So adding
+CONFIG_HSA_AMD_P2P #ifdef check around variable 'i' too.
 
-This seems broken to me. AFAICT we always return in the switch so the
-code after this that checks for valid DCC usage isn't executed.
-Checking the list of modifiers is also essential to make sure other
-stuff in the modifier is set properly.
+Fixes the following w1 warning:
 
-If you have userspace that is not using modifiers that is giving you
-issues, a better place to look might be
-convert_tiling_flags_to_modifier in amdgpu_display.c
+drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:1542:11: warning: variable 'i' set but not used [-Wunused-but-set-variable]
 
-> -       if (i == plane->modifier_count)
-> -               return false;
->
->         /*
->          * For D swizzle the canonical modifier depends on the bpp, so check
-> --
-> 2.36.1
->
+Reported-by: kernel test robot <lkp@intel.com>
+Signed-off-by: sunliming <sunliming@kylinos.cn>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+index 304322ac39e6..4bfce71f7fa9 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+@@ -1539,7 +1539,10 @@ static int kfd_dev_create_p2p_links(void)
+ {
+ 	struct kfd_topology_device *dev;
+ 	struct kfd_topology_device *new_dev;
+-	uint32_t i, k;
++	uint32_t k;
++#if defined(CONFIG_HSA_AMD_P2P)
++	uint32_t i = 0;
++#endif
+ 	int ret = 0;
+ 
+ 	k = 0;
+@@ -1553,7 +1556,6 @@ static int kfd_dev_create_p2p_links(void)
+ 		return 0;
+ 
+ 	k--;
+-	i = 0;
+ 
+ 	/* create in-direct links */
+ 	ret = kfd_create_indirect_link_prop(new_dev, k);
+-- 
+2.25.1
+
