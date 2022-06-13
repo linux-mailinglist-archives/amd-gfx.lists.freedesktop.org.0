@@ -2,55 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C980548595
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jun 2022 15:52:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46DE35485E7
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jun 2022 17:01:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FF6810E7E6;
-	Mon, 13 Jun 2022 13:52:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91D6E10E62B;
+	Mon, 13 Jun 2022 15:01:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com
- [IPv6:2607:f8b0:4864:20::230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA64A10E7E6
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jun 2022 13:52:11 +0000 (UTC)
-Received: by mail-oi1-x230.google.com with SMTP id w16so7807288oie.5
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jun 2022 06:52:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Fp1cDnXgOIWqir0CMfVfAFuQ1aAfw7Z4rzEujTjvR1o=;
- b=MEXGMjkrjWvrpMPTXfttCaD2NFO1dNPHsG9NE+VvBxPBddzAi2IXtZ2vSNbHqU2oa5
- GnpOLK6bD7W0/nhzDQEEVBri72zvH3lNIHaVtkCYbZI9hnpgCT1hOglKDUPnx49O9sLV
- Fp6nkUc19AzxxaUKueLdOmyVCPYFaQpFH/tVStsb+mxBDZmpdmluYL6SJcKRyW5e8+yi
- 3FRMBizhTHtBTB56yuU2vuiU/QRrkc6KkGI0kUNYui6kQRnoKlrJW74ahanbFKYvQ24S
- iGkAaPi2Q/U4obeuT7eIx8ETVu031PoatxGJ0qHaU2Fge3horQgRhyuwsaHB2qRPSyvG
- ntgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Fp1cDnXgOIWqir0CMfVfAFuQ1aAfw7Z4rzEujTjvR1o=;
- b=CsZVh9NhaXnPeiuyB4FA/1PGOGB21XIMGu3SuE87x0w1IYxyyPHn7b+E3FlQCjNv1L
- G2SvO9G1kcoBvc1ZtNpSLnKMMNftyH2L8FFITlcdRulbNnj4Kg6lBydKxArxrpIawMfC
- W9qos15vPWLSHPxHtm0fYcsmV90c+/Eul+HU8AgvwO81Vi9v3e2+iN+14VTb0oji3G2M
- TaZa9uKrOkOq4UnPNUffK9EZAlN1vE42giC/JFRXbDK+MoycGusIp9klpAXMXTHvMP+w
- BJKREsNyYKEsuhPoB1ocGokLsjHdUsOylS2Tf7WxPL8x7HXp/pc+9GBU5ID6TTWdZrfS
- +hXw==
-X-Gm-Message-State: AOAM532ZWyHBrkFB8ju/URF4EWG+f1QZW5Ah9+4kIkpb2ICjPGAO6Lyf
- C2h6GYoOZ61TBM938h5NDumP4e4oHM1VQsY6Ee4=
-X-Google-Smtp-Source: ABdhPJxbL/MRzApceF7ivG2hJwUeqEAgdakUX++s8eXXnh79QjFv+61OT/g2nTMUYnTVL2TXKn1gtuJSGliFu/XZp9s=
-X-Received: by 2002:a05:6808:114f:b0:32b:1be0:2316 with SMTP id
- u15-20020a056808114f00b0032b1be02316mr6436113oiu.200.1655128331037; Mon, 13
- Jun 2022 06:52:11 -0700 (PDT)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6B6110E7E8;
+ Mon, 13 Jun 2022 14:11:31 +0000 (UTC)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+ by smtp-out1.suse.de (Postfix) with ESMTP id 55EEF21BF6;
+ Mon, 13 Jun 2022 14:11:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1655129490; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=9E+o4Ky9bBY7s0UMfZpgf+q0GGL3GUPMLh+CXNxGns8=;
+ b=nonkym9/vs+hiD9DrLlSt8bXIOiX+sGqXWJEFlSqj0bab/6szJrEIzEQXNcn2iKV8aUJko
+ fm5MrnZUcboOH3W064euvLQTExmPomsFbHbWqVqkUN4OcYaUaEVRD1jQsjgfDkxE1JSpXG
+ 9vWHbrw+WA20V32PwtEuztdW/OkWLaE=
+Received: from suse.cz (unknown [10.100.201.86])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by relay2.suse.de (Postfix) with ESMTPS id E9DBD2C141;
+ Mon, 13 Jun 2022 14:11:29 +0000 (UTC)
+Date: Mon, 13 Jun 2022 16:11:29 +0200
+From: Michal Hocko <mhocko@suse.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
+Subject: Re: [PATCH 03/13] mm: shmem: provide oom badness for shmem files
+Message-ID: <YqdFkfLVFUD5K6EK@dhcp22.suse.cz>
+References: <YqIMmK18mb/+s5de@dhcp22.suse.cz>
+ <3f7d3d96-0858-fb6d-07a3-4c18964f888e@gmail.com>
+ <YqMuq/ZrV8loC3jE@dhcp22.suse.cz>
+ <2e7e050e-04eb-0c0a-0675-d7f1c3ae7aed@amd.com>
+ <YqNSSFQELx/LeEHR@dhcp22.suse.cz>
+ <288528c3-411e-fb25-2f08-92d4bb9f1f13@gmail.com>
+ <Yqbq/Q5jz2ou87Jx@dhcp22.suse.cz>
+ <b8b9aba5-575e-8a34-e627-79bef4ed7f97@amd.com>
+ <YqcpZY3Xx7Mk2ROH@dhcp22.suse.cz>
+ <34daa8ab-a9f4-8f7b-0ea7-821bc36b9497@gmail.com>
 MIME-Version: 1.0
-References: <20220610154247.338073-1-alexander.deucher@amd.com>
-In-Reply-To: <20220610154247.338073-1-alexander.deucher@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 13 Jun 2022 09:52:00 -0400
-Message-ID: <CADnq5_NRFXCNFJ-rXnPgs=e-NbhtfL85zdOxkwLOAmnX0n10Jw@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu/display: make FP handling in Makefiles
- consistent
-To: Alex Deucher <alexander.deucher@amd.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <34daa8ab-a9f4-8f7b-0ea7-821bc36b9497@gmail.com>
+X-Mailman-Approved-At: Mon, 13 Jun 2022 15:01:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,174 +61,85 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: andrey.grodzovsky@amd.com, linux-mm@kvack.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ hughd@google.com, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-fsdevel@vger.kernel.org, viro@zeniv.linux.org.uk, daniel@ffwll.ch,
+ linux-tegra@vger.kernel.org, alexander.deucher@amd.com,
+ akpm@linux-foundation.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Ping?
+On Mon 13-06-22 14:55:54, Christian König wrote:
+> Am 13.06.22 um 14:11 schrieb Michal Hocko:
+> > [SNIP]
+> > > > > Alternative I could try to track the "owner" of a buffer (e.g. a shmem
+> > > > > file), but then it can happen that one processes creates the object and
+> > > > > another one is writing to it and actually allocating the memory.
+> > > > If you can enforce that the owner is really responsible for the
+> > > > allocation then all should be fine. That would require MAP_POPULATE like
+> > > > semantic and I suspect this is not really feasible with the existing
+> > > > userspace. It would be certainly hard to enforce for bad players.
+> > > I've tried this today and the result was: "BUG: Bad rss-counter state
+> > > mm:000000008751d9ff type:MM_FILEPAGES val:-571286".
+> > > 
+> > > The problem is once more that files are not informed when the process
+> > > clones. So what happened is that somebody called fork() with an mm_struct
+> > > I've accounted my pages to. The result is just that we messed up the
+> > > rss_stats and  the the "BUG..." above.
+> > > 
+> > > The key difference between normal allocated pages and the resources here is
+> > > just that we are not bound to an mm_struct in any way.
+> > It is not really clear to me what exactly you have tried.
+> 
+> I've tried to track the "owner" of a driver connection by keeping a
+> reference to the mm_struct who created this connection inside our file
+> private and then use add_mm_counter() to account all the allocations of the
+> driver to this mm_struct.
+> 
+> This works to the extend that now the right process is killed in an OOM
+> situation. The problem with this approach is that the driver is not informed
+> about operations like fork() or clone(), so what happens is that after a
+> fork()/clone() we have an unbalanced rss-counter.
 
-On Fri, Jun 10, 2022 at 11:43 AM Alex Deucher <alexander.deucher@amd.com> wrote:
->
-> Use the same pattern as the DML Makefile and while we are here
-> add a missing x86 guard around the msse flags for DCN3.2.x.
->
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> ---
->  drivers/gpu/drm/amd/display/dc/clk_mgr/Makefile | 3 +--
->  drivers/gpu/drm/amd/display/dc/dcn201/Makefile  | 1 -
->  drivers/gpu/drm/amd/display/dc/dcn30/Makefile   | 6 ++----
->  drivers/gpu/drm/amd/display/dc/dcn302/Makefile  | 8 +++++++-
->  drivers/gpu/drm/amd/display/dc/dcn32/Makefile   | 5 +++--
->  drivers/gpu/drm/amd/display/dc/dcn321/Makefile  | 5 +++--
->  6 files changed, 16 insertions(+), 12 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/Makefile b/drivers/gpu/drm/amd/display/dc/clk_mgr/Makefile
-> index c935c10b5f4f..7b505e1e9308 100644
-> --- a/drivers/gpu/drm/amd/display/dc/clk_mgr/Makefile
-> +++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/Makefile
-> @@ -180,7 +180,7 @@ CLK_MGR_DCN32 = dcn32_clk_mgr.o dcn32_clk_mgr_smu_msg.o
->  AMD_DAL_CLK_MGR_DCN32 = $(addprefix $(AMDDALPATH)/dc/clk_mgr/dcn32/,$(CLK_MGR_DCN32))
->
->  ifdef CONFIG_X86
-> -CFLAGS_$(AMDDALPATH)/dc/clk_mgr/dcn32/dcn32_clk_mgr.o := -msse
-> +CFLAGS_$(AMDDALPATH)/dc/clk_mgr/dcn32/dcn32_clk_mgr.o := -mhard-float -msse
->  endif
->
->  ifdef CONFIG_PPC64
-> @@ -191,7 +191,6 @@ ifdef CONFIG_CC_IS_GCC
->  ifeq ($(call cc-ifversion, -lt, 0701, y), y)
->  IS_OLD_GCC = 1
->  endif
-> -CFLAGS_$(AMDDALPATH)/dc/clk_mgr/dcn32/dcn32_clk_mgr.o := -mhard-float
->  endif
->
->  ifdef CONFIG_X86
-> diff --git a/drivers/gpu/drm/amd/display/dc/dcn201/Makefile b/drivers/gpu/drm/amd/display/dc/dcn201/Makefile
-> index f68038ceb1b1..96cbd4ccd344 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dcn201/Makefile
-> +++ b/drivers/gpu/drm/amd/display/dc/dcn201/Makefile
-> @@ -18,7 +18,6 @@ ifdef CONFIG_CC_IS_GCC
->  ifeq ($(call cc-ifversion, -lt, 0701, y), y)
->  IS_OLD_GCC = 1
->  endif
-> -CFLAGS_$(AMDDALPATH)/dc/dcn201/dcn201_resource.o += -mhard-float
->  endif
->
->  ifdef CONFIG_X86
-> diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/Makefile b/drivers/gpu/drm/amd/display/dc/dcn30/Makefile
-> index dfd77b3cc84d..c20331eb62e0 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dcn30/Makefile
-> +++ b/drivers/gpu/drm/amd/display/dc/dcn30/Makefile
-> @@ -32,8 +32,8 @@ DCN30 = dcn30_init.o dcn30_hubbub.o dcn30_hubp.o dcn30_dpp.o dcn30_optc.o \
->
->
->  ifdef CONFIG_X86
-> -CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_resource.o := -msse
-> -CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_optc.o := -msse
-> +CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_resource.o := -mhard-float -msse
-> +CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_optc.o := -mhard-float -msse
->  endif
->
->  ifdef CONFIG_PPC64
-> @@ -45,8 +45,6 @@ ifdef CONFIG_CC_IS_GCC
->  ifeq ($(call cc-ifversion, -lt, 0701, y), y)
->  IS_OLD_GCC = 1
->  endif
-> -CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_resource.o += -mhard-float
-> -CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_optc.o += -mhard-float
->  endif
->
->  ifdef CONFIG_X86
-> diff --git a/drivers/gpu/drm/amd/display/dc/dcn302/Makefile b/drivers/gpu/drm/amd/display/dc/dcn302/Makefile
-> index f9561d7f97a1..e4b69ad0dde5 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dcn302/Makefile
-> +++ b/drivers/gpu/drm/amd/display/dc/dcn302/Makefile
-> @@ -8,7 +8,7 @@
->  DCN3_02 = dcn302_init.o dcn302_hwseq.o dcn302_resource.o
->
->  ifdef CONFIG_X86
-> -CFLAGS_$(AMDDALPATH)/dc/dcn302/dcn302_resource.o := -msse
-> +CFLAGS_$(AMDDALPATH)/dc/dcn302/dcn302_resource.o := -mhard-float -msse
->  endif
->
->  ifdef CONFIG_PPC64
-> @@ -16,6 +16,12 @@ CFLAGS_$(AMDDALPATH)/dc/dcn302/dcn302_resource.o := -mhard-float -maltivec
->  endif
->
->  ifdef CONFIG_X86
-> +ifdef CONFIG_CC_IS_GCC
-> +ifeq ($(call cc-ifversion, -lt, 0701, y), y)
-> +IS_OLD_GCC = 1
-> +endif
-> +endif
-> +
->  ifdef IS_OLD_GCC
->  # Stack alignment mismatch, proceed with caution.
->  # GCC < 7.1 cannot compile code using `double` and -mpreferred-stack-boundary=3
-> diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/Makefile b/drivers/gpu/drm/amd/display/dc/dcn32/Makefile
-> index 3d09db3070f4..34f2e37b6704 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dcn32/Makefile
-> +++ b/drivers/gpu/drm/amd/display/dc/dcn32/Makefile
-> @@ -16,7 +16,7 @@ DCN32 = dcn32_resource.o dcn32_hubbub.o dcn32_hwseq.o dcn32_init.o \
->                 dcn32_mpc.o
->
->  ifdef CONFIG_X86
-> -CFLAGS_$(AMDDALPATH)/dc/dcn32/dcn32_resource.o := -msse
-> +CFLAGS_$(AMDDALPATH)/dc/dcn32/dcn32_resource.o := -mhard-float -msse
->  endif
->
->  ifdef CONFIG_PPC64
-> @@ -27,9 +27,9 @@ ifdef CONFIG_CC_IS_GCC
->  ifeq ($(call cc-ifversion, -lt, 0701, y), y)
->  IS_OLD_GCC = 1
->  endif
-> -CFLAGS_$(AMDDALPATH)/dc/dcn32/dcn32_resource.o += -mhard-float
->  endif
->
-> +ifdef CONFIG_X86
->  ifdef IS_OLD_GCC
->  # Stack alignment mismatch, proceed with caution.
->  # GCC < 7.1 cannot compile code using `double` and -mpreferred-stack-boundary=3
-> @@ -38,6 +38,7 @@ CFLAGS_$(AMDDALPATH)/dc/dcn32/dcn32_resource.o += -mpreferred-stack-boundary=4
->  else
->  CFLAGS_$(AMDDALPATH)/dc/dcn32/dcn32_resource.o += -msse2
->  endif
-> +endif
->
->  AMD_DAL_DCN32 = $(addprefix $(AMDDALPATH)/dc/dcn32/,$(DCN32))
->
-> diff --git a/drivers/gpu/drm/amd/display/dc/dcn321/Makefile b/drivers/gpu/drm/amd/display/dc/dcn321/Makefile
-> index 5896ca303e39..e554fd6c16f2 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dcn321/Makefile
-> +++ b/drivers/gpu/drm/amd/display/dc/dcn321/Makefile
-> @@ -13,7 +13,7 @@
->  DCN321 = dcn321_resource.o dcn321_dio_link_encoder.o
->
->  ifdef CONFIG_X86
-> -CFLAGS_$(AMDDALPATH)/dc/dcn321/dcn321_resource.o := -msse
-> +CFLAGS_$(AMDDALPATH)/dc/dcn321/dcn321_resource.o := -mhard-float -msse
->  endif
->
->  ifdef CONFIG_PPC64
-> @@ -24,9 +24,9 @@ ifdef CONFIG_CC_IS_GCC
->  ifeq ($(call cc-ifversion, -lt, 0701, y), y)
->  IS_OLD_GCC = 1
->  endif
-> -CFLAGS_$(AMDDALPATH)/dc/dcn321/dcn321_resource.o += -mhard-float
->  endif
->
-> +ifdef CONFIG_X86
->  ifdef IS_OLD_GCC
->  # Stack alignment mismatch, proceed with caution.
->  # GCC < 7.1 cannot compile code using `double` and -mpreferred-stack-boundary=3
-> @@ -35,6 +35,7 @@ CFLAGS_$(AMDDALPATH)/dc/dcn321/dcn321_resource.o += -mpreferred-stack-boundary=4
->  else
->  CFLAGS_$(AMDDALPATH)/dc/dcn321/dcn321_resource.o += -msse2
->  endif
-> +endif
->
->  AMD_DAL_DCN321 = $(addprefix $(AMDDALPATH)/dc/dcn321/,$(DCN321))
->
-> --
-> 2.35.3
->
+Yes, I do not think you can make per-process accounting without a
+concept of the per-process ownership.
+
+> Let me maybe get back to the initial question: We have resources which are
+> not related to the virtual address space of a process, how should we tell
+> the OOM killer about them?
+
+I would say memcg, but we have discussed this already...
+
+I do not think that exposing a resource (in a form of a counter
+or something like that) is sufficient. The existing oom killer
+implementation is hevily process centric (with memcg extension for
+grouping but not changing the overall design in principle). If you
+want to make it aware of resources which are not directly accounted to
+processes then a a new implementation is necessary IMHO. You would need
+to evaluate those resources and kill all the tasks that can hold on that
+resource.
+
+This is also the reason why I am not really fan of the per file
+badness because it adds a notion of resource that is not process bound
+in general so it will add all sorts of weird runtime corner cases which
+are impossible to anticipate [*]. Maybe that will work in some scenarios
+but definitely not something to be done by default without users opting
+into that and being aware of consequences. 
+
+There have been discussions that the existing oom implementation cannot
+fit all potential usecases so maybe we need to finally decide to use a
+plugable, BPFable etc architecture allow implementations that fit
+specific needs.
+
+[*] I know it is not directly related but kinda similar. In the past
+we used to have heuristics to consider work done as a resource . That is
+kill younger processes preferably to reduce the damage.  This has turned
+out to have a very unpredictable behavior and many complains by
+users. Situation has improved when the selection was solely based on
+rss. This has its own cons of course but at least they are predictable.
+-- 
+Michal Hocko
+SUSE Labs
