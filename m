@@ -2,120 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15D2B548006
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jun 2022 09:05:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C1DC54810E
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jun 2022 10:00:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D2A810E1D6;
-	Mon, 13 Jun 2022 07:05:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A712910EB37;
+	Mon, 13 Jun 2022 08:00:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2083.outbound.protection.outlook.com [40.107.94.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81ACC10E294
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jun 2022 07:05:11 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OQfrNb0UzRVR6e0Ucte5nliiI2hctD+q6grumBi97e2YxgboX4dkEJEhdfSjfWbuLYVgMPZxll5bRg/1m+hv2X1agSz3O9/1Gk7Ws1cTZEZeCJ4OYXjI45i6VBbjhRHT8pMmexSUkKYgsfI/GG2c+rk7joL37KQDkyovImXx2GVejY7+f1rX+MlQY4RP0Pq+Fk1Dw6mA3PQkuzpwtrJAnnx+NRGMrmZfEmJqlczCzXyr1Dc8hK10q45UU59CKXO6Ts73VSg2HSr21ZyyRFrdY/pATSNI36YFWzTtKb2+GC71oA/ycvYL0vxTGMAMgsPSVi6KM2IP3HBtO/aUqdEpuw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HGU8RQEXO1P8nLX9UoUF/Hal16q94m8IRkMyA0NANm8=;
- b=gcgUpC/tmYqXHQoG6+Go+HLL+t3ICIxVsLGffIhEtfoGqubwyEEGMzMcifMehXlERHahpZTWMkBa/eABtHqmiRib7O/FHStZ5o2GzGLk4ZCLjBhErONXK70o+Pqzbpy8U7zhYYOfaR+K9XETAbwrE+KzX+RfWzfUHy9UlMOJiVlCBeMlwFswKOzvp5t1UAIIjSi5LFCGHv4DGxXsG8IVXN8t03+FKKpY7nrOw/aO0iMV1MqHbAAfuPcML3kx7zjMcswP34mNKyKePkHhDHrLbMU2svhRIMi1i3VB3hzL+PoGXr25mZWP/yzo+vtIdZng5Vt86AMwn5xA0/co7J3urQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HGU8RQEXO1P8nLX9UoUF/Hal16q94m8IRkMyA0NANm8=;
- b=GZVQrruqbZ3d0JOH2co3GUwfJ3NXLbh3IBQNl41CY4vdRm8c4lJO8zUdi1b/nLgUKOLK+cOfOrquneJaVRg4zOvNxBcTCoOQ7vI3m+WKl3eCp5WKWDh5pcRhE02d+WjU598NBCFXoaj9tL96vYh3f+mqL41nqMBW4VIQueO/GIc=
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com (2603:10b6:408:11e::16)
- by BYAPR12MB2999.namprd12.prod.outlook.com (2603:10b6:a03:df::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5332.12; Mon, 13 Jun
- 2022 07:05:09 +0000
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::4cb5:c559:c82d:94da]) by BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::4cb5:c559:c82d:94da%9]) with mapi id 15.20.5332.020; Mon, 13 Jun 2022
- 07:05:09 +0000
-From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
-To: "Gui, Jack" <Jack.Gui@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "Deucher, Alexander"
- <Alexander.Deucher@amd.com>
-Subject: RE: [PATCH] Revert "drm/amdgpu/gmc11: enable AGP aperture"
-Thread-Topic: [PATCH] Revert "drm/amdgpu/gmc11: enable AGP aperture"
-Thread-Index: AQHYfvM+VAM0+5km402zXmHTwTMt3q1M6dhg
-Date: Mon, 13 Jun 2022 07:05:09 +0000
-Message-ID: <BN9PR12MB5257FB6CA192626D5D108C2DFCAB9@BN9PR12MB5257.namprd12.prod.outlook.com>
-References: <20220613065957.13761-1-Jack.Gui@amd.com>
-In-Reply-To: <20220613065957.13761-1-Jack.Gui@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=ce4fda11-5b21-410b-90fe-0e2d6ede9e98;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2022-06-13T07:04:49Z;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: dafde930-27f0-4482-a92f-08da4d0b0d61
-x-ms-traffictypediagnostic: BYAPR12MB2999:EE_
-x-microsoft-antispam-prvs: <BYAPR12MB299966BF437A670FC25BF9D9FCAB9@BYAPR12MB2999.namprd12.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: hZhMmBoSyuzPmj9X4Wb/ofZ88k0wcfC+YdzSm14bIATy88UsG6pW6wOPNOJgg/XeVC83RruVDVXBMvwJCphFMei99sFUPMPPulrkquMLpdZzcAVtz2MZ93MtrfnQHsGDpI3tP6N4tGTfKwns7ZIfEBf9QO/AOR97Zsr9wUq9z2UCzHn+wJ9apQhH5tReCprceSB/sEYnQ1ASdVTjOEjpWpM6tjPbJ/VdRo7yuwA3nt1jeiebDzeGNepVV2iM4dQp7HEd63tdLoQv6i/iV7whNGjrFXxBRc4jXG7h9YLzX7YtFOGhYUnHx4GcZsKEk90hzMDxlyflUhrfn1awfo5ZlPQJChML0jxRINsLVo2fiM7G9eJXb81lZyUo89+cVVJFhay1Lb+1DTUx2er4ZqbXiEeE9be0x8pQ2WvE2Lp6v3hK3fTrVHgqLbpNu+R5H0QGsJ/x0Gcm9HPi9zaFBsW7lN5LJ6oJ/gjVTdb3rYxR1I9klZ7oF92adWvzY6nJHALduxpVuMwhBdgUrVjLoyftObAzgugenH060Z89ULfKjBfl9CShXqNl6iZk3MBvrqzDVcZ8997Dv+eegLgUc9tC/2Gkn00LBhPhqH24UdyPBoIXXgCqTTnqpvmH7FAZ40fYn3ZM8cacahFVOoiyGInJijP5i63d0k0V6E3N2I5ecgJNyn+i8wQ8MY8DGcsyYKfMGnM6BrmTSywPY1pHNjvsGw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5257.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(366004)(110136005)(6636002)(38100700002)(8936002)(55016003)(508600001)(53546011)(5660300002)(86362001)(316002)(2906002)(122000001)(52536014)(71200400001)(38070700005)(7696005)(6506007)(83380400001)(4326008)(66946007)(66556008)(66446008)(64756008)(66476007)(9686003)(8676002)(186003)(33656002)(76116006)(26005);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?MOhSVXymt27MzljjSTC5h/FvSug8eyFoVmeZ+bBznEohsuNyOJ2EeLjOl/so?=
- =?us-ascii?Q?UW21iO06cTNgl9TupjWH+VUPC5qFy7XfiDVnsoThVESyUi7kP8MBpi+RQ/+G?=
- =?us-ascii?Q?7vwNHKKbPl3q9V2Taz4YtWukPlQHT0zVMNwWmO3L749detJ1djxBrq50FXUO?=
- =?us-ascii?Q?nFfpd1pVhfTlnKXCss+WR7iGAhz478lEsVR44zlCX6foMKTLGeK501FPrVvZ?=
- =?us-ascii?Q?LiPy4uEDpg3BtM59b2u8zx/eUuIewN83lztIdnKG2c0fIHXJuqF8MjHS+AbE?=
- =?us-ascii?Q?fhJeOKGauqUv9Jq6NQU4vs0ZOqTkHs1C/w1oWZUVga6Tq9/PNhiImT7iHexX?=
- =?us-ascii?Q?ueb7Tb9zP3LYF+hUrCkTW1YonOJTHwDCaioiGo3Ms0JWfhF+VOEEXj/CYr1L?=
- =?us-ascii?Q?sO5ViwhgDqzCYnBEs0rEpDUWdQb2aJ4Rpk22TbT9UjkZvchvkaV8QCV8Sy/h?=
- =?us-ascii?Q?vSVUD/vN6dSuy8U0mRlaMX4j5KZRrf0nvDU0hbE6TpV/cYV4h91x4FyJQ0uc?=
- =?us-ascii?Q?aOnxUXpAr9sQDypkuR3/2g7eDY73i7UoNE1GwMTrxcQM7h9o0DRbjVrEaXUi?=
- =?us-ascii?Q?j7indKJ74q+ITgXufki7IQ+0RiWqP/m32hN1zf4DGLaU27aHp1d2dgQ/ygDz?=
- =?us-ascii?Q?8bkk7uC4741PgI3MvX9UO5nuNLuuZixBHOlJxO64zy/luhMkWFQs+Ou9Y6hy?=
- =?us-ascii?Q?F7U3M4xevLbi/lB1OR+rvsxv9NS4NKUL6Jja9reVWoDJdfk6pCERWTCDP46d?=
- =?us-ascii?Q?sytnSBIjiopRFeppq5RYI4IWd+3umhy/NEerbK9cYoMJ4FOpcLJMn6Ry+nlb?=
- =?us-ascii?Q?n428JlwZXst2w9qLM84YuEyj6/KVR4Elu/0VGMvjPW/0Lv+UiIethKzI8UEy?=
- =?us-ascii?Q?9czfB+U8QerDXamVMIjM2sQQeNHtXtuXe+pES3u3Qk13SNUKbN535ToTboE5?=
- =?us-ascii?Q?5PbE0rf/dHsCLmcw8by+Vkg9O24dkIwWuDtBRF9EhDNqW0UPK0bZtBcfDNvg?=
- =?us-ascii?Q?TysVlZfj+B0lfTnDcyK1W4YPoZ/580wC7+AGu7kn+4HGLkAe6VZLaFtrX6UD?=
- =?us-ascii?Q?QB3CH+CMMjF0nLQr5gZN/WLM4QAW/aQn2IXzkottyne3q/STqxxfd7Em80fn?=
- =?us-ascii?Q?jQjYalRpI7mIHmr7C1jhP6oE8Q6gxPSetLPRfvJeS+5bCHb8aXX6NiO8ANNb?=
- =?us-ascii?Q?4HwJU5yGgwoQ/ZInHNvAouQoVhnoxBdhIYzzTMBsvVmQaoan/472TpFrzBDg?=
- =?us-ascii?Q?lZg2MWoFZ6DHvAbkfM7l6Xyjp00p0//8ghSxdtiYxVrnTXplqEjGObUJFKvv?=
- =?us-ascii?Q?/G4o5COI0cfYhYvTPphzzDHGJshwNqSyP2tlK8qV9EY6ZESrDTANiL4E5X5P?=
- =?us-ascii?Q?WEmWKwXXObQc3Yw8/EMBagbvP1AyhNXK4XeVCsEvD1ELljqe32tTp8EXwJ7Q?=
- =?us-ascii?Q?R3LfOm/KT1uibpbCeh1bo8jiKTOkeX7X52m0JFYKZ6yBsZiEIGRsr1SrOItg?=
- =?us-ascii?Q?a1QIXpqlrLJxe8+Xq36JIXUv3JvsQDMERlYzx+R8W2kzBYG/6eLVNr6EaCbP?=
- =?us-ascii?Q?vwID58tnxdsYhjjri0BkiWhATzkGWilkg/9iyzkfWdNVjXOl+kQCF1TYQGI0?=
- =?us-ascii?Q?j5lbh4j90b2bsrgTRsn6N285W1bGD83zRUU/CiCqt7amYmRojMDWZX5/65UN?=
- =?us-ascii?Q?7TUc90gfEW9BURQ4DtNlhX9OGGVi2a8PUC0XhOuoE648e6LXup2ZFZm/r81a?=
- =?us-ascii?Q?dAfbCqM3uw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A30010F0FE;
+ Mon, 13 Jun 2022 07:45:05 +0000 (UTC)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+ by smtp-out1.suse.de (Postfix) with ESMTP id 2E50D21A93;
+ Mon, 13 Jun 2022 07:45:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1655106304; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=5WMle8KoXV0j63rwJ5QZ4pysRjmykK+gll6/m96aiCQ=;
+ b=FuLo+VOBBkI+oWNStM4seHkoiyK0Hr+aHMOvDiwt9GGELjWedVV4eVmmgJbe872jPvORqJ
+ Vc5aqY4498GBGJEsynJOBtP7uacBYTxS6Qceg9YAfnVQkKLxppmCRYRI6VnRd0Ehidw6e7
+ VkwY4jb2uXaKjgqii9bZJVgtGLmxSos=
+Received: from suse.cz (unknown [10.100.201.86])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by relay2.suse.de (Postfix) with ESMTPS id B0E0C2C141;
+ Mon, 13 Jun 2022 07:45:03 +0000 (UTC)
+Date: Mon, 13 Jun 2022 09:45:01 +0200
+From: Michal Hocko <mhocko@suse.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
+Subject: Re: [PATCH 03/13] mm: shmem: provide oom badness for shmem files
+Message-ID: <Yqbq/Q5jz2ou87Jx@dhcp22.suse.cz>
+References: <YqHuH5brYFQUfW8l@dhcp22.suse.cz>
+ <26d3e1c7-d73c-cc95-54ef-58b2c9055f0c@gmail.com>
+ <YqIB0bavUeU8Abwl@dhcp22.suse.cz>
+ <d4a19481-7a9f-19bf-c270-d89baa0970fc@amd.com>
+ <YqIMmK18mb/+s5de@dhcp22.suse.cz>
+ <3f7d3d96-0858-fb6d-07a3-4c18964f888e@gmail.com>
+ <YqMuq/ZrV8loC3jE@dhcp22.suse.cz>
+ <2e7e050e-04eb-0c0a-0675-d7f1c3ae7aed@amd.com>
+ <YqNSSFQELx/LeEHR@dhcp22.suse.cz>
+ <288528c3-411e-fb25-2f08-92d4bb9f1f13@gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5257.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dafde930-27f0-4482-a92f-08da4d0b0d61
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Jun 2022 07:05:09.0360 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Vd+/nBOyeNlXkD0lzlz/A0z/6FZX1KCZWVH54vXBlF4dRZqBgePx6WS2BG6pQHEF7nCW3ujeCCx7iig8IdSc+A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB2999
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <288528c3-411e-fb25-2f08-92d4bb9f1f13@gmail.com>
+X-Mailman-Approved-At: Mon, 13 Jun 2022 08:00:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,115 +61,66 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Gui, Jack" <Jack.Gui@amd.com>
+Cc: andrey.grodzovsky@amd.com, linux-mm@kvack.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ hughd@google.com, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-fsdevel@vger.kernel.org, viro@zeniv.linux.org.uk, daniel@ffwll.ch,
+ linux-tegra@vger.kernel.org, alexander.deucher@amd.com,
+ akpm@linux-foundation.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - General]
+On Sat 11-06-22 10:06:18, Christian König wrote:
+> Am 10.06.22 um 16:16 schrieb Michal Hocko:
+[...]
+> > > So what happens when a games over allocates texture resources is that your
+> > > whole desktop restarts because the compositor is killed. This obviously also
+> > > kills the game, but it would be much nice if we would be more selective
+> > > here.
+> > > 
+> > > For hardware rendering DMA-buf and GPU drivers are used, but for the
+> > > software fallback shmem files is what is used under the hood as far as I
+> > > know. And the underlying problem is the same for both.
+> > For shmem files the end user of the buffer can preallocate and so own
+> > the buffer and be accounted for it.
+> 
+> The problem is just that it can easily happen that one process is allocating
+> the resource and a different one freeing it.
+> 
+> So just imaging the following example: Process opens X window, get reference
+> to the handle of the buffer backing this window for drawing, tells X to
+> close the window again and then a bit later closes the buffer handle.
+> 
+> In this example the X server would be charged allocating the buffer and the
+> client (which is most likely in a different memcg group) is charged freeing
+> it.
 
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+Thanks for the clarification.
 
-Regards,
-Hawking
------Original Message-----
-From: Chengming Gui <Jack.Gui@amd.com>
-Sent: Monday, June 13, 2022 15:00
-To: amd-gfx@lists.freedesktop.org; Deucher, Alexander <Alexander.Deucher@am=
-d.com>; Zhang, Hawking <Hawking.Zhang@amd.com>
-Cc: Gui, Jack <Jack.Gui@amd.com>
-Subject: [PATCH] Revert "drm/amdgpu/gmc11: enable AGP aperture"
+> I could of course add something to struct page to track which memcg (or
+> process) it was charged against, but extending struct page is most likely a
+> no-go.
 
-This reverts commit 1b9e86109b7a569c2bc0c985b19dd482df31236b.
-Enable AGP aperture cause SDMA page fault for gfx11.0.2, so temp disable AG=
-P aperture until SDMA FW resolved this.
+Struct page already maintains is memcg. The one which has charged it and
+it will stay constatnt throughout of the allocation lifetime (cgroup v1
+has a concept of the charge migration but this hasn't been adopted in
+v2).
 
-Change-Id: I93a5dce2f72d28717ee547a8f3649f50b1b02bcd
----
- drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.c  | 7 +++----
- drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c    | 1 -
- drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.c   | 6 +++---
- drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_2.c | 6 +++---
- 4 files changed, 9 insertions(+), 11 deletions(-)
+We have a concept of active_memcg which allows to charge against a
+different memcg than the allocating context. From your example above I
+do not think this is really usable for the described usecase as the X is
+not aware where the request comes from?
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.c b/drivers/gpu/drm/amd=
-/amdgpu/gfxhub_v3_0.c
-index f99d7641bb21..5eccaa2c7ca0 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.c
-@@ -154,11 +154,10 @@ static void gfxhub_v3_0_init_system_aperture_regs(str=
-uct amdgpu_device *adev)  {
-        uint64_t value;
+> Alternative I could try to track the "owner" of a buffer (e.g. a shmem
+> file), but then it can happen that one processes creates the object and
+> another one is writing to it and actually allocating the memory.
 
--       /* Program the AGP BAR */
-+       /* Disable AGP. */
-        WREG32_SOC15(GC, 0, regGCMC_VM_AGP_BASE, 0);
--       WREG32_SOC15(GC, 0, regGCMC_VM_AGP_BOT, adev->gmc.agp_start >> 24);
--       WREG32_SOC15(GC, 0, regGCMC_VM_AGP_TOP, adev->gmc.agp_end >> 24);
--
-+       WREG32_SOC15(GC, 0, regGCMC_VM_AGP_TOP, 0);
-+       WREG32_SOC15(GC, 0, regGCMC_VM_AGP_BOT, 0x00FFFFFF);
-
-        /* Program the system aperture low logical page number. */
-        WREG32_SOC15(GC, 0, regGCMC_VM_SYSTEM_APERTURE_LOW_ADDR,
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/gmc_v11_0.c
-index 454a25cc0046..9c225553f5b5 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-@@ -611,7 +611,6 @@ static void gmc_v11_0_vram_gtt_location(struct amdgpu_d=
-evice *adev,
-
-        amdgpu_gmc_vram_location(adev, &adev->gmc, base);
-        amdgpu_gmc_gart_location(adev, mc);
--       amdgpu_gmc_agp_location(adev, mc);
-
-        /* base offset of vram pages */
-        adev->vm_manager.vram_base_offset =3D adev->mmhub.funcs->get_mc_fb_=
-offset(adev);
-diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.c b/drivers/gpu/drm/amd/=
-amdgpu/mmhub_v3_0.c
-index 4926fa82c1c4..bc11b2de37ae 100644
---- a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.c
-@@ -169,10 +169,10 @@ static void mmhub_v3_0_init_system_aperture_regs(stru=
-ct amdgpu_device *adev)
-        uint64_t value;
-        uint32_t tmp;
-
--       /* Program the AGP BAR */
-+       /* Disable AGP. */
-        WREG32_SOC15(MMHUB, 0, regMMMC_VM_AGP_BASE, 0);
--       WREG32_SOC15(MMHUB, 0, regMMMC_VM_AGP_BOT, adev->gmc.agp_start >> 2=
-4);
--       WREG32_SOC15(MMHUB, 0, regMMMC_VM_AGP_TOP, adev->gmc.agp_end >> 24)=
-;
-+       WREG32_SOC15(MMHUB, 0, regMMMC_VM_AGP_TOP, 0);
-+       WREG32_SOC15(MMHUB, 0, regMMMC_VM_AGP_BOT, 0x00FFFFFF);
-
-        if (!amdgpu_sriov_vf(adev)) {
-                /*
-diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_2.c b/drivers/gpu/drm/am=
-d/amdgpu/mmhub_v3_0_2.c
-index 5e5b884d8357..770be0a8f7ce 100644
---- a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_2.c
-@@ -162,10 +162,10 @@ static void mmhub_v3_0_2_init_system_aperture_regs(st=
-ruct amdgpu_device *adev)
-        uint64_t value;
-        uint32_t tmp;
-
--       /* Program the AGP BAR */
-+       /* Disable AGP. */
-        WREG32_SOC15(MMHUB, 0, regMMMC_VM_AGP_BASE, 0);
--       WREG32_SOC15(MMHUB, 0, regMMMC_VM_AGP_BOT, adev->gmc.agp_start >> 2=
-4);
--       WREG32_SOC15(MMHUB, 0, regMMMC_VM_AGP_TOP, adev->gmc.agp_end >> 24)=
-;
-+       WREG32_SOC15(MMHUB, 0, regMMMC_VM_AGP_TOP, 0);
-+       WREG32_SOC15(MMHUB, 0, regMMMC_VM_AGP_BOT, 0x00FFFFFF);
-
-        if (!amdgpu_sriov_vf(adev)) {
-                /*
---
-2.17.1
-
+If you can enforce that the owner is really responsible for the
+allocation then all should be fine. That would require MAP_POPULATE like
+semantic and I suspect this is not really feasible with the existing
+userspace. It would be certainly hard to enforce for bad players.
+-- 
+Michal Hocko
+SUSE Labs
