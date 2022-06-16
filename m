@@ -1,132 +1,58 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0C0654DECB
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jun 2022 12:21:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93A5254E5A4
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Jun 2022 17:04:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28BDA10E52D;
-	Thu, 16 Jun 2022 10:20:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05FE510E4B6;
+	Thu, 16 Jun 2022 15:04:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2048.outbound.protection.outlook.com [40.107.92.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D69E110E52D
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jun 2022 10:20:57 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lCjI6M3bfi/rZKcZgWofZfDcU7qmnb0xYThxeP3Qu3ouvT+q0STYwUMCxtk9m2uC2vUKUe2biYszUsmHcBFV81FQmGjynURP7U5rA9T3kaXL8aTgH7pM+sqp3Q2DExH6pb6kfu7cEAegrc2wEirjJBybP02TsCykvPdARDl+8DEv52gj+RR1ib6jtt3puvU1ESjkvogzwvTw+/Gg1L3NO0IZ3y/Zlf+zWovHq+B4/kexZrvHxY4CYJDHUo+1M0YwEIOnYZpntAD25p78eSy+uLkU9+21YqJz5t3Emd+6ufW8IG+QJOBipzJ/+pdDnGGhgsFDsftT8NAN6wD0mJxMTA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UzTAjBootCNdZu9WdvWKul12te7wzW/X2M7i0f9Us1s=;
- b=gybadcSUDMa0k4zl9iQjsdxrkobmjeLC8qHxdDNys1h1EQdWPRKpg+ZV5mK2BlZ530tOl4CJPtxVhv+mpuVWXWSglXxJPXfqEi8VlmeKB8RLhvAK8Nx2etCOzS0ZKA/cq5hbHckzHmzZxhN09Jiv6/UK2oKXuVaJwwsyt4SmUUYhZ19LiRZomP92Y42DZityhu0hoRSnUHNmtPrm78cyHiQEvYB4r22gq65fnuO2NwQCfrtz9Gwu6vIVBD0wArMKmtkTQlMgZvpiySyK0rUXnQ5MNZACpLXtmq2RHyaPZRP5dreFt++2yW3LhEew1knwWsDpRnuvSAynn/DUmUinDg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UzTAjBootCNdZu9WdvWKul12te7wzW/X2M7i0f9Us1s=;
- b=SxegAJtaFinyZSo1rbiU0hIxA4kdYKcAfVgDfPwqA5EEaeEY1KpIFNBH3TK2++gORGI00GQgpWe0heKyPWMz9sScVUN0JlY85XjzOOz2x/bbJx5KFi39POv0W/BiBlWK/raG7TCH3BAM6P3FTUKD9lewo921MFjJs81W0yvEFNA=
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com (2603:10b6:408:11e::16)
- by MWHPR1201MB2478.namprd12.prod.outlook.com (2603:10b6:300:e5::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5332.13; Thu, 16 Jun
- 2022 10:20:55 +0000
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::549d:6717:5787:f21a]) by BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::549d:6717:5787:f21a%7]) with mapi id 15.20.5353.014; Thu, 16 Jun 2022
- 10:20:55 +0000
-From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
-To: "Yang, Stanley" <Stanley.Yang@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "Zhou1, Tao" <Tao.Zhou1@amd.com>, "Li,
- Candice" <Candice.Li@amd.com>, "Quan, Evan" <Evan.Quan@amd.com>
-Subject: RE: [PATCH Review 1/1] drm/amdgpu/pm: adjust EccInfo_t struct
-Thread-Topic: [PATCH Review 1/1] drm/amdgpu/pm: adjust EccInfo_t struct
-Thread-Index: AQHYgTBYF4SMFbd1WE2EPGRUXu8aUq1RZW0ggAAHJ4CAAGZ3UA==
-Date: Thu, 16 Jun 2022 10:20:55 +0000
-Message-ID: <BN9PR12MB52570859A1663E1FC096A89FFCAC9@BN9PR12MB5257.namprd12.prod.outlook.com>
-References: <20220616032222.9207-1-Stanley.Yang@amd.com>
- <BN9PR12MB5257AE3268E3C404A62FD923FCAC9@BN9PR12MB5257.namprd12.prod.outlook.com>
- <BL1PR12MB53346272EF2F476F7F936FF39AAC9@BL1PR12MB5334.namprd12.prod.outlook.com>
-In-Reply-To: <BL1PR12MB53346272EF2F476F7F936FF39AAC9@BL1PR12MB5334.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=f8ebd7c7-4daa-4058-a6b0-a30c486c8183;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2022-06-16T03:48:12Z;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9564de13-c0cf-43ac-f4cc-08da4f81e5c8
-x-ms-traffictypediagnostic: MWHPR1201MB2478:EE_
-x-microsoft-antispam-prvs: <MWHPR1201MB2478C602897509B70CBC6C0EFCAC9@MWHPR1201MB2478.namprd12.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: wrlmPuyABXl5uRRBxmYF6saREKqlNFnb7YPq83YqzKe1h/pjJbskMT8nI2JGcOh/F+E1iL4EJIoRVdY/toKkFXaYN/NiowaKPt0PsXF0rUMkSPWZfVtziUQgusj4vLAVwcyQarXsAGg+J4KGSNiZO3iFAfXcTXkaM9FCId1iTRL8nGZyx0q4Wm5HSDStbq5Rfy9x//ZW7ZRPn6+T67gCGnYKKsIp15bbk63DjX5D0dqsqi3/lw/bicfl1sfQSxK8FSOjUtKzfygOktza+QZE0RYFpuXY33ckrUekwQ9JHUjAv+p+9JiV6Wuk056ku4iNXFmSy6nST0cbieDK3QsA8376CHdjZs0ES3GbK37XQRU/9h8Goej7keL+S23D32kGwlYDV7zgN/NaS0kZ/aRDo8ehnz7u5ify/i8ZxutMOd/BiBQrtvXF0atJoASKfuDQUzLSpWO8hBw7nqneYrCqooEcyyNIMpguHuGXpQQKD+VT9Bc32UCgqanDRPsIs2jTV/ZtQwp2qHSKQLcT45Q4zpzMwETCVq/UdWNBBZuT/KXhQdfSOZzJLKFwVl1eqOaqT0HVdoSggbGZk3Pac0+p7f2rMOiGgEAhF9FMOEotN/6HBMoPaFHtHxHGOCmPUcrPM5j3iL0Xb85vIC+pfdYgjyu3LlfPSjdvLNui1zoLBcUt4Lg/Hhy335Zi4XRG5Daz3T9wNdx7ynIdfShDglepTg==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5257.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(366004)(64756008)(38070700005)(9686003)(71200400001)(316002)(26005)(186003)(66476007)(83380400001)(66556008)(66946007)(6506007)(53546011)(8676002)(6636002)(7696005)(110136005)(33656002)(55016003)(76116006)(2906002)(5660300002)(38100700002)(122000001)(52536014)(508600001)(8936002)(86362001)(66446008);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cWhGUlpSNkxXeW8yYUFnVkJSeC92Z2NySmF6SUVEd1JIaVAySVhTeGwreXdQ?=
- =?utf-8?B?clJUUjF4aUhUelcyWVdwYStkYjVJWDZ4VGx1NVJ1QzZGbmJQcWl5OVV4cHMx?=
- =?utf-8?B?emM2VnpaRXdlUkVJQkYxblFiVDNNb2E4VjB5bEl1SldVdUdyK0hCV0VUUW41?=
- =?utf-8?B?a0YwRkswdmlxNU9jTDdmV0wyaWpYalAwY215ZlNhcEo5OCs0cURUZzVXaFZT?=
- =?utf-8?B?R0xtVkFob2R4YmRFT2JMNnNkSTlNcm1mN01jVVVqc3ZhQVkvTDZhaDFZK0E5?=
- =?utf-8?B?WlU4VHVZTEFLbDB0Y082eHUwWnhyWFhkaVdBQVlOSXIwdGdrZ21MQ0hMdWQ4?=
- =?utf-8?B?MU1SakhySWJhaUlQckUrRHgxUEJwM2RFQ3hpdnFncm9xeHZIMVkwR1JqNW5w?=
- =?utf-8?B?TzlheVdMQ21MY09scXhvbkdjY0lsVzZBYllqY3dWVUpYVlZ4ZUt6R1ZpLzdn?=
- =?utf-8?B?NjF3QnRDdVAzbUFpVDg4VkJyMkxkNC9oTW9aN2tyZTRtZWJGYm4yRmJIdUJ0?=
- =?utf-8?B?d0JvTzl3UU0vOVJrWkJHVThTL0ZHaGNxNXhpenhUZEZERm4rbFliaUR1ZCsz?=
- =?utf-8?B?RXk5aFhmKzBmVmZTcTV5ODR3a2xaNW9uN0pLdUVQRXNWVGpyVDVGa0RQU3Jk?=
- =?utf-8?B?ZVo2dnp1STZ0TWVRWGl3RUgreVI0WHo5KzMzZjJtck5WbVFMRTlJWnROck1I?=
- =?utf-8?B?QnFKWkJURU1zU2xaZjJyS014ZTU3VzVvNkRiZEhreVJrVDY5UXZYNDJ4UWdH?=
- =?utf-8?B?RmRQQ0VzckZZR1Z6QTRGd21CejhIMjRQMWV1V3VnZDN3S3liZUVockptRVE4?=
- =?utf-8?B?QnV0b3c4Mnc0dnhaNy9jNmF6U0VXYXpPZEJ2WVJQMzNxaHRZNnJyUHpHQ05v?=
- =?utf-8?B?WnNnNi9LQUNBK2RXZEhpNjI1SHBMeXUzRzJjUDFSZmFPYlZBaHN4dTFvSVpo?=
- =?utf-8?B?TUJGVzdjY3FvbEluZ2VRNm9RdUpWbjNvaFBHY3dndm9YSEpJQXFHK2JBR2tp?=
- =?utf-8?B?TDJ5QklVOHU0WVRydTNVUXNDcCtZcW13Z2JzOFVDbUdES3p0TlhFOFpYYngr?=
- =?utf-8?B?K0djWW1YZGVvMnpnajVBYlNWY3VWYVFmc2FoTTlJTWZXeGI0bFVDT1JLeW91?=
- =?utf-8?B?ZXpZdklkQi9FS1MrdXY5VzFQR29ZeE53dlVRK292Y3hPUWxldWxmU3hETFNG?=
- =?utf-8?B?d3oyY0JsKzFSb3pkNWtyZzZTS2lIUGNTcUtXVjFGQnpZcUVFbDhLdFhldjJN?=
- =?utf-8?B?VXozTE4weDVrL042emVsU05hNm5mVVdoeUpIVXdnMzUxV0ZUNVk2YlhIWG9J?=
- =?utf-8?B?MFUzcXNrZkxTc3IrbGR1TjlHU3pPQWNSaWhucERLNHV0YjlKSjdKZUJmbHhD?=
- =?utf-8?B?R201cWpkbnk5clpkSk5lQ2ZHSVNkRzZZN0VNRVdnWGtPczd1aWlUbldaQStO?=
- =?utf-8?B?UVRscjNQTUNDUmxnelAvWkszbzV5c2pQTUg3RlVBdDF4R1BUWGFya0UwYmdu?=
- =?utf-8?B?eHVwRzd5ZFpEU0lkQUNwcXhlQ0hmdzdUQTZpbEVRdlRnVXR4ZUFGbEdRUEhJ?=
- =?utf-8?B?UXpHZDJqNWJoTjlSVk5oZC9uNjhFeW1CUC9paG9rQ0RiTFlCc2N2M0hxUzlm?=
- =?utf-8?B?cnBNSlZPODI1MWY3c0ovQ0p4ZklOOEt2Sk5VWjU5Q3A0MzJJY3l4by9iL01x?=
- =?utf-8?B?S0VpUW1nby9heUc5cENRTFNuYUZNZmpOWjFXenBaMmNUNVJ2S3ZDQUJxelIv?=
- =?utf-8?B?NDNBNG5idE9Cbm84OHpLK0piQlVmMEFnVWMzZTdFTW9HYXBzZDUyZTBLWlRS?=
- =?utf-8?B?Um11WjN0RjFNa05iT2VHZ285L1FheXdPaE5VdU04RWkxMTcxRllkSEhNZUJF?=
- =?utf-8?B?dThzYU1zUUttV1hBMTJrZDROajIwWHE1UWpGSkVuakZ2Z3NpNE9GZVpTM0Qv?=
- =?utf-8?B?dGZEQm1acUduVFc5aDRSZ2dCS0NjTFlhNDNldThIcFkxNUk2cU4zbkpueG1t?=
- =?utf-8?B?MFBTNVNmRHN3R2d2aW0xdjJoM21hRjN1U0JmdVRGZ2cyQmMvTEIyY3U1ZlFq?=
- =?utf-8?B?ZlB2WnJ4b25uc3Q3QUFBaWtHRFVlUGdXZC9XSGUydjZkSEtzV0M3cTRHbmp0?=
- =?utf-8?B?Y3IvYkxvc0lSLzBVZEljVGtRcWlMcUpuckk4VG9MOXVuNEJKdEwybkpaN3Fy?=
- =?utf-8?B?WHoxZUk3dndWbkh5TFYwRHdNMGN4a0dLS2I3YlFWaEVuNVl0TDBkMGxIelkx?=
- =?utf-8?B?SnVvQ2Rtbk5LV1lkSFA0RERiTzZGNlpPNHlPa1ZONWFoYmlNR2NIMmJFclNx?=
- =?utf-8?B?WHFialJqdzZ4dUJuTU9VbVNhNGdCOGJILzdoZnYvZEp6dTQ0U0ZYZz09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com
+ [IPv6:2a00:1450:4864:20::32c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64070112C40
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jun 2022 14:39:23 +0000 (UTC)
+Received: by mail-wm1-x32c.google.com with SMTP id n185so887614wmn.4
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Jun 2022 07:39:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=FEM1Uf5duJRx7g0l0kd4cIvvZ1+75a2y+0Eok25cSmM=;
+ b=O+MTudmHgt+i7rtSY2PXtqsNNlchKEJZaScaV8u7BZR01lV2AQ9m/ghcMlLr8A5J2v
+ 5w0eF0QqkXCbpLEo+f6Gpg2SmHkfwSmPnA8FOxvPptdflh1h31UuSr3FE10sNbXQGM+0
+ NXGiHkrhy8L0q29QulKvfEYSSRWSV0RFSBQMVb9+JrfzWlLUGmpW+ZPo7Mahg2cKsh5/
+ 5PDJCPTFis/5GP9x5JLD5yuYaI6EISEY55YJwyNwHonQoZLXMVeDPrXlS6aq6SDbdxPZ
+ YFf/ufuwMQSEWK980FaRoZntBeu4zN2eirl71xNyHNPqO3Sm5f70stoRnYFOXH0+0jGG
+ EIrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=FEM1Uf5duJRx7g0l0kd4cIvvZ1+75a2y+0Eok25cSmM=;
+ b=bF5EYw9nOuD5JUCN3Txhm5Hed8JA2mxY2a6ss9Vlh0s3vjp+7jqR1pXlmqChDbt8sj
+ /0glpUDXhldkLBBoTQUTLHfdjsn77fH5nh8Q9Qrgymcb3DWWp5YPDj26AVBtCYgRJuZV
+ Xyj50Vi9LQpnTETyYpP6RgdVkOkNSbTnHWVi3fsvIf70D1eirKeuom48vsJ8GS28ygzH
+ kD561H9LpuMvyCjuO+oTWoo6CBOfKwfzKnidE6I+yuL3OF2H4dmT4PiMOdcctpqk3Dzy
+ mhFgcASP1gD7s0HCZDtMREscoZswkHPERSyMDB/lRp1fDaS4NVznUBucnwWTnasxAz4L
+ PTQA==
+X-Gm-Message-State: AJIora+DNGMWpPLzH/qK39e6t7odD5XWRx4b88AomZ269LqKwjDcRUSt
+ wQO6YIIQ6gYGIXHjcDKWpc2wrHHj8E6EGK6YsxNhjg==
+X-Google-Smtp-Source: AGRyM1sQqeAEHeE4SPnRemtsjCPjUsThJLHHPx63FK6t+loyl6xOOqwQXqPAqnrX/PYD2sT7CQMZqCp+l9LF2xGMIuQ=
+X-Received: by 2002:a1c:6a16:0:b0:39c:655a:ac2c with SMTP id
+ f22-20020a1c6a16000000b0039c655aac2cmr5492500wmc.66.1655390361741; Thu, 16
+ Jun 2022 07:39:21 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5257.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9564de13-c0cf-43ac-f4cc-08da4f81e5c8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jun 2022 10:20:55.0405 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: PWSTgcKQq1oL7KfEjlnnxo/E70Xa6h6KwywoNCVqckRZ0dQBsAiQMWcrYAFHeNEVyqtgY/IzYt1a17Sg/UYR2w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB2478
+References: <20220608010709.272962-1-maira.canal@usp.br>
+In-Reply-To: <20220608010709.272962-1-maira.canal@usp.br>
+From: David Gow <davidgow@google.com>
+Date: Thu, 16 Jun 2022 22:39:10 +0800
+Message-ID: <CABVgOSmesj5MGfQrtdWCgXzm1VXRoG0fAMCbkBCAvtqediqAjQ@mail.gmail.com>
+Subject: Re: [RFC 0/3] drm/amd/display: Introduce KUnit to Display Mode Library
+To: =?UTF-8?B?TWHDrXJhIENhbmFs?= <maira.canal@usp.br>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Thu, 16 Jun 2022 15:04:17 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,66 +64,218 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Harrison Chiu <harrison.chiu@amd.com>, Daniel Latypov <dlatypov@google.com>,
+ Brendan Higgins <brendanhiggins@google.com>, dri-devel@lists.freedesktop.org,
+ Isabella Basso <isabbasso@riseup.net>, andrealmeid@riseup.net,
+ Jun Lei <jun.lei@amd.com>, magalilemes00@gmail.com,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Javier Martinez Canillas <javierm@redhat.com>, amd-gfx@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ mwen@igalia.com, Sean Paul <seanpaul@chromium.org>,
+ KUnit Development <kunit-dev@googlegroups.com>,
+ Mark Yacoub <markyacoub@chromium.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
+ Nicholas Choi <Nicholas.Choi@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
+ tales.aparecida@gmail.com, Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-W0FNRCBPZmZpY2lhbCBVc2UgT25seSAtIEdlbmVyYWxdDQoNCkkgc2VlLiBUaGFua3MgZm9yIHRo
-ZSBjbGFyaWZpY2F0aW9uLCBTdGFubGV5Lg0KDQpSZWdhcmRzLA0KSGF3a2luZw0KDQotLS0tLU9y
-aWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogWWFuZywgU3RhbmxleSA8U3RhbmxleS5ZYW5nQGFt
-ZC5jb20+DQpTZW50OiBUaHVyc2RheSwgSnVuZSAxNiwgMjAyMiAxMjoxNA0KVG86IFpoYW5nLCBI
-YXdraW5nIDxIYXdraW5nLlpoYW5nQGFtZC5jb20+OyBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZzsgWmhvdTEsIFRhbyA8VGFvLlpob3UxQGFtZC5jb20+OyBMaSwgQ2FuZGljZSA8Q2FuZGlj
-ZS5MaUBhbWQuY29tPjsgUXVhbiwgRXZhbiA8RXZhbi5RdWFuQGFtZC5jb20+DQpTdWJqZWN0OiDl
-m57lpI06IFtQQVRDSCBSZXZpZXcgMS8xXSBkcm0vYW1kZ3B1L3BtOiBhZGp1c3QgRWNjSW5mb190
-IHN0cnVjdA0KDQpbQU1EIE9mZmljaWFsIFVzZSBPbmx5IC0gR2VuZXJhbF0NCg0KVGhhbmtzIGhh
-d2tpbmcsIGluIHRoZSBwcmV2aW91cyBwYXRjaCBpdCBoYXMgY2hlY2tlZCBwbWZ3IHZlcnNpb24g
-YW5kIHRoZSBFY2NJbmZvX3Qgc3RydWN0IGlzIGNvbnNpc3RlbnQgb24gZHJpdmVyIHNpZGUgYW5k
-IHBtZncgc2lkZSB3aXRoIHBtZncgZGVidWcgdmVyc2lvbiA2OC41NC4xMzYgZHVyaW5nIGRldmVs
-b3AgdGhpcyBmZWF0dXJlLCBidXQgaXQncyBjaGFuZ2VkIGluIHRoZSBvZmZpY2lhbCByZWxlYXNl
-IHZlcnNpb24gNjguNTUuMCwgc28gZHJpdmVyIHNpZGUgaGFzIHRvIGFkanVzdCBpdC4NCg0KUmVn
-YXJkcywNClN0YW5sZXkNCj4gLS0tLS3pgq7ku7bljp/ku7YtLS0tLQ0KPiDlj5Hku7bkuro6IFpo
-YW5nLCBIYXdraW5nIDxIYXdraW5nLlpoYW5nQGFtZC5jb20+DQo+IOWPkemAgeaXtumXtDogVGh1
-cnNkYXksIEp1bmUgMTYsIDIwMjIgMTE6NTAgQU0NCj4g5pS25Lu25Lq6OiBZYW5nLCBTdGFubGV5
-IDxTdGFubGV5LllhbmdAYW1kLmNvbT47IGFtZC0NCj4gZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZzsgWmhvdTEsIFRhbyA8VGFvLlpob3UxQGFtZC5jb20+OyBMaSwgQ2FuZGljZQ0KPiA8Q2FuZGlj
-ZS5MaUBhbWQuY29tPjsgUXVhbiwgRXZhbiA8RXZhbi5RdWFuQGFtZC5jb20+DQo+IOaKhOmAgTog
-WWFuZywgU3RhbmxleSA8U3RhbmxleS5ZYW5nQGFtZC5jb20+DQo+IOS4u+mimDogUkU6IFtQQVRD
-SCBSZXZpZXcgMS8xXSBkcm0vYW1kZ3B1L3BtOiBhZGp1c3QgRWNjSW5mb190IHN0cnVjdA0KPg0K
-PiBbQU1EIE9mZmljaWFsIFVzZSBPbmx5IC0gR2VuZXJhbF0NCj4NCj4gRm9yIHRoZSBzdHJ1Y3R1
-cmUgaXRzZWxmLCB0aGUgY2hhbmdlIGlzIG9rYXkgdG8gbWUuIEJ1dCB5b3UnbGwgaGF2ZSB0bw0K
-PiBhcHBseSBwbWZ3IHZlcnNpb24gY2hlY2sgaW4gdGhlIGltcGxlbWVudGF0aW9uIHRvIG1ha2Ug
-ZGF0YSBtYXRjaGVzDQo+IHdpdGggZncgc3RydWN0dXJlDQo+DQo+IFRoZSBwYXRjaCBpcw0KPg0K
-PiBSZXZpZXdlZC1ieTogSGF3a2luZyBaaGFuZyA8SGF3a2luZy5aaGFuZ0BhbWQuY29tPg0KPg0K
-PiBSZWdhcmRzLA0KPiBIYXdraW5nDQo+DQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+
-IEZyb206IFN0YW5sZXkuWWFuZyA8U3RhbmxleS5ZYW5nQGFtZC5jb20+DQo+IFNlbnQ6IFRodXJz
-ZGF5LCBKdW5lIDE2LCAyMDIyIDExOjIyDQo+IFRvOiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZzsgWmhhbmcsIEhhd2tpbmcNCj4gPEhhd2tpbmcuWmhhbmdAYW1kLmNvbT47IFpob3UxLCBU
-YW8gPFRhby5aaG91MUBhbWQuY29tPjsgTGksIENhbmRpY2UNCj4gPENhbmRpY2UuTGlAYW1kLmNv
-bT47IFF1YW4sIEV2YW4gPEV2YW4uUXVhbkBhbWQuY29tPg0KPiBDYzogWWFuZywgU3RhbmxleSA8
-U3RhbmxleS5ZYW5nQGFtZC5jb20+DQo+IFN1YmplY3Q6IFtQQVRDSCBSZXZpZXcgMS8xXSBkcm0v
-YW1kZ3B1L3BtOiBhZGp1c3QgRWNjSW5mb190IHN0cnVjdA0KPg0KPiBUaGUgRWNjSW5mb190IHN0
-cnVjdCBpbiBkcml2ZXJfaWYuaCBpcyBhcyBiZWxvdyBpbiBvZmZpY2lhbCByZWxlYXNlDQo+IHZl
-cmlvbiA2OC41NS4wIHR5cGVkZWYgc3RydWN0IHsNCj4gICAgdWludDY0X3QgbWNhX3VtY19zdGF0
-dXM7DQo+ICAgIHVpbnQ2NF90IG1jYV91bWNfYWRkcjsNCj4NCj4gICAgdWludDE2X3QgY2VfY291
-bnRfbG9fY2hpcDsNCj4gICAgdWludDE2X3QgY2VfY291bnRfaGlfY2hpcDsNCj4NCj4gICAgdWlu
-dDMyX3QgZWNjUGFkZGluZzsNCj4NCj4gICAgdWludDY0X3QgbWNhX2NldW1jX2FkZHI7DQo+ICB9
-IEVjY0luZm9fdDsNCj4gSXQncyBkaWZmZXJlbnQgZnJvbSB0aGUgZGVidWcgdmVyc2lvbiBkcnVp
-bmcgZGV2ZWxvcCBwcmludCBjb3JyZWN0YWJsZQ0KPiBlcnJvciBhZGRyZXNzLCBzbyBhZGp1c3Qg
-RWNjSW5mb190IHN0cnVjdC4NCj4NCj4gU2lnbmVkLW9mZi1ieTogU3RhbmxleS5ZYW5nIDxTdGFu
-bGV5LllhbmdAYW1kLmNvbT4NCj4gLS0tDQo+ICAuLi4vZHJtL2FtZC9wbS9zd3NtdS9pbmMvcG1m
-d19pZi9zbXUxM19kcml2ZXJfaWZfYWxkZWJhcmFuLmggICB8IDMgKystDQo+ICAxIGZpbGUgY2hh
-bmdlZCwgMiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pDQo+DQo+IGRpZmYgLS1naXQNCj4g
-YS9kcml2ZXJzL2dwdS9kcm0vYW1kL3BtL3N3c211L2luYy9wbWZ3X2lmL3NtdTEzX2RyaXZlcl9p
-Zl9hbGRlYmFyYW4uaA0KPiBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG0vc3dzbXUvaW5jL3BtZndf
-aWYvc211MTNfZHJpdmVyX2lmX2FsZGViYXJhbi5oDQo+IGluZGV4IDZmOTIwMzg0NzBlYy4uN2E2
-MDc1ZGFhN2IyIDEwMDY0NA0KPiAtLS0NCj4gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL3BtL3N3c211
-L2luYy9wbWZ3X2lmL3NtdTEzX2RyaXZlcl9pZl9hbGRlYmFyYW4uaA0KPiArKysNCj4gYi9kcml2
-ZXJzL2dwdS9kcm0vYW1kL3BtL3N3c211L2luYy9wbWZ3X2lmL3NtdTEzX2RyaXZlcl9pZl9hbGRl
-YmFyYW4NCj4gKysrIC5oDQo+IEBAIC01MjEsMTIgKzUyMSwxMyBAQCB0eXBlZGVmIHN0cnVjdCB7
-ICB0eXBlZGVmIHN0cnVjdCB7DQo+ICAgICAgICAgdWludDY0X3QgbWNhX3VtY19zdGF0dXM7DQo+
-ICAgICAgICAgdWludDY0X3QgbWNhX3VtY19hZGRyOw0KPiAtICAgICAgIHVpbnQ2NF90IG1jYV9j
-ZXVtY19hZGRyOw0KPg0KPiAgICAgICAgIHVpbnQxNl90IGNlX2NvdW50X2xvX2NoaXA7DQo+ICAg
-ICAgICAgdWludDE2X3QgY2VfY291bnRfaGlfY2hpcDsNCj4NCj4gICAgICAgICB1aW50MzJfdCBl
-Y2NQYWRkaW5nOw0KPiArDQo+ICsgICAgICAgdWludDY0X3QgbWNhX2NldW1jX2FkZHI7DQo+ICB9
-IEVjY0luZm9fVjJfdDsNCj4NCj4gIHR5cGVkZWYgc3RydWN0IHsNCj4gLS0NCj4gMi4xNy4xDQo+
-DQoNCg0K
+On Wed, Jun 8, 2022 at 9:08 AM Ma=C3=ADra Canal <maira.canal@usp.br> wrote:
+>
+> This RFC is a preview of the work being developed by Isabella Basso [1],
+> Ma=C3=ADra Canal [2], and Tales Lelo [3], as part of their Google Summer =
+of Code
+> projects [4], and Magali Lemes [5], as part of her capstone project.
+>
+> Our main goal is to bring unit testing to the AMDPGU driver; in particula=
+r,
+> we'll focus on the Display Mode Library (DML) for DCN2.0 and some of the =
+DCE
+> functions. The modern AMD Linux kernel graphics driver is the single larg=
+est
+> driver in the mainline Linux codebase [6]. As AMD releases new GPU models=
+,
+> the size of AMDGPU drivers is only becoming even larger.
+>
+> Assuring the drivers' quality and reliability becomes a complex task with=
+out
+> systematic testing, especially for graphic drivers - which usually involv=
+e
+> tons of complex calculations. Also, keeping bugs away becomes an increasi=
+ngly
+> hard task with the introduction of new code. Moreover, developers might w=
+ant
+> to refactor old code without fear of the introduction of new issues.
+>
+> In that sense, it is possible to argue for the benefits of implementing u=
+nit
+> testing at the AMDGPU drivers. This implementation will help developers t=
+o
+> recognize bugs before they are merged into the mainline and also makes it
+> possible for future code refactors of the AMDGPU driver.
+>
+> When analyzing the AMDGPU driver, a particular part of the driver highlig=
+hts
+> itself as a good candidate for the implementation of unit tests: the Disp=
+lay
+> Mode Library (DML), as it is focused on mathematical operations.
+>
+> For the implementation of the tests, we decided to go with the Kernel Uni=
+t
+> Testing Framework (KUnit). KUnit makes it possible to run test suites on
+> kernel boot or load the tests as a module. It reports all test case resul=
+ts
+> through a TAP (Test Anything Protocol) in the kernel log.
+>
+> Moreover, KUnit unifies the test structure and provides tools to simplify=
+ the
+> testing for developers and CI systems.
+>
+> That said, we developed a little snippet on what we intend to develop in =
+our
+> summer. We planned the basic structure on how the tests will be introduce=
+d
+> into the codebase and, on the concern of the CI systems, developed a stru=
+cture
+> where the unit tests can be introduced as modules and run on IGT (the IGT=
+ patch
+> will be introduced soon).
+
+It's awesome to see this! It's definitely one of the more ambitious
+KUnit test projects out there, and the DML code does seem particularly
+well suited to unit-testings.
+
+> The way the modules are implemented might seem a little unusual for KUnit
+> developers. We need to call the KUnit init function inside the AMDGPU sta=
+ck,
+> otherwise, the test won't compile as a module. So, the solution to this
+> problem was based on the unit tests for the Thunderbolt driver, which use=
+s
+> KUnit and also tests a physical driver.
+>
+> As kunit_test_suites() defines itself as an init_module(), it conflicts w=
+ith
+> the existing one at amdgpu_drv. So, if we use kunit_test_suites(), we won=
+'t
+> be able to compile the tests as modules and, therefore, won't be able to =
+use
+> IGT to run the tests. This problem with kunit_test_suites() was already
+> discussed in the KUnit mailing list, as can be seen in [7].
+
+I'm not sure I fully understand why these tests need to be part of the
+amdgpu module, though admittedly I've not played with IGT much. Would
+it be possible to compile these tests as separate modules, which could
+depend on amdgpu (or maybe include the DML stuff directly), and
+therefore not have this conflict? I definitely was able to get these
+tests working under kunit_tool (albeit as built-ins) by using
+kunit_test_suites(). If each suite were built as a separate module (or
+indeed, even if all the tests were in one module, with one list of
+suites), then it should be possible to avoid the init_module()
+conflict. That'd also make it possible to run these tests without
+actually needing the driver to initialise, which seems like it might
+require actual hardware(?)
+
+There are two other reasons the 'thunderbolt'-style technique is one
+we want to avoid:
+1. It makes it much more difficult to run tests using kunit_tool and
+KUnit-based CI tools: these tests would not run automatically, and if
+they were built-in as-is, they'd need to be
+2. We're planning to improve module support to replace the
+init_module()-based implementation of kunit_test_suites() with one
+which won't have these conflicts, so the need for this should be
+short-lived.
+
+If you're curious, an early version of the improved module support can
+be found here, though it's out-of-date enough it won't apply or work
+as-is:
+https://lore.kernel.org/all/101d12fc9250b7a445ff50a9e7a25cd74d0e16eb.camel@=
+codeconstruct.com.au/
+
+Now, that's unlikely to be ready very soon, but I'd be hesitant to
+implement too extensive a system for avoiding kunit_test_suites()
+given at some point it should work and we'll need to migrate back to
+it.
+
+At the very least, having the dependency on KUNIT=3Dm is a very bad
+idea: it should be possible to have tests built as modules, even if
+KUnit itself isn't, and ideally (even if this sort-of implementation
+is required), it _should_ be possible to have these tests be built-in
+if all their dependencies (KUnit, amdgpu) are, which would make it
+possible to run the tests without a userland.
+
+That being said, I've got basically no knowledge of amdgpu (or even
+drm in general), so there could be something I'm missing.
+
+>
+> The first patch configures the basic structure of the KUnit Tests, settin=
+g the
+> proper Makefile, Kconfig, and init function. It also contains a simple te=
+st
+> involving DML logging, which is the pretext for building the testing stru=
+cture.
+>
+> The second patch adds KUnit tests to bw_fixed functions. This patch repre=
+sents
+> what we intend to do on the rest of the DML modules: systematic testing o=
+f the
+> public functions of the DML, especially mathematically complicated functi=
+ons.
+> Also, it shows how simple it is to add new tests to the DML with the stru=
+cture
+> we built.
+>
+> Any feedback or ideas for the project are welcome!
+>
+Looks great to me so far: I'll try to get a more detailed review in soon.
+
+Cheers,
+-- David
+
+> [1] https://crosscat.me
+> [2] https://mairacanal.github.io
+> [3] https://tales-aparecida.github.io/
+> [4] https://summerofcode.withgoogle.com/programs/2022/organizations/xorg-=
+foundation
+> [5] https://magalilemes.github.io/
+> [6] https://www.phoronix.com/scan.php?page=3Dnews_item&px=3DAMDGPU-Closin=
+g-4-Million
+> [7] https://groups.google.com/g/kunit-dev/c/hbJbh8L37FU/m/EmszZE9qBAAJ
+>
+> - Isabella Basso, Magali Lemes, Ma=C3=ADra Canal, and Tales Lelo
+>
+> Magali Lemes (1):
+>   drm/amd/display: Introduce KUnit tests to the bw_fixed library
+>
+> Ma=C3=ADra Canal (2):
+>   drm/amd/display: Introduce KUnit to DML
+>   drm/amd/display: Move bw_fixed macros to header file
+>
+>  drivers/gpu/drm/amd/display/Kconfig           |   1 +
+>  .../gpu/drm/amd/display/amdgpu_dm/Makefile    |   5 +
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   3 +
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |   3 +
+>  .../drm/amd/display/amdgpu_dm/tests/Kconfig   |  41 +++
+>  .../drm/amd/display/amdgpu_dm/tests/Makefile  |  18 +
+>  .../amdgpu_dm/tests/calcs/bw_fixed_test.c     | 322 ++++++++++++++++++
+>  .../amdgpu_dm/tests/display_mode_lib_test.c   |  83 +++++
+>  .../amd/display/amdgpu_dm/tests/dml_test.c    |  26 ++
+>  .../amd/display/amdgpu_dm/tests/dml_test.h    |  21 ++
+>  .../drm/amd/display/dc/dml/calcs/bw_fixed.c   |  14 +-
+>  drivers/gpu/drm/amd/display/dc/inc/bw_fixed.h |  14 +
+>  12 files changed, 538 insertions(+), 13 deletions(-)
+>  create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/Kconfig
+>  create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/Makefile
+>  create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/calcs/bw_=
+fixed_test.c
+>  create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/display_m=
+ode_lib_test.c
+>  create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/dml_test.=
+c
+>  create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/dml_test.=
+h
+>
+> --
+> 2.36.1
+>
