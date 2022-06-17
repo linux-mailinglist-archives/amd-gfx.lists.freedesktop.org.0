@@ -1,42 +1,42 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C9B954FD90
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Jun 2022 21:35:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A60A54FD8E
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Jun 2022 21:35:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F406410F2DD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFE5B10F2B8;
 	Fri, 17 Jun 2022 19:35:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2056.outbound.protection.outlook.com [40.107.236.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2237410F2A4
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2078.outbound.protection.outlook.com [40.107.243.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D02510F2A4
  for <amd-gfx@lists.freedesktop.org>; Fri, 17 Jun 2022 19:35:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JNqfb35YIop8vGFrNDz5pvuvI99PD1ov3nXdjo78KRaC688ok4JRPA2TLm4LDMx/3ukFdQzN16sf7cEMeoaePWK+YTG1DM6Pm4YF04gDvqw6ey1+d9uD8DhP4JZpQi279pcdAz8dO0dMy7WGhd8OkmaWrkySZ7LWCXtSyRp38zMoErOg81C82W+mCpDl6iTC4EOku2/VZSrAMDks3vZNYSnvd/YCB/MHVG47DvGrGi5uKed03RrQZP+kcVlt10AR/4VwZthSOO9S/T8xQwKcxJVGNt0aFiAcMdnAm0SP6t0SAdQofWmLeB89599CsPVhDMuydJy/+5r128hgHtZVlg==
+ b=eqxhcNzU03ehvANqCeYKDymX3w9XiH5lhX2FI1LKJyiM/g/mBLMAKq4Aji9USG27QmXQAcfcgJ34hryl5feCKWn+60XMpo7mFldsA759TwJ7MG7+9UwG/RRyz6Ls/9MFKNIPz5HiB3rI55HTlb4rAi4/bqe2ofRV5etirJ4ME0wL8v3Qt25RH+olvjU7/kS06Xkz72n42thU5pTADxNvAV12as1G05+2FlZ6UnxquqP735w6yu1BDW3Imp+e7oK0CzQ17zRv0NIiXI/Ir1L8Lk+fWjBAiEdMY5dagzet4ll3AfkkPE12t6U3zO8N4RtGPeT3qktTy7waKT5pflnUiQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rTBgszsJh+/huYTes99H+Y82gDiv+MbqVcO4lgOZ5As=;
- b=O0A0ayXjrWOxfowUYRNHEiBbjsypJYMW5rlh2CAeouKiJ4OOwllC1+rz/FDsos1lQ5B3AbzbjhxTgEwKkwpdOaOK7ISQm+Qc1XylW58ihUFGyyR/JT+IB/g2RI6eXvl6Gqa/wbhGnvnvIdtHJUHF+JMv9hkq4FIUIToRoYRiNufwbLj2y0x9toh1Gpw5z5vl42oiQyVy7FCtmLPqw14ZYnFM2iSA+XqSkJL+Lx9MZrt7iHfPTP/9iapRXXEUl6m+x5X9lMey3wdFtB8cHBbzK48bKkJeuoftWTq1OXR0rNRMbYPr1Vc/TB6JcJMNOOgZXTWs48wbt0kBWpeMWyHZIw==
+ bh=GxGyUDMW0Zj4hDE41l/mf0OYePEswv426j4TaGPDEK8=;
+ b=XxmdKm/NrJyO8yv1YLIzDlG9cMty7JmETcW65dbMwmxANs/lSt7ENYpFEYdfV7BfU90qaTZDbVWkDHT+51djzUoMhf6MdkSSbIKNPVtoZiML6Jac0UyGviYehM273vA1rRJXrM2ljqXzdedse0+ndbQMjwADGSusAcbvnhd+P6sAlMH8GWswoIe042Us44y4dlCSow1IoymwCvirImVVZSz4oioNMcxS2yY+gy2Xo/lO4wTz4JZKzoqbOAXoPtNJZpE86wax8maUyc9BkY6z2BWUNqpVZXqnzvSjIHm2ipvZm0ycMHyCGR+giMEOo1RjWP8JC7F552RJJrAcaM2O5w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rTBgszsJh+/huYTes99H+Y82gDiv+MbqVcO4lgOZ5As=;
- b=4i6c781vno4r6o2xTriBDo/+RS/T6gUR9AmjJ0rXnVCfVydEI4/PeOrMwCemXZqfUMl2hFMNpBJrnCkn42BN3/fJGJmvR6SswoT1nrzVwMmDSQSqSeN0F60dt6k4WEzb1dlGHh1uo/ZmiUC3VJ/5uXRowA4szXW4tVr16bO3SME=
-Received: from BN6PR14CA0046.namprd14.prod.outlook.com (2603:10b6:404:13f::32)
- by DM5PR12MB1498.namprd12.prod.outlook.com (2603:10b6:4:f::15) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5353.16; Fri, 17 Jun 2022 19:35:39 +0000
+ bh=GxGyUDMW0Zj4hDE41l/mf0OYePEswv426j4TaGPDEK8=;
+ b=1th1vo7V4uXRaglwJ7pkFPaohKvXf1tQ5MDfR4i0/H3m3yKO3yogeybIsJIsBn+czO0tTj3NnyycIpFlD0dJGlSQ2cj9LqZ36hBFvD4Af0fL1liMmuQSjTO6+9sHQzEVtdyoDrJyxz3rbmCYfguHUtF68fDVxlYvscMrbmf470E=
+Received: from BN6PR14CA0036.namprd14.prod.outlook.com (2603:10b6:404:13f::22)
+ by BL0PR12MB2578.namprd12.prod.outlook.com (2603:10b6:207:49::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5332.14; Fri, 17 Jun
+ 2022 19:35:39 +0000
 Received: from BN8NAM11FT021.eop-nam11.prod.protection.outlook.com
- (2603:10b6:404:13f:cafe::12) by BN6PR14CA0046.outlook.office365.com
- (2603:10b6:404:13f::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5332.20 via Frontend
+ (2603:10b6:404:13f:cafe::c0) by BN6PR14CA0036.outlook.office365.com
+ (2603:10b6:404:13f::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.16 via Frontend
  Transport; Fri, 17 Jun 2022 19:35:39 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -51,13 +51,13 @@ Received: from SATLEXMB04.amd.com (165.204.84.17) by
 Received: from atma2.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 17 Jun
- 2022 14:35:37 -0500
+ 2022 14:35:38 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 02/31] drm/amd/display: Revert "drm/amd/display: Add flag to
- detect dpms force off during HPD"
-Date: Fri, 17 Jun 2022 15:34:43 -0400
-Message-ID: <20220617193512.3471076-3-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 03/31] drm/amd/display: Revert "drm/amd/display: turn DPMS off
+ on connector unplug"
+Date: Fri, 17 Jun 2022 15:34:44 -0400
+Message-ID: <20220617193512.3471076-4-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220617193512.3471076-1-Rodrigo.Siqueira@amd.com>
 References: <20220617193512.3471076-1-Rodrigo.Siqueira@amd.com>
@@ -69,27 +69,27 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 88e62be5-b0b3-4480-00e0-08da50988f19
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1498:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR12MB149825EE25BD3DCB85E1D1C098AF9@DM5PR12MB1498.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: e141f096-6980-48a5-fcd2-08da50988f56
+X-MS-TrafficTypeDiagnostic: BL0PR12MB2578:EE_
+X-Microsoft-Antispam-PRVS: <BL0PR12MB2578A786545259017C8DE8C198AF9@BL0PR12MB2578.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: IZngaA/5GIUxK2LTqhHoB05zQbUIeKGiGLkNN4wMRIX6KdVXEnz/mUFGW2IcNd+RJiJtyzi3OR0iikxavKaZANTgnO9x5uMqXnrAsdL2DgwjDhJNK3VZ45wsDNkUhMnpnJ4ZbkB+qriYcaFs2OHYbV2vkt2UI2+XCvRII+GfVr50SWJniKQQOUkUj9LUVztnp7QsVGlx6LHyJxkjwLZ6FmnTNBtsJQg1zKkhz3Mp+oPBpv5kVfLYQefrxfBATDqdV2zk6tiq/rpccjtoCv3qqgsWTcbZpZ4FIuBv0whdddhiulxx1w+acA7XiACcnipxTDs/G6isvBZSxFs6JspsiyFBL71g08Ii6ui7OC+AhdUR+bVaNdbuPkBnQmc6FjpEVVXfbhLE9ky7jJ84ubc4f6ornOf0EGkKFVVmiD1uDeIfrQUX1o11y8f72y/RnVOFiG9b9QdDhM3mecpDALUDMpV+f0C1DeQj/Bwf0qR0+oNvez0J3fegFSmOduz4n9nGGRlgUcH207Wm19RXnIm8d/dUacRL9dJySMaIHESpjWXfEt3kEvQEhqWF4HWdg1PHwO2cQdpFb11ezy9iOZ6tBMZ/4G7b4omjoFN/5Lpp2OePSG7+Ahup0OmK0G+kUIegG8uZxJnfoqmrnRh7rbwVIFgmbTeU6BtWPrxtZZSWWna8kydwUtk+0bsxlU8PDQi1EzX39BOfIASBrDOgGgYbOQ==
+X-Microsoft-Antispam-Message-Info: ZPK3PWP7zdERkpXb0SIw2R6WDYT5nws1SEhCkCwWZThT55Av32DzNYWW3ITHqKIkntkoNY/NdvJ8bfhav7FjE/IJ9DN44oeOQJ4Flnc2UtM4+aDxpgMmcjzT5zY3DO+pFvQAYQPcgw2kbQBfDEyZoOawltdwZm7IstmMlFf6FBBEps8hqtXOVT14QDa2wM7zHiHhzt1rPRpTeFuNJnMJSb11EZ9Xyo5wksphA3VJ9LJRL+sEVn5orEcnDKd0jekbYclALD1W4rJMYuzyUjsu0CtD41Hpm/IyfyMK27C2qkjrdupVvMMHGyDY67w/SKtRh6XGrUr1stY8AFz78cXaOL2Efxtxbhvyzac+CKtmve4DheqRO2QZU1Xmou45kg4tSCfnkOPR8YSEWHjnyIu41FiYxU+JuihqWvuDV2dNXBzqOphbHpBv05/j6akmt/gqkND3Mz/qIWH/Lce+RL5nv3UyUv5zIhch/b1KAwbRNcIDL2L/ONik+reLLmGet/0m7MGrUeaV+QuMU0q7dRyi0p2IUwZ15HGbE0fQ1SjPe3mysjxVcOnfqiqjUnybrIGvXftJyPkGIt6VkR1abPdLtp4nTkLkz0+3Z2DF+R/jZSIZJnyyfCXFxd1HQMAt3Axrn6yhr2vfG0tOITLaxcaEwvUGuXnEaTdFRDznxNSziyNgs4eWs8+FV7oevZDUJMp3jPGEfGptagqrqwWhw14vzw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(46966006)(40470700004)(36840700001)(4326008)(7696005)(316002)(1076003)(70586007)(498600001)(8676002)(70206006)(8936002)(6916009)(26005)(2616005)(5660300002)(356005)(81166007)(6666004)(86362001)(36756003)(36860700001)(40460700003)(47076005)(426003)(336012)(2906002)(186003)(16526019)(54906003)(83380400001)(82310400005)(36900700001);
+ SFS:(13230016)(4636009)(40470700004)(36840700001)(46966006)(336012)(54906003)(36756003)(1076003)(426003)(8676002)(83380400001)(186003)(36860700001)(81166007)(70206006)(4326008)(316002)(47076005)(86362001)(16526019)(6916009)(70586007)(5660300002)(40460700003)(498600001)(6666004)(356005)(2906002)(2616005)(26005)(8936002)(7696005)(82310400005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2022 19:35:39.1753 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 88e62be5-b0b3-4480-00e0-08da50988f19
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2022 19:35:39.5815 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e141f096-6980-48a5-fcd2-08da50988f56
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT021.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1498
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2578
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,158 +113,110 @@ From: Wayne Lin <Wayne.Lin@amd.com>
 
 This reverts commit 3c4d55c9b9becedd8d31a7c96783a364533713ab.
 
-The reverted commit was trying to fix side effect brought by commit:
-"3c4d55c9b9be drm/amd/display: turn DPMS off on connector unplug"
-
-However,
-* This reverted commit will have mst case never call dm_set_dpms_off()
-  which conflicts the idea of original commit: commit 3c4d55c9b9be
-  ("drm/amd/display: turn DPMS off on connector unplug") That's due to
-  dm_crtc_state is always null since the input parameter aconnector is the
-  root device (source) of mst topology.  It's not an end stream sink
-  within the mst topology.
-* Setting dpms off should be triggered by usermode. Besdies, it seems
+Revert the commit because:
+- It's incomplete of the function dm_set_dpms_off() for mst case.  For
+  stream sinks whithin the same mst topology, they share the same dc_link.
+  dm_set_dpms_off() tries to update one mst stream only which is
+  incomplete.
+- Setting dpms off should be triggered by usermode. Besdies, it seems
   usermode does release relevant resource for mst & non-mst case when
-  unplug connecotr now. Which means we no longer need both commits now:
-  - commit 3c4d55c9b9be ("drm/amd/display: turn DPMS off on connector
-    unplug")
-  - commit 035f54969bb2 ("drm/amd/display: Add flag to detect dpms
-    force off during HPD")
+  unplug connecotr now.
 
 Reviewed-by: Aurabindo Jayamohanan Pillai <Aurabindo.Pillai@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 Acked-by: Lyude Paul <lyude@redhat.com>
 Signed-off-by: Wayne Lin <Wayne.Lin@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 19 ++++++-------------
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  2 --
- .../amd/display/amdgpu_dm/amdgpu_dm_hdcp.c    | 16 +++++-----------
- 3 files changed, 11 insertions(+), 26 deletions(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 31 -------------------
+ drivers/gpu/drm/amd/display/dc/core/dc.c      | 13 --------
+ drivers/gpu/drm/amd/display/dc/dc_stream.h    |  1 -
+ 3 files changed, 45 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index c2bc7db85d7e..beba783dd6ef 100644
+index beba783dd6ef..0c90667f682a 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -2582,7 +2582,7 @@ static void dm_gpureset_commit_state(struct dc_state *dc_state,
+@@ -2582,33 +2582,6 @@ static void dm_gpureset_commit_state(struct dc_state *dc_state,
  	return;
  }
  
--static void dm_set_dpms_off(struct dc_link *link, struct dm_crtc_state *acrtc_state)
-+static void dm_set_dpms_off(struct dc_link *link)
+-static void dm_set_dpms_off(struct dc_link *link)
+-{
+-	struct dc_stream_state *stream_state;
+-	struct amdgpu_dm_connector *aconnector = link->priv;
+-	struct amdgpu_device *adev = drm_to_adev(aconnector->base.dev);
+-	struct dc_stream_update stream_update;
+-	bool dpms_off = true;
+-
+-	memset(&stream_update, 0, sizeof(stream_update));
+-	stream_update.dpms_off = &dpms_off;
+-
+-	mutex_lock(&adev->dm.dc_lock);
+-	stream_state = dc_stream_find_from_link(link);
+-
+-	if (stream_state == NULL) {
+-		DRM_DEBUG_DRIVER("Error finding stream state associated with link!\n");
+-		mutex_unlock(&adev->dm.dc_lock);
+-		return;
+-	}
+-
+-	stream_update.stream = stream_state;
+-	dc_commit_updates_for_stream(stream_state->ctx->dc, NULL, 0,
+-				     stream_state, &stream_update,
+-				     stream_state->ctx->dc->current_state);
+-	mutex_unlock(&adev->dm.dc_lock);
+-}
+-
+ static int dm_resume(void *handle)
  {
- 	struct dc_stream_state *stream_state;
- 	struct amdgpu_dm_connector *aconnector = link->priv;
-@@ -2603,7 +2603,6 @@ static void dm_set_dpms_off(struct dc_link *link, struct dm_crtc_state *acrtc_st
- 	}
- 
- 	stream_update.stream = stream_state;
--	acrtc_state->force_dpms_off = true;
- 	dc_commit_updates_for_stream(stream_state->ctx->dc, NULL, 0,
- 				     stream_state, &stream_update,
- 				     stream_state->ctx->dc->current_state);
-@@ -3060,16 +3059,13 @@ static void handle_hpd_irq_helper(struct amdgpu_dm_connector *aconnector)
- 	struct drm_device *dev = connector->dev;
- 	enum dc_connection_type new_connection_type = dc_connection_none;
- 	struct amdgpu_device *adev = drm_to_adev(dev);
-+#ifdef CONFIG_DRM_AMD_DC_HDCP
- 	struct dm_connector_state *dm_con_state = to_dm_connector_state(connector->state);
--	struct dm_crtc_state *dm_crtc_state = NULL;
-+#endif
- 
- 	if (adev->dm.disable_hpd_irq)
- 		return;
- 
--	if (dm_con_state->base.state && dm_con_state->base.crtc)
--		dm_crtc_state = to_dm_crtc_state(drm_atomic_get_crtc_state(
--					dm_con_state->base.state,
--					dm_con_state->base.crtc));
- 	/*
- 	 * In case of failure or MST no need to update connector status or notify the OS
- 	 * since (for MST case) MST does this in its own context.
-@@ -3100,9 +3096,8 @@ static void handle_hpd_irq_helper(struct amdgpu_dm_connector *aconnector)
+ 	struct amdgpu_device *adev = handle;
+@@ -3095,10 +3068,6 @@ static void handle_hpd_irq_helper(struct amdgpu_dm_connector *aconnector)
+ 			drm_kms_helper_connector_hotplug_event(connector);
  
  	} else if (dc_link_detect(aconnector->dc_link, DETECT_REASON_HPD)) {
- 		if (new_connection_type == dc_connection_none &&
--		    aconnector->dc_link->type == dc_connection_none &&
--		    dm_crtc_state)
--			dm_set_dpms_off(aconnector->dc_link, dm_crtc_state);
-+		    aconnector->dc_link->type == dc_connection_none)
-+			dm_set_dpms_off(aconnector->dc_link);
- 
+-		if (new_connection_type == dc_connection_none &&
+-		    aconnector->dc_link->type == dc_connection_none)
+-			dm_set_dpms_off(aconnector->dc_link);
+-
  		amdgpu_dm_update_connector_after_detect(aconnector);
  
-@@ -6839,7 +6834,6 @@ dm_crtc_duplicate_state(struct drm_crtc *crtc)
- 	state->freesync_config = cur->freesync_config;
- 	state->cm_has_degamma = cur->cm_has_degamma;
- 	state->cm_is_degamma_srgb = cur->cm_is_degamma_srgb;
--	state->force_dpms_off = cur->force_dpms_off;
- 	state->mpo_requested = cur->mpo_requested;
- 	/* TODO Duplicate dc_stream after objects are stream object is flattened */
+ 		drm_modeset_lock_all(dev);
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index 48a14a5bda56..146fd4b864b2 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -3325,19 +3325,6 @@ struct dc_stream_state *dc_get_stream_at_index(struct dc *dc, uint8_t i)
+ 	return NULL;
+ }
  
-@@ -9572,8 +9566,7 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
- 		 * and rely on sending it from software.
- 		 */
- 		if (acrtc_attach->base.state->event &&
--		    acrtc_state->active_planes > 0 &&
--		    !acrtc_state->force_dpms_off) {
-+		    acrtc_state->active_planes > 0) {
- 			drm_crtc_vblank_get(pcrtc);
- 
- 			spin_lock_irqsave(&pcrtc->dev->event_lock, flags);
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-index 3cc5c15303e6..cbd2e8f2ae50 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-@@ -639,8 +639,6 @@ struct dm_crtc_state {
- 
- 	bool dsc_force_changed;
- 	bool vrr_supported;
+-struct dc_stream_state *dc_stream_find_from_link(const struct dc_link *link)
+-{
+-	uint8_t i;
+-	struct dc_context *ctx = link->ctx;
 -
--	bool force_dpms_off;
- 	struct mod_freesync_config freesync_config;
- 	struct dc_info_packet vrr_infopacket;
- 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
-index c76b628e6791..236a5ebab5ab 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
-@@ -448,8 +448,6 @@ static void update_config(void *handle, struct cp_psp_stream_config *config)
- 	struct mod_hdcp_display *display = &hdcp_work[link_index].display;
- 	struct mod_hdcp_link *link = &hdcp_work[link_index].link;
- 	struct drm_connector_state *conn_state;
--	struct dc_sink *sink = NULL;
--	bool link_is_hdcp14 = false;
- 
- 	if (config->dpms_off) {
- 		hdcp_remove_display(hdcp_work, link_index, aconnector);
-@@ -462,13 +460,8 @@ static void update_config(void *handle, struct cp_psp_stream_config *config)
- 	display->index = aconnector->base.index;
- 	display->state = MOD_HDCP_DISPLAY_ACTIVE;
- 
--	if (aconnector->dc_sink)
--		sink = aconnector->dc_sink;
--	else if (aconnector->dc_em_sink)
--		sink = aconnector->dc_em_sink;
+-	for (i = 0; i < ctx->dc->current_state->stream_count; i++) {
+-		if (ctx->dc->current_state->streams[i]->link == link)
+-			return ctx->dc->current_state->streams[i];
+-	}
 -
--	if (sink != NULL)
--		link->mode = mod_hdcp_signal_type_to_operation_mode(sink->sink_signal);
-+	if (aconnector->dc_sink != NULL)
-+		link->mode = mod_hdcp_signal_type_to_operation_mode(aconnector->dc_sink->sink_signal);
+-	return NULL;
+-}
+-
+ enum dc_irq_source dc_interrupt_to_irq_source(
+ 		struct dc *dc,
+ 		uint32_t src_id,
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_stream.h b/drivers/gpu/drm/amd/display/dc/dc_stream.h
+index 5a894c19b0ea..6f79327e0035 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_stream.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_stream.h
+@@ -351,7 +351,6 @@ void dc_stream_log(const struct dc *dc, const struct dc_stream_state *stream);
  
- 	display->controller = CONTROLLER_ID_D0 + config->otg_inst;
- 	display->dig_fe = config->dig_fe;
-@@ -478,8 +471,9 @@ static void update_config(void *handle, struct cp_psp_stream_config *config)
- 	link->link_enc_idx = config->link_enc_idx;
- 	link->dio_output_id = config->dio_output_idx;
- 	link->phy_idx = config->phy_idx;
--	if (sink)
--		link_is_hdcp14 = dc_link_is_hdcp14(aconnector->dc_link, sink->sink_signal);
-+
-+	link->hdcp_supported_informational = dc_link_is_hdcp14(aconnector->dc_link,
-+			aconnector->dc_sink->sink_signal) ? 1 : 0;
- 	link->hdcp_supported_informational = link_is_hdcp14;
- 	link->dp.rev = aconnector->dc_link->dpcd_caps.dpcd_rev.raw;
- 	link->dp.assr_enabled = config->assr_enabled;
+ uint8_t dc_get_current_stream_count(struct dc *dc);
+ struct dc_stream_state *dc_get_stream_at_index(struct dc *dc, uint8_t i);
+-struct dc_stream_state *dc_stream_find_from_link(const struct dc_link *link);
+ 
+ /*
+  * Return the current frame counter.
 -- 
 2.25.1
 
