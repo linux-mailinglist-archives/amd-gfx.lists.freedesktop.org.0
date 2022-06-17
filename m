@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC26854FD9A
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Jun 2022 21:36:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D1F254FD97
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Jun 2022 21:35:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D945410F3BC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79ED510F393;
 	Fri, 17 Jun 2022 19:35:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2088.outbound.protection.outlook.com [40.107.236.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACF0310F383
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2069.outbound.protection.outlook.com [40.107.243.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B49010F2A4
  for <amd-gfx@lists.freedesktop.org>; Fri, 17 Jun 2022 19:35:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UEh9v7RmB4mrunO7ufB9etp/czvZaC7YLvdiowjHm6ic1+s5sTUYoyCct3wMvo/hlRsEvHrl9GGDtcUZ65bM16YoresxtP3vglb9rFpDzMWRavG3YlFjaIB7PZIurjmfh+yR9RhxVGC9U/5b7kpunwp38KvJf69HmBtv5xuW0ziQhlwUrb1WRdozUezuXPN0wWeVfK9Gh1IxbN3NAOQyezQkgPsntObMeFMcye/4KExR6e7uv67kv/LWvPhCFV17W929MRsiwnc/upouN1iw8rmvjCX9CGUkRsnTtEItDhnE2kRZ6yZXEO9kWPYFvxOYHQEZs0o74vOaYdF9yfhKQA==
+ b=i6Vm0UQRaLt1E+KW5QpnfwxBPY1mbKqYQ5uctuBhLe5ms1XqSS9Rh/Ia22SNst9DrriLPeD1GmBTDOXRHyugDfmHnNlDnUD5KSo9s8Dn0r1I0vZJHP7OExxMQfZSFG34v8htEZraG99zr05Ohpl26Q+1zO/hHa7ikZTjTWAoqt9+ytEciFsQ8fWaC1NqZSKDANuBkgavM4HmBvcTB5YeC24L7vPD1qcfHw5e6cwgJfMPmYBXSU0c0vy/QXGY3dyVy5d7G3VbZDoaa/SuC+TODKGG4P2+hHPbskYfIWt8Udu6Jx371+WgZ/tThAR4ZEYRjm44YhQH4WrFRad6zdqElQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+u09/mjqBzbudjla+9efOoCpDQs6nM/u/HH9TxKkj6A=;
- b=N5iUr6NoEf+kYuz2qkSA168q4Rdst04jZci07V1o6W0pX/ruSO93V2dLpnumaOhKwIPgOWrUIehafy5IconVGotAy4RpA6Xh78EUHPXkod+yjfCOhZT2BZ18yXrsP4Ga/Rn5+UwxYCuha0vJScnv1Wy1s7LI/xisxXHeBpSc/urAhVsOxHRo45GToXTFDWWtAG+cKT+cZPnuSkZiuvyX7BFLVAJIHGbo5TrmI7DEt4futOMpzxnUO7Qk7Ej6xdPIkQVozj2sgYBSE3miwFlm9H7LHgjdTiyN6e27ZZ5awQowykB8rqIekiqmUba+wCwVpsDGVh8dTP+MW8MYf/me6g==
+ bh=PkcLvEk0XCjPs9aflSJIVxwW7XNWfh9IQg929XWJfeg=;
+ b=FTawhM6rFBUzAMnQG9igSclQwjkDpy3UOxNiCMoB8Emx+VXoOBlE/c4mNH+T5yhez8aMvBvIXRx87x7MGTSrSCVNj+igl2/XJ0kOVU8hvGgchDRLuMK/3UHBPecsspzNl3CTY12m+RfrhB2NBFdaiwkikuKJDt2CaLMc9vgfpDguFH95MDZCAfCTIkCegM8UCSoPNks7EDSb889rIuh50I2CW7UmxGeTsHj7QxCKIHxaFCkmGKLWx6HhKNGjQd7YYObTU+kmgt4hJYl/yOho/C9vKr9og5r/xc4v+u/0ZdK3IQGBPVFRcv+ruKAl16mSF03pW97uAQdSlxGKRvWvPg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+u09/mjqBzbudjla+9efOoCpDQs6nM/u/HH9TxKkj6A=;
- b=aQhZaxOpAG0ef3yNKgdGxTM9k8hqBt0Y+HyTvq271EdhgoqNDeaFStCCpF9yZpuJZ3013+AKUPS7xtC777oQGbizMj1djtTf4TOmMPr1LeYo0gJy2JymsMMm0lFJEcI46XswvKzahkS5G8e+hju3FJgUKyKe2hbVIO36GyYXEcw=
-Received: from BN9PR03CA0134.namprd03.prod.outlook.com (2603:10b6:408:fe::19)
- by DM6PR12MB3804.namprd12.prod.outlook.com (2603:10b6:5:1cd::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5332.16; Fri, 17 Jun
- 2022 19:35:51 +0000
+ bh=PkcLvEk0XCjPs9aflSJIVxwW7XNWfh9IQg929XWJfeg=;
+ b=SnnmPtxyadrJh1YgNWSGdFZiSmma6Kp56lKc5gqai4BKuXpIMN5huclfe4cqJybFbT+H1Xi1qNDbca2HTt6rUgG/NiXg8WYS/bJS64h66hrOrKOHCz9myH7Hflc/R9mSZOi9fNKTf5kuVxVQEOH5H3/poIS7bJWojnRVpLqsuew=
+Received: from BN9PR03CA0150.namprd03.prod.outlook.com (2603:10b6:408:fe::35)
+ by BN6PR12MB1921.namprd12.prod.outlook.com (2603:10b6:404:fe::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.15; Fri, 17 Jun
+ 2022 19:35:52 +0000
 Received: from BN8NAM11FT040.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:fe:cafe::af) by BN9PR03CA0134.outlook.office365.com
- (2603:10b6:408:fe::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.15 via Frontend
- Transport; Fri, 17 Jun 2022 19:35:51 +0000
+ (2603:10b6:408:fe:cafe::c9) by BN9PR03CA0150.outlook.office365.com
+ (2603:10b6:408:fe::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.14 via Frontend
+ Transport; Fri, 17 Jun 2022 19:35:52 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN8NAM11FT040.mail.protection.outlook.com (10.13.177.166) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5353.14 via Frontend Transport; Fri, 17 Jun 2022 19:35:51 +0000
+ 15.20.5353.14 via Frontend Transport; Fri, 17 Jun 2022 19:35:52 +0000
 Received: from atma2.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 17 Jun
- 2022 14:35:49 -0500
+ 2022 14:35:50 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 14/31] drm/amd/display: Fix in overriding DP drive settings
-Date: Fri, 17 Jun 2022 15:34:55 -0400
-Message-ID: <20220617193512.3471076-15-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 15/31] drm/amd/display: rename lane_settings to
+ hw_lane_settings
+Date: Fri, 17 Jun 2022 15:34:56 -0400
+Message-ID: <20220617193512.3471076-16-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220617193512.3471076-1-Rodrigo.Siqueira@amd.com>
 References: <20220617193512.3471076-1-Rodrigo.Siqueira@amd.com>
@@ -68,27 +69,27 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 42865509-fde9-401a-854d-08da50989626
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3804:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR12MB38044FBF1FE9622E5C684C5498AF9@DM6PR12MB3804.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 91e2fa54-0f62-4fee-1756-08da509896de
+X-MS-TrafficTypeDiagnostic: BN6PR12MB1921:EE_
+X-Microsoft-Antispam-PRVS: <BN6PR12MB1921C28A16D6F5AE1BB1EB3E98AF9@BN6PR12MB1921.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: FcJqrmjmnMyEsF7pFg4PRY5/+09XkIObG8uttLNMGYFcZDXlQ6ohhtRNe2lFSKLdVzVBzd7z2E9sNhFg9c3P+A7XBHssZ/XekzFQWPUOfzWTaDHHynO2HxNVHGwBof69amTz6rqmPz+mpdQGWp/trd4YYubRuFjFM+/evlYq5PH4Tqo/zaB2v3yjVP4/Z4/2T/fK7fIB/bjFdyK5L8MOiiZ8J+VKJa+Pm2a6E9YUcBepaBpX2aqR3lKPejI6tUl103PGpSZbS+MULMUrKTxKIKIZYVri0gpOchjcz1hnKUw/STr7OghpX2/ffqypanyO4pMhxceGF4YV12v+TJkNSLIJQBX+EA3Y9YRgUaOQcFsQsm3hIr6NlrS+Sma33kpK6Ht3/7uwxe7+IMbBIYfSZQVc6xEqm80hJuusUm6/L4VJtCvPozkYDBTKOvL8qor104mIv160MfzBTq3SVn9t0YG3jX8JDj9Mq0/clmFHsVgHkrRZZggAG8E/8Bj4AVd4YvZ+Q3fJbEHrDMBslJ5LzGzi7D6CZnc8Vcn5cZYRziMshFY/lbcPl1/lr04yVeGrnR36cJ3uOGe0FdO/D6uuvoalILcvft6LpMnKWSGr4rl6ZOr3YphzvfG9R0PE7QPus9uH3GUGUM4mM8Hy2D/ZRDcEYbiS9E3TAMp092sJGq/7JAoPAr2eTuqoFKo/IicK0ybMrIujN7uNbZIWhfStEw==
+X-Microsoft-Antispam-Message-Info: K9NidTZfqL4jy92/iDiOrG1tXEHzKVVy7tSjl27FY3YZJyQmVanRReaZKTmrb5oOrakzMtsuTgPSrDG9IEZpGgJ+QbgmFlCXw1NNXrQBPiLvYIRaOQX1TIBrdeNLhmH4O9jUJd3Gu1r4TWylQV6PdVFgZTIURY3KBcwe5olDWBj4JbSJaEXD8hEJbKwXe0MfWSvrjeTqq6GpInw/LjuL4r7chlxEY5g+8CkzVEO5o+6kW5UD8MAlOfFKPoF4ZjHkL8mxD9hFlvHLjD0oQ9fSNpuFwL91TmzyoHn8xsvmCsMCVaBIKkzB5zl+csfVhbcVDfugaw3RqlpR3mAwt+6iNKEq2LusdvL3LbWeK9uiLeGnJ5ejxKdM+g2MRGA02qxj/em41/5xoRUzrP9/aNjswn/XLWhlMoHPIn1khn6t3GayZcn0NNx6q/flTwFxuMaYBXk8gozFAYx9NDKVbW/aQQ89Ee+PMyzGGi0XJpCEEfV7EB3fYtKYFF6zvebI5Ua7sInWtG2MBdS/eK+zZNtlEcZuRfagOfbimKVbDE5cITG6MgX3cXy95oSpmBfim/yvrYC378G7A3ltQaJyOBPuSezZNTeSPwMjT3zLbjMnlofzzYcT+bbAHWU9ksWow8WZCrDBwwLGJLIJ+pZb/aTIWK/WoPDKJTHdZv9lEa+vxwX1N6ZSywTFuWVldlgAnj/mUwe7qv2TBZSbs8wBjtkwQw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(40470700004)(46966006)(36840700001)(6916009)(7696005)(82310400005)(8936002)(81166007)(83380400001)(70206006)(86362001)(36756003)(2616005)(54906003)(8676002)(316002)(2906002)(498600001)(70586007)(426003)(16526019)(5660300002)(40460700003)(6666004)(4326008)(26005)(336012)(186003)(356005)(1076003)(47076005)(36860700001)(36900700001);
+ SFS:(13230016)(4636009)(36840700001)(40470700004)(46966006)(70586007)(70206006)(8676002)(16526019)(186003)(4326008)(356005)(36860700001)(2616005)(36756003)(336012)(83380400001)(47076005)(82310400005)(40460700003)(1076003)(426003)(5660300002)(7696005)(86362001)(8936002)(2906002)(26005)(81166007)(54906003)(316002)(6916009)(498600001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2022 19:35:51.0079 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 42865509-fde9-401a-854d-08da50989626
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2022 19:35:52.1953 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 91e2fa54-0f62-4fee-1756-08da509896de
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT040.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3804
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1921
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,43 +102,135 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: stylon.wang@amd.com, Alan Liu <HaoPing.Liu@amd.com>, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- George Shen <george.shen@amd.com>, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- Wenjing Liu <Wenjing.Liu@amd.com>, solomon.chiu@amd.com, jerry.zuo@amd.com,
- Aurabindo.Pillai@amd.com, hamza.mahfooz@amd.com, wayne.lin@amd.com,
- Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ roman.li@amd.com, Wenjing Liu <wenjing.liu@amd.com>, solomon.chiu@amd.com,
+ jerry.zuo@amd.com, Aurabindo.Pillai@amd.com, hamza.mahfooz@amd.com,
+ wayne.lin@amd.com, Jun Lei <Jun.Lei@amd.com>, Bhawanpreet.Lakha@amd.com,
+ agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: George Shen <george.shen@amd.com>
+From: Wenjing Liu <wenjing.liu@amd.com>
 
-[Why & How]
-Check always_match_dpcd_with_hw_lane_settings bit before
-overriding the DP drive settings
+[why]
+This is one of the major steps to decouple hw lane settings
+from dpcd lane settings.
 
-Reviewed-by: Wenjing Liu <Wenjing.Liu@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Alan Liu <HaoPing.Liu@amd.com>
-Signed-off-by: George Shen <george.shen@amd.com>
+Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c  |  8 ++++----
+ drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c       | 10 +++++-----
+ drivers/gpu/drm/amd/display/dc/core/dc_link_dpia.c     | 10 +++++-----
+ .../gpu/drm/amd/display/include/link_service_types.h   |  1 -
+ 4 files changed, 14 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-index ef771471aa39..9f873d2cdcad 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-@@ -1674,8 +1674,9 @@ static void override_training_settings(
- 			: POST_CURSOR2_DISABLED;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+index 9a406378d906..01c98ad06cf0 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+@@ -544,11 +544,11 @@ static ssize_t dp_phy_settings_write(struct file *f, const char __user *buf,
+ 
+ 	/* apply phy settings from user */
+ 	for (r = 0; r < link_lane_settings.link_settings.lane_count; r++) {
+-		link_lane_settings.lane_settings[r].VOLTAGE_SWING =
++		link_lane_settings.hw_lane_settings[r].VOLTAGE_SWING =
+ 				(enum dc_voltage_swing) (param[0]);
+-		link_lane_settings.lane_settings[r].PRE_EMPHASIS =
++		link_lane_settings.hw_lane_settings[r].PRE_EMPHASIS =
+ 				(enum dc_pre_emphasis) (param[1]);
+-		link_lane_settings.lane_settings[r].POST_CURSOR2 =
++		link_lane_settings.hw_lane_settings[r].POST_CURSOR2 =
+ 				(enum dc_post_cursor2) (param[2]);
  	}
  
--	dp_hw_to_dpcd_lane_settings(lt_settings,
--			lt_settings->hw_lane_settings, lt_settings->dpcd_lane_settings);
-+	if (lt_settings->always_match_dpcd_with_hw_lane_settings)
-+		dp_hw_to_dpcd_lane_settings(lt_settings,
-+				lt_settings->hw_lane_settings, lt_settings->dpcd_lane_settings);
+@@ -742,7 +742,7 @@ static ssize_t dp_phy_test_pattern_debugfs_write(struct file *f, const char __us
+ 	}
  
- 	/* Initialize training timings */
- 	if (overrides->cr_pattern_time != NULL)
+ 	for (i = 0; i < (unsigned int)(link_training_settings.link_settings.lane_count); i++)
+-		link_training_settings.lane_settings[i] = link->cur_lane_setting[i];
++		link_training_settings.hw_lane_settings[i] = link->cur_lane_setting[i];
+ 
+ 	dc_link_set_test_pattern(
+ 		link,
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+index 9f873d2cdcad..dfee3ba8b234 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -1660,15 +1660,15 @@ static void override_training_settings(
+ 		lt_settings->always_match_dpcd_with_hw_lane_settings = false;
+ 	}
+ 	for (lane = 0; lane < LANE_COUNT_DP_MAX; lane++) {
+-		lt_settings->lane_settings[lane].VOLTAGE_SWING =
++		lt_settings->hw_lane_settings[lane].VOLTAGE_SWING =
+ 			lt_settings->voltage_swing != NULL ?
+ 			*lt_settings->voltage_swing :
+ 			VOLTAGE_SWING_LEVEL0;
+-		lt_settings->lane_settings[lane].PRE_EMPHASIS =
++		lt_settings->hw_lane_settings[lane].PRE_EMPHASIS =
+ 			lt_settings->pre_emphasis != NULL ?
+ 			*lt_settings->pre_emphasis
+ 			: PRE_EMPHASIS_DISABLED;
+-		lt_settings->lane_settings[lane].POST_CURSOR2 =
++		lt_settings->hw_lane_settings[lane].POST_CURSOR2 =
+ 			lt_settings->post_cursor2 != NULL ?
+ 			*lt_settings->post_cursor2
+ 			: POST_CURSOR2_DISABLED;
+@@ -1935,8 +1935,8 @@ static void print_status_message(
+ 				link_rate,
+ 				lt_settings->link_settings.lane_count,
+ 				lt_result,
+-				lt_settings->lane_settings[0].VOLTAGE_SWING,
+-				lt_settings->lane_settings[0].PRE_EMPHASIS,
++				lt_settings->hw_lane_settings[0].VOLTAGE_SWING,
++				lt_settings->hw_lane_settings[0].PRE_EMPHASIS,
+ 				lt_spread);
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dpia.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dpia.c
+index 1b7a8774b0c9..a29ebd9dbbcd 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dpia.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dpia.c
+@@ -177,13 +177,13 @@ static uint8_t dpia_build_set_config_data(enum dpia_set_config_type type,
+ 		break;
+ 	case DPIA_SET_CFG_SET_VSPE:
+ 		/* Assume all lanes have same drive settings. */
+-		data.set_vspe.swing = lt_settings->lane_settings[0].VOLTAGE_SWING;
+-		data.set_vspe.pre_emph = lt_settings->lane_settings[0].PRE_EMPHASIS;
++		data.set_vspe.swing = lt_settings->hw_lane_settings[0].VOLTAGE_SWING;
++		data.set_vspe.pre_emph = lt_settings->hw_lane_settings[0].PRE_EMPHASIS;
+ 		data.set_vspe.max_swing_reached =
+-			lt_settings->lane_settings[0].VOLTAGE_SWING ==
++			lt_settings->hw_lane_settings[0].VOLTAGE_SWING ==
+ 			VOLTAGE_SWING_MAX_LEVEL ? 1 : 0;
+ 		data.set_vspe.max_pre_emph_reached =
+-			lt_settings->lane_settings[0].PRE_EMPHASIS ==
++			lt_settings->hw_lane_settings[0].PRE_EMPHASIS ==
+ 			PRE_EMPHASIS_MAX_LEVEL ? 1 : 0;
+ 		break;
+ 	default:
+@@ -405,7 +405,7 @@ static enum link_training_result dpia_training_cr_non_transparent(
+ 
+ 		/* Update VS/PE. */
+ 		dp_decide_lane_settings(lt_settings, dpcd_lane_adjust,
+-				lt_settings->lane_settings,
++				lt_settings->hw_lane_settings,
+ 				lt_settings->dpcd_lane_settings);
+ 		retry_count++;
+ 	}
+diff --git a/drivers/gpu/drm/amd/display/include/link_service_types.h b/drivers/gpu/drm/amd/display/include/link_service_types.h
+index 23f7d7354aaa..79fabc51c991 100644
+--- a/drivers/gpu/drm/amd/display/include/link_service_types.h
++++ b/drivers/gpu/drm/amd/display/include/link_service_types.h
+@@ -94,7 +94,6 @@ struct link_training_settings {
+ 	/* TODO: turn lane settings below into mandatory fields
+ 	 * as initial lane configuration
+ 	 */
+-	struct dc_lane_settings lane_settings[LANE_COUNT_DP_MAX];
+ 	enum dc_voltage_swing *voltage_swing;
+ 	enum dc_pre_emphasis *pre_emphasis;
+ 	enum dc_post_cursor2 *post_cursor2;
 -- 
 2.25.1
 
