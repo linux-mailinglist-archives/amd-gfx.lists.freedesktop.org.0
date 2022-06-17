@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A70254FD9D
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Jun 2022 21:36:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB70C54FD95
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Jun 2022 21:35:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3F0C10F406;
-	Fri, 17 Jun 2022 19:36:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8030110F328;
+	Fri, 17 Jun 2022 19:35:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2050.outbound.protection.outlook.com [40.107.93.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFC9210F328
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 Jun 2022 19:35:50 +0000 (UTC)
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam04on2075.outbound.protection.outlook.com [40.107.102.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8444C10F328
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Jun 2022 19:35:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iCXJzGn4Kvf2deiDtXb2uVb+vYF7W/SfKILUgnslDBwzEWRi8zUhfOwi1woUbHRnYbppYg4u7cI58wNA0AEKs8AfdXL9s0B+U1tESmm2riKYDFiPqcooERWKHPc6+ES/ro2eNW/GDJwXuFy+lle2mOsG+QU+5y7TIqKnjFCIoHP8qQBrbJjd7U37djfyUlDynVN0VP4ONs88V53GUpOvlnsKJkqPBZyGiXEQEBTZUeHCgH1YywVRgAVE2inhJp0xCgzGbrdnGXch8GMSsI8rtK8dfUXxGY4cdaWJhpwrmgz9joGE2i7zO95MGQi048cIwSwZZ4qpmi27nbgwu3rjiQ==
+ b=MSiuyimeE6HjjfWGHx4Xwqi4QEgwTewr/FWUsjC5otWnc3zOZWd7a12qdUVjmDSSmVMSIn9leRd0fjdIBvdsK0voFcTYdJmuhYbfidhTDuMdhCekuP8e0RdIw0YZ62F0QCx+6fLniAtiCSihSud/D1V9GDFkyrRMTwOr5S6dQZ8AOOhigP3FEusGrWUCREtD08QPfEqdAg36iTwNRFmMs3w2v6RtQ2/ce++EcUgPWAxPiNFbkpFJ4r02UpSWm46R3xHRk1i7I95rAsjMaOzZomEyU3f1tWBKOt+vVLoN52WWTtd+qu9FqId/438ptUlrRys1c3YAn75G92PliQjUVw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3l869pX8pJ20mtzCjMyydUudZKhMi/8KHqZSyy1mnIY=;
- b=OkiVP9PRoLtomgllaKFbdl4S/qUvKtyDdtjq6AxZEjmtG0INRPy+Fl6Xnn5a9GSoiCWv0leKqrIaI/wV7UDkZDICCcLHSTOnJkramRFRl3yX9PYKM74q4gsqvGVjOXfO5LNft2J1dqWFYpxCO3qLIvBfqutuursuYVwadIoHyhHd4tMj/Aelcu/zHCvZuXSzOj0Gm9QBuh26v0L4jAtB0kP73LPECzkH8ouALaiDN4J8K/ceJ3XjwXK1CX2NjYUY2LGbAeEcvreGEp66rD1mhu9AdDApH7HkaP0rQbd19cZxOEUIYKLk91dOm9v0fJcr+kPU4BkMP8vn1S/0jrQcXQ==
+ bh=F2nycMbUVHT5fQdnEk69/jR5yRCBlCYemUbs31Nqsuc=;
+ b=CLbdC4GzSGdHvPN2BZsymRw7yMuK2uwDXnIYk86uO63Zd0bUhPPTJtU1fNKYqKOLxi3jndjx6eqVOHiI10aQCovRt3888U5uj1VGxO6of6R1txA0OYTvtMF23eID3/ZQhfSJ5HU+4Xj8YDeKDbkKN5nyw0sx2VrgIl7xR1EW8U3lwO6jODZyqfmcJZ3vnW/M/0gQSIW6ZDPRrSCleBmf1nqupd7qZmyWcL3MdT+VFwRJZLskj5VGJYF4jopvKC4zBgJs0BULzJBIZu6Z7U0eKtH9WF8exwNITprOm+VSaKuaBzWUesYCbdzfI6+arMi5/lAHPIlHaf/rQ0UGoh4llQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3l869pX8pJ20mtzCjMyydUudZKhMi/8KHqZSyy1mnIY=;
- b=lgX7yUlHnSvhaopyu5io4Mwg8Dvti08GDv6ZxmhJK14aN+gnRWVQt3XsnJAtSA2UoLDA6Puc6Fv6c+iUDviJ/63aUD6NJNa5Lln0ik5EBMrh/dVwWKVwLDaxN/t5Ip0leOY0GEwFS4/NaPSQ/kC8IcLd/75OFRfoqa5bAZuGXhQ=
-Received: from BN9PR03CA0140.namprd03.prod.outlook.com (2603:10b6:408:fe::25)
- by MWHPR1201MB0159.namprd12.prod.outlook.com (2603:10b6:301:59::13)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=F2nycMbUVHT5fQdnEk69/jR5yRCBlCYemUbs31Nqsuc=;
+ b=bqG9jPTwFx1eOvRGyMoA4e1TIMGAxv83ROarsvBKUWQSx6ffCZn8cm/If9sgTA6tRFF4UqPtIi55yFtN5pVG7qWxYWGd5sVMU/k9OWRfDB0lyItCBcFILJLzaJotbeR5tJFBEM1hqdFQrrRtmbBvxjQGAf1PnyPS543bE8scQls=
+Received: from BN9PR03CA0141.namprd03.prod.outlook.com (2603:10b6:408:fe::26)
+ by CY4PR12MB1575.namprd12.prod.outlook.com (2603:10b6:910:f::23) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5332.15; Fri, 17 Jun
- 2022 19:35:47 +0000
+ 2022 19:35:48 +0000
 Received: from BN8NAM11FT040.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:fe:cafe::1a) by BN9PR03CA0140.outlook.office365.com
- (2603:10b6:408:fe::25) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:408:fe:cafe::bf) by BN9PR03CA0141.outlook.office365.com
+ (2603:10b6:408:fe::26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5332.17 via Frontend
- Transport; Fri, 17 Jun 2022 19:35:47 +0000
+ Transport; Fri, 17 Jun 2022 19:35:48 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN8NAM11FT040.mail.protection.outlook.com (10.13.177.166) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5353.14 via Frontend Transport; Fri, 17 Jun 2022 19:35:47 +0000
+ 15.20.5353.14 via Frontend Transport; Fri, 17 Jun 2022 19:35:48 +0000
 Received: from atma2.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 17 Jun
- 2022 14:35:44 -0500
+ 2022 14:35:45 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 09/31] drm/amd/display: Turn off internal backlight when
- plugging external monitor
-Date: Fri, 17 Jun 2022 15:34:50 -0400
-Message-ID: <20220617193512.3471076-10-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 10/31] drm/amd/display: Add SMU logging code
+Date: Fri, 17 Jun 2022 15:34:51 -0400
+Message-ID: <20220617193512.3471076-11-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220617193512.3471076-1-Rodrigo.Siqueira@amd.com>
 References: <20220617193512.3471076-1-Rodrigo.Siqueira@amd.com>
@@ -69,27 +68,27 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 60cf6df2-150b-44e5-1efa-08da509893ef
-X-MS-TrafficTypeDiagnostic: MWHPR1201MB0159:EE_
-X-Microsoft-Antispam-PRVS: <MWHPR1201MB0159D89688A446A3AB3DE42498AF9@MWHPR1201MB0159.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 415efaf4-0789-44b6-ee57-08da50989482
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1575:EE_
+X-Microsoft-Antispam-PRVS: <CY4PR12MB157592EE44B3231C16B27BB998AF9@CY4PR12MB1575.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xHakLTOT2sSv/vFr6EIVtL4zfpK1NsDO6kH4cJH1r/UlIFxoC42RqlIMWiqymcjR68qcv1Soa+2qmQKbTsU0Smp02LC1E5tHpEArjGsN8kI5yvkC/AFJPVEBTRi2MbTw/5WN90v2nMO2xt1lI0DywO80TmO9h7b3qIrPAzxe2I3wC/wVocc/BBzDk5MssTeb+SRB/uA0cH+9NnmbxIHJifIl6jXasXHzJ2bPaiuOMk3eOPfX/y6mCc3NqTdS0dGLo8B2K77JTENo2i4GtE1e7SNf5mLQTwBgNCycUMbmX0IPlsYJhJtbQw1ngCiDXrY56j5uOzls2L/PccB0otGnyG0y1KF/3KYuY5RYh9IaoZxBMm2sJJG84GYYD9cUmlu/ANiqtCge+729deaPNbCkHb0J0UnF9KWuZHr87iU5//mWUlhYj/P4dtUECuj6+c9y4b083B/FOw+621F+sjvIMo7HaSxf/HL7XaXjhxS5bDAyzRPiI3MP6XHcncNAVjSxfSDg8PdQf2yS0vCoYWxDq8qbZrQsCMnV2J28yoGD1/LkwLgYmRNyuK9Gx2l+v+fdrBH6msCzyxaVogDe8YpreYO9mhlLBQsmxBEtLG3B5CTyX/oGEm7L6QMIxBeFOvzufASb18tw2pbJCgx9SkAHZ3/bcoyqQd8MjeZkfM/RXb4RwQTp8c3DK+R7DJHYz0C0LeoyIKppy6dXasV3OQs/nA==
+X-Microsoft-Antispam-Message-Info: Ss3hiGkV1FS7AEkEChYrU50gcapEpnVEvGpEgfL/TkqIAyTkwn+fGcq+YZthqKeokgHyXzPdm6gO/vbOKKlhfyoAF3bqkFxvwfnx0kATJD3nHmQbCMnJu42brnMSO/4emXYXoFS78E37k3bzd7sfKiB6Sawcsm+4g4t+RRSTOa3bH28fL/NI2ya9Q2pyWd5g++ruQaMp/YxLeJIrldJx1VmsA4MLePA9sIrZr/oYQFoTwjn3bf5vZlORVa2DGuPOMO9RA1yoPMRi4o/APMjQLZkaVSxsuKO2NfKAQzKbvCicCFOgV72OZbriLembPsdStPKbZ5WMZFS5dN66EqrpIal7z08OxURT8Pw3dg3ry4CC8jp4xLgppQ3TGiHn3kieFqIiB2OLl0kE+LaYfa6wfKSUe32oN4lZNPNIYFMcJMSBOI72WKu+hUywR/VPuqnTq/B/ah3cZlUZZ+8pDOSikeOBOgIC/5o2YXrwPjdBboT1ItwIBga+dMGK4Z3KoxVtLB8s5g0MJmIGTSsLylCepew2XPItclylaJI6XvwUJYDwBv9pVZsWmLDeEHRhPEwwpY/SWUou4/ZZHKD1Cy6op33wsomQXsQqUtzEHr1yOSeFoTSwHgWxQ80hw0hzj/H6GHxDaUOCuE0OTCJa4FQUSm62VNu4DXunGtxBzNPnJ3ZemNVBf7HaG/vX1AoL0yXN9ZngKkHTeN7KmxuDytF4fw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(46966006)(36840700001)(40470700004)(356005)(86362001)(186003)(316002)(4326008)(1076003)(81166007)(8936002)(2906002)(36860700001)(5660300002)(40460700003)(82310400005)(6916009)(7696005)(8676002)(26005)(36756003)(70206006)(6666004)(426003)(336012)(47076005)(54906003)(70586007)(16526019)(498600001)(83380400001)(2616005)(36900700001);
+ SFS:(13230016)(4636009)(46966006)(36840700001)(40470700004)(70586007)(8676002)(6916009)(82310400005)(6666004)(7696005)(4326008)(26005)(36860700001)(186003)(2906002)(70206006)(36756003)(498600001)(336012)(426003)(316002)(16526019)(47076005)(1076003)(54906003)(2616005)(81166007)(83380400001)(86362001)(5660300002)(40460700003)(8936002)(356005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2022 19:35:47.2738 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 60cf6df2-150b-44e5-1efa-08da509893ef
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2022 19:35:48.2425 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 415efaf4-0789-44b6-ee57-08da50989482
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT040.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB0159
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1575
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,42 +104,170 @@ Cc: stylon.wang@amd.com, Charlene Liu <Charlene.Liu@amd.com>,
  Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
  Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
  jerry.zuo@amd.com, Aurabindo.Pillai@amd.com, hamza.mahfooz@amd.com,
- wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com, Sung Joon Kim <sungkim@amd.com>,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+ wayne.lin@amd.com, Saaem Rizvi <SyedSaaem.Rizvi@amd.com>,
+ Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Sung Joon Kim <sungkim@amd.com>
+From: Saaem Rizvi <SyedSaaem.Rizvi@amd.com>
 
-[why]
-For VG, we want to turn off power/backlight of the intenral panel when
-plugging in external monitor and going to "external monitor only" mode.
+[WHY]
+Logging for SMU response value after the wait allows us to know
+immediately what the response value was. Makes it easier to debug should
+the value be anything other than OK.
 
-[how]
-For turning off power of the internal panel, ignore the config flag whic
-bypasses power sequencing for eDP panels.
+[HOW]
+Using the the already available DC SMU logging functions.
 
 Reviewed-by: Charlene Liu <Charlene.Liu@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Signed-off-by: Sung Joon Kim <sungkim@amd.com>
+Signed-off-by: Saaem Rizvi <SyedSaaem.Rizvi@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ .../display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c  | 12 ++++++++++++
+ .../drm/amd/display/dc/clk_mgr/dcn301/dcn301_smu.c   | 12 ++++++++++++
+ .../gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_smu.c |  8 ++++++++
+ .../drm/amd/display/dc/clk_mgr/dcn315/dcn315_smu.c   |  8 ++++++++
+ .../drm/amd/display/dc/clk_mgr/dcn316/dcn316_smu.c   |  8 ++++++++
+ 5 files changed, 48 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-index fd95bd51988b..ef771471aa39 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-@@ -7275,8 +7275,7 @@ void dp_disable_link_phy(struct dc_link *link, const struct link_resource *link_
- 			link->dc->hwss.edp_backlight_control(link, false);
- 		if (link_hwss->ext.disable_dp_link_output)
- 			link_hwss->ext.disable_dp_link_output(link, link_res, signal);
--		if (!link->dc->config.edp_no_power_sequencing)
--			link->dc->hwss.edp_power_control(link, false);
-+		link->dc->hwss.edp_power_control(link, false);
- 	} else {
- 		if (dmcu != NULL && dmcu->funcs->lock_phy)
- 			dmcu->funcs->lock_phy(dmcu);
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c
+index 30c6f9cd717f..4137394a6ace 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c
+@@ -41,6 +41,12 @@
+ #define FN(reg_name, field) \
+ 	FD(reg_name##__##field)
+ 
++#include "logger_types.h"
++#undef DC_LOGGER
++#define DC_LOGGER \
++	CTX->logger
++#define smu_print(str, ...) {DC_LOG_SMU(str, ##__VA_ARGS__); }
++
+ #define VBIOSSMC_MSG_TestMessage                  0x1
+ #define VBIOSSMC_MSG_GetSmuVersion                0x2
+ #define VBIOSSMC_MSG_PowerUpGfx                   0x3
+@@ -97,6 +103,12 @@ static int rn_vbios_smu_send_msg_with_param(struct clk_mgr_internal *clk_mgr,
+ 	result = rn_smu_wait_for_response(clk_mgr, 10, 200000);
+ 	ASSERT(result == VBIOSSMC_Result_OK);
+ 
++	smu_print("SMU response after wait: %d\n", result);
++
++	if (result == VBIOSSMC_Status_BUSY) {
++		return -1;
++	}
++
+ 	/* First clear response register */
+ 	REG_WRITE(MP1_SMN_C2PMSG_91, VBIOSSMC_Status_BUSY);
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/dcn301_smu.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/dcn301_smu.c
+index 1cae01a91a69..d8f03328558b 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/dcn301_smu.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/dcn301_smu.c
+@@ -41,6 +41,12 @@
+ #define FN(reg_name, field) \
+ 	FD(reg_name##__##field)
+ 
++#include "logger_types.h"
++#undef DC_LOGGER
++#define DC_LOGGER \
++	CTX->logger
++#define smu_print(str, ...) {DC_LOG_SMU(str, ##__VA_ARGS__); }
++
+ #define VBIOSSMC_MSG_GetSmuVersion                0x2
+ #define VBIOSSMC_MSG_SetDispclkFreq               0x4
+ #define VBIOSSMC_MSG_SetDprefclkFreq              0x5
+@@ -96,6 +102,12 @@ static int dcn301_smu_send_msg_with_param(struct clk_mgr_internal *clk_mgr,
+ 
+ 	result = dcn301_smu_wait_for_response(clk_mgr, 10, 200000);
+ 
++	smu_print("SMU response after wait: %d\n", result);
++
++	if (result == VBIOSSMC_Status_BUSY) {
++		return -1;
++	}
++
+ 	/* First clear response register */
+ 	REG_WRITE(MP1_SMN_C2PMSG_91, VBIOSSMC_Status_BUSY);
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_smu.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_smu.c
+index c5d7d075026f..6a17f7ed4d01 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_smu.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_smu.c
+@@ -40,6 +40,12 @@
+ #define FN(reg_name, field) \
+ 	FD(reg_name##__##field)
+ 
++#include "logger_types.h"
++#undef DC_LOGGER
++#define DC_LOGGER \
++	CTX->logger
++#define smu_print(str, ...) {DC_LOG_SMU(str, ##__VA_ARGS__); }
++
+ #define VBIOSSMC_MSG_TestMessage                  0x1
+ #define VBIOSSMC_MSG_GetSmuVersion                0x2
+ #define VBIOSSMC_MSG_PowerUpGfx                   0x3
+@@ -104,6 +110,8 @@ static int dcn31_smu_send_msg_with_param(struct clk_mgr_internal *clk_mgr,
+ 	result = dcn31_smu_wait_for_response(clk_mgr, 10, 200000);
+ 	ASSERT(result == VBIOSSMC_Result_OK);
+ 
++	smu_print("SMU response after wait: %d\n", result);
++
+ 	if (result == VBIOSSMC_Status_BUSY) {
+ 		return -1;
+ 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_smu.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_smu.c
+index 2600313fea57..74a78fda62fb 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_smu.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_smu.c
+@@ -70,6 +70,12 @@ static const struct IP_BASE NBIO_BASE = { { { { 0x00000000, 0x00000014, 0x00000D
+ #define REG_NBIO(reg_name) \
+ 	(NBIO_BASE.instance[0].segment[regBIF_BX_PF2_ ## reg_name ## _BASE_IDX] + regBIF_BX_PF2_ ## reg_name)
+ 
++#include "logger_types.h"
++#undef DC_LOGGER
++#define DC_LOGGER \
++	CTX->logger
++#define smu_print(str, ...) {DC_LOG_SMU(str, ##__VA_ARGS__); }
++
+ #define mmMP1_C2PMSG_3                            0x3B1050C
+ 
+ #define VBIOSSMC_MSG_TestMessage                  0x01 ///< To check if PMFW is alive and responding. Requirement specified by PMFW team
+@@ -132,6 +138,8 @@ static int dcn315_smu_send_msg_with_param(
+ 	result = dcn315_smu_wait_for_response(clk_mgr, 10, 200000);
+ 	ASSERT(result == VBIOSSMC_Result_OK);
+ 
++	smu_print("SMU response after wait: %d\n", result);
++
+ 	if (result == VBIOSSMC_Status_BUSY) {
+ 		return -1;
+ 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn316/dcn316_smu.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn316/dcn316_smu.c
+index dceec4b96052..b2d1f24cfb80 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn316/dcn316_smu.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn316/dcn316_smu.c
+@@ -58,6 +58,12 @@ static const struct IP_BASE MP0_BASE = { { { { 0x00016000, 0x00DC0000, 0x00E0000
+ #define FN(reg_name, field) \
+ 	FD(reg_name##__##field)
+ 
++#include "logger_types.h"
++#undef DC_LOGGER
++#define DC_LOGGER \
++	CTX->logger
++#define smu_print(str, ...) {DC_LOG_SMU(str, ##__VA_ARGS__); }
++
+ #define VBIOSSMC_MSG_TestMessage                  0x01 ///< To check if PMFW is alive and responding. Requirement specified by PMFW team
+ #define VBIOSSMC_MSG_GetPmfwVersion               0x02 ///< Get PMFW version
+ #define VBIOSSMC_MSG_Spare0                       0x03 ///< Spare0
+@@ -120,6 +126,8 @@ static int dcn316_smu_send_msg_with_param(
+ 	result = dcn316_smu_wait_for_response(clk_mgr, 10, 200000);
+ 	ASSERT(result == VBIOSSMC_Result_OK);
+ 
++	smu_print("SMU response after wait: %d\n", result);
++
+ 	if (result == VBIOSSMC_Status_BUSY) {
+ 		return -1;
+ 	}
 -- 
 2.25.1
 
