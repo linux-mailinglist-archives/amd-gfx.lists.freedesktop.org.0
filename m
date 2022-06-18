@@ -1,62 +1,44 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B0DD550DF8
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Jun 2022 02:37:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDCB7551150
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Jun 2022 09:20:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91C1610EFB0;
-	Mon, 20 Jun 2022 00:37:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0608B10E696;
+	Mon, 20 Jun 2022 07:20:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com
- [IPv6:2a00:1450:4864:20::52f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C37B10EFB0
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 00:37:06 +0000 (UTC)
-Received: by mail-ed1-x52f.google.com with SMTP id eo8so13017454edb.0
- for <amd-gfx@lists.freedesktop.org>; Sun, 19 Jun 2022 17:37:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=basnieuwenhuizen.nl; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=IDeXIB88wF1IP6KA4F9e1pN5luOw7R8CAh9NSpdjcO0=;
- b=c26HIfsCjOrTLLmWMfCDFpdQ9fnO0bE8CCSUtMe+a422CZIk8HjQwquVoE3VLXAvMs
- jmnF1E+BKOgdaD0NFpU/xr72TY6uLZhFRF2Zg2WiyTokF57PlWEBkh9sXwfgCN8C4Dmu
- inB30nscWqHDUD3Js0/7UWpGsV4jdnvffIuM6gjChTEvvxN7FLHQD43VZvqOec0fxcxO
- i3+jw+dPH/4l4adV1JGZdqvr31du/2Z1zfteqhoz97GdHQapBGD74tEMx3wXfObWohGc
- giQntv0FAR0z1smq1gFqwAP9xPzC7lS+4AfXEmMsvkAruEMU02KNdL7acIHqpcc2kWix
- NZ/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=IDeXIB88wF1IP6KA4F9e1pN5luOw7R8CAh9NSpdjcO0=;
- b=ekqWDPgwqDZhwYdzodalG7Tq62oZa+2eQNq93dRL7fexxfoF29mSoNchfgzEux8GQ0
- MSnYQj/ksV2TttcuPEc9OWMpg/KeLMXg2RYMaGEKIo3H5Hm5a7qGRZWK4g3/uE4l5f9c
- JGq8mNsoNZASEDv6DJoShrlXlkhXtGjK1H9v4KJaAI32IRrr07v5V638F9LPuVzkqzr9
- 05OjL6NSB5eAjQHrJGAldN4GSZBuut1yN0boq3jB2BAk2eIXYC7atVlReU5jRlydScRv
- vF7u1UFLpvavzhoqd7SpixaIWnXiFbDL1MzThRCBL1WXK9kMVrycCI6WA6ytk56Ks3Ou
- wEJA==
-X-Gm-Message-State: AJIora9YZu3+QIadaIdegm9uRmRuIfPs2tiW31raso20jeTJ0B19Eadj
- KD48T+b1bd+yAAIHpPySsMOubduIctsX3nzN
-X-Google-Smtp-Source: AGRyM1tW6DYMABUlxi5Ujcd8BU2xm+9M8T9JgcLVbzufVc77Kt4twPVEKbNll+M0Lu0Ts4bbTUgGzg==
-X-Received: by 2002:a50:9f6a:0:b0:435:5804:e07 with SMTP id
- b97-20020a509f6a000000b0043558040e07mr21558942edf.178.1655685424970; 
- Sun, 19 Jun 2022 17:37:04 -0700 (PDT)
-Received: from bas-workstation.. ([2a02:aa12:a77f:2000:7285:c2ff:fe67:a82f])
- by smtp.gmail.com with ESMTPSA id
- d18-20020aa7d5d2000000b0043572ffafe0sm3602237eds.92.2022.06.19.17.37.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 19 Jun 2022 17:37:04 -0700 (PDT)
-From: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] Revert "drm/amd/display: ignore modifiers when checking for
- format support"
-Date: Mon, 20 Jun 2022 02:37:20 +0200
-Message-Id: <20220620003720.2049653-1-bas@basnieuwenhuizen.nl>
-X-Mailer: git-send-email 2.36.1
+X-Greylist: delayed 426 seconds by postgrey-1.36 at gabe;
+ Sat, 18 Jun 2022 16:20:41 UTC
+Received: from er-systems.de (er-systems.de [148.251.68.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5755710E8F3
+ for <amd-gfx@lists.freedesktop.org>; Sat, 18 Jun 2022 16:20:41 +0000 (UTC)
+Received: from localhost.localdomain (localhost [127.0.0.1])
+ by er-systems.de (Postfix) with ESMTP id C1533D6006E;
+ Sat, 18 Jun 2022 18:13:29 +0200 (CEST)
+X-Spam-Checker-Version: SpamAssassin 3.4.5 (2021-03-20) on er-systems.de
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.5
+Received: from localhost (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by er-systems.de (Postfix) with ESMTPS id 9A85BD6006D;
+ Sat, 18 Jun 2022 18:13:29 +0200 (CEST)
+Date: Sat, 18 Jun 2022 18:13:28 +0200 (CEST)
+From: Thomas Voegtle <tv@lio96.de>
+To: =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, 
+ Daniel Vetter <daniel.vetter@ffwll.ch>, amd-gfx@lists.freedesktop.org
+Subject: Performance drop using deinterlace_vaapi on 5.19-rcX
+Message-ID: <0249066a-2e95-c21d-d16a-fba08c633c0b@lio96.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/mixed; boundary="-74181308-596245421-1655568809=:14383"
+X-Virus-Status: No
+X-Virus-Checker-Version: clamassassin 1.2.4 with clamdscan / ClamAV
+ 0.103.6/26576/Sat Jun 18 10:07:50 2022 signatures .
+X-Mailman-Approved-At: Mon, 20 Jun 2022 07:20:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,117 +50,62 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, marek.olsak@amd.com, aurabindo.pillai@amd.com,
- Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+Cc: linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit 5089c4a8ebea3c3ad9eedf038dad7098ebc06131.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-This breaks validation and enumeration of display capable modifiers.
+---74181308-596245421-1655568809=:14383
+Content-Type: text/plain; format=flowed; charset=ISO-8859-15
+Content-Transfer-Encoding: 8BIT
 
-The early return true means the rest of the validation code never gets
-executed, and we need that to enumerate the right modifiers to userspace
-for the format.
 
-The modifiers that are in the initial list generated for a plane are the
-superset for all formats and we need the proper checks in this function
-to filter some of them out for formats with which they're invalid to be
-used.
+Hello,
 
-Furthermore, the safety contract here is that we validate the incoming
-modifiers to ensure the kernel can handle them and the display hardware
-can handle them. This includes e.g. rejecting multi-plane images with DCC.
+I noticed a performance drop encoding a mpeg file to a h264 video using
+the vaapi option deinterlace_vaapi on a Haswell i5-4570 with Linux
+5.19-rc1.
 
-Note that the legacy swizzle mechanism allows encoding more swizzles, and
-at fb creation time we convert them to modifiers and reject those with
-no corresponding modifiers. If we are seeing rejections I'm happy to
-help define modifiers that correspond to those, or if absolutely needed
-implement a fallback path to allow for less strict validation of the
-legacy path.
+A 10 minute long video takes normally 41s to convert, now with 5.19-rc1
+it takes about 2m 36s.
 
-However, I'd like to revert this patch, since any of these is going to
-be a significant rework of the patch, and I'd rather not the regression
-gets into a release or forgotten in the meantime.
+My ffmpeg line is:
+ffmpeg -hwaccel vaapi -hwaccel_device /dev/dri/renderD128
+-hwaccel_output_format vaapi -i test.vdr -vf 'deinterlace_vaapi' -c:v
+h264_vaapi
 
-Signed-off-by: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 53 +++----------------
- 1 file changed, 7 insertions(+), 46 deletions(-)
+Removing the option deinterlace_vaapi shows no difference in performance 
+between 5.18 and 5.19-rcX.
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 60fb99b74713..698741fd39f4 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -4936,7 +4936,8 @@ static bool dm_plane_format_mod_supported(struct drm_plane *plane,
- {
- 	struct amdgpu_device *adev = drm_to_adev(plane->dev);
- 	const struct drm_format_info *info = drm_format_info(format);
--	struct hw_asic_id asic_id = adev->dm.dc->ctx->asic_id;
-+	int i;
-+
- 	enum dm_micro_swizzle microtile = modifier_gfx9_swizzle_mode(modifier) & 3;
- 
- 	if (!info)
-@@ -4952,53 +4953,13 @@ static bool dm_plane_format_mod_supported(struct drm_plane *plane,
- 		return true;
- 	}
- 
--	/* check if swizzle mode is supported by this version of DCN */
--	switch (asic_id.chip_family) {
--		case FAMILY_SI:
--		case FAMILY_CI:
--		case FAMILY_KV:
--		case FAMILY_CZ:
--		case FAMILY_VI:
--			/* asics before AI does not have modifier support */
--			return false;
--			break;
--		case FAMILY_AI:
--		case FAMILY_RV:
--		case FAMILY_NV:
--		case FAMILY_VGH:
--		case FAMILY_YELLOW_CARP:
--		case AMDGPU_FAMILY_GC_10_3_6:
--		case AMDGPU_FAMILY_GC_10_3_7:
--			switch (AMD_FMT_MOD_GET(TILE, modifier)) {
--				case AMD_FMT_MOD_TILE_GFX9_64K_R_X:
--				case AMD_FMT_MOD_TILE_GFX9_64K_D_X:
--				case AMD_FMT_MOD_TILE_GFX9_64K_S_X:
--				case AMD_FMT_MOD_TILE_GFX9_64K_D:
--					return true;
--					break;
--				default:
--					return false;
--					break;
--			}
--			break;
--		case AMDGPU_FAMILY_GC_11_0_0:
--			switch (AMD_FMT_MOD_GET(TILE, modifier)) {
--				case AMD_FMT_MOD_TILE_GFX11_256K_R_X:
--				case AMD_FMT_MOD_TILE_GFX9_64K_R_X:
--				case AMD_FMT_MOD_TILE_GFX9_64K_D_X:
--				case AMD_FMT_MOD_TILE_GFX9_64K_S_X:
--				case AMD_FMT_MOD_TILE_GFX9_64K_D:
--					return true;
--					break;
--				default:
--					return false;
--					break;
--			}
--			break;
--		default:
--			ASSERT(0); /* Unknown asic */
-+	/* Check that the modifier is on the list of the plane's supported modifiers. */
-+	for (i = 0; i < plane->modifier_count; i++) {
-+		if (modifier == plane->modifiers[i])
- 			break;
- 	}
-+	if (i == plane->modifier_count)
-+		return false;
- 
- 	/*
- 	 * For D swizzle the canonical modifier depends on the bpp, so check
--- 
-2.36.1
+
+I bisected this down to:
+
+commit 047a1b877ed48098bed71fcfb1d4891e1b54441d
+Author: Christian König <christian.koenig@amd.com>
+Date:   Tue Nov 23 09:33:07 2021 +0100
+
+     dma-buf & drm/amdgpu: remove dma_resv workaround
+
+
+and wasn't able to revert this one on top of 5.19-rcX.
+
+I tried the predecessor commit:
+
+commit 73511edf8b196e6f1ccda0fdf294ff57aa2dc9db (HEAD)
+Author: Christian König <christian.koenig@amd.com>
+Date:   Tue Nov 9 11:08:18 2021 +0100
+
+     dma-buf: specify usage while adding fences to dma_resv obj v7
+
+which is fine.
+
+Using ffmpeg 5.0.1 with libva 2.10.0 and intel vaapi driver 2.4.1
+
+
+  Best regards,
+
+     Thomas
+---74181308-596245421-1655568809=:14383--
 
