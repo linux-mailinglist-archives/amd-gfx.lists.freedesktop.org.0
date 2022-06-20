@@ -2,58 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AE06551AB4
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Jun 2022 15:25:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E28CF551AB6
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Jun 2022 15:25:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 138DB10E6A5;
-	Mon, 20 Jun 2022 13:25:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53A7210E97A;
+	Mon, 20 Jun 2022 13:25:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8F6A113088
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 09:43:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1655718235;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Eb24tbtfVgrs8K5keyt5OKP5NTF5xSiS6WRwZ2GcOhw=;
- b=D5fsoWevWSLf3aEfVomFdyz/eOy71tm21DRGFPrEt4+KyG4ZEGoNFz9ANoOHvi/H0TRLCU
- tPRhYBHriY1KLOm7XIcgGpGTtWcQKTVOOlBQtEAfafZgtzXqV+/XINiKdlWENn4p5TMhec
- I3ErV6k7porOE0Oado6l2yEI3qgeHbE=
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-36-dOrAHEknP0Cx06BD40nXCA-1; Mon, 20 Jun 2022 05:43:52 -0400
-X-MC-Unique: dOrAHEknP0Cx06BD40nXCA-1
-Received: from smtp.corp.redhat.com (int-mx10.intmail.prod.int.rdu2.redhat.com
- [10.11.54.10])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+Received: from er-systems.de (er-systems.de [148.251.68.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B899F10E461
+ for <amd-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 11:40:23 +0000 (UTC)
+Received: from localhost.localdomain (localhost [127.0.0.1])
+ by er-systems.de (Postfix) with ESMTP id CD04DD60070;
+ Mon, 20 Jun 2022 13:40:20 +0200 (CEST)
+X-Spam-Checker-Version: SpamAssassin 3.4.5 (2021-03-20) on er-systems.de
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.5
+Received: from localhost (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 45F33185A79C;
- Mon, 20 Jun 2022 09:43:52 +0000 (UTC)
-Received: from x1.nl (unknown [10.39.195.183])
- by smtp.corp.redhat.com (Postfix) with ESMTP id B805D4619F5;
- Mon, 20 Jun 2022 09:43:47 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
-	=?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
-	Pan@freedesktop.org, Xinhui <Xinhui.Pan@amd.com>
-Subject: [PATCH 2/2] drm/radeon: Drop CONFIG_BACKLIGHT_CLASS_DEVICE ifdefs
-Date: Mon, 20 Jun 2022 11:43:36 +0200
-Message-Id: <20220620094336.9633-2-hdegoede@redhat.com>
-In-Reply-To: <20220620094336.9633-1-hdegoede@redhat.com>
-References: <20220620094336.9633-1-hdegoede@redhat.com>
+ by er-systems.de (Postfix) with ESMTPS id AD5E4D6006D;
+ Mon, 20 Jun 2022 13:40:20 +0200 (CEST)
+Date: Mon, 20 Jun 2022 13:40:19 +0200 (CEST)
+From: Thomas Voegtle <tv@lio96.de>
+To: =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>
+Subject: Re: Performance drop using deinterlace_vaapi on 5.19-rcX
+In-Reply-To: <f1a52ddc-5aad-cc76-282e-93206ae43477@amd.com>
+Message-ID: <70395b22-1857-2a25-1472-17ce3df22607@lio96.de>
+References: <0249066a-2e95-c21d-d16a-fba08c633c0b@lio96.de>
+ <f1a52ddc-5aad-cc76-282e-93206ae43477@amd.com>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.85 on 10.11.54.10
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"; x-default=true
+Content-Type: multipart/mixed; boundary="-74181308-103373736-1655725220=:7141"
+X-Virus-Status: No
+X-Virus-Checker-Version: clamassassin 1.2.4 with clamdscan / ClamAV
+ 0.103.6/26578/Mon Jun 20 10:06:11 2022 signatures .
 X-Mailman-Approved-At: Mon, 20 Jun 2022 13:25:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,130 +50,35 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hans de Goede <hdegoede@redhat.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The DRM_RADEON Kconfig code contains:
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-	select BACKLIGHT_CLASS_DEVICE
+---74181308-103373736-1655725220=:7141
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8BIT
 
-So the condition these ifdefs test for is always true, drop them.
+On Mon, 20 Jun 2022, Christian König wrote:
 
-Signed-off-by: Hans de Goede <hdegoede@redhat.com>
----
- drivers/gpu/drm/radeon/atombios_encoders.c      | 14 --------------
- drivers/gpu/drm/radeon/radeon_acpi.c            |  2 --
- drivers/gpu/drm/radeon/radeon_legacy_encoders.c | 15 ---------------
- drivers/gpu/drm/radeon/radeon_mode.h            |  4 ----
- 4 files changed, 35 deletions(-)
+> Hi Thomas,
+>
+> [moving vger to bcc]
+>
+> mhm, sounds like something isn't running in parallel any more.
+>
+> We usually don't test the multimedia engines for this but we do test 
+> gfx+compute, so I'm really wondering what goes wrong here.
+>
+> Could you run some tests for me? Additional to that I'm going to raise that 
+> issue with our multimedia guys later today.
 
-diff --git a/drivers/gpu/drm/radeon/atombios_encoders.c b/drivers/gpu/drm/radeon/atombios_encoders.c
-index f82577dc25e8..160a309e1048 100644
---- a/drivers/gpu/drm/radeon/atombios_encoders.c
-+++ b/drivers/gpu/drm/radeon/atombios_encoders.c
-@@ -143,8 +143,6 @@ atombios_set_backlight_level(struct radeon_encoder *radeon_encoder, u8 level)
- 	}
- }
- 
--#if defined(CONFIG_BACKLIGHT_CLASS_DEVICE) || defined(CONFIG_BACKLIGHT_CLASS_DEVICE_MODULE)
--
- static u8 radeon_atom_bl_level(struct backlight_device *bd)
- {
- 	u8 level;
-@@ -293,18 +291,6 @@ static void radeon_atom_backlight_exit(struct radeon_encoder *radeon_encoder)
- 	}
- }
- 
--#else /* !CONFIG_BACKLIGHT_CLASS_DEVICE */
--
--void radeon_atom_backlight_init(struct radeon_encoder *encoder)
--{
--}
--
--static void radeon_atom_backlight_exit(struct radeon_encoder *encoder)
--{
--}
--
--#endif
--
- static bool radeon_atom_mode_fixup(struct drm_encoder *encoder,
- 				   const struct drm_display_mode *mode,
- 				   struct drm_display_mode *adjusted_mode)
-diff --git a/drivers/gpu/drm/radeon/radeon_acpi.c b/drivers/gpu/drm/radeon/radeon_acpi.c
-index 1baef7b493de..b603c0b77075 100644
---- a/drivers/gpu/drm/radeon/radeon_acpi.c
-+++ b/drivers/gpu/drm/radeon/radeon_acpi.c
-@@ -391,7 +391,6 @@ static int radeon_atif_handler(struct radeon_device *rdev,
- 
- 			radeon_set_backlight_level(rdev, enc, req.backlight_level);
- 
--#if defined(CONFIG_BACKLIGHT_CLASS_DEVICE) || defined(CONFIG_BACKLIGHT_CLASS_DEVICE_MODULE)
- 			if (rdev->is_atom_bios) {
- 				struct radeon_encoder_atom_dig *dig = enc->enc_priv;
- 				backlight_force_update(dig->bl_dev,
-@@ -401,7 +400,6 @@ static int radeon_atif_handler(struct radeon_device *rdev,
- 				backlight_force_update(dig->bl_dev,
- 						       BACKLIGHT_UPDATE_HOTKEY);
- 			}
--#endif
- 		}
- 	}
- 	if (req.pending & ATIF_DGPU_DISPLAY_EVENT) {
-diff --git a/drivers/gpu/drm/radeon/radeon_legacy_encoders.c b/drivers/gpu/drm/radeon/radeon_legacy_encoders.c
-index d2180f5c80fa..1d207c76f53e 100644
---- a/drivers/gpu/drm/radeon/radeon_legacy_encoders.c
-+++ b/drivers/gpu/drm/radeon/radeon_legacy_encoders.c
-@@ -320,8 +320,6 @@ radeon_legacy_set_backlight_level(struct radeon_encoder *radeon_encoder, u8 leve
- 	radeon_legacy_lvds_update(&radeon_encoder->base, dpms_mode);
- }
- 
--#if defined(CONFIG_BACKLIGHT_CLASS_DEVICE) || defined(CONFIG_BACKLIGHT_CLASS_DEVICE_MODULE)
--
- static uint8_t radeon_legacy_lvds_level(struct backlight_device *bd)
- {
- 	struct radeon_backlight_privdata *pdata = bl_get_data(bd);
-@@ -495,19 +493,6 @@ static void radeon_legacy_backlight_exit(struct radeon_encoder *radeon_encoder)
- 	}
- }
- 
--#else /* !CONFIG_BACKLIGHT_CLASS_DEVICE */
--
--void radeon_legacy_backlight_init(struct radeon_encoder *encoder)
--{
--}
--
--static void radeon_legacy_backlight_exit(struct radeon_encoder *encoder)
--{
--}
--
--#endif
--
--
- static void radeon_lvds_enc_destroy(struct drm_encoder *encoder)
- {
- 	struct radeon_encoder *radeon_encoder = to_radeon_encoder(encoder);
-diff --git a/drivers/gpu/drm/radeon/radeon_mode.h b/drivers/gpu/drm/radeon/radeon_mode.h
-index 3485e7f142e9..b34cffc162e2 100644
---- a/drivers/gpu/drm/radeon/radeon_mode.h
-+++ b/drivers/gpu/drm/radeon/radeon_mode.h
-@@ -281,15 +281,11 @@ struct radeon_mode_info {
- 
- #define RADEON_MAX_BL_LEVEL 0xFF
- 
--#if defined(CONFIG_BACKLIGHT_CLASS_DEVICE) || defined(CONFIG_BACKLIGHT_CLASS_DEVICE_MODULE)
--
- struct radeon_backlight_privdata {
- 	struct radeon_encoder *encoder;
- 	uint8_t negative;
- };
- 
--#endif
--
- #define MAX_H_CODE_TIMING_LEN 32
- #define MAX_V_CODE_TIMING_LEN 32
- 
--- 
-2.36.0
+Yes, I can run some tests for you. Which tests?
+
+
+       Thomas
+
+---74181308-103373736-1655725220=:7141--
 
