@@ -2,46 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 425F55522FA
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Jun 2022 19:50:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D47715522AC
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Jun 2022 19:20:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3DEB10ED56;
-	Mon, 20 Jun 2022 17:50:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3436410E592;
+	Mon, 20 Jun 2022 17:20:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from er-systems.de (er-systems.de [148.251.68.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE24510E032
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 14:31:29 +0000 (UTC)
-Received: from localhost.localdomain (localhost [127.0.0.1])
- by er-systems.de (Postfix) with ESMTP id 88BC5D60070;
- Mon, 20 Jun 2022 16:31:26 +0200 (CEST)
-X-Spam-Checker-Version: SpamAssassin 3.4.5 (2021-03-20) on er-systems.de
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
- version=3.4.5
-Received: from localhost (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by er-systems.de (Postfix) with ESMTPS id 62462D6006D;
- Mon, 20 Jun 2022 16:31:26 +0200 (CEST)
-Date: Mon, 20 Jun 2022 16:31:26 +0200 (CEST)
-From: Thomas Voegtle <tv@lio96.de>
-To: =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>
-Subject: Re: Performance drop using deinterlace_vaapi on 5.19-rcX
-In-Reply-To: <6cd161d2-5caa-65c8-6b86-5992cc15d1af@amd.com>
-Message-ID: <957926e6-2462-4c42-b57f-9cfbd9fe7024@lio96.de>
-References: <0249066a-2e95-c21d-d16a-fba08c633c0b@lio96.de>
- <f1a52ddc-5aad-cc76-282e-93206ae43477@amd.com>
- <70395b22-1857-2a25-1472-17ce3df22607@lio96.de>
- <6cd161d2-5caa-65c8-6b86-5992cc15d1af@amd.com>
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com
+ [IPv6:2607:f8b0:4864:20::112b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68E5B10E592
+ for <amd-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 17:20:30 +0000 (UTC)
+Received: by mail-yw1-x112b.google.com with SMTP id
+ 00721157ae682-31780ad7535so80909927b3.8
+ for <amd-gfx@lists.freedesktop.org>; Mon, 20 Jun 2022 10:20:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=zI/plDrhqjLDX3BYaJxrzEoQ40Phmro2M/OiEvAEhps=;
+ b=PzwJ397vkAJCEkP+ZCf1MulA7pUsszVt+VrNi78NVm5LoACTiniLKE/e8ngxvJUUDn
+ WuqQDJ3x5aoHW/ZEuuM+VgCnDhlPjo+ESWWJltrhrcqfwoEEkkFb+BGuYth7NrYo7dPZ
+ 95dpRjlUj6XqBVroptMCy+aS6TNlwaOkf8S8/tPK8SjgBr+2EVkONHUqDaJ/Z8piz8gO
+ XbikkLTRXtywSIUydWDw2wzErL7dnKu5vQjAFyb9IirqUyhOiYOknyv/sPI7iNtu0MLk
+ L9TR3wOJPA3tb3jVQfY5/K7U4qpI3Orti3eJPoz8CDQND8CoBxTzOGq9rRBa449PHTh0
+ UeIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=zI/plDrhqjLDX3BYaJxrzEoQ40Phmro2M/OiEvAEhps=;
+ b=z9f38W1GHM4YRHB7fVpAhm21YIuhiWcs4IOoRl79PAysBYuY8vDHiLcp/D9tXF1n56
+ SwfoKEgYuy4FEg5CtB+PjgTmpslv6NgcYphSz/sTxiVKQDIinNzBh4ptv0+yPEqBKl6N
+ gT9mpqcld00lldz8kEuJKIt5ZlFuEiiiAq/ioSjFE1TmBYFBhLk2k8bqdFaOls8lk+8t
+ 5xFD7a3TinIk8RScmKcjjp+oso5f+aN3+UZySnhAjLLfwWeyQ2N/qzYm6od6R1JwAAVD
+ InFEnL3J96DVzuvJ3Tvg/iDnya8bPbmglT63WoV8jcm16VirnlSxetxLJyQjGncY4Ax4
+ Gv1w==
+X-Gm-Message-State: AJIora8Zl+eMqjFm5umxcuxa/3gk6D8sXNp7WeZrejSN+NwX725KFcc4
+ s9ZdVaN6r0gFYv6uPJH8BLd+1JuSSLE1tQv5kvQ=
+X-Google-Smtp-Source: AGRyM1u1Ra2Q3Utuw+jNR8m1Bq23BMutz22TZy265+fHxY1KvQHPvHDjMhHgm3/wGPZzB0U13GK2YoYJ3dH+d4XV24k=
+X-Received: by 2002:a0d:df8d:0:b0:317:c206:2e7c with SMTP id
+ i135-20020a0ddf8d000000b00317c2062e7cmr8530176ywe.97.1655745629529; Mon, 20
+ Jun 2022 10:20:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="-74181308-1760291136-1655735486=:7141"
-X-Virus-Status: No
-X-Virus-Checker-Version: clamassassin 1.2.4 with clamdscan / ClamAV
- 0.103.6/26578/Mon Jun 20 10:06:11 2022 signatures .
-X-Mailman-Approved-At: Mon, 20 Jun 2022 17:50:48 +0000
+References: <20220620084156.2295093-1-yifan1.zhang@amd.com>
+In-Reply-To: <20220620084156.2295093-1-yifan1.zhang@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 20 Jun 2022 13:20:18 -0400
+Message-ID: <CADnq5_O4HXF+UYEncUcs0x+p3t4iYMiZqk=w-NSYrduKdLu6zQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdkfd: correct sdma queue number of sdma 6.0.1
+To: Yifan Zhang <yifan1.zhang@amd.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,57 +62,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, amd-gfx@lists.freedesktop.org
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ Tim Huang <Tim.Huang@amd.com>, Huang Rui <Ray.Huang@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
-
----74181308-1760291136-1655735486=:7141
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
-
-On Mon, 20 Jun 2022, Christian König wrote:
-
-> Am 20.06.22 um 13:40 schrieb Thomas Voegtle:
->>  On Mon, 20 Jun 2022, Christian König wrote:
->>
->>>  Hi Thomas,
->>>
->>>  [moving vger to bcc]
->>>
->>>  mhm, sounds like something isn't running in parallel any more.
->>>
->>>  We usually don't test the multimedia engines for this but we do test
->>>  gfx+compute, so I'm really wondering what goes wrong here.
->>>
->>>  Could you run some tests for me? Additional to that I'm going to raise
->>>  that issue with our multimedia guys later today.
->>
->>  Yes, I can run some tests for you. Which tests?
+On Mon, Jun 20, 2022 at 4:48 AM Yifan Zhang <yifan1.zhang@amd.com> wrote:
 >
-> Try this as root:
+> sdma 6.0.1 has 8 queues instead of 2.
 >
-> echo 1 > /sys/kernel/debug/tracing/events/dma_fence/dma_fence_init/enable
-> echo 1 > /sys/kernel/debug/tracing/events/dma_fence/dma_fence_signaled/enable
-> cat /sys/kernel/debug/tracing/trace_pipe > trace.log
+> Fixes: 2f68559102cb (drm/amdkfd: add GC 11.0.1 KFD support)
+> Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+
+> ---
+>  drivers/gpu/drm/amd/amdkfd/kfd_device.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> Then start the encoding in another shell, after it completed cancel the cat 
-> with cntr+c and save the log file.
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+> index bf4200457772..c8fee0dbfdcb 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+> @@ -75,7 +75,6 @@ static void kfd_device_info_set_sdma_info(struct kfd_dev *kfd)
+>         case IP_VERSION(5, 2, 3):/* YELLOW_CARP */
+>         case IP_VERSION(5, 2, 6):/* GC 10.3.6 */
+>         case IP_VERSION(5, 2, 7):/* GC 10.3.7 */
+> -       case IP_VERSION(6, 0, 1):
+>                 kfd->device_info.num_sdma_queues_per_engine = 2;
+>                 break;
+>         case IP_VERSION(4, 2, 0):/* VEGA20 */
+> @@ -90,6 +89,7 @@ static void kfd_device_info_set_sdma_info(struct kfd_dev *kfd)
+>         case IP_VERSION(5, 2, 4):/* DIMGREY_CAVEFISH */
+>         case IP_VERSION(5, 2, 5):/* BEIGE_GOBY */
+>         case IP_VERSION(6, 0, 0):
+> +       case IP_VERSION(6, 0, 1):
+>         case IP_VERSION(6, 0, 2):
+>                 kfd->device_info.num_sdma_queues_per_engine = 8;
+>                 break;
+> --
+> 2.35.1
 >
-> Do this one with the old kernel and once with the new one.
-
-
-    https://32h.de/tv/5.18.0-i5-trace.log.bz2
-    https://32h.de/tv/5.19.0-rc3-i5-trace.log.bz2
-
-
-I hope I have done this correctly.
-All necessary tracing things switched on?
-
-I want to add that this is a headless machine. No monitor connected.
-
-
----74181308-1760291136-1655735486=:7141--
-
