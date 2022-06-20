@@ -2,60 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2322F551004
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Jun 2022 08:02:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 976955511B4
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Jun 2022 09:43:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 658901131BD;
-	Mon, 20 Jun 2022 06:02:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23F4310E20E;
+	Mon, 20 Jun 2022 07:43:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com
- [IPv6:2607:f8b0:4864:20::1130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B1E61131B8;
- Mon, 20 Jun 2022 06:02:10 +0000 (UTC)
-Received: by mail-yw1-x1130.google.com with SMTP id
- 00721157ae682-31780ad7535so63329487b3.8; 
- Sun, 19 Jun 2022 23:02:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Xe3VeJwBL8Ebq+C8acPsdxpGtpDiQ/HFobU5cBrv3WU=;
- b=JGXEQN+I0XIHQ+X5Mcx0dO6wWlI7vTAu58RHk2tfY9oeE1RryAubJGzZLv3yuLijUw
- gydtnS0hDUSBpq9r3SsmFRmxKwivL+qEqqG4AeasEJPgKwGUW5ncwS8hDuaBe1by6iLC
- 4shKZoFhI0TDayMYjRURjmXduC89qZioy71wZUHaVlgavAIG9rFEBATExIyE2a7s/Lc/
- gNmY5EcMGCyLhl0+wKhutdbW2QJ5Poc9OGfm3v+PoOows2woHUi1qoC2FO9C8S35db6d
- p9G1eS85wqQTc2cRC0ho7twEyZvjDUtmTk7i+PE8vZwGGFv/J/4SsrlLus365LDRYX6v
- rN2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Xe3VeJwBL8Ebq+C8acPsdxpGtpDiQ/HFobU5cBrv3WU=;
- b=FyqSiPCL3XmQs48qco4oaDnw8DRgpF8gQQfxnbwJPQ9ukoJLGvAqDMCIvsl0B7aDf5
- VGFgjIDTB3Sdu9lpFwGFswff1F1y5xMInpcoSIRKy0fXgBTbcMJoD9JAdsQY+8XrmdV+
- PP8vqyhc3foHHNB9QieeUrVlqopEmrmOB/hHwN1E1IOp15jyVtKuHM4EAP665P6fG105
- gr0+GLU/r0xsbcQHX8ajd+3v4B0PVDvzgAkOl9A955037XW+SdLs+SJfgK/cOYha55m3
- SfUz5F2WTRuhoWg+k1quNzq47o7e78XbDFiHwjp+HoJ7UY/LXlmofzgp3JyjDNcw29zI
- wBuw==
-X-Gm-Message-State: AJIora8CabvXBQV9e7K+nv2SoGlfzNx/W1HDDsA/nsaWdmJCYrG7xegc
- 8atm1Ad9Brj1ySTQi//Q/qfq8bF0eszJ+eqKNe8=
-X-Google-Smtp-Source: AGRyM1tzeukUE0eoUNLmKpkTD0UfGuNi9OAgJD/BPDmnsr6lE4pkLipEhHJgaDKCB2nZwNfM9ZoCJ1FPCdi+Kl69/hM=
-X-Received: by 2002:a0d:f8c6:0:b0:2fe:ca9c:f937 with SMTP id
- i189-20020a0df8c6000000b002feca9cf937mr25655114ywf.62.1655704929245; Sun, 19
- Jun 2022 23:02:09 -0700 (PDT)
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org
+ [IPv6:2001:67c:2050:0:465::201])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B87E10E1DF;
+ Mon, 20 Jun 2022 07:43:00 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4LRM7h51Dcz9sSn;
+ Mon, 20 Jun 2022 09:42:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1655710976;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=9/qgr45ITIVfHRcxUnBcKXQY5EsInQrGn8ieAgke3WE=;
+ b=FhaPeZhw32bb/rB32/Hkm08oEPs/Bd8HpHsU3YOhtvPzEIT9lSqkWK/Q3f8emY33jOXScM
+ pz8Y04DyjS4VTuSoKr2R2ay2CAnYOCtdhlLACqKbFv901pK60QTNedB+38cGyu2+ipy4c4
+ tSY3Sjs4y2dqf84sF3U3v8I6UaKuYftyOiBBIPCBehNB6wLUQvpUYfn/EFWZZhXIKghPQL
+ TMN3EvFVRupsm122XrTZpliHb/MrtsOQ1sbXQ0Vpryuqj7fWPLPaAW4TDwDVLZFfLYe+A9
+ 7NqF3zVjoIRaL5bz7+wq7XKHyaCfoSmXmUkierInMFUP4yzOUZrkTtFXx1ojQA==
+Message-ID: <1ae832cb-5f02-273b-28f6-f8223b6b1dc8@mailbox.org>
+Date: Mon, 20 Jun 2022 09:42:55 +0200
 MIME-Version: 1.0
-References: <20220531200041.24904-1-alex.sierra@amd.com>
- <20220531200041.24904-2-alex.sierra@amd.com>
- <3ac89358-2ce0-7d0d-8b9c-8b0e5cc48945@redhat.com>
- <02ed2cb7-3ad3-8ffc-6032-04ae1853e234@amd.com>
- <CAFCwf11z5Q+2FPS1yPi6EwQuRqoJg_dLB-rYgtVwP-zQEdqjQQ@mail.gmail.com>
- <87bkuo898d.fsf@nvdebian.thelocal>
-In-Reply-To: <87bkuo898d.fsf@nvdebian.thelocal>
-From: Oded Gabbay <oded.gabbay@gmail.com>
-Date: Mon, 20 Jun 2022 09:01:42 +0300
-Message-ID: <CAFCwf11Lru4rHJ93gkCTMqfsWZ8Hcug4z=_t7B=G07bo7zsaFw@mail.gmail.com>
-Subject: Re: [PATCH v5 01/13] mm: add zone device coherent type memory support
-To: Alistair Popple <apopple@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH] drm/radeon: Add build directory to include path
+Content-Language: en-CA
+To: =?UTF-8?Q?Ernst_Sj=c3=b6strand?= <ernstp@gmail.com>,
+ Masahiro Yamada <masahiroy@kernel.org>
+References: <20220413161450.1854370-1-michel@daenzer.net>
+ <f425b789-5081-fa70-555f-7553d7cc5bd5@gmail.com>
+ <ca5ca8ab-9c48-8d81-2dd6-fbdfface6519@mailbox.org>
+ <abd87438-3ff4-6b62-81b4-6162d167348a@gmail.com>
+ <CADnq5_Npy02mWVMOs-TMQ9t6OLV8XFaSQFZ5iB=Y2q3OQgiQvw@mail.gmail.com>
+ <fe499d20-2667-5953-831a-d7668c5a3d18@mailbox.org>
+ <CAK7LNATdTaY6+FD4TuFgmb00=Qbx=7mmCi9onHv0zi=pdZysBQ@mail.gmail.com>
+ <8beac4f5-f7e8-31ab-bbf3-36a917979bfc@mailbox.org>
+ <c861e442-e09b-fe20-609c-05bdcb867663@mailbox.org>
+ <CAK7LNAQgFXjiT5Js2KDNxp+ep2O7cUVYra31-qZBKTQ_SffLOQ@mail.gmail.com>
+ <CAD=4a=W+fcuP_oVWJ1x1fPt5izEi1cT-sq7MiDCu+ps3MoJq9Q@mail.gmail.com>
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel.daenzer@mailbox.org>
+In-Reply-To: <CAD=4a=W+fcuP_oVWJ1x1fPt5izEi1cT-sq7MiDCu+ps3MoJq9Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: c6ee8b4d7a477595cc6
+X-MBO-RS-META: kwp764ou4jm67onfeixbtbq4ztgmuuqo
+X-Rspamd-Queue-Id: 4LRM7h51Dcz9sSn
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,150 +68,63 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Sierra Guiza, Alejandro \(Alex\)" <alex.sierra@amd.com>,
- rcampbell@nvidia.com,
+Cc: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>,
  Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- David Hildenbrand <david@redhat.com>, "Kuehling,
- Felix" <Felix.Kuehling@amd.com>, Matthew Wilcox <willy@infradead.org>,
- linux-xfs@vger.kernel.org, linux-mm <linux-mm@kvack.org>,
- =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Jason Gunthorpe <jgg@nvidia.com>,
- Andrew Morton <akpm@linux-foundation.org>, linux-ext4@vger.kernel.org,
- Christoph Hellwig <hch@lst.de>
+ Alex Deucher <alexander.deucher@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Alex Deucher <alexdeucher@gmail.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 20, 2022 at 3:33 AM Alistair Popple <apopple@nvidia.com> wrote:
->
->
-> Oded Gabbay <oded.gabbay@gmail.com> writes:
->
-> > On Fri, Jun 17, 2022 at 8:20 PM Sierra Guiza, Alejandro (Alex)
-> > <alex.sierra@amd.com> wrote:
-> >>
-> >>
-> >> On 6/17/2022 4:40 AM, David Hildenbrand wrote:
-> >> > On 31.05.22 22:00, Alex Sierra wrote:
-> >> >> Device memory that is cache coherent from device and CPU point of view.
-> >> >> This is used on platforms that have an advanced system bus (like CAPI
-> >> >> or CXL). Any page of a process can be migrated to such memory. However,
-> >> >> no one should be allowed to pin such memory so that it can always be
-> >> >> evicted.
-> >> >>
-> >> >> Signed-off-by: Alex Sierra <alex.sierra@amd.com>
-> >> >> Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
-> >> >> Reviewed-by: Alistair Popple <apopple@nvidia.com>
-> >> >> [hch: rebased ontop of the refcount changes,
-> >> >>        removed is_dev_private_or_coherent_page]
-> >> >> Signed-off-by: Christoph Hellwig <hch@lst.de>
-> >> >> ---
-> >> >>   include/linux/memremap.h | 19 +++++++++++++++++++
-> >> >>   mm/memcontrol.c          |  7 ++++---
-> >> >>   mm/memory-failure.c      |  8 ++++++--
-> >> >>   mm/memremap.c            | 10 ++++++++++
-> >> >>   mm/migrate_device.c      | 16 +++++++---------
-> >> >>   mm/rmap.c                |  5 +++--
-> >> >>   6 files changed, 49 insertions(+), 16 deletions(-)
-> >> >>
-> >> >> diff --git a/include/linux/memremap.h b/include/linux/memremap.h
-> >> >> index 8af304f6b504..9f752ebed613 100644
-> >> >> --- a/include/linux/memremap.h
-> >> >> +++ b/include/linux/memremap.h
-> >> >> @@ -41,6 +41,13 @@ struct vmem_altmap {
-> >> >>    * A more complete discussion of unaddressable memory may be found in
-> >> >>    * include/linux/hmm.h and Documentation/vm/hmm.rst.
-> >> >>    *
-> >> >> + * MEMORY_DEVICE_COHERENT:
-> >> >> + * Device memory that is cache coherent from device and CPU point of view. This
-> >> >> + * is used on platforms that have an advanced system bus (like CAPI or CXL). A
-> >> >> + * driver can hotplug the device memory using ZONE_DEVICE and with that memory
-> >> >> + * type. Any page of a process can be migrated to such memory. However no one
-> >> > Any page might not be right, I'm pretty sure. ... just thinking about special pages
-> >> > like vdso, shared zeropage, ... pinned pages ...
-> >>
-> >> Hi David,
-> >>
-> >> Yes, I think you're right. This type does not cover all special pages.
-> >> I need to correct that on the cover letter.
-> >> Pinned pages are allowed as long as they're not long term pinned.
-> >>
-> >> Regards,
-> >> Alex Sierra
-> >
-> > What if I want to hotplug this device's coherent memory, but I do
-> > *not* want the OS
-> > to migrate any page to it ?
-> > I want to fully-control what resides on this memory, as I can consider
-> > this memory
-> > "expensive". i.e. I don't have a lot of it, I want to use it for
-> > specific purposes and
-> > I don't want the OS to start using it when there is some memory pressure in
-> > the system.
->
-> This is exactly what MEMORY_DEVICE_COHERENT is for. Device coherent
-> pages are only allocated by a device driver and exposed to user-space by
-> a driver migrating pages to them with migrate_vma. The OS can't just
-> start using them due to memory pressure for example.
->
->  - Alistair
-Thanks for the explanation.
+On 2022-06-19 18:22, Ernst Sjöstrand wrote:
+> Den sön 19 juni 2022 kl 00:20 skrev Masahiro Yamada <masahiroy@kernel.org <mailto:masahiroy@kernel.org>>:
+> 
+>     On Wed, Jun 15, 2022 at 5:35 PM Michel Dänzer
+>     <michel.daenzer@mailbox.org <mailto:michel.daenzer@mailbox.org>> wrote:
+>     >
+>     > On 2022-04-14 18:57, Michel Dänzer wrote:
+>     > > On 2022-04-14 17:04, Masahiro Yamada wrote:
+>     > >> On Thu, Apr 14, 2022 at 10:50 PM Michel Dänzer
+>     > >> <michel.daenzer@mailbox.org <mailto:michel.daenzer@mailbox.org>> wrote:
+>     > >>> On 2022-04-14 15:34, Alex Deucher wrote:
+>     > >>>> On Thu, Apr 14, 2022 at 4:44 AM Christian König
+>     > >>>> <ckoenig.leichtzumerken@gmail.com <mailto:ckoenig.leichtzumerken@gmail.com>> wrote:
+>     > >>>>> Am 14.04.22 um 09:37 schrieb Michel Dänzer:
+>     > >>>>>>
+>     > >>>>>>   make -C build-amd64 M=drivers/gpu/drm
+>     > >>
+>     > >>
+>     > >> Maybe
+>     > >>
+>     > >>         make  O=build-arm64   drivers/gpu/drm/
+>     > >>
+>     > >> is the way you were searching for.
+>     > >>
+>     > >> It builds only drivers/gpu/drm/
+>     > >> in the separate directory.
+>     > >
+>     > > Indeed, that works.
+>     >
+>     > I've come to realize that this doesn't produce the actual *.ko modules though. Is there a trick for building the modules, but only under drivers/gpu/drm/ ?
+>     >
+>     >
+>     > --
+>     > Earthling Michel Dänzer            |                  https://redhat.com <https://redhat.com>
+>     > Libre software enthusiast          |         Mesa and Xwayland developer
+> 
+> 
+>     No.
+>     There is no way to build *.ko
+>     only under a specific directory.
+> 
+> 
+> Doesn't "make modules M=drivers/gpu/drm/" do that?
 
-I guess the commit message confused me a bit, especially these two sentences:
+That again hits the compile error the patch was supposed to address. Apparently M= isn't for this but for building out-of-tree modules.
 
-"Any page of a process can be migrated to such memory. However no one should be
-allowed to pin such memory so that it can always be evicted."
 
-I read them as if the OS is free to choose which pages are migrated to
-this memory,
-and anything is eligible for migration to that memory (and that's why
-we also don't
-allow it to pin memory there).
-
-If we are not allowed to pin anything there, can the device driver
-decide to disable
-any option for oversubscription of this memory area ?
-
-Let's assume the user uses this memory area for doing p2p with other
-CXL devices.
-In that case, I wouldn't want the driver/OS to migrate pages in and
-out of that memory...
-
-So either I should let the user pin those pages, or prevent him from
-doing (accidently or not)
-oversubscription in this memory area.
-
-wdyt ?
-
->
-> > Oded
-> >
-> >>
-> >> >
-> >> >> + * should be allowed to pin such memory so that it can always be evicted.
-> >> >> + *
-> >> >>    * MEMORY_DEVICE_FS_DAX:
-> >> >>    * Host memory that has similar access semantics as System RAM i.e. DMA
-> >> >>    * coherent and supports page pinning. In support of coordinating page
-> >> >> @@ -61,6 +68,7 @@ struct vmem_altmap {
-> >> >>   enum memory_type {
-> >> >>      /* 0 is reserved to catch uninitialized type fields */
-> >> >>      MEMORY_DEVICE_PRIVATE = 1,
-> >> >> +    MEMORY_DEVICE_COHERENT,
-> >> >>      MEMORY_DEVICE_FS_DAX,
-> >> >>      MEMORY_DEVICE_GENERIC,
-> >> >>      MEMORY_DEVICE_PCI_P2PDMA,
-> >> >> @@ -143,6 +151,17 @@ static inline bool folio_is_device_private(const struct folio *folio)
-> >> > In general, this LGTM, and it should be correct with PageAnonExclusive I think.
-> >> >
-> >> >
-> >> > However, where exactly is pinning forbidden?
-> >>
-> >> Long-term pinning is forbidden since it would interfere with the device
-> >> memory manager owning the
-> >> device-coherent pages (e.g. evictions in TTM). However, normal pinning
-> >> is allowed on this device type.
-> >>
-> >> Regards,
-> >> Alex Sierra
-> >>
-> >> >
+-- 
+Earthling Michel Dänzer            |                  https://redhat.com
+Libre software enthusiast          |         Mesa and Xwayland developer
