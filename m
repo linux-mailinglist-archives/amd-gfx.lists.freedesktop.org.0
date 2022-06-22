@@ -2,64 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB9C8554309
-	for <lists+amd-gfx@lfdr.de>; Wed, 22 Jun 2022 09:01:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF3DC5542FB
+	for <lists+amd-gfx@lfdr.de>; Wed, 22 Jun 2022 08:46:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42833113B19;
-	Wed, 22 Jun 2022 07:01:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 224931134BE;
+	Wed, 22 Jun 2022 06:46:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com
- [IPv6:2607:f8b0:4864:20::535])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94D43112DAF;
- Wed, 22 Jun 2022 00:26:23 +0000 (UTC)
-Received: by mail-pg1-x535.google.com with SMTP id d129so14592777pgc.9;
- Tue, 21 Jun 2022 17:26:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=sender:date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=HyU/ygfmhVGS6xWpbOKn6OEJd/jV8t0D8U8VB3gM6Kc=;
- b=mu03dInaeeI1tZbMR/CyJpnvw/YpqTdifEfhYjta2Ux2P8SHkCgTnUvgBBaXS9beN/
- jEtnM402ZNaDRKyZASY9xm3pAJDsGbb2jSN9UBCMKejyU4khd4diNZGlhzLol0FAN/2W
- qJscIAx0Rdb9l/yG8FsrhSSHyHN1fXSn0ZnG1o1SenOHwHOruWN6KHa+/e77SdHx9xGs
- eN97reRP+LVbK2hp5Hkm5jIAdjT7qn1HYpWBcUS1iHLQywz86vCq4sdR28d+Xg6Al6xK
- tcVbVNfE3v57Tbmv/2NXtnyMAh/CIeStnv/Tig3OoiNguQjwRAq/cHna06ZLOIXpLcFU
- 2JJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
- :references:mime-version:content-disposition:in-reply-to;
- bh=HyU/ygfmhVGS6xWpbOKn6OEJd/jV8t0D8U8VB3gM6Kc=;
- b=fV70oXSKROorFX88zpjv4YtF96IHPZLVNn2YAc7RqgzjlT+MCYIthhVIX9QKHux1si
- ARnSwm6Gf23fYusjRgAHC5mpBC0U3BN/RZeTRjz9wiEZuI/fvJRxn8efgGj9ah0MtXG3
- tWkEppP030i2OZdJQHEkVRyS8QmCTm5GHQhPI/yYhKVd50DrnLWZQWD+cBZSlC61pI2d
- lWr/9uc6P0r8+f635BiCmshNxhMS3FrBqv2PPtE4IxTIiLdd5RPj5pS4eBd7evMg22j9
- IPu9EbgOMgtYlO9j99/oxmtLDpnnidc8DT16mcewYuj3uTbfU0Tfl2eryC0ZSCQAuL55
- /rSQ==
-X-Gm-Message-State: AJIora9wvpn4XKdLcijcO0joIBKBB3vyzyTX723Fjsn4vExpTd9S5/wM
- rAf3EAAdQ+gH07OXxwmhbZI=
-X-Google-Smtp-Source: AGRyM1vzMGSpH7ukgiGn6qy8/xQjQhGjh5W38HhIBxIummnj04mvjrykHH7ZnKq8goM7KGK1USKZ+g==
-X-Received: by 2002:a65:6e04:0:b0:40d:26eb:8225 with SMTP id
- bd4-20020a656e04000000b0040d26eb8225mr562426pgb.138.1655857583046; 
- Tue, 21 Jun 2022 17:26:23 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
- by smtp.gmail.com with ESMTPSA id
- i6-20020a626d06000000b0051c09cdd71fsm11870070pfc.72.2022.06.21.17.26.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Jun 2022 17:26:20 -0700 (PDT)
-Date: Tue, 21 Jun 2022 17:26:19 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Alex Deucher <alexdeucher@gmail.com>
-Subject: Re: [PATCH] drm/amd/display: Add missing hard-float compile flags
- for PPC64 builds
-Message-ID: <20220622002619.GA3475450@roeck-us.net>
-References: <20220618232737.2036722-1-linux@roeck-us.net>
- <CADnq5_N1p53Orbjxfxd7Cwos0p8OVz1TbRm0rFaUnxQJwah61g@mail.gmail.com>
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2049.outbound.protection.outlook.com [40.107.243.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D32BD1134BE
+ for <amd-gfx@lists.freedesktop.org>; Wed, 22 Jun 2022 06:46:39 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ld4j0b8ny0Lbi9aVC2JObb6Mq/3Bto/FbxEfhf4lCa0B4b+du+gw6Ct7WzbhZ2rRKTgoUgYzE90nsGQqc8MRLx5Akf1wmpcNat/fGsjQXZNaK9mtJ+FC+zwEMhLk/u7ua9x8WAxKE1AVU0h6iP1IltA4RGkNyi1cPRoe7JB165Tz+YM/0cZYHPSglH7ib2WxeQctIfXdpVNfk37CGCRxdvz5AB9VC7/37q+22b4TJMRGsBupkamm+tz9Y2wwbJhAGdqVIw9TAcVLCTqlbvO4DoiX9HSmIbFLXMoWZvjRNrjbU6nkevojwzH1k/pt4rH4zy/Rv5bcZ9fSy4BH1hdvsg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DYhzLn2o7RL4WyRwXDKTH/WeOkzfHmO9hl80D49cqnw=;
+ b=GB5r/TU367Sljm0LUZJfrHLimef1+sKixN+BmFi0i0ObnZ+PLxsVQuq/nGIhAzlmc315T+BdT1BlfhIbAhIuIXI0M4dBOV68nv+VdVnUZTvqytD52772D3Vl1bJ55kiZPaLvqstbDH3TGWGeQykrpGQ9xRrI8jgA4X5wsn3dDPdiilF4wPeaSPYFdUruFaEgxJgW+Z6Cmcccfd09hXqrA2PwdPQ6ST7lMHsbsM1Dole2n5nmzzyDiz2I4jMcL6kncXyoyRSUbypykWV2TCoxiAbP8JLFHz7Xd83mI6z6c4byONMoZ1B0Kq5617EB4+9eB3wHCxLk0ABVP8ZYrkXetw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DYhzLn2o7RL4WyRwXDKTH/WeOkzfHmO9hl80D49cqnw=;
+ b=k6WLoXRT25XBCRCLBSPUZJVedFutAUC2wt0iqhyOjIe0mPHeWasXHqxgcEKi7TNOBxdhoWgSYDfKyjKdZG4HpjTBPDA3l9fsKxb5FbxevcguRkxx2/BMlNbnmR5/OQ1HnCMTC3O6t7oW7n30tDnkycbUgE/dZM3TCYTT9bGTpsk=
+Received: from DM6PR02CA0159.namprd02.prod.outlook.com (2603:10b6:5:332::26)
+ by MN2PR12MB3455.namprd12.prod.outlook.com (2603:10b6:208:d0::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.17; Wed, 22 Jun
+ 2022 06:46:27 +0000
+Received: from DM6NAM11FT068.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:332:cafe::f8) by DM6PR02CA0159.outlook.office365.com
+ (2603:10b6:5:332::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.19 via Frontend
+ Transport; Wed, 22 Jun 2022 06:46:27 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT068.mail.protection.outlook.com (10.13.173.67) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5353.14 via Frontend Transport; Wed, 22 Jun 2022 06:46:27 +0000
+Received: from ruiliji2-lsy-2.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 22 Jun
+ 2022 01:46:24 -0500
+From: "Ji, Ruili" <ruili.ji@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH v2] mdkfd: To flush tlb for MMHUB of GFX9 series
+Date: Wed, 22 Jun 2022 14:45:53 +0800
+Message-ID: <20220622064553.526856-1-ruili.ji@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CADnq5_N1p53Orbjxfxd7Cwos0p8OVz1TbRm0rFaUnxQJwah61g@mail.gmail.com>
-X-Mailman-Approved-At: Wed, 22 Jun 2022 07:01:56 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 355f881d-4d43-453e-0b74-08da541aee61
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3455:EE_
+X-Microsoft-Antispam-PRVS: <MN2PR12MB3455039AAD96BC98E217D2EA9BB29@MN2PR12MB3455.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 5NePWB/yDooDBDDkMKGHBxisE2UeOUIEuKPtuCjnhkyzA+cKKU0Djp02ADFj4lnoV0nSAJfSg2dYHzYgEvlDVmA2fi78NjlQ4fG3nxCLVfvs2+nWqYPPmFHbdE6gJdG8iFUI+RTebDwoHmXoxnIDPOGisPsgrpJa1YGPH4F2IvI6s7qfCoNI+SRZJzxzzT5CIoxUdJVhCEQklB5RzRzKAw/QVIQBxhcrsKeLBiEdJHgDw2Otu6BxTV/4RfEopaOlZnv9VBN/4NrBQmUYaKZXaqria8pRZGxfq3z8PSk1o54/sOvRU+q++uG3VUj8acCVpt17TrMQ09eA8l41PJ7kdAmZ7nOZm2rmFwNPS5msqtKTewDrnQNyZTCtZ0hw9j+lLMMQw+LgXqzSQMc9+CkYaoTeTshWmzH4X6kd2vPxaSxjjPxozIT1K/6bbP24dg/Z53WGBerV0HI6sRJelBxvwsNL2TAZUSKOUvxQdPWCWoVHUQ+sv33HEfHe/D9Nv4tLtjH7aVaaQdsFcfQx1jMVJDErQyig87PvL14/NnnE79Cx5EXNCIH6H5Hkr2Lqw4AfV3SSG/QRzA62Oy/YEP4nNEiGy5Mc0/MuaNhE2IhUZ80wKmpBjpvcK6kZjUq/+EjUqVHImw2g+DXmcmJUtkNGwDeYMxHW3WF1mmPe+nskHfk6ZxsKEjymJdnFWfrg2fZXc7vwvRFR8oCaV9cuBOW9tzhA1iB3LGDc1zXqHUevIZVYTjiMVk6Tb8YdKiTEnswiDtYDnQkXFlvKRLUSNCXCeK4YEdp3qEqVJcRJ0nuDuJI=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230016)(4636009)(39860400002)(346002)(396003)(376002)(136003)(40470700004)(46966006)(36840700001)(26005)(41300700001)(47076005)(5660300002)(7696005)(6666004)(83380400001)(336012)(426003)(2906002)(2616005)(1076003)(16526019)(186003)(36860700001)(4326008)(70586007)(70206006)(36756003)(86362001)(40460700003)(40480700001)(316002)(356005)(82310400005)(82740400003)(6916009)(54906003)(81166007)(8676002)(478600001)(8936002)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2022 06:46:27.0473 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 355f881d-4d43-453e-0b74-08da541aee61
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT068.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3455
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,128 +98,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, Michael Ellerman <mpe@ellerman.id.au>,
- "Siqueira, Rodrigo" <Rodrigo.Siqueira@amd.com>,
- LKML <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Melissa Wen <mwen@igalia.com>,
- David Airlie <airlied@linux.ie>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Harry Wentland <harry.wentland@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, "Dhillon,
- Jasdeep" <Jasdeep.Dhillon@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Daniel Axtens <dja@axtens.net>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Philip Yang <philip.yang@amd.com>,
+ Ruili Ji <ruiliji2@amd.com>, Aaron Liu <aaron.liu@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 20, 2022 at 05:51:04PM -0400, Alex Deucher wrote:
-> On Sat, Jun 18, 2022 at 7:27 PM Guenter Roeck <linux@roeck-us.net> wrote:
-> >
-> > ppc:allmodconfig builds fail with the following error.
-> >
-> > powerpc64-linux-ld:
-> >         drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.o
-> >                 uses hard float,
-> >         drivers/gpu/drm/amd/amdgpu/../display/dc/dcn31/dcn31_resource.o
-> >                 uses soft float
-> > powerpc64-linux-ld:
-> >         failed to merge target specific data of file
-> >         drivers/gpu/drm/amd/amdgpu/../display/dc/dcn31/dcn31_resource.o
-> > powerpc64-linux-ld:
-> >         drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.o
-> >                 uses hard float,
-> >         drivers/gpu/drm/amd/amdgpu/../display/dc/dcn315/dcn315_resource.o
-> >                 uses soft float
-> > powerpc64-linux-ld:
-> >         failed to merge target specific data of
-> >         file drivers/gpu/drm/amd/amdgpu/../display/dc/dcn315/dcn315_resource.o
-> > powerpc64-linux-ld:
-> >         drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.o
-> >                 uses hard float,
-> >         drivers/gpu/drm/amd/amdgpu/../display/dc/dcn316/dcn316_resource.o
-> >                 uses soft float
-> > powerpc64-linux-ld:
-> >         failed to merge target specific data of file
-> >         drivers/gpu/drm/amd/amdgpu/../display/dc/dcn316/dcn316_resource.o
-> >
-> > The problem was introduced with commit 41b7a347bf14 ("powerpc: Book3S
-> > 64-bit outline-only KASAN support") which adds support for KASAN. This
-> > commit in turn enables DRM_AMD_DC_DCN because KCOV_INSTRUMENT_ALL and
-> > KCOV_ENABLE_COMPARISONS are no longer enabled. As result, new files are
-> > compiled which lack the selection of hard-float.
-> >
-> > Fixes: 41b7a347bf14 ("powerpc: Book3S 64-bit outline-only KASAN support")
-> > Cc: Michael Ellerman <mpe@ellerman.id.au>
-> > Cc: Daniel Axtens <dja@axtens.net>
-> > Signed-off-by: Guenter Roeck <linux@roeck-us.net>
-> > ---
-> >  drivers/gpu/drm/amd/display/dc/dcn31/Makefile  | 4 ++++
-> >  drivers/gpu/drm/amd/display/dc/dcn315/Makefile | 4 ++++
-> >  drivers/gpu/drm/amd/display/dc/dcn316/Makefile | 4 ++++
-> >  3 files changed, 12 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/Makefile b/drivers/gpu/drm/amd/display/dc/dcn31/Makefile
-> > index ec041e3cda30..74be02114ae4 100644
-> > --- a/drivers/gpu/drm/amd/display/dc/dcn31/Makefile
-> > +++ b/drivers/gpu/drm/amd/display/dc/dcn31/Makefile
-> > @@ -15,6 +15,10 @@ DCN31 = dcn31_resource.o dcn31_hubbub.o dcn31_hwseq.o dcn31_init.o dcn31_hubp.o
-> >         dcn31_apg.o dcn31_hpo_dp_stream_encoder.o dcn31_hpo_dp_link_encoder.o \
-> >         dcn31_afmt.o dcn31_vpg.o
-> >
-> > +ifdef CONFIG_PPC64
-> > +CFLAGS_$(AMDDALPATH)/dc/dcn31/dcn31_resource.o := -mhard-float -maltivec
-> > +endif
-> 
-> This stuff was all moved as part of the FP rework in:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=26f4712aedbdf4b9f5e3888a50a2a4b130ee4a9b
-> @Siqueira, Rodrigo
-> , @Melissa Wen, @Dhillon, Jasdeep  can you take a look to understand
-> why this is necessary?  If we add back the PPC flags, I think we need
-> to add back the x86 ones as well.
-> 
+From: Ruili Ji <ruiliji2@amd.com>
 
-For my part I have no idea. All I can see is that powerpc:allmodconfig
-builds fail with the above errors. I have not seen any build errors with
-other architectures.
+amdgpu: [mmhub0] no-retry page fault (src_id:0 ring:40 vmid:8 pasid:32769, for process test_basic pid 3305 thread test_basic pid 3305)
+amdgpu: in page starting at address 0x00007ff990003000 from IH client 0x12 (VMC)
+amdgpu: VM_L2_PROTECTION_FAULT_STATUS:0x00840051
+amdgpu: Faulty UTCL2 client ID: MP1 (0x0)
+amdgpu: MORE_FAULTS: 0x1
+amdgpu: WALKER_ERROR: 0x0
+amdgpu: PERMISSION_FAULTS: 0x5
+amdgpu: MAPPING_ERROR: 0x0
+amdgpu: RW: 0x1
 
-Guenter
+When memory is allocated by kfd, no one triggers the tlb flush for MMHUB0.
+There is page fault from MMHUB0.
 
-> Alex
-> 
-> > +
-> >  AMD_DAL_DCN31 = $(addprefix $(AMDDALPATH)/dc/dcn31/,$(DCN31))
-> >
-> >  AMD_DISPLAY_FILES += $(AMD_DAL_DCN31)
-> > diff --git a/drivers/gpu/drm/amd/display/dc/dcn315/Makefile b/drivers/gpu/drm/amd/display/dc/dcn315/Makefile
-> > index 59381d24800b..1395c1ced8c5 100644
-> > --- a/drivers/gpu/drm/amd/display/dc/dcn315/Makefile
-> > +++ b/drivers/gpu/drm/amd/display/dc/dcn315/Makefile
-> > @@ -25,6 +25,10 @@
-> >
-> >  DCN315 = dcn315_resource.o
-> >
-> > +ifdef CONFIG_PPC64
-> > +CFLAGS_$(AMDDALPATH)/dc/dcn315/dcn315_resource.o := -mhard-float -maltivec
-> > +endif
-> > +
-> >  AMD_DAL_DCN315 = $(addprefix $(AMDDALPATH)/dc/dcn315/,$(DCN315))
-> >
-> >  AMD_DISPLAY_FILES += $(AMD_DAL_DCN315)
-> > diff --git a/drivers/gpu/drm/amd/display/dc/dcn316/Makefile b/drivers/gpu/drm/amd/display/dc/dcn316/Makefile
-> > index 819d44a9439b..c3d2dd78f1e2 100644
-> > --- a/drivers/gpu/drm/amd/display/dc/dcn316/Makefile
-> > +++ b/drivers/gpu/drm/amd/display/dc/dcn316/Makefile
-> > @@ -25,6 +25,10 @@
-> >
-> >  DCN316 = dcn316_resource.o
-> >
-> > +ifdef CONFIG_PPC64
-> > +CFLAGS_$(AMDDALPATH)/dc/dcn316/dcn316_resource.o := -mhard-float -maltivec
-> > +endif
-> > +
-> >  AMD_DAL_DCN316 = $(addprefix $(AMDDALPATH)/dc/dcn316/,$(DCN316))
-> >
-> >  AMD_DISPLAY_FILES += $(AMD_DAL_DCN316)
-> > --
-> > 2.35.1
-> >
+v2:fix indentation
+
+Signed-off-by: Ruili Ji <ruiliji2@amd.com>
+Reviewed-by: Philip Yang <philip.yang@amd.com>
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+index 1d0c9762ebfb..1dfd82d5d379 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+@@ -739,7 +739,8 @@ int amdgpu_amdkfd_flush_gpu_tlb_pasid(struct amdgpu_device *adev,
+ {
+ 	bool all_hub = false;
+ 
+-	if (adev->family == AMDGPU_FAMILY_AI)
++	if (adev->family == AMDGPU_FAMILY_AI ||
++                 adev->family == AMDGPU_FAMILY_RV)
+ 		all_hub = true;
+ 
+ 	return amdgpu_gmc_flush_gpu_tlb_pasid(adev, pasid, flush_type, all_hub);
+-- 
+2.25.1
+
