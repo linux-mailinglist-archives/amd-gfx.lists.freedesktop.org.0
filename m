@@ -2,56 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED6105587B5
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Jun 2022 20:38:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F3435589D0
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Jun 2022 22:05:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55A0210E2F9;
-	Thu, 23 Jun 2022 18:38:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B085410E360;
+	Thu, 23 Jun 2022 20:05:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com
- [IPv6:2a00:1450:4864:20::62a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C28010E2F9
- for <amd-gfx@lists.freedesktop.org>; Thu, 23 Jun 2022 18:38:24 +0000 (UTC)
-Received: by mail-ej1-x62a.google.com with SMTP id pk21so53157ejb.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 23 Jun 2022 11:38:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=uEvg8ksP884FCPRUrfk7RX07DEGGBNtrMwnYfPAZ8/k=;
- b=DT+9GCvPnBwOniueHmEgIFAM10NElA8hs7d4oGgM1fDdsUt1SrZnmliaYJ7qrbn+2s
- H4iJ5+vT/C/0RGmG7q1/ZYWd9zEqPTU5d4myzlmwAO2ldMwPQ2EpNcAMlRkzyUZurTcU
- djOrM4GqQB6jCtkBa8Iur22Cjm/krCpL6uDkap17WqYKBAmAXz95FS3g3U37DsSjPYcP
- GozF76i2JRPthUnM9kWp5Dhm/bbFy026P6SWFkqzI6Ur0iHE6ey51FUf4ThVg4s4Lay4
- KXC4mmyRvJGTC3S+d90PWtPzfGev5+m2qlB0IbYU8Z4TqzGHphocP06QZPdcAW89JIM+
- 7FQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=uEvg8ksP884FCPRUrfk7RX07DEGGBNtrMwnYfPAZ8/k=;
- b=Bm8L3OrkoJmMfd/ajnxYRgDYECYPHv90LVMK5QCg2kw/XBOrMx931BAAJ4ZDDrbY0T
- DgEgfyc5AwNbwV8BNTE8nof65fUPDUJ14GLemrCJ5tvixzQYPX8MLYy0I5aMC8+AfwtP
- OyW1Uy2Gi3chwRceU+kbukMweohRgoDJfeH/XnFCFc3RMVqIESy/yjmRLKQFC9g/j3T0
- F7yiR2i0/5wGSvNLFNAj+a+CY6tiQTjxp/uJGFYAVL6kNCcp5HRidQ+VqqsbKr6f2wof
- E/64yLrFfiRaxkknp294rndp1d7ONtYP++mkITjt5N6etZwaHjH6F708eeF5pQlnJeb+
- UqXQ==
-X-Gm-Message-State: AJIora/dc+yLt2xw+qojtPnunzGacVzDaJ/XeVd9adZ8W0/Dgag+W/gd
- Y19pNRrw5bN7nshy0QqgjfaUDU6JDgxeNCRLCxhAZPZB
-X-Google-Smtp-Source: AGRyM1s6Wd10QJcUeis+tBaBtqp5ASnqrAuz/XbjK9wLksFRSSxYxjiFA/+XZH7akhJ5rhk/GbmcQ+2jMx0XmghA7fY=
-X-Received: by 2002:a17:907:7f1c:b0:711:f3b4:da5 with SMTP id
- qf28-20020a1709077f1c00b00711f3b40da5mr9426383ejc.508.1656009502745; Thu, 23
- Jun 2022 11:38:22 -0700 (PDT)
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:3::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 694D810E760
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Jun 2022 19:59:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+ Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+ bh=FSMg2Z7yO0AcWYQ2gWnef9GPN8JvwvL0049CciGXkhQ=; b=47o098vAIvp02jqSoWGX2uS/Cm
+ 10e9UlhtbQoMVH78coRqkO/K06s/40+49doNoAxwtWQnabRjgKC51GhrInqJyR/0Ih61BMbNgechN
+ /GQp6Q+qRl4eYz796mv5wLVWpW02RYF8NosqID9MCcDDHHvaJ3II1/N+y3LXl0IqvbGIbje8Zzu1M
+ /QVRCcIqwFhnX8YxWyjYGPsF/D5Y5V4nFr4pgoRECbfM8gAelCZ8vinMoWPSCaF0rY1M71GmvvoRw
+ qyZwpf9m37ec4jXBkM/fz6k+QlmcHB/3MB1V6BGChKgez16N3p6aIw42vn/lZUQuCmwVvEn8oKvo+
+ HuDR16sg==;
+Received: from [2601:1c0:6280:3f0::aa0b]
+ by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1o4Sz4-00GeSN-Cy; Thu, 23 Jun 2022 19:59:22 +0000
+Message-ID: <082d7355-819e-a1a3-7d41-0e642a302e35@infradead.org>
+Date: Thu, 23 Jun 2022 12:58:46 -0700
 MIME-Version: 1.0
-References: <20220620003720.2049653-1-bas@basnieuwenhuizen.nl>
- <63049cc5-d963-4cb1-d10a-230462ef1aff@amd.com>
-In-Reply-To: <63049cc5-d963-4cb1-d10a-230462ef1aff@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 23 Jun 2022 14:38:10 -0400
-Message-ID: <CADnq5_Nahg3n-FEW+crk_ST5YaLU1gyuWzW3Dob=xeY5pDvdXw@mail.gmail.com>
-Subject: Re: [PATCH] Revert "drm/amd/display: ignore modifiers when checking
- for format support"
-To: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: linux-next: Tree for Jun 23 [drivers/gpu/drm/amd/amdgpu/amdgpu.ko]
+Content-Language: en-US
+To: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+References: <20220623165724.42f9bf9b@canb.auug.org.au>
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20220623165724.42f9bf9b@canb.auug.org.au>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Thu, 23 Jun 2022 20:05:34 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,132 +52,30 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <alexander.deucher@amd.com>,
- =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <marek.olsak@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Applied.  Thanks!
 
-Alex
 
-On Thu, Jun 23, 2022 at 9:34 AM Aurabindo Pillai
-<aurabindo.pillai@amd.com> wrote:
->
->
->
-> On 2022-06-19 20:37, Bas Nieuwenhuizen wrote:
-> > This reverts commit 5089c4a8ebea3c3ad9eedf038dad7098ebc06131.
-> >
-> > This breaks validation and enumeration of display capable modifiers.
-> >
-> > The early return true means the rest of the validation code never gets
-> > executed, and we need that to enumerate the right modifiers to userspace
-> > for the format.
-> >
-> > The modifiers that are in the initial list generated for a plane are the
-> > superset for all formats and we need the proper checks in this function
-> > to filter some of them out for formats with which they're invalid to be
-> > used.
-> >
-> > Furthermore, the safety contract here is that we validate the incoming
-> > modifiers to ensure the kernel can handle them and the display hardware
-> > can handle them. This includes e.g. rejecting multi-plane images with DCC.
-> >
-> > Note that the legacy swizzle mechanism allows encoding more swizzles, and
-> > at fb creation time we convert them to modifiers and reject those with
-> > no corresponding modifiers. If we are seeing rejections I'm happy to
-> > help define modifiers that correspond to those, or if absolutely needed
-> > implement a fallback path to allow for less strict validation of the
-> > legacy path.
-> >
-> > However, I'd like to revert this patch, since any of these is going to
-> > be a significant rework of the patch, and I'd rather not the regression
-> > gets into a release or forgotten in the meantime.
-> >
-> > Signed-off-by: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
-> > ---
-> >   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 53 +++----------------
-> >   1 file changed, 7 insertions(+), 46 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > index 60fb99b74713..698741fd39f4 100644
-> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > @@ -4936,7 +4936,8 @@ static bool dm_plane_format_mod_supported(struct drm_plane *plane,
-> >   {
-> >       struct amdgpu_device *adev = drm_to_adev(plane->dev);
-> >       const struct drm_format_info *info = drm_format_info(format);
-> > -     struct hw_asic_id asic_id = adev->dm.dc->ctx->asic_id;
-> > +     int i;
-> > +
-> >       enum dm_micro_swizzle microtile = modifier_gfx9_swizzle_mode(modifier) & 3;
-> >
-> >       if (!info)
-> > @@ -4952,53 +4953,13 @@ static bool dm_plane_format_mod_supported(struct drm_plane *plane,
-> >               return true;
-> >       }
-> >
-> > -     /* check if swizzle mode is supported by this version of DCN */
-> > -     switch (asic_id.chip_family) {
-> > -             case FAMILY_SI:
-> > -             case FAMILY_CI:
-> > -             case FAMILY_KV:
-> > -             case FAMILY_CZ:
-> > -             case FAMILY_VI:
-> > -                     /* asics before AI does not have modifier support */
-> > -                     return false;
-> > -                     break;
-> > -             case FAMILY_AI:
-> > -             case FAMILY_RV:
-> > -             case FAMILY_NV:
-> > -             case FAMILY_VGH:
-> > -             case FAMILY_YELLOW_CARP:
-> > -             case AMDGPU_FAMILY_GC_10_3_6:
-> > -             case AMDGPU_FAMILY_GC_10_3_7:
-> > -                     switch (AMD_FMT_MOD_GET(TILE, modifier)) {
-> > -                             case AMD_FMT_MOD_TILE_GFX9_64K_R_X:
-> > -                             case AMD_FMT_MOD_TILE_GFX9_64K_D_X:
-> > -                             case AMD_FMT_MOD_TILE_GFX9_64K_S_X:
-> > -                             case AMD_FMT_MOD_TILE_GFX9_64K_D:
-> > -                                     return true;
-> > -                                     break;
-> > -                             default:
-> > -                                     return false;
-> > -                                     break;
-> > -                     }
-> > -                     break;
-> > -             case AMDGPU_FAMILY_GC_11_0_0:
-> > -                     switch (AMD_FMT_MOD_GET(TILE, modifier)) {
-> > -                             case AMD_FMT_MOD_TILE_GFX11_256K_R_X:
-> > -                             case AMD_FMT_MOD_TILE_GFX9_64K_R_X:
-> > -                             case AMD_FMT_MOD_TILE_GFX9_64K_D_X:
-> > -                             case AMD_FMT_MOD_TILE_GFX9_64K_S_X:
-> > -                             case AMD_FMT_MOD_TILE_GFX9_64K_D:
-> > -                                     return true;
-> > -                                     break;
-> > -                             default:
-> > -                                     return false;
-> > -                                     break;
-> > -                     }
-> > -                     break;
-> > -             default:
-> > -                     ASSERT(0); /* Unknown asic */
-> > +     /* Check that the modifier is on the list of the plane's supported modifiers. */
-> > +     for (i = 0; i < plane->modifier_count; i++) {
-> > +             if (modifier == plane->modifiers[i])
-> >                       break;
-> >       }
-> > +     if (i == plane->modifier_count)
-> > +             return false;
-> >
-> >       /*
-> >        * For D swizzle the canonical modifier depends on the bpp, so check
->
-> We can expose an additional swizzle mode to work around the original
-> problem with usermode which doesn't support modifiers but supports
-> swizzle modes.
->
-> Reviewed-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
+On 6/22/22 23:57, Stephen Rothwell wrote:
+> Hi all,
+> 
+> Changes since 20220622:
+> 
+> 
+> The amdgpu tree lost its build failure.
+> The amdgpu tree gained a semantic conflict against the driver-core tree.
+> 
+
+on i386:
+
+ERROR: modpost: "__umoddi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__floatunsidf" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__muldf3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__nedf2" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+
+
+-- 
+~Randy
