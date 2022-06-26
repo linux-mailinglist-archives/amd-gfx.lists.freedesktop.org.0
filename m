@@ -2,79 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E156F55B993
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Jun 2022 14:51:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E71FE55B997
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Jun 2022 14:51:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A04DA113D94;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4E10113DA3;
 	Mon, 27 Jun 2022 12:51:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DD0610F72B
- for <amd-gfx@lists.freedesktop.org>; Sun, 26 Jun 2022 14:46:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1656254789;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=5EXh2xkTs1zBkhfCl8CTHqf9DxClLVCKfcSwd9L8zzg=;
- b=PS9HfYGZyH9LNQ7CyYhQq9TjtRh9G9t3eGXI7nxEbTPoFiTXyPbIaCZHI0wbeFZaQOVymd
- vOEIWHfrEu2oNqMSBJjQ91YzPi2mF8v7RXeZhax5J2gshxXzJw0DkX8bcRxpkeuy2JxvY6
- 6QuL6/uLGPyD80kVsU+bjcnaIPvbrRc=
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
- [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-675-Q3-R8B_SO9KiXwcS_JEYyg-1; Sun, 26 Jun 2022 10:46:20 -0400
-X-MC-Unique: Q3-R8B_SO9KiXwcS_JEYyg-1
-Received: by mail-qv1-f70.google.com with SMTP id
- 10-20020a0562140cca00b004702e8ce21bso7130783qvx.22
- for <amd-gfx@lists.freedesktop.org>; Sun, 26 Jun 2022 07:46:20 -0700 (PDT)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com
+ [IPv6:2a00:1450:4864:20::62b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70DF810E160
+ for <amd-gfx@lists.freedesktop.org>; Sun, 26 Jun 2022 18:54:45 +0000 (UTC)
+Received: by mail-ej1-x62b.google.com with SMTP id d2so3005392ejy.1
+ for <amd-gfx@lists.freedesktop.org>; Sun, 26 Jun 2022 11:54:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google;
+ h=mime-version:from:date:message-id:subject:to:cc;
+ bh=lFVUiMK8367I4tCKgM57m0mtqed/o+uPQT3BEO7ky08=;
+ b=R492Zjh+q38rM4qIEoyPnAa3NRueOnjdDl4MNW+ScG+ZEs6CgqgoPU4KtgGmupFrUM
+ ggaEkvz2f1LnqTxIdj28hN7PhBVAecATC4m4vO6U5foweG7xx6fIC/6EpDMeHGAlqmm4
+ FikOwuJ0ZonoK2aTejYiS9gWXr4OFNZmvScf4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=5EXh2xkTs1zBkhfCl8CTHqf9DxClLVCKfcSwd9L8zzg=;
- b=7IpRzXaMu/5zPBh4Jc1XRDM07brgmxVc18gEUcUCMrpGiGBdjZQW+DbMTw4XpW1zrX
- mErD1n3BZxkuykOFrGJEXE8POtGcqhbovGSca1bTJXsKxAtCQXsWL33CHwY0VmeU0dDH
- hrAz17PenSRh1PVLGDky8WpIlrZ7VdT8AwfuyP8LohHEFdIUWFCMoEuzJASUVBB6M7tY
- MFmeSTSkbyZmxc3C6r0qo02heu6kbNVvip8KVqC22m13P8dDmmIw4x6LpAUsUIJS2QgP
- o6aQqRDELzt7B8uU6gYH0F/HnKpe6OLWHOu7DyQzsMPqyQuFz/Y4NxrfbNmDKk3kRXEC
- pZHw==
-X-Gm-Message-State: AJIora+lbj8/o44o66k3B7DzBnAPiJtrcbKlKGla5KmBVcl1k30/phGM
- JCJOvJCWQqUoXmFuYnkTWsdz74cQ1vDWMEi1lPwW4WcyqzLLKOWmIikBFMZyobKshofsdBnj9yz
- Ln7Hr6Lu5fltmQtOWPjOZt2m4CQ==
-X-Received: by 2002:a05:6214:1c49:b0:470:5f70:4ab1 with SMTP id
- if9-20020a0562141c4900b004705f704ab1mr6041417qvb.13.1656254780353; 
- Sun, 26 Jun 2022 07:46:20 -0700 (PDT)
-X-Google-Smtp-Source: AGRyM1vwKpbQh1t2Fwl4Ge8LmFUOf/3X70OZcbrAYYkN7/IZ4bcE826TN7H5F8YkD5GlSQNHaim5WA==
-X-Received: by 2002:a05:6214:1c49:b0:470:5f70:4ab1 with SMTP id
- if9-20020a0562141c4900b004705f704ab1mr6041396qvb.13.1656254780138; 
- Sun, 26 Jun 2022 07:46:20 -0700 (PDT)
-Received: from dell-per740-01.7a2m.lab.eng.bos.redhat.com
- (nat-pool-bos-t.redhat.com. [66.187.233.206])
- by smtp.gmail.com with ESMTPSA id
- 22-20020ac85916000000b00317bcb6ad2csm5343266qty.17.2022.06.26.07.46.18
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 26 Jun 2022 07:46:19 -0700 (PDT)
-From: Tom Rix <trix@redhat.com>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@linux.ie, daniel@ffwll.ch, Qingqing.Zhuo@amd.com,
- mario.limonciello@amd.com, nicholas.kazlauskas@amd.com,
- aurabindo.pillai@amd.com, maira.canal@usp.br
-Subject: [PATCH] drm/amd/display: change to_dal_irq_source_dnc32() storage
- class specifier to static
-Date: Sun, 26 Jun 2022 10:46:15 -0400
-Message-Id: <20220626144615.2227149-1-trix@redhat.com>
-X-Mailer: git-send-email 2.27.0
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+ bh=lFVUiMK8367I4tCKgM57m0mtqed/o+uPQT3BEO7ky08=;
+ b=cUrGFQTzUaTWWqXAXM8BgedgEDsD4RM8T/PDi7PojmT00HQ7wKwUZAGfq40lA30ukJ
+ 5W5r4crAugyl7ekt3zrIwRW7TEBHsviyGYpTkNOZcMudB6037AA0g2KcCO0fiQA27d9b
+ Sd+4aW+uJJl5i3/OYm/p/ZCHkjQ2zA+nfaZQPVmljR2H2sP1Q+i3hFWZnifHFtCC8nAk
+ 7lUaUtTS63yzuMMaNDTszenDuzZHIFr6L0n6ErKOQz0GdxYbm5j0dh/USOogM1SDa5rm
+ g/b9UmW/aL/3qo2dAQjwGanC+Htu2X+uSV2mzMNWOPD0kV230IK9jZd9molBefjNnzy2
+ jAqg==
+X-Gm-Message-State: AJIora9nDhpbRmDi30kX2EWhKQVGBkgS594QaPoOAtq5JzcXOFk8tJnx
+ 7z+nxU3WixYMOY9baP3HiBnI/rY/X9w/3AaZ
+X-Google-Smtp-Source: AGRyM1sNHJshI7FSgQqv0cW/MaZk9XrLBafKvnxbYimDXXD/jqSkWOmbNNzq7pPT8O1DWiOkNZtPOQ==
+X-Received: by 2002:a17:907:1c19:b0:711:e5f9:2ec7 with SMTP id
+ nc25-20020a1709071c1900b00711e5f92ec7mr9206942ejc.518.1656269683747; 
+ Sun, 26 Jun 2022 11:54:43 -0700 (PDT)
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com.
+ [209.85.128.41]) by smtp.gmail.com with ESMTPSA id
+ s19-20020a1709062ed300b00722dcee9ea0sm4023320eji.125.2022.06.26.11.54.42
+ for <amd-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 26 Jun 2022 11:54:42 -0700 (PDT)
+Received: by mail-wm1-f41.google.com with SMTP id f190so3861018wma.5
+ for <amd-gfx@lists.freedesktop.org>; Sun, 26 Jun 2022 11:54:42 -0700 (PDT)
+X-Received: by 2002:a05:600c:4ec9:b0:39c:69c7:715d with SMTP id
+ g9-20020a05600c4ec900b0039c69c7715dmr15902172wmq.154.1656269682131; Sun, 26
+ Jun 2022 11:54:42 -0700 (PDT)
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"; x-default=true
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Sun, 26 Jun 2022 11:54:26 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wh42rU5mKU6=PCK5tdkYjh7r31dGNmYdHwqpFnRFvVudA@mail.gmail.com>
+Message-ID: <CAHk-=wh42rU5mKU6=PCK5tdkYjh7r31dGNmYdHwqpFnRFvVudA@mail.gmail.com>
+Subject: Annoying AMDGPU boot-time warning due to simplefb / amdgpu resource
+ clash
+To: Alex Deucher <alexander.deucher@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Zack Rusin <zackr@vmware.com>, 
+ Hans de Goede <hdegoede@redhat.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Mon, 27 Jun 2022 12:51:35 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,36 +74,56 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tom Rix <trix@redhat.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: dri-devel <dri-devel@lists.freedesktop.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-sparse reports
-drivers/gpu/drm/amd/amdgpu/../display/dc/irq/dcn32/irq_service_dcn32.c:39:20: warning: symbol 'to_dal_irq_source_dcn32' was not declared. Should it be static?
+So this has been going on for a while, and it's quite annoying.
 
-to_dal_irq_source_dnc32() is only referenced in irq_service_dnc32.c, so change its
-storage class specifier to static.
+At bootup, my main desktop (Threadripper 3970X with radeon graphics)
+now complains about
 
-Fixes: 0efd4374f6b4 ("drm/amd/display: add dcn32 IRQ changes")
-Signed-off-by: Tom Rix <trix@redhat.com>
----
- drivers/gpu/drm/amd/display/dc/irq/dcn32/irq_service_dcn32.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+  resource sanity check: requesting [mem 0xd0000000-0xdfffffff], which
+spans more than BOOTFB [mem 0xd0000000-0xd02fffff]
 
-diff --git a/drivers/gpu/drm/amd/display/dc/irq/dcn32/irq_service_dcn32.c b/drivers/gpu/drm/amd/display/dc/irq/dcn32/irq_service_dcn32.c
-index 3a213ca2f077..b1012fa1977b 100644
---- a/drivers/gpu/drm/amd/display/dc/irq/dcn32/irq_service_dcn32.c
-+++ b/drivers/gpu/drm/amd/display/dc/irq/dcn32/irq_service_dcn32.c
-@@ -36,7 +36,7 @@
- 
- #define DCN_BASE__INST0_SEG2                       0x000034C0
- 
--enum dc_irq_source to_dal_irq_source_dcn32(
-+static enum dc_irq_source to_dal_irq_source_dcn32(
- 		struct irq_service *irq_service,
- 		uint32_t src_id,
- 		uint32_t ext_id)
--- 
-2.27.0
+and then gives me a nasty callchain that is basically the amdgpu probe
+sequence ending in amdgpu_bo_init() doing the
+arch_io_reserve_memtype_wc() which is then what complains.
 
+That "BOOTFB" resource is from sysfb_simplefb.c, and I think what
+started triggering this is commit c96898342c38 ("drivers/firmware:
+Don't mark as busy the simple-framebuffer IO resource").
+
+Because it turns out that that removed the IORESOURCE_BUSY, which in
+turn is what makes the resource conflict code complain about it now,
+because
+
+                /*
+                 * if a resource is "BUSY", it's not a hardware resource
+                 * but a driver mapping of such a resource; we don't want
+                 * to warn for those; some drivers legitimately map only
+                 * partial hardware resources. (example: vesafb)
+                 */
+
+so the issue is that now the resource code - correctly - says "hey,
+you have *two* conflicting driver mappings".
+
+And that commit claims it did it because "which can lead to drivers
+requesting the same memory resource to fail", but - once again - the
+link in the commit that might actually tell more is just one of those
+useless patch submission links again.
+
+So who knows why that commit was actually done, but it's causing annoyance.
+
+If simplefb is actually still using that frame buffer, it's a problem.
+If it isn't, then maybe that resource should have been released?
+
+I really think that commit c96898342c38 is buggy. It talks about "let
+drivers to request it as busy instead", but then it registers a
+resource that isn't actually a proper real resource. It's just a
+random incomplete chunk of the actual real thing, so it will still
+interfere with resource allocation, and in fact now interferes even
+with that "set memtype" because of this valid warning.
+
+             Linus
