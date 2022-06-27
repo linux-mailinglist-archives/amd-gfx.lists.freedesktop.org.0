@@ -1,68 +1,54 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E71FE55B997
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Jun 2022 14:51:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22AE055B978
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Jun 2022 14:18:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4E10113DA3;
-	Mon, 27 Jun 2022 12:51:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22E21112F6D;
+	Mon, 27 Jun 2022 12:18:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com
- [IPv6:2a00:1450:4864:20::62b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70DF810E160
- for <amd-gfx@lists.freedesktop.org>; Sun, 26 Jun 2022 18:54:45 +0000 (UTC)
-Received: by mail-ej1-x62b.google.com with SMTP id d2so3005392ejy.1
- for <amd-gfx@lists.freedesktop.org>; Sun, 26 Jun 2022 11:54:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=mime-version:from:date:message-id:subject:to:cc;
- bh=lFVUiMK8367I4tCKgM57m0mtqed/o+uPQT3BEO7ky08=;
- b=R492Zjh+q38rM4qIEoyPnAa3NRueOnjdDl4MNW+ScG+ZEs6CgqgoPU4KtgGmupFrUM
- ggaEkvz2f1LnqTxIdj28hN7PhBVAecATC4m4vO6U5foweG7xx6fIC/6EpDMeHGAlqmm4
- FikOwuJ0ZonoK2aTejYiS9gWXr4OFNZmvScf4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
- bh=lFVUiMK8367I4tCKgM57m0mtqed/o+uPQT3BEO7ky08=;
- b=cUrGFQTzUaTWWqXAXM8BgedgEDsD4RM8T/PDi7PojmT00HQ7wKwUZAGfq40lA30ukJ
- 5W5r4crAugyl7ekt3zrIwRW7TEBHsviyGYpTkNOZcMudB6037AA0g2KcCO0fiQA27d9b
- Sd+4aW+uJJl5i3/OYm/p/ZCHkjQ2zA+nfaZQPVmljR2H2sP1Q+i3hFWZnifHFtCC8nAk
- 7lUaUtTS63yzuMMaNDTszenDuzZHIFr6L0n6ErKOQz0GdxYbm5j0dh/USOogM1SDa5rm
- g/b9UmW/aL/3qo2dAQjwGanC+Htu2X+uSV2mzMNWOPD0kV230IK9jZd9molBefjNnzy2
- jAqg==
-X-Gm-Message-State: AJIora9nDhpbRmDi30kX2EWhKQVGBkgS594QaPoOAtq5JzcXOFk8tJnx
- 7z+nxU3WixYMOY9baP3HiBnI/rY/X9w/3AaZ
-X-Google-Smtp-Source: AGRyM1sNHJshI7FSgQqv0cW/MaZk9XrLBafKvnxbYimDXXD/jqSkWOmbNNzq7pPT8O1DWiOkNZtPOQ==
-X-Received: by 2002:a17:907:1c19:b0:711:e5f9:2ec7 with SMTP id
- nc25-20020a1709071c1900b00711e5f92ec7mr9206942ejc.518.1656269683747; 
- Sun, 26 Jun 2022 11:54:43 -0700 (PDT)
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com.
- [209.85.128.41]) by smtp.gmail.com with ESMTPSA id
- s19-20020a1709062ed300b00722dcee9ea0sm4023320eji.125.2022.06.26.11.54.42
- for <amd-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 26 Jun 2022 11:54:42 -0700 (PDT)
-Received: by mail-wm1-f41.google.com with SMTP id f190so3861018wma.5
- for <amd-gfx@lists.freedesktop.org>; Sun, 26 Jun 2022 11:54:42 -0700 (PDT)
-X-Received: by 2002:a05:600c:4ec9:b0:39c:69c7:715d with SMTP id
- g9-20020a05600c4ec900b0039c69c7715dmr15902172wmq.154.1656269682131; Sun, 26
- Jun 2022 11:54:42 -0700 (PDT)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF89D1125D4;
+ Mon, 27 Jun 2022 12:18:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1656332306; x=1687868306;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=wIym4g3JKPLQszdNyFyxZB8GVvwge3rVq3pvgiSSbI8=;
+ b=lRu4JHRg1QOTi+1sHIAtTFM9TTHVwiBOIvdsDn1zQPICsEw6klwSmM35
+ /xVKxJMRx42N4JziRnAMh8hs8K+WqTYwx2bMmWK8FcPS+L4RxNrpdQG9Z
+ +7a1AebkPBnmjSRssi0AA7QHGAj4bplukSZ/Qmgj6P98Ds4O1lAmWWlfU
+ gVXYkcmtIB9ouHtyaRopbQMlIDqc4E3Z60ew8u+4/DK3secks+m3bwCCA
+ HBM506YSMTX0X5oCg/GTB+ebyqVORBP6zbRU1E59cie9Owlhb82uQOrrK
+ vLfm/Td1BOCsaZ05DTJjce1lZLjwhzVp/SQTrsKOiLPqL7Yjta07Py96j g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10390"; a="264479332"
+X-IronPort-AV: E=Sophos;i="5.92,226,1650956400"; d="scan'208";a="264479332"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2022 05:18:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,226,1650956400"; d="scan'208";a="622531636"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.161])
+ by orsmga001.jf.intel.com with SMTP; 27 Jun 2022 05:18:02 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 27 Jun 2022 15:18:02 +0300
+Date: Mon, 27 Jun 2022 15:18:02 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Melissa Wen <mwen@igalia.com>
+Subject: Re: [RFC PATCH 4/5] drm/drm_color_mgmt: add 3D LUT to color mgmt
+ properties
+Message-ID: <Yrmf+mWk13qkcsfs@intel.com>
+References: <20220619223104.667413-1-mwen@igalia.com>
+ <20220619223104.667413-5-mwen@igalia.com>
 MIME-Version: 1.0
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Sun, 26 Jun 2022 11:54:26 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wh42rU5mKU6=PCK5tdkYjh7r31dGNmYdHwqpFnRFvVudA@mail.gmail.com>
-Message-ID: <CAHk-=wh42rU5mKU6=PCK5tdkYjh7r31dGNmYdHwqpFnRFvVudA@mail.gmail.com>
-Subject: Annoying AMDGPU boot-time warning due to simplefb / amdgpu resource
- clash
-To: Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Javier Martinez Canillas <javierm@redhat.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Zack Rusin <zackr@vmware.com>, 
- Hans de Goede <hdegoede@redhat.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Mon, 27 Jun 2022 12:51:35 +0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220619223104.667413-5-mwen@igalia.com>
+X-Patchwork-Hint: comment
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,56 +60,42 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: tzimmermann@suse.de, airlied@linux.ie, Rodrigo.Siqueira@amd.com,
+ dri-devel@lists.freedesktop.org, Xinhui.Pan@amd.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, nikola.cornij@amd.com,
+ bhawanpreet.lakha@amd.com, sunpeng.li@amd.com, alex.hung@amd.com,
+ amd-gfx@lists.freedesktop.org, daniel@ffwll.ch, alexander.deucher@amd.com,
+ seanpaul@chromium.org, nicholas.kazlauskas@amd.com, harry.wentland@amd.com,
+ christian.koenig@amd.com, sungjoon.kim@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-So this has been going on for a while, and it's quite annoying.
+On Sun, Jun 19, 2022 at 09:31:03PM -0100, Melissa Wen wrote:
+> Add 3D LUT for gammar correction using a 3D lookup table.  The position
+> in the color correction pipeline where 3D LUT is applied depends on hw
+> design, being after CTM or gamma. If just after CTM, a shaper lut must
+> be set to shape the content for a non-linear space. That details should
+> be handled by the driver according to its color capabilities.
 
-At bootup, my main desktop (Threadripper 3970X with radeon graphics)
-now complains about
+I also cooked up a WIP 3D LUT support some time ago for Intel hw:
+https://github.com/vsyrjala/linux/commits/3dlut
+But that dried up due to having no userspace for it.
 
-  resource sanity check: requesting [mem 0xd0000000-0xdfffffff], which
-spans more than BOOTFB [mem 0xd0000000-0xd02fffff]
+I also cooked up some basic igts for it:
+https://patchwork.freedesktop.org/series/90165/
 
-and then gives me a nasty callchain that is basically the amdgpu probe
-sequence ending in amdgpu_bo_init() doing the
-arch_io_reserve_memtype_wc() which is then what complains.
+<snip>
+> + * “LUT3D”:
+> + *	Blob property to set the 3D LUT mapping pixel data after the color
+> + *	transformation matrix and before gamma 1D lut correction.
 
-That "BOOTFB" resource is from sysfb_simplefb.c, and I think what
-started triggering this is commit c96898342c38 ("drivers/firmware:
-Don't mark as busy the simple-framebuffer IO resource").
+On Intel hw the 3DLUT is after the gamma LUT in the pipeline, which is
+where I placed it in my branch.
 
-Because it turns out that that removed the IORESOURCE_BUSY, which in
-turn is what makes the resource conflict code complain about it now,
-because
+There is now some discussion happening about exposing some
+kind of color pipeline description/configuration properties:
+https://gitlab.freedesktop.org/pq/color-and-hdr/-/issues/11
 
-                /*
-                 * if a resource is "BUSY", it's not a hardware resource
-                 * but a driver mapping of such a resource; we don't want
-                 * to warn for those; some drivers legitimately map only
-                 * partial hardware resources. (example: vesafb)
-                 */
-
-so the issue is that now the resource code - correctly - says "hey,
-you have *two* conflicting driver mappings".
-
-And that commit claims it did it because "which can lead to drivers
-requesting the same memory resource to fail", but - once again - the
-link in the commit that might actually tell more is just one of those
-useless patch submission links again.
-
-So who knows why that commit was actually done, but it's causing annoyance.
-
-If simplefb is actually still using that frame buffer, it's a problem.
-If it isn't, then maybe that resource should have been released?
-
-I really think that commit c96898342c38 is buggy. It talks about "let
-drivers to request it as busy instead", but then it registers a
-resource that isn't actually a proper real resource. It's just a
-random incomplete chunk of the actual real thing, so it will still
-interfere with resource allocation, and in fact now interferes even
-with that "set memtype" because of this valid warning.
-
-             Linus
+-- 
+Ville Syrjälä
+Intel
