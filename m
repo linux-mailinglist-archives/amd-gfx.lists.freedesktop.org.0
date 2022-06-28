@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA8A555E57A
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jun 2022 16:51:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4B2255E57E
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jun 2022 16:51:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5219D10F9BE;
-	Tue, 28 Jun 2022 14:51:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12D8A10FA9F;
+	Tue, 28 Jun 2022 14:51:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2089.outbound.protection.outlook.com [40.107.92.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 251B910F9D4
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jun 2022 14:51:26 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1anam02on2075.outbound.protection.outlook.com [40.107.96.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8074310F9D4
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jun 2022 14:51:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KxXy6jLNpYgNKs3t8SMzecdAl4SFGjDPGwm+sqY018DgBuUNJPrGlbOhntRXHrD44ekukro9oDWQgjQO0OmCYRJVh3damTzYWsNwRq307Wm/4tT1eF90X5GEzJF2LbxGgF5d3MjqvoBqbK/Hdd/CIGvTZjNAZHjliAc/2fn9ku82d/eGFE5Uwp9zkTcB4wMV8PwbN5czsbRv8x72xDvyNlvAf3vXQvSJsXVOi47qt5H68lAGfW3TAlQ0dQs5whAzKunZkn0qIoa52EoZIAntnky73xkywb+Zqd6PNEr6FzyIBImhB7BDlEjoSE0PYUA2dtWPM1c1mr9KlzkpYQInew==
+ b=WnKprrHcGEjGMbfR0ORSrshR3mFGoqTfmxE8YY7RWRDIOajqN4gQTJVvas6Y5W+1N2PhBx9ePG7x+m6nNi+kr6oRm2MHgFAMBUKrrLlOfH1eHcN8YAa4HKZ1bWNqm11lrU22Nnq94sFgGDBTBL8QSQaSdCEk+sHB6wCEOKvi5WVXhSUz/vfQYaGEcGs/A6JfblOVDCDD12vwUS0rwcRCAbXaxeDIMQjetzIPB85MhbOqCYD1C4mbJscHPefflSjsmgAH9NuYiaqlvV8wUtIc/KTfu98Osads7cBAcJ/0nSVgXfiqo+kZ+9p5GOZAJCOhz9Ma/Hd5Y+6l2E4zArnj/Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+dioVEv4UGJ6P3Kabr4Y38qLb12MFxrJb/kr1blJUC0=;
- b=JArVDaD3AUsJfMdpjeN7PTmt8JNOUU59a5Ozb3qn/5mE4MqkuavtKhhWt8mAFMgOJVZU9/wYTx5EEOV+33j+k2UCeibghA6i1v7LZkVWWZKv9H2dzLPDZp68W43Vl3zaEkCM03feDeK1mWeXwxmwoahq+qWnueCAEQeoyEd9bf78gFLxwnaR/8T2CBuMvsBLc+MwfiDcu74bFrNm2FQ/a/0MaQIVF8XlzAHGz52idhhNhgaSnXDZKSknp2nFZ3olHPygRnZJp87w6RoTaASTaBD9zEitzjXxIfX70GKF/BzYt5nNSjTF619nqg0G/8vwseqf78UUc4u5bhQ/HOrXcA==
+ bh=Z/PZozAZDuFwSM+LLoFH5SdnzpiV2YtOAzvzRnbwL8c=;
+ b=Oe4sFfei717Subn/pEWGARsCR73hvfsGDPVZbFe/7IWt/mq8ZgXPXrhVpdeK5SDfQMRuZVIm249VNTZc25QjteDsvdYhqyCRiz2LAds/VcDuMfOJcz6RfQ5Ja9XnlgpFFiGWudrPc5Dxl7EoaIaVpum6bIlAvQg2C8M+fTo39yu/dYz+KFVjrD3ZYzBTAdbViyNslaKslavno1RQu1nzT0m1inbpUn90IAs2W7H0aMURfdnst0oXEQkNoKNcKCf7emlZzm2JAhshCINTg9p4sXf09NZPowX4rXCYcSwmLZNCSsdOpbyuMl9AsWlDv9QXlGCrL6vLDP34n6fVPX4VYg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+dioVEv4UGJ6P3Kabr4Y38qLb12MFxrJb/kr1blJUC0=;
- b=hw6U7cRUs2LvCTRUsW8hHt5/uRw1W56h3/D5FDWrTdaeMUOITAv/X5p8m+22409VdtnjwwGw3IWNp12GjSU6fgf9bRyox4ccxEaPcLIaDuwsTJ5NOyjCTp6Gib5EPTEuuAdSDSBWeLcVnKJVxQoDAvckcS1LUpecbDzgdMqXms8=
-Received: from MWHPR17CA0085.namprd17.prod.outlook.com (2603:10b6:300:c2::23)
- by MN0PR12MB6078.namprd12.prod.outlook.com (2603:10b6:208:3ca::6)
+ bh=Z/PZozAZDuFwSM+LLoFH5SdnzpiV2YtOAzvzRnbwL8c=;
+ b=qF3eQRFWrMHvEvHx/CL9QPTIBbvWExTaj1PkR3eA3G7lGXLN9LhCfEQqR1VyAfJJ/MgQtoJ+Z1u6wW+KJQ1z9245Qz3p2lrPWQ+u3meZ8kqI4jiQNOmRVsxUBICwlMXbNFo3xjUmn/e9ojmNlDC0eWyxSFEE53u1zTYI/xIHb04=
+Received: from MWHPR17CA0095.namprd17.prod.outlook.com (2603:10b6:300:c2::33)
+ by MN2PR12MB3437.namprd12.prod.outlook.com (2603:10b6:208:c3::20)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.18; Tue, 28 Jun
  2022 14:51:23 +0000
 Received: from CO1NAM11FT054.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:c2:cafe::e2) by MWHPR17CA0085.outlook.office365.com
- (2603:10b6:300:c2::23) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:300:c2::4) by MWHPR17CA0095.outlook.office365.com
+ (2603:10b6:300:c2::33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.21 via Frontend
- Transport; Tue, 28 Jun 2022 14:51:22 +0000
+ Transport; Tue, 28 Jun 2022 14:51:23 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CO1NAM11FT054.mail.protection.outlook.com (10.13.174.70) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5373.15 via Frontend Transport; Tue, 28 Jun 2022 14:51:22 +0000
+ 15.20.5373.15 via Frontend Transport; Tue, 28 Jun 2022 14:51:23 +0000
 Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 28 Jun
- 2022 09:51:20 -0500
+ 2022 09:51:21 -0500
 From: Philip Yang <Philip.Yang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v5 2/11] drm/amdkfd: Enable per process SMI event
-Date: Tue, 28 Jun 2022 10:50:11 -0400
-Message-ID: <20220628145020.26925-3-Philip.Yang@amd.com>
+Subject: [PATCH v5 3/11] drm/amdkfd: Add GPU recoverable fault SMI event
+Date: Tue, 28 Jun 2022 10:50:12 -0400
+Message-ID: <20220628145020.26925-4-Philip.Yang@amd.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220628145020.26925-1-Philip.Yang@amd.com>
 References: <20220628145020.26925-1-Philip.Yang@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 45e0fe05-af20-42d8-44f3-08da5915ab3c
-X-MS-TrafficTypeDiagnostic: MN0PR12MB6078:EE_
+X-MS-Office365-Filtering-Correlation-Id: c1f38c4f-5fe1-47be-8a9a-08da5915abc6
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3437:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UmH5+JJHvKcsGMgscIoBrjywYSKQGvGvqF/jqPlHtJrt90vnZHgTGeIsAUi7pwNQ9od39AHVldWPZfoefzsq7OzrR3BufdNUNYMe9Q4Yh90TMz7erzLg6cn7jo2r5bMfd2MpWl3RXDBdWjGWFUuqIU46M5ZXgIHOtuMDh1SOafWOFvDvFVPqCQWsN0cJsvKLr3dMgSprVSkvjaJgA2zuXhy9IWmMk8lTy9VLbgRR/BzY30XKX39I8JtPN9mnQhwcSl+gDkY6UCvAhhroxbALigdeyA5KS+LYnlKnk7xlVS7thQFZU0uWj1lIF+3q5WMv2gt8TUCPH4/zIGLtFJycRb+Z7Ip8CFlcvD3MRu5bPM7o/5is5XRXr0UuJgFWOag5WlOIFQyh+PAdzD++3+G1uBaEmAeVjtioXAybj/FAZ7+dFZlRbIpyV+yCZsCLceQdorDZ24INqGkJFafwCEhBsvwLv7mqVeoHjfSByaKh8du3CqdM/D7kezmcfNj5ArPfflDBDzInF4fjyl5VeGoMreHmcH6f2GTVh3pWuAU0iyAwIbVR5zvPhzwP/mAhu4RD7H4fYkIhEIBS444kQBstERl1IrDx8hIl4EodS/8T2h+6fpLIsTJSRGFaEUAW5E1XF3+D2bWyYfX09gxAFls9SMfAF7+NZ4B6kyUSgyUbr6dfutrnffxYf8AuAKzj/XuYrNKDv9MGqvLiXVI6S8thniGOHay8MfiUItERskV2xEalb+E9aQc41Z2UNw1IBJuPgIPFDhMAsRkswNyZK7d2bCScVgvmk8qHriJYNPw/HItdMoOvCkSrzFoSMNbK55n/yR4Sub4L7KY2Wmq4QyShfQ==
+X-Microsoft-Antispam-Message-Info: vZMtWj1By5itfz92k3HI2Ezj2mtm2Wl5BfgFugRmxrQcweNUF7+aR9P6Ttcqs9ErIzZpKcJD5LdxKc+HwFuRKzDGUZx8vGTC5QeW1SqE3xtULmfvB+cZuwQV2xSmWd3fbO1vXlcbcC5WEOX69NZ4YtvNfjFy5dju7Ncqh+l4KkyOvNv8+RRaQp6RewnXGFjePknzjPpaRvrW77j25LB1cJTY97NTwFyRQ1Vwm24XtPwtcl3VjwV/1MN1EPXZpuANTFLXCxQrQAP417VWRsQ03dPkZZcZYoUoFs4QZVG+HOgd5tlCVkcwLNYFu1M0+7p5mvaLo1tRuADZM6E+qB5QojWo/iFWWA5facYVmv9WuPX36dmYUxJ62/1SOQplQCqGSQ+goM9C9nfTeS+41xFiTDwGq7RZVPUzYl4Famj/Oy+32Qwp+1jaeKmS59bdWnbp4Kuo2YyoCDBaBwB3TIp7MWLfdJBRPkOotWFqwdjhpVyOIswVEqKHC4aWklwKZxruqENfc1uCepZVG0ZShffJax9WQpqMkF0HvjcozY/TUcxiYc62r7iUAUWnFiTJg43IF0ZAGn6ckkHYXiAZ9tyFo7OXG4ojukZzOYb2C98kWGgtd9h+ZJNCq3o7MxY76VR2v+lZj/iouFSBxsHwLrdDd0B5ygyN88O1NHYUYNRXSVs/RJZzwqlCActx6fhJ1vor/oxsVSKBYozr4kvknZDlg/6yP870cA8wouxbac+DKBXX2zJeZlNhtkfhvby0mXjq8vKwN90qoMHu/hd1yk2zE7A6meQiOcM1WBV9JnBYtaWV+J280LFtUEZfOKamPYHRjqOIfxaYObt/gxxu5ExngA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(39860400002)(346002)(136003)(376002)(396003)(46966006)(36840700001)(40470700004)(7696005)(70206006)(40460700003)(356005)(426003)(8676002)(47076005)(40480700001)(70586007)(83380400001)(8936002)(16526019)(81166007)(478600001)(26005)(82740400003)(36860700001)(4326008)(336012)(186003)(6666004)(2906002)(82310400005)(1076003)(54906003)(316002)(36756003)(86362001)(2616005)(6916009)(5660300002)(41300700001)(36900700001);
+ SFS:(13230016)(4636009)(396003)(39860400002)(376002)(136003)(346002)(46966006)(36840700001)(40470700004)(70586007)(1076003)(186003)(47076005)(16526019)(6916009)(81166007)(6666004)(41300700001)(426003)(8676002)(83380400001)(54906003)(70206006)(478600001)(336012)(26005)(356005)(2616005)(82740400003)(7696005)(8936002)(36860700001)(4326008)(36756003)(5660300002)(2906002)(316002)(82310400005)(86362001)(40480700001)(40460700003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2022 14:51:22.6510 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45e0fe05-af20-42d8-44f3-08da5915ab3c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2022 14:51:23.5572 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1f38c4f-5fe1-47be-8a9a-08da5915abc6
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT054.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6078
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3437
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,120 +103,144 @@ Cc: Philip Yang <Philip.Yang@amd.com>, Felix.Kuehling@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Process receive event from same process by default. Add a flag to be
-able to receive event from all processes, this requires super user
-permission.
-
-Event using pid 0 to send the event to all processes, to keep the
-default behavior of existing SMI events.
+Use ktime_get_boottime_ns() as timestamp to correlate with other
+APIs. Output timestamp when GPU recoverable fault starts and ends to
+recover the fault, if migration happened or only GPU page table is
+updated to recover, fault address, if read or write fault.
 
 Signed-off-by: Philip Yang <Philip.Yang@amd.com>
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c | 37 +++++++++++++++------
- 1 file changed, 26 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c | 17 +++++++++++++++++
+ drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h |  6 +++++-
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.c        | 17 +++++++++++++----
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.h        |  2 +-
+ 4 files changed, 36 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
-index f2e1d506ba21..55ed026435e2 100644
+index 55ed026435e2..b7e68283925f 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
-@@ -38,6 +38,8 @@ struct kfd_smi_client {
- 	uint64_t events;
- 	struct kfd_dev *dev;
- 	spinlock_t lock;
-+	pid_t pid;
-+	bool suser;
- };
- 
- #define MAX_KFIFO_SIZE	1024
-@@ -151,16 +153,27 @@ static int kfd_smi_ev_release(struct inode *inode, struct file *filep)
- 	return 0;
- }
- 
--static void add_event_to_kfifo(struct kfd_dev *dev, unsigned int smi_event,
--			      char *event_msg, int len)
-+static bool kfd_smi_ev_enabled(pid_t pid, struct kfd_smi_client *client,
-+			       unsigned int event)
-+{
-+	uint64_t all = KFD_SMI_EVENT_MASK_FROM_INDEX(KFD_SMI_EVENT_ALL_PROCESS);
-+	uint64_t events = READ_ONCE(client->events);
-+
-+	if (pid && client->pid != pid && !(client->suser && (events & all)))
-+		return false;
-+
-+	return events & KFD_SMI_EVENT_MASK_FROM_INDEX(event);
-+}
-+
-+static void add_event_to_kfifo(pid_t pid, struct kfd_dev *dev,
-+			       unsigned int smi_event, char *event_msg, int len)
- {
- 	struct kfd_smi_client *client;
- 
- 	rcu_read_lock();
- 
- 	list_for_each_entry_rcu(client, &dev->smi_clients, list) {
--		if (!(READ_ONCE(client->events) &
--				KFD_SMI_EVENT_MASK_FROM_INDEX(smi_event)))
-+		if (!kfd_smi_ev_enabled(pid, client, smi_event))
- 			continue;
- 		spin_lock(&client->lock);
- 		if (kfifo_avail(&client->fifo) >= len) {
-@@ -176,9 +189,9 @@ static void add_event_to_kfifo(struct kfd_dev *dev, unsigned int smi_event,
- 	rcu_read_unlock();
- }
- 
--__printf(3, 4)
--static void kfd_smi_event_add(struct kfd_dev *dev, unsigned int event,
--			      char *fmt, ...)
-+__printf(4, 5)
-+static void kfd_smi_event_add(pid_t pid, struct kfd_dev *dev,
-+			      unsigned int event, char *fmt, ...)
- {
- 	char fifo_in[KFD_SMI_EVENT_MSG_SIZE];
- 	int len;
-@@ -193,7 +206,7 @@ static void kfd_smi_event_add(struct kfd_dev *dev, unsigned int event,
- 	len += vsnprintf(fifo_in + len, sizeof(fifo_in) - len, fmt, args);
- 	va_end(args);
- 
--	add_event_to_kfifo(dev, event, fifo_in, len);
-+	add_event_to_kfifo(pid, dev, event, fifo_in, len);
- }
- 
- void kfd_smi_event_update_gpu_reset(struct kfd_dev *dev, bool post_reset)
-@@ -206,13 +219,13 @@ void kfd_smi_event_update_gpu_reset(struct kfd_dev *dev, bool post_reset)
- 		event = KFD_SMI_EVENT_GPU_PRE_RESET;
- 		++(dev->reset_seq_num);
- 	}
--	kfd_smi_event_add(dev, event, "%x\n", dev->reset_seq_num);
-+	kfd_smi_event_add(0, dev, event, "%x\n", dev->reset_seq_num);
- }
- 
- void kfd_smi_event_update_thermal_throttling(struct kfd_dev *dev,
- 					     uint64_t throttle_bitmask)
- {
--	kfd_smi_event_add(dev, KFD_SMI_EVENT_THERMAL_THROTTLE, "%llx:%llx\n",
-+	kfd_smi_event_add(0, dev, KFD_SMI_EVENT_THERMAL_THROTTLE, "%llx:%llx\n",
- 			  throttle_bitmask,
- 			  amdgpu_dpm_get_thermal_throttling_counter(dev->adev));
- }
-@@ -227,7 +240,7 @@ void kfd_smi_event_update_vmfault(struct kfd_dev *dev, uint16_t pasid)
- 	if (!task_info.pid)
- 		return;
- 
--	kfd_smi_event_add(dev, KFD_SMI_EVENT_VMFAULT, "%x:%s\n",
-+	kfd_smi_event_add(0, dev, KFD_SMI_EVENT_VMFAULT, "%x:%s\n",
+@@ -244,6 +244,23 @@ void kfd_smi_event_update_vmfault(struct kfd_dev *dev, uint16_t pasid)
  			  task_info.pid, task_info.task_name);
  }
  
-@@ -251,6 +264,8 @@ int kfd_smi_event_open(struct kfd_dev *dev, uint32_t *fd)
- 	spin_lock_init(&client->lock);
- 	client->events = 0;
- 	client->dev = dev;
-+	client->pid = current->tgid;
-+	client->suser = capable(CAP_SYS_ADMIN);
++void kfd_smi_event_page_fault_start(struct kfd_dev *dev, pid_t pid,
++				    unsigned long address, bool write_fault,
++				    ktime_t ts)
++{
++	kfd_smi_event_add(pid, dev, KFD_SMI_EVENT_PAGE_FAULT_START,
++			  "%lld -%d @%lx(%x) %c\n", ktime_to_ns(ts), pid,
++			  address, dev->id, write_fault ? 'W' : 'R');
++}
++
++void kfd_smi_event_page_fault_end(struct kfd_dev *dev, pid_t pid,
++				  unsigned long address, bool migration)
++{
++	kfd_smi_event_add(pid, dev, KFD_SMI_EVENT_PAGE_FAULT_END,
++			  "%lld -%d @%lx(%x) %c\n", ktime_get_boottime_ns(),
++			  pid, address, dev->id, migration ? 'M' : 'U');
++}
++
+ int kfd_smi_event_open(struct kfd_dev *dev, uint32_t *fd)
+ {
+ 	struct kfd_smi_client *client;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h
+index dfe101c21166..7903718cd9eb 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h
+@@ -29,5 +29,9 @@ void kfd_smi_event_update_vmfault(struct kfd_dev *dev, uint16_t pasid);
+ void kfd_smi_event_update_thermal_throttling(struct kfd_dev *dev,
+ 					     uint64_t throttle_bitmask);
+ void kfd_smi_event_update_gpu_reset(struct kfd_dev *dev, bool post_reset);
+-
++void kfd_smi_event_page_fault_start(struct kfd_dev *dev, pid_t pid,
++				    unsigned long address, bool write_fault,
++				    ktime_t ts);
++void kfd_smi_event_page_fault_end(struct kfd_dev *dev, pid_t pid,
++				  unsigned long address, bool migration);
+ #endif
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+index d6fc00d51c8c..2ad08a1f38dd 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+@@ -32,6 +32,7 @@
+ #include "kfd_priv.h"
+ #include "kfd_svm.h"
+ #include "kfd_migrate.h"
++#include "kfd_smi_events.h"
  
- 	spin_lock(&dev->smi_lock);
- 	list_add_rcu(&client->list, &dev->smi_clients);
+ #ifdef dev_fmt
+ #undef dev_fmt
+@@ -1617,7 +1618,7 @@ static int svm_range_validate_and_map(struct mm_struct *mm,
+ 	svm_range_unreserve_bos(&ctx);
+ 
+ 	if (!r)
+-		prange->validate_timestamp = ktime_to_us(ktime_get());
++		prange->validate_timestamp = ktime_get_boottime();
+ 
+ 	return r;
+ }
+@@ -2694,11 +2695,12 @@ svm_range_restore_pages(struct amdgpu_device *adev, unsigned int pasid,
+ 	struct svm_range_list *svms;
+ 	struct svm_range *prange;
+ 	struct kfd_process *p;
+-	uint64_t timestamp;
++	ktime_t timestamp = ktime_get_boottime();
+ 	int32_t best_loc;
+ 	int32_t gpuidx = MAX_GPU_INSTANCE;
+ 	bool write_locked = false;
+ 	struct vm_area_struct *vma;
++	bool migration = false;
+ 	int r = 0;
+ 
+ 	if (!KFD_IS_SVM_API_SUPPORTED(adev->kfd.dev)) {
+@@ -2775,9 +2777,9 @@ svm_range_restore_pages(struct amdgpu_device *adev, unsigned int pasid,
+ 		goto out_unlock_range;
+ 	}
+ 
+-	timestamp = ktime_to_us(ktime_get()) - prange->validate_timestamp;
+ 	/* skip duplicate vm fault on different pages of same range */
+-	if (timestamp < AMDGPU_SVM_RANGE_RETRY_FAULT_PENDING) {
++	if (ktime_before(timestamp, ktime_add_ns(prange->validate_timestamp,
++				AMDGPU_SVM_RANGE_RETRY_FAULT_PENDING))) {
+ 		pr_debug("svms 0x%p [0x%lx %lx] already restored\n",
+ 			 svms, prange->start, prange->last);
+ 		r = 0;
+@@ -2813,7 +2815,11 @@ svm_range_restore_pages(struct amdgpu_device *adev, unsigned int pasid,
+ 		 svms, prange->start, prange->last, best_loc,
+ 		 prange->actual_loc);
+ 
++	kfd_smi_event_page_fault_start(adev->kfd.dev, p->lead_thread->pid, addr,
++				       write_fault, timestamp);
++
+ 	if (prange->actual_loc != best_loc) {
++		migration = true;
+ 		if (best_loc) {
+ 			r = svm_migrate_to_vram(prange, best_loc, mm);
+ 			if (r) {
+@@ -2842,6 +2848,9 @@ svm_range_restore_pages(struct amdgpu_device *adev, unsigned int pasid,
+ 		pr_debug("failed %d to map svms 0x%p [0x%lx 0x%lx] to gpus\n",
+ 			 r, svms, prange->start, prange->last);
+ 
++	kfd_smi_event_page_fault_end(adev->kfd.dev, p->lead_thread->pid, addr,
++				     migration);
++
+ out_unlock_range:
+ 	mutex_unlock(&prange->migrate_mutex);
+ out_unlock_svms:
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.h b/drivers/gpu/drm/amd/amdkfd/kfd_svm.h
+index 2d54147b4dda..eab7f6d3b13c 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.h
+@@ -125,7 +125,7 @@ struct svm_range {
+ 	uint32_t			actual_loc;
+ 	uint8_t				granularity;
+ 	atomic_t			invalid;
+-	uint64_t			validate_timestamp;
++	ktime_t				validate_timestamp;
+ 	struct mmu_interval_notifier	notifier;
+ 	struct svm_work_list_item	work_item;
+ 	struct list_head		deferred_list;
 -- 
 2.35.1
 
