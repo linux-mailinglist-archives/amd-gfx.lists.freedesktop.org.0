@@ -2,70 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0056B55EFFA
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jun 2022 22:52:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34F6F55EF1F
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jun 2022 22:18:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6250D10EA1F;
-	Tue, 28 Jun 2022 20:52:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C329E11A32A;
+	Tue, 28 Jun 2022 20:18:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com
- [IPv6:2a00:1450:4864:20::129])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E11D10FDF7
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jun 2022 20:11:47 +0000 (UTC)
-Received: by mail-lf1-x129.google.com with SMTP id j21so24279478lfe.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jun 2022 13:11:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:date:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=yP7z++hmLdln35/PWmu6kJvToesBwvqVRLcqwtfTqHw=;
- b=Wf4kJNvUbmGXAp0NKucvsRru3Al5eajFw/oZCCKXVRRSqAQeeg8pU5Ege0VPhodaH7
- IEvU3zGwXrbw+cRkIIQcjHHVhS8kZoOxWWZkL3cJEM0QeyptAEr7JYrzzIseoD7tWwNx
- GwEWmjo8AA9qQAOthsc9dxhRBtotQ5CWSpAy4Z5KA4HJNAOLWvmdl/DBy+mLSpTuwguG
- nXhqsIWc0WAhnJEKWESan3ugOFaug8LyIgmFKNvWHvMWfvOG2TncTre7680CDJF/DzZs
- wADgKv0PoqodHkVCeWuh9jF85+a3yot3LdR+4xBpltsfJhTaVVjqHbtImVNB8Digj3+w
- J20g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:date:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=yP7z++hmLdln35/PWmu6kJvToesBwvqVRLcqwtfTqHw=;
- b=lhLxAtfGGXc2Tf+ufSeQSQSnRZh0ByVOaQjz3tCKEOx9cKfN8VOnlBs9GTjooTIVm4
- 9hHehbBo/xB42YiuGTLe6moaSeUWNMuxOfbxDRANyRizcJP0t4aZhGzfKjD/gyi02Joj
- ECdNDL9SjbwUR/08QVJcV1EfHdFtAcULcvxGmLrxGhXXF3fNQNWWZ9OfQZRJVSG8aAqJ
- Cuw02tuWFazlsu58kuCoSkGrQpktdyCiF4NjEOoaQjOfa7lXmthgUlVFw7yN9AYLe7nT
- 1ucRRrzs26rros8AUcVkGDx1JdrRYeDMqVi6RcbTOSpSwWMTiYzR7j48Aav4J+6kWAgm
- MQUg==
-X-Gm-Message-State: AJIora90XyXOKi+kFpKJMjLsHIcwz4g7ZWl5cNFYCUbqjWvzVRakQ8R6
- QC8oCZrCA0h9RbmTuf7tyZQ=
-X-Google-Smtp-Source: AGRyM1s/SxLBCRJqtNijzYQhHtgDDNIM9SkW0fxBYF0tjMUjSiLBy70E08Gxvmb304uwHefJmXgTew==
-X-Received: by 2002:a05:6512:128f:b0:480:fd23:6647 with SMTP id
- u15-20020a056512128f00b00480fd236647mr13566368lfs.136.1656447105293; 
- Tue, 28 Jun 2022 13:11:45 -0700 (PDT)
-Received: from pc638 ([155.137.26.201]) by smtp.gmail.com with ESMTPSA id
- v8-20020a05651203a800b0047f9fa2925csm2315627lfp.234.2022.06.28.13.11.39
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Jun 2022 13:11:44 -0700 (PDT)
-From: Uladzislau Rezki <urezki@gmail.com>
-X-Google-Original-From: Uladzislau Rezki <urezki@pc638>
-Date: Tue, 28 Jun 2022 22:11:37 +0200
-To: "Alex Xu (Hello71)" <alex_y_xu@yahoo.ca>
-Subject: Re: CONFIG_ANDROID (was: rcu_sched detected expedited stalls in
- amdgpu after suspend)
-Message-ID: <YrtgeSmwLmpzN/zw@pc638>
-References: <1656357116.rhe0mufk6a.none.ref@localhost>
- <1656357116.rhe0mufk6a.none@localhost>
- <20220627204139.GL1790663@paulmck-ThinkPad-P17-Gen-1>
- <1656379893.q9yb069erk.none@localhost>
- <20220628041252.GV1790663@paulmck-ThinkPad-P17-Gen-1>
- <1656421946.ic03168yc3.none@localhost>
- <20220628185437.GA1790663@paulmck-ThinkPad-P17-Gen-1>
- <1656443915.mdjoauhqe0.none@localhost>
+X-Greylist: delayed 325 seconds by postgrey-1.36 at gabe;
+ Tue, 28 Jun 2022 20:18:27 UTC
+Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
+ [213.80.101.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80B8E11A115
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jun 2022 20:18:27 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id AC47E3F6D0;
+ Tue, 28 Jun 2022 22:12:59 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.11
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.11 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
+ T_SCC_BODY_TEXT_LINE=-0.01, URIBL_BLOCKED=0.001]
+ autolearn=ham autolearn_force=no
+Authentication-Results: ste-pvt-msa1.bahnhof.se (amavisd-new);
+ dkim=pass (1024-bit key) header.d=shipmail.org
+Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
+ by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id mmpRsQHvcbQV; Tue, 28 Jun 2022 22:12:58 +0200 (CEST)
+Received: by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id CDA333F5E5;
+ Tue, 28 Jun 2022 22:12:55 +0200 (CEST)
+Received: from [192.168.0.209] (h-155-4-205-35.A357.priv.bahnhof.se
+ [155.4.205.35])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 5504F360156;
+ Tue, 28 Jun 2022 22:12:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1656447175; bh=8qVW4B3M3sdbclxh8UQh5P9peDN3xxFvdDdC5TV32/0=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=dVFF/BzMCsmmWG2zHPWW6M0VCmuZz4GO4qbbISmpcnG1hjGYEkIoPCt6RUdqXtSN5
+ Zw7NouOgpWzqOWItxknC6wyoxQz+N4x4jBvrz2P0oIotiPufQ3K9y8CBhGSA/p5GgE
+ mX1Zal2b0Dlj2qezn+xXIo0JguejcKH2kGq5qm/s=
+Message-ID: <d3fcb4ee-83ec-09b8-d1ef-0191512fda91@shipmail.org>
+Date: Tue, 28 Jun 2022 22:12:46 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1656443915.mdjoauhqe0.none@localhost>
-X-Mailman-Approved-At: Tue, 28 Jun 2022 20:52:52 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v6 01/22] drm/gem: Properly annotate WW context on
+ drm_gem_lock_reservations() error
+Content-Language: en-US
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
+ <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Daniel Stone <daniel@fooishbar.org>,
+ Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+ Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+ Rob Clark <robdclark@gmail.com>, Emil Velikov <emil.l.velikov@gmail.com>,
+ Robin Murphy <robin.murphy@arm.com>, Qiang Yu <yuq825@gmail.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, Thierry Reding
+ <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+References: <20220526235040.678984-1-dmitry.osipenko@collabora.com>
+ <20220526235040.678984-2-dmitry.osipenko@collabora.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+In-Reply-To: <20220526235040.678984-2-dmitry.osipenko@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,65 +95,65 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: wireguard@lists.zx2c4.com, "Jason A. Donenfeld" <Jason@zx2c4.com>,
- Joel Fernandes <joel@joelfernandes.org>, paulmck@kernel.org,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Xinhui.Pan@amd.com,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Suren Baghdasaryan <surenb@google.com>, rcu@vger.kernel.org,
- Hridya Valsaraju <hridya@google.com>,
- Arve =?utf-8?B?SGrDuG5uZXbDpWc=?= <arve@android.com>, urezki@gmail.com,
- Theodore Ts'o <tytso@mit.edu>, alexander.deucher@amd.com,
- Todd Kjos <tkjos@android.com>, uladzislau.rezki@sony.com,
- Martijn Coenen <maco@android.com>, christian.koenig@amd.com,
- Christian Brauner <christian@brauner.io>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, Dmitry Osipenko <digetx@gmail.com>,
+ kernel@collabora.com, linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-> Excerpts from Paul E. McKenney's message of June 28, 2022 2:54 pm:
-> > All you need to do to get the previous behavior is to add something like
-> > this to your defconfig file:
-> > 
-> > CONFIG_RCU_EXP_CPU_STALL_TIMEOUT=21000
-> > 
-> > Any reason why this will not work for you?
-> 
-> As far as I know, I do not require any particular RCU debugging features 
-> intended for developers; as an individual user and distro maintainer, I 
-> would like to select the option corresponding to "emit errors for 
-> unexpected conditions which should be reported upstream", not "emit 
-> debugging information for development purposes".
-> 
-Sorry but we need to apply some assumption, i.e. to me the CONFIG_ANDROID
-indicates that a kernel runs on the Android wise device. When you enable
-this option on you specific box it is supposed that some Android related
-code are activated also on your device which may lead to some side effect.
+Hi,
 
+On 5/27/22 01:50, Dmitry Osipenko wrote:
+> Use ww_acquire_fini() in the error code paths. Otherwise lockdep
+> thinks that lock is held when lock's memory is freed after the
+> drm_gem_lock_reservations() error. The WW needs to be annotated
+> as "freed"
+
+s /WW/ww_acquire_context/ ?
+s /"freed"/"released"/ ?
+
+
+> , which fixes the noisy "WARNING: held lock freed!" splat
+> of VirtIO-GPU driver with CONFIG_DEBUG_MUTEXES=y and enabled lockdep.
 >
-> Therefore, I think 0 is a suitable setting for me and most ordinary 
-> (not tightly controlled) distributions. My concern is that other users 
-> and distro maintainers will also have confusion about what value to set 
-> and whether the warnings are important, since the help text does not say 
-> anything about Android, and "make oldconfig" does not indicate that the 
-> default value is different for Android.
-> 
-<snip>
-diff --git a/kernel/rcu/Kconfig.debug b/kernel/rcu/Kconfig.debug
-index 9b64e55d4f61..ced0d1f7c675 100644
---- a/kernel/rcu/Kconfig.debug
-+++ b/kernel/rcu/Kconfig.debug
-@@ -94,7 +94,8 @@ config RCU_EXP_CPU_STALL_TIMEOUT
-          If the RCU grace period persists, additional CPU stall warnings
-          are printed at more widely spaced intervals.  A value of zero
-          says to use the RCU_CPU_STALL_TIMEOUT value converted from
--         seconds to milliseconds.
-+         seconds to milliseconds. If CONFIG_ANDROID is set for non-Android
-+         platform and you unsure, set the RCU_EXP_CPU_STALL_TIMEOUT to zero.
+> Cc: stable@vger.kernel.org
 
- config RCU_TRACE
-        bool "Enable tracing for RCU"
-<snip>
+Can you dig up the commit in error and add a Fixes: Tag?
 
-Will it work for you?
+Using that and "dim fixes" will also make the Cc: stable tag a bit more 
+verbose.
 
---
-Uladzislau Rezki
+With that fixed,
+
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+
+
+> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> ---
+>   drivers/gpu/drm/drm_gem.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+> index eb0c2d041f13..86d670c71286 100644
+> --- a/drivers/gpu/drm/drm_gem.c
+> +++ b/drivers/gpu/drm/drm_gem.c
+> @@ -1226,7 +1226,7 @@ drm_gem_lock_reservations(struct drm_gem_object **objs, int count,
+>   		ret = dma_resv_lock_slow_interruptible(obj->resv,
+>   								 acquire_ctx);
+>   		if (ret) {
+> -			ww_acquire_done(acquire_ctx);
+> +			ww_acquire_fini(acquire_ctx);
+>   			return ret;
+>   		}
+>   	}
+> @@ -1251,7 +1251,7 @@ drm_gem_lock_reservations(struct drm_gem_object **objs, int count,
+>   				goto retry;
+>   			}
+>   
+> -			ww_acquire_done(acquire_ctx);
+> +			ww_acquire_fini(acquire_ctx);
+>   			return ret;
+>   		}
+>   	}
