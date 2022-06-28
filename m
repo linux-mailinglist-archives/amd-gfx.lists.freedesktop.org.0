@@ -1,42 +1,42 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E2EF55E581
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jun 2022 16:51:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86BCA55E57D
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jun 2022 16:51:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C749E10FB27;
-	Tue, 28 Jun 2022 14:51:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2B5B10FA99;
+	Tue, 28 Jun 2022 14:51:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2083.outbound.protection.outlook.com [40.107.101.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2A1E10F9D4
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2050.outbound.protection.outlook.com [40.107.93.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E7B110F9D4
  for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jun 2022 14:51:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HLTrFMIYEjSg+KH30QMK32jbkUbWpw9rZT0bMoz51V2xNRFOoMX0IisOsPEKSRKImWwc3p7sw+rD55WKYCGtSikPcYiJp3QXxE9Wot9TrFEVVm3fE6zbqHej6qaOxHDwDmU8NO6Ub7AvPWsyJPVORj0mngEgywXA39X2Ox1UfiSQesaUC9KobyhYtFyZlmm7Y8OGRSLPtbGatbDlra4LkHULtllxvUzqaLhIyTyxoO/85S8ncRn9Fk0Vxu80KYguJfaxmP2q7Kn64QacbeKAqhIYK0dparCUJ6u7To4VeHj4DowCeUZhGZCxCVmI/1GyL7Ign4eODbp7Vi6wu1vqgg==
+ b=XVdIwSTw/k5T296/T9G+pgiNpqXVVg0al1AXCfDDUelgFyF2qUSAfrfR6yCqlOPTe/8yVS3M1A9vkEr7tB6ojn/rkM3yncdaRf4JM1zowuSECn5gYeH2kN/B88dv3cs5hmHGKRjJpyxcGtW+Z5goLKNVo//M8D89Lsg7LaM+Tmr0F/5zOCXBxs8B/9ZfN1iPT7+dwccWTWYjFgGlsRxrh7po3GmOFwyfM/GfHLIBHIbpF14XdGQ4jPgD3gdyGPWBmlNlN4teFPxmhaKg4F5IKJEBO1gGlAntd4LwTqq77z9I4RGEkP7lnsnXQvnoNeQTCQgiObnN7rezjVfRWQPhRA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PCpzuN2S42FfJh43C6iZPAKM3mWUSp6ej4FYg8crN54=;
- b=FnYtbtKlE4IXfgXE8RHiEnmnxHbAlNAjC7WpzY2CH5Gw3MhEjVH70sadtdz5GCNrGMZKz/pyiNxQNJ1oOkE0v3JJM/w4SuKPceBLbirF9/Qgmb14g47QAkRSHjSmBET7jOGhlw4lzwSEAM+DspiCVVad2SdjNWdT/r2rcapNIfRHhPBpuN+Pubhj4savqDgIQjgD8VM/vsmQZzsTh7PO2KHPKFkU5ZgydXz5tvtiYVepJsfsFe5LSY2BefTyFABaPNF1ODYTLQwIIDAvps/OUhhWUOiq8u1Czgtq5d9L7jE1/wsIWcZ6wvvobY0UADlJIA0J+678bxnZqEv7zPjIhg==
+ bh=URCGr5eL0eWKccGUF8/E4RYgnZso61Al35JvwZ8Sh6o=;
+ b=KIWFftXs1tQZSbmJ5oZh4ZnlbO9BAGXExizqXy2z33NTR1lAzb1w4LKCOAlNDCf3w2D7SuQ8gyAvMHJo+9HPNGGv0o8WZm2TyEFFlKl/jozWXbh+px8Rzc9NuLRFi2BJBMTEb6atUzFiisNHcPMXbY1A0gq9dwm9KjRE1ohN6mQDbaOgQ4xzON8b4RSYM27jQtyAcFIUoS+IhZa1XgNdoRmh2KnoeGGgJKDoIJuu5KawHZ+WKqG5Vgl+3bE76rEn9E/9tN5tVRyZGNIo/TdVT9fdF9MBHxkbO/FnAoHpSy4ATlVOaSbHwv+30xT3X967jRuwWNJiToCLPbGWRoWN1w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PCpzuN2S42FfJh43C6iZPAKM3mWUSp6ej4FYg8crN54=;
- b=hji5sWeHB4HZzkS55t6PSD+dvTwlQMiLZuCHdJ69bFap//45kuHRaBAw/N9xRZgJXvPXYKwNBJ2mOXQf7mSnrCgN3E7ru9N9Aoai11pQZ3N6XbCEIG3gUnbLnAQEHOe25kXA0ha0nqP7kf0acjZ+WDYW1exjtdkLCOGzOym0hFg=
-Received: from MW4PR04CA0310.namprd04.prod.outlook.com (2603:10b6:303:82::15)
- by DM4PR12MB5325.namprd12.prod.outlook.com (2603:10b6:5:390::11) with
+ bh=URCGr5eL0eWKccGUF8/E4RYgnZso61Al35JvwZ8Sh6o=;
+ b=IrMO4+eK0GZR/WD+AxL84hscRIi5FZkCgCUdqv1GC3bzS5fCj1hAYYYNB344MlPIu8o/ytulVouE0H1UPUenrl8E5joe5PN7C0F3oxtEUAUV7C8HvkSpr0fdsolhfXi5XYan5lNXMHFsu0ZYy3BO5OeX/9mSFKf5GjtPFucMz38=
+Received: from MWHPR17CA0090.namprd17.prod.outlook.com (2603:10b6:300:c2::28)
+ by MW3PR12MB4460.namprd12.prod.outlook.com (2603:10b6:303:2f::7) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.17; Tue, 28 Jun
  2022 14:51:28 +0000
-Received: from CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:82:cafe::3) by MW4PR04CA0310.outlook.office365.com
- (2603:10b6:303:82::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.17 via Frontend
+Received: from CO1NAM11FT054.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:c2:cafe::ec) by MWHPR17CA0090.outlook.office365.com
+ (2603:10b6:300:c2::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.21 via Frontend
  Transport; Tue, 28 Jun 2022 14:51:28 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -45,18 +45,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT064.mail.protection.outlook.com (10.13.175.77) with Microsoft SMTP
+ CO1NAM11FT054.mail.protection.outlook.com (10.13.174.70) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.5373.15 via Frontend Transport; Tue, 28 Jun 2022 14:51:28 +0000
 Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 28 Jun
- 2022 09:51:22 -0500
+ 2022 09:51:23 -0500
 From: Philip Yang <Philip.Yang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v5 6/11] drm/amdkfd: Add unmap from GPU SMI event
-Date: Tue, 28 Jun 2022 10:50:15 -0400
-Message-ID: <20220628145020.26925-7-Philip.Yang@amd.com>
+Subject: [PATCH v5 7/11] drm/amdkfd: Asynchronously free smi_client
+Date: Tue, 28 Jun 2022 10:50:16 -0400
+Message-ID: <20220628145020.26925-8-Philip.Yang@amd.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220628145020.26925-1-Philip.Yang@amd.com>
 References: <20220628145020.26925-1-Philip.Yang@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 76f05e27-5fe8-4d3f-20c7-08da5915ae78
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5325:EE_
+X-MS-Office365-Filtering-Correlation-Id: aa561ed3-e508-46cf-470a-08da5915ae9b
+X-MS-TrafficTypeDiagnostic: MW3PR12MB4460:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: tIfKnJLtd2YCbC5hWF5a5GrMQhZpb3ftZAowqqjOQI+ZAUWwi/4FZBABexAPEieSvOWyFh+EwaVwiOjsWvPItCu95JgMzeMhvxEdcs9qWL1wnuZdw2R5iYvHREi5mTAxO7i5G5rCLi4MHxEpNOmhC5J8JyYMDMQUkFpfjTTAFt8J8V5xHXDaOANQm+vTbqSAGyOksLx421GrsJI88oAxJ+qAQzC11900PlKr/5c8ngg2DupXkfuCiYKolmP6/594bQdWAIUTPGrZEj2MYKXLyFCt3kkwxEVj1BHRUwWN6KcZuDC0bzMQblIPOY4SVlGPBWHst+nd7eN/yRfgfzfzkAv1h19szZCfMIsjvQ+GXLaDrVe3TkTUI1lT9N1JJ3qXAZY+bIU/ZRsdRu7lrTcEt/X4peQ3S1nj/ZM/mflNJRYq5H9Ivcdg/NOJSW44k+ZTrV7hn8ThqTHp5qtQvTsyAnLb6onRQNzvjQkUfegse74gcl5mfRlzhROSL/PoIO+uT+kHKwARJ8pUQFAIOGpSbkpRWwFmrfMw8/4UjkmkIwzrPICMMZdypa8sCJ5sT9mnE9L1Q1vsj/yXU+6ORnwGFITZuMw8gpB6YnV6M3ZQUrlY9Xpm0z8xuue4rswyFVBuDBZLST/zmNG0rhmTH45htre81lh6Rs9P9SuT8Z0zUHLNLHHhAlyOOHxyJbSDyoDaho0vIOVZbqR9o4yJkltl6xEcSqElZ7aqBGXg+JVG/FUQPmH7WCsGBaVX85vWW/DIrLx7cJvHzDFczCQWm9y20QXu8NeJFlSVnt0TJ0tV4T5ndtXJ3i/hu1xNetme2AzHFG0GoQCnRlNwCtdKNVzKtw==
+X-Microsoft-Antispam-Message-Info: kxxdbtwbXe+fy2v1byyaIEgtyn3uP4Ie4qCBZ0LCZ16JVsGNC1pTLACHQtEwTGSDowQy92MXG5qAZZO0l34SuKvlrRN4ju3bw9LZaHit17S2v4Wv2DKPDIT5z07Py8eTRi3rDwfFtG3onynotzXTr8AgoIJbZMeXq5Isbg0Qd5OEmkecNHUcVCc0aVV0aqne4npz1/06ERN8Ro+Xd2Fo3ZY1SR2kIPyhWSHnCRUjcDHwqkcj0LnJH7nF5vt1Ua0aflsW+FSElkR0TKYDivOeiIkNXsqfcTx59PrRUZ7l+/dZlopzB1n5kxNTM0//cKar3jU7D7cIP0nsrVDkI1slR+myiowrBKLGfDGUBxoMezlBQkRx8jT2VR1lKkc2Z+rNzX533Tzpk4pSfVMcFc8eY7if9z0s6h6R7rJVqGPrW1I3Qkd1A31vOBD4vKzxDLVqlhPzQeBd8Jl0ts+3vnDd7rfA8nwrWoeNRn2M6MXBIlWb7iH1OOkNWcG4wlJ4Nn8pL1vKeepM4VrVbRZKdxtOrIAlBp8KD5gA+A2gOLGKlEUoTLH8L49HLOywghOCuwdDHgbP/fagu08Mh43zyblvpcpoy1dWft+EuFa+CqRrYEBtdTysjN0omm0//vo28mJe2nUX2plJMP+NRh6iQ87qIZV+dvCNV/toHDQJxWSmhdpX9dKHHrgmV6AsnIeym5Y+TGKMydFITymU6JnPjcE9Fn7755lkAnDQ+Hu/4pnolE4VKH8dgeO7IjyIV6NVxEatFuzX1dyOazER3uwU72kZiWMg56NyX1exXjQNvpBrtEmdj6eI2ZqSwsdKBJ16GEPN0swv9Ls+GjBGoGAy61CrBA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(39860400002)(136003)(346002)(396003)(376002)(36840700001)(40470700004)(46966006)(316002)(4326008)(6916009)(16526019)(8676002)(81166007)(86362001)(54906003)(36860700001)(8936002)(40460700003)(1076003)(40480700001)(5660300002)(36756003)(83380400001)(70206006)(478600001)(70586007)(336012)(426003)(6666004)(47076005)(2616005)(82310400005)(7696005)(356005)(186003)(2906002)(82740400003)(41300700001)(26005)(36900700001);
+ SFS:(13230016)(4636009)(136003)(346002)(396003)(39860400002)(376002)(36840700001)(40470700004)(46966006)(6916009)(82740400003)(41300700001)(36756003)(5660300002)(316002)(47076005)(2906002)(70206006)(2616005)(186003)(82310400005)(40460700003)(6666004)(336012)(83380400001)(54906003)(16526019)(7696005)(478600001)(426003)(356005)(1076003)(86362001)(4326008)(8676002)(81166007)(36860700001)(40480700001)(70586007)(26005)(8936002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2022 14:51:28.0765 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 76f05e27-5fe8-4d3f-20c7-08da5915ae78
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2022 14:51:28.2912 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa561ed3-e508-46cf-470a-08da5915ae9b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT054.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5325
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4460
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,143 +103,54 @@ Cc: Philip Yang <Philip.Yang@amd.com>, Felix.Kuehling@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-SVM range unmapped from GPUs when range is unmapped from CPU, or with
-xnack on from MMU notifier when range is evicted or migrated.
+The synchronize_rcu may take several ms, which noticeably slows down
+applications close SMI event handle. Use call_rcu to free client->fifo
+and client asynchronously and eliminate the synchronize_rcu call in the
+user thread.
 
 Signed-off-by: Philip Yang <Philip.Yang@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c |  9 ++++++++
- drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h |  3 +++
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c        | 25 +++++++++++++++------
- 3 files changed, 30 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
-index 3917c38204d0..e5896b7a16dd 100644
+index e5896b7a16dd..0472b56de245 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
-@@ -318,6 +318,15 @@ void kfd_smi_event_queue_restore_rescheduled(struct mm_struct *mm)
- 	kfd_unref_process(p);
+@@ -38,6 +38,7 @@ struct kfd_smi_client {
+ 	uint64_t events;
+ 	struct kfd_dev *dev;
+ 	spinlock_t lock;
++	struct rcu_head rcu;
+ 	pid_t pid;
+ 	bool suser;
+ };
+@@ -137,6 +138,14 @@ static ssize_t kfd_smi_ev_write(struct file *filep, const char __user *user,
+ 	return sizeof(events);
  }
  
-+void kfd_smi_event_unmap_from_gpu(struct kfd_dev *dev, pid_t pid,
-+				  unsigned long address, unsigned long last,
-+				  uint32_t trigger)
++static void kfd_smi_ev_client_free(struct rcu_head *p)
 +{
-+	kfd_smi_event_add(pid, dev, KFD_SMI_EVENT_UNMAP_FROM_GPU,
-+			  "%lld -%d @%lx(%lx) %x %d\n", ktime_get_boottime_ns(),
-+			  pid, address, last - address + 1, dev->id, trigger);
++	struct kfd_smi_client *ev = container_of(p, struct kfd_smi_client, rcu);
++
++	kfifo_free(&ev->fifo);
++	kfree(ev);
 +}
 +
- int kfd_smi_event_open(struct kfd_dev *dev, uint32_t *fd)
+ static int kfd_smi_ev_release(struct inode *inode, struct file *filep)
  {
- 	struct kfd_smi_client *client;
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h
-index b23292637239..76fe4e0ec2d2 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h
-@@ -46,4 +46,7 @@ void kfd_smi_event_queue_eviction(struct kfd_dev *dev, pid_t pid,
- 				  uint32_t trigger);
- void kfd_smi_event_queue_restore(struct kfd_dev *dev, pid_t pid);
- void kfd_smi_event_queue_restore_rescheduled(struct mm_struct *mm);
-+void kfd_smi_event_unmap_from_gpu(struct kfd_dev *dev, pid_t pid,
-+				  unsigned long address, unsigned long last,
-+				  uint32_t trigger);
- #endif
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index ddc1e4651919..bf888ae84c92 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -1200,7 +1200,7 @@ svm_range_unmap_from_gpu(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+ 	struct kfd_smi_client *client = filep->private_data;
+@@ -146,10 +155,7 @@ static int kfd_smi_ev_release(struct inode *inode, struct file *filep)
+ 	list_del_rcu(&client->list);
+ 	spin_unlock(&dev->smi_lock);
  
- static int
- svm_range_unmap_from_gpus(struct svm_range *prange, unsigned long start,
--			  unsigned long last)
-+			  unsigned long last, uint32_t trigger)
- {
- 	DECLARE_BITMAP(bitmap, MAX_GPU_INSTANCE);
- 	struct kfd_process_device *pdd;
-@@ -1232,6 +1232,9 @@ svm_range_unmap_from_gpus(struct svm_range *prange, unsigned long start,
- 			return -EINVAL;
- 		}
- 
-+		kfd_smi_event_unmap_from_gpu(pdd->dev, p->lead_thread->pid,
-+					     start, last, trigger);
-+
- 		r = svm_range_unmap_from_gpu(pdd->dev->adev,
- 					     drm_priv_to_vm(pdd->drm_priv),
- 					     start, last, &fence);
-@@ -1759,7 +1762,8 @@ static void svm_range_restore_work(struct work_struct *work)
-  */
- static int
- svm_range_evict(struct svm_range *prange, struct mm_struct *mm,
--		unsigned long start, unsigned long last)
-+		unsigned long start, unsigned long last,
-+		enum mmu_notifier_event event)
- {
- 	struct svm_range_list *svms = prange->svms;
- 	struct svm_range *pchild;
-@@ -1804,6 +1808,12 @@ svm_range_evict(struct svm_range *prange, struct mm_struct *mm,
- 			msecs_to_jiffies(AMDGPU_SVM_RANGE_RESTORE_DELAY_MS));
- 	} else {
- 		unsigned long s, l;
-+		uint32_t trigger;
-+
-+		if (event == MMU_NOTIFY_MIGRATE)
-+			trigger = KFD_SVM_UNMAP_TRIGGER_MMU_NOTIFY_MIGRATE;
-+		else
-+			trigger = KFD_SVM_UNMAP_TRIGGER_MMU_NOTIFY;
- 
- 		pr_debug("invalidate unmap svms 0x%p [0x%lx 0x%lx] from GPUs\n",
- 			 prange->svms, start, last);
-@@ -1812,13 +1822,13 @@ svm_range_evict(struct svm_range *prange, struct mm_struct *mm,
- 			s = max(start, pchild->start);
- 			l = min(last, pchild->last);
- 			if (l >= s)
--				svm_range_unmap_from_gpus(pchild, s, l);
-+				svm_range_unmap_from_gpus(pchild, s, l, trigger);
- 			mutex_unlock(&pchild->lock);
- 		}
- 		s = max(start, prange->start);
- 		l = min(last, prange->last);
- 		if (l >= s)
--			svm_range_unmap_from_gpus(prange, s, l);
-+			svm_range_unmap_from_gpus(prange, s, l, trigger);
- 	}
- 
- 	return r;
-@@ -2232,6 +2242,7 @@ static void
- svm_range_unmap_from_cpu(struct mm_struct *mm, struct svm_range *prange,
- 			 unsigned long start, unsigned long last)
- {
-+	uint32_t trigger = KFD_SVM_UNMAP_TRIGGER_UNMAP_FROM_CPU;
- 	struct svm_range_list *svms;
- 	struct svm_range *pchild;
- 	struct kfd_process *p;
-@@ -2259,14 +2270,14 @@ svm_range_unmap_from_cpu(struct mm_struct *mm, struct svm_range *prange,
- 		s = max(start, pchild->start);
- 		l = min(last, pchild->last);
- 		if (l >= s)
--			svm_range_unmap_from_gpus(pchild, s, l);
-+			svm_range_unmap_from_gpus(pchild, s, l, trigger);
- 		svm_range_unmap_split(mm, prange, pchild, start, last);
- 		mutex_unlock(&pchild->lock);
- 	}
- 	s = max(start, prange->start);
- 	l = min(last, prange->last);
- 	if (l >= s)
--		svm_range_unmap_from_gpus(prange, s, l);
-+		svm_range_unmap_from_gpus(prange, s, l, trigger);
- 	svm_range_unmap_split(mm, prange, prange, start, last);
- 
- 	if (unmap_parent)
-@@ -2333,7 +2344,7 @@ svm_range_cpu_invalidate_pagetables(struct mmu_interval_notifier *mni,
- 		svm_range_unmap_from_cpu(mni->mm, prange, start, last);
- 		break;
- 	default:
--		svm_range_evict(prange, mni->mm, start, last);
-+		svm_range_evict(prange, mni->mm, start, last, range->event);
- 		break;
- 	}
+-	synchronize_rcu();
+-	kfifo_free(&client->fifo);
+-	kfree(client);
+-
++	call_rcu(&client->rcu, kfd_smi_ev_client_free);
+ 	return 0;
+ }
  
 -- 
 2.35.1
