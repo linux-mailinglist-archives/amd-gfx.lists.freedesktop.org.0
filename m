@@ -2,82 +2,119 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F06855EFFB
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jun 2022 22:52:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE70255EDE0
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jun 2022 21:41:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFC2B10EA1E;
-	Tue, 28 Jun 2022 20:52:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5110210E84D;
+	Tue, 28 Jun 2022 19:41:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sonic317-20.consmr.mail.gq1.yahoo.com
- (sonic317-20.consmr.mail.gq1.yahoo.com [98.137.66.146])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9568113F09
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jun 2022 19:28:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.ca; s=s2048;
- t=1656444511; bh=lp6JELsahhZcDxMKcb8gtHLevhfULw04cbHTcBHgid0=;
- h=Date:From:Subject:To:Cc:References:In-Reply-To:From:Subject:Reply-To;
- b=jjDFzI/yTyGPTE04F5h3wA5bSgKOvp64wtETAjXTs+4HqJ2FLNbr5TUf70XYIsJYoYxJc6JpCo2lfpkyZt39JDg7xZv2zk8F2M+lCty2if+BCt8naUF15x+Yx10scAZ0xXqnGZvjdnXav2bDKNTs7zM0i2hGypN52AZh0Uy0Qlq7WAHIJ0iTDjD1xQ6pW8m6TGvOA2Th7RJeZX5i7qU24jhXG8WUVC0wcjvPfXeRPPuMIBlDZNetbd8959qNtVAGzgDgwuivC5cnTXc18Kw482wloSoNa3WbM/m75NcTCoUtWuz8vTWgc0iYq8hki1X94VSM851nJnnUqwwh7r+6ug==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1656444511; bh=0UZukaZ+ibNkIFwKKSDOXttoIsXq4gsEK9nnOmqJcdB=;
- h=X-Sonic-MF:Date:From:Subject:To:From:Subject;
- b=h8Ez4OgVk5inmzZ5NFmmuTb/QYRhrfo8lfXyLRPTHteLSTPPkYAq89FUN7H4wNoog6fsQwazR10YfOWm7rIFHNsNIKSXrpuL5LI4RgaQqAElgNOTkyr+4CA2yBPQCmJ7FmLHWmj3QEgGIKQV8euF1ELR6MkRISA/t2YCfnIZ89vzdi4PpFu4v335Cif1bXcLdeBJtPXnUPGht7+f2A3eOD+DW34P7rUuR3i7msEruZjIhjKZSKA4vlxzFONfbmbYus2GdybSVa2svtGpl92ya4rZtUdTRsrDFtJjbGk8Vbr6chjXIWWAjNhOiZD770o4kaG0vKumCs0afkKpyPMHlQ==
-X-YMail-OSG: zW4xm4kVM1mKC80wsYqU0Hr_NbggFiHuTmO.JnZU6z7OftV5itErH2QpzQMtg1G
- _EVW.99By_8Z7kJBwpO4jud.jhhWd75BFhilHxr1CIlcZiSxZUiRKaUIuiC8Ed.7QCAlXTxxYB6q
- 2kzJAMLZH512xS11CkjpSrySfrCfzuWocsYMlNN.9xPLWQ7GwSYCxVkY1Fjwx0MroSpMX7Blj0_p
- hDhhiYYnCKcM62IOXgWbsNuvR1huzBhVUQJGreMnJ592T0NmzFiJmsewsxKgq0QtCebg6IepT.jx
- l_7lyUMYBSPL.o7FNj9Rr4s5jURRigFMSb9IsylwkrunxB0RMJzXuhohv3T7MJMYrm7P_PmO4xoW
- 2ASe6x_8rve4.vFexl3nzmwRcyASJa1jiSY_vMpJgTaxGG5l6T4363Gmg3FfYf_0I.lSFpeLI7X4
- KpHV1GS5UDlQfz94GS8lmBL1Hha4w6B8Y3uFFaF_IN51r1Und6SwCg6wkWqHRJjZVx1mQynDmFa6
- C2fj8y4NTUDP1i5fhQGqhTFxDmsMYzNciiEaVGHq_fF6TB.mp9HGuBSAugnCjJ6HnRtxHd3z5WSo
- EXxEHRsqrOKabFy7vQvw1wLuvqSmKZSKAYCxV4lEIwgYoP7vHlvBKv0e4hlTWxJ5CL5WnBIDxf4W
- ViOVjY74j3mQ1NNTRLLcCumtaecx2zvdgPfQeNFhZFP0c_2Kak9_lMUkfuNXesjCoGIKY025rk.o
- DAj5vfcw8TCTCNptpWdw960fepFNlCti8kyVRywXDnl.3udzWJMjVlz1Y9RaQORnIDN1LUtNjP1R
- H2oQtWqVk98Xq3TnvRaNEBuAAKb3HW8HoEl.ESaQoQmblbgmbIv5QV1T9eHO__kg3rpZXyv1gJmz
- gbOezi0P4WN0Y_ahA8ltWZuLRXggSsjC3pyxDPR3x6OV4nO2Ruj_jacC6Ja9TOmhD59KPbP.6DVW
- jqG8GPIXFOfWoUV75Ab6X5hoVvrKl1DPL4RPI5gckWfOAZ7VV7lyDLmsCS7cG503x4DtRAY8G10D
- 7Jy173FDRBLBWSDj0X855_7SqvukmYEqLQD9eQpBCNEuQWV7zHo7UPckwGFAfRdfQ6mzt1btyE9_
- GLS7tm2w.n6HpZydN.Ign7aJROAJeWuhYEKwlFj78YzL.c6qNLy7rjfUF.t93RNRs72ZrVsFADp1
- KsfKzKeEmloP1X6zi.0ynJpqqMXkpNwPuXWtaQlV0wUL57c2C_PoW.WqJHT.3H7cLn.XRIMJZLXH
- MR2eZXcnpRahgpiRoMRIxaiRj0.qhgpsZhaoa3Mto1inFSxA640derzNRqN0_FR5zTIUQezXMv1I
- GONJOCaj14_GLSOfrnGttbNnjFz5nnqwVl8ipMKzaSiOWR0nWh2C.6uqNB5KgOdMYdw.GAhho7RW
- yHxeKRGU_hI4G1Xv6XOOmIWoLYQsMi.lUvsaAqtFBf19Pzb0ZnVRSREg.R7pNlYP9G35gTKgnWcV
- .GL5pyzpjh9fF3bP91tJdH8k3yYdHuHZWOA2BDZv7esvO1po5wgMF4lHP2UotQcFLdeHLvQ7kn7M
- qJUP5R7rDREZEjWNVYYrYZfUz4Fi9iLEdYI0gYvqSNsf1r7E8FaMNdngmNcu.cF7Z5wNz_XkY9dN
- s5KekZuI_syol5t2XpPa3Gt_bNxxfsED09.1A1_BxXPlgvqgSkLI5Cj7ZBx4KPU9Ruiu_urP8qRX
- 9V9_FzbOgScgdZ3IRJNNc3cJ.pB5cPD6ZqoRtr9eSzcit1sXgROzgEsaoJ4xCzf6ys9NWfkpPnSY
- DybPi_jEWc8XdABn.ROXfwXGX8VVnoq13czgBMrDdlU0KgkKQN81zHKJJn25liLG87WpJXMBoygC
- lb7bwKuD1OcU9FmVbpzcyAB1wO6LyhcidGg1xlEuT1uE8rJZ4IfsA7t9ptKGfdedqK.QcHZBRAdq
- hK3WrfN7vfqkUCMdN8QnCVzwLPy1JdljXrn8Yo_D2ijMqaxpd4T4FbcF6hBh1dGs0z0M8Nl8Up1M
- tIwBUdxALAV2PU1dizE0i2cyO32LbzxIcn2ehbVhaWnRkHOSgQK8kYGjY4QUByPON3Ih1T57xFry
- BEzSnXnHBCuLCUDOlivQcynkvXgArC5T.SHH2rhbzI_0tv1pVs_4fxg2XL98Y7MWJPhhaAX8rOx4
- SkM.1v6QVCDiF_Wchv4ynYtDVFspvJ.rVpw48eZNLTnwMlfFRH0ypjbccMCO9G8WszG0NISaaQDn
- 8INTZxamallVo0nWjF98_xc_fCJBjKD3EyDbqhJcbZP8BD3bI
-X-Sonic-MF: <alex_y_xu@yahoo.ca>
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic317.consmr.mail.gq1.yahoo.com with HTTP; Tue, 28 Jun 2022 19:28:31 +0000
-Received: by hermes--production-ne1-7864dcfd54-clfh9 (Yahoo Inc. Hermes SMTP
- Server) with ESMTPA ID 0ba9c517f807bbba5b63c956b00d8dd2; 
- Tue, 28 Jun 2022 19:28:30 +0000 (UTC)
-Date: Tue, 28 Jun 2022 15:28:26 -0400
-From: "Alex Xu (Hello71)" <alex_y_xu@yahoo.ca>
-Subject: Re: CONFIG_ANDROID (was: rcu_sched detected expedited stalls in
- amdgpu after suspend)
-To: paulmck@kernel.org
-References: <1656357116.rhe0mufk6a.none.ref@localhost>
- <1656357116.rhe0mufk6a.none@localhost>
- <20220627204139.GL1790663@paulmck-ThinkPad-P17-Gen-1>
- <1656379893.q9yb069erk.none@localhost>
- <20220628041252.GV1790663@paulmck-ThinkPad-P17-Gen-1>
- <1656421946.ic03168yc3.none@localhost>
- <20220628185437.GA1790663@paulmck-ThinkPad-P17-Gen-1>
-In-Reply-To: <20220628185437.GA1790663@paulmck-ThinkPad-P17-Gen-1>
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2077.outbound.protection.outlook.com [40.107.93.77])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F59810E84D;
+ Tue, 28 Jun 2022 19:41:44 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EeBpEe+28CHGACBphTUmAH/LlldN9DxHvnvjw1BSL/EbXdfOQlkN4EM/OhoFUWQTzGFcFIHNObeBHDDzryJXZbA/ivTWybcEk4518NVfn5Rfsz9enFwyhkU511q21Mk4RNe0jxUp/2EOsARPHHSeVY4XQVBOYgcdya8CdAncPCAlB4yjfUNHiSobkDd4iiJp2KVOYrIy4/EBthBOOIBmOdeMRfuPipm7uHZnO+Z7jZi8nTogn+J6efZ83bsOFzTMCBhi4hbMGLCH3ZZEK+ZpEQ2syW8gYj5KMugRLw58NZ2hsxJkfW+146Z29zlSm0YKvGRqhlp8sARCgO89e3Cu6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wS33b1Jd4c7hYYfGxkbaFPHTbSEJd2FTYQ3gjfn+gZM=;
+ b=lZAZzIYhY59p61CggAXpsdTDSyAq8GIVfA1EGz8VQM703gpT02iYUq8FuMscxmTv7ucaqDT1XfE5dt9hIZDXTgYKMIZLZSMwKxr6Jiv5gqLXdbnpgmGhjDIQWUNSvU8SnIWMxivO37dZKNUewt3uIJpdremGNLt6Y4guXqoWw+mytFbVG2VFeG2P93U3lUT3iC2PpUa677eGXvl/YsybikAfeKXDlLnOhhnMsWfzmYNx+CcLshQ4ap+/JEmyFw8bLQMPQg9MI2wEJiMgcOn0Fvx/sjXxnOC73xOXl2lt5yqWI7QF2HhxWpGfXgUn8BDk3xdkCOhBCHZZamwbGUY7KA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wS33b1Jd4c7hYYfGxkbaFPHTbSEJd2FTYQ3gjfn+gZM=;
+ b=XGjBNnfeN/yEGeou2f3XzphFfQdFyBrMccolK7ZwXE2YaqEpoezN1HXrfeSi8k83efdAhca3ycI/IrFAgIiRhuONzw6ilvB164w1HZWeUjYJw+sHpPh+9iRtZohYetbQlG8TpPGmJAmhX5kg5/LdhzR6AisK6PY0yQVRmhLrSY0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
+ by DM6PR12MB3068.namprd12.prod.outlook.com (2603:10b6:5:3e::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.15; Tue, 28 Jun
+ 2022 19:41:40 +0000
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::f55b:be13:11c6:d9dc]) by CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::f55b:be13:11c6:d9dc%3]) with mapi id 15.20.5373.018; Tue, 28 Jun 2022
+ 19:41:40 +0000
+Message-ID: <cea3a10e-7203-5345-bc3f-8832b5451de1@amd.com>
+Date: Tue, 28 Jun 2022 15:41:36 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [RFC PATCH 4/5] drm/drm_color_mgmt: add 3D LUT to color mgmt
+ properties
+Content-Language: en-US
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Melissa Wen <mwen@igalia.com>
+References: <20220619223104.667413-1-mwen@igalia.com>
+ <20220619223104.667413-5-mwen@igalia.com> <Yrmf+mWk13qkcsfs@intel.com>
+From: Harry Wentland <harry.wentland@amd.com>
+In-Reply-To: <Yrmf+mWk13qkcsfs@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: YT1PR01CA0065.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:2e::34) To CO6PR12MB5427.namprd12.prod.outlook.com
+ (2603:10b6:5:358::13)
 MIME-Version: 1.0
-Message-Id: <1656443915.mdjoauhqe0.none@localhost>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: WebService/1.1.20381
- mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
-X-Mailman-Approved-At: Tue, 28 Jun 2022 20:52:52 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 5c7d133a-9d20-493f-13d3-08da593e3896
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3068:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: W9OwxobJv/d7Uisa5036sLODXYepGt7QrfSIkDJ7W3m7Apwb5przL+bhoPr9+hK+dQW0VDt18qWZEegRKEU+EHW7SL3G5YMF4pX3gOtwBNck+/kLI+fzmFlQQkXGG72O4Mzo+v+ca7EBKhdQ2jS+zAPvSOVsNjJh21T3WOIw8ZT3QGCC5wgAYrkxvYHR6hkfEHJx1O2/PFUmORI++0ytgz8oCJfIw5xutEmx/milPX+VitiDifyn0rt3emci1a8qeVgC68FDlfUCDV5yehRhgVbajtEosMIObsDscaeJA6ymAqwBOXRSnrveM8T9cQuI4QLhWD3Xjupx43Aj550DP+5NssOMbSBe28e+YsNKsZvyPfzpKEkFwC6FS65YPvL/OzwF5fVPJPt7Deant/HZRdTUK//wnT8/OYMq9LL8nVIYSf14QytNa1m9EFXczvC8j3Wm2BxrMB/PwCwYXAINuj+tnmJJtCic/OAx7PiFytB3gBc28PFU2/YTE2SBAXqkYRRGwxzLvLyJDObhzIgvRhjyrLahkQIu7/oDakoiSULOytTlPTug/YDRXqotOLkL++NBnCCl8tIKpaOLblfbAX60/6KnkPQys6lxoQQ6xHNvEeJTEHPnB+GIFcmNma1LIaafVqFf8XHsyoC9Zf+3wOrAhH+F3HBxXT5j0oU7R6zDcBKR4psUmwxCGm1EltaZf2gZqM6zcNip1m0mp8PZ1OY9+U0KoBL2THpocQdrkJudwAfdHAQ0uiqW8L7SJLh1ojw6h/oSGIP9WSQWmxVDjXYM5Xmo0h/GRiyAJfyUMfB6MS15c3toRLjHMfZB9WcUhJMNO5ThfgqBKO7gtBNBL6OC71vC1zwj7Tf7lgqRAQw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(366004)(136003)(396003)(346002)(39860400002)(376002)(44832011)(4326008)(8676002)(966005)(66556008)(66476007)(66946007)(8936002)(36756003)(26005)(478600001)(5660300002)(7416002)(6512007)(6486002)(86362001)(110136005)(186003)(316002)(83380400001)(31686004)(6506007)(38100700002)(41300700001)(6666004)(2616005)(31696002)(2906002)(53546011)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SnF3amJMVUtqQzRMb1Q3UllCSXMvaUhCT2NTNVBCY3BmaVU1NlU2dFQwWW1B?=
+ =?utf-8?B?VVFuOHdLWS9KeGRoUzVuQytjRlBLaXhSQ09oRjNnampRUy9WcWs5QTJ5WnpU?=
+ =?utf-8?B?MDZkUEVDRU16Z0dJa1VFcWdLeU1PZVRxZVVrY3RWUFNWaG5mdFFNc04zYXR0?=
+ =?utf-8?B?Q3c4Tmd2VXUxUTFNYlFDb2IyaFpTYk9WakNaVVhRVWRDcGhIWmhHM05ud3g5?=
+ =?utf-8?B?b3RPUXJHdjFqOFpqL05DVklxeHExWHhhZCtzSVlBMXMxRXN2aFZmRG1XUWRS?=
+ =?utf-8?B?Zm5NS1llajhrd0FJMXVWbUdEUENud1FtdTAzYUJwRjlVQVdtVGhoQVlpZWpU?=
+ =?utf-8?B?bmJhb0J3S0hCdDgybE4rYXRhcldEdzN1d29sUnFkdlgrSENjTGVFem04SnpR?=
+ =?utf-8?B?RHVoSlRKaDl4cSt0d3RLelNXSExpZUhmclY1ek83a2NLZDdvS0hmU0NjTUpu?=
+ =?utf-8?B?aG9sRVltazRCVzQzbGxCVUdCcng0UGtBdEJmdmxWcFNySk14dUtTYkJlWHlU?=
+ =?utf-8?B?RXNKUE01MVdBV2ppMURSc1lDZzgwZDZnQUNmckZ3L2hlWm1NZDdHeHlwTkNN?=
+ =?utf-8?B?bnFPRTRPcWxnd25SRnd0Y2FMM2tEeW1XR20vQXdBK05pSDBFbCtDVExZV3JL?=
+ =?utf-8?B?NmtJT0w5ZVRZRGhFRkZTV1pKUXZqSGlBamhkVm04akl1WEN0M2lVV3RUUEto?=
+ =?utf-8?B?YStpbGdJVUtIY2lPTFRyeDNYcURYenZFbmFycjl3VkxLSVVDcHNiMHNDN2dt?=
+ =?utf-8?B?cnVhNXJSckNOYXc5elJDMCtVMjlocFY2M3RtM2VzRSs1bG4wWDJWM2dDQU53?=
+ =?utf-8?B?OXRqbEhna1lNUW1icmxsRXI5eldlRjl5YlZXdGFKRjNOR2xKaVVBaFJrOFVS?=
+ =?utf-8?B?WVFBN1NlU0NJKzhYTVRneVd1S1IzTHVlN0dpamVjbW05alNKMGQ4ZVd6ZHZo?=
+ =?utf-8?B?cUx0akZRekZuanBCdkpMbmZFamk2TjliR2FUNitrbFdoMzlNYy9tVlM4V0Ju?=
+ =?utf-8?B?NDNjTnU4eGVFdlJGUHptUzV5eVVQeFBhV2plMWsxMUNUWGxDd1I4NENRSjMz?=
+ =?utf-8?B?cDJJMHBhanVBNkZjR3k1L01WWC96K09mNy9peFJFVlhHaGJkQ2xYUmJNRHcw?=
+ =?utf-8?B?ZnZUS2NHaGVvMTNGRTU0UnJENlV6ZEU3Z1F1YnlCWks3Wk5DeWMyZUF5Y3I2?=
+ =?utf-8?B?Z3FIQThJOVI4UkNLZmRzYjhjdURPTjVOVG9jSjRCR2JMbE5pRnZlTlFxeTJD?=
+ =?utf-8?B?SUNBTG94eXVkc2kySUUxSVdyQzhpMVczM21pek9ubU5mLzZYM29CQlU3VmVJ?=
+ =?utf-8?B?aUJGbVFWSzl0ZkJpVFRDenk4YmU1Q1BIUFZKMGwyNUFKOHdUaW41OFRwVXlo?=
+ =?utf-8?B?am1xSTJZdlhQb2IrRnIzN09BQkVaUlVLSU1neTFKbThhckJlK0tNRW4wdFow?=
+ =?utf-8?B?M0tuMllpZk4rRXcrVHVFQkhWRjQ5NnBCakxLMElXR1ZSV1RoQ2NsQlNJKysv?=
+ =?utf-8?B?YUJEL3AvdG5URTdJdm9TdnlsN2k1V0ZtZXFwYzdtNUhsZ2cycHZvSEpwejZw?=
+ =?utf-8?B?bGUyT1ZIbmJ2akpnUlJrNjZEWFNlUjZKOG5YS2RyWHQvSzJCamsvVE5CR3Az?=
+ =?utf-8?B?U1VBTThaV1RZMzErU3FvNEZuQUY4NmJkbDVjaVdSRnFFcHIvbUhiSXpuVW9Q?=
+ =?utf-8?B?RTJEai9ZL09IdnZMc0ZkbWcxanY2d21qaXFGbWxSQi8wVlI3WUxnR0hReWpE?=
+ =?utf-8?B?RmpBR09QME0wNFduM2FWNlp1YXQ5TkhTZi9xcW5zRzkra29PaSs5V0wvSFhk?=
+ =?utf-8?B?UXJDVWlnWTEreGJISlFZWS96bTRuSzZxVFg2bFphdEwyQnhtUG5QQnRsVnNs?=
+ =?utf-8?B?aWM3czJITXRnSWpmai85ZkRDaSttWnYrVE92VTN6NzVaMlZ3S2VTVUFVekFq?=
+ =?utf-8?B?V1VtbXVScDJBS0lOdVdaaVhBOWYxTXR1TGk4VnpQVmYwYlRPQ29EdWMzMDA2?=
+ =?utf-8?B?Ris5Z0NldHFMZXJPaklrL3lQUHJIOGpxcEtiNHlYMFdnYzJIRXhYVHo3T3dw?=
+ =?utf-8?B?MUFheEFxZVlYSk1qRWljUVZKeHhHTVIrQjZRV2x4OVBQejRXZERMeVBUcmRp?=
+ =?utf-8?Q?1C516WC7W89J1TTNyjefBadRe?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c7d133a-9d20-493f-13d3-08da593e3896
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2022 19:41:40.1362 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: IQI6yKmFcrHt/IMBNMIBzu52rwVgOKUCwgETt2UD7Abu15Kr0TPjDTVX6KC+vYe3Jd7GGepD1hkUlg95xgLFWA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3068
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,44 +126,48 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: wireguard@lists.zx2c4.com, "Jason A. Donenfeld" <Jason@zx2c4.com>,
- Joel Fernandes <joel@joelfernandes.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Xinhui.Pan@amd.com,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Suren Baghdasaryan <surenb@google.com>, rcu@vger.kernel.org,
- Hridya Valsaraju <hridya@google.com>,
- Arve =?iso-8859-1?b?SGr4bm5lduVn?= <arve@android.com>, urezki@gmail.com,
- Theodore Ts'o <tytso@mit.edu>, alexander.deucher@amd.com,
- Todd Kjos <tkjos@android.com>, uladzislau.rezki@sony.com,
- Martijn Coenen <maco@android.com>, christian.koenig@amd.com,
- Christian Brauner <christian@brauner.io>
+Cc: tzimmermann@suse.de, airlied@linux.ie, Rodrigo.Siqueira@amd.com,
+ dri-devel@lists.freedesktop.org, Xinhui.Pan@amd.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, nikola.cornij@amd.com,
+ sunpeng.li@amd.com, alex.hung@amd.com, amd-gfx@lists.freedesktop.org,
+ daniel@ffwll.ch, alexander.deucher@amd.com, seanpaul@chromium.org,
+ nicholas.kazlauskas@amd.com, bhawanpreet.lakha@amd.com,
+ christian.koenig@amd.com, sungjoon.kim@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Excerpts from Paul E. McKenney's message of June 28, 2022 2:54 pm:
-> All you need to do to get the previous behavior is to add something like
-> this to your defconfig file:
->=20
-> CONFIG_RCU_EXP_CPU_STALL_TIMEOUT=3D21000
->=20
-> Any reason why this will not work for you?
 
-As far as I know, I do not require any particular RCU debugging features=20
-intended for developers; as an individual user and distro maintainer, I=20
-would like to select the option corresponding to "emit errors for=20
-unexpected conditions which should be reported upstream", not "emit=20
-debugging information for development purposes".
 
-Therefore, I think 0 is a suitable setting for me and most ordinary=20
-(not tightly controlled) distributions. My concern is that other users=20
-and distro maintainers will also have confusion about what value to set=20
-and whether the warnings are important, since the help text does not say=20
-anything about Android, and "make oldconfig" does not indicate that the=20
-default value is different for Android.
+On 2022-06-27 08:18, Ville Syrjälä wrote:
+> On Sun, Jun 19, 2022 at 09:31:03PM -0100, Melissa Wen wrote:
+>> Add 3D LUT for gammar correction using a 3D lookup table.  The position
+>> in the color correction pipeline where 3D LUT is applied depends on hw
+>> design, being after CTM or gamma. If just after CTM, a shaper lut must
+>> be set to shape the content for a non-linear space. That details should
+>> be handled by the driver according to its color capabilities.
+> 
+> I also cooked up a WIP 3D LUT support some time ago for Intel hw:
+> https://github.com/vsyrjala/linux/commits/3dlut>> But that dried up due to having no userspace for it.
+> 
+> I also cooked up some basic igts for it:
+> https://patchwork.freedesktop.org/series/90165/>> 
+> <snip>
+>> + * “LUT3D”:
+>> + *	Blob property to set the 3D LUT mapping pixel data after the color
+>> + *	transformation matrix and before gamma 1D lut correction.
+> 
+> On Intel hw the 3DLUT is after the gamma LUT in the pipeline, which is
+> where I placed it in my branch.
+> 
+> There is now some discussion happening about exposing some
+> kind of color pipeline description/configuration properties:
+> https://gitlab.freedesktop.org/pq/color-and-hdr/-/issues/11>> 
 
-My suggestion is that the default be set to 0, and if a non-zero value=20
-is appropriate for Android, that should be communicated to the Android=20
-developers, not made conditional on CONFIG_ANDROID.
+After all the discussions about properties to support color management for
+HDR and other features it's becoming clear to me that we'll need some color
+pipeline description going forward, i.e. something like the one Sebastian
+proposed. It's complex but if we're not defining this now we'll be in a pickle
+when the next driver implementer goes and finds that their HW looks different
+yet again and doesn't match any of the orders we've defined so far.
 
-Thanks,
-Alex.
+Harry
