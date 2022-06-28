@@ -2,94 +2,89 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8103D55F04D
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jun 2022 23:26:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFBD955F058
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jun 2022 23:32:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDA2E11A25E;
-	Tue, 28 Jun 2022 21:26:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43E1411B1B5;
+	Tue, 28 Jun 2022 21:32:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam07on2042.outbound.protection.outlook.com [40.107.212.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA4E111A25E
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jun 2022 21:26:41 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I0nY8togUAF9hqYLa71VVeWqt2pdHY4jXAbvpuaMJHeZmXt0nzj8qdGif5YkRP51xyDDgYAHXVtZIbg90PMxgfjPLTjUhWdlCJJBiPbbgDSuYqtb2zvI/Oxoc5vu9qoGHkCrRMbXME6T3dgqKKg++v2yriH/HxJ3p7NovGUJyr6XU1sYMggPyW9aZv/Y1JG3dW8dLS07MRSndoVb5yYKdIn3HLe8p0RSQYt5+4JFITvZ8hijS9CC4ZAjdZoCJKnRzb0cigOI8NcHgq5Lu+hl1WqTII3ZS51Ntc0wx6D72nvzXE0/sUaPh0OLHHffLdtzrKiqZ7gVENhyeJ70pIpFZg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vglv4JGT6tthakavq/+78qYBeBJiAdEkPHI+fF8xXlA=;
- b=ffsdJ7AdyDxgdIXd3bY0jdj7wqilM/AKPmIVSfV8g+z1KcKHmJz/dRQszr+r/6mIKJ54JNP/8kWZHdBNwh2uFwEFRXYLpKGq9EDAI3WsKZSXx6d8tlZsfljBZ01HnfutOWGBTzhBGSs7IZHVfmAjurX0r1kXh0u0mgZghmVG01FvthcG7Oo0n7nVdNrKDEdfdDKSuqtEOV0t1qQ9R5NX5JO1nlC1nAKLQQveT5SXQ1+VSAB1vj5lvReT2XXCQAoPPzvMWIIB+TRr3i9aj29YJRuosTmInF9K1TjncQcQdyDToXPS/KFwUpQvZO5oRe8Is1JxsHZ6G6bvKrWLpQN0Ww==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=gmail.com smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vglv4JGT6tthakavq/+78qYBeBJiAdEkPHI+fF8xXlA=;
- b=QQCkp7NfPYW3AYtqgf7WD+8TAj7gfUS8sxagxUIdU+34it2IY8Jb93m31vdGzPl4B0kFNckKkt+qtpEghtDqjDM8HL8EQfMJUWhtnR6OqFyKfqE4ZThJfb4FdVHbU2xtIq40eev/Ogq6ZOLI+ztuITZzNdw2BHiP44Ofi9yOOj0=
-Received: from DS7PR03CA0354.namprd03.prod.outlook.com (2603:10b6:8:55::12) by
- BL0PR12MB4674.namprd12.prod.outlook.com (2603:10b6:207:38::21) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5353.20; Tue, 28 Jun 2022 21:26:37 +0000
-Received: from DM6NAM11FT051.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:55:cafe::c5) by DS7PR03CA0354.outlook.office365.com
- (2603:10b6:8:55::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.15 via Frontend
- Transport; Tue, 28 Jun 2022 21:26:37 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT051.mail.protection.outlook.com (10.13.172.243) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5373.15 via Frontend Transport; Tue, 28 Jun 2022 21:26:37 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 28 Jun
- 2022 16:26:36 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 28 Jun
- 2022 14:26:36 -0700
-Received: from aaurabin-elitedesk-arch.amd.com (10.180.168.240) by
- SATLEXMB03.amd.com (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.28
- via Frontend Transport; Tue, 28 Jun 2022 16:26:35 -0500
-From: Aurabindo Pillai <aurabindo.pillai@amd.com>
-To: <alexdeucher@gmail.com>, <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amd: Add debug mask for subviewport mclk switch
-Date: Tue, 28 Jun 2022 17:26:35 -0400
-Message-ID: <20220628212635.2263706-1-aurabindo.pillai@amd.com>
-X-Mailer: git-send-email 2.36.1
+X-Greylist: delayed 330 seconds by postgrey-1.36 at gabe;
+ Tue, 28 Jun 2022 21:32:36 UTC
+Received: from pio-pvt-msa1.bahnhof.se (pio-pvt-msa1.bahnhof.se [79.136.2.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CE1A11B1AB
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jun 2022 21:32:36 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 919EB3FD63;
+ Tue, 28 Jun 2022 23:27:03 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.11
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.11 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
+ T_SCC_BODY_TEXT_LINE=-0.01, URIBL_BLOCKED=0.001]
+ autolearn=ham autolearn_force=no
+Authentication-Results: pio-pvt-msa1.bahnhof.se (amavisd-new);
+ dkim=pass (1024-bit key) header.d=shipmail.org
+Received: from pio-pvt-msa1.bahnhof.se ([127.0.0.1])
+ by localhost (pio-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Dc2aFG-pVafs; Tue, 28 Jun 2022 23:27:02 +0200 (CEST)
+Received: by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id AEB693FDAA;
+ Tue, 28 Jun 2022 23:26:58 +0200 (CEST)
+Received: from [192.168.0.209] (h-155-4-205-35.A357.priv.bahnhof.se
+ [155.4.205.35])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 9AA06360156;
+ Tue, 28 Jun 2022 23:26:57 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1656451618; bh=ytcDsDZId1FXW7EIkS2vLuiS9VYbZskPayG7B85WlHM=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=X+B+WnRob8hg5hOiIRj9AvbJ5diUA33ARcN993ZZQPEzHdlHsiKt8+qlYRCgjTyfG
+ ps+3/ZqSvyJeQdOXk/lQcIjKzkTFOGguhtbYDHn/RqNQYZuDiHB+kWuEW/Pt1GiM1j
+ Xu8V0jFNaU6WQL+FCf5BhdHiO2jnqOkkwTPYPEpw=
+Message-ID: <90fe74f6-a622-e4ae-3004-6f1bc1790247@shipmail.org>
+Date: Tue, 28 Jun 2022 23:26:56 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v6 14/22] dma-buf: Introduce new locking convention
+Content-Language: en-US
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
+ <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Daniel Stone <daniel@fooishbar.org>,
+ Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+ Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+ Rob Clark <robdclark@gmail.com>, Emil Velikov <emil.l.velikov@gmail.com>,
+ Robin Murphy <robin.murphy@arm.com>, Qiang Yu <yuq825@gmail.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Thierry Reding <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+References: <20220526235040.678984-1-dmitry.osipenko@collabora.com>
+ <20220526235040.678984-15-dmitry.osipenko@collabora.com>
+ <0a02a31d-a256-4ca4-0e35-e2ea1868a8ae@amd.com>
+ <e6e17c52-43c2-064b-500e-325bb3ba3b2c@collabora.com>
+ <02e7946b-34ca-b48e-1ba6-e7b63740a2d9@amd.com>
+ <7372dd1b-06f7-5336-4738-15f9b4d4d4b3@collabora.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+In-Reply-To: <7372dd1b-06f7-5336-4738-15f9b4d4d4b3@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: aa50668a-d715-4414-69cd-08da594ce24b
-X-MS-TrafficTypeDiagnostic: BL0PR12MB4674:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Gl+/So9nomdFEpDZLF8tgwuXvrkoxv/eZDhqgj6k5weBff34TeMHcFiRfdeecDuMCBMdyVgvI91DwWXErbwaeekPH+oMhOQCrB229hG4RDh1LiEN8cw/4JVAyoPX7L/C/JQzFUnciA0o11SZATietVWUI5wpR8vvNaguI/zLw47IFQFT04p2W8DUmP6WXbSTlstHMoSuNs7HZt1Jj0RnqN+zIAcRWomQadBNfsF4rIG480Ta0boGyyU6JVPXX6YmyFEskpmS37WRfXmXHHLKqxzDWxu4eFYAhXkDwjR7g1ht7slaT6plKfq03+aqrYBkVykNC/MFPmNfHO95t19hZLhSAulpHP9tbhTUR0bkQQXut5j7djZ0L1LKOUjrIkhQlvDPqaI3pgKBsx8e3cf5o0ybcOa+/1WsLNi4TUXq+vi6Cd3vgHA8xxxXBWcjWo7dSTFkPx97GUlIpQazk+eqWFaWO9o4hnm1K3nlamqWTigSltwNZPn+IfzZscVvliXaEILbKF83bk/cgfRd1yKrIRhil5ZdGSDLf7xquveQDCG7rGvlkQTSDN3gFqC7oDRcswDuHNPc7m50JTUajo1u/yBxowcwtYPu3sbTrn7JEGYQmRDxqDqCB2oeIGK0gYwne3WQWxJzMi/4WRBCoTsXd/6it8sBxUt4wm9kvfsRDum2T8Z7iaWkdWWUSuO/qfxf8pzs5IafDDkSVM9LB47eS+XLHJUfH0nnro/06u5Driqs69MjKbDQXLWLtu87ZsHreNDlPsIMc5VdM+/Xw4uOrkqf9IDlP3jcN49VFueTmz8zKMrrRpAdRrYnDAhnNpumh3laGf+tDJ1JRvEEV8bvY+WZtpfVYKHsr2LYLpr+xmI=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(39860400002)(346002)(396003)(136003)(376002)(36840700001)(40470700004)(46966006)(47076005)(86362001)(70206006)(316002)(8676002)(4326008)(426003)(7696005)(478600001)(186003)(82310400005)(41300700001)(26005)(2616005)(36860700001)(83380400001)(1076003)(40460700003)(44832011)(54906003)(2906002)(40480700001)(336012)(8936002)(356005)(36756003)(81166007)(5660300002)(110136005)(82740400003)(70586007)(2101003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2022 21:26:37.3451 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: aa50668a-d715-4414-69cd-08da594ce24b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT051.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4674
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,46 +96,101 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: aurabindo.pillai@amd.com, harry.wentland@amd.com
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, Dmitry Osipenko <digetx@gmail.com>,
+ kernel@collabora.com, linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Why&How]
-Expose a new debugfs enum to force a subviewport memory clock switch
-to facilitate easy testing.
 
-Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 +++
- drivers/gpu/drm/amd/include/amd_shared.h          | 1 +
- 2 files changed, 4 insertions(+)
+On 5/30/22 15:57, Dmitry Osipenko wrote:
+> On 5/30/22 16:41, Christian König wrote:
+>> Hi Dmitry,
+>>
+>> Am 30.05.22 um 15:26 schrieb Dmitry Osipenko:
+>>> Hello Christian,
+>>>
+>>> On 5/30/22 09:50, Christian König wrote:
+>>>> Hi Dmitry,
+>>>>
+>>>> First of all please separate out this patch from the rest of the series,
+>>>> since this is a complex separate structural change.
+>>> I assume all the patches will go via the DRM tree in the end since the
+>>> rest of the DRM patches in this series depend on this dma-buf change.
+>>> But I see that separation may ease reviewing of the dma-buf changes, so
+>>> let's try it.
+>> That sounds like you are underestimating a bit how much trouble this
+>> will be.
+>>
+>>>> I have tried this before and failed because catching all the locks in
+>>>> the right code paths are very tricky. So expect some fallout from this
+>>>> and make sure the kernel test robot and CI systems are clean.
+>>> Sure, I'll fix up all the reported things in the next iteration.
+>>>
+>>> BTW, have you ever posted yours version of the patch? Will be great if
+>>> we could compare the changed code paths.
+>> No, I never even finished creating it after realizing how much work it
+>> would be.
+>>
+>>>>> This patch introduces new locking convention for dma-buf users. From
+>>>>> now
+>>>>> on all dma-buf importers are responsible for holding dma-buf
+>>>>> reservation
+>>>>> lock around operations performed over dma-bufs.
+>>>>>
+>>>>> This patch implements the new dma-buf locking convention by:
+>>>>>
+>>>>>      1. Making dma-buf API functions to take the reservation lock.
+>>>>>
+>>>>>      2. Adding new locked variants of the dma-buf API functions for
+>>>>> drivers
+>>>>>         that need to manage imported dma-bufs under the held lock.
+>>>> Instead of adding new locked variants please mark all variants which
+>>>> expect to be called without a lock with an _unlocked postfix.
+>>>>
+>>>> This should make it easier to remove those in a follow up patch set and
+>>>> then fully move the locking into the importer.
+>>> Do we really want to move all the locks to the importers? Seems the
+>>> majority of drivers should be happy with the dma-buf helpers handling
+>>> the locking for them.
+>> Yes, I clearly think so.
+>>
+>>>>>      3. Converting all drivers to the new locking scheme.
+>>>> I have strong doubts that you got all of them. At least radeon and
+>>>> nouveau should grab the reservation lock in their ->attach callbacks
+>>>> somehow.
+>>> Radeon and Nouveau use gem_prime_import_sg_table() and they take resv
+>>> lock already, seems they should be okay (?)
+>> You are looking at the wrong side. You need to fix the export code path,
+>> not the import ones.
+>>
+>> See for example attach on radeon works like this
+>> drm_gem_map_attach->drm_gem_pin->radeon_gem_prime_pin->radeon_bo_reserve->ttm_bo_reserve->dma_resv_lock.
+> Yeah, I was looking at the both sides, but missed this one.
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index c9145864ed2b..7a034ca95be2 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -1559,6 +1559,9 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
- 	if (amdgpu_dc_debug_mask & DC_DISABLE_CLOCK_GATING)
- 		adev->dm.dc->debug.disable_clock_gate = true;
- 
-+	if (amdgpu_dc_debug_mask & DC_FORCE_SUBVP_MCLK_SWITCH)
-+		adev->dm.dc->debug.force_subvp_mclk_switch = true;
-+
- 	r = dm_dmub_hw_init(adev);
- 	if (r) {
- 		DRM_ERROR("DMUB interface failed to initialize: status=%d\n", r);
-diff --git a/drivers/gpu/drm/amd/include/amd_shared.h b/drivers/gpu/drm/amd/include/amd_shared.h
-index bcdf7453a403..b1c55dd7b498 100644
---- a/drivers/gpu/drm/amd/include/amd_shared.h
-+++ b/drivers/gpu/drm/amd/include/amd_shared.h
-@@ -247,6 +247,7 @@ enum DC_DEBUG_MASK {
- 	DC_DISABLE_DSC = 0x4,
- 	DC_DISABLE_CLOCK_GATING = 0x8,
- 	DC_DISABLE_PSR = 0x10,
-+	DC_FORCE_SUBVP_MCLK_SWITCH = 0x20,
- };
- 
- enum amd_dpm_forced_level;
--- 
-2.36.1
+Also i915 will run into trouble with attach. In particular since i915 
+starts a full ww transaction in its attach callback to be able to lock 
+other objects if migration is needed. I think i915 CI would catch this 
+in a selftest.
 
+Perhaps it's worthwile to take a step back and figure out, if the 
+importer is required to lock, which callbacks might need a ww acquire 
+context?
+
+(And off-topic, Since we do a lot of fancy stuff under dma-resv locks 
+including waiting for fences and other locks, IMO taking these locks 
+uninterruptible should ring a warning bell)
+
+/Thomas
+
+>
+>> Same for nouveau and probably a few other exporters as well. That will
+>> certainly cause a deadlock if you don't fix it.
+>>
+>> I strongly suggest to do this step by step, first attach/detach and then
+>> the rest.
+> Thank you very much for the suggestions. I'll implement them in the next
+> version.
+>
