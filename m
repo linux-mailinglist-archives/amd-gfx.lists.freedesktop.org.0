@@ -1,120 +1,71 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE70255EDE0
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jun 2022 21:41:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0056B55EFFA
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jun 2022 22:52:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5110210E84D;
-	Tue, 28 Jun 2022 19:41:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6250D10EA1F;
+	Tue, 28 Jun 2022 20:52:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2077.outbound.protection.outlook.com [40.107.93.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F59810E84D;
- Tue, 28 Jun 2022 19:41:44 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EeBpEe+28CHGACBphTUmAH/LlldN9DxHvnvjw1BSL/EbXdfOQlkN4EM/OhoFUWQTzGFcFIHNObeBHDDzryJXZbA/ivTWybcEk4518NVfn5Rfsz9enFwyhkU511q21Mk4RNe0jxUp/2EOsARPHHSeVY4XQVBOYgcdya8CdAncPCAlB4yjfUNHiSobkDd4iiJp2KVOYrIy4/EBthBOOIBmOdeMRfuPipm7uHZnO+Z7jZi8nTogn+J6efZ83bsOFzTMCBhi4hbMGLCH3ZZEK+ZpEQ2syW8gYj5KMugRLw58NZ2hsxJkfW+146Z29zlSm0YKvGRqhlp8sARCgO89e3Cu6w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wS33b1Jd4c7hYYfGxkbaFPHTbSEJd2FTYQ3gjfn+gZM=;
- b=lZAZzIYhY59p61CggAXpsdTDSyAq8GIVfA1EGz8VQM703gpT02iYUq8FuMscxmTv7ucaqDT1XfE5dt9hIZDXTgYKMIZLZSMwKxr6Jiv5gqLXdbnpgmGhjDIQWUNSvU8SnIWMxivO37dZKNUewt3uIJpdremGNLt6Y4guXqoWw+mytFbVG2VFeG2P93U3lUT3iC2PpUa677eGXvl/YsybikAfeKXDlLnOhhnMsWfzmYNx+CcLshQ4ap+/JEmyFw8bLQMPQg9MI2wEJiMgcOn0Fvx/sjXxnOC73xOXl2lt5yqWI7QF2HhxWpGfXgUn8BDk3xdkCOhBCHZZamwbGUY7KA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wS33b1Jd4c7hYYfGxkbaFPHTbSEJd2FTYQ3gjfn+gZM=;
- b=XGjBNnfeN/yEGeou2f3XzphFfQdFyBrMccolK7ZwXE2YaqEpoezN1HXrfeSi8k83efdAhca3ycI/IrFAgIiRhuONzw6ilvB164w1HZWeUjYJw+sHpPh+9iRtZohYetbQlG8TpPGmJAmhX5kg5/LdhzR6AisK6PY0yQVRmhLrSY0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
- by DM6PR12MB3068.namprd12.prod.outlook.com (2603:10b6:5:3e::25) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.15; Tue, 28 Jun
- 2022 19:41:40 +0000
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::f55b:be13:11c6:d9dc]) by CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::f55b:be13:11c6:d9dc%3]) with mapi id 15.20.5373.018; Tue, 28 Jun 2022
- 19:41:40 +0000
-Message-ID: <cea3a10e-7203-5345-bc3f-8832b5451de1@amd.com>
-Date: Tue, 28 Jun 2022 15:41:36 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [RFC PATCH 4/5] drm/drm_color_mgmt: add 3D LUT to color mgmt
- properties
-Content-Language: en-US
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Melissa Wen <mwen@igalia.com>
-References: <20220619223104.667413-1-mwen@igalia.com>
- <20220619223104.667413-5-mwen@igalia.com> <Yrmf+mWk13qkcsfs@intel.com>
-From: Harry Wentland <harry.wentland@amd.com>
-In-Reply-To: <Yrmf+mWk13qkcsfs@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YT1PR01CA0065.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:2e::34) To CO6PR12MB5427.namprd12.prod.outlook.com
- (2603:10b6:5:358::13)
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com
+ [IPv6:2a00:1450:4864:20::129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E11D10FDF7
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jun 2022 20:11:47 +0000 (UTC)
+Received: by mail-lf1-x129.google.com with SMTP id j21so24279478lfe.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jun 2022 13:11:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:date:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=yP7z++hmLdln35/PWmu6kJvToesBwvqVRLcqwtfTqHw=;
+ b=Wf4kJNvUbmGXAp0NKucvsRru3Al5eajFw/oZCCKXVRRSqAQeeg8pU5Ege0VPhodaH7
+ IEvU3zGwXrbw+cRkIIQcjHHVhS8kZoOxWWZkL3cJEM0QeyptAEr7JYrzzIseoD7tWwNx
+ GwEWmjo8AA9qQAOthsc9dxhRBtotQ5CWSpAy4Z5KA4HJNAOLWvmdl/DBy+mLSpTuwguG
+ nXhqsIWc0WAhnJEKWESan3ugOFaug8LyIgmFKNvWHvMWfvOG2TncTre7680CDJF/DzZs
+ wADgKv0PoqodHkVCeWuh9jF85+a3yot3LdR+4xBpltsfJhTaVVjqHbtImVNB8Digj3+w
+ J20g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=yP7z++hmLdln35/PWmu6kJvToesBwvqVRLcqwtfTqHw=;
+ b=lhLxAtfGGXc2Tf+ufSeQSQSnRZh0ByVOaQjz3tCKEOx9cKfN8VOnlBs9GTjooTIVm4
+ 9hHehbBo/xB42YiuGTLe6moaSeUWNMuxOfbxDRANyRizcJP0t4aZhGzfKjD/gyi02Joj
+ ECdNDL9SjbwUR/08QVJcV1EfHdFtAcULcvxGmLrxGhXXF3fNQNWWZ9OfQZRJVSG8aAqJ
+ Cuw02tuWFazlsu58kuCoSkGrQpktdyCiF4NjEOoaQjOfa7lXmthgUlVFw7yN9AYLe7nT
+ 1ucRRrzs26rros8AUcVkGDx1JdrRYeDMqVi6RcbTOSpSwWMTiYzR7j48Aav4J+6kWAgm
+ MQUg==
+X-Gm-Message-State: AJIora90XyXOKi+kFpKJMjLsHIcwz4g7ZWl5cNFYCUbqjWvzVRakQ8R6
+ QC8oCZrCA0h9RbmTuf7tyZQ=
+X-Google-Smtp-Source: AGRyM1s/SxLBCRJqtNijzYQhHtgDDNIM9SkW0fxBYF0tjMUjSiLBy70E08Gxvmb304uwHefJmXgTew==
+X-Received: by 2002:a05:6512:128f:b0:480:fd23:6647 with SMTP id
+ u15-20020a056512128f00b00480fd236647mr13566368lfs.136.1656447105293; 
+ Tue, 28 Jun 2022 13:11:45 -0700 (PDT)
+Received: from pc638 ([155.137.26.201]) by smtp.gmail.com with ESMTPSA id
+ v8-20020a05651203a800b0047f9fa2925csm2315627lfp.234.2022.06.28.13.11.39
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 28 Jun 2022 13:11:44 -0700 (PDT)
+From: Uladzislau Rezki <urezki@gmail.com>
+X-Google-Original-From: Uladzislau Rezki <urezki@pc638>
+Date: Tue, 28 Jun 2022 22:11:37 +0200
+To: "Alex Xu (Hello71)" <alex_y_xu@yahoo.ca>
+Subject: Re: CONFIG_ANDROID (was: rcu_sched detected expedited stalls in
+ amdgpu after suspend)
+Message-ID: <YrtgeSmwLmpzN/zw@pc638>
+References: <1656357116.rhe0mufk6a.none.ref@localhost>
+ <1656357116.rhe0mufk6a.none@localhost>
+ <20220627204139.GL1790663@paulmck-ThinkPad-P17-Gen-1>
+ <1656379893.q9yb069erk.none@localhost>
+ <20220628041252.GV1790663@paulmck-ThinkPad-P17-Gen-1>
+ <1656421946.ic03168yc3.none@localhost>
+ <20220628185437.GA1790663@paulmck-ThinkPad-P17-Gen-1>
+ <1656443915.mdjoauhqe0.none@localhost>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5c7d133a-9d20-493f-13d3-08da593e3896
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3068:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: W9OwxobJv/d7Uisa5036sLODXYepGt7QrfSIkDJ7W3m7Apwb5przL+bhoPr9+hK+dQW0VDt18qWZEegRKEU+EHW7SL3G5YMF4pX3gOtwBNck+/kLI+fzmFlQQkXGG72O4Mzo+v+ca7EBKhdQ2jS+zAPvSOVsNjJh21T3WOIw8ZT3QGCC5wgAYrkxvYHR6hkfEHJx1O2/PFUmORI++0ytgz8oCJfIw5xutEmx/milPX+VitiDifyn0rt3emci1a8qeVgC68FDlfUCDV5yehRhgVbajtEosMIObsDscaeJA6ymAqwBOXRSnrveM8T9cQuI4QLhWD3Xjupx43Aj550DP+5NssOMbSBe28e+YsNKsZvyPfzpKEkFwC6FS65YPvL/OzwF5fVPJPt7Deant/HZRdTUK//wnT8/OYMq9LL8nVIYSf14QytNa1m9EFXczvC8j3Wm2BxrMB/PwCwYXAINuj+tnmJJtCic/OAx7PiFytB3gBc28PFU2/YTE2SBAXqkYRRGwxzLvLyJDObhzIgvRhjyrLahkQIu7/oDakoiSULOytTlPTug/YDRXqotOLkL++NBnCCl8tIKpaOLblfbAX60/6KnkPQys6lxoQQ6xHNvEeJTEHPnB+GIFcmNma1LIaafVqFf8XHsyoC9Zf+3wOrAhH+F3HBxXT5j0oU7R6zDcBKR4psUmwxCGm1EltaZf2gZqM6zcNip1m0mp8PZ1OY9+U0KoBL2THpocQdrkJudwAfdHAQ0uiqW8L7SJLh1ojw6h/oSGIP9WSQWmxVDjXYM5Xmo0h/GRiyAJfyUMfB6MS15c3toRLjHMfZB9WcUhJMNO5ThfgqBKO7gtBNBL6OC71vC1zwj7Tf7lgqRAQw=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(366004)(136003)(396003)(346002)(39860400002)(376002)(44832011)(4326008)(8676002)(966005)(66556008)(66476007)(66946007)(8936002)(36756003)(26005)(478600001)(5660300002)(7416002)(6512007)(6486002)(86362001)(110136005)(186003)(316002)(83380400001)(31686004)(6506007)(38100700002)(41300700001)(6666004)(2616005)(31696002)(2906002)(53546011)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SnF3amJMVUtqQzRMb1Q3UllCSXMvaUhCT2NTNVBCY3BmaVU1NlU2dFQwWW1B?=
- =?utf-8?B?VVFuOHdLWS9KeGRoUzVuQytjRlBLaXhSQ09oRjNnampRUy9WcWs5QTJ5WnpU?=
- =?utf-8?B?MDZkUEVDRU16Z0dJa1VFcWdLeU1PZVRxZVVrY3RWUFNWaG5mdFFNc04zYXR0?=
- =?utf-8?B?Q3c4Tmd2VXUxUTFNYlFDb2IyaFpTYk9WakNaVVhRVWRDcGhIWmhHM05ud3g5?=
- =?utf-8?B?b3RPUXJHdjFqOFpqL05DVklxeHExWHhhZCtzSVlBMXMxRXN2aFZmRG1XUWRS?=
- =?utf-8?B?Zm5NS1llajhrd0FJMXVWbUdEUENud1FtdTAzYUJwRjlVQVdtVGhoQVlpZWpU?=
- =?utf-8?B?bmJhb0J3S0hCdDgybE4rYXRhcldEdzN1d29sUnFkdlgrSENjTGVFem04SnpR?=
- =?utf-8?B?RHVoSlRKaDl4cSt0d3RLelNXSExpZUhmclY1ek83a2NLZDdvS0hmU0NjTUpu?=
- =?utf-8?B?aG9sRVltazRCVzQzbGxCVUdCcng0UGtBdEJmdmxWcFNySk14dUtTYkJlWHlU?=
- =?utf-8?B?RXNKUE01MVdBV2ppMURSc1lDZzgwZDZnQUNmckZ3L2hlWm1NZDdHeHlwTkNN?=
- =?utf-8?B?bnFPRTRPcWxnd25SRnd0Y2FMM2tEeW1XR20vQXdBK05pSDBFbCtDVExZV3JL?=
- =?utf-8?B?NmtJT0w5ZVRZRGhFRkZTV1pKUXZqSGlBamhkVm04akl1WEN0M2lVV3RUUEto?=
- =?utf-8?B?YStpbGdJVUtIY2lPTFRyeDNYcURYenZFbmFycjl3VkxLSVVDcHNiMHNDN2dt?=
- =?utf-8?B?cnVhNXJSckNOYXc5elJDMCtVMjlocFY2M3RtM2VzRSs1bG4wWDJWM2dDQU53?=
- =?utf-8?B?OXRqbEhna1lNUW1icmxsRXI5eldlRjl5YlZXdGFKRjNOR2xKaVVBaFJrOFVS?=
- =?utf-8?B?WVFBN1NlU0NJKzhYTVRneVd1S1IzTHVlN0dpamVjbW05alNKMGQ4ZVd6ZHZo?=
- =?utf-8?B?cUx0akZRekZuanBCdkpMbmZFamk2TjliR2FUNitrbFdoMzlNYy9tVlM4V0Ju?=
- =?utf-8?B?NDNjTnU4eGVFdlJGUHptUzV5eVVQeFBhV2plMWsxMUNUWGxDd1I4NENRSjMz?=
- =?utf-8?B?cDJJMHBhanVBNkZjR3k1L01WWC96K09mNy9peFJFVlhHaGJkQ2xYUmJNRHcw?=
- =?utf-8?B?ZnZUS2NHaGVvMTNGRTU0UnJENlV6ZEU3Z1F1YnlCWks3Wk5DeWMyZUF5Y3I2?=
- =?utf-8?B?Z3FIQThJOVI4UkNLZmRzYjhjdURPTjVOVG9jSjRCR2JMbE5pRnZlTlFxeTJD?=
- =?utf-8?B?SUNBTG94eXVkc2kySUUxSVdyQzhpMVczM21pek9ubU5mLzZYM29CQlU3VmVJ?=
- =?utf-8?B?aUJGbVFWSzl0ZkJpVFRDenk4YmU1Q1BIUFZKMGwyNUFKOHdUaW41OFRwVXlo?=
- =?utf-8?B?am1xSTJZdlhQb2IrRnIzN09BQkVaUlVLSU1neTFKbThhckJlK0tNRW4wdFow?=
- =?utf-8?B?M0tuMllpZk4rRXcrVHVFQkhWRjQ5NnBCakxLMElXR1ZSV1RoQ2NsQlNJKysv?=
- =?utf-8?B?YUJEL3AvdG5URTdJdm9TdnlsN2k1V0ZtZXFwYzdtNUhsZ2cycHZvSEpwejZw?=
- =?utf-8?B?bGUyT1ZIbmJ2akpnUlJrNjZEWFNlUjZKOG5YS2RyWHQvSzJCamsvVE5CR3Az?=
- =?utf-8?B?U1VBTThaV1RZMzErU3FvNEZuQUY4NmJkbDVjaVdSRnFFcHIvbUhiSXpuVW9Q?=
- =?utf-8?B?RTJEai9ZL09IdnZMc0ZkbWcxanY2d21qaXFGbWxSQi8wVlI3WUxnR0hReWpE?=
- =?utf-8?B?RmpBR09QME0wNFduM2FWNlp1YXQ5TkhTZi9xcW5zRzkra29PaSs5V0wvSFhk?=
- =?utf-8?B?UXJDVWlnWTEreGJISlFZWS96bTRuSzZxVFg2bFphdEwyQnhtUG5QQnRsVnNs?=
- =?utf-8?B?aWM3czJITXRnSWpmai85ZkRDaSttWnYrVE92VTN6NzVaMlZ3S2VTVUFVekFq?=
- =?utf-8?B?V1VtbXVScDJBS0lOdVdaaVhBOWYxTXR1TGk4VnpQVmYwYlRPQ29EdWMzMDA2?=
- =?utf-8?B?Ris5Z0NldHFMZXJPaklrL3lQUHJIOGpxcEtiNHlYMFdnYzJIRXhYVHo3T3dw?=
- =?utf-8?B?MUFheEFxZVlYSk1qRWljUVZKeHhHTVIrQjZRV2x4OVBQejRXZERMeVBUcmRp?=
- =?utf-8?Q?1C516WC7W89J1TTNyjefBadRe?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c7d133a-9d20-493f-13d3-08da593e3896
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2022 19:41:40.1362 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: IQI6yKmFcrHt/IMBNMIBzu52rwVgOKUCwgETt2UD7Abu15Kr0TPjDTVX6KC+vYe3Jd7GGepD1hkUlg95xgLFWA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3068
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1656443915.mdjoauhqe0.none@localhost>
+X-Mailman-Approved-At: Tue, 28 Jun 2022 20:52:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,48 +77,65 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: tzimmermann@suse.de, airlied@linux.ie, Rodrigo.Siqueira@amd.com,
- dri-devel@lists.freedesktop.org, Xinhui.Pan@amd.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, nikola.cornij@amd.com,
- sunpeng.li@amd.com, alex.hung@amd.com, amd-gfx@lists.freedesktop.org,
- daniel@ffwll.ch, alexander.deucher@amd.com, seanpaul@chromium.org,
- nicholas.kazlauskas@amd.com, bhawanpreet.lakha@amd.com,
- christian.koenig@amd.com, sungjoon.kim@amd.com
+Cc: wireguard@lists.zx2c4.com, "Jason A. Donenfeld" <Jason@zx2c4.com>,
+ Joel Fernandes <joel@joelfernandes.org>, paulmck@kernel.org,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Xinhui.Pan@amd.com,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Suren Baghdasaryan <surenb@google.com>, rcu@vger.kernel.org,
+ Hridya Valsaraju <hridya@google.com>,
+ Arve =?utf-8?B?SGrDuG5uZXbDpWc=?= <arve@android.com>, urezki@gmail.com,
+ Theodore Ts'o <tytso@mit.edu>, alexander.deucher@amd.com,
+ Todd Kjos <tkjos@android.com>, uladzislau.rezki@sony.com,
+ Martijn Coenen <maco@android.com>, christian.koenig@amd.com,
+ Christian Brauner <christian@brauner.io>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 2022-06-27 08:18, Ville Syrjälä wrote:
-> On Sun, Jun 19, 2022 at 09:31:03PM -0100, Melissa Wen wrote:
->> Add 3D LUT for gammar correction using a 3D lookup table.  The position
->> in the color correction pipeline where 3D LUT is applied depends on hw
->> design, being after CTM or gamma. If just after CTM, a shaper lut must
->> be set to shape the content for a non-linear space. That details should
->> be handled by the driver according to its color capabilities.
+> Excerpts from Paul E. McKenney's message of June 28, 2022 2:54 pm:
+> > All you need to do to get the previous behavior is to add something like
+> > this to your defconfig file:
+> > 
+> > CONFIG_RCU_EXP_CPU_STALL_TIMEOUT=21000
+> > 
+> > Any reason why this will not work for you?
 > 
-> I also cooked up a WIP 3D LUT support some time ago for Intel hw:
-> https://github.com/vsyrjala/linux/commits/3dlut>> But that dried up due to having no userspace for it.
+> As far as I know, I do not require any particular RCU debugging features 
+> intended for developers; as an individual user and distro maintainer, I 
+> would like to select the option corresponding to "emit errors for 
+> unexpected conditions which should be reported upstream", not "emit 
+> debugging information for development purposes".
 > 
-> I also cooked up some basic igts for it:
-> https://patchwork.freedesktop.org/series/90165/>> 
-> <snip>
->> + * “LUT3D”:
->> + *	Blob property to set the 3D LUT mapping pixel data after the color
->> + *	transformation matrix and before gamma 1D lut correction.
-> 
-> On Intel hw the 3DLUT is after the gamma LUT in the pipeline, which is
-> where I placed it in my branch.
-> 
-> There is now some discussion happening about exposing some
-> kind of color pipeline description/configuration properties:
-> https://gitlab.freedesktop.org/pq/color-and-hdr/-/issues/11>> 
+Sorry but we need to apply some assumption, i.e. to me the CONFIG_ANDROID
+indicates that a kernel runs on the Android wise device. When you enable
+this option on you specific box it is supposed that some Android related
+code are activated also on your device which may lead to some side effect.
 
-After all the discussions about properties to support color management for
-HDR and other features it's becoming clear to me that we'll need some color
-pipeline description going forward, i.e. something like the one Sebastian
-proposed. It's complex but if we're not defining this now we'll be in a pickle
-when the next driver implementer goes and finds that their HW looks different
-yet again and doesn't match any of the orders we've defined so far.
+>
+> Therefore, I think 0 is a suitable setting for me and most ordinary 
+> (not tightly controlled) distributions. My concern is that other users 
+> and distro maintainers will also have confusion about what value to set 
+> and whether the warnings are important, since the help text does not say 
+> anything about Android, and "make oldconfig" does not indicate that the 
+> default value is different for Android.
+> 
+<snip>
+diff --git a/kernel/rcu/Kconfig.debug b/kernel/rcu/Kconfig.debug
+index 9b64e55d4f61..ced0d1f7c675 100644
+--- a/kernel/rcu/Kconfig.debug
++++ b/kernel/rcu/Kconfig.debug
+@@ -94,7 +94,8 @@ config RCU_EXP_CPU_STALL_TIMEOUT
+          If the RCU grace period persists, additional CPU stall warnings
+          are printed at more widely spaced intervals.  A value of zero
+          says to use the RCU_CPU_STALL_TIMEOUT value converted from
+-         seconds to milliseconds.
++         seconds to milliseconds. If CONFIG_ANDROID is set for non-Android
++         platform and you unsure, set the RCU_EXP_CPU_STALL_TIMEOUT to zero.
 
-Harry
+ config RCU_TRACE
+        bool "Enable tracing for RCU"
+<snip>
+
+Will it work for you?
+
+--
+Uladzislau Rezki
