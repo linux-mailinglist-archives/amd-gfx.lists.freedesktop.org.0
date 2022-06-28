@@ -2,92 +2,118 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDD2B55E582
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jun 2022 16:51:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6A3D55E589
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Jun 2022 16:53:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0266810FB3B;
-	Tue, 28 Jun 2022 14:51:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2430710FD66;
+	Tue, 28 Jun 2022 14:53:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2071.outbound.protection.outlook.com [40.107.243.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F95A10FAA1
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jun 2022 14:51:33 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2071.outbound.protection.outlook.com [40.107.93.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32FB310FD42
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Jun 2022 14:53:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TG1aICz9G72RsYgwsiFitNCLrV+dkrVdCgzluOrURtZBqjsIG0Ko4ZEhu77g3Wn9EnoJA2dlcH7SUr5TLNmTcqwnsfL2Ev7n5mAqxK+xnwTKqswwDsOj3Pj6nhX0RSuh8vi/ueTR/MzC6EzDaI88Iop0FKKho3jkiBW6o9O+LmDG+t8l4vxJ1mqCKQJvPqjHbk2BYslDYvjlkTSnNYNXKjq4c97CQvE3LTK5nI3+SzSaTWitZbqrDpTpiPd2UJ2PH2vGUNClYzB0oGpBiR+P2ltbscg21OWnlcFrwy+Vu9nJdQsO5CZWvdESgHQGHxr0nmj7dGJ4tPjbaxcrvvV03g==
+ b=oUBuUDw0ajFQaGf9ZvWfEGgtq5OlqRvs5V4gSefV8iL8onydLrsVU2R9RwFuWpLAX2nf1DovZws63ockwV866Q+Yh4vIC9KNVDbBU46+OECaxa/8e7BJRnfadT6FElibSDOw0dowZrMX3QaMiacVtHfZQxcbmHOTOeWmmrSMpTOnIGrP8KS6082liRWO+o259BCC+NkpRVv7O1v+dk/9d1EoahjUNfEB+/r8N1YoB2fMZSQ9ngzmg8/DLx1bsXw/MR79tI/fwsUvbjV1crhSB7rKWOYHni6i0/W2NIRYq8MeLi0ACTxebjpab3Vx0nWgzzC2upvn0h8+Mzhpx1zxKA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PlJ8faEbUPVClO1nhrun+LBDXW3YT+4AofnaE59mPEk=;
- b=fOHN23iGSC7PJxN4xOY5RCRh738/ZrMu5IkLSiY6+DEjKTgXMwNs/bFjkSF93cJZj5XU+x74R5mtWNrs9ePVA1pfogzV/TmqZgIzyNoxzZgejuAujgaog4ODIxOhNO0Qbky5/e1HQIxrEuQSUjx4I/hvID6UH/OupS7EY8c6x7hK0FU2jzRd0zbGJSo1uqJNeR29Jio+1pNfoW72HnNRvsrrUaXTuio1DIrpibp+78mAn92VxOLgGxA8vPDS6qMJvM6M/OPFsRUr4gJFYCEBeNSCl7MqGWrDXsW5zQSgRdYZ+KofL0Oc4hEb77qeZuWoua15k0Jwk1sPQpGsOYvCmw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
+ bh=fJMtG8gJHOYOTMYvMGj4b3YwbPYiA+sOYo2tCgutf4U=;
+ b=UOFIuQpxOQ5/xDt5L0un94aQki+YFkyR//QvXkH7eTpJ2DNXvTtoH2IbLXq6w7bUU/99RHU3zcsjnqymjj1dH5yDWcTKOIwcQ5+VA7sfs6FzYjOvxB9HiB8T2s0YlxquwRWAIVneFO2hkXAR7CbccfTCtOtHrUk/mrb1rHtMMnQv95gQ4UYQ/5PGP5llgDJjYNVY5rtBuvBisg/MfJhAnCkvDnOjfLd6U9IaOxzpTX5ATnGBr8q3edvOIYqELSK5BGO3VfWSKWKmYxugmRL4ZLz3kPwEI+O9gEAN2n/6JoMQOKcBXVcegccxywqnBD77CXMKeL+iB4sgYyG+xc8l1Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PlJ8faEbUPVClO1nhrun+LBDXW3YT+4AofnaE59mPEk=;
- b=osE7/iFthGyGtcOJQOJEgdaQyQ45lNc93jEY8MU4JE+fWtU2j1eIwPdzNPNouGWW86kPmukugMdvEKThfMJeKB0qyUeBxTLjO87kru3l/nXE4Zj4hGb6jAdTvpY5MSbgTaaQsnw6PT1cTjgWqhFpRd0ym3PJPOkQ+UW6YlBw+iQ=
-Received: from MWHPR17CA0094.namprd17.prod.outlook.com (2603:10b6:300:c2::32)
- by BYAPR12MB2823.namprd12.prod.outlook.com (2603:10b6:a03:96::33)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.16; Tue, 28 Jun
- 2022 14:51:30 +0000
-Received: from CO1NAM11FT054.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:c2:cafe::b1) by MWHPR17CA0094.outlook.office365.com
- (2603:10b6:300:c2::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.21 via Frontend
- Transport; Tue, 28 Jun 2022 14:51:30 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT054.mail.protection.outlook.com (10.13.174.70) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5373.15 via Frontend Transport; Tue, 28 Jun 2022 14:51:29 +0000
-Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 28 Jun
- 2022 09:51:25 -0500
-From: Philip Yang <Philip.Yang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 11/11] ROCR-Runtime Basic SVM profiler
-Date: Tue, 28 Jun 2022 10:50:20 -0400
-Message-ID: <20220628145020.26925-12-Philip.Yang@amd.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220628145020.26925-1-Philip.Yang@amd.com>
-References: <20220628145020.26925-1-Philip.Yang@amd.com>
+ bh=fJMtG8gJHOYOTMYvMGj4b3YwbPYiA+sOYo2tCgutf4U=;
+ b=tMoB0GPKoC/qKrmz2FAbO5zJrGxpohCeOOFySA16FtNELTlHt29tGTsHT7HSp7zUUBN6sr0i6nEn6Hgepb/PKCs0jAn9zn6URquqQwIt8/aIqwXhO6Cbx0bQ+lPyX8kMz5eSisO56FnH4gDEpSDi9TqypfkFxaOqUNLxnZMb7Xk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB2941.namprd12.prod.outlook.com (2603:10b6:208:a9::12)
+ by DM5PR12MB1482.namprd12.prod.outlook.com (2603:10b6:4:a::14) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5373.15; Tue, 28 Jun 2022 14:53:22 +0000
+Received: from MN2PR12MB2941.namprd12.prod.outlook.com
+ ([fe80::85a:3075:1744:8317]) by MN2PR12MB2941.namprd12.prod.outlook.com
+ ([fe80::85a:3075:1744:8317%7]) with mapi id 15.20.5353.020; Tue, 28 Jun 2022
+ 14:53:22 +0000
+Message-ID: <63d76489-0980-b176-6efe-57deae1f9f3e@amd.com>
+Date: Tue, 28 Jun 2022 10:53:20 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] drm/amdgpu/display: reduce stack size in
+ dml32_ModeSupportAndSystemConfigurationFull()
+Content-Language: en-US
+To: Alex Deucher <alexander.deucher@amd.com>,
+ Stephen Rothwell <sfr@canb.auug.org.au>
+References: <20220622144756.1890683-1-alexander.deucher@amd.com>
+From: Rodrigo Siqueira Jordao <Rodrigo.Siqueira@amd.com>
+In-Reply-To: <20220622144756.1890683-1-alexander.deucher@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MN2PR06CA0024.namprd06.prod.outlook.com
+ (2603:10b6:208:23d::29) To MN2PR12MB2941.namprd12.prod.outlook.com
+ (2603:10b6:208:a9::12)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: cdaab2b1-fe27-4172-4b23-08da5915af87
-X-MS-TrafficTypeDiagnostic: BYAPR12MB2823:EE_
+X-MS-Office365-Filtering-Correlation-Id: 30e96d99-f97c-471b-f194-08da5915f220
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1482:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /hcmWw1sEIRJqA1bQzRxxzFI1JV9g23GiySGYooCNzt2pNEkHAFup1dpGKPt07PpRzQpCSHVzUgSnc/e7wzriPtkF3Uqgt36Xtf9IDAfhYBMZbm7ucl5p8w3CySC+pIxohXU924GlZtVabAu4RSjuzYlR+6Wr9xzApMD6RxhJrP56ooa09lQUCsekQSDWXgF181JB+wWhgECeXYamThLbL+rONYLwgEHGr8fwBvJvHKnEx/EukCLajruMYtFJIqHlkxc4KMRTrt4u3qpzsWFP/FBCFTk+u7Q5146VzJ8cUN/74LdbVFIm8mvR/RiLdsdf4ABJy1PQlbbC8d2zOsQbRxqfnPCRWhPw+kwy/c04XWgxbx23r+4zJnlvQUhH6D25xJ0lLm+G2g30iCgRQDAGHoupqjkZqNnXdB+JvBEP+BWIFf0ogIpILl5E5rtdXbdxz7HuPIE2DaDWRXhPk0NF1zjoqm/HM5994ECaLS6OzbNCu1WJkop7ZWkapUlg+XuOMI0AiqkXMN0p+JL5JiHGwrAix930ChPZqYVElPHzn7yVcZGBL3t5bRnYOOZofEkVeDYdCe/JHoczsuMJhweLguDsso9uU4LUOzzCHpegV69eVtT+FXEsiXGzIUBNhlcI29srgcRj4kUGW3/kQBVvrnQyzwirTxr5U981q7wqWxwn1y0fXysnvPhhPIaA+CaevAfjxxi3lJTmGkQKBl6JLLcP8sMdReCqpzCLx4fQZGVZNtHaqaIEB/3hutt3KsDfgzxM2vRYKB61ZAYH2TWPmrSi0CtPZrVgSWRiMqZ4mYOzIAAzrcQvBIP3IZJJ3vAudeKanmWv6HqXkiPI9ubCLNpTpfvuPxBVCmQtCYoM/w=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(376002)(136003)(346002)(396003)(39860400002)(40470700004)(36840700001)(46966006)(316002)(54906003)(6916009)(4326008)(70206006)(86362001)(82740400003)(8676002)(2906002)(26005)(81166007)(5660300002)(70586007)(356005)(15974865002)(83380400001)(8936002)(7696005)(426003)(40460700003)(16526019)(336012)(47076005)(41300700001)(6666004)(36860700001)(82310400005)(2616005)(1076003)(478600001)(36756003)(30864003)(40480700001)(186003)(36900700001);
+X-Microsoft-Antispam-Message-Info: FBBqc9ODhjMBr7sfKodbqgmaFP7+vZBtPzVlrRBsnR7tx1ahnvZgdEEtDA9SrwOIloipVuSzflR3+yFceRxI/nGbgNKmXVhrEFmX7fWU2DLUGM6b3Z2d+9Odu0xsC0YyWEetRUyNOKe8B+k4jmCXryE9S0pnj+iIgJJ+K6so7DeymOm+LzdPtqboA5o7nFSvSadByS3nODQr8IJ/fIGMxHuKj/B8CDoCPwnbLCx4kmwkQ55JVwTlhOKLmI5FaHaUO4yc2v8viT3/qf3Wy9SresSPCuKI3u7KnjwZrbHgXGemiiIY6a3cymaBxOf8X9Yi7AOW0ZxJLt2IWT+85Ve8rDQmOUAdIT1yettHjvdU130K9jhP9kaykMm2voWXV5u3ZbxU+qUv3yYYfv1inqtNA2iad5tzH5Ag+FUR5QVWgtjxytgEIKmrXkz6BfWUR3bdDFI/JuLgZ2LqsGJskTNMuk3geL6BRrLwKYgwK9bLfukdlvhz1jtQGFn3yhUwGWJT5MeCTvNd0eho7g4UFATjzgly70ZrzRQ1FngFjx2HFTLO5q/e24ygnFTib0koNNH3QdjBvhtaQKgcMvoum97wfar1gvkGMIs/08EPM1XC7+3yD1MqGP3h0kvdP48YqovJyfLTwnTLjWtHqIOTxXKJtrxB/QfYpqZ4eGgISWD/nfaVoGkMtxuW/h7bOhfYN0NvHQ8EvPVB5vAW3QFD1yWXQwu/vansjnzmmqJ/2V9WkjChJZAXOO0fsaNQQzYKrN4+zVSgEzh4zM9AfcH5nLX+1H/7hx77orrjHGup2VmqAPKeqCUcrnMJlgKbqg03mj8rE3ZGiLWxrfGunebgWEpawm0fVwixuVXa3WJ4ltbuY6o=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB2941.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(396003)(346002)(136003)(376002)(366004)(39860400002)(31696002)(38100700002)(86362001)(8936002)(26005)(66476007)(5660300002)(53546011)(30864003)(6512007)(110136005)(2906002)(36756003)(2616005)(6506007)(316002)(83380400001)(6486002)(31686004)(4326008)(66556008)(186003)(8676002)(478600001)(19627235002)(41300700001)(66946007)(213903007)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZEJ0cDlPUk9KMFRLczZSbWNIbVNiaUpkdy9uYkV6TkV5dWFpZzg1UktsQjh6?=
+ =?utf-8?B?aGRyN2N2SUR3OC9sRVQwYTBWSlpXVkVPM2tGRTFQenJDMXk2OWg3N1k1NHN2?=
+ =?utf-8?B?Syt2YTBGY0cwWnFkb0JFa3ZhakxmR1VBZ1Z4UjFlR3hydmo5Wm5TaGEwM01Z?=
+ =?utf-8?B?SHk0aU44Q1NwQ1dhOTdjTUVZRjg4dVZFdW5jVE5aTitwQmRGODdSV0ZQOE9Z?=
+ =?utf-8?B?WVlZVmhXNWZ5N1VPVmVUdzVVa2o4UVRFN2hkK2NHcTBjWm4rM0hvYjd5SFVR?=
+ =?utf-8?B?UFN0TTJNN2RvZU5jSHF2TEQ1aC83T3VpaWptNE1yOFRlcWR6ck5mUVFQaFlo?=
+ =?utf-8?B?R1dhbDhBKzlHdkhjc2doZFZ5bmw3Tmh2elFGWWMwTG8yVjZQQnpDOWMxUmRN?=
+ =?utf-8?B?YkZvVk5DZEpUcmNZbkRSc3V2ajAwVlQ2bnhURFJiN01rRVpESEVTMVpPVnV4?=
+ =?utf-8?B?R2ZvUVhkL0xJRFMrNTFzejdXK2ZORGxycUZKWTk1NVRSbXprT25KeEtKcXcv?=
+ =?utf-8?B?SHlicUo5V3Fyb2xGQVFPbmdZM1FGRjgydHhORURWWEZkY2g3Wm5xWjVPcCtq?=
+ =?utf-8?B?OHE5aXpjQ2NrQVk4bDB1cUxXZ0VUdXV5YWt2NVFIeTRvcjl1N0pFUlMyZkZY?=
+ =?utf-8?B?akRMRU1abTNNdFRrRVg3WEZnTkNMdUNZT0VXZ1kweTFvLytRa2s3ODNxNEhK?=
+ =?utf-8?B?YkFFZUxFZWhvU0RPQXRPQzBTdzVWSWtqek9zd2p1M21uekdIc2swWHp6RXdH?=
+ =?utf-8?B?TmRUYlE0aEYrcDQyelBnN2VzZWtxQTZoOUVOWkVIRStOcXJ0VDhXSmsxcTRq?=
+ =?utf-8?B?a2htREIyeXpVNjM1NGU1TVQzQmFCM0prOS9iTUI3bGRNclVDdHV4Vm1qYzF1?=
+ =?utf-8?B?Tm1mNWNsakMrVkd3RnltYm44ODVQUTI2N0tzVFBiUm4vZFN0aHZMSkJjTTVI?=
+ =?utf-8?B?QmlWcTlINElKK1ErbVBTY2htTjZoRG9OV1BWMUFqbHVyendUVmtvbVBhWlp6?=
+ =?utf-8?B?SlpDTGRhWGZKd2hueTd3NVFKMUtoR0cxU2NGNHZKajlITnZXN0p2U3ZFQzF6?=
+ =?utf-8?B?ZDFuNjNMM1pXMC9hVy9Wa05US0dRNDZjTTBCd3JIV2JjNEpPSVN4TkRjV0Z3?=
+ =?utf-8?B?VkRwdmYyNmRIVW0vNklRNEx4RjJ4Sk8wbjZRTC9DTFNvbWlkL0QwV0ZHSVJ1?=
+ =?utf-8?B?blgzNzc0S3pkMndseWN4R1NjemhjN2w0cjY1Q3JtdDNCcDBjVDlmWDhmSG43?=
+ =?utf-8?B?VlI3NVZZVStNelZjV2lRRTVjTk1hK2c4ZW9VN05iQ3dGeENFVmEzczNrQVJN?=
+ =?utf-8?B?STlGbnN5VWtMd21MOVlQbGJ3dTQvVVFOc2JwbW9hZVI3TVgwUVF4d21COEdz?=
+ =?utf-8?B?czdVbWUvM3dPY09TVWRoeDBvVlQ1eTNpRXNjZTRUajkyVXM2ME1ueXJmZ3Fl?=
+ =?utf-8?B?UHYrZ0Z0MnNzZEFjZVhjdDFLdzl6UWpvKzlGaHZKZEx6SVhVSkthN3JMOHZL?=
+ =?utf-8?B?NEQ5cjNVWElrcGxzOWMzZ2J6RWg3YUhIZUJiVThLYkpuU1NVbUdrWEpobHZu?=
+ =?utf-8?B?dG0zNnNJbDhZVUx5cXFwOTNrb3FhKy9BUkdMbkRxZzIyVXVmWllDdWdURGsw?=
+ =?utf-8?B?S0ZQcWdjek1uTXViaENJaHpPc3lickIyUS9TR0dKSFVmdWdWTWpTZHZhV0Zx?=
+ =?utf-8?B?NXErRzlpRThJVVI5cXFXMWp0Q0tlTC90VFNaSDRvOGRlTlZ5M053YTIvN0s2?=
+ =?utf-8?B?TkFnemluY0lGMk9QVVNPdlJsaG1uaUI0OXdJK3Mrb2E4cERLUW82RXA3d3E4?=
+ =?utf-8?B?bnBLUVJ4bExISjNnZHdiK3NybndFU0g3bFdhZFEzdCtXZGVmdGZ5SXNJZVRV?=
+ =?utf-8?B?YUdkTXRiSTBrUm1QUWVPMjYxcGV1T2VWelV2bUtzUmJWOUE5UEJNYVpWbVNa?=
+ =?utf-8?B?TEkyVW9QSmY2Y2JFMGx3RkJTR0dwZXJzZ05iRXpyQjhmUnRyMWRSbFJ0OHF6?=
+ =?utf-8?B?YVRPUngrZUh0N3JLMlNFS2xWRjQ0TVJ5b00ydEcrTlVtaWRzVGlSVjViOGN0?=
+ =?utf-8?B?dW93a3ZUSUIyYjNYOUFCSi9nQ1FaWTMzR2srRnRlYmxkaXFUZVVWVmhGQzhw?=
+ =?utf-8?Q?nT+yXsS7OylJfrpv+6TrCMQUk?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2022 14:51:29.8536 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cdaab2b1-fe27-4172-4b23-08da5915af87
+X-MS-Exchange-CrossTenant-Network-Message-Id: 30e96d99-f97c-471b-f194-08da5915f220
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB2941.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2022 14:53:22.0433 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT054.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB2823
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: cAvOQH64WBjqsAQlMpn2OHOD31iyINKjJoryovLIwhObMSxTFsl/+nd02SSVSRXpb6pcV21SMB0dVhtU0+DlaA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1482
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,615 +125,251 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Felix.Kuehling@amd.com, Sean Keely <Sean.Keely@amd.com>
+Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Sean Keely <Sean.Keely@amd.com>
 
-Mostly a demo at this point.  Logs SVM (aka HMM) info to
-HSA_SVM_PROFILE if set.
 
-Example: HSA_SVM_PROFILE=log.txt SomeApp
+On 2022-06-22 10:47, Alex Deucher wrote:
+> Move more stack variable in to dummy vars structure on the heap.
+> 
+> Fixes stack frame size errors:
+> drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_32.c: In function 'dml32_ModeSupportAndSystemConfigurationFull':
+> drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_32.c:3833:1: error: the frame size of 2720 bytes is larger than 2048 bytes [-Werror=frame-larger-than=]
+>   3833 | } // ModeSupportAndSystemConfigurationFull
+>        | ^
+> 
+> Fixes: dda4fb85e433 ("drm/amd/display: DML changes for DCN32/321")
+> Cc: Stephen Rothwell <sfr@canb.auug.org.au>
+> Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
+> Cc: Rodrigo Siqueira Jordao <Rodrigo.Siqueira@amd.com>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>   .../dc/dml/dcn32/display_mode_vba_32.c        | 77 ++++++++-----------
+>   .../drm/amd/display/dc/dml/display_mode_vba.h |  3 +-
+>   2 files changed, 36 insertions(+), 44 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
+> index 510b7a81ee12..7f144adb1e36 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
+> +++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
+> @@ -1660,8 +1660,7 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
+>   
+>   void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_lib)
+>   {
+> -	bool dummy_boolean[2];
+> -	unsigned int dummy_integer[1];
+> +	unsigned int dummy_integer[4];
+>   	bool MPCCombineMethodAsNeededForPStateChangeAndVoltage;
+>   	bool MPCCombineMethodAsPossible;
+>   	enum odm_combine_mode dummy_odm_mode[DC__NUM_DPP__MAX];
+> @@ -1973,10 +1972,10 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+>   			v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[5], /* Long            DETBufferSizeInKByte[]  */
+>   			v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[6], /* Long            DETBufferSizeY[]  */
+>   			v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[7], /* Long            DETBufferSizeC[]  */
+> -			&dummy_boolean[0], /* bool           *UnboundedRequestEnabled  */
+> -			&dummy_integer[0], /* Long           *CompressedBufferSizeInkByte  */
+> +			&v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_boolean_array[0][0], /* bool           *UnboundedRequestEnabled  */
+> +			&v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[0][0], /* Long           *CompressedBufferSizeInkByte  */
+>   			mode_lib->vba.SingleDPPViewportSizeSupportPerSurface,/* bool ViewportSizeSupportPerSurface[] */
+> -			&dummy_boolean[1]); /* bool           *ViewportSizeSupport */
+> +			&v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_boolean_array[1][0]); /* bool           *ViewportSizeSupport */
+>   
+>   	MPCCombineMethodAsNeededForPStateChangeAndVoltage = false;
+>   	MPCCombineMethodAsPossible = false;
+> @@ -2506,7 +2505,6 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+>   	//
+>   	for (i = 0; i < (int) v->soc.num_states; ++i) {
+>   		for (j = 0; j <= 1; ++j) {
+> -			bool dummy_boolean_array[1][DC__NUM_DPP__MAX];
+>   			for (k = 0; k < mode_lib->vba.NumberOfActiveSurfaces; ++k) {
+>   				mode_lib->vba.RequiredDPPCLKThisState[k] = mode_lib->vba.RequiredDPPCLK[i][j][k];
+>   				mode_lib->vba.NoOfDPPThisState[k] = mode_lib->vba.NoOfDPP[i][j][k];
+> @@ -2570,7 +2568,7 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+>   					mode_lib->vba.DETBufferSizeCThisState,
+>   					&mode_lib->vba.UnboundedRequestEnabledThisState,
+>   					&mode_lib->vba.CompressedBufferSizeInkByteThisState,
+> -					dummy_boolean_array[0],
+> +					v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_boolean_array[0],
+>   					&mode_lib->vba.ViewportSizeSupport[i][j]);
+>   
+>   			for (k = 0; k < mode_lib->vba.NumberOfActiveSurfaces; ++k) {
+> @@ -2708,9 +2706,6 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+>   			}
+>   
+>   			{
+> -				bool dummy_boolean_array[2][DC__NUM_DPP__MAX];
+> -				unsigned int dummy_integer_array[22][DC__NUM_DPP__MAX];
+> -
+>   				dml32_CalculateVMRowAndSwath(
+>   						mode_lib->vba.NumberOfActiveSurfaces,
+>   						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.SurfParameters,
+> @@ -2733,32 +2728,32 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+>   						/* Output */
+>   						mode_lib->vba.PTEBufferSizeNotExceededPerState,
+>   						mode_lib->vba.DCCMetaBufferSizeNotExceededPerState,
+> -						dummy_integer_array[0],
+> -						dummy_integer_array[1],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[0],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[1],
+>   						mode_lib->vba.dpte_row_height,
+>   						mode_lib->vba.dpte_row_height_chroma,
+> -						dummy_integer_array[2],
+> -						dummy_integer_array[3],
+> -						dummy_integer_array[4],
+> -						dummy_integer_array[5],
+> -						dummy_integer_array[6],
+> -						dummy_integer_array[7],
+> -						dummy_integer_array[8],
+> -						dummy_integer_array[9],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[2],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[3],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[4],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[5],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[6],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[7],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[8],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[9],
+>   						mode_lib->vba.meta_row_height,
+>   						mode_lib->vba.meta_row_height_chroma,
+> -						dummy_integer_array[10],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[10],
+>   						mode_lib->vba.dpte_group_bytes,
+> -						dummy_integer_array[11],
+> -						dummy_integer_array[12],
+> -						dummy_integer_array[13],
+> -						dummy_integer_array[14],
+> -						dummy_integer_array[15],
+> -						dummy_integer_array[16],
+> -						dummy_integer_array[17],
+> -						dummy_integer_array[18],
+> -						dummy_integer_array[19],
+> -						dummy_integer_array[20],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[11],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[12],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[13],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[14],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[15],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[16],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[17],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[18],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[19],
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[20],
+>   						mode_lib->vba.PrefetchLinesYThisState,
+>   						mode_lib->vba.PrefetchLinesCThisState,
+>   						mode_lib->vba.PrefillY,
+> @@ -2772,9 +2767,9 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+>   						mode_lib->vba.MetaRowBytesThisState,
+>   						mode_lib->vba.use_one_row_for_frame_this_state,
+>   						mode_lib->vba.use_one_row_for_frame_flip_this_state,
+> -						dummy_boolean_array[0], // Boolean UsesMALLForStaticScreen[]
+> -						dummy_boolean_array[1], // Boolean PTE_BUFFER_MODE[]
+> -						dummy_integer_array[21]); // Long BIGK_FRAGMENT_SIZE[]
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_boolean_array[0], // Boolean UsesMALLForStaticScreen[]
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_boolean_array[1], // Boolean PTE_BUFFER_MODE[]
+> +						v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_integer_array[21]); // Long BIGK_FRAGMENT_SIZE[]
+>   			}
+>   
+>   			for (k = 0; k < mode_lib->vba.NumberOfActiveSurfaces; ++k) {
+> @@ -3197,7 +3192,6 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+>   
+>   				for (k = 0; k <= mode_lib->vba.NumberOfActiveSurfaces - 1; k++) {
+>   					DmlPipe myPipe;
+> -					unsigned int dummy_integer;
+>   
+>   					mode_lib->vba.TWait = dml32_CalculateTWait(
+>   							mode_lib->vba.PrefetchModePerState[i][j],
+> @@ -3294,7 +3288,7 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+>   							&v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_single[0],         // double *Tdmdl_vm
+>   							&v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_single[1],         // double *Tdmdl
+>   							&v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_single[2],         // double *TSetup
+> -							&dummy_integer,         							    // unsigned int   *VUpdateOffsetPix
+> +							&dummy_integer[0],         							    // unsigned int   *VUpdateOffsetPix
+>   							&v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_single[3],         // unsigned int   *VUpdateWidthPix
+>   							&v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_single[4]);        // unsigned int   *VReadyOffsetPix
+>   				}
+> @@ -3323,7 +3317,6 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+>   				}
+>   
+>   				{
+> -					double dummy_single[2];
+>   					dml32_CalculatePrefetchBandwithSupport(
+>   							mode_lib->vba.NumberOfActiveSurfaces,
+>   							mode_lib->vba.ReturnBWPerState[i][j],
+> @@ -3346,8 +3339,8 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+>   							mode_lib->vba.UrgentBurstFactorCursorPre,
+>   
+>   							/* output */
+> -							&dummy_single[0],   // Single  *PrefetchBandwidth
+> -							&dummy_single[1],   // Single  *FractionOfUrgentBandwidth
+> +							&v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_single[0],   // Single  *PrefetchBandwidth
+> +							&v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_single[1],   // Single  *FractionOfUrgentBandwidth
+>   							&mode_lib->vba.PrefetchSupported[i][j]);
+>   				}
+>   
+> @@ -3457,7 +3450,6 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+>   					}
+>   
+>   					{
+> -						double dummy_single[2];
+>   						dml32_CalculateImmediateFlipBandwithSupport(mode_lib->vba.NumberOfActiveSurfaces,
+>   								mode_lib->vba.ReturnBWPerState[i][j],
+>   								mode_lib->vba.ImmediateFlipRequirement,
+> @@ -3480,8 +3472,8 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+>   								mode_lib->vba.UrgentBurstFactorCursorPre,
+>   
+>   								/* output */
+> -								&dummy_single[0], //  Single  *TotalBandwidth
+> -								&dummy_single[1], //  Single  *FractionOfUrgentBandwidth
+> +								&v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_single[0], //  Single  *TotalBandwidth
+> +								&v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_single[1], //  Single  *FractionOfUrgentBandwidth
+>   								&mode_lib->vba.ImmediateFlipSupportedForState[i][j]); // Boolean *ImmediateFlipBandwidthSupport
+>   					}
+>   
+> @@ -3534,7 +3526,6 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+>   			v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.mSOCParameters.SMNLatency = mode_lib->vba.SMNLatency;
+>   
+>   			{
+> -				unsigned int dummy_integer[4];
+>   				dml32_CalculateWatermarksMALLUseAndDRAMSpeedChangeSupport(
+>   						mode_lib->vba.USRRetrainingRequiredFinal,
+>   						mode_lib->vba.UsesMALLForPStateChange,
+> diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
+> index 9ad49ad38814..10ff536ef2a4 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
+> +++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
+> @@ -196,7 +196,7 @@ struct DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerformanceCal
+>   };
+>   
+>   struct dml32_ModeSupportAndSystemConfigurationFull {
+> -	unsigned int dummy_integer_array[8][DC__NUM_DPP__MAX];
+> +	unsigned int dummy_integer_array[22][DC__NUM_DPP__MAX];
+>   	double dummy_double_array[2][DC__NUM_DPP__MAX];
+>   	DmlPipe SurfParameters[DC__NUM_DPP__MAX];
+>   	double dummy_single[5];
+> @@ -207,6 +207,7 @@ struct dml32_ModeSupportAndSystemConfigurationFull {
+>   	double DSTYAfterScaler[DC__NUM_DPP__MAX];
+>   	double DSTXAfterScaler[DC__NUM_DPP__MAX];
+>   	double MaxTotalVActiveRDBandwidth;
+> +	bool dummy_boolean_array[2][DC__NUM_DPP__MAX];
+>   };
+>   
+>   struct dummy_vars {
 
-Change-Id: Ib6fd688f661a21b2c695f586b833be93662a15f4
----
- src/CMakeLists.txt                |   1 +
- src/core/inc/amd_gpu_agent.h      |   3 +
- src/core/inc/runtime.h            |   9 +
- src/core/inc/svm_profiler.h       |  67 ++++++
- src/core/runtime/runtime.cpp      |   8 +
- src/core/runtime/svm_profiler.cpp | 364 ++++++++++++++++++++++++++++++
- src/core/util/flag.h              |   6 +
- 7 files changed, 458 insertions(+)
- create mode 100644 src/core/inc/svm_profiler.h
- create mode 100644 src/core/runtime/svm_profiler.cpp
 
-diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
-index 8fb02b14..1b7bf9b0 100644
---- a/src/CMakeLists.txt
-+++ b/src/CMakeLists.txt
-@@ -180,6 +180,7 @@ set ( SRCS core/util/lnx/os_linux.cpp
-            core/runtime/signal.cpp
-            core/runtime/queue.cpp
-            core/runtime/cache.cpp
-+           core/runtime/svm_profiler.cpp
-            core/common/shared.cpp
-            core/common/hsa_table_interface.cpp
-            loader/executable.cpp
-diff --git a/src/core/inc/amd_gpu_agent.h b/src/core/inc/amd_gpu_agent.h
-index ed64d5be..fbdccaae 100644
---- a/src/core/inc/amd_gpu_agent.h
-+++ b/src/core/inc/amd_gpu_agent.h
-@@ -283,6 +283,9 @@ class GpuAgent : public GpuAgentInt {
-   // @brief Returns Hive ID
-   __forceinline uint64_t HiveId() const override { return  properties_.HiveID; }
- 
-+  // @brief Returns KFD's GPU id which is a hash used internally.
-+  __forceinline uint64_t KfdGpuID() const { return properties_.KFDGpuID; }
-+
-   // @brief Returns node property.
-   __forceinline const HsaNodeProperties& properties() const {
-     return properties_;
-diff --git a/src/core/inc/runtime.h b/src/core/inc/runtime.h
-index 9f5b8acc..13190c75 100644
---- a/src/core/inc/runtime.h
-+++ b/src/core/inc/runtime.h
-@@ -50,6 +50,7 @@
- #include <memory>
- #include <tuple>
- #include <utility>
-+#include <thread>
- 
- #include "core/inc/hsa_ext_interface.h"
- #include "core/inc/hsa_internal.h"
-@@ -60,6 +61,7 @@
- #include "core/inc/memory_region.h"
- #include "core/inc/signal.h"
- #include "core/inc/interrupt_signal.h"
-+#include "core/inc/svm_profiler.h"
- #include "core/util/flag.h"
- #include "core/util/locks.h"
- #include "core/util/os.h"
-@@ -312,6 +314,8 @@ class Runtime {
- 
-   const std::vector<uint32_t>& gpu_ids() { return gpu_ids_; }
- 
-+  Agent* agent_by_gpuid(uint32_t gpuid) { return agents_by_gpuid_[gpuid]; }
-+
-   Agent* region_gpu() { return region_gpu_; }
- 
-   const std::vector<const MemoryRegion*>& system_regions_fine() const {
-@@ -508,6 +512,9 @@ class Runtime {
-   // Agent map containing all agents indexed by their KFD node IDs.
-   std::map<uint32_t, std::vector<Agent*> > agents_by_node_;
- 
-+  // Agent map containing all agents indexed by their KFD gpuid.
-+  std::map<uint32_t, Agent*> agents_by_gpuid_;
-+
-   // Agent list containing all compatible gpu agent ids in the platform.
-   std::vector<uint32_t> gpu_ids_;
- 
-@@ -590,6 +597,8 @@ class Runtime {
-   // Kfd version
-   KfdVersion_t kfd_version;
- 
-+  std::unique_ptr<AMD::SvmProfileControl> svm_profile_;
-+
-   // Frees runtime memory when the runtime library is unloaded if safe to do so.
-   // Failure to release the runtime indicates an incorrect application but is
-   // common (example: calls library routines at process exit).
-diff --git a/src/core/inc/svm_profiler.h b/src/core/inc/svm_profiler.h
-new file mode 100644
-index 00000000..064965c7
---- /dev/null
-+++ b/src/core/inc/svm_profiler.h
-@@ -0,0 +1,67 @@
-+////////////////////////////////////////////////////////////////////////////////
-+//
-+// The University of Illinois/NCSA
-+// Open Source License (NCSA)
-+//
-+// Copyright (c) 2022-2022, Advanced Micro Devices, Inc. All rights reserved.
-+//
-+// Developed by:
-+//
-+//                 AMD Research and AMD HSA Software Development
-+//
-+//                 Advanced Micro Devices, Inc.
-+//
-+//                 www.amd.com
-+//
-+// Permission is hereby granted, free of charge, to any person obtaining a copy
-+// of this software and associated documentation files (the "Software"), to
-+// deal with the Software without restriction, including without limitation
-+// the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+// and/or sell copies of the Software, and to permit persons to whom the
-+// Software is furnished to do so, subject to the following conditions:
-+//
-+//  - Redistributions of source code must retain the above copyright notice,
-+//    this list of conditions and the following disclaimers.
-+//  - Redistributions in binary form must reproduce the above copyright
-+//    notice, this list of conditions and the following disclaimers in
-+//    the documentation and/or other materials provided with the distribution.
-+//  - Neither the names of Advanced Micro Devices, Inc,
-+//    nor the names of its contributors may be used to endorse or promote
-+//    products derived from this Software without specific prior written
-+//    permission.
-+//
-+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-+// THE CONTRIBUTORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+// OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+// ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-+// DEALINGS WITH THE SOFTWARE.
-+//
-+////////////////////////////////////////////////////////////////////////////////
-+
-+#ifndef HSA_RUNTME_CORE_INC_SVM_PROFILER_H_
-+#define HSA_RUNTME_CORE_INC_SVM_PROFILER_H_
-+
-+#include <vector>
-+#include <string>
-+#include <thread>
-+
-+namespace rocr {
-+namespace AMD {
-+
-+    class SvmProfileControl {
-+    public:
-+      SvmProfileControl();
-+      ~SvmProfileControl();
-+
-+    private:
-+      template <typename... Args> std::string format(const char* format, Args... arg);
-+      int event;
-+      std::thread* thread;
-+      std::vector<char> format_buffer;
-+    };
-+
-+} // namespace AMD
-+} // namespace rocr
-+#endif // header guard
-diff --git a/src/core/runtime/runtime.cpp b/src/core/runtime/runtime.cpp
-index 40ebc35e..cb7ba992 100644
---- a/src/core/runtime/runtime.cpp
-+++ b/src/core/runtime/runtime.cpp
-@@ -48,6 +48,7 @@
- #include <string>
- #include <thread>
- #include <vector>
-+#include <cstdio>
- 
- #include "core/common/shared.h"
- #include "core/inc/hsa_ext_interface.h"
-@@ -158,6 +159,8 @@ void Runtime::RegisterAgent(Agent* agent) {
-   if (agent->device_type() == Agent::DeviceType::kAmdCpuDevice) {
-     cpu_agents_.push_back(agent);
- 
-+    agents_by_gpuid_[0] = agent;
-+
-     // Add cpu regions to the system region list.
-     for (const core::MemoryRegion* region : agent->regions()) {
-       if (region->fine_grain()) {
-@@ -1375,10 +1378,15 @@ hsa_status_t Runtime::Load() {
-   // Load tools libraries
-   LoadTools();
- 
-+  // Load svm profiler
-+  svm_profile_.reset(new AMD::SvmProfileControl);
-+
-   return HSA_STATUS_SUCCESS;
- }
- 
- void Runtime::Unload() {
-+  svm_profile_.reset(nullptr);
-+
-   UnloadTools();
-   UnloadExtensions();
- 
-diff --git a/src/core/runtime/svm_profiler.cpp b/src/core/runtime/svm_profiler.cpp
-new file mode 100644
-index 00000000..537b3a05
---- /dev/null
-+++ b/src/core/runtime/svm_profiler.cpp
-@@ -0,0 +1,364 @@
-+////////////////////////////////////////////////////////////////////////////////
-+//
-+// The University of Illinois/NCSA
-+// Open Source License (NCSA)
-+//
-+// Copyright (c) 2022-2022, Advanced Micro Devices, Inc. All rights reserved.
-+//
-+// Developed by:
-+//
-+//                 AMD Research and AMD HSA Software Development
-+//
-+//                 Advanced Micro Devices, Inc.
-+//
-+//                 www.amd.com
-+//
-+// Permission is hereby granted, free of charge, to any person obtaining a copy
-+// of this software and associated documentation files (the "Software"), to
-+// deal with the Software without restriction, including without limitation
-+// the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+// and/or sell copies of the Software, and to permit persons to whom the
-+// Software is furnished to do so, subject to the following conditions:
-+//
-+//  - Redistributions of source code must retain the above copyright notice,
-+//    this list of conditions and the following disclaimers.
-+//  - Redistributions in binary form must reproduce the above copyright
-+//    notice, this list of conditions and the following disclaimers in
-+//    the documentation and/or other materials provided with the distribution.
-+//  - Neither the names of Advanced Micro Devices, Inc,
-+//    nor the names of its contributors may be used to endorse or promote
-+//    products derived from this Software without specific prior written
-+//    permission.
-+//
-+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-+// THE CONTRIBUTORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+// OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+// ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-+// DEALINGS WITH THE SOFTWARE.
-+//
-+////////////////////////////////////////////////////////////////////////////////
-+
-+#include "core/inc/svm_profiler.h"
-+
-+#include <stdint.h>
-+#include <algorithm>
-+#include <sys/eventfd.h>
-+#include <poll.h>
-+
-+#include "hsakmt/hsakmt.h"
-+
-+#include "core/util/utils.h"
-+#include "core/inc/runtime.h"
-+#include "core/inc/agent.h"
-+#include "core/inc/amd_gpu_agent.h"
-+
-+namespace rocr {
-+namespace AMD {
-+
-+static const char* smi_event_string(uint32_t event) {
-+  static const char* strings[] = {"NONE",
-+                                  "VMFAULT",
-+                                  "THERMAL_THROTTLE",
-+                                  "GPU_PRE_RESET",
-+                                  "GPU_POST_RESET",
-+                                  "MIGRATE_START",
-+                                  "MIGRATE_END",
-+                                  "PAGE_FAULT_START",
-+                                  "PAGE_FAULT_END",
-+                                  "QUEUE_EVICTION",
-+                                  "QUEUE_RESTORE",
-+                                  "UNMAP_FROM_GPU",
-+                                  "UNKNOWN"};
-+
-+  event = std::min<uint32_t>(event, sizeof(strings) / sizeof(char*) - 1);
-+  return strings[event];
-+}
-+
-+static const char* smi_migrate_string(uint32_t trigger) {
-+  static const char* strings[] = {"PREFETCH",
-+                                  "PAGEFAULT_GPU",
-+                                  "PAGEFAULT_CPU",
-+                                  "TTM_EVICTION",
-+                                  "UNKNOWN"};
-+
-+  trigger = std::min<uint32_t>(trigger, sizeof(strings) / sizeof(char*) - 1);
-+  return strings[trigger];
-+}
-+
-+static const char* smi_eviction_string(uint32_t trigger) {
-+  static const char* strings[] = {"SVM",
-+                                  "USERPTR",
-+                                  "TTM",
-+                                  "SUSPEND",
-+                                  "CRIU_CHECKPOINT",
-+                                  "CRIU_RESTORE",
-+                                  "UNKNOWN"};
-+
-+  trigger = std::min<uint32_t>(trigger, sizeof(strings) / sizeof(char*) - 1);
-+  return strings[trigger];
-+}
-+
-+static const char* smi_unmap_string(uint32_t trigger) {
-+  static const char* strings[] = {"MMU_NOTIFY",
-+                                  "MMU_NOTIFY_MIGRATE",
-+                                  "UNMAP_FROM_CPU",
-+                                  "UNKNOWN"};
-+
-+  trigger = std::min<uint32_t>(trigger, sizeof(strings) / sizeof(char*) - 1);
-+  return strings[trigger];
-+}
-+
-+SvmProfileControl::SvmProfileControl() : event(-1), thread(nullptr) {
-+  event = eventfd(0, EFD_CLOEXEC);
-+  if (event == -1) return;
-+
-+  thread = new std::thread([&]() {
-+    if (core::Runtime::runtime_singleton_->flag().svm_profile().empty()) return;
-+    FILE* logFile = fopen(core::Runtime::runtime_singleton_->flag().svm_profile().c_str(), "a");
-+    if (logFile == NULL) return;
-+    MAKE_NAMED_SCOPE_GUARD(logGuard, [&]() { fclose(logFile); });
-+
-+    std::vector<pollfd> files;
-+    files.resize(core::Runtime::runtime_singleton_->gpu_agents().size() + 1);
-+    files[0].fd = event;
-+    files[0].events = POLLIN;
-+    files[0].revents = 0;
-+
-+    HSAuint64 events = 0;
-+    events = HSA_SMI_EVENT_MASK_FROM_INDEX(HSA_SMI_EVENT_MIGRATE_START) |
-+        HSA_SMI_EVENT_MASK_FROM_INDEX(HSA_SMI_EVENT_MIGRATE_END) |
-+        HSA_SMI_EVENT_MASK_FROM_INDEX(HSA_SMI_EVENT_PAGE_FAULT_START) |
-+        HSA_SMI_EVENT_MASK_FROM_INDEX(HSA_SMI_EVENT_PAGE_FAULT_END) |
-+        HSA_SMI_EVENT_MASK_FROM_INDEX(HSA_SMI_EVENT_QUEUE_EVICTION) |
-+        HSA_SMI_EVENT_MASK_FROM_INDEX(HSA_SMI_EVENT_QUEUE_RESTORE) |
-+        HSA_SMI_EVENT_MASK_FROM_INDEX(HSA_SMI_EVENT_UNMAP_FROM_GPU);
-+
-+    for (int i = 0; i < core::Runtime::runtime_singleton_->gpu_agents().size(); i++) {
-+      auto err =
-+          hsaKmtOpenSMI(core::Runtime::runtime_singleton_->gpu_agents()[i]->node_id(), &files[i + 1].fd);
-+      assert(err == HSAKMT_STATUS_SUCCESS);
-+      files[i + 1].events = POLLIN;
-+      files[i + 1].revents = 0;
-+      // Enable collecting masked events.
-+      auto wrote = write(files[i + 1].fd, &events, sizeof(events));
-+      assert(wrote == sizeof(events));
-+    }
-+    MAKE_NAMED_SCOPE_GUARD(smiGuard, [&]() {
-+      for (int i = 1; i < files.size(); i++) {
-+        close(files[i].fd);
-+      }
-+    });
-+
-+    std::vector<std::string> smi_records;
-+    smi_records.resize(core::Runtime::runtime_singleton_->gpu_agents().size() + 1);
-+    char buffer[HSA_SMI_EVENT_MSG_SIZE + 1];
-+
-+    auto format_agent = [this](uint32_t gpuid) {
-+      std::string ret;
-+      core::Agent* agent = core::Runtime::runtime_singleton_->agent_by_gpuid(gpuid);
-+      if (agent->device_type() == core::Agent::kAmdCpuDevice)
-+        return std::string("CPU");
-+      else
-+        return format("GPU%u(%p)", ((AMD::GpuAgent*)agent)->enumeration_index(),
-+                      agent->public_handle());
-+    };
-+
-+    while (true) {
-+      int ready = poll(&files[0], files.size(), -1);
-+      if (ready < 1) {
-+        assert(false && "poll failed!");
-+        return;
-+      }
-+
-+      for (int i = 1; i < files.size(); i++) {
-+        if (files[i].revents & POLLIN) {
-+          memset(buffer, 0, sizeof(buffer));
-+          auto len = read(files[i].fd, buffer, sizeof(buffer) - 1);
-+          if (len > 0) {
-+            buffer[len] = '\0';
-+            // printf("%s\n", buffer);
-+            // fprintf(logFile, "%s\n", buffer);
-+
-+            smi_records[i] += buffer;
-+
-+            while (true) {
-+              size_t pos = smi_records[i].find('\n');
-+              if (pos == std::string::npos) break;
-+
-+              std::string line = smi_records[i].substr(0, pos);
-+              smi_records[i].erase(0, pos + 1);
-+
-+              const char* cursor;
-+              cursor = line.c_str();
-+
-+              // Event records follow the format:
-+              // event_id timestamp -pid event_specific_info trigger
-+              // timestamp, pid, and trigger are in dec.  All other are hex.
-+              // event_specific substring is listed for each event type.
-+              // See kfd_ioctl.h for more info.
-+              int event_id;
-+              uint64_t time;
-+              int pid;
-+              int offset = 0;
-+              int args = sscanf(cursor, "%x %lu -%u%n", &event_id, &time, &pid, &offset);
-+              assert(args == 3 && "Parsing error!");
-+
-+              std::string detail;
-+              cursor += offset + 1;
-+              switch (event_id) {
-+                //@addr(size) from->to prefetch_location:preferred_location
-+                case HSA_SMI_EVENT_MIGRATE_START: {
-+                  uint64_t addr;
-+                  uint32_t size;
-+                  uint32_t from, to;
-+                  uint32_t trigger = 0;
-+                  uint32_t fetch, pref;
-+                  args = sscanf(cursor, "@%lx(%x) %x->%x %x:%x %u", &addr, &size, &from, &to,
-+                                &fetch, &pref, &trigger);
-+                  assert(args == 7 && "Parsing error!");
-+
-+                  addr *= 4096;
-+                  size *= 4096;
-+
-+                  std::string from_agent = format_agent(from);
-+                  std::string to_agent = format_agent(to);
-+                  std::string range = format("[%p, %p]", addr, addr + size - 1);
-+                  std::string cause = smi_migrate_string(trigger);
-+                  detail = cause + " " + from_agent + "->" + to_agent + " " + range;
-+                  break;
-+                }
-+                //@addr(size) from->to
-+                case HSA_SMI_EVENT_MIGRATE_END: {
-+                  uint64_t addr;
-+                  uint32_t size;
-+                  uint32_t from, to;
-+                  uint32_t trigger;
-+                  args = sscanf(cursor, "@%lx(%x) %x->%x %u", &addr, &size, &from, &to, &trigger);
-+                  assert(args == 5 && "Parsing error!");
-+
-+                  addr *= 4096;
-+                  size *= 4096;
-+
-+                  std::string from_agent = format_agent(from);
-+                  std::string to_agent = format_agent(to);
-+                  std::string range = format("[%p, %p]", addr, addr + size - 1);
-+                  std::string cause = smi_migrate_string(trigger);
-+                  detail = cause + " " + from_agent + "->" + to_agent + " " + range;
-+                  break;
-+                }
-+                //@addr(gpu_id) W/R
-+                case HSA_SMI_EVENT_PAGE_FAULT_START: {
-+                  uint64_t addr;
-+                  uint32_t gpuid;
-+                  char mode;
-+                  args = sscanf(cursor, "@%lx(%x) %c", &addr, &gpuid, &mode);
-+
-+                  addr *= 4096;
-+
-+                  assert(args == 3 && "Parsing error!");
-+                  std::string agent = format_agent(gpuid);
-+                  std::string range = std::to_string(addr);
-+                  std::string cause = (mode == 'W') ? "Write" : "Read";
-+                  detail = cause + " " + agent + " " + range;
-+                  break;
-+                }
-+                //@addr(gpu_id) M/U  (migration / page table update)
-+                case HSA_SMI_EVENT_PAGE_FAULT_END: {
-+                  uint64_t addr;
-+                  uint32_t gpuid;
-+                  char mode;
-+                  args = sscanf(cursor, "@%lx(%x) %c", &addr, &gpuid, &mode);
-+                  assert(args == 3 && "Parsing error!");
-+
-+                  addr *= 4096;
-+
-+                  std::string agent = format_agent(gpuid);
-+                  std::string range = std::to_string(addr);
-+                  std::string cause = (mode == 'M') ? "Migration" : "Map";
-+                  detail = cause + " " + agent + " " + range;
-+                  break;
-+                }
-+                // gpu_id
-+                case HSA_SMI_EVENT_QUEUE_EVICTION: {
-+                  uint32_t gpuid;
-+                  uint32_t trigger;
-+                  args = sscanf(cursor, "%x %u", &gpuid, &trigger);
-+                  assert(args == 2 && "Parsing error!");
-+                  std::string agent = format_agent(gpuid);
-+                  std::string cause = smi_eviction_string(trigger);
-+                  detail = cause + " " + agent;
-+                  break;
-+                }
-+                // gpu_id
-+                case HSA_SMI_EVENT_QUEUE_RESTORE: {
-+                  uint32_t gpuid;
-+                  uint32_t trigger;
-+                  args = sscanf(cursor, "%x %u", &gpuid, &trigger);
-+                  assert(args == 2 && "Parsing error!");
-+                  std::string agent = format_agent(gpuid);
-+                  std::string cause = smi_eviction_string(trigger);
-+                  detail = cause + " " + agent;
-+                  break;
-+                }
-+                //@addr(size) gpu_id
-+                case HSA_SMI_EVENT_UNMAP_FROM_GPU: {
-+                  uint64_t addr;
-+                  uint32_t size;
-+                  uint32_t gpuid;
-+                  uint32_t trigger;
-+                  args = sscanf(cursor, "@%lx(%x) %x %u", &addr, &size, &gpuid, &trigger);
-+                  assert(args == 4 && "Parsing error!");
-+
-+                  addr *= 4096;
-+                  size *= 4096;
-+
-+                  std::string gpu = format_agent(gpuid);
-+                  std::string range = format("[%p, %p]", addr, addr + size - 1);
-+                  std::string cause = smi_unmap_string(trigger);
-+                  detail = cause + " " + gpu + " " + range;
-+                  break;
-+                }
-+                default:;
-+              }
-+
-+              std::string record = std::string("ROCr HMM event: ") + std::to_string(time) + " " +
-+                  smi_event_string(event_id) + " " + detail;
-+              // printf("%s\n", record.c_str());
-+              fprintf(logFile, "%s\n", record.c_str());
-+            }
-+          } else {
-+            auto err = errno;
-+            const char* msg = strerror(err);
-+            // printf("ROCr HMM event error: Read returned %ld, %s (%d)\n", len, msg, err);
-+            fprintf(logFile, "ROCr HMM event error: Read returned %ld, %s (%d)\n", len, msg, err);
-+          }
-+          files[i].revents = 0;
-+        }
-+      }
-+
-+      if (files[0].revents & POLLIN) return;
-+    }
-+  });
-+}
-+
-+SvmProfileControl::~SvmProfileControl() {
-+  if (event != -1) eventfd_write(event, 1);
-+  thread->join();
-+  delete thread;
-+  close(event);
-+}
-+
-+template <typename... Args>
-+std::string SvmProfileControl::format(const char* format, Args... args) {
-+  int len = snprintf(&format_buffer[0], format_buffer.size(), format, args...);
-+  if (len + 1 > format_buffer.size()) {
-+    format_buffer.resize(len + 1);
-+    snprintf(&format_buffer[0], format_buffer.size(), format, args...);
-+  }
-+  return std::string(&format_buffer[0]);
-+}
-+ 
-+} // namespace AMD
-+} // namespace rocr
-diff --git a/src/core/util/flag.h b/src/core/util/flag.h
-index 045a6d0c..212ab013 100644
---- a/src/core/util/flag.h
-+++ b/src/core/util/flag.h
-@@ -153,6 +153,9 @@ class Flag {
-     // Will become opt-out and possibly removed in future releases.
-     var = os::GetEnvVar("HSA_COOP_CU_COUNT");
-     coop_cu_count_ = (var == "1") ? true : false;
-+
-+    var = os::GetEnvVar("HSA_SVM_PROFILE");
-+    svm_profile_ = var;
-   }
- 
-   void parse_masks(uint32_t maxGpu, uint32_t maxCU) {
-@@ -221,6 +224,8 @@ class Flag {
- 
-   bool coop_cu_count() const { return coop_cu_count_; }
- 
-+  const std::string& svm_profile() const { return svm_profile_; }
-+
-  private:
-   bool check_flat_scratch_;
-   bool enable_vm_fault_message_;
-@@ -252,6 +257,7 @@ class Flag {
-   size_t scratch_mem_size_;
- 
-   std::string tools_lib_names_;
-+  std::string svm_profile_;
- 
-   size_t force_sdma_size_;
- 
--- 
-2.35.1
+Hi Alex/Stephan,
+
+I applied this patch, ran a basic set of validation and ran a couple of 
+IGT tests, and everything looks fine; with that, feel free to add my 
+reviewed-by and merge it:
+
+Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+
+However, I still do not understand why I cannot see this issue on my 
+side. I'm using Clang 14.0.5, enabling DCN in the config file, but I'm 
+never able to see it.
+
+Thanks.
+Siqueira
 
