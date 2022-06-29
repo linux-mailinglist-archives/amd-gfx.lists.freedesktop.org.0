@@ -2,52 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05D9356021B
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Jun 2022 16:10:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9170F5601CB
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Jun 2022 15:58:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6665010F151;
-	Wed, 29 Jun 2022 14:10:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29AB510E2F0;
+	Wed, 29 Jun 2022 13:58:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04A66112885;
- Wed, 29 Jun 2022 13:33:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656509608; x=1688045608;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=xN97QMRyWKE3GLq5caI2Z/69zV73n52esPprkpGOnwY=;
- b=QVp2VoANmTZoxKmc3H/kvgA5EHCeD/UcnpQcBblNfH35AeQljyCKtAYi
- F/x+w6ZiXxnUGTwXgxdVcIav2PebQrnffphMI1WtIkZpuxhiXiEEjfrj5
- bphgxk8WUkKMIEx195cZPF4zkQsDSiDYZACzSr5ptkwvoLe0KGKt48a1m
- W19HeuOC1M9ACwC6kvLeqXNq9sjdhXoqh4Ad7T0GTKiHoruwyiPgaMZ1U
- NqOxIHx/JRDhbmwr7N8AxC26QRj8N/jdZudTpbMJpja7uDBgbubtvLr0w
- n1JVqgphul4kyUQgxgK1Ya65U+AowbVDSXUt5C4hdOWff1Q6j/KXmVCGZ g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10392"; a="279575377"
-X-IronPort-AV: E=Sophos;i="5.92,231,1650956400"; d="scan'208";a="279575377"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2022 06:33:27 -0700
-X-IronPort-AV: E=Sophos;i="5.92,231,1650956400"; d="scan'208";a="647395862"
-Received: from clauter-mobl.amr.corp.intel.com (HELO localhost)
- ([10.252.48.175])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2022 06:33:21 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lyude Paul <lyude@redhat.com>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: Re: [RESEND RFC 00/18] drm/display/dp_mst: Drop Radeon MST support,
- make MST atomic-only
-In-Reply-To: <20220607192933.1333228-1-lyude@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220607192933.1333228-1-lyude@redhat.com>
-Date: Wed, 29 Jun 2022 16:33:18 +0300
-Message-ID: <87o7ybppb5.fsf@intel.com>
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2070.outbound.protection.outlook.com [40.107.223.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0895810E2F0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jun 2022 13:58:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TCSJxqgsjwzQMyzdnI1dXCmmWIOBm1lurjSZ04VEBHbhjYOnVsobyM+I3OlGuKRsA+TpSGK/PjR0UbfJNcD7Ouf7EJZOf1VcKkpRxH5sa7rY9Wsu0GbL2dxF48j8VW47o+lXRVp4lXc4e4kMyimRdAdlGgBKFOWh0pwagRkzsi7SQXeMoHV9E0wFhPtc425ROly3b5BdpqqaGfSuiJZ1enjWYNHtZDZ0Mnq9+8G37U/A6+UrksusiEcFk0Pw7bTCG6c728s3XNcm5bbyXAXyfIBJUPqlJMEkTCMgkxtlv+1dSyBImL2XVG0zOVYBLLJvvoDvYEOaqpVNYA7Th9+TUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kwYuwTeXrKVk8PC5SVHwcxdPDv8r+thhE8Wcn9J9KP8=;
+ b=cYTm3HlRt3f8dOleRMY5x+M4S1RqgkBwZGZqTunX2HHQG5euYUZtcJPFLFmNYZ7fdpqRwzH9sYnbW9ohZkontCK2ZMrWZpdbyBA38McItbyvbFKMt38WCuqI6rImmg4fFjySjsuN1CzYrmF3OL0xAAb/agfU61OtAoJhhDAxIWwAGM72VbMYrGtByG6AsLjo4ayGytwqjOGOrNZZoxp6gGuL0D7+gauDeIE+piPQCOrQS5ktzXELhivjzaVqITVly/GR1nH8PTa7maCM8It0t6wBPHUqKlZUgK4TGGmYDPrw16Ms518zDzkGs3RbdJeuxQ7l29Nw7lQmnLv7tCNOPw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kwYuwTeXrKVk8PC5SVHwcxdPDv8r+thhE8Wcn9J9KP8=;
+ b=STR/c3Vp2wpApmt5IZYAVFRPTa9FZczyVZA+wt4Td+hwieESaXY4NPW97OaWgJwYa9oNictGviwwsZnJp8ZXeEtIWIdk10bf9fUjBHIMIc3yMDAWAcuRzdazhCU+wa4LGb1nLjwIktL8N2LKkT5932mnsJ4bTMpFxVkg4lBvrGQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
+ by BN6PR12MB1395.namprd12.prod.outlook.com (2603:10b6:404:1f::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.14; Wed, 29 Jun
+ 2022 13:58:24 +0000
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::8d23:cb0f:d4d2:f7fa]) by BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::8d23:cb0f:d4d2:f7fa%6]) with mapi id 15.20.5395.014; Wed, 29 Jun 2022
+ 13:58:24 +0000
+Message-ID: <3e62a389-68b8-bd38-54a9-8fdb6b630c34@amd.com>
+Date: Wed, 29 Jun 2022 09:58:22 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] drm/amdkfd: Fix warnings from static analyzer Smatch
+Content-Language: en-US
+To: "Errabolu, Ramesh" <Ramesh.Errabolu@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "dan.carpenter@oracle.com" <dan.carpenter@oracle.com>
+References: <20220628232538.1316250-1-Ramesh.Errabolu@amd.com>
+ <846ecd13-edaf-c0eb-44a9-5232dca997c7@amd.com>
+ <SN1PR12MB2575F5E425FB5B43CB1BF119E3BB9@SN1PR12MB2575.namprd12.prod.outlook.com>
+From: Felix Kuehling <felix.kuehling@amd.com>
+In-Reply-To: <SN1PR12MB2575F5E425FB5B43CB1BF119E3BB9@SN1PR12MB2575.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: YT1PR01CA0097.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:2c::6) To BN9PR12MB5115.namprd12.prod.outlook.com
+ (2603:10b6:408:118::14)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Wed, 29 Jun 2022 14:09:53 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 88e6f1cd-7218-4741-125a-08da59d76eee
+X-MS-TrafficTypeDiagnostic: BN6PR12MB1395:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: JxdAku52NFcorQxEe5etz0uIZn7YiIcEyUw/XC5wNn9cnFX9a1OH8rKCHdifUbnIFV4zPPefM6fcW/bD+3CjRsAB63jbyoFy1VPY3ojzB4hzViVVC+qiMWa5vQ7yZ2d6w4b0uZ1VFuSlI3U7qfpohvtrPZAvU31QSeiVbGdoQ3bhkC3IYUPGDqnxyhphUGHDkdRmV6RchjxUXI+Z7uY40qpnzk6JOD9I2r91Gze3Qei6L0bJb3mtx/X9LNjsP6A7BUWuD+ROiXEpTSc5QSqTrEwrCeSLRancRjGOBJQXHTTlM01O6TGBDX6ai8QdjhPn7goNeAeX3lrV48+KkOdwAjSlOOf86hPFjDmIzHso1SShNOi7M9JbHLzfof+bT6khNRGvVV+CVytCuk2bsS4fDiY45YrJwDvWlBmUQ7m7A2zcfke+qrqnQXsZ/0YaZtteLW2Ox7765So4EEuGGnmavSmpj9nPC9gvWo0vC04tOrcquZJsbyv0ErsDUFPjZNZLrM0BqVzxl9BNSHs8CKl7Ozy47ZnvQqbkhgBQJyZ2CIVIOsnT1mVe0BrqMA5Ld5WRdofYV/99SVGWZ3NbQKvp6qbqSs74NL6PLjZaR7STjtrgSFWucRcShHgiUBg91sEd4ODwzbEWp3yhJlL9xDPw0NLRxQri/DFQrsdYmGlz6ywTVfn2p8HablPanBeiw9DR/Unx6zsd3J/R2qd2Qo3xOoQmYCxZ5vGUey2QkAeFCGxJLJMpDmqe3WBSTRZL3LWcHMihNVsv79T9h4oREBSKjqE2gr34ZWEsdnh3A/JXDe7QU2aqj61nMzhF3s0Ajv4c3bmjWAVY/Fu+fbJPWwSB0A==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(396003)(346002)(376002)(366004)(39860400002)(136003)(6506007)(53546011)(5660300002)(186003)(6512007)(26005)(110136005)(6486002)(2616005)(316002)(41300700001)(66556008)(66946007)(31686004)(8676002)(44832011)(2906002)(8936002)(66476007)(83380400001)(36756003)(478600001)(38100700002)(31696002)(86362001)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z1FDN0FSNmNOYWxBbENEQ1lub2pPU21SNFVYd3NBa3p0UmU3OXpFR3hPU1Zl?=
+ =?utf-8?B?aXpJVC9SdnRwRktjam5Cc1dMcmNXMkR1azJINmJoVEZkY3FFZURseGQ3dit2?=
+ =?utf-8?B?Z1NNL05RVVZRclc4NG4rNlprNStvYkdCL3FDWCs4bGFPdlAyL29rb2tQeG9K?=
+ =?utf-8?B?V2RSNmlzY1d6ZkdqZDJmd0pGREp4cXFZVy9mTEQrRXpjS1ZsV0JXYWs4bEU2?=
+ =?utf-8?B?cHNlNGZBVGVBTGxSazUzT1czajhyUDBBbE5JYndGK3U4NDFvc29Na1NCRnN5?=
+ =?utf-8?B?RjloRSt0WUl4R1gya3JaMmd5akpPMktaWXpIS0VHbVFyUStRSDdQMDVyR2NF?=
+ =?utf-8?B?RkNldzlFOWJDY1I4ckFwbXlDV0dvMkhMUDhBZjNCV2JaSlllMVBjSWFjV3Vi?=
+ =?utf-8?B?ak8yMnorMVl0WkF5WndSK0RUaU5FQXlKRUo5ZTFwdEpnT2twNmpoc21mdDJZ?=
+ =?utf-8?B?OElIdGIvTW53L3ZCSG8zLzBvT0orOHRvdXdvT2dsYmUwK1V2YVBmMWZibjNC?=
+ =?utf-8?B?NEkvckRVT2tTcE9zRmp2YWQ0OGFXQkxJdllaa0J4TFMyYUZFa0NvWFV1b0Jz?=
+ =?utf-8?B?SXZCMWR5emN6K0lYNVlvd2tQaUZoL1p0U3ZOSWNSMEs1U0UycWVmZTN3azV3?=
+ =?utf-8?B?Qm9VU2QwdUdpYi9WTUl4eXVqR2xGOXhyRWJoNTYxZ0FpUzV2VkhOZmE2VE40?=
+ =?utf-8?B?Y0NhTHhmbVIxWDIyUC9GT2F1azRiNHdFbzBZZTAvdXRTY1FscERDakljK3lO?=
+ =?utf-8?B?SFEwZGJ5MExONGZGZkdXNnhGTXFXUE9NbVFnSDJLUkFlblQxWjRzK3F3RWF5?=
+ =?utf-8?B?YjlONHJPc3ZWWThla3JZT1EvS3VvK1lEVjh1emJCZVN2c2lXbGlPajh1V2NK?=
+ =?utf-8?B?bjRwRENnUjVxdndtSkRTWlIyenArNU81WDM4b1FsU0cyZ0pmMDMxV3dOdi9a?=
+ =?utf-8?B?V0x6THppbFJ3eG1MdlRCQ2FFZWZDTWgvdFlYdUxYYS9MbmZLRER0UjFNZXN6?=
+ =?utf-8?B?eDdmSVAvYkIzd25wRGE1bVZtS2FTVGhyL1RXOVQ2WldXNEZFd1ZCeFR1V1Zj?=
+ =?utf-8?B?V0NyQnN0VVFvYWFZQ2wyUmpjR29FV2hqMUJPQkJTd2dNUFVMRDdMMTlMRktU?=
+ =?utf-8?B?YmFvVVp5WWJwSW55dUFGSGZLQ3d0UEtnMGIwcCtVM05hMFRVc0dTVzlBT1d2?=
+ =?utf-8?B?NHd5NDlIeGJET3JUZ0lLY1JRYitZZUl1R1JVS093RExJSHJDT2Frc0c3MnhP?=
+ =?utf-8?B?aXUxQ20vK0c2S2xiSUY3TXphTTRzRmVsYmJCb2lOeExkWlNvK1hkSElLOTBa?=
+ =?utf-8?B?dUNxNW1UMkEvU1dTNnRLZ2FHWEtwd3pVTy9qdENBQTRSZzBWb0xRSEF5MjBH?=
+ =?utf-8?B?MEhTV0wrbTR5d0hUR0tRV3FOUVNUdDQrN2xvVXZTOGhxaWZmN2FKb0gzdDAr?=
+ =?utf-8?B?N2dYRVpiT3U1b0ptRVNqdjlrVDdNMlJkUm1IaFBmWG16UExiVHRpOEc0VG5D?=
+ =?utf-8?B?eGx0RElBV1N3N2ZuUFhzeS9MRk9CMzVPeFZaZ2Q1ZExLcVlKcklXM0kxaXRo?=
+ =?utf-8?B?UDBVV2dEU0t4d3NmbVBTSlVuV0pNMGlKV0ZJMnY4QjJLeUxWa1lObEszTFV3?=
+ =?utf-8?B?eUVnWWNob3dBbVUrU0FYc0paOVh6MHJVUHNVWnJ6SDd2U3ZXQ0FPMkl1WTBX?=
+ =?utf-8?B?V1F6WktMYklnamJsb3FGanZZQlNBSzJUVjVtWVE0QVRveEUxcFgxdFJ6NElN?=
+ =?utf-8?B?QU1TUWUxOGNxL0xKL3NmbmxjWjhsWFZyYzk1WUJRdzJVUHlHOE5jQ0ZDQitL?=
+ =?utf-8?B?TjhMRmRrVHFoTUNtc1dZR2hkb2pvTkw2MDc5MlB6anJZektyVEVRbG81S1FN?=
+ =?utf-8?B?SkoxYkVKVmh1dDVRaHlGUzZFT2t0K2RoNUpsN0U5alBXZ21NNTdyclFzbit3?=
+ =?utf-8?B?RHNZZDVPLzRGZjFNWjBFdGZTYTdTdVMxTFdMajhIVHMrbUh0eXB0d1JEc0tG?=
+ =?utf-8?B?bDlOTWdIK3l3TVVhTDdMdC9TTUIwZnhvZnNtdXluSG5TSXRRKzJNSzhtZm9w?=
+ =?utf-8?B?VVJIZ21PMnNMcmF4ZHJza0FJVWd5K1RwRnRIMFdZd0dqclVhVnp3WmxVS3Ay?=
+ =?utf-8?Q?mzLdkiGv6zK3LbFmmjlLA4Bvb?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 88e6f1cd-7218-4741-125a-08da59d76eee
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2022 13:58:24.1688 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 293bWQ9gdeyUHlvev/81ZRr4/DL92E+1cwFqYuAGT45mBsW5f/0CWTbutFc9IhrRRTMrLMCl7Gz8yqxEfz+2Yw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1395
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,128 +127,121 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Imre Deak <imre.deak@intel.com>,
- Fangzhi Zuo <Jerry.Zuo@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
- Sean Paul <sean@poorly.run>,
- Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 07 Jun 2022, Lyude Paul <lyude@redhat.com> wrote:
-> Ugh, thanks ./scripts/get_maintainers.pl for confusing and breaking
-> git-send email <<. Sorry for the resend everyone.
+Am 2022-06-28 um 20:03 schrieb Errabolu, Ramesh:
+> [AMD Official Use Only - General]
 >
-> For quite a while we've been carrying around a lot of legacy modesetting
-> code in the MST helpers that has been rather annoying to keep around,
-> and very often gets in the way of trying to implement additional
-> functionality in MST such as fallback link rate retraining, dynamic BPC
-> management and DSC support, etc. because of the fact that we can't rely
-> on atomic for everything.
+> My responses are inline
 >
-> Luckily, we only actually have one user of the legacy MST code in the
-> kernel - radeon. Originally I was thinking of trying to maintain this
-> code and keep it around in some form, but I'm pretty unconvinced anyone
-> is actually using this. My reasoning for that is because I've seen
-> nearly no issues regarding MST on radeon for quite a while now - despite
-> the fact my local testing seems to indicate it's quite broken. This
-> isn't too surprising either, as MST support in radeon.ko is gated behind
-> a module parameter that isn't enabled by default. This isn't to say I
-> wouldn't be open to alternative suggestions, but I'd rather not be the
-> one to have to spend time on that if at all possible! Plus, I already
-> floated the idea of dropping this code by AMD folks a few times and
-> didn't get much resistance.
+> -----Original Message-----
+> From: Kuehling, Felix <Felix.Kuehling@amd.com>
+> Sent: Tuesday, June 28, 2022 6:41 PM
+> To: Errabolu, Ramesh <Ramesh.Errabolu@amd.com>; amd-gfx@lists.freedesktop.org; dan.carpenter@oracle.com
+> Subject: Re: [PATCH] drm/amdkfd: Fix warnings from static analyzer Smatch
 >
-> As well, this series has some basic refactoring that I did along the way
-> and some bugs I had to fix in order to get my atomic-only MST code
-> working. Most of this is pretty straight forward and simply renaming
-> things to more closely match the DisplayPort specification, as I think
-> this will also make maintaining this code a lot easier in the long run
-> (I've gotten myself confused way too many times because of this).
 >
-> So far I've tested this on all three MST drivers: amdgpu, i915 and
-> nouveau, along with making sure that removing the radeon MST code
-> doesn't break anything else. The one thing I very much could use help
-> with regarding testing though is making sure that this works with
-> amdgpu's DSC support on MST.
+> Am 2022-06-28 um 19:25 schrieb Ramesh Errabolu:
+>> The patch fixes couple of warnings, as reported by Smatch a static
+>> analyzer
+>>
+>> Signed-off-by: Ramesh Errabolu <Ramesh.Errabolu@amd.com>
+>> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+>> ---
+>>    drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 36 ++++++++++++-----------
+>>    1 file changed, 19 insertions(+), 17 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+>> b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+>> index 25990bec600d..9d7b9ad70bc8 100644
+>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+>> @@ -1417,15 +1417,17 @@ static int
+>> kfd_create_indirect_link_prop(struct kfd_topology_device *kdev, int g
+>>    
+>>    		/* find CPU <-->  CPU links */
+>>    		cpu_dev = kfd_topology_device_by_proximity_domain(i);
+>> -		if (cpu_dev) {
+>> -			list_for_each_entry(cpu_link,
+>> -					&cpu_dev->io_link_props, list) {
+>> -				if (cpu_link->node_to == gpu_link->node_to)
+>> -					break;
+>> -			}
+>> -		}
+>> +		if (!cpu_dev)
+>> +			continue;
+>> +
+>> +		cpu_link = NULL;
+> This initialization is unnecessary. list_for_each_entry will always initialize it.
 >
-> So, with this we should be using the atomic state as much as possible
-> with MST modesetting, hooray!
+>
+>> +		list_for_each_entry(cpu_link, &cpu_dev->io_link_props, list)
+>> +			if (cpu_link->node_to == gpu_link->node_to)
+>> +				break;
+>>    
+>> -		if (cpu_link->node_to != gpu_link->node_to)
+>> +		/* Ensures we didn't exit from list search with no hits */
+>> +		if (list_entry_is_head(cpu_link, &cpu_dev->io_link_props, list) ||
+>> +			(cpu_link->node_to != gpu_link->node_to))
+> The second condition is redundant. If the list entry is not the head,
+> the node_to must have already matched in the loop.
+>
+> Ramesh: Syntactically, it is possible to walk down the list without having the hit. The check list_entry_is_head() is for that scenario.
 
-I admit and regret I haven't had the time to go through this in detail
-and thought. I've glanced over it on a few occasions, and I don't have
-anything against it really.
+If you traverse the whole list without a hit, list_entry_is_head will be 
+true. That is also the only case where cpu_link->node_to != 
+gpu_link->node_to is possible. Therefore that condition is redundant. 
+Just checking list_entry_is_head is sufficient.
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+That said, as I pointed out below, you're still using cpu_link outside 
+the loop. Therefore it's likely the static checker is still going to 
+complain.
 
-Before merging, please ensure you've sent the entire series Cc'd
-intel-gfx, and got a green light from CI.
+Regards,
+   Felix
+
 
 >
-> Cc: Wayne Lin <Wayne.Lin@amd.com>
-> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Cc: Fangzhi Zuo <Jerry.Zuo@amd.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Imre Deak <imre.deak@intel.com>
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Cc: Sean Paul <sean@poorly.run>
+> But I'm no sure this solution is going to satisfy the static checker. It
+> objects to using the iterator (cpu_link) outside the loop. I think a
+> proper solution, that doesn't make any assumptions about how
+> list_for_each_entry is implemented, would be to declare a separate
+> variable as the iterator, and assign cpu_link in the loop only if there
+> is a match.
 >
-> Lyude Paul (18):
->   drm/amdgpu/dc/mst: Rename dp_mst_stream_allocation(_table)
->   drm/amdgpu/dm/mst: Rename get_payload_table()
->   drm/display/dp_mst: Rename drm_dp_mst_vcpi_allocation
->   drm/display/dp_mst: Call them time slots, not VCPI slots
->   drm/display/dp_mst: Fix confusing docs for
->     drm_dp_atomic_release_time_slots()
->   drm/display/dp_mst: Add some missing kdocs for atomic MST structs
->   drm/display/dp_mst: Add helper for finding payloads in atomic MST
->     state
->   drm/display/dp_mst: Add nonblocking helpers for DP MST
->   drm/display/dp_mst: Don't open code modeset checks for releasing time
->     slots
->   drm/display/dp_mst: Fix modeset tracking in
->     drm_dp_atomic_release_vcpi_slots()
->   drm/nouveau/kms: Cache DP encoders in nouveau_connector
->   drm/nouveau/kms: Pull mst state in for all modesets
->   drm/display/dp_mst: Add helpers for serializing SST <-> MST
->     transitions
->   drm/display/dp_mst: Drop all ports from topology on CSNs before
->     queueing link address work
->   drm/display/dp_mst: Skip releasing payloads if last connected port
->     isn't connected
->   drm/display/dp_mst: Maintain time slot allocations when deleting
->     payloads
->   drm/radeon: Drop legacy MST support
->   drm/display/dp_mst: Move all payload info into the atomic state
+> Ramesh: Will wait for a response from Dan.
 >
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   72 +-
->  .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  111 +-
->  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  126 +-
->  drivers/gpu/drm/amd/display/dc/core/dc_link.c |   10 +-
->  drivers/gpu/drm/amd/display/dc/dm_helpers.h   |    4 +-
->  .../amd/display/include/link_service_types.h  |   18 +-
->  drivers/gpu/drm/display/drm_dp_mst_topology.c | 1160 ++++++++---------
->  drivers/gpu/drm/i915/display/intel_display.c  |   11 +
->  drivers/gpu/drm/i915/display/intel_dp.c       |    9 +
->  drivers/gpu/drm/i915/display/intel_dp_mst.c   |   91 +-
->  drivers/gpu/drm/i915/display/intel_hdcp.c     |   24 +-
->  drivers/gpu/drm/nouveau/dispnv50/disp.c       |  202 ++-
->  drivers/gpu/drm/nouveau/dispnv50/disp.h       |    2 +
->  drivers/gpu/drm/nouveau/nouveau_connector.c   |   18 +-
->  drivers/gpu/drm/nouveau/nouveau_connector.h   |    3 +
->  drivers/gpu/drm/radeon/Makefile               |    2 +-
->  drivers/gpu/drm/radeon/atombios_crtc.c        |   11 +-
->  drivers/gpu/drm/radeon/atombios_encoders.c    |   59 -
->  drivers/gpu/drm/radeon/radeon_atombios.c      |    2 -
->  drivers/gpu/drm/radeon/radeon_connectors.c    |   61 +-
->  drivers/gpu/drm/radeon/radeon_device.c        |    1 -
->  drivers/gpu/drm/radeon/radeon_dp_mst.c        |  778 -----------
->  drivers/gpu/drm/radeon/radeon_drv.c           |    4 -
->  drivers/gpu/drm/radeon/radeon_encoders.c      |   14 +-
->  drivers/gpu/drm/radeon/radeon_irq_kms.c       |   10 +-
->  drivers/gpu/drm/radeon/radeon_mode.h          |   40 -
->  include/drm/display/drm_dp_mst_helper.h       |  230 ++--
->  27 files changed, 991 insertions(+), 2082 deletions(-)
->  delete mode 100644 drivers/gpu/drm/radeon/radeon_dp_mst.c
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+> Regards,
+>     Felix
+>
+>
+>>    			return -ENOMEM;
+>>    
+>>    		/* CPU <--> CPU <--> GPU, GPU node*/
+>> @@ -1510,16 +1512,16 @@ static int kfd_add_peer_prop(struct kfd_topology_device *kdev,
+>>    		cpu_dev = kfd_topology_device_by_proximity_domain(iolink1->node_to);
+>>    		if (cpu_dev) {
+>>    			list_for_each_entry(iolink3, &cpu_dev->io_link_props, list)
+>> -				if (iolink3->node_to == iolink2->node_to)
+>> +				if (iolink3->node_to == iolink2->node_to) {
+>> +					props->weight += iolink3->weight;
+>> +					props->min_latency += iolink3->min_latency;
+>> +					props->max_latency += iolink3->max_latency;
+>> +					props->min_bandwidth = min(props->min_bandwidth,
+>> +									iolink3->min_bandwidth);
+>> +					props->max_bandwidth = min(props->max_bandwidth,
+>> +									iolink3->max_bandwidth);
+>>    					break;
+>> -
+>> -			props->weight += iolink3->weight;
+>> -			props->min_latency += iolink3->min_latency;
+>> -			props->max_latency += iolink3->max_latency;
+>> -			props->min_bandwidth = min(props->min_bandwidth,
+>> -							iolink3->min_bandwidth);
+>> -			props->max_bandwidth = min(props->max_bandwidth,
+>> -							iolink3->max_bandwidth);
+>> +				}
+>>    		} else {
+>>    			WARN(1, "CPU node not found");
+>>    		}
