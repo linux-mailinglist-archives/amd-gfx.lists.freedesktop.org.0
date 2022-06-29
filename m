@@ -2,62 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13DB755FADE
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Jun 2022 10:44:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2407560095
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Jun 2022 14:57:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53B4810FF2D;
-	Wed, 29 Jun 2022 08:43:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C14910EF49;
+	Wed, 29 Jun 2022 12:57:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from pio-pvt-msa2.bahnhof.se (pio-pvt-msa2.bahnhof.se [79.136.2.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7384610FFA2;
- Wed, 29 Jun 2022 08:43:53 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTP id 2A07C3F496;
- Wed, 29 Jun 2022 10:43:51 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.11
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.11 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
- T_SCC_BODY_TEXT_LINE=-0.01, URIBL_BLOCKED=0.001]
- autolearn=ham autolearn_force=no
-Authentication-Results: pio-pvt-msa2.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from pio-pvt-msa2.bahnhof.se ([127.0.0.1])
- by localhost (pio-pvt-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 4hntFlTqeXsy; Wed, 29 Jun 2022 10:43:49 +0200 (CEST)
-Received: by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id BD3173F380;
- Wed, 29 Jun 2022 10:43:46 +0200 (CEST)
-Received: from [192.168.0.209] (h-155-4-205-35.A357.priv.bahnhof.se
- [155.4.205.35])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 009DD3600FE;
- Wed, 29 Jun 2022 10:43:45 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1656492226; bh=x90oW/9huaBEVhlYQnplarSqAv+GdIC9FB+WPge8YXg=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=To+37xln8JJvgy8na/moijj7u3YDsnUNuVyQoNBDexiiEMSNqGDIeVvz1kBQFzukt
- YcG6WWmRdCE6ePPgCuKLz9/xnAc5XIr2/e3dHA4nZ+veHTgrFehSwVxq0B1yIKdGKa
- 7lAinpshdXw/bjo7xkx8+5chsPjxtjKahuceuJ/M=
-Message-ID: <b4086751-9bff-ea5e-93fc-ce2c513b129b@shipmail.org>
-Date: Wed, 29 Jun 2022 10:43:45 +0200
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCF8910FB02
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jun 2022 09:59:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1656496770;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=UzceN8npiU1PHAzECBm7qOnZjHThBc7uhuHl4hlHZrs=;
+ b=gJvf84fvi2nq0BWO3Hy9NnG1QtuypHCiVgXIUUGkwIX7lVXAPfnM21fEvrkAbmjN0k6S8m
+ eCr7/ivX4cKkYhiAt32yU8rPhBMAjNSgCnX51gOMuB8zabSo2TI9vGm8XHjrW8V/LSNhrh
+ NJVSPEt0NovUOfWBN9gZw2oPcB/OWAg=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-171-5UDP7dz_P6C4Xw-RJ0j-gw-1; Wed, 29 Jun 2022 05:59:29 -0400
+X-MC-Unique: 5UDP7dz_P6C4Xw-RJ0j-gw-1
+Received: by mail-wr1-f71.google.com with SMTP id
+ u9-20020adfa189000000b0021b8b3c8f74so2271664wru.12
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jun 2022 02:59:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent
+ :content-language:to:cc:references:from:organization:subject
+ :in-reply-to:content-transfer-encoding;
+ bh=UzceN8npiU1PHAzECBm7qOnZjHThBc7uhuHl4hlHZrs=;
+ b=ozTE+58EWn7m08oEiOTYqP9bGtoPaCXl7YvZJLxXZuUHZLRHRrOmbRhzwvKfnq+qYn
+ Gpb699li+s6IS548Po6otV7Kilajc7kKdTWlV75fv2glicl9m/xgF+3VyyWIMaq1N4/o
+ Xl2O9zJF/GkceE/+MHtOYF/EE6OI/ibbMS5OkWJgeGy7s2xvsjPzkmVgdEA+H5/snnlV
+ JyqYPsdMv2LZvSvaKvlSlcqe5o3hyBQxJHqqNI0TpB+fOuk9tDaal0QNI040/cT1B/fd
+ BOG2GIa6sXa2DqNQejuXJ0C+I8nvtBPxWyNATE5Xltd/85aKjwBKpZMJc07jijC4pdkx
+ 5UTQ==
+X-Gm-Message-State: AJIora8i54qb5NQuEtvePnHG+4nW4dBTgBiSisw0CITqpYkZkmtGGq3o
+ hocEkr9WM1WlgVrULYjhKfRsKDGIp/B5OP9grncdFCRIRwq6efhICEtoFUjnXBGFx4YKnKL+u9n
+ XCfkKFk0qLTRKjhcUDypTEXeUOQ==
+X-Received: by 2002:a7b:c5d0:0:b0:3a0:3dc8:73a1 with SMTP id
+ n16-20020a7bc5d0000000b003a03dc873a1mr2664062wmk.98.1656496768473; 
+ Wed, 29 Jun 2022 02:59:28 -0700 (PDT)
+X-Google-Smtp-Source: AGRyM1uzk/B6PTZXrzHxht/mKCZa7GoCf9iThGNKGutixbwHJDxt/oLs1rYeiHv7jfh4fv2kOpV6+w==
+X-Received: by 2002:a7b:c5d0:0:b0:3a0:3dc8:73a1 with SMTP id
+ n16-20020a7bc5d0000000b003a03dc873a1mr2664041wmk.98.1656496768236; 
+ Wed, 29 Jun 2022 02:59:28 -0700 (PDT)
+Received: from ?IPV6:2003:cb:c708:e600:d4fa:af4b:d7b6:20df?
+ (p200300cbc708e600d4faaf4bd7b620df.dip0.t-ipconnect.de.
+ [2003:cb:c708:e600:d4fa:af4b:d7b6:20df])
+ by smtp.gmail.com with ESMTPSA id
+ y6-20020a05600c20c600b003a0426fae52sm2555196wmm.24.2022.06.29.02.59.27
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 29 Jun 2022 02:59:27 -0700 (PDT)
+Message-ID: <269e4c6e-d6ee-bace-9fab-a9dcb4268d5a@redhat.com>
+Date: Wed, 29 Jun 2022 11:59:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.0
-Subject: Re: [PATCH v6 02/22] drm/gem: Move mapping of imported dma-bufs to
- drm_gem_mmap_obj()
+To: Alex Sierra <alex.sierra@amd.com>, jgg@nvidia.com
+References: <20220629035426.20013-1-alex.sierra@amd.com>
+ <20220629035426.20013-4-alex.sierra@amd.com>
+From: David Hildenbrand <david@redhat.com>
+Organization: Red Hat
+Subject: Re: [PATCH v7 03/14] mm: handling Non-LRU pages returned by
+ vm_normal_pages
+In-Reply-To: <20220629035426.20013-4-alex.sierra@amd.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=david@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Language: en-US
-To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-References: <20220526235040.678984-1-dmitry.osipenko@collabora.com>
- <20220526235040.678984-3-dmitry.osipenko@collabora.com>
- <b8271f0c-d6a3-4194-1959-e112859756a3@shipmail.org>
- <c0273ac2-c87c-2612-03d4-dc52510b22f7@collabora.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-In-Reply-To: <c0273ac2-c87c-2612-03d4-dc52510b22f7@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Wed, 29 Jun 2022 12:57:38 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,95 +92,78 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- Thierry Reding <thierry.reding@gmail.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <digetx@gmail.com>, kernel@collabora.com,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Rob Herring <robh@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Daniel Stone <daniel@fooishbar.org>, Steven Price <steven.price@arm.com>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
- Chia-I Wu <olvaffe@gmail.com>, linux-media@vger.kernel.org,
- Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, linaro-mm-sig@lists.linaro.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-tegra@vger.kernel.org,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Daniel Almeida <daniel.almeida@collabora.com>, amd-gfx@lists.freedesktop.org,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Emil Velikov <emil.l.velikov@gmail.com>, linux-kernel@vger.kernel.org,
- Tomasz Figa <tfiga@chromium.org>, Rob Clark <robdclark@gmail.com>,
- Qiang Yu <yuq825@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>, Robin Murphy <robin.murphy@arm.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: rcampbell@nvidia.com, willy@infradead.org, Felix.Kuehling@amd.com,
+ apopple@nvidia.com, amd-gfx@lists.freedesktop.org, linux-xfs@vger.kernel.org,
+ linux-mm@kvack.org, jglisse@redhat.com, dri-devel@lists.freedesktop.org,
+ akpm@linux-foundation.org, linux-ext4@vger.kernel.org, hch@lst.de
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On 29.06.22 05:54, Alex Sierra wrote:
+> With DEVICE_COHERENT, we'll soon have vm_normal_pages() return
+> device-managed anonymous pages that are not LRU pages. Although they
+> behave like normal pages for purposes of mapping in CPU page, and for
+> COW. They do not support LRU lists, NUMA migration or THP.
+> 
+> Callers to follow_page that expect LRU pages, are also checked for
+> device zone pages due to DEVICE_COHERENT type.
 
-On 6/29/22 10:22, Dmitry Osipenko wrote:
-> On 6/29/22 09:40, Thomas Hellström (Intel) wrote:
->> On 5/27/22 01:50, Dmitry Osipenko wrote:
->>> Drivers that use drm_gem_mmap() and drm_gem_mmap_obj() helpers don't
->>> handle imported dma-bufs properly, which results in mapping of something
->>> else than the imported dma-buf. For example, on NVIDIA Tegra we get a
->>> hard
->>> lockup when userspace writes to the memory mapping of a dma-buf that was
->>> imported into Tegra's DRM GEM.
->>>
->>> To fix this bug, move mapping of imported dma-bufs to drm_gem_mmap_obj().
->>> Now mmaping of imported dma-bufs works properly for all DRM drivers.
->> Same comment about Fixes: as in patch 1,
->>> Cc: stable@vger.kernel.org
->>> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
->>> ---
->>>    drivers/gpu/drm/drm_gem.c              | 3 +++
->>>    drivers/gpu/drm/drm_gem_shmem_helper.c | 9 ---------
->>>    drivers/gpu/drm/tegra/gem.c            | 4 ++++
->>>    3 files changed, 7 insertions(+), 9 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
->>> index 86d670c71286..7c0b025508e4 100644
->>> --- a/drivers/gpu/drm/drm_gem.c
->>> +++ b/drivers/gpu/drm/drm_gem.c
->>> @@ -1038,6 +1038,9 @@ int drm_gem_mmap_obj(struct drm_gem_object *obj,
->>> unsigned long obj_size,
->>>        if (obj_size < vma->vm_end - vma->vm_start)
->>>            return -EINVAL;
->>>    +    if (obj->import_attach)
->>> +        return dma_buf_mmap(obj->dma_buf, vma, 0);
->> If we start enabling mmaping of imported dma-bufs on a majority of
->> drivers in this way, how do we ensure that user-space is not blindly
->> using the object mmap without calling the needed DMA_BUF_IOCTL_SYNC
->> which is needed before and after cpu access of mmap'ed dma-bufs?
->>
->> I was under the impression (admittedly without looking) that the few
->> drivers that actually called into dma_buf_mmap() had some private
->> user-mode driver code in place that ensured this happened.
-> Since it's a userspace who does the mapping, then it should be a
-> responsibility of userspace to do all the necessary syncing.
+Can we rephrase that to (because zeropage)
 
-Sure, but nothing prohibits user-space to ignore the syncing thinking 
-"It works anyway", testing those drivers where the syncing is a NOP. And 
-when a driver that finally needs syncing is tested it's too late to fix 
-all broken user-space.
+"Callers to follow_page() currently don't expect ZONE_DEVICE pages,
+however, with DEVICE_COHERENT we might now return ZONE_DEVICE. Check for
+ZONE_DEVICE pages in applicable users of follow_page() as well."
 
->   I'm not
-> sure whether anyone in userspace really needs to map imported dma-bufs
-> in practice. Nevertheless, this use-case is broken and should be fixed
-> by either allowing to do the mapping or prohibiting it.
->
-Then I'd vote for prohibiting it, at least for now. And for the future 
-moving forward we could perhaps revisit the dma-buf need for syncing, 
-requiring those drivers that actually need it to implement emulated 
-coherent memory which can be done not too inefficiently (vmwgfx being 
-one example).
 
-/Thomas
 
+[...]
+
+>  		/*
+> diff --git a/mm/memory.c b/mm/memory.c
+> index 7a089145cad4..e18555af9024 100644
+> --- a/mm/memory.c
+> +++ b/mm/memory.c
+> @@ -624,6 +624,13 @@ struct page *vm_normal_page(struct vm_area_struct *vma, unsigned long addr,
+>  		if (is_zero_pfn(pfn))
+>  			return NULL;
+>  		if (pte_devmap(pte))
+> +/*
+> + * NOTE: New uers of ZONE_DEVICE will not set pte_devmap() and will have
+
+s/uers/users/
+
+> + * refcounts incremented on their struct pages when they are inserted into
+> + * PTEs, thus they are safe to return here. Legacy ZONE_DEVICE pages that set
+> + * pte_devmap() do not have refcounts. Example of legacy ZONE_DEVICE is
+> + * MEMORY_DEVICE_FS_DAX type in pmem or virtio_fs drivers.
+> + */
+
+[...]
+
+> diff --git a/mm/mprotect.c b/mm/mprotect.c
+> index ba5592655ee3..e034aae2a98b 100644
+> --- a/mm/mprotect.c
+> +++ b/mm/mprotect.c
+> @@ -95,7 +95,7 @@ static unsigned long change_pte_range(struct mmu_gather *tlb,
+>  					continue;
+>  
+>  				page = vm_normal_page(vma, addr, oldpte);
+> -				if (!page || PageKsm(page))
+> +				if (!page || is_zone_device_page(page) || PageKsm(page))
+>  					continue;
+>  
+>  				/* Also skip shared copy-on-write pages */
+
+In -next/-mm there is now an additional can_change_pte_writable() that
+calls vm_normal_page() --  added by me. I assume that that is indeed
+fine because we can simply map device coherent pages writable.
+
+Besides the nits, LGTM
+
+Acked-by: David Hildenbrand <david@redhat.com>
+
+-- 
+Thanks,
+
+David / dhildenb
 
