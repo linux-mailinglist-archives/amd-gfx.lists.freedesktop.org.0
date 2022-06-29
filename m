@@ -2,120 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9170F5601CB
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Jun 2022 15:58:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6452756025F
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Jun 2022 16:16:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29AB510E2F0;
-	Wed, 29 Jun 2022 13:58:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FD2C10F193;
+	Wed, 29 Jun 2022 14:16:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2070.outbound.protection.outlook.com [40.107.223.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0895810E2F0
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jun 2022 13:58:27 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2052.outbound.protection.outlook.com [40.107.94.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 152E610F177
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jun 2022 14:16:16 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TCSJxqgsjwzQMyzdnI1dXCmmWIOBm1lurjSZ04VEBHbhjYOnVsobyM+I3OlGuKRsA+TpSGK/PjR0UbfJNcD7Ouf7EJZOf1VcKkpRxH5sa7rY9Wsu0GbL2dxF48j8VW47o+lXRVp4lXc4e4kMyimRdAdlGgBKFOWh0pwagRkzsi7SQXeMoHV9E0wFhPtc425ROly3b5BdpqqaGfSuiJZ1enjWYNHtZDZ0Mnq9+8G37U/A6+UrksusiEcFk0Pw7bTCG6c728s3XNcm5bbyXAXyfIBJUPqlJMEkTCMgkxtlv+1dSyBImL2XVG0zOVYBLLJvvoDvYEOaqpVNYA7Th9+TUw==
+ b=YTJpdKTJWKFdu9mxgReUlxqnCzkm0dCm5Xwy19ttEWRY8ykMmMJoR8G4T0WX73eSdXwyCIrBaopTI6KmHZ5OqvB12ykBKfQFaGdfvDx1evP8boBj/mw0A2/46P3izyIEi2fvIzqYXsQq06S9wZiGMesSTt4rm3mDLGPBQRZEphwQ5uFF1ozZKomSyFbTRgp0su0Xt+RIXa19UJdy4zyHJlRdeI9RwqE4jLfxzjAZOw29onLuFjq6mV63WkHeDprO9+QadVjErMGjtOo5PlCEGSXRf3+m+dp4P/1+hV6mkDk2SnfseYEEjzvP71bE3knw9km9ytNoa1Yqrp788QI6zA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kwYuwTeXrKVk8PC5SVHwcxdPDv8r+thhE8Wcn9J9KP8=;
- b=cYTm3HlRt3f8dOleRMY5x+M4S1RqgkBwZGZqTunX2HHQG5euYUZtcJPFLFmNYZ7fdpqRwzH9sYnbW9ohZkontCK2ZMrWZpdbyBA38McItbyvbFKMt38WCuqI6rImmg4fFjySjsuN1CzYrmF3OL0xAAb/agfU61OtAoJhhDAxIWwAGM72VbMYrGtByG6AsLjo4ayGytwqjOGOrNZZoxp6gGuL0D7+gauDeIE+piPQCOrQS5ktzXELhivjzaVqITVly/GR1nH8PTa7maCM8It0t6wBPHUqKlZUgK4TGGmYDPrw16Ms518zDzkGs3RbdJeuxQ7l29Nw7lQmnLv7tCNOPw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=Q0lH2gYQ3c99KPZIs27XR15eqp1tBwgn2q5JMpH8TNw=;
+ b=DRVyTfXV8Xh18WXRXLAvE5DrscRPzRBL09el2WNfgG9sknbYRzZRh9+13fV8D+SyiTO9l5UMKbOu1jO7pzdu+tWQB8klmFldx1tgw7gikQFzKc9/cH9nQ4LcVdSDLI+q6qfd8MksXtDJp7SPX6UgTswAg1m3+IJSRx7LkcCpj5uUDwk76Ewpw6HBE+Ws3a4+TshD7H6DSHRVIfArd98/ddhUfellP7WPnl1oZ315Ukzv5jQlrk+kOIZZRmzQI6GJJwweUhr4qcun8B4Li1M9ayefMjJOVgrcPhtSp9ZWIHgSx32lBFsxd/CB5zJZD68YIjFV45PUlkw37AyOxzqnwg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kwYuwTeXrKVk8PC5SVHwcxdPDv8r+thhE8Wcn9J9KP8=;
- b=STR/c3Vp2wpApmt5IZYAVFRPTa9FZczyVZA+wt4Td+hwieESaXY4NPW97OaWgJwYa9oNictGviwwsZnJp8ZXeEtIWIdk10bf9fUjBHIMIc3yMDAWAcuRzdazhCU+wa4LGb1nLjwIktL8N2LKkT5932mnsJ4bTMpFxVkg4lBvrGQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
- by BN6PR12MB1395.namprd12.prod.outlook.com (2603:10b6:404:1f::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.14; Wed, 29 Jun
- 2022 13:58:24 +0000
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::8d23:cb0f:d4d2:f7fa]) by BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::8d23:cb0f:d4d2:f7fa%6]) with mapi id 15.20.5395.014; Wed, 29 Jun 2022
- 13:58:24 +0000
-Message-ID: <3e62a389-68b8-bd38-54a9-8fdb6b630c34@amd.com>
-Date: Wed, 29 Jun 2022 09:58:22 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] drm/amdkfd: Fix warnings from static analyzer Smatch
-Content-Language: en-US
-To: "Errabolu, Ramesh" <Ramesh.Errabolu@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "dan.carpenter@oracle.com" <dan.carpenter@oracle.com>
-References: <20220628232538.1316250-1-Ramesh.Errabolu@amd.com>
- <846ecd13-edaf-c0eb-44a9-5232dca997c7@amd.com>
- <SN1PR12MB2575F5E425FB5B43CB1BF119E3BB9@SN1PR12MB2575.namprd12.prod.outlook.com>
-From: Felix Kuehling <felix.kuehling@amd.com>
-In-Reply-To: <SN1PR12MB2575F5E425FB5B43CB1BF119E3BB9@SN1PR12MB2575.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YT1PR01CA0097.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:2c::6) To BN9PR12MB5115.namprd12.prod.outlook.com
- (2603:10b6:408:118::14)
+ bh=Q0lH2gYQ3c99KPZIs27XR15eqp1tBwgn2q5JMpH8TNw=;
+ b=Fcim7Ts1fXHdHYuDLI2jAMDTorJliSTgkWamr4f2gsjxOG8CMOsUSWxReoEfG6Fzc9/zF6alLEB2cg/dL6KLwh3xXDVyP/qBsFH4KPnj7h7ZDqlK+M8Fkr/bBGHEInVo3i7R06Jd1YpQazKTIMsLBOyX+QSpAK1HwdxkM2UvKIc=
+Received: from DS7PR05CA0078.namprd05.prod.outlook.com (2603:10b6:8:57::24) by
+ SA0PR12MB4367.namprd12.prod.outlook.com (2603:10b6:806:94::13) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5373.17; Wed, 29 Jun 2022 14:16:13 +0000
+Received: from DM6NAM11FT029.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:8:57:cafe::ee) by DS7PR05CA0078.outlook.office365.com
+ (2603:10b6:8:57::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.6 via Frontend
+ Transport; Wed, 29 Jun 2022 14:16:12 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT029.mail.protection.outlook.com (10.13.173.23) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5373.15 via Frontend Transport; Wed, 29 Jun 2022 14:16:12 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 29 Jun
+ 2022 09:15:41 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/2] drm/amdgpu: keep fbdev buffers pinned during suspend
+Date: Wed, 29 Jun 2022 10:15:29 -0400
+Message-ID: <20220629141530.2501360-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 88e6f1cd-7218-4741-125a-08da59d76eee
-X-MS-TrafficTypeDiagnostic: BN6PR12MB1395:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8518ae30-e607-449b-9f96-08da59d9ec11
+X-MS-TrafficTypeDiagnostic: SA0PR12MB4367:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: JxdAku52NFcorQxEe5etz0uIZn7YiIcEyUw/XC5wNn9cnFX9a1OH8rKCHdifUbnIFV4zPPefM6fcW/bD+3CjRsAB63jbyoFy1VPY3ojzB4hzViVVC+qiMWa5vQ7yZ2d6w4b0uZ1VFuSlI3U7qfpohvtrPZAvU31QSeiVbGdoQ3bhkC3IYUPGDqnxyhphUGHDkdRmV6RchjxUXI+Z7uY40qpnzk6JOD9I2r91Gze3Qei6L0bJb3mtx/X9LNjsP6A7BUWuD+ROiXEpTSc5QSqTrEwrCeSLRancRjGOBJQXHTTlM01O6TGBDX6ai8QdjhPn7goNeAeX3lrV48+KkOdwAjSlOOf86hPFjDmIzHso1SShNOi7M9JbHLzfof+bT6khNRGvVV+CVytCuk2bsS4fDiY45YrJwDvWlBmUQ7m7A2zcfke+qrqnQXsZ/0YaZtteLW2Ox7765So4EEuGGnmavSmpj9nPC9gvWo0vC04tOrcquZJsbyv0ErsDUFPjZNZLrM0BqVzxl9BNSHs8CKl7Ozy47ZnvQqbkhgBQJyZ2CIVIOsnT1mVe0BrqMA5Ld5WRdofYV/99SVGWZ3NbQKvp6qbqSs74NL6PLjZaR7STjtrgSFWucRcShHgiUBg91sEd4ODwzbEWp3yhJlL9xDPw0NLRxQri/DFQrsdYmGlz6ywTVfn2p8HablPanBeiw9DR/Unx6zsd3J/R2qd2Qo3xOoQmYCxZ5vGUey2QkAeFCGxJLJMpDmqe3WBSTRZL3LWcHMihNVsv79T9h4oREBSKjqE2gr34ZWEsdnh3A/JXDe7QU2aqj61nMzhF3s0Ajv4c3bmjWAVY/Fu+fbJPWwSB0A==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(396003)(346002)(376002)(366004)(39860400002)(136003)(6506007)(53546011)(5660300002)(186003)(6512007)(26005)(110136005)(6486002)(2616005)(316002)(41300700001)(66556008)(66946007)(31686004)(8676002)(44832011)(2906002)(8936002)(66476007)(83380400001)(36756003)(478600001)(38100700002)(31696002)(86362001)(45980500001)(43740500002);
+X-Microsoft-Antispam-Message-Info: lYAo68N8WHTCg4NLY0XI0MAimCf+fWlnRVBgQp/qKkDzrjettrof7BUB6hnavcsH04d1cIOQVci4Uqb1wiGYatat65zffHP1TUjJ8EtJexgpf3QlU0HttpDI9uNSryCaGqSJshMaps8ysE5nCHTkhnuuw1aPOzYfnDIZUH6r2OB2KgCNeQR3MnZyTTHJ0d2l+tm0XuK3H0xJ//O0F8ofF1GSMIhtFTaN7K7L8mnCuPjY+jmifrPioe79ru6wknGT81+tZ86D9EgwFMTVO3eKRouC1nynarZNdS3TO9DJs3eMxpRBsIXWDGsc98LF5NyJJbjBpUlIW2WI0wiFjTXIydKwysdSIoFa4DjqUo4RwBiiDrxcLj8cbccaCQHmQZNzfPcdTYoDHTj+XU9+ehG3O98NsBoQK4S+BmSS0O1+QDAzzD5xYSaF+FZIOYDBr9jbm7CPmnXHogHcK52W/6wVxf4ExQOcTNiB2e7Ss+U/RhwSrgdqM3fo+4aQvNifjPYADjwP2lQ6HegpAFYVnY9bgTDfvxe0jG8iRv39rUOxo9F8emtMadY65yyNXFB81a2KdOqSXFeGaY3HSh0nQQiBeF4kHZqF5lf51KxXIhwpWKJsleaYn7HUrt43sNx2Q4mhv0TNA5lFhfPLyN3GeK3qpMgztxYAupFsf14/yWkThaNBzyyx0AiqLfBst2VNkAav6mmEIzKDZTiaD9UJl+4g5nPxV+8efXY4lHMzjhSb7YLUaxTKIKCOLX9NZX2RjncVMEGuyCVkNLlIAzukd8NfUjjbm+Wbu5E33GlaW2lJO0gLqWspc7Z/DTtcMGpxAIyZ/urxA59wc8hdG2dHdNG2+Q==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230016)(4636009)(376002)(396003)(136003)(39860400002)(346002)(36840700001)(46966006)(40470700004)(86362001)(83380400001)(6916009)(70586007)(316002)(478600001)(5660300002)(36860700001)(41300700001)(6666004)(70206006)(47076005)(4326008)(82310400005)(426003)(40480700001)(8676002)(336012)(40460700003)(7696005)(2906002)(8936002)(186003)(26005)(356005)(2616005)(36756003)(16526019)(82740400003)(1076003)(81166007)(36900700001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z1FDN0FSNmNOYWxBbENEQ1lub2pPU21SNFVYd3NBa3p0UmU3OXpFR3hPU1Zl?=
- =?utf-8?B?aXpJVC9SdnRwRktjam5Cc1dMcmNXMkR1azJINmJoVEZkY3FFZURseGQ3dit2?=
- =?utf-8?B?Z1NNL05RVVZRclc4NG4rNlprNStvYkdCL3FDWCs4bGFPdlAyL29rb2tQeG9K?=
- =?utf-8?B?V2RSNmlzY1d6ZkdqZDJmd0pGREp4cXFZVy9mTEQrRXpjS1ZsV0JXYWs4bEU2?=
- =?utf-8?B?cHNlNGZBVGVBTGxSazUzT1czajhyUDBBbE5JYndGK3U4NDFvc29Na1NCRnN5?=
- =?utf-8?B?RjloRSt0WUl4R1gya3JaMmd5akpPMktaWXpIS0VHbVFyUStRSDdQMDVyR2NF?=
- =?utf-8?B?RkNldzlFOWJDY1I4ckFwbXlDV0dvMkhMUDhBZjNCV2JaSlllMVBjSWFjV3Vi?=
- =?utf-8?B?ak8yMnorMVl0WkF5WndSK0RUaU5FQXlKRUo5ZTFwdEpnT2twNmpoc21mdDJZ?=
- =?utf-8?B?OElIdGIvTW53L3ZCSG8zLzBvT0orOHRvdXdvT2dsYmUwK1V2YVBmMWZibjNC?=
- =?utf-8?B?NEkvckRVT2tTcE9zRmp2YWQ0OGFXQkxJdllaa0J4TFMyYUZFa0NvWFV1b0Jz?=
- =?utf-8?B?SXZCMWR5emN6K0lYNVlvd2tQaUZoL1p0U3ZOSWNSMEs1U0UycWVmZTN3azV3?=
- =?utf-8?B?Qm9VU2QwdUdpYi9WTUl4eXVqR2xGOXhyRWJoNTYxZ0FpUzV2VkhOZmE2VE40?=
- =?utf-8?B?Y0NhTHhmbVIxWDIyUC9GT2F1azRiNHdFbzBZZTAvdXRTY1FscERDakljK3lO?=
- =?utf-8?B?SFEwZGJ5MExONGZGZkdXNnhGTXFXUE9NbVFnSDJLUkFlblQxWjRzK3F3RWF5?=
- =?utf-8?B?YjlONHJPc3ZWWThla3JZT1EvS3VvK1lEVjh1emJCZVN2c2lXbGlPajh1V2NK?=
- =?utf-8?B?bjRwRENnUjVxdndtSkRTWlIyenArNU81WDM4b1FsU0cyZ0pmMDMxV3dOdi9a?=
- =?utf-8?B?V0x6THppbFJ3eG1MdlRCQ2FFZWZDTWgvdFlYdUxYYS9MbmZLRER0UjFNZXN6?=
- =?utf-8?B?eDdmSVAvYkIzd25wRGE1bVZtS2FTVGhyL1RXOVQ2WldXNEZFd1ZCeFR1V1Zj?=
- =?utf-8?B?V0NyQnN0VVFvYWFZQ2wyUmpjR29FV2hqMUJPQkJTd2dNUFVMRDdMMTlMRktU?=
- =?utf-8?B?YmFvVVp5WWJwSW55dUFGSGZLQ3d0UEtnMGIwcCtVM05hMFRVc0dTVzlBT1d2?=
- =?utf-8?B?NHd5NDlIeGJET3JUZ0lLY1JRYitZZUl1R1JVS093RExJSHJDT2Frc0c3MnhP?=
- =?utf-8?B?aXUxQ20vK0c2S2xiSUY3TXphTTRzRmVsYmJCb2lOeExkWlNvK1hkSElLOTBa?=
- =?utf-8?B?dUNxNW1UMkEvU1dTNnRLZ2FHWEtwd3pVTy9qdENBQTRSZzBWb0xRSEF5MjBH?=
- =?utf-8?B?MEhTV0wrbTR5d0hUR0tRV3FOUVNUdDQrN2xvVXZTOGhxaWZmN2FKb0gzdDAr?=
- =?utf-8?B?N2dYRVpiT3U1b0ptRVNqdjlrVDdNMlJkUm1IaFBmWG16UExiVHRpOEc0VG5D?=
- =?utf-8?B?eGx0RElBV1N3N2ZuUFhzeS9MRk9CMzVPeFZaZ2Q1ZExLcVlKcklXM0kxaXRo?=
- =?utf-8?B?UDBVV2dEU0t4d3NmbVBTSlVuV0pNMGlKV0ZJMnY4QjJLeUxWa1lObEszTFV3?=
- =?utf-8?B?eUVnWWNob3dBbVUrU0FYc0paOVh6MHJVUHNVWnJ6SDd2U3ZXQ0FPMkl1WTBX?=
- =?utf-8?B?V1F6WktMYklnamJsb3FGanZZQlNBSzJUVjVtWVE0QVRveEUxcFgxdFJ6NElN?=
- =?utf-8?B?QU1TUWUxOGNxL0xKL3NmbmxjWjhsWFZyYzk1WUJRdzJVUHlHOE5jQ0ZDQitL?=
- =?utf-8?B?TjhMRmRrVHFoTUNtc1dZR2hkb2pvTkw2MDc5MlB6anJZektyVEVRbG81S1FN?=
- =?utf-8?B?SkoxYkVKVmh1dDVRaHlGUzZFT2t0K2RoNUpsN0U5alBXZ21NNTdyclFzbit3?=
- =?utf-8?B?RHNZZDVPLzRGZjFNWjBFdGZTYTdTdVMxTFdMajhIVHMrbUh0eXB0d1JEc0tG?=
- =?utf-8?B?bDlOTWdIK3l3TVVhTDdMdC9TTUIwZnhvZnNtdXluSG5TSXRRKzJNSzhtZm9w?=
- =?utf-8?B?VVJIZ21PMnNMcmF4ZHJza0FJVWd5K1RwRnRIMFdZd0dqclVhVnp3WmxVS3Ay?=
- =?utf-8?Q?mzLdkiGv6zK3LbFmmjlLA4Bvb?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 88e6f1cd-7218-4741-125a-08da59d76eee
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2022 13:58:24.1688 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2022 14:16:12.8762 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8518ae30-e607-449b-9f96-08da59d9ec11
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 293bWQ9gdeyUHlvev/81ZRr4/DL92E+1cwFqYuAGT45mBsW5f/0CWTbutFc9IhrRRTMrLMCl7Gz8yqxEfz+2Yw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1395
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT029.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4367
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,121 +97,61 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Alex Deucher <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 2022-06-28 um 20:03 schrieb Errabolu, Ramesh:
-> [AMD Official Use Only - General]
->
-> My responses are inline
->
-> -----Original Message-----
-> From: Kuehling, Felix <Felix.Kuehling@amd.com>
-> Sent: Tuesday, June 28, 2022 6:41 PM
-> To: Errabolu, Ramesh <Ramesh.Errabolu@amd.com>; amd-gfx@lists.freedesktop.org; dan.carpenter@oracle.com
-> Subject: Re: [PATCH] drm/amdkfd: Fix warnings from static analyzer Smatch
->
->
-> Am 2022-06-28 um 19:25 schrieb Ramesh Errabolu:
->> The patch fixes couple of warnings, as reported by Smatch a static
->> analyzer
->>
->> Signed-off-by: Ramesh Errabolu <Ramesh.Errabolu@amd.com>
->> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
->> ---
->>    drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 36 ++++++++++++-----------
->>    1 file changed, 19 insertions(+), 17 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
->> b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
->> index 25990bec600d..9d7b9ad70bc8 100644
->> --- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
->> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
->> @@ -1417,15 +1417,17 @@ static int
->> kfd_create_indirect_link_prop(struct kfd_topology_device *kdev, int g
->>    
->>    		/* find CPU <-->  CPU links */
->>    		cpu_dev = kfd_topology_device_by_proximity_domain(i);
->> -		if (cpu_dev) {
->> -			list_for_each_entry(cpu_link,
->> -					&cpu_dev->io_link_props, list) {
->> -				if (cpu_link->node_to == gpu_link->node_to)
->> -					break;
->> -			}
->> -		}
->> +		if (!cpu_dev)
->> +			continue;
->> +
->> +		cpu_link = NULL;
-> This initialization is unnecessary. list_for_each_entry will always initialize it.
->
->
->> +		list_for_each_entry(cpu_link, &cpu_dev->io_link_props, list)
->> +			if (cpu_link->node_to == gpu_link->node_to)
->> +				break;
->>    
->> -		if (cpu_link->node_to != gpu_link->node_to)
->> +		/* Ensures we didn't exit from list search with no hits */
->> +		if (list_entry_is_head(cpu_link, &cpu_dev->io_link_props, list) ||
->> +			(cpu_link->node_to != gpu_link->node_to))
-> The second condition is redundant. If the list entry is not the head,
-> the node_to must have already matched in the loop.
->
-> Ramesh: Syntactically, it is possible to walk down the list without having the hit. The check list_entry_is_head() is for that scenario.
+Was dropped when we converted to the generic helpers.
 
-If you traverse the whole list without a hit, list_entry_is_head will be 
-true. That is also the only case where cpu_link->node_to != 
-gpu_link->node_to is possible. Therefore that condition is redundant. 
-Just checking list_entry_is_head is sufficient.
+Fixes: 087451f372bf ("drm/amdgpu: use generic fb helpers instead of setting up AMD own's.")
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c | 25 +++++++++++++++++----
+ 1 file changed, 21 insertions(+), 4 deletions(-)
 
-That said, as I pointed out below, you're still using cpu_link outside 
-the loop. Therefore it's likely the static checker is still going to 
-complain.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+index 8ef489fad707..a2e62d9405e7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+@@ -1560,6 +1560,21 @@ bool amdgpu_crtc_get_scanout_position(struct drm_crtc *crtc,
+ 						  stime, etime, mode);
+ }
+ 
++static bool
++amdgpu_display_robj_is_fb(struct amdgpu_device *adev, struct amdgpu_bo *robj)
++{
++	struct drm_device *dev = adev_to_drm(adev);
++	struct drm_fb_helper *fb_helper = dev->fb_helper;
++
++	if (!fb_helper || !fb_helper->buffer)
++		return false;
++
++	if (gem_to_amdgpu_bo(fb_helper->buffer->gem) != robj)
++		return false;
++
++	return true;
++}
++
+ int amdgpu_display_suspend_helper(struct amdgpu_device *adev)
+ {
+ 	struct drm_device *dev = adev_to_drm(adev);
+@@ -1595,10 +1610,12 @@ int amdgpu_display_suspend_helper(struct amdgpu_device *adev)
+ 			continue;
+ 		}
+ 		robj = gem_to_amdgpu_bo(fb->obj[0]);
+-		r = amdgpu_bo_reserve(robj, true);
+-		if (r == 0) {
+-			amdgpu_bo_unpin(robj);
+-			amdgpu_bo_unreserve(robj);
++		if (!amdgpu_display_robj_is_fb(adev, robj)) {
++			r = amdgpu_bo_reserve(robj, true);
++			if (r == 0) {
++				amdgpu_bo_unpin(robj);
++				amdgpu_bo_unreserve(robj);
++			}
+ 		}
+ 	}
+ 	return 0;
+-- 
+2.35.3
 
-Regards,
-   Felix
-
-
->
-> But I'm no sure this solution is going to satisfy the static checker. It
-> objects to using the iterator (cpu_link) outside the loop. I think a
-> proper solution, that doesn't make any assumptions about how
-> list_for_each_entry is implemented, would be to declare a separate
-> variable as the iterator, and assign cpu_link in the loop only if there
-> is a match.
->
-> Ramesh: Will wait for a response from Dan.
->
-> Regards,
->     Felix
->
->
->>    			return -ENOMEM;
->>    
->>    		/* CPU <--> CPU <--> GPU, GPU node*/
->> @@ -1510,16 +1512,16 @@ static int kfd_add_peer_prop(struct kfd_topology_device *kdev,
->>    		cpu_dev = kfd_topology_device_by_proximity_domain(iolink1->node_to);
->>    		if (cpu_dev) {
->>    			list_for_each_entry(iolink3, &cpu_dev->io_link_props, list)
->> -				if (iolink3->node_to == iolink2->node_to)
->> +				if (iolink3->node_to == iolink2->node_to) {
->> +					props->weight += iolink3->weight;
->> +					props->min_latency += iolink3->min_latency;
->> +					props->max_latency += iolink3->max_latency;
->> +					props->min_bandwidth = min(props->min_bandwidth,
->> +									iolink3->min_bandwidth);
->> +					props->max_bandwidth = min(props->max_bandwidth,
->> +									iolink3->max_bandwidth);
->>    					break;
->> -
->> -			props->weight += iolink3->weight;
->> -			props->min_latency += iolink3->min_latency;
->> -			props->max_latency += iolink3->max_latency;
->> -			props->min_bandwidth = min(props->min_bandwidth,
->> -							iolink3->min_bandwidth);
->> -			props->max_bandwidth = min(props->max_bandwidth,
->> -							iolink3->max_bandwidth);
->> +				}
->>    		} else {
->>    			WARN(1, "CPU node not found");
->>    		}
