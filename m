@@ -1,87 +1,86 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5E3C55F6F5
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Jun 2022 08:43:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1564B55F93F
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Jun 2022 09:38:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D764910FA92;
-	Wed, 29 Jun 2022 06:43:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B73810F7D9;
+	Wed, 29 Jun 2022 07:38:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
- [213.80.101.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16922113F6E;
- Wed, 29 Jun 2022 06:43:52 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 8D3F940CDE;
- Wed, 29 Jun 2022 08:43:50 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.11
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.11 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
- T_SCC_BODY_TEXT_LINE=-0.01, URIBL_BLOCKED=0.001]
- autolearn=ham autolearn_force=no
-Authentication-Results: ste-pvt-msa1.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
- by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 9zVOpFpqurBe; Wed, 29 Jun 2022 08:43:49 +0200 (CEST)
-Received: by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id E77D240CD6;
- Wed, 29 Jun 2022 08:43:48 +0200 (CEST)
-Received: from [192.168.0.209] (h-155-4-205-35.A357.priv.bahnhof.se
- [155.4.205.35])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 828A9360677;
- Wed, 29 Jun 2022 08:43:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1656485028; bh=lhOYNGqGisf/E17sgFrN5FIY96Ihx7G/tMj3K5gKxzw=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=DVzFW+KJOPDbhjAKm9CdyTI6VMdeTr0f9r1dPaIWy8TRfcE8pBAwRUNbgXu1Aq9X1
- erEdsBm3Wj/SnXDmI7gS7vo2eW2qpK2lNzlxt8GkPEpfs1zIWUKHVE5z74qTdZHYis
- 3s7ooaxnN+paDWie6SRxEe77bEmvdZI0xGv/hSFU=
-Message-ID: <6f2b0b7a-0031-dfe2-8ce2-191b940064b0@shipmail.org>
-Date: Wed, 29 Jun 2022 08:43:48 +0200
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32D481120B5
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jun 2022 07:33:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1656488013;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=dA2eoSPtGttWxJYZGlfOcE/QeU9denwWrEKtVHSFEyo=;
+ b=RjZzRQXEzUevNSu6VfUPeENuCjiAflugBKE+0cfUCRlXIpBVdVIGS4YDmWkDHcNEnodF8+
+ rIjdx3nEI740BDTAgJMA/+0Eq9MxsSwPgJmoxJV2IGg/6onWSsP2XnQQTSrJCucHYUEV26
+ 2byZZM5eTTqV2w9n0D+DuZ29VIHMCY8=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-481-wDRXUOGuOhmEIfWF44RJ5A-1; Wed, 29 Jun 2022 03:33:31 -0400
+X-MC-Unique: wDRXUOGuOhmEIfWF44RJ5A-1
+Received: by mail-wr1-f69.google.com with SMTP id
+ y18-20020adfdf12000000b0021b94ba4c37so2156584wrl.11
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jun 2022 00:33:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:organization:in-reply-to
+ :content-transfer-encoding;
+ bh=dA2eoSPtGttWxJYZGlfOcE/QeU9denwWrEKtVHSFEyo=;
+ b=RYRfXcVpCHQhPEUm9gkvq3igID7yUd/NeYBjgv9cSbaS83a3lx5aXDVEVytJdK/tLd
+ v/Ux9Z+QxTFvsygup7mo9RBvzUvegHlVl7B1mGIJa99ad9y8GpQ1qxk1pKNRU1CmFif4
+ ruy8YZZBOMxzRPQ0UoFJRqUEZWmJqLsF0jXFhvF+9t/Y0mpM5qLP9SNqa+fPAZIj7jSb
+ C4P+BGg5q3ZQu1xcebP7Ji+9u8rjKPGGuwMFcTXOJ/QWOKI9vRIvwAyHDZT9sATvrJOo
+ cKrhCljXgfdSvqT43cszS3yx5e34DdXcSC1PiIExPAhUcm5P0d5F+h/K9/QzKM93B0mS
+ JhVg==
+X-Gm-Message-State: AJIora9cQp6BvUrerlGanCKAEOCoiQtJzuv4gbjt+o52MNzOQmPiKQJo
+ 1JRKqUnDGm1+A8QkhbcPA1IG9gNmCiMikCOGk6S/R2LaLcgYFIP6DGJAMiTUBvrcO4Eqxzk9DLr
+ qZUz815Mxr7zilf9Hsv9XvYN3dw==
+X-Received: by 2002:a05:600c:3591:b0:3a0:563a:49d3 with SMTP id
+ p17-20020a05600c359100b003a0563a49d3mr1926447wmq.60.1656488010096; 
+ Wed, 29 Jun 2022 00:33:30 -0700 (PDT)
+X-Google-Smtp-Source: AGRyM1uum8Hx2eoXPmPEzIAfJI+bxpHTzM8+zWRZ0znb96530kqbhcZ9rF+BBXjqVzGxgQ61VtlDlw==
+X-Received: by 2002:a05:600c:3591:b0:3a0:563a:49d3 with SMTP id
+ p17-20020a05600c359100b003a0563a49d3mr1926431wmq.60.1656488009851; 
+ Wed, 29 Jun 2022 00:33:29 -0700 (PDT)
+Received: from ?IPV6:2003:cb:c708:e600:d4fa:af4b:d7b6:20df?
+ (p200300cbc708e600d4faaf4bd7b620df.dip0.t-ipconnect.de.
+ [2003:cb:c708:e600:d4fa:af4b:d7b6:20df])
+ by smtp.gmail.com with ESMTPSA id
+ g21-20020a7bc4d5000000b0039c587342d8sm2175038wmk.3.2022.06.29.00.33.28
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 29 Jun 2022 00:33:29 -0700 (PDT)
+Message-ID: <f00f9c93-c115-d222-dc8c-11493ccd2567@redhat.com>
+Date: Wed, 29 Jun 2022 09:33:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.0
-Subject: Re: [PATCH v6 08/22] drm/virtio: Unlock reservations on
- dma_resv_reserve_fences() error
+Subject: Re: [PATCH v7 01/14] mm: rename is_pinnable_pages to
+ is_pinnable_longterm_pages
+To: Alex Sierra <alex.sierra@amd.com>, jgg@nvidia.com
+References: <20220629035426.20013-1-alex.sierra@amd.com>
+ <20220629035426.20013-2-alex.sierra@amd.com>
+From: David Hildenbrand <david@redhat.com>
+Organization: Red Hat
+In-Reply-To: <20220629035426.20013-2-alex.sierra@amd.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=david@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Language: en-US
-To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- Daniel Stone <daniel@fooishbar.org>,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
- Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
- Rob Clark <robdclark@gmail.com>, Emil Velikov <emil.l.velikov@gmail.com>,
- Robin Murphy <robin.murphy@arm.com>, Qiang Yu <yuq825@gmail.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, Thierry Reding
- <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-References: <20220526235040.678984-1-dmitry.osipenko@collabora.com>
- <20220526235040.678984-9-dmitry.osipenko@collabora.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-In-Reply-To: <20220526235040.678984-9-dmitry.osipenko@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Wed, 29 Jun 2022 07:38:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,44 +92,30 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, Dmitry Osipenko <digetx@gmail.com>,
- kernel@collabora.com, linux-media@vger.kernel.org
+Cc: rcampbell@nvidia.com, willy@infradead.org, Felix.Kuehling@amd.com,
+ apopple@nvidia.com, amd-gfx@lists.freedesktop.org, linux-xfs@vger.kernel.org,
+ linux-mm@kvack.org, jglisse@redhat.com, dri-devel@lists.freedesktop.org,
+ akpm@linux-foundation.org, linux-ext4@vger.kernel.org, hch@lst.de
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On 29.06.22 05:54, Alex Sierra wrote:
+> is_pinnable_page() and folio_is_pinnable() were renamed to
+> is_longterm_pinnable_page() and folio_is_longterm_pinnable()
+> respectively. These functions are used in the FOLL_LONGTERM flag
+> context.
 
-On 5/27/22 01:50, Dmitry Osipenko wrote:
-> Unlock reservations on dma_resv_reserve_fences() error to fix recursive
-> locking of the reservations when this error happens.
-Fixes:
-> Cc: stable@vger.kernel.org
-
-With that fixed,
-
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Subject talks about "*_pages"
 
 
-> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> ---
->   drivers/gpu/drm/virtio/virtgpu_gem.c | 4 +++-
->   1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/virtio/virtgpu_gem.c b/drivers/gpu/drm/virtio/virtgpu_gem.c
-> index 580a78809836..7db48d17ee3a 100644
-> --- a/drivers/gpu/drm/virtio/virtgpu_gem.c
-> +++ b/drivers/gpu/drm/virtio/virtgpu_gem.c
-> @@ -228,8 +228,10 @@ int virtio_gpu_array_lock_resv(struct virtio_gpu_object_array *objs)
->   
->   	for (i = 0; i < objs->nents; ++i) {
->   		ret = dma_resv_reserve_fences(objs->objs[i]->resv, 1);
-> -		if (ret)
-> +		if (ret) {
-> +			virtio_gpu_array_unlock_resv(objs);
->   			return ret;
-> +		}
->   	}
->   	return ret;
->   }
+Can you elaborate why the move from mm.h to memremap.h is justified?
+
+I'd have called it "is_longterm_pinnable_page", but I am not a native
+speaker, so no strong opinion :)
+
+
+-- 
+Thanks,
+
+David / dhildenb
+
