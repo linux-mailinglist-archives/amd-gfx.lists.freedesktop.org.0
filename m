@@ -2,47 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B152560E8A
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Jun 2022 03:04:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2525560D45
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Jun 2022 01:31:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 699A010E26A;
-	Thu, 30 Jun 2022 01:04:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D22810EF03;
+	Wed, 29 Jun 2022 23:31:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA07810E288;
- Wed, 29 Jun 2022 23:24:15 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 710AD614D9;
- Wed, 29 Jun 2022 23:24:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51CB1C34114;
- Wed, 29 Jun 2022 23:24:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
- s=korg; t=1656545053;
- bh=Dnxtg2+47dMB9fvk3mpZuwgNcKCi6p+et4oU9iDj/kY=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=yIUhyRd1UmOnjNmm25XNKViGfXOi0X4HOJ10GLIlf13tTMKTjOUKLDyQ4Z2DbDg0O
- cVQjech3q/YmOGPV9iO+PcS3fpGyfcUYsFfe1708PQjUEfslyL6ytDB/D+Pq4Yvxiq
- Yqsj0t71BtS8NGnMPbzTZ5t6X4C+LtXr/VhhiUbg=
-Date: Wed, 29 Jun 2022 16:24:12 -0700
-From: Andrew Morton <akpm@linux-foundation.org>
-To: Felix Kuehling <felix.kuehling@amd.com>
-Subject: Re: [PATCH v7 01/14] mm: rename is_pinnable_pages to
- is_pinnable_longterm_pages
-Message-Id: <20220629162412.d6aa0bf6244e487e4279fc31@linux-foundation.org>
-In-Reply-To: <575b48a6-e372-acda-9a7c-449f307a588c@amd.com>
-References: <20220629035426.20013-1-alex.sierra@amd.com>
- <20220629035426.20013-2-alex.sierra@amd.com>
- <f00f9c93-c115-d222-dc8c-11493ccd2567@redhat.com>
- <575b48a6-e372-acda-9a7c-449f307a588c@amd.com>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Thu, 30 Jun 2022 01:04:23 +0000
+X-Greylist: delayed 426 seconds by postgrey-1.36 at gabe;
+ Wed, 29 Jun 2022 23:31:44 UTC
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CFF710EF03
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jun 2022 23:31:44 +0000 (UTC)
+Received: from fews1.riseup.net (fews1-pn.riseup.net [10.0.1.83])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
+ client-signature RSA-PSS (2048 bits) client-digest SHA256)
+ (Client CN "mail.riseup.net", Issuer "R3" (not verified))
+ by mx1.riseup.net (Postfix) with ESMTPS id 4LYHc6373YzDrTZ;
+ Wed, 29 Jun 2022 23:24:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+ t=1656545078; bh=elkf5RmFBorewHxBpyhHPWm8ng8ClJgtspzLN6zcMxk=;
+ h=Date:Subject:To:References:From:In-Reply-To:From;
+ b=NzDdKGhpy7bLep8cB6NgurxFBMmiWVKBePqtrFWXLnDo2KmcNzIN1g6bj0NSvAPzS
+ lWKrioW0KJ7R11yFosqb0q7lJWy5RkWQby6uAcLt3h4deJC3fkiu7/2TBkDOxp8ERA
+ MNpljOvbBjS8DJiobUcSibbo38g0iJ1wS+Dot43A=
+X-Riseup-User-ID: 027D84224C03B59B55A80BD92B20FEB4E250A12BE61509C15A71B800C3DE096B
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ by fews1.riseup.net (Postfix) with ESMTPSA id 4LYHc50w4Hz5vQt;
+ Wed, 29 Jun 2022 23:24:36 +0000 (UTC)
+Message-ID: <cff8f7f0-bcda-b804-0737-411c71ec9b77@riseup.net>
+Date: Wed, 29 Jun 2022 20:24:33 -0300
+MIME-Version: 1.0
+Subject: Re: [PATCH] drm/amdkfd: Fix warnings from static analyzer Smatch
+Content-Language: en-US
+To: Ramesh Errabolu <Ramesh.Errabolu@amd.com>, amd-gfx@lists.freedesktop.org, 
+ dan.carpenter@oracle.com
+References: <20220629170419.364255-1-Ramesh.Errabolu@amd.com>
+From: =?UTF-8?Q?Ma=c3=adra_Canal?= <mairacanal@riseup.net>
+In-Reply-To: <20220629170419.364255-1-Ramesh.Errabolu@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,24 +54,92 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Sierra <alex.sierra@amd.com>, rcampbell@nvidia.com,
- willy@infradead.org, David Hildenbrand <david@redhat.com>, apopple@nvidia.com,
- amd-gfx@lists.freedesktop.org, linux-xfs@vger.kernel.org, linux-mm@kvack.org,
- jglisse@redhat.com, dri-devel@lists.freedesktop.org, jgg@nvidia.com,
- linux-ext4@vger.kernel.org, hch@lst.de
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 29 Jun 2022 18:08:40 -0400 Felix Kuehling <felix.kuehling@amd.com> wrote:
+Hi Ramesh,
 
-> >
-> > I'd have called it "is_longterm_pinnable_page", but I am not a native
-> > speaker, so no strong opinion :)
+On 6/29/22 14:04, Ramesh Errabolu wrote:
+> The patch fixes couple of warnings, as reported by Smatch
+> a static analyzer.
 > 
-> I think only the patch title has the name backwards. The code uses 
-> is_longterm_pinnable_page.
+> Fixes: 40d6aa758b13 ("drm/amdkfd: Extend KFD device topology to surface peer-to-peer links")>
+> drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:1428 kfd_create_indirect_link_prop() warn: iterator used outside loop: 'cpu_link'
+> drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:1462 kfd_create_indirect_link_prop() error: we previously assumed 'cpu_dev' could be null (see line 1420)
+> drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:1516 kfd_add_peer_prop() warn: iterator used outside loop: 'iolink3'
+>
 
-Patch title was quite buggy ;) I made it "mm: rename is_pinnable_page()
-to is_longterm_pinnable_page()" in my copy.
+Usually, the Fixes tag would go here, after the commit message.
 
+> Signed-off-by: Ramesh Errabolu <Ramesh.Errabolu@amd.com>
+> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+> ---
 
+As this is a v2 PATCH, it would be nice to have a small changelog here,
+describing what has changed between the v1 and v2 versions of the patch.
+Also, you can mark the patch as v2 with git send-email by adding the
+flag -v2. More on the canonical patch format can be seen in [1].
+
+[1]
+https://docs.kernel.org/process/submitting-patches.html#the-canonical-patch-format
+
+Best Regards,
+- Maíra Canal
+
+>  drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 34 +++++++++++------------
+>  1 file changed, 17 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+> index 25990bec600d..ca4825e555b7 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+> @@ -1417,15 +1417,15 @@ static int kfd_create_indirect_link_prop(struct kfd_topology_device *kdev, int g
+>  
+>  		/* find CPU <-->  CPU links */
+>  		cpu_dev = kfd_topology_device_by_proximity_domain(i);
+> -		if (cpu_dev) {
+> -			list_for_each_entry(cpu_link,
+> -					&cpu_dev->io_link_props, list) {
+> -				if (cpu_link->node_to == gpu_link->node_to)
+> -					break;
+> -			}
+> -		}
+> +		if (!cpu_dev)
+> +			continue;
+> +
+> +		list_for_each_entry(cpu_link, &cpu_dev->io_link_props, list)
+> +			if (cpu_link->node_to == gpu_link->node_to)
+> +				break;
+>  
+> -		if (cpu_link->node_to != gpu_link->node_to)
+> +		/* Ensures we didn't exit from list search with no hits */
+> +		if (list_entry_is_head(cpu_link, &cpu_dev->io_link_props, list))
+>  			return -ENOMEM;
+>  
+>  		/* CPU <--> CPU <--> GPU, GPU node*/
+> @@ -1510,16 +1510,16 @@ static int kfd_add_peer_prop(struct kfd_topology_device *kdev,
+>  		cpu_dev = kfd_topology_device_by_proximity_domain(iolink1->node_to);
+>  		if (cpu_dev) {
+>  			list_for_each_entry(iolink3, &cpu_dev->io_link_props, list)
+> -				if (iolink3->node_to == iolink2->node_to)
+> +				if (iolink3->node_to == iolink2->node_to) {
+> +					props->weight += iolink3->weight;
+> +					props->min_latency += iolink3->min_latency;
+> +					props->max_latency += iolink3->max_latency;
+> +					props->min_bandwidth = min(props->min_bandwidth,
+> +									iolink3->min_bandwidth);
+> +					props->max_bandwidth = min(props->max_bandwidth,
+> +									iolink3->max_bandwidth);
+>  					break;
+> -
+> -			props->weight += iolink3->weight;
+> -			props->min_latency += iolink3->min_latency;
+> -			props->max_latency += iolink3->max_latency;
+> -			props->min_bandwidth = min(props->min_bandwidth,
+> -							iolink3->min_bandwidth);
+> -			props->max_bandwidth = min(props->max_bandwidth,
+> -							iolink3->max_bandwidth);
+> +				}
+>  		} else {
+>  			WARN(1, "CPU node not found");
+>  		}
