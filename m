@@ -2,85 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1564B55F93F
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Jun 2022 09:38:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D477D55FA3F
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Jun 2022 10:21:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B73810F7D9;
-	Wed, 29 Jun 2022 07:38:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 158ED10E45D;
+	Wed, 29 Jun 2022 08:21:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32D481120B5
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jun 2022 07:33:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C81D610E5A6
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jun 2022 08:21:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1656488013;
+ s=mimecast20190719; t=1656490859;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=dA2eoSPtGttWxJYZGlfOcE/QeU9denwWrEKtVHSFEyo=;
- b=RjZzRQXEzUevNSu6VfUPeENuCjiAflugBKE+0cfUCRlXIpBVdVIGS4YDmWkDHcNEnodF8+
- rIjdx3nEI740BDTAgJMA/+0Eq9MxsSwPgJmoxJV2IGg/6onWSsP2XnQQTSrJCucHYUEV26
- 2byZZM5eTTqV2w9n0D+DuZ29VIHMCY8=
+ bh=bPJV1uPaZV9JJhbBrJp826ArqFj4Q0dOTMcobO8NbR8=;
+ b=bTfT4BwTUhHjKsnZYXSh5osiP15x8TrNok7Lze+/ZuYwAlgSSLHJmjayhxrdKjOUSTpYgx
+ wyb8ukdtI3ZFh/7ZKejx6FPnUlrP4frbBNQIybJtsXGdNVz3f0cv2Y41/abyrDfgUZh0wm
+ BQGw/Mxq8JJwCVusZFA5+Z50YKbX5As=
 Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
  [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-481-wDRXUOGuOhmEIfWF44RJ5A-1; Wed, 29 Jun 2022 03:33:31 -0400
-X-MC-Unique: wDRXUOGuOhmEIfWF44RJ5A-1
+ us-mta-153-uBmnsW83Py6smVVFOw4g-Q-1; Wed, 29 Jun 2022 04:20:58 -0400
+X-MC-Unique: uBmnsW83Py6smVVFOw4g-Q-1
 Received: by mail-wr1-f69.google.com with SMTP id
- y18-20020adfdf12000000b0021b94ba4c37so2156584wrl.11
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jun 2022 00:33:31 -0700 (PDT)
+ y18-20020adfdf12000000b0021b94ba4c37so2197216wrl.11
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Jun 2022 01:20:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:organization:in-reply-to
+ :content-language:to:cc:references:from:in-reply-to
  :content-transfer-encoding;
- bh=dA2eoSPtGttWxJYZGlfOcE/QeU9denwWrEKtVHSFEyo=;
- b=RYRfXcVpCHQhPEUm9gkvq3igID7yUd/NeYBjgv9cSbaS83a3lx5aXDVEVytJdK/tLd
- v/Ux9Z+QxTFvsygup7mo9RBvzUvegHlVl7B1mGIJa99ad9y8GpQ1qxk1pKNRU1CmFif4
- ruy8YZZBOMxzRPQ0UoFJRqUEZWmJqLsF0jXFhvF+9t/Y0mpM5qLP9SNqa+fPAZIj7jSb
- C4P+BGg5q3ZQu1xcebP7Ji+9u8rjKPGGuwMFcTXOJ/QWOKI9vRIvwAyHDZT9sATvrJOo
- cKrhCljXgfdSvqT43cszS3yx5e34DdXcSC1PiIExPAhUcm5P0d5F+h/K9/QzKM93B0mS
- JhVg==
-X-Gm-Message-State: AJIora9cQp6BvUrerlGanCKAEOCoiQtJzuv4gbjt+o52MNzOQmPiKQJo
- 1JRKqUnDGm1+A8QkhbcPA1IG9gNmCiMikCOGk6S/R2LaLcgYFIP6DGJAMiTUBvrcO4Eqxzk9DLr
- qZUz815Mxr7zilf9Hsv9XvYN3dw==
-X-Received: by 2002:a05:600c:3591:b0:3a0:563a:49d3 with SMTP id
- p17-20020a05600c359100b003a0563a49d3mr1926447wmq.60.1656488010096; 
- Wed, 29 Jun 2022 00:33:30 -0700 (PDT)
-X-Google-Smtp-Source: AGRyM1uum8Hx2eoXPmPEzIAfJI+bxpHTzM8+zWRZ0znb96530kqbhcZ9rF+BBXjqVzGxgQ61VtlDlw==
-X-Received: by 2002:a05:600c:3591:b0:3a0:563a:49d3 with SMTP id
- p17-20020a05600c359100b003a0563a49d3mr1926431wmq.60.1656488009851; 
- Wed, 29 Jun 2022 00:33:29 -0700 (PDT)
-Received: from ?IPV6:2003:cb:c708:e600:d4fa:af4b:d7b6:20df?
- (p200300cbc708e600d4faaf4bd7b620df.dip0.t-ipconnect.de.
- [2003:cb:c708:e600:d4fa:af4b:d7b6:20df])
- by smtp.gmail.com with ESMTPSA id
- g21-20020a7bc4d5000000b0039c587342d8sm2175038wmk.3.2022.06.29.00.33.28
+ bh=bPJV1uPaZV9JJhbBrJp826ArqFj4Q0dOTMcobO8NbR8=;
+ b=OzVvzXo2Ppti1d4ZQDhqlAIGjZ1iQMenoF0if4X5KG3NKrbQabdVQ5hBU32ZFc33Yz
+ AAlukBai/atWxhgRYFwIO6SiXEhSOuO5d4a3DCqORf9CPC4ByeKm9FWMJA0nQjsdTNn1
+ pfcMbFF0Z8kK4Y5Ou7c/kkRmceKIoW2XojY0cJEmtMxozrCjDngKExIFEnohXK9Y2tY1
+ EkszXcDEH5Yrove40T4UA+ELSttQH/5TJZ4jK+WnT7eewr19GXXRsVxLRqk5CJV8MCwT
+ ljPwgrxjs8hap8+T9COVOhlaJDoj7RQ4k81bTaZYwhPqZjRniNq9FHetmFTcogVohMVm
+ uZ2g==
+X-Gm-Message-State: AJIora+yt7jBx7xx2O5407JAlspdQDttHsNQHWJWkhogWptuWJ7c1X0a
+ tQuyYa5NB3W4FQ2ARN68blwgXjYi7rXL+2oxUsNTbW5qTB9Ffq4pBcamNBjp2D3DOplC61i3K2G
+ KaUzHFd7etyPlRVJrqSe8LQh+gA==
+X-Received: by 2002:a05:600c:5127:b0:397:4862:e474 with SMTP id
+ o39-20020a05600c512700b003974862e474mr2361011wms.68.1656490857404; 
+ Wed, 29 Jun 2022 01:20:57 -0700 (PDT)
+X-Google-Smtp-Source: AGRyM1shi4ix35sLHrGEKb1EVEpzZ6zezB9IEV96DzmuPKrPxyxIUpeHBq+yzab4VpxhCVtEA3DMUg==
+X-Received: by 2002:a05:600c:5127:b0:397:4862:e474 with SMTP id
+ o39-20020a05600c512700b003974862e474mr2360986wms.68.1656490857136; 
+ Wed, 29 Jun 2022 01:20:57 -0700 (PDT)
+Received: from [192.168.1.129] (205.pool92-176-231.dynamic.orange.es.
+ [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
+ b3-20020a5d6343000000b0021a36955493sm15495488wrw.74.2022.06.29.01.20.56
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 29 Jun 2022 00:33:29 -0700 (PDT)
-Message-ID: <f00f9c93-c115-d222-dc8c-11493ccd2567@redhat.com>
-Date: Wed, 29 Jun 2022 09:33:28 +0200
+ Wed, 29 Jun 2022 01:20:56 -0700 (PDT)
+Message-ID: <d21e22dd-baa4-44c7-348b-e21844215277@redhat.com>
+Date: Wed, 29 Jun 2022 10:20:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v7 01/14] mm: rename is_pinnable_pages to
- is_pinnable_longterm_pages
-To: Alex Sierra <alex.sierra@amd.com>, jgg@nvidia.com
-References: <20220629035426.20013-1-alex.sierra@amd.com>
- <20220629035426.20013-2-alex.sierra@amd.com>
-From: David Hildenbrand <david@redhat.com>
-Organization: Red Hat
-In-Reply-To: <20220629035426.20013-2-alex.sierra@amd.com>
+ Thunderbird/91.10.0
+Subject: Re: Annoying AMDGPU boot-time warning due to simplefb / amdgpu
+ resource clash
+To: Jocelyn Falempe <jfalempe@redhat.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Linus Torvalds <torvalds@linux-foundation.org>
+References: <CAHk-=wh42rU5mKU6=PCK5tdkYjh7r31dGNmYdHwqpFnRFvVudA@mail.gmail.com>
+ <3920df43-37f5-618d-70ba-de34a886e8ab@redhat.com>
+ <CAHk-=wjxzafG-=J8oT30s7upn4RhBs6TX-uVFZ5rME+L5_DoJA@mail.gmail.com>
+ <561af3c0-c7cf-3580-ce35-320cb13a037c@suse.de>
+ <98aab56e-b0a7-1a39-d715-9ad10d7705a0@redhat.com>
+From: Javier Martinez Canillas <javierm@redhat.com>
+In-Reply-To: <98aab56e-b0a7-1a39-d715-9ad10d7705a0@redhat.com>
 Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=david@redhat.com
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=javierm@redhat.com
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Wed, 29 Jun 2022 07:38:39 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,30 +93,67 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rcampbell@nvidia.com, willy@infradead.org, Felix.Kuehling@amd.com,
- apopple@nvidia.com, amd-gfx@lists.freedesktop.org, linux-xfs@vger.kernel.org,
- linux-mm@kvack.org, jglisse@redhat.com, dri-devel@lists.freedesktop.org,
- akpm@linux-foundation.org, linux-ext4@vger.kernel.org, hch@lst.de
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Hans de Goede <hdegoede@redhat.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 29.06.22 05:54, Alex Sierra wrote:
-> is_pinnable_page() and folio_is_pinnable() were renamed to
-> is_longterm_pinnable_page() and folio_is_longterm_pinnable()
-> respectively. These functions are used in the FOLL_LONGTERM flag
-> context.
+On 6/28/22 14:41, Jocelyn Falempe wrote:
+> On 28/06/2022 10:43, Thomas Zimmermann wrote:
 
-Subject talks about "*_pages"
+[snip]
 
+>>
+>> Unfortunately, this currently only works if a driver is bound to the 
+>> platform device. Without simpledrm or simplefb, amdgpu won't find the 
+>> platform device to remove.
+>>
+>> I guess, what happens on your system is that sysfb create a device for 
+>> the EFI framebuffer and then amdgpu comes and doesn't find it for 
+>> removal. And later you see these warnings because BOOTFB is still around.
+>>
+>> Javier already provided patches for this scenario, which are in the DRM 
+>> tree. From drm-next, please cherry-pick
+>>
+>>    0949ee75da6c ("firmware: sysfb: Make sysfb_create_simplefb() return a 
+>> pdev pointer")
+>>
+>>    bc824922b264 ("firmware: sysfb: Add sysfb_disable() helper function")
+>>
+>>    873eb3b11860 ("fbdev: Disable sysfb device registration when removing 
+>> conflicting FBs")
+>>
+>> for testing. With these patches, amdgpu will find the sysfb device and 
+>> unregister it.
+>>
+>> The patches are queued up for the next merge window. If they resolve the 
+>> issue, we'll already send with the next round of fixes.
+> 
+> I was able to reproduce the warning with kernel v5.19-rc4, a radeon GPU 
+> and the following config:
+>
+> CONFIG_SYSFB=y
+> CONFIG_SYSFB_SIMPLEFB=y
+> # CONFIG_DRM_SIMPLEDRM is not set
+> # CONFIG_FB_SIMPLE is not set
+>
 
-Can you elaborate why the move from mm.h to memremap.h is justified?
+Yes, and this could happen even if both drivers (e.g: simplefb and amdgpu)
+are enabled but built-in. For example, if amdgpu probes before simplefb.
 
-I'd have called it "is_longterm_pinnable_page", but I am not a native
-speaker, so no strong opinion :)
+> After applying the 3 patches you mentioned, the issue is resolved. (at 
+> least on my setup).
+>
 
+Thanks for testing Jocelyn! I've pushed the patches to drm-misc-fixes now.
 
 -- 
-Thanks,
+Best regards,
 
-David / dhildenb
+Javier Martinez Canillas
+Linux Engineering
+Red Hat
 
