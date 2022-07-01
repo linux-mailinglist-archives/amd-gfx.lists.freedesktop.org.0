@@ -2,79 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C403563FD4
-	for <lists+amd-gfx@lfdr.de>; Sat,  2 Jul 2022 13:44:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B218E5632A8
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Jul 2022 13:41:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B96911B70E;
-	Sat,  2 Jul 2022 11:44:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A1BB11BA9B;
+	Fri,  1 Jul 2022 11:41:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26BC710F3EF;
- Fri,  1 Jul 2022 10:44:00 +0000 (UTC)
-Received: from [192.168.2.145] (109-252-118-164.nat.spd-mgts.ru
- [109.252.118.164])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id EF4536601596;
- Fri,  1 Jul 2022 11:43:55 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1656672238;
- bh=i4sbwr4hhjkUIAG7olH1BdTwsBlNFqkIOpYSjFNHV/w=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=ULKCbZZHPga04p61cEES7RO/PSbb0r9MTw2jLhk1vi7BxkUF2s/2oUlr45wDJ32Zl
- hIi0EggvcohKCTYDuxjdSAD59R7x9Ho2wjo4+6Ny8R8XDP/2VnA+4rXHqSae59y5RQ
- u5g9F4c0oWXgkQsy4x9ghsH1A+H0ASGLlB/xYvVhJTwQ62LFKi02GoHFAf3sMxSS6Y
- geLgbeGzXOFcaOwO/w4rVpiXrZFLjie0W6FtGRjOo0ip0CObSJ6s7RbR690zd9JtQj
- nYXKDpzfPVg8bswZlSutaJYkriJpXv9aMGuffojK4WnalY6TM+1VIHOnL0NBjdCTlr
- +nAwSqj+vBJNw==
-Message-ID: <0d88cf7c-61e5-d7a8-a6ba-83388114a1fa@collabora.com>
-Date: Fri, 1 Jul 2022 13:43:53 +0300
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2084.outbound.protection.outlook.com [40.107.93.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7CE711BA87;
+ Fri,  1 Jul 2022 11:41:26 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TY98j+2YA99YIEZZUswyDpRHYxeAMDX37NqF8dXI3hbCvqkM4izS9sYmR5+lCKm/gRF2CTXUvJKUaS/6wTSSQJqUjGfCLW1whYqUQfCvyK41QWo2stXGgMeG7QTQjJLGy8FVBn+MZ4oHeJ39aTDnlk5mRlw5N/lYdWbKdh+rrV16kzB+hycyVDnn+uiCRSG/1amXewbEA/iALnQnvcBo87+C/f06x+ILRUxtRIGjB059d/wrcwsXG6dvdzfTKctHVkt/3TOuoCkSt8dTa1cVtNA1X3OoZEfaRd630mhyS6O68qFBhKFAkHDxJ0hjUv0hO26L+wxkbcf0h/97RxyRTg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xfO6ZexfbifOy9CsChgzCXyiQDL17nn8m4X01ykbPLY=;
+ b=aNK74BPb3b/6oM5Ylo/OPSrXLNGo4MancYL4I+ZOYQVJR8qzGPKkAYq8kAizCvF9mcot/FunukOala3T6s7DAF1vBi7LG768SzxEUBnfdyGbszEVXfa/wrVGrc3ImVnUdZAjSuYJ4VgdTjB0qAjW2sYVN2duU380asReAlPB3qDPFWT3TYyfD5vzDbfY1TnauYT17v+v3Hfi2UGOnkIm+eoDU4XL7ZcgqySesNjK17ZcFj8L9VyDf0Tlp/KVPzZoXYI/umF5ds9SRVo0G1Qc6X0aBkzJFPsnElgaRf8lJiJzuFlGFWvagBmuOjukIkrqZ+5G80yDXWJjiLCciRarrA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xfO6ZexfbifOy9CsChgzCXyiQDL17nn8m4X01ykbPLY=;
+ b=e0jCf7aLaNtQZEWOyBLLU4ZXw5/QH5kTdSzcBHbZNu5y+xjy9KtQ/qeJ1FhLB45k/0R0CeFDYZTAHLU5DHIHv+2+KPNS6OxBsFjST3IDaVSxlZOfLK+ma46l6n0k9s1RSx7JREQpgUPIn6IHYdhyO2JYVH1CE79seRABaB9Qy4M=
+Received: from DM6PR05CA0055.namprd05.prod.outlook.com (2603:10b6:5:335::24)
+ by MWHPR12MB1296.namprd12.prod.outlook.com (2603:10b6:300:f::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.15; Fri, 1 Jul
+ 2022 11:41:19 +0000
+Received: from DM6NAM11FT059.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:335:cafe::dd) by DM6PR05CA0055.outlook.office365.com
+ (2603:10b6:5:335::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.11 via Frontend
+ Transport; Fri, 1 Jul 2022 11:41:19 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT059.mail.protection.outlook.com (10.13.172.92) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5395.14 via Frontend Transport; Fri, 1 Jul 2022 11:41:19 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 1 Jul
+ 2022 06:41:18 -0500
+Received: from vijendar-X570-GAMING-X.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28
+ via Frontend Transport; Fri, 1 Jul 2022 06:41:15 -0500
+From: Vijendar Mukunda <Vijendar.Mukunda@amd.com>
+To: <broonie@kernel.org>, <alsa-devel@alsa-project.org>,
+ <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH V2 0/5] I2S driver changes for Jadeite platform
+Date: Fri, 1 Jul 2022 17:11:02 +0530
+Message-ID: <20220701114107.1105948-1-Vijendar.Mukunda@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v6 14/22] dma-buf: Introduce new locking convention
-Content-Language: en-US
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- Daniel Stone <daniel@fooishbar.org>,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
- Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
- Rob Clark <robdclark@gmail.com>, Emil Velikov <emil.l.velikov@gmail.com>,
- Robin Murphy <robin.murphy@arm.com>, Qiang Yu <yuq825@gmail.com>,
- Sumit Semwal <sumit.semwal@linaro.org>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Thierry Reding <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-References: <20220526235040.678984-1-dmitry.osipenko@collabora.com>
- <20220526235040.678984-15-dmitry.osipenko@collabora.com>
- <0a02a31d-a256-4ca4-0e35-e2ea1868a8ae@amd.com>
- <e6e17c52-43c2-064b-500e-325bb3ba3b2c@collabora.com>
- <02e7946b-34ca-b48e-1ba6-e7b63740a2d9@amd.com>
- <7372dd1b-06f7-5336-4738-15f9b4d4d4b3@collabora.com>
- <90fe74f6-a622-e4ae-3004-6f1bc1790247@shipmail.org>
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <90fe74f6-a622-e4ae-3004-6f1bc1790247@shipmail.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 02 Jul 2022 11:44:48 +0000
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: cee82d45-ab12-48f9-b395-08da5b569d82
+X-MS-TrafficTypeDiagnostic: MWHPR12MB1296:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zYWnL0XqykJuXOTTlfjekDSun9yv3EgpuB70wAGeQQ/b8Jdzxtxt9qiie2zF0ZI2GvE0VtCNutsXmItE+brVup0L9ILbK3IjdbZy9njUuREB5zayQH9bv3PaN3MkZTItyEgYvuy9kjR2oQRKUtrMCVtxzx6BqqP3toxAdAuDepyyRCkvk8yjY6Y+Bo6731QSUmZp+ostenCcSEznC+QRrevJoLeDwDDyAr+8WO7DTU3iNR1o5kXBxsCuKioov1IS9EPESSWig0KqHxVIPk4DEWX9cpKvBJUpHGlSjrF8daG0tSP4VYMvzoWhodFv/973IU/pWwEV4X1pQf/pRdIlIipdTSNgdHVzbABtLQVlSkEJwKJoD7W5E7+sNgE2L0TLZ1lBh/NEq8Or1B+YkjQc1mdft4hXnFOGJctNM48XSmIkNdaMFezuawM7rtW0KYr7Xntiqc5SyOMvom5AgIHXjOplLlo8doZvF/WAahP6BN/tbBsv53Axs65jyvlVGHb+cR4cIZ6ydlPneMR8nH3zIwlRDT5giXHRjBTYL5ld77QPt2JajTOXgpajkNpVNcWeZTEfyitumFkg2ig1YS82xGzA1eyjTepbD0KI35SKRnkcbw/3XH5IFEgoMWgZJAuIBMca0ylTymV1qMNdQC+2J95jP0G83z6eGB+A8fn+IQXLNyXr2arcJoZ4HedLig1gSAd6hc8x0CovEtAHmpBSt2RTJBT37ZwGPHAAVSIyqriCGoHBdMd2oipyAVyjDleXWTyEu+ycKRVSbNfr8PRmFtAXdczZqStfFLaN7PKS3CQpA1vvtkOFOau1IonQTcqNegjtbsng6F9FEhquYtu9k8uC1bDFNuYfhepItAuLi7yqgvbA9nPIcVXG1UTZmOYI
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230016)(4636009)(376002)(136003)(346002)(39860400002)(396003)(40470700004)(46966006)(36840700001)(336012)(426003)(1076003)(47076005)(186003)(36860700001)(40460700003)(83380400001)(2616005)(70206006)(70586007)(110136005)(316002)(54906003)(5660300002)(8936002)(8676002)(4326008)(7696005)(2906002)(41300700001)(6666004)(26005)(478600001)(82740400003)(356005)(82310400005)(40480700001)(86362001)(36756003)(81166007)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2022 11:41:19.3312 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cee82d45-ab12-48f9-b395-08da5b569d82
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT059.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1296
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,106 +98,42 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, Dmitry Osipenko <digetx@gmail.com>,
- kernel@collabora.com, linux-media@vger.kernel.org
+Cc: Alexander.Deucher@amd.com, zhuning@everest-semi.com,
+ Basavaraj.Hiregoudar@amd.com, Sunil-kumar.Dommati@amd.com,
+ Vijendar Mukunda <Vijendar.Mukunda@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 6/29/22 00:26, Thomas Hellström (Intel) wrote:
-> 
-> On 5/30/22 15:57, Dmitry Osipenko wrote:
->> On 5/30/22 16:41, Christian König wrote:
->>> Hi Dmitry,
->>>
->>> Am 30.05.22 um 15:26 schrieb Dmitry Osipenko:
->>>> Hello Christian,
->>>>
->>>> On 5/30/22 09:50, Christian König wrote:
->>>>> Hi Dmitry,
->>>>>
->>>>> First of all please separate out this patch from the rest of the
->>>>> series,
->>>>> since this is a complex separate structural change.
->>>> I assume all the patches will go via the DRM tree in the end since the
->>>> rest of the DRM patches in this series depend on this dma-buf change.
->>>> But I see that separation may ease reviewing of the dma-buf changes, so
->>>> let's try it.
->>> That sounds like you are underestimating a bit how much trouble this
->>> will be.
->>>
->>>>> I have tried this before and failed because catching all the locks in
->>>>> the right code paths are very tricky. So expect some fallout from this
->>>>> and make sure the kernel test robot and CI systems are clean.
->>>> Sure, I'll fix up all the reported things in the next iteration.
->>>>
->>>> BTW, have you ever posted yours version of the patch? Will be great if
->>>> we could compare the changed code paths.
->>> No, I never even finished creating it after realizing how much work it
->>> would be.
->>>
->>>>>> This patch introduces new locking convention for dma-buf users. From
->>>>>> now
->>>>>> on all dma-buf importers are responsible for holding dma-buf
->>>>>> reservation
->>>>>> lock around operations performed over dma-bufs.
->>>>>>
->>>>>> This patch implements the new dma-buf locking convention by:
->>>>>>
->>>>>>      1. Making dma-buf API functions to take the reservation lock.
->>>>>>
->>>>>>      2. Adding new locked variants of the dma-buf API functions for
->>>>>> drivers
->>>>>>         that need to manage imported dma-bufs under the held lock.
->>>>> Instead of adding new locked variants please mark all variants which
->>>>> expect to be called without a lock with an _unlocked postfix.
->>>>>
->>>>> This should make it easier to remove those in a follow up patch set
->>>>> and
->>>>> then fully move the locking into the importer.
->>>> Do we really want to move all the locks to the importers? Seems the
->>>> majority of drivers should be happy with the dma-buf helpers handling
->>>> the locking for them.
->>> Yes, I clearly think so.
->>>
->>>>>>      3. Converting all drivers to the new locking scheme.
->>>>> I have strong doubts that you got all of them. At least radeon and
->>>>> nouveau should grab the reservation lock in their ->attach callbacks
->>>>> somehow.
->>>> Radeon and Nouveau use gem_prime_import_sg_table() and they take resv
->>>> lock already, seems they should be okay (?)
->>> You are looking at the wrong side. You need to fix the export code path,
->>> not the import ones.
->>>
->>> See for example attach on radeon works like this
->>> drm_gem_map_attach->drm_gem_pin->radeon_gem_prime_pin->radeon_bo_reserve->ttm_bo_reserve->dma_resv_lock.
->>>
->> Yeah, I was looking at the both sides, but missed this one.
-> 
-> Also i915 will run into trouble with attach. In particular since i915
-> starts a full ww transaction in its attach callback to be able to lock
-> other objects if migration is needed. I think i915 CI would catch this
-> in a selftest.
+Jadeite(JD) platform is Stoney APU varaint which uses I2S MICSP
+instance and ES8336 Codec.
+This patch series creates I2S platform devices for JD platform,
+adds I2S MICSP instance support and Machine driver support
 
-Seems it indeed it should deadlock. But i915 selftests apparently
-should've caught it and they didn't, I'll re-check what happened.
+This patch set depends on:
+        --checkpatch warnings patch
+	--https://patchwork.kernel.org/project/alsa-devel/patch/20220627125834.481731-1-Vijendar.Mukunda@amd.com/
 
-> Perhaps it's worthwile to take a step back and figure out, if the
-> importer is required to lock, which callbacks might need a ww acquire
-> context?
+changes since v1:
+      - removed hw_params() callback in machine driver and
+        moved sysclk programming logic to startup() callback.
+      - Modified ACPI & I2C flag depedency checks in Kconfig file
 
-I'll take this into account, thanks.
+Vijendar Mukunda (5):
+  drm/amdgpu: add dmi check for jadeite platform
+  drm/amdgpu: create I2S platform devices for Jadeite platform
+  ASoC: amd: add I2S MICSP instance support
+  ASoC: amd: add Machine driver for Jadeite platform
+  ASoC: amd: enable machine driver build for Jadeite platform
 
-> (And off-topic, Since we do a lot of fancy stuff under dma-resv locks
-> including waiting for fences and other locks, IMO taking these locks
-> uninterruptible should ring a warning bell)
-
-I had the same thought and had a version that used the interruptible
-locking variant, but then decided to fall back to the uninterruptible,
-don't remember why. I'll revisit this.
+ drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c | 329 ++++++++++++++++--------
+ sound/soc/amd/Kconfig                   |  13 +
+ sound/soc/amd/Makefile                  |   2 +
+ sound/soc/amd/acp-es8336.c              | 324 +++++++++++++++++++++++
+ sound/soc/amd/acp-pcm-dma.c             |  50 +++-
+ sound/soc/amd/acp.h                     |  13 +
+ 6 files changed, 620 insertions(+), 111 deletions(-)
+ create mode 100644 sound/soc/amd/acp-es8336.c
 
 -- 
-Best regards,
-Dmitry
+2.25.1
+
