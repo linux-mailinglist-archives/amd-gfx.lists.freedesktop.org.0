@@ -1,91 +1,74 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 804ED568F93
-	for <lists+amd-gfx@lfdr.de>; Wed,  6 Jul 2022 18:47:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEA5A5692B8
+	for <lists+amd-gfx@lfdr.de>; Wed,  6 Jul 2022 21:41:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE50511BC13;
-	Wed,  6 Jul 2022 16:47:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05D8F11BE75;
+	Wed,  6 Jul 2022 19:41:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2053.outbound.protection.outlook.com [40.107.244.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75C3D11BC0D
- for <amd-gfx@lists.freedesktop.org>; Wed,  6 Jul 2022 16:47:15 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WMcBWzGF5nZk2/67+AhUrKNIJLqkIFKAd4ElyyKooE4FRFJCDvFvgQ5PGciJWhWo/PhAcmYb8YfrCIFxH2gfbGo0+Amws4wpHcx/FrqpxfxQJWvfGncBIFtb20xhq2KJuV0ARPa1C9k0A0d7dOsPToy2CYsHFUYziIQMbfNaLs/UGFcD4G94YVoxiAviK3+hYWUolPeBYDB14ASTJnf6PIlpbWaL+/QEu7E/Rcktrd5BMnz00R0cEzRxxWNraPyHCs/HkhDuj31XiuMBUkVu/jpYZrS0dj37OKm5zbAbSPD1JGwd+qb2VCdrMbezzz45LhfvyCiGKiKIkta9rYAdvQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VqbdZSYaQlX38Q1rmmPfXLJ+pslOA86EFY9stRo2wC4=;
- b=KHYAZxyobE2aplU9n6bTtIM958XMy1p2D4Kop68BkwfAmac0gN6BLiepN5yHqgcjafgFMY/3H+JvPpQtSjNuj5TWnGwxqMhXn/JmSDU5O8GCZuo+tmU7DgGfKugNCKXGbDgdTyL5XuF/ENhLs69/DOPf7xbCd+gKz7xkeWZK72ZQmP1WEn2lcZCj34NYPK2m7qC0t3QxxcLZg51KW9QP4VocpSg5Rqp5fd4iJ81HTwaygZsuAc0wwQQmCKQStCnpQpMQpiuwTbsR4sfKzGwWgjiSWkybdNavIwINMe8kHlJO1tk1zeKAowxsPQ+RFZtiGIeCSUBob0jnH83QxWwRIg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VqbdZSYaQlX38Q1rmmPfXLJ+pslOA86EFY9stRo2wC4=;
- b=yc0oxYqDJQPyfdiVIRbwB+Q137jPfH1yl6VACwVl1LnUBhGS2+82sRi+9dgNGAz7VDBsskTbWdUjFplcd6wGD7GFrpLDpF8Ft2esIztrvxM1SlMBWuqlaUvuplGbDNyBzGlZRJb6oy4zyPkdUn+QiGhqXcelYg4oHjwoZMRRYtU=
-Received: from MWHPR20CA0037.namprd20.prod.outlook.com (2603:10b6:300:ed::23)
- by DS7PR12MB5981.namprd12.prod.outlook.com (2603:10b6:8:7c::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.20; Wed, 6 Jul
- 2022 16:47:11 +0000
-Received: from CO1NAM11FT019.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:ed:cafe::28) by MWHPR20CA0037.outlook.office365.com
- (2603:10b6:300:ed::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.15 via Frontend
- Transport; Wed, 6 Jul 2022 16:47:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT019.mail.protection.outlook.com (10.13.175.57) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5417.15 via Frontend Transport; Wed, 6 Jul 2022 16:47:10 +0000
-Received: from RErrabolDevMach.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 6 Jul
- 2022 11:47:09 -0500
-From: Ramesh Errabolu <Ramesh.Errabolu@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <dan.carpenter@oracle.com>
-Subject: [PATCH] drm/amdkfd: Fix warnings from static analyzer Smatch
-Date: Wed, 6 Jul 2022 11:47:01 -0500
-Message-ID: <20220706164701.3490363-1-Ramesh.Errabolu@amd.com>
-X-Mailer: git-send-email 2.35.1
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com
+ [IPv6:2a00:1450:4864:20::22d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA8FF113654
+ for <amd-gfx@lists.freedesktop.org>; Wed,  6 Jul 2022 17:48:25 +0000 (UTC)
+Received: by mail-lj1-x22d.google.com with SMTP id l7so18622369ljj.4
+ for <amd-gfx@lists.freedesktop.org>; Wed, 06 Jul 2022 10:48:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:date:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=Tdf7ASxlbaDXe3UntpbJmcyMVIZx89GElFlVDq70G1E=;
+ b=av5EmNC6KScDiSo3yZRxHh1JjVtGq58I72zcmjOS/GbgnhP9d8NL1M67W6AdDXWLBO
+ smYrB5PVGshhhGcB3EOvl0VKQhQYBBZv45doGDeTc8aiualcqa94FJFkRbbZooofaXAR
+ bXGL5bjfGNorBvl4Q/qYWvyzPb6qAA2SDjlNyda8uXSK9XxPxrO58pcJ14Td10bg1KFW
+ EyHDqu5L8ZKn1kKjOWPdFbdL7k8qhfZbOZPv9OzdKlPYVeO2Q3u7kUhwgFhnQbQx+eVg
+ 9c74CIJZQE0C/YfHhRoBDFamJEMO/uldYuzvtYJC25qCRRqrPPcME4kMgAOeMfhB8wyR
+ ZbiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=Tdf7ASxlbaDXe3UntpbJmcyMVIZx89GElFlVDq70G1E=;
+ b=ePgFpSSr6DVG+qBBCra/KjW8ZKWphYwFe1fN8mXIDjeLwocJsmQRMLzYk5GJs1wiF4
+ xs7cml/JPV9aQ2tC82zUuIW7dKOkKGLSQJXUMsFoBqtXex7r0cWJ8oDPlREupbWWbnkm
+ yqnnJ0uenXgXYkEE9J5ukuTpRfjFXUx8GHdIXRaafoLw/03Ax2ZsSfoieXvJT3Tn6Sea
+ 98LfLlujz+9rwW3NSNyFK0rr1VM+SBz27V3lOFcs6RMHvYE/HhDDctzpRQsFrQP1Ef0y
+ ME4RpSb0n4ZZ2hjUa+hX1hvSUufWlBYEWchOIlSNAUH5NPYY4y22smeoNdyO1CZEEH/5
+ UDTA==
+X-Gm-Message-State: AJIora+VhHKY+3gOH5L0Hb/Rf3skvOhb3cyeX4HyFHmv7dXH2eP/Viba
+ S7UpgmHX0Iz4TfwNxcg36Lg=
+X-Google-Smtp-Source: AGRyM1u1HT+sFi2wLf7fp4YNZfwAKQU6WlrA9bLDUjbi9zIEm3uBpG7mqsv2U+35d/fU8R3i17yQvA==
+X-Received: by 2002:a2e:9808:0:b0:25a:a30c:e5cb with SMTP id
+ a8-20020a2e9808000000b0025aa30ce5cbmr24645544ljj.312.1657129703858; 
+ Wed, 06 Jul 2022 10:48:23 -0700 (PDT)
+Received: from pc638.lan ([155.137.26.201]) by smtp.gmail.com with ESMTPSA id
+ c2-20020ac25f62000000b00478f3fe716asm6387536lfc.200.2022.07.06.10.48.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 06 Jul 2022 10:48:22 -0700 (PDT)
+From: Uladzislau Rezki <urezki@gmail.com>
+X-Google-Original-From: Uladzislau Rezki <urezki@pc638.lan>
+Date: Wed, 6 Jul 2022 19:48:20 +0200
+To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Subject: Re: CONFIG_ANDROID (was: rcu_sched detected expedited stalls in
+ amdgpu after suspend)
+Message-ID: <YsXK5A0MiVgHd8Je@pc638.lan>
+References: <1656357116.rhe0mufk6a.none.ref@localhost>
+ <1656357116.rhe0mufk6a.none@localhost>
+ <20220627204139.GL1790663@paulmck-ThinkPad-P17-Gen-1>
+ <1656379893.q9yb069erk.none@localhost>
+ <20220628041252.GV1790663@paulmck-ThinkPad-P17-Gen-1>
+ <1656421946.ic03168yc3.none@localhost>
+ <20220628185437.GA1790663@paulmck-ThinkPad-P17-Gen-1>
+ <1656443915.mdjoauhqe0.none@localhost> <YrtgeSmwLmpzN/zw@pc638>
+ <79c6ad70-47d9-47fe-4bb4-33fcf356dd37@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6d8c8cbf-84d7-41de-8aea-08da5f6f2c11
-X-MS-TrafficTypeDiagnostic: DS7PR12MB5981:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: KYm1B/T3WGgExxiWfA4aEEocCg3z2ubPinFwHxv2th08du691xYn7m6VT7DJ087NMAbLSeP2dVnyUwTHZyw/nN4lLn0crA2rHf2se7m4BfMBj/LRJtPn9aox/n93pShbfyjoz7IOhhiI28+kcIrWFO0iPWi1uJ+DAEGiujAxcjGEEkf/tXfI/oAA3czPniRaE/49MiBd1vdkurS9Mc1dTH3Jkjou2H6Yx15ww9zn84uujVYysdupnZLPt9/cb6ulCwifhIvQlrrggjSzuEBw7lUoSB0r5AiI/YvMGQx53z981a0/WNqpzhGdtOACW5MKvq98dKqjyssd73D/wd4YtgVRIzYpL+rli9IUvI4GpjwayNtOudDJpaLzF9pkjFGz5CyXY3ezR+tkmekoyEYmKdHgjyiO+SKZsdgu/8zugDFh1T0OxKSEFXJbKK/yvIyswSpIWWrg+dg2F97wjRyb1TzLfqaztmk0Fw7PX4nT2r8IihIlKUkI4Nkz4dDUbx11Yw++1cWqoKSLaSHUO2yznoxYB+ejlfuc5xIONOp4Osn4Ah6TaKvXirUqEHtmGk3tzqTH/loa3CO6dJ4O/aVk0JSKTJTXtGjrhYLb/CaOPoLIn7BEocvsQ8hj6EM9L2LaXMOkkHlEsB/FEmrP21ip7spOQDfZdH6j5p+iiryt/kryeB+neEeIY6ZMbfwsco02m78tzTelZTlJZ1vwx84eqbr5TCwq4rywRkoQYSV7f99iBzaMXFT4gjMFvUx6VbfL6/AIZ1OqZDs4/dhaieJ5YHoK7su+v9nB5jTzY5tn0rlZ5iSt7KaAD5gxvoCB6RDGFLwwLEiA3Q5zX/THepYumzblrpISdhKoxOK8cK6aWMUsrD2PaGM7COolUTOd1rvQ
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(396003)(136003)(346002)(376002)(39860400002)(40470700004)(46966006)(36840700001)(8676002)(4326008)(110136005)(8936002)(7696005)(70206006)(316002)(86362001)(70586007)(1076003)(6666004)(2616005)(26005)(81166007)(41300700001)(34020700004)(478600001)(5660300002)(40460700003)(40480700001)(426003)(2906002)(36860700001)(356005)(336012)(82740400003)(83380400001)(47076005)(36756003)(82310400005)(186003)(16526019)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2022 16:47:10.9827 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6d8c8cbf-84d7-41de-8aea-08da5f6f2c11
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT019.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5981
+In-Reply-To: <79c6ad70-47d9-47fe-4bb4-33fcf356dd37@amd.com>
+X-Mailman-Approved-At: Wed, 06 Jul 2022 19:41:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,77 +80,50 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ramesh Errabolu <Ramesh.Errabolu@amd.com>
+Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>, Theodore Ts'o <tytso@mit.edu>,
+ paulmck@kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Xinhui.Pan@amd.com, Martijn Coenen <maco@android.com>,
+ linux-kernel@vger.kernel.org, "Alex Xu \(Hello71\)" <alex_y_xu@yahoo.ca>,
+ rcu@vger.kernel.org, Hridya Valsaraju <hridya@google.com>,
+ Arve =?utf-8?B?SGrDuG5uZXbDpWc=?= <arve@android.com>,
+ Uladzislau Rezki <urezki@gmail.com>, Todd Kjos <tkjos@android.com>,
+ amd-gfx@lists.freedesktop.org, Christian Brauner <christian@brauner.io>,
+ Joel Fernandes <joel@joelfernandes.org>, alexander.deucher@amd.com,
+ uladzislau.rezki@sony.com, Suren Baghdasaryan <surenb@google.com>,
+ wireguard@lists.zx2c4.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The patch fixes warnings/error as reported by Smatch a static analyzer
+Hello.
 
-drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:1428 kfd_create_indirect_link_prop() warn: iterator used outside loop: 'cpu_link'
-drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:1462 kfd_create_indirect_link_prop() error: we previously assumed 'cpu_dev' could be null (see line 1420)
-drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:1516 kfd_add_peer_prop() warn: iterator used outside loop: 'iolink3'
+On Mon, Jul 04, 2022 at 01:30:50PM +0200, Christian König wrote:
+> Hi guys,
+> 
+> Am 28.06.22 um 22:11 schrieb Uladzislau Rezki:
+> > > Excerpts from Paul E. McKenney's message of June 28, 2022 2:54 pm:
+> > > > All you need to do to get the previous behavior is to add something like
+> > > > this to your defconfig file:
+> > > > 
+> > > > CONFIG_RCU_EXP_CPU_STALL_TIMEOUT=21000
+> > > > 
+> > > > Any reason why this will not work for you?
+> 
+> sorry for jumping in so later, I was on vacation for a week.
+> 
+> Well when any RCU period is longer than 20ms and amdgpu in the backtrace my
+> educated guess is that we messed up some timeout waiting for the hw.
+> 
+> We usually do wait a few us, but it can be that somebody is waiting for ms
+> instead.
+> 
+> So there are some todos here as far as I can see and It would be helpful to
+> get a cleaner backtrace if possible.
+> 
+Actually CONFIG_ANDROID looks like is going to be removed, so the CONFIG_RCU_EXP_CPU_STALL_TIMEOUT
+will not have any dependencies on the CONFIG_ANDROID anymore:
 
-Fixes: 40d6aa758b13 ("drm/amdkfd: Extend KFD device topology to surface peer-to-peer links")
-Signed-off-by: Ramesh Errabolu <Ramesh.Errabolu@amd.com>
-Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 34 +++++++++++------------
- 1 file changed, 17 insertions(+), 17 deletions(-)
+https://lkml.org/lkml/2022/6/29/756
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-index 25990bec600d..ca4825e555b7 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-@@ -1417,15 +1417,15 @@ static int kfd_create_indirect_link_prop(struct kfd_topology_device *kdev, int g
- 
- 		/* find CPU <-->  CPU links */
- 		cpu_dev = kfd_topology_device_by_proximity_domain(i);
--		if (cpu_dev) {
--			list_for_each_entry(cpu_link,
--					&cpu_dev->io_link_props, list) {
--				if (cpu_link->node_to == gpu_link->node_to)
--					break;
--			}
--		}
-+		if (!cpu_dev)
-+			continue;
-+
-+		list_for_each_entry(cpu_link, &cpu_dev->io_link_props, list)
-+			if (cpu_link->node_to == gpu_link->node_to)
-+				break;
- 
--		if (cpu_link->node_to != gpu_link->node_to)
-+		/* Ensures we didn't exit from list search with no hits */
-+		if (list_entry_is_head(cpu_link, &cpu_dev->io_link_props, list))
- 			return -ENOMEM;
- 
- 		/* CPU <--> CPU <--> GPU, GPU node*/
-@@ -1510,16 +1510,16 @@ static int kfd_add_peer_prop(struct kfd_topology_device *kdev,
- 		cpu_dev = kfd_topology_device_by_proximity_domain(iolink1->node_to);
- 		if (cpu_dev) {
- 			list_for_each_entry(iolink3, &cpu_dev->io_link_props, list)
--				if (iolink3->node_to == iolink2->node_to)
-+				if (iolink3->node_to == iolink2->node_to) {
-+					props->weight += iolink3->weight;
-+					props->min_latency += iolink3->min_latency;
-+					props->max_latency += iolink3->max_latency;
-+					props->min_bandwidth = min(props->min_bandwidth,
-+									iolink3->min_bandwidth);
-+					props->max_bandwidth = min(props->max_bandwidth,
-+									iolink3->max_bandwidth);
- 					break;
--
--			props->weight += iolink3->weight;
--			props->min_latency += iolink3->min_latency;
--			props->max_latency += iolink3->max_latency;
--			props->min_bandwidth = min(props->min_bandwidth,
--							iolink3->min_bandwidth);
--			props->max_bandwidth = min(props->max_bandwidth,
--							iolink3->max_bandwidth);
-+				}
- 		} else {
- 			WARN(1, "CPU node not found");
- 		}
--- 
-2.35.1
+--
+Uladzislau Rezki
 
