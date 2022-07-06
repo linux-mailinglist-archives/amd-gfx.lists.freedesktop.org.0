@@ -1,74 +1,45 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEA5A5692B8
-	for <lists+amd-gfx@lfdr.de>; Wed,  6 Jul 2022 21:41:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83A2556913E
+	for <lists+amd-gfx@lfdr.de>; Wed,  6 Jul 2022 19:58:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05D8F11BE75;
-	Wed,  6 Jul 2022 19:41:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D44AB11A141;
+	Wed,  6 Jul 2022 17:58:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com
- [IPv6:2a00:1450:4864:20::22d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA8FF113654
- for <amd-gfx@lists.freedesktop.org>; Wed,  6 Jul 2022 17:48:25 +0000 (UTC)
-Received: by mail-lj1-x22d.google.com with SMTP id l7so18622369ljj.4
- for <amd-gfx@lists.freedesktop.org>; Wed, 06 Jul 2022 10:48:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:date:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=Tdf7ASxlbaDXe3UntpbJmcyMVIZx89GElFlVDq70G1E=;
- b=av5EmNC6KScDiSo3yZRxHh1JjVtGq58I72zcmjOS/GbgnhP9d8NL1M67W6AdDXWLBO
- smYrB5PVGshhhGcB3EOvl0VKQhQYBBZv45doGDeTc8aiualcqa94FJFkRbbZooofaXAR
- bXGL5bjfGNorBvl4Q/qYWvyzPb6qAA2SDjlNyda8uXSK9XxPxrO58pcJ14Td10bg1KFW
- EyHDqu5L8ZKn1kKjOWPdFbdL7k8qhfZbOZPv9OzdKlPYVeO2Q3u7kUhwgFhnQbQx+eVg
- 9c74CIJZQE0C/YfHhRoBDFamJEMO/uldYuzvtYJC25qCRRqrPPcME4kMgAOeMfhB8wyR
- ZbiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:date:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=Tdf7ASxlbaDXe3UntpbJmcyMVIZx89GElFlVDq70G1E=;
- b=ePgFpSSr6DVG+qBBCra/KjW8ZKWphYwFe1fN8mXIDjeLwocJsmQRMLzYk5GJs1wiF4
- xs7cml/JPV9aQ2tC82zUuIW7dKOkKGLSQJXUMsFoBqtXex7r0cWJ8oDPlREupbWWbnkm
- yqnnJ0uenXgXYkEE9J5ukuTpRfjFXUx8GHdIXRaafoLw/03Ax2ZsSfoieXvJT3Tn6Sea
- 98LfLlujz+9rwW3NSNyFK0rr1VM+SBz27V3lOFcs6RMHvYE/HhDDctzpRQsFrQP1Ef0y
- ME4RpSb0n4ZZ2hjUa+hX1hvSUufWlBYEWchOIlSNAUH5NPYY4y22smeoNdyO1CZEEH/5
- UDTA==
-X-Gm-Message-State: AJIora+VhHKY+3gOH5L0Hb/Rf3skvOhb3cyeX4HyFHmv7dXH2eP/Viba
- S7UpgmHX0Iz4TfwNxcg36Lg=
-X-Google-Smtp-Source: AGRyM1u1HT+sFi2wLf7fp4YNZfwAKQU6WlrA9bLDUjbi9zIEm3uBpG7mqsv2U+35d/fU8R3i17yQvA==
-X-Received: by 2002:a2e:9808:0:b0:25a:a30c:e5cb with SMTP id
- a8-20020a2e9808000000b0025aa30ce5cbmr24645544ljj.312.1657129703858; 
- Wed, 06 Jul 2022 10:48:23 -0700 (PDT)
-Received: from pc638.lan ([155.137.26.201]) by smtp.gmail.com with ESMTPSA id
- c2-20020ac25f62000000b00478f3fe716asm6387536lfc.200.2022.07.06.10.48.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 06 Jul 2022 10:48:22 -0700 (PDT)
-From: Uladzislau Rezki <urezki@gmail.com>
-X-Google-Original-From: Uladzislau Rezki <urezki@pc638.lan>
-Date: Wed, 6 Jul 2022 19:48:20 +0200
-To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
-Subject: Re: CONFIG_ANDROID (was: rcu_sched detected expedited stalls in
- amdgpu after suspend)
-Message-ID: <YsXK5A0MiVgHd8Je@pc638.lan>
-References: <1656357116.rhe0mufk6a.none.ref@localhost>
- <1656357116.rhe0mufk6a.none@localhost>
- <20220627204139.GL1790663@paulmck-ThinkPad-P17-Gen-1>
- <1656379893.q9yb069erk.none@localhost>
- <20220628041252.GV1790663@paulmck-ThinkPad-P17-Gen-1>
- <1656421946.ic03168yc3.none@localhost>
- <20220628185437.GA1790663@paulmck-ThinkPad-P17-Gen-1>
- <1656443915.mdjoauhqe0.none@localhost> <YrtgeSmwLmpzN/zw@pc638>
- <79c6ad70-47d9-47fe-4bb4-33fcf356dd37@amd.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15D9211A141
+ for <amd-gfx@lists.freedesktop.org>; Wed,  6 Jul 2022 17:58:25 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 7691961FC5;
+ Wed,  6 Jul 2022 17:58:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3EAFC3411C;
+ Wed,  6 Jul 2022 17:58:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1657130303;
+ bh=bqx3+veRRV0NTTNeX3+xgaMUVCqe7pwRf1/yFdXaytw=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=CpNZi3eXrrN4bU3L52BgBmeCj9LuknwLJdpWzFZrJC7zeUu2wZEER0Ran7FMp/0lT
+ attw3QRFmI9y1wuk6Sr+RChzKN2DCjqPqSYqoEhrJntCvEkbEXZWI4gcxUO9Jg0wII
+ BMC5zvsOv3L4guVK3aJOUvna2AI6ezRm5tYJuzPGxR1cvq0XftygzbOhwABklwewDy
+ 02+WjByf0PBdNFyZu2X3FjBmrPV2VvI+GwRtGIuNiNHwbLs3vWrXbpl6PXjqqHVCYL
+ Xd2FSxhh33L7+6zV13qKAanVpGTJm+d0PXNqAmbPmeRv1zFqGgO9bF+bwH/mMa24t8
+ TvcqELIbRuyzA==
+Date: Wed, 6 Jul 2022 10:58:21 -0700
+From: Nathan Chancellor <nathan@kernel.org>
+To: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Subject: Re: [PATCH 02/40] drm/amd/display: Add SubVP required code
+Message-ID: <YsXNPayfiUGS67i0@dev-arch.thelio-3990X>
+References: <20220630191322.909650-1-Rodrigo.Siqueira@amd.com>
+ <20220630191322.909650-3-Rodrigo.Siqueira@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <79c6ad70-47d9-47fe-4bb4-33fcf356dd37@amd.com>
-X-Mailman-Approved-At: Wed, 06 Jul 2022 19:41:20 +0000
+In-Reply-To: <20220630191322.909650-3-Rodrigo.Siqueira@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,50 +51,112 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>, Theodore Ts'o <tytso@mit.edu>,
- paulmck@kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Xinhui.Pan@amd.com, Martijn Coenen <maco@android.com>,
- linux-kernel@vger.kernel.org, "Alex Xu \(Hello71\)" <alex_y_xu@yahoo.ca>,
- rcu@vger.kernel.org, Hridya Valsaraju <hridya@google.com>,
- Arve =?utf-8?B?SGrDuG5uZXbDpWc=?= <arve@android.com>,
- Uladzislau Rezki <urezki@gmail.com>, Todd Kjos <tkjos@android.com>,
- amd-gfx@lists.freedesktop.org, Christian Brauner <christian@brauner.io>,
- Joel Fernandes <joel@joelfernandes.org>, alexander.deucher@amd.com,
- uladzislau.rezki@sony.com, Suren Baghdasaryan <surenb@google.com>,
- wireguard@lists.zx2c4.com
+Cc: stylon.wang@amd.com, Alan Liu <HaoPing.Liu@amd.com>, Sunpeng.Li@amd.com,
+ Bhawanpreet.Lakha@amd.com, qingqing.zhuo@amd.com, llvm@lists.linux.dev,
+ roman.li@amd.com, amd-gfx@lists.freedesktop.org, solomon.chiu@amd.com,
+ jerry.zuo@amd.com, Aurabindo.Pillai@amd.com, Alvin Lee <Alvin.Lee2@amd.com>,
+ pavle.kotarac@amd.com, wayne.lin@amd.com, Jun Lei <Jun.Lei@amd.com>,
+ Harry.Wentland@amd.com, agustin.gutierrez@amd.com, hamza.mahfooz@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello.
+On Thu, Jun 30, 2022 at 03:12:44PM -0400, Rodrigo Siqueira wrote:
+> From: Alvin Lee <Alvin.Lee2@amd.com>
+> 
+> This commit enables the SubVP feature. To achieve that, we need to:
+> 
+> - Don't force p-state disallow on SubVP (can't block dummy p-state)
+> - Send calculated watermark to DMCUB for SubVP
+> - Adjust CAB mode message to PMFW
+> - Add a proper locking sequence for SubVP
+> - Various fixes to SubVP static analysis and determining SubVP config
+> - Currently SubVP not supported with pipe split so merge all pipes
+>   before setting up SubVp
+> 
+> Reviewed-by: Jun Lei <Jun.Lei@amd.com>
+> Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+> Acked-by: Alan Liu <HaoPing.Liu@amd.com>
+> Signed-off-by: Alvin Lee <Alvin.Lee2@amd.com>
 
-On Mon, Jul 04, 2022 at 01:30:50PM +0200, Christian König wrote:
-> Hi guys,
-> 
-> Am 28.06.22 um 22:11 schrieb Uladzislau Rezki:
-> > > Excerpts from Paul E. McKenney's message of June 28, 2022 2:54 pm:
-> > > > All you need to do to get the previous behavior is to add something like
-> > > > this to your defconfig file:
-> > > > 
-> > > > CONFIG_RCU_EXP_CPU_STALL_TIMEOUT=21000
-> > > > 
-> > > > Any reason why this will not work for you?
-> 
-> sorry for jumping in so later, I was on vacation for a week.
-> 
-> Well when any RCU period is longer than 20ms and amdgpu in the backtrace my
-> educated guess is that we messed up some timeout waiting for the hw.
-> 
-> We usually do wait a few us, but it can be that somebody is waiting for ms
-> instead.
-> 
-> So there are some todos here as far as I can see and It would be helpful to
-> get a cleaner backtrace if possible.
-> 
-Actually CONFIG_ANDROID looks like is going to be removed, so the CONFIG_RCU_EXP_CPU_STALL_TIMEOUT
-will not have any dependencies on the CONFIG_ANDROID anymore:
+This patch is now in linux-next as commit 85f4bc0c333c
+("drm/amd/display: Add SubVP required code"), where it causes build
+failures when building for arm64 with both Clang and GCC (see bisect log
+below).
 
-https://lkml.org/lkml/2022/6/29/756
+Clang shows errors during modpost:
 
---
-Uladzislau Rezki
+ERROR: modpost: "__floatunsidf" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__divdf3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "fma" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__adddf3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__fixdfsi" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__muldf3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__floatsidf" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__fixunsdfsi" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
 
+GCC shows errors along the lines of:
+
+In function 'populate_subvp_cmd_pipe_info',
+    inlined from 'dc_dmub_setup_subvp_dmub_command' at /home/nathan/cbl/src/linux-next/drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dmub_srv.c:675:5:
+/home/nathan/cbl/src/linux-next/drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dmub_srv.c:603:91: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  603 |                         (((double)dc->caps.subvp_prefetch_end_to_mall_start_us / 1000000) *
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+  604 |                         (phantom_timing->pix_clk_100hz * 100) + phantom_timing->h_total - 1) /
+      |                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/nathan/cbl/src/linux-next/drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dmub_srv.c:604:63: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  603 |                         (((double)dc->caps.subvp_prefetch_end_to_mall_start_us / 1000000) *
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  604 |                         (phantom_timing->pix_clk_100hz * 100) + phantom_timing->h_total - 1) /
+      |                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~
+/home/nathan/cbl/src/linux-next/drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dmub_srv.c:602:72: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  602 |         pipe_data->pipe_config.subvp_data.prefetch_to_mall_start_lines =
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+  603 |                         (((double)dc->caps.subvp_prefetch_end_to_mall_start_us / 1000000) *
+      |                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  604 |                         (phantom_timing->pix_clk_100hz * 100) + phantom_timing->h_total - 1) /
+      |                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  605 |                         (double)phantom_timing->h_total;
+      |                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+I initially reproduced this with Fedora's configuration [1] but it
+appears that allmodconfig should show it as well. Our CI also shows
+problems for ARCH=riscv allmodconfig [2].
+
+I am happy to test patches as necessary.
+
+[1]: https://src.fedoraproject.org/rpms/kernel/raw/rawhide/f/kernel-aarch64-fedora.config
+[2]: https://builds.tuxbuild.com/2BZS5HPSuDdoMFw6mxjG2ZmT441/build.log
+
+Cheers,
+Nathan
+
+# bad: [088b9c375534d905a4d337c78db3b3bfbb52c4a0] Add linux-next specific files for 20220706
+# good: [e35e5b6f695d241ffb1d223207da58a1fbcdff4b] Merge tag 'xsa-5.19-tag' of git://git.kernel.org/pub/scm/linux/kernel/git/xen/tip
+git bisect start '088b9c375534d905a4d337c78db3b3bfbb52c4a0' 'e35e5b6f695d241ffb1d223207da58a1fbcdff4b'
+# good: [1a4255ede07a967e57115b54da5bd4b571d22a8c] Merge branch 'for-linux-next' of git://anongit.freedesktop.org/drm/drm-misc
+git bisect good 1a4255ede07a967e57115b54da5bd4b571d22a8c
+# bad: [756b44529e2ab179e4dd6f6358b5c351e1bbe5d3] Merge branch 'rcu/next' of git://git.kernel.org/pub/scm/linux/kernel/git/paulmck/linux-rcu.git
+git bisect bad 756b44529e2ab179e4dd6f6358b5c351e1bbe5d3
+# bad: [f26873a2fc786251765db3e0ced8e1424b862059] next-20220705/sound-asoc
+git bisect bad f26873a2fc786251765db3e0ced8e1424b862059
+# good: [fc34ece41f7183d522d15dc4189d8df6e8e23737] ASoC: Refactor non_legacy_dai_naming flag
+git bisect good fc34ece41f7183d522d15dc4189d8df6e8e23737
+# good: [3d313f09f31490cec9d5251b59adeb6542c944cc] drm/fourcc: fix integer type usage in uapi header
+git bisect good 3d313f09f31490cec9d5251b59adeb6542c944cc
+# bad: [a41afb357f09cde0714db9d590458c7bb6d90ca2] Merge branch 'for-linux-next' of git://anongit.freedesktop.org/drm-intel
+git bisect bad a41afb357f09cde0714db9d590458c7bb6d90ca2
+# bad: [88ef4c5bb36bf60b317b74d8652c7766c9272a7e] drm/amd/display: Apply ODM 2:1 policy for single display configuration
+git bisect bad 88ef4c5bb36bf60b317b74d8652c7766c9272a7e
+# good: [ff15cea338d2c78e0086d55c8a9dd637a5dd3ccc] drm/amd/display: expose additional modifier for DCN32/321
+git bisect good ff15cea338d2c78e0086d55c8a9dd637a5dd3ccc
+# good: [414e9f520e897818302a6b1729aa2dad8cc928ca] drm/amdkfd: Asynchronously free smi_client
+git bisect good 414e9f520e897818302a6b1729aa2dad8cc928ca
+# good: [4bdb9d6501763e83bacbf26846754c567773a1fb] drm/amdkfd: simplify vm_validate_pt_pd_bos
+git bisect good 4bdb9d6501763e83bacbf26846754c567773a1fb
+# good: [e72f03f4bdc4f3a251343cf343bce28c28cbac2a] drm/amd/display: Add missing registers for ACP
+git bisect good e72f03f4bdc4f3a251343cf343bce28c28cbac2a
+# bad: [90f33674a0756a6f0907b8f6350cec3f7be4032c] drm/amd/display: Prepare for new interfaces
+git bisect bad 90f33674a0756a6f0907b8f6350cec3f7be4032c
+# bad: [85f4bc0c333ceed24cbc9f69a2a77fab1ae3d4d1] drm/amd/display: Add SubVP required code
+git bisect bad 85f4bc0c333ceed24cbc9f69a2a77fab1ae3d4d1
+# first bad commit: [85f4bc0c333ceed24cbc9f69a2a77fab1ae3d4d1] drm/amd/display: Add SubVP required code
