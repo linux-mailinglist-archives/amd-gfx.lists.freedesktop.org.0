@@ -2,66 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D073D569FB0
-	for <lists+amd-gfx@lfdr.de>; Thu,  7 Jul 2022 12:25:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A09C569FD6
+	for <lists+amd-gfx@lfdr.de>; Thu,  7 Jul 2022 12:28:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF8261133B2;
-	Thu,  7 Jul 2022 10:25:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B73D814B882;
+	Thu,  7 Jul 2022 10:28:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09E9C10FE19;
- Thu,  7 Jul 2022 10:25:02 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id a5so10955584wrx.12;
- Thu, 07 Jul 2022 03:25:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=kK6ndtBfNyXHqhkSLKg1LtqtVJJfhWr9bEm4kExNfWU=;
- b=kGohQwUbMyh+lZQt7Rj+0+5GqB/QcyLZdJzSC/UubDHHujW1BM8HR2JLZuuCq+BCHO
- aiA/2iUEpDPTD667woVWd6YQgzLnyRWfgyeQaj/K0v+Jrp6Rk0uKdyYUzIXelnaaM7hA
- YuRdNBkiAAgTgd748FRfZiWFlXztBJAGjL67MWg3L/o+Sy5O9UudDUBHl9dsbVirCOQL
- NPt4ZYKOVynnO2atgyGmE6l5388Y+mcK5bi6qinnnLEt1oocr1WwkLMKB9c+mb+8gMCR
- XtwlI8MhsELTtxmtRm88GgMbUTnikRLxX4KxMCbMFzQ5XnAswFDxYFfV+R8lvA3Roi01
- U1fA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=kK6ndtBfNyXHqhkSLKg1LtqtVJJfhWr9bEm4kExNfWU=;
- b=zfE8AYtByrDVy++7rWNj7CqvrkCuS7rq57SnDEVvcbqxqONkwW/RT7bCEpjwZGgkcO
- PmbmBiiqHH5b4Cb/dQ2W28xurY82tluS5Uhds5xb46XhHXqBoCRDpDl0OvLd30nbz+r4
- yyGnZ2EnmB5fB+C8RjR9OYuqsSK7EuAPfWMsFb+PFtMmONI3vaMwhtprieBoJYXq8KXJ
- VCJ3m0AOcDBQ7Iq9uAcfIt3XLt2/JNnCb6OGYaX/XLF8TTJoK5J0lWS4DmDOjyM/0gfq
- T4z63vCeIo2GpB1grzxXqJv0YB+0Y+sCalUM6kKhlYyy48uEcS3i3wDT9ORO42nIN2ha
- 94ZA==
-X-Gm-Message-State: AJIora9rUna49/f18M3N6ABB5wurud3PtVzK/6ufyTJBNNXKGmAkEjr8
- TEsWBsSLBPUZUQP5c5WMDPCGth1ZXMQ=
-X-Google-Smtp-Source: AGRyM1vy2LWZSmeJmS9kr/k4KTJ2MmhGCcH6oHrG0WxnwsiwkZqlkLGHPBrunwy9XZPe5ReRwXkahQ==
-X-Received: by 2002:a5d:6d8a:0:b0:21b:a2a3:55f8 with SMTP id
- l10-20020a5d6d8a000000b0021ba2a355f8mr40393270wrs.283.1657189501665; 
- Thu, 07 Jul 2022 03:25:01 -0700 (PDT)
-Received: from able.fritz.box (p57b0bd9f.dip0.t-ipconnect.de. [87.176.189.159])
- by smtp.gmail.com with ESMTPSA id
- e10-20020a05600c4e4a00b00397402ae674sm20091950wmq.11.2022.07.07.03.25.00
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 07 Jul 2022 03:25:01 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: [PATCH 6/6] drm/ttm: stop allocating a dummy resource for pipelined
- gutting
-Date: Thu,  7 Jul 2022 12:24:53 +0200
-Message-Id: <20220707102453.3633-7-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220707102453.3633-1-christian.koenig@amd.com>
-References: <20220707102453.3633-1-christian.koenig@amd.com>
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2047.outbound.protection.outlook.com [40.107.93.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8203314B865
+ for <amd-gfx@lists.freedesktop.org>; Thu,  7 Jul 2022 10:28:20 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MtxclnHoIFhWC75Lq2aaVUKyu5PVe18ThbeSNwUI4VIf686mECHrbX5YH+o1bDv7c818j+p9apFhDIghMgN+EAielxXJURRWaDHnXT/g+DRDJazAU5+14V/gFm4Puuy7QWRn7pzUrxJAkSDBMdeWxnoYNUkxfZ9GiYphySALAqm6vl98HM6Yt0JTeKO1kKGdmsZ0wBelIaqZZ9KNKRNmP6oeFtvFMyhBD/tg25cVjpUZmBmYUE9Z1FkjXTAg9gq4Ulll39HJF8w7x6L/4MThdO0ntkW0v4PqGH9080IY6wwaDuw4jSkhOZiT7YZ4YQwk4HFRgLXv7/H2WfzxamcMYA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EBLww5DP/Eu9DpdPx7MBtBcyX2fADRpS4aYTgDE4ERw=;
+ b=alyElkzrbvJoqr+U8zhpXRXdqgQEPcKrS4Ut8YbEuuws0uZRJs9qOueMxH8ttMXxJCCFKjd4fHFGvbFI04Q+hkZBDBAx7kJNNW2Fso3vNTMXHxKjEpaRVMAR9rKrrGc+cSsOpIp5R529KSvIE7Dl6op/GPAiP0FlrcET1/fqyw5eXPM2UZp8epDM1zjVmLOZVMPOm/Va8xBmniz4IRmBX5pfPGDYj25WNkQTlNNpAV1Gtycw8SnkqyxJ88UMgo1u5lkKPDNcSkLuG0933arM/Ixj+xs9Zgjk0zV6sAYwwrcbTZFirqL5NAqSR1SFK4eiIFfDBaQo7zYeLkSovoVYcg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EBLww5DP/Eu9DpdPx7MBtBcyX2fADRpS4aYTgDE4ERw=;
+ b=0ZcS5ExFpxuSaEEdh4J20QYMSITQ7AeJaVObNvXnSyi1wQl8zAtuwj1VuNWywnsjTY1PjthFJpgaUlxORXS1vMzXWpkayRV5hefGtYjZoytrvCI4gGGjWnOxmctGundIBAnW8zVXT7/+/kFSOhO9HIZFCOfzrZXA0WaPM31YeXY=
+Received: from DM6PR21CA0024.namprd21.prod.outlook.com (2603:10b6:5:174::34)
+ by DM5PR12MB2584.namprd12.prod.outlook.com (2603:10b6:4:b0::37) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.15; Thu, 7 Jul
+ 2022 10:28:17 +0000
+Received: from DM6NAM11FT020.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:174:cafe::34) by DM6PR21CA0024.outlook.office365.com
+ (2603:10b6:5:174::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.5 via Frontend
+ Transport; Thu, 7 Jul 2022 10:28:17 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT020.mail.protection.outlook.com (10.13.172.224) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5417.15 via Frontend Transport; Thu, 7 Jul 2022 10:28:17 +0000
+Received: from pp-server-two.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 7 Jul
+ 2022 05:28:15 -0500
+From: xinhui pan <xinhui.pan@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu: Fix one list corruption when create queue fails
+Date: Thu, 7 Jul 2022 18:28:00 +0800
+Message-ID: <20220707102800.8035-1-xinhui.pan@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d4ae3d17-0d93-494a-2dff-08da6003683c
+X-MS-TrafficTypeDiagnostic: DM5PR12MB2584:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: iWkN6T/GvFEfwJsUqcOHlfiG/GDuM17Xf/zqx1trBXphLGtTWNFjSGV9ptnKESFmXO0vfk/Zfb51khqnypNaVfjaxFP+t4GSV6zDN0JxCaQLA+QDTY3/HcpJOL0Eysln7ETXf0+Mo/RuCr3TvyxWETG/Cpha59KuQ9M00O6zwkn/JRlIVcF/wAwMWS+ZxmL/ISBZQAzpaE9EKD5eIKbAq73exjjgElF9aa1K+g2NbArDuSjx9t2cdJnNkx19QJ2GfBhGCQRzVkdhtfswvjqKKZqnjXjPoR5aS3eRW+7ao6pCot0xE6XhLR4dAffVZGeuuV659flBcQCiI1Bi/fEATfmahIDy1l2eFqHkdVUAN0JDOEKN1mpOyrz4B8vFIMtNWUqm2IidXfvu89vCG0Vyuwn2y0cyL4J0zKxXMejYYS6+pkr/1+vz4vixG+mjZNNYh/rvYE3yPPdXKAXNMjYUb9WccbnVIp/nN28TsBGhTjHB9ipIx7BskCm/LXljCvNrZPFBy/vlOWiAafRfpVwfMyJhlSaLG2bM/wKYa+w7jGfEc/2ELgDV56mWmbNIlCtPi7AWxyXDoRqn6S35cbuE9Xzks/CXzN4/Jf245FnfJFXq3G/gr1LBz3nxMbrJnrHKK1xmnIv6T9X+BYi3b7IRRmgahL2rLv0R61LvhpgpwkO6KA3GK/6ZmmoUt1+kL4vCE3xq+xczF9jHKcHcKUjrH45NQxvhH7Ly6rkVnGYEC+bUYGaTVzDe+mI2RLWSPYcSM+krC9zk++eUX9Vs+K0JJIXD41C3fucvYcXqzvZglkyeNMUHU5IydkxYqYM0WSDRevdAzNz7uvcBBHuZn95UPCTOYb6NFfv5r5eqMxjWXZGI6SbbP6UvY5WEgzaZRtNH
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230016)(4636009)(396003)(346002)(376002)(136003)(39860400002)(46966006)(36840700001)(40470700004)(1076003)(8936002)(8676002)(2906002)(82740400003)(356005)(478600001)(70206006)(40480700001)(5660300002)(2616005)(36860700001)(34020700004)(86362001)(70586007)(4326008)(81166007)(186003)(82310400005)(40460700003)(36756003)(316002)(26005)(47076005)(6916009)(83380400001)(16526019)(7696005)(6666004)(426003)(41300700001)(54906003)(336012)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2022 10:28:17.5351 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d4ae3d17-0d93-494a-2dff-08da6003683c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT020.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2584
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,78 +97,44 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: alexander.deucher@amd.com, Felix.Kuehling@amd.com,
+ xinhui pan <xinhui.pan@amd.com>, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-That should not be necessary any more when drivers should at least be
-able to handle a move without a resource.
+Queue would be freed when create_queue_cpsch fails
+So lets do queue cleanup otherwise various list and memory issues
+happen.
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: xinhui pan <xinhui.pan@amd.com>
 ---
- drivers/gpu/drm/ttm/ttm_bo_util.c | 15 ++-------------
- 1 file changed, 2 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
-index 1530982338e9..1e76149c62ff 100644
---- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-@@ -603,16 +603,10 @@ EXPORT_SYMBOL(ttm_bo_move_sync_cleanup);
-  */
- int ttm_bo_pipeline_gutting(struct ttm_buffer_object *bo)
- {
--	static const struct ttm_place sys_mem = { .mem_type = TTM_PL_SYSTEM };
- 	struct ttm_buffer_object *ghost;
--	struct ttm_resource *sys_res;
- 	struct ttm_tt *ttm;
- 	int ret;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+index 93a0b6995430..e83725a28106 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+@@ -1674,14 +1674,13 @@ static int create_queue_cpsch(struct device_queue_manager *dqm, struct queue *q,
+ 	if (q->properties.is_active) {
+ 		increment_queue_count(dqm, qpd, q);
  
--	ret = ttm_resource_alloc(bo, &sys_mem, &sys_res);
--	if (ret)
--		return ret;
--
- 	/* If already idle, no need for ghost object dance. */
- 	ret = ttm_bo_wait(bo, false, true);
- 	if (ret != -EBUSY) {
-@@ -620,14 +614,13 @@ int ttm_bo_pipeline_gutting(struct ttm_buffer_object *bo)
- 			/* See comment below about clearing. */
- 			ret = ttm_tt_create(bo, true);
- 			if (ret)
--				goto error_free_sys_mem;
-+				return ret;
- 		} else {
- 			ttm_tt_unpopulate(bo->bdev, bo->ttm);
- 			if (bo->type == ttm_bo_type_device)
- 				ttm_tt_mark_for_clear(bo->ttm);
- 		}
- 		ttm_resource_free(bo, &bo->resource);
--		ttm_bo_assign_mem(bo, sys_res);
- 		return 0;
+-		if (!dqm->dev->shared_resources.enable_mes) {
++		if (!dqm->dev->shared_resources.enable_mes)
+ 			retval = execute_queues_cpsch(dqm,
+-					     KFD_UNMAP_QUEUES_FILTER_DYNAMIC_QUEUES, 0);
+-		} else {
++					KFD_UNMAP_QUEUES_FILTER_DYNAMIC_QUEUES, 0);
++		else
+ 			retval = add_queue_mes(dqm, q, qpd);
+-			if (retval)
+-				goto cleanup_queue;
+-		}
++		if (retval)
++			goto cleanup_queue;
  	}
  
-@@ -644,7 +637,7 @@ int ttm_bo_pipeline_gutting(struct ttm_buffer_object *bo)
- 	ret = ttm_tt_create(bo, true);
- 	swap(bo->ttm, ttm);
- 	if (ret)
--		goto error_free_sys_mem;
-+		return ret;
- 
- 	ret = ttm_buffer_object_transfer(bo, &ghost);
- 	if (ret)
-@@ -658,13 +651,9 @@ int ttm_bo_pipeline_gutting(struct ttm_buffer_object *bo)
- 	dma_resv_unlock(&ghost->base._resv);
- 	ttm_bo_put(ghost);
- 	bo->ttm = ttm;
--	ttm_bo_assign_mem(bo, sys_res);
- 	return 0;
- 
- error_destroy_tt:
- 	ttm_tt_destroy(bo->bdev, ttm);
--
--error_free_sys_mem:
--	ttm_resource_free(bo, &sys_res);
- 	return ret;
- }
+ 	/*
 -- 
-2.25.1
+2.34.1
 
