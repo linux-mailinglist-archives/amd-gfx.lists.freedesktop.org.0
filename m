@@ -2,90 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 329DD569D2E
-	for <lists+amd-gfx@lfdr.de>; Thu,  7 Jul 2022 10:23:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DCA7756A31B
+	for <lists+amd-gfx@lfdr.de>; Thu,  7 Jul 2022 15:05:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E00312BA4C;
-	Thu,  7 Jul 2022 08:23:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B69D113038;
+	Thu,  7 Jul 2022 13:05:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2056.outbound.protection.outlook.com [40.107.94.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4152412BA4C
- for <amd-gfx@lists.freedesktop.org>; Thu,  7 Jul 2022 08:23:51 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Wruf2lhf/wGvK1uaaBllWVp74kWUcOYE7OqU10QoaO+WBZaJGJ+pSepXJMX1FsW+APmGS2ucMPRGyn/+WDXxPZ+3arTNnvW8hxqrczrLScG7u/OfZHZYrwsWw2MMo/n/6nP0nasB7VEeglYbO9bL0OMd5A+uX10nij0JTZGD7iePca79NpDPxq2y7a5+QMgMHP8x0B7juwH3oMCDcVEptiIgDXo/hlu81y0KJgiCYGHd2lbpjDXMBuwGCfDzPXe+QqhiMTZDlueNCW65/69XQBnmUtYl+5RJebF1g86tJc6KLuE89I/PVOPvNwEUH31UUIDNMiJbG0FuSS/4koEdHg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=H2Sg23WgskfTU0wR/90B5BdWoFjnZ7fiELNnoV+tSCI=;
- b=fkdI6JTxr+mV2XJuAKwBuobiVofvOoWQvt3V6klw6jDASlREN8tTMmuDkbMmPgda+bVOf322lIq94MnMUNxhn/sk4Z+X8rIv+ZQooBW0mn6pCbPU7ctOKMQkzcZKTJ15MEqg/KxPIx8o/wz2XNQihyd4o7RZ17px//0wwfcabAkauP6Yqin0Fd4b/UF6ZdrWO9EOBMqenbiNRHrS2uXDoqEH0NpoODi0Mz9DRsqW6USpIYM7U2K0CaE7cE0W/ZCiXYhGa9Uh+ryIUyA9tnGvD7n2OM1Bg4QgP180KKKsmsgHfzBv1sVHuHKlXqxnqthAXh91Z8wgwhlJGMHpADfJOA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=H2Sg23WgskfTU0wR/90B5BdWoFjnZ7fiELNnoV+tSCI=;
- b=UiG3soPats3fzWOeeJDu84TYcMuL09Ea1XhtBmDFYfjl7rkE2it3ORvdRjPguGit21Eh9LeoGw4KEUERabbKP1H5Lf5oQqEdQrnfT2EKHahv1RE+qvile9/QpRM+Olv4SNpjKHYGVTwIhax1yO2W1cxgHsTobI5D80TPFmkoBm0=
-Received: from MWHPR07CA0005.namprd07.prod.outlook.com (2603:10b6:300:116::15)
- by CH0PR12MB5188.namprd12.prod.outlook.com (2603:10b6:610:bb::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.14; Thu, 7 Jul
- 2022 08:23:48 +0000
-Received: from CO1NAM11FT052.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:116:cafe::64) by MWHPR07CA0005.outlook.office365.com
- (2603:10b6:300:116::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.16 via Frontend
- Transport; Thu, 7 Jul 2022 08:23:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT052.mail.protection.outlook.com (10.13.174.225) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5417.15 via Frontend Transport; Thu, 7 Jul 2022 08:23:47 +0000
-Received: from stylon-rog.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 7 Jul
- 2022 03:23:42 -0500
-From: Stylon Wang <stylon.wang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amd/display: Fix new dmub notification enabling in DM
-Date: Thu, 7 Jul 2022 16:23:29 +0800
-Message-ID: <20220707082329.936987-1-stylon.wang@amd.com>
-X-Mailer: git-send-email 2.37.0
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE1BA14A350;
+ Thu,  7 Jul 2022 08:45:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1657183506; x=1688719506;
+ h=subject:to:cc:references:from:message-id:date:
+ mime-version:in-reply-to:content-transfer-encoding;
+ bh=edbKoKalbvq90CBmxogPesuIiDjl8rwJ49B+zZvetjQ=;
+ b=N/mCoF0Pc9xAh6tFiANMxU1gWgasXXUAiNZv9V8dMltagBIq/wDF5444
+ kFcV87NsES5cLom92TK8US673A7vIObnygWRrn8AjH8ItryYRmifHtcHc
+ ehxaD61g/ALIPKh/XXxIDJZtU8X51lVQYtE/dIekf+UKKN1Y2nLqQ5Nn1
+ OyanwVjklXOtUHbkyWiNpzi38USve2MSkuMVx7VgscFumzr7cG4xDhcK/
+ KxS4PmReDsj0JPCC7/6rQ5RXglZlh8dZ1Lcpbrcrd/0Blq4RgHaJxFl2l
+ eyiLbucZXXrWhj1qVXpVqRoFNaO4EJqH0iiglpKHxQdFmSZIViKpLDblB Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10400"; a="345659130"
+X-IronPort-AV: E=Sophos;i="5.92,252,1650956400"; d="scan'208";a="345659130"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2022 01:45:06 -0700
+X-IronPort-AV: E=Sophos;i="5.92,252,1650956400"; d="scan'208";a="651047273"
+Received: from rongch2-mobl.ccr.corp.intel.com (HELO [10.255.31.6])
+ ([10.255.31.6])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2022 01:44:45 -0700
+Subject: Re: [linux-next:master] BUILD REGRESSION
+ 088b9c375534d905a4d337c78db3b3bfbb52c4a0
+To: Greg KH <gregkh@linuxfoundation.org>, kernel test robot <lkp@intel.com>
+References: <62c683a2.g1VSVt6BrQC6ZzOz%lkp@intel.com>
+ <YsaUgfPbOg7WuBuB@kroah.com>
+From: "Chen, Rong A" <rong.a.chen@intel.com>
+Message-ID: <c86816fd-aaba-01a9-5def-44868f0a46c9@intel.com>
+Date: Thu, 7 Jul 2022 16:44:43 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2add4f3a-2b03-4290-892b-08da5ff203a2
-X-MS-TrafficTypeDiagnostic: CH0PR12MB5188:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zKiX03/SVaSbSOrdgeaf+0gsuUanimUdCu1jA424rfwNt9LXSRa8my0fHd15msd9ZxUO3nENUzWcBWNOeX3pF1gxcdFPr+25M0z3xpIk0YP7gi82Gv7Gg5LEHFlM9BWjU/2xuSJeGsDNM/O2hXoRvxVHXTLof97PU6OFvhkornoeVkf1jwJ5U7y1xrqdMzcBuSpXO97hCShQ2jsuWuhdQ9FBa8xxs+nhQzhSdzs2lfsooH5kcLDumkTQP6/8sxT6JgNvv7qvYk85Of56PFSYmhFSt5pLL0gTkCsnv/BEktT5OiEkmZVz2rdkDt5Uq2qzMRsW2p3SKcNu09oyn2YfwyqLRIVlYaekPC6mhZXhcihrIigosFHwR1jFfAwsiqNhuKwjU0vc10xkL1insoQCxBdeSDdyhU70VwjXSdoj90i0lVB2HeBnGp/gpZqJphs8iHVvf9zY2VyC0fDa52J+9HBeoZl2bbY7TGpLzbBTRNjOlgdDwY79Xtr5GGH/i60voq48wKjVr2f+8nnuzguZ6n16YjmSN45e8TuLa90TKWSMP/orJ29dDFdw3dtbJYUuNbnqW8VyPtDSGHOSUXO3FPN6kxAKZO1Z9j/w4MHskQqcHkDd/8pyeFEJgddg94e86j2pv+g5AIqlplVKhkDdLHft+RPQ3B/fM8sjn+AXnO1SFkTk99EkNw7eF6JtGXnVRkYgIOgEtC27ZchSHLrmdp2oPldf0mW0eFl643QIHNwkRP/5Jm86zviTQ+XIBolmGdVlFdRpbeNxJBC+FWRdjMIRTF6tv2G+fa0cKGahRQ/wpfzU0efiYbFhbbK5Ea7AVziAewCyGrED7v1CAO7w+iAf0U5jNdeQ9Q7WkPZ+k1+oIGnyTUR3T4lkd7FuU20s
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(396003)(376002)(39860400002)(346002)(136003)(46966006)(36840700001)(40470700004)(8936002)(478600001)(186003)(426003)(40460700003)(336012)(83380400001)(44832011)(16526019)(5660300002)(86362001)(36756003)(34020700004)(316002)(1076003)(54906003)(40480700001)(2616005)(6916009)(26005)(47076005)(82740400003)(356005)(15650500001)(41300700001)(70206006)(6666004)(81166007)(70586007)(36860700001)(2906002)(4326008)(82310400005)(8676002)(7696005)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2022 08:23:47.2179 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2add4f3a-2b03-4290-892b-08da5ff203a2
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT052.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5188
+In-Reply-To: <YsaUgfPbOg7WuBuB@kroah.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Thu, 07 Jul 2022 13:05:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,100 +61,130 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
- Bhawanpreet.Lakha@amd.com, Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: nvdimm@lists.linux.dev, legousb-devel@lists.sourceforge.net,
+ dri-devel@lists.freedesktop.org, linux-sctp@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
+ ceph-devel@vger.kernel.org, linux-pm@vger.kernel.org,
+ usbb2k-api-dev@nongnu.org, linux-omap@vger.kernel.org,
+ megaraidlinux.pdl@broadcom.com, linux-usb@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-perf-users@vger.kernel.org,
+ netfilter-devel@vger.kernel.org, linux-crypto@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
+ linux-wpan@vger.kernel.org, linux-fbdev@vger.kernel.org,
+ linux-parport@lists.infradead.org, linux-doc@vger.kernel.org,
+ samba-technical@lists.samba.org, linux-cxl@vger.kernel.org,
+ virtualization@lists.linux-foundation.org, dm-devel@redhat.com,
+ target-devel@vger.kernel.org, dev@openvswitch.org, linux-cifs@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ iommu@lists.linux.dev, coreteam@netfilter.org, linux-media@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org, greybus-dev@lists.linaro.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-block@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-integrity@vger.kernel.org, linux-efi@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-fpga@vger.kernel.org, alsa-devel@alsa-project.org,
+ linux-mtd@lists.infradead.org, cgroups@vger.kernel.org,
+ linux-phy@lists.infradead.org, sound-open-firmware@alsa-project.org,
+ linux-rdma@vger.kernel.org, linux-staging@lists.linux.dev,
+ amd-gfx@lists.freedesktop.org, isdn4linux@listserv.isdn4linux.de,
+ linux-input@vger.kernel.org, linux-ext4@vger.kernel.org,
+ ath11k@lists.infradead.org, mjpeg-users@lists.sourceforge.net,
+ openipmi-developer@lists.sourceforge.net, linux-hwmon@vger.kernel.org,
+ linux-parisc@vger.kernel.org, linux-ide@vger.kernel.org,
+ linux-mmc@vger.kernel.org, iommu@lists.linux-foundation.org,
+ keyrings@vger.kernel.org, netdev@vger.kernel.org, kvm@vger.kernel.org,
+ damon@lists.linux.dev, linux-mm@kvack.org,
+ accessrunner-general@lists.sourceforge.net,
+ linux1394-devel@lists.sourceforge.net, linux-leds@vger.kernel.org,
+ rds-devel@oss.oracle.com, linux-x25@vger.kernel.org, dccp@vger.kernel.org,
+ intel-wired-lan@lists.osuosl.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-nfc@lists.01.org,
+ osmocom-net-gprs@lists.osmocom.org, apparmor@lists.ubuntu.com,
+ linux-raid@vger.kernel.org, linux-bcache@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-tegra@vger.kernel.org,
+ linux-scsi@vger.kernel.org, patches@opensource.cirrus.com,
+ linux-unionfs@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+ ntb@lists.linux.dev, tipc-discussion@lists.sourceforge.net,
+ linuxppc-dev@lists.ozlabs.org, linux-btrfs@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Why]
-Changes from "Fix for dmub outbox notification enable" need to land
-in DM or DMUB outbox notification would be disabled.
 
-[How]
-Enable outbox notification only after interrupt are enabled and IRQ
-handlers registered. Any pending notification will be sent by DMUB
-once outbox notification is enabled.
 
-Fixes: ed7208706448 (“drm/amd/display: Fix for dmub outbox notification enable”)
-Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
-Acked-by: Solomon Chiu <solomon.chiu@amd.com>
-Signed-off-by: Stylon Wang <stylon.wang@amd.com>
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 27 +++++++++++++------
- 1 file changed, 19 insertions(+), 8 deletions(-)
+On 7/7/2022 4:08 PM, Greg KH wrote:
+> On Thu, Jul 07, 2022 at 02:56:34PM +0800, kernel test robot wrote:
+>> tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+>> branch HEAD: 088b9c375534d905a4d337c78db3b3bfbb52c4a0  Add linux-next specific files for 20220706
+>>
+>> Error/Warning reports:
+>>
+>> https://lore.kernel.org/linux-doc/202207070644.x48XOOvs-lkp@intel.com
+>>
+>> Error/Warning: (recently discovered and may have been fixed)
+>>
+>> Documentation/arm/google/chromebook-boot-flow.rst: WARNING: document isn't included in any toctree
+>> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1108): undefined reference to `__aeabi_ddiv'
+>> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1124): undefined reference to `__aeabi_ui2d'
+>> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1164): undefined reference to `__aeabi_dmul'
+>> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1170): undefined reference to `__aeabi_dadd'
+>> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1180): undefined reference to `__aeabi_dsub'
+>> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1190): undefined reference to `__aeabi_d2uiz'
+>> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x162c): undefined reference to `__aeabi_d2iz'
+>> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x16b0): undefined reference to `__aeabi_i2d'
+>> dc_dmub_srv.c:(.text+0x10f8): undefined reference to `__aeabi_ui2d'
+>> dc_dmub_srv.c:(.text+0x464): undefined reference to `__floatunsidf'
+>> dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x33c): undefined reference to `__floatunsidf'
+>> drivers/pci/endpoint/functions/pci-epf-vntb.c:975:5: warning: no previous prototype for 'pci_read' [-Wmissing-prototypes]
+>> drivers/pci/endpoint/functions/pci-epf-vntb.c:984:5: warning: no previous prototype for 'pci_write' [-Wmissing-prototypes]
+>> drivers/vfio/vfio_iommu_type1.c:2141:35: warning: cast to smaller integer type 'enum iommu_cap' from 'void *' [-Wvoid-pointer-to-enum-cast]
+>> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x34c): undefined reference to `__floatunsidf'
+>> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x378): undefined reference to `__divdf3'
+>> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x38c): undefined reference to `__muldf3'
+>> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x3a0): undefined reference to `__adddf3'
+>> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x3b4): undefined reference to `__subdf3'
+>> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x3d4): undefined reference to `__fixunsdfsi'
+>> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x750): undefined reference to `__fixdfsi'
+>> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x7c0): undefined reference to `__floatsidf'
+>> powerpc-linux-ld: drivers/pci/endpoint/functions/pci-epf-vntb.c:174: undefined reference to `ntb_link_event'
+>> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x468): undefined reference to `__divdf3'
+>> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x46c): undefined reference to `__muldf3'
+>> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x470): undefined reference to `__adddf3'
+>> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x474): undefined reference to `__subdf3'
+>> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x478): undefined reference to `__fixunsdfsi'
+>> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x47c): undefined reference to `__fixdfsi'
+>> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x480): undefined reference to `__floatsidf'
+>> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x60c): undefined reference to `__floatunsidf'
+>>
+>> Unverified Error/Warning (likely false positive, please contact us if interested):
+>>
+>> arch/x86/events/core.c:2114 init_hw_perf_events() warn: missing error code 'err'
+>> drivers/android/binder.c:1481:19-23: ERROR: from is NULL but dereferenced.
+>> drivers/android/binder.c:2920:29-33: ERROR: target_thread is NULL but dereferenced.
+>> drivers/android/binder.c:353:25-35: ERROR: node -> proc is NULL but dereferenced.
+>> drivers/android/binder.c:4888:16-20: ERROR: t is NULL but dereferenced.
+>> drivers/base/regmap/regmap.c:1996:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+>> drivers/char/random.c:869:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+>> drivers/firmware/arm_scmi/clock.c:394:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+>> drivers/firmware/arm_scmi/powercap.c:376:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+>> drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega10_powertune.c:1214:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+>> drivers/gpu/drm/amd/display/dc/os_types.h: drm/drm_print.h is included more than once.
+>> drivers/gpu/drm/bridge/ite-it66121.c:1398:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+>> drivers/greybus/operation.c:617:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+> 
+> <snip>
+> 
+> When the compiler crashes, why are you blaming all of these different
+> mailing lists?  Perhaps you need to fix your compiler :)
+> 
+> thanks,
+> 
+> greg k-h
+> 
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index eb5efb4aa2ba..de1c139ae279 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -1617,7 +1617,7 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
- #if defined(CONFIG_DRM_AMD_SECURE_DISPLAY)
- 	adev->dm.crc_rd_wrk = amdgpu_dm_crtc_secure_display_create_work();
- #endif
--	if (dc_enable_dmub_notifications(adev->dm.dc)) {
-+	if (dc_is_dmub_outbox_supported(adev->dm.dc)) {
- 		init_completion(&adev->dm.dmub_aux_transfer_done);
- 		adev->dm.dmub_notify = kzalloc(sizeof(struct dmub_notification), GFP_KERNEL);
- 		if (!adev->dm.dmub_notify) {
-@@ -1653,6 +1653,13 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
- 		goto error;
- 	}
- 
-+	/* Enable outbox notification only after IRQ handlers are registered and DMUB is alive.
-+	 * It is expected that DMUB will resend any pending notifications at this point, for
-+	 * example HPD from DPIA.
-+	 */
-+	if (dc_is_dmub_outbox_supported(adev->dm.dc))
-+		dc_enable_dmub_outbox(adev->dm.dc);
-+
- 	/* create fake encoders for MST */
- 	dm_dp_create_fake_mst_encoders(adev);
- 
-@@ -2625,9 +2632,6 @@ static int dm_resume(void *handle)
- 		 */
- 		link_enc_cfg_copy(adev->dm.dc->current_state, dc_state);
- 
--		if (dc_enable_dmub_notifications(adev->dm.dc))
--			amdgpu_dm_outbox_init(adev);
--
- 		r = dm_dmub_hw_init(adev);
- 		if (r)
- 			DRM_ERROR("DMUB interface failed to initialize: status=%d\n", r);
-@@ -2645,6 +2649,11 @@ static int dm_resume(void *handle)
- 			}
- 		}
- 
-+		if (dc_is_dmub_outbox_supported(adev->dm.dc)) {
-+			amdgpu_dm_outbox_init(adev);
-+			dc_enable_dmub_outbox(adev->dm.dc);
-+		}
-+
- 		WARN_ON(!dc_commit_state(dm->dc, dc_state));
- 
- 		dm_gpureset_commit_state(dm->cached_dc_state, dm);
-@@ -2666,13 +2675,15 @@ static int dm_resume(void *handle)
- 	/* TODO: Remove dc_state->dccg, use dc->dccg directly. */
- 	dc_resource_state_construct(dm->dc, dm_state->context);
- 
--	/* Re-enable outbox interrupts for DPIA. */
--	if (dc_enable_dmub_notifications(adev->dm.dc))
--		amdgpu_dm_outbox_init(adev);
--
- 	/* Before powering on DC we need to re-initialize DMUB. */
- 	dm_dmub_hw_resume(adev);
- 
-+	/* Re-enable outbox interrupts for DPIA. */
-+	if (dc_is_dmub_outbox_supported(adev->dm.dc)) {
-+		amdgpu_dm_outbox_init(adev);
-+		dc_enable_dmub_outbox(adev->dm.dc);
-+	}
-+
- 	/* power on hardware */
- 	dc_set_power_state(dm->dc, DC_ACPI_CM_POWER_STATE_D0);
- 
--- 
-2.37.0
+Hi Greg,
 
+Sorry for the inconvience, we'll fix it ASAP.
+
+Best Regards,
+Rong Chen
