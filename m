@@ -2,116 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44188569C69
-	for <lists+amd-gfx@lfdr.de>; Thu,  7 Jul 2022 10:05:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D81B556A31A
+	for <lists+amd-gfx@lfdr.de>; Thu,  7 Jul 2022 15:05:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACBFB10E2D9;
-	Thu,  7 Jul 2022 08:05:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C17491125B2;
+	Thu,  7 Jul 2022 13:05:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2048.outbound.protection.outlook.com [40.107.220.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B26E10E2D9;
- Thu,  7 Jul 2022 08:05:39 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=abdRa2hGNQmJmIC8kAuJzBhhxna17MkiA28JOGmutr9LUxRPmD2AHoS/2/VawOTX6qbsFxl+3l4k4mMgDbsOc/uENLHa2R6A1wVc8TuKk1QKzdmI0WfNO6vTQagwBYwVqgrJil01TkKxcvKad6pe8XyctdjVLKCMMMRGzJK3hsYOmkwyODHKvd2QM4HIidbc6yitvw1x9vAa/8bcYDwF0+T2rjvnhAmEUwCNJaMRcSxuLJ3oUs1FhjOb/T5BYjMeqYjVpPWAw9XWxIEKQjUwasL50HcYbudZJrhdBxbMUZAgWwgNareUf1sYqBRNVOglsk2acl6ht5NJ1ZLHUJHU4A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tK7cKbS1fFj+2501iNRaLYlfm4qBCjI0LRHX86NaH/4=;
- b=AmulCgnblxGorYyBdSXdcsXtzkmeZ5lSaMLXdrlbqWPNHW3/8l9WbiDU8T+PMvep3FngS7JfVR1lAKWZulsuza5WQKAoRM6H4oiM2E2I4Xyq0ZFKxCXMEgEm5WDxa4sCmDAjtrplg8JfJ/HniCxOy1/QNV+SNxfzAE54gPeYvjFBPVpE3CaAlh3JKoi3JkCw4gwoLDhmFLATHW5fpfnbIeBHTd9DOJUX563rA0hKCvUlhUvpIlJWF92/Y8ocWigMzrAEUzWQY0Y67rBw/vbreFoX8E+ppdLDdARzk7Mb5sZGI8TvDmDV3UTwhf15SKIyTu9r4A9UbUu/CVHQcb5zdg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tK7cKbS1fFj+2501iNRaLYlfm4qBCjI0LRHX86NaH/4=;
- b=cqkM++K8kLvWwdbi82tKnAv8+MOMajOW3BaUbff29D/12CwRcniLfiRWbf/2PqIzicMWNvJF5oGfKfvrRn+B3/H5s8jf8smmXhfzeVkC/+eDbex4NL6Q3Q5Lu3JfNrx1cxHbJzAwx5ED8wToCV63l7QU30vswOskH2mynTdW32s=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by SN6PR12MB2752.namprd12.prod.outlook.com (2603:10b6:805:78::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.14; Thu, 7 Jul
- 2022 08:05:35 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::905:1701:3b51:7e39]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::905:1701:3b51:7e39%2]) with mapi id 15.20.5417.016; Thu, 7 Jul 2022
- 08:05:35 +0000
-Message-ID: <97924e60-f0fd-0a71-0a34-0606c5a83cab@amd.com>
-Date: Thu, 7 Jul 2022 10:05:29 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] dma-buf: Fix one use-after-free of fence
-Content-Language: en-US
-To: xinhui pan <xinhui.pan@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20220707080241.20060-1-xinhui.pan@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20220707080241.20060-1-xinhui.pan@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR3P281CA0024.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:1c::15) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D812911385F;
+ Thu,  7 Jul 2022 08:08:39 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id B2D21B81ADA;
+ Thu,  7 Jul 2022 08:08:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C8D2C3411E;
+ Thu,  7 Jul 2022 08:08:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1657181316;
+ bh=Mzw+guaGxcvS7S4YlQr9bq/AYy4U/puT8v9DMSRjm+c=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=o8T0RPLH1+QXuxRGiOx0iOcZa4PNW1RYnmq0rwqP4JlY+PYLChMX98BzUOmDLYQt5
+ WHtgniPDP3fJS/IKoiVXIaVBC8g4rRYZFs4Es7HO3CMez5153+NrgRKDzbP84fxvsI
+ PrLKzhYgkU2Ze+gIXne4sqvbIkFu3tT1lxy0BeOk=
+Date: Thu, 7 Jul 2022 10:08:33 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: kernel test robot <lkp@intel.com>
+Subject: Re: [linux-next:master] BUILD REGRESSION
+ 088b9c375534d905a4d337c78db3b3bfbb52c4a0
+Message-ID: <YsaUgfPbOg7WuBuB@kroah.com>
+References: <62c683a2.g1VSVt6BrQC6ZzOz%lkp@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3542f244-c8d3-44b3-2c0a-08da5fef7870
-X-MS-TrafficTypeDiagnostic: SN6PR12MB2752:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: FoVlD7MAAk4r67F5I8RtBwmeQ4I5sIiNtrA+CZqF6zlJETWlPKvoshuRGz3ttd4Bn3kNKO4noOjNlOYAhYjZDh4NWBMG1VvDp1EEozmTSXKxXOr88j18R4Iaj9jIDsCuj1NUvgFrkoZhUg8WCBR7T/UvyrQ5kmoljus4WC2aY6NUk6F24M2mS9pHxalEz71n/v8wZdpYFtPB+nBf3qeXmabcIVnUpMScCQuOhGbgym1StJ4jkzFnyAj8PUBlFZxFe5CZY0YWPPQdHyWVnFbmGlkhnsme4mufSoouFFPo5X4qdK+jNaHYLgooRscAji+IW6vFy/GI1wvJLyG5LWPHOslazsJCFzOI3LVDTcVi/yHRA+bxNaPIH0kiYPAVHqJJB9TOW5cbETlIc9pM5528ccd17pSMDCE8nLDJ4k57RaiTGd2s6hyRNWQFAn+JJOyseDdWfPcQU5REHGS5ppxDulB4TvWclmQ2f8hCQ6RQssHekT1NZFM0V/LsCU2Y51HCKysHqALQ2jbo/0IeJNufbMRwfP3hbOzX5v0sd4xI0KqSIx60BU6RYZFb9y+0ogFdC14ojypYrVj4aBUU7RY87Vd+ovL3QRRaBuKsPmn02dGhU79A/tfgeZovXcKVmR4e054YTqT14L/kbr3ycKgzR2En/oUOmeemzdQs9Ve75yEVSq5YoG7DgzYAv33yi1/9hQpJdW92gCvwL69vNXL3jM+yDCFX+xhddGDyHZzVrR7FSpPBeA3KaPwJ7wIxb65v/gD9XoNfDvl/rfYZRuKYKyKUzPNQwC4uJ0GegXKK9sNUuknslxxQGokDwAIYljtsOjihs6QbNvHzo+WzLLxFl37Z0V2ioUIw9oT+JE4LHt8=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(396003)(376002)(366004)(39860400002)(346002)(136003)(31696002)(8936002)(478600001)(186003)(66574015)(83380400001)(4744005)(6486002)(5660300002)(86362001)(36756003)(316002)(31686004)(2616005)(26005)(38100700002)(6506007)(6512007)(41300700001)(6666004)(2906002)(66476007)(4326008)(8676002)(66556008)(66946007)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U0IvbVQ3QTY4QXdRR2dwVjVuOVlSNUt3alBMaXJ0bktCaUlwQlRTUkMxeE03?=
- =?utf-8?B?OExJOCtPWXFHMlN1Y1BPT0QzMjZkanBEZkZBdTQ2WWRhWnN0Qk5KQWM0bnFZ?=
- =?utf-8?B?NHROMmVtR1ZUZ0xVR1VMMUk3VU5sd2NscUlFZ2ExaXFSV3JTOGNrL1ZndmFl?=
- =?utf-8?B?ZlB4YVZ3dVRDbVlhb3NkWi9HQW1LamdXODFyYnVNNkxLdVdRaVR2bVVRU1Fs?=
- =?utf-8?B?bmpocVV6dVdzY1hiaTBodVJ5TUpYWkJHcE14TzNuaFFxbHpQMEhmcnlFNUxW?=
- =?utf-8?B?MnpjRU1RL2FEVi84djJQRDZZeFdOWWFiVkJwemRCK3NhMTN2bDRNdithc1NJ?=
- =?utf-8?B?dFhmRFJMd0M3aUFQNkE3VmtUY2g1emdBbUpjMkVMUDlmOXNZcVc1aWlxc2xK?=
- =?utf-8?B?VGQ2T1NVYUtNTlBZR21lSFVHT2lhR2Z4Sjd2Y0RuTS9vMXFkNFFOdCtKS2lv?=
- =?utf-8?B?RnhlOVo4R1NOQWswUm1xbk9UN1lSTHlWZ3JOc1p0OW9ES252SUFYcWJocHY0?=
- =?utf-8?B?NWFGL0JzencxVVR5U2lHRkNsRVlJUitnR1BtT0Zub1drcFRMK21tZm9ZbkRL?=
- =?utf-8?B?WXI5bWVRQzFybUUvbml6QlZWU0g4ZXNLUFZyMzFBZm03Y0Z5ajUwbFdqTDBl?=
- =?utf-8?B?M3Rlc24vN2NtVGVpUUd3NVVHTkhwdnZJU2svZEF3WWI0WVhicUpnQzVkOFE2?=
- =?utf-8?B?NWhTbytpV1dQWGQ1K0NQYmRGUGM0V0dTMk1iR3hYdUZ3SFd4RFJ3RGE5SmFZ?=
- =?utf-8?B?dHZnYkRVUFc4bURLZ2E0eEhSeHZYUjdVTG5YZ3U1OTd1b2R5aUtBYUpyT3Y5?=
- =?utf-8?B?RmVJdGU0UW1GaWladFJXZEg3bjRmUmFwdkYxdW05VHF2RTNnOU9jb25Hd2dN?=
- =?utf-8?B?NUc2cElmV2lPd1RrSGE1L1dER0pPV2RtUTZSRXF6TnVMakR5eWxtMWFhVjhE?=
- =?utf-8?B?T05FZmR4aEFyK3FXUXZrK0tOK1V4VWJaS29NTWN0clA1VDhGNjhyVGlEMXJY?=
- =?utf-8?B?dWNKUTBVKzNIcFlMRXNOaTVEcStCMHBrUWkzRHdCMXFvdkVaNXdiMnNiK2NH?=
- =?utf-8?B?aEZUNTdwRTgxdUNYOWZvdSt2dFZWcVhxZWhoK3ZLbzZWWmQrUklQQzBTRHYw?=
- =?utf-8?B?ejhCVm1BNFR2VzFmK1BaYnJDTTMyQTZHMzNvRmZYbmYrMTNFVmUzc2RIQ1hm?=
- =?utf-8?B?V2cvS01BSmFtbG9PVUpkVjVyUCtyUHFMOFpHZ2VYd3ZoalphamRuNFhod3M2?=
- =?utf-8?B?U1pod2hyZHpyWXhBUEovaXQ3MUFvMXRmaVQyellLN0NtTkt0cm5vZ0ZqTm9V?=
- =?utf-8?B?TEJIQzJRRXdIU3JpS0R0Nlk1Q0xpNVBrVUM5U1NQNDFYb2FNc2VqcVdBVU80?=
- =?utf-8?B?bUVCT3dLM2NscWk3elZsRC9pd0RFOVgrR3FPK2I1RW5CTlViM1RjRlliS292?=
- =?utf-8?B?RTNHS0daRUlhSmlOUGRPcUNKV3VOSkpST2FnTHlsb2pMSWFOdVp1TUNpZDFS?=
- =?utf-8?B?b3h0RWRVdGFFeExSZXVzenBTOEFHZS9hRjY2V25JNmd0SW91NnhvcUpVakk2?=
- =?utf-8?B?dk8xQUxZbk5qR2svOGYvMGQ4b0RDVUhzQW8rQms1VGhJaUMxbmc0cEhzUVFX?=
- =?utf-8?B?czZTV2Vkd1Zqc1A4QTVaMCthQlNRVEZORmNLVTZVdVBWQ25tMW1LVTBxNDhw?=
- =?utf-8?B?c1JENnUwdFhlbUNUWHBIb2lIakIrb2lTdFFxU2VQcUgrcUtFZVB6Si9YM0JJ?=
- =?utf-8?B?RzEzQ0xrdklBRXBIRVRCWXFubGJLYkx0TGNSSlovOHVGSTRQM0p1UDhqeURp?=
- =?utf-8?B?VkN3bzlxOC9zdGtTcGJVSG5Gclk1TkthOEJmaEdBOVk4TVJ1Y0RJcW9zMEx0?=
- =?utf-8?B?ZzJzckVkQlBzT1hhRTZtVWpmd0lYeXlPakMwMU5wd1RIbDd5aHRvRmZhY29w?=
- =?utf-8?B?NFg2anRidXREeUR4UXpiaVZFbDJsSzdjcnJDaFRQK3l6ZFZQZUF5T29pS1Rn?=
- =?utf-8?B?QmtNY3Ayb0NQd0VDNHQxcWxGZnJxRUd3cUxjYzFWVlFuN1ZaUm00dW9KbDhI?=
- =?utf-8?B?N045cGFzYWVrRU5wb1JpUWZUZ205WHp0QVJyS3VBdS8xR1gzdS8rODBFc0Ev?=
- =?utf-8?Q?PpEmBRzBl3r1mMKzL7dVexKe2?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3542f244-c8d3-44b3-2c0a-08da5fef7870
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2022 08:05:35.1598 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AaJpVCBP00RblNNqy1OXQ9QYd7OUhBPR+jFJ+YD68i4nRYeGzWe6ddJfTNgLpb3H
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB2752
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <62c683a2.g1VSVt6BrQC6ZzOz%lkp@intel.com>
+X-Mailman-Approved-At: Thu, 07 Jul 2022 13:05:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,37 +50,119 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel.vetter@ffwll.ch, dri-devel@lists.freedesktop.org
+Cc: nvdimm@lists.linux.dev, legousb-devel@lists.sourceforge.net,
+ dri-devel@lists.freedesktop.org, linux-sctp@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
+ ceph-devel@vger.kernel.org, linux-pm@vger.kernel.org,
+ usbb2k-api-dev@nongnu.org, linux-omap@vger.kernel.org,
+ megaraidlinux.pdl@broadcom.com, linux-usb@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-perf-users@vger.kernel.org,
+ netfilter-devel@vger.kernel.org, linux-crypto@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
+ linux-wpan@vger.kernel.org, linux-fbdev@vger.kernel.org,
+ linux-parport@lists.infradead.org, linux-doc@vger.kernel.org,
+ samba-technical@lists.samba.org, linux-cxl@vger.kernel.org,
+ virtualization@lists.linux-foundation.org, dm-devel@redhat.com,
+ target-devel@vger.kernel.org, dev@openvswitch.org, linux-cifs@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ iommu@lists.linux.dev, coreteam@netfilter.org, linux-media@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org, greybus-dev@lists.linaro.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-block@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-integrity@vger.kernel.org, linux-efi@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-fpga@vger.kernel.org, alsa-devel@alsa-project.org,
+ linux-mtd@lists.infradead.org, cgroups@vger.kernel.org,
+ linux-phy@lists.infradead.org, sound-open-firmware@alsa-project.org,
+ linux-rdma@vger.kernel.org, linux-staging@lists.linux.dev,
+ amd-gfx@lists.freedesktop.org, isdn4linux@listserv.isdn4linux.de,
+ linux-input@vger.kernel.org, linux-ext4@vger.kernel.org,
+ ath11k@lists.infradead.org, mjpeg-users@lists.sourceforge.net,
+ openipmi-developer@lists.sourceforge.net, linux-hwmon@vger.kernel.org,
+ linux-parisc@vger.kernel.org, linux-ide@vger.kernel.org,
+ linux-mmc@vger.kernel.org, iommu@lists.linux-foundation.org,
+ keyrings@vger.kernel.org, netdev@vger.kernel.org, kvm@vger.kernel.org,
+ damon@lists.linux.dev, linux-mm@kvack.org,
+ accessrunner-general@lists.sourceforge.net,
+ linux1394-devel@lists.sourceforge.net, linux-leds@vger.kernel.org,
+ rds-devel@oss.oracle.com, linux-x25@vger.kernel.org, dccp@vger.kernel.org,
+ intel-wired-lan@lists.osuosl.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-nfc@lists.01.org,
+ osmocom-net-gprs@lists.osmocom.org, apparmor@lists.ubuntu.com,
+ linux-raid@vger.kernel.org, linux-bcache@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-tegra@vger.kernel.org,
+ linux-scsi@vger.kernel.org, patches@opensource.cirrus.com,
+ linux-unionfs@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+ ntb@lists.linux.dev, tipc-discussion@lists.sourceforge.net,
+ linuxppc-dev@lists.ozlabs.org, linux-btrfs@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 07.07.22 um 10:02 schrieb xinhui pan:
-> Need get the new fence when we replace the old one.
->
-> Fixes: 047a1b877ed48 ("dma-buf & drm/amdgpu: remove dma_resv workaround")
-> Signed-off-by: xinhui pan <xinhui.pan@amd.com>
+On Thu, Jul 07, 2022 at 02:56:34PM +0800, kernel test robot wrote:
+> tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+> branch HEAD: 088b9c375534d905a4d337c78db3b3bfbb52c4a0  Add linux-next specific files for 20220706
+> 
+> Error/Warning reports:
+> 
+> https://lore.kernel.org/linux-doc/202207070644.x48XOOvs-lkp@intel.com
+> 
+> Error/Warning: (recently discovered and may have been fixed)
+> 
+> Documentation/arm/google/chromebook-boot-flow.rst: WARNING: document isn't included in any toctree
+> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1108): undefined reference to `__aeabi_ddiv'
+> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1124): undefined reference to `__aeabi_ui2d'
+> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1164): undefined reference to `__aeabi_dmul'
+> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1170): undefined reference to `__aeabi_dadd'
+> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1180): undefined reference to `__aeabi_dsub'
+> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x1190): undefined reference to `__aeabi_d2uiz'
+> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x162c): undefined reference to `__aeabi_d2iz'
+> arm-linux-gnueabi-ld: dc_dmub_srv.c:(.text+0x16b0): undefined reference to `__aeabi_i2d'
+> dc_dmub_srv.c:(.text+0x10f8): undefined reference to `__aeabi_ui2d'
+> dc_dmub_srv.c:(.text+0x464): undefined reference to `__floatunsidf'
+> dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x33c): undefined reference to `__floatunsidf'
+> drivers/pci/endpoint/functions/pci-epf-vntb.c:975:5: warning: no previous prototype for 'pci_read' [-Wmissing-prototypes]
+> drivers/pci/endpoint/functions/pci-epf-vntb.c:984:5: warning: no previous prototype for 'pci_write' [-Wmissing-prototypes]
+> drivers/vfio/vfio_iommu_type1.c:2141:35: warning: cast to smaller integer type 'enum iommu_cap' from 'void *' [-Wvoid-pointer-to-enum-cast]
+> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x34c): undefined reference to `__floatunsidf'
+> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x378): undefined reference to `__divdf3'
+> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x38c): undefined reference to `__muldf3'
+> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x3a0): undefined reference to `__adddf3'
+> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x3b4): undefined reference to `__subdf3'
+> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x3d4): undefined reference to `__fixunsdfsi'
+> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x750): undefined reference to `__fixdfsi'
+> mips-linux-ld: dc_dmub_srv.c:(.text.dc_dmub_setup_subvp_dmub_command+0x7c0): undefined reference to `__floatsidf'
+> powerpc-linux-ld: drivers/pci/endpoint/functions/pci-epf-vntb.c:174: undefined reference to `ntb_link_event'
+> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x468): undefined reference to `__divdf3'
+> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x46c): undefined reference to `__muldf3'
+> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x470): undefined reference to `__adddf3'
+> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x474): undefined reference to `__subdf3'
+> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x478): undefined reference to `__fixunsdfsi'
+> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x47c): undefined reference to `__fixdfsi'
+> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x480): undefined reference to `__floatsidf'
+> xtensa-linux-ld: dc_dmub_srv.c:(.text+0x60c): undefined reference to `__floatunsidf'
+> 
+> Unverified Error/Warning (likely false positive, please contact us if interested):
+> 
+> arch/x86/events/core.c:2114 init_hw_perf_events() warn: missing error code 'err'
+> drivers/android/binder.c:1481:19-23: ERROR: from is NULL but dereferenced.
+> drivers/android/binder.c:2920:29-33: ERROR: target_thread is NULL but dereferenced.
+> drivers/android/binder.c:353:25-35: ERROR: node -> proc is NULL but dereferenced.
+> drivers/android/binder.c:4888:16-20: ERROR: t is NULL but dereferenced.
+> drivers/base/regmap/regmap.c:1996:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+> drivers/char/random.c:869:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+> drivers/firmware/arm_scmi/clock.c:394:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+> drivers/firmware/arm_scmi/powercap.c:376:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+> drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega10_powertune.c:1214:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+> drivers/gpu/drm/amd/display/dc/os_types.h: drm/drm_print.h is included more than once.
+> drivers/gpu/drm/bridge/ite-it66121.c:1398:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
+> drivers/greybus/operation.c:617:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
 
-Good catch, Reviewed-by: Christian König <christian.koenig@amd.com>
+<snip>
 
-Going to push that in a minute.
+When the compiler crashes, why are you blaming all of these different
+mailing lists?  Perhaps you need to fix your compiler :)
 
-Christian.
+thanks,
 
-> ---
->   drivers/dma-buf/dma-resv.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/dma-buf/dma-resv.c b/drivers/dma-buf/dma-resv.c
-> index 0cce6e4ec946..205acb2c744d 100644
-> --- a/drivers/dma-buf/dma-resv.c
-> +++ b/drivers/dma-buf/dma-resv.c
-> @@ -343,7 +343,7 @@ void dma_resv_replace_fences(struct dma_resv *obj, uint64_t context,
->   		if (old->context != context)
->   			continue;
->   
-> -		dma_resv_list_set(list, i, replacement, usage);
-> +		dma_resv_list_set(list, i, dma_fence_get(replacement), usage);
->   		dma_fence_put(old);
->   	}
->   }
-
+greg k-h
