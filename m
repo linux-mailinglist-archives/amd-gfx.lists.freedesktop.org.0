@@ -2,65 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF56956B6C7
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Jul 2022 12:14:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC06F56B69B
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Jul 2022 12:07:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B6641128B9;
-	Fri,  8 Jul 2022 10:04:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B21A910F17A;
+	Fri,  8 Jul 2022 10:05:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com
- [209.85.218.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9297A10FE59
- for <amd-gfx@lists.freedesktop.org>; Fri,  8 Jul 2022 10:04:07 +0000 (UTC)
-Received: by mail-ej1-f54.google.com with SMTP id j22so10600340ejs.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 08 Jul 2022 03:04:07 -0700 (PDT)
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com
+ [209.85.218.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FD26112099
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Jul 2022 10:05:16 +0000 (UTC)
+Received: by mail-ej1-f48.google.com with SMTP id u15so12435819ejx.9
+ for <amd-gfx@lists.freedesktop.org>; Fri, 08 Jul 2022 03:05:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=message-id:date:mime-version:user-agent:subject:content-language:to
- :references:from:in-reply-to:content-transfer-encoding;
- bh=Q+M/aEMFbHDPQCkT8ZZv7U0Vo7/0Bkkjv66I4kWglmg=;
- b=SYDZeCcWFInN8+DmZMhsvCxjiBixCEwDmdy+gEUJIil3n/HCuO7zjRC+xBJCr9uq15
- UHZplYKG4UrcP9faNpQ2oBJdPBXkf42x++F3b8y2Bj/ZV35Vjbd5e6cAVk8q81PgH3dt
- VoxPEgO52mKsPs0En80HxRLEiQGa19kNYPfIT20IRsoal6vtYI/P1smXYkiOWf1FdUtG
- 5qm6mO3qwhK+OKc5hZjGsgE5ETFogxRMUhU1LJSoap1SaXcvPxAvaDDGh23H8SVmT+zP
- Ko0enzn/1k7/SoEXPwcLVxmUYk6SLAVNqxWTgEI6MyeNsA23q+mzIdZFKWfFqc+wP4hX
- wRUQ==
+ :cc:references:from:in-reply-to:content-transfer-encoding;
+ bh=xAEUsSOv3AUPBSnuwtv4j8MOsIbYlDnajPcRwnpB2T0=;
+ b=ZeK6wTiDkN7b4tqaT4h7hXNihSVy2UMnUkvGd8kb4RRIq8aBYLUJC83C4dR5ZcsTw+
+ PBkMNeUWXOM3Wvbup603/uIoTTNb8FLATsEFVQBzCx6ErtEIvGl/8MXswljZmfxAwjOV
+ oPzRGLM227sb6X7ElL+xopHxRNR/21AiOnzy9P9pS8OxbQhtyQx01Jz+h3zd+aeu7bJ6
+ 6MAkc3625PDhQnjc+HZ1fcuY12UD6pbU82IqDmUlty5fDijKA8aB6sUlI8uPYQJznsei
+ 9mjG/Z3oNgGClogi4Hffis3Yr0frjImj5tgP/Co8zgaW63QtJ6rJM3wf0Ymsk3sFLDAn
+ 0uCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:references:from:in-reply-to
+ :content-language:to:cc:references:from:in-reply-to
  :content-transfer-encoding;
- bh=Q+M/aEMFbHDPQCkT8ZZv7U0Vo7/0Bkkjv66I4kWglmg=;
- b=4zqK8wfEpF1U3xBVGIqMd9sids3gxuSzhHgjI+Yt7vC9f9vxZOQ1WlqZ+lF7LCaGkC
- WVS7NcjTRjaQIie+kn6d1Tj6C1Msat2YyjsjwdPUV0lo1BBb8Z8LjcyWrMReZ3H/QkH5
- zDjblaTv67eKiNjr1G23O9PMfPW3W4ZEnYBG6GSBYpK1/+fAVx5mhZh9T26gE/87mGDj
- h5ZuR14FulxZqOt4cK4hlmRXVqMGeXsXnwc/GSU9IkEFAt6UJM5zQFQ9HXUg1VJAjFBw
- sHXLdxJasVYbVqetKPxb50NS9fVlmHBbIVwg9O1mFpnzPlIyMpeI63+Lzu5wurmu34M6
- 8rsw==
-X-Gm-Message-State: AJIora8S5aKzDdMuZuK8mOdlDNIH5aPZqRVjReJ3va2vFM9JdlH2VXEk
- Xmf/DISRCYycV/4dWTe8RWU=
-X-Google-Smtp-Source: AGRyM1sBrvZVP1qc9U7uSvWk+cgCHojR5yTw2MlrWHjcew9QsLHMY/B4WPFv54UgVAceHbcK7l5Rjg==
-X-Received: by 2002:a17:906:6a23:b0:722:e1ba:964c with SMTP id
- qw35-20020a1709066a2300b00722e1ba964cmr2659428ejc.680.1657274586114; 
- Fri, 08 Jul 2022 03:03:06 -0700 (PDT)
+ bh=xAEUsSOv3AUPBSnuwtv4j8MOsIbYlDnajPcRwnpB2T0=;
+ b=uQsx7l99NpllTi16NyBzhDxk3KEPiiipASu6SYrgATvUhm/40EkXSSZQGnv+d5flyS
+ NYkIvT8EZSiX7dp3bBz5sa6u7i3ofq1bpG7EnTqNw1NhM6+Ia9VgdXElyKeC3sO+pL+u
+ W5b3Ye6kfrMtfsVPiJEUg33LJC1LJY6V3STxMKq6HXmFgZt//kQTHWdrN0v2DaJfmMFF
+ X/N0PrnsuwK/oacWNYva1ilppQUz+VGDUiHtEupHOcJ3GoMy6aJWcHzWZQiZSKvEslEJ
+ kx4wIuLLwIkrfxvPpTgEgNe/i3+uiObCd9jOoyyZZHW1c9H4KWcKlSCUqGIcUQHK/Zoi
+ UmUQ==
+X-Gm-Message-State: AJIora95GmLePfo9b8MZXh4AZ3VAdSln2YVFClysrTR3PxbHZfQIUew5
+ ekHJbC+IuSMk/EMw3BsBCKkpAzuBizs=
+X-Google-Smtp-Source: AGRyM1tF8crxlPZeXsFREMphHADNwlYImXVspOEnm9LJ5e39N+bY9C9tOYAMi1tCdqHKiU3QKS73kw==
+X-Received: by 2002:a17:906:8a58:b0:72a:d029:d92e with SMTP id
+ gx24-20020a1709068a5800b0072ad029d92emr2627936ejc.354.1657274655096; 
+ Fri, 08 Jul 2022 03:04:15 -0700 (PDT)
 Received: from ?IPV6:2a02:908:1256:79a0:95df:c673:e23c:7b70?
  ([2a02:908:1256:79a0:95df:c673:e23c:7b70])
  by smtp.gmail.com with ESMTPSA id
- b18-20020a1709063cb200b0072afb23fb9esm3652672ejh.16.2022.07.08.03.03.05
+ m14-20020a1709061ece00b007121361d54asm20020146ejj.25.2022.07.08.03.04.14
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 08 Jul 2022 03:03:05 -0700 (PDT)
-Message-ID: <57e44bdf-9bea-4c9b-0b05-ff0b68fcf44c@gmail.com>
-Date: Fri, 8 Jul 2022 12:03:04 +0200
+ Fri, 08 Jul 2022 03:04:14 -0700 (PDT)
+Message-ID: <1045fcae-f72e-44b3-2392-021efbc8630d@gmail.com>
+Date: Fri, 8 Jul 2022 12:04:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH] drm/amdgpu/gmc10: adjust gart size for parts that support
- S/G display
+Subject: Re: [PATCH] drm/amdgpu: Remove one duplicated ef removal
 Content-Language: en-US
-To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20220707205530.899499-1-alexander.deucher@amd.com>
+To: xinhui pan <xinhui.pan@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20220708015346.3027-1-xinhui.pan@amd.com>
 From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20220707205530.899499-1-alexander.deucher@amd.com>
+In-Reply-To: <20220708015346.3027-1-xinhui.pan@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -74,52 +73,35 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: alexander.deucher@amd.com, Felix.Kuehling@amd.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 07.07.22 um 22:55 schrieb Alex Deucher:
-> For GMC 10 parts which support scatter/gather display (display
-> from system memory), we should allocate a larger gart size
-> to better handler larger displays.  This mirrors what we already
-> do for GMC 9 parts.
+Am 08.07.22 um 03:53 schrieb xinhui pan:
+> That has been done in BO release notify.
 >
-> v2: fix typo (Alex)
->
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> Signed-off-by: xinhui pan <xinhui.pan@amd.com>
 
 Acked-by: Christian König <christian.koenig@amd.com>
 
 > ---
->   drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c | 17 ++++++++++++++---
->   1 file changed, 14 insertions(+), 3 deletions(-)
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 5 -----
+>   1 file changed, 5 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-> index 25d5743ae91b..1772f006c61a 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-> @@ -834,10 +834,21 @@ static int gmc_v10_0_mc_init(struct amdgpu_device *adev)
->   		adev->gmc.visible_vram_size = adev->gmc.real_vram_size;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+> index 0f9811d02f61..49536fa8d269 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+> @@ -1583,11 +1583,6 @@ void amdgpu_amdkfd_gpuvm_destroy_cb(struct amdgpu_device *adev,
+>   	if (!process_info)
+>   		return;
 >   
->   	/* set the gart size */
-> -	if (amdgpu_gart_size == -1)
-> -		adev->gmc.gart_size = 512ULL << 20;
-> -	else
-> +	if (amdgpu_gart_size == -1) {
-> +		switch (adev->ip_versions[GC_HWIP][0]) {
-> +		default:
-> +			adev->gmc.gart_size = 512ULL << 20;
-> +			break;
-> +		case IP_VERSION(10, 3, 1):   /* DCE SG support */
-> +		case IP_VERSION(10, 3, 3):   /* DCE SG support */
-> +		case IP_VERSION(10, 3, 6):   /* DCE SG support */
-> +		case IP_VERSION(10, 3, 7):   /* DCE SG support */
-> +			adev->gmc.gart_size = 1024ULL << 20;
-> +			break;
-> +		}
-> +	} else {
->   		adev->gmc.gart_size = (u64)amdgpu_gart_size << 20;
-> +	}
->   
->   	gmc_v10_0_vram_gtt_location(adev, &adev->gmc);
->   
+> -	/* Release eviction fence from PD */
+> -	amdgpu_bo_reserve(pd, false);
+> -	amdgpu_bo_fence(pd, NULL, false);
+> -	amdgpu_bo_unreserve(pd);
+> -
+>   	/* Update process info */
+>   	mutex_lock(&process_info->lock);
+>   	process_info->n_vms--;
 
