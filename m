@@ -1,120 +1,86 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E07FA56B733
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Jul 2022 12:23:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A148556BC01
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Jul 2022 17:05:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F15FC10E1B2;
-	Fri,  8 Jul 2022 10:23:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E668410E49D;
+	Fri,  8 Jul 2022 15:05:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1anam02on2070.outbound.protection.outlook.com [40.107.96.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6C4010E1A6;
- Fri,  8 Jul 2022 10:23:20 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mOI8TcZAPFgcOEWhbfqAdP8S2GIxN5x1rW7ryCpMkXs3azrzVP1EhHfboQ3zhp2uJPf96GsKlfFpk8mqyEIMj/8NS3qiZzc9wn+IOYjM8ro0eOyFcczNb0WsUPnEfzCEGZRiD2CE4lkaTlxrzWG4Z1iFE0/zAkhcVhF4X4FKDZfkSFZRNBkfGOf0SVH5qMBOBFHUE8/v9HcJDNNalcjA7GY/jfmcYXbn/ExTE3bZedP8rcQLplkwwlwIXVYEOlYd+cIJN9IWBEwSJtFir+1Us++saqPLzOLIQpRYIa0lyKFtog8vnVJ/C5lL0nPDj4/fKx0rTAAZTWffvz98OIsM0w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1+fALzFEHhvE0PgusAgeodwzoi9OeO2hu2wRZ2qEj5E=;
- b=RPmO8cx2//9NTPOq4eRe3/MwBifQwFE5MnH0HCWD/jO9l81/fnnkRb9Ybm2XwRy3ovnJJDBALLJyXBSgww+OTDXuedjBmfzbMib3eFsG5JhZrzb5ZTYjYRr8uEBfpzm1cKNDUexwdFs46oZd435yz3L1b1lNk/Kf63MxzscZrzbB+rZ20keoxTSq+Smgq5g8tuhurYHhu3xDkoewAU6YJ1hSOmU9WL0lGmYMtAk3jgXjQFk5g9APF+LCETOka+jHWrhyUitrO+UdtcvWzPw/dCsy6SK1xh5n8xRB4iRp0WsXFGBFvPTbmvEyn5Tke1lZerKtKU8YRHNTYBLTpnPBKw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1+fALzFEHhvE0PgusAgeodwzoi9OeO2hu2wRZ2qEj5E=;
- b=FONWakszcf1GaDWxf0t2RG/sNa6xrrhAbPru/62dK/lyu7xAMNGHLaApAmNLffeGYE3dmxhCIq6tzfdnwAfl2GvrOycFv0gdPcsKy1/YTlK8y/bLyDzc3Mb+7nrRN4KVpzMlthn1upFkg3l8WjBzcb4diRXOhCDWdp+fb8DszSs=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MN2PR12MB4342.namprd12.prod.outlook.com (2603:10b6:208:264::7)
- by SA0PR12MB4415.namprd12.prod.outlook.com (2603:10b6:806:70::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.16; Fri, 8 Jul
- 2022 10:23:18 +0000
-Received: from MN2PR12MB4342.namprd12.prod.outlook.com
- ([fe80::a1d8:6a71:213b:6e14]) by MN2PR12MB4342.namprd12.prod.outlook.com
- ([fe80::a1d8:6a71:213b:6e14%7]) with mapi id 15.20.5417.020; Fri, 8 Jul 2022
- 10:23:18 +0000
-Message-ID: <70a689ec-2ff6-b8e5-1a6e-f5d45ffc5dea@amd.com>
-Date: Fri, 8 Jul 2022 15:53:08 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 1/3] Revert "drm/amdgpu: move internal vram_mgr function
- into the C file"
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-References: <20220708093047.492662-1-Arunpravin.PaneerSelvam@amd.com>
- <6a164c3e-0241-6e7a-e6c4-878602c77541@amd.com>
-From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
-In-Reply-To: <6a164c3e-0241-6e7a-e6c4-878602c77541@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN2PR01CA0178.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:26::33) To MN2PR12MB4342.namprd12.prod.outlook.com
- (2603:10b6:208:264::7)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D686010F482
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Jul 2022 11:26:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1657279584;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=gysJ5OLsHMu4TIG7j1vcOsFr+CV/gmdUfz5sTZsCQeI=;
+ b=SE5srH5aj5YTVoQGeAmURpbj+6vo07Y5XXzaEOa+2+1dOfC/4cBy+oIZTtnNySoqlLte/t
+ KFvFgaVhYwK1Gt6PR3UcxDuJhMqdiDoybF02tv7OA5blWWJd6n8s2GHkNTPsOTuevAdSrc
+ 4pzR0x1rR8ZSdjN6jgbNIifF88Y331s=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-395-NTcAMG9aO7mj2qNPwOZnyw-1; Fri, 08 Jul 2022 07:26:23 -0400
+X-MC-Unique: NTcAMG9aO7mj2qNPwOZnyw-1
+Received: by mail-wr1-f71.google.com with SMTP id
+ g9-20020adfa489000000b0021d6e786099so2477329wrb.7
+ for <amd-gfx@lists.freedesktop.org>; Fri, 08 Jul 2022 04:26:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:organization:in-reply-to
+ :content-transfer-encoding;
+ bh=gysJ5OLsHMu4TIG7j1vcOsFr+CV/gmdUfz5sTZsCQeI=;
+ b=Nr0SthyDqcBBkh62zKQwarpnRWd5CcxcC/1y+NRvtNG1Ekf8T/IKDcYQtNM2AlS6gm
+ bjhExfr8QuoASHK6tBLDHWflLEq2Gd4FAxpmchD2821uP9b0FtO1/Bin/8jaAc/Hj9Mt
+ npp8YQH8ZtxBQLG/2fM6/A8zS9WpDXDG3msFanqkPkerDEGEl4dVdfVQANLgL3eiZOs2
+ GJ2IDiTK5nYOKJ//liTdpvOv52JE02glbiDcmg75Bz9ovO074zXZVR/z9HYbEQAx8jWU
+ 6yZGFCJi2363Pk+5ycy3R4yOz5WCzsLedfoy7uqtjjP9418E7YvZxBF5y0ne4yyvXzXm
+ sWCw==
+X-Gm-Message-State: AJIora/jdoQlvoYhHX5c05hgzQrIY3wTR+rZFLUrrnjbVX5DJ1+nWpaX
+ JfEWiB31Jpas5zK8jfukbU1cX1u7XGnu1hJWM9Hbo3Mg/3oSqA3N/fa8vTExb7zrVyJKTP1Sr33
+ 7zx2MAGjIUPQjkut0WK4S3/iHyQ==
+X-Received: by 2002:a5d:6288:0:b0:21d:6c75:82 with SMTP id
+ k8-20020a5d6288000000b0021d6c750082mr2870470wru.218.1657279582259; 
+ Fri, 08 Jul 2022 04:26:22 -0700 (PDT)
+X-Google-Smtp-Source: AGRyM1tMgQ+oLwIiDj4/5npv648AeUcMBCTGWDC+qeOo4nVAZAd5xF+qI9gwsPYGbFe8dDYrww+5UA==
+X-Received: by 2002:a5d:6288:0:b0:21d:6c75:82 with SMTP id
+ k8-20020a5d6288000000b0021d6c750082mr2870444wru.218.1657279582045; 
+ Fri, 08 Jul 2022 04:26:22 -0700 (PDT)
+Received: from ?IPV6:2003:cb:c702:6300:c44f:789a:59b5:91e9?
+ (p200300cbc7026300c44f789a59b591e9.dip0.t-ipconnect.de.
+ [2003:cb:c702:6300:c44f:789a:59b5:91e9])
+ by smtp.gmail.com with ESMTPSA id
+ b18-20020a05600c4e1200b003a2d47d3051sm2145967wmq.41.2022.07.08.04.26.20
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 08 Jul 2022 04:26:21 -0700 (PDT)
+Message-ID: <eddef4be-9c7b-78ae-7cb4-6dda7e20195c@redhat.com>
+Date: Fri, 8 Jul 2022 13:26:20 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0ae86521-80d3-4dff-0361-08da60cbdfe7
-X-MS-TrafficTypeDiagnostic: SA0PR12MB4415:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZtXbCQy+LE0lgy7YfEJomw+fr9wcwvlGQ8Up+WpfcLcgrjIp9da61BMnevCak7Jcwejx4TRsI4gnQlQ0r/L19QfxOuJZIWckGaC+Zb32OiASTsw+2OwaEVsLNcfrMObJ9ikYXwQd5cmi8AgQ/Gva/547z0sAqXyEXXsO6hASCX6Kbz3TPrbVJpfo3YVlgAHIGcRwPWOGAEtPbyVcFbSeIutihU/DTdkhjCr9PJ8ePSnuDAO/d+dnfsYgRWa0HeJHftPTAgi3hO3ncin4uWMvptDnQ48JEG6r3x6/ZvdApWy6RIcXEzLQ/aAbURjKsobgVcwOJbe7uY6kJRKAf20VVf+vSYBhEFI7f2gFPyGf2w9fFwVwxFd8fIlQtLSdg9l6kgM/MTUjTau50cVQ/saD/dqsZRh8i5QW2ADj/nCrPinz//29FtVTJKLlLLSiierG28CTzuGa25SMHXJUhZzKs2XCUDqe0CnGCC8XBjOTDeYa6TxZeDBVMscKQ/HdoomUiaK3tFbd2OKky8h1pfznJCIW1lrZZt/aZt2zKZFlQoUs9LBmvlCjL3U2FI+dwJ2wbiV3viKuh20yXLm/Yyex6TlOnICcrqWieQ7F5nMKphB96FkpeYQZa1DecQA2xshbqJp7w8uf6X+eBOsrHVdPOJr+/4c47RELrKaFaGyLzXiwU7acVRvkRvXq/Bj1dCb3Vf8GT0K2DjHVux3aitzxvs7J2RjrLBzipAv2l8qk8gjeK1Z1CJ2mhm2yiNf6MRBor5w4dUaEPlpFnn6JCwXIywk0i154LV3jNMoXSyr5/Btoj1go/OGLFjuFQaitPbYhhface1raAzAdqPH3wwPd8OWAaff5GO+o7SiTukgVeSg=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB4342.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(346002)(39860400002)(376002)(366004)(396003)(136003)(66574015)(2906002)(186003)(41300700001)(31686004)(6666004)(83380400001)(36756003)(5660300002)(8676002)(31696002)(8936002)(6512007)(6486002)(66946007)(66556008)(316002)(66476007)(26005)(53546011)(6506007)(450100002)(2616005)(478600001)(38100700002)(4326008)(86362001)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eXNTVFNETGtpRXkvK1pZRFY1MXFZZmpSOVZMdFdwcW5ub3ZPb2NVM2xsbXB1?=
- =?utf-8?B?bUdROTR4TWRBQlkweXRtMlRBd0pJemEweXg3WENiRFF6WnBQNVpjWVBFRFNr?=
- =?utf-8?B?R3UzYmpzWVB2Z0x0eFR4cXArU05wcThRcE1WNEJUUmdYL1BJc0pTZmkvUUZV?=
- =?utf-8?B?UEJ6ZXArbHducm5yYWdlK1JOdnVnTWMraEhkUUlIaDRUak1RT0NIVmFCdC9T?=
- =?utf-8?B?akNQYnYvaWVDMlA4NWRkbllMSldBNDVUSHNaNUF6YjVCbGk5L1EvQzR2OGJu?=
- =?utf-8?B?NFgrMU9DVGovQXNUSXFHRmZFQU5SdTBBeTVWKzY5bUl5U08xN1BlelFnZS9m?=
- =?utf-8?B?bDFoQThFcWZDVlhzUWxQazJHZEFtM1NDcWFKKy9jOWFkVll5aXhRUG9xeE5U?=
- =?utf-8?B?VzBjdkVKRC94UU5wZGlXOWdWdWdkK2pEbVpGU0xQdUFtVkJES0RjTFVaMnFC?=
- =?utf-8?B?STBGTzdSU004bS9EdXFteVpxRUhsTUJQejlBYlhyYko1dTZ1VTRXVFVySnli?=
- =?utf-8?B?SXB1NUVnSDc5THZ2MFZkWXJvTzducFZsWjFLUzgxOExkdk1mdWdDRGQyUGRK?=
- =?utf-8?B?M3pnRHRsMHJHYWExQXo3cEUyU1pPYmhRV0w1NVBpWi9sRXlVUk5mcnB6emJ4?=
- =?utf-8?B?bXliTEVkZkhmaGE2RW5oYUNMUkt5TzJ6Ymlkb3NKa242aWpqVW02bTBSN2hv?=
- =?utf-8?B?KzhuVkxPZDhLWEhhYzEvSlNabGZRNVFaV2hzSmZhb3RnclFENHVrOEJmb1Er?=
- =?utf-8?B?TnV4U291VHVGY2JGUm5OMXU2cTJ6NU1qMXRMcmhHZDhOdkRzMTc5WFo4UHFY?=
- =?utf-8?B?WnFIMFdwMTdKcnorSGtQMVgzZWJGTXhmMkN2UVFNckxlRFFXVVVvMTd5b0ph?=
- =?utf-8?B?elY0VXQ1UUt5N0t4cWVUcTd5TDFMcTB6Q2JTbnlWYWlyenZiejVJcVZYZG0w?=
- =?utf-8?B?UlJpckZMTVRobnB6R3JBNU01clg3NXJGY1NnKzFTWWNRaytGNXNzTmNHZy9X?=
- =?utf-8?B?dlJWTytIMDdNNmpwN0dwVHQ0TmR5Um5uNlpwTXVGWitXeXhlRi9XU2lkcWhr?=
- =?utf-8?B?WElvNnl1RExadHlHVVpXWVdxOHU3UGZQZVo2UlErQWJoOXh2MjJMVnhxTEd6?=
- =?utf-8?B?ZTUyM0VwQUpOcXdtZHMxN0E3MHQ3VmJDVGFOSjRUK2d6VDZoYkVibWhtMkFO?=
- =?utf-8?B?a2s0Y0NNTlNsMGh5bjgwRm5SenhYeE4rSyt4cUx5UWtDdUpHZ0xxOHV6WDJn?=
- =?utf-8?B?ZUtScWN5enJ0aThQditidzV4RDJYL0creU0xVFpia21FY3Z3NXBSeGpsb3Yw?=
- =?utf-8?B?NlVhdlh1Qkl1Q1ZiTzRLSWM0VlpUS1F3SDZMUFYxRzRMZitaOHZ2cmszOW4v?=
- =?utf-8?B?Q2Y5NTZ1ZHl4eEJ5ZGh0TkZubDhZYUpQWUZPV050U2pFSm1Wc3V4RWVqbk96?=
- =?utf-8?B?MzhTR1g0VlBTZk9BSjIva044TDQwMzd4cHo4NVFqYjhiNGdnSmR0NUlyQjR5?=
- =?utf-8?B?bkcxM1d1YjkxN2lnWGdEUkZKSFlEcURmOXdIZHZONXdTNlBRWXl5b0tWS2Jk?=
- =?utf-8?B?a2lTRU9zKzM1QkV5N3hPeVNQejVJNnNyUlpsUVB5alBzdHpyWTd0bVowWUlK?=
- =?utf-8?B?Z1VvQm8xd1laTjRIc2Y1ZlJINVpUZDNyNzc0eVFWWDU0cTJsNk9IS3NSMmVu?=
- =?utf-8?B?bGZma2R6OWExVi9YcktGblNOZ0VISThRU0NPbHJ2d01Ia0JqRkxqdktBVXBS?=
- =?utf-8?B?Vi91S21SOVZFKy9XK0JHR0dDclJFNUxCOVlzaFZJUUdROUNERWczbzRXbU1F?=
- =?utf-8?B?eW0vZXdSWUJlRk5LSnZvZG1BeXBjeFhHOHF5U0ZSQ3hYVjdlTWlicnJkaGlh?=
- =?utf-8?B?ZjI5STYwNUVwcEQzdXBXUDJlMUpNWFFKdG93d3hXdy84U25wMFkxMS9KZnN3?=
- =?utf-8?B?cVRHT3ZnbGtGMEtyOGhvQS83ZmpsZnFoMldLbVlwVjJOSXZFZjdpekpqbXV0?=
- =?utf-8?B?Q2hvN0IvZDNwWEtuMldobjRpOTFkcG1pRTI3RlRDb2M3MXhkK3Qxa1lSeHhS?=
- =?utf-8?B?TmpGYTRjcmRGbkt2V1FaVm52TURUTVRJQVVUeW1aWUhHQVNpNVE0czlKSlFh?=
- =?utf-8?Q?39aF4EIDPLBwSVnbw9T65Wwc2?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0ae86521-80d3-4dff-0361-08da60cbdfe7
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4342.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2022 10:23:18.0258 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CrhwhFc1sHmSBUd0EsvktPk2eZ3fVxMGpSTX6uUJP+29IsB11WwxdulPO1+zINDRF9RuYhg75J/iPWMe0PpIlQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4415
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v8 01/15] mm: rename is_pinnable_pages to
+ is_longterm_pinnable_pages
+To: Alex Sierra <alex.sierra@amd.com>, jgg@nvidia.com
+References: <20220707190349.9778-1-alex.sierra@amd.com>
+ <20220707190349.9778-2-alex.sierra@amd.com>
+From: David Hildenbrand <david@redhat.com>
+Organization: Red Hat
+In-Reply-To: <20220707190349.9778-2-alex.sierra@amd.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=david@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Fri, 08 Jul 2022 15:05:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,129 +92,33 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com
+Cc: rcampbell@nvidia.com, willy@infradead.org, Felix.Kuehling@amd.com,
+ apopple@nvidia.com, amd-gfx@lists.freedesktop.org, linux-xfs@vger.kernel.org,
+ linux-mm@kvack.org, jglisse@redhat.com, dri-devel@lists.freedesktop.org,
+ akpm@linux-foundation.org, linux-ext4@vger.kernel.org, hch@lst.de
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On 07.07.22 21:03, Alex Sierra wrote:
+> is_pinnable_page() and folio_is_pinnable() were renamed to
+> is_longterm_pinnable_page() and folio_is_longterm_pinnable()
+> respectively. These functions are used in the FOLL_LONGTERM flag
+> context.
+> 
+> Signed-off-by: Alex Sierra <alex.sierra@amd.com>
+> ---
+>  include/linux/mm.h | 8 ++++----
+>  mm/gup.c           | 4 ++--
+>  mm/gup_test.c      | 2 +-
+>  mm/hugetlb.c       | 2 +-
+>  4 files changed, 8 insertions(+), 8 deletions(-)
+> 
+
+Reviewed-by: David Hildenbrand <david@redhat.com>
 
 
-On 7/8/2022 3:03 PM, Christian König wrote:
-> Am 08.07.22 um 11:30 schrieb Arunpravin Paneer Selvam:
->> This reverts commit 708d19d9f362766147cab79eccae60912c6d3068.
->>
->> This is part of a revert of the following commits:
->> commit 708d19d9f362 ("drm/amdgpu: move internal vram_mgr function 
->> into the C file")
->> commit 5e3f1e7729ec ("drm/amdgpu: fix start calculation in 
->> amdgpu_vram_mgr_new")
->> commit c9cad937c0c5 ("drm/amdgpu: add drm buddy support to amdgpu")
->>
->> [WHY]
->> Few users reported garbaged graphics as soon as x starts,
->> reverting until this can be resolved.
->
-> Please squash all three patches into a single one. Apart from that 
-> looks good to me.
-
-I sent a new patch squashing all the three patches into a single one.
-
+-- 
 Thanks,
-Arun
->
-> Christian.
->
->>
->> Signed-off-by: Arunpravin Paneer Selvam 
->> <Arunpravin.PaneerSelvam@amd.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 29 --------------------
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h | 27 ++++++++++++++++++
->>   2 files changed, 27 insertions(+), 29 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c 
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
->> index 7a5e8a7b4a1b..51d9d3a4456c 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
->> @@ -50,35 +50,6 @@ to_amdgpu_device(struct amdgpu_vram_mgr *mgr)
->>       return container_of(mgr, struct amdgpu_device, mman.vram_mgr);
->>   }
->>   -static inline struct drm_buddy_block *
->> -amdgpu_vram_mgr_first_block(struct list_head *list)
->> -{
->> -    return list_first_entry_or_null(list, struct drm_buddy_block, 
->> link);
->> -}
->> -
->> -static inline bool amdgpu_is_vram_mgr_blocks_contiguous(struct 
->> list_head *head)
->> -{
->> -    struct drm_buddy_block *block;
->> -    u64 start, size;
->> -
->> -    block = amdgpu_vram_mgr_first_block(head);
->> -    if (!block)
->> -        return false;
->> -
->> -    while (head != block->link.next) {
->> -        start = amdgpu_vram_mgr_block_start(block);
->> -        size = amdgpu_vram_mgr_block_size(block);
->> -
->> -        block = list_entry(block->link.next, struct drm_buddy_block, 
->> link);
->> -        if (start + size != amdgpu_vram_mgr_block_start(block))
->> -            return false;
->> -    }
->> -
->> -    return true;
->> -}
->> -
->> -
->> -
->>   /**
->>    * DOC: mem_info_vram_total
->>    *
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h 
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h
->> index 4b267bf1c5db..9a2db87186c7 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h
->> @@ -53,6 +53,33 @@ static inline u64 
->> amdgpu_vram_mgr_block_size(struct drm_buddy_block *block)
->>       return PAGE_SIZE << drm_buddy_block_order(block);
->>   }
->>   +static inline struct drm_buddy_block *
->> +amdgpu_vram_mgr_first_block(struct list_head *list)
->> +{
->> +    return list_first_entry_or_null(list, struct drm_buddy_block, 
->> link);
->> +}
->> +
->> +static inline bool amdgpu_is_vram_mgr_blocks_contiguous(struct 
->> list_head *head)
->> +{
->> +    struct drm_buddy_block *block;
->> +    u64 start, size;
->> +
->> +    block = amdgpu_vram_mgr_first_block(head);
->> +    if (!block)
->> +        return false;
->> +
->> +    while (head != block->link.next) {
->> +        start = amdgpu_vram_mgr_block_start(block);
->> +        size = amdgpu_vram_mgr_block_size(block);
->> +
->> +        block = list_entry(block->link.next, struct drm_buddy_block, 
->> link);
->> +        if (start + size != amdgpu_vram_mgr_block_start(block))
->> +            return false;
->> +    }
->> +
->> +    return true;
->> +}
->> +
->>   static inline struct amdgpu_vram_mgr_resource *
->>   to_amdgpu_vram_mgr_resource(struct ttm_resource *res)
->>   {
->
+
+David / dhildenb
 
