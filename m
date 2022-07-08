@@ -2,90 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C8B156B718
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Jul 2022 12:17:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55AFF56BC02
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Jul 2022 17:05:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC3C910E02B;
-	Fri,  8 Jul 2022 10:17:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B54310E4A1;
+	Fri,  8 Jul 2022 15:05:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam02on2088.outbound.protection.outlook.com [40.107.95.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B98D910E02F
- for <amd-gfx@lists.freedesktop.org>; Fri,  8 Jul 2022 10:17:46 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YxWHUbZ+qBB5AsDBq5uOhFx4tC1X2kxlImQZSevQ2R32ADyyhSprh0MEESFESCuDpF1/KRQbSQUuJe130P2PxqkVyrJD1NIkHe1h6uf3tHDdVp8vmX1V9DtaFO5Wee8XXK5B/FMZ17BNMpJ9IBHwdy4FaEP09kqk8FWS1YqQKo6YmwF1Xn9ZbGeL7UJ13DtJI1iu/1lS19e148ERUxzdPAp+UznoJJZp1zIXlE95b2CmTrP/cVgm9JELnPY1cT6Y0+zjG7d1+YCeab5tisV3hO85NFaIV9drhG5J7QC4qXLSoO7xMvqUZUNNQAOhZ6K+kdyxPIHSxXUrWXYA3WU2tw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mZ2OixqSWGH69q2BFSKLP557CGWLFxb+QzFRkZ4TykE=;
- b=HG1eu0xdSTFs5pDNUDnljWnvh+Xg1qfj720WlTqTm//387cq2fUN3Wkhrzpha66J88DjDiuI+4uo5TeYlBOwFhdmI8zumxC+jr/Nj8Ts5YjNLe6nh6cE8n0ypqzVzraivWXz3lNYO9PSzWe9GRKwoaF6k3siUSUfnF95LDfQyIXC1i9v8LrANJ96c/zG0CqJU6SxRuDnneDqU+pSiNBOZaNnNsfb0R/naTdVJhVhrHu9y+xMvMbq81doDgvZiNA7+n7k9SiuBsF+BNfN8tYHfTQyPg+2nQ1QBUUMh2VMMQDHajUVVMsrl+CpZuowmQMUgtaseu4hTJu9SnNj2aNkgw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mZ2OixqSWGH69q2BFSKLP557CGWLFxb+QzFRkZ4TykE=;
- b=4iEmq+2M1Uabq+Zr0KhpFTfnfEV0Gd8NeCDPolK8OZHAUbTPixwtv8zyUTAo3xZ89W30CVYs10V2dePIvnD0C759M0pHXXJpyZnqQD0u38wdqEGcMx5eCUf9nmE5WRjg53/n3JgotmrOs+a/BbLEdIqoxwQNFHFCTiXgnSbMT+8=
-Received: from BN9PR03CA0429.namprd03.prod.outlook.com (2603:10b6:408:113::14)
- by DS0PR12MB6557.namprd12.prod.outlook.com (2603:10b6:8:d3::5) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5417.16; Fri, 8 Jul 2022 10:17:42 +0000
-Received: from BN8NAM11FT032.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:113:cafe::7) by BN9PR03CA0429.outlook.office365.com
- (2603:10b6:408:113::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.15 via Frontend
- Transport; Fri, 8 Jul 2022 10:17:42 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT032.mail.protection.outlook.com (10.13.177.88) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5417.15 via Frontend Transport; Fri, 8 Jul 2022 10:17:41 +0000
-Received: from yifan.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 8 Jul
- 2022 05:17:39 -0500
-From: Yifan Zhang <yifan1.zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: correct psp version number
-Date: Fri, 8 Jul 2022 18:10:49 +0800
-Message-ID: <20220708101049.550317-1-yifan1.zhang@amd.com>
-X-Mailer: git-send-email 2.35.1
+X-Greylist: delayed 1189 seconds by postgrey-1.36 at gabe;
+ Fri, 08 Jul 2022 10:31:24 UTC
+Received: from ppsw-42.srv.uis.cam.ac.uk (ppsw-42.srv.uis.cam.ac.uk
+ [131.111.8.142])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EF9C10E313
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Jul 2022 10:31:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=cam.ac.uk; 
+ s=20210802.ppsw;
+ h=Content-Type:MIME-Version:Message-ID:Subject:To:Reply-To:
+ From:Date:Sender:Cc:Content-Transfer-Encoding:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=rZU2Bk0qaxdfqk0JB7OO/w6IBLLR9w429lO5ZbL6V1E=; b=l8lrYPl3AQzuGUmAed7hvVCmJA
+ WqtTFnP4PfB8zdoNcTEI5HY3rzu6H98oNUPG58S6iFu8oU2/48Wns+R4wYgBymqJVwEsaZrOtoiOA
+ POfZIFmaRE8670hv9BPL1AQ+IWIA1n5Wlp6z2mnmmiP7Yf6vIYKguNx57ts6OW2aoW8Q=;
+X-Cam-AntiVirus: no malware found
+X-Cam-ScannerInfo: https://help.uis.cam.ac.uk/email-scanner-virus
+Received: from hades.srcf.societies.cam.ac.uk ([131.111.179.67]:52262)
+ by ppsw-42.srv.uis.cam.ac.uk (ppsw.cam.ac.uk [131.111.8.138]:25)
+ with esmtps (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+ id 1o9kxN-000mK0-EA (Exim 4.96) for amd-gfx@lists.freedesktop.org
+ (return-path <mjr19@cam.ac.uk>); Fri, 08 Jul 2022 11:11:29 +0100
+Received: from [192.168.1.67] (host31-54-145-234.range31-54.btcentralplus.com
+ [31.54.145.234]) (Authenticated sender: mjr19)
+ by hades.srcf.societies.cam.ac.uk (Postfix) with ESMTPSA id 1F1001FA84
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Jul 2022 11:11:29 +0100 (BST)
+Date: Fri, 8 Jul 2022 11:11:31 +0100 (BST)
+From: mjr19@cam.ac.uk
+To: amd-gfx@lists.freedesktop.org
+Subject: Radeon Evergreen/NI, power modes & DL-DVI
+Message-ID: <625b6eec-6ecb-cd97-3061-408ebfb7539c@cam.ac.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4c2222fe-e21d-4b20-f3c5-08da60cb17d0
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6557:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xVis1rI8gbaBJmQZcV7tBXxJOsZYTclwihmXXMTnYZSFsQUvp6wFJSwr5UHAMvno41sl2gesCpcMz0JCGJIjQGSa/JkFB7RE4Dgyj2cX+PKKmuoSxLsqUhMVSyzhUPWGF1a97qOYRLGiRzhd8CdKDDsjUDQKhLSnVi0HW0O3hizfbjETzMIzlitwL15yaZaHr9yMhxrs2Rh7LqYeMFIJvXTw2CW8k+/AsF9JxnR3XUJzWdC3GsKn98iQePK6Vl+A4ccmVack2o/hRoj7Y2+9WniKCnVX7nUG23sE6HrbdZq2+TFy9+75Mfkw3zHoT0c5I70beVDskn4JRXAySzu+12thxT6SuHjbY1nSBQw9Zkvu7j80o+mcVNq5F+/eBAuBejRuz1cyi4ek3zIW5KRh4flq+r1G5E/maFWrZ8UPuNNJ9QQnrz0ExRShJDV39psXV9dm1RalnW7YS1nJkQr5TJWR9LLoUf2he4b4JluibsTy/gZd65K6paf9ExVUMHCmIG523AlBmgHTY+OX6o1n+BA6/SDmIllLRa4M/wPEkFm4qtvufsbqufb9quF7BNciiMnsy6xapeffTZtKL+MFmEzZ9C30ljt2DUNa8jPrhAXB3+nADb+db7RvwVE3om8NmIAccT2dIbyB5a9GDw6EVlx1rowYorYYb7Eau2w0Rm/q7EobvHPSatc+9V55XZlA5DshVp0i1NpNgEm0/PjmxkQfzhEGAbSRX41EzA6Cybo9OnuoyJHFaNJlKtvXEmwjqpfz+cxt+8Q041aX9j9Mwzrr1nUDjMt33V4nYq+ymCKjlgs4qGST5/g+W0+yFXjfcF8ZGF0xwI/7T8lkzwGmLT1l99+3lTeTCP2wEBfo3wT6VHA4mG369Z+XOtIOtlUd
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(39860400002)(396003)(136003)(346002)(376002)(40470700004)(46966006)(36840700001)(82740400003)(426003)(6916009)(82310400005)(356005)(336012)(316002)(54906003)(81166007)(8936002)(83380400001)(70206006)(36860700001)(47076005)(5660300002)(4326008)(40460700003)(26005)(86362001)(70586007)(8676002)(186003)(16526019)(1076003)(34020700004)(40480700001)(7696005)(478600001)(6666004)(2616005)(2906002)(41300700001)(36756003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2022 10:17:41.9919 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4c2222fe-e21d-4b20-f3c5-08da60cb17d0
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT032.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6557
+Content-Type: text/plain; charset=US-ASCII
+X-Mailman-Approved-At: Fri, 08 Jul 2022 15:05:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,71 +55,64 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, Tim.Huang@amd.com, Ray.Huang@amd.com,
- Yifan Zhang <yifan1.zhang@amd.com>
+Reply-To: mjr19@cam.ac.uk
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-it should be 13.0.4 rather than 13.0.5
+Most Radeon Evergreen and Northern Island cards support power-saving modes 
+with Linux and XOrg well, and have done for years. But if a dual link DVI 
+monitor is in use (e.g. a 2560x1440 or 2560x1600 screen), the card will 
+refuse to transition out of its high power mode while the display is 
+active. I believe that this is because transitions are not supported when 
+multiple displays are active, and dual link DVI is counted as being two 
+displays.
 
-Fixes: a9cf7e4bd3f4b896c38848106ab3fb3f2c2dfe4b
+If so, this seems wrong as the main issue with multiple displays is the 
+difficulty of arranging to change the mclk when neither is mid-way through 
+a scan line. With DL-DVI the two links are perfectly synchronised, and so 
+this issue does not arise.
 
-Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 1 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c       | 2 +-
- drivers/gpu/drm/amd/amdgpu/psp_v13_0.c        | 6 +++---
- 3 files changed, 4 insertions(+), 5 deletions(-)
+Unsurprisingly the cards do enter their low-power state when their output 
+is off (e.g. "xset dpms force off"), but more surprisingly on awakening 
+they remain in their low power state. The slightest provocation then 
+causes a permanent transition to the high power state, showing that 
+transitions with the display active work, and are invisible.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-index 37234c2998d7..74060de9cc19 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-@@ -1631,7 +1631,6 @@ static int amdgpu_discovery_set_psp_ip_blocks(struct amdgpu_device *adev)
- 	case IP_VERSION(13, 0, 2):
- 	case IP_VERSION(13, 0, 3):
- 	case IP_VERSION(13, 0, 4):
--	case IP_VERSION(13, 0, 5):
- 	case IP_VERSION(13, 0, 7):
- 	case IP_VERSION(13, 0, 8):
- 		amdgpu_device_ip_block_add(adev, &psp_v13_0_ip_block);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-index e9411c28d88b..520609d12d32 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-@@ -135,7 +135,7 @@ static int psp_early_init(void *handle)
- 		break;
- 	case IP_VERSION(13, 0, 1):
- 	case IP_VERSION(13, 0, 3):
--	case IP_VERSION(13, 0, 5):
-+	case IP_VERSION(13, 0, 4):
- 	case IP_VERSION(13, 0, 8):
- 		psp_v13_0_set_psp_funcs(psp);
- 		psp->autoload_supported = true;
-diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c b/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
-index 30386d34d0d6..56e2fd5d4a4b 100644
---- a/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
-@@ -34,8 +34,8 @@ MODULE_FIRMWARE("amdgpu/aldebaran_ta.bin");
- MODULE_FIRMWARE("amdgpu/aldebaran_cap.bin");
- MODULE_FIRMWARE("amdgpu/yellow_carp_toc.bin");
- MODULE_FIRMWARE("amdgpu/yellow_carp_ta.bin");
--MODULE_FIRMWARE("amdgpu/psp_13_0_5_toc.bin");
--MODULE_FIRMWARE("amdgpu/psp_13_0_5_ta.bin");
-+MODULE_FIRMWARE("amdgpu/psp_13_0_4_toc.bin");
-+MODULE_FIRMWARE("amdgpu/psp_13_0_4_ta.bin");
- MODULE_FIRMWARE("amdgpu/psp_13_0_8_toc.bin");
- MODULE_FIRMWARE("amdgpu/psp_13_0_8_ta.bin");
- MODULE_FIRMWARE("amdgpu/psp_13_0_0_sos.bin");
-@@ -93,7 +93,7 @@ static int psp_v13_0_init_microcode(struct psp_context *psp)
- 		break;
- 	case IP_VERSION(13, 0, 1):
- 	case IP_VERSION(13, 0, 3):
--	case IP_VERSION(13, 0, 5):
-+	case IP_VERSION(13, 0, 4):
- 	case IP_VERSION(13, 0, 8):
- 		err = psp_init_toc_microcode(psp, chip_name);
- 		if (err)
+One can force them to run in their low power state by
+
+echo low > /sys/class/drm/card0/device/power_dpm_force_performance_level
+
+when they are already in the low power state. On many cards this provides 
+adequate performance for most office-type applications, but it is hopeless 
+at supporting any form of video.
+
+So would it be possible to permit the high power to low power transition 
+even when a DL-DVI display is active? (I believe that the AMDGPU driver 
+gained the ability to do power level transitions with multiple 
+synchonrised displays back in 2019 with amdgpu.dcfeaturemask=2 but I am 
+unaware that the change was made to the older radeon driver, and DL-DVI is 
+hardly two displays anyway.)
+
+(Why do I care? I am responsible for several dozen machines with these 
+cards, as, if one wants a cheap, passively-cooled card with good support 
+from the free XOrg drivers, they are still quite good. I believe that the 
+R5 230 is still in production too. The sort of office applications these 
+machines display would allow the cards to stay in their low-power state 
+most of the time, but not quite all of it. In the past most of our 
+machines tended to have a single 1920x1080 monitor, so this did not 
+matter, but now 2.5k monitors are becoming more common. AMD's habit of 
+launching new CPUs some months before the corresponding APUs means that 
+our need of simple passively-cooled cards is still quite current, as our 
+programs do like the latest CPUs.)
+
+Issue present on X.Org 1.21.1.3 radeon module 19.1.0 on Ubuntu 22.04 
+x86_64.
+
+Regards,
+
+Michael
+
 -- 
-2.35.1
+Dr MJ Rutter, TCM, Cavendish Lab, JJ Thomson Av, Cambridge. CB3 0HE
+Email: mjr19@cam.ac.uk  Ph: 01223 337386  https://www.mjr19.org.uk/
 
