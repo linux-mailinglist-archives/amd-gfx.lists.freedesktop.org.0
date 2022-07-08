@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BACA56BE38
-	for <lists+amd-gfx@lfdr.de>; Fri,  8 Jul 2022 18:36:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F61956BE3B
+	for <lists+amd-gfx@lfdr.de>; Fri,  8 Jul 2022 18:36:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E10C010E203;
-	Fri,  8 Jul 2022 16:36:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61C4C10E25E;
+	Fri,  8 Jul 2022 16:36:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1anam02on2080.outbound.protection.outlook.com [40.107.96.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC29610E203
- for <amd-gfx@lists.freedesktop.org>; Fri,  8 Jul 2022 16:36:41 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90C8B10E228
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 Jul 2022 16:36:44 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aWQ39K4M5tlW3on6zjGIL4u5MxiUWFanzUp/qRkXx2Xrr+Mhrxo6QZDkPnb6lkSniCwYT8XQPWCylLsUqLffZxSrAgEDORXqX7UFO1pv2hC/Ky8WchBO/RZAFn8KCf6+xVlbBHt8Ax52zOoV4TEGlDv1vmtd/QDv2QZrjXDxOo1wNe+XR7U6v79gaSx7+HZ3VY0E/dj0F7+Kadg3/W8Z15KQ99VI59bthR1ek19PLA25F7t8+2RMBUxGn2oXM4jlEy7ZI0rvrywq9ZixTb57QpcbzeYWuWWesklxF01oXFE+tMhUi79b0Dexr/qY1aCnpDcR/1dANhuTG7c8uBEvTA==
+ b=Vw86qgEZLeIvS59SOQgGQZcp6gT5Zop1CkHK1W1eqLMbnic7pqQH8wFQcCR8TBZi/9ZmdKaaonU10329eceWNmVQcVIau9l0T45iomLQnGlsnfr9AXHjKt4JS2jPnubN+QFxnFZUWET3vkjqQxVs0rX/ojv0M6+1RuoVu/1pauakdc9tVJ0cYgig8SzF9OtD8Z5H+AKQ4dpNws81YvCjjTPNWYz/CqA9tQc3sY4aMhgKYpyNqzPorNiYvnHmfh4lmjmnj8Q72udWltI2rwPovbeLEorWRVgu738OHVQiezhfOXDG+7oQ5qDcBp0M7AxOwTnl64c6ek69wXX0uxBU6w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ELur1XU1I/P3FU7XNj2QVcTk/kcqai+KoG+3XfbRsyE=;
- b=Uc+CNnAvevdFt96bmeOmJWoCP2uCgQ9KLKiJxIT55xXYLtTklwgcnfPT8SOArFJGlzPt8+wtKjoJGjBeaTMtvmgzH6xRjsHbF5q1qXu5MD1ahsQzLpowLWtZnFkTKHBfQsF0qYjQsrvoqprMbx1n2DYc5YZyt+w2/rlYgSyKi2jTV5Td3pVCNGCShNSKyeORbxBtApQPnKDn4+9Z/U7K+q6Ryiiw1dGbAdRK721jvfwPc9eESKqb8V7DP+d0yV+Iash0Ohlrw5vOOIu61pMdy+PXMXWuVsqwxcK6YT9GSeqxVCYfuJDEfkRIZJNIAvk9Wyi3V5aJFyZmUfPcbzlkaQ==
+ bh=mN5l++sjgd5CCjvcr51ex5xppQ+RAH6YAAiam4Xmy8Y=;
+ b=C79JxPiO5O4vKagLpsVaX4GwPcjY7q9nKodyKjP2p43TuKkCv44Jpi+QpihMgScABRIsmx/7quBTN/CTGYzpeYk8pum5u2cMK5i0AT5RcUqM/AfL3oSEdrd4hbtqN6x1JugCG480Zcieu31Znhz6Fd6XXYlWHyL28EOTpt8hVzTLH5sa79/AdECp4C9+wh9oQFwuJs5PYVqmm8O04DKgAo9em4o1BzCDPUxGDn2kRyNCYwo06CNfcCF51fNRKZpYbxEGEWbKEA4FeIuHeMf0qdGDvnap0DbZEMyPiKUuDBR+znREByWLwSwU/IPt18sGfwtOrfWNaWvyXAKrTTyEkw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ELur1XU1I/P3FU7XNj2QVcTk/kcqai+KoG+3XfbRsyE=;
- b=uz5Np6L1lNuqoMlnXlK2eAAtrNW5zrgZjh1TE0yyuwrimWq1kzM/1qpf/oMw4jAAZp48woWF9uNzpkiCTegqWSN/7EMfKQc++Xl9ECCuFK/l8YHdrrOHiReMmWShJOSCh00WD4zTiUPfs8+aL6ARYN3XrSdnZGoNdxJnW0u4Z+4=
-Received: from BN9PR03CA0910.namprd03.prod.outlook.com (2603:10b6:408:107::15)
- by BN8PR12MB3107.namprd12.prod.outlook.com (2603:10b6:408:46::15)
+ bh=mN5l++sjgd5CCjvcr51ex5xppQ+RAH6YAAiam4Xmy8Y=;
+ b=L7ckDffz1Ds++LBfrRumFjbcT1jSVNiPCoEyPZK+7yZovkb25oTkwFG4h7WrKlsGhXRxOxqSCCE/n6+nHOYblv1xo+t7IFEexYyndQfb6+ZAk+DqiAk7IycsEyYqraYSCk/F5NqBgeE/A4E11Tm+s7hIx3YgofEgamlVDvjfiTw=
+Received: from BN9PR03CA0915.namprd03.prod.outlook.com (2603:10b6:408:107::20)
+ by MN0PR12MB6078.namprd12.prod.outlook.com (2603:10b6:208:3ca::6)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.16; Fri, 8 Jul
- 2022 16:36:39 +0000
+ 2022 16:36:41 +0000
 Received: from BN8NAM11FT053.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:107:cafe::11) by BN9PR03CA0910.outlook.office365.com
- (2603:10b6:408:107::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.17 via Frontend
- Transport; Fri, 8 Jul 2022 16:36:39 +0000
+ (2603:10b6:408:107:cafe::4d) by BN9PR03CA0915.outlook.office365.com
+ (2603:10b6:408:107::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.20 via Frontend
+ Transport; Fri, 8 Jul 2022 16:36:41 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN8NAM11FT053.mail.protection.outlook.com (10.13.177.209) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5417.15 via Frontend Transport; Fri, 8 Jul 2022 16:36:39 +0000
+ 15.20.5417.15 via Frontend Transport; Fri, 8 Jul 2022 16:36:41 +0000
 Received: from ryzen32.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 8 Jul
- 2022 11:36:32 -0500
+ 2022 11:36:36 -0500
 From: Solomon Chiu <solomon.chiu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 07/21] drm/amd/display: Disable PSRSU when DSC enabled on the
- specific sink
-Date: Sat, 9 Jul 2022 00:35:15 +0800
-Message-ID: <20220708163529.3534276-8-solomon.chiu@amd.com>
+Subject: [PATCH 08/21] drm/amd/display: Fix black screen when disabling
+ Freesync in OSD
+Date: Sat, 9 Jul 2022 00:35:16 +0800
+Message-ID: <20220708163529.3534276-9-solomon.chiu@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220708163529.3534276-1-solomon.chiu@amd.com>
 References: <20220708163529.3534276-1-solomon.chiu@amd.com>
@@ -69,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 425f17bd-ebcf-4bf7-baaf-08da61000850
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3107:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1ba9b7af-b6e2-4043-5c51-08da61000959
+X-MS-TrafficTypeDiagnostic: MN0PR12MB6078:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: dGI54JVCnEbLBKZgU3ZJNr4oEWTTfKrkt/hmttkvggKR1LSWtZ/4vscctnYEkuKh0CKoG+uvB0oUl2O84guajXgU+HfMtXyyXtxOuGc3z7+U5eCkigZHFOZB/pj59J8WPhvUg5kAASTkiZwuJwxljny5OkTresa4u0vhW2XL1Y3eZUH0i53H6+O/hwOSrFZLPX8h7gSHAe/M7jGJYejA6pm7bKlo9RaWZZ/DSSqcpezdyDZUXKV1dRacvUR2Xd3+EA6nkxYSq0AGTKoJzil3Q3VKt8BAOYeYKLQyYo1yzdiMXaDWqrbcy8kdUNO7HYVcDfYcgy/BrmKenAm/ZwU71rMwLhF2td4m++h9EYN/XEDNRNW6r20Rsk2A6yMTydURznqr2r0Qpm1QrzkxacX8VuR9MTDgRxpHUtvdo6/mPLrcoktFPbNwnu1RKJI3fPGbTaFyKFJIQf0KoS5/Tw4sWBD3w2akbIEvHNztQFAAbVxvNb+93aeSK7Y6N3p7TC4BJgr6j5UZzFClG+92vDJSH112OTwtMttUqUaxLnwwWG/qCr5JbxhHvu9nyXRU4EMgwyv9iBi+h0c4O4+XgE3po6UCoYR/7XUl61hgG2ynZbUm5VogwwLrghRA1Jpzob0y47tDesO3ej1FEgbEAvHOHrwwNNvv4CnNz/HGux5hfkF227aJ8eX45Q+DvPmSISJepdgUDMRY1TpKTe0ag1j0WwXgtb1SC5ALioSbarJJ6b8+wexjCHkSBbk8JsjEA7G/DCfonebl3F9UQLpjuJaZTxG5btAP0NMu7SpNixsgNSBzAslQI7qXF7+7tR0c/IofzYZ4F6WfUtG2mxWHrGiAJeYO/g+lJRGGBAM0krtRYc12oAf0chOlJ2flqDJDPX+o
+X-Microsoft-Antispam-Message-Info: F67F4K47TrN3i1H9d7SqnPQK1npsTSnq9nZ4pEdkrjST9LdqxtAjWdocdPvD4sTMVMYBcPVaA0/f8zsiEUvRfffp2EywELrYQo1NILyYSRkHkvbwDCZxBGC9xPbQrEDcbOqoXfmSrGqHjjZBE4/+r+R37s85Zrzxwh2YhlAQrBHzYkXLuNeTJBDCO0EII0//DCThpRsF5qooP8xdEinMWfORdocRU4dTqLo6507lBy3oSsfAcg6TGHrJ1iCfRVQbebZRNKw2shc+3tjSw5hvjGedEYOVTC8zCEwebCLqjrbs13+nXl7yvRrfEmF/2PA9iKmQiGIKdzfp+V6JTWSL0QMV9latP0WjLxhJRIRxHwkDqyoPD7YM5G0pKfLIUyHJVCE0e2b5NEGiKdybNExIEufhnHSh/I77hTK+rsXDIo17SnFrxUHeSR+ivaUHf2ftScY7HvNI2IPkY0J6YRmeaOI1+mbMk2XfvDVMLEYqODXwjhbk36UxmdHW2Rcg/1L1Iy+hpzkcwnJOyOb2FVjVER/33kf4pLh9KUdFchLzOZzE34+P/FJtdUC45eaYF94B913V84/rby8eSWIa7iql2N8hYHtz2bZQ0iAeLY/a+cAdZ7iQGPZKg3WJVV3ee2etG7PEcwP/anYPlTra4YaKnWrxIKru3pWQCxhQUG3wFMVBTEXhnu8cMSPJKJqY1XtM7/IflTI73n/GK4b2HvtQ8GpC4dRWrvtaB4JYW98JCEo5+4C7ACwyGHAEKWCB+VZfN2cPLsNVcf7I2Cz78ndLY6igWy8QdcHeds/W6XSB3LPxayI55WRWl39Fz5csq+MXtZQeEb/e7aS9vF/Any04sbhD6ajWkzruZlkLuN5VxhNXO2lfooyM3ffTXApzySFQ
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(39860400002)(376002)(346002)(136003)(396003)(46966006)(40470700004)(36840700001)(81166007)(83380400001)(356005)(82740400003)(2906002)(186003)(34020700004)(1076003)(336012)(41300700001)(47076005)(36860700001)(36756003)(82310400005)(426003)(478600001)(8676002)(26005)(54906003)(40460700003)(8936002)(2616005)(4326008)(7696005)(70586007)(40480700001)(44832011)(70206006)(16526019)(6916009)(5660300002)(86362001)(316002)(6666004)(36900700001);
+ SFS:(13230016)(4636009)(136003)(396003)(39860400002)(346002)(376002)(40470700004)(36840700001)(46966006)(426003)(47076005)(186003)(16526019)(70586007)(70206006)(8676002)(36756003)(4326008)(26005)(1076003)(40480700001)(7696005)(54906003)(6916009)(2616005)(34020700004)(336012)(40460700003)(5660300002)(82310400005)(6666004)(86362001)(36860700001)(356005)(478600001)(316002)(44832011)(41300700001)(8936002)(82740400003)(81166007)(2906002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2022 16:36:39.3124 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 425f17bd-ebcf-4bf7-baaf-08da61000850
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2022 16:36:41.0467 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1ba9b7af-b6e2-4043-5c51-08da61000959
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT053.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3107
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6078
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,82 +100,52 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Anthony Koo <Anthony.Koo@amd.com>, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Robin Chen <po-tchen@amd.com>,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
- Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, Ilya Bakoulin <Ilya.Bakoulin@amd.com>,
+ Chris Park <Chris.Park@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
+ Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Robin Chen <po-tchen@amd.com>
+From: Ilya Bakoulin <Ilya.Bakoulin@amd.com>
 
 [Why]
-Some specific sink is not able to support PSRSU when DSC is turned on.
-For this case, fall-back to use PSR1.
+Black screen encountered when disabling Freesync through OSD on some
+displays.
 
-Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
+[How]
+Set the should_disable flag when new top pipe has no plane state to
+ensure that pipes get cleaned up.
+
+Reviewed-by: Chris Park <Chris.Park@amd.com>
 Acked-by: Solomon Chiu <solomon.chiu@amd.com>
-Signed-off-by: Robin Chen <po-tchen@amd.com>
+Signed-off-by: Ilya Bakoulin <Ilya.Bakoulin@amd.com>
 ---
- .../amd/display/modules/power/power_helpers.c | 33 ++++++++++---------
- 1 file changed, 17 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
-index bc239d38c3c7..235259d6c5a1 100644
---- a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
-+++ b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
-@@ -794,33 +794,34 @@ bool dmcu_load_iram(struct dmcu *dmcu,
-  */
- bool is_psr_su_specific_panel(struct dc_link *link)
- {
--	if (link->dpcd_caps.edp_rev >= DP_EDP_14) {
--		if (link->dpcd_caps.psr_info.psr_version >= DP_PSR2_WITH_Y_COORD_ET_SUPPORTED)
--			return true;
-+	bool isPSRSUSupported = false;
-+	struct dpcd_caps *dpcd_caps = &link->dpcd_caps;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index a448696ee8f2..6b37c653f45e 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -1085,6 +1085,16 @@ static void disable_dangling_plane(struct dc *dc, struct dc_state *context)
+ 				dc->current_state->stream_count != context->stream_count)
+ 			should_disable = true;
+ 
++		if (old_stream && !dc->current_state->res_ctx.pipe_ctx[i].top_pipe) {
++			struct pipe_ctx *old_pipe, *new_pipe;
 +
-+	if (dpcd_caps->edp_rev >= DP_EDP_14) {
-+		if (dpcd_caps->psr_info.psr_version >= DP_PSR2_WITH_Y_COORD_ET_SUPPORTED)
-+			isPSRSUSupported = true;
- 		/*
- 		 * Some panels will report PSR capabilities over additional DPCD bits.
- 		 * Such panels are approved despite reporting only PSR v3, as long as
- 		 * the additional bits are reported.
- 		 */
--		if (link->dpcd_caps.psr_info.psr_version < DP_PSR2_WITH_Y_COORD_IS_SUPPORTED)
--			return false;
--
--		if (link->dpcd_caps.sink_dev_id == DP_BRANCH_DEVICE_ID_001CF8) {
-+		if (dpcd_caps->sink_dev_id == DP_BRANCH_DEVICE_ID_001CF8) {
- 			/*
--			 * FIXME:
- 			 * This is the temporary workaround to disable PSRSU when system turned on
--			 * DSC function on the sepcific sink. Once the PSRSU + DSC is fixed, this
--			 * condition should be removed.
-+			 * DSC function on the sepcific sink.
- 			 */
--			if (link->dpcd_caps.dsc_caps.dsc_basic_caps.fields.dsc_support.DSC_SUPPORT)
--				return false;
--
--			if (link->dpcd_caps.psr_info.force_psrsu_cap == 0x1)
--				return true;
-+			if (dpcd_caps->psr_info.psr_version < DP_PSR2_WITH_Y_COORD_IS_SUPPORTED)
-+				isPSRSUSupported = false;
-+			else if (dpcd_caps->dsc_caps.dsc_basic_caps.fields.dsc_support.DSC_SUPPORT &&
-+				((dpcd_caps->sink_dev_id_str[1] == 0x08 && dpcd_caps->sink_dev_id_str[0] == 0x08) ||
-+				(dpcd_caps->sink_dev_id_str[1] == 0x08 && dpcd_caps->sink_dev_id_str[0] == 0x07)))
-+				isPSRSUSupported = false;
-+			else if (dpcd_caps->psr_info.force_psrsu_cap == 0x1)
-+				isPSRSUSupported = true;
- 		}
- 	}
- 
--	return false;
-+	return isPSRSUSupported;
- }
- 
- /**
++			old_pipe = &dc->current_state->res_ctx.pipe_ctx[i];
++			new_pipe = &context->res_ctx.pipe_ctx[i];
++
++			if (old_pipe->plane_state && !new_pipe->plane_state)
++				should_disable = true;
++		}
++
+ 		if (should_disable && old_stream) {
+ 			dc_rem_all_planes_for_stream(dc, old_stream, dangling_context);
+ 			disable_all_writeback_pipes_for_stream(dc, old_stream, dangling_context);
 -- 
 2.25.1
 
