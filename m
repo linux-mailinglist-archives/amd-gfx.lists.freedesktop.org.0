@@ -2,65 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B73756FEEB
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Jul 2022 12:32:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7911F5704C0
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Jul 2022 15:55:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 545638D7A2;
-	Mon, 11 Jul 2022 10:32:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C73F28E8F4;
+	Mon, 11 Jul 2022 13:55:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com
- [IPv6:2a00:1450:4864:20::533])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 769FA8D7A5
- for <amd-gfx@lists.freedesktop.org>; Mon, 11 Jul 2022 10:32:23 +0000 (UTC)
-Received: by mail-ed1-x533.google.com with SMTP id v12so5651190edc.10
- for <amd-gfx@lists.freedesktop.org>; Mon, 11 Jul 2022 03:32:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :references:from:in-reply-to:content-transfer-encoding;
- bh=T6ES99kTpm89eLiogkoHcC6Qpj3q77N36tsrVxTsiTs=;
- b=mOcV2Zhh0TiBF5eQrtj9NWPfZfHm5kFzgto0UlZ3qE8gVbFfb0YpmpJi5W8ujUTDKn
- 1pjas3hAt56YXFKEZsjzIdkfD6HQ0U7wJGG1he/HU/EIVWNa2NMFsox4vqurkDZVVMtr
- AF3S/MtBkEfAbKGO28e8KdGKWK6BE7vRfnV/F0Ion7bAWc1iBEXVlYaL4B88UjwJ1ve7
- RlA39TUfxEqHEvUKQMs0+FZACgPUpAz8YXft8oPgFOoxWLFf2o6Yj4D1w2jO30wTGV7D
- cvbFQU8fI0ctiNzJQbSzm/yNofOydA4yt4+GipDFmhHjqrqg1moWMY1kBUi+sRKtZbH2
- H8zQ==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD60A14A9C3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Jul 2022 13:35:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1657546551;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=/a5xYvzFvSo0mMGHcGn3XDGCspkQtQvU8SRGH+lIT7E=;
+ b=CEwlfzBb/INJZXMTlmm3xXUJveiDDXXjzOZhIRCWNLZ6Pz4mSD3/SHQm/wC9T15iOUG5fI
+ hwbodoaFKM9JNgGVrorpt+plAW/FDuhqblBS8LlQWhucUl3xcv7lXqLtgFkDKVSbP15rlz
+ IyJvute/hpVEXJmxPt9ZHr0uHXdYtNs=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-86-B9hM4BosMTqdAEhs6to0zA-1; Mon, 11 Jul 2022 09:35:44 -0400
+X-MC-Unique: B9hM4BosMTqdAEhs6to0zA-1
+Received: by mail-wm1-f72.google.com with SMTP id
+ z11-20020a05600c0a0b00b003a043991610so2640197wmp.8
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Jul 2022 06:35:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:references:from:in-reply-to
- :content-transfer-encoding;
- bh=T6ES99kTpm89eLiogkoHcC6Qpj3q77N36tsrVxTsiTs=;
- b=lwe9fTmmlbpBFZGLXOIXVeXojTpgX1XWCoNzdc+ldiOJJc6wkQQJQ7Av4fToAvt3Y7
- ZPi8qeZnD7sezTPqrCBoh+9gIl4gkFk5EUJnSwK+hAH6DbcO/SRWJNZd+ncLy9HYX6aM
- e4eUHZvjf1anNklJQPqp2ANLy/i/yOps1fOqLmniFfgPKcKBsGh1mIm9J0QgcxeY5UKH
- zapBK39wdUPKT/Gk5MtFKoU2rm3rAmYG0m7m5Gd/4dhUtqH6gUZfMljyZ+NFiBqnJS67
- iHxzhSaOYfaCU+yDWDS+NSbviY1rPkXVZo5VPihwR+DnNoIjchEiXxW+TW5IHlYZmNW0
- R/xg==
-X-Gm-Message-State: AJIora+8FjmSVQvXl0QsXG/RFn24jYyxZ/WnTHvyUxeQU4kRlethqexZ
- 3aHyd9X0jAwiAQr59FC+Yurj3YJjAR0=
-X-Google-Smtp-Source: AGRyM1se7Y18tGkaSiegBZtPMAX/Jui797PhjLiMy3W3tNjBcaVsN5tutSWjjeXtm0wPeR2Gy6O7PQ==
-X-Received: by 2002:a05:6402:5193:b0:435:9a5f:50a8 with SMTP id
- q19-20020a056402519300b004359a5f50a8mr23813778edd.212.1657535541999; 
- Mon, 11 Jul 2022 03:32:21 -0700 (PDT)
-Received: from [192.168.178.21] (p57b0bd9f.dip0.t-ipconnect.de.
- [87.176.189.159]) by smtp.gmail.com with ESMTPSA id
- q21-20020aa7da95000000b00435651c4a01sm4086800eds.56.2022.07.11.03.32.21
+ h=x-gm-message-state:message-id:date:mime-version:user-agent
+ :content-language:to:cc:references:from:organization:subject
+ :in-reply-to:content-transfer-encoding;
+ bh=/a5xYvzFvSo0mMGHcGn3XDGCspkQtQvU8SRGH+lIT7E=;
+ b=HgbGvsVJWU4wP5vBSQXrDGLmWJad7Qra4XKPfnuyhSaFoi1eQM9ZkuZoy090gTXgS+
+ XHk6NLHaewnCitTqYw6Qgccx/kwdDN4JA96WJMY6ghD13bHRSO2aECAlb/cy34j0JGkX
+ yexw7ID2bEygEOpAmgauOcvBzJ1UwQQFRxTNWLK7A4bTsSf/dh7hONn4hZZ93XI7y5yN
+ tdWrMrC9mdrxcHx26MW9DB2KyESdnIX64bQ+QQ/iPKeXwITpFAb4ZO3eSsb1leqefJGy
+ KAn2dy1Xfdm3iOInC/0TSJrd9Z1G+R6oyf595DbV63p+xtkBQWFPsoFCuUZRTPI7QcKA
+ jlHw==
+X-Gm-Message-State: AJIora9G7JozuFYstBxycXYSi2cEalzYCSNXooI0AaztVwxzNyV6Ne1+
+ S5knloq8KCvqjBj+GuinbtzAKPF25IeHK9Q+nkqBqlwNHZiFECpdEmogtqC0lZlZz2HUiBouWAl
+ lRcKfEO76WT0zEdK8lfOHtlTkzA==
+X-Received: by 2002:a5d:64e8:0:b0:21d:2fc9:20dd with SMTP id
+ g8-20020a5d64e8000000b0021d2fc920ddmr16233253wri.101.1657546543638; 
+ Mon, 11 Jul 2022 06:35:43 -0700 (PDT)
+X-Google-Smtp-Source: AGRyM1swwNqqy08ywAh4vjGNUUySj6rzTVDwFqgW9rlmCmMyqw6xznPhl3IGIvkFU36hZ2LDn+8inw==
+X-Received: by 2002:a5d:64e8:0:b0:21d:2fc9:20dd with SMTP id
+ g8-20020a5d64e8000000b0021d2fc920ddmr16233220wri.101.1657546543286; 
+ Mon, 11 Jul 2022 06:35:43 -0700 (PDT)
+Received: from ?IPV6:2003:cb:c702:1400:c3:4ae0:6d5c:1ab2?
+ (p200300cbc702140000c34ae06d5c1ab2.dip0.t-ipconnect.de.
+ [2003:cb:c702:1400:c3:4ae0:6d5c:1ab2])
+ by smtp.gmail.com with ESMTPSA id
+ o8-20020a05600c510800b003a2e2e965absm5753132wms.20.2022.07.11.06.35.42
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 11 Jul 2022 03:32:21 -0700 (PDT)
-Message-ID: <5fe781cf-8731-1e1c-3c2c-b8957770276c@gmail.com>
-Date: Mon, 11 Jul 2022 12:32:20 +0200
+ Mon, 11 Jul 2022 06:35:42 -0700 (PDT)
+Message-ID: <2c4dd559-4fa9-f874-934f-d6b674543d0f@redhat.com>
+Date: Mon, 11 Jul 2022 15:35:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] drm/amd/pm: Prevent divide by zero
+ Thunderbird/91.11.0
+To: Alex Sierra <alex.sierra@amd.com>, jgg@nvidia.com
+References: <20220707190349.9778-1-alex.sierra@amd.com>
+ <20220707190349.9778-8-alex.sierra@amd.com>
+From: David Hildenbrand <david@redhat.com>
+Organization: Red Hat
+Subject: Re: [PATCH v8 07/15] mm/gup: migrate device coherent pages when
+ pinning instead of failing
+In-Reply-To: <20220707190349.9778-8-alex.sierra@amd.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=david@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Language: en-US
-To: "Mr. B34r" <mr.b34r@kolabnow.com>, amd-gfx@lists.freedesktop.org
-References: <20220709023125.75039-1-mr.b34r@kolabnow.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20220709023125.75039-1-mr.b34r@kolabnow.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 11 Jul 2022 13:55:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,47 +92,363 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: rcampbell@nvidia.com, willy@infradead.org, Felix.Kuehling@amd.com,
+ apopple@nvidia.com, amd-gfx@lists.freedesktop.org, linux-xfs@vger.kernel.org,
+ linux-mm@kvack.org, jglisse@redhat.com, dri-devel@lists.freedesktop.org,
+ akpm@linux-foundation.org, linux-ext4@vger.kernel.org, hch@lst.de
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 09.07.22 um 04:31 schrieb Mr. B34r:
-> From: Vannoonnoo <mr.b34r@kolabnow.com>
->
-> divide error: 0000 [#1] SMP PTI
-> CPU: 3 PID: 78925 Comm: tee Not tainted 5.15.50-1-lts #1 5c320a339f0e397222fdfc9449eff04c0b12ea83
-> Hardware name: MSI MS-7A59/Z270 SLI PLUS (MS-7A59), BIOS 1.90 01/30/2018
-> RIP: 0010:smu_v11_0_set_fan_speed_rpm+0x11/0x110 [amdgpu]
->
-> Speed is user-configurable through a file. I accidentally set it to zero, and the driver crashed.
-
-Good catch, just some minor style problems. Your Signed-of-by line is 
-missing for example.
-
-There is a checkpath.pl script in the Linux kernel source which can 
-point out such trivial mistakes.
-
-Please run it on your patch and resend, apart from that looks good to me.
-
-Christian.
-
->
+On 07.07.22 21:03, Alex Sierra wrote:
+> From: Alistair Popple <apopple@nvidia.com>
+> 
+> Currently any attempts to pin a device coherent page will fail. This is
+> because device coherent pages need to be managed by a device driver, and
+> pinning them would prevent a driver from migrating them off the device.
+> 
+> However this is no reason to fail pinning of these pages. These are
+> coherent and accessible from the CPU so can be migrated just like
+> pinning ZONE_MOVABLE pages. So instead of failing all attempts to pin
+> them first try migrating them out of ZONE_DEVICE.
+> 
+> Signed-off-by: Alistair Popple <apopple@nvidia.com>
+> Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
+> [hch: rebased to the split device memory checks,
+>       moved migrate_device_page to migrate_device.c]
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
 > ---
->   drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c | 4 ++++
->   1 file changed, 4 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-> index 5f8809f6990d..69cebdb58c04 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-> @@ -1236,6 +1236,10 @@ int smu_v11_0_set_fan_speed_rpm(struct smu_context *smu,
->   	 * - For some Sienna Cichlid SKU, the fan speed cannot be set
->   	 *   lower than 500 RPM.
->   	 */
+>  mm/gup.c            | 47 +++++++++++++++++++++++++++++++++++-----
+>  mm/internal.h       |  1 +
+>  mm/migrate_device.c | 53 +++++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 96 insertions(+), 5 deletions(-)
+> 
+> diff --git a/mm/gup.c b/mm/gup.c
+> index b65fe8bf5af4..9b6b9923d22d 100644
+> --- a/mm/gup.c
+> +++ b/mm/gup.c
+> @@ -1891,9 +1891,43 @@ static long check_and_migrate_movable_pages(unsigned long nr_pages,
+>  			continue;
+>  		prev_folio = folio;
+>  
+> -		if (folio_is_longterm_pinnable(folio))
+> +		/*
+> +		 * Device private pages will get faulted in during gup so it
+> +		 * shouldn't be possible to see one here.
+> +		 */
+> +		if (WARN_ON_ONCE(folio_is_device_private(folio))) {
+> +			ret = -EFAULT;
+> +			goto unpin_pages;
+> +		}
+
+I'd just drop that. Device private pages are never part of a present PTE. So if we
+could actually get a grab of one via GUP we would be in bigger trouble ... 
+already before this patch.
+
 > +
-> +	if (speed == 0)
-> +		return -EINVAL;
+> +		/*
+> +		 * Device coherent pages are managed by a driver and should not
+> +		 * be pinned indefinitely as it prevents the driver moving the
+> +		 * page. So when trying to pin with FOLL_LONGTERM instead try
+> +		 * to migrate the page out of device memory.
+> +		 */
+> +		if (folio_is_device_coherent(folio)) {
+> +			WARN_ON_ONCE(PageCompound(&folio->page));
+
+Maybe that belongs into migrate_device_page()?
+
 > +
->   	tach_period = 60 * crystal_clock_freq * 10000 / (8 * speed);
->   	WREG32_SOC15(THM, 0, mmCG_TACH_CTRL,
->   		     REG_SET_FIELD(RREG32_SOC15(THM, 0, mmCG_TACH_CTRL),
+> +			/*
+> +			 * Migration will fail if the page is pinned, so convert
+
+[...]
+
+>  /*
+>   * mm/gup.c
+> diff --git a/mm/migrate_device.c b/mm/migrate_device.c
+> index cf9668376c5a..5decd26dd551 100644
+> --- a/mm/migrate_device.c
+> +++ b/mm/migrate_device.c
+> @@ -794,3 +794,56 @@ void migrate_vma_finalize(struct migrate_vma *migrate)
+>  	}
+>  }
+>  EXPORT_SYMBOL(migrate_vma_finalize);
+> +
+> +/*
+> + * Migrate a device coherent page back to normal memory.  The caller should have
+> + * a reference on page which will be copied to the new page if migration is
+> + * successful or dropped on failure.
+> + */
+> +struct page *migrate_device_page(struct page *page, unsigned int gup_flags)
+
+Function name should most probably indicate that we're dealing with coherent pages here?
+
+> +{
+> +	unsigned long src_pfn, dst_pfn = 0;
+> +	struct migrate_vma args;
+> +	struct page *dpage;
+> +
+> +	lock_page(page);
+> +	src_pfn = migrate_pfn(page_to_pfn(page)) | MIGRATE_PFN_MIGRATE;
+> +	args.src = &src_pfn;
+> +	args.dst = &dst_pfn;
+> +	args.cpages = 1;
+> +	args.npages = 1;
+> +	args.vma = NULL;
+> +	migrate_vma_setup(&args);
+> +	if (!(src_pfn & MIGRATE_PFN_MIGRATE))
+> +		return NULL;
+
+Wow, these refcount and page locking/unlocking rules with this migrate_* api are
+confusing now. And the usage here of sometimes returning and sometimes falling
+trough don't make it particularly easier to understand here.
+
+I'm not 100% happy about reusing migrate_vma_setup() usage if there *is no VMA*.
+That's just absolutely confusing, because usually migrate_vma_setup() itself 
+would do the collection step and ref+lock pages. :/
+
+In general, I can see why/how we're reusing the migrate_vma_* API here, but there 
+is absolutely no VMA ... not sure what to improve besides providing a second API
+that does a simple single-page migration. But that can be changed later ...
+
+
+> +
+> +	dpage = alloc_pages(GFP_USER | __GFP_NOWARN, 0);
+> +
+
+alloc_page()
+
+> +	/*
+> +	 * get/pin the new page now so we don't have to retry gup after
+> +	 * migrating. We already have a reference so this should never fail.
+> +	 */
+> +	if (dpage && WARN_ON_ONCE(!try_grab_page(dpage, gup_flags))) {
+> +		__free_pages(dpage, 0);
+
+__free_page()
+
+> +		dpage = NULL;
+> +	}
+
+Hm, this means that we are not pinning via the PTE at hand, but via something
+we expect migration to put into the PTE. I'm not really happy about this.
+
+Ideally, we'd make the pinning decision only on the actual GUP path, not in here.
+Just like in the migrate_pages() case, where we end up dropping all refs/pins
+and looking up again via GUP from the PTE.
+
+For example, I wonder if something nasty could happen if the PTE got mapped
+R/O in the meantime and you're pinning R/W here ... 
+
+TBH, all this special casing on gup_flags here is nasty. Please, let's just do
+it like migrate_pages() and do another GUP walk. Absolutely no need to optimize.
+
+[...]
+
+
+
+I'd go with something like the following on top (which does not touch on the
+general semantic issue with migrate_vma_* ). Note that I most probably messed
+up some refcount/lock handling and that it's broken.
+Just to give you an idea what I think could be cleaner.
+
+
+
+diff --git a/mm/gup.c b/mm/gup.c
+index 9b6b9923d22d..17041b3e605e 100644
+--- a/mm/gup.c
++++ b/mm/gup.c
+@@ -1881,7 +1881,7 @@ static long check_and_migrate_movable_pages(unsigned long nr_pages,
+ 	unsigned long isolation_error_count = 0, i;
+ 	struct folio *prev_folio = NULL;
+ 	LIST_HEAD(movable_page_list);
+-	bool drain_allow = true;
++	bool drain_allow = true, any_device_coherent = false;
+ 	int ret = 0;
+ 
+ 	for (i = 0; i < nr_pages; i++) {
+@@ -1891,15 +1891,6 @@ static long check_and_migrate_movable_pages(unsigned long nr_pages,
+ 			continue;
+ 		prev_folio = folio;
+ 
+-		/*
+-		 * Device private pages will get faulted in during gup so it
+-		 * shouldn't be possible to see one here.
+-		 */
+-		if (WARN_ON_ONCE(folio_is_device_private(folio))) {
+-			ret = -EFAULT;
+-			goto unpin_pages;
+-		}
+-
+ 		/*
+ 		 * Device coherent pages are managed by a driver and should not
+ 		 * be pinned indefinitely as it prevents the driver moving the
+@@ -1907,7 +1898,12 @@ static long check_and_migrate_movable_pages(unsigned long nr_pages,
+ 		 * to migrate the page out of device memory.
+ 		 */
+ 		if (folio_is_device_coherent(folio)) {
+-			WARN_ON_ONCE(PageCompound(&folio->page));
++			/*
++			 * We always want a new GUP lookup with device coherent
++			 * pages.
++			 */
++			any_device_coherent = true;
++			pages[i] = 0;
+ 
+ 			/*
+ 			 * Migration will fail if the page is pinned, so convert
+@@ -1918,11 +1914,12 @@ static long check_and_migrate_movable_pages(unsigned long nr_pages,
+ 				unpin_user_page(&folio->page);
+ 			}
+ 
+-			pages[i] = migrate_device_page(&folio->page, gup_flags);
+-			if (!pages[i]) {
+-				ret = -EBUSY;
++			ret = migrate_device_coherent_page(&folio->page);
++			if (ret)
+ 				goto unpin_pages;
+-			}
++			/* The reference to our folio is stale now. */
++			prev_folio = NULL;
++			folio = NULL;
+ 			continue;
+ 		}
+ 
+@@ -1953,7 +1950,8 @@ static long check_and_migrate_movable_pages(unsigned long nr_pages,
+ 				    folio_nr_pages(folio));
+ 	}
+ 
+-	if (!list_empty(&movable_page_list) || isolation_error_count)
++	if (!list_empty(&movable_page_list) || isolation_error_count ||
++	    any_device_coherent)
+ 		goto unpin_pages;
+ 
+ 	/*
+@@ -1963,14 +1961,19 @@ static long check_and_migrate_movable_pages(unsigned long nr_pages,
+ 	return nr_pages;
+ 
+ unpin_pages:
+-	for (i = 0; i < nr_pages; i++) {
+-		if (!pages[i])
+-			continue;
++	/* We have to be careful if we stumbled over device coherent pages. */
++	if (unlikely(any_device_coherent || !(gup_flags & FOLL_PIN))) {
++		for (i = 0; i < nr_pages; i++) {
++			if (!pages[i])
++				continue;
+ 
+-		if (gup_flags & FOLL_PIN)
+-			unpin_user_page(pages[i]);
+-		else
+-			put_page(pages[i]);
++			if (gup_flags & FOLL_PIN)
++				unpin_user_page(pages[i]);
++			else
++				put_page(pages[i]);
++		}
++	} else {
++		unpin_user_pages(pages, nr_pages);
+ 	}
+ 
+ 	if (!list_empty(&movable_page_list)) {
+diff --git a/mm/internal.h b/mm/internal.h
+index eeab4ee7a4a3..899dab512c5a 100644
+--- a/mm/internal.h
++++ b/mm/internal.h
+@@ -853,7 +853,7 @@ int numa_migrate_prep(struct page *page, struct vm_area_struct *vma,
+ 		      unsigned long addr, int page_nid, int *flags);
+ 
+ void free_zone_device_page(struct page *page);
+-struct page *migrate_device_page(struct page *page, unsigned int gup_flags);
++int migrate_device_coherent_page(struct page *page);
+ 
+ /*
+  * mm/gup.c
+diff --git a/mm/migrate_device.c b/mm/migrate_device.c
+index 5decd26dd551..dfb78ea3d326 100644
+--- a/mm/migrate_device.c
++++ b/mm/migrate_device.c
+@@ -797,53 +797,40 @@ EXPORT_SYMBOL(migrate_vma_finalize);
+ 
+ /*
+  * Migrate a device coherent page back to normal memory.  The caller should have
+- * a reference on page which will be copied to the new page if migration is
+- * successful or dropped on failure.
++ * a reference on page, which will be dropped on return.
+  */
+-struct page *migrate_device_page(struct page *page, unsigned int gup_flags)
++int migrate_device_coherent_page(struct page *page)
+ {
+ 	unsigned long src_pfn, dst_pfn = 0;
+-	struct migrate_vma args;
++	struct migrate_vma args = {
++		.src = &src_pfn,
++		.dst = &dst_pfn,
++		.cpages = 1,
++		.npages = 1,
++		.vma = NULL,
++	};
+ 	struct page *dpage;
+ 
++	VM_WARN_ON_ONCE(PageCompound(page));
++
+ 	lock_page(page);
+ 	src_pfn = migrate_pfn(page_to_pfn(page)) | MIGRATE_PFN_MIGRATE;
+-	args.src = &src_pfn;
+-	args.dst = &dst_pfn;
+-	args.cpages = 1;
+-	args.npages = 1;
+-	args.vma = NULL;
+-	migrate_vma_setup(&args);
+-	if (!(src_pfn & MIGRATE_PFN_MIGRATE))
+-		return NULL;
+-
+-	dpage = alloc_pages(GFP_USER | __GFP_NOWARN, 0);
+-
+-	/*
+-	 * get/pin the new page now so we don't have to retry gup after
+-	 * migrating. We already have a reference so this should never fail.
+-	 */
+-	if (dpage && WARN_ON_ONCE(!try_grab_page(dpage, gup_flags))) {
+-		__free_pages(dpage, 0);
+-		dpage = NULL;
+-	}
+ 
+-	if (dpage) {
+-		lock_page(dpage);
+-		dst_pfn = migrate_pfn(page_to_pfn(dpage));
++	migrate_vma_setup(&args);
++	if (src_pfn & MIGRATE_PFN_MIGRATE) {
++		dpage = alloc_page(GFP_USER | __GFP_NOWARN);
++		if (dpage) {
++			dst_pfn = migrate_pfn(page_to_pfn(dpage));
++			lock_page(dpage);
++		}
+ 	}
+ 
+ 	migrate_vma_pages(&args);
+ 	if (src_pfn & MIGRATE_PFN_MIGRATE)
+ 		copy_highpage(dpage, page);
+ 	migrate_vma_finalize(&args);
+-	if (dpage && !(src_pfn & MIGRATE_PFN_MIGRATE)) {
+-		if (gup_flags & FOLL_PIN)
+-			unpin_user_page(dpage);
+-		else
+-			put_page(dpage);
+-		dpage = NULL;
+-	}
+ 
+-	return dpage;
++	if (src_pfn & MIGRATE_PFN_MIGRATE)
++		return 0;
++	return -EBUSY;
+ }
+-- 
+2.35.3
+
+
+
+-- 
+Thanks,
+
+David / dhildenb
 
