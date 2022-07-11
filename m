@@ -1,92 +1,67 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0B77570D87
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 Jul 2022 00:45:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C164570F2F
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 Jul 2022 03:06:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D482391DAC;
-	Mon, 11 Jul 2022 22:45:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E759A92DD3;
+	Tue, 12 Jul 2022 01:06:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam07on2078.outbound.protection.outlook.com [40.107.212.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D033791DAB
- for <amd-gfx@lists.freedesktop.org>; Mon, 11 Jul 2022 22:45:06 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m59pW8jtgNU2baXgTRfshmdNA2pdhVgCq5E48l1qWu5zXYJWW7mMJhaOQfP0u3+f8MsrwKCLrH1BtASVbrlrPi/QrWbuLYT3WjhUPSdxvau6oj9eaxp3Exdw6kcX2n2wXYvzEDFt1W9EDN3+3ZXBAu5iZGDNns8dWeXqn/WLXlo8MxWgDagvNbrisFzzz9JomQwm2+vz6BcDpv7OFcO3aCZbWyQ4f1k0vYigGCSurXlqAwDiQNwiZS3Bg9ISooTsw9oXqpecL150Y85RKJrgNAraEB/ieJ+SaWt9oWHYKZTGe9C0zsWzK/vyVGijsc9f136xECpebpCr/pd9Neoxxw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3SUXZn5WAuzroM4ZWeKsYqB0QsEI+h6hRDmVP2ovayg=;
- b=QsXmrbm/JIdqIjQm3sgfXncXNlgiSL+nrpDqDwjW5Vova7d2jiAMUwN5/6vNQjJ9Ps/zhILd/2kisyPM+tWfvk4GQvBBmNOjqB8rpIoKG+GkvOtLL+pYhnK3KXFm6vgrp6jzwDLGn0zZfvBNIE2F/roES/sM0zHFxCDTVuvfEMJx8ld7SC180TZTXz0Cqdg/L24SlkTyseg8QcN0Nh3g7AdyO5sdOf+0Bl7uTdctsVOxrQrwFaPO/8LTmkOFS1ZpwMAjffu5hdDefGlaewwQKDZWdw0O0sN6kQI7xmzRGuSFYafGkx8M2BCL9xomUKgYGVOpWGrci68Pfa6+szS3bg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3SUXZn5WAuzroM4ZWeKsYqB0QsEI+h6hRDmVP2ovayg=;
- b=ShkD3acnPhj9mupkx4+leU+MboDPd3B5hHAErayFkJvi15EpS7Mx6C5djKtK2uf3YPOlbkPkhgt2DLEyHXZdM5CJDtz2OCMbCUJPJKAsdpzgAE/+QZehLz5ut/EI+mecHEhX+RGMJOdIx/TWaL75yNsX0VzKvC6uRHxJ78pWGww=
-Received: from BN9PR03CA0195.namprd03.prod.outlook.com (2603:10b6:408:f9::20)
- by BY5PR12MB4001.namprd12.prod.outlook.com (2603:10b6:a03:1ac::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.15; Mon, 11 Jul
- 2022 22:45:03 +0000
-Received: from BN8NAM11FT058.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:f9:cafe::1f) by BN9PR03CA0195.outlook.office365.com
- (2603:10b6:408:f9::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.15 via Frontend
- Transport; Mon, 11 Jul 2022 22:45:03 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT058.mail.protection.outlook.com (10.13.177.58) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5417.15 via Frontend Transport; Mon, 11 Jul 2022 22:45:02 +0000
-Received: from leodev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 11 Jul
- 2022 17:44:59 -0500
-From: <sunpeng.li@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: Check BO's requested pinning domains against its
- preferred_domains
-Date: Mon, 11 Jul 2022 18:44:43 -0400
-Message-ID: <20220711224443.1157747-1-sunpeng.li@amd.com>
-X-Mailer: git-send-email 2.37.0
+Received: from mx.kolabnow.com (mx.kolabnow.com [212.103.80.153])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5E949281D
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Jul 2022 22:35:16 +0000 (UTC)
+Received: from localhost (unknown [127.0.0.1])
+ by mx.kolabnow.com (Postfix) with ESMTP id D8F2B41945;
+ Tue, 12 Jul 2022 00:35:13 +0200 (CEST)
+Authentication-Results: ext-mx-out003.mykolab.com (amavisd-new);
+ dkim=pass (4096-bit key) reason="pass (just generated, assumed good)"
+ header.d=kolabnow.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kolabnow.com; h=
+ message-id:references:in-reply-to:subject:subject:from:from:date
+ :date:content-transfer-encoding:content-type:content-type
+ :mime-version:received:received:received; s=dkim20160331; t=
+ 1657578913; x=1659393314; bh=eZR9x3aS9DWJ1nxj7rQJ1dUuePxk57tQ+p6
+ jn6NRlk0=; b=RGDPll3iIKjPNwPQAoa5oOqRKgWQvZIu7jI4OIaxqmDNjtvYHno
+ tPjro9KSQv4NoaohRTzbsf8zENEFmyrt+eAqs13sz2Og2liJYF2BTK6woY4zcgX5
+ rfmG2pBAiq/iwp4lJI8+vXpfb2ZT37QzP0nMGwcH2EC4XYBcadKuz96RI3kCp9Jw
+ ug4gCGgu0pm/caigFOSHyomPKE6O8lYn63il0MQG1MM7/hXRkUsUMYG8AuXkG91Y
+ wHc3mxWXGcn5MUtejPH32vR9onnMFQrRVDHOVbd3WPo3ikK0GoGJuoGrZzoMWD4h
+ S8znBTjt0X6blELMRUZvLPCvAHPp4HCH0y4t+I7YalbklxPbu8fbruLFLikRYvwf
+ QDVKg7rmnnYPQl6Lxmdc22Oq9JS7mJlcGc6ygfm9L5p0eymofJ6yheO9jpWZw4xA
+ HEavgrAVdHbwiBYWw2Ei4tYtLQSz6UeLQFTeEjH4lC7H9ipGjPP2bSMT13u1muKI
+ KhNBhQp7teFynowzs5gk6fPgo57jBRyDQSQyvPcm1f26ulT/DEjYAf5MPFAGE9/T
+ BGQu2Lg65jhJVISu85KGA8K0eGNWS7yKMujPgvYrEYY+oTpt9bf1uAVQ3b6SY8cf
+ CRTabGHRumJ+fHAnpFTI1HNjza+EFd6KfUYExsw0RvPkWzqoFapjEoZE=
+X-Virus-Scanned: amavisd-new at mykolab.com
+X-Spam-Flag: NO
+X-Spam-Score: -1.9
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 tagged_above=-10 required=5
+ tests=[BAYES_00=-1.9] autolearn=ham autolearn_force=no
+Received: from mx.kolabnow.com ([127.0.0.1])
+ by localhost (ext-mx-out003.mykolab.com [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Ak4vt4zTfD7T; Tue, 12 Jul 2022 00:35:13 +0200 (CEST)
+Received: from int-mx003.mykolab.com (unknown [10.9.13.3])
+ by mx.kolabnow.com (Postfix) with ESMTPS id D204540E50;
+ Tue, 12 Jul 2022 00:35:12 +0200 (CEST)
+Received: from int-subm002.mykolab.com (unknown [10.9.37.2])
+ by int-mx003.mykolab.com (Postfix) with ESMTPS id 81DAC6461;
+ Tue, 12 Jul 2022 00:35:12 +0200 (CEST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7824ad40-27bd-42a1-c054-08da638efe49
-X-MS-TrafficTypeDiagnostic: BY5PR12MB4001:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Cn8SNAn4c9dCwpnBEdd8mLZHTjKjxVYVDlXUp/ZlmQHCcCM+mf7Tf07rtsxQz+YtfdaH8pNbMWQdtoApEF4IBUMEp33AyjMPDnxcs/zaBSCl6DXUibeDbvgN31zCuTfeHKFrHIQHflX9UP0JPcfxkAwyjTx1z8fRV4MU6aLSWm43bH9CkhHmQ8IWiw2MbePmZCgLllgQbOJy0w6v6NeT4ePwns3vQv9qa9XAAHNB7v0lhl5fcwHHmXVr0Ae4tpCTvh36QcbFl03vkygpN6Q0evWfbJVMMPd4GrydYOLnr25LelEX81XUihkZIlurrD9wIGptevvntBeyDRuvufUJOzI8wLsj0hss6snVvJwI11kVPV6KdiI5PT83/if3I8F3PA+Br+wUH9BSI2Wr6I6SYG40dPHqwzc8yKvmigf02ZHDxtR5KI+tiN6XS9kUmRFIFhaC93rTQGyilCBp+4d21/Cm9ihia9tuOrkOt8H8WDKEvRBKJDJvY+QaeYzsmdsZsufYCVqrgo6P/zRuskVKbVFWYl9dsKb27sIp2NOF2Q+c0if8jS/Ci/Dkmts5xcSkHQr/XUoveB8AykbEcjKIZQYxA5vo1gxtcSviRzozoThNsroGbd7NZpe17FGkLNNl9DrMQtP1KhhXkElovo/+rf57YZ94saXOqccHCa4Jvh5i6CcHcEiBqkwAfcnlSuKhHHIiQFTONXS9ShN9/iyQzB51ZM3i2CFXDaBU+U7seLQE9sMXqcLB7DrEsvkOaggg/WVGhwrGQFEBe43iYK/dvhSuFTAtbg3Yhg0hJHxVG57FM0qLJbILttRyotpMG30xfGi5K8bKnoI60maWUhHQf6zci2RryWMAhqXN4jojDGY=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(376002)(346002)(39860400002)(136003)(396003)(36840700001)(46966006)(40470700004)(478600001)(36860700001)(6666004)(82310400005)(8936002)(41300700001)(316002)(83380400001)(4326008)(70206006)(6916009)(54906003)(36756003)(5660300002)(8676002)(81166007)(70586007)(2906002)(426003)(1076003)(2616005)(16526019)(336012)(186003)(47076005)(40480700001)(82740400003)(356005)(40460700003)(2876002)(7696005)(26005)(86362001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2022 22:45:02.8317 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7824ad40-27bd-42a1-c054-08da638efe49
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT058.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4001
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date: Mon, 11 Jul 2022 14:35:11 -0800
+From: "Mr. B34r" <mr.b34r@kolabnow.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Subject: Re: [PATCH] drm/amd/pm: Prevent divide by zero
+In-Reply-To: <5fe781cf-8731-1e1c-3c2c-b8957770276c@gmail.com>
+References: <20220709023125.75039-1-mr.b34r@kolabnow.com>
+ <5fe781cf-8731-1e1c-3c2c-b8957770276c@gmail.com>
+Message-ID: <cd39e86c11dda19046388ca62bed3e3b@kolabnow.com>
+X-Mailman-Approved-At: Tue, 12 Jul 2022 01:06:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,43 +73,41 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, Leo.Liu@amd.com, Marek.Olsak@amd.com,
- Alexander.Deucher@amd.com, Harry.Wentland@amd.com, christian.koenig@amd.com
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Leo Li <sunpeng.li@amd.com>
+ From: Yefim Barashkin <mr.b34r@kolabnow.com>
 
-When pinning a buffer, we should check to see if there are any
-additional restrictions imposed by bo->preferred_domains. This will
-prevent the BO from being moved to an invalid domain when pinning.
+divide error: 0000 [#1] SMP PTI
+CPU: 3 PID: 78925 Comm: tee Not tainted 5.15.50-1-lts #1
+Hardware name: MSI MS-7A59/Z270 SLI PLUS (MS-7A59), BIOS 1.90 01/30/2018
+RIP: 0010:smu_v11_0_set_fan_speed_rpm+0x11/0x110 [amdgpu]
 
-For example, this can happen if the user requests to create a BO in GTT
-domain for display scanout. amdgpu_dm will allow pinning to either VRAM
-or GTT domains, since DCN can scanout from either or. However, in
-amdgpu_bo_pin_restricted(), pinning to VRAM is preferred if there is
-adequate carveout. This can lead to pinning to VRAM despite the user
-requesting GTT placement for the BO.
+Speed is user-configurable through a file.
+I accidentally set it to zero, and the driver crashed.
 
-Signed-off-by: Leo Li <sunpeng.li@amd.com>
+Signed-off-by: Yefim Barashkin <mr.b34r@kolabnow.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 3 +++
- 1 file changed, 3 insertions(+)
+  drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c | 4 ++++
+  1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index 8a7b0f6162da..50400d70ef12 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -883,6 +883,9 @@ int amdgpu_bo_pin_restricted(struct amdgpu_bo *bo, u32 domain,
- 	if (WARN_ON_ONCE(min_offset > max_offset))
- 		return -EINVAL;
- 
-+	/* Check domain to be pinned to against preferred domains */
-+	domain = bo->preferred_domains & domain;
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c 
+b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
+index 5f8809f6990d..69cebdb58c04 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
+@@ -1236,6 +1236,10 @@ int smu_v11_0_set_fan_speed_rpm(struct 
+smu_context *smu,
+      * - For some Sienna Cichlid SKU, the fan speed cannot be set
+      *   lower than 500 RPM.
+      */
 +
- 	/* A shared bo cannot be migrated to VRAM */
- 	if (bo->tbo.base.import_attach) {
- 		if (domain & AMDGPU_GEM_DOMAIN_GTT)
--- 
-2.37.0
-
++   if (speed == 0)
++       return -EINVAL;
++
+     tach_period = 60 * crystal_clock_freq * 10000 / (8 * speed);
+     WREG32_SOC15(THM, 0, mmCG_TACH_CTRL,
+              REG_SET_FIELD(RREG32_SOC15(THM, 0, mmCG_TACH_CTRL),
+--
+2.36.1
