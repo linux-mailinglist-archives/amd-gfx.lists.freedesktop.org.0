@@ -1,88 +1,37 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B5165706EA
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Jul 2022 17:24:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E824570633
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Jul 2022 16:51:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C350D8D802;
-	Mon, 11 Jul 2022 15:24:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 833D88EC25;
+	Mon, 11 Jul 2022 14:51:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FDA18E99B
- for <amd-gfx@lists.freedesktop.org>; Mon, 11 Jul 2022 14:01:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1657548059;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=th2buvr24d07qJGzIS/AKju5zI095zK3996wlFgRrAE=;
- b=EDR/Y/Y2m93fdLrIxehN8yy7/+YCBKpDqJM6EeRLznDItptSVoXC67yZjDxvoYX/S/7Cwx
- hebf17rmTIFYDmaArw+O6OKKfL14d5pL+N0R8Yn3rBvQhp6Ud88ykT+BFcyJC6FaDVUc4h
- NoKZY/QTEJoIVQ6CXDUxTTItrZzYZ0c=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-359-ubtaTlzYOh-erQymGJhUXw-1; Mon, 11 Jul 2022 10:00:58 -0400
-X-MC-Unique: ubtaTlzYOh-erQymGJhUXw-1
-Received: by mail-wm1-f69.google.com with SMTP id
- v123-20020a1cac81000000b003a02a3f0beeso5271938wme.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 11 Jul 2022 07:00:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:organization:in-reply-to
- :content-transfer-encoding;
- bh=th2buvr24d07qJGzIS/AKju5zI095zK3996wlFgRrAE=;
- b=blDuYqL0RRrbh9Tr/HZm6osr7nc2x2rCGBaovZSDS/Mc4+aHM05lv84o149tclrHXg
- oEYkT1+OcHi4TugTVT9z6Mj4VqSgkX9dDrqS6MH+VPxNrh8VrzYQ+lcU1MNIHoMUMYyI
- LfR8Kbz2Q/+EB7NG7h0ygF3XlKdoZeRQig9zcZvnIFHdSfHZp0DNg9/Xpra/7cGkbdS9
- vVpJ/Y6WusrHrn3MYUycIvBX/RiwD5FTxQqBTy0Ok9ZAUN65LH8LuSuSukxyzFsMnWjG
- fgYgJfZVML4nw/llg1zoto1LgIc2r87jbsMMP51W+6vzaotdM9x9uIWR+JPHjQhZKRfT
- cajQ==
-X-Gm-Message-State: AJIora8lXQvuKlVrK6eSeLvJOeDZfagd207xL/KpWg2xO2m5fDg1jhIH
- W/EsGTSk5CZl1P/FcPNoMgCwBKTOn3Rc5yjgSab4Im0SCbCcytIR2+3URBgNd+oXGMhQwpCkGMt
- dv1XunxiihouUmGa1oYP4kL9kMw==
-X-Received: by 2002:a5d:6dab:0:b0:21d:9fc8:3029 with SMTP id
- u11-20020a5d6dab000000b0021d9fc83029mr8016749wrs.172.1657548056005; 
- Mon, 11 Jul 2022 07:00:56 -0700 (PDT)
-X-Google-Smtp-Source: AGRyM1tHUpdQt0jOB6/Le/88y5FMlWl7A0VwJVjWJ8qwyFnogYLhO4qiJJpxW2UhqlLHOVvPkjmbsQ==
-X-Received: by 2002:a5d:6dab:0:b0:21d:9fc8:3029 with SMTP id
- u11-20020a5d6dab000000b0021d9fc83029mr8016733wrs.172.1657548055721; 
- Mon, 11 Jul 2022 07:00:55 -0700 (PDT)
-Received: from ?IPV6:2003:cb:c702:1400:c3:4ae0:6d5c:1ab2?
- (p200300cbc702140000c34ae06d5c1ab2.dip0.t-ipconnect.de.
- [2003:cb:c702:1400:c3:4ae0:6d5c:1ab2])
- by smtp.gmail.com with ESMTPSA id
- f12-20020a05600c4e8c00b003a2cf17a894sm11063409wmq.41.2022.07.11.07.00.54
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 11 Jul 2022 07:00:55 -0700 (PDT)
-Message-ID: <4b2f9a61-ca67-6a34-41c9-c191cac756b3@redhat.com>
-Date: Mon, 11 Jul 2022 16:00:54 +0200
+Received: from ms7.webland.ch (ms7.webland.ch [92.43.217.107])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16B308EC1F
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Jul 2022 14:51:37 +0000 (UTC)
+Received: from kaveri ([85.2.99.24])
+ by ms7.webland.ch (12.3.0 build 2 x64) with ASMTP (SSL) id
+ 01202207111651334587; Mon, 11 Jul 2022 16:51:33 +0200
+Received: from daenzer by kaveri with local (Exim 4.96)
+ (envelope-from <michel@daenzer.net>) id 1oAul1-002zRM-2H;
+ Mon, 11 Jul 2022 16:51:31 +0200
+From: =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel@daenzer.net>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Subject: [PATCH] drm/amd/display: Ensure valid event timestamp for cursor-only
+ commits
+Date: Mon, 11 Jul 2022 16:51:31 +0200
+Message-Id: <20220711145131.712825-1-michel@daenzer.net>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v8 07/15] mm/gup: migrate device coherent pages when
- pinning instead of failing
-To: Matthew Wilcox <willy@infradead.org>
-References: <20220707190349.9778-1-alex.sierra@amd.com>
- <20220707190349.9778-8-alex.sierra@amd.com>
- <2c4dd559-4fa9-f874-934f-d6b674543d0f@redhat.com>
- <Ysws7LOirtQ07JG/@casper.infradead.org>
-From: David Hildenbrand <david@redhat.com>
-Organization: Red Hat
-In-Reply-To: <Ysws7LOirtQ07JG/@casper.infradead.org>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=david@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Mon, 11 Jul 2022 15:24:02 +0000
+Content-Transfer-Encoding: 8bit
+X-CTCH: RefID="str=0001.0A782F1E.62CC38F6.002C,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0";
+ Spam="Unknown"; VOD="Unknown"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,36 +43,110 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Sierra <alex.sierra@amd.com>, rcampbell@nvidia.com,
- Felix.Kuehling@amd.com, apopple@nvidia.com, amd-gfx@lists.freedesktop.org,
- linux-xfs@vger.kernel.org, linux-mm@kvack.org, jglisse@redhat.com,
- dri-devel@lists.freedesktop.org, jgg@nvidia.com, akpm@linux-foundation.org,
- linux-ext4@vger.kernel.org, hch@lst.de
+Cc: Dor Askayo <dor.askayo@gmail.com>, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 11.07.22 16:00, Matthew Wilcox wrote:
-> On Mon, Jul 11, 2022 at 03:35:42PM +0200, David Hildenbrand wrote:
->>> +		/*
->>> +		 * Device coherent pages are managed by a driver and should not
->>> +		 * be pinned indefinitely as it prevents the driver moving the
->>> +		 * page. So when trying to pin with FOLL_LONGTERM instead try
->>> +		 * to migrate the page out of device memory.
->>> +		 */
->>> +		if (folio_is_device_coherent(folio)) {
->>> +			WARN_ON_ONCE(PageCompound(&folio->page));
->>
->> Maybe that belongs into migrate_device_page()?
-> 
-> ... and should be simply WARN_ON_ONCE(folio_test_large(folio)).
-> No need to go converting it back into a page in order to test things
-> that can't possibly be true.
-> 
+From: Michel Dänzer <mdaenzer@redhat.com>
 
-Good point.
+Requires enabling the vblank machinery for them.
 
+Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/2030
+Signed-off-by: Michel Dänzer <mdaenzer@redhat.com>
+---
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 43 +++++++++++++++++--
+ 1 file changed, 40 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 9dd2e0601ea8..b0667e2f3fdd 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -462,6 +462,26 @@ static void dm_pflip_high_irq(void *interrupt_params)
+ 		     vrr_active, (int) !e);
+ }
+ 
++static void dm_crtc_handle_vblank(struct amdgpu_crtc *acrtc)
++{
++	struct drm_crtc *crtc = &acrtc->base;
++	struct drm_device *dev = crtc->dev;
++	unsigned long flags;
++
++	drm_crtc_handle_vblank(crtc);
++
++	spin_lock_irqsave(&dev->event_lock, flags);
++
++	/* Send completion event for cursor-only commits */
++	if (acrtc->event && acrtc->pflip_status != AMDGPU_FLIP_SUBMITTED) {
++		drm_crtc_send_vblank_event(crtc, acrtc->event);
++		drm_crtc_vblank_put(crtc);
++		acrtc->event = NULL;
++	}
++
++	spin_unlock_irqrestore(&dev->event_lock, flags);
++}
++
+ static void dm_vupdate_high_irq(void *interrupt_params)
+ {
+ 	struct common_irq_params *irq_params = interrupt_params;
+@@ -500,7 +520,7 @@ static void dm_vupdate_high_irq(void *interrupt_params)
+ 		 * if a pageflip happened inside front-porch.
+ 		 */
+ 		if (vrr_active) {
+-			drm_crtc_handle_vblank(&acrtc->base);
++			dm_crtc_handle_vblank(acrtc);
+ 
+ 			/* BTR processing for pre-DCE12 ASICs */
+ 			if (acrtc->dm_irq_params.stream &&
+@@ -552,7 +572,7 @@ static void dm_crtc_high_irq(void *interrupt_params)
+ 	 * to dm_vupdate_high_irq after end of front-porch.
+ 	 */
+ 	if (!vrr_active)
+-		drm_crtc_handle_vblank(&acrtc->base);
++		dm_crtc_handle_vblank(acrtc);
+ 
+ 	/**
+ 	 * Following stuff must happen at start of vblank, for crc
+@@ -9134,6 +9154,7 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
+ 	struct amdgpu_bo *abo;
+ 	uint32_t target_vblank, last_flip_vblank;
+ 	bool vrr_active = amdgpu_dm_vrr_active(acrtc_state);
++	bool cursor_update = false;
+ 	bool pflip_present = false;
+ 	struct {
+ 		struct dc_surface_update surface_updates[MAX_SURFACES];
+@@ -9169,8 +9190,13 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
+ 		struct dm_plane_state *dm_new_plane_state = to_dm_plane_state(new_plane_state);
+ 
+ 		/* Cursor plane is handled after stream updates */
+-		if (plane->type == DRM_PLANE_TYPE_CURSOR)
++		if (plane->type == DRM_PLANE_TYPE_CURSOR) {
++			if ((fb && crtc == pcrtc) ||
++			    (old_plane_state->fb && old_plane_state->crtc == pcrtc))
++				cursor_update = true;
++
+ 			continue;
++		}
+ 
+ 		if (!fb || !crtc || pcrtc != crtc)
+ 			continue;
+@@ -9333,6 +9359,17 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
+ 				bundle->stream_update.vrr_infopacket =
+ 					&acrtc_state->stream->vrr_infopacket;
+ 		}
++	} else if (cursor_update && acrtc_state->active_planes > 0 &&
++		   !acrtc_state->force_dpms_off &&
++		   acrtc_attach->base.state->event) {
++		drm_crtc_vblank_get(pcrtc);
++
++		spin_lock_irqsave(&pcrtc->dev->event_lock, flags);
++
++		acrtc_attach->event = acrtc_attach->base.state->event;
++		acrtc_attach->base.state->event = NULL;
++
++		spin_unlock_irqrestore(&pcrtc->dev->event_lock, flags);
+ 	}
+ 
+ 	/* Update the planes if changed or disable if we don't have any. */
 -- 
-Thanks,
-
-David / dhildenb
+2.36.1
 
