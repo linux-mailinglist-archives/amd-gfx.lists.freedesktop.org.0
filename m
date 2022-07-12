@@ -1,17 +1,17 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37350572675
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 Jul 2022 21:48:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08513572687
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 Jul 2022 21:48:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B28014B58F;
-	Tue, 12 Jul 2022 19:48:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E03111A818;
+	Tue, 12 Jul 2022 19:48:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDC9A96459
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF5BA96458
  for <amd-gfx@lists.freedesktop.org>; Tue, 12 Jul 2022 19:39:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
  s=mimecast20190719; t=1657654797;
@@ -19,24 +19,24 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=JyzZVSg9HgGMNP8mJJFJdZrqdv4Il584f6vYAF316wc=;
- b=WdjsuZgjJZmGcj4jmgQuBGGXoIobIWmLkNZKRRPPg3oBOaoe4Z2VaPSBTeGPRjb5q3yP/1
- Q7oOviAbozvaZ6bB63nHvtQNZmAX8zySo90g6X0NyW7nIEVa7evSBUxUJrjkr5pJyCF+/Y
- aYDUn1hiw2U55exmw1vOzRqwQBa56Vo=
-Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
- [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=CYNsjCN6Tw/oqp4zM9jwqxiybSMoea1HMnVsBx4lMHQ=;
+ b=fIXn53mAVMn/wIlnX00ZCu/Rdj7uIkOWJe+qMPtO76ZdvOxFeQnOQOMrs1yv7A8CTv/pER
+ +/fBXGu59AJ2KgyTF8YekkU/x1+oV5kvGO3+EIXkJJiwSICM6qkXUGmQ+8H6hyMiQmAsvL
+ NsJWeKIL9BaPHi3zxWwgLJM38ZQ7Rwg=
+Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-294-67kecGeSN9iiUqO0Qo_ADQ-1; Tue, 12 Jul 2022 15:39:46 -0400
-X-MC-Unique: 67kecGeSN9iiUqO0Qo_ADQ-1
+ us-mta-671-_SEaw1onPbygIvvUCEm2wQ-1; Tue, 12 Jul 2022 15:39:51 -0400
+X-MC-Unique: _SEaw1onPbygIvvUCEm2wQ-1
 Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.rdu2.redhat.com
  [10.11.54.2])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id A9BD3380406A;
- Tue, 12 Jul 2022 19:39:45 +0000 (UTC)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 9CC6F18E5280;
+ Tue, 12 Jul 2022 19:39:49 +0000 (UTC)
 Received: from localhost.localdomain (unknown [10.39.192.30])
- by smtp.corp.redhat.com (Postfix) with ESMTP id EE35840E80E0;
- Tue, 12 Jul 2022 19:39:41 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id DF12340E80E1;
+ Tue, 12 Jul 2022 19:39:45 +0000 (UTC)
 From: Hans de Goede <hdegoede@redhat.com>
 To: Ben Skeggs <bskeggs@redhat.com>,
 	Karol Herbst <kherbst@redhat.com>, Lyude <lyude@redhat.com>,
@@ -55,10 +55,10 @@ To: Ben Skeggs <bskeggs@redhat.com>,
 	Mika Westerberg <mika.westerberg@linux.intel.com>,
 	Lukas Wunner <lukas@wunner.de>, Mark Gross <markgross@kernel.org>,
 	Andy Shevchenko <andy@kernel.org>
-Subject: [PATCH v2 06/29] ACPI: video: Drop backlight_device_get_by_type()
- call from acpi_video_get_backlight_type()
-Date: Tue, 12 Jul 2022 21:38:47 +0200
-Message-Id: <20220712193910.439171-7-hdegoede@redhat.com>
+Subject: [PATCH v2 07/29] ACPI: video: Remove acpi_video_bus from list before
+ tearing it down
+Date: Tue, 12 Jul 2022 21:38:48 +0200
+Message-Id: <20220712193910.439171-8-hdegoede@redhat.com>
 In-Reply-To: <20220712193910.439171-1-hdegoede@redhat.com>
 References: <20220712193910.439171-1-hdegoede@redhat.com>
 MIME-Version: 1.0
@@ -84,36 +84,39 @@ Cc: linux-acpi@vger.kernel.org, David Airlie <airlied@linux.ie>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-All x86/ACPI kms drivers which register native/BACKLIGHT_RAW type
-backlight devices call acpi_video_backlight_use_native() now. This sets
-__acpi_video_get_backlight_type()'s internal static native_available flag.
-
-This makes the backlight_device_get_by_type(BACKLIGHT_RAW) check
-unnecessary.
-
-Relying on the cached native_available value not only is simpler, it will
-also work correctly in cases where then native backlight registration was
-skipped because of acpi_video_backlight_use_native() returning false.
+Move the list_del removing an acpi_video_bus from video_bus_head
+on teardown to before the teardown is done, to avoid code iterating
+over the video_bus_head list seeing acpi_video_bus objects on there
+which are (partly) torn down already.
 
 Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 ---
- drivers/acpi/video_detect.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/acpi/acpi_video.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/acpi/video_detect.c b/drivers/acpi/video_detect.c
-index 4346c990022d..c18047da9f37 100644
---- a/drivers/acpi/video_detect.c
-+++ b/drivers/acpi/video_detect.c
-@@ -585,8 +585,7 @@ static enum acpi_backlight_type __acpi_video_get_backlight_type(bool native)
- 	if (!(video_caps & ACPI_VIDEO_BACKLIGHT))
- 		return acpi_backlight_vendor;
+diff --git a/drivers/acpi/acpi_video.c b/drivers/acpi/acpi_video.c
+index 43177c20ce4f..09899b7f7fab 100644
+--- a/drivers/acpi/acpi_video.c
++++ b/drivers/acpi/acpi_video.c
+@@ -2117,14 +2117,14 @@ static int acpi_video_bus_remove(struct acpi_device *device)
  
--	if (acpi_osi_is_win8() &&
--	    (native_available || backlight_device_get_by_type(BACKLIGHT_RAW)))
-+	if (acpi_osi_is_win8() && native_available)
- 		return acpi_backlight_native;
+ 	video = acpi_driver_data(device);
  
- 	return acpi_backlight_video;
+-	acpi_video_bus_remove_notify_handler(video);
+-	acpi_video_bus_unregister_backlight(video);
+-	acpi_video_bus_put_devices(video);
+-
+ 	mutex_lock(&video_list_lock);
+ 	list_del(&video->entry);
+ 	mutex_unlock(&video_list_lock);
+ 
++	acpi_video_bus_remove_notify_handler(video);
++	acpi_video_bus_unregister_backlight(video);
++	acpi_video_bus_put_devices(video);
++
+ 	kfree(video->attached_array);
+ 	kfree(video);
+ 
 -- 
 2.36.0
 
