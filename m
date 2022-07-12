@@ -1,51 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01A73570F18
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 Jul 2022 02:51:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80C25570FBC
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 Jul 2022 03:56:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3249D92C7E;
-	Tue, 12 Jul 2022 00:51:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 407F18BDFC;
+	Tue, 12 Jul 2022 01:56:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F232292C79
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 Jul 2022 00:51:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1657587112; x=1689123112;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=2YM2bZyb0VOFo7GFMRdOkt0l75ZaAT31t5w71WN2ZRY=;
- b=LPQHlnWwEMormgjfXnFiA6vuldqd8kfrv3DIy4Bbb0kssPCOM2gmtJKx
- b43SQjhysCkLA1/YiCguNGP64fR3kNiD+wkOg9lLWJe3oBAgYZsnaB7BQ
- DcSRV51+oLqppnCVP31h0vWJBAu3hzy501n0WG9Wgpwq0CTGbhY4IZMi7
- KKeNhUSlGwGY7/QpM2VChYXf9s5eNgZv/6kKKYevLD59n+oW3CuhjwRz0
- 0idb/CSKerg0By+kpeV0R/RQO5boYKgbBSBik9ASQ91sHiwOvalRztUE/
- OSROVZh2qEDApvV/1ZxuXVTtoc7SCbXdyjYWyNXgqp5hBirVrDYtZ/sb2 w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10405"; a="310418457"
-X-IronPort-AV: E=Sophos;i="5.92,264,1650956400"; d="scan'208";a="310418457"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2022 17:51:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,264,1650956400"; d="scan'208";a="595097809"
-Received: from lkp-server02.sh.intel.com (HELO 8708c84be1ad) ([10.239.97.151])
- by orsmga002.jf.intel.com with ESMTP; 11 Jul 2022 17:51:48 -0700
-Received: from kbuild by 8708c84be1ad with local (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1oB47w-0001Rn-7E;
- Tue, 12 Jul 2022 00:51:48 +0000
-Date: Tue, 12 Jul 2022 08:50:56 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Subject: [linux-next:master] BUILD REGRESSION
- 4112a8699ae2eac797415b9be1d7901b3f79e772
-Message-ID: <62ccc570.sr2tHsBP2xOVGIlG%lkp@intel.com>
-User-Agent: Heirloom mailx 12.5 6/20/10
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2049.outbound.protection.outlook.com [40.107.223.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B9C58BDFC
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Jul 2022 01:56:20 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nhdEWbuOd7LlTqDmqTiHMo3ngi7VOGqG3Zs3mMVCpWiG8SAgXILp1Qa60ZIfMGJhSM0OOwf3o9YmH1Pdqf9qsxjjossfbBMzwpsEeNnz8nfsgasdrtNsTIqTHuKA9hDiOl2rdQQ15KjDgu/dATD2Zx/GC3dlkKPM0ox9No4/4TLzqqLZ5hXvEaE1JVMqzUOfm9XbeIXgkbC8GW1f2eeMXYNa6Nc4RFqjs+HE0q3hmqrdqqbYVVFOXnIKQLPz4azaSKgpRNjujtPZiQ1pkVQjyUHgvz4YYwBW8k/tgtF14aIl9nkOZOgvF/uoBLLzm7bEu35UKxkYG0ccsX6R4YajRQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GDCe/0pgqQkTCVt4aqN+K3zcz5YWAuY4PnJSevB9p0g=;
+ b=oKzkjfIrklfKwnHd/Uw2OKaLHzFmHFY79ZT7Sx3E59CxxKGqPA+MEVuTxRI5/Q+A+VLWv1YSx101zJYG+NUzzdg2eA++DD15A7OzJntx6HnbIx/VMbb09AhkA/r0YDCsCTi+bcGjaPbx0rCTr2OjFm4xEcTiYvGTBps9QXH6LGzK7UDs2gwpNMqUPClaLqfzFehz0uyYs8i8FEba7RCqIzEWvGMWPn/d9y8lexyXOcyXj0rahKs07FjDTQwR+IvFHTnh5rt7XQizIwSyOv1UuvHTa0lODRq3p4doNRwEyFDoEdq/B8zzsl5wjyKSGm0sq+P6o4Sx++P3Ym9IBCyx3Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GDCe/0pgqQkTCVt4aqN+K3zcz5YWAuY4PnJSevB9p0g=;
+ b=jYoR3RrHew4JaBQ9CL0z0tdT91rQXHFkb21AcatSddgmr32vRfpSo8E6FQit5lDKonJaNtXhFF26KvJovW0XLaji53bVjiwsMnBg3JMpmCH9zn40FSfys7A25H/dkzGYrAw6HqRDRoQXUcZmtcJYiAkqp3Yz/HAQE4jsqN/BrHI=
+Received: from BN8PR04CA0062.namprd04.prod.outlook.com (2603:10b6:408:d4::36)
+ by SA0PR12MB4479.namprd12.prod.outlook.com (2603:10b6:806:95::24)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.16; Tue, 12 Jul
+ 2022 01:56:18 +0000
+Received: from BN8NAM11FT013.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:d4:cafe::3e) by BN8PR04CA0062.outlook.office365.com
+ (2603:10b6:408:d4::36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.20 via Frontend
+ Transport; Tue, 12 Jul 2022 01:56:18 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT013.mail.protection.outlook.com (10.13.176.182) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5417.15 via Frontend Transport; Tue, 12 Jul 2022 01:56:18 +0000
+Received: from alex-MS-7B09.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 11 Jul
+ 2022 20:56:17 -0500
+From: Alex Sierra <alex.sierra@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/3] drm/amdgpu: remove acc_size from reserve/unreserve mem
+Date: Mon, 11 Jul 2022 20:56:02 -0500
+Message-ID: <20220712015604.7697-1-alex.sierra@amd.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8a6e8fed-100c-434a-0e4a-08da63a9b62a
+X-MS-TrafficTypeDiagnostic: SA0PR12MB4479:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: i40FwwT4vxexpK78xsYZuKXVf6nLtV4L4lQ1eK/2+LCHZ/DojADOjRiBkwdVDTNfOLqmRY9bB9yNWZizySzaDm9h7gS+axGN3xJpsY75Q+YcLG0tDYAsT+0TVSa4Lp9Hd9lmIzg6ZcWyRLMI0CmCEq81x0tXSWxBagoNF2l5Fe7j3wj6sa2q+PjsEfZDxlBf1E1nmF3oHvS093Hu1rFh68rs4d8jDrAMVHCFl6zxZJMi61WfXUrZKbU54xYjMwhQ+Oooyn6N6A/PtkVbWgSNiYPjAWKTVpIejMrjD0eGsqF7dwnSoryTnQX1vAm34fghBGAAXEGRwIcytEI7IUf9VGoy1H3Ih3IJEwxJhR4yBwYVh3ACRCxHMWoyOnFHsUFkhXaSLNV/rlYa1K8vTzv8lIMgjcAgdSRr/BYrDXnCvMOCNIovtMhi/NknsJRRNDYnY84btNlpQK8OMQEjllPa+FCc9D7uy3sXK/mSPoWWx/HP3XCQWeFP5rBGyjqfHKpL1ftOTl8ccvwehcyTCVpDDHydzrDCIb+E94kvCaa4aR9YTuROuBiAiHHjU04NLkuqKwuABr19VNvTbb3B7PiUsX1egz+4GKRT3Fr/WlgJ2nXwNsK9QtGJjTDwio+u6CAEJuLLVW4Y9UuUP6qzc55kQr3WjzUJ6/WHU8yX5iYioi7rpSaF07rqrh3QFs+Ilpkpob6X6mEr+HL7MGoyYCn9RhUWZzq4KV/6e1NY2LNT4jR7ZcnSzucff95kGXXAobC9rv+1tTd+yhyQfc/UKQFjrT0SfsCyd3K7qfBCxGTxxk1F/NvenqujE1d5YwrGgazhn/fjVJjmbJzh35sA6c6mzKEVBBVn3MWcWPH23J4DQEA=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230016)(4636009)(396003)(346002)(39860400002)(376002)(136003)(40470700004)(46966006)(36840700001)(6916009)(4326008)(70586007)(36756003)(70206006)(82740400003)(336012)(36860700001)(426003)(81166007)(8676002)(356005)(47076005)(316002)(54906003)(44832011)(82310400005)(478600001)(2616005)(1076003)(16526019)(40480700001)(8936002)(86362001)(5660300002)(66574015)(41300700001)(186003)(26005)(2906002)(83380400001)(6666004)(40460700003)(7696005)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2022 01:56:18.2553 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8a6e8fed-100c-434a-0e4a-08da63a9b62a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT013.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4479
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,242 +97,133 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fsdevel@vger.kernel.org, linux-pci@vger.kernel.org,
- amd-gfx@lists.freedesktop.org,
- Linux Memory Management List <linux-mm@kvack.org>
+Cc: Alex Sierra <alex.sierra@amd.com>, Philip Yang <philip.yang@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-branch HEAD: 4112a8699ae2eac797415b9be1d7901b3f79e772  Add linux-next specific files for 20220711
+TTM used to track the "acc_size" of all BOs internally. We needed to
+keep track of it in our memory reservation to avoid TTM running out
+of memory in its own accounting. However, that "acc_size" accounting
+has since been removed from TTM. Therefore we don't really need to
+track it any more.
 
-Error/Warning reports:
+Signed-off-by: Alex Sierra <alex.sierra@amd.com>
+Reviewed-by: Philip Yang <philip.yang@amd.com>
+Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+Acked-by: Christian König <christian.koenig@amd.com>
+---
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c  | 60 ++++++-------------
+ 1 file changed, 17 insertions(+), 43 deletions(-)
 
-https://lore.kernel.org/llvm/202207090100.acXdJ79H-lkp@intel.com
-https://lore.kernel.org/llvm/202207120340.ToDnrawY-lkp@intel.com
-
-Error/Warning: (recently discovered and may have been fixed)
-
-drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc.c:2728:6: warning: no previous prototype for function 'dc_reset_state' [-Wmissing-prototypes]
-drivers/gpu/drm/amd/amdgpu/../display/dc/irq/dcn314/irq_service_dcn314.c:41:20: warning: no previous prototype for 'to_dal_irq_source_dcn314' [-Wmissing-prototypes]
-drivers/gpu/drm/amd/amdgpu/../display/dc/irq/dcn314/irq_service_dcn314.c:41:20: warning: no previous prototype for function 'to_dal_irq_source_dcn314' [-Wmissing-prototypes]
-drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c:1210:55: warning: implicit conversion from 'enum <anonymous>' to 'enum dma_resv_usage' [-Wenum-conversion]
-drivers/pci/endpoint/functions/pci-epf-vntb.c:975:5: warning: no previous prototype for 'pci_read' [-Wmissing-prototypes]
-drivers/pci/endpoint/functions/pci-epf-vntb.c:984:5: warning: no previous prototype for 'pci_write' [-Wmissing-prototypes]
-drivers/vfio/vfio_iommu_type1.c:2141:35: warning: cast to smaller integer type 'enum iommu_cap' from 'void *' [-Wvoid-pointer-to-enum-cast]
-fs/xfs/scrub/repair.c:539:19: warning: variable 'agno' set but not used [-Wunused-but-set-variable]
-
-Unverified Error/Warning (likely false positive, please contact us if interested):
-
-arch/x86/kernel/cpu/rdrand.c:36 x86_init_rdrand() error: uninitialized symbol 'prev'.
-drivers/firmware/arm_scmi/clock.c:394:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/firmware/arm_scmi/powercap.c:376:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega10_powertune.c:1214:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/gpu/drm/bridge/ite-it66121.c:1398:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/infiniband/hw/irdma/hw.c:1484:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/md/dm-mpath.c:1681:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/md/dm-table.c:1601:21: warning: Value stored to 'ti' during its initialization is never read [clang-analyzer-deadcode.DeadStores]
-drivers/media/dvb-frontends/mxl692.c:49:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/media/i2c/ov5647.c:636:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/media/i2c/st-mipid02.c:295:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/media/platform/qcom/venus/vdec.c:1505:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/media/platform/st/sti/delta/delta-v4l2.c:719:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/media/tuners/msi001.c:81:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/mfd/sec-core.c:429:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/mmc/host/sh_mmcif.c:1318:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/net/bonding/bond_main.c:4647:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/net/ethernet/chelsio/cxgb3/cxgb3_main.c:1388:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/net/ethernet/faraday/ftgmac100.c:854:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/net/ethernet/hisilicon/hns/hnae.c:436:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/net/ethernet/intel/i40e/i40e_main.c:9347:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/net/ethernet/intel/ice/ice_base.c:1003:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/net/ethernet/intel/ice/ice_dcb_lib.c:520:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/net/ethernet/intel/ice/ice_vlan_mode.c:379:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/net/ethernet/intel/igb/e1000_phy.c:1185:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/net/ethernet/microchip/encx24j600.c:827:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/net/ethernet/microchip/lan743x_main.c:1238:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/net/ethernet/smsc/smsc9420.c:451:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/net/ethernet/vertexcom/mse102x.c:422:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/net/phy/dp83640.c:890:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/net/usb/cdc_ncm.c:195:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/net/usb/rtl8150.c:176:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/parport/ieee1284_ops.c:615:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/scsi/elx/efct/efct_unsol.c:297:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/scsi/elx/libefc/efc_domain.c:692:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/scsi/megaraid/megaraid_sas_fp.c:297:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/soc/mediatek/mtk-mutex.c:799:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/staging/media/zoran/zr36016.c:430:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/staging/media/zoran/zr36050.c:829:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/staging/media/zoran/zr36060.c:869:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/target/iscsi/iscsi_target.c:2348:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/target/target_core_device.c:1013:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/thunderbolt/tmu.c:758:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/thunderbolt/tunnel.c:1264:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/tty/serial/atmel_serial.c:1442:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/usb/host/uhci-q.c:1367:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/usb/serial/digi_acceleport.c:1167:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-drivers/video/backlight/qcom-wled.c:871:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-fs/ext4/mballoc.c:3618:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-fs/kernel_read_file.c:61 kernel_read_file() warn: impossible condition '(i_size > (((~0) >> 1))) => (s64min-s64max > s64max)'
-fs/ubifs/recovery.c:1062:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-mm/filemap.c:1354:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-mm/khugepaged.c:2409 madvise_collapse() warn: possible memory leak of 'cc'
-mm/page_alloc.c:7744:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-mm/slub.c:5434:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-net/bluetooth/hci_event.c:5926:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-net/qrtr/mhi.c:102:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-net/wireless/reg.c:205:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-sound/pci/lola/lola.c:178:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-sound/pci/pcxhr/pcxhr_core.c:134:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-sound/pci/rme9652/hdsp.c:666:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-sound/soc/fsl/fsl_spdif.c:1508:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-sound/soc/sh/rcar/core.c:1602:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-sound/soc/sof/intel/mtl.c:547:1: internal compiler error: in arc_ifcvt, at config/arc/arc.c:9637
-{standard input}:2311: Error: expecting )
-
-Error/Warning ids grouped by kconfigs:
-
-gcc_recent_errors
-|-- alpha-allyesconfig
-|   |-- drivers-pci-endpoint-functions-pci-epf-vntb.c:warning:no-previous-prototype-for-pci_read
-|   `-- drivers-pci-endpoint-functions-pci-epf-vntb.c:warning:no-previous-prototype-for-pci_write
-|-- arc-allyesconfig
-|   |-- block-partitions-efi.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- block-sed-opal.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- crypto-asymmetric_keys-pkcs7_verify.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-ata-libata-core.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-ata-libata-eh.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-ata-sata_dwc_460ex.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-base-power-runtime.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-block-rbd.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-bluetooth-hci_ll.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-bluetooth-hci_qca.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-cdrom-cdrom.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-char-ipmi-ipmi_ssif.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-char-pcmcia-cm4000_cs.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-char-random.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-char-tpm-tpm_tis_core.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-clk-bcm-clk-iproc-armpll.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-clk-clk-bd718x7.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-clk-clk-lochnagar.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-crypto-ccree-cc_request_mgr.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-crypto-qce-sha.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-crypto-qce-skcipher.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-cxl-core-hdm.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-cxl-core-pci.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-dma-buf-dma-buf.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-firmware-arm_scmi-bus.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-firmware-arm_scmi-clock.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-firmware-arm_scmi-powercap.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-firmware-arm_scmi-sensors.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-firmware-arm_scmi-voltage.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-fpga-dfl-fme-mgr.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-gnss-usb.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_debug.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_link_dp.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce110-dce110_resource.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dce112-dce112_resource.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-gpu-drm-amd-amdgpu-..-pm-powerplay-hwmgr-smu7_hwmgr.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-gpu-drm-amd-amdgpu-..-pm-powerplay-hwmgr-smu8_hwmgr.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-gpu-drm-amd-amdgpu-..-pm-powerplay-hwmgr-vega10_powertune.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-gpu-drm-amd-amdgpu-..-pm-powerplay-smumgr-smu7_smumgr.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-gpu-drm-amd-amdgpu-..-pm-swsmu-smu13-smu_v13_0.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_ttm.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-gpu-drm-bridge-cadence-cdns-mhdp8546-hdcp.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-gpu-drm-bridge-ite-it66121.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-gpu-drm-bridge-lontium-lt9211.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-gpu-drm-bridge-sii902x.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-|   |-- drivers-gpu-drm-mcde-mcde_dsi.c:internal-compiler-error:in-arc_ifcvt-at-config-arc-arc.c
-clang_recent_errors
-|-- arm64-randconfig-r026-20220711
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc.c:warning:no-previous-prototype-for-function-dc_reset_state
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-irq-dcn314-irq_service_dcn314.c:warning:no-previous-prototype-for-function-to_dal_irq_source_dcn314
-|   `-- drivers-vfio-vfio_iommu_type1.c:warning:cast-to-smaller-integer-type-enum-iommu_cap-from-void
-|-- s390-randconfig-c005-20220710
-|   `-- drivers-md-dm-table.c:warning:Value-stored-to-ti-during-its-initialization-is-never-read-clang-analyzer-deadcode.DeadStores
-|-- x86_64-randconfig-a001
-|   `-- drivers-vfio-vfio_iommu_type1.c:warning:cast-to-smaller-integer-type-enum-iommu_cap-from-void
-|-- x86_64-randconfig-a005
-|   `-- drivers-vfio-vfio_iommu_type1.c:warning:cast-to-smaller-integer-type-enum-iommu_cap-from-void
-|-- x86_64-randconfig-a006-20220627
-|   `-- fs-xfs-scrub-repair.c:warning:variable-agno-set-but-not-used
-|-- x86_64-randconfig-a012
-|   `-- drivers-vfio-vfio_iommu_type1.c:warning:cast-to-smaller-integer-type-enum-iommu_cap-from-void
-`-- x86_64-randconfig-r022-20220711
-    `-- drivers-vfio-vfio_iommu_type1.c:warning:cast-to-smaller-integer-type-enum-iommu_cap-from-void
-
-elapsed time: 724m
-
-configs tested: 63
-configs skipped: 3
-
-gcc tested configs:
-arm                                 defconfig
-arm                              allyesconfig
-arm64                            allyesconfig
-arm                      integrator_defconfig
-sh                         ap325rxa_defconfig
-sh                          r7785rp_defconfig
-arm                         nhk8815_defconfig
-mips                        vocore2_defconfig
-arc                           tb10x_defconfig
-powerpc                   currituck_defconfig
-parisc                generic-32bit_defconfig
-ia64                             allmodconfig
-powerpc                           allnoconfig
-mips                             allyesconfig
-powerpc                          allmodconfig
-sh                               allmodconfig
-alpha                            allyesconfig
-m68k                             allmodconfig
-m68k                             allyesconfig
-arc                              allyesconfig
-i386                                defconfig
-i386                             allyesconfig
-i386                          randconfig-a001
-i386                          randconfig-a003
-i386                          randconfig-a005
-x86_64                        randconfig-a013
-x86_64                        randconfig-a011
-x86_64                        randconfig-a015
-i386                          randconfig-a014
-i386                          randconfig-a012
-i386                          randconfig-a016
-arc                  randconfig-r043-20220710
-s390                 randconfig-r044-20220710
-riscv                randconfig-r042-20220710
-x86_64                        randconfig-a004
-x86_64                        randconfig-a002
-x86_64                        randconfig-a006
-um                             i386_defconfig
-um                           x86_64_defconfig
-x86_64                              defconfig
-x86_64                               rhel-8.3
-x86_64                           allyesconfig
-x86_64                           rhel-8.3-syz
-x86_64                          rhel-8.3-func
-x86_64                         rhel-8.3-kunit
-x86_64                    rhel-8.3-kselftests
-
-clang tested configs:
-arm                         s5pv210_defconfig
-riscv                             allnoconfig
-arm                         orion5x_defconfig
-i386                          randconfig-a002
-i386                          randconfig-a004
-i386                          randconfig-a006
-x86_64                        randconfig-a016
-x86_64                        randconfig-a012
-x86_64                        randconfig-a014
-i386                          randconfig-a013
-i386                          randconfig-a011
-i386                          randconfig-a015
-hexagon              randconfig-r041-20220710
-hexagon              randconfig-r045-20220710
-x86_64                        randconfig-a005
-x86_64                        randconfig-a001
-x86_64                        randconfig-a003
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+index 4effee12a4ac..2bc36ff0aa0f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+@@ -115,21 +115,12 @@ void amdgpu_amdkfd_reserve_system_mem(uint64_t size)
+  * compromise that should work in most cases without reserving too
+  * much memory for page tables unnecessarily (factor 16K, >> 14).
+  */
+-#define ESTIMATE_PT_SIZE(mem_size) max(((mem_size) >> 14), AMDGPU_VM_RESERVED_VRAM)
+-
+-static size_t amdgpu_amdkfd_acc_size(uint64_t size)
+-{
+-	size >>= PAGE_SHIFT;
+-	size *= sizeof(dma_addr_t) + sizeof(void *);
+ 
+-	return __roundup_pow_of_two(sizeof(struct amdgpu_bo)) +
+-		__roundup_pow_of_two(sizeof(struct ttm_tt)) +
+-		PAGE_ALIGN(size);
+-}
++#define ESTIMATE_PT_SIZE(mem_size) max(((mem_size) >> 14), AMDGPU_VM_RESERVED_VRAM)
+ 
+ /**
+  * amdgpu_amdkfd_reserve_mem_limit() - Decrease available memory by size
+- * of buffer including any reserved for control structures
++ * of buffer.
+  *
+  * @adev: Device to which allocated BO belongs to
+  * @size: Size of buffer, in bytes, encapsulated by B0. This should be
+@@ -143,19 +134,16 @@ static int amdgpu_amdkfd_reserve_mem_limit(struct amdgpu_device *adev,
+ {
+ 	uint64_t reserved_for_pt =
+ 		ESTIMATE_PT_SIZE(amdgpu_amdkfd_total_mem_size);
+-	size_t acc_size, system_mem_needed, ttm_mem_needed, vram_needed;
++	size_t system_mem_needed, ttm_mem_needed, vram_needed;
+ 	int ret = 0;
+ 
+-	acc_size = amdgpu_amdkfd_acc_size(size);
+-
++	system_mem_needed = 0;
++	ttm_mem_needed = 0;
+ 	vram_needed = 0;
+ 	if (alloc_flag & KFD_IOC_ALLOC_MEM_FLAGS_GTT) {
+-		system_mem_needed = acc_size + size;
+-		ttm_mem_needed = acc_size + size;
++		system_mem_needed = size;
++		ttm_mem_needed = size;
+ 	} else if (alloc_flag & KFD_IOC_ALLOC_MEM_FLAGS_VRAM) {
+-		system_mem_needed = acc_size;
+-		ttm_mem_needed = acc_size;
+-
+ 		/*
+ 		 * Conservatively round up the allocation requirement to 2 MB
+ 		 * to avoid fragmentation caused by 4K allocations in the tail
+@@ -163,14 +151,10 @@ static int amdgpu_amdkfd_reserve_mem_limit(struct amdgpu_device *adev,
+ 		 */
+ 		vram_needed = ALIGN(size, VRAM_ALLOCATION_ALIGN);
+ 	} else if (alloc_flag & KFD_IOC_ALLOC_MEM_FLAGS_USERPTR) {
+-		system_mem_needed = acc_size + size;
+-		ttm_mem_needed = acc_size;
+-	} else if (alloc_flag &
+-		   (KFD_IOC_ALLOC_MEM_FLAGS_DOORBELL |
+-		    KFD_IOC_ALLOC_MEM_FLAGS_MMIO_REMAP)) {
+-		system_mem_needed = acc_size;
+-		ttm_mem_needed = acc_size;
+-	} else {
++		system_mem_needed = size;
++	} else if (!(alloc_flag &
++				(KFD_IOC_ALLOC_MEM_FLAGS_DOORBELL |
++				 KFD_IOC_ALLOC_MEM_FLAGS_MMIO_REMAP))) {
+ 		pr_err("%s: Invalid BO type %#x\n", __func__, alloc_flag);
+ 		return -ENOMEM;
+ 	}
+@@ -208,28 +192,18 @@ static int amdgpu_amdkfd_reserve_mem_limit(struct amdgpu_device *adev,
+ static void unreserve_mem_limit(struct amdgpu_device *adev,
+ 		uint64_t size, u32 alloc_flag)
+ {
+-	size_t acc_size;
+-
+-	acc_size = amdgpu_amdkfd_acc_size(size);
+-
+ 	spin_lock(&kfd_mem_limit.mem_limit_lock);
+ 
+ 	if (alloc_flag & KFD_IOC_ALLOC_MEM_FLAGS_GTT) {
+-		kfd_mem_limit.system_mem_used -= (acc_size + size);
+-		kfd_mem_limit.ttm_mem_used -= (acc_size + size);
++		kfd_mem_limit.system_mem_used -= size;
++		kfd_mem_limit.ttm_mem_used -= size;
+ 	} else if (alloc_flag & KFD_IOC_ALLOC_MEM_FLAGS_VRAM) {
+-		kfd_mem_limit.system_mem_used -= acc_size;
+-		kfd_mem_limit.ttm_mem_used -= acc_size;
+ 		adev->kfd.vram_used -= ALIGN(size, VRAM_ALLOCATION_ALIGN);
+ 	} else if (alloc_flag & KFD_IOC_ALLOC_MEM_FLAGS_USERPTR) {
+-		kfd_mem_limit.system_mem_used -= (acc_size + size);
+-		kfd_mem_limit.ttm_mem_used -= acc_size;
+-	} else if (alloc_flag &
+-		   (KFD_IOC_ALLOC_MEM_FLAGS_DOORBELL |
+-		    KFD_IOC_ALLOC_MEM_FLAGS_MMIO_REMAP)) {
+-		kfd_mem_limit.system_mem_used -= acc_size;
+-		kfd_mem_limit.ttm_mem_used -= acc_size;
+-	} else {
++		kfd_mem_limit.system_mem_used -= size;
++	} else if (!(alloc_flag &
++				(KFD_IOC_ALLOC_MEM_FLAGS_DOORBELL |
++				 KFD_IOC_ALLOC_MEM_FLAGS_MMIO_REMAP))) {
+ 		pr_err("%s: Invalid BO type %#x\n", __func__, alloc_flag);
+ 		goto release;
+ 	}
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.32.0
+
