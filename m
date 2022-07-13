@@ -1,94 +1,119 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 694CA573C4E
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 Jul 2022 20:01:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ED2E573C55
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 Jul 2022 20:04:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 226E414BF25;
-	Wed, 13 Jul 2022 18:01:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C38D511AC21;
+	Wed, 13 Jul 2022 18:04:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2088.outbound.protection.outlook.com [40.107.94.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D71018A4DD
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 18:01:26 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2067.outbound.protection.outlook.com [40.107.93.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D91811AC21
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 18:04:15 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SJQ4QLVL9X+rLV/ExBYYR9Kek6E5gkQQzBZLh5OHpQ5EMddYP6+5oDmOLLLJviyQWFtx8j9lBF1QJ5rixX86gHkxhV38faMNLTwbCHSvO3Uv+MD9mTsltGmk+oIQEdBI7TeBmsLIbwYqg2DHjQ6RCd8v5NyXzFtrbGjbzojuD5f28FrazNc4ibHS0nNHlQXcDUuSh6XZqVIgqtlR6Gvg0wEZk8+aypEs8ZUDpKsGePvkBj+9wSvfz2JoGjWJJMsd5fdKAdwL8K6y42CvykzDKzAl/w5fTGc1tmVTx0qboAUDzgh83G8sJqO6EeGyvSXMAES3D2zJAvwuw0be9C4sUw==
+ b=n/8T+XOrujCDjczPQgn02KzpGnvT36FY6qVVfO1ilfN2QYUaZyzJ6qkykBbio7iKouBroJSTjRqM3nwK147kBmEteM6KVXg9A5/SOm+qUW20TO+REmrWMuoa7CZqmsd5RtlEfJAXHXCmjanVTVl3o5D+Qqd9dyS30SEO2qpkLCvW0dAX0twpvHD39G+Y4LLup4xIjcDD2u/0W+rMSlBT7rw3Bb8KJkgExZztxVktTnbJc1irySGRgPBU9wkHS5Xw9/7zeZGS8VDnGtCRu6z46BeOG205WzR2w7StaMBqn4KMjBQJ9NMqi4kEdf2xhE//gTDoL4Lkp7j8zH+/XiI7BQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ao3I/GGmyAIrENZ3GpmbG/IUN6lbrefFJ2eG1M4OLSw=;
- b=n2l+h2ir5ztv54KyCczBTKCGWKYeCrm+/WlT7uoq3Rfb/oELJnCeTFiFXcdyi8HTPKT5VgS31NuEmCuVn5Itc6nOo9Htmgl1cnbXsAFu7KI7rRUzZIMmntVbSRysQZ5LcWz5E67t5huVfxIn7Gojvh+8Z3eUBKdNWGuq09WtRd563D8GNqQFJhOPsbBEFLT2nZXcX6veWoom4N97D/pzbcZvCmJNupXCLktRHVvtmJO9Ev0QvizWkapA1Kp7qQSYyd69Mf10/1ymBaSefDic4U8XnZA27aH6EY2E+VK4e8CGAnaHzjGerYUNYhRmV1qfe0LS2cIhUIPYKvgbvr1MSw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
+ bh=CSvH907SSxF8zGtDh1zADIz+5vSqqOygfGOd/u5x+ww=;
+ b=TzaS0uBG3KfBFpM/3SHk4AL30wU6IlHW9oDxFFdmRwVWsjO0q8m4JxSErrXwSajhEJxm77wJikg8Bl60aKe8yO8JIVFAoe5N99pAE35Ve+gxfSVra2ZxqmtTIvtvCm7ZyNDmj0o47iKDAoC6Jl8pd9SPTrqAd9o7vnAaR3g254eL5/jIDc1VEP3hlh/Pzp0fC3JQDZOzlqtnG5hWEajacUF9st6ODmD5PvXQLaKHN4pnW/DFt258apFEOqOHFbDNSEvGANpJeLTrAICmYOSsPlzXPgq9Bv45x9P9hWRKzkhWbZSZbGRBE1AaHR71Ud/V/wSjXAB8z/3q5umjnsiWfg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ao3I/GGmyAIrENZ3GpmbG/IUN6lbrefFJ2eG1M4OLSw=;
- b=OG/US6qqq8D0LWAspIH3zWcZkDEU+wNzU3IYvEQbxR3A/SPqnky2eXVGsOpKRF+1GKQfJPzxJqrhbCP6g+AMIoArg0W/7pNMbnDbb7ded4GPv9wgbPcRsUhQUscCEKcEYnMJSdPHBvtO2UMrti3R0Ru/HPnZ9oXGidGhtBFEXEs=
-Received: from DS7PR03CA0318.namprd03.prod.outlook.com (2603:10b6:8:2b::32) by
- BY5PR12MB3876.namprd12.prod.outlook.com (2603:10b6:a03:1a7::26) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.16; Wed, 13 Jul
- 2022 18:01:24 +0000
-Received: from DM6NAM11FT050.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:2b:cafe::9e) by DS7PR03CA0318.outlook.office365.com
- (2603:10b6:8:2b::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.16 via Frontend
- Transport; Wed, 13 Jul 2022 18:01:23 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT050.mail.protection.outlook.com (10.13.173.111) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5438.12 via Frontend Transport; Wed, 13 Jul 2022 18:01:23 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 13 Jul
- 2022 13:01:11 -0500
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 2/2] drm/amdgpu: use the same HDP flush registers for all nbio
- 2.3.x
-Date: Wed, 13 Jul 2022 14:00:56 -0400
-Message-ID: <20220713180056.529423-2-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20220713180056.529423-1-alexander.deucher@amd.com>
+ bh=CSvH907SSxF8zGtDh1zADIz+5vSqqOygfGOd/u5x+ww=;
+ b=f2tj0w6QGHj2mmn3bfk65mPSecm3ETk8GCFyBxrhKNXBZQaqlN9yTdSUfZ2hrK/+1wXVKd9K8/XXCfnWg2Q0hYGTnsQByCmwGZDQbbKkrVUSAw66hKKyJfmoq7P2Hjh4XDHLqOjRvK9qiem2PbkOCa21qUh/4QXV96RJ7xUJtR4=
+Received: from DM5PR12MB1308.namprd12.prod.outlook.com (2603:10b6:3:76::7) by
+ BN6PR12MB1300.namprd12.prod.outlook.com (2603:10b6:404:1a::10) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5438.13; Wed, 13 Jul 2022 18:04:12 +0000
+Received: from DM5PR12MB1308.namprd12.prod.outlook.com
+ ([fe80::9169:810:9f70:7b97]) by DM5PR12MB1308.namprd12.prod.outlook.com
+ ([fe80::9169:810:9f70:7b97%11]) with mapi id 15.20.5417.026; Wed, 13 Jul 2022
+ 18:04:11 +0000
+From: "Russell, Kent" <Kent.Russell@amd.com>
+To: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH 2/2] drm/amdgpu: use the same HDP flush registers for all
+ nbio 2.3.x
+Thread-Topic: [PATCH 2/2] drm/amdgpu: use the same HDP flush registers for all
+ nbio 2.3.x
+Thread-Index: AQHYluKVtpJmnchpu0ekpEYgiADcGK18l/ig
+Date: Wed, 13 Jul 2022 18:04:11 +0000
+Message-ID: <DM5PR12MB130888E2293A6EF2B491418A85899@DM5PR12MB1308.namprd12.prod.outlook.com>
 References: <20220713180056.529423-1-alexander.deucher@amd.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 27fd714c-ff28-4877-1baf-08da64f9b2d8
-X-MS-TrafficTypeDiagnostic: BY5PR12MB3876:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Y9BVRSSxou86LRgZNp7BRniZBM5md0C9r/AyV+ACy1p7SHt0iAjf2KCIo07PGQ0lXzSwq0+yrCIJlIYCBorPUezLRG1xJIHETGxc8vT/6hH9Ur9U3husPcM58aw/B5JElPY8/rcyAlc0uCq1D4AdpSb5R1mm0irrqUa0QJ+akUVtbASmvC0rgmMAcM2erR/SnPVJMH8Wp6Ht/8TjGfK1rX+5irbyKWNutS+0tt62tUmiHUTGY5PZIDJUPJIOggowr158M0cq3sl7aabs/jFyxa5VsmXDLEOLYUcMexLSB4kJleSe9vA3QJ9PM/3XwnYgMqj6CXZrlwEFoxxFM2Xd3mxhLKNoxcB/+8rLBHn34MYoXKmmTQbk1pxYDf5JjBgtYkaWsL28siLahCkQbZn2WvUN6mASIKG4j6c08ZE040wq+D6BXkovabSex5H9L6zJatvLa1701aV55zdkpcuCJYtr48l3IpOgcRUcCsKM/D5iKzY76puhgt2eDVvKcPYYG5qh0gpRk9QF/Bp4++W5dkSReKgUu7TR/ZuUXt540mqYjqeXVJ5u0rzV03AD2VviVhYL3C1IL1YHY0IDgRqSq5ETsidRffdWKHI9NnJVnFBkU2qkWKJm/K8IXyUY7H0ieP67OUx6wyMiMEFgwuCy5K/v59N8AQFLvcgohjq1yO14POqdFN7zhPSxtHDTMq2K2RZx0rN/qJ/KNh/snXbIJkgc5CeH5PrMzP7xUZ+Sg3kjvnAYBYBllowzC6PrO1fwrJCFQ91FHfHas6taNXhz0QgDpND6zQq45GSr/dK4I/z0kSyWAxS8UWwGt1s7JdrP9YSasKAUVsV5rSugsMRpIPVlthFX6Ada/9mwulD2nSs=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(376002)(396003)(136003)(39860400002)(346002)(40470700004)(46966006)(36840700001)(82740400003)(82310400005)(426003)(336012)(478600001)(83380400001)(86362001)(2906002)(6666004)(40460700003)(316002)(356005)(47076005)(41300700001)(7696005)(2616005)(81166007)(70206006)(26005)(70586007)(40480700001)(36860700001)(1076003)(5660300002)(36756003)(8936002)(6916009)(186003)(4326008)(8676002)(16526019)(36900700001);
+ <20220713180056.529423-2-alexander.deucher@amd.com>
+In-Reply-To: <20220713180056.529423-2-alexander.deucher@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2022-07-13T18:04:10Z; 
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=efdbd873-7f57-4f1a-bee0-166f172af7e3;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=1
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 2bbb8c6b-3abb-4bd2-311e-08da64fa171a
+x-ms-traffictypediagnostic: BN6PR12MB1300:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: GgtsUF+IZ+RVa52aCHfPQQ+2f+7zJLoUwD4G17qYSCKllH1PFLdnp+5Tm+BLTxdM5JNILIuF0Sn/eJ9dJEUyfYkhRJ6/hUw6xY21KC5eTzdzQK++nHFsqC2r8S+CLKVQqJ/9KBJOo5pD9LHyge5GvQ51XV3E/Dd6Ivf9GNYn8cpg+4xR77iSA+cCWHn6PPmdLzucavnxV/O7dwxpQpEFTO6sbzsTWhAtTgphrCdEGAbA9srv7TvKZfhcWk7ZWr5KxvtmUsdEy8T+Ymvhe8Vf83gnrMQtk45cXRiQgOSFp+TuEZ5DvZ//8MCJHyj9EOQMVyc8o3DPK9pdjIICatIu3trSoTKBeW98EM40a/fVQY2+jRU3dZrPYqJR3T3g39gxZov2/6h1zeIQt3Vl06RrT+/Nujo4fwAjczcqUDout5sDWR3vAD9sh13YCxs3kX23K8tZ+cMi6p0s+poWTOYgz0TBM7w67//zk5XW75DuYBEhe3SarLpsrBs0q0ZLhLKjSVikganv3+bekJSEdQZSlzX/0Doa3U+GSr9bmeIfkedGzAlfujIlxcUQKlAi9T5W+7iPX3TVTTW1JMAAvZB+GJKhPvmzRyY2+hDS9JUX7IaAC1B6crClOQ65plkJetf73kWeMexXhC3OgN7xZLfeazKn0eA7OzKiThkMOGBqi3GgsPxb5l2N19pSzxHjBduEVUPl+HagC1hO6SBvyd0nFtjOeLX5op6p7vm6vW2JCNprYwWeIQPXCAwW9PiuJOT+JplamaY39eMGocvkUsJJAG8pEj24qHGNRbvbGp94hga8gJvYUlxDbvN7xkAC7B2z
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM5PR12MB1308.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(376002)(346002)(366004)(136003)(396003)(39860400002)(122000001)(2906002)(38100700002)(83380400001)(5660300002)(33656002)(55016003)(8936002)(38070700005)(110136005)(86362001)(66556008)(186003)(66476007)(8676002)(4326008)(66946007)(52536014)(64756008)(66446008)(316002)(41300700001)(76116006)(26005)(7696005)(6506007)(9686003)(53546011)(71200400001)(478600001);
  DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?C0kzpUXleQPbK/6pZ3z9Z2A2MzGLMLFBXMIGl6rgPeWq2MtG16XVo9bCBmrt?=
+ =?us-ascii?Q?bXFgJ9LNoxuKLJ3/adTE6a1l/HcgFD15I3KhqvBUxBRzZWHEK8cgtfG7Xfzg?=
+ =?us-ascii?Q?YJv8fMeGy472YZvzbPj1/gDQ1oWHfG2Mr2a7HEa0aIKKkfC2SNNzs75O+9wP?=
+ =?us-ascii?Q?CkiSSN7WHDwFfR7Fq0Q1NEPXLqkzearcOe8oPFNJpprKiRXZqVfAlC6NGUuq?=
+ =?us-ascii?Q?PLS21sX5SreIN5j28oa1/D1it786Oa222B6sq//nFIOEepJQwBAz4VM1v1mc?=
+ =?us-ascii?Q?KfK8BOXTtUjZMywHYBMgENnUhw7gXwa4u9+vq3rQse3tJbq2laSUddXd+/Z5?=
+ =?us-ascii?Q?xQnky1RRJIB1xG4HreylxrRr+9f+5P+tb/37RA/kDj0ByWv20/pUTIQ2/bzM?=
+ =?us-ascii?Q?3DN6w08tblwmHj7tlxZDbkxIsB0z1tCiNySOOrIDivZBATi+fufAINLENKJl?=
+ =?us-ascii?Q?7zr1QhZiBd3gxGXaZregGdr/urZFDxdMaM1YHoZr9HSJknOcwEtE4ceV67x0?=
+ =?us-ascii?Q?g0nE4dfHunsWJ5iZWe1WJQJ2d66z6ptZdbKQzbazZTCDHw2m8cObRUVw/4he?=
+ =?us-ascii?Q?Jly6Rtsna/nccexN5GRH/m6NDwtdHRSg6sHnUZ6Aed+KGVGL1LtLEZwn3LSY?=
+ =?us-ascii?Q?fJdgE1jMUumjgeKa34IgfocxH1KN6sIdWTC74+nx8xFMsMlVMixzM0UQGPiQ?=
+ =?us-ascii?Q?L9Y1o2rwg8+M8MyO5bHfDeVWmrut3AH3IdaJrXpC9uY643enqkiRXMtE84E6?=
+ =?us-ascii?Q?1+/bzwR0vU2gt1jk203uj06zTHMvp8sHJQsutDHF/K56uo1czbigDM2bhCiS?=
+ =?us-ascii?Q?JlgthsyofudS+kLcoI/hry0pwVEJo4wtptn+6eplliZ24UXPrd39aXqA3fiO?=
+ =?us-ascii?Q?Mu51pZu1qBGRMXorP7aO3xmOPCCcV3nK34vsLGXtqME52aW6mwT6pkUOgDHE?=
+ =?us-ascii?Q?D7o4RHL3VVd2NZ6k2hTugoeDV3wHNM6aIlo4LrMbCdRsDfXD+LKuwB+pPXAH?=
+ =?us-ascii?Q?TJ3dcZd6KuA3SCV6sXrDBkQe5z7KKOEOTjPRybdKex22/O5EuPpWE1IgDRKK?=
+ =?us-ascii?Q?KwQq7JQrGJMv3BI2/oHO3ktO9HU3dVxTdfEuvcMg1JPr1ahEgJ6yvz3oKGgG?=
+ =?us-ascii?Q?lGHGeb6/CXK9eBf7mSVGx9STmm66c8yt/pq3OkyOOTm+G+RXfdnVl1cHEUYA?=
+ =?us-ascii?Q?tgggBLUN4yjeUzsrvWryLhtyOL9eEnZCynN6AtRWSOd6O2G2oIDDmXL1YV0O?=
+ =?us-ascii?Q?fWYVJwEH/jnoCgendk1XsQitIV3IAsghfMVG7Whd1lKoL/FuOO9poVqXEIOk?=
+ =?us-ascii?Q?va2mz4r426eOR2ck+te2EQWGcn8lw66BgXYK6hB7/z385nbVnmA18mAsnuNL?=
+ =?us-ascii?Q?1zp0w4I87aCa4SYRVBKYaecY0wwSMYLLr5K8qMWto+S1ja8vkw3P2DKGJHvN?=
+ =?us-ascii?Q?dej+F0jPz4h9uIN9IZdK7OBLgin+zvjb/8rOpm4adB+Gh7wG1rf/kAZ8xYK6?=
+ =?us-ascii?Q?JTNevTfiqjr8INUN0WuHVE+sU4I2E/z3s2hZyfcD3Bm6JJI8cJwExAH37JRj?=
+ =?us-ascii?Q?DXjaJ5UCbg4xDo4OUQA=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2022 18:01:23.5394 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 27fd714c-ff28-4877-1baf-08da64f9b2d8
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT050.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB3876
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB1308.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2bbb8c6b-3abb-4bd2-311e-08da64fa171a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Jul 2022 18:04:11.8071 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: GT+yzt/ozz2tEjG2nEpmoURMUsOkjzSM9KkXnJWEgX5Vdgqg+9jvVThnyUUvpo6FTyzlcxgnvXpSfBLTGrbrrA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1300
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,88 +125,120 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Align RDNA2.x with other asics.  One HDP bit per SDMA instance,
-aligned with firmware.  This is effectively a revert of
-commit 369b7d04baf3 ("drm/amdgpu/nbio2.3: don't use GPU_HDP_FLUSH bit 12").
-On further discussions with the relevant hardware teams,
-re-align the bits for SDMA.
+[AMD Official Use Only - General]
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c |  5 +----
- drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c        | 21 -------------------
- drivers/gpu/drm/amd/amdgpu/nbio_v2_3.h        |  1 -
- 3 files changed, 1 insertion(+), 26 deletions(-)
+Series is  Reviewed-by: Kent Russell <kent.russell@amd.com>
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-index 4f83897a54a8..22144ba6c7ec 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-@@ -2229,15 +2229,12 @@ int amdgpu_discovery_set_ip_blocks(struct amdgpu_device *adev)
- 	case IP_VERSION(2, 3, 0):
- 	case IP_VERSION(2, 3, 1):
- 	case IP_VERSION(2, 3, 2):
--		adev->nbio.funcs = &nbio_v2_3_funcs;
--		adev->nbio.hdp_flush_reg = &nbio_v2_3_hdp_flush_reg;
--		break;
- 	case IP_VERSION(3, 3, 0):
- 	case IP_VERSION(3, 3, 1):
- 	case IP_VERSION(3, 3, 2):
- 	case IP_VERSION(3, 3, 3):
- 		adev->nbio.funcs = &nbio_v2_3_funcs;
--		adev->nbio.hdp_flush_reg = &nbio_v2_3_hdp_flush_reg_sc;
-+		adev->nbio.hdp_flush_reg = &nbio_v2_3_hdp_flush_reg;
- 		break;
- 	case IP_VERSION(4, 3, 0):
- 	case IP_VERSION(4, 3, 1):
-diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
-index 34c610b9157d..b465baa26762 100644
---- a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
-@@ -328,27 +328,6 @@ const struct nbio_hdp_flush_reg nbio_v2_3_hdp_flush_reg = {
- 	.ref_and_mask_sdma1 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__SDMA1_MASK,
- };
- 
--const struct nbio_hdp_flush_reg nbio_v2_3_hdp_flush_reg_sc = {
--	.ref_and_mask_cp0 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP0_MASK,
--	.ref_and_mask_cp1 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP1_MASK,
--	.ref_and_mask_cp2 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP2_MASK,
--	.ref_and_mask_cp3 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP3_MASK,
--	.ref_and_mask_cp4 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP4_MASK,
--	.ref_and_mask_cp5 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP5_MASK,
--	.ref_and_mask_cp6 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP6_MASK,
--	.ref_and_mask_cp7 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP7_MASK,
--	.ref_and_mask_cp8 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP8_MASK,
--	.ref_and_mask_cp9 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP9_MASK,
--	.ref_and_mask_sdma0 = GPU_HDP_FLUSH_DONE__RSVD_ENG1_MASK,
--	.ref_and_mask_sdma1 = GPU_HDP_FLUSH_DONE__RSVD_ENG2_MASK,
--	.ref_and_mask_sdma2 = GPU_HDP_FLUSH_DONE__RSVD_ENG3_MASK,
--	.ref_and_mask_sdma3 = GPU_HDP_FLUSH_DONE__RSVD_ENG4_MASK,
--	.ref_and_mask_sdma4 = GPU_HDP_FLUSH_DONE__RSVD_ENG5_MASK,
--	.ref_and_mask_sdma5 = GPU_HDP_FLUSH_DONE__RSVD_ENG6_MASK,
--	.ref_and_mask_sdma6 = GPU_HDP_FLUSH_DONE__RSVD_ENG7_MASK,
--	.ref_and_mask_sdma7 = GPU_HDP_FLUSH_DONE__RSVD_ENG8_MASK,
--};
--
- static void nbio_v2_3_init_registers(struct amdgpu_device *adev)
- {
- 	uint32_t def, data;
-diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.h b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.h
-index 6074dd3a1ed8..a43b60acf7f6 100644
---- a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.h
-+++ b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.h
-@@ -27,7 +27,6 @@
- #include "soc15_common.h"
- 
- extern const struct nbio_hdp_flush_reg nbio_v2_3_hdp_flush_reg;
--extern const struct nbio_hdp_flush_reg nbio_v2_3_hdp_flush_reg_sc;
- extern const struct amdgpu_nbio_funcs nbio_v2_3_funcs;
- 
- #endif
--- 
-2.35.3
 
+
+> -----Original Message-----
+> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Alex
+> Deucher
+> Sent: Wednesday, July 13, 2022 2:01 PM
+> To: amd-gfx@lists.freedesktop.org
+> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>
+> Subject: [PATCH 2/2] drm/amdgpu: use the same HDP flush registers for all=
+ nbio
+> 2.3.x
+>=20
+> Align RDNA2.x with other asics.  One HDP bit per SDMA instance,
+> aligned with firmware.  This is effectively a revert of
+> commit 369b7d04baf3 ("drm/amdgpu/nbio2.3: don't use GPU_HDP_FLUSH bit
+> 12").
+> On further discussions with the relevant hardware teams,
+> re-align the bits for SDMA.
+>=20
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c |  5 +----
+>  drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c        | 21 -------------------
+>  drivers/gpu/drm/amd/amdgpu/nbio_v2_3.h        |  1 -
+>  3 files changed, 1 insertion(+), 26 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> index 4f83897a54a8..22144ba6c7ec 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> @@ -2229,15 +2229,12 @@ int amdgpu_discovery_set_ip_blocks(struct
+> amdgpu_device *adev)
+>  	case IP_VERSION(2, 3, 0):
+>  	case IP_VERSION(2, 3, 1):
+>  	case IP_VERSION(2, 3, 2):
+> -		adev->nbio.funcs =3D &nbio_v2_3_funcs;
+> -		adev->nbio.hdp_flush_reg =3D &nbio_v2_3_hdp_flush_reg;
+> -		break;
+>  	case IP_VERSION(3, 3, 0):
+>  	case IP_VERSION(3, 3, 1):
+>  	case IP_VERSION(3, 3, 2):
+>  	case IP_VERSION(3, 3, 3):
+>  		adev->nbio.funcs =3D &nbio_v2_3_funcs;
+> -		adev->nbio.hdp_flush_reg =3D &nbio_v2_3_hdp_flush_reg_sc;
+> +		adev->nbio.hdp_flush_reg =3D &nbio_v2_3_hdp_flush_reg;
+>  		break;
+>  	case IP_VERSION(4, 3, 0):
+>  	case IP_VERSION(4, 3, 1):
+> diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
+> b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
+> index 34c610b9157d..b465baa26762 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
+> @@ -328,27 +328,6 @@ const struct nbio_hdp_flush_reg
+> nbio_v2_3_hdp_flush_reg =3D {
+>  	.ref_and_mask_sdma1 =3D
+> BIF_BX_PF_GPU_HDP_FLUSH_DONE__SDMA1_MASK,
+>  };
+>=20
+> -const struct nbio_hdp_flush_reg nbio_v2_3_hdp_flush_reg_sc =3D {
+> -	.ref_and_mask_cp0 =3D
+> BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP0_MASK,
+> -	.ref_and_mask_cp1 =3D
+> BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP1_MASK,
+> -	.ref_and_mask_cp2 =3D
+> BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP2_MASK,
+> -	.ref_and_mask_cp3 =3D
+> BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP3_MASK,
+> -	.ref_and_mask_cp4 =3D
+> BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP4_MASK,
+> -	.ref_and_mask_cp5 =3D
+> BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP5_MASK,
+> -	.ref_and_mask_cp6 =3D
+> BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP6_MASK,
+> -	.ref_and_mask_cp7 =3D
+> BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP7_MASK,
+> -	.ref_and_mask_cp8 =3D
+> BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP8_MASK,
+> -	.ref_and_mask_cp9 =3D
+> BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP9_MASK,
+> -	.ref_and_mask_sdma0 =3D GPU_HDP_FLUSH_DONE__RSVD_ENG1_MASK,
+> -	.ref_and_mask_sdma1 =3D GPU_HDP_FLUSH_DONE__RSVD_ENG2_MASK,
+> -	.ref_and_mask_sdma2 =3D GPU_HDP_FLUSH_DONE__RSVD_ENG3_MASK,
+> -	.ref_and_mask_sdma3 =3D GPU_HDP_FLUSH_DONE__RSVD_ENG4_MASK,
+> -	.ref_and_mask_sdma4 =3D GPU_HDP_FLUSH_DONE__RSVD_ENG5_MASK,
+> -	.ref_and_mask_sdma5 =3D GPU_HDP_FLUSH_DONE__RSVD_ENG6_MASK,
+> -	.ref_and_mask_sdma6 =3D GPU_HDP_FLUSH_DONE__RSVD_ENG7_MASK,
+> -	.ref_and_mask_sdma7 =3D GPU_HDP_FLUSH_DONE__RSVD_ENG8_MASK,
+> -};
+> -
+>  static void nbio_v2_3_init_registers(struct amdgpu_device *adev)
+>  {
+>  	uint32_t def, data;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.h
+> b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.h
+> index 6074dd3a1ed8..a43b60acf7f6 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.h
+> @@ -27,7 +27,6 @@
+>  #include "soc15_common.h"
+>=20
+>  extern const struct nbio_hdp_flush_reg nbio_v2_3_hdp_flush_reg;
+> -extern const struct nbio_hdp_flush_reg nbio_v2_3_hdp_flush_reg_sc;
+>  extern const struct amdgpu_nbio_funcs nbio_v2_3_funcs;
+>=20
+>  #endif
+> --
+> 2.35.3
