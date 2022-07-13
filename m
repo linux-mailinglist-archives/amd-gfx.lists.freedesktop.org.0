@@ -2,57 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E0EC5740AF
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 02:59:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 629855740B5
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 02:59:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A949018A85F;
-	Thu, 14 Jul 2022 00:59:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A62332ADCE;
+	Thu, 14 Jul 2022 00:59:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com
- [IPv6:2607:f8b0:4864:20::1030])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 956E59EF5C
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 22:56:29 +0000 (UTC)
-Received: by mail-pj1-x1030.google.com with SMTP id
- v4-20020a17090abb8400b001ef966652a3so6138564pjr.4
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 15:56:29 -0700 (PDT)
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com
+ [IPv6:2607:f8b0:4864:20::102f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDB679F2AA
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 23:02:30 +0000 (UTC)
+Received: by mail-pj1-x102f.google.com with SMTP id
+ q5-20020a17090a304500b001efcc885cc4so485485pjl.4
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 16:02:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=sender:date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to;
- bh=ALmsjo20iDq07XHHp8hpMGpJ3WDhp0g9JmzUyOXBoCM=;
- b=JHtzZWeUscDe/NjfuYFmLnY1UjC/BzmUB4H+A2+N3HrOgtyNPI0iG5FaA1VaXxybCp
- mHZVBAhRW9cXndUaawFFIXstvQ6oojNbyZmEvvWPXCd9nxggREDJlDVQk+1aDN6Bq5Vc
- Ej/MBMxV71S3F1TZqh5POlcnQRkVcg6haDsv8est59YY8SzzTsQEZ9rFPxnY6oZMZI7O
- maJ4x/HoxSBZbupP2IkXd0WPHa3PWS4JfuyMJmxl6x0iu+xHWGSQZh4CSHlQZsBQJdlS
- stuDk4v/KIZv1gMLII6nxGLnx8L4iAWUr68vzt/G9+pQfpsQHTZW/UWyEQwZfXthBpVf
- q/wA==
+ bh=3DTffoizvAtkAXY7UkJCahcmR2dJ0DU6CtEuKHCRq9o=;
+ b=k7/ZW/Sdqy4R6zQJQ1ct1EO+pB3HgV5W6cnvjNo06ybO0jIfWwv1AQJo2P9gm9dK7r
+ rdacX3XXknIHJE/YghqOYhzAFcIHXvoqSW/7Zkwfycpq7njz6tX20Bop0OOIlu+JvkI9
+ PFrBIhPVnvsnMFgv71usju89docCmUEJr+JBRp2n2dXoqcJIVf/YSkygQCrILg72xlHx
+ 11+ODprynW00kWeuM9v/sFjHnvZkuHVnJcwb1cMdYCgdvcK4SGccAgd1BSlly1eQsZV+
+ imNH+UyzeroXK1g2nUCfbuxiFTUufJi+TzTt0ek2ucTViceMOe8gAWgIUYMI/qBUsBi8
+ uV3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
  :references:mime-version:content-disposition:in-reply-to;
- bh=ALmsjo20iDq07XHHp8hpMGpJ3WDhp0g9JmzUyOXBoCM=;
- b=3ngUvZGoW9n0Vkl2PvnsYCc6jSgQ6Og9lwgtwG1YrtWbLjX6Jva8+se3hodz0Vobrc
- ZabfauZE0lO/Kg6kAqIa1mWejG/Lf9lN3aFHn0Q27JLtQNMeUpQaKanH/jQFNgRGDkJj
- rqbR1d0mmmp/rTxmBkb0IVbUqEIZI9f1JvzWZkUO67LZVBqLxuGLQzeqBBNKSL6nPuUv
- ENfQW1Lk0MH75B95W/GyZpbLcefPsqYw3y+VRmV9zA3rO6Yo5wrpfWmnGLxLLrsLp4eZ
- rnmeQDrvfPMYIE1OgazsLtsJtP9sipfkU4pTxjk4EKHKDrNAA7YtNQ4cAEA14i/Ho8MQ
- QKXw==
-X-Gm-Message-State: AJIora9/riVQpZuCPtuF1OcXu1GQDVfVi8CPxBOifPA/tHZb9LNpZq45
- J09HtWQ995Bf5knSn2HW3CQ=
-X-Google-Smtp-Source: AGRyM1ssTP6Thy3UB20epNnuCWSDPBTNSUJXlSgGX6sg8IBzM8ZlJakJTn9/vCXGS5PpybokpfWpXA==
-X-Received: by 2002:a17:90a:590e:b0:1f0:1dd9:bf6c with SMTP id
- k14-20020a17090a590e00b001f01dd9bf6cmr6148501pji.15.1657752989217; 
- Wed, 13 Jul 2022 15:56:29 -0700 (PDT)
+ bh=3DTffoizvAtkAXY7UkJCahcmR2dJ0DU6CtEuKHCRq9o=;
+ b=VcTenlxF4IgT0kGuTy5e2wogtu4rfobRLsPEOji7+99IQPiDAYfOWFmjBEERXjLzUb
+ G1NTf116IvGfaQNkYizYepbuzXvh+tpAPKC1INEFYkKzbcCFAqwy4z0s6bgJfzW8+1r/
+ ruar+WZJLJxqjWlg57PckIVQkLzJ9YSmQEPmokKbt9b1lZfRiee0k9tn1+8a2hT+eGVU
+ cjeFV3k3p80Zhh4Z5Lwf7aSqLue3zl7cPJ6IqR+EqIVdI/Pm9y5MNeMlexaLNqhS34QG
+ vzVoAEahApO4RC/Tf91tmCNbbd1fWKDQOijmxDYimmCzlgoHJakCvUWoBaOVh3ddK3yH
+ 6OKg==
+X-Gm-Message-State: AJIora9L+QUd3QKHPj8XqAEl8YEJIxxlr2tNUcohTvKQsjrUOLJtEe8j
+ 1Mz4jszY/bQypPvvCKkzTro=
+X-Google-Smtp-Source: AGRyM1tAukgwSUDLM2s8DTW1z2VMC3B4PF4X7AJrrp22zHg8TsoXCbl0m15KHsB1DfqgJB4DtXOqoA==
+X-Received: by 2002:a17:90a:e58a:b0:1e2:fe75:dd5f with SMTP id
+ g10-20020a17090ae58a00b001e2fe75dd5fmr12829460pjz.138.1657753350426; 
+ Wed, 13 Jul 2022 16:02:30 -0700 (PDT)
 Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
  by smtp.gmail.com with ESMTPSA id
- y20-20020aa79af4000000b00518764d09cdsm59039pfp.164.2022.07.13.15.56.28
+ z22-20020aa79596000000b00525373aac7csm83390pfj.26.2022.07.13.16.02.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 13 Jul 2022 15:56:28 -0700 (PDT)
-Date: Wed, 13 Jul 2022 15:56:27 -0700
+ Wed, 13 Jul 2022 16:02:29 -0700 (PDT)
+Date: Wed, 13 Jul 2022 16:02:27 -0700
 From: Guenter Roeck <linux@roeck-us.net>
 To: Sudip Mukherjee <sudipm.mukherjee@gmail.com>
 Subject: Re: Linux 5.19-rc6
-Message-ID: <20220713225627.GC32544@roeck-us.net>
+Message-ID: <20220713230227.GD32544@roeck-us.net>
 References: <CAHk-=wgTmGaToVFdSdoFqT2sNkk7jg2rSWasUYv-tASUZ2j_0Q@mail.gmail.com>
  <20220713050724.GA2471738@roeck-us.net>
  <CAHk-=widUqghhXus_GCM9+FESa5vHqMb_pO3=0dGYH8C+yix2w@mail.gmail.com>
@@ -110,9 +110,9 @@ On Wed, Jul 13, 2022 at 10:50:06PM +0100, Sudip Mukherjee wrote:
 > Uhh.. no, sorry.. I meant the same problem which Guenter reported with
 > powerpc64-linux-ld, hard float and soft float.
 > But I dont see this problem with gcc-12, only with gcc-11.
-> 
 
-Weird. It works for me with gcc 11.3.0 / binutils 2.38 as well as with
-gcc 11.2.0 / binutils 2.36.1.
+I am wondering ... you say "my builds". Is this possibly not
+allmodconfig ? It may well be that there are other configurations
+which still have a problem after my patch has been applied.
 
 Guenter
