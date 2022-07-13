@@ -1,76 +1,69 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 737FD573DFC
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 Jul 2022 22:46:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AAA0573E61
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 Jul 2022 22:58:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9A7199BC9;
-	Wed, 13 Jul 2022 20:46:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAE5F10FCB2;
+	Wed, 13 Jul 2022 20:58:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com
- [IPv6:2607:f8b0:4864:20::42e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D19499BC9
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 20:46:19 +0000 (UTC)
-Received: by mail-pf1-x42e.google.com with SMTP id e16so1138pfm.11
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 13:46:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=sender:message-id:date:mime-version:user-agent:content-language:to
- :cc:references:from:subject:in-reply-to:content-transfer-encoding;
- bh=tIHGf4VW/fEwq1AvVsdPyI+0X2e9Ro/7w+8ubGt0XGE=;
- b=j2W7lWqTya69RXYlcCaYeipeFckSMlpZ9ipyhy+uWLZ/3bmkXmSAB5Dh20tJu+ZdGp
- A/pkDtVvYDU0N5C+i7Q29P58If1WjlNhsEr32JwzvYtAd3oLzBEukuUhdrWYRhkbdDlG
- VROAJ2Or7X2i2lsfMMXUcuzsgzCqX4z71UUvFicXdRevXw6MFMeYtKqsUDI+wTTNwR/k
- i2dc4NGZsgyPczNJvya91wm6LY+ulpOV9frcCOtRo2lvYUYSJu+UUEm6q7NjUCDjIi0F
- +6WU9XHcQZ03YMKmgfUYUxPGRPZ4qtZ+hOIpxbotPHLdf/rH7R6ni4iyBiQZaI4a9jsq
- KDvg==
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com
+ [IPv6:2a00:1450:4864:20::534])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E33A799CED
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 20:50:20 +0000 (UTC)
+Received: by mail-ed1-x534.google.com with SMTP id t3so15382733edd.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 13:50:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=ahgWcY0Qhtt2gptPxS6Knb/YUD/M/kyPSyAouT+Dg5Q=;
+ b=eWyzJ3DkQPO8/Ucp2ZtR+aYlDD2nT9ApRtgzzfquSIYkokAIYRl2vW5b6bt/Xwhfra
+ YQI4Qfok3pGM9xg+494aKlrf4c/au02ChfkaI2ab6CUK47+sfbQuj+0F8SkDyDqEUYxc
+ kEmSkZbf4Ya4CAZSLIIzXiikXy/Wr2/bBFVmM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
- :content-language:to:cc:references:from:subject:in-reply-to
- :content-transfer-encoding;
- bh=tIHGf4VW/fEwq1AvVsdPyI+0X2e9Ro/7w+8ubGt0XGE=;
- b=SefojUmjZ9tJguhyFGgTRHLKPPkJnCgC7xEIWqcvt2YoUBbzSgQfXwpRSVDWXuYjwI
- RYIYWN4GGpLnDlIJkshvoS41MCHpIpcZ9euVWYEZ7ZEh4Bo0lA0wSHei7X9k6C1dzuq3
- vkJrTGDlT2ht4UNhQTpg10EyvWJVeRmB1hg1DCwBw7zR4pQxgTdjKgJUs6kGjFIlItDG
- jG/hbStAJtvSWiy8U8mwxTMrFDMjfbrbSzWS7SGL4FIjNA56lwHUtmISIJuX1iJsu5d/
- zqYc4/1mX6TxCd/jb6odwoHqMrN1BT0kT0zl2nrYqT1EVw0FpwgO9b+bQdayb81pqd9/
- 5x7w==
-X-Gm-Message-State: AJIora8eAvkgpuFbOhjwE00UPScIjIjTZL81If8PC2Bj8c4ZeW/W2mBN
- ykh+Cd9BQnURIkqeGf65Lpg=
-X-Google-Smtp-Source: AGRyM1vS7zvXK/oILf0Xl/3i10B0jjfIBbeBlp28QNm71y+ud7LNyLdNrwNmzh9EkBb8+Pm6R4NJCw==
-X-Received: by 2002:a63:8441:0:b0:415:d595:a7d6 with SMTP id
- k62-20020a638441000000b00415d595a7d6mr4327558pgd.441.1657745179232; 
- Wed, 13 Jul 2022 13:46:19 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c?
- ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
- by smtp.gmail.com with ESMTPSA id
- y11-20020a62ce0b000000b0051b32c2a5a7sm9202756pfg.138.2022.07.13.13.46.17
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=ahgWcY0Qhtt2gptPxS6Knb/YUD/M/kyPSyAouT+Dg5Q=;
+ b=jdagMRfDwr7DPxvvET5jts98BrP1MNVqztaSaKdLunx274Z43zWjBO6M2/FmqC/FYJ
+ /lARiwBobzFXGZ955ok4jvDJcmsIgP/mq5BmzN6sYf2CWllJZaF8SkWstgVpACDAZQDO
+ 7jVZAEKJmzEm68JZ2mirp2g/766p0Z2iPt79xTj0Pw0ZUQ9y0k3hRZDAPMnknW5I74zK
+ c7yRyfG85yoUh6hd9MQ7VT4Z0s4CH1YIDi1ysTHahF9hPMn/p3UsyE3jlAcu3zk+XJWr
+ 4pWeJMkj2vagCVRFHG9LJjEQQfthFMvczg2FJ3wfTzmYsSc7XxO6kw1Yuk2WgpGAvhxn
+ kq/Q==
+X-Gm-Message-State: AJIora/K2+yvxmFVsrODqijCU29ZVBEUE25Un8tiAbexB8+rkddmzDZf
+ axDblfAuSTUeuREI0Ybo2G1RFNIpMkXi5EgWBiU=
+X-Google-Smtp-Source: AGRyM1v3dbvNVTuQm/ya5clPO36wuIIVrQ9iot9Eu2rYo+xp/TpPGrO5qQ85ZAmg2PeqPX/VYzEtnQ==
+X-Received: by 2002:a05:6402:2804:b0:439:83c2:8be2 with SMTP id
+ h4-20020a056402280400b0043983c28be2mr7501040ede.292.1657745419113; 
+ Wed, 13 Jul 2022 13:50:19 -0700 (PDT)
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com.
+ [209.85.128.52]) by smtp.gmail.com with ESMTPSA id
+ lz21-20020a170906fb1500b0072aa38d768esm5397081ejb.64.2022.07.13.13.50.17
+ for <amd-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 13 Jul 2022 13:46:18 -0700 (PDT)
-Message-ID: <a804b76e-159f-dbc2-f8dc-62a58552e88d@roeck-us.net>
-Date: Wed, 13 Jul 2022 13:46:17 -0700
+ Wed, 13 Jul 2022 13:50:17 -0700 (PDT)
+Received: by mail-wm1-f52.google.com with SMTP id n185so7208441wmn.4
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 13:50:17 -0700 (PDT)
+X-Received: by 2002:a05:600c:354e:b0:3a1:9ddf:468d with SMTP id
+ i14-20020a05600c354e00b003a19ddf468dmr11442317wmq.145.1657745416681; Wed, 13
+ Jul 2022 13:50:16 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Content-Language: en-US
-To: Linus Torvalds <torvalds@linux-foundation.org>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Balbir Singh <bsingharora@gmail.com>, Daniel Axtens <dja@axtens.net>,
- Paul Mackerras <paulus@ozlabs.org>, Michael Ellerman <mpe@ellerman.id.au>,
- Kefeng Wang <wangkefeng.wang@huawei.com>,
- "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
 References: <CAHk-=wgTmGaToVFdSdoFqT2sNkk7jg2rSWasUYv-tASUZ2j_0Q@mail.gmail.com>
  <20220713050724.GA2471738@roeck-us.net>
  <CAHk-=widUqghhXus_GCM9+FESa5vHqMb_pO3=0dGYH8C+yix2w@mail.gmail.com>
-From: Guenter Roeck <linux@roeck-us.net>
+ <a804b76e-159f-dbc2-f8dc-62a58552e88d@roeck-us.net>
+In-Reply-To: <a804b76e-159f-dbc2-f8dc-62a58552e88d@roeck-us.net>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Wed, 13 Jul 2022 13:50:00 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wgBDup4LrJBr2WPkT09e_zk8g+Uq-5P-q5+THZ4jeoWVQ@mail.gmail.com>
+Message-ID: <CAHk-=wgBDup4LrJBr2WPkT09e_zk8g+Uq-5P-q5+THZ4jeoWVQ@mail.gmail.com>
 Subject: Re: Linux 5.19-rc6
-In-Reply-To: <CAHk-=widUqghhXus_GCM9+FESa5vHqMb_pO3=0dGYH8C+yix2w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Wed, 13 Jul 2022 20:46:30 +0000
+To: Guenter Roeck <linux@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Wed, 13 Jul 2022 20:58:36 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,50 +75,24 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: Kefeng Wang <wangkefeng.wang@huawei.com>, Leo Li <sunpeng.li@amd.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Balbir Singh <bsingharora@gmail.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Paul Mackerras <paulus@ozlabs.org>,
+ "Russell King \(Oracle\)" <rmk+kernel@armlinux.org.uk>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>, Daniel Axtens <dja@axtens.net>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 7/13/22 12:36, Linus Torvalds wrote:
-> On Tue, Jul 12, 2022 at 10:07 PM Guenter Roeck <linux@roeck-us.net> wrote:
->>
->> Same problems as every week.
->>
->> Building powerpc:allmodconfig ... failed
-> 
-> Ok, this has been going on since -rc1, which is much too long.
-> 
->>From your patch submission that that was rejected:
-> 
->> The problem was introduced with commit 41b7a347bf14 ("powerpc: Book3S
->> 64-bit outline-only KASAN support") which adds support for KASAN. This
->> commit in turn enables DRM_AMD_DC_DCN because KCOV_INSTRUMENT_ALL and
->> KCOV_ENABLE_COMPARISONS are no longer enabled. As result, new files are
->> compiled which lack the selection of hard-float.
-> 
-> And considering that neither the ppc people nor the drm people seem
-> interested in fixing this, and it doesn't revert cleanly I think the
-> sane solution seems to be to just remove PPC64 support for DRM_AMD_DC
-> entirely.
-> 
-> IOW, does something like this (obviously nor a proper patch, but you
-> get the idea) fix the ppc build for you?
-> 
->    @@ -6,7 +6,7 @@ config DRM_AMD_DC
->            bool "AMD DC - Enable new display engine"
->            default y
->            select SND_HDA_COMPONENT if SND_HDA_CORE
->    -       select DRM_AMD_DC_DCN if (X86 || PPC64) &&
-> !(KCOV_INSTRUMENT_ALL && KCOV_ENABLE_COMPARISONS)
->    +       select DRM_AMD_DC_DCN if X86 && !(KCOV_INSTRUMENT_ALL &&
-> KCOV_ENABLE_COMPARISONS)
->            help
->              Choose this option if you want to use the new display engine
->              support for AMDGPU. This adds required support for Vega and
-> 
+On Wed, Jul 13, 2022 at 1:46 PM Guenter Roeck <linux@roeck-us.net> wrote:
+>
+> It does, but I can't imagine that the drm or ppc people would be happy
+> about it.
 
-It does, but I can't imagine that the drm or ppc people would be happy
-about it.
+When something has been reported as not building for five weeks?
 
-Guenter
+I have zero f's to give at that point about their "happiness".
+
+             Linus
