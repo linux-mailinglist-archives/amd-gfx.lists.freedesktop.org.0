@@ -2,47 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36DF05740B3
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 02:59:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 675DD5740B0
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 02:59:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A719B18BCD9;
-	Thu, 14 Jul 2022 00:59:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59A5418A804;
+	Thu, 14 Jul 2022 00:59:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com
- [IPv6:2607:f8b0:4864:20::112a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F065B966AD
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 23:10:00 +0000 (UTC)
-Received: by mail-yw1-x112a.google.com with SMTP id
- 00721157ae682-31d85f82f0bso933197b3.7
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 16:10:00 -0700 (PDT)
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com
+ [IPv6:2607:f8b0:4864:20::102a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AE129F4A2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 23:12:16 +0000 (UTC)
+Received: by mail-pj1-x102a.google.com with SMTP id
+ i8-20020a17090a4b8800b001ef8a65bfbdso548720pjh.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 16:12:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=K8O302/7c4M+y4oSPuw97osYexdl2kGKky6mRepNyHk=;
- b=H09N2BCSGmpudE0ji2Q/gaZvJBtiZgN4m8BvrTevY/CHTWDL6gz4rjztzk441wczCU
- RX4gyudPZ0x6/dcPIjtS/PqA7m1mhDKscwmdHN5W5vsacoMRaca1xaX8Bi9c0vJ7912Y
- 35miB9lQMLd1D54hGVRZ74ghp5WHLHU3DqsSCrXST6bNWO3IViYh+VjOlJqDoPapciKK
- B7ndbKU+2YYtw13rtVJZGEvMBwcAMWJwOye8ekF9n9tnm7IFdOyOki4IqzxnTMm2I4P6
- CmVlhgirpkFIW2USMZ6EmJ3cqChrEZJsbzK6ZtsZBz+KrDoC4VrgBy2HHOHBzZPFxO6H
- +T4Q==
+ h=sender:date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=pjvd38sMQ0s3XmHKT3cdWb0EkqYt/fWbMQjoxI+K9uc=;
+ b=W6tKMLRIBvc6bvqVQFAHIge/0Ft/PiMVC0pIdzLaYsiLwrxDBGrm4gSwcJ/RAm1Bmx
+ RkfHRmutCtraFJYBEeG683xsTgMHIhoJAA3KKsxgC7Lqz+Hiha5QEppoDtCnwND2ntv2
+ pga2kH8CNoBqOJxIzsuepklAU7HIZXCM3KAZqPIpFCRl7AdGA+HhsDCxhFPbIfm/oFez
+ 8u+vZYdSI7OVGBfeFMsaUxcDkrDSPIlW3sBMd1xesuhjhs2L4b+kISqQJvz0Ckrabku7
+ /+/uU3JH8tjEEXHS7eyym6tlwI4QKho1Rd7G2kqtppxzUzN/jxTvLMJEjFue6eWdGevn
+ 6niQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=K8O302/7c4M+y4oSPuw97osYexdl2kGKky6mRepNyHk=;
- b=5YqrdKeOW0VQmvGLZ0ltBqy3kSQ0PQc0Mo3tKWjlKURhHbuZAuwveaf/hX+K42v2NO
- WjT0jdrQ4ivqtOiZrPqOIgbkZzYCmC6kKHcnadqvLxjptYnCD5S4JigkeInmUtkOmV4a
- F5cq+9C1uYaZN9y1A5jSrejRnIQylxr9URonGzpC1Tdm66dF/3ISXAnMl03bqgF/GFJm
- tRJkWmHgkYiIEzAojFW0Wf4LtrNZTDpd98iGZx0SIXHppkuOO+mSnAYFahUWgXPRU+BS
- apbxGUBSQMOdf9lysvX5H0t1OpFqtBUU68OY554HUTNkjMSGwQEebYM4+qKTRBewE6R5
- en3g==
-X-Gm-Message-State: AJIora/rddWI6YJNYNSNv6Vo5Z4FMrn2+kg3p1SzlyJvPlt5yZK6kYXw
- 52QYXyTIGVF8h+AvyfSqinRJVbxYR90CnMC1YnY=
-X-Google-Smtp-Source: AGRyM1ta1KjbW6tgvLYjpf/6k/gpgB7wBMLpjjuGdsSpq+y6Of+DnuhfTohzZB61/WRXkJef9Gp/OdBu/c/GkCpjDpE=
-X-Received: by 2002:a81:158a:0:b0:31c:a84a:d772 with SMTP id
- 132-20020a81158a000000b0031ca84ad772mr6811397ywv.233.1657753800010; Wed, 13
- Jul 2022 16:10:00 -0700 (PDT)
-MIME-Version: 1.0
+ h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+ :references:mime-version:content-disposition:in-reply-to;
+ bh=pjvd38sMQ0s3XmHKT3cdWb0EkqYt/fWbMQjoxI+K9uc=;
+ b=Pudyl7Q17WTnti6z+lEDvQx7ZUnTDnzcFFTuobs/SJV/sTqYRyQmajHC0uYf8S165I
+ Wo+jOZcPAXzn86YThqSUXoRa4u6SGYtVyYwAFw71sC58x6jYhfyKFvRtLZCQsBvn/wi4
+ BS2u2RcDtwvXst8QS3oFBpCzQuBg15Ua/7E2P7ILS/hCtCtUhgfPzJuvE42S3ugFjUxR
+ yETZafKxKLPGDpDnJNtdPe+4CRmRuZnITNPuEpy2ZPEbbB+ypAGtDm1SRkcb3TsVlJDq
+ 2vrWNNJSAZpHuLsUzEfbO3FT0Cn3GsWmP88TMIhqi7hnK+KrHjD1TElfhVpLiykXi3KN
+ Orzg==
+X-Gm-Message-State: AJIora+amTyJ0l4XIIZOh6G+LuSui7xrRZlerARkPpMzJ5Dn+rXuvYkL
+ P3xLxPJg6iYGOOf3jOPFnwU=
+X-Google-Smtp-Source: AGRyM1u/CjJvF4vni4UIvSLlxLYhxu00JSEBts6bQ8UdOb4GRNyhtdb+lRlBjvTI+kX84b9MLYyFyQ==
+X-Received: by 2002:a17:90a:e00c:b0:1ef:81e6:9044 with SMTP id
+ u12-20020a17090ae00c00b001ef81e69044mr12664161pjy.169.1657753936028; 
+ Wed, 13 Jul 2022 16:12:16 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+ by smtp.gmail.com with ESMTPSA id
+ b30-20020aa78ede000000b005289eafbd08sm96382pfr.18.2022.07.13.16.12.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 13 Jul 2022 16:12:12 -0700 (PDT)
+Date: Wed, 13 Jul 2022 16:12:11 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Sudip Mukherjee <sudipm.mukherjee@gmail.com>
+Subject: Re: Linux 5.19-rc6
+Message-ID: <20220713231211.GF32544@roeck-us.net>
 References: <CAHk-=wgTmGaToVFdSdoFqT2sNkk7jg2rSWasUYv-tASUZ2j_0Q@mail.gmail.com>
  <20220713050724.GA2471738@roeck-us.net>
  <CAHk-=widUqghhXus_GCM9+FESa5vHqMb_pO3=0dGYH8C+yix2w@mail.gmail.com>
@@ -52,13 +62,11 @@ References: <CAHk-=wgTmGaToVFdSdoFqT2sNkk7jg2rSWasUYv-tASUZ2j_0Q@mail.gmail.com>
  <CAHk-=wgUGp96_Wup3=Utws=Mn+07vi7ZXknv4nKZkAJv8Ezhnw@mail.gmail.com>
  <CADVatmPx=T_i1oaX2i_d5crbWkixFZU7s-_wky_kz58wDgwGDQ@mail.gmail.com>
  <20220713225627.GC32544@roeck-us.net>
-In-Reply-To: <20220713225627.GC32544@roeck-us.net>
-From: Sudip Mukherjee <sudipm.mukherjee@gmail.com>
-Date: Thu, 14 Jul 2022 00:09:24 +0100
-Message-ID: <CADVatmM=JR4d4WU_53PtA6g-y40qc=CbHL9uhsJc2cSW=uoOXA@mail.gmail.com>
-Subject: Re: Linux 5.19-rc6
-To: Guenter Roeck <linux@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"
+ <CADVatmM=JR4d4WU_53PtA6g-y40qc=CbHL9uhsJc2cSW=uoOXA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CADVatmM=JR4d4WU_53PtA6g-y40qc=CbHL9uhsJc2cSW=uoOXA@mail.gmail.com>
 X-Mailman-Approved-At: Thu, 14 Jul 2022 00:59:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -83,40 +91,43 @@ Cc: Kefeng Wang <wangkefeng.wang@huawei.com>, Leo Li <sunpeng.li@amd.com>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 13, 2022 at 11:56 PM Guenter Roeck <linux@roeck-us.net> wrote:
->
-> On Wed, Jul 13, 2022 at 10:50:06PM +0100, Sudip Mukherjee wrote:
-> > On Wed, Jul 13, 2022 at 10:45 PM Linus Torvalds
-> > <torvalds@linux-foundation.org> wrote:
-> > >
-> > > On Wed, Jul 13, 2022 at 2:36 PM Sudip Mukherjee
-> > > <sudipm.mukherjee@gmail.com> wrote:
+On Thu, Jul 14, 2022 at 12:09:24AM +0100, Sudip Mukherjee wrote:
+> On Wed, Jul 13, 2022 at 11:56 PM Guenter Roeck <linux@roeck-us.net> wrote:
+> >
+> > On Wed, Jul 13, 2022 at 10:50:06PM +0100, Sudip Mukherjee wrote:
+> > > On Wed, Jul 13, 2022 at 10:45 PM Linus Torvalds
+> > > <torvalds@linux-foundation.org> wrote:
 > > > >
-> > > > > >
-> > > > > > https://lore.kernel.org/all/20220524025139.40212-1-wangkefeng.wang@huawei.com/
+> > > > On Wed, Jul 13, 2022 at 2:36 PM Sudip Mukherjee
+> > > > <sudipm.mukherjee@gmail.com> wrote:
 > > > > >
-> > > > > That patch looks sane to me, but I guess Guenter would need to check
+> > > > > > >
+> > > > > > > https://lore.kernel.org/all/20220524025139.40212-1-wangkefeng.wang@huawei.com/
+> > > > > >
+> > > > > > That patch looks sane to me, but I guess Guenter would need to check
+> > > > >
+> > > > > I still see the failure in my builds with this patch. But surprisingly
+> > > > > I dont see the build failure (with or without this patch) with gcc-12,
+> > > > > only with gcc-11.
 > > > >
-> > > > I still see the failure in my builds with this patch. But surprisingly
-> > > > I dont see the build failure (with or without this patch) with gcc-12,
-> > > > only with gcc-11.
+> > > > Arrghs. "build failure"?
 > > >
-> > > Arrghs. "build failure"?
+> > > Uhh.. no, sorry.. I meant the same problem which Guenter reported with
+> > > powerpc64-linux-ld, hard float and soft float.
+> > > But I dont see this problem with gcc-12, only with gcc-11.
+> > >
 > >
-> > Uhh.. no, sorry.. I meant the same problem which Guenter reported with
-> > powerpc64-linux-ld, hard float and soft float.
-> > But I dont see this problem with gcc-12, only with gcc-11.
-> >
->
-> Weird. It works for me with gcc 11.3.0 / binutils 2.38 as well as with
-> gcc 11.2.0 / binutils 2.36.1.
+> > Weird. It works for me with gcc 11.3.0 / binutils 2.38 as well as with
+> > gcc 11.2.0 / binutils 2.36.1.
+> 
+> Its entirely possible that I have messed up, there are references to
+> many patches in this thread. :)
+> Can you please paste the link of the patch that you say is working for
+> you. I will try a clean build with that.
+> 
 
-Its entirely possible that I have messed up, there are references to
-many patches in this thread. :)
-Can you please paste the link of the patch that you say is working for
-you. I will try a clean build with that.
+The patch is at:
 
+https://lore.kernel.org/lkml/20220618232737.2036722-1-linux@roeck-us.net/raw
 
--- 
-Regards
-Sudip
+Guenter
