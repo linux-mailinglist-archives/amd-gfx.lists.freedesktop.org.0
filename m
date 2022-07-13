@@ -1,58 +1,47 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 675DD5740B0
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 02:59:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B3965740B4
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 02:59:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59A5418A804;
-	Thu, 14 Jul 2022 00:59:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 827DB18AFFA;
+	Thu, 14 Jul 2022 00:59:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com
- [IPv6:2607:f8b0:4864:20::102a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AE129F4A2
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 23:12:16 +0000 (UTC)
-Received: by mail-pj1-x102a.google.com with SMTP id
- i8-20020a17090a4b8800b001ef8a65bfbdso548720pjh.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 16:12:16 -0700 (PDT)
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com
+ [IPv6:2607:f8b0:4864:20::b33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDD759F77E
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 23:27:04 +0000 (UTC)
+Received: by mail-yb1-xb33.google.com with SMTP id e69so460814ybh.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 16:27:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=sender:date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=pjvd38sMQ0s3XmHKT3cdWb0EkqYt/fWbMQjoxI+K9uc=;
- b=W6tKMLRIBvc6bvqVQFAHIge/0Ft/PiMVC0pIdzLaYsiLwrxDBGrm4gSwcJ/RAm1Bmx
- RkfHRmutCtraFJYBEeG683xsTgMHIhoJAA3KKsxgC7Lqz+Hiha5QEppoDtCnwND2ntv2
- pga2kH8CNoBqOJxIzsuepklAU7HIZXCM3KAZqPIpFCRl7AdGA+HhsDCxhFPbIfm/oFez
- 8u+vZYdSI7OVGBfeFMsaUxcDkrDSPIlW3sBMd1xesuhjhs2L4b+kISqQJvz0Ckrabku7
- /+/uU3JH8tjEEXHS7eyym6tlwI4QKho1Rd7G2kqtppxzUzN/jxTvLMJEjFue6eWdGevn
- 6niQ==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=sLq1U+d1bmcNfWsFJ6K/IL9XxkkFgeH5akYdfwOXkK0=;
+ b=FBksoOy+S0aCWxyI2UXUB//mYF0XarHhcELqYLWfX3aGKjJxSFOD66c7QrR8mpgvCh
+ ml1NaWom7AqZ77+nocy4d9LotD5hYlTKy5970upnY2Gv00mmNhdx5Zx8p6JhT1ACiZvo
+ wkTY46EsuUBjwFTrS+n79bQRzJI4cWK1C8+NeuN7ggVr53XJHDy8ddXfdytSOz2Q1SN0
+ 1RC1HFTkSFmAzlO2eYvoLQYCopfJY2AUgxgaiQGtlJ/+eSb4qqrOdXilLT+6WLc4nKk7
+ SppEjQZXkFXd/egJyHTziLcw1TVnnVxpDRCgtJ+0WdijwURE2AwGUivYMsc1azFQLp8p
+ g+Ig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
- :references:mime-version:content-disposition:in-reply-to;
- bh=pjvd38sMQ0s3XmHKT3cdWb0EkqYt/fWbMQjoxI+K9uc=;
- b=Pudyl7Q17WTnti6z+lEDvQx7ZUnTDnzcFFTuobs/SJV/sTqYRyQmajHC0uYf8S165I
- Wo+jOZcPAXzn86YThqSUXoRa4u6SGYtVyYwAFw71sC58x6jYhfyKFvRtLZCQsBvn/wi4
- BS2u2RcDtwvXst8QS3oFBpCzQuBg15Ua/7E2P7ILS/hCtCtUhgfPzJuvE42S3ugFjUxR
- yETZafKxKLPGDpDnJNtdPe+4CRmRuZnITNPuEpy2ZPEbbB+ypAGtDm1SRkcb3TsVlJDq
- 2vrWNNJSAZpHuLsUzEfbO3FT0Cn3GsWmP88TMIhqi7hnK+KrHjD1TElfhVpLiykXi3KN
- Orzg==
-X-Gm-Message-State: AJIora+amTyJ0l4XIIZOh6G+LuSui7xrRZlerARkPpMzJ5Dn+rXuvYkL
- P3xLxPJg6iYGOOf3jOPFnwU=
-X-Google-Smtp-Source: AGRyM1u/CjJvF4vni4UIvSLlxLYhxu00JSEBts6bQ8UdOb4GRNyhtdb+lRlBjvTI+kX84b9MLYyFyQ==
-X-Received: by 2002:a17:90a:e00c:b0:1ef:81e6:9044 with SMTP id
- u12-20020a17090ae00c00b001ef81e69044mr12664161pjy.169.1657753936028; 
- Wed, 13 Jul 2022 16:12:16 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
- by smtp.gmail.com with ESMTPSA id
- b30-20020aa78ede000000b005289eafbd08sm96382pfr.18.2022.07.13.16.12.12
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 13 Jul 2022 16:12:12 -0700 (PDT)
-Date: Wed, 13 Jul 2022 16:12:11 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Sudip Mukherjee <sudipm.mukherjee@gmail.com>
-Subject: Re: Linux 5.19-rc6
-Message-ID: <20220713231211.GF32544@roeck-us.net>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=sLq1U+d1bmcNfWsFJ6K/IL9XxkkFgeH5akYdfwOXkK0=;
+ b=LlTwL1KdHkq1hm1zAgXRb6YsW1REe+r7CuQPX886X3QjsxSIY6I4BSPXk3tX0dODee
+ RO6QaP0biZb9ZeaDQ2fYf6MB8wiEDUWC97vCJvUeDpdihXgo0kzVJ3bWyzOENH+jw71m
+ kt5VQZdYzOZQTXsX5RDxrPC2/BbE31ewYC1rb+Fkt0iZIx5K0xmf2iAUpNNFM5HiJ40U
+ A9+3E/F2oYVkcV79LldmoNr7VXtzSQ6zBnS01yB8Uo5zzUd3Xus1tWvHB0SvpLXwF6Gj
+ bIvBXEMqOvPfV//65WWak7hp2/L98Wrm3P1SQiudNC0tiM7I7v6sMnkHYzxeN7o0Ryg+
+ cUbw==
+X-Gm-Message-State: AJIora9cE4zZs3cqStOeM73rsFE4KmUxuM2cvMhOwxUwBjEIruEXsqOk
+ ok5k60rapXV4Z0Ld8lnxB0ivs4NXrTUKyMH5HjM=
+X-Google-Smtp-Source: AGRyM1tf2PHunlzOKcP68GnhEt7k26NxZu9hWDuRWB/2Njj21U6X5rwz525eL9VplaSor2/TBOx6Em3oBgtWDaurbG8=
+X-Received: by 2002:a5b:20d:0:b0:66e:3b19:82c5 with SMTP id
+ z13-20020a5b020d000000b0066e3b1982c5mr6229993ybl.517.1657754823917; Wed, 13
+ Jul 2022 16:27:03 -0700 (PDT)
+MIME-Version: 1.0
 References: <CAHk-=wgTmGaToVFdSdoFqT2sNkk7jg2rSWasUYv-tASUZ2j_0Q@mail.gmail.com>
  <20220713050724.GA2471738@roeck-us.net>
  <CAHk-=widUqghhXus_GCM9+FESa5vHqMb_pO3=0dGYH8C+yix2w@mail.gmail.com>
@@ -63,10 +52,14 @@ References: <CAHk-=wgTmGaToVFdSdoFqT2sNkk7jg2rSWasUYv-tASUZ2j_0Q@mail.gmail.com>
  <CADVatmPx=T_i1oaX2i_d5crbWkixFZU7s-_wky_kz58wDgwGDQ@mail.gmail.com>
  <20220713225627.GC32544@roeck-us.net>
  <CADVatmM=JR4d4WU_53PtA6g-y40qc=CbHL9uhsJc2cSW=uoOXA@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CADVatmM=JR4d4WU_53PtA6g-y40qc=CbHL9uhsJc2cSW=uoOXA@mail.gmail.com>
+ <20220713231211.GF32544@roeck-us.net>
+In-Reply-To: <20220713231211.GF32544@roeck-us.net>
+From: Sudip Mukherjee <sudipm.mukherjee@gmail.com>
+Date: Thu, 14 Jul 2022 00:26:27 +0100
+Message-ID: <CADVatmOAnoiZ1WE7iDBYCXVSiMo8RvC_P6mBhR_F75asfDWr4w@mail.gmail.com>
+Subject: Re: Linux 5.19-rc6
+To: Guenter Roeck <linux@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Thu, 14 Jul 2022 00:59:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -91,43 +84,54 @@ Cc: Kefeng Wang <wangkefeng.wang@huawei.com>, Leo Li <sunpeng.li@amd.com>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 14, 2022 at 12:09:24AM +0100, Sudip Mukherjee wrote:
-> On Wed, Jul 13, 2022 at 11:56 PM Guenter Roeck <linux@roeck-us.net> wrote:
-> >
-> > On Wed, Jul 13, 2022 at 10:50:06PM +0100, Sudip Mukherjee wrote:
-> > > On Wed, Jul 13, 2022 at 10:45 PM Linus Torvalds
-> > > <torvalds@linux-foundation.org> wrote:
-> > > >
-> > > > On Wed, Jul 13, 2022 at 2:36 PM Sudip Mukherjee
-> > > > <sudipm.mukherjee@gmail.com> wrote:
+On Thu, Jul 14, 2022 at 12:12 AM Guenter Roeck <linux@roeck-us.net> wrote:
+>
+> On Thu, Jul 14, 2022 at 12:09:24AM +0100, Sudip Mukherjee wrote:
+> > On Wed, Jul 13, 2022 at 11:56 PM Guenter Roeck <linux@roeck-us.net> wrote:
+> > >
+> > > On Wed, Jul 13, 2022 at 10:50:06PM +0100, Sudip Mukherjee wrote:
+> > > > On Wed, Jul 13, 2022 at 10:45 PM Linus Torvalds
+> > > > <torvalds@linux-foundation.org> wrote:
 > > > > >
-> > > > > > >
-> > > > > > > https://lore.kernel.org/all/20220524025139.40212-1-wangkefeng.wang@huawei.com/
+> > > > > On Wed, Jul 13, 2022 at 2:36 PM Sudip Mukherjee
+> > > > > <sudipm.mukherjee@gmail.com> wrote:
 > > > > > >
-> > > > > > That patch looks sane to me, but I guess Guenter would need to check
+> > > > > > > >
+> > > > > > > > https://lore.kernel.org/all/20220524025139.40212-1-wangkefeng.wang@huawei.com/
+> > > > > > >
+> > > > > > > That patch looks sane to me, but I guess Guenter would need to check
+> > > > > >
+> > > > > > I still see the failure in my builds with this patch. But surprisingly
+> > > > > > I dont see the build failure (with or without this patch) with gcc-12,
+> > > > > > only with gcc-11.
 > > > > >
-> > > > > I still see the failure in my builds with this patch. But surprisingly
-> > > > > I dont see the build failure (with or without this patch) with gcc-12,
-> > > > > only with gcc-11.
+> > > > > Arrghs. "build failure"?
 > > > >
-> > > > Arrghs. "build failure"?
+> > > > Uhh.. no, sorry.. I meant the same problem which Guenter reported with
+> > > > powerpc64-linux-ld, hard float and soft float.
+> > > > But I dont see this problem with gcc-12, only with gcc-11.
+> > > >
 > > >
-> > > Uhh.. no, sorry.. I meant the same problem which Guenter reported with
-> > > powerpc64-linux-ld, hard float and soft float.
-> > > But I dont see this problem with gcc-12, only with gcc-11.
-> > >
+> > > Weird. It works for me with gcc 11.3.0 / binutils 2.38 as well as with
+> > > gcc 11.2.0 / binutils 2.36.1.
 > >
-> > Weird. It works for me with gcc 11.3.0 / binutils 2.38 as well as with
-> > gcc 11.2.0 / binutils 2.36.1.
-> 
-> Its entirely possible that I have messed up, there are references to
-> many patches in this thread. :)
-> Can you please paste the link of the patch that you say is working for
-> you. I will try a clean build with that.
-> 
+> > Its entirely possible that I have messed up, there are references to
+> > many patches in this thread. :)
+> > Can you please paste the link of the patch that you say is working for
+> > you. I will try a clean build with that.
+> >
+>
+> The patch is at:
+>
+> https://lore.kernel.org/lkml/20220618232737.2036722-1-linux@roeck-us.net/raw
 
-The patch is at:
+Thanks, that works. tested with gcc-11.3.1, and binutils 2.38 on top
+of latest mainline (4a57a8400075bc5287c5c877702c68aeae2a033d)
 
-https://lore.kernel.org/lkml/20220618232737.2036722-1-linux@roeck-us.net/raw
+When I said I still had the problem, I tested with
+https://lore.kernel.org/all/20220524025139.40212-1-wangkefeng.wang@huawei.com/
 
-Guenter
+
+-- 
+Regards
+Sudip
