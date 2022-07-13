@@ -1,119 +1,92 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64FD7573C05
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 Jul 2022 19:33:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41B4D573C4F
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 Jul 2022 20:01:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23801112EFA;
-	Wed, 13 Jul 2022 17:33:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A14D118A6BF;
+	Wed, 13 Jul 2022 18:01:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2041.outbound.protection.outlook.com [40.107.237.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2E28112DF7
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 17:33:15 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2053.outbound.protection.outlook.com [40.107.220.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E11218A6D7
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 18:01:37 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iiNId/bxi2eg7gYmHZVPhE+XUry9NcNrkz5ocidSR/o3f3y6KGTAoQ1tK0Qnue+xtPyslbVuTz8TbqkLd98vdVX2LVuOd4HeYWotnLf0hPTQtb+gahO+5gerX7gCeR1QjV7oIk6Uo/V88sfqHSEICHPbg78uK3q9bY9r70L6rr83WOW2XLddSOfGe2/5tfDA8WtP2aCNHmMQ6T8RRMswlXWA6M5Uc/U4LxnCW5k9wY6zZsY6IAwh0oSLSR5ZqP0C3H4YNpmGLilk7AqhjgjAW70AEMw+XtM6bPM/gX0F9a0KLI3nKBnM4PnWrxnqBDh0WnRkp7p+SGAdSObfPOrGRg==
+ b=nss2lpMxwFvrXYxSlYoOtjdcJBPZTBL1Ff2U0fo6IBn3rxe3QTFwJxcsnLqr5xfVd40nwDBUpL0XuXpw+ciJpYxpmc/7D5DlcUCm1a7EmfcEJI7QzDiB2oxnCECMK4WaE+MyKS73czw+08gMlMtopLblH7Go2kUD+gEJJRA4AinTo9YKEMlv86kv3ik8tsQ66agmhhvgGRYopYdljhxN5aI8HoGTIQY+H7G7PQPuIINdtxqI5bFmtTV9nuYW3z8ydYfxsxkUkFtr9XQfbAea7phrVAlO0PDxfRHzSahPruZRqybcU5S6uJ6x+O0WqvWEVXB2D0ascux2aGzZCYuwmw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DQy600YdYcGoFxmHYk3x9PbhkUsRuOOihvPoeJNimQU=;
- b=LfVCKJ//KC5EQraSd+uINbM6agD65k7scH4xaiQGLbKWeT2zTjwP1iBerSp2u/uEoduOqD8G4cfTt5/ErJK7t2nkQYJoUohKo+ZNzq2TApEyBokcMrLHfW9fQ8Uby2bSCrZz81ygeCKnMwFKOwK4OIA412XfbmkpD/fd5YI9UpgkDVY7pdgTpBYWy+nsSp3n1kRAQfthQkM15RgEBXse266iq0v1UdWfAvqxTq3qqPZeTeV9c5OyQyBUowl5jxQOFKYL0ik0fz/HKc8FoJ9Q5KNZtGyrfghBJolB33dFuR2ceTL8A7l24FEB46m66gvi0C51RWMdMeh68mKbO7ClTA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=hvXzrqUyek1HJFG9kMtI75DTpfF0XV+FAVmLFeA3Gp4=;
+ b=c55D/AT5xqDfPiyFTM9XhC353IC4e4QEOwQkOcA0KM3wtDHtepEzlCfHFqLpKnjfOM2+Q01J3fEN0qQkWcBxN3hwHjVaHPgCAr2Xi5ywtLZ+hRbw/55Solxdp0vqvmgbu8AepztBT5UaY/Z2NICxB/v9XUjSngfSX7marje1mF5pV5mJuooodE8Hn81gz5CzlFLn2uJIeWDhZMDdfSwZHteLtwHDU8jTzUErFWYADB/MR5TSOsitFfhFQbaoFIAcYg9BxOSdczbZ5BsfwxLgFluw4l3vMhlGSwH0b7840s6zGlUxe8OhUfapM88rmLgJ1b8dlbBwrUq5pV8BY7n9tg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DQy600YdYcGoFxmHYk3x9PbhkUsRuOOihvPoeJNimQU=;
- b=FSDG2RT7uYfNJcmaYycIzrSWkiiqePBAqDZCx6zRduetfJambWI7iOVCoV25uzpNXV7/V4m4lzktaWsk14As+RC4N7oyArCcqlAO7k9++cVU5mAsfObR/7HiJfVmgLwtc1tRAvMxIhZrGXnntj0X/OCloe1SRGvjPHEhBTumNhE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by CH2PR12MB3909.namprd12.prod.outlook.com (2603:10b6:610:21::25)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.23; Wed, 13 Jul
- 2022 17:33:12 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::905:1701:3b51:7e39]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::905:1701:3b51:7e39%2]) with mapi id 15.20.5438.013; Wed, 13 Jul 2022
- 17:33:12 +0000
-Message-ID: <48441a62-7557-a96d-77f6-e564e2ed8717@amd.com>
-Date: Wed, 13 Jul 2022 19:33:06 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] drm/amdgpu: Get rid of amdgpu_job->external_hw_fence
-Content-Language: en-US
-To: Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- amd-gfx@lists.freedesktop.org
-References: <20220713171340.495314-1-andrey.grodzovsky@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20220713171340.495314-1-andrey.grodzovsky@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AS9PR05CA0025.eurprd05.prod.outlook.com
- (2603:10a6:20b:488::20) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+ bh=hvXzrqUyek1HJFG9kMtI75DTpfF0XV+FAVmLFeA3Gp4=;
+ b=dM10It09I3G+dvT6y2d8nofsdcaGThFTIxOytusS+Uf1qf4zPfIEApAjqGJrEzeLNHSCoiK0J4F+rBHcdlswZN4/Jj0nkVH+QxrXA78qvBnFKVYT+fvMXexEoZWhufzcYbenTXg/LZnSB3G8X0hskNm/XhH+qC2PAnsTmBZq4hU=
+Received: from DS7PR05CA0037.namprd05.prod.outlook.com (2603:10b6:8:2f::24) by
+ CH2PR12MB3976.namprd12.prod.outlook.com (2603:10b6:610:28::26) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5417.21; Wed, 13 Jul 2022 18:01:34 +0000
+Received: from DM6NAM11FT048.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:8:2f:cafe::43) by DS7PR05CA0037.outlook.office365.com
+ (2603:10b6:8:2f::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.8 via Frontend
+ Transport; Wed, 13 Jul 2022 18:01:34 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT048.mail.protection.outlook.com (10.13.173.114) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5438.12 via Frontend Transport; Wed, 13 Jul 2022 18:01:30 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 13 Jul
+ 2022 13:01:11 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/2] drm/amdgpu: use the same HDP flush registers for all nbio
+ 7.4.x
+Date: Wed, 13 Jul 2022 14:00:55 -0400
+Message-ID: <20220713180056.529423-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 04d4123b-c382-4f9f-cb59-08da64f5c2a6
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3909:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0e337d0e-8dca-4128-0bdc-08da64f9b6cf
+X-MS-TrafficTypeDiagnostic: CH2PR12MB3976:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZcH9lTIaBa+9o5hq+j/iumsNWPk7ac0Rk2Tb6IakZEDkIKOKwCk9sQmDo7/YPDgeSgu6jh/D1j/LZM+5bxSWmSlZEQKt+ekBvgx4T0YlvvmO+S6uOvrUK+J9z5zbSR4bh8i97OzaTjZhvOvByDx0HvNJUUq2PzPs9MHm9KcSY2WXu72dUiexi2fTpAYbfE85NNz2z9ctZfiUpPSmlqjh6iSXVsePn0Lbdlg87QVg9zV1EpTDf5//1endcMWLpJrS1AA1NHBCoSdbhc12vErj2XwB4YZ99Rx85DQ5D4ZwDWT+QOma7lni3BxK9d+OwQrWmuNb/bo/EEfofaxlhHJfhjEUF6XWfdYs1hMZeLYEGj5NHuqarA0mvbNiTQUacOI2NQfGocmaKuPCzcLbVr4ZlTogioL/rbAYYkXTtU1I4Qqye8qzcbf+QGw7CmC+9g/+jWWPRLU2k4Q/bVARE1Bbc/W8+HgpjhzqTQWSmncCg3alrE6u6/kBqzNiYk19/7VpQxPs/xCkjfxeEOKGy2QgoCmR7Bb61goCt3RJeQ/JlxgoWOZAYGuoiWud7q8Lmte0PZh8BzCcHjRODhHYPkuHRVHhYAiUCq8xXYhcePf16A+iqxroimlJ+QLiuP6ksV955+Ogw9IbVQoGotlQnKTvV6rS1zYAtcjagei9FmiOCqA5DdmvAcwpJ0vyCenkwTEZLGlf8XREZ+JebmnolopiigVmMoKp7jX1t1fXEf/8VAJSaJYIdKxCxxYv2XLIj7mZBG4yPOYDWMGgtLpf4EXlFj9fw8bi+PXPtpTk4MsAfw65j0+4RU9LvkzzhMklttrPofzxkO1UWONAstghxVA2bmdlmRFdNyIgrfGnrXdzCzKbtTQL+VR5KW4Gog413I3jIdiWs6SpYjPLen/HtaxBpA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(366004)(346002)(136003)(396003)(39860400002)(376002)(83380400001)(66574015)(36756003)(31696002)(66556008)(31686004)(66476007)(186003)(66946007)(316002)(4326008)(86362001)(6506007)(8676002)(478600001)(8936002)(966005)(6512007)(41300700001)(2906002)(6666004)(6486002)(5660300002)(2616005)(38100700002)(26583001)(43740500002)(45980500001);
+X-Microsoft-Antispam-Message-Info: hwcn9sgRqqDrufZHx2Zp06MHiTDF64QYHbvN5KfVTGRUt6NQ/aM5fSSqeC0dIL0KIvaPvwk+7bRLwbnl35DVXBcAvspIExPO2wFlSaDiX2J6TaYYwJjW+I/Z4YCGPBGszm5xUvsjTc9l/xBY4XOCB0wy+kZu6z/kl0Lkm4HbJTbV8wRhI8m5gZZrv5Zc3tk8eLQf7JUPrwIPiMvzBegDg8SlW3QdAfL/NKITRQnkICjMhvyzHSIzvsM/tKYWXCBbYSCVEGLw4JDerlS0B0S1z40wmK8vmAMo7V/2f5hcxAYcso8DM5+i4bqd75SjOl7Gug4mHvnkrE1Zpfdt3Kgv//Aextg42kVy4h34LvfMQVixXPjYgYegfGy00ArTxWswmdxPL5nzT3ZpHobqx+HnieWNvaUtxv3ej7agm6DMeQUkDsgHgm0pNPTYsX9tIyHMvrhkOLa5zpY+sOQWi54Bq9pNv5aDW/LOFcgquSlp98dBCFipXNwwIBUqbxjojHYcOjDa7zUb+kRdGhEg8BNa60QwfLplVmywFrpLuduwF2mbYghT2mhildlq/2z0llMgKRN7UIc54gNmQSqpaQ/DdGhmt2wlBxNlDtswKz1B9invyA3MrdMlNYhAtIiuUioM79fb1dhd1yBo+XU4i74R6SoipTPPe3bk1LKkRBOKBqrr8FDFr218m1mqw7AOk7uL7JfUrgFbfoRQCWuVlFrxUYg23SUBKIdX1PuMOyyM6J5uIhG7EtE6g2aWgTFzfLDEu2aof71fHwAkeLeGSQ0MJ7Rp8Tp9Zbn6kGg9AWJHbYCzs+8U4sy8IBr1c33JIkFPm2gkg+Y/B5dbgtezUqT1GPtBJs1+CgMpVuSOnsVf8ns=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230016)(4636009)(136003)(376002)(39860400002)(396003)(346002)(36840700001)(46966006)(40470700004)(426003)(186003)(70206006)(86362001)(6666004)(82740400003)(70586007)(7696005)(47076005)(8936002)(16526019)(6916009)(1076003)(8676002)(26005)(41300700001)(4326008)(40480700001)(478600001)(356005)(2616005)(336012)(83380400001)(36860700001)(36756003)(81166007)(2906002)(40460700003)(5660300002)(82310400005)(316002)(36900700001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YVBaNG80N1F2d2RyMjBiVTQwcFlkd0N3dU9nRTZ3SjVqQlNhN1NVVys1K1lv?=
- =?utf-8?B?V2hYSHFUbHdyMTNXQTJsZ2tpUko3c0JFbGdpeVgrY0NiUWhZVzAvNkdmcTJs?=
- =?utf-8?B?Umhsd2FoS2EzZi9zcWFoNWFaZSs1WnRWbjV4cUd0L0tIbi94WWgxaDNpNSsz?=
- =?utf-8?B?M3NnYTcyOThiUFZUQ0lsTzg0K3VIUWdodC9oSmtZNTVNZUN6cGJQaEVDd2hS?=
- =?utf-8?B?WDZmMGlKTTRQaFhIaGlSNStTenVZUVJ0VStmNWhRcnlVMWxtWUl2bkFvNVFV?=
- =?utf-8?B?Mm9EdStEUmVSaENOQWN0a2tKK3dpZWFPbzlIRmFZS05rLzJVb1lRWFBKY1hw?=
- =?utf-8?B?alRObzBGeXVZempQSUJYeG1ubHpMbTdVaG9HMzNTVHJtYU9DYTA0TFdod3Ja?=
- =?utf-8?B?a1JEcE0xN3FMZTNkdDdSWWFETFF4elZGWHpDVzM0T2tFQncvZHRVb0UxWHVU?=
- =?utf-8?B?R0U5RWFodEw3VUJvNGw1L0tXWlh2dDdJM2d0bDFuL3lPYVRRQStpQXVseWhj?=
- =?utf-8?B?RXUrazNJSzByUFFYdlluL3FiMG1TMzZoeTcrZzVsbEZoR24wL20rczVndjNl?=
- =?utf-8?B?SUZFUjNObEp2MmxwZWdkZkFHSkRjNG9CalRvTGlGQytPK0VPWXZOZGQydVhS?=
- =?utf-8?B?eGMyY2RUSzNSdWpnTkwwekRva2N2RllHR0gzRnBlUk1mMytWSGlDZzE3MzFn?=
- =?utf-8?B?ZkhadUpmZVFSdXpzQ0JudE1oMkk3Z1NScFhMNEJUTDV6R3Rvbi9rdzNvdUcz?=
- =?utf-8?B?SjlYVHRwZ05GVDAzRVhKUmphQXVBdXFQUkZwV1B5QlZkYUV5MWxZRzBqeS9Y?=
- =?utf-8?B?M3U2UE1lWXlIdTJXQVBid01uQ1NJMjJtQWVCQzkrYUV3QlprdS92TmlqVWxY?=
- =?utf-8?B?eVowdUhQL05KMHNHUjl0VWNzdlI0N0hBRG80ZnRWOGs0dkduTElCSExYcTk1?=
- =?utf-8?B?S2xBM1pNUmVtUmJjYnk4dzM0S05HUy9xbCszdFU3ZEJNTEpGY0paK2JteTRK?=
- =?utf-8?B?WWtDODUwMVg2VEFLK3MwNC9oNS8rUXZxU0N0MDJSempsOWdqS3d2NzkxVmRP?=
- =?utf-8?B?dFBGUi9mNE1ybW9mVFZWc3BndS9JOXgxSTJyZEhxYUphSk9oVFpsbUtCak52?=
- =?utf-8?B?QjdTV0NBbEZWRms5TVhNdVFUd1VwNktTL3pqbGVUS1UwRTBDdWF4cUNWME1n?=
- =?utf-8?B?OXpGdVUvcjdnOEpJQmsyQ1k5OVViQTh0dzFnSFdSWHZVWnRtd2ZzOVYwVHdS?=
- =?utf-8?B?THVqUlNWZDFmUDcrMTRTTCtobHNtTzQxMXRCVnRYVjFWMDhSK2pVM24yb1Q5?=
- =?utf-8?B?aVA4S1BSNnl2Mk8ydWR2SGRLSGFQb1pycUtWSTJabWNROW12YTlOVm9KWUE3?=
- =?utf-8?B?ekJ4WGZvbHQrZm13U2tlWmdPdFVQRGJYSEdnd0hNcmRMTDJDRVgydzYvS0hm?=
- =?utf-8?B?UnFzUnRpUkVDcDBKOExhV3laUzZ2UUxsdnd4emhTTGxtQTQ2N3UwYVgzQnE4?=
- =?utf-8?B?MWswSCt1NHl5ejlCWC84eVhtdHJ4bzQvekViS0RkNG4zVkxDZVo3eHE0d2xH?=
- =?utf-8?B?L3FYTXJGRDY4WTlQeUdoL2Zva01NaVlkNisxeGdXT3NWMTJjME1nT01tQ3FR?=
- =?utf-8?B?Ym90MUJkNE1jZDk2UFdzVnZnU2JFZUl0Rk53SWM2L05RalZoa1Y5MS81NXgz?=
- =?utf-8?B?c2x5RU5lN1J0RThKZE1Nb0diWTQrRkpDVFJoNzRuR0tmdzRHNEtxd1d6MW5O?=
- =?utf-8?B?UE4xUFFUd2N1TGhjcjRMZTBSZGl6cnZTdFFLUUQ2RzJMU3QxcHN1ekRHVXky?=
- =?utf-8?B?TUpWd05vOVl5amRrNDZqUFdPak9WcndjTEVIQWt5UGN5MmpPVFJrZ2FmTUdO?=
- =?utf-8?B?c1JMVEtZdHFXdnR6ajdVZ3pGOXFPekc1dmJSWmtVYThTZTBUNXdIay9SWjFG?=
- =?utf-8?B?TGdHOFY1dWNPWVp4SkZTb2ViMFJjaHhobTQwWk1MU2dvalAvUmhlYStnQ3Fr?=
- =?utf-8?B?bDBQd3d4TUpIa3d6OWxLMFZydC96K1ZTS3Bjb056OTdrbEtxckhjSzZWK090?=
- =?utf-8?B?cWZUYXhjRjVER1FhWDhVQWVBekhMQXhYWUg2WllzUHhPcUtHL1ZHTDhLN0VT?=
- =?utf-8?B?M09xU3Z6UEF4c0NrV2p1UjF5QVRSWE5nR1Q5emhPREZBbUdKbkRVNUN0UDVu?=
- =?utf-8?Q?eSKrFfu54JUd8Pm4SPe7AOjkdFm0GIL+V2IU5V1wWQ2K?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 04d4123b-c382-4f9f-cb59-08da64f5c2a6
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2022 17:33:12.3072 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2022 18:01:30.2065 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0e337d0e-8dca-4128-0bdc-08da64f9b6cf
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vJNJgDad2N6OtrT6Mp/TxeRzZPzLtpQxtj3v5rMhHRItNowCnfitTq3F1s+bYr31
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3909
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT048.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3976
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,164 +98,86 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jingwen.chen2@amd.com, monk.liu@amd.com
+Cc: Alex Deucher <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 13.07.22 um 19:13 schrieb Andrey Grodzovsky:
-> This is a follow-up cleanup to [1]. See bellow refcount balancing
-> for calling amdgpu_job_submit_direct after this cleanup as far
-> as I calculated.
->
-> amdgpu_fence_emit
-> 	dma_fence_init 1
-> 	dma_fence_get(fence) 2
-> 	rcu_assign_pointer(*ptr, dma_fence_get(fence) 3
->
-> ---> amdgpu_job_submit_direct completes before fence signaled
-> 			amdgpu_sa_bo_free
-> 				(*sa_bo)->fence = dma_fence_get(fence) 4
->
-> 			amdgpu_job_free
-> 				dma_fence_put 3
->
-> 			amdgpu_vcn_enc_get_destroy_msg
-> 				*fence = dma_fence_get(f) 4
-> 				dma_fence_put(f); 3
->
-> 			amdgpu_vcn_enc_ring_test_ib
-> 				dma_fence_put(fence) 2
->
-> 			amdgpu_fence_process
-> 				dma_fence_put 1
->
-> 			amdgpu_sa_bo_remove_locked
-> 				dma_fence_put 0
->
-> ---> amdgpu_job_submit_direct completes after fence signaled
-> 			amdgpu_fence_process
-> 				dma_fence_put 2
->
-> 			amdgpu_job_free
-> 				dma_fence_put 1
->
-> 			amdgpu_vcn_enc_get_destroy_msg
-> 				*fence = dma_fence_get(f) 2
-> 				dma_fence_put(f); 1
->
-> 			amdgpu_vcn_enc_ring_test_ib
-> 				dma_fence_put(fence) 0
->
-> [1] - https://patchwork.kernel.org/project/dri-devel/cover/20220624180955.485440-1-andrey.grodzovsky@amd.com/
->
-> Signed-off-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
-> Suggested-by: Christian König <christian.koenig@amd.com>
+Align aldebaran with all other asics.  One HDP bit per
+SDMA instance, aligned with firmware.  This is effectively
+a revert of
+commit a0f9f8546668 ("drm/amdgpu/nbio7.4: don't use GPU_HDP_FLUSH bit 12").
+On further discussions with the relevant hardware teams,
+re-align the bits for SDMA.
 
-Of hand that looks correct to me, but could be that I'm missing 
-something as well.
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c |  5 +----
+ drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c        | 21 -------------------
+ drivers/gpu/drm/amd/amdgpu/nbio_v7_4.h        |  1 -
+ 3 files changed, 1 insertion(+), 26 deletions(-)
 
-Anyway I think I can give an Reviewed-by: Christian König 
-<christian.koenig@amd.com> for this.
-
-Thanks,
-Christian.
-
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  3 +--
->   drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    | 27 ++++------------------
->   drivers/gpu/drm/amd/amdgpu/amdgpu_job.h    |  1 -
->   3 files changed, 6 insertions(+), 25 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index 16faea7ed1cd..b79ee4ffb879 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -5229,8 +5229,7 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
->   	 *
->   	 * job->base holds a reference to parent fence
->   	 */
-> -	if (job && (job->hw_fence.ops != NULL) &&
-> -	    dma_fence_is_signaled(&job->hw_fence)) {
-> +	if (job && dma_fence_is_signaled(&job->hw_fence)) {
->   		job_signaled = true;
->   		dev_info(adev->dev, "Guilty job already signaled, skipping HW reset");
->   		goto skip_hw_reset;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> index 6fa381ee5fa0..10fdd12cf853 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> @@ -134,16 +134,10 @@ void amdgpu_job_free_resources(struct amdgpu_job *job)
->   {
->   	struct amdgpu_ring *ring = to_amdgpu_ring(job->base.sched);
->   	struct dma_fence *f;
-> -	struct dma_fence *hw_fence;
->   	unsigned i;
->   
-> -	if (job->hw_fence.ops == NULL)
-> -		hw_fence = job->external_hw_fence;
-> -	else
-> -		hw_fence = &job->hw_fence;
-> -
->   	/* use sched fence if available */
-> -	f = job->base.s_fence ? &job->base.s_fence->finished : hw_fence;
-> +	f = job->base.s_fence ? &job->base.s_fence->finished :  &job->hw_fence;
->   	for (i = 0; i < job->num_ibs; ++i)
->   		amdgpu_ib_free(ring->adev, &job->ibs[i], f);
->   }
-> @@ -157,11 +151,7 @@ static void amdgpu_job_free_cb(struct drm_sched_job *s_job)
->   	amdgpu_sync_free(&job->sync);
->   	amdgpu_sync_free(&job->sched_sync);
->   
-> -    /* only put the hw fence if has embedded fence */
-> -	if (job->hw_fence.ops != NULL)
-> -		dma_fence_put(&job->hw_fence);
-> -	else
-> -		kfree(job);
-> +	dma_fence_put(&job->hw_fence);
->   }
->   
->   void amdgpu_job_free(struct amdgpu_job *job)
-> @@ -170,11 +160,7 @@ void amdgpu_job_free(struct amdgpu_job *job)
->   	amdgpu_sync_free(&job->sync);
->   	amdgpu_sync_free(&job->sched_sync);
->   
-> -	/* only put the hw fence if has embedded fence */
-> -	if (job->hw_fence.ops != NULL)
-> -		dma_fence_put(&job->hw_fence);
-> -	else
-> -		kfree(job);
-> +	dma_fence_put(&job->hw_fence);
->   }
->   
->   int amdgpu_job_submit(struct amdgpu_job *job, struct drm_sched_entity *entity,
-> @@ -204,15 +190,12 @@ int amdgpu_job_submit_direct(struct amdgpu_job *job, struct amdgpu_ring *ring,
->   	int r;
->   
->   	job->base.sched = &ring->sched;
-> -	r = amdgpu_ib_schedule(ring, job->num_ibs, job->ibs, NULL, fence);
-> -	/* record external_hw_fence for direct submit */
-> -	job->external_hw_fence = dma_fence_get(*fence);
-> +	r = amdgpu_ib_schedule(ring, job->num_ibs, job->ibs, job, fence);
-> +
->   	if (r)
->   		return r;
->   
->   	amdgpu_job_free(job);
-> -	dma_fence_put(*fence);
-> -
->   	return 0;
->   }
->   
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
-> index d599c0540b46..babc0af751c2 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
-> @@ -50,7 +50,6 @@ struct amdgpu_job {
->   	struct amdgpu_sync	sync;
->   	struct amdgpu_sync	sched_sync;
->   	struct dma_fence	hw_fence;
-> -	struct dma_fence	*external_hw_fence;
->   	uint32_t		preamble_status;
->   	uint32_t                preemption_status;
->   	bool                    vm_needs_flush;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+index 9c5f29159a2d..4f83897a54a8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+@@ -2213,12 +2213,9 @@ int amdgpu_discovery_set_ip_blocks(struct amdgpu_device *adev)
+ 		break;
+ 	case IP_VERSION(7, 4, 0):
+ 	case IP_VERSION(7, 4, 1):
+-		adev->nbio.funcs = &nbio_v7_4_funcs;
+-		adev->nbio.hdp_flush_reg = &nbio_v7_4_hdp_flush_reg;
+-		break;
+ 	case IP_VERSION(7, 4, 4):
+ 		adev->nbio.funcs = &nbio_v7_4_funcs;
+-		adev->nbio.hdp_flush_reg = &nbio_v7_4_hdp_flush_reg_ald;
++		adev->nbio.hdp_flush_reg = &nbio_v7_4_hdp_flush_reg;
+ 		break;
+ 	case IP_VERSION(7, 2, 0):
+ 	case IP_VERSION(7, 2, 1):
+diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
+index 4531761dcf77..11848d1e238b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
++++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
+@@ -339,27 +339,6 @@ const struct nbio_hdp_flush_reg nbio_v7_4_hdp_flush_reg = {
+ 	.ref_and_mask_sdma1 = GPU_HDP_FLUSH_DONE__SDMA1_MASK,
+ };
+ 
+-const struct nbio_hdp_flush_reg nbio_v7_4_hdp_flush_reg_ald = {
+-	.ref_and_mask_cp0 = GPU_HDP_FLUSH_DONE__CP0_MASK,
+-	.ref_and_mask_cp1 = GPU_HDP_FLUSH_DONE__CP1_MASK,
+-	.ref_and_mask_cp2 = GPU_HDP_FLUSH_DONE__CP2_MASK,
+-	.ref_and_mask_cp3 = GPU_HDP_FLUSH_DONE__CP3_MASK,
+-	.ref_and_mask_cp4 = GPU_HDP_FLUSH_DONE__CP4_MASK,
+-	.ref_and_mask_cp5 = GPU_HDP_FLUSH_DONE__CP5_MASK,
+-	.ref_and_mask_cp6 = GPU_HDP_FLUSH_DONE__CP6_MASK,
+-	.ref_and_mask_cp7 = GPU_HDP_FLUSH_DONE__CP7_MASK,
+-	.ref_and_mask_cp8 = GPU_HDP_FLUSH_DONE__CP8_MASK,
+-	.ref_and_mask_cp9 = GPU_HDP_FLUSH_DONE__CP9_MASK,
+-	.ref_and_mask_sdma0 = GPU_HDP_FLUSH_DONE__RSVD_ENG1_MASK,
+-	.ref_and_mask_sdma1 = GPU_HDP_FLUSH_DONE__RSVD_ENG2_MASK,
+-	.ref_and_mask_sdma2 = GPU_HDP_FLUSH_DONE__RSVD_ENG3_MASK,
+-	.ref_and_mask_sdma3 = GPU_HDP_FLUSH_DONE__RSVD_ENG4_MASK,
+-	.ref_and_mask_sdma4 = GPU_HDP_FLUSH_DONE__RSVD_ENG5_MASK,
+-	.ref_and_mask_sdma5 = GPU_HDP_FLUSH_DONE__RSVD_ENG6_MASK,
+-	.ref_and_mask_sdma6 = GPU_HDP_FLUSH_DONE__RSVD_ENG7_MASK,
+-	.ref_and_mask_sdma7 = GPU_HDP_FLUSH_DONE__RSVD_ENG8_MASK,
+-};
+-
+ static void nbio_v7_4_init_registers(struct amdgpu_device *adev)
+ {
+ 	uint32_t baco_cntl;
+diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.h b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.h
+index 7490022d79d4..f27c41728822 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.h
++++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.h
+@@ -27,7 +27,6 @@
+ #include "soc15_common.h"
+ 
+ extern const struct nbio_hdp_flush_reg nbio_v7_4_hdp_flush_reg;
+-extern const struct nbio_hdp_flush_reg nbio_v7_4_hdp_flush_reg_ald;
+ extern const struct amdgpu_nbio_funcs nbio_v7_4_funcs;
+ extern struct amdgpu_nbio_ras nbio_v7_4_ras;
+ 
+-- 
+2.35.3
 
