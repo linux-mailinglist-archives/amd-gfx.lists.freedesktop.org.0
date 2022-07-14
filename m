@@ -2,119 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0AC957520D
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 17:40:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 085DD575221
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 17:43:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03FDF113963;
-	Thu, 14 Jul 2022 15:40:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C51A010EB30;
+	Thu, 14 Jul 2022 15:43:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2058.outbound.protection.outlook.com [40.107.94.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51582113960
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 Jul 2022 15:40:43 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hHpIVHYPHzLvtut7dCvV4SkmI5vQ1uD3+M8xTfRnN2ryMfw0/n2FDvjk+b2510MSWEl15iQIPBbN+SjMCdbcA4QvlCNd8h3EL3D/XfAJ2Id13GnrA0yZJyEZrMLPrWpnaH+AZ79/9KsOWAM9j7FxhfH+nztsJBqyIkbpzqEJp3g8hdd1/JV+8fQpDNL8jMXx9dvs+J3i95unXmQTHgymPo348pP2YG2cyFe+WaokGdXOd/RIVIwz4bwru69Fj6XP5ENt+0d0LJX/lphTAXTu8AoAoFQ3L3WjDcBtEjVfOOCXumC7TQet2zMChyK27P0UxnGHmFwdXAIm553g9BlF0g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ohwAzxIlKN4BtL/ldzg5H7QOQNCBKuP2cGgvZD61ATc=;
- b=i+NyHJLYSnDIGBUoSJMJgcp8r9G/4q2YzluvJCgHdbcF4C8Vn4MVs3T36AftjQ3W91sBU0bnnAmn8X1f8SBR6xWOrCIITfaF6V3MDdsq0CHP+IIU++NrRAsEsxxE05UL0InIEVmpupyzq6YkKhEWv4yN5SYyyNo5W1UOUnRucYmBCuoH87KquYm+u5PoRGgIkfIvY7OLQKMPps4DQOnEYjj8WJDOURs/knqoXX+Va3fFRDldcA1hj6dIRZqO7gbkaP/C+oKY+DWeNrZ67LDztIyLU2B9Qoyr9X/p5+1CW0hfGvXUiQySl5+dB9O3MWEsQRO4tB8xfFEZMWYPoyUABQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ohwAzxIlKN4BtL/ldzg5H7QOQNCBKuP2cGgvZD61ATc=;
- b=RKgQRJ+uv7mMVJZa/kDFuRpmOQLzemKAfoTmXCFHXtM6loqwomT4oo5ZBesUPr9qCFIO0vF69qkSrFlbz/cVcm5mO0DZqA+NBJqz0hUvmmdBMnt+GiWiaIIJ7WRMjkNi0tB+MYfdLGvto+dmL9V1vP6OyjNmcT+dSG1yvLxQEhM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB3370.namprd12.prod.outlook.com (2603:10b6:5:38::25) by
- PH7PR12MB6491.namprd12.prod.outlook.com (2603:10b6:510:1f4::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.14; Thu, 14 Jul
- 2022 15:40:40 +0000
-Received: from DM6PR12MB3370.namprd12.prod.outlook.com
- ([fe80::40e5:7df9:d8d9:4eb1]) by DM6PR12MB3370.namprd12.prod.outlook.com
- ([fe80::40e5:7df9:d8d9:4eb1%7]) with mapi id 15.20.5438.014; Thu, 14 Jul 2022
- 15:40:40 +0000
-Message-ID: <84aed2fb-6bcb-b8f8-100e-b65209e4873b@amd.com>
-Date: Thu, 14 Jul 2022 11:40:35 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.0.2
-Subject: Re: [PATCH 07/10] drm/amdgpu: move setting the job resources
-Content-Language: en-CA
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- amd-gfx@lists.freedesktop.org, Marek.Olsak@amd.com, timur.kristof@gmail.com,
- andrey.grodzovsky@amd.com, Yogesh.Mohanmarimuthu@amd.com
-References: <20220714103902.7084-1-christian.koenig@amd.com>
- <20220714103902.7084-8-christian.koenig@amd.com>
-From: Luben Tuikov <luben.tuikov@amd.com>
-In-Reply-To: <20220714103902.7084-8-christian.koenig@amd.com>
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6349B10EB30;
+ Thu, 14 Jul 2022 15:43:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=Nfadgg2RwVGN0U9zbMOJUV4ip9jB/aIO9F2rxczWRHU=; b=GHC+99XVhfLGqPOJpX8XJIekgf
+ IVe5wW9id/p4DTQhtSytmxFaZizonB3wqasjGsrD8kctEEHACHgMKQ3RHD9hGbIM7jqSOxW+HAoUC
+ iFwXpcgUEOzwsfDC4s92IOmM8BCU4R5TCxblPGQXn3vnQ1i3Gi0LU6nIIKaTdDN3u3yvOUJoowwp5
+ i30H3tIWA3+4iEEinKt2583B+eYRHGdQHmzlIufwIwWjNgOw5c3kdQA5pKa4NvBBwerrNhjpFUBLM
+ gXFihoYuePAKRkNW2dF1e02PkGy0Pm0sTnjIBEJXTFBFF3Emp/UEEggAkIYhmBnVcljywvQKpWVF+
+ 1vlC9x9Q==;
+Received: from [177.139.47.106] (helo=[192.168.15.109])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1oC105-00GXxV-3u; Thu, 14 Jul 2022 17:43:37 +0200
+Message-ID: <1106b107-6373-9f89-5310-ea29db9fdf75@igalia.com>
+Date: Thu, 14 Jul 2022 12:43:19 -0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH -next] drm/amdgpu: double free error and freeing
+ uninitialized null pointer
+Content-Language: en-US
+To: Sebin Sebastian <mailmesebin00@gmail.com>
+References: <20220710132911.399325-1-mailmesebin00@gmail.com>
+ <21df71a6-44d4-48a6-17d2-d463174a10c7@igalia.com>
+ <YtAw4dra+g1rcAXd@sebin-inspiron>
+From: =?UTF-8?Q?Andr=c3=a9_Almeida?= <andrealmeid@igalia.com>
+In-Reply-To: <YtAw4dra+g1rcAXd@sebin-inspiron>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YT3PR01CA0093.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:85::28) To DM6PR12MB3370.namprd12.prod.outlook.com
- (2603:10b6:5:38::25)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6addf1fc-d11d-4ddd-4d95-08da65af3443
-X-MS-TrafficTypeDiagnostic: PH7PR12MB6491:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: JEEYWjf/HKlwlWQCXu3jZSIyHpoB4RTp6oA9u+tHnxrKYmLatnj8hQwgp0Uo81IBgyB23+fBd3WSkoAX1xQRi/ZnCLHINpIME9JdSs5Md5HfahIaJ1ePSBNO3WZa6VoZcl01u6ZDHZzNy6HYZg3E7c57+15cxJa3Cj2fpz03bv7cAhdItP9XhQNz134zojJBopS0TebxJlCuGY0oE75FMBPpdOfQNqwhG3VmUuIjlP995w/nhkgM3AAnWhh1Nzck/ef4V7wJ128JICSPjeNIlMzEqR+fgxl2bEoGSX0UUNEXogzHe8BHnHwTrOUlaAdX7x7jWaM0xAFQUkcYEj+wfsYRzfTCemwJS2J+0GLtb2w+DQzmd3G97FeUI6XyQrJGE38+vn0pJxANIP2gx8rf7bnunnqpyifBGyNP7NUSSBwIbQkDaqZRdFeO2GDVod15ZlCw8ZbWBcGrptKK8xnLfd3UEvryV/vepJgrlIKMputPXg0JkhjLHZboa/Dyq6OdGe36qumVJOfoEJN4+a6TgQgvVRfRNY+xpHDK2Xp23YVejstkV+L8Bpm5ekoxwvFwXeyrhS1JaHs3ymDysHB4I4ffTYC9PfE7qxNPmG6regNEESLklrYJInBQkjw/1H4xFk2zFWr1V2W6rdzV7E2vgI5DI7+s6sxcTyFn+AumD2oCXeHVqhSVROw92dDdknYSG7gOvIV6PaFGnb7o9gRl4E5Ny8hZB7GYvRSXsu8/QViOE0bMqgyZm7eHLdVyyqoOicytrfdM4Y9YQHUnMhCQLqQdpR3E/vG3i0zy8eG8yjJne0LbAPcPE8H0PINk88vmHhjlqeP6yr5ozdvkaiufJQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB3370.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(346002)(376002)(39860400002)(396003)(136003)(366004)(8676002)(66476007)(4326008)(66556008)(5660300002)(38100700002)(66946007)(2906002)(44832011)(66574015)(83380400001)(8936002)(2616005)(6512007)(26005)(186003)(6506007)(6636002)(6666004)(41300700001)(316002)(478600001)(6486002)(31696002)(36756003)(86362001)(53546011)(31686004)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M0hFSU4ySjFaTXFFK0JWWnhnVEU2TzhpMTIwNEtLMWk5NjM1VWRjT0hWQ1J0?=
- =?utf-8?B?Y2x3TEJYUkl4RTRGQXRQTVBPZHlPbmw5K2hXNlo5K0hmNHBOY1R0aFJjSExa?=
- =?utf-8?B?NUxyR2dqUFcvSlRNVFlTVUppYlZmenVsZ051YVlBRDMwenR6ckpkYWlDaE8v?=
- =?utf-8?B?STBqek1Da2JweGh3QmY0L2ZEbTR5Qks1WXNkYi9jNk5vNWN3ZU1DajFYdmln?=
- =?utf-8?B?dHBrVFJFVGVGS2dvR3o1VjZ1KzdNTHFVcWw0QWpzbnAxWlBNU2svNUtaS25u?=
- =?utf-8?B?N21aVi9WYS96NUplZzV6di9FSHd3SHA5eTZ0UG5DMmp5T203cjlOdE92WEJB?=
- =?utf-8?B?ajRNMkRNNUQ2YXkwdzRqdVpocFZHak9sN29TRlNLcUVUalhaRFhYRXV4ODFn?=
- =?utf-8?B?ZUplUzVUU1RDamxBNm93OFg0WXZkb1JRQmtWUTFKYW4xbHdwc1d1MVRJak5S?=
- =?utf-8?B?Z1c1UU5pbDhJdTkyU3dGbVY0a1NGZlZYNnlDNStzY3R0VkRMeWJhMHIzQWV1?=
- =?utf-8?B?K3pDTUZXcmdIcnZGZzZtUVlaOENLT08wNG1PSFQraHlJRWh4bHdNVmozU1F4?=
- =?utf-8?B?UE4zdWVicmdoSlhFUHJna1padU1vZkh2dzlqY2E1RVpUYVkxeHIxWXZHMU11?=
- =?utf-8?B?NktzdU0xRzU2T2lLZnRVVTEwcjIyK2ozcnV6WStMbDhiTTR4ak8vN0R2K2tV?=
- =?utf-8?B?VDBvNUxaSnh1QzlyV3ZnL2FocVR0UWlYVjE3NVltdmhTRTBIZklGU1JoMlhO?=
- =?utf-8?B?L1M3UGFOWkpCeHAvV0VKKzJaOHN0SFQyU0t0QXVYU1JDY1AxU0F0MHNmZk5S?=
- =?utf-8?B?bExDVGRhTWVsMjNEbjVSa2FDcis5czd0VWZ0by8wdU1VczhoaklYT1hnWmVC?=
- =?utf-8?B?WUtCcStuN3ZzQ3NIMWhYVTBhOUVUM0kwdTlueU9FMXZqWWk5Zk5OWE9za0hK?=
- =?utf-8?B?ekpoSHRsVkRDUEJqWmozR2J0NlZ4VDhJU2k5TW9PR2thdU9wZGtxNTU1czM0?=
- =?utf-8?B?ODF2WG9JR250U3VLUm1KeTZMUDFlTmx6b2tGdkJEZ04zc2I1WFdGdzh1cjdt?=
- =?utf-8?B?OUN5T3IxamdqTFp0RFIrcmZDY0lKaDE3cVBVdXp5VTNsb3NHMVFkaHBFbElE?=
- =?utf-8?B?SmE3cWpRRWtTN0tuejB6QkwvVnZhSE9hZW15VGE5RDJJNHBZc2Z0d25YLzZs?=
- =?utf-8?B?amtpTTJJNXdCOXhLR1BJbE5PS3dlOGFoamxob2syTitmZzMyL3J6Rklxdk9E?=
- =?utf-8?B?aHprUjB4QWxsQzI5aFo5aWpwNTZCK1BjV0VJcnEwV3h5N0tVUk1KcElUWjNx?=
- =?utf-8?B?TXI0Q3hpUnpmWDUxckxNM2IxbzhVa3AraUJzRkpEcmlnMGc5a0xJNldUS3k4?=
- =?utf-8?B?NFo4c0dtd290WUNnOURScnA3c0NCdi9waEprMURjQkxSWnNxTGk0MmNVUXEv?=
- =?utf-8?B?elpiUmsySEpPQnROL2o1Z2xnNFlCaVQycnk1eWJUWEVKVDFxd3BHUVdIL2Jx?=
- =?utf-8?B?Q1JBemFYMnF3UXVXa2QxaC9mRDBESlZsdjdSZHM1L2JUbzMveGdXVFVKRWZG?=
- =?utf-8?B?cDZnWTJWRnRzTk5EbVpKZC8yQU1lTXlLUDhieEU2RDFFdEs4Vys2QVhzMTJ5?=
- =?utf-8?B?OThRWTZVcTBlOGZuNXNFZ3JKNzk4R1hETVNXd29EREttUXdqdVJVQlNpT0hD?=
- =?utf-8?B?VGJTeFY3RkV1OUx5dkxPczFMczROYUJpelRzWm1ucUhUZG51RTVRZSt4L2tv?=
- =?utf-8?B?ZkFJRFg5Mm9iNGd0MWpOZ1pPK0dPWDhjYXVYVCtieDZnamROeHJ5L0tuSnYv?=
- =?utf-8?B?QWc5THNkWDRHZGJydUFQVEkwdFhIUG1IVjRwUHZzdDIzdDZVK0N6Z3oyd2E1?=
- =?utf-8?B?M1Z3VS9lQUVWL09PZGJ5Y29LbjFuZFpKTVFsRkI2R3YvL3owczkwbUVxcHZ4?=
- =?utf-8?B?RDMwd2thOURvQ0owV3Y3NDJTSGZQZ0FtV0NGSk1xcFlyVGtLQ2VGb3J0RzB6?=
- =?utf-8?B?YzRrSmJxRmxFV1M2aUtkYlBMRENLSE0xTDh4L1l2bVRrS1JpNmJQMGVjVHZV?=
- =?utf-8?B?bTdpRHRzRklrOUpvNnJPaEE4V0NxV0JidFI5Y1pqK3lBSmwxbnN0RjU0SkNO?=
- =?utf-8?Q?LTk0W6KZKgVtCHWexI2uxig+Z?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6addf1fc-d11d-4ddd-4d95-08da65af3443
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3370.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2022 15:40:39.8729 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NLNO/VfUYqmjmJekCgLATyaFXe2COqogHQosbYToFeCeu28ZkqHwuYyCr6HsBgMC
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6491
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,103 +56,94 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: Tom St Denis <tom.stdenis@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ David Airlie <airlied@linux.ie>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Nirmoy Das <nirmoy.das@amd.com>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ Evan Quan <evan.quan@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Luben Tuikov <luben.tuikov@amd.com>
-
-On 2022-07-14 06:38, Christian König wrote:
-> Move setting the job resources into amdgpu_job.c
+Às 12:06 de 14/07/22, Sebin Sebastian escreveu:
+> On Tue, Jul 12, 2022 at 12:14:27PM -0300, André Almeida wrote:
+>> Hi Sebin,
+>>
+>> Às 10:29 de 10/07/22, Sebin Sebastian escreveu:
+>>> Fix two coverity warning's double free and and an uninitialized pointer
+>>> read. Both tmp and new are pointing at same address and both are freed
+>>> which leads to double free. Freeing tmp in the condition after new is
+>>> assigned with new address fixes the double free issue. new is not
+>>> initialized to null which also leads to a free on an uninitialized
+>>> pointer.
+>>> Coverity issue: 1518665 (uninitialized pointer read)
+>>> 		1518679 (double free)
+>>
+>> What are those numbers?
+>>
+> These numbers are the issue ID's for the errors that are being reported
+> by the coverity static analyzer tool.
 > 
-> Signed-off-by: Christian König <christian.koenig@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c  | 21 ++-------------------
->  drivers/gpu/drm/amd/amdgpu/amdgpu_job.c | 17 +++++++++++++++++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_job.h |  2 ++
->  3 files changed, 21 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> index dfb7b4f46bc3..88f491dc7ca2 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> @@ -828,9 +828,6 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
->  	struct amdgpu_vm *vm = &fpriv->vm;
->  	struct amdgpu_bo_list_entry *e;
->  	struct list_head duplicates;
-> -	struct amdgpu_bo *gds;
-> -	struct amdgpu_bo *gws;
-> -	struct amdgpu_bo *oa;
->  	int r;
->  
->  	INIT_LIST_HEAD(&p->validated);
-> @@ -947,22 +944,8 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
->  	amdgpu_cs_report_moved_bytes(p->adev, p->bytes_moved,
->  				     p->bytes_moved_vis);
->  
-> -	gds = p->bo_list->gds_obj;
-> -	gws = p->bo_list->gws_obj;
-> -	oa = p->bo_list->oa_obj;
-> -
-> -	if (gds) {
-> -		p->job->gds_base = amdgpu_bo_gpu_offset(gds) >> PAGE_SHIFT;
-> -		p->job->gds_size = amdgpu_bo_size(gds) >> PAGE_SHIFT;
-> -	}
-> -	if (gws) {
-> -		p->job->gws_base = amdgpu_bo_gpu_offset(gws) >> PAGE_SHIFT;
-> -		p->job->gws_size = amdgpu_bo_size(gws) >> PAGE_SHIFT;
-> -	}
-> -	if (oa) {
-> -		p->job->oa_base = amdgpu_bo_gpu_offset(oa) >> PAGE_SHIFT;
-> -		p->job->oa_size = amdgpu_bo_size(oa) >> PAGE_SHIFT;
-> -	}
-> +	amdgpu_job_set_resources(p->job, p->bo_list->gds_obj,
-> +				 p->bo_list->gws_obj, p->bo_list->oa_obj);
->  
->  	if (p->uf_entry.tv.bo) {
->  		struct amdgpu_bo *uf = ttm_to_amdgpu_bo(p->uf_entry.tv.bo);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> index 36c1be77bf8f..3255b2fca611 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> @@ -129,6 +129,23 @@ int amdgpu_job_alloc_with_ib(struct amdgpu_device *adev, unsigned size,
->  	return r;
->  }
->  
-> +void amdgpu_job_set_resources(struct amdgpu_job *job, struct amdgpu_bo *gds,
-> +			      struct amdgpu_bo *gws, struct amdgpu_bo *oa)
-> +{
-> +	if (gds) {
-> +		job->gds_base = amdgpu_bo_gpu_offset(gds) >> PAGE_SHIFT;
-> +		job->gds_size = amdgpu_bo_size(gds) >> PAGE_SHIFT;
-> +	}
-> +	if (gws) {
-> +		job->gws_base = amdgpu_bo_gpu_offset(gws) >> PAGE_SHIFT;
-> +		job->gws_size = amdgpu_bo_size(gws) >> PAGE_SHIFT;
-> +	}
-> +	if (oa) {
-> +		job->oa_base = amdgpu_bo_gpu_offset(oa) >> PAGE_SHIFT;
-> +		job->oa_size = amdgpu_bo_size(oa) >> PAGE_SHIFT;
-> +	}
-> +}
-> +
->  void amdgpu_job_free_resources(struct amdgpu_job *job)
->  {
->  	struct amdgpu_ring *ring = to_amdgpu_ring(job->base.sched);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
-> index d599c0540b46..0bab8fe0d419 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
-> @@ -77,6 +77,8 @@ int amdgpu_job_alloc(struct amdgpu_device *adev, unsigned num_ibs,
->  		     struct amdgpu_job **job, struct amdgpu_vm *vm);
->  int amdgpu_job_alloc_with_ib(struct amdgpu_device *adev, unsigned size,
->  		enum amdgpu_ib_pool_type pool, struct amdgpu_job **job);
-> +void amdgpu_job_set_resources(struct amdgpu_job *job, struct amdgpu_bo *gds,
-> +			      struct amdgpu_bo *gws, struct amdgpu_bo *oa);
->  void amdgpu_job_free_resources(struct amdgpu_job *job);
->  void amdgpu_job_free(struct amdgpu_job *job);
->  int amdgpu_job_submit(struct amdgpu_job *job, struct drm_sched_entity *entity,
 
-Regards,
--- 
-Luben
+I see, but I don't know which tool was used, so those seem like random
+number to me. I would just remove this part of your commit message, but
+if you want to keep it, you need to at least mention what's the tool.
+
+>>>
+>>> Signed-off-by: Sebin Sebastian <mailmesebin00@gmail.com>
+>>> ---
+>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 8 +++++---
+>>>  1 file changed, 5 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+>>> index f3b3c688e4e7..d82fe0e1b06b 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+>>> @@ -1660,7 +1660,7 @@ static ssize_t amdgpu_reset_dump_register_list_write(struct file *f,
+>>>  {
+>>>  	struct amdgpu_device *adev = (struct amdgpu_device *)file_inode(f)->i_private;
+>>>  	char reg_offset[11];
+>>> -	uint32_t *new, *tmp = NULL;
+>>> +	uint32_t *new = NULL, *tmp = NULL;
+>>>  	int ret, i = 0, len = 0;
+>>>  
+>>>  	do {
+>>> @@ -1692,17 +1692,19 @@ static ssize_t amdgpu_reset_dump_register_list_write(struct file *f,
+>>>  		goto error_free;
+>>>  	}
+>>
+>> If the `if (!new) {` above this line is true, will be tmp freed?
+>>
+> Yes, It doesn't seem to free tmp here. Should I free tmp immediately
+> after the do while loop and remove `kfree(tmp)` from the `if (ret)`
+> block? Thanks for pointing out the errors.
+
+If you free immediately after the while loop, then you would risk a use
+after free here:
+
+	swap(adev->reset_dump_reg_list, tmp);
+
+So this isn't the solution either.
+
+> 
+>>>  	ret = down_write_killable(&adev->reset_domain->sem);
+>>> -	if (ret)
+>>> +	if (ret) {
+>>> +		kfree(tmp);
+>>>  		goto error_free;
+>>> +	}
+>>>  
+>>>  	swap(adev->reset_dump_reg_list, tmp);
+>>>  	swap(adev->reset_dump_reg_value, new);
+>>>  	adev->num_regs = i;
+>>>  	up_write(&adev->reset_domain->sem);
+>>> +	kfree(tmp);
+>>>  	ret = size;
+>>>  
+>>>  error_free:
+>>> -	kfree(tmp);
+>>>  	kfree(new);
+>>>  	return ret;
+>>>  }
