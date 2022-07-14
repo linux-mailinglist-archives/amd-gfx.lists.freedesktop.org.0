@@ -2,90 +2,83 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10DCC5757A0
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 Jul 2022 00:28:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29CA75757F4
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 Jul 2022 01:17:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91DE610E82A;
-	Thu, 14 Jul 2022 22:28:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 940E81127B8;
+	Thu, 14 Jul 2022 23:17:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1anam02on2076.outbound.protection.outlook.com [40.107.96.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 337E210E0E7
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 Jul 2022 22:18:31 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BtV4jJveXgQGVpNLtUh/82zbxSMgPI6mUYka7BwMRxS3bNMRI3tmPXE25vKE51mapcKR8ir1mkJ1l9Ae5w4NuQWsBulQr6Ptn3XYZsA6xTFzhjPGqc69b7Uu1Oj4qhS7UNnOhHnFfwG8x68OJy+0TSb8LMO9Q1eTy9Fj+7k6DR4+bJGu3PoQqClkw/qbWcaimD92DbgznijlF5NpbIeVhqHUjhLfACx+ZAuY7v2bbDozCN8KnKUlUeW5SyN1IuEBcVFoWFe53yY6ovvagYFYpRTb0Ehm8ixUJKv6PB0ghMfNX8L7tt46xMA5aNcnzx7OopzC03O9q7LOZwG8T5qnlQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZMhFFg5f3z1D1C8CsA1ThqccVQdd6G9Fg+bD9Xyd88Y=;
- b=DZT7kEyfdgz8bqoE7ZOj+33HK4ETyEYit8bH77w7Ss+B9XdgqXAEbGKbYByXy0lwPERm2rIhbGov6dLA+0UkcVWGztIjcytoNSoiH7ia9RUnybN2SSALBMSztLRXtKhzTz8/fdMfykHvgve2f/x+1fd56n7RZX20bgnfEuuues5KjZM+L+eDlnYc3ijzFAH6gcI8iNO4xzJ5tVjF2JeCIKy3XH2sSdxa4xMUYG3WDdVJXDS0GIG0OZeeZ/oMzESG2Krn47Ok2cNMWi3k0z5yBcEbYAut/EdOjpBODY/6JFYDWrj9wFy3Yspe8d3L3/HrcmtlPV3WaOpTPouv7q3dRA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZMhFFg5f3z1D1C8CsA1ThqccVQdd6G9Fg+bD9Xyd88Y=;
- b=Ut370r13oAEtMuFoU60sH/Fn27zw7hPjnt7BSqHcP+fwPIUd8Js+58oH6RtCPBedky9cBwdnskIDUd/BGknicoSnSCUaRCJyVptFmXxkwf6tXKn29ioCqExbegN3cyRMFYY8KNwS4zZfpzjIN9Vcvhdqu455HEIOUpQBK6ZnUJw=
-Received: from BN9PR03CA0546.namprd03.prod.outlook.com (2603:10b6:408:138::11)
- by MN0PR12MB5788.namprd12.prod.outlook.com (2603:10b6:208:377::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.14; Thu, 14 Jul
- 2022 21:59:14 +0000
-Received: from BN8NAM11FT066.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:138:cafe::26) by BN9PR03CA0546.outlook.office365.com
- (2603:10b6:408:138::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.13 via Frontend
- Transport; Thu, 14 Jul 2022 21:59:14 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT066.mail.protection.outlook.com (10.13.177.138) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5438.12 via Frontend Transport; Thu, 14 Jul 2022 21:59:14 +0000
-Received: from Harpoon.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 14 Jul
- 2022 16:59:13 -0500
-From: Felix Kuehling <Felix.Kuehling@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/ttm: fix missing NULL check in ttm_device_swapout
-Date: Thu, 14 Jul 2022 17:58:20 -0400
-Message-ID: <20220714215820.807146-1-Felix.Kuehling@amd.com>
-X-Mailer: git-send-email 2.32.0
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com
+ [66.111.4.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B60D112733
+ for <amd-gfx@lists.freedesktop.org>; Thu, 14 Jul 2022 23:16:59 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+ by mailout.nyi.internal (Postfix) with ESMTP id 4C7B05C0089;
+ Thu, 14 Jul 2022 19:16:56 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute2.internal (MEProxy); Thu, 14 Jul 2022 19:16:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=russell.cc; h=cc
+ :cc:content-transfer-encoding:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to; s=fm1; t=1657840616; x=
+ 1657927016; bh=FONg2bGJtmJ1Xycx7o6dOlmZb1WdDxtKAAFomE5W5C8=; b=K
+ KFOv3s+MSUYK5qq9x5uY42bcGtNalZYRAYl3imZDKHc5TA0DSEHlXwc2pYpgS2mP
+ bVsJCX2Ec27KD5QJiijJO4VX7b+IET2LDhHlquMCNRL59o78IwQ3FdPtkIlgvAkm
+ 9di0JTExG47PcdaAzfHS7rrOfT51IiY4BWH3LxSq/09/pqZyZPUf9PF1PBPtW+8x
+ Ewlx+oS7EUoBf4W5oJMvlUSyVGjQ7V4W3LaysyCIFYUffMoxZlv6uX1WTraT41ol
+ GiKyn78/OuN011wlL3g2z3kV6jxMWjkuQsSu6uH4PRiziAixTSXadGOl0MbRZPle
+ vhZjy6qnVKBplOwWFMH9w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:date:date:feedback-id:feedback-id:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1657840616; x=
+ 1657927016; bh=FONg2bGJtmJ1Xycx7o6dOlmZb1WdDxtKAAFomE5W5C8=; b=E
+ MAGFxeIMibG+L2v3RG8GE5TpSspc4ZloRNbBNOAE/RlXQ4EtQj3k/h0GqxjL7DZK
+ msPftkQ1w4yY2SZdTg9SUU7niC8GNUJy2gVTfyj6vunjrjCYiWag8IOBgTg7pAQR
+ NFKrItEF6CNjOdhWImpMZSINdYlWz6A4uPVBOFWPDeCUBpDVTxmhRmshlpBFVhT/
+ KbzZxAcfMQPth3V9S/3BI7nytpIVLn9tvF1KDIINatveWvWiyMA6e2O58fYiz3OC
+ aymkZaLhqWYGnWT41TYZwWRj9wmODBUCFXj9k3P0WT2qkcOT8IZNKVuYmiOM791h
+ aY0OEYU7QnfnQ8Sq/u1VQ==
+X-ME-Sender: <xms:56PQYkmAVfffG4i6IOUndK5-wImCYA0RiWBN8eaIcH_GgWa_XTz5oQ>
+ <xme:56PQYj1R6_nXllY2HOkGZGA0k_CxjbNoGrLrHNNZg1GbVH1UzlDCtRtCDLHPgPy0L
+ Xosu6iYcOeTB24wJg>
+X-ME-Received: <xmr:56PQYiq9ypVOFjSD4RlGkgfumLYEk2RmrmcEPP3lvv6_CG0-kfrB9Pq99utcrjOjG0bRn4w1ALEj-D5ktkoFHyRv_GQXpmA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudektddgudelucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ gfrhhlucfvnfffucdluddtmdenucfjughrpefkuffhvfevffgjfhgtgfgfggesthhqredt
+ tderjeenucfhrhhomheptfhushhsvghllhcuvehurhhrvgihuceorhhushgtuhhrsehruh
+ hsshgvlhhlrdgttgeqnecuggftrfgrthhtvghrnheptdevfeetfffghffgveekieellefh
+ vdefudektdelueeiueffhedvhfeltdevieefnecuffhomhgrihhnpehfrhgvvgguvghskh
+ htohhprdhorhhgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhf
+ rhhomheprhhushgtuhhrsehruhhsshgvlhhlrdgttg
+X-ME-Proxy: <xmx:56PQYgmz4QBCawDKxRWW3OZ6uoVhHop-56nSLu-27i6YDNlT7T5COA>
+ <xmx:56PQYi0Vgz0qZHjVi5sC2slmAanUzTM_cUrXkew-gSlwLi5Ef3o2-A>
+ <xmx:56PQYnsOOQIKIZhWMucU_guDUlnmHGs2NX0z4c9TRLka0EoLl2Sauw>
+ <xmx:6KPQYoOBCrD7XIHiFxVYj45fi25eBcMbm_wo9U9CqkLQVU4NJ-PgnQ>
+Feedback-ID: i4421424f:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 14 Jul 2022 19:16:50 -0400 (EDT)
+Message-ID: <9d18166d534dc30d83f2255d4512619aa6b3b517.camel@russell.cc>
+Subject: Re: Linux 5.19-rc6
+From: Russell Currey <ruscur@russell.cc>
+To: Linus Torvalds <torvalds@linux-foundation.org>, Alex Deucher
+ <alexdeucher@gmail.com>
+Date: Fri, 15 Jul 2022 09:16:47 +1000
+In-Reply-To: <CAHk-=wj4+BSj2SPMRUr-TZ4Qg2o9HGOBWiJQE336YcF_U1sVNQ@mail.gmail.com>
+References: <CAHk-=wgTmGaToVFdSdoFqT2sNkk7jg2rSWasUYv-tASUZ2j_0Q@mail.gmail.com>
+ <20220713050724.GA2471738@roeck-us.net>
+ <CAHk-=widUqghhXus_GCM9+FESa5vHqMb_pO3=0dGYH8C+yix2w@mail.gmail.com>
+ <a804b76e-159f-dbc2-f8dc-62a58552e88d@roeck-us.net>
+ <CADnq5_O6Tp2QPXyDCvpWuRXhDr6H1PM50Ow5YG2WeukqUd-GnQ@mail.gmail.com>
+ <CAHk-=wj4+BSj2SPMRUr-TZ4Qg2o9HGOBWiJQE336YcF_U1sVNQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.3 (3.44.3-1.fc36) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: fe57848b-c4df-426d-f9f8-08da65e41728
-X-MS-TrafficTypeDiagnostic: MN0PR12MB5788:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: NEC++gLzAFWayIpvoV/yZ/QTHMSXBEFtkpqtiHiGz30Zmv4m4c9YpCLzTxAXuHWyWKB9dc2ktLXZiRp9+GTLWd4Nm13dmj0cWzUpPtK39qpiVDILIz1BPDX3Il+Nh28GVw4kcbAk70qHa5zp3g5rcIGLxPDYfPr6uMbVuhL+lfEKHh7Bf9PbpRtBQCazGxJ58pNRER+CplGQkqPEeD3pOdTWS2QFMjoc3VbHdn2t0ox/RVEai42rSaqqfeM1GNkkdm0xl6QDUkweYit5bv9c0txVMO6i7ZyRkCAw1HRcb19RX/e77nlSgjazm+fQBhmDo1z0TmTKrlQdaRoiTRx2tx7lvu4ejKFuxqUNfzGBmhAllB1n8OTH8W06zIS9rJw7TQRFWNJjJ802VIpK7+x3+0pzTABkT3Onm/ngAUMi6uEM3UWklnQYTDEu5qlcbah+uY/vBl6BoYKsVXWDiP92reWSzG6FOHHFvVJJTZeiYahjltv4DDoGCBY0/G7MFbAdqHRs6xnZU2sf1xprIVdB4FIk+m3TtyEhKHP4tCgNKCiTLwOJjahHZKTFXwVJo9GsvMWgpKiPgY61Cm2W+d38rNU7+Mna+4lwc2OAVWCKanF5s/8tSgd5wqDl37jpTSIgbgH/FsAYhzWaCO/C0kXiyK8c8B5sn0vZJZyKvFw+J3b/93Sn2eOAtlTLTu1rwpocMBvG5a67xjf8yinLOC05ncrr8iljd41VGsl0if/71meXzqKlI75mrDlaGnDlOJU10Y2nmeycCMguHFn9GJ/JLqqFyI5vWV2/Xinhm/LiyE8yB5wIo0YvOq5PcKE+bzmFn8YaTGpq4TboNzDgldb/PGqudd0mRx6p4jEGodcfoG8=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(136003)(376002)(396003)(346002)(39860400002)(36840700001)(46966006)(40470700004)(8936002)(82310400005)(2906002)(5660300002)(4744005)(40480700001)(36756003)(70586007)(4326008)(8676002)(70206006)(316002)(40460700003)(6916009)(6666004)(26005)(478600001)(86362001)(426003)(7696005)(81166007)(47076005)(1076003)(16526019)(186003)(336012)(2616005)(41300700001)(356005)(82740400003)(36860700001)(83380400001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2022 21:59:14.1075 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fe57848b-c4df-426d-f9f8-08da65e41728
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT066.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5788
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,35 +90,51 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: christian.koenig@amd.com
+Cc: Kefeng Wang <wangkefeng.wang@huawei.com>, Leo Li <sunpeng.li@amd.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Balbir Singh <bsingharora@gmail.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Paul Mackerras <paulus@ozlabs.org>,
+ "Russell King \(Oracle\)" <rmk+kernel@armlinux.org.uk>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>, Guenter Roeck <linux@roeck-us.net>,
+ Daniel Axtens <dja@axtens.net>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Backport of Christian's patch 81b0d0e4f811 to amd-staging-drm-next. This
-branch may be nearly obsolete, but this patch may still be worth
-applying as it can serve as a template for backports to some release
-branches. It fixes intermittent kernel oopses when memory is severely
-overcommitted.
+Hi Linus,
 
-Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
----
- drivers/gpu/drm/ttm/ttm_device.c | 3 +++
- 1 file changed, 3 insertions(+)
+On Wed, 2022-07-13 at 14:32 -0700, Linus Torvalds wrote:
+> On Wed, Jul 13, 2022 at 2:01 PM Alex Deucher <alexdeucher@gmail.com>
+> wrote:
+> >=20
+> > If you want to apply Guenter's patch original patch:
+> > https://patchwork.freedesktop.org/patch/490184/
+> > That's fine with me.
+>=20
+> Honestly, by this time I feel that it's too little, too late.
+>=20
+> The ppc people apparently didn't care at all about the fact that this
+> driver didn't compile.
+>=20
+> At least Michael Ellerman and Daniel Axtens were cc'd on that thread
+> with the proposed fix originally.
+>=20
+> I don't see any replies from ppc people as to why it happened, even
+> though apparently a bog-standard "make allmodconfig" just doesn't
+> build.
 
-diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
-index be24bb6cefd0..165a6cbb45d5 100644
---- a/drivers/gpu/drm/ttm/ttm_device.c
-+++ b/drivers/gpu/drm/ttm/ttm_device.c
-@@ -157,6 +157,9 @@ int ttm_device_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
- 			list_for_each_entry(bo, &man->lru[j], lru) {
- 				uint32_t num_pages = PFN_UP(bo->base.size);
- 
-+				if (!bo->resource)
-+					continue;
-+
- 				ret = ttm_bo_swapout(bo, ctx, gfp_flags);
- 				/* ttm_bo_swapout has dropped the lru_lock */
- 				if (!ret)
--- 
-2.32.0
+I believe Michael Ellerman has been on holiday for some time, and
+Daniel Axtens no longer works on powerpc (and wasn't the one that
+submitted the patch, it was submitted by Paul Mackerras, who wasn't on
+CC).
 
+The proposed fix didn't get sent to linuxppc-dev either, so it's
+unlikely many ppc people knew about it.
+
+We certainly should have noticed allmodconfig was broken, and should
+have more than just Michael keeping an eye on all his automated builds.
+
+I would count this case as ignorance rather than apathy.
+
+- ruscur
