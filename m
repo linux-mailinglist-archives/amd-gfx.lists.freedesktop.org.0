@@ -2,58 +2,119 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 123E2575173
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 17:10:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0AC957520D
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 17:40:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58128113470;
-	Thu, 14 Jul 2022 15:10:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03FDF113963;
+	Thu, 14 Jul 2022 15:40:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com
- [IPv6:2a00:1450:4864:20::52e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2B13113470
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 Jul 2022 15:10:36 +0000 (UTC)
-Received: by mail-ed1-x52e.google.com with SMTP id v12so2792282edc.10
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 Jul 2022 08:10:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=SN4zWIaKibleur8LDpln6pW7nvGUcxpjyWJfonGVcgY=;
- b=ZhdyFylPfA35/MHUX67DwYErquNMdtDxSdr81hTwrshetk/M0r/wRL/PhXbdfnM1Dx
- xZwwslnXnK1m+TZJew7kDFEwrqPjf95DaPfwzKFCMGqyBfCnonpirP0xBrqfjxXE++dp
- ekm9hpK6QPSxHgYIVyf7yDUe27ep8WD981vQFN5ffopFiW+aHfgabEz+HLtDDKdr80Vc
- XTUo2a5YYFEj8emO9D7PBz1xIZM8Bb5z6gtwdG4aXdFgbHCjmtk/0yplZtsAEGJJ9jdT
- 1iK/uJpw9aWJV6JLpAjOKyu6LaSp7iZvuQDeZ5pdXhLFCyxevEMt84lo4NXs57Dyhlf+
- kLVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=SN4zWIaKibleur8LDpln6pW7nvGUcxpjyWJfonGVcgY=;
- b=yJ47PRudMtv1pEB2IexXFmRgJIFXthnMVRLs5WyBbq6lGXlwKMSWwEpDwqlSub+Aex
- nQR6zVSMuQ8qR0GRkfk7MtLtuREobLVCG0znUP06FiSJmNsu5vnlVyA0GHs2z0IETccH
- o/GSIzjWoHH/PngEuQl9Dbunrk7PlKrtrnLa9awQRbsS+S3GsVpyhSpMHjm/I0y0znDd
- cHqRBJUii4O+AaLVSU8BjMT5HMCUqamlzPVyGCt8s0z5J/aaG8aMReLWaCApK/FOO5ja
- MNJ/NpYGQrVuKsm19W/cfhySdM+H643Z+zzsEf40Qu+F64yGlsgj4aWAnw0G7+3dCL1l
- jEew==
-X-Gm-Message-State: AJIora+yINt7n1P5zrIL1rKUcaTQMz1v34L0nsAxjY3YeyGbkR5hjqf+
- 9G+jqy8A32qyWEP2Mt/dQEt/3WeGjqUnZfwQG30=
-X-Google-Smtp-Source: AGRyM1vWetcS0O8Sy9eoLt1X0Xs+PSunKAZakb+9tQBdUXVTMQJjv8F8L1AM3uQWRvHOIGPyQABIxbPhzOVDBVcQUxg=
-X-Received: by 2002:a05:6402:13:b0:439:ffe8:bec9 with SMTP id
- d19-20020a056402001300b00439ffe8bec9mr13190592edu.297.1657811435321; Thu, 14
- Jul 2022 08:10:35 -0700 (PDT)
-MIME-Version: 1.0
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2058.outbound.protection.outlook.com [40.107.94.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51582113960
+ for <amd-gfx@lists.freedesktop.org>; Thu, 14 Jul 2022 15:40:43 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hHpIVHYPHzLvtut7dCvV4SkmI5vQ1uD3+M8xTfRnN2ryMfw0/n2FDvjk+b2510MSWEl15iQIPBbN+SjMCdbcA4QvlCNd8h3EL3D/XfAJ2Id13GnrA0yZJyEZrMLPrWpnaH+AZ79/9KsOWAM9j7FxhfH+nztsJBqyIkbpzqEJp3g8hdd1/JV+8fQpDNL8jMXx9dvs+J3i95unXmQTHgymPo348pP2YG2cyFe+WaokGdXOd/RIVIwz4bwru69Fj6XP5ENt+0d0LJX/lphTAXTu8AoAoFQ3L3WjDcBtEjVfOOCXumC7TQet2zMChyK27P0UxnGHmFwdXAIm553g9BlF0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ohwAzxIlKN4BtL/ldzg5H7QOQNCBKuP2cGgvZD61ATc=;
+ b=i+NyHJLYSnDIGBUoSJMJgcp8r9G/4q2YzluvJCgHdbcF4C8Vn4MVs3T36AftjQ3W91sBU0bnnAmn8X1f8SBR6xWOrCIITfaF6V3MDdsq0CHP+IIU++NrRAsEsxxE05UL0InIEVmpupyzq6YkKhEWv4yN5SYyyNo5W1UOUnRucYmBCuoH87KquYm+u5PoRGgIkfIvY7OLQKMPps4DQOnEYjj8WJDOURs/knqoXX+Va3fFRDldcA1hj6dIRZqO7gbkaP/C+oKY+DWeNrZ67LDztIyLU2B9Qoyr9X/p5+1CW0hfGvXUiQySl5+dB9O3MWEsQRO4tB8xfFEZMWYPoyUABQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ohwAzxIlKN4BtL/ldzg5H7QOQNCBKuP2cGgvZD61ATc=;
+ b=RKgQRJ+uv7mMVJZa/kDFuRpmOQLzemKAfoTmXCFHXtM6loqwomT4oo5ZBesUPr9qCFIO0vF69qkSrFlbz/cVcm5mO0DZqA+NBJqz0hUvmmdBMnt+GiWiaIIJ7WRMjkNi0tB+MYfdLGvto+dmL9V1vP6OyjNmcT+dSG1yvLxQEhM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM6PR12MB3370.namprd12.prod.outlook.com (2603:10b6:5:38::25) by
+ PH7PR12MB6491.namprd12.prod.outlook.com (2603:10b6:510:1f4::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.14; Thu, 14 Jul
+ 2022 15:40:40 +0000
+Received: from DM6PR12MB3370.namprd12.prod.outlook.com
+ ([fe80::40e5:7df9:d8d9:4eb1]) by DM6PR12MB3370.namprd12.prod.outlook.com
+ ([fe80::40e5:7df9:d8d9:4eb1%7]) with mapi id 15.20.5438.014; Thu, 14 Jul 2022
+ 15:40:40 +0000
+Message-ID: <84aed2fb-6bcb-b8f8-100e-b65209e4873b@amd.com>
+Date: Thu, 14 Jul 2022 11:40:35 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.0.2
+Subject: Re: [PATCH 07/10] drm/amdgpu: move setting the job resources
+Content-Language: en-CA
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ amd-gfx@lists.freedesktop.org, Marek.Olsak@amd.com, timur.kristof@gmail.com,
+ andrey.grodzovsky@amd.com, Yogesh.Mohanmarimuthu@amd.com
 References: <20220714103902.7084-1-christian.koenig@amd.com>
- <20220714103902.7084-3-christian.koenig@amd.com>
-In-Reply-To: <20220714103902.7084-3-christian.koenig@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 14 Jul 2022 11:10:23 -0400
-Message-ID: <CADnq5_PMzJwJfibstGBLExH0z4aH1ZJiy-uezBa2YtB6z7+G=g@mail.gmail.com>
-Subject: Re: [PATCH 02/10] drm/amdgpu: Protect the amdgpu_bo_list list with a
- mutex v2
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ <20220714103902.7084-8-christian.koenig@amd.com>
+From: Luben Tuikov <luben.tuikov@amd.com>
+In-Reply-To: <20220714103902.7084-8-christian.koenig@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: YT3PR01CA0093.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:85::28) To DM6PR12MB3370.namprd12.prod.outlook.com
+ (2603:10b6:5:38::25)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 6addf1fc-d11d-4ddd-4d95-08da65af3443
+X-MS-TrafficTypeDiagnostic: PH7PR12MB6491:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: JEEYWjf/HKlwlWQCXu3jZSIyHpoB4RTp6oA9u+tHnxrKYmLatnj8hQwgp0Uo81IBgyB23+fBd3WSkoAX1xQRi/ZnCLHINpIME9JdSs5Md5HfahIaJ1ePSBNO3WZa6VoZcl01u6ZDHZzNy6HYZg3E7c57+15cxJa3Cj2fpz03bv7cAhdItP9XhQNz134zojJBopS0TebxJlCuGY0oE75FMBPpdOfQNqwhG3VmUuIjlP995w/nhkgM3AAnWhh1Nzck/ef4V7wJ128JICSPjeNIlMzEqR+fgxl2bEoGSX0UUNEXogzHe8BHnHwTrOUlaAdX7x7jWaM0xAFQUkcYEj+wfsYRzfTCemwJS2J+0GLtb2w+DQzmd3G97FeUI6XyQrJGE38+vn0pJxANIP2gx8rf7bnunnqpyifBGyNP7NUSSBwIbQkDaqZRdFeO2GDVod15ZlCw8ZbWBcGrptKK8xnLfd3UEvryV/vepJgrlIKMputPXg0JkhjLHZboa/Dyq6OdGe36qumVJOfoEJN4+a6TgQgvVRfRNY+xpHDK2Xp23YVejstkV+L8Bpm5ekoxwvFwXeyrhS1JaHs3ymDysHB4I4ffTYC9PfE7qxNPmG6regNEESLklrYJInBQkjw/1H4xFk2zFWr1V2W6rdzV7E2vgI5DI7+s6sxcTyFn+AumD2oCXeHVqhSVROw92dDdknYSG7gOvIV6PaFGnb7o9gRl4E5Ny8hZB7GYvRSXsu8/QViOE0bMqgyZm7eHLdVyyqoOicytrfdM4Y9YQHUnMhCQLqQdpR3E/vG3i0zy8eG8yjJne0LbAPcPE8H0PINk88vmHhjlqeP6yr5ozdvkaiufJQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB3370.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(346002)(376002)(39860400002)(396003)(136003)(366004)(8676002)(66476007)(4326008)(66556008)(5660300002)(38100700002)(66946007)(2906002)(44832011)(66574015)(83380400001)(8936002)(2616005)(6512007)(26005)(186003)(6506007)(6636002)(6666004)(41300700001)(316002)(478600001)(6486002)(31696002)(36756003)(86362001)(53546011)(31686004)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M0hFSU4ySjFaTXFFK0JWWnhnVEU2TzhpMTIwNEtLMWk5NjM1VWRjT0hWQ1J0?=
+ =?utf-8?B?Y2x3TEJYUkl4RTRGQXRQTVBPZHlPbmw5K2hXNlo5K0hmNHBOY1R0aFJjSExa?=
+ =?utf-8?B?NUxyR2dqUFcvSlRNVFlTVUppYlZmenVsZ051YVlBRDMwenR6ckpkYWlDaE8v?=
+ =?utf-8?B?STBqek1Da2JweGh3QmY0L2ZEbTR5Qks1WXNkYi9jNk5vNWN3ZU1DajFYdmln?=
+ =?utf-8?B?dHBrVFJFVGVGS2dvR3o1VjZ1KzdNTHFVcWw0QWpzbnAxWlBNU2svNUtaS25u?=
+ =?utf-8?B?N21aVi9WYS96NUplZzV6di9FSHd3SHA5eTZ0UG5DMmp5T203cjlOdE92WEJB?=
+ =?utf-8?B?ajRNMkRNNUQ2YXkwdzRqdVpocFZHak9sN29TRlNLcUVUalhaRFhYRXV4ODFn?=
+ =?utf-8?B?ZUplUzVUU1RDamxBNm93OFg0WXZkb1JRQmtWUTFKYW4xbHdwc1d1MVRJak5S?=
+ =?utf-8?B?Z1c1UU5pbDhJdTkyU3dGbVY0a1NGZlZYNnlDNStzY3R0VkRMeWJhMHIzQWV1?=
+ =?utf-8?B?K3pDTUZXcmdIcnZGZzZtUVlaOENLT08wNG1PSFQraHlJRWh4bHdNVmozU1F4?=
+ =?utf-8?B?UE4zdWVicmdoSlhFUHJna1padU1vZkh2dzlqY2E1RVpUYVkxeHIxWXZHMU11?=
+ =?utf-8?B?NktzdU0xRzU2T2lLZnRVVTEwcjIyK2ozcnV6WStMbDhiTTR4ak8vN0R2K2tV?=
+ =?utf-8?B?VDBvNUxaSnh1QzlyV3ZnL2FocVR0UWlYVjE3NVltdmhTRTBIZklGU1JoMlhO?=
+ =?utf-8?B?L1M3UGFOWkpCeHAvV0VKKzJaOHN0SFQyU0t0QXVYU1JDY1AxU0F0MHNmZk5S?=
+ =?utf-8?B?bExDVGRhTWVsMjNEbjVSa2FDcis5czd0VWZ0by8wdU1VczhoaklYT1hnWmVC?=
+ =?utf-8?B?WUtCcStuN3ZzQ3NIMWhYVTBhOUVUM0kwdTlueU9FMXZqWWk5Zk5OWE9za0hK?=
+ =?utf-8?B?ekpoSHRsVkRDUEJqWmozR2J0NlZ4VDhJU2k5TW9PR2thdU9wZGtxNTU1czM0?=
+ =?utf-8?B?ODF2WG9JR250U3VLUm1KeTZMUDFlTmx6b2tGdkJEZ04zc2I1WFdGdzh1cjdt?=
+ =?utf-8?B?OUN5T3IxamdqTFp0RFIrcmZDY0lKaDE3cVBVdXp5VTNsb3NHMVFkaHBFbElE?=
+ =?utf-8?B?SmE3cWpRRWtTN0tuejB6QkwvVnZhSE9hZW15VGE5RDJJNHBZc2Z0d25YLzZs?=
+ =?utf-8?B?amtpTTJJNXdCOXhLR1BJbE5PS3dlOGFoamxob2syTitmZzMyL3J6Rklxdk9E?=
+ =?utf-8?B?aHprUjB4QWxsQzI5aFo5aWpwNTZCK1BjV0VJcnEwV3h5N0tVUk1KcElUWjNx?=
+ =?utf-8?B?TXI0Q3hpUnpmWDUxckxNM2IxbzhVa3AraUJzRkpEcmlnMGc5a0xJNldUS3k4?=
+ =?utf-8?B?NFo4c0dtd290WUNnOURScnA3c0NCdi9waEprMURjQkxSWnNxTGk0MmNVUXEv?=
+ =?utf-8?B?elpiUmsySEpPQnROL2o1Z2xnNFlCaVQycnk1eWJUWEVKVDFxd3BHUVdIL2Jx?=
+ =?utf-8?B?Q1JBemFYMnF3UXVXa2QxaC9mRDBESlZsdjdSZHM1L2JUbzMveGdXVFVKRWZG?=
+ =?utf-8?B?cDZnWTJWRnRzTk5EbVpKZC8yQU1lTXlLUDhieEU2RDFFdEs4Vys2QVhzMTJ5?=
+ =?utf-8?B?OThRWTZVcTBlOGZuNXNFZ3JKNzk4R1hETVNXd29EREttUXdqdVJVQlNpT0hD?=
+ =?utf-8?B?VGJTeFY3RkV1OUx5dkxPczFMczROYUJpelRzWm1ucUhUZG51RTVRZSt4L2tv?=
+ =?utf-8?B?ZkFJRFg5Mm9iNGd0MWpOZ1pPK0dPWDhjYXVYVCtieDZnamROeHJ5L0tuSnYv?=
+ =?utf-8?B?QWc5THNkWDRHZGJydUFQVEkwdFhIUG1IVjRwUHZzdDIzdDZVK0N6Z3oyd2E1?=
+ =?utf-8?B?M1Z3VS9lQUVWL09PZGJ5Y29LbjFuZFpKTVFsRkI2R3YvL3owczkwbUVxcHZ4?=
+ =?utf-8?B?RDMwd2thOURvQ0owV3Y3NDJTSGZQZ0FtV0NGSk1xcFlyVGtLQ2VGb3J0RzB6?=
+ =?utf-8?B?YzRrSmJxRmxFV1M2aUtkYlBMRENLSE0xTDh4L1l2bVRrS1JpNmJQMGVjVHZV?=
+ =?utf-8?B?bTdpRHRzRklrOUpvNnJPaEE4V0NxV0JidFI5Y1pqK3lBSmwxbnN0RjU0SkNO?=
+ =?utf-8?Q?LTk0W6KZKgVtCHWexI2uxig+Z?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6addf1fc-d11d-4ddd-4d95-08da65af3443
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3370.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2022 15:40:39.8729 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NLNO/VfUYqmjmJekCgLATyaFXe2COqogHQosbYToFeCeu28ZkqHwuYyCr6HsBgMC
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6491
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,155 +126,103 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
- =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <Marek.Olsak@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Yogesh.Mohanmarimuthu@amd.com,
- Luben Tuikov <luben.tuikov@amd.com>, Vitaly Prosyak <Vitaly.Prosyak@amd.com>,
- Alex Deucher <Alexander.Deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 14, 2022 at 6:39 AM Christian K=C3=B6nig
-<ckoenig.leichtzumerken@gmail.com> wrote:
->
-> From: Luben Tuikov <luben.tuikov@amd.com>
->
-> Protect the struct amdgpu_bo_list with a mutex. This is used during comma=
-nd
-> submission in order to avoid buffer object corruption as recorded in
-> the link below.
->
-> v2 (chk): Keep the mutex looked for the whole CS to avoid using the
->           list from multiple CS threads at the same time.
->
-> Suggested-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Cc: Alex Deucher <Alexander.Deucher@amd.com>
-> Cc: Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>
-> Cc: Vitaly Prosyak <Vitaly.Prosyak@amd.com>
-> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2048
-> Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
-> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+Reviewed-by: Luben Tuikov <luben.tuikov@amd.com>
 
-I think this is a valid bug fix on its own for stable.
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-
+On 2022-07-14 06:38, Christian König wrote:
+> Move setting the job resources into amdgpu_job.c
+> 
+> Signed-off-by: Christian König <christian.koenig@amd.com>
 > ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c |  3 ++-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h |  4 ++++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c      | 16 +++++++++++++---
->  3 files changed, 19 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c b/drivers/gpu/dr=
-m/amd/amdgpu/amdgpu_bo_list.c
-> index 714178f1b6c6..2168163aad2d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
-> @@ -40,7 +40,7 @@ static void amdgpu_bo_list_free_rcu(struct rcu_head *rc=
-u)
->  {
->         struct amdgpu_bo_list *list =3D container_of(rcu, struct amdgpu_b=
-o_list,
->                                                    rhead);
-> -
-> +       mutex_destroy(&list->bo_list_mutex);
->         kvfree(list);
->  }
->
-> @@ -136,6 +136,7 @@ int amdgpu_bo_list_create(struct amdgpu_device *adev,=
- struct drm_file *filp,
->
->         trace_amdgpu_cs_bo_status(list->num_entries, total_size);
->
-> +       mutex_init(&list->bo_list_mutex);
->         *result =3D list;
->         return 0;
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h b/drivers/gpu/dr=
-m/amd/amdgpu/amdgpu_bo_list.h
-> index 529d52a204cf..9caea1688fc3 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h
-> @@ -47,6 +47,10 @@ struct amdgpu_bo_list {
->         struct amdgpu_bo *oa_obj;
->         unsigned first_userptr;
->         unsigned num_entries;
-> +
-> +       /* Protect access during command submission.
-> +        */
-> +       struct mutex bo_list_mutex;
->  };
->
->  int amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, int id,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd=
-/amdgpu/amdgpu_cs.c
-> index b28af04b0c3e..d8f1335bc68f 100644
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c  | 21 ++-------------------
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_job.c | 17 +++++++++++++++++
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_job.h |  2 ++
+>  3 files changed, 21 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> index dfb7b4f46bc3..88f491dc7ca2 100644
 > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
 > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> @@ -519,6 +519,8 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_pars=
-er *p,
->                         return r;
->         }
->
-> +       mutex_lock(&p->bo_list->bo_list_mutex);
-> +
->         /* One for TTM and one for the CS job */
->         amdgpu_bo_list_for_each_entry(e, p->bo_list)
->                 e->tv.num_shared =3D 2;
-> @@ -651,6 +653,7 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_pars=
-er *p,
->                         kvfree(e->user_pages);
->                         e->user_pages =3D NULL;
->                 }
-> +               mutex_unlock(&p->bo_list->bo_list_mutex);
->         }
->         return r;
+> @@ -828,9 +828,6 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+>  	struct amdgpu_vm *vm = &fpriv->vm;
+>  	struct amdgpu_bo_list_entry *e;
+>  	struct list_head duplicates;
+> -	struct amdgpu_bo *gds;
+> -	struct amdgpu_bo *gws;
+> -	struct amdgpu_bo *oa;
+>  	int r;
+>  
+>  	INIT_LIST_HEAD(&p->validated);
+> @@ -947,22 +944,8 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+>  	amdgpu_cs_report_moved_bytes(p->adev, p->bytes_moved,
+>  				     p->bytes_moved_vis);
+>  
+> -	gds = p->bo_list->gds_obj;
+> -	gws = p->bo_list->gws_obj;
+> -	oa = p->bo_list->oa_obj;
+> -
+> -	if (gds) {
+> -		p->job->gds_base = amdgpu_bo_gpu_offset(gds) >> PAGE_SHIFT;
+> -		p->job->gds_size = amdgpu_bo_size(gds) >> PAGE_SHIFT;
+> -	}
+> -	if (gws) {
+> -		p->job->gws_base = amdgpu_bo_gpu_offset(gws) >> PAGE_SHIFT;
+> -		p->job->gws_size = amdgpu_bo_size(gws) >> PAGE_SHIFT;
+> -	}
+> -	if (oa) {
+> -		p->job->oa_base = amdgpu_bo_gpu_offset(oa) >> PAGE_SHIFT;
+> -		p->job->oa_size = amdgpu_bo_size(oa) >> PAGE_SHIFT;
+> -	}
+> +	amdgpu_job_set_resources(p->job, p->bo_list->gds_obj,
+> +				 p->bo_list->gws_obj, p->bo_list->oa_obj);
+>  
+>  	if (p->uf_entry.tv.bo) {
+>  		struct amdgpu_bo *uf = ttm_to_amdgpu_bo(p->uf_entry.tv.bo);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+> index 36c1be77bf8f..3255b2fca611 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+> @@ -129,6 +129,23 @@ int amdgpu_job_alloc_with_ib(struct amdgpu_device *adev, unsigned size,
+>  	return r;
 >  }
-> @@ -690,9 +693,11 @@ static void amdgpu_cs_parser_fini(struct amdgpu_cs_p=
-arser *parser, int error,
+>  
+> +void amdgpu_job_set_resources(struct amdgpu_job *job, struct amdgpu_bo *gds,
+> +			      struct amdgpu_bo *gws, struct amdgpu_bo *oa)
+> +{
+> +	if (gds) {
+> +		job->gds_base = amdgpu_bo_gpu_offset(gds) >> PAGE_SHIFT;
+> +		job->gds_size = amdgpu_bo_size(gds) >> PAGE_SHIFT;
+> +	}
+> +	if (gws) {
+> +		job->gws_base = amdgpu_bo_gpu_offset(gws) >> PAGE_SHIFT;
+> +		job->gws_size = amdgpu_bo_size(gws) >> PAGE_SHIFT;
+> +	}
+> +	if (oa) {
+> +		job->oa_base = amdgpu_bo_gpu_offset(oa) >> PAGE_SHIFT;
+> +		job->oa_size = amdgpu_bo_size(oa) >> PAGE_SHIFT;
+> +	}
+> +}
+> +
+>  void amdgpu_job_free_resources(struct amdgpu_job *job)
 >  {
->         unsigned i;
->
-> -       if (error && backoff)
-> +       if (error && backoff) {
->                 ttm_eu_backoff_reservation(&parser->ticket,
->                                            &parser->validated);
-> +               mutex_unlock(&parser->bo_list->bo_list_mutex);
-> +       }
->
->         for (i =3D 0; i < parser->num_post_deps; i++) {
->                 drm_syncobj_put(parser->post_deps[i].syncobj);
-> @@ -832,12 +837,16 @@ static int amdgpu_cs_vm_handling(struct amdgpu_cs_p=
-arser *p)
->                         continue;
->
->                 r =3D amdgpu_vm_bo_update(adev, bo_va, false);
-> -               if (r)
-> +               if (r) {
-> +                       mutex_unlock(&p->bo_list->bo_list_mutex);
->                         return r;
-> +               }
->
->                 r =3D amdgpu_sync_fence(&p->job->sync, bo_va->last_pt_upd=
-ate);
-> -               if (r)
-> +               if (r) {
-> +                       mutex_unlock(&p->bo_list->bo_list_mutex);
->                         return r;
-> +               }
->         }
->
->         r =3D amdgpu_vm_handle_moved(adev, vm);
-> @@ -1278,6 +1287,7 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser=
- *p,
->
->         ttm_eu_fence_buffer_objects(&p->ticket, &p->validated, p->fence);
->         mutex_unlock(&p->adev->notifier_lock);
-> +       mutex_unlock(&p->bo_list->bo_list_mutex);
->
->         return 0;
->
-> --
-> 2.25.1
->
+>  	struct amdgpu_ring *ring = to_amdgpu_ring(job->base.sched);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
+> index d599c0540b46..0bab8fe0d419 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
+> @@ -77,6 +77,8 @@ int amdgpu_job_alloc(struct amdgpu_device *adev, unsigned num_ibs,
+>  		     struct amdgpu_job **job, struct amdgpu_vm *vm);
+>  int amdgpu_job_alloc_with_ib(struct amdgpu_device *adev, unsigned size,
+>  		enum amdgpu_ib_pool_type pool, struct amdgpu_job **job);
+> +void amdgpu_job_set_resources(struct amdgpu_job *job, struct amdgpu_bo *gds,
+> +			      struct amdgpu_bo *gws, struct amdgpu_bo *oa);
+>  void amdgpu_job_free_resources(struct amdgpu_job *job);
+>  void amdgpu_job_free(struct amdgpu_job *job);
+>  int amdgpu_job_submit(struct amdgpu_job *job, struct drm_sched_entity *entity,
+
+Regards,
+-- 
+Luben
