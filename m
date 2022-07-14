@@ -1,92 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BA515757DA
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 Jul 2022 01:05:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81F365757A3
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 Jul 2022 00:28:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 155DE10FA66;
-	Thu, 14 Jul 2022 23:05:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D097510E900;
+	Thu, 14 Jul 2022 22:28:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9577110FA66
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 Jul 2022 23:05:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1657839918;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=V3eV0HtQIeNgwSw4KYhB/lbHU6rdtwImxed2P/gkI6w=;
- b=ZFarp45fFFy+dT8wmi27yK6mMcB7a7ftE2MN1JZ6RBdzDClSe6Xggi57jaFriqajp6lhTp
- VZUEr932Tj631Rry46DC8qVYrar3XRdi3rII9oWbLAIJQtHO7ULYYPax/yDofK8c8mL25t
- Ex9X9v1veIzEg9hgLaQSQCj+9ESehVg=
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-497-L1u4yeUYNgq9y5Jk8bhCAA-1; Thu, 14 Jul 2022 17:04:53 -0400
-X-MC-Unique: L1u4yeUYNgq9y5Jk8bhCAA-1
-Received: by mail-qv1-f71.google.com with SMTP id
- ld6-20020a056214418600b00472ffe4640eso1976026qvb.13
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 Jul 2022 14:04:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:organization:user-agent:mime-version
- :content-transfer-encoding;
- bh=V3eV0HtQIeNgwSw4KYhB/lbHU6rdtwImxed2P/gkI6w=;
- b=Ce0D3Dhv/pOqZwbLeLoNTq3/5xk3wWPpTv0Y/YlkUGBX/6k2vkJAGZULnzkqorhZ8f
- dvR61J2TYU26xufyts/eB68XfqoSbah8GrZ0AeFn8Qpjma2EAk5ylcZcNuRvWwIX7Mk8
- EisKlI8Z/ikGNHQKCv2/XTYmw0LvWqLBJGVgqwna7zNYJVVYFKZaY7Eq3os0FKgm8yRn
- XKrwrbPQDRH2akLCQKBhLDLFaRVjxRIoc7GaK70m3iCNVU1P32Yk6sEbzRvn0PHsRUti
- gheo2Z29jZ0ZdmeOrGOvkUPcTXmHGhClC1Wla9QdIZbdQENdABoDmOYoqN8RPS9PNkx8
- J6Sg==
-X-Gm-Message-State: AJIora+IDlSo5l6hxrTlVRm0t1ooIDdZhnlE8zks0ikVoJ/qzaR3WqQZ
- LFDqYThZPRBl6WGLq5audjXhIDAy6Tf0fEIZUtJJvdkkc4jmgV1R/dpGkjtu7kXNGyy17JyxB6Z
- rBWI8EuI3/LTBTrFo9M0Bof8ysQ==
-X-Received: by 2002:a05:622a:58d:b0:317:ca0d:91a5 with SMTP id
- c13-20020a05622a058d00b00317ca0d91a5mr9655921qtb.601.1657832692587; 
- Thu, 14 Jul 2022 14:04:52 -0700 (PDT)
-X-Google-Smtp-Source: AGRyM1sbx+zK8/mPtD0D+YyNPAbK5LK8NiDtBFPc01KiEA2vmrSBhdBxGvlsaL94Yg7djHKtma5eHQ==
-X-Received: by 2002:a05:622a:58d:b0:317:ca0d:91a5 with SMTP id
- c13-20020a05622a058d00b00317ca0d91a5mr9655836qtb.601.1657832691869; 
- Thu, 14 Jul 2022 14:04:51 -0700 (PDT)
-Received: from [192.168.8.138] ([141.154.49.182])
- by smtp.gmail.com with ESMTPSA id
- k10-20020ac8474a000000b00304bc2acc25sm2306978qtp.6.2022.07.14.14.04.49
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 14 Jul 2022 14:04:50 -0700 (PDT)
-Message-ID: <e99fa5b8ff05cbfe9e8db8c551acfed86d23f69e.camel@redhat.com>
-Subject: Re: [PATCH v2 05/29] drm/nouveau: Don't register backlight when
- another backlight should be used
-From: Lyude Paul <lyude@redhat.com>
-To: Hans de Goede <hdegoede@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, 
- Karol Herbst <kherbst@redhat.com>, Daniel Dadap <ddadap@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>,  Thomas Zimmermann <tzimmermann@suse.de>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Alex Deucher
- <alexander.deucher@amd.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, "Pan,  Xinhui" <Xinhui.Pan@amd.com>, "Rafael J
- . Wysocki" <rafael@kernel.org>, Mika Westerberg
- <mika.westerberg@linux.intel.com>, Lukas Wunner <lukas@wunner.de>, Mark
- Gross <markgross@kernel.org>, Andy Shevchenko <andy@kernel.org>
-Date: Thu, 14 Jul 2022 17:04:49 -0400
-In-Reply-To: <20220712193910.439171-6-hdegoede@redhat.com>
-References: <20220712193910.439171-1-hdegoede@redhat.com>
- <20220712193910.439171-6-hdegoede@redhat.com>
-Organization: Red Hat Inc.
-User-Agent: Evolution 3.42.4 (3.42.4-2.fc35)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2085.outbound.protection.outlook.com [40.107.243.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8593E10E570
+ for <amd-gfx@lists.freedesktop.org>; Thu, 14 Jul 2022 22:17:17 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DkiN/yQcBV6kdch+HzCvcYphQobFKx5/e/H3U2cawPwj0NUtaYUIiEbotLRhaLqrQfC5Li8S24ZT7h6KQ12qXJK008K976EMKN4SlRXgrocH7dvIgLN15Q7UfrXapl+uXbtR/pGhhpvxc0ee0WEI5cEtMJu/ZQt0UsxLHlPzAxsyHIwXBizprjAfJWMzaBfVfZKyy7Mag8+cXxW1ajDbUXAVRJyaGHAO/eqmHMnXHkGE+ILtmr5x+YQWagwE5IUxQZxc6+DOcoCB3mEa/NnJq60ztA86ek200D3/lPFrxQoI3ZxppsBiPSPwH0PhDYviK37IPLRL7qyALAldr2h5zg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rGVII6lOFJJzUlCdIX8mJY6EcLRMSF5ImJiyUw1zaxY=;
+ b=NDj+hUNUR3qH3ITc7m9BntSy6d8yF7URam3GG7m4YspDVxqVqs48utkxb3NmkC3tsz+jXolq8f9KtQ6Ti9pGhhCK1OkQ99VbJwrAYVzU+9yC0anT272cxEucn0lS/yTh+JSf/W8+AzV7EBurmajIWuzkIDSITp7PbHiYCYK5HJdfDTraZSpTCmjn7IxZkuJwkzmgQzGfoHO/aNiP1cHBWOeswtGiAiINrVctuaMM3zBXM9Y9ElZridcaVzvxl96le+fWpDrGEWi9WUj/S8ywYlR07HeyaKT4WpoWE62043yGd3NGv8lKmjc0eItYk8ItLJNr8e+D/zPLNRfoOZn4Vg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rGVII6lOFJJzUlCdIX8mJY6EcLRMSF5ImJiyUw1zaxY=;
+ b=UdDwuX+p7a2pECFfInqoiJkBeQqB538oglCbs3ZYu3hkhWQb6rtMuAtbMkkZWEETVxAfDzTAK7t6kS6PjqWvJGlCqqjW7aRHiVygZMm62qRpNOMRe1VUCnII+9oId0bM6nLZEx5QXlJV3JyCb0xm8eau0h0hyluFzzChZvn1o7M=
+Received: from BN9PR03CA0727.namprd03.prod.outlook.com (2603:10b6:408:110::12)
+ by CY4PR12MB1416.namprd12.prod.outlook.com (2603:10b6:903:44::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.14; Thu, 14 Jul
+ 2022 21:22:48 +0000
+Received: from BN8NAM11FT012.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:110:cafe::e3) by BN9PR03CA0727.outlook.office365.com
+ (2603:10b6:408:110::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.20 via Frontend
+ Transport; Thu, 14 Jul 2022 21:22:48 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT012.mail.protection.outlook.com (10.13.177.55) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5438.12 via Frontend Transport; Thu, 14 Jul 2022 21:22:47 +0000
+Received: from ruijing-ubuntu-pc.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28; Thu, 14 Jul 2022 16:22:46 -0500
+From: Ruijing Dong <ruijing.dong@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu: align between libdrm and drm api
+Date: Thu, 14 Jul 2022 17:22:33 -0400
+Message-ID: <20220714212233.14571-1-ruijing.dong@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2203c7b7-f617-44a7-c79d-08da65df0014
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1416:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 8xXdkhQz/mbSniah9GcR1KTIIxGIvLY6MhQ1Iw7vjKXezA9ix+F4lsFkXERUJHAq8ZBLc8b1nNWbUlaqh31dwmEzqTsrQGW6z/XirYgu7dGd1nEhGT3MJeNuBtYcOp39XabVVUjVhhB+IQyxjeADyAuI4m80xWWps0Lwen653Mwyne1B6t4aE1PDfNS3Jwbu91HuDPjoGna1BHw2y7qlPOqekJQfyiTlVugSCUgmGPDaJHWpoADTRgmDMVBd51/tOqs7B/dNagP3IeJ1/G1M3IHlS6yLiCAQqV8msK1F+K6jgzLxAquL9O9RKwq2Hyis4Nf9jz6G9sz2ZS8Db48lk2DynRQhwHWQJ8MEKX9n2x14gv092XPXzujXF4Zhvkyz9DYjmJiEcnA6vMQnPKsbT6iACKSH9I7ZCuxK4GAzuLOSwUHkSJOViIti2MxBYV2lvr3TUUCWwbpfWkJLQqJ6LMS6vkPn/PxavH8jKQ33Vui79sHVjJv5OxyjDFQImQKq5qf6DA9GeYgpAObHzrBhpyVueL6B+QTji9ZtUjuxueV4DKur9h5xJ1IJdfO2vqWWIEbyTgQw7KYVX2AaoT49P1Z2p6CYXkjhD8uM37HMezEWZVAOUTUiiBrbi/b3TMvjin0IPhSpY/xQhSblKbg0goPzD78EepX/7qAjfMICvV+IY6hiiQfjpB2z+HEnOeQ/Y2rHJU4rya8fORUnBP3n2WKDl8Xv1763rrvfXckIIsrJAysdUSQ4ixLrriZYsucqinTkjgycJ4gkoS5B80Syr2U+fMtqCc9A87u0vJNVoiaRPo0ICPNKaTHNfloVifTUzIOIy1ddDrtMGpVLG3RpjTCbt9JTazYqex9sQPb9B5w=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230016)(4636009)(39860400002)(136003)(396003)(376002)(346002)(46966006)(40470700004)(36840700001)(47076005)(426003)(16526019)(1076003)(40480700001)(336012)(2616005)(186003)(6916009)(316002)(54906003)(8676002)(70206006)(4326008)(70586007)(41300700001)(8936002)(82310400005)(4744005)(40460700003)(5660300002)(7696005)(44832011)(478600001)(86362001)(82740400003)(2906002)(356005)(36860700001)(81166007)(36756003)(6666004)(26005)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2022 21:22:47.9195 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2203c7b7-f617-44a7-c79d-08da65df0014
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT012.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1416
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,64 +97,30 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- intel-gfx <intel-gfx@lists.freedesktop.org>, amd-gfx@lists.freedesktop.org,
- platform-driver-x86@vger.kernel.org, linux-acpi@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Len Brown <lenb@kernel.org>
+Cc: alexander.deucher@amd.com, ruijing.dong@amd.com, leo.liu@amd.com,
+ Christian.Koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Lyude Paul <lyude@redhat.com>
+define HW_IP_VCN_UNIFIED the same as HW_IP_VCN_ENC
 
-You also have permission to push this to drm-misc-whatever
+Signed-off-by: Ruijing Dong <ruijing.dong@amd.com>
+---
+ include/uapi/drm/amdgpu_drm.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-On Tue, 2022-07-12 at 21:38 +0200, Hans de Goede wrote:
-> Before this commit when we want userspace to use the acpi_video backlight
-> device we register both the GPU's native backlight device and acpi_video's
-> firmware acpi_video# backlight device. This relies on userspace preferring
-> firmware type backlight devices over native ones.
-> 
-> Registering 2 backlight devices for a single display really is
-> undesirable, don't register the GPU's native backlight device when
-> another backlight device should be used.
-> 
-> Reviewed-by: Lyude Paul <lyude@redhat.com>
-> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
-> ---
->  drivers/gpu/drm/nouveau/nouveau_backlight.c | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_backlight.c
-> b/drivers/gpu/drm/nouveau/nouveau_backlight.c
-> index a2141d3d9b1d..91c504c7b82c 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_backlight.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_backlight.c
-> @@ -34,6 +34,8 @@
->  #include <linux/backlight.h>
->  #include <linux/idr.h>
->  
-> +#include <acpi/video.h>
-> +
->  #include "nouveau_drv.h"
->  #include "nouveau_reg.h"
->  #include "nouveau_encoder.h"
-> @@ -405,6 +407,11 @@ nouveau_backlight_init(struct drm_connector *connector)
->                 goto fail_alloc;
->         }
->  
-> +       if (!acpi_video_backlight_use_native()) {
-> +               NV_INFO(drm, "Skipping nv_backlight registration\n");
-> +               goto fail_alloc;
-> +       }
-> +
->         if (!nouveau_get_backlight_name(backlight_name, bl)) {
->                 NV_ERROR(drm, "Failed to retrieve a unique name for the
-> backlight interface\n");
->                 goto fail_alloc;
-
+diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
+index 18d3246d636e..fe33db8441bc 100644
+--- a/include/uapi/drm/amdgpu_drm.h
++++ b/include/uapi/drm/amdgpu_drm.h
+@@ -560,6 +560,7 @@ struct drm_amdgpu_gem_va {
+ #define AMDGPU_HW_IP_UVD_ENC      5
+ #define AMDGPU_HW_IP_VCN_DEC      6
+ #define AMDGPU_HW_IP_VCN_ENC      7
++#define AMDGPU_HW_IP_VCN_UNIFIED  AMDGPU_HW_IP_VCN_ENC
+ #define AMDGPU_HW_IP_VCN_JPEG     8
+ #define AMDGPU_HW_IP_NUM          9
+ 
 -- 
-Cheers,
- Lyude Paul (she/her)
- Software Engineer at Red Hat
+2.25.1
 
