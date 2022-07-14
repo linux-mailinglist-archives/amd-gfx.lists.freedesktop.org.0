@@ -2,62 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 070DC574D43
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 14:15:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6F71574D40
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 14:15:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B0F810F9F4;
-	Thu, 14 Jul 2022 12:15:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B78810F38B;
+	Thu, 14 Jul 2022 12:15:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com
- [209.85.222.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4875910FCA5
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 Jul 2022 07:23:28 +0000 (UTC)
-Received: by mail-qk1-f180.google.com with SMTP id o26so645402qkl.6
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 Jul 2022 00:23:28 -0700 (PDT)
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com
+ [IPv6:2a00:1450:4864:20::32f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19FBE9760C;
+ Thu, 14 Jul 2022 10:34:30 +0000 (UTC)
+Received: by mail-wm1-x32f.google.com with SMTP id o8so763275wms.2;
+ Thu, 14 Jul 2022 03:34:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=pC66SMISxswpCgrA0kH+9OIYYeRJxezyms4h+DmQEVU=;
+ b=WYO169N6L97QHmWqgss2/YWVR6YdUUzTbwOhAJSVFU1PEQ8kMqZBDicC68o07P9q28
+ EEmuC/mKE53/poe+vlYtxqMaZ+PGZyrZbq2eRvdu5aRT6bArMjBK06GnSwCI1PkYV8x7
+ UVCaVzMlf3W+ycBWFVoF9L83DY5tT97R24OrEMBDW5VZsJeqwuye8oTIOqHSGq714blI
+ Wk/JILDt14y+ugO98wHXHVOtXlAw+wfAhbECEKwfxHSbKek2VkQuyXmSWmHG/m0aETRg
+ pYgtSHJavQ5/qFeqk+bzDe5Q5xU4RXUi4MDpWF2WSdlG1KEgTcQheOshDYdeDck/jLyt
+ lK6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=RmlXtnA3cC4Ik7QOf/RIurG9dJCZvwzcFfVviIGb20U=;
- b=uJS5JataEzboXRALBRG9cld2kdDDQrCS/sbS5smbY6Bywddvt0GEqXwZJWrHirB+OA
- pmEJzFwvhEnVfYr3usOsWPpX6DX/u8CNCp7jk4pu/KlZOY+3y2PnOeWA7iVKREBf9z7B
- riBtaQz4kwe7zZmBUeZbSKbBV9ztMM+eXTxeRnw8iWm0GwrMW3ORd2lIfrdXW0y3OWGV
- ZASpCr3iqWMkfZeXiCaQJb7lmlkAtIrGALclrxxI/X4E621HuJIiOG3DOS9fRrhticiy
- w11dqELpgH4p/z6boCBwOPw3yQP5DCuH6mWYEa6H8sZ++ZrYP9CcCeRFcKQulTc0ddKg
- u6Yg==
-X-Gm-Message-State: AJIora9QFl4Ya51piQQ7Msl5FXL3Kmc4/TD1/qX8swbQGpi6mXi5bML2
- 77k4QpjBkFCjfJO9eBw/0d0xnbjyCglGyQ==
-X-Google-Smtp-Source: AGRyM1tJud3QXNPCCWAqZ0omMDetzqeFo3gerK0MXuUtN4P7cF0uCmAwvS6D/+JTpEEQmS3HiBXswQ==
-X-Received: by 2002:a05:620a:1539:b0:6b5:5792:c3fd with SMTP id
- n25-20020a05620a153900b006b55792c3fdmr5002718qkk.669.1657783407105; 
- Thu, 14 Jul 2022 00:23:27 -0700 (PDT)
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com.
- [209.85.219.182]) by smtp.gmail.com with ESMTPSA id
- p7-20020a05620a056700b006a6bb044740sm788730qkp.66.2022.07.14.00.23.26
- for <amd-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 14 Jul 2022 00:23:26 -0700 (PDT)
-Received: by mail-yb1-f182.google.com with SMTP id r3so1772999ybr.6
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 Jul 2022 00:23:26 -0700 (PDT)
-X-Received: by 2002:a5b:6c1:0:b0:669:a7c3:4c33 with SMTP id
- r1-20020a5b06c1000000b00669a7c34c33mr7180560ybq.543.1657783405770; Thu, 14
- Jul 2022 00:23:25 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=pC66SMISxswpCgrA0kH+9OIYYeRJxezyms4h+DmQEVU=;
+ b=532QQLnLgY3DF4ltcaaaQq5CguIvp1QBkyjb/UvT5gfKCRjMMGT9UTLONf1nhooso+
+ wWO0ytpTSEM+j38RM16mjqdpn9if8Pb6sSycMiR7xFT8D0EV0rPB9SAnh2N4Opgk8rAY
+ p8eeYQ45g7OqByq5DfEef7PkQyROiAclRF1cV32W+17EVDfCoDy4VX5pxywyy3FdXkWS
+ RSVMQDgyBwfYWEebJTxOE+wa7aMIn0VV5oRcBKv/Pt/8bss28ieXqr45d1wA4Nyobo84
+ a5myt104JAgfir12kRCbGFDDiXl2ZxjlzXkXexYAxVHXfNKPpovsoWsGi7OnaAidKDL8
+ QleQ==
+X-Gm-Message-State: AJIora/lE4GtWiDPdseisfcaAgvqq4QlYnHwFUYdLj0ECQicYGfhCQfK
+ ZrnkQzfekLO4N+nxB9blpDk=
+X-Google-Smtp-Source: AGRyM1tzgGbSFb97riqzZ4HULy1PRelNWUuo0QfgWlU5yTDw80hM5eCb4WBNauTxsQxuKHokkxRFQA==
+X-Received: by 2002:a05:600c:3506:b0:3a2:feb0:9f8e with SMTP id
+ h6-20020a05600c350600b003a2feb09f8emr5482096wmq.42.1657794868604; 
+ Thu, 14 Jul 2022 03:34:28 -0700 (PDT)
+Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
+ [80.193.200.194]) by smtp.gmail.com with ESMTPSA id
+ d16-20020a05600c049000b0039c96b97359sm1386358wme.37.2022.07.14.03.34.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 14 Jul 2022 03:34:28 -0700 (PDT)
+From: Colin Ian King <colin.i.king@gmail.com>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui.Pan@amd.com, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH][next] drm/amd/display: Fix spelling mistake "supporing" ->
+ "supporting"
+Date: Thu, 14 Jul 2022 11:34:27 +0100
+Message-Id: <20220714103427.23255-1-colin.i.king@gmail.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-References: <CAHk-=wgTmGaToVFdSdoFqT2sNkk7jg2rSWasUYv-tASUZ2j_0Q@mail.gmail.com>
- <20220713050724.GA2471738@roeck-us.net>
- <CAHk-=widUqghhXus_GCM9+FESa5vHqMb_pO3=0dGYH8C+yix2w@mail.gmail.com>
- <a804b76e-159f-dbc2-f8dc-62a58552e88d@roeck-us.net>
- <CADnq5_O6Tp2QPXyDCvpWuRXhDr6H1PM50Ow5YG2WeukqUd-GnQ@mail.gmail.com>
- <CAHk-=wj4+BSj2SPMRUr-TZ4Qg2o9HGOBWiJQE336YcF_U1sVNQ@mail.gmail.com>
-In-Reply-To: <CAHk-=wj4+BSj2SPMRUr-TZ4Qg2o9HGOBWiJQE336YcF_U1sVNQ@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 14 Jul 2022 09:23:13 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV9Pj9V-ZPpu=BMSkPt1uA_eCvU4+bxF8ZfHjteRk2CAg@mail.gmail.com>
-Message-ID: <CAMuHMdV9Pj9V-ZPpu=BMSkPt1uA_eCvU4+bxF8ZfHjteRk2CAg@mail.gmail.com>
-Subject: Re: Linux 5.19-rc6
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 14 Jul 2022 12:15:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,48 +74,30 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kefeng Wang <wangkefeng.wang@huawei.com>, Leo Li <sunpeng.li@amd.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Balbir Singh <bsingharora@gmail.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Paul Mackerras <paulus@ozlabs.org>, Alex Deucher <alexander.deucher@amd.com>,
- "Russell King \(Oracle\)" <rmk+kernel@armlinux.org.uk>,
- Alex Deucher <alexdeucher@gmail.com>, Harry Wentland <harry.wentland@amd.com>,
- Guenter Roeck <linux@roeck-us.net>, Daniel Axtens <dja@axtens.net>
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Linus,
+There is a spelling mistake in a dml_print message. Fix it.
 
-On Wed, Jul 13, 2022 at 11:51 PM Linus Torvalds
-<torvalds@linux-foundation.org> wrote:
-> On Wed, Jul 13, 2022 at 2:01 PM Alex Deucher <alexdeucher@gmail.com> wrote:
-> > If you want to apply Guenter's patch original patch:
-> > https://patchwork.freedesktop.org/patch/490184/
-> > That's fine with me.
->
-> Honestly, by this time I feel that it's too little, too late.
+Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+---
+ .../gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c    | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-[...]
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
+index 6101c962ab0a..fc4d7474c111 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
+@@ -2994,7 +2994,7 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
+ 			for (k = 0; k < v->NumberOfActivePlanes; ++k) {
+ 				if (v->ImmediateFlipSupportedForPipe[k] == false) {
+ #ifdef __DML_VBA_DEBUG__
+-					dml_print("DML::%s: Pipe %0d not supporing iflip\n", __func__, k);
++					dml_print("DML::%s: Pipe %0d not supporting iflip\n", __func__, k);
+ #endif
+ 					v->ImmediateFlipSupported = false;
+ 				}
+-- 
+2.35.3
 
-> So considering that the ppc people ignored this whole issue since the
-> merge window, I think it's entirely unreasonable to then apply a
-> ppc-specific patch for this at this time, when people literally asked
-> "why is this needed", and there was no reply from the powerpc side.
-
-Oh, it's not just this one. The lists of build regressions between v5.18
-and v5.19-rc1 [1] resp. v5.19-rc6 [2] look surprisingly similar :-(
-
-[1] https://lore.kernel.org/all/20220606082201.2792145-1-geert@linux-m68k.org
-[2] https://lore.kernel.org/all/20220711064425.3084093-1-geert@linux-m68k.org
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
