@@ -1,67 +1,54 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6F71574D40
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 14:15:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17275574D42
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 14:15:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B78810F38B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F303D1120F3;
 	Thu, 14 Jul 2022 12:15:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com
- [IPv6:2a00:1450:4864:20::32f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19FBE9760C;
- Thu, 14 Jul 2022 10:34:30 +0000 (UTC)
-Received: by mail-wm1-x32f.google.com with SMTP id o8so763275wms.2;
- Thu, 14 Jul 2022 03:34:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=pC66SMISxswpCgrA0kH+9OIYYeRJxezyms4h+DmQEVU=;
- b=WYO169N6L97QHmWqgss2/YWVR6YdUUzTbwOhAJSVFU1PEQ8kMqZBDicC68o07P9q28
- EEmuC/mKE53/poe+vlYtxqMaZ+PGZyrZbq2eRvdu5aRT6bArMjBK06GnSwCI1PkYV8x7
- UVCaVzMlf3W+ycBWFVoF9L83DY5tT97R24OrEMBDW5VZsJeqwuye8oTIOqHSGq714blI
- Wk/JILDt14y+ugO98wHXHVOtXlAw+wfAhbECEKwfxHSbKek2VkQuyXmSWmHG/m0aETRg
- pYgtSHJavQ5/qFeqk+bzDe5Q5xU4RXUi4MDpWF2WSdlG1KEgTcQheOshDYdeDck/jLyt
- lK6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=pC66SMISxswpCgrA0kH+9OIYYeRJxezyms4h+DmQEVU=;
- b=532QQLnLgY3DF4ltcaaaQq5CguIvp1QBkyjb/UvT5gfKCRjMMGT9UTLONf1nhooso+
- wWO0ytpTSEM+j38RM16mjqdpn9if8Pb6sSycMiR7xFT8D0EV0rPB9SAnh2N4Opgk8rAY
- p8eeYQ45g7OqByq5DfEef7PkQyROiAclRF1cV32W+17EVDfCoDy4VX5pxywyy3FdXkWS
- RSVMQDgyBwfYWEebJTxOE+wa7aMIn0VV5oRcBKv/Pt/8bss28ieXqr45d1wA4Nyobo84
- a5myt104JAgfir12kRCbGFDDiXl2ZxjlzXkXexYAxVHXfNKPpovsoWsGi7OnaAidKDL8
- QleQ==
-X-Gm-Message-State: AJIora/lE4GtWiDPdseisfcaAgvqq4QlYnHwFUYdLj0ECQicYGfhCQfK
- ZrnkQzfekLO4N+nxB9blpDk=
-X-Google-Smtp-Source: AGRyM1tzgGbSFb97riqzZ4HULy1PRelNWUuo0QfgWlU5yTDw80hM5eCb4WBNauTxsQxuKHokkxRFQA==
-X-Received: by 2002:a05:600c:3506:b0:3a2:feb0:9f8e with SMTP id
- h6-20020a05600c350600b003a2feb09f8emr5482096wmq.42.1657794868604; 
- Thu, 14 Jul 2022 03:34:28 -0700 (PDT)
-Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
- [80.193.200.194]) by smtp.gmail.com with ESMTPSA id
- d16-20020a05600c049000b0039c96b97359sm1386358wme.37.2022.07.14.03.34.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 14 Jul 2022 03:34:28 -0700 (PDT)
-From: Colin Ian King <colin.i.king@gmail.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui.Pan@amd.com, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH][next] drm/amd/display: Fix spelling mistake "supporing" ->
- "supporting"
-Date: Thu, 14 Jul 2022 11:34:27 +0100
-Message-Id: <20220714103427.23255-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.35.3
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk
+ [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34BE210EABE
+ for <amd-gfx@lists.freedesktop.org>; Thu, 14 Jul 2022 12:14:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=8IsG3X6zCfF6DLdWoVTEy5WGlpBO4SysD3lWEtSUkiM=; b=jnnl+pDIp9qmpJESNHT4kZK9Sk
+ wv6gsqi+CQ1dQqvqbWqrsgN/o6Q9ZUcR8/t8t37+FaKkyP2/zBN7JmcOK6VorXpf5Mo0ac0epXuBB
+ NZRhSYJvIyY4pLELJxngsRsSbUPw/4wbtFdiQzirnWeYOdg7zCPBJFYZhR3uQmAd8apivkpdswyLj
+ GgcwVFrNVAMe5RdkExrbtqDc9bUSyUK1i+Y9r4II38IqRnUkPoLJi9a4T41oCq6WfRx0Flki8VxBr
+ gosBlbUYIvxyLgmzyGiIBsghk7C2y1P8A30o2qYnP5K3kUC72JqSTR8appZuJpfjT0qhl4AuIbRZ0
+ OX/U1diw==;
+Received: from shell.armlinux.org.uk
+ ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33330)
+ by pandora.armlinux.org.uk with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
+ (envelope-from <linux@armlinux.org.uk>)
+ id 1oBxjP-0005k5-MF; Thu, 14 Jul 2022 13:14:11 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+ (envelope-from <linux@shell.armlinux.org.uk>)
+ id 1oBxjJ-0006b8-ND; Thu, 14 Jul 2022 13:14:05 +0100
+Date: Thu, 14 Jul 2022 13:14:05 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Guenter Roeck <linux@roeck-us.net>
+Subject: Re: Linux 5.19-rc6
+Message-ID: <YtAIjVDa7IKRO3JX@shell.armlinux.org.uk>
+References: <CAHk-=wgTmGaToVFdSdoFqT2sNkk7jg2rSWasUYv-tASUZ2j_0Q@mail.gmail.com>
+ <20220713050724.GA2471738@roeck-us.net>
+ <CAHk-=widUqghhXus_GCM9+FESa5vHqMb_pO3=0dGYH8C+yix2w@mail.gmail.com>
+ <Ys8hqoiN5iWbslsM@shell.armlinux.org.uk>
+ <CAHk-=wjNxyXQqn=k0KipzUPoBYWQhUwybxee8GTkF_Oz6RPVFw@mail.gmail.com>
+ <e63e108b-c99c-9ab7-0638-367b72983b81@roeck-us.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e63e108b-c99c-9ab7-0638-367b72983b81@roeck-us.net>
 X-Mailman-Approved-At: Thu, 14 Jul 2022 12:15:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,30 +61,48 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Kefeng Wang <wangkefeng.wang@huawei.com>, Leo Li <sunpeng.li@amd.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Balbir Singh <bsingharora@gmail.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Paul Mackerras <paulus@ozlabs.org>, Michael Ellerman <mpe@ellerman.id.au>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>, Daniel Axtens <dja@axtens.net>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-There is a spelling mistake in a dml_print message. Fix it.
+On Wed, Jul 13, 2022 at 01:40:41PM -0700, Guenter Roeck wrote:
+> On 7/13/22 13:21, Linus Torvalds wrote:
+> > On Wed, Jul 13, 2022 at 12:49 PM Russell King (Oracle)
+> > <linux@armlinux.org.uk> wrote:
+> > > 
+> > > There may be a patch that solves that, but it's never been submitted to
+> > > my patch system:
+> > > 
+> > > https://lore.kernel.org/all/20220524025139.40212-1-wangkefeng.wang@huawei.com/
+> > 
+> > That patch looks sane to me, but I guess Guenter would need to check
+> > ... Guenter?
+> > 
+> 
+> That patch is (and has been) in linux-next for a long time,
+> as commit d2ca1fd2bc70, and with the following tags.
+> 
+>     Fixes: 7719a68b2fa4 ("ARM: 9192/1: amba: fix memory leak in amba_device_try_add()")
+>     Reported-by: Guenter Roeck <linux@roeck-us.net>
+>     Tested-by: Guenter Roeck <linux@roeck-us.net>
+>     Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
+>     Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> 
+> So, yes, it fixes the problem. I don't know where it is pulled from, though.
+> I thought that it is from Russell's tree, given his Signed-off-by:,
+> but I never really checked.
 
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
----
- .../gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c    | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Ah, yes, it's in the same bracnh as 9192/1. So if Linus is reporting
+that 9192/1 is still a problem in linux-next, then this patch does
+_not_ fix it.
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-index 6101c962ab0a..fc4d7474c111 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-@@ -2994,7 +2994,7 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
- 			for (k = 0; k < v->NumberOfActivePlanes; ++k) {
- 				if (v->ImmediateFlipSupportedForPipe[k] == false) {
- #ifdef __DML_VBA_DEBUG__
--					dml_print("DML::%s: Pipe %0d not supporing iflip\n", __func__, k);
-+					dml_print("DML::%s: Pipe %0d not supporting iflip\n", __func__, k);
- #endif
- 					v->ImmediateFlipSupported = false;
- 				}
 -- 
-2.35.3
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
