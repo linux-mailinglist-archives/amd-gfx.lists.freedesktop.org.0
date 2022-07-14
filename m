@@ -2,72 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FBFE5740B2
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 02:59:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87CE65740D4
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 03:11:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19E6318B6B2;
-	Thu, 14 Jul 2022 00:59:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B6E898B94;
+	Thu, 14 Jul 2022 01:11:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com
- [IPv6:2607:f8b0:4864:20::1035])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67DE09F72F
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 23:44:31 +0000 (UTC)
-Received: by mail-pj1-x1035.google.com with SMTP id
- o3-20020a17090a744300b001ef8f7f3dddso607145pjk.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jul 2022 16:44:31 -0700 (PDT)
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com
+ [IPv6:2a00:1450:4864:20::533])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 228E298B8D;
+ Thu, 14 Jul 2022 01:11:28 +0000 (UTC)
+Received: by mail-ed1-x533.google.com with SMTP id r6so513965edd.7;
+ Wed, 13 Jul 2022 18:11:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=sender:date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=nEpopK4UqdCsWpP9r3ONplAh1+GQjBsglG0fcXtt8QQ=;
- b=PYOvbkCD2kkCKw/qs4dayUervf53wtMirvtAQj6YBM0hYSlGEev7kM9cK9iUpVq1Ku
- TGLwYqWeq7xoIzWX2qelfvw/UUNbSgoM6s2vYKpXmwHmNyycgo42XQdbV40MZ+2tyVPR
- id7FYmjUlW0a7awFHwSkG7yLKk6PkqcXYbIpQHpJ8THG/6VTuxYb9zqrkA2cXhhamUCq
- sJC5VakmtUdmw98trEs4wXKSq0IPoSIx4POpGEKJjceoMwUkBzz+V+MV7cNxjBTwLJb8
- FJGPJPr73kPPhCWXAehrJXTw76HWeiMgKDPsW2f36RHWLyRdMqgL2p3QT6MRgA99QY7U
- /ybg==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=a93Cdw/b08yokkZOSoTxTp1XSO9jT1YPFIGh2tVBaFY=;
+ b=UUMi4C1J6wo829oEZN7ope7dgBnp7YAvLYYnMn8vrRhxCl76VTZp95FiE2L0VKlIkN
+ WgYqr0+0mpJY3k2EW3/4faf45g3D/11EJ9QNBYIu1Drq38/CStnSGwEGsxWCfdpHOGDW
+ cZtOdCgXjI1sf2Zm6CUuRjVBkljGpwg0u9ARRc9kH09L0zOz4kvjMbzZW8HkbXrXwMBE
+ 7BCtU+4zu/BAGj9UsCUXu6tKAlcgAEgkwgw/04gUwounq3t4xykoSXyHt9Vw4tVNZHW/
+ lHyeA0cF+Nf5+xSeggakBgwuPc59QlOT7gbOHGmUNi0hsdXwYBKmcO/wCKL5dBKRm40E
+ erfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
- :references:mime-version:content-disposition:in-reply-to;
- bh=nEpopK4UqdCsWpP9r3ONplAh1+GQjBsglG0fcXtt8QQ=;
- b=f2wBK6rw4LkUSojOSshdTmPR/OmGFQezMGZeqkjYLs/rRcmP5UcwqO7Jf2RLC9ifGJ
- a0cBxTzb5H6jVf1ahrwBq2iP2otKGVfoUdWyTR42oCQ52oSbYdqjmcm6x1qP1YeU2g83
- NdiJO/HqHGli5SYmh4tm+aH4Miai14kx3JneGfcO9kXK/7lHUvMRQ6E1I8vHWBNiV7/k
- E4yEtR70OTrtCzVW2hob92VpHGdB/aa+5rxqobMuWCosGu1kHVYxUd4jBsK/zu0yaMRV
- DMszlH8pHu4/i6qL8AkFDFkBTC6zqDsgDQh0Qhty4m5dWKcfJnySZFQyAOIJdS4ZKVgk
- SVOw==
-X-Gm-Message-State: AJIora94zpumgd7oBmZXnMuID50cB+w1JDEMuSMCsntKIorNI6MScP4c
- yL2QwTOhgla50+g2B+yLFQsNyKkqJfnUkg==
-X-Google-Smtp-Source: AGRyM1tIVeKezL6A/OiJfHg4JYqkq2JBMtxq2DNyYJX41gD2nIJZLYUgmYXK0jU93EFrZuaXlNNNwQ==
-X-Received: by 2002:a17:902:6b8c:b0:168:fee5:884 with SMTP id
- p12-20020a1709026b8c00b00168fee50884mr5558467plk.105.1657755870965; 
- Wed, 13 Jul 2022 16:44:30 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
- by smtp.gmail.com with ESMTPSA id
- q17-20020a170902f35100b0016bf803341asm9323467ple.146.2022.07.13.16.44.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 13 Jul 2022 16:44:28 -0700 (PDT)
-Date: Wed, 13 Jul 2022 16:44:26 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Sudip Mukherjee <sudipm.mukherjee@gmail.com>
-Subject: Re: Linux 5.19-rc6
-Message-ID: <20220713234426.GA609291@roeck-us.net>
-References: <CAHk-=widUqghhXus_GCM9+FESa5vHqMb_pO3=0dGYH8C+yix2w@mail.gmail.com>
- <Ys8hqoiN5iWbslsM@shell.armlinux.org.uk>
- <CAHk-=wjNxyXQqn=k0KipzUPoBYWQhUwybxee8GTkF_Oz6RPVFw@mail.gmail.com>
- <CADVatmMJ4f+3-z1SWOSXuygee3fMsLqjcWhEY=NLhSCj61OB5Q@mail.gmail.com>
- <CAHk-=wgUGp96_Wup3=Utws=Mn+07vi7ZXknv4nKZkAJv8Ezhnw@mail.gmail.com>
- <CADVatmPx=T_i1oaX2i_d5crbWkixFZU7s-_wky_kz58wDgwGDQ@mail.gmail.com>
- <20220713225627.GC32544@roeck-us.net>
- <CADVatmM=JR4d4WU_53PtA6g-y40qc=CbHL9uhsJc2cSW=uoOXA@mail.gmail.com>
- <20220713231211.GF32544@roeck-us.net>
- <CADVatmOAnoiZ1WE7iDBYCXVSiMo8RvC_P6mBhR_F75asfDWr4w@mail.gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=a93Cdw/b08yokkZOSoTxTp1XSO9jT1YPFIGh2tVBaFY=;
+ b=C7X5aotoOT3Ln1MTOOB7GS6CU51ArIxohrH6WDNbigfKix/1upDEtpVqb6PlXSBPGU
+ bYClbiswnwr/ypJ7S+FlriFDn9oRb4BbzLy/AyvMpdDu8RMDZjKEwA6y+ehKmDnSSrcD
+ 82M+XRIAMOb/kgAX53xomaFDe366EYrMavR4uJpyyYduSJwt8HdxrxPMwgk6irLUulYu
+ ZL2Ajrfk4MgrrLHnS064DWTQw/Eo9Kw1ghIDRMzvYZ0YZnSglMgVAakLuXyH1VU+0yre
+ yD0DvDgQY8aGZN+rJR54ysB5fH82PaXQ+PNfEOqkQVQ1l/qeK6KEF8ozyzVDDl6lqGQb
+ QS4Q==
+X-Gm-Message-State: AJIora808QRSR3xHP/Wy6i+C4KT/BIilfgksEZgJCiN0q63L7JVSo2Pf
+ eU7hozUaUtOGhz2JwGLj3tFVi+4ENimXCUDQVHSPxyluWe0=
+X-Google-Smtp-Source: AGRyM1vejis9cF5nlYAXPBkQvErPD5hsJQ+0uQcZHBF7j95H9sjacuUDwJm2zzPpCY152/+jN4qYQcQzaSHHnVS9lO0=
+X-Received: by 2002:a05:6402:274c:b0:43a:9204:95fb with SMTP id
+ z12-20020a056402274c00b0043a920495fbmr8880451edd.259.1657761086555; Wed, 13
+ Jul 2022 18:11:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CADVatmOAnoiZ1WE7iDBYCXVSiMo8RvC_P6mBhR_F75asfDWr4w@mail.gmail.com>
-X-Mailman-Approved-At: Thu, 14 Jul 2022 00:59:04 +0000
+References: <20220618232737.2036722-1-linux@roeck-us.net>
+ <584fc348-7a60-26a2-af61-9edc4f4830e4@amd.com>
+ <CADnq5_NkVWqcxwLMBeskqpcSEYCEjUAK0hqvA_PAo7ACHKL2cA@mail.gmail.com>
+ <6a026c9a-c4ee-deba-e028-4c0f478c1911@roeck-us.net>
+ <CADnq5_OrxMMkazXEPHeZXp_bV890=r21DRx2QsqLXUFj4t8aYg@mail.gmail.com>
+ <20220713230917.GE32544@roeck-us.net>
+In-Reply-To: <20220713230917.GE32544@roeck-us.net>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 13 Jul 2022 21:11:14 -0400
+Message-ID: <CADnq5_PAg8xg2J3WUfjxK_-WFaLOK7cQd6bqWDnfVqE6fpXq2Q@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: Add missing hard-float compile flags for
+ PPC64 builds
+To: Guenter Roeck <linux@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,66 +67,46 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kefeng Wang <wangkefeng.wang@huawei.com>, Leo Li <sunpeng.li@amd.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Balbir Singh <bsingharora@gmail.com>,
- "Russell King \(Oracle\)" <linux@armlinux.org.uk>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Paul Mackerras <paulus@ozlabs.org>, Michael Ellerman <mpe@ellerman.id.au>,
+Cc: Leo Li <sunpeng.li@amd.com>, Michael Ellerman <mpe@ellerman.id.au>,
+ Rodrigo Siqueira Jordao <Rodrigo.Siqueira@amd.com>,
+ LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, David Airlie <airlied@linux.ie>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
  Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>, Daniel Axtens <dja@axtens.net>
+ Harry Wentland <harry.wentland@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Daniel Axtens <dja@axtens.net>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 14, 2022 at 12:26:27AM +0100, Sudip Mukherjee wrote:
-> On Thu, Jul 14, 2022 at 12:12 AM Guenter Roeck <linux@roeck-us.net> wrote:
-> >
-> > On Thu, Jul 14, 2022 at 12:09:24AM +0100, Sudip Mukherjee wrote:
-> > > On Wed, Jul 13, 2022 at 11:56 PM Guenter Roeck <linux@roeck-us.net> wrote:
-> > > >
-> > > > On Wed, Jul 13, 2022 at 10:50:06PM +0100, Sudip Mukherjee wrote:
-> > > > > On Wed, Jul 13, 2022 at 10:45 PM Linus Torvalds
-> > > > > <torvalds@linux-foundation.org> wrote:
-> > > > > >
-> > > > > > On Wed, Jul 13, 2022 at 2:36 PM Sudip Mukherjee
-> > > > > > <sudipm.mukherjee@gmail.com> wrote:
-> > > > > > >
-> > > > > > > > >
-> > > > > > > > > https://lore.kernel.org/all/20220524025139.40212-1-wangkefeng.wang@huawei.com/
-> > > > > > > >
-> > > > > > > > That patch looks sane to me, but I guess Guenter would need to check
-> > > > > > >
-> > > > > > > I still see the failure in my builds with this patch. But surprisingly
-> > > > > > > I dont see the build failure (with or without this patch) with gcc-12,
-> > > > > > > only with gcc-11.
-> > > > > >
-> > > > > > Arrghs. "build failure"?
-> > > > >
-> > > > > Uhh.. no, sorry.. I meant the same problem which Guenter reported with
-> > > > > powerpc64-linux-ld, hard float and soft float.
-> > > > > But I dont see this problem with gcc-12, only with gcc-11.
-> > > > >
-> > > >
-> > > > Weird. It works for me with gcc 11.3.0 / binutils 2.38 as well as with
-> > > > gcc 11.2.0 / binutils 2.36.1.
+On Wed, Jul 13, 2022 at 7:09 PM Guenter Roeck <linux@roeck-us.net> wrote:
+>
+> On Wed, Jul 13, 2022 at 05:20:40PM -0400, Alex Deucher wrote:
 > > >
-> > > Its entirely possible that I have messed up, there are references to
-> > > many patches in this thread. :)
-> > > Can you please paste the link of the patch that you say is working for
-> > > you. I will try a clean build with that.
-> > >
+> > > The problem is not the FPU operations, but the fact that soft-float
+> > > and hard-float compiled code is linked together. The soft-float and
+> > > hard-float ABIs on powerpc are not compatible, so one ends up with
+> > > an object file which is partially soft-float and partially hard-float
+> > > compiled and thus uses different ABIs. That can only create chaos,
+> > > so the linker complains about it.
 > >
-> > The patch is at:
+> > I get that, I just don't see why only DCN 3.1.x files have this
+> > problem.  The DCN 2.x files should as well.
 > >
-> > https://lore.kernel.org/lkml/20220618232737.2036722-1-linux@roeck-us.net/raw
-> 
-> Thanks, that works. tested with gcc-11.3.1, and binutils 2.38 on top
-> of latest mainline (4a57a8400075bc5287c5c877702c68aeae2a033d)
-> 
-> When I said I still had the problem, I tested with
-> https://lore.kernel.org/all/20220524025139.40212-1-wangkefeng.wang@huawei.com/
+>
+> Seen in drivers/gpu/drm/amd/display/dc/clk_mgr/Makefile:
+>
+> # prevent build errors regarding soft-float vs hard-float FP ABI tags
+> # this code is currently unused on ppc64, as it applies to Renoir APUs only
+> ifdef CONFIG_PPC64
+> CFLAGS_$(AMDDALPATH)/dc/clk_mgr/dcn21/rn_clk_mgr.o := $(call cc-option,-mno-gnu-attribute)
+> endif
+>
+> Does that explain it ?
 
-Makes sense. That was the patch fixing the runtime problem.
+I would expect to see it in dcn20_resource.c and dcn30_clk_mgr.c for
+example.  They follow the same pattern as the dcn 3.1.x files.  They
+call functions that use FP, but maybe there is some FP code still in
+those functions that we missed somehow.
 
-Guenter
+Alex
