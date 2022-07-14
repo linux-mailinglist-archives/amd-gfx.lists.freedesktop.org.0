@@ -1,34 +1,34 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92F3257531B
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 18:45:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1024B57531F
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 18:46:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3A60113E97;
-	Thu, 14 Jul 2022 16:45:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6961D11A01A;
+	Thu, 14 Jul 2022 16:45:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0.riseup.net (mx0.riseup.net [198.252.153.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A2BC113D39
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 Jul 2022 16:45:50 +0000 (UTC)
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9B9A11A01A
+ for <amd-gfx@lists.freedesktop.org>; Thu, 14 Jul 2022 16:45:58 +0000 (UTC)
 Received: from fews1.riseup.net (fews1-pn.riseup.net [10.0.1.83])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
  client-signature RSA-PSS (2048 bits) client-digest SHA256)
  (Client CN "mail.riseup.net", Issuer "R3" (not verified))
- by mx0.riseup.net (Postfix) with ESMTPS id 4LkL314pCGz9sx9;
- Thu, 14 Jul 2022 16:45:49 +0000 (UTC)
+ by mx1.riseup.net (Postfix) with ESMTPS id 4LkL3B01PKzDqNg;
+ Thu, 14 Jul 2022 16:45:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
- t=1657817149; bh=29itsEn44X6T95ht/l7AnGed+BsOTGeJlu/TRnLEOKw=;
+ t=1657817158; bh=rYhHk6kmoNgXjWL3ardLF+D2Hj0Y/fAY0GKHtabcLGg=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=RbuOcPZkiG1dP/MOThhQt0iWOhTAImXzAbB8HtzAGCUBz4LgxD4pKTNy7r2XBxsTq
- KKKH/WHD/fTPjf7ZMisQgWY/azrz81cmkScSb9VUPQ0YfHQPa4uC5h/rGVQDoSn6WS
- Dq4pA4LlhXmfFFetlphSt6ahsKfCiL/7LayNaF9A=
-X-Riseup-User-ID: BE08BA1C076CEC47AC79A97FB992D2D138AF6D992A81EFF4B8D0FEE0F747A55C
+ b=q0CUIMOLGoU5/VDM5VAHsLEelPdZgGMzPSzox345JHqthTubqhV7wQiBxh6aRF/HD
+ w+tI6gTdgAeo3nfm5Oi1SQKx5+5a7DF8LKtsjbeOKEE/pLUzUYwgFVEQ4hpGokCO7I
+ npuse0888/IfYKnQrMfI9m//pMFmuUrhcw79z3RI=
+X-Riseup-User-ID: 6DEBBF90D19B9DDA1D6A535BC184E7B50096223042D08519B7422F5C1BFA8A21
 Received: from [127.0.0.1] (localhost [127.0.0.1])
- by fews1.riseup.net (Postfix) with ESMTPSA id 4LkL2v1GDfz5vW1;
- Thu, 14 Jul 2022 16:45:42 +0000 (UTC)
+ by fews1.riseup.net (Postfix) with ESMTPSA id 4LkL3371zTz5w5Z;
+ Thu, 14 Jul 2022 16:45:51 +0000 (UTC)
 From: =?UTF-8?q?Ma=C3=ADra=20Canal?= <mairacanal@riseup.net>
 To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
@@ -38,10 +38,9 @@ To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
  Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
  Aurabindo Pillai <aurabindo.pillai@amd.com>
-Subject: [PATCH 04/12] drm/amd/display: Remove unused
- dml32_CalculatedoublePipeDPPCLKAndSCLThroughput function
-Date: Thu, 14 Jul 2022 13:44:59 -0300
-Message-Id: <20220714164507.561751-4-mairacanal@riseup.net>
+Subject: [PATCH 05/12] drm/amd/display: Remove unused NumberOfStates variable
+Date: Thu, 14 Jul 2022 13:45:00 -0300
+Message-Id: <20220714164507.561751-5-mairacanal@riseup.net>
 In-Reply-To: <20220714164507.561751-1-mairacanal@riseup.net>
 References: <20220714164507.561751-1-mairacanal@riseup.net>
 MIME-Version: 1.0
@@ -65,94 +64,35 @@ Cc: magalilemes00@gmail.com, tales.aparecida@gmail.com,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Remove dml32_CalculatedoublePipeDPPCLKAndSCLThroughput function, which is not used in
-the codebase.
+Remove the unused unsigned int NumberOfStates from the file, which was
+declared but never hooked up.
 
 This was pointed by clang with the following warning:
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_util_32.c:393:6:
-warning: no previous prototype for function
-'dml32_CalculatedoublePipeDPPCLKAndSCLThroughput' [-Wmissing-prototypes]
-void dml32_CalculatedoublePipeDPPCLKAndSCLThroughput(
-     ^
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_util_32.c:393:1:
-note: declare 'static' if the function is not intended to be used outside of
-this translation unit
-void dml32_CalculatedoublePipeDPPCLKAndSCLThroughput(
-^
-static
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_32.c:33:27:
+warning: unused variable 'NumberOfStates' [-Wunused-const-variable]
+static const unsigned int NumberOfStates = DC__VOLTAGE_STATES;
+                          ^
 1 warning generated.
 
 Signed-off-by: Maíra Canal <mairacanal@riseup.net>
 ---
- .../dc/dml/dcn32/display_mode_vba_util_32.c   | 54 -------------------
- 1 file changed, 54 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
-index 5a701d9df0f7..4d62ab0c1a78 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
-@@ -390,60 +390,6 @@ void dml32_CalculateBytePerPixelAndBlockSizes(
- #endif
- } // CalculateBytePerPixelAndBlockSizes
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
+index c6c3a9e6731a..dff8f8f27de4 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
+@@ -30,8 +30,6 @@
+ #include "../dml_inline_defs.h"
+ #include "display_mode_vba_util_32.h"
  
--void dml32_CalculatedoublePipeDPPCLKAndSCLThroughput(
--		double HRatio,
--		double HRatioChroma,
--		double VRatio,
--		double VRatioChroma,
--		double MaxDCHUBToPSCLThroughput,
--		double MaxPSCLToLBThroughput,
--		double PixelClock,
--		enum source_format_class SourcePixelFormat,
--		unsigned int HTaps,
--		unsigned int HTapsChroma,
--		unsigned int VTaps,
--		unsigned int VTapsChroma,
+-static const unsigned int NumberOfStates = DC__VOLTAGE_STATES;
 -
--		/* output */
--		double *PSCL_THROUGHPUT,
--		double *PSCL_THROUGHPUT_CHROMA,
--		double *DPPCLKUsingdoubleDPP)
--{
--	double DPPCLKUsingdoubleDPPLuma;
--	double DPPCLKUsingdoubleDPPChroma;
--
--	if (HRatio > 1) {
--		*PSCL_THROUGHPUT = dml_min(MaxDCHUBToPSCLThroughput, MaxPSCLToLBThroughput * HRatio /
--				dml_ceil((double) HTaps / 6.0, 1.0));
--	} else {
--		*PSCL_THROUGHPUT = dml_min(MaxDCHUBToPSCLThroughput, MaxPSCLToLBThroughput);
--	}
--
--	DPPCLKUsingdoubleDPPLuma = PixelClock * dml_max3(VTaps / 6 * dml_min(1, HRatio), HRatio * VRatio /
--			*PSCL_THROUGHPUT, 1);
--
--	if ((HTaps > 6 || VTaps > 6) && DPPCLKUsingdoubleDPPLuma < 2 * PixelClock)
--		DPPCLKUsingdoubleDPPLuma = 2 * PixelClock;
--
--	if ((SourcePixelFormat != dm_420_8 && SourcePixelFormat != dm_420_10 && SourcePixelFormat != dm_420_12 &&
--			SourcePixelFormat != dm_rgbe_alpha)) {
--		*PSCL_THROUGHPUT_CHROMA = 0;
--		*DPPCLKUsingdoubleDPP = DPPCLKUsingdoubleDPPLuma;
--	} else {
--		if (HRatioChroma > 1) {
--			*PSCL_THROUGHPUT_CHROMA = dml_min(MaxDCHUBToPSCLThroughput, MaxPSCLToLBThroughput *
--					HRatioChroma / dml_ceil((double) HTapsChroma / 6.0, 1.0));
--		} else {
--			*PSCL_THROUGHPUT_CHROMA = dml_min(MaxDCHUBToPSCLThroughput, MaxPSCLToLBThroughput);
--		}
--		DPPCLKUsingdoubleDPPChroma = PixelClock * dml_max3(VTapsChroma / 6 * dml_min(1, HRatioChroma),
--				HRatioChroma * VRatioChroma / *PSCL_THROUGHPUT_CHROMA, 1);
--		if ((HTapsChroma > 6 || VTapsChroma > 6) && DPPCLKUsingdoubleDPPChroma < 2 * PixelClock)
--			DPPCLKUsingdoubleDPPChroma = 2 * PixelClock;
--		*DPPCLKUsingdoubleDPP = dml_max(DPPCLKUsingdoubleDPPLuma, DPPCLKUsingdoubleDPPChroma);
--	}
--}
--
- void dml32_CalculateSwathAndDETConfiguration(
- 		unsigned int DETSizeOverride[],
- 		enum dm_use_mall_for_pstate_change_mode UseMALLForPStateChange[],
+ void dml32_recalculate(struct display_mode_lib *mode_lib);
+ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerformanceCalculation(
+ 		struct display_mode_lib *mode_lib);
 -- 
 2.36.1
 
