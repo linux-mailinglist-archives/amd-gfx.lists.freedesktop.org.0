@@ -2,140 +2,108 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80E66574C7D
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 13:53:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8C84574D3F
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 14:15:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDD6E10FA9E;
-	Thu, 14 Jul 2022 11:53:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 315A610EF78;
+	Thu, 14 Jul 2022 12:15:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com
- [205.220.177.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD7CC10FA9E
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 Jul 2022 11:53:41 +0000 (UTC)
-Received: from pps.filterd (m0246631.ppops.net [127.0.0.1])
- by mx0b-00069f02.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26E9l3KJ008129;
- Thu, 14 Jul 2022 11:53:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : content-type : mime-version; s=corp-2021-07-09;
- bh=CD3c/mBiSz/piZA6Lyeb+4C5sF6qr1dunTKZiydvkho=;
- b=K2X2O8hGWHv5gWmZXMAIlyg4Y6ezV/JNleCeLH69gz5dbDCmjr3Mav+gYeRuR2tAdDXq
- 0z1lfeMqMkOubg9HVSHjRYCUgGy/2Q+FOYMozIoFWMwuDtNKAQLHp1INAPi0cwJsAgv4
- wI+A/SunxwHlZHw/5Hs15V/i59blR2D0V41owEpENd259tsvQamGr2EDVxNxK/mGcYgC
- XMs6uQ6jAaXJPod9qBtVO3ZGg+GHKWcOaNs11VVH7Z2RuGDZvijb+qe98BY3m0C/jBMk
- HReJpCk1Ozg9ay/ZH+hCh+cwDxZzkp+2WuFyRlmQWzD4/n9+Fbb+PJrFwHmkY1AVe9tW SA== 
-Received: from phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com
- (phxpaimrmta03.appoci.oracle.com [138.1.37.129])
- by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3h71scd08c-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Thu, 14 Jul 2022 11:53:38 +0000
-Received: from pps.filterd
- (phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
- by phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (8.16.1.2/8.16.1.2)
- with SMTP id 26EBoIMn008828; Thu, 14 Jul 2022 11:53:37 GMT
-Received: from nam12-dm6-obe.outbound.protection.outlook.com
- (mail-dm6nam12lp2168.outbound.protection.outlook.com [104.47.59.168])
- by phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com with ESMTP id
- 3h7046519n-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Thu, 14 Jul 2022 11:53:37 +0000
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C64CA095D;
+ Thu, 14 Jul 2022 05:38:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lWqAD3z23yiyGWLAvrRme413n0CYVyQGvqtHbVIhsXjHXTHfawz9q6agnzJMZWyEUxuXBPtjomw3NV6cmiY5Ai9e6uRpVaYsSC6HxLqY69xJfY+Kk5wkZRG4YMZvGmVhLvXv55Y7RBo07KXqiKBAgspcLUKyBLE/G9n4oXIJyEEv/jcEOgpAKBaRA6JJjgNFHBmMi+P0rneB6aGMg5sEZynXR+jqMJxw1/PNQ4kTgyhBMNp/COS6QSw3aBMm1GSwupQ9sFdJkupL+iIIYznhUYaDldo0fqiyasAkoOx8n7aHfTIe/9USVfcZIedNzhUOQrZkWPDAvgnU82D0/4KE1w==
+ b=hCnJWXnEQ4cc/DBLGB3IZteTV+NqCU5UpZxg16BJHyQDHHiO5m51VNj2XNtruPHhIkvQTaHmP/yF4eVsXS+rjq1r/9SxesDLxcoo8NCIzhdhBJEbY5IK/3jCd35b0MEl9ssB5dqy5GJPY03akXdnpMeYiwr9AvchxOSWtbNosaXiatL4Sg6mNGCRUbhipJ+laiSx9/mfS61XxTw8uJe3/C8xFs1gK/uFoJRZNl1z6xU/5mYDzgfIPPxuFYuJriOOKiC7ZAhKofRP5fdhcwwQcMjL68OxyfetEDuTb5e+f/aipQPcoWQKRbfeAdYtZ0U6bB8iW6BuxYYqxNSwAqGxhw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CD3c/mBiSz/piZA6Lyeb+4C5sF6qr1dunTKZiydvkho=;
- b=fHazPsLX0pzaTYwsT3+x/ZcXU+Z35g91zntUWDn1TXq166Xe8/RLG+zq1K8Tnn2Ceaf2PsFRMZy4C6OsbAD8FqFk7zVsnG3PJfP/rhxcl3QsxEo6KOkCjSl4b3Lu2o27Kg4nNj0aXCg8cznZ5vZxC25XI5+OcARzzsFaoA0+HwSlq7OiFPUmd4uVhqFd0BqX2Qg3NtXJAkptcvAeL075fURCnFVAyUJdgs3YUX56sB2+pwZZQjGRgpoucwSKwfMA8zYyTPOOxKLGggEJgSgxpZ9EW6XzOA9NTQiEUOFdeBDGaN7FyOlfjjj/BOvnFPNgjYfD6OEcnfC14ApyzXKBrg==
+ bh=1ec5/Ogb2I/KRT6Jv0dLuFteAMn2pcAG9ZHXIx4QFrE=;
+ b=a5rutk3J4sHCc8fnnH3KoD6x2Q1S0gPzCNlSf8WUZSnOrDE2bMRWtm71KzJ6E/t9iWgYTRgzxLfzLchB10tKMTpn+mBchXNTorgC+IvTHB/eaC/w0G6K1580BOTeOdPdWD6/imttjLVCnL+tODVEWjBTKathhmR394+1orUbmtNsYCyxlPEJK4JcmlxHfucFY/uO/8HApxSM3aQqNP85fpDzttwuLKojSs/M1oXH+0sinXEzM7xqPRi70itbHcOdTBnySubwybYjoXkPOHiVXlzSOtWdvMTu7tAjHIvGnEt8V95zjmb5/X/pHTT+acm1ACLCHUUdrfi2+c5pGQy1KQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CD3c/mBiSz/piZA6Lyeb+4C5sF6qr1dunTKZiydvkho=;
- b=HBAO+WY3XYNI1X22NWmZl8X0jd247VddJJ9XZ6MCSY22lRw86Nshs9T70DCoFvZfCnbxPLXd2lQv6YUaKu8bs5D/MQdiURgxxH5YY09npgcI+xxysXMdeuFlMADRwYlTWLiXar5JogGEhUhA8KbgHHWhbAYWbADrAhhfB2LdaS0=
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- (2603:10b6:301:2d::28) by MW5PR10MB5714.namprd10.prod.outlook.com
- (2603:10b6:303:19b::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.14; Thu, 14 Jul
- 2022 11:53:35 +0000
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::5020:9b82:5917:40b]) by MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::5020:9b82:5917:40b%6]) with mapi id 15.20.5438.014; Thu, 14 Jul 2022
- 11:53:35 +0000
-Date: Thu, 14 Jul 2022 14:53:26 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: le.ma@amd.com
-Subject: [bug report] drm/amdgpu/mes: ring aggregatged doorbell when mes
- queue is unmapped
-Message-ID: <YtADtnn/paoPBqjv@kili>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-ClientProxiedBy: ZR0P278CA0136.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:40::15) To MWHPR1001MB2365.namprd10.prod.outlook.com
- (2603:10b6:301:2d::28)
+ bh=1ec5/Ogb2I/KRT6Jv0dLuFteAMn2pcAG9ZHXIx4QFrE=;
+ b=CdWvNXMasfoQTCohO8uOq6LIiXkeNxl86A4YntbwPWDYPgnnoQcL7i2EdgXqkXq5JGzKBkElzhKOh93nQt4wi+v4neJC8fCzw1apdHf0xSkrkhcZIE3Mrd98F9Q07rMMb/IgNKwEWt5cRdCqDtDuNZ8RZLl0QGqj3xTvTKtIUw/sMVSa8D1hnW8SQFzWrRxZoN/rtoGbMq5dSAthqw6KFkDfTM0Wx2lTmj/kJk6vkdy75DkA/zlyG6pjkYWnPcbMU2JckbpDuBvQqgCTNUvduJEqcAHh0EcIBbH8/+9z7P2b3LArrnoQYoGWEvRqlIpB4pPQvU0VOgF3PyramHrqWg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from BYAPR12MB3176.namprd12.prod.outlook.com (2603:10b6:a03:134::26)
+ by DM4PR12MB5796.namprd12.prod.outlook.com (2603:10b6:8:63::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.20; Thu, 14 Jul
+ 2022 05:38:44 +0000
+Received: from BYAPR12MB3176.namprd12.prod.outlook.com
+ ([fe80::eca6:a4a7:e2b2:27e7]) by BYAPR12MB3176.namprd12.prod.outlook.com
+ ([fe80::eca6:a4a7:e2b2:27e7%5]) with mapi id 15.20.5417.020; Thu, 14 Jul 2022
+ 05:38:44 +0000
+References: <20220707190349.9778-1-alex.sierra@amd.com>
+ <20220707190349.9778-7-alex.sierra@amd.com>
+ <7a772ca0-0c82-2251-dd54-8ad466774e99@redhat.com>
+User-agent: mu4e 1.6.9; emacs 27.1
+From: Alistair Popple <apopple@nvidia.com>
+To: David Hildenbrand <david@redhat.com>
+Subject: Re: [PATCH v8 06/15] mm: remove the vma check in migrate_vma_setup()
+Date: Thu, 14 Jul 2022 15:31:32 +1000
+In-reply-to: <7a772ca0-0c82-2251-dd54-8ad466774e99@redhat.com>
+Message-ID: <87wncgckym.fsf@nvdebian.thelocal>
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR03CA0197.namprd03.prod.outlook.com
+ (2603:10b6:a03:2ef::22) To BYAPR12MB3176.namprd12.prod.outlook.com
+ (2603:10b6:a03:134::26)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 51d115b1-09bc-47f3-c448-08da658f7b5b
-X-MS-TrafficTypeDiagnostic: MW5PR10MB5714:EE_
+X-MS-Office365-Filtering-Correlation-Id: 64580125-9d39-41de-9fd1-08da655b1dad
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5796:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: BZ72g5yAR/WaZNBvQ4IzGjGazbiTwZp3AWv11lznLTyrGkLZ8cZLAIrgXx2JcpRfpaoWb2EJqsXPi4AmyOFnpbQenBCa0O7XR3tqysdSwnnFCfMMHrTTI8sWb9WHjLG87QxVerP+27AlTvWOICrv+GXCxFF3lDoZOBS8f1CXSZVhfEpIwddK1/csJjaH8L8WX7uqUM3u3vLL/MiDcvDW0HwH5hfM4ltPJvESPP7aGUm3P5lKwdMSb6wrgAZwnxaoDj25ujyANBQPuuQjBm9uU8VrUiNpIWCK2UxhX6rZ6tmWEeFAphFsEPfX6s3HfNrBPWHkBy5YHGZ3CcXtVKlAq5UK9Aa5DCqwnf0IemQIAARkbTdY5Hhno8xEMyq4A39KkvFCDEoddmAud/KjQm/ZN5XkCBimdCy3lGWqWtbmA+gzgZkM5ScQr5550hf4LxH187CJJWZZoyghCeFb2QF85I+zJGYhe85OySfvsLHgiGzVVK0FDNr7PvTyxilOHY1DKQ1U9kdvisAfWdmI00D3X3SIImWqw8p2VrCaYMXfNboqSUHaouMdxjewTMPaPGZC0uGLYJAf1CQ2vwnIXqzAgUJj2tUpMfiJNinEhdF5n0r9H8VC2fFsTHCor2BmR/xnyC+bEg4+bj4z/eiLXf87zz7a+c9oYi/L3bfnc4ORGdcQDOgmxX0XMDRSHXZIalaz0+w4mJzkqk2FIheQv32d4VkFdjBixtRmCMEK7Qeuq9g1MRpPqDkMimJn6+oGEU40pg0I2ndWgIBUTvTHGvwHH+QUbxEDMVDWr+TLxB3O3llZdVeybX8bCmmnXZ23+VRqzznxR4h6Q+sRWlW4koAUHA==
+X-Microsoft-Antispam-Message-Info: 0VXzYQh3OSBOm87f7t6Fw9yweXKSZsbpBIeqRM3KTW9/pAui1VmwhCUKuEm5/tJMXh5Ppf64ZOByOlYF5UrkWs2nI3fUDJVIYIFtu5Vb8KdLkqocZU2Tc9ZhXhnGKoBLhHonPPg2K171lVdmNhIUK8frKY2hRPUY7yuFgOdpC5Tg4eIqwOTc8GJ35MgB5ZmAiSICvEGDuIL/RTI55xf6iHnp6ivKFvEDU7A7GOdvJ2eljlt6OuIo8xUyzYDh5P3EQG2bv7hoGWua4QfcencaQrDb/ST6vd8qDxvQeLdVMH4tZQ6EwBVOSybdgo4b2yqiZtLsCICfFjpf/sGuVkApKbRymN28zHqbCngyUZjIRyV7vbl8NiBxxo1ViZ7O0anwHCiF6vxz6BE0tPYAkuadnfqfRajKxD0oU5mKrg0Q59tPBWYgM2J6QTHKmIflxCFHVS3Ihogncjq4URl6FSoHPhbjCg0HId7LplvDSOFqoo8rxEQj3LcoBmua4TGCK8fAr8uzLt9tAzg5Zq6P/8ZBzaBYPQajY8xU7urcQvoeDV09keCceZ9pBdHrFgVO82yRJNY8rz/ThFAVXkWkJncPvA1qrzK3WW9yY00yZjSB+P/439Y3dg942PRqsvdRxT6ii5CUIbxIJ2QmvEnPbTMFwTfvLlqFuKwZIcDYYhPnd4siZ6Z19A2wtbBdgDO7n3qNK+7+MhEYxaeb+iSuiehs+Bm0iBXs3OwrvBXNsr07XBjG1CBx8UuvQnoegIW422ys
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR1001MB2365.namprd10.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(7916004)(136003)(396003)(346002)(376002)(366004)(39860400002)(6512007)(9686003)(186003)(26005)(8936002)(6486002)(44832011)(5660300002)(83380400001)(6916009)(2906002)(316002)(6506007)(41300700001)(66556008)(66476007)(66946007)(86362001)(8676002)(4326008)(6666004)(38100700002)(52116002)(38350700002)(478600001)(33716001)(21314003);
+ IPV:NLI; SFV:NSPM; H:BYAPR12MB3176.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(346002)(376002)(136003)(396003)(366004)(39860400002)(26005)(316002)(478600001)(66556008)(66946007)(6512007)(6486002)(186003)(4326008)(8936002)(83380400001)(8676002)(7416002)(9686003)(5660300002)(66476007)(41300700001)(38100700002)(6506007)(6666004)(53546011)(2906002)(6916009)(86362001);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?tB2xss3VIxkDeuK4Thf/6pB30umRe9rlOm4pVMfLqE4kHidQNbP6l88oToNF?=
- =?us-ascii?Q?2ZnXfPqTyYxDftp5cXSsq679NZXu/FDaejT9uKud20EVtiV39kjrY9/n53kM?=
- =?us-ascii?Q?stgEqPgzy4/V+3jruKevgoapHWqnmtCHTssRIV0+qIEcNjGYDU/3mFXRwnVC?=
- =?us-ascii?Q?qZEXyuHZn+ZpuC4JR4Y1z+MUOWPnq/odsVAC9MA+Znnh44WYC42O0l9cjAau?=
- =?us-ascii?Q?NZ4qztylknc2xWZ46hunA+TKH+FdODEWQaIdq4o2M5JyyTGT+s5SKNSfgy55?=
- =?us-ascii?Q?V96u5CNtwJNlLdA/DxC6+1qPHH3gfpwp3aeXczWhAtZpDeV7bEo1TH9CES2B?=
- =?us-ascii?Q?o+vn8gWQSBflbSxoo6ile+iTaPY6Q7IrLldv+e7wN9Pyu2k1/iAo1l40b3iY?=
- =?us-ascii?Q?aHGBj49Wzgxv2ojmK4ufXLr79GvYCbAkZ10mqAHNp5nuiIIe41sqP8ZNRp9m?=
- =?us-ascii?Q?7UUHEY29Zqee0tGqZfGI5QlRVS0xuUCbmr92Wj8YBlR8Nwk3r1GVYWmHyLGS?=
- =?us-ascii?Q?Nr6WwX4geRR0VSXNJS6ydCpA0hjzKWMKZlfwRxBmxcrkj4M5I+OB5W1cFJxq?=
- =?us-ascii?Q?sh+TvxXK8Qu45GNE9PJlYWZRlgqX7QCz7CC6GPRH5D2SJKZmpf17wPnPVD2i?=
- =?us-ascii?Q?OsRADpXFp9lkYFgYRdeYvpX1VGd3fon9CCeYSrAClGTzrUv1tZF/hmUiuuyB?=
- =?us-ascii?Q?QbZnVsA0kHIhpxL7HPIEqtwRYpoz0M9yqcL5vYevNwthHKKPQdbi7Q/ipHbZ?=
- =?us-ascii?Q?KgR2HMOmuZGQRBc92L6BcmYdPriThfZOcYuWzdLGa3ITNkuBrDfxuzUgKeHV?=
- =?us-ascii?Q?cZw1geGteyEOGyi0D9X4SoSPZ6UdfrgFbh7gHzcGvVzZSQorjRue6eypDM0Y?=
- =?us-ascii?Q?qW/uS2EEh/4hwPIKzHBwRNCinJNwpE2ogA6G7abhj3M0W8ALEaRtAbWnGbvc?=
- =?us-ascii?Q?VAHGbmqaTwVlaiiB0io/U6THX+iDw0/JkGXMIGXymmZ4fJsY35R5+7yg/JPn?=
- =?us-ascii?Q?gdz4MGSxe4c6weo4T0oDC6YGVxF940YbGycvt+K+Se5tO+yEKE/UQYCAerZn?=
- =?us-ascii?Q?/AAQ2sprf8MunRPuB0wUCHcxgNk5z+4XB2P9XBC2zNKCcMY19l8Q+TVb4r6O?=
- =?us-ascii?Q?dBOxoF2cuC6DzOQ3suet/VggCH63Vvvn9J6dW7PfTANzETmtHFrOiriCsC0P?=
- =?us-ascii?Q?Et+vXjm40Gj5sT6bEnLXqCIX1nNWeqSz8TdiY8Q3PmmLzbcchPgO1W8gbW2S?=
- =?us-ascii?Q?TkUFcpMvJVip5GteRuQcdQ3b6YfHsaOCmoXO45MQ1u1HIsBDgsxiY6thFLli?=
- =?us-ascii?Q?1K7W4V9zpEUGI5KSgXbiyZGENK4pkbzQSwqc45wz+D5QBNyhVrzpmTSy8RbJ?=
- =?us-ascii?Q?5ynX0D7krgEuy3sWrwuiBSYfrqBtHC6kcwYza8TpXOkZqDQ1R25bPVRDkjTV?=
- =?us-ascii?Q?ga2pnvv488x8bZon8BcFCrWGKFzoWoRXuG/ZbSvu8qD/wzo/SbwyM/Q/bpzl?=
- =?us-ascii?Q?3Z32f/G7wyB4IwXlhtk77GTel8GpNW0BAWDzSpYqqbxj+uauzx96o35C3Pwi?=
- =?us-ascii?Q?FacDvr0PGaY4ntmamQmh0UVyo1+54+TEagrpj1Ay9ySAnrzJWkhJzgH/bI9G?=
- =?us-ascii?Q?8Q=3D=3D?=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 51d115b1-09bc-47f3-c448-08da658f7b5b
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2365.namprd10.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?N4nPbdohYLsaESKqeXjU5HuQYobdQeB7rWRSUoE75eK+K50jXd9aYDwPcWPT?=
+ =?us-ascii?Q?w/d9sSRBIwGcRTafSgKQxknmNIJjTCRsLJbl3sXiK0cF8SYZJW+NLPHKCt54?=
+ =?us-ascii?Q?C9DAf2BaPBA+AGaNVo0qRYy4OCcQinRIC31KD+1Zph58AoId17eleprXdO15?=
+ =?us-ascii?Q?z8cSSDNLfZt+Bf74XK5yd8ulzbBHMa+SV74c0vJcw5tUkG3OuRlyx4M4QJ9n?=
+ =?us-ascii?Q?l+5ZGihaXzKj1RVUFgkI79H+jtWyyZfpoq/qcLifIghCUJv3I6oGYFNHBfPp?=
+ =?us-ascii?Q?kbgyCeV5KQaIEC9YjP7+v+6zyuwd6XJ13jhs1bPSS76FvLpqeCqeG2oXA8yQ?=
+ =?us-ascii?Q?A9ljAvcTYv46cHXmE0WbS/jOHnz0Skhmrh6ITxtAszmPhJieMdC3h1Me2PJS?=
+ =?us-ascii?Q?RA51CJb2YMCJxr4SmIDdPcpOQkIMRU5J7mjzodeWM0IOdvRE4Yda0eG3V52C?=
+ =?us-ascii?Q?Z6PXnVXj9jxgRLT8C+Q31simd3V7Fo9Oz7yI7Q6zbOIsfM1whmMfbkfZOkI8?=
+ =?us-ascii?Q?o/9+kVR6wkM0oi7HPqpvY2S5ScyaRj6FLqXC2vlZjLD373xWzoJ8C23EoxvK?=
+ =?us-ascii?Q?I2EN5ahab4NLucGqWK8fMaFQnba2geTgX3F+FrOJzpOECw8UKfIIXu1ctZ04?=
+ =?us-ascii?Q?xlJjqT2pc07qCuRsVPypjaGrU+AKFPTyXHWln7/BLaWVLkAjSxu+NFoQMd88?=
+ =?us-ascii?Q?l3JLHxc0CRjuw7mklupx/9ebjtGgjuIifsLUs7poGkcYRIQAYhh/M6KCtSk+?=
+ =?us-ascii?Q?FWxHZAd4ZfLbTfZkis8oPol+fKiLShj/Y8HaKTGIWogVh+Kx3LwpA2bQfLGI?=
+ =?us-ascii?Q?wCUy+pxg9l2jXQhCxfoTMv17o8cKqVc90wLVm2cKvpk+bPMpUYeT25uuyuVM?=
+ =?us-ascii?Q?TjrXYjqCKnr9C7qyVJZb9APEN/lr6JEr6nPbourwsxSRkj9n9UUx0+/t/JH2?=
+ =?us-ascii?Q?oBWoqpKvXS7aSkK4bGIqoAjPd1Zi4NXjN8jd3Qx2tOgL01xdZ7p7enB73uU4?=
+ =?us-ascii?Q?P0zqYexbccKOejGFKUiO2lx9qCeusDqEI4uXPbH5Fdqw2AeXQC7Z3WAmN2wm?=
+ =?us-ascii?Q?xtz2zR4zU9bflMaY4VOOx6AP9f6Tgcl/HsQH5DfJKyBXde/sDseCCm0HUegp?=
+ =?us-ascii?Q?aql+HGG3GYB2hzuZW7hot83W778V7LcBPuvrO1NADnsncHZiRv43I+q0MwuA?=
+ =?us-ascii?Q?Qqa9UKAjuaJpE1QUrXYzo3RqMdstvbSC4Hx/dF0ilPdCMHHGhPZCYEiY5Ckb?=
+ =?us-ascii?Q?RRfjaeEOnbKtFQZI+Yh11CkXPqwaaYcFW7IYMc15DIP+ySlLKpsxynDLbv4H?=
+ =?us-ascii?Q?cWLOjwfG239f5TQR3r/7BHEZlW1/k1U+l2Dt4WciHnPdYs167ZhEWmBzpnL+?=
+ =?us-ascii?Q?1n1RRPrca42+Ys9VKYuMQMs68Q7SvUYaIJ8NchBV7kyJ3vXAvnELy9iNu170?=
+ =?us-ascii?Q?DC2dxg/yGvTAHFLncjxvgmrbfPba5rs7F74aVYx6XiUPxDkVwcPg26VvS5Xg?=
+ =?us-ascii?Q?IwbXFH/Rb7bWHmoWBtobl5tJdI5nQ8djEHTTQI+CyhqZAJKh3Jd3SV1+tAqS?=
+ =?us-ascii?Q?mIeGx85e7lywFhV1NGdOKZWjzGH+piijjWB6Zjv5?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 64580125-9d39-41de-9fd1-08da655b1dad
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB3176.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2022 11:53:35.3967 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2022 05:38:44.4287 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rCtAUKDPulsYz1cibx4H4Vlvlda0EsB0jWXsPkdT36Lw11W4Z0M3E0XHochUY4GQZr+tyCynQZJV0aqp1JIbGeEC7QFApwJtWNhez9nO3ZQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR10MB5714
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.517, 18.0.883
- definitions=2022-07-14_08:2022-07-14,
- 2022-07-14 signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0
- mlxlogscore=999
- malwarescore=0 suspectscore=0 mlxscore=0 spamscore=0 adultscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2206140000 definitions=main-2207140050
-X-Proofpoint-GUID: BaPR114aYz8TkHX21BRW9l3TaljuWa5C
-X-Proofpoint-ORIG-GUID: BaPR114aYz8TkHX21BRW9l3TaljuWa5C
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6/41Zbg7ptvL+3LpLX59Qh/52PacdqDss0LIiCwgS0LkUOstRV7R1mDDvk2++z87IEXFlA1rXEz7ZmfMjKhxuw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5796
+X-Mailman-Approved-At: Thu, 14 Jul 2022 12:15:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,72 +115,71 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
+Cc: Alex Sierra <alex.sierra@amd.com>, rcampbell@nvidia.com,
+ willy@infradead.org, Felix.Kuehling@amd.com, amd-gfx@lists.freedesktop.org,
+ linux-xfs@vger.kernel.org, linux-mm@kvack.org, jglisse@redhat.com,
+ dri-devel@lists.freedesktop.org, jgg@nvidia.com, akpm@linux-foundation.org,
+ linux-ext4@vger.kernel.org, hch@lst.de
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello Le Ma,
 
-The patch 5fdbff096edb: "drm/amdgpu/mes: ring aggregatged doorbell
-when mes queue is unmapped" from Oct 30, 2020, leads to the following
-unpublished Smatch static checker warning:
+David Hildenbrand <david@redhat.com> writes:
 
-	drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c:8552 gfx_v10_0_ring_set_wptr_gfx()
-	warn: duplicate check '*is_queue_unmap' (previous on line 8546)
+> On 07.07.22 21:03, Alex Sierra wrote:
+>> From: Alistair Popple <apopple@nvidia.com>
+>>
+>> migrate_vma_setup() checks that a valid vma is passed so that the page
+>> tables can be walked to find the pfns associated with a given address
+>> range. However in some cases the pfns are already known, such as when
+>> migrating device coherent pages during pin_user_pages() meaning a valid
+>> vma isn't required.
+>
+> As raised in my other reply, without a VMA ... it feels odd to use a
+> "migrate_vma" API. For an internal (mm/migrate_device.c) use case it is
+> ok I guess, but it certainly adds a bit of confusion. For example,
+> because migrate_vma_setup() will undo ref+lock not obtained by it.
+>
+> I guess the interesting point is that
+>
+> a) Besides migrate_vma_pages() and migrate_vma_setup(), the ->vma is unused.
+>
+> b) migrate_vma_setup() does collect+unmap+cleanup if unmap failed.
+>
+> c) With our source page in our hands, we cannot be processing a hole in
+> a VMA.
+>
+>
+>
+> Not sure if it's better. but I would
+>
+> a) Enforce in migrate_vma_setup() that there is a VMA. Code outside of
+> mm/migrate_device.c shouldn't be doing some hacks like this.
+>
+> b) Don't call migrate_vma_setup() from migrate_device_page(), but
+> directly migrate_vma_unmap() and add a comment.
+>
+>
+> That will leave a single change to this patch (migrate_vma_pages()). But
+> is that even required? Because ....
+>
+>> @@ -685,7 +685,7 @@ void migrate_vma_pages(struct migrate_vma *migrate)
+>>  			continue;
+>>  		}
+>>
+>> -		if (!page) {
+>> +		if (!page && migrate->vma) {
+>
+> How could we ever have !page in case of migrate_device_page()?
 
-drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-    8525 static void gfx_v10_0_ring_set_wptr_gfx(struct amdgpu_ring *ring)
-    8526 {
-    8527         struct amdgpu_device *adev = ring->adev;
-    8528         uint32_t *wptr_saved;
-    8529         uint32_t *is_queue_unmap;
-    8530         uint64_t aggregated_db_index;
-    8531         uint32_t mqd_size = adev->mqds[AMDGPU_HW_IP_GFX].mqd_size;
-    8532         uint64_t wptr_tmp;
-    8533 
-    8534         if (ring->is_mes_queue) {
-    8535                 wptr_saved = (uint32_t *)(ring->mqd_ptr + mqd_size);
-    8536                 is_queue_unmap = (uint32_t *)(ring->mqd_ptr + mqd_size +
-    8537                                               sizeof(uint32_t));
-    8538                 aggregated_db_index =
-    8539                         amdgpu_mes_get_aggregated_doorbell_index(adev,
-    8540                         AMDGPU_MES_PRIORITY_LEVEL_NORMAL);
-    8541 
-    8542                 wptr_tmp = ring->wptr & ring->buf_mask;
-    8543                 atomic64_set((atomic64_t *)ring->wptr_cpu_addr, wptr_tmp);
-    8544                 *wptr_saved = wptr_tmp;
-    8545                 /* assume doorbell always being used by mes mapped queue */
-    8546                 if (*is_queue_unmap) {
-                             ^^^^^^^^^^^^^^^
+Oh good point. This patch was originally part of a larger series I was
+working on at the time but you're right - for migrate_device_page() we
+should never hit this case. I will respin the next patch (number 7 in
+this series) to include this.
 
-Checked
-
-    8547                         WDOORBELL64(aggregated_db_index, wptr_tmp);
-    8548                         WDOORBELL64(ring->doorbell_index, wptr_tmp);
-    8549                 } else {
-    8550                         WDOORBELL64(ring->doorbell_index, wptr_tmp);
-    8551 
---> 8552                         if (*is_queue_unmap)
-                                     ^^^^^^^^^^^^^^^
-
-It's possible this is changed inside a function, but it looks suspicious.
-
-    8553                                 WDOORBELL64(aggregated_db_index, wptr_tmp);
-    8554                 }
-    8555         } else {
-    8556                 if (ring->use_doorbell) {
-    8557                         /* XXX check if swapping is necessary on BE */
-    8558                         atomic64_set((atomic64_t *)ring->wptr_cpu_addr,
-    8559                                      ring->wptr);
-    8560                         WDOORBELL64(ring->doorbell_index, ring->wptr);
-    8561                 } else {
-    8562                         WREG32_SOC15(GC, 0, mmCP_RB0_WPTR,
-    8563                                      lower_32_bits(ring->wptr));
-    8564                         WREG32_SOC15(GC, 0, mmCP_RB0_WPTR_HI,
-    8565                                      upper_32_bits(ring->wptr));
-    8566                 }
-    8567         }
-    8568 }
-
-regards,
-dan carpenter
+> Instead, I think a VM_BUG_ON(migrate->vma); should hold and you can just
+> simplify.
+>
+>>  			if (!(migrate->src[i] & MIGRATE_PFN_MIGRATE))
+>>  				continue;
+>>  			if (!notified) {
