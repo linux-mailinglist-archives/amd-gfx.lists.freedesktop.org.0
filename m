@@ -2,51 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57B9E575559
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 20:50:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C27D257559A
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 Jul 2022 21:05:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B7F510F98A;
-	Thu, 14 Jul 2022 18:50:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EAC91132C0;
+	Thu, 14 Jul 2022 19:05:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17ABC10F968;
- Thu, 14 Jul 2022 18:50:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 497531132C0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 14 Jul 2022 19:05:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
- Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=TYlDZx+WMQ2Fx8iFZoO5UknB1+81QzVI4tZ54OqH58k=; b=puEtYIWdypVwBhbKu3pmAC9UMH
- J/iCviKOp0aaqjxynhgpcOaw2BE5Gq67py4LCB97G7SCUrAWS6BalCEjgOAd3vIJdoYj6JWgy8oIm
- 12LYo133KAx+b2kNo+h7iB+jbNfgItc4tteyFGlRAzdWkYLYQfle5DG1shcU4Vd9+oFdW2ZJMqLPb
- YEtXtbQSHe5GaItlTnF1/T+8E7SP13xg2j3i1WO1TAk5pw5mC4LFZJx33xY9jvivxscqGWnMZNj1B
- BRZuzYL9GAv+2La57OKHgwpVSOscSHZeA469rC9yVCiASqGhNQnn/2LMS5+aoTBZmsWU+aaRDBfLb
- V2DoMRMw==;
-Received: from [165.90.126.25] (helo=mail.igalia.com)
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=cNkR6XEDFfpaPNq9o0wRHS/X8IzmQvqoBCtGIQHTiTQ=; b=CEnQ651qlIikjfQXm55Yxkox20
+ T4IXbOyOg9argMlCQFjGe15yorkHCCcfK4E0OROtw2CmvcKpFpuS5d1T7Erg3GBbWRmRPW9Fxu9VU
+ E2t+DSloqGzYXGlcOtBYvRdMvs9+NHqaOGf514X6AIqrUGh6pPUhf6iIrb+UBuh99tuEt0oVEZaKg
+ J0DDpiard6KR7P0hDrXrRuQlqC3j8RttWMCwgV6Ij5mCTUXI+H4yRDkMWoOgtjROZ/j6vEM0VeLYz
+ LXs1KkCov+y52SGVWIRM7s+8EerGINDReA/s3Q1pkpia4AlJIVQPDAlAGFA0vlbx5q1cfUy6Xq/04
+ G5AGi1LQ==;
+Received: from [177.139.47.106] (helo=[192.168.15.109])
  by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1oC3uc-00Gjga-IF; Thu, 14 Jul 2022 20:50:10 +0200
-Date: Thu, 14 Jul 2022 17:49:19 -0100
-From: Melissa Wen <mwen@igalia.com>
-To: Alex Deucher <alexdeucher@gmail.com>
-Subject: Re: [PATCH] drm/amd/display: Add missing hard-float compile flags
- for PPC64 builds
-Message-ID: <20220714184919.rmsexizgfdkfboiq@mail.igalia.com>
-References: <20220618232737.2036722-1-linux@roeck-us.net>
- <584fc348-7a60-26a2-af61-9edc4f4830e4@amd.com>
- <CADnq5_NkVWqcxwLMBeskqpcSEYCEjUAK0hqvA_PAo7ACHKL2cA@mail.gmail.com>
- <6a026c9a-c4ee-deba-e028-4c0f478c1911@roeck-us.net>
- <CADnq5_OrxMMkazXEPHeZXp_bV890=r21DRx2QsqLXUFj4t8aYg@mail.gmail.com>
- <20220713230917.GE32544@roeck-us.net>
- <CADnq5_PAg8xg2J3WUfjxK_-WFaLOK7cQd6bqWDnfVqE6fpXq2Q@mail.gmail.com>
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1oC48r-00GknE-QL; Thu, 14 Jul 2022 21:04:54 +0200
+Message-ID: <92eebfd3-4234-b3fa-87cc-c48b3deec33f@igalia.com>
+Date: Thu, 14 Jul 2022 16:04:35 -0300
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="kcyojzyxobcaybeg"
-Content-Disposition: inline
-In-Reply-To: <CADnq5_PAg8xg2J3WUfjxK_-WFaLOK7cQd6bqWDnfVqE6fpXq2Q@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 01/12] drm/amdgpu: Write masked value to control register
+Content-Language: en-US
+To: =?UTF-8?Q?Ma=c3=adra_Canal?= <mairacanal@riseup.net>
+References: <20220714164507.561751-1-mairacanal@riseup.net>
+From: =?UTF-8?Q?Andr=c3=a9_Almeida?= <andrealmeid@igalia.com>
+In-Reply-To: <20220714164507.561751-1-mairacanal@riseup.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,120 +53,80 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, Michael Ellerman <mpe@ellerman.id.au>,
- Rodrigo Siqueira Jordao <Rodrigo.Siqueira@amd.com>,
- LKML <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, David Airlie <airlied@linux.ie>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+Cc: magalilemes00@gmail.com, David Airlie <airlied@linux.ie>,
+ tales.aparecida@gmail.com, Xinhui.Pan@amd.com,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, christian.koenig@amd.com, mwen@igalia.com,
+ Leo Li <sunpeng.li@amd.com>, Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
  Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Guenter Roeck <linux@roeck-us.net>, Daniel Axtens <dja@axtens.net>
+ Isabella Basso <isabbasso@riseup.net>, andrealmeid@riseup.net,
+ Harry Wentland <harry.wentland@amd.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Hi Maíra,
 
---kcyojzyxobcaybeg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you for your patch,
 
-O 07/13, Alex Deucher wrote:
-> On Wed, Jul 13, 2022 at 7:09 PM Guenter Roeck <linux@roeck-us.net> wrote:
-> >
-> > On Wed, Jul 13, 2022 at 05:20:40PM -0400, Alex Deucher wrote:
-> > > >
-> > > > The problem is not the FPU operations, but the fact that soft-float
-> > > > and hard-float compiled code is linked together. The soft-float and
-> > > > hard-float ABIs on powerpc are not compatible, so one ends up with
-> > > > an object file which is partially soft-float and partially hard-flo=
-at
-> > > > compiled and thus uses different ABIs. That can only create chaos,
-> > > > so the linker complains about it.
-> > >
-> > > I get that, I just don't see why only DCN 3.1.x files have this
-> > > problem.  The DCN 2.x files should as well.
-> > >
-> >
-> > Seen in drivers/gpu/drm/amd/display/dc/clk_mgr/Makefile:
-> >
-> > # prevent build errors regarding soft-float vs hard-float FP ABI tags
-> > # this code is currently unused on ppc64, as it applies to Renoir APUs =
-only
-> > ifdef CONFIG_PPC64
-> > CFLAGS_$(AMDDALPATH)/dc/clk_mgr/dcn21/rn_clk_mgr.o :=3D $(call cc-optio=
-n,-mno-gnu-attribute)
-> > endif
-> >
-> > Does that explain it ?
->=20
-> I would expect to see it in dcn20_resource.c and dcn30_clk_mgr.c for
-> example.  They follow the same pattern as the dcn 3.1.x files.  They
-> call functions that use FP, but maybe there is some FP code still in
-> those functions that we missed somehow.
+Às 13:44 de 14/07/22, Maíra Canal escreveu:
+> On the dce_v6_0 and dce_v8_0 hpd tear down callback, the tmp variable
+> should be written into the control register instead of 0.
+> 
 
-Hi,
+Why? I do see that tmp was unused before your patch, but why should we
+write it into this register? Did you manage to test this somehow?
 
-I'm a little late here, but I'm not able to reproduce the issue yet.
-I have this setup:
-- gcc 11.3.0
-- binutils 2.38.50
-- mainline kernel (torvalds) version: 5.19.0-rc6 (cross-compiling)
-  -> make ARCH=3Dpowerpc CROSS_COMPILE=3Dpowerpc64-linux-gnu- allmodconfig
-    =3D> DRM_AMD_DC [=3Dy] && HAS_IOMEM [=3Dy] && DRM [=3Dm] && DRM_AMDGPU =
-[=3Dm] && (X86 || PPC64 [=3Dy]) && (!KCOV_INSTRUMENT_ALL [=3Dn] || !KCOV_EN=
-ABLE_COMPARISONS [=3Dn])
-  -> make -j16 ARCH=3Dpowerpc CROSS_COMPILE=3Dpowerpc64-linux-gnu-
+> Fixes: b00861b9 ("drm/amd/amdgpu: port of DCE v6 to new headers (v3)")
+> Fixes: 2285b91c ("drm/amdgpu/dce8: simplify hpd code")
 
-Am I missing something?
+Checking both commits, I can see that 0 is written at `mmDC_HPD1_CONTROL
++ N` register in _hpd_fini() in them, so if you are trying to fix the
+commit that inserted that behavior, I think aren't those ones. For instance:
 
-So, as Alex mentioned the possibility of some non-isolated FPU code in
-3.1, I reviewed dcn31 code and my best bet so far is that the issue
-is here:
+$ git show 2285b91c
 
-https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/amd/display/d=
-c/dcn31/dcn31_resource.c#L1721
+[...]
 
-Although dcn31_update_soc_for_wm_a() is only called inside
-dml/dcn31/dcn31_fpu:
-- dc->res_pool->funcs->update_soc_for_wm_a(dc, context);
+@@ -479,28 +372,11 @@ static void dce_v8_0_hpd_fini(struct amdgpu_device
+*adev)
+        list_for_each_entry(connector, &dev->mode_config.connector_list,
+head) {
+                struct amdgpu_connector *amdgpu_connector =
+to_amdgpu_connector(connector);
 
-it's declared in dcn31_resource and has FPU code. So, we should move it
-to dml/dcn31/dcn31_fpu.
+-               switch (amdgpu_connector->hpd.hpd) {
+-               case AMDGPU_HPD_1:
+-                       WREG32(mmDC_HPD1_CONTROL, 0);
+-                       break;
+-               case AMDGPU_HPD_2:
+-                       WREG32(mmDC_HPD2_CONTROL, 0);
+-                       break;
+-               case AMDGPU_HPD_3:
+-                       WREG32(mmDC_HPD3_CONTROL, 0);
+-                       break;
+-               case AMDGPU_HPD_4:
+-                       WREG32(mmDC_HPD4_CONTROL, 0);
+-                       break;
+-               case AMDGPU_HPD_5:
+-                       WREG32(mmDC_HPD5_CONTROL, 0);
+-                       break;
+-               case AMDGPU_HPD_6:
+-                       WREG32(mmDC_HPD6_CONTROL, 0);
+-                       break;
+-               default:
+-                       break;
+-               }
++               if (amdgpu_connector->hpd.hpd >= adev->mode_info.num_hpd)
++                       continue;
++
++               WREG32(mmDC_HPD1_CONTROL +
+hpd_offsets[amdgpu_connector->hpd.hpd], 0);
++
 
-However, as I can't reproduce the issue, I don't know if it addresses
-the problem reported here and also if everything will be clean after
-moving it.=20
+0 was the valued written here before this commit. The commit basically
+replaces the switch case with a sum in this snippet.
 
-Guenter,
-
-Can you provide more info about your setup: cross-compile or not, any
-flags, branch, etc?
-
-Best Regards,
-
-Melissa
-
->=20
-> Alex
-
---kcyojzyxobcaybeg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEd8WOo/JViG+Tu+XIwqF3j0dLehwFAmLQZSIACgkQwqF3j0dL
-ehy0EBAAuqy8y2vEfwK96pRSCkRaiIJysUL1pz3QvqTUxRi4SWqhSzgxH/QbOVvp
-fSswoGmER38+EDnU4JsG/0QsX52NXolK5NUbFtOdDv0ZXu/AWWSStDepVSqaA1qx
-hgdImJgMJP3hfah671LqDIQHHF1PSpFfS3bH379tsn/IncbHCYXFAX8BstQ3m5ai
-46nb41H++F+uTpIL5qADSDhIQfg1+TZqxYcEkWG4BbR9oURlxS5+0Vx4fh2YYEO7
-vEOxARtCR3+rKzz5OnSlw35uaNKf+GTM1IkVvaVUP33Ec0kicmW9feU74JMGmsgO
-4ib8CLFxngfTma/WFybfyItM3dBcX2YutvZSy3L5AefCmN8gjJJUjuwC8viD0Apr
-ZM1MUIoRiWUwR4fo9V2yc6qa1EWJqzAkBDugH3+5tlqaM+s6tKpMQUqejyZfsCoa
-pz3qqh+2JALcDE9CSsy+0aOIT3wmNxUA+CWjmQNGWMGAbbkgFay9LeAwIJIz/Gc3
-68bJuWa/gT8Vq2vBxToCE3ZcBIltvPF2u09UwKgLxx7j5ym/GVm/CYLGe9E8p/yv
-sB2R/OHnaPG3bXyDEPeXGIe8aqmuwcUMJtrPPs1zL7JUm09nRYHa4d0a0NIlODOY
-kCI20wnz/M/0Zt8+fF4tBO5C7ipy9Rgr59Z3zDz+oxSNm1RvKS8=
-=T3zC
------END PGP SIGNATURE-----
-
---kcyojzyxobcaybeg--
+thanks,
+	andré
