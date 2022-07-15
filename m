@@ -1,67 +1,71 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28971576E9E
-	for <lists+amd-gfx@lfdr.de>; Sat, 16 Jul 2022 16:36:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 064B2576EA5
+	for <lists+amd-gfx@lfdr.de>; Sat, 16 Jul 2022 16:36:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87D3D10EB56;
-	Sat, 16 Jul 2022 14:35:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28DA210EC60;
+	Sat, 16 Jul 2022 14:35:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com
- [209.85.219.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1E1211ACEC
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Jul 2022 07:26:34 +0000 (UTC)
-Received: by mail-qv1-f47.google.com with SMTP id p14so3160248qvo.9
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Jul 2022 00:26:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=WlQWMuQP9i7JA/10N1xXkOOHrioXOIiFbLtTV9MnWc8=;
- b=ynEDlSGw/12qA/LNaVQAqgzF1Wr14S9IT8e8LqneJWu9yvdvJG+Xp118hyoboP1VEj
- dqUdW75J+XrG5AVEDod+oEqBDUF1KHvcXkA+thhDuo+qxOqqkEbmtwvYBSgA2NmzULrs
- Bi9DETiEWGPnFseTy/3T9oO4Tujqtn6waOXf1SoU2J/bkmJh8RA8ujubCDsm6w6Cj2ie
- ihFEMK3EA4lKxczLbGwxxlP8WIamHAg8C3CO73zFffCzifzuYVyQliirc8ojC7eaFTEK
- SFbB1vU4Fr1aCnoTlMaYAGP7ZIY/Tuf54SKYCvq2A5249sZ7R4VKf38NVUQ1TEDrjyOP
- UDOA==
-X-Gm-Message-State: AJIora8n7/beE3vcwOTgh2Y6L0mLgro7OcvxmgI8uDjy8kJItiSR5e4P
- Uf3ERE7UZaNrNM0nR2oLF//8nqS9X5gCuA==
-X-Google-Smtp-Source: AGRyM1uRTMHj9mflurMOu+FEPEl1AAv2N+XWmRFF8UQxOFzZAGRGXVUizpZwBueK9rPtaIiq6rdjgg==
-X-Received: by 2002:a05:6214:20e9:b0:472:f2e6:dd62 with SMTP id
- 9-20020a05621420e900b00472f2e6dd62mr10958194qvk.67.1657869993588; 
- Fri, 15 Jul 2022 00:26:33 -0700 (PDT)
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com.
- [209.85.128.172]) by smtp.gmail.com with ESMTPSA id
- k7-20020a05620a414700b006b5ccec4121sm1779021qko.5.2022.07.15.00.26.32
- for <amd-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 15 Jul 2022 00:26:32 -0700 (PDT)
-Received: by mail-yw1-f172.google.com with SMTP id
- 00721157ae682-31c8bb90d09so39254927b3.8
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Jul 2022 00:26:32 -0700 (PDT)
-X-Received: by 2002:a81:9209:0:b0:31c:b1b7:b063 with SMTP id
- j9-20020a819209000000b0031cb1b7b063mr14363430ywg.383.1657869991832; Fri, 15
- Jul 2022 00:26:31 -0700 (PDT)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7000111B564;
+ Fri, 15 Jul 2022 09:31:44 +0000 (UTC)
+Received: from [192.168.2.145] (109-252-119-232.nat.spd-mgts.ru
+ [109.252.119.232])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: dmitry.osipenko)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 5E29866019A8;
+ Fri, 15 Jul 2022 10:31:40 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1657877502;
+ bh=TWozmotf+sQwVdZNmn/06hy3nh6q5FZqNEZs2dkO0Xk=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=ook7FofVSeFu98kzfOW85/NvaqQGYfMlcoQwPYYEf1uM53lI6XEH5r2IfZA5D39YG
+ One7B2e3W/fD6MOKVR32mTsfa0F578/RBAeOo8/NotqqijY2/uTpe7t/xwykgVmrPt
+ +yavsYIuw7Eo6wCEeOig0kwF08jXCpcKDfKm5bf62mOtUtod68wxkNTfoOrBO2Vigr
+ jGGe7rNPzl9ucoy/rbaMWflBdm9lL83CRfG8Nh3DuvKmTusiGl7vlEzXHo8BAnin4h
+ VmXp2fNABeQZzflx/SPBJ4BlHwecx5t82vj5mWQ6sz+HwjJh2hV8TUmAiQ8RvCIpsC
+ jI9dt2CUipsuA==
+Message-ID: <5c98385b-f154-0128-6f4b-5fac89529201@collabora.com>
+Date: Fri, 15 Jul 2022 12:31:37 +0300
 MIME-Version: 1.0
-References: <CAHk-=wgTmGaToVFdSdoFqT2sNkk7jg2rSWasUYv-tASUZ2j_0Q@mail.gmail.com>
- <20220713050724.GA2471738@roeck-us.net>
- <CAHk-=widUqghhXus_GCM9+FESa5vHqMb_pO3=0dGYH8C+yix2w@mail.gmail.com>
- <a804b76e-159f-dbc2-f8dc-62a58552e88d@roeck-us.net>
- <CADnq5_O6Tp2QPXyDCvpWuRXhDr6H1PM50Ow5YG2WeukqUd-GnQ@mail.gmail.com>
- <CAHk-=wj4+BSj2SPMRUr-TZ4Qg2o9HGOBWiJQE336YcF_U1sVNQ@mail.gmail.com>
- <CAMuHMdV9Pj9V-ZPpu=BMSkPt1uA_eCvU4+bxF8ZfHjteRk2CAg@mail.gmail.com>
- <CAHk-=wgnmaTVigBc02tjqgcZaNJiYz8Xw77P+ERAXhcYjkwd=Q@mail.gmail.com>
- <6d5ac61b-b490-4f9d-6521-a4b7477d6fd2@roeck-us.net>
-In-Reply-To: <6d5ac61b-b490-4f9d-6521-a4b7477d6fd2@roeck-us.net>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 15 Jul 2022 09:26:18 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX4Srd=WTGvtGoWhatEb8No7WUhrAYEmjX2+E11PnMVeg@mail.gmail.com>
-Message-ID: <CAMuHMdX4Srd=WTGvtGoWhatEb8No7WUhrAYEmjX2+E11PnMVeg@mail.gmail.com>
-Subject: Re: Linux 5.19-rc6
-To: Guenter Roeck <linux@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v1 1/6] dma-buf: Add _unlocked postfix to function names
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
+ <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Daniel Stone <daniel@fooishbar.org>,
+ Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, Thierry Reding
+ <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>
+References: <20220715005244.42198-1-dmitry.osipenko@collabora.com>
+ <20220715005244.42198-2-dmitry.osipenko@collabora.com>
+ <43c06f53-bad8-af99-0b57-781dbf716768@amd.com>
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <43c06f53-bad8-af99-0b57-781dbf716768@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 15 Jul 2022 13:56:14 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,59 +78,37 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kefeng Wang <wangkefeng.wang@huawei.com>, Leo Li <sunpeng.li@amd.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Balbir Singh <bsingharora@gmail.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Paul Mackerras <paulus@ozlabs.org>, Alex Deucher <alexander.deucher@amd.com>,
- "Russell King \(Oracle\)" <rmk+kernel@armlinux.org.uk>,
- Michael Ellerman <mpe@ellerman.id.au>, Alex Deucher <alexdeucher@gmail.com>,
- Harry Wentland <harry.wentland@amd.com>, Daniel Axtens <dja@axtens.net>
+Cc: linux-rdma@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ spice-devel@lists.freedesktop.org, Dmitry Osipenko <digetx@gmail.com>,
+ kernel@collabora.com, linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 14, 2022 at 7:24 PM Guenter Roeck <linux@roeck-us.net> wrote:
-> On 7/14/22 09:48, Linus Torvalds wrote:
-> > And some look positively strange. Like that
-> >
-> >    drivers/mfd/asic3.c: error: unused variable 'asic'
-> > [-Werror=unused-variable]:  => 941:23
-> >
-> > which is clearly used three lines later by
-> >
-> >          iounmap(asic->tmio_cnf);
-> >
-> > and I can't find any case of 'iounmap()' having been defined to an
-> > empty macro or anything like that to explain it. The error in
-> > drivers/tty/serial/sh-sci.c looks to be exactly the same issue, just
-> > with ioremap() instead of iounmap().
-> >
-> > It would be good to have some way to find which build/architecture it
-> > is, because right now it just looks bogus.
-> >
-> > Do you perhaps use some broken compiler that complains when the empty
-> > inline functions don't use their arguments? Because that's what those
-> > ioremap/iounmap() ones look like to me, but there might be some
-> > magical architecture / config that has issues that aren't obvious.
-> >
-> > IOW, I'd love to get those fixed, but I would also want a little bit more info.
-> >
-> Geert gave the necessary hint - it looks like sh-nommu used defines
-> for iomap() and iounmap(), which made the variable unused. According
-> to Geert that was fixed a couple of days ago.
+On 7/15/22 10:19, Christian König wrote:
+>> -struct sg_table *dma_buf_map_attachment(struct dma_buf_attachment
+>> *attach,
+>> -                    enum dma_data_direction direction)
+>> +struct sg_table *
+>> +dma_buf_map_attachment_unlocked(struct dma_buf_attachment *attach,
+>> +                enum dma_data_direction direction)
+> 
+> The locking state of mapping and unmapping operations depend on if the
+> attachment is dynamic or not.
+> 
+> So this here is not a good idea at all since it suggests that the
+> function is always called without holding the lock.
 
-Yes, post-rc6 should be fine, as the fix went in... for the third time.
-Combine people that keep on switching back to macros without reading
-a file's history with unresponsive maintainers...
+I had the same thought while was working on this patch and initially was
+thinking about adding an "unlocked" alias to dma_buf_map_attachment().
+In the end I decided that it will create even more confusion and it's
+simpler just to rename this func here since there are only two drivers
+using the dynamic mapping.
 
-Gr{oetje,eeting}s,
+Do you have suggestions how to improve it?
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+Best regards,
+Dmitry
