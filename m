@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 207D6576ED5
-	for <lists+amd-gfx@lfdr.de>; Sat, 16 Jul 2022 16:38:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AD17576F6C
+	for <lists+amd-gfx@lfdr.de>; Sat, 16 Jul 2022 16:43:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EE4110F801;
-	Sat, 16 Jul 2022 14:35:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A329410F9B3;
+	Sat, 16 Jul 2022 14:37:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2042.outbound.protection.outlook.com [40.107.220.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E6F910E2F8
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Jul 2022 18:17:20 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1anam02on2064.outbound.protection.outlook.com [40.107.96.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B72C10E1EA
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Jul 2022 18:17:31 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZPwm5FefezNRF/JsmbeIpACzWdFfq+DQiW+rfckxXT9LfjNehzZEWS7p7HBlnsMi8V3a/ifnrBPfBlTXaW+1lQat1stSdVKNd4UadzGA+IU5+NuqTs965r+PTItUKCaHZrv6bSbXvLHDEbt/zI3eyCZSWuPRpiWB8XZM0VEXuJBmkBrOTEqPdhqgIiNhFXtpBQ+k+CEa/Zstmx6NrGg+7AOrw4U75pu9ZUvUvzJG3MJpadCIIQnw7S09mACVnpoQVBBi7A+ZEBMlsDol4XhCXAs8MUb+KQ85NHjlWvVSWbH2wR9irYovkf898hQ5UVuLBdekedZ0cZkY37QXDMn3Nw==
+ b=EJC7n84EKB2hhGvtX3mAg9Et85A0VJmZLuZ56HdnohZRMI6TS+uTgaXRjWH/cSrleX9HAmFRDS3jSQrN9MkyKxZ4BI40ELQ9OcvRqdyveUE0I4IovHxjCXvN9MmWn4vjPMU2HvpyDraNooiSLVaSq8BiQKM5dLzEEEKaUGW2fIu4BvEgTCr5R6hyRUVgIEoNuV2y8eNNbCvV560l4V97C1cKzEAQ/xIXtuJM9b1pf2798WeQ/qvVDv+mOoXDoO+aClaDikQCXprDeBDbVAT4IjY2y9RVbmeSJpdvDC998+loTaGhzMuhFPVIDQHPmzt533ozB+FLdN4w4ZWayvPBeA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7AqrqUeCa0kD03QQkiuevRSVNuWUmrS57UpeX77kl24=;
- b=PEcIQZtbl7M1W1vOxAFs8WXwNDLxz55bARbKpfUfPJ+VUDhU/L6mHeZIEju1DlLyw4sOZk5tXwvNUwyvVOHzI0vkQOc+aqyT8OQlIy2HNZ7IwXYqg4hymMonBPs1KruvlRlga40QiV3DrqKIqe7xlsdYA6kwWqNaAoJ30hs6LhcQFMP2KzjbenpGCoUKwpHQU9IgaI4vR0a6BL1j0KwUfdpiURhgGSF3Eui/pkfB5gO+qmObfYRhO5fSpWJwGhF8WvzNtmIZz5BIOoKj3QjGROiP/86MmtDW3o5G1qllEn6Cm2uzZKOx6fmXZN8xICA0Lq6Jy6a6RdGREamJRaEzyg==
+ bh=veuGJLis3M3cTbnOIsi/ghaLx5Dh+wZgtBbo6QPYv04=;
+ b=HliZy3cWlcFGwLoCHGPYqPvuchu/CVVos6+sPDY5Mni4Js9gZVbCGuyg5f53AQYZVe0TaCCP9eS3tkV5mW543Zi0WYspBz6M+t4lihaLvf370MmmCzR/BnpzqWVUZaYGozRWNvC1olJoY/MHPsgEX07Adj2mGqtP3eRnbv1E57cZWN685IUIrAejQ+qrLbzNtAqQGyu0RM5vXRzR6q1zSG4SuBufTz+E09Lvzz3q5z+Ylm4631/EwKfQgmY4klzuKJoPJ38m7lfsARTuWRTHb5AHQx3PlvDzZcw2DWLeb+VFKtSB1oJ8Wj1mT6Hu3Kay0h1HfeOojcjQlZFx/hWeFg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7AqrqUeCa0kD03QQkiuevRSVNuWUmrS57UpeX77kl24=;
- b=1lAWjBhdbMgAIMdhnySUFRPGbtkjjnFMFd46DMjgeg1NzRJI1dc64hK1jhDuL3POx8hqhKDB+vMlGoHIYghXpz05uzKFjmcxgxmpOQ8ZXfOvMNmHhNH9JOpRL5O8ELNHsK/Y4UjiTZcqrCG789O0FlR9IQ+VpMwFPs2BaGXJuM8=
-Received: from MW4PR03CA0023.namprd03.prod.outlook.com (2603:10b6:303:8f::28)
- by CY5PR12MB6600.namprd12.prod.outlook.com (2603:10b6:930:40::13)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=veuGJLis3M3cTbnOIsi/ghaLx5Dh+wZgtBbo6QPYv04=;
+ b=FvMkCP5irvLYiY0ENqxD6UQ8V7fmGShPj4zRNkPjMcjWyJd13EVx0/PClBphn0VtjU6PR9BOE2RZvAch3O34Q6rJNAmfRx/5Nxoxcjq9MFsl/u/phr+ztt2KC9dTg9aetkVv4dPYA2m0EEgqwUdsUJ0peRdjH99QaTBKWgux654=
+Received: from MWH0EPF00056D19.namprd21.prod.outlook.com
+ (2603:10b6:30f:fff2:0:1:0:1a) by BN9PR12MB5130.namprd12.prod.outlook.com
+ (2603:10b6:408:137::9) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.14; Fri, 15 Jul
- 2022 18:17:18 +0000
-Received: from CO1NAM11FT006.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8f:cafe::6d) by MW4PR03CA0023.outlook.office365.com
- (2603:10b6:303:8f::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.17 via Frontend
- Transport; Fri, 15 Jul 2022 18:17:18 +0000
+ 2022 18:17:24 +0000
+Received: from CO1NAM11FT019.eop-nam11.prod.protection.outlook.com
+ (2a01:111:f400:7eab::209) by MWH0EPF00056D19.outlook.office365.com
+ (2603:1036:d20::b) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.5 via Frontend
+ Transport; Fri, 15 Jul 2022 18:17:24 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,22 +45,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT006.mail.protection.outlook.com (10.13.174.246) with Microsoft SMTP
+ CO1NAM11FT019.mail.protection.outlook.com (10.13.175.57) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5438.12 via Frontend Transport; Fri, 15 Jul 2022 18:17:17 +0000
+ 15.20.5438.12 via Frontend Transport; Fri, 15 Jul 2022 18:17:23 +0000
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 15 Jul
- 2022 13:17:16 -0500
+ 2022 13:17:22 -0500
 Received: from arch-sec.hitronhub.home (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.28 via
- Frontend Transport; Fri, 15 Jul 2022 13:17:10 -0500
+ Frontend Transport; Fri, 15 Jul 2022 13:17:16 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 04/31] drm/amd/display: Expose function
- reset_cur_dp_mst_topology
-Date: Fri, 15 Jul 2022 14:16:38 -0400
-Message-ID: <20220715181705.1030401-5-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 05/31] drm/amd/display: fix trigger_hotplug to support mst case
+Date: Fri, 15 Jul 2022 14:16:39 -0400
+Message-ID: <20220715181705.1030401-6-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.37.0
 In-Reply-To: <20220715181705.1030401-1-Rodrigo.Siqueira@amd.com>
 References: <20220715181705.1030401-1-Rodrigo.Siqueira@amd.com>
@@ -69,26 +68,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9d05cf9a-c6b1-4fba-859c-08da668e4075
-X-MS-TrafficTypeDiagnostic: CY5PR12MB6600:EE_
+X-MS-Office365-Filtering-Correlation-Id: e73f878e-10e4-480c-8886-08da668e441d
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5130:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZsvwpHls9dwNWtJ3tYinKE0mJtutYwhi6X8tDUw94EQKVFj0cfUDtX056GrEMy1rQIgKmOjTt+uucZ/2OThyip77VOpTbbND2FZxFBiMtYR1SInwHU4Yksbgvs2/HzYHQPJAQz2+T7DhUJSP5X+MsYeepuvipn1V0NoDMQfsbDft392dPEVVsVCRfXfQf9xrsAdCkLX/juMbOATrHIT6r7EmWcjNCVhy17rxrS+M4i52QDdmggJizGLM22NE9+shnn0IZMDG7JviB9V41bNvPSp6Eg9SRWWQNod+xabvZN+AU4A7uhQNZfvoNsThSPVRUn3cO8xRWQvtbz6K6LI1GIZ8lTbWSqxw0hYEzWLZkpaeVHS61w6bIXhtc5Znkk6/F+AfUIcZZUUhLKofIt0IkWMVYl/Si4mrTpTSj3TjvIkpY3jD2UBF60jz+25zZ49tbHqcwfTjg3qQg5/v7dpOlzz2Nfk9IAbZnivpZ2MGGqBWN2S8Gf5t4pOo/aUfAi5JxUOJTLZEPOznCK7dvR2UiR+wnegdZ1FjHVJQKRAkMCf2zpiFGnz+8dgb9Ix915z3InscDGFeraBuSv8p2Z6oIMspUrh/opHLY8SmenNnJIqB86TpcFCG9JxWc6yyXNs66akVNSAnCoAg9C/bmTF4zA1edXgCK1QdelsviW1VS7ObeggXMf+1PuG3MTrGKSJsmRvVRkVYKZlj9mJpT2Q6PTOaF6dFzKsECgqO6Tc+2vH7Z/JED5jSOQO5+Y+VKDXjOOT6+H3bhL4o9/pODJWIqxqdBuNGsashwLP5vSCJaiH1DmXLncEeyrp64PGt9F7FwgF945xlA0cRBzEL1YlEsQ6+DBMh5DxiMgfej8zm4wg=
+X-Microsoft-Antispam-Message-Info: NLO1QSPDf8W3j0+TRhfKhOHR9yWcQlKHA2cXbL0lKwmo4XpShZqIkGAgWvTj4jlg/J1xc8enhXtNk0ScoFC+Y+kGnhOe0wwXLlHczSg+RD4bgvHOQbu0hIpKOfCfO9PnQ8rppFrBV56kUGD7A7+MZzY7Sj1eM+kuO7MFSU92J2pHU3QGu06PMGeg+WSN2p2CFySgihZVgI6WCMtC27ZDLpLvC7Ps2jACrPVuS1G0jL5JLdVuWAif2SRRXzTi0YzWRiSTah5rtWLQxJVAyuIcdR24bDeuqkuuy+xQkADt7v9G/t4pJ68e/tUa0HR/pdtLNg2+/T3tEDrMs8f3jpNtXEqXHVqsIdJYE4ZJTQXDhr87mFcWHgXkCn/8Vf516TXlDvQoX6Pz974WpX1ZX+/YzYIu4cXg/bukjBbeMCEk2Hm7ReJSwKzVh/IB0R09xnXBi1yxD73jn8zYlDUMbXL/e4h2CuNryul50Y9K49EbBgTSqWVAQZHfidv/q5mG7SLLqHiLrjGLIcEQEefPGqwZ1jGEXYwrki5Km8oaRjQkjui7vQ7POZi+VDwAdoURCyQ/ivohbxo3HFcbYeTzOoDZpV14rxqH+S7Tt2YaHwV+9BVDoBbSzU5pPtSlrrb0W0xdTDendv4IgePJd08R3hAiel1sr+/PpFft/ya1w5ga3I6qmMXMqj0jcqwFmb5+zBc8WELxE+YSOkbWWlWULEOKXuNaaN2K6XKdHLSurgdECKA9Lfq4r05ELG9GUEYKYdxQ4Zw0c0R28O83Fxgdixi4cYCIxBBGbg9Qjn1VxG6l//PamWib+vQmcatWvqsJz8bKB2QrRxSrZQig3nukEuJdHbLa4IR7ueXZPHaxYXVMB6c=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(346002)(136003)(376002)(396003)(39860400002)(46966006)(40470700004)(36840700001)(8936002)(40460700003)(36860700001)(1076003)(40480700001)(47076005)(316002)(2616005)(83380400001)(5660300002)(54906003)(6916009)(426003)(86362001)(186003)(41300700001)(336012)(356005)(2906002)(6666004)(36756003)(70206006)(4326008)(82310400005)(26005)(478600001)(81166007)(82740400003)(8676002)(70586007)(36900700001);
+ SFS:(13230016)(4636009)(346002)(39860400002)(376002)(136003)(396003)(36840700001)(46966006)(40470700004)(2616005)(8936002)(40480700001)(2906002)(5660300002)(336012)(6916009)(6666004)(26005)(1076003)(41300700001)(426003)(47076005)(186003)(316002)(54906003)(36756003)(478600001)(8676002)(36860700001)(82740400003)(356005)(86362001)(4326008)(70206006)(82310400005)(70586007)(40460700003)(81166007)(83380400001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2022 18:17:17.7304 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9d05cf9a-c6b1-4fba-859c-08da668e4075
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2022 18:17:23.8646 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e73f878e-10e4-480c-8886-08da668e441d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT006.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT019.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6600
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5130
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,41 +110,72 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Wayne Lin <Wayne.Lin@amd.com>
 
 [Why & How]
-Need to leverage this function out of dc_link.c. Change it to public.
+Correct few problems below to have debugfs trigger_hotplug entry
+supports mst case
+
+* Adjust the place for acquiring the hpd_lock. We'll also access
+  dc_link when simulate unplug
+* When detect the connector is a mst root, call
+  reset_cur_dp_mst_topology() to simulate unplug
+* Don't support hotplug caused by CSN message since we can't change
+  mst topology info directly. We can't simulate that
+* Clean up redundant code
 
 Reviewed-by: Hersen Wu <hersenxs.wu@amd.com>
 Acked-by: Alan Liu <HaoPing.Liu@amd.com>
 Signed-off-by: Wayne Lin <Wayne.Lin@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_link.c | 2 +-
- drivers/gpu/drm/amd/display/dc/dc_link.h      | 3 +++
- 2 files changed, 4 insertions(+), 1 deletion(-)
+ .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c   | 17 ++++++++++++++---
+ 1 file changed, 14 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-index 858ee51f930a..ef54b96affa8 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-@@ -845,7 +845,7 @@ static bool discover_dp_mst_topology(struct dc_link *link, enum dc_detect_reason
- 	return link->type == dc_connection_mst_branch;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+index e0646db6fdbf..b764198eca5c 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+@@ -1273,14 +1273,22 @@ static ssize_t trigger_hotplug(struct file *f, const char __user *buf,
+ 		return -EINVAL;
+ 	}
+ 
++	kfree(wr_buf);
++
+ 	if (param_nums <= 0) {
+ 		DRM_DEBUG_DRIVER("user data not be read\n");
+-		kfree(wr_buf);
++		return -EINVAL;
++	}
++
++	mutex_lock(&aconnector->hpd_lock);
++
++	/* Don't support for mst end device*/
++	if (aconnector->mst_port) {
++		mutex_unlock(&aconnector->hpd_lock);
+ 		return -EINVAL;
+ 	}
+ 
+ 	if (param[0] == 1) {
+-		mutex_lock(&aconnector->hpd_lock);
+ 
+ 		if (!dc_link_detect_sink(aconnector->dc_link, &new_connection_type) &&
+ 			new_connection_type != dc_connection_none)
+@@ -1317,6 +1325,10 @@ static ssize_t trigger_hotplug(struct file *f, const char __user *buf,
+ 
+ 		amdgpu_dm_update_connector_after_detect(aconnector);
+ 
++		/* If the aconnector is the root node in mst topology */
++		if (aconnector->mst_mgr.mst_state == true)
++			reset_cur_dp_mst_topology(link);
++
+ 		drm_modeset_lock_all(dev);
+ 		dm_restore_drm_connector_state(dev, connector);
+ 		drm_modeset_unlock_all(dev);
+@@ -1327,7 +1339,6 @@ static ssize_t trigger_hotplug(struct file *f, const char __user *buf,
+ unlock:
+ 	mutex_unlock(&aconnector->hpd_lock);
+ 
+-	kfree(wr_buf);
+ 	return size;
  }
  
--static bool reset_cur_dp_mst_topology(struct dc_link *link)
-+bool reset_cur_dp_mst_topology(struct dc_link *link)
- {
- 	bool result = false;
- 	DC_LOGGER_INIT(link->ctx->logger);
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_link.h b/drivers/gpu/drm/amd/display/dc/dc_link.h
-index 023774b94da3..a0af0f6afeef 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_link.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_link.h
-@@ -514,4 +514,7 @@ bool dc_dp_trace_is_logged(struct dc_link *link,
- struct dp_trace_lt_counts *dc_dp_trace_get_lt_counts(struct dc_link *link,
- 		bool in_detection);
- unsigned int dc_dp_trace_get_link_loss_count(struct dc_link *link);
-+
-+/* Destruct the mst topology of the link and reset the allocated payload table */
-+bool reset_cur_dp_mst_topology(struct dc_link *link);
- #endif /* DC_LINK_H_ */
 -- 
 2.37.0
 
