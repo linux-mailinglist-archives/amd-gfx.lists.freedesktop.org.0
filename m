@@ -2,70 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 064B2576EA5
-	for <lists+amd-gfx@lfdr.de>; Sat, 16 Jul 2022 16:36:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD032576F78
+	for <lists+amd-gfx@lfdr.de>; Sat, 16 Jul 2022 16:44:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28DA210EC60;
-	Sat, 16 Jul 2022 14:35:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DECD113693;
+	Sat, 16 Jul 2022 14:38:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7000111B564;
- Fri, 15 Jul 2022 09:31:44 +0000 (UTC)
-Received: from [192.168.2.145] (109-252-119-232.nat.spd-mgts.ru
- [109.252.119.232])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 5E29866019A8;
- Fri, 15 Jul 2022 10:31:40 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1657877502;
- bh=TWozmotf+sQwVdZNmn/06hy3nh6q5FZqNEZs2dkO0Xk=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=ook7FofVSeFu98kzfOW85/NvaqQGYfMlcoQwPYYEf1uM53lI6XEH5r2IfZA5D39YG
- One7B2e3W/fD6MOKVR32mTsfa0F578/RBAeOo8/NotqqijY2/uTpe7t/xwykgVmrPt
- +yavsYIuw7Eo6wCEeOig0kwF08jXCpcKDfKm5bf62mOtUtod68wxkNTfoOrBO2Vigr
- jGGe7rNPzl9ucoy/rbaMWflBdm9lL83CRfG8Nh3DuvKmTusiGl7vlEzXHo8BAnin4h
- VmXp2fNABeQZzflx/SPBJ4BlHwecx5t82vj5mWQ6sz+HwjJh2hV8TUmAiQ8RvCIpsC
- jI9dt2CUipsuA==
-Message-ID: <5c98385b-f154-0128-6f4b-5fac89529201@collabora.com>
-Date: Fri, 15 Jul 2022 12:31:37 +0300
+Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com
+ [IPv6:2607:f8b0:4864:20::112e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 667B611A822
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Jul 2022 09:34:32 +0000 (UTC)
+Received: by mail-yw1-x112e.google.com with SMTP id
+ 00721157ae682-31c89111f23so42227947b3.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Jul 2022 02:34:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=ayS4WjR+67psD2vTxMdscs9JVmSfKJeEmETeoMNiN74=;
+ b=J6oftZ4YxvHxMDEtCHluswHh++rLfXFf+1FzpUgaz43eq2rFUpNuRIaNourLloq0S4
+ be9eBJSeqJBq8yGaa4hSbg3hs4WwMxrMs6AbOpkyMbKbLNABk7Xii69kvbsanz/Qz4sc
+ Voq1pm1J8SI2X8V5MbesKFBE/DM1vIiv3cn/jW+Jc95Kgxc9qpaKByLJZDsGacVl8rm6
+ KYzycacvwK7kDhlVE3kgF6De7T8KtOSJwKRhzVjZc5zitcb/Tjk5Y9QedjXAchbbasRw
+ HbSqzfK759z5tCGudcTatK3/lcXOLQMF1w9Q0+ql+SY6Ji/JpTMJ/7j+rH4SS+jiszkD
+ eTIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=ayS4WjR+67psD2vTxMdscs9JVmSfKJeEmETeoMNiN74=;
+ b=R7ZcmDG0rN4Jv8r4pTQH0dYTM07hpXItkWg2FZ7I2sVPW7MTqzt+fUcnrMKqHyii9g
+ +KEZmWJKDDylGTjlrJfTX8uNe3F1N07HSKfloIRRkvhlVcMKCedGu3FsdXhMH7NhxBc9
+ coWRfrfPXmbSTvgq+c43IuwkPKuRDI4SmgGDzE0DM5K6NwhPglSpX4c0JsHudtbh/bap
+ Cpi/Cl2GnihLZOlru69e1LIOBgl8z9pstLWBWmiNQlf9Fjl/uW5nMwwo/SFT7fL1ksMb
+ lA53Txy2lLF88gltXZGzdxuxCMsi41CHUkq3+i1Cpd8fHQq/+GayoghLpErQHg4BojR0
+ 8idg==
+X-Gm-Message-State: AJIora+jh9BKMXrN3y14AA7xeTt3u9wsfUF3Vl+yGpo/WjY0u9b6KWhT
+ +Pw866Ss2IqGDv0cgenlqjAYA3lgHz6/OnHHIHU=
+X-Google-Smtp-Source: AGRyM1smyXtSVObDs+Zf7m/60pxrCys9dxGjP2XzE8Pi+TP3J+a4xmssY21qpiOE/VP9OPJH8jkSMkOLprWTuHC2x7g=
+X-Received: by 2002:a0d:db50:0:b0:31d:83a4:cbba with SMTP id
+ d77-20020a0ddb50000000b0031d83a4cbbamr15062685ywe.478.1657877671544; Fri, 15
+ Jul 2022 02:34:31 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v1 1/6] dma-buf: Add _unlocked postfix to function names
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- Daniel Stone <daniel@fooishbar.org>,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, Thierry Reding
- <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>
-References: <20220715005244.42198-1-dmitry.osipenko@collabora.com>
- <20220715005244.42198-2-dmitry.osipenko@collabora.com>
- <43c06f53-bad8-af99-0b57-781dbf716768@amd.com>
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <43c06f53-bad8-af99-0b57-781dbf716768@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <CAHk-=wgTmGaToVFdSdoFqT2sNkk7jg2rSWasUYv-tASUZ2j_0Q@mail.gmail.com>
+ <20220713050724.GA2471738@roeck-us.net>
+ <CAHk-=widUqghhXus_GCM9+FESa5vHqMb_pO3=0dGYH8C+yix2w@mail.gmail.com>
+ <a804b76e-159f-dbc2-f8dc-62a58552e88d@roeck-us.net>
+ <CADnq5_O6Tp2QPXyDCvpWuRXhDr6H1PM50Ow5YG2WeukqUd-GnQ@mail.gmail.com>
+ <CAHk-=wj4+BSj2SPMRUr-TZ4Qg2o9HGOBWiJQE336YcF_U1sVNQ@mail.gmail.com>
+ <9d18166d534dc30d83f2255d4512619aa6b3b517.camel@russell.cc>
+In-Reply-To: <9d18166d534dc30d83f2255d4512619aa6b3b517.camel@russell.cc>
+From: Sudip Mukherjee <sudipm.mukherjee@gmail.com>
+Date: Fri, 15 Jul 2022 10:33:55 +0100
+Message-ID: <CADVatmPHN6+5G0oMLEebhrCsHiF_kExTbCT2VivKRcs0M2Ng0Q@mail.gmail.com>
+Subject: Re: Linux 5.19-rc6
+To: Russell Currey <ruscur@russell.cc>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Fri, 15 Jul 2022 13:56:14 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -78,37 +69,61 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- spice-devel@lists.freedesktop.org, Dmitry Osipenko <digetx@gmail.com>,
- kernel@collabora.com, linux-media@vger.kernel.org
+Cc: Kefeng Wang <wangkefeng.wang@huawei.com>, Leo Li <sunpeng.li@amd.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Balbir Singh <bsingharora@gmail.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Paul Mackerras <paulus@ozlabs.org>, Alex Deucher <alexander.deucher@amd.com>,
+ "Russell King \(Oracle\)" <rmk+kernel@armlinux.org.uk>,
+ Harry Wentland <harry.wentland@amd.com>, Alex Deucher <alexdeucher@gmail.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Guenter Roeck <linux@roeck-us.net>, Daniel Axtens <dja@axtens.net>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 7/15/22 10:19, Christian König wrote:
->> -struct sg_table *dma_buf_map_attachment(struct dma_buf_attachment
->> *attach,
->> -                    enum dma_data_direction direction)
->> +struct sg_table *
->> +dma_buf_map_attachment_unlocked(struct dma_buf_attachment *attach,
->> +                enum dma_data_direction direction)
-> 
-> The locking state of mapping and unmapping operations depend on if the
-> attachment is dynamic or not.
-> 
-> So this here is not a good idea at all since it suggests that the
-> function is always called without holding the lock.
+Hi Russell,
 
-I had the same thought while was working on this patch and initially was
-thinking about adding an "unlocked" alias to dma_buf_map_attachment().
-In the end I decided that it will create even more confusion and it's
-simpler just to rename this func here since there are only two drivers
-using the dynamic mapping.
+On Fri, Jul 15, 2022 at 12:34 AM Russell Currey <ruscur@russell.cc> wrote:
+>
+> Hi Linus,
+>
+> On Wed, 2022-07-13 at 14:32 -0700, Linus Torvalds wrote:
+> > On Wed, Jul 13, 2022 at 2:01 PM Alex Deucher <alexdeucher@gmail.com>
+> > wrote:
+> > >
+> > > If you want to apply Guenter's patch original patch:
+> > > https://patchwork.freedesktop.org/patch/490184/
+> > > That's fine with me.
+> >
+> > Honestly, by this time I feel that it's too little, too late.
+> >
+> > The ppc people apparently didn't care at all about the fact that this
+> > driver didn't compile.
+> >
+> > At least Michael Ellerman and Daniel Axtens were cc'd on that thread
+> > with the proposed fix originally.
+> >
+> > I don't see any replies from ppc people as to why it happened, even
+> > though apparently a bog-standard "make allmodconfig" just doesn't
+> > build.
+>
+> I believe Michael Ellerman has been on holiday for some time, and
+> Daniel Axtens no longer works on powerpc (and wasn't the one that
+> submitted the patch, it was submitted by Paul Mackerras, who wasn't on
+> CC).
+>
+> The proposed fix didn't get sent to linuxppc-dev either, so it's
+> unlikely many ppc people knew about it.
+>
+> We certainly should have noticed allmodconfig was broken, and should
+> have more than just Michael keeping an eye on all his automated builds.
 
-Do you have suggestions how to improve it?
+Not sure if I have added the correct people in my another mail, but
+thats also ppc allmodconfig with gcc-12.
+https://lore.kernel.org/lkml/Ys%2FaDKZNhhsENH9S@debian/
+
+
 
 -- 
-Best regards,
-Dmitry
+Regards
+Sudip
