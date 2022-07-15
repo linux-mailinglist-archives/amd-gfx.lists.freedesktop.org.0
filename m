@@ -2,70 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5CD3576EA3
-	for <lists+amd-gfx@lfdr.de>; Sat, 16 Jul 2022 16:36:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28971576E9E
+	for <lists+amd-gfx@lfdr.de>; Sat, 16 Jul 2022 16:36:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FBA110E92F;
-	Sat, 16 Jul 2022 14:35:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87D3D10EB56;
+	Sat, 16 Jul 2022 14:35:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E2B411A6F4;
- Fri, 15 Jul 2022 06:59:55 +0000 (UTC)
-Received: from [192.168.2.145] (109-252-119-232.nat.spd-mgts.ru
- [109.252.119.232])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 7DF5F6601A3B;
- Fri, 15 Jul 2022 07:59:51 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1657868394;
- bh=19qGkCc2cIXoMAA2hZZj9V2aaITk+ZrC7c+cT0h41YY=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=j0I0uN1LjpBGty3wxdvM2KAjGZF9ug4hQElSe1mt+S/9szx5t+H2di6ibGmGpGXst
- wJqP/dMeGtbccnj2osoKKCrkRE6+8wLOBaVgBNOEo/GBbDPLe1bYNZC5ltalcJ/o5Y
- YInGEtLUCKwhn9dsrLDwPfLbVrgTdCd+K+zT4ixzjjv1kPg9eoH+1wKXtpb7kJJF9P
- HwM7g/NCi2I1Zy+ngkHWGz4hffPHdHVJYbYDCHcqqott7p3KpvlDofORSYcxIa1BJA
- 497iacGLeX+E5VO1y9Oho9JU4Sb6lu7rfJnAuI2chzPO7V3LdR3knQC2zJYw2y3PZo
- +kaWVIYB+SXVw==
-Message-ID: <1ce233a2-36c9-3698-59f0-c4ff902bec60@collabora.com>
-Date: Fri, 15 Jul 2022 09:59:47 +0300
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com
+ [209.85.219.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1E1211ACEC
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Jul 2022 07:26:34 +0000 (UTC)
+Received: by mail-qv1-f47.google.com with SMTP id p14so3160248qvo.9
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Jul 2022 00:26:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=WlQWMuQP9i7JA/10N1xXkOOHrioXOIiFbLtTV9MnWc8=;
+ b=ynEDlSGw/12qA/LNaVQAqgzF1Wr14S9IT8e8LqneJWu9yvdvJG+Xp118hyoboP1VEj
+ dqUdW75J+XrG5AVEDod+oEqBDUF1KHvcXkA+thhDuo+qxOqqkEbmtwvYBSgA2NmzULrs
+ Bi9DETiEWGPnFseTy/3T9oO4Tujqtn6waOXf1SoU2J/bkmJh8RA8ujubCDsm6w6Cj2ie
+ ihFEMK3EA4lKxczLbGwxxlP8WIamHAg8C3CO73zFffCzifzuYVyQliirc8ojC7eaFTEK
+ SFbB1vU4Fr1aCnoTlMaYAGP7ZIY/Tuf54SKYCvq2A5249sZ7R4VKf38NVUQ1TEDrjyOP
+ UDOA==
+X-Gm-Message-State: AJIora8n7/beE3vcwOTgh2Y6L0mLgro7OcvxmgI8uDjy8kJItiSR5e4P
+ Uf3ERE7UZaNrNM0nR2oLF//8nqS9X5gCuA==
+X-Google-Smtp-Source: AGRyM1uRTMHj9mflurMOu+FEPEl1AAv2N+XWmRFF8UQxOFzZAGRGXVUizpZwBueK9rPtaIiq6rdjgg==
+X-Received: by 2002:a05:6214:20e9:b0:472:f2e6:dd62 with SMTP id
+ 9-20020a05621420e900b00472f2e6dd62mr10958194qvk.67.1657869993588; 
+ Fri, 15 Jul 2022 00:26:33 -0700 (PDT)
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com.
+ [209.85.128.172]) by smtp.gmail.com with ESMTPSA id
+ k7-20020a05620a414700b006b5ccec4121sm1779021qko.5.2022.07.15.00.26.32
+ for <amd-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 15 Jul 2022 00:26:32 -0700 (PDT)
+Received: by mail-yw1-f172.google.com with SMTP id
+ 00721157ae682-31c8bb90d09so39254927b3.8
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Jul 2022 00:26:32 -0700 (PDT)
+X-Received: by 2002:a81:9209:0:b0:31c:b1b7:b063 with SMTP id
+ j9-20020a819209000000b0031cb1b7b063mr14363430ywg.383.1657869991832; Fri, 15
+ Jul 2022 00:26:31 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v1 4/6] dma-buf: Acquire wait-wound context on attachment
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- Daniel Stone <daniel@fooishbar.org>,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, Thierry Reding
- <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>
-References: <20220715005244.42198-1-dmitry.osipenko@collabora.com>
- <20220715005244.42198-5-dmitry.osipenko@collabora.com>
- <5ec9313e-8498-2838-0320-331c347ce905@amd.com>
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <5ec9313e-8498-2838-0320-331c347ce905@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <CAHk-=wgTmGaToVFdSdoFqT2sNkk7jg2rSWasUYv-tASUZ2j_0Q@mail.gmail.com>
+ <20220713050724.GA2471738@roeck-us.net>
+ <CAHk-=widUqghhXus_GCM9+FESa5vHqMb_pO3=0dGYH8C+yix2w@mail.gmail.com>
+ <a804b76e-159f-dbc2-f8dc-62a58552e88d@roeck-us.net>
+ <CADnq5_O6Tp2QPXyDCvpWuRXhDr6H1PM50Ow5YG2WeukqUd-GnQ@mail.gmail.com>
+ <CAHk-=wj4+BSj2SPMRUr-TZ4Qg2o9HGOBWiJQE336YcF_U1sVNQ@mail.gmail.com>
+ <CAMuHMdV9Pj9V-ZPpu=BMSkPt1uA_eCvU4+bxF8ZfHjteRk2CAg@mail.gmail.com>
+ <CAHk-=wgnmaTVigBc02tjqgcZaNJiYz8Xw77P+ERAXhcYjkwd=Q@mail.gmail.com>
+ <6d5ac61b-b490-4f9d-6521-a4b7477d6fd2@roeck-us.net>
+In-Reply-To: <6d5ac61b-b490-4f9d-6521-a4b7477d6fd2@roeck-us.net>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 15 Jul 2022 09:26:18 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX4Srd=WTGvtGoWhatEb8No7WUhrAYEmjX2+E11PnMVeg@mail.gmail.com>
+Message-ID: <CAMuHMdX4Srd=WTGvtGoWhatEb8No7WUhrAYEmjX2+E11PnMVeg@mail.gmail.com>
+Subject: Re: Linux 5.19-rc6
+To: Guenter Roeck <linux@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Fri, 15 Jul 2022 13:56:14 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -78,82 +74,59 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- spice-devel@lists.freedesktop.org, Dmitry Osipenko <digetx@gmail.com>,
- kernel@collabora.com, linux-media@vger.kernel.org
+Cc: Kefeng Wang <wangkefeng.wang@huawei.com>, Leo Li <sunpeng.li@amd.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Balbir Singh <bsingharora@gmail.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Paul Mackerras <paulus@ozlabs.org>, Alex Deucher <alexander.deucher@amd.com>,
+ "Russell King \(Oracle\)" <rmk+kernel@armlinux.org.uk>,
+ Michael Ellerman <mpe@ellerman.id.au>, Alex Deucher <alexdeucher@gmail.com>,
+ Harry Wentland <harry.wentland@amd.com>, Daniel Axtens <dja@axtens.net>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 7/15/22 09:50, Christian König wrote:
-> Am 15.07.22 um 02:52 schrieb Dmitry Osipenko:
->> Intel i915 GPU driver uses wait-wound mutex to lock multiple GEMs on the
->> attachment to the i915 dma-buf. In order to let all drivers utilize
->> shared
->> wait-wound context during attachment in a general way, make dma-buf
->> core to
->> acquire the ww context internally for the attachment operation and update
->> i915 driver to use the importer's ww context instead of the internal one.
->>
->>  From now on all dma-buf exporters shall use the importer's ww context
->> for
->> the attachment operation.
->>
->> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
->> ---
->>   drivers/dma-buf/dma-buf.c                     |  8 +++++-
->>   drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |  2 +-
->>   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 +-
->>   drivers/gpu/drm/i915/gem/i915_gem_object.h    |  6 ++---
->>   drivers/gpu/drm/i915/i915_gem_evict.c         |  2 +-
->>   drivers/gpu/drm/i915/i915_gem_ww.c            | 26 +++++++++++++++----
->>   drivers/gpu/drm/i915/i915_gem_ww.h            | 15 +++++++++--
->>   7 files changed, 47 insertions(+), 14 deletions(-)
->>
->> diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
->> index 0ee588276534..37545ecb845a 100644
->> --- a/drivers/dma-buf/dma-buf.c
->> +++ b/drivers/dma-buf/dma-buf.c
->> @@ -807,6 +807,8 @@ static struct sg_table * __map_dma_buf(struct
->> dma_buf_attachment *attach,
->>    * Optionally this calls &dma_buf_ops.attach to allow
->> device-specific attach
->>    * functionality.
->>    *
->> + * Exporters shall use ww_ctx acquired by this function.
->> + *
->>    * Returns:
->>    *
->>    * A pointer to newly created &dma_buf_attachment on success, or a
->> negative
->> @@ -822,6 +824,7 @@ dma_buf_dynamic_attach_unlocked(struct dma_buf
->> *dmabuf, struct device *dev,
->>                   void *importer_priv)
->>   {
->>       struct dma_buf_attachment *attach;
->> +    struct ww_acquire_ctx ww_ctx;
->>       int ret;
->>         if (WARN_ON(!dmabuf || !dev))
->> @@ -841,7 +844,8 @@ dma_buf_dynamic_attach_unlocked(struct dma_buf
->> *dmabuf, struct device *dev,
->>       attach->importer_ops = importer_ops;
->>       attach->importer_priv = importer_priv;
->>   -    dma_resv_lock(dmabuf->resv, NULL);
->> +    ww_acquire_init(&ww_ctx, &reservation_ww_class);
->> +    dma_resv_lock(dmabuf->resv, &ww_ctx);
-> 
-> That won't work like this. The core property of a WW context is that you
-> need to unwind all the locks and re-quire them with the contended one
-> first.
-> 
-> When you statically lock the imported one here you can't do that any more.
+On Thu, Jul 14, 2022 at 7:24 PM Guenter Roeck <linux@roeck-us.net> wrote:
+> On 7/14/22 09:48, Linus Torvalds wrote:
+> > And some look positively strange. Like that
+> >
+> >    drivers/mfd/asic3.c: error: unused variable 'asic'
+> > [-Werror=unused-variable]:  => 941:23
+> >
+> > which is clearly used three lines later by
+> >
+> >          iounmap(asic->tmio_cnf);
+> >
+> > and I can't find any case of 'iounmap()' having been defined to an
+> > empty macro or anything like that to explain it. The error in
+> > drivers/tty/serial/sh-sci.c looks to be exactly the same issue, just
+> > with ioremap() instead of iounmap().
+> >
+> > It would be good to have some way to find which build/architecture it
+> > is, because right now it just looks bogus.
+> >
+> > Do you perhaps use some broken compiler that complains when the empty
+> > inline functions don't use their arguments? Because that's what those
+> > ioremap/iounmap() ones look like to me, but there might be some
+> > magical architecture / config that has issues that aren't obvious.
+> >
+> > IOW, I'd love to get those fixed, but I would also want a little bit more info.
+> >
+> Geert gave the necessary hint - it looks like sh-nommu used defines
+> for iomap() and iounmap(), which made the variable unused. According
+> to Geert that was fixed a couple of days ago.
 
-You're right. I felt that something is missing here, but couldn't
-notice. I'll think more about this and enable
-CONFIG_DEBUG_WW_MUTEX_SLOWPATH. Thank you!
+Yes, post-rc6 should be fine, as the fix went in... for the third time.
+Combine people that keep on switching back to macros without reading
+a file's history with unresponsive maintainers...
 
--- 
-Best regards,
-Dmitry
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
