@@ -1,93 +1,118 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFF9C576F56
-	for <lists+amd-gfx@lfdr.de>; Sat, 16 Jul 2022 16:43:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE841576EC7
+	for <lists+amd-gfx@lfdr.de>; Sat, 16 Jul 2022 16:38:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC0111125B5;
-	Sat, 16 Jul 2022 14:36:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C2AE10F470;
+	Sat, 16 Jul 2022 14:35:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2082.outbound.protection.outlook.com [40.107.92.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32D3110E06A;
- Fri, 15 Jul 2022 15:05:55 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F93C10E0E5
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Jul 2022 15:18:26 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CcmG4GNmbrB2tfag4fHOEduFQO34ba7GDMbT4EHr5kS0+GjSEV5T/hWV/b2BFSTwk+MhXIwyqDYfXO3g/JUoHygVEZU5wL9CwjfpmX9nZbV4/L3A320Frl/S8d/D2jYiiuuP514jR3dye1k4smeJPu2CzqClgSWhdfuw96i9eel+sYkME7u9SccnOigF1hGqcWGj3SmVLOejNL9t9bYB9HCVOyeG7AsoZTS5wDE2rc1r+XvG2MFACl3wR+kiwYqVLNzGvN8iLw0dWu+Rce12PeGdozVMink8SlWqhw3mHxuXhNgX7ySyhuTd+xMz8pTwvgNVNQuqxZSB0G0eKhntow==
+ b=mEUtl1/Vx9Xj0Ei8lcX2BJAQYwE/6rROuVpEmiz5YOmg9S7Yxy74albDfJB50JBbMr3ti4PDT2ZxBybRx3Oqr8OWUcUbZMA1se+P+uoXwrcXovCKIDEqIUUiUnOIkqV3XxhTs8UOLNLS2RR8txVIJh+CQcms5+ZXWTxsd4NgsDNb9wx6j/xxen2E3SjPh4ta8f/KOCYpPHneM/g224VIylFnih0uLjHoq3aI70neSMhN+i3T7lBeOiEgT9DNOe87LhHTOXNDssFxr5veyXvGNZSyC7i3jIScFiVtlqAgl6bgYzWS/tF6wHVEaKVeRCzHfOEid3nPWULkp45u6UN+LA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ghINYxYAaP35msqhqy+uXLJjlA8u9eNbkgf4YFEOveA=;
- b=LVq2X6qCcI7LLAEroBx3pZbOaV8vi0h35tneNYEGs7L6nhDQ/VISrytyDTuVvW68fw3pN/H3ntJkxV7AT8exCVqEsoIjGKQFkOS+DdS0KjxtlDn7DhBLpjMKy+JLDSx7shqdi6fVXcKtf4I1KVUcMc7lPzMjhhOWCrXkkcbmQBN7pPZdn3h78JDXgq8uAsoVRD1/WU+ZinUVD+OIJV4hcuN4fD4lDft7IuG1a09pX4lNHQ/3CBOJoYgtaJqfLLU4RvAyu1d3cEoeGAIBWEreng7zT7xTF49L20Z7W2oVhJeiUC4MvJrNPXdwCw8n2tDhPFA8xQOt+QJn0SRgbalg4w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=nvidia.com smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
+ bh=PpdF5S7oo5Uo+4VNBf2z/gzPwwEhr6CqhCvZ2m0AXlo=;
+ b=SHOcCbgUP45jFF3at3tnuMiCB5YKtLvoWk90mtmpyBU50aWvAu/Ls9g7Q652Bz8rpZ8Zub8WRiLVjQZY7n03X5qyHwUilw58GS4Wdp1Ti2ro2xc03eEhmFf8isOHo+/m6cgJvMjY5j9qOt0WP99ienE++iO84NirT+D/AhnVZj82IBEw0CC5erdR4dhxzqloXH2A672kKM8FnISoHBi+oBuVUSItN89wbXdNS5mvwAlfsnCJAVSzICT6EKPVgi2Up54IGBFAuY7PxnUU3Nm0/XYu65aj5mLwln0yqajeoycD/Isrmz28Lawcx3OgPnhmeest4NhLIyw7xLxRBOIZEw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ghINYxYAaP35msqhqy+uXLJjlA8u9eNbkgf4YFEOveA=;
- b=c++1AQwSq+Ph+FBOcYUKzUqAREwGjmebjvjilZTYsf4Axq8ZzoVpU80NiIG6Dsg6ba+/f7IBJuXvFj94MJkTE8wR7RwpQoawTtOFxgDQbXSSXS1EeYbE+AXjhFjRn9++aDYwBnO/pXyLv8YdQHTlX2oiuVzElm3ZHOwojbDpfDQ=
-Received: from DS7P222CA0015.NAMP222.PROD.OUTLOOK.COM (2603:10b6:8:2e::27) by
- SA1PR12MB6972.namprd12.prod.outlook.com (2603:10b6:806:24f::19) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=PpdF5S7oo5Uo+4VNBf2z/gzPwwEhr6CqhCvZ2m0AXlo=;
+ b=qjG4oh9qkhU60fKvRrOfY24U4Db3vdYRVGprdRa2KlVY7GykHYOGUuoCI1/0M7MEsCcqkraH9EZZGsp12qc0faNYNsyhyPn6POw3hHs7kxuhxKN/dg6YjX4n9ef4cf4ekeePAm67zCYi1sWlz0qT0FeaktuiGnwM4T1A/h5SH7s=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
+ by CY4PR12MB1415.namprd12.prod.outlook.com (2603:10b6:903:43::22)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.14; Fri, 15 Jul
- 2022 15:05:52 +0000
-Received: from DM6NAM11FT045.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:2e:cafe::2c) by DS7P222CA0015.outlook.office365.com
- (2603:10b6:8:2e::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.17 via Frontend
- Transport; Fri, 15 Jul 2022 15:05:52 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT045.mail.protection.outlook.com (10.13.173.123) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5438.12 via Frontend Transport; Fri, 15 Jul 2022 15:05:52 +0000
-Received: from alex-MS-7B09.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 15 Jul
- 2022 10:05:50 -0500
-From: Alex Sierra <alex.sierra@amd.com>
-To: <jgg@nvidia.com>
-Subject: [PATCH v9 14/14] tools: add selftests to hmm for COW in device memory
-Date: Fri, 15 Jul 2022 10:05:21 -0500
-Message-ID: <20220715150521.18165-15-alex.sierra@amd.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220715150521.18165-1-alex.sierra@amd.com>
-References: <20220715150521.18165-1-alex.sierra@amd.com>
+ 2022 15:18:22 +0000
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::905:1701:3b51:7e39]) by BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::905:1701:3b51:7e39%2]) with mapi id 15.20.5438.013; Fri, 15 Jul 2022
+ 15:18:21 +0000
+Message-ID: <c06f6582-46aa-9abb-5094-f027cf01c1c6@amd.com>
+Date: Fri, 15 Jul 2022 17:18:16 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v2] drm/amdgpu: add HW_IP_VCN_UNIFIED type
+Content-Language: en-US
+To: Ruijing Dong <ruijing.dong@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20220715144453.46786-1-ruijing.dong@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20220715144453.46786-1-ruijing.dong@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM6PR04CA0045.eurprd04.prod.outlook.com
+ (2603:10a6:20b:f0::22) To BN8PR12MB3587.namprd12.prod.outlook.com
+ (2603:10b6:408:43::13)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 35a4cc4e-ab65-4cc9-3a3c-08da667382b8
-X-MS-TrafficTypeDiagnostic: SA1PR12MB6972:EE_
+X-MS-Office365-Filtering-Correlation-Id: a00a7f58-c581-4902-10f5-08da667540fb
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1415:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /bY27H8ENSJl9dTI5r557agMFt9ob9FbjXMrmBV92gmMpMV9txC1Cum05rYW3SeTQ7c7BM5o3oMJUyjRNCX5uTcMEW+5rmxBmbOc4z9fcm9p0Sfny6mqpWt7/g5GmSJNRtcMk8iKnvkcwp3hg5xiIH6a3lfdHP29giztQ1YjL1TjTLOwZU3zpkEdghe2Qo1PDniG2u+xo06wBPfvCo+pWxYFQkJk86ntrrd0Acc3iG6cChpLP2e/RY8nEoZJaS75K58yHxoODCcmp9rLEmekzdRFJtOpVOlwatJ0afJ/8FgBBtcpicfhkSgg14w7P/Kb20XvTXqq3IVFgrLakKcZGcZcA/SSpFMueTp45vBu8DbfPSX319fDgMEIMHOlaWe3jhNwzblMHDe3ipbEoAtJJ/3AtC9ix2gtpYrmGWtMgHvlSC/UQRTNK3x/OJD/yaoEh40ADz273fcByS2aWQn5nsHY2kcUJJhxmPTPKTKwv6hxRHqMVU+8UcOhBiF8fpQNQMCjEMg5sPkgL0d4TMkjw/ParA1Lg8iGYpcKG4FNLKvfd+BZjePIvO5D+u7nx031A8W/EidMallOwdrt5owM4LhcN3HjG9PVRMOIPGz1wRwHqaZNPyCaaCV1erQ+JaGBdRWBldZjS+qL+SmKMvjSm/I+n48HOMfvo3v4bX9uGZ4mqA/Mn4PRkYYz8wDLGsbPxNSX/3gnmGc2bkvVDIGlaB0KIjEkqM4JZt9qVZwqLBCAc/KHZACItxXzlfLK/yhJmKgHJHXZSFFYNeJhwPOcNPa2UGfnJv0DZpAWVIo3Jp7VWCNrbH/cVcJjnughdi77vPZbGKY+AM3qzTHh6mvcL0gThhrmFf1RTn73B2pVAhA=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(396003)(39860400002)(136003)(346002)(376002)(36840700001)(46966006)(40470700004)(82740400003)(2906002)(36860700001)(47076005)(7696005)(82310400005)(6916009)(83380400001)(2616005)(54906003)(36756003)(336012)(6666004)(356005)(426003)(41300700001)(26005)(478600001)(8936002)(1076003)(5660300002)(7416002)(16526019)(44832011)(316002)(186003)(4326008)(81166007)(70206006)(40460700003)(70586007)(40480700001)(8676002)(86362001)(36900700001);
+X-Microsoft-Antispam-Message-Info: TjIx5GsEL90cycfGv7hesZVC7pJqtwL6C5b/6H8mg7vcrOUJG6K3xyUi2iJ+xv6HOJHCC+H4IdYf4mLm+jhKumiVANHfJx0ac4m3EBwxsZzhEE9cyPNettV99WZRxn7EB3GUsu4c8xqpNT24iUxjBPVPj7+PUinGKr47GTRreGaQH0JI/O1vOMy/1HTQui0HUDJKXUtzjSs+Fgyo/77e5gJsgJPNIAzX7GjD8r3RuDEWyK7//v08Kewjv7PxoVDOyS5/kfCrC3NJsgwhb1PHK/JoEhHlWp2QB0Zma9T5NNb0FflUv89mlqLOfIEGyVJxJAGZcp1hZ12hWSHWPF5kU3L4FH2e0b23lwVZ3KKnwgay/f9q1rcu7fylnij++tETub6EiyvjUphlEmEBgN8xtIWHrrx/MSKKPwZDuw/nNue5r61DVxUookbF7OWbV3CksJsz5q4rgFlV7r0Ny80IBlqsM8mflOgW/SVXNmwqdzA8orGm8aeA2/2hjQf/jIz038OzSp5IRBYSSTNl7+rJ8nqE/VwB0gLt9BtDn3Ujmo/gmOg3rcpi1d5s1zlLQoDECoiaVEOZJxnQu0t+DsK0+Zo3rUSNQBAyGQLeRmsxsN7YKQ4Y291od/7kityEYQfUt9QN+dHJ0z53DCjsH540pw0fScrLBZlA+1nQjhCLR+rvd3Bv0RiLENycOZRPY0kBpa40aANKdHrAoigau5hRWyw0ksmhmYTGXz5EajD1lggklwjYuGsKk4/s1O3vF8Wb5Ef0+zrvrNhbW/z20CIIr8aWfxF8qGkUKtZ2EJFAvXA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(39860400002)(396003)(366004)(136003)(346002)(376002)(186003)(6512007)(966005)(6486002)(5660300002)(8936002)(83380400001)(2906002)(316002)(41300700001)(2616005)(86362001)(31686004)(66476007)(31696002)(66556008)(66946007)(36756003)(4326008)(8676002)(38100700002)(6506007)(478600001)(6666004)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c3NVMkI1LzdvbWl4WGQrWit6U1VtUWxpbkwwS2dOdVlmSmFsMzEzcUV4TDFa?=
+ =?utf-8?B?QkZxR1FMSll4dUVXNHpQZ2t1dU5Tb0Rsbk0vTlJoc2xKRHpSWGJ4bjJqU0xV?=
+ =?utf-8?B?MGVHVHlFTmR4MVBFem5pVnlCdms0Slhtbmk4Unh0RWI2N0pLeUg5V25vYTVR?=
+ =?utf-8?B?LzZEeitMeVFaMW8ySGFORVBJUGlMSURGcE5hSXFQUHBKSE5ZQlg5ZHNMeWZl?=
+ =?utf-8?B?S1FldjNsdFZZS2o3UjFxNytWdEdYM3lKait3WldRQlJud0dVTldOd0NiZ1lt?=
+ =?utf-8?B?NGxlcXI4L3dWeDltaFMwTHgvUk51ZDRYUGJLWTd6Z1RXaVUzYURqa1RTczAw?=
+ =?utf-8?B?ZW05NlRMLzkzbHUwQ2VOVzRCdTBlNlJPaTE1TC9seUZmSlZuRTJPRlRTU1JL?=
+ =?utf-8?B?WWxmZ2xDSys2UkduNmdkSTNrUkhVblYrWmR3dnNZd3RoQy9QUTZLRDZoMUlm?=
+ =?utf-8?B?R3g3WmN1a21BRmZJZCtOcDdmQWh0OWpuNGtVeUpsNktPMWNoN290TVE1TFBy?=
+ =?utf-8?B?UURSOGNPR2tXeGlkUk9DK0lkek84NENwcFE0bHVUMHprS1BaQlVUTWlxaFRN?=
+ =?utf-8?B?V0lTTVJMNlVnNTYwTVpoNkdzSndmS0lIYlFVbEliUndrZUhjQnpkWHdoN0Qx?=
+ =?utf-8?B?d2QyeDFmMUpXamc3SEYxdGlJRGFPM1RNMjc2WVlVRUNCU2lJSDY2NEUzTGZY?=
+ =?utf-8?B?bFZkcHNnUG5LVlVxOHhiVk5NUGdjU3hXT0REVzN1bWV6bC9UQy9lZEZQZmFu?=
+ =?utf-8?B?YnVraTZBc2ZUZzdvWXk5aHFxQWUzb1dKUkdBVkJlUjZHSnYzOGFycFNzb3VE?=
+ =?utf-8?B?Vjk3ZFpndHF0M2crTDhpMUgydElGcVA2SFhFTkVsOWdCckF3K2RvcEFJangz?=
+ =?utf-8?B?R0FRSWJrT1V4QStQbkhNQXRiVzhpN2xnQ0hCSnBlY0ptZDloU2hOZVNtQ0JV?=
+ =?utf-8?B?dWk0QmNMNDFNcmNtMUhyUDN2WkpCdUhnRmVLalQ1dnVadlMrMjRNNE9PZ2F2?=
+ =?utf-8?B?OGdXaS9aSXYyankya3paY3NCa0JTdzAyZ004MElnRnZUVncyUnNvWUhXdzEw?=
+ =?utf-8?B?VW0zdTlSMHpFdmZjaEU2N2dNcGNVa0dWSlVSUmFwak9HV011TzJVQUdicldD?=
+ =?utf-8?B?dk1Bb1BON3BOWGN4RzdQNHJpbWEybVA2MkpRRHpJT3lqbHd5RkFNZDBNNE5H?=
+ =?utf-8?B?Yit2SDFqbzdrSmtidHZ4dmZ2YWFValJWemprcm5SMTREQ2o5aWRVQTNwOG14?=
+ =?utf-8?B?THU2cDRLY0x6NmkrVUN0dEdocHZheVRQNFFjTkkzUzdlU2dpTGZGSmF5WlZP?=
+ =?utf-8?B?ZlVtVWVFMW1zdGRFK0ZudmNFZG0weW1oZ3lpeWgvRDBvOGxPWVU4T2pSY3JV?=
+ =?utf-8?B?bW5EbGtWQmQ5eVV6MDdtdFp2VUtNUi9FQlZTZzNETGNiV1JxREZtd1B6dTJK?=
+ =?utf-8?B?Yk9iR0F5NUcvMWtyZEIyN0RpTVVTbityVUpOTHg5RExsMFpncWZMczRFa2Jr?=
+ =?utf-8?B?czEvN2JUTU03VjVsbUtHN0JvWTVEZkI5MUdETlUrLzIyY2FyOHg0RldJdkU0?=
+ =?utf-8?B?YnhVaURMWS9mcEFiQ01KMnN3SWE0ZnNkZGp1Vk5SRW9LeUNnaHllMDFPUlZs?=
+ =?utf-8?B?MEF6TVg0L0txVW4raGVBZjdrbXRNdit0UXBFeEFkL0Z0eVRIMlRGYThpaUc5?=
+ =?utf-8?B?dko0aFQwcGRhRDlnLzhhT1pzeElTcmtjbVAwdXBMamJBSzZFTDdROVZEZUFB?=
+ =?utf-8?B?REZPdGdPNGFjWTF6ZDhXcHduckFGaHdGOGlSbFRWb0tZRDdiZzFoRnRiSFBL?=
+ =?utf-8?B?K294eFhyQk5YOFBuc2xmTHVXR0daVDErcm9ncTVmY3h2dUdKbTRuV3ZhbkJN?=
+ =?utf-8?B?OU5lc0xGbE1pdG5NOUVSa3ZrdW1zSWpwYnovN24wUjIvY25HajNTdmt5SUhX?=
+ =?utf-8?B?bXI4ZDZxOWtHVm5KM2grWHp4R0RmOEVKdTNEWHJDWjZHZlMvMHBtL1pwWjlT?=
+ =?utf-8?B?QStYbnZWOExzTzJlZGtrdFhsaDcvQ3p0UzZjSnJVcnRzRTFVZGhIQmdQUStM?=
+ =?utf-8?B?SmprM0hKOHVWTWhwWVFUODZLVGFsd2E0c3V1bW9KQnRVelRxQ1VwS1RxSlg5?=
+ =?utf-8?B?SldoUEpJY3BDUkJPRjNIWnE2bVl0MTFaU3V5UDNmcGRBTVRURGtZVFNyNlVS?=
+ =?utf-8?Q?Dte54fjH7YE6X0t91zdb4DfWLiwhOegXTIs37EeemDtY?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2022 15:05:52.5792 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 35a4cc4e-ab65-4cc9-3a3c-08da667382b8
+X-MS-Exchange-CrossTenant-Network-Message-Id: a00a7f58-c581-4902-10f5-08da667540fb
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2022 15:18:21.6248 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT045.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6972
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dD3Ou3h3DcUO25XgCPKKoxTp4ekazDJaO76U/YQPtgDs+JfqLHQWIgvQC2a8DpZU
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1415
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,116 +124,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rcampbell@nvidia.com, willy@infradead.org, david@redhat.com,
- Felix.Kuehling@amd.com, apopple@nvidia.com, amd-gfx@lists.freedesktop.org,
- linux-xfs@vger.kernel.org, linux-mm@kvack.org, jglisse@redhat.com,
- dri-devel@lists.freedesktop.org, akpm@linux-foundation.org,
- linux-ext4@vger.kernel.org, hch@lst.de
+Cc: alexander.deucher@amd.com, leo.liu@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The objective is to test device migration mechanism in pages marked
-as COW, for private and coherent device type. In case of writing to
-COW private page(s), a page fault will migrate pages back to system
-memory first. Then, these pages will be duplicated. In case of COW
-device coherent type, pages are duplicated directly from device
-memory.
+Am 15.07.22 um 16:44 schrieb Ruijing Dong:
+> Define HW_IP_VCN_UNIFIED type the same as HW_IP_VCN_ENC.
+>
+> VCN4 support for libdrm needs a new definition for
+> the unified queue, so that it can align to the kernel.
+>
+> link: https://gitlab.freedesktop.org/mesa/drm/-/merge_requests/245/commits
+>
+> Signed-off-by: Ruijing Dong <ruijing.dong@amd.com>
+> ---
+>   include/uapi/drm/amdgpu_drm.h | 1 +
+>   1 file changed, 1 insertion(+)
+>
+> diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
+> index 18d3246d636e..fe33db8441bc 100644
+> --- a/include/uapi/drm/amdgpu_drm.h
+> +++ b/include/uapi/drm/amdgpu_drm.h
+> @@ -560,6 +560,7 @@ struct drm_amdgpu_gem_va {
+>   #define AMDGPU_HW_IP_UVD_ENC      5
+>   #define AMDGPU_HW_IP_VCN_DEC      6
+>   #define AMDGPU_HW_IP_VCN_ENC      7
+> +#define AMDGPU_HW_IP_VCN_UNIFIED  AMDGPU_HW_IP_VCN_ENC
 
-Signed-off-by: Alex Sierra <alex.sierra@amd.com>
-Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
----
- tools/testing/selftests/vm/hmm-tests.c | 80 ++++++++++++++++++++++++++
- 1 file changed, 80 insertions(+)
+Why exactly do we need a new define for this? Essentially the encode 
+queue is extended with new functionality, isn't it?
 
-diff --git a/tools/testing/selftests/vm/hmm-tests.c b/tools/testing/selftests/vm/hmm-tests.c
-index bb38b9777610..716b62c05e3d 100644
---- a/tools/testing/selftests/vm/hmm-tests.c
-+++ b/tools/testing/selftests/vm/hmm-tests.c
-@@ -1874,4 +1874,84 @@ TEST_F(hmm, hmm_gup_test)
- 	close(gup_fd);
- 	hmm_buffer_free(buffer);
- }
-+
-+/*
-+ * Test copy-on-write in device pages.
-+ * In case of writing to COW private page(s), a page fault will migrate pages
-+ * back to system memory first. Then, these pages will be duplicated. In case
-+ * of COW device coherent type, pages are duplicated directly from device
-+ * memory.
-+ */
-+TEST_F(hmm, hmm_cow_in_device)
-+{
-+	struct hmm_buffer *buffer;
-+	unsigned long npages;
-+	unsigned long size;
-+	unsigned long i;
-+	int *ptr;
-+	int ret;
-+	unsigned char *m;
-+	pid_t pid;
-+	int status;
-+
-+	npages = 4;
-+	size = npages << self->page_shift;
-+
-+	buffer = malloc(sizeof(*buffer));
-+	ASSERT_NE(buffer, NULL);
-+
-+	buffer->fd = -1;
-+	buffer->size = size;
-+	buffer->mirror = malloc(size);
-+	ASSERT_NE(buffer->mirror, NULL);
-+
-+	buffer->ptr = mmap(NULL, size,
-+			   PROT_READ | PROT_WRITE,
-+			   MAP_PRIVATE | MAP_ANONYMOUS,
-+			   buffer->fd, 0);
-+	ASSERT_NE(buffer->ptr, MAP_FAILED);
-+
-+	/* Initialize buffer in system memory. */
-+	for (i = 0, ptr = buffer->ptr; i < size / sizeof(*ptr); ++i)
-+		ptr[i] = i;
-+
-+	/* Migrate memory to device. */
-+
-+	ret = hmm_migrate_sys_to_dev(self->fd, buffer, npages);
-+	ASSERT_EQ(ret, 0);
-+	ASSERT_EQ(buffer->cpages, npages);
-+
-+	pid = fork();
-+	if (pid == -1)
-+		ASSERT_EQ(pid, 0);
-+	if (!pid) {
-+		/* Child process waitd for SIGTERM from the parent. */
-+		while (1) {
-+		}
-+		perror("Should not reach this\n");
-+		exit(0);
-+	}
-+	/* Parent process writes to COW pages(s) and gets a
-+	 * new copy in system. In case of device private pages,
-+	 * this write causes a migration to system mem first.
-+	 */
-+	for (i = 0, ptr = buffer->ptr; i < size / sizeof(*ptr); ++i)
-+		ptr[i] = i;
-+
-+	/* Terminate child and wait */
-+	EXPECT_EQ(0, kill(pid, SIGTERM));
-+	EXPECT_EQ(pid, waitpid(pid, &status, 0));
-+	EXPECT_NE(0, WIFSIGNALED(status));
-+	EXPECT_EQ(SIGTERM, WTERMSIG(status));
-+
-+	/* Take snapshot to CPU pagetables */
-+	ret = hmm_dmirror_cmd(self->fd, HMM_DMIRROR_SNAPSHOT, buffer, npages);
-+	ASSERT_EQ(ret, 0);
-+	ASSERT_EQ(buffer->cpages, npages);
-+	m = buffer->mirror;
-+	for (i = 0; i < npages; i++)
-+		ASSERT_EQ(HMM_DMIRROR_PROT_WRITE, m[i]);
-+
-+	hmm_buffer_free(buffer);
-+}
- TEST_HARNESS_MAIN
--- 
-2.32.0
+So I think we should just stick to AMDGPU_HW_IP_VCN_ENC and not add an 
+alias for it.
+
+Regards,
+Christian.
+
+>   #define AMDGPU_HW_IP_VCN_JPEG     8
+>   #define AMDGPU_HW_IP_NUM          9
+>   
 
