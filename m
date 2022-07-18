@@ -2,122 +2,117 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 771DF57859D
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 Jul 2022 16:37:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44B365785B5
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 Jul 2022 16:44:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 848FB8B4BB;
-	Mon, 18 Jul 2022 14:37:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E9098D71E;
+	Mon, 18 Jul 2022 14:44:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2041.outbound.protection.outlook.com [40.107.223.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25CDA8B4F3
- for <amd-gfx@lists.freedesktop.org>; Mon, 18 Jul 2022 14:37:28 +0000 (UTC)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02on2047.outbound.protection.outlook.com [40.107.95.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDC9E8D713;
+ Mon, 18 Jul 2022 14:44:44 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Q/J/eqHYvn8SyA7MghWoXZOuq8X0mswyXlmMWI5ZXyWeXUvRphxdRpFh8pt1PIvHtVWe0bDYe42au8p/Wcw2roL59ObgwHa7n4gB5sqblhzIYr7Ky62gk35Se8Ob/cnvZfW8N0WHuNABP6/EQt9t8SuzOxVj5Z1wVzonFIifI5JRyq30bkIxRZo4xPdp0KUJepYBR2LyprX7JK6EZsLcsJhhqtsLGqiOnOT8gK35+uI7MRA7Pj000hy3/Ru3ZsOfZz1A1IRUnZDMOpqi12nk9ogiRwa8JFYF4NAq8RihVGYgfd8JEc6tg6Cyj1DfCoLjrh0HC3/m1oTzpDO6FLWlgg==
+ b=FW1gfqoBI7dLexJtKFfOwbqmqnzeBQKmDz4vD4TtswOxe1Ys541ymcW2C2fKRj/zMxW6JIblJ4yxGA3TN9DFLJnUHB+xn0wj8xxuovKw/gyD2tDHyKVEvTirCjCLrNZhUDQRwHYv8xDJeGSL/8byM+5dtG7yazo8VqK+mHpqQE26sn9lSpNDIGWTnte7ZDoUwSckxJ9gm7w5HIzS8u0QrMRKSs2Arf3NdS1vPCmqR0EibsHkPs3ApwxXxkF049IFTJ3ZoqQJT5RhGx+Sv4t82ow2YzrUn3ZUxKYEKdUvXef/R8QkEFVWUCq/J17K11As0tAhKMsNRQFTjws+FrKLfQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=x7K3j0tZznGFEJORGU7eED6DMR70G9p4o66GeGCDknM=;
- b=P8f0h76Bk//4TSW7KZ8WDmBoex8WtONWCvi86+QH8/ELyxofhPZAt7ZBuSEcqHmj1GEU0xPyaotZfoNU1ta1M6AElw3gyoGgatnA0xSBQQRB17k56E7DI8pW9OmkTTuBOi6QZbIr2zG6UIbswBZYSRmL5P65454Gi6cAUiig6xqxKdHgH4Vsu/faN3hHW79ZUD/5vEdlmcZkhRV+ax/Rc2Iedn3IosMGiUCleW6sF/xEfSLijSXSFfKQoNnY7UHKmi3TvG6FlsH643S26K2eL8flRkQRxWB3NZgqZfaMqRC9ROU9DiyFTg1KDJC7ZcQImTCduPTUNK5zvQ7IH3WJsA==
+ bh=WowxVs+RZN0fr4hgO5gs5LKYu6e34RGDMochP6f+uWg=;
+ b=WkAqdIwUYBeiP+d3bHRB4/FEfkfrV8XnT4RuvnRc7ZFiYsTUCCZ/3pzNgF1jad0iEDup/spu1acs73yv6kHyBE/2GHMeNN8RKt63frryLjHK+DYR8gZZTm2aIUpdqnlvkdXI6y7PwcKq3bvv4GsfESO4RpYOk1QGWZ+iLZMoJpMwoZu3nexErMbu1TdcuhINt+rW/bJ5Ai5Pg304pF2OlAhRR040c+/YbQn23iYSMtZ942k2dqUwZr7oSyS+8QJ9SLb1TGvIB4lt76/Qac4bCE5nQMJ/COfnGSGq1I/P+m+hK5mh7QXuE0Q4gjlAcmwVQlMALUr/zgXbuY1UbCQYfA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=x7K3j0tZznGFEJORGU7eED6DMR70G9p4o66GeGCDknM=;
- b=LJ89uwbB95t55K4zC3k9/hYFnMFvKsR7zpfHqLv5Jmu+fEbEAcWdjyiCZWrzo06W0ptA7bmkPxZ9/ii5r06akF1hj7NatPlmaXuiEQrXNOlicWuoxLI7ULCLoJDtEGOesRNg9yxyFumsaAeRWNIR0dvwiixW8ZPcmkgEjmMzJw8=
+ bh=WowxVs+RZN0fr4hgO5gs5LKYu6e34RGDMochP6f+uWg=;
+ b=PIEHCVUR3YbsZZoIea+Eh3KZSwgOKR/yE0zqLEj7P3Kwa0fzyyqxpsSUynZCKo9cJh75BYmlRuW+8gJmms2iPsX9JWiuJzupd2eyys7Mp4dNQ8mTFGmSqU/miwwkKvJtO6ZN/UGaa3iJ4rIWvkV9+lXSaKN4zxWVMk9mQeH6Nfs=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
 Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by MN2PR12MB4048.namprd12.prod.outlook.com (2603:10b6:208:1d5::8)
+ by BN8PR12MB3602.namprd12.prod.outlook.com (2603:10b6:408:49::22)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.19; Mon, 18 Jul
- 2022 14:37:26 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.14; Mon, 18 Jul
+ 2022 14:44:42 +0000
 Received: from BN8PR12MB3587.namprd12.prod.outlook.com
  ([fe80::905:1701:3b51:7e39]) by BN8PR12MB3587.namprd12.prod.outlook.com
  ([fe80::905:1701:3b51:7e39%2]) with mapi id 15.20.5438.023; Mon, 18 Jul 2022
- 14:37:26 +0000
-Message-ID: <1126fff2-0896-1002-be28-5eb0a83beed5@amd.com>
-Date: Mon, 18 Jul 2022 16:37:20 +0200
+ 14:44:42 +0000
+Message-ID: <a9ca8493-5fe6-4271-d551-284b99549664@amd.com>
+Date: Mon, 18 Jul 2022 16:44:34 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH v4] drm/amdgpu: add HW_IP_VCN_UNIFIED type
+Subject: Re: [PATCH] dma-buf: Fix comment typo
 Content-Language: en-US
-To: "Dong, Ruijing" <Ruijing.Dong@amd.com>, "Liu, Leo" <Leo.Liu@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-References: <20220715200410.301438-1-ruijing.dong@amd.com>
- <e2dbaab9-de5a-3180-13a8-cec2c8b0285d@amd.com>
- <7beb798d-73ba-7015-7b3d-441a5daef26f@amd.com>
- <4f91384a-bef6-b8da-77c1-0bd5f4e7b3c1@amd.com>
- <SJ1PR12MB61946514C9D9B9DF87C9CF06958C9@SJ1PR12MB6194.namprd12.prod.outlook.com>
+To: Jason Wang <wangborong@cdjrlc.com>, daniel@ffwll.ch
+References: <20220715052017.31633-1-wangborong@cdjrlc.com>
 From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <SJ1PR12MB61946514C9D9B9DF87C9CF06958C9@SJ1PR12MB6194.namprd12.prod.outlook.com>
+In-Reply-To: <20220715052017.31633-1-wangborong@cdjrlc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AM6PR10CA0017.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:209:89::30) To BN8PR12MB3587.namprd12.prod.outlook.com
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AS9PR06CA0138.eurprd06.prod.outlook.com
+ (2603:10a6:20b:467::24) To BN8PR12MB3587.namprd12.prod.outlook.com
  (2603:10b6:408:43::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: bd764ad2-50c5-4fec-e65c-08da68cb08d2
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4048:EE_
+X-MS-Office365-Filtering-Correlation-Id: ec33401f-ceb9-4c04-15ca-08da68cc0cd0
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3602:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: fKH2EaVW2+P04CtzvIZ/WGlYSWJ+zAUzkMeqCmKyna6YoyhemSNm5r1hEW6XIm+HCFXB9oFTO4cnj6TFmhJtKu4Jpb30e5BYvi4YT9PpIa01yg8gWfPLTJY8PBVtaP+JIQAG8jJSMoYTyLmo9Bn+zT9kQnfI20q010Mvyyys1uyq1WSToRey3B2tDoN/UEzfuuH+pNDQwjirVt2kM24Axe50SZsy5deaY9bxeUsrE7Vt3JrED9N0W10kQIv0iXs0u8fkrwI870XskM6n0k6BJKofcEVfzgPn5K5OBCalmP/H0lUcs4nZUiWm6X/QW+Oj9E7T+THjoKzvsu6gzBmV7jL64rDBI6ozd/Y/sq/dEcrgGRRmjQNw1p7skLr+rx9Nlxywxzs1rxblPDhZ0zjohDuTIl/BoniOHcYtsHfBgjYRK6/Dc19KoPSS0d9hPMDuqMZ/aF01FTKP9Xxifrznrkf41W1DKAlu06kLcccIak1keGeAv5lZkQXQBA4CCYQo2/nPVbrFT0HI5d5BvAi2dZL4653tCLYUYY/NQE1QN4qK3m3fGUaRAM+p7mMP+3cSEjsFKxbjMhg/9ZeNyPBWgFZ1uKR9ulePrAj4QSs9ubN43Fa72SxUHgBjTZp6AphDZ70i837ZBLhfDfTQLYMil8aDzzwocaCFSB8ERhzXrmo3c0m0DNwkRpcqfzOftO0/vAn+E2L+j5w5bnMrUWt3p/ASPYxKlmoCJ3LsZ6HRvythIpaz7u9MWAcJkyhJcDkawyAGWPNPOU3/IYSVN9qkxi/QmnjW2av33xxZs1uTbwY=
+X-Microsoft-Antispam-Message-Info: I5Xrjwt0m3p0r1hEQ+MyMsd2WRi1/O4dU2uc8rtlmtuy0dQuKHmLH92lBVVXVCpEhIIRYVizhiwy2VFkjI8lfQZbAUi334yBhhZjRgWI2pUdPqn7LnQvSMJOU+CF+to1eUFw0fRjC+J0z4Jmier/bs0+qEKSvTUbCrg0aZfI79GLaKm5TfyJDXfYq2b9RrOV3TMIK/T1dcQ3x8PlsysM5l2ljuj30EJkaI2kqyTbJG7WpmJ2CpnFcR//7KATGsnzJXidcjoK9njdjPO1UHlqRhuVie3HCa8r8NA0VJLrfNkdvID8oyhVu3gG83n9Rwi2jLAOOEDUWMeym8kLsmcHPWQMcHQjIt+xJhNWwifdI3Lk0R7Voj+5NDJBj3inYZGM0GWCOJ8rh7nuzQahhptgP++Wyllvvs8rgLLsv+dSrwyffU05qhLzz32dD7UinTQRBffyWLE3Y79kkzWmNG6tEflDjHq6PbpJY/KzqlsZErer7fUfwdFTVHce9YE/Eugqu8G3GutF9loyM53aBZefT0TTIhammpTnXgQvvmCH6QdoQAmO2YfU9pEpTQeQhUaA8WfVIINrR3FKPSeTd7MXXQO0gpkBzyNjRAnGMeqrPLSCQI89OoTLBm4y0IaXKfs4BDrJkJNe22yRvV5x83Q1tq4KASA6kUXMgdkzlcFGFtBlVJhytUjoYjk4KW3Y4iRGR/n63pjhN3KZkI2zIw32rwIVTK8Ti5GNcH5zeCAEEIZ1AmwZeXewgk7Q8XN49Let6/+ukqa02F53LbQMkTwNom8ca8a3/G/qcdow0wppf3sf+bksDEMCCV9fKIp/NJN6ZmYETcWA3hFXrMt56l08wTXK+vg7NaU5xwUAAp9e+7c=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(366004)(136003)(39860400002)(346002)(376002)(396003)(6666004)(41300700001)(316002)(6512007)(966005)(110136005)(6486002)(6506007)(31686004)(36756003)(2906002)(66556008)(38100700002)(5660300002)(66574015)(8676002)(4326008)(66476007)(66946007)(83380400001)(8936002)(186003)(478600001)(53546011)(31696002)(86362001)(2616005)(45980500001)(43740500002);
+ SFS:(13230016)(4636009)(136003)(396003)(366004)(376002)(39860400002)(346002)(8936002)(5660300002)(31686004)(8676002)(2906002)(86362001)(66556008)(31696002)(4326008)(316002)(36756003)(38100700002)(6512007)(6506007)(6486002)(41300700001)(6666004)(2616005)(186003)(478600001)(83380400001)(66946007)(66476007)(45980500001)(43740500002);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YWpGekcwRkxmQlJ0V0FNWGlxRzUrWFRWZ0VpeVBFeUViS1hWTUp4aGpmMHlY?=
- =?utf-8?B?d0xISkZsbjRwRkoyR09sZ3VFcFZlR1NJYkRnTEFsanRNN25EcXpwR1RGZG41?=
- =?utf-8?B?UHNQblFDNDhLOUdLRmovVGJSTm1PTHBKQ3U0czZNNzZ6R1ZqVlJSQUdtSGIw?=
- =?utf-8?B?eGIxNGJSelBGRFRNR3RPRVI5Q09ZQ3NrRmZRYVJZVVJlRXErUUhzcVJLK256?=
- =?utf-8?B?SWp2QURPYjhpY3hFNkkrbmVDVTZvbjE0MXd2SHVWSDMyUjdSWjFRTnVWU2FR?=
- =?utf-8?B?Z1IyVXl3TTVyMWNOWHp1d2gwQ215MXJYZGxvaUtOc0NDL2I1bWw4MjJPN3Zz?=
- =?utf-8?B?eUU3YXdqbzE1VzYrTlVpa2ZwL3pXNnpBZ0lEc2JhcnV5UWFEOEYrT3JQL1hU?=
- =?utf-8?B?NEY4dzJvZGRiWDl5VkdwWFU1cWZaZTZ2bzFVL1drYUs4L21od1dMMFdjUUZo?=
- =?utf-8?B?Ui9uazloeEl2KzRxNFNZQXRGQjlpcFg3OVRYR0hyNFlkbUNsVEIyM3dqSEVj?=
- =?utf-8?B?U2hBaFVHQlhnSkNlbnFLbnlKMWFFYlpqTmNLMkRGM3RyUE4rcFNJc29LdDRD?=
- =?utf-8?B?ZFdpY2d6V0VwWUpHczVMZDdZSUJGamFnUHJFTTc5ZHcwMmFVSlRScXdDdVd4?=
- =?utf-8?B?RFVjL0RMdFdqR09RcVpiZEVoc3dwSEZScVNsWDl6bExwQWtoSHVRYlNMRFpj?=
- =?utf-8?B?ODhHckV5V2tUaTdxbEV3ZmNhOFBPQWUvYmlzTlkwdGxheHROL0N6endLY1ZB?=
- =?utf-8?B?d0FrVndueVFhWCs5c1o1em1OTHFpdktQRHJIWEZucFVmVEpOTS9PSXJEcHJl?=
- =?utf-8?B?QzNzN1V2dDBCL1FVK1FDNTN3YTZYK1lnWWJzVGRGQzl6dVVaUENqdm1yWUl0?=
- =?utf-8?B?WlpUcmZnQjlvY2lxSXEybnRDcU1wOGhlUUxsS0RrOGMrdXBqZmtGWFVVRkdx?=
- =?utf-8?B?Q1dyYTNQbklLOGpyVlp0M1RSd1JudDZIaDNCcnRucHhGbnViZXRyUGZsd1Zs?=
- =?utf-8?B?NWVxclFHSnZ5NnduWXVzRmpCcXIyQ3hWZ0VHbHNUc0tGSm8rbFlpblJmOGVj?=
- =?utf-8?B?eWduYU8vbVJjRVpUbm8zMUVoZ2dlNHlzUU9aZ3N6U1BraEs1MHBkUHVxQVZk?=
- =?utf-8?B?ZlhWbFFHdVBLL2pKVy9Sd3pmUGp0OUdnSzQzK0VvWHZPTGNkVGxVTmhUQS9K?=
- =?utf-8?B?NTE5czVXMmdJcVNxaTVHdHNjd1JVODdoWXhsRWdIQzFULzlWckNGbC90c0I5?=
- =?utf-8?B?M2JDdHNRS3FqT0FsMUNWdDJhWkdBNGFuS0tvbmlHUTNOU21uSlYvOWJQRnhU?=
- =?utf-8?B?S3ZMR0h4Si9YeHMvVkxhM0JZQS9nay90cUg4aXFXS2ZJMlJmb04yRmFxVUdS?=
- =?utf-8?B?WHMwbzh2a0taTFBJc3RhS0JObEJ6MVdaMkpiQ1UvNk1kQis1b3A0ZDF3d0Vt?=
- =?utf-8?B?S05YeVJRL0pQZmw1SVUxTmp4ejBhWFpjemNndTVxQmpBc0F1MjFpbmFYZEwx?=
- =?utf-8?B?bUtGaHlDMHRzS1RBckR3SEVpVUdFUWkybU5Paks0NTRiUWRvOFhLZURzMTBH?=
- =?utf-8?B?K01mWlJaekxvMTBXL05FSWtWOUlYMDBLcVEyazY1RUt1d1VyOU55S2tkSnpE?=
- =?utf-8?B?TmIzU0JtY1puZWVuTWo1Ti82ZUFFZXlCSzBjSUEvYUU2cVJoOW9oUituQmhT?=
- =?utf-8?B?QUtBY2VhbGo0VWV1ZisrVC9IVTR6b2U1OHU0SFpYVHM3TmZZcFJMKzJPc1cx?=
- =?utf-8?B?RkFoYjhoaUJ2Q28vVkRQemVtNVhacXNaZzhOSVZQRXpJeWZKbUg0U2x2UUZk?=
- =?utf-8?B?ZjVHYzJzQ0pabXhrRXRJazFLbFZJTUlZaDNHaWROdm9ySnQ2WGxQTmlaaFRN?=
- =?utf-8?B?enVtV2NQd3dvWGNMb0hoandpdmFYZkdOSVpwY3ZkQlJJdXpqTHg1OFIxaURG?=
- =?utf-8?B?NXJMRHYwMFZHbm1TQktVVjJEY3J1UndrSkFtaGtIM1Nzb1krejBMZVA3T2lZ?=
- =?utf-8?B?VTZpZFR2Z1R4ejhpMDFHUXFJOW5ya0ZyRzJ1N0NySUVSQkx5WHNKNzdwM0kr?=
- =?utf-8?B?cTNOOHVLc3ZwbnZjdnc0elVwN3FTMEFSa3MzM1F2QWdwZzQ1WFRhUEh0cWpP?=
- =?utf-8?B?ZlQ2Vm50SklXcmszQ3NVT3NzMUVBMWM2bzlSVUVLNGNvblZCM2ZacmJOTHN4?=
- =?utf-8?Q?6RvIdfCXqvyQzhlSJ+WqH8ya5x15lekYr5jGS4s6dn2b?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S1ArSGZxNW85MCtlNUhLdnNEQ29pMFZKRFRCc2NZQ2pRYzJVSWI5TkNkemF2?=
+ =?utf-8?B?bnJ6TkdaamtqSDJpS25JOHZjakV3dUtaTDh1RHR3N1NxQy9aekJzZSswd01P?=
+ =?utf-8?B?WmFtWmdSUzYzc0lyVGRnbU1JbG01czMwUHNHdDBMekE2czRNWkl6RkRENlhC?=
+ =?utf-8?B?Ui9XZzhlQXRqVytMRlBYSTQ3ZFpETGxhSHQ4V2VvUmcyN09xRi91V0RZaVBI?=
+ =?utf-8?B?ZlpDLzdvRTIydmtkK2xlZHlCVDZ5ME5jcFRCUVFwSmljME5IWjFvWHBGM3NE?=
+ =?utf-8?B?WkRzWVpjdDZqSFVzeTFFN1AzbDhocWJuSFM2MnhoSVczVjVuaGdmYUhPRisr?=
+ =?utf-8?B?N0o0OU1vc0VEVEhyMEZjOXNOemYxOW9VYm9hNmtBTlV2dnRxWUZ6amszNDRU?=
+ =?utf-8?B?OW11cG0zQTFBV1UzMmI1K1dMZ2taQUN4cy9oT3RwQklQUFBqT1pFcW1pWWta?=
+ =?utf-8?B?bzIxR3ZxbU0rTVREbGsyeER0L3I1RXBKcXNtRTluVU9yTmo3d0lRMUZFZTZl?=
+ =?utf-8?B?am1UZ2wrUVBrVll1ZW1hcWpuQkZPOVNHcDc4TExzS3d4dlI5NFhSbjhwZ2tQ?=
+ =?utf-8?B?cTIyQ05wZmt6Z01XZlhUMENXbXpnUmpOUDdyd055WkFza1RvYkpVM0tpNitS?=
+ =?utf-8?B?cDM0WG94WjRMVVkyMFFRekVsRnZpbG9qcVh5ZmdHOTcwOEhaMFdibzIvNW1X?=
+ =?utf-8?B?bU5vNFJXMTB2Z0JnZXEzZ09HZHpZQ2txYmU2RVZGbDdEUHBadXpZSU9HRHRO?=
+ =?utf-8?B?Q1FkdGZPd3hBSy9NcElMOGs0c0crZVFDZS80c2dNamw4RjZ5QjdSdTZJcmhr?=
+ =?utf-8?B?bEZURDBlK05nUmFuNTFyNWJ6c0k4aXFFVTNwRUV3cWxkMTR0T1psaVpVRWNS?=
+ =?utf-8?B?TmUxeUxqVkJQRnAvKzZ1QmhubkNwa1VSN3NBL3FLV296dDNwZ0pySGpUVEdZ?=
+ =?utf-8?B?eE0zVURrRHFlTUhVRGNrckxlY2gwUzFCNXBoTnVxSjJuKzNpakx4cnEvbEtI?=
+ =?utf-8?B?V0x5S3lyOU5PcloyTFJHL0hMSVIrTkdEeW02Kzh2aldmOXVZS2NlV2UyUnhT?=
+ =?utf-8?B?WXhzS2llZXNjTnJONkxmVlhNbTJUOFJQQmNieWFGVWh0aTl1QWx0R01kSTd5?=
+ =?utf-8?B?bWF3aFpZYzRzbDV4dmtGNHg2UklTQVlRc09aNXQ2b3U0QnFuSjZRMjFmMTJU?=
+ =?utf-8?B?V3lVMDEvOXpFa2FNUmN6a1daY3hiTVliUmZ5a0FZN2NKY3JZY2xCOTVJMHll?=
+ =?utf-8?B?dFVKeklhckxtTnBWczQ5L3pCN1g5ZlZxUXhGTDZoSTJyTlZ6MWNjb2FIU3dU?=
+ =?utf-8?B?enRmOHdoU3VjT1VXNVc0RXdwYU11ZTUveER6cWk5aUlJTXJlajdUSjJ2aUNq?=
+ =?utf-8?B?ZnNZSTFmb2djYm5KMUh0NDBxY0tsdVV2M2VCQk1MbGNMQngzeGFxaC91eDBS?=
+ =?utf-8?B?d3g3cnNlSXJRbWl5QnVQVDZYNkltRnd3UnNoYndhUG8zZitDb25RdTBQdUFN?=
+ =?utf-8?B?M1FVWHFQMjRTWUw5L2NPUWo3ckxrTUZ5OHdtYU5haitBVWMwbmxiQ3ovVlhL?=
+ =?utf-8?B?R0h4aWtPUXY3SHpnc3REREJSVHNlVXJJSDNBRU9LdExyektBZGNRM1A0V0kz?=
+ =?utf-8?B?eU0yLzR3V0lvKzU5SGkydjRPWmFJUTJQY3VJOHpCYkhoWi9MenpoQWNCRmNh?=
+ =?utf-8?B?UHFSUGhLeXRwVzVCS0xzc25POXNwVlVVT2daWGZJVm9VQmVXNndEZS9XSC80?=
+ =?utf-8?B?VG9HWGtkdGF4aG1aRnVOVTZZbTFMdklvMHRDTW5QR09pSWxKcVV5RjB1TnVo?=
+ =?utf-8?B?eU9ib0owT0hzSUlleWR6TmJyWVpCYWp1b0tkVGIzaDI4NG8vU3g4b2twS1VJ?=
+ =?utf-8?B?b0RYNm1xdnNYTVpzdjhWTkxyUGdFNXU1WVFoQktZbEJBdVYwdzVNYXBXVS9B?=
+ =?utf-8?B?V3ZFajZvRFQ5RHhEVTU5bVhRYlNoVEJXaWtkY0Jjckg0TjBiL3p0WU9CQmgy?=
+ =?utf-8?B?WFJrSC9lWStPTjUwQWFlRDB1ZDhDbVBJR0xOVFVKYjZNTG53TlhuM3dtL3Zy?=
+ =?utf-8?B?VzU1UFJXaVhnNVlHYVRtNGRiNjQxODF5VVMrWXJmcDBvN0FCaXdYNVp6ZUhU?=
+ =?utf-8?B?Z3oxSllLMDlFWlhla2ZNQnRjRzJlSWNEQkFBSE81K0ZIV2RWekE3SXhncEZR?=
+ =?utf-8?Q?Oj9hXyJOYqhClgl9y6movFxJnTQmNJZV6OMZ+V+08UHe?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd764ad2-50c5-4fec-e65c-08da68cb08d2
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec33401f-ceb9-4c04-15ca-08da68cc0cd0
 X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2022 14:37:26.3129 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2022 14:44:42.6427 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jl00dB+mnxN6rK+VTEr8rQGxolTgacRBRTAkynwHeZO0+Y3ShjA8944FVdQr2CJs
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4048
+X-MS-Exchange-CrossTenant-UserPrincipalName: dCNZvjTiojOj6S4FRSJt5U2gS6h+CWx3DzalXTynAprC8X98YVgkcM8acGMFaO3v
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3602
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,104 +124,40 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Cc: airlied@linux.ie, Xinhui.Pan@amd.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ alexander.deucher@amd.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 18.07.22 um 16:14 schrieb Dong, Ruijing:
-> [AMD Official Use Only - General]
->
->>> What happened is that the encode ring was extended with decode functionality. In other words we still use the same format for encoding, we just added another one for decoding as well.
-> Just to clarify the format difference between legacy encoding and unified queue, we can do either way in the code.
->
-> Unified queue requires a different format. The original encoding/decoding format cannot be used in unified queue, which requires to have two new headers, "engine info" to indicate the coming IB package type, encoding or decoding; and the "signature header" to guarantee the coming IB package's integrity, if this failed, the whole IB package will be discarded by VCN FW. That is why I was thinking to have a bias of AMDGPU_HW_IP_VCN_ENC could be better in the future.
+Am 15.07.22 um 07:20 schrieb Jason Wang:
+> The double `have' is duplicated in line 696, remove one.
 
-Yeah, but the remaining packet format is the same. And as far as I know 
-you guys don't plan do clone that for some reason, don't you?
+The subject line is rather confusing since this isn't related to DMA-buf 
+at all.
 
-Adding another name for the same enum value can potentially be much more 
-confusing than the fact that the encode ring now takes a bunch of more 
-commands to do both encoding and decoding.
+Please change that to "drm/radeon:", apart from that the patch looks 
+good to me.
 
-Regards,
 Christian.
 
 >
-> Thanks,
-> Ruijing
+> Signed-off-by: Jason Wang <wangborong@cdjrlc.com>
+> ---
+>   drivers/gpu/drm/radeon/radeon_gem.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> -----Original Message-----
-> From: Koenig, Christian <Christian.Koenig@amd.com>
-> Sent: Monday, July 18, 2022 9:54 AM
-> To: Liu, Leo <Leo.Liu@amd.com>; Dong, Ruijing <Ruijing.Dong@amd.com>; amd-gfx@lists.freedesktop.org
-> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>
-> Subject: Re: [PATCH v4] drm/amdgpu: add HW_IP_VCN_UNIFIED type
->
-> Am 18.07.22 um 15:48 schrieb Leo Liu:
->> On 2022-07-18 02:57, Christian König wrote:
->>> Am 15.07.22 um 22:04 schrieb Ruijing Dong:
->>>>   From VCN4, AMDGPU_HW_IP_VCN_UNIFIED is used to support both
->>>> encoding and decoding jobs, it re-uses the same queue number of
->>>> AMDGPU_HW_IP_VCN_ENC.
->>>>
->>>> link:
->>>> https://gitlab.freedesktop.org/mesa/drm/-/merge_requests/245/commits
->>>>
->>>> Signed-off-by: Ruijing Dong <ruijing.dong@amd.com>
->>>> ---
->>>>    include/uapi/drm/amdgpu_drm.h | 6 ++++++
->>>>    1 file changed, 6 insertions(+)
->>>>
->>>> diff --git a/include/uapi/drm/amdgpu_drm.h
->>>> b/include/uapi/drm/amdgpu_drm.h index 18d3246d636e..e268cd3cdb12
->>>> 100644
->>>> --- a/include/uapi/drm/amdgpu_drm.h
->>>> +++ b/include/uapi/drm/amdgpu_drm.h
->>>> @@ -560,6 +560,12 @@ struct drm_amdgpu_gem_va {
->>>>    #define AMDGPU_HW_IP_UVD_ENC      5
->>>>    #define AMDGPU_HW_IP_VCN_DEC      6
->>>>    #define AMDGPU_HW_IP_VCN_ENC      7
->>>> +/**
->>> Please don't use "/**" here, that is badly formated for a kerneldoc
->>> comment.
->>>
->>>> + * From VCN4, AMDGPU_HW_IP_VCN_UNIFIED is used to support
->>>> + * both encoding and decoding jobs, it re-uses the same
->>>> + * queue number of AMDGPU_HW_IP_VCN_ENC.
->>>> + */
->>>> +#define AMDGPU_HW_IP_VCN_UNIFIED  AMDGPU_HW_IP_VCN_ENC
->>> I'm still in doubt that adding another define with the same value as
->>> AMDGPU_HW_IP_VCN_ENC is a good idea.
->> Hi Christian,
->>
->>  From VCN4, there is no VCN dec and enc ring type any more, the
->> decode/encode will go through the unified queue, so using
->> AMDGPU_HW_IP_VCN_ENC is no longer accurate . Keeping
->> AMDGPU_HW_IP_VCN_ENC type is for legacy HW, and the new
->> AMDGPU_HW_IP_VCN_UNIFIED just happen to use the same HW ring as legacy
->> encode ring, so reuse the value, and that is the whole idea.
-> Yeah, I understand your reasoning I just don't see it this way.
->
-> What happened is that the encode ring was extended with decode functionality. In other words we still use the same format for encoding, we just added another one for decoding as well.
->
-> Renaming the enum and adding AMDGPU_HW_IP_VCN_UNIFIED suggests that this is something completely new, which is not the case here. The encoding commands stay the same, don't they?
->
-> So to sum it up my suggestion is to stick with AMDGPU_HW_IP_VCN_ENC and just document on the definition that this is used for both encode as well as decode starting with VCN4.
->
-> Regards,
-> Christian.
->
->> Thanks,
->>
->> Leo
->>
->>
->>>
->>> Instead we should just add the comment to AMDGPU_HW_IP_VCN_ENC.
->>>
->>> Regards,
->>> Christian.
->>>
->>>>    #define AMDGPU_HW_IP_VCN_JPEG     8
->>>>    #define AMDGPU_HW_IP_NUM          9
+> diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeon/radeon_gem.c
+> index 84843b3b3aef..261fcbae88d7 100644
+> --- a/drivers/gpu/drm/radeon/radeon_gem.c
+> +++ b/drivers/gpu/drm/radeon/radeon_gem.c
+> @@ -693,7 +693,7 @@ int radeon_gem_va_ioctl(struct drm_device *dev, void *data,
+>   	}
+>   
+>   	/* !! DONT REMOVE !!
+> -	 * We don't support vm_id yet, to be sure we don't have have broken
+> +	 * We don't support vm_id yet, to be sure we don't have broken
+>   	 * userspace, reject anyone trying to use non 0 value thus moving
+>   	 * forward we can use those fields without breaking existant userspace
+>   	 */
 
