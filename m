@@ -1,93 +1,115 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E207F57A055
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 Jul 2022 16:04:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C72F57A203
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 Jul 2022 16:41:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F25E218B8BD;
-	Tue, 19 Jul 2022 14:04:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B286A11AB53;
+	Tue, 19 Jul 2022 14:41:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2084.outbound.protection.outlook.com [40.107.220.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0928418B8D0
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 Jul 2022 14:04:38 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2ED5114BA38
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 Jul 2022 14:41:15 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BTm5LnIhGL1/zU7rKEuFSiCGelx/SDvXBJZynE8l/wqa10xFX1tk0gnHZJnwkrIQuytiPM0ELUX+4pvBeBcpm8fiFGT22Kkaz9+kpjDlIbSwe3mAh0d49IwoVUubNS1BWc6adijGCHf0Bb4uKQYtP8YVauynoR6oAOvoGT6T970fmvitw6es2TDUNVZF95wEPo7WGsV/9TUPMWPNGkjw3tBM5kdXLFllxBV29bMiosVqefzHdmW5SfvPOk16+El4vbrkvOAQ4AsqIOlQNlnAR4NH4pVOkWQjJvWnDXRveBw6z4geuey6/Nfdf87X3E3LrPfp/TpEc34xkddGoMQsLA==
+ b=Gnay7vSxOoNmTP2dV0300VNoT1ihgMYvLadl1dJZ6Ml2njoeYWSdG40Nd3jthNbbPs4+aakcqtort3T0oqMo+aJhp17Z6UC4V9EXCkCd2g4W6givkkphmAq5e87PXLd3+0SvscihSiwkvQ6aybI4RLaKWUuO3XNMwT+OyOZRi/AIxawnLroQGj1qmgxgVuqnnj1yURSHjdTLgdXI3KxLpX/1OQQFTQo2/Q7W/8g2EKb8zNI9Me76OCmtVQYaDlUA+qJi7yRP57CISzR7RrrgKUhbxkVyq0UMGRsHohVdH7K5kgakyhMTSgKqEMFB+Tsr+BFfy5e8ZvZ+gPYP6OiG1g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1Mn/pcSeMA711UQtJwNB+yNkkRVVPTiajMIvASGDlwM=;
- b=cDgn0eVkobjAYdGOLA9gaifaNEgAWNSJ/WWCEY6JJSHE4dBWlZmYaYE+lPBSyLwwEr4/5hvHmxiUk8vOjZTi/xn9LKhbXfw8qvOr/I0mjhjWU0AeUFZgu43X6cQAH1OmljDDk4A6+n4FYE2JLLUR+DWMrbvRrbBIk4TPD2MfFAe5aXh13zHArXIyTBQWbXbPyx/ZaCkK0yJwaPdUMzHKF/cb09fD8pH3VUTltrbE+wSIevJb+8Z8RGSSiv6FZvfoa6X1KUE1nPacGdw7yHajy4Iq/y1Q05i+69dp9A5I/ujFACg677LmXxtDJ6nL+h7UimNXcq+1ySWz5fWr7ZwmAQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
+ bh=pXLnzZ4dki94XsPJiSOgCOQ8euQFz/RxYfn6PTrY9pY=;
+ b=Ojwub0yNuqUeGp2PGE4oATf/fq6lqGNh+5ZC13bVsJAWTwyRtUdfQ5ASc0+bT+6m+03Ci9V+hyuQP1LQIYgRPni/fIu1DoznFPPZ0u3eWUgXkeBUnll+XHwFgP3HvVVhRTgaiLI4WGVQYrFtxDPFHSDrBs2WN18356sxtPwoKLvZ3B2Dh/72R1vR2cBrbJe48cnoDUByeB5jGjt6gPxMZO55ZR6ABzLG1SfGoEfEt64egLVaCWITT44+KfPzMT0mnrpv/TpZL3XqRSbrlRwBrNA7XeaGcmj1zDRH9oBrockMqtTdeBSV4LTytadDUFtHnuGOhpP4meuxi/7PGP/93A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1Mn/pcSeMA711UQtJwNB+yNkkRVVPTiajMIvASGDlwM=;
- b=rORG/0uAjxdM+sMbmo7/Ekp4a94tBD8Kwd0c6DzpPoCOrMQ8Fkymhewi0bK1L3BfVmqlC9h47aohXcSpjC9gXjynSXRY5HyQnqJPDEiWP/eXicIeoJ3e/vR64o/7BjfzRoDjZc6LQYXWhRFUZz19jMjUp5Euy6cXNuaAA4Am7rc=
-Received: from BN9PR03CA0379.namprd03.prod.outlook.com (2603:10b6:408:f7::24)
- by DM6PR12MB3962.namprd12.prod.outlook.com (2603:10b6:5:1ce::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.12; Tue, 19 Jul
- 2022 14:04:36 +0000
-Received: from BN8NAM11FT058.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:f7:cafe::2f) by BN9PR03CA0379.outlook.office365.com
- (2603:10b6:408:f7::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.12 via Frontend
- Transport; Tue, 19 Jul 2022 14:04:36 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT058.mail.protection.outlook.com (10.13.177.58) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5438.12 via Frontend Transport; Tue, 19 Jul 2022 14:04:35 +0000
-Received: from david-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 19 Jul
- 2022 09:04:33 -0500
-From: <David.Francis@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 3/3] drm/amd/kfd: Add sphinx documentation for amdkfd
-Date: Tue, 19 Jul 2022 10:03:38 -0400
-Message-ID: <20220719140338.1644486-4-David.Francis@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220719140338.1644486-1-David.Francis@amd.com>
-References: <20220719140338.1644486-1-David.Francis@amd.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 38ad06d6-0018-445b-3355-08da698f9ce7
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3962:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TWKimfHDy8Gjl+977CRjj4eI+CSiTX+DOGCMosLcyBgZsF5vfNH+p18+PKmLN7zDjU3Q3xjeuthTA5c5lwq3JZAP61FDPhYh9DMrrEqRPXajkTXU3ItEmEMeYoit1ciqmWJasRThv31j7pGOzfZyTTkNVb9EZzxHQg/TQ3rrwqeCvwFAuTFkLjFcz0EN38SB+X46X/kjsJrbv8YUhSEExX4EuXBhL87W9hLzI/hqcUP3/bYDkiWbfQk7OjGIywJ758C0RV8aS8wkgTgEMNW0+oVhVLetEgtHWtZrU/7DaFjqTtAwX13neeVz5hz5qMZCGGGVIPA+SQRVPgIffdBhT/SczTG5/NslwXkd1A5tm1qcX70jW3VCoQILKnwdaKy5LyqYiEYliSV/ghvjzjQVVyJBnSRsQ2ZQbDMF2RBN/y9hNurDoFJGxD0msGPy8cfYHxLffkFTku5tkiJr9uHV4sjV49SRxitUn2FFannVAoWLMl3KvjwDBPfe5WPZlKIIFCONvNgVfNYg0iwJRaubmbv/Iqw4WTU/lG2WstLWXYHBENnPT4I+FmMJG4kEewxtmPfn6kbv/GBv8lYKEAOVb/E/mpjvMEPwcnipUxPBjXLbOlxoZ3DcV++dvZm9VjNg5cwT26DsOnux8A6LAwG0reXn1vugDqYPhCRF2QgZ9q1HGUtD1qfFvPXn5euCK49BgvLGyKdGxqAyS2CdzD6VJSbLAiI+eOxeJhd4psPyp/tQK6nyPrUs/KUkHxzbq5W32D/wVYT7saI7anonsVsSKAzdLx46NNYHBCGOYA2kVMq3fhSKcTiZVLiCpkWiyVsP9hchuP389fAHZ88oEqpM1Q==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(136003)(376002)(346002)(396003)(39860400002)(46966006)(40470700004)(36840700001)(1076003)(186003)(16526019)(54906003)(40480700001)(83380400001)(6916009)(8676002)(426003)(336012)(47076005)(70586007)(70206006)(2876002)(4326008)(36756003)(7696005)(2906002)(2616005)(26005)(40460700003)(86362001)(82310400005)(36860700001)(478600001)(41300700001)(316002)(5660300002)(82740400003)(81166007)(356005)(8936002)(36900700001);
+ bh=pXLnzZ4dki94XsPJiSOgCOQ8euQFz/RxYfn6PTrY9pY=;
+ b=VwYzgQhZEZQIKNfhXgRxwti85RvIdul1CRKeCwdfUndBuHVdDXeAQ53RhUhuXgLb6b91zwPCwo8VyPnBp2FIHkIpvrUbtrqGQjTJHxLEKjPwkcJOHGMREjc6A4nTzBp4u8UyXS0fMl/kShTYpkKJmuXzqH3cv2OPzocCCU22o9M=
+Received: from PH7PR12MB5997.namprd12.prod.outlook.com (2603:10b6:510:1d9::21)
+ by BL0PR12MB4914.namprd12.prod.outlook.com (2603:10b6:208:1c4::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.19; Tue, 19 Jul
+ 2022 14:41:12 +0000
+Received: from PH7PR12MB5997.namprd12.prod.outlook.com
+ ([fe80::4929:3644:b9ee:8554]) by PH7PR12MB5997.namprd12.prod.outlook.com
+ ([fe80::4929:3644:b9ee:8554%8]) with mapi id 15.20.5438.023; Tue, 19 Jul 2022
+ 14:41:12 +0000
+From: "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>
+To: "Feng, Kenneth" <Kenneth.Feng@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/amd/pm: enable gfx ulv and gpo on smu_v13_0_7
+Thread-Topic: [PATCH] drm/amd/pm: enable gfx ulv and gpo on smu_v13_0_7
+Thread-Index: AQHYm3Hyi78/N/cIaUi/Mq4iBMVBZa2FxDCV
+Date: Tue, 19 Jul 2022 14:41:12 +0000
+Message-ID: <PH7PR12MB5997681E18E1DCD731F0E240828F9@PH7PR12MB5997.namprd12.prod.outlook.com>
+References: <20220719131736.133958-1-kenneth.feng@amd.com>
+In-Reply-To: <20220719131736.133958-1-kenneth.feng@amd.com>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=True;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2022-07-19T14:41:13.245Z;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard; 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 1c1b7f65-b5e2-465e-5376-08da6994ba25
+x-ms-traffictypediagnostic: BL0PR12MB4914:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: KXZSorZfn3NpwjFc2WFCZ7KbNzGz+Xs1a9e0CU5v8vv90BvWm0Um7zionCJZe3nbAf6sAW/qTMlUrDAXlqdph+UgPqwpVAPyNzLf8yykhLFXZSDeMy7tHep0LvBZdKKWq71Wawsl9JK/lVCsE20cjtBFJSowJ7ZdmZNhQoH/upj6RzF1k1CUxujPznV4IUVmgSF3eTCTec/Vwj7/Mjw/LnKywsX55x9EoMxrQdRsfj+dapPz+D6hoIa/uOENinZYd52YQGOX91mld2gsfTD4JP0W1OnoUz+NvWiI30OUWfjroZ8KeBAeFack1kVKoEAgk5mkHNh8TykG2MPAMQJ94vOyXVuiD0aNv6EvMt5NaWJbnKUEnapDkI5J0p/VaRzhDbV+3mDy8E4ZXSColLHcunf/oK47rS2vMXWiaP31wAvffePKnbcriIzo6kPxjbeRab/jWW8EwhL2NmGC2C1WY7gCdqTaL6+PwUrgeznzUyV4Fc8D5kbnZJvFC3yVgPy5rkqO/VD7EBU/njWhq3zZvjV+NqtqggSPxs3H2KOLrePoaGpY8M3E2T+akz/fV7oi+U2a6YLrwEhj9fr1F99HVou/sQ0woV9u3veNr0qeHVmWxm+fsbiWSmjsc1iRAZjfbxwwSg0zr9vOG4d13oFQj48zO95mYhV9cosiyrylLooRYws0wxbfMsCV8Fm/q4xshmSzN6+NYdcdiPm0HVuVEQ+vEY4rPKdz0to5UJuiVlUutklpq3uTWcgz+n6Jy+ehbdapa3pMZZsUFO274evFaLrEn/42KX5rc5DE9Yxa1pBdmfntCBGvKnFG7hlZZFjY
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5997.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(346002)(396003)(376002)(39860400002)(136003)(366004)(53546011)(66446008)(55016003)(91956017)(8676002)(64756008)(66476007)(66946007)(52536014)(86362001)(38100700002)(186003)(5660300002)(66556008)(76116006)(8936002)(478600001)(33656002)(110136005)(41300700001)(7696005)(122000001)(316002)(9686003)(71200400001)(26005)(2906002)(38070700005)(19627405001)(6506007);
  DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?NmXLJYqxBaf5YUP2qDLH3EImcxdeYv4g6OFHpqMJEvtxv1HcKuaOVAa9aH3/?=
+ =?us-ascii?Q?H3bKIHL6JsXJ2pHH0qaBDyrNzWEcR/EuPP8pTZQtur4d8b/iCWOFt6rgHlj/?=
+ =?us-ascii?Q?0Stv0X1RlUCpwU802vrixB6xwvSybRcPTudtXBtVRmxXKAclahKHlMZzN+nj?=
+ =?us-ascii?Q?E4GuTdWwiLvY350KJEWGTfztPiTK1hrkv+wjoJflu9OahIzbueIn9+g5pUz2?=
+ =?us-ascii?Q?iQRP/3YJLEtjq75aMq0H4CtxkPf9fzzzYxc4zmVrR4TxOmYrazx4IKz9l3Bz?=
+ =?us-ascii?Q?otqWxACsdFYv+hHQr+R0Faeut9G1lxUuO3Fe0Wxlkqcql7GCXlKvAXCVPhFb?=
+ =?us-ascii?Q?9uip6sqDqHLVDmlAgE9lsRFNrzUi3tMo4vA9DTYRCG3ab8UlPQ7OKFXmP2Y6?=
+ =?us-ascii?Q?oILm/i7vB8izeZZSOhnqVA71lfNs/CZkfPpHDhWFFn7UQbVaquq3i0E5uvYK?=
+ =?us-ascii?Q?MnaKtRiv/zrkFLySxPRxLr3q+7EQFZ8ZJTspLBNUxGw/Gek6N7OMiT5fiz5C?=
+ =?us-ascii?Q?D+vh0JdUByeA51iEIovOFxGs0dEyP4x9kQfQGNsRzKDj0fFtonEqw+dGGhCE?=
+ =?us-ascii?Q?BjQ+EVgfIRv/Bo5C3akLQXHmA0n5aJTcwMwE9v5koEbsvFX8QXq+jbqAv293?=
+ =?us-ascii?Q?lgLEjsKl572yX0APsHoyptlM8AZdYWlqKx+XbVOSCQXXtVooabC5Bglifxqn?=
+ =?us-ascii?Q?GSW1TYpS2pmfwvq/b9DiQsAvlTyEQXWEDK+bwdSelORv7Uj29/CHPy8fiFaD?=
+ =?us-ascii?Q?gNzKJm5fcoprKjtYodZ4fOM4Auc4Fj3AMithDnDD7Sg94/OJriSit5jGJf44?=
+ =?us-ascii?Q?UhNUNgnYb4gR6BPT70k0+RW/1z7s4qyiTrshZwnnDDdhWLzgpNeauDGJPm/l?=
+ =?us-ascii?Q?tHjPqGm6GG0jlJ4iuKGL4SAgyrX5ouQqWMNOMVpq1kUFNM+ClUWgEknx7Hvv?=
+ =?us-ascii?Q?ltwa++ISQE+McQy8YBa9G1oTpPAkbu+8LnBZUtzvIHh9Exgkbz0iA8YzBwmV?=
+ =?us-ascii?Q?SZOHVi0O5rLhVp+aIJqZ0r/71HCGuBTPzIUCEhTmbUu5/VjvnLEGV8DaaI9n?=
+ =?us-ascii?Q?BthCNa9t9qiFrNM6itXTueNYUVKnzH57/OnqWsAkwGPkesx6stLs/lqhicH0?=
+ =?us-ascii?Q?hL/6hdY+9wxaynmzalAJ5Xir3q/b0E2DctmSop1U6DbXRlYvZsAg9NgMNqP7?=
+ =?us-ascii?Q?7VykqRs9M70jEKAiIhEqZiPWfLFP8O9V+wBSnFYYHu6a+HK5JRmDAe5eE1Gx?=
+ =?us-ascii?Q?ppaNjJlnujslxw2D8VMZA0VnJCu03JrA2HGWq5YDL5vEBAvrdw5ysSf+21xg?=
+ =?us-ascii?Q?Pl9diMfnPU90Mof2XIZ8mN+O78rRFdQVFFrRSR6mfnOvA8LoMymq0LOPCldu?=
+ =?us-ascii?Q?254d4kTsbeYS4RgRin6h+15X7t1IRyYZLlOoTx7zizprJgZeZTKBEqbkZd2o?=
+ =?us-ascii?Q?x0t2lQWyifw6BqvCLVs9HaIksaF/L7pgglPO6f79nGQzetBNVL4HBDTeagRs?=
+ =?us-ascii?Q?veE2DWmf9M8PHe8yCyKzq9Q4VgS7prbolwW0Td4si4dTDvD/RakH8WBjJgK4?=
+ =?us-ascii?Q?FJAXdtKFp6AxUIL/hOU=3D?=
+Content-Type: multipart/alternative;
+ boundary="_000_PH7PR12MB5997681E18E1DCD731F0E240828F9PH7PR12MB5997namp_"
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jul 2022 14:04:35.9358 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 38ad06d6-0018-445b-3355-08da698f9ce7
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT058.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3962
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5997.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1c1b7f65-b5e2-465e-5376-08da6994ba25
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jul 2022 14:41:12.4962 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 4ndFjxQ5KavNuaDnatAnZDX6zIOIBsd4A0+pnfQZ3TES236+DRsVn7JFLOsR7kXN
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4914
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,178 +121,172 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Francis <David.Francis@amd.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: David Francis <David.Francis@amd.com>
+--_000_PH7PR12MB5997681E18E1DCD731F0E240828F9PH7PR12MB5997namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Add a new series of documentation entries in the AMDGPU
-section describing AMDKFD, the compute driver for AMD
-GPUs
+[AMD Official Use Only - General]
 
-Signed-off-by: David Francis <David.Francis@amd.com>
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+Reviewed-by: Yang Wang <kevinyang.wang@amd.com>
+
+Best Regards,
+Kevin
+________________________________
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Kenneth =
+Feng <kenneth.feng@amd.com>
+Sent: Tuesday, July 19, 2022 9:17 PM
+To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
+Cc: Feng, Kenneth <Kenneth.Feng@amd.com>
+Subject: [PATCH] drm/amd/pm: enable gfx ulv and gpo on smu_v13_0_7
+
+enable gfx ulv and gpo on smu_v13_0_7
+
+Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
 ---
- Documentation/gpu/amdgpu/index.rst          |  1 +
- Documentation/gpu/amdgpu/kfd/index.rst      | 14 +++++++++
- Documentation/gpu/amdgpu/kfd/interrupts.rst | 19 ++++++++++++
- Documentation/gpu/amdgpu/kfd/memory.rst     | 33 +++++++++++++++++++++
- Documentation/gpu/amdgpu/kfd/queues.rst     | 21 +++++++++++++
- Documentation/gpu/amdgpu/kfd/topology.rst   | 13 ++++++++
- 6 files changed, 101 insertions(+)
- create mode 100644 Documentation/gpu/amdgpu/kfd/index.rst
- create mode 100644 Documentation/gpu/amdgpu/kfd/interrupts.rst
- create mode 100644 Documentation/gpu/amdgpu/kfd/memory.rst
- create mode 100644 Documentation/gpu/amdgpu/kfd/queues.rst
- create mode 100644 Documentation/gpu/amdgpu/kfd/topology.rst
+ drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/Documentation/gpu/amdgpu/index.rst b/Documentation/gpu/amdgpu/index.rst
-index a24e1cfa7407..e1152c40d78b 100644
---- a/Documentation/gpu/amdgpu/index.rst
-+++ b/Documentation/gpu/amdgpu/index.rst
-@@ -10,6 +10,7 @@ Next (GCN) architecture.
-    module-parameters
-    driver-core
-    display/index
-+   kfd/index
-    xgmi
-    ras
-    thermal
-diff --git a/Documentation/gpu/amdgpu/kfd/index.rst b/Documentation/gpu/amdgpu/kfd/index.rst
-new file mode 100644
-index 000000000000..c9bfc52c547a
---- /dev/null
-+++ b/Documentation/gpu/amdgpu/kfd/index.rst
-@@ -0,0 +1,14 @@
-+===========================================
-+drm/amd/amdkfd - Kernel Fusion Driver (KFD)
-+===========================================
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c b/drivers=
+/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
+index 6f0548714566..16eea2de8a2d 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c
+@@ -251,6 +251,7 @@ smu_v13_0_7_get_allowed_feature_mask(struct smu_context=
+ *smu,
+         if (adev->pm.pp_feature & PP_SCLK_DPM_MASK) {
+                 *(uint64_t *)feature_mask |=3D FEATURE_MASK(FEATURE_DPM_GF=
+XCLK_BIT);
+                 *(uint64_t *)feature_mask |=3D FEATURE_MASK(FEATURE_GFX_IM=
+U_BIT);
++               *(uint64_t *)feature_mask |=3D FEATURE_MASK(FEATURE_DPM_GFX=
+_POWER_OPTIMIZER_BIT);
+         }
+
+         if (adev->pm.pp_feature & PP_GFXOFF_MASK)
+@@ -271,6 +272,9 @@ smu_v13_0_7_get_allowed_feature_mask(struct smu_context=
+ *smu,
+         if (adev->pm.pp_feature & PP_SCLK_DEEP_SLEEP_MASK)
+                 *(uint64_t *)feature_mask |=3D FEATURE_MASK(FEATURE_DS_GFX=
+CLK_BIT);
+
++       if (adev->pm.pp_feature & PP_ULV_MASK)
++               *(uint64_t *)feature_mask |=3D FEATURE_MASK(FEATURE_GFX_ULV=
+_BIT);
 +
-+KFD is the non-graphics component of AMDGPU. It allows users to run
-+their own programs (called compute shaders) on
-+AMD GPUs, including discrete GPUs, integrated GPUs, and APUs.
-+
-+.. toctree::
-+
-+   topology.rst
-+   memory.rst
-+   queues.rst
-+   interrupts.rst
-\ No newline at end of file
-diff --git a/Documentation/gpu/amdgpu/kfd/interrupts.rst b/Documentation/gpu/amdgpu/kfd/interrupts.rst
-new file mode 100644
-index 000000000000..f59b985ca3f1
---- /dev/null
-+++ b/Documentation/gpu/amdgpu/kfd/interrupts.rst
-@@ -0,0 +1,19 @@
-+======================
-+Interrupts and Signals
-+======================
-+
-+Signals
-+-------
-+
-+Signals are locations in memory used for communication between CPUs
-+and GPUs. Uses of signals include indicating that a kernel has completed
-+and indicating that more scratch memory is rqeuired.
-+
-+CPUs and GPUs can poll signals to await their signalling. Processes can also
-+set up an event, which will trigger a CPU interrupt when a signal arrives.
-+
-+Interrupts
-+----------
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/amdkfd/kfd_interrupt.c
-+   :doc: KFD_Interrupts
-\ No newline at end of file
-diff --git a/Documentation/gpu/amdgpu/kfd/memory.rst b/Documentation/gpu/amdgpu/kfd/memory.rst
-new file mode 100644
-index 000000000000..2d6b3724d3fb
---- /dev/null
-+++ b/Documentation/gpu/amdgpu/kfd/memory.rst
-@@ -0,0 +1,33 @@
-+=============================
-+Memory Allocation and Mapping
-+=============================
-+
-+AMD GPUs contain their own page tables used by the GPU's processors; memory must
-+be mapped on these page tables before the GPU can access it. The GPUs also
-+contain VRAM memory of their own, which can be allocated. By mapping memory on
-+both the CPU and GPU, processes can load data onto or off of the GPU.
-+
-+Interface
-+=========
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-+   :doc: Memory_Types
-+
-+Implementation
-+==============
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-+   :doc: Memory_Implementation
-+
-+Memory Features
-+===============
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c
-+   :doc: Memory_Features
-+
-+
-+ioctls
-+======
-+
-+.. kernel-doc:: include/uapi/linux/kfd_ioctl.h
-+   :identifiers: kfd_ioctl_alloc_memory_of_gpu_args kfd_ioctl_map_memory_to_gpu_args kfd_ioctl_svm_args kfd_ioctl_set_xnack_mode_args
-\ No newline at end of file
-diff --git a/Documentation/gpu/amdgpu/kfd/queues.rst b/Documentation/gpu/amdgpu/kfd/queues.rst
-new file mode 100644
-index 000000000000..dbd18029e0c8
---- /dev/null
-+++ b/Documentation/gpu/amdgpu/kfd/queues.rst
-@@ -0,0 +1,21 @@
-+===============
-+Usermode Queues
-+===============
-+
-+Queues (HSA queues and DMA queues) are the means by which users may submit
-+programs to be run on the GPU. Once a queue is set up, users can submit commands
-+to the hardware through it with no driver involvement. This is different from
-+the way that graphics shaders are loaded, which involves an ioctl each time.
-+
-+Interface
-+=========
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/amdkfd/kfd_queue.c
-+   :doc: Queue_Interface
-+
-+Implementation
-+==============
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/amdkfd/kfd_queue.c
-+   :doc: Queue_Implementation
-+
-diff --git a/Documentation/gpu/amdgpu/kfd/topology.rst b/Documentation/gpu/amdgpu/kfd/topology.rst
-new file mode 100644
-index 000000000000..309f2d01fed9
---- /dev/null
-+++ b/Documentation/gpu/amdgpu/kfd/topology.rst
-@@ -0,0 +1,13 @@
-+====================
-+AMD Compute Topology
-+====================
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-+   :doc: Topology
-+
-+
-+Discovery and Initialization
-+============================
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/amdkfd/kfd_device.c
-+   :doc: Discovery
--- 
+         *(uint64_t *)feature_mask |=3D FEATURE_MASK(FEATURE_DS_LCLK_BIT);
+         *(uint64_t *)feature_mask |=3D FEATURE_MASK(FEATURE_DPM_MP0CLK_BIT=
+);
+         *(uint64_t *)feature_mask |=3D FEATURE_MASK(FEATURE_MM_DPM_BIT);
+--
 2.25.1
 
+
+--_000_PH7PR12MB5997681E18E1DCD731F0E240828F9PH7PR12MB5997namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<p style=3D"font-family:Arial;font-size:10pt;color:#0000FF;margin:5pt;" ali=
+gn=3D"Left">
+[AMD Official Use Only - General]<br>
+</p>
+<br>
+<div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Reviewed-by: Yang Wang &lt;kevinyang.wang@amd.com&gt;</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Best Regards,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Kevin</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
+ounces@lists.freedesktop.org&gt; on behalf of Kenneth Feng &lt;kenneth.feng=
+@amd.com&gt;<br>
+<b>Sent:</b> Tuesday, July 19, 2022 9:17 PM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
+gt;<br>
+<b>Cc:</b> Feng, Kenneth &lt;Kenneth.Feng@amd.com&gt;<br>
+<b>Subject:</b> [PATCH] drm/amd/pm: enable gfx ulv and gpo on smu_v13_0_7</=
+font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">enable gfx ulv and gpo on smu_v13_0_7<br>
+<br>
+Signed-off-by: Kenneth Feng &lt;kenneth.feng@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c | 4 ++++<br>
+&nbsp;1 file changed, 4 insertions(+)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c b/drivers=
+/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c<br>
+index 6f0548714566..16eea2de8a2d 100644<br>
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c<br>
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c<br>
+@@ -251,6 +251,7 @@ smu_v13_0_7_get_allowed_feature_mask(struct smu_context=
+ *smu,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;pm.pp_feature=
+ &amp; PP_SCLK_DPM_MASK) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; *(uint64_t *)feature_mask |=3D FEATURE_MASK(FEATURE_D=
+PM_GFXCLK_BIT);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; *(uint64_t *)feature_mask |=3D FEATURE_MASK(FEATURE_G=
+FX_IMU_BIT);<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; *(uint64_t *)feature_mask |=3D FEATURE_MASK(FEATURE_DPM_GFX_POWE=
+R_OPTIMIZER_BIT);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;pm.pp_feature=
+ &amp; PP_GFXOFF_MASK)<br>
+@@ -271,6 +272,9 @@ smu_v13_0_7_get_allowed_feature_mask(struct smu_context=
+ *smu,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;pm.pp_feature=
+ &amp; PP_SCLK_DEEP_SLEEP_MASK)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; *(uint64_t *)feature_mask |=3D FEATURE_MASK(FEATURE_D=
+S_GFXCLK_BIT);<br>
+&nbsp;<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;pm.pp_feature &amp; PP_U=
+LV_MASK)<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; *(uint64_t *)feature_mask |=3D FEATURE_MASK(FEATURE_GFX_ULV_BIT)=
+;<br>
++<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *(uint64_t *)feature_mask =
+|=3D FEATURE_MASK(FEATURE_DS_LCLK_BIT);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *(uint64_t *)feature_mask =
+|=3D FEATURE_MASK(FEATURE_DPM_MP0CLK_BIT);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *(uint64_t *)feature_mask =
+|=3D FEATURE_MASK(FEATURE_MM_DPM_BIT);<br>
+-- <br>
+2.25.1<br>
+<br>
+</div>
+</span></font></div>
+</div>
+</body>
+</html>
+
+--_000_PH7PR12MB5997681E18E1DCD731F0E240828F9PH7PR12MB5997namp_--
