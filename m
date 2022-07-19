@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FDB557A056
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 Jul 2022 16:04:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83C8857A052
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 Jul 2022 16:04:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 637C718B8EF;
-	Tue, 19 Jul 2022 14:04:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9B8418B890;
+	Tue, 19 Jul 2022 14:04:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2056.outbound.protection.outlook.com [40.107.93.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB8AF18B8D9
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 Jul 2022 14:04:36 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2054.outbound.protection.outlook.com [40.107.244.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AC8418B8E0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 Jul 2022 14:04:37 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VrhEfkNv/lioBJWP4AUKB/8Ex1Pojw9o+BVFTkq7lSxjLthz6FoTOp7AktAdqbLveFTrbg2JLoutAn3giD8R0v/IjKSUFXt+GfoVB08ZI3wysbyDR6sQ5pyGSBCbc5uY6F4hZN/+hQYq0yX+0yw8JvCildJE/rBy2Dm5BinMF8ar9tBoHSFACvRtrxrKGTHOw94uOvTrzp64r9ddVfH13IagR/R7+Z8hSvH7faxULAErj/gjjWrFM1cNmzzr5tPS1XYY89Vek9Ky5unrVjqZeFJVBToF3+P+Hj/uzchMJngPs6eGJeuPbRPNoITSPIGfMhWptt15GkNofrc8Pw8zBw==
+ b=Mi9xQbuieMe+2+R8pdskkXFBFM13Jm0UNGuEDDA0WW0F3q93oOtUhlCoR1khPqrAe+Ks7h9dLSb9RLu+1aPwuLNXVIbvVlA9L9VEp6dWBudJ9S6EUpFfltOYQxTOxhBj7XVQdjB1rGK8JLsEUejKUlpIEFPwqKLfI10rGF+bS0G4B5th16CjOFda9De3rhu5c5fvBH8jcsm4BNUZMlWzyk8dxayjq5hzYqvcFpyv8qyANebs0wAU2J2E3/KizmExEjOpvEaskGPobyJLD+HxG2UB3NBSM3FXp8QVLNJTJn97DgTzZ75LgzdDwAeDntzT27mjxxTn7OU1BHG2GVI0Pg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hxw8L7sncsVzki1Erj4COZeb8+KBN8CayXCrlEdVJKk=;
- b=EYqPCEKU0jVdRSstnuO3fQR73MN/Uqw2SwOgd59WKKDbRvSDft9eb+plUaRywB9cqXBB0MMml/RLNuDKTKiJJN4yRgkMBE7kQfcc5zJ3F6WVsCT69Ztr2oPZ8DcWg3rBVwm3cJ87t3g3rtD4jSCMoSDcAV6fzHGLacxhngFG5HxSN/4A8bjN58HebmEzjH6ae4wmEvbrbo7jOcVEpBZph/USCeFLASlcWUPAvJSzCWhAcnKIkqwM6Ki2+D0PFx6xXLL7jOWuotOs7KZvvWSVH4NT4Q0RqnAtjhxB8o3F/1RbF6u5eTfmNdDgsQnGaWtGDZAW3crlpBqjXYNHaZgc6A==
+ bh=oOODT19tQYUiQrS2J2hPWYW78B9V1G51tbdufH9mAzg=;
+ b=DrJwVEuWk3oz7VTYcqXoJ0IAEW9VkB2oUs8v1MzLkclW/xUCSxr/6J74q+Wh0NcahA0RuLoQyUZtlf6NYIFl3N0o9++f2SWDw76HkTqJXjgqt6t1F+jdcnQqK/BfsEVsVw2QzuZ1532vwAKI/URiTpbULxP5ouzYwgIHSBVY41xlBQ2nGtsk3uX2h7tJL6UHx2/LdVV5Bz7OwLKUJ6tQICyc7gDP+ahIxPyX+dsTWcrPIeSh6bo/g7wlFkUsFuFzSj9en108rAlrqRB5gcmbzIlh9hO6AuW2JKdqCjvYBCR9zm05TC6xCVfVTTA5RcG5uDaaSBxzHhsrCqoQczQPVQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hxw8L7sncsVzki1Erj4COZeb8+KBN8CayXCrlEdVJKk=;
- b=BLRCBCKIZ8YR4pdeBi5J+5ZxLkDpE8cgASJJbyAeOSywmvNoSWpBEC2u9X7NOIz06UGOnrs2NReJnN1ADGzgRwpT5OyYSc+/nLwBMzhEJFVH9Ae7Bz27ttwJs53pRW/74IRyk4amkTrHIv9TkjoxTeSc/keOXcFdV4GORo+gv6w=
-Received: from BN9P223CA0028.NAMP223.PROD.OUTLOOK.COM (2603:10b6:408:10b::33)
- by BN8PR12MB3378.namprd12.prod.outlook.com (2603:10b6:408:61::14)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=oOODT19tQYUiQrS2J2hPWYW78B9V1G51tbdufH9mAzg=;
+ b=JkFTY6r6kI+hjjHkNIiG5fQ1i7daYaWfHErIXKz2mFz35bNUiU/YcOzmAijhbzBlzl36WnhnKHZRlrNDLatu2ApYqGJAGzhPq9fVPtnGxPd0fHisKMf96//KAyYUsdYuHOusQCR09qKgheLjdHbzAhhsg3WTimmhDeOThPaMPxA=
+Received: from BN9PR03CA0362.namprd03.prod.outlook.com (2603:10b6:408:f7::7)
+ by DM6PR12MB2875.namprd12.prod.outlook.com (2603:10b6:5:15c::28) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.20; Tue, 19 Jul
- 2022 14:04:32 +0000
-Received: from BN8NAM11FT015.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:10b:cafe::b5) by BN9P223CA0028.outlook.office365.com
- (2603:10b6:408:10b::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.12 via Frontend
- Transport; Tue, 19 Jul 2022 14:04:32 +0000
+ 2022 14:04:35 +0000
+Received: from BN8NAM11FT058.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:f7:cafe::99) by BN9PR03CA0362.outlook.office365.com
+ (2603:10b6:408:f7::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.23 via Frontend
+ Transport; Tue, 19 Jul 2022 14:04:35 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,50 +45,49 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT015.mail.protection.outlook.com (10.13.176.90) with Microsoft SMTP
+ BN8NAM11FT058.mail.protection.outlook.com (10.13.177.58) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5438.12 via Frontend Transport; Tue, 19 Jul 2022 14:04:31 +0000
+ 15.20.5438.12 via Frontend Transport; Tue, 19 Jul 2022 14:04:35 +0000
 Received: from david-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 19 Jul
- 2022 09:04:30 -0500
+ 2022 09:04:32 -0500
 From: <David.Francis@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 1/3] drm/amd/kfd: Update documentation to match kernel
- standards
-Date: Tue, 19 Jul 2022 10:03:36 -0400
-Message-ID: <20220719140338.1644486-2-David.Francis@amd.com>
+Subject: [PATCH 2/3] drm/amd/kfd: Add documentation comments to KFD
+Date: Tue, 19 Jul 2022 10:03:37 -0400
+Message-ID: <20220719140338.1644486-3-David.Francis@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220719140338.1644486-1-David.Francis@amd.com>
 References: <20220719140338.1644486-1-David.Francis@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
 X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 686749ed-3cb2-4580-49f2-08da698f9a80
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3378:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8572b7ff-bd24-4dd4-eb69-08da698f9c7b
+X-MS-TrafficTypeDiagnostic: DM6PR12MB2875:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: CY7Lo2pWaK818XnrDAY1z9YSkb2SOGxoj93faTqoC3XYMw+uRkaidid8vKdZTvElnzEi9USj+pyrxrSrTCl2UjryjN4j6oN3QtJtZmnYshfCyuEj10ojDF8EpxCsAtq+r4KVNPNfnCksXcWP00UytNLKoKnXKlHuOofZZLThXYrDk5p+SH8xpQ4YRofXokkh2TpZDEGQhBKSQ9MdgD762chkgD+xYi42qAXOW24qN81dCxLXWX+ktzBSarWlXYLVFaLhVBajFMVSuLoNhj9ehhspj/+izND3bDSknW+bfA2kJ5cmdWYMIe4ZuIZ3gh7jMZrHUN/3c0ylYZtCWpg1ILts9DRcsL0gJ+7Imvgcd6GQLqDMWISwJ4ssS7qV9RVNC/0z8vYEFVVpv9LmFsbqD0WOOhdURlFam3Mv+egNc4HkID3UqJBguZMOaVvZrbBwec96vgqnrGFKIj5ri7Hl4RmA+GWH/mzYOR/fHLol4rwdm6Oo71urcJTdEqFNRgev4a6pAy1KdneqCaHzxnlMWdirlj4Wsd0R4SYgX3OXgQFJtj2CSdcRHH3LvflnsQJW+TPK1/OGCJDbiPqbVUCpDPi+eTaabcD475ZyI3KHM7oKfI8diYFbBgvmkUpFwA7M3iovrKsDZvgJMkKK8azkxTXrrYrem74HQwtc7QxvQhg81uT82LdekDELjbDpGeNB2r4TcyA4WIAV0KRXdkbwe4XXleBGiKBGkAMCV5AIMPYvZhYXlDitaGYLuwsz0ovaE/BDBwHF/Fqc3qe3cbuafmOjcuZeazKXKDXpNRTkvYHKWrLYGzNKXj2Di0KTQVJcWA+6LsK4oCC1Rl+B66BUrw==
+X-Microsoft-Antispam-Message-Info: W9bc7o66oumbuaANvTw381UsDMKEI68cE7vBzKI50BekU4rUKyuh1XA2oGGtIg3Rsw+4Y01fFpxIavUeEvmtSJOf3oHP0s2tnqjgdbOANCWMsF1BE1c5TICBabs3+cJ0KZoKpVtffJSqwNEw2H7KsdRu2MIWP8J++eUQxi4uAx5HdpZlxGg4fiREMaUdc8NkvmCSU2Ww7JPb8dh2M+gGauWbc3OHc5fQ9D+tr89ZxcTnHod7nkkYEOJwq8sSxbggZRWDU6NKfg9O84/f2/qNrefHahEVDe7PGyrzOS3KgCgNfUBVnt6Kl6FriZ+HdoQjMC23DChXwVSqUc/J5Bl+TwJqOhf7MxFYe2iu+SmWUe5ImLMGP18C7tv2Zl6aD8rwuVPziFU2ui9805RfRCj/5y5vjIrqM6kpgNAmUOclNgQJDbMNTyIdF5YcaNYt6aYS2vdFWOxLY+PVfJgsApTbmajxu4+qpqUNOYqiWo8bOrly4L6dbRWeZI9v96x2ldo1XWCsK3UbqkoiVq7mFHM2Bm9YtG9mquPT0YuzbxI5VdYIwXO9sO3Bs4OTZ2KCMFN9egFvXI0ie63uyFNLr6X3eekh56pzAuuhrHRY3JGAIxMNKNWYAUdrMMhAjzvNeCbBdOXyLozNmwUjjiH++6coZZuWC1IYfhvmSGckWqtH2nNfNSoxtLV8YGd1djWFPZPxIHHj1B2SbuL7rCF+FSwYI1Ah//caERq6zalfqKBfyp2lz9pQzcvEUyB5jHOGxTzBjLEFWRjj/OClbG0CifES1UJrlZG+pGH4cLoc2GzHaTzJKW6fVVmfq29K6dVlKBblei8YksAzqMpqKyXfNVGqlA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(136003)(346002)(396003)(39860400002)(376002)(36840700001)(40470700004)(46966006)(82310400005)(40460700003)(26005)(6916009)(16526019)(2616005)(426003)(1076003)(186003)(41300700001)(36756003)(2876002)(336012)(478600001)(47076005)(70206006)(40480700001)(36860700001)(54906003)(2906002)(86362001)(316002)(8936002)(81166007)(83380400001)(356005)(4326008)(7696005)(5660300002)(82740400003)(8676002)(70586007)(36900700001);
+ SFS:(13230016)(4636009)(396003)(346002)(39860400002)(136003)(376002)(46966006)(40470700004)(36840700001)(70586007)(70206006)(8936002)(30864003)(5660300002)(4326008)(8676002)(40480700001)(82310400005)(40460700003)(2876002)(2906002)(36860700001)(83380400001)(356005)(86362001)(82740400003)(81166007)(36756003)(478600001)(54906003)(316002)(6916009)(2616005)(1076003)(47076005)(426003)(186003)(16526019)(336012)(41300700001)(26005)(7696005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jul 2022 14:04:31.6404 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 686749ed-3cb2-4580-49f2-08da698f9a80
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jul 2022 14:04:35.2171 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8572b7ff-bd24-4dd4-eb69-08da698f9c7b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT015.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT058.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3378
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2875
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,266 +106,251 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: David Francis <David.Francis@amd.com>
 
-The kernel documentation system requires things to be just so
-in order to incorporate documentation into the sphinx system.
-
-There were some comments in amdkfd which didn't meet that
-standard. Tweak them so they do.
+Add six long comments outlining the basic features of the
+driver, to aid new developers.
 
 Signed-off-by: David Francis <David.Francis@amd.com>
 Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c | 27 +++++++++++++---
- drivers/gpu/drm/amd/amdkfd/kfd_interrupt.c   |  4 +--
- include/uapi/linux/kfd_ioctl.h               | 33 +++++++++++---------
- 3 files changed, 43 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_chardev.c  | 74 +++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdkfd/kfd_device.c   | 25 ++++++++
+ drivers/gpu/drm/amd/amdkfd/kfd_queue.c    | 57 +++++++++++++++++
+ drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 33 ++++++++++
+ 4 files changed, 189 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c b/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c
-index 8aebe408c544..075e4c80dd04 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c
-@@ -37,11 +37,14 @@
- #include <linux/mman.h>
- #include <linux/processor.h>
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+index 6abfe10229a2..ea25a47b62dc 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+@@ -1031,6 +1031,80 @@ static int kfd_ioctl_get_available_memory(struct file *filep,
+ 	return 0;
+ }
  
--/*
 +/**
-+ * DOC: Memory_Features
++ * DOC: Memory_Types
 + *
-  * The primary memory I/O features being added for revisions of gfxip
-  * beyond 7.0 (Kaveri) are:
-  *
-  * Access to ATC/IOMMU mapped memory w/ associated extension of VA to 48b
-+ * ----------------------------------------------------------------------
-  *
-  * “Flat” shader memory access – These are new shader vector memory
-  * operations that do not reference a T#/V# so a “pointer” is what is
-@@ -55,6 +58,7 @@
-  *
-  *
-  * System Unified Address - SUA
-+ * ----------------------------
-  *
-  * The standard usage for GPU virtual addresses are that they are mapped by
-  * a set of page tables we call GPUVM and these page tables are managed by
-@@ -72,13 +76,16 @@
-  * There are three fundamental address modes of operation for a given VMID
-  * (process) on the GPU:
-  *
-- *	HSA64 – 64b pointers and the default address space is ATC
-- *	HSA32 – 32b pointers and the default address space is ATC
-- *	GPUVM – 64b pointers and the default address space is GPUVM (driver
-- *		model mode)
-+ * HSA64 – 64b pointers and the default address space is ATC
++ * There are many different types of memory that KFD can manage, each with
++ * slightly different interfaces
 + *
-+ * HSA32 – 32b pointers and the default address space is ATC
++ * VRAM and GTT
++ * ------------
 + *
-+ * GPUVM – 64b pointers and the default address space is GPUVM (driver
-+ * model mode)
-  *
-  *
-  * HSA64 - ATC/IOMMU 64b
-+ * ---------------------
-  *
-  * A 64b pointer in the AMD64/IA64 CPU architecture is not fully utilized
-  * by the CPU so an AMD CPU can only access the high area
-@@ -99,6 +106,7 @@
-  *
-  *
-  * 64b to 49b Address conversion
-+ * -----------------------------
-  *
-  * Note that there are still significant portions of unused regions (holes)
-  * in the 64b address space even for the GPU.  There are several places in
-@@ -147,6 +155,7 @@
-  *
-  *
-  * “Spare” aperture (APE1)
-+ * -----------------------
-  *
-  * We use the GPUVM aperture to differentiate ATC vs. GPUVM, but we also use
-  * apertures to set the Mtype field for S_LOAD/FLAT_* ops which is input to the
-@@ -160,6 +169,7 @@
-  *
-  *
-  * General Aperture definitions and rules
-+ * --------------------------------------
-  *
-  * An aperture register definition consists of a Base, Limit, Mtype, and
-  * usually an ATC bit indicating which translation tables that aperture uses.
-@@ -187,6 +197,7 @@
-  *
-  *
-  * HSA32 - ATC/IOMMU 32b
-+ * ---------------------
-  *
-  * For HSA32 mode, the pointers are interpreted as 32 bits and use a single GPR
-  * instead of two for the S_LOAD and FLAT_* ops. The entire GPUVM space of 40b
-@@ -196,6 +207,7 @@
-  *
-  *
-  * GPUVM 64b mode (driver model)
-+ * -----------------------------
-  *
-  * This mode is related to HSA64 in that the difference really is that
-  * the default aperture is GPUVM (ATC==0) and not ATC space.
-@@ -204,6 +216,7 @@
-  *
-  *
-  * Device Unified Address - DUA
-+ * ----------------------------
-  *
-  * Device unified address (DUA) is the name of the feature that maps the
-  * Shared(LDS) memory and Private(Scratch) memory into the overall address
-@@ -220,6 +233,7 @@
-  *
-  *
-  * HSA64 Apertures for FLAT_* vector ops
-+ * -------------------------------------
-  *
-  * For HSA64 SUA mode, the Shared and Private apertures are always placed
-  * in the hole w/ a limited selection of possible locations. The requests
-@@ -231,6 +245,7 @@
-  *
-  *
-  * HSA32 Apertures for FLAT_* vector ops
-+ * -------------------------------------
-  *
-  * In HSA32 mode, the Private and Shared apertures can be placed anywhere
-  * in the 32b space except at 0 (Private or Shared Base at zero disables
-@@ -239,6 +254,7 @@
-  *
-  *
-  * GPUVM Apertures for FLAT_* vector ops
-+ * -------------------------------------
-  *
-  * In GPUVM mode, the Shared/Private apertures are specified identically
-  * to HSA64 mode where they are always in the hole at a limited selection
-@@ -246,6 +262,7 @@
-  *
-  *
-  * Aperture Definitions for SUA and DUA
-+ * ------------------------------------
-  *
-  * The interpretation of the aperture register definitions for a given
-  * VMID is a function of the “SUA Mode” which is one of HSA64, HSA32, or
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_interrupt.c b/drivers/gpu/drm/amd/amdkfd/kfd_interrupt.c
-index a9466d154395..d53ffff2635a 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_interrupt.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_interrupt.c
-@@ -21,8 +21,8 @@
-  * OTHER DEALINGS IN THE SOFTWARE.
-  */
- 
--/*
-- * KFD Interrupts.
-+/**
-+ * DOC: KFD_Interrupts
-  *
-  * AMD GPUs deliver interrupts by pushing an interrupt description onto the
-  * interrupt ring and then sending an interrupt. KGD receives the interrupt
-diff --git a/include/uapi/linux/kfd_ioctl.h b/include/uapi/linux/kfd_ioctl.h
-index afd8ff29c74f..248c4b2f85d6 100644
---- a/include/uapi/linux/kfd_ioctl.h
-+++ b/include/uapi/linux/kfd_ioctl.h
-@@ -367,7 +367,8 @@ struct kfd_ioctl_acquire_vm_args {
- #define KFD_IOC_ALLOC_MEM_FLAGS_COHERENT	(1 << 26)
- #define KFD_IOC_ALLOC_MEM_FLAGS_UNCACHED	(1 << 25)
- 
--/* Allocate memory for later SVM (shared virtual memory) mapping.
-+/**
-+ * struct kfd_ioctl_alloc_memory_of_gpu_args - Allocate memory for later SVM (shared virtual memory) mapping.
-  *
-  * @va_addr:     virtual address of the memory to be allocated
-  *               all later mappings on all GPUs will use this address
-@@ -396,7 +397,8 @@ struct kfd_ioctl_free_memory_of_gpu_args {
- 	__u64 handle;		/* to KFD */
- };
- 
--/* Map memory to one or more GPUs
-+/**
-+ * struct kfd_ioctl_map_memory_to_gpu_args - Map memory to one or more GPUs
-  *
-  * @handle:                memory handle returned by alloc
-  * @device_ids_array_ptr:  array of gpu_ids (__u32 per device)
-@@ -544,7 +546,7 @@ enum kfd_criu_op {
- };
- 
- /**
-- * kfd_ioctl_criu_args - Arguments perform CRIU operation
-+ * struct kfd_ioctl_criu_args - Arguments perform CRIU operation
-  * @devices:		[in/out] User pointer to memory location for devices information.
-  * 			This is an array of type kfd_criu_device_bucket.
-  * @bos:		[in/out] User pointer to memory location for BOs information
-@@ -616,7 +618,7 @@ enum kfd_mmio_remap {
- #define KFD_IOCTL_SVM_FLAG_GPU_ALWAYS_MAPPED   0x00000040
- 
- /**
-- * kfd_ioctl_svm_op - SVM ioctl operations
-+ * enum kfd_ioctl_svm_op - SVM ioctl operations
-  *
-  * @KFD_IOCTL_SVM_OP_SET_ATTR: Modify one or more attributes
-  * @KFD_IOCTL_SVM_OP_GET_ATTR: Query one or more attributes
-@@ -626,7 +628,8 @@ enum kfd_ioctl_svm_op {
- 	KFD_IOCTL_SVM_OP_GET_ATTR
- };
- 
--/** kfd_ioctl_svm_location - Enum for preferred and prefetch locations
-+/**
-+ * enum kfd_ioctl_svm_location - Enum for preferred and prefetch locations
-  *
-  * GPU IDs are used to specify GPUs as preferred and prefetch locations.
-  * Below definitions are used for system memory or for leaving the preferred
-@@ -638,7 +641,7 @@ enum kfd_ioctl_svm_location {
- };
- 
- /**
-- * kfd_ioctl_svm_attr_type - SVM attribute types
-+ * enum kfd_ioctl_svm_attr_type - SVM attribute types
-  *
-  * @KFD_IOCTL_SVM_ATTR_PREFERRED_LOC: gpuid of the preferred location, 0 for
-  *                                    system memory
-@@ -667,7 +670,7 @@ enum kfd_ioctl_svm_attr_type {
- };
- 
- /**
-- * kfd_ioctl_svm_attribute - Attributes as pairs of type and value
-+ * struct kfd_ioctl_svm_attribute - Attributes as pairs of type and value
-  *
-  * The meaning of the @value depends on the attribute type.
-  *
-@@ -680,14 +683,16 @@ struct kfd_ioctl_svm_attribute {
- };
- 
- /**
-- * kfd_ioctl_svm_args - Arguments for SVM ioctl
-+ * struct kfd_ioctl_svm_args - Arguments for SVM ioctl
++ * VRAM and GTT can be allocated with the AMDKFD_IOC_ALLOC_MEMORY_OF_GPU ioctl.
++ * This ioctl returns a handle used to refer to the memory in future kfd ioctls,
++ * as well as a mmap_offset used for mapping the allocation on the CPU. VRAM
++ * memory is located on the GPU, while GTT memory is located in host memory.
++ * Once memory is allocated, it must be mapped with the
++ * AMD_KFD_IOC_MAP_MEMORY_TO_GPU ioctl before the GPU can access it.
 + *
-+ * @op: specifies the operation to perform (see enum kfd_ioctl_svm_op).
-+ * @start_addr: starting virtual address of SVM range
-+ * @size: size of SVM range
-  *
-- * @op specifies the operation to perform (see enum
-- * @kfd_ioctl_svm_op).  @start_addr and @size are common for all
-- * operations.
-+ * @attrs: a variable number of attributes to set / get
-+ * @nattr: the number of attributes.
-  *
-- * A variable number of attributes can be given in @attrs.
-- * @nattr specifies the number of attributes. New attributes can be
-+ * New attributes can be
-  * added in the future without breaking the ABI. If unknown attributes
-  * are given, the function returns -EINVAL.
-  *
-@@ -727,7 +732,7 @@ struct kfd_ioctl_svm_args {
- };
++ * Doorbell and MMIO
++ * -----------------
++ *
++ * Each process is assigned two pages of doorbell memory used to signal that
++ * usermode queues have awaiting packets. AMDKFD_IOC_ALLOC_MEMORY_OF_GPU
++ * associates these pages with a virtual address. They must still be mapped if
++ * the GPU is to access them.
++ *
++ * There is one page of MMIO memory per GPU that is accessible to userspace by
++ * the same means.
++ *
++ * userptr
++ * -------
++ *
++ * userptr memory is user-allocated system memory, alloacted with malloc or
++ * similar. As with doorbell and MMIO memory, AMDKFD_IOC_ALLOC_MEMORY_OF_GPU
++ * does not allocate the memory; instead it registers existing memory for
++ * mapping.
++ *
++ * SVM
++ * ---
++ *
++ * SVM is a different memory-allocation API available on GFX9+. Like userptr
++ * memory, SVM maps existing user-managed memory onto the GPU.
++ *
++ * XNACK is an SVM feature that is disabled by default as it has a performance
++ * cost. When XNACK is enabled, SVM memory can perform recoverable page faults,
++ * allowing KFD to allocate memory without reserving physical address space,
++ * performing the physical allocation only on page fault. With XNACK, SVM
++ * uses the Heterogenous Memory Manager (HMM) to migrate pages back and forth
++ * between the device and the host in reponse to memory pressure and page faults.
++ *
++ * Scratch
++ * -------
++ *
++ * Scratch memory is VRAM memory on a GPU reserved for holding intermediate
++ * values during a shader's execution. A user (usually ROCr) can allocate
++ * scratch memory by allocating VRAM memory and then using the
++ * AMDKFD_IOC_SET_SCRATCH_BACKING_VA ioctl.
++ */
++
++/**
++ * DOC: Memory_Implementation
++ *
++ * The GPU page tables need to be kept in sync with the CPU page tables; if a
++ * page is moved, swapped, or evicted by linux's normal memory manager, a callback
++ * is made into kfd, which must pause hardware access to the memory while the
++ * operation is in progress.
++ *
++ * Compute shaders can cause thrashing if the total memory in use exceeds the
++ * GPU or system's memory limits. Because user command submission is via
++ * usermode queues, with no driver involvement, all memory must be physically
++ * resident at all times (this is different from the graphics approach, which
++ * can swap memory on and off the GPU as needed). KFD prevents overcommitment
++ * of memory by keeping an account of how much memory processes have allocated,
++ * and refusing to allocate beyond a threshold.
++ */
++
+ static int kfd_ioctl_alloc_memory_of_gpu(struct file *filep,
+ 					struct kfd_process *p, void *data)
+ {
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+index f5853835f03a..76d1842c9333 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+@@ -37,6 +37,31 @@
  
- /**
-- * kfd_ioctl_set_xnack_mode_args - Arguments for set_xnack_mode
-+ * struct kfd_ioctl_set_xnack_mode_args - Arguments for set_xnack_mode
-  *
-  * @xnack_enabled:       [in/out] Whether to enable XNACK mode for this process
-  *
+ #define MQD_SIZE_ALIGNED 768
+ 
++/**
++ * DOC: Discovery
++ *
++ * There are two phases of initialization and topology discovery in KFD. The
++ * first, module_init occurs when the module is built into the kernel (on boot
++ * or modprobe). The second, device_init, occurs when linux discovers a PCI
++ * device that is an AMD GPU (on boot or hotplug).
++ *
++ * module_init begins when the amdgpu driver is initialized (amdgpu_drv.c),
++ * which calls kfd_init() in kfd_module.c. At this time, the chardev is created
++ * so that ioctls can be submitted, and the topology is queried, creating the
++ * sysfs layout. Some AMD APUs make their topology information
++ * available through a BIOS structure called a CRAT table. If no CRAT table is
++ * found, KFD will make one up with the information available to it. Discrete
++ * GPUs are not discovered at this time; only CPUs and APUs. At this
++ * point, AMDGPU registers itself as a PCIe driver.
++ *
++ * device_init begins when linux finds a device with a PCIe ID matching an entry
++ * amdgpu is registered for. If the device contains compute functionality,
++ * amdgpu will call kgd2kfd_probe() and kgd2kfd_device_init() in kfd_device.c
++ * (kgd2kfd stands for Kernel Graphics Driver to Kernel Fusion Driver) to set up
++ * shared resources such as non-compute doorbells and add the new device to the
++ * topology.
++ */
++
+ /*
+  * kfd_locked is used to lock the kfd driver during suspend or reset
+  * once locked, kfd driver will stop any further GPU execution.
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_queue.c b/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
+index 0f6992b1895c..3c1a2be18d4c 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
+@@ -25,6 +25,63 @@
+ #include <linux/slab.h>
+ #include "kfd_priv.h"
+ 
++/**
++ * DOC: Queue_Interface
++ *
++ * A process can create queues with the ioctl AMDKFD_IOC_CREATE_QUEUE, which
++ * returns a queue id used as a handle, the addresses of the read and write
++ * pointers, and the doorbell location. Up to 256 processes can have queues,
++ * and each process can have up to 1024 queues.
++ *
++ * A doorbell is a 64-bit memory-mapped register on the GPU that a
++ * process can write to to signal that the corresponding queue has packets
++ * waiting in it.
++ *
++ * A queue can be either an compute queue, used for computation, or an SDMA queue,
++ * used for data transfers.
++ *
++ * Most HSA queues take commands in the form of 64-byte AQL packets. Most
++ * commonly, this will be a kernel dispatch packet containing a pointer to the
++ * kernel to be executed. A kernel is a small program that performs an
++ * elementary operation such as a vector sum, matrix multiplication, or
++ * scatter-gather operation. A single user program may be made up of many
++ * kernels. Other AQL packets include barrier packets used for synchronization
++ * between shaders and PM4_IB packets that flush the cache, used for profiling.
++ * Packets in the same queue will begin execution in order, but can run
++ * concurrently. DMA queues are similar, but use a different packet format.
++ *
++ * A queue contains a ringbuffer with read and write pointers used to submit
++ * packets (the size of the ringbuffer is specified when the queue is
++ * created). To write to a queue, a process first atomically moves the
++ * write pointer forward. Then, it writes each of the packets to the buffer,
++ * leaving the headers empty so that if hardware attempts to consume the packets
++ * at this point, it will find them invalid. Then it writes the headers and
++ * signals the doorbell.
++ *
++ * In addition to the user mode queues described here, there are kernel mode
++ * queues used internally by KFD to communicate with various elements of the
++ * hardware; these work similarly.
++ */
++
++/**
++ * DOC: Queue_Implementation
++ *
++ * Although there may be thousands of queues attached to processes, the 
++ * hardware engines have a limited number of queue slots, usually 32 or fewer 
++ * compute and 10 or fewer DMA per GPU. The hardware will detect doorbell 
++ * signals directly only from queues mapped to an engine. The hardware
++ * scheduler will periodically poll for unmapped queues with work waiting and
++ * map them, unmapping empty queues to make room.
++ *
++ * Compute shaders can be interrupted partway through execution by the hardware
++ * scheduler. In that case, the shader's current state will be saved to a
++ * usermode buffer so it can be restored at a later time. These buffers are
++ * large, and each queue requires its own buffer, so queues are memory-expensive
++ * objects. The context save/restore process is initiated with a trap handler on
++ * the GPU. The trap handler itself is located in the driver, written in SP3
++ * assembly code.
++ */
++
+ void print_queue_properties(struct queue_properties *q)
+ {
+ 	if (!q)
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+index 25990bec600d..8c2910b98ece 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+@@ -42,6 +42,39 @@
+ #include "amdgpu_ras.h"
+ #include "amdgpu.h"
+ 
++/**
++ * DOC: Topology
++ *
++ * The GPU component of an APU or iGPU, or a discrete GPU, is a GPU device. The
++ * CPU is also a device (known as "System" or "Host" to KFD).
++ *
++ * A node is a memory domain. Most devices are a single node, but certain GPUs
++ * may contain multiple nodes, depending on how they are configured. Each GPU
++ * node has its own L2 data cache.
++ *
++ * A GPU contains multiple Shader Engines (SEs). Each shader engine has its own
++ * sub-scheduler to divide up work within the SE.
++ *
++ * A Shader Engine contains multiple Compute Units (CUs). All processing in a
++ * CU will share all caches, such that two threads running in the same
++ * CU will be able to easily communicate and synchronize
++ *
++ * A Compute Unit contains multiple Single Instruction Multiple Data units
++ * (SIMDs). A SIMD can run programs that perform operations on 32- or 64-element
++ * vectors. A program running on a single SIMD is called a wavefront.
++ *
++ * In addition to the processing capabilities, the topology also includes the
++ * IO links between nodes. GPU nodes may be connected to each other or the
++ * system via XGMI or PCIe links.
++ *
++ * Topology information is available through sysfs at
++ * /sys/devices/virtual/kfd/kfd/topology or through symbolic link at
++ * /sys/class/kfd/kfd/topology. The generation_id field in that directory is
++ * incremented each time the topology is updated. To ensure a consistent view of
++ * the topology, user programs should read generation_id before and after
++ * checking the topology, and retry if the values are not the same.
++ */
++
+ /* topology_device_list - Master list of all topology devices */
+ static struct list_head topology_device_list;
+ static struct kfd_system_properties sys_props;
 -- 
 2.25.1
 
