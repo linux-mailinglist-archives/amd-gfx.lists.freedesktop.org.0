@@ -2,65 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CFC157B6C1
-	for <lists+amd-gfx@lfdr.de>; Wed, 20 Jul 2022 14:50:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F52257B86D
+	for <lists+amd-gfx@lfdr.de>; Wed, 20 Jul 2022 16:27:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C4B28CFC4;
-	Wed, 20 Jul 2022 12:50:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1D3314A480;
+	Wed, 20 Jul 2022 14:26:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
- [IPv6:2a00:1450:4864:20::329])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 674C68CFD2
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 Jul 2022 12:50:21 +0000 (UTC)
-Received: by mail-wm1-x329.google.com with SMTP id b6so10266585wmq.5
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 Jul 2022 05:50:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=iH4DV4mzOnr0Wqtu8cdfc1pwfzKa6Q9JjoHfrfj4XhE=;
- b=jt3btPi5WFQWy0tLs8rjyNIjOcAXd1Yt4tTq59VSFcxeVn+JQuy7Iig/qPTmjDZ+C/
- 5rvqF/oK4wrUoac301GtaRF3juGwN4edRCzyku+0xAKU6HtdMScMC2TGa3YRappzCYtZ
- A4HWMrw5TjjGfNXW0gl2nDiSMIuySskPd5RW7V2lyw53F3RozaWYnvlu/XAuyioL7Y6S
- FHuSkIHseQ32ie9NQmsUjSAWpjdgDlQ9DcUM1/xcTJwqCgNmHK3Ij2DRVwd5evzW2enZ
- BfFa93W6VN9noqQS8GV4aQRA4lYIxyzF/vcHJ+RQ3RrKIxSWPza14PBXjsEaSEKBAq71
- +LXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=iH4DV4mzOnr0Wqtu8cdfc1pwfzKa6Q9JjoHfrfj4XhE=;
- b=x5ET/GLui7/ag6i/SWYTHFNyCEMJg0Ld/qkaLJj08bWw0aK9LHkXvtWgaLScgAhctO
- PgBCdrHKZUWSqzbQmlRp11ROf2BSyLQ0S0eggGvufZbpHiR+ahn9TJyvpUb17z4gyoXd
- XiNbZF8UofcXWos4YQYwsiBFHGs6OUBbLwp5+PeH11wlcl9iU2itTbA3HfPsF03uaRfR
- 5xgvLIdPttdi4XTbjwKh8T+JDj9lq2ObjiHHei97YhDCK+d9WWZGcCyC4VArex2K7pKr
- /eeaXacJo1/5tM7xxFuf4TYt7izVHPBN8ZXgFNd6gbbBtf4cLEVkF8rXwqaWk2LP71YX
- ZQBA==
-X-Gm-Message-State: AJIora926VnX2r5hW1hxVfxWoI9so9mDoAWRrrlWXhwIO+CPUw/16Ekq
- sV3Nd6WL+1OmVmEJx7OBKFIOovgwxEw=
-X-Google-Smtp-Source: AGRyM1ulK9gelPI93HM9Vj88U7x9T0ijyJAUb0WsaL6fnCWtsXum+SlJ7zsXiH5qcUksEVHMef3utw==
-X-Received: by 2002:a05:600c:3553:b0:3a3:2b65:299e with SMTP id
- i19-20020a05600c355300b003a32b65299emr1870763wmq.145.1658321419990; 
- Wed, 20 Jul 2022 05:50:19 -0700 (PDT)
-Received: from ?IPV6:2a02:908:1256:79a0:c3a3:a774:9c4e:7491?
- ([2a02:908:1256:79a0:c3a3:a774:9c4e:7491])
- by smtp.gmail.com with ESMTPSA id
- m184-20020a1c26c1000000b003a04722d745sm2336642wmm.23.2022.07.20.05.50.19
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 20 Jul 2022 05:50:19 -0700 (PDT)
-Message-ID: <ee4e323a-38c6-208c-417b-d3101aeee067@gmail.com>
-Date: Wed, 20 Jul 2022 14:50:18 +0200
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55D9111B23B
+ for <amd-gfx@lists.freedesktop.org>; Wed, 20 Jul 2022 14:26:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:Cc:
+ References:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID
+ :Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
+ Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe
+ :List-Post:List-Owner:List-Archive;
+ bh=dMoVYQxnaUxzSnpXC3b4QhKMds/tnwk4wVoudOV5YtQ=; b=nGYa2NHYZzVU0rNNjDuerD4bRH
+ erzfGP9LOhHLQ+ocI0mY5qfeGZZvQyTWGCv9O1/Bf3eZvwZOOzhGyXG0iaOirgRtUQ3Ipls9s9paF
+ ToFUI6xcBX2k+3mshuSUuecqJvWj0nPAe2DNLMDwT48cy+R8wj8f9ha4ZBwgPRNQ6SC+9QjnIPlpg
+ Nvk6atiEIfCG1v9FCahXmwAvMSDPaUhPMWsgR3KSFBqZRQvRz5wSgQPOIosuwMNYB3oSyXUk0hSy8
+ rKrFKpa+dmyXesQtDpYh4f3XDh4xskpBAR8g73F5kBqp9XWzFqQP+HIsyGnra6RmK0oI97Gyf/tnm
+ 6w0yQvFg==;
+Received: from 201-13-50-220.dsl.telesp.net.br ([201.13.50.220]
+ helo=[192.168.15.109]) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1oEAf7-000OMB-Tn; Wed, 20 Jul 2022 16:26:53 +0200
+Message-ID: <619fc381-04e0-bc1f-62ad-a1169a63febc@igalia.com>
+Date: Wed, 20 Jul 2022 11:26:38 -0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 1/2] drm/amdgpu: drop non-necessary call trace dump
+Subject: Re: [PATCH] drm/amdgpu: Fix the incomplete product number
 Content-Language: en-US
-To: Evan Quan <evan.quan@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20220720090640.47497-1-evan.quan@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20220720090640.47497-1-evan.quan@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Roy Sun <Roy.Sun@amd.com>
+References: <20220720082659.49637-1-Roy.Sun@amd.com>
+From: =?UTF-8?Q?Andr=c3=a9_Almeida?= <andrealmeid@igalia.com>
+In-Reply-To: <20220720082659.49637-1-Roy.Sun@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,40 +53,35 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, hawking.zhang@amd.com
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 20.07.22 um 11:06 schrieb Evan Quan:
-> This extra call trace dump comes out in every gpu reset.
-> And it gives people a wrong impression that something
-> went wrong. Although actually there was not.
->
-> Signed-off-by: Evan Quan <evan.quan@amd.com>
-> Change-Id: I884af405b6b3cd52b9024408a21fd39811a01f4d
+Às 05:26 de 20/07/22, Roy Sun escreveu:
+> The comments say that the product number is a 16-digit HEX string so the
+> buffer needs to be at least 17 characters to hold the NUL terminator.
+> 
 
-Acked-by: Christian König <christian.koenig@amd.com>
+Which comment?
 
-And please guys don't add calls to dump_stack() in the future. That's 
-really not supposed to be here.
-
-Thanks,
-Christian.
-
+> Signed-off-by: Roy Sun <Roy.Sun@amd.com>
 > ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 1 -
->   1 file changed, 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index b79ee4ffb879..1b1a70a6da18 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -4667,7 +4667,6 @@ static int amdgpu_reset_reg_dumps(struct amdgpu_device *adev)
->   	int i;
->   
->   	lockdep_assert_held(&adev->reset_domain->sem);
-> -	dump_stack();
->   
->   	for (i = 0; i < adev->num_regs; i++) {
->   		adev->reset_dump_reg_value[i] = RREG32(adev->reset_dump_reg_list[i]);
+>  drivers/gpu/drm/amd/amdgpu/amdgpu.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> index 9f729a648005..187e3dae3965 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> @@ -1019,7 +1019,7 @@ struct amdgpu_device {
+>  	bool                            psp_sysfs_en;
+>  
+>  	/* Chip product information */
+> -	char				product_number[16];
+> +	char				product_number[20];
 
+If 17 is enough, why setting as 20?
+
+>  	char				product_name[AMDGPU_PRODUCT_NAME_LEN];
+>  	char				serial[20];
+>  
