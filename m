@@ -1,93 +1,74 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3882957B378
-	for <lists+amd-gfx@lfdr.de>; Wed, 20 Jul 2022 11:07:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D328457B6EF
+	for <lists+amd-gfx@lfdr.de>; Wed, 20 Jul 2022 15:01:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EEDC10F9D9;
-	Wed, 20 Jul 2022 09:07:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B5AC10F9A8;
+	Wed, 20 Jul 2022 13:01:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2074.outbound.protection.outlook.com [40.107.237.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 159F810F50B
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 Jul 2022 09:07:19 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YMAXjz/ITaFRMspaGeKavFlf03oz2sPgXfvDBxD/QoaJYM//GJqgBcAUJ8oChmQHA2IkgvVznD/bSFBGNnSEVRJkxUc/UiQX/ejvNm03dKQr2K/VJ+P9BQOCTi/9+1SVJ1R+LEvQx8KXoBi+PvxOI9BfNP5+AYeFwycEdnpBW/pwee/qQkTkUDRb0n39t2opGgKLNsZFMq2FLvq5p/f5mPZDRgAncCPI8+XDlqo6UqAYLpMa/b+Q0TNv5gmdnYWap+VAmobbfUNKYRrajwWXV1UEi4yg9dUuGOYxmxj0NDkxMCBvH6+lsQU4Qapblpuc8VzyGi2DcRsdUKS23pWv6Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZGBr0wwWvlC+yLBmAttzRTrUBg3ZFXVV8ds+TFmRm2k=;
- b=jbPCBVZ01bPQOCN8Y1GB8luOvSPE58cXsr4PoZqkEWZBlhuzZxJEza4ARiEfj5JGPHd/a1Q9TjIlJb8FvPeCXGGIFDxsnbrKUXqNCOLuocM4byGzK5bK9BW7xkJ2QoODS2Utm2GmQU5Bc1MRnZisCrDl2d6CVs8haWklgTs/M35A4GVmoi6RBBUTQfX9mZ/ZhbcbtsNDCFTlexdNSPO506WplARDLL8bINDAiAbQf0EVxWLrbMib/CnaiNC3WymA9mchja0cJAjoaLLGNQYtWE5HbFouoSiym07y1OutZpyLzAyHUVVSASaetssQcr9Um6E4i9HMbe/mS4e+Yf5zRw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZGBr0wwWvlC+yLBmAttzRTrUBg3ZFXVV8ds+TFmRm2k=;
- b=riCk+krBEGbivtP28+HObTlZ+eQILT2VTcvmg/i2g8aQWQZNzWXb0ZvbvTeYl20ysuPJlu2lO+AkJ2T0Csl0egYHnPwvMBDzODaT6tMVi32B6JAp+Czd9IQLsPyWseHG/ucu3uhLi7lVDcZZj2c9r4XO8XQGo5ayCPpjlJqA1Rc=
-Received: from DM6PR03CA0077.namprd03.prod.outlook.com (2603:10b6:5:333::10)
- by BN8PR12MB3011.namprd12.prod.outlook.com (2603:10b6:408:4a::26) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.21; Wed, 20 Jul
- 2022 09:07:17 +0000
-Received: from DM6NAM11FT034.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:333:cafe::99) by DM6PR03CA0077.outlook.office365.com
- (2603:10b6:5:333::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.20 via Frontend
- Transport; Wed, 20 Jul 2022 09:07:17 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT034.mail.protection.outlook.com (10.13.173.47) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5458.17 via Frontend Transport; Wed, 20 Jul 2022 09:07:16 +0000
-Received: from equan-buildpc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 20 Jul
- 2022 04:07:02 -0500
-From: Evan Quan <evan.quan@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 2/2] drm/amdgpu: move mes self test after drm sched re-started
-Date: Wed, 20 Jul 2022 17:06:40 +0800
-Message-ID: <20220720090640.47497-2-evan.quan@amd.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20220720090640.47497-1-evan.quan@amd.com>
-References: <20220720090640.47497-1-evan.quan@amd.com>
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EE278B62D;
+ Wed, 20 Jul 2022 12:18:45 +0000 (UTC)
+Received: from [192.168.2.145] (unknown [109.252.119.232])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: dmitry.osipenko)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 81CE666015BE;
+ Wed, 20 Jul 2022 13:18:41 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1658319523;
+ bh=B4ji8JwW8eJ3XP1EGK6JbA9JDbvoYbqvHvRf2nsb7zM=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=MVHTQFYSrRMdyliP4QT0X5TFtmh9JA+mHFJhAYOmZzsKwZwQzRnJK87cEcwpnFUZL
+ arJbnBaTGOQX2kUp2P8Ds7zfCZI6wmWngKny0rJieNPqAqpzGaEqCxk12yhpR9bWZ3
+ 8o5aU0IRsGM53Utp7m+HQQ/mpoTgDM/dxR2xvu4IKhpYf00S9yfaCe6giBFGwuwUpT
+ s/4/8aBfsMBpZ0suxVilFqlaueL5Lc3v2jWW47REkJ3EOO9mFKe033EiupjZaH2QvJ
+ dKC8LfBq+innrk6YwjrjXyl3SZy47EYje/qG+yyAu8lC6YaalCpVJ+SnqsNOsPKo8P
+ 7PYwHi0AyYdZw==
+Message-ID: <ab6252bb-50d4-1fd6-589e-1c956f058a5b@collabora.com>
+Date: Wed, 20 Jul 2022 15:18:38 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v1 4/6] dma-buf: Acquire wait-wound context on attachment
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
+ <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Daniel Stone <daniel@fooishbar.org>,
+ Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, Thierry Reding
+ <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>
+References: <20220715005244.42198-1-dmitry.osipenko@collabora.com>
+ <20220715005244.42198-5-dmitry.osipenko@collabora.com>
+ <5ec9313e-8498-2838-0320-331c347ce905@amd.com>
+ <1ce233a2-36c9-3698-59f0-c4ff902bec60@collabora.com>
+ <43446124-b99a-32d8-f797-7ec0cdca9ee4@collabora.com>
+ <163d3271-e1e9-c325-185d-adb4391023e1@amd.com>
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <163d3271-e1e9-c325-185d-adb4391023e1@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 614ce2ad-07b7-4bea-0d91-08da6a2f3e59
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3011:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jMOrYcu9HBdEPBbFSIJ1aC4m+qSonWiXlqfrpkTcgPVjP+360IoovSUBtx/4ex+TI5pmYtDEvTMkz421NJZLNzBm4Da0fii9jd8iV8zgXVYVkajMH+RYAfjjQ7SBrg2lqsN70ArrLKoWWpdv7XyoQFXOqcwT6cyvYU9DEE0iRZO4W/QZeLieZlYL8MV8cXjzWE3AFKoWKURWFs16OzjZrkYNVTB5vOvOXc2PDxLr/nznL3k6CYbCWHMnsn8+1dR9Do/0v3oaOwlBOd4/pHSgXR189ZBOqjouui/PusvwFar7F5t21cf5yusOy+88uHzKQeo0afLt6QlnpxfWA4ZWz5UiCP2+tTIoz5Nib/FkuMaA44dvuL2OOKqWA/Hzu2y9TNn09pJ1Xe2svWuKYR9KutZTFkc4RXfhGevTU9u2VPJ0QfSGZU+94S038F09WNg0gpMH7/uY9MKFIZHpVhe3+S52CqVEF+nryM9Mknge+z4YyBXU8vGXYks6xXLyqzX3qBemc3H8q6KVPmYhkuShHOMNb9/a4nhqJF2e7tS0BYcQa7xMP+bzzSINIH919JYYzl1u86eLeB/KT6xALqqIvQz4S1adhhIlNaM7BvDOHbYS/HC8JsuCiYzDQdXYrIZaVP1Luk+Yt88hmloVeVSAtzzRQXOIv6oRGRNeIjBtzXS24qrWcpfLwriUlbgp3fY3muhpLdhdzg0V/geIiKlFfIwB7+HN8ryicKg+lq5Wm8LvqkvnKUFXvQO1TwXqP6vnbwvpYbsMBhHQg6kUKcEfNRF7l0cP2cltTzuSiZnFZA1cYbYcamG9GMiQrFAfiooQOeWS0pANO8smSGN1qww44Q==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(376002)(346002)(396003)(136003)(39860400002)(40470700004)(46966006)(36840700001)(70586007)(70206006)(426003)(1076003)(47076005)(8676002)(4326008)(336012)(186003)(83380400001)(478600001)(36756003)(6666004)(41300700001)(26005)(16526019)(82310400005)(8936002)(7696005)(2616005)(82740400003)(5660300002)(40460700003)(44832011)(40480700001)(6916009)(2906002)(316002)(356005)(86362001)(36860700001)(81166007)(54906003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2022 09:07:16.7283 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 614ce2ad-07b7-4bea-0d91-08da6a2f3e59
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT034.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3011
+X-Mailman-Approved-At: Wed, 20 Jul 2022 13:01:43 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,68 +80,130 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, Jack Xiao <Jack.Xiao@amd.com>,
- Evan Quan <evan.quan@amd.com>, hawking.zhang@amd.com
+Cc: linux-rdma@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ spice-devel@lists.freedesktop.org, Dmitry Osipenko <digetx@gmail.com>,
+ kernel@collabora.com, linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jack Xiao <Jack.Xiao@amd.com>
+On 7/20/22 11:29, Christian König wrote:
+> Am 19.07.22 um 22:05 schrieb Dmitry Osipenko:
+>> On 7/15/22 09:59, Dmitry Osipenko wrote:
+>>> On 7/15/22 09:50, Christian König wrote:
+>>>> Am 15.07.22 um 02:52 schrieb Dmitry Osipenko:
+>>>>> Intel i915 GPU driver uses wait-wound mutex to lock multiple GEMs
+>>>>> on the
+>>>>> attachment to the i915 dma-buf. In order to let all drivers utilize
+>>>>> shared
+>>>>> wait-wound context during attachment in a general way, make dma-buf
+>>>>> core to
+>>>>> acquire the ww context internally for the attachment operation and
+>>>>> update
+>>>>> i915 driver to use the importer's ww context instead of the
+>>>>> internal one.
+>>>>>
+>>>>>   From now on all dma-buf exporters shall use the importer's ww
+>>>>> context
+>>>>> for
+>>>>> the attachment operation.
+>>>>>
+>>>>> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+>>>>> ---
+>>>>>    drivers/dma-buf/dma-buf.c                     |  8 +++++-
+>>>>>    drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |  2 +-
+>>>>>    .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 +-
+>>>>>    drivers/gpu/drm/i915/gem/i915_gem_object.h    |  6 ++---
+>>>>>    drivers/gpu/drm/i915/i915_gem_evict.c         |  2 +-
+>>>>>    drivers/gpu/drm/i915/i915_gem_ww.c            | 26
+>>>>> +++++++++++++++----
+>>>>>    drivers/gpu/drm/i915/i915_gem_ww.h            | 15 +++++++++--
+>>>>>    7 files changed, 47 insertions(+), 14 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
+>>>>> index 0ee588276534..37545ecb845a 100644
+>>>>> --- a/drivers/dma-buf/dma-buf.c
+>>>>> +++ b/drivers/dma-buf/dma-buf.c
+>>>>> @@ -807,6 +807,8 @@ static struct sg_table * __map_dma_buf(struct
+>>>>> dma_buf_attachment *attach,
+>>>>>     * Optionally this calls &dma_buf_ops.attach to allow
+>>>>> device-specific attach
+>>>>>     * functionality.
+>>>>>     *
+>>>>> + * Exporters shall use ww_ctx acquired by this function.
+>>>>> + *
+>>>>>     * Returns:
+>>>>>     *
+>>>>>     * A pointer to newly created &dma_buf_attachment on success, or a
+>>>>> negative
+>>>>> @@ -822,6 +824,7 @@ dma_buf_dynamic_attach_unlocked(struct dma_buf
+>>>>> *dmabuf, struct device *dev,
+>>>>>                    void *importer_priv)
+>>>>>    {
+>>>>>        struct dma_buf_attachment *attach;
+>>>>> +    struct ww_acquire_ctx ww_ctx;
+>>>>>        int ret;
+>>>>>          if (WARN_ON(!dmabuf || !dev))
+>>>>> @@ -841,7 +844,8 @@ dma_buf_dynamic_attach_unlocked(struct dma_buf
+>>>>> *dmabuf, struct device *dev,
+>>>>>        attach->importer_ops = importer_ops;
+>>>>>        attach->importer_priv = importer_priv;
+>>>>>    -    dma_resv_lock(dmabuf->resv, NULL);
+>>>>> +    ww_acquire_init(&ww_ctx, &reservation_ww_class);
+>>>>> +    dma_resv_lock(dmabuf->resv, &ww_ctx);
+>>>> That won't work like this. The core property of a WW context is that
+>>>> you
+>>>> need to unwind all the locks and re-quire them with the contended one
+>>>> first.
+>>>>
+>>>> When you statically lock the imported one here you can't do that any
+>>>> more.
+>>> You're right. I felt that something is missing here, but couldn't
+>>> notice. I'll think more about this and enable
+>>> CONFIG_DEBUG_WW_MUTEX_SLOWPATH. Thank you!
+>>>
+>> Christian, do you think we could make an excuse for the attach()
+>> callback and make the exporter responsible for taking the resv lock? It
+>> will be inconsistent with the rest of the callbacks, where importer
+>> takes the lock, but it will be the simplest and least invasive solution.
+>> It's very messy to do a cross-driver ww locking, I don't think it's the
+>> right approach.
+> 
+> So to summarize the following calls will require that the caller hold
+> the resv lock:
+> 1. dma_buf_pin()/dma_buf_unpin()
+> 2. dma_buf_map_attachment()/dma_buf_unmap_attachment()
+> 3. dma_buf_vmap()/dma_buf_vunmap()
+> 4. dma_buf_move_notify()
+> 
+> The following calls require that caller does not held the resv lock:
+> 1. dma_buf_attach()/dma_buf_dynamic_attach()/dma_buf_detach()
+> 2. dma_buf_export()/dma_buf_fd()
+> 3. dma_buf_get()/dma_buf_put()
+> 4. dma_buf_begin_cpu_access()/dma_buf_end_cpu_access()
+> 
+> If that's correct than that would work for me as well, but we should
+> probably document this.
 
-mes self test rely on vm mapping, move it after
-drm sched re-started so that vm mapping can work
-during gpu reset.
+Looks good, thank you. I'll try this variant.
 
-Signed-off-by: Jack Xiao <Jack.Xiao@amd.com>
-Acked-and-tested-by: Evan Quan <evan.quan@amd.com>
-Change-Id: Ib202c04d86191ca47da90d27c2a8cf9e7c8e6732
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 3 +++
- drivers/gpu/drm/amd/amdgpu/mes_v10_1.c     | 3 ++-
- drivers/gpu/drm/amd/amdgpu/mes_v11_0.c     | 3 ++-
- 3 files changed, 7 insertions(+), 2 deletions(-)
+> Or let me ask the other way around: What calls exactly do you need to
+> change to solve your original issue? That was vmap/vunmap, wasn't it? If
+> yes then let's concentrate on those for the moment.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 1b1a70a6da18..8fa3cf8e3a46 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -5298,6 +5298,9 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 			drm_sched_start(&ring->sched, !tmp_adev->asic_reset_res);
- 		}
- 
-+		if (adev->enable_mes)
-+			amdgpu_mes_self_test(tmp_adev);
-+
- 		if (!drm_drv_uses_atomic_modeset(adev_to_drm(tmp_adev)) && !job_signaled) {
- 			drm_helper_resume_force_mode(adev_to_drm(tmp_adev));
- 		}
-diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c b/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
-index 0082e2e1e0b4..067d10073a56 100644
---- a/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
-@@ -1233,7 +1233,8 @@ static int mes_v10_0_late_init(void *handle)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
- 
--	amdgpu_mes_self_test(adev);
-+	if (!amdgpu_in_reset(adev))
-+		amdgpu_mes_self_test(adev);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-index 777f9268d92d..120ea294abef 100644
---- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-@@ -1280,7 +1280,8 @@ static int mes_v11_0_late_init(void *handle)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
- 
--	amdgpu_mes_self_test(adev);
-+	if (!amdgpu_in_reset(adev))
-+		amdgpu_mes_self_test(adev);
- 
- 	return 0;
- }
+Originally, Daniel Vetter asked to sort out the dma-buf lockings across
+all drivers, so we could replace custom locks in DRM-SHMEM with the resv
+lock, otherwise there were no guarantees that we won't have deadlocks in
+the dma-buf code paths.
+
+The vmap/vunmap is one of the paths that needs to be sorted out, there
+is no particular issue with it, just need to specify the convention. The
+mmaping was the other questionable path and we concluded that it's
+better to prohibit dma-buf mappings for DRM entirely. Lastly, there is
+i915 attach() that uses the ww locking.
+
 -- 
-2.29.0
-
+Best regards,
+Dmitry
