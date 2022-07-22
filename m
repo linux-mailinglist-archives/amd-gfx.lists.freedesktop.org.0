@@ -1,85 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FAF257E8CC
-	for <lists+amd-gfx@lfdr.de>; Fri, 22 Jul 2022 23:20:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31A7A57E866
+	for <lists+amd-gfx@lfdr.de>; Fri, 22 Jul 2022 22:37:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 095B6941A5;
-	Fri, 22 Jul 2022 21:20:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 778E318A653;
+	Fri, 22 Jul 2022 20:37:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 2713 seconds by postgrey-1.36 at gabe;
- Fri, 22 Jul 2022 21:09:00 UTC
-Received: from mx0a-00190b01.pphosted.com (mx0a-00190b01.pphosted.com
- [IPv6:2620:100:9001:583::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 193AE939F0;
- Fri, 22 Jul 2022 21:08:59 +0000 (UTC)
-Received: from pps.filterd (m0050093.ppops.net [127.0.0.1])
- by m0050093.ppops.net-00190b01. (8.17.1.5/8.17.1.5) with ESMTP id
- 26MKJalr029775; Fri, 22 Jul 2022 21:23:42 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akamai.com;
- h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=jan2016.eng;
- bh=+1AONTHeZKujAZlWUT0X+IkeKoRkI9kd867PknMVwg0=;
- b=EdVF8ZamAx9aTHgv1RBz/dVtJJ9wZvCxs2+SimSTrJOTl3iz4UJ83aSjs62HDnxEjxhU
- e4ItfkliZKeHTJ6jFvcitACPKia3q/PAJzLex92rWd1wktsCv/oZWFF9LsyNNCUWITBA
- 5KfLICK3rOQIHgnfpznD2heBjmEvFL7Aw3++hZbIGiVH7BEhg/Tlsb4eOB3DoE470iAF
- sU/rWx5E41QASKF00nyASFKiLUwA1Yzqrv8qopECzyX9dc6TdsbNtQVJ15APQhdQLP+r
- KlD0s/qdGJltf7zMqZ4JQakIiTzmNz5w+azl+VuvcLU0uWxZyZphLaDnDMxZ7fFKydFn Zg== 
-Received: from prod-mail-ppoint4
- (a72-247-45-32.deploy.static.akamaitechnologies.com [72.247.45.32] (may be
- forged))
- by m0050093.ppops.net-00190b01. (PPS) with ESMTPS id 3hg0j46nf4-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 22 Jul 2022 21:23:42 +0100
-Received: from pps.filterd (prod-mail-ppoint4.akamai.com [127.0.0.1])
- by prod-mail-ppoint4.akamai.com (8.17.1.5/8.17.1.5) with ESMTP id
- 26MIt3Uk020881; Fri, 22 Jul 2022 16:23:41 -0400
-Received: from prod-mail-relay18.dfw02.corp.akamai.com ([172.27.165.172])
- by prod-mail-ppoint4.akamai.com (PPS) with ESMTP id 3hbrptdm45-1;
- Fri, 22 Jul 2022 16:23:41 -0400
-Received: from [0.0.0.0] (unknown [172.27.119.138])
- by prod-mail-relay18.dfw02.corp.akamai.com (Postfix) with ESMTP id 98D7716E;
- Fri, 22 Jul 2022 20:23:40 +0000 (GMT)
-Message-ID: <9e34b45f-c091-223b-58ac-107cfbebd92c@akamai.com>
-Date: Fri, 22 Jul 2022 16:23:40 -0400
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2071.outbound.protection.outlook.com [40.107.244.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62C7018A653
+ for <amd-gfx@lists.freedesktop.org>; Fri, 22 Jul 2022 20:37:30 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=A5C+XhDg2IT5K0SqBVUi8e65gVqx4ZeTiIKvYHnZpG7cE0V7KUPdiqK4mphPWWwH/ikzi/Cb6T/pA2FTnvBnlfdCtIB0pWwNKVJ3deOWJ0UY1oVlPz9wUe1Go9hq5k2OKKdhwpxJ+tdPYPFq2+BeY8wtAVuR1/P3DS85jTmo6muZFHW6F/uYlcUHx42x13BedxcHrLLAZlUY7+sSPW1yAXIIBXmqZVvbxkgOzAhL+6pv474uJ9RBdAzrPuq9/Gvo1wSML3YS6wqslDRCvLzMnBbIvphAN2pWlcU2u4xMM/7sqiX55doLRc9wiT74EVQCuEEU0GUPboQSwNeuabndpg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Rzlyeu0xIB2AA1Kuig6/URXxpZ3nMyL6mxB6QXY24EQ=;
+ b=mTqHlGS4aoLvdKnsXanKFFiH3iF5od137ClclgHcwrm+YhLJd9VW2gzLG12r8//ldoE8jEeyjNPm0ypOQkYmZQnX0AVUr6tFfpaSO6Ss+ja9mDmOSIRkeYT7YWi/SqZD6/QRwOABbnxxqBEAV2g19LGN1glxRaOjNwQPVQzzaZ35lGFwhwa5gue+4D3o0ojQHnvbEec3P8/JueMIb7WuK6P737rQCjW8laVtsMbwNbtmpxIBsukkuxNZN6xIL5D+/SyXyJSwAXk1Jhtrc8O8BBRRSXuM2BLyDAtS6eK9uJPvU+OK3LxcT5ExVsUF9WHt5MdMtnpaNOUd00vaHj7H5w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Rzlyeu0xIB2AA1Kuig6/URXxpZ3nMyL6mxB6QXY24EQ=;
+ b=tJ2wRqbnUJ7S1TOObpS74diCxj8pTZT/hN3kxU0BN9JZrb1+GzIbTF6i3yZvMpEXR22eLpbb33YyNmCjKg5nkDYPrJH9AYs22L87tprxOGgnA07O96SVWCcD1AaDmTHTLwZdAoqisK+ffQbutMg+ljlxlhi9CvO4fKszYLUhfXI=
+Received: from MW4PR04CA0269.namprd04.prod.outlook.com (2603:10b6:303:88::34)
+ by DS7PR12MB5814.namprd12.prod.outlook.com (2603:10b6:8:76::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5458.18; Fri, 22 Jul 2022 20:37:25 +0000
+Received: from CO1NAM11FT056.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:88:cafe::96) by MW4PR04CA0269.outlook.office365.com
+ (2603:10b6:303:88::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.19 via Frontend
+ Transport; Fri, 22 Jul 2022 20:37:25 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT056.mail.protection.outlook.com (10.13.175.107) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5458.17 via Frontend Transport; Fri, 22 Jul 2022 20:37:24 +0000
+Received: from dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 22 Jul
+ 2022 15:37:22 -0500
+From: Alex Hung <alex.hung@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 00/31] DC Patches July 22, 2022
+Date: Fri, 22 Jul 2022 14:31:06 -0600
+Message-ID: <20220722203137.4043516-1-alex.hung@amd.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v4 12/41] dyndbg: add DECLARE_DYNDBG_CLASSMAP
-Content-Language: en-US
-To: Jim Cromie <jim.cromie@gmail.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, gregkh@linuxfoundation.org,
- daniel.vetter@ffwll.ch, seanpaul@chromium.org, robdclark@gmail.com
-References: <20220720153233.144129-1-jim.cromie@gmail.com>
- <20220720153233.144129-13-jim.cromie@gmail.com>
-From: Jason Baron <jbaron@akamai.com>
-In-Reply-To: <20220720153233.144129-13-jim.cromie@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-07-22_06,2022-07-21_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
- mlxlogscore=999
- phishscore=0 mlxscore=0 spamscore=0 suspectscore=0 malwarescore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2206140000 definitions=main-2207220083
-X-Proofpoint-ORIG-GUID: iVW3af7nY-wh7IXZ-qsYpdTMGZ_K4vj0
-X-Proofpoint-GUID: iVW3af7nY-wh7IXZ-qsYpdTMGZ_K4vj0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-07-22_06,2022-07-21_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0
- bulkscore=0 adultscore=0
- impostorscore=0 mlxscore=0 mlxlogscore=999 priorityscore=1501 spamscore=0
- lowpriorityscore=0 clxscore=1011 suspectscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2206140000
- definitions=main-2207220083
-X-Mailman-Approved-At: Fri, 22 Jul 2022 21:20:20 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 4ff3cca4-ee7d-4d01-4dce-08da6c21fc6f
+X-MS-TrafficTypeDiagnostic: DS7PR12MB5814:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: l6jFR92yS4NBmVDDXSbBhLUr/voh6F3xbawthWtywmGtNjZqrBnHMsRJX4gLdfng4k1S1C9y+ZqbBNZF8zADcTM9jM0QF3Z0BsRuY1gim7eNCGq9im3VtMtoCuBCD1czT3cdbFkw4WzWFs4vvmWQh+JmXRIbAtNb1GgHOTGiMJ9GKUguXzXnoOc8RQ7WhyjDfN+1nou7C6HzVuZcFKmDtG93Aq15HFk3funiAt7J9qakG6Eskm8w70Fh8QjdJCXl81xqN3rJuKw9xByGaC4ea41Ly2wbXC7I3/VKIMP7G3tkfU3l69AfnSlTJGLLHZmIrtF6nJ+ChBrnWIw4EmGyMoumCVwg2x0cS2BjKmhT3owK2oa4+OcMKkjb7nQodtYWmOtoEdusOtUqvHDLwUDQIrm0kuocP8NJSgp32ycDu95hvS9sEiYxFlwQ993aXUEdNW+x9HscbDdbQAuedRj4CxHkTsXbAGHDBBGHDe8n5hMuU1QzDXaDHKxPMJ2sqgyOWKCctjoIFOZL5i5PetxZu6Md2dIh74dBcaMOa/Gc+Hw6nB8GffJP3FM1kKkdD10uIrOFqu/MnN79oh8rN+6q35/qnwwd5iP1CIgBHAiWZ1mzHnmo0M2sFTMQleFbfc8gtQPfpwVACn0Sllf8L2GgkQTnET6QOZymrafwItna82gy9O3yqQ91No31IuMiMsXfMX3XM4//1/Z0PrJCqqfSn6tS0Vvyux81ArDrWiyoPh/Iq5spH3mOec0uKx90a3xo/0aJ66FAwd6iiNvL6CesoSwdZfl7EeRie4q4QKgZyMEcvaQxPZVa4YpSQ4XV5GtZf+my9IrI08ltHf2p6RKQiw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230016)(4636009)(136003)(376002)(346002)(39860400002)(396003)(40470700004)(46966006)(36840700001)(54906003)(316002)(40460700003)(16526019)(26005)(6916009)(8676002)(36860700001)(70206006)(70586007)(83380400001)(36756003)(336012)(2906002)(82310400005)(426003)(356005)(40480700001)(4326008)(86362001)(186003)(44832011)(47076005)(6666004)(41300700001)(8936002)(7696005)(5660300002)(1076003)(81166007)(478600001)(2616005)(82740400003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2022 20:37:24.9345 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4ff3cca4-ee7d-4d01-4dce-08da6c21fc6f
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT056.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5814
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,208 +97,176 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: stylon.wang@amd.com, mark.broadworth@amd.com, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ roman.li@amd.com, solomon.chiu@amd.com, daniel.wheeler@amd.com,
+ Aurabindo.Pillai@amd.com, Alex Hung <alex.hung@amd.com>, wayne.lin@amd.com,
+ Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+This DC patchset brings improvements in multiple areas. In summary, we highlight:
 
+* Copy crc_skip_count when duplicating CRTC state
+* Add debug option for idle optimizations on cursor updates
+* Disable MPC split for DCN32/321
+* Add missing ODM 2:1 policy logic
+* Update DCN32 and DCN321 SR latencies
+* Add reinstate dram in the FPO logic
+* Add dc_ctx to link_enc_create() parameters
+* Cache cursor when cursor exceeds 64x64
+* Add support for manual DMUB FAMS trigger
+* Fix dpstreamclk programming
+* Add missing AUDIO_DTO_SEL reg field
+* Add OTG/ODM functions
+* Use correct clock source constructor for DCN314
+* Use correct DTO_SRC_SEL for 128b/132b encoding
+* Add pixel rate div calcs and programming
+* Remove FPU flags from DCN30 Makefile
+* Create patch bounding box function for isolate FPU
+* Move mclk calculation function to DML
+* Remove FPU operations from dcn201 resources
+* Fallback to SW cursor if SubVP + cursor too big
+* Drop unnecessary FPU flags on dcn302 files
+* Reboot while unplug hdcp enabled dp from mst hub
+* Reset pipe count when iterating for DET override
+* Calculate MALL cache lines based on Mblks required
+* Fix two MPO videos in single display ODM combine mode
+* Guard against zero memory channels
+* Updates SubVP + SubVP DRR cases updates
+* Fix OPTC function pointers for DCN314
+* Add enable/disable FIFO callbacks to stream setup
+* Avoid MPC infinite loop
 
-On 7/20/22 11:32, Jim Cromie wrote:
-> DECLARE_DYNDBG_CLASSMAP lets modules declare a set of classnames, this
-> opt-in authorizes dyndbg to allow enabling of prdbgs by their class:
-> 
->    :#> echo class DRM_UT_KMS +p > /proc/dynamic_debug/control
-> 
-> This is just the setup; following commits deliver.
-> 
-> The macro declares and initializes a static struct ddebug_class_map:
-> 
->  - maps approved class-names to class_ids used in module,
->    by array order. forex: DRM_UT_*
->  - class-name vals allow validation of "class FOO" queries
->    using macro is opt-in
->  - enum class_map_type - determines interface, behavior
-> 
-> Each module has its own .class_id space, and only known class-names
-> will be authorized for a manipulation.  Only DRM stuff should know this:
-> 
->   :#> echo class DRM_UT_CORE +p > control	# across all modules
-> 
-> pr_debugs (with default class_id) are still controllable as before.
-> 
-> DECLARE_DYNDBG_CLASSMAP(_var, _maptype, _base, classes...) is::
-> 
->  _var: name of the static struct var. user passes to module_param_cb()
->        if they want a sysfs node. (ive only done it this way).
-> 
->  _maptype: this is hard-coded to DD_CLASS_TYPE_DISJOINT for now.
-> 
->  _base: usually 0, it allows splitting 31 classes into subranges, so
->  	that multiple classes / sysfs-nodes can share the module's
->  	class-id space.
-> 
->  classes: list of class_name strings, these are mapped to class-ids
->  	  starting at _base.  This class-names list must have a
->  	  corresponding ENUM, with SYMBOLS that match the literals,
->  	  and 1st enum val = _base.
-> 
-> enum class_map_type has 4 values, on 2 factors::
-> 
->  - classes are disjoint/independent vs relative/x<y/verbosity.
->    disjoint is basis, verbosity by overlay.
-> 
->  - input NUMBERS vs [+-]CLASS_NAMES
->    uints, ideally hex.  vs  +DRM_UT_CORE,-DRM_UT_KMS
-> 
+Alvin Lee (6):
+  drm/amd/display: Updates SubVP and SubVP DRR cases
+  drm/amd/display: Calculate MALL cache lines based on Mblks required
+  drm/amd/display: Fallback to SW cursor if SubVP + cursor too big
+  drm/amd/display: Update DCN32 and DCN321 SR latencies
+  drm/amd/display: Disable MPC split for DCN32/321
+  drm/amd/display: Add debug option for idle optimizations on cursor
+    updates
 
-Could the naming here directly reflect the 2 factors? At least for me
-I think it's more readable. So something like:
+Anthony Koo (2):
+  drm/amd/display: Add support for manual DMUB FAMS trigger
+  drm/amd/display: 3.2.196
 
+Aric Cyr (1):
+  drm/amd/display: Avoid MPC infinite loop
 
-> DD_CLASS_TYPE_DISJOINT: classes are separate, one per bit.
->    expecting hex input. basis for others.
+Aurabindo Pillai (1):
+  drm/amd/display: Add dc_ctx to link_enc_create() parameters
 
-DD_CLASS_TYPE_DISJOINT_NUM
+Chris Park (1):
+  drm/amd/display: Cache cursor when cursor exceeds 64x64
 
-> 
-> DD_CLASS_TYPE_SYMBOLIC: input is a CSV of [+-]CLASS_NAMES,
->    classes are independent, like DISJOINT
-> 
+Leo Li (1):
+  drm/amd/display: Copy crc_skip_count when duplicating CRTC state
 
-DD_CLASS_TYPE_DISJOINT_NAME
+Michael Strauss (6):
+  drm/amd/display: Add pixel rate div calcs and programming
+  drm/amd/display: Use correct DTO_SRC_SEL for 128b/132b encoding
+  drm/amd/display: Use correct clock source constructor for DCN314
+  drm/amd/display: Add OTG/ODM functions
+  drm/amd/display: Add missing AUDIO_DTO_SEL reg field
+  drm/amd/display: Fix dpstreamclk programming
 
-> DD_CLASS_TYPE_VERBOSE: input is numeric level, 0-N.
->    0 implies silence. use printk to break that.
->    relative levels applied on bitmaps.
-> 
+Nicholas Kazlauskas (3):
+  drm/amd/display: Add enable/disable FIFO callbacks to stream setup
+  drm/amd/display: Fix OPTC function pointers for DCN314
+  drm/amd/display: Guard against zero memory channels
 
-DD_CLASS_TYPE_LEVEL_NUM
+Rodrigo Siqueira (6):
+  drm/amd/display: Drop unnecessary FPU flags on dcn302 files
+  drm/amd/display: Remove FPU operations from dcn201 resources
+  drm/amd/display: Move mclk calculation function to DML
+  drm/amd/display: Create patch bounding box function for isolate FPU
+  drm/amd/display: Remove FPU flags from DCN30 Makefile
+  drm/amd/display: Add reinstate dram in the FPO logic
 
-> DD_CLASS_TYPE_LEVELS: input is a CSV of [+-]CLASS_NAMES,
->    names like: ERR,WARNING,NOTICE,INFO,DEBUG
->    avoiding EMERG,ALERT,CRIT,ERR - no point.
-> 
+Samson Tam (2):
+  drm/amd/display: Fix two MPO videos in single display ODM combine mode
+  drm/amd/display: Add missing ODM 2:1 policy logic
 
-DD_CLASS_TYPE_LEVEL_NAME
+Taimur Hassan (1):
+  drm/amd/display: Reset pipe count when iterating for DET override
 
-> NOTES:
-> 
-> The macro places the initialized struct ddebug_class_map into the
-> __dyndbg_classes section.  That draws a 'orphan' warning which we
-> handle in next commit.  The struct attributes are necessary:
-> __aligned(8) stopped null-ptr derefs (why?), __used is needed by drm
-> drivers, which declare class-maps, but don't also declare a
-> sysfs-param, and thus dont ref the classmap; __used insures that the
-> linkage is made, then the class-map is found at load-time.
-> 
-> While its possible to handle both NAMES and NUMBERS in the same
-> sys-interface, there is ambiguity to avoid, by disallowing them
-> together.  Later, if ambiguities are resolved, 2 new enums can permit
-> both inputs, on verbose & independent types separately, and authors
-> can select the interface they like.
-> 
-> RFC:
-> 
-> My plan is to implement LEVELS in the callbacks, outside of
-> ddebug_exec_query(), which for simplicity will treat the CLASSES in
-> the map as disjoint.  This should handle most situations.
-> 
-> The callbacks can see map-type, and apply ++/-- loops (or bitops) to
-> force the relative meanings across the class-bitmap.
-> 
-> That leaves 2 issues:
-> 
-> 1. doing LEVELs in callbacks means that the native >control interface
-> doesn't enforce the LEVELS relationship, so you could confusingly have
-> V3 enabled, but V1 disabled.  OTOH, the control iface already allows
-> infinite variety in the underlying callsites, despite the veneer of
-> uniformity suggested by the bitmap overlay, and LEVELS over that.
-> 
-> 2. All dyndbg >control reduces to a query/command, includes +/-, which
-> is at-root a kernel patching operation with +/- semantics.  And the
-> symbolic sys-node handling exposes it to the user:
-> 
-> Consider whether these are/should-be 'exactly' the same:
-> 
->    # force both 2 "half-duplex" relations
->    echo +V3,-V4 > /sys/module/test_dynamic_debug/p_VX
-> 
->    # should these both do the same ?
->    echo +V3 > /sys/module/test_dynamic_debug/p_VX
->    echo -V4 > /sys/module/test_dynamic_debug/p_VX
-> 
-> IOW, half relations are suggested by the +/-, and enum control of
-> individual behaviors leaves some room for this, especially wrt
-> handling [+-]SYMBOLIC inputs from the user.
-> 
-> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
-> ---
->  include/linux/dynamic_debug.h | 55 +++++++++++++++++++++++++++++++++++
->  1 file changed, 55 insertions(+)
-> 
-> diff --git a/include/linux/dynamic_debug.h b/include/linux/dynamic_debug.h
-> index 0f7ad6cecf05..84e97cd0e8c4 100644
-> --- a/include/linux/dynamic_debug.h
-> +++ b/include/linux/dynamic_debug.h
-> @@ -56,7 +56,62 @@ struct _ddebug {
->  #endif
->  } __attribute__((aligned(8)));
->  
-> +enum class_map_type {
-> +	DD_CLASS_TYPE_DISJOINT,
-> +	/**
-> +	 * DD_CLASS_TYPE_DISJOINT: classes are independent, one per bit.
-> +	 * expecting hex input. basis for others.
-> +	 */
-> +	DD_CLASS_TYPE_VERBOSE,
-> +	/**
-> +	 * DD_CLASS_TYPE_VERBOSE: input is numeric level, 0-N.
-> +	 * 0 should be silent, use printk to break that.
-> +	 * (x<y) relationship on bitpos
-> +	 */
-> +	DD_CLASS_TYPE_SYMBOLIC,
-> +	/**
-> +	 * DD_CLASS_TYPE_SYMBOLIC: input is a CSV of [+-]CLASS_NAMES,
-> +	 * classes are independent, like DISJOINT
-> +	 */
-> +	DD_CLASS_TYPE_LEVELS,
-> +	/**
-> +	 * DD_CLASS_TYPE_LEVELS: input is a CSV of [+-]CLASS_NAMES,
-> +	 * intended for names like: ERR,WARNING,NOTICE,INFO,DEBUG
-> +	 * avoid ? EMERG,ALERT,CRIT,ERR,WARNING ??
-> +	 */
-> +};
-> +
-> +struct ddebug_class_map {
-> +	struct list_head link;
-> +	struct module *mod;
-> +	const char *mod_name;	/* needed for builtins */
-> +	const char **class_names;
-> +	const int length;
-> +	const int base;		/* index of 1st .class_id, allows split/shared space */
-> +	enum class_map_type map_type;
-> +};
-> +
-> +/**
-> + * DECLARE_DYNDBG_CLASSMAP - declare classnames known by a module
-> + * @_var:   a struct ddebug_class_map, passed to module_param_cb
-> + * @_type:  enum class_map_type, chooses bits/verbose, numeric/symbolic
-> + * @_base:  offset of 1st class-name. splits .class_id space
-> + * @classes: class-names used to control class'd prdbgs
-> + */
-> +#define DECLARE_DYNDBG_CLASSMAP(_var, _maptype, _base, ...)		\
-> +	static const char *_var##_classnames[] = { __VA_ARGS__ };	\
-> +	static struct ddebug_class_map __aligned(8) __used		\
-> +		__section("__dyndbg_classes") _var = {			\
-> +		.mod = THIS_MODULE,					\
-> +		.mod_name = KBUILD_MODNAME,				\
-> +		.base = _base,						\
-> +		.map_type = _maptype,					\
-> +		.length = NUM_TYPE_ARGS(char*, __VA_ARGS__),		\
-> +		.class_names = _var##_classnames,			\
-> +	}
->  
-> +#define NUM_TYPE_ARGS(eltype, ...)				\
-> +	(sizeof((eltype[]) {__VA_ARGS__}) / sizeof(eltype))
->  
->  #if defined(CONFIG_DYNAMIC_DEBUG_CORE)
->  
+hersen wu (1):
+  drm/amd/display: Reboot while unplug hdcp enabled dp from mst hub
+
+ .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    |   1 +
+ .../amd/display/amdgpu_dm/amdgpu_dm_hdcp.c    |  34 ++--
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c |   2 +-
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  |   1 +
+ .../gpu/drm/amd/display/dc/core/dc_resource.c | 136 +++++++++++++---
+ .../gpu/drm/amd/display/dc/core/dc_stream.c   |   5 +
+ drivers/gpu/drm/amd/display/dc/dc.h           |   2 +-
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c  |  17 ++
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h  |   1 +
+ .../drm/amd/display/dc/dce/dce_clock_source.c |  20 ++-
+ .../amd/display/dc/dce100/dce100_resource.c   |   1 +
+ .../display/dc/dce110/dce110_hw_sequencer.c   |   1 +
+ .../amd/display/dc/dce110/dce110_resource.c   |   1 +
+ .../amd/display/dc/dce112/dce112_resource.c   |   1 +
+ .../amd/display/dc/dce120/dce120_resource.c   |   1 +
+ .../drm/amd/display/dc/dce60/dce60_resource.c |   1 +
+ .../drm/amd/display/dc/dce80/dce80_resource.c |   1 +
+ .../amd/display/dc/dcn10/dcn10_hw_sequencer.c |   1 +
+ .../gpu/drm/amd/display/dc/dcn10/dcn10_mpc.c  |   5 +
+ .../drm/amd/display/dc/dcn10/dcn10_resource.c |   1 +
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    |   1 +
+ .../drm/amd/display/dc/dcn20/dcn20_resource.c |   2 +-
+ .../drm/amd/display/dc/dcn20/dcn20_resource.h |   1 +
+ .../gpu/drm/amd/display/dc/dcn201/Makefile    |  24 ---
+ .../amd/display/dc/dcn201/dcn201_resource.c   |  11 +-
+ .../drm/amd/display/dc/dcn21/dcn21_resource.c |   1 +
+ drivers/gpu/drm/amd/display/dc/dcn30/Makefile |  30 ----
+ .../drm/amd/display/dc/dcn30/dcn30_resource.c |  58 +------
+ .../drm/amd/display/dc/dcn30/dcn30_resource.h |   3 +
+ .../amd/display/dc/dcn301/dcn301_resource.c   |   1 +
+ .../gpu/drm/amd/display/dc/dcn302/Makefile    |  25 ---
+ .../amd/display/dc/dcn302/dcn302_resource.c   |   4 +-
+ .../amd/display/dc/dcn303/dcn303_resource.c   |   4 +-
+ .../gpu/drm/amd/display/dc/dcn31/dcn31_dccg.c |   8 +-
+ .../gpu/drm/amd/display/dc/dcn31/dcn31_dccg.h |   8 +-
+ .../gpu/drm/amd/display/dc/dcn31/dcn31_optc.c |   2 +-
+ .../gpu/drm/amd/display/dc/dcn31/dcn31_optc.h |   2 +
+ .../drm/amd/display/dc/dcn31/dcn31_resource.c |   1 +
+ .../drm/amd/display/dc/dcn314/dcn314_dccg.c   |  30 +++-
+ .../drm/amd/display/dc/dcn314/dcn314_dccg.h   |   3 +-
+ .../dc/dcn314/dcn314_dio_stream_encoder.c     |  38 +++--
+ .../drm/amd/display/dc/dcn314/dcn314_hwseq.c  |  36 +++++
+ .../drm/amd/display/dc/dcn314/dcn314_hwseq.h  |   2 +
+ .../drm/amd/display/dc/dcn314/dcn314_init.c   |   1 +
+ .../drm/amd/display/dc/dcn314/dcn314_optc.c   |  37 ++++-
+ .../amd/display/dc/dcn314/dcn314_resource.c   |   8 +-
+ .../amd/display/dc/dcn315/dcn315_resource.c   |   1 +
+ .../amd/display/dc/dcn316/dcn316_resource.c   |   1 +
+ .../gpu/drm/amd/display/dc/dcn32/dcn32_dccg.c |   3 +-
+ .../gpu/drm/amd/display/dc/dcn32/dcn32_hubp.c |   4 +-
+ .../gpu/drm/amd/display/dc/dcn32/dcn32_hubp.h |   2 +-
+ .../drm/amd/display/dc/dcn32/dcn32_hwseq.c    |  23 ++-
+ .../gpu/drm/amd/display/dc/dcn32/dcn32_optc.c |  63 +++++++-
+ .../drm/amd/display/dc/dcn32/dcn32_resource.c | 153 ++++++++++++++++--
+ .../drm/amd/display/dc/dcn32/dcn32_resource.h |   7 +
+ .../display/dc/dcn32/dcn32_resource_helpers.c |  18 ++-
+ .../amd/display/dc/dcn321/dcn321_resource.c   |   4 +-
+ .../drm/amd/display/dc/dml/dcn20/dcn20_fpu.c  |  87 ++++++++++
+ .../drm/amd/display/dc/dml/dcn20/dcn20_fpu.h  |   4 +
+ .../drm/amd/display/dc/dml/dcn30/dcn30_fpu.c  |  63 ++++++++
+ .../drm/amd/display/dc/dml/dcn30/dcn30_fpu.h  |   8 +
+ .../drm/amd/display/dc/dml/dcn32/dcn32_fpu.c  |  71 ++++++--
+ .../amd/display/dc/dml/dcn321/dcn321_fpu.c    |   4 +-
+ .../gpu/drm/amd/display/dc/inc/clock_source.h |   7 +-
+ .../gpu/drm/amd/display/dc/inc/core_types.h   |   1 +
+ drivers/gpu/drm/amd/display/dc/inc/hw/dccg.h  |   3 +-
+ drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h  |   2 +-
+ .../amd/display/dc/inc/hw/stream_encoder.h    |   2 +
+ .../drm/amd/display/dc/link/link_hwss_dio.c   |   7 +
+ .../amd/display/dc/link/link_hwss_hpo_dp.c    |   4 +-
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |   9 +-
+ 71 files changed, 867 insertions(+), 258 deletions(-)
+
+-- 
+2.37.1
+
