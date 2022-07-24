@@ -2,39 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12F3057FA29
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Jul 2022 09:23:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FCD457FA2C
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Jul 2022 09:23:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB27E113F13;
-	Mon, 25 Jul 2022 07:23:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17A0F113F39;
+	Mon, 25 Jul 2022 07:23:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtpbg.qq.com (biz-43-154-221-58.mail.qq.com [43.154.221.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AE5DBF156;
- Sun, 24 Jul 2022 07:42:16 +0000 (UTC)
-X-QQ-mid: bizesmtp83t1658648530tlaln5py
-Received: from localhost.localdomain ( [125.70.163.183])
- by bizesmtp.qq.com (ESMTP) with 
- id ; Sun, 24 Jul 2022 15:42:09 +0800 (CST)
-X-QQ-SSF: 01000000002000007000B00A0000000
-X-QQ-FEAT: 83ShfzFP0oAUTgA4x7fia1N3iOs8FDZQk3RUK2OOVsdNMVcrH24z/8qAduNcj
- qMQSnETQt93LZ1f1Q367pIJuE1LZEJziQbwtI395RtiN/2iT74wmU0gMtK/LlUWCGoSVSpK
- qS2U47OWS9FCRTHyG/BH1LHE1HmO0M7i68y7oFxVbKFSPPS9hPI8mJw43emYIPRY6xmIgiM
- SyHmomb8PVVw1OZ5BitUgvfJDUkrZeLnXokZ6XK45B+dn+oNAGlpebBYECbEw5F3tcx/kLm
- SVLOcpX1fW4O+lEZWGI6WqgfKMHr28vb5ATH8vf+iL7eG2hsNi0L7IkI0lHYLTpMAKijy+s
- xMpMGxysYSA4xcU65NQ2ePvqmqQ73xwb0MXzMS5lB29NYC++0Q=
-X-QQ-GoodBg: 0
-From: wangjianli <wangjianli@cdjrlc.com>
-To: airlied@linux.ie,
-	daniel@ffwll.ch
-Subject: [PATCH] dc/dce: fix repeated words in comments
-Date: Sun, 24 Jul 2022 15:41:50 +0800
-Message-Id: <20220724074150.17869-1-wangjianli@cdjrlc.com>
-X-Mailer: git-send-email 2.36.1
+X-Greylist: delayed 387 seconds by postgrey-1.36 at gabe;
+ Sun, 24 Jul 2022 22:23:49 UTC
+Received: from gimli.rothwell.id.au (gimli.rothwell.id.au [103.230.158.156])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64B67112270
+ for <amd-gfx@lists.freedesktop.org>; Sun, 24 Jul 2022 22:23:49 +0000 (UTC)
+Received: from authenticated.rothwell.id.au (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.rothwell.id.au (Postfix) with ESMTPSA id 4Lrcwp4YV2zyZr;
+ Mon, 25 Jul 2022 08:17:14 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rothwell.id.au;
+ s=201702; t=1658701035;
+ bh=YGEaeUbKiRDCYYWkghSCOynyRlyKXuIsRAl5tH12Ez8=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=HqTwCWmOpqHbh/28pN24TveaDZC87Lh8Ltfa50wyP5V+beR92Yty3f62lOzrw3iCw
+ BZacyN/KU/mS9nqoA5uZZsCd78wReBITwHlZuRXjuFijbEN6EhyuKRfk1o/UHM/OOp
+ QRlAPIR6M+1elrY9fs38vs7+lZuMEMFpXjL9AsdgVwZqF9IEnQxkLqTP5MmWCzbC92
+ srp/fiUnCaHORvalTe5roNOUjGq4VXbmaHGSj3ws0JZ73u9DTSQYPuObtDJ7qN1ZIt
+ 1qC416/DDWWKmbAXgmaTEAGkRe6TAdcBP1QECdrTz2g4dUkos90JNFn7346LfHIaOc
+ dTqv2Hv3VNAcw==
+Date: Mon, 25 Jul 2022 07:41:09 +1000
+From: Stephen Rothwell <sfr@rothwell.id.au>
+To: Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: [PATCH] drm/amd/display: Reduce stack size in the mode support
+ function
+Message-ID: <20220725073646.068c9cb4@oak.ozlabs.ibm.com>
+In-Reply-To: <CADnq5_MVQUK4cqD8mcOQTupfVR2c6siRyr87pb=BzRgvUG3sQw@mail.gmail.com>
+References: <20220722175617.2060949-1-Rodrigo.Siqueira@amd.com>
+ <CADnq5_MVQUK4cqD8mcOQTupfVR2c6siRyr87pb=BzRgvUG3sQw@mail.gmail.com>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:cdjrlc.com:qybglogicsvr:qybglogicsvr7
+Content-Type: multipart/signed; boundary="Sig_/VRUBk4vBa=Hq0Nnl8SQg=C3";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-Mailman-Approved-At: Mon, 25 Jul 2022 07:23:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -47,31 +55,80 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: wangjianli <wangjianli@cdjrlc.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
- Delete the redundant word 'in'.
+--Sig_/VRUBk4vBa=Hq0Nnl8SQg=C3
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: wangjianli <wangjianli@cdjrlc.com>
----
- drivers/gpu/drm/amd/display/dc/dce/dce_audio.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi all,
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_audio.c b/drivers/gpu/drm/amd/display/dc/dce/dce_audio.c
-index 70eaac017624..f0b585caa28f 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_audio.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_audio.c
-@@ -322,7 +322,7 @@ static void set_video_latency(
- 		value);
- }
- 
--/* set audio latency in in ms/2+1 */
-+/* set audio latency in ms/2+1 */
- static void set_audio_latency(
- 	struct audio *audio,
- 	int latency_in_ms)
--- 
-2.36.1
+On Fri, 22 Jul 2022 14:12:44 -0400 Alex Deucher <alexdeucher@gmail.com> wro=
+te:
+>
+> On Fri, Jul 22, 2022 at 1:56 PM Rodrigo Siqueira <Rodrigo.Siqueira@amd.co=
+m> wrote:
+> >
+> > When we use the allmodconfig option we see the following error:
+> >
+> > drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_32.=
+c: In function 'dml32_ModeSupportAndSystemConfigurationFull':
+> > drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_32.=
+c:3799:1: error: the frame size of 2464 bytes is larger than 2048 bytes [-W=
+error=3Dframe-larger-than=3D]
+> >   3799 | } // ModeSupportAndSystemConfigurationFull
+> >
+> > This commit fixes this issue by moving part of the mode support
+> > operation from ModeSupportAndSystemConfigurationFull to a dedicated
+> > function.
+> >
+> > Cc: Harry Wentland <harry.wentland@amd.com>
+> > Cc: Alex Deucher <alexander.deucher@amd.com>
+> > Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
+> > Cc: Stephen Rothwell <sfr@canb.auug.org.au>
+> > Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com> =20
+>=20
+> Thanks for sorting this out!
+> Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
+Tested-by: Stephen Rothwell <sfr@canb.auug.org.au>
+
+Also, after applying the above patch, the following commits are no
+longer needed:
+
+987949933127 drm/amd/display: reduce stack for dml32_CalculatePrefetchSched=
+ule
+8f08cd32b767 drm/amd/display: reduce stack for dml32_CalculateWatermarksMAL=
+LUseAndDRAMSpeedChangeSupport
+5d526d124fe3 drm/amd/display: reduce stack for dml32_CalculateVMRowAndSwath
+f6ceebcc7825 drm/amd/display: reduce stack for dml32_CalculateSwathAndDETCo=
+nfiguration
+
+and could be reverted (or removed).
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/VRUBk4vBa=Hq0Nnl8SQg=C3
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmLdvHUACgkQAVBC80lX
+0GyLDgf+LV4BCYZfKdiCg6zMGyjXPuRntBC/8p7IVPDmJ00ji1p8tVi15V+JafDb
+1nRZxsb+11d7vbyzbrnDCPgy381FYspahRuA0vcnVFjGhbNXsrJpPUjulqQNksGs
+XkWbV/xA0YqAXxGiLucD0AR2FNcg5Pjf1fP3gQxYtNetUgHaWE/soZwQZHU3NN4I
+3r6zxIU4x2c95L+AAiaXqhswddKmekp7c+Tj2zyTIYvYniyx90bbsGFnPWJlaZGG
+d8y5GGt57vPOcKVakuwGp1O12psiwzKBV4qD6/SO8WmIYgRAMTeYyfke3gn3l+SS
+jlkXdArW3OsavS4eDPTKN5PSm21RyQ==
+=hhyT
+-----END PGP SIGNATURE-----
+
+--Sig_/VRUBk4vBa=Hq0Nnl8SQg=C3--
