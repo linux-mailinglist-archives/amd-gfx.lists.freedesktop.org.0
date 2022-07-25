@@ -1,58 +1,47 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93CFF5804A1
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Jul 2022 21:43:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC333580487
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Jul 2022 21:38:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB7A48B3B2;
-	Mon, 25 Jul 2022 19:43:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04334C1C09;
+	Mon, 25 Jul 2022 19:38:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 558 seconds by postgrey-1.36 at gabe;
- Mon, 25 Jul 2022 19:43:30 UTC
-Received: from raptorengineering.com (mail.raptorengineering.com
- [23.155.224.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 358DF8A345
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Jul 2022 19:43:30 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by mail.rptsys.com (Postfix) with ESMTP id E1E9237CDA30A2;
- Mon, 25 Jul 2022 14:34:11 -0500 (CDT)
-Received: from mail.rptsys.com ([127.0.0.1])
- by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10032)
- with ESMTP id VnwW3Pumlutw; Mon, 25 Jul 2022 14:34:10 -0500 (CDT)
-Received: from localhost (localhost [127.0.0.1])
- by mail.rptsys.com (Postfix) with ESMTP id 657C637CDA309F;
- Mon, 25 Jul 2022 14:34:10 -0500 (CDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rptsys.com 657C637CDA309F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=raptorengineering.com; s=B8E824E6-0BE2-11E6-931D-288C65937AAD;
- t=1658777650; bh=C6eQ56WoqflhVshYvw4eSCbTOWmWQugcnRK1KwC4InQ=;
- h=Date:From:To:Message-ID:MIME-Version;
- b=HUXCmnoHrk+82zDVSN5TwrZtJv5I32HBsm1W/0ygtdInl+yif0P4tia7Sd5JAJRPU
- yulkymOoGGK7dA9UI8YmyA5VSuDRN1JJjoR3zzEIZDjsweTlVG5bWsddAOn3MbNmWo
- OfLJgjUHcP5wIl4ettt6QsLNsTiDjIz4SB4rD9wA=
-X-Virus-Scanned: amavisd-new at rptsys.com
-Received: from mail.rptsys.com ([127.0.0.1])
- by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id DNoUORfc-qsk; Mon, 25 Jul 2022 14:34:10 -0500 (CDT)
-Received: from vali.starlink.edu (localhost [127.0.0.1])
- by mail.rptsys.com (Postfix) with ESMTP id 3BA9737CDA309C;
- Mon, 25 Jul 2022 14:34:10 -0500 (CDT)
-Date: Mon, 25 Jul 2022 14:34:08 -0500 (CDT)
-From: Timothy Pearson <tpearson@raptorengineering.com>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Message-ID: <1446417444.13111032.1658777648586.JavaMail.zimbra@raptorengineeringinc.com>
-In-Reply-To: <CAHk-=wihON4Ytte5zLHWNQtTapUvCpkToxY06OjX-_2B+Gq6Gg@mail.gmail.com>
-References: <20220725123918.1903255-1-mpe@ellerman.id.au>
- <CAHk-=wihON4Ytte5zLHWNQtTapUvCpkToxY06OjX-_2B+Gq6Gg@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Re-enable DCN for 64-bit powerpc
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2375C1C09
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 Jul 2022 19:38:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:Cc:
+ References:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID
+ :Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
+ Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe
+ :List-Post:List-Owner:List-Archive;
+ bh=97xO8MpFS+EQbJKonkUxT/N6K6HBArw170AmLWWPjwQ=; b=PbDXy7RLKJIT+yYEk0vo/vPBfx
+ VIEC1crm13lenFzk1uslKvnoQPdmuL0mvBd+8wnwVeTZL6SLii3SvvQtuMrRSY/zx/KOk0qiLuzXy
+ UN/47P2Vz8FptS1H9n64bL43VIokll0nDffsg35UnhvHFVTNEFwDSlL1+UhjfazOtJqwXwrv48A6q
+ 0W+AyNv2davaJL0OP0Z6gVi/8GuCWKpFrDBCjrE8TDXTqxVirS+uASdl9/jYz8g6U2WhIv1l4X7i0
+ GBR1badPzVN2iFiVgr1CBMeTcE2Iwq4Ck2D6vNmnnDziTUwZ1pEaVJwJmDDBUb3Det99iItNBedL6
+ Khmzd42Q==;
+Received: from 201-13-50-220.dsl.telesp.net.br ([201.13.50.220]
+ helo=[192.168.15.109]) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1oG3uC-006KCz-F9; Mon, 25 Jul 2022 21:38:16 +0200
+Message-ID: <7c866655-7736-6911-eec4-9beb46435207@igalia.com>
+Date: Mon, 25 Jul 2022 16:38:00 -0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Zimbra 8.5.0_GA_3042 (ZimbraWebClient - GC103 (Linux)/8.5.0_GA_3042)
-Thread-Topic: drm/amdgpu: Re-enable DCN for 64-bit powerpc
-Thread-Index: bYJinp50nUzyW/1gBugq0G+Et27Ikw==
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] drm/amdgpu: Fix the incomplete product number
+Content-Language: en-US
+To: Roy Sun <Roy.Sun@amd.com>
+References: <20220722045646.106225-1-Roy.Sun@amd.com>
+From: =?UTF-8?Q?Andr=c3=a9_Almeida?= <andrealmeid@igalia.com>
+In-Reply-To: <20220722045646.106225-1-Roy.Sun@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,43 +53,22 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dan =?utf-8?Q?Hor=C3=A1k?= <dan@danny.cz>,
- Michael Ellerman <mpe@ellerman.id.au>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- amd-gfx <amd-gfx@lists.freedesktop.org>, Alex Deucher <alexdeucher@gmail.com>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, linux@roeck-us.net
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Às 01:56 de 22/07/22, Roy Sun escreveu:
+> The comments say that the product number is a 16-digit HEX string so the
+> buffer needs to be at least 17 characters to hold the NUL terminator. Expand
+> the buffer size to 20 to avoid the alignment issues.
+> 
+> The comment:Product number should only be 16 characters. Any
+> more,and something could be wrong. Cap it at 16 to be safe
+> 
+> Signed-off-by: Roy Sun <Roy.Sun@amd.com>
+> ---
 
+Reviewed-by: André Almeida <andrealmeid@igalia.com>
 
------ Original Message -----
-> From: "Linus Torvalds" <torvalds@linux-foundation.org>
-> To: "Michael Ellerman" <mpe@ellerman.id.au>
-> Cc: "linuxppc-dev" <linuxppc-dev@lists.ozlabs.org>, "Alex Deucher" <alexd=
-eucher@gmail.com>, "amd-gfx"
-> <amd-gfx@lists.freedesktop.org>, linux@roeck-us.net, "linux-kernel" <linu=
-x-kernel@vger.kernel.org>, "Dan Hor=C3=A1k"
-> <dan@danny.cz>, "Timothy Pearson" <tpearson@raptorengineering.com>
-> Sent: Monday, July 25, 2022 2:19:57 PM
-> Subject: Re: [PATCH] drm/amdgpu: Re-enable DCN for 64-bit powerpc
-
-> On Mon, Jul 25, 2022 at 5:39 AM Michael Ellerman <mpe@ellerman.id.au> wro=
-te:
->>
->> Further digging shows that the build failures only occur with compilers
->> that default to 64-bit long double.
->=20
-> Where the heck do we have 'long double' things anywhere in the kernel?
->=20
-> I tried to grep for it, and failed miserably. I found some constants
-> that would qualify, but they were in the v4l colorspaces-details.rst
-> doc file.
->=20
-> Strange.
-
-We don't, at least not that I can see.  The affected code uses standard dou=
-bles.
-
-What I'm wondering is if the compiler is getting confused between standard =
-and long doubles when they are both the same bit length...
+Next time, please make your subject as [PATCH v2] and add a changelog to
+make review easier.
