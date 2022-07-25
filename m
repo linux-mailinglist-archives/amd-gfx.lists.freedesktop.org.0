@@ -2,65 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CF94580476
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Jul 2022 21:28:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93CFF5804A1
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Jul 2022 21:43:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B932CC1B1D;
-	Mon, 25 Jul 2022 19:28:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB7A48B3B2;
+	Mon, 25 Jul 2022 19:43:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com
- [IPv6:2a00:1450:4864:20::536])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2A27C1A70
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Jul 2022 19:20:15 +0000 (UTC)
-Received: by mail-ed1-x536.google.com with SMTP id z18so2924312edb.10
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Jul 2022 12:20:15 -0700 (PDT)
+X-Greylist: delayed 558 seconds by postgrey-1.36 at gabe;
+ Mon, 25 Jul 2022 19:43:30 UTC
+Received: from raptorengineering.com (mail.raptorengineering.com
+ [23.155.224.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 358DF8A345
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 Jul 2022 19:43:30 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by mail.rptsys.com (Postfix) with ESMTP id E1E9237CDA30A2;
+ Mon, 25 Jul 2022 14:34:11 -0500 (CDT)
+Received: from mail.rptsys.com ([127.0.0.1])
+ by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10032)
+ with ESMTP id VnwW3Pumlutw; Mon, 25 Jul 2022 14:34:10 -0500 (CDT)
+Received: from localhost (localhost [127.0.0.1])
+ by mail.rptsys.com (Postfix) with ESMTP id 657C637CDA309F;
+ Mon, 25 Jul 2022 14:34:10 -0500 (CDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rptsys.com 657C637CDA309F
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=XVDIZFYcquyDU30LBhCPD/PXD8V3Ex6g+/4Jt+pCRG0=;
- b=AzQOEmHT1inFFysvEynnDtRbqEeUYeR3B2ZfONqWXZGdpODf9tTWJBIMwQvdfinCE6
- 8EN+GqBKJQTMGcSZ9cYlGyaoEZMlReop1K92FAHZ1Kc+VjrcDKpUg8JJP71bsnkzKbs3
- mRPrDdQCmFJwtfI+xqu7XqXj1zo3TG0h/Dd74=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=XVDIZFYcquyDU30LBhCPD/PXD8V3Ex6g+/4Jt+pCRG0=;
- b=fUayBtlDP1u53X33Xoe+thmfDWP2/6S2/iV3eTrnpXQV4R7DrHbiyxHKElXSaTyQdx
- 7EmKzr5hlCs5sGzH280Va4j8koi29K8AieZzdpvEZiTwEy8EvFn5ESZUbo5LF9mfX2/K
- 3Cwzz8ruvpb5A1T2QFhiezMlkcPwkEvDEx+R+6c832SEivcVK82cJqNLD9yfLJrtYB1z
- qT+6SoMkdUy4z+LGe0oPZ2X+0DrrBBYyeR8klMShJ1IRGyV/rWBplR9oDyKZGjOmenrk
- ODCxN2Ys7LebA36mgr2t42Y9dyoTWPrOEUkmwkwVsI76uXYv9mCJvMLoTjLjb48PImUs
- 362Q==
-X-Gm-Message-State: AJIora9y5ka5eBln//TvVFpNkZXLlPcFtpLWLpqDr/wWiT3y34hgo2PD
- nA+xzEU7jOE/WNe02PuuKwjGvw8X3quc5+vD
-X-Google-Smtp-Source: AGRyM1sM+A4sSkQfBAPgRUdsoskQ+gu9CMFRhYRD7f73ZtwFtYnTA+uoU9RNcZ7BTV+1M651pkpTGg==
-X-Received: by 2002:a05:6402:26c8:b0:43c:1ce4:e9a4 with SMTP id
- x8-20020a05640226c800b0043c1ce4e9a4mr4343138edd.26.1658776814011; 
- Mon, 25 Jul 2022 12:20:14 -0700 (PDT)
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com.
- [209.85.221.53]) by smtp.gmail.com with ESMTPSA id
- h12-20020a170906718c00b0072aed3b2158sm5616457ejk.45.2022.07.25.12.20.13
- for <amd-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 25 Jul 2022 12:20:13 -0700 (PDT)
-Received: by mail-wr1-f53.google.com with SMTP id k11so16911911wrx.5
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Jul 2022 12:20:13 -0700 (PDT)
-X-Received: by 2002:a05:6000:180f:b0:21d:68f8:c4ac with SMTP id
- m15-20020a056000180f00b0021d68f8c4acmr8625583wrh.193.1658776813045; Mon, 25
- Jul 2022 12:20:13 -0700 (PDT)
-MIME-Version: 1.0
+ d=raptorengineering.com; s=B8E824E6-0BE2-11E6-931D-288C65937AAD;
+ t=1658777650; bh=C6eQ56WoqflhVshYvw4eSCbTOWmWQugcnRK1KwC4InQ=;
+ h=Date:From:To:Message-ID:MIME-Version;
+ b=HUXCmnoHrk+82zDVSN5TwrZtJv5I32HBsm1W/0ygtdInl+yif0P4tia7Sd5JAJRPU
+ yulkymOoGGK7dA9UI8YmyA5VSuDRN1JJjoR3zzEIZDjsweTlVG5bWsddAOn3MbNmWo
+ OfLJgjUHcP5wIl4ettt6QsLNsTiDjIz4SB4rD9wA=
+X-Virus-Scanned: amavisd-new at rptsys.com
+Received: from mail.rptsys.com ([127.0.0.1])
+ by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id DNoUORfc-qsk; Mon, 25 Jul 2022 14:34:10 -0500 (CDT)
+Received: from vali.starlink.edu (localhost [127.0.0.1])
+ by mail.rptsys.com (Postfix) with ESMTP id 3BA9737CDA309C;
+ Mon, 25 Jul 2022 14:34:10 -0500 (CDT)
+Date: Mon, 25 Jul 2022 14:34:08 -0500 (CDT)
+From: Timothy Pearson <tpearson@raptorengineering.com>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Message-ID: <1446417444.13111032.1658777648586.JavaMail.zimbra@raptorengineeringinc.com>
+In-Reply-To: <CAHk-=wihON4Ytte5zLHWNQtTapUvCpkToxY06OjX-_2B+Gq6Gg@mail.gmail.com>
 References: <20220725123918.1903255-1-mpe@ellerman.id.au>
-In-Reply-To: <20220725123918.1903255-1-mpe@ellerman.id.au>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Mon, 25 Jul 2022 12:19:57 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wihON4Ytte5zLHWNQtTapUvCpkToxY06OjX-_2B+Gq6Gg@mail.gmail.com>
-Message-ID: <CAHk-=wihON4Ytte5zLHWNQtTapUvCpkToxY06OjX-_2B+Gq6Gg@mail.gmail.com>
+ <CAHk-=wihON4Ytte5zLHWNQtTapUvCpkToxY06OjX-_2B+Gq6Gg@mail.gmail.com>
 Subject: Re: [PATCH] drm/amdgpu: Re-enable DCN for 64-bit powerpc
-To: Michael Ellerman <mpe@ellerman.id.au>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Mon, 25 Jul 2022 19:28:22 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Zimbra 8.5.0_GA_3042 (ZimbraWebClient - GC103 (Linux)/8.5.0_GA_3042)
+Thread-Topic: drm/amdgpu: Re-enable DCN for 64-bit powerpc
+Thread-Index: bYJinp50nUzyW/1gBugq0G+Et27Ikw==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,23 +64,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dan@danny.cz, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- tpearson@raptorengineering.com, alexdeucher@gmail.com,
- linuxppc-dev@lists.ozlabs.org, linux@roeck-us.net
+Cc: Dan =?utf-8?Q?Hor=C3=A1k?= <dan@danny.cz>,
+ Michael Ellerman <mpe@ellerman.id.au>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ amd-gfx <amd-gfx@lists.freedesktop.org>, Alex Deucher <alexdeucher@gmail.com>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, linux@roeck-us.net
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jul 25, 2022 at 5:39 AM Michael Ellerman <mpe@ellerman.id.au> wrote:
->
-> Further digging shows that the build failures only occur with compilers
-> that default to 64-bit long double.
 
-Where the heck do we have 'long double' things anywhere in the kernel?
 
-I tried to grep for it, and failed miserably. I found some constants
-that would qualify, but they were in the v4l colorspaces-details.rst
-doc file.
+----- Original Message -----
+> From: "Linus Torvalds" <torvalds@linux-foundation.org>
+> To: "Michael Ellerman" <mpe@ellerman.id.au>
+> Cc: "linuxppc-dev" <linuxppc-dev@lists.ozlabs.org>, "Alex Deucher" <alexd=
+eucher@gmail.com>, "amd-gfx"
+> <amd-gfx@lists.freedesktop.org>, linux@roeck-us.net, "linux-kernel" <linu=
+x-kernel@vger.kernel.org>, "Dan Hor=C3=A1k"
+> <dan@danny.cz>, "Timothy Pearson" <tpearson@raptorengineering.com>
+> Sent: Monday, July 25, 2022 2:19:57 PM
+> Subject: Re: [PATCH] drm/amdgpu: Re-enable DCN for 64-bit powerpc
 
-Strange.
+> On Mon, Jul 25, 2022 at 5:39 AM Michael Ellerman <mpe@ellerman.id.au> wro=
+te:
+>>
+>> Further digging shows that the build failures only occur with compilers
+>> that default to 64-bit long double.
+>=20
+> Where the heck do we have 'long double' things anywhere in the kernel?
+>=20
+> I tried to grep for it, and failed miserably. I found some constants
+> that would qualify, but they were in the v4l colorspaces-details.rst
+> doc file.
+>=20
+> Strange.
 
-             Linus
+We don't, at least not that I can see.  The affected code uses standard dou=
+bles.
+
+What I'm wondering is if the compiler is getting confused between standard =
+and long doubles when they are both the same bit length...
