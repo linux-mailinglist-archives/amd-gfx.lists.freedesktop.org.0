@@ -1,118 +1,67 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54634580114
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Jul 2022 17:01:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A6285801CD
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Jul 2022 17:25:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23ACABEE46;
-	Mon, 25 Jul 2022 15:01:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE044C04BA;
+	Mon, 25 Jul 2022 15:24:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2073.outbound.protection.outlook.com [40.107.223.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B522EBEEBC
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Jul 2022 15:01:45 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JtesUci2racW4xwiy/GJt1d/0bWnbqeAswUy5eGtBC51SiOcLX6uW+44HmcC9JFguZybBQoRdl/3+V5hAKw5/uqQduN4QqaPB8OncInfam9zvAQmQrBf3nKRhPtWY8e1kkhtJVBv+Y34rCjzdZrfFUfFCIf3lS84cm0B1ArHJJoFPb8wmytsUOn79rZ44YmxwGxUkjeCEeREpwSUhkXmN1oXvxt3+3xZKovmdRaZp1NOEDB/Dke1GyfdL0uMICjKf5sZQcxSd4C6HduOH6s/bY5kIHW4lVK2OF3y6uEQra7H8j4iv/57r9fRxODXCLd6U1L08U6063ofZA2/DFw3eA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GUZTk8WlxqAf7t+srTXbDiuIDFVzBWBu7KA8Cm8fFFE=;
- b=KSF+GiTSlRTR2uMbV/QTKm6v5t8WFfzbZIfg0vg+y58h2xIdI3/ZsCHR6OhbGko7gfxk112dN8p3N1aVVDXCykzjeYkjbWyo77HGtwLj61AJiIKVR0dKJMIHIcd0HvmqL4bLxwmB+hmMbST9KiXALxgjWoy+iuTSp0cVyDalrqvKAjRtUhssk8UtqLlHqmz7Qr37ND/SUsMNqta0SMgZ3iDQ9eCzbMPsAvF0IRvtuuwNgs6EMOulKMqOAEDqkSbeHW9xciWXo9IRD5jORV26MKCPl0/32+cqtaqMVrTMqOnCNmQ9YHxUsVMGKEWFSPPLFrTGCYmWOk4hbUFYZS5t6w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GUZTk8WlxqAf7t+srTXbDiuIDFVzBWBu7KA8Cm8fFFE=;
- b=mZVt2n0qC1sVMoMLjFQwzZAXN0jiUzTyUGZAJP3xEZFkFQxGpNFmaiedhYzl6B4NHoCJycvPmxtYt3D/lIBWjZFEgjbMpGT52I0ngMyu86tOKl9LRMl4r2rGTgFO3NXzKir/3pO14M9VEQvN8CA5mCkbQO7UDzUV/jefwipX2Kc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
- by MWHPR12MB1565.namprd12.prod.outlook.com (2603:10b6:301:b::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.20; Mon, 25 Jul
- 2022 15:01:42 +0000
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::406d:afb5:d2d7:8115]) by BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::406d:afb5:d2d7:8115%5]) with mapi id 15.20.5458.024; Mon, 25 Jul 2022
- 15:01:42 +0000
-Message-ID: <a6063fb1-206d-1d70-e6a1-724327e868b5@amd.com>
-Date: Mon, 25 Jul 2022 11:01:40 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/3] drm/amdgpu: Allow TTM to evict svm bo from same
- process
-Content-Language: en-US
-To: Philip Yang <Philip.Yang@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20220725122317.24606-1-Philip.Yang@amd.com>
-From: Felix Kuehling <felix.kuehling@amd.com>
-In-Reply-To: <20220725122317.24606-1-Philip.Yang@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YQBPR0101CA0148.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:e::21) To BN9PR12MB5115.namprd12.prod.outlook.com
- (2603:10b6:408:118::14)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37131112667;
+ Mon, 25 Jul 2022 15:20:51 +0000 (UTC)
+Received: from dimapc.. (109-252-119-232.nat.spd-mgts.ru [109.252.119.232])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: dmitry.osipenko)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 105BA66015C8;
+ Mon, 25 Jul 2022 16:20:47 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1658762449;
+ bh=WDIIFq+FwvZE2r0LkWg7SRzWlcZ28eKnpAmrtcK8/Tw=;
+ h=From:To:Cc:Subject:Date:From;
+ b=fCTuAO8tPmjR8tSbNU7j5+ykPVxJHvHdPYqB/q+SO9WPw0GWAQAZkTjrZK8Ms+wxk
+ G8rwf70tH+Z7xpEq8t/v+2fubGWelhddXEvkkJBM30fCF2yps5VAV7CIVdbtKRHH/w
+ OMDdlnNZwyvWDn/TIT8zdX8oabwj94F+u00uDHGBHiSpimKonDm5oMmo+ApDHwm3EC
+ dghjMfnSVgIYt6j+q/Nw01pS56Qm7i6GdsZfcBRRx9eD0F7n9BQjVuPuclpu0BAGPD
+ CW1k5b1tcXd3QaLbqsMsOWWl5s6Kpo4O5oGyowxH7HT1f+It08Ez+VTu4+PAIC5gAI
+ dmKpANkjOU+wQ==
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+To: David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Daniel Stone <daniel@fooishbar.org>,
+ Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rob Clark <robdclark@gmail.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Tomasz Figa <tfiga@chromium.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas_os@shipmail.org>
+Subject: [PATCH v2 0/5] Move all drivers to a common dma-buf locking convention
+Date: Mon, 25 Jul 2022 18:18:34 +0300
+Message-Id: <20220725151839.31622-1-dmitry.osipenko@collabora.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 375e4bdb-efae-4ec4-af11-08da6e4e95b0
-X-MS-TrafficTypeDiagnostic: MWHPR12MB1565:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ejpD78Y4bYBMomDb0FGy+zVjdDgZAqcHObR6QhzgSJeEXfcxCygDBDYhKsFWUj0t3BoB8V3z9vgilBiZjuORERd8+/MHvB6yBacPmeSICfUbfsrzVoP6GpmcAjpFEtlfjFl20SsA0oDmyebvzIZvncwe3lTFWtVPAtAwZHrEU8WaogLlvrlpvceBVDgbB2vMVAiGqPQjntz7LrwOiB/RqPwGfeOWbA4uii0TPAiYbwitXKuvR/6pHBK6g4M8I230XimmrKrOacYNhm4UusoiIVPUqOanOzjjP7NCdLWd3l5QGpt04UzoO9izUF+Wpix+m0IFOwCM66CaR31/QLgzcydOp0cW1AbnIYnFID33mTkoCkxmiEGEw+zgFh4hw60pstiln5WZDHZTOckR2ENMjxzqp7tCsU9g3AnYK+OkYKUl+TmgfZ6VRQaAOho0m+3+WlAwqxqj0zspc2ZK+2nCtHoZSoYI1vxXdWgmgG9odDP6s/ZnVujLMvEHVF7jMlCz5AiHMdHxAKb/BoJKY9RypAnh/yikaUaFljtkeKkwOOadpoUhAMSQGTug+M0psbpBGZiCRn74yXUi75NO9URhyvOEKismUDKU1D2ltxcEzYsyCCYAA+RyNDNnEyWJ/GaAANgY75Erzj4iUEdkC+UmlvHPdWHbz2Sb9/WIy3UXwL2agKtXCvGZbA9A/gWiIfijlN75fLyPhN4fBS7Cw+BRM9/4jFy8jhX4xZmDDCrTW488sOHCwXHAWnBCuOBKd5II5zJ3e10ogIBZLAFrgE5qsrB3MUsmsKUuafHUAzVXUR/47VNkMUeYAZ7ohUk9vgY0XapI0h87OzN2RhjoLRIFMA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(136003)(396003)(366004)(346002)(39860400002)(376002)(38100700002)(31686004)(41300700001)(316002)(31696002)(66946007)(66476007)(2906002)(66556008)(36756003)(8676002)(86362001)(8936002)(5660300002)(6506007)(6486002)(26005)(478600001)(6512007)(83380400001)(44832011)(2616005)(186003)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UUx0bWFVRWUzZkU3bkk0Q3ViYS9qc2NCclBjcG94Nm1SQmFUQWYxQmhOcTBk?=
- =?utf-8?B?TkJHckFIL0pWb3oyMExwSHF6Z0JoYmpVbmNtMVBtbVF5R0krMTZWMUlxWmRI?=
- =?utf-8?B?MUEveFg0Slo0SFVsZ0NQbnBFWnlKQ2lzTTdWZEZUYU1DdmVRS3dUQlJuNDVO?=
- =?utf-8?B?Uzc5SGFCSGNPNFFFekhnWmVUdE5zQmxEdzg3aUJuRHZEdjBVWFN0enhHZnZZ?=
- =?utf-8?B?TVcyczJFU1h3ZktJNi9EYWpMeGZPOXdBbGROb0hwMS95YUZaaDZOK005Mm5E?=
- =?utf-8?B?ZHphR0Zad3pUL2FGSUM2M2lOeUNQVTY1djVMeXF2V05OZmx2UTJuQTh0SHRi?=
- =?utf-8?B?aEthbmc5TTJZTTduRUZPMjQwcndSeCs0aGNFQ1BncUhXSUFaT2hKSlRkeFVD?=
- =?utf-8?B?RzFQYWJUUDNRMy9lZ1hYRDluOFgzWXBNY0lQM0Y1bUpSYkp5K0RXRHhtdysr?=
- =?utf-8?B?TExwZU1NWElUaWs0K05oNzBSckRKMTBKN2hIeUdCWUpmbld6V2NUWXcxZkxQ?=
- =?utf-8?B?cVRYY25XcVdCMnRiS1VxNmxLTm1SdUEwL215aW8xK0NWaTNHRDJBcnFlV1Ba?=
- =?utf-8?B?aEd6OXVZa2wrVEtIZGxNQjBpV3A4Yy9ZalFGa05LOEozaysyd0VQWDJBOXN6?=
- =?utf-8?B?VzZ5bFJmeFRzOTRDbjRZTXBHSU9oMWVkVHJZODdhK1BrSEd0by9oUkdLaTRI?=
- =?utf-8?B?WlRFSDZYQzJYTUlZYUdUbjA5K1hvTjlLd2lJa3MyajNvZGRwcE45R21oVEFP?=
- =?utf-8?B?Rm92Y0ppTENTa0RSNHNINk9yU2VyYk1GMndVMGpYNFcvblArVGdHQ1orWkth?=
- =?utf-8?B?U0RqQVNRekZkQUhoOU5JbFJMcUVTR0lTdHBCMTRib01GU0FrN3RkejhWNzFL?=
- =?utf-8?B?L1lxOHg0Tm54N0VSSXVzYXZCc01XMzIwOG8zM1N0TUN2eG8vK09ENXZRdUtk?=
- =?utf-8?B?c0xNVXlXM3d5L3MyWXpBTkFRRDE5bkRuNW9MOTZFYjVkbHZZM0R5M1U4TGl6?=
- =?utf-8?B?Y2dOQmdQL0hHbWpNM0NYdTJxbzlKMjJPTWJLM0huVWtxN2FCbVB3RzRwZCtC?=
- =?utf-8?B?WDIxNFAvRWVuWHVPM1dDTmVJeCtaaFZIKzFBeFVJWGxxUEFlTXZtb0lMczlI?=
- =?utf-8?B?V0F1dTB5WmR5MzFPditrRVc3MUNjbXhsT3I0UytzdGdWUmxZdWJKUkh0WEtj?=
- =?utf-8?B?Wm9XZkxwNTl0dE1HWnd2S0lSRGVaTzUzUlpjWlFHajRMUkZ3M1ZMOGt5V3lL?=
- =?utf-8?B?eHZCK3BoN3pSYnkwQkp6R3RUb3FvRTlJTk1MT0REeUVMMVo3WmYxUDloTHVM?=
- =?utf-8?B?bExRdjNoQTJOL1RBUTZIQUQvVFFQU2Rrd1lxL1BFblZZT3FBN25RaGVDVmJE?=
- =?utf-8?B?bnNDTm1rc3pwMFVtcTQ1OGwxVmF4d0tKZHBSZFVEOFVEY25QR2kvWHRPUTU4?=
- =?utf-8?B?VEE2V3IwaVdIaDIvb2Z1WHVBSHVWKzBOWkcxOFFyOHhQRkhuM3N6dTVpRFRE?=
- =?utf-8?B?S0lCOVo1Yzd0SHJ2MFk1dytwQXdKTE1PUmRncTl4Tmg0SjRUWmdST1dGQTY1?=
- =?utf-8?B?QmhtaE5MaC9lZmJ4ei9YUjF4dU1FZUdQbmx1RnlWK1JWU0hacWlwbXFPZDJh?=
- =?utf-8?B?MTN6aWlGd1dlNmFHOUtPVHMvWkNWd2tLTm9ZQzhoaGdqVGQ4UVQwdXp6QTNZ?=
- =?utf-8?B?MDQweHRTTWVNWVF4UkRSNmpvWThYUnZaUjdGWjZtWjJreUN2NkVyRGYzc3Q3?=
- =?utf-8?B?bXJ1bjBHS0k3aEtGMDNLZFdpd1FjNjBuTldncFBvWVpmQ3NNSGlvWmJITXl2?=
- =?utf-8?B?VWNDVUU2Tit2c3RCWFVTSGtpZWJmNGJRSTV0UjhYdDkwL2dITTJzbU5YVzJI?=
- =?utf-8?B?UmtGY09vT2ZNMHNkQk5VUVdoRTVBZlhYcVQ2VU4xN2EyTnlvc0FoU3piZ0VQ?=
- =?utf-8?B?KzhHbUFJcGI4Ui9WZzY5d1ozeFlYM3hLL3NuaWhSamNtODFsV1VLZXY4MEpP?=
- =?utf-8?B?YndGNkRzQXF1UEkraDFSSVhqanpyck91bjQ0WGhCb0E2WjdpWUVlY2V2Wm12?=
- =?utf-8?B?SnNPUFNPcSsyZ2ZVL2w3VTduaXh0RE9XTjN4ZVBPREtoNUJTZ0xwb3JPVWVW?=
- =?utf-8?Q?yA9o3CZ4spcti7aEdsiXRmoWk?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 375e4bdb-efae-4ec4-af11-08da6e4e95b0
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2022 15:01:42.6109 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6W6zfvp1jdxaYTZJts9UOffwAa4zbxTiVQBXbJwSsvDw9CXL/ltO8No8SCiGwzK8wiQytED2mlR4fRadVQ3TGQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1565
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 25 Jul 2022 15:24:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,55 +73,79 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: linux-rdma@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ spice-devel@lists.freedesktop.org, Dmitry Osipenko <digetx@gmail.com>,
+ kernel@collabora.com, linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 2022-07-25 um 08:23 schrieb Philip Yang:
-> To support SVM range VRAM overcommitment, TTM should be able to evict
-> svm bo of same process to system memory, to get space to alloc new svm
-> bo.
->
-> Signed-off-by: Philip Yang <Philip.Yang@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c | 9 ++++++---
->   1 file changed, 6 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c
-> index 1d0dbff87d3f..e8bb32f4ca14 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c
-> @@ -159,11 +159,14 @@ static void amdkfd_fence_release(struct dma_fence *f)
->   }
->   
->   /**
-> - * amdkfd_fence_check_mm - Check if @mm is same as that of the fence @f
-> - *  if same return TRUE else return FALSE.
-> + * amdkfd_fence_check_mm
+Hello,
 
-I think we still need a brief description here. How about "Check whether 
-to prevent eviction of @f by @mm".
+This series moves all drivers to a dynamic dma-buf locking specification.
+From now on all dma-buf importers are made responsible for holding
+dma-buf's reservation lock around all operations performed over dma-bufs
+in accordance to the locking specification. This allows us to utilize
+reservation lock more broadly around kernel without fearing of a potential
+deadlocks.
 
-With that fixed, the patch is
+This patchset passes all i915 selftests. It was also tested using VirtIO,
+Panfrost, Lima and Tegra drivers. I tested cases of display+GPU,
+display+V4L and GPU+V4L dma-buf sharing, which covers majority of kernel
+drivers since rest of the drivers share same or similar code paths.
 
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+Changelog:
 
+v2: - Changed locking specification to avoid problems with a cross-driver
+      ww locking, like was suggested by Christian König. Now the attach/detach
+      callbacks are invoked without the held lock and exporter should take the
+      lock.
 
->    *
->    * @f: [IN] fence
->    * @mm: [IN] mm that needs to be verified
-> + *
-> + * Check if @mm is same as that of the fence @f, if same return TRUE else
-> + * return FALSE.
-> + * For svm bo, which support vram overcommitment, always return FALSE.
->    */
->   bool amdkfd_fence_check_mm(struct dma_fence *f, struct mm_struct *mm)
->   {
-> @@ -171,7 +174,7 @@ bool amdkfd_fence_check_mm(struct dma_fence *f, struct mm_struct *mm)
->   
->   	if (!fence)
->   		return false;
-> -	else if (fence->mm == mm)
-> +	else if (fence->mm == mm  && !fence->svm_bo)
->   		return true;
->   
->   	return false;
+    - Added "locking convention" documentation that explains which dma-buf
+      functions and callbacks are locked/unlocked for importers and exporters,
+      which was requested by Christian König.
+
+    - Added ack from Tomasz Figa to the V4L patches that he gave to v1.
+
+Dmitry Osipenko (5):
+  dma-buf: Add _unlocked postfix to function names
+  drm/gem: Take reservation lock for vmap/vunmap operations
+  dma-buf: Move all dma-bufs to dynamic locking specification
+  media: videobuf2: Stop using internal dma-buf lock
+  dma-buf: Remove internal lock
+
+ Documentation/driver-api/dma-buf.rst          |   6 +
+ drivers/dma-buf/dma-buf.c                     | 253 +++++++++++++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c   |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       |   4 +-
+ drivers/gpu/drm/armada/armada_gem.c           |  14 +-
+ drivers/gpu/drm/drm_client.c                  |   4 +-
+ drivers/gpu/drm/drm_gem.c                     |  24 ++
+ drivers/gpu/drm/drm_gem_cma_helper.c          |   6 +-
+ drivers/gpu/drm/drm_gem_framebuffer_helper.c  |   6 +-
+ drivers/gpu/drm/drm_gem_shmem_helper.c        |   6 +-
+ drivers/gpu/drm/drm_prime.c                   |  12 +-
+ drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c   |   6 +-
+ drivers/gpu/drm/exynos/exynos_drm_gem.c       |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |  14 +-
+ .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |  20 +-
+ drivers/gpu/drm/omapdrm/omap_gem_dmabuf.c     |   8 +-
+ drivers/gpu/drm/qxl/qxl_object.c              |  17 +-
+ drivers/gpu/drm/qxl/qxl_prime.c               |   4 +-
+ drivers/gpu/drm/tegra/gem.c                   |  27 +-
+ drivers/infiniband/core/umem_dmabuf.c         |  11 +-
+ .../common/videobuf2/videobuf2-dma-contig.c   |  26 +-
+ .../media/common/videobuf2/videobuf2-dma-sg.c |  23 +-
+ .../common/videobuf2/videobuf2-vmalloc.c      |  17 +-
+ .../platform/nvidia/tegra-vde/dmabuf-cache.c  |  12 +-
+ drivers/misc/fastrpc.c                        |  12 +-
+ drivers/xen/gntdev-dmabuf.c                   |  14 +-
+ include/drm/drm_gem.h                         |   3 +
+ include/linux/dma-buf.h                       |  71 ++---
+ 28 files changed, 372 insertions(+), 254 deletions(-)
+
+-- 
+2.36.1
+
