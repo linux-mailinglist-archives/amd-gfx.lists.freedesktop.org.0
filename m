@@ -2,46 +2,33 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6C5D58138B
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 Jul 2022 14:54:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78ABA58137B
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 Jul 2022 14:54:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 097E58FB5A;
-	Tue, 26 Jul 2022 12:54:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 067CF8FA82;
+	Tue, 26 Jul 2022 12:54:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 525 seconds by postgrey-1.36 at gabe;
- Tue, 26 Jul 2022 00:56:09 UTC
-Received: from gandalf.ozlabs.org (mail.ozlabs.org
- [IPv6:2404:9400:2221:ea00::3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 754FC10E128
- for <amd-gfx@lists.freedesktop.org>; Tue, 26 Jul 2022 00:56:09 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4LsJPh01Psz4x1T;
- Tue, 26 Jul 2022 10:56:07 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
- s=201909; t=1658796968;
- bh=XM/sSLZCdmxU7N0ibsdjeo384f6+QLdmjSl5hrtE3HY=;
- h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
- b=kWgG78BPwfOqjitCUhFJ1j7aQuatzG1Kzsf+7936A1WLUoNMph3bVIxIlABiTDJEJ
- hIIcGB/y8AFSlwe/+vhMtJcBEakfJHeQb/EPEh1G7QM8Fj1g7kmD4E4rDvBAscAEEQ
- Y9m7YoapBqwumAnrkXpPVFp4iTJcszdtuCXUjKZ3zAyIkxhYTxrIpZQ+9viWvCIJZN
- Lo+0ODKIoi8+wOoWZGyX2w81RnbtPvoDX+kaetTWOCl8t08KBgIfEZU4r9ji6GmqBD
- XC9xzCTHZvgPJML2QJUKrzkpJdrABgL2gtRQwE/S/p+qpY1A+EQDJrveHxPMK7Qwkp
- zoGf02DW07bSw==
-From: Michael Ellerman <mpe@ellerman.id.au>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Subject: Re: [PATCH] drm/amdgpu: Re-enable DCN for 64-bit powerpc
-In-Reply-To: <CAHk-=wihON4Ytte5zLHWNQtTapUvCpkToxY06OjX-_2B+Gq6Gg@mail.gmail.com>
-References: <20220725123918.1903255-1-mpe@ellerman.id.au>
- <CAHk-=wihON4Ytte5zLHWNQtTapUvCpkToxY06OjX-_2B+Gq6Gg@mail.gmail.com>
-Date: Tue, 26 Jul 2022 10:56:07 +1000
-Message-ID: <87k080bsk8.fsf@mpe.ellerman.id.au>
+Received: from out30-130.freemail.mail.aliyun.com
+ (out30-130.freemail.mail.aliyun.com [115.124.30.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7DC8113EDF;
+ Tue, 26 Jul 2022 07:26:31 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R651e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018045170;
+ MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=10; SR=0;
+ TI=SMTPD_---0VKUBAhD_1658820383; 
+Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0VKUBAhD_1658820383) by smtp.aliyun-inc.com;
+ Tue, 26 Jul 2022 15:26:25 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: alexander.deucher@amd.com
+Subject: [PATCH 01/20] drm/amd/display: Clean up some inconsistent indenting
+Date: Tue, 26 Jul 2022 15:25:36 +0800
+Message-Id: <20220726072555.91323-1-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 2.20.1.7.g153144c
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Mailman-Approved-At: Tue, 26 Jul 2022 12:54:21 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 26 Jul 2022 12:54:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,39 +40,44 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dan@danny.cz, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- tpearson@raptorengineering.com, alexdeucher@gmail.com,
- linuxppc-dev@lists.ozlabs.org, linux@roeck-us.net
+Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, airlied@linux.ie,
+ Xinhui.Pan@amd.com, Abaci Robot <abaci@linux.alibaba.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, daniel@ffwll.ch, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Linus Torvalds <torvalds@linux-foundation.org> writes:
-> On Mon, Jul 25, 2022 at 5:39 AM Michael Ellerman <mpe@ellerman.id.au> wrote:
->>
->> Further digging shows that the build failures only occur with compilers
->> that default to 64-bit long double.
->
-> Where the heck do we have 'long double' things anywhere in the kernel?
+No functional modification involved.
 
-There's one or two uses, but not in any code that's relevant to this
-issue AFAICS.
+smatch warning:
 
-> I tried to grep for it, and failed miserably. I found some constants
-> that would qualify, but they were in the v4l colorspaces-details.rst
-> doc file.
->
-> Strange.
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn32/dcn32_hwseq.c:910 dcn32_init_hw() warn: inconsistent indenting.
 
-It doesn't seem to matter if you use long double or not. It's just that
-if the long double size is 64-bits the linker refuses to link a mixture
-of soft/hard-float objects.
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+---
+ drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-The 64-bit ABI says long double is 128-bits, so the compilers that are
-using 64-bit long double are either not built correctly, or we are not
-passing the correct flags to them.
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
+index b6bada383958..201516a62b4b 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
+@@ -907,10 +907,10 @@ void dcn32_init_hw(struct dc *dc)
+ 		dc->res_pool->hubbub->funcs->init_crb(dc->res_pool->hubbub);
+ 
+ 	// Get DMCUB capabilities
+-    if (dc->ctx->dmub_srv) {
+-	dc_dmub_srv_query_caps_cmd(dc->ctx->dmub_srv->dmub);
+-	dc->caps.dmub_caps.psr = dc->ctx->dmub_srv->dmub->feature_caps.psr;
+-    }
++	if (dc->ctx->dmub_srv) {
++		dc_dmub_srv_query_caps_cmd(dc->ctx->dmub_srv->dmub);
++		dc->caps.dmub_caps.psr = dc->ctx->dmub_srv->dmub->feature_caps.psr;
++	}
+ }
+ 
+ static int calc_mpc_flow_ctrl_cnt(const struct dc_stream_state *stream,
+-- 
+2.20.1.7.g153144c
 
-There's an -mlong-double-128 flag which we can pass at build time which
-seems to do the right thing, I will probably add that to the kernel
-CFLAGS, but I want that to get a bit more testing.
-
-cheers
