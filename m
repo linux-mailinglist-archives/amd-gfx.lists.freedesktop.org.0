@@ -1,44 +1,44 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23EDA58457F
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 Jul 2022 20:22:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04845584582
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 Jul 2022 20:23:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B29A10E754;
-	Thu, 28 Jul 2022 18:22:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0099810E60E;
+	Thu, 28 Jul 2022 18:23:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8258810E46B
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 Jul 2022 18:22:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DBAE10E78D
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 Jul 2022 18:22:22 +0000 (UTC)
 Received: from fews1.riseup.net (fews1-pn.riseup.net [10.0.1.83])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
  client-signature RSA-PSS (2048 bits) client-digest SHA256)
  (Client CN "mail.riseup.net", Issuer "R3" (not verified))
- by mx1.riseup.net (Postfix) with ESMTPS id 4LtzWp4Lt5zDrtL;
- Thu, 28 Jul 2022 18:22:14 +0000 (UTC)
+ by mx1.riseup.net (Postfix) with ESMTPS id 4LtzWx4QwyzDs0B;
+ Thu, 28 Jul 2022 18:22:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
- t=1659032534; bh=x7PWrdruU1/D/epM3C5CS/K+6fjcV1ng9alJKcLjSSQ=;
+ t=1659032541; bh=5hukvlPt2ChjYzre5ze2WfJX5Xbvr7tV7otABd84zlU=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Jw7yolenTr8yJvAjVDxS4c4msVW3Mcp9Lx0ohkod/NxehWmkbiYXyKiI5gymD6OEb
- eGUhd+8CHTzemwRpQLzhLWuNpYfFXxqQHs7jDDoUfoX/mlSVxQHbTPe4o68mSwQpeA
- HN7yZIrY8SjEnmw9+KSH+FLWKLlO9yPqtVoLfN0s=
-X-Riseup-User-ID: 5B549052130933BFDB8282CA5799D6AD0E04851D2EE03AEB5CEAC24D3FD3FC4C
+ b=hyodr8kwFkVVg90zz5nWUUCKq3zyQVKKQS62RHEFJJ/G+kwNkUL2Igcnsd/T7A+4f
+ ICCEdXQvl3Kja9HTkEdI/Gu01/UytBOGlT9/eXaKWYjAkDbat1UYbBZX2XjM4pluYr
+ 2cIIBMVNHWd0FhKsr0caUCQn5ECWn3kHiPZyChTY=
+X-Riseup-User-ID: 66D1C708B57EE5B17385B395AC67F948C1042C7E83AEF2D42C307DA3DCAC86FD
 Received: from [127.0.0.1] (localhost [127.0.0.1])
- by fews1.riseup.net (Postfix) with ESMTPSA id 4LtzWj6bfWz5vMX;
- Thu, 28 Jul 2022 18:22:09 +0000 (UTC)
+ by fews1.riseup.net (Postfix) with ESMTPSA id 4LtzWs0QJrz5vMX;
+ Thu, 28 Jul 2022 18:22:16 +0000 (UTC)
 From: =?UTF-8?q?Ma=C3=ADra=20Canal?= <mairacanal@riseup.net>
 To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>, christian.koenig@amd.com,
  Xinhui.Pan@amd.com, David Airlie <airlied@linux.ie>,
  Daniel Vetter <daniel@ffwll.ch>
-Subject: [PATCH 05/16] drm/amd/display: Remove VStartupMargin and
- FirstMainPlane VBA variables
-Date: Thu, 28 Jul 2022 15:20:37 -0300
-Message-Id: <20220728182047.264825-6-mairacanal@riseup.net>
+Subject: [PATCH 06/16] drm/amd/display: Remove ImmediateFlipSupportedSurface
+ VBA variable
+Date: Thu, 28 Jul 2022 15:20:38 -0300
+Message-Id: <20220728182047.264825-7-mairacanal@riseup.net>
 In-Reply-To: <20220728182047.264825-1-mairacanal@riseup.net>
 References: <20220728182047.264825-1-mairacanal@riseup.net>
 MIME-Version: 1.0
@@ -62,136 +62,47 @@ Cc: magalilemes00@gmail.com, tales.aparecida@gmail.com,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The variables VStartupMargin and FirstMainPlane from the struct
-vba_vars_st are only used on assignments, so there values are not used
-on code. So, remove the variables entries from the struct vba_vars_st.
+The ImmediateFlipSupportedSurface variable from the struct
+vba_vars_st is only used on assignments, so its value is not used
+on code. So, remove the ImmediateFlipSupportedSurface entry from the struct
+vba_vars_st.
 
 Signed-off-by: Maíra Canal <mairacanal@riseup.net>
 ---
- .../display/dc/dml/dcn20/display_mode_vba_20.c  | 14 +++-----------
- .../dc/dml/dcn20/display_mode_vba_20v2.c        | 14 +++-----------
- .../display/dc/dml/dcn30/display_mode_vba_30.c  | 17 ++++++-----------
- .../drm/amd/display/dc/dml/display_mode_vba.h   |  2 --
- 4 files changed, 12 insertions(+), 35 deletions(-)
+ .../gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c  | 6 ------
+ drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h       | 2 --
+ 2 files changed, 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20.c b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20.c
-index d86d5c346e42..1424aa7a5018 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20.c
-@@ -2662,19 +2662,12 @@ static void dml20_DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPer
- 		}
- 	}
- 	{
--		unsigned int VStartupMargin = 0;
- 		bool FirstMainPlane = true;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
+index f199ef475ed0..e2e1d6e77902 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
+@@ -355,12 +355,6 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
+ 			if (j != k && mode_lib->vba.BlendingAndTiming[k] == j && mode_lib->vba.DSCEnabled[j])
+ 				v->DSCDelay[k] = v->DSCDelay[j];
  
- 		for (k = 0; k < mode_lib->vba.NumberOfActivePlanes; ++k) {
--			if (mode_lib->vba.BlendingAndTiming[k] == k) {
--				unsigned int Margin = (mode_lib->vba.MaxVStartupLines[k] - mode_lib->vba.VStartup[k])
--						* mode_lib->vba.HTotal[k] / mode_lib->vba.PixelClock[k];
+-	//Immediate Flip
+-	for (k = 0; k < mode_lib->vba.NumberOfActiveSurfaces; ++k) {
+-		v->ImmediateFlipSupportedSurface[k] = mode_lib->vba.ImmediateFlipSupport
+-				&& (mode_lib->vba.ImmediateFlipRequirement[k] != dm_immediate_flip_not_required);
+-	}
 -
--				if (FirstMainPlane) {
--					VStartupMargin = Margin;
--					FirstMainPlane = false;
--				} else
--					VStartupMargin = dml_min(VStartupMargin, Margin);
-+			if (mode_lib->vba.BlendingAndTiming[k] == k && FirstMainPlane) {
-+				FirstMainPlane = false;
-+			}
- 		}
- 
- 		if (mode_lib->vba.UseMaximumVStartup) {
-@@ -2685,7 +2678,6 @@ static void dml20_DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPer
- 		}
- 	}
- }
--}
- 
- static void dml20_DisplayPipeConfiguration(struct display_mode_lib *mode_lib)
- {
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c
-index effd02574a0e..03613dbb3e61 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c
-@@ -2735,19 +2735,12 @@ static void dml20v2_DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndP
- 		}
- 	}
- 	{
--		unsigned int VStartupMargin = 0;
- 		bool FirstMainPlane = true;
- 
- 		for (k = 0; k < mode_lib->vba.NumberOfActivePlanes; ++k) {
--			if (mode_lib->vba.BlendingAndTiming[k] == k) {
--				unsigned int Margin = (mode_lib->vba.MaxVStartupLines[k] - mode_lib->vba.VStartup[k])
--						* mode_lib->vba.HTotal[k] / mode_lib->vba.PixelClock[k];
--
--				if (FirstMainPlane) {
--					VStartupMargin = Margin;
--					FirstMainPlane = false;
--				} else
--					VStartupMargin = dml_min(VStartupMargin, Margin);
-+			if (mode_lib->vba.BlendingAndTiming[k] == k && FirstMainPlane) {
-+				FirstMainPlane = false;
-+			}
- 		}
- 
- 		if (mode_lib->vba.UseMaximumVStartup) {
-@@ -2758,7 +2751,6 @@ static void dml20v2_DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndP
- 		}
- 	}
- }
--}
- 
- static void dml20v2_DisplayPipeConfiguration(struct display_mode_lib *mode_lib)
- {
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
-index fe7fcb0d7b1f..caa3a9c598ce 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
-@@ -3028,17 +3028,12 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
- 	}
- 
- 	// VStartup Margin
--	v->VStartupMargin = 0;
--	v->FirstMainPlane = true;
--	for (k = 0; k < v->NumberOfActivePlanes; ++k) {
--		if (v->BlendingAndTiming[k] == k) {
--			double margin = (v->MaxVStartupLines[k] - v->VStartup[k]) * v->HTotal[k]
--					/ v->PixelClock[k];
--			if (v->FirstMainPlane == true) {
--				v->VStartupMargin = margin;
--				v->FirstMainPlane = false;
--			} else {
--				v->VStartupMargin = dml_min(v->VStartupMargin, margin);
-+	{
-+		bool FirstMainPlane = true;
-+
-+		for (k = 0; k < v->NumberOfActivePlanes; ++k) {
-+			if (v->BlendingAndTiming[k] == k && FirstMainPlane) {
-+				FirstMainPlane = false;
- 			}
- 		}
- 	}
+ 	// Prefetch
+ 	dml32_CalculateSurfaceSizeInMall(
+ 				mode_lib->vba.NumberOfActiveSurfaces,
 diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
-index f03cf9cf9096..841a05bea57e 100644
+index 841a05bea57e..76cba5d7ac10 100644
 --- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
 +++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
-@@ -1106,7 +1106,6 @@ struct vba_vars_st {
- 	double TimePerChromaMetaChunkFlip[DC__NUM_DPP__MAX];
- 	unsigned int DCCCMaxUncompressedBlock[DC__NUM_DPP__MAX];
- 	unsigned int DCCCMaxCompressedBlock[DC__NUM_DPP__MAX];
--	double VStartupMargin;
- 	bool NotEnoughTimeForDynamicMetadata[DC__NUM_DPP__MAX];
+@@ -659,8 +659,6 @@ struct vba_vars_st {
+ 	double DISPCLK_calculated;
+ 	double DPPCLK_calculated[DC__NUM_DPP__MAX];
  
- 	/* Missing from VBA */
-@@ -1137,7 +1136,6 @@ struct vba_vars_st {
- 	double MinUrgentLatencySupportUs;
- 	double MinFullDETBufferingTime;
- 	double AverageReadBandwidthGBytePerSecond;
--	bool   FirstMainPlane;
- 
- 	unsigned int ViewportWidthChroma[DC__NUM_DPP__MAX];
- 	unsigned int ViewportHeightChroma[DC__NUM_DPP__MAX];
+-	bool ImmediateFlipSupportedSurface[DC__NUM_DPP__MAX];
+-
+ 	bool Use_One_Row_For_Frame[DC__NUM_DPP__MAX];
+ 	bool Use_One_Row_For_Frame_Flip[DC__NUM_DPP__MAX];
+ 	unsigned int VUpdateOffsetPix[DC__NUM_DPP__MAX];
 -- 
 2.37.1
 
