@@ -1,118 +1,92 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35B1058407D
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 Jul 2022 16:02:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B818D584164
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 Jul 2022 16:34:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CDAB10ED6A;
-	Thu, 28 Jul 2022 14:01:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 416451123D1;
+	Thu, 28 Jul 2022 14:34:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2041.outbound.protection.outlook.com [40.107.94.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9C7410EDC1;
- Thu, 28 Jul 2022 14:01:53 +0000 (UTC)
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam07on2070.outbound.protection.outlook.com [40.107.212.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04ABF10E781;
+ Thu, 28 Jul 2022 14:34:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lBA/t7vM6qKSG2sVh+xfphLs1nYXm8YKnaSKrRbhH5m7bBBe/ngCAwl/VB8ZMD1fXxWliloMEQlSVlkxN4ziqgU0NgJcsl1IrWA8fVgxVOnv1sQhkHaXP7GjTsfnJ5Vb/jD4/AhwMqZIjv+OQWI2Ummb/i1DBUUaSPJhdEO4vAiVMFtHsHHODDkMT11uktwh0QNi71HdFV2z4E8Qj+KeuRgdD0mQZ+qP7SJMt0aA65GauxTSmWDUIDqui+0+vYwI/VkmB+f7M77Fv9o6Vt80I43UPDudLNn6IXyEg8Q4DLy6S6O2eJJx+pf+tIxZ4RMi630Z5g+a8oe51tiWhOWdVw==
+ b=R+tVvqFWD3dEd8GHQOI8ATnI6tj118zD6ljOa3UtEUR/416W/CeDPq1MJwmwYkQ58dPix0UFHsyV9CXB0q+0g9ljqT3eIqDNlNjQk2rVP4C2I9DeHv/I4OXS4bGnaariPiCvNrXZ7qzUHB+l1tBlTEwvJcjVMwsM4dtjcpa9I+P5TNvAjd5kw8rz0c0I4KZojLEvmYDNDIqWCHjAQy2DeZzp6Nt5S1o/G0jkQo3VM3MFCu/kFL1mtxtvenULIY9xeUziHBxhFBbnR8m2kH4EjbQbKOu+8IBI32icPosOKPzeDgjP76j7boMRnXLhkosYvj+fl/UEIkWEw46cIiW5Vw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4Doojyo9OX5YSvdzM3jUObSoEL/Rhg8iSnb0WhL/2mA=;
- b=nFiXEkAA4CTHOI87sXB4Is0fIp5SqJec+mQ4Yga8qeYtndb3LHkylFBBwarnXwSVYyQpiHmAnxZzlJ/3UVpxKV4+gkS3N1XTYGYT0L85caJrRMnnjGNA2fZmzI6dW/Z1dVDf0+KrsHf8TkrkqlGDG3GghwC2ci3FgVxZYQ/dGY71sd+GVYt0b/cW92/TX+WHmS8scppffZG/hdo9Rh5nW7//GWxo/D09lUrNN+yahPzigpuYq+9EF1oxHSNlCkjGrWDVAI6ttmP3gZi8h4gp6h4zWI9quJAmGSvFq14BbNytV1OgnwoWN2aefLXo13QozcKPe3y4WhP+nnRpBhyCQA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=dlvW04LQgrybyj2m5z+qWZff1BtVdMwo9M8tIcJxNq0=;
+ b=Ixquwf8c/59kxZ/KUp8aAv6AAXHQvgS/DbjAo3xVv2WZBNHGYy8jDBnbPVbYJlKOVp7iI7sw+4yRtYCHXSaNYOvdWpzCu/z8ZLg710kQdyR3y6vZ97qZqusfFgR3OAzcuM7GfVncWK8KgJ4QGRENCWJv1pRkWdRVvRNGXgPOTu9qCI6sNbvTF5/9BRc2eKTppmvPgcH9rsmDCymOXarWuYLv3Px95ll/u8+NPX5OD7/N6vgg/LRILcGHPgnF+RF2W9ydAuPdZV4zUJWTsnnlSBfzKkGit/zLoZV2Slw9O7BazbzGRujhxAw5pDuykYSUCl7Eg8OI8hRz7wChFOBceg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4Doojyo9OX5YSvdzM3jUObSoEL/Rhg8iSnb0WhL/2mA=;
- b=dmBpZXMbblodurnSbPsyYf9E30PbXEcZVv0wqob/z74kJVlLaIL4D5sOCIsShVQSVnubNov1IPSvWxzy1oN6l2FUCQxdCIySwwGHhjx82rtU84zqSaVPuHCsEMamWbQT/jHZf7KD58xkVuLMk0OYMUbu0j9AcT0RYpRTQlgVw2w=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BL1PR12MB5112.namprd12.prod.outlook.com (2603:10b6:208:316::16)
- by MN2PR12MB2944.namprd12.prod.outlook.com (2603:10b6:208:ae::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.11; Thu, 28 Jul
- 2022 14:01:46 +0000
-Received: from BL1PR12MB5112.namprd12.prod.outlook.com
- ([fe80::453c:c60b:f11c:367c]) by BL1PR12MB5112.namprd12.prod.outlook.com
- ([fe80::453c:c60b:f11c:367c%4]) with mapi id 15.20.5482.011; Thu, 28 Jul 2022
- 14:01:46 +0000
-Message-ID: <bca54ad7-596a-4005-4fd8-b2c7c15f5c1b@amd.com>
-Date: Thu, 28 Jul 2022 10:01:44 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] drm/amdgpu: Fix stub fence refcount underflow
-Content-Language: en-US
-To: Alex Deucher <alexdeucher@gmail.com>
-References: <20220727230755.1445806-1-Felix.Kuehling@amd.com>
- <CADnq5_NZyRAq+X-yQgJevbtgqjdh=FozCSUtM3wk9th4Np9DtQ@mail.gmail.com>
-From: Felix Kuehling <felix.kuehling@amd.com>
-In-Reply-To: <CADnq5_NZyRAq+X-yQgJevbtgqjdh=FozCSUtM3wk9th4Np9DtQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YT3PR01CA0001.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:86::27) To BL1PR12MB5112.namprd12.prod.outlook.com
- (2603:10b6:208:316::16)
+ bh=dlvW04LQgrybyj2m5z+qWZff1BtVdMwo9M8tIcJxNq0=;
+ b=HoJ/N06+eYwkMAI/PhwqD5bZIX+9JX4u3QmtiheDTMMbE1Jd2S9lWr3Ct087HLdpqW/cAAMbMaeoBJCsODavMSqLFFr2I8qRnHgm2QsnYH5FMFz44uYjwPtQWpTBA+qNUV4D4yBKegY6LkhcyMsAQ3wvtvseNRJdiypJF+AI4/U=
+Received: from MW4PR03CA0122.namprd03.prod.outlook.com (2603:10b6:303:8c::7)
+ by DM5PR12MB2373.namprd12.prod.outlook.com (2603:10b6:4:b1::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.23; Thu, 28 Jul
+ 2022 14:34:18 +0000
+Received: from CO1NAM11FT060.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:8c:cafe::d4) by MW4PR03CA0122.outlook.office365.com
+ (2603:10b6:303:8c::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.19 via Frontend
+ Transport; Thu, 28 Jul 2022 14:34:18 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT060.mail.protection.outlook.com (10.13.175.132) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5482.10 via Frontend Transport; Thu, 28 Jul 2022 14:34:18 +0000
+Received: from amd-X570-AORUS-ELITE.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28; Thu, 28 Jul 2022 09:34:09 -0500
+From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
+Subject: [PATCH v3 1/6] drm/ttm: Add new callbacks to ttm res mgr
+Date: Thu, 28 Jul 2022 07:33:10 -0700
+Message-ID: <20220728143315.968590-1-Arunpravin.PaneerSelvam@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c36f5588-6273-4300-e1c7-08da70a1b51c
-X-MS-TrafficTypeDiagnostic: MN2PR12MB2944:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3b0e630b-e3c8-4221-c5e7-08da70a6410e
+X-MS-TrafficTypeDiagnostic: DM5PR12MB2373:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zaStvBJTCOoqX1RPbWgX7/Hg8cbH8adZvjOxkctXz80M66SrdKnCyolZzrW2fNPQhTOaY4bhLBwXPZpQ2uWCS87wU5xWuvbzBlY/EJcrilvvVj9482+7BBF8xXyAdgcHKZs1vCpQbM/W8K0vMh4a4B8jGa0plvvkf/D0c1tSgtN4Y9QncuxUKJFi19ucwo2ldeHcrtXvhk4nu/YUil9ib8VflOh1EbCRjXRJFxBn4i08cZxf6Geipb3vgt/9IDUPxG0GquOHagebz/iTI5zN2JRn4oCFlt/203rWSpg+/Dur0rNKve7m6eixBdLsxTCL8Ua7/0sMRqS/RqwhOiPkMKd9x2/7WmQdTE0aW6v31CfRAVSgZdX3LQP6qYn/p9akvaBWgYZM2ycucJLtL9BVGT4vogdsBw8zlHnxgdy8opo3slVTwIm1RNzST2tkMiAl6FPktw5wItA+4SQDRbkrljpHAYP7nBdyBjtEMAKkoZA8Rg5Rb9uJMSN94Dc4AGVpjpds65DtdTsqqu4AHVoqd2KDs5QVbL9tUnI8HAUcAnE2uTodBTL+HYNCZoK9M/scyWIEqMQi1S0mBLL62CDsLAejH3v10BPRizZgvfN87Kx0hmkjW9Yo7XSPCO+7MUVDtHDm5Uyvz9vBesFpn95/kdk5qhJ2TG6HfXar7qsBgpAnkGx9mkswBGTJQjV/9Ng1YH8HeCp0bVgDGHqTWtDPWLstg7mQGD2PZD1JqZN9H34S42osTn31O1YPG0ijI8E0hqKsdf8VBwBqSXDeGYILczcWCUHOxY9CMlu6IbhYxUtsETE4Rk0iG3xCYdvJ2JpUnc1/0nWaXT425OhJJATbnw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5112.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(136003)(346002)(396003)(366004)(39860400002)(376002)(186003)(66574015)(2616005)(83380400001)(8676002)(66556008)(66476007)(66946007)(53546011)(36756003)(26005)(6512007)(2906002)(6916009)(44832011)(6506007)(31686004)(41300700001)(38100700002)(86362001)(31696002)(5660300002)(316002)(8936002)(4326008)(6486002)(478600001)(45980500001)(43740500002);
+X-Microsoft-Antispam-Message-Info: ax7XOsiBj/nbIV63V+4TC1f8wh5zGh8qfCm7YT6Y0yoUlZHpzLfRW2CTaFIVSvTz6DhVx7HFjd97A56tE/5+CkdEnR5Ng31wYn7sOqZeLNcRhCZ2N6iSfts29AuUSOpf1eZtsmMThYZg1O9Cq0XtxkAiqMDNloKvYcftVsk5cO30JIoUBlSRpO87s3W5Ec/G2h7geien3JOtYhrPgD45FG27I9MsfFpHQF04y+wq719LNM4vUdNDGqrdNL/NCT9QqBe2uLTmD9Ib+OH36yRlKKR/Nt/QhNoxuMzlIF2b+OyKEVBJX2iX6c3gITP3bv+2mxoVJ/aS4ucBq0lb1b/oCw6IF06rYoUevhWolf3vjKhs2uUlU4EbOcqc3ss/I0LFUHCugphwG2r4w6iPReFkQG1JMvDE/GPhUVfhs9GN+8OaT+uJltHwQEM9M+5QJaogJsbf02F2dPkxfKnGtZSQg/Gm5DisNbdp65UrteIs/eUIWPe7AqkmyNvDoa7a5wOVaGSPI09OQVxMp87ooVPF8AlkRkI9C2Mifa0X/AwKVI6UdV0829AuceXcvO/28esxyj+aHvCOrs1KaDt5VoMQAue+tBB4IDaeAW6MrU17od7bTIiYNR4NXrQw386dhjTTImZAFjQeBpQP2BgjvCoxf/kG16JrCVmJaTSWFJh2BkkfTm4v46ZdE99tXaXp8lJm2QeGMEyRLxNUlThWNuYHyNn7xK/O3h5YroiIDYWntTIV+GZ96J82kjWP5YX0cff3SaImhc/Ou9tHrZvwZ0SBniFtJG7ZHKD5DYqpbdni+GJCKiV/hz8NnEu3kg8SpQbxDweo3K23ZZckp0kM79E7XQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230016)(4636009)(39860400002)(346002)(136003)(396003)(376002)(46966006)(36840700001)(40470700004)(6666004)(336012)(110136005)(316002)(36860700001)(26005)(41300700001)(40460700003)(16526019)(70586007)(47076005)(2906002)(1076003)(8676002)(70206006)(54906003)(81166007)(86362001)(36756003)(478600001)(40480700001)(426003)(7696005)(82310400005)(356005)(82740400003)(186003)(5660300002)(4326008)(2616005)(8936002)(36900700001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TDhGOGZLdDBSSTlTbW9RUmFYd3lSODVTanJNTWlPTDJzWDY3c21XRks1T0Fw?=
- =?utf-8?B?NFBTV3RGSGtDZUVpNVBsOFdqSWpQSSthZFpmSXplTEp2ZVJYSk82RjVEM3g1?=
- =?utf-8?B?UnBVb3dVK1poZUgzRGlJR3pSSG81ZWgzNGthaGdIZXVjL1RpWWI0R0FEdWE5?=
- =?utf-8?B?L2lCWTNUTGNlY1hxVUtRSjE1WUVab2Vha1B1K1VsaGlPZWhyWWtpamx4eThM?=
- =?utf-8?B?T1o5c3BidzJIdzJZa0tIMGZyZHIvYXl4UXlHS1Q0bzBvSlFQMmtVNjU5UXJ4?=
- =?utf-8?B?OC9ONUtCZlBlVVhNa0lKcURFR1BVVWFPeCtsNVBhODJRTUtBaEVBN1BUM0tW?=
- =?utf-8?B?S01LeTlyY01vR3VUU0MxWmtHakJTNEY5YkpFUk5La2dPWFNSOXRFQ0cxakU2?=
- =?utf-8?B?L3E3UGJGY1hIWXNQYk9YeFhqaW5aV3kyQ0FmY2krN3NWQU1nOVlTUmt4aHky?=
- =?utf-8?B?VWdWOGFtUFRJc2tncjdWdFBKUUV2U0FoOFJENnRwdGFhS0dsWWZwNE9WS2to?=
- =?utf-8?B?OHQyUXJ1a3gvdjE1ZGdzeEx6TCs2UGJqWjdOQ2hQam8zZ1pKbU51VkNTY0Z3?=
- =?utf-8?B?TXFjTmRHK201RHByeEE2MWZrR2p1R1FCM0sxMXdmNmh3eEt6MHJVVnFoRGFh?=
- =?utf-8?B?WGVYTUtVVmZXQWJhZzhueGZFU3l0b3lrYlZLOXp3Rm0xUjBaSjMwYXN1SWhu?=
- =?utf-8?B?Uzc4SFN6a0h4ZENBOU5MeGRlc2s3STcvTHFST21BVzlDamxHR3BXWlFkMGFq?=
- =?utf-8?B?R1BVZTdocFBhd0RBbGcxeGFZcTVFa1NoQWhNRTMrRm9LUnVRYW56UEMxQXg4?=
- =?utf-8?B?LzhXcWRUWGZ1UjhqTjFEUWtGUis2dU5TbjVkOGw5MHY1cmkxOUJndTdoTG1W?=
- =?utf-8?B?YnNIb29UZEZsTG9LaDF3M1ZjU1VndU0xYzhnMHZzTFVUcWhqUWNvT29kSlpu?=
- =?utf-8?B?b2xkTTVBT2o3U2xvc2lNdE5GUnJtVk1EZ2wyRTJUejJqQWpQN2VKVzJOaDZG?=
- =?utf-8?B?NmVtOUNOS0pIVjY2VzZkZmxtZE43a3ptQ0tlNnlCZkh5bWc3bkQ1UHlncDh6?=
- =?utf-8?B?VVhSb0lRQmJQblNYNGZZYTRYTGVqT0RrWUV5SldlS0NweXZsaTRyYjcxSHg1?=
- =?utf-8?B?ZHg4ZUxkVDc3RWhmNGtnbktPRkFpR203Z2htS0pKOTRWL3VPODdCcUpQWEhR?=
- =?utf-8?B?RWFLaDlOYzlDNGlwcTcwcFpLdkNSVjhsTDF5eHBIdTJ4VXRtUzJFdm5NZ0xK?=
- =?utf-8?B?dUpTV0ljc1dvWElkSElRWWM3SytJc2FUd0RQT2I1WmQzOVphMG1UejNUNDBY?=
- =?utf-8?B?VGFSZ1ljc3NMTEI3QjRRbHZxOUsrRlBucEJIZkhaQVVBZFh1N1JOeXhOdjFV?=
- =?utf-8?B?UUk4dmU2amI3SmIvQWJxbUlOdEttTXUxUWRVTjZIVi9UU3BXS2xvYVpvNlpa?=
- =?utf-8?B?TmlEVDJUTlY3T0hJclZtSGs2L1BWalRoSlZyWjAzTXJVQjlzaTlXY1JXOFIz?=
- =?utf-8?B?N29BM3dqRitkY2xuS2dRRk1QR0M4Y1U1VWE2bXBLN3YrYW43TWNpNEUrcEl5?=
- =?utf-8?B?OEt1UmNoNkxOSDNwMitBd0tzdEszazJ5OEdncFFDLy9oaUhhV2VKN3RmRTgx?=
- =?utf-8?B?Q0ZORndnaVZRelRYVEF6ZjQyYmduSE56L2N0M1hpV1R1eDR0NkJlT3FxU0hB?=
- =?utf-8?B?NWlzTHdDYll6eFNOS09Ub1Nvc3hNVW00TmRpS0R6cVhGRnZISjR2RXJRQk02?=
- =?utf-8?B?UXNISGVLanl2SVNVZW50Vkx2US9jRlM0cTZ0bFJPeU5KNEphL2o0bHltcWtk?=
- =?utf-8?B?L09GaDJQSU5SZkpiV2hyMXd2MHJHY2oycWJ0Rko1bFVwSWRlMFpZVnNtRURR?=
- =?utf-8?B?Wk1ZazltSFFLU1pEU0ZhMmZNUUc4THp1R3pzcWprK1RRb3g1eXlkMmsxZDZX?=
- =?utf-8?B?U2hqUzV2dDZ1QTFGRnNxdERySHR6QzVPRFVGaWdTVmlaN0ovTFNSdTZOSjFn?=
- =?utf-8?B?OUViTWNOOVQ1ZTBTZjdsSG1VMjVUNGN4RjNFVDZhc0RENktwZFgzS3MySXF2?=
- =?utf-8?B?cTErYndpREtUcGtHMFIzK0RKcXJQaDRZZFZabHJsQzlDdTNueVZ6bFZqQ2FK?=
- =?utf-8?Q?N6st24f3paRRu4SHARu3SU5Lt?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c36f5588-6273-4300-e1c7-08da70a1b51c
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5112.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2022 14:01:46.0866 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2022 14:34:18.2997 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3b0e630b-e3c8-4221-c5e7-08da70a6410e
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dnjJ9ukbl12wTSwN3Rl4H/GXSAZ3Z24eAGhx3VId8nm6lt794qf5XQqDZagHsZme5JRGqwTpf4Yj9tmDTRMwyw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB2944
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT060.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2373
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,47 +98,154 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: alexander.deucher@amd.com,
+ Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ luben.tuikov@amd.com, christian.koenig@amd.com, matthew.auld@intel.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 2022-07-27 um 23:52 schrieb Alex Deucher:
-> On Wed, Jul 27, 2022 at 7:08 PM Felix Kuehling <Felix.Kuehling@amd.com> wrote:
->> Don't drop the stub fence reference after installing it as a replacement
->> for the eviction fence. dma_resv_replace_fences doesn't take another
->> reference to the fence, so it takes ownership of the reference passed
->> in by us.
->>
->> Fixes: 548e7432dc2d ("dma-buf: add dma_resv_replace_fences v2")
->> CC: Christian König <christian.koenig@amd.com>
->> Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
-> Acked-by: Alex Deucher <alexander.deucher@amd.com>
+We are adding two new callbacks to ttm resource manager
+function to handle intersection and compatibility of
+placement and resources.
 
-This patch is the wrong solution. Xinhui added a dma_fence_get in 
-dma_resv_replace_fences in his patch "dma-buf: Fix one use-after-free of 
-fence". So this patch is not needed any more.
+v2: move the amdgpu and ttm_range_manager changes to
+    separate patches (Christian)
+v3: rename "intersect" to "intersects" (Matthew)
 
-Regards,
-   Felix
+Signed-off-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+---
+ drivers/gpu/drm/ttm/ttm_resource.c | 59 ++++++++++++++++++++++++++++++
+ include/drm/ttm/ttm_resource.h     | 39 ++++++++++++++++++++
+ 2 files changed, 98 insertions(+)
 
+diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
+index 20f9adcc3235..84a6fe9e976e 100644
+--- a/drivers/gpu/drm/ttm/ttm_resource.c
++++ b/drivers/gpu/drm/ttm/ttm_resource.c
+@@ -253,6 +253,65 @@ void ttm_resource_free(struct ttm_buffer_object *bo, struct ttm_resource **res)
+ }
+ EXPORT_SYMBOL(ttm_resource_free);
+ 
++/**
++ * ttm_resource_intersect - test for intersection
++ *
++ * @bdev: TTM device structure
++ * @res: The resource to test
++ * @place: The placement to test
++ * @size: How many bytes the new allocation needs.
++ *
++ * Test if @res intersects with @place and @size. Used for testing if evictions
++ * are valueable or not.
++ *
++ * Returns true if the res placement intersects with @place and @size.
++ */
++bool ttm_resource_intersect(struct ttm_device *bdev,
++			    struct ttm_resource *res,
++			    const struct ttm_place *place,
++			    size_t size)
++{
++	struct ttm_resource_manager *man;
++
++	if (!res)
++		return false;
++
++	man = ttm_manager_type(bdev, res->mem_type);
++	if (!place || !man->func->intersects)
++		return true;
++
++	return man->func->intersects(man, res, place, size);
++}
++
++/**
++ * ttm_resource_compatible - test for compatibility
++ *
++ * @bdev: TTM device structure
++ * @res: The resource to test
++ * @place: The placement to test
++ * @size: How many bytes the new allocation needs.
++ *
++ * Test if @res compatible with @place and @size.
++ *
++ * Returns true if the res placement compatible with @place and @size.
++ */
++bool ttm_resource_compatible(struct ttm_device *bdev,
++			     struct ttm_resource *res,
++			     const struct ttm_place *place,
++			     size_t size)
++{
++	struct ttm_resource_manager *man;
++
++	if (!res)
++		return false;
++
++	man = ttm_manager_type(bdev, res->mem_type);
++	if (!place || !man->func->compatible)
++		return true;
++
++	return man->func->compatible(man, res, place, size);
++}
++
+ static bool ttm_resource_places_compat(struct ttm_resource *res,
+ 				       const struct ttm_place *places,
+ 				       unsigned num_placement)
+diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
+index ca89a48c2460..93c0ac338be8 100644
+--- a/include/drm/ttm/ttm_resource.h
++++ b/include/drm/ttm/ttm_resource.h
+@@ -88,6 +88,37 @@ struct ttm_resource_manager_func {
+ 	void (*free)(struct ttm_resource_manager *man,
+ 		     struct ttm_resource *res);
+ 
++	/**
++	 * struct ttm_resource_manager_func member intersect
++	 *
++	 * @man: Pointer to a memory type manager.
++	 * @res: Pointer to a struct ttm_resource to be checked.
++	 * @place: Placement to check against.
++	 * @size: Size of the check.
++	 *
++	 * Test if @res intersects with @place + @size. Used to judge if
++	 * evictions are valueable or not.
++	 */
++	bool (*intersects)(struct ttm_resource_manager *man,
++			   struct ttm_resource *res,
++			   const struct ttm_place *place,
++			   size_t size);
++
++	/**
++	 * struct ttm_resource_manager_func member compatible
++	 *
++	 * @man: Pointer to a memory type manager.
++	 * @res: Pointer to a struct ttm_resource to be checked.
++	 * @place: Placement to check against.
++	 * @size: Size of the check.
++	 *
++	 * Test if @res compatible with @place + @size.
++	 */
++	bool (*compatible)(struct ttm_resource_manager *man,
++			   struct ttm_resource *res,
++			   const struct ttm_place *place,
++			   size_t size);
++
+ 	/**
+ 	 * struct ttm_resource_manager_func member debug
+ 	 *
+@@ -329,6 +360,14 @@ int ttm_resource_alloc(struct ttm_buffer_object *bo,
+ 		       const struct ttm_place *place,
+ 		       struct ttm_resource **res);
+ void ttm_resource_free(struct ttm_buffer_object *bo, struct ttm_resource **res);
++bool ttm_resource_intersect(struct ttm_device *bdev,
++			    struct ttm_resource *res,
++			    const struct ttm_place *place,
++			    size_t size);
++bool ttm_resource_compatible(struct ttm_device *bdev,
++			     struct ttm_resource *res,
++			     const struct ttm_place *place,
++			     size_t size);
+ bool ttm_resource_compat(struct ttm_resource *res,
+ 			 struct ttm_placement *placement);
+ void ttm_resource_set_bo(struct ttm_resource *res,
+-- 
+2.25.1
 
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 1 -
->>   1 file changed, 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
->> index 87a3a3ae9448..a6c7dcd8c345 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
->> @@ -294,7 +294,6 @@ static int amdgpu_amdkfd_remove_eviction_fence(struct amdgpu_bo *bo,
->>          replacement = dma_fence_get_stub();
->>          dma_resv_replace_fences(bo->tbo.base.resv, ef->base.context,
->>                                  replacement, DMA_RESV_USAGE_READ);
->> -       dma_fence_put(replacement);
->>          return 0;
->>   }
->>
->> --
->> 2.32.0
->>
