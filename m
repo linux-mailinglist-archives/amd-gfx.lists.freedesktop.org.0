@@ -2,43 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04845584582
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 Jul 2022 20:23:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6709D584586
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 Jul 2022 20:23:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0099810E60E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EA3810E875;
 	Thu, 28 Jul 2022 18:23:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DBAE10E78D
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 Jul 2022 18:22:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AA0B10F8D1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 Jul 2022 18:22:27 +0000 (UTC)
 Received: from fews1.riseup.net (fews1-pn.riseup.net [10.0.1.83])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
  client-signature RSA-PSS (2048 bits) client-digest SHA256)
  (Client CN "mail.riseup.net", Issuer "R3" (not verified))
- by mx1.riseup.net (Postfix) with ESMTPS id 4LtzWx4QwyzDs0B;
- Thu, 28 Jul 2022 18:22:21 +0000 (UTC)
+ by mx1.riseup.net (Postfix) with ESMTPS id 4LtzX26j2MzDrsv;
+ Thu, 28 Jul 2022 18:22:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
- t=1659032541; bh=5hukvlPt2ChjYzre5ze2WfJX5Xbvr7tV7otABd84zlU=;
+ t=1659032547; bh=KxvoCK+77gkilpIyGMLDeI1tnqCfaC+2xs0CoAX0DNo=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=hyodr8kwFkVVg90zz5nWUUCKq3zyQVKKQS62RHEFJJ/G+kwNkUL2Igcnsd/T7A+4f
- ICCEdXQvl3Kja9HTkEdI/Gu01/UytBOGlT9/eXaKWYjAkDbat1UYbBZX2XjM4pluYr
- 2cIIBMVNHWd0FhKsr0caUCQn5ECWn3kHiPZyChTY=
-X-Riseup-User-ID: 66D1C708B57EE5B17385B395AC67F948C1042C7E83AEF2D42C307DA3DCAC86FD
+ b=c+ZbGIIaaEs2IB114VFnSeu7cc9eBsmrgthyIzjrFX5xO1hZ/3aOUMGjza3+I1Fc6
+ m+qRAM40Q7/BVek4wypIiUT4In18hQWbtH+oowbfS4dVtPk3wr6v8rAgASjpztCST1
+ oLTv8FMJ1uLzDIYTg345MBA+7s1HshPvLiHlrdqQ=
+X-Riseup-User-ID: 26566C790EE104442A012390CD0FCC02310DDFB0C32058388C28B4ADFA6B79E4
 Received: from [127.0.0.1] (localhost [127.0.0.1])
- by fews1.riseup.net (Postfix) with ESMTPSA id 4LtzWs0QJrz5vMX;
- Thu, 28 Jul 2022 18:22:16 +0000 (UTC)
+ by fews1.riseup.net (Postfix) with ESMTPSA id 4LtzWy4qZ8z5vMX;
+ Thu, 28 Jul 2022 18:22:22 +0000 (UTC)
 From: =?UTF-8?q?Ma=C3=ADra=20Canal?= <mairacanal@riseup.net>
 To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>, christian.koenig@amd.com,
  Xinhui.Pan@amd.com, David Airlie <airlied@linux.ie>,
  Daniel Vetter <daniel@ffwll.ch>
-Subject: [PATCH 06/16] drm/amd/display: Remove ImmediateFlipSupportedSurface
- VBA variable
-Date: Thu, 28 Jul 2022 15:20:38 -0300
-Message-Id: <20220728182047.264825-7-mairacanal@riseup.net>
+Subject: [PATCH 07/16] drm/amd/display: Remove
+ WritebackAllowFCLKChangeEndPosition VBA variable
+Date: Thu, 28 Jul 2022 15:20:39 -0300
+Message-Id: <20220728182047.264825-8-mairacanal@riseup.net>
 In-Reply-To: <20220728182047.264825-1-mairacanal@riseup.net>
 References: <20220728182047.264825-1-mairacanal@riseup.net>
 MIME-Version: 1.0
@@ -62,47 +62,46 @@ Cc: magalilemes00@gmail.com, tales.aparecida@gmail.com,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The ImmediateFlipSupportedSurface variable from the struct
-vba_vars_st is only used on assignments, so its value is not used
-on code. So, remove the ImmediateFlipSupportedSurface entry from the struct
-vba_vars_st.
+The WritebackAllowFCLKChangeEndPosition variable from the struct
+vba_vars_st is only used on assignments, so its value is not used on
+code. So, remove the WritebackAllowFCLKChangeEndPosition entry
+from the struct vba_vars_st.
 
 Signed-off-by: Maíra Canal <mairacanal@riseup.net>
 ---
- .../gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c  | 6 ------
- drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h       | 2 --
- 2 files changed, 8 deletions(-)
+ .../gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c    | 4 ----
+ drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h         | 1 -
+ 2 files changed, 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
-index f199ef475ed0..e2e1d6e77902 100644
+index e2e1d6e77902..756a55f69799 100644
 --- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
 +++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
-@@ -355,12 +355,6 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
- 			if (j != k && mode_lib->vba.BlendingAndTiming[k] == j && mode_lib->vba.DSCEnabled[j])
- 				v->DSCDelay[k] = v->DSCDelay[j];
- 
--	//Immediate Flip
--	for (k = 0; k < mode_lib->vba.NumberOfActiveSurfaces; ++k) {
--		v->ImmediateFlipSupportedSurface[k] = mode_lib->vba.ImmediateFlipSupport
--				&& (mode_lib->vba.ImmediateFlipRequirement[k] != dm_immediate_flip_not_required);
--	}
--
- 	// Prefetch
- 	dml32_CalculateSurfaceSizeInMall(
- 				mode_lib->vba.NumberOfActiveSurfaces,
+@@ -1219,12 +1219,8 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
+ 				v->WritebackAllowDRAMClockChangeEndPosition[k] = dml_max(0,
+ 						v->VStartup[k] * mode_lib->vba.HTotal[k] / mode_lib->vba.PixelClock[k]
+ 								- v->Watermark.WritebackDRAMClockChangeWatermark);
+-				v->WritebackAllowFCLKChangeEndPosition[k] = dml_max(0,
+-						v->VStartup[k] * mode_lib->vba.HTotal[k] / mode_lib->vba.PixelClock[k]
+-								- v->Watermark.WritebackFCLKChangeWatermark);
+ 			} else {
+ 				v->WritebackAllowDRAMClockChangeEndPosition[k] = 0;
+-				v->WritebackAllowFCLKChangeEndPosition[k] = 0;
+ 			}
+ 		}
+ 	}
 diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
-index 841a05bea57e..76cba5d7ac10 100644
+index 76cba5d7ac10..518e599d74e2 100644
 --- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
 +++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
-@@ -659,8 +659,6 @@ struct vba_vars_st {
- 	double DISPCLK_calculated;
- 	double DPPCLK_calculated[DC__NUM_DPP__MAX];
- 
--	bool ImmediateFlipSupportedSurface[DC__NUM_DPP__MAX];
--
- 	bool Use_One_Row_For_Frame[DC__NUM_DPP__MAX];
- 	bool Use_One_Row_For_Frame_Flip[DC__NUM_DPP__MAX];
- 	unsigned int VUpdateOffsetPix[DC__NUM_DPP__MAX];
+@@ -1303,7 +1303,6 @@ struct vba_vars_st {
+ 	bool OutputMultistreamEn[DC__NUM_DPP__MAX];
+ 	bool UsesMALLForStaticScreen[DC__NUM_DPP__MAX];
+ 	double MaxActiveDRAMClockChangeLatencySupported[DC__NUM_DPP__MAX];
+-	double WritebackAllowFCLKChangeEndPosition[DC__NUM_DPP__MAX];
+ 	bool PTEBufferSizeNotExceededPerState[DC__NUM_DPP__MAX]; // new in DML32
+ 	bool DCCMetaBufferSizeNotExceededPerState[DC__NUM_DPP__MAX]; // new in DML32
+ 	bool NotEnoughDSCSlices[DC__VOLTAGE_STATES];
 -- 
 2.37.1
 
