@@ -2,53 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0799758A702
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 Aug 2022 09:28:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9181858A709
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 Aug 2022 09:29:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3A1BB40E5;
-	Fri,  5 Aug 2022 07:24:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DF16B40E8;
+	Fri,  5 Aug 2022 07:24:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B790693974;
- Thu,  4 Aug 2022 09:54:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1659606899; x=1691142899;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=5RIWFKoSAkEGflgC6RNjV8O9/LB7SOFSrF3/QfRUi4I=;
- b=LdRi81IUPTKOHZ8w9Z/pGnzYYJGF+uxMNJBbgwRE1kEdvzK2VMN++uj0
- Bdj/S7uO74CsuvSOzktmwmw5ePABPRWIRiosYP6Q8CyxS7Am79gOc5qWl
- T3Wxx2VWbi8jP+GeKfptc/zylYCXAlawqallbPsEirpnyyrHtpS/wpj8T
- +/X7crhr9xP5BH9rtwfw1JZHE85EDgsRaicdJoajR8yKaA5Kpwf3QiNKT
- T0CC0+YjhxVZyN6jnwKeQyJrXiHppso5AMIVAqflEo7+4ldpDsCx/hx4h
- ekEkrjrzro35DXjRZn2crxUBr6TuSnSo2BQHjYi170N2DvV8nCbJab2g8 A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10428"; a="291113927"
-X-IronPort-AV: E=Sophos;i="5.93,215,1654585200"; d="scan'208";a="291113927"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2022 02:54:48 -0700
-X-IronPort-AV: E=Sophos;i="5.93,215,1654585200"; d="scan'208";a="662470867"
-Received: from wujunyox-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.59.120])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2022 02:54:44 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v3 2/3] drm/amdgpu_dm: Rely on split out luminance
- calculation function
-In-Reply-To: <20220719095700.14923-3-jouni.hogander@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220719095700.14923-1-jouni.hogander@intel.com>
- <20220719095700.14923-3-jouni.hogander@intel.com>
-Date: Thu, 04 Aug 2022 12:54:42 +0300
-Message-ID: <877d3opc4d.fsf@intel.com>
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com
+ [IPv6:2a00:1450:4864:20::62b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1260FA17C4
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Aug 2022 17:17:40 +0000 (UTC)
+Received: by mail-ej1-x62b.google.com with SMTP id dc19so418701ejb.12
+ for <amd-gfx@lists.freedesktop.org>; Thu, 04 Aug 2022 10:17:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc;
+ bh=W3oQTjR935kyPwW8JTzNphawSp0RrVbBZvc3FA95SqM=;
+ b=CXWDpj8EE+E/y1A4LLIdWpEV4dz6BU5+YOyxOh/YLtPkJwFlBJB1T2YAT5I0CWpJbm
+ VVDqDcqzQQ8s3ioCrfGbckfIaXDN/DMIQcyKDaq2cGGklhoikD/bu8Yh47Rv2wLjHhXb
+ ti4AKQ9roXLqZxh+MOQdxpogEjPOBzv2zGxt8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc;
+ bh=W3oQTjR935kyPwW8JTzNphawSp0RrVbBZvc3FA95SqM=;
+ b=6rMGLScp8ikgh51lcD/GP7zaPZ/Yqh/2O8smkVA36eRw0iv0IiK6thIaljvOWb2Ehn
+ PpiFqL1jHOuOz1yfLfjKSCdE9GC68m6z3h1Om15bRNS6cNBWysCt01ek0h61Z8RKz5uI
+ 39Afd6HQHK/JWyufPsmwUVEvcLwzwI3kGFGjyISTUMVj7ptmOqOVgwxmQiWMy/8R4THz
+ 23uv3lLAoL5FPq3LAEF11l7gvmWytKOpRv7uQlywkoU/5ceIBy4nlu7Y2P76/OB3k0Jp
+ kI8tl+UVYL8oRl4WP3nQ1eZ6nn0jf+NTXglpcSs3B0j/WNeFH04cQ+UumfSmrF0bcojV
+ Fj5A==
+X-Gm-Message-State: ACgBeo3eM8xWgMesX1DP9C+nYiVLFt8yyQZwxrhEG+9pZ9O9SKsbV6mP
+ dOsZ3cePY+JD91wqdHM1IUXhZhukGUno9Wi8
+X-Google-Smtp-Source: AA6agR639nsLMJ+SwIonjLJd0T+WRkREae1Q6r56Ystnwf5P8uYxopG30ZcghcUc1gIeGd4MhkGJqQ==
+X-Received: by 2002:a17:907:2e0d:b0:72b:5cf4:464a with SMTP id
+ ig13-20020a1709072e0d00b0072b5cf4464amr2152957ejc.87.1659633459030; 
+ Thu, 04 Aug 2022 10:17:39 -0700 (PDT)
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com.
+ [209.85.221.53]) by smtp.gmail.com with ESMTPSA id
+ b12-20020a1709065e4c00b00730b61d8a5esm553642eju.61.2022.08.04.10.17.38
+ for <amd-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 04 Aug 2022 10:17:38 -0700 (PDT)
+Received: by mail-wr1-f53.google.com with SMTP id bv3so507375wrb.5
+ for <amd-gfx@lists.freedesktop.org>; Thu, 04 Aug 2022 10:17:38 -0700 (PDT)
+X-Received: by 2002:a5d:56cf:0:b0:21e:ce64:afe7 with SMTP id
+ m15-20020a5d56cf000000b0021ece64afe7mr2010623wrw.281.1659633457704; Thu, 04
+ Aug 2022 10:17:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+References: <Yut2otE1h2xtC79o@debian>
+In-Reply-To: <Yut2otE1h2xtC79o@debian>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Thu, 4 Aug 2022 10:17:21 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wjPF0dXvDeqPiSzpev4KhhWU0-R8muaYVF73vy2Vw=QTw@mail.gmail.com>
+Message-ID: <CAHk-=wjPF0dXvDeqPiSzpev4KhhWU0-R8muaYVF73vy2Vw=QTw@mail.gmail.com>
+Subject: Re: mainline build failure due to 6fdd2077ec03 ("drm/amd/amdgpu: add
+ memory training support for PSP_V13")
+To: "Sudip Mukherjee (Codethink)" <sudipm.mukherjee@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Fri, 05 Aug 2022 07:24:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,113 +74,28 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Roman Li <roman.li@amd.com>,
- Manasi Navare <manasi.d.navare@intel.com>, Mika Kahola <mika.kahola@intel.com>,
- Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
- Harry Wentland <harry.wentland@amd.com>
+Cc: Chengming Gui <Jack.Gui@amd.com>, David Airlie <airlied@linux.ie>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 19 Jul 2022, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
-> Luminance range calculation was split out into drm_edid.c and is now
-> part of edid parsing. Rely on values calculated during edid parsing and
-> use these for caps->aux_max_input_signal and caps->aux_min_input_signal.
-
-Harry, I'll merge patches 1 & 3 in this series through drm-misc-next,
-because I think they're good to go, and fix stuff in i915.
-
-Can I get your rb/ack to merge this patch as well, or do you want to
-take this later via your tree?
-
-BR,
-Jani.
-
-
+On Thu, Aug 4, 2022 at 12:35 AM Sudip Mukherjee (Codethink)
+<sudipm.mukherjee@gmail.com> wrote:
 >
-> v2: Use values calculated during edid parsing
->
-> Cc: Roman Li <roman.li@amd.com>
-> Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Mika Kahola <mika.kahola@intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Manasi Navare <manasi.d.navare@intel.com>
-> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
-> ---
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 35 +++----------------
->  1 file changed, 4 insertions(+), 31 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/=
-gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index 3e83fed540e8..eb7abdeb8653 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -2903,15 +2903,12 @@ static struct drm_mode_config_helper_funcs amdgpu=
-_dm_mode_config_helperfuncs =3D {
->=20=20
->  static void update_connector_ext_caps(struct amdgpu_dm_connector *aconne=
-ctor)
->  {
-> -	u32 max_avg, min_cll, max, min, q, r;
->  	struct amdgpu_dm_backlight_caps *caps;
->  	struct amdgpu_display_manager *dm;
->  	struct drm_connector *conn_base;
->  	struct amdgpu_device *adev;
->  	struct dc_link *link =3D NULL;
-> -	static const u8 pre_computed_values[] =3D {
-> -		50, 51, 52, 53, 55, 56, 57, 58, 59, 61, 62, 63, 65, 66, 68, 69,
-> -		71, 72, 74, 75, 77, 79, 81, 82, 84, 86, 88, 90, 92, 94, 96, 98};
-> +	struct drm_luminance_range_info *luminance_range;
->  	int i;
->=20=20
->  	if (!aconnector || !aconnector->dc_link)
-> @@ -2933,8 +2930,6 @@ static void update_connector_ext_caps(struct amdgpu=
-_dm_connector *aconnector)
->  	caps =3D &dm->backlight_caps[i];
->  	caps->ext_caps =3D &aconnector->dc_link->dpcd_sink_ext_caps;
->  	caps->aux_support =3D false;
-> -	max_avg =3D conn_base->hdr_sink_metadata.hdmi_type1.max_fall;
-> -	min_cll =3D conn_base->hdr_sink_metadata.hdmi_type1.min_cll;
->=20=20
->  	if (caps->ext_caps->bits.oled =3D=3D 1 /*||
->  	    caps->ext_caps->bits.sdr_aux_backlight_control =3D=3D 1 ||
-> @@ -2946,31 +2941,9 @@ static void update_connector_ext_caps(struct amdgp=
-u_dm_connector *aconnector)
->  	else if (amdgpu_backlight =3D=3D 1)
->  		caps->aux_support =3D true;
->=20=20
-> -	/* From the specification (CTA-861-G), for calculating the maximum
-> -	 * luminance we need to use:
-> -	 *	Luminance =3D 50*2**(CV/32)
-> -	 * Where CV is a one-byte value.
-> -	 * For calculating this expression we may need float point precision;
-> -	 * to avoid this complexity level, we take advantage that CV is divided
-> -	 * by a constant. From the Euclids division algorithm, we know that CV
-> -	 * can be written as: CV =3D 32*q + r. Next, we replace CV in the
-> -	 * Luminance expression and get 50*(2**q)*(2**(r/32)), hence we just
-> -	 * need to pre-compute the value of r/32. For pre-computing the values
-> -	 * We just used the following Ruby line:
-> -	 *	(0...32).each {|cv| puts (50*2**(cv/32.0)).round}
-> -	 * The results of the above expressions can be verified at
-> -	 * pre_computed_values.
-> -	 */
-> -	q =3D max_avg >> 5;
-> -	r =3D max_avg % 32;
-> -	max =3D (1 << q) * pre_computed_values[r];
-> -
-> -	// min luminance: maxLum * (CV/255)^2 / 100
-> -	q =3D DIV_ROUND_CLOSEST(min_cll, 255);
-> -	min =3D max * DIV_ROUND_CLOSEST((q * q), 100);
-> -
-> -	caps->aux_max_input_signal =3D max;
-> -	caps->aux_min_input_signal =3D min;
-> +	luminance_range =3D &conn_base->display_info.luminance_range;
-> +	caps->aux_min_input_signal =3D luminance_range->min_luminance;
-> +	caps->aux_max_input_signal =3D luminance_range->max_luminance;
->  }
->=20=20
->  void amdgpu_dm_update_connector_after_detect(
+> I will be happy to test any patch or provide any extra log if needed.
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+It sounds like that file just needs to get a
+
+    #include <linux/vmalloc.h>
+
+there, and for some reason architectures other than alpha and mips end
+up getting it accidentally through other headers.
+
+Mind testing just adding that header file, and perhaps even sending a
+patch if (when) that works for you?
+
+                    Linus
