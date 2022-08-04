@@ -2,47 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FD87589E16
-	for <lists+amd-gfx@lfdr.de>; Thu,  4 Aug 2022 17:02:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C8D6589EEC
+	for <lists+amd-gfx@lfdr.de>; Thu,  4 Aug 2022 17:53:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1032D9AB84;
-	Thu,  4 Aug 2022 15:01:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CB3C9BF91;
+	Thu,  4 Aug 2022 15:53:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80263968C1;
- Thu,  4 Aug 2022 15:01:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=DhPzQ4uprWeFNMtx9BdIrbtqM+mhTyNnq7GC0V4sR28=; b=nLj57RmDW49eAEy0fEqVdMJnJm
- IYP6ZuMXqm+FnmWuOUCCOtoO0ZjozN4L35oVy/uvroZQdCtBwFXYLw3bTfAxE42rffO9E2k+15ODF
- 1prVFL3Ne5QjXVIHWRugXtEz5EAImMgHS46KzF3YuuO8XPlihvBombXZN47E1lQxKFRebUviwJYlS
- 1/8lK1Da2gmbyvAEeXaL5hE5o6vTup/+rMDJTSiE9+NnocdlWlVqUULuQ+51B5qqYAPcWcYGd5/2A
- nAyLbDfApvyHuPlNI/c+Xap8K53L6Ygc9hxvLPP14vDK+CL/PxCW0/7SVwOJ13yH1KC5rnoeU/Bhv
- 0FwvMhbQ==;
-Received: from [165.90.126.25] (helo=killbill.home)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1oJcLu-00GFt0-IJ; Thu, 04 Aug 2022 17:01:34 +0200
-From: Melissa Wen <mwen@igalia.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, christian.koenig@amd.com,
- Xinhui.Pan@amd.com, sungjoon.kim@amd.com, nicholas.kazlauskas@amd.com
-Subject: [PATCH v2 4/4] Documentation/gpu/amdgpu/amdgpu_dm: add DM docs for
- pixel blend mode
-Date: Thu,  4 Aug 2022 14:01:07 -0100
-Message-Id: <20220804150107.3435964-5-mwen@igalia.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220804150107.3435964-1-mwen@igalia.com>
-References: <20220804150107.3435964-1-mwen@igalia.com>
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com
+ [IPv6:2a00:1450:4864:20::52e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A3069BF8A
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Aug 2022 15:53:02 +0000 (UTC)
+Received: by mail-ed1-x52e.google.com with SMTP id b16so195153edd.4
+ for <amd-gfx@lists.freedesktop.org>; Thu, 04 Aug 2022 08:53:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=fireburn-co-uk.20210112.gappssmtp.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=kfOK7s3xFsw9XOCf5rZ5v1wNOUbWhtj/0D6S2FQvtM4=;
+ b=xkMI17oM3zfPjoCLWJIfoLEnzXtAFKPZa4ZWlivsE178VeTOwHGHU9Hr4pUoF4Fx5S
+ e5YGoJoRK/7ejxUK4KXnY7eldNgTsVQ2YrMR5ogMfXVKZJtB/QUM5al6wZmb10Kdg3jN
+ s80XcOp8siV+ER6lpOr5DSL58AxHq3TX45uYGA1BvPIJLivLpurOqY402nDfKfJZEzYY
+ kQnYggNAwZjX6kO83NC1DuySWHjriR7yj2vyTtF38zJF7oVm/t7a9+qkfrSmrcH2CSgW
+ 9rYw92j4oquUkSL8DYp7d/2V15rgUrXkgF1HU9mqEJzxSGqzGYh1tcYl0fdN0SrmHJ0G
+ LPtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=kfOK7s3xFsw9XOCf5rZ5v1wNOUbWhtj/0D6S2FQvtM4=;
+ b=6hPTEX+DGdJ9Ugo/AYibAeaZ3NIy6yZg68VfHdQXLIehc7/3KkoorX4ZZrWQK4EBz4
+ 3M4GSrTxkBHDzs4ShmlRqVr9kdya/sCR7Rk965eMvk720eZxFtSojabrBADkEMYIXYxL
+ oyRqDHL6kwDWHj5cbOMzTM037DgTfdqDBg/UVVICIHP2raShqxnlw9FIGd4iOWw8LJEA
+ 14MHZXIhYkW7tRZrQUMcRTVJnAY5s97ZeiHPd1OLfIUfxKlI248wpBof6IZGBTXS7y4l
+ /9ALaw+Ddy7fwah8H0Ti1SkXkDUCYcZdNQVFie/qIGHmwpxQPjS8LwTbhbqjl+zWQUI1
+ PlpQ==
+X-Gm-Message-State: ACgBeo1e9aqCtsrvNFExnzKnJY75KI2eD1PgpS1fSnO9RzM8pIOfk2xu
+ DMzFMKTzSayhirUTfOCbaq4N4JdRHR7NZWp/ekPvVg==
+X-Google-Smtp-Source: AA6agR6lQ9q9dJTBGl3Gilpz3rF721hsEVFdi6SAsf5d+O2sa6KidsumgOaF4nVCpZCbmEiXDBPvWVfWUWYmNO/CD1s=
+X-Received: by 2002:a05:6402:2d1:b0:43c:bb20:71bf with SMTP id
+ b17-20020a05640202d100b0043cbb2071bfmr2688992edx.59.1659628380746; Thu, 04
+ Aug 2022 08:53:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220708102124.493372-1-Arunpravin.PaneerSelvam@amd.com>
+ <20220714145423.721e1c3b@maurocar-mobl2>
+ <83d9f973-abdd-3d8b-5955-84cfc3f49eea@amd.com>
+ <CADnq5_MNkeG4E9ZXRLpgFQxrDN9jDhk7KYYHbjvtY-cUt5Kk8A@mail.gmail.com>
+ <076231a3-38e9-e013-e106-aa926d009e77@amd.com>
+ <87zgh6b1dp.wl-ashutosh.dixit@intel.com>
+In-Reply-To: <87zgh6b1dp.wl-ashutosh.dixit@intel.com>
+From: Mike Lothian <mike@fireburn.co.uk>
+Date: Thu, 4 Aug 2022 16:52:49 +0100
+Message-ID: <CAHbf0-EpHZmpqFgbyY753xQ2HZ_26bYT3qkYy0+EiVfYowzqxg@mail.gmail.com>
+Subject: Re: [PATCH] Revert "drm/amdgpu: add drm buddy support to amdgpu"
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,145 +69,80 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-dev@igalia.com, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
+Cc: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>,
+ Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Alex Deucher <alexdeucher@gmail.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, "Deucher,
+ Alexander" <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-AMD GPU display manager (DM) maps DRM pixel blend modes (None,
-Pre-multiplied, Coverage) to MPC hw blocks through blend configuration
-options. Describe relevant elements and how to set and test them to get
-the expected DRM blend mode on DCN hw.
+Hi
 
-v2:
-- add ref tag (Tales)
+When is this relanding?
 
-Signed-off-by: Melissa Wen <mwen@igalia.com>
-Reviewed-by: Tales Aparecida <tales.aparecida@gmail.com>
----
- .../gpu/amdgpu/display/display-manager.rst    | 98 +++++++++++++++++++
- Documentation/gpu/drm-kms.rst                 |  2 +
- 2 files changed, 100 insertions(+)
+Cheers
 
-diff --git a/Documentation/gpu/amdgpu/display/display-manager.rst b/Documentation/gpu/amdgpu/display/display-manager.rst
-index 88e2c08c7014..b7abb18cfc82 100644
---- a/Documentation/gpu/amdgpu/display/display-manager.rst
-+++ b/Documentation/gpu/amdgpu/display/display-manager.rst
-@@ -83,3 +83,101 @@ schemas.
- **DCN 3.0 family color caps and mapping**
- 
- .. kernel-figure:: dcn3_cm_drm_current.svg
-+
-+Blend Mode Properties
-+=====================
-+
-+Pixel blend mode is a DRM plane composition property of :c:type:`drm_plane` used to
-+describes how pixels from a foreground plane (fg) are composited with the
-+background plane (bg). Here, we present main concepts of DRM blend mode to help
-+to understand how this property is mapped to AMD DC interface. See more about
-+this DRM property and the alpha blending equations in :ref:`DRM Plane
-+Composition Properties <plane_composition_properties>`.
-+
-+Basically, a blend mode sets the alpha blending equation for plane
-+composition that fits the mode in which the alpha channel affects the state of
-+pixel color values and, therefore, the resulted pixel color. For
-+example, consider the following elements of the alpha blending equation:
-+
-+- *fg.rgb*: Each of the RGB component values from the foreground's pixel.
-+- *fg.alpha*: Alpha component value from the foreground's pixel.
-+- *bg.rgb*: Each of the RGB component values from the background.
-+- *plane_alpha*: Plane alpha value set by the **plane "alpha" property**, see
-+  more in :ref:`DRM Plane Composition Properties <plane_composition_properties>`.
-+
-+in the basic alpha blending equation::
-+
-+   out.rgb = alpha * fg.rgb + (1 - alpha) * bg.rgb
-+
-+the alpha channel value of each pixel in a plane is ignored and only the plane
-+alpha affects the resulted pixel color values.
-+
-+DRM has three blend mode to define the blend formula in the plane composition:
-+
-+* **None**: Blend formula that ignores the pixel alpha.
-+
-+* **Pre-multiplied**: Blend formula that assumes the pixel color values in a
-+  plane was already pre-multiplied by its own alpha channel before storage.
-+
-+* **Coverage**: Blend formula that assumes the pixel color values were not
-+  pre-multiplied with the alpha channel values.
-+
-+and pre-multiplied is the default pixel blend mode, that means, when no blend
-+mode property is created or defined, DRM considers the plane's pixels has
-+pre-multiplied color values. On IGT GPU tools, the kms_plane_alpha_blend test
-+provides a set of subtests to verify plane alpha and blend mode properties.
-+
-+The DRM blend mode and its elements are then mapped by AMDGPU display manager
-+(DM) to program the blending configuration of the Multiple Pipe/Plane Combined
-+(MPC), as follows:
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
-+   :doc: mpc-overview
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
-+   :functions: mpcc_blnd_cfg
-+
-+Therefore, the blending configuration for a single MPCC instance on the MPC
-+tree is defined by :c:type:`mpcc_blnd_cfg`, where
-+:c:type:`pre_multiplied_alpha` is the alpha pre-multiplied mode flag used to
-+set :c:type:`MPCC_ALPHA_MULTIPLIED_MODE`. It controls whether alpha is
-+multiplied (true/false), being only true for DRM pre-multiplied blend mode.
-+:c:type:`mpcc_alpha_blend_mode` defines the alpha blend mode regarding pixel
-+alpha and plane alpha values. It sets one of the three modes for
-+:c:type:`MPCC_ALPHA_BLND_MODE`, as described below.
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
-+   :functions: mpcc_alpha_blend_mode
-+
-+DM then maps the elements of `enum mpcc_alpha_blend_mode` to those in the DRM
-+blend formula, as follows:
-+
-+* *MPC pixel alpha* matches *DRM fg.alpha* as the alpha component value
-+  from the plane's pixel
-+* *MPC global alpha* matches *DRM plane_alpha* when the pixel alpha should
-+  be ignored and, therefore, pixel values are not pre-multiplied
-+* *MPC global gain* assumes *MPC global alpha* value when both *DRM
-+  fg.alpha* and *DRM plane_alpha* participate in the blend equation
-+
-+In short, *fg.alpha* is ignored by selecting
-+:c:type:`MPCC_ALPHA_BLEND_MODE_GLOBAL_ALPHA`. On the other hand, (plane_alpha *
-+fg.alpha) component becomes available by selecting
-+:c:type:`MPCC_ALPHA_BLEND_MODE_PER_PIXEL_ALPHA_COMBINED_GLOBAL_GAIN`. And the
-+:c:type:`MPCC_ALPHA_MULTIPLIED_MODE` defines if the pixel color values are
-+pre-multiplied by alpha or not.
-+
-+Blend configuration flow
-+------------------------
-+
-+The alpha blending equation is configured from DRM to DC interface by the
-+following path:
-+
-+1. When updating a :c:type:`drm_plane_state <drm_plane_state>`, DM calls
-+   :c:type:`fill_blending_from_plane_state()` that maps
-+   :c:type:`drm_plane_state <drm_plane_state>` attributes to
-+   :c:type:`dc_plane_info <dc_plane_info>` struct to be handled in the
-+   OS-agnostic component (DC).
-+
-+2. On DC interface, :c:type:`struct mpcc_blnd_cfg <mpcc_blnd_cfg>` programs the
-+   MPCC blend configuration considering the :c:type:`dc_plane_info
-+   <dc_plane_info>` input from DPP.
-diff --git a/Documentation/gpu/drm-kms.rst b/Documentation/gpu/drm-kms.rst
-index 6f9c064fd323..b4377a545425 100644
---- a/Documentation/gpu/drm-kms.rst
-+++ b/Documentation/gpu/drm-kms.rst
-@@ -532,6 +532,8 @@ Standard Plane Properties
- .. kernel-doc:: drivers/gpu/drm/drm_plane.c
-    :doc: standard plane properties
- 
-+.. _plane_composition_properties:
-+
- Plane Composition Properties
- ----------------------------
- 
--- 
-2.35.1
+Mike
 
+On Mon, 18 Jul 2022 at 21:40, Dixit, Ashutosh <ashutosh.dixit@intel.com> wr=
+ote:
+>
+> On Thu, 14 Jul 2022 08:00:32 -0700, Christian K=C3=B6nig wrote:
+> >
+> > Am 14.07.22 um 15:33 schrieb Alex Deucher:
+> > > On Thu, Jul 14, 2022 at 9:09 AM Christian K=C3=B6nig
+> > > <christian.koenig@amd.com> wrote:
+> > >> Hi Mauro,
+> > >>
+> > >> well the last time I checked drm-tip was clean.
+> > >>
+> > >> The revert is necessary because we had some problems with the commit
+> > >> which we couldn't fix in the 5.19 cycle.
+> > > Would it be worth reverting the revert and applying the actual fix[1]=
+?
+> > >   It's a huge revert unfortunately while the actual fix is like 10
+> > > lines of code.  I'm concerned there will be subtle fallout from the
+> > > revert due to how extensive it is.
+> >
+> > We have other bug fixes and cleanups around that patch which didn't mad=
+e it
+> > into 5.19 either. I don't want to create an ever greater mess.
+> >
+> > Real question is why building drm-tip work for me but not for others?
+>
+> Seeing this on latest drm-tip:
+>
+> drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c:54:1: error: redefinition of=
+ =E2=80=98amdgpu_vram_mgr_first_block=E2=80=99
+>    54 | amdgpu_vram_mgr_first_block(struct list_head *list)
+>       | ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+> In file included from drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h:29,
+>                  from drivers/gpu/drm/amd/amdgpu/amdgpu.h:73,
+>                  from drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c:28:
+> drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h:57:1: note: previous definit=
+ion of =E2=80=98amdgpu_vram_mgr_first_block=E2=80=99 with type =E2=80=98str=
+uct drm_buddy_block *(struct list_head *)=E2=80=99
+>    57 | amdgpu_vram_mgr_first_block(struct list_head *list)
+>       | ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c:59:20: error: redefinition o=
+f =E2=80=98amdgpu_is_vram_mgr_blocks_contiguous=E2=80=99
+>    59 | static inline bool amdgpu_is_vram_mgr_blocks_contiguous(struct li=
+st_head *head)
+>       |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h:62:20: note: previous defini=
+tion of =E2=80=98amdgpu_is_vram_mgr_blocks_contiguous=E2=80=99 with type =
+=E2=80=98bool(struct list_head *)=E2=80=99 {aka =E2=80=98_Bool(struct list_=
+head *)=E2=80=99}
+>    62 | static inline bool amdgpu_is_vram_mgr_blocks_contiguous(struct li=
+st_head *head)
+>       |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> make[4]: *** [scripts/Makefile.build:249: drivers/gpu/drm/amd/amdgpu/amdg=
+pu_vram_mgr.o] Error 1
+> make[4]: *** Waiting for unfinished jobs....
+> make[3]: *** [scripts/Makefile.build:466: drivers/gpu/drm/amd/amdgpu] Err=
+or 2
+> make[2]: *** [scripts/Makefile.build:466: drivers/gpu/drm] Error 2
+> make[1]: *** [scripts/Makefile.build:466: drivers/gpu] Error 2
