@@ -2,93 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49F0D58A537
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 Aug 2022 06:14:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E629258A713
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 Aug 2022 09:30:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5544A0553;
-	Fri,  5 Aug 2022 04:14:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 192E2B40E1;
+	Fri,  5 Aug 2022 07:24:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2040.outbound.protection.outlook.com [40.107.237.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A623418A68D
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Aug 2022 04:14:28 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HPoJpLb2/zT+F0wro4v7+qjPvunKEKtj8m6p0RAd+cnH0YjrWLva9KHhdBTs/1BWhJdiLxEP6nBx87icFqTszy5ccU9Afn9+MUeyWBG3dmurJSAVX6MrfYZq2SXivWuyih/3aPj6705xK8sdK5JmmEyakleoDvPoLdMNRggszXTmB/T3IG+j/PVvzTuLBygUNTOne+YcGgXnQeXTpUtrHqZtCteA3HWHVSC8kYbuqMkmK/SSREuy2Rd+FHZ0K0gmdCInBX3Q6fb+RLAZBH5ipYYvBNch7GJjxsjrumz/ReYdlmOVoquLi5DPkQYYAIYmnpPOJTAHFw0/uu32MziGnA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WBDnkOoF1SUUx3AvQryyt/zEKtLn7s1J8ykq9i3cIq4=;
- b=nmdWsREKEs5H1R79vNZZmj0sftx7ggT3dQJRele/j2HmdvmlRk3tsmiWMMAcNPK+Gqc8segyOFCq98oJyir703SYIrcjAZi898bAjyAHScoLqvFXdi7v0JZCI/z9AJflPI4MjPCl5bbP8DA4pQp/Vvp5FE5fWZM0xA1xM94ZmwVAqJ7+iHvc3P2omc9VrN2bIylEhlfdaEZRp0YuHuK7HqsgHxjY2Rx8TfEyTDAlSJseDPZMdBLoDc7+0qHOzc5+pyM7THp5zghXFsgh+BorGCOfkykmBidGXbCf4VM7esQ6aJ91rFM9hwa6Brl9so52K5n14+CAyYCqEnr/y+zkXw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WBDnkOoF1SUUx3AvQryyt/zEKtLn7s1J8ykq9i3cIq4=;
- b=4PTiIiLBNHGIz5qq5F/k0P3UILdFPwbc+S4CznZGSyqd502cHjvh6ExWAUTndzJdfJDftyiyHciMFsPmgrlme03zSGSDw6VOp26IZcJxbsRZ7mZYmkoLiYlvdlQlUt5Bqnvz5HeRjUWadPVSoD3mVjgfsPColWKTV5D5MnMjVCk=
-Received: from DS7PR05CA0007.namprd05.prod.outlook.com (2603:10b6:5:3b9::12)
- by SN1PR12MB2349.namprd12.prod.outlook.com (2603:10b6:802:2a::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.15; Fri, 5 Aug
- 2022 04:14:25 +0000
-Received: from DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:3b9:cafe::db) by DS7PR05CA0007.outlook.office365.com
- (2603:10b6:5:3b9::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.8 via Frontend
- Transport; Fri, 5 Aug 2022 04:14:25 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT067.mail.protection.outlook.com (10.13.172.76) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5504.14 via Frontend Transport; Fri, 5 Aug 2022 04:14:25 +0000
-Received: from ldev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 4 Aug
- 2022 23:14:19 -0500
-From: Tim Huang <tim.huang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 2/2] drm/amdgpu: enable GFX Clock Gating control for GC IP
- v11.0.1
-Date: Fri, 5 Aug 2022 12:13:27 +0800
-Message-ID: <20220805041327.2621649-2-tim.huang@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220805041327.2621649-1-tim.huang@amd.com>
-References: <20220805041327.2621649-1-tim.huang@amd.com>
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
+ [IPv6:2a00:1450:4864:20::42a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 613808FBFD;
+ Thu,  4 Aug 2022 07:35:11 +0000 (UTC)
+Received: by mail-wr1-x42a.google.com with SMTP id z12so14084711wrs.9;
+ Thu, 04 Aug 2022 00:35:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc; bh=5EU04U6zAYyIYzGGcwcDfmg2hMhuz1M0NEedR2ivuW0=;
+ b=RszuOa+odpEaiEJy45G5YW+s0j47TpRmy+lEDVUwPVP6JcsPJrwMo8tspfvRb7fMre
+ W99E7nWmRNZSwcQhGwF7U5/tPYQqr8NnwO1Jj52xEZHtAju58FkRMFQifV7yjHz4R7uZ
+ m+nMVKawX5MR5rLXmzXaeUmOP9JPQ/GTqa8O616Ny/hVj/FzIVxzhR4i5VxzKP4Uxs2N
+ NNcVAj7HwHwKi4SGOn+kAUk7hOVyYV9XW6b6mu/ZbjjRwmTOHtMXIMuyrNK1WhC89ZXv
+ +7u8jVSkbkWWd/rROPN/oXOkKdOy+nWLplYIFpAPipSroyvbydNn4zA69ceObU+QdJu0
+ 2W5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc;
+ bh=5EU04U6zAYyIYzGGcwcDfmg2hMhuz1M0NEedR2ivuW0=;
+ b=hNI4SrBFyTzk9nR3IIvFNZXQ0ZDM0f4YnUD0dGHoPid/hLn0rB/lpsg/UHYfcCqYBv
+ Vj+aDeoV9L1LzXtdUbhO7gbAc4xQmNRs7RTELMHxQx8kpaGcVgr3jbpTmHy4a7XCZqxR
+ gQVe1wTwEPGoehXseVXHb7EndGYtLRijF/p+eH33ByXh8LIPFofgw+QKSrc7woJVHj/w
+ Jb6LbBECZNaWAXGjBeq6ue4Vpa0H2Zjr23eiI5Osy8RVEH/mgzbDlcFAq9BIoVS5ZCI5
+ ZSGyZfqF8I2yFupXC7N6NN9KBtN4/jKXxxaxT27pSrueTEx2UlIFZWr3O3IHVJs68Djm
+ E3kg==
+X-Gm-Message-State: ACgBeo3qmDyTDNC3acnLRfQ20YsNLFDqWYBXNi6viysnMnBU3YlbS/+L
+ +3Wc1GCKdhPVmMglWkudAAE=
+X-Google-Smtp-Source: AA6agR7QyZrRl97ERrAkEom1RkOvNNl2TGMuPIkZIfvXeehObd0r+4cGJ+S6KNmKW/eNfqqc4NTEgg==
+X-Received: by 2002:a5d:64c1:0:b0:220:83fd:521e with SMTP id
+ f1-20020a5d64c1000000b0022083fd521emr435672wri.428.1659598509871; 
+ Thu, 04 Aug 2022 00:35:09 -0700 (PDT)
+Received: from debian ([2405:201:8005:8149:e5c9:c0ac:4d82:e94b])
+ by smtp.gmail.com with ESMTPSA id
+ d14-20020adfe84e000000b0021badf3cb26sm309913wrn.63.2022.08.04.00.35.02
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 04 Aug 2022 00:35:08 -0700 (PDT)
+Date: Thu, 4 Aug 2022 08:34:58 +0100
+From: "Sudip Mukherjee (Codethink)" <sudipm.mukherjee@gmail.com>
+To: Chengming Gui <Jack.Gui@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
+Subject: mainline build failure due to 6fdd2077ec03 ("drm/amd/amdgpu: add
+ memory training support for PSP_V13")
+Message-ID: <Yut2otE1h2xtC79o@debian>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 74f1fe84-bfc9-41f7-4f2a-08da7698fb71
-X-MS-TrafficTypeDiagnostic: SN1PR12MB2349:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xBGgJXu2noM25f1z1oX5QVPHAYc60D3Q6STo8yiCsWh3R1/ZvsSXSi/x5MJhvHPgQ7IZGPCxZ/NUbSQkNyshr2E9K0+u1B/mcg8h9imPzUap+b5BW8Q1Khy0NPLATuYeYL5cc6fo6RWi6WKhdJyl24tvoogibAjfHfk7fUtbCRbGkeo1dOvnAUS0dL34cDi/cbCqQ2OU1OZ+yByNJxu0enkWkjphgse3Wcdx8wjCU5zZLy96MFvbJJfjudhXTwB3LPrRZxeTCvl5cqBQk7oUQoC2RuQqKf2rnxQJdMBcB7DakcVgUgEoawahtUk66cRshOHAlfWpAIIl6GHK0B/DCRwFHgnAymWpcdMYSow3o+8RJWZsf8Dz8or4G5Hrw6kpdQTaqnpvwB63O93rUgu2VUxWcXtiYTmDzTBW1otckZRftEvZ25B/vVocfRCSw1zLeH4hRe/tvjuqTmRJWKv/YWCBZyDmVJTwJnl72xdxzw/hGnyUR1x9i5auunkKuNHhlzR/LJdKsnaprKjjNNQHV0H1NKUpaAXL3ZY6xZL0r6Bv8Y2ndYaUjcs6bQ17r6DZRtRo2/1pZKtpvC1LZcpSjnSJeghh2h3sVnLnZuT0aqOBRDlpK9RNWwvo5OTKNeZC4Fhgpmg9TIGGx54lJutLY16OhULC8xucwY6aolPdAzuf1vpqrDtsInGO4Aw64MpqcV/R9b3WHcKwH9mD95xH+qqFgftkBbt4lby1UumVXUOfFl9yuGydq6buTMk+BtlHZ2dQjq0ZtFw1e7oq/zpeZB/VLrenec6KgPShVofWT96UU8GX2bDE+MfR//jbFkd1CTOZf3oWceFe34pUZi7C9g==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(136003)(376002)(39860400002)(346002)(396003)(46966006)(40470700004)(36840700001)(316002)(81166007)(1076003)(70206006)(86362001)(54906003)(6916009)(356005)(40480700001)(4326008)(70586007)(8936002)(26005)(8676002)(7696005)(6666004)(41300700001)(186003)(47076005)(426003)(336012)(16526019)(83380400001)(2616005)(40460700003)(82740400003)(478600001)(82310400005)(36860700001)(2906002)(44832011)(4744005)(36756003)(5660300002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2022 04:14:25.0866 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 74f1fe84-bfc9-41f7-4f2a-08da7698fb71
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR12MB2349
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Fri, 05 Aug 2022 07:24:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,30 +68,38 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, Yifan1.zhang@amd.com, Xiaojian.Du@amd.com,
- Tim Huang <tim.huang@amd.com>
+Cc: David Airlie <airlied@linux.ie>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Enable GFX CG gate/ungate control.
+Hi All,
 
-Signed-off-by: Tim Huang <tim.huang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 1 +
- 1 file changed, 1 insertion(+)
+The latest mainline kernel branch fails to build for alpha and mips
+allmodconfig with the error:
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-index 6fd71cb10e54..e03618803a1c 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-@@ -5310,6 +5310,7 @@ static int gfx_v11_0_set_clockgating_state(void *handle,
- 
- 	switch (adev->ip_versions[GC_HWIP][0]) {
- 	case IP_VERSION(11, 0, 0):
-+	case IP_VERSION(11, 0, 1):
- 	case IP_VERSION(11, 0, 2):
- 	        gfx_v11_0_update_gfx_clock_gating(adev,
- 	                        state ==  AMD_CG_STATE_GATE);
--- 
-2.25.1
+drivers/gpu/drm/amd/amdgpu/psp_v13_0.c: In function 'psp_v13_0_memory_training':
+drivers/gpu/drm/amd/amdgpu/psp_v13_0.c:534:23: error: implicit declaration of function 'vmalloc'; did you mean 'kvmalloc'? [-Werror=implicit-function-declaration]
+  534 |                 buf = vmalloc(sz);
+      |                       ^~~~~~~
+      |                       kvmalloc
+drivers/gpu/drm/amd/amdgpu/psp_v13_0.c:534:21: error: assignment to 'void *' from 'int' makes pointer from integer without a cast [-Werror=int-conversion]
+  534 |                 buf = vmalloc(sz);
+      |                     ^
+drivers/gpu/drm/amd/amdgpu/psp_v13_0.c:545:33: error: implicit declaration of function 'vfree'; did you mean 'kvfree'? [-Werror=implicit-function-declaration]
+  545 |                                 vfree(buf);
+      |                                 ^~~~~
+      |                                 kvfree
 
+git bisect pointed to 6fdd2077ec03 ("drm/amd/amdgpu: add memory training support for PSP_V13").
+
+And, reverting that commit has fixed the build failure.
+
+I will be happy to test any patch or provide any extra log if needed.
+
+--
+Regards
+Sudip
