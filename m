@@ -1,65 +1,68 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1894F58A723
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 Aug 2022 09:32:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B07B58A70B
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 Aug 2022 09:30:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17FF4B40DC;
-	Fri,  5 Aug 2022 07:24:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84A93B40E2;
+	Fri,  5 Aug 2022 07:24:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com
- [IPv6:2a00:1450:4864:20::529])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7752B9690F
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Aug 2022 18:52:28 +0000 (UTC)
-Received: by mail-ed1-x529.google.com with SMTP id o22so758850edc.10
- for <amd-gfx@lists.freedesktop.org>; Thu, 04 Aug 2022 11:52:28 -0700 (PDT)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com
+ [IPv6:2a00:1450:4864:20::630])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DECBA2B8F4
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Aug 2022 21:59:20 +0000 (UTC)
+Received: by mail-ej1-x630.google.com with SMTP id w19so1693232ejc.7
+ for <amd-gfx@lists.freedesktop.org>; Thu, 04 Aug 2022 14:59:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=linux-foundation.org; s=google;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:from:to:cc;
- bh=d9A+1UrQLh0WcW9MhwNlbIKjJoOc9nVaeZ+f3kn5XJg=;
- b=Wghr6irArPcwVSc+CNnhrrsEu9dnr4MgYqspEvpRuXFzsOtqFWg2OW0RZw0DsbJhbG
- 7KYJuxI+hGsaf1e3eCH86NhWL3mKYHLchNkwelwizVdbqx2TCHmSyTmd7/UiTNDRDtqj
- 1bkDxMnc43SYw+VE+NmTMF0O+9AkEy2ziVWdw=
+ bh=IcNrO1+0hMqd184OyaCGXcplDsRzgmMXiA2NSTUXMiA=;
+ b=DgUfEmbFi+7iccqebXv/ZmxHK9r9RdQFXNZ8Dr8nUqVqSFRu1k1i4dkyHQybTDWbVO
+ sp+j5Hqj+Tzo+GWbTEgXuKCuNQljNQ9hMiFfoJp1J9Mgms1GKmSOP/+HzKIHuHs4qy4O
+ 3hYvbGIWtatQX31kWhmvlVBT2gIyBbOi9AxB0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:x-gm-message-state:from:to:cc;
- bh=d9A+1UrQLh0WcW9MhwNlbIKjJoOc9nVaeZ+f3kn5XJg=;
- b=aNXJf8dz38jxt/SEDRjlM2+059IhPo3HnybUxYbhYaaNCuJ/dhEWg0+vaquOk0w6xD
- 1PwpymOS38PUfF74LcFx04tlWmq+9oYv4s/5EQzb7hbg/ZNbrydbJ8BkKvgJ08Y3HYPn
- 640j6eKC2UaLbx9JGEw07WyLu6BmDpmkDI7htdhjh30g3h/7TwLKAekQE3kja33XFOFz
- ww/ru/2wW1HyBRkcGdtofOim13Nbxj/2NVA7srM7Azx/z25wcNgCdlarhywYucJ03ZpU
- 1bUXG7i+fthxnKXencwYdiQ2FiYCFRKdJRHKiTGB7nJiwCzoMcecZROWrQflnBMEOSli
- Vfqg==
-X-Gm-Message-State: ACgBeo3vFGTSRrbDQoQJdSpFVM39ysjlj1V7RnxQnBVbWFfP1C7bDeOU
- /GZFGZOA2sI2u8rbjBZIgZBuTH/RRpisAn64
-X-Google-Smtp-Source: AA6agR5e2v4MZ6ixpIfPFvoB/nezx6lkks3Hg8SuKVY4QkisnayC+UFLK1wKeNX6TqkMVVrl9KcJeQ==
-X-Received: by 2002:a05:6402:190e:b0:43e:1588:4c32 with SMTP id
- e14-20020a056402190e00b0043e15884c32mr3349125edz.76.1659639146395; 
- Thu, 04 Aug 2022 11:52:26 -0700 (PDT)
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com.
- [209.85.221.47]) by smtp.gmail.com with ESMTPSA id
- s18-20020a1709062ed200b007304d084c5esm591504eji.166.2022.08.04.11.52.25
+ bh=IcNrO1+0hMqd184OyaCGXcplDsRzgmMXiA2NSTUXMiA=;
+ b=Rt8pxaG4i/iZ5k4H/+qRArYv0bkYR+nNpQt+47gyBvjgP6/mqbyCzD8/IUbq2EFndx
+ ypzOOUHmypwigFNjFHBmmceAJU/BQQSstyi0dgYWSt2uGSICz/HRyqjCrk101iv89pzQ
+ G/a1MVZYN2IUTx5lcwDwF+lKxFEi0IuwzbjSro2W+kBHqEglh9dMlCvu4mBQ0TFzhlQ0
+ LeO90thVLsr2bwtFiho5R6PO48RtWQAX5Eezd+SwifMn+gRcn5EHOlQsCtpsZV6YUGlM
+ uXuAgmRu6JC4ByS2b08NdRHPeS5Nw5oKwKvbdwbZrco5vAqyJlgCkw2mHeVbEjhdrrfb
+ u8QA==
+X-Gm-Message-State: ACgBeo0NQ/6AQHH2xFpliq+MP03LMWH8+D7TVRvtBmYVLQ9nidk70N33
+ NgRvkd4AoD8bq3wGQMGaL0XO1SU85ZLgnoZW
+X-Google-Smtp-Source: AA6agR7Ea5yZCD2MnYhuj0ME3E7n7ustfgZ+QX47mCat4HvEg2+tykGnZoUze9tzmpz7MFED1GJVSg==
+X-Received: by 2002:a17:907:2d12:b0:72b:67fb:89a5 with SMTP id
+ gs18-20020a1709072d1200b0072b67fb89a5mr2883968ejc.507.1659650358884; 
+ Thu, 04 Aug 2022 14:59:18 -0700 (PDT)
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com.
+ [209.85.221.48]) by smtp.gmail.com with ESMTPSA id
+ 23-20020a170906329700b007305c007e43sm772159ejw.135.2022.08.04.14.59.17
  for <amd-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 04 Aug 2022 11:52:25 -0700 (PDT)
-Received: by mail-wr1-f47.google.com with SMTP id h13so792331wrf.6
- for <amd-gfx@lists.freedesktop.org>; Thu, 04 Aug 2022 11:52:25 -0700 (PDT)
-X-Received: by 2002:adf:edcb:0:b0:21e:d043:d271 with SMTP id
- v11-20020adfedcb000000b0021ed043d271mr2265646wro.274.1659639145076; Thu, 04
- Aug 2022 11:52:25 -0700 (PDT)
+ Thu, 04 Aug 2022 14:59:18 -0700 (PDT)
+Received: by mail-wr1-f48.google.com with SMTP id p10so1228528wru.8
+ for <amd-gfx@lists.freedesktop.org>; Thu, 04 Aug 2022 14:59:17 -0700 (PDT)
+X-Received: by 2002:a5d:638b:0:b0:220:6e1a:8794 with SMTP id
+ p11-20020a5d638b000000b002206e1a8794mr2534090wru.193.1659650357549; Thu, 04
+ Aug 2022 14:59:17 -0700 (PDT)
 MIME-Version: 1.0
 References: <YuwRyQYPCb1FD+mr@debian>
-In-Reply-To: <YuwRyQYPCb1FD+mr@debian>
+ <CAHk-=whptVSSZL=wSUQJdRBeVfS+Xy_K4anQ7eQOky7XUrXhUQ@mail.gmail.com>
+ <CAK8P3a2bEaExue0OtNeLa2CVzBx-1dE9w2HZ2PAV5N8Ct9G=JQ@mail.gmail.com>
+ <YuwvfsztWaHvquwC@dev-arch.thelio-3990X>
+In-Reply-To: <YuwvfsztWaHvquwC@dev-arch.thelio-3990X>
 From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Thu, 4 Aug 2022 11:52:09 -0700
-X-Gmail-Original-Message-ID: <CAHk-=whptVSSZL=wSUQJdRBeVfS+Xy_K4anQ7eQOky7XUrXhUQ@mail.gmail.com>
-Message-ID: <CAHk-=whptVSSZL=wSUQJdRBeVfS+Xy_K4anQ7eQOky7XUrXhUQ@mail.gmail.com>
+Date: Thu, 4 Aug 2022 14:59:01 -0700
+X-Gmail-Original-Message-ID: <CAHk-=whpa_FJjvzWdWdSzecTbVtndbQqg35=_o+ohM3X1_xKTA@mail.gmail.com>
+Message-ID: <CAHk-=whpa_FJjvzWdWdSzecTbVtndbQqg35=_o+ohM3X1_xKTA@mail.gmail.com>
 Subject: Re: mainline build failure for x86_64 allmodconfig with clang
-To: "Sudip Mukherjee (Codethink)" <sudipm.mukherjee@gmail.com>
+To: Nathan Chancellor <nathan@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Fri, 05 Aug 2022 07:24:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -73,30 +76,27 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
- clang-built-linux <llvm@lists.linux.dev>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Nathan Chancellor <nathan@kernel.org>,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+Cc: Arnd Bergmann <arnd@kernel.org>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ David Airlie <airlied@linux.ie>, clang-built-linux <llvm@lists.linux.dev>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
  Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+ "Sudip Mukherjee \(Codethink\)" <sudipm.mukherjee@gmail.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 4, 2022 at 11:37 AM Sudip Mukherjee (Codethink)
-<sudipm.mukherjee@gmail.com> wrote:
+On Thu, Aug 4, 2022 at 1:43 PM Nathan Chancellor <nathan@kernel.org> wrote:
 >
-> git bisect points to 3876a8b5e241 ("drm/amd/display: Enable building new display engine with KCOV enabled").
+> I do note that commit 1b54a0121dba ("drm/amd/display: Reduce stack size
+> in the mode support function") did have a workaround for GCC. It appears
+> clang will still inline mode_support_configuration(). If I mark it as
+> 'noinline', the warning disappears in that file.
 
-Ahh. So that was presumably why it was disabled before - because it
-presumably does disgusting things that make KCOV generate even bigger
-stack frames than it already has.
+That sounds like probably the best option for now. Gcc does not inline
+that function (at least for allmodconfig builds in my testing), so if
+that makes clang match what gcc does, it seems a reasonable thing to
+do.
 
-Those functions do seem to have fairly big stack footprints already (I
-didn't try to look into why, I assume it's partly due to aggressive
-inlining, and probably some automatic structures on stack). But gcc
-doesn't seem to make it all that much worse with KCOV (and my clang
-build doesn't enable KCOV).
-
-So it's presumably some KCOV-vs-clang thing. Nathan?
-
-              Linus
+            Linus
