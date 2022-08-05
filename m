@@ -1,65 +1,69 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE62B58AF66
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 Aug 2022 20:00:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54D1458AF68
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 Aug 2022 20:01:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F61591EB2;
-	Fri,  5 Aug 2022 18:00:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC23B94732;
+	Fri,  5 Aug 2022 18:00:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2073.outbound.protection.outlook.com [40.107.243.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45F5AB93EB
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Aug 2022 18:00:32 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2087.outbound.protection.outlook.com [40.107.94.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 329B6B936F
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Aug 2022 18:00:41 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nHX9c21Y2mpw82arTJrfBfQ+sCqEDyBfXDWoq1TIKFBlkI5IbXmv29oqnJi+ZRsqOTYmWOb++BFG3xb7ZA5ueQIjcOssilOPwC1q80vdY4HRZ2dII6YKKCOepRow5UTC95jgFB/OdhBZV3+8m5askNN1QemCPhG1vC7sIzImdqwDn2wDGQCBYTdx2HJGtz4XcBB+LnwyT/fdpUyGr0HL8YfOekGlQHAIFd+Dpsg5PhcS83hfsyvN76soLvUzO08NRMLK2kPu660crELsFtwGVNPINApm5qA12WyUyPWNsrLX8P7bxPFlk/Xiwh5siiLI8axQQuoF+A/ZVdUVUezebw==
+ b=G5pU0bRnBF5hE3dP4abRGCEyNgt0gut6U2yilntyB8JSYudJDTMpgk0+ssO//DotTAp6fvmhjT7S0rCggmkESJAE8gvy+blU8H4j25CWm4S7VCGPbNT9USxodQV0IZTq9+One3KOUOuQO5op+z/0k8EwcRgOdGoLLbhfyoXGhVTWv6uKhHcc6tyZ3KWQtYQNHsxR1Y5or3orceZ1lW/gvHti52j10yK4hUXKkqynJH3MB3L9XE41hKACTiRs9nrJENTuxESxztrWcWoKs2OEZnnxBtZYn3rlbLozuHzgP3pZwTaUpAuBRU0UkHyFTAfuw4OBoHe0wgXaOIurVx2jlw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ki7CfdNZB0MAcArp34XrEYxF+WlC6mtdaxwCf8S+7PI=;
- b=FxgNOlIghz/MUQIeNx+fWgckIDb0+gNYSihuMD+dTVG2N+e5pAjQgfJorRn1UTFUskOHS+3bAISfxSfZ+jbHYOzMRCGPXy88wtF0KpT+5y5Rlboh/YNpl6iB29TGn7dzJ7IHbqV2glZvlvVs/Chpc5CLon2UFFfUbRTiWuryhkbU3iGGmkSVTbU/2qKwTwLuRcs4dJylym1DINcnLSRnSVuQVfZVyHNRKi0POinsjRP/Pw7Beh2IGewflceZMivp2ZRgblN9swi9b6fMhSbJerO98+LijYrSQGOh+6vtHvZtJ7CwzC4Bq82x7cqiU2vMWDzEKC4CCFRsos00ecPm8A==
+ bh=Z2IH6/An2AneOdbg5KelGhFDeoa6dloIE4o3c2aquWA=;
+ b=Rocyw5GtK9Mx3LwCbBuiKwJ4mXhniGH0aU5rKR/DAhBgsZVKYYf+I/K5Mx+oXtUcgW1nidJQKzWapCwDyqOWagpBcm/P8JQlmeK4o5fNqXbt3ifMX2t6cA/82M3JVAdIUnbP5Z8VU/VeseHKhTD7l/i0GaDTZgfoM02bvmQkbFcPwZYJ45QCoOaGUzkoMsbRPNTzQdowAIi8MhT1zTjfkaJ2IUFoVyM38+uLY9DinUzsWd/PfXu8VoWkcoec/Kx7iGdkXT6bSn42VOHg+pMFyLNE+SP1ZNyA7CxevVGYSp6kzYxT8wSm8EWoxDJ7+EhEXaLN5RHsqWZlXwqh9ihLaw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ki7CfdNZB0MAcArp34XrEYxF+WlC6mtdaxwCf8S+7PI=;
- b=m6hrd50nmW9ieG4LS4vhtlWVpD2IUhEhOU2WF66C4MnbpeEpD7kPR0xsHVYLUUVoL1T16DOQBP/GSJgXAhPuRxxibfffhjQ6y+WIjIwwGi8E911jM1+4fKLku5LfXo7Lm6i5jdt+Z6tbeaXpEnXl3sQrwMSEYFDrfsgBsZ4zteU=
-Received: from MW4PR04CA0328.namprd04.prod.outlook.com (2603:10b6:303:82::33)
- by SN7PR12MB7130.namprd12.prod.outlook.com (2603:10b6:806:2a2::22)
+ bh=Z2IH6/An2AneOdbg5KelGhFDeoa6dloIE4o3c2aquWA=;
+ b=gTGpUdBaSaPaRNdL9k/yyCvH1GMEK/+7+wrUMTkTZqDo7qZxEM6z+DuXwCP9PRqA7O2eylpUQaWtjZ01t4+WlQWHOo7vjGeCJY6DiNrJPi0S9orUkec7130JWo/1/8WHqN7yZN4+YxJD0O2DqX77N3N8Zc652xBEGKlFn0iQTNI=
+Received: from BN8PR07CA0003.namprd07.prod.outlook.com (2603:10b6:408:ac::16)
+ by BYAPR12MB2887.namprd12.prod.outlook.com (2603:10b6:a03:12e::24)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.16; Fri, 5 Aug
- 2022 18:00:28 +0000
-Received: from CO1NAM11FT026.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:82:cafe::a1) by MW4PR04CA0328.outlook.office365.com
- (2603:10b6:303:82::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.16 via Frontend
- Transport; Fri, 5 Aug 2022 18:00:28 +0000
+ 2022 18:00:33 +0000
+Received: from BN8NAM11FT064.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:ac:cafe::8f) by BN8PR07CA0003.outlook.office365.com
+ (2603:10b6:408:ac::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.14 via Frontend
+ Transport; Fri, 5 Aug 2022 18:00:33 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT026.mail.protection.outlook.com (10.13.175.67) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BN8NAM11FT064.mail.protection.outlook.com (10.13.176.160) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5504.14 via Frontend Transport; Fri, 5 Aug 2022 18:00:28 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.5504.14 via Frontend Transport; Fri, 5 Aug 2022 18:00:33 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 5 Aug
- 2022 13:00:26 -0500
+ 2022 13:00:32 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 5 Aug
+ 2022 13:00:32 -0500
 Received: from tom-HP.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Fri, 5 Aug 2022 13:00:22 -0500
+ Transport; Fri, 5 Aug 2022 13:00:27 -0500
 From: Tom Chung <chiahsuan.chung@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 18/32] drm/amd/display: Document pipe split policy
-Date: Sat, 6 Aug 2022 01:58:12 +0800
-Message-ID: <20220805175826.2992171-19-chiahsuan.chung@amd.com>
+Subject: [PATCH 19/32] drm/amd/display: Expand documentation for timing
+Date: Sat, 6 Aug 2022 01:58:13 +0800
+Message-ID: <20220805175826.2992171-20-chiahsuan.chung@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220805175826.2992171-1-chiahsuan.chung@amd.com>
 References: <20220805175826.2992171-1-chiahsuan.chung@amd.com>
@@ -68,26 +72,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: cf43b7bb-22e8-4891-df70-08da770c618f
-X-MS-TrafficTypeDiagnostic: SN7PR12MB7130:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1a21e471-c89e-4241-6e27-08da770c643e
+X-MS-TrafficTypeDiagnostic: BYAPR12MB2887:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: laxrE/R7q00T6yDwzYG5/txqY8IhpGE6/VbAfN60zYQzoRItApq5v330tJ4FB05GC9+98oGoNZHHPhPW/xVyqgP3Jj4L/KGGr4EogmVfbwKx1zbDgBkHhcV2Zu4MyjeB9Y/ogpuBQ2LLf75IoZzvLca3d2yPdYWDsMpzXaRN5FPDNMgGnU2rwgA6WZCDzdxctkdKV7dOR0Owq1T6hA8+E81zKSHcqOD6MN4RPSfWQx4fhLYS3O/3Z0ckvYr5ENL4yrkgnJwV4WB7jWNCeG8lgRSZDlOhqQ7AFGh2JdN4xUb0cpjISOerv1FRlIbddfbXbBxwmNiFdEjJuEEirMchx5DD/DXjQqjkYDz+5+5UGEkG+Loz3RcujkqokD7MsRAeeGgSqEwJrfoDB0hWGPZDKLCbhZK8vfMvcfEb2a/s1QOUStsQTE5gRRX9+tq+gSr3qvJx0D6cWc6oYfqBEcQUwS/9Zso2AsOBtGn63xfKd3i85StyBvU6RZvSJkHGNUSIbHKvoY8P5B5+yv/EhULD+DvN31GdFUv9CrO6wVZ3Q1Hfe+BqXG3wfwZy69H9LYmep4vW4I77xgbFvdWC4Nwy0ZIjgeHueM7yTh2Dz4v62fVE6oe4MR6/vMTFjRnIOSlfxvXZC3IL5g5YP2huCMB4Q2GXGpRu85zHJCBuUn4gzgE3mj4NiEq8adItQBWJc0OmbQfXndTfy0WQ1o1F9rWyoRXYxWHCoIFqISZFynNWa4cqrQEAqQt17YIy2tZo8WY+DTIuzpdO34Xs/YPpbh1hZ6DzrIVipnPpmlDlHsANCXDNOMMoH7OL0dJRPUVQtRLx/4Ypsn0DWmQgsxEmKPrmnA==
+X-Microsoft-Antispam-Message-Info: Yik7RQMC5nFDfqSLw2IsZ8VU/DVddzfyalu3ivIywYPppGQdg+3UaoeeKWxGvjB324CTlbPZXtLSam6CURymxe00LDuCoGwmfWQGw+VUDZaxBP6KhKzZXFNx+vvAszxxpOkXBbtxxOlnn7GYglbIGYl6OJi9L1oczk4tyPTFasKXhk5HyqapEwOyivqyKOaarQdMoDJDqw5HGAelGcwQ8dwD6IIm7+3JjukHOxlDiJhy4AFZdEpgrQ1QctAY46WBoJF0TR2uaLsYcGA9dvaBDnA/qFf/dcDtYC4A6rBJWxSw+802ZU166dJW9ntWmlb1yQ2EYxU43SsJr2EIdmZ5Ccpo9cY6xdKwR4uwfVlnfUdm7lyklO1LY/jx7kN0n80PuPpwzsgt0bTis8IxKeXwPUajF+FRmoufbGlHJuoNXcxugtLYj+vCiXQTvrheUENPFCYzDP9cXqT5KX9RBVuxi+FGyk2D7AoimnE0g3kN/naa6PAN3fKFmuMsNuLL6efAIgkflbm6DSW1OIo1L0A0Jw0bP2ccRLMG3Wrhjg0Ff6OL21rg3Sn/hG/jhGyUw5PwrIzNZwbBmaDwCM0n8UhQvIVjW9T+jQiOHeJGcgKGiiI1x7fVKWfwH/7CehoY9PXAYNnO4lP18oAcDP8s7PKzXnxs4Agmewa6z2VHY4TpmCAUDiz2JwcgH8NUpp64zFZJUv3kyGumJMZ06/hHP9Sn8IR7ZmrPILfoHoDcUhVLCSFMibp2dQrd+VAV6Z7T+9EfjVngazSc60lAmEZ4t+C0FqGMTSzN2WzrjYHYqaogilLRwLYD0MuLIjHU9Cixfq1YiinLKjUuCraZkS+R3n0qGg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(346002)(136003)(39860400002)(376002)(396003)(46966006)(36840700001)(40470700004)(86362001)(478600001)(7696005)(40460700003)(41300700001)(36860700001)(6666004)(5660300002)(82310400005)(2906002)(81166007)(47076005)(40480700001)(26005)(2616005)(426003)(83380400001)(1076003)(356005)(336012)(82740400003)(70206006)(8936002)(8676002)(4326008)(70586007)(54906003)(6916009)(36756003)(186003)(316002)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230016)(4636009)(346002)(376002)(396003)(136003)(39860400002)(40470700004)(46966006)(36840700001)(8936002)(36860700001)(2906002)(83380400001)(81166007)(356005)(82740400003)(40460700003)(70586007)(70206006)(316002)(54906003)(6916009)(8676002)(478600001)(2616005)(336012)(1076003)(426003)(186003)(47076005)(6666004)(41300700001)(5660300002)(7696005)(26005)(40480700001)(86362001)(82310400005)(36756003)(4326008)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2022 18:00:28.4759 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cf43b7bb-22e8-4891-df70-08da770c618f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2022 18:00:33.0847 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1a21e471-c89e-4241-6e27-08da770c643e
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT026.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT064.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7130
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB2887
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,81 +113,158 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 
-In the DCN code, we can find some references to three different pipe
-split policies but no clear description. This commit adds some
-kernel-doc that explains more about these options and a little bit of
-their impact.
+The timing programming inside DCN is far from trivial, it has multiple
+parameters associated with that, and the lack of documentation does not
+help comprehend this already complicated topic. This commit tries to
+improve this situation by expanding the documentation of dc_crtc_timing
+and the VTG program function.
 
 Reviewed-by: Harry Wentland <Harry.Wentland@amd.com>
 Acked-by: Tom Chung <chiahsuan.chung@amd.com>
 Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h | 35 +++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+ drivers/gpu/drm/amd/display/dc/dc_hw_types.h  | 86 +++++++++++++++++++
+ .../gpu/drm/amd/display/dc/dcn10/dcn10_optc.c | 14 +++
+ 2 files changed, 100 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index f2accacae85b..07feb8551436 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -385,9 +385,31 @@ enum dcc_option {
- 	DCC_HALF_REQ_DISALBE = 2,
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_hw_types.h b/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
+index d158aa4985f8..848db8676adf 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
+@@ -812,22 +812,108 @@ struct dc_dsc_config {
+ 	bool is_dp; /* indicate if DSC is applied based on DP's capability */
+ 	uint32_t mst_pbn; /* pbn of display on dsc mst hub */
  };
++
++/**
++ * struct dc_crtc_timing - Timing parameters used to configure DCN blocks
++ *
++ * DCN provides multiple signals and parameters that can be used to adjust
++ * timing parameters, this struct aggregate multiple of these values for easy
++ * access. In this struct, fields prefixed with h_* are related to horizontal
++ * timing, and v_* to vertical timing. Keep in mind that when we talk about
++ * vertical timings, the values, in general, are described in the number of
++ * lines; on the other hand, the horizontal values are in pixels.
++ */
+ struct dc_crtc_timing {
++	/**
++	 * @h_total: The total number of pixels from the rising edge of HSync
++	 * until the rising edge of the current HSync.
++	 */
+ 	uint32_t h_total;
++
++	/**
++	 * @h_border_left: The black pixels related to the left border
++	 */
+ 	uint32_t h_border_left;
++
++	/**
++	 * @h_addressable: It is the range of pixels displayed horizontally.
++	 * For example, if the display resolution is 3840@2160, the horizontal
++	 * addressable area is 3840.
++	 */
+ 	uint32_t h_addressable;
++
++	/**
++	 * @h_border_right: The black pixels related to the right border
++	 */
+ 	uint32_t h_border_right;
++
++	/**
++	 * @h_front_porch: Period (in pixels) between HBlank start and the
++	 * rising edge of HSync.
++	 */
+ 	uint32_t h_front_porch;
++
++	/**
++	 * @h_sync_width: HSync duration in pixels.
++	 */
+ 	uint32_t h_sync_width;
+ 
++	/**
++	 * @v_total: It is the total number of lines from the rising edge of
++	 * the previous VSync until the rising edge of the current VSync.
++	 *
++	 *          |--------------------------|
++	 *          +-+        V_TOTAL         +-+
++	 *          | |                        | |
++	 * VSync ---+ +--------- // -----------+ +---
++	 */
+ 	uint32_t v_total;
++
++	/**
++	 * @v_border_top: The black border on the top.
++	 */
+ 	uint32_t v_border_top;
++
++	/**
++	 * @v_addressable: It is the range of the scanout at which the
++	 * framebuffer is displayed. For example, if the display resolution is
++	 * 3840@2160, the addressable area is 2160 lines, or if the resolution
++	 * is 1920x1080, the addressable area is 1080 lines.
++	 */
+ 	uint32_t v_addressable;
++
++	/**
++	 * @v_border_bottom: The black border on the bottom.
++	 */
+ 	uint32_t v_border_bottom;
++
++	/**
++	 * @v_front_porch: Period (in lines) between VBlank start and rising
++	 * edge of VSync.
++	 *                  +-+
++	 * VSync            | |
++	 *        ----------+ +--------...
++	 *          +------------------...
++	 * VBlank   |
++	 *        --+
++	 *          |-------|
++	 *        v_front_porch
++	 */
+ 	uint32_t v_front_porch;
++
++	/**
++	 * @v_sync_width: VSync signal width in lines.
++	 */
+ 	uint32_t v_sync_width;
+ 
++	/**
++	 * @pix_clk_100hz: Pipe pixel precision
++	 *
++	 * This field is used to communicate pixel clocks with 100 Hz accuracy
++	 * from dc_crtc_timing to BIOS command table.
++	 */
+ 	uint32_t pix_clk_100hz;
++
+ 	uint32_t min_refresh_in_uhz;
+ 
+ 	uint32_t vic;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
+index 1b14250d1b33..bcca4847590d 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
+@@ -312,6 +312,20 @@ void optc1_program_timing(
+ 	}
+ }
  
 +/**
-+ * enum pipe_split_policy - Pipe split strategy supported by DCN
++ * optc1_set_vtg_params - Set Vertical Timing Generator (VTG) parameters
 + *
-+ * This enum is used to define the pipe split policy supported by DCN. By
-+ * default, DC favors MPC_SPLIT_DYNAMIC.
-+ */
- enum pipe_split_policy {
-+	/**
-+	 * @MPC_SPLIT_DYNAMIC: DC will automatically decide how to split the
-+	 * pipe in order to bring the best trade-off between performance and
-+	 * power consumption. This is the recommended option.
-+	 */
- 	MPC_SPLIT_DYNAMIC = 0,
-+
-+	/**
-+	 * @MPC_SPLIT_DYNAMIC: Avoid pipe split, which means that DC will not
-+	 * try any sort of split optimization.
-+	 */
- 	MPC_SPLIT_AVOID = 1,
-+
-+	/**
-+	 * @MPC_SPLIT_DYNAMIC: With this option, DC will only try to optimize
-+	 * the pipe utilization when using a single display; if the user
-+	 * connects to a second display, DC will avoid pipe split.
-+	 */
- 	MPC_SPLIT_AVOID_MULT_DISP = 2,
- };
- 
-@@ -622,6 +644,14 @@ struct dc_state;
- struct resource_pool;
- struct dce_hwseq;
- 
-+/**
-+ * struct dc_debug_options - DC debug struct
++ * @optc: timing_generator struct used to extract the optc parameters
++ * @dc_crtc_timing: Timing parameters configured
++ * @program_fp2: Boolean value indicating if FP2 will be programmed or not
 + *
-+ * This struct provides a simple mechanism for developers to change some
-+ * configurations, enable/disable features, and activate extra debug options.
-+ * This can be very handy to narrow down whether some specific feature is
-+ * causing an issue or not.
++ * OTG is responsible for generating the global sync signals, including
++ * vertical timing information for each HUBP in the dcfclk domain. Each VTG is
++ * associated with one OTG that provides HUBP with vertical timing information
++ * (i.e., there is 1:1 correspondence between OTG and VTG). This function is
++ * responsible for setting the OTG parameters to the VTG during the pipe
++ * programming.
 + */
- struct dc_debug_options {
- 	bool native422_support;
- 	bool disable_dsc;
-@@ -641,6 +671,11 @@ struct dc_debug_options {
- 	bool disable_stutter;
- 	bool use_max_lb;
- 	enum dcc_option disable_dcc;
-+
-+	/**
-+	 * @pipe_split_policy: Define which pipe split policy is used by the
-+	 * display core.
-+	 */
- 	enum pipe_split_policy pipe_split_policy;
- 	bool force_single_disp_pipe_split;
- 	bool voltage_align_fclk;
+ void optc1_set_vtg_params(struct timing_generator *optc,
+ 		const struct dc_crtc_timing *dc_crtc_timing, bool program_fp2)
+ {
 -- 
 2.25.1
 
