@@ -2,69 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A21358AE5B
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 Aug 2022 18:47:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DCFDF58AE56
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 Aug 2022 18:47:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D4C4B8771;
-	Fri,  5 Aug 2022 16:47:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF5B4B876E;
+	Fri,  5 Aug 2022 16:46:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1CD9B873D
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Aug 2022 16:46:29 +0000 (UTC)
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2085.outbound.protection.outlook.com [40.107.100.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A528B875A
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Aug 2022 16:46:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=l3w6Xc3lZNBV3bo6L3eiuEc+E/dsaRx3w6/QJWO7cqe/ycPmtpi4bA/mQGl9uyF99PyL1CJU4AbmPHjAakPfo0bI8/5t9BokdGctabj/gxrdU8VEOvv4hIS6WzBbwpR11hAOfvzSISwCL8MVbSOIrZpPdeWRMOzmR4bud0mwLsJKzuifyLCZTZ/Ner9hAoA1/tvIjoaKRfSwwdhEsepaRHz7N3Ybgtvtq98H0SXfRWSpcryiFh1M1E12jk3pcAceBz/1TM+8vsL5s+t6a6ClRkaCqHQRKmotHaMcO8G4AHgJqomEVIoYwF1QF6ugu3TYcU/j+ey1yrUrUcNbaSQ3lA==
+ b=YsmwZRY94GaOV3AH2d3zNEUv9KR3XghGJtHdXMsKJAO+q8mv0S/NNJYal6/nu/fki4bn+VCWgX/YURA1ZF3EHLZAO8JJY6SiTALUo8w6zIYEhi37L4A1GkbehS/AZO4XLHL2W5aQ/44w9f+NtFPCo+oipFWioWEUjEFIzOhNmRMd+T2w5WfzELQpGlnYy22NbOqH4fbf9hMsPcLZg7SZp6queJfkDi7gPX9fMEhT+5f5K5dZ5zA61GP4kwYyqwfN79+AXdy1bU+uuDHluyz7Z2sOiNgBK4lqe6VDJW2yLJtZcpgYBULym7lk/W3XX2Tyt65zmyxqBtD6Ly233YeEaA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rgDjyDn73QmXGOLXu5AJcnr0S0c5YbAe03M5bBMDNRc=;
- b=jc9O1oIR6RGFaJPJNMUvBiqFG6RLu1FQ22C+xmqkgMy+zyLFfpRkqi01YLBiN12GdPzEwYc0BvwpLJ7N9g2Vnmj7MarzWaxgEHrdBm4Knw8B2a+lBuQQZKJk0huj7M7yarWH97BLU5hrN6156WsTd0W6k/RsM0qPIi5YtvZZ8JtfVk1ngr/kwlLWp5dACZHO5smEqIYCKRa8wl9FOPxUDNk0T0NTR14h1/an+/M8o+fuARv0YfT8SopxZ1QY/VusWAYkXSzYnW8vkALHGNZXbYrM7zi8mo/A8gsBc4Hm8E4LBdrL52q2EtxFms300S/DvRzy74DGOR1isFdN5jL8sw==
+ bh=YpBN0E4adx4g0AgIEULhK1xJpWevl0mvMb/KKu/XvaU=;
+ b=GDU/zxShcsEv1e21q1JglurcgW+Pr6DpuCOUqJC7vYo84t54hB+VmgGnXZFbjQX1NZx8NxsdFHrRz+AhYHL2MBRBSHd6pbwMHoc/vafEi/vl08IB31NXYigPSX+xK+xYiLkb0cCMGEzm4i03PRtIMdSDVjo98RJJumrCc4LSKABeULJwX0AhTVRZym945qt222eGtujR1I5D2+DAC22bBDiBD1I8kU27MsHUScI64I0vDvM61L0p4d0b9DE/Ek5bgPX51cplnRocJD5V4/v8MYXQkWKXkVZVJUU87B0gB7tjSeDoXwB3DC5r+ElLRyPnDCvcXLkTbZstewe3cybG1Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rgDjyDn73QmXGOLXu5AJcnr0S0c5YbAe03M5bBMDNRc=;
- b=HVwV1ecv918LU9wz6mL2cxCfIRV6QE8bQFwIXhaB8Pv4RZgJnsj+/rFeqigk3bmzJ40h165xwrNz3KP0ggZbT1wGjytcVQQPhxCH1rsHbZM9RsoIbd6UC7P2J/3Eg88k7B/0RBXR063jwHlX73XjmhwC8E0+u9f7L/P6mgAel9o=
-Received: from MW2PR16CA0028.namprd16.prod.outlook.com (2603:10b6:907::41) by
- MN2PR12MB3824.namprd12.prod.outlook.com (2603:10b6:208:16a::14) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=YpBN0E4adx4g0AgIEULhK1xJpWevl0mvMb/KKu/XvaU=;
+ b=iLGOFFrnaOca0ar05b6QbWfT3EAam1puDnQg/TygF6IDwywCdn/Dfte1nfVi+ipsPXErqbsjv9eX16Wbko7K3qTlnosGYPNqPMsGeF7pXMS710zBsrB+N0vXBKLPqn8xg9kkoFucJB3DJTrLtn5cVbX1ms1B+MLPDUWpYEHFPG4=
+Received: from MW4PR04CA0055.namprd04.prod.outlook.com (2603:10b6:303:6a::30)
+ by BN6PR12MB1252.namprd12.prod.outlook.com (2603:10b6:404:15::18)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.14; Fri, 5 Aug
- 2022 16:46:25 +0000
-Received: from CO1NAM11FT043.eop-nam11.prod.protection.outlook.com
- (2603:10b6:907:0:cafe::6) by MW2PR16CA0028.outlook.office365.com
- (2603:10b6:907::41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.16 via Frontend
- Transport; Fri, 5 Aug 2022 16:46:25 +0000
+ 2022 16:46:31 +0000
+Received: from CO1NAM11FT050.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:6a:cafe::50) by MW4PR04CA0055.outlook.office365.com
+ (2603:10b6:303:6a::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.15 via Frontend
+ Transport; Fri, 5 Aug 2022 16:46:30 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT043.mail.protection.outlook.com (10.13.174.193) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT050.mail.protection.outlook.com (10.13.174.79) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5504.14 via Frontend Transport; Fri, 5 Aug 2022 16:46:24 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.5504.14 via Frontend Transport; Fri, 5 Aug 2022 16:46:30 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 5 Aug
- 2022 11:46:24 -0500
+ 2022 11:46:29 -0500
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
  (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 5 Aug
- 2022 09:46:23 -0700
+ 2022 09:46:29 -0700
 Received: from tom-HP.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Fri, 5 Aug 2022 11:46:18 -0500
+ Transport; Fri, 5 Aug 2022 11:46:24 -0500
 From: Tom Chung <chiahsuan.chung@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 03/32] drm/amd/display: Move populate dml pipes from DCN314 to
- dml
-Date: Sat, 6 Aug 2022 00:43:00 +0800
-Message-ID: <20220805164329.2988533-4-chiahsuan.chung@amd.com>
+Subject: [PATCH 04/32] drm/amd/display: Drop FPU flags from Makefile
+Date: Sat, 6 Aug 2022 00:43:01 +0800
+Message-ID: <20220805164329.2988533-5-chiahsuan.chung@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220805164329.2988533-1-chiahsuan.chung@amd.com>
 References: <20220805164329.2988533-1-chiahsuan.chung@amd.com>
@@ -73,26 +72,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ebf1b69d-82ea-498b-513a-08da77020908
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3824:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5e4ba042-9d67-465f-5f1a-08da77020c68
+X-MS-TrafficTypeDiagnostic: BN6PR12MB1252:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GuZ/jbi6EKqHorWWZozuGWuU5QgVaYVwLyNH+LGtQcK99wnk5ScyCdQhdNx5tiFsR6Q2erGWR+Dt0a1EworXiOMQ/CY9iaEGt1pSRkg6QsksPApp3T8EGRKZvQuWgm9/Q+M1rDftfgUyY1eaMVGr3hSsVp1pf5P3L5bdKe1tm+a0ex7DLihixPlqQUdeRPI8DNsBqK2SExil4ZdTjr4i41ze5vxgrKzLSCfgrnhoeNe9PS/J4xdTAhVMnmy8XLzF9IUCeH+oVnvBrXn0llVXyGa3TZao9/TqGAA+fWTbhbp8Tm7L+x3fLWY608kOVlfcDcJ+fX9ub7qWQ6q6+H9EIP7U+p9K7TkFkxL8+NARvlExLxrzUKwh0G2as3SWTpkFFcB/0MccBHq+czDwZLw0E+HwIYBz3Lv1UzUnCZJdAvQ6VLqwuaaRY9JMuRLN6UAaYwKUtj0D0wRw4D37+dPzFXOAqbBVdsR9uqIRuA/M1JRttEHW5MQtxKsvvV7wXcrEa5Yx5KINysZpDiKzSwRQdx4frcA0uPeqp4PxVE403in7JV8d9ADv4MLbLSkGtOVsigNEH/Qx9an3ufq7vyW9cF418rC3L+Yv/XpBpJB5syCnKVErwNkYFzlrJE4NBj3XXWfa5Jzi9zMix6nBM3jkNe1Qmn6n7DcTIaX9N/QeChMT84wAn6iifWKpJnLChOsvTbzrY2Hh7Muq+u/tEEEDuxMmVFzab+KW1OMSrq7uODQ00KrReVCpsks282hIriHSz5e7J+dXuATs5/B9811GL2EiTIqJXi8WbsbWxIsONGyMhKE1pKarbBDlZGCA4Cbpnskm6PlYQtkhamuj53ZX6A==
+X-Microsoft-Antispam-Message-Info: 66Tt/MooqwmZxOvg4JLOZvdu0s1VDAgFoR6u0CWmhe115hVjGNeRyMWc4Nb4xHK9SChCrPHSusMTT0aScZ/gamif0j3FcsqfrsOez9/RUYkJ6tXVKBa8lY4R9CbXv+/R2NW95SkBMi1O98ZyAsb0Q9JBOxtA6nLickLIE6DrkKYYTb/BMSWUcrLusUExd6Dk6cthLmM998yLDT9BWqNlDfMHXU7SrbvevcyAwb/Zo5ABe0WOEMj8LUVy9aud6EqQCYRDCkYLiTGSYyaw1kfFcrdq+k0ALvohc3CeryZqcTN8Gklop1Jy1hjCoXCxGSBZRlGUhVxu8UjHB810yq63ShBAoS/W3K7YHKw7xpmCFQGe+YsSRyAQ5yEVpuFHTb04O822aRxEUjOo0WwhAmISu2CS8/JCX8UXQgidPOE0AM4jSgkleCjv0u4FTuNA1l8c0ua/tmgUD4v/su9yJfoJwLdJaMLJmQfJ45kCWGCAFFEiXwbHlflP9SC4Q/SvrKPdK5q6LPWogB7do0hBPqGg13EEfW6pALvv1IUvOEkT0RYJZO88uXMpc6llQ3Riu8vb61vyF2Y+kKoVSify2CJj1X9oWbF2YrP4PE2bKIy5YKTSdgaLrui/kfqLjDIlp0D/4AC39fwnSIIpRMH9ufM0yEY9TzHm8L2Id1CjKYmci1CvnNoe4kqeUojqKophM/G0UThhgi/2Qn9+kGEDwgrdwfi8Ld4ePY9wHNPXpGHoYP2kl3cHSw+KKQUwlhRWmgHr9rKzQ23+lCXDDtM8AkYWPMRhqreqlXY1oa4OPTtS9tTyrXVhCF4euZDwNY3KRgTWcg7vU8cpMViXlIQ1UHQZ3g==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(396003)(136003)(346002)(39860400002)(376002)(46966006)(40470700004)(36840700001)(82740400003)(81166007)(356005)(36860700001)(8676002)(186003)(426003)(2616005)(47076005)(83380400001)(8936002)(1076003)(4326008)(40460700003)(336012)(70206006)(70586007)(5660300002)(82310400005)(40480700001)(30864003)(2906002)(41300700001)(478600001)(6666004)(7696005)(26005)(54906003)(6916009)(86362001)(316002)(36756003)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230016)(4636009)(396003)(136003)(39860400002)(346002)(376002)(40470700004)(46966006)(36840700001)(70586007)(6666004)(70206006)(54906003)(1076003)(82740400003)(8676002)(5660300002)(4326008)(336012)(47076005)(356005)(41300700001)(426003)(81166007)(2906002)(8936002)(316002)(83380400001)(186003)(40480700001)(86362001)(36756003)(26005)(478600001)(36860700001)(7696005)(40460700003)(82310400005)(6916009)(2616005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2022 16:46:24.9651 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ebf1b69d-82ea-498b-513a-08da77020908
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2022 16:46:30.5497 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5e4ba042-9d67-465f-5f1a-08da77020c68
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT043.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT050.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3824
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1252
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,277 +114,52 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 
-The function responsible for populating DML pipes has some FPU
-operations, and for this reason, it must be moved to the dml folder.
-This commit moves such function from resource to the fpu file under the
-dml folder.
+At this point, we isolate the FPU code associated with DCN314 under the
+DML folder. This commit drops the FPU flags from the Makefile.
 
 Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Tom Chung <chiahsuan.chung@amd.com>
 Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../amd/display/dc/dcn314/dcn314_resource.c   | 101 +---------------
- .../amd/display/dc/dml/dcn314/dcn314_fpu.c    | 110 ++++++++++++++++++
- .../amd/display/dc/dml/dcn314/dcn314_fpu.h    |   3 +
- 3 files changed, 117 insertions(+), 97 deletions(-)
+ .../gpu/drm/amd/display/dc/dcn314/Makefile    | 25 -------------------
+ 1 file changed, 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
-index 376488198363..1f095f05d986 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
-@@ -1645,109 +1645,16 @@ static struct clock_source *dcn31_clock_source_create(
- 	return NULL;
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/Makefile b/drivers/gpu/drm/amd/display/dc/dcn314/Makefile
+index e3b5a95e03b1..702c28c2560e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn314/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/dcn314/Makefile
+@@ -13,31 +13,6 @@
+ DCN314 = dcn314_resource.o dcn314_hwseq.o dcn314_init.o \
+ 		dcn314_dio_stream_encoder.o dcn314_dccg.o dcn314_optc.o
  
--static bool is_dual_plane(enum surface_pixel_format format)
--{
--	return format >= SURFACE_PIXEL_FORMAT_VIDEO_BEGIN || format == SURFACE_PIXEL_FORMAT_GRPH_RGBE_ALPHA;
--}
+-ifdef CONFIG_X86
+-CFLAGS_$(AMDDALPATH)/dc/dcn314/dcn314_resource.o := -mhard-float -msse
+-endif
 -
- static int dcn314_populate_dml_pipes_from_context(
- 	struct dc *dc, struct dc_state *context,
- 	display_e2e_pipe_params_st *pipes,
- 	bool fast_validate)
- {
--	int i, pipe_cnt;
--	struct resource_context *res_ctx = &context->res_ctx;
--	struct pipe_ctx *pipe;
--	bool upscaled = false;
+-ifdef CONFIG_PPC64
+-CFLAGS_$(AMDDALPATH)/dc/dcn314/dcn314_resource.o := -mhard-float -maltivec
+-endif
 -
--	dcn20_populate_dml_pipes_from_context(dc, context, pipes, fast_validate);
+-ifdef CONFIG_CC_IS_GCC
+-ifeq ($(call cc-ifversion, -lt, 0701, y), y)
+-IS_OLD_GCC = 1
+-endif
+-endif
 -
--	for (i = 0, pipe_cnt = 0; i < dc->res_pool->pipe_count; i++) {
--		struct dc_crtc_timing *timing;
+-ifdef CONFIG_X86
+-ifdef IS_OLD_GCC
+-# Stack alignment mismatch, proceed with caution.
+-# GCC < 7.1 cannot compile code using `double` and -mpreferred-stack-boundary=3
+-# (8B stack alignment).
+-CFLAGS_$(AMDDALPATH)/dc/dcn314/dcn314_resource.o += -mpreferred-stack-boundary=4
+-else
+-CFLAGS_$(AMDDALPATH)/dc/dcn314/dcn314_resource.o += -msse2
+-endif
+-endif
 -
--		if (!res_ctx->pipe_ctx[i].stream)
--			continue;
--		pipe = &res_ctx->pipe_ctx[i];
--		timing = &pipe->stream->timing;
--
--		if (dc_extended_blank_supported(dc) && pipe->stream->adjust.v_total_max == pipe->stream->adjust.v_total_min
--			&& pipe->stream->adjust.v_total_min > timing->v_total)
--			pipes[pipe_cnt].pipe.dest.vtotal = pipe->stream->adjust.v_total_min;
--
--		if (pipe->plane_state &&
--				(pipe->plane_state->src_rect.height < pipe->plane_state->dst_rect.height ||
--				pipe->plane_state->src_rect.width < pipe->plane_state->dst_rect.width))
--			upscaled = true;
--
--		/*
--		 * Immediate flip can be set dynamically after enabling the plane.
--		 * We need to require support for immediate flip or underflow can be
--		 * intermittently experienced depending on peak b/w requirements.
--		 */
--		pipes[pipe_cnt].pipe.src.immediate_flip = true;
--
--		pipes[pipe_cnt].pipe.src.unbounded_req_mode = false;
--		pipes[pipe_cnt].pipe.src.hostvm = dc->res_pool->hubbub->riommu_active;
--		pipes[pipe_cnt].pipe.src.gpuvm = true;
--		pipes[pipe_cnt].pipe.src.dcc_fraction_of_zs_req_luma = 0;
--		pipes[pipe_cnt].pipe.src.dcc_fraction_of_zs_req_chroma = 0;
--		pipes[pipe_cnt].pipe.dest.vfront_porch = timing->v_front_porch;
--		pipes[pipe_cnt].pipe.src.dcc_rate = 3;
--		pipes[pipe_cnt].dout.dsc_input_bpc = 0;
--
--		if (pipes[pipe_cnt].dout.dsc_enable) {
--			switch (timing->display_color_depth) {
--			case COLOR_DEPTH_888:
--				pipes[pipe_cnt].dout.dsc_input_bpc = 8;
--				break;
--			case COLOR_DEPTH_101010:
--				pipes[pipe_cnt].dout.dsc_input_bpc = 10;
--				break;
--			case COLOR_DEPTH_121212:
--				pipes[pipe_cnt].dout.dsc_input_bpc = 12;
--				break;
--			default:
--				ASSERT(0);
--				break;
--			}
--		}
--
--		pipe_cnt++;
--	}
--	context->bw_ctx.dml.ip.det_buffer_size_kbytes = DCN3_14_DEFAULT_DET_SIZE;
--
--	dc->config.enable_4to1MPC = false;
--	if (pipe_cnt == 1 && pipe->plane_state && !dc->debug.disable_z9_mpc) {
--		if (is_dual_plane(pipe->plane_state->format)
--				&& pipe->plane_state->src_rect.width <= 1920 && pipe->plane_state->src_rect.height <= 1080) {
--			dc->config.enable_4to1MPC = true;
--		} else if (!is_dual_plane(pipe->plane_state->format) && pipe->plane_state->src_rect.width <= 5120) {
--			/* Limit to 5k max to avoid forced pipe split when there is not enough detile for swath */
--			context->bw_ctx.dml.ip.det_buffer_size_kbytes = 192;
--			pipes[0].pipe.src.unbounded_req_mode = true;
--		}
--	} else if (context->stream_count >= dc->debug.crb_alloc_policy_min_disp_count
--			&& dc->debug.crb_alloc_policy > DET_SIZE_DEFAULT) {
--		context->bw_ctx.dml.ip.det_buffer_size_kbytes = dc->debug.crb_alloc_policy * 64;
--	} else if (context->stream_count >= 3 && upscaled) {
--		context->bw_ctx.dml.ip.det_buffer_size_kbytes = 192;
--	}
--
--	for (i = 0; i < dc->res_pool->pipe_count; i++) {
--		struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
--
--		if (!pipe->stream)
--			continue;
-+	int pipe_cnt;
+ AMD_DAL_DCN314 = $(addprefix $(AMDDALPATH)/dc/dcn314/,$(DCN314))
  
--		if (pipe->stream->signal == SIGNAL_TYPE_EDP && dc->debug.seamless_boot_odm_combine &&
--				pipe->stream->apply_seamless_boot_optimization) {
--
--			if (pipe->stream->apply_boot_odm_mode == dm_odm_combine_policy_2to1) {
--				context->bw_ctx.dml.vba.ODMCombinePolicy = dm_odm_combine_policy_2to1;
--				break;
--			}
--		}
--	}
-+	DC_FP_START();
-+	pipe_cnt = dcn314_populate_dml_pipes_from_context_fpu(dc, context, pipes, fast_validate);
-+	DC_FP_END();
- 
- 	return pipe_cnt;
- }
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn314/dcn314_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn314/dcn314_fpu.c
-index 340c3ca22345..d52a16d280e9 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn314/dcn314_fpu.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn314/dcn314_fpu.c
-@@ -26,7 +26,9 @@
- 
- #include "clk_mgr.h"
- #include "resource.h"
-+#include "dcn31/dcn31_hubbub.h"
- #include "dcn314_fpu.h"
-+#include "dml/dcn20/dcn20_fpu.h"
- #include "dml/display_mode_vba.h"
- 
- struct _vcs_dpi_ip_params_st dcn3_14_ip = {
-@@ -264,3 +266,111 @@ void dcn314_update_bw_bounding_box_fpu(struct dc *dc, struct clk_bw_params *bw_p
- 	else
- 		dml_init_instance(&dc->dml, &dcn3_14_soc, &dcn3_14_ip, DML_PROJECT_DCN31_FPGA);
- }
-+
-+static bool is_dual_plane(enum surface_pixel_format format)
-+{
-+	return format >= SURFACE_PIXEL_FORMAT_VIDEO_BEGIN || format == SURFACE_PIXEL_FORMAT_GRPH_RGBE_ALPHA;
-+}
-+
-+int dcn314_populate_dml_pipes_from_context_fpu(struct dc *dc, struct dc_state *context,
-+					       display_e2e_pipe_params_st *pipes,
-+					       bool fast_validate)
-+{
-+	int i, pipe_cnt;
-+	struct resource_context *res_ctx = &context->res_ctx;
-+	struct pipe_ctx *pipe;
-+	bool upscaled = false;
-+
-+	dc_assert_fp_enabled();
-+
-+	dcn20_populate_dml_pipes_from_context(dc, context, pipes, fast_validate);
-+
-+	for (i = 0, pipe_cnt = 0; i < dc->res_pool->pipe_count; i++) {
-+		struct dc_crtc_timing *timing;
-+
-+		if (!res_ctx->pipe_ctx[i].stream)
-+			continue;
-+		pipe = &res_ctx->pipe_ctx[i];
-+		timing = &pipe->stream->timing;
-+
-+		if (dc_extended_blank_supported(dc) && pipe->stream->adjust.v_total_max == pipe->stream->adjust.v_total_min
-+			&& pipe->stream->adjust.v_total_min > timing->v_total)
-+			pipes[pipe_cnt].pipe.dest.vtotal = pipe->stream->adjust.v_total_min;
-+
-+		if (pipe->plane_state &&
-+				(pipe->plane_state->src_rect.height < pipe->plane_state->dst_rect.height ||
-+				pipe->plane_state->src_rect.width < pipe->plane_state->dst_rect.width))
-+			upscaled = true;
-+
-+		/*
-+		 * Immediate flip can be set dynamically after enabling the plane.
-+		 * We need to require support for immediate flip or underflow can be
-+		 * intermittently experienced depending on peak b/w requirements.
-+		 */
-+		pipes[pipe_cnt].pipe.src.immediate_flip = true;
-+
-+		pipes[pipe_cnt].pipe.src.unbounded_req_mode = false;
-+		pipes[pipe_cnt].pipe.src.hostvm = dc->res_pool->hubbub->riommu_active;
-+		pipes[pipe_cnt].pipe.src.gpuvm = true;
-+		pipes[pipe_cnt].pipe.src.dcc_fraction_of_zs_req_luma = 0;
-+		pipes[pipe_cnt].pipe.src.dcc_fraction_of_zs_req_chroma = 0;
-+		pipes[pipe_cnt].pipe.dest.vfront_porch = timing->v_front_porch;
-+		pipes[pipe_cnt].pipe.src.dcc_rate = 3;
-+		pipes[pipe_cnt].dout.dsc_input_bpc = 0;
-+
-+		if (pipes[pipe_cnt].dout.dsc_enable) {
-+			switch (timing->display_color_depth) {
-+			case COLOR_DEPTH_888:
-+				pipes[pipe_cnt].dout.dsc_input_bpc = 8;
-+				break;
-+			case COLOR_DEPTH_101010:
-+				pipes[pipe_cnt].dout.dsc_input_bpc = 10;
-+				break;
-+			case COLOR_DEPTH_121212:
-+				pipes[pipe_cnt].dout.dsc_input_bpc = 12;
-+				break;
-+			default:
-+				ASSERT(0);
-+				break;
-+			}
-+		}
-+
-+		pipe_cnt++;
-+	}
-+	context->bw_ctx.dml.ip.det_buffer_size_kbytes = DCN3_14_DEFAULT_DET_SIZE;
-+
-+	dc->config.enable_4to1MPC = false;
-+	if (pipe_cnt == 1 && pipe->plane_state && !dc->debug.disable_z9_mpc) {
-+		if (is_dual_plane(pipe->plane_state->format)
-+				&& pipe->plane_state->src_rect.width <= 1920 && pipe->plane_state->src_rect.height <= 1080) {
-+			dc->config.enable_4to1MPC = true;
-+		} else if (!is_dual_plane(pipe->plane_state->format) && pipe->plane_state->src_rect.width <= 5120) {
-+			/* Limit to 5k max to avoid forced pipe split when there is not enough detile for swath */
-+			context->bw_ctx.dml.ip.det_buffer_size_kbytes = 192;
-+			pipes[0].pipe.src.unbounded_req_mode = true;
-+		}
-+	} else if (context->stream_count >= dc->debug.crb_alloc_policy_min_disp_count
-+			&& dc->debug.crb_alloc_policy > DET_SIZE_DEFAULT) {
-+		context->bw_ctx.dml.ip.det_buffer_size_kbytes = dc->debug.crb_alloc_policy * 64;
-+	} else if (context->stream_count >= 3 && upscaled) {
-+		context->bw_ctx.dml.ip.det_buffer_size_kbytes = 192;
-+	}
-+
-+	for (i = 0; i < dc->res_pool->pipe_count; i++) {
-+		struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
-+
-+		if (!pipe->stream)
-+			continue;
-+
-+		if (pipe->stream->signal == SIGNAL_TYPE_EDP && dc->debug.seamless_boot_odm_combine &&
-+				pipe->stream->apply_seamless_boot_optimization) {
-+
-+			if (pipe->stream->apply_boot_odm_mode == dm_odm_combine_policy_2to1) {
-+				context->bw_ctx.dml.vba.ODMCombinePolicy = dm_odm_combine_policy_2to1;
-+				break;
-+			}
-+		}
-+	}
-+
-+	return pipe_cnt;
-+}
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn314/dcn314_fpu.h b/drivers/gpu/drm/amd/display/dc/dml/dcn314/dcn314_fpu.h
-index 79466d4f4185..d32c5bb99f4c 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn314/dcn314_fpu.h
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn314/dcn314_fpu.h
-@@ -33,5 +33,8 @@
- #define DCN3_14_CRB_SEGMENT_SIZE_KB 64
- 
- void dcn314_update_bw_bounding_box_fpu(struct dc *dc, struct clk_bw_params *bw_params);
-+int dcn314_populate_dml_pipes_from_context_fpu(struct dc *dc, struct dc_state *context,
-+					       display_e2e_pipe_params_st *pipes,
-+					       bool fast_validate);
- 
- #endif
+ AMD_DISPLAY_FILES += $(AMD_DAL_DCN314)
 -- 
 2.25.1
 
