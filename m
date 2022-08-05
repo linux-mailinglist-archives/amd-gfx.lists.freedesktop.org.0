@@ -2,68 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D74A858AF67
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 Aug 2022 20:00:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74C2E58AF69
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 Aug 2022 20:01:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12E3BB93AB;
-	Fri,  5 Aug 2022 18:00:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF2919A639;
+	Fri,  5 Aug 2022 18:01:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8341B8B6E9
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Aug 2022 18:00:44 +0000 (UTC)
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam07on2045.outbound.protection.outlook.com [40.107.212.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55C218B05A
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Aug 2022 18:00:48 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GApW+ff67EHez5MyH9cpsiEi2Y7RdhXnk7fYAo77KYaKk91OpVfPGRs1ktF/qXum7eNwMBAw/LLxifC0EnqByqRtFaYg3XiXk36bkhEuKfDF0ii+Lx1MDHcqZofUoyY94pUoHY+SPuUdVK8ElsG0c/T+XGEPZM5t2NQuFNfjlcN4H9p07e6ttLa28EXEUEOa/QByz3R2js4ijg3UYhqhT1aKieFQl82YCBV6eIjWpJpIRa13tvXjl+gcaCrR30SW4rA6t41wNfPlT5PKejsuZO3e+frzCEt2d82pEqVOLgpGm2tJkTlibz02TliyZU1E4u306io2BQFr6YdcfWl55w==
+ b=loOLeqOmJRMp0yf5kTwJAXx+1aY4unC1nJmc7IY3KggUdEIQX+48ln31fStDxPzrcU7YryFHUVE4PyJq7h84TVQeJHf0fMdSgFRLbNV1Ze5+Q5JstQx5ZEJ/BjhEG7PlG5BjDbh+jQrj+SIFDPOWmLrqmbFIO7OYohAovwodic20NOqMqermujhkxu6YwpkUOVusI1eBuKEt6qpWUvN96Cov7thaxA/uHL0daqe7GcUC9/pFspXGBGzCKN4gBXSD4o509P0uXDI+Ea8wJ0cR96Fk5XosJHOW9bU61Z/RXr6dZHlSCFBMZerKwYVL436UTuYRlx0DYEtI86henWbmig==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=McQLi8pgzfBOOBXXCSCRz7njgK4zyJ26hf4brGuTXyQ=;
- b=ldr5VuMDV5pH13hQk+O24zP9lql6ikroRKBExhaNraxcu9dG4+bgjpEv6QnAzk+NOFHBlrjnExz0piNrxftsBHVkurrPfqw6j3e0OJ5egwyNdngnWCbAoluYKkB/xnkf9wi47s0UBuTJhkzP0cOadSddLz2gbPOrZvwAwt9CSlq4/vmfw2XaIrzaWoFv95UBl/TeETbgLnrZ5sVgMGzsSsZzRlte6ht+Sq/OoPj3VunuK8ipOSlq6FRQwiYunxJ1sbyZ/yK/9RcYxKcydTQfY9VTNyByux9M4+WCioBssaOERWEPw+XCmdZLWHaRJzJsNQypHP5JocadDhk3TLFElg==
+ bh=keqPfbqSKpAcYE8dtgMC6HjNKwBJ1Qq/8PXU+kiIinA=;
+ b=MRcA8yxNvIKiMscCYdxq9AzyMuesSgnK6Z9BiD10K1C/O973RyRZQ5FzmOnkQeIX+oZC0zGL7XE/KUK8ydmw/4wAxfQZenYjNO8GNHEW4X/W0Rs6QKE0NIxBEMOqdVnkL38npQ1hKA+fW1Qj9TqcxwixJ0oTEuqS6hVBUb38sX66fcLhI1jQQ+nsaUq5wkzhglL0WvVr7Fnr2YaWGwKjerDdU05cBXsIu1DvUFXbDEWCfzpzFv9jn0pUH4giK93f1TmJmJTb9Cqns0T4pItgoomoFWZ+5PclfDFslBQzSUEOxQyL8uZfC0NKyn9a6NrjUDJriBf3mUdzRbEFYDEIuQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=McQLi8pgzfBOOBXXCSCRz7njgK4zyJ26hf4brGuTXyQ=;
- b=2Cmd0aEOIwLJhJrl0E/mB4zH4DIF6OhMlyrES12crfhaFXQNp5eaeUYwlJ9boz5/IhhJ0fv7BsKNPh6i7tu1iULx+5UFcuYWmEzg7e+xB76SdqQOxd+VXM7bns0lvvBaFQS4zphPLSQeIj41KpCa+UDffIZigPEh26MgQ+LK3eA=
-Received: from BN0PR04CA0147.namprd04.prod.outlook.com (2603:10b6:408:ed::32)
- by MN2PR12MB4128.namprd12.prod.outlook.com (2603:10b6:208:1dd::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.15; Fri, 5 Aug
- 2022 18:00:40 +0000
-Received: from BN8NAM11FT068.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:ed:cafe::be) by BN0PR04CA0147.outlook.office365.com
- (2603:10b6:408:ed::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.14 via Frontend
- Transport; Fri, 5 Aug 2022 18:00:40 +0000
+ bh=keqPfbqSKpAcYE8dtgMC6HjNKwBJ1Qq/8PXU+kiIinA=;
+ b=l6+WVnO8ZnYJCGo2KJ8XX1fQytyasC7EpHfXmakB7Iwjjmncsis6XnT87MJBr7sGYz7UEwV4UzpzCIOG74CqIGDqap8bYRSBpEPfhF33xCok+BpdKGhIQB8Hd1yyiqPlcSTtyhLkFbNvvOmmN65V9wjXPyOhRgpRlFcIHNaeRGk=
+Received: from MW4PR03CA0042.namprd03.prod.outlook.com (2603:10b6:303:8e::17)
+ by DM5PR12MB2438.namprd12.prod.outlook.com (2603:10b6:4:b5::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.15; Fri, 5 Aug
+ 2022 18:00:45 +0000
+Received: from CO1NAM11FT017.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:8e:cafe::1b) by MW4PR03CA0042.outlook.office365.com
+ (2603:10b6:303:8e::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.12 via Frontend
+ Transport; Fri, 5 Aug 2022 18:00:45 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BN8NAM11FT068.mail.protection.outlook.com (10.13.177.69) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT017.mail.protection.outlook.com (10.13.175.108) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5504.14 via Frontend Transport; Fri, 5 Aug 2022 18:00:40 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.5504.14 via Frontend Transport; Fri, 5 Aug 2022 18:00:44 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 5 Aug
- 2022 13:00:37 -0500
+ 2022 13:00:44 -0500
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
  (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 5 Aug
- 2022 11:00:37 -0700
+ 2022 11:00:43 -0700
 Received: from tom-HP.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Fri, 5 Aug 2022 13:00:32 -0500
+ Transport; Fri, 5 Aug 2022 13:00:37 -0500
 From: Tom Chung <chiahsuan.chung@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 20/32] drm/amd/display: Document some of the DML structs
-Date: Sat, 6 Aug 2022 01:58:14 +0800
-Message-ID: <20220805175826.2992171-21-chiahsuan.chung@amd.com>
+Subject: [PATCH 21/32] drm/amd/display: Allow alternate prefetch modes in DML
+ for DCN32
+Date: Sat, 6 Aug 2022 01:58:15 +0800
+Message-ID: <20220805175826.2992171-22-chiahsuan.chung@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220805175826.2992171-1-chiahsuan.chung@amd.com>
 References: <20220805175826.2992171-1-chiahsuan.chung@amd.com>
@@ -72,26 +73,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ed98178e-2fca-4322-2618-08da770c685e
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4128:EE_
+X-MS-Office365-Filtering-Correlation-Id: fd05de9f-fe0a-430f-4d43-08da770c6b3d
+X-MS-TrafficTypeDiagnostic: DM5PR12MB2438:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: iojsaDEBJW3/hcTU/qBMQfhn2mv9BNnYZ9XwZP6Lk5LYGS8msjzxBdy6Gy0cZN2pELevLp2qXa09IsATIGxYukAUihUca6P7SisVH/TeFXdWST153V10MrDNB3qEpJ3jhlJSPLqTqlRN05j9+PFE1ZqzobxjzFWO9gI7B+6wdARC1OyemQsSgMA0IsIxckhm7ltBPiRoQP78fYFjybqeSN900/qIRu7RYgCZX0xeoHBS9N1w0ovWztpI5XyU5o/CcS1757Ahqp56l4Yuz1RV21+jRDLs45OVGdCaUJGffOyDgyC6F2h0zfIgaXBdQJyhqad7synygX+34bq0Gy4i5vrf++vCYRHH9HlbXVgr+DEuWQRZ1yVVm5fFs+7RSRLenE0qDCPcZdoxOaYM2yfsI0we5Mmub9A8xONFnWUukZC03iLU9xmpuMwKFMLR1RFaQ8lewXA7O4Ir7uROXFCYqK9IE3gEsl1dEK+/WTIdNL1PBQm4DleZN0a9H4h8gYyF3I8ddig6Ih+8YS4vcwWkvdv9i6OhqkV7yUvTwD7pZR0SaPKl2xVCgJ2mEZvSZv/AOtH3QtzqIemgMSZW0hoQ8j8B4ihMPAESxj57MdeKLJdhA9XPvaLCQdwRBVHHihOq+AHKvdEmDFUiZyWdfkZgLlf+T6n0H9PeO0b0SPZXAbYZa/sWaQVlX67aIUq4YJ8zkSo3m/R4rqZ/42zb7ljM9X+sgwIHpzGA41k5ETKYXTDto4vL3cS48JVtsmCBqIQiZYmAiOyngQCCpRYY/I4z2Fyuj4W1aUoLm0BKivntXZM7pIG41DGvWJuMbhe3wQ262F4TNfW0rIo75PTU/aIvwg==
+X-Microsoft-Antispam-Message-Info: pbgYHNE9YZ8tL0ZMdDm4wSHHaakBPWDFrijJlOEdpykumHz/c0ebtv8425x9Rjg+t5I5iyK10B5APnGUbVOEujYq0uaQttfhldxYZ/ulB4sG2yn0V/5kUB0Zo3mFlR9mqbIIW4E5sCXbY6jfD2TwQ9qD8Yrdm5i4hhpjE88fnCQpjv0gsI5IQF4z46N0B0tHWiRGBxyEajhNgMK/HPbi7HYPbPOWVU4hKe3jx/NKD5PR3LpOnuiOb0q0DPHFkhwZYKLyx+2uV/tX//JNo74CjZd9qDPOUn4qevfPHnuQmFqFJqQEPZtFTNLXENdqw6j1XmfSITzxZPYljnJnVfU/BxEj1NT4tXddg0SU1k35mO2k7m6NU5wc4Dy6BO80W5ICgM7+ciykxbD4TMeEvtaCsJ9tgX69iJjLDDUMD4cQyjntECFstIN9UbUtRZ/PQoDoDbBK7f+Kl1EnhnD1QzG638MvITF3iFblD1DykTbcnoOmR0kgtPHLy/SrzOaVwl6X6QA6liW8LigWKPatNiE5NFHalTXyCysIvx+iPHB4T6i63WZlRDrrAKV8k++Sw8dDWqiZHhdhr9cSY2N4pktd37EXDCLom1v8oDfhckwxPRWfd6lh6yKJbU739HbhCGYxYulMEC2GGwQ7OLF6+kQ2KlPRW36X3WlWtswyMKCB9dKu91I7G+ZAjE2c/v1eUSo6aSYw/fUc/NxkcMtVbOH7qM2cevY7djuLSS0oKrv//I9rcQyxmMsUGrztm06eo3u6FOa2Cz6RODxGxMV+FvepqpHmN/hKQ6tUh4EH1KnRBd0wCwbIaeVdLxwVBaC4V8bsBtC/ONVmjF1SBN+a6iKpFA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(136003)(39860400002)(346002)(376002)(396003)(46966006)(36840700001)(40470700004)(26005)(36756003)(356005)(186003)(54906003)(1076003)(6916009)(40480700001)(82740400003)(4326008)(8676002)(82310400005)(81166007)(7696005)(86362001)(8936002)(6666004)(2616005)(70206006)(83380400001)(70586007)(2906002)(41300700001)(47076005)(426003)(40460700003)(478600001)(5660300002)(336012)(36860700001)(316002)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230016)(4636009)(346002)(39860400002)(376002)(136003)(396003)(36840700001)(46966006)(40470700004)(5660300002)(8936002)(81166007)(2906002)(2616005)(4326008)(86362001)(70206006)(70586007)(82740400003)(8676002)(36756003)(40480700001)(82310400005)(40460700003)(54906003)(426003)(47076005)(83380400001)(6916009)(478600001)(316002)(336012)(356005)(26005)(6666004)(186003)(1076003)(7696005)(41300700001)(36860700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2022 18:00:40.0035 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ed98178e-2fca-4322-2618-08da770c685e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2022 18:00:44.6964 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fd05de9f-fe0a-430f-4d43-08da770c6b3d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT068.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT017.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4128
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2438
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,96 +104,121 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Tom Chung <chiahsuan.chung@amd.com>,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
- Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, David Galiffi <David.Galiffi@amd.com>,
+ Tom Chung <chiahsuan.chung@amd.com>, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ roman.li@amd.com, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
+ Alvin Lee <alvin.lee2@amd.com>, wayne.lin@amd.com, Jun Lei <Jun.Lei@amd.com>,
+ Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+From: David Galiffi <David.Galiffi@amd.com>
 
-Reviewed-by: Harry Wentland <Harry.Wentland@amd.com>
+[Why]
+Driver is restricting voltage levels if system cannot switch
+in vblank.
+
+[How]
+Change allow_for_pstate_or_stutter_in_vblank_final from
+dm_prefetch_support_uclk_fclk_and_stutter to
+dm_prefetch_support_uclk_fclk_and_stutter_if_possible.
+Add support for a new registry property,
+DalDMLDisallowAlternatePrefetchModes, for easier debugging.
+
+Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Tom Chung <chiahsuan.chung@amd.com>
-Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Signed-off-by: David Galiffi <David.Galiffi@amd.com>
 ---
- .../amd/display/dc/dml/display_mode_structs.h | 34 +++++++++++++++++++
- 1 file changed, 34 insertions(+)
+ drivers/gpu/drm/amd/display/dc/dc.h           |  1 +
+ .../drm/amd/display/dc/dml/dcn32/dcn32_fpu.c  | 34 +++++++++++++------
+ 2 files changed, 25 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h b/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h
-index e8b094006d95..8538588e7754 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h
-+++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h
-@@ -26,6 +26,16 @@
- #include "dc_features.h"
- #include "display_mode_enums.h"
- 
-+/**
-+ * DOC: overview
-+ *
-+ * Most of the DML code is automatically generated and tested via hardware
-+ * description language. Usually, we use the reference _vcs_dpi in the code
-+ * where VCS means "Verilog Compiled Simulator" and DPI stands for "Direct
-+ * Programmer Interface". In other words, those structs can be used to
-+ * interface with Verilog with other languages such as C.
-+ */
-+
- #ifndef __DISPLAY_MODE_STRUCTS_H__
- #define __DISPLAY_MODE_STRUCTS_H__
- 
-@@ -159,6 +169,14 @@ struct _vcs_dpi_voltage_scaling_st {
- 	double dtbclk_mhz;
- };
- 
-+/**
-+ * _vcs_dpi_soc_bounding_box_st: SOC definitions
-+ *
-+ * This struct maintains the SOC Bounding Box information for the ASIC; it
-+ * defines things such as clock, voltage, performance, etc. Usually, we load
-+ * these values from VBIOS; if something goes wrong, we use some hard-coded
-+ * values, which will enable the ASIC to light up with limitations.
-+ */
- struct _vcs_dpi_soc_bounding_box_st {
- 	struct _vcs_dpi_voltage_scaling_st clock_limits[DC__VOLTAGE_STATES];
- 	/*
-@@ -166,6 +184,11 @@ struct _vcs_dpi_soc_bounding_box_st {
- 	 * clock table. Do not use outside of *update_bw_boudning_box functions.
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 07feb8551436..86fe4b9f10c2 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -788,6 +788,7 @@ struct dc_debug_options {
+ 	uint32_t mst_start_top_delay;
+ 	uint8_t psr_power_use_phy_fsm;
+ 	enum dml_hostvm_override_opts dml_hostvm_override;
++	bool dml_disallow_alternate_prefetch_modes;
+ 	bool use_legacy_soc_bb_mechanism;
+ 	bool exit_idle_opt_for_cursor_updates;
+ 	bool enable_single_display_2to1_odm_policy;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
+index 988e28a8e90e..85ecd94e2a4a 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
+@@ -986,9 +986,15 @@ static void dcn32_full_validate_bw_helper(struct dc *dc,
+ 	 * DML favors voltage over p-state, but we're more interested in
+ 	 * supporting p-state over voltage. We can't support p-state in
+ 	 * prefetch mode > 0 so try capping the prefetch mode to start.
++	 * Override present for testing.
  	 */
- 	struct _vcs_dpi_voltage_scaling_st _clock_tmp[DC__VOLTAGE_STATES];
+-	context->bw_ctx.dml.soc.allow_for_pstate_or_stutter_in_vblank_final =
++	if (dc->debug.dml_disallow_alternate_prefetch_modes)
++		context->bw_ctx.dml.soc.allow_for_pstate_or_stutter_in_vblank_final =
+ 			dm_prefetch_support_uclk_fclk_and_stutter;
++	else
++		context->bw_ctx.dml.soc.allow_for_pstate_or_stutter_in_vblank_final =
++			dm_prefetch_support_uclk_fclk_and_stutter_if_possible;
 +
-+	/**
-+	 * @num_states: It represents the total of Display Power Management
-+	 * (DPM) supported by the specific ASIC.
-+	 */
- 	unsigned int num_states;
- 	double sr_exit_time_us;
- 	double sr_enter_plus_exit_time_us;
-@@ -231,6 +254,14 @@ struct _vcs_dpi_soc_bounding_box_st {
- 	enum self_refresh_affinity allow_dram_self_refresh_or_dram_clock_change_in_vblank;
- };
+ 	*vlevel = dml_get_voltage_level(&context->bw_ctx.dml, pipes, *pipe_cnt);
+ 	/* This may adjust vlevel and maxMpcComb */
+ 	if (*vlevel < context->bw_ctx.dml.soc.num_states)
+@@ -1017,7 +1023,9 @@ static void dcn32_full_validate_bw_helper(struct dc *dc,
+ 			 * will not allow for switch in VBLANK. The DRR display must have it's VBLANK stretched
+ 			 * enough to support MCLK switching.
+ 			 */
+-			if (*vlevel == context->bw_ctx.dml.soc.num_states) {
++			if (*vlevel == context->bw_ctx.dml.soc.num_states &&
++				context->bw_ctx.dml.soc.allow_for_pstate_or_stutter_in_vblank_final ==
++					dm_prefetch_support_uclk_fclk_and_stutter) {
+ 				context->bw_ctx.dml.soc.allow_for_pstate_or_stutter_in_vblank_final =
+ 								dm_prefetch_support_stutter;
+ 				/* There are params (such as FabricClock) that need to be recalculated
+@@ -1347,7 +1355,8 @@ bool dcn32_internal_validate_bw(struct dc *dc,
+ 	int split[MAX_PIPES] = { 0 };
+ 	bool merge[MAX_PIPES] = { false };
+ 	bool newly_split[MAX_PIPES] = { false };
+-	int pipe_cnt, i, pipe_idx, vlevel;
++	int pipe_cnt, i, pipe_idx;
++	int vlevel = context->bw_ctx.dml.soc.num_states;
+ 	struct vba_vars_st *vba = &context->bw_ctx.dml.vba;
  
-+/**
-+ * @_vcs_dpi_ip_params_st: IP configuraion for DCN blocks
-+ *
-+ * In this struct you can find the DCN configuration associated to the specific
-+ * ASIC. For example, here we can save how many DPPs the ASIC is using and it
-+ * is available.
-+ *
-+ */
- struct _vcs_dpi_ip_params_st {
- 	bool use_min_dcfclk;
- 	bool clamp_min_dcfclk;
-@@ -283,6 +314,9 @@ struct _vcs_dpi_ip_params_st {
- 	unsigned int writeback_line_buffer_chroma_buffer_size;
+ 	dc_assert_fp_enabled();
+@@ -1376,17 +1385,22 @@ bool dcn32_internal_validate_bw(struct dc *dc,
+ 		DC_FP_END();
+ 	}
  
- 	unsigned int max_page_table_levels;
-+	/**
-+	 * @max_num_dpp: Maximum number of DPP supported in the target ASIC.
-+	 */
- 	unsigned int max_num_dpp;
- 	unsigned int max_num_otg;
- 	unsigned int cursor_chunk_size;
+-	if (fast_validate || vlevel == context->bw_ctx.dml.soc.num_states ||
+-			vba->DRAMClockChangeSupport[vlevel][vba->maxMpcComb] == dm_dram_clock_change_unsupported) {
++	if (fast_validate ||
++			dc->debug.dml_disallow_alternate_prefetch_modes &&
++			(vlevel == context->bw_ctx.dml.soc.num_states ||
++				vba->DRAMClockChangeSupport[vlevel][vba->maxMpcComb] == dm_dram_clock_change_unsupported)) {
+ 		/*
+-		 * If mode is unsupported or there's still no p-state support then
+-		 * fall back to favoring voltage.
++		 * If dml_disallow_alternate_prefetch_modes is false, then we have already
++		 * tried alternate prefetch modes during full validation.
++		 *
++		 * If mode is unsupported or there is no p-state support, then
++		 * fall back to favouring voltage.
+ 		 *
+-		 * If Prefetch mode 0 failed for this config, or passed with Max UCLK, try if
+-		 * supported with Prefetch mode 1 (dm_prefetch_support_fclk_and_stutter == 2)
++		 * If Prefetch mode 0 failed for this config, or passed with Max UCLK, then try
++		 * to support with Prefetch mode 1 (dm_prefetch_support_fclk_and_stutter == 2)
+ 		 */
+ 		context->bw_ctx.dml.soc.allow_for_pstate_or_stutter_in_vblank_final =
+-				dm_prefetch_support_fclk_and_stutter;
++			dm_prefetch_support_fclk_and_stutter;
+ 
+ 		vlevel = dml_get_voltage_level(&context->bw_ctx.dml, pipes, pipe_cnt);
+ 
 -- 
 2.25.1
 
