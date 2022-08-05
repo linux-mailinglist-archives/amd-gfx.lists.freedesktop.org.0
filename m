@@ -2,33 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 728C658A703
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 Aug 2022 09:28:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDD6158A882
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 Aug 2022 11:09:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84850B40DE;
-	Fri,  5 Aug 2022 07:24:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C908B2BE1F;
+	Fri,  5 Aug 2022 09:09:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-131.freemail.mail.aliyun.com
- (out30-131.freemail.mail.aliyun.com [115.124.30.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DE32ADD90;
- Fri,  5 Aug 2022 02:38:46 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R161e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018046059;
- MF=yang.lee@linux.alibaba.com; NM=1; PH=DS; RN=13; SR=0;
- TI=SMTPD_---0VLPIjgi_1659667122; 
-Received: from localhost(mailfrom:yang.lee@linux.alibaba.com
- fp:SMTPD_---0VLPIjgi_1659667122) by smtp.aliyun-inc.com;
- Fri, 05 Aug 2022 10:38:43 +0800
-From: Yang Li <yang.lee@linux.alibaba.com>
-To: Rodrigo.Siqueira@amd.com
-Subject: [PATCH -next RESEND] drm/amd/display: Simplify bool conversion
-Date: Fri,  5 Aug 2022 10:38:41 +0800
-Message-Id: <20220805023841.16869-1-yang.lee@linux.alibaba.com>
-X-Mailer: git-send-email 2.20.1.7.g153144c
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BDC510E3C3;
+ Fri,  5 Aug 2022 09:08:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1659690529; x=1691226529;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=HcwH7rBY8c9G5DxpGNSvCKWHB22AViIT69knXHJMmAw=;
+ b=GXaKM9iruNLc1EMGzDXitVupLYPkQr1gvbjdaLhtJl/+B5l4CwrfthMg
+ GbaV4wvS44VqRp4T2Q+eWlRFVtWc/e2UZXtKUSC71OtoZ1MjD9HirKZVb
+ QUgKoO2fUl9bVyJUdrnUcjapwsJfWx3ujGMgbjTVua4e05vaMi4jHEJ7S
+ EIadZLO+LCU9BPgBoJJX2NVtJl4xyzKkRpZPb/WXXuSUgVnu9sBOg4m3W
+ JY3m3BKp18gzY41p/oX/yijZ8deiEgf6Du01OfcYwTP1BvruYsLio63w1
+ YjxbV+LCFPoO7IMNBtNWlNvOjvlqPHrzav1JHjN+2p9RYZ9cQ5cagcYp/ g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10429"; a="287721249"
+X-IronPort-AV: E=Sophos;i="5.93,216,1654585200"; d="scan'208";a="287721249"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2022 02:08:47 -0700
+X-IronPort-AV: E=Sophos;i="5.93,216,1654585200"; d="scan'208";a="554047600"
+Received: from namitaga-mobl.ger.corp.intel.com (HELO [10.213.224.55])
+ ([10.213.224.55])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2022 02:08:45 -0700
+Message-ID: <3a0ef983-6774-7de4-a2e5-0424e215460d@intel.com>
+Date: Fri, 5 Aug 2022 10:08:43 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.12.0
+Subject: Re: [PATCH v4 4/6] drm/i915: Implement intersect/compatible functions
+Content-Language: en-GB
+To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
+References: <20220804085952.6137-1-Arunpravin.PaneerSelvam@amd.com>
+ <20220804085952.6137-4-Arunpravin.PaneerSelvam@amd.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20220804085952.6137-4-Arunpravin.PaneerSelvam@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 05 Aug 2022 07:24:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,37 +61,176 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sunpeng.li@amd.com, Xinhui.Pan@amd.com,
- Abaci Robot <abaci@linux.alibaba.com>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, airlied@linux.ie,
- Yang Li <yang.lee@linux.alibaba.com>, dri-devel@lists.freedesktop.org,
- daniel@ffwll.ch, alexander.deucher@amd.com, harry.wentland@amd.com,
- christian.koenig@amd.com
+Cc: alexander.deucher@amd.com, luben.tuikov@amd.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fix the following coccicheck warning:
-./drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c:109:52-57: WARNING: conversion to bool not needed here
+On 04/08/2022 09:59, Arunpravin Paneer Selvam wrote:
+> Implemented a new intersect and compatible callback function
+> fetching start offset from drm buddy allocator.
+> 
+> v3: move the bits that are specific to buddy_man (Matthew)
+> v4: consider the block size /range (Matthew)
+> 
+> Signed-off-by: Christian König <christian.koenig@amd.com>
+> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c       | 41 +----------
+>   drivers/gpu/drm/i915/i915_ttm_buddy_manager.c | 73 +++++++++++++++++++
+>   2 files changed, 74 insertions(+), 40 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> index 70e2ed4e99df..bf5fd6886ca0 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> @@ -379,7 +379,6 @@ static bool i915_ttm_eviction_valuable(struct ttm_buffer_object *bo,
+>   				       const struct ttm_place *place)
+>   {
+>   	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
+> -	struct ttm_resource *res = bo->resource;
+>   
+>   	if (!obj)
+>   		return false;
+> @@ -396,45 +395,7 @@ static bool i915_ttm_eviction_valuable(struct ttm_buffer_object *bo,
+>   	if (!i915_gem_object_evictable(obj))
+>   		return false;
+>   
+> -	switch (res->mem_type) {
+> -	case I915_PL_LMEM0: {
+> -		struct ttm_resource_manager *man =
+> -			ttm_manager_type(bo->bdev, res->mem_type);
+> -		struct i915_ttm_buddy_resource *bman_res =
+> -			to_ttm_buddy_resource(res);
+> -		struct drm_buddy *mm = bman_res->mm;
+> -		struct drm_buddy_block *block;
+> -
+> -		if (!place->fpfn && !place->lpfn)
+> -			return true;
+> -
+> -		GEM_BUG_ON(!place->lpfn);
+> -
+> -		/*
+> -		 * If we just want something mappable then we can quickly check
+> -		 * if the current victim resource is using any of the CPU
+> -		 * visible portion.
+> -		 */
+> -		if (!place->fpfn &&
+> -		    place->lpfn == i915_ttm_buddy_man_visible_size(man))
+> -			return bman_res->used_visible_size > 0;
+> -
+> -		/* Real range allocation */
+> -		list_for_each_entry(block, &bman_res->blocks, link) {
+> -			unsigned long fpfn =
+> -				drm_buddy_block_offset(block) >> PAGE_SHIFT;
+> -			unsigned long lpfn = fpfn +
+> -				(drm_buddy_block_size(mm, block) >> PAGE_SHIFT);
+> -
+> -			if (place->fpfn < lpfn && place->lpfn > fpfn)
+> -				return true;
+> -		}
+> -		return false;
+> -	} default:
+> -		break;
+> -	}
+> -
+> -	return true;
+> +	return ttm_bo_eviction_valuable(bo, place);
+>   }
+>   
+>   static void i915_ttm_evict_flags(struct ttm_buffer_object *bo,
+> diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+> index a5109548abc0..9def01d5f368 100644
+> --- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+> +++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+> @@ -178,6 +178,77 @@ static void i915_ttm_buddy_man_free(struct ttm_resource_manager *man,
+>   	kfree(bman_res);
+>   }
+>   
+> +static bool i915_ttm_buddy_man_intersects(struct ttm_resource_manager *man,
+> +					  struct ttm_resource *res,
+> +					  const struct ttm_place *place,
+> +					  size_t size)
+> +{
+> +	struct i915_ttm_buddy_resource *bman_res = to_ttm_buddy_resource(res);
+> +	struct i915_ttm_buddy_manager *bman = to_buddy_manager(man);
+> +	struct drm_buddy *mm = &bman->mm;
+> +	struct drm_buddy_block *block;
+> +
+> +	if (!place->fpfn && !place->lpfn)
+> +		return true;
+> +
+> +	GEM_BUG_ON(!place->lpfn);
+> +
+> +	/*
+> +	 * If we just want something mappable then we can quickly check
+> +	 * if the current victim resource is using any of the CP
 
-Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Nit: s/CP/CPU/
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-index 594fe8a4d02b..0c425c2ab2a3 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-@@ -106,7 +106,7 @@ static void vblank_control_worker(struct work_struct *work)
- 		dm->active_vblank_irq_count--;
- 
- 	dc_allow_idle_optimizations(
--		dm->dc, dm->active_vblank_irq_count == 0 ? true : false);
-+		dm->dc, dm->active_vblank_irq_count == 0);
- 
- 	DRM_DEBUG_KMS("Allow idle optimizations (MALL): %d\n", dm->active_vblank_irq_count == 0);
- 
--- 
-2.20.1.7.g153144c
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
+> +	 * visible portion.
+> +	 */
+> +	if (!place->fpfn &&
+> +	    place->lpfn == i915_ttm_buddy_man_visible_size(man))
+> +		return bman_res->used_visible_size > 0;
+> +
+> +	/* Check each drm buddy block individually */
+> +	list_for_each_entry(block, &bman_res->blocks, link) {
+> +		unsigned long fpfn =
+> +			drm_buddy_block_offset(block) >> PAGE_SHIFT;
+> +		unsigned long lpfn = fpfn +
+> +			(drm_buddy_block_size(mm, block) >> PAGE_SHIFT);
+> +
+> +		if (place->fpfn < lpfn && place->lpfn > fpfn)
+> +			return true;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+> +static bool i915_ttm_buddy_man_compatible(struct ttm_resource_manager *man,
+> +					  struct ttm_resource *res,
+> +					  const struct ttm_place *place,
+> +					  size_t size)
+> +{
+> +	struct i915_ttm_buddy_resource *bman_res = to_ttm_buddy_resource(res);
+> +	struct i915_ttm_buddy_manager *bman = to_buddy_manager(man);
+> +	struct drm_buddy *mm = &bman->mm;
+> +	struct drm_buddy_block *block;
+> +
+> +	if (!place->fpfn && !place->lpfn)
+> +		return true;
+> +
+> +	GEM_BUG_ON(!place->lpfn);
+> +
+> +	if (!place->fpfn &&
+> +	    place->lpfn == i915_ttm_buddy_man_visible_size(man))
+> +		return bman_res->used_visible_size == res->num_pages;
+> +
+> +	/* Check each drm buddy block individually */
+> +	list_for_each_entry(block, &bman_res->blocks, link) {
+> +		unsigned long fpfn =
+> +			drm_buddy_block_offset(block) >> PAGE_SHIFT;
+> +		unsigned long lpfn = fpfn +
+> +			(drm_buddy_block_size(mm, block) >> PAGE_SHIFT);
+> +
+> +		if (fpfn < place->fpfn || lpfn > place->lpfn)
+> +			return false;
+> +	}
+> +
+> +	return true;
+> +}
+> +
+>   static void i915_ttm_buddy_man_debug(struct ttm_resource_manager *man,
+>   				     struct drm_printer *printer)
+>   {
+> @@ -205,6 +276,8 @@ static void i915_ttm_buddy_man_debug(struct ttm_resource_manager *man,
+>   static const struct ttm_resource_manager_func i915_ttm_buddy_manager_func = {
+>   	.alloc = i915_ttm_buddy_man_alloc,
+>   	.free = i915_ttm_buddy_man_free,
+> +	.intersects = i915_ttm_buddy_man_intersects,
+> +	.compatible = i915_ttm_buddy_man_compatible,
+>   	.debug = i915_ttm_buddy_man_debug,
+>   };
+>   
