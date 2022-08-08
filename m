@@ -1,93 +1,119 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6803558C673
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 Aug 2022 12:32:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A85E58C75E
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 Aug 2022 13:14:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A413E14A1DB;
-	Mon,  8 Aug 2022 10:32:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4075D97FEA;
+	Mon,  8 Aug 2022 11:10:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2063.outbound.protection.outlook.com [40.107.244.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E9E310E58D
- for <amd-gfx@lists.freedesktop.org>; Mon,  8 Aug 2022 10:32:17 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2047.outbound.protection.outlook.com [40.107.223.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BB9C97180;
+ Mon,  8 Aug 2022 11:00:07 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Q+h9rqTD43KdBKiWHNhlC6+bk0j2vWBPe2AxUFK4/kEm9EjPeyjBQ2KIh7PbKELP0Ig33ggNCHiQsFCtPvbpmldJ+rtjlFuPwcwAwlDC+h8IVmwQBJh8s7wQHR6zJGWhj5VYMiZAS3jmpWN4o3KBmeAwaComU9MGpujYNNLf9NznmGcqHvmXaIVXGOrqViP95rmic9G/LFNbbhr7948SB0D/RPQveWXzmsBtF2XBOfOiLM2bgZD3NhJzckBzPZOy+3xeZTfHgA4ZMHlW/tEX3e84U5QsSSCc1URyi5hdaljj4bU9ikrtCTuF8mtRDPy5LV0Qna+hGGH3xIFUtvuG3A==
+ b=Kx5Py4mhKHRBqruNIuVHwC10uZ8jMWRrtwnsOKJbQcD6YIl6gh54kVzZ0N+/uoAsQ/ZKRkazprg85W7ZKfUp5vT/fFjSIEyMfEfVrbDcmWB6FpA8D+UpUbifJTWKxMNIaviF12bVv060+NB72q8ai1desKYAAcDv80hMwXjQ/wHFI8kDZHsTsxEyM+LrXp0/CFhzBdcDLlbCx4QXOxAG09PU0pWW8103OGgbId96fs9BxAthDmhvJHuHTGkbD1yqms57TbUzK3VojU4myFEejwghCd8t8qFc6KzB68oC6DQUxsHdYqblUQvSn1UYK1VKS1d2FE4Srs9K6EesPunUFA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VljGI0bhNE+zYBWCs1bhe2ZxuPMQ0ZBoBYVfSBhgPNo=;
- b=aQc/CqBfDCAofDU6gsF/iJD6Yn5HZ1A90K7PYGEZSJojhu0hfKwaxVxjvr/T3B+J1rQBUW37kai4DJYDQOuc9ZsYKyaIGbJToN2Mv4IflZ5Vjh95ckZmb5qnh6dioib6utQpVZyLnHSnjwLqSlVn4bK10fpHUGkHlBMpIq9Rvu13tAP6YI1TTTQEtXCxfUyA4wO56DXPoPn+dDtMTU9e+VN8i+lmc74gV3j+5WTcSZRxV2uaWbnA8kyWP0p1M8BNwqY+ZrbSQXNQD9fvygnsI4BZI5Od4p623uHh6ON+WSc1lBVF33AKRBY4VK1h41ni6NFH/mqGFaT44Cd+mn/yDw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
+ bh=+Rzb5w0yl8FalnXsHxrelBgvG8IfNT9lSABf+ZjSu6w=;
+ b=PFlTgwYiB6wIurcacYjruI0XIougiKCa9rHDgVStHK4gZ2f4+7Hqg1iKA7wx/ABCcqma1ArYfChbhKRW9BGQr3+7zEdzdudVLZoO9Mn9ZFpm3HKWF9/CsOsW5q3K0pewpP6zrrZG3wEX5SQkF/lJTa8WstDNQ2rBvNMVC0m34+QFuE4jB2OdVjYY1zeWnyQvgagn7CPQbWh/ZjDHnXnGU9IlyhPSaty4nO8EevSNppK81lF15Q2C+9WQIOCooSD0hG7A5YCzBANhWAhECuSkCHAzVdV8MD8SJglbPYEPWwIhZjOJw34KKYgxhMUzfqSvaSdD2seu61SS3B8VdMYlzQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VljGI0bhNE+zYBWCs1bhe2ZxuPMQ0ZBoBYVfSBhgPNo=;
- b=BqET2c8X5h2ud8/in4pfTvwEulf4VsYaXC92QF+JFWTh73xzRgG0Ne7sgMqtnPaZaCouh/fE112f3XjneEc8wRUTKiQE/1xHH6VeXenSzI0HiQaw++4O6HLwR2LYMFU2o5kACgMbT6I5XD6vgMlmmP3HMOkuJ6vpcNurtnCW5kM=
-Received: from BN9PR03CA0375.namprd03.prod.outlook.com (2603:10b6:408:f7::20)
- by DM6PR12MB4603.namprd12.prod.outlook.com (2603:10b6:5:166::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.14; Mon, 8 Aug
- 2022 10:32:14 +0000
-Received: from BN8NAM11FT012.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:f7:cafe::ce) by BN9PR03CA0375.outlook.office365.com
- (2603:10b6:408:f7::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.17 via Frontend
- Transport; Mon, 8 Aug 2022 10:32:14 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT012.mail.protection.outlook.com (10.13.177.55) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5504.14 via Frontend Transport; Mon, 8 Aug 2022 10:32:14 +0000
-Received: from ldev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 8 Aug
- 2022 05:32:12 -0500
-From: Tim Huang <tim.huang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 2/2] drm/amdgpu: add GFX Power Gating support for GC IP v11.0.1
-Date: Mon, 8 Aug 2022 18:31:03 +0800
-Message-ID: <20220808103103.3143927-2-tim.huang@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220808103103.3143927-1-tim.huang@amd.com>
-References: <20220808103103.3143927-1-tim.huang@amd.com>
+ bh=+Rzb5w0yl8FalnXsHxrelBgvG8IfNT9lSABf+ZjSu6w=;
+ b=4WOKp1gtF9gXvDDXFhrTHKuusaR6RnydsNn05AbPmonMEWr6v2EjL+/Y1JsmOYXN5E1tRsJMz2BD8YzzYPKbeX4cqeBLu312TE3TN9yeBKErlgjAJ2OKpWRFO3pUlSPahTkTnrap1MIF3KaEm/Q/23R94KulVY2ohbSnOR7oDf0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
+ by BN8PR12MB2995.namprd12.prod.outlook.com (2603:10b6:408:41::31)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.17; Mon, 8 Aug
+ 2022 11:00:04 +0000
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::905:1701:3b51:7e39]) by BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::905:1701:3b51:7e39%2]) with mapi id 15.20.5504.020; Mon, 8 Aug 2022
+ 11:00:03 +0000
+Message-ID: <acc970f2-632f-0372-8082-6bd54f0c7cf5@amd.com>
+Date: Mon, 8 Aug 2022 12:59:56 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] amdgpu: add context creation flags in CS IOCTL
+Content-Language: en-US
+To: Shashank Sharma <shashank.sharma@amd.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+References: <20220802135558.6324-1-shashank.sharma@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20220802135558.6324-1-shashank.sharma@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM7PR02CA0007.eurprd02.prod.outlook.com
+ (2603:10a6:20b:100::17) To BN8PR12MB3587.namprd12.prod.outlook.com
+ (2603:10b6:408:43::13)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0bc96b6a-dd81-4af3-85f0-08da7929429f
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4603:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2609aa20-b480-4657-661a-08da792d255f
+X-MS-TrafficTypeDiagnostic: BN8PR12MB2995:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: x/JFi/fvnJO0nP7bJmWuEWPxXToRm9xmV2/c3dZO+LwEZqGWwpPNxc4ZPVHDf/cpdtU6SdqY+kgxKy2lwRh6ypYgWXmj5IkUXWT603FcAP7kzmdvrKYFj9MqYZU3giYYIJM/dsHx8FdIppy/HGh14QB5EKOdVr2HrG95KEF1Z8B8PnomiFqvkM8D5QmFi25H+CYosJ8+IBrXgktF90P6Gz1dYAJRUxebsLiebj40gzdQRNdx8PGAjADWQRwlCQqGDHfqepYfq81ESHa246mlYz5Lt1y64ODfqG3qs2J0U34NGSzOR6m0gkHTNKC0iWnacPjFkH3Rxfd+Q5Jf5GS/xgi5YqJzi5zkyRCUT+CCZzGKQJTnPGZl/ZZIXYMo9hgW+fgECEVLnQRs9VEQgA9xy1QKMcI+jGwvjbsZsT/roYkcanzPm+SoU5vQ7ff1ffT3F2Mhep1y5x6qDWQrXNnGqMFIAV2jtSoSVKK3fsgzH1WhxpyMknKlJPZvPnfKLNYOPNDzK/U4NvyXxsMKMHf8/lAIOHU7DXO3c4lxwKne+nLKP99ukPf1OcwWbw4zwTQ+4/vPHnRtNblIXF9i2UR0CKSCtXQUU99LiEdfpCTvvG9FiM320lyCTAnH+E7OEKgtghRpLWoNxbF4oBHNDh01Q+C4FNeLXMdKsITJ50XtjMYs3GW1VpbsgImRJvoq0lSnrWy1HhsIw9kbBvNVR/3bdLFVcYRyw7I7OMVegdfKwQam3FqKbsiOFaPs/cKFFr2DJ1xb3l5yOWRo6RbxcSqOMi/o2HX9KwnmO3+CzKKj6w/zpp7isfBGcr6W8anPnxYMeMc1O/0RKy+RnnQ5Z3eEvQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(346002)(376002)(136003)(39860400002)(396003)(36840700001)(46966006)(40470700004)(8676002)(8936002)(70586007)(70206006)(36756003)(4326008)(16526019)(186003)(336012)(426003)(1076003)(478600001)(40460700003)(316002)(54906003)(44832011)(6916009)(5660300002)(86362001)(4744005)(41300700001)(26005)(7696005)(6666004)(81166007)(2906002)(356005)(2616005)(82740400003)(82310400005)(47076005)(36860700001)(40480700001)(36900700001);
+X-Microsoft-Antispam-Message-Info: FttIps4t8BhHvtdmWfM4TiY5cEPGi73LH229RAvm+WEZD1IBVD5ELPjce8BMEj0b4tRtjMieccs8QnWnUqwSOxgOVxE7O1z0HUZmyzubt6+pnf5JXivn4kBjn5/to9x7AXmhP5K5Ice8e5qc3nYKGezfnUm9E/b/vOykGpbldhLotW5CLd5GF8phSVJFdp0RnnmCSifUJG8n8S+OSikGeNXsrZV0rKwD91ENIbhwxonOhuB+PzqjfZ0jZd09mrhotcQQFUll0jARdWvp80gn5R+fv27yCB2JStPEBcUK1vqpr9CXUjuovsKzE37d8TL32sk5BTP6jj2zd4BsVYyAZq7RiuJtKLBDFRHg+R0BGPcLyUL5kvj5zpMZHG+dNvZZAxLE6fK2m79soa2SMwuRVo77I+n9hT9Mm6xnXEWbGJKELdq1lejWu6KrB9gEh5MCieOT1h7z/GhU+zrOHv+Y5LDnG43mP8+x2Tecfik5f10Zlwy2e7ykdxrN3k7f/hGqQCAKpxstGOqFrUQSH00rUqbHNUe+kDphTpYP9zc2vnjm32/hvnKhMB19XXHhjaDJtlmf8fTsVjzo5eSUamEsrJ8zcXpQSrAaGQ+U/XjL1WZleBKlyZWlz1ko2Klu097KqqoYirIPnHMSSaW3A81i7WF9ESjLxhgN7BR3agxPWD+Hc3lzmwSO4cosQc0LOKZaWGBRwtjMOFjnsbMhfe8ZmsCNOac7r/vTNvWjbyUyrUiNYvP8lDDMbM1vzL8aiVYZDztFoXnSTLzyXH9xyyTmGlHtYD7oPFk8twgzF3KzMyVeRL/SxZ0dMN+Nkh+lqKdHRGtzPSdBEoxVLW4u0cvHRQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(136003)(396003)(39860400002)(366004)(346002)(376002)(186003)(41300700001)(36756003)(8936002)(5660300002)(31686004)(83380400001)(2616005)(2906002)(86362001)(31696002)(66476007)(66556008)(66946007)(450100002)(38100700002)(54906003)(6486002)(478600001)(316002)(4326008)(8676002)(6666004)(6506007)(6512007)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WG1oeVVoZEsrejA1VHRpcXBZWUFWdkk3ODJFRE9zbHhLZU5LQzRnT3gxbmJx?=
+ =?utf-8?B?MGwxQmd3Z05pMEFhRDhDUUZvSDhHZVU3RHpuRlY2VGUzVFBUdGJsaVRCWVhz?=
+ =?utf-8?B?NTUwWXlEMHVBUksyK3h6TytzbHZ6RktYRmRuTk4yb0hvbGRaZmVMU1V3ZCtv?=
+ =?utf-8?B?bkpmMkdoNWhDSFVzMXBWTGtrV21jelZWVXduZDFpMFhEZ3lyQjY1dmdDeUM5?=
+ =?utf-8?B?TU5aV3lJVjF0L1pOSGNWdUJueVdKeWxGaFdodWZuVys0N012N1g5cWZvTW4x?=
+ =?utf-8?B?UkQ2WjRXUDJzK2NGOGJzNENBendlRW0xN0poSHZHQS9RRXFyUUVJV1hhZWRI?=
+ =?utf-8?B?WHcwWHFrK2FUaS9oMngyQmpEUFpnK01zWG5nd0JCRTdDWFBtdnJxZGlFZXNq?=
+ =?utf-8?B?c3RTVEdFYWtEMDFPL0VvNDVxeVQxcEJ3L01ITjd4RmZVeHJLMlVnOWExeFRq?=
+ =?utf-8?B?ZE51YlhHZUdQYzN2SWhvY0p4UEZ0MnZ1KzRFTnVmK0NtOXlYY3NjYTJqYVNY?=
+ =?utf-8?B?SXpzNGFySjE1OWxnMVdreDZnazl6amo5WXVPbUFCS1B0cjlSUW4zREpGZ2J0?=
+ =?utf-8?B?WDdqRTEzZ1VKWkl4U1ZoSzhYYm1EeGlTenJGcE1YdXdVb3FtT090MDhoSnlx?=
+ =?utf-8?B?c3g2aEpkT0VqOUNFb0Y4VmRDSmNJNjkxSGFPNGxRd3R3Y0F6Y285SVZBK2F1?=
+ =?utf-8?B?dkpxRUVPczFwdnRmTnRJWGlBUE1oKzZTNHVTYndaN1BrVG9nQ1gzbTR2R1FU?=
+ =?utf-8?B?WlFHVSszOHhLWVZDMDFQKzBCLzg1ak9BR0kwOUZObGZTWlpnR0Y0MjdqNFNm?=
+ =?utf-8?B?NE1qZGF4aXdBTUpGc1BTU3cxdVgzTE9EY3lUYVJTc3hNcDA0azVSNGpxMkwr?=
+ =?utf-8?B?c3ZzdG1xajgrNmdKTWdBUUxCejl6VTFkUTF5QWZhU01CZXNHSWc0UWhLbG9L?=
+ =?utf-8?B?aEU5RW5ua1F2RG9NSjNNZVhXV2NmSlRyaWJNaXVxbHNoaUNNbkRMUHB0OG8r?=
+ =?utf-8?B?dmJxeTB3YWg4NE02NGFxU2w1ZFFzZU5ielFRa1U5c1gyZnZYOHVpNGp6VjNn?=
+ =?utf-8?B?RGxNbjUzZkVmYk1FT2dac3dVeWYrN0d5NFgvSWdYMmVFTWZSOTkwQldidEpp?=
+ =?utf-8?B?dmMwZUJWbDBkMnNMK3lucUpKK2k3bVNtbnZTaDBxMnRkSnZUZmFUUkFNeUdQ?=
+ =?utf-8?B?bWpDV2xEOHFwalV2Rm94N2p6NjNwSUxvcWdMcUllNFc0NGtDcU1TcnhoYWJ3?=
+ =?utf-8?B?RXZUT0tOMFY3REsrZmNyYzRrU2I0eEQyNmFqd0lHK0I5eWxpRk5wQW5CbTBQ?=
+ =?utf-8?B?TGlucVlMWW9odjZ1OWRJbFRnaHFMaCtDU2p1ZzhwNFVRSkQydU50NldFWWtw?=
+ =?utf-8?B?WW4rNlJnZ1YwZ3hZSWZadWdFME5ncFZkWFpicEhXT2RxUGN2ZnR4azNTcUF2?=
+ =?utf-8?B?Z2VRc3J3TzlIUkhIQXhhZ2RVa1VHM21QaSt5Yk13ZVBUeUFrTFZ1MEt1Tk1m?=
+ =?utf-8?B?N3N0ajFlWDFRWGJ4RzR1Ly9QVG1GNDBVdTJFOVcvMUlnOWluUG9QOHI3RTlI?=
+ =?utf-8?B?VjlZeENKMWlhdzNvRDhtbVdIR0EyZVpKa25xbis5ZlZxQ1dkR1VuTStSTG4r?=
+ =?utf-8?B?K1l3WWRLV0NteFRGazVYYm52SXREQ1ZrM05QeVRVSEgyaGdYSDVxUGkvcW03?=
+ =?utf-8?B?ek9BK2VGUTNIaUw2SG41dTNHOXpyeGhqUkhZVUh0cjBjSE12WkpOQ3BtK2p3?=
+ =?utf-8?B?SXJkVFg5MXhVSHMzd1F3V3lpRFZ3NmNKRUFTdnJSYVkrYllDNjFtZVlvNDd2?=
+ =?utf-8?B?NGhzcnJPVVdrbkR6Z1VyQU5yUm1zYWUzQklHbFE0MTllYVZ5RHk1M1ZZM21k?=
+ =?utf-8?B?Um9OU3lyMmlySXc4V2dVeEJLbEI2WFd6SCs5MWZQbDRPaWdSaE1sYTBLVWZY?=
+ =?utf-8?B?U2FLK3J3dzZnQWFMZ255L0VvNUUxbk4vdGNHUVFVWkp3Ymx0SmxOZiszK2FR?=
+ =?utf-8?B?djU0Y2draFhHYnlORXNxZUVkWU9xd0k3YmxOTU0xOWRqd3RHcmhLQmRwK2tX?=
+ =?utf-8?B?amdMc1hRQkdiTFE1VmhRcUNXME1HVFdCenpBZWo0eWhjNEU3RzE3dXpiVTlC?=
+ =?utf-8?B?QVBYTTcyZWFSZ0p2cmlLT0tPK3c1MjFJVXdNRmpRMW5tN0VSOCtGcXA5R25N?=
+ =?utf-8?Q?gDGCnw/cL+rc7clpvJ3lx+LRDjsvVCeku2eb5ecptZL2?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2022 10:32:14.3936 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0bc96b6a-dd81-4af3-85f0-08da7929429f
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2609aa20-b480-4657-661a-08da792d255f
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2022 11:00:03.7282 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT012.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4603
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7Y8VUhrMAabAAJHuxZs+dfF85Rq+r6PVP/bgDiHDqlia1YdttMU0p1BVsf8iuBb7
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB2995
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,30 +125,124 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, Yifan1.zhang@amd.com, Xiaojian.Du@amd.com,
- Tim Huang <tim.huang@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Marek Olsak <marek.olsak@amd.com>,
+ Amarnath Somalapuram <amaranath.somalapuram@amd.com>,
+ Christian Koenig <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add AMD_PG_SUPPORT_GFX_PG support.
+Am 02.08.22 um 15:55 schrieb Shashank Sharma:
+> This patch adds:
+> - A new input parameter "flags" in the amdgpu_ctx_create2 call.
+> - Some new flags defining workload type hints.
+> - Some change in the caller function of amdgpu_ctx_create2, to
+>    accomodate this new parameter.
+>
+> The idea is to pass the workload hints while context creation,
 
-Signed-off-by: Tim Huang <tim.huang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/soc21.c | 1 +
- 1 file changed, 1 insertion(+)
+Bad idea.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/soc21.c b/drivers/gpu/drm/amd/amdgpu/soc21.c
-index b700c6cb14b4..bbbf760f8ad2 100644
---- a/drivers/gpu/drm/amd/amdgpu/soc21.c
-+++ b/drivers/gpu/drm/amd/amdgpu/soc21.c
-@@ -595,6 +595,7 @@ static int soc21_common_early_init(void *handle)
- 			AMD_CG_SUPPORT_VCN_MGCG |
- 			AMD_CG_SUPPORT_JPEG_MGCG;
- 		adev->pg_flags =
-+			AMD_PG_SUPPORT_GFX_PG |
- 			AMD_PG_SUPPORT_JPEG;
- 		adev->external_rev_id = adev->rev_id + 0x1;
- 		break;
--- 
-2.25.1
+Please take AMDGPU_CTX_OP_SET_STABLE_PSTATE and 
+AMDGPU_CTX_OP_GET_STABLE_PSTATE as blueprint for this and don't add 
+extra flags to the context creation.
+
+Regards,
+Christian.
+
+
+>   so
+> that kernel GPU scheduler can pass this information to GPU FW, which in
+> turn can adjust the GPU characterstics as per the workload type.
+>
+> Signed-off-by: Shashank Sharma <shashank.sharma@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: Marek Olsak <marek.olsak@amd.com>
+> Cc: Christian Koenig <christian.koenig@amd.com>
+> Cc: Amarnath Somalapuram <amaranath.somalapuram@amd.com>
+> ---
+>   amdgpu/amdgpu.h          |  2 ++
+>   amdgpu/amdgpu_cs.c       |  5 ++++-
+>   include/drm/amdgpu_drm.h | 10 +++++++++-
+>   3 files changed, 15 insertions(+), 2 deletions(-)
+>
+> diff --git a/amdgpu/amdgpu.h b/amdgpu/amdgpu.h
+> index b118dd48..1ebb46e6 100644
+> --- a/amdgpu/amdgpu.h
+> +++ b/amdgpu/amdgpu.h
+> @@ -874,6 +874,7 @@ int amdgpu_bo_list_update(amdgpu_bo_list_handle handle,
+>    *
+>    * \param   dev      - \c [in] Device handle. See #amdgpu_device_initialize()
+>    * \param   priority - \c [in] Context creation flags. See AMDGPU_CTX_PRIORITY_*
+> + * \param   flags    - \c [in] Context flags. See AMDGPU_CTX_FLAGS_*
+>    * \param   context  - \c [out] GPU Context handle
+>    *
+>    * \return   0 on success\n
+> @@ -884,6 +885,7 @@ int amdgpu_bo_list_update(amdgpu_bo_list_handle handle,
+>   */
+>   int amdgpu_cs_ctx_create2(amdgpu_device_handle dev,
+>   			 uint32_t priority,
+> +			 uint32_t flags,
+>   			 amdgpu_context_handle *context);
+>   /**
+>    * Create GPU execution Context
+> diff --git a/amdgpu/amdgpu_cs.c b/amdgpu/amdgpu_cs.c
+> index fad484bf..d4723ea5 100644
+> --- a/amdgpu/amdgpu_cs.c
+> +++ b/amdgpu/amdgpu_cs.c
+> @@ -44,12 +44,14 @@ static int amdgpu_cs_reset_sem(amdgpu_semaphore_handle sem);
+>    *
+>    * \param   dev      - \c [in] Device handle. See #amdgpu_device_initialize()
+>    * \param   priority - \c [in] Context creation flags. See AMDGPU_CTX_PRIORITY_*
+> + * \param   flags    - \c [in] Context flags. See AMDGPU_CTX_FLAGS_*
+>    * \param   context  - \c [out] GPU Context handle
+>    *
+>    * \return  0 on success otherwise POSIX Error code
+>   */
+>   drm_public int amdgpu_cs_ctx_create2(amdgpu_device_handle dev,
+>   				     uint32_t priority,
+> +				     uint32_t flags,
+>   				     amdgpu_context_handle *context)
+>   {
+>   	struct amdgpu_context *gpu_context;
+> @@ -74,6 +76,7 @@ drm_public int amdgpu_cs_ctx_create2(amdgpu_device_handle dev,
+>   	memset(&args, 0, sizeof(args));
+>   	args.in.op = AMDGPU_CTX_OP_ALLOC_CTX;
+>   	args.in.priority = priority;
+> +	args.in.flags = flags;
+>   
+>   	r = drmCommandWriteRead(dev->fd, DRM_AMDGPU_CTX, &args, sizeof(args));
+>   	if (r)
+> @@ -97,7 +100,7 @@ error:
+>   drm_public int amdgpu_cs_ctx_create(amdgpu_device_handle dev,
+>   				    amdgpu_context_handle *context)
+>   {
+> -	return amdgpu_cs_ctx_create2(dev, AMDGPU_CTX_PRIORITY_NORMAL, context);
+> +	return amdgpu_cs_ctx_create2(dev, AMDGPU_CTX_PRIORITY_NORMAL, 0, context);
+>   }
+>   
+>   /**
+> diff --git a/include/drm/amdgpu_drm.h b/include/drm/amdgpu_drm.h
+> index 0cbd1540..d9fb1f20 100644
+> --- a/include/drm/amdgpu_drm.h
+> +++ b/include/drm/amdgpu_drm.h
+> @@ -238,10 +238,18 @@ union drm_amdgpu_bo_list {
+>   #define AMDGPU_CTX_PRIORITY_HIGH        512
+>   #define AMDGPU_CTX_PRIORITY_VERY_HIGH   1023
+>   
+> +/* GPU context workload hint bitmask */
+> +#define AMDGPU_CTX_FLAGS_WORKLOAD_HINT_MASK    0xFF
+> +#define AMDGPU_CTX_FLAGS_WORKLOAD_HINT_NONE    0
+> +#define AMDGPU_CTX_FLAGS_WORKLOAD_HINT_3D      (1 << 1)
+> +#define AMDGPU_CTX_FLAGS_WORKLOAD_HINT_VIDEO   (1 << 2)
+> +#define AMDGPU_CTX_FLAGS_WORKLOAD_HINT_VR      (1 << 3)
+> +#define AMDGPU_CTX_FLAGS_WORKLOAD_HINT_COMPUTE (1 << 4)
+> +
+>   struct drm_amdgpu_ctx_in {
+>   	/** AMDGPU_CTX_OP_* */
+>   	__u32	op;
+> -	/** For future use, no flags defined so far */
+> +	/** AMDGPU_CTX_FLAGS_* */
+>   	__u32	flags;
+>   	__u32	ctx_id;
+>   	/** AMDGPU_CTX_PRIORITY_* */
 
