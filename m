@@ -1,17 +1,17 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 525F158CE30
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 Aug 2022 21:00:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 824ED58CE29
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 Aug 2022 20:59:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAB2910F2B9;
-	Mon,  8 Aug 2022 18:59:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB66410ED59;
+	Mon,  8 Aug 2022 18:59:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A91B1130B8
- for <amd-gfx@lists.freedesktop.org>; Mon,  8 Aug 2022 18:48:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B488711A479
+ for <amd-gfx@lists.freedesktop.org>; Mon,  8 Aug 2022 18:51:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
@@ -19,30 +19,31 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=zlPfiEaaSh4GB5OlegfJytA4MDQCveFJe1XZcL1J9A8=; b=HwvROzUCIunHUmdZJzDmBD7LBR
- uhmzHZ8W1c3RwarbJoamWQFETfnab58XMZFFOkkfZepOVMdUNBFxBKbOsXJyFE9EQgebZZOQ9vjFG
- VY2tCb7FlCq4Sn8vJCwXjpXJl13soZdtdohjxGl04WK6+7zGfrwGRhA2qOQraWpBVfhnkj7ogevG1
- KSCQaPaTBh+iVqnfEFyIEzDuXkJ/LHhgBJT9/tO+Ji+gDS36Ia7DC9z65BZdxxpI18WPnhh+HFbLI
- xNlB9s3yZAPDhpkLHidltJrSEIrxYtCGBGExmiXzJLvNqEzc19xp2vdwsRx8o22erBplWl581T4iA
- NRLFedNw==;
+ bh=9x2SWaFcISJplNGMOY/BMFhqELcBE0VUuTRaKhmIL4U=; b=Ea+usjXEshJ9vOKSbXWKbw5YU3
+ GKOAu3gmfLsv5XGZNvjCBmbQM0Y2ITnuj7xCzlbKDQHz6Hgpn2QKpB5YnHrwzSA/48s4ZYSJ02Yf3
+ nLyROu8oY6qjcXwj09rbie5js18PXIECqdKTQdw3fcoqTcZDlURS4ttT5+pxkdGq5dcUbYznUiQd0
+ 6F0Le1dznobH8ot/g38RJwiObsaSpoAWUDeUWMXiQoCftdNk+fJDzxgJZEqnH8qv564iTzIj5KxqF
+ lDxtNytNgFx56KXAb3LDqrpATvUhmx1wlvZKcr5hKQion5juyDaUyQK1yzcziJoUxPcEU9SZUTE5z
+ ygxTI3mg==;
 Received: from [165.90.126.25] (helo=mail.igalia.com)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1oL7nr-0030DC-Lq; Mon, 08 Aug 2022 20:48:39 +0200
-Date: Mon, 8 Aug 2022 17:48:26 -0100
+ id 1oL7qc-0030JL-6s; Mon, 08 Aug 2022 20:51:30 +0200
+Date: Mon, 8 Aug 2022 17:51:17 -0100
 From: Melissa Wen <mwen@igalia.com>
-To: Simon Ser <contact@emersion.fr>
+To: Hans de Goede <hdegoede@redhat.com>
 Subject: Re: [PATCH] drm/amd/display: set panel orientation before
  drm_dev_register
-Message-ID: <20220808184826.lhjwbbaos4vllmzi@mail.igalia.com>
+Message-ID: <20220808185117.nuncv3kw67mjc66f@mail.igalia.com>
 References: <20220803162402.3412968-1-mwen@igalia.com>
  <20220803162952.odxi24tb6krgt42n@mail.igalia.com>
  <xI-NVvuRaXc7nwH0mpaawuQCjch9XHttx_WHUdA449IE17gUq2QxChCzWZTV6v64fItGWakt4KnFAEOwVX4ILsh947KphoLyrwID2g3gcAI=@emersion.fr>
+ <187d9428-c776-cbae-8054-172b106d9c4c@redhat.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="hxmf7ixklsqzofkg"
+ protocol="application/pgp-signature"; boundary="nvodltlb3ynp2qxf"
 Content-Disposition: inline
-In-Reply-To: <xI-NVvuRaXc7nwH0mpaawuQCjch9XHttx_WHUdA449IE17gUq2QxChCzWZTV6v64fItGWakt4KnFAEOwVX4ILsh947KphoLyrwID2g3gcAI=@emersion.fr>
+In-Reply-To: <187d9428-c776-cbae-8054-172b106d9c4c@redhat.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,9 +55,9 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, Xinhui.Pan@amd.com,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
- nikola.cornij@amd.com, Hans de Goede <hdegoede@redhat.com>,
+Cc: Leo Li <sunpeng.li@amd.com>, Simon Ser <contact@emersion.fr>,
+ Xinhui.Pan@amd.com, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ amd-gfx@lists.freedesktop.org, nikola.cornij@amd.com,
  Sean Paul <seanpaul@chromium.org>, kernel-dev@igalia.com,
  Alex Deucher <alexander.deucher@amd.com>,
  Harry Wentland <harry.wentland@amd.com>, christian.koenig@amd.com,
@@ -65,76 +66,101 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
---hxmf7ixklsqzofkg
+--nvodltlb3ynp2qxf
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On 08/05, Simon Ser wrote:
+On 08/08, Hans de Goede wrote:
 > Hi,
 >=20
-> Have you seen [1] and [2]? CC'ing Sean and Hans, it seems like there's
-> a disagreement regarding probing early vs. setting the initial value to
-> UNKNOWN.
+> On 8/5/22 19:34, Simon Ser wrote:
+> > Hi,
+> >=20
+> > Have you seen [1] and [2]? CC'ing Sean and Hans, it seems like there's
+> > a disagreement regarding probing early vs. setting the initial value to
+> > UNKNOWN.
 >=20
-> If a driver doesn't fetch EDIDs before exposing them to user-space,
-> then there is an amount of time where the connectors are exposed as
-> CONNECTED but their EDID and mode list isn't properly set. But maybe
-> that's what the GETCONNECTOR IOCTLs is supposed to do: probe the
-> connector, fetch its EDID, return the proper mode list. So maybe
-> drivers shouldn't probe early and should let user-space request probes?
-> In which case we could create the panel orientation prop with "Normal",
-> and update it accordingly when probing.=20
-
-Hi Simon,
-
-I've followed these discussions but AFAIU the AMD display issue is not
-exactly the same discussed in other drivers because here we are already
-able to read EDID and get mode size needed for a quirk orientation
-before drm device registration. So, I understand there isn't the need of
-setting an initial value to the immutable property and update it later
-(and all the issues this later update might cause). Am I missing
-something?
-
+> At least for the discussions I've been involved in so far
+> (see the links in the originak email) it was possible to retreive
+> the panel orientation before calling drm_dev_register() and IIRC some
+> changes were merged (I've at least reviewed them) to add a new
+> callback to the panel drivers to get the orientation from the panel
+> driver before registering the connector fixing the ordering problem
+> for those cases.
 >=20
-> At any rate, I've tested v2 on the Deck and it works properly.
+> > If a driver doesn't fetch EDIDs before exposing them to user-space,
+> > then there is an amount of time where the connectors are exposed as
+> > CONNECTED but their EDID and mode list isn't properly set. But maybe
+> > that's what the GETCONNECTOR IOCTLs is supposed to do: probe the
+> > connector, fetch its EDID, return the proper mode list. So maybe
+> > drivers shouldn't probe early and should let user-space request probes?
+> > In which case we could create the panel orientation prop with "Normal",
+> > and update it accordingly when probing.
 >=20
-> Tested-by: Simon Ser <contact@emersion.fr>
+> I guess that if in some cases it really is not possible to get
+> the orientation before calling drm_dev_register() then this is
+> an acceptable solution, as long as the orientation gets set
+> properly before the first GETCONNECTOR IOCTL finishes then
+> userspace will never know the difference since it needs to do
+> the GETCONNECTOR to enumerate the connectors properties anyways.
+>=20
+> > At any rate, I've tested v2 on the Deck and it works properly.
+> >=20
+> > Tested-by: Simon Ser <contact@emersion.fr>
+>=20
+> I'm not aware of which patch's v2 you are talking about here, link ?
 
-Thanks for testing it!
+Hi Hans,
 
-Best regards,
+Here is v2: https://lore.kernel.org/amd-gfx/20220804161349.3561177-1-mwen@i=
+galia.com/
+
+Anyway, let me cc'ing you all there.
+
+Best Regards,
 
 Melissa
 
 >=20
-> Thanks,
+> Regards,
 >=20
-> Simon
+> Hans
 >=20
-> [1]: https://lore.kernel.org/dri-devel/CAMavQKJUpYP8jo2JDGMYNBGtbPSSO7z9B=
-AComm5JQoty=3DHPtJg@mail.gmail.com/
-> [2]: https://lore.kernel.org/dri-devel/20220530081910.3947168-1-hsinyi@ch=
-romium.org/
+>=20
+>=20
+>=20
+>=20
+> >=20
+> > Thanks,
+> >=20
+> > Simon
+> >=20
+> > [1]: https://lore.kernel.org/dri-devel/CAMavQKJUpYP8jo2JDGMYNBGtbPSSO7z=
+9BAComm5JQoty=3DHPtJg@mail.gmail.com/
+> > [2]: https://lore.kernel.org/dri-devel/20220530081910.3947168-1-hsinyi@=
+chromium.org/
+> >=20
+>=20
 
---hxmf7ixklsqzofkg
+--nvodltlb3ynp2qxf
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEd8WOo/JViG+Tu+XIwqF3j0dLehwFAmLxWnUACgkQwqF3j0dL
-ehx/pRAAlJCiCZ9tS1Bc8H6JtQKvbMkVcPsGQQYjnOmaeAya9nj/gBTl4kOqNXzU
-Ps4fO7VB+OY3oT1zZvv2Hh/b9uVBFpMAg6W9IkuDEyItEXHzQTkGr33gQNKqVs06
-DTccZTpBrb+Djfz2a3DEnHYo7XyFpBWHd43A2aYJthViPYHITVdfpQytwCGmSO7D
-IXBmZRuoPbhxNX1k0m667YS0S1eJ+W7kv5GtY+SZ4MRR6u+m4NjfjV0bB7zxU6bA
-22vTb5JxPyElhLSAMDwYKdVFZvX9tt35BfYhwC9S0siTBvajlIKpV1+a9FL4JrBe
-y2rVS6l5oVYXQz6gMonIIna3zSwcx79vUcuFoep0+d6tQOy4WRq0ZwiawJ/faWXE
-kZTW1m9pP9Omz+GQg/mJEqlN5evo0NktOLNwt0il6WaUrRImYWDspdB0cYcEuSmM
-owMDSb4jPPxahMyzJuO61lYtB+ddURrAkgpm3uJrKWJwP+LwM6ni0T5sKNyLOFDh
-xfunI5PEbZ+vsUEE5mR0+AfuMWhGP/4+XsaodHrzkIeEWwMKXKmV9x4gPXaYRK+B
-66q+BIxB2hLjHQd6Rvkebt1wyYCpfHJRG15wfcOHTZo41UYTOwY9wrOAAPWfSpgU
-muCql0TQUVpvR858D0vSBs5qx3j4BTUDvzhjfhl3Ylw5ehgKXmI=
-=6N2O
+iQIzBAABCgAdFiEEd8WOo/JViG+Tu+XIwqF3j0dLehwFAmLxWyUACgkQwqF3j0dL
+ehxrEg/7BE6zSkKxwEmu/ql1Fmhxe1+uGBsjk+zY1XzJK/NI3+3zYjcPZJaYd+kA
+kN0AoTdTHwCBUh2WuCgfhnFSZ6jNrH25kzhf1dnk+oop6k5J87smtliYyDy6M10A
+LqhG0lFsDrWyxXoaqwjiJ1rXOAEHXxvZESheNwoDB0QYI1u3X2+ScSYBsX7Oq6GM
+cNU1w9iPc5QH8NhI2rexprszmcJ8KNOujmhBpsXzfgaHSdwexYA7h+FybJOpRiUa
+FWjzfsPqKcK/i2HftZO77C0oJTf7MS1I2zGPtASGI5OZJ2Io3sKU9dE0qW9e2YJe
+T00MRDEaKocPu5LeAEXopk6kBoVpnvMeYRmHwbuAeZIiz2+AMFwvIVhOg6FoChf9
+KNLChqTE+fH2uEPYpZSOYEjrn4D+g+NP8ZLBB6Ucl8wVp/0/jjTLKgMcWvO04Znt
+bbI6vSctRBOZrpDP3cvCDAAM0ccB9uai9YCzwqprMFvYAVcpp9dRcGGSSjGA2yYp
+V3i5umI/T7JugONeDsqBeU6t6Rg9wvx+m1FWj5upvZ+kCLQk5uUGeq8BtqxjEKwm
+Aj+uSybzR6UfNY7uTKGocXfhqkHUon0LBQkCVIJN0Qbx//1o3FcfgRoFgtHx0a7P
+/Dq+QzQu1gdrn6N8dKfRHFvRuM2mOy3nLCuwvJ+excg8stVGW/c=
+=x4SP
 -----END PGP SIGNATURE-----
 
---hxmf7ixklsqzofkg--
+--nvodltlb3ynp2qxf--
