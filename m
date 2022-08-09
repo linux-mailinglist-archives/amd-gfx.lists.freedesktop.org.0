@@ -2,93 +2,119 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C96F958DAD4
-	for <lists+amd-gfx@lfdr.de>; Tue,  9 Aug 2022 17:10:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FFD258DAE9
+	for <lists+amd-gfx@lfdr.de>; Tue,  9 Aug 2022 17:16:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4544DA6C0;
-	Tue,  9 Aug 2022 15:10:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F33B91EB6;
+	Tue,  9 Aug 2022 15:16:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2081.outbound.protection.outlook.com [40.107.92.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B55BDA633
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 Aug 2022 15:10:16 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2062.outbound.protection.outlook.com [40.107.220.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41D8997600;
+ Tue,  9 Aug 2022 15:15:53 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MK7sYneXgLs1VVfymFz27Yes94WinAdn5t6iYCOJnw+0n+7tYFMKSS16eneFFFnpFn7haavOuSGYG8MIAW+XwQFOjMxnoppty1spZAlFPSbW8iEhQluanXx52e3Zuotsg1n+IOURo4kWOMKvmZoKkUMKzOEG4CfmpUwe1v85DwevMqLAS18fPYEy8O6kYdaZOdzJcq4Ai2Ts5/t2ifeWg5hpHmHaQ3Bfw95aqpdANtDtc3m7LN0j2Crms42AptLzK5NrvN4V1NxDWcg1f3v4fdcWDM5pbVDd57YV6Zycp38IBRxvpGCh6l81sydAeLvpcTE6X7Wd08lvi6vyzWrP3Q==
+ b=Nty756Dtj0uzrYGQAM8gRwxsyCSZdE4izDro+X8kO0z8bK/Rz9GSZyW/thz09qMl5CS0E28lAyIYzsgubicr+v70Gmd+kRiOH8ZN0nY5GTCV7Zg5LWSpvQ4oO7ZekHANfwooF9utM0+oWDixMKvGkzgg8KpIyLtLiTEXbDfCFhOc+gYpixs997pJI8i6dDR1dahUSy2aDYfP9HDLbuF849ckviAzxzTmzX51h+yEMR6IhVndsaRgUR39TuuNryjVnCuD28Bunuthqq94T4fMSGeO3j7W8hylHdA4lu1DkqcaAMuVlIj+zOyrczNIi/RfFPsutMTG2hra+vSkCqczUQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oIjY9CZ71CAh79MNHLciyAW0T7U9gDZ0RXuFZXlw6bM=;
- b=KCZ91oET75oUT+8PrC/UwDvj1Ha/smpX1iGiQ8e9Lw2i8JufVfiqAQx/a2ZyUGfiPZu4oBoZCwWkNSEHzPFs7JkDyAG9o57Eyz45EsHY8wd7dI+saqIlbeLo6brEgxllLV8NUmcHWkxmcX+ZSWXqeNBtq6hEYwcsVGHuYeCFwDRqyGb7kgktRRAgidUhF/BNUwyfBfF4mAxGq7rtcUIM78y1uOJG+4iH88To49BwsEYMmh+G7o1QFirwYj5XE5fVB2+z7DJRj7+CI8oxYe+cQ5nTq8tDegwAk4mxbAfXdVemtRsotat2RX2lAFZikphLNrTIg/pU4yrymFmb1PMl4g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
+ bh=rXMYtzM1H31gYJj1jUfvS6pNEbaxhUUI+M5PX8MAlzM=;
+ b=R5ljmB1ZRPu4uacZ55hjEX9kcSQO2fpXUkIKYIEdzBTeebhn7s7mnAWzoR3Jfsno0xHINoi2NVu0hQ6NsgVkJFMNAuxTE+TPNyUR8pAZfcehcfcsyskIwgSSLMBIUwasWruIJZy6+iOeoHG2lI8xKACTRfdP99QYloQ8fzzJ5LaKN807rq7iLY8nUfSyVvhL1SUeSjgoInSWoqHkTGFLYW84vbJyPar7JHPx6t8yeGxd1KVAQbXIk4d59D6YAfY5xbxsxJOd3yY+ZaVSxwQuzom2gyMrij5OtFDLUBu5j9HTHV2AZT3KYe1ZzC9Mioxp8UepsIUPh534vVP1q85r/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oIjY9CZ71CAh79MNHLciyAW0T7U9gDZ0RXuFZXlw6bM=;
- b=GIfyHzmV9DgpC9SdjUaMM03pcLydcFrIr+tf4HPC4pH4J7jGjHT5PhyqZ7LmzR5RR3s457Jra+/Y1dmBo/7Cw2KvB0x9hMlEy4zUwGc/GW9ujp+BH9HhmhYdRRStwKJPAPozEYwLIEiCOKo3wYNkeDjHxX7uI1HS2N//4KFd/Nc=
-Received: from DM6PR06CA0076.namprd06.prod.outlook.com (2603:10b6:5:336::9) by
- CY4PR1201MB0215.namprd12.prod.outlook.com (2603:10b6:910:1d::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.19; Tue, 9 Aug
- 2022 15:10:11 +0000
-Received: from DM6NAM11FT014.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:336:cafe::30) by DM6PR06CA0076.outlook.office365.com
- (2603:10b6:5:336::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.17 via Frontend
- Transport; Tue, 9 Aug 2022 15:10:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT014.mail.protection.outlook.com (10.13.173.132) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5504.14 via Frontend Transport; Tue, 9 Aug 2022 15:10:11 +0000
-Received: from AUS-LX-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 9 Aug
- 2022 10:10:07 -0500
-From: Mario Limonciello <mario.limonciello@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 4/4] Revert "drm/amdgpu: use generic fb helpers instead of
- setting up AMD own's."
-Date: Tue, 9 Aug 2022 10:10:08 -0500
-Message-ID: <20220809151008.20376-5-mario.limonciello@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220809151008.20376-1-mario.limonciello@amd.com>
-References: <20220809151008.20376-1-mario.limonciello@amd.com>
+ bh=rXMYtzM1H31gYJj1jUfvS6pNEbaxhUUI+M5PX8MAlzM=;
+ b=ytz8iBp4vQ+3us6WyIZkm3oo1BczSyi7JOi5tqCqWpfC9799Fn0L3uNU9sPzA81RE8IWlRHjFS7pCH07bAxn712bMv5kZ5hLN9CuY/UBo6AaDYcieAwo9MkG4p8JbgLx5GgTok0Ws/oS8NXOB5eqM3ZHtsjlFgsZA/4uO3aBQB8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM4PR12MB6280.namprd12.prod.outlook.com (2603:10b6:8:a2::11) by
+ DS7PR12MB6024.namprd12.prod.outlook.com (2603:10b6:8:84::17) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5504.19; Tue, 9 Aug 2022 15:15:48 +0000
+Received: from DM4PR12MB6280.namprd12.prod.outlook.com
+ ([fe80::b44e:8a66:63eb:e8ee]) by DM4PR12MB6280.namprd12.prod.outlook.com
+ ([fe80::b44e:8a66:63eb:e8ee%8]) with mapi id 15.20.5525.010; Tue, 9 Aug 2022
+ 15:15:48 +0000
+Message-ID: <b6e10f4a-6834-fccb-0cba-0990dda37a76@amd.com>
+Date: Tue, 9 Aug 2022 11:15:55 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 1/3] drm/dp_mst: add passthrough_aux to struct
+ drm_dp_mst_port
+Content-Language: en-US
+To: Lyude Paul <lyude@redhat.com>, linux-kernel@vger.kernel.org
+References: <20220805211317.176672-1-hamza.mahfooz@amd.com>
+ <8db8a726d1aac25b3590497db9cbdcc3fe161227.camel@redhat.com>
+From: Hamza Mahfooz <hamza.mahfooz@amd.com>
+In-Reply-To: <8db8a726d1aac25b3590497db9cbdcc3fe161227.camel@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BLAPR03CA0037.namprd03.prod.outlook.com
+ (2603:10b6:208:32d::12) To DM4PR12MB6280.namprd12.prod.outlook.com
+ (2603:10b6:8:a2::11)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c9c32d9c-a581-4d64-8523-08da7a19414e
-X-MS-TrafficTypeDiagnostic: CY4PR1201MB0215:EE_
+X-MS-Office365-Filtering-Correlation-Id: 71017d50-40c4-4ff1-2bf8-08da7a1a0a14
+X-MS-TrafficTypeDiagnostic: DS7PR12MB6024:EE_
+X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: wtEpUNAzihiV5FQip7HtGvqX6wYU24NOjQqsArjzAgtbyp4DQIggBYStltZBGKCM1AbK937t1uYnk7ZP1/WTKSkR/zH36Foj/LxeD3hISOhfSgF3wqR7uT6vI9g2lbusAaS3QDpZttOciPwp7iXO2TFSty3zpuxS9edGZYJneF9nW7cf3vEz3fhmrNQGSDZ280E876bNeB+4RAWc9a9OcU9vdLPGQGvb7BHPtnp9yVQwm2Z2XWgREZXBIrBZHQfteiuFwObVFJlcUaNrtt7HjqqwvmB2d9de/y3ta0IVDyjm0iU8WGbmZyta+H+ZBJ/xMiAlcPX0NOGZRBaSPsQ5vwJsrBKPexnOMg55FAFu2bKzz8Zg0C3VrADEYI4akD9wO4tFcUErcy4rWO/eymAp6XBCDnBwGVGvEJFO6wAgJZf73DdtsUhc1sZddngvnaL9lyHFWpH38vD7MrHE2D2dsa5EfMBsumMlr5yUEjr5ixuUoF+5spynWLqvLuYOCBbXvYGzs04jPveek2zuqKZrXh3YbxBSkCg+yuI0bgCeUybThTSyCeOKq0Eo0pykjucefzyzinAbeuWPlZ0XQwdn5SeZs9q7uK8gWujNKgRAtRsANm7BGqE5kLskRNxIalmKBsBYNWp274KeNbfUDsDzJQAayOAAIL8DOdpmm5Tw88lDOgbHgTMKs9vOj5xGKaDBRQN0SEgxm6sV3JTZfZQqi8CrS4PbihDlTH4YxWwq8JFRksP7eiELDbkNRdTjqecgFXJt/82Do5v6R3ndRWDFekWw16y32cOILRDtFZrZUw1N+T3IsN2YbLL6Vxkcllnv5xcdoloSoVk3nj9QBh82jSybntV2dl0/1A3N6DpikITHXzfjm9/1/6OGR4V4Ld45yIJ00yDQ6g3z4KAqWOiu4A==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(396003)(39860400002)(346002)(376002)(136003)(46966006)(40470700004)(36840700001)(26005)(40480700001)(8936002)(82310400005)(44832011)(2906002)(30864003)(966005)(86362001)(36756003)(2616005)(1076003)(16526019)(336012)(186003)(47076005)(54906003)(7696005)(41300700001)(478600001)(356005)(82740400003)(81166007)(83380400001)(5660300002)(70586007)(40460700003)(6916009)(316002)(70206006)(4326008)(426003)(36860700001)(8676002)(41533002)(36900700001);
+X-Microsoft-Antispam-Message-Info: lzm7yjvWfLjke6Hr06S5V5UdaBB8Ckx7NKPQ67s4vqxuo0+v8ZjbpooOq/H9sTOx2R8gxoLXnP60J+ywDuhbqpfs/3hPTkFVmyeymd/gAL/wnFfHrgFp2uz+4FJbmt6/zRLzCEn/irEMyq8WVFBJcYOxRimsjY1/3mEUZkMOcHjFYsZCSTqaSNOVhdAz3RzDM9ttYaH+cdAok2xupkTDgPgNJay0KpXUUCk3o6BItlX7aHlhuPpM3fHMOlHQZ8XlF0SrObeeG2Pkr2eFQOsbPYwIn3NvASEEhlyg7YFriCVoeR0o7uc6QsZ7JxnYljP3Nu2KA8hrRMcyKcGgJOwGrL2dGXjgLfIA4ysVqaQ+S0UxLPdVnAuhXJj0Ez9k8XLZWWcMLXtOwYWRbinzv+/5Jsu56O9HovPgAQWsewe0F/92O4E3pv4/aj9RMNucEH0jDlj3m1p9nCXClsXhOajxpnL23ASEOVeKaIEQblKeNVb5rXaUAp2YFvjOWm0gJVARs8KySPdfJprbXdlAyN3Hw4K0vcrod8LczdA6vTVhOJ81tF43nY/SBeyWqNYB3f4/FYvwv2v8nXH1NJUJrX7ftC59MV7ErT6s+J6UHYBF89APDaIP6pUQ6wOcHt6fv+wcOSllzquuM56QmYAS1dxRlkG46iM8dtk7dCrLeOMjVmgmoDATStesiqx2/Nd1JUYuJ1NU///z2RA7Jy2M+KE5q52MCDkZKbkEjTy6uPdejpZS5dxrMmszuxHN96URpsbVvxtcyAvWcQNhjn78akOU46hX+zOUO5anPk0fMWT+sSnWWDB0u4xuulXYzoDk/K/hk8AccTp8unj8znuFBFJUcQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB6280.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(39860400002)(396003)(346002)(366004)(376002)(136003)(41300700001)(36756003)(31686004)(2616005)(6506007)(6666004)(8676002)(186003)(2906002)(26005)(6512007)(83380400001)(53546011)(44832011)(66476007)(54906003)(38100700002)(6486002)(478600001)(8936002)(316002)(7416002)(5660300002)(66556008)(86362001)(31696002)(4326008)(66946007)(45980500001)(43740500002);
  DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VVRHZExKRzNsbUxrRGdxbjRNV1Rub0dHc25uTW9GY3k5T0tXWDUzSVZ6MUh0?=
+ =?utf-8?B?R25ndlh6S01iZUM1VGNLaW1zdnRSSm1OWk43dnl0Z1R4NWcrTTk2SW85NlA4?=
+ =?utf-8?B?dTZFY2VGd05icU50UmxMdUM2U3BkbHNMYmk3ck95dXkycFI3NVBEQWdlSkdj?=
+ =?utf-8?B?aHRJWjVsK2o4ZW1DSlpQU01KUEdHaDFERGxNYThSUExjR3RUSTRXVS9OZ0c5?=
+ =?utf-8?B?ZlRlMDdJakp0WkZlbjhCbXoyM2QybWp6WDQ4b3NpOUIvWWRJdFBMSnUyQjQz?=
+ =?utf-8?B?Zkk0YmhPRVp1cit4cVZhWG1vK2xoTExmVjJIbnk3cURINDNXYU9vQVltbVRB?=
+ =?utf-8?B?MUVROUJKQnpoREJGOW9wUlBvK2lOQWVFS3BlRmE2a3AvZm9mdzFoa3Z6Mnoz?=
+ =?utf-8?B?d3J4RXlFN1lEbnl2SzBjTll1TG9QdVZKUTlQeStQSWRyNWs0K1A0Qm9lZm9O?=
+ =?utf-8?B?cU0zdlRCVjhqNFdPbDM5dys0UXNKYytCN1VGMVVYTmZ0K24rVnZyN3lrYjhZ?=
+ =?utf-8?B?TGR5K1BvWXU0OHErY2Z5TFlJQzFYNW1tYmxHVU1HdkUyZ0xYKy96OWdFSXhZ?=
+ =?utf-8?B?VDJsZGJIN1dESUovOEZYMUJTTTNuUU9ZRGtYOGtkV2VUSnl0b1Q4QWE2UEJR?=
+ =?utf-8?B?NGQxQW85ckFsM1dLOVZ4K1VLYXZjYUZJQzZkRTNDTEdQMW1yQTN1TmN4bCtI?=
+ =?utf-8?B?SysvR3BFbTlucWx4dUZ2a2wxb1NwUUt0aWROQ2xCcTNvNG4wS2g5SERPWVlR?=
+ =?utf-8?B?Mkh2NE9CZVJwR3lsNjRzem96RFdxNjFqQ3RQS0VodlJ1elJ6YmdwM3AyV0Uw?=
+ =?utf-8?B?b2RRTU4zTUl0dnU0bkkrd1dmM2psWmFHWCtsVHBmYUJwd1RBbXhqWkpxUzhX?=
+ =?utf-8?B?a3hxWTVvWlRMU3JCSmhOcDFOWmpzSEl6RGptYW5wZWFBTTlnNjhiK0gwZnYz?=
+ =?utf-8?B?TTdkZ0kvVGlseW9jbE5ONHovLzcyeWx2cUhhd2hmVURyNEFVWURiRUJzYWRF?=
+ =?utf-8?B?eFpObkxOM2RPY0lGWjBzcFZaNlcrdWtDUytVTWFOL1pRVWZIbWRGRlFaSUts?=
+ =?utf-8?B?M1dYSmJBZUVIczdMQndmWjcrcGFDTm82UURNaUxqbm1yb0k5V3YzQkhITmQv?=
+ =?utf-8?B?OTdEbzNnb0dJZDMxSzhYd2NXaDNXK3RyKzlBUDRVZ1lNMm1YVjZXdU5yOVVn?=
+ =?utf-8?B?d1ExSjQzQmVtRDBOR3BqbEVTMlRaMk0xaWNKRUFNd1RjS0lzN3B2bUpQaG1h?=
+ =?utf-8?B?ZU5hTno1NW1wWWQxWk1iZGNlRDVsb1NjSy8yWUJZUWRwWkhZN2REK1hNKzVy?=
+ =?utf-8?B?KzNOVUpUdlJHdktSNCtFOEFMQzRwVkd5Yk1veW5rY05nK2ZCVU9JTzRLUGh6?=
+ =?utf-8?B?TEZYUEplL0tGUm1GbUxQWEd5TXExMG9JOVc1U2RtcGgwS0Faa1NKSEdHakhQ?=
+ =?utf-8?B?NDJka05OdlFDWjd6M2VEdDZXQmxwK1dEU2gwZVZsTElVMmxUWGNscTJUOE41?=
+ =?utf-8?B?VEdLbE9GdUdMcTdRVE9ON0Y3a3huLzlhTHVoTmFHYjA5R3U1NmM4SG9PUkJx?=
+ =?utf-8?B?eXJybU1KWmxJdXBwR1F0eGhzNzRpdU1iYWg2VUliYndiYW44dFZydXNQaFB2?=
+ =?utf-8?B?amtWTFExZFhnQlpwUjk4cnQyMXhXWG5DbUQramxCVndOMldpdnhxd3RONmhF?=
+ =?utf-8?B?cVpmRGVxTDJ3ZU1VTVpjb3IzcVh5bTROZ0wxbklZN0ZjMEQxUGE5RmplaDV5?=
+ =?utf-8?B?cFM3dUc3WmYzb3p0Z3JScE91bmZhOVNtU1h6dDNhSi83UGQvWlZVSHpIbXVu?=
+ =?utf-8?B?Smlua0dub0FoWTllSHEvRFowYjNNd1J0Yk5kVjRGM0VmZnJ6Y01qRzh6bXlY?=
+ =?utf-8?B?NlBQL0JueGVLeS9pbmJiUHJpL0V2MXVNUnZ4RVNDd04vS1lsc1ZBTlVRdTBC?=
+ =?utf-8?B?Z3k1VXVjZ2NMN0tpOXlxcWM2Uml2cVZxM0tNQ1ZzZ1dpYVpOOWFkL25VeHRl?=
+ =?utf-8?B?WEVKTm1LZnJpUURzVE9Ha0cyTWoweTEveWI4YjA1SktQUmR4a21nRUNZV1pm?=
+ =?utf-8?B?UHNCdlFhak1ZcHdqc3M2WUxhSGl6QjJMYTNKV1V6NXVuR2ZMRXlSdEVZbmV6?=
+ =?utf-8?Q?Yclhjt0o2AI2okW3WPEqro4O5?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Aug 2022 15:10:11.3688 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c9c32d9c-a581-4d64-8523-08da7a19414e
+X-MS-Exchange-CrossTenant-Network-Message-Id: 71017d50-40c4-4ff1-2bf8-08da7a1a0a14
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6280.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Aug 2022 15:15:48.5357 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT014.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0215
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: J0wsoNqAjSi83Y7KEJE6IYPrloBj+DnrI3xXRvQn8y5TIdSd4rTEOBGmE9bBhli7PqU8t7SHLSZqAY/5MRU8rA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6024
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,643 +126,104 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, h.judt@gmx.at, Renjith.Pananchikkal@amd.com,
- Evan.Quan@amd.com, Mario Limonciello <mario.limonciello@amd.com>
+Cc: Ian Chen <ian.chen@amd.com>, David Airlie <airlied@linux.ie>,
+ Imre Deak <imre.deak@intel.com>, dri-devel@lists.freedesktop.org,
+ Imran Khan <imran.f.khan@oracle.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Kees Cook <keescook@chromium.org>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Javier Martinez Canillas <javierm@redhat.com>, amd-gfx@lists.freedesktop.org,
+ Leo Li <sunpeng.li@amd.com>, Fangzhi Zuo <Jerry.Zuo@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Jani Nikula <jani.nikula@intel.com>, hersenxs.wu@amd.com,
+ Mikita Lipski <mikita.lipski@amd.com>,
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
+ David Zhang <dingchen.zhang@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Roman Li <Roman.Li@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Claudio Suarez <cssk@net-c.es>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Wayne Lin <Wayne.Lin@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Colin Ian King <colin.king@intel.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Although preferable to use the generic fb helpers there is an underlying issue
-that causes problems for S4 that isn't yet identified.  As the workaround for
-the S4 issue caused other problems for S3, revert the change to generic fb helpers.
+Hey Lyude,
 
-If/when that underlying issue is identified switching back to generic fb helpers
-can be brought back in for amdgpu.
+On 2022-08-05 17:17, Lyude Paul wrote:
+> lgtm!
+> 
 
-Link: https://bugzilla.kernel.org/show_bug.cgi?id=216119
-Fixes: 087451f372bf ("drm/amdgpu: use generic fb helpers instead of setting up AMD own's.")
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/Makefile         |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |  12 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c |  11 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c     |  13 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c      | 388 ++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c     |  30 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h    |  20 +
- 7 files changed, 426 insertions(+), 50 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c
+Any chance you can apply this to drm-misc-next?
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile b/drivers/gpu/drm/amd/amdgpu/Makefile
-index 4bde7ff55f8a..224d2dca2b7b 100644
---- a/drivers/gpu/drm/amd/amdgpu/Makefile
-+++ b/drivers/gpu/drm/amd/amdgpu/Makefile
-@@ -45,7 +45,7 @@ amdgpu-y += amdgpu_device.o amdgpu_kms.o \
- 	amdgpu_atombios.o atombios_crtc.o amdgpu_connectors.o \
- 	atom.o amdgpu_fence.o amdgpu_ttm.o amdgpu_object.o amdgpu_gart.o \
- 	amdgpu_encoders.o amdgpu_display.o amdgpu_i2c.o \
--	amdgpu_gem.o amdgpu_ring.o \
-+	amdgpu_fb.o amdgpu_gem.o amdgpu_ring.o \
- 	amdgpu_cs.o amdgpu_bios.o amdgpu_benchmark.o \
- 	atombios_dp.o amdgpu_afmt.o amdgpu_trace_points.o \
- 	atombios_encoders.o amdgpu_sa.o atombios_i2c.o \
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index c84fdef0ac45..a14e2c98d324 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -3795,6 +3795,8 @@ int amdgpu_device_init(struct amdgpu_device *adev,
- 	/* Get a log2 for easy divisions. */
- 	adev->mm_stats.log2_max_MBps = ilog2(max(1u, max_MBps));
- 
-+	amdgpu_fbdev_init(adev);
-+
- 	r = amdgpu_pm_sysfs_init(adev);
- 	if (r) {
- 		adev->pm_sysfs_en = false;
-@@ -3956,6 +3958,8 @@ void amdgpu_device_fini_hw(struct amdgpu_device *adev)
- 	/* disable ras feature must before hw fini */
- 	amdgpu_ras_pre_fini(adev);
- 
-+	amdgpu_fbdev_fini(adev);
-+
- 	amdgpu_device_ip_fini_early(adev);
- 
- 	amdgpu_irq_fini_hw(adev);
-@@ -4066,7 +4070,7 @@ int amdgpu_device_suspend(struct drm_device *dev, bool fbcon)
- 	drm_kms_helper_poll_disable(dev);
- 
- 	if (fbcon)
--		drm_fb_helper_set_suspend_unlocked(adev_to_drm(adev)->fb_helper, true);
-+		amdgpu_fbdev_set_suspend(adev, 1);
- 
- 	cancel_delayed_work_sync(&adev->delayed_init_work);
- 
-@@ -4138,7 +4142,7 @@ int amdgpu_device_resume(struct drm_device *dev, bool fbcon)
- 	flush_delayed_work(&adev->delayed_init_work);
- 
- 	if (fbcon)
--		drm_fb_helper_set_suspend_unlocked(adev_to_drm(adev)->fb_helper, false);
-+		amdgpu_fbdev_set_suspend(adev, 0);
- 
- 	drm_kms_helper_poll_enable(dev);
- 
-@@ -4856,7 +4860,7 @@ int amdgpu_do_asic_reset(struct list_head *device_list_handle,
- 				if (r)
- 					goto out;
- 
--				drm_fb_helper_set_suspend_unlocked(adev_to_drm(tmp_adev)->fb_helper, false);
-+				amdgpu_fbdev_set_suspend(tmp_adev, 0);
- 
- 				/*
- 				 * The GPU enters bad state once faulty pages
-@@ -5203,7 +5207,7 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 		 */
- 		amdgpu_unregister_gpu_instance(tmp_adev);
- 
--		drm_fb_helper_set_suspend_unlocked(adev_to_drm(tmp_adev)->fb_helper, true);
-+		amdgpu_fbdev_set_suspend(tmp_adev, 1);
- 
- 		/* disable ras on ALL IPs */
- 		if (!need_emergency_restart &&
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-index 92281e57f3ac..eea6f8e34850 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-@@ -1619,10 +1619,13 @@ int amdgpu_display_suspend_helper(struct amdgpu_device *adev)
- 			continue;
- 		}
- 		robj = gem_to_amdgpu_bo(fb->obj[0]);
--		r = amdgpu_bo_reserve(robj, true);
--		if (r == 0) {
--			amdgpu_bo_unpin(robj);
--			amdgpu_bo_unreserve(robj);
-+		/* don't unpin kernel fb objects */
-+		if (!amdgpu_fbdev_robj_is_fb(adev, robj)) {
-+			r = amdgpu_bo_reserve(robj, true);
-+			if (r == 0) {
-+				amdgpu_bo_unpin(robj);
-+				amdgpu_bo_unreserve(robj);
-+			}
- 		}
- 	}
- 	return 0;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 429fcdf28836..74c246e9d1b7 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -2109,19 +2109,6 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
- 		goto err_pci;
- 	}
- 
--	/*
--	 * 1. don't init fbdev on hw without DCE
--	 * 2. don't init fbdev if there are no connectors
--	 */
--	if (adev->mode_info.mode_config_initialized &&
--	    !list_empty(&adev_to_drm(adev)->mode_config.connector_list)) {
--		/* select 8 bpp console on low vram cards */
--		if (adev->gmc.real_vram_size <= (32*1024*1024))
--			drm_fbdev_generic_setup(adev_to_drm(adev), 8);
--		else
--			drm_fbdev_generic_setup(adev_to_drm(adev), 32);
--	}
--
- 	ret = amdgpu_debugfs_init(adev);
- 	if (ret)
- 		DRM_ERROR("Creating debugfs files failed (%d).\n", ret);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c
-new file mode 100644
-index 000000000000..cd0acbea75da
---- /dev/null
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c
-@@ -0,0 +1,388 @@
-+/*
-+ * Copyright © 2007 David Airlie
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice (including the next
-+ * paragraph) shall be included in all copies or substantial portions of the
-+ * Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-+ * DEALINGS IN THE SOFTWARE.
-+ *
-+ * Authors:
-+ *     David Airlie
-+ */
-+
-+#include <linux/module.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/slab.h>
-+#include <linux/vga_switcheroo.h>
-+
-+#include <drm/amdgpu_drm.h>
-+#include <drm/drm_crtc.h>
-+#include <drm/drm_crtc_helper.h>
-+#include <drm/drm_fb_helper.h>
-+#include <drm/drm_fourcc.h>
-+
-+#include "amdgpu.h"
-+#include "cikd.h"
-+#include "amdgpu_gem.h"
-+
-+#include "amdgpu_display.h"
-+
-+/* object hierarchy -
-+   this contains a helper + a amdgpu fb
-+   the helper contains a pointer to amdgpu framebuffer baseclass.
-+*/
-+
-+static int
-+amdgpufb_open(struct fb_info *info, int user)
-+{
-+	struct drm_fb_helper *fb_helper = info->par;
-+	int ret = pm_runtime_get_sync(fb_helper->dev->dev);
-+	if (ret < 0 && ret != -EACCES) {
-+		pm_runtime_mark_last_busy(fb_helper->dev->dev);
-+		pm_runtime_put_autosuspend(fb_helper->dev->dev);
-+		return ret;
-+	}
-+	return 0;
-+}
-+
-+static int
-+amdgpufb_release(struct fb_info *info, int user)
-+{
-+	struct drm_fb_helper *fb_helper = info->par;
-+
-+	pm_runtime_mark_last_busy(fb_helper->dev->dev);
-+	pm_runtime_put_autosuspend(fb_helper->dev->dev);
-+	return 0;
-+}
-+
-+static const struct fb_ops amdgpufb_ops = {
-+	.owner = THIS_MODULE,
-+	DRM_FB_HELPER_DEFAULT_OPS,
-+	.fb_open = amdgpufb_open,
-+	.fb_release = amdgpufb_release,
-+	.fb_fillrect = drm_fb_helper_cfb_fillrect,
-+	.fb_copyarea = drm_fb_helper_cfb_copyarea,
-+	.fb_imageblit = drm_fb_helper_cfb_imageblit,
-+};
-+
-+
-+int amdgpu_align_pitch(struct amdgpu_device *adev, int width, int cpp, bool tiled)
-+{
-+	int aligned = width;
-+	int pitch_mask = 0;
-+
-+	switch (cpp) {
-+	case 1:
-+		pitch_mask = 255;
-+		break;
-+	case 2:
-+		pitch_mask = 127;
-+		break;
-+	case 3:
-+	case 4:
-+		pitch_mask = 63;
-+		break;
-+	}
-+
-+	aligned += pitch_mask;
-+	aligned &= ~pitch_mask;
-+	return aligned * cpp;
-+}
-+
-+static void amdgpufb_destroy_pinned_object(struct drm_gem_object *gobj)
-+{
-+	struct amdgpu_bo *abo = gem_to_amdgpu_bo(gobj);
-+	int ret;
-+
-+	ret = amdgpu_bo_reserve(abo, true);
-+	if (likely(ret == 0)) {
-+		amdgpu_bo_kunmap(abo);
-+		amdgpu_bo_unpin(abo);
-+		amdgpu_bo_unreserve(abo);
-+	}
-+	drm_gem_object_put(gobj);
-+}
-+
-+static int amdgpufb_create_pinned_object(struct amdgpu_fbdev *rfbdev,
-+					 struct drm_mode_fb_cmd2 *mode_cmd,
-+					 struct drm_gem_object **gobj_p)
-+{
-+	const struct drm_format_info *info;
-+	struct amdgpu_device *adev = rfbdev->adev;
-+	struct drm_gem_object *gobj = NULL;
-+	struct amdgpu_bo *abo = NULL;
-+	bool fb_tiled = false; /* useful for testing */
-+	u32 tiling_flags = 0, domain;
-+	int ret;
-+	int aligned_size, size;
-+	int height = mode_cmd->height;
-+	u32 cpp;
-+	u64 flags = AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED |
-+			       AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS     |
-+			       AMDGPU_GEM_CREATE_VRAM_CLEARED;
-+
-+	info = drm_get_format_info(adev_to_drm(adev), mode_cmd);
-+	cpp = info->cpp[0];
-+
-+	/* need to align pitch with crtc limits */
-+	mode_cmd->pitches[0] = amdgpu_align_pitch(adev, mode_cmd->width, cpp,
-+						  fb_tiled);
-+	domain = amdgpu_display_supported_domains(adev, flags);
-+	height = ALIGN(mode_cmd->height, 8);
-+	size = mode_cmd->pitches[0] * height;
-+	aligned_size = ALIGN(size, PAGE_SIZE);
-+	ret = amdgpu_gem_object_create(adev, aligned_size, 0, domain, flags,
-+				       ttm_bo_type_device, NULL, &gobj);
-+	if (ret) {
-+		pr_err("failed to allocate framebuffer (%d)\n", aligned_size);
-+		return -ENOMEM;
-+	}
-+	abo = gem_to_amdgpu_bo(gobj);
-+
-+	if (fb_tiled)
-+		tiling_flags = AMDGPU_TILING_SET(ARRAY_MODE, GRPH_ARRAY_2D_TILED_THIN1);
-+
-+	ret = amdgpu_bo_reserve(abo, false);
-+	if (unlikely(ret != 0))
-+		goto out_unref;
-+
-+	if (tiling_flags) {
-+		ret = amdgpu_bo_set_tiling_flags(abo,
-+						 tiling_flags);
-+		if (ret)
-+			dev_err(adev->dev, "FB failed to set tiling flags\n");
-+	}
-+
-+	ret = amdgpu_bo_pin(abo, domain);
-+	if (ret) {
-+		amdgpu_bo_unreserve(abo);
-+		goto out_unref;
-+	}
-+
-+	ret = amdgpu_ttm_alloc_gart(&abo->tbo);
-+	if (ret) {
-+		amdgpu_bo_unreserve(abo);
-+		dev_err(adev->dev, "%p bind failed\n", abo);
-+		goto out_unref;
-+	}
-+
-+	ret = amdgpu_bo_kmap(abo, NULL);
-+	amdgpu_bo_unreserve(abo);
-+	if (ret) {
-+		goto out_unref;
-+	}
-+
-+	*gobj_p = gobj;
-+	return 0;
-+out_unref:
-+	amdgpufb_destroy_pinned_object(gobj);
-+	*gobj_p = NULL;
-+	return ret;
-+}
-+
-+static int amdgpufb_create(struct drm_fb_helper *helper,
-+			   struct drm_fb_helper_surface_size *sizes)
-+{
-+	struct amdgpu_fbdev *rfbdev = (struct amdgpu_fbdev *)helper;
-+	struct amdgpu_device *adev = rfbdev->adev;
-+	struct fb_info *info;
-+	struct drm_framebuffer *fb = NULL;
-+	struct drm_mode_fb_cmd2 mode_cmd;
-+	struct drm_gem_object *gobj = NULL;
-+	struct amdgpu_bo *abo = NULL;
-+	int ret;
-+
-+	memset(&mode_cmd, 0, sizeof(mode_cmd));
-+	mode_cmd.width = sizes->surface_width;
-+	mode_cmd.height = sizes->surface_height;
-+
-+	if (sizes->surface_bpp == 24)
-+		sizes->surface_bpp = 32;
-+
-+	mode_cmd.pixel_format = drm_mode_legacy_fb_format(sizes->surface_bpp,
-+							  sizes->surface_depth);
-+
-+	ret = amdgpufb_create_pinned_object(rfbdev, &mode_cmd, &gobj);
-+	if (ret) {
-+		DRM_ERROR("failed to create fbcon object %d\n", ret);
-+		return ret;
-+	}
-+
-+	abo = gem_to_amdgpu_bo(gobj);
-+
-+	/* okay we have an object now allocate the framebuffer */
-+	info = drm_fb_helper_alloc_fbi(helper);
-+	if (IS_ERR(info)) {
-+		ret = PTR_ERR(info);
-+		goto out;
-+	}
-+
-+	ret = amdgpu_display_gem_fb_init(adev_to_drm(adev), &rfbdev->rfb,
-+					 &mode_cmd, gobj);
-+	if (ret) {
-+		DRM_ERROR("failed to initialize framebuffer %d\n", ret);
-+		goto out;
-+	}
-+
-+	fb = &rfbdev->rfb.base;
-+
-+	/* setup helper */
-+	rfbdev->helper.fb = fb;
-+
-+	info->fbops = &amdgpufb_ops;
-+
-+	info->fix.smem_start = amdgpu_gmc_vram_cpu_pa(adev, abo);
-+	info->fix.smem_len = amdgpu_bo_size(abo);
-+	info->screen_base = amdgpu_bo_kptr(abo);
-+	info->screen_size = amdgpu_bo_size(abo);
-+
-+	drm_fb_helper_fill_info(info, &rfbdev->helper, sizes);
-+
-+	/* setup aperture base/size for vesafb takeover */
-+	info->apertures->ranges[0].base = adev_to_drm(adev)->mode_config.fb_base;
-+	info->apertures->ranges[0].size = adev->gmc.aper_size;
-+
-+	/* Use default scratch pixmap (info->pixmap.flags = FB_PIXMAP_SYSTEM) */
-+
-+	if (info->screen_base == NULL) {
-+		ret = -ENOSPC;
-+		goto out;
-+	}
-+
-+	DRM_INFO("fb mappable at 0x%lX\n",  info->fix.smem_start);
-+	DRM_INFO("vram apper at 0x%lX\n",  (unsigned long)adev->gmc.aper_base);
-+	DRM_INFO("size %lu\n", (unsigned long)amdgpu_bo_size(abo));
-+	DRM_INFO("fb depth is %d\n", fb->format->depth);
-+	DRM_INFO("   pitch is %d\n", fb->pitches[0]);
-+
-+	vga_switcheroo_client_fb_set(adev->pdev, info);
-+	return 0;
-+
-+out:
-+	if (fb && ret) {
-+		drm_gem_object_put(gobj);
-+		drm_framebuffer_unregister_private(fb);
-+		drm_framebuffer_cleanup(fb);
-+		kfree(fb);
-+	}
-+	return ret;
-+}
-+
-+static int amdgpu_fbdev_destroy(struct drm_device *dev, struct amdgpu_fbdev *rfbdev)
-+{
-+	struct amdgpu_framebuffer *rfb = &rfbdev->rfb;
-+	int i;
-+
-+	drm_fb_helper_unregister_fbi(&rfbdev->helper);
-+
-+	if (rfb->base.obj[0]) {
-+		for (i = 0; i < rfb->base.format->num_planes; i++)
-+			drm_gem_object_put(rfb->base.obj[0]);
-+		amdgpufb_destroy_pinned_object(rfb->base.obj[0]);
-+		rfb->base.obj[0] = NULL;
-+		drm_framebuffer_unregister_private(&rfb->base);
-+		drm_framebuffer_cleanup(&rfb->base);
-+	}
-+	drm_fb_helper_fini(&rfbdev->helper);
-+
-+	return 0;
-+}
-+
-+static const struct drm_fb_helper_funcs amdgpu_fb_helper_funcs = {
-+	.fb_probe = amdgpufb_create,
-+};
-+
-+int amdgpu_fbdev_init(struct amdgpu_device *adev)
-+{
-+	struct amdgpu_fbdev *rfbdev;
-+	int bpp_sel = 32;
-+	int ret;
-+
-+	/* don't init fbdev on hw without DCE */
-+	if (!adev->mode_info.mode_config_initialized)
-+		return 0;
-+
-+	/* don't init fbdev if there are no connectors */
-+	if (list_empty(&adev_to_drm(adev)->mode_config.connector_list))
-+		return 0;
-+
-+	/* select 8 bpp console on low vram cards */
-+	if (adev->gmc.real_vram_size <= (32*1024*1024))
-+		bpp_sel = 8;
-+
-+	rfbdev = kzalloc(sizeof(struct amdgpu_fbdev), GFP_KERNEL);
-+	if (!rfbdev)
-+		return -ENOMEM;
-+
-+	rfbdev->adev = adev;
-+	adev->mode_info.rfbdev = rfbdev;
-+
-+	drm_fb_helper_prepare(adev_to_drm(adev), &rfbdev->helper,
-+			      &amdgpu_fb_helper_funcs);
-+
-+	ret = drm_fb_helper_init(adev_to_drm(adev), &rfbdev->helper);
-+	if (ret) {
-+		kfree(rfbdev);
-+		return ret;
-+	}
-+
-+	/* disable all the possible outputs/crtcs before entering KMS mode */
-+	if (!amdgpu_device_has_dc_support(adev) && !amdgpu_virtual_display)
-+		drm_helper_disable_unused_functions(adev_to_drm(adev));
-+
-+	drm_fb_helper_initial_config(&rfbdev->helper, bpp_sel);
-+	return 0;
-+}
-+
-+void amdgpu_fbdev_fini(struct amdgpu_device *adev)
-+{
-+	if (!adev->mode_info.rfbdev)
-+		return;
-+
-+	amdgpu_fbdev_destroy(adev_to_drm(adev), adev->mode_info.rfbdev);
-+	kfree(adev->mode_info.rfbdev);
-+	adev->mode_info.rfbdev = NULL;
-+}
-+
-+void amdgpu_fbdev_set_suspend(struct amdgpu_device *adev, int state)
-+{
-+	if (adev->mode_info.rfbdev)
-+		drm_fb_helper_set_suspend_unlocked(&adev->mode_info.rfbdev->helper,
-+						   state);
-+}
-+
-+int amdgpu_fbdev_total_size(struct amdgpu_device *adev)
-+{
-+	struct amdgpu_bo *robj;
-+	int size = 0;
-+
-+	if (!adev->mode_info.rfbdev)
-+		return 0;
-+
-+	robj = gem_to_amdgpu_bo(adev->mode_info.rfbdev->rfb.base.obj[0]);
-+	size += amdgpu_bo_size(robj);
-+	return size;
-+}
-+
-+bool amdgpu_fbdev_robj_is_fb(struct amdgpu_device *adev, struct amdgpu_bo *robj)
-+{
-+	if (!adev->mode_info.rfbdev)
-+		return false;
-+	if (robj == gem_to_amdgpu_bo(adev->mode_info.rfbdev->rfb.base.obj[0]))
-+		return true;
-+	return false;
-+}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-index 8ef31d687ef3..6603fb7f30ce 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-@@ -875,32 +875,6 @@ int amdgpu_gem_op_ioctl(struct drm_device *dev, void *data,
- 	return r;
- }
- 
--static int amdgpu_gem_align_pitch(struct amdgpu_device *adev,
--				  int width,
--				  int cpp,
--				  bool tiled)
--{
--	int aligned = width;
--	int pitch_mask = 0;
--
--	switch (cpp) {
--	case 1:
--		pitch_mask = 255;
--		break;
--	case 2:
--		pitch_mask = 127;
--		break;
--	case 3:
--	case 4:
--		pitch_mask = 63;
--		break;
--	}
--
--	aligned += pitch_mask;
--	aligned &= ~pitch_mask;
--	return aligned * cpp;
--}
--
- int amdgpu_mode_dumb_create(struct drm_file *file_priv,
- 			    struct drm_device *dev,
- 			    struct drm_mode_create_dumb *args)
-@@ -922,8 +896,8 @@ int amdgpu_mode_dumb_create(struct drm_file *file_priv,
- 	if (adev->mman.buffer_funcs_enabled)
- 		flags |= AMDGPU_GEM_CREATE_VRAM_CLEARED;
- 
--	args->pitch = amdgpu_gem_align_pitch(adev, args->width,
--					     DIV_ROUND_UP(args->bpp, 8), 0);
-+	args->pitch = amdgpu_align_pitch(adev, args->width,
-+					 DIV_ROUND_UP(args->bpp, 8), 0);
- 	args->size = (u64)args->pitch * args->height;
- 	args->size = ALIGN(args->size, PAGE_SIZE);
- 	domain = amdgpu_bo_get_preferred_domain(adev,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-index fb120abeec96..bca31b867cfe 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-@@ -232,6 +232,8 @@ struct amdgpu_i2c_chan {
- 	struct mutex mutex;
- };
- 
-+struct amdgpu_fbdev;
-+
- struct amdgpu_afmt {
- 	bool enabled;
- 	int offset;
-@@ -307,6 +309,13 @@ struct amdgpu_framebuffer {
- 	uint64_t address;
- };
- 
-+struct amdgpu_fbdev {
-+	struct drm_fb_helper helper;
-+	struct amdgpu_framebuffer rfb;
-+	struct list_head fbdev_list;
-+	struct amdgpu_device *adev;
-+};
-+
- struct amdgpu_mode_info {
- 	struct atom_context *atom_context;
- 	struct card_info *atom_card_info;
-@@ -332,6 +341,8 @@ struct amdgpu_mode_info {
- 	struct edid *bios_hardcoded_edid;
- 	int bios_hardcoded_edid_size;
- 
-+	/* pointer to fbdev info structure */
-+	struct amdgpu_fbdev *rfbdev;
- 	/* firmware flags */
- 	u32 firmware_flags;
- 	/* pointer to backlight encoder */
-@@ -609,6 +620,15 @@ bool amdgpu_crtc_get_scanout_position(struct drm_crtc *crtc,
- 			int *hpos, ktime_t *stime, ktime_t *etime,
- 			const struct drm_display_mode *mode);
- 
-+/* fbdev layer */
-+int amdgpu_fbdev_init(struct amdgpu_device *adev);
-+void amdgpu_fbdev_fini(struct amdgpu_device *adev);
-+void amdgpu_fbdev_set_suspend(struct amdgpu_device *adev, int state);
-+int amdgpu_fbdev_total_size(struct amdgpu_device *adev);
-+bool amdgpu_fbdev_robj_is_fb(struct amdgpu_device *adev, struct amdgpu_bo *robj);
-+
-+int amdgpu_align_pitch(struct amdgpu_device *adev, int width, int bpp, bool tiled);
-+
- /* amdgpu_display.c */
- void amdgpu_display_print_display_setup(struct drm_device *dev);
- int amdgpu_display_modeset_create_props(struct amdgpu_device *adev);
+> Reviewed-by: Lyude Paul <lyude@redhat.com>
+> 
+> On Fri, 2022-08-05 at 17:13 -0400, Hamza Mahfooz wrote:
+>> Currently, there is no way to identify if DSC pass-through can be
+>> enabled and what aux DSC pass-through requests ought to be sent to. So,
+>> add a variable to struct drm_dp_mst_port that keeps track of the
+>> aforementioned information.
+>>
+>> Signed-off-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
+>> ---
+>> v2: define DP_DSC_PASSTHROUGH_IS_SUPPORTED
+>> ---
+>>   drivers/gpu/drm/display/drm_dp_mst_topology.c | 4 +++-
+>>   include/drm/display/drm_dp.h                  | 1 +
+>>   include/drm/display/drm_dp_mst_helper.h       | 3 +++
+>>   3 files changed, 7 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+>> index 67b3b9697da7..71915afd9892 100644
+>> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
+>> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+>> @@ -5921,8 +5921,10 @@ struct drm_dp_aux *drm_dp_mst_dsc_aux_for_port(struct drm_dp_mst_port *port)
+>>   		/* Enpoint decompression with DP-to-DP peer device */
+>>   		if ((endpoint_dsc & DP_DSC_DECOMPRESSION_IS_SUPPORTED) &&
+>>   		    (endpoint_fec & DP_FEC_CAPABLE) &&
+>> -		    (upstream_dsc & 0x2) /* DSC passthrough */)
+>> +		    (upstream_dsc & DP_DSC_PASSTHROUGH_IS_SUPPORTED)) {
+>> +			port->passthrough_aux = &immediate_upstream_port->aux;
+>>   			return &port->aux;
+>> +		}
+>>   
+>>   		/* Virtual DPCD decompression with DP-to-DP peer device */
+>>   		return &immediate_upstream_port->aux;
+>> diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+>> index 9e3aff7e68bb..4d0abe4c7ea9 100644
+>> --- a/include/drm/display/drm_dp.h
+>> +++ b/include/drm/display/drm_dp.h
+>> @@ -239,6 +239,7 @@
+>>   
+>>   #define DP_DSC_SUPPORT                      0x060   /* DP 1.4 */
+>>   # define DP_DSC_DECOMPRESSION_IS_SUPPORTED  (1 << 0)
+>> +# define DP_DSC_PASSTHROUGH_IS_SUPPORTED    (1 << 1)
+>>   
+>>   #define DP_DSC_REV                          0x061
+>>   # define DP_DSC_MAJOR_MASK                  (0xf << 0)
+>> diff --git a/include/drm/display/drm_dp_mst_helper.h b/include/drm/display/drm_dp_mst_helper.h
+>> index 10adec068b7f..4a39c95f8afd 100644
+>> --- a/include/drm/display/drm_dp_mst_helper.h
+>> +++ b/include/drm/display/drm_dp_mst_helper.h
+>> @@ -86,6 +86,8 @@ struct drm_dp_vcpi {
+>>    * @next: link to next port on this branch device
+>>    * @aux: i2c aux transport to talk to device connected to this port, protected
+>>    * by &drm_dp_mst_topology_mgr.base.lock.
+>> + * @passthrough_aux: parent aux to which DSC pass-through requests should be
+>> + * sent, only set if DSC pass-through is possible.
+>>    * @parent: branch device parent of this port
+>>    * @vcpi: Virtual Channel Payload info for this port.
+>>    * @connector: DRM connector this port is connected to. Protected by
+>> @@ -140,6 +142,7 @@ struct drm_dp_mst_port {
+>>   	 */
+>>   	struct drm_dp_mst_branch *mstb;
+>>   	struct drm_dp_aux aux; /* i2c bus for this port? */
+>> +	struct drm_dp_aux *passthrough_aux;
+>>   	struct drm_dp_mst_branch *parent;
+>>   
+>>   	struct drm_dp_vcpi vcpi;
+> 
+
 -- 
-2.34.1
+Hamza
 
