@@ -1,48 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 770DA59015A
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Aug 2022 17:55:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 978BD590108
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Aug 2022 17:48:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 300D9113CB5;
-	Thu, 11 Aug 2022 15:55:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AE3A9C969;
+	Thu, 11 Aug 2022 15:48:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42F8B941F3;
- Thu, 11 Aug 2022 15:55:08 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id DAAB0B82123;
- Thu, 11 Aug 2022 15:55:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A73EC433D7;
- Thu, 11 Aug 2022 15:55:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1660233305;
- bh=hA0CbCQBPVva8D3GlDoaAaRKzzOR71O29paA4GmohtU=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=QchCgp15XaEDceRQtHcgX+P77gi0VchT54iESdO7+E7Pger8QN04rDDmC04DU2RYI
- Pp1dxoeE5GRuf6cmKyVDG8Y5HiltfBjuxGCERHZ11enhAX9Yj04m6U/JUnpIkSJAQG
- 0DJQCtY0iEDPUekW8no5GSJRKo3TfOEAR1jtNQVldq+ZyXou8jMm1gyN4YViQHA71p
- Q0mzt3yPHGnjYUJjkErXZ8WaYFooNG1nAYEXwlmCF6CZJHGnliN2dyMUEuTRbuayHr
- BersatxIcMXMmMXT1zI3VopUbxIqlpJEipONZ7oGIUrguWbZdqRCat7VJ0ZUG9ljz1
- BldQM+5LDxQmw==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.18 83/93] drm/amdkfd: Process notifier release
- callback don't take mutex
-Date: Thu, 11 Aug 2022 11:42:17 -0400
-Message-Id: <20220811154237.1531313-83-sashal@kernel.org>
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2089.outbound.protection.outlook.com [40.107.100.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 447B2B47BF
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Aug 2022 15:48:41 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eFWYe8uHqf+DYh8ZjGNDwVmMb+d0lVGilOTD5qr/birPOiL+C1GG5zHBgsf7d38xJTHL8zI9SA+L/WtnevaMo/VWiL7DsZW7D9k8FJU4RY5021Iw8t9L2nzeDlDeazdeOdbobe8q5DM6HMOwHZD9qct32X99xVR+JoFBDlx+6wuQo6LByQmyXmYRK0dJIOFo/hubGidEUNtTdUQ2K6RcJnqiHZUlTho+CI5O2jj7dMb6KUMSeS81afFdVgjeRH/uDrZbEbkvkwYtpYuz4C+4J/frvJEEGHNloPv3H5FeOkPBdM5CQS4fz+PwhFJgfVn0mYcVi24bmEp7PPE22Bns/A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BJ99jGwX04SSIr1Yrn3iOtaOMExFt/Z0ireSndz0XY4=;
+ b=auZe7YfpjAz60siWKEzTlxFiz3rmgcWdDIoyrgpU9erXI+m8vrmzY5O/gBBO7w2ZxLIqz34BwEscjy4mdFUJcegdsty4meDL2JOUQ8mHa7QM9LoH1++voKlC32zEZ65tsEsZaOFHjZul3lCblMmraP3ZQs9sQSeBNFS71Zp+YhUPewuWERctYP1NMMcfzGs/RaMAXOY8i028qm+6mM7pO+JP++3YgQ8rULQkFczXacPMGO7mI2HXUlYZ/uhrXSLOIOs2/Cnm3Ar89PgwWFrshFZgdNDF516cyrLAtM9qB+HmEbJT0/xK/eEouChgdgkcf6EORTuTGJAxycHgRS4L4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BJ99jGwX04SSIr1Yrn3iOtaOMExFt/Z0ireSndz0XY4=;
+ b=ZJP8J9DAiSfljsuxG9V9TCuFn4XlEHQDbnwM3ZgAle8N90NSH/lsLDZ5VNNedLKeNFDcX0qJreof/ZMz0AsSWKs91hF/Iz3ipnWAbBi2g9p+IgVf9r4JZELQ4jlU6WXj9Q/lIq/TJzTOjqTASh5dqX9oKHNpq6U1cVy3kbEDA8Y=
+Received: from BN9PR03CA0108.namprd03.prod.outlook.com (2603:10b6:408:fd::23)
+ by DM4PR12MB5724.namprd12.prod.outlook.com (2603:10b6:8:5f::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5525.11; Thu, 11 Aug 2022 15:48:38 +0000
+Received: from BN8NAM11FT008.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:fd:cafe::9d) by BN9PR03CA0108.outlook.office365.com
+ (2603:10b6:408:fd::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.17 via Frontend
+ Transport; Thu, 11 Aug 2022 15:48:38 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT008.mail.protection.outlook.com (10.13.177.95) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5525.11 via Frontend Transport; Thu, 11 Aug 2022 15:48:38 +0000
+Received: from atma3.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 11 Aug
+ 2022 10:48:35 -0500
+From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH v2 0/3] Expand amdgpu documentation
+Date: Thu, 11 Aug 2022 11:48:16 -0400
+Message-ID: <20220811154819.3566210-1-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220811154237.1531313-1-sashal@kernel.org>
-References: <20220811154237.1531313-1-sashal@kernel.org>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8625266d-df17-4877-6622-08da7bb0f52d
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5724:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: WWeTHUcX01oTjzsS400aGRcx+EhvQe5KZHu6tyAFC9mGlPmFJxIF1B5OtAtPg0boSgQCEWmpQEPCID9dEajtT9+AYjMTMTvE0rgymKEg34klSWb4ricZ2oS4goOi/Uk9r+MLtu+3MsBI9aET1POO8E9jQRJTiSkI4XMGukrlSH1vFzV1EF8R+JOhwFnsxYhs4D8mZExHLV3QcKNAkWwMVGzM3HACRI52Hrc8FmVt+Z5KnzpOQrpln3CkxObqMl3knkBchoPz2zXAOd/qAiX/sTwJjhTV7RHZ7Jxv4jBlboIRDx6zsq3hjq6NOpxjyAKzO6aBh4FP5Oz2G4NxKlJYwatfeiVuF+NKufsZ97aDb7+32YRCcfpGCxBvXSpmYFDudp3PC79dMkbvasmsVdUFhcEIzRaACrEFwtCKL+sHTGvXoJdCEqDMp0Pn5CkTYsDfnjFACh2sOHyv9LoC+Fsj9oreocYsaQoNuzMczdQo9lvaF40yUPneXR5onNOEGsLs79KoiRaiMv6E3MvQXw9az625MOowolNugAXuWtOhQleMf4/QrMhXF3Ln3+O2ol+p3gbkMiZmeMEyvyGiRGLkRA/ay/79MrS/ow+WiTaXLyjEUFRMK0jgfoMBr4WfjeRA4m+yvketpdT7ej49yZ1D6NIKSu9Xi/gJIjG0WxKzavpslvSbHrpnYTvLLzGMV46YG5jWd+1GoX56IgZRzDq4Es9BiXBAHvz3EpaRELhwuJQikq4rXE7nLIZcJ8X6hMkoc2+hQCs26GmkIsvzHauQbtYLqZU9EsvGyWh0e81DOsihGRP/qLu/zR/KHJcIsyag6fbvKkPpPr4I6H8KYIEV7g==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230016)(4636009)(376002)(396003)(136003)(39860400002)(346002)(36840700001)(46966006)(40470700004)(2906002)(40460700003)(8936002)(356005)(5660300002)(26005)(40480700001)(86362001)(82310400005)(81166007)(2616005)(336012)(1076003)(186003)(426003)(16526019)(47076005)(41300700001)(6666004)(7696005)(36860700001)(478600001)(316002)(6916009)(8676002)(82740400003)(70206006)(70586007)(36756003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2022 15:48:38.3419 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8625266d-df17-4877-6622-08da7bb0f52d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT008.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5724
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,114 +97,56 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, Philip Yang <Philip.Yang@amd.com>,
- airlied@linux.ie, Felix Kuehling <Felix.Kuehling@amd.com>, Xinhui.Pan@amd.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- daniel@ffwll.ch, Alex Deucher <alexander.deucher@amd.com>,
- christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Philip Yang <Philip.Yang@amd.com>
+This patchset introduces some new AMDGPU documentation. You will find:
 
-[ Upstream commit 74097f9fd2f5ebdae04fcba59da345386415cbf3 ]
+1. A CSV table that maps which component version is part of some ASIC
+    families. This can be useful to narrow down bugs;
+2. Some explanation about AMD Display Pipeline;
+3. An explanation of Multiple Plane Overlay, which can be useful for
+    userspace applications.
 
-Move process queues cleanup to deferred work kfd_process_wq_release, to
-avoid potential deadlock circular locking warning:
+Since we have some diagrams, I recommend applying these patches and
+building the documentation to have a better experience.
 
- WARNING: possible circular locking dependency detected
-               the existing dependency chain (in reverse order) is:
-      -> #2
-        ((work_completion)(&svms->deferred_list_work)){+.+.}-{0:0}:
-        __flush_work+0x343/0x4a0
-        svm_range_list_lock_and_flush_work+0x39/0xc0
-        svm_range_set_attr+0xe8/0x1080 [amdgpu]
-        kfd_ioctl+0x19b/0x600 [amdgpu]
-        __x64_sys_ioctl+0x81/0xb0
-        do_syscall_64+0x34/0x80
-        entry_SYSCALL_64_after_hwframe+0x44/0xae
+In this new version, I just rebased this patchset with the latest code
+from amd-staging-drm-next, and I also changed patch 2.
 
-      -> #1 (&info->lock#2){+.+.}-{3:3}:
-        __mutex_lock+0xa4/0x940
-        amdgpu_amdkfd_gpuvm_acquire_process_vm+0x2e3/0x590
-        kfd_process_device_init_vm+0x61/0x200 [amdgpu]
-        kfd_ioctl_acquire_vm+0x83/0xb0 [amdgpu]
-        kfd_ioctl+0x19b/0x600 [amdgpu]
-        __x64_sys_ioctl+0x81/0xb0
-        do_syscall_64+0x34/0x80
-       entry_SYSCALL_64_after_hwframe+0x44/0xae
+Thanks
+Siqueira
 
-      -> #0 (&process->mutex){+.+.}-{3:3}:
-        __lock_acquire+0x1365/0x23d0
-        lock_acquire+0xc9/0x2e0
-        __mutex_lock+0xa4/0x940
-        kfd_process_notifier_release+0x96/0xe0 [amdgpu]
-        __mmu_notifier_release+0x94/0x210
-        exit_mmap+0x35/0x1f0
-        mmput+0x63/0x120
-        svm_range_deferred_list_work+0x177/0x2c0 [amdgpu]
-        process_one_work+0x2a4/0x600
-        worker_thread+0x39/0x3e0
-        kthread+0x16d/0x1a0
+Rodrigo Siqueira (3):
+  Documentation/gpu: Add info table for ASICs
+  Documentation/gpu: Add an explanation about the DCN pipeline
+  Documentation/gpu: Add Multiplane Overlay doc
 
-  Possible unsafe locking scenario:
+ .../gpu/amdgpu/apu-asic-info-table.csv        |    8 +
+ .../gpu/amdgpu/dgpu-asic-info-table.csv       |   24 +
+ .../gpu/amdgpu/display/dcn-overview.rst       |   59 +
+ Documentation/gpu/amdgpu/display/index.rst    |    1 +
+ .../gpu/amdgpu/display/mpo-cursor.svg         |  435 +++++++
+ .../gpu/amdgpu/display/mpo-overview.rst       |  242 ++++
+ .../multi-display-hdcp-mpo-less-pipe-ex.svg   |  220 ++++
+ .../amdgpu/display/multi-display-hdcp-mpo.svg |  171 +++
+ .../amdgpu/display/pipeline_4k_no_split.svg   |  958 +++++++++++++++
+ .../gpu/amdgpu/display/pipeline_4k_split.svg  | 1062 +++++++++++++++++
+ .../single-display-mpo-multi-video.svg        |  339 ++++++
+ .../gpu/amdgpu/display/single-display-mpo.svg |  266 +++++
+ Documentation/gpu/amdgpu/driver-misc.rst      |   17 +
+ 13 files changed, 3802 insertions(+)
+ create mode 100644 Documentation/gpu/amdgpu/apu-asic-info-table.csv
+ create mode 100644 Documentation/gpu/amdgpu/dgpu-asic-info-table.csv
+ create mode 100644 Documentation/gpu/amdgpu/display/mpo-cursor.svg
+ create mode 100644 Documentation/gpu/amdgpu/display/mpo-overview.rst
+ create mode 100644 Documentation/gpu/amdgpu/display/multi-display-hdcp-mpo-less-pipe-ex.svg
+ create mode 100644 Documentation/gpu/amdgpu/display/multi-display-hdcp-mpo.svg
+ create mode 100644 Documentation/gpu/amdgpu/display/pipeline_4k_no_split.svg
+ create mode 100644 Documentation/gpu/amdgpu/display/pipeline_4k_split.svg
+ create mode 100644 Documentation/gpu/amdgpu/display/single-display-mpo-multi-video.svg
+ create mode 100644 Documentation/gpu/amdgpu/display/single-display-mpo.svg
 
-      CPU0                    CPU1
-        ----                    ----
-   lock((work_completion)(&svms->deferred_list_work));
-                                lock(&info->lock#2);
-             lock((work_completion)(&svms->deferred_list_work));
-   lock(&process->mutex);
-
-Signed-off-by: Philip Yang <Philip.Yang@amd.com>
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/gpu/drm/amd/amdkfd/kfd_process.c | 21 +++++++++------------
- 1 file changed, 9 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-index 19d4089a0b1c..3f2383db1b73 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-@@ -1111,6 +1111,15 @@ static void kfd_process_wq_release(struct work_struct *work)
- 	struct kfd_process *p = container_of(work, struct kfd_process,
- 					     release_work);
- 
-+	kfd_process_dequeue_from_all_devices(p);
-+	pqm_uninit(&p->pqm);
-+
-+	/* Signal the eviction fence after user mode queues are
-+	 * destroyed. This allows any BOs to be freed without
-+	 * triggering pointless evictions or waiting for fences.
-+	 */
-+	dma_fence_signal(p->ef);
-+
- 	kfd_process_remove_sysfs(p);
- 	kfd_iommu_unbind_process(p);
- 
-@@ -1175,20 +1184,8 @@ static void kfd_process_notifier_release(struct mmu_notifier *mn,
- 	cancel_delayed_work_sync(&p->eviction_work);
- 	cancel_delayed_work_sync(&p->restore_work);
- 
--	mutex_lock(&p->mutex);
--
--	kfd_process_dequeue_from_all_devices(p);
--	pqm_uninit(&p->pqm);
--
- 	/* Indicate to other users that MM is no longer valid */
- 	p->mm = NULL;
--	/* Signal the eviction fence after user mode queues are
--	 * destroyed. This allows any BOs to be freed without
--	 * triggering pointless evictions or waiting for fences.
--	 */
--	dma_fence_signal(p->ef);
--
--	mutex_unlock(&p->mutex);
- 
- 	mmu_notifier_put(&p->mmu_notifier);
- }
 -- 
 2.35.1
 
