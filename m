@@ -1,45 +1,45 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EAFB590272
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Aug 2022 18:10:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32B0D590277
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Aug 2022 18:11:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9435112B78B;
-	Thu, 11 Aug 2022 16:10:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EAA010F21D;
+	Thu, 11 Aug 2022 16:11:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CA1E14B21F;
- Thu, 11 Aug 2022 16:09:58 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3E3418A6A7;
+ Thu, 11 Aug 2022 16:10:55 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id AA09EB821A0;
- Thu, 11 Aug 2022 16:09:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66D07C433C1;
- Thu, 11 Aug 2022 16:09:54 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 772F761470;
+ Thu, 11 Aug 2022 16:10:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DAE9C433B5;
+ Thu, 11 Aug 2022 16:10:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1660234195;
- bh=yl0xHkcESV7NTyfRvJaAPC4xYMup5ytE1fDcH4xEmw4=;
+ s=k20201202; t=1660234255;
+ bh=xwtCnK1qVdKBIvDhrnlhmpj2FjfF2cVUAB5V4KxWS+o=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Ongw9yAQVb5u0jTBYLcngSFPOZWOT/deZl8HLRfmURamJ2LnTxD5GBA0xpzZveHHy
- oSBMYfpb26DmKkdaquKfmJM7wbwo+S50nZqf3eynlG7rBLeowV4TrgtJHGmsuGMnLa
- 9DBR9XiAZNYiAa4s6TFtGdfc9IMQP1fBhQ37tHMZBbL6Bkr+rAyeGqhW2TdRjdFdpe
- LWnozOTUHya85nVW1p/npOQy1Dfv7mAUmdFBGn3sl+tdzxwDi7u78hh48BuJf2O1an
- qRRgz8BT/vdxuNZF9BQnRefzRd/bREX72bAyNsFSq4gtR/qDRcWwNK5H9tdPUOPhYN
- 7ToW733VzgFBg==
+ b=VcXJqUd/2H9kVpXNHgTZqb9lNmLvy+VWV62NP6oF7KRyBzIoHfJCNcK/kGuq5vBZ5
+ 3zrxVRGXBELLNShFnZA+PiYRNpcVulRj+oL0DVZm5kH3KSGbaND+hJGfmtpCQiSDVz
+ fv/H/05s2mve4xw+FYqDsNLyC2UtzWFjKVEQec+nC2LjV+QUMD/WQj0oGccF35C+/Q
+ RQRB+rNZaaBTqLNurE0Qoc6gUL4kQ/Yg0zpYIx4NUMOHZC5qepjlacWmvgW8nIF5Rb
+ htvDWGrTkOoyrEMR5PGExaQQWdvO3daamylCf4gvC9AOT0Gs71MDoyzcQBINh0sxqS
+ m8FzJ0zZbBQOg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 03/14] drm/radeon: Initialize fences array
- entries in radeon_sa_bo_next_hole
-Date: Thu, 11 Aug 2022 12:09:31 -0400
-Message-Id: <20220811160948.1542842-3-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 02/14] drm/radeon: integer overflow in
+ radeon_mode_dumb_create()
+Date: Thu, 11 Aug 2022 12:10:31 -0400
+Message-Id: <20220811161050.1543183-2-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220811160948.1542842-1-sashal@kernel.org>
-References: <20220811160948.1542842-1-sashal@kernel.org>
+In-Reply-To: <20220811161050.1543183-1-sashal@kernel.org>
+References: <20220811161050.1543183-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -64,50 +64,36 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Xiaohui Zhang <xiaohuizhang@ruc.edu.cn>
 
-[ Upstream commit 0381ac3ca2e727d4dfb7264d9416a8ba6bb6c18b ]
+[ Upstream commit feb54650bae25f2a2adfc493e3e254e7c27a3fba ]
 
-Similar to the handling of amdgpu_sa_bo_next_hole in commit 6a15f3ff19a8
-("drm/amdgpu: Initialize fences array entries in amdgpu_sa_bo_next_hole"),
+Similar to the handling of amdgpu_mode_dumb_create in commit 54ef0b5461c0
+("drm/amdgpu: integer overflow in amdgpu_mode_dumb_create()"),
 we thought a patch might be needed here as well.
 
-The entries were only initialized once in radeon_sa_bo_new. If a fence
-wasn't signalled yet in the first radeon_sa_bo_next_hole call, but then
-got signalled before a later radeon_sa_bo_next_hole call, it could
-destroy the fence but leave its pointer in the array, resulting in
-use-after-free in radeon_sa_bo_new.
+args->size is a u64.  arg->pitch and args->height are u32.  The
+multiplication will overflow instead of using the high 32 bits as
+intended.
 
 Signed-off-by: Xiaohui Zhang <xiaohuizhang@ruc.edu.cn>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/radeon/radeon_sa.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/radeon/radeon_gem.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/radeon/radeon_sa.c b/drivers/gpu/drm/radeon/radeon_sa.c
-index 197b157b73d0..0cb6eeb77b5f 100644
---- a/drivers/gpu/drm/radeon/radeon_sa.c
-+++ b/drivers/gpu/drm/radeon/radeon_sa.c
-@@ -267,6 +267,8 @@ static bool radeon_sa_bo_next_hole(struct radeon_sa_manager *sa_manager,
- 	for (i = 0; i < RADEON_NUM_RINGS; ++i) {
- 		struct radeon_sa_bo *sa_bo;
+diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeon/radeon_gem.c
+index ac467b80edc7..18a914752a32 100644
+--- a/drivers/gpu/drm/radeon/radeon_gem.c
++++ b/drivers/gpu/drm/radeon/radeon_gem.c
+@@ -749,7 +749,7 @@ int radeon_mode_dumb_create(struct drm_file *file_priv,
  
-+		fences[i] = NULL;
-+
- 		if (list_empty(&sa_manager->flist[i])) {
- 			continue;
- 		}
-@@ -332,10 +334,8 @@ int radeon_sa_bo_new(struct radeon_device *rdev,
+ 	args->pitch = radeon_align_pitch(rdev, args->width,
+ 					 DIV_ROUND_UP(args->bpp, 8), 0);
+-	args->size = args->pitch * args->height;
++	args->size = (u64)args->pitch * args->height;
+ 	args->size = ALIGN(args->size, PAGE_SIZE);
  
- 	spin_lock(&sa_manager->wq.lock);
- 	do {
--		for (i = 0; i < RADEON_NUM_RINGS; ++i) {
--			fences[i] = NULL;
-+		for (i = 0; i < RADEON_NUM_RINGS; ++i)
- 			tries[i] = 0;
--		}
- 
- 		do {
- 			radeon_sa_bo_try_free(sa_manager);
+ 	r = radeon_gem_object_create(rdev, args->size, 0,
 -- 
 2.35.1
 
