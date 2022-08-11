@@ -2,46 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B675958FCE3
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Aug 2022 14:54:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EEF858FCE5
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Aug 2022 14:54:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96F8514B938;
-	Thu, 11 Aug 2022 12:54:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C1ECA1B12;
+	Thu, 11 Aug 2022 12:54:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mailgw.kylinos.cn (unknown [124.126.103.232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10D57A72DC;
- Thu, 11 Aug 2022 07:26:01 +0000 (UTC)
-X-UUID: 5c3c5a507470455b949f29b3a7ea64c0-20220811
-X-CPASD-INFO: 12437b500c9c49a980b461ad49267f8a@eoJuU2SUY2Bcg3uvg3ysc1hhkmRmXYG
- zdnNSZmWWZIGVgnxsTV5qXFWCgGpQYWNdYlV3fGtQYmBgZFB5i4Jyj1RgXmCCVHSTgHNsVGNlkg==
-X-CLOUD-ID: 12437b500c9c49a980b461ad49267f8a
-X-CPASD-SUMMARY: SIP:-1, APTIP:-2.0, KEY:0.0, FROMBLOCK:1, OB:0.0, URL:-5,
- TVAL:196.
- 0, ESV:0.0, ECOM:-5.0, ML:0.0, FD:0.0, CUTS:245.0, IP:-2.0, MAL:-5.0, PHF:-5.0,
- PHC:-5
- .0, SPF:4.0, EDMS:-5, IPLABEL:4480.0, FROMTO:0, AD:0, FFOB:0.0, CFOB:0.0, SPC:0,
- SIG:-
- 5, AUF:2, DUF:2126, ACD:46, DCD:46, SL:0, EISP:0, AG:0, CFC:0.597, CFSR:0.039,
- UAT:0, RA
- F:0, IMG:-5.0, DFA:0, DTA:0, IBL:-2.0, ADI:-5, SBL:0, REDM:0, REIP:0, ESB:0,
- ATTNUM:0, E AF:0,CID:-5.0,VERSION:2.3.17
-X-CPASD-ID: 5c3c5a507470455b949f29b3a7ea64c0-20220811
-X-CPASD-BLOCK: 1000
-X-CPASD-STAGE: 1
-X-UUID: 5c3c5a507470455b949f29b3a7ea64c0-20220811
-X-User: lizhenneng@kylinos.cn
-Received: from localhost.localdomain [(116.128.244.169)] by mailgw
- (envelope-from <lizhenneng@kylinos.cn>) (Generic MTA)
- with ESMTP id 634263236; Thu, 11 Aug 2022 15:25:53 +0800
-From: Zhenneng Li <lizhenneng@kylinos.cn>
-To: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH] drm/radeon: add a force flush to delay work when radeon
-Date: Thu, 11 Aug 2022 15:25:40 +0800
-Message-Id: <20220811072540.964309-1-lizhenneng@kylinos.cn>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-vs1-xe29.google.com (mail-vs1-xe29.google.com
+ [IPv6:2607:f8b0:4864:20::e29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6A56A9B43
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Aug 2022 07:35:02 +0000 (UTC)
+Received: by mail-vs1-xe29.google.com with SMTP id b124so17446555vsc.9
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Aug 2022 00:35:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc;
+ bh=Zf4dPRTYmplJYeainFGksxHZErpXbpZxUB9mz4KvGrY=;
+ b=nXD1DDRQxBFX9R4LYgBCQHorbHZNm390NaV3B+cj/xb3heP0KUVnJABJPG+Va8QtN+
+ WcyubkKOS0Ee4jT8NBbVamVnC8EhsaFyHk8fknCcUjwiZh03ZWO5MAF5Q+RrNjoBV2IB
+ qW+1FD2gtKnB0RC00sYnKkV/Tb4cyOSeAlGsvC4hfoaz35eWik3BgxG2W86CDxKM9D4s
+ O0jLsmjAzWpiQKKoJ71QNhDiPR9Q+1w37bfGaJId0D816AO4Y+0vjlEJ4BqxHoIZEzCy
+ mkABN76w1bCznBaZk4EmR1zBQkKmFYzGHqlUajXXBO6wJJ0PxhWAgW259SLgcP0u4Kxv
+ Q51g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
+ bh=Zf4dPRTYmplJYeainFGksxHZErpXbpZxUB9mz4KvGrY=;
+ b=WxZ7Vmc1RYTi6mP/M6TUTDPRRm7dTcYOWDpop9uGuGLhYn56SADM1b8HGtZBItDIy2
+ F4/MSwdQHm4c0oY8GgCiD+Iw6r4c+EO5QH6t8XNj8fwAlDffTIt9WlLAwePNQ9j5kV6J
+ cSRioSQ7ZqGMArpSGyYZIkVEIk/8AY2rsEAht4Socg6vL54nbdbpGDcoT7M5kA8ijbIE
+ tiK2UNrPx6uI9/Cuez97Q6IDOrMHoNDIEWbbTB17W8auAbjHU7iQkClMVmESPBfRcUR/
+ 2KH2UI5yoH6mG5ch4V8J+U+YFYerhh8e6ehpEuaPumfcEWuwyoniDuzvZl4pI+25Fgl2
+ 3jPg==
+X-Gm-Message-State: ACgBeo1Y6na1vSwuHw99dvpxcjLhoZNODhPXbM5Ut4Doi7TNF1BA7GH2
+ /sRZ5GggIX0j/vpn55JGeeMIcqItchJBNgJi82ma6g==
+X-Google-Smtp-Source: AA6agR7P7/8YGFQUN6OSOy19y0QIwoBp1FpPcb467Or9uEETD0mmcu/Y5akkWCYCeP9e3yf8bVeQbZ0ulqnOPFAbmtE=
+X-Received: by 2002:a67:c198:0:b0:383:b020:f7c4 with SMTP id
+ h24-20020a67c198000000b00383b020f7c4mr13892853vsj.71.1660203301565; Thu, 11
+ Aug 2022 00:35:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220811004010.61299-1-tales.aparecida@gmail.com>
+ <20220811004010.61299-3-tales.aparecida@gmail.com>
+In-Reply-To: <20220811004010.61299-3-tales.aparecida@gmail.com>
+From: David Gow <davidgow@google.com>
+Date: Thu, 11 Aug 2022 15:34:50 +0800
+Message-ID: <CABVgOSmkeybnR2sGEEgn1Cb0cR2eKxW=vhXkHjC5xCuhaxsqVg@mail.gmail.com>
+Subject: Re: [PATCH 2/8] drm/amd/display: Introduce KUnit tests to the
+ bw_fixed library
+To: Tales Aparecida <tales.aparecida@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Thu, 11 Aug 2022 12:54:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -54,77 +66,130 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Pan Xinhui <Xinhui.Pan@amd.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Zhenneng Li <lizhenneng@kylinos.cn>, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: siqueirajordao@riseup.net, David Airlie <airlied@linux.ie>,
+ =?UTF-8?B?TWHDrXJhIENhbmFs?= <mairacanal@riseup.net>,
+ Isabella Basso <isabbasso@riseup.net>, andrealmeid@riseup.net,
+ Jonathan Corbet <corbet@lwn.net>, magalilemes00@gmail.com,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
+ KUnit Development <kunit-dev@googlegroups.com>,
+ Harry Wentland <harry.wentland@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Leo Li <sunpeng.li@amd.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, mwen@igalia.com,
+ Trevor Woerner <twoerner@gmail.com>,
+ =?UTF-8?B?TWHDrXJhIENhbmFs?= <maira.canal@usp.br>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Although radeon card fence and wait for gpu to finish processing current batch rings,
-there is still a corner case that radeon lockup work queue may not be fully flushed,
-and meanwhile the radeon_suspend_kms() function has called pci_set_power_state() to
-put device in D3hot state.
-Per PCI spec rev 4.0 on 5.3.1.4.1 D3hot State.
-> Configuration and Message requests are the only TLPs accepted by a Function in
-> the D3hot state. All other received Requests must be handled as Unsupported Requests,
-> and all received Completions may optionally be handled as Unexpected Completions.
-This issue will happen in following logs:
-Unable to handle kernel paging request at virtual address 00008800e0008010
-CPU 0 kworker/0:3(131): Oops 0
-pc = [<ffffffff811bea5c>]  ra = [<ffffffff81240844>]  ps = 0000 Tainted: G        W
-pc is at si_gpu_check_soft_reset+0x3c/0x240
-ra is at si_dma_is_lockup+0x34/0xd0
-v0 = 0000000000000000  t0 = fff08800e0008010  t1 = 0000000000010000
-t2 = 0000000000008010  t3 = fff00007e3c00000  t4 = fff00007e3c00258
-t5 = 000000000000ffff  t6 = 0000000000000001  t7 = fff00007ef078000
-s0 = fff00007e3c016e8  s1 = fff00007e3c00000  s2 = fff00007e3c00018
-s3 = fff00007e3c00000  s4 = fff00007fff59d80  s5 = 0000000000000000
-s6 = fff00007ef07bd98
-a0 = fff00007e3c00000  a1 = fff00007e3c016e8  a2 = 0000000000000008
-a3 = 0000000000000001  a4 = 8f5c28f5c28f5c29  a5 = ffffffff810f4338
-t8 = 0000000000000275  t9 = ffffffff809b66f8  t10 = ff6769c5d964b800
-t11= 000000000000b886  pv = ffffffff811bea20  at = 0000000000000000
-gp = ffffffff81d89690  sp = 00000000aa814126
-Disabling lock debugging due to kernel taint
-Trace:
-[<ffffffff81240844>] si_dma_is_lockup+0x34/0xd0
-[<ffffffff81119610>] radeon_fence_check_lockup+0xd0/0x290
-[<ffffffff80977010>] process_one_work+0x280/0x550
-[<ffffffff80977350>] worker_thread+0x70/0x7c0
-[<ffffffff80977410>] worker_thread+0x130/0x7c0
-[<ffffffff80982040>] kthread+0x200/0x210
-[<ffffffff809772e0>] worker_thread+0x0/0x7c0
-[<ffffffff80981f8c>] kthread+0x14c/0x210
-[<ffffffff80911658>] ret_from_kernel_thread+0x18/0x20
-[<ffffffff80981e40>] kthread+0x0/0x210
- Code: ad3e0008  43f0074a  ad7e0018  ad9e0020  8c3001e8  40230101
- <88210000> 4821ed21
-So force lockup work queue flush to fix this problem.
+On Thu, Aug 11, 2022 at 8:40 AM Tales Aparecida
+<tales.aparecida@gmail.com> wrote:
+>
+> From: Ma=C3=ADra Canal <maira.canal@usp.br>
+>
+> KUnit unifies the test structure and provides helper tools that simplify
+> the development of tests. Basic use case allows running tests as regular
+> processes, which makes easier to run unit tests on a development machine
+> and to integrate the tests in a CI system.
+>
+> This commit introduces a unit test to the bw_fixed library, which
+> performs a lot of the mathematical operations involving fixed-point
+> arithmetic and the conversion of integers to fixed-point representation
+> inside the Display Mode Library.
+>
+> As fixed-point representation is the base foundation of the DML calcs
+> operations, this unit tests intend to assure the proper functioning of
+> the basic mathematical operations of fixed-point arithmetic, such as
+> multiplication, conversion from fractional to fixed-point number, and
+> more.  You can run it with: ./tools/testing/kunit/kunit.py run \
+>         --arch=3Dx86_64 \
+>         --kunitconfig=3Ddrivers/gpu/drm/amd/display/tests/
+>
+> Signed-off-by: Ma=C3=ADra Canal <maira.canal@usp.br>
+> Co-developed-by: Magali Lemes <magalilemes00@gmail.com>
+> Signed-off-by: Magali Lemes <magalilemes00@gmail.com>
+> Co-developed-by: Tales Aparecida <tales.aparecida@gmail.com>
+> Signed-off-by: Tales Aparecida <tales.aparecida@gmail.com>
+> ---
 
-Signed-off-by: Zhenneng Li <lizhenneng@kylinos.cn>
+Not directly related to this patch, but I get a whole stack of
+warnings about the definition of MIN_I64 causing integer overflow:
+../drivers/gpu/drm/amd/amdgpu/../display/dc/dml/calcs/../../../tests/dc/dml=
+/calcs/bw_fixed_test.c:214:31:
+note: in expansion of macro =E2=80=98MIN_I64=E2=80=99
+ 214 |         KUNIT_EXPECT_EQ(test, MIN_I64 + 1, res.value);
+     |                               ^~~~~~~
+../drivers/gpu/drm/amd/amdgpu/../display/dc/dml/calcs/bw_fixed.c:30:19:
+warning: integer overflow in expression =E2=80=98-9223372036854775808=E2=80=
+=99 of type
+=E2=80=98long long int=E2=80=99 results in =E2=80=98-9223372036854775808=E2=
+=80=99 [-Woverflow]
+  30 |         (int64_t)(-(1LL << 63))
+     |                   ^
+
+This seems to fix it (I'll re-send it out as a separate patch so gmail
+doesn't mangle it once I'm a bit more convinced it's the best
+implementation):
+
+--- 8< ---
+From 84e84664873dc9e98dff5ee9f74d95872e6cd423 Mon Sep 17 00:00:00 2001
+From: David Gow <davidgow@google.com>
+Date: Thu, 11 Aug 2022 15:21:02 +0800
+Subject: [PATCH] drm/amd/display: MIN_I64 definition causes overflow
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3DUTF-8
+Content-Transfer-Encoding: 8bit
+
+The definition of MIN_I64 in bw_fixed.c can cause gcc to whinge about
+integer overflow, because it is treated as a positive value, which is
+then negated. The temporary postive value is not necessarily
+representable.
+
+This causes the following warning:
+../drivers/gpu/drm/amd/amdgpu/../display/dc/dml/calcs/bw_fixed.c:30:19:
+warning: integer overflow in expression =E2=80=98-9223372036854775808=E2=80=
+=99 of type
+=E2=80=98long long int=E2=80=99 results in =E2=80=98-9223372036854775808=E2=
+=80=99 [-Woverflow]
+  30 |         (int64_t)(-(1LL << 63))
+     |                   ^
+
+Writing out (INT_MIN - 1) - 1 works instead.
+
+Signed-off-by: David Gow <davidgow@google.com>
 ---
- drivers/gpu/drm/radeon/radeon_device.c | 3 +++
- 1 file changed, 3 insertions(+)
+drivers/gpu/drm/amd/display/dc/dml/calcs/bw_fixed.c | 6 +++---
+1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
-index 15692cb241fc..e608ca26780a 100644
---- a/drivers/gpu/drm/radeon/radeon_device.c
-+++ b/drivers/gpu/drm/radeon/radeon_device.c
-@@ -1604,6 +1604,9 @@ int radeon_suspend_kms(struct drm_device *dev, bool suspend,
- 		if (r) {
- 			/* delay GPU reset to resume */
- 			radeon_fence_driver_force_completion(rdev, i);
-+		} else {
-+			/* finish executing delayed work */
-+			flush_delayed_work(&rdev->fence_drv[i].lockup_work);
- 		}
- 	}
- 
--- 
-2.25.1
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/calcs/bw_fixed.c
+b/drivers/gpu/drm/amd/display/dc/dml/calcs/bw_fixed.c
+index fbe8d0661396..3850f7f0f679 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/calcs/bw_fixed.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/calcs/bw_fixed.c
+@@ -26,12 +26,12 @@
+#include "bw_fixed.h"
 
 
-No virus found
-		Checked by Hillstone Network AntiVirus
+-#define MIN_I64 \
+-       (int64_t)(-(1LL << 63))
+-
+#define MAX_I64 \
+       (int64_t)((1ULL << 63) - 1)
+
++#define MIN_I64 \
++       (-MAX_I64 - 1)
++
+#define FRACTIONAL_PART_MASK \
+       ((1ULL << BW_FIXED_BITS_PER_FRACTIONAL_PART) - 1)
+
+--
+2.37.1.595.g718a3a8f04-goog
+--- 8< ---
+
+Otherwise, this test seems to okay. I'll review it (and the series)
+more properly over then next few days.
+
+Cheers,
+-- David
