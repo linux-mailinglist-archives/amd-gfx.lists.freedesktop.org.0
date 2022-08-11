@@ -2,121 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40E6F58FCCF
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Aug 2022 14:52:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F7F958FD19
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Aug 2022 15:10:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B09E391038;
-	Thu, 11 Aug 2022 12:52:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 027DD98B8B;
+	Thu, 11 Aug 2022 13:10:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2049.outbound.protection.outlook.com [40.107.101.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62C1D11BDC6
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Aug 2022 12:51:58 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CBR9za0sXxJ4wbil6GDREoU/Kd/AShi9JsAb4LYTf7qN/XGSdS435yyXS25BwymE9ukWQVNS5eCuxA4EH0MGJoDUsI75v6GVtMA95Y5nkP04abdJ1jY2D7Z8GZDWNA/FfqP5pBMmYFzQqYK5zPkOV6pXAbu/VTDD6C1akFq4ULmEznKJduaya6U/Vhx718pAWjim/GaHdvO+6wPh8ZRrvaqBj0gQwhxjn09EVRlakCKz8XjBihNFAQztEzQsmvKzscdn6HCUvmKYpS94YVghz/77JehVbsBCp6IQZqdXe/F5k3ztHVgOJdGe6vDNmm+ZDBQq1zwj7u3oLOwyihqZKw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mnXoMYoDXGakJfs6iygx1WQgoWONMK3N7xYN3g29XXA=;
- b=EsmsKRx2oCgKogU773WeZRZO7v6/i18TRqzLsByKFC3EDcVVXDGu0uC0NcwJ/ZtShQqiCyVKSPr62dA5t2+B9HWhnnvOAl+rV8S76PPFmlDB8tdF0Ca8j161W9ecHQva3ZCmhe0b9MZ5wzBqEEM1TjIqDxKFnK4tc5QVolxW1IQDvgZEoplPxc12q6L63XtfAbeVHIatAG0RpOmWDYqUeS8Cjg4IxLe3DPl96E8uJm8RRcbyShasnxkBrj6I2SfQzlQCOwA4UJuQWdD8ob8H/X13WY5M7HDxnRe2iB0JNBOLwaMKGRgiWZ3NQstxLtDmUpayqddXKvvrMsNgFQEsXQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mnXoMYoDXGakJfs6iygx1WQgoWONMK3N7xYN3g29XXA=;
- b=sIvZnwVIWuNgPxQ/GWtAPnYCtnG+isAPUwbyGi2/EGTFLiVs0jMiyKmveb1zNj7LupKnNOtoL2Kxl/fLlwToaE0DZe3UwJMs/Y491KkBl4aBmzeRkBVjj/RU6DFe4S+ghq+K+gEdqYG8m4n69HBVeQRpH6eWPq2sDyojN3ObRRg=
-Received: from CY5PR12MB6369.namprd12.prod.outlook.com (2603:10b6:930:21::10)
- by BYAPR12MB3318.namprd12.prod.outlook.com (2603:10b6:a03:df::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5525.10; Thu, 11 Aug
- 2022 12:51:56 +0000
-Received: from CY5PR12MB6369.namprd12.prod.outlook.com
- ([fe80::d0ca:88b0:e558:2de1]) by CY5PR12MB6369.namprd12.prod.outlook.com
- ([fe80::d0ca:88b0:e558:2de1%5]) with mapi id 15.20.5504.016; Thu, 11 Aug 2022
- 12:51:56 +0000
-From: "Zhang, Yifan" <Yifan1.Zhang@amd.com>
-To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amdkfd: reserve 2 queues for sdma 6.0.1
-Thread-Topic: [PATCH] drm/amdkfd: reserve 2 queues for sdma 6.0.1
-Thread-Index: AQHYrX9Lbx+96w+Ha0Kr7AaFwC8ufq2ppxLA
-Date: Thu, 11 Aug 2022 12:51:56 +0000
-Message-ID: <CY5PR12MB63698D8AC1797868B3857A8EC1649@CY5PR12MB6369.namprd12.prod.outlook.com>
-References: <20220811123016.3958303-1-yifan1.zhang@amd.com>
-In-Reply-To: <20220811123016.3958303-1-yifan1.zhang@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2022-08-11T12:51:53Z; 
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=bd98a3c7-97cc-4c17-85b1-84c6a1cdbb61;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=1
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_enabled: true
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_setdate: 2022-08-11T12:51:53Z
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_method: Standard
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_name: General
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_actionid: b85877a0-5549-4b7d-9901-1bed5d3f5d5f
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_contentbits: 0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: dfa5e639-6162-43c7-64f1-08da7b9845e7
-x-ms-traffictypediagnostic: BYAPR12MB3318:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: o2aVXlRsGudZmcEeRLSHbpMXB7kV9TeB7uz78TmhuGoYYmbSpbnPb3kIKZHLLzDd4Ptg5wwlBNAXiecawZiwxWL6EuDoX3zNhKrwqHecKqkk9vLMLaPLBU4KX54F8MtFku3WkkuuCzzk9ucIiwMyoRUlrhMv2foqbhAI6rYCIVK3vRcm7OIjcmKjKWihdAowCh5LaPDvcJpK991bWtFOE7wxBSYE0FesfRwEVgXbYV7PS55RrwwiD8+48u+a7HQntAqWPaBz3qOGRz7k7oFYNzcE2Wu7b8wafi5MM4w75Pu/yX22gLXngE4/e9lUekDL0UHagx6V8lLqHtsZkh0q0WGvc4+BbwJ4ixMtB4qCwe0zZ9HKcjZWE+L2xtmSKEyp+GOLMy08OZ9qsOZ/QWUeoEsDxq4P9LdlhymwLZ4hPJjAkgxzmC7EqzjEcDgcbL6pUmN/4z/WvqYNyfqISMgdqy0/oz7iyVfUTysEhiU8X2jM/JieDlMp070loEd2BORHoMpbdEjOvg5RJXYOWaROIJS6to27Uns633/0AX3lVUxQS83x73zcpnjqsnIYroslzBngr04UbnrIfy3Dl+L3nNfsz10tKEMQuHG1nmP1qMfNurXm8Mvls7xtLN9mFJlfoX9U9FslQ6PXPrzwFOg2KOGHa26Y2mPZ3Uk+nBKLBVEhwZOmnY7rp2NxnaGbMBGi15bGAlctkwPfLh0uiZvKMIQNBTivFZyUus+8SxEBUEAfOd+WoxkmhhEfDTls5d/pDFC+Dg0bDoGNQzYmBKYUJUCd6N+6auNagY2AzRS6CYAe8HoXG0x73DNXpDRr8Rha
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR12MB6369.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(366004)(396003)(346002)(136003)(39860400002)(376002)(186003)(83380400001)(55016003)(38070700005)(38100700002)(122000001)(478600001)(71200400001)(316002)(76116006)(6916009)(52536014)(5660300002)(54906003)(2906002)(66556008)(8936002)(66446008)(26005)(64756008)(66946007)(8676002)(9686003)(53546011)(6506007)(66476007)(4326008)(41300700001)(7696005)(33656002)(86362001);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?D+zoIs/s4cWhPRST5+nTVEdY5755Ky9SNmsGCjJRxyWCXM4oOUP65OkrqoQq?=
- =?us-ascii?Q?AI53ai+Ud325H9qUJS6has8NWHZP9jrFqli1DOhQsF/QXmFwLErWgHSCNfKm?=
- =?us-ascii?Q?o5Gn+7u2I76FI7ocB93UsE/qhnO58MwiEKT5757SbHj1L2UytgwAZl/Qjffu?=
- =?us-ascii?Q?0+zntM5quRrjGZR8hlkDy3W5+WjgLw/TcrnwTFostGR9v1i0HuW/M/1aof0R?=
- =?us-ascii?Q?pFiwOieD3+C499iFn57LOJpojhUEdXZrgKiz52GUzsLXvYHKOW8OrjptGBZR?=
- =?us-ascii?Q?tOqV0B1uG6I7IflJ+WVkIk2QsLQfeuXhBREOtpC6TA4BB1ysJNcBLlrSOL9z?=
- =?us-ascii?Q?/qyAtHFb/AayyToC7tLjJ6xHw4hHFpWA30KLturpimfGs26yxXqFyXxBxnkC?=
- =?us-ascii?Q?tHaSzkPcP96MSsULJMVAYjWnO3jb/hLSe4tFwqV9aRGxM07SWv748zFhao75?=
- =?us-ascii?Q?eONxLj8JEk3NJSy+8uVWvUZe+MeEo/iAGgT6hORkAOeERRTAR3GhUU0mwVBj?=
- =?us-ascii?Q?c4dwEuFNDcD1y30JjuXwGMPfJZ6Y5jkLaTabGrDqv8xdxjPoqDxMxktd86Cf?=
- =?us-ascii?Q?nuoIYPCoJy2A+UBo666wxKKIgmcak6BBmbg5n25MANnVjbiQNpEIBtOmO/sg?=
- =?us-ascii?Q?3lsxRQXCno/wlJjiItiWdEOA2Kn6e+laLO/xB6CcGbu6nlJ5/Bb1mVvA6cWe?=
- =?us-ascii?Q?zg+fHWGeVWy3P0CjL4w2XhuS0cVgqEGyfXzdrV1xJ5AlpzN+0/HAa5TG3uzL?=
- =?us-ascii?Q?7ChSEPBGVtKNGj3/+rz4uGodqA/o1fN2/TCVrtdkJKC1leSuySd4dCUWKhqT?=
- =?us-ascii?Q?UsdPjGEUh8qJVsC/aO6e2XV+F7pjrACkMc8gRipdxqGqdgSELpglw7kaT3rF?=
- =?us-ascii?Q?HPbrynD6ofu7gCSxZ6UP3vYuD33MToww1rfuXKBEj2fd86SazhV2cqayRSK9?=
- =?us-ascii?Q?lQRB5AVDeQyKqcKPF8K829rYgY4DjUIhwRNsQJvhHbhUR8za9k6twLpdulzd?=
- =?us-ascii?Q?X+ewWKjxfEVHpxDoqBECnnzrSga0JJJ827d1Y/qVfa8NLC/8SItmTznrMT4k?=
- =?us-ascii?Q?l2E/pMjyJ2x7R1Cse3XG/B6XqJnYPZXBQryomMgAgAHJNtXMXtyYNCfQ01cO?=
- =?us-ascii?Q?OmlLTxxdxhMrEXYBFuFMbfS77za7f7a10opWHAqov9+GPvqv8k3QUv9anc09?=
- =?us-ascii?Q?UnhIjoGpP6bcwq5fap7OBf9g/8et6Tf8oz17lg2P25U1zqabnbnvItrjyV1M?=
- =?us-ascii?Q?YfrnZAVd5A5aBsHJzQrovjNWFy6tMs5C0OrCgypkvVTJNe5jdkrPNs1IRGls?=
- =?us-ascii?Q?v+SgDmyVqG3k3tEV2sVcnbX+LtGaAyaqU+G5JVbNARwkEXOUiAkz4rgIrUpd?=
- =?us-ascii?Q?6jueQed0kRrFTqVqC3E7y6zq1kFMYbb2Gy0ad1dSdZE2xU9IP2cVgPA13P60?=
- =?us-ascii?Q?TQLwA0XT5WJiWW0mZwEUuxQEKAVohhRtxHvn9Gc9XKIxJhXYBtS8cSltcZED?=
- =?us-ascii?Q?gMzzg4wisWTAiBDqSVxucn8oyNMl9eHVUqJzggbCKq1WDBQT4FZBu/wi9wVw?=
- =?us-ascii?Q?2QqeRXocCU1atCoBe6k=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 740B6B0B56
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Aug 2022 13:10:11 +0000 (UTC)
+Received: from fews1.riseup.net (fews1-pn.riseup.net [10.0.1.83])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
+ client-signature RSA-PSS (2048 bits) client-digest SHA256)
+ (Client CN "mail.riseup.net", Issuer "R3" (not verified))
+ by mx1.riseup.net (Postfix) with ESMTPS id 4M3RxG3GV7zDrP4;
+ Thu, 11 Aug 2022 13:10:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+ t=1660223410; bh=gB+CNwjDdA0guTF5KMMzkCfVHxQU1FyLyBhLjHb9Rcc=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=XjhkBHFbk+8PR0rzrO5mb/SiGO+dztxgetuAe2BHMZ9Eptci/VBZquEEh4b7W3S42
+ 6oNdjr5ofhD4+FXc7JIIXA7fPM3Sx3psfCJnI41f0mNU6ihfIhuAl5JaHrRtptovhX
+ 8152s91/rkSXBg4lv+xx4U+Qac7acJHHXtJ4RUuc=
+X-Riseup-User-ID: 7CA76209DF30AAA97F089815D88F9849438C6878D51D75B7528F60AD662C62E5
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ by fews1.riseup.net (Postfix) with ESMTPSA id 4M3Rx65jpYz5vTb;
+ Thu, 11 Aug 2022 13:10:02 +0000 (UTC)
+Message-ID: <f7e02eb7-8efd-158a-7373-7f56eee8cf34@riseup.net>
+Date: Thu, 11 Aug 2022 10:09:58 -0300
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR12MB6369.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dfa5e639-6162-43c7-64f1-08da7b9845e7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Aug 2022 12:51:56.3759 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: iHXep5mUCUtCm9j8KkRKHOyklsFzxU5/hOoVIL5TOhybFngP6jsGFWXlb0LSm9uT
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3318
+Subject: Re: [PATCH 0/8] drm/amd/display: Introduce KUnit to Display Mode
+ Library
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Tales Aparecida <tales.aparecida@gmail.com>,
+ Alex Deucher <alexander.deucher@amd.com>, "Pan, Xinhui"
+ <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Jonathan Corbet <corbet@lwn.net>, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+References: <20220811004010.61299-1-tales.aparecida@gmail.com>
+ <6d24ac92-7ea9-0c35-a97a-bfb53b84f655@amd.com>
+From: =?UTF-8?Q?Ma=c3=adra_Canal?= <mairacanal@riseup.net>
+In-Reply-To: <6d24ac92-7ea9-0c35-a97a-bfb53b84f655@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,62 +61,280 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Joshi,
- Mukul" <Mukul.Joshi@amd.com>, "Kuehling, Felix" <Felix.Kuehling@amd.com>
+Cc: siqueirajordao@riseup.net, magalilemes00@gmail.com,
+ amd-gfx@lists.freedesktop.org, mwen@igalia.com, kunit-dev@googlegroups.com,
+ Isabella Basso <isabbasso@riseup.net>, andrealmeid@riseup.net,
+ Trevor Woerner <twoerner@gmail.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - General]
 
-The comment is not correct. Please ignore this one and review v2.
+
+On 8/11/22 08:22, Christian König wrote:
+> 
+> 
+> Am 11.08.22 um 02:40 schrieb Tales Aparecida:
+>> Hello,
+>>
+>> This series is the consolidation of an RFC sent earlier this year [RFC]
+>> bringing unit testing to the AMDPGU driver. [gsoc]
+>>
+>> Our main goal is to bring unit testing to the AMD display driver; in
+>> particular, we'll focus on the Display Mode Library (DML) for DCN2.0,
+>> DMUB, and some of the DCE functions. This implementation intends to
+>> help developers to recognize bugs before they are merged into the
+>> mainline and also makes it possible for future code refactors of the
+>> AMD display driver.
+>>
+>> For the implementation of the tests, we decided to go with the Kernel
+>> Unit Testing Framework (KUnit). KUnit makes it possible to run test
+>> suites on kernel boot or load the tests as a module. It reports all test
+>> case results through a TAP (Test Anything Protocol) in the kernel log.
+>> Moreover, KUnit unifies the test structure and provides tools to
+>> simplify the testing for developers and CI systems.
+>>
+>> In regards to CI pipelines, we believe kunit_tool[kunit_tool] provides
+>> ease of use, but we are also working on integrating KUnit into IGT, for
+>> those already depending on the tool [igt_patch].
+>>
+>> We've chosen what we believe to be the simplest approach to integrate
+>> KUnit tests into amdgpu [kunit_static]. We took into consideration that
+>> this driver relies heavily on static functions with complex behavior
+>> which would benefit from unit testing, otherwise, black-box tested
+>> through public functions with dozens of arguments and sometimes high
+>> cyclomatic complexity. Further than that, this approach also helps
+>> beginners by avoiding the need to edit any Makefiles. Other approaches
+>> are available and we would gladly receive feedback on this matter.
+> 
+> Yeah, that approach immediately trigger goosebumps for me. We should 
+> absolutely not do that.
+> 
+> The static functions are subject to change and we shouldn't need to 
+> change the unit tests when only the internals change.
+
+I agree with you that ideally, we should not test static functions. But, 
+considering the scope of the AMD Display Core functions, it is pretty 
+hard to avoid it.
+
+Most of the exposed functions on the AMD Display Core have dozens of 
+side effects and some functions pass the 500 lines. In this sense, it is 
+pretty hard to write a proper unit test for the function. If we think 
+through the theory of equivalence partition, when we have two 
+parameters, we have a simple area to analyze the boundary values and the 
+partition. If we have more than 4 parameters, we have a hyperplane with 
+dimension n to analyze, which means that finding the partitions and the 
+boundary values gets harder and harder.
+
+In the Display Core, there are static functions with more than 50 
+parameters and the exposed functions call more the one static function, 
+so we might be analyzing more than 100 parameters, which I don't believe 
+is possible for a unit test.
+
+In theory, I agree that we should not test the static functions. But, 
+considering the current scope of the AMD Display code, I don't believe 
+it is viable to test on the exposed functions.
 
 Best Regards,
-Yifan
+- Maíra Canal
 
------Original Message-----
-From: Zhang, Yifan <Yifan1.Zhang@amd.com>=20
-Sent: Thursday, August 11, 2022 8:30 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Kuehling, Felix <Felix.=
-Kuehling@amd.com>; Joshi, Mukul <Mukul.Joshi@amd.com>; Zhang, Yifan <Yifan1=
-.Zhang@amd.com>
-Subject: [PATCH] drm/amdkfd: reserve 2 queues for sdma 6.0.1
-
-There is only one engine in sdma 6.0.1, current code reserve 4 queues togat=
-her w/ 6.0.0 and 6.0.2, which is not necessary. Shrink it to 2.
-
-Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_device.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/=
-amdkfd/kfd_device.c
-index f5853835f03a..a82ddea967f2 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-@@ -102,13 +102,18 @@ static void kfd_device_info_set_sdma_info(struct kfd_=
-dev *kfd)
-=20
- 	switch (sdma_version) {
- 	case IP_VERSION(6, 0, 0):
--	case IP_VERSION(6, 0, 1):
- 	case IP_VERSION(6, 0, 2):
- 		/* Reserve 1 for paging and 1 for gfx */
- 		kfd->device_info.num_reserved_sdma_queues_per_engine =3D 2;
- 		/* BIT(0)=3Dengine-0 queue-0; BIT(1)=3Dengine-1 queue-0; BIT(2)=3Dengine=
--0 queue-1; ... */
- 		kfd->device_info.reserved_sdma_queues_bitmap =3D 0xFULL;
- 		break;
-+	case IP_VERSION(6, 0, 1):
-+		/* Reserve 1 for paging and 1 for gfx */
-+		kfd->device_info.num_reserved_sdma_queues_per_engine =3D 2;
-+		/* BIT(0)=3Dengine-0 queue-0; BIT(1)=3Dengine-1 queue-0; BIT(2)=3Dengine=
--0 queue-1; ... */
-+		kfd->device_info.reserved_sdma_queues_bitmap =3D 0x5ULL;
-+		break;
- 	default:
- 		break;
- 	}
---
-2.37.1
+> 
+> Instead black box testing and/or exposing tests as a separate module 
+> (e.g. for the fixed point calculations for example) is probably the way 
+> to go.
+> 
+> Just my thoughts on this, essentially our display team has to take a look.
+> 
+> Regards,
+> Christian.
+> 
+>>
+>> The first three patches add KUnit represent what we intend to do on the
+>> rest of the DML modules: systematic testing of the DML functions,
+>> especially mathematically complicated functions. Also, it shows how
+>> simple it is to add new tests to the DML.
+>>
+>> Among the tests, we highlight the dcn20_fpu_test, which, had it existed
+>> then, could catch the defects introduced to dcn20_fpu.c by
+>> 8861c27a6c [dcn20_bug] later fixed by 9ad5d02c2a [dcn20_fix].
+>>
+>> In this series, there's also an example of how unit tests can help avoid
+>> regressions and keeping track of changes in behavior.
+>>
+>> Applying this series on top of the amd-staging-drm-next (2305916dca04)
+>> and running its tests will result in a failure in the `dc_dmub_srv`
+>> test, you can verify that with:
+>>
+>> $ ./tools/testing/kunit/kunit.py run --arch=x86_64 \
+>>         --kunitconfig=drivers/gpu/drm/amd/display/tests
+>>
+>> ```
+>> ...
+>> [20:19:00] # Subtest: populate_subvp_cmd_drr_info_test
+>> [20:19:00] # populate_subvp_cmd_drr_info_test: pass:0 fail:5 skip:0 
+>> total:5
+>> [20:19:00] not ok 1 - populate_subvp_cmd_drr_info_test
+>> [20:19:00] ======== [FAILED] populate_subvp_cmd_drr_info_test =========
+>> [20:19:00] # Subtest: dc_dmub_srv
+>> [20:19:00] 1..1
+>> [20:19:00] # Totals: pass:0 fail:5 skip:0 total:5
+>> [20:19:00] not ok 8 - dc_dmub_srv
+>> [20:19:00] =================== [FAILED] dc_dmub_srv ===================
+>> [20:19:00] ============================================================
+>> [20:19:00] Testing complete. Passed: 59, Failed: 5, Crashed: 0, 
+>> Skipped: 0, Errors: 0
+>> ```
+>> Full output at: 
+>> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fshare.riseup.net%2F%23SOggjANeLfbibdiHu2e_Ug&amp;data=05%7C01%7Cchristian.koenig%40amd.com%7Cb44787cd3628425b078d08da7b3213c7%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637957752284993982%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=kiaq3dfpSMiFGkMIXKHhHsMyr7o%2FuvKgny0ifF%2FzrmA%3D&amp;reserved=0 
+>>
+>>
+>> This is due to a known regression introduced by commit 5da7f4134357
+>> ("drm/amd/display: fix 32 bit compilation errors in dc_dmub_srv.c")
+>> [dmub_bug], which resulted in the struct's members being zero.  As an
+>> exercise, you can revert the offending patch and run the tests again,
+>> but that would still result in failure, albeit with a different output.
+>>
+>> Full output when reverted: 
+>> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fshare.riseup.net%2F%23EEBgtgXjAmof5vZ_qs7_sg&amp;data=05%7C01%7Cchristian.koenig%40amd.com%7Cb44787cd3628425b078d08da7b3213c7%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637957752284993982%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=%2Flv%2FAOosByeD8vPteKdqGqv2QHf50S6nTNTqma91fm8%3D&amp;reserved=0 
+>>
+>>
+>> This regression is currently being worked on [dmub_fix], and this
+>> test-series will result in a success if applied alongside the
+>> fix-series, particularly the patches 1-13/32.
+>>
+>> ```
+>> [17:48:14] Testing complete. Passed: 64, Failed: 0, Crashed: 0, 
+>> Skipped: 0, Errors: 0
+>> ```
+>> Full successful output: 
+>> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fshare.riseup.net%2F%23migyN1Xpy3Gyq1it84HhNw&amp;data=05%7C01%7Cchristian.koenig%40amd.com%7Cb44787cd3628425b078d08da7b3213c7%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637957752284993982%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=zMOuzPypnx6oH9rMUYZwLpHELZd%2FaId4Tdh93LRr8bM%3D&amp;reserved=0 
+>>
+>>
+>> This series depends on a couple of Kunit patches already merged into
+>> torvalds/master, which themselves depends on older patches:
+>>
+>> commit 61695f8c5d51 ("kunit: split resource API from test.h into new 
+>> resource.h")
+>> commit 2852ca7fba9f ("panic: Taint kernel if tests are run")
+>> commit cfc1d277891e ("module: Move all into module/")
+>> commit cdebea6968fa ("kunit: split resource API impl from test.c into 
+>> new resource.c")
+>> commit cae56e1740f5 ("kunit: rename print_subtest_{start,end} for 
+>> clarity (s/subtest/suite)")
+>> commit 1cdba21db2ca ("kunit: add ability to specify suite-level init 
+>> and exit functions")
+>> commit c272612cb4a2 ("kunit: Taint the kernel when KUnit tests are run")
+>> commit 3d6e44623841 ("kunit: unify module and builtin suite definitions")
+>> commit a02353f49162 ("kunit: bail out of test filtering logic quicker 
+>> if OOM")
+>> commit 1b11063d32d7 ("kunit: fix executor OOM error handling logic on 
+>> non-UML")
+>> commit e5857d396f35 ("kunit: flatten kunit_suite*** to kunit_suite** 
+>> in .kunit_test_suites")
+>> commit 94681e289bf5 ("kunit: executor: Fix a memory leak on failure in 
+>> kunit_filter_tests")
+>>
+>> You can get a for branch ready for compilation at
+>> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgitlab.freedesktop.org%2Fisinyaaa%2Flinux%2F-%2Ftags%2Fintroduce-kunit-for-amd-v1&amp;data=05%7C01%7Cchristian.koenig%40amd.com%7Cb44787cd3628425b078d08da7b3213c7%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637957752284993982%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=hqIFUFjM1UDOTXYsckuoLP9nyxAvlVB4iCMs8FWkGnc%3D&amp;reserved=0 
+>>
+>>
+>> Thanks in advance for your time taking a look and sending any feedback!
+>>
+>> Best regards,
+>> Isabella Basso, Magali Lemes, Maíra Canal, and Tales Aparecida
+>>
+>> [RFC] 
+>> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Famd-gfx%2F20220608010709.272962-1-maira.canal%40usp.br%2F&amp;data=05%7C01%7Cchristian.koenig%40amd.com%7Cb44787cd3628425b078d08da7b3213c7%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637957752284993982%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=XEk%2FNJacxlhjCymXuo3tVQHle9MtiSCKIOXyP%2B4Pa3M%3D&amp;reserved=0 
+>>
+>> [gsoc] 
+>> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fsummerofcode.withgoogle.com%2Fprograms%2F2022%2Forganizations%2Fxorg-foundation&amp;data=05%7C01%7Cchristian.koenig%40amd.com%7Cb44787cd3628425b078d08da7b3213c7%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637957752284993982%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=ZxjFnl5bjczfWxzpHOEKDU314QS4hmbIxTgvjPxqmJs%3D&amp;reserved=0 
+>>
+>> [kunit_tool] 
+>> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.kernel.org%2Fdoc%2Fhtml%2Flatest%2Fdev-tools%2Fkunit%2Fkunit-tool.html&amp;data=05%7C01%7Cchristian.koenig%40amd.com%7Cb44787cd3628425b078d08da7b3213c7%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637957752284993982%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=0jUQGUFKW8BVVgpD4sNkkLdqMn23X1S67y7Fj0RqZKY%3D&amp;reserved=0 
+>>
+>> [igt_patch] 
+>> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Farchives%2Figt-dev%2F2022-June%2F042895.html&amp;data=05%7C01%7Cchristian.koenig%40amd.com%7Cb44787cd3628425b078d08da7b3213c7%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637957752284993982%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=JmOfrDfQIWohsDCg%2F1BLyFckeG1CWfmM3NPwcpE5WFQ%3D&amp;reserved=0 
+>>
+>> [kunit_static] 
+>> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdocs.kernel.org%2Fdev-tools%2Fkunit%2Fusage.html%23testing-static-functions&amp;data=05%7C01%7Cchristian.koenig%40amd.com%7Cb44787cd3628425b078d08da7b3213c7%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637957752284993982%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=IWA0KRuA1T3YCZIpq9JD8wTxE8gTZi%2B9aLJywU1Os4k%3D&amp;reserved=0 
+>>
+>> [dcn20_bug] 
+>> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Famd-gfx%2F20220603185042.3408844-6-Rodrigo.Siqueira%40amd.com%2F&amp;data=05%7C01%7Cchristian.koenig%40amd.com%7Cb44787cd3628425b078d08da7b3213c7%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637957752284993982%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=b7B7QscRHX2STfVGRiE09RxYSvZTDLW59vi7lQTPrM0%3D&amp;reserved=0 
+>>
+>> [dcn20_fix] 
+>> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Famd-gfx%2F20220608164856.1870594-1-sunpeng.li%40amd.com%2F&amp;data=05%7C01%7Cchristian.koenig%40amd.com%7Cb44787cd3628425b078d08da7b3213c7%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637957752284993982%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=yQR9AxoguAvVR%2BGni9GUhSdhgHKujcUXujFL30QZqAc%3D&amp;reserved=0 
+>>
+>> [dmub_bug] 
+>> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Famd-gfx%2F20220708052650.1029150-1-alexander.deucher%40amd.com%2F&amp;data=05%7C01%7Cchristian.koenig%40amd.com%7Cb44787cd3628425b078d08da7b3213c7%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637957752284993982%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=WUb4zaBIhOd8oAjmcn19itKTbulUFepGfAtY%2FWLmrq8%3D&amp;reserved=0 
+>>
+>> [dmub_fix] 
+>> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Famd-gfx%2F20220805175826.2992171-14-chiahsuan.chung%40amd.com%2FT%2F&amp;data=05%7C01%7Cchristian.koenig%40amd.com%7Cb44787cd3628425b078d08da7b3213c7%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637957752285150231%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=Z4AWumNHtXuHo8h7%2Fh%2Bdd0VqBQeywtbaD35pCKs0neQ%3D&amp;reserved=0 
+>>
+>>
+>> Isabella Basso (1):
+>>    drm/amd/display: Introduce Kunit tests to display_rq_dlg_calc_20
+>>
+>> Magali Lemes (1):
+>>    drm/amd/display: Introduce KUnit tests for dcn20_fpu
+>>
+>> Maíra Canal (5):
+>>    drm/amd/display: Introduce KUnit tests to the bw_fixed library
+>>    drm/amd/display: Introduce KUnit tests to the display_mode_vba library
+>>    drm/amd/display: Introduce KUnit to dcn20/display_mode_vba_20 library
+>>    drm/amd/display: Introduce KUnit tests to dc_dmub_srv library
+>>    Documentation/gpu: Add Display Core Unit Test documentation
+>>
+>> Tales Aparecida (1):
+>>    drm/amd/display: Introduce KUnit tests for fixed31_32 library
+>>
+>>   .../gpu/amdgpu/display/display-test.rst       |  73 ++
+>>   Documentation/gpu/amdgpu/display/index.rst    |   1 +
+>>   drivers/gpu/drm/amd/display/Kconfig           |  25 +
+>>   .../drm/amd/display/dc/basics/fixpt31_32.c    |   5 +
+>>   drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c  |   4 +
+>>   .../drm/amd/display/dc/dml/calcs/bw_fixed.c   |   3 +
+>>   .../drm/amd/display/dc/dml/dcn20/dcn20_fpu.c  |   4 +
+>>   .../dc/dml/dcn20/display_mode_vba_20.c        |   4 +
+>>   .../dc/dml/dcn20/display_rq_dlg_calc_20.c     |   4 +
+>>   .../drm/amd/display/dc/dml/display_mode_vba.c |   3 +
+>>   .../gpu/drm/amd/display/tests/.kunitconfig    |   7 +
+>>   .../dc/basics/dc_basics_fixpt31_32_test.c     | 232 ++++++
+>>   .../amd/display/tests/dc/dc_dmub_srv_test.c   | 285 +++++++
+>>   .../tests/dc/dml/calcs/bw_fixed_test.c        | 323 ++++++++
+>>   .../tests/dc/dml/dcn20/dcn20_fpu_test.c       | 560 +++++++++++++
+>>   .../dc/dml/dcn20/display_mode_vba_20_test.c   | 227 ++++++
+>>   .../dml/dcn20/display_rq_dlg_calc_20_test.c   | 112 +++
+>>   .../tests/dc/dml/display_mode_vba_test.c      | 741 ++++++++++++++++++
+>>   18 files changed, 2613 insertions(+)
+>>   create mode 100644 Documentation/gpu/amdgpu/display/display-test.rst
+>>   create mode 100644 drivers/gpu/drm/amd/display/tests/.kunitconfig
+>>   create mode 100644 
+>> drivers/gpu/drm/amd/display/tests/dc/basics/dc_basics_fixpt31_32_test.c
+>>   create mode 100644 
+>> drivers/gpu/drm/amd/display/tests/dc/dc_dmub_srv_test.c
+>>   create mode 100644 
+>> drivers/gpu/drm/amd/display/tests/dc/dml/calcs/bw_fixed_test.c
+>>   create mode 100644 
+>> drivers/gpu/drm/amd/display/tests/dc/dml/dcn20/dcn20_fpu_test.c
+>>   create mode 100644 
+>> drivers/gpu/drm/amd/display/tests/dc/dml/dcn20/display_mode_vba_20_test.c
+>>   create mode 100644 
+>> drivers/gpu/drm/amd/display/tests/dc/dml/dcn20/display_rq_dlg_calc_20_test.c 
+>>
+>>   create mode 100644 
+>> drivers/gpu/drm/amd/display/tests/dc/dml/display_mode_vba_test.c
+>>
+>>
+>> base-commit: 2305916dca043ed69bd464f74a886b0216780aa6
+>> prerequisite-patch-id: 83185f6c5da6070e7b0b608bc705a2d3bf295ae6
+>> prerequisite-patch-id: 65407777e3bb20dfe5051f4f4cc7deb6a3c2ed34
+>> prerequisite-patch-id: 60af3dadcfd4a778f10dd09fafbde6061d98528b
+>> prerequisite-patch-id: 92d9259125f2982da5945be995b4ae2af1ca7c32
+>> prerequisite-patch-id: f35acb6c07c0bd5496df919214351399d9aed5b5
+>> prerequisite-patch-id: 8a9637d89966e51adfe11e3fd3d17fcf1328b472
+>> prerequisite-patch-id: ea6f40f1cfb61fddb9d1562111897e184da49bf7
+>> prerequisite-patch-id: ae79651ae7b2e02520b18fc7eded463afea757e5
+>> prerequisite-patch-id: ba795b981f3e94890540f452e658e28408b500d2
+>> prerequisite-patch-id: abd5e51f483a9afb08af468db043e2ebc7ce6867
+>> prerequisite-patch-id: a31028824a461f8b4a6b9244035e246efbee9c71
+>> prerequisite-patch-id: a65dfe200981f8584ba3b1f9813faa4f0022a13e
+> 
