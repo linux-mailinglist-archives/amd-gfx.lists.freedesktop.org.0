@@ -2,56 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B640590596
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Aug 2022 19:16:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DAE1590613
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Aug 2022 19:44:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B25812A0CB;
-	Thu, 11 Aug 2022 17:16:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD6922A63D;
+	Thu, 11 Aug 2022 17:44:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com
- [IPv6:2607:f8b0:4864:20::233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 179DF11ACE6;
- Thu, 11 Aug 2022 17:16:26 +0000 (UTC)
-Received: by mail-oi1-x233.google.com with SMTP id l188so21974829oia.4;
- Thu, 11 Aug 2022 10:16:26 -0700 (PDT)
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com
+ [IPv6:2607:f8b0:4864:20::b35])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AF6210E86B;
+ Thu, 11 Aug 2022 17:38:18 +0000 (UTC)
+Received: by mail-yb1-xb35.google.com with SMTP id k12so29358572ybk.6;
+ Thu, 11 Aug 2022 10:38:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:from:to:cc;
- bh=KfbvK1kB8bEVX+Bg3v0uAmAH4X0cmlYYTnpUW0qFVPQ=;
- b=TnkO0E874E+5j6klJFh8ek6SsnENd71jthFGsFpua2yYT5NQw0Pv81Jxt31gT4bW9s
- LGjKTwHL4DnMsXhZGXPm7oRcS1kxvSfp9nPTnkDeRFvTFAEvAEL91hOJjq1rtDMOIFfb
- s0fRKqkufOEOskCOyspzuYGiEfIItVxs2JEQUq/WJcHWwk+196JVL/HUR2MwC4pMNx+j
- Msb5XcCNOW/JcgNCVUdQpR8GgZWFNKvkmC42KDjfxols2OkYZTqs+8xeN8BtGI+8+Ic9
- EStOeW5RQE2g8nWdb71bmJELef5l4vE55QoC9yf4CSX2xmLd81W6QP/uq10mflmWZMfH
- zHCw==
+ bh=+OaTTx4oKfd+EHTbl5rmEQCqRiCYo959iJOiqkKHNok=;
+ b=HeB+hPTiJ1uZaiTO/ANwYnKPfTZ9ZMXOV9MM63aIOh9DHNP7A5h2dND4zSDYTwwNJc
+ DbzipewVIURR6bWo/hcoL7NpVnIMllhIsAJE+Cskv9AQ7vSHQEuMX42oFjXpkUwJ3z76
+ se5z4IAAN2kbb5PlJVWqYVYSrLEAKWY4+eSpJ34RFmYXNDN3fu1wkmC2BpTEVgygrgor
+ 710Hunf3AFu150hTCgXWrJk5OF/dvvznrs6JY7JpLF24vvc2UFOsw7CC6lRcTH/G5q1I
+ PvkYg0xfBW7X7KH7Rdq/d9v+k13bOP6FcdXVK6j5vDv/f28js4CuJwdhKs3aQj4ihH6g
+ g1Ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:x-gm-message-state:from:to:cc;
- bh=KfbvK1kB8bEVX+Bg3v0uAmAH4X0cmlYYTnpUW0qFVPQ=;
- b=sWfpTory6pRnT/uY8nbyoqJ4RiY/OAq1Gli06FXDZA5M3dud3Lcq+MeJdnxkJIBqjq
- +nGmVzAIYI8ZYcNZ/jNlWx6xBbVTdKbydCy+nMFKzAaz2BjUXoq4B5V42IqW6Fri+RfY
- n4lYW2c0U2d1FtfQatp5bmSs+8z8Doiz5/Wj215Vp692Ri5N7ItQDbhvX2rliGz8eek5
- pPgttB5IKUrv5lukfuraStJ4HZQ/3CykSQjc0LPMDO3yRGscJlS/Kvy2vmo8ogs03f3Z
- fX/jXsmm9zGMoiFy0ODkcLdxy0QkdvH+/Dan5MdA2/DZ5wfMoRj56xEqFOgyYjC9+e7H
- BmUg==
-X-Gm-Message-State: ACgBeo14upo4uBjWTKFiEdMDHjx/gD7af9FzcTgIhV3F5/gPqRJjVtgG
- zBmLTf2gTV1s9xYPeERXK4Iyt5DaaJcrWd23Of0=
-X-Google-Smtp-Source: AA6agR4Bzynj5rmJ8wCQm3W9k/cxzVFKyJgGxa2jF7SPAmi/iTivBeW/gA2Idukm9kGS55zj0zOhNVtOD/B82NJlMXc=
-X-Received: by 2002:a05:6808:19a3:b0:33e:1525:3fb4 with SMTP id
- bj35-20020a05680819a300b0033e15253fb4mr106057oib.106.1660238185376; Thu, 11
- Aug 2022 10:16:25 -0700 (PDT)
+ bh=+OaTTx4oKfd+EHTbl5rmEQCqRiCYo959iJOiqkKHNok=;
+ b=3f9WNBKmbRPcqVXF2r6UWR4qi7uKZC3XJeEHCckOxN6P4umzzn+ZPMvSua8g66ueDq
+ aROn4C08DwVogyZtdF4+xTW6XyWdIJmrtesD39CF7+HAqn5rPi7moIN0dEVcPsSQjVIO
+ 76VfdXOtajTrlfb/5XfcxJlCY+r70nc4lnQCVYT0dlu06sVW+XgiVmh8yF8eMLxP3AeL
+ wxrJFLyPBakTlIV7fde0uak3dZxQRJSpQoE/CHwnWV3/bcSkOTfFfb2Q9lXK2OHzqD1j
+ IhzOdzxB9wB9ULuw8VsmvsrT2p/3ykRYiK9i5ihTnYQbnVM7+sOFfbBRhrIK/xnUZK+L
+ uVCQ==
+X-Gm-Message-State: ACgBeo0Ez2kIvV2dQVNnYxEGJ5fUZfpNUa0hEG0y5ekyTPgVmegHoID2
+ Wab9xoR//aVX9sXLd2MvvRUkOlsoImp/rVK0i8Y=
+X-Google-Smtp-Source: AA6agR5k04ip0oNeMAM5/9PWslkduulNrUTTzhzoDjAL3q9yQnZ0ey9WtWfVfrYgoweBZiqNzvIuNVsdnVb6mprdvys=
+X-Received: by 2002:a25:ac92:0:b0:67b:ac46:5e43 with SMTP id
+ x18-20020a25ac92000000b0067bac465e43mr361354ybi.183.1660239497180; Thu, 11
+ Aug 2022 10:38:17 -0700 (PDT)
 MIME-Version: 1.0
 References: <YvU4GD8HtZ1A4dhI@debian>
-In-Reply-To: <YvU4GD8HtZ1A4dhI@debian>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 11 Aug 2022 13:16:14 -0400
-Message-ID: <CADnq5_PwbwjmvvKedpZeeQHk7N+kawKpXywjNGqa=1jSKRcw0A@mail.gmail.com>
+ <CADnq5_PwbwjmvvKedpZeeQHk7N+kawKpXywjNGqa=1jSKRcw0A@mail.gmail.com>
+In-Reply-To: <CADnq5_PwbwjmvvKedpZeeQHk7N+kawKpXywjNGqa=1jSKRcw0A@mail.gmail.com>
+From: Sudip Mukherjee <sudipm.mukherjee@gmail.com>
+Date: Thu, 11 Aug 2022 18:37:41 +0100
+Message-ID: <CADVatmN_TzJKdfM40BQPW=cRm5VxX=qAKxq2yW4P_xDN6=VoOA@mail.gmail.com>
 Subject: Re: build failure of next-20220811 due to b1a63a0b48ad
  ("drm/amd/display: consider DSC pass-through during mode validation")
-To: "Sudip Mukherjee (Codethink)" <sudipm.mukherjee@gmail.com>
+To: Alex Deucher <alexdeucher@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Thu, 11 Aug 2022 17:43:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,38 +65,74 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Fangzhi Zuo <Jerry.Zuo@amd.com>,
- linux-next@vger.kernel.org, Hamza Mahfooz <hamza.mahfooz@amd.com>,
+Cc: amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ David Airlie <airlied@linux.ie>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, Fangzhi Zuo <Jerry.Zuo@amd.com>,
+ linux-next <linux-next@vger.kernel.org>, Hamza Mahfooz <hamza.mahfooz@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 11, 2022 at 1:11 PM Sudip Mukherjee (Codethink)
-<sudipm.mukherjee@gmail.com> wrote:
+On Thu, Aug 11, 2022 at 6:16 PM Alex Deucher <alexdeucher@gmail.com> wrote:
 >
-> Hi All,
+> On Thu, Aug 11, 2022 at 1:11 PM Sudip Mukherjee (Codethink)
+> <sudipm.mukherjee@gmail.com> wrote:
+> >
+> > Hi All,
+> >
+> > Not sure if it has been reported, builds of riscv, alpha, s390, arm,
+> > arm64, xtensa, mips, csky allmodconfig have failed to build next-20220811
+> > with the error:
+> >
+> > ERROR: modpost: "dc_dsc_compute_bandwidth_range" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+> > ERROR: modpost: "dc_dsc_get_policy_for_timing" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+> >
+> > git bisect pointed to b1a63a0b48ad ("drm/amd/display: consider DSC pass-through during mode validation")
+> > And, reverting that commit has fixed the build failure.
+> >
+> > I will be happy to test any patch or provide any extra log if needed.
 >
-> Not sure if it has been reported, builds of riscv, alpha, s390, arm,
-> arm64, xtensa, mips, csky allmodconfig have failed to build next-20220811
-> with the error:
->
-> ERROR: modpost: "dc_dsc_compute_bandwidth_range" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
-> ERROR: modpost: "dc_dsc_get_policy_for_timing" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
->
-> git bisect pointed to b1a63a0b48ad ("drm/amd/display: consider DSC pass-through during mode validation")
-> And, reverting that commit has fixed the build failure.
->
-> I will be happy to test any patch or provide any extra log if needed.
+> https://patchwork.freedesktop.org/patch/497116/
 
-https://patchwork.freedesktop.org/patch/497116/
+Thanks, that has fixed this failure. But it has now caused these new
+errors resulting in a build failure.
 
-Alex
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_mst_types.c:
+In function 'dm_dp_mst_is_port_support_mode':
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_mst_types.c:1427:32:
+error: unused variable 'bw_range' [-Werror=unused-variable]
+ 1427 |         struct dc_dsc_bw_range bw_range = {0};
+      |                                ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_mst_types.c:1426:22:
+error: unused variable 'max_compressed_bw_in_kbps'
+[-Werror=unused-variable]
+ 1426 |         unsigned int max_compressed_bw_in_kbps = 0;
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_mst_types.c:1425:49:
+error: unused variable 'down_link_bw_in_kbps'
+[-Werror=unused-variable]
+ 1425 |         unsigned int upper_link_bw_in_kbps = 0,
+down_link_bw_in_kbps = 0;
+      |                                                 ^~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_mst_types.c:1425:22:
+error: unused variable 'upper_link_bw_in_kbps'
+[-Werror=unused-variable]
+ 1425 |         unsigned int upper_link_bw_in_kbps = 0,
+down_link_bw_in_kbps = 0;
+      |                      ^~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_mst_types.c:1424:22:
+error: unused variable 'end_to_end_bw_in_kbps'
+[-Werror=unused-variable]
+ 1424 |         unsigned int end_to_end_bw_in_kbps = 0;
+      |                      ^~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_mst_types.c:1423:33:
+error: unused variable 'cur_link_settings' [-Werror=unused-variable]
+ 1423 |         struct dc_link_settings cur_link_settings;
 
->
->
-> --
-> Regards
-> Sudip
+
+
+-- 
+Regards
+Sudip
