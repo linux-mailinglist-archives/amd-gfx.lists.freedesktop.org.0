@@ -2,41 +2,40 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 222365901F4
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Aug 2022 18:02:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DDB35901FE
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Aug 2022 18:03:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C16192A6E3;
-	Thu, 11 Aug 2022 16:02:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE33314B9D9;
+	Thu, 11 Aug 2022 16:03:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69B68B49E4;
- Thu, 11 Aug 2022 16:01:53 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A506510EAAE;
+ Thu, 11 Aug 2022 16:03:29 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id E6FD3B82156;
- Thu, 11 Aug 2022 16:01:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B555C433D6;
- Thu, 11 Aug 2022 16:01:48 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 4703AB82182;
+ Thu, 11 Aug 2022 16:03:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97E12C433C1;
+ Thu, 11 Aug 2022 16:03:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1660233710;
- bh=AH4rjKg5ZroZTkBP6QpCnmt+aw11B2aDjOteBLnr7Q0=;
+ s=k20201202; t=1660233807;
+ bh=DETJOHCyZk9uMEeFcuyCR2LyeCUrvN5IBA3ErPll1DM=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=mL1EFyn9Jq43w5V0yjlkVBU+PotQTpjJSAq5rou0L8sKucSGDfCQ1hVIrCKkHz3/H
- UICF5zlnMFKDiNrq5ni4tPGW0F5i1xaEZrNA6PRAW+8tU35BkL1j7/YJ0ROHOqOW+K
- dXw1cV9b/d3o+J+14GlbkeiVrkzRh/ghBE3u3HeAFPet39Cx+3j+Y5iZYvMPrb1MDR
- 8Js+WKKRPR/PFit4Zjvhb1aZAXVEGwOajv+HFjcmYjz055zVs7IS9OciABgx26EJIi
- it5NzG0y8aV3Lr6dP4R56GxKQqEVDsuL3UXNPUSPzmevqXozhGWHB5aKKbEQ5/fC4q
- IgsGzngmUQjIg==
+ b=QiMV67ZjMWjx9hdll8K/GSuAHwPGbe9M87/9/+9NPSDmp/OiOTBDmud3i6t9nGEPA
+ MQmTpO1pAREapvIIfs7APcM3iTuQVr2uLXhmb2pobbFUxxAVO89DvaDHNRVeELn4wN
+ sCTVh1aLX+qp+222AzIy8GIMDJ7Zd7BpIucIcnSAUIoY8ezCBC2h/zvg88kkxXK7gB
+ wEtfrLCb0uUDT8Vav36HTgmE922SwDtyiLioOCEjdErx9ZGqWSkWzjN8m5PYrHXKon
+ T6Mogqrv1mR4iYuPcXwu/gZGVvvbm7uKxKJSOdFthfIjpsoORWdfuE6FljUJJVKqD2
+ NtmcwIE5iF1Tg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 44/69] drm/amd/display: Guard against ddc_pin
- being NULL for AUX
-Date: Thu, 11 Aug 2022 11:55:53 -0400
-Message-Id: <20220811155632.1536867-44-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 60/69] drm/amdkfd: Correct mmu_notifier_get
+ failure handling
+Date: Thu, 11 Aug 2022 11:56:09 -0400
+Message-Id: <20220811155632.1536867-60-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220811155632.1536867-1-sashal@kernel.org>
 References: <20220811155632.1536867-1-sashal@kernel.org>
@@ -55,56 +54,59 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, aric.cyr@amd.com, baihaowen@meizu.com,
- arnd@arndb.de, sunpeng.li@amd.com, Anthony.Koo@amd.com,
- dri-devel@lists.freedesktop.org, Xinhui.Pan@amd.com,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Jing.Zhou@amd.com,
- christian.koenig@amd.com, meenakshikumar.somasundaram@amd.com,
- airlied@linux.ie, Daniel Wheeler <daniel.wheeler@amd.com>,
- Michael Strauss <Michael.Strauss@amd.com>, amd-gfx@lists.freedesktop.org,
- daniel@ffwll.ch, wyatt.wood@amd.com, Alex Deucher <alexander.deucher@amd.com>,
- harry.wentland@amd.com, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Cc: Sasha Levin <sashal@kernel.org>, Philip Yang <Philip.Yang@amd.com>,
+ airlied@linux.ie, Felix Kuehling <Felix.Kuehling@amd.com>, Xinhui.Pan@amd.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, Alex Deucher <alexander.deucher@amd.com>,
+ christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+From: Philip Yang <Philip.Yang@amd.com>
 
-[ Upstream commit bc19909f19fdc8253d720d11c948935786fbfa08 ]
+[ Upstream commit 0593ad215359d51514c1e6c81ce28ea598efed6b ]
 
-[Why]
-In the case where we don't support DMUB aux but we have DPIA links
-in the configuration we might try to message AUX using the legacy
-path - where DDC pin is NULL. This causes a NULL pointer dereference.
+If process has signal pending, mmu_notifier_get_locked fails and calls
+ops->free_notifier, kfd_process_free_notifier will schedule
+kfd_process_wq_release as process refcount is 1, but process structure
+is already freed. This use after free bug causes system crash with
+different backtrace.
 
-[How]
-Guard against NULL DDC pin, return a failure for aux engine acquire.
+The fix is to increase process refcount and then decrease the refcount
+after mmu_notifier_get success.
 
-Reviewed-by: Michael Strauss <Michael.Strauss@amd.com>
-Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
+Signed-off-by: Philip Yang <Philip.Yang@amd.com>
+Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/display/dc/dce/dce_aux.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c b/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c
-index 3c3347341103..ae9c0df1a844 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c
-@@ -563,6 +563,11 @@ int dce_aux_transfer_raw(struct ddc_service *ddc,
- 	memset(&aux_req, 0, sizeof(aux_req));
- 	memset(&aux_rep, 0, sizeof(aux_rep));
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+index 21ec8a18cad2..bc502c378281 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+@@ -1340,6 +1340,11 @@ static struct kfd_process *create_process(const struct task_struct *thread)
+ 	hash_add_rcu(kfd_processes_table, &process->kfd_processes,
+ 			(uintptr_t)process->mm);
  
-+	if (ddc_pin == NULL) {
-+		*operation_result = AUX_RET_ERROR_ENGINE_ACQUIRE;
-+		return -1;
-+	}
++	/* Avoid free_notifier to start kfd_process_wq_release if
++	 * mmu_notifier_get failed because of pending signal.
++	 */
++	kref_get(&process->ref);
 +
- 	aux_engine = ddc->ctx->dc->res_pool->engines[ddc_pin->pin_data->en];
- 	if (!acquire(aux_engine, ddc_pin)) {
- 		*operation_result = AUX_RET_ERROR_ENGINE_ACQUIRE;
+ 	/* MMU notifier registration must be the last call that can fail
+ 	 * because after this point we cannot unwind the process creation.
+ 	 * After this point, mmu_notifier_put will trigger the cleanup by
+@@ -1352,6 +1357,7 @@ static struct kfd_process *create_process(const struct task_struct *thread)
+ 	}
+ 	BUG_ON(mn != &process->mmu_notifier);
+ 
++	kfd_unref_process(process);
+ 	get_task_struct(process->lead_thread);
+ 
+ 	return process;
 -- 
 2.35.1
 
