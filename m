@@ -2,65 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB48E58FCE4
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Aug 2022 14:54:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48EA658FC79
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Aug 2022 14:38:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84766A1C22;
-	Thu, 11 Aug 2022 12:54:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0149B10F4C0;
+	Thu, 11 Aug 2022 12:38:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com
- [IPv6:2a00:1450:4864:20::234])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0739113277
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Aug 2022 11:02:54 +0000 (UTC)
-Received: by mail-lj1-x234.google.com with SMTP id l21so7450326ljj.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Aug 2022 04:02:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=user-agent:in-reply-to:content-disposition:mime-version:references
- :message-id:subject:cc:to:from:date:from:to:cc;
- bh=iwbijT25JOQabEJoAdZbUrL+K+nZlUlywCNjAPaRkPY=;
- b=Zwmv+zhwDMR2nSKdFJwP2quzKJ6loGMdS1t7skyjM7Np9UwvBEvxE06ihAie/nti4/
- diw7tb/KgC66OQQK6thMASgGBL0BBl5jJtfOlAFyaWnCzCsKUra2xCgo3eC6liJpPAlX
- iombHyCRKc/M6HnExt6By5qPTL9bSeEfccm4nS96YDwPAuj3qnRos8hU3C4VE09A+O0s
- OgyLJHo6Uq1ZGqoC+XdYzhesM/6b/GagdS7N6IYe/V3+fm5KMrMsOG5yrDi2RM6N4EU+
- ldv3wgvnqCU9DkoAzWQbGewePPsQ1LEKFFMG4HLp/o8Hmj+9EcuygvsNiQt0TNnN9ETn
- o7Fw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=user-agent:in-reply-to:content-disposition:mime-version:references
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc;
- bh=iwbijT25JOQabEJoAdZbUrL+K+nZlUlywCNjAPaRkPY=;
- b=oLNecQSkLixz11kZ3TytQR4j6++dp8mabaiZ+weCrDrr/ppVOcLe3SLS7v4gRgsiyb
- rayGh5PvHH91PpKt23iL+f5pkVU7HXu7jn/A8xrdapImOtjh5jBFnNwlnP+2Uw+hmsIr
- mwaWN/wXpKQTTwpauq7KbSAtLE714IisBfT7Wcn0jcbZLEzhA4IGbDG6i8c7l9Waki7X
- TNpvOSCq1xEhR5qs1kPALoVOZTsyhjDlclLhiH2Z1WhXKKjmS8Zf8LR7LD6zR6k40aQd
- 71ksAZjxHqEKzzWbowNfBsnt5N5SVPX0AJFxQwigGV1Bsi9lQBWmfI8bMVbmgXPIUvCV
- Wptw==
-X-Gm-Message-State: ACgBeo2rTxPKYVKJqneSz1xLn1yrvlWayi7nAkjKjmJeE2apHzvNa60u
- tve/Vxf4hlD37LRbLfskvUtWzg==
-X-Google-Smtp-Source: AA6agR4ykeceqsDPELylN8UCyzrVw8F81lb8BHUuAicXDhJl8e5U6VRW1MUnNOJMxICZLpwoZ8cc/A==
-X-Received: by 2002:a05:651c:3d9:b0:25e:505f:2355 with SMTP id
- f25-20020a05651c03d900b0025e505f2355mr10669447ljp.453.1660215772980; 
- Thu, 11 Aug 2022 04:02:52 -0700 (PDT)
-Received: from mutt (c-e429e555.07-21-73746f28.bbcust.telenor.se.
- [85.229.41.228]) by smtp.gmail.com with ESMTPSA id
- q11-20020a2eb4ab000000b0025d75995a07sm781439ljm.24.2022.08.11.04.02.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 11 Aug 2022 04:02:52 -0700 (PDT)
-Date: Thu, 11 Aug 2022 13:02:50 +0200
-From: Anders Roxell <anders.roxell@linaro.org>
-To: Hamza Mahfooz <hamza.mahfooz@amd.com>
-Subject: Re: [PATCH v2 2/3] drm/amd/display: consider DSC pass-through during
- mode validation
-Message-ID: <20220811110250.GA520@mutt>
-References: <20220805211317.176672-1-hamza.mahfooz@amd.com>
- <20220805211317.176672-2-hamza.mahfooz@amd.com>
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2073.outbound.protection.outlook.com [40.107.244.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BDE510ED6D
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Aug 2022 12:38:37 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lEEdg9U2csLW2tlG5me79mmV8fuwkYGfpbwOTo/FYn+tzkLjybjwPsl+JJSz/Y3M/8RQiTX0X93L+TZOTfKS4o//2ZMoq/ISWfFBio60lcF4uM2+YtkQp5RlwHooy65lLioLTpVp7Nq9iCEv6NDNDe6U21GcLz4H3Nwj6clckc78M23XTZIDSIfZO3y7B5y4C00+rf6kUnqvModB6Ul9j2WS9HtyWutCeb1qQ5u7mUiaOaJAkEXcdHJ5u6JpKQAnt9a7ZgRU2z8rTMKcyY7cpUUcThdrxF8LVM594tz8QsXzU6YpURJLq0kiBnLyU3lN8KuDVPYfUtZOYZRoc/YDPQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=saW8lj/X+uXSdlpN91fVLp4dTxZckPwqZ+ezuoCSrAc=;
+ b=DB/KQgp+DJGmkrrM5hvECNCXvWapNPZLNsn5ZpLJDWie7OE7uzbFm70WHvPpnbcG7u37a/IDgF9Pj4utHnKbfFBjRqDGn3NxRzxEkHXMN0cSQWoB/2Lv3VWv3vNkEbhxpPqXujwtJO0SBCJNA3MyAeDWZJ50JbWp/RGDezdRiMtCgjA/1E1Ns/aTGq7wuwoBlTcOT0iAKHwz+Nc4A0EBBN4rVfLGeM/uMleO9u+HKOfpKeILsNFC8IAkNu2p5r0HIy9KiLPEBR4n4qy0HMzAqA4MWUCL0ilffDuOmW6ldWh7gLOnrc2+ZPFAabvZtBdBHzjQNN0WOWDcyDZ6fR96ew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=saW8lj/X+uXSdlpN91fVLp4dTxZckPwqZ+ezuoCSrAc=;
+ b=5razdCuuxAOdQD0wZbvbJTpceRbSU6Brrgr8l4kz8yoiBnvNz2/WYuDAPd++U9F1zMOUrrtSNclXAtdmpEHuzpZIMMT83aC3A2dehsDY5KHb2Kz1fum+i/iC1mJmMo2DvqAeLtkDYNjv9hP5+BgejJJxKo6C6QHmK/sDrsGTtog=
+Received: from MW4PR04CA0201.namprd04.prod.outlook.com (2603:10b6:303:86::26)
+ by DM6PR12MB3770.namprd12.prod.outlook.com (2603:10b6:5:1c4::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.17; Thu, 11 Aug
+ 2022 12:38:34 +0000
+Received: from CO1NAM11FT013.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:86:cafe::10) by MW4PR04CA0201.outlook.office365.com
+ (2603:10b6:303:86::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.20 via Frontend
+ Transport; Thu, 11 Aug 2022 12:38:34 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT013.mail.protection.outlook.com (10.13.174.227) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5525.11 via Frontend Transport; Thu, 11 Aug 2022 12:38:33 +0000
+Received: from yifan.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 11 Aug
+ 2022 07:38:31 -0500
+From: Yifan Zhang <yifan1.zhang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdkfd: reserve 2 queues for sdma 6.0.1
+Date: Thu, 11 Aug 2022 20:30:16 +0800
+Message-ID: <20220811123016.3958303-1-yifan1.zhang@amd.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220805211317.176672-2-hamza.mahfooz@amd.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Mailman-Approved-At: Thu, 11 Aug 2022 12:54:12 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 23725f0a-ccad-4b2a-491f-08da7b966799
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3770:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: WeJFmuULxeeQnoZrV5AnwhbKSwYCp1FKuRV1YB6/WRDpcDg4vHtxAMDn4CguNr1xwJb0AIOGM7JLqanp0ImQfnuQ7nDWs844B+T1+FSGnI58yPCR0rVWBbEzt+mhwtjeNo9eSSS1796Ns2PgCXOVqw+Ep7/aiiaTpfdJ+5vEBZ5GXb6SSTFnCcTlk0oHBWmev/kpSHSt6c5zM3fw0clW9kCSYtBmOFYycQKeapDUBH5k2dgMYMPXWYtxv/0wdOJBxxATBfL8cNBRvt8fBLqjPG36Pz8kQDqN9wN8MDQTwGm7i+n3a0BVxBrE/HUdywyxuk2Mnkhd+MZOcRcIXUNnmwHLuOLTRbsH3PJ4Rm38xOn/vDqu+Vagu1a1ZmTF/AYHTgnISToFm4J8m/RPo2k7uzjc6cisYeMON/z+YCF+btaIufMry3wtEtxO4ZxIlbu1m+IjZkheTQd+IZy6przxtqOalzpCBJEX7oxjLn48fx55hm6lQvfgvUW6XDQvetngshvr0ttsXn6RQ5SyiLaYCnVCxOKF53s3nkojUGEAbQpxZeNOPpsL/k+YWTVB6HtjGibwyRQOB6jmuivPJ4PrCGFpI28z10AWOpfCBVbLxSQBkt+L+EMypvVqdN3lgNIZJLrL/uboVzqZ9/KQ97OFytnrU+XyovJze6FNT2NrCT6sy0W8RNF0PsYMvX1sXM0yncYltArug7j4W9yXbD/wpBy4OD5xm/jZ749BlqBfVa7C0yFpdevYNpVQfa3N74VvS96/y3ePYwg8T6ZwbLpvuaIH1rfu3ulodURCipYQJvNP5h9nS1I7zsrL9F2NttFScMHsE076Vpyk274AkErT8w==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230016)(4636009)(346002)(396003)(376002)(39860400002)(136003)(36840700001)(40470700004)(46966006)(4326008)(70206006)(40480700001)(5660300002)(2906002)(8676002)(36756003)(54906003)(316002)(6916009)(70586007)(8936002)(40460700003)(6666004)(478600001)(41300700001)(26005)(356005)(7696005)(2616005)(336012)(81166007)(1076003)(47076005)(426003)(86362001)(83380400001)(82740400003)(186003)(82310400005)(16526019)(36860700001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2022 12:38:33.7725 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 23725f0a-ccad-4b2a-491f-08da7b966799
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT013.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3770
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,54 +97,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ian Chen <ian.chen@amd.com>,
- Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
- David Airlie <airlied@linux.ie>, Imre Deak <imre.deak@intel.com>,
- dri-devel@lists.freedesktop.org, Roman Li <Roman.Li@amd.com>,
- Imran Khan <imran.f.khan@oracle.com>,
- Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Kees Cook <keescook@chromium.org>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Javier Martinez Canillas <javierm@redhat.com>, amd-gfx@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>, Fangzhi Zuo <Jerry.Zuo@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Harry Wentland <harry.wentland@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
- Leo Li <sunpeng.li@amd.com>, hersenxs.wu@amd.com,
- Mikita Lipski <mikita.lipski@amd.com>,
- Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Claudio Suarez <cssk@net-c.es>, Thomas Zimmermann <tzimmermann@suse.de>,
- Wayne Lin <Wayne.Lin@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
- Colin Ian King <colin.king@intel.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Cc: Alexander.Deucher@amd.com, Mukul.Joshi@amd.com, Felix.Kuehling@amd.com,
+ Yifan Zhang <yifan1.zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+There is only one engine in sdma 6.0.1, current code reserve 4 queues
+togather w/ 6.0.0 and 6.0.2, which is not necessary. Shrink it to 2.
 
-On 2022-08-05 17:13, Hamza Mahfooz wrote:
-> Add a mode validation routine for DSC pass-through. Both the link from
-> source to hub, and the link from hub to monitor are checked, according
-> to the current link training result and full pbn returned by enum path
-> resource sideband message.
-> 
-> Pick up the minimum value as the bandwidth bottleneck for the end to
-> end link bandwidth constraint, and check if the maximum DSC decompression
-> bandwidth can fit.
-> 
-> Co-authored-by: Fangzhi Zuo <Jerry.Zuo@amd.com>
-> Signed-off-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
+Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_device.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-Hi,
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+index f5853835f03a..a82ddea967f2 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+@@ -102,13 +102,18 @@ static void kfd_device_info_set_sdma_info(struct kfd_dev *kfd)
+ 
+ 	switch (sdma_version) {
+ 	case IP_VERSION(6, 0, 0):
+-	case IP_VERSION(6, 0, 1):
+ 	case IP_VERSION(6, 0, 2):
+ 		/* Reserve 1 for paging and 1 for gfx */
+ 		kfd->device_info.num_reserved_sdma_queues_per_engine = 2;
+ 		/* BIT(0)=engine-0 queue-0; BIT(1)=engine-1 queue-0; BIT(2)=engine-0 queue-1; ... */
+ 		kfd->device_info.reserved_sdma_queues_bitmap = 0xFULL;
+ 		break;
++	case IP_VERSION(6, 0, 1):
++		/* Reserve 1 for paging and 1 for gfx */
++		kfd->device_info.num_reserved_sdma_queues_per_engine = 2;
++		/* BIT(0)=engine-0 queue-0; BIT(1)=engine-1 queue-0; BIT(2)=engine-0 queue-1; ... */
++		kfd->device_info.reserved_sdma_queues_bitmap = 0x5ULL;
++		break;
+ 	default:
+ 		break;
+ 	}
+-- 
+2.37.1
 
-Building an arm64 allmodconfig kernel from todays next tag, next-20220811.
-I can see the following build error.
-
-ERROR: modpost: "dc_dsc_compute_bandwidth_range" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
-ERROR: modpost: "dc_dsc_get_policy_for_timing" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
-
-When I reverted this patch I was able to build an arm64 allmodconfig
-kernel.
-
-
-Cheers,
-Anders
