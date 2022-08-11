@@ -1,118 +1,46 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EF7A5911C1
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Aug 2022 15:55:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 214245913E2
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 Aug 2022 18:32:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E90DB4654;
-	Fri, 12 Aug 2022 13:55:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1563932F3;
+	Fri, 12 Aug 2022 16:31:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2063.outbound.protection.outlook.com [40.107.220.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E56AB45B4
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Aug 2022 13:55:16 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T2XdU6IaNySvtfT2vriq+Y3cRxMkxqHZRFgl8zUllSrrCQ5gdz3OG3bn+UcYAxWarPkUPCM5al+IsIiBISMiPMLmwxWP7MTwXh3KhHikHuYKusmPU1h+vhwSozJLs2L+hfrTHZD54wVdkp1NmkrRl/s4lFTB9JV9/Mw7+47smVn3I9o5OogGfWK9F42encstge2EGW62c0UAbI96Ti/L/SnBcH4R/w5aLTFHm4DJD1qpfXgTmgNysm9qMjTwWSwLM82/tiXQmYGou0HsinE6kEo/rLZ+izkHesOp6fwkKJjRY14eRSMy3mX2Cef4MrBqHvnXzo7SZRra3SOyTOC9TQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RHWOEQ4Jb8gsFSsuOVkJVg7elMD0UvRfOE33aD08nEs=;
- b=McwSWtckU8R5x3TJdESZH6GTqQxPLR7YjeiaqE56u7V4HACpS+Q6YtFh+zOQYzXJMMaZ1DCm/Q5oGhDxy8Rx9ncPK05cHWsd2/UQqljn0oVXyAUoUfuHebialBXdShKYmIqLhhp4Z8sL9Qh4/UNjeayBx7HUwC/T397DTKtmnjs0uPru1qxsSFFXftLID7J41WRdqW6zDmtpQO0Qy+kEcHp4Rm0ll6WohqJj6FhZ/FET3yJv4xiNOMOQ6bvDVcWPRZWdrXcK87ASVrZImWvjmnRnJjrta6dLWgRyX3hcBz8i174Hwy3rM30oPANmEwPu8kJI8I773Y9PEaAj3YdZgg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RHWOEQ4Jb8gsFSsuOVkJVg7elMD0UvRfOE33aD08nEs=;
- b=GmNw2FZorHRuX06/RnMAZnootbU0E+KN5XEfEPv6GXNYxIYMPYLwvrUTq3aM6XdpxVSE6szJRWiBMAzl5S4Wt4MDnT4uYYBzjxfqPauJxoxNAasZhxc//9XN0Rr2bMb7Aps7SPRZSSRblbz3b0WOmyeJgZSomYn+QpthGUWmkak=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB5149.namprd12.prod.outlook.com (2603:10b6:5:390::14)
- by CH2PR12MB4023.namprd12.prod.outlook.com (2603:10b6:610:14::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.14; Fri, 12 Aug
- 2022 13:55:11 +0000
-Received: from DM4PR12MB5149.namprd12.prod.outlook.com
- ([fe80::252e:b6db:2d4b:b922]) by DM4PR12MB5149.namprd12.prod.outlook.com
- ([fe80::252e:b6db:2d4b:b922%8]) with mapi id 15.20.5504.025; Fri, 12 Aug 2022
- 13:55:11 +0000
-Message-ID: <da05c04a-c484-e2a0-8019-27f415f0a726@amd.com>
-Date: Fri, 12 Aug 2022 09:55:09 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2] drm/amdkfd: Try to schedule bottom half on same core
-Content-Language: en-CA
-To: Felix Kuehling <Felix.Kuehling@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20220810234109.935228-1-Felix.Kuehling@amd.com>
- <20220811190433.1213179-1-Felix.Kuehling@amd.com>
-From: Philip Yang <yangp@amd.com>
-In-Reply-To: <20220811190433.1213179-1-Felix.Kuehling@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MN2PR16CA0025.namprd16.prod.outlook.com
- (2603:10b6:208:134::38) To DM4PR12MB5149.namprd12.prod.outlook.com
- (2603:10b6:5:390::14)
+Received: from gimli.rothwell.id.au (gimli.rothwell.id.au [103.230.158.156])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7233F929C4
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Aug 2022 23:07:40 +0000 (UTC)
+Received: from authenticated.rothwell.id.au (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.rothwell.id.au (Postfix) with ESMTPSA id 4M3jBY2S2CzyZt;
+ Fri, 12 Aug 2022 09:07:33 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rothwell.id.au;
+ s=201702; t=1660259255;
+ bh=MQdGlv7/KuLvICsIqGjekw2CdHuPtmyaZo7g6m/4FjI=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=adZNluClMa2RHl848Ly9cmmxaBRWrS5jN925SdAWWhmWEqgqt1j6UPqyrhqmTz7dx
+ 5/OLBxkgKq0xH+1eeUdBZkuhyMZ6W33mnxSu+fPSPNXEiixZMceZ9S/ONjEGAScSWq
+ fQ34MLaIPk3soIwNg5I/x8Z5iovR/F+idT0otWFtHsiEOrN/GEpoMVrKzeniPK8foV
+ uKaaFFVdJkGqulsfxrpHZbdNDVSbIYC9eVLwOe/dzR0IjlMRiOAc2VHLSzWh3GvDQq
+ jzl/WG7CdoDbDm4z2Da/8yZnUMmvlMF3k1MY5bX7boTxbH1evSclE2TEWbk2sZQ+WQ
+ 5jx5A7bpu5c+w==
+Date: Fri, 12 Aug 2022 09:07:31 +1000
+From: Stephen Rothwell <sfr@rothwell.id.au>
+To: Alex Deucher <alexander.deucher@amd.com>
+Subject: Re: build failure of next-20220811 due to b1a63a0b48ad
+ ("drm/amd/display: consider DSC pass-through during mode validation")
+Message-ID: <20220812090731.31da7d85@oak.ozlabs.ibm.com>
+In-Reply-To: <YvU4GD8HtZ1A4dhI@debian>
+References: <YvU4GD8HtZ1A4dhI@debian>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: aa6b3d44-80fd-46ec-3380-08da7c6a462e
-X-MS-TrafficTypeDiagnostic: CH2PR12MB4023:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: o2F11kjUGNOzU6VZtNEfD6JXH3tmsoyi2+zDd/V72ItLfVvpOkTDhTs9EKiCXR8cytUTe6JL8etyekHmsLY4eP+93yMISl7vKmDxt9xwvftkhdxlDTYSqrRVpc8J8c32XJd78ZQT//97GfG5nzZMyfibV/SgcyWq3pL5LG+28fK+Mn6PELXgyFZRhG3fJ8DOCdQFR2MENgIfTvi0DnfomB7AWf/tYdfFjlqbpvRhF1PqF/RZ+6t9p6qw1v445YurPJ8nPgf1apTRMT4oqjqky9/Hs4/spI0RLXOntiZPQtP8vCEBqcJb5Yz68V2YB4DjSHDAAPNB2YsnPWXDyi2jXBt7d1sAHpZAcbuqloLTReQ7mbm+ijXQBwhBJBGcsSbXv2Gnw7jGjznzSiXX4DfVSEB+Tev0IKMxS62wzFTwZFxwp9VQtj92wp0TcJmKz6vbcQgK661MEmHjYzInTDHdLkuFWwLoIo2zqrT4ODNy+LHrOKZNzfmAlYuh50JStri25PY/RV8LbmJa+Xb8OFrFihWtLxxJPmvE+9r3FzJB///AmPKTu5UmER8r+3P5l/4WvSPsOJap1aue+LpVMsABpzKtSIcIB5dfmIjTll6qg8csXkzTkXKRg4dYTwxdjrNUIsvyV8tqe7vFCDW8NL2KCMB63haPNbTB4/phSsU0bmtuhkHgPI6LBvQU28IWzck06y2G0WRrfmyJ5tjVOkE9YQ5EOWnHW1CVTwaIc+Htdq9/UoZ0sqFlu8XpZ5iibgMhNDPW9pXCR/epS6jPxQCquRyJklH/pdVHJvnly0MXD70A544DwGgTtgOmeuMexeIzAeYjAQeZIAXnBiV/JcmWFKxnQ/HV32hSqJdV9zLORoI=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5149.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(396003)(366004)(39860400002)(376002)(136003)(346002)(4326008)(31686004)(2616005)(36756003)(83380400001)(478600001)(66556008)(41300700001)(66946007)(8676002)(66476007)(6486002)(2906002)(316002)(186003)(26005)(6512007)(53546011)(6506007)(38100700002)(8936002)(5660300002)(31696002)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?alhERW1acDhsVEF4MnNudHVwb3FhYW9LcmpLcGh0S2k5RlFpOEVBbnNONjN0?=
- =?utf-8?B?a0hSQmN3RWZTbTl3YVU0cHlEemNUd01ZR2JWYy9WeXdMVGtCR2hPbE9qUkt3?=
- =?utf-8?B?emUwb1lEZXBLWXEzd1R3Ni9CN1hhbzBBNEk0bGVOd0UwWmcrcmN3czVGM1By?=
- =?utf-8?B?dTdxcThEUlgwUXh4N0tGQlllUlpDM1I2SC94VzNselFJYTVEY3NuMDMwNmhB?=
- =?utf-8?B?MHFVRVJLWDM5dHpDOUlsWkZFNXREYitpOVBiSVk0RTRHR1M5cXh2T0gvamlj?=
- =?utf-8?B?OE5CQ3dRL3FYZitNTUxuK1BUOFhxcjdadkRib1ZMclF5OUtmclIrVUxSR2g4?=
- =?utf-8?B?bjE5cUZLUE0yLzVLc08wRlR2RnVwa2g5cm5MNlZqQTBJTTNVYncwbFQxRjlX?=
- =?utf-8?B?U1VUYlBBN3JSaGxqNkpkdEV6WTNrRzFkbW9ERHR6UDRDQXZ4L1pUUFllaWJE?=
- =?utf-8?B?UWN5QXd5N0NlVlpFSEh6V2VGZDl3MEVpL3RJQWtGT2pOc2NiRkxmYXdiN0xw?=
- =?utf-8?B?L0N3RU9tcDlzdkxVSklaNXFnMzFLV2lIZTlORHJUYXo5Q2lXM1RNRkw0TVNG?=
- =?utf-8?B?N09tSGUyWVhtYzQ1dm5oeXZXL2xGbE01WnpJS2U1cFMrcWwvbkxxMXV4TU1D?=
- =?utf-8?B?Z0ZtUDdNRVZtaWFGdFNaTHBUTFpPUXR4dTRyV09waFYwKzdxRE41bG1JNHRG?=
- =?utf-8?B?aDJTZ1B6YkRZOFIxYXhpeW5wMTZCclZtUXdUblBHMDNGN2hYZW9rWFhueFly?=
- =?utf-8?B?NlA4OTZDR2krS1dURzY0K2xOaStNdzg4TU5lQzVxSzlHRTFJNnpsTWw1c1VV?=
- =?utf-8?B?anJONytYRGFVa3BYdGZoTHM4MEp0SlhmRXlsWCtqT0xCMUlFODJyczVLdGUv?=
- =?utf-8?B?a3k2UEFsU3FxYXBOaXlrMVhhWkY2My92MlhVeVl2VnI1cXpLRXF0QkpUTEdM?=
- =?utf-8?B?N2VpczlWMXhSUStzZk81dk5BSFpFcEEvcktaNS9PZE9meGxOR2xqaDB3NkdR?=
- =?utf-8?B?NlJTRXRNRXBIWDlJaDBqR0NVT0kxZ1JnckxSQ01MTklDVk1ZV05jaHNnWGlS?=
- =?utf-8?B?QkFYK0NyR3lJd2FpdS9sbVZiR3RoK1pQbVBzeDhHZ2ZiWitsQzVhSXI4VG5s?=
- =?utf-8?B?cE1LczUzU0Q3S25KdEhYWnhXdXcvSXBkS0p2V28rcEJzZ0JRbnorNVlXU3pI?=
- =?utf-8?B?enVpNEUvVW93emtTR3hxL3dwMHNjcWFCemNqbVRqVTJQWDZLVzliRDN1cUtt?=
- =?utf-8?B?Q1RsUTRsZ0tPb29XN3ZQdW41L3RpbGRwMXFnZ0FyWXpEMmlpL3J6YUpIbmJN?=
- =?utf-8?B?YW9mbG83ZEFCcTZTbUQwbkNYbGE3bFNoc1daTFJ1ZmJ3YWsrNFN3c0x0Vzkw?=
- =?utf-8?B?SGhwdDFiVWNjU3lvcUJtRTk2ZmJQRFFaaS9leW5GbVA0aERRL09KZXJxVDlh?=
- =?utf-8?B?WDlleU1ESENBVzhFcTRnRWdOaHZJTi9lVFAvUVEyY3F6eUR5L1pDZEx2SENR?=
- =?utf-8?B?MGl5VE9HOXhyUzdZTS9yWHhQSE1FWmlmUS9zOExzNTBxeTB1SFZHK0ZWSUtX?=
- =?utf-8?B?UXVieGQ2cFRDWFRqYUhjS1htcVAzM1I5VlFWRkE2NTBkM05XY0pJNXh5M2JK?=
- =?utf-8?B?OXI5L3VTQmZqZWg3Uk5aU1ptMGs2ZkJOVVVuL2FhemdZdEpkajJGY0xLVjg2?=
- =?utf-8?B?d3F0M2xMek9qTTRHaXZaTFQ3NGxhaWQwRklmWCtFUVhSemFIaTJWSG1iWEtj?=
- =?utf-8?B?MG50dWY2aEdicU1GUmpKOXdVV0QxcTE3bW8xSlk0SFBZS2FSWG9veVlHeEZH?=
- =?utf-8?B?cUg0NzFIckt1N0ZYNFBNMVZMTURYZ1FjL1JiSUtQaGFlNWJralhCS0wzaVQ4?=
- =?utf-8?B?RkZNWEJmeGhENWxYcTE1bHYvRG1ObEdjN2hScEY0WC94Y2tWdHFqeFNGTXpt?=
- =?utf-8?B?YVlmM3cwMDdlSE4wend0S29VMDV4Q1NETlNzTksvRkFwMEM1UTcraVF0Yy9P?=
- =?utf-8?B?cjF0Tm5BV0VtUUF3QnhvQjZhYjRrWEsyd21ZdmVEVlFwOTdkbjlzQnE5UnlO?=
- =?utf-8?B?SklESGtrUjdFQmRlNlJnSkJTekNpWWptNlBPNGNDUUpaUFNzWXJNL2pVeVRO?=
- =?utf-8?Q?A4MU=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aa6b3d44-80fd-46ec-3380-08da7c6a462e
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5149.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Aug 2022 13:55:11.5281 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pMCFSe0V5j2HWZZtdyhdaqY76K4gYyxmtYzYmNq89+h353pDkwCkgtYtKp6xINRo
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4023
+Content-Type: multipart/signed; boundary="Sig_/lBwBYWJZfaTJxqb/SqOb3za";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-Mailman-Approved-At: Fri, 12 Aug 2022 16:31:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,79 +52,60 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: nicholas.curtis@amd.com
+Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org,
+ "Sudip Mukherjee \(Codethink\)" <sudipm.mukherjee@gmail.com>,
+ Fangzhi Zuo <Jerry.Zuo@amd.com>, linux-next@vger.kernel.org,
+ Hamza Mahfooz <hamza.mahfooz@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+--Sig_/lBwBYWJZfaTJxqb/SqOb3za
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-On 2022-08-11 15:04, Felix Kuehling wrote:
-> On systems that support SMT (hyperthreading) schedule the bottom half of
-> the KFD interrupt handler on the same core. This makes it possible to
-> reserve a core for interrupt handling and have the bottom half run on
-> that same core.
+Hi all,
+
+On Thu, 11 Aug 2022 18:10:48 +0100 "Sudip Mukherjee (Codethink)" <sudipm.mu=
+kherjee@gmail.com> wrote:
 >
-> On systems without SMT, pick another core in the same NUMA node, as
-> before.
->
-> Use for_each_cpu_wrap instead of open-coding it.
->
-> Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
+> Not sure if it has been reported, builds of riscv, alpha, s390, arm,
+> arm64, xtensa, mips, csky allmodconfig have failed to build next-20220811
+> with the error:
+>=20
+> ERROR: modpost: "dc_dsc_compute_bandwidth_range" [drivers/gpu/drm/amd/amd=
+gpu/amdgpu.ko] undefined!
+> ERROR: modpost: "dc_dsc_get_policy_for_timing" [drivers/gpu/drm/amd/amdgp=
+u/amdgpu.ko] undefined!
+>=20
+> git bisect pointed to b1a63a0b48ad ("drm/amd/display: consider DSC pass-t=
+hrough during mode validation")
+> And, reverting that commit has fixed the build failure.
+>=20
+> I will be happy to test any patch or provide any extra log if needed.
 
-nit-pick below, looks better to use new_cpu as iterator, either way this is
+I have reverted that commit in today's linux-next.
 
-Reviewed-by: Philip Yang <Philip.Yang@amd.com>
+--=20
+Cheers,
+Stephen Rothwell
 
-> ---
->   drivers/gpu/drm/amd/amdkfd/kfd_device.c | 20 ++++++++++++++++----
->   1 file changed, 16 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-> index f5853835f03a..4d1284714e7a 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-> @@ -24,6 +24,7 @@
->   #include <linux/bsearch.h>
->   #include <linux/pci.h>
->   #include <linux/slab.h>
-> +#include <linux/topology.h>
->   #include "kfd_priv.h"
->   #include "kfd_device_queue_manager.h"
->   #include "kfd_pm4_headers_vi.h"
-> @@ -801,13 +802,24 @@ static inline void kfd_queue_work(struct workqueue_struct *wq,
->   				  struct work_struct *work)
->   {
->   	int cpu, new_cpu;
-> +	const struct cpumask *mask = NULL;
->   
->   	cpu = new_cpu = smp_processor_id();
-> -	do {
-> -		new_cpu = cpumask_next(new_cpu, cpu_online_mask) % nr_cpu_ids;
-> -		if (cpu_to_node(new_cpu) == numa_node_id())
-> +
-> +#if defined(CONFIG_SCHED_SMT)
-> +	/* CPU threads in the same core */
-> +	mask = cpu_smt_mask(cpu);
-> +#endif
-> +	if (!mask || cpumask_weight(mask) <= 1)
-> +		/* CPU threads in the same NUMA node */
-> +		mask = cpu_cpu_mask(cpu);
-> +	/* Pick the next online CPU thread in the same core or NUMA node */
-> +	for_each_cpu_wrap(cpu, mask, cpu+1) {
-> +		if (cpu != new_cpu && cpu_online(cpu)) {
-> +			new_cpu = cpu;
->   			break;
-> -	} while (cpu != new_cpu);
-> +		}
-> +	}
->   
->   	queue_work_on(new_cpu, wq, work);
->   }
+--Sig_/lBwBYWJZfaTJxqb/SqOb3za
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-	for_each_cpu_wrap(new_cpu, mask, cpu + 1) {
-		if (cpu != new_cpu && cpu_online(new_cpu)) {
-			cpu = new_cpu;
-  			break;
-		}
-	}
-	queue_work_on(cpu, wq, work);
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmL1i7MACgkQAVBC80lX
+0GzSzAf8DKPebARHzdTqD13VNr3O67jzPL8ES7pQodgFmZMSKK3Y+vrG88X3EVSk
+ix+XD73wo/KvGZwASDZf7CMKj84ihNm3re6hPjsLcHMeZ4bpwJi46enWVl+EA3zQ
+cDzSOP++Vl1dm/RNZXMVm30CIvVjX8MgDuwGqXhWvbWL2Q0yq1xg3dddCYLl9y4p
+R3MSWvVXijrkQSdsM0v6oYI80x5GpcQPk+H+fpsmkd0EwKDKG0sNste7Sbk9XfqM
+ljtDoOkgQ85wzHC8IExlgQnjDMswtlW/b78kzXfdysl8KIQrHjo5aOsds0ZeHkCZ
+tbr3b9HgZktRYDXh16COSYyVZFzJKg==
+=Mbox
+-----END PGP SIGNATURE-----
+
+--Sig_/lBwBYWJZfaTJxqb/SqOb3za--
