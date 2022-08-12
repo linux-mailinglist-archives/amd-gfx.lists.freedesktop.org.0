@@ -2,58 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46E0F5913E1
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Aug 2022 18:31:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A384E5913EB
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 Aug 2022 18:33:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CDB214B3A9;
-	Fri, 12 Aug 2022 16:31:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A55693B20;
+	Fri, 12 Aug 2022 16:32:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD69E9363E;
- Fri, 12 Aug 2022 07:04:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1660287890; x=1691823890;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=Wv3mliKJHlOvyzG83octad0uOqX2aKpqEvow5oXSetg=;
- b=iV8Ua9PW9/BCMIOcqZ0cX4g7WFsAQyrc8fyahj0kmRiTlyMRsQUg5P0E
- AKQ9tR+dlaQAe+En+c4oap/Z70Z/GzkvxB8PdsjjxT+j5DOSjaCpidqXz
- XgN3MnRD9sq08Q9s4Ep3LtP1RANcVk9JzqjI+08ZuWJ/Z9LYEUIKyUj+7
- dUZi77wfcD2IaTCOto4YrFUzSDLyuqrjESz/B5UjDvKzGBZ+i8wcHihMj
- 12h6wob9NGZAIeHBwG70ANm1kTluWGsRDVYpwh3Wc2hgKNmJc1Dd52zrB
- MhOyHNV+aWJhwqgCNiBL4daLEo8U/rfyxG1f5kazsCYteX1Jwzaz7+aae A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10436"; a="292801785"
-X-IronPort-AV: E=Sophos;i="5.93,231,1654585200"; d="scan'208";a="292801785"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2022 00:04:50 -0700
-X-IronPort-AV: E=Sophos;i="5.93,231,1654585200"; d="scan'208";a="581987316"
-Received: from ebrazil-mobl1.amr.corp.intel.com (HELO localhost)
- ([10.252.37.174])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2022 00:04:46 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Deucher, Alexander" <Alexander.Deucher@amd.com>, Jouni =?utf-8?Q?H?=
- =?utf-8?Q?=C3=B6gander?=
- <jouni.hogander@intel.com>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH v3 2/3] drm/amdgpu_dm: Rely on split out luminance
- calculation function
-In-Reply-To: <BL1PR12MB5144D129C543A4FAD451FFF1F7649@BL1PR12MB5144.namprd12.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220719095700.14923-1-jouni.hogander@intel.com>
- <20220719095700.14923-3-jouni.hogander@intel.com>
- <877d3opc4d.fsf@intel.com>
- <BL1PR12MB5144D129C543A4FAD451FFF1F7649@BL1PR12MB5144.namprd12.prod.outlook.com>
-Date: Fri, 12 Aug 2022 10:04:44 +0300
-Message-ID: <87h72irlgz.fsf@intel.com>
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B016094F71;
+ Fri, 12 Aug 2022 11:46:27 +0000 (UTC)
+Received: from [192.168.2.145] (unknown [109.252.119.13])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: dmitry.osipenko)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id BD19E66016F2;
+ Fri, 12 Aug 2022 12:46:23 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1660304786;
+ bh=C5rdDWAQ0gULbYpYsWO6A2mmdZ/uxYEqrEknr4MoOf8=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=f3cXPfNXtZHtoSYE1rfxtQ30MUhUVhGrG/NArO1c7kQB8/Xy+FmlqaaOTXT5gVdlP
+ JQXrT9UtGLSc+oBaf/E/efq95t8eHa3wW8rsdseitQlUvtaI4DwUh/ptuZTZ+7D4oa
+ 7gYb8ygLDMwAttTQiJt/HYS3piyRQe36Z1IpIZJqOFl16YT77Eqw1UGF1vppI4t/Vf
+ GlTMr5So6lTOFJQj6bSYwIN6RamDBXBlbOMkDkPHaJHbuvpX0ALyNVMapf4xI3a4LC
+ uDEbP9wEVI4gkRbHJNZkFWXDO04u0wVdnPFCF2dEImetIe9dBjI0qKFkC2Wjrvs/O9
+ MpZiQvPIhyRKg==
+Message-ID: <b7bc8c98-d613-a50d-454c-06ca76d707e1@collabora.com>
+Date: Fri, 12 Aug 2022 14:46:20 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [Linaro-mm-sig] [PATCH v2 3/5] dma-buf: Move all dma-bufs to
+ dynamic locking specification
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+References: <20220725151839.31622-1-dmitry.osipenko@collabora.com>
+ <20220725151839.31622-4-dmitry.osipenko@collabora.com>
+ <6c8bded9-1809-608f-749a-5ee28b852d32@gmail.com>
+ <562fbacf-3673-ff3c-23a1-124284b4456c@collabora.com>
+ <87724722-b9f3-a016-c25c-4b0415f2c37f@amd.com>
+ <0863cafa-c252-e194-3d23-ef640941e36e@collabora.com>
+ <93484389-1f79-b364-700f-60769fc5f8a5@gmail.com>
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <93484389-1f79-b364-700f-60769fc5f8a5@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 12 Aug 2022 16:31:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,154 +63,81 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Siqueira, Rodrigo" <Rodrigo.Siqueira@amd.com>, "Li,
- Roman" <Roman.Li@amd.com>, Manasi Navare <manasi.d.navare@intel.com>,
- Mika Kahola <mika.kahola@intel.com>,
- Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>, "Wentland,
- Harry" <Harry.Wentland@amd.com>
+Cc: Daniel Almeida <daniel.almeida@collabora.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ Thierry Reding <thierry.reding@gmail.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ Dmitry Osipenko <digetx@gmail.com>, kernel@collabora.com,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, linux-rdma@vger.kernel.org,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>,
+ Daniel Stone <daniel@fooishbar.org>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ spice-devel@lists.freedesktop.org, Chia-I Wu <olvaffe@gmail.com>,
+ linux-media@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, linaro-mm-sig@lists.linaro.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, David Airlie <airlied@linux.ie>,
+ amd-gfx@lists.freedesktop.org, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ linux-kernel@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
+ Rob Clark <robdclark@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 11 Aug 2022, "Deucher, Alexander" <Alexander.Deucher@amd.com> wrote:
-> [Public]
->
->> -----Original Message-----
->> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Jani
->> Nikula
->> Sent: Thursday, August 4, 2022 5:55 AM
->> To: Jouni H=C3=B6gander <jouni.hogander@intel.com>; dri-
->> devel@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; amd-
->> gfx@lists.freedesktop.org
->> Cc: Siqueira, Rodrigo <Rodrigo.Siqueira@amd.com>; Li, Roman
->> <Roman.Li@amd.com>; Manasi Navare <manasi.d.navare@intel.com>; Mika
->> Kahola <mika.kahola@intel.com>; Jouni H=C3=B6gander
->> <jouni.hogander@intel.com>; Wentland, Harry
->> <Harry.Wentland@amd.com>
->> Subject: Re: [PATCH v3 2/3] drm/amdgpu_dm: Rely on split out luminance
->> calculation function
->>=20
->> On Tue, 19 Jul 2022, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrot=
-e:
->> > Luminance range calculation was split out into drm_edid.c and is now
->> > part of edid parsing. Rely on values calculated during edid parsing
->> > and use these for caps->aux_max_input_signal and caps-
->> >aux_min_input_signal.
->>=20
->> Harry, I'll merge patches 1 & 3 in this series through drm-misc-next, be=
-cause I
->> think they're good to go, and fix stuff in i915.
->>=20
->> Can I get your rb/ack to merge this patch as well, or do you want to tak=
-e this
->> later via your tree?
->
-> You can take this via drm-misc.
-> Acked-by: Alex Deucher <alexander.deucher@amd.com>
+On 8/12/22 14:34, Christian König wrote:
+> 
+> 
+> Am 10.08.22 um 20:53 schrieb Dmitry Osipenko:
+>> On 8/10/22 21:25, Christian König wrote:
+>>> Am 10.08.22 um 19:49 schrieb Dmitry Osipenko:
+>>>> On 8/10/22 14:30, Christian König wrote:
+>>>>> Am 25.07.22 um 17:18 schrieb Dmitry Osipenko:
+>>>>>> This patch moves the non-dynamic dma-buf users over to the dynamic
+>>>>>> locking specification. The strict locking convention prevents
+>>>>>> deadlock
+>>>>>> situation for dma-buf importers and exporters.
+>>>>>>
+>>>>>> Previously the "unlocked" versions of the dma-buf API functions
+>>>>>> weren't
+>>>>>> taking the reservation lock and this patch makes them to take the
+>>>>>> lock.
+>>>>>>
+>>>>>> Intel and AMD GPU drivers already were mapping imported dma-bufs
+>>>>>> under
+>>>>>> the held lock, hence the "locked" variant of the functions are added
+>>>>>> for them and the drivers are updated to use the "locked" versions.
+>>>>> In general "Yes, please", but that won't be that easy.
+>>>>>
+>>>>> You not only need to change amdgpu and i915, but all drivers
+>>>>> implementing the map_dma_buf(), unmap_dma_buf() callbacks.
+>>>>>
+>>>>> Auditing all that code is a huge bunch of work.
+>>>> Hm, neither of drivers take the resv lock in map_dma_buf/unmap_dma_buf.
+>>>> It's easy to audit them all and I did it. So either I'm missing
+>>>> something or it doesn't take much time to check them all. Am I really
+>>>> missing something?
+>>> Ok, so this is only changing map/unmap now?
+>> It also vmap/vunmap and attach/detach: In the previous patch I added the
+>> _unlocked postfix to the func names and in this patch I made them all to
+>> actually take the lock.
+> 
+> 
+> Take your patch "[PATCH v2 2/5] drm/gem: Take reservation lock for
+> vmap/vunmap operations" as a blueprint on how to approach it.
+> 
+> E.g. one callback at a time and then document the result in the end.
 
-Thanks, pushed the series to drm-misc-next.
+Yeah, I'll do it for v3. I'm vaguely recalling that there was a problem
+when I wanted to split this patch in the past, but don't remember what
+it was.. maybe that problem is gone now, will see :)
 
-BR,
-Jani.
-
->
->
->>=20
->> BR,
->> Jani.
->>=20
->>=20
->> >
->> > v2: Use values calculated during edid parsing
->> >
->> > Cc: Roman Li <roman.li@amd.com>
->> > Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
->> > Cc: Harry Wentland <harry.wentland@amd.com>
->> > Cc: Lyude Paul <lyude@redhat.com>
->> > Cc: Mika Kahola <mika.kahola@intel.com>
->> > Cc: Jani Nikula <jani.nikula@intel.com>
->> > Cc: Manasi Navare <manasi.d.navare@intel.com>
->> > Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
->> > ---
->> >  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 35
->> > +++----------------
->> >  1 file changed, 4 insertions(+), 31 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> > b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> > index 3e83fed540e8..eb7abdeb8653 100644
->> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> > @@ -2903,15 +2903,12 @@ static struct drm_mode_config_helper_funcs
->> > amdgpu_dm_mode_config_helperfuncs =3D {
->> >
->> >  static void update_connector_ext_caps(struct amdgpu_dm_connector
->> > *aconnector)  {
->> > -	u32 max_avg, min_cll, max, min, q, r;
->> >  	struct amdgpu_dm_backlight_caps *caps;
->> >  	struct amdgpu_display_manager *dm;
->> >  	struct drm_connector *conn_base;
->> >  	struct amdgpu_device *adev;
->> >  	struct dc_link *link =3D NULL;
->> > -	static const u8 pre_computed_values[] =3D {
->> > -		50, 51, 52, 53, 55, 56, 57, 58, 59, 61, 62, 63, 65, 66, 68, 69,
->> > -		71, 72, 74, 75, 77, 79, 81, 82, 84, 86, 88, 90, 92, 94, 96, 98};
->> > +	struct drm_luminance_range_info *luminance_range;
->> >  	int i;
->> >
->> >  	if (!aconnector || !aconnector->dc_link) @@ -2933,8 +2930,6 @@
->> > static void update_connector_ext_caps(struct amdgpu_dm_connector
->> *aconnector)
->> >  	caps =3D &dm->backlight_caps[i];
->> >  	caps->ext_caps =3D &aconnector->dc_link->dpcd_sink_ext_caps;
->> >  	caps->aux_support =3D false;
->> > -	max_avg =3D conn_base->hdr_sink_metadata.hdmi_type1.max_fall;
->> > -	min_cll =3D conn_base->hdr_sink_metadata.hdmi_type1.min_cll;
->> >
->> >  	if (caps->ext_caps->bits.oled =3D=3D 1 /*||
->> >  	    caps->ext_caps->bits.sdr_aux_backlight_control =3D=3D 1 || @@
->> > -2946,31 +2941,9 @@ static void update_connector_ext_caps(struct
->> amdgpu_dm_connector *aconnector)
->> >  	else if (amdgpu_backlight =3D=3D 1)
->> >  		caps->aux_support =3D true;
->> >
->> > -	/* From the specification (CTA-861-G), for calculating the maximum
->> > -	 * luminance we need to use:
->> > -	 *	Luminance =3D 50*2**(CV/32)
->> > -	 * Where CV is a one-byte value.
->> > -	 * For calculating this expression we may need float point precision;
->> > -	 * to avoid this complexity level, we take advantage that CV is divi=
-ded
->> > -	 * by a constant. From the Euclids division algorithm, we know that
->> CV
->> > -	 * can be written as: CV =3D 32*q + r. Next, we replace CV in the
->> > -	 * Luminance expression and get 50*(2**q)*(2**(r/32)), hence we
->> just
->> > -	 * need to pre-compute the value of r/32. For pre-computing the
->> values
->> > -	 * We just used the following Ruby line:
->> > -	 *	(0...32).each {|cv| puts (50*2**(cv/32.0)).round}
->> > -	 * The results of the above expressions can be verified at
->> > -	 * pre_computed_values.
->> > -	 */
->> > -	q =3D max_avg >> 5;
->> > -	r =3D max_avg % 32;
->> > -	max =3D (1 << q) * pre_computed_values[r];
->> > -
->> > -	// min luminance: maxLum * (CV/255)^2 / 100
->> > -	q =3D DIV_ROUND_CLOSEST(min_cll, 255);
->> > -	min =3D max * DIV_ROUND_CLOSEST((q * q), 100);
->> > -
->> > -	caps->aux_max_input_signal =3D max;
->> > -	caps->aux_min_input_signal =3D min;
->> > +	luminance_range =3D &conn_base->display_info.luminance_range;
->> > +	caps->aux_min_input_signal =3D luminance_range->min_luminance;
->> > +	caps->aux_max_input_signal =3D luminance_range->max_luminance;
->> >  }
->> >
->> >  void amdgpu_dm_update_connector_after_detect(
->>=20
->> --
->> Jani Nikula, Intel Open Source Graphics Center
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
+-- 
+Best regards,
+Dmitry
