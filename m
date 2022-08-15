@@ -2,39 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 631E9593602
-	for <lists+amd-gfx@lfdr.de>; Mon, 15 Aug 2022 21:02:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B00E159348E
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Aug 2022 20:16:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A945CD26D9;
-	Mon, 15 Aug 2022 19:02:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BF45CFFB4;
+	Mon, 15 Aug 2022 18:16:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 302 seconds by postgrey-1.36 at gabe;
- Mon, 15 Aug 2022 18:15:14 UTC
-Received: from albert.telenet-ops.be (albert.telenet-ops.be
- [IPv6:2a02:1800:110:4::f00:1a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85DE3CFECC
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Aug 2022 18:15:14 +0000 (UTC)
-Received: from ramsan.of.borg ([84.195.186.194])
- by albert.telenet-ops.be with bizsmtp
- id 7uA42800C4C55Sk06uA4oE; Mon, 15 Aug 2022 20:10:09 +0200
-Received: from geert (helo=localhost)
- by ramsan.of.borg with local-esmtp (Exim 4.93)
- (envelope-from <geert@linux-m68k.org>)
- id 1oNeXL-001DJO-RF; Mon, 15 Aug 2022 20:10:03 +0200
-Date: Mon, 15 Aug 2022 20:10:03 +0200 (CEST)
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-X-X-Sender: geert@ramsan.of.borg
-To: linux-kernel@vger.kernel.org
-Subject: Re: Build regressions/improvements in v6.0-rc1
-In-Reply-To: <20220815180438.2875559-1-geert@linux-m68k.org>
-Message-ID: <alpine.DEB.2.22.394.2208152006320.289321@ramsan.of.borg>
-References: <CAHk-=wgRFjPHV-Y_eKP9wQMLFDgG+dEUHiv5wC17OQHsG5z7BA@mail.gmail.com>
- <20220815180438.2875559-1-geert@linux-m68k.org>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com
+ [IPv6:2a00:1450:4864:20::52d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 511F9D0013
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Aug 2022 18:16:18 +0000 (UTC)
+Received: by mail-ed1-x52d.google.com with SMTP id y3so10578028eda.6
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Aug 2022 11:16:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc; bh=9cQL62kPBMoRcoy0ebkfHR1f7scO2r7fSGP5Y18WMEo=;
+ b=oSJaPOtf3rly2EhPlV6XG+H7M88y5kvt2RGINcAoSraWjEV3sNlNZj7vG0k6wrTRYR
+ lRU6vLPIDC0LIlgjb72QzYxwKrY39vvUxTr2khD1j3OIJY8Qz+wdyAgOB/Mhr9KY3v8O
+ sxVElERlk0jtLT+B82VMziYBdD1NxhFXaadZtVs3CvdFtHVlFsY5SWc60OE3enCC4BzH
+ KRrOopNt16zOuj6Az1YrLHqxNGp1JCRE18ovfFJ4/U+JPBx4/BA9ckvJo8DvF8vSDiVQ
+ NQXWve+QpAiESchoCesCN2DUhk4WDhZ/xSjsz2Z3+UPW9VnoWCBauzyUiB81eN9HmKd5
+ nmzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc;
+ bh=9cQL62kPBMoRcoy0ebkfHR1f7scO2r7fSGP5Y18WMEo=;
+ b=A3u6WY5JsaXymWKY6Fmxz67Iu1B2rjJK2lRvYcPPcKNhltxCR1F+kGkyVRs82tgS9m
+ 3zd8m8VUVHJWdd1d6TG+ckAUe359LNmqwQ4kagynJZnoeTt3vJ/kHTxoxJ/do4To7kpi
+ DfC58pEZsYF02qiHn3FkjJ2dPvSMOLJaAoRY99+YcduyQvvGzJ9enDxXjMo8zJ2yPlDf
+ +Zn+89XmPaScov1gKH4oS9i6c8blbCphTMX8Ad4H+Xku7Jvui1ev6DXLzPorRuudOcfA
+ kWtxGnHazGWkJ+YohWnlV00O9kOkyA5k86fluEKUpcfQP2xbRNPAtSS8j8nb06h3Ip+U
+ DtZw==
+X-Gm-Message-State: ACgBeo0FBlyJsUNGe3NfuxyhCzjARQltWrE3N+VPZPVJk9UHzHy93i0Z
+ RVo08TvH6KFYK3RFFWHxobw=
+X-Google-Smtp-Source: AA6agR6/CHqB1sraYI+Mk5BdD2uNmhuHKSZxO1KZw873FoydJSgs5zv1UkC1tuDLVR/dArucQaX6/Q==
+X-Received: by 2002:a05:6402:12cb:b0:43d:6e77:19a7 with SMTP id
+ k11-20020a05640212cb00b0043d6e7719a7mr15835636edx.342.1660587376694; 
+ Mon, 15 Aug 2022 11:16:16 -0700 (PDT)
+Received: from ?IPV6:2a02:908:1256:79a0:fde9:87ac:35f4:a1a9?
+ ([2a02:908:1256:79a0:fde9:87ac:35f4:a1a9])
+ by smtp.gmail.com with ESMTPSA id
+ d26-20020a056402401a00b004438a13ab73sm4372213eda.5.2022.08.15.11.16.15
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 15 Aug 2022 11:16:16 -0700 (PDT)
+Message-ID: <ec5415f2-267c-1011-13a2-2ffd9c8a2210@gmail.com>
+Date: Mon, 15 Aug 2022 20:16:15 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
-X-Mailman-Approved-At: Mon, 15 Aug 2022 19:02:05 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] drm/amdgpu: Fix interrupt handling on ih_soft ring
+Content-Language: en-US
+To: Felix Kuehling <felix.kuehling@amd.com>, Mukul Joshi
+ <mukul.joshi@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20220812205624.2902630-1-mukul.joshi@amd.com>
+ <c761f5f9-eb52-c04b-e66f-1c05cfb2c2c1@gmail.com>
+ <04d1f7d0-354f-4a64-5ceb-b378997e1203@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <04d1f7d0-354f-4a64-5ceb-b378997e1203@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,88 +76,77 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>, linux-parisc@vger.kernel.org,
- linux-sh@vger.kernel.org, netdev@vger.kernel.org,
- linux-staging@lists.linux.dev, linux-wireless@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linuxppc-dev@lists.ozlabs.org, kvmarm@lists.cs.columbia.edu,
- linux-arm-kernel@lists.infradead.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 15 Aug 2022, Geert Uytterhoeven wrote:
-> Below is the list of build error/warning regressions/improvements in
-> v6.0-rc1[1] compared to v5.19[2].
+Am 15.08.22 um 17:16 schrieb Felix Kuehling:
+> Am 2022-08-14 um 13:27 schrieb Christian König:
+>> Am 12.08.22 um 22:56 schrieb Mukul Joshi:
+>>> There are no backing hardware registers for ih_soft ring.
+>>> As a result, don't try to access hardware registers for read
+>>> and write pointers when processing interrupts on the IH soft
+>>> ring.
+>>
+>> Mhm, the original plan was to have different ih function for the 
+>> rings but I think we just forgot to implement this fully.
+>>
+>> When you do it this way you need to apply it to a bunch of different 
+>> hw generation as Felix mentioned as well.
+>>
+>> Might be easier to clean that up.
 >
-> Summarized:
->  - build errors: +26/-15
+> Right now ih_funcs cannot be different per ring. Are you suggesting 
+> moving the ih_funcs into the amdgpu_ih_ring structure?
 
-   + /kisskb/src/arch/parisc/kernel/vdso32/restart_syscall.S: Error: .cfi_endproc without corresponding .cfi_startproc:  => 32
-   + /kisskb/src/arch/parisc/kernel/vdso32/restart_syscall.S: Error: bad or irreducible absolute expression:  => 16
-   + /kisskb/src/arch/parisc/kernel/vdso32/restart_syscall.S: Error: junk at end of line, first unrecognized character is `:':  => 16
-   + /kisskb/src/arch/parisc/kernel/vdso32/restart_syscall.S: Error: no such instruction: `be 0x100(%sr2,%r0)':  => 29
-   + /kisskb/src/arch/parisc/kernel/vdso32/restart_syscall.S: Error: no such instruction: `ldi 0,%r20':  => 30
-   + /kisskb/src/arch/parisc/kernel/vdso32/restart_syscall.S: Error: no such instruction: `ldw 0(%sp),%r31':  => 26
-   + /kisskb/src/arch/parisc/kernel/vdso32/sigtramp.S: Error: no such instruction: `ble 0x100(%sr2,%r0)':  => 51, 46
-   + /kisskb/src/arch/parisc/kernel/vdso32/sigtramp.S: Error: no such instruction: `ldi 0,%r25':  => 44
-   + /kisskb/src/arch/parisc/kernel/vdso32/sigtramp.S: Error: no such instruction: `ldi 1,%r25':  => 49
-   + /kisskb/src/arch/parisc/kernel/vdso32/sigtramp.S: Error: no such instruction: `ldi 173,%r20':  => 50, 45
-   + /kisskb/src/arch/parisc/kernel/vdso32/sigtramp.S: Error: unknown pseudo-op: `.callinfo':  => 40
-   + /kisskb/src/arch/parisc/kernel/vdso32/sigtramp.S: Error: unknown pseudo-op: `.entry':  => 41
-   + /kisskb/src/arch/parisc/kernel/vdso32/sigtramp.S: Error: unknown pseudo-op: `.exit':  => 54
-   + /kisskb/src/arch/parisc/kernel/vdso32/sigtramp.S: Error: unknown pseudo-op: `.proc':  => 39
-   + /kisskb/src/arch/parisc/kernel/vdso32/sigtramp.S: Error: unknown pseudo-op: `.procend':  => 55
-   + /kisskb/src/arch/parisc/kernel/vdso32/sigtramp.S: Error: unknown pseudo-op: `.stringz':  => 76
+IIRC we even discussed on that already and thought that would be the 
+best approach.
 
-parisc64-gcc11/generic-64bit_defconfig
-parisc-gcc11/generic-32bit_defconfig
-parisc-gcc11/parisc-{allmod,allno,def}config
+It's just that nobody ever came around to do it.
 
-   + /kisskb/src/arch/sh/include/asm/io.h: error: cast to pointer from integer of different size [-Werror=int-to-pointer-cast]:  => 239:34
+Regards,
+Christian.
 
-sh4-gcc11/sh-allmodconfig (drivers/staging/octeon/ethernet-mem.c)
+>
+> Regards,
+>   Felix
+>
+>
+>>
+>> Regards,
+>> Christian.
+>>
+>>>
+>>> Signed-off-by: Mukul Joshi <mukul.joshi@amd.com>
+>>> ---
+>>>   drivers/gpu/drm/amd/amdgpu/vega20_ih.c | 7 ++++++-
+>>>   1 file changed, 6 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/vega20_ih.c 
+>>> b/drivers/gpu/drm/amd/amdgpu/vega20_ih.c
+>>> index 3b4eb8285943..2022ffbb8dba 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/vega20_ih.c
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/vega20_ih.c
+>>> @@ -385,9 +385,11 @@ static u32 vega20_ih_get_wptr(struct 
+>>> amdgpu_device *adev,
+>>>       u32 wptr, tmp;
+>>>       struct amdgpu_ih_regs *ih_regs;
+>>>   -    if (ih == &adev->irq.ih) {
+>>> +    if (ih == &adev->irq.ih || ih == &adev->irq.ih_soft) {
+>>>           /* Only ring0 supports writeback. On other rings fall back
+>>>            * to register-based code with overflow checking below.
+>>> +         * ih_soft ring doesn't have any backing hardware registers,
+>>> +         * update wptr and return.
+>>>            */
+>>>           wptr = le32_to_cpu(*ih->wptr_cpu);
+>>>   @@ -461,6 +463,9 @@ static void vega20_ih_set_rptr(struct 
+>>> amdgpu_device *adev,
+>>>   {
+>>>       struct amdgpu_ih_regs *ih_regs;
+>>>   +    if (ih == &adev->irq.ih_soft)
+>>> +        return;
+>>> +
+>>>       if (ih->use_doorbell) {
+>>>           /* XXX check if swapping is necessary on BE */
+>>>           *ih->rptr_cpu = ih->rptr;
+>>
 
-   + /kisskb/src/drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: error: the frame size of 2096 bytes is larger than 2048 bytes [-Werror=frame-larger-than=]:  => 6806:1
-   + /kisskb/src/drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_32.c: error: the frame size of 2160 bytes is larger than 2048 bytes [-Werror=frame-larger-than=]:  => 3778:1
-
-x86_64-gcc8/x86-allmodconfig
-
-   + /kisskb/src/include/linux/bitfield.h: error: call to '__field_overflow' declared with attribute error: value doesn't fit into mask:  => 151:3
-
-mipsel-gcc5/mips-allmodconfig (net/mac80211/tx.c)
-
-   + /kisskb/src/include/linux/compiler_types.h: error: call to '__compiletime_assert_603' declared with attribute error: FIELD_GET: mask is not constant:  => 354:38
-
-arm64-gcc5/arm64-allmodconfig (arch/arm64/kvm/arm.c)
-
-   + /kisskb/src/include/linux/random.h: error: 'latent_entropy' undeclared (first use in this function):  => 25:39
-
-powerpc-gcc5/powerpc-all{mod,yes}config
-powerpc-gcc5/ppc32_allmodconfig
-powerpc-gcc5/ppc64_book3e_allmodconfig
-powerpc-gcc5/ppc64le_allmodconfig
-
-   + /kisskb/src/include/linux/random.h: error: 'latent_entropy' undeclared (first use in this function); did you mean 'add_latent_entropy'?:  => 25:46
-
-powerpc-gcc11/powerpc-all{mod,yes}config
-powerpc-gcc11/ppc64_book3e_allmodconfig
-
-   + {standard input}: Error: displacement to undefined symbol .L377 overflows 12-bit field:  => 2286
-   + {standard input}: Error: displacement to undefined symbol .L378 overflows 8-bit field :  => 2302
-   + {standard input}: Error: displacement to undefined symbol .L382 overflows 8-bit field :  => 2213
-
-sh4-gcc11/sh-allmodconfig (seen before, root cause is internal compiler error)
-
-> [1] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/568035b01cfb107af8d2e4bd2fb9aea22cf5b868/ (all 135 configs)
-> [2] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/3d7cb6b04c3f3115719235cc6866b10326de34cd/ (all 135 configs)
-
-Gr{oetje,eeting}s,
-
- 						Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
- 							    -- Linus Torvalds
