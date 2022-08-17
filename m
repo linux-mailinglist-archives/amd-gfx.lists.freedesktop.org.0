@@ -1,57 +1,63 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC295597B42
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Aug 2022 04:02:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBFBD597B58
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Aug 2022 04:12:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42B33B3940;
-	Thu, 18 Aug 2022 02:02:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26635B3BF1;
+	Thu, 18 Aug 2022 02:11:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com
- [IPv6:2001:4860:4864:20::36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42BF82B594;
- Thu, 18 Aug 2022 02:01:58 +0000 (UTC)
-Received: by mail-oa1-x36.google.com with SMTP id
- 586e51a60fabf-11c59785966so298280fac.11; 
- Wed, 17 Aug 2022 19:01:58 -0700 (PDT)
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com
+ [IPv6:2a00:1450:4864:20::42b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DED75AD33E;
+ Wed, 17 Aug 2022 22:02:38 +0000 (UTC)
+Received: by mail-wr1-x42b.google.com with SMTP id r16so8446844wrm.6;
+ Wed, 17 Aug 2022 15:02:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc;
- bh=S/5XKfr/1Laii/jvtSToZop43NduFSge4r6M3yzcyjw=;
- b=b6NrriDxkguKdMxIx5EHPF92Ex0lVfeC4m9fKjxD5xVtw7GaFu8tLhqFfiHzAZcMd3
- YF0WmvOmWuC7l5BY5QkUp0bR6r0xoJD93h+rLZnYrlvP1RNzzVDH3TV6wgC8DBXxRzzI
- iUchu8J4g6JALFwchiea1CJBaqnLlrjn0nD8SqvSpkyrIRd6Kn//SGtaNZK4m4BSBVV2
- z3ygs9rpj+TQJ1DH2hET9EJ2k+Gcsz6efSeDKjZGTwq79f6sXOctW2/8pGUKfXaJXYeN
- 05KT1OPNd/m9w4wYZ4d8ikKRhjTyT2IlaaAvpqhhpeVMrF8ygdo7QW3AnL28pSugNc3r
- oHFg==
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc; bh=+rVwhS/v1efZjV9JaiQiNDDadLmE+6Njk1w34Ca9k3s=;
+ b=XC0F6SDky0pcb1VFOdnxjJvPeVSDKqiNxcXX088bL9G9xhMK1RUTYCqAdWvq8uuuUY
+ qYkeK9LRsDtuzj5t4FY+QSB+qq8qJ9XUEgRXU8MjsnJwAJo7M31TvvIeDkPDMjLpwyTr
+ VLXnUD5T2htBN8gJPoLRHTzm5lVliCxJEKXY+K3E1oKsx/UzO/6kO1oD7DvAk8Rpmx5I
+ jrrTHZI0lAo0s/iLg5hs5GnG1hFaWe0mQ59DkZFNQCQ6gYGgS/nj6liT8LGHSNitNQnL
+ /6Ueqdr6iYCTreaneR32mEgIh+nLmdXMHoU1Zz2ZG2fCcESArQhPQVhVuYOCH6QGwmi+
+ 6ZWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc;
- bh=S/5XKfr/1Laii/jvtSToZop43NduFSge4r6M3yzcyjw=;
- b=ufCqJovA2dx5hRywvC+TGiJy6CPB43uk8ueH0hmKsBb8ryc1he75zXdxI2wnVCXB7l
- nWDQJFReTyPzgsGKpLyphnP2D1uoCzf37BaNBn/XG3NKiRWg60DwZPOCn876/SuBQm//
- BTrt0DNNnLKSSFuMY3N7Y1uJms0Orgc7k7Olnqk7DCslvMWyrpX7f/FpiFkpcWYM+Yfj
- HW09NCdTGOglV3oaVU8t12oysY+Kk3XslvVPCoLDOoHzxLMBtP6J0quHamMf4nZ29nv8
- B7ew27aMw4CPPzeAW8gu6QizkOBMyzLah4LpJWquTc5j6ftCWk5MEY1Lp/W/BKOhc4P2
- GFEA==
-X-Gm-Message-State: ACgBeo2OMxyudxwiHIdc1cy/rnSdkfSRLSuC9kbBna/6PU14LY4okjdA
- +BjUpJf8rJMtrKXLFSI9/1f7f+L3GQQtlyj3xsI=
-X-Google-Smtp-Source: AA6agR5xyQe78Urmto57ircyi6EeHV+S2tnoOsF5QZuLcPzMKlnYvHKY05ZlT9jJ8u4iccYRJY5jEBIysxyi2jCzGas=
-X-Received: by 2002:a05:6870:3398:b0:113:7f43:d0e9 with SMTP id
- w24-20020a056870339800b001137f43d0e9mr359862oae.33.1660788117392; Wed, 17 Aug
- 2022 19:01:57 -0700 (PDT)
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc;
+ bh=+rVwhS/v1efZjV9JaiQiNDDadLmE+6Njk1w34Ca9k3s=;
+ b=FM3gkQiwprZXaOzR8Ircc/KJGh5/UMEhjzHKbz1M0Tij9Xyk5t4+maGsngMALDRsSq
+ SonSA/rZT2sIT5qr7Y37xQ1Q+6tkb+otXKEdbxNpupmbmlJu+F2fnspf0RYzBa5XQa+o
+ qZudRXdXl62AHt4CM6amV1C/Abpf4nl5ugF3vMxcRVw7dsZWQ+luTf2qMwxWR+zrRR9N
+ i15Zdq2IoMK55d2G0V/z015xT4jNyFpMjda15X7nJ4g7RG5dwxCRTLgQqrK8sIU3MNYb
+ 7k1Q4s//530jSPfPxeckHv+bVbtNXuiKvXZcKrK6LZk4dp+bSO/A4FBtw1FvZ7Za9fyb
+ Jzaw==
+X-Gm-Message-State: ACgBeo3vYOUlLkEr1H8CHC5oSyE1bawYKDKCJTudPFkhg/vXdOJcESVH
+ I4/Waiwof3N7N015GfukcHM=
+X-Google-Smtp-Source: AA6agR5cCdcYKHWI60JmXEIFfCQFOyocwmx57gVltGNwUl1UoanmElTicNY+iUpwS8YjycA/T/nesA==
+X-Received: by 2002:a5d:4752:0:b0:225:1fb1:862f with SMTP id
+ o18-20020a5d4752000000b002251fb1862fmr40442wrs.458.1660773757262; 
+ Wed, 17 Aug 2022 15:02:37 -0700 (PDT)
+Received: from debian (host-78-150-37-98.as13285.net. [78.150.37.98])
+ by smtp.gmail.com with ESMTPSA id
+ n189-20020a1ca4c6000000b003a540fef440sm3666767wme.1.2022.08.17.15.02.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 17 Aug 2022 15:02:36 -0700 (PDT)
+Date: Wed, 17 Aug 2022 23:02:34 +0100
+From: "Sudip Mukherjee (Codethink)" <sudipm.mukherjee@gmail.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>
+Subject: build failure of next-20220817 for amdgpu
+Message-ID: <Yv1lepjhg/6QKyQl@debian>
 MIME-Version: 1.0
-References: <Yv1lepjhg/6QKyQl@debian>
-In-Reply-To: <Yv1lepjhg/6QKyQl@debian>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 17 Aug 2022 22:01:45 -0400
-Message-ID: <CADnq5_Od9W1iuzYpsmODOB=Xem97ogeH_t0JrjWC-S8h0XM9fA@mail.gmail.com>
-Subject: Re: build failure of next-20220817 for amdgpu
-To: "Sudip Mukherjee (Codethink)" <sudipm.mukherjee@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Thu, 18 Aug 2022 02:11:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,36 +69,23 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-next@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: linux-next@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 17, 2022 at 6:03 PM Sudip Mukherjee (Codethink)
-<sudipm.mukherjee@gmail.com> wrote:
->
-> Hi All,
->
-> Not sure if it has been reported, build of next-20220817 fails with the
-> error:
->
-> ERROR: modpost: "cpu_smallcore_map" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
->
-> Trying to do a git bisect to find out the offending commit.
->
+Hi All,
 
-Thanks.  I don't see that symbol in the driver at all.  Not sure where
-it is coming from.
+Not sure if it has been reported, build of next-20220817 fails with the
+error:
 
-Alex
+ERROR: modpost: "cpu_smallcore_map" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+
+Trying to do a git bisect to find out the offending commit.
+
+I will be happy to test any patch or provide any extra log if needed.
 
 
-> I will be happy to test any patch or provide any extra log if needed.
->
->
-> --
-> Regards
-> Sudip
+--
+Regards
+Sudip
