@@ -2,48 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C6C15976B4
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Aug 2022 21:41:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 431955976CF
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Aug 2022 21:41:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69F84A52D5;
-	Wed, 17 Aug 2022 19:40:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00EB2988B8;
+	Wed, 17 Aug 2022 19:40:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19B8D8F0CC
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Aug 2022 19:39:49 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1B2BA5291
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Aug 2022 19:39:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1660765188;
+ s=mimecast20190719; t=1660765199;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=ulBqU/UC4+G7ZCOp5gWa2ib+D+JCAcv6bqRwjOAxJYg=;
- b=NpvfHF6Bliakl1W1n5B3ps2TqfHW8kry8BBjgt+uyf1X+2Dc09PslObI/2Px5eD+ysR/yz
- M6qrCSX5ONnJaDnXUyJp39LHQtBgmYbdCtJfR2LEzVQfoT3S6SQWEsjtWsl6cs6YMpN3MB
- 05C4kJDtY3c94o+cwbEkjCGnua33IP8=
+ bh=ZBOqHQ+0wLuoWsigkrWi4WtzQUueoCKnZQINx3aEaTo=;
+ b=ifjIqYrVFZq7YqbRLP9HrbVpimR/yC7W0x1qkF/NekIvDywTLVbWxvU7H4pb6KHaTWDyf6
+ U1WS63G7zIXsXdRISo/EIx8qak9oAddrz46gra4Us/MSjgUsQPYEHon52VfzpHUCILUlco
+ ySIL4KFWsH5SzD46DUI8Bs6unDoDgZg=
 Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
  [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-630-6OArxlt0NWamL6T1UMoD-Q-1; Wed, 17 Aug 2022 15:39:44 -0400
-X-MC-Unique: 6OArxlt0NWamL6T1UMoD-Q-1
+ us-mta-367-WmbKvWhNNMiZHd5UoOVWfg-1; Wed, 17 Aug 2022 15:39:56 -0400
+X-MC-Unique: WmbKvWhNNMiZHd5UoOVWfg-1
 Received: from smtp.corp.redhat.com (int-mx09.intmail.prod.int.rdu2.redhat.com
  [10.11.54.9])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 47D96811E76;
- Wed, 17 Aug 2022 19:39:43 +0000 (UTC)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id EA5B285A584;
+ Wed, 17 Aug 2022 19:39:49 +0000 (UTC)
 Received: from emerald.redhat.com (unknown [10.22.18.168])
- by smtp.corp.redhat.com (Postfix) with ESMTP id A2F4E492C3B;
- Wed, 17 Aug 2022 19:39:42 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 4A394492CA4;
+ Wed, 17 Aug 2022 19:39:49 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
  amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Subject: [RFC v4 05/17] drm/display/dp_mst: Fix confusing docs for
- drm_dp_atomic_release_time_slots()
-Date: Wed, 17 Aug 2022 15:38:34 -0400
-Message-Id: <20220817193847.557945-6-lyude@redhat.com>
+Subject: [RFC v4 06/17] drm/display/dp_mst: Add some missing kdocs for atomic
+ MST structs
+Date: Wed, 17 Aug 2022 15:38:35 -0400
+Message-Id: <20220817193847.557945-7-lyude@redhat.com>
 In-Reply-To: <20220817193847.557945-1-lyude@redhat.com>
 References: <20220817193847.557945-1-lyude@redhat.com>
 MIME-Version: 1.0
@@ -63,7 +63,8 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Thomas Zimmermann <tzimmermann@suse.de>,
  Jani Nikula <jani.nikula@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Imre Deak <imre.deak@intel.com>, open list <linux-kernel@vger.kernel.org>,
+ Imre Deak <imre.deak@intel.com>, Javier Martinez Canillas <javierm@redhat.com>,
+ open list <linux-kernel@vger.kernel.org>,
  Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>, David Airlie <airlied@linux.ie>,
  Fangzhi Zuo <Jerry.Zuo@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
  Wayne Lin <Wayne.Lin@amd.com>, Sean Paul <sean@poorly.run>,
@@ -71,13 +72,8 @@ Cc: Thomas Zimmermann <tzimmermann@suse.de>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-For some reason we mention returning 0 if "slots have been added back to
-drm_dp_mst_topology_state->avail_slots". This is totally misleading,
-avail_slots is simply for figuring out the total number of slots available
-in total on the topology and has no relation to the current payload
-allocations.
-
-So, let's get rid of that comment.
+Since we're about to start adding some stuff here, we may as well fill in
+any missing documentation that we forgot to write.
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 Cc: Wayne Lin <Wayne.Lin@amd.com>
@@ -89,23 +85,61 @@ Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
 Cc: Sean Paul <sean@poorly.run>
 Acked-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/display/drm_dp_mst_topology.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ include/drm/display/drm_dp_mst_helper.h | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
-diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-index fad80ab2b9db..8a2ddfde594a 100644
---- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-+++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-@@ -4456,8 +4456,7 @@ EXPORT_SYMBOL(drm_dp_atomic_find_time_slots);
-  * drm_dp_mst_atomic_check()
-  *
-  * Returns:
-- * 0 if all slots for this port were added back to
-- * &drm_dp_mst_topology_state.avail_slots or negative error code
-+ * 0 on success, negative error code otherwise
-  */
- int drm_dp_atomic_release_time_slots(struct drm_atomic_state *state,
- 				     struct drm_dp_mst_topology_mgr *mgr,
+diff --git a/include/drm/display/drm_dp_mst_helper.h b/include/drm/display/drm_dp_mst_helper.h
+index 9cdd2def56a1..3b155ad3eee4 100644
+--- a/include/drm/display/drm_dp_mst_helper.h
++++ b/include/drm/display/drm_dp_mst_helper.h
+@@ -542,7 +542,14 @@ struct drm_dp_payload {
+ 
+ #define to_dp_mst_topology_state(x) container_of(x, struct drm_dp_mst_topology_state, base)
+ 
++/**
++ * struct drm_dp_mst_atomic_payload - Atomic state struct for an MST payload
++ *
++ * The primary atomic state structure for a given MST payload. Stores information like current
++ * bandwidth allocation, intended action for this payload, etc.
++ */
+ struct drm_dp_mst_atomic_payload {
++	/** @port: The MST port assigned to this payload */
+ 	struct drm_dp_mst_port *port;
+ 
+ 	/**
+@@ -551,16 +558,32 @@ struct drm_dp_mst_atomic_payload {
+ 	 * the immediate downstream DP Rx
+ 	 */
+ 	int time_slots;
++	/** @pbn: The payload bandwidth for this payload */
+ 	int pbn;
++	/** @dsc_enabled: Whether or not this payload has DSC enabled */
+ 	bool dsc_enabled;
++
++	/** @next: The list node for this payload */
+ 	struct list_head next;
+ };
+ 
++/**
++ * struct drm_dp_mst_topology_state - DisplayPort MST topology atomic state
++ *
++ * This struct represents the atomic state of the toplevel DisplayPort MST manager
++ */
+ struct drm_dp_mst_topology_state {
++	/** @base: Base private state for atomic */
+ 	struct drm_private_state base;
++
++	/** @payloads: The list of payloads being created/destroyed in this state */
+ 	struct list_head payloads;
++	/** @mgr: The topology manager */
+ 	struct drm_dp_mst_topology_mgr *mgr;
++
++	/** @total_avail_slots: The total number of slots this topology can handle (63 or 64) */
+ 	u8 total_avail_slots;
++	/** @start_slot: The first usable time slot in this topology (1 or 0) */
+ 	u8 start_slot;
+ };
+ 
 -- 
 2.37.1
 
