@@ -2,96 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A2CA599CEA
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Aug 2022 15:30:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4063C599B97
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Aug 2022 14:13:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A65C710EEB7;
-	Fri, 19 Aug 2022 13:30:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D0F610EBB7;
+	Fri, 19 Aug 2022 12:13:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D39A010E0A5
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Aug 2022 10:05:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1660903534;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=ClrqC6xI3y34Msl2MghOyY6wxIWtFZ3bYpyy58JPY0M=;
- b=ewMUXRkHFBhfedn4ytU/x0XKNenTNUOPk2ou2/Jqs1n4dRh9xBRkC//rmKfFv03ZJyG8ZX
- 2EjSfVgAFo71mew2DTPksFKq7/nF0guIEZCpCM1IcVhkiRYQSvEE5IOpm3IX1vpVcPEWMA
- pEdxzzWUSnasPx8D00eddLc4xsThr4k=
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com
- [209.85.218.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-657-8mTHyd_dP864iXsIwM3bwA-1; Fri, 19 Aug 2022 06:05:33 -0400
-X-MC-Unique: 8mTHyd_dP864iXsIwM3bwA-1
-Received: by mail-ej1-f69.google.com with SMTP id
- nc38-20020a1709071c2600b007309af9e482so1336406ejc.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Aug 2022 03:05:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc;
- bh=ClrqC6xI3y34Msl2MghOyY6wxIWtFZ3bYpyy58JPY0M=;
- b=79rfTqTv4YyzCyprjmChK5053CMZxG3H4a0hjGcgeHaXXSWKjKnM4dkEgL2jln6IGp
- 0j5PCS5llJMIMpjZioT1r2tU7tcqWgkGKt16R+ocY/jhoU1qvP4125B+J08qk6R2Q2T/
- H9kaGLVNiDDr5irQMghlYIlHnKLv3kxIOzC88Qes8BRZLaHGeSCgaltjm6ECmc7v/zxq
- WQ3G0xsH1gru6g3yVsLxnXcmUuMschNtqGAWbhJiUx+O8WfDSXx7Zgo980/L4lO9oKXm
- gci/xU/O2Zhn9CdQtazDfIR+PVzZATPZAYZOEWIt/x75pMkZoybO+zUgVdcZBcipmxGn
- 2m1g==
-X-Gm-Message-State: ACgBeo2lY5vi+uPC4/PL7agHlBY30ZKM8ghd8KASRKGQ6OWOe1g/eKdU
- UMManAqQSDNiwSEagiI1k6tByT8Yc9yk9tbxVGqIuCkhWL0341CvC0vU+Pt8dzHzwQLCOodYsyY
- xbwggZPqnWmgN3hDVWoVpnBj5xg==
-X-Received: by 2002:a05:6402:84e:b0:440:4bac:be5a with SMTP id
- b14-20020a056402084e00b004404bacbe5amr5564264edz.103.1660903532743; 
- Fri, 19 Aug 2022 03:05:32 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR7fU47agb0EFZDnJX43gsuZ1SU7OR4Ob90bb0C5SXvvscJYiU83fnrABD1bw+CGIeNcDMsT+g==
-X-Received: by 2002:a05:6402:84e:b0:440:4bac:be5a with SMTP id
- b14-20020a056402084e00b004404bacbe5amr5564218edz.103.1660903532345; 
- Fri, 19 Aug 2022 03:05:32 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c1e:bf00:d69d:5353:dba5:ee81?
- (2001-1c00-0c1e-bf00-d69d-5353-dba5-ee81.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:d69d:5353:dba5:ee81])
- by smtp.gmail.com with ESMTPSA id
- q29-20020a056402249d00b0043ca6fb7e7dsm2780438eda.68.2022.08.19.03.05.31
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 19 Aug 2022 03:05:31 -0700 (PDT)
-Message-ID: <d5767b2e-a20f-43ca-61d7-6ea577b31188@redhat.com>
-Date: Fri, 19 Aug 2022 12:05:30 +0200
+Received: from mx0.riseup.net (mx0.riseup.net [198.252.153.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD6B610EB9C;
+ Fri, 19 Aug 2022 12:13:08 +0000 (UTC)
+Received: from fews1.riseup.net (fews1-pn.riseup.net [10.0.1.83])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
+ client-signature RSA-PSS (2048 bits) client-digest SHA256)
+ (Client CN "mail.riseup.net", Issuer "R3" (not verified))
+ by mx0.riseup.net (Postfix) with ESMTPS id 4M8LHm2YrCz9tKP;
+ Fri, 19 Aug 2022 12:13:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+ t=1660911188; bh=plrV05ojK26Wf/yBYf8XRy+dwdDvjPN7FxVlOsShQQA=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=FJ03wUpv4yvEWrQXGKyKMhg600RJxxGWDQB8RYdxfMJcx0+5mp8kwn44cZmcSZJ0i
+ IWuViaCOEZ8CcR4fWz5JNPkSel+O+k/04z9tXIc7gbjfQCTtLR3XBWc3k2/b4aq5fQ
+ 6RrwxBIHbREQjdM/Gbo5jCBMZPiDDYGlF2+n5KVI=
+X-Riseup-User-ID: 883DDC69CA82767B5BE2DB0AD100FF4FFB80C35EBC2D4B584B6F27B16357C36F
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ by fews1.riseup.net (Postfix) with ESMTPSA id 4M8LHk20KVz5vcM;
+ Fri, 19 Aug 2022 12:13:05 +0000 (UTC)
+Message-ID: <a588de9f-958a-fce9-b4d3-2ea45d092b44@riseup.net>
+Date: Fri, 19 Aug 2022 09:13:04 -0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v3 15/31] platform/x86: nvidia-wmi-ec-backlight: Move fw
- interface definitions to a header
-To: Daniel Dadap <ddadap@nvidia.com>, Ben Skeggs <bskeggs@redhat.com>,
- Karol Herbst <kherbst@redhat.com>, Lyude <lyude@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Xinhui <Xinhui.Pan@amd.com>, "Rafael J . Wysocki" <rafael@kernel.org>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Lukas Wunner <lukas@wunner.de>, Mark Gross <markgross@kernel.org>,
- Andy Shevchenko <andy@kernel.org>
-References: <20220818184302.10051-1-hdegoede@redhat.com>
- <20220818184302.10051-16-hdegoede@redhat.com>
- <12cc48c5-b54f-1eb7-c268-beb98bce2a5d@nvidia.com>
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <12cc48c5-b54f-1eb7-c268-beb98bce2a5d@nvidia.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
+Subject: Re: [BUG][5.20] refcount_t: underflow; use-after-free
 Content-Language: en-US
+To: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+References: <CABXGCsM58-8fxVKAVkwsshg+33B_1_t_WesG160AtVBe1ZvKiw@mail.gmail.com>
+ <be6f1ce4-46b1-7a80-230c-b99f203ce8ad@riseup.net>
+ <CABXGCsMFYnE+Wn2EAWuC8DSVj=TVprj6ABZwRK-hXcw-1hnMyw@mail.gmail.com>
+ <CABXGCsMpGabZ32j_ObEHa_har2W8M8RWuqnx3d=yJT2NX_ztNg@mail.gmail.com>
+ <20220817160751.moqhebkiuiydraka@mail.igalia.com>
+ <CABXGCsOM9An-+EeaGWm0OA1FN2p94=BF210Lhy0tiO6ye9onWQ@mail.gmail.com>
+ <dd2ee57a-2ab2-db94-36d9-8faced18fe61@riseup.net>
+ <CABXGCsMc_D_iJ-r-_s8q13Vq6dgfQg1tnp-0aojfv5Q8izTrfw@mail.gmail.com>
+From: =?UTF-8?Q?Ma=c3=adra_Canal?= <mairacanal@riseup.net>
+In-Reply-To: <CABXGCsMc_D_iJ-r-_s8q13Vq6dgfQg1tnp-0aojfv5Q8izTrfw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 19 Aug 2022 13:30:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,220 +58,123 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- intel-gfx <intel-gfx@lists.freedesktop.org>, amd-gfx@lists.freedesktop.org,
- platform-driver-x86@vger.kernel.org, linux-acpi@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Len Brown <lenb@kernel.org>
+Cc: Melissa Wen <mwen@igalia.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Linux List Kernel Mailing <linux-kernel@vger.kernel.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
 
-On 8/18/22 21:38, Daniel Dadap wrote:
-> 
-> On 8/18/22 1:42 PM, Hans de Goede wrote:
->> Move the WMI interface definitions to a header, so that the definitions
->> can be shared with drivers/acpi/video_detect.c .
+
+On 8/17/22 17:57, Mikhail Gavrilov wrote:
+> On Wed, Aug 17, 2022 at 11:43 PM Maíra Canal <mairacanal@riseup.net> wrote:
 >>
->> Suggested-by: Daniel Dadap <ddadap@nvidia.com>
->> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
->> ---
->>   MAINTAINERS                                   |  1 +
->>   .../platform/x86/nvidia-wmi-ec-backlight.c    | 66 +----------------
->>   .../x86/nvidia-wmi-ec-backlight.h             | 70 +++++++++++++++++++
->>   3 files changed, 72 insertions(+), 65 deletions(-)
->>   create mode 100644 include/linux/platform_data/x86/nvidia-wmi-ec-backlight.h
+>> Hi Mikhail,
 >>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 8a5012ba6ff9..8d59c6e9b4db 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -14526,6 +14526,7 @@ M:    Daniel Dadap <ddadap@nvidia.com>
->>   L:    platform-driver-x86@vger.kernel.org
->>   S:    Supported
->>   F:    drivers/platform/x86/nvidia-wmi-ec-backlight.c
->> +F:    include/linux/platform_data/x86/nvidia-wmi-ec-backlight.h
->>     NVM EXPRESS DRIVER
->>   M:    Keith Busch <kbusch@kernel.org>
->> diff --git a/drivers/platform/x86/nvidia-wmi-ec-backlight.c b/drivers/platform/x86/nvidia-wmi-ec-backlight.c
->> index 61e37194df70..e84e1d629b14 100644
->> --- a/drivers/platform/x86/nvidia-wmi-ec-backlight.c
->> +++ b/drivers/platform/x86/nvidia-wmi-ec-backlight.c
->> @@ -7,74 +7,10 @@
->>   #include <linux/backlight.h>
->>   #include <linux/mod_devicetable.h>
->>   #include <linux/module.h>
->> +#include <linux/platform_data/x86/nvidia-wmi-ec-backlight.h>
->>   #include <linux/types.h>
->>   #include <linux/wmi.h>
->>   -/**
->> - * enum wmi_brightness_method - WMI method IDs
->> - * @WMI_BRIGHTNESS_METHOD_LEVEL:  Get/Set EC brightness level status
->> - * @WMI_BRIGHTNESS_METHOD_SOURCE: Get/Set EC Brightness Source
->> - */
->> -enum wmi_brightness_method {
->> -    WMI_BRIGHTNESS_METHOD_LEVEL = 1,
->> -    WMI_BRIGHTNESS_METHOD_SOURCE = 2,
->> -    WMI_BRIGHTNESS_METHOD_MAX
->> -};
->> -
->> -/**
->> - * enum wmi_brightness_mode - Operation mode for WMI-wrapped method
->> - * @WMI_BRIGHTNESS_MODE_GET:            Get the current brightness level/source.
->> - * @WMI_BRIGHTNESS_MODE_SET:            Set the brightness level.
->> - * @WMI_BRIGHTNESS_MODE_GET_MAX_LEVEL:  Get the maximum brightness level. This
->> - *                                      is only valid when the WMI method is
->> - *                                      %WMI_BRIGHTNESS_METHOD_LEVEL.
->> - */
->> -enum wmi_brightness_mode {
->> -    WMI_BRIGHTNESS_MODE_GET = 0,
->> -    WMI_BRIGHTNESS_MODE_SET = 1,
->> -    WMI_BRIGHTNESS_MODE_GET_MAX_LEVEL = 2,
->> -    WMI_BRIGHTNESS_MODE_MAX
->> -};
->> -
->> -/**
->> - * enum wmi_brightness_source - Backlight brightness control source selection
->> - * @WMI_BRIGHTNESS_SOURCE_GPU: Backlight brightness is controlled by the GPU.
->> - * @WMI_BRIGHTNESS_SOURCE_EC:  Backlight brightness is controlled by the
->> - *                             system's Embedded Controller (EC).
->> - * @WMI_BRIGHTNESS_SOURCE_AUX: Backlight brightness is controlled over the
->> - *                             DisplayPort AUX channel.
->> - */
->> -enum wmi_brightness_source {
->> -    WMI_BRIGHTNESS_SOURCE_GPU = 1,
->> -    WMI_BRIGHTNESS_SOURCE_EC = 2,
->> -    WMI_BRIGHTNESS_SOURCE_AUX = 3,
->> -    WMI_BRIGHTNESS_SOURCE_MAX
->> -};
->> -
->> -/**
->> - * struct wmi_brightness_args - arguments for the WMI-wrapped ACPI method
->> - * @mode:    Pass in an &enum wmi_brightness_mode value to select between
->> - *           getting or setting a value.
->> - * @val:     In parameter for value to set when using %WMI_BRIGHTNESS_MODE_SET
->> - *           mode. Not used in conjunction with %WMI_BRIGHTNESS_MODE_GET or
->> - *           %WMI_BRIGHTNESS_MODE_GET_MAX_LEVEL mode.
->> - * @ret:     Out parameter returning retrieved value when operating in
->> - *           %WMI_BRIGHTNESS_MODE_GET or %WMI_BRIGHTNESS_MODE_GET_MAX_LEVEL
->> - *           mode. Not used in %WMI_BRIGHTNESS_MODE_SET mode.
->> - * @ignored: Padding; not used. The ACPI method expects a 24 byte params struct.
->> - *
->> - * This is the parameters structure for the WmiBrightnessNotify ACPI method as
->> - * wrapped by WMI. The value passed in to @val or returned by @ret will be a
->> - * brightness value when the WMI method ID is %WMI_BRIGHTNESS_METHOD_LEVEL, or
->> - * an &enum wmi_brightness_source value with %WMI_BRIGHTNESS_METHOD_SOURCE.
->> - */
->> -struct wmi_brightness_args {
->> -    u32 mode;
->> -    u32 val;
->> -    u32 ret;
->> -    u32 ignored[3];
->> -};
->> -
->>   /**
->>    * wmi_brightness_notify() - helper function for calling WMI-wrapped ACPI method
->>    * @w:    Pointer to the struct wmi_device identified by %WMI_BRIGHTNESS_GUID
->> diff --git a/include/linux/platform_data/x86/nvidia-wmi-ec-backlight.h b/include/linux/platform_data/x86/nvidia-wmi-ec-backlight.h
->> new file mode 100644
->> index 000000000000..d83104c6c6cb
->> --- /dev/null
->> +++ b/include/linux/platform_data/x86/nvidia-wmi-ec-backlight.h
->> @@ -0,0 +1,70 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
+>> Looks like 45ecaea738830b9d521c93520c8f201359dcbd95 ("drm/sched: Partial
+>> revert of 'drm/sched: Keep s_fence->parent pointer'") introduced the
+>> error. Try reverting it and check if the use-after-free still happens.
 > 
-> 
-> Should the copyright notice from nvidia-wmi-ec-backlight be copied here as well?
-
-Ah right, I forgot that. I'll fix that for version 4 of the series.
-
-I'll also make the GUID a #define for version 4 of the series as
-you mentioned in one of your other remarks.
-
->> +#ifndef __PLATFORM_DATA_X86_NVIDIA_WMI_EC_BACKLIGHT_H
->> +#define __PLATFORM_DATA_X86_NVIDIA_WMI_EC_BACKLIGHT_H
->> +
->> +/**
->> + * enum wmi_brightness_method - WMI method IDs
->> + * @WMI_BRIGHTNESS_METHOD_LEVEL:  Get/Set EC brightness level status
->> + * @WMI_BRIGHTNESS_METHOD_SOURCE: Get/Set EC Brightness Source
->> + */
->> +enum wmi_brightness_method {
->> +    WMI_BRIGHTNESS_METHOD_LEVEL = 1,
->> +    WMI_BRIGHTNESS_METHOD_SOURCE = 2,
->> +    WMI_BRIGHTNESS_METHOD_MAX
->> +};
-> 
-> 
-> It might be nice, but certainly not essential, to namespace these better, now that they're no longer internal to the EC backlight driver. I did that in the version of this change that I had started working up, but got kind of annoyed that it made a lot of lines go over 80 columns, and then got distracted by other work and never ended up finishing the change up. I guess it's probably fine to leave them as is, since there won't be many files that include this header.
-
-This header is only used in 2 .c files, as such I'm not worried about
-namespacing the defines, so my plan for version 4 is to just keep
-this as is.
-
-Regards,
-
-Hans
-
-
-> 
-> 
->> +
->> +/**
->> + * enum wmi_brightness_mode - Operation mode for WMI-wrapped method
->> + * @WMI_BRIGHTNESS_MODE_GET:            Get the current brightness level/source.
->> + * @WMI_BRIGHTNESS_MODE_SET:            Set the brightness level.
->> + * @WMI_BRIGHTNESS_MODE_GET_MAX_LEVEL:  Get the maximum brightness level. This
->> + *                                      is only valid when the WMI method is
->> + *                                      %WMI_BRIGHTNESS_METHOD_LEVEL.
->> + */
->> +enum wmi_brightness_mode {
->> +    WMI_BRIGHTNESS_MODE_GET = 0,
->> +    WMI_BRIGHTNESS_MODE_SET = 1,
->> +    WMI_BRIGHTNESS_MODE_GET_MAX_LEVEL = 2,
->> +    WMI_BRIGHTNESS_MODE_MAX
->> +};
->> +
->> +/**
->> + * enum wmi_brightness_source - Backlight brightness control source selection
->> + * @WMI_BRIGHTNESS_SOURCE_GPU: Backlight brightness is controlled by the GPU.
->> + * @WMI_BRIGHTNESS_SOURCE_EC:  Backlight brightness is controlled by the
->> + *                             system's Embedded Controller (EC).
->> + * @WMI_BRIGHTNESS_SOURCE_AUX: Backlight brightness is controlled over the
->> + *                             DisplayPort AUX channel.
->> + */
->> +enum wmi_brightness_source {
->> +    WMI_BRIGHTNESS_SOURCE_GPU = 1,
->> +    WMI_BRIGHTNESS_SOURCE_EC = 2,
->> +    WMI_BRIGHTNESS_SOURCE_AUX = 3,
->> +    WMI_BRIGHTNESS_SOURCE_MAX
->> +};
->> +
->> +/**
->> + * struct wmi_brightness_args - arguments for the WMI-wrapped ACPI method
->> + * @mode:    Pass in an &enum wmi_brightness_mode value to select between
->> + *           getting or setting a value.
->> + * @val:     In parameter for value to set when using %WMI_BRIGHTNESS_MODE_SET
->> + *           mode. Not used in conjunction with %WMI_BRIGHTNESS_MODE_GET or
->> + *           %WMI_BRIGHTNESS_MODE_GET_MAX_LEVEL mode.
->> + * @ret:     Out parameter returning retrieved value when operating in
->> + *           %WMI_BRIGHTNESS_MODE_GET or %WMI_BRIGHTNESS_MODE_GET_MAX_LEVEL
->> + *           mode. Not used in %WMI_BRIGHTNESS_MODE_SET mode.
->> + * @ignored: Padding; not used. The ACPI method expects a 24 byte params struct.
->> + *
->> + * This is the parameters structure for the WmiBrightnessNotify ACPI method as
->> + * wrapped by WMI. The value passed in to @val or returned by @ret will be a
->> + * brightness value when the WMI method ID is %WMI_BRIGHTNESS_METHOD_LEVEL, or
->> + * an &enum wmi_brightness_source value with %WMI_BRIGHTNESS_METHOD_SOURCE.
->> + */
->> +struct wmi_brightness_args {
->> +    u32 mode;
->> +    u32 val;
->> +    u32 ret;
->> +    u32 ignored[3];
->> +};
->> +
->> +#endif
+> Thanks, but unfortunately, this did not lead to the expected result.
+> Again happens use-after-free in an incomprehensible context.
+> From the new: added warning "suspicious RCU usage" but it looks like
+> it is completely not related to the use-after-free issue.
 > 
 
+Hi Mikhail,
+
+Could you please specify the steps to reproduce this use-after-free? I
+will try to reproduce it on the RX5700 XT and bisect the issue.
+
+Best Regards,
+- Maíra Canal
+
+> [ 215.434115] ------------[ cut here ]------------
+> [ 215.434184] refcount_t: underflow; use-after-free.
+> [ 215.434204] WARNING: CPU: 7 PID: 1258 at lib/refcount.c:28
+> refcount_warn_saturate+0xba/0x110
+> [ 215.434214] Modules linked in: uinput rfcomm snd_seq_dummy
+> snd_hrtimer nft_objref nf_conntrack_netbios_ns nf_conntrack_broadcast
+> nft_fib_inet nft_fib_ipv4 nft_fib_ipv6 nft_fib nft_reject_inet
+> nf_reject_ipv4 nf_reject_ipv6 nft_reject nft_ct nft_chain_nat nf_nat
+> nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 ip_set nf_tables nfnetlink
+> qrtr bnep sunrpc binfmt_misc snd_seq_midi snd_seq_midi_event
+> intel_rapl_msr intel_rapl_common snd_hda_codec_realtek vfat
+> snd_hda_codec_generic snd_hda_codec_hdmi mt76x2u fat mt76x2_common
+> snd_hda_intel mt76x02_usb snd_intel_dspcfg snd_intel_sdw_acpi mt76_usb
+> iwlmvm edac_mce_amd snd_usb_audio snd_hda_codec mt76x02_lib
+> snd_hda_core snd_usbmidi_lib snd_hwdep snd_rawmidi uvcvideo mt76
+> kvm_amd snd_seq videobuf2_vmalloc videobuf2_memops snd_seq_device
+> mac80211 videobuf2_v4l2 videobuf2_common kvm btusb iwlwifi snd_pcm
+> btrtl videodev libarc4 eeepc_wmi btbcm asus_wmi iwlmei btintel
+> ledtrig_audio xpad irqbypass sparse_keymap btmtk platform_profile
+> joydev
+> [ 215.434436] hid_logitech_hidpp rapl ff_memless mc snd_timer
+> bluetooth cfg80211 video pcspkr wmi_bmof snd soundcore k10temp
+> i2c_piix4 rfkill mei asus_ec_sensors acpi_cpufreq zram amdgpu
+> drm_ttm_helper ttm iommu_v2 ucsi_ccg gpu_sched crct10dif_pclmul
+> crc32_pclmul typec_ucsi drm_buddy crc32c_intel ghash_clmulni_intel ccp
+> igb sp5100_tco typec drm_display_helper nvme dca nvme_core cec wmi
+> ip6_tables ip_tables fuse
+> [ 215.434528] Unloaded tainted modules: amd64_edac():1 amd64_edac():1
+> amd64_edac():1 amd64_edac():1 amd64_edac():1 amd64_edac():1
+> amd64_edac():1 amd64_edac():1 amd64_edac():1 amd64_edac():1
+> amd64_edac():1 pcc_cpufreq():1 amd64_edac():1 pcc_cpufreq():1
+> pcc_cpufreq():1 amd64_edac():1 amd64_edac():1 pcc_cpufreq():1
+> pcc_cpufreq():1 amd64_edac():1 amd64_edac():1 pcc_cpufreq():1
+> amd64_edac():1 pcc_cpufreq():1 amd64_edac():1 pcc_cpufreq():1
+> amd64_edac():1 pcc_cpufreq():1 amd64_edac():1 pcc_cpufreq():1
+> amd64_edac():1 pcc_cpufreq():1 amd64_edac():1 pcc_cpufreq():1
+> amd64_edac():1 pcc_cpufreq():1 amd64_edac():1 pcc_cpufreq():1
+> amd64_edac():1 pcc_cpufreq():1 pcc_cpufreq():1 amd64_edac():1
+> amd64_edac():1 pcc_cpufreq():1 pcc_cpufreq():1 amd64_edac():1
+> pcc_cpufreq():1 amd64_edac():1 pcc_cpufreq():1 pcc_cpufreq():1
+> amd64_edac():1 pcc_cpufreq():1 pcc_cpufreq():1 amd64_edac():1
+> pcc_cpufreq():1 amd64_edac():1 pcc_cpufreq():1 pcc_cpufreq():1
+> pcc_cpufreq():1 pcc_cpufreq():1 pcc_cpufreq():1 fjes():1
+> [ 215.434672] pcc_cpufreq():1 fjes():1 pcc_cpufreq():1 fjes():1
+> pcc_cpufreq():1 fjes():1 fjes():1 fjes():1 fjes():1 fjes():1
+> [ 215.434702] CPU: 7 PID: 1258 Comm: kworker/7:3 Tainted: G W L
+> ------- --- 6.0.0-0.rc1.20220817git3cc40a443a04.14.fc38.x86_64 #1
+> [ 215.434709] Hardware name: System manufacturer System Product
+> Name/ROG STRIX X570-I GAMING, BIOS 4403 04/27/2022
+> [ 215.434715] Workqueue: events drm_sched_entity_kill_jobs_work [gpu_sched]
+> [ 215.434728] RIP: 0010:refcount_warn_saturate+0xba/0x110
+> [ 215.434734] Code: 01 01 e8 59 59 6f 00 0f 0b e9 22 46 a5 00 80 3d be
+> 7d be 01 00 75 85 48 c7 c7 c0 99 8e 92 c6 05 ae 7d be 01 01 e8 36 59
+> 6f 00 <0f> 0b e9 ff 45 a5 00 80 3d 99 7d be 01 00 0f 85 5e ff ff ff 48
+> c7
+> [ 215.434740] RSP: 0018:ffff9ccb0237fe60 EFLAGS: 00010286
+> [ 215.434747] RAX: 0000000000000026 RBX: ffff8d531f6f2828 RCX: 0000000000000000
+> [ 215.434753] RDX: 0000000000000001 RSI: ffffffff928d07a4 RDI: 00000000ffffffff
+> [ 215.434757] RBP: ffff8d61e47f5600 R08: 0000000000000000 R09: ffff9ccb0237fd10
+> [ 215.434762] R10: 0000000000000003 R11: ffff8d622e2fffe8 R12: ffff8d61e47fc800
+> [ 215.434767] R13: ffff8d5313e95500 R14: ffff8d61e47fc805 R15: ffff8d531f6f2830
+> [ 215.434772] FS: 0000000000000000(0000) GS:ffff8d61e4600000(0000)
+> knlGS:0000000000000000
+> [ 215.434777] CS: 0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [ 215.434782] CR2: 00007f0c8b815048 CR3: 00000001ab0e8000 CR4: 0000000000350ee0
+> [ 215.434788] Call Trace:
+> [ 215.434792] <TASK>
+> [ 215.434797] process_one_work+0x2a0/0x600
+> [ 215.434819] worker_thread+0x4f/0x3a0
+> [ 215.434830] ? process_one_work+0x600/0x600
+> [ 215.434836] kthread+0xf5/0x120
+> [ 215.434842] ? kthread_complete_and_exit+0x20/0x20
+> [ 215.434854] ret_from_fork+0x22/0x30
+> [ 215.434881] </TASK>
+> [ 215.434885] irq event stamp: 134873
+> [ 215.434890] hardirqs last enabled at (134881): [<ffffffff9118ce7e>]
+> __up_console_sem+0x5e/0x70
+> [ 215.434897] hardirqs last disabled at (134888): [<ffffffff9118ce63>]
+> __up_console_sem+0x43/0x70
+> [ 215.434903] softirqs last enabled at (131264): [<ffffffff910ff769>]
+> __irq_exit_rcu+0xf9/0x170
+> [ 215.434910] softirqs last disabled at (131257): [<ffffffff910ff769>]
+> __irq_exit_rcu+0xf9/0x170
+> [ 215.434917] ---[ end trace 0000000000000000 ]---
+> 
+> Full kerner log: https://pastebin.com/qED477Pz
+> 
