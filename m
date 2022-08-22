@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C26359C11E
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Aug 2022 15:59:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ECAC59C124
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Aug 2022 16:00:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE3008F109;
-	Mon, 22 Aug 2022 13:59:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4D70113ABC;
+	Mon, 22 Aug 2022 14:00:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2082.outbound.protection.outlook.com [40.107.92.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 102F08F191
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Aug 2022 13:59:05 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2066.outbound.protection.outlook.com [40.107.94.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD9838F1CB
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Aug 2022 13:59:43 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=juO76LZ4+eI3cWAKLeiqCP/Q3ic0pHs3+Hbn9R1rafRl7/TZvxvc+EDe7Ye8SbOe8M39IP45HLFIKhR2QaAi5ozHAD60AQBcemUWaCVGp2hXiwLokTbUcFs9XntjS52+I4qY+1xA+eJSQWG2GpPjlmlOmIYaYHDENlHOZfYVn+yRO4l8yN/qckk//OOKYhj/JcKPabPa798Tr7qmMHb+pzfDBHe1sHQyIlbdEoBet90iyLUjXzcacv/1lHxTB6o/bc9NLGOjT3q1wt6bUmDmbAdyH5A6/SuIxchrd4Y99fYrTcv25+MwAGnp2jIcSiNjnrl7sY70tHmK47686vpo3g==
+ b=Zw3qKvmYTwRna/RcrHnvtkZn3JfePtRfAldMf9Hmi4owwj4rH5EL4t6tqvvbG28ssk3r/S+Mx5C9oIK9SMQNihb6RYA90Tkzc07QqMLqRMIz/K3VS3Q/0RYRpCMrrShcRl+iWWougXbGedtYgsnhpK8VG1JBiE744+BI0e/U4+KvIrFeagmGNjoARNZNsDWBSLVmX83nqFW6wez8Nsi6eMzcs/IBdOZsoR0OLpFN80zu9Lc1B29zWvO2QUOTNXlmWQNFBIeLz6l2DWjCoR3VBjqs/1TKsfBmYONTgeVwGPyNbOdRSmdV2Lp0ktrFLjIYFn9fJXqvVr7WNzsR+GKj1w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7xfB9f/475++k0IDUHHeilAmOQzeAMz187jEsORcF9Q=;
- b=AktcgKOMm/6Qe5e1Rv0anr81NNTyPgB+JdBKC0uPgKq5VAFvhzv/FlOg/k6kk/RPKDCido323UdlPiPERATvjAHaI5PA4oy12zOucz8RIgMDpVxWUCCVmccxjKSoVqfzwq+pyXGr8kAb1VOEjpO6c7cAL02MTPd3Ws2RGbbjgUF+1yojdOE8ZFpZ5KLbbDY21usyCgvZAWBC23w5C5LWcaekmsIw8EK8w4Q3MRIjL7bbGhmVZnVmipJ4JCGPeCdxcTtKodGuRbeb7eKpSfExO5Pw9my98vjMLG5XhFvad/zew+KyiMKkkScsBArR+qdAww5GGhewl5qaIVyzheGUYw==
+ bh=YghlFqly5hoUUjHmBpYDrzKra7vgQYJ3dY+5R4/7g8Y=;
+ b=nWke7+uSqrllZa071r4XYMWkudCAVa4WwmyVkqRH0ZLfX9NtmASi5rC2vjaO8wpILdIwQ79RRQ6K01dp6hQDS4N4HS0ImyngRP0+DkdfsA0LwV2F6YRt0QmUz7VLcsM2x0TVHJIsRxM65VfjjV+b4v3YbeR6+l1kl4fkb5fjvanwJDvRxWgCKsPYvyLp5+jY/kBLUdatHksC32O62fF15pgApKRg9/Pci/+jG/DQQzRMHtxSBK/2HezcE+RNxn6l+jX3CM2H7kkdavVyFC+ZfINnrqe5s9uUmOArtO/A/hATooJlhZH+m/SxL9uAXIjNxNSlRd5xHoBF8JCKjl+LZg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7xfB9f/475++k0IDUHHeilAmOQzeAMz187jEsORcF9Q=;
- b=I4/3iX2c6PUdpwIX0v9o2X4dm7J2O0hTD3teTIsDooSkftBlvR43CmqDEWcu3u9DIoMx0b26n03AHE+NIYa+8oOB8irI3xZaspLY1VOuf6MINoYx/4tsvVSBnIpGXjv87Lv67iQd+7K+5lMeFgi5ZBJzWnDak0qHDY36inj9ckQ=
-Received: from MW4P222CA0009.NAMP222.PROD.OUTLOOK.COM (2603:10b6:303:114::14)
- by MN2PR12MB4271.namprd12.prod.outlook.com (2603:10b6:208:1d7::16)
+ bh=YghlFqly5hoUUjHmBpYDrzKra7vgQYJ3dY+5R4/7g8Y=;
+ b=xwvom9BSXgyBif93H6bXDb+vyskHJbfp6cWP3AEbcEVlWhg3HAXDdhHEZ5e24UWFevMcRyiNRD8AyuQLRvAMGIcDiZuMpfZT9N5xPJ2RijxIz41dieM7rbJ6u2PrXLj3w90aXTxenWkB2xGFHnWLd187PT2j9K/Ep0H/kEeTLIw=
+Received: from MW4PR04CA0336.namprd04.prod.outlook.com (2603:10b6:303:8a::11)
+ by LV2PR12MB5918.namprd12.prod.outlook.com (2603:10b6:408:174::21)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.18; Mon, 22 Aug
- 2022 13:59:03 +0000
-Received: from CO1NAM11FT067.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:114:cafe::86) by MW4P222CA0009.outlook.office365.com
- (2603:10b6:303:114::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5525.18 via Frontend
- Transport; Mon, 22 Aug 2022 13:59:02 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.22; Mon, 22 Aug
+ 2022 13:59:38 +0000
+Received: from CO1NAM11FT089.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:8a:cafe::4f) by MW4PR04CA0336.outlook.office365.com
+ (2603:10b6:303:8a::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.22 via Frontend
+ Transport; Mon, 22 Aug 2022 13:59:37 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,23 +45,26 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT067.mail.protection.outlook.com (10.13.174.212) with Microsoft SMTP
+ CO1NAM11FT089.mail.protection.outlook.com (10.13.175.179) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5546.15 via Frontend Transport; Mon, 22 Aug 2022 13:59:02 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
+ 15.20.5546.7 via Frontend Transport; Mon, 22 Aug 2022 13:59:37 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 22 Aug
- 2022 08:59:01 -0500
+ 2022 08:59:09 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 22 Aug
+ 2022 08:59:09 -0500
 Received: from brianchang-HP-EliteDesk-805-G6-Small-Form-Factor-PC.amd.com
  (10.180.168.240) by SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP
- Server id 15.1.2375.28 via Frontend Transport; Mon, 22 Aug 2022 08:58:57
+ Server id 15.1.2375.28 via Frontend Transport; Mon, 22 Aug 2022 08:59:05
  -0500
 From: brichang <Brian.Chang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 03/14] drm/amd/display: fix odm 2:1 policy not being applied
- consistently in 4k144 modes
-Date: Mon, 22 Aug 2022 17:57:41 +0800
-Message-ID: <20220822095752.3750614-4-Brian.Chang@amd.com>
+Subject: [PATCH 05/14] drm/amd/display: Change AUX NACK behavior
+Date: Mon, 22 Aug 2022 17:57:43 +0800
+Message-ID: <20220822095752.3750614-6-Brian.Chang@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220822095752.3750614-1-Brian.Chang@amd.com>
 References: <20220822095752.3750614-1-Brian.Chang@amd.com>
@@ -70,26 +73,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9f836098-e094-4f07-6a1d-08da84467851
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4271:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6c166127-e200-4049-3060-08da84468d1c
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5918:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 75uurMh7h+pBj95jgSCxVmQs4r7SQNiscCMIJuVF7zcfaOBL5J3I7JfyLl+4a9r6ym1HnMfarjiHaioXPUl3fjPtjfsf6TVsGnRRUY+4N8aL71wIQc5aTLIqHw2m9N0jmiII8XJETyaDNzS3YO5EyCyx0nqekbO0E3PHaMHtODPrWOPohasg+wGNmXFC5zyDtOA+egKhHKekih6N5OuP6fehgtFUhY4RVPFJeKi5xSBQdiyy72M/t0ajWi0b+YdzRW2pxsybQz5Yft21nWxjTTZflsN+my2FoNfahHX8pHG7pjuUOkaLsxFa/uyhj8T3A1Es5DhTvHSHUhn2BUkdYVdWUml6hVDrbC2GSZB67aERHHvXJNhhH5gS9LWXeONSvXVohslaEGGK/fidDJ1uzNvxOxtWDhNQTh3sJgzPDxIXva5d14Xwm/jnEGKK8HqLA6iK1cnQIiVpdUDC5ZVLDyycVsZpUHG6NTo+Acu8Zia646oxZYmQWS4BHoE2SLfU4CF73kgz5Wud00CTDfrf0ENwyondx7CYi6ERAEFMT2ekQqRG9sjjDp+X/koTHrcx8U790NWYCqYWBhaxdarDxcbZI5cfFXcKVWTu9ELAdiXsJY7LK+QIiaLDrR8M9wvw2rrens8RbESdfFVsyHmb7wt4/XfSaFHmWBNM/3FsTNsCbk5l0Hg2AyKF1hzrhPuNv25rCvOGYoiu+eB5/YVoAX7MXdnn2cfyOm+zuTyn4lM2LqPn8X5cqNonw+dtnOrB+rYAbVe4vLOUI6B3geL3gYdWGO820jQ45NQrrW12CqfIxfoZsIeSezTUCsuxCU7QR/RG4Ka2F7kReyxTM53//Q==
+X-Microsoft-Antispam-Message-Info: uiOWNYErON9ZOIX0LP/sF6eGDvgu2tZVn2awvhlPEyinLLHziE/DKacGaw5q/cT88DVgpgUeU9irHg0Pr4+bwQPTaXBqFGMuadboe8VGgum3k6cxAfrUdarVYiRxrzc/zoJLyLQMTMO5CdTjh49B5ngYU5M9/m1eG3kBJLIFVYiphURcjNZGIxUv3jOw/wevp5U7sLlM95dCdUROjvjDT6AgIcrGglTLy8ggD+vo1EZXKysyN8AP7qQpgkRGmkISpLno+Hp2PCuGGLXvpLJLO5Rjj0xDtI3UMmm4ZmCPTXpZiJi56Zrdx0V4qmv3hUcXQwkX2Nm+1L5qMMPJHtZmNyz5S3WFnet7yDobbWj1NC1SLAXB/uJod+dtAaQ8GzxFmXsKUFUyVS0wGYCmP3LtNqTPXCSyI4eQ6EDjg5GnkrdGJ9o+HwV39nxFp+1CdvTiPPlthin0dDezQY0XB5THMtpfSEb9bWj7aOgLixZLWsUHjW2PlICDWtC76LAoHnAdA7yJHf4XkxQ931ymKiT6iCjwrdUogDxQzNGK2qKy/rOYGOfcisnrYkopRRSm01YJrWsF0ePuD1P6WrJLaKFDuhd3NiFJBQ0sdBMBmwjLAsbdwpZHdHgBTcgr0iKYj4pqdsxk9NaCE4K9KtAG1DdaikwcPQaGr4E8AW80ZrXvlssdtOl9rBoiwAH1Hbm76MwxAaK+ch+Iv+0I/7bTNIzFuLugluE93HBP6oROmjqRNjHDENMnGSHishk0Oe1QIoRtseG3LrsVJ7x/zIxWcbl+021YZdh1/4L10pboUsZfEOaCV4jmsqMT87aOypTcpW6mduuQO2q09Tkk3Zbjzt+msQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(39860400002)(396003)(346002)(136003)(376002)(36840700001)(46966006)(40470700004)(7696005)(6666004)(41300700001)(478600001)(47076005)(186003)(1076003)(426003)(8936002)(26005)(2616005)(2906002)(83380400001)(40460700003)(82310400005)(40480700001)(5660300002)(316002)(70586007)(6916009)(54906003)(70206006)(336012)(8676002)(4326008)(86362001)(81166007)(82740400003)(36860700001)(36756003)(356005)(43062005)(36900700001);
+ SFS:(13230016)(4636009)(346002)(376002)(396003)(39860400002)(136003)(40470700004)(36840700001)(46966006)(4326008)(8676002)(316002)(6916009)(54906003)(70586007)(70206006)(82310400005)(40480700001)(40460700003)(5660300002)(8936002)(82740400003)(36860700001)(86362001)(36756003)(81166007)(356005)(2906002)(6666004)(41300700001)(7696005)(47076005)(336012)(1076003)(186003)(426003)(83380400001)(26005)(478600001)(2616005)(43062005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2022 13:59:02.5650 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9f836098-e094-4f07-6a1d-08da84467851
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2022 13:59:37.4483 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6c166127-e200-4049-3060-08da84468d1c
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT067.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT089.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4271
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5918
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,51 +104,61 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Brian
- Chang <Brian.Chang@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- Samson Tam <samson.tam@amd.com>, solomon.chiu@amd.com,
- Aurabindo.Pillai@amd.com, alvin.lee2@amd.com, wayne.lin@amd.com,
- Jun Lei <Jun.Lei@amd.com>, Bhawanpreet.Lakha@amd.com,
+Cc: stylon.wang@amd.com, Ilya Bakoulin <Ilya.Bakoulin@amd.com>,
+ Aric Cyr <Aric.Cyr@amd.com>, Brian Chang <Brian.Chang@amd.com>,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
+ Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
  agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Samson Tam <samson.tam@amd.com>
+From: Ilya Bakoulin <Ilya.Bakoulin@amd.com>
 
 [Why]
-odm 2:1 policy is splitting the pipes in 4k144.
-then in subvp code, we merge the pipes. but since the
- configuration is unsupported, we keep the pipes split
+Retrying on receiving a NACK can result in long overall EDID read times
+in some cases.
 
 [How]
-for unsupported subvp configuration, redo the dml and
- pipe split calls
+Retry only on DEFER and return immediately on NACK.
 
-Reviewed-by: Alvin Lee <USER DID NOT SET AN EMAIL>
-Reviewed-by: Jun Lei <Jun.Lei@amd.com>
+Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
 Acked-by: Brian Chang <Brian.Chang@amd.com>
-Signed-off-by: Samson Tam <samson.tam@amd.com>
+Signed-off-by: Ilya Bakoulin <Ilya.Bakoulin@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/amd/display/dc/dce/dce_aux.c | 12 +++++-------
+ 1 file changed, 5 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-index 8118cfc5b405..edefb3fc1c3c 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-@@ -1082,6 +1082,11 @@ static void dcn32_full_validate_bw_helper(struct dc *dc,
- 			dc->res_pool->funcs->remove_phantom_pipes(dc, context);
- 			vba->DRAMClockChangeSupport[*vlevel][vba->maxMpcComb] = dm_dram_clock_change_unsupported;
- 			*pipe_cnt = dc->res_pool->funcs->populate_dml_pipes(dc, context, pipes, false);
-+
-+			*vlevel = dml_get_voltage_level(&context->bw_ctx.dml, pipes, *pipe_cnt);
-+			/* This may adjust vlevel and maxMpcComb */
-+			if (*vlevel < context->bw_ctx.dml.soc.num_states)
-+				*vlevel = dcn20_validate_apply_pipe_split_flags(dc, context, *vlevel, split, merge);
- 		} else {
- 			// only call dcn20_validate_apply_pipe_split_flags if we found a supported config
- 			memset(split, 0, MAX_PIPES * sizeof(int));
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c b/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c
+index 919c2c2ba84b..32782ef9ef77 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_aux.c
+@@ -814,12 +814,6 @@ bool dce_aux_transfer_with_retries(struct ddc_service *ddc,
+ 								"dce_aux_transfer_with_retries: AUX_RET_SUCCESS: AUX_TRANSACTION_REPLY_I2C_OVER_AUX_DEFER");
+ 
+ 				retry_on_defer = true;
+-				fallthrough;
+-			case AUX_TRANSACTION_REPLY_I2C_OVER_AUX_NACK:
+-				if (*payload->reply == AUX_TRANSACTION_REPLY_I2C_OVER_AUX_NACK)
+-					DC_TRACE_LEVEL_MESSAGE(DAL_TRACE_LEVEL_INFORMATION,
+-								LOG_FLAG_I2cAux_DceAux,
+-								"dce_aux_transfer_with_retries: AUX_RET_SUCCESS: AUX_TRANSACTION_REPLY_I2C_OVER_AUX_NACK");
+ 
+ 				if (aux_defer_retries >= AUX_MIN_DEFER_RETRIES
+ 						&& defer_time_in_ms >= AUX_MAX_DEFER_TIMEOUT_MS) {
+@@ -848,7 +842,11 @@ bool dce_aux_transfer_with_retries(struct ddc_service *ddc,
+ 					}
+ 				}
+ 				break;
+-
++			case AUX_TRANSACTION_REPLY_I2C_OVER_AUX_NACK:
++				DC_TRACE_LEVEL_MESSAGE(DAL_TRACE_LEVEL_INFORMATION,
++							LOG_FLAG_I2cAux_DceAux,
++							"dce_aux_transfer_with_retries: FAILURE: AUX_TRANSACTION_REPLY_I2C_OVER_AUX_NACK");
++				goto fail;
+ 			case AUX_TRANSACTION_REPLY_I2C_DEFER:
+ 				DC_TRACE_LEVEL_MESSAGE(DAL_TRACE_LEVEL_INFORMATION,
+ 							LOG_FLAG_I2cAux_DceAux,
 -- 
 2.25.1
 
