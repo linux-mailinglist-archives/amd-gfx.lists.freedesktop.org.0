@@ -2,119 +2,115 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C75C159C0B4
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Aug 2022 15:39:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAB0059C166
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Aug 2022 16:10:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A46968D8F1;
-	Mon, 22 Aug 2022 13:39:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B331989DA9;
+	Mon, 22 Aug 2022 14:10:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2074.outbound.protection.outlook.com [40.107.220.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA2758D8BD;
- Mon, 22 Aug 2022 13:39:01 +0000 (UTC)
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam07on2041.outbound.protection.outlook.com [40.107.212.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 586828FBF4
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Aug 2022 14:10:07 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XTyVuj9iHuEmyO7B6BdAE33dAIyotCHbe0Ln1dMT0GCTWYTznn0ZRHPacaLOdHa2rnDb1bkpT/dlcJrGFZ1w3XclS8va5mXz5K8G55Hh54bIqgMa/7FfDYoE0Qxz3viB5X9lsZVXiLPocQ/VVXBYL7GPggPRu5rkLC6SBsIuyJINcnSBYXdKs2XFzKM2MtTDJtX4tiCM8PQFqttncB/AMz6xbR0BYU0DK8LAktuCgSUMjcZ/DNVxk2gWZuW7MiSjZlYBtzFW3oJjcSN4/8621bu2NutGPboBRij7f35E9qTZrJeq7GqYfukcaMPKNdYJhmL4UQsR4RUTAw4aa+jADw==
+ b=M1shTNXNYxM7Hv7zuvLcSDVqU9EF6FcJHL9OXfPtDyfGzUKKpKu8Vvzm0n85sWdAwlZpTHEJlBp8ik4PKRCD4nsx1MO0ng5+vh13FrqjQAayYPcO9FDg6elGjZhwQMJfS1MXwuY3thEi0FXokaEL6HzZy0aKSyBDVx+CT5ccsmam2SL3W5YasbHNWfhKL10yNFqA4mHIUR/tVMGGQZR0+RcuqSKhg2OgXXXPyWq4+/ob6ogjFlDdjMrpwNMVeMh9VieK0xb2F8BwClhVD9tQjPqNKkkzpwQ5CLOPreVQwNyEBz7g9gXW/4oVPTdgUyz4gEgfj2cc+kdllXbEMX+eHQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/jbOIK82C+RxNZwG8KzRCjfX6b9ZN1h/KKBO/cBj/zg=;
- b=B5774i8GWY8arh/MdCk3X5q3XN1Asd8ao/UJDLYvvCfAgbPw6I+Kru30mx52TZty1HciUbsQSssteXjF1JHNtxasgrPhYpzbgJk0oxLqRyEVE/Cyt1Cz9Di9DwhbRsJinmQQUjhUITICoiYft0c/AZmudE8RCUl26DrnOSfrtcwIFqYBOvf7TLmYW10cn9hZFVmoZQMXYRwgvlQGmEY0etTQrohIAfXKRQPOaUFKA18iyjG3fxwQewLLkz1dzQBx4FV9VRPJHqFdvgemegnVdvo7/+1ifW7qEEzDB5UWgeCZrod4qhJx1nQbUhpo14HdkmTlXf7Tlsn1QTkltG82oA==
+ bh=56bc91vVU6v/1fdP2dvXKFKw09mtXCDtAdpVQGmYe2w=;
+ b=lcPGBtY+bHO8f2UuXmwCTNrihmB4xocxKuBXKdJIICWvkdaA22x6zSlfYqbcHzghBNVdP1oFaF81jnCSl1fhmrvaPXcma+rz4R3b04M5t0UNOgx7wNeqGws5tPwOgmqB16pOLHn3qR15fqeiKZLavz7ejf0ur7h1eceboyF9D1Z4H5bR3Mq9yT0sDL8yeOWSE8Ps+STdk45qDThMheA795/mJ8VneSnKbagMDuiHoeo5ReUTz4SULnWkBS87g/uCY0M+xuAYJ00on4TV4miN+xa9LmGFnBXCejZpDuoEfy5i5ivczzAZZ0jIXZcJ1pPtDC5YbdsEjhMnwDTsdk5vMA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/jbOIK82C+RxNZwG8KzRCjfX6b9ZN1h/KKBO/cBj/zg=;
- b=5EwFUPNjNqWuMIJmBqxXGi4VfbkWJR3m21IOaPapD1jBBA7GqG4AqWz7VEFRyuPs/YYA7zxy/jeAIE6liYb0Q6efKmmlR3Hv5MQBmf+6+Y9xJ+/uGB4vAn8jDaYaqzvI4d088UoQZgvPNgvoxLfhPCDWnQ1bO0u9J3DShzE8hAc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by CH0PR12MB5075.namprd12.prod.outlook.com (2603:10b6:610:e2::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.16; Mon, 22 Aug
- 2022 13:38:58 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::905:1701:3b51:7e39]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::905:1701:3b51:7e39%2]) with mapi id 15.20.5546.022; Mon, 22 Aug 2022
- 13:38:58 +0000
-Message-ID: <4582726e-4066-fc1c-0b0d-7860bf462c64@amd.com>
-Date: Mon, 22 Aug 2022 15:38:52 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v6 1/6] drm/ttm: Add new callbacks to ttm res mgr
+ bh=56bc91vVU6v/1fdP2dvXKFKw09mtXCDtAdpVQGmYe2w=;
+ b=wIxLNp3CgJGieBdizNrhPrPb2XpPxBjIOL5WLdGACam6+va8OkUk8oNZCdY+q1VKvmzUDMsE8JGseuXlhfyxtQdoqk8vxcst0rzv6huy2FRGRzcY6gq6BQTF1Ukiq4hh5/kI4Eayo3k3OE45vm2vMk6/Y6plTCd/zZaRyna+q1k=
+Received: from DM5PR12MB1308.namprd12.prod.outlook.com (2603:10b6:3:76::7) by
+ CY5PR12MB6201.namprd12.prod.outlook.com (2603:10b6:930:26::16) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5546.22; Mon, 22 Aug 2022 14:10:04 +0000
+Received: from DM5PR12MB1308.namprd12.prod.outlook.com
+ ([fe80::5097:87be:3557:c681]) by DM5PR12MB1308.namprd12.prod.outlook.com
+ ([fe80::5097:87be:3557:c681%5]) with mapi id 15.20.5546.023; Mon, 22 Aug 2022
+ 14:10:04 +0000
+From: "Russell, Kent" <Kent.Russell@amd.com>
+To: "Kuehling, Felix" <Felix.Kuehling@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/amdkfd: Allocate doorbells only when needed
+Thread-Topic: [PATCH] drm/amdkfd: Allocate doorbells only when needed
+Thread-Index: AQHYp2rCo23YZ8/qaUKYa4PjLqPqkq27Eq/A
+Date: Mon, 22 Aug 2022 14:10:04 +0000
+Message-ID: <DM5PR12MB13080A78CC402FE1079EDB7285719@DM5PR12MB1308.namprd12.prod.outlook.com>
+References: <20220803185543.36786-1-Felix.Kuehling@amd.com>
+In-Reply-To: <20220803185543.36786-1-Felix.Kuehling@amd.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
-References: <20220820073304.178444-1-Arunpravin.PaneerSelvam@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20220820073304.178444-1-Arunpravin.PaneerSelvam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR2P281CA0026.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:14::13) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d64836e7-f5cd-4b84-46c0-08da8443aa3e
-X-MS-TrafficTypeDiagnostic: CH0PR12MB5075:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: i7IhjFBXQQEqn1rfLc9iqcH8B8ExXt/lhtOYwql3shGxe8poAQqbXJs3zhpwf/aOIRyxd1AV6hDKoPoUsdRAJC3Uf49xhSfHP/2u5kga6+w1TFNEeJfBGqtLHD/tilqo34B6UFn6qefJA+TVoCZz5kppmw3YrNF+x5D3gu/K0BpFSyFyolBsDt5fG1sASeoWYjRPBkHoc3e69QTTAl4Pv/Mu5Dm9rz8+EwHQ6zMEQG5Wdy8fRtFbdiMARZ1wN5xwWJIbnrKbkUltflik040sXcnNeJSZjaH4EJUdTcS5zwAfB3y+Q4j+XcDWvUCLQ6TfpQbNDv7NRou0YHJl+CmLk7t3ksZPF3TMYn7esV24jZjALRcqk4gqMhifKtl5Xf7OzLphT1ZiNJBpT8yl4jzmXK5TuNPo6TEeGx3yP2ovA+PS5LUVkmDeIvFHSeY7WN6t18Ie/bFS/XYsBZUms34TgkA06L0vkcaPAWLaSzt4faZ5X6MaxZ2SLmfY6hhMTgTq4kFfW3YN+G3hev0loOf2RgBNvTFUXuxVXxOdtQe4/5OWWtWMgQI5vSoUc+3jnDszAi/qLXpJ7Z7bCyM5Ty3VX6e0BgtZbjSPf5kk5ZEyGQuh7GiVVecDy7lxpXcMuYmHASoyn0iYUG6byfT5zUExWgKrROkTLuc2T4WSnS2tOOHKsfZ/wfd18tKnS9p+qwl/XumFapID2I3KVN/bJCgppyqvkZKFhh+ex3f5Ha5SfC10Wbd+I8H+4+UoEkiZY67HEn9sO26LYIBt22KyQTSVpXHaPiVgWeTVZqrpxtxqDLw=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(346002)(39860400002)(396003)(136003)(376002)(366004)(8936002)(5660300002)(478600001)(6486002)(2906002)(31696002)(6506007)(6512007)(41300700001)(86362001)(6666004)(38100700002)(186003)(66574015)(2616005)(83380400001)(31686004)(316002)(4326008)(66946007)(8676002)(66556008)(66476007)(36756003)(43740500002)(45980500001);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2022-08-22T14:10:00Z; 
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=783ec88d-eda7-42d8-9b91-bd7d678cf9bf;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=1
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 493f7013-aa05-4dad-cb8f-08da84480299
+x-ms-traffictypediagnostic: CY5PR12MB6201:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: CMXACbPG0xMb2+3aupo3rg8rAi7g3A5KzLTsHeBhT/T8GPe/fh6yLrVVWcIrGAnNIod7JTIlD+48l54gLmFxHOlsSO3JknCo3iY93Ieb/235kB3+Cfe228F+MPLuK2iboqSexd280j4qxR9nK9OAxbW47vhFVhERG8gCW3AfvAO/H3eIxEv0fa+mseE0PsW87qeH65DCklSgRBlqB8mpv4cnJKUZzzJm93OtdQyP9fjYEGR+jUmn1hpJ1DcKhp0oxD2lFLeTyajTt77FjB8klmtU5VxTBYvZWEooI1uiwdavrIaCur+4MA82TJNzceJh3CM4wO5oQBDukCRecW6+ddeC/4jCxcG7Oq98Fdqra4iqZHISRLmOmnlo8y7MZm9CEbRFPMoBp2sPp25W4RI0vUi3cyExjsxkXW8OH/c1fs17Ma+8PbHTXrZ8kyz1dDGKrwalvN5lWAHXBMBg8Ae7hZofvo+/4JJJdnujanyed+9bethrG9u7ULCH0a9OUrIIJtpn9DAoAFR83ACVWAMDQsFTh/rgzrLxNax7FZJNETNwdjjn+rTlKCYgNRp/CP5fatClVUTip0eOMJqoQhM7CeKythbLXokkX4yKoJow9ooocVa83UmDbmj+0JnRQqg0agU3tXLr+kb+gZIxhs5qFvNr/gyRt42hjX9oFP/3S1GxC/PZi8uNJeyVIf+Iu2CvKROaYxpUx8l0yNAAliqpK4giuWSe2s8DzUcSW2qWN4PIxwzb51N+WNO7RuWl8XPmf9KY6CKLCTFmPC2ErS3wjg==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM5PR12MB1308.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(136003)(376002)(396003)(366004)(39860400002)(346002)(6506007)(7696005)(71200400001)(41300700001)(478600001)(186003)(8936002)(83380400001)(9686003)(26005)(52536014)(53546011)(2906002)(5660300002)(55016003)(316002)(110136005)(76116006)(64756008)(66446008)(66556008)(66946007)(8676002)(66476007)(86362001)(38100700002)(122000001)(38070700005)(33656002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eGE1KzJSbjZHUkUzRElHdEtmUGp6QUp0alNlOG45N3dVYlIwNFRUM3hqNGxq?=
- =?utf-8?B?T3BRU0R0V29Jd0t5WDd4d1dhSzdmdFJyRXAwQ1JXQ0dGRXBkT1BnS3A2Vkhy?=
- =?utf-8?B?MitlTGlKRUhiV21rK3hPWll3d0NWZ1VOZjVaRFdYOFY1blFpRW52VEhEQVdQ?=
- =?utf-8?B?MFJKL05GWlI1NGlZODlzMmlCS1lPRjRmQUYwQllGakoyWmFadkJKRURuZTdH?=
- =?utf-8?B?b1dZa0FuYjAxVjA3RlNGWFM5QWdlaWhrWGswc1dCbUpQemlQYzg0Z1MzWHdW?=
- =?utf-8?B?R010Q1NHT3BNMzhmeU50ZjdwdmJJQ1pqOGhtMDZHYXBjS0RrQnpzU2xpcTh3?=
- =?utf-8?B?VEFHcmlVMzBHcEx5dloxQW9uZGVhbEFjVGU1VXVUYnVJVVk3anhhTUdaWkdN?=
- =?utf-8?B?UmJqeDF0bmxvOFcwQ3cyTEx3YmU2V2JRcFo5S3ZDSVQ3UlJMWTk0TTM0eWJ2?=
- =?utf-8?B?clYrOUttdHpZd1lXS0NrU0NxUlRaR3hhU1RnUHJPZEJIQ2UxNER5aVdqbFFq?=
- =?utf-8?B?S2xRbVlubGpDNS9IOXh2aWR5RzNQYTFndldzNk15ZXl3WC9KdmFrUjFkbUt2?=
- =?utf-8?B?SnRMYk1CZkdaT2JOWDQxdHNzeXNsems4VFZveTgrdko1c2lBQzhvQVJCOEVv?=
- =?utf-8?B?bDZwMUZYbDJPOUduRVhqYWhEcVFOUHN1dE1UaTBTUzExRHBhQlRyaGE1Tmtr?=
- =?utf-8?B?M1Ryd3JBOWozbVBWQ00wTjRPaWZBa2RhRXhsSWhKY1dyZ2t0T2cxNGp2Tjdz?=
- =?utf-8?B?OWRhV0VJeis1MXoxRDMzYzM3S1k0ZE9IK205VkRTNmFLZ2tNWmhkdkhSSXNq?=
- =?utf-8?B?ZnYrZDhkc1llTVJ0TGxweXVjakxoN05IaGJnTFRBY0VYV2RVeU5keHRpS1NK?=
- =?utf-8?B?cEZXUVF1QzJmYWo2eW1ycFV1YVpPVkx6WkgydzlKWm5yLzN1ZldaL1NjOHNQ?=
- =?utf-8?B?ZlA3ZXZFUkd3RUJmb0F6VEwwbjh3S044d25SZEdFRSt1cmVLdG1ZK0hQQ0o2?=
- =?utf-8?B?cHJoRmsxRFJacVZKMldSMzE1Rnp1RnVuRGVlaVREUDA4KzFFODFJSUVQMUx5?=
- =?utf-8?B?QmtqbVdkbUFPZytYVVgvbFI2NWIrWkhxc3hZTXNIemQ4TWg3RXAra0NBeEQx?=
- =?utf-8?B?ek1SSmFUVGR4dFgxNlp3VkZMZ2R6SkRyZEpzVFpOU0tmR2dXRlFzVnhwam0v?=
- =?utf-8?B?c2swb243RTNreGd6anRSZFlJcXdpb05RbWtUMVNMZHZSazFkTjB5K1pBSFZu?=
- =?utf-8?B?dkt3dVpPeG5SNCtzNndMMGoyUTBZVFp0SE9uYk9ybjR3RmdsalRXWFV2dytp?=
- =?utf-8?B?RWtQN2thNUx1aUU1b1NQTDRUNW9NR1VlOUpwOTJ6MGFqOGRrR3ZIWk9nTWNL?=
- =?utf-8?B?YmNIeUVheDdEaEg4Q2NDYXRlSEdqcmZyUGp1VkZTYUVWRU5GM1dWRzNlWkg3?=
- =?utf-8?B?QVViY1UxZ1FkeXIyOWFWMUlES1J6RmoraWhYNUM5d0MxVW5KYWhWY2xBQTEy?=
- =?utf-8?B?RGNJTDAzTGdISWRCRG1GSDNleTg4WVUvSzUwMG41a2RwdXd6LzI0OHpjQVlB?=
- =?utf-8?B?bTQyMDh5TWFyMDUzWE5ENCtKZDg1MnNOcDJSTy81VWwxQkcrVTVQYkY5aXBZ?=
- =?utf-8?B?dWoyQ29HYVhBbHI0V2xweUNOZi9xYTBIUDNnd2JOY1NlWmY4MjhtcXdUdkpv?=
- =?utf-8?B?cm5EMXZ6TnZUVkVodFhxY3hubG5VS0k5dDIwUk1pTms4alFQN1JUZGdteHNC?=
- =?utf-8?B?dEx3TFBEOGVtd1pkaGV2aHYwV3EyU0FTUW56cUlNTkxldDQ4TFpxMGk1U1Fr?=
- =?utf-8?B?SklYY1luUUxuZW5pSStKZ0R0d1JVVWY5NmJ2aUpYZUJQdGtVeVoyU3E0U2RP?=
- =?utf-8?B?K2lsNWVWWngyZzRPZ29tV09RT2xneG5DSnFabjY5MWtJZ2RhM3hONDBES0xS?=
- =?utf-8?B?STVvTFNxc3ljWS9icjhZNzJnN0hSbnRyZ2RTb3dGVkM4cGFwdjZFOVIrNkl4?=
- =?utf-8?B?UzMvamFaQ042R3BTbkRISzFJdEt4aDdUbURoUVNaMWgxdjdZaUNQdUxkK2Jj?=
- =?utf-8?B?SjdORllaSUZCazFnNzRyL0NRcTFhZVRZMzRjN3V5dXJoM3NzZ0Z5UGd6d0RX?=
- =?utf-8?B?U1FGVHNjUEVYU1F1ZnJxNlBTTHBkZkx5dVpodmpvODVzcTFnYkdLVzNQU2F6?=
- =?utf-8?Q?bzQa4n8OEkQxCtICAv5w/6qRTVz1c5dWVHyovq56MRAy?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?aD1sGByrTG7o7f0dNgi128TdAOU3IDfI0F0zbj3uQsIlOTBqg+HuDhd3bE3K?=
+ =?us-ascii?Q?pvgGuC7ckmMeNdyXL3tdn8tC4Z/2N0vUr3BjQnNcvzYUpa3aGlqJZ/IThFKx?=
+ =?us-ascii?Q?8mi3t9oR0qKqBTAvnVomyFcrYYI/Szo2C3J7X+7r1WFIsEEv+mF7U3L2FQGl?=
+ =?us-ascii?Q?jn0ui6ySGSJFi6JGz0qGk5DD/vz+F4c5tGFbmuz4Jsp8bHrjm2uufxp1At2+?=
+ =?us-ascii?Q?55fWFCy5cKsGp2xFqWSYMmHdEGkp1cBMVBERSCoG+zxOrI4V4qdXrBSs+yzo?=
+ =?us-ascii?Q?FP+TBtvUKzdr+O5VaDH8cAJLfgMH2hxUjkQAHAgOK8YueSIJ56XvpuMsWMc/?=
+ =?us-ascii?Q?6eA9UUzYOMU+pLkrUnDwNZviUj9RbAkD4DGPeUSq3tsdfhM/CARb8MS5BxSo?=
+ =?us-ascii?Q?XfmccHmXt7fY7Owkgg/QS8Ym9r9LEtVPlra7XdL+HKUG70TY7yZhVk7nPbB0?=
+ =?us-ascii?Q?D1kAplUroimx7VckNRmBcr89bPlcZFPwFT1mRou510wGXX9lmOHvo6gPbBee?=
+ =?us-ascii?Q?8esxX6LRPK+M+jIPWGxSjaBpZsUzlMch6DcIwtAvpXkDq6SwtqkCx3aH1a2W?=
+ =?us-ascii?Q?L1p9sf/gbKLhTRbsczs3cM0TsexdWXz2Hdu9S99OtV56Sfk65x1xs/i0ik6W?=
+ =?us-ascii?Q?S5tOVJRdkfY9scfWEo2EAhTJvTkjiDnytn7PwMIDEUq4Yumhfsz4740ndRdn?=
+ =?us-ascii?Q?bgPIt405zu5I7MEjjCAHPby+lKjnY77nXCveqJpQRzKLF3rmnZjSXjXlFsKH?=
+ =?us-ascii?Q?lEl32uxJjCyGGfjBslRgGc471lCVx+Br/h+RD6eVkygqdzffntG+T1wK5kvy?=
+ =?us-ascii?Q?zdud5hcshUceM180+aEu7XngTr6fCKBvZ548jr77o9oan5qKI8HpJIi8NWPO?=
+ =?us-ascii?Q?tG6HUDU++6cGqNJNeIZsbPb6AY1yohnObbZq8Vsg2ULd3FT8jjlBmJ1T//Z6?=
+ =?us-ascii?Q?QH4sPOqc8Fqg3O5Ap4VPsAxH1z34f6k9AiWxHTLwoZnOGCUCL56nDj88EPJQ?=
+ =?us-ascii?Q?hg/fYp0reYVkOru0kQ9CFTfJ17Ui7Li8fH3f7DSeoFlIcBNktHQVV8IgdYih?=
+ =?us-ascii?Q?z4Z9Vk/B3MsV9ZyH1bBl2+oL8YG051FE6uUj63wtvoorSbqDBeQ4NJPukIar?=
+ =?us-ascii?Q?u0JNYdXiL5qyZnOYSAb0PerDHrqbpGy7Aad2LjkTySv5Sadfj+rWnOe4FTpF?=
+ =?us-ascii?Q?1i9EdsY7nJeTu8keSKwPhShvdFjhcJWI6Dp+SyWd2HuX6Ab/XbU3EuM51gRZ?=
+ =?us-ascii?Q?3E3R/W0DL4ha9Y7Qp4WO/f44ia1IAF+iQzcMp82MPmHDlENMdcVzNMkpqIyu?=
+ =?us-ascii?Q?JkmFdQ13pgz/g0E8fu9CdSDRgl6Ov8ukhhx4XI8WK4qfUqE1XhHeg/jModx5?=
+ =?us-ascii?Q?zmBfcgrcW0Y5lCfVWzTMCFVkWI5i//9mgzmVTd7qqFJ7p1dB0Ts/we/y4h7E?=
+ =?us-ascii?Q?D7eptMXJthieJP3xBXfqVh6hLamQwnlX3MpDfhORm3hxItFVa1FTw04m1I3e?=
+ =?us-ascii?Q?c6w3XtW460tVoHtxyW+bQWsev7P2xQDI8sbGH/odGIlykivv3Nt8xzvtg9VK?=
+ =?us-ascii?Q?MJlgOsubN6z71I195OE=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d64836e7-f5cd-4b84-46c0-08da8443aa3e
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2022 13:38:58.2417 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kgcCvK1cdg71TCraUEepoJyyoUx5z81Gp4AbzGYh2zn4fJeGRBFh8Yxs2zz4Q8FD
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5075
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB1308.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 493f7013-aa05-4dad-cb8f-08da84480299
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Aug 2022 14:10:04.2023 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: J9UEvNuac/DNJK0g514oKKauYrb6p41E8ul2oAQsaRYtm+X6eQytwWFyfNiNikcm1ExHYRsSL/B0u8bx4pVubg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6201
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,222 +122,138 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, luben.tuikov@amd.com, matthew.auld@intel.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 20.08.22 um 09:32 schrieb Arunpravin Paneer Selvam:
-> We are adding two new callbacks to ttm resource manager
-> function to handle intersection and compatibility of
-> placement and resources.
->
-> v2: move the amdgpu and ttm_range_manager changes to
->      separate patches (Christian)
-> v3: rename "intersect" to "intersects" (Matthew)
-> v4: move !place check to the !res if and return false
->      in ttm_resource_compatible() function (Christian)
-> v5: move bits of code from patch number 6 to avoid
->      temporary driver breakup (Christian)
->
-> Signed-off-by: Christian König <christian.koenig@amd.com>
-> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-> Reviewed-by: Christian König <christian.koenig@amd.com>
+[AMD Official Use Only - General]
 
-Pushed to drm-misc-next.
+I can throw an Acked-by: Kent Russell <kent.russell@amd.com> since we don't=
+ have an RB yet.
 
-Thanks,
-Christian.
+ Kent
 
+> -----Original Message-----
+> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Felix
+> Kuehling
+> Sent: Wednesday, August 3, 2022 2:56 PM
+> To: amd-gfx@lists.freedesktop.org
+> Subject: [PATCH] drm/amdkfd: Allocate doorbells only when needed
+>=20
+> Only allocate doorbells when the first queue is created on a GPU or the
+> doorbells need to be mapped into CPU or GPU virtual address space. This
+> avoids allocating doorbells unnecessarily and can allow more processes
+> to use KFD on multi-GPU systems.
+>=20
+> Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
 > ---
->   drivers/gpu/drm/ttm/ttm_bo.c       |  9 ++--
->   drivers/gpu/drm/ttm/ttm_resource.c | 77 +++++++++++++++++++++++++++++-
->   include/drm/ttm/ttm_resource.h     | 40 ++++++++++++++++
->   3 files changed, 119 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-> index c1bd006a5525..f066e8124c50 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
-> @@ -518,6 +518,9 @@ static int ttm_bo_evict(struct ttm_buffer_object *bo,
->   bool ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
->   			      const struct ttm_place *place)
->   {
-> +	struct ttm_resource *res = bo->resource;
-> +	struct ttm_device *bdev = bo->bdev;
+>  drivers/gpu/drm/amd/amdkfd/kfd_chardev.c  | 13 +++++++++++++
+>  drivers/gpu/drm/amd/amdkfd/kfd_doorbell.c |  9 +++++++++
+>  drivers/gpu/drm/amd/amdkfd/kfd_process.c  |  5 -----
+>  3 files changed, 22 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+> b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+> index 2b3d8bc8f0aa..907f4711abce 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+> @@ -327,6 +327,12 @@ static int kfd_ioctl_create_queue(struct file *filep=
+,
+> struct kfd_process *p,
+>  		goto err_bind_process;
+>  	}
+>=20
+> +	if (!pdd->doorbell_index &&
+> +	    kfd_alloc_process_doorbells(dev, &pdd->doorbell_index) < 0) {
+> +		err =3D -ENOMEM;
+> +		goto err_alloc_doorbells;
+> +	}
 > +
->   	dma_resv_assert_held(bo->base.resv);
->   	if (bo->resource->mem_type == TTM_PL_SYSTEM)
->   		return true;
-> @@ -525,11 +528,7 @@ bool ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
->   	/* Don't evict this BO if it's outside of the
->   	 * requested placement range
->   	 */
-> -	if (place->fpfn >= (bo->resource->start + bo->resource->num_pages) ||
-> -	    (place->lpfn && place->lpfn <= bo->resource->start))
-> -		return false;
+>  	/* Starting with GFX11, wptr BOs must be mapped to GART for MES to
+> determine work
+>  	 * on unmapped queues for usermode queue oversubscription (no
+> aggregated doorbell)
+>  	 */
+> @@ -404,6 +410,7 @@ static int kfd_ioctl_create_queue(struct file *filep,=
+ struct
+> kfd_process *p,
+>  	if (wptr_bo)
+>  		amdgpu_amdkfd_free_gtt_mem(dev->adev, wptr_bo);
+>  err_wptr_map_gart:
+> +err_alloc_doorbells:
+>  err_bind_process:
+>  err_pdd:
+>  	mutex_unlock(&p->mutex);
+> @@ -1092,6 +1099,10 @@ static int kfd_ioctl_alloc_memory_of_gpu(struct fi=
+le
+> *filep,
+>  			goto err_unlock;
+>  		}
+>  		offset =3D kfd_get_process_doorbells(pdd);
+> +		if (!offset) {
+> +			err =3D -ENOMEM;
+> +			goto err_unlock;
+> +		}
+>  	} else if (flags & KFD_IOC_ALLOC_MEM_FLAGS_MMIO_REMAP) {
+>  		if (args->size !=3D PAGE_SIZE) {
+>  			err =3D -EINVAL;
+> @@ -2173,6 +2184,8 @@ static int criu_restore_memory_of_gpu(struct
+> kfd_process_device *pdd,
+>  			return -EINVAL;
+>=20
+>  		offset =3D kfd_get_process_doorbells(pdd);
+> +		if (!offset)
+> +			return -ENOMEM;
+>  	} else if (bo_bucket->alloc_flags &
+> KFD_IOC_ALLOC_MEM_FLAGS_MMIO_REMAP) {
+>  		/* MMIO BOs need remapped bus address */
+>  		if (bo_bucket->size !=3D PAGE_SIZE) {
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_doorbell.c
+> b/drivers/gpu/drm/amd/amdkfd/kfd_doorbell.c
+> index cb3d2ccc5100..b33798f89ef0 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_doorbell.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_doorbell.c
+> @@ -157,6 +157,8 @@ int kfd_doorbell_mmap(struct kfd_dev *dev, struct
+> kfd_process *process,
+>=20
+>  	/* Calculate physical address of doorbell */
+>  	address =3D kfd_get_process_doorbells(pdd);
+> +	if (!address)
+> +		return -ENOMEM;
+>  	vma->vm_flags |=3D VM_IO | VM_DONTCOPY | VM_DONTEXPAND |
+> VM_NORESERVE |
+>  				VM_DONTDUMP | VM_PFNMAP;
+>=20
+> @@ -275,6 +277,13 @@ uint64_t kfd_get_number_elems(struct kfd_dev *kfd)
+>=20
+>  phys_addr_t kfd_get_process_doorbells(struct kfd_process_device *pdd)
+>  {
+> +	if (!pdd->doorbell_index) {
+> +		int r =3D kfd_alloc_process_doorbells(pdd->dev,
+> +						    &pdd->doorbell_index);
+> +		if (r)
+> +			return 0;
+> +	}
+> +
+>  	return pdd->dev->doorbell_base +
+>  		pdd->doorbell_index * kfd_doorbell_process_slice(pdd->dev);
+>  }
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> index 6c83a519b3a1..951b63677248 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> @@ -1499,11 +1499,6 @@ struct kfd_process_device
+> *kfd_create_process_device_data(struct kfd_dev *dev,
+>  	if (!pdd)
+>  		return NULL;
+>=20
+> -	if (kfd_alloc_process_doorbells(dev, &pdd->doorbell_index) < 0) {
+> -		pr_err("Failed to alloc doorbell for pdd\n");
+> -		goto err_free_pdd;
+> -	}
 > -
-> -	return true;
-> +	return ttm_resource_intersects(bdev, res, place, bo->base.size);
->   }
->   EXPORT_SYMBOL(ttm_bo_eviction_valuable);
->   
-> diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
-> index 20f9adcc3235..0d1f862a582b 100644
-> --- a/drivers/gpu/drm/ttm/ttm_resource.c
-> +++ b/drivers/gpu/drm/ttm/ttm_resource.c
-> @@ -253,10 +253,84 @@ void ttm_resource_free(struct ttm_buffer_object *bo, struct ttm_resource **res)
->   }
->   EXPORT_SYMBOL(ttm_resource_free);
->   
-> +/**
-> + * ttm_resource_intersects - test for intersection
-> + *
-> + * @bdev: TTM device structure
-> + * @res: The resource to test
-> + * @place: The placement to test
-> + * @size: How many bytes the new allocation needs.
-> + *
-> + * Test if @res intersects with @place and @size. Used for testing if evictions
-> + * are valueable or not.
-> + *
-> + * Returns true if the res placement intersects with @place and @size.
-> + */
-> +bool ttm_resource_intersects(struct ttm_device *bdev,
-> +			     struct ttm_resource *res,
-> +			     const struct ttm_place *place,
-> +			     size_t size)
-> +{
-> +	struct ttm_resource_manager *man;
-> +
-> +	if (!res)
-> +		return false;
-> +
-> +	if (!place)
-> +		return true;
-> +
-> +	man = ttm_manager_type(bdev, res->mem_type);
-> +	if (!man->func->intersects) {
-> +		if (place->fpfn >= (res->start + res->num_pages) ||
-> +		    (place->lpfn && place->lpfn <= res->start))
-> +			return false;
-> +
-> +		return true;
-> +	}
-> +
-> +	return man->func->intersects(man, res, place, size);
-> +}
-> +
-> +/**
-> + * ttm_resource_compatible - test for compatibility
-> + *
-> + * @bdev: TTM device structure
-> + * @res: The resource to test
-> + * @place: The placement to test
-> + * @size: How many bytes the new allocation needs.
-> + *
-> + * Test if @res compatible with @place and @size.
-> + *
-> + * Returns true if the res placement compatible with @place and @size.
-> + */
-> +bool ttm_resource_compatible(struct ttm_device *bdev,
-> +			     struct ttm_resource *res,
-> +			     const struct ttm_place *place,
-> +			     size_t size)
-> +{
-> +	struct ttm_resource_manager *man;
-> +
-> +	if (!res || !place)
-> +		return false;
-> +
-> +	man = ttm_manager_type(bdev, res->mem_type);
-> +	if (!man->func->compatible) {
-> +		if (res->start < place->fpfn ||
-> +		    (place->lpfn && (res->start + res->num_pages) > place->lpfn))
-> +			return false;
-> +
-> +		return true;
-> +	}
-> +
-> +	return man->func->compatible(man, res, place, size);
-> +}
-> +
->   static bool ttm_resource_places_compat(struct ttm_resource *res,
->   				       const struct ttm_place *places,
->   				       unsigned num_placement)
->   {
-> +	struct ttm_buffer_object *bo = res->bo;
-> +	struct ttm_device *bdev = bo->bdev;
->   	unsigned i;
->   
->   	if (res->placement & TTM_PL_FLAG_TEMPORARY)
-> @@ -265,8 +339,7 @@ static bool ttm_resource_places_compat(struct ttm_resource *res,
->   	for (i = 0; i < num_placement; i++) {
->   		const struct ttm_place *heap = &places[i];
->   
-> -		if (res->start < heap->fpfn || (heap->lpfn &&
-> -		    (res->start + res->num_pages) > heap->lpfn))
-> +		if (!ttm_resource_compatible(bdev, res, heap, bo->base.size))
->   			continue;
->   
->   		if ((res->mem_type == heap->mem_type) &&
-> diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
-> index ca89a48c2460..5afc6d664fde 100644
-> --- a/include/drm/ttm/ttm_resource.h
-> +++ b/include/drm/ttm/ttm_resource.h
-> @@ -88,6 +88,38 @@ struct ttm_resource_manager_func {
->   	void (*free)(struct ttm_resource_manager *man,
->   		     struct ttm_resource *res);
->   
-> +	/**
-> +	 * struct ttm_resource_manager_func member intersects
-> +	 *
-> +	 * @man: Pointer to a memory type manager.
-> +	 * @res: Pointer to a struct ttm_resource to be checked.
-> +	 * @place: Placement to check against.
-> +	 * @size: Size of the check.
-> +	 *
-> +	 * Test if @res intersects with @place + @size. Used to judge if
-> +	 * evictions are valueable or not.
-> +	 */
-> +	bool (*intersects)(struct ttm_resource_manager *man,
-> +			   struct ttm_resource *res,
-> +			   const struct ttm_place *place,
-> +			   size_t size);
-> +
-> +	/**
-> +	 * struct ttm_resource_manager_func member compatible
-> +	 *
-> +	 * @man: Pointer to a memory type manager.
-> +	 * @res: Pointer to a struct ttm_resource to be checked.
-> +	 * @place: Placement to check against.
-> +	 * @size: Size of the check.
-> +	 *
-> +	 * Test if @res compatible with @place + @size. Used to check of
-> +	 * the need to move the backing store or not.
-> +	 */
-> +	bool (*compatible)(struct ttm_resource_manager *man,
-> +			   struct ttm_resource *res,
-> +			   const struct ttm_place *place,
-> +			   size_t size);
-> +
->   	/**
->   	 * struct ttm_resource_manager_func member debug
->   	 *
-> @@ -329,6 +361,14 @@ int ttm_resource_alloc(struct ttm_buffer_object *bo,
->   		       const struct ttm_place *place,
->   		       struct ttm_resource **res);
->   void ttm_resource_free(struct ttm_buffer_object *bo, struct ttm_resource **res);
-> +bool ttm_resource_intersects(struct ttm_device *bdev,
-> +			     struct ttm_resource *res,
-> +			     const struct ttm_place *place,
-> +			     size_t size);
-> +bool ttm_resource_compatible(struct ttm_device *bdev,
-> +			     struct ttm_resource *res,
-> +			     const struct ttm_place *place,
-> +			     size_t size);
->   bool ttm_resource_compat(struct ttm_resource *res,
->   			 struct ttm_placement *placement);
->   void ttm_resource_set_bo(struct ttm_resource *res,
->
-> base-commit: 8869fa666a9e6782c3c896c1fa57d65adca23249
-
+>  	if (init_doorbell_bitmap(&pdd->qpd, dev)) {
+>  		pr_err("Failed to init doorbell for process\n");
+>  		goto err_free_pdd;
+> --
+> 2.32.0
