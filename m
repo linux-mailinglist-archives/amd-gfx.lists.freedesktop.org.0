@@ -1,118 +1,116 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0480859D041
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Aug 2022 06:53:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 577FA59D21D
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Aug 2022 09:30:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE263AD26F;
-	Tue, 23 Aug 2022 04:52:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1496FB01F0;
+	Tue, 23 Aug 2022 07:30:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2086.outbound.protection.outlook.com [40.107.220.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 327AEAD255
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Aug 2022 04:52:34 +0000 (UTC)
+Received: from APC01-PSA-obe.outbound.protection.outlook.com
+ (mail-psaapc01on2096.outbound.protection.outlook.com [40.107.255.96])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAA999BA75;
+ Tue, 23 Aug 2022 06:36:04 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aDCJSnN1KsWS+lR5yEfKVFEc92j5z0Fm4g+mNP9y7aw8WSnCpqFazdCdJrHZahbuoIFB12qWImSRkdbYm7VUscAclWP8EOKuln5YSrUK145B8nJYsov6Uv4WidRCAcTEFQ+9RnEwpjdvShM2YVQ0j39zUxulyW5if0hNExmKTzmZxjSAITUHFHPltS2nH3rrp36f2M75Pz/uXN0quosd9fB+jTDP9wPLx5+Urj73MbXQmC9lASzDAFmhBmkeR/VE55/UaVaesFl6FNB14JDnFrZ9X1C0zXtYEcaRindAAZk6W8GGpJGdtm+XrG9YsTcXw+Fg8pQ6zFlSBBi/rjjYUw==
+ b=JSc2oSSLV+x1acIpNXCOopNk4H4+QES8Tte7/+HTtkilw9Of+TZZd3lPaKM7B9ZS37V7CE9ilwlPdTOOQujl98RPlXy8z+KkmZ5VSCLnV3qNdbnTC5DvBni7KkjDb2c/nbMZqGMYSpPQtgJUeQScBPgJrEVmRaqh7N2UGynYwLk7WnxVfPR8JZ17xlGSQjNT09oZAo9MjcRtWgXeQgmvcCxEs7MjuLOblIDDpwHuag694ax8L1CyPIfPqN8geuiyJB5rh2D2GzSSphU4eWYbrM9vdkPsKod6d/qq7k3In6CeojwRWhdp+KVHZahP3kqveWTl/9XokeBKKrjd7d0d4w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wPACP0bQl3kSbDisNiI2yI03IafhPa8f0MJbolxh9lI=;
- b=kv80dz6jaFHNKYFXlDdRrjYrLa3Z/dv4u7NhWAVETKaP8mo2JNJ/7za2Vnae2Tgtfa1uurpl+W0PkzF1SskVJQDAdoXOXABZU8HCzkSjQvGCRtsddjqaxTj8VnG/McS7Ma81hEDn6OUrauptZbNrKnYaRYLz5p/sR0QnBbFlXPCXnViMRYrVJoHpRmCf6O3lDbLMoNgAn2OuIu/OhmYO72jRcipmYqb4zOTZWqQCEIQo8ICpQXm3biMODczXKRfy+T8agYWDy9B2qwPsvLi9tf+2g092LMEWEopSII2T5rGpbqsd/UYdua76LqH+DET1WRvVgpHbo3aIEVR43I4Kkg==
+ bh=X5LUovQccpJe0MFDSDQELkAf1XhNXuiKvAoB7LUXlS4=;
+ b=FIvI1V9qsqPAQOsTuUwwfjWBruzVb+PmyOJhshfbTMQayxrtwOuqwZ/CBvizRFPBk/DaMifnk4yqSDIPHgMrpZWN7alhQkGeFYHZxb1jHWJBneLJ4H+gt55wpav2VCxnctfx00MUo53DQuY5u66bOcxwQgBDADzt5nTg/3jw0e9ZGlyDmuLn4Ttj/V+4YioQp3hiTD0L4Js/mkuMgplxqBbRUCS27xf/cgdx8RdklsxyU2+pXNnBuDPahouJ053q8KPdlAQ82/hfGOmp2VeGDDEWqPuPfGc5COrnZzxsOVsH5zqz8U6FtT3Bcnkid3/+uIsHSvhcODq1zyHhH4GyDg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
+ dkim=pass header.d=vivo.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo0.onmicrosoft.com; 
+ s=selector2-vivo0-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wPACP0bQl3kSbDisNiI2yI03IafhPa8f0MJbolxh9lI=;
- b=4Rn1dxKBN67TWdCRRIlocSIcqfLGuc55XFwnounI1J3XHOPh/gaHFiuS0bJY7xZeJON8hrJ24CSORZXW/ACg6AQKfYNslT5hRpgZOs1GDTKMjIokuWAJHe3m6Pi/WiWee17s7k39V5wcYlKveZZCCuCDZcw+t/+ruDZbtsLfi80=
+ bh=X5LUovQccpJe0MFDSDQELkAf1XhNXuiKvAoB7LUXlS4=;
+ b=NmaR3Xr081TZEljpW+VJQwANjeIc3w2tKoJmAuplhD3UND7Gpvmc5pUvrv9mtyWYluZMjErqczpslzeOYzXwdBUBCfvd2gpiWehLFJoUaTWxO25U8qcnUC6ehhJ5XP33ymtht/p/QR2wmcyArqe1/cUwAqN7yvM+PDrp6gNgUA8=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SN6PR12MB4621.namprd12.prod.outlook.com (2603:10b6:805:e4::10)
- by DM6PR12MB3001.namprd12.prod.outlook.com (2603:10b6:5:116::28) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.21; Tue, 23 Aug
- 2022 04:52:32 +0000
-Received: from SN6PR12MB4621.namprd12.prod.outlook.com
- ([fe80::dd3b:49e5:229b:e6a3]) by SN6PR12MB4621.namprd12.prod.outlook.com
- ([fe80::dd3b:49e5:229b:e6a3%4]) with mapi id 15.20.5546.022; Tue, 23 Aug 2022
- 04:52:32 +0000
-Message-ID: <b7ad1218-29d4-ef17-3b02-03837a89006c@amd.com>
-Date: Tue, 23 Aug 2022 10:22:17 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH 13/14] drm/amd/display: Adding log clock table from SMU
-Content-Language: en-US
-To: brichang <Brian.Chang@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20220822095752.3750614-1-Brian.Chang@amd.com>
- <20220822095752.3750614-14-Brian.Chang@amd.com>
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <20220822095752.3750614-14-Brian.Chang@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN3PR01CA0065.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:99::16) To SN6PR12MB4621.namprd12.prod.outlook.com
- (2603:10b6:805:e4::10)
+ header.d=none;dmarc=none action=none header.from=vivo.com;
+Received: from PSAPR06MB4021.apcprd06.prod.outlook.com (2603:1096:301:37::11)
+ by TYZPR06MB5027.apcprd06.prod.outlook.com (2603:1096:400:1c9::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.22; Tue, 23 Aug
+ 2022 06:36:01 +0000
+Received: from PSAPR06MB4021.apcprd06.prod.outlook.com
+ ([fe80::5c66:2101:a7ac:8df0]) by PSAPR06MB4021.apcprd06.prod.outlook.com
+ ([fe80::5c66:2101:a7ac:8df0%9]) with mapi id 15.20.5546.023; Tue, 23 Aug 2022
+ 06:36:01 +0000
+From: Bernard Zhao <bernard@vivo.com>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ Eric Yang <Eric.Yang2@amd.com>, Michael Strauss <michael.strauss@amd.com>,
+ Fangzhi Zuo <Jerry.Zuo@amd.com>, Melissa Wen <mwen@igalia.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/amd: fix potential memory leak
+Date: Mon, 22 Aug 2022 23:35:24 -0700
+Message-Id: <20220823063546.11499-1-bernard@vivo.com>
+X-Mailer: git-send-email 2.33.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: TYCPR01CA0020.jpnprd01.prod.outlook.com (2603:1096:405::32)
+ To PSAPR06MB4021.apcprd06.prod.outlook.com
+ (2603:1096:301:37::11)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f7238964-cff8-4724-3cc6-08da84c349ae
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3001:EE_
+X-MS-Office365-Filtering-Correlation-Id: 74ecdd4f-083e-4df1-650f-08da84d1be89
+X-MS-TrafficTypeDiagnostic: TYZPR06MB5027:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ycaGDvYUqEldyyM/qCfOoY7oLwlDh3DG6ZRG2K6zFWOlhaIarGz02US4IQ3DiqEjnjMIq6ZZrGuQ68TQBU3tzMtoxiahgecbRKNgeZIfGrmOdLWgPJoc6ftTP/zp1WyyfaNzF7a9DbzGbrEqnvXkCi/4zNKDS6xkU/JssL3S3sJCc8pVfFOMiBU/R+OM/+9AW+rAK70H3P+dR+LUcgR3IkChDuxxKEME7Q2GPzCkVAQy3RLbKhhShxOgzpu2poqbNmzbktpmdgvetPYlsH0SFp+bfOZ6pwCn07oI4Ih8OYBCAyPiqiV4ajG7niDipLi9c/vnOmAnKDAaf/cVmF4tFAf9toLsWNkwiwrJm7pjrrCink/669ncd9TIi18T4QP5yOkVW159ipjtUOI04ea1qgugWmJPSrKUGT3nh05kFMkB+ff05mBg0iqa3kxRWCG5Mrg+dUYzpVIFxpLgKI+txXpvX4AUlKJK9KYAX6i2J1SlVSRt3iGZ1EufEuEdcPzdYXyzOTpBxVxw/5aSKb89AxNOJ0ohqPnGBOhy3vMb5XFLBLtlM/Q+KXbj5zXX4sq1+j8EN/YTTDovdkphdYwAc2/lQqJtnCjW3w73ghjcEG/Unu8B3LLJd5ISq3ht2UjNl4aMKLWsNguEMGQUVz1K8HJJjwh3NxzCwRKiSeakAslNozg5g+Qtxb+rQf4Lz0jU860BVDhlT9WZFFdYBCub8BfxD8FHh6Td9APpL+fxS9MZpHuWXVtJ6DlaKktSBrDfDEqfrmVOPqpQ0ZB5IZmuX4BTG660pYKwErwXbj8UoeI=
+X-Microsoft-Antispam-Message-Info: +4vlntq/G7aNpcLMzSlbhivFP94u5TM/15YjE7kF9Hj12WxyNTcSnWNPS6NPSv/gOtygfe7ayGJgjYgJel1rRXvZ2JCM3J1Y/4+7NH1BZK1ruqu36BfbCzjzIaweihfGoh4mafgqK57WXn2SQeZa6Q/0XjQfvxoY4IrqxgTr1vEsPkHvqQE6c90CXDFuQ1l/kS9pxbvVTiiV4L/11l2KGGzkzzC1Vu3g0DE+n1d/jxeFgHujAhMAvSZ81a9RJ2Ggl1M+8Z0GjKEUfdm9jJEP48NpNxR8HgtAnu4+1mczHOacB+63kYDktGVhuw5v1QTw/17QvFPObrTHQzXBCIdk0La0yrdwoh1YcmWbMgEkqcDY1H9rvALPCpJ+SvxI+0Q+LJAnStlY2EhUA4BqPYtTh6U55M2RqtraKqFXq996y/lJSZ14dhRPDNSMgcF5e6FUbKDZYT0k1XmnOivvY27I85iHqYvG1rs5CC0JG4JSBBjltw2rrF98Mw2Ok+Yjhken3ZSl4qfm4ArO7hWVMl9wyQgjjER9o2k8k6AXmAAvZSNCJVLpM7yLok+lflkIiUpq8q+qoOtTX7KKywTfOU34fbqb9ysvkn8cJHTgZXIB3oiO/q8UtGwXFAhH1PULB0WaN+IG0Ya7d5iPslwXSQs6GKYfwmnpceq4Ql3592CRkh3K7dS+aTeB8fdTe483s2dvPUUqZn9+B8gP1wVj1/8g7JilpWeciGQf2wRE2g66WIoXYu+mdQwWsM2jXZ8mZNFIm0IGU45VUND8dg7TdUOvSbF2oNpN0cEVl381fIyIU8Y=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN6PR12MB4621.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(346002)(366004)(396003)(136003)(376002)(39860400002)(53546011)(6666004)(31686004)(6506007)(6512007)(478600001)(41300700001)(38100700002)(26005)(2616005)(6486002)(186003)(66476007)(66556008)(66946007)(31696002)(8676002)(54906003)(4326008)(83380400001)(2906002)(8936002)(86362001)(316002)(5660300002)(36756003)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PSAPR06MB4021.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(366004)(346002)(39860400002)(396003)(136003)(376002)(66476007)(8936002)(8676002)(66556008)(4326008)(86362001)(110136005)(66946007)(38100700002)(36756003)(38350700002)(921005)(1076003)(52116002)(83380400001)(186003)(26005)(6512007)(6666004)(41300700001)(478600001)(6486002)(107886003)(6506007)(7416002)(316002)(2906002)(2616005)(5660300002)(4744005);
+ DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NUErRytITk5vclZINjRUZi9MU3pjbmwvQkFGak8xQ09IZHdCVDZybkhuWUhT?=
- =?utf-8?B?ZER6b1pyTTh6TzZFWUZhNE5peEhRdTFnR1RLR25aYVJRRFo2VXNRdmRZbHBv?=
- =?utf-8?B?ZDBoWGUrMTFZUjJXUTJTT0lYZ3kxQzdkNklNcEEvRjF0cUl3SVVWM1BkenJw?=
- =?utf-8?B?Rm5JSVM5RmVwS29ycWVVSzhMTDBBd2hEUEREWmJLSmt6SWJuWlNnUlRWSDNk?=
- =?utf-8?B?Z2VWYWphYWtLanNnVFpEeHUwMzJnRGRpTi9hTVlXVDFFYWN4RWhxNHFwNkRO?=
- =?utf-8?B?cDhOQ2xUcjZBbjFNQk1QcEVMMGlMT1p6VkxWQyszL0dPMm9MMzVReDVlc1Na?=
- =?utf-8?B?S3J5Y2hFTEtyeUg4aTdIemtodW8zR0ZsZE41NWtzNi9Pc0NPMDNtdytmM1Nv?=
- =?utf-8?B?c3lOR0V3SjNobGNDR3pwTUwyNEV2cmlNbnd5TW93UXJaZUpJZ09ackY1N1Fi?=
- =?utf-8?B?YjkvdWlPK3ZRbk9GYU9GMVlMSUJWNGhPQURkWXl3YXgwejBkMDNmcnd1TWpM?=
- =?utf-8?B?M0crNHBHcGFlaGQ3OWFhaXZoOFRBTUxwT1NBNGJDUWcvWURHeFViMzV5VTFS?=
- =?utf-8?B?UzVkdytsY1ZsWm1sbzRWOTFXOW5aMEhRWmJNM3p6ZVZpREt4TjB2R0tNelFR?=
- =?utf-8?B?Rzk4Q01TYlN0dVFxTVdiZFV4bUJOQmZzbEF5QUIzZ1MzVEdrNUsrRVNHODhl?=
- =?utf-8?B?aU1mZXJ3eThZZ043RC8ya0VRWmFWVGZYdXdDWFR5Q0NKTVlzTzNLdFk4QW9K?=
- =?utf-8?B?b2w2VFJ0VDR6Q2VxVkcyZjlRUGhlbzZBOGJsTmhtL0JTUmphdTh6T3RId0hi?=
- =?utf-8?B?aDA1OWlGcnNETVBUNnVMOGlQL0VKQWg5Vk9GTDB4UU5zNjFEeEt1QWljZ0xI?=
- =?utf-8?B?akw4ZVV6SFVoNmIzTGFyQVl5ZzJRU0N1cmlJZUZIZFRyMVpxNkRxZWxBZVRP?=
- =?utf-8?B?NEhzQWcwQTFwazQ2eTJRc2x1QlVIY29zTWZ6bGk1blJlRFFaRmViTTByR1Vi?=
- =?utf-8?B?d3B3OGF2Sk95MW15M2l5ZFBBT1M1cHRoRGVoVXNrbVAzaUVOWTlzbjN4U25Q?=
- =?utf-8?B?UU5xV0w1U0lzTnRMODFPemFXakxpRWtMbFQvTGN4d0d4YTEzYnVOcHczeVlz?=
- =?utf-8?B?eTNjaTdVTHRzRzE3VWM3R3Y0S1IwOGhpaGV6QXFkZklNSlF0QmdIR3hNb3BI?=
- =?utf-8?B?eUROVXE3QU9samJPNmhFem9ENFdxeXN1amVJWHlVZnB2MzJrZmpxZ3ZILy9o?=
- =?utf-8?B?VjZ1WXVOeXBaVWJLcFVjY29RWEZXUUY5T1MrcVBGdGIzdnNBQy9YdWxLSnFL?=
- =?utf-8?B?Y1ZER1U2L0xkTkI4OGdVSytnTVpRL0VIYmJsaXgvQWVRM00xTFdJeTFxeThu?=
- =?utf-8?B?Mld4Y3E5UU42eGVNb1dhQkpVN0RVdjY3SWE2dHVHMVpNNzZJQ29sM1pXSUVU?=
- =?utf-8?B?VTlOLzcvcFhPcEJLSGRrdFFRZ3FTNUVSbjZHSlQreU1jYXBndlNHL1k3RTdo?=
- =?utf-8?B?anpDL0g5R1RuVG8rMTlhTHhSZ3RmUTlKMW5tTXpGOEFadm9Hb1FNRXlESkRy?=
- =?utf-8?B?SDR3eW5DNXVjYWEzeHNtT2ovTjN3OU5MM1FtSkpsSUZqNUhwRjZOS3VyT0tp?=
- =?utf-8?B?WW9GZWdNZXVvbDQ5d1NZb0xOek9UbElkQjc1UGpPRzlGQ29EU1pMaG5LMmdH?=
- =?utf-8?B?N1BhV3pRM09PZkdVY0NVL2Z4c2NBalZ1ckU5T3FvYktiRGRrNEN3QUxJL3Vy?=
- =?utf-8?B?U0lRNHUwRktkcGJXcFUzMHJ2c05hN2ZmS3VMMWpuZlZSOVVZSXJYeTM4UXpY?=
- =?utf-8?B?eVFoV2lha1dEeDYrblNLL2FaTkowbmQ5cEpMd3pKVnZoRlg0TnIrNEt4SElD?=
- =?utf-8?B?cGFiRnhacmpNWmpQMll5LzVUeUpNNFlibE4raFN0eTNhSjM1Y0UxOGNGcHl6?=
- =?utf-8?B?QktFODQ0T0d5U3JsM09EYXA3RXlDWXlzRnZaZEVwOHM2SDkrK043c05HMnZ2?=
- =?utf-8?B?dExvWFY3RjdId0JSRjBpd0tBR3k0REpnWjRxZ0ovYi9tTXVqN29vR1B0elNV?=
- =?utf-8?B?eXJkQWVIN21RWTJoSmk5OXhmeHVKOGlTdHhlVys1NzFRenBCczRCZ3U5SmxU?=
- =?utf-8?Q?GDqumnPu261BlV0rNW00BgqIM?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f7238964-cff8-4724-3cc6-08da84c349ae
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR12MB4621.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ECkGCgwNMvetFLaAxHm9ZHMLAFavJENmWq/f9hWTRCcUAii6fk6t6A+kypVm?=
+ =?us-ascii?Q?/MsU1uTBr2CPIjb1KTBdfT3AiLPqPPuAg2O0w+HAbduuJew8KgRDucYa1Rgr?=
+ =?us-ascii?Q?QgAq48sbd5hlzDskr4v/5PEoIh3jthjvoq4ijWS0G7L2udz/r/tG0I6GlUX0?=
+ =?us-ascii?Q?cghWChlizflekW3LejfHFKmYfMefFvvtuZaTsYtDXXy+7tpVGfvaF1lDcu3k?=
+ =?us-ascii?Q?xSk5hdZ3+VSvS9JweJXrf3MbCMcNDsx52XXr0YGgcEJLABl1Qjf2vI77BjCR?=
+ =?us-ascii?Q?gs/9G5nD19sEcIYTmx88TtPkVmkVnujcr/w75dvfgmPsrdyKpaISur3hmT5R?=
+ =?us-ascii?Q?guUYIgsfdbqSvD0zP+DKyi9Z/c0zDyJpT2u9xwZlQhr0hQvCdeoBhx/gHzas?=
+ =?us-ascii?Q?1RGViZRwbenSqiuxw873OooolYOXYAy0lMY/WkL2EyYBRFCvN0Pkj6OgA/lX?=
+ =?us-ascii?Q?1PWEqqZJJriUlfMNvo5keoqkEVDYCUlydr9vqn5jvqlhKiAzl7tV7LiG0vdO?=
+ =?us-ascii?Q?NPNi3auvPze8tze+40Eni3POc6APZLApFHzlYQ/DlP9kRHPwpHJM6xBowhJO?=
+ =?us-ascii?Q?EXGUJgDE3mcHtchyxyeTn+F1diTCNKi2UY/UYvXf/0RsKS+pzVCdZmdeyMHs?=
+ =?us-ascii?Q?t0CdD5srVByDkvT+8gpvfcWPQ6J/Ffd+Ht9Iqlp4hOehrjHfS89eLbblnE+C?=
+ =?us-ascii?Q?FPj6GnigUWbTnFeijsN1+2ScRn0k32Up+QIE7y4MCKZxdF/DqdZdhRUV7WTR?=
+ =?us-ascii?Q?ZlhF3au3LpR9fDdwK94Iwrv5kiQ4TbKvAemyyYw1DmpSS7X622pxF4XjeWOm?=
+ =?us-ascii?Q?gGApP2HHOLdu1I5YK6qi+wx4s5WXVqvyXTLgA9oqZ07rFDjqi7qDteSx+UX/?=
+ =?us-ascii?Q?Yl+l1bpG3TfJ+UFHsEl+bk0QP20abrP1rFci2JB0KDFe69nOO3zuNRKoj9TR?=
+ =?us-ascii?Q?MO7Tpdy59Y5DdXw37WOkzUKDn1k/TleM/jDaMdcvmm2Tu6K1cWhWojUPo1+F?=
+ =?us-ascii?Q?ZxaFrcLCZ7E5GsL25emkx8S7R3NJ7NE7UXY66+fK2gTHpD9QSUXubtBPWqrL?=
+ =?us-ascii?Q?kYI8fBv1nDvGLkz064F6Iiw1gHNXMXB9d19PKHHryxNWSuj8uO4iBcpIGChm?=
+ =?us-ascii?Q?KPIHbwbspVz6SxyXbo9aEFfpx6/IWIXX5E8KydTGsMEVhA5QLaqGg+l/zPgr?=
+ =?us-ascii?Q?T7zbMr3UYgyVPlvwjuy7tErA10DbAgZNGZts2nOwHhKyV2k7mTGIHxV8c6tC?=
+ =?us-ascii?Q?fcYS4P2AgIPighUfRcQ3nV6ANutc7ai8wUv0CXZ2AGnvqQB5OazgxJotJ9xR?=
+ =?us-ascii?Q?WqAA6Z2Cq3LQJfjHn+SdO45KoYmqqoMwRVrR/wxDWNOv9HL2wl/5MWrCKjye?=
+ =?us-ascii?Q?mK0Q/0E8tBwNCpv2BGZRwRAeB2DuirjmI3HSWpGTvL7cQl8l8aKJJUoNZ5+I?=
+ =?us-ascii?Q?M5rEK1RZrBPxw2URjXdvTmvp5mg7UiVYhpjybHTvJSgIp+yJXRc3GOMLS/7/?=
+ =?us-ascii?Q?m6tB3CMH5X+BnT2y0gSLTmmnVGkTGcYZ4UHql1/pSnBzcz6Jr45C6di6rrYH?=
+ =?us-ascii?Q?T3hN7MYG1Qo2NDMh5b8SqLTXn83Av9kfhWD75i4S?=
+X-OriginatorOrg: vivo.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 74ecdd4f-083e-4df1-650f-08da84d1be89
+X-MS-Exchange-CrossTenant-AuthSource: PSAPR06MB4021.apcprd06.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2022 04:52:32.0053 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2022 06:36:00.8619 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EtVx+AOof+Q0REJ68Pw0c8bBnjAAGCrq7sEq418PdCxHsgMZtxJr5m6NJJbOSjZg
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3001
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3MQvWH+2lviSWfbYCwOa1+Qr8vlBLrN04eZiniW5ylXAd2hxJHED6nsscMSLfMP9pTo/7XdsQEXYoHMckkn0yQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB5027
+X-Mailman-Approved-At: Tue, 23 Aug 2022 07:29:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,236 +122,29 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Charlene Liu <Charlene.Liu@amd.com>,
- Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, qingqing.zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
- Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Harry.Wentland@amd.com,
- Leo Chen <sancchen@amd.com>, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: Bernard Zhao <bernard@vivo.com>, zhaojunkui2008@126.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+This patch fix potential memory leak (clk_src) when function run
+into last return NULL.
+Signed-off-by: Bernard Zhao <bernard@vivo.com>
+---
+ drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c | 1 +
+ 1 file changed, 1 insertion(+)
 
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
+index 85f32206a766..c7bb76a2a8c2 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
+@@ -1643,6 +1643,7 @@ static struct clock_source *dcn31_clock_source_create(
+ 	}
+ 
+ 	BREAK_TO_DEBUGGER();
++	kfree(clk_src);
+ 	return NULL;
+ }
+ 
+-- 
+2.33.1
 
-On 8/22/2022 3:27 PM, brichang wrote:
-> From: Leo Chen <sancchen@amd.com>
-> 
-> [Why & How]
-> Adding log for clock table from SMU helps with the debugging process.
-> Implemented using DC_LOG_SMU to output log.
-> 
-
-Most of this info is already available through *_print_clk_levels. 
-Additional info like voltage may be added though it may not make sense 
-with adaptive voltage control.
-
-Thanks,
-Lijo
-
-> Reviewed-by: Charlene Liu <Charlene.Liu@amd.com>
-> Acked-by: Brian Chang <Brian.Chang@amd.com>
-> Signed-off-by: Leo Chen <sancchen@amd.com>
-> ---
->   .../display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c  | 46 ++++++++++++++++++
->   .../dc/clk_mgr/dcn314/dcn314_clk_mgr.c        | 48 +++++++++++++++++++
->   .../dc/clk_mgr/dcn315/dcn315_clk_mgr.c        | 46 ++++++++++++++++++
->   3 files changed, 140 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c
-> index c09be3f15fe6..d43258e3cd4f 100644
-> --- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c
-> +++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c
-> @@ -48,6 +48,11 @@
->   
->   #include "dc_dmub_srv.h"
->   
-> +#include "logger_types.h"
-> +#undef DC_LOGGER
-> +#define DC_LOGGER \
-> +	clk_mgr->base.base.ctx->logger
-> +
->   #include "yellow_carp_offset.h"
->   
->   #define regCLK1_CLK_PLL_REQ			0x0237
-> @@ -737,8 +742,49 @@ void dcn31_clk_mgr_construct(
->   	clk_mgr->base.base.bw_params = &dcn31_bw_params;
->   
->   	if (clk_mgr->base.base.ctx->dc->debug.pstate_enabled) {
-> +		int i;
-> +
->   		dcn31_get_dpm_table_from_smu(&clk_mgr->base, &smu_dpm_clks);
->   
-> +		DC_LOG_SMU("NumDcfClkLevelsEnabled: %d\n"
-> +				   "NumDispClkLevelsEnabled: %d\n"
-> +				   "NumSocClkLevelsEnabled: %d\n"
-> +				   "VcnClkLevelsEnabled: %d\n"
-> +				   "NumDfPst atesEnabled: %d\n"
-> +				   "MinGfxClk: %d\n"
-> +				   "MaxGfxClk: %d\n",
-> +				   smu_dpm_clks.dpm_clks->NumDcfClkLevelsEnabled,
-> +				   smu_dpm_clks.dpm_clks->NumDispClkLevelsEnabled,
-> +				   smu_dpm_clks.dpm_clks->NumSocClkLevelsEnabled,
-> +				   smu_dpm_clks.dpm_clks->VcnClkLevelsEnabled,
-> +				   smu_dpm_clks.dpm_clks->NumDfPstatesEnabled,
-> +				   smu_dpm_clks.dpm_clks->MinGfxClk,
-> +				   smu_dpm_clks.dpm_clks->MaxGfxClk);
-> +		for (i = 0; i < smu_dpm_clks.dpm_clks->NumDcfClkLevelsEnabled; i++) {
-> +			DC_LOG_SMU("smu_dpm_clks.dpm_clks->DcfClocks[%d] = %d\n",
-> +					   i,
-> +					   smu_dpm_clks.dpm_clks->DcfClocks[i]);
-> +		}
-> +		for (i = 0; i < smu_dpm_clks.dpm_clks->NumDispClkLevelsEnabled; i++) {
-> +			DC_LOG_SMU("smu_dpm_clks.dpm_clks->DispClocks[%d] = %d\n",
-> +					   i, smu_dpm_clks.dpm_clks->DispClocks[i]);
-> +		}
-> +		for (i = 0; i < smu_dpm_clks.dpm_clks->NumSocClkLevelsEnabled; i++) {
-> +			DC_LOG_SMU("smu_dpm_clks.dpm_clks->SocClocks[%d] = %d\n",
-> +					   i, smu_dpm_clks.dpm_clks->SocClocks[i]);
-> +		}
-> +		for (i = 0; i < NUM_SOC_VOLTAGE_LEVELS; i++)
-> +			DC_LOG_SMU("smu_dpm_clks.dpm_clks->SocVoltage[%d] = %d\n",
-> +					   i, smu_dpm_clks.dpm_clks->SocVoltage[i]);
-> +
-> +		for (i = 0; i < NUM_DF_PSTATE_LEVELS; i++) {
-> +			DC_LOG_SMU("smu_dpm_clks.dpm_clks.DfPstateTable[%d].FClk = %d\n"
-> +					   "smu_dpm_clks.dpm_clks->DfPstateTable[%d].MemClk= %d\n"
-> +					   "smu_dpm_clks.dpm_clks->DfPstateTable[%d].Voltage = %d\n",
-> +					   i, smu_dpm_clks.dpm_clks->DfPstateTable[i].FClk,
-> +					   i, smu_dpm_clks.dpm_clks->DfPstateTable[i].MemClk,
-> +					   i, smu_dpm_clks.dpm_clks->DfPstateTable[i].Voltage);
-> +		}
->   		if (ctx->dc_bios && ctx->dc_bios->integrated_info) {
->   			dcn31_clk_mgr_helper_populate_bw_params(
->   					&clk_mgr->base,
-> diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_clk_mgr.c
-> index beb025cd3dc2..f2f9d2d3908c 100644
-> --- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_clk_mgr.c
-> +++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_clk_mgr.c
-> @@ -51,6 +51,13 @@
->   #include "dc_link_dp.h"
->   #include "dcn314_smu.h"
->   
-> +
-> +#include "logger_types.h"
-> +#undef DC_LOGGER
-> +#define DC_LOGGER \
-> +	clk_mgr->base.base.ctx->logger
-> +
-> +
->   #define MAX_INSTANCE                                        7
->   #define MAX_SEGMENT                                         8
->   
-> @@ -775,7 +782,48 @@ void dcn314_clk_mgr_construct(
->   	clk_mgr->base.base.bw_params = &dcn314_bw_params;
->   
->   	if (clk_mgr->base.base.ctx->dc->debug.pstate_enabled) {
-> +		int i;
-> +
->   		dcn314_get_dpm_table_from_smu(&clk_mgr->base, &smu_dpm_clks);
-> +		DC_LOG_SMU("NumDcfClkLevelsEnabled: %d\n"
-> +				   "NumDispClkLevelsEnabled: %d\n"
-> +				   "NumSocClkLevelsEnabled: %d\n"
-> +				   "VcnClkLevelsEnabled: %d\n"
-> +				   "NumDfPst atesEnabled: %d\n"
-> +				   "MinGfxClk: %d\n"
-> +				   "MaxGfxClk: %d\n",
-> +				   smu_dpm_clks.dpm_clks->NumDcfClkLevelsEnabled,
-> +				   smu_dpm_clks.dpm_clks->NumDispClkLevelsEnabled,
-> +				   smu_dpm_clks.dpm_clks->NumSocClkLevelsEnabled,
-> +				   smu_dpm_clks.dpm_clks->VcnClkLevelsEnabled,
-> +				   smu_dpm_clks.dpm_clks->NumDfPstatesEnabled,
-> +				   smu_dpm_clks.dpm_clks->MinGfxClk,
-> +				   smu_dpm_clks.dpm_clks->MaxGfxClk);
-> +		for (i = 0; i < smu_dpm_clks.dpm_clks->NumDcfClkLevelsEnabled; i++) {
-> +			DC_LOG_SMU("smu_dpm_clks.dpm_clks->DcfClocks[%d] = %d\n",
-> +					   i,
-> +					   smu_dpm_clks.dpm_clks->DcfClocks[i]);
-> +		}
-> +		for (i = 0; i < smu_dpm_clks.dpm_clks->NumDispClkLevelsEnabled; i++) {
-> +			DC_LOG_SMU("smu_dpm_clks.dpm_clks->DispClocks[%d] = %d\n",
-> +					   i, smu_dpm_clks.dpm_clks->DispClocks[i]);
-> +		}
-> +		for (i = 0; i < smu_dpm_clks.dpm_clks->NumSocClkLevelsEnabled; i++) {
-> +			DC_LOG_SMU("smu_dpm_clks.dpm_clks->SocClocks[%d] = %d\n",
-> +					   i, smu_dpm_clks.dpm_clks->SocClocks[i]);
-> +		}
-> +		for (i = 0; i < NUM_SOC_VOLTAGE_LEVELS; i++)
-> +			DC_LOG_SMU("smu_dpm_clks.dpm_clks->SocVoltage[%d] = %d\n",
-> +					   i, smu_dpm_clks.dpm_clks->SocVoltage[i]);
-> +
-> +		for (i = 0; i < NUM_DF_PSTATE_LEVELS; i++) {
-> +			DC_LOG_SMU("smu_dpm_clks.dpm_clks.DfPstateTable[%d].FClk = %d\n"
-> +					   "smu_dpm_clks.dpm_clks->DfPstateTable[%d].MemClk= %d\n"
-> +					   "smu_dpm_clks.dpm_clks->DfPstateTable[%d].Voltage = %d\n",
-> +					   i, smu_dpm_clks.dpm_clks->DfPstateTable[i].FClk,
-> +					   i, smu_dpm_clks.dpm_clks->DfPstateTable[i].MemClk,
-> +					   i, smu_dpm_clks.dpm_clks->DfPstateTable[i].Voltage);
-> +		}
->   
->   		if (ctx->dc_bios && ctx->dc_bios->integrated_info && ctx->dc->config.use_default_clock_table == false) {
->   			dcn314_clk_mgr_helper_populate_bw_params(
-> diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_clk_mgr.c
-> index bff0f57e7fe6..14071aef5eab 100644
-> --- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_clk_mgr.c
-> +++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_clk_mgr.c
-> @@ -41,6 +41,11 @@
->   
->   #include "dc_dmub_srv.h"
->   
-> +#include "logger_types.h"
-> +#undef DC_LOGGER
-> +#define DC_LOGGER \
-> +	clk_mgr->base.base.ctx->logger
-> +
->   #include "dc_link_dp.h"
->   
->   #define TO_CLK_MGR_DCN315(clk_mgr)\
-> @@ -666,7 +671,48 @@ void dcn315_clk_mgr_construct(
->   	clk_mgr->base.base.bw_params = &dcn315_bw_params;
->   
->   	if (clk_mgr->base.base.ctx->dc->debug.pstate_enabled) {
-> +		int i;
-> +
->   		dcn315_get_dpm_table_from_smu(&clk_mgr->base, &smu_dpm_clks);
-> +		DC_LOG_SMU("NumDcfClkLevelsEnabled: %d\n"
-> +				   "NumDispClkLevelsEnabled: %d\n"
-> +				   "NumSocClkLevelsEnabled: %d\n"
-> +				   "VcnClkLevelsEnabled: %d\n"
-> +				   "NumDfPst atesEnabled: %d\n"
-> +				   "MinGfxClk: %d\n"
-> +				   "MaxGfxClk: %d\n",
-> +				   smu_dpm_clks.dpm_clks->NumDcfClkLevelsEnabled,
-> +				   smu_dpm_clks.dpm_clks->NumDispClkLevelsEnabled,
-> +				   smu_dpm_clks.dpm_clks->NumSocClkLevelsEnabled,
-> +				   smu_dpm_clks.dpm_clks->VcnClkLevelsEnabled,
-> +				   smu_dpm_clks.dpm_clks->NumDfPstatesEnabled,
-> +				   smu_dpm_clks.dpm_clks->MinGfxClk,
-> +				   smu_dpm_clks.dpm_clks->MaxGfxClk);
-> +		for (i = 0; i < smu_dpm_clks.dpm_clks->NumDcfClkLevelsEnabled; i++) {
-> +			DC_LOG_SMU("smu_dpm_clks.dpm_clks->DcfClocks[%d] = %d\n",
-> +					   i,
-> +					   smu_dpm_clks.dpm_clks->DcfClocks[i]);
-> +		}
-> +		for (i = 0; i < smu_dpm_clks.dpm_clks->NumDispClkLevelsEnabled; i++) {
-> +			DC_LOG_SMU("smu_dpm_clks.dpm_clks->DispClocks[%d] = %d\n",
-> +					   i, smu_dpm_clks.dpm_clks->DispClocks[i]);
-> +		}
-> +		for (i = 0; i < smu_dpm_clks.dpm_clks->NumSocClkLevelsEnabled; i++) {
-> +			DC_LOG_SMU("smu_dpm_clks.dpm_clks->SocClocks[%d] = %d\n",
-> +					   i, smu_dpm_clks.dpm_clks->SocClocks[i]);
-> +		}
-> +		for (i = 0; i < NUM_SOC_VOLTAGE_LEVELS; i++)
-> +			DC_LOG_SMU("smu_dpm_clks.dpm_clks->SocVoltage[%d] = %d\n",
-> +					   i, smu_dpm_clks.dpm_clks->SocVoltage[i]);
-> +
-> +		for (i = 0; i < NUM_DF_PSTATE_LEVELS; i++) {
-> +			DC_LOG_SMU("smu_dpm_clks.dpm_clks.DfPstateTable[%d].FClk = %d\n"
-> +					   "smu_dpm_clks.dpm_clks->DfPstateTable[%d].MemClk= %d\n"
-> +					   "smu_dpm_clks.dpm_clks->DfPstateTable[%d].Voltage = %d\n",
-> +					   i, smu_dpm_clks.dpm_clks->DfPstateTable[i].FClk,
-> +					   i, smu_dpm_clks.dpm_clks->DfPstateTable[i].MemClk,
-> +					   i, smu_dpm_clks.dpm_clks->DfPstateTable[i].Voltage);
-> +		}
->   
->   		if (ctx->dc_bios && ctx->dc_bios->integrated_info) {
->   			dcn315_clk_mgr_helper_populate_bw_params(
-> 
