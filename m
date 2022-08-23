@@ -1,114 +1,66 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABDEA59D21B
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Aug 2022 09:29:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8E0059D780
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Aug 2022 11:59:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAEE2B01B3;
-	Tue, 23 Aug 2022 07:29:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55C7EB2B9F;
+	Tue, 23 Aug 2022 09:59:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com
- (mail-sgaapc01on2138.outbound.protection.outlook.com [40.107.215.138])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F10B0AFD57;
- Tue, 23 Aug 2022 07:14:42 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iaXLr4EdMSA5WCeR9cvA1Vzv8QZyvS5eOUogUYKmbXVcSj99p8bNs1c5visfrB+dL/RpFcTMMyBpEHz+Zcwxx4b9GoKwz9mo/rEoyQtOySlKFc7IYrz/1cz0X+DphOCLOIs5WcC5i6kVWl/RxPqbSKDeFGHVcm1YcouBH6LEqqOWqjE3uMxVJkH9LDF6q1s87AkRmDpCrZiqszrLqSECZMZLMDbeyptecpfas8KFbQ+FNyNiOFbOxAMz8GZORmgbvvafh7d6EgNCmxVs1VSI3CSnnZ6jmPuS6OfNcEvTHJbcO/bUXFIm6/UNhqXgdXoN2H4+RCRAOKglSd94A9zmJQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jqTYgpmA2/CsH4qvbQpsKKPLYuXjR2N63sSOhaOzSZQ=;
- b=Rge48lKk9g5RBJ0VHgM1Ly9mrU8AWa9w/x7KwhKmbBWYJJjo+XFdmp6vW8hguSsPCyLoBhVB2lFjaJSWHK+eGajmVjgHQz5NVr4qY7ZWC49KNGzogpcvqUYl8LnNxbMpRgBc+LF6jCwaxXo+JpNDneGlHynMcY8/UmnpL05tG64mWES6PsA3pzj3GuybreYjTipsK1/8ARQaaEn9IEf2Vs70cGCBwZcsCq7oa9dMOAdj6/2OpumY36NqfALekZ8Z3UuSybQ5wbIV66EaCBsft6KdNiTqYNRNX3VmgzgqMhWm+aXjv9G1hSv/BJfEnBnO5iB5UrttDV/axmBYUR7LuA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
- dkim=pass header.d=vivo.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo0.onmicrosoft.com; 
- s=selector2-vivo0-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jqTYgpmA2/CsH4qvbQpsKKPLYuXjR2N63sSOhaOzSZQ=;
- b=CYuyQH8BPml7xHCYPA9hOI4GCByk1+PiW9PdEmGDczd/ODUMAl48diliAqSYPBGgZX2YNkFw10cPoZO8GwvEvnmAWerrW5jTFz1VHRnb4PwVd8TcdeMEtIyr3ReICVhgG4cTsAVoreJIyQrPImcipF2pZF39bKK5YuB96eEVvxU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=vivo.com;
-Received: from PSAPR06MB4021.apcprd06.prod.outlook.com (2603:1096:301:37::11)
- by PU1PR06MB2359.apcprd06.prod.outlook.com (2603:1096:803:3a::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.22; Tue, 23 Aug
- 2022 07:14:37 +0000
-Received: from PSAPR06MB4021.apcprd06.prod.outlook.com
- ([fe80::5c66:2101:a7ac:8df0]) by PSAPR06MB4021.apcprd06.prod.outlook.com
- ([fe80::5c66:2101:a7ac:8df0%9]) with mapi id 15.20.5546.023; Tue, 23 Aug 2022
- 07:14:37 +0000
-From: Bernard Zhao <bernard@vivo.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Samson Tam <Samson.Tam@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] drm/amd: remove duplicated argument to &&
-Date: Tue, 23 Aug 2022 00:14:22 -0700
-Message-Id: <20220823071426.26015-1-bernard@vivo.com>
-X-Mailer: git-send-email 2.33.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: TYCP286CA0057.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:2b5::20) To PSAPR06MB4021.apcprd06.prod.outlook.com
- (2603:1096:301:37::11)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com
+ [IPv6:2a00:1450:4864:20::629])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90530B2B78
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Aug 2022 09:59:05 +0000 (UTC)
+Received: by mail-ej1-x629.google.com with SMTP id ce26so10643027ejb.11
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Aug 2022 02:59:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc; bh=SrmL7IQNsc6gTMJ/6MeOo9O8E7exVLgUx80xVRn4LKY=;
+ b=Ew3iedJdYRvWHtBFLPEL7WbTx+gRjuDw/L8r896qdVPt9WCQ+Wt2fjPT+Zvx5cmzM9
+ zdpVEjXjsCXmRIm3UFsvGdmp9h395B+YYwinqmwKZJRwovj2uMmqH+hBbJCu+7dZAsrv
+ LwNohotwIlcc4fe8boViN8HeeZ+tPjyQg1BY1eY0yyW5W9EBsoBnv+A3tutoLVsXL25X
+ kqCLBu83RYMMBld7FpJ7dLoqkldH9e+9DNbVQ3wcjgyqTAlzMXl4JHdjyOtH31elvcKe
+ 1W7gHwl09BvpP5UFoMmxRUuOxFfWx4qX/FnScC9pLoKkPh3yDY62TymhlbKrSAz96Y1i
+ 9b0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc;
+ bh=SrmL7IQNsc6gTMJ/6MeOo9O8E7exVLgUx80xVRn4LKY=;
+ b=5UtoeZZ5+6r7/ie5nQ6S6n4ggvZkDtPlvoeX74nxm44oH15hjf1fi4HMLiWh9UVGhy
+ st7Be7Bas+LG/Ahbn7BMMUDxHXSZvr56JHodFBxpdzdVQAqhbyCE0ylhajWfq2HWe2y6
+ iMuD1LRxuwR64spCjcE55Fb2GfI8sLTRQU236HUsUlZ00uIPVNxQYylv3IaugnUe5oDY
+ NFQsIl+N6/r64ccJwo+z392FMknkujloGRTa6p213FzMdhEb8uLNEyopmqnGaUtVjjV6
+ J4LvptpVCsm5thwY2gpb4hfJBCKr7Z5AZmDklcIeXJMEhYFyNfOqAOhUdcB27dKN/ifU
+ JBXA==
+X-Gm-Message-State: ACgBeo34VziCdF1NF1rG9p9pXdLx4CTQcIkzFwlhQ3mEWdm++as4RA64
+ wrTRgATuaGPVbqmaDfzNtmloCeTHo3k=
+X-Google-Smtp-Source: AA6agR4soOcHTDgcjtCtpGpFT82lKgAWprP+Whm2gCA+uPKaLD9J116+Y+rJ9e69ZpGXWdzyfGWDWQ==
+X-Received: by 2002:a17:907:9606:b0:72f:826d:21b4 with SMTP id
+ gb6-20020a170907960600b0072f826d21b4mr15595511ejc.510.1661248743766; 
+ Tue, 23 Aug 2022 02:59:03 -0700 (PDT)
+Received: from [192.168.178.21] (p4fc20ad4.dip0.t-ipconnect.de.
+ [79.194.10.212]) by smtp.gmail.com with ESMTPSA id
+ 1-20020a170906210100b007307e7df83bsm7221948ejt.21.2022.08.23.02.59.02
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 23 Aug 2022 02:59:03 -0700 (PDT)
+Message-ID: <e24582c4-aa29-ac6b-d148-d5a554c066d0@gmail.com>
+Date: Tue, 23 Aug 2022 11:59:02 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0775d4b0-fff3-4b72-e273-08da84d7232c
-X-MS-TrafficTypeDiagnostic: PU1PR06MB2359:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GJ64khzAPA6RXuI8dRHON/duMTeF21gfypPuDssEFsrDxz064yx/ceeWs0wbWlK+zLFQ78uidVeUUHUFzwRp6vwDDdNTlnsKQVxVnCOTVCc3Mob30EoYg1Fs1Xq6WKKISRwdM/9yArfTOi6mxdX/cfp7zyIQBEccQppp0vh+zf7IsEaxghFCsG2oSw4ZYyfG0bucTTnGHXMdVWdAgUmQTvkEGsknN9fEIgnSRGMdTIgKEs8Q/cKQJxM7AiCDiO/IZUzzxrdc3qKSrADUklEQH+Agfg0S1TBrd8Ef5221aMHW3i0Gr3m0lstZV8kW7d90U8TbYTFOl6iM32E9/QKuYp7hOYgsO2qfqvcy2wRQy4UzBcRn9vXDN80qQ0S04pGMesfq51jeXq/FSL4Ny7wgVUCvwM+3dwQzMIlRNvc1C9mxh30XFVJQPEfQZs1IWanQiczgAGhiJbbQWykY+DiEpBKoIpgDylB72wQuvQyjWRtNEZdGP0t/1ebuCPpOxHMRRzy8abh2FWonXGzbs+wKOoOFvGVGnXEzAR9hG2S8XQiXcBkuno9wgzhieZngryrGGUTLYwxamhEmvCd7fdJzz4/MXPy8m+OMia4tOYfWStT5nEc7Q3/z8QFM/Emjkn/rvDewg2j+WdsB/U0JyhYI43GYABhYLhDxG0QK9+JckBC4Qm3HyXtj/6Caeb/QsZf5sZuPn8uYXRq+xbKjbQdyUf7OuIjcGSt0uZ23QWpTjguCYxHfk1tvJ8+27HednJ/Z7JxgsvUVxdeWO32QQpMnMw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PSAPR06MB4021.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230016)(4636009)(396003)(39860400002)(366004)(346002)(376002)(136003)(110136005)(36756003)(921005)(186003)(1076003)(2616005)(38100700002)(38350700002)(86362001)(83380400001)(6486002)(316002)(4326008)(8676002)(41300700001)(66556008)(66476007)(66946007)(478600001)(7416002)(6512007)(2906002)(8936002)(52116002)(6666004)(6506007)(26005)(5660300002)(107886003);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?FFbVe/x+mkverdp6NqgLu4WtC936a2fZRLbLPU/NVZTgkdkyqKS2vC8uhqNd?=
- =?us-ascii?Q?tV+CZs8Gh97Ncny/m4W9kIvlgU36ouPr8PR3o13UqixX84DQDYV2amGp+GCr?=
- =?us-ascii?Q?HzPgkS4xc0xs1dRt7M2OGnTXjptRqMqd9Wjx/ei/BLiy7i8OEfdtwhlulgDq?=
- =?us-ascii?Q?upCvzastvvhtPYXELK/d/6CvzwnUPD90wt6f3aUGfgQ5bAO4fUNcRskprROM?=
- =?us-ascii?Q?U1zToD1CtvwGuzgRgSOjBvBpe4j7LhwpuXGgg3KnylSvYRU0gw4CQCKS7stJ?=
- =?us-ascii?Q?6Keiy1RcfzxJHwkDJ3Ncn/7ni9S7vP56HMGaFSM4ML5Bwd8joneSmFxkpfnH?=
- =?us-ascii?Q?vK2I9i4n9Isld1zeOqA7NTdSG5sULhg8CnxS+jeI2bZOgQGfabIN+zAZcrsD?=
- =?us-ascii?Q?IRrTiPNGofClNaP6ICSCUdI25K2dY/6OGwoNzRNuSC9nFiRV5XN3fiwV9lv3?=
- =?us-ascii?Q?Z1u3eU9582Xjqtv22RoHbt2zLffxmGPMo9FEIfbq3aha0lW+38jt79N+Juj5?=
- =?us-ascii?Q?eKaVrqEP00valtOaKFpvQwbVDYg/B4EHO0UMWukLb2efVE9U7rbQOhRByUAG?=
- =?us-ascii?Q?ed+I20mtcabtARfXTXzZk9Y6g+TzlpOx96HMHZPr4cIIsWsBlnuR3kztAI6a?=
- =?us-ascii?Q?s5Xh92lncVYrs0XxzUdJ60z4Aedb28adTKdwx4m9nHOZ40L/em69FjmjvAy3?=
- =?us-ascii?Q?CSS6T8zXW+dMAOGI/T8o61mox8KHUSjhlBjv0rjOWzCbaV9Z6q2UBQzuiwkT?=
- =?us-ascii?Q?YGeg6L4nhnQfEPbLjt/RLSzB0NBSpV5ezjZ6jE2s9M5l9RcDofn3ZwNY3DsY?=
- =?us-ascii?Q?hl7jXMP0+PHgUOOtls5raEl6q1UJ4E1jHfs21jJhHB21BEW0hSxquqb5lfU8?=
- =?us-ascii?Q?xALVbn18ASn9l+0lGZhEozhxwoKyk5beUoRZu00y+z5WbgaWLUcbTIqhQYs2?=
- =?us-ascii?Q?Pv76mugdZ0/RR+beV9MLE2CWd3/NUFkMfAx67BxbsPkmmIiwKmkaBFEAM0de?=
- =?us-ascii?Q?j6Ez/LTF3fVgcQ4PqqHM+snznJ3nvg0rkOPVU29BSUdT1eE7JrE1dU2QjWOp?=
- =?us-ascii?Q?Ae43RQug2z0QN6DlMeOgd7POOjFRtkUYS6tfzifdsw+mUjYNGIpobIjsGtLK?=
- =?us-ascii?Q?3MLQDUtaNcDUNdgBU96Eoa8Q9ig6iL277IjdN2MYeChKiUuNlZrnyNFAHafY?=
- =?us-ascii?Q?VmZKHovDGRrEoo0W5AMa/WOJeI+Q2CSz4gBSqUO0kE+77wRhCh40bQUB/Se+?=
- =?us-ascii?Q?ziKywh2SZpLWcK0BtyK6wsHunBFia1+TJ1zeerztvFxHz50FuT5V3tPyjqqR?=
- =?us-ascii?Q?i4OHTshDb1iM6MlSo1EdjfP/wevgNcTo+ayMUDbGsVL0IPWPXRLogX1Oxfbm?=
- =?us-ascii?Q?pdji55iU/AdTm8PPW4eRIe2PZIS0yHtaWioJcu8jIZigZT2YJ1uk/muyEJCG?=
- =?us-ascii?Q?kWyBqpVidoJ46EbyJ+9+QPhh+WeASGOs8JKA69kDvHeBTx/ZPfsvUEkne1w6?=
- =?us-ascii?Q?k3tXf8lrIGQKGf8cSB2abPmL1aMa84cQsqQkimXg8PKbTIeSkH06Cx5ah3GF?=
- =?us-ascii?Q?sEhOOd/W62CqRCHrN3LqSOp+vmBrlcPhLvXCRt3/?=
-X-OriginatorOrg: vivo.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0775d4b0-fff3-4b72-e273-08da84d7232c
-X-MS-Exchange-CrossTenant-AuthSource: PSAPR06MB4021.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2022 07:14:37.1669 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yzf5GkOVhiXIVwRJFF29JRA1FL/DJaH7sB0W8GXn8rB7R0LTcYqdHf13TvVxD/Cl8zJXzzqtrFrUCuPIHKsCZQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU1PR06MB2359
-X-Mailman-Approved-At: Tue, 23 Aug 2022 07:29:12 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] drm/amdgpu: Fix page table setup on Arcturus
+Content-Language: en-US
+To: Mukul Joshi <mukul.joshi@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20220822155217.911506-1-mukul.joshi@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20220822155217.911506-1-mukul.joshi@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,43 +72,61 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Bernard Zhao <bernard@vivo.com>, zhaojunkui2008@126.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patch trf to fis cocci warning:
-drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c:
-2349:8-34: duplicated argument to && or ||
-drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c:
-3680:8-55: duplicated argument to && or ||
+Am 22.08.22 um 17:52 schrieb Mukul Joshi:
+> When translate_further is enabled, page table depth needs to
+> be updated. This was missing on Arcturus MMHUB init. This was
+> causing address translations to fail for SDMA user-mode queues.
+>
+> Fixes: 2abf2573b1c69 ("drm/amdgpu: Enable translate_further to extend UTCL2 reach"
+> Signed-off-by: Mukul Joshi <mukul.joshi@amd.com>
 
-Signed-off-by: Bernard Zhao <bernard@vivo.com>
----
- .../gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c    | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+Acked-by: Christian König <christian.koenig@amd.com>
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
-index cb2025771646..f99c1696a1f6 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
-@@ -2346,8 +2346,7 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
- 
- 			if (mode_lib->vba.DSCEnable[k] && mode_lib->vba.ForcedOutputLinkBPP[k] != 0)
- 				mode_lib->vba.DSCOnlyIfNecessaryWithBPP = true;
--			if ((mode_lib->vba.DSCEnable[k] || mode_lib->vba.DSCEnable[k])
--					&& mode_lib->vba.OutputFormat[k] == dm_n422
-+			if (mode_lib->vba.DSCEnable[k] && mode_lib->vba.OutputFormat[k] == dm_n422
- 					&& !mode_lib->vba.DSC422NativeSupport)
- 				mode_lib->vba.DSC422NativeNotSupported = true;
- 
-@@ -3678,7 +3677,6 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
- 			if (mode_lib->vba.SourcePixelFormat[k] != dm_444_64
- 					&& mode_lib->vba.SourcePixelFormat[k] != dm_444_32
- 					&& mode_lib->vba.SourcePixelFormat[k] != dm_444_16
--					&& mode_lib->vba.SourcePixelFormat[k] != dm_444_16
- 					&& mode_lib->vba.SourcePixelFormat[k] != dm_444_8
- 					&& mode_lib->vba.SourcePixelFormat[k] != dm_rgbe) {
- 				if (mode_lib->vba.ViewportWidthChroma[k] > mode_lib->vba.SurfaceWidthC[k]
--- 
-2.33.1
+> ---
+>   drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c | 12 ++++++++++--
+>   1 file changed, 10 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
+> index 6e0145b2b408..445cb06b9d26 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
+> @@ -295,9 +295,17 @@ static void mmhub_v9_4_disable_identity_aperture(struct amdgpu_device *adev,
+>   static void mmhub_v9_4_setup_vmid_config(struct amdgpu_device *adev, int hubid)
+>   {
+>   	struct amdgpu_vmhub *hub = &adev->vmhub[AMDGPU_MMHUB_0];
+> +	unsigned int num_level, block_size;
+>   	uint32_t tmp;
+>   	int i;
+>   
+> +	num_level = adev->vm_manager.num_level;
+> +	block_size = adev->vm_manager.block_size;
+> +	if (adev->gmc.translate_further)
+> +		num_level -= 1;
+> +	else
+> +		block_size -= 9;
+> +
+>   	for (i = 0; i <= 14; i++) {
+>   		tmp = RREG32_SOC15_OFFSET(MMHUB, 0, mmVML2VC0_VM_CONTEXT1_CNTL,
+>   				hubid * MMHUB_INSTANCE_REGISTER_OFFSET + i);
+> @@ -305,7 +313,7 @@ static void mmhub_v9_4_setup_vmid_config(struct amdgpu_device *adev, int hubid)
+>   				    ENABLE_CONTEXT, 1);
+>   		tmp = REG_SET_FIELD(tmp, VML2VC0_VM_CONTEXT1_CNTL,
+>   				    PAGE_TABLE_DEPTH,
+> -				    adev->vm_manager.num_level);
+> +				    num_level);
+>   		tmp = REG_SET_FIELD(tmp, VML2VC0_VM_CONTEXT1_CNTL,
+>   				    RANGE_PROTECTION_FAULT_ENABLE_DEFAULT, 1);
+>   		tmp = REG_SET_FIELD(tmp, VML2VC0_VM_CONTEXT1_CNTL,
+> @@ -323,7 +331,7 @@ static void mmhub_v9_4_setup_vmid_config(struct amdgpu_device *adev, int hubid)
+>   				    EXECUTE_PROTECTION_FAULT_ENABLE_DEFAULT, 1);
+>   		tmp = REG_SET_FIELD(tmp, VML2VC0_VM_CONTEXT1_CNTL,
+>   				    PAGE_TABLE_BLOCK_SIZE,
+> -				    adev->vm_manager.block_size - 9);
+> +				    block_size);
+>   		/* Send no-retry XNACK on fault to suppress VM fault storm. */
+>   		tmp = REG_SET_FIELD(tmp, VML2VC0_VM_CONTEXT1_CNTL,
+>   				    RETRY_PERMISSION_OR_INVALID_PAGE_FAULT,
 
