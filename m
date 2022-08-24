@@ -1,60 +1,73 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B8D45A09F5
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Aug 2022 09:20:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD46F5A09ED
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Aug 2022 09:20:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33036D8FAF;
-	Thu, 25 Aug 2022 07:19:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45CF8D8FAC;
+	Thu, 25 Aug 2022 07:19:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com
- [IPv6:2001:4860:4864:20::29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A75B610E71F
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Aug 2022 14:45:53 +0000 (UTC)
-Received: by mail-oa1-x29.google.com with SMTP id
- 586e51a60fabf-11d08d7ece2so14281623fac.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Aug 2022 07:45:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc;
- bh=xJW2jI96Zwcrvy+eTtY4zwb6R7KH49EInbBsysTbn04=;
- b=VhZ1r9dZw+q80O6nYjGPVr3Ni0ZZ1y1ZdEbIemDT/Di6L0qxY/Ro2D2l+08GZvkmkm
- ukKNV0tJ6aDz+zMJ1XKSVlUh6dnx//7R+ufQT0kH5YQ7laUchITugBQMDWGJ1NAIZ3Vd
- ghRuDpnMAINyfbwg/aLX+/9jH2RlbDkUk7UuiG9MqBHkx6/VkB5uaIylZs4Jp7n55sau
- wo3eS/AbWetL4ts1TRUXKjAeGnK6i3iV0OHPFplupPkUxwYXpbB+sUYVSyIQH9g2rlrC
- 7grIxYeK4TwjZ7x6R7ABxXZheJ+50ruDEKqTf3iHjm2ho15RdQBmamCGbZAv8RzJJM5V
- slqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc;
- bh=xJW2jI96Zwcrvy+eTtY4zwb6R7KH49EInbBsysTbn04=;
- b=z2lA7rGjNOWj38IQ+VNAT26NlkNLFheoJ/igq7vdEe+BjtfGd80NZlXt+tZOYSLrkN
- Dwk5g7o8FJhQqHc/7oplnVEGFNwys5TqP9nM8jwIOPw+k1dW+ZJXmAgHHvLbeMHY3Lrq
- tDT2nYA72Jd1MHXYTOTEEre0oVucp13YA0pp6tqVol/1yqH3k5Rqf5y03eHtLaL9r3Bg
- m8veYeDTsP/m51o0ccSZc2HyjGx8llZwpC2m/UFfWLzTI3Ml2Xh8OJ5ZdmvHE7XGe8Ez
- rel0kLXqwZBNLDcooNH98o0mkSjUjBGCFiVGFvOXVmy4mK91XK+Gk2C3J8xs8wxV+yTM
- p4SA==
-X-Gm-Message-State: ACgBeo339rtyfMYLW529JM8w9eI62GTx2FKWJKnuc89hCBkUOBpcpxgd
- 179ywC48Q9QyxuRghYaGIC1rq6Oo2nZfFnOB/T4=
-X-Google-Smtp-Source: AA6agR66fkmkvlbzDo7a46+yk6fXL1KDXUmUWrF+QVrtdW+IrekthVSmJuG9nEr3Bc6wthKrZ+24RcujERHX4470XWs=
-X-Received: by 2002:a05:6870:5a4:b0:11d:37b3:ff54 with SMTP id
- m36-20020a05687005a400b0011d37b3ff54mr3703850oap.172.1661352352883; Wed, 24
- Aug 2022 07:45:52 -0700 (PDT)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95A94900BE;
+ Wed, 24 Aug 2022 15:03:48 +0000 (UTC)
+Received: from [192.168.2.145] (109-252-119-13.nat.spd-mgts.ru
+ [109.252.119.13])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: dmitry.osipenko)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 7B8806601E8F;
+ Wed, 24 Aug 2022 16:03:44 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1661353426;
+ bh=ss7Re+WGJ6gPDf+07fuRLgmV2oF07ngUyzhkLngogMo=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=oAR0YvOOYSafNUGMl1oNd0JDpIq3FDAHC3HSFM85TQLAtdUKWV9S7/KMulX1yzdJU
+ ynpYz4YtIeU371JqvKb8/c29/d8CPVp3PGsQrb8kJYYp7JpoSNHveANuXdDGoXqRHL
+ p9edkNfznNFe0vL1B7KsPf3EQ1iqD0q15Jh9BVqB7qaGinbAx23HtsmgAfze7Sezsa
+ 5eCHp4KjFs2i46CRc/qn7EZjWd/w/c9qg+8YOKS0kgwlBEA5uFkOiS4rzy8gfpu2eT
+ /NbO6kk31WXQ6hWLjRcZaGob2toZeqNH+aU5AQGrgKbdtAC0glWaondyOLmCNSr5lf
+ VJAAXcJe1ilqw==
+Message-ID: <4af793fd-eccc-ad70-65c3-de78dced71f0@collabora.com>
+Date: Wed, 24 Aug 2022 18:03:42 +0300
 MIME-Version: 1.0
-References: <20220819190725.GA2499154@bhelgaas>
- <6aad506b-5324-649e-9700-7ceaaf7ef94b@amd.com>
- <CAARYdbhVwD1m1rAzbR=K60O=_A3wFsb1ya=zRV_bmF8s3Kb02A@mail.gmail.com>
- <30671d88-85a1-0cdf-03db-3a77d6ef96e9@amd.com>
-In-Reply-To: <30671d88-85a1-0cdf-03db-3a77d6ef96e9@amd.com>
-From: Tom Seewald <tseewald@gmail.com>
-Date: Wed, 24 Aug 2022 09:45:41 -0500
-Message-ID: <CAARYdbhdR0v=V82WnQOGBNrcth8z6F_61SxG9OTzgNpgg3xx7A@mail.gmail.com>
-Subject: Re: [Bug 216373] New: Uncorrected errors reported for AMD GPU
-To: "Lazar, Lijo" <lijo.lazar@amd.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v3 6/9] dma-buf: Move dma-buf attachment to dynamic
+ locking specification
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
+ <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Daniel Stone <daniel@fooishbar.org>,
+ Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, Thierry Reding
+ <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>,
+ Qiang Yu <yuq825@gmail.com>
+References: <20220824102248.91964-1-dmitry.osipenko@collabora.com>
+ <20220824102248.91964-7-dmitry.osipenko@collabora.com>
+ <17181951-1b40-cd39-48df-58b43cad117d@amd.com>
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <17181951-1b40-cd39-48df-58b43cad117d@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 25 Aug 2022 07:18:47 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,23 +80,44 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: regressions@lists.linux.dev, David Airlie <airlied@linux.ie>,
- linux-pci@vger.kernel.org, Xinhui Pan <Xinhui.Pan@amd.com>,
- amd-gfx@lists.freedesktop.org, Kai-Heng Feng <kai.heng.feng@canonical.com>,
- Bjorn Helgaas <helgaas@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>, Stefan Roese <sr@denx.de>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: lima@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ virtualization@lists.linux-foundation.org, linaro-mm-sig@lists.linaro.org,
+ dri-devel@lists.freedesktop.org, Dmitry Osipenko <digetx@gmail.com>,
+ kernel@collabora.com, linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 24, 2022 at 12:11 AM Lazar, Lijo <lijo.lazar@amd.com> wrote:
-> Unfortunately, I don't have any NV platforms to test. Attached is an
-> 'untested-patch' based on your trace logs.
->
-> Thanks,
-> Lijo
+On 8/24/22 17:08, Christian König wrote:
+> Am 24.08.22 um 12:22 schrieb Dmitry Osipenko:
+>> Move dma-buf attachment API functions to the dynamic locking
+>> specification.
+>> The strict locking convention prevents deadlock situations for dma-buf
+>> importers and exporters.
+>>
+>> Previously, the "unlocked" versions of the attachment API functions
+>> weren't taking the reservation lock and this patch makes them to take
+>> the lock.
+> 
+> Didn't we concluded that we need to keep the attach and detach callbacks
+> without the lock and only move the map/unmap callbacks over?
+> 
+> Otherwise it won't be possible for drivers to lock multiple buffers if
+> they have to shuffle things around for a specific attachment.
 
-Thank you for the patch. It applied cleanly to v6.0-rc2 and after
-booting that kernel I no longer see any messages about PCI errors. I
-have uploaded a dmesg log to the bug report:
-https://bugzilla.kernel.org/attachment.cgi?id=301642
+We did conclude that. The attach/detach dma-buf ops are unlocked, but
+the map_dma_buf/unmap_dma_buf must be invoked under lock and
+dma_buf_dynamic_attach_unlocked() maps dma-buf if either importer or
+exporter can't handle the dynamic mapping [1].
+
+[1]
+https://elixir.bootlin.com/linux/v6.0-rc2/source/drivers/dma-buf/dma-buf.c#L869
+
+Hence I re-arranged the dma_resv_lock() in
+dma_buf_dynamic_attach_unlocked() to move both pinning and mapping under
+the held lock.
+
+-- 
+Best regards,
+Dmitry
