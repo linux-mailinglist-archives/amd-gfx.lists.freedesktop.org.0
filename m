@@ -2,94 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DADF59F3B1
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Aug 2022 08:41:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED5CB59F542
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Aug 2022 10:30:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A826B10E64E;
-	Wed, 24 Aug 2022 06:41:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B74FE10F379;
+	Wed, 24 Aug 2022 08:30:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam02on2050.outbound.protection.outlook.com [40.107.95.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5846610F291
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Aug 2022 06:40:59 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Pm7nxkRiZTCuuuid2X/IQ8P8i0U7d7xTZeer82o8M8jY1B2llMZWxcPNO4lotjMRZohXgL2Rm7dFIqlwhQ5xXD17uMsylnidIscMGG17a5Tls6LnfOXl3/zaiNDg14OpTFEGZadPGRfFNMzhKIY4DdvyqJ+1q3ypp12+JjsjijoJWcAQS1VpEtuIMC9mGE3/PcVXM1TGG37qUZHSdehCFjWNHSkFxhmwUJqKremsSpsfik3fIKIvUw+3GePrd9ki9h9i33+mJrGDZ2Xl/lrZYTpx3rQ0r9KOqk/4ZhfyOqaaH3pYWLivexrxMMMjMz6DW+OUuWeGxERpCYpCUuynRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=almNryvPtsmieT6A6nf+4pFxjIp/dfPN+zz6hDdQ3o8=;
- b=QYvsAIHkFwXZpO2VVp1Gg8pmhSw9F0OXTjbLTauRYcy6u0K/I1GGxrolQY5tJIHHQvuySKwkGs8kplxrrIL68msxJipupLutnulVMsGxhYDhgtVmdEiMUrTkGv9oXAmyA+moCYSG3XkV/oDKZMd8h2bbgciV/1m+wYHfxuj9pnvlEJKnNIKPRpo8B61eIDT+J4INR3eeC/XMzzZ5oMpdPK5QBnhlb7qCG+k0JRlaUCRxCp1UmAtNFheT8Cb3dqVq6uzIXaUSxA5908fEbIBbU3/wa/WvBxSPje0LzcyHHCLPdJgakV7tUAwV+CG4VD4dl9Bh2TtTbdCNP5A94TK3Uw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=almNryvPtsmieT6A6nf+4pFxjIp/dfPN+zz6hDdQ3o8=;
- b=KZQ5/PEAQx+u8fGmAnBGikfVsvZaIAoMuhiLV3e024l4uun3o9+cZ0q9+os9BbVDQD0NRS/j55sBfNWk0P/7IaaVn4Agpe1frU6jEMWFuneT7TOKND7nLKHQtfAas4EWC/Cwh4qIVLOvT+FmLL+rmU2AE/lddYs7h5DMCdX7Xh4=
-Received: from SJ0PR13CA0147.namprd13.prod.outlook.com (2603:10b6:a03:2c6::32)
- by BYAPR12MB3320.namprd12.prod.outlook.com (2603:10b6:a03:d7::30)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.15; Wed, 24 Aug
- 2022 06:40:54 +0000
-Received: from CO1PEPF00001A5D.namprd05.prod.outlook.com
- (2603:10b6:a03:2c6:cafe::68) by SJ0PR13CA0147.outlook.office365.com
- (2603:10b6:a03:2c6::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.14 via Frontend
- Transport; Wed, 24 Aug 2022 06:40:53 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1PEPF00001A5D.mail.protection.outlook.com (10.167.241.4) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5566.13 via Frontend Transport; Wed, 24 Aug 2022 06:40:53 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 24 Aug
- 2022 01:40:52 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 24 Aug
- 2022 01:40:51 -0500
-Received: from prike-code-pc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Wed, 24 Aug 2022 01:40:50 -0500
-From: Prike Liang <Prike.Liang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdkfd: Fix isa version for the GC 10.3.7
-Date: Wed, 24 Aug 2022 14:40:48 +0800
-Message-ID: <20220824064048.2581639-1-Prike.Liang@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B8D310EE52
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Aug 2022 08:29:43 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4MCK5Y6q20z9sQq;
+ Wed, 24 Aug 2022 10:29:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1661329777;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=26NeHTGm7e9EEAKJl9DyR/UzxI4df0KxXaJOPa3e9g4=;
+ b=vjH0wldRmNoh2CTi/zE6l1+1///DzwLjL2dq5fVO8YQqra467yVMwbF+QQQm+evvrwuDuQ
+ 331bMaCmWjPmXT5o3PcLNuO2zWDUoFPSlulH/IgZKB9cczxhTF0Nu2E98Hjd7gHeZa2OA7
+ rbc8jTD1VAirHd/U2ZEyQMRN0G+ClJtSRyX6i2KiH3No9h4AnnnahsfcJxmo0Kvk56P1sP
+ Qd5d2YBTI9YU+0wa0aq5SCXd4vpCkXD8eVu3wiik/oRlXAfk76TRE2rIqiovbbPqlX/aJN
+ u9VF1o+2xhjKruvohSveA4fOMAqBL1hHfQL1k9MAG+xMK9yCxBJ3i+jEZOOjbg==
+Message-ID: <02f71087-6cdc-cd9a-940f-2e7084a41597@mailbox.org>
+Date: Wed, 24 Aug 2022 10:29:31 +0200
 MIME-Version: 1.0
+Subject: Re: [PATCH] drm/sced: Add FIFO policy for scheduler rq
+Content-Language: en-CA
+To: Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ dri-devel@lists.freedesktop.org
+References: <20220822200917.440681-1-andrey.grodzovsky@amd.com>
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel.daenzer@mailbox.org>
+In-Reply-To: <20220822200917.440681-1-andrey.grodzovsky@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2ba31675-7d43-4210-1ace-08da859b977d
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3320:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +8ht7WOI2dIe+ys1cuVsIF1tojQLCxGF+gm8gykrbC1L8c3b9UF2zW47ila8hkhvtbcf888jpjbxA+TghX1+ZZ8KOrZNR6VVX2yNU8S2JQqfvFFrjBbZQuUDT28VM4CUSbxRqyhq24xgFpMD3Yy1lDBUa0pT5c34DlzeYtn+Nv8ApM3FJrMcW9/1VSNZGqfFlPbHBufr2KSm4J5a/ZojcCwK2YokVn4fMp9lXvhsOohiTGNB8d31q+/5L/mKbQDhZ2AoVcWIkctNSpzBZ1Znw5SxoRiiHVBTST2Uqz02UvpD8YCw7bwaG4Vby9Fm+K/UTMX8BaJ7L8HuQMyAufYX9dYlxeVyJktbZmxTFUIOKs0YcFr33RRTdZUJ5J9dg8kzrgkxJIwz6zFUTHG2Rh7hb9nMVEmefA6pIFbkS+dFCz17bGMd7vet19qZhyeOQ1HNZtjs9Ik4S+FTRkepQY9KoDjPhgm2rY4wlbSZZITKn6OIzmwR45LE5W8gcAxr2czZLvo6kfTd5R8qg51zIxIlmCutrOr0MgjXRGKVxHiPo1ry6sF5Kit8bW+sLN3imHfWwS5Czg6dxpRUx09RQNKsy82um9rcHzEp1HA5Vk+9L1P3MbYaRnXrtmCSpX1Sz1+CNt+Za33aeM2KBzYCgM2ssSxSlqGzZ6YMldn2+dNV4yUciY1Z6IuTQw2dcCIoY1Df0g3GVnb3QmHDTCgf1VtxqCrfi0c5mJpUzyd845J+JEmyfYWVWys7VyiFc3t2xNqZhG4QJyT61PMd9IspT7msGxMb9yISvvrNvnz1EM1OpayGX/igYRyUptT4dJoFMLQq
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(39860400002)(346002)(396003)(376002)(136003)(40470700004)(46966006)(36840700001)(41300700001)(54906003)(6916009)(81166007)(336012)(40460700003)(186003)(82740400003)(83380400001)(26005)(316002)(36756003)(7696005)(478600001)(86362001)(40480700001)(82310400005)(8676002)(5660300002)(4326008)(70206006)(70586007)(2616005)(1076003)(356005)(2906002)(36860700001)(426003)(47076005)(4744005)(8936002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2022 06:40:53.1361 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2ba31675-7d43-4210-1ace-08da859b977d
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF00001A5D.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3320
+X-MBO-RS-ID: 91bf8bba033e3884e97
+X-MBO-RS-META: ztc3j448k49exjn1z6a11kmakk3sthmx
+X-Rspamd-Queue-Id: 4MCK5Y6q20z9sQq
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,32 +57,38 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, Yifan1.Zhang@amd.com,
- Prike Liang <Prike.Liang@amd.com>, ray.huang@amd.com
+Cc: ckoenig.leichtzumerken@gmail.com, Li Yunxiang <Yunxiang.Li@amd.com>,
+ luben.tuikov@amd.com, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Correct the isa version for handling KFD test.
+On 2022-08-22 22:09, Andrey Grodzovsky wrote:
+> Poblem: Given many entities competing for same rq on
+> same scheduler an uncceptabliy long wait time for some
+> jobs waiting stuck in rq before being picked up are
+> observed (seen using  GPUVis).
+> The issue is due to Round Robin policy used by scheduler
+> to pick up the next entity for execution. Under stress
+> of many entities and long job queus within entity some
+> jobs could be stack for very long time in it's entity's
+> queue before being popped from the queue and executed
+> while for other entites with samller job queues a job
+> might execute ealier even though that job arrived later
+> then the job in the long queue.
+> 
+> Fix:
+> Add FIFO selection policy to entites in RQ, chose next enitity
+> on rq in such order that if job on one entity arrived
+> ealrier then job on another entity the first job will start
+> executing ealier regardless of the length of the entity's job
+> queue.
 
-Fixes: 7c4f4f197e0c ("drm/amdkfd: Add GC 10.3.6 and 10.3.7 KFD definitions")
-Signed-off-by: Prike Liang <Prike.Liang@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_device.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Instead of ordering based on when jobs are added, might it be possible to order them based on when they become ready to run?
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-index fdad1415f8bd..5ebbeac61379 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-@@ -388,7 +388,7 @@ struct kfd_dev *kgd2kfd_probe(struct amdgpu_device *adev, bool vf)
- 				f2g = &gfx_v10_3_kfd2kgd;
- 			break;
- 		case IP_VERSION(10, 3, 7):
--			gfx_target_version = 100307;
-+			gfx_target_version = 100306;
- 			if (!vf)
- 				f2g = &gfx_v10_3_kfd2kgd;
- 			break;
+Otherwise it seems possible to e.g. submit a large number of inter-dependent jobs at once, and they would all run before any jobs from another queue get a chance.
+
+
 -- 
-2.25.1
+Earthling Michel Dänzer            |                  https://redhat.com
+Libre software enthusiast          |         Mesa and Xwayland developer
 
