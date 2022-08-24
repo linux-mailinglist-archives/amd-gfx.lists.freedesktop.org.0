@@ -1,34 +1,34 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA78C59FDE7
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Aug 2022 17:09:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7342A59FDEA
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Aug 2022 17:09:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8D51112E41;
-	Wed, 24 Aug 2022 15:09:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7DF014B1E8;
+	Wed, 24 Aug 2022 15:09:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-4323.proton.ch (mail-4323.proton.ch [185.70.43.23])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 284F210FF86
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Aug 2022 15:09:03 +0000 (UTC)
-Date: Wed, 24 Aug 2022 15:08:52 +0000
+Received: from mail-4018.proton.ch (mail-4018.proton.ch [185.70.40.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FB17112605;
+ Wed, 24 Aug 2022 15:09:07 +0000 (UTC)
+Date: Wed, 24 Aug 2022 15:08:55 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail3; t=1661353740; x=1661612940;
- bh=n1A2ggxu3pIYdjxTxMkSPhFHZAStB51cg+/tPzAJRSs=;
+ s=protonmail3; t=1661353745; x=1661612945;
+ bh=UjQBv1SdopMPkk5/F0ApAU/Bg+2DMjxdHQzVsIdwxaU=;
  h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
  References:Feedback-ID:From:To:Cc:Date:Subject:Reply-To:
  Feedback-ID:Message-ID;
- b=UtyS4dzxz0bwlsZ2cDy7jrD1+uI88WPAJ2JPFj+B9xNiNULTyZumtpJde47eL4gQ2
- egIjQGmQSQsaeixIIU2/Qc26bOp7Ut7dV4WRYye+as1e1zyw7ui36wJuMk6Y1uSjjW
- FI8iOQsEoVtrHNloqakg9Vk5jo7Cj2yrh7KLFZg5O/X/+51bGL2CzaMr0BF0bYHMiq
- +5UrYApW1tf6zrIevt4+iwJmg/l6RIWHR6zmtU7z5oXzmindeZVoE+fN4MlHo6rG2K
- i7ImrhvAHEG8opd2Q+k3nYwSP8+yMvYXE/V9Ir16pZU8bwuKrTllF5LVKMxyuM/NAm
- KA+ffxurZ5k4w==
+ b=XblFJYX6/Ifn3L1ORqZTXJotlBFiVhP3SbqDqsCVtt6drL3m0wIPlW4OqsVdqpO+Z
+ suHYwbfmv+aTl7iLVBPYRDBm4e/S9qbMMr9b6GPaHxae+xAaf0pGMP5ru3u1K2lC8B
+ 1/1uH9mQv1zbikfBmYHPMTZLPo8cREPtuHoYkOauAyp3Fem9v/jOvOoVziJx6R9mXb
+ k4gpVoPb541QGDoqDMspXHuBTgG4xyMPyzdorJxmJEM8Ad6S/ajSayMJY3U8/Hnpi7
+ rVhuVl95P6tgYYZcBLYygFL+u/yxzr7VUSxB24+y6qfVApZSKrYg829xKdQaKBShQ5
+ fi27SRV1JDlEA==
 To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
 From: Simon Ser <contact@emersion.fr>
-Subject: [PATCH 2/4] drm: allow DRM_MODE_PAGE_FLIP_ASYNC for atomic commits
-Message-ID: <20220824150834.427572-3-contact@emersion.fr>
+Subject: [PATCH 3/4] drm: introduce DRM_CAP_ATOMIC_ASYNC_PAGE_FLIP
+Message-ID: <20220824150834.427572-4-contact@emersion.fr>
 In-Reply-To: <20220824150834.427572-1-contact@emersion.fr>
 References: <20220824150834.427572-1-contact@emersion.fr>
 Feedback-ID: 1358184:user:proton
@@ -52,9 +52,11 @@ Cc: daniel.vetter@ffwll.ch, mwen@igalia.com, alexander.deucher@amd.com,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-If the driver supports it, allow user-space to supply the
-DRM_MODE_PAGE_FLIP_ASYNC flag to request an async page-flip.
-Set drm_crtc_state.async_flip accordingly.
+This new kernel capability indicates whether async page-flips are
+supported via the atomic uAPI. DRM clients can use it to check
+for support before feeding DRM_MODE_PAGE_FLIP_ASYNC to the kernel.
+
+Make it clear that DRM_CAP_ASYNC_PAGE_FLIP is for legacy uAPI only.
 
 Signed-off-by: Simon Ser <contact@emersion.fr>
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
@@ -64,66 +66,55 @@ Cc: Alex Deucher <alexander.deucher@amd.com>
 Cc: Harry Wentland <hwentlan@amd.com>
 Cc: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 ---
- drivers/gpu/drm/drm_atomic_uapi.c | 28 +++++++++++++++++++++++++---
- 1 file changed, 25 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/drm_ioctl.c |  5 +++++
+ include/uapi/drm/drm.h      | 10 +++++++++-
+ 2 files changed, 14 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic=
-_uapi.c
-index 79730fa1dd8e..ee24ed7e2edb 100644
---- a/drivers/gpu/drm/drm_atomic_uapi.c
-+++ b/drivers/gpu/drm/drm_atomic_uapi.c
-@@ -1278,6 +1278,18 @@ static void complete_signaling(struct drm_device *de=
-v,
- =09kfree(fence_state);
- }
-=20
-+static void
-+set_async_flip(struct drm_atomic_state *state)
-+{
-+=09struct drm_crtc *crtc;
-+=09struct drm_crtc_state *crtc_state;
-+=09int i;
-+
-+=09for_each_new_crtc_in_state(state, crtc, crtc_state, i) {
-+=09=09crtc_state->async_flip =3D true;
-+=09}
-+}
-+
- int drm_mode_atomic_ioctl(struct drm_device *dev,
- =09=09=09  void *data, struct drm_file *file_priv)
- {
-@@ -1318,9 +1330,16 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
+diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
+index ca2a6e6101dc..5b1591e2b46c 100644
+--- a/drivers/gpu/drm/drm_ioctl.c
++++ b/drivers/gpu/drm/drm_ioctl.c
+@@ -302,6 +302,11 @@ static int drm_getcap(struct drm_device *dev, void *da=
+ta, struct drm_file *file_
+ =09case DRM_CAP_CRTC_IN_VBLANK_EVENT:
+ =09=09req->value =3D 1;
+ =09=09break;
++=09case DRM_CAP_ATOMIC_ASYNC_PAGE_FLIP:
++=09=09req->value =3D drm_core_check_feature(dev, DRIVER_ATOMIC) &&
++=09=09=09     dev->mode_config.async_page_flip &&
++=09=09=09     !dev->mode_config.atomic_async_page_flip_not_supported;
++=09=09break;
+ =09default:
+ =09=09return -EINVAL;
  =09}
+diff --git a/include/uapi/drm/drm.h b/include/uapi/drm/drm.h
+index 642808520d92..b1962628ecda 100644
+--- a/include/uapi/drm/drm.h
++++ b/include/uapi/drm/drm.h
+@@ -706,7 +706,8 @@ struct drm_gem_open {
+ /**
+  * DRM_CAP_ASYNC_PAGE_FLIP
+  *
+- * If set to 1, the driver supports &DRM_MODE_PAGE_FLIP_ASYNC.
++ * If set to 1, the driver supports &DRM_MODE_PAGE_FLIP_ASYNC for legacy
++ * page-flips.
+  */
+ #define DRM_CAP_ASYNC_PAGE_FLIP=09=090x7
+ /**
+@@ -767,6 +768,13 @@ struct drm_gem_open {
+  * Documentation/gpu/drm-mm.rst, section "DRM Sync Objects".
+  */
+ #define DRM_CAP_SYNCOBJ_TIMELINE=090x14
++/**
++ * DRM_CAP_ATOMIC_ASYNC_PAGE_FLIP
++ *
++ * If set to 1, the driver supports &DRM_MODE_PAGE_FLIP_ASYNC for atomic
++ * commits.
++ */
++#define DRM_CAP_ATOMIC_ASYNC_PAGE_FLIP=090x15
 =20
- =09if (arg->flags & DRM_MODE_PAGE_FLIP_ASYNC) {
--=09=09drm_dbg_atomic(dev,
--=09=09=09       "commit failed: invalid flag DRM_MODE_PAGE_FLIP_ASYNC\n");
--=09=09return -EINVAL;
-+=09=09if (!dev->mode_config.async_page_flip) {
-+=09=09=09drm_dbg_atomic(dev,
-+=09=09=09=09       "commit failed: DRM_MODE_PAGE_FLIP_ASYNC not supported\=
-n");
-+=09=09=09return -EINVAL;
-+=09=09}
-+=09=09if (dev->mode_config.atomic_async_page_flip_not_supported) {
-+=09=09=09drm_dbg_atomic(dev,
-+=09=09=09=09       "commit failed: DRM_MODE_PAGE_FLIP_ASYNC not supported =
-with atomic\n");
-+=09=09=09return -EINVAL;
-+=09=09}
- =09}
-=20
- =09/* can't test and expect an event at the same time. */
-@@ -1418,6 +1437,9 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
- =09if (ret)
- =09=09goto out;
-=20
-+=09if (arg->flags & DRM_MODE_PAGE_FLIP_ASYNC)
-+=09=09set_async_flip(state);
-+
- =09if (arg->flags & DRM_MODE_ATOMIC_TEST_ONLY) {
- =09=09ret =3D drm_atomic_check_only(state);
- =09} else if (arg->flags & DRM_MODE_ATOMIC_NONBLOCK) {
+ /* DRM_IOCTL_GET_CAP ioctl argument type */
+ struct drm_get_cap {
 --=20
 2.37.2
 
