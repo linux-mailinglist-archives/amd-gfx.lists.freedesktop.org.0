@@ -2,59 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DF3B5A1248
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Aug 2022 15:32:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 739015A1246
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Aug 2022 15:32:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25E7810E09F;
-	Thu, 25 Aug 2022 13:32:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A13310E04A;
+	Thu, 25 Aug 2022 13:32:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com
- [IPv6:2a00:1450:4864:20::530])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BCC510E042
- for <amd-gfx@lists.freedesktop.org>; Thu, 25 Aug 2022 13:31:53 +0000 (UTC)
-Received: by mail-ed1-x530.google.com with SMTP id c93so1419587edf.5
- for <amd-gfx@lists.freedesktop.org>; Thu, 25 Aug 2022 06:31:53 -0700 (PDT)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com
+ [IPv6:2a00:1450:4864:20::529])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EA4A10E042
+ for <amd-gfx@lists.freedesktop.org>; Thu, 25 Aug 2022 13:31:54 +0000 (UTC)
+Received: by mail-ed1-x529.google.com with SMTP id m1so1231114edb.7
+ for <amd-gfx@lists.freedesktop.org>; Thu, 25 Aug 2022 06:31:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc;
- bh=AdvFut0rh/uAXAtDtXUY+tZD5YgCj1fQLBVIkWg1+DY=;
- b=gwb/YyvpWb47Jf0bdJK7iFL/JQw3LmX2BLFlvxfcufCYfOyn5Z5qImMRLx0DSv7R8J
- xoLqkQBDXnx4qddeZA1T2/bK5+JOHQS2SHf6ELNShacAHPa2Z5TDIyhG6AxsTES80Dya
- R/iA2tNPTyLkmc7bTWTpeMdb+KolKuN8lOqMXNbbOLo0ynzM0+wQwivKFNgw6V13Hh9G
- n8gbDXIuYUdy+IQfyQWbsUMffSNmmdgWABBjhXH08205NzmC3PAGRfSkxBzmSyLH72xF
- mhy8MmK5xcfM6ReaZ8OWrLA2a/MjeVVhVaEEJMfG+Msqwd/tYSCu7WtMoPgRNU48BHcV
- juEg==
+ bh=JCzj7z2qs42LBVomk0tkpnmSWIhcg/MCwg5UfNew5Wc=;
+ b=f7frtrT8dzSXFUWuJ6Y2BW+z4HR8ltQ+NcBuvho1rsK1Owq73rP/ghObKPnBGnIAFE
+ 84OXQeSln1Y31MB+ThTeUbglw9WE398TvN62m9nZ8rygqLqEnmt8MXerflhKiFzdzGWF
+ BJMrLTvABo6sI47hmCqeuTqZZNzJunyTfqnzMAQtaklPsg/JxMmOSdflJi27pQDN4OHi
+ /NqS7h7vU3tSaI7bixNhQW8rDBIAAmaX/zFaeE9BWYK6rIqjgOWmQ9skQVhOYkS+9lfX
+ FGMm5UbFGzLIBxIDYAl1FT+Jd431m/tLoVCFZjPFZU+9q3H40bkCk+NI7AzMBsmW8G3t
+ R6Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
- bh=AdvFut0rh/uAXAtDtXUY+tZD5YgCj1fQLBVIkWg1+DY=;
- b=1uaArAjqjMW5KkL1fm4nyR8sT/nZgM63MIjp4vKkOoFdAdX8lBw4YkQAyAbOuR3byC
- yk+9rnNdxexZsqLSNczl/QBqJzGzgB3MMDlK3cwM+JBiazXxQvq57UoQquP1wXdWLyB0
- aak9kZVNlwDgrkHBz9rJg/UGGlTNgNFXi8/4Y57JUPktW47/ig3w9m8t3ix/+wvfwJ4C
- LBEw10F0hyB4sOqSXdj6XRCQl1nHLAkc9NrhwqbG4+vkEFNWlkOm/KjHuCmZp6OcwQmV
- V83TvnaoyT27GKrRwoAyr+z/C2rsmQdcNoRbNWAExfwwxVog3fifkZKbdF5/CPTdqzmL
- XcbQ==
-X-Gm-Message-State: ACgBeo0yC08oaAyO2F/H2cEkZk+tqtxoZ2sqTQkz7gINm/5d14EbWfq3
- +vczbkfYtGsdAXmdrPBfDB0x03rk/ablWQ==
-X-Google-Smtp-Source: AA6agR4s0aT4f/HUUpYeYPKRXC+pwKUzrdPbagsXJT36rCV60jbDnmMRUJ+jKR9u3k6BZNoaLO69Ug==
-X-Received: by 2002:a05:6402:254b:b0:447:1a34:a5dd with SMTP id
- l11-20020a056402254b00b004471a34a5ddmr3241699edb.166.1661434311694; 
- Thu, 25 Aug 2022 06:31:51 -0700 (PDT)
+ bh=JCzj7z2qs42LBVomk0tkpnmSWIhcg/MCwg5UfNew5Wc=;
+ b=x00PyPo3tOkFKnIvkKYvdSHrwvfWDSdahNGM7Npdr4TuDIBgY6M1z7sFeYdRLcJrBz
+ OOqsbwwIaOBWGYPQJ1JxcmUoLSp4MeTO1SJm3nHcBdKECNtzTwYMEyl7bW4XMZhYq0eJ
+ FDdDFRPUnvpidD9zpyN9+FJ9d0JsK9beYqNwF6v7ABcc0cy5Z9AxCpyM1G6c4vXHrO53
+ 3+LIym7jfmRZnmLBsIENDsO+OMM2A0h5K+2Z6S8yv34SWacKGzeN7oMyp6b0blcjzZFd
+ ZmE7kX0/TC7REYx8f7cIu0sF9vMUtbN6x1GQmZBNKEaIbDmDgcRcSVdnaekMWixKHTFY
+ Cu6Q==
+X-Gm-Message-State: ACgBeo02wZ99UEuIFGPNfMYvEEmkos4oYFMMFJDH1WeThjlTah3VsHrF
+ oKeKAdJnOL3WIaLtqIz6qSOdu6pj8uX/pw==
+X-Google-Smtp-Source: AA6agR529oXuFj9vmnnb7jNL81mlM7PPlIA/CDqjzIRBpbZj7aKSiLvp50sQViv6pIxca3MyPK8BZQ==
+X-Received: by 2002:aa7:c790:0:b0:443:a086:6877 with SMTP id
+ n16-20020aa7c790000000b00443a0866877mr3204188eds.84.1661434313010; 
+ Thu, 25 Aug 2022 06:31:53 -0700 (PDT)
 Received: from able.fritz.box (p4fc20ad4.dip0.t-ipconnect.de. [79.194.10.212])
  by smtp.gmail.com with ESMTPSA id
- o18-20020a509b12000000b004404e290e7esm4913471edi.77.2022.08.25.06.31.50
+ o18-20020a509b12000000b004404e290e7esm4913471edi.77.2022.08.25.06.31.51
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 25 Aug 2022 06:31:51 -0700 (PDT)
+ Thu, 25 Aug 2022 06:31:52 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 05/11] drm/amdgpu: remove SRIOV and MCBP dependencies from the
- CS
-Date: Thu, 25 Aug 2022 15:31:36 +0200
-Message-Id: <20220825133142.8272-6-christian.koenig@amd.com>
+Subject: [PATCH 06/11] drm/amdgpu: move setting the job resources
+Date: Thu, 25 Aug 2022 15:31:37 +0200
+Message-Id: <20220825133142.8272-7-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220825133142.8272-1-christian.koenig@amd.com>
 References: <20220825133142.8272-1-christian.koenig@amd.com>
@@ -72,43 +71,105 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, bas@basnieuwenhuizen.nl, timur.kristof@gmail.com,
+Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>, timur.kristof@gmail.com,
+ Luben Tuikov <luben.tuikov@amd.com>, bas@basnieuwenhuizen.nl,
+ Alexander.Deucher@amd.com,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Trigger.Huang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-We should not have any different CS constrains based
-on the execution environment.
+Move setting the job resources into amdgpu_job.c
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
+Reviewed-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+Reviewed-by: Luben Tuikov <luben.tuikov@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c  | 21 ++-------------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c | 17 +++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.h |  2 ++
+ 3 files changed, 21 insertions(+), 19 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index b9de631a66a3..dfb7b4f46bc3 100644
+index dfb7b4f46bc3..88f491dc7ca2 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -323,8 +323,7 @@ static int amdgpu_cs_p2_ib(struct amdgpu_cs_parser *p,
- 		return -EINVAL;
+@@ -828,9 +828,6 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+ 	struct amdgpu_vm *vm = &fpriv->vm;
+ 	struct amdgpu_bo_list_entry *e;
+ 	struct list_head duplicates;
+-	struct amdgpu_bo *gds;
+-	struct amdgpu_bo *gws;
+-	struct amdgpu_bo *oa;
+ 	int r;
  
- 	if (chunk_ib->ip_type == AMDGPU_HW_IP_GFX &&
--	    chunk_ib->flags & AMDGPU_IB_FLAG_PREEMPT &&
--	    (amdgpu_mcbp || amdgpu_sriov_vf(p->adev))) {
-+	    chunk_ib->flags & AMDGPU_IB_FLAG_PREEMPT) {
- 		if (chunk_ib->flags & AMDGPU_IB_FLAG_CE)
- 			(*ce_preempt)++;
- 		else
-@@ -1084,7 +1083,7 @@ static int amdgpu_cs_vm_handling(struct amdgpu_cs_parser *p)
- 	if (r)
- 		return r;
+ 	INIT_LIST_HEAD(&p->validated);
+@@ -947,22 +944,8 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+ 	amdgpu_cs_report_moved_bytes(p->adev, p->bytes_moved,
+ 				     p->bytes_moved_vis);
  
--	if (amdgpu_mcbp || amdgpu_sriov_vf(adev)) {
-+	if (fpriv->csa_va) {
- 		bo_va = fpriv->csa_va;
- 		r = amdgpu_vm_bo_update(adev, bo_va, false);
- 		if (r)
+-	gds = p->bo_list->gds_obj;
+-	gws = p->bo_list->gws_obj;
+-	oa = p->bo_list->oa_obj;
+-
+-	if (gds) {
+-		p->job->gds_base = amdgpu_bo_gpu_offset(gds) >> PAGE_SHIFT;
+-		p->job->gds_size = amdgpu_bo_size(gds) >> PAGE_SHIFT;
+-	}
+-	if (gws) {
+-		p->job->gws_base = amdgpu_bo_gpu_offset(gws) >> PAGE_SHIFT;
+-		p->job->gws_size = amdgpu_bo_size(gws) >> PAGE_SHIFT;
+-	}
+-	if (oa) {
+-		p->job->oa_base = amdgpu_bo_gpu_offset(oa) >> PAGE_SHIFT;
+-		p->job->oa_size = amdgpu_bo_size(oa) >> PAGE_SHIFT;
+-	}
++	amdgpu_job_set_resources(p->job, p->bo_list->gds_obj,
++				 p->bo_list->gws_obj, p->bo_list->oa_obj);
+ 
+ 	if (p->uf_entry.tv.bo) {
+ 		struct amdgpu_bo *uf = ttm_to_amdgpu_bo(p->uf_entry.tv.bo);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+index 8f51adf3b329..37dc5ee4153d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+@@ -132,6 +132,23 @@ int amdgpu_job_alloc_with_ib(struct amdgpu_device *adev, unsigned size,
+ 	return r;
+ }
+ 
++void amdgpu_job_set_resources(struct amdgpu_job *job, struct amdgpu_bo *gds,
++			      struct amdgpu_bo *gws, struct amdgpu_bo *oa)
++{
++	if (gds) {
++		job->gds_base = amdgpu_bo_gpu_offset(gds) >> PAGE_SHIFT;
++		job->gds_size = amdgpu_bo_size(gds) >> PAGE_SHIFT;
++	}
++	if (gws) {
++		job->gws_base = amdgpu_bo_gpu_offset(gws) >> PAGE_SHIFT;
++		job->gws_size = amdgpu_bo_size(gws) >> PAGE_SHIFT;
++	}
++	if (oa) {
++		job->oa_base = amdgpu_bo_gpu_offset(oa) >> PAGE_SHIFT;
++		job->oa_size = amdgpu_bo_size(oa) >> PAGE_SHIFT;
++	}
++}
++
+ void amdgpu_job_free_resources(struct amdgpu_job *job)
+ {
+ 	struct amdgpu_ring *ring = to_amdgpu_ring(job->base.sched);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
+index babc0af751c2..2a1961bf1194 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
+@@ -76,6 +76,8 @@ int amdgpu_job_alloc(struct amdgpu_device *adev, unsigned num_ibs,
+ 		     struct amdgpu_job **job, struct amdgpu_vm *vm);
+ int amdgpu_job_alloc_with_ib(struct amdgpu_device *adev, unsigned size,
+ 		enum amdgpu_ib_pool_type pool, struct amdgpu_job **job);
++void amdgpu_job_set_resources(struct amdgpu_job *job, struct amdgpu_bo *gds,
++			      struct amdgpu_bo *gws, struct amdgpu_bo *oa);
+ void amdgpu_job_free_resources(struct amdgpu_job *job);
+ void amdgpu_job_free(struct amdgpu_job *job);
+ int amdgpu_job_submit(struct amdgpu_job *job, struct drm_sched_entity *entity,
 -- 
 2.25.1
 
