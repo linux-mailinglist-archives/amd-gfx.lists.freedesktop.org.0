@@ -2,64 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E392F5A1256
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Aug 2022 15:32:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16D435A1263
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Aug 2022 15:32:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E5FC10E02D;
-	Thu, 25 Aug 2022 13:32:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 278B410E064;
+	Thu, 25 Aug 2022 13:32:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
- [IPv6:2a00:1450:4864:20::52a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98C7210E04A
- for <amd-gfx@lists.freedesktop.org>; Thu, 25 Aug 2022 13:31:59 +0000 (UTC)
-Received: by mail-ed1-x52a.google.com with SMTP id z2so26143715edc.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 25 Aug 2022 06:31:59 -0700 (PDT)
+Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com
+ [IPv6:2001:4860:4864:20::2c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0347E10E0E4
+ for <amd-gfx@lists.freedesktop.org>; Thu, 25 Aug 2022 13:32:48 +0000 (UTC)
+Received: by mail-oa1-x2c.google.com with SMTP id
+ 586e51a60fabf-f2a4c51c45so24877584fac.9
+ for <amd-gfx@lists.freedesktop.org>; Thu, 25 Aug 2022 06:32:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc;
- bh=f+V6Nsaz5rE7Eaif8vKpzM3qlOOSHI8TRyY6f9pXp6g=;
- b=DiNlw4LQFjcudqPuQ0n2/j39RMxyt6t90e1nZ5353h3dVA9laTRNDLTo22oA+NKzDl
- UWfjYbU2YozJwSH5xyGblCMqIdpPkvlgVvphDsdUwMEt5JFZlCVJLNp/ZlMnMlIOtnaV
- 0yUxCof39ZcstmHYmADqLmE4Xwg0RJg0wJ1qDpZuQ2CUx7M9A2MTG8askLhgqzCfPg7f
- jK7OqlUuwf2T+E5TT4re60woVOK4XYp1lJykoampHWPOmaUra8Es9FYr59ilYIZ0IT9j
- xtorB+kjeFsrCcCg8zicK0S11BSMWhtep5FgWR5qclGWp8JXtPO6DI9TNdB6g/BEsXF5
- Ia+w==
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc;
+ bh=iuERGFdEcnzdiAaCDoY9iJg1p0/EarvK43dEX0Xw1aA=;
+ b=nTn57TjckiwVpjH8afMceHRmrKxkjuP8fapho/Va1579xRk8hemXASY/Ht5P9T/RTw
+ PRUN2HLlu2U111+fm8+P0Ri3DiXnLUx5s8Ag3w2NUpO1cNaGY3XzEX5KRpO3UTuW+tDe
+ FoA3h23CdlhIDJvkIA7hkbnQ7hZSlN8f9WJi8rsxp/g6Xv3gfTlsvvRCFd7TyHHNCBP8
+ MTVhIgJliEI6qG0N94tyz9ah8BnxeXawAg2YvkOupEGRLyYtagBzj4oCV07SqXWPWHT3
+ B8cDb7v1J/DnfMdrGqz8YGm0np4FBZdVWoWek489LmDrtHMjfekKCTPSJTYNCqY5HNKB
+ I0cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
- bh=f+V6Nsaz5rE7Eaif8vKpzM3qlOOSHI8TRyY6f9pXp6g=;
- b=StxlnreDjpaP99YlEupzk+V83Gg7+Z84jZ/jXhYl6Kyzuq5X3fuTNeiGID7yvpiOML
- EQA/oJXDHKzx6X8Py/5BN3/Xor5XqWv0QF0vQJB9esPOKNARoOG49f7Mx7roXJH2B0i3
- HCcEavSGr8WTswmH+ns9G73O1jpy6GN1HSw2YZvORGzhQEaCf2cfLjA4zfSQBaDLd8BA
- 8fkR89CPt6ahgZmKt8o6WAo1yg85pychuJQdppKxZ7mGgq7lvvp8OTBtGLIppkqMhpRH
- 2DEu0jYWPbTeMaUXgm7Ajqs/rWjbduKNCP1jrSX/LkfH8xtd8c3QVTCLMdUJh/8irpFE
- 2/6g==
-X-Gm-Message-State: ACgBeo1Fgapg7rDfTIAwYBj8WVXR4YarZImQxxN5Gvw3KZv2hraqeIYn
- V43J6ZcKfNvTvpudVqjC/WVqX3omXryGaA==
-X-Google-Smtp-Source: AA6agR5WJO57p4mf/ksHVVEybNvA0szE2ZphOOzdCpDp0mHVgi6+ScX6/77mI5L5XaAfC9L768fbyg==
-X-Received: by 2002:a05:6402:1e90:b0:446:5aa1:808b with SMTP id
- f16-20020a0564021e9000b004465aa1808bmr3357971edf.90.1661434319243; 
- Thu, 25 Aug 2022 06:31:59 -0700 (PDT)
-Received: from able.fritz.box (p4fc20ad4.dip0.t-ipconnect.de. [79.194.10.212])
- by smtp.gmail.com with ESMTPSA id
- o18-20020a509b12000000b004404e290e7esm4913471edi.77.2022.08.25.06.31.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 25 Aug 2022 06:31:58 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 11/11] drm/amdgpu: fix VCN3 and VCN4 instance limiting
-Date: Thu, 25 Aug 2022 15:31:42 +0200
-Message-Id: <20220825133142.8272-12-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220825133142.8272-1-christian.koenig@amd.com>
-References: <20220825133142.8272-1-christian.koenig@amd.com>
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc;
+ bh=iuERGFdEcnzdiAaCDoY9iJg1p0/EarvK43dEX0Xw1aA=;
+ b=AxVraVFo4fw+oVd7cbevxYBmx9s3dK7eVFR/gejROuOXEfT/rJEliE2Y8zvwYr3+Fj
+ hL+HdvJXUQ0oZm4tK6/raGHs7i2VpK/13SmtzeeWmNKwBxf/KiRVPYAUxEijcV8BbkCU
+ 7VMYGAIXc71DDg9YqLMla4FkMITmKl9NU3UQo6k3+wCgSzkJ3XDD2aifiaosqNN2AYl6
+ 7SxE+6EDqwxbprDti5enh/ts3ZKXuRcTLUwUO/vQ6pgE82KlyjXYQRmvkwTNgdUjlT+Q
+ ULNw5xyFXldhEG1h+45IfCciR95FcjJWSF3gCxtSZbTef70nVC8wUj306xYJaWb0mpre
+ lykw==
+X-Gm-Message-State: ACgBeo3JOGID0uhZ1Emz9IS2XIYLIakXM37wAAuOtb3SIkACre8mhTs5
+ eG7RUjd/A1UDIQVhnspbZE3nAqBv7qP8KtSq6wk=
+X-Google-Smtp-Source: AA6agR52m/F8J6fuZv0dugpoD1Ca+NNjuw01XzbC1uWGgVZJyAq9s6VQOUvmY/GVA2gpiP+PCOXL9zAvVr6rbKuqFQY=
+X-Received: by 2002:a05:6870:9a06:b0:11e:3d19:2614 with SMTP id
+ fo6-20020a0568709a0600b0011e3d192614mr599723oab.96.1661434368261; Thu, 25 Aug
+ 2022 06:32:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20220822155217.911506-1-mukul.joshi@amd.com>
+In-Reply-To: <20220822155217.911506-1-mukul.joshi@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 25 Aug 2022 09:32:37 -0400
+Message-ID: <CADnq5_OGYxgEVOahp9wAvoVmhHDazhZwERK2s+x-gc43114URg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Fix page table setup on Arcturus
+To: Mukul Joshi <mukul.joshi@amd.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,61 +63,68 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, bas@basnieuwenhuizen.nl, timur.kristof@gmail.com,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Trigger.Huang@amd.com
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Check if the entity is already limited, not if it's assigned to the
-first instance.
+On Mon, Aug 22, 2022 at 11:53 AM Mukul Joshi <mukul.joshi@amd.com> wrote:
+>
+> When translate_further is enabled, page table depth needs to
+> be updated. This was missing on Arcturus MMHUB init. This was
+> causing address translations to fail for SDMA user-mode queues.
+>
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c | 5 ++---
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c | 5 ++---
- 2 files changed, 4 insertions(+), 6 deletions(-)
+Do other mmhub implementations need a similar fix?  It looks like some
+of them are missing similar changes.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-index 3cabceee5f57..5e64c3426728 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-@@ -1862,13 +1862,12 @@ static int vcn_v3_0_ring_patch_cs_in_place(struct amdgpu_cs_parser *p,
- 					   struct amdgpu_job *job,
- 					   struct amdgpu_ib *ib)
- {
--	struct amdgpu_ring *ring = to_amdgpu_ring(job->base.sched);
- 	uint32_t msg_lo = 0, msg_hi = 0;
- 	unsigned i;
- 	int r;
- 
--	/* The first instance can decode anything */
--	if (!ring->me)
-+	/* Abort if it's already limited */
-+	if (job->base.entity->num_sched_list <= 1)
- 		return 0;
- 
- 	for (i = 0; i < ib->length_dw; i += 2) {
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-index 9338172eec8b..a8264fe2201d 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-@@ -1430,13 +1430,12 @@ static int vcn_v4_0_ring_patch_cs_in_place(struct amdgpu_cs_parser *p,
- 					   struct amdgpu_job *job,
- 					   struct amdgpu_ib *ib)
- {
--	struct amdgpu_ring *ring = to_amdgpu_ring(job->base.entity->rq->sched);
- 	struct amdgpu_vcn_decode_buffer *decode_buffer;
- 	uint64_t addr;
- 	uint32_t val;
- 
--	/* The first instance can decode anything */
--	if (!ring->me)
-+	/* Abort if it's already limited */
-+	if (job->base.entity->num_sched_list <= 1)
- 		return 0;
- 
- 	/* unified queue ib header has 8 double words. */
--- 
-2.25.1
+Alex
 
+> Fixes: 2abf2573b1c69 ("drm/amdgpu: Enable translate_further to extend UTCL2 reach"
+> Signed-off-by: Mukul Joshi <mukul.joshi@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c | 12 ++++++++++--
+>  1 file changed, 10 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
+> index 6e0145b2b408..445cb06b9d26 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
+> @@ -295,9 +295,17 @@ static void mmhub_v9_4_disable_identity_aperture(struct amdgpu_device *adev,
+>  static void mmhub_v9_4_setup_vmid_config(struct amdgpu_device *adev, int hubid)
+>  {
+>         struct amdgpu_vmhub *hub = &adev->vmhub[AMDGPU_MMHUB_0];
+> +       unsigned int num_level, block_size;
+>         uint32_t tmp;
+>         int i;
+>
+> +       num_level = adev->vm_manager.num_level;
+> +       block_size = adev->vm_manager.block_size;
+> +       if (adev->gmc.translate_further)
+> +               num_level -= 1;
+> +       else
+> +               block_size -= 9;
+> +
+>         for (i = 0; i <= 14; i++) {
+>                 tmp = RREG32_SOC15_OFFSET(MMHUB, 0, mmVML2VC0_VM_CONTEXT1_CNTL,
+>                                 hubid * MMHUB_INSTANCE_REGISTER_OFFSET + i);
+> @@ -305,7 +313,7 @@ static void mmhub_v9_4_setup_vmid_config(struct amdgpu_device *adev, int hubid)
+>                                     ENABLE_CONTEXT, 1);
+>                 tmp = REG_SET_FIELD(tmp, VML2VC0_VM_CONTEXT1_CNTL,
+>                                     PAGE_TABLE_DEPTH,
+> -                                   adev->vm_manager.num_level);
+> +                                   num_level);
+>                 tmp = REG_SET_FIELD(tmp, VML2VC0_VM_CONTEXT1_CNTL,
+>                                     RANGE_PROTECTION_FAULT_ENABLE_DEFAULT, 1);
+>                 tmp = REG_SET_FIELD(tmp, VML2VC0_VM_CONTEXT1_CNTL,
+> @@ -323,7 +331,7 @@ static void mmhub_v9_4_setup_vmid_config(struct amdgpu_device *adev, int hubid)
+>                                     EXECUTE_PROTECTION_FAULT_ENABLE_DEFAULT, 1);
+>                 tmp = REG_SET_FIELD(tmp, VML2VC0_VM_CONTEXT1_CNTL,
+>                                     PAGE_TABLE_BLOCK_SIZE,
+> -                                   adev->vm_manager.block_size - 9);
+> +                                   block_size);
+>                 /* Send no-retry XNACK on fault to suppress VM fault storm. */
+>                 tmp = REG_SET_FIELD(tmp, VML2VC0_VM_CONTEXT1_CNTL,
+>                                     RETRY_PERMISSION_OR_INVALID_PAGE_FAULT,
+> --
+> 2.35.1
+>
