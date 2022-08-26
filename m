@@ -2,94 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 496735A3411
-	for <lists+amd-gfx@lfdr.de>; Sat, 27 Aug 2022 04:53:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 914F75A37A2
+	for <lists+amd-gfx@lfdr.de>; Sat, 27 Aug 2022 14:36:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB68110EB9E;
-	Sat, 27 Aug 2022 02:53:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9BC610E677;
+	Sat, 27 Aug 2022 12:36:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2083.outbound.protection.outlook.com [40.107.244.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA50610EB95
- for <amd-gfx@lists.freedesktop.org>; Sat, 27 Aug 2022 02:53:10 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JFdRKWJzzZ0NDL5MbL2eOHFaxiJ5isaXBCanY5lTgE6/Hk0WWOPHNtXLY9Vkc8uW6AHZ2xAn0FT0b/cpSyjZ7KqMocYf4GNnpx0cl0S7pTrWqGRnCKMY+u+lvVXow67dxjGd/xphWvXxjNzdHHBFreIAH/Ucr2gOfjYE7rqaZkRvf9U1wqKOuoaj9HYgH9xTXEVR6seqMS8oHjgJnYs0z8aEWRb3SJHFkYa195TM52H9+79ZC9FGeeLBpLP4VsS8TDY0DRupY0X6c8bh0OzmfZ2JV+wwzBu7quQXhfQCYvCIUZV2Y0EhGTs/L2VuBph0eUEtwePshQK6tN5LChochQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xZanMNk8Pq6opES8g2UAF/SPuoExlnDSyBpZKYTNeRQ=;
- b=dPjpCw5apv6KMcvwZUw/81PQSvdg0wNVVuUz1Mdm9mbzjI2/KWjRUZeaXj08mMOGvDgLCGNVqJcS/aMn0Ed8O8P5QlQzo7UNWkW6M6ZxCO5gAnil7ZIfys2sIlpvv3mvN9fZNMwRf1/s5lbxQUk8rCyRqlpXUDQUqxI2s/dSvW0776IK+vWi4moFOj2r4O+Thmm583dglpjfXXlOKY3u8vFaGvonJe3MYCWjrCYXx4+8IW0ljQmI3OJTX5bdHZBz5dpcQGKa2ua4QlsOOWfur/SALHlfrsKvzQNJwMXXHFOn4s3XEvuYieAQyPogLds8gd4b4c7QSJ2pImSbOz3zyg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xZanMNk8Pq6opES8g2UAF/SPuoExlnDSyBpZKYTNeRQ=;
- b=BaDOhtJyBHZfBDYJLOiV2afZ4ceBuBeJBqOwC3c1NKDbicXJlb1+39Al60kbpO5aMNw2MrVVwq5HhYEli13uVCBx2hNmXootFx9YXxjoQfcnIEVAI7aM4VbGzHLz8EpLEnA1YuUPPsBpDwL0F/OT5iiPcXFtK9rQtEzoRpuLv84=
-Received: from DM6PR05CA0057.namprd05.prod.outlook.com (2603:10b6:5:335::26)
- by MN2PR12MB4014.namprd12.prod.outlook.com (2603:10b6:208:16d::31) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.14; Sat, 27 Aug
- 2022 02:53:07 +0000
-Received: from DM6NAM11FT072.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:335:cafe::36) by DM6PR05CA0057.outlook.office365.com
- (2603:10b6:5:335::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.5 via Frontend
- Transport; Sat, 27 Aug 2022 02:53:07 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT072.mail.protection.outlook.com (10.13.173.181) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5566.15 via Frontend Transport; Sat, 27 Aug 2022 02:53:07 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 26 Aug
- 2022 21:53:06 -0500
-Received: from brianchang-HP-EliteDesk-805-G6-Small-Form-Factor-PC.amd.com
- (10.180.168.240) by SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP
- Server id 15.1.2375.28 via Frontend Transport; Fri, 26 Aug 2022 21:53:03
- -0500
-From: brichang <Brian.Chang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 33/33] drm/amd/display: Correct cursor position on horizontal
- mirror
-Date: Sat, 27 Aug 2022 06:50:53 +0800
-Message-ID: <20220826225053.1435588-34-Brian.Chang@amd.com>
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com
+ [IPv6:2607:f8b0:4864:20::102a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0229B10E6C2;
+ Fri, 26 Aug 2022 07:24:36 +0000 (UTC)
+Received: by mail-pj1-x102a.google.com with SMTP id
+ x63-20020a17090a6c4500b001fabbf8debfso739833pjj.4; 
+ Fri, 26 Aug 2022 00:24:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc;
+ bh=YlkUnf3+W4a/WjCpnPyFQgyVY7X5ih8bJPCrzi0qPuo=;
+ b=CIW0pGf/u/t99gjOXibOein6cCbSDOUW3AZ6CUaNlRXFkxOg/YJmkgdE6hqISHloQQ
+ BAfXaQ/4GGoDH5jUlfb2pB5gCRSePQBZ4jbH4v3djEPpbcgRzwtbVXrXzs6TkKuBxWzl
+ N71OqSLmZjNSjNbo+RusFj/7skLKORw8skk1kLDr850IX2oHuy3hPWmYpN5ZteSvfSFx
+ +QMgWbJMM1ZFYf8I6yvmsrAjvTqpDaIFTFfHtuXMf0S7mHiWMW9+lOwIGD4f9JRZ0RyP
+ +f9LjmSxQMmGKdAshFmwsq8ev5tZcXY36rr+b8f2rcqQ+KOyFatXJnwz5l+sUbKCuKYs
+ 0KXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc;
+ bh=YlkUnf3+W4a/WjCpnPyFQgyVY7X5ih8bJPCrzi0qPuo=;
+ b=3afdC60KfLuD8csctpRArMaQ26b6nDKHGpEH8pMusdT0ypsRcSjMA0kyg970DDKts/
+ ZFqrRSOXE/uzIYcU5n95qAkeEgcXxqs54VKhxoq1phQSSLlhl6WrR+ogftlW7eiNicuD
+ uWcQ3OtqmlfHg0y1h/yXsuacRZv6TG45quT9Yv5FZHrz1N1gZNgQwPAX3ztputgF7eNO
+ ot569HLzy+YemK6PMO2a8N7DVlMz0RaqKGb51ARYvOoj+HZwUtMk2Pw5wSUIJKppw9Fo
+ 6yQwRei2RxBZrw/peNH6hm59L5CsadNTf1PuwP2ARq/Uw7AMFiQti3jHKnufFZgg5X5l
+ n/eQ==
+X-Gm-Message-State: ACgBeo2H/B5b0tamk9xTG0nLgWfidxXxVB2FJYGaKT9jP6qMLALmXov6
+ h6AWTvLPruYLh1Wfi7qz69c=
+X-Google-Smtp-Source: AA6agR5HyqBo0oZgQZZq5UC/wOzHLibv7ZVIrS6bRpCelNOCiG5Rg5WRYYINvIpRdM12ePAv0ZNXOQ==
+X-Received: by 2002:a17:90a:5988:b0:1fd:6a33:abf with SMTP id
+ l8-20020a17090a598800b001fd6a330abfmr715935pji.69.1661498676588; 
+ Fri, 26 Aug 2022 00:24:36 -0700 (PDT)
+Received: from localhost.localdomain ([193.203.214.57])
+ by smtp.gmail.com with ESMTPSA id
+ o186-20020a62cdc3000000b005289a50e4c2sm930463pfg.23.2022.08.26.00.24.33
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 26 Aug 2022 00:24:36 -0700 (PDT)
+From: cgel.zte@gmail.com
+X-Google-Original-From: ye.xingchen@zte.com.cn
+To: alexander.deucher@amd.com
+Subject: [PATCH linux-next] drm/amdgpu: Remove the unneeded result variable
+Date: Fri, 26 Aug 2022 07:23:57 +0000
+Message-Id: <20220826072357.252676-1-ye.xingchen@zte.com.cn>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220826225053.1435588-1-Brian.Chang@amd.com>
-References: <20220826225053.1435588-1-Brian.Chang@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 874253a2-000f-4069-c003-08da87d74552
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4014:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HK6TClfPtT0TM6JlyAACvep4P3B703St4GguO9J9lfH+N43Jf7a6b93b7rwzkh8R5Az7EPy9F0xPtjsBcotkb4jm0bFkcIOnDO/7no8E/pQCOh8IMiI3RFAIHv9+4W4F79BH56Llp5MyP86UR0kHPLx+ngoyBrelC+PBUHRmsZEfViSB7PbwhGxP0eTll7qqYEY0UVxzwqtv5VqAGNKpi1DqQ14AC8AvwygOgu2R05mP9tnt3GW0nt313WZS1rfy9eUzEboEnzobhMMGm568n2zA+nslgdtW4TZzEjkpR9ptUuCAhrXsugDgGxXuUVtLo/44gtKvnHGrMq7qH20e9yq6h5IYQTE92Fx3RPXdKu1aSAfAarVFVg6TlbESdTsVU7iarUDi1IRhyyyPfWEWc8gybiK/16CaiCUGmdxToORlkH05dXbMJhwbN4xxI7IPbL+pPYQpZfuDpAhYCXukB92GorLpVS08f48vigURqr6xGHKWFuHmrNGSIcIdl1sRhxzA1wI/1IwJ2CNCpBi/XZC0erDRl34DWIH2CWU5KUhuzyuJoFnBPLsAaySDkIjTsuw0HUhpotjzOZ18jty6LGLK4pQM5LqE7qKD7PetV1iOnauUuz21b8sZhV6/HwbavttGWsUvTjGsto/IB3ZFN6WTYTBoplU27yKDjL4tSa+FgtxFG7ThHfMbim2K0ppMw2DFeI4OtZXFmsYcWfSEvSe+75jYZ5tZrpIzaCzrxnGWDMnyqnsgfaQoCxlkWmwL+FqJkNQ+aih0nApaTLZzW9HJZjTZna03ok5gzsj6FfCIxYsveRaU01kwUQX3MFr4BHt32gKYCjy+kLO4LAmbeg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(346002)(376002)(39860400002)(396003)(136003)(46966006)(36840700001)(40470700004)(8936002)(36860700001)(2906002)(82310400005)(83380400001)(478600001)(2616005)(5660300002)(36756003)(70206006)(54906003)(316002)(6666004)(336012)(426003)(70586007)(7696005)(8676002)(6916009)(40480700001)(86362001)(40460700003)(82740400003)(1076003)(356005)(47076005)(186003)(41300700001)(26005)(81166007)(4326008)(43062005)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2022 02:53:07.6178 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 874253a2-000f-4069-c003-08da87d74552
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT072.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4014
+X-Mailman-Approved-At: Sat, 27 Aug 2022 12:36:42 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,202 +69,44 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Brian Chang <Brian.Chang@amd.com>,
- Martin Tsai <martin.tsai@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
- Ariel Bernstein <Eric.Bernstein@amd.com>, wayne.lin@amd.com,
- Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: Jack.Xiao@amd.com, guchun.chen@amd.com, airlied@linux.ie,
+ Bokun.Zhang@amd.com, Zeal Robot <zealci@zte.com.cn>, Xinhui.Pan@amd.com,
+ ricetons@gmail.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, Prike.Liang@amd.com,
+ dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
+ ye xingchen <ye.xingchen@zte.com.cn>, christian.koenig@amd.com,
+ Hawking.Zhang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Martin Tsai <martin.tsai@amd.com>
+From: ye xingchen <ye.xingchen@zte.com.cn>
 
-[Why]
-Incorrect cursor position will induce system hang on pipe split.
+Return the value sdma_v5_2_start() directly instead of storing it in
+another redundant variable.
 
-[How]
-1.Handle horizontal mirror on rotation,
-2.Correct cursor set on piep split.
-
-Reviewed-by: Ariel Bernstein <Eric.Bernstein@amd.com>
-Acked-by: Brian Chang <Brian.Chang@amd.com>
-Signed-off-by: Martin Tsai <martin.tsai@amd.com>
+Reported-by: Zeal Robot <zealci@zte.com.cn>
+Signed-off-by: ye xingchen <ye.xingchen@zte.com.cn>
 ---
- .../gpu/drm/amd/display/dc/dcn10/dcn10_dpp.c  |  5 +-
- .../gpu/drm/amd/display/dc/dcn10/dcn10_hubp.c |  9 +--
- .../amd/display/dc/dcn10/dcn10_hw_sequencer.c | 72 ++++++++++++++-----
- .../gpu/drm/amd/display/dc/dcn20/dcn20_hubp.c |  9 +--
- 4 files changed, 63 insertions(+), 32 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_dpp.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_dpp.c
-index db7ca4b0cdb9..897f412f539e 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_dpp.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_dpp.c
-@@ -448,11 +448,12 @@ void dpp1_set_cursor_position(
- 			src_y_offset = pos->y - pos->x_hotspot - param->viewport.y;
- 		}
- 	} else if (param->rotation == ROTATION_ANGLE_180) {
--		src_x_offset = pos->x - param->viewport.x;
-+		if (!param->mirror)
-+			src_x_offset = pos->x - param->viewport.x;
-+
- 		src_y_offset = pos->y - param->viewport.y;
- 	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
+index 83c6ccaaa9e4..95689ef4be10 100644
+--- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
++++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
+@@ -1413,12 +1413,9 @@ static int sdma_v5_2_sw_fini(void *handle)
  
+ static int sdma_v5_2_hw_init(void *handle)
+ {
+-	int r;
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+ 
+-	r = sdma_v5_2_start(adev);
 -
- 	if (src_x_offset >= (int)param->viewport.width)
- 		cur_en = 0;  /* not visible beyond right edge*/
+-	return r;
++	return sdma_v5_2_start(adev);
+ }
  
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubp.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubp.c
-index 564e061ccb58..52e201e9b091 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubp.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubp.c
-@@ -1208,13 +1208,10 @@ void hubp1_cursor_set_position(
- 			src_y_offset = pos->y - pos->x_hotspot - param->viewport.y;
- 		}
- 	} else if (param->rotation == ROTATION_ANGLE_180) {
--		src_x_offset = pos->x - param->viewport.x;
--		src_y_offset = pos->y - param->viewport.y;
--	}
-+		if (!param->mirror)
-+			src_x_offset = pos->x - param->viewport.x;
- 
--	if (param->mirror) {
--		x_hotspot = param->viewport.width - x_hotspot;
--		src_x_offset = param->viewport.x + param->viewport.width - src_x_offset;
-+		src_y_offset = pos->y - param->viewport.y;
- 	}
- 
- 	dst_x_offset = (src_x_offset >= 0) ? src_x_offset : 0;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-index d3f6a2609c8c..b92c14b9043f 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-@@ -3470,8 +3470,7 @@ void dcn10_set_cursor_position(struct pipe_ctx *pipe_ctx)
- 		.rotation = pipe_ctx->plane_state->rotation,
- 		.mirror = pipe_ctx->plane_state->horizontal_mirror
- 	};
--	bool pipe_split_on = (pipe_ctx->top_pipe != NULL) ||
--		(pipe_ctx->bottom_pipe != NULL);
-+	bool pipe_split_on = false;
- 	bool odm_combine_on = (pipe_ctx->next_odm_pipe != NULL) ||
- 		(pipe_ctx->prev_odm_pipe != NULL);
- 
-@@ -3480,6 +3479,13 @@ void dcn10_set_cursor_position(struct pipe_ctx *pipe_ctx)
- 	int x_pos = pos_cpy.x;
- 	int y_pos = pos_cpy.y;
- 
-+	if ((pipe_ctx->top_pipe != NULL) || (pipe_ctx->bottom_pipe != NULL)) {
-+		if ((pipe_ctx->plane_state->src_rect.width != pipe_ctx->plane_res.scl_data.viewport.width) ||
-+			(pipe_ctx->plane_state->src_rect.height != pipe_ctx->plane_res.scl_data.viewport.height)) {
-+			pipe_split_on = true;
-+		}
-+	}
-+
- 	/**
- 	 * DC cursor is stream space, HW cursor is plane space and drawn
- 	 * as part of the framebuffer.
-@@ -3551,8 +3557,36 @@ void dcn10_set_cursor_position(struct pipe_ctx *pipe_ctx)
- 	if (pos_cpy.enable && dcn10_can_pipe_disable_cursor(pipe_ctx))
- 		pos_cpy.enable = false;
- 
-+
-+	if (param.rotation == ROTATION_ANGLE_0) {
-+		int viewport_width =
-+			pipe_ctx->plane_res.scl_data.viewport.width;
-+		int viewport_x =
-+			pipe_ctx->plane_res.scl_data.viewport.x;
-+
-+		if (param.mirror) {
-+			if (pipe_split_on || odm_combine_on) {
-+				if (pos_cpy.x >= viewport_width + viewport_x) {
-+					pos_cpy.x = 2 * viewport_width
-+							- pos_cpy.x + 2 * viewport_x;
-+				} else {
-+					uint32_t temp_x = pos_cpy.x;
-+
-+					pos_cpy.x = 2 * viewport_x - pos_cpy.x;
-+					if (temp_x >= viewport_x +
-+						(int)hubp->curs_attr.width || pos_cpy.x
-+						<= (int)hubp->curs_attr.width +
-+						pipe_ctx->plane_state->src_rect.x) {
-+						pos_cpy.x = temp_x + viewport_width;
-+					}
-+				}
-+			} else {
-+				pos_cpy.x = viewport_width - pos_cpy.x + 2 * viewport_x;
-+			}
-+		}
-+	}
- 	// Swap axis and mirror horizontally
--	if (param.rotation == ROTATION_ANGLE_90) {
-+	else if (param.rotation == ROTATION_ANGLE_90) {
- 		uint32_t temp_x = pos_cpy.x;
- 
- 		pos_cpy.x = pipe_ctx->plane_res.scl_data.viewport.width -
-@@ -3623,23 +3657,25 @@ void dcn10_set_cursor_position(struct pipe_ctx *pipe_ctx)
- 		int viewport_x =
- 			pipe_ctx->plane_res.scl_data.viewport.x;
- 
--		if (pipe_split_on || odm_combine_on) {
--			if (pos_cpy.x >= viewport_width + viewport_x) {
--				pos_cpy.x = 2 * viewport_width
--						- pos_cpy.x + 2 * viewport_x;
--			} else {
--				uint32_t temp_x = pos_cpy.x;
--
--				pos_cpy.x = 2 * viewport_x - pos_cpy.x;
--				if (temp_x >= viewport_x +
--					(int)hubp->curs_attr.width || pos_cpy.x
--					<= (int)hubp->curs_attr.width +
--					pipe_ctx->plane_state->src_rect.x) {
--					pos_cpy.x = temp_x + viewport_width;
-+		if (!param.mirror) {
-+			if (pipe_split_on || odm_combine_on) {
-+				if (pos_cpy.x >= viewport_width + viewport_x) {
-+					pos_cpy.x = 2 * viewport_width
-+							- pos_cpy.x + 2 * viewport_x;
-+				} else {
-+					uint32_t temp_x = pos_cpy.x;
-+
-+					pos_cpy.x = 2 * viewport_x - pos_cpy.x;
-+					if (temp_x >= viewport_x +
-+						(int)hubp->curs_attr.width || pos_cpy.x
-+						<= (int)hubp->curs_attr.width +
-+						pipe_ctx->plane_state->src_rect.x) {
-+						pos_cpy.x = temp_x + viewport_width;
-+					}
- 				}
-+			} else {
-+				pos_cpy.x = viewport_width - pos_cpy.x + 2 * viewport_x;
- 			}
--		} else {
--			pos_cpy.x = viewport_width - pos_cpy.x + 2 * viewport_x;
- 		}
- 
- 		/**
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubp.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubp.c
-index 9570c2118ccc..b1ec0e6f7f58 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubp.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hubp.c
-@@ -987,13 +987,10 @@ void hubp2_cursor_set_position(
- 			src_y_offset = pos->y - pos->x_hotspot - param->viewport.y;
- 		}
- 	} else if (param->rotation == ROTATION_ANGLE_180) {
--		src_x_offset = pos->x - param->viewport.x;
--		src_y_offset = pos->y - param->viewport.y;
--	}
-+		if (!param->mirror)
-+			src_x_offset = pos->x - param->viewport.x;
- 
--	if (param->mirror) {
--		x_hotspot = param->viewport.width - x_hotspot;
--		src_x_offset = param->viewport.x + param->viewport.width - src_x_offset;
-+		src_y_offset = pos->y - param->viewport.y;
- 	}
- 
- 	dst_x_offset = (src_x_offset >= 0) ? src_x_offset : 0;
+ static int sdma_v5_2_hw_fini(void *handle)
 -- 
 2.25.1
-
