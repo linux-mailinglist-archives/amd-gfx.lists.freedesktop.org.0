@@ -2,41 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B34E5A33F8
-	for <lists+amd-gfx@lfdr.de>; Sat, 27 Aug 2022 04:51:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2DCF5A33FB
+	for <lists+amd-gfx@lfdr.de>; Sat, 27 Aug 2022 04:51:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 478EE10EB66;
-	Sat, 27 Aug 2022 02:51:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C782C10EB68;
+	Sat, 27 Aug 2022 02:51:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2061.outbound.protection.outlook.com [40.107.237.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EA0610EB68
- for <amd-gfx@lists.freedesktop.org>; Sat, 27 Aug 2022 02:51:01 +0000 (UTC)
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2065.outbound.protection.outlook.com [40.107.100.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 662D410EB62
+ for <amd-gfx@lists.freedesktop.org>; Sat, 27 Aug 2022 02:51:08 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=V7sWgjM6lk5kTwUcGSqGd/WfHlWTzaJ1NoRbV9V2DiJUdsA9n3sBlxh3XlxxM6+a3ynfJ7bSY8TO5p85gtS3rBbljOmJZNi+6/RwJ5Hi3BznVQk2alIYUX3/PrPgXUl990TYFBc5c4nH60zYgL0tHXvDpx++q2XthdzCYK0s2vblEC2oP6N9EzVCxR3/CzGULQ/bvhyqyoyewqzBjCXLB7IJFjELxG7AsHGuJ+zz71xoSDOlidFTqH7Z9+bY/ZA3QrJsENB8HTjouHRJttqp9FQbW+dkyW6hkYB4Au4B2kd8uG0IOMp3SqWBHGsJY39BIhUGrbhPUPM6YP0d89NIzA==
+ b=TCI9X++WRX+IOU3i4H85fsxneCNoVUpZQteUCMmiwg8eLT2H/9au2BPMk4YfeSCLJnEYQDf7pnyho8gt4hj0751vyOvoVghQszushWRTQy1fF8l5dRli1Y3X63swUJrL/LotgXBt9L7B3BtBqOkqOKRAoB+rjAp18A3RStujcL499hkPGg9kwACG1Ohw/XfX/y17pmX+aAGTSxPaCa80OyR+3MGw0u35gv9ufo+u6Asl2HoAErcMo731OmKuzLgQi3Ih6LoZ3IbpNdmD9C24u+lxUnZs42fdXFqrKf/jS6PzKUkeRyHGwc7mS7RthbuS59SvQVisSylnrgRmVFoWRQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZMIlN4mb5p+GvpxOl48Q96oKLFceHB/artroUPwwUWs=;
- b=Posh9uenMbGsipQgNdqT8fUMGbh904KDd+Te4CwS62YZ6TgVii6cH6EcqBLWa+cRFsPpeyRJ7J18RImg3QG7BKufii/El7TAku0AjRmqiITdLGV7hTSlntCuXtIIap1dJ9Mi0JjXTPKnltN78Ix5f32QeHBS6v2e8oiotRt40HNQNbzon6mj9QE5iRmoLSNVbnYIjcJQGg+2o65VHnBCp0gBFiu7Ee7YvbJ6UVYCxV67xTqOkoI82lcvSdtP9Tfe3JX2vJ9CZLAenpwLbKYlaY0xSvuK7iKTDni5jmMUdX0BY+QmQyMUPhr5gP1o6XgqAZGv28Vmhp9GzXXNdAGpiA==
+ bh=f9JExdU9IkqnyqzU6bFCDGOTOKLzubNMWvE3gEplnrI=;
+ b=ZL1rBO7H61P5fLsodeebeNQLNal/98UvxnrfqcO35Stj3iy2ef6/HAn8JGIPkPa4biJLinbfP6JV+w3Br7l36o/FzRnC9f8zexKPbzoFOxlcoWRfAfy56yjxijAIMxLqKAnOleVU6hU/yDbKGYfTOgWX0uVK6TFwWZpxwWKI99XErA2TNKPM6GCt1ZKHUw2oGfubBiDBojTmBMBAgkRLA6YcxAPMyM4Ztbu1w2osz7lw0ylz738OwTLlunkw7QqOqSbpkur9bLfqY1KMfM5mat9vObYPL5WZadUYPOLLR5m4oCJR5bfWYf0TH135sxHERQonqjZzgAIzQ4qbAwTlOg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZMIlN4mb5p+GvpxOl48Q96oKLFceHB/artroUPwwUWs=;
- b=2hpROChDZae/MDkmxWO+8+KOfQb/q9ulkISuxQPHAstCzrjv/T8ivR6UJJladqffLR+RhZ466CpotTfWuGCcsbg2c04eE+CcW0zqgJu/5X8B2cIJp5T/HXFgWaKgu/HQHFSGeszvLErxPKeOReqwzG/cMwMwtOWiytI2NXFuqfY=
-Received: from DM6PR08CA0043.namprd08.prod.outlook.com (2603:10b6:5:1e0::17)
- by DM5PR12MB1548.namprd12.prod.outlook.com (2603:10b6:4:a::23) with Microsoft
+ bh=f9JExdU9IkqnyqzU6bFCDGOTOKLzubNMWvE3gEplnrI=;
+ b=S9ZdpU8KOi4VKBlRIxu8SeJn8zbLhT7WeVqLX0hYIlvUjF0Ry8hWP+qkn8BbfThkszShkjik3M2cJjcx7m+MmdGTy9Q4hO6YIhz8AYLqEagjLXeO2xtsBpR3X1UIE0xJ8UC6GR4Ol8oN1zcNMapmN0J0BEVjciNOmVGWrz2cKZU=
+Received: from DM5PR08CA0032.namprd08.prod.outlook.com (2603:10b6:4:60::21) by
+ CH0PR12MB5107.namprd12.prod.outlook.com (2603:10b6:610:be::17) with
+ Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5566.16; Sat, 27 Aug 2022 02:50:56 +0000
-Received: from DM6NAM11FT032.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:1e0:cafe::d4) by DM6PR08CA0043.outlook.office365.com
- (2603:10b6:5:1e0::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.14 via Frontend
- Transport; Sat, 27 Aug 2022 02:50:56 +0000
+ 15.20.5566.14; Sat, 27 Aug 2022 02:51:01 +0000
+Received: from DM6NAM11FT096.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:4:60:cafe::ee) by DM5PR08CA0032.outlook.office365.com
+ (2603:10b6:4:60::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.15 via Frontend
+ Transport; Sat, 27 Aug 2022 02:51:00 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -44,23 +45,27 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT032.mail.protection.outlook.com (10.13.173.93) with Microsoft SMTP
+ DM6NAM11FT096.mail.protection.outlook.com (10.13.173.145) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5566.15 via Frontend Transport; Sat, 27 Aug 2022 02:50:56 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ 15.20.5566.15 via Frontend Transport; Sat, 27 Aug 2022 02:51:00 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 26 Aug
- 2022 21:50:55 -0500
+ 2022 21:50:59 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
+ (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 26 Aug
+ 2022 19:50:59 -0700
 Received: from brianchang-HP-EliteDesk-805-G6-Small-Form-Factor-PC.amd.com
  (10.180.168.240) by SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP
- Server id 15.1.2375.28 via Frontend Transport; Fri, 26 Aug 2022 21:50:51
+ Server id 15.1.2375.28 via Frontend Transport; Fri, 26 Aug 2022 21:50:55
  -0500
 From: brichang <Brian.Chang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 09/33] drm/amd/display: Only commit SubVP state after pipe
- programming
-Date: Sat, 27 Aug 2022 06:50:29 +0800
-Message-ID: <20220826225053.1435588-10-Brian.Chang@amd.com>
+Subject: [PATCH 10/33] drm/amd/display: add a override flag as wa for some
+ specific dongle
+Date: Sat, 27 Aug 2022 06:50:30 +0800
+Message-ID: <20220826225053.1435588-11-Brian.Chang@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220826225053.1435588-1-Brian.Chang@amd.com>
 References: <20220826225053.1435588-1-Brian.Chang@amd.com>
@@ -69,26 +74,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1101b241-999e-483e-d1ce-08da87d6f6e7
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1548:EE_
+X-MS-Office365-Filtering-Correlation-Id: 882ecbee-62c5-4b0f-a2f6-08da87d6f997
+X-MS-TrafficTypeDiagnostic: CH0PR12MB5107:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: z852Dbt6qk3kPWlRzeYTjcf+9NoTCrQ966zIKH+RZdsG4Aw4/7nC1p8mjgmEP34lHSljVpio7WN8tkj6tC7XTXIOWJglDBD34fYa5Ky9jsrPQn7M3Dw/NcOe+AgAXq1kaHxBkmfvHZYSWNiaD5J6TiOzdMG78UPK87ujNob3D31vtxBNP60/sHjTduhq45AHqvXAIaxQfmC4KIcqRMyi+4aDEZAflayLOEs3uNQ5LkqK633q7FJDE6nK77YTxNWSwcI08YriuFxAsnmn2F4vi9PZBaMRxhSVlD6VL+UvvsWmmlopr5/vszwIN3FeqeiXPNT7Nk/d4A3+NM3S+L/yl+LbnSZSRfjoWK5zKj2tkivuYqdp5G0L9IgMQFf67Etu/6Vj0BxUV24GzOzaDA9Mk6CV5hNcK3uCEvb8OYFfF4qhIJFkOsjyNyHlJ6c+W1xMovIWJpAhPz+Sza8qg3aPPFo2qe98T2endvkDLJFDKPvb2NLPvms2GE/RAzKfXKU06wHXc5oFU64jcK+OJwMTK42GCDGUJtWbKnmRA1/2QRoW51/f2ZsYeooSh4uqlJFMWE0w62FmGvW8pWQuh8FxhDgTx6+uSdW3VLc9g6bdt9tIju/CWkfJtkyXxDZhIQSC8kn2TH9dPC8UFLEx6ds5L6/IV0frnV2UXqRScCfQGY/YHRask69Hs9G8xYd2cr9pCk87GEQh7QV/xTlz7bUiwOH8dG14Y7hY6h7Vvw5Fl5tiah1tT9sSUedmWiXgYhAJkbE5ulavA7zNxQ8wupHaW8TEdlpDlQpmnrQ6acluYg1G+yfmXo3n9qzgSLhA/HL4DFdjSKUfklyzsT9dFt4n9g==
+X-Microsoft-Antispam-Message-Info: wyhG+wAyCN3VhE2mygYHabRnKa26TPFDj6k5J/M4p93Yx1IFmMVT+YdJQh3s8eJE6YNKBTAOfJp06dA1/g0k83T2yNWXLhMaIalntyskH4MswOcGsGBjTbCqe5O/T66tLOMou9xvT6A3bMDtp1hlMRY5LR5VaRsazU3TYB+oylm+j0YJ1QTI/r5aR9ZT03r7vlWONjrB7Of0tKh0fE6eybjyrjipuhtU14GLMJtzArC46mfGkl/Oz4zsrUJj611MWvJvkjOi2/WWTOJmwnKAYdsNfmPIv9bCr04kqTybAArWzeHmUw5Av9KVYSCRqVQ1LL1WcnSmDpRmRc2DgGEwWYX2zZ08LoqRVCubqpVK8sCJaPiDTecWtuhJzMnELMNZSf1dwl1vjbEhXgLeqk5YDCMJOmmhtvP6Wv7V0vmm5Hkz/hbBpBJ0XgwO8yGOkNmL66A5jvOfIk+EhT/eV8/WnsEJm74e/0QR3VF9jx3okZkkBSxvirtMS8BCwpXBJVtVb6uKpMVK4OYM6Jc7yU2L+GlvRzwmtvWiPKOr7iMfzUMJhVuSfJ8YaHqdF256oHbPnNxyMvsN2gBdyPIJG9/5luqK4UyT4t3NfhWFYlntThYI3xnM37NEhghfabgdr7cz/QElid3G8czp4WMBmoDQ11PkHTF7SbdU5Du2sqXGvUm6sE7spKgHf3kWPJCXW3co0FaOL012QxbneWRXDoPEKG/OZZMvOnW9B9zlz6PKCJJu+6VEgN+iLCGYUulcabSd/rBQl6PAkZyzqRntr+RX96f+F2wkL0/F9muJdq0aSw1qRPGUjDt8RdKHjCeyUZoEmCMW8URwWTWNwK7L1uwCvw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(346002)(136003)(376002)(396003)(39860400002)(46966006)(36840700001)(40470700004)(7696005)(6666004)(8936002)(81166007)(4326008)(8676002)(36756003)(356005)(70586007)(82740400003)(40460700003)(5660300002)(82310400005)(40480700001)(86362001)(336012)(70206006)(2906002)(2616005)(1076003)(47076005)(186003)(426003)(26005)(83380400001)(36860700001)(6916009)(54906003)(316002)(41300700001)(478600001)(43062005)(36900700001);
+ SFS:(13230016)(4636009)(39860400002)(346002)(376002)(396003)(136003)(40470700004)(36840700001)(46966006)(2906002)(8936002)(5660300002)(4744005)(86362001)(70206006)(70586007)(8676002)(54906003)(6916009)(81166007)(316002)(4326008)(82740400003)(36860700001)(356005)(40460700003)(82310400005)(40480700001)(336012)(186003)(26005)(41300700001)(426003)(47076005)(36756003)(7696005)(1076003)(2616005)(6666004)(478600001)(43062005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2022 02:50:56.0547 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1101b241-999e-483e-d1ce-08da87d6f6e7
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2022 02:51:00.5468 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 882ecbee-62c5-4b0f-a2f6-08da87d6f997
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT032.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT096.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1548
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5107
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,78 +105,41 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Brian Chang <Brian.Chang@amd.com>, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
- Alvin Lee <Alvin.Lee2@amd.com>, wayne.lin@amd.com, Jun Lei <Jun.Lei@amd.com>,
- Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, Charlene Liu <Charlene.Liu@amd.com>, "Chen,
+ Leo" <SanChuan.Chen@amd.com>, Brian Chang <Brian.Chang@amd.com>,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
+ Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
+ Leo Chen <sancchen@amd.com>, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alvin Lee <Alvin.Lee2@amd.com>
+From: "Chen, Leo" <SanChuan.Chen@amd.com>
 
-[Description]
-We only want to commit the SubVP config to DMCUB
-after the main and phantom pipe programming has
-completed. Commiting the state early can cause
-issues such as P-State being allowed by the HW
-early which causes the SubVP state machine to
-go into a bad state
+[Why & How]
+Add a override flag as wa for some specific dongle
 
-Reviewed-by: Jun Lei <Jun.Lei@amd.com>
+Co-authored-by: Leo Chen <sancchen@amd.com>
+Reviewed-by: Charlene Liu <Charlene.Liu@amd.com>
+Reviewed-by: Charlene Liu <Charlene.Liu@amd.com>
 Acked-by: Brian Chang <Brian.Chang@amd.com>
-Signed-off-by: Alvin Lee <Alvin.Lee2@amd.com>
+Signed-off-by: Leo Chen <sancchen@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c | 15 +++++++--------
- 1 file changed, 7 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc_link.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index ced09f875e58..95daee11a445 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -3333,10 +3333,6 @@ static void commit_planes_for_stream(struct dc *dc,
- 		if (dc->hwss.program_front_end_for_ctx)
- 			dc->hwss.program_front_end_for_ctx(dc, context);
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_link.h b/drivers/gpu/drm/amd/display/dc/dc_link.h
+index b18efe988830..d1214944839f 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_link.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_link.h
+@@ -224,6 +224,7 @@ struct dc_link {
+ 		bool dpia_mst_dsc_always_on;
+ 		/* Forced DPIA into TBT3 compatibility mode. */
+ 		bool dpia_forced_tbt3_mode;
++		bool dongle_mode_timing_override;
+ 	} wa_flags;
+ 	struct link_mst_stream_allocation_table mst_stream_alloc_table;
  
--		if (update_type != UPDATE_TYPE_FAST)
--			if (dc->hwss.commit_subvp_config)
--				dc->hwss.commit_subvp_config(dc, context);
--
- 		if (should_lock_all_pipes && dc->hwss.interdependent_update_lock) {
- 			dc->hwss.interdependent_update_lock(dc, context, false);
- 		} else {
-@@ -3344,6 +3340,10 @@ static void commit_planes_for_stream(struct dc *dc,
- 		}
- 		dc->hwss.post_unlock_program_front_end(dc, context);
- 
-+		if (update_type != UPDATE_TYPE_FAST)
-+			if (dc->hwss.commit_subvp_config)
-+				dc->hwss.commit_subvp_config(dc, context);
-+
- 		/* Since phantom pipe programming is moved to post_unlock_program_front_end,
- 		 * move the SubVP lock to after the phantom pipes have been setup
- 		 */
-@@ -3477,10 +3477,6 @@ static void commit_planes_for_stream(struct dc *dc,
- 
- 	}
- 
--	if (update_type != UPDATE_TYPE_FAST)
--		if (dc->hwss.commit_subvp_config)
--			dc->hwss.commit_subvp_config(dc, context);
--
- 	if (should_lock_all_pipes && dc->hwss.interdependent_update_lock) {
- 		dc->hwss.interdependent_update_lock(dc, context, false);
- 	} else {
-@@ -3517,6 +3513,9 @@ static void commit_planes_for_stream(struct dc *dc,
- 
- 	if (update_type != UPDATE_TYPE_FAST)
- 		dc->hwss.post_unlock_program_front_end(dc, context);
-+		if (update_type != UPDATE_TYPE_FAST)
-+			if (dc->hwss.commit_subvp_config)
-+				dc->hwss.commit_subvp_config(dc, context);
- 
- 	/* Since phantom pipe programming is moved to post_unlock_program_front_end,
- 	 * move the SubVP lock to after the phantom pipes have been setup
 -- 
 2.25.1
 
