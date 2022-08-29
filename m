@@ -1,61 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15D305A4D80
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Aug 2022 15:18:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FE655A4D87
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Aug 2022 15:18:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FDC110F1CA;
-	Mon, 29 Aug 2022 13:18:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E52310F1E8;
+	Mon, 29 Aug 2022 13:18:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com
- [IPv6:2a00:1450:4864:20::635])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF2BC10F1C5
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 13:18:27 +0000 (UTC)
-Received: by mail-ej1-x635.google.com with SMTP id u9so15650353ejy.5
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 06:18:27 -0700 (PDT)
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com
+ [IPv6:2a00:1450:4864:20::62d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1937A10F1C5
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 13:18:29 +0000 (UTC)
+Received: by mail-ej1-x62d.google.com with SMTP id se27so7903219ejb.8
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 06:18:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc;
- bh=Qb+gNWsEp4HhG0RoUYRA0wpdMKzvjjwfjBFlL+r1ILg=;
- b=e80C0Przpm3WPsDaqRnqc5zZQIgw+R1AS3TxGg946L1zlN/AjWm3Inzs45c+Q5wxff
- YL0+EPC0asGQ2hSI88jik+5rl3igMESw10TrSdRrwkQ+hub65U9/m7dcDH1kRpTkq58f
- LgATOSXyF2dE3vj8dBRzaS647md2dtsPnQsGoz5tgQUtSp/FMLiPFGv41wZp7guvYA6w
- vXkYQYnJXmvPMx9tVykNN++J6nWtcSKamqJQ1gt885S6QCn0zTuaL6GZdKgM1BVBWf/D
- EPrW/UsNacU69FQ8WhR0/wu1NDKk3Bxu8xZkUShd5zTsSmQ5RQqUj78IDWl17TmS8rSf
- hC/A==
+ bh=zSvHFbj8Jj/2GkiIIoYhX+QU8HIZGxASz4FTnsYcUx4=;
+ b=Ng80ttPQ9LsYc+7I6UbcfH7sYYevEaPoxIU2T+B/DUqFnzcg5nHRmY9LYMSe91H54b
+ V+UWLZYbpm4QLt8pRb6rNpdVh48IS1MO6nZ+y9H9cEHLmDqEG168DdYlSfeNHQhRhbMs
+ 7ng3v80u9n/tumczDOYfIVmVG311+DA0I3AtJsplu6UHhHCoUY0ZLaBGv/R//V/sBoUK
+ c2YTcRO6agp9YfqocTwpCQtFxFHXeu7BlJkY7cPgjy0pOpyTIM70mtfmwqQNsiEO99LV
+ ZOCmvmUuaDycR3nqy4zLVA4MpImvDfY58AMjiVqJHwu1jsx45EWCPMy/RtszsYLOHRSK
+ /BZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
- bh=Qb+gNWsEp4HhG0RoUYRA0wpdMKzvjjwfjBFlL+r1ILg=;
- b=G5PWMxi/efoumXD4rYH/ZdziWW++o6rZ95n7/ZtQJn+WhuqC28WJtMnFp/s72aY6NG
- MIiVHLYKEeYU2TZVLlGeQALyOHPrIhGhQz+StuiFB5ge+rE24j5IhTpkM8dcgDNwiDTU
- jBBi6CMmmQvEBHDcYNzQbA8iAu+bd0laNziBauG5h5/ZT2211TJDNHtsnoHKLV4fOFDz
- P6sMtXsp+bbinvtcEu+d80NBxRXIMBxpOcGxnvt+dWBpE0KQ2TwEgaz1M6B4L4qM92SM
- g1OwI9FXS1EbFN4szWTX53TKjeudLimlTBeNSOnuBdR7z7YUW/ulIihB2xrpVxJckTIr
- XtPQ==
-X-Gm-Message-State: ACgBeo0envf1aNcBBzcFzHUs2tGAVDuKjGUOmDJ0dVJzQSToF2hLRYeZ
- RTYrLrHme14zKtmtNOFBND9nbD03mKA=
-X-Google-Smtp-Source: AA6agR70beMfKyarN1VDMKx6Om72J2rDUdbIOwS1MWMX3boyuH2BShRyqa7yTiUh/8KdVlCdrfbxnA==
-X-Received: by 2002:a17:907:6d03:b0:741:9b9d:ad8b with SMTP id
- sa3-20020a1709076d0300b007419b9dad8bmr2564685ejc.197.1661779106460; 
- Mon, 29 Aug 2022 06:18:26 -0700 (PDT)
+ bh=zSvHFbj8Jj/2GkiIIoYhX+QU8HIZGxASz4FTnsYcUx4=;
+ b=Ot1Mp8mU/2uE0MD73kM9KWBegch5cpT6Gpw5qdtG9McXHYMX5gDM0DfQWmjOPzhC7T
+ sLJrm97Jhpxu1advgfg0WFy7gRxdCw119Gi5dfrnd4RW5dSEKPQjUCvHtBO/quijlXCK
+ 0W3jabrIJ5j5NF2IFbOyywgs/XcqOaWFNfRwdDfzs66aN/g2/48yzo7XSRVEAzViMtTQ
+ /WFnLkxeDa00Sjtrg+BYL4N6ARHv7f0TjXLnCUrYmzT1dTsk+EmLa5pQDFiLKaEnqkAB
+ ViZ2UyzEjwxZa3Ib750as3qlxaM3IrYxS2iugj4ffFPAzZN/KAZ/PD6f9ARrg4pl8xud
+ 1wig==
+X-Gm-Message-State: ACgBeo1Itg3Qi2a47Ae0FB9S4uDAJvFIcc2djo0WU+JvMYSFLnbhfEdq
+ fsTn68TWvU+55x8Bbzsrgoo=
+X-Google-Smtp-Source: AA6agR6lobMfpxZ1BHGdYzwn//GeM3bOhY9SMHgg6NmAk4fVuPu20gELWVmt9Vly9tuiNGPgeLgjKQ==
+X-Received: by 2002:a17:906:730d:b0:73d:c8a1:a6ae with SMTP id
+ di13-20020a170906730d00b0073dc8a1a6aemr14021829ejc.540.1661779107657; 
+ Mon, 29 Aug 2022 06:18:27 -0700 (PDT)
 Received: from able.fritz.box (p4fc20ad4.dip0.t-ipconnect.de. [79.194.10.212])
  by smtp.gmail.com with ESMTPSA id
- z22-20020a50cd16000000b00445f9faf13csm5726218edi.72.2022.08.29.06.18.25
+ z22-20020a50cd16000000b00445f9faf13csm5726218edi.72.2022.08.29.06.18.26
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 29 Aug 2022 06:18:25 -0700 (PDT)
+ Mon, 29 Aug 2022 06:18:27 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: Ruijing.Dong@amd.com,
 	amd-gfx@lists.freedesktop.org
-Subject: [PATCH 02/11] drm/amdgpu: revert "partial revert "remove ctx->lock"
- v2"
-Date: Mon, 29 Aug 2022 15:18:12 +0200
-Message-Id: <20220829131821.2049-3-christian.koenig@amd.com>
+Subject: [PATCH 03/11] drm/amdgpu: use DMA_RESV_USAGE_BOOKKEEP
+Date: Mon, 29 Aug 2022 15:18:13 +0200
+Message-Id: <20220829131821.2049-4-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220829131821.2049-1-christian.koenig@amd.com>
 References: <20220829131821.2049-1-christian.koenig@amd.com>
@@ -77,130 +76,41 @@ Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit 94f4c4965e5513ba624488f4b601d6b385635aec.
-
-We found that the bo_list is missing a protection for its list entries.
-Since that is fixed now this workaround can be removed again.
+Use DMA_RESV_USAGE_BOOKKEEP for VM page table updates and KFD preemption fence.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c  | 21 ++++++---------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c |  2 --
- drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h |  1 -
- 3 files changed, 6 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c      | 3 ++-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index b7bae833c804..75fab438ba4d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -128,8 +128,6 @@ static int amdgpu_cs_parser_init(struct amdgpu_cs_parser *p, union drm_amdgpu_cs
- 		goto free_chunk;
- 	}
- 
--	mutex_lock(&p->ctx->lock);
--
- 	/* skip guilty context job */
- 	if (atomic_read(&p->ctx->guilty) == 1) {
- 		ret = -ECANCELED;
-@@ -708,7 +706,6 @@ static void amdgpu_cs_parser_fini(struct amdgpu_cs_parser *parser, int error,
- 	dma_fence_put(parser->fence);
- 
- 	if (parser->ctx) {
--		mutex_unlock(&parser->ctx->lock);
- 		amdgpu_ctx_put(parser->ctx);
- 	}
- 	if (parser->bo_list)
-@@ -1157,9 +1154,6 @@ static int amdgpu_cs_dependencies(struct amdgpu_device *adev,
- {
- 	int i, r;
- 
--	/* TODO: Investigate why we still need the context lock */
--	mutex_unlock(&p->ctx->lock);
--
- 	for (i = 0; i < p->nchunks; ++i) {
- 		struct amdgpu_cs_chunk *chunk;
- 
-@@ -1170,34 +1164,32 @@ static int amdgpu_cs_dependencies(struct amdgpu_device *adev,
- 		case AMDGPU_CHUNK_ID_SCHEDULED_DEPENDENCIES:
- 			r = amdgpu_cs_process_fence_dep(p, chunk);
- 			if (r)
--				goto out;
-+				return r;
- 			break;
- 		case AMDGPU_CHUNK_ID_SYNCOBJ_IN:
- 			r = amdgpu_cs_process_syncobj_in_dep(p, chunk);
- 			if (r)
--				goto out;
-+				return r;
- 			break;
- 		case AMDGPU_CHUNK_ID_SYNCOBJ_OUT:
- 			r = amdgpu_cs_process_syncobj_out_dep(p, chunk);
- 			if (r)
--				goto out;
-+				return r;
- 			break;
- 		case AMDGPU_CHUNK_ID_SYNCOBJ_TIMELINE_WAIT:
- 			r = amdgpu_cs_process_syncobj_timeline_in_dep(p, chunk);
- 			if (r)
--				goto out;
-+				return r;
- 			break;
- 		case AMDGPU_CHUNK_ID_SYNCOBJ_TIMELINE_SIGNAL:
- 			r = amdgpu_cs_process_syncobj_timeline_out_dep(p, chunk);
- 			if (r)
--				goto out;
-+				return r;
- 			break;
- 		}
- 	}
- 
--out:
--	mutex_lock(&p->ctx->lock);
--	return r;
-+	return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+index cbd593f7d553..85eb68ec692e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+@@ -297,7 +297,7 @@ static int amdgpu_amdkfd_remove_eviction_fence(struct amdgpu_bo *bo,
+ 	 */
+ 	replacement = dma_fence_get_stub();
+ 	dma_resv_replace_fences(bo->tbo.base.resv, ef->base.context,
+-				replacement, DMA_RESV_USAGE_READ);
++				replacement, DMA_RESV_USAGE_BOOKKEEP);
+ 	dma_fence_put(replacement);
+ 	return 0;
  }
- 
- static void amdgpu_cs_post_dependencies(struct amdgpu_cs_parser *p)
-@@ -1359,7 +1351,6 @@ int amdgpu_cs_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
- 		goto out;
- 
- 	r = amdgpu_cs_submit(&parser, cs);
--
- out:
- 	amdgpu_cs_parser_fini(&parser, r, reserved_buffers);
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-index 8ee4e8491f39..168337d8d4cf 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-@@ -315,7 +315,6 @@ static int amdgpu_ctx_init(struct amdgpu_ctx_mgr *mgr, int32_t priority,
- 	kref_init(&ctx->refcount);
- 	ctx->mgr = mgr;
- 	spin_lock_init(&ctx->ring_lock);
--	mutex_init(&ctx->lock);
- 
- 	ctx->reset_counter = atomic_read(&mgr->adev->gpu_reset_counter);
- 	ctx->reset_counter_query = ctx->reset_counter;
-@@ -407,7 +406,6 @@ static void amdgpu_ctx_fini(struct kref *ref)
- 		drm_dev_exit(idx);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c
+index 1fd3cbca20a2..03ec099d64e0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c
+@@ -112,7 +112,8 @@ static int amdgpu_vm_sdma_commit(struct amdgpu_vm_update_params *p,
+ 		swap(p->vm->last_unlocked, tmp);
+ 		dma_fence_put(tmp);
+ 	} else {
+-		amdgpu_bo_fence(p->vm->root.bo, f, true);
++		dma_resv_add_fence(p->vm->root.bo->tbo.base.resv, f,
++				   DMA_RESV_USAGE_BOOKKEEP);
  	}
  
--	mutex_destroy(&ctx->lock);
- 	kfree(ctx);
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
-index cc7c8afff414..0fa0e56daf67 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
-@@ -53,7 +53,6 @@ struct amdgpu_ctx {
- 	bool				preamble_presented;
- 	int32_t				init_priority;
- 	int32_t				override_priority;
--	struct mutex			lock;
- 	atomic_t			guilty;
- 	unsigned long			ras_counter_ce;
- 	unsigned long			ras_counter_ue;
+ 	if (fence && !p->immediate)
 -- 
 2.25.1
 
