@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2B6B5A4F52
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Aug 2022 16:32:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0F425A4FBD
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Aug 2022 17:01:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D839E10F339;
-	Mon, 29 Aug 2022 14:32:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B249610F362;
+	Mon, 29 Aug 2022 15:01:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2063.outbound.protection.outlook.com [40.107.102.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5410C10F2FF
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 14:31:20 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2052.outbound.protection.outlook.com [40.107.243.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9A3810F362
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 15:01:34 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oSkuEsZeXZxB/MjMPLUduA/ocS1FwSz8WwMbSgwuILzH4d9wsigTEPt4PmZQ4qf38W003q5pAGmIGC1mhy9A9Pm6WVfqO3PDVDP34hO0M3XD001MnQBRfy5u7VIg+Of8nrRUpQV0sQHA3hZdKdN1te9yRF6pfd1t9PjvS2QU6QxBZRKkNzB+Y1OcFbAEpi8bTVdFvfhI0+WNx9rXOOh8VB2AIADreAOlMkRZ6+2yBXKHqOSTKuUqIYcqxUr3UYZSMdADNIRzyyS+Mb22ZnmE4/OaPP2GhmpYouEnRR0S0Juh3pTSayRzF9aA4Tza0Hs7dPDXLM5adAayG1jw2g34gA==
+ b=JnhDmqN20wbJfHyu7xroo8ACl5PYy58gH+XVgVI3/57udXXO5f8ADNgWxpvnROd9sdRRRblKEMrRM6ZIcbcBQ6DyZIAWGdlg+AKZl3OVoKjSlpyy+e2UR9AIxtQ11aS/wo2tOAry7ncfyhfvBsTKe4gnmg7Fiz3U9E4Rbp8w50JLSKnFrOQDQM0jE+S9NWlL6OnD2OvwaGUi+pdAksTJcvRU4gjAR9JydOwdIkZ2xicrJ0JRt3+rFVVR0/T02uYirTzwvoSTGPclJaBZnkjVo1rt4PdISDPFyeUOdmOwF0Rl0yPhpCdnC9mftdmFxk9fy+09EPjwKV3O+FHAnuLbbg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ik7hHgDgHMpgfYgtnHjqkb4n06F51uYN0QbNmnafe9A=;
- b=Jp5Vc5/0a5nwt6cisayye12zJqjFBHhvo/g0uEyY5XP6THJOUJgjkjwj+lWg6+y9cbvCNNq3YDpq9JoVpCi2jPpyP/80x+9fNmPhG44bS612qbvWAMMBmlv1rbXxZHVjMxLz7CQiBnW1oFfelCq0++26sBDJXyaFuX4DMTCD5ACwhTkopNDMlAQbGQ7z0DxFU2KFyp3erQxtPlYfhBHDhZMk/l9trH/xD9CaxjscbqU9tSAKNay7zrQHerISj3OAz3Dwis0cuVxJNOQwMP/rKwSkpYn0k1LoAnztCihc4uuHCL1C6YKwBS5lwknb1+IJEHB7j519n2yTuRuenRBthg==
+ bh=7gxfg8NWyAayTOwFxXDoLM1kgGarTWlboxvfS7S6GGA=;
+ b=Ko+gXViNEAotB/bVd13u/RMIBycIpn7u/6feEHH89bJevyqGXUaiyMsvVsy1JcgmEnc2nagE7RlPfd9HYx7r3zVImEWIZ0UNxeWLaZAxcDco7PngCR4DTQR/TZbb2pE2mpF74J0emQdHGNcXr7h6jFiQJqFcIuv25KEWNWmJIs2LLituIF2DJJmtJrUzWBUq5jl2E0tZnj2Ywjbj8EJ+54cHu+Y3rWLUtXiPXulhZ51uhnx4I8yixfPGw+l1YE6Bs3b2qnbqDBr5v5wc+lxnH7su9AsvPspFIR/IJFz2J1zxCpYaH5HQ4M4iAyapjD/KFnpcwMZygIHAYaoJgKs3jA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ik7hHgDgHMpgfYgtnHjqkb4n06F51uYN0QbNmnafe9A=;
- b=4t/gKnO49wYAzRHn1uzuedRGn056aNtXi3hSNAqTPt1kiyR3XCa4J+2O7TxBIoRJSJuatUef4YOSKYTBjvR1pR6aYn6x9cUd8r8EvpH+iCzHGBEHXbGnrU+yabX90nvsj9KtyeKxh/ENeZeLLfcPtMjNPlKQCk+rJwwCK9cycQs=
-Received: from MW4PR04CA0301.namprd04.prod.outlook.com (2603:10b6:303:82::6)
- by DS0PR12MB6582.namprd12.prod.outlook.com (2603:10b6:8:d2::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.21; Mon, 29 Aug
- 2022 14:31:18 +0000
-Received: from CO1NAM11FT100.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:82:cafe::57) by MW4PR04CA0301.outlook.office365.com
- (2603:10b6:303:82::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.15 via Frontend
- Transport; Mon, 29 Aug 2022 14:31:18 +0000
+ bh=7gxfg8NWyAayTOwFxXDoLM1kgGarTWlboxvfS7S6GGA=;
+ b=P94BpuxD7fWe11bapUmnTU9gilgVAjEB6xcmH/KwoxeVCgKDIuQHrV6bIQdLcOQ61SD/ehctpv9Nybor6UU7hz8BgSoEmZkRvEnjhvr6HS6D+TOQmN+L40I/jcalO93fSEKbCmH/oizMN2QSURjoY3OsVIbZntRaEqkkVrYV/oc=
+Received: from DM6PR13CA0006.namprd13.prod.outlook.com (2603:10b6:5:bc::19) by
+ MWHPR12MB1309.namprd12.prod.outlook.com (2603:10b6:300:10::21) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5566.19; Mon, 29 Aug 2022 15:01:32 +0000
+Received: from DM6NAM11FT086.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:bc:cafe::e3) by DM6PR13CA0006.outlook.office365.com
+ (2603:10b6:5:bc::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.10 via Frontend
+ Transport; Mon, 29 Aug 2022 15:01:31 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,22 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT100.mail.protection.outlook.com (10.13.175.133) with Microsoft SMTP
+ DM6NAM11FT086.mail.protection.outlook.com (10.13.173.75) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5566.15 via Frontend Transport; Mon, 29 Aug 2022 14:31:18 +0000
-Received: from jonathan-KFD.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ 15.20.5566.15 via Frontend Transport; Mon, 29 Aug 2022 15:01:31 +0000
+Received: from alex-MS-7B09.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 29 Aug
- 2022 09:31:13 -0500
-From: Jonathan Kim <jonathan.kim@amd.com>
+ 2022 10:01:30 -0500
+From: Alex Sierra <alex.sierra@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 29/29] drm/amdkfd: bump kfd ioctl minor version for debug api
- availability
-Date: Mon, 29 Aug 2022 10:30:26 -0400
-Message-ID: <20220829143026.1509027-30-jonathan.kim@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220829143026.1509027-1-jonathan.kim@amd.com>
-References: <20220829143026.1509027-1-jonathan.kim@amd.com>
+Subject: [PATCH] drm/amdgpu: ensure no PCIe peer access for CPU XGMI iolinks
+Date: Mon, 29 Aug 2022 10:00:52 -0500
+Message-ID: <20220829150052.5913-1-alex.sierra@amd.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -69,26 +66,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 64c5b3f8-c518-40b3-757f-08da89cb22e0
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6582:EE_
+X-MS-Office365-Filtering-Correlation-Id: c04efe15-b5d0-44c4-eb7f-08da89cf5bc8
+X-MS-TrafficTypeDiagnostic: MWHPR12MB1309:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5JFyTZ06FOuC/v+vmVXargTr+dpTwVaz8E2UQWwjpxbi6P8orOjAjdc0aMwVMHLY19Kpw839HrdxUfQ0uqiKeMtjsie6dLK6q6nZpvLJvkC1+N0Kk71GWEyouv5V1Bh/mf6h4HobqjKoAaC1+a6Jv8XI2h5G714FX0a0lXNP60lGW4GSB9BNJGJxDoSPCahNo/lUX8CdURnkIp3Z7yjit2dTWA7/QP5vtH38wepMjA8guTyzkPC64KnAGczEIXFVRO6MlIf+rxC1ZxMYLWfErU8j6S8ZT2k2wNvDwEkuevh37qWZSyoEOlK/1rPwTM9qSIuUHvFBTOEE56AuTlgjcYMbP5jAj3SpW+SagyFV3sUfDTZwSDWf2/6n2qvAKjMMYymwDPDOtY/O5SiWE9BnGmDGj586l1cCaqF7Un/A7v9hZaSPWueuIesmBN0YxWPjMhbvT5oLqodboUjFs9HI5CKaKQoH3BXz/RScjUho45hP0bl2RyKw0DAN5CbgL1CiwqIBZAdgBqdzcMk5wwscureT0ZQZMlJwyxexFKOW6GTp5hWu8wz/vPbNYq+TzE/mWjOMgSXXhZJ8Ynwc0mC5/GBWgCdFsFmbxaE7t1WLWA9/Y4UU/kXOw1b0aU5Dh3fNePml6MGZcSfcFV4mA0PdIUz/ckaxrapdRoLQQ9CfBO7EOMnNHuCSM0zYRfSRzRKKO0/dH2YhEkESuVxhE08yl3y5vAu5GpIA5hRbxA3w5+v5FWyDya4tZ/iDRuxYHIG2QvCm/Mx5I7kjTuIsdtHjtV04ekKFEuAbsFayAukJhXg=
+X-Microsoft-Antispam-Message-Info: Mv3PvNYpeeOl8TJoCTPN/Jxb1+bXKF/BXqIMp8XVWoD96N9BHZsldRtv+Fq6PjNUoqYoB0zjtEaYXwNvAhNWZ5zzakg+J4N/uLFTzfinD4PPNYiCTkW8B84Aurfov9R1grmYVseEWB0tP9PJmr+fOh/C+KPA/lXYzDSKcTUtbr5uoP4bcekZCGeQsgH5WNF2b5lJ3BTCCPT4EgOUik92tLEgeQ+Szh0ciFDKWbu4dN+syFhehaXaHIiDcXFY6r5f5pd9+8M1WfYAlqppzWgCMCvbJ7oz5m+ztYrFf1FuYasHjAONbKQ2un5+mNxRskBY2gwYUPwewCGxo5X/BtQrzb43Gu29wuGIo1vbj/a3CVSVdrqL9tkiZ24m9UgQqJQV7StaZKXEabyeWky1re+VNWX82/fjYzUaHZEDsWCRluGTGTF9z48VLmw7xY8qW62AJfWqlpq8ZGzDk0szU9Q7LjAJ3agsBIDRLu+mhZenqouHsaQ7J9kvzC3SH7+wlBW4E2bpYSqOHGWoy2FFGEYuwHQX6SSXicBgjeNjtItdc2N5nbxbqyVXhrXmpVve5Ptq/egoFRmkBKElztKumXCi/XPUz8m1c9pCXHKevf7488p5laMn8C9mfe1vSOouH+YEUSkcZ0ijrDL1+Xcz0xyozGp3aAFYtaEa8k6feA+zGOlqLEEBV9KygbjIHQa//O2ySsVu4FDXBC+okHGTeN50e+E6CZDCGza+ugbuZJTAkiqX8D2obs1EL1clcPEbFU9i8HkGbaWYNhWRZNLKppJ1kfOs7jCS7tpADcDDa7Dt1EwNII+V0mIrtKqa/cgur5vB
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(376002)(346002)(39860400002)(136003)(396003)(36840700001)(40470700004)(46966006)(36860700001)(81166007)(40460700003)(5660300002)(8936002)(41300700001)(40480700001)(16526019)(186003)(47076005)(7696005)(2616005)(86362001)(1076003)(426003)(6666004)(44832011)(83380400001)(2906002)(336012)(26005)(82310400005)(36756003)(316002)(70586007)(478600001)(70206006)(6916009)(54906003)(82740400003)(4326008)(356005)(8676002)(36900700001);
+ SFS:(13230016)(4636009)(346002)(396003)(376002)(136003)(39860400002)(40470700004)(46966006)(36840700001)(82310400005)(40480700001)(36860700001)(356005)(86362001)(40460700003)(82740400003)(70206006)(81166007)(4326008)(70586007)(8676002)(41300700001)(8936002)(5660300002)(478600001)(54906003)(316002)(6916009)(47076005)(1076003)(186003)(16526019)(2616005)(2906002)(6666004)(7696005)(44832011)(83380400001)(4744005)(426003)(336012)(36756003)(26005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2022 14:31:18.0348 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 64c5b3f8-c518-40b3-757f-08da89cb22e0
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2022 15:01:31.6538 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c04efe15-b5d0-44c4-eb7f-08da89cf5bc8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT100.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT086.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6582
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1309
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,47 +97,32 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Felix.Kuehling@amd.com, Lancelot.Six@amd.com, Laurent.Morichetti@amd.com
+Cc: Alex Sierra <alex.sierra@amd.com>, Alex Deucher <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Bump the minor version to declare debugging capability is now
-available.
+[Why] Devices with CPU XGMI iolink do not support PCIe peer access.
 
-Signed-off-by: Jonathan Kim <jonathan.kim@amd.com>
+Signed-off-by: Alex Sierra <alex.sierra@amd.com>
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 1 -
- include/uapi/linux/kfd_ioctl.h           | 3 ++-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-index 090fb902086a..52a8a9b36a83 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-@@ -2860,7 +2860,6 @@ static int kfd_ioctl_set_debug_trap(struct file *filep, struct kfd_process *p, v
- 		if (!r)
- 			target->exception_enable_mask = args->enable.exception_mask;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index ce7d117efdb5..afaa1056e039 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -5532,7 +5532,8 @@ bool amdgpu_device_is_peer_accessible(struct amdgpu_device *adev,
+ 		~*peer_adev->dev->dma_mask : ~((1ULL << 32) - 1);
+ 	resource_size_t aper_limit =
+ 		adev->gmc.aper_base + adev->gmc.aper_size - 1;
+-	bool p2p_access = !(pci_p2pdma_distance_many(adev->pdev,
++	bool p2p_access = !adev->gmc.xgmi.connected_to_cpu &&
++			  !(pci_p2pdma_distance_many(adev->pdev,
+ 					&peer_adev->dev, 1, true) < 0);
  
--		pr_warn("Debug functions limited\n");
- 		break;
- 	case KFD_IOC_DBG_TRAP_DISABLE:
- 		r = kfd_dbg_trap_disable(target);
-diff --git a/include/uapi/linux/kfd_ioctl.h b/include/uapi/linux/kfd_ioctl.h
-index 5517dd28b974..701809d78082 100644
---- a/include/uapi/linux/kfd_ioctl.h
-+++ b/include/uapi/linux/kfd_ioctl.h
-@@ -37,9 +37,10 @@
-  * - 1.9 - Add available memory ioctl
-  * - 1.10 - Add SMI profiler event log
-  * - 1.11 - Add unified memory for ctx save/restore area
-+ * - 1.12 - Add debugger API
-  */
- #define KFD_IOCTL_MAJOR_VERSION 1
--#define KFD_IOCTL_MINOR_VERSION 11
-+#define KFD_IOCTL_MINOR_VERSION 12
- 
- struct kfd_ioctl_get_version_args {
- 	__u32 major_version;	/* from KFD */
+ 	return pcie_p2p && p2p_access && (adev->gmc.visible_vram_size &&
 -- 
-2.25.1
+2.32.0
 
