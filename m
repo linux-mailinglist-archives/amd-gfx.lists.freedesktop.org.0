@@ -1,61 +1,63 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3888D5A4D9D
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Aug 2022 15:19:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40E205A4D81
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Aug 2022 15:18:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D46510F26A;
-	Mon, 29 Aug 2022 13:18:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AC6610F1CF;
+	Mon, 29 Aug 2022 13:18:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com
- [IPv6:2a00:1450:4864:20::62d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7462510F1C5
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 13:18:25 +0000 (UTC)
-Received: by mail-ej1-x62d.google.com with SMTP id kk26so15589502ejc.11
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 06:18:25 -0700 (PDT)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com
+ [IPv6:2a00:1450:4864:20::630])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A720610F1C5
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 13:18:26 +0000 (UTC)
+Received: by mail-ej1-x630.google.com with SMTP id bj12so15592832ejb.13
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 06:18:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:to
- :from:from:to:cc;
- bh=Gnd1cvQXHxshbuHnSVWAFKYYevCPiyZpo1Yi5KRm8Jk=;
- b=FEeS0yhvRNCnHclg+9J2X5q6UZiAfhyLqyxYjB/LhERjQJl0pm+//LLGb9c/xNrg95
- p7mqcxCtu/NjSNWr/D9fWrqq7zxP8rDi0DBpwfMbjU2OuvrFIoDR/zuPBSxqmcWR339S
- ciK5ngLxdWv3x4GjgS343L8Dj/w4akvlLTbBwH1IdX1pwAX1Edhp+RY17bhlhpI2VxJ6
- 2aNz0bqNTZ9Lu2lReMNtIrVfgSwxZ8IJYFAGWkmoWiraUkJfBZf2OaRXM0MBqST1fc2V
- nDgYQ4Zhs/HSl66YZvHUdCMLJjzd3hjJliZKUgba/g6uAzjlMJc1Y5aXZynrUg9PZnKP
- mNoQ==
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc;
+ bh=kBJ8MKPMTc/ljm1Je/dqVW7iOpGuBGK18C7LP1VWBRU=;
+ b=N877zg9zpa2nfLS22LUB264/20ksP86JTx4JU3jvOBO52IUVqOwfUvDX6yZpL4WtKS
+ pSyaf6ufJIIjoFIYHCKCLy8MbkHipYXCnXFpbpEdKkiY2ACs1DEMAJLjlQyNMdC8Mi42
+ 8Xh95yzj6HxIvWmejKpT6xQ0p6S7fMadIGQQOAqxepKZZ4RK+7eKTasMmcevGhKuRThA
+ i37eujI33o1hO7ijH2/WbgWJDbnkvIPc2qqkNtuGEmLmPPi8enelRJFa+O2G3yXKkYMd
+ j2ea9qZNr5V3dKG611AmT/cETkrgAB5QG9tUklrT/5Mvzo+0PSofueRi+hTUUmF6KVcV
+ Nsrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:to
- :from:x-gm-message-state:from:to:cc;
- bh=Gnd1cvQXHxshbuHnSVWAFKYYevCPiyZpo1Yi5KRm8Jk=;
- b=i122avOgqvWJKQRg2P3R/QMqo4TKLnlpZH8aPeFS9nWGU9vjnsncrI9bqmEt1jncyz
- hrSTpKXyeTeLHS28t5duoBocPA+5zHkaezuWilGdqoVQ7knC4ymKqtmryMAShuAZmCbD
- 1Um44YNi8MfZG4QMjcPm38ErBK/FX2bjYo/3VieZm1rcyEB3lnXo93BAVVgHoCh3IzRu
- 8BYsrcbJ9CBKiSdAgJMrtcXCtQKVbSJ5/i7klYNavZgVCBeZO2GN0vUXRQFl+nCy0lX8
- 8i3VMFJOx8TImC2HYNU3BfLx+Kne7Q5osjx87S6um6weIps3quoFdpQLFjb5wWiv8yq9
- I83g==
-X-Gm-Message-State: ACgBeo1V1Av7ZqX6/MaIR8SfZX3bw+FNxOO3mwUAGqkGZXPnIxCu+WdB
- Y40OCiQ/xX1mFAcIZgWLUHA=
-X-Google-Smtp-Source: AA6agR4jC/PhLeWAcbHwHCUDq2U+nbF0qdb/WJhaK6z6R/5yx2CpJRkDmnv7DpjO4W0t0eKx7qfU0g==
-X-Received: by 2002:a17:906:4bd3:b0:731:3bdf:b95c with SMTP id
- x19-20020a1709064bd300b007313bdfb95cmr13670156ejv.677.1661779104001; 
- Mon, 29 Aug 2022 06:18:24 -0700 (PDT)
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
+ bh=kBJ8MKPMTc/ljm1Je/dqVW7iOpGuBGK18C7LP1VWBRU=;
+ b=0mN8LMlRjlYVcU6EpS6pbmT+qaxlUkFft4/9iRVnMSVAbrfRA1XqmHVZ6wyVEM/yxD
+ gmuZpicFYTN85o5AxPhH7hx88xd5RdVmHxm7Jrw5Ctm5i6hpslnQ7RY2qTeR5HhXIaxB
+ Xq9ZjK/1dfJsW447qEtxOsefoCCQgkAUJOZWVrEO12Vs1XZTeA3diwUEPL1hKzGdS1Xq
+ 5ZmU9om0jwboR735zbzSbNV6oOlAd/hy9nLsXBTIiAYfz7E/MmtEnn0bLY6dvGFJBtpL
+ Cx1/n1LXx7a2UZHrQZ5tDVkYizK3f2me1W0vW5Vub0116RIELLZCrsMNxP5znrPwQsZE
+ DV3g==
+X-Gm-Message-State: ACgBeo23VSUnw9fMzCaBfYSCGc62dhUWilFqxu4s3c1deMd3ihDTol7Y
+ gpyG5oOLtyfPQg9sRCnaZGiOm8zzoE0=
+X-Google-Smtp-Source: AA6agR7p9G/URD7O4H1lugfBkPpMk5d37bQvvtpf3QWddv+P7P3HSy9+0OQmRrXagWuFh9JDd3yEEg==
+X-Received: by 2002:a17:907:7ea3:b0:741:a1a3:b33a with SMTP id
+ qb35-20020a1709077ea300b00741a1a3b33amr1401101ejc.356.1661779105213; 
+ Mon, 29 Aug 2022 06:18:25 -0700 (PDT)
 Received: from able.fritz.box (p4fc20ad4.dip0.t-ipconnect.de. [79.194.10.212])
  by smtp.gmail.com with ESMTPSA id
- z22-20020a50cd16000000b00445f9faf13csm5726218edi.72.2022.08.29.06.18.23
+ z22-20020a50cd16000000b00445f9faf13csm5726218edi.72.2022.08.29.06.18.24
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 29 Aug 2022 06:18:23 -0700 (PDT)
+ Mon, 29 Aug 2022 06:18:24 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: Ruijing.Dong@amd.com,
 	amd-gfx@lists.freedesktop.org
-Subject: Gang submit patches
-Date: Mon, 29 Aug 2022 15:18:10 +0200
-Message-Id: <20220829131821.2049-1-christian.koenig@amd.com>
+Subject: [PATCH 01/11] drm/sched: move calling drm_sched_entity_select_rq
+Date: Mon, 29 Aug 2022 15:18:11 +0200
+Message-Id: <20220829131821.2049-2-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220829131821.2049-1-christian.koenig@amd.com>
+References: <20220829131821.2049-1-christian.koenig@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -70,15 +72,42 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-I've finally fixed why the gang submit patches broke VCN3/4 video
-decoding for AV1.
+We already discussed that the call to drm_sched_entity_select_rq() needs
+to move to drm_sched_job_arm() to be able to set a new scheduler list
+between _init() and _arm(). This was just not applied for some reason.
 
-Please re-test.
+Signed-off-by: Christian König <christian.koenig@amd.com>
+Reviewed-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+---
+ drivers/gpu/drm/scheduler/sched_main.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-Thanks,
-Christian.
-
+diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+index 68317d3a7a27..e0ab14e0fb6b 100644
+--- a/drivers/gpu/drm/scheduler/sched_main.c
++++ b/drivers/gpu/drm/scheduler/sched_main.c
+@@ -592,7 +592,6 @@ int drm_sched_job_init(struct drm_sched_job *job,
+ 		       struct drm_sched_entity *entity,
+ 		       void *owner)
+ {
+-	drm_sched_entity_select_rq(entity);
+ 	if (!entity->rq)
+ 		return -ENOENT;
+ 
+@@ -628,7 +627,7 @@ void drm_sched_job_arm(struct drm_sched_job *job)
+ 	struct drm_sched_entity *entity = job->entity;
+ 
+ 	BUG_ON(!entity);
+-
++	drm_sched_entity_select_rq(entity);
+ 	sched = entity->rq->sched;
+ 
+ 	job->sched = sched;
+-- 
+2.25.1
 
