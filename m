@@ -2,52 +2,34 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1D8E5A4595
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Aug 2022 10:59:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CCA55A4CD6
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Aug 2022 15:02:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 180AA10F112;
-	Mon, 29 Aug 2022 08:59:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF29010E533;
+	Mon, 29 Aug 2022 13:02:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9671110F101;
- Mon, 29 Aug 2022 08:59:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1661763553; x=1693299553;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=PfBjtqfIpcS8CoTv/YjLo/naSLWkJaJ3mxlPJQ6m0vY=;
- b=lY6SqbZrpj/zVK46D5vDP6sPaPSb/sp8FAnP2TLQouQUIQv4M1QmlF+H
- r+nolPJww1NiZcfmutijtXMyuceJ/T82q4rZpNeda+oJGCTNhU2+hqLGL
- TiFOQsOoYxMj+D7tpF3bDsPUP4V5nOs49xWAgaO5iY/BduE91scsrgLfk
- 8Xqn9bWlyRHOm/nCwOUAzqUruZiE1n/DtnwwcFXcyuH1p5mPtjWxdNvW9
- IOLGHHmgbSVRCh0MMeExRJZcr/7vvhkpEfMUw4cOQhM+B8NXy1X7eQNjD
- vAef13tIsI5rlCdIhGL6vQ4X2zI+IRdYfhv8w5m4G4R1DuXu1baeUwtOp Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10453"; a="274597172"
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="274597172"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2022 01:59:03 -0700
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; d="scan'208";a="672303547"
-Received: from idecesar-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.53.198])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2022 01:59:00 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 05/11] drm/edid: Only parse VRR range for continuous
- frequency displays
-In-Reply-To: <20220826213501.31490-6-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220826213501.31490-1-ville.syrjala@linux.intel.com>
- <20220826213501.31490-6-ville.syrjala@linux.intel.com>
-Date: Mon, 29 Aug 2022 11:58:53 +0300
-Message-ID: <87wnarfmsy.fsf@intel.com>
+Received: from out30-132.freemail.mail.aliyun.com
+ (out30-132.freemail.mail.aliyun.com [115.124.30.132])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0DA410EE24;
+ Mon, 29 Aug 2022 08:36:33 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R111e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018045192;
+ MF=yang.lee@linux.alibaba.com; NM=1; PH=DS; RN=13; SR=0;
+ TI=SMTPD_---0VNaXq0c_1661762188; 
+Received: from localhost(mailfrom:yang.lee@linux.alibaba.com
+ fp:SMTPD_---0VNaXq0c_1661762188) by smtp.aliyun-inc.com;
+ Mon, 29 Aug 2022 16:36:29 +0800
+From: Yang Li <yang.lee@linux.alibaba.com>
+To: alexander.deucher@amd.com
+Subject: [PATCH -next 1/4 RESEND] drm/amd/display: clean up one inconsistent
+ indenting
+Date: Mon, 29 Aug 2022 16:36:24 +0800
+Message-Id: <20220829083627.12774-1-yang.lee@linux.alibaba.com>
+X-Mailer: git-send-email 2.20.1.7.g153144c
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 29 Aug 2022 13:02:32 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,53 +41,85 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
- Manasi Navare <manasi.d.navare@intel.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Cc: sunpeng.li@amd.com, Abaci Robot <abaci@linux.alibaba.com>,
+ Xinhui.Pan@amd.com, Rodrigo.Siqueira@amd.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, airlied@linux.ie,
+ Yang Li <yang.lee@linux.alibaba.com>, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, harry.wentland@amd.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 27 Aug 2022, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Since we only use the parsed vrefresh range to determine
-> if VRR should be supported we should only accept continuous
-> frequency displays here.
->
-> Cc: Manasi Navare <manasi.d.navare@intel.com>
-> Cc: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Leo Li <sunpeng.li@amd.com>
-> Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-> Cc: amd-gfx@lists.freedesktop.org
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+1. The indentation of statements in the same curly bracket should be
+consistent.
+2. Variable declarations in the same function should be aligned.
 
-Makes sense, at least for sane EDIDs. :p
+Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=1887
+Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=1888
+Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=1889
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
+---
+ .../gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c    | 13 ++++++++-----
+ .../amd/display/dc/dml/dcn32/display_mode_vba_32.c  |  6 +++---
+ .../display/dc/dml/dcn32/display_mode_vba_util_32.c |  2 +-
+ 3 files changed, 12 insertions(+), 9 deletions(-)
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
+index edefb3fc1c3c..25406e00da49 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
+@@ -2141,13 +2141,16 @@ void dcn32_update_bw_bounding_box_fpu(struct dc *dc, struct clk_bw_params *bw_pa
+ 
+ 			if (dc->ctx->dc_bios->funcs->get_soc_bb_info(dc->ctx->dc_bios, &bb_info) == BP_RESULT_OK) {
+ 				if (bb_info.dram_clock_change_latency_100ns > 0)
+-					dcn3_2_soc.dram_clock_change_latency_us = bb_info.dram_clock_change_latency_100ns * 10;
++					dcn3_2_soc.dram_clock_change_latency_us =
++						bb_info.dram_clock_change_latency_100ns * 10;
+ 
+-			if (bb_info.dram_sr_enter_exit_latency_100ns > 0)
+-				dcn3_2_soc.sr_enter_plus_exit_time_us = bb_info.dram_sr_enter_exit_latency_100ns * 10;
++				if (bb_info.dram_sr_enter_exit_latency_100ns > 0)
++					dcn3_2_soc.sr_enter_plus_exit_time_us =
++						bb_info.dram_sr_enter_exit_latency_100ns * 10;
+ 
+-			if (bb_info.dram_sr_exit_latency_100ns > 0)
+-				dcn3_2_soc.sr_exit_time_us = bb_info.dram_sr_exit_latency_100ns * 10;
++				if (bb_info.dram_sr_exit_latency_100ns > 0)
++					dcn3_2_soc.sr_exit_time_us =
++						bb_info.dram_sr_exit_latency_100ns * 10;
+ 			}
+ 		}
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
+index cb2025771646..6a4f730419c0 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
+@@ -677,9 +677,9 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
+ 				dml_ceil((double) v->WritebackDelay[mode_lib->vba.VoltageLevel][k]
+ 				/ (mode_lib->vba.HTotal[k] / mode_lib->vba.PixelClock[k]), 1));
+ 
+-	// Clamp to max OTG vstartup register limit
+-	if (v->MaxVStartupLines[k] > 1023)
+-		v->MaxVStartupLines[k] = 1023;
++		// Clamp to max OTG vstartup register limit
++		if (v->MaxVStartupLines[k] > 1023)
++			v->MaxVStartupLines[k] = 1023;
+ 
+ #ifdef __DML_VBA_DEBUG__
+ 		dml_print("DML::%s: k=%d MaxVStartupLines = %d\n", __func__, k, v->MaxVStartupLines[k]);
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
+index 05fc14a47fba..5a6b893f7295 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
+@@ -4277,7 +4277,7 @@ void dml32_CalculateWatermarksMALLUseAndDRAMSpeedChangeSupport(
+ 	double ActiveClockChangeLatencyHidingY;
+ 	double ActiveClockChangeLatencyHidingC;
+ 	double ActiveClockChangeLatencyHiding;
+-    double EffectiveDETBufferSizeY;
++	double EffectiveDETBufferSizeY;
+ 	double     ActiveFCLKChangeLatencyMargin[DC__NUM_DPP__MAX];
+ 	double     USRRetrainingLatencyMargin[DC__NUM_DPP__MAX];
+ 	double TotalPixelBW = 0.0;
+-- 
+2.20.1.7.g153144c
 
-> ---
->  drivers/gpu/drm/drm_edid.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index 856d304a1354..b459fdf12b58 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -6064,7 +6064,10 @@ static void drm_get_vrr_range(struct drm_connector=
- *connector,
->  		.drm_edid =3D drm_edid,
->  	};
->=20=20
-> -	if (!version_greater(drm_edid, 1, 1))
-> +	if (!version_greater(drm_edid, 1, 3))
-> +		return;
-> +
-> +	if (!(drm_edid->edid->features & DRM_EDID_FEATURE_CONTINUOUS_FREQ))
->  		return;
->=20=20
->  	drm_for_each_detailed_block(drm_edid, get_vrr_range, &closure);
-
---=20
-Jani Nikula, Intel Open Source Graphics Center
