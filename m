@@ -1,66 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEAA85A4D94
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Aug 2022 15:19:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C25B5A4E74
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Aug 2022 15:48:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B07310F268;
-	Mon, 29 Aug 2022 13:18:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E102010F28C;
+	Mon, 29 Aug 2022 13:48:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com
- [IPv6:2a00:1450:4864:20::533])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 852B210F251
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 13:18:38 +0000 (UTC)
-Received: by mail-ed1-x533.google.com with SMTP id z8so1288596edb.6
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 06:18:38 -0700 (PDT)
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com
+ [IPv6:2607:f8b0:4864:20::229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C10D10F28C;
+ Mon, 29 Aug 2022 13:48:02 +0000 (UTC)
+Received: by mail-oi1-x229.google.com with SMTP id r124so10358147oig.11;
+ Mon, 29 Aug 2022 06:48:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc;
- bh=xuQPau6oCI+xeLmpJuQfpUl7wqVwTtKwjGAeMu89Eds=;
- b=BRauwTQJIXgucgIDWUGL+4er1Xq0f/kHUwVltWdLnLDg3FPI3m40bgXYAsDFoW0a8a
- Jk6NNz2innKGPO0VK7ZE9XX96a7CFrblbYsjeBJ4XaecIojH5Q/QnPR59XoUcQGdtCwT
- jaS2/9joqZ5ih0gk3KfvGz1UjQcQUGsb70u6s18RxFKrPyxPXM/coSTYQTEK34hEr9+E
- AnHqMxN2WTa+LNJSIBiUPBaHS79Dj3PWNleeRKhsNFxlTkcyhwhVjQzLiD7OiIy7KeEn
- SYhFgAkcxLnchoVk9av6Rmc/7n3LS2NESigWRCH9CT0EFVKbgpmX5S03IuDk81gTGgwM
- M/Pg==
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc;
+ bh=boJNilqu5rkLXIrZXtZ+13kCjg+IVe8CBRV4aqjI3IQ=;
+ b=kMzNApZWAepG8844yhdKAszbolxRMCr4T+NZX6qZyk4HXX5WGa/xOKJMkyeaYeyGIV
+ gGPctdEYzEMmPH/0QF4SQjImmks2NCtrJJG5iRCh800OcIulJhnhJJvHLT6iPJC99Nsi
+ 4H+N+bZRUg1CWo0PPv4Pl2cjlCxqRxc/r/xp4KB0afY0jL0P1bPvNbODbM2AJCCHArz3
+ 4pyjCGQvX/e/9UPbCK80eF/+dqAmalmZRjQqfIw7F41sHKKheEyu2E24Bs7hVSDOBUYs
+ Fz1KUf8zkHrmHVMTsouCKyTk2BctKRG6UqIYDagyLyA/GUlzp4Ujyf9WbbgErxSwfPB0
+ uM3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
- bh=xuQPau6oCI+xeLmpJuQfpUl7wqVwTtKwjGAeMu89Eds=;
- b=nIBZRHoTRjz0hDTngBevNUPuPu19Zrhtql2sNx8n2vFnVmVV71fy4c2Zc4oKfpczL2
- Kl+c12H54ilLkXbK4Ks8JTmj015kxgzGNItW1Hj1OvZ2cEn63hhXgxgOSf1ZngduTzRX
- XpDyy8dMvxEEYC7vXBCqc5Dh4HeqgTGGAqlWLy3Y0jmS9URz/5t84FJteGb1bPvdzrQg
- gk62Ybu2k8VTPQXFhJK/sg0Vs/owjx30iWJDpxawMwuhpG9SUjrP7wll0idfFJ7IMuyB
- 6WdgCEt1/uDx3W202bhcnZqdI3tlNb1QEoOeysjdC9wiEx9gcQ+yGMtkoYvX3YA24J4J
- Lhug==
-X-Gm-Message-State: ACgBeo3CeWlGLaTmCV71z3sHBPgGbXiNqruZw2XuuoU+WBsSRF1MO8xs
- dQ+VXGAaO3G2wSmWhxbY5BLGU0y9utk=
-X-Google-Smtp-Source: AA6agR4AUw6kBpnqvMwRoe1nEHOSzSgiwyq/ERk++AK0mGeBVJbc3xGHeVWmSoUVqLGgYzrU+GvEPw==
-X-Received: by 2002:a05:6402:518b:b0:448:f30:38b0 with SMTP id
- q11-20020a056402518b00b004480f3038b0mr9769422edd.164.1661779116725; 
- Mon, 29 Aug 2022 06:18:36 -0700 (PDT)
-Received: from able.fritz.box (p4fc20ad4.dip0.t-ipconnect.de. [79.194.10.212])
- by smtp.gmail.com with ESMTPSA id
- z22-20020a50cd16000000b00445f9faf13csm5726218edi.72.2022.08.29.06.18.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 29 Aug 2022 06:18:36 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: Ruijing.Dong@amd.com,
-	amd-gfx@lists.freedesktop.org
-Subject: [PATCH 11/11] drm/amdgpu: cleanup VCN3 and VCN4 instance limiting v2
-Date: Mon, 29 Aug 2022 15:18:21 +0200
-Message-Id: <20220829131821.2049-12-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220829131821.2049-1-christian.koenig@amd.com>
-References: <20220829131821.2049-1-christian.koenig@amd.com>
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc;
+ bh=boJNilqu5rkLXIrZXtZ+13kCjg+IVe8CBRV4aqjI3IQ=;
+ b=kpZrkR4zlRu4wUhQuh2/mORSN6RjbaNy3UH+Awn6CZjffcVCVgf0VfykzYIeZPet3+
+ uU2WXrb9hWSKgDpqe1/trQyvtr9aTqcooCbr/ipgaOi9IeSNQCDlogP/aGEaE0rpVp4T
+ grYK7538Ez+DAm+bWEOSCt90oPvK9M0GfbcccZAfFeg1+XYcfMsqmw7YRJpe5sSC/BKk
+ PF6xdpY6JaLLmerXC8ZAjSi+yU0Y/BjKuvez9V11PzAztpvgZYDClYMyCjBsCe8AXuqh
+ fXWokf5bsPNTwpuIgLxUztk+2WEQy8UoTfAkdhi9NkUUenD/42h66E3iXs3e1tC8ap50
+ KDuA==
+X-Gm-Message-State: ACgBeo3gBqoyX5Za9bX7YShw5OcsosHfKkkz0gCRnn/bmABVCpJ2DqgD
+ PTFmncf5FRDHNHr9V/ZPCsKF7Nw7k0KX/XFkNdk=
+X-Google-Smtp-Source: AA6agR5ZkGCAzYchqafGj2oNqKZbHuDk+qOgihZvR2eaNfjMBopqDWWFPHuoApwE0QzrDc6rJ3T3cUdTjfbQ4dJyqLM=
+X-Received: by 2002:a05:6808:138e:b0:345:13d1:fd66 with SMTP id
+ c14-20020a056808138e00b0034513d1fd66mr7375330oiw.96.1661780881704; Mon, 29
+ Aug 2022 06:48:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20220829123654.4333-1-nizhen@uniontech.com>
+In-Reply-To: <20220829123654.4333-1-nizhen@uniontech.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 29 Aug 2022 09:47:50 -0400
+Message-ID: <CADnq5_P9b3QbO_u4y+isN07WiErPKQRB1O1wvmhXMbV52PeV6Q@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/amdgpu: Add modeset module parameter support
+To: Zhen Ni <nizhen@uniontech.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,61 +62,70 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: airlied@linux.ie, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, evan.quan@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Check if the entity is already limited, not if it's assigned to the
-first instance.
+On Mon, Aug 29, 2022 at 9:43 AM Zhen Ni <nizhen@uniontech.com> wrote:
+>
+> Nomodeset kernel parameter is for all graphics cards. Amdgpu cannot
+> be set separately in some scenarios, such as hybrid graphics(i + a).
+> Add modeset module parameter for amdgpu to set kernel mode separately.
+>
+> Signed-off-by: Zhen Ni <nizhen@uniontech.com>
 
-v2: only a cleanup, not a fix
+amdgpu didn't support this option since it never supported the legacy
+drm mode that other older drivers did.  If you just want the option to
+keep the driver from loading, you can already do this by blacklisting
+the driver.  E.g.,
+modprobe.blacklist=amdgpu
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c | 5 ++---
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c | 5 ++---
- 2 files changed, 4 insertions(+), 6 deletions(-)
+Alex
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-index 3cabceee5f57..5e64c3426728 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-@@ -1862,13 +1862,12 @@ static int vcn_v3_0_ring_patch_cs_in_place(struct amdgpu_cs_parser *p,
- 					   struct amdgpu_job *job,
- 					   struct amdgpu_ib *ib)
- {
--	struct amdgpu_ring *ring = to_amdgpu_ring(job->base.sched);
- 	uint32_t msg_lo = 0, msg_hi = 0;
- 	unsigned i;
- 	int r;
- 
--	/* The first instance can decode anything */
--	if (!ring->me)
-+	/* Abort if it's already limited */
-+	if (job->base.entity->num_sched_list <= 1)
- 		return 0;
- 
- 	for (i = 0; i < ib->length_dw; i += 2) {
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-index 9338172eec8b..a8264fe2201d 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-@@ -1430,13 +1430,12 @@ static int vcn_v4_0_ring_patch_cs_in_place(struct amdgpu_cs_parser *p,
- 					   struct amdgpu_job *job,
- 					   struct amdgpu_ib *ib)
- {
--	struct amdgpu_ring *ring = to_amdgpu_ring(job->base.entity->rq->sched);
- 	struct amdgpu_vcn_decode_buffer *decode_buffer;
- 	uint64_t addr;
- 	uint32_t val;
- 
--	/* The first instance can decode anything */
--	if (!ring->me)
-+	/* Abort if it's already limited */
-+	if (job->base.entity->num_sched_list <= 1)
- 		return 0;
- 
- 	/* unified queue ib header has 8 double words. */
--- 
-2.25.1
-
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> index 429fcdf28836..856a70370e3c 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> @@ -107,6 +107,7 @@
+>  #define KMS_DRIVER_MINOR       48
+>  #define KMS_DRIVER_PATCHLEVEL  0
+>
+> +int amdgpu_modeset = -1;
+>  int amdgpu_vram_limit;
+>  int amdgpu_vis_vram_limit;
+>  int amdgpu_gart_size = -1; /* auto */
+> @@ -199,6 +200,13 @@ struct amdgpu_watchdog_timer amdgpu_watchdog_timer = {
+>         .period = 0x0, /* default to 0x0 (timeout disable) */
+>  };
+>
+> +/**
+> + * DOC: modeset (int)
+> + * Disable/Enable kernel modesetting (1 = enable, 0 = disable, -1 = auto (default)).
+> + */
+> +MODULE_PARM_DESC(modeset, "Disable/Enable kernel modesetting");
+> +module_param_named(modeset, amdgpu_modeset, int, 0400);
+> +
+>  /**
+>   * DOC: vramlimit (int)
+>   * Restrict the total amount of VRAM in MiB for testing.  The default is 0 (Use full VRAM).
+> @@ -2753,7 +2761,10 @@ static int __init amdgpu_init(void)
+>  {
+>         int r;
+>
+> -       if (drm_firmware_drivers_only())
+> +       if (drm_firmware_drivers_only() && amdgpu_modeset == -1)
+> +               amdgpu_modeset = 0;
+> +
+> +       if (amdgpu_modeset == 0)
+>                 return -EINVAL;
+>
+>         r = amdgpu_sync_init();
+> --
+> 2.20.1
+>
