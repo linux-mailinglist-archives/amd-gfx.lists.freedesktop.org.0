@@ -1,64 +1,44 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C145B5A4CD7
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Aug 2022 15:02:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27DC05A4E66
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Aug 2022 15:43:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FB9210EF41;
-	Mon, 29 Aug 2022 13:02:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E91E910EEF4;
+	Mon, 29 Aug 2022 13:43:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com
- [IPv6:2607:f8b0:4864:20::102f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4A5010F1A1;
- Mon, 29 Aug 2022 12:29:20 +0000 (UTC)
-Received: by mail-pj1-x102f.google.com with SMTP id
- w88-20020a17090a6be100b001fbb0f0b013so8371405pjj.5; 
- Mon, 29 Aug 2022 05:29:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc;
- bh=CQmPQiZbqJl3F1hmW3HEOlbIzS9LIPFvPFvLkS4xj3A=;
- b=OYKzSZaMCxX4OXsRl1egB+pH2XdaiGlHR5RdNXaCcpG2JWVN+/X1Gg4jhGTuCDsqS3
- xQieVSf1ZVHuHezy46Pz4X+r+auMgAbjBZQqJIJUUjOFGfo9M/1BecpJdnVqVzJcQR+D
- 5zpoqRsdzwxL0jC6akJ2u4RWY514EZfImXJpiUfHPxD8xYpSL7RelRug948NB8icEPdU
- h+9D5swl8uKtXhJfYIVoX01taLqe2M+7S8YYVOcxB2yXMSrKBBir5LhqjRq8b+spCs4S
- okHtMa1GHZFw9vgDHKKnENsXw1j2uNmLPbCla5eOLzm56Wev5V7DrzTS5rWp51z6BaUh
- Tbzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc;
- bh=CQmPQiZbqJl3F1hmW3HEOlbIzS9LIPFvPFvLkS4xj3A=;
- b=DudwB7LvJ7rjGWnEsnIPGrn/5ohX8bKsr3G7jh0KNXcMSG/9ia5BSJ474uApdJp8ir
- T19SByQzfWH/Y/MWOeZQ7G8a3mO1fH+KnfTrzSMlt9bFR1TGhCDGGy9znOBmseOGu/bv
- x8ibnFgRkzPZj8bH6qeu5G0JIVnevrLaZUQ1pp/2Wkt0qnqYflepNgafKnFWQq/VoNub
- Bz5BDnuU2taa8Z1pC5oZB4kQDJ8T+3+0xgfkRvKHM3+/gR5y+achBdQdeaYOCHhXPfeZ
- ENBKLa53NYjMAuxIo+0SOnpiVZ5BVzTfdTi1pEcIV+kbISNn8A2Q5dVKkr7MJQ23AVCA
- p4tA==
-X-Gm-Message-State: ACgBeo2gPWozElWdhs8Ys27Ar6f8/omF9225kexeITSD5YJnT3Eu6OS4
- GczbTZk9neYLu+l80bKBp94=
-X-Google-Smtp-Source: AA6agR4ERp49BkEJRZeAPhtidKBWr2tA9X2Jqu9y5S2+tKQ9seYBETGT092ViFsKvqltgF+DFoNh7A==
-X-Received: by 2002:a17:902:be16:b0:170:8ebf:204c with SMTP id
- r22-20020a170902be1600b001708ebf204cmr17047264pls.47.1661776160098; 
- Mon, 29 Aug 2022 05:29:20 -0700 (PDT)
-Received: from localhost.localdomain ([193.203.214.57])
- by smtp.gmail.com with ESMTPSA id
- b202-20020a621bd3000000b005377c854b50sm7109553pfb.1.2022.08.29.05.29.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 29 Aug 2022 05:29:19 -0700 (PDT)
-From: cgel.zte@gmail.com
-X-Google-Original-From: cui.jinpeng2@zte.com.cn
-To: Felix.Kuehling@amd.com, alexander.deucher@amd.com,
- christian.koenig@amd.com, Xinhui.Pan@amd.com
-Subject: [PATCH linux-next] drm/amdkfd: remove redundant variables err and ret
-Date: Mon, 29 Aug 2022 12:29:14 +0000
-Message-Id: <20220829122914.268251-1-cui.jinpeng2@zte.com.cn>
-X-Mailer: git-send-email 2.25.1
+X-Greylist: delayed 3757 seconds by postgrey-1.36 at gabe;
+ Mon, 29 Aug 2022 13:41:13 UTC
+Received: from smtpbguseast2.qq.com (smtpbguseast2.qq.com [54.204.34.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7496B10F278
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Aug 2022 13:41:13 +0000 (UTC)
+X-QQ-mid: bizesmtp72t1661776623taqf4by8
+Received: from localhost.localdomain ( [58.240.82.166])
+ by bizesmtp.qq.com (ESMTP) with 
+ id ; Mon, 29 Aug 2022 20:36:57 +0800 (CST)
+X-QQ-SSF: 01400000002000C0K000B00A0000000
+X-QQ-FEAT: ao4JQgu0M3/UgU+YkHy4njb4NNdIn11x9nwLEL07GbnOzmiQXUMUeaKluCk/G
+ GWneyTH3RyNn9YPtOJX1r+pKTbLJAZhBaG5JtqljRhiFnkjCKIpMm+e8eEFqNW7yFXElM1C
+ WB03tfyjp6jCR+lkhukBGnL03JVi/SR/FIqx8P5xwhzmJVVnrNCIvXMy++KKF7MqaR2nlKn
+ 2LaoSuWZ+zTN9Xhw2lf20BOUaKM1ja3TWaoOk8FN3FWXMzrdTQxjecE1+G5nqRyigBrJCxS
+ n0+2Nsd6dgwKEh38a3k40Al1j4ifoGaBhTNQXEkj4SGIStP4/9TrNFrhVEqhhAkVNEqBMNB
+ APZy4G1SPFqke7zO+yRC0eA0zvssfSH1dg76/RBQ08YUX+i+UGj7Y0p4PKjfA==
+X-QQ-GoodBg: 2
+From: Zhen Ni <nizhen@uniontech.com>
+To: airlied@linux.ie,
+	daniel@ffwll.ch,
+	evan.quan@amd.com
+Subject: [PATCH] drm/amd/amdgpu: Add modeset module parameter support
+Date: Mon, 29 Aug 2022 20:36:54 +0800
+Message-Id: <20220829123654.4333-1-nizhen@uniontech.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 29 Aug 2022 13:02:32 +0000
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:uniontech.com:qybglogicsvr:qybglogicsvr5
+X-Mailman-Approved-At: Mon, 29 Aug 2022 13:43:44 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,66 +50,58 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, Zeal Robot <zealci@zte.com.cn>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, daniel@ffwll.ch,
- Jinpeng Cui <cui.jinpeng2@zte.com.cn>
+Cc: Zhen Ni <nizhen@uniontech.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jinpeng Cui <cui.jinpeng2@zte.com.cn>
+Nomodeset kernel parameter is for all graphics cards. Amdgpu cannot
+be set separately in some scenarios, such as hybrid graphics(i + a).
+Add modeset module parameter for amdgpu to set kernel mode separately.
 
-Return value from kfd_wait_on_events() and io_remap_pfn_range() directly
-instead of taking this in another redundant variable.
-
-Reported-by: Zeal Robot <zealci@zte.com.cn>
-Signed-off-by: Jinpeng Cui <cui.jinpeng2@zte.com.cn>
+Signed-off-by: Zhen Ni <nizhen@uniontech.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 9 ++-------
- 1 file changed, 2 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-index 664e8b5d82c0..84da1a9ce37c 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-@@ -876,14 +876,11 @@ static int kfd_ioctl_wait_events(struct file *filp, struct kfd_process *p,
- 				void *data)
- {
- 	struct kfd_ioctl_wait_events_args *args = data;
--	int err;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index 429fcdf28836..856a70370e3c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -107,6 +107,7 @@
+ #define KMS_DRIVER_MINOR	48
+ #define KMS_DRIVER_PATCHLEVEL	0
  
--	err = kfd_wait_on_events(p, args->num_events,
-+	return kfd_wait_on_events(p, args->num_events,
- 			(void __user *)args->events_ptr,
- 			(args->wait_for_all != 0),
- 			&args->timeout, &args->wait_result);
--
--	return err;
- }
- static int kfd_ioctl_set_scratch_backing_va(struct file *filep,
- 					struct kfd_process *p, void *data)
-@@ -2860,7 +2857,6 @@ static int kfd_mmio_mmap(struct kfd_dev *dev, struct kfd_process *process,
- 		      struct vm_area_struct *vma)
- {
- 	phys_addr_t address;
--	int ret;
++int amdgpu_modeset = -1;
+ int amdgpu_vram_limit;
+ int amdgpu_vis_vram_limit;
+ int amdgpu_gart_size = -1; /* auto */
+@@ -199,6 +200,13 @@ struct amdgpu_watchdog_timer amdgpu_watchdog_timer = {
+ 	.period = 0x0, /* default to 0x0 (timeout disable) */
+ };
  
- 	if (vma->vm_end - vma->vm_start != PAGE_SIZE)
++/**
++ * DOC: modeset (int)
++ * Disable/Enable kernel modesetting (1 = enable, 0 = disable, -1 = auto (default)).
++ */
++MODULE_PARM_DESC(modeset, "Disable/Enable kernel modesetting");
++module_param_named(modeset, amdgpu_modeset, int, 0400);
++
+ /**
+  * DOC: vramlimit (int)
+  * Restrict the total amount of VRAM in MiB for testing.  The default is 0 (Use full VRAM).
+@@ -2753,7 +2761,10 @@ static int __init amdgpu_init(void)
+ {
+ 	int r;
+ 
+-	if (drm_firmware_drivers_only())
++	if (drm_firmware_drivers_only() && amdgpu_modeset == -1)
++		amdgpu_modeset = 0;
++
++	if (amdgpu_modeset == 0)
  		return -EINVAL;
-@@ -2880,12 +2876,11 @@ static int kfd_mmio_mmap(struct kfd_dev *dev, struct kfd_process *process,
- 		 process->pasid, (unsigned long long) vma->vm_start,
- 		 address, vma->vm_flags, PAGE_SIZE);
  
--	ret = io_remap_pfn_range(vma,
-+	return io_remap_pfn_range(vma,
- 				vma->vm_start,
- 				address >> PAGE_SHIFT,
- 				PAGE_SIZE,
- 				vma->vm_page_prot);
--	return ret;
- }
- 
- 
+ 	r = amdgpu_sync_init();
 -- 
-2.25.1
+2.20.1
 
