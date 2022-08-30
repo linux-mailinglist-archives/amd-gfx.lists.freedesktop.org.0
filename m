@@ -2,42 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70FCB5A643B
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Aug 2022 14:59:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 02A3D5A64D3
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Aug 2022 15:33:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE4BC10E0C4;
-	Tue, 30 Aug 2022 12:59:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF32410E0D9;
+	Tue, 30 Aug 2022 13:33:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-4317.proton.ch (mail-4317.proton.ch [185.70.43.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FB6210E0BF;
- Tue, 30 Aug 2022 12:58:59 +0000 (UTC)
-Date: Tue, 30 Aug 2022 12:58:49 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail3; t=1661864337; x=1662123537;
- bh=JbJ8pny8WkXF+APpWNNDBSQ1nzirbBno8I1tYwCiudk=;
- h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
- References:Feedback-ID:From:To:Cc:Date:Subject:Reply-To:
- Feedback-ID:Message-ID;
- b=QHa5bdYVErtJQJIPVUSczJuIzaH2i8OleeuHTi6gw6EdDCltSbUhHW5bOJpKsnVIk
- s3gQ48uLHseOE87Pi3SfGSEdD4bjYyL3uewjrHvB3viTMgBA2w7923nsVPUb1uzLbb
- v/utRlVWaQeY9fzrpegr2w1uZMEPkcMiKXUr1JOYQI2qyE9sWv6ftIMlngnPYQ8plu
- f4ketQ++kFLy/RAf+JuwZUsY/xLRLC8iBUqMYRwfQxOmjhgip3qZvmmWMPP3pc9L9k
- 19PFpk7goWNft763nbO27GKZbqovX3rlnWpGi8h5Qrmdti/MTwtACAxY0yUVApu/rL
- MnzWEiUvrCUxg==
-To: =?utf-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
-From: Simon Ser <contact@emersion.fr>
-Subject: Re: [PATCH 3/4] drm: introduce DRM_CAP_ATOMIC_ASYNC_PAGE_FLIP
-Message-ID: <fuMqV8ApgDP5KbyvpvUtqTrigZjHfbW14uWyOuphpw8cSl39nUUWgtyTLbfC32BKFiKD-NcmydNkJQAZ9Q5nb0nz7gkiXth2HQyOsRI0Lj8=@emersion.fr>
-In-Reply-To: <f7465260-5f5b-44da-4119-7bae9c8e9c8d@mailbox.org>
-References: <20220824150834.427572-1-contact@emersion.fr>
- <20220824150834.427572-4-contact@emersion.fr> <YwiB/xQf6Z6ScU+Z@intel.com>
- <mCt6wEhtsKHH_vfQEi0RwUQspNiKfFez4v8ZWlMW-sqZ5xaiUqMpRCF7na84A2nOLw5MA59fQ6IWddLCAg76XwWagCYMthzTLKLPQ9m0MfI=@emersion.fr>
- <f7465260-5f5b-44da-4119-7bae9c8e9c8d@mailbox.org>
-Feedback-ID: 1358184:user:proton
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2062.outbound.protection.outlook.com [40.107.94.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C480910E0D9
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Aug 2022 13:32:59 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nJ40ufki3+nU/albiz7MUFloiHl9mujEanxah2339j47w0GLXjNgejKDRRtgmkLeSPRcTqph3oCFrF9yTXFqXgSJ6leb9Z8sWXK8EkI8+Hww5Wmf3xglpudXXPRuRfpj26/b0jXeAs4VZHPGcHtBgsyjJMYK34Q86nh2PVxMtVrt5eM0SDMSNBgIh+idTkOJxTCCwGkCZPbre7f7yEytO4X6qCfBIJYhP6Qsb1Lpaog9QzZSZmoKrku7GWDfgIGoylu4HZomusYU706eyr4RaBmflL5tB/aXO4K3awGzbL/0GdJWLtfe06gs1VpgG1gtEvlC5FmLpblxquxWzuvbKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5d+Gka+JpRMa1eybh1Ofcs4wWTtsmwAZQ1+4QXibRDY=;
+ b=QYlcn2959AkhHvcNpn9rC/j3yCpbOSChV+1H+CWRIqIqXnAfxFtHgyX8K2Muqfl2abDXQBTEcs2Y4XdHnJII8gKlcZEHIdHPWVyIJoG3AlOlzs3C8TS1dtRpEN5ytv+g3sdMsShkLbbk7KYPqn05P+y/xYWOwtVzjq+kcBsdNuRiVpyhSDcwal52JLYblwRvm1bQmy3LMVK9yTx57PoZrTmXvmiSYUcqRxcMwqrBQRBSwbm2J0klFQZLHVAO5FOOgStfgdJYXB2OHjFZX+fo2/q20cSIULDFC/1AQa2xzVS71pSepOo0VhApUMGKfl3Tydba72/xBax8wD9o2XK+OA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5d+Gka+JpRMa1eybh1Ofcs4wWTtsmwAZQ1+4QXibRDY=;
+ b=Zk5PSWBSCxdGQFuz02uKRqyTDCCaiQqlW/OB584TRBUUMDg8nEwzQheRJKvTaUziwfgJPiwtBULcqZ+zY6NoobH82kcPs/Vm3Sletxdkado3lOUa2C4smhoC1xh3AjdRBc3G67tXUZR61cK22HDJMWBgJnacfaGtNgcaGDQD3TM=
+Received: from BLAP220CA0015.NAMP220.PROD.OUTLOOK.COM (2603:10b6:208:32c::20)
+ by SJ0PR12MB7066.namprd12.prod.outlook.com (2603:10b6:a03:4ae::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.15; Tue, 30 Aug
+ 2022 13:32:57 +0000
+Received: from BL02EPF0000C409.namprd05.prod.outlook.com
+ (2603:10b6:208:32c:cafe::e6) by BLAP220CA0015.outlook.office365.com
+ (2603:10b6:208:32c::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.10 via Frontend
+ Transport; Tue, 30 Aug 2022 13:32:57 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL02EPF0000C409.mail.protection.outlook.com (10.167.241.11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5588.7 via Frontend Transport; Tue, 30 Aug 2022 13:32:56 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 30 Aug
+ 2022 08:32:48 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/2] drm/amd/display: Fix indentation in
+ commit_planes_for_stream()
+Date: Tue, 30 Aug 2022 09:32:16 -0400
+Message-ID: <20220830133217.1770055-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 482f482c-25a8-44e8-1168-08da8a8c2659
+X-MS-TrafficTypeDiagnostic: SJ0PR12MB7066:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7weYM2tFB/XhTDMcJy9X6WuxuWAuEelE1Z/mKsuyuu2+ep1ZsX0XNxcElbfiFVEgh/jUXQFjByfYTuaAVG1Be3Jr3TNEHIExPLt8CL4WqjoBS0LRZI3ylLeefTbors+XJzeEiZLUYWP3l0u7m+uDKCoT5hs2zcoohDfARRkmCdtT5cPF7bCu8GU4rn3VVfyhEa510ZgP37CKQxSAbp+c9m+JVJ+mldyHqqgnAHZCpSStfCSApNmLsUwLevsfP8ocjID/z4wczvBP+2l1acmqZ1cnkrkA+52tE915bGx5XMm/VllyFXl71L05W5Sl23An5RV/lEEEs0jij2A65wTTManPbap4QCKqc3NziQt9ZO9nzF42gtEcJTdkt7hU61G4PocAKO7g+WxTjLzkJurnTKBJf/xA68AYSmcMnSzF6jKd0vMO5LHJ0LavugEhnAclTTiwdw7YaNfazwNgOKpWImVzUJmiiAfRZCDbH3OxEQtjJnaHXtKPKfeXYeX9HSdrC0OkcBM9ScYVHkCwHL9NB5d883sfPDN9C2nyB8++LDJcmwr1hWgEuP/EcmvGbLHveF3nknb85Tpa8WUkqLjMmpU5XYlF4Yn6GTG8SGp6Qe2CtEGEZpMQx1sKEKHTVbQNo1TpaUcNQGqgMf0Jc/SOMaVjnoA7kpvSEVd9q5Pr0XrkmoQtZDbiSpQNhyWXIJTHEiJIN8OdQCrnHMHWFptYsGmenaUIzrWhN5i2oeu0Pi5dx927mAYQ5I20srF26dJBbaN6bDk4ZFAZv9Anab4TbIpanqU2afE3pMCLkgr/tk13aRkVULqhbzxVH/H0GuDY
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230016)(4636009)(346002)(136003)(376002)(396003)(39860400002)(40470700004)(46966006)(36840700001)(54906003)(6916009)(5660300002)(8936002)(4326008)(8676002)(2616005)(426003)(36860700001)(47076005)(70586007)(1076003)(36756003)(316002)(2906002)(7696005)(41300700001)(6666004)(70206006)(478600001)(86362001)(82310400005)(26005)(356005)(40480700001)(81166007)(336012)(82740400003)(83380400001)(186003)(40460700003)(16526019)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Aug 2022 13:32:56.8991 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 482f482c-25a8-44e8-1168-08da8a8c2659
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0000C409.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB7066
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,52 +98,39 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Simon Ser <contact@emersion.fr>
-Cc: daniel.vetter@ffwll.ch, dri-devel@lists.freedesktop.org, mwen@igalia.com,
- Pekka Paalanen <ppaalanen@gmail.com>, amd-gfx@lists.freedesktop.org,
- alexander.deucher@amd.com, joshua@froggi.es, hwentlan@amd.com,
- nicholas.kazlauskas@amd.com,
- =?utf-8?Q?Ville_Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Jun Lei <Jun.Lei@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>, Alvin Lee <Alvin.Lee2@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-(Oops, I replied to the wrong thread. Re-sending to the correct one.)
+Fixes a build failure.
 
-On Tuesday, August 30th, 2022 at 10:41, Michel D=C3=A4nzer <michel.daenzer@=
-mailbox.org> wrote:
+Fixes: e990bd60716d ("drm/amd/display: Only commit SubVP state after pipe programming")
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Cc: Alvin Lee <Alvin.Lee2@amd.com>
+Cc: Jun Lei <Jun.Lei@amd.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+---
+ drivers/gpu/drm/amd/display/dc/core/dc.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-> > For the atomic uAPI, we need to pick on of these two approaches:
-> >
-> > 1. Let the kernel fall back to a sync flip if async isn't possible. Thi=
-s
-> >    simplifies user-space, but then user-space has no reliable way to fi=
-gure out
-> >    what really happened (sync or async?). That could be fixed with a ne=
-w
-> >    read-only CRTC prop indicating whether the last flip was async or no=
-t.
-> >    However, maybe someone will come up in the future with user-space wh=
-ich
-> >    needs to only apply an update if async flip is possible, in which ca=
-se this
-> >    approach falls short.
->
-> The future is now. :)
->
-> As I described in the documentation patch discussion, this approach would
-> make it tricky for a Wayland compositor to decide if it should use an asy=
-nc
-> commit (which needs to be done ASAP to serve the intended purpose) or not=
- (in
-> which case the compositor may want to delay the commit as long as possibl=
-e
-> for minimal latency).
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index b49237390cce..1a4ea9639049 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -3507,9 +3507,9 @@ static void commit_planes_for_stream(struct dc *dc,
+ 
+ 	if (update_type != UPDATE_TYPE_FAST)
+ 		dc->hwss.post_unlock_program_front_end(dc, context);
+-		if (update_type != UPDATE_TYPE_FAST)
+-			if (dc->hwss.commit_subvp_config)
+-				dc->hwss.commit_subvp_config(dc, context);
++	if (update_type != UPDATE_TYPE_FAST)
++		if (dc->hwss.commit_subvp_config)
++			dc->hwss.commit_subvp_config(dc, context);
+ 
+ 	/* Since phantom pipe programming is moved to post_unlock_program_front_end,
+ 	 * move the SubVP lock to after the phantom pipes have been setup
+-- 
+2.37.1
 
-Ah right. If an async page-flip is not possible, then a Wayland compositor
-could want to wait the "last moment" before the next vblank to see if a mor=
-e
-up-to-date buffer is available.
-
-With that + Xorg usage, I think we have a rather solid case for failing asy=
-nc
-flips rather than silently falling back to vsync.
