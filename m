@@ -1,53 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 376965A8455
-	for <lists+amd-gfx@lfdr.de>; Wed, 31 Aug 2022 19:26:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BDE65A84DC
+	for <lists+amd-gfx@lfdr.de>; Wed, 31 Aug 2022 19:58:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 009C310E4BF;
-	Wed, 31 Aug 2022 17:26:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B937810E4D0;
+	Wed, 31 Aug 2022 17:58:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3743910E4BE;
- Wed, 31 Aug 2022 17:26:06 +0000 (UTC)
-Received: from fews2.riseup.net (fews2-pn.riseup.net [10.0.1.84])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
- client-signature RSA-PSS (2048 bits) client-digest SHA256)
- (Client CN "mail.riseup.net", Issuer "R3" (not verified))
- by mx1.riseup.net (Postfix) with ESMTPS id 4MHrgK0wxkzDqVh;
- Wed, 31 Aug 2022 17:26:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
- t=1661966765; bh=hQysIsxVyI/EpK7q3xv+BMacKVJpVAgMgCfpm5Rxa9E=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=aNA2rAWkY4Dr+f3otS7XHu99kvKs/OS5+DfbaR2ysAKmrUCMdb71aalNwIBBoNoD4
- 6UgHyLld1M+cYZEpsefYp4fmyYoWgSyL2fkerJqsZlwsbbhvyPdilouc0THeFS9CKx
- 9EN86Uofa+HFf0zylzQ3CG0F8iNqcNByxmRrGEM8=
-X-Riseup-User-ID: 4E72AF1192636691E7F46BCFB20DF42D6A9112D1D1F13CE6249E318DA1BFCAB7
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- by fews2.riseup.net (Postfix) with ESMTPSA id 4MHrg84JSrz1y9N;
- Wed, 31 Aug 2022 17:25:56 +0000 (UTC)
-From: =?UTF-8?q?Ma=C3=ADra=20Canal?= <mairacanal@riseup.net>
-To: Alex Deucher <alexander.deucher@amd.com>, christian.koenig@amd.com,
- Xinhui.Pan@amd.com, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Jonathan Corbet <corbet@lwn.net>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Daniel Latypov <dlatypov@google.com>, David Gow <davidgow@google.com>
-Subject: [PATCH v2 8/8] Documentation/gpu: Add Display Core Unit Test
- documentation
-Date: Wed, 31 Aug 2022 14:22:39 -0300
-Message-Id: <20220831172239.344446-9-mairacanal@riseup.net>
-In-Reply-To: <20220831172239.344446-1-mairacanal@riseup.net>
-References: <20220831172239.344446-1-mairacanal@riseup.net>
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2055.outbound.protection.outlook.com [40.107.237.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6EC710E4D3;
+ Wed, 31 Aug 2022 17:58:14 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ir7D3vQIOCBdh+C0KSaHF9EXIqB6JlDrPr+W5drpTarhPT75WSLyQk3VvN2OD7iFBkRBqCQdnTjvOyeKgEhda/7B7edlkppNR3QdooBGdy/aZ4ETcVBAd+EYLrAYnuipEYiQnjiRZv/XgTT5Jyb5/YjpKkT/CZVXHfYFqzHivPSnQ2yanGmajXePK3yUlkjPzNmpu6KN/hihIfNukmUOCOXBXkjaFlxR8t1c1fPo2nb15pB38dbvlsxSECJG7S+DUID08AeoqDVyQW+vP0eGRSQ7Qfpkuy1JjsmUIE2f0EKVlw8mrBgRRb8Ay1cj2lKwHMmBMjkHtUj7UGHJjf3UxA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tlg/54oCv8aoG0+kt57ZzLFgxTKSvd+uJh2yJem1ct8=;
+ b=QvZekJtAzt8XHcYOruXkaDwVZTv5bFNvmSdvvjPzABiYileWLQF66vaMIf1cekpz23KYah8VFeNOeSHed+j3lh//kyMzkPOYKfGmwLTsX9pW9R3VBbgfFfTU80XRnRpR0QSj4whw+H+ZHkMhCRWbzArBpUiErb13H8i76Q0lgVVrCKdg8C3QEw1AG3HiBksCEv/kRH6vU5A/TL7egpo5AXuQ2+v8UjqQboY0wGruJIhwsT7TxZzE7A89GOLw77L+cELVi6Naqth+ykKm61qAbsfQuX3SPDzy/Lqk1vUYZqp3BKlzZcsLpXe/A5s2m9v1QNSGGb7AWE2gpWy6gZcGpQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tlg/54oCv8aoG0+kt57ZzLFgxTKSvd+uJh2yJem1ct8=;
+ b=XOzIY7I4YUFKDDhdcJM3KKFxZw4TLkLeUUxWfozwuGF0i8yOI10NrxlnGMmo2kgnrPEC98vlpN5SOXF8AFTtfeY8GWH+edksmbyhJA1ukMPEK3jDHGuz/CbfaUEsLk6uegyFs4XY2309/zQ6O1Dmayr6dvb2IKuqBcUCj1BV3d8=
+Received: from DS7PR03CA0248.namprd03.prod.outlook.com (2603:10b6:5:3b3::13)
+ by MW3PR12MB4377.namprd12.prod.outlook.com (2603:10b6:303:55::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.15; Wed, 31 Aug
+ 2022 17:58:12 +0000
+Received: from DM6NAM11FT032.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:3b3:cafe::a6) by DS7PR03CA0248.outlook.office365.com
+ (2603:10b6:5:3b3::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.11 via Frontend
+ Transport; Wed, 31 Aug 2022 17:58:12 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT032.mail.protection.outlook.com (10.13.173.93) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5588.10 via Frontend Transport; Wed, 31 Aug 2022 17:58:11 +0000
+Received: from hamza-pc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 31 Aug
+ 2022 12:58:08 -0500
+From: Hamza Mahfooz <hamza.mahfooz@amd.com>
+To: <linux-kernel@vger.kernel.org>
+Subject: [PATCH] drm/amd/display: fix indentation in commit_planes_for_stream()
+Date: Wed, 31 Aug 2022 13:58:07 -0400
+Message-ID: <20220831175808.100597-1-hamza.mahfooz@amd.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 825eafe9-1848-42fe-8b05-08da8b7a5ee7
+X-MS-TrafficTypeDiagnostic: MW3PR12MB4377:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ueDAWCIwj85eToCVfFXURuIU716WPOgjMq6ZFp3YJbCP9synG9qrYMV+b+Up73gkXxBjF4ebuVVL405ptqmfM/7m2CNdON7uRuz/Y0sIWJSLv1pggpWEzWqegFgkFRPPXyxjlPtA9qu2x+DTJ+CB5dP/YmJAgKNl2aNhO1YDcJH+/lbVgWJflBi8XhPhFiMO3BnBN7bstCXBWlbDa0wSJnPcZRQEMA/dR9dahgEIHmmPaV0WvIZAuaDxARbIk+j0ull4H4UVRuWUaL6wrtGIjB2sr7s3rPSEAVwzkLKnr+wzQ4Qjox20ogV05swqSeUkeGu0I82jW74+htwz7T5CGeHzmcwGAvA5nSxaKY5EcQ+RqZm3fiO6Aw80JrWmFfuYdoLAEFWrDj6ggDBxm9YOeOlimTifIKi0nVid9h58Z6YHZ93tsNDpy15C9cz360t7HkL9sudN52nXlKW0h2zzyY833bXG5SndbyVRCRLgrIt1srOhF9Zk6f/ou4sTNqD9E6Aay39Z3u2uYpAXrX4vfi6LDtZ8m9srZHN4L3hQKNmf1nxS/T8oJMYxjcqpbJ5xrjotX+9AYyiHj+rfBXh/a1rK44OqggZ9Vxr7h88aTbfIJ8/3FfhRCfz+qjIlzXKWlQDr4C5ACLoibJ5m4Lk9ZOoV1/Oh/7Km5D0kjYbOP8LJsBjoJYglhmirPaXRA9ZlQ520JKKLhFR0A9XYmQOKx6YEPxdqooRl9TAt++1fPuzLWHR6oDxx+0hLmYajoKihjFZplbPrEHxYSnLOlSaAHiPp7knIPwaLIbL4cFs8sB0VEojVr6OqxIJXr7mdi3HySNuu58QIsnlNajmhK2PhDg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230016)(4636009)(396003)(346002)(39860400002)(376002)(136003)(46966006)(36840700001)(40470700004)(81166007)(40480700001)(82310400005)(36860700001)(356005)(40460700003)(82740400003)(86362001)(70206006)(70586007)(8676002)(41300700001)(4326008)(478600001)(5660300002)(54906003)(8936002)(316002)(426003)(6916009)(1076003)(47076005)(186003)(16526019)(2616005)(44832011)(26005)(336012)(2906002)(7696005)(36756003)(83380400001)(36900700001)(16060500005);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Aug 2022 17:58:11.9756 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 825eafe9-1848-42fe-8b05-08da8b7a5ee7
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT032.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4377
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,131 +97,54 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kunit-dev@googlegroups.com, magalilemes00@gmail.com,
- tales.aparecida@gmail.com, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, mwen@igalia.com,
- =?UTF-8?q?Ma=C3=ADra=20Canal?= <mairacanal@riseup.net>,
- dri-devel@lists.freedesktop.org, Isabella Basso <isabbasso@riseup.net>,
- andrealmeid@riseup.net, Trevor Woerner <twoerner@gmail.com>
+Cc: Joshua Aberback <joshua.aberback@amd.com>, amd-gfx@lists.freedesktop.org,
+ Leo Li <sunpeng.li@amd.com>, Wenjing Liu <wenjing.liu@amd.com>,
+ dri-devel@lists.freedesktop.org, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Samson Tam <Samson.Tam@amd.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
+ David Airlie <airlied@linux.ie>, Alex Hung <alex.hung@amd.com>,
+ Hamza Mahfooz <hamza.mahfooz@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Martin Leung <martin.leung@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Jun Lei <Jun.Lei@amd.com>, Harry Wentland <harry.wentland@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alvin Lee <Alvin.Lee2@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Explain how to run the KUnit tests present in the AMDGPU's Display
-Core and clarify which architectures and tools can be used to run
-the tests. Moreover, explains how to add new tests to the existing
-tests.
+Address the following warning:
+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc.c:3508:9: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+ 3508 |         if (update_type != UPDATE_TYPE_FAST)
+      |         ^~
+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc.c:3510:17: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+ 3510 |                 if (update_type != UPDATE_TYPE_FAST)
+      |                 ^~
 
-Signed-off-by: Maíra Canal <mairacanal@riseup.net>
+Signed-off-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
 ---
- .../gpu/amdgpu/display/display-test.rst       | 88 +++++++++++++++++++
- Documentation/gpu/amdgpu/display/index.rst    |  1 +
- 2 files changed, 89 insertions(+)
- create mode 100644 Documentation/gpu/amdgpu/display/display-test.rst
+ drivers/gpu/drm/amd/display/dc/core/dc.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/gpu/amdgpu/display/display-test.rst b/Documentation/gpu/amdgpu/display/display-test.rst
-new file mode 100644
-index 000000000000..a8c136ce87b7
---- /dev/null
-+++ b/Documentation/gpu/amdgpu/display/display-test.rst
-@@ -0,0 +1,88 @@
-+.. SPDX-License-Identifier: GPL-2.0+
-+
-+========================
-+Display Core Unit Tests
-+========================
-+
-+Display core provides a set of unit tests, currently focused on the Display Mode
-+Library. The unit tests use KUnit (Kernel Unit Testing Framework), a common
-+framework for unit tests within the Linux Kernel.
-+
-+This section covers the specifics of the tests for the AMDGPU driver. For general
-+information about KUnit, please refer to Documentation/dev-tools/kunit/start.rst.
-+
-+How to run the tests?
-+=====================
-+
-+In order to facilitate running the test suite, a configuration file is present
-+in ``drivers/gpu/drm/amd/display/tests/dc/.kunitconfig``. This configuration file
-+can be used to run the kunit_tool, a Python script (``tools/testing/kunit/kunit.py``)
-+used to configure, build, exec, parse and run tests.
-+
-+.. code-block:: bash
-+
-+	$ ./tools/testing/kunit/kunit.py run --arch=x86_64 \
-+	    --kunitconfig=drivers/gpu/drm/amd/display/tests
-+
-+Currently, the Display Core Unit Tests are only supported on x86_64.
-+
-+Moreover, the tests can also be run on real hardware or in other emulation
-+environments. To include the Display Core Unit Tests on a deployable kernel,
-+you might add the following config options to your ``.config``:
-+
-+.. code-block:: none
-+
-+	CONFIG_KUNIT=y
-+	CONFIG_AMDGPU=m
-+	CONFIG_AMD_DC_BASICS_KUNIT_TEST=y
-+	CONFIG_AMD_DC_KUNIT_TEST=y
-+	CONFIG_DCE_KUNIT_TEST=y
-+	CONFIG_DML_KUNIT_TEST=y
-+
-+Once the kernel is built and installed, you can load the ``amdgpu`` module
-+to run all tests available.
-+
-+Also, the tests can be added to the kernel as built-in modules, by adding the
-+following config options to your ``.config``:
-+
-+.. code-block:: none
-+
-+	CONFIG_KUNIT=y
-+	CONFIG_AMDGPU=y
-+	CONFIG_AMD_DC_BASICS_KUNIT_TEST=y
-+	CONFIG_AMD_DC_KUNIT_TEST=y
-+	CONFIG_DCE_KUNIT_TEST=y
-+	CONFIG_DML_KUNIT_TEST=y
-+
-+In order to run specific tests, you can check the filter options from KUnit on
-+Documentation/dev-tools/kunit/kunit-tool.rst.
-+
-+How to add new tests?
-+=====================
-+
-+Tests covering different parts of the Display Core are always welcomed. Adding
-+a new test is a simple procedure, that consists in creating a unit test file
-+and adding the following guard to the end of the tested file when you are
-+testing static functions:
-+
-+.. code-block:: c
-+
-+	#ifdef CONFIG_MY_KUNIT_TEST
-+	#include "my_kunit_test.c"
-+	#endif
-+
-+If you are not testing static functions, you should use the Makefile placed on
-+``display/tests``. In order to add a test to the Makefile, you can just add
-+the following entry to the Makefile:
-+
-+.. code-block:: make
-+
-+	ifdef CONFIG_MY_KUNIT_TEST
-+		DC_TESTS += my_kunit_test.o
-+	endif
-+
-+The ``display/tests`` folder replicates the folder hierarchy of the ``display``
-+folder, so this must be considered while adding new tests.
-+
-+More information on how to write unit tests with the KUnit API can be provided
-+on Documentation/dev-tools/kunit/api/test.rst.
-diff --git a/Documentation/gpu/amdgpu/display/index.rst b/Documentation/gpu/amdgpu/display/index.rst
-index c1fb2fb3c710..4f4e72e3e75f 100644
---- a/Documentation/gpu/amdgpu/display/index.rst
-+++ b/Documentation/gpu/amdgpu/display/index.rst
-@@ -28,4 +28,5 @@ table of content:
-    display-manager.rst
-    dc-debug.rst
-    dcn-overview.rst
-+   display-test.rst
-    dc-glossary.rst
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index b49237390cce..6c4948916e7e 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -3505,11 +3505,11 @@ static void commit_planes_for_stream(struct dc *dc,
+ 					top_pipe_to_program->stream_res.tg);
+ 		}
+ 
+-	if (update_type != UPDATE_TYPE_FAST)
++	if (update_type != UPDATE_TYPE_FAST) {
+ 		dc->hwss.post_unlock_program_front_end(dc, context);
+-		if (update_type != UPDATE_TYPE_FAST)
+-			if (dc->hwss.commit_subvp_config)
+-				dc->hwss.commit_subvp_config(dc, context);
++		if (dc->hwss.commit_subvp_config)
++			dc->hwss.commit_subvp_config(dc, context);
++	}
+ 
+ 	/* Since phantom pipe programming is moved to post_unlock_program_front_end,
+ 	 * move the SubVP lock to after the phantom pipes have been setup
 -- 
 2.37.2
 
