@@ -2,79 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FA255A9812
-	for <lists+amd-gfx@lfdr.de>; Thu,  1 Sep 2022 15:07:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98B6A5A980C
+	for <lists+amd-gfx@lfdr.de>; Thu,  1 Sep 2022 15:06:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 575DD10E6FD;
-	Thu,  1 Sep 2022 13:06:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 850BD10E677;
+	Thu,  1 Sep 2022 13:06:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F9ED10E6D9;
- Thu,  1 Sep 2022 10:47:17 +0000 (UTC)
-Received: from [192.168.2.145] (109-252-119-13.nat.spd-mgts.ru
- [109.252.119.13])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits))
- (No client certificate requested)
- (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 0F1A86601E0A;
- Thu,  1 Sep 2022 11:47:13 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1662029236;
- bh=601JQW1vRODbZW3nXgrYwKwIYLdatGO7bqQS64cjbC8=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=gvIVOPIBzWZGuD6NygXzh1sohbyafn5m4zlspwSvOk7AqMsde4hQLAfTpZRLGT/Xg
- tZCPVrVupNm/ycsQg0HqK9JAnd7gStXHbCQs/hnoLYCspCe/qIfCqS3tgCPNdjs6sS
- 6ns55hsCsiGqdQjsubmEAVFEAIr1tWG+6jF0V0SgiLyirr7LqTX8z2z8vQEx25L7xu
- 2xXzrL/ZUdOZB7ntAgCtSMwR/pQbOLBKNp236a2yKz2+EFYW2nQ4gkKtpamcIbbFgE
- dA/wt53VbNU8A3PjajlEJ4BJ2/tgJLW7ng1Zhlr12NCwAZ4urG6dRbPgfbiRq0WfC9
- 7rk9NN0l3hsgQ==
-Message-ID: <532eedc8-b468-4409-1887-8fff264a6486@collabora.com>
-Date: Thu, 1 Sep 2022 13:47:10 +0300
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5578E10E6F2;
+ Thu,  1 Sep 2022 12:47:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1662036453; x=1693572453;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=kWGME9fEdG3M8HkVb+YATaForw5QOx/3sgZwk3gITYM=;
+ b=oIdVX0buVrVLcIQLGd4rGBEeePi06vtqdKK7E2GuMTg6/rZy9i13UxQO
+ jauGumPD8/0ZFg7xIr6Rwvw4OZCJZxzqH/j+ojtLoFDpgToxfQSEVaI9H
+ n+zNE8Nyid6wdTUMtBpreddafZF7qRSMwo5tNdoJIpZWbBiF/1CK9ILyB
+ vSLyY0aC/hBpMnNS1xfL4Hbh+Mbqh4pero3UYpsUGTBrj1VUamdRmb1ha
+ 73cpslT+flTojCSSNZlBDpd2YO9RstmKyj5upDg5w19vrWkBanHWe85u8
+ d26GVO42LhSbLhSpG8E1w5hbnjiadjOBDza8oxvu/KHM9OkJG7iiCG+L9 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="282682897"
+X-IronPort-AV: E=Sophos;i="5.93,280,1654585200"; d="scan'208";a="282682897"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2022 05:47:32 -0700
+X-IronPort-AV: E=Sophos;i="5.93,280,1654585200"; d="scan'208";a="642318075"
+Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.142])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2022 05:47:26 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Subject: [PATCH 0/9] drm: convert to using is_hdmi and has_audio from display
+ info
+Date: Thu,  1 Sep 2022 15:47:02 +0300
+Message-Id: <cover.1662036058.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v4 00/21] Move all drivers to a common dma-buf locking
- convention
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- Daniel Stone <daniel@fooishbar.org>,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, Thierry Reding
- <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>,
- Qiang Yu <yuq825@gmail.com>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Amol Maheshwari <amahesh@qti.qualcomm.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- Leon Romanovsky <leon@kernel.org>, Juergen Gross <jgross@suse.com>,
- Stefano Stabellini <sstabellini@kernel.org>,
- Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
- Tomi Valkeinen <tomba@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Lucas Stach <l.stach@pengutronix.de>,
- Christian Gmeiner <christian.gmeiner@gmail.com>
-References: <20220831153757.97381-1-dmitry.osipenko@collabora.com>
- <8322099f-4ef3-6a5d-4a66-27c4b3329884@amd.com>
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <8322099f-4ef3-6a5d-4a66-27c4b3329884@amd.com>
 Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 01 Sep 2022 13:06:44 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -88,41 +56,87 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- Dmitry Osipenko <digetx@gmail.com>, kernel@collabora.com,
- linux-media@vger.kernel.org
+Cc: =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+ Karol Herbst <kherbst@redhat.com>, Jani Nikula <jani.nikula@intel.com>,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Sandy Huang <hjc@rock-chips.com>, amd-gfx@lists.freedesktop.org,
+ Russell King <linux@armlinux.org.uk>, Inki Dae <inki.dae@samsung.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ linux-tegra@vger.kernel.org, Alain Volmat <alain.volmat@foss.st.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Ben Skeggs <bskeggs@redhat.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello Christian,
+The low-hanging fruit of the drm todo item "Replace
+drm_detect_hdmi_monitor() with drm_display_info.is_hdmi", with has_audio
+changes on top.
 
-On 9/1/22 10:49, Christian König wrote:
-> Hi Dmitry,
-> 
-> I've gone over this multiple times now and while it is still possible
-> that we missed something I think that this should land now.
+I'm afraid not all of these have been even build tested, let alone
+actually tested.
 
-Thank you very much for the review!
 
-> The whole topic is just to complicated that we can 100% sure guarantee
-> that there isn't anything wrong with the locking, but lockdep and driver
-> testing should allow us to quickly find remaining issues.
+BR,
+Jani.
 
-At least the most popular drivers should be okay. If anyone will find
-issue introduced by this series, then indeed shouldn't be a problem to
-fix it later on.
 
-> Do you have commit rights to drm-misc-next or should I push it?
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com> 
+Cc: Sandy Huang <hjc@rock-chips.com>
+Cc: Heiko Stübner <heiko@sntech.de>
+Cc: Sandy Huang <hjc@rock-chips.com>
+Cc: Heiko Stübner <heiko@sntech.de>
+Cc: Alain Volmat <alain.volmat@foss.st.com>
+Cc: Russell King <linux@armlinux.org.uk>
+Cc: Inki Dae <inki.dae@samsung.com>
+Cc: Seung-Woo Kim <sw0312.kim@samsung.com>
+Cc: Kyungmin Park <kyungmin.park@samsung.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>
+Cc: linux-tegra@vger.kernel.org
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Cc: Ben Skeggs <bskeggs@redhat.com>
+Cc: Karol Herbst <kherbst@redhat.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: nouveau@lists.freedesktop.org
 
-I got the drm-misc commit right two weeks ago, haven't pushed anything
-there yet. Please let me try to do the push. I'll let you know if any
-kind of help will be needed from you.
+Jani Nikula (9):
+  drm/edid: parse display info has_audio similar to is_hdmi
+  drm/nouveau: convert to using is_hdmi and has_audio from display info
+  drm/radeon: convert to using is_hdmi and has_audio from display info
+  drm/tegra: convert to using is_hdmi from display info
+  drm/exynos: convert to using is_hdmi from display info
+  drm/i2c/tda998x: convert to using has_audio from display_info
+  drm/sti/sti_hdmi: convert to using is_hdmi from display info
+  drm/rockchip: cdn-dp: call drm_connector_update_edid_property()
+    unconditionally
+  drm/rockchip: convert to using has_audio from display_info
 
-I'll wait for more acks/r-bs and then do the push.
+ drivers/gpu/drm/drm_edid.c                  |  6 ++++++
+ drivers/gpu/drm/exynos/exynos_hdmi.c        |  5 +++--
+ drivers/gpu/drm/i2c/tda998x_drv.c           |  2 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c     |  8 ++++----
+ drivers/gpu/drm/nouveau/dispnv50/head.c     |  8 +-------
+ drivers/gpu/drm/nouveau/nouveau_connector.c |  2 +-
+ drivers/gpu/drm/radeon/atombios_encoders.c  | 10 +++++-----
+ drivers/gpu/drm/radeon/evergreen_hdmi.c     |  5 ++---
+ drivers/gpu/drm/radeon/radeon_audio.c       |  6 +++---
+ drivers/gpu/drm/radeon/radeon_connectors.c  | 12 ++++++------
+ drivers/gpu/drm/radeon/radeon_display.c     |  2 +-
+ drivers/gpu/drm/radeon/radeon_encoders.c    |  4 ++--
+ drivers/gpu/drm/rockchip/cdn-dp-core.c      |  7 +++----
+ drivers/gpu/drm/rockchip/inno_hdmi.c        |  3 ++-
+ drivers/gpu/drm/sti/sti_hdmi.c              | 11 ++++++-----
+ drivers/gpu/drm/sti/sti_hdmi.h              |  2 --
+ drivers/gpu/drm/tegra/hdmi.c                |  9 +--------
+ include/drm/drm_connector.h                 |  8 ++++++++
+ 18 files changed, 55 insertions(+), 55 deletions(-)
 
 -- 
-Best regards,
-Dmitry
+2.34.1
+
