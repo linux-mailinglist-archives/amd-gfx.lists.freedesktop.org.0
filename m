@@ -2,67 +2,33 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B77EC5A957C
-	for <lists+amd-gfx@lfdr.de>; Thu,  1 Sep 2022 13:13:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF1655A980F
+	for <lists+amd-gfx@lfdr.de>; Thu,  1 Sep 2022 15:06:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0749510E6E1;
-	Thu,  1 Sep 2022 11:13:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60E6010E697;
+	Thu,  1 Sep 2022 13:06:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com
- [IPv6:2a00:1450:4864:20::531])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 619DE10E5C4;
- Thu,  1 Sep 2022 11:13:28 +0000 (UTC)
-Received: by mail-ed1-x531.google.com with SMTP id t5so22059006edc.11;
- Thu, 01 Sep 2022 04:13:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date;
- bh=bOmtw5g4LNMuq3kmG+XEH4z+0oX2BU5SCR8n2452RYE=;
- b=NOULVDm2OTpdbztjCwt17ChPCZQQmQkw0+0K1nbZIVDYxXyG1ONBQ5uPPVOBTRmR4h
- siv0S6I+X0vI1r0/ziFwkDGXL8FhUXa14AL2dZQKkoXpyf2tFKTdDqGPZK76hM5sV0b3
- S8ZX31O94fsWHamWQ0EOY1Ka7uCoLLIPvaVoBXf+LVFTL6npWkCm0tt9ZUFaUgBhgl/b
- V6CkMGzUbeORHnv3jeG1Cvs4JBgF7e2ppZeJYnEJM5Fd5KIJSprfKstM2PyCx+kyp+AE
- /heIhjtlsWkfzSBd4ceuLq9bXwoVKnJhyUTencZM37IDkxjsyh5tieV0QJKPnHlFXuv2
- eRrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date;
- bh=bOmtw5g4LNMuq3kmG+XEH4z+0oX2BU5SCR8n2452RYE=;
- b=mLc34F6YkqkjHazoc/sCKGeOXJ/PScm2AOLQ2hAjt41dyeuIdIAOXT87+moHcznMgb
- HyJhiVToOvUvbhAmDqUKgjH7UTXCa8Wg1N5FtSxGPdHxApcsHSyfp+YbPdV/yo15JLKn
- 2WkM6UHzIbADELn1erFlM+TkPmW4OsB36TOTiDensLWvkbVu4+P4V80FkaGqxpDJH+Le
- RFEssMyZLjx7YbWZGUaRlm7lPMOEaqKvC7myQYwfyKc5te6FdW1YeWS1xH629+zFLKqH
- 358+Lb9JKOPoY+XbX/p6bC9yOsuU8McN65Q95JkWreOX1CzM70A5yLbbaojOqQ/7nFx8
- YW7Q==
-X-Gm-Message-State: ACgBeo1wpDjc13ZzgDHPPY3//VccYpybqAo/0FR9FK7T5a6i4Laxe6xE
- eFge8XlJ4eQ/mpgcbQ8c+tQ=
-X-Google-Smtp-Source: AA6agR4wBIrOY8CH0K03atdrZt00843IKr+z4LO8IcuknNRhDQFhHVcgmzFRXq2eJeviCEIiRMuSeg==
-X-Received: by 2002:a05:6402:5190:b0:448:5bdb:b27d with SMTP id
- q16-20020a056402519000b004485bdbb27dmr17022303edd.49.1662030806756; 
- Thu, 01 Sep 2022 04:13:26 -0700 (PDT)
-Received: from [192.168.178.21] (p4fc20ad4.dip0.t-ipconnect.de.
- [79.194.10.212]) by smtp.gmail.com with ESMTPSA id
- q19-20020a50aa93000000b0044a3ecc535esm1142420edc.89.2022.09.01.04.13.25
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 01 Sep 2022 04:13:25 -0700 (PDT)
-Message-ID: <e42b6dac-de91-249c-4ccd-a379e209d6b0@gmail.com>
-Date: Thu, 1 Sep 2022 13:13:24 +0200
+Received: from out30-44.freemail.mail.aliyun.com
+ (out30-44.freemail.mail.aliyun.com [115.124.30.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE33B10E63D;
+ Thu,  1 Sep 2022 07:57:11 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R621e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018045168;
+ MF=yang.lee@linux.alibaba.com; NM=1; PH=DS; RN=13; SR=0;
+ TI=SMTPD_---0VNz0wRs_1662019025; 
+Received: from localhost(mailfrom:yang.lee@linux.alibaba.com
+ fp:SMTPD_---0VNz0wRs_1662019025) by smtp.aliyun-inc.com;
+ Thu, 01 Sep 2022 15:57:06 +0800
+From: Yang Li <yang.lee@linux.alibaba.com>
+To: alexander.deucher@amd.com
+Subject: [PATCH -next] drm/amd/display: clean up some inconsistent indentings
+Date: Thu,  1 Sep 2022 15:56:55 +0800
+Message-Id: <20220901075655.57494-1-yang.lee@linux.alibaba.com>
+X-Mailer: git-send-email 2.20.1.7.g153144c
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] drm/ttm: update bulk move object of ghost BO
-Content-Language: en-US
-To: ZhenGuo Yin <zhenguo.yin@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20220901092946.2030744-1-zhenguo.yin@amd.com>
- <df602f9a-d55e-e034-febd-ac15d76cfa28@gmail.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <df602f9a-d55e-e034-febd-ac15d76cfa28@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 01 Sep 2022 13:06:44 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,72 +40,39 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jingwen.chen2@amd.com, christian.koenig@amd.com,
- dri-devel@lists.freedesktop.org
+Cc: sunpeng.li@amd.com, Abaci Robot <abaci@linux.alibaba.com>,
+ Xinhui.Pan@amd.com, Rodrigo.Siqueira@amd.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, airlied@linux.ie,
+ Yang Li <yang.lee@linux.alibaba.com>, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, harry.wentland@amd.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 01.09.22 um 13:11 schrieb Christian König:
-> Am 01.09.22 um 11:29 schrieb ZhenGuo Yin:
->> [Why]
->> Ghost BO is released with non-empty bulk move object. There is a
->> warning trace:
->> WARNING: CPU: 19 PID: 1582 at ttm/ttm_bo.c:366 
->> ttm_bo_release+0x2e1/0x2f0 [amdttm]
->> Call Trace:
->>    amddma_resv_reserve_fences+0x10d/0x1f0 [amdkcl]
->>    amdttm_bo_put+0x28/0x30 [amdttm]
->>    amdttm_bo_move_accel_cleanup+0x126/0x200 [amdttm]
->>    amdgpu_bo_move+0x1a8/0x770 [amdgpu]
->>    ttm_bo_handle_move_mem+0xb0/0x140 [amdttm]
->>    amdttm_bo_validate+0xbf/0x100 [amdttm]
->>
->> [How]
->> The resource of ghost BO should be moved to LRU directly, instead of
->> using bulk move. The bulk move object of ghost BO should set to NULL
->> before function ttm_bo_move_to_lru_tail_unlocked.
->>
->> Fixed:·5b951e487fd6bf5f·("drm/ttm:·fix·bulk·move·handling·v2")
->> Signed-off-by: ZhenGuo Yin <zhenguo.yin@amd.com>
->
-> Good catch, but the fix is not 100% correct. Please rather just NULL 
-> the member while initializing the BO structure.
->
-> E.g. something like this:
->
->  ....
->  fbo->base.pin_count = 0;
-> +fbo->base.bulk_move= NULL;
->  if (bo->type != ttm_bo_type_sg)
->  ....
+This if statement is the content of the for statement above it. It
+should be indented.
 
-On the other hand thinking about it that won't work either.
+Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=2026
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
+---
+ drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-You need to set bulk_move to NULL manually in an else clauses or 
-something like this.
-
-Regards,
-Christian.
-
->
-> Thanks,
-> Christian.
->
->> ---
->>   drivers/gpu/drm/ttm/ttm_bo_util.c | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c 
->> b/drivers/gpu/drm/ttm/ttm_bo_util.c
->> index 1cbfb00c1d65..a90bbbd91910 100644
->> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
->> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
->> @@ -238,6 +238,7 @@ static int ttm_buffer_object_transfer(struct 
->> ttm_buffer_object *bo,
->>         if (fbo->base.resource) {
->>           ttm_resource_set_bo(fbo->base.resource, &fbo->base);
->> +        ttm_bo_set_bulk_move(&fbo->base, NULL);
->>           bo->resource = NULL;
->>       }
->
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
+index 9dd705b985b9..0139e98a0aa1 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
+@@ -417,8 +417,8 @@ void get_subvp_visual_confirm_color(
+ 	for (i = 0; i < dc->res_pool->pipe_count; i++) {
+ 		struct pipe_ctx *pipe = &dc->current_state->res_ctx.pipe_ctx[i];
+ 
+-	if (pipe->stream && pipe->stream->mall_stream_config.paired_stream &&
+-				pipe->stream->mall_stream_config.type == SUBVP_MAIN) {
++		if (pipe->stream && pipe->stream->mall_stream_config.paired_stream &&
++			pipe->stream->mall_stream_config.type == SUBVP_MAIN) {
+ 			/* SubVP enable - red */
+ 			color->color_r_cr = color_value;
+ 			enable_subvp = true;
+-- 
+2.20.1.7.g153144c
 
