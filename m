@@ -2,77 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A943E5ACB93
-	for <lists+amd-gfx@lfdr.de>; Mon,  5 Sep 2022 09:04:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3D665ACB9B
+	for <lists+amd-gfx@lfdr.de>; Mon,  5 Sep 2022 09:04:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0000410E1E0;
-	Mon,  5 Sep 2022 07:04:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A36D210E1F0;
+	Mon,  5 Sep 2022 07:04:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com
- [IPv6:2a00:1450:4864:20::22c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA5E510E7F1;
- Fri,  2 Sep 2022 10:38:34 +0000 (UTC)
-Received: by mail-lj1-x22c.google.com with SMTP id z20so1827401ljq.3;
- Fri, 02 Sep 2022 03:38:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:references:cc:to:from
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date;
- bh=zb5JB4hN023tPDYi3X8LwwwxfrMO5eJ6HDfLqyKNUp4=;
- b=b+3QDVeZ8R7VkX5Bf/lQ/zM5cKpssDiy6sioxY3jw9J59uDY2aLPinjOd5/AfzMPSF
- F25cqjiDBi0zlLf8NewvQzjGLBKLLwe77dGjcGOssNv9QG7GD4v9Y7R5vUVBkwhzJqAt
- W+NgPvhc+LGHFoczAHcg6Xd3RZE5aY0kB0c6sHOthdo2C6I6KgqGlMNMjWhr5LBa7hEJ
- PF8PoWJrMQEbxEgzwwdfZOe63pnK6yiDDUckqcBXrJcCgoCnkkMNTICwsyuKzCch5zAF
- oZnume/cpTmEe8YMT0zAnJRdyZ8FX7N+NEVx+V/5rqxYqoL28d0bRVzC4c7nr4HeYJuG
- nuzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:references:cc:to:from
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date;
- bh=zb5JB4hN023tPDYi3X8LwwwxfrMO5eJ6HDfLqyKNUp4=;
- b=KCTywGyRFnTP/3C6JtyU2tQjbcq4goVqUdosWJwU50+IB4+/HnVTISCE6HE+CiZNs0
- PTozkTgvFLATSMMx91utEhkN/tSswHQ/QcglzS8yzc3mmI9VyJVBA3uXgB/xk1AQ3viz
- 6JH5SpXhgmqVdVVOWMm/vgT9nyvnZahmXj5xPbR48K3qCaQk1RMaELMPRRmrQBLip3yV
- VspiZGcEbblkrDXOMA5u7MTSSE/N/w8Lc6KwOg6NyO/avtMTbr0C+oHfF34dxXT5yFvF
- R9dWFlE41N2O7MaYSzg4AJOXY3Ry5kruOVYCmugA4NGWubk9hd13OALS3FFDpui5Hlhb
- Gesg==
-X-Gm-Message-State: ACgBeo2BZA7RytIL4km1QxTdlwIU82nbn/vgOZiQwW2AgkrRw2Xfb6YH
- O4/qR4dnApRaEOAInwKs3iM=
-X-Google-Smtp-Source: AA6agR40LFWSHSrrETgLqAmkw4fHaA4WAaccG4Nn66YZ/3AUuSYYBeJUuN4jK3ma7gFMPZa8TWb1KQ==
-X-Received: by 2002:a2e:bf07:0:b0:261:cafb:d4a8 with SMTP id
- c7-20020a2ebf07000000b00261cafbd4a8mr10289818ljr.268.1662115113077; 
- Fri, 02 Sep 2022 03:38:33 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-119-13.nat.spd-mgts.ru.
- [109.252.119.13]) by smtp.googlemail.com with ESMTPSA id
- 5-20020a2eb945000000b00267232d0652sm147092ljs.46.2022.09.02.03.38.30
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 02 Sep 2022 03:38:32 -0700 (PDT)
-Message-ID: <c89680d0-30ee-f5d7-be68-fa84458df04d@gmail.com>
-Date: Fri, 2 Sep 2022 13:38:30 +0300
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C258210E82F;
+ Fri,  2 Sep 2022 13:01:26 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id A95F4B82ADD;
+ Fri,  2 Sep 2022 13:01:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2882C433C1;
+ Fri,  2 Sep 2022 13:01:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1662123683;
+ bh=2Bz/efN2/mg1731d5K4pjKr79RYPaHO217/mHswxl4Y=;
+ h=From:To:Cc:Subject:Date:From;
+ b=K/WL4KZPAlSuht5rqlHSv5eY4DFfjY9gDUj2mqBn+KnYx0byowdhu2Z25fx2k1FIA
+ a6njcrtpRvGUnLQvKBi1UYfAdwHkiegRVUWv3hvrplGcuMR0Zwd+CWhyD86w94wKIn
+ N22QsLhhAWrCcwkNn6uKjfUf859qv1iWPTxzvoCg=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng^Ci@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Alex Deuc her <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui.Pan@amd.com
+Subject: [PATCH] drm/amd/display: fix memory leak when using debugfs_lookup()
+Date: Fri,  2 Sep 2022 15:01:05 +0200
+Message-Id: <20220902130105.139138-1-gregkh@linuxfoundation.org>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v4 06/21] drm/i915: Prepare to dynamic dma-buf locking
- specification
-Content-Language: en-US
-From: Dmitry Osipenko <digetx@gmail.com>
-To: "Ruhl, Michael J" <michael.j.ruhl@intel.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
-References: <20220831153757.97381-1-dmitry.osipenko@collabora.com>
- <20220831153757.97381-7-dmitry.osipenko@collabora.com>
- <DM5PR11MB1324088635FDE00B0D957816C17B9@DM5PR11MB1324.namprd11.prod.outlook.com>
- <760b999f-b15d-102e-8bc7-c3e69f07f43f@gmail.com>
-In-Reply-To: <760b999f-b15d-102e-8bc7-c3e69f07f43f@gmail.com>
 Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1866;
+ i=gregkh@linuxfoundation.org; h=from:subject;
+ bh=2Bz/efN2/mg1731d5K4pjKr79RYPaHO217/mHswxl4Y=;
+ b=owGbwMvMwCRo6H6F97bub03G02pJDMmC/yZsOu+8L1Mx8IXV1LtsrzJY/ZoOyKvVmH27M98zdcG9
+ uSo/OmJZGASZGGTFFFm+bOM5ur/ikKKXoe1pmDmsTCBDGLg4BWAi0fIMC9Zfmp9y7XLhBFaZa0Kzdc
+ U3nHD0UmSY7/s/eFtrCMv55BPFc1lj7uS9ETn4EQA=
+X-Developer-Key: i=gregkh@linuxfoundation.org; a=openpgp;
+ fpr=F4B60CC5BF78C2214A313DCB3147D40DDB2DFB29
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 05 Sep 2022 07:04:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -86,89 +60,63 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Almeida <daniel.almeida@collabora.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "virtualization@lists.linux-foundation.org"
- <virtualization@lists.linux-foundation.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Gerd Hoffmann <kraxel@redhat.com>,
- "kernel@collabora.com" <kernel@collabora.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Leon Romanovsky <leon@kernel.org>,
- Jason Gunthorpe <jgg@ziepe.ca>,
- "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
- Russell King <linux@armlinux.org.uk>, Daniel Stone <daniel@fooishbar.org>,
- Gustavo Padovan <gustavo.padovan@collabora.com>, Chia-I Wu <olvaffe@gmail.com>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- "linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Stefano Stabellini <sstabellini@kernel.org>,
- Gurchetan Singh <gurchetansingh@chromium.org>, "Gross,
- Jurgen" <jgross@suse.com>, David Airlie <airlied@linux.ie>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- Tomi Valkeinen <tomba@kernel.org>, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Tomasz Figa <tfiga@chromium.org>,
- Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
- Rob Clark <robdclark@gmail.com>, Qiang Yu <yuq825@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- Amol Maheshwari <amahesh@qti.qualcomm.com>,
- Lucas Stach <l.stach@pengutronix.de>
+Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
+ Leo Li <sunpeng.li@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ dri-devel@lists.freedesktop.org,
+ Bhanuprakash Modem <bhanuprakash.modem@intel.com>,
+ Wenjing Liu <wenjing.liu@amd.com>, linux-kernel@vger.kernel.org,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ David Airlie <airlied@linux.ie>, Fangzhi Zuo <Jerry.Zuo@amd.com>,
+ hersen wu <hersenxs.wu@amd.com>, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Wayne Lin <Wayne.Lin@amd.com>,
+ Sean Paul <seanpaul@chromium.org>, Yongzhi Liu <lyz_cs@pku.edu.cn>,
+ Mikita Lipski <mikita.lipski@amd.com>,
+ Thelford Williams <tdwilliamsiv@gmail.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-02.09.2022 13:31, Dmitry Osipenko пишет:
-> 01.09.2022 17:02, Ruhl, Michael J пишет:
-> ...
->>> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
->>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
->>> @@ -331,7 +331,19 @@ static void __i915_gem_free_objects(struct
->>> drm_i915_private *i915,
->>> 			continue;
->>> 		}
->>>
->>> +		/*
->>> +		 * dma_buf_unmap_attachment() requires reservation to be
->>> +		 * locked. The imported GEM shouldn't share reservation lock,
->>> +		 * so it's safe to take the lock.
->>> +		 */
->>> +		if (obj->base.import_attach)
->>> +			i915_gem_object_lock(obj, NULL);
->>
->> There is a lot of stuff going here.  Taking the lock may be premature...
->>
->>> 		__i915_gem_object_pages_fini(obj);
->>
->> The i915_gem_dmabuf.c:i915_gem_object_put_pages_dmabuf is where
->> unmap_attachment is actually called, would it make more sense to make
->> do the locking there?
-> 
-> The __i915_gem_object_put_pages() is invoked with a held reservation
-> lock, while freeing object is a special time when we know that GEM is
-> unused.
-> 
-> The __i915_gem_free_objects() was taking the lock two weeks ago until
-> the change made Chris Wilson [1] reached linux-next.
-> 
-> [1]
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=2826d447fbd60e6a05e53d5f918bceb8c04e315c
-> 
-> I don't think we can take the lock within
-> i915_gem_object_put_pages_dmabuf(), it may/should deadlock other code paths.
+When calling debugfs_lookup() the result must have dput() called on it,
+otherwise the memory will leak over time.  Fix this up by properly
+calling dput().
 
-On the other hand, we can check whether the GEM's refcount number is
-zero in i915_gem_object_put_pages_dmabuf() and then take the lock if
-it's zero.
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Leo Li <sunpeng.li@amd.com>
+Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: "Christian König" <christian.koenig@amd.com>
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+Cc: David Airlie <airlied@linux.ie>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Wayne Lin <Wayne.Lin@amd.com>
+Cc: hersen wu <hersenxs.wu@amd.com>
+Cc: Wenjing Liu <wenjing.liu@amd.com>
+Cc: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
+Cc: Thelford Williams <tdwilliamsiv@gmail.com>
+Cc: Fangzhi Zuo <Jerry.Zuo@amd.com>
+Cc: Yongzhi Liu <lyz_cs@pku.edu.cn>
+Cc: Mikita Lipski <mikita.lipski@amd.com>
+Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+Cc: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+Cc: Sean Paul <seanpaul@chromium.org>
+Cc: amd-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Also, seems it should be possible just to bail out from
-i915_gem_object_put_pages_dmabuf() if refcount=0. The further
-drm_prime_gem_destroy() will take care of unmapping. Perhaps this could
-be the best option, I'll give it a test.
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+index 0e48824f55e3..ee242d9d8b06 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+@@ -3288,6 +3288,7 @@ void crtc_debugfs_init(struct drm_crtc *crtc)
+ 				   &crc_win_y_end_fops);
+ 	debugfs_create_file_unsafe("crc_win_update", 0644, dir, crtc,
+ 				   &crc_win_update_fops);
++	dput(dir);
+ #endif
+ 	debugfs_create_file("amdgpu_current_bpc", 0644, crtc->debugfs_entry,
+ 			    crtc, &amdgpu_current_bpc_fops);
+-- 
+2.37.3
+
