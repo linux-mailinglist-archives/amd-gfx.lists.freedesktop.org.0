@@ -1,53 +1,47 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3D665ACB9B
-	for <lists+amd-gfx@lfdr.de>; Mon,  5 Sep 2022 09:04:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41EF55ACB97
+	for <lists+amd-gfx@lfdr.de>; Mon,  5 Sep 2022 09:04:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A36D210E1F0;
-	Mon,  5 Sep 2022 07:04:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 685BD10E1DF;
+	Mon,  5 Sep 2022 07:04:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C258210E82F;
- Fri,  2 Sep 2022 13:01:26 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4030910E63B;
+ Fri,  2 Sep 2022 13:10:26 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id A95F4B82ADD;
- Fri,  2 Sep 2022 13:01:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2882C433C1;
- Fri,  2 Sep 2022 13:01:22 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id C5EAEB82A93;
+ Fri,  2 Sep 2022 13:10:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8696C433D7;
+ Fri,  2 Sep 2022 13:10:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1662123683;
- bh=2Bz/efN2/mg1731d5K4pjKr79RYPaHO217/mHswxl4Y=;
- h=From:To:Cc:Subject:Date:From;
- b=K/WL4KZPAlSuht5rqlHSv5eY4DFfjY9gDUj2mqBn+KnYx0byowdhu2Z25fx2k1FIA
- a6njcrtpRvGUnLQvKBi1UYfAdwHkiegRVUWv3hvrplGcuMR0Zwd+CWhyD86w94wKIn
- N22QsLhhAWrCcwkNn6uKjfUf859qv1iWPTxzvoCg=
+ s=korg; t=1662124223;
+ bh=gyQWuNAPc+74rM0aS1MSJ4QJ6RbXShDyHWLyEiqRoQU=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=CQKn+VJGtrWnpB6WqDuCC3FzieeagB+gNRGChxvz9oDHXXmx2mDyYRnP3ZpCGjJUE
+ hl7HBTss0CYdoTojxOhXu5oOiQljkG7Ke505YsbMeEwg8Vji18MsaotJ9qLIt/nOCC
+ QNKvcStOo+s3Syd2kweL/NO710tSkB+KG4AQs0tk=
+Date: Fri, 2 Sep 2022 15:10:20 +0200
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng^Ci@amd.com>,
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
  Alex Deuc her <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
  Xinhui.Pan@amd.com
-Subject: [PATCH] drm/amd/display: fix memory leak when using debugfs_lookup()
-Date: Fri,  2 Sep 2022 15:01:05 +0200
-Message-Id: <20220902130105.139138-1-gregkh@linuxfoundation.org>
-X-Mailer: git-send-email 2.37.3
+Subject: Re: [PATCH] drm/amd/display: fix memory leak when using
+ debugfs_lookup()
+Message-ID: <YxIAvHOK7uNum9VI@kroah.com>
+References: <20220902130105.139138-1-gregkh@linuxfoundation.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1866;
- i=gregkh@linuxfoundation.org; h=from:subject;
- bh=2Bz/efN2/mg1731d5K4pjKr79RYPaHO217/mHswxl4Y=;
- b=owGbwMvMwCRo6H6F97bub03G02pJDMmC/yZsOu+8L1Mx8IXV1LtsrzJY/ZoOyKvVmH27M98zdcG9
- uSo/OmJZGASZGGTFFFm+bOM5ur/ikKKXoe1pmDmsTCBDGLg4BWAi0fIMC9Zfmp9y7XLhBFaZa0Kzdc
- U3nHD0UmSY7/s/eFtrCMv55BPFc1lj7uS9ETn4EQA=
-X-Developer-Key: i=gregkh@linuxfoundation.org; a=openpgp;
- fpr=F4B60CC5BF78C2214A313DCB3147D40DDB2DFB29
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220902130105.139138-1-gregkh@linuxfoundation.org>
 X-Mailman-Approved-At: Mon, 05 Sep 2022 07:04:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,8 +55,7 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
- Leo Li <sunpeng.li@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- dri-devel@lists.freedesktop.org,
+ Leo Li <sunpeng.li@amd.com>, dri-devel@lists.freedesktop.org,
  Bhanuprakash Modem <bhanuprakash.modem@intel.com>,
  Wenjing Liu <wenjing.liu@amd.com>, linux-kernel@vger.kernel.org,
  Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
@@ -75,48 +68,39 @@ Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When calling debugfs_lookup() the result must have dput() called on it,
-otherwise the memory will leak over time.  Fix this up by properly
-calling dput().
+On Fri, Sep 02, 2022 at 03:01:05PM +0200, Greg Kroah-Hartman wrote:
+> When calling debugfs_lookup() the result must have dput() called on it,
+> otherwise the memory will leak over time.  Fix this up by properly
+> calling dput().
+> 
+> Cc: Harry Wentland <harry.wentland@amd.com>
+> Cc: Leo Li <sunpeng.li@amd.com>
+> Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: "Christian König" <christian.koenig@amd.com>
+> Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Wayne Lin <Wayne.Lin@amd.com>
+> Cc: hersen wu <hersenxs.wu@amd.com>
+> Cc: Wenjing Liu <wenjing.liu@amd.com>
+> Cc: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
+> Cc: Thelford Williams <tdwilliamsiv@gmail.com>
+> Cc: Fangzhi Zuo <Jerry.Zuo@amd.com>
+> Cc: Yongzhi Liu <lyz_cs@pku.edu.cn>
+> Cc: Mikita Lipski <mikita.lipski@amd.com>
+> Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+> Cc: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+> Cc: Sean Paul <seanpaul@chromium.org>
+> Cc: amd-gfx@lists.freedesktop.org
+> Cc: dri-devel@lists.freedesktop.org
+> Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> ---
 
-Cc: Harry Wentland <harry.wentland@amd.com>
-Cc: Leo Li <sunpeng.li@amd.com>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: "Christian KÃ¶nig" <christian.koenig@amd.com>
-Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
-Cc: David Airlie <airlied@linux.ie>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Wayne Lin <Wayne.Lin@amd.com>
-Cc: hersen wu <hersenxs.wu@amd.com>
-Cc: Wenjing Liu <wenjing.liu@amd.com>
-Cc: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
-Cc: Thelford Williams <tdwilliamsiv@gmail.com>
-Cc: Fangzhi Zuo <Jerry.Zuo@amd.com>
-Cc: Yongzhi Liu <lyz_cs@pku.edu.cn>
-Cc: Mikita Lipski <mikita.lipski@amd.com>
-Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
-Cc: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
-Cc: Sean Paul <seanpaul@chromium.org>
-Cc: amd-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 1 +
- 1 file changed, 1 insertion(+)
+Despite a zillion cc: items, I forgot to cc: stable on this.  Can the
+maintainer add that here, or do you all want me to resend it with that
+item added?
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-index 0e48824f55e3..ee242d9d8b06 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-@@ -3288,6 +3288,7 @@ void crtc_debugfs_init(struct drm_crtc *crtc)
- 				   &crc_win_y_end_fops);
- 	debugfs_create_file_unsafe("crc_win_update", 0644, dir, crtc,
- 				   &crc_win_update_fops);
-+	dput(dir);
- #endif
- 	debugfs_create_file("amdgpu_current_bpc", 0644, crtc->debugfs_entry,
- 			    crtc, &amdgpu_current_bpc_fops);
--- 
-2.37.3
+thanks,
 
+greg k-h
