@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB9A65ACB92
-	for <lists+amd-gfx@lfdr.de>; Mon,  5 Sep 2022 09:04:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 731645ACB99
+	for <lists+amd-gfx@lfdr.de>; Mon,  5 Sep 2022 09:04:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86E9010E1DD;
-	Mon,  5 Sep 2022 07:04:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE21E10E1F1;
+	Mon,  5 Sep 2022 07:04:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from m12-16.163.com (m12-16.163.com [220.181.12.16])
- by gabe.freedesktop.org (Postfix) with ESMTP id 961BE10E004;
- Sun,  4 Sep 2022 09:26:55 +0000 (UTC)
+Received: from m12-13.163.com (m12-13.163.com [220.181.12.13])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DEED010E11F;
+ Sun,  4 Sep 2022 18:33:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=e072z
- 4VQxm65ywSD356w2FUZqlt2NwgtGY3qZldyc5k=; b=Qo5fxiQweQpZlZDTpNWjZ
- jn48cwb8HCghjgqFKdXkrdPu+LIBgBcLr/KIiVaTUZN43Yk7nvvdhSSM7h6vsgVq
- YfZStYEQKM7r4N1FvV1GKYQ1tMRogvD5ks+7aWHMlm1/D6yh1l2jXzaSDJZymYru
- lVYKDkhLpyY8yBiXnYtt0Y=
+ s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=0Cixm
+ +IIyxb326ssYKv/Au9Yv7Sc+F7nhziOB8Ue01o=; b=opPn+ZhzMSd99l1shlpjA
+ xKjFwDqQuroq9cM9LAUu4Si5L6Jo3oc7IkFafdc6j/lP0VoDgBeIuFzFZ+bn3iHB
+ eSRbVuZy1upto6hd0uD+Cag31oS8+0xI/Dee/hyFrBQVbtuw/nURcaliZ7RB//CN
+ BRFEO8R5tAJ2Zk6//qmjRA=
 Received: from f00160-VMware-Virtual-Platform.localdomain (unknown
  [1.203.67.201])
- by smtp12 (Coremail) with SMTP id EMCowABnt49DbxRjQYBnJg--.28508S4;
- Sun, 04 Sep 2022 17:26:42 +0800 (CST)
+ by smtp9 (Coremail) with SMTP id DcCowADXz7Vm7xRjeH6ieQ--.9485S4;
+ Mon, 05 Sep 2022 02:33:23 +0800 (CST)
 From: Jingyu Wang <jingyuwang_vip@163.com>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
  airlied@linux.ie, daniel@ffwll.ch, Felix.Kuehling@amd.com
-Subject: [PATCH] amd: amdgpu: fix coding style issue
-Date: Sun,  4 Sep 2022 17:26:25 +0800
-Message-Id: <20220904092625.1007393-1-jingyuwang_vip@163.com>
+Subject: [PATCH] drm/amdgpu: cleanup coding style in amdgpu_sync.c file
+Date: Mon,  5 Sep 2022 02:33:07 +0800
+Message-Id: <20220904183307.14550-1-jingyuwang_vip@163.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: EMCowABnt49DbxRjQYBnJg--.28508S4
-X-Coremail-Antispam: 1Uf129KBjvJXoW7Jw1kJryDJF1xXF1UZF4fKrg_yoW8JF18pr
- 1fGr15Kr45ZFWSk39rZ3WkuFyft3WxXFy8KrW7Zw4Y9ws8XF98Jry5tr4jvF9rWrsxCF47
- tryqqay5uFnFvr7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pE6RRZUUUUU=
+X-CM-TRANSID: DcCowADXz7Vm7xRjeH6ieQ--.9485S4
+X-Coremail-Antispam: 1Uf129KBjvJXoW7Jw1kJryDJFyrAFyrCr43GFg_yoW8JF1UpF
+ 1fJr4jgr45ZFWa93srAF1kZF93t3W7XFyxKr17Zw4Fqws8ZF15JF1FyrW0vFyDWrs8CF42
+ yrWqqayrZFnIvF7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pEsXonUUUUU=
 X-Originating-IP: [1.203.67.201]
-X-CM-SenderInfo: 5mlqw5xxzd0whbyl1qqrwthudrp/1tbishJyF1UMWQCYBwAAsa
+X-CM-SenderInfo: 5mlqw5xxzd0whbyl1qqrwthudrp/xtbCoA5yF1zmWD1eTwABsE
 X-Mailman-Approved-At: Mon, 05 Sep 2022 07:04:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,22 +59,18 @@ This is a patch to the amdgpu_sync.c file that fixes some warnings found by the 
 
 Signed-off-by: Jingyu Wang <jingyuwang_vip@163.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c
-index 504af1b93bfa..dfc787b749b2 100644
+index 504af1b93bfa..090e66a1b284 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c
-@@ -1,5 +1,6 @@
--/*
-- * Copyright 2014 Advanced Micro Devices, Inc.
-+// SPDX-License-Identifier: GPL-2.0
-+
-+/* Copyright 2014 Advanced Micro Devices, Inc.
+@@ -1,3 +1,4 @@
++// SPDX-License-Identifier: MIT
+ /*
+  * Copyright 2014 Advanced Micro Devices, Inc.
   * All Rights Reserved.
-  *
-  * Permission is hereby granted, free of charge, to any person obtaining a
 @@ -315,6 +316,7 @@ struct dma_fence *amdgpu_sync_get_fence(struct amdgpu_sync *sync)
  	struct hlist_node *tmp;
  	struct dma_fence *f;
@@ -92,6 +88,9 @@ index 504af1b93bfa..dfc787b749b2 100644
  
  	hash_for_each_safe(sync->fences, i, tmp, e, node) {
  		hash_del(&e->node);
+
+base-commit: e47eb90a0a9ae20b82635b9b99a8d0979b757ad8
+prerequisite-patch-id: fefd0009b468430bb223fc92e4abe9710518b1ea
 -- 
 2.34.1
 
