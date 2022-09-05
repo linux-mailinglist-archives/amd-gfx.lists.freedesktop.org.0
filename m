@@ -1,39 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79B775AE10F
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Sep 2022 09:27:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 293115AE10A
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Sep 2022 09:27:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FC7710E598;
-	Tue,  6 Sep 2022 07:27:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1330110E58E;
+	Tue,  6 Sep 2022 07:27:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 301 seconds by postgrey-1.36 at gabe;
- Mon, 05 Sep 2022 07:51:05 UTC
-Received: from andre.telenet-ops.be (andre.telenet-ops.be
- [IPv6:2a02:1800:120:4::f00:15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D5F210E1E1
- for <amd-gfx@lists.freedesktop.org>; Mon,  5 Sep 2022 07:51:05 +0000 (UTC)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed50:8960:eb4c:1eb8:b03d])
- by andre.telenet-ops.be with bizsmtp
- id G7m12800c4gmfJk017m1gw; Mon, 05 Sep 2022 09:46:02 +0200
-Received: from geert (helo=localhost)
- by ramsan.of.borg with local-esmtp (Exim 4.93)
- (envelope-from <geert@linux-m68k.org>)
- id 1oV6nx-0042ve-J4; Mon, 05 Sep 2022 09:46:01 +0200
-Date: Mon, 5 Sep 2022 09:46:01 +0200 (CEST)
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-X-X-Sender: geert@ramsan.of.borg
-To: linux-kernel@vger.kernel.org
-Subject: Re: Build regressions/improvements in v6.0-rc4
-In-Reply-To: <20220905071915.2312316-1-geert@linux-m68k.org>
-Message-ID: <alpine.DEB.2.22.394.2209050944290.964530@ramsan.of.borg>
-References: <CAHk-=wiqix9N5P0BXrSSOXjPZxMh=wDDRJ3sgf=hutoTUx0nZQ@mail.gmail.com>
- <20220905071915.2312316-1-geert@linux-m68k.org>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+Received: from m12-14.163.com (m12-14.163.com [220.181.12.14])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B08F310E1F5;
+ Mon,  5 Sep 2022 07:57:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=PthuW
+ 4+2T/916gJ0mcWz5BIVJ432LvylOCFS/+qPKNg=; b=bmYeIG18Mz1MxsUfvGV5m
+ 3y5R8/IKJqPkpoLTuNVO7++3sj6sJXPWjmF4xm51lZQYEbyDzCM3TldFIcKvDG/8
+ UKruVWb8VFyoNYSeN4WjXwmJU8z/tdG1vjce0VnP1HUDDy5bC3Eixk89ArNyfBWA
+ +8BRDfnwOMwJP0kGtf0txI=
+Received: from f00160-VMware-Virtual-Platform.localdomain (unknown
+ [1.203.67.201])
+ by smtp10 (Coremail) with SMTP id DsCowACXQKmrqxVjsjDjGA--.54890S4;
+ Mon, 05 Sep 2022 15:56:45 +0800 (CST)
+From: Jingyu Wang <jingyuwang_vip@163.com>
+To: Felix.Kuehling@amd.com, lexander.deucher@amd.com, hristian.koenig@amd.com,
+ Xinhui.Pan@amd.com, airlied@linux.ie, daniel@ffwll.ch
+Subject: [PATCH] drm/amdgpu: cleanup coding style in amdgpu_amdkfd.c
+Date: Mon,  5 Sep 2022 15:56:24 +0800
+Message-Id: <20220905075624.22979-1-jingyuwang_vip@163.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: DsCowACXQKmrqxVjsjDjGA--.54890S4
+X-Coremail-Antispam: 1Uf129KBjvdXoWrKw4UCr48uw4xJw4UXF45trb_yoWfuFc_CF
+ W5XF4xury3AFnFvr1ayrW3Zry0yFZ8Zrn5Jr1rtFZaq34Du3yUA3srXrnrXF15Gr1xuF9r
+ uw409F45A3ZxCjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+ 9fnUUvcSsGvfC2KfnxnUUI43ZEXa7sRt2Nt7UUUUU==
+X-Originating-IP: [1.203.67.201]
+X-CM-SenderInfo: 5mlqw5xxzd0whbyl1qqrwthudrp/xtbCoBVzF1zmWEfaqAAAsG
 X-Mailman-Approved-At: Tue, 06 Sep 2022 07:27:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -46,37 +50,37 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-s390@vger.kernel.org, linux-hardening@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-sh@vger.kernel.org
+Cc: Jingyu Wang <jingyuwang_vip@163.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 5 Sep 2022, Geert Uytterhoeven wrote:
-> JFYI, when comparing v6.0-rc4[1] to v6.0-rc3[3], the summaries are:
->  - build errors: +3/-16
+Fix everything checkpatch.pl complained about in amdgpu_amdkfd.c
 
-   + /kisskb/src/arch/sh/kernel/machvec.c: error: array subscript 'struct sh_machine_vector[0]' is partly outside array bounds of 'long int[1]' [-Werror=array-bounds]:  => 105:33
+Signed-off-by: Jingyu Wang <jingyuwang_vip@163.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-sh4-gcc11/sh-allyesconfig (-Werror)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+index 091415a4abf0..4f5bd96000ec 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+@@ -1,3 +1,4 @@
++// SPDX-License-Identifier: MIT
+ /*
+  * Copyright 2014 Advanced Micro Devices, Inc.
+  *
+@@ -130,6 +131,7 @@ static void amdgpu_amdkfd_reset_work(struct work_struct *work)
+ 						  kfd.reset_work);
+ 
+ 	struct amdgpu_reset_context reset_context;
++
+ 	memset(&reset_context, 0, sizeof(reset_context));
+ 
+ 	reset_context.method = AMD_RESET_METHOD_NONE;
 
-   + /kisskb/src/drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_32.c: error: the frame size of 2144 bytes is larger than 2048 bytes [-Werror=frame-larger-than=]:  => 3768:1
+base-commit: e47eb90a0a9ae20b82635b9b99a8d0979b757ad8
+-- 
+2.34.1
 
-x86_64-gcc8/x86-allmodconfig (in function dml32_ModeSupportAndSystemConfigurationFull())
-
-   + /kisskb/src/include/linux/fortify-string.h: error: call to '__write_overflow_field' declared with attribute warning: detected write beyond size of field (1st parameter); maybe use struct_group()? [-Werror=attribute-warning]:  => 258:25
-
-s390x-gcc11/s390-allyesconfig (inlined from 'copy_process' at /kisskb/src/kernel/fork.c:2200:2)
-
-> [1] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/7e18e42e4b280c85b76967a9106a13ca61c16179/ (all 135 configs)
-> [3] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/b90cb1053190353cc30f0fef0ef1f378ccc063c5/ (all 135 configs)
-
-Gr{oetje,eeting}s,
-
- 						Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
- 							    -- Linus Torvalds
