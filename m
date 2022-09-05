@@ -1,58 +1,120 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2533A5ACB84
-	for <lists+amd-gfx@lfdr.de>; Mon,  5 Sep 2022 08:57:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D720C5ACD40
+	for <lists+amd-gfx@lfdr.de>; Mon,  5 Sep 2022 09:59:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05BC110E1DB;
-	Mon,  5 Sep 2022 06:57:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7833210E1FB;
+	Mon,  5 Sep 2022 07:59:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 470 seconds by postgrey-1.36 at gabe;
- Mon, 05 Sep 2022 06:57:17 UTC
-Received: from condef-08.nifty.com (condef-08.nifty.com [202.248.20.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DA5410E1C1;
- Mon,  5 Sep 2022 06:57:17 +0000 (UTC)
-Received: from conssluserg-05.nifty.com ([10.126.8.84])by condef-08.nifty.com
- with ESMTP id 2856isQN010025; Mon, 5 Sep 2022 15:44:54 +0900
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com
- [209.85.210.42]) (authenticated)
- by conssluserg-05.nifty.com with ESMTP id 2856ic6t020651;
- Mon, 5 Sep 2022 15:44:39 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-05.nifty.com 2856ic6t020651
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
- s=dec2015msa; t=1662360279;
- bh=2/aEuTIGQY1eRCS8ZnFpEZnaZhJYBAN2YOqc0m45zS0=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=lKAB6BQc70nahRxqaJZNtnfMD+5Yec10/NkTOmFn2bNQNge2AgFZW7dBoRJqR6MnI
- xPC/bll5EYabRy5wk4VM/2t1rCwklXfH+QePUY2EHAAwAI/+OQYY/bQlEF+vfb41jq
- O+0v+kq1iRSwlgz/idsyDS/fER9XuSMbET7bpuSSVbebJZfGOYlSQyXUZJAfiTqkJD
- WW1rymTI7myf1KQPXzI+OEG5yl2tukVLr+4rx+aN9kYriAWLRWx3bo0/AFtZfrskkb
- dN6ZtLlo7S6u9OdbHj7cLg6CxD2bQaclRl5Me77fQNz7p8voW1WVLVPGvzKwUB5QB3
- cxlaHRJ2p496g==
-X-Nifty-SrcIP: [209.85.210.42]
-Received: by mail-ot1-f42.google.com with SMTP id
- t11-20020a05683014cb00b0063734a2a786so5583752otq.11; 
- Sun, 04 Sep 2022 23:44:39 -0700 (PDT)
-X-Gm-Message-State: ACgBeo2AIAh+sior96jHTvoeAz1UYCB9FK2XGmDSb8T4sPgS0RJrVHvx
- PMt3d31dQ5Xe6AsR/F5J/yE41p1MbJGScZMQzHE=
-X-Google-Smtp-Source: AA6agR5eDbGMjw3wtK6ZZjfyuxTtPhmoA7XbU6Z2YqLR6PluQmowVmlHe933hVZ0RY1QlSEEKDQLiJ+SNF7QSFqwxdE=
-X-Received: by 2002:a05:6830:658b:b0:63b:3501:7167 with SMTP id
- cn11-20020a056830658b00b0063b35017167mr12590275otb.343.1662360278092; Sun, 04
- Sep 2022 23:44:38 -0700 (PDT)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2051.outbound.protection.outlook.com [40.107.223.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDD7710E1FB;
+ Mon,  5 Sep 2022 07:59:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kKaycJcekX768Zzq8Sg8IGOxm+bIHyM4zsaKYSin+gL91qCsHbUR4bMLh5eX7wKk++oM7AK7Hif6d74YIq/vr0y+NC5dfGtcVzRSNcYl0JtVcLXGRhVbGwclzyPrutWkuGJAiWjAOuLyA3suEaRcb5kQz+aRM+2WvrT8Z6ZyMNqmU6vrDltAf8PGcT2N7go7HsIOIYZvqylHIarZa/I5NhiUKFr7ptW8vVILoV3hWKcoUcQsaX+z1OM9+g4gzc6iQu44wpSnXbBng+xGZAwEvpe1qRuc9ZRTjr0Lc22DJPUmq+Aj7riVPIu2ZXcN+utvHllsaLadn08aqB90x/6new==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Ti9fP99nQ9i8xkBZTPs+O9Lj1b1Ep6CORBW9IvGMBZ8=;
+ b=eZ51FQ1Ijujyv5z23wM7y9MXct7DhBO4bYBVHMdmOWG3iee9Ynk2OeYD9gp22Bfe9fovz7SndLLPYqC8JSbPXleuzQUDWY9ItXg2GKXxr/kdXeBl42j2QX/B5V+cQLKO66ZW2mW1wLet83TBkT5QkLCfPYut8zM+vrm6nxCMgjnajdUP/Njq1J/4SQmYPGxhQADJA1QpBiXD7wIQcGhgj2tJ8f6uTzxBtz7ZF2VRDpgvAO0U7Smbw9pVwHWKKAJujkyVTGHERbCEqXZGQuRmF4G4QPECXx2j0FYBd4ltpGyRt77zldKnXG7Gxp8jzwijs0HgDc5p8S1gf53fmJTS5A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ti9fP99nQ9i8xkBZTPs+O9Lj1b1Ep6CORBW9IvGMBZ8=;
+ b=XYG9StXxlaZWnJg3rAetmW9Kar+9sA9d2MU7hf3X+6/HialdIm7gUmFCczjexDOsx7vg5LwebxSe3q8FEg1u9h3zvzXrYDO91pomxYYZmMU5aH4S05fDvct9ZSW07fxPY/hfDeBx9OCvE5AZDwlhdfuvtt2NK3Hh7JkdJJysh9o=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3663.namprd12.prod.outlook.com (2603:10b6:208:16e::22)
+ by IA1PR12MB6435.namprd12.prod.outlook.com (2603:10b6:208:3ad::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.12; Mon, 5 Sep
+ 2022 07:59:40 +0000
+Received: from MN2PR12MB3663.namprd12.prod.outlook.com
+ ([fe80::a83d:1c28:ed21:2ab6]) by MN2PR12MB3663.namprd12.prod.outlook.com
+ ([fe80::a83d:1c28:ed21:2ab6%3]) with mapi id 15.20.5588.017; Mon, 5 Sep 2022
+ 07:59:40 +0000
+Message-ID: <d769ba2c-c796-6544-91c3-936037b3d82b@amd.com>
+Date: Mon, 5 Sep 2022 15:59:28 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH] drm/ttm: update bulk move object of ghost BO
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ ZhenGuo Yin <zhenguo.yin@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20220901092946.2030744-1-zhenguo.yin@amd.com>
+ <df602f9a-d55e-e034-febd-ac15d76cfa28@gmail.com>
+ <e42b6dac-de91-249c-4ccd-a379e209d6b0@gmail.com>
+From: "Yin, ZhenGuo (Chris)" <zhengyin@amd.com>
+In-Reply-To: <e42b6dac-de91-249c-4ccd-a379e209d6b0@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SI2P153CA0006.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:4:140::22) To MN2PR12MB3663.namprd12.prod.outlook.com
+ (2603:10b6:208:16e::22)
 MIME-Version: 1.0
-References: <20220831184408.2778264-1-ndesaulniers@google.com>
- <20220831184408.2778264-4-ndesaulniers@google.com>
-In-Reply-To: <20220831184408.2778264-4-ndesaulniers@google.com>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Mon, 5 Sep 2022 15:44:01 +0900
-X-Gmail-Original-Message-ID: <CAK7LNAQsAwUX-w8YQTxPRSi8S0MRcDtv2mc=umjF_3C3dA1-Kg@mail.gmail.com>
-Message-ID: <CAK7LNAQsAwUX-w8YQTxPRSi8S0MRcDtv2mc=umjF_3C3dA1-Kg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/5] Makefile.compiler: replace cc-ifversion with
- compiler-specific macros
-To: Nick Desaulniers <ndesaulniers@google.com>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 6a445c30-4f0f-43df-a0ec-08da8f1495bf
+X-MS-TrafficTypeDiagnostic: IA1PR12MB6435:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: LqAseVA93e0Aidt0hcTony85st6c7RxtVysZTSskLzJ07VlyxSSsnwgGkuv8UxOys1v9Kp7vI9vkkf2toPy6gl/eS0SpgnVIwx7nG0wi2qNY9Wwed6v86Gs55vuwNE8uUefKZbFkADlX6Mg4XH14gghUm5Wp3JtOGrYu4FtL73Bjvew+YV6jeRFSIYOtcswpSXQULYZxxLUjO4a3388B2MFrdk0hjZjN5ycRaA9PL+bYzcIzTIOHZeeAgQ5A213/1Ziy4ods9p1UvYNXqpWU05vFNLTJcBpi/D5HY30D8VJqd0lCQ3pmx0e9kuhULgS1uaT6A+ZljKT9W6qvzDM1GXTZiQ71QkD2IcBi77TFOmoaEpkXGOMur+rItFpNNfig1nZtZHOQmrgyim+/94195ffMBo31Zuxlw+y6anXspIP1LIrQTHXdF40QPbi56ynUJ8l3aouSyzF53rS6hbbmrJ6Z+VtN3odG7EA7jq/3TBs84IZLyQfrQ4agKz9Nt/GG5Gta9XNzEIKBWcK1V75mR8vQ71w/N9FX8zppqZ+X9M8DGoyKlUsiqgVIuPZ8m7IYz3r/Tc5CKJ6wxplE8vxd1d+wyjxfVrAt8e7opTEZ+6XBeuKXOkG9fMA31epQhdMoDGBY3Gl0D4Hv9z0ZmuyBu17AsarZZksIWnd4Z5P74NyXtsitw61qCRZEQCLU2HOCmJBLyfT9n05HUjP1vHLmredobVRuKXfl4K4JwRuC8eZGhpGHrBQo61REF8eYR5isUJVz+HHJGOP5sssm9qX63hdf4V3V4lNsosmPduiNYD8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3663.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230016)(4636009)(396003)(136003)(366004)(376002)(39860400002)(346002)(6506007)(26005)(53546011)(31696002)(2906002)(478600001)(8936002)(41300700001)(6666004)(5660300002)(66574015)(6512007)(83380400001)(31686004)(186003)(66556008)(38100700002)(2616005)(66476007)(110136005)(36756003)(316002)(6486002)(66946007)(8676002)(4326008)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dGRncEg5aXpYZkNESFdCWjlHUXNycmVFL3dPRHpvZEpXVWNYKzdxRnhTenpO?=
+ =?utf-8?B?aW0vVU8vdVF4MGNva3BtTUxyT0pDb3FlWHNjUGZJMjhhNTdxc1NDdzVlVmhs?=
+ =?utf-8?B?Y1hLVlRxalltR1p0YjMrMTVJQzFxbWhid0dwOUdhUTBublpjeFBHRlhMdk1j?=
+ =?utf-8?B?SE01NDdYVndUNFpTZk53VERsVWdQSDJhbXNjblQyU1FpQm5CZjZDbTRiTXJz?=
+ =?utf-8?B?R2pNdi9TcUZSWUUyYWpiUHpnazRCR0FCVHZ0aENMbWFJM1dYNkl3Ulozakp5?=
+ =?utf-8?B?TnZEUnRYa2ZoQW9GQ1U0d1Qxc1VWWnU0MXdnRFd2NTZXcHdLZnZ2TU4zaDhn?=
+ =?utf-8?B?UzR6Wk9EWVJrbHV1bStjZ0Rjem5zQ25SQlVoOTlEaUpqN3hBWmxSbEFVRW9K?=
+ =?utf-8?B?TUdaaDUwbUN6RmtIY2pkMTJpcDBLWmZXazIyd1huNjFXeFlhQ0NmcGZoRHdh?=
+ =?utf-8?B?c3NJc3hOVU55ZW42ekltL3V5TjJiU3VQdUdya09od2ErdkQvMFc1ZHNXc3kx?=
+ =?utf-8?B?c1RvR09IeWg3eDF0M0ZXNFBSTVZuZ2prbS9vUkl2WjRNbVJIbGsrVXFRc1I1?=
+ =?utf-8?B?Zk1HL0wvOFlnWHNvY3BLU1JmTEZ2WjdvclQwY3VkWWlzMFVMOE5xK2FWTXNI?=
+ =?utf-8?B?YWhteW9EN3lHTy9md1oxbzlNL3RzUTNpbzBlaFRHK2NYdjJhdHMxR2E5YzRZ?=
+ =?utf-8?B?UVYvb0VnYzAwS0c3dmFLV1lYN2oxazNTR3d2NHBFdkJBcUZhN2Q1cVoxVWc2?=
+ =?utf-8?B?U0hZUnptWXZOdHkwVkhzWEYwdTFhcll3OUZoRWJxL05NbjFpYjV6VVhuNXVy?=
+ =?utf-8?B?b1VtTFJnbFN1TmkxWGpzTFdyTWpuUmFORUdUSEFvT1RNQ3o0MHE3Vy9DejBP?=
+ =?utf-8?B?eWJQQTFpMHdBZVBUUHlOSVgzZVNjY1hweTZ0WDJmZXp0YS9oNWpROVRMUWRj?=
+ =?utf-8?B?b2N4QkpudGd2TGpkaUh5ai8zWWExTENoeHNCbC9GZXVpZDhkbmpIQzE1U2xB?=
+ =?utf-8?B?QndsV0o4TzFrRGNtckZUS21WcnpRUDdxUTJIT2RHYWRhbmxnOEYzSUFXVFBu?=
+ =?utf-8?B?azBBcWNUbm9YQmxRZ01SbjR6UnppanRwZHFCWC82bXBLRkpVNjlzTE9MaGRl?=
+ =?utf-8?B?V2ZKSWt2K2dZWi9lQVZ6TkZpaG9CSE1MZlV4dTNIRFlidi9tUFIxbVExMjBS?=
+ =?utf-8?B?bUZqMGFHYURyMmtSZ0hRRDFkUmFqK1RnUFM2RlZzRlBQVFVXVXVUN0p0aTVR?=
+ =?utf-8?B?cUwvVGNSbDVVaXBKTUpValNYN2xZalV0VHJOV3I0M2FZLzM4QjBUazRXYVBS?=
+ =?utf-8?B?MWVBZjh3SWV1RjFxN3FTMXArcDZpckFDb3VXSkJUcG9RSGF5dEJTSEZNOUx3?=
+ =?utf-8?B?akZjWFNRdzNRMTRQZnpSTTh0dTZNZ20vdllZOU1oUUV4MmhRRVY0dENzK1NT?=
+ =?utf-8?B?d2YyRXVGcHAwS1ZDUUR2R3lkdWx4THp1enA2WUY4bk5QSEdaaGVRdEk5ZHlE?=
+ =?utf-8?B?MXlWN3hzQ1d3YlFHYWxoNGRGQmp5NUNybWd6Uk9iZW05ei9yTk1hWVEzeEJX?=
+ =?utf-8?B?bGViMEFHSjlUMG1lUWU1R3paWU9VWkxmK3l1UHhLamVrTkJRTkJvL1VpMFBB?=
+ =?utf-8?B?dGM0VUhVZmx5NDFra3ZwTW80L2JXSmVTUWVxQXVZVDVpM0k0VzFEMUJGRElq?=
+ =?utf-8?B?RzRuK1ZrUmZrOVk3aHRIa0FyWXE1V3dSUitoYTNTQTg3RGxLVHVwZkgvRHU2?=
+ =?utf-8?B?K2Q4RERleVFyTGd3cDRzWGozV1JvUFFNRXhIdGF5Q0t3RUt4SElQU0JoaEdN?=
+ =?utf-8?B?amNqU0FiODFoWXFLN2VrWFBjUDBaLytjbjdiQTFIcDlDYXZtNEV0NnNpbkZR?=
+ =?utf-8?B?Mk1QcTlSeWtxdXc5dlhYVlQ3WjE4SXUzanI0TnhjVFVTRUNmb0kvQWN4R1RY?=
+ =?utf-8?B?UnpqUklaN1AyQUNGcExScHdXTDR4QXlRWDV5L01yWTRQSnFmdGxnRkhXUWFI?=
+ =?utf-8?B?UHM4YWhqbTRMZWhZcnh5UStNS2xRbWNDcmV6Z0trMVNkQmgwZGlhTW1WSDZG?=
+ =?utf-8?B?a054aUliUVg0NXpPSm9KSUZxbEdmNVNhOXpBNnBCbTZRaDFpMGlmcmFTRUx3?=
+ =?utf-8?Q?1LopSa9ZgIrjN/913JjFrtA7Z?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6a445c30-4f0f-43df-a0ec-08da8f1495bf
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3663.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Sep 2022 07:59:40.5046 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: cyvIE3v/pRe1p/jQA5nhi+IpNOJsY87Op6MXej/YzI2cD0+Og5I6TVWxs3DQEcvSEhKRfuaUoJIp3XP4KaH4Nw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6435
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,249 +126,80 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: X86 ML <x86@kernel.org>, Michal Marek <michal.lkml@markovi.net>,
- dri-devel <dri-devel@lists.freedesktop.org>, Fangrui Song <maskray@google.com>,
- Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
- Tom Rix <trix@redhat.com>, Dmitrii Bundin <dmitrii.bundin.a@gmail.com>,
- clang-built-linux <llvm@lists.linux.dev>,
- "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Nathan Chancellor <nathan@kernel.org>, Bill Wendling <morbo@google.com>,
- Greg Thelen <gthelen@google.com>, Jonathan Corbet <corbet@lwn.net>,
- Alexey Alexandrov <aalexand@google.com>
+Cc: jingwen.chen2@amd.com, christian.koenig@amd.com,
+ dri-devel@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 1, 2022 at 3:44 AM Nick Desaulniers <ndesaulniers@google.com> wrote:
+Inside the function ttm_bo_set_bulk_move, it calls 
+ttm_resource_del_bulk_move to remove the old resource from the bulk_move 
+list.
+
+If we set the bulk_move to NULL manually as suggested, the old resource 
+attached in the ghost BO seems won't be removed from the bulk_move.
+
+On 9/1/2022 7:13 PM, Christian König wrote:
+> Am 01.09.22 um 13:11 schrieb Christian König:
+>> Am 01.09.22 um 11:29 schrieb ZhenGuo Yin:
+>>> [Why]
+>>> Ghost BO is released with non-empty bulk move object. There is a
+>>> warning trace:
+>>> WARNING: CPU: 19 PID: 1582 at ttm/ttm_bo.c:366 
+>>> ttm_bo_release+0x2e1/0x2f0 [amdttm]
+>>> Call Trace:
+>>>    amddma_resv_reserve_fences+0x10d/0x1f0 [amdkcl]
+>>>    amdttm_bo_put+0x28/0x30 [amdttm]
+>>>    amdttm_bo_move_accel_cleanup+0x126/0x200 [amdttm]
+>>>    amdgpu_bo_move+0x1a8/0x770 [amdgpu]
+>>>    ttm_bo_handle_move_mem+0xb0/0x140 [amdttm]
+>>>    amdttm_bo_validate+0xbf/0x100 [amdttm]
+>>>
+>>> [How]
+>>> The resource of ghost BO should be moved to LRU directly, instead of
+>>> using bulk move. The bulk move object of ghost BO should set to NULL
+>>> before function ttm_bo_move_to_lru_tail_unlocked.
+>>>
+>>> Fixed:·5b951e487fd6bf5f·("drm/ttm:·fix·bulk·move·handling·v2")
+>>> Signed-off-by: ZhenGuo Yin <zhenguo.yin@amd.com>
+>>
+>> Good catch, but the fix is not 100% correct. Please rather just NULL 
+>> the member while initializing the BO structure.
+>>
+>> E.g. something like this:
+>>
+>>  ....
+>>  fbo->base.pin_count = 0;
+>> +fbo->base.bulk_move= NULL;
+>>  if (bo->type != ttm_bo_type_sg)
+>>  ....
 >
-> cc-ifversion is GCC specific. Replace it with compiler specific
-> variants. Update the users of cc-ifversion to use these new macros.
-> Provide a helper for checking compiler versions for GCC and Clang
-> simultaneously, that will be used in a follow up patch.
+> On the other hand thinking about it that won't work either.
 >
-> Cc: Jonathan Corbet <corbet@lwn.net>
-> Cc: linux-doc@vger.kernel.org
-> Cc: amd-gfx@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org
-> Link: https://github.com/ClangBuiltLinux/linux/issues/350
-> Link: https://lore.kernel.org/llvm/CAGG=3QWSAUakO42kubrCap8fp-gm1ERJJAYXTnP1iHk_wrH=BQ@mail.gmail.com/
-> Suggested-by: Bill Wendling <morbo@google.com>
-> Signed-off-by: Nick Desaulniers <ndesaulniers@google.com>
-> ---
-> Changes v1 -> v2:
-> * New patch.
+> You need to set bulk_move to NULL manually in an else clauses or 
+> something like this.
 >
->  Documentation/kbuild/makefiles.rst          | 44 +++++++++++++++------
->  Makefile                                    |  4 +-
->  drivers/gpu/drm/amd/display/dc/dml/Makefile | 12 ++----
->  scripts/Makefile.compiler                   | 15 +++++--
->  4 files changed, 49 insertions(+), 26 deletions(-)
+> Regards,
+> Christian.
 >
-> diff --git a/Documentation/kbuild/makefiles.rst b/Documentation/kbuild/makefiles.rst
-> index 11a296e52d68..e46f5b45c422 100644
-> --- a/Documentation/kbuild/makefiles.rst
-> +++ b/Documentation/kbuild/makefiles.rst
-> @@ -682,22 +682,42 @@ more details, with real examples.
->         In the above example, -Wno-unused-but-set-variable will be added to
->         KBUILD_CFLAGS only if gcc really accepts it.
+>>
+>> Thanks,
+>> Christian.
+>>
+>>> ---
+>>>   drivers/gpu/drm/ttm/ttm_bo_util.c | 1 +
+>>>   1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c 
+>>> b/drivers/gpu/drm/ttm/ttm_bo_util.c
+>>> index 1cbfb00c1d65..a90bbbd91910 100644
+>>> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
+>>> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+>>> @@ -238,6 +238,7 @@ static int ttm_buffer_object_transfer(struct 
+>>> ttm_buffer_object *bo,
+>>>         if (fbo->base.resource) {
+>>>           ttm_resource_set_bo(fbo->base.resource, &fbo->base);
+>>> +        ttm_bo_set_bulk_move(&fbo->base, NULL);
+>>>           bo->resource = NULL;
+>>>       }
+>>
 >
-> -    cc-ifversion
-> -       cc-ifversion tests the version of $(CC) and equals the fourth parameter
-> -       if version expression is true, or the fifth (if given) if the version
-> -       expression is false.
-> +    gcc-min-version
-> +       gcc-min-version tests if the value of $(CONFIG_GCC_VERSION) is greater than
-> +       or equal to the provided value and evaluates to y if so.
->
->         Example::
->
-> -               #fs/reiserfs/Makefile
-> -               ccflags-y := $(call cc-ifversion, -lt, 0402, -O1)
-> +               cflags-$(call gcc-min-version, 70100) := -foo
->
-> -       In this example, ccflags-y will be assigned the value -O1 if the
-> -       $(CC) version is less than 4.2.
-> -       cc-ifversion takes all the shell operators:
-> -       -eq, -ne, -lt, -le, -gt, and -ge
-> -       The third parameter may be a text as in this example, but it may also
-> -       be an expanded variable or a macro.
-> +       In this example, cflags-y will be assigned the value -foo if $(CC) is gcc and
-> +       $(CONFIG_GCC_VERSION) is >= 7.1.
-> +
-> +    clang-min-version
-> +       clang-min-version tests if the value of $(CONFIG_CLANG_VERSION) is greater
-> +       than or equal to the provided value and evaluates to y if so.
-> +
-> +       Example::
-> +
-> +               cflags-$(call clang-min-version, 110000) := -foo
-> +
-> +       In this example, cflags-y will be assigned the value -foo if $(CC) is clang
-> +       and $(CONFIG_CLANG_VERSION) is >= 11.0.0.
-> +
-> +    cc-min-version
-> +       cc-min-version tests if the value of $(CONFIG_GCC_VERSION) is greater
-> +       than or equal to the first value provided, or if the value of
-> +       $(CONFIG_CLANG_VERSION) is greater than or equal to the second value
-> +       provided, and evaluates
-> +       to y if so.
-> +
-> +       Example::
-> +
-> +               cflags-$(call cc-min-version, 70100, 110000) := -foo
-> +
-> +       In this example, cflags-y will be assigned the value -foo if $(CC) is gcc and
-> +       $(CONFIG_GCC_VERSION) is >= 7.1, or if $(CC) is clang and
-> +       $(CONFIG_CLANG_VERSION) is >= 11.0.0.
->
->      cc-cross-prefix
->         cc-cross-prefix is used to check if there exists a $(CC) in path with
-> diff --git a/Makefile b/Makefile
-> index 952d354069a4..caa39ecb1136 100644
-> --- a/Makefile
-> +++ b/Makefile
-> @@ -972,7 +972,7 @@ ifdef CONFIG_CC_IS_GCC
->  KBUILD_CFLAGS += -Wno-maybe-uninitialized
->  endif
->
-> -ifdef CONFIG_CC_IS_GCC
-> +ifeq ($(call gcc-min-version, 90100),y)
->  # The allocators already balk at large sizes, so silence the compiler
->  # warnings for bounds checks involving those possible values. While
->  # -Wno-alloc-size-larger-than would normally be used here, earlier versions
-> @@ -984,7 +984,7 @@ ifdef CONFIG_CC_IS_GCC
->  # ignored, continuing to default to PTRDIFF_MAX. So, left with no other
->  # choice, we must perform a versioned check to disable this warning.
->  # https://lore.kernel.org/lkml/20210824115859.187f272f@canb.auug.org.au
-> -KBUILD_CFLAGS += $(call cc-ifversion, -ge, 0901, -Wno-alloc-size-larger-than)
-> +KBUILD_CFLAGS += -Wno-alloc-size-larger-than
->  endif
->
->  # disable invalid "can't wrap" optimizations for signed / pointers
-> diff --git a/drivers/gpu/drm/amd/display/dc/dml/Makefile b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-> index 86a3b5bfd699..d8ee4743b2e3 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dml/Makefile
-> +++ b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-> @@ -33,20 +33,14 @@ ifdef CONFIG_PPC64
->  dml_ccflags := -mhard-float -maltivec
->  endif
->
-> -ifdef CONFIG_CC_IS_GCC
-> -ifeq ($(call cc-ifversion, -lt, 0701, y), y)
-> -IS_OLD_GCC = 1
-> -endif
-> -endif
-> -
->  ifdef CONFIG_X86
-> -ifdef IS_OLD_GCC
-> +ifeq ($(call gcc-min-version, 70100),y)
-> +dml_ccflags += -msse2
-> +else
->  # Stack alignment mismatch, proceed with caution.
->  # GCC < 7.1 cannot compile code using `double` and -mpreferred-stack-boundary=3
->  # (8B stack alignment).
->  dml_ccflags += -mpreferred-stack-boundary=4
-> -else
-> -dml_ccflags += -msse2
->  endif
->  endif
->
-> diff --git a/scripts/Makefile.compiler b/scripts/Makefile.compiler
-> index d1739f0d3ce3..13dade724fa3 100644
-> --- a/scripts/Makefile.compiler
-> +++ b/scripts/Makefile.compiler
-> @@ -61,9 +61,18 @@ cc-option-yn = $(call try-run,\
->  cc-disable-warning = $(call try-run,\
->         $(CC) -Werror $(KBUILD_CPPFLAGS) $(KBUILD_CFLAGS) -W$(strip $(1)) -c -x c /dev/null -o "$$TMP",-Wno-$(strip $(1)))
->
-> -# cc-ifversion
-> -# Usage:  EXTRA_CFLAGS += $(call cc-ifversion, -lt, 0402, -O1)
-> -cc-ifversion = $(shell [ $(CONFIG_GCC_VERSION)0 $(1) $(2)000 ] && echo $(3) || echo $(4))
-> +# gcc-min-version
-> +# Usage: cflags-$(call gcc-min-version, 70100) += -foo
-> +gcc-min-version = $(shell [ $(CONFIG_GCC_VERSION) -ge $(1) ] && echo y)
-> +
-> +# clang-min-version
-> +# Usage: cflags-$(call clang-min-version, 110000) += -foo
-> +clang-min-version = $(shell [ $(CONFIG_CLANG_VERSION) -ge $(1) ] && echo y)
-> +
-> +# cc-min-version
-> +# Usage: cflags-$(call cc-min-version, 701000, 110000)
-> +#                                      ^ GCC   ^ Clang
-> +cc-min-version = $(filter y, $(call gcc-min-version, $(1)), $(call clang-min-version, $(2)))
-
-
-
-
-A more intuitive and more efficient form would be:
-
-  cc-min-version = $(or $(call gcc-min-version, $(1)), $(call
-clang-min-version, $(2)))
-
-
-
-In your implementation, both gcc-min-version and clang-min-version are
-expanded before being passed to $(filter ...).
-So the shell is always invoked twice.
-
-
-$(or A, B) is lazily expanded; A is evaluated first.
-If and only if A is empty, B is expanded.
-
-If gcc-min-version is met, the shell invocation in clang-min-version
-will be short-cut.
-
-
-
-But, I do not find a place where cc-min-version is useful.
-
-
-Looking at the next patch,
-
-
-
-# gcc-11+, clang-14+
-ifeq ($(call cc-min-version, 110000, 140000),y)
-dwarf-version-y := 5
-else
-dwarf-version-y := 4
-endif
-
-
- ... can be written in a more simpler way:
-
-
-dwarf-version-y                                 := 4
-dwarf-version-$(call gcc-min-version, 110000)   := 5
-dwarf-version-$(call clang-min-version, 140000) := 5
-
-
-
-
-
-With $(call cc-min-version, 110000, 140000),
-you never know the meaning of 110000, 140000
-until you see the definition of this macro.
-So, you feel like adding the comment "gcc-11+, clang-14+".
-
-
-The latter form, the code is self-documenting.
-
-
-
-
-
-
-
-
->  # ld-option
->  # Usage: KBUILD_LDFLAGS += $(call ld-option, -X, -Y)
-> --
-> 2.37.2.672.g94769d06f0-goog
->
-
-
--- 
-Best Regards
-Masahiro Yamada
