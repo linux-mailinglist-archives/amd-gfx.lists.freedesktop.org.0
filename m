@@ -2,44 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37C5E5ACB96
-	for <lists+amd-gfx@lfdr.de>; Mon,  5 Sep 2022 09:04:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 615045ACB9C
+	for <lists+amd-gfx@lfdr.de>; Mon,  5 Sep 2022 09:04:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6651110E1E8;
-	Mon,  5 Sep 2022 07:04:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0EFD10E1F2;
+	Mon,  5 Sep 2022 07:04:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from m12-16.163.com (m12-16.163.com [220.181.12.16])
- by gabe.freedesktop.org (Postfix) with ESMTP id AF51F10E12E;
- Sun,  4 Sep 2022 19:32:05 +0000 (UTC)
+Received: from m12-18.163.com (m12-18.163.com [220.181.12.18])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B24F710E295;
+ Mon,  5 Sep 2022 00:55:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=L6daq
- wHVQLkLiNfq8TDmxWwToy3Ef+On7jVkCO/wFL8=; b=JhMkxVCpy5sMBx4wkvAPw
- 1i9+1KpKAhB/7BIKyoWfnEdXZiFkxhNobCYp8drXdmVJZ+mUVpxgMoY9x7JeTuDe
- PqdOL5sb5/uqX1TKNASl9opU0jQLDKtKsT65dYnUWV97dSv43eliBmXyEdOvQHMi
- dKSViBRDy2b9N5YE2pX4EI=
+ s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=z9nvn
+ N5LMXDX8a7aP7btkSJDO5Ia4gaMEc/3ABW2E00=; b=FS6u3Ge7xHS2IfIB+2/4z
+ 8u2tAV9kKJ37xsM2vPouNbmE1kRNxkCR9JzoHBVCUpmQqb8pNDaUxhCaolQqPEPD
+ hqeAT8RC2I557koy2doGFXTb9AXtBtnuU4iwZyFK2Ec2Pq3nqgUoYfLpMtlWPwdS
+ eUFKJrdpavAb3+HjZQ8XBU=
 Received: from f00160-VMware-Virtual-Platform.localdomain (unknown
  [1.203.67.201])
- by smtp12 (Coremail) with SMTP id EMCowADHKqkX_RRjiCK7Jg--.38130S4;
- Mon, 05 Sep 2022 03:31:48 +0800 (CST)
+ by smtp14 (Coremail) with SMTP id EsCowAD3c1mQSBVjtUhLDw--.19175S4;
+ Mon, 05 Sep 2022 08:54:51 +0800 (CST)
 From: Jingyu Wang <jingyuwang_vip@163.com>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@linux.ie, daniel@ffwll.ch, Hawking.Zhang@amd.com,
- ray.huang@amd.com, Jack.Xiao@amd.com, guchun.chen@amd.com,
- Likun.Gao@amd.com, en.brown@intel.com
-Subject: [PATCH] drm/amdgpu: cleanup coding style in amdgpu_fence.c
-Date: Mon,  5 Sep 2022 03:31:32 +0800
-Message-Id: <20220904193132.15446-1-jingyuwang_vip@163.com>
+ airlied@linux.ie, daniel@ffwll.ch, isabbasso@riseup.net,
+ Rodrigo.Siqueira@amd.com
+Subject: [PATCH] drm/amdgpu: cleanup coding style in amdgpu_atpx_handler.c
+Date: Mon,  5 Sep 2022 08:53:29 +0800
+Message-Id: <20220905005329.19501-1-jingyuwang_vip@163.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: EMCowADHKqkX_RRjiCK7Jg--.38130S4
-X-Coremail-Antispam: 1Uf129KBjvJXoWxCr17KFyDAr15tr17AFy5Jwb_yoW5CFW7pF
- 4fK345KrWDZF1UWrW8AF1vvFnxKw1IqF1IgrW7A34Sgwn8CF15K3WIyrWjqryDCF4kuF4a
- kFW2v3y5ZF1jqF7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zEs2-OUUUUU=
+X-CM-TRANSID: EsCowAD3c1mQSBVjtUhLDw--.19175S4
+X-Coremail-Antispam: 1Uf129KBjvJXoWxJF13CrWrCF17ArWkJFWrXwb_yoW5tF17pF
+ WSgr97tr1rZw18AFykAr4DZF1Ykws7ZFyUG3yDZ34Y9w4UJr1rJ348ta4jyrn5CrW7CFsa
+ vFZxXa45Aa9FyF7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pEVc_7UUUUU=
 X-Originating-IP: [1.203.67.201]
-X-CM-SenderInfo: 5mlqw5xxzd0whbyl1qqrwthudrp/1tbisgRyF1UMWQSWNAAAs1
+X-CM-SenderInfo: 5mlqw5xxzd0whbyl1qqrwthudrp/1tbiyRtzF2I66w2tygAAsv
 X-Mailman-Approved-At: Mon, 05 Sep 2022 07:04:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -57,94 +56,104 @@ Cc: Jingyu Wang <jingyuwang_vip@163.com>, dri-devel@lists.freedesktop.org,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fix everything checkpatch.pl complained about in amdgpu_fence.c
+Fix everything checkpatch.pl complained about in amdgpu_atpx_handler.c
 
 Signed-off-by: Jingyu Wang <jingyuwang_vip@163.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
+ .../gpu/drm/amd/amdgpu/amdgpu_atpx_handler.c  | 27 +++++++++++--------
+ 1 file changed, 16 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-index 8adeb7469f1e..ae9daf653ad3 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-@@ -1,3 +1,4 @@
-+// SPDX-License-Identifier: MIT
- /*
-  * Copyright 2009 Jerome Glisse.
-  * All Rights Reserved.
-@@ -42,7 +43,6 @@
- #include "amdgpu_reset.h"
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atpx_handler.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_atpx_handler.c
+index d6d986be906a..911d6a130ec5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atpx_handler.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atpx_handler.c
+@@ -74,24 +74,29 @@ struct atpx_mux {
+ 	u16 mux;
+ } __packed;
  
- /*
-- * Fences
-  * Fences mark an event in the GPUs pipeline and are used
-  * for GPU/CPU synchronization.  When the fence is written,
-  * it is expected that all buffers associated with that fence
-@@ -139,7 +139,7 @@ static u32 amdgpu_fence_read(struct amdgpu_ring *ring)
-  * Returns 0 on success, -ENOMEM on failure.
-  */
- int amdgpu_fence_emit(struct amdgpu_ring *ring, struct dma_fence **f, struct amdgpu_job *job,
--		      unsigned flags)
-+		      unsigned int flags)
- {
- 	struct amdgpu_device *adev = ring->adev;
- 	struct dma_fence *fence;
-@@ -173,8 +173,7 @@ int amdgpu_fence_emit(struct amdgpu_ring *ring, struct dma_fence **f, struct amd
- 				       adev->fence_context + ring->idx, seq);
- 			/* Against remove in amdgpu_job_{free, free_cb} */
- 			dma_fence_get(fence);
--		}
--		else
-+		} else
- 			dma_fence_init(fence, &amdgpu_fence_ops,
- 				       &ring->fence_drv.lock,
- 				       adev->fence_context + ring->idx, seq);
-@@ -393,7 +392,7 @@ signed long amdgpu_fence_wait_polling(struct amdgpu_ring *ring,
-  * Returns the number of emitted fences on the ring.  Used by the
-  * dynpm code to ring track activity.
-  */
--unsigned amdgpu_fence_count_emitted(struct amdgpu_ring *ring)
-+unsigned int amdgpu_fence_count_emitted(struct amdgpu_ring *ring)
- {
- 	uint64_t emitted;
+-bool amdgpu_has_atpx(void) {
++bool amdgpu_has_atpx(void)
++{
+ 	return amdgpu_atpx_priv.atpx_detected;
+ }
  
-@@ -422,7 +421,7 @@ unsigned amdgpu_fence_count_emitted(struct amdgpu_ring *ring)
-  */
- int amdgpu_fence_driver_start_ring(struct amdgpu_ring *ring,
- 				   struct amdgpu_irq_src *irq_src,
--				   unsigned irq_type)
-+				   unsigned int irq_type)
- {
- 	struct amdgpu_device *adev = ring->adev;
- 	uint64_t index;
-@@ -594,6 +593,7 @@ void amdgpu_fence_driver_hw_init(struct amdgpu_device *adev)
+-bool amdgpu_has_atpx_dgpu_power_cntl(void) {
++bool amdgpu_has_atpx_dgpu_power_cntl(void)
++{
+ 	return amdgpu_atpx_priv.atpx.functions.power_cntl;
+ }
  
- 	for (i = 0; i < AMDGPU_MAX_RINGS; i++) {
- 		struct amdgpu_ring *ring = adev->rings[i];
-+
- 		if (!ring || !ring->fence_drv.initialized)
- 			continue;
+-bool amdgpu_is_atpx_hybrid(void) {
++bool amdgpu_is_atpx_hybrid(void)
++{
+ 	return amdgpu_atpx_priv.atpx.is_hybrid;
+ }
  
-@@ -772,6 +772,7 @@ static int amdgpu_debugfs_fence_info_show(struct seq_file *m, void *unused)
+-bool amdgpu_atpx_dgpu_req_power_for_displays(void) {
++bool amdgpu_atpx_dgpu_req_power_for_displays(void)
++{
+ 	return amdgpu_atpx_priv.atpx.dgpu_req_power_for_displays;
+ }
  
- 	for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
- 		struct amdgpu_ring *ring = adev->rings[i];
-+
- 		if (!ring || !ring->fence_drv.initialized)
- 			continue;
+ #if defined(CONFIG_ACPI)
+-void *amdgpu_atpx_get_dhandle(void) {
++void *amdgpu_atpx_get_dhandle(void)
++{
+ 	return amdgpu_atpx_priv.dhandle;
+ }
+ #endif
+@@ -134,7 +139,7 @@ static union acpi_object *amdgpu_atpx_call(acpi_handle handle, int function,
  
-@@ -845,6 +846,7 @@ static void amdgpu_debugfs_reset_work(struct work_struct *work)
- 						  reset_work);
+ 	/* Fail only if calling the method fails and ATPX is supported */
+ 	if (ACPI_FAILURE(status) && status != AE_NOT_FOUND) {
+-		printk("failed to evaluate ATPX got %s\n",
++		DRM_WARN("failed to evaluate ATPX got %s\n",
+ 		       acpi_format_exception(status));
+ 		kfree(buffer.pointer);
+ 		return NULL;
+@@ -190,7 +195,7 @@ static int amdgpu_atpx_validate(struct amdgpu_atpx *atpx)
  
- 	struct amdgpu_reset_context reset_context;
-+
- 	memset(&reset_context, 0, sizeof(reset_context));
+ 		size = *(u16 *) info->buffer.pointer;
+ 		if (size < 10) {
+-			printk("ATPX buffer is too small: %zu\n", size);
++			DRM_WARN("ATPX buffer is too small: %zu\n", size);
+ 			kfree(info);
+ 			return -EINVAL;
+ 		}
+@@ -223,11 +228,11 @@ static int amdgpu_atpx_validate(struct amdgpu_atpx *atpx)
+ 	atpx->is_hybrid = false;
+ 	if (valid_bits & ATPX_MS_HYBRID_GFX_SUPPORTED) {
+ 		if (amdgpu_atpx_priv.quirks & AMDGPU_PX_QUIRK_FORCE_ATPX) {
+-			printk("ATPX Hybrid Graphics, forcing to ATPX\n");
++			DRM_WARN("ATPX Hybrid Graphics, forcing to ATPX\n");
+ 			atpx->functions.power_cntl = true;
+ 			atpx->is_hybrid = false;
+ 		} else {
+-			printk("ATPX Hybrid Graphics\n");
++			DRM_WARN("ATPX Hybrid Graphics\n");
+ 			/*
+ 			 * Disable legacy PM methods only when pcie port PM is usable,
+ 			 * otherwise the device might fail to power off or power on.
+@@ -269,7 +274,7 @@ static int amdgpu_atpx_verify_interface(struct amdgpu_atpx *atpx)
  
- 	reset_context.method = AMD_RESET_METHOD_NONE;
+ 	size = *(u16 *) info->buffer.pointer;
+ 	if (size < 8) {
+-		printk("ATPX buffer is too small: %zu\n", size);
++		DRM_WARN("ATPX buffer is too small: %zu\n", size);
+ 		err = -EINVAL;
+ 		goto out;
+ 	}
+@@ -278,7 +283,7 @@ static int amdgpu_atpx_verify_interface(struct amdgpu_atpx *atpx)
+ 	memcpy(&output, info->buffer.pointer, size);
+ 
+ 	/* TODO: check version? */
+-	printk("ATPX version %u, functions 0x%08x\n",
++	DRM_WARN("ATPX version %u, functions 0x%08x\n",
+ 	       output.version, output.function_bits);
+ 
+ 	amdgpu_atpx_parse_functions(&atpx->functions, output.function_bits);
 
 base-commit: e47eb90a0a9ae20b82635b9b99a8d0979b757ad8
-prerequisite-patch-id: f039528bc88876d6e0f64e843da089e85f6d3f58
 -- 
 2.34.1
 
