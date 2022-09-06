@@ -1,42 +1,44 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5AE25AF0F2
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Sep 2022 18:46:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE0445AF0F0
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Sep 2022 18:46:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2C0F10E08B;
-	Tue,  6 Sep 2022 16:46:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8910010E08C;
+	Tue,  6 Sep 2022 16:46:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9B5A10E08B
- for <amd-gfx@lists.freedesktop.org>; Tue,  6 Sep 2022 16:46:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65A4310E08C
+ for <amd-gfx@lists.freedesktop.org>; Tue,  6 Sep 2022 16:46:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
- Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=8ziHEHsf4QITxWJvff8Ziud7VMsJUnhHWcQv9Bcyu74=; b=J0BQNWX27IazqDiZJHwIMrzDHs
- 7ONKQnC5VHVqlBjEfDT+3KAG1HFV2Yn11oMOO8hsTHCVZ7j2WnBE0n1FgkHMn+R2mMsBrJAoLiH4f
- B2XXcEOFyOffn7CYBweV7WHjyFk/ShmwmUROaHK8L2tFYmy+esEW83JKT6fy22tnV2L3Ge8QaO4cy
- 9H+kYD01HquavRmHS30ucgy1HjPyzkBsYud7t7kDhMUppNqqunuaBAPesFV4GImKyzAzuFaPvHhBr
- TIQjxtb/0mHW7zkSp2qJxsxVYaVscs27ex7+LcwWnEUMyqiDVEP0JWVD++mdxmEKlfGrrASdH1Dkx
- m4L5Wlrw==;
+ bh=eUiu9Wjf4cO16yZY2bNhlA8qvES7ZdJnbNszqoBABJk=; b=HJEfrw7ve1fWLHFEU+vC4hbdr1
+ faYCqAwgoFhilLgJE7rmNNV8wZ3juHKuWJXpnCT8sDKUf02yyxHjI66CrrEKzEPqvRiW59dcjEUy6
+ aLZlc9hFN45ZeLoayIgKDABKGdoXy9jsCBe2lRJOCFEe1n7Fz+CgoYs045cp398hiQ8U078nuvdLE
+ NS1upXstWneuYS8QWSQAJigoJzJogkCMkq2Sb6V5oA2K7Ahada0O1vrIvZwpuHnMgQzdrOR/6oAS0
+ Rqndyr+FU6X7xWs8jPuZ/p1a6NKpejpj4ciNEAbm6isctdzuSz+0pTwDRiR0KsaShbQMKPKAOXQGT
+ dLGH+56w==;
 Received: from [38.44.74.92] (helo=killbill.home)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1oVbih-00CALM-6a; Tue, 06 Sep 2022 18:46:39 +0200
+ id 1oVbil-00CALM-Ck; Tue, 06 Sep 2022 18:46:43 +0200
 From: Melissa Wen <mwen@igalia.com>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
  alex.hung@amd.com, harry.wentland@amd.com, sunpeng.li@amd.com,
  Rodrigo.Siqueira@amd.com
-Subject: [RFC PATCH v2 0/9] Enable 3D LUT to AMD display drivers 
-Date: Tue,  6 Sep 2022 15:46:19 -0100
-Message-Id: <20220906164628.2361811-1-mwen@igalia.com>
+Subject: [RFC PATCH v2 1/9] drm/amd/display: remove unused regamma condition
+Date: Tue,  6 Sep 2022 15:46:20 -0100
+Message-Id: <20220906164628.2361811-2-mwen@igalia.com>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220906164628.2361811-1-mwen@igalia.com>
+References: <20220906164628.2361811-1-mwen@igalia.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -55,129 +57,79 @@ Cc: amd-gfx@lists.freedesktop.org, nikola.cornij@amd.com, kernel-dev@igalia.com,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+The function __set_output_tf is only called by
+amdgpu_dm_update_crtc_color_mgmt() when using atomic regamma. In this
+situation, func->tf == TRANSFER_FUNCTION_LINEAR (the original if
+condition) and it never falls into tf != LINEAR (the else condition).
+Therefore, remove unused condition to avoid misunderstandings here.
 
-From all feedback at [3DLUT_RFC] and an extensive AMD driver
-examination, here I am back with a first attempt to wire up a user 3D
-LUT (post-blending) to DC interface via DM CRTC color mgmt :)
+Signed-off-by: Melissa Wen <mwen@igalia.com>
+---
+ .../amd/display/amdgpu_dm/amdgpu_dm_color.c   | 32 ++++++-------------
+ 1 file changed, 10 insertions(+), 22 deletions(-)
 
-I'm following some specific approaches to handle user shaper LUT and
-user 3D LUT that I would like to validate if the path taken is correct.
-
-I used a modified version [igt_tests] of Ville's IGT 3D LUT test to
-verify that the shaper and 3D LUT programming is happening. However, I
-still have doubts about hw behavior and DC MPC's current implementation
-for 3D LUT.
-
-Despite some initial patches for code cleanup and DRM interface, my
-focus here is the inclusion of a user 3D LUT in the Display Manager,
-which is done in the last five patches of this series:
-
-- drm/amd/display: enable DRM shaper and 3D LUT properties
-- drm/amd/display: update lut3d and shaper lut to stream
-- drm/amd/display: add user shaper LUT support to amdgpu_dm color pipeline
-- drm/amd/display: add user 3D LUT support to the amdgpu_dm color pipeline
-- drm/amd/display: encapsulate atomic regamma operation
-
-Things to take into account:
-
-- 3D LUT (and shaper LUT) is only available in the atomic pipeline (I
-  didn't work on any implicit conversions that are done in the legacy
-  path)
-
-- Therefore, I'm not doing any implicit conversions for shaper LUT
-  considering the input space, which means: it's set or not. When there
-  is no shaper LUT, it's set to BYPASS, but unfortunately, it seems that
-  the BYPASS mode for shaper LUT is not supported in the current DC
-  dcn30_set_mpc_shaper_3dlut(), since it returns false when
-  mpc3_program_shaper returns false (no params). Is the combination of a
-  user 3D LUT with a bypassed shaper LUT accepted by the hw?
-
-- I also see in dcn30_set_mpc_shaper_3dlut() that some bits need to be
-  set in lut3d_func to have the 3D LUT programmed on the MPC block. In
-  this sense, I used the dc_acquire_release_mpc_3dlut() function to get
-  the lut3d_func from the resource pool, but I'm not sure if the timing to
-  acquire and release the lut3d_func from the resource pool is correct
-  (and if I can really use it directly or I should make a copy).
-
-- Still, on this topic, I use for lut3d the same bit.out_tf to update
-  the stream in the commit_tail because it triggers
-  .set_output_transfer_func that is in charge of setting both OGAM and 3D
-  LUT on MPC. There is a chance I got it wrong here, so I appreciate any
-  input on this topic.
-
-- Finally, in set_output_transfer_func, AFAIU, even if a user OGAM is
-  set, it won't be programmed if the shaper LUT and 3D LUT programming
-  are successful. However, if shaper/3DLUT programming fails, OGAM can be
-  considered. Should DM only accept DRM regamma if no DRM 3D LUT is
-  passed, or allowing the programming of both is still desirable?
-
-Regarding the other patches:
-
-- drm/drm_color_mgmt: add 3D LUT to color mgmt properties
-- drm/drm_color_mgmt: add shaper LUT to color mgmt properties
-
-Here, an initial DRM 3D LUT interface is exposed to enable the entire
-kernel path and is only available for the atomic pipeline. So far, it
-only includes the LUT data and its size, but improvements on this
-interface may also add stride and bit depth [VA_API].
-Additionally, I'm aware of the current work on exposing a color pipeline
-API [KMS_pipe_API].
-
-I'm including some minor changes in this series that I made to better
-understand the current DM color mgmt behavior:
-
-- drm/amd/display: add comments to describe DM crtc color mgmt behavior
-- drm/amd/display: remove unused regamma condition
-
-...but, there are other code cleanup patches that I'm not including in
-this series to avoid unnecessary noise.
-
-You can check the entire work here:
-https://gitlab.freedesktop.org/mwen/linux-amd/-/commits/drm_lut3d
-
-[igt_tests] IGT exploratory tests here:
-https://gitlab.freedesktop.org/mwen/igt-gpu-tools/-/commits/kms_color_3dlut
-
-[3DLUT_RFC] https://lore.kernel.org/amd-gfx/20220619223104.667413-1-mwen@igalia.com/
-[VA_API] http://intel.github.io/libva/structVAProcFilterParameterBuffer3DLUT.html
-[KMS_pipe_API] https://gitlab.freedesktop.org/pq/color-and-hdr/-/issues/11
-
-Let me know your thoughts.
-
-Thanks in advance,
-
-Melissa
-
-Melissa Wen (9):
-  drm/amd/display: remove unused regamma condition
-  drm/amd/display: add comments to describe DM crtc color mgmt behavior
-  drm/drm_color_mgmt: add shaper LUT to color mgmt properties
-  drm/drm_color_mgmt: add 3D LUT to color mgmt properties
-  drm/amd/display: encapsulate atomic regamma operation
-  drm/amd/display: add user 3D LUT support to the amdgpu_dm color
-    pipeline
-  drm/amd/display: add user shaper LUT support to amdgpu_dm color
-    pipeline
-  drm/amd/display: update lut3d and shaper lut to stream
-  drm/amd/display: enable DRM shaper and 3D LUT properties
-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   6 +
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |   5 +
- .../amd/display/amdgpu_dm/amdgpu_dm_color.c   | 297 ++++++++++++++++--
- .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    |   6 +
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  10 +-
- .../gpu/drm/amd/display/dc/core/dc_stream.c   |  13 +
- drivers/gpu/drm/drm_atomic_state_helper.c     |   7 +
- drivers/gpu/drm/drm_atomic_uapi.c             |  20 ++
- drivers/gpu/drm/drm_color_mgmt.c              |  89 +++++-
- drivers/gpu/drm/drm_fb_helper.c               |   5 +
- drivers/gpu/drm/drm_mode_config.c             |  28 ++
- include/drm/drm_color_mgmt.h                  |   4 +
- include/drm/drm_crtc.h                        |  24 +-
- include/drm/drm_mode_config.h                 |  25 ++
- 14 files changed, 495 insertions(+), 44 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+index a4cb23d059bd..10a29d131424 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+@@ -255,14 +255,13 @@ static int __set_legacy_tf(struct dc_transfer_func *func,
+  * @func: transfer function
+  * @lut: lookup table that defines the color space
+  * @lut_size: size of respective lut
+- * @has_rom: if ROM can be used for hardcoded curve
+  *
+  * Returns:
+  * 0 in case of success. -ENOMEM if fails.
+  */
+ static int __set_output_tf(struct dc_transfer_func *func,
+-			   const struct drm_color_lut *lut, uint32_t lut_size,
+-			   bool has_rom)
++			   const struct drm_color_lut *lut,
++			   uint32_t lut_size)
+ {
+ 	struct dc_gamma *gamma = NULL;
+ 	struct calculate_buffer cal_buffer = {0};
+@@ -279,24 +278,13 @@ static int __set_output_tf(struct dc_transfer_func *func,
+ 	gamma->num_entries = lut_size;
+ 	__drm_lut_to_dc_gamma(lut, gamma, false);
+ 
+-	if (func->tf == TRANSFER_FUNCTION_LINEAR) {
+-		/*
+-		 * Color module doesn't like calculating regamma params
+-		 * on top of a linear input. But degamma params can be used
+-		 * instead to simulate this.
+-		 */
+-		gamma->type = GAMMA_CUSTOM;
+-		res = mod_color_calculate_degamma_params(NULL, func,
+-							gamma, true);
+-	} else {
+-		/*
+-		 * Assume sRGB. The actual mapping will depend on whether the
+-		 * input was legacy or not.
+-		 */
+-		gamma->type = GAMMA_CS_TFM_1D;
+-		res = mod_color_calculate_regamma_params(func, gamma, false,
+-							 has_rom, NULL, &cal_buffer);
+-	}
++	/*
++	 * Color module doesn't like calculating regamma params
++	 * on top of a linear input. But degamma params can be used
++	 * instead to simulate this.
++	 */
++	gamma->type = GAMMA_CUSTOM;
++	res = mod_color_calculate_degamma_params(NULL, func, gamma, true);
+ 
+ 	dc_gamma_release(&gamma);
+ 
+@@ -450,7 +438,7 @@ int amdgpu_dm_update_crtc_color_mgmt(struct dm_crtc_state *crtc)
+ 		stream->out_transfer_func->tf = TRANSFER_FUNCTION_LINEAR;
+ 
+ 		r = __set_output_tf(stream->out_transfer_func, regamma_lut,
+-				    regamma_size, has_rom);
++				    regamma_size);
+ 		if (r)
+ 			return r;
+ 	} else {
 -- 
 2.35.1
 
