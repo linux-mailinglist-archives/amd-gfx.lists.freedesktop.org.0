@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5D2A5B0C4C
-	for <lists+amd-gfx@lfdr.de>; Wed,  7 Sep 2022 20:13:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B13165B0C4D
+	for <lists+amd-gfx@lfdr.de>; Wed,  7 Sep 2022 20:13:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 101D710E80B;
-	Wed,  7 Sep 2022 18:12:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2456410E819;
+	Wed,  7 Sep 2022 18:12:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2043.outbound.protection.outlook.com [40.107.223.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E267B10E80D
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 Sep 2022 18:12:36 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2061.outbound.protection.outlook.com [40.107.237.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 361CF10E80B
+ for <amd-gfx@lists.freedesktop.org>; Wed,  7 Sep 2022 18:12:38 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jM8gdQXEXn7VpWgV1RIxZ0p4oVxQ59MkD1mG6pRrwpBci53gl8aG7cdBB4TKf9FFwbhJPweXZxiNFQcmeanLbyAHZxdOgh9cnS5owokHm4Rj7b2Y94YfT3hAf6KRS/rz9OtEA/q893jZY9gfNGi7Hfho9oojour6WyoDObzg4UHdDCmdpD75hzLAy/IvsmVxE3PLlbdbboyqyT58I3QoSkl59OCtB+nF/ql32lDIm6s4guKJhURVnxqmDLDYXv9GVCu129JL9TTv4vT+qmOSNakWI1MxjNEwZZW7tV5S6fzxoE/01ADlUBqKeIqfAtHRwiCg+EIbbZ/j6F1qJFdNVw==
+ b=DGw2dAEvncsvd9OlQMgQ+zvaXOh5wbCVqEhSgMMuDCoH4226ommwPMR5BFWfhlmRve6DzygJOv4IOPajCsbjktA3VRK9pZn2Dh9FFdujRKaosoe/QwWu6zNhEMayMa9PFADuw5SD4PNpkLgBvwwxRl9M6nlTEKd+ffD2rYY8HzAMQdCBQCuzRxAXHC3tvDlX/vX6gOgc1EQYpZUxQ6ncjygPz4S8wcG7AanZTFluRgvXyX2Xa4qfeoKAQrhbWAGAKr/e7WrK4lRixouXZba5jivvla+KtCzv9INCcZOcP06s4H6Thkdy8QOTMFpvk5Bx6+HFXB92MoQBlKT2Z8g6Xw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CTj8Rphgrkz/O+Df/chl0Vu2zk8LTRbyWPmsJULV3gY=;
- b=dg8SIlLebXkh5w0vRrZcE1hKbhi5nz9unYpeLuoCmS0qyhUh+6jKXwVQiDLsIe9dPG+TCTUBbVdq23EfJ8BDyps1zSh1gyyAIxm25NjeenoKZ3vhwWJlotsb4atYuEH0t+S1hW97dXP6Miweq1tFbUUCQsYRspOIYJAHyzHVS3HVUJClPC8DxntlRari2kbBLcaMWPK/GlYgchkLGDalVOdIklkdYg9rc3Kga1Yhw9pgVE0CHhBKxuYl6IOabkKSjzpMSlQinD48a6PJsmQ5NdXacdwMAsUSoBo8AeheKQOqxW/5k3paDnc0/YWqw2BRSsq876g7+DFHgPx2AfhycA==
+ bh=g1Gnf8fPO8tomxLfu7kUCrmguZaKdCY2vHZ7F7ynYOI=;
+ b=DrFyGsnlBI0FUPsDJbdZZc1SQQ8mQfwpgcjIqep6RBEoPlXmNx1JqlXCqXZ7eTDFFzy+8FAJcGNP2MxYmAhKdQlTocIyhfbjmbrbTFhK/OIug9yFQ5Myl+6HCQ7W4jm6oOFiQVfWkewtgznuUsWbEXKjS9kFwcIG1uMtyCq3dmMAzt1tG1SdvC8X58ar53Rf3fVCKZHqUMhxEMe5IHVVFiwwOExrIGlp1+fTrlUxA4ihgOCTSgliix+qbu7opMkk2Rn7SYiLEm37+y5mlKS+YujKAP2nNRGD3Ha7hyFG9TVh+oFxwZIJTt9/v7/9lbYTyPq9g98e5HT3vIxqxnyiew==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CTj8Rphgrkz/O+Df/chl0Vu2zk8LTRbyWPmsJULV3gY=;
- b=v4JODcI3Age/NVV04TvSDVzHKNSSDEnBi1gZm8iVcm9I2JYLvH9GbzS2ezNkwlvZnARhLh+HR+0vjE4nAt36VjUSBkiMjTZRx6TscCJBzQjrR3ysNdqyEfWOw55JmuMy68dplwNBpD2pw3L9ldpQeSxJnCN9Lk6g7prqnnNEnZo=
-Received: from DS7PR03CA0049.namprd03.prod.outlook.com (2603:10b6:5:3b5::24)
- by PH7PR12MB5949.namprd12.prod.outlook.com (2603:10b6:510:1d8::21) with
+ bh=g1Gnf8fPO8tomxLfu7kUCrmguZaKdCY2vHZ7F7ynYOI=;
+ b=Psk0gjUqHABjM9xC+LBtwEy0LdXA01lY+t5HXSAIuYDZhHBUEHjmMu6fkR+gk+n83KyNpCovIh3hfsVPvd6+hZz5a3KMiKGUEKS8B6LNckiZC0IC6YOTs5xvZznmUXYSQZ+0IMnhfrIAxwdMw+zNe03nLp+0dsgGo2VfMAWnlJc=
+Received: from DS7PR03CA0045.namprd03.prod.outlook.com (2603:10b6:5:3b5::20)
+ by LV2PR12MB5967.namprd12.prod.outlook.com (2603:10b6:408:170::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14; Wed, 7 Sep
- 2022 18:12:34 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.12; Wed, 7 Sep
+ 2022 18:12:35 +0000
 Received: from DM6NAM11FT065.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:3b5:cafe::31) by DS7PR03CA0049.outlook.office365.com
- (2603:10b6:5:3b5::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.14 via Frontend
- Transport; Wed, 7 Sep 2022 18:12:34 +0000
+ (2603:10b6:5:3b5:cafe::d1) by DS7PR03CA0045.outlook.office365.com
+ (2603:10b6:5:3b5::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14 via Frontend
+ Transport; Wed, 7 Sep 2022 18:12:35 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT065.mail.protection.outlook.com (10.13.172.109) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5612.13 via Frontend Transport; Wed, 7 Sep 2022 18:12:34 +0000
+ 15.20.5612.13 via Frontend Transport; Wed, 7 Sep 2022 18:12:35 +0000
 Received: from promo.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 7 Sep
- 2022 13:12:30 -0500
+ 2022 13:12:31 -0500
 From: Pavle Kotarac <pavle.kotarac@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 14/21] drm/amd/display: add workaround for subvp cursor
- corruption for DCN32/321
-Date: Wed, 7 Sep 2022 14:11:53 -0400
-Message-ID: <20220907181200.54726-14-pavle.kotarac@amd.com>
+Subject: [PATCH 15/21] drm/amd/display: Limit user regamma to a valid value
+Date: Wed, 7 Sep 2022 14:11:54 -0400
+Message-ID: <20220907181200.54726-15-pavle.kotarac@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220907181200.54726-1-pavle.kotarac@amd.com>
 References: <20220907181200.54726-1-pavle.kotarac@amd.com>
@@ -69,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT065:EE_|PH7PR12MB5949:EE_
-X-MS-Office365-Filtering-Correlation-Id: ee672149-955d-4e9f-ce1f-08da90fc89ab
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT065:EE_|LV2PR12MB5967:EE_
+X-MS-Office365-Filtering-Correlation-Id: 67b6ff56-4724-4320-61d3-08da90fc8a44
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jQfj9d4z+hQZNCL6vc/UGjiK3dehGcat6gqsuFcx+EZXdUhm4wbtGWiIYc0VSO9hWchozrBlYd5rVMtA3f60rHfNDrxsYZPzYKfBIebpI3/OXxL8IUgb55UvqxCXvQn+qIvhd5W+qq4daJyVQM4SYL7kTVPog1uyb4xcD1Mw6e7ix+UysuxsJoQxloyXS+LjOfLCUsv1UqYE+E5XE23siPahi3LtSU5FHNHSRMknBZhbL0vg482ZHdsRRy2ikiyFBTfjJJsCv4bhXxPQkFItS+5d+63BxZzFHZOSks2fGilPMeyjoaeNSaXDQn8ehiXNbojigwcXZKu5VsD82uO7yFcD4dPpXDJhzYyrVhU/yruAD0m5f+5UX0Jo3VBEw6Q3sEM8fVQUlbU03PqFKZ0MAAUYpb2J43nQQXg6BKtuVmrgcGvtm2PZcMktD70rFz6PI86qRNekJSVJtXc9pQXxNP5DOelc0S8lo0wCETFyhLAp+Uu8znCtbB8HiQ2/jJloA+Z7ZRvQmQdFUgPnqEFvF6e68R3ozm//PYdtMQGpwtg5X6V4kz0QsFVSVa8HTJlVfcypPE991p3kmVVyvkbFPqCCTj8RXMJ70rVuAHnCp/of+0M87vKfKIqJVhp0woC8TKpbXSF6F0v70hIVyNWJzho0+W0NpB87plxSIEDfTDEnUB9IJvswmbwUe3Lf8Bnzu+lfT5FuTKCqoP43wLlF6C/rUfpmP+eVlDdLDfXHrGUMCw/fFGaWfVcK5MGdykClkLeQsDbKcvkLz2mDN6fQCSeuNQbUu/E0a4c8nUcPD63I88WUWXt8QNmkd+UIe+MO
+X-Microsoft-Antispam-Message-Info: Qhe51Y3D2xwHeDKDbaojCuWFCtciq6zvrc6cZKzrRtdcgFdAIMJbiaGMEl+fI3tT7bSmawICaaQx5nidc5Clx1BwNonid+x5WG6kDAdo6HuvqtzHJHmBnEqAsFwkwg9ujyJl/wIxzGxU9fNP99wgxOasfpqSVGrHpwDDRq6Kno9JQirAoZo1a10YJR8N4bqEZ//T1M5mkEXMODDJc4TA/NnlCkccnq//72E4pazAREJ8Gnjr9dH+vKCha+N+u3sNsuLH8R+zt6FKVwtq44SMHily4Kp0cwncFB5qlwAUsW2RN9xJ7WumnI2M18QIua1ifp1hqk+99ikbjA6QLp3Rt9wd1v1pCh0QeZL0689sC5P2GFyNiUG+CuNiqcbAw0ijmcY0I1ojriHsGwVU8T+eqeoI1P35TnEyVYApYZZxsOVeqcC8fAN7MJe1JCU1IxLZJH5ZX6E8dx+nZdLTksCKJf4RDFDmlm+u1zXJAulW8Q0wOhBi+DbycMluUGZ4yojSfWx7EQBlDdf2mZEZE7jEqsBl1tuZrNZik10C14eT9CVbYTuUeX4V2WFoTT+4thrIlSl2dS+FtfMjttaIEXLW470qjJAlVcM5802Tb5DC0BRXbpQuGManx9pAq4aVoXFJe77yoxXEK7EpR62ttWc5fa8dZUwGmaDZxvbwmghl6jiLf0dds9CPEMU5v1Y0q4phcy6hQLFk94s+VI44xqAZHbp+b7Eaz9GO24omOwqthc3kQb+2DG2r6v2xGBjpRptDfmDkG0gcDW/m7ghAF50qw8A7omvqOsbtpDn+nLjtWf0=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(39860400002)(346002)(376002)(136003)(396003)(46966006)(36840700001)(40470700004)(36860700001)(356005)(40460700003)(81166007)(82740400003)(316002)(6916009)(54906003)(5660300002)(44832011)(8936002)(70206006)(70586007)(8676002)(4326008)(2906002)(1076003)(186003)(336012)(16526019)(2616005)(47076005)(426003)(40480700001)(41300700001)(83380400001)(6666004)(478600001)(82310400005)(7696005)(86362001)(26005)(36756003)(36900700001);
+ SFS:(13230016)(4636009)(376002)(346002)(136003)(396003)(39860400002)(36840700001)(40470700004)(46966006)(186003)(40460700003)(81166007)(356005)(54906003)(82740400003)(36860700001)(4326008)(70586007)(8676002)(70206006)(6916009)(82310400005)(316002)(40480700001)(44832011)(2906002)(5660300002)(83380400001)(41300700001)(1076003)(2616005)(8936002)(47076005)(426003)(7696005)(336012)(16526019)(478600001)(26005)(6666004)(86362001)(36756003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2022 18:12:34.1305 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ee672149-955d-4e9f-ce1f-08da90fc89ab
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2022 18:12:35.1304 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 67b6ff56-4724-4320-61d3-08da90fc8a44
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT065.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5949
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5967
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,59 +99,60 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- solomon.chiu@amd.com, Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Alvin Lee <Alvin.Lee2@amd.com>, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
+Cc: stylon.wang@amd.com, Aric Cyr <Aric.Cyr@amd.com>,
+ Krunoslav Kovac <Krunoslav.Kovac@amd.com>, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ roman.li@amd.com, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
+ wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com, Yao Wang1 <Yao.Wang1@amd.com>,
  agustin.gutierrez@amd.com, Pavle Kotarac <Pavle.Kotarac@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aurabindo Pillai <aurabindo.pillai@amd.com>
+From: Yao Wang1 <Yao.Wang1@amd.com>
 
-[Why&How]
-Kernel does not have a means to tell the userspace to use software
-cursor. Due to lack of this functionality, reducing the max cursor size
-is the only way to ensure that power savings of Subview port feature is
-utilized for asics that support it. The workaround could be removed after
-cursor caching is fixed while a subviewport config is active.
+[Why]
+For HDR mode, we get total 512 tf_point and after
+switching to SDR mode we actually get 400 tf_point
+and the rest of points(401~512) still use dirty
+value from HDR mode. We should limit the rest of
+the points to max value.
 
-Reviewed-by: Alvin Lee <Alvin.Lee2@amd.com>
+[How]
+Limit the value when coordinates_x.x > 1, just like
+what we do in translate_from_linear_space for other
+re-gamma build paths.
+
+Reviewed-by: Krunoslav Kovac <Krunoslav.Kovac@amd.com>
+Reviewed-by: Krunoslav Kovac <Krunoslav.Kovac@amd.com>
+Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
 Acked-by: Pavle Kotarac <Pavle.Kotarac@amd.com>
-Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Signed-off-by: Yao Wang1 <Yao.Wang1@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c   | 3 ++-
- drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c | 3 ++-
- 2 files changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/modules/color/color_gamma.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
-index 5953083b76a7..0b94a783d285 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
-@@ -2116,7 +2116,8 @@ static bool dcn32_resource_construct(
- 	dc->caps.max_downscale_ratio = 600;
- 	dc->caps.i2c_speed_in_khz = 100;
- 	dc->caps.i2c_speed_in_khz_hdcp = 100; /*1.4 w/a applied by default*/
--	dc->caps.max_cursor_size = 256;
-+	/* TODO: Bring max_cursor_size back to 256 after subvp cursor corruption is fixed*/
-+	dc->caps.max_cursor_size = 64;
- 	dc->caps.min_horizontal_blanking_period = 80;
- 	dc->caps.dmdata_alloc_size = 2048;
- 	dc->caps.mall_size_per_mem_channel = 0;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c b/drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c
-index 64c225ee3a46..b602fdbbaf10 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c
-@@ -1721,7 +1721,8 @@ static bool dcn321_resource_construct(
- 	dc->caps.max_downscale_ratio = 600;
- 	dc->caps.i2c_speed_in_khz = 100;
- 	dc->caps.i2c_speed_in_khz_hdcp = 100; /*1.4 w/a applied by default*/
--	dc->caps.max_cursor_size = 256;
-+	/* TODO: Bring max cursor size back to 256 after subvp cursor corruption is fixed*/
-+	dc->caps.max_cursor_size = 64;
- 	dc->caps.min_horizontal_blanking_period = 80;
- 	dc->caps.dmdata_alloc_size = 2048;
- 	dc->caps.mall_size_per_mem_channel = 0;
+diff --git a/drivers/gpu/drm/amd/display/modules/color/color_gamma.c b/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
+index 859ffd8725c5..04f7656906ca 100644
+--- a/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
++++ b/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
+@@ -1600,6 +1600,7 @@ static void interpolate_user_regamma(uint32_t hw_points_num,
+ 	struct fixed31_32 lut2;
+ 	struct fixed31_32 delta_lut;
+ 	struct fixed31_32 delta_index;
++	const struct fixed31_32 one = dc_fixpt_from_int(1);
+ 
+ 	i = 0;
+ 	/* fixed_pt library has problems handling too small values */
+@@ -1628,6 +1629,9 @@ static void interpolate_user_regamma(uint32_t hw_points_num,
+ 			} else
+ 				hw_x = coordinates_x[i].x;
+ 
++			if (dc_fixpt_le(one, hw_x))
++				hw_x = one;
++
+ 			norm_x = dc_fixpt_mul(norm_factor, hw_x);
+ 			index = dc_fixpt_floor(norm_x);
+ 			if (index < 0 || index > 255)
 -- 
 2.34.1
 
