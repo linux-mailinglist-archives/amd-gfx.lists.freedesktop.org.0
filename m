@@ -1,83 +1,92 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C05C25B0EAB
-	for <lists+amd-gfx@lfdr.de>; Wed,  7 Sep 2022 22:56:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D029D5B0EB1
+	for <lists+amd-gfx@lfdr.de>; Wed,  7 Sep 2022 22:57:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D241910E88C;
-	Wed,  7 Sep 2022 20:56:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4EF710E885;
+	Wed,  7 Sep 2022 20:57:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0a-00190b01.pphosted.com (mx0a-00190b01.pphosted.com
- [IPv6:2620:100:9001:583::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39F8110E81F;
- Wed,  7 Sep 2022 18:19:32 +0000 (UTC)
-Received: from pps.filterd (m0050093.ppops.net [127.0.0.1])
- by m0050093.ppops.net-00190b01. (8.17.1.5/8.17.1.5) with ESMTP id
- 287HVasv032356; Wed, 7 Sep 2022 19:19:28 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akamai.com;
- h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=jan2016.eng;
- bh=pAAAZ4N91jNAxfB3MZbN+Hr8QUu9dLU0om6B6c+CNPg=;
- b=kID3whC70e5d0nnXBW/pBoM0ZjBRFC3o3xhYo79LDb0MDCpWmEI5oxPFBNdXHC5s7iPb
- 1Z0zA4LlUr3OtlYHBCtrydA5cQZa0VGtIhiBDL7mAgUk96uJt8qJRGK77mq0qQQs+hJX
- vyIWaW8qrtG/EJUO9bYdSUBv3hePttTeniUKSFE2/eUjas5chSEwPtAxUwCPq2whx8+3
- 56JJ1OguZcXUnE1kCbwm2tVpdYxD2Is1kFAdcdNT1bpVFyMVPsh3zZk7JVfJIzVfx2xY
- 0TDKFMv2Qheq7UITOoQOFSVg6sqJANzcw0ekxe8McZDk8UFAkaWRv2LfL8IPvORAnX69 JA== 
-Received: from prod-mail-ppoint5 (prod-mail-ppoint5.akamai.com [184.51.33.60]
- (may be forged))
- by m0050093.ppops.net-00190b01. (PPS) with ESMTPS id 3je07est5w-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 07 Sep 2022 19:19:28 +0100
-Received: from pps.filterd (prod-mail-ppoint5.akamai.com [127.0.0.1])
- by prod-mail-ppoint5.akamai.com (8.17.1.5/8.17.1.5) with ESMTP id
- 287HnKQD008298; Wed, 7 Sep 2022 11:19:27 -0700
-Received: from prod-mail-relay11.akamai.com ([172.27.118.250])
- by prod-mail-ppoint5.akamai.com (PPS) with ESMTP id 3jc4w9xb0s-1;
- Wed, 07 Sep 2022 11:19:27 -0700
-Received: from [0.0.0.0] (prod-ssh-gw01.bos01.corp.akamai.com [172.27.119.138])
- by prod-mail-relay11.akamai.com (Postfix) with ESMTP id E7C512ED41;
- Wed,  7 Sep 2022 18:19:26 +0000 (GMT)
-Message-ID: <2d3846cb-ff9a-3484-61a8-973799727d8f@akamai.com>
-Date: Wed, 7 Sep 2022 14:19:26 -0400
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2075.outbound.protection.outlook.com [40.107.92.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CFB010E885;
+ Wed,  7 Sep 2022 20:57:33 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CLBA+VoFmpSIevPKR5rQ+A59D3DjOgSG7HmSNS3wQGL00teEJGs0z5s7rBXvCoI7eiNaL3NL4W0Ih/3vKOYUeRId96JjBfnZSdnIfVOgGWpIYX3Lbx+SNR39QM1Hk/l6Aoh3jwnDoiAmMWlfdhYabOfqk7t7XBQuJPRMqk92fXNcZsvIGyyChPqh1EzpWX4azHS9r6h/oM9AgwOtpf/mwhkNeQvzd/xVTMxCIprW0TJZa4vZYWSQngZKjLvg0c2PTIVsEN3WqxiLWWSemkpcabNXJilAQn+AOrGOfJWI3aLobHKK0K4QEXaBPVFD5kmi7nV/nbnx5wUw2ror371pJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Q3gpTIwv0LDi33/i5+y9kR9HQgBXprM7D4lLGDF7dF8=;
+ b=fYuQtQT5T6nImvBzy0BAyNztM2WZySr2wCND9jUQ0IiS9BsvAPZOTCFWqbNQCO5XauXi7l+wLffd4u0a5js+jY6kBYYRSLIi/YeGNFNSI+4I3zFXidHuTHPUslwltKc35WmUrZO9yKLx9HF7vO8ymtoVr/LMVO7cBeRdwUuizis/ZZ2SEfA5u8q16zpglKxUhaZHTZHTq1SUf7Ss2ruw6bYUm27pe16jkmCM1UO7TtjcWREhVWfsWg2hemYtA1frFuwWWEMl0I6IwlTY9v2sUC1Ym/CPGQfu042gNEuQLzMNpLANAt8vxFcJ45OmSSip1VF5qRdyJjuW5G797f66uQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Q3gpTIwv0LDi33/i5+y9kR9HQgBXprM7D4lLGDF7dF8=;
+ b=B/0gnw9sYo4sD+niCgUC1fLcoUcpPghhSbbCtZvo5fCtdVw7fVDLyCc0L8VsSewmnY/JbFHHrC/jF/qEemwJAtHsJGuv6SgJ+ZBSZrK/3W+QQ1dnf+TqgID3evqxlT7VkUqolp1iW5TyZop70mqmDw5znaG00kOsRkFalRHNEb4=
+Received: from BN7PR02CA0035.namprd02.prod.outlook.com (2603:10b6:408:20::48)
+ by IA1PR12MB6529.namprd12.prod.outlook.com (2603:10b6:208:3a6::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.10; Wed, 7 Sep
+ 2022 20:57:30 +0000
+Received: from BN8NAM11FT049.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:20:cafe::71) by BN7PR02CA0035.outlook.office365.com
+ (2603:10b6:408:20::48) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14 via Frontend
+ Transport; Wed, 7 Sep 2022 20:57:30 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT049.mail.protection.outlook.com (10.13.177.157) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5612.13 via Frontend Transport; Wed, 7 Sep 2022 20:57:30 +0000
+Received: from jz-tester.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 7 Sep
+ 2022 15:57:29 -0500
+From: James Zhu <James.Zhu@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
+Subject: [PATCH 1/4] drm/sched: returns struct drm_gpu_scheduler ** for
+ drm_sched_pick_best
+Date: Wed, 7 Sep 2022 16:57:02 -0400
+Message-ID: <20220907205705.934688-1-James.Zhu@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v6 17/57] dyndbg: validate class FOO by checking with
- module
-Content-Language: en-US
-To: Jim Cromie <jim.cromie@gmail.com>, gregkh@linuxfoundation.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <20220904214134.408619-1-jim.cromie@gmail.com>
- <20220904214134.408619-18-jim.cromie@gmail.com>
-From: Jason Baron <jbaron@akamai.com>
-In-Reply-To: <20220904214134.408619-18-jim.cromie@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-07_10,2022-09-07_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
- mlxscore=0 mlxlogscore=999
- suspectscore=0 phishscore=0 bulkscore=0 malwarescore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2207270000
- definitions=main-2209070069
-X-Proofpoint-GUID: X8jGmyYHpuMt6qCmp30gNLbLd31u9Ys_
-X-Proofpoint-ORIG-GUID: X8jGmyYHpuMt6qCmp30gNLbLd31u9Ys_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-07_10,2022-09-07_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0
- lowpriorityscore=0
- bulkscore=0 impostorscore=0 clxscore=1015 phishscore=0 mlxlogscore=999
- spamscore=0 suspectscore=0 priorityscore=1501 mlxscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2207270000
- definitions=main-2209070069
-X-Mailman-Approved-At: Wed, 07 Sep 2022 20:56:37 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT049:EE_|IA1PR12MB6529:EE_
+X-MS-Office365-Filtering-Correlation-Id: df14cd3c-ed4f-4385-e9e9-08da91139460
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Qy8rRjtMd5byvuc0b8b5Gaqmtx9L0LPH0MV2pCKp3UDBZua6NTWen0Jll95Hi038b/V1PXBy9cY1rOkyrKsdofHt1jILfMGBTr545LeAzwnpHvYUdZZB4aiay4gJ4/zUUI3Z3xVq8i0qKMl86JjX5VBXUhb++NQ9i8HTsQMd7fIwzZsvSlasyKu4nJbEwbHWi2R3EFUQJav71ByJKyP5I0FXL/Oz5lGRf6IN8h2icTbrGaB8l2CmIf6HYO8rs6Zk0Jhp3jLicNssZd86JBWzZ1tm5BAhfIvKmp1zsxKv1CA03Y+6J8Kk9jC/YC3CfIrnb5WAYeRWqjagz81HeG6JGZrpQSey6pryHQSO2a7WAlYFsqUdLrrg7amDgwtOlNaItol4rq+eAFEfOkPxeXOn+LwN/TcWNPM6v4FXItvlHPVQbb7P5L3AtgLvCBzxsQ+GWlXaH64NupOeBdGgGMuFs9T87I/ctLtoYyL92t+rpUje7ahOIPushZ3Kee58KvHkK5p4ujuLrsfXDl4DyYTTZ0Vj6Eir8LHn9JmxZQws+EY1nl+DtdXDuxi3+myF32ZzqOUI38BqO/PicowzyA37s6F4tRjhZaoamPmgs0yuIGFkapVizrG9nn9qSysNWpLPSSooJjYaQq+Xfqyl4t97cRuBllPAsriURjwtyI7w6Dr+bXd6gzC4h2HbOSzz4Zn0aMS/XKYFW0nsKEyce6hSfRfreizTPhM7lmZ1r0nG6NWt1vg5X7NPj78+SPFWOdzWGOPPqMyPH7CgBGr2joTQJ8HMDA5xxDyEZOPcJD5pVv7LK0XNz7Gp2uCbrtbJQoMB
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230016)(4636009)(396003)(136003)(39860400002)(376002)(346002)(36840700001)(46966006)(40470700004)(426003)(40460700003)(110136005)(4326008)(316002)(54906003)(7696005)(41300700001)(6666004)(70206006)(70586007)(2906002)(4744005)(5660300002)(8676002)(450100002)(40480700001)(26005)(478600001)(82740400003)(81166007)(336012)(8936002)(82310400005)(356005)(86362001)(36756003)(83380400001)(2616005)(1076003)(16526019)(36860700001)(186003)(47076005)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2022 20:57:30.5194 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: df14cd3c-ed4f-4385-e9e9-08da91139460
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT049.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6529
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,216 +98,32 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: joe@perches.com, daniel.vetter@ffwll.ch, robdclark@gmail.com,
- seanpaul@chromium.org, linux@rasmusvillemoes.dk
+Cc: alexander.deucher@amd.com, andrey.grodzovsky@amd.com,
+ christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+drm_sched_pick_best returns struct drm_gpu_scheduler ** instead of
+struct drm_gpu_scheduler *
 
+Signed-off-by: James Zhu <James.Zhu@amd.com>
+---
+ include/drm/gpu_scheduler.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On 9/4/22 17:40, Jim Cromie wrote:
-> Add module-to-class validation:
-> 
->   #> echo class DRM_UT_KMS +p > /proc/dynamic_debug/control
-> 
-> If a query has "class FOO", then ddebug_find_valid_class(), called
-> from ddebug_change(), requires that FOO is known to module X,
-> otherwize the query is skipped entirely for X.  This protects each
-> module's class-space, other than the default:31.
-> 
-> The authors' choice of FOO is highly selective, giving isolation
-> and/or coordinated sharing of FOOs.  For example, only DRM modules
-> should know and respond to DRM_UT_KMS.
-> 
-> So this, combined with module's opt-in declaration of known classes,
-> effectively privatizes the .class_id space for each module (or
-> coordinated set of modules).
-> 
-> Notes:
-> 
-> For all "class FOO" queries, ddebug_find_valid_class() is called, it
-> returns the map matching the query, and sets valid_class via an
-> *outvar).
-> 
-> If no "class FOO" is supplied, valid_class = _CLASS_DFLT.  This
-> insures that legacy queries do not trample on new class'd callsites,
-> as they get added.
+diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
+index 0fca8f38bee4..011f70a43397 100644
+--- a/include/drm/gpu_scheduler.h
++++ b/include/drm/gpu_scheduler.h
+@@ -529,7 +529,7 @@ void drm_sched_fence_finished(struct drm_sched_fence *fence);
+ unsigned long drm_sched_suspend_timeout(struct drm_gpu_scheduler *sched);
+ void drm_sched_resume_timeout(struct drm_gpu_scheduler *sched,
+ 		                unsigned long remaining);
+-struct drm_gpu_scheduler *
++struct drm_gpu_scheduler **
+ drm_sched_pick_best(struct drm_gpu_scheduler **sched_list,
+ 		     unsigned int num_sched_list);
+ 
+-- 
+2.25.1
 
-
-Hi Jim,
-
-I'm wondering about the case where we have a callsite which is marked
-as 'class foo', but the query string is done by say module and file, so:
-
-# echo "module bar file foo.c +p" > /proc/dynamic_debug_control
-
-With the proposed code, I think this ends up not enabling anything right?
-Because valid class is set to _DPRINTK_CLASS_DFLT and then:
-'dp->class_id != valid_class' is true?
-
-This seems confusing to me as a user as this doesn't work like the
-other queries....so maybe we should only do the
-'dp->class_id != valid_class' check *if* query->class_string is set,
-see below.
-
-
-
-> 
-> Also add a new column to control-file output, displaying non-default
-> class-name (when found) or the "unknown _id:", if it has not been
-> (correctly) declared with one of the declarator macros.
-> 
-> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
-> ---
->  lib/dynamic_debug.c | 76 ++++++++++++++++++++++++++++++++++++++++-----
->  1 file changed, 68 insertions(+), 8 deletions(-)
-> 
-> diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
-> index b71efd0b491d..db96ded78c3f 100644
-> --- a/lib/dynamic_debug.c
-> +++ b/lib/dynamic_debug.c
-> @@ -56,6 +56,7 @@ struct ddebug_query {
->  	const char *module;
->  	const char *function;
->  	const char *format;
-> +	const char *class_string;
->  	unsigned int first_lineno, last_lineno;
->  };
->  
-> @@ -136,15 +137,33 @@ static void vpr_info_dq(const struct ddebug_query *query, const char *msg)
->  			fmtlen--;
->  	}
->  
-> -	v3pr_info("%s: func=\"%s\" file=\"%s\" module=\"%s\" format=\"%.*s\" lineno=%u-%u\n",
-> -		 msg,
-> -		 query->function ?: "",
-> -		 query->filename ?: "",
-> -		 query->module ?: "",
-> -		 fmtlen, query->format ?: "",
-> -		 query->first_lineno, query->last_lineno);
-> +	v3pr_info("%s: func=\"%s\" file=\"%s\" module=\"%s\" format=\"%.*s\" lineno=%u-%u class=%s\n",
-> +		  msg,
-> +		  query->function ?: "",
-> +		  query->filename ?: "",
-> +		  query->module ?: "",
-> +		  fmtlen, query->format ?: "",
-> +		  query->first_lineno, query->last_lineno, query->class_string);
->  }
->  
-> +static struct ddebug_class_map *ddebug_find_valid_class(struct ddebug_table const *dt,
-> +							  const char *class_string, int *class_id)
-> +{
-> +	struct ddebug_class_map *map;
-> +	int idx;
-> +
-> +	list_for_each_entry(map, &dt->maps, link) {
-> +		idx = match_string(map->class_names, map->length, class_string);
-> +		if (idx >= 0) {
-> +			*class_id = idx + map->base;
-> +			return map;
-> +		}
-> +	}
-> +	*class_id = -ENOENT;
-> +	return NULL;
-> +}
-> +
-> +#define __outvar /* filled by callee */
->  /*
->   * Search the tables for _ddebug's which match the given `query' and
->   * apply the `flags' and `mask' to them.  Returns number of matching
-> @@ -159,6 +178,8 @@ static int ddebug_change(const struct ddebug_query *query,
->  	unsigned int newflags;
->  	unsigned int nfound = 0;
->  	struct flagsbuf fbuf, nbuf;
-> +	struct ddebug_class_map *map = NULL;
-> +	int __outvar valid_class;
->  
->  	/* search for matching ddebugs */
->  	mutex_lock(&ddebug_lock);
-> @@ -169,9 +190,22 @@ static int ddebug_change(const struct ddebug_query *query,
->  		    !match_wildcard(query->module, dt->mod_name))
->  			continue;
->  
-> +		if (query->class_string) {
-> +			map = ddebug_find_valid_class(dt, query->class_string, &valid_class);
-> +			if (!map)
-> +				continue;
-
-So remove the else here.
-
-> +		} else {
-> +			/* constrain query, do not touch class'd callsites */
-> +			valid_class = _DPRINTK_CLASS_DFLT;
-> +		}
-> +
->  		for (i = 0; i < dt->num_ddebugs; i++) {
->  			struct _ddebug *dp = &dt->ddebugs[i];
->  
-> +			/* match site against query-class */
-> +			if (dp->class_id != valid_class)
-
-And then make this: if (query->class_string && (dp->class_id != valid_class))
-
-thoughts?
-
-
-> +				continue;
-> +>  			/* match against the source filename */
->  			if (query->filename &&
->  			    !match_wildcard(query->filename, dp->filename) &&
-> @@ -420,6 +454,8 @@ static int ddebug_parse_query(char *words[], int nwords,
->  		} else if (!strcmp(keyword, "line")) {
->  			if (parse_linerange(query, arg))
->  				return -EINVAL;
-> +		} else if (!strcmp(keyword, "class")) {
-> +			rc = check_set(&query->class_string, arg, "class");
->  		} else {
->  			pr_err("unknown keyword \"%s\"\n", keyword);
->  			return -EINVAL;
-> @@ -854,6 +890,20 @@ static void *ddebug_proc_next(struct seq_file *m, void *p, loff_t *pos)
->  	return dp;
->  }
->  
-> +#define class_in_range(class_id, map)					\
-> +	(class_id >= map->base && class_id < map->base + map->length)
-> +
-> +static const char *ddebug_class_name(struct ddebug_iter *iter, struct _ddebug *dp)
-> +{
-> +	struct ddebug_class_map *map;
-> +
-> +	list_for_each_entry(map, &iter->table->maps, link)
-> +		if (class_in_range(dp->class_id, map))
-> +			return map->class_names[dp->class_id - map->base];
-> +
-> +	return NULL;
-> +}
-> +
->  /*
->   * Seq_ops show method.  Called several times within a read()
->   * call from userspace, with ddebug_lock held.  Formats the
-> @@ -865,6 +915,7 @@ static int ddebug_proc_show(struct seq_file *m, void *p)
->  	struct ddebug_iter *iter = m->private;
->  	struct _ddebug *dp = p;
->  	struct flagsbuf flags;
-> +	char const *class;
->  
->  	if (p == SEQ_START_TOKEN) {
->  		seq_puts(m,
-> @@ -877,7 +928,16 @@ static int ddebug_proc_show(struct seq_file *m, void *p)
->  		   iter->table->mod_name, dp->function,
->  		   ddebug_describe_flags(dp->flags, &flags));
->  	seq_escape_str(m, dp->format, ESCAPE_SPACE, "\t\r\n\"");
-> -	seq_puts(m, "\"\n");
-> +	seq_puts(m, "\"");
-> +
-> +	if (dp->class_id != _DPRINTK_CLASS_DFLT) {
-> +		class = ddebug_class_name(iter, dp);
-> +		if (class)
-> +			seq_printf(m, " class:%s", class);
-> +		else
-> +			seq_printf(m, " class unknown, _id:%d", dp->class_id);
-> +	}
-> +	seq_puts(m, "\n");
->  
->  	return 0;
->  }
