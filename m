@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 944555B0C3D
-	for <lists+amd-gfx@lfdr.de>; Wed,  7 Sep 2022 20:12:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 205F15B0C43
+	for <lists+amd-gfx@lfdr.de>; Wed,  7 Sep 2022 20:12:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0136510E808;
-	Wed,  7 Sep 2022 18:12:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FF9D10E80E;
+	Wed,  7 Sep 2022 18:12:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2071.outbound.protection.outlook.com [40.107.220.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0D2110E7FA
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 Sep 2022 18:12:24 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2068.outbound.protection.outlook.com [40.107.237.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 896C110E469
+ for <amd-gfx@lists.freedesktop.org>; Wed,  7 Sep 2022 18:12:26 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=L0fzsVHUAv2XdBxO66tGaCmR5EbPXAFIBF/h99vHJr3j9fRbh1xd0xnVj+qwKIcUNgCiCvhG3GvDLjFBzCWLy81vpZ4HGcahwTCrPRRmXlXP6h7ZqTiuCVVqncIIy/ACwuoZ2wY0OTUzqoF7EDnFkAl5D7sD26g9uDGWDKwmQiS3ZK8fQLp+oH/NA3YDu/IFbNEJnyjS8P8MKeMKF0TtgZXIBNyRMKQ6Xujvlc/1y6yC1MujOJwHCBd71jV+PvlQBpvLmNLQxODr0ywH3569wyM8kxIy+j/NquyD2531KPD8ot+mSaaPF5VwRPwyD3d4poJrkuRWjV4AAf4oHZ+d3g==
+ b=HGl/DBpbBaIB1H5n3fPdGg/4riHNWzayamPtZAfK/221047MgQME0kc7sZfXXCyo7WSu2B3YIuAeNGLKvYjUaKXWXIuYLNWGsIcEN7MG1DPPRIQhkzjjQid4Rn+8+iojHnJhxXO9xHV3hESl4Q3Zsjt7utKNWSDdtFt8PtzQ59ao7qi/8Fna1Br9Pbdnbbn8hlPHXH2+e1ZMtI4Dtnhz9BZ+uhjUw2ehEdISwPg9Kadxxl39EaX3tQHX2FM0e30IaXvoBkJcQnadCSSDifsi8QEBlm5dM9fq1Q/32WjaamI2n57kVXr0W0OF1HuKkncjYf6ldJET2PdfdD4UqrvRpg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cv542JNW9EQWNNdH0XwNGruXDNSwTxcbhYpelVSwFM0=;
- b=Ej0RLPhN06t+jwdgw61C5am3UBivBbON2MFs/MxbQ8gep0vvy4C567//B6QYiNsVVVZYVsLXgl5nq71px/VYXrh80IXaSn4ogxJBE70H55l2sgI87yXpmo4aJoCT3SNE20kCMemT5bNYqCngEaNNXtSLdHw7yInmB3ilIms8sA3h6qelCypEpSWMFaqkPYLSk04c3X+9PKOZbZmeQj8P3pxjoe4rEd4jO+JQFTebsxk9h8RKbWnEgxN7LDITTjvfUJc5A+eU65oBTE0cMFOrxw7nV3eKNO6POzCKpWwCDO24txTgDUEp/DJKms++tMBJC5WcrHyjc+X3oMSdevIWRQ==
+ bh=LfejwDJUXEGDQE2T1xH0vGE3UhUoktltnkNtg77HtjM=;
+ b=g0EVpG18iQAbR4BhTa+iKZXcq0v9LaSnq6Qhhx/z6jzVqcfm8C3TinSOspHgE5SJImctFbWZPRU16d1nWmpFKwVnDgE4tVBAhtM5RtylhWkk9aPlz8Rr0RugqdFL/dhpD8jgAsuekAo47K7SVaEM2FK+hmNwGo4BwTAGeBRp8GGAx/MQio3uEHTdarXGmWf0GfzYDg1pGskfeVO/PG56IWiccwZC8+qtf6FasZ0VIst2rgG8GxNKwwXETDurQNAufEM0YFUl1idLnhdOUzpGqySpJaf6RfX05+qP7fV4q93DPAeMsUhRhqzC4OBgoq/QA3l28B0cUFV0G7WNxUoUzg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cv542JNW9EQWNNdH0XwNGruXDNSwTxcbhYpelVSwFM0=;
- b=qvxjI6ec6IzJxO/7b3k7/kBgbl3DJcfG8wzQ8DUqhJBdt7O4cD0Nid0YXOXbbNqtpfy3tCWlgqJB6oO4XJDejnyiw3kw1Pw3iZ/b6IrF7/O2m0xpurKe2CU4b+2H7qYv4BuCQNdAMXkAbBEqOCIGCfMF86GA4SLftCl1MBNguL4=
-Received: from DM5PR07CA0065.namprd07.prod.outlook.com (2603:10b6:4:ad::30) by
- SN7PR12MB7370.namprd12.prod.outlook.com (2603:10b6:806:299::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.18; Wed, 7 Sep
- 2022 18:12:22 +0000
+ bh=LfejwDJUXEGDQE2T1xH0vGE3UhUoktltnkNtg77HtjM=;
+ b=Y1eB9bdk8GFForTj39EnfVYaL3NogKK2rm11KJOi/5g6B9FSh+MXlU1FNoRx/wvLpoNqiNLYoqd4azgppp7poEPk6DlsagX0JLcXzeYRMJdZMP/30eZ/Uh6zKcz4G3zCEGJ+vfxvJ6EljOYQPLd8HSl6B5Fsnocp03QXqKu6zn4=
+Received: from DM5PR07CA0081.namprd07.prod.outlook.com (2603:10b6:4:ad::46) by
+ CH0PR12MB5372.namprd12.prod.outlook.com (2603:10b6:610:d7::10) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5612.12; Wed, 7 Sep 2022 18:12:23 +0000
 Received: from DM6NAM11FT026.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:ad:cafe::bd) by DM5PR07CA0065.outlook.office365.com
- (2603:10b6:4:ad::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14 via Frontend
- Transport; Wed, 7 Sep 2022 18:12:22 +0000
+ (2603:10b6:4:ad:cafe::cc) by DM5PR07CA0081.outlook.office365.com
+ (2603:10b6:4:ad::46) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.11 via Frontend
+ Transport; Wed, 7 Sep 2022 18:12:23 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT026.mail.protection.outlook.com (10.13.172.161) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5612.13 via Frontend Transport; Wed, 7 Sep 2022 18:12:22 +0000
+ 15.20.5612.13 via Frontend Transport; Wed, 7 Sep 2022 18:12:23 +0000
 Received: from promo.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 7 Sep
  2022 13:12:21 -0500
 From: Pavle Kotarac <pavle.kotarac@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 06/21] drm/amd/display: Fix compilation errors on DCN314
-Date: Wed, 7 Sep 2022 14:11:45 -0400
-Message-ID: <20220907181200.54726-6-pavle.kotarac@amd.com>
+Subject: [PATCH 07/21] drm/amd/display: Enable dlg and vba compilation for
+ dcn314
+Date: Wed, 7 Sep 2022 14:11:46 -0400
+Message-ID: <20220907181200.54726-7-pavle.kotarac@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220907181200.54726-1-pavle.kotarac@amd.com>
 References: <20220907181200.54726-1-pavle.kotarac@amd.com>
@@ -68,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT026:EE_|SN7PR12MB7370:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8b6eb507-6315-4375-d206-08da90fc82be
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT026:EE_|CH0PR12MB5372:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0257abad-9e31-4d2c-3f06-08da90fc8350
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OLyK15375dtJyWrG5muSkaRQuxrKzi2puwWqcRuEHAHRpIB8sfXJT/AUnAy/G7GcOChAoVPBkhztmRMXIgoReQ13wtwDjT7tLWhL7BzauQDcPR+OZnNjoq/iQ/jHmwpy5PltubazCRY8BIrPhWae31P3E0MTTLnVYLf5C9Tgqa7jOgrZSLZ5ub4BhKFw2u2tGm/n1edNHUT3kzeQKu7PTmb7CUS9lDAgi3F2w9CkDmzqbYlME8izUBC6+1p6cIWbIPgdILLrSa/Bzo+krFyCvMe2RJHv7EwsdysUHKqRCBE1rdh+ZpHBmKF6UKF/uC4I1ibm5os48VyZCyeFFS6LYlL2dtRQECVPQXV49+ZZTkv92VsIbusCwnbFy1l0+TCXjJ8cGb1mkdrP6wcXPgHank26M1rpa23wpDlHR7EXY9J3dnuI3ufaa+4rwL4nD/mtUy+ypielqJ9rvOuqUGBFXBMOZzP9nxl1WtDQJNLFrmhBRuYFBvk7U1ixLn5daxKVcfkEcpGUfLOqiWCg7SHWv1EAGu+P8FfoeHSxGjucqkzeAA9lt5GwlLNmURZILFgdK5wRidQjpNP4Sm/Wg37sCa2cTWJayMJWKpofisLyc4foTVKe0JVDW++d/Rv0aksZBxD9Gv04HYRHnztg7G+bNxvJUmmVWuK1A1q3ClFdKIDZ6AwIcyWfJN1SnrCqaFYxcy+wJr98TnPdBrYL9owKupqmc1GulMGgPiim81kpO1/yQUnJdoez9ljV9GIK14FmFhXd98WxnVLVDFGb8QRt+u5lnILZPF1PfboxS6taLr8=
+X-Microsoft-Antispam-Message-Info: OYZzGpGAzvkprUVYZSCJrcnaYuFhm5TpmJXZiXq1YzAdcEHdvUcpG8+fzlGVJolm3u7VpAphWAWGkpiLQ8tpvdfwHzMD7Bm3+MwNMkXPIvzUb/o7Eq6CA1KIDCMAT+KeURfqvnM7LFojV9k0Id2VM7NDFNgk/w8s9ia6rAQGRTK3XVsSWzS3uTzymrKuQ0gCM1pq0opqsVtfwe+hlD4Vwbo5KUepf8I9keDfHnJS0CPLG/iRXNJpcBYvi2UHffUy4LjlN3+wjN2YUAKHgRxXjq+CtYZ2i2okx2G451r7xqR/Tee3ckBYmZ421x5eHaV7CEYHNLGxn0MsObl+5xk7MFZonfHs21olsQfp++SuOoAX+QEJpMaHPLH1uHDdoINSyQ9+6BMhE2ZSfTatSPE91L5m+6/Hnl8QEcbsYTdQiKSSvz618VFsGtfEdcV7fmyHb4VNLzJzKeo6VvaW6t5OahSP77lrGb42LQptJC+W6+VjvgrLE3cxVNPTkBqTjv28PjM/mrY1dbF9MncPqdtL6OeMQtcHllNbkn6kqNxaOQOmabAJrS7hAMNFG+HhYZ8uVdWhGCREM6+RbcCUYt1YMNfIfZ5e+q45xsy1MrX+oQD1mW/5i75y38ULK1BlzC0Wq4iphJQpzBYbF4TfodpyAPsNxcx+mBheugNUyaONbaGgcRKoyZI3bojpIITAVos9pqapUf/w5uMdAFEhtUlf/hpRYKNxm3jmcYkqr7Sfoc2vb6a1tXq0pnWqOllHWlDsj8nGc942GKclST0Y3MSZcVt1of1z0+upyCMaegrrqUeK5E/ecj5FKgEyTc7mvEZJ
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(376002)(136003)(396003)(346002)(39860400002)(36840700001)(46966006)(40470700004)(82740400003)(6666004)(316002)(83380400001)(70586007)(7696005)(47076005)(426003)(86362001)(4326008)(8676002)(70206006)(41300700001)(478600001)(40460700003)(81166007)(6916009)(356005)(40480700001)(54906003)(186003)(2906002)(82310400005)(1076003)(16526019)(336012)(36756003)(5660300002)(8936002)(44832011)(36860700001)(26005)(2616005)(36900700001);
+ SFS:(13230016)(4636009)(136003)(39860400002)(396003)(376002)(346002)(40470700004)(46966006)(36840700001)(356005)(316002)(5660300002)(70206006)(36756003)(6916009)(54906003)(2906002)(40480700001)(4326008)(44832011)(70586007)(8676002)(8936002)(86362001)(478600001)(41300700001)(82310400005)(26005)(1076003)(6666004)(47076005)(2616005)(16526019)(426003)(336012)(186003)(81166007)(82740400003)(7696005)(40460700003)(36860700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2022 18:12:22.4954 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b6eb507-6315-4375-d206-08da90fc82be
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2022 18:12:23.4641 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0257abad-9e31-4d2c-3f06-08da90fc8350
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT026.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7370
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5372
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,54 +109,37 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 
-We have some compilation errors in some DML files from DCN314 that we
-never noticed because we were not compiling some of the DML files. This
-commit fixes those syntax errors before we enable the compilation.
+We were not using the VBA and DLG files for DCN314, but the next
+sequence of changes for DCN314 will require those files. This commit
+adds the necessary files to the Makefile.
 
 Cc: Roman Li <roman.li@amd.com>
 Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dml/Makefile | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-index 503d9ede0ac1..9fe4dc32fbe0 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-@@ -61,7 +61,7 @@
- // fudge factor for min dcfclk calclation
- #define __DML_MIN_DCFCLK_FACTOR__   1.15
- 
--struct {
-+typedef struct {
- 	double DPPCLK;
- 	double DISPCLK;
- 	double PixelClock;
-@@ -1599,7 +1599,7 @@ static void CalculateDCCConfiguration(
- 	int segment_order_vert_contiguous_luma;
- 	int segment_order_vert_contiguous_chroma;
- 
--	enum {
-+	typedef enum {
- 		REQ_256Bytes, REQ_128BytesNonContiguous, REQ_128BytesContiguous, REQ_NA
- 	} RequestType;
- 	RequestType RequestLuma;
-@@ -7159,12 +7159,13 @@ static double CalculateExtraLatencyBytes(
- 			HostVMDynamicLevels = dml_max(0, (int) HostVMMaxNonCachedPageTableLevels - 1);
- 		else
- 			HostVMDynamicLevels = dml_max(0, (int) HostVMMaxNonCachedPageTableLevels - 2);
--	else
-+	} else {
- 		HostVMDynamicLevels = 0;
-+	}
- 
- 	ret = ReorderingBytes + (TotalNumberOfActiveDPP * PixelChunkSizeInKByte + TotalNumberOfDCCActiveDPP * MetaChunkSize) * 1024.0;
- 
--	if (GPUVMEnable == true)
-+	if (GPUVMEnable == true) {
- 		for (k = 0; k < NumberOfActivePlanes; ++k)
- 			ret = ret + NumberOfDPP[k] * dpte_group_bytes[k] * (1 + 8 * HostVMDynamicLevels) * HostVMInefficiencyFactor;
- 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/Makefile b/drivers/gpu/drm/amd/display/dc/dml/Makefile
+index 86a3b5bfd699..cb81ed2fbd53 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/dml/Makefile
+@@ -70,6 +70,8 @@ CFLAGS_$(AMDDALPATH)/dc/dml/dcn30/display_mode_vba_30.o := $(dml_ccflags) $(fram
+ CFLAGS_$(AMDDALPATH)/dc/dml/dcn30/display_rq_dlg_calc_30.o := $(dml_ccflags)
+ CFLAGS_$(AMDDALPATH)/dc/dml/dcn31/display_mode_vba_31.o := $(dml_ccflags) $(frame_warn_flag)
+ CFLAGS_$(AMDDALPATH)/dc/dml/dcn31/display_rq_dlg_calc_31.o := $(dml_ccflags)
++CFLAGS_$(AMDDALPATH)/dc/dml/dcn314/display_mode_vba_314.o := $(dml_ccflags) $(frame_warn_flag)
++CFLAGS_$(AMDDALPATH)/dc/dml/dcn314/display_rq_dlg_calc_314.o := $(dml_ccflags)
+ CFLAGS_$(AMDDALPATH)/dc/dml/dcn314/dcn314_fpu.o := $(dml_ccflags)
+ CFLAGS_$(AMDDALPATH)/dc/dml/dcn30/dcn30_fpu.o := $(dml_ccflags)
+ CFLAGS_$(AMDDALPATH)/dc/dml/dcn32/dcn32_fpu.o := $(dml_ccflags)
+@@ -123,6 +125,7 @@ DML += dcn20/display_rq_dlg_calc_20v2.o dcn20/display_mode_vba_20v2.o
+ DML += dcn21/display_rq_dlg_calc_21.o dcn21/display_mode_vba_21.o
+ DML += dcn30/dcn30_fpu.o dcn30/display_mode_vba_30.o dcn30/display_rq_dlg_calc_30.o
+ DML += dcn31/display_mode_vba_31.o dcn31/display_rq_dlg_calc_31.o
++DML += dcn314/display_mode_vba_314.o dcn314/display_rq_dlg_calc_314.o
+ DML += dcn32/display_mode_vba_32.o dcn32/display_rq_dlg_calc_32.o dcn32/display_mode_vba_util_32.o
+ DML += dcn31/dcn31_fpu.o
+ DML += dcn32/dcn32_fpu.o
 -- 
 2.34.1
 
