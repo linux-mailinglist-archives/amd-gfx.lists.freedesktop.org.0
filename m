@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D9225B0C4E
-	for <lists+amd-gfx@lfdr.de>; Wed,  7 Sep 2022 20:13:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 409825B0C49
+	for <lists+amd-gfx@lfdr.de>; Wed,  7 Sep 2022 20:13:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1809810E7FA;
-	Wed,  7 Sep 2022 18:12:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 044AD10E812;
+	Wed,  7 Sep 2022 18:12:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2085.outbound.protection.outlook.com [40.107.243.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 786D010E7FA
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 Sep 2022 18:12:31 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C52510E80B
+ for <amd-gfx@lists.freedesktop.org>; Wed,  7 Sep 2022 18:12:36 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GptFlAWsWSqNHC7/FMXK/0pGPxyVzGkNF5QPGmn2Bih1nJ5BmzKzb/YHXTBEiDHS01ItoKZkDGisUKNt8xdlOdo0oC+Ofh/fDN/Klh9bOQGr+LdHp0xKUT8a+Gg0lpOz5h6AQR18GfO7/U7cdR4m1Ud+BLpQIpfMXuG4ktrUokOg7goDWwid1PZIYFkGjnTNQRYog5m3spd7HpV6l659Yj7OXaQ2UFwh+Aj4l+z1FJoWyeY1XXH2ums12q9nkJaM+Zh/KJGi42UydHCKBVJbcG9wVohPjBQHMVdHWRtKlGW+k3O6pk6v2w2Qlxz2HRqZqRjXR2K1oYKUQ9izXDSxGw==
+ b=ls+Fby/49+lnuulT7AzRhh99whn/ZazBCoW+m6aDh9gYM7uYHn4arXdMKk1p/fLXM6W2cEBv3c8lpV7SlzDpX/CbvtPjrAA1zs7YbDo7Kxx0zIXsKZq/0uPtOwunAs6oyONlShhIzLTKiKjrCsnrmquUy2JfiMM/u0JfJe1u16UXbgDfmLAZOu5cV8ZckfzhCEys0b4xX+Q/r3SapTUC11mKGH9wr7PpDXeXZV/25UoAWfHeFdDH4/6ZQoK2K16h90Imv1XrVPb0fSZ8CJwQPDn3ET2t1YgRdV1yl4t+NyadlAaEEcQtaz3pkMl9uNWYSXyKkAGr4wChR2lGstQiNQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tya7ehBUrL/ktV7A5D5DTRWaJve7gFMEM1PGbOP8hTw=;
- b=gaB5yKQMo7/BUArdAhiHwRtpl1tzETf5zoe0mbb21oIgdeZgZkZcNZMBKD/OY7lkF5SUGZoVLRzwkKi3a7LB5J6gYT81Uwty3tcR26N/G3N4r4t8hE2BXOTA7NE843v4OWytzzgTjHT+SyLjBrTqoUy1POwlU3bLsFArbhigLvZmAj/BySW7ZXHa+OXyGws+j43OIMLZq4zcURIFm6jnNytZsOX/OTBHAnxZdsIS6JuiGjts+OKx78WCM/uiP0P1q4jWwzcR3MUa8C8oeLYEdzOYRSl1wJ7wbh0A0PK2Cl0P6A5XnjNMrd9L0VoFiYK8wtPEpWR1T5EVVKuo/FZsdw==
+ bh=QEI+OpHjoE89Jy/GW4E+kXf3BfyZL2K45o72PJh13pE=;
+ b=c6n1+LKuQcplOi5toSRyXTrKkTLNBVqF0m7S3KynJcjBg3mNfi/7+4X5EdlpxgfeGuzuXAodY2ywxS6pvVVO1BtkLt2gZvQ+HV6Gpk4tZTP1MfWBV7AMo5yWFq3WamhOoHFyFOF94ethdDLRLgjMkCYmBcrLjZO7eJzuW/d5dSL+veF0bWNhjk0jQytxrKK12jc2Wuw7ikzWXD+fSFQO+95MqhBI46gi9emNuk4EHr0mvCxQVSSUeKV+/zAGfE+Tsea4fLB5MKQFyx4i1Tc+GP9WLRRJEsVu2LtOpnT4BjjqokxAZDnZrv/NbyJp/kQsRwSfq8mCuX0ufXxasxlSmg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tya7ehBUrL/ktV7A5D5DTRWaJve7gFMEM1PGbOP8hTw=;
- b=w4XZbq0oMp/6yOaaZlIx9m0v30lCZD+AZmULG0DPpOeiD/yuTSdp4SR8QLcuUfTjOOIQr3GK78XfgvR73Z2nCcLkvwNu+AjViD0p1ZqxCACBTuOExXNr8g1sQNcQpX29rZLLprtCud+lpt/bfxyXaVWrZWlSaWyTgEkSPbTZy6w=
-Received: from DM5PR07CA0106.namprd07.prod.outlook.com (2603:10b6:4:ae::35) by
- CY8PR12MB7564.namprd12.prod.outlook.com (2603:10b6:930:97::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5566.15; Wed, 7 Sep 2022 18:12:28 +0000
-Received: from DM6NAM11FT053.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:ae:cafe::ba) by DM5PR07CA0106.outlook.office365.com
- (2603:10b6:4:ae::35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.12 via Frontend
- Transport; Wed, 7 Sep 2022 18:12:28 +0000
+ bh=QEI+OpHjoE89Jy/GW4E+kXf3BfyZL2K45o72PJh13pE=;
+ b=bUQVSqShxhK+a/I4pQUnWQnyzF0AIM9SEzZNMJ816+L1xD3XWF7DjAVjvU8bvb9uNPRsVkTTkPtc/BBStzyQoBMK1NvAxhkvNokOsPa8Bkzun0XSI3n/3+BSVcBXwWfZCKTjBKz9NwOqOnrAyQXZkGi4PFNhdozjWm5CqkFfi2A=
+Received: from DS7PR03CA0054.namprd03.prod.outlook.com (2603:10b6:5:3b5::29)
+ by DM4PR12MB6328.namprd12.prod.outlook.com (2603:10b6:8:a0::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14; Wed, 7 Sep
+ 2022 18:12:32 +0000
+Received: from DM6NAM11FT065.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:3b5:cafe::fb) by DS7PR03CA0054.outlook.office365.com
+ (2603:10b6:5:3b5::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14 via Frontend
+ Transport; Wed, 7 Sep 2022 18:12:29 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,19 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT053.mail.protection.outlook.com (10.13.173.74) with Microsoft SMTP
+ DM6NAM11FT065.mail.protection.outlook.com (10.13.172.109) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5612.13 via Frontend Transport; Wed, 7 Sep 2022 18:12:28 +0000
+ 15.20.5612.13 via Frontend Transport; Wed, 7 Sep 2022 18:12:29 +0000
 Received: from promo.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 7 Sep
- 2022 13:12:26 -0500
+ 2022 13:12:27 -0500
 From: Pavle Kotarac <pavle.kotarac@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 11/21] drm/amd/display: Round cursor width up for MALL
- allocation
-Date: Wed, 7 Sep 2022 14:11:50 -0400
-Message-ID: <20220907181200.54726-11-pavle.kotarac@amd.com>
+Subject: [PATCH 12/21] drm/amd/display: Update viewport position for phantom
+ pipes
+Date: Wed, 7 Sep 2022 14:11:51 -0400
+Message-ID: <20220907181200.54726-12-pavle.kotarac@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220907181200.54726-1-pavle.kotarac@amd.com>
 References: <20220907181200.54726-1-pavle.kotarac@amd.com>
@@ -69,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT053:EE_|CY8PR12MB7564:EE_
-X-MS-Office365-Filtering-Correlation-Id: 09c0ddaf-10b1-4d8c-72ab-08da90fc863d
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT065:EE_|DM4PR12MB6328:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6acbcbf5-a5ed-4e95-97c5-08da90fc86ff
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: tPTxuqJ5XjG00SnqGXZQMN4JAlg5Ovv5eBwAfRPff0RwyMXlI0VYsyhew57fkmPOkKOmA1zALKp3gI03ILBaZR1izZ3S55wrzpkz7s+ngAg+GLsUInAL7azdLVOJ9DnzT+hzr9RKslC/50JFCpboQV7e9LQAfHcU3IeRQpKZjmvmIGzYw83QXijaBzIo+XyJ+JfLsaAf9R6mN3A3PrrSBj3MOO8uQaQ9BqO+XYpUijw8Oq68tK/uP6OKtpUa6gGIhXGIi9QrhJTUvgFuDmvlccURsLNSy6RBVJ2fOGSUkLkAW6y/Sp4/rtYaFHyDi51EBfiWtNQ/wpvQcwvz1t8DRBK9DPczUjJ1duYrYU1xwX9kV1yZpjmYuP4aTlkpYIT1YJETnG+HB0PdgzpUDfI9n88iOJs+MxXhaNwHauxE9J2Ku2S/voq3X2H58Xp07RD2Ww9yrzwHSimz0Naqsq/WHfAPwuDHPFD8ySG6Cj1yjM4Ne2W+e/pzUVhq/0Ti2O0tP9U/hFB0qW1AHIpWHRFQtou3TPEnG4KkxN19i6CwK1Aqup4hP9xzKBdzDvNzAOYirIeeck3j3THq48nSVt4vDM27yvYPmRxv4uF+M1N+0WU9g1mNV0l+6lhNFqFp0vjvLzLabFmD7Y6aCdu8kmm7KpwVgd98Qqyv/7i9LwY9u3+FNnCEB09fpEFKVeHjaWcJYIaR4zcqqhzMKrfZRwoOwvp+YXTpgiuyJ/cVwqXaAdugZHVnBugyJ0WpYVALzO2AqQdSVH4tr1XpnxxsAU8gEa/wqDWcSDr/JyVLeUz1rltih9rNeiZufUl15Ke3xHxb
+X-Microsoft-Antispam-Message-Info: wQb75uZG/wnutdD2u+YozlPaLjbo1t7TWR9QVcHIghXD7AOtu+og9hMoUnwwOa3KHtBshvaWN+1PBGEXk/MrU1V+HVKy4YkMtkga6HfGZ5QkGS509VBggKvoH+8jiCi37DBahoKOYVsRuAFmZVgWekBq74uohMO3YCroJ3N+Y1WhZqF0nsWuSrkqcQUr0I+K5LKwZxoaGdnhCnIghBtmh5UycRmdg4fJofWaLFaIW16xIV3rOM7XJxES5a3lLKnInlasXfqxQCnZbV3LSWgyswb47++RwckbL1Tcbqh1Hy6jShbCMoha6T1DNo0xtRrDnB3Ps1DRQJ8P7CZJQNcpr74/7ZFJADAncYTf0Redhc4W/CzjZYFzx6WTXPpP8xx2ZBUl3cWdR43hjnJCGlGzgQ3RhdiGTxtoVtu8KdqmXTyflWWlHu2z9Ys6a3+t8Y8OOy1PBWVEoJvzHvhoTTy0Gn8fEDPD6EpI2x2HPR/GQxchcvU1DAGke5Dt2RnWlOcwQMPIcv5MrPgX5BoYS8+g6S5dni8auLW5Yag0LxZu+2YD1xzUG+zzPpJcjrwUgWpjPVUAuSMrpj10smxZpImHRz9D/kvVjIC0JSsrx+WFteOAjyalWZNp8rJd03YihwZaQe0yk102YlaXEdgc+EPDdwIfClxvBeIrYVmSsLpjvrkJZGs77PJ0dUQWG2Y+7rvmmn9W0kj44V5AGrJBP63tiRTE55OYD/Mz1inpwK3b5ia2q9RwYk65S71XwXPraJcUrCuLcUDHQy9Y+/lwUr7YY6x8lYEK4Osh8zeTXlPb1AE=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(39860400002)(396003)(136003)(346002)(376002)(40470700004)(36840700001)(46966006)(16526019)(8676002)(4326008)(70206006)(6916009)(316002)(6666004)(54906003)(83380400001)(82310400005)(1076003)(36756003)(86362001)(47076005)(426003)(26005)(2616005)(336012)(186003)(70586007)(8936002)(40480700001)(2906002)(356005)(40460700003)(44832011)(36860700001)(81166007)(5660300002)(7696005)(82740400003)(478600001)(41300700001)(36900700001);
+ SFS:(13230016)(4636009)(136003)(39860400002)(346002)(396003)(376002)(36840700001)(40470700004)(46966006)(36860700001)(356005)(40460700003)(81166007)(82740400003)(316002)(6916009)(54906003)(15650500001)(5660300002)(44832011)(8936002)(70586007)(70206006)(8676002)(4326008)(2906002)(16526019)(336012)(186003)(2616005)(47076005)(426003)(41300700001)(40480700001)(83380400001)(1076003)(478600001)(6666004)(82310400005)(7696005)(86362001)(26005)(36756003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2022 18:12:28.3741 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 09c0ddaf-10b1-4d8c-72ab-08da90fc863d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2022 18:12:29.6308 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6acbcbf5-a5ed-4e95-97c5-08da90fc86ff
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT053.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT065.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7564
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6328
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,105 +102,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
  qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- Taimur Hassan <Syed.Hassan@amd.com>, solomon.chiu@amd.com,
- Aurabindo.Pillai@amd.com, Alvin Lee <Alvin.Lee2@amd.com>, wayne.lin@amd.com,
+ solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, "Lee,
+ Alvin" <Alvin.Lee2@amd.com>, wayne.lin@amd.com, Jun Lei <Jun.Lei@amd.com>,
  Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
  Pavle Kotarac <Pavle.Kotarac@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Taimur Hassan <Syed.Hassan@amd.com>
+From: "Lee, Alvin" <Alvin.Lee2@amd.com>
 
-[Why & How]
-When calculating cursor size for MALL allocation, the cursor width should
-be the actual width rounded up to 64 alignment. Additionally, the bit
-depth should vary depending on color format.
+[Description]
+In some cases the viewport position of the
+main pipes can change without triggering a full update.
+In this case the subvp phantom viewports must be updated accordingly.
 
-Reviewed-by: Alvin Lee <Alvin.Lee2@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Pavle Kotarac <Pavle.Kotarac@amd.com>
-Signed-off-by: Taimur Hassan <Syed.Hassan@amd.com>
+Signed-off-by: Alvin Lee <Alvin.Lee2@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dcn32/dcn32_hubp.c | 24 ++++++++++++++++++-
- .../drm/amd/display/dc/dcn32/dcn32_hwseq.c    | 24 ++++++++++++++++++-
- 2 files changed, 46 insertions(+), 2 deletions(-)
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    |  7 ++--
+ .../drm/amd/display/dc/dcn32/dcn32_hwseq.c    | 32 +++++++++++++++++++
+ .../drm/amd/display/dc/dcn32/dcn32_hwseq.h    |  4 +++
+ .../gpu/drm/amd/display/dc/dcn32/dcn32_init.c |  1 +
+ .../gpu/drm/amd/display/dc/inc/hw_sequencer.h |  5 +++
+ 5 files changed, 47 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hubp.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hubp.c
-index 6ec1c52535b9..2038cbda33f7 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hubp.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hubp.c
-@@ -103,6 +103,11 @@ void hubp32_cursor_set_attributes(
- 	enum cursor_lines_per_chunk lpc = hubp2_get_lines_per_chunk(
- 			attr->width, attr->color_format);
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+index 6271caca4d9a..6f8c344e321d 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+@@ -1898,8 +1898,11 @@ void dcn20_post_unlock_program_front_end(
+ 			 * can underflow due to HUBP_VTG_SEL programming if done in the regular front end
+ 			 * programming sequence).
+ 			 */
+-			if (pipe->stream && pipe->stream->mall_stream_config.type == SUBVP_PHANTOM)
+-					dcn20_program_pipe(dc, pipe, context);
++			if (pipe->stream && pipe->stream->mall_stream_config.type == SUBVP_PHANTOM) {
++				if (dc->hwss.update_phantom_vp_position)
++					dc->hwss.update_phantom_vp_position(dc, context, pipe);
++				dcn20_program_pipe(dc, pipe, context);
++			}
+ 		}
+ 	}
  
-+	//Round cursor width up to next multiple of 64
-+	uint32_t cursor_width = ((attr->width + 63) / 64) * 64;
-+	uint32_t cursor_height = attr->height;
-+	uint32_t cursor_size = cursor_width * cursor_height;
-+
- 	hubp->curs_attr = *attr;
- 
- 	REG_UPDATE(CURSOR_SURFACE_ADDRESS_HIGH,
-@@ -126,7 +131,24 @@ void hubp32_cursor_set_attributes(
- 			 /* used to shift the cursor chunk request deadline */
- 			CURSOR0_CHUNK_HDL_ADJUST, 3);
- 
--	if (attr->width * attr->height * 4 > 16384)
-+	switch (attr->color_format) {
-+	case CURSOR_MODE_MONO:
-+		cursor_size /= 2;
-+		break;
-+	case CURSOR_MODE_COLOR_1BIT_AND:
-+	case CURSOR_MODE_COLOR_PRE_MULTIPLIED_ALPHA:
-+	case CURSOR_MODE_COLOR_UN_PRE_MULTIPLIED_ALPHA:
-+		cursor_size *= 4;
-+		break;
-+
-+	case CURSOR_MODE_COLOR_64BIT_FP_PRE_MULTIPLIED:
-+	case CURSOR_MODE_COLOR_64BIT_FP_UN_PRE_MULTIPLIED:
-+	default:
-+		cursor_size *= 8;
-+		break;
-+	}
-+
-+	if (cursor_size > 16384)
- 		REG_UPDATE(DCHUBP_MALL_CONFIG, USE_MALL_FOR_CURSOR, true);
- 	else
- 		REG_UPDATE(DCHUBP_MALL_CONFIG, USE_MALL_FOR_CURSOR, false);
 diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
-index 769171ab8ef6..dbf2d7cc96c5 100644
+index dbf2d7cc96c5..449459ca5a72 100644
 --- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
 +++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
-@@ -741,7 +741,29 @@ void dcn32_update_mall_sel(struct dc *dc, struct dc_state *context)
- 		struct hubp *hubp = pipe->plane_res.hubp;
- 
- 		if (pipe->stream && pipe->plane_state && hubp && hubp->funcs->hubp_update_mall_sel) {
--			if (hubp->curs_attr.width * hubp->curs_attr.height * 4 > 16384)
-+			//Round cursor width up to next multiple of 64
-+			int cursor_width = ((hubp->curs_attr.width + 63) / 64) * 64;
-+			int cursor_height = hubp->curs_attr.height;
-+			int cursor_size = cursor_width * cursor_height;
+@@ -1301,3 +1301,35 @@ void dcn32_update_phy_state(struct dc_state *state, struct pipe_ctx *pipe_ctx,
+ 	} else
+ 		BREAK_TO_DEBUGGER();
+ }
 +
-+			switch (hubp->curs_attr.color_format) {
-+			case CURSOR_MODE_MONO:
-+				cursor_size /= 2;
-+				break;
-+			case CURSOR_MODE_COLOR_1BIT_AND:
-+			case CURSOR_MODE_COLOR_PRE_MULTIPLIED_ALPHA:
-+			case CURSOR_MODE_COLOR_UN_PRE_MULTIPLIED_ALPHA:
-+				cursor_size *= 4;
-+				break;
++/* For SubVP the main pipe can have a viewport position change
++ * without a full update. In this case we must also update the
++ * viewport positions for the phantom pipe accordingly.
++ */
++void dcn32_update_phantom_vp_position(struct dc *dc,
++		struct dc_state *context,
++		struct pipe_ctx *phantom_pipe)
++{
++	uint8_t i;
++	struct dc_plane_state *phantom_plane = phantom_pipe->plane_state;
 +
-+			case CURSOR_MODE_COLOR_64BIT_FP_PRE_MULTIPLIED:
-+			case CURSOR_MODE_COLOR_64BIT_FP_UN_PRE_MULTIPLIED:
-+			default:
-+				cursor_size *= 8;
-+				break;
++	for (i = 0; i < dc->res_pool->pipe_count; i++) {
++		struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
++
++		if (pipe->stream && pipe->stream->mall_stream_config.type == SUBVP_MAIN &&
++				pipe->stream->mall_stream_config.paired_stream == phantom_pipe->stream) {
++			if (pipe->plane_state && pipe->plane_state->update_flags.bits.position_change) {
++
++				phantom_plane->src_rect.x = pipe->plane_state->src_rect.x;
++				phantom_plane->src_rect.y = pipe->plane_state->src_rect.y;
++				phantom_plane->clip_rect.x = pipe->plane_state->clip_rect.x;
++				phantom_plane->dst_rect.x = pipe->plane_state->dst_rect.x;
++				phantom_plane->dst_rect.y = pipe->plane_state->dst_rect.y;
++
++				phantom_pipe->plane_state->update_flags.bits.position_change = 1;
++				resource_build_scaling_params(phantom_pipe);
++				return;
 +			}
-+
-+			if (cursor_size > 16384)
- 				cache_cursor = true;
++		}
++	}
++}
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.h b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.h
+index 221e31144d50..150d541f35b4 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.h
+@@ -87,4 +87,8 @@ bool dcn32_is_dp_dig_pixel_rate_div_policy(struct pipe_ctx *pipe_ctx);
+ void dcn32_update_phy_state(struct dc_state *state, struct pipe_ctx *pipe_ctx,
+ 		enum phy_state target_state);
  
- 			if (pipe->stream->mall_stream_config.type == SUBVP_PHANTOM) {
++void dcn32_update_phantom_vp_position(struct dc *dc,
++		struct dc_state *context,
++		struct pipe_ctx *phantom_pipe);
++
+ #endif /* __DC_HWSS_DCN32_H__ */
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_init.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_init.c
+index 28d220218133..c554929471af 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_init.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_init.c
+@@ -105,6 +105,7 @@ static const struct hw_sequencer_funcs dcn32_funcs = {
+ 	.subvp_pipe_control_lock = dcn32_subvp_pipe_control_lock,
+ 	.update_visual_confirm_color = dcn20_update_visual_confirm_color,
+ 	.update_phy_state = dcn32_update_phy_state,
++	.update_phantom_vp_position = dcn32_update_phantom_vp_position,
+ };
+ 
+ static const struct hwseq_private_funcs dcn32_private_funcs = {
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h b/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h
+index 52b4350c9cd8..d7a7b2790143 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h
+@@ -247,6 +247,11 @@ struct hw_sequencer_funcs {
+ 
+ 	void (*update_phy_state)(struct dc_state *state, struct pipe_ctx *pipe_ctx, enum phy_state target_state);
+ 
++
++	void (*update_phantom_vp_position)(struct dc *dc,
++			struct dc_state *context,
++			struct pipe_ctx *phantom_pipe);
++
+ 	void (*commit_subvp_config)(struct dc *dc, struct dc_state *context);
+ 	void (*subvp_pipe_control_lock)(struct dc *dc,
+ 			struct dc_state *context,
 -- 
 2.34.1
 
