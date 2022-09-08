@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42C2E5B20CD
-	for <lists+amd-gfx@lfdr.de>; Thu,  8 Sep 2022 16:39:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 147DF5B20D2
+	for <lists+amd-gfx@lfdr.de>; Thu,  8 Sep 2022 16:39:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B54F210E608;
-	Thu,  8 Sep 2022 14:39:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8434E10E6A9;
+	Thu,  8 Sep 2022 14:39:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2059.outbound.protection.outlook.com [40.107.237.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9CDD10E647
- for <amd-gfx@lists.freedesktop.org>; Thu,  8 Sep 2022 14:39:00 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2078.outbound.protection.outlook.com [40.107.94.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C58FB10EB31
+ for <amd-gfx@lists.freedesktop.org>; Thu,  8 Sep 2022 14:39:19 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=L+vv3p6MmHH2EVVdapVYyTYMvHsvZfiYA5ibkUPod1eRy3SD4vSQL8XAXRceR0XspXVXKolrZrOLNZRMXGeayHlL9dsRWtCOEdAZmlg6TnjCQaVIVBCmbRC/PdKZeFTQrcSuEirALIPC6DoORavFNanBIqhtmhnatKo/9N4wpTEcA4fD9PaHOhxNhJnCAqStFDzeY1FYoJNipAUn/k8Q6g2Tux1gI6n2NqLnIaEm+rlBs7nV/0q1GD7zf7pMuiMUNUOP0S53Xs6H+XnzK0lEjIOGQl3mhOaRyvVsmsVH3Fb0d34eRJ2BcQ84eeDlsp2qw/SN7jcXrLuaVDEHu2QfYg==
+ b=BcfSpeIEsHSs3lzsba7IN6Dbq2eVsa+ZE6TsQ3ssXwJ7W+S1lmOMTpWdibM3ptWDBAjZKXicFhLnZxlYxQF6Cc/Vt/3NLQ+1g609qFDGkD/xQ/MGOM4UxMbGNjO0c0RrYUGJD2RX+E86QFfP6BR7q+Pck4aT63Sv5akSfEVQzew1dUzIVUzei1xFlIYcu8B5UizRu3GIkCMqb3XjQ4E54Kmg43zVI67ksnjitdqQlJGA46nUt/wTatK3kVjeOzWwbPcKO+EuJMky9tfUziu/C+N9fJWI3NoR0pxkwv/GhtF5QFgNR20cccGpxiojZJu6wAocRtCf4cobtkiwmCjPEA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0oavR01a4x19Vv5Okf6mBoWIbQxIJmXnvkLeppEn1uQ=;
- b=KDwytEY2CHrRlxeEtauUEd+dWdb2/KdDiGpO4XakQj70VXVIq8zNQYIUkvUtJv6HZGHR1RQxi/dWcR2EU3O1ANYlEzwPbVpcjcpOYZbyGDCrJ6y7Cuy6TOLRNpbaIONsLTmCJiJRRGUngaePCKAI1YyZFx7MDSPz5YfvsVYa2Ay3H/lGs/7OjGlNo+oJBHHillFfypErbWW719GNwWSuROMge0SKCCggTmP0KETALYIE5sgW5xndExGTiqZt06tyTCvaG6mAj5jHsrwjJxL5gWz1N66eeluUC7bfnY2cDT466xfZWJlYS6SxQ/spr41V8fmaaSvne5wDNQqspnrb/A==
+ bh=idhN8taZHTTgkm+vH94bGHc6PSaE+eRvo9kCzzp2y20=;
+ b=mzhbZ+ko/d3Pt15gXfiO2+6VHOKthqQVSKTDOhD34TDYOvfWspHIzNAqkLlT277LpifLCUyzO6qqK85EZde3ILy26IoYkdeyBu9Gq51STbcLnVmFFtIEgYsSDCmpwWFPvjwgOvlzSEPIphUEohlOxWA17fq1rzU7aw5igfamZpN0JxrrHKGXF77TIjQ5rAqKuh0dyqO4Po1M+uO7xdKeQqW0Ta0oSLbqlmrIxdfbsv1JcgTSduFlglZBECUnclUNBJ6bqzbIko9leMnbMYdLOMPSTYfUj9hPbI8RwYW6aZAqDCQ1j0cEzdQFNUnYuJmYkrHqDTIu8rPaUlFbkuUlFw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0oavR01a4x19Vv5Okf6mBoWIbQxIJmXnvkLeppEn1uQ=;
- b=OyNvy3hmPuCE253EQ/pUzlcKH45nLTUO0vfpRfPF1jNmMdAOiNA0Hv2eeJD3CozEQd8kN4tfNFtblpSA1mfuhqh5MbGZRkXLUNjM4lzXW5gwMi8qhi1S8qt6WiBNCjKKqQGrsLYeBo088SqbtQKvGdljAcnVn+VJ/jnHAUBgYp4=
-Received: from BL1PR13CA0101.namprd13.prod.outlook.com (2603:10b6:208:2b9::16)
- by DM6PR12MB4123.namprd12.prod.outlook.com (2603:10b6:5:21f::23) with
+ bh=idhN8taZHTTgkm+vH94bGHc6PSaE+eRvo9kCzzp2y20=;
+ b=vu6U6Pxe6xEU/jPPnqwhG91ADoIpghRXXdyX8jZn8bowYcEhJbHdc6SolW89XElpBc4ssNAZs3Kcwgs3P3DXrCkkK+xVXZzgsOtnBnI6CbngnibcMf60Suy8FuwM2bSzrtL37IfYUGyu666wjCq69YHeMYXDS5E+mee9ulXD8QY=
+Received: from BN0PR03CA0001.namprd03.prod.outlook.com (2603:10b6:408:e6::6)
+ by MN2PR12MB4047.namprd12.prod.outlook.com (2603:10b6:208:1de::20) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.12; Thu, 8 Sep
- 2022 14:38:58 +0000
-Received: from BL02EPF0000C409.namprd05.prod.outlook.com
- (2603:10b6:208:2b9:cafe::40) by BL1PR13CA0101.outlook.office365.com
- (2603:10b6:208:2b9::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.19 via Frontend
- Transport; Thu, 8 Sep 2022 14:38:57 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.12; Thu, 8 Sep
+ 2022 14:39:17 +0000
+Received: from BL02EPF0000C402.namprd05.prod.outlook.com
+ (2603:10b6:408:e6:cafe::57) by BN0PR03CA0001.outlook.office365.com
+ (2603:10b6:408:e6::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14 via Frontend
+ Transport; Thu, 8 Sep 2022 14:39:17 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,20 +45,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL02EPF0000C409.mail.protection.outlook.com (10.167.241.11) with Microsoft
+ BL02EPF0000C402.mail.protection.outlook.com (10.167.241.4) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5612.10 via Frontend Transport; Thu, 8 Sep 2022 14:38:57 +0000
+ 15.20.5612.10 via Frontend Transport; Thu, 8 Sep 2022 14:39:17 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 8 Sep
- 2022 09:38:53 -0500
+ 2022 09:38:54 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 1/4] drm/amdgpu: use proper DC check in
- amdgpu_display_supported_domains()
-Date: Thu, 8 Sep 2022 10:38:05 -0400
-Message-ID: <20220908143808.53981-1-alexander.deucher@amd.com>
+Subject: [PATCH 2/4] drm/amdgpu: rework SR-IOV virtual display handling
+Date: Thu, 8 Sep 2022 10:38:06 -0400
+Message-ID: <20220908143808.53981-2-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.37.2
+In-Reply-To: <20220908143808.53981-1-alexander.deucher@amd.com>
+References: <20220908143808.53981-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -67,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0000C409:EE_|DM6PR12MB4123:EE_
-X-MS-Office365-Filtering-Correlation-Id: d2cf92b7-b7b7-49e3-27bd-08da91a7dce0
+X-MS-TrafficTypeDiagnostic: BL02EPF0000C402:EE_|MN2PR12MB4047:EE_
+X-MS-Office365-Filtering-Correlation-Id: a89decbe-6486-4829-89de-08da91a7e86c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LlWIePtTzKXUwd5EHm5tnvMe+ZfaiT+haNkyC+LWxd3gPIplR4JXSMA8ozdRijZGflrxPx5y9O4KF4IM0eRW6KHxROphG9IqTP/ZOen7UecvmfzUkYZPIgTqKZXY6Pf7bvSthNhXyVEnPqtmWZtl58kZYEG6JOCE2V1mYLWGhbTEQd6rw1POzUlMY7gJdMSLOg2LI05jOrXov4yE7qi6mrBgO4RRx5zQXqs5b/P21mEj+f3D89jfNzkZHafDVytQODZOAKZKF1aZwI/U9LK1MxhopZX9dUSwnZLO+8tMFJRHM7n45UO8VAH+pS4tfbHdk2hIJH5xAYZ0iaqAd5z9xWtnR4JB87pecGvOHnKfApXv/qh23rSYfnZj7GSxMVZEEzInjtu/6Jkr52VeO82qdvGUJj9+ABbYXvgMSgfLKqaM9uqs27ISoff1xxtkji9alB0udBo9dC4DrkT9Cues/2OoMBkZ/64O2RjGgzsP+WGGoOARmjtCuA56KMgu04nrLdX0FwtkOQX7vzo5un8pqwg/R1Pl+GcCCt/e00H1D9m3d0ApSUP1afqXvNiJBirursLDXeJt8usZocDPSLeN7wpKmmkMcvmv5VyUrUs4kIBOIUmg3JBH4trn3EKLQRdl+HX5sve2Smdf+/4RPnfliDADH4USzI6EczthYGkZdAQY6wvut7CKp5PIBKWkh8vOTAp++voRn6GSrEnb2CV4Po7xkii+mHqRFKLlwUjmzc5Bgjfdvub+mNCJvP5Qy45AX7x9+zIkl8nqxim11j7i02fQFAlnAwam0PW5uGmsqR0khKAFYi+/HVL2eJlsj7AZ
+X-Microsoft-Antispam-Message-Info: u1+eIzltrTs6Xl7jjWjBGKWhQ7bmqHyLIIe/PlNSs89qpmiQ3QitvIwc9MVTfvSEjjP21raSoxelr6CfN1CByFN+7jFuhECfLVLNXY6U760dXsm8cKJxztko8skwvfkXwC+9v4fL4E+MLjUKv2PJJVQDDcrDi7rJNrrn7S21CkgKfkEBNkA7XKeJ5u4dOpG3Qb/C/+SrfOmMZjfYPcaqZ0P8w4QDBdqMDBT2VNgXXX3TCcguBwx7Prl1SD2RMlwkhxIBLomVshGVIjQJYzhVkre+pV23T2qwWoBdni+loYK1l3op0J6efl7DO6oeBpbDtPwzYs/fou2mW3d8n56NeLRiKTYaeLI3EggHTOVA6oWdi1sHARclslrm5DtuQ6LCKZdjqIHVGnluv08UbWZCMLiqiWYBi0vyaGnkDGAzoIxn/AV8oeGIztPQ9kG361AXzYnxAoZnbIwCXsddoGTLOxbYV9g//KtSeCMr7vfCxFeReCNC2nSAMZHJrCPWABRvA+FwTA2U2l/ABeNFNVkaCMGnJviANrwU5pvd6ITtPAzec92M6Q3J0kWIxSuSkzdi65iL+rwca6fAALuCAgHaNjVGBkb7eBh+l/zFGSZ71iOwia1kiANsjGSzEO9C/PBzsQQfvRFRuviK1ma0kPAFwKRrKafa0tYGAGYLKQeCuEVsPl4f+NWApCyx7xbaEQfZ7O5fPJaj0lrAG7SYzBSegEjyGznUNLgqCW9t/75xQO10l1XbHChN1X6cGPEkYaRzhuaCsWXJjPfFpsiNrJPOQuCu++Q37wRJ5EHwBC6OTYDJW8wjoY8+6YzHA4sBgS8R
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230016)(4636009)(39860400002)(136003)(376002)(396003)(346002)(46966006)(40470700004)(36840700001)(82310400005)(82740400003)(478600001)(26005)(86362001)(41300700001)(7696005)(6666004)(2616005)(81166007)(40480700001)(16526019)(336012)(356005)(1076003)(83380400001)(186003)(5660300002)(70206006)(36860700001)(47076005)(40460700003)(36756003)(4326008)(8936002)(426003)(6916009)(2906002)(70586007)(316002)(8676002)(36900700001);
+ SFS:(13230016)(4636009)(136003)(39860400002)(346002)(396003)(376002)(46966006)(36840700001)(40470700004)(36756003)(26005)(6666004)(7696005)(41300700001)(83380400001)(478600001)(426003)(47076005)(186003)(336012)(16526019)(1076003)(316002)(82310400005)(2616005)(2906002)(40480700001)(5660300002)(8936002)(40460700003)(6916009)(70586007)(8676002)(70206006)(4326008)(82740400003)(86362001)(36860700001)(356005)(81166007)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2022 14:38:57.4465 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d2cf92b7-b7b7-49e3-27bd-08da91a7dce0
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2022 14:39:17.0245 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a89decbe-6486-4829-89de-08da91a7e86c
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0000C409.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0000C402.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4123
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4047
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,30 +103,141 @@ Cc: Alex Deucher <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-amdgpu_device_asic_has_dc_support() just checks the asic itself.
-amdgpu_device_has_dc_support() is a runtime check which not
-only checks the asic, but also other things in the driver
-like whether virtual display is enabled.  We want the latter
-here.
+virtual display is enabled unconditionally in SR-IOV, but
+without specifying the virtual_display module, the number
+of crtcs defaults to 0.  Set a single display by default
+for SR-IOV if the virtual_display parameter is not set.
+Only enable virtual display by default on SR-IOV on asics
+which actually have display hardware.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  2 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    | 13 +++++++++++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 18 +++++++++++++++---
+ drivers/gpu/drm/amd/amdgpu/vi.c               |  6 ++++--
+ 4 files changed, 32 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-index c20922a5af9f..b0fa5d065d50 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-@@ -514,7 +514,7 @@ uint32_t amdgpu_display_supported_domains(struct amdgpu_device *adev,
- 	 */
- 	if ((bo_flags & AMDGPU_GEM_CREATE_CPU_GTT_USWC) &&
- 	    amdgpu_bo_support_uswc(bo_flags) &&
--	    amdgpu_device_asic_has_dc_support(adev->asic_type) &&
-+	    amdgpu_device_has_dc_support(adev) &&
- 	    adev->mode_info.gpu_vm_support)
- 		domain |= AMDGPU_GEM_DOMAIN_GTT;
- #endif
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index 97d095a86410..2e44c9bf336a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -1123,6 +1123,8 @@ void amdgpu_device_indirect_wreg64(struct amdgpu_device *adev,
+ bool amdgpu_device_asic_has_dc_support(enum amd_asic_type asic_type);
+ bool amdgpu_device_has_dc_support(struct amdgpu_device *adev);
+ 
++void amdgpu_device_set_sriov_virtual_display(struct amdgpu_device *adev);
++
+ int amdgpu_device_pre_asic_reset(struct amdgpu_device *adev,
+ 				 struct amdgpu_reset_context *reset_context);
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 62b26f0e37b0..8a233ef87a7c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -1915,6 +1915,16 @@ static void amdgpu_device_enable_virtual_display(struct amdgpu_device *adev)
+ 	}
+ }
+ 
++void amdgpu_device_set_sriov_virtual_display(struct amdgpu_device *adev)
++{
++	if (amdgpu_sriov_vf(adev) && !adev->enable_virtual_display) {
++		adev->mode_info.num_crtc = 1;
++		adev->enable_virtual_display = true;
++		DRM_INFO("virtual_display:%d, num_crtc:%d\n",
++			 adev->enable_virtual_display, adev->mode_info.num_crtc);
++	}
++}
++
+ /**
+  * amdgpu_device_parse_gpu_info_fw - parse gpu info firmware
+  *
+@@ -3319,8 +3329,7 @@ bool amdgpu_device_asic_has_dc_support(enum amd_asic_type asic_type)
+  */
+ bool amdgpu_device_has_dc_support(struct amdgpu_device *adev)
+ {
+-	if (amdgpu_sriov_vf(adev) ||
+-	    adev->enable_virtual_display ||
++	if (adev->enable_virtual_display ||
+ 	    (adev->harvest_ip_mask & AMD_HARVEST_IP_DMU_MASK))
+ 		return false;
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+index 248c6708613c..fa7131605965 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+@@ -1704,9 +1704,15 @@ static int amdgpu_discovery_set_smu_ip_blocks(struct amdgpu_device *adev)
+ 	return 0;
+ }
+ 
++static void amdgpu_discovery_set_sriov_display(struct amdgpu_device *adev)
++{
++	amdgpu_device_set_sriov_virtual_display(adev);
++	amdgpu_device_ip_block_add(adev, &amdgpu_vkms_ip_block);
++}
++
+ static int amdgpu_discovery_set_display_ip_blocks(struct amdgpu_device *adev)
+ {
+-	if (adev->enable_virtual_display || amdgpu_sriov_vf(adev)) {
++	if (adev->enable_virtual_display) {
+ 		amdgpu_device_ip_block_add(adev, &amdgpu_vkms_ip_block);
+ 		return 0;
+ 	}
+@@ -1734,7 +1740,10 @@ static int amdgpu_discovery_set_display_ip_blocks(struct amdgpu_device *adev)
+ 		case IP_VERSION(3, 1, 6):
+ 		case IP_VERSION(3, 2, 0):
+ 		case IP_VERSION(3, 2, 1):
+-			amdgpu_device_ip_block_add(adev, &dm_ip_block);
++			if (amdgpu_sriov_vf(adev))
++				amdgpu_discovery_set_sriov_display(adev);
++			else
++				amdgpu_device_ip_block_add(adev, &dm_ip_block);
+ 			break;
+ 		default:
+ 			dev_err(adev->dev,
+@@ -1747,7 +1756,10 @@ static int amdgpu_discovery_set_display_ip_blocks(struct amdgpu_device *adev)
+ 		case IP_VERSION(12, 0, 0):
+ 		case IP_VERSION(12, 0, 1):
+ 		case IP_VERSION(12, 1, 0):
+-			amdgpu_device_ip_block_add(adev, &dm_ip_block);
++			if (amdgpu_sriov_vf(adev))
++				amdgpu_discovery_set_sriov_display(adev);
++			else
++				amdgpu_device_ip_block_add(adev, &dm_ip_block);
+ 			break;
+ 		default:
+ 			dev_err(adev->dev,
+diff --git a/drivers/gpu/drm/amd/amdgpu/vi.c b/drivers/gpu/drm/amd/amdgpu/vi.c
+index f6ffd7c96ff9..12ef782eb478 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vi.c
++++ b/drivers/gpu/drm/amd/amdgpu/vi.c
+@@ -2111,6 +2111,8 @@ void vi_set_virt_ops(struct amdgpu_device *adev)
+ 
+ int vi_set_ip_blocks(struct amdgpu_device *adev)
+ {
++	amdgpu_device_set_sriov_virtual_display(adev);
++
+ 	switch (adev->asic_type) {
+ 	case CHIP_TOPAZ:
+ 		/* topaz has no DCE, UVD, VCE */
+@@ -2130,7 +2132,7 @@ int vi_set_ip_blocks(struct amdgpu_device *adev)
+ 		amdgpu_device_ip_block_add(adev, &gfx_v8_0_ip_block);
+ 		amdgpu_device_ip_block_add(adev, &sdma_v3_0_ip_block);
+ 		amdgpu_device_ip_block_add(adev, &pp_smu_ip_block);
+-		if (adev->enable_virtual_display || amdgpu_sriov_vf(adev))
++		if (adev->enable_virtual_display)
+ 			amdgpu_device_ip_block_add(adev, &amdgpu_vkms_ip_block);
+ #if defined(CONFIG_DRM_AMD_DC)
+ 		else if (amdgpu_device_has_dc_support(adev))
+@@ -2150,7 +2152,7 @@ int vi_set_ip_blocks(struct amdgpu_device *adev)
+ 		amdgpu_device_ip_block_add(adev, &gfx_v8_0_ip_block);
+ 		amdgpu_device_ip_block_add(adev, &sdma_v3_0_ip_block);
+ 		amdgpu_device_ip_block_add(adev, &pp_smu_ip_block);
+-		if (adev->enable_virtual_display || amdgpu_sriov_vf(adev))
++		if (adev->enable_virtual_display)
+ 			amdgpu_device_ip_block_add(adev, &amdgpu_vkms_ip_block);
+ #if defined(CONFIG_DRM_AMD_DC)
+ 		else if (amdgpu_device_has_dc_support(adev))
 -- 
 2.37.2
 
