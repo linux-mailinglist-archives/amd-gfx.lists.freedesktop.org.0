@@ -1,70 +1,69 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A6D85B7FEE
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 Sep 2022 05:56:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 846C05B7FF3
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 Sep 2022 05:57:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D551910E821;
-	Wed, 14 Sep 2022 03:56:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59BCA10E822;
+	Wed, 14 Sep 2022 03:57:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2062.outbound.protection.outlook.com [40.107.244.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1116010E821
- for <amd-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 03:56:52 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C54BD10E822
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 03:57:23 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EmRXd45gpJ6zoHm8axAe+KE4B/6iQs7rLx8OOInE/JDw2QVieDQOGo/i/bw7MmYCvQViInkWzpZ/DBSLCelJOlclsclu3nSQCgJCAvWXYcjTmhr5b6wcn4groY5S+eytw8vQGEFRtyYd6UoVIt8m0nKVjyekp02QmjSyGLDa2TMlO5QsJtOazV7l9bw7BJPjvjN+ux/Mi6oP51fcnegy/cxu4TMP+nckJ9yL8v6lhrIv2HTHYaGnXCYP+nAQ6cJWQsuO37oUAhpmA+1eD8cFfqywIeEepFDfPZJhgYMwCVIrBSoTliNMg0bQKiWqICYBCyBArxi+nqC9ss6kQaThFw==
+ b=NsqwpY90E4jVCw6Sv4Xko+3NtX6i0T2gwKPyDthehoLRLvlbkML0w50q1Nwd0OgUQfK7iTSzlYhcdtGPj5D6o+sN1SaFuEKLh+uhVK5T8NM1XPM+LZ7RZYftTS48FE56tjKWnaYR23DCCwWh9so7lUGdaenZ8A/OJd10yKzvsE2XKE4LqI0H2Swk43JVIapkX3zk5XNT/H/c8S6o5A+8xRmtRJu1dHE06BAzBfagMsL1f80VeWUJY130GRC+/XqgjO3gvs0bWCBOw14rjj7uFKofNXJiPcCFSJbjbMADTGWTCfSvPVaj3SYcZHSv3tLSNsdAsEgcLfjABB8lnZIODQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=epxRgeucK/L0gy+UM5eyiCWDm3mZzA8O4Z3MPeg/poY=;
- b=WpuvtMenJ6XQwpV6bv1ulcXM9TF3MdWx2/7QHEc7xS5hzqoaUJ2wrG/wcyFH4fxujKXR5NzTV6CQLkeXJ6e+FFGX6KfO/hIKnehmqcbNnUB19sv01lzTuZgeCuFYSJ6QW5rOwkzmP47nRlkwtWiU92JTd3Tl7zqUS+aMl11/ZGK5QkYwmZZ7zbGGHCS3LklyQGm5koU1rJ6aXVCVl+95D6eIZGugDFA0DOU43vDA9GKSR07Gm6xJ+8lpkTv3Msuj+trt9VUjLACiT4Z59Op4sWp87/j8Mef1sZx8TGCp/lEX7u9+GfpHIqhKjKFI5oJU+U2JhmDt6jQT+2gmXY746g==
+ bh=Agz2kjnV0upFMGPyOl3LQMVNbYvt3lq4VsYSrOBARFU=;
+ b=fCNDPzHaSPT1vA8ic9QELaNmqYzjNv319ZdOF5ejLPCceeH7OPu/y7Sm2WZKn1YdUsoQr9PeSCcr5PVs+La341awrRH/7CZatOOZ6e/ckPjsi+kslyBOQlCOde10oj72WCih3LMHSDexUIkcwJgV5XvRCbyloD/cEBXVsmEz7GA/4xEANEY6Us2XinBoKvS5EzEMCf07eHfXEjevTxYGJLEmKrAiLWTLapwTs+MUvxvbzh0Tn1qF5wjrt+WGpfS/Xl9S2ACcuI8S34AebZ7wD/+lS2ao8LpXNSYV3Uvlyw2mwm1oFdmYpf/QfzhptGFfU6VrI1Sr3kanWhs/QEGOsQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=epxRgeucK/L0gy+UM5eyiCWDm3mZzA8O4Z3MPeg/poY=;
- b=b785N4FCe6hd4jii1uwHITZf5vPQAgljm2vUVjpqgTlHLXvgKRGP8p9kdsOcj0rOlwbSlxf0AUE3D5WK8lLMHfhb7si2N++ROEsGK5t/Tmh2pBRcGo519a4NsYnVVXIpOI3VRVwKxK+NsS0lp/5rdF9pTT+Bs5qXVQKHO9GissY=
-Received: from BN9PR03CA0267.namprd03.prod.outlook.com (2603:10b6:408:ff::32)
- by MN0PR12MB6343.namprd12.prod.outlook.com (2603:10b6:208:3c0::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.22; Wed, 14 Sep
- 2022 03:56:50 +0000
-Received: from BN8NAM11FT102.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:ff:cafe::62) by BN9PR03CA0267.outlook.office365.com
- (2603:10b6:408:ff::32) with Microsoft SMTP Server (version=TLS1_2,
+ bh=Agz2kjnV0upFMGPyOl3LQMVNbYvt3lq4VsYSrOBARFU=;
+ b=oCV4IYvxa7Lm8E9ZyDPW9rNfwpoD+APmcP4MeOqcm9W4X7AI32bAcRYOwnOMt4GyP1U5qa5lQkAmHD8OrZ4Cod58S4O0bagqWFGTQDXgfwXFFTyBhJp34YTETEzslIytUAuxte1nD5/z2M3bn3FrhxNOWV/qnyVm3e2QMnkudfk=
+Received: from BN8PR15CA0035.namprd15.prod.outlook.com (2603:10b6:408:c0::48)
+ by DM4PR12MB5890.namprd12.prod.outlook.com (2603:10b6:8:66::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14; Wed, 14 Sep
+ 2022 03:57:20 +0000
+Received: from BN8NAM11FT065.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:c0:cafe::6e) by BN8PR15CA0035.outlook.office365.com
+ (2603:10b6:408:c0::48) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.12 via Frontend
- Transport; Wed, 14 Sep 2022 03:56:50 +0000
+ Transport; Wed, 14 Sep 2022 03:57:20 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BN8NAM11FT102.mail.protection.outlook.com (10.13.177.27) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT065.mail.protection.outlook.com (10.13.177.63) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5632.12 via Frontend Transport; Wed, 14 Sep 2022 03:56:50 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.5632.12 via Frontend Transport; Wed, 14 Sep 2022 03:57:20 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 13 Sep
- 2022 22:56:49 -0500
+ 2022 22:57:16 -0500
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
  (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 13 Sep
- 2022 20:56:48 -0700
+ 2022 20:56:54 -0700
 Received: from wayne-dev-lnx.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Tue, 13 Sep 2022 22:56:44 -0500
+ Transport; Tue, 13 Sep 2022 22:56:50 -0500
 From: Wayne Lin <Wayne.Lin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH V2 39/47] drm/amd/display: Modify DML to adjust Vstartup
- Position
-Date: Wed, 14 Sep 2022 11:48:00 +0800
-Message-ID: <20220914034808.1093521-40-Wayne.Lin@amd.com>
+Subject: [PATCH V2 40/47] drm/amd/display: Revise Sink device string ID
+Date: Wed, 14 Sep 2022 11:48:01 +0800
+Message-ID: <20220914034808.1093521-41-Wayne.Lin@amd.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20220914034808.1093521-1-Wayne.Lin@amd.com>
 References: <20220914034808.1093521-1-Wayne.Lin@amd.com>
@@ -73,26 +72,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT102:EE_|MN0PR12MB6343:EE_
-X-MS-Office365-Filtering-Correlation-Id: 26bb6f7b-d236-419c-bb3e-08da96052741
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT065:EE_|DM4PR12MB5890:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7355a987-a25c-4bd7-3abd-08da9605394c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: c4kjUC/Ih6K/HjXzt06d6ejfPf/cZq2MnmmsXCe9vBhVbH9HizR4Ty4c8pnl8/p+Q/L3ylLFt0dn/EplIoSV9W6bkRG6EW6bY/4s6XOJyEBFQptDb/450qAgQv4h4VOK9BuU2b1N7kVBUoQ0wkHnIjxJ5rPhfzJI9cFx77eVUmIPRkMZySJG7UYcQUM/+T1PQ0X7J9uxF+r/pCqTzbiyyoaVC3I8Rsrpzi271ZIXt9CgFqgxEEXJfVPe47pE46WPHRriYWFX6axX6DukpkL2GozPuiPoVsrtzFmdsiRTMzz8/x188D6OgFYQpJf4OA332Xg8v9BUmJikYBwqlhVg8nB/kWfSI5wwMM/yTqxoDzhdY58YEl79EQ33v+Id5BVCTmUtdZ0y8eGd671fYxflV8PJa2bzgvdp0DDuNmozGlQ61u1Bs7e5VDzdbGwbV5MdjcuQhulcD/SGr+wHxOMHdoHR/aQLWothvq4o57aluHnltXrqNqv9brHmsHMt2jjzJ2wG76I2QzbCf6o/KioQzhBFgHTlOARC7zzcZRgWZ6frED3rNhWDs3E2QCHCV4Y6SaI8e536cy52nrQ7REQYPyVcA78ILM+24DTbqX/sgHDi9zz+N6Wa3aOSe1xxaW/S3xrdjc1np0zqt6jiGyBKDvyZOPkZeoVHtED3ieRJWeJ9dP0qi0gOQMKEYf9cXH04mqpr9fTC16IIKJDZdIzFG9oKA70wh2i20IHi6W4mnO7JHuq+X7/SffoS+wISNGwbzfX3f3DxG4uLKIKDePCKKnnO+miVyWu3Bhht/1y9o2c=
+X-Microsoft-Antispam-Message-Info: KA0J3Ci8cdJxUa8a+WfniPccPs4LzzA/34TNZjKaM9yPSUENJ1fOImLsQDfwMlgj08ARJp0ENR2Ed1x6SawVNSY2u+05dPmVGKEY4iJiJilt0IcbH6a1jIRvhH6GyCVmA6hjOZI6NLCzkUmkhnD3SAPiOpglbacm2NLOcSMcA/UGShauBhycggAi2JRMWdHiJzCN8fYlBD6eeCetuIY7NOWGPEG+U3z2IECREpVCnhgEJOaOmauLb1+MSyI7DHGpboh3szBvFhY/VuvfNL+on0AV+5t5XV/9BxrexCXH95uKScDE15xiBM8yGxOYzsVGeI9EIIwW/V/SH7olhIt1AdCcDtVzK1LCvfNXTlmTGAu7tKQnDtM7PSXGVD41vAm5AeEAszh7yInAMR53Zrc6SC+frTWQgGrg0/uaAGx5QWCbvgGUWX93WvEBiB+5+CAfL0ZyQq4wWIyimeUj3intr03aYpbtQHbHKgfvHF/e1VTyjs+/WcR7Sfgio841kR5whXKMYMLmc4eBHuXeuUJ4FIY315edarU+TAMCOwyUo8rkkymlfZpcEt+7NjLI4YAcLyBrFaawDwHudzPbrAB1+9InMiTCEaEVU1ZmaHatkiG0UBDpjEEqc8yrSYd67dd5HzU91oHDAhyYrsnY+uiljE4Mkbf8texjGyGs/gfxFA2Tmxy/tlg7zWbLsBkuHpoes37NVE/pes2h2PVhmy8lCGvELwvwh/NoB2iPdTAOgh8JKqRlNftto9lD0hB1u3mSQYRsM4ggSPxmh6zcRKfn1dkVqABLH85ONzSvPUnCs2k=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(396003)(376002)(39860400002)(136003)(346002)(451199015)(46966006)(40470700004)(36840700001)(2906002)(316002)(82740400003)(356005)(6916009)(70206006)(70586007)(8676002)(81166007)(41300700001)(478600001)(7696005)(26005)(54906003)(336012)(426003)(186003)(19627235002)(6666004)(36860700001)(2616005)(1076003)(47076005)(4326008)(8936002)(5660300002)(83380400001)(40480700001)(40460700003)(86362001)(82310400005)(36756003)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230022)(4636009)(346002)(376002)(136003)(39860400002)(396003)(451199015)(46966006)(36840700001)(40470700004)(70586007)(81166007)(47076005)(36860700001)(1076003)(2906002)(4326008)(36756003)(7696005)(82310400005)(83380400001)(186003)(82740400003)(478600001)(6916009)(41300700001)(40480700001)(70206006)(336012)(8676002)(86362001)(40460700003)(54906003)(316002)(2616005)(26005)(6666004)(426003)(8936002)(356005)(5660300002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 03:56:50.3187 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 26bb6f7b-d236-419c-bb3e-08da96052741
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 03:57:20.6021 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7355a987-a25c-4bd7-3abd-08da9605394c
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT102.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT065.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6343
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5890
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,89 +104,68 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: stylon.wang@amd.com, Anthony Koo <Anthony.Koo@amd.com>, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, muansari <muansari@amd.com>, solomon.chiu@amd.com,
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Robin Chen <po-tchen@amd.com>,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
  Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
  agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: muansari <muansari@amd.com>
+From: Robin Chen <po-tchen@amd.com>
 
-[WHY]
-The Vstartup position should be as late as possible to
-maximize power saving with the current. Calculation of
-Vstartup in DML does not take into account as SDP signal.
-
-[HOW]
-Made necessary changes to calculate the correct Vstartup
-position in DML to account for AS SDP
-* Overriding the VBlankNom value in certain cases
-  otherwise it will use the default value
-* Bypassing the condition for adjust_sync_Vstartup
-* Overriding vblank_nom_input with VBlankNom that is
-  set in the SW Layer
+[Why]
+The Sink device string ID1/ID2 use 5 bytes instead of 6 bytes,
+so the driver should compare the first 5 bytes only.
 
 Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
 Acked-by: Wayne Lin <wayne.lin@amd.com>
-Signed-off-by: muansari <muansari@amd.com>
+Signed-off-by: Robin Chen <po-tchen@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dml/dcn314/dcn314_fpu.c          | 2 ++
- .../gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c    | 2 +-
- drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h       | 1 +
- drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c           | 1 +
- 4 files changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c           | 7 ++++---
+ drivers/gpu/drm/amd/display/include/ddc_service_types.h | 4 ++--
+ 2 files changed, 6 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn314/dcn314_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn314/dcn314_fpu.c
-index ce477c090987..cf420ad2b8dc 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn314/dcn314_fpu.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn314/dcn314_fpu.c
-@@ -323,6 +323,8 @@ int dcn314_populate_dml_pipes_from_context_fpu(struct dc *dc, struct dc_state *c
- 		pipes[pipe_cnt].pipe.src.dcc_fraction_of_zs_req_luma = 0;
- 		pipes[pipe_cnt].pipe.src.dcc_fraction_of_zs_req_chroma = 0;
- 		pipes[pipe_cnt].pipe.dest.vfront_porch = timing->v_front_porch;
-+		pipes[pipe_cnt].pipe.dest.vblank_nom =
-+				dcn3_14_ip.VBlankNomDefaultUS / (timing->h_total / (timing->pix_clk_100hz / 10000.0));
- 		pipes[pipe_cnt].pipe.src.dcc_rate = 3;
- 		pipes[pipe_cnt].dout.dsc_input_bpc = 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
+index 0df06740ec39..bec5e9f787fc 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
+@@ -393,17 +393,18 @@ static bool dmub_psr_copy_settings(struct dmub_psr *dmub,
+ 	if (copy_settings_data->dsc_enable_status &&
+ 		link->dpcd_caps.sink_dev_id == DP_DEVICE_ID_38EC11 &&
+ 		!memcmp(link->dpcd_caps.sink_dev_id_str, DP_SINK_DEVICE_STR_ID_1,
+-			sizeof(link->dpcd_caps.sink_dev_id_str)))
++			sizeof(DP_SINK_DEVICE_STR_ID_1)))
+ 		link->psr_settings.force_ffu_mode = 1;
+ 	else
+ 		link->psr_settings.force_ffu_mode = 0;
+ 	copy_settings_data->force_ffu_mode = link->psr_settings.force_ffu_mode;
  
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-index 2829f179f982..73e6579c6f54 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-@@ -7407,7 +7407,7 @@ static unsigned int CalculateMaxVStartup(
- 	double line_time_us = HTotal / PixelClock;
- 	unsigned int vblank_actual = VTotal - VActive;
- 	unsigned int vblank_nom_default_in_line = dml_floor(VBlankNomDefaultUS / line_time_us, 1.0);
--	unsigned int vblank_nom_input = dml_min(VBlankNom, vblank_nom_default_in_line);
-+	unsigned int vblank_nom_input = VBlankNom; //dml_min(VBlankNom, vblank_nom_default_in_line);
- 	unsigned int vblank_avail = vblank_nom_input == 0 ? vblank_nom_default_in_line : vblank_nom_input;
+ 	if (link->fec_state == dc_link_fec_enabled &&
++		link->dpcd_caps.sink_dev_id == DP_DEVICE_ID_38EC11 &&
+ 		(!memcmp(link->dpcd_caps.sink_dev_id_str, DP_SINK_DEVICE_STR_ID_1,
+-			sizeof(link->dpcd_caps.sink_dev_id_str)) ||
++			sizeof(DP_SINK_DEVICE_STR_ID_1)) ||
+ 		!memcmp(link->dpcd_caps.sink_dev_id_str, DP_SINK_DEVICE_STR_ID_2,
+-			sizeof(link->dpcd_caps.sink_dev_id_str))))
++			sizeof(DP_SINK_DEVICE_STR_ID_2))))
+ 		copy_settings_data->debug.bitfields.force_wakeup_by_tps3 = 1;
+ 	else
+ 		copy_settings_data->debug.bitfields.force_wakeup_by_tps3 = 0;
+diff --git a/drivers/gpu/drm/amd/display/include/ddc_service_types.h b/drivers/gpu/drm/amd/display/include/ddc_service_types.h
+index 05096c644a60..a7ba5bd8dc16 100644
+--- a/drivers/gpu/drm/amd/display/include/ddc_service_types.h
++++ b/drivers/gpu/drm/amd/display/include/ddc_service_types.h
+@@ -128,8 +128,8 @@ struct av_sync_data {
+ 	uint8_t aud_del_ins3;/* DPCD 0002Dh */
+ };
  
- 	vblank_size = (unsigned int) dml_min(vblank_actual, vblank_avail);
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h b/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h
-index c596187a1e09..f33a8879b05a 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h
-+++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h
-@@ -510,6 +510,7 @@ struct _vcs_dpi_display_pipe_dest_params_st {
- 	unsigned int htotal;
- 	unsigned int vtotal;
- 	unsigned int vfront_porch;
-+	unsigned int vblank_nom;
- 	unsigned int vactive;
- 	unsigned int hactive;
- 	unsigned int vstartup_start;
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c
-index 503e7d984ff0..03924aed8d5c 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c
-@@ -597,6 +597,7 @@ static void fetch_pipe_params(struct display_mode_lib *mode_lib)
- 		mode_lib->vba.HTotal[mode_lib->vba.NumberOfActivePlanes] = dst->htotal;
- 		mode_lib->vba.VTotal[mode_lib->vba.NumberOfActivePlanes] = dst->vtotal;
- 		mode_lib->vba.VFrontPorch[mode_lib->vba.NumberOfActivePlanes] = dst->vfront_porch;
-+		mode_lib->vba.VBlankNom[mode_lib->vba.NumberOfActivePlanes] = dst->vblank_nom;
- 		mode_lib->vba.DCCFractionOfZeroSizeRequestsLuma[mode_lib->vba.NumberOfActivePlanes] = src->dcc_fraction_of_zs_req_luma;
- 		mode_lib->vba.DCCFractionOfZeroSizeRequestsChroma[mode_lib->vba.NumberOfActivePlanes] = src->dcc_fraction_of_zs_req_chroma;
- 		mode_lib->vba.DCCEnable[mode_lib->vba.NumberOfActivePlanes] =
+-static const uint8_t DP_SINK_DEVICE_STR_ID_1[] = {7, 1, 8, 7, 3, 0};
+-static const uint8_t DP_SINK_DEVICE_STR_ID_2[] = {7, 1, 8, 7, 5, 0};
++static const uint8_t DP_SINK_DEVICE_STR_ID_1[] = {7, 1, 8, 7, 3};
++static const uint8_t DP_SINK_DEVICE_STR_ID_2[] = {7, 1, 8, 7, 5};
+ 
+ static const u8 DP_SINK_BRANCH_DEV_NAME_7580[] = "7580\x80u";
+ 
 -- 
 2.37.3
 
