@@ -2,41 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15A515B7F65
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 Sep 2022 05:31:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5716A5B7F63
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 Sep 2022 05:31:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3140810E088;
-	Wed, 14 Sep 2022 03:31:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C79A10E7F1;
+	Wed, 14 Sep 2022 03:31:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2085.outbound.protection.outlook.com [40.107.92.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98F2910E088
- for <amd-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 03:31:05 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2043.outbound.protection.outlook.com [40.107.220.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB81210E088
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 03:31:03 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GddEQanSRVJBzsUltxLfr5Zr4wHIhi3h/KBxLRPBZm5Al+PM8EzASbRbR2vvSuEqtMvGCeOxYPNo+9r63gWehr5lwyegfXWY4qfL7HABKykFW2cxBy9nyyTuKPf/I5DEzLtj0TNqkYNjcIJeD9717tir2XSfBED6eArwMqMSmjtrIlIxX8MF37JLYv9yMZd0l+z6zlEZ7aR4NeOl8oZr8gpP6otcMH5KfM3tcPxjwm1NzqI7bP0E1d+DVVTpHoQhOm7v3hY4Ey0xIaprAQg3Sa/FAPRDtAaMdAEbCaoXMGb2xLmjZCvLrM8dh74NVs8n3AboNjBObwVZgGl/dywZBQ==
+ b=cioVHnfIWV1digAWJKWpUIxUHTiwnMrUo0rMcJqNZhD40/KyU1woxlfwGvETJKZy9fK0rmBhCSCVKiS+6U/ia52C1gVrkHH36WhNloCqmt6JERSTaD1tx35+zrCL3x/n7XEdysyz/WICmnZbyzjPCloqqHhw2qQGJc/RgCN4yDIdlOE5Nmn08GJWaFtga/3doKJDr3W/iiEcDuhd9sfvBpin2UmoQQzytrvQGaRh/iSY9fLt53ewHVz+UTkgXQ3FR5L2TCDuwINOUQ2ZoH67pz5hrg6PJho7hngOwELnVRPZ1dCbQVqcbmqjOLY3JjcVW4RewswMr22Zi3xEjDiOyg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=11veMkwzeWkiqv27eLf9H3Ch5DFJlHO39KiiMjPio+w=;
- b=KDvKVtKx/4yn8AOxwjDhL01D7IViNaoddHFCglYVTZPW0dtqWrmnQzbJdMjo4R0VITpGZkZdxwLUAnJxdUY3CDvll2PU2To2PRfc4yQYmb+I0rvl8sjWI2SwhuelLAN8eBMMFV8bsuT4m86FgqwT4dubhwCEz3hYxlYwyQ9c33qqJ4qYAEsyWKU4/xtR43ZkJ0E3d3zWGTsBiKPW0S7qSlkDQezdCfFp216ZgVHNwe2Bdo2Yvkv57hHZZ8rIccToBkFmBQeF8+dbtNF5q0m2oJ5b+Wn4svSeMPeAsR3NYd6j0oLzYpHxdRvDNGbuVXWwK0dFd5/HZD5U2aMtETXUHw==
+ bh=AOhRbySf138h7l8a++kqxKUjWUYsB4r8XnJQ/PR6BuI=;
+ b=Zs7tK3Hr8ocHjFUYzRAFx7uEuWWWe927PqHlJ4P2Viyvd3NoOjJW97S0MRLxVhT1vQ4rCY4sTy88puvHqh0X8ZgNLMGIVxysT1Dug0DpoaB+xWcw4/jPmvho2epIjGODFNBaEm5XJ2Kzd8oBVQhBx9L2Phnlw3PC7e8rmS5MpMrEYmumepvXppHsoosi0p3l8Xpfwza0qix6ySq5IlH8KKjT+xdggP72XXQfqNLZRItJRFoqL6VEaTVqbDEpBZcmRH/DgmzYPI14d0wme08HAGIOkz1fTxVHF9FZUhLmce0wv3OyKPQ+eVwjGvf4eiaY0+s30OBSEEUVjw2IgRrTkw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=11veMkwzeWkiqv27eLf9H3Ch5DFJlHO39KiiMjPio+w=;
- b=uI0c1hf6K6gvI9Dk6y5IoTW8efJ+Is6vGnYyGbdxdIpEDN6OpH3xv9XMa5aSMPzQqmoBnnTRFQQUTh7DaslNnxC1Dk+vx/d2ethIfuDDay8eKNLSYJVLMIiBBlz2CTkUVt/mhIb48fEblADUpsMP2HPtXMQ4O+iOZoc0OwoL4/M=
-Received: from BN9PR03CA0946.namprd03.prod.outlook.com (2603:10b6:408:108::21)
- by DM4PR12MB5103.namprd12.prod.outlook.com (2603:10b6:5:392::13) with
+ bh=AOhRbySf138h7l8a++kqxKUjWUYsB4r8XnJQ/PR6BuI=;
+ b=wYVmz8SGzdztU4t2gBMolDIzkGUYCzC/5frGk1wtvR3RMF7aCdw9Q2uOfK3rL7p4W/axabvXcEXmqfSwJyLtlYuUue2sTg9BiWWTIEIut2+nMV4wOmbtDx9MCffm2TUc57KjhRI4aArr49OzTzV5nxBAEdt9E/RtCkPlio3OzNs=
+Received: from BN9PR03CA0942.namprd03.prod.outlook.com (2603:10b6:408:108::17)
+ by CH0PR12MB5235.namprd12.prod.outlook.com (2603:10b6:610:d2::5) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14; Wed, 14 Sep
  2022 03:31:02 +0000
 Received: from BN8NAM11FT113.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:108:cafe::54) by BN9PR03CA0946.outlook.office365.com
- (2603:10b6:408:108::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.12 via Frontend
+ (2603:10b6:408:108:cafe::1f) by BN9PR03CA0942.outlook.office365.com
+ (2603:10b6:408:108::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14 via Frontend
  Transport; Wed, 14 Sep 2022 03:31:02 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -47,19 +47,23 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  BN8NAM11FT113.mail.protection.outlook.com (10.13.176.163) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5632.12 via Frontend Transport; Wed, 14 Sep 2022 03:31:02 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
+ 15.20.5632.12 via Frontend Transport; Wed, 14 Sep 2022 03:31:01 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 13 Sep
- 2022 22:30:01 -0500
+ 2022 22:31:01 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 13 Sep
+ 2022 22:30:41 -0500
 Received: from wayne-dev-lnx.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Tue, 13 Sep 2022 22:29:56 -0500
+ Transport; Tue, 13 Sep 2022 22:30:36 -0500
 From: Wayne Lin <Wayne.Lin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 15/47] drm/amd/display: Disable SubVP on driver disable
-Date: Wed, 14 Sep 2022 11:24:09 +0800
-Message-ID: <20220914032441.1075031-16-Wayne.Lin@amd.com>
+Subject: [PATCH 16/47] drm/amd/display: Fix SubVP way calculation
+Date: Wed, 14 Sep 2022 11:24:10 +0800
+Message-ID: <20220914032441.1075031-17-Wayne.Lin@amd.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20220914032441.1075031-1-Wayne.Lin@amd.com>
 References: <20220914032441.1075031-1-Wayne.Lin@amd.com>
@@ -68,26 +72,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT113:EE_|DM4PR12MB5103:EE_
-X-MS-Office365-Filtering-Correlation-Id: 95e3772b-0081-407e-1f86-08da96018c9e
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT113:EE_|CH0PR12MB5235:EE_
+X-MS-Office365-Filtering-Correlation-Id: 51fdd272-1338-44a3-c0db-08da96018c5d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LadealeTLUiz1Gn3+uNKd5E1vHj84zlf6LKeYVO9SxMtgqFrH5tdJ3kMeg/JKPsD3xhN8puI3AJRuLa9rTp9V8boZFqyIAadYrca4NLBDCDbkacz+Uf0oGT72qE8N2Y06BCMscNq2wW7psKj0vZA7x+tsKfC7c2np+9To8xvIaAJAtjMpqxmO0931G9dKUe15MAJdpe0ScsVpT+48QeQBmTjhG+KbFeWyiSQjJ2baUAbjBniCYNdt/P/wn7WLTd4S23C51b02qEi1pdGavHIgyNBgjLJgE2eNfw7mrv8bhtPnWoH5hAbgZP7eQxEZYY7LEH5Nv4mQ9grGRZVmDcz85NgyJoQh/g38mQKuIzD4WopJ5tNOmgL6zm2kSPK+ueRDeXAYh5TQI6hKVlmnpARAqbvFINWkmaUtGKZyaRcfQ8fDR346pt8maM2o1fl91A/6ZVTGQck0W97eJvJkhnLEUxgyjYYh3g4OFoaeemFubu0ZA/+hOHHAxan8mzWPCA0Xl7jYhBKRWco3NMjDeF2MdlZtfVznNSnJkY8kFtLJ7GqaPMFswnvlMxpoGBuYE/o1Zrsp01kHsqOiHTgKG0zTAVndDDn4tb+FxrhpnvBeWG0+BKKKU3/lN+n6uJH6gPsG8KCwH7aUbnfgNnYU1/Ni/aRvkYGT9QCNvRYa5yIZUKLCDTmba9Jot5ZaQGMxyTtbTJl6qyla3kxHEs4RDRsIpbFbLUA1I23baghcudGIXZB/5xSr/0DuwOgfRU/M8bP15JELxIqbNoHLSpkmTWh7t6YQgQX+IqljGE9DcCSut7zW0R4yDkilkRWkLzg6WEh
+X-Microsoft-Antispam-Message-Info: Z1A1/xVIdwO5uW7DgwnthonFl/CMdKSapw6R993NNFyVZE8vLnQSusgVBh7rJkJM4wmcOxPW+lPQGT79wVLisu5gSQsaeWVClTnXvoIjgsZSU4xN0Fub+DaLBMVIvtHR18fLB2bruKUd3zdbEr0RHCQsJIcNzOhHOL1blJKHJlGLonoiDb+MJ9i1DMN4ONaqF+mODGxka+tqHcUFROMPgrXUxhmaVs7LDFOp/o8OhghnpMJiBYgaDt9p/f8s65f5g+Fv64Rq/Kasq8zmek2LuZbagTVkD3MkibwbPTWkBquBXiVlWBhRFIfy4Mp2FCnJ+DE5AW/vlipcAsRtoESFJ5nJYDclMO8lA8aiZsFTF5IUbEv8azLUqimnksWQ1ts4plelWZiJUu+ms813xqPoVkkRYqb2w97ihp1yHi2PD2jTaHs5Mfks8eoegYah96BtVPiqA530Oh7wQUygPfKuaLmQJVFYUy7yJnD2G3z9GFpgdxSXO6Zz2busDC/9GOd5CFLQjTUT083WR4NlF+knnTdwoDM/JNikL1jACftZk6JZVYbnPOdsiS7OJs1ts6XBXV02JlTLlTn7kf5B0RFTAqVjq3eTvovvNoJyvXKcxjuAHI+xE2BBeKdSMpqsiFn/8EbLKykrXpxc2coJT9s3XcWDnq/YJu0oUJblLNPmw+EFCHkIoP/Oqe4bkwuGCVIcBKV3Cp5GmU31IPWzP0r955A7ZIcQI+kgyb8MIGa1/FwucaeQcG4tDXoi5nLnhU1FM5ofio6rUuIm2F3K2IC0eoMo/TtsrtHjjlbHcLJyqpUE+qeoSlutDc79XGqyqvB5
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFS:(13230022)(4636009)(396003)(39860400002)(136003)(376002)(346002)(451199015)(46966006)(36840700001)(40470700004)(5660300002)(4326008)(36860700001)(8936002)(40480700001)(1076003)(82310400005)(2616005)(6666004)(2906002)(8676002)(356005)(36756003)(81166007)(426003)(82740400003)(336012)(316002)(6916009)(40460700003)(41300700001)(70586007)(86362001)(54906003)(47076005)(70206006)(186003)(83380400001)(26005)(478600001)(7696005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 03:31:02.4028 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 95e3772b-0081-407e-1f86-08da96018c9e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 03:31:01.9653 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 51fdd272-1338-44a3-c0db-08da96018c5d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT113.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5103
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5235
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,70 +114,47 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Alvin Lee <Alvin.Lee2@amd.com>
 
 [Why and How]
-- For driver disable cases in current implementation, if P-State
-  is unsupported or still supported by firmware, we force it
-  supported by DCN.
-
-- SubVP now needs to be included in this case along with FPO.
+- Don't skip bottom and next odm pipe when calculating
+  num ways for subvp
+- Don't need to double cache lines for DCC (divide by 256)
 
 Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Wayne Lin <wayne.lin@amd.com>
 Signed-off-by: Alvin Lee <Alvin.Lee2@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h  |  1 +
- .../drm/amd/display/dc/dcn30/dcn30_hwseq.c    | 21 ++++++++++++++++++-
- 2 files changed, 21 insertions(+), 1 deletion(-)
+ .../drm/amd/display/dc/dcn32/dcn32_resource_helpers.c | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h
-index 9f5b47b9a83d..7e438345b1a8 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h
-@@ -85,6 +85,7 @@ void dc_dmub_srv_send_inbox0_cmd(struct dc_dmub_srv *dmub_srv, union dmub_inbox0
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c
+index 237f71d9304e..14787e0f0b6e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c
+@@ -66,8 +66,11 @@ uint32_t dcn32_helper_calculate_num_ways_for_subvp(struct dc *dc, struct dc_stat
+ 	for (i = 0; i < dc->res_pool->pipe_count; i++) {
+ 		struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
  
- bool dc_dmub_srv_get_diagnostic_data(struct dc_dmub_srv *dc_dmub_srv, struct dmub_diagnostic_data *dmub_oca);
+-		// Find the phantom pipes
+-		if (pipe->stream && pipe->plane_state && !pipe->top_pipe && !pipe->prev_odm_pipe &&
++		/* Find the phantom pipes.
++		 * - For pipe split case we need to loop through the bottom and next ODM
++		 *   pipes or only half the viewport size is counted
++		 */
++		if (pipe->stream && pipe->plane_state &&
+ 				pipe->stream->mall_stream_config.type == SUBVP_PHANTOM) {
+ 			struct pipe_ctx *main_pipe = NULL;
  
-+void dc_dmub_setup_subvp_dmub_command(struct dc *dc, struct dc_state *context, bool enable);
- void dc_dmub_srv_log_diagnostic_data(struct dc_dmub_srv *dc_dmub_srv);
+@@ -118,9 +121,9 @@ uint32_t dcn32_helper_calculate_num_ways_for_subvp(struct dc *dc, struct dc_stat
+ 			// (MALL is 64-byte aligned)
+ 			cache_lines_per_plane = bytes_in_mall / dc->caps.cache_line_size + 2;
  
- #endif /* _DMUB_DC_SRV_H_ */
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-index fb59fed8f425..4a1954fe3f7e 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-@@ -939,13 +939,32 @@ bool dcn30_does_plane_fit_in_mall(struct dc *dc, struct dc_plane_state *plane, s
- 
- void dcn30_hardware_release(struct dc *dc)
- {
-+	bool subvp_in_use = false;
-+	uint8_t i;
-+
- 	dc_dmub_srv_p_state_delegate(dc, false, NULL);
-+	dc_dmub_setup_subvp_dmub_command(dc, dc->current_state, false);
-+
-+	/* SubVP treated the same way as FPO. If driver disable and
-+	 * we are using a SubVP config, disable and force on DCN side
-+	 * to prevent P-State hang on driver enable.
-+	 */
-+	for (i = 0; i < dc->res_pool->pipe_count; i++) {
-+		struct pipe_ctx *pipe = &dc->current_state->res_ctx.pipe_ctx[i];
- 
-+		if (!pipe->stream)
-+			continue;
-+
-+		if (pipe->stream->mall_stream_config.type == SUBVP_MAIN) {
-+			subvp_in_use = true;
-+			break;
-+		}
-+	}
- 	/* If pstate unsupported, or still supported
- 	 * by firmware, force it supported by dcn
- 	 */
- 	if (dc->current_state)
--		if ((!dc->clk_mgr->clks.p_state_change_support ||
-+		if ((!dc->clk_mgr->clks.p_state_change_support || subvp_in_use ||
- 				dc->current_state->bw_ctx.bw.dcn.clk.fw_based_mclk_switching) &&
- 				dc->res_pool->hubbub->funcs->force_pstate_change_control)
- 			dc->res_pool->hubbub->funcs->force_pstate_change_control(
+-			// For DCC we must cache the meat surface, so double cache lines required
++			/* For DCC divide by 256 */
+ 			if (pipe->plane_state->dcc.enable)
+-				cache_lines_per_plane *= 2;
++				cache_lines_per_plane = cache_lines_per_plane + (cache_lines_per_plane / 256) + 1;
+ 			cache_lines_used += cache_lines_per_plane;
+ 		}
+ 	}
 -- 
 2.37.3
 
