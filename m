@@ -2,69 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C19E5B7FE5
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 Sep 2022 05:56:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5D5A5B7FEC
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 Sep 2022 05:56:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E43510E816;
-	Wed, 14 Sep 2022 03:56:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44DF410E81A;
+	Wed, 14 Sep 2022 03:56:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2046.outbound.protection.outlook.com [40.107.93.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEA6910E816
- for <amd-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 03:55:46 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2089.outbound.protection.outlook.com [40.107.94.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 576D710E818
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 03:56:07 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PRWuDL0r13OSc+cOqSu5xOCpvmpmOmAjOljctFYjoawlDq2siGQ6E9Se7ADKL55lsiiEuSz4dnAcmgwEeGq+q4fluP/4URcMOPDAL+auh+g8k9q97u9mc5Ay5yUY/OgGIFu/8qgQGUsdzSyecV94c8VrSxk1CyXDbJLCiyp9gKzbdY4I/aO87Tp0pf46b1cbRGRUL675mkzzSlL1ooieg8pPr3SGKLT6iv4bqkiA5UZXBr822fHK76RGsa9pHrY9gb56jafPFj6rNJMUeuGyL4/i3cdxcJiCzn2PeDeYvNBaV6Sofv8NPN05jMkskB8iHD5VBGzplZzJq9tDGMSJGg==
+ b=BrW70nvBQhqwMgEey3e+RzWDM+dkQa0/seSPeUtISS1DUdyL5qg6h0LGNaynknO2F44sKcjypu8AVYyOuKdR2vdp/bYZs4jdD4c72DV0C0cQ+9Wq4/lTwRwqvHeJE7t2M2nhC2N8n1cCp+sq/rK2DxqcNLZhlom7vJ8dIuOY6PDQXQPbmcVTc9nLIIG7ugZyjwm0sC/G5HiCAA9mcbxgcPrA7WNEEo79FZ4lEPhUCRQPZ+cmz+ZrZM4WmOFZ0bhgwXnEIkonAiwHCfyAgJq5FHx0Lr89LQrRNKaAZqGXSfOFQ43HXoXQsXuVzw7p55aaA3S+x4mVrTpm8hopfKIaoA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=m0D7jINnPCgMJ9845vZ07/abMw4JvPLYZhrV1hKL//I=;
- b=U0R1w/a6w7lG3n3KfRQ4HaCLyUGTeBXorjEuepeRfNfC8gC3StfDAEx5Ez9KE25DO2NXXh6TIGh5VXk+8GRmlMLrT3OowEsgRVc1ikaLnd3LJgp9w/DvB4oRhhvTxS3S2GCofwr1XJ/o/mfalTudqlMkK/f2FJh3lY6mudmNnglXxSHI5PfQhARIVO9YQo5/2J0SuMAHSnOV1gQb2CFehIxtqTOJCaRRONAIKndJA0T/PZyGUusEYy56ANZLXp5xd8rDEViapQXmwPvvJUKjR/RdXeyrnwN2DgvmJ9dnw9m0wh2lcSoRvGkzOz+RUj0YNc5uE8plAxpbzdqzoQMBkQ==
+ bh=YlVNO7namICkGc8uoL8oE/A1vfKwf0Wdd13MZwQm0tM=;
+ b=IxQMekQUxCmSojJiPkPEH2rcRvJgVPBq0bqH9Mpcf57IU+yunmm1O6aExDS1VKVjy17Rox37570DlvBc517QbX+iHsTOUp26vnL/DRDtPiB/QNK/I/BiTaGBfloxdQ/j+2vNA29jCo2fay4Q1xvxQx7ojqZ7t3RYXJpJJLCO9Bv8YG0woX+ysbqfn9TOZ3WuRnntejo9HJAdf5WVXOzUyZhR1nGWOZFeU8ydmvD7EvZdVCaHP04b+mDZBY57aA99QuMc7l03UmEXqt3zZz8+hGKzXJJVKI3W38RAY/qgOOAgDwRnoU+u++/rLzamw92dUl/PqHAPX7Oz+qiZGmwuCA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m0D7jINnPCgMJ9845vZ07/abMw4JvPLYZhrV1hKL//I=;
- b=Z2TXMA6Ff/OqVz5YVLN7ltqm+RygbrnFCtM9HuuxN2cm92VbbgiFsPsKlnbHGV0C/89mGp6PmHiLRXVXtVuQwQmAEcIem2BDJ+WFnzNSCK/gmz0rOZbVE3kVWaHimi2V7mHjs4Cba3haYWhdCi80wETKrU9sLqZAhW8SY3FNXdY=
-Received: from BN0PR04CA0025.namprd04.prod.outlook.com (2603:10b6:408:ee::30)
- by DM4PR12MB5277.namprd12.prod.outlook.com (2603:10b6:5:390::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14; Wed, 14 Sep
- 2022 03:55:44 +0000
-Received: from BN8NAM11FT074.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:ee:cafe::72) by BN0PR04CA0025.outlook.office365.com
- (2603:10b6:408:ee::30) with Microsoft SMTP Server (version=TLS1_2,
+ bh=YlVNO7namICkGc8uoL8oE/A1vfKwf0Wdd13MZwQm0tM=;
+ b=ZRrTOPcmiAxaf0jQ08oGk84XSLGtEufotnZ0VeIWkW5yviMtiz6dTQcWEuc62s9gSjbVccnfQ3MITEeiWCYtrDdjA3f9wqOVqHzrLlpK39ZJ++P3CySTWkNqYedqapBSL+pT9wVnmTVAR6y3exTF3Of17vsqGILkcdEwfGmTqQA=
+Received: from BN8PR07CA0035.namprd07.prod.outlook.com (2603:10b6:408:ac::48)
+ by BL1PR12MB5304.namprd12.prod.outlook.com (2603:10b6:208:314::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.12; Wed, 14 Sep
+ 2022 03:56:04 +0000
+Received: from BN8NAM11FT069.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:ac:cafe::89) by BN8PR07CA0035.outlook.office365.com
+ (2603:10b6:408:ac::48) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14 via Frontend
- Transport; Wed, 14 Sep 2022 03:55:44 +0000
+ Transport; Wed, 14 Sep 2022 03:56:04 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BN8NAM11FT074.mail.protection.outlook.com (10.13.176.154) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT069.mail.protection.outlook.com (10.13.176.152) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5632.12 via Frontend Transport; Wed, 14 Sep 2022 03:55:43 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.5632.12 via Frontend Transport; Wed, 14 Sep 2022 03:56:04 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 13 Sep
- 2022 22:55:43 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB08.amd.com
- (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
+ 2022 22:56:00 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
+ (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 13 Sep
- 2022 20:55:43 -0700
+ 2022 20:55:49 -0700
 Received: from wayne-dev-lnx.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Tue, 13 Sep 2022 22:55:39 -0500
+ Transport; Tue, 13 Sep 2022 22:55:45 -0500
 From: Wayne Lin <Wayne.Lin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH V2 34/47] drm/amd/display: do not compare integers of
- different widths
-Date: Wed, 14 Sep 2022 11:47:55 +0800
-Message-ID: <20220914034808.1093521-35-Wayne.Lin@amd.com>
+Subject: [PATCH V2 35/47] drm/amd/display: Assume connectors are on single slot
+Date: Wed, 14 Sep 2022 11:47:56 +0800
+Message-ID: <20220914034808.1093521-36-Wayne.Lin@amd.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20220914034808.1093521-1-Wayne.Lin@amd.com>
 References: <20220914034808.1093521-1-Wayne.Lin@amd.com>
@@ -73,26 +72,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT074:EE_|DM4PR12MB5277:EE_
-X-MS-Office365-Filtering-Correlation-Id: c3bb385e-3b07-4538-6104-08da9604ff99
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT069:EE_|BL1PR12MB5304:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0dff8f8f-45e8-4281-c776-08da96050c15
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: wsrC+kOVS5JZ5afWWh0Z5guzU0nZpDwt0bmyk1gv2sItT8K4QWIFPLnfbZQU0UAXcnI35JNIncbJPqBOizOtbGgbj9pdVFTcXkIdlBAPbCzlZ5RXpZZ2lS2CiJazdgc4I7fmQuOwWS4Rt1QvmQbI3khDyuvwz1FNIB9s8vjrMAcUWfXaOCoCIdm17K9fWWxhwP5BuhI4wwwt05D/nRkZf/lful4IF4RF0K00fiJKiv+f8pObW8Onw53BkkOk7uxcoIn/1rqEVK6tt9q0D7L7o/4zWR3gd0dFwWtgiVFWX+OwVQSAzaGUAZsT/sCoidwqAx6KCSfQ5lq8QyTgAYAyrkdgQ8zqIA7zGe6zMHubKykLaCYHPMxlH4+omHAUEDacs4xAek9OwN5PTyqoGWI3a+b/GSlcdP9AxcTk5RlKFiFgrmYo0wePJK1Grk5FR15NPUYGYMOnnU1IwyF0cF+GUxbU8iNJincMW7yPojmDFOncIlyCq3AJzVwCUuJYm8kDlG3BetS5Ab+TVbBuMSDQJwV4nZIGolmhdg344Kk1N09edtNPKtKYcQsue2mDpug+VLVM9Qr3R+tnNa/DEqvx8oC4b5jrFCNJ7O0C/NhghmdO2gaKEHg/E9Rty8h4abTkV4xu35okFlCed9zTMxtErFiuJHvA4E4BrTt6tij8bNBvudUNZ1NRmINhglGdrGt/twhdqfQ1FGiyKZTKwSZedhQG26nFQ8sdBCZxKvdSyYoPT1/sF2AbcoyPTseulGXhVphyHxzwyoDRuy6T/H6cnvBdcforkMMn0bcEDA0bFiFbijnim4dzsB5S7QX4+v/n
+X-Microsoft-Antispam-Message-Info: 14hxp8C1BAK/Amv/mUTLr2Q0ErfGpB3FmCQvPN+f08SHQUPJ7MHqGF9zFumW3Cl3rDV0v0nnx0VNgLSG7XPlNSYOD04HJnSk0EmmRLAF6WfeHNOsRN2SOszirQ7A5dKARWF9oo8eXPFWwrI7mRnfWjjiUrL3HTtKSf5rNT9J1YI1l8eZXuhiIghRThCv70wgS6jd15gLObrUn0Z6/DtMREoGZSUq7ewWtD+mk+hyKsTo1Oaw0Z0V2835Md2atL1xWQmvIir1vKVCQsk2vQPmdvVXyUxzetb5QJS8Ocs0NEUliSbvHrT6F0hIdPW8YRz8/Z9hbhGJy5bWYDIL9JGSbnsoMzPY3X2WFiKeSMGS1HiFufYkXpj7pxRWFo/V27k3CzujDuAuDH0AY8ycRX/oss5uLT2iJFWArkKLnvXuvid5NHyR9rKDd9nBwFdW9lW2bqdJwXFJEcKLEWnvJLkZKhrezeBEEQVLHL464efJ2ciMJFKbXwocRZafXL7KwNZ+XTrTlO0njJ+7NoGWsTd+y/yCAT7PPY4WllLko/SoQUOd9Lfs70PBHKY0ENfGbg6VC5lWc8rxsFH01xYyHAs2sZYA8Fmcqz7jsltzab2exwp8dMF/E5JTIu7Vog0t064aoTRiUzjDTMKRIKTqeGz7ofl4O18k/qJhK2FUfAy6p3Wx5sc4MWDWorbfLFuDd9n7EF1kG7XL/IaNFeke/nJLd1Fnmz++T2kwnKSDccWoVxmZW3y5Y8tLkKpZxy+dMltH12Rikvqs8XYI1ytcwInyCOZnHjbizXMrVlIuAbTSHSi4vURwYYb30V8PWfW3vMid
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(346002)(136003)(376002)(39860400002)(396003)(451199015)(40470700004)(46966006)(36840700001)(81166007)(82740400003)(426003)(36756003)(356005)(6916009)(316002)(336012)(2616005)(6666004)(40480700001)(40460700003)(82310400005)(1076003)(8676002)(2906002)(186003)(70206006)(47076005)(7696005)(478600001)(26005)(83380400001)(86362001)(54906003)(41300700001)(70586007)(5660300002)(4326008)(36860700001)(8936002)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230022)(4636009)(376002)(346002)(39860400002)(396003)(136003)(451199015)(36840700001)(40470700004)(46966006)(41300700001)(6916009)(54906003)(316002)(7696005)(40460700003)(336012)(6666004)(2906002)(186003)(36756003)(86362001)(5660300002)(81166007)(82740400003)(1076003)(2616005)(40480700001)(4326008)(82310400005)(478600001)(70206006)(426003)(26005)(83380400001)(8936002)(70586007)(8676002)(36860700001)(356005)(47076005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 03:55:43.7842 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c3bb385e-3b07-4538-6104-08da9604ff99
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 03:56:04.7478 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0dff8f8f-45e8-4281-c776-08da96050c15
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT074.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT069.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5277
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5304
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,69 +103,59 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Josip Pavic <Josip.Pavic@amd.com>, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
- Alvin Lee <alvin.lee2@amd.com>, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, Jaehyun Chung <jaehyun.chung@amd.com>,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
+ Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Jun Lei <Jun.Lei@amd.com>,
+ Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Josip Pavic <Josip.Pavic@amd.com>
+From: Jaehyun Chung <jaehyun.chung@amd.com>
 
-[Why & How]
-Increase width of some variables to avoid comparing integers of
-different widths
+[Why]
+v1_5 display object table has no way for connectors to
+indicate which slot they are a part of, resulting in additional
+empty slots to appear in EDID management UI.
 
-Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
+[How]
+Assume that all connectors belong to the same slot.
+
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Wayne Lin <wayne.lin@amd.com>
-Signed-off-by: Josip Pavic <Josip.Pavic@amd.com>
+Signed-off-by: Jaehyun Chung <jaehyun.chung@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c            | 2 +-
- drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c            | 2 +-
- drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c | 3 ++-
- 3 files changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-index 4a1954fe3f7e..8c5045711264 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-@@ -940,7 +940,7 @@ bool dcn30_does_plane_fit_in_mall(struct dc *dc, struct dc_plane_state *plane, s
- void dcn30_hardware_release(struct dc *dc)
- {
- 	bool subvp_in_use = false;
--	uint8_t i;
-+	uint32_t i;
+diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+index acbdb7926375..5d70f9901d13 100644
+--- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
++++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+@@ -3346,6 +3346,7 @@ static enum bp_result bios_get_board_layout_info(
+ 	struct bios_parser *bp;
  
- 	dc_dmub_srv_p_state_delegate(dc, false, NULL);
- 	dc_dmub_setup_subvp_dmub_command(dc, dc->current_state, false);
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
-index c1261cb0e001..b8326d41810e 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
-@@ -1354,7 +1354,7 @@ void dcn32_update_phantom_vp_position(struct dc *dc,
- 		struct dc_state *context,
- 		struct pipe_ctx *phantom_pipe)
- {
--	uint8_t i;
-+	uint32_t i;
- 	struct dc_plane_state *phantom_plane = phantom_pipe->plane_state;
+ 	static enum bp_result record_result;
++	unsigned int max_slots;
  
- 	for (i = 0; i < dc->res_pool->pipe_count; i++) {
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c
-index 5490b3705b41..160aefaac173 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c
-@@ -265,7 +265,8 @@ void dcn32_determine_det_override(struct dc *dc,
- 		display_e2e_pipe_params_st *pipes,
- 		uint8_t *is_pipe_split_expected)
- {
--	uint8_t i, j, pipe_plane_count, stream_segments, plane_segments, pipe_segments[MAX_PIPES] = {0};
-+	uint32_t i, j;
-+	uint8_t pipe_plane_count, stream_segments, plane_segments, pipe_segments[MAX_PIPES] = {0};
- 	uint8_t pipe_counted[MAX_PIPES] = {0};
- 	uint8_t pipe_cnt = 0;
- 	struct dc_plane_state *current_plane = NULL;
+ 	const unsigned int slot_index_to_vbios_id[MAX_BOARD_SLOTS] = {
+ 		GENERICOBJECT_BRACKET_LAYOUT_ENUM_ID1,
+@@ -3362,8 +3363,14 @@ static enum bp_result bios_get_board_layout_info(
+ 	}
+ 
+ 	board_layout_info->num_of_slots = 0;
++	max_slots = MAX_BOARD_SLOTS;
+ 
+-	for (i = 0; i < MAX_BOARD_SLOTS; ++i) {
++	// Assume single slot on v1_5
++	if (bp->object_info_tbl.revision.minor == 5) {
++		max_slots = 1;
++	}
++
++	for (i = 0; i < max_slots; ++i) {
+ 		record_result = get_bracket_layout_record(dcb,
+ 			slot_index_to_vbios_id[i],
+ 			&board_layout_info->slots[i]);
 -- 
 2.37.3
 
