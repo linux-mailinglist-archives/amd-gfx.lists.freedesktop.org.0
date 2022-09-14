@@ -2,65 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 188E75B7FCE
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 Sep 2022 05:52:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 728A15B7FD0
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 Sep 2022 05:53:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E2DC10E80B;
-	Wed, 14 Sep 2022 03:52:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EC9810E80D;
+	Wed, 14 Sep 2022 03:53:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2060.outbound.protection.outlook.com [40.107.101.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 251B810E80C
- for <amd-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 03:52:33 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2067.outbound.protection.outlook.com [40.107.244.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23C6810E80D
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 03:53:12 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T4lm9Kde6c3X1Z3mgu7kIwEUVia9gwg1qvMtvgxL+Owb+LpaXS16eGiNp9iZm6HRX+mXOAsRmxnVE0vSKIaZ3rIYCJERUCI7HgNaidTSWKEjqgwI2U0Pi+tDpN7l867hye0qd9N52d9fGAD7fQ0mkeq997nsuoici9Nd6h6rI+AJVqTTrhSl5Nky25PKiPKrHZ0XAJfikr8Wk9aHRoMnNvlrxj81j63H3lTOc+XnDb/OcLytG2VFVyJz70/CiqlUkTb0Lmh1oBJ+JvbcVbdcKsmIuVJTzovE5FxUZCy4BT0LcbytmLFbHV4hNEduzSIblB5gmgPAZ7fLgyA/PHervQ==
+ b=XGWHg3K2xdVGmAHh8QmhYqk98s83lFYj+BMjBCAjQTojewjA/8zybj0k9mG1JElsA8ZJhqr8eJjbN7B1rg5oXR/jk0nIEdJ1nGevdod4ttFxos9q26T28uf/ax5495lcH0JZWeHvqO7VbrT24RFRDOFXxLzNB3VxjQYfy4XvEXxePixeHry+HlLkaBcHQPPLw5NcOdyzoUVCBHAcS4C0iMxz4T2kBPBnrUuZIfqGxSeYMkbXazju2pHwyThiuaTPexfdzht532si6Gv61baKGN7bcRx6si72SPlOQj/CbNf5kUaWTcbE1f5CBc3jw51eRqIcx5AK7DfEmjmdCnPW7w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WPBBu7yceNxS/6oq8QiXYEGvTmTzFcYvX3DzZEUbDnw=;
- b=mnUJOtlMBbk9Z9TBCKWD3DCJzAIKNVESJn3+OU1b5GhUsw3LQhsnfOk2CWEExznQ6tQFWqs8cGNdMP7EhNvyR8XbMLlV4wfgbXi1nGn+Ur+iv1WY8HpkaAlWIv3LGqUZ1QeM28vAugJeoON0c0Veft+Egl3WUh6ia8Vm3Z/90sucgWrQVSzELL+Hwwj/JZJSZx7srrE3CxpV/mRoZ3Ld0VPeQWDaBCoD8wJWMKMYCTXP3e1XPyYyDy4gpPSdqosk/fmsK3RsXEo5wtf8qwCMLK9TwaOK8bHK0tSW0o62e+HWurMfl1UXT79d6eI4VlS5zxyFWxDRn1uDL11/v2pH4A==
+ bh=hwC3hZUYMiQHw2mwi+01IbMKeIyE28Nc3a0pwSIGXZw=;
+ b=kuSlBs2q2AJThIWYG+Cg8rqX1t7XxP28wU4GnSL3jcOrDNynKTmANuHxn18TNDa2caj1FpgNBaFHXDIAn5tWcy70CIugFLzf9pl+OeLKf7wA7x+3mloLEoiiM9DO3wpx2ogGKO2QYSX1mKMAe4zOM+FHk70rSiU3IWP60G4SLUa/NL3fx7bidP8Kc/qfzde0dsZL9j5BCu9UmGEG20ZSmAWGUBESq+bpITpAbIAqi1wDsHTcYpB/GcCYZZnjesL4HZngG6nXmjBLNxTl+Q10R9uN0TUmVz21UHucM5XOCf6Azi/S7EZr8uGwhCKFR1h4+hZIjo/ZSpnTPk5v9tc9XQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WPBBu7yceNxS/6oq8QiXYEGvTmTzFcYvX3DzZEUbDnw=;
- b=PZl86fv3UhJtKsmmNXeB3VIrMCbyjXSbMgWqLf2pKHgkEdjyfA4ZUKL3sXJTbHoempIuGwwQvJ+OviQuD2d7HkN3406K9X6vw7MYSIpFGfJb6QSDtcGRKBX+o4eLGZxbRnbSCKgGIxp2U1CLvTv13+5SKKR3uoRi+tQ8W/xznF8=
-Received: from MW4PR03CA0055.namprd03.prod.outlook.com (2603:10b6:303:8e::30)
- by DM4PR12MB5088.namprd12.prod.outlook.com (2603:10b6:5:38b::9) with
+ bh=hwC3hZUYMiQHw2mwi+01IbMKeIyE28Nc3a0pwSIGXZw=;
+ b=gmYFbqKqm2Oi0MUuDfx/V8YhhdFF47Ixsc14NuFGx7WQWhvR9mK5m8FOv3iRBzVWtWB2LtNN86f/yRm6UIPjXsGZTS6p3NEwJ1+HFmfOLPlhf5fNDKhL5/R2I7V88sqQVCi+XCLHDYyA3ozsLyYMCEbsjAg0p+hM7m/kzsqDQeA=
+Received: from DM5PR08CA0044.namprd08.prod.outlook.com (2603:10b6:4:60::33) by
+ BN9PR12MB5382.namprd12.prod.outlook.com (2603:10b6:408:103::15) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14; Wed, 14 Sep
- 2022 03:52:31 +0000
-Received: from CO1NAM11FT017.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8e:cafe::90) by MW4PR03CA0055.outlook.office365.com
- (2603:10b6:303:8e::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.22 via Frontend
- Transport; Wed, 14 Sep 2022 03:52:31 +0000
+ 2022 03:53:10 +0000
+Received: from DS1PEPF0000B07A.namprd05.prod.outlook.com
+ (2603:10b6:4:60:cafe::fb) by DM5PR08CA0044.outlook.office365.com
+ (2603:10b6:4:60::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14 via Frontend
+ Transport; Wed, 14 Sep 2022 03:53:09 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT017.mail.protection.outlook.com (10.13.175.108) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5632.12 via Frontend Transport; Wed, 14 Sep 2022 03:52:31 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DS1PEPF0000B07A.mail.protection.outlook.com (10.167.17.11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5612.10 via Frontend Transport; Wed, 14 Sep 2022 03:53:09 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 13 Sep
- 2022 22:52:30 -0500
+ 2022 22:53:09 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 13 Sep
+ 2022 22:53:08 -0500
 Received: from wayne-dev-lnx.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Tue, 13 Sep 2022 22:52:25 -0500
+ Transport; Tue, 13 Sep 2022 22:53:04 -0500
 From: Wayne Lin <Wayne.Lin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH V2 20/47] drm/amd/display: update gamut remap if plane has
- changed
-Date: Wed, 14 Sep 2022 11:47:41 +0800
-Message-ID: <20220914034808.1093521-21-Wayne.Lin@amd.com>
+Subject: [PATCH V2 21/47] drm/amd/display: skip audio setup when audio stream
+ is enabled
+Date: Wed, 14 Sep 2022 11:47:42 +0800
+Message-ID: <20220914034808.1093521-22-Wayne.Lin@amd.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20220914034808.1093521-1-Wayne.Lin@amd.com>
 References: <20220914034808.1093521-1-Wayne.Lin@amd.com>
@@ -69,26 +73,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT017:EE_|DM4PR12MB5088:EE_
-X-MS-Office365-Filtering-Correlation-Id: c1f26f79-fc2a-406e-3313-08da96048ccc
+X-MS-TrafficTypeDiagnostic: DS1PEPF0000B07A:EE_|BN9PR12MB5382:EE_
+X-MS-Office365-Filtering-Correlation-Id: 01c85c81-7b73-49a6-d13e-08da9604a3ce
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Uo8IMD1XKzgt2P3RZGNrTx24Dg/nw4xj3KLDmneMCruc8/Q0i8dz7QiF6nPHkH4kUY+qwtNKuU/JmkDyiGs/arIv1OmxYbyG24bb0qhYglx734iQhoD05gGZn9SekCse/fm7uSZFNQEE9jsMxuCbHFijwe5BxkOP5+ESr3ywNz+ZjiioNQZWqd0aRzu/bEeBObGkRKmnfK5Wtp5qlDUBlHfsW7H7h3rfW+0By7Z2Nj6DxIbVzqQ49waUW/w2Uz4C+Ifsix4jazfSsDeE/XtW6tb0SWjcmUCo881vlfTbw41a6XSomT+Me7tGlZfGHBcEmhpT7NiP7BaVPxXsu164M5jBkivqUMHpg9jEEPvS30ckYCCCUiQ01QERTH6TEwi7Zyz5ojS/p0GdW8OLXkgcLhW+3mgaOlbfvsQcS0yya8JGDOOUQJ3GNEiaDr+j/tBU7LtcDgaEjW//23kLEKrdbF1ew8m4x+8IrxyFX0a5qfDup09YMpXhzGtHFQNF03CJ9gWLl9FntEtEUDYo6rlWN9Yg5tD+1gOPM3ksTCXrcPI94Sx1Ir0TNYV7JDVyqpSaSq5eGerSaUlsMD98tNL3OLA8s9NtR5cAoRUQ4R1lfQ2/RML/QZ3moZNCpGO+GHjCBE7JOTDepkC5CNYqWGyEXvoBKdRGAXmdMUUZ7cL47u6c4ufUMc4bgV7d2SxlOj6w1vW8dLW8hUukuQpGzJt8fgg/B2virw6/WeUxBFAi3A0Oy8RLCeTy+7miA/89BKxZwk+hoQL7BGyXmrXaCZdW6yzkblHuw4vf6KGIt1WWUqVRM/bXGLBVBlFYT79iFG3N
+X-Microsoft-Antispam-Message-Info: NmbH8yYJJh05SrBuZFVwcYd7XbI9g0tFWn/Iizt/gXlvJiCAE3fwPSkjwxcJyBL6qx2ux13tdX/SEpu/qvhxCe0k2jQb4+hZ3LT0jAepsTt8+54T1yNLzwu9r+gilfe3dig8QtX3ieWfdFAlwZe4qcIK5ghR/onKhYJHU1V+dP5E1JNLgSkW2ooDuftnKVAXm/iuHjU7uxfx0VrfDdjbsJZe6g/Z+CcglHKdfbmz3fwHMGM+GpPGZYabTS62XbNsgMFeN/FF2OtGI+H/jOmOTMGx8Xwk9X5Mc52Xytc7J9tfXbgpSb8I5EHZxyAProyd3lAGcRPQ6rvyBJ+HKvcsDoYmX1wIuCt48g+XKdaC44Rdo/CBS+U6I2UrcWNQK6e+aLUtuEjVo6nL1WgYDWlveFNpH2t1b1lG+jbiV6iQB1IimSlMn4zT6cOSulLwTBTh2gYFs3IEOz/gVAg+pALvnNMsnDZMgOxrxzuOwJSXIz07b9VV42oHHVst97Rd0t8CuE5TikzuNW/h4ZKHAoWz47097sjoAb7k99yMGIQEOMZd1cdsOOHZfK8j/c3tgbrB8JhC0+Znqe95axwcAyuZMHu6aReQtaF/cXN9pyriqVqCNPp0j51rroOo8meLvfbdM1jbhUHy22fH84lvgvWeF6LuPgeyLzIyEOtkW+6TF7iUStoQ4V2MeL1Hcn/NrWR0PmnbCl9t6DMOy3QLKbAn+MtGyj9+Mc12D1I8uYXC4R7A/San+vQDpqzn3ufbFkYutTTjDdj2RbtSo5QFz16a70Va35xQdXSmRknurrfMkqJmc9V1j/a9ABvLzE0FkEvB
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(136003)(396003)(376002)(39860400002)(346002)(451199015)(40470700004)(46966006)(36840700001)(426003)(41300700001)(478600001)(2616005)(36756003)(47076005)(82740400003)(1076003)(6916009)(15650500001)(81166007)(336012)(70206006)(26005)(54906003)(316002)(83380400001)(70586007)(82310400005)(40460700003)(186003)(356005)(6666004)(8676002)(4326008)(7696005)(2906002)(5660300002)(36860700001)(8936002)(40480700001)(86362001)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230022)(4636009)(136003)(396003)(376002)(346002)(39860400002)(451199015)(46966006)(40470700004)(36840700001)(40480700001)(7696005)(54906003)(5660300002)(6916009)(86362001)(6666004)(4326008)(336012)(70586007)(426003)(36756003)(41300700001)(2906002)(82310400005)(82740400003)(70206006)(26005)(40460700003)(478600001)(36860700001)(316002)(81166007)(8936002)(47076005)(83380400001)(356005)(8676002)(2616005)(186003)(1076003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 03:52:31.0856 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c1f26f79-fc2a-406e-3313-08da96048ccc
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 03:53:09.7528 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 01c85c81-7b73-49a6-d13e-08da9604a3ce
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT017.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0000B07A.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5088
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5382
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,44 +104,55 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
+Cc: stylon.wang@amd.com, Charlene Liu <Charlene.Liu@amd.com>,
  Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
  Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
- Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
- Hugo Hu <hugo.hu@amd.com>, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+ Aurabindo.Pillai@amd.com, zhikzhai <zhikai.zhai@amd.com>, wayne.lin@amd.com,
+ Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Hugo Hu <hugo.hu@amd.com>
+From: zhikzhai <zhikai.zhai@amd.com>
 
-[Why]
-The desktop plane and full-screen game plane may have different
-gamut remap coefficients, if switching between desktop and
-full-screen game without updating the gamut remap will cause
-incorrect color.
+[why]
+We have minimal pipe split transition method to avoid pipe
+allocation outage.However, this method will invoke audio setup
+which cause audio output stuck once pipe reallocate.
 
-[How]
-Update gamut remap if planes change.
+[how]
+skip audio setup for pipelines which audio stream has been enabled
 
-Reviewed-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+Reviewed-by: Charlene Liu <Charlene.Liu@amd.com>
 Acked-by: Wayne Lin <wayne.lin@amd.com>
-Signed-off-by: Hugo Hu <hugo.hu@amd.com>
+Signed-off-by: zhikzhai <zhikai.zhai@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-index ab56f14d6247..e1d271fe9e64 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-@@ -1573,6 +1573,7 @@ static void dcn20_update_dchubp_dpp(
- 	/* Any updates are handled in dc interface, just need
- 	 * to apply existing for plane enable / opp change */
- 	if (pipe_ctx->update_flags.bits.enable || pipe_ctx->update_flags.bits.opp_changed
-+			|| pipe_ctx->update_flags.bits.plane_changed
- 			|| pipe_ctx->stream->update_flags.bits.gamut_remap
- 			|| pipe_ctx->stream->update_flags.bits.out_csc) {
- 		/* dpp/cm gamut remap*/
+diff --git a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
+index 70ac0b31baba..55c98dbfcc1c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
++++ b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
+@@ -2178,7 +2178,8 @@ static void dce110_setup_audio_dto(
+ 			continue;
+ 		if (pipe_ctx->stream->signal != SIGNAL_TYPE_HDMI_TYPE_A)
+ 			continue;
+-		if (pipe_ctx->stream_res.audio != NULL) {
++		if (pipe_ctx->stream_res.audio != NULL &&
++			pipe_ctx->stream_res.audio->enabled == false) {
+ 			struct audio_output audio_output;
+ 
+ 			build_audio_output(context, pipe_ctx, &audio_output);
+@@ -2218,7 +2219,8 @@ static void dce110_setup_audio_dto(
+ 			if (!dc_is_dp_signal(pipe_ctx->stream->signal))
+ 				continue;
+ 
+-			if (pipe_ctx->stream_res.audio != NULL) {
++			if (pipe_ctx->stream_res.audio != NULL &&
++				pipe_ctx->stream_res.audio->enabled == false) {
+ 				struct audio_output audio_output;
+ 
+ 				build_audio_output(context, pipe_ctx, &audio_output);
 -- 
 2.37.3
 
