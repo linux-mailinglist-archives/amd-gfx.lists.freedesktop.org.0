@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04A105B7F4B
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 Sep 2022 05:25:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F4AF5B7F4F
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 Sep 2022 05:26:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD00F10E7DD;
-	Wed, 14 Sep 2022 03:25:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 443E110E7E0;
+	Wed, 14 Sep 2022 03:26:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2073.outbound.protection.outlook.com [40.107.220.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8067210E7DD
- for <amd-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 03:25:04 +0000 (UTC)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02on2056.outbound.protection.outlook.com [40.107.95.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FFF410E7DF
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 03:26:04 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Iio0tTaW7a7WtyaFCpGXih0Iwvgz0aIN+2wuclkK0r/WTZXl7SX7BzEbpcTmhQ8U2rzhx06v6X7ZNviuacPvTsr77awtgTZZNE0C1j8FIgT/M2ewSQMt7DENdIwUWENzjw4OyHRYw4NXLQ2/JpLNeCkD3Gjgu9uhreDXISdUp9h16uEyR0w5y7F2xRJjl+WTutD8BXsPk12UfcxbtQYb3LH7El0qv36wfMr0HdVlgR4Vqavi/n/nVK83KT6g4dSSLDGGG/eDOgOplVMGGkvIuXT0Vw5hkzBtkfNAWYX5D804j4b5FwacHz150bRLD2pjj2XWfr7j0lHsI6GejW32HA==
+ b=eyP2WS1s4z+JJg+yNpvPB5SuVbhnP7D77RcGbZAolKhEvU5zztq1yW3Ws4hEEyCpj6o7hjQGyUF8iOqi2y/zMAM6xiA4xk3JT0dfOGjd7BYR9PxRic8iQOSKVLFlJ98bdnLWzbVq/jvo/htEp29OiavhZttPply077AxSnU6yvxy74cVXPncQ0g/cL+457jhwEuSUS1hkikyXMg6z9i+JZUGCJHCuZNXqm0j4j6Gen4AiIaB8FHTCPDCgHWm1mRfGfrKEGiSiPdTF0Sqz6I16yDCy+bh7MRZjGoZJjXeIDFRgaaZ8YoFMMAYdnmRzxzPaKzdAHvF9fIWXoCPnxX0tQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JQQjZEh/NuzIG6vK6NyOSp5upmcV1HwcwkC08Wr98KE=;
- b=H8gq35GwRuCxhZfYMGnalOOEieSFPWbo24uFZA1QTy3/SIalbw6dOt294nnExvcolOEFTXSJypY9/EicjNXCpj0G3fAqLy91yRFRO2eK6lm7vI3L4AK9DtFi2hkC2IT3W/epCBk2+CA51b6RJYBIw5bhhJat86NBLZA16c4ygNDVT7kSus8jd495w25GLNXQR18MdkBk37BgglYGdq8SuPNxPVeljOBQf/fbSwFFmP17AG4f/HO8FWinxWif/y67pkY/lQXgkeOEv0S19mMyJEZ99lh6/HIgXrwDXyEhPt8NLVp79WjYxbV8896M5cBfUQsxJE75aek1lRpsywqtZw==
+ bh=zryLE1PFDOYJ3wm2AFfCLPdKdKB8dZZA8/YsXQpytKU=;
+ b=i6SupMHxXW8qxyg/KdTMupfde9Z2xYWg14ookaJ+s3A9aGUj1xB7Dm9sArZSlKtGWSqpuCuQ+eh/T1jEWCSNGHQtLAnLdDKd92TTb35aP0hhjwlDv5YRylaBnoR4/S5r4bWbn9MQ8t0brja0Vdl590n8cmg0P9S0yZpp3WPYlTXCo9CGzpdOAowxzqD27YWKA1tA7QV+dd7K8A5cQuK+MgIUdStN8PSYdRmVmhjKjBZWOIbK9TWJHzKwjSqAIMg5h+X6rLK6JwO0iFvBtTYuwu9uVzmWc1MtgSHzUzVEQcHT/5zeBjT+6z+O+VEW82ORvEQoGQ2iEHGKAF2c9kmm3w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JQQjZEh/NuzIG6vK6NyOSp5upmcV1HwcwkC08Wr98KE=;
- b=4xNjt+vy1MC4XY3bYFp6l7xpo19F/E6/lM399A3Eiui1/uKyD350nUevblBQ/3LikbkgQxesBkOnOSoWzIUFUMDAtIxQN+vCmzx2ua3HrW9baitWjk0JsA77w4DEf7iETZVIrRkxkfMZGCdXIhpU0Xs7TXu1fE4fMPeVw5658nw=
-Received: from DM6PR14CA0059.namprd14.prod.outlook.com (2603:10b6:5:18f::36)
- by CY5PR12MB6597.namprd12.prod.outlook.com (2603:10b6:930:43::18) with
+ bh=zryLE1PFDOYJ3wm2AFfCLPdKdKB8dZZA8/YsXQpytKU=;
+ b=Nktu9Z7Aruge6l+qZSgZmxg+1npe8UPXx0oIBMmrRYCZwqqHt25uhV6ItkBAALc+NT01XPRw1QKDK4Ce2a+8iiMfMURIXDHUrTWH8b/BGzX+aFhHEwUisqNQysaAzzyS+7ki16r/r/gEiLRh5fiyFTnyuRbbtchql9cDDu6qWT4=
+Received: from DM6PR11CA0066.namprd11.prod.outlook.com (2603:10b6:5:14c::43)
+ by DM6PR12MB4580.namprd12.prod.outlook.com (2603:10b6:5:2a8::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.22; Wed, 14 Sep
- 2022 03:25:01 +0000
-Received: from DM6NAM11FT070.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:18f:cafe::2c) by DM6PR14CA0059.outlook.office365.com
- (2603:10b6:5:18f::36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14 via Frontend
- Transport; Wed, 14 Sep 2022 03:25:00 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14; Wed, 14 Sep
+ 2022 03:26:00 +0000
+Received: from DM6NAM11FT012.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:14c:cafe::9b) by DM6PR11CA0066.outlook.office365.com
+ (2603:10b6:5:14c::43) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.18 via Frontend
+ Transport; Wed, 14 Sep 2022 03:26:00 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,51 +45,53 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DM6NAM11FT070.mail.protection.outlook.com (10.13.173.51) with Microsoft SMTP
+ DM6NAM11FT012.mail.protection.outlook.com (10.13.173.109) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5632.12 via Frontend Transport; Wed, 14 Sep 2022 03:25:00 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
+ 15.20.5632.12 via Frontend Transport; Wed, 14 Sep 2022 03:26:00 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 13 Sep
- 2022 22:25:00 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB08.amd.com
- (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
+ 2022 22:25:57 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 13 Sep
- 2022 20:25:00 -0700
+ 2022 22:25:39 -0500
 Received: from wayne-dev-lnx.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Tue, 13 Sep 2022 22:24:50 -0500
+ Transport; Tue, 13 Sep 2022 22:25:35 -0500
 From: Wayne Lin <Wayne.Lin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 00/47] DC Patches September 14, 2022
-Date: Wed, 14 Sep 2022 11:23:54 +0800
-Message-ID: <20220914032441.1075031-1-Wayne.Lin@amd.com>
+Subject: [PATCH 01/47] drm/amd/display: Port DCN30 420 logic to DCN32
+Date: Wed, 14 Sep 2022 11:23:55 +0800
+Message-ID: <20220914032441.1075031-2-Wayne.Lin@amd.com>
 X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20220914032441.1075031-1-Wayne.Lin@amd.com>
+References: <20220914032441.1075031-1-Wayne.Lin@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT070:EE_|CY5PR12MB6597:EE_
-X-MS-Office365-Filtering-Correlation-Id: ec177183-d77f-4cab-18a5-08da9600b517
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT012:EE_|DM6PR12MB4580:EE_
+X-MS-Office365-Filtering-Correlation-Id: 547cb262-b741-4c40-3960-08da9600d89c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Ese5FntaaLjmYbRF0YTKEfXGpb0HmkwpPRbHZ9sYh21TMk6lGlaOyCP2KSIhiGF+5aJOXfZSSlFeQiIC2GUNVQy9V9MfczeoeAQi6ruJ1aLfCOlTo467bi4siekrMsohrGUixZKEvOQOaMT5UZFj9Dmu9FcQ/OIMsWcPldpAh+auyou6rYxB0Fzud7/F8usUFECAN3491YbrKZRjO/SZ2WnbM+kad6XXb0Ik8BEesZ7x7A5pTqeH/iv4guyJJXKGP3dMFynSp7u+bnW1xnJSU/6ugP27ahk89PCRiKAO+0owIJRcdgOOHQu/1lisL4VEE2EsJi8O99LMjhJDwwmwU5hqSbxFq1g3qkUL3DdakHZo7qaliwPg+6TuqhE5mJ2Sc2HRaP7TXDQ4ADXpldE+7Rf6Yf2EUnRq8T61BW4zJWA3YG0lYhL/Ru0yHfRX1MdGNPg1APkpvjY9KS3983qOJuGK2dN7/ZHtmQZRIbQDbPf8Lbbi9BlJiZpD3hSrqpD7DF/dJ0xxmDlYVJa9kkXmGHxDGHEc+2cE229N/LUojJhBeSRTyotZwge0rXhgt/GXP2ofByxQ+YZZ+Nwlg6tzC5CKQy7eUwkvSDT84jtI+JB66bGAb6grBsbgTXbp3j6txytLz95rbADlFTfh/F9qdcafu1EhtppULrmj5QK+xvLy5cptFPmxL9365ACSs/9dnFM8XJiJvSJlHqZf81iO07FpaZU67HHHuJ6i3wz53fE7mfXCViCTKu31w6KOdop94cDFQpBTJ6tydzW/unynlUhPc6i6LsGrUTxygpXrba0=
+X-Microsoft-Antispam-Message-Info: bm3sCrhWc0vZ0kNPMna1b7Ux/Me0gtbuhuTYeK5ijpBCv7JcmGzMlLIMhz8rUcJFfjGftFE2nd1qcCNQGONL6VfLb97zOzWX9yEUba6BJs3X8wcaBRBpJYkusBqyA2XK6OL49GtEA+VtIhD/3w/fh0J/3YRTCqKUbNJZRSFr5q18wKyqRkolxyu3GNie0nyRdrTThyt4MRuxWHYIiubDkLQpNBz3VY+cCa7n3Un1wW0LibjaJr7eTVkslWf64GjkmPaj1iE5M8ZpeStIER7jw5YXFbnDS5SBpJAZ7Z+JCitQQmenQtqYQ2gltCu2btAvgm+gYUD+tzbCVONVZwmLKc9RJacpAKta5QKXB7g4MyMOd7aeRZkkbgPv4mlNFrBlWaHjr7/CBBxvVwY0MZAMN+R7ZOnudfAZ4zOC4KGLQ6CuyFWgd/Ei6enDQAgLTlzgiUUuXfAdB4nFcmwq/1EPwp8WDBBKLi7MPXbaRS7myq7oebxLUmjPcJwDZdPPPW8NudzPMssM0RAjWPCW3MIKH12kDpk7SGpZZA/SpB0qnd9Z6szzklV5Z7ZFM/VLbF07Nsh1sX15uqG8RLj0xg8ZkPLOqHx54qNJFPPbiNmCc+wGZFlAOAdHhYRrZwEXQCrEnhT2oP+bC2IXthUGIo2QFqRtOra1EM84hbROMZ6CK0XOzeNVXg8hY3pJmG0ZFEb5pND5nshdq0C3cp6Yb3gzo5uIAWyzRtFNg8E/maoW1+p5dht31R2J+r2Ggbzo5Hjwf6UKU71FhrWOO2h9bhepScEVv7X3gCsiyvvcsQe+h3Y4uBqjg7HOfU1FjvPBZqAB
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(376002)(39860400002)(136003)(346002)(396003)(451199015)(46966006)(36840700001)(40470700004)(83380400001)(8936002)(82740400003)(36860700001)(6916009)(40460700003)(426003)(26005)(8676002)(70206006)(1076003)(7696005)(70586007)(186003)(86362001)(4326008)(40480700001)(81166007)(5660300002)(2616005)(82310400005)(54906003)(47076005)(36756003)(478600001)(2906002)(336012)(316002)(41300700001)(356005)(36900700001);
+ SFS:(13230022)(4636009)(396003)(39860400002)(136003)(376002)(346002)(451199015)(46966006)(36840700001)(40470700004)(5660300002)(4326008)(36860700001)(8936002)(40480700001)(1076003)(82310400005)(2616005)(6666004)(2906002)(8676002)(356005)(36756003)(81166007)(426003)(82740400003)(336012)(316002)(6916009)(40460700003)(41300700001)(70586007)(86362001)(54906003)(47076005)(70206006)(186003)(83380400001)(26005)(478600001)(7696005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 03:25:00.7608 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ec177183-d77f-4cab-18a5-08da9600b517
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 03:26:00.3692 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 547cb262-b741-4c40-3960-08da9600d89c
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT070.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT012.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6597
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4580
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,242 +103,120 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- solomon.chiu@amd.com, Daniel Wheeler <daniel.wheeler@amd.com>,
- Aurabindo.Pillai@amd.com, Wayne Lin <Wayne.Lin@amd.com>,
- Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, Chris Park <chris.park@amd.com>, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ roman.li@amd.com, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
+ wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
+ pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This DC patchset brings improvements in multiple areas. In summary, we highlight:
+From: Chris Park <chris.park@amd.com>
 
-For DC version 3.2.203
-- Port DCN30 420 logic to DCN32
-- Remove some unused definitions from DCN32/321
-- Remove dp dig pixle rate div policy from dcn314
-- Fix dcn315 reading of memory channel count and width
-- Fix SubVP and ODM relevant issues
-- Fix pipe split, MPO and ODM relevant issues
-- Support proper mst payload removal when link is not in mst mode in dc
-- Assume an LTTPR is always present on fixed_vs links
-- Rework recent update PHY state commit
-- Add debug option and logs
+[Why]
+420 modes are limited by FMT buffer width of 4096
+which requires multi-pipe support in form of ODM
+combine.  If 420 modes have greater HActive than
+4096, the DML logic should accomodate whether
+it should be rejected, or ODM combine 2:1 or 4:1
+is triggered accordingly.
 
-For DC version 3.2.204
-- Fix urgent latency override for DCN32/DCN321
-- Correct hostvm flag in DCN31
-- Added new Asic Id for DCN301
-- Adjust to 2 phys in DCN301
-- Update dummy P-state search to use DCN32 DML
-- Increase dcn315 pstate change latency
-- Disable OTG WA for the plane_state NULL case on DCN314
-- Update dccg based on HW delta
-- Correct num_dsc for DCN314
-- Fix DP DSC compliance failure with DCN314
-- Refactor edp power sequencer codes
-- update gamut remap if plane has changed
-- Skip audio setup when audio stream is enabled
-- Display distortion after hotplug LG Ultrafine 5K tiled display
-- Fix DP MST timeslot issue when fallback happened
-- Uncomment SubVP pipe split assignment in driver
-- Enable committing subvp config
-- Do second pass through DML for DET calculation
-- Don't allocate DET for phantom pipes
-- Modify DML to adjust Vstartup Position
-- Ignore k1/k2 values for virtual signal to avoid assert
-- Fix failures of disabling primary planes
-- Do not compare integers of different widths
-- Fix empty slot problem of EDID management
-- Revise Sink device string ID width in dmub psr
-- Log vertical interrupt 1 for debug
+[How]
+FMT Buffer limit of 4096 in DCN32. Force ODM
+combine depending on HActive and FMT Buffer limit.
+Reject modes if TMDS 420 and above 4096.
 
-Cc: Daniel Wheeler <daniel.wheeler@amd.com>
+Acked-by: Wayne Lin <wayne.lin@amd.com>
+Signed-off-by: Chris Park <chris.park@amd.com>
 ---
+ .../dc/dml/dcn32/display_mode_vba_32.c        |  2 ++
+ .../dc/dml/dcn32/display_mode_vba_util_32.c   | 26 +++++++++++++++++++
+ .../dc/dml/dcn32/display_mode_vba_util_32.h   |  1 +
+ 3 files changed, 29 insertions(+)
 
-Alex Hung (1):
-  drm/amd/display: Fix failures of disabling primary plans
-
-Alvin Lee (10):
-  drm/amd/display: Fix pipe split prediction
-  drm/amd/display: Only consider pixle rate div policy for DCN32+
-  drm/amd/display: For ODM seamless transition require AUTO mode
-  drm/amd/display: Add debug option for allocating extra way for cursor
-  drm/amd/display: SubVP pipe split case
-  drm/amd/display: Disable SubVP on driver disable
-  drm/amd/display: Fix SubVP way calculation
-  drm/amd/display: Uncomment SubVP pipe split assignment in driver
-  drm/amd/display: Don't allocate DET for phantom pipes
-  drm/amd/display: Do second pass through DML for DET calculation
-
-Anthony Koo (1):
-  drm/amd/display: [FW Promotion] Release 0.0.134.0
-
-Aric Cyr (2):
-  drm/amd/display: 3.2.203
-  drm/amd/display: 3.2.204
-
-Aurabindo Pillai (2):
-  drm/amd/display: Remove some unused definitions from DCN32/321
-  drm/amd/display: Enable committing subvp config
-
-Charlene Liu (4):
-  drm/amd/display: add debug option for dramclk_change_latency in apu
-  drm/amd/display: Expose few dchubbub functions
-  drm/amd/display: update dccg based on HW delta
-  drm/amd/display: correct num_dsc based on HW cap
-
-Chris Park (1):
-  drm/amd/display: Port DCN30 420 logic to DCN32
-
-Cruise Hung (1):
-  drm/amd/display: Fix DP MST timeslot issue when fallback happened
-
-Daniel Miess (1):
-  drm/amd/display: Add shift and mask for ICH_RESET_AT_END_OF_LINE
-
-Dmytro Laktyushkin (2):
-  drm/amd/display: fix dcn315 memory channel count and width read
-  drm/amd/display: increase dcn315 pstate change latency
-
-George Shen (2):
-  drm/amd/display: Fix urgent latency override for DCN32/DCN321
-  drm/amd/display: Update dummy P-state search to use DCN32 DML
-
-Hugo Hu (1):
-  drm/amd/display: update gamut remap if plane has changed
-
-Ian Chen (1):
-  drm/amd/display: Refactor edp panel power sequencer(PPS) codes
-
-Jaehyun Chung (1):
-  drm/amd/display: Assume connectors are on single slot
-
-Josip Pavic (2):
-  drm/amd/display: do not compare integers of different widths
-  drm/amd/display: log vertical interrupt 1 for debug
-
-Leo Chen (1):
-  drm/amd/display: Various logs added
-
-Leo Li (1):
-  drm/amd/display: Fix double cursor on non-video RGB MPO
-
-Meenakshikumar Somasundaram (1):
-  drm/amd/display: Display distortion after hotplug 5K tiled display
-
-Michael Strauss (1):
-  drm/amd/display: Assume an LTTPR is always present on fixed_vs links
-
-Nicholas Kazlauskas (1):
-  drm/amd/display: Disable OTG WA for the plane_state NULL case on
-    DCN314
-
-Pavle Kotarac (2):
-  drm/amd/display: Added new DCN301 Asic Id
-  drm/amd/display: Removing 2 phys
-
-Robin Chen (1):
-  drm/amd/display: Revise Sink device string ID
-
-Rodrigo Siqueira (1):
-  drm/amd/display: Ignore k1/k2 values for virtual signal
-
-Sherry Wang (1):
-  drm/amd/display: correct hostvm flag
-
-Wenjing Liu (3):
-  drm/amd/display: rework recent update PHY state commit
-  drm/amd/display: support proper mst payload removal when link is not
-    in mst mode in dc
-  drm/amd/display: solve regression in update phy state refactor
-
-muansari (1):
-  drm/amd/display: Modify DML to adjust Vstartup Position
-
-zhikzhai (1):
-  drm/amd/display: skip audio setup when audio stream is enabled
-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  12 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    |  12 -
- .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  11 +-
- .../drm/amd/display/dc/bios/bios_parser2.c    |  63 +++--
- .../display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c  |  11 +-
- .../dc/clk_mgr/dcn314/dcn314_clk_mgr.c        |  14 +-
- .../dc/clk_mgr/dcn315/dcn315_clk_mgr.c        |  36 +--
- .../dc/clk_mgr/dcn316/dcn316_clk_mgr.c        |  11 +-
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  19 +-
- drivers/gpu/drm/amd/display/dc/core/dc_link.c |  98 +++++---
- .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 119 +++-------
- .../gpu/drm/amd/display/dc/core/dc_resource.c |  39 ++++
- drivers/gpu/drm/amd/display/dc/dc.h           |   3 +-
- drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c  |  25 +-
- drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h  |   1 +
- drivers/gpu/drm/amd/display/dc/dc_link.h      |  12 +-
- drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c |   7 +-
- .../display/dc/dce110/dce110_hw_sequencer.c   | 170 ++++++++++++--
- .../display/dc/dce110/dce110_hw_sequencer.h   |  20 +-
- .../amd/display/dc/dcn10/dcn10_hw_sequencer.c |   9 +
- .../gpu/drm/amd/display/dc/dcn10/dcn10_init.c |   4 +
- .../gpu/drm/amd/display/dc/dcn10/dcn10_optc.c |   6 +
- .../gpu/drm/amd/display/dc/dcn10/dcn10_optc.h |   2 +
- .../gpu/drm/amd/display/dc/dcn20/dcn20_dccg.h |   1 +
- .../gpu/drm/amd/display/dc/dcn20/dcn20_dsc.h  | 220 ------------------
- .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    |  44 +++-
- .../gpu/drm/amd/display/dc/dcn20/dcn20_init.c |   4 +
- .../drm/amd/display/dc/dcn201/dcn201_hwseq.c  |   3 +-
- .../drm/amd/display/dc/dcn201/dcn201_init.c   |   4 +
- .../gpu/drm/amd/display/dc/dcn21/dcn21_init.c |   4 +
- .../drm/amd/display/dc/dcn30/dcn30_hwseq.c    |  21 +-
- .../gpu/drm/amd/display/dc/dcn30/dcn30_init.c |   4 +
- .../drm/amd/display/dc/dcn301/dcn301_init.c   |   4 +
- .../amd/display/dc/dcn301/dcn301_resource.c   |   4 +-
- .../drm/amd/display/dc/dcn31/dcn31_hubbub.c   |   2 +-
- .../drm/amd/display/dc/dcn31/dcn31_hubbub.h   |   2 +
- .../drm/amd/display/dc/dcn31/dcn31_hwseq.c    |  11 +-
- .../gpu/drm/amd/display/dc/dcn31/dcn31_init.c |   4 +
- .../drm/amd/display/dc/dcn31/dcn31_resource.c |   2 +-
- .../drm/amd/display/dc/dcn314/dcn314_dccg.h   |  70 ++++--
- .../drm/amd/display/dc/dcn314/dcn314_hwseq.c  |  19 +-
- .../drm/amd/display/dc/dcn314/dcn314_hwseq.h  |   2 -
- .../drm/amd/display/dc/dcn314/dcn314_init.c   |   5 +-
- .../amd/display/dc/dcn314/dcn314_resource.c   |  11 +-
- .../drm/amd/display/dc/dcn32/dcn32_hubbub.c   |  10 +-
- .../drm/amd/display/dc/dcn32/dcn32_hubbub.h   |  29 +++
- .../drm/amd/display/dc/dcn32/dcn32_hwseq.c    | 100 +++++---
- .../drm/amd/display/dc/dcn32/dcn32_hwseq.h    |   5 +-
- .../gpu/drm/amd/display/dc/dcn32/dcn32_init.c |   5 +-
- .../drm/amd/display/dc/dcn32/dcn32_resource.c |  95 +++-----
- .../drm/amd/display/dc/dcn32/dcn32_resource.h |  11 +-
- .../display/dc/dcn32/dcn32_resource_helpers.c | 153 ++++++++++--
- .../amd/display/dc/dcn321/dcn321_resource.c   |  26 +--
- drivers/gpu/drm/amd/display/dc/dm_helpers.h   |   3 +-
- .../amd/display/dc/dml/dcn301/dcn301_fpu.c    |   5 +
- .../drm/amd/display/dc/dml/dcn31/dcn31_fpu.c  |  24 +-
- .../amd/display/dc/dml/dcn314/dcn314_fpu.c    |   7 +
- .../dc/dml/dcn314/display_mode_vba_314.c      |   2 +-
- .../drm/amd/display/dc/dml/dcn32/dcn32_fpu.c  | 172 +++++++++++---
- .../drm/amd/display/dc/dml/dcn32/dcn32_fpu.h  |  16 +-
- .../dc/dml/dcn32/display_mode_vba_32.c        |   2 +
- .../dc/dml/dcn32/display_mode_vba_util_32.c   |  26 +++
- .../dc/dml/dcn32/display_mode_vba_util_32.h   |   1 +
- .../amd/display/dc/dml/dcn321/dcn321_fpu.c    |   1 +
- .../amd/display/dc/dml/display_mode_structs.h |   1 +
- .../drm/amd/display/dc/dml/display_mode_vba.c |   1 +
- .../gpu/drm/amd/display/dc/inc/hw/hw_shared.h |  16 +-
- .../gpu/drm/amd/display/dc/inc/hw_sequencer.h |  23 +-
- .../gpu/drm/amd/display/dc/inc/link_hwss.h    |   6 +-
- drivers/gpu/drm/amd/display/dc/inc/resource.h |   6 +
- .../drm/amd/display/dc/link/link_hwss_dio.c   |   4 +-
- .../drm/amd/display/dc/link/link_hwss_dio.h   |   2 +-
- .../drm/amd/display/dc/link/link_hwss_dpia.c  |   2 +-
- .../amd/display/dc/link/link_hwss_hpo_dp.c    |   2 +-
- .../display/dc/virtual/virtual_link_hwss.c    |   8 +
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |   3 +-
- .../gpu/drm/amd/display/include/dal_asic_id.h |   1 +
- .../amd/display/include/ddc_service_types.h   |   4 +-
- 78 files changed, 1191 insertions(+), 726 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
+index ad100658132f..75be1e1ce543 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
+@@ -1992,6 +1992,7 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 				dml32_CalculateODMMode(
+ 						mode_lib->vba.MaximumPixelsPerLinePerDSCUnit,
+ 						mode_lib->vba.HActive[k],
++						mode_lib->vba.OutputFormat[k],
+ 						mode_lib->vba.Output[k],
+ 						mode_lib->vba.ODMUse[k],
+ 						mode_lib->vba.MaxDispclk[i],
+@@ -2014,6 +2015,7 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 				dml32_CalculateODMMode(
+ 						mode_lib->vba.MaximumPixelsPerLinePerDSCUnit,
+ 						mode_lib->vba.HActive[k],
++						mode_lib->vba.OutputFormat[k],
+ 						mode_lib->vba.Output[k],
+ 						mode_lib->vba.ODMUse[k],
+ 						mode_lib->vba.MaxDispclk[i],
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
+index 5b5b94f1024d..ad66e241f9ae 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
+@@ -27,6 +27,8 @@
+ #include "display_mode_vba_32.h"
+ #include "../display_mode_lib.h"
+ 
++#define DCN32_MAX_FMT_420_BUFFER_WIDTH 4096
++
+ unsigned int dml32_dscceComputeDelay(
+ 		unsigned int bpc,
+ 		double BPP,
+@@ -1179,6 +1181,7 @@ void dml32_CalculateDETBufferSize(
+ void dml32_CalculateODMMode(
+ 		unsigned int MaximumPixelsPerLinePerDSCUnit,
+ 		unsigned int HActive,
++		enum output_format_class OutFormat,
+ 		enum output_encoder_class Output,
+ 		enum odm_combine_policy ODMUse,
+ 		double StateDispclk,
+@@ -1253,6 +1256,29 @@ void dml32_CalculateODMMode(
+ 		else
+ 			*TotalAvailablePipesSupport = false;
+ 	}
++	if (OutFormat == dm_420 && HActive > DCN32_MAX_FMT_420_BUFFER_WIDTH &&
++			ODMUse != dm_odm_combine_policy_4to1) {
++		if (HActive > DCN32_MAX_FMT_420_BUFFER_WIDTH * 4) {
++			*ODMMode = dm_odm_combine_mode_disabled;
++			*NumberOfDPP = 0;
++			*TotalAvailablePipesSupport = false;
++		} else if (HActive > DCN32_MAX_FMT_420_BUFFER_WIDTH * 2 ||
++				*ODMMode == dm_odm_combine_mode_4to1) {
++			*ODMMode = dm_odm_combine_mode_4to1;
++			*RequiredDISPCLKPerSurface = SurfaceRequiredDISPCLKWithODMCombineFourToOne;
++			*NumberOfDPP = 4;
++		} else {
++			*ODMMode = dm_odm_combine_mode_2to1;
++			*RequiredDISPCLKPerSurface = SurfaceRequiredDISPCLKWithODMCombineTwoToOne;
++			*NumberOfDPP = 2;
++		}
++	}
++	if (Output == dm_hdmi && OutFormat == dm_420 &&
++			HActive > DCN32_MAX_FMT_420_BUFFER_WIDTH) {
++		*ODMMode = dm_odm_combine_mode_disabled;
++		*NumberOfDPP = 0;
++		*TotalAvailablePipesSupport = false;
++	}
+ }
+ 
+ double dml32_CalculateRequiredDispclk(
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.h b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.h
+index 3dbc9cf46aad..55cead0d4237 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.h
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.h
+@@ -216,6 +216,7 @@ void dml32_CalculateDETBufferSize(
+ void dml32_CalculateODMMode(
+ 		unsigned int MaximumPixelsPerLinePerDSCUnit,
+ 		unsigned int HActive,
++		enum output_format_class OutFormat,
+ 		enum output_encoder_class Output,
+ 		enum odm_combine_policy ODMUse,
+ 		double StateDispclk,
 -- 
 2.37.3
 
