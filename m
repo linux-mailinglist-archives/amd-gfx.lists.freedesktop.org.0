@@ -2,69 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A95005B8085
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 Sep 2022 07:13:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E2065B8080
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 Sep 2022 07:12:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C74A710E831;
-	Wed, 14 Sep 2022 05:13:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E238410E548;
+	Wed, 14 Sep 2022 05:12:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1091810E830
- for <amd-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 05:13:39 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2045.outbound.protection.outlook.com [40.107.93.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD96110E548
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 05:12:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cKWQyogAUoXMtru/A+kjWpKA308XMPSHZS3+HcuCR+5fpXwZ2qq2WtZkDjXDiAXikH/nan4jJfWh7BIsWQwezznIooOz90eD0Fb0y/fcY2MyXT52+xMTW10Qtz8zv0OALhHbJGGzomwjjFkHIenCF16K4f7R0iXeVBO2rPApYXFDG7MHVpNtnu/Uz1kTjkSnNPm8Z1eD2d10DiRaIAQG89SI1LfbCBssa7S2Ubfq13GjDaqSt945RZNpvdiBJLcIz0v0dZ00hKuXVbe40VIy2B5fG95U1qouSGacooGYLegijaEXnKMvxse4wr1dmG2azSKzXG3iFZlaYNtkVtR8Jg==
+ b=I3FYRvdmwweUd3Tj3856S11vyr7O3nMCiql5DR+r4HlGh3CbTBUG6Spz/fqqgOFzjZ/dqx699BdxKz92lJgmJGvphwjm9ORVtOmwYX6UBVfnp6ISiN31uNEhSvqyJrVzGP1LCdrfe3uH4XuFWLXZGIl22po1RN5cBq89rkNkYkPjrIajFp4/43KrDiWoBZi3GC368agYeGhOdNNwKgDTOeytcZIkr9uFtG52WI/nS0Qr3jeRUroylpzQ2iJcEJ+PfPUK8b9HlaMVGaYvO1lLMpMZNsLYy5TmSy/xtk3sS7W5O/w/0OLZ4UEkUAJdedekEId4kVq5v/c0OOhqQlArMA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sSf6qwvhXhDqE0gPA4livK7ENtaDt+cbNef68ftscxY=;
- b=NMIJA+dvJ4QxTG1wn229kfBDVS9ilJ53P3e44cjdB9rQgLcysqfxDhYeaQ71QCZ0K0bcbckGKgmGELsh7BXKLbZKlUAnYegVUMtiF6i5wj+dZx5mAc1spCvFoXDjBG1T5XsbbBFJ6T/NkMX2n99BKSiqjnIJ2RNEJ5kbSfFgUvTEuMxd/b8EKP0RkG441DHRxQzVTetzHj9ZdsmFoqTN/cukxYefnGpOZ20WU3daLjkRgGC8U1e4B11+hrSoKPonheHaESCYMSLiLDzDxaHoQo10s3MjXJdUy6dPgN/FkPE0J2O6AVtVLb51b90h9DyHwXmy5uyZzRJcx/1BVaE+gw==
+ bh=lveCSPitdth3cZ21KJ8WE0CDc2C7v9EaddY3VAYHQPE=;
+ b=SgSTYqwuRTf1v+NKajC3W/AOkFBd1srcZlFfeoHnRdPV+O2aB3NJgRj1xH9NsKAewl1uFVOGR58OM4MYpOnkWKEf+cSXfMxn7xtl9/hoj2d5nLqJz7ioPuTIwa0Cvok0yisW1EjLfdLnARE8mWf9GDmZJY8LByppyMyBX9sPBifOPRxHyTMgilvAuTGLf8SnLqJjgTXMwOqyGyCQScdlv1KmWb3zNvi3MkcRnVeumJtzoEF7f6TFDu2IOPzflUTtIimPtfcHBl/+prnOjVBwvY6gxvMtQuj4xVvJRPGkf1cUtQqcAzK+WL7wKVQjpTHDuEMV2GM35ev0QfZKvqTKpA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sSf6qwvhXhDqE0gPA4livK7ENtaDt+cbNef68ftscxY=;
- b=2FzWH1FwBuMmi1AR++SP6sygLOhItYkvZauiD8OFO3L6nfodn9ZesMJZgHXBmV2+wG/9BAkmY7RXvqNSEXVFxdPos+zdjq2QyZwfaSbCrYHDLPIuX2Ddr5Md7Mgi9rp3h+CBfBzFf08P6lKVuXuIMc9TiKq4B/gW5HNRr0Qn7Sg=
-Received: from MW4PR04CA0280.namprd04.prod.outlook.com (2603:10b6:303:89::15)
- by MN2PR12MB4472.namprd12.prod.outlook.com (2603:10b6:208:267::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.19; Wed, 14 Sep
- 2022 05:13:36 +0000
-Received: from CO1NAM11FT089.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:89:cafe::ec) by MW4PR04CA0280.outlook.office365.com
- (2603:10b6:303:89::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.14 via Frontend
- Transport; Wed, 14 Sep 2022 05:13:36 +0000
+ bh=lveCSPitdth3cZ21KJ8WE0CDc2C7v9EaddY3VAYHQPE=;
+ b=x9VSk9wHOALxxgPenVpkkLcnma6suG9txda4gy6pACPJPvU35m184fuYKd/qt3b1Pwabvj+jvtN+ZaWZsTrTDZ6ggX1/JqghY4SfImohxCg7ilUhosq29WCOfEUjU3oYsVwqwn2q5KASm7lXsUaxDroVDS5+Qj/HwtqHwZv63lc=
+Received: from DS7PR03CA0308.namprd03.prod.outlook.com (2603:10b6:8:2b::31) by
+ BL1PR12MB5380.namprd12.prod.outlook.com (2603:10b6:208:314::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5612.23; Wed, 14 Sep 2022 05:12:49 +0000
+Received: from DM6NAM11FT031.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:8:2b:cafe::df) by DS7PR03CA0308.outlook.office365.com
+ (2603:10b6:8:2b::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14 via Frontend
+ Transport; Wed, 14 Sep 2022 05:12:49 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT089.mail.protection.outlook.com (10.13.175.179) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DM6NAM11FT031.mail.protection.outlook.com (10.13.172.203) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5632.12 via Frontend Transport; Wed, 14 Sep 2022 05:13:35 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.5632.12 via Frontend Transport; Wed, 14 Sep 2022 05:12:48 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 14 Sep
- 2022 00:12:36 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 14 Sep
- 2022 00:12:36 -0500
+ 2022 00:12:47 -0500
 Received: from wayne-dev-lnx.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Wed, 14 Sep 2022 00:12:31 -0500
+ Transport; Wed, 14 Sep 2022 00:12:36 -0500
 From: Wayne Lin <Wayne.Lin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH V3 06/47] drm/amd/display: Only consider pixle rate div policy
- for DCN32+
-Date: Wed, 14 Sep 2022 13:10:05 +0800
-Message-ID: <20220914051046.1131186-7-Wayne.Lin@amd.com>
+Subject: [PATCH V3 07/47] drm/amd/display: Fix double cursor on non-video RGB
+ MPO
+Date: Wed, 14 Sep 2022 13:10:06 +0800
+Message-ID: <20220914051046.1131186-8-Wayne.Lin@amd.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20220914051046.1131186-1-Wayne.Lin@amd.com>
 References: <20220914051046.1131186-1-Wayne.Lin@amd.com>
@@ -73,26 +69,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT089:EE_|MN2PR12MB4472:EE_
-X-MS-Office365-Filtering-Correlation-Id: b23996ad-c9da-4b19-e2e1-08da960fe080
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT031:EE_|BL1PR12MB5380:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3d6f66df-c8ae-4aa6-a4dc-08da960fc45e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: rX/u+1y/1Zi3V2xHOUjzvVXbxnQRLBU2gCjxCu4CRgwoz8ixzpKJLfxcxmllvhn92yypMWYU6cHpnkA9mrLQRPLo5/N+JF1S1vu9LKLPxLtClRkwyT6y4BW6/AauvAPTBFEvzZKtMbn3KwENUg6ZZgQKjISynEAng23o69UF1PriSXPM2WslkV4/sFnkhRzpK36Mc76Zx3kRMvtBent6Z+UftYPhlhRes6yLjSy2Mo+/n2J6MD+dXZUeBPnL1W3mxolhKwCB6toUQebHENjqyGI1zwph+RbojtdVGo75gmFa4lbvJhrBSJQ3UoKSE/YCJDCEyWVlsBsLGdOt5a/q9mPdZK512gp56CcRjy+AadlmTfH7MkZCEg8VleT3H+63GfRu5jL6GGke9Htp8rjYosalRPq1nbCKUm0vbxSJIKSk0SYXtA2J2aU7K3C2Bv48vxQ8bf/jOAZOIXiEFLBPNw6Te8Mcdeq7hGP0vE2xCB0eaz2CvIVxBhwzSkD5EO5OMjr1KiKWUxc47rP86FW6Hj2An/MyQrNhxWh4QpJdJxzpVaClpHqbIad2ojThoEomBys5UIuEwLxAkV99oc26FqGFKlTj1tpiBY5xyeOMMrI7ijMKX5Z+7TiK2C9Q1fzqlp7a8DvanNF9h7E48hPUuiyJ6ZyND1X5/w2KotKEcrF8TozGhjty3ESIYyuOi1e8j0JgrY0cplyAyyIv3Y9qe2NLXBfiSLTBM8huXdVHv+K3R43+R/wNfC8lVsqP2RsD46gGaPw/YPM5HSDVp6+A8VpicmFP/LzRokXCgH0QAJ7R40xn3zKYHoas3USN9+b5
+X-Microsoft-Antispam-Message-Info: N2qpCr72s0ZrMe9U1VGGDZRbLfyzmMI260H62pxbuzJQL9TgGb71sZ5bAT1nZfYEGwCSSgwcHpBTfdJD7yXgy+ElTYBkY5UbmoF1OoeTnj0UyymK/5gLw0v58RNE128bprEZQDPr1v+Y/nki/b2SJGIt8egWoz2WQoh95CzeE+hdAgtl2yOfbuAhcGPB13eEbJt+ZUD2avRW3KYWIIy1iKHoM5K10hofyoECyGTUtupEYGy5HU1bDcKpw67TxQLWdOFKqljuzKBx9GuhmlHvxCOjsOSO9eouDPPkUjvG4NbdmRsWh+iPgrOSbpMZgBJe1m1zHfu0DAw3P1x/UsCEe5KMqu6R0wKtUrhnk67NoVFAfzqaR6tIenQwCrJmBtKOiuf2wuNEnWO5WtfcnF2LIYg0cdpHeKaUqayPbnNFsCtBuxFBkQnKDGxWf4pzARYaGb5wKGQ6vrjEWqDbbAKdLy7XIkrjh+BechOQKo0ik+ET0Igotjff5ysE7BOG+7QpG3KxRbogK+r6EZLmTNCf+Dq6jgL+GTpsiP5ssqiGq6YmJsWWgepsJeJE5Co2SYysPibDL/9vFkFUA317yeeTIFmfarP1AlrLQDR4MjwyjuKEEfG68ejApPR9MU57h2yYcBePOxE3Cx1/D+TeF5dmbGUCZh86Ax5W8Few6HVeZrPFUeE3yrovk49/K155ZMih9kczficMdcHYsm/GNbObPN7c9WiMvkWQQqfh6au/OZFGAwCByZTC99G5VXXeaYVLyaaNep4nNLPrn3Y9twH5vRarMpV41nXH7uN7owLDEaNcHslORH4m6eHSEJBeA+Qb
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(136003)(376002)(346002)(396003)(39860400002)(451199015)(36840700001)(46966006)(40470700004)(6916009)(316002)(82310400005)(41300700001)(54906003)(70586007)(2616005)(7696005)(336012)(36756003)(40480700001)(4326008)(40460700003)(478600001)(186003)(70206006)(2906002)(6666004)(426003)(8936002)(356005)(5660300002)(86362001)(82740400003)(47076005)(1076003)(26005)(8676002)(81166007)(83380400001)(36860700001)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230022)(4636009)(136003)(39860400002)(376002)(396003)(346002)(451199015)(46966006)(40470700004)(36840700001)(5660300002)(8936002)(70586007)(6666004)(86362001)(41300700001)(40480700001)(70206006)(7696005)(8676002)(4326008)(336012)(1076003)(36756003)(186003)(2616005)(83380400001)(47076005)(426003)(40460700003)(81166007)(36860700001)(26005)(356005)(2906002)(82310400005)(478600001)(82740400003)(316002)(54906003)(6916009)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 05:13:35.9690 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b23996ad-c9da-4b19-e2e1-08da960fe080
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 05:12:48.8621 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3d6f66df-c8ae-4aa6-a4dc-08da960fc45e
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT089.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT031.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4472
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5380
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,95 +100,81 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Martin Leung <Martin.Leung@amd.com>,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
- Aurabindo.Pillai@amd.com, Alvin Lee <Alvin.Lee2@amd.com>, wayne.lin@amd.com,
+Cc: stylon.wang@amd.com, Leo Li <sunpeng.li@amd.com>, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
  Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alvin Lee <Alvin.Lee2@amd.com>
+From: Leo Li <sunpeng.li@amd.com>
 
-[Why and How]
-- Only consider pixel rate div policy for DCN32+
+[Why]
 
-Reviewed-by: Martin Leung <Martin.Leung@amd.com>
+DC makes use of layer_index (zpos) when picking the HW plane to enable
+HW cursor on. However, some compositors will not attach zpos information
+to each DRM plane. Consequently, in amdgpu, we default layer_index to 0
+and do not update it.
+
+This causes said DC logic to enable HW cursor on all planes of the same
+layer_index, which manifests as a double cursor issue if one of the
+planes is scaled (and hence scaling the cursor as well).
+
+[How]
+
+Use DRM core helpers to calculate a normalized_zpos value for each
+drm_plane_state under each crtc, within the atomic state.
+
+This helper will first consider existing zpos values, and if
+identical/unset, fallback to plane ID ordering.
+
+The normalized_zpos is then passed to dc_plane_info during atomic check
+for later use by the cursor logic.
+
+Reviewed-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 Acked-by: Wayne Lin <wayne.lin@amd.com>
-Signed-off-by: Alvin Lee <Alvin.Lee2@amd.com>
+Signed-off-by: Leo Li <sunpeng.li@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.c | 16 ++--------------
- .../gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.h |  2 --
- .../gpu/drm/amd/display/dc/dcn314/dcn314_init.c  |  1 -
- 3 files changed, 2 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.c
-index 39931d48f385..f4d1b83979fe 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.c
-@@ -343,7 +343,6 @@ unsigned int dcn314_calculate_dccg_k1_k2_values(struct pipe_ctx *pipe_ctx, unsig
- {
- 	struct dc_stream_state *stream = pipe_ctx->stream;
- 	unsigned int odm_combine_factor = 0;
--	struct dc *dc = pipe_ctx->stream->ctx->dc;
- 	bool two_pix_per_container = false;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 7a9f7c7da7d6..85172e1e3351 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -4756,7 +4756,7 @@ fill_dc_plane_info_and_addr(struct amdgpu_device *adev,
+ 	plane_info->visible = true;
+ 	plane_info->stereo_format = PLANE_STEREO_FORMAT_NONE;
  
- 	two_pix_per_container = optc2_is_two_pixels_per_containter(&stream->timing);
-@@ -364,7 +363,7 @@ unsigned int dcn314_calculate_dccg_k1_k2_values(struct pipe_ctx *pipe_ctx, unsig
- 		} else {
- 			*k1_div = PIXEL_RATE_DIV_BY_1;
- 			*k2_div = PIXEL_RATE_DIV_BY_4;
--			if ((odm_combine_factor == 2) || dc->debug.enable_dp_dig_pixel_rate_div_policy)
-+			if (odm_combine_factor == 2)
- 				*k2_div = PIXEL_RATE_DIV_BY_2;
+-	plane_info->layer_index = 0;
++	plane_info->layer_index = plane_state->normalized_zpos;
+ 
+ 	ret = fill_plane_color_attributes(plane_state, plane_info->format,
+ 					  &plane_info->color_space);
+@@ -4824,7 +4824,7 @@ static int fill_dc_plane_attributes(struct amdgpu_device *adev,
+ 	dc_plane_state->global_alpha = plane_info.global_alpha;
+ 	dc_plane_state->global_alpha_value = plane_info.global_alpha_value;
+ 	dc_plane_state->dcc = plane_info.dcc;
+-	dc_plane_state->layer_index = plane_info.layer_index; // Always returns 0
++	dc_plane_state->layer_index = plane_info.layer_index;
+ 	dc_plane_state->flip_int_enabled = true;
+ 
+ 	/*
+@@ -9481,6 +9481,14 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
  		}
  	}
-@@ -384,21 +383,10 @@ void dcn314_set_pixels_per_cycle(struct pipe_ctx *pipe_ctx)
- 		return;
  
- 	odm_combine_factor = get_odm_config(pipe_ctx, NULL);
--	if (optc2_is_two_pixels_per_containter(&pipe_ctx->stream->timing) || odm_combine_factor > 1
--		|| dcn314_is_dp_dig_pixel_rate_div_policy(pipe_ctx))
-+	if (optc2_is_two_pixels_per_containter(&pipe_ctx->stream->timing) || odm_combine_factor > 1)
- 		pix_per_cycle = 2;
- 
- 	if (pipe_ctx->stream_res.stream_enc->funcs->set_input_mode)
- 		pipe_ctx->stream_res.stream_enc->funcs->set_input_mode(pipe_ctx->stream_res.stream_enc,
- 				pix_per_cycle);
- }
--
--bool dcn314_is_dp_dig_pixel_rate_div_policy(struct pipe_ctx *pipe_ctx)
--{
--	struct dc *dc = pipe_ctx->stream->ctx->dc;
--
--	if (dc_is_dp_signal(pipe_ctx->stream->signal) && !is_dp_128b_132b_signal(pipe_ctx) &&
--		dc->debug.enable_dp_dig_pixel_rate_div_policy)
--		return true;
--	return false;
--}
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.h b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.h
-index d014580592ac..244280298212 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.h
-@@ -41,6 +41,4 @@ unsigned int dcn314_calculate_dccg_k1_k2_values(struct pipe_ctx *pipe_ctx, unsig
- 
- void dcn314_set_pixels_per_cycle(struct pipe_ctx *pipe_ctx);
- 
--bool dcn314_is_dp_dig_pixel_rate_div_policy(struct pipe_ctx *pipe_ctx);
--
- #endif /* __DC_HWSS_DCN314_H__ */
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_init.c b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_init.c
-index fcf67eb3478f..72a563a4c3e8 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_init.c
-@@ -146,7 +146,6 @@ static const struct hwseq_private_funcs dcn314_private_funcs = {
- 	.setup_hpo_hw_control = dcn31_setup_hpo_hw_control,
- 	.calculate_dccg_k1_k2_values = dcn314_calculate_dccg_k1_k2_values,
- 	.set_pixels_per_cycle = dcn314_set_pixels_per_cycle,
--	.is_dp_dig_pixel_rate_div_policy = dcn314_is_dp_dig_pixel_rate_div_policy,
- };
- 
- void dcn314_hw_sequencer_construct(struct dc *dc)
++	/*
++	 * DC consults the zpos (layer_index in DC terminology) to determine the
++	 * hw plane on which to enable the hw cursor (see
++	 * `dcn10_can_pipe_disable_cursor`). By now, all modified planes are in
++	 * atomic state, so call drm helper to normalize zpos.
++	 */
++	drm_atomic_normalize_zpos(dev, state);
++
+ 	/* Remove exiting planes if they are modified */
+ 	for_each_oldnew_plane_in_state_reverse(state, plane, old_plane_state, new_plane_state, i) {
+ 		ret = dm_update_plane_state(dc, state, plane,
 -- 
 2.37.3
 
