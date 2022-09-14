@@ -1,70 +1,70 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 032085B7FED
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 Sep 2022 05:56:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C88755B7FEB
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 Sep 2022 05:56:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58B6310E81C;
-	Wed, 14 Sep 2022 03:56:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67BE210E81B;
+	Wed, 14 Sep 2022 03:56:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2085.outbound.protection.outlook.com [40.107.237.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62ED110E819
- for <amd-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 03:56:30 +0000 (UTC)
+ (mail-bn8nam12on2084.outbound.protection.outlook.com [40.107.237.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4F6010E819
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 Sep 2022 03:56:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UNbwPnLplg0CvAFC1lKwElgxNQCggD4K3szVpl/fzj4K5vFQFR2MOuPeMcd+5z2CHagkwCR8GHr3E2VIoZZWlgbvYbImHeEMpDt2Ta87GPFHdOCplZelkWKTR+8hhYrctvb62fz1M2PpXOt0CE0goUgZQoHAjYw58kV09LBVI+LiTmE1AB85hVArenwLrho+B/FQv+gEHYfmRcd/iykiucXPJE5iSHJr3j8eDG8nb32dO7eUpSu7/nYtd/CUwXOyw2FlsfBGrRkHgXiu/nQtbLv5DexkFpRhhATy2lMxbuP/377xltR8CV1p6KjaI4c2Rtjj7gq2GQkah9CoVVGDwg==
+ b=LGInZBhIUcd25v/gYA8grVJ2AGnlus8KjG36B+yLyCxfzNkQwrISoZd29OGC3XPIxib56g8B+n51n30qP0yPe1x46owCW+ev3tFsY5MS4V8RJNIdB4f3oMGN80/2+WWhQZk+i5hA1wRdH+dPeoDYhQOP69apuc61eLNvN3z259Rk/yythfq2P7mdgJfj1zyk1AuGu8ggsLQbKyW3GObtK/i+mp5iZcULDqy320kWA2gqAFVtAP6NVrLGrB5bwqnvNNkPrKkO5ALO0mKIduk/eLmLNc3ABE6ZC6darD2Xnp021VsbdTQur2n9ML5JGPpL1SN0/y0x3gXz/rnlJ0rc8g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MkQuUgCzcbBDAZ/uxgt67SbVKolHvAT7jtAtVb+H9qw=;
- b=V0VVF5icvSSUFVfuafqZoyqV8bXT5bePp21hEB0dr/Af5crGRtoh98iNcxizJoBeKsh9hotJ5GO1u5PmLFA6KjxB8Ol45/RQifR3Mo1y4RC7i3fSt8HKpMPQk6hyO5BeK+LaVzBlIyzWDpVpdl+Odi25fZdVQt+r+ZNS/lsuhNEiAVTUX8kMydo94YCgtkKGvlWKiXb34/sixTRk/g623YPLnTCDRFBu7LfGC8DM/RFTgjWFMsmZMqyRie0qDy7jKb952+T3BcT/Ko80p8bWzu6c6sHh3PxA3KbVizp3c1jxS9heWpei6X6hdLJfwW4QSlFICVtnHuceipU3sa04LQ==
+ bh=bR8eBPJyA+j6n3PlCReJALakn2M1jc9GnqaRXaIF48g=;
+ b=jM5bVeOhFN2HE6Mk5Fct9lofYcRDj0hz/1KUCYb+Ry2UlmFsmCNcaYJiiGQMoMhm6LjXbnBJ+HAWaLpErE9Xb54nyJvIKFvlNguluG+/qMNSQ9pjAVWLfkEcgdfpvsWMurBja/tXVFEKtTtPUFt47cXYLLRx5N0Z7qH0kH1K9AI4xzb2blJjoLetOV3Jg/0nqRlk6B+9ppD3uFhOXR+CZsgXVWA4H/JEDGuQM41R6kQjgQfGdKeNOrr5S9FjiW8J4x+ktau7J9BCbMstQbmHBpUxPw6EDUIcyii09ZstgOfZAhu3YLY3aQUMc9yrpeUiLYsVSJcx/hUECJJ8Tb+7Kg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MkQuUgCzcbBDAZ/uxgt67SbVKolHvAT7jtAtVb+H9qw=;
- b=MIXa9KKVwmt/DHhaDWvUcN8YRybZ7uk5oQIsCs+gZkhWuZJCsYl6yApbkODua+BZSvQHWzK5VPs7/jN8b1OwCyndo0EbQlUMjTGoAMkRG/zim/06t6Wj6lXU3Rm0PHsPQodTWYkWK+oKejLZwQDD5OQH1nUNpvo10ikci2XL2EQ=
-Received: from BN0PR08CA0013.namprd08.prod.outlook.com (2603:10b6:408:142::21)
- by BL1PR12MB5336.namprd12.prod.outlook.com (2603:10b6:208:314::8)
+ bh=bR8eBPJyA+j6n3PlCReJALakn2M1jc9GnqaRXaIF48g=;
+ b=yWMfneSnDdAbbWYYwCSmWx9jKdUM/enEXilAgAP67er6cFWgSxdrTtYKcMhl2qrzAa/BooTaTm+1YDq53llEP2NNOtb6q8xOMRv07X29u9tgGOoGFcDT5dw4ims92pr2XHSJg4YkLwmvY7mZTYqcZcWKWzMIfn3bbtr1SBy2udA=
+Received: from BN0PR02CA0023.namprd02.prod.outlook.com (2603:10b6:408:e4::28)
+ by SJ0PR12MB5422.namprd12.prod.outlook.com (2603:10b6:a03:3ac::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.12; Wed, 14 Sep
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.19; Wed, 14 Sep
  2022 03:56:25 +0000
-Received: from BN8NAM11FT033.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:142:cafe::a2) by BN0PR08CA0013.outlook.office365.com
- (2603:10b6:408:142::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14 via Frontend
+Received: from BN8NAM11FT066.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:e4:cafe::ba) by BN0PR02CA0023.outlook.office365.com
+ (2603:10b6:408:e4::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.12 via Frontend
  Transport; Wed, 14 Sep 2022 03:56:25 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT033.mail.protection.outlook.com (10.13.177.149) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BN8NAM11FT066.mail.protection.outlook.com (10.13.177.138) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.5632.12 via Frontend Transport; Wed, 14 Sep 2022 03:56:25 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 13 Sep
- 2022 22:56:25 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB08.amd.com
- (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
+ 2022 22:56:24 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
+ (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 13 Sep
- 2022 20:56:17 -0700
+ 2022 20:56:24 -0700
 Received: from wayne-dev-lnx.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Tue, 13 Sep 2022 22:56:13 -0500
+ Transport; Tue, 13 Sep 2022 22:56:20 -0500
 From: Wayne Lin <Wayne.Lin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH V2 37/47] drm/amd/display: Add shift and mask for
- ICH_RESET_AT_END_OF_LINE
-Date: Wed, 14 Sep 2022 11:47:58 +0800
-Message-ID: <20220914034808.1093521-38-Wayne.Lin@amd.com>
+Subject: [PATCH V2 38/47] drm/amd/display: Disable OTG WA for the plane_state
+ NULL case on DCN314
+Date: Wed, 14 Sep 2022 11:47:59 +0800
+Message-ID: <20220914034808.1093521-39-Wayne.Lin@amd.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20220914034808.1093521-1-Wayne.Lin@amd.com>
 References: <20220914034808.1093521-1-Wayne.Lin@amd.com>
@@ -73,26 +73,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT033:EE_|BL1PR12MB5336:EE_
-X-MS-Office365-Filtering-Correlation-Id: 55012e59-9437-48e6-45b6-08da96051892
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT066:EE_|SJ0PR12MB5422:EE_
+X-MS-Office365-Filtering-Correlation-Id: f4ee7dd4-6f96-41d3-b8b4-08da96051869
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3O7HPXZrzbCO1+FRop3XHmowMIwmTic0Ny3lhPJ4rXCDCc6rL+0pMbduOuRKV+4GODyRop+wHoSRKOro36H8M+7XbOYS7t2PIeApJueakZIcekcF5i9D213lQ/XzvUw+k8OYwXgw9xy9YisG8m67j1m+6JOViM2daPE+LPgpQDA8/yFPEZZD+h2OGIwWQqpmcUgvAzBEMw24nnGA6joFooToJbtdVGod/v6w1Ik4+JVXQzOQ1ihe/OlB181HZ/e8Q01UnLHpe6shA69ofy7j762zoBQZqbqAi41dLdmIZyqES6uPPg7Ix7055IccdBRbuB7GWIzVo6es+RzQBaCV3HAS7O9359x8y6fp33d5qaaF9xfolYaQWnCHiGpBwYC5qq0KlB4kGA0hOEwpVb2VwSd/YtZtcYHsvOKpwv19yE9jyfM4kUMViAcd+xLtpi6doRa1exIVv/jkECFtOJhM0hefvymylbrxEHmMy4O316oMQZLpeLAiVuh/3mhk/r3td5rk1uhgtH+HshO1on+88ereNAFC8bRFQxNHOKDnm9zRss6bWKexvBUk9kzvO2DepgciAUp264DK25y2DQvcSYX1pTIEP8sQug11OlLwqLpU3TTrNbWUFXENjJ+waGZzPvetaeI7nHsmA0vjuQcazLVrYv2pip+V54aisfGUvzaohdX/OB4XQ37g9ZpB9lUSlBwbeMCYJNGloxKidvP51a/j/VTPvN8hSkiTcGeluf2X57xyivxmhUFhkY00VwNRFLbtdS3m/oiLx6T0FpphKTB+7vF3ksv8i3WzLAqEngTSGaQm0CiumKcdZ/zTguBO
+X-Microsoft-Antispam-Message-Info: i5YEFiZY1G1yNrG/P61Wkf0Tsg9YX1bZOvlf4/+LL8aXYXP8t/ZOGPHQ1mkAfKjxEg54vagrA5Zji/O++KH/cGlLNZ8hXoxrYy4OkAsnGU8wEVPMUfFnIQwFDsY1i8FQ3ei5zGtJVZBMEJpbEy2zB6Q0808ZoZMdjynN5vIN/o4b0f8JEF6BMW24YO49xoFah6wMDhAYmWejbztRW3RxWBxfMBmXhnDThARJcO1P63gUOMrGHXTyRmGy8288mGqvSxWnOweMxrQ1vXNVukkQWmuO4/hzTkK3ri1jA0KPBZLvYyXKGnznDtOcwyzsesZchMf6UApvG/GAG/f1gv6jApBK7a5+7Esdh2aZttm/TkMxOzag7+0UDSZyI02YtDlnzWUFORwMPJdkiP82uzTHrFm8yzvCDgcnRo+7wyCHEtmwK+MbjpTS9hVJU9pP3dzdYaXDlBUPpZb+REfdChSAquwtwzOp6uZnHXIMMPjTLpJWwxS3Crte921xh5Zd+urc1ZnLXmgJ0eYBPBRxiM0wOYfugwXaXBhK4JTModOEVLiyHvtDF43hwBmYLX1+2qb8JsWAHLhjGKYAAfxIYfsgU/gMlh5l+DooK2cV/azs7SBV9jg4+967xjm/n1uzrbHREU+m7MSPPAJREj2jIJ5dzFys4dmaz0JDI1ve3V3dI4LRwbYCabbme2jFzFJ3zD9z0N/kVOPTNdlvVA+bRmS2C+gWgyZTeyYN4dsjdYx4Z0mTLHYg/4PE6g2uL/KTUMp0ipOEFdnyBISx+Wb6KepEuATgFzm5BZPhffSWFZL1ViY=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(376002)(346002)(396003)(39860400002)(136003)(451199015)(36840700001)(46966006)(40470700004)(40480700001)(36860700001)(47076005)(356005)(54906003)(70206006)(8676002)(70586007)(30864003)(40460700003)(5660300002)(82740400003)(2616005)(426003)(186003)(336012)(82310400005)(6916009)(6666004)(41300700001)(1076003)(86362001)(83380400001)(4326008)(478600001)(316002)(36756003)(2906002)(7696005)(81166007)(8936002)(26005)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230022)(4636009)(39860400002)(396003)(376002)(136003)(346002)(451199015)(36840700001)(46966006)(40470700004)(8936002)(47076005)(186003)(81166007)(356005)(40480700001)(82310400005)(1076003)(86362001)(316002)(41300700001)(36756003)(36860700001)(478600001)(7696005)(54906003)(82740400003)(83380400001)(6916009)(6666004)(40460700003)(4326008)(70206006)(70586007)(2616005)(5660300002)(26005)(426003)(336012)(8676002)(2906002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 03:56:25.6182 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 55012e59-9437-48e6-45b6-08da96051892
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 03:56:25.4306 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f4ee7dd4-6f96-41d3-b8b4-08da96051869
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT033.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT066.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5336
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5422
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,300 +104,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Daniel Miess <Daniel.Miess@amd.com>,
+Cc: stylon.wang@amd.com, Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
  Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
  Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
  Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
- Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>, agustin.gutierrez@amd.com,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>, agustin.gutierrez@amd.com,
  pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Daniel Miess <Daniel.Miess@amd.com>
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
 [Why]
-DP DSC compliance failing for dcn314 due to ICH_RESET_AT_END_OF_LINE
-shift and mask being missing
+This shouldn't trigger during tiled display hotplug/unplug but it does
+because one of the tiles can end up with a NULL plane state.
+
+This also doesn't guard against the hang that it was originally trying
+to resolve, and can instead cause DIO corruption due to OTG sync
+being lost.
 
 [How]
-Add in shift and mask for ICH_RESET_AT_END_OF_LINE
+This was reverted at one point out of DCN31 so revert it here too.
 
-Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Reviewed-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 Acked-by: Wayne Lin <wayne.lin@amd.com>
-Signed-off-by: Daniel Miess <Daniel.Miess@amd.com>
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dcn20/dcn20_dsc.h  | 220 ------------------
- .../amd/display/dc/dcn314/dcn314_resource.c   |   9 +-
- 2 files changed, 6 insertions(+), 223 deletions(-)
+ drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_clk_mgr.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.h
-index cd2671161ef1..7ce64a3c1b02 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.h
-@@ -445,226 +445,6 @@
- 	type DSCRM_DSC_FORWARD_EN; \
- 	type DSCRM_DSC_OPP_PIPE_SOURCE
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_clk_mgr.c
+index fd4b79746f4b..193a0f3de18d 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_clk_mgr.c
+@@ -136,8 +136,7 @@ static void dcn314_disable_otg_wa(struct clk_mgr *clk_mgr_base, struct dc_state
  
--#define DSC_REG_LIST_DCN314(id) \
--	SRI(DSC_TOP_CONTROL, DSC_TOP, id),\
--	SRI(DSC_DEBUG_CONTROL, DSC_TOP, id),\
--	SRI(DSCC_CONFIG0, DSCC, id),\
--	SRI(DSCC_CONFIG1, DSCC, id),\
--	SRI(DSCC_STATUS, DSCC, id),\
--	SRI(DSCC_INTERRUPT_CONTROL_STATUS, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG0, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG1, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG2, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG3, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG4, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG5, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG6, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG7, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG8, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG9, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG10, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG11, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG12, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG13, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG14, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG15, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG16, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG17, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG18, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG19, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG20, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG21, DSCC, id),\
--	SRI(DSCC_PPS_CONFIG22, DSCC, id),\
--	SRI(DSCC_MEM_POWER_CONTROL, DSCC, id),\
--	SRI(DSCC_R_Y_SQUARED_ERROR_LOWER, DSCC, id),\
--	SRI(DSCC_R_Y_SQUARED_ERROR_UPPER, DSCC, id),\
--	SRI(DSCC_G_CB_SQUARED_ERROR_LOWER, DSCC, id),\
--	SRI(DSCC_G_CB_SQUARED_ERROR_UPPER, DSCC, id),\
--	SRI(DSCC_B_CR_SQUARED_ERROR_LOWER, DSCC, id),\
--	SRI(DSCC_B_CR_SQUARED_ERROR_UPPER, DSCC, id),\
--	SRI(DSCC_MAX_ABS_ERROR0, DSCC, id),\
--	SRI(DSCC_MAX_ABS_ERROR1, DSCC, id),\
--	SRI(DSCC_RATE_BUFFER0_MAX_FULLNESS_LEVEL, DSCC, id),\
--	SRI(DSCC_RATE_BUFFER1_MAX_FULLNESS_LEVEL, DSCC, id),\
--	SRI(DSCC_RATE_BUFFER2_MAX_FULLNESS_LEVEL, DSCC, id),\
--	SRI(DSCC_RATE_BUFFER3_MAX_FULLNESS_LEVEL, DSCC, id),\
--	SRI(DSCC_RATE_CONTROL_BUFFER0_MAX_FULLNESS_LEVEL, DSCC, id),\
--	SRI(DSCC_RATE_CONTROL_BUFFER1_MAX_FULLNESS_LEVEL, DSCC, id),\
--	SRI(DSCC_RATE_CONTROL_BUFFER2_MAX_FULLNESS_LEVEL, DSCC, id),\
--	SRI(DSCC_RATE_CONTROL_BUFFER3_MAX_FULLNESS_LEVEL, DSCC, id),\
--	SRI(DSCCIF_CONFIG0, DSCCIF, id),\
--	SRI(DSCCIF_CONFIG1, DSCCIF, id),\
--	SRI(DSCRM_DSC_FORWARD_CONFIG, DSCRM, id)
--
--#define DSC_REG_LIST_SH_MASK_DCN314(mask_sh)\
--	DSC_SF(DSC_TOP0_DSC_TOP_CONTROL, DSC_CLOCK_EN, mask_sh), \
--	DSC_SF(DSC_TOP0_DSC_TOP_CONTROL, DSC_DISPCLK_R_GATE_DIS, mask_sh), \
--	DSC_SF(DSC_TOP0_DSC_TOP_CONTROL, DSC_DSCCLK_R_GATE_DIS, mask_sh), \
--	DSC_SF(DSC_TOP0_DSC_DEBUG_CONTROL, DSC_DBG_EN, mask_sh), \
--	DSC_SF(DSC_TOP0_DSC_DEBUG_CONTROL, DSC_TEST_CLOCK_MUX_SEL, mask_sh), \
--	DSC_SF(DSCC0_DSCC_CONFIG0, NUMBER_OF_SLICES_PER_LINE, mask_sh), \
--	DSC_SF(DSCC0_DSCC_CONFIG0, ALTERNATE_ICH_ENCODING_EN, mask_sh), \
--	DSC_SF(DSCC0_DSCC_CONFIG0, NUMBER_OF_SLICES_IN_VERTICAL_DIRECTION, mask_sh), \
--	DSC_SF(DSCC0_DSCC_CONFIG1, DSCC_RATE_CONTROL_BUFFER_MODEL_SIZE, mask_sh), \
--	/*DSC_SF(DSCC0_DSCC_CONFIG1, DSCC_DISABLE_ICH, mask_sh),*/ \
--	DSC_SF(DSCC0_DSCC_STATUS, DSCC_DOUBLE_BUFFER_REG_UPDATE_PENDING, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_BUFFER0_OVERFLOW_OCCURRED, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_BUFFER1_OVERFLOW_OCCURRED, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_BUFFER2_OVERFLOW_OCCURRED, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_BUFFER3_OVERFLOW_OCCURRED, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_BUFFER0_UNDERFLOW_OCCURRED, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_BUFFER1_UNDERFLOW_OCCURRED, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_BUFFER2_UNDERFLOW_OCCURRED, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_BUFFER3_UNDERFLOW_OCCURRED, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_CONTROL_BUFFER_MODEL0_OVERFLOW_OCCURRED, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_CONTROL_BUFFER_MODEL1_OVERFLOW_OCCURRED, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_CONTROL_BUFFER_MODEL2_OVERFLOW_OCCURRED, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_CONTROL_BUFFER_MODEL3_OVERFLOW_OCCURRED, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_BUFFER0_OVERFLOW_OCCURRED_INT_EN, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_BUFFER1_OVERFLOW_OCCURRED_INT_EN, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_BUFFER2_OVERFLOW_OCCURRED_INT_EN, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_BUFFER3_OVERFLOW_OCCURRED_INT_EN, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_BUFFER0_UNDERFLOW_OCCURRED_INT_EN, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_BUFFER1_UNDERFLOW_OCCURRED_INT_EN, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_BUFFER2_UNDERFLOW_OCCURRED_INT_EN, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_BUFFER3_UNDERFLOW_OCCURRED_INT_EN, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_CONTROL_BUFFER_MODEL0_OVERFLOW_OCCURRED_INT_EN, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_CONTROL_BUFFER_MODEL1_OVERFLOW_OCCURRED_INT_EN, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_CONTROL_BUFFER_MODEL2_OVERFLOW_OCCURRED_INT_EN, mask_sh), \
--	DSC_SF(DSCC0_DSCC_INTERRUPT_CONTROL_STATUS, DSCC_RATE_CONTROL_BUFFER_MODEL3_OVERFLOW_OCCURRED_INT_EN, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG0, DSC_VERSION_MINOR, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG0, DSC_VERSION_MAJOR, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG0, PPS_IDENTIFIER, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG0, LINEBUF_DEPTH, mask_sh), \
--	DSC2_SF(DSCC0, DSCC_PPS_CONFIG0__BITS_PER_COMPONENT, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG1, BITS_PER_PIXEL, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG1, VBR_ENABLE, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG1, SIMPLE_422, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG1, CONVERT_RGB, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG1, BLOCK_PRED_ENABLE, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG1, NATIVE_422, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG1, NATIVE_420, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG1, CHUNK_SIZE, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG2, PIC_WIDTH, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG2, PIC_HEIGHT, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG3, SLICE_WIDTH, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG3, SLICE_HEIGHT, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG4, INITIAL_XMIT_DELAY, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG4, INITIAL_DEC_DELAY, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG5, INITIAL_SCALE_VALUE, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG5, SCALE_INCREMENT_INTERVAL, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG6, SCALE_DECREMENT_INTERVAL, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG6, FIRST_LINE_BPG_OFFSET, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG6, SECOND_LINE_BPG_OFFSET, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG7, NFL_BPG_OFFSET, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG7, SLICE_BPG_OFFSET, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG8, NSL_BPG_OFFSET, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG8, SECOND_LINE_OFFSET_ADJ, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG9, INITIAL_OFFSET, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG9, FINAL_OFFSET, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG10, FLATNESS_MIN_QP, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG10, FLATNESS_MAX_QP, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG10, RC_MODEL_SIZE, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG11, RC_EDGE_FACTOR, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG11, RC_QUANT_INCR_LIMIT0, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG11, RC_QUANT_INCR_LIMIT1, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG11, RC_TGT_OFFSET_LO, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG11, RC_TGT_OFFSET_HI, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG12, RC_BUF_THRESH0, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG12, RC_BUF_THRESH1, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG12, RC_BUF_THRESH2, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG12, RC_BUF_THRESH3, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG13, RC_BUF_THRESH4, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG13, RC_BUF_THRESH5, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG13, RC_BUF_THRESH6, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG13, RC_BUF_THRESH7, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG14, RC_BUF_THRESH8, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG14, RC_BUF_THRESH9, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG14, RC_BUF_THRESH10, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG14, RC_BUF_THRESH11, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG15, RC_BUF_THRESH12, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG15, RC_BUF_THRESH13, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG15, RANGE_MIN_QP0, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG15, RANGE_MAX_QP0, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG15, RANGE_BPG_OFFSET0, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG16, RANGE_MIN_QP1, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG16, RANGE_MAX_QP1, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG16, RANGE_BPG_OFFSET1, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG16, RANGE_MIN_QP2, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG16, RANGE_MAX_QP2, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG16, RANGE_BPG_OFFSET2, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG17, RANGE_MIN_QP3, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG17, RANGE_MAX_QP3, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG17, RANGE_BPG_OFFSET3, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG17, RANGE_MIN_QP4, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG17, RANGE_MAX_QP4, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG17, RANGE_BPG_OFFSET4, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG18, RANGE_MIN_QP5, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG18, RANGE_MAX_QP5, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG18, RANGE_BPG_OFFSET5, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG18, RANGE_MIN_QP6, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG18, RANGE_MAX_QP6, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG18, RANGE_BPG_OFFSET6, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG19, RANGE_MIN_QP7, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG19, RANGE_MAX_QP7, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG19, RANGE_BPG_OFFSET7, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG19, RANGE_MIN_QP8, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG19, RANGE_MAX_QP8, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG19, RANGE_BPG_OFFSET8, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG20, RANGE_MIN_QP9, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG20, RANGE_MAX_QP9, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG20, RANGE_BPG_OFFSET9, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG20, RANGE_MIN_QP10, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG20, RANGE_MAX_QP10, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG20, RANGE_BPG_OFFSET10, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG21, RANGE_MIN_QP11, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG21, RANGE_MAX_QP11, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG21, RANGE_BPG_OFFSET11, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG21, RANGE_MIN_QP12, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG21, RANGE_MAX_QP12, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG21, RANGE_BPG_OFFSET12, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG22, RANGE_MIN_QP13, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG22, RANGE_MAX_QP13, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG22, RANGE_BPG_OFFSET13, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG22, RANGE_MIN_QP14, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG22, RANGE_MAX_QP14, mask_sh), \
--	DSC_SF(DSCC0_DSCC_PPS_CONFIG22, RANGE_BPG_OFFSET14, mask_sh), \
--	DSC_SF(DSCC0_DSCC_MEM_POWER_CONTROL, DSCC_DEFAULT_MEM_LOW_POWER_STATE, mask_sh), \
--	DSC_SF(DSCC0_DSCC_MEM_POWER_CONTROL, DSCC_MEM_PWR_FORCE, mask_sh), \
--	DSC_SF(DSCC0_DSCC_MEM_POWER_CONTROL, DSCC_MEM_PWR_DIS, mask_sh), \
--	DSC_SF(DSCC0_DSCC_MEM_POWER_CONTROL, DSCC_MEM_PWR_STATE, mask_sh), \
--	DSC_SF(DSCC0_DSCC_MEM_POWER_CONTROL, DSCC_NATIVE_422_MEM_PWR_FORCE, mask_sh), \
--	DSC_SF(DSCC0_DSCC_MEM_POWER_CONTROL, DSCC_NATIVE_422_MEM_PWR_DIS, mask_sh), \
--	DSC_SF(DSCC0_DSCC_MEM_POWER_CONTROL, DSCC_NATIVE_422_MEM_PWR_STATE, mask_sh), \
--	DSC_SF(DSCC0_DSCC_R_Y_SQUARED_ERROR_LOWER, DSCC_R_Y_SQUARED_ERROR_LOWER, mask_sh), \
--	DSC_SF(DSCC0_DSCC_R_Y_SQUARED_ERROR_UPPER, DSCC_R_Y_SQUARED_ERROR_UPPER, mask_sh), \
--	DSC_SF(DSCC0_DSCC_G_CB_SQUARED_ERROR_LOWER, DSCC_G_CB_SQUARED_ERROR_LOWER, mask_sh), \
--	DSC_SF(DSCC0_DSCC_G_CB_SQUARED_ERROR_UPPER, DSCC_G_CB_SQUARED_ERROR_UPPER, mask_sh), \
--	DSC_SF(DSCC0_DSCC_B_CR_SQUARED_ERROR_LOWER, DSCC_B_CR_SQUARED_ERROR_LOWER, mask_sh), \
--	DSC_SF(DSCC0_DSCC_B_CR_SQUARED_ERROR_UPPER, DSCC_B_CR_SQUARED_ERROR_UPPER, mask_sh), \
--	DSC_SF(DSCC0_DSCC_MAX_ABS_ERROR0, DSCC_R_Y_MAX_ABS_ERROR, mask_sh), \
--	DSC_SF(DSCC0_DSCC_MAX_ABS_ERROR0, DSCC_G_CB_MAX_ABS_ERROR, mask_sh), \
--	DSC_SF(DSCC0_DSCC_MAX_ABS_ERROR1, DSCC_B_CR_MAX_ABS_ERROR, mask_sh), \
--	DSC_SF(DSCC0_DSCC_RATE_BUFFER0_MAX_FULLNESS_LEVEL, DSCC_RATE_BUFFER0_MAX_FULLNESS_LEVEL, mask_sh), \
--	DSC_SF(DSCC0_DSCC_RATE_BUFFER1_MAX_FULLNESS_LEVEL, DSCC_RATE_BUFFER1_MAX_FULLNESS_LEVEL, mask_sh), \
--	DSC_SF(DSCC0_DSCC_RATE_BUFFER2_MAX_FULLNESS_LEVEL, DSCC_RATE_BUFFER2_MAX_FULLNESS_LEVEL, mask_sh), \
--	DSC_SF(DSCC0_DSCC_RATE_BUFFER3_MAX_FULLNESS_LEVEL, DSCC_RATE_BUFFER3_MAX_FULLNESS_LEVEL, mask_sh), \
--	DSC_SF(DSCC0_DSCC_RATE_CONTROL_BUFFER0_MAX_FULLNESS_LEVEL, DSCC_RATE_CONTROL_BUFFER0_MAX_FULLNESS_LEVEL, mask_sh), \
--	DSC_SF(DSCC0_DSCC_RATE_CONTROL_BUFFER1_MAX_FULLNESS_LEVEL, DSCC_RATE_CONTROL_BUFFER1_MAX_FULLNESS_LEVEL, mask_sh), \
--	DSC_SF(DSCC0_DSCC_RATE_CONTROL_BUFFER2_MAX_FULLNESS_LEVEL, DSCC_RATE_CONTROL_BUFFER2_MAX_FULLNESS_LEVEL, mask_sh), \
--	DSC_SF(DSCC0_DSCC_RATE_CONTROL_BUFFER3_MAX_FULLNESS_LEVEL, DSCC_RATE_CONTROL_BUFFER3_MAX_FULLNESS_LEVEL, mask_sh), \
--	DSC_SF(DSCCIF0_DSCCIF_CONFIG0, INPUT_INTERFACE_UNDERFLOW_RECOVERY_EN, mask_sh), \
--	DSC_SF(DSCCIF0_DSCCIF_CONFIG0, INPUT_INTERFACE_UNDERFLOW_OCCURRED_INT_EN, mask_sh), \
--	DSC_SF(DSCCIF0_DSCCIF_CONFIG0, INPUT_INTERFACE_UNDERFLOW_OCCURRED_STATUS, mask_sh), \
--	DSC_SF(DSCCIF0_DSCCIF_CONFIG0, INPUT_PIXEL_FORMAT, mask_sh), \
--	DSC2_SF(DSCCIF0, DSCCIF_CONFIG0__BITS_PER_COMPONENT, mask_sh), \
--	DSC_SF(DSCCIF0_DSCCIF_CONFIG0, DOUBLE_BUFFER_REG_UPDATE_PENDING, mask_sh), \
--	DSC_SF(DSCCIF0_DSCCIF_CONFIG1, PIC_WIDTH, mask_sh), \
--	DSC_SF(DSCCIF0_DSCCIF_CONFIG1, PIC_HEIGHT, mask_sh), \
--	DSC_SF(DSCRM0_DSCRM_DSC_FORWARD_CONFIG, DSCRM_DSC_FORWARD_EN, mask_sh), \
--	DSC_SF(DSCRM0_DSCRM_DSC_FORWARD_CONFIG, DSCRM_DSC_OPP_PIPE_SOURCE, mask_sh)
--
--
- struct dcn20_dsc_registers {
- 	uint32_t DSC_TOP_CONTROL;
- 	uint32_t DSC_DEBUG_CONTROL;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
-index 49b7e256d4ea..a6c5ad9b67db 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
-@@ -87,6 +87,9 @@
- #define DCHUBBUB_DEBUG_CTRL_0__DET_DEPTH__SHIFT		0x10
- #define DCHUBBUB_DEBUG_CTRL_0__DET_DEPTH_MASK		0x01FF0000L
- 
-+#define DSCC0_DSCC_CONFIG0__ICH_RESET_AT_END_OF_LINE__SHIFT                   0x0
-+#define DSCC0_DSCC_CONFIG0__ICH_RESET_AT_END_OF_LINE_MASK                     0x0000000FL
-+
- #include "reg_helper.h"
- #include "dce/dmub_abm.h"
- #include "dce/dmub_psr.h"
-@@ -579,7 +582,7 @@ static const struct dcn30_mmhubbub_mask mcif_wb30_mask = {
- 
- #define dsc_regsDCN314(id)\
- [id] = {\
--	DSC_REG_LIST_DCN314(id)\
-+	DSC_REG_LIST_DCN20(id)\
- }
- 
- static const struct dcn20_dsc_registers dsc_regs[] = {
-@@ -590,11 +593,11 @@ static const struct dcn20_dsc_registers dsc_regs[] = {
- };
- 
- static const struct dcn20_dsc_shift dsc_shift = {
--	DSC_REG_LIST_SH_MASK_DCN314(__SHIFT)
-+	DSC_REG_LIST_SH_MASK_DCN20(__SHIFT)
- };
- 
- static const struct dcn20_dsc_mask dsc_mask = {
--	DSC_REG_LIST_SH_MASK_DCN314(_MASK)
-+	DSC_REG_LIST_SH_MASK_DCN20(_MASK)
- };
- 
- static const struct dcn30_mpc_registers mpc_regs = {
+ 		if (pipe->top_pipe || pipe->prev_odm_pipe)
+ 			continue;
+-		if (pipe->stream && (pipe->stream->dpms_off || pipe->plane_state == NULL ||
+-				     dc_is_virtual_signal(pipe->stream->signal))) {
++		if (pipe->stream && (pipe->stream->dpms_off || dc_is_virtual_signal(pipe->stream->signal))) {
+ 			if (disable) {
+ 				pipe->stream_res.tg->funcs->immediate_disable_crtc(pipe->stream_res.tg);
+ 				reset_sync_context_for_pipe(dc, context, i);
 -- 
 2.37.3
 
