@@ -2,36 +2,36 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFEF05B927F
-	for <lists+amd-gfx@lfdr.de>; Thu, 15 Sep 2022 04:05:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DDB95B9279
+	for <lists+amd-gfx@lfdr.de>; Thu, 15 Sep 2022 04:02:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2484010EA3F;
-	Thu, 15 Sep 2022 02:05:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA4D410E18A;
+	Thu, 15 Sep 2022 02:02:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out199-16.us.a.mail.aliyun.com (out199-16.us.a.mail.aliyun.com
- [47.90.199.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8525910EA3D;
- Thu, 15 Sep 2022 02:03:22 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R161e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018045170;
+Received: from out30-56.freemail.mail.aliyun.com
+ (out30-56.freemail.mail.aliyun.com [115.124.30.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 478E810EA32;
+ Thu, 15 Sep 2022 01:58:19 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R141e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018045192;
  MF=yang.lee@linux.alibaba.com; NM=1; PH=DS; RN=13; SR=0;
- TI=SMTPD_---0VPqbkSk_1663207093; 
+ TI=SMTPD_---0VPqLd0n_1663207095; 
 Received: from localhost(mailfrom:yang.lee@linux.alibaba.com
- fp:SMTPD_---0VPqbkSk_1663207093) by smtp.aliyun-inc.com;
- Thu, 15 Sep 2022 09:58:14 +0800
+ fp:SMTPD_---0VPqLd0n_1663207095) by smtp.aliyun-inc.com;
+ Thu, 15 Sep 2022 09:58:16 +0800
 From: Yang Li <yang.lee@linux.alibaba.com>
 To: alexander.deucher@amd.com
-Subject: [PATCH -next 5/6] drm/amd/display: clean up some inconsistent
+Subject: [PATCH -next 6/6] drm/amd/display: clean up some inconsistent
  indentings
-Date: Thu, 15 Sep 2022 09:58:01 +0800
-Message-Id: <20220915015802.59967-5-yang.lee@linux.alibaba.com>
+Date: Thu, 15 Sep 2022 09:58:02 +0800
+Message-Id: <20220915015802.59967-6-yang.lee@linux.alibaba.com>
 X-Mailer: git-send-email 2.20.1.7.g153144c
 In-Reply-To: <20220915015802.59967-1-yang.lee@linux.alibaba.com>
 References: <20220915015802.59967-1-yang.lee@linux.alibaba.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 15 Sep 2022 02:05:26 +0000
+X-Mailman-Approved-At: Thu, 15 Sep 2022 02:02:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,26 +53,26 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 clean up some inconsistent indentings
 
-Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=2181
+Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=2182
 Reported-by: Abaci Robot <abaci@linux.alibaba.com>
 Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
 ---
- .../gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c    | 2 +-
+ drivers/gpu/drm/amd/display/dc/dml/dcn21/display_mode_vba_21.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-index 2829f179f982..f6ffcf1596bc 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-@@ -1362,7 +1362,7 @@ static bool CalculatePrefetchSchedule(
- 		//                      - ((NumberOfCursors > 0 || GPUVMEnable || DCCEnable) ?
- 				- ((GPUVMEnable || myPipe->DCCEnable) ? (*DestinationLinesToRequestVMInVBlank + 2 * *DestinationLinesToRequestRowInVBlank) : 0.0); // TODO: Did someone else add this??
- #else
--				LinesToRequestPrefetchPixelData = *DestinationLinesForPrefetch - *DestinationLinesToRequestVMInVBlank - 2 * *DestinationLinesToRequestRowInVBlank;
-+		LinesToRequestPrefetchPixelData = *DestinationLinesForPrefetch - *DestinationLinesToRequestVMInVBlank - 2 * *DestinationLinesToRequestRowInVBlank;
- #endif
- 
- #ifdef __DML_VBA_DEBUG__
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_mode_vba_21.c b/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_mode_vba_21.c
+index d40d32e380f4..1d84ae50311d 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_mode_vba_21.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_mode_vba_21.c
+@@ -2636,7 +2636,7 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
+ 					&mode_lib->vba.SrcActiveDrainRate,
+ 					&mode_lib->vba.TInitXFill,
+ 					&mode_lib->vba.TslvChk);
+-					locals->XFCRemoteSurfaceFlipLatency[k] =
++			locals->XFCRemoteSurfaceFlipLatency[k] =
+ 					dml_floor(
+ 							mode_lib->vba.XFCRemoteSurfaceFlipDelay
+ 									/ (mode_lib->vba.HTotal[k]
 -- 
 2.20.1.7.g153144c
 
