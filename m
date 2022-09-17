@@ -1,57 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05DCE5BC3FB
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 Sep 2022 10:06:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 933E75BC3F3
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 Sep 2022 10:06:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAB5C10E59E;
-	Mon, 19 Sep 2022 08:06:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C5FE10E58F;
+	Mon, 19 Sep 2022 08:06:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com
- [IPv6:2607:f8b0:4864:20::b33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F75210E39C;
- Sat, 17 Sep 2022 14:01:03 +0000 (UTC)
-Received: by mail-yb1-xb33.google.com with SMTP id s14so3691333ybe.7;
- Sat, 17 Sep 2022 07:01:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date;
- bh=zD/Sef8RPFCu0UVUYWziEP2nxLn+8U8oMtAWbA1WOKg=;
- b=YcC3cgGuhWS4Xg3lrgZagbYgcH7H+Oqs1Vtfdb19quwhZaGI9UkGTfJt0FGuC3TbGk
- cC65tdI5WnSnZBN82+V6LK9oswdYJU3KLJq6NoFtrUPaQ6p2Xvxopnlu32vLyj2QvSUL
- d2Dw+zRNL37+TnmVi1iohbS1coBfaP8ILUJ+0wNcjTbQdFjoD6QL2lSRLYKcMN7hH9oL
- z1KxYlu1exKoBhQOaq5Q1um1ACC3dGlNgbLomefFeD4frSFk69CfgbS12OBMoOtME9Y+
- YFTpir5rXiAsWbkTm5IHbNzHkcZu+iLcrlGir95p2yHh63P9SNdm/rocCcaTwgCOeScc
- Wztg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date;
- bh=zD/Sef8RPFCu0UVUYWziEP2nxLn+8U8oMtAWbA1WOKg=;
- b=Dr9Z7ZM2ZWIkySGbIbUw/hEwhMHWRz4rr5YhJmjGkFQSfuz1RM09JdOAdpNSKoaU1x
- F9J5aMCknTLNbfn9jpOjrJaTqcrP8+iUxW/oXWml542/MoJ/Ff2S6eO+lykzKtfTh+Lf
- BTeM9Iy8xBfnu4Fr9y+pFRWZSKtVi6c6hsrs+X7fdwnboxuzmc1Z/LUrTzsBMyNa/zWd
- T5aroDhveVAKDh6IofWdMS9C5QcVqV9o10socp/MOwurdGqez7eBQWgqJe8kv068E0PS
- RH2PkdArF/7JadZXnrrtlxF5jBpdGza7Wi5umJa0QY78/6RxyTnc7xsXLZUuNCnRIJF/
- xg7w==
-X-Gm-Message-State: ACrzQf2x7LfBGArVVozv/16JbbsfJMA/nVgwdger68NWWSHOJ4JuPqzN
- 3NQNxUnwjCFZatuCi0glngEt80TbIz4AqH8E4XQ=
-X-Google-Smtp-Source: AMsMyM6MSZI9tekALssIfUCVIXmmS+TxhNp3mdgEOPjIBYJ6CwNaZ3jWo3MxCGHOKPfoAytGRmXAHXSCXcB/twZbNMc=
-X-Received: by 2002:a5b:845:0:b0:683:6ed7:b3b6 with SMTP id
- v5-20020a5b0845000000b006836ed7b3b6mr8163614ybq.183.1663423262817; Sat, 17
- Sep 2022 07:01:02 -0700 (PDT)
-MIME-Version: 1.0
-References: <YyWniVAqJclcbSqN@debian> <YyXK1rJYEc04Sobt@dev-arch.thelio-3990X>
-In-Reply-To: <YyXK1rJYEc04Sobt@dev-arch.thelio-3990X>
-From: Sudip Mukherjee <sudipm.mukherjee@gmail.com>
-Date: Sat, 17 Sep 2022 15:00:26 +0100
-Message-ID: <CADVatmPwPjpEJdfygtQtt7d6oQfABUtTVrn2k57eKFEFQChDbQ@mail.gmail.com>
-Subject: Re: mainline build failure (new) for x86_64 allmodconfig with clang
-To: Nathan Chancellor <nathan@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Mon, 19 Sep 2022 08:06:05 +0000
+X-Greylist: delayed 301 seconds by postgrey-1.36 at gabe;
+ Sat, 17 Sep 2022 17:02:35 UTC
+Received: from ach1ajh116.fra1.oracleemaildelivery.com
+ (ach1ajh116.fra1.oracleemaildelivery.com [138.1.108.116])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E87210E44E
+ for <amd-gfx@lists.freedesktop.org>; Sat, 17 Sep 2022 17:02:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=oci-fra1-20220101;
+ d=augustwikerfors.se;
+ h=Date:To:From:Subject:Message-Id:MIME-Version:Sender;
+ bh=7ObGGwvkwsbVdVjWBkq3Mel0hVpY0UzSeJwTyf1SSjI=;
+ b=OagMmVSVqflvFzEKxeU7ynuwVVJFBl84OLfEsJtSxIp4SU8vPfT0u+ReiakmSOPyVhbfAWFLAl0a
+ kC1PJoCYd5kF/y4vvWS6zTzEbkMy0bwujV6ipHftMaArij1YSiMh0ZcVRuG75FquqB2gaiE+SDGv
+ j37n7zJcfYHD/h8HXTqpD8ns4p4s6JP1FdtgLPzPAt+QvWe3t8GC6AMpon4CQk4uYaKNAKL8rMKo
+ HeMQ13XkxWoR6btLC8vILUxQKsbEErCib+E9MOtb2RtrCREYHxdOsh9zS02l6us5b5LG4J7MOMv1
+ nwd2e4vamSPlU08B3b9POvUn3eMapvoPhBehfQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=prod-fra-20191115;
+ d=fra1.rp.oracleemaildelivery.com;
+ h=Date:To:From:Subject:Message-Id:MIME-Version:Sender;
+ bh=7ObGGwvkwsbVdVjWBkq3Mel0hVpY0UzSeJwTyf1SSjI=;
+ b=MluGiM7iULl1rhbezZi4yTmYN+8DtCDhbMA39YTP1r4FQlt3xhWZUink9X9mu9V4YEbVk3Lqd1sc
+ 9z/X/8CbACet5HxH7sHWHEvv8zON8g+oSZBkpL3iUKJ/POtrGPXfZ5xFyOHWkDxsYCWS+qSTdSgW
+ 5CwE31B0aP/A9FkTolFq49GmElzXEeXL5TVdkSrSLDg7yRnm95QIHlx8V+8kUMeKb9d/WCY/T3xi
+ tRyBXRbGeTqcjMhTxVay/zUDNjOBZRRdV+5g5WmUiqHwppCzg7/8kHmOYw+tOsmsYBrGLH5dyV76
+ pDidXGpxRwXN4OD3ANiV3UpPjKaxwoihzpbdGw==
+Received: by omta-ad3-fd3-302-eu-frankfurt-1.omtaad3.vcndpfra.oraclevcn.com
+ (Oracle Communications Messaging Server 8.1.0.1.20220826 64bit (built Aug 26
+ 2022)) with ESMTPS id
+ <0RID00G0J5RWDH10@omta-ad3-fd3-302-eu-frankfurt-1.omtaad3.vcndpfra.oraclevcn.com>
+ for amd-gfx@lists.freedesktop.org; Sat, 17 Sep 2022 16:57:32 +0000 (GMT)
+Message-id: <c1f8886a-5624-8f49-31b1-e42b6d20dcf5@augustwikerfors.se>
+Date: Sat, 17 Sep 2022 18:57:28 +0200
+MIME-version: 1.0
+From: August Wikerfors <git@augustwikerfors.se>
+Subject: [REGRESSION] Graphical issues on Lenovo Yoga 7 14ARB7 laptop since
+ v6.0-rc1 (bisected)
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Content-language: en-US
+Content-type: text/plain; charset=UTF-8; format=flowed
+Content-transfer-encoding: 7bit
+Reporting-Meta: AAF2mgUR8cFnMjGh0lEzMZlmhqwUNFC3wJ4Q40oSCReejZnSNcQxRaC+2EfUW+cL
+ Gf0CcJ1iAZGRcDf0h8T5Sv6JdreHdNALvuCN/fTGsAw2F2UWl/lnVBaBfLjUCAEg
+ 6vckTs1Nxig4r63QQvCyclk050CkshFRQDHbGkYo6wrmSvKVK7i0z+nDg9Z5xSkh
+ l4vL1eIBdjfJiHYIz+tf2cCYnFZ8792wCYblEQmSW7pLb2aWPOovJlf+LRIRCfPq
+ xz3bXh2O74/oCJZazvNSwcewy2VNGCO7A7h+Gw7d4qm8ujRZcTxteT5+DfLgbV9t
+ mGTRzTSf5fWMoqh2h2Q3XpiHL2kWSqr0oUk+0TL71NfM8eayJKOY85wYOL1zeO9M
+ AtDxChMe9iDKE5oum7NONkfXg9rZOFfRpoLxXT8daBnfO1BzNA5NP3r0lpy4o9Z0 rHkPoFZKSQ==
+X-Mailman-Approved-At: Mon, 19 Sep 2022 08:06:06 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,54 +68,118 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, Linus Torvalds <torvalds@linux-foundation.org>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@linux.ie>, dri-devel <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, regressions@lists.linux.dev
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Nathan,
+Hi,
+with every kernel version since v6.0-rc1, including the latest git 
+master, there are constant graphical issues on this laptop, such as 
+heavy stuttering (this is especially noticeable while typing on the 
+keyboard), parts of the screen showing random noise, and the entire 
+desktop environment freezing.
 
-On Sat, Sep 17, 2022 at 2:25 PM Nathan Chancellor <nathan@kernel.org> wrote:
->
-> Hi Sudip,
->
-> On Sat, Sep 17, 2022 at 11:55:05AM +0100, Sudip Mukherjee (Codethink) wrote:
-> > Hi All,
-> >
-> > The latest mainline kernel branch fails to build for x86_64 allmodconfig
-> > with clang. The errors are:
-> >
-> > drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn314/display_mode_vba_314.c:4020:6: error: stack frame size (2184) exceeds limit (2048) in 'dml314_ModeSupportAndSystemConfigurationFull' [-Werror,-Wframe-larger-than]
-> > void dml314_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_lib)
-> >      ^
-> > 1 error generated.
-> >
-> >
-> > Note: This is a new error seen on top on a335366bad13 ("Merge tag 'gpio-fixes-for-v6.0-rc6' of git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux").
-> > Previous reported clang build error is now fixed, thanks to Nathan.
-> >
-> > And, it appears Nathan has already sent a fix for this:
-> > https://github.com/intel-lab-lkp/linux/commit/4ecc45d7585ae2e05d622879ad97e13a7d8c595b
-> > https://github.com/intel-lab-lkp/linux/commit/819976a950b497d7f10cd9a198a94c26a9005b30
->
-> I did not realize this was a mainline issue too :( it seems that
-> commit af2f2a256e04 ("drm/amd/display: Enable dlg and vba compilation
-> for dcn314") is needed to see this and it was only in -next for three
-> releases (20220914 to 20220916), which I missed checking as closely as I
-> normally do due to Plumbers wrapping up and traveling.
+I bisected the issue which showed that this is the first bad commit:
 
-This has become a mainline issue since today.
-I saw in it linux-next also, but missed reporting :(
+> commit 7cc191ee7621b7145c6cc9c18a4e1929bb5f136e
+> Author: Leo Li <sunpeng.li@amd.com>
+> Date:   Wed Mar 30 12:45:09 2022 -0400
+> 
+>     drm/amd/display: Implement MPO PSR SU
+>     
+>     [WHY]
+>     
+>     For additional power savings, PSR SU (also referred to as PSR2) can be
+>     enabled on eDP panels with PSR SU support.
+>     
+>     PSR2 saves more power compared to PSR1 by allowing more opportunities
+>     for the display hardware to be shut down. In comparison to PSR1, Shut
+>     down can now occur in-between frames, as well as in display regions
+>     where there is no visible update. In otherwords, it allows for some
+>     display hw components to be enabled only for a **selectively updated**
+>     region of the visible display. Hence PSR SU.
+>     
+>     [HOW]
+>     
+>     To define the SU region, support from the OS is required. OS needs to
+>     inform driver of damaged regions that need to be flushed to the eDP
+>     panel. Today, such support is lacking in most compositors.
+>     
+>     Therefore, an in-between solution is to implement PSR SU for MPO and
+>     cursor scenarios. The plane bounds can be used to define the damaged
+>     region to be flushed to panel. This is achieved by:
+>     
+>     * Leveraging dm_crtc_state->mpo_requested flag to identify when MPO is
+>       enabled.
+>     * If MPO is enabled, only add updated plane bounds to dirty region.
+>       Determine plane update by either:
+>         * Existence of drm damaged clips attached to the plane (added by a
+>           damage-aware compositor)
+>         * Change in fb id (flip)
+>         * Change in plane bounds (position and dimensions)
+>     * If cursor is enabled, the old_pos and new_pos of cursor plus cursor
+>       size is used as damaged regions(*).
+>     
+>     (*) Cursor updates follow a different code path through DC. PSR SU for
+>     cursor is already implemented in DC, and the only thing required to
+>     enable is to set DC_PSR_VERSION_SU_1 on the eDP link. See
+>     dcn10_dmub_update_cursor_data().
+>     
+>     Signed-off-by: Leo Li <sunpeng.li@amd.com>
+>     Acked-by: Leo Li <sunpeng.li@amd.com>
+>     Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+>     Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 
+#regzbot introduced: 7cc191ee7621b7145c6cc9c18a4e1929bb5f136e
 
--- 
-Regards
-Sudip
+Note that while bisecting I also needed to apply commit 
+9946e39fe8d0a5da9eb947d8e40a7ef204ba016e as the keyboard doesn't work 
+without it.
+
+Laptop model: Lenovo Yoga 7 14ARB7
+CPU: AMD Ryzen 5 6600U
+Kernel config: 
+https://raw.githubusercontent.com/archlinux/svntogit-packages/aa564cf7088b1d834ef4cda9cb48ff0283fde5c5/trunk/config
+Distribution: Arch Linux
+Desktop environment: KDE Plasma 5.25.5
+
+lspci:
+> $ lspci -nn
+> 00:00.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Device [1022:14b5] (rev 01)
+> 00:00.2 IOMMU [0806]: Advanced Micro Devices, Inc. [AMD] Device [1022:14b6]
+> 00:01.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Device [1022:14b7] (rev 01)
+> 00:02.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Device [1022:14b7] (rev 01)
+> 00:02.3 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD] Device [1022:14ba]
+> 00:02.4 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD] Device [1022:14ba]
+> 00:02.5 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD] Device [1022:14ba]
+> 00:03.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Device [1022:14b7] (rev 01)
+> 00:03.1 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD] Device [1022:14cd]
+> 00:04.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Device [1022:14b7] (rev 01)
+> 00:08.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Device [1022:14b7] (rev 01)
+> 00:08.1 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD] Device [1022:14b9] (rev 10)
+> 00:08.3 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD] Device [1022:14b9] (rev 10)
+> 00:14.0 SMBus [0c05]: Advanced Micro Devices, Inc. [AMD] FCH SMBus Controller [1022:790b] (rev 71)
+> 00:14.3 ISA bridge [0601]: Advanced Micro Devices, Inc. [AMD] FCH LPC Bridge [1022:790e] (rev 51)
+> 00:18.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Device [1022:1679]
+> 00:18.1 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Device [1022:167a]
+> 00:18.2 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Device [1022:167b]
+> 00:18.3 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Device [1022:167c]
+> 00:18.4 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Device [1022:167d]
+> 00:18.5 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Device [1022:167e]
+> 00:18.6 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Device [1022:167f]
+> 00:18.7 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Device [1022:1680]
+> 01:00.0 Network controller [0280]: MEDIATEK Corp. MT7922 802.11ax PCI Express Wireless Network Adapter [14c3:0616]
+> 02:00.0 Non-Volatile memory controller [0108]: Samsung Electronics Co Ltd Device [144d:a80b] (rev 02)
+> 03:00.0 SD Host controller [0805]: O2 Micro, Inc. SD/MMC Card Reader Controller [1217:8621] (rev 01)
+> 33:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Rembrandt [Radeon 680M] [1002:1681] (rev c2)
+> 33:00.1 Audio device [0403]: Advanced Micro Devices, Inc. [AMD/ATI] Rembrandt Radeon High Definition Audio Controller [1002:1640]
+> 33:00.2 Encryption controller [1080]: Advanced Micro Devices, Inc. [AMD] VanGogh PSP/CCP [1022:1649]
+> 33:00.3 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] Device [1022:161d]
+> 33:00.4 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] Device [1022:161e]
+> 33:00.5 Multimedia controller [0480]: Advanced Micro Devices, Inc. [AMD] ACP/ACP3X/ACP6x Audio Coprocessor [1022:15e2] (rev 60)
+> 33:00.6 Audio device [0403]: Advanced Micro Devices, Inc. [AMD] Family 17h/19h HD Audio Controller [1022:15e3]
+> 34:00.0 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] Device [1022:161f]
+> 34:00.3 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] Device [1022:15d6]
+> 34:00.4 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] Device [1022:15d7]
+> 34:00.5 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] Device [1022:162e]
