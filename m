@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D06515BC133
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 Sep 2022 04:03:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53C735BC135
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 Sep 2022 04:03:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5925310E43D;
-	Mon, 19 Sep 2022 02:03:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 819C310E44B;
+	Mon, 19 Sep 2022 02:03:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2087.outbound.protection.outlook.com [40.107.237.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39CE310E43D
- for <amd-gfx@lists.freedesktop.org>; Mon, 19 Sep 2022 02:03:33 +0000 (UTC)
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam04on2084.outbound.protection.outlook.com [40.107.102.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7513510E44B
+ for <amd-gfx@lists.freedesktop.org>; Mon, 19 Sep 2022 02:03:36 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cRX0/osD85zYl47djv4ERH73DiCe4ypVEV8eZV2k26GuB8GHb11KhsIalUXV+eqLNGQvEdQd2L9EEZWQekVRo+Zuz5Qbc7sotAjiwMhG1AgSvJVxwg234kqoyBCTKFSo4m+gYw/Qw5+8Wu8seMb6FeslLAy5nJ+NjniXA+t2kxiV36RqJC2Prp598v1/inQxgo2cyEy0A9/nuvBBoOwEId23KRahLcaSDmqAip31TON00U+lYYF47RT0IpkUTv9FhDOeQeuDmaXny+e2P9UuDRdf0pJgKmrmyE28Qlp0mk+iTCN0/nM4A3E5Y1rf+f2RfVvRlSk9Ngncf8WokeCy2Q==
+ b=b900n9+SS1zPxCx45wPdSSHViHgsE0qXRS4KtTMDidLwR/tu92Swk6Q0eOBNkmjt5O6JAV6IjHiJz/SNxUAd5GrrqCWijE7n85zfckZrWvWRbmPkbuaOBgTAng9bKv2bnY4FXosY0fV/pP1LLHwtPHWzVH2o8xtJE6ESVFmJcX1pKL0IRbh9a73K1AMNSLgYQwXn0hGX+WApB41nsYe3im0iQiAMehMk4j+Acrw7Dz6r7atGY5iw7dnGvC73HmB6l6pc5kuA49pYNpWMRkVuLAUW/YfdfYOUiXJvHv0eTFNrQCD1ftM50XzwvMrn+B1CNGhc0GRJQzOAGVXHGp/9wg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WPdxZ5NUFqeLbo5BVUNyxzxIbBKrxzYxr3lBbPcVcoA=;
- b=FGb1ZeF0dCoYDYiob1VqKHEgjz3C52Hz9wsD2KzZCMLYXO4WUCATHLSbrHfKuBRNHEoPTeD5UCNXRLgqOE7LG3XwMKn6yQNnOXU3xswKCP5iZDmxyO6VkVwXABC6QyeYx+1Z/RHHDuY8fs9iGZO0M0qou0USu/ex8xHulCR8PrqlGGpWdFGxxMJ01NSFlGZFcDiWMAoyH+C9dg4ISP/BDSkhdq1rZsy4eYu1ZFBQOOSHzUNF3kZnbXhik5a0ctdnRGnHOA8RcAzl5FtJ59ePOd/drnYdud0pLk0OEeHj4bYcaqRaLXApMyJqX2m/3T8F6aG1/C8qQtgyBaHIuT5vSw==
+ bh=Xqfjf0xyOWnh6AY7QhvaFiiZ0/A+6YpYc/fi9y/W+Ps=;
+ b=c2EO9t10fVCctqtC4qLVmK3Zp0jq1/Lx11m3mqFU08Pzk7K6Ja3P8/fa/oux1JVfEtvxPwGl+RLvoKahbH3QFz3qB1pHDpg/9XMQAkdWCzyPToRyFEs+DmYTIm0QUi65oXLpacu0N8dN2olpqF4k/U+NgwPMZbM0iJsA1DR9Jo6bWam4kHd3gADrErN1uNA4MkNwrkQmoZPv1k97Tu+VbRZWuAhswd1dj1o9zv8AGGisHfMeVGfXdWu1FD8A00t33GBpLaPf6bJlFBekiDsFpvSb/rvNp0EWbMod6/v9vAyKCrY/vlzt8nZAgg7hrrlWx63BHKfiDEiJ5xJwFi6WQQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WPdxZ5NUFqeLbo5BVUNyxzxIbBKrxzYxr3lBbPcVcoA=;
- b=EqmD8M+bqC3OgQBcMvWzorhmB1qfLuNtZkvwjonKBHbkvEWNXoKrhNS9reCoQ32kRcoYks4LtYzTCnMO8mRDcMF+mSiNeyVLW86L8PIKT1xfDpH7+5u/GrQgyRHi9BXxduW0la9aIswu2Oj5I7R/0V4MmxeQyYRLtHeLPDv6HXU=
-Received: from MW4PR03CA0147.namprd03.prod.outlook.com (2603:10b6:303:8c::32)
- by DM4PR12MB6280.namprd12.prod.outlook.com (2603:10b6:8:a2::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.15; Mon, 19 Sep
- 2022 02:03:31 +0000
+ bh=Xqfjf0xyOWnh6AY7QhvaFiiZ0/A+6YpYc/fi9y/W+Ps=;
+ b=iio8FjdPK2g+aikXblEHPRNr0IU98EQYHPu0LYHjMece1ZaOy79Fs+mD5mnxoaPad9lRw3lFLNfClPw2WwOxwybPaLa/GPRJwmZqWGyEbSeHFjIEuyIKGy5veXwkFCNuaFIxZT2vcvCVxh/6RAOFrfWJm3ytqDaG/Y/7NF2SV+U=
+Received: from MW4PR03CA0143.namprd03.prod.outlook.com (2603:10b6:303:8c::28)
+ by PH7PR12MB7380.namprd12.prod.outlook.com (2603:10b6:510:20f::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.19; Mon, 19 Sep
+ 2022 02:03:34 +0000
 Received: from CO1NAM11FT081.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8c:cafe::b7) by MW4PR03CA0147.outlook.office365.com
- (2603:10b6:303:8c::32) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:303:8c:cafe::b6) by MW4PR03CA0143.outlook.office365.com
+ (2603:10b6:303:8c::28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.19 via Frontend
- Transport; Mon, 19 Sep 2022 02:03:30 +0000
+ Transport; Mon, 19 Sep 2022 02:03:34 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CO1NAM11FT081.mail.protection.outlook.com (10.13.174.80) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5632.12 via Frontend Transport; Mon, 19 Sep 2022 02:03:30 +0000
+ 15.20.5632.12 via Frontend Transport; Mon, 19 Sep 2022 02:03:33 +0000
 Received: from equan-buildpc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Sun, 18 Sep
- 2022 21:03:27 -0500
+ 2022 21:03:30 -0500
 From: Evan Quan <evan.quan@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH V2 3/7] drm/amd/pm: revise the implementations for pptable
- retrieving
-Date: Mon, 19 Sep 2022 10:02:47 +0800
-Message-ID: <20220919020251.7048-3-evan.quan@amd.com>
+Subject: [PATCH V2 4/7] drm/amd/pm: move SMU13.0.0 related pptable settings to
+ smu_v13_0_0_ppt.c
+Date: Mon, 19 Sep 2022 10:02:48 +0800
+Message-ID: <20220919020251.7048-4-evan.quan@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220919020251.7048-1-evan.quan@amd.com>
 References: <20220919020251.7048-1-evan.quan@amd.com>
@@ -69,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT081:EE_|DM4PR12MB6280:EE_
-X-MS-Office365-Filtering-Correlation-Id: d80b51b4-7494-4b44-2e9a-08da99e3264c
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT081:EE_|PH7PR12MB7380:EE_
+X-MS-Office365-Filtering-Correlation-Id: dc025165-47e0-43c0-128b-08da99e32867
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: x8W7jZydUPC0nkqFSzZATjUPdm4/iQ7WjldD7YWTgtgh281TdhcvSO/prnTkH1rxsc/bZYP+yLqbp5U+ZgBWLcHL1cGvFyf+9h4uCFmYD6awYo656UjNZayhLEZzCp5bsbhTNJzGrY1EE/WXw/W6RF84seAcEast6M703ufcCEcRe8UX5N9QpDpvbOVfjLrhC9sF7oZ4LBX6o/vnWhj4OMuyi4Uit9bDmPMf7JvZBD/nNQi8FFXxdC2vNLxS0e0CcVcSt8dz4PLpAFh5SCYJSLQ/mzqeh0hdJvjJeRpNhOdUArERnHjjfQYFZ/f1fPuS0O6DsQliWbU1PEsW8sqch5GdB5LNCa4f1aQ13a577qluwwZNVzGM/8Az4GvH2HEnnTEEQvXujffhWT/wGLDMI8Aasg3SuI9pibQSBjSSA4CEcpiPDORDmOC4izjtHhi5Q60Pua767xr9OaveRKL+YwQIeSc17W4aF83yoPACYLYMiPb879ed3nAoU3ey1BSZCShb38kKbhX7+kak6992bAVRZRAX/zMPb5n93EP7znuR6Vaj1Sxb4nzd5TFPdX2McaymRhFYfwt/SPnVtKT8BCPtJZIxTRdpMCYD4d4wYkEotg83T3B69ojlEX6QHSFtj1YQrn0myOuLXweCgQTlgiAXZAI2yNWcURarMBRhvC8t/LCW4PFCqeHXZ+Xguz5pbYaIk6tzYaShgsmr5IbkeHwA62zjoItWPa2xbd0X6RJ3AQjXSe18ymcpdycZltzALwqv268J7KE2pa5DKqXJZg3qmynaIAaVvtKPoAtp8RVYkgjXUtz4BNyqCgKVkhQT
+X-Microsoft-Antispam-Message-Info: VoP4a7gN3p3ISy99zrRgQAqXHnPVQJrMYIVv+MwQOyL1h1mBzGWQf9GjWUf/rHVVlUbBGdEDqqQ+CZaOJG9xr2eD2wp+7l2i7bVVENa8D2fodi39I/X/H6sNJ9s+l9Pu9yOpUEaiOY3xls1AL8ly91EeT2sMQwkUoxn/eic1IW0FzUXPAb10sQ9qH2gccS0A5H77a0cNfRpAf81OuOZ3oUsaMtbu13YcO1nNakYiYSJRl6nagmW10iDCxDHEJOftxLJp/usm8+hb8E8tVRu+ZPKtMmLoudiboj4xlsJTwdHIgi5+KjM6aRUFf946HNqeXHLfGPlddtv9yd05k62XdU6sZ4gQvA2/s0giIS82zzb9njkYKRLoHnQQ82B+JmFcWgVKScEsNvKbWDptXAulUtaITVlyvuMLKGVbhbGwzw7SFOLC6aRjDGVcy8pe7VcI/g7esG0y+j3/KRjppSE+qTmXYRXWwzIhoIWQOFN9f+Du3CDqshRyTTrx3ysTGpNUg3bIO4m4DJF6eCfs0z+plPhmA8X0VeERwGvd+GR7VuOWpoC+iGM2rAiFnzBE3kOI0ZGjHOUmo7PCaqGELcVrWy+ZEjsHnwl8puzyrcuMQBL4rI+BdtY2cc9r66UMhe7+qm/iftLcZpPno8EtnAfs2f9JYM2UklPRQ76s0sRyJbsinMevOEFuGYTYN41bNxguhNv2mQIkvqogOc7kWt5KYYExG+VQVs4KuqgbKTUUTKerct6SYUX/W2UKk/tPCd6Q7uSwK1E5+IyS1kryg7/EgEGB/cf7Jkt4sUlKQt/jZfuwbMnXkhHCOHi6yQEwJ72t
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(39860400002)(346002)(396003)(376002)(136003)(451199015)(36840700001)(40470700004)(46966006)(82740400003)(6916009)(316002)(8676002)(4326008)(40460700003)(70206006)(5660300002)(8936002)(356005)(81166007)(40480700001)(36756003)(44832011)(86362001)(70586007)(2906002)(426003)(1076003)(336012)(478600001)(2616005)(41300700001)(186003)(16526019)(82310400005)(26005)(6666004)(36860700001)(54906003)(7696005)(47076005)(83380400001)(36900700001);
+ SFS:(13230022)(4636009)(136003)(396003)(39860400002)(376002)(346002)(451199015)(40470700004)(46966006)(36840700001)(82310400005)(36860700001)(40460700003)(36756003)(86362001)(82740400003)(44832011)(356005)(81166007)(2906002)(5660300002)(478600001)(4326008)(70206006)(70586007)(8676002)(8936002)(316002)(6916009)(54906003)(47076005)(426003)(336012)(16526019)(186003)(1076003)(40480700001)(83380400001)(41300700001)(6666004)(2616005)(7696005)(26005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2022 02:03:30.3624 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d80b51b4-7494-4b44-2e9a-08da99e3264c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2022 02:03:33.8941 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc025165-47e0-43c0-128b-08da99e32867
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT081.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6280
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7380
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,185 +105,68 @@ Cc: Alexander.Deucher@amd.com, Evan Quan <evan.quan@amd.com>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add a new member to flag where to get the pptable. So that,
-we can separate those ASIC specific ones from common helpers.
+Separate those ASIC specific settings from common helpers.
 
 Signed-off-by: Evan Quan <evan.quan@amd.com>
-Change-Id: I814db70b5cedc225578bcb4988663de7dcf535af
+Change-Id: Ie3224b8719d48c6e6936b738df379959bd1df4ad
 ---
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     | 31 ++++++++++++
- drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h | 14 ++++++
- .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c    | 48 ++++++-------------
- 3 files changed, 60 insertions(+), 33 deletions(-)
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c        |  1 -
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c | 16 +++++++++++++---
+ 2 files changed, 13 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-index 13c5c7f1ecb9..610f9b68ef73 100644
+index 610f9b68ef73..7adbdd3cc13b 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -1024,6 +1024,35 @@ static void smu_interrupt_work_fn(struct work_struct *work)
- 		smu->ppt_funcs->interrupt_work(smu);
+@@ -1027,7 +1027,6 @@ static void smu_interrupt_work_fn(struct work_struct *work)
+ static void smu_pptable_source_init(struct smu_context *smu)
+ {
+ 	switch (smu->adev->ip_versions[MP1_HWIP][0]) {
+-	case IP_VERSION(13, 0, 0):
+ 	case IP_VERSION(13, 0, 7):
+ 		smu->pptable_source = PPTABLE_SOURCE_PMFW;
+ 		smu->pptable_id = smu->smu_table.boot_values.pp_table_id;
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
+index 1d454485e0d9..fd405e2420cd 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
+@@ -377,9 +377,12 @@ static int smu_v13_0_0_setup_pptable(struct smu_context *smu)
+ 	struct amdgpu_device *adev = smu->adev;
+ 	int ret = 0;
+ 
+-	ret = smu_v13_0_0_get_pptable_from_pmfw(smu,
+-						&smu_table->power_play_table,
+-						&smu_table->power_play_table_size);
++	if (smu->pptable_source == PPTABLE_SOURCE_PMFW)
++		ret = smu_v13_0_0_get_pptable_from_pmfw(smu,
++							&smu_table->power_play_table,
++							&smu_table->power_play_table_size);
++	else
++		ret = smu_v13_0_setup_pptable(smu);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -1753,6 +1756,12 @@ static int smu_v13_0_0_set_mp1_state(struct smu_context *smu,
+ 	return ret;
  }
  
-+static void smu_pptable_source_init(struct smu_context *smu)
++static void smu_v13_0_0_pptable_source_init(struct smu_context *smu)
 +{
-+	switch (smu->adev->ip_versions[MP1_HWIP][0]) {
-+	case IP_VERSION(13, 0, 0):
-+	case IP_VERSION(13, 0, 7):
-+		smu->pptable_source = PPTABLE_SOURCE_PMFW;
-+		smu->pptable_id = smu->smu_table.boot_values.pp_table_id;
-+		break;
-+	case IP_VERSION(13, 0, 10):
-+		smu->pptable_source = PPTABLE_SOURCE_INTERNAL_HARDCOPY;
-+		smu->pptable_id = 6666;
-+		break;
-+	default:
-+		smu->pptable_source = PPTABLE_SOURCE_VBIOS;
-+		smu->pptable_id = smu->smu_table.boot_values.pp_table_id;
-+		break;
-+	}
-+
-+	if (smu->ppt_funcs && smu->ppt_funcs->pptable_source_init)
-+		smu->ppt_funcs->pptable_source_init(smu);
-+
-+	/* override pptable_id from driver parameter */
-+	if (amdgpu_smu_pptable_id >= 0) {
-+		dev_info(smu->adev->dev, "override pptable id %d\n", amdgpu_smu_pptable_id);
-+		smu->pptable_id = amdgpu_smu_pptable_id;
-+		smu->pptable_source = PPTABLE_SOURCE_INTERNAL_HARDCOPY;
-+	}
++	smu->pptable_source = PPTABLE_SOURCE_PMFW;
++	smu->pptable_id = smu->smu_table.boot_values.pp_table_id;
 +}
 +
- static int smu_sw_init(void *handle)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
-@@ -1085,6 +1114,8 @@ static int smu_sw_init(void *handle)
- 		return ret;
- 	}
- 
-+	smu_pptable_source_init(smu);
-+
- 	ret = smu_init_pptable_microcode(smu);
- 	if (ret) {
- 		dev_err(adev->dev, "Failed to setup pptable firmware!\n");
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-index e2fa3b066b96..daa6be72bf00 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
-@@ -477,6 +477,12 @@ struct stb_context {
- 
- #define WORKLOAD_POLICY_MAX 7
- 
-+enum smu_pptable_source {
-+	PPTABLE_SOURCE_VBIOS,
-+	PPTABLE_SOURCE_PMFW,
-+	PPTABLE_SOURCE_INTERNAL_HARDCOPY,
-+};
-+
- struct smu_context
- {
- 	struct amdgpu_device            *adev;
-@@ -568,6 +574,9 @@ struct smu_context
- 	u32 param_reg;
- 	u32 msg_reg;
- 	u32 resp_reg;
-+
-+	enum smu_pptable_source pptable_source;
-+	int pptable_id;
+ static const struct pptable_funcs smu_v13_0_0_ppt_funcs = {
+ 	.get_allowed_feature_mask = smu_v13_0_0_get_allowed_feature_mask,
+ 	.set_default_dpm_table = smu_v13_0_0_set_default_dpm_table,
+@@ -1822,6 +1831,7 @@ static const struct pptable_funcs smu_v13_0_0_ppt_funcs = {
+ 	.mode1_reset_is_support = smu_v13_0_0_is_mode1_reset_supported,
+ 	.mode1_reset = smu_v13_0_mode1_reset,
+ 	.set_mp1_state = smu_v13_0_0_set_mp1_state,
++	.pptable_source_init = smu_v13_0_0_pptable_source_init,
  };
  
- struct i2c_adapter;
-@@ -1335,6 +1344,11 @@ struct pptable_funcs {
- 	 * @init_pptable_microcode: Prepare the pptable microcode to upload via PSP
- 	 */
- 	int (*init_pptable_microcode)(struct smu_context *smu);
-+
-+	/**
-+	 * @pptable_source_init: Get the smu->pptable_source/pptable_id settings
-+	 */
-+	void (*pptable_source_init)(struct smu_context *smu);
- };
- 
- typedef enum {
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-index 53d26bca524a..e5d742c85416 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
-@@ -196,7 +196,7 @@ int smu_v13_0_init_pptable_microcode(struct smu_context *smu)
- {
- 	struct amdgpu_device *adev = smu->adev;
- 	struct amdgpu_firmware_info *ucode = NULL;
--	uint32_t size = 0, pptable_id = 0;
-+	uint32_t size = 0;
- 	int ret = 0;
- 	void *table;
- 
-@@ -210,23 +210,10 @@ int smu_v13_0_init_pptable_microcode(struct smu_context *smu)
- 	if (!adev->scpm_enabled)
- 		return 0;
- 
--	if ((adev->ip_versions[MP1_HWIP][0] == IP_VERSION(13, 0, 7)) ||
--	    (adev->ip_versions[MP1_HWIP][0] == IP_VERSION(13, 0, 0)))
-+	if (smu->pptable_source != PPTABLE_SOURCE_INTERNAL_HARDCOPY)
- 		return 0;
- 
--	/* override pptable_id from driver parameter */
--	if (amdgpu_smu_pptable_id >= 0) {
--		pptable_id = amdgpu_smu_pptable_id;
--		dev_info(adev->dev, "override pptable id %d\n", pptable_id);
--	} else {
--		pptable_id = smu->smu_table.boot_values.pp_table_id;
--	}
--
--	/* "pptable_id == 0" means vbios carries the pptable. */
--	if (!pptable_id)
--		return 0;
--
--	ret = smu_v13_0_get_pptable_from_firmware(smu, &table, &size, pptable_id);
-+	ret = smu_v13_0_get_pptable_from_firmware(smu, &table, &size, smu->pptable_id);
- 	if (ret)
- 		return ret;
- 
-@@ -443,28 +430,23 @@ int smu_v13_0_get_pptable_from_firmware(struct smu_context *smu,
- 
- int smu_v13_0_setup_pptable(struct smu_context *smu)
- {
--	struct amdgpu_device *adev = smu->adev;
--	uint32_t size = 0, pptable_id = 0;
-+	uint32_t pptable_id = smu->pptable_id;
-+	uint32_t size = 0;
- 	void *table;
- 	int ret = 0;
- 
--	/* override pptable_id from driver parameter */
--	if (amdgpu_smu_pptable_id >= 0) {
--		pptable_id = amdgpu_smu_pptable_id;
--		dev_info(adev->dev, "override pptable id %d\n", pptable_id);
--	} else {
--		pptable_id = smu->smu_table.boot_values.pp_table_id;
--
--		if (adev->ip_versions[MP1_HWIP][0] == IP_VERSION(13, 0, 10))
--			pptable_id = 6666;
--	}
--
--	/* force using vbios pptable in sriov mode */
--	if ((amdgpu_sriov_vf(adev) || !pptable_id) && (amdgpu_emu_mode != 1))
-+	switch (smu->pptable_source) {
-+	case PPTABLE_SOURCE_VBIOS:
- 		ret = smu_v13_0_get_pptable_from_vbios(smu, &table, &size);
--	else
-+		break;
-+	case PPTABLE_SOURCE_INTERNAL_HARDCOPY:
- 		ret = smu_v13_0_get_pptable_from_firmware(smu, &table, &size, pptable_id);
--
-+		break;
-+	case PPTABLE_SOURCE_PMFW:
-+	default:
-+		ret = -EINVAL;
-+		break;
-+	}
- 	if (ret)
- 		return ret;
- 
+ void smu_v13_0_0_set_ppt_funcs(struct smu_context *smu)
 -- 
 2.34.1
 
