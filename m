@@ -2,62 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 798E45BE578
-	for <lists+amd-gfx@lfdr.de>; Tue, 20 Sep 2022 14:16:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50BA05BE677
+	for <lists+amd-gfx@lfdr.de>; Tue, 20 Sep 2022 14:55:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D005D10E510;
-	Tue, 20 Sep 2022 12:16:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAF6510E6AD;
+	Tue, 20 Sep 2022 12:55:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
- [IPv6:2a00:1450:4864:20::432])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C860510E510
- for <amd-gfx@lists.freedesktop.org>; Tue, 20 Sep 2022 12:16:02 +0000 (UTC)
-Received: by mail-wr1-x432.google.com with SMTP id bq9so3983324wrb.4
- for <amd-gfx@lists.freedesktop.org>; Tue, 20 Sep 2022 05:16:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com
+ [IPv6:2a00:1450:4864:20::32f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D72CA10E55C
+ for <amd-gfx@lists.freedesktop.org>; Tue, 20 Sep 2022 12:22:22 +0000 (UTC)
+Received: by mail-wm1-x32f.google.com with SMTP id
+ r133-20020a1c448b000000b003b494ffc00bso6191331wma.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 20 Sep 2022 05:22:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amarulasolutions.com; s=google;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date;
- bh=dWA8484IuvOKOM/Zra59VJNkFv+v1G1SetaGkDLdp7k=;
- b=R1m4zYdsxJ6eZYqDU8V5GSXBsD/wQ/O09ZSXagkbSZLsPc5q05SMtGcGLiYuCaLuwn
- PIrYFD1khTZ2m21U/Jc+Cez8gYUVtonhU1OJq7xZK1o/SQaX8mxpR6d1C9uILjf3fNX4
- coEO7ZoJBNKulQOXFfz4iR692f2sRp39Hutz4EJ9+IB4/v4GIjFxEiRwUGr620fU7EHN
- BEIdzq2XSSitptAI3anKgTAJt0FQOoJK98KvNd8q1WICt94xzLOqoK3uE39iI0Bga4hG
- eDW674db0Y8ZyW3VQ1C2erHD9dmbnuloyb/cixjk0kZFxkC7FlMu5Me2/KCTaOyxrC+v
- 1aOA==
+ bh=4SwIaD3vwte9/wOVUhii8jjHUDs7etXJMigmdSdQFz4=;
+ b=SLFoLkpR340kKkW0YrWlEfAhG5dD3fKjX3yfiQcJ1RBvRf3qDsOJQmWuFi8It2zGOO
+ 4xWD+xaLSG2zcyyiiRX1wHCG/QPvLR6pyaxkUQuhrKBIwqqWleODmA3zmBCy2s7jSOpd
+ vvFkpw0tqn83ArzebL3ogqtG6JaH24hPhvgb0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date;
- bh=dWA8484IuvOKOM/Zra59VJNkFv+v1G1SetaGkDLdp7k=;
- b=uD1RziFh3jTeHfGCovVqLXOiSXkAuunfV8Ma+yWmeUskoZ9o0ZebJBVwXLL92eOeql
- js9tv6SkDl5kE5Gjn6lrNWiiroFw/JSCbIR6mqIGnKv/tHur1BUILMTelKQkzAEDVgKr
- 2ohdHq9jhimM6HFFEATw5o7nxhAII+WWWASTWjG3l2B+bt+yill8aLnYnLe66JU+pf4I
- 3NRjWAxzv71pNmEIu8B7vSVP7eLdZhaVGmuB7EqzdyTf5mb1NBlcNqjX3zCm/uUeQBJQ
- hK3I0R+g/h9hTEg8UbiKGtguptsFxPqfc9mCMlqpHRhZplds2tGGMPgv3GSLaa2dKDLF
- CjoA==
-X-Gm-Message-State: ACrzQf1q7dUxlktnlhAbcsHaFI1Ur3MUEGurTihesU3VvqtGBgnOoDYw
- PmNY4o4OFI89avNUweNxm0Ry+nGg5+g=
-X-Google-Smtp-Source: AMsMyM6/eH6kvKu63EVB7xheR1QdB2v+aKNaZa4JuDTcpzvxJZDxxpRgxfEtHJmqUqCQ1VPVqKvZfw==
-X-Received: by 2002:a05:6000:1688:b0:22a:fba6:77fe with SMTP id
- y8-20020a056000168800b0022afba677femr6804044wrd.266.1663676161184; 
- Tue, 20 Sep 2022 05:16:01 -0700 (PDT)
-Received: from able.fritz.box (p4fc20ebf.dip0.t-ipconnect.de. [79.194.14.191])
+ bh=4SwIaD3vwte9/wOVUhii8jjHUDs7etXJMigmdSdQFz4=;
+ b=r3N1fCltx5lGcQntrobXmt5osi7TYFLlwdJAcbDccdK/+RSni1tZNDjFgxzmHwsRHl
+ jtH+bHn3kpjKeLtmSBZoDmoehHD84by++I+GjlCYZIU7SdwPAsCnlmPrUT2j6wXOqHah
+ FnliaAH/1yXrLRwRgvfoqQ7g1iAJ7LQUbUVs3pgttjJIX8yF++mOqokKDpaxmLsYok/t
+ UHoWMpA3xYX6upvB9yzFCn0QCAl+dis3Bgu+3Ua1J2jytmbziXQEKcYBur4eQdZdTAU8
+ i/mVBI36BRh4EumLMK4HCFDIz0bC35OgxFPDetQSyYQqTBjfaEJgxP5IZFClnoT4HDSZ
+ zGyw==
+X-Gm-Message-State: ACrzQf0wGM0quPE9hpKM6aFd8zKRxTAmuxwSpyhLEa1oMNWwJJrvGApx
+ h6w3GaQkUTMgTcycITdhZEX8GQ==
+X-Google-Smtp-Source: AMsMyM7KTVO8qT5Kn3gc4wVc7Gf+axGxMqi1Oeo15wjCpSJNRvW5WWXc7u2JmKl2DoEucPmryDsVKg==
+X-Received: by 2002:a05:600c:1c19:b0:3b4:c1cb:d46d with SMTP id
+ j25-20020a05600c1c1900b003b4c1cbd46dmr2203248wms.172.1663676541365; 
+ Tue, 20 Sep 2022 05:22:21 -0700 (PDT)
+Received: from tom-ThinkPad-T14s-Gen-2i.station
+ (net-188-217-56-12.cust.vodafonedsl.it. [188.217.56.12])
  by smtp.gmail.com with ESMTPSA id
- m28-20020a05600c3b1c00b003a6a3595edasm2913370wms.27.2022.09.20.05.16.00
+ i7-20020a05600c354700b003b4cba4ef71sm13124268wmq.41.2022.09.20.05.22.18
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 20 Sep 2022 05:16:00 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: properly initialize return value during CS
-Date: Tue, 20 Sep 2022 14:15:59 +0200
-Message-Id: <20220920121559.2815-1-christian.koenig@amd.com>
+ Tue, 20 Sep 2022 05:22:20 -0700 (PDT)
+From: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+To: tommaso.merciai@amarulasolutions.com
+Subject: [PATCH] drm/amdgpu: initialize r variable into amdgpu_cs_submit
+ function
+Date: Tue, 20 Sep 2022 14:22:14 +0200
+Message-Id: <20220920122216.346321-1-tommaso.merciai@amarulasolutions.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 20 Sep 2022 12:55:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,31 +68,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>, llvm@lists.linux.dev,
+ Philip Yang <Philip.Yang@amd.com>, David Airlie <airlied@linux.ie>,
+ linuxfancy@googlegroups.com, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Nick Desaulniers <ndesaulniers@google.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Nathan Chancellor <nathan@kernel.org>, Luben Tuikov <luben.tuikov@amd.com>,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Tom Rix <trix@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
+ linux-amarula@amarulasolutions.com, sudipm.mukherjee@gmail.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The return value is no longer initialized before the loop because of
-moving code around.
+The builds of arm64 allmodconfig with clang failed to build
+next-20220920 with the following result:
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
-Fixes: 1ce5d2d0c831 ("drm/amdgpu: move entity selection and job init earlier during CS")
+1190:3: error: variable 'r' is uninitialized when used here [-Werror,-Wuninitialized]
+note: initialize the variable 'r' to silence this warning
+
+This fix compilation error
+
+Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index 58088c663125..e452350f462a 100644
+index 58088c663125..efa3dc9b69fd 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -1184,6 +1184,7 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser *p,
- 	/* If userptr are invalidated after amdgpu_cs_parser_bos(), return
- 	 * -EAGAIN, drmIoctl in libdrm will restart the amdgpu_cs_ioctl.
- 	 */
-+	r = 0;
- 	amdgpu_bo_list_for_each_userptr_entry(e, p->bo_list) {
- 		struct amdgpu_bo *bo = ttm_to_amdgpu_bo(e->tv.bo);
+@@ -1168,7 +1168,7 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser *p,
+ 	struct amdgpu_bo_list_entry *e;
+ 	struct amdgpu_job *job;
+ 	uint64_t seq;
+-	int r;
++	int r = 0;
  
+ 	job = p->job;
+ 	p->job = NULL;
 -- 
 2.25.1
 
