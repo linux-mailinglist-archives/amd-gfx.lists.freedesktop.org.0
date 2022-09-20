@@ -1,60 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECCE95BE933
-	for <lists+amd-gfx@lfdr.de>; Tue, 20 Sep 2022 16:41:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E55615BE8F7
+	for <lists+amd-gfx@lfdr.de>; Tue, 20 Sep 2022 16:30:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D730510E6E1;
-	Tue, 20 Sep 2022 14:41:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74C2310E1D0;
+	Tue, 20 Sep 2022 14:30:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com
- [IPv6:2607:f8b0:4864:20::b2c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6E3710E6CB
- for <amd-gfx@lists.freedesktop.org>; Tue, 20 Sep 2022 14:17:00 +0000 (UTC)
-Received: by mail-yb1-xb2c.google.com with SMTP id e187so3558068ybh.10
- for <amd-gfx@lists.freedesktop.org>; Tue, 20 Sep 2022 07:17:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date;
- bh=mqYUTy7s8ydeDp5ffTv+LyK6bjlQmHOYBVaWKaUD6IM=;
- b=DfCw9F8yEqPTF6DDgQgYCLlvsXNVEm/GslhJFolZlBlJW0+QriE1OdNMRrCqrme6FC
- 5dMaYVGxe+59eckit3mv3D4LITiwwVEGxNRlNhXBrpaVVmKI7kxV/gBf4cXs697b7dCu
- 8MCU8Sv8aCtlawaC+/QQUfIO7ZZOXR6eCmXFO/ncuvg14xgcp0mSecb061l4Afxlkt9Z
- BzjL+os5FY8yFh2XxPh5M7Oodgm+IqNp8bWsJdPCrrN9518MAewO0bXUewoLcs6liQZt
- FbBJEnv5eYEhjvKAZkWsnzYUyCX5rZwHgWqUfEcPzZvMRnHUxWAFKbhwWsAfauNqatXG
- CeaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date;
- bh=mqYUTy7s8ydeDp5ffTv+LyK6bjlQmHOYBVaWKaUD6IM=;
- b=7p7a6X8t7afGiuBoBnVKI9MEDTb2uj+uDZD36xBgaDg7H+eQ8tSxadrC2TH4gxIYYV
- lfNnzcTvtWVmMXbsn1RuKw3aX95PLpBCZO7re1iPvrWAs8tb++8yF+zv7FLSCloud5Jg
- xQ/S4cdNiAee5Pg2FYGrC5CDGn48haSxs05mONzc93jaMdwlHKI+qyA80w3ZCs5dA+s5
- Ih2R6ozZYeLrL1Dy3EazExMdw3ABNvinnONaa+qBiSM2Dt/+ZaCOjq0YfVYBXbP3830T
- JtAz8u8X1/iBgM30E74zIBJ/9q5rSNwF41VWHKaou2CN3BJ/uZg7k2X4h7UFkqNBhxZx
- ZsSw==
-X-Gm-Message-State: ACrzQf3OBaMjNRUOO/oJQ79L0MTU8UEWvUA2UH9QI1GOlPLF/MLLrlVe
- Fho59QRf3UF2MVsCCasv4UpITE5g9FEAT3MV2uEqMg==
-X-Google-Smtp-Source: AMsMyM5RpSmvD8e3124dTg40XtMvNBTEUj3umY5uQd2VhI8a1Dn6ImuEaOiG27KjLiE3viwVbP56uDAE1BId+VUikXs=
-X-Received: by 2002:a25:4cb:0:b0:6b0:923:a96 with SMTP id
- 194-20020a2504cb000000b006b009230a96mr21001190ybe.475.1663683419568; 
- Tue, 20 Sep 2022 07:16:59 -0700 (PDT)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2068.outbound.protection.outlook.com [40.107.92.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AB8910E1D0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 20 Sep 2022 14:30:11 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MrA38qJXdnRCPNay+FFDhkyL/W/nuJh/uO+kmug/HV445feS6RsNJ04tKo4p98atFeY+ppqeMncaF/AfKg3Sp0KLrxPoEFWfwSpa+fFgShwBvrbccMSsXJNeDXdZVdO7U/EJuKhuJnpGQgNgFWzoxCLMieHPgAsOrrExy1FWPUxjiUzrE21xcihiMP0Y0JrenibpAgbFp0c3GdtQUGu3ywE0C+WIwZFZjdclijlfOtO+tbSSNYHbxyixxmL7ChOuB46ouwStXIfyQbLaVfr5zlQO/ntMRJbfGc8PGjVlgX3PoyGJqpxkxShM3aeyxLMJkz9kiZAzwchlquD/PWeMpw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Mlm3894eeeMTJVddnCK9ihXYyrvYShL1YuGDiN8OKZg=;
+ b=j9QABqoZJwAtROo30gIBs863mvhT7IaRRGmtMycrK7nqU6/Blpqb9ILl6fPleKXXYkUQvCCu0PKtBqBDWcAA7WkAPvVlGjBF0V8ejX2NlTnCypO8OhnzqVgU7o0YnHS2fVSdKS0E8bQxiLt6fyPSqXzVGjGSvnUsL01vy78Bmyc34QTyZ3zNQ2cLSQgh/9Edm1L8mM8we/qiHgk/fxflx2zhOl3Fbc07c53VcwhQCZntFHNt/J2ElnQhXDPmFMCCzbZy9dE8bLt4l7CcPND/Xy+T27OgKKK6mx86/x/X1c3N5hZ7UTD38gZkU8TcLCdqNHCf6q/2N9eEx66E8SxNug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Mlm3894eeeMTJVddnCK9ihXYyrvYShL1YuGDiN8OKZg=;
+ b=gmrBCGuqSUUda4pM6VerHg2U7IhVhm4XtBI09xCBQEGh8eN+VJgTDKLz/MUma9p+kRiw2CofPljJAcK8M4F3udSOPsu1kxQiSc1lNKzYwPhkee2Y8GEqM8IKOQZ/aCMIsjuGfk7dU/3WG0WMUBqkDjuWTjdFaY8HyPIBGuP4X6I=
+Received: from SJ0PR13CA0194.namprd13.prod.outlook.com (2603:10b6:a03:2c3::19)
+ by DM4PR12MB7599.namprd12.prod.outlook.com (2603:10b6:8:109::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.14; Tue, 20 Sep
+ 2022 14:30:08 +0000
+Received: from CO1PEPF00001A63.namprd05.prod.outlook.com
+ (2603:10b6:a03:2c3:cafe::93) by SJ0PR13CA0194.outlook.office365.com
+ (2603:10b6:a03:2c3::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.14 via Frontend
+ Transport; Tue, 20 Sep 2022 14:30:07 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1PEPF00001A63.mail.protection.outlook.com (10.167.241.10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5654.11 via Frontend Transport; Tue, 20 Sep 2022 14:30:07 +0000
+Received: from mkgs-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 20 Sep
+ 2022 09:30:04 -0500
+From: Graham Sider <Graham.Sider@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu: pass queue size and is_aql_queue to MES
+Date: Tue, 20 Sep 2022 10:29:35 -0400
+Message-ID: <20220920142935.215819-1-Graham.Sider@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220913192757.37727-1-dmitry.osipenko@collabora.com>
-In-Reply-To: <20220913192757.37727-1-dmitry.osipenko@collabora.com>
-From: Sumit Semwal <sumit.semwal@linaro.org>
-Date: Tue, 20 Sep 2022 19:46:46 +0530
-Message-ID: <CAO_48GGxF0x7LKdQ+Az6YbY9uy394croggbPVfhPqQJ+paXAXg@mail.gmail.com>
-Subject: Re: [PATCH v5 00/21] Move all drivers to a common dma-buf locking
- convention
-To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 20 Sep 2022 14:41:29 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF00001A63:EE_|DM4PR12MB7599:EE_
+X-MS-Office365-Filtering-Correlation-Id: be6513d5-01ca-46ed-602b-08da9b149dec
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: iPtJX+bRgT36O3eqQ8Q058Uktm0fv6KauSQLnnZs2ZL+6DJ//Jd0wTdnj0EHO9sUqGGDAnL5I4BSZBn0OQTaLGAKVDYSr+hiSe/2dHR++L0dp2d/k+GuOtq3pXfEwtniJ5vvbknytOJFVrpJC52EG6lIFAjmTsnLXR/UrJqYjMVVF55iTOehu4jcV9qRE07hHzJEbNzvzmdtpn39g4nLPAxyF5YCxaa4N4hc3PckmsBBgsy+Sbb4u+RThwPnAH+7SNdOcO5ykAEZShu+Gbh3aWqPDebk//aNN6UmHTupZxRnfAIrYiLJKcOzFdyheSky7s5J4r+r63EYtsWSiYqPJhEbCJY4czTqiQ/e1rDyNEZw/xToLd9mGSFTx+BS+y/SK7kKKh3VOhbX9bh0zV/HkqX+VBHE7gqMW8khT95iP3TgPjn7/jIi8YOZwvfARQswAZin5lEISRugpltBtPEBxQdyitlnj4cRampwFKC/YBOXos71Xj7qmonfr/gM3v1HHD/8W4Mk5/CGdbml/5xj6GFNvXTiPlGQDN490tGoT8d1RKUstkT5tRBWaCx3iOyf4yZN4NAXvFi2oW5k4JpTDna1Tk0x7B+UWn/ohXEW9NvTrqtjf+TYDF54augyuvDGCxPNsgSu/w1AvwYAvQywKO1e+RpQSuajY6mOvqF4Mi2eXzanDj0IRNB2Ap4MIROwwK5AI+ksY6bW5P/TSJDlkzHf3pEkCy343nlbWovXQmSf9KZJ5Yu54eR/xLTCKMY/ON0tnFbPZWlx7ApaUglV8xg43tcNJ6DcZ7CLFOAYw5pXu87N/XQUF7WZVB9Gj0G/
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230022)(4636009)(39860400002)(396003)(136003)(346002)(376002)(451199015)(46966006)(40470700004)(36840700001)(356005)(6666004)(26005)(81166007)(7696005)(316002)(54906003)(6916009)(478600001)(40460700003)(36860700001)(86362001)(16526019)(336012)(47076005)(426003)(2616005)(40480700001)(1076003)(186003)(83380400001)(82740400003)(5660300002)(8936002)(2906002)(8676002)(4326008)(36756003)(70586007)(70206006)(41300700001)(82310400005)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2022 14:30:07.5636 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: be6513d5-01ca-46ed-602b-08da9b149dec
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF00001A63.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7599
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,211 +97,79 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, Gurchetan Singh <gurchetansingh@chromium.org>,
- Ruhl Michael J <michael.j.ruhl@intel.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Gerd Hoffmann <kraxel@redhat.com>, Dmitry Osipenko <digetx@gmail.com>,
- kernel@collabora.com, Marek Szyprowski <m.szyprowski@samsung.com>,
- Stefano Stabellini <sstabellini@kernel.org>, Leon Romanovsky <leon@kernel.org>,
- Jason Gunthorpe <jgg@ziepe.ca>, linux-rdma@vger.kernel.org,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas_os@shipmail.org>,
- Russell King <linux@armlinux.org.uk>, Daniel Stone <daniel@fooishbar.org>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- virtualization@lists.linux-foundation.org, Chia-I Wu <olvaffe@gmail.com>,
- linux-media@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, linaro-mm-sig@lists.linaro.org,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Juergen Gross <jgross@suse.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Daniel Almeida <daniel.almeida@collabora.com>, amd-gfx@lists.freedesktop.org,
- Tomi Valkeinen <tomba@kernel.org>, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- linux-kernel@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
- Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
- Rob Clark <robdclark@gmail.com>, Qiang Yu <yuq825@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- Amol Maheshwari <amahesh@qti.qualcomm.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Lucas Stach <l.stach@pengutronix.de>
+Cc: Jack.Xiao@amd.com, Felix.Kuehling@amd.com,
+ Graham Sider <Graham.Sider@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Dmitry,
+Update mes_v11_api_def.h add_queue API with is_aql_queue parameter. Also
+re-use gds_size for the queue size (unused for KFD). MES requires the
+queue size in order to compute the actual wptr offset within the queue
+RB since it increases monotonically for AQL queues.
 
+Signed-off-by: Graham Sider <Graham.Sider@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h               | 2 ++
+ drivers/gpu/drm/amd/amdgpu/mes_v11_0.c                | 4 ++++
+ drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 2 ++
+ drivers/gpu/drm/amd/include/mes_v11_api_def.h         | 3 ++-
+ 4 files changed, 10 insertions(+), 1 deletion(-)
 
-On Wed, 14 Sept 2022 at 00:58, Dmitry Osipenko
-<dmitry.osipenko@collabora.com> wrote:
->
-> Hello,
->
-> This series moves all drivers to a dynamic dma-buf locking specification.
-> From now on all dma-buf importers are made responsible for holding
-> dma-buf's reservation lock around all operations performed over dma-bufs
-> in accordance to the locking specification. This allows us to utilize
-> reservation lock more broadly around kernel without fearing of a potentia=
-l
-> deadlocks.
-Thank you for the excellent work on this series - apart from a minor
-nit in patch 15, please feel free to add my:
-Acked-by: Sumit Semwal <sumit.semwal@linaro.org>
-for the relevant dma-buf patches (1, 2, 15-19, 21).
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
+index 7b46f6bf4187..ad980f4b66e1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
+@@ -222,6 +222,8 @@ struct mes_add_queue_input {
+ 	uint64_t	tba_addr;
+ 	uint64_t	tma_addr;
+ 	uint32_t	is_kfd_process;
++	uint32_t	is_aql_queue;
++	uint32_t	queue_size;
+ };
+ 
+ struct mes_remove_queue_input {
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
+index b64cd46a159a..5581e03fc956 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
+@@ -187,6 +187,10 @@ static int mes_v11_0_add_hw_queue(struct amdgpu_mes *mes,
+ 	mes_add_queue_pkt.is_kfd_process = input->is_kfd_process;
+ 	mes_add_queue_pkt.trap_en = 1;
+ 
++	/* For KFD, gds_size is re-used for queue size (needed in MES for AQL queues) */
++	mes_add_queue_pkt.is_aql_queue = input->is_aql_queue;
++	mes_add_queue_pkt.gds_size = input->queue_size;
++
+ 	return mes_v11_0_submit_pkt_and_poll_completion(mes,
+ 			&mes_add_queue_pkt, sizeof(mes_add_queue_pkt),
+ 			offsetof(union MESAPI__ADD_QUEUE, api_status));
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+index e83725a28106..8644b212cf4b 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+@@ -205,6 +205,8 @@ static int add_queue_mes(struct device_queue_manager *dqm, struct queue *q,
+ 	}
+ 
+ 	queue_input.is_kfd_process = 1;
++	queue_input.is_aql_queue = q->properties.format;
++	queue_input.queue_size = q->properties.queue_size >> 2;
+ 
+ 	queue_input.paging = false;
+ 	queue_input.tba_addr = qpd->tba_addr;
+diff --git a/drivers/gpu/drm/amd/include/mes_v11_api_def.h b/drivers/gpu/drm/amd/include/mes_v11_api_def.h
+index 50bfa513cb35..7e85cdc5bd34 100644
+--- a/drivers/gpu/drm/amd/include/mes_v11_api_def.h
++++ b/drivers/gpu/drm/amd/include/mes_v11_api_def.h
+@@ -269,7 +269,8 @@ union MESAPI__ADD_QUEUE {
+ 			uint32_t map_kiq_utility_queue  : 1;
+ 			uint32_t is_kfd_process		: 1;
+ 			uint32_t trap_en		: 1;
+-			uint32_t reserved		: 21;
++			uint32_t is_aql_queue		: 1;
++			uint32_t reserved		: 20;
+ 		};
+ 		struct MES_API_STATUS		api_status;
+ 		uint64_t                        tma_addr;
+-- 
+2.25.1
 
-Best regards,
-Sumit.
-
->
-> This patchset passes all i915 selftests. It was also tested using VirtIO,
-> Panfrost, Lima, Tegra, udmabuf, AMDGPU and Nouveau drivers. I tested case=
-s
-> of display+GPU, display+V4L and GPU+V4L dma-buf sharing (where appropriat=
-e),
-> which covers majority of kernel drivers since rest of the drivers share
-> same or similar code paths.
->
-> Changelog:
->
-> v5: - Added acks and r-bs that were given to v4.
->
->     - Changed i915 preparation patch like was suggested by Michael Ruhl.
->       The scope of reservation locking is smaller now.
->
-> v4: - Added dma_buf_mmap() to the "locking convention" documentation,
->       which was missed by accident in v3.
->
->     - Added acks from Christian K=C3=B6nig, Tomasz Figa and Hans Verkuil =
-that
->       they gave to couple v3 patches.
->
->     - Dropped the "_unlocked" postfix from function names that don't have
->       the locked variant, as was requested by Christian K=C3=B6nig.
->
->     - Factored out the per-driver preparations into separate patches
->       to ease reviewing of the changes, which is now doable without the
->       global dma-buf functions renaming.
->
->     - Factored out the dynamic locking convention enforcements into separ=
-ate
->       patches which add the final dma_resv_assert_held(dmabuf->resv) to t=
-he
->       dma-buf API functions.
->
-> v3: - Factored out dma_buf_mmap_unlocked() and attachment functions
->       into aseparate patches, like was suggested by Christian K=C3=B6nig.
->
->     - Corrected and factored out dma-buf locking documentation into
->       a separate patch, like was suggested by Christian K=C3=B6nig.
->
->     - Intel driver dropped the reservation locking fews days ago from
->       its BO-release code path, but we need that locking for the imported
->       GEMs because in the end that code path unmaps the imported GEM.
->       So I added back the locking needed by the imported GEMs, updating
->       the "dma-buf attachment locking specification" patch appropriately.
->
->     - Tested Nouveau+Intel dma-buf import/export combo.
->
->     - Tested udmabuf import to i915/Nouveau/AMDGPU.
->
->     - Fixed few places in Etnaviv, Panfrost and Lima drivers that I misse=
-d
->       to switch to locked dma-buf vmapping in the drm/gem: Take reservati=
-on
->       lock for vmap/vunmap operations" patch. In a result invalidated the
->       Christian's r-b that he gave to v2.
->
->     - Added locked dma-buf vmap/vunmap functions that are needed for fixi=
-ng
->       vmappping of Etnaviv, Panfrost and Lima drivers mentioned above.
->       I actually had this change stashed for the drm-shmem shrinker patch=
-set,
->       but then realized that it's already needed by the dma-buf patches.
->       Also improved my tests to better cover these code paths.
->
-> v2: - Changed locking specification to avoid problems with a cross-driver
->       ww locking, like was suggested by Christian K=C3=B6nig. Now the att=
-ach/detach
->       callbacks are invoked without the held lock and exporter should tak=
-e the
->       lock.
->
->     - Added "locking convention" documentation that explains which dma-bu=
-f
->       functions and callbacks are locked/unlocked for importers and expor=
-ters,
->       which was requested by Christian K=C3=B6nig.
->
->     - Added ack from Tomasz Figa to the V4L patches that he gave to v1.
->
-> Dmitry Osipenko (21):
->   dma-buf: Add unlocked variant of vmapping functions
->   dma-buf: Add unlocked variant of attachment-mapping functions
->   drm/gem: Take reservation lock for vmap/vunmap operations
->   drm/prime: Prepare to dynamic dma-buf locking specification
->   drm/armada: Prepare to dynamic dma-buf locking specification
->   drm/i915: Prepare to dynamic dma-buf locking specification
->   drm/omapdrm: Prepare to dynamic dma-buf locking specification
->   drm/tegra: Prepare to dynamic dma-buf locking specification
->   drm/etnaviv: Prepare to dynamic dma-buf locking specification
->   RDMA/umem: Prepare to dynamic dma-buf locking specification
->   misc: fastrpc: Prepare to dynamic dma-buf locking specification
->   xen/gntdev: Prepare to dynamic dma-buf locking specification
->   media: videobuf2: Prepare to dynamic dma-buf locking specification
->   media: tegra-vde: Prepare to dynamic dma-buf locking specification
->   dma-buf: Move dma_buf_vmap() to dynamic locking specification
->   dma-buf: Move dma_buf_attach() to dynamic locking specification
->   dma-buf: Move dma_buf_map_attachment() to dynamic locking
->     specification
->   dma-buf: Move dma_buf_mmap() to dynamic locking specification
->   dma-buf: Document dynamic locking convention
->   media: videobuf2: Stop using internal dma-buf lock
->   dma-buf: Remove obsoleted internal lock
->
->  Documentation/driver-api/dma-buf.rst          |   6 +
->  drivers/dma-buf/dma-buf.c                     | 211 +++++++++++++++---
->  drivers/gpu/drm/armada/armada_gem.c           |   8 +-
->  drivers/gpu/drm/drm_client.c                  |   4 +-
->  drivers/gpu/drm/drm_gem.c                     |  24 ++
->  drivers/gpu/drm/drm_gem_dma_helper.c          |   6 +-
->  drivers/gpu/drm/drm_gem_framebuffer_helper.c  |   6 +-
->  drivers/gpu/drm/drm_gem_ttm_helper.c          |   9 +-
->  drivers/gpu/drm/drm_prime.c                   |   6 +-
->  drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c   |   2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |   2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_object.c    |  14 ++
->  .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |  16 +-
->  drivers/gpu/drm/lima/lima_sched.c             |   4 +-
->  drivers/gpu/drm/omapdrm/omap_gem_dmabuf.c     |   4 +-
->  drivers/gpu/drm/panfrost/panfrost_dump.c      |   4 +-
->  drivers/gpu/drm/panfrost/panfrost_perfcnt.c   |   6 +-
->  drivers/gpu/drm/qxl/qxl_object.c              |  17 +-
->  drivers/gpu/drm/qxl/qxl_prime.c               |   4 +-
->  drivers/gpu/drm/tegra/gem.c                   |  17 +-
->  drivers/infiniband/core/umem_dmabuf.c         |   7 +-
->  .../common/videobuf2/videobuf2-dma-contig.c   |  22 +-
->  .../media/common/videobuf2/videobuf2-dma-sg.c |  19 +-
->  .../common/videobuf2/videobuf2-vmalloc.c      |  17 +-
->  .../platform/nvidia/tegra-vde/dmabuf-cache.c  |   6 +-
->  drivers/misc/fastrpc.c                        |   6 +-
->  drivers/xen/gntdev-dmabuf.c                   |   8 +-
->  include/drm/drm_gem.h                         |   3 +
->  include/linux/dma-buf.h                       |  17 +-
->  29 files changed, 320 insertions(+), 155 deletions(-)
->
-> --
-> 2.37.3
->
-
-
---
-Thanks and regards,
-
-Sumit Semwal (he / him)
-Tech Lead - LCG, Vertical Technologies
-Linaro.org =E2=94=82 Open source software for ARM SoCs
