@@ -1,42 +1,63 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63A8D5BE678
-	for <lists+amd-gfx@lfdr.de>; Tue, 20 Sep 2022 14:55:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF5AD5BE676
+	for <lists+amd-gfx@lfdr.de>; Tue, 20 Sep 2022 14:55:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C83A10E6B1;
-	Tue, 20 Sep 2022 12:55:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BB5210E6AC;
+	Tue, 20 Sep 2022 12:55:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 7239 seconds by postgrey-1.36 at gabe;
- Tue, 20 Sep 2022 11:34:40 UTC
-Received: from smtpbgeu1.qq.com (smtpbgeu1.qq.com [52.59.177.22])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBDC910E182
- for <amd-gfx@lists.freedesktop.org>; Tue, 20 Sep 2022 11:34:40 +0000 (UTC)
-X-QQ-mid: bizesmtp72t1663666195t2injh6u
-Received: from localhost.localdomain ( [113.57.152.160])
- by bizesmtp.qq.com (ESMTP) with 
- id ; Tue, 20 Sep 2022 17:29:50 +0800 (CST)
-X-QQ-SSF: 01400000002000D0P000B00A0000000
-X-QQ-FEAT: TFgy1zK7+HXcWg/tMvi8mZOhQ99/R/KMioFLBsiCpPXq9JpzOgEisnB2Hjnhn
- pdSYF8Z6PRvd0tnQrNOHcSCQk3H/3448cfgnmc+az+LgpIEFduvePL4XEZQ+lUhfOQSxGVa
- mRJJw22VR8rozRScMAzXwb1sbOiASESolGaiySXmDqSU3LDQCtI/Zl0rRmg7cODSK0MTATx
- Du3PTg77oYsS/wwrqG9IdKIUwxdJsof6WNNqg/8qCsDgaAvTDawmgwiYf8mYGGGmFaWSt1Y
- y2+hdG2Ab7yUSeSq/+AFXVZNcjH9G92Y7zWHPtRhZy8i7UresUYI3T/U1pze30jGpCC3CBz
- eV/qgXsIY+pGPebflXytTYzjZTNM+0+lfGmdiEiG2FmbI7Rbqy+2LGHrBPHSE4Mpm0UPrk7
-X-QQ-GoodBg: 2
-From: hongao <hongao@uniontech.com>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@linux.ie, daniel@ffwll.ch
-Subject: [PATCH] drm/amdgpu: fix initial connector audio value
-Date: Tue, 20 Sep 2022 17:24:53 +0800
-Message-Id: <20220920092453.16022-1-hongao@uniontech.com>
-X-Mailer: git-send-email 2.20.1
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
+ [IPv6:2a00:1450:4864:20::334])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1D4810E4DB;
+ Tue, 20 Sep 2022 11:47:53 +0000 (UTC)
+Received: by mail-wm1-x334.google.com with SMTP id
+ ay7-20020a05600c1e0700b003b49861bf48so883397wmb.0; 
+ Tue, 20 Sep 2022 04:47:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date;
+ bh=Uzqu4x3ReJl2swGfEJj67Pd2unDJ3Dv2X7PfUeAMFlU=;
+ b=CmXkA8qIbaFNouX5UDIP2EtzvEpNmgRhb/8rznaJhGMNUuwBOFHghs3gJQS4uomnZr
+ YDcqkjuEvJ4vCka5cONnCHVRV6iQInH+8o7Zq6VeC/3C8HUmiQ31Tc1D7RqHoZMY0+gl
+ DpJVgqTY9VSsYXVMFHySjCx4npqW7qGsRD7k6vyHOfIxIklfFsHo9utUqClMbHOH7nzv
+ xKq4OLNK7WWtv23lHrNAz+KZYWDVjodkcEtoVo4NkPp0a/0giowcL+JsMfRSnh9PfBq2
+ GPBjK8DY/TfnAMRV+kChdRhMBeamsBENpwI9RfDCDpHENBnE3x1TJgyEn6gEeFu9Vrxg
+ wbYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date;
+ bh=Uzqu4x3ReJl2swGfEJj67Pd2unDJ3Dv2X7PfUeAMFlU=;
+ b=SoEE8D9QRmRLQrje6dkPAADZg7NnwWMyeYA0sIpSNSSuY7jo9KPu0yVEEhfO79htIY
+ ZbfOdpCBJ87QUVyI/eOF+Jlk2rc+3Mm+frBjZ8F/XRd8nBRonnzmxf32srrGs69uT2+v
+ h1AjMXjIZr9p5oPmcxG8LHCRDKgQbuL0uGcS48Av9WO2m1LA/0mx4vxSxK0RGhvULK39
+ OCBSKJttNLfI0DrCseRAuXdF93iZYiU+WVBkJ9Qsxtp4Q/LOnrj4L/STaLzR73WJr6Dy
+ XYhb/GYKtmPTy4lDSDkyo10DJFTQEevKGUJqCHALhv9xrbMQbDfc5d4kgd+M4RhFTfKT
+ Z5NA==
+X-Gm-Message-State: ACrzQf2og3DG0PNRL0gYraT7fhTvuBTxMtOiTMSf+BK4zCeKV9/E+es6
+ Me49urA3wYM3x+9ZQMAAao4=
+X-Google-Smtp-Source: AMsMyM4aBYcaHzJkBzdvhpxsTIJL1CmLJ4dHjh82nS5T2kmR/xQCQfB8ki9IGbZoXjIWTpnN0yGzMA==
+X-Received: by 2002:a1c:f009:0:b0:3b4:9398:49c9 with SMTP id
+ a9-20020a1cf009000000b003b4939849c9mr2085385wmb.174.1663674472131; 
+ Tue, 20 Sep 2022 04:47:52 -0700 (PDT)
+Received: from debian (host-78-150-37-98.as13285.net. [78.150.37.98])
+ by smtp.gmail.com with ESMTPSA id
+ b20-20020a05600c4e1400b003b33de17577sm2254667wmq.13.2022.09.20.04.47.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 20 Sep 2022 04:47:51 -0700 (PDT)
+Date: Tue, 20 Sep 2022 12:47:49 +0100
+From: Sudip Mukherjee <sudipm.mukherjee@gmail.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+Subject: build failure of next-20220920 due to c2b08e7a6d27 ("drm/amdgpu:
+ move entity selection and job init earlier during CS")
+Message-ID: <YymoZR0jHR7seGyU@debian>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:uniontech.com:qybglogicsvr:qybglogicsvr6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-Mailman-Approved-At: Tue, 20 Sep 2022 12:55:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -49,58 +70,36 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- hongao@uniontech.com, linux-kernel@vger.kernel.org
+Cc: Philip Yang <Philip.Yang@amd.com>, llvm@lists.linux.dev,
+ David Airlie <airlied@linux.ie>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, linux-next@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Nathan Chancellor <nathan@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
+ linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This got lost somewhere along the way, This fixes
-audio not working until set_property was called.
+Hi All,
 
-Signed-off-by: hongao <hongao@uniontech.com>
+The builds of arm64 allmodconfig with clang failed to build next-20220920
+with the error:
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-index e4054e10a2c2..5d2e3328dd83 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-@@ -1655,10 +1655,12 @@ amdgpu_connector_add(struct amdgpu_device *adev,
- 						   adev->mode_info.dither_property,
- 						   AMDGPU_FMT_DITHER_DISABLE);
- 
--			if (amdgpu_audio != 0)
-+			if (amdgpu_audio != 0) {
- 				drm_object_attach_property(&amdgpu_connector->base.base,
- 							   adev->mode_info.audio_property,
- 							   AMDGPU_AUDIO_AUTO);
-+				amdgpu_connector->audio = AMDGPU_AUDIO_AUTO;
-+			}
- 
- 			subpixel_order = SubPixelHorizontalRGB;
- 			connector->interlace_allowed = true;
-@@ -1763,6 +1765,7 @@ amdgpu_connector_add(struct amdgpu_device *adev,
- 				drm_object_attach_property(&amdgpu_connector->base.base,
- 							   adev->mode_info.audio_property,
- 							   AMDGPU_AUDIO_AUTO);
-+				amdgpu_connector->audio = AMDGPU_AUDIO_AUTO;
- 			}
- 			drm_object_attach_property(&amdgpu_connector->base.base,
- 						   adev->mode_info.dither_property,
-@@ -1811,6 +1814,7 @@ amdgpu_connector_add(struct amdgpu_device *adev,
- 				drm_object_attach_property(&amdgpu_connector->base.base,
- 							   adev->mode_info.audio_property,
- 							   AMDGPU_AUDIO_AUTO);
-+				amdgpu_connector->audio = AMDGPU_AUDIO_AUTO;
- 			}
- 			drm_object_attach_property(&amdgpu_connector->base.base,
- 						   adev->mode_info.dither_property,
-@@ -1856,6 +1860,7 @@ amdgpu_connector_add(struct amdgpu_device *adev,
- 				drm_object_attach_property(&amdgpu_connector->base.base,
- 							   adev->mode_info.audio_property,
- 							   AMDGPU_AUDIO_AUTO);
-+				amdgpu_connector->audio = AMDGPU_AUDIO_AUTO;
- 			}
- 			drm_object_attach_property(&amdgpu_connector->base.base,
- 						   adev->mode_info.dither_property,
+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1190:3: error: variable 'r' is uninitialized when used here [-Werror,-Wuninitialized]
+                r |= !amdgpu_ttm_tt_get_user_pages_done(bo->tbo.ttm);
+                ^
+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:1171:7: note: initialize the variable 'r' to silence this warning
+        int r;
+             ^
+              = 0
+1 error generated.
+
+
+git bisect pointed to c2b08e7a6d27 ("drm/amdgpu: move entity selection and job init earlier during CS")
+
+I will be happy to test any patch or provide any extra log if needed.
+
+
 -- 
-2.20.1
-
+Regards
+Sudip
