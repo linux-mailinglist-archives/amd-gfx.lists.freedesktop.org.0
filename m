@@ -2,45 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 063115C02B2
-	for <lists+amd-gfx@lfdr.de>; Wed, 21 Sep 2022 17:54:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 327815C02BB
+	for <lists+amd-gfx@lfdr.de>; Wed, 21 Sep 2022 17:55:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00B0D10E9CA;
-	Wed, 21 Sep 2022 15:54:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71CFA10E9C6;
+	Wed, 21 Sep 2022 15:54:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAC9910E9BE;
- Wed, 21 Sep 2022 15:54:25 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A162F10E9C7;
+ Wed, 21 Sep 2022 15:54:33 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 6C0306317E;
- Wed, 21 Sep 2022 15:54:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A78AC43140;
- Wed, 21 Sep 2022 15:54:24 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 38D08B830E0;
+ Wed, 21 Sep 2022 15:54:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C384CC43140;
+ Wed, 21 Sep 2022 15:54:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1663775664;
- bh=9DEejuMfkrhuIDbcoEKbjnyHibaoLFWXahlnTgslgB0=;
+ s=k20201202; t=1663775671;
+ bh=POJEUFJAQlTYEqRSQtclK/yO1+QTIhU/Zksam7jq3oI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=JcmnDCtHF7Ha72KDhAaBQOJZ3DkZwcgqcIyw93vgP1dYZ50uZRBgWcH73s8bvnlpD
- sP5cXiZ1qAiykse5EYDqihkttyM4m5Tu0zgOvVQZYMsdluh+HPnNeaoCiXbIOu1Mod
- mffZqb7XhqGqiNGZ+YY582lOqJnc9o3PTzLLiBqKQFCOej/dEvloAogbXHJm+hi/bJ
- 1zBIhT2ol62b9KWcEpj7L22OCidhDbVSJdT+TrAs+wxn84id8pgL/wZ2qSeWsDIIw0
- 158PWRMAbsEqIQyBKI45iziKGfiFue6z3niYG/4oysVF3AScIGbGcO7C8v7PejF/uY
- X9MJXE9gBFJUw==
+ b=dyulTt0apX0lk4G+npLQXy3Mm3B6fyjDlcVpZWHsBPnuG9yvoRQXi8K2soS6rBzkq
+ Gr8yB2Ga2nZ/7hKUS27j6AT6aUTGvXucEMlBOjU+3qEptkMdk6Qa9RmjYQu3LxU1R/
+ LMqOhU76UeHuZFZtBb9fNPkqQfxNhd1/M35huBZbVw+ZHJP/NpdCkBDrR3E/UKn8yk
+ wsJe47c4C5IGLMWK+W+1uCMTAvzYYj3tmw0doN4c2TN+2TCEBvXJqtDT41TLkJKCt0
+ uif1dPfKypw3P0WezzDg9wlWUtuc2hURSgeQZew3NWOOQE+Q+/ja9+KNmdsO6Jd+82
+ XgWolMeu6bV+Q==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 09/10] drm/amd/display: Mark dml30's
- UseMinimumDCFCLK() as noinline for stack usage
-Date: Wed, 21 Sep 2022 11:54:06 -0400
-Message-Id: <20220921155407.235132-9-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.10 4/7] drm/amdgpu: use dirty framebuffer helper
+Date: Wed, 21 Sep 2022 11:54:22 -0400
+Message-Id: <20220921155425.235273-4-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220921155407.235132-1-sashal@kernel.org>
-References: <20220921155407.235132-1-sashal@kernel.org>
+In-Reply-To: <20220921155425.235273-1-sashal@kernel.org>
+References: <20220921155425.235273-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
@@ -55,69 +53,51 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, llvm@lists.linux.dev, chris.park@amd.com,
- sunpeng.li@amd.com, ndesaulniers@google.com, airlied@linux.ie,
- Xinhui.Pan@amd.com, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- amd-gfx@lists.freedesktop.org, christian.koenig@amd.com,
- Nathan Chancellor <nathan@kernel.org>,
- =?UTF-8?q?Ma=C3=ADra=20Canal?= <mairacanal@riseup.net>,
- aurabindo.pillai@amd.com, dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
- Bing.Guo@amd.com, Alex Deucher <alexander.deucher@amd.com>,
- harry.wentland@amd.com,
- "Sudip Mukherjee \(Codethink\)" <sudipm.mukherjee@gmail.com>
+Cc: Sasha Levin <sashal@kernel.org>, guchun.chen@amd.com, airlied@linux.ie,
+ contact@emersion.fr, dri-devel@lists.freedesktop.org, Xinhui.Pan@amd.com,
+ amd-gfx@lists.freedesktop.org, aurabindo.pillai@amd.com, seanpaul@chromium.org,
+ Hamza Mahfooz <hamza.mahfooz@amd.com>, daniel@ffwll.ch,
+ Alex Deucher <alexander.deucher@amd.com>, evan.quan@amd.com,
+ christian.koenig@amd.com, greenfoo@u92.eu
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Nathan Chancellor <nathan@kernel.org>
+From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 
-[ Upstream commit 41012d715d5d7b9751ae84b8fb255e404ac9c5d0 ]
+[ Upstream commit 66f99628eb24409cb8feb5061f78283c8b65f820 ]
 
-This function consumes a lot of stack space and it blows up the size of
-dml30_ModeSupportAndSystemConfigurationFull() with clang:
+Currently, we aren't handling DRM_IOCTL_MODE_DIRTYFB. So, use
+drm_atomic_helper_dirtyfb() as the dirty callback in the amdgpu_fb_funcs
+struct.
 
-  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3542:6: error: stack frame size (2200) exceeds limit (2048) in 'dml30_ModeSupportAndSystemConfigurationFull' [-Werror,-Wframe-larger-than]
-  void dml30_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_lib)
-       ^
-  1 error generated.
-
-Commit a0f7e7f759cf ("drm/amd/display: fix i386 frame size warning")
-aimed to address this for i386 but it did not help x86_64.
-
-To reduce the amount of stack space that
-dml30_ModeSupportAndSystemConfigurationFull() uses, mark
-UseMinimumDCFCLK() as noinline, using the _for_stack variant for
-documentation. While this will increase the total amount of stack usage
-between the two functions (1632 and 1304 bytes respectively), it will
-make sure both stay below the limit of 2048 bytes for these files. The
-aforementioned change does help reduce UseMinimumDCFCLK()'s stack usage
-so it should not be reverted in favor of this change.
-
-Link: https://github.com/ClangBuiltLinux/linux/issues/1681
-Reported-by: "Sudip Mukherjee (Codethink)" <sudipm.mukherjee@gmail.com>
-Tested-by: Maíra Canal <mairacanal@riseup.net>
-Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Signed-off-by: Nathan Chancellor <nathan@kernel.org>
-Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Signed-off-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
-index e3d9f1decdfc..518672a2450f 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
-@@ -6658,8 +6658,7 @@ static double CalculateUrgentLatency(
- 	return ret;
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+index 7cc7af2a6822..947f50e402ba 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+@@ -35,6 +35,7 @@
+ #include <linux/pci.h>
+ #include <linux/pm_runtime.h>
+ #include <drm/drm_crtc_helper.h>
++#include <drm/drm_damage_helper.h>
+ #include <drm/drm_edid.h>
+ #include <drm/drm_gem_framebuffer_helper.h>
+ #include <drm/drm_fb_helper.h>
+@@ -498,6 +499,7 @@ bool amdgpu_display_ddc_probe(struct amdgpu_connector *amdgpu_connector,
+ static const struct drm_framebuffer_funcs amdgpu_fb_funcs = {
+ 	.destroy = drm_gem_fb_destroy,
+ 	.create_handle = drm_gem_fb_create_handle,
++	.dirty = drm_atomic_helper_dirtyfb,
+ };
  
--
--static void UseMinimumDCFCLK(
-+static noinline_for_stack void UseMinimumDCFCLK(
- 		struct display_mode_lib *mode_lib,
- 		int MaxInterDCNTileRepeaters,
- 		int MaxPrefetchMode,
+ uint32_t amdgpu_display_supported_domains(struct amdgpu_device *adev,
 -- 
 2.35.1
 
