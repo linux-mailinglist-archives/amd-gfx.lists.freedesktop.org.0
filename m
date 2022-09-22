@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 514995E5735
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Sep 2022 02:20:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 398185E5729
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Sep 2022 02:19:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7A3C10EA09;
-	Thu, 22 Sep 2022 00:19:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9997D10E9FF;
+	Thu, 22 Sep 2022 00:19:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1anam02on2086.outbound.protection.outlook.com [40.107.96.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 963D410EA02
- for <amd-gfx@lists.freedesktop.org>; Thu, 22 Sep 2022 00:19:17 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2044.outbound.protection.outlook.com [40.107.223.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AED5410E9FA
+ for <amd-gfx@lists.freedesktop.org>; Thu, 22 Sep 2022 00:19:21 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UMsyioAQFIp96VbhvhwNoJ446BaT1db1abQ8PwozQbcavXM8SOUudszJGA76YvqF1awBujgrIPQ3/g2mgIXw3K2Fg1MtlvjsbKfvX3wONBYQ3kqHs/FUn8Yeltfz0t4alaxVa6A5Bf9reeQfoAPD/eXJookqF47O36zNolj8Iz0q4EEv+QxciGk2EZBCf++mBvRqKJFXoPWnXdds2mZNfiRnFYqJ1armjN82fzV2ZFG9sR1TNpkTM18wWSAmlUUPCE7aVMH231XZgPjugLJ3Bim9Mp/Vs0mozvAuLygRho+Ug8E5ETe/CUQY+HhL3LrhjJWXV/a5KttIsbX2BhXKTA==
+ b=cQZEYKwgBW6x8N5lkohgRHvm3fBA3Em3a8of+64S3q2YeJpp8Gj2jVdl3DEq0AtFXSrnYah8uv/QCp2RPnkHJZmA1z80sPrB68pIpk3GcGAF6+Ff7W8xVdFsE/5lB3IYHM6AkCpon23/Tl+Xs/XmljcC9B3KTEUT076N+rzJUYPh9ojTOBV7cZmJKxEvBSd+j2ybJUGtDwltE1coSKCNnTbmRgrmDBPpMD/5X3Px1LZXUD4RZizVI9vwqZEVqNgG8KF8f4LJ572lT3yvhFDTvs0sjz35Shf3R/dNn8M0UHERJGpdrJgEnWGiwLimOUSqa33RBS2dkMyeTIt7/8Unmw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Mf1jP3HOjtbr5QgFUTJXU9Fdf0Ihc1n0e/Kl4MgdfTA=;
- b=ghTLQIFl0GcbAxPJc6PMXBUnfK/LY0MgGUGvANuB9TgfRXdQCpWQJWz0CRKDl2rLpQc8j5oL21xjaKS4LgSAp/K9khn64BIzmj4ZuuA3YqG0DMnRrLvrY9FXeknTWmJ9N/U/7UqayMt50mwQ0rBKJVsnn5r7DMgSK6jtUw9ZZ1c421lUNUeUJAZdXIVGBmpi05fY2Cfc4Lq+jQeI9uARRH+wW7fD45w1MbbqeEaFL3zb645SGe5MWj2Uh2Y4pVFkH/e/redWzGyErVnTuWJqMsd7sgRNg2op2wn3m+VrEEACsSc4fzziL4oWv7SQUkzH2UMs4CZz1kqhElSkcKf/jQ==
+ bh=usx0QtUuoxAk92fXbltzOCM81TmP1JzScGy5tKZha/w=;
+ b=B6J3d5XOF5kvKespxZCJY+MEpjyPFY1W/UM/meAXW6F0vqQHFmmIRzXCp5RJHo0uK4fkSheWX9GXhZTSGt30C3io4fsST4fmZIKFYKqKfVPlIbQDoahySgO8x/ufWUMmh1XtaK/bY1Xc2Nr2dAJFVMS9/LXX1eJyNr8b1OY/xCm9mxNm3neSc69VDKrRztGJtsAWixlU4xS7UKn9PjWOHe193Zyw8LqJFxC3nDENtTWP7QC1JbaS/0DZVBC7oodAOY/Z3RX3aJopFWbL9LZ6puICRBeVzs+GvjNNEuVvkHOl4Eqb16pxSOp1KL8TwaY7KIV2xyW/4J2vxM6Wgt3ZXA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Mf1jP3HOjtbr5QgFUTJXU9Fdf0Ihc1n0e/Kl4MgdfTA=;
- b=TENW/117qGd2fV+we6zLd6tpSg/gKRxOxrGINhIfbz+TyLvFNioqbi/0iFGa9oAHDGZy+uRrMSO/8nCjZHWVKbJ/T5klNOaaKJs8l8KN6Vh2t9rzR90IVn6foy/ZfLQmvMKZxwDQJ5CeXZoVYxKKFwrdhEiPpulfaPMXzpdkrKk=
-Received: from BN9PR03CA0651.namprd03.prod.outlook.com (2603:10b6:408:13b::26)
- by SA0PR12MB4414.namprd12.prod.outlook.com (2603:10b6:806:9a::11)
+ bh=usx0QtUuoxAk92fXbltzOCM81TmP1JzScGy5tKZha/w=;
+ b=ePePXpXKPYti+CHaYX9ss4vj7Y8/MnDNSmEFFpu9Kk1cOVGu4Fr93xRl+uvZkaDLzlXy0+0euh9zqXyESUFq8CwL7GIUWmtt1CTpM4Hb93Rsqad32M8YoF5+k0/SId5PhiEOtWsclk6LFd8Qm4Fw/Fc9JNFg1P2EOqrB/f6xS8U=
+Received: from BN9PR03CA0890.namprd03.prod.outlook.com (2603:10b6:408:13c::25)
+ by BY5PR12MB4163.namprd12.prod.outlook.com (2603:10b6:a03:202::18)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.16; Thu, 22 Sep
- 2022 00:19:15 +0000
-Received: from BN8NAM11FT029.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:13b:cafe::c0) by BN9PR03CA0651.outlook.office365.com
- (2603:10b6:408:13b::26) with Microsoft SMTP Server (version=TLS1_2,
+ 2022 00:19:18 +0000
+Received: from BN8NAM11FT068.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:13c:cafe::79) by BN9PR03CA0890.outlook.office365.com
+ (2603:10b6:408:13c::25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.17 via Frontend
- Transport; Thu, 22 Sep 2022 00:19:14 +0000
+ Transport; Thu, 22 Sep 2022 00:19:18 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,18 +45,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT029.mail.protection.outlook.com (10.13.177.68) with Microsoft SMTP
+ BN8NAM11FT068.mail.protection.outlook.com (10.13.177.69) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5654.14 via Frontend Transport; Thu, 22 Sep 2022 00:19:14 +0000
+ 15.20.5654.14 via Frontend Transport; Thu, 22 Sep 2022 00:19:18 +0000
 Received: from jasdeep-System-Product-Name.phub.net.cable.rogers.com
  (10.180.168.240) by SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Wed, 21 Sep 2022 19:19:11 -0500
+ 15.1.2375.28; Wed, 21 Sep 2022 19:19:12 -0500
 From: Jasdeep Dhillon <jdhillon@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 17/31] drm/amd/display: Disable MALL when TMZ surface
-Date: Wed, 21 Sep 2022 20:18:07 -0400
-Message-ID: <20220922001821.320255-18-jdhillon@amd.com>
+Subject: [PATCH 18/31] drm/amd/display: Fix CAB allocation calculation
+Date: Wed, 21 Sep 2022 20:18:08 -0400
+Message-ID: <20220922001821.320255-19-jdhillon@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220922001821.320255-1-jdhillon@amd.com>
 References: <20220922001821.320255-1-jdhillon@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT029:EE_|SA0PR12MB4414:EE_
-X-MS-Office365-Filtering-Correlation-Id: f410b85f-7474-40de-f93d-08da9c3014de
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT068:EE_|BY5PR12MB4163:EE_
+X-MS-Office365-Filtering-Correlation-Id: ea9cb46d-c88f-4f4b-a1f3-08da9c301710
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: frBN6zRW9EEhrcXr+RYjyPrgoqjSgbK+hsBtPwN5A+VJ6Uwlg+LXpds5EesOfTG60oSB88WJCLiNNvCQFpUAoiCdNVw+CHIBVQcqUg6O2mqPaKrP8PdbK3taimvu7eUNQutP8XrA6SXq+fANpTyCpk3Z+xsAONfFXnRF+AUBi9ivImqAYCN4+0sC/mm4D0i13X2Mk1uqry7npNlBPZWZJXyBeIYH+iPJgTS+O7nhwTMd/247Ls6ih9qgs8csYf95PpOgYOphYITdNw2Vdvy6l+rQYGc4CfJTKp1WklWtgnH5CQ4o1BTeRmue6/J+GHEdt5OkBDn8Ycy87wLeu9OI3vKsj6h5coMN2vWCplxjyQT4vN/NXGxxOZhr4ZS7TqE0TkTgUURxvEKPS9RVI1ylMAuPBYzVraogOakD4ayHxVbvYLXd6pwgeA9hLNhblin6U+4VB55g6gqndGdqZGTFHW7LyrUwRQH29q3a42bw5gGxE99SCVLNnjv5ngkifgnKxcYJFWYoUN7GCayLIqSrpEytYntZSeLBEv7tEpJYKqfcesTtuJZ4LPnFEnXDbQeZ+tvmqC0ygepF/gsSF96AFka5XsuOgStpF5rI0+U3k7kHC+42jZ8P4Choi305yafLAeSoOQZNGtUnUnohEkl+jMtDHxz8pY1COh3S/BCOF8BcaYfefxSDkpNKejasDfi8bd3vq5pUIjh3EeZHJBiKV+hc5TBywiDaX+6tl+yDFLB/99GM/9zJ8WhZu9qzY1uTi4abaVlTm6zbhpmdudmsny/Sgppeve1hJ/VoIVQSlNR94oHEl8Tl8E+pBqiR5ZkyPBp3215LASfmGUvYryTUbg==
+X-Microsoft-Antispam-Message-Info: p1n5jHi4w5CaJEChr0ckbh9M8qTlbI8me8Yrxja4E5SJMx3WkbtAH+0Dydf3SFY0+Oez0F8ZkTxdE24E/Z+PW8TqfVUwn+vRrN+I3dXor2wDi1DQ//MM5ULREs11x/Hxh+Ypxi7x9l6fWl6bdEZb6xBixZJEh6Y7Q64ESH1vi8BS3aihESKTr6F5oRWJMkgeT6vR1/fMMDrttKTOrVFhquS5uuiV3wE2skspJRA8R5bO8W126UXElbbkChOgchkGWxz7huxCgVysCem5m/R4Jttcd96KVzqjGSZozW0v3+eeIIBLut9bDyiWMoefPT9csGcHNIUauSz2cIklEeUS/4aIXWv8D+nQM+OD70vf2nP3cyWLtd4PzLRnwx1h9u82jLKmcrSv25E9mr5cTKx8ID8k+02CjtxmlnTTI1M4yzFfZXEoOMK4Mwuj9ExqQ86iqCZ14lFCWAjh0L3c5xCs5AxMiROf5blcZ6EqKyABiyhDfayWy2aluM8uCB2vo+czK8RMYI5NckfETsEHVl2vJtYIdEKaQDUeptUGkWyBHTHPEav8jW2j5HYsA/N1NRpJye42EmLB0a87Uf3xu3ZVobDd6AjpUnv/ar3j7m9TndG6BWZ00P36ymDdukP+VDuk/lr6RZ2WUEwYsax4rwvQZyvZ8cabZuqmFbq+nClbnRSzqNORZiPpAfaHAs721irLuiszbx68s0NcD5ajmE9kvAcjvqE7a+1KncUpr4Y0tt7+WqMfkCEE1xedaecGTYP/bmwy9adRCD8AWIE6Nh8mLJleLqlqJhbb93ssOQHMQig=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(346002)(39860400002)(136003)(376002)(396003)(451199015)(40470700004)(36840700001)(46966006)(36756003)(54906003)(6916009)(316002)(81166007)(356005)(426003)(36860700001)(82740400003)(16526019)(2616005)(83380400001)(336012)(47076005)(70206006)(478600001)(8676002)(70586007)(5660300002)(4326008)(26005)(6666004)(41300700001)(40460700003)(2906002)(8936002)(186003)(1076003)(82310400005)(40480700001)(36900700001)(44824005);
+ SFS:(13230022)(4636009)(39860400002)(396003)(376002)(136003)(346002)(451199015)(46966006)(36840700001)(40470700004)(47076005)(2906002)(70206006)(70586007)(6916009)(8936002)(54906003)(8676002)(36860700001)(81166007)(356005)(316002)(82310400005)(478600001)(5660300002)(4326008)(41300700001)(36756003)(6666004)(40460700003)(2616005)(336012)(16526019)(426003)(1076003)(83380400001)(186003)(40480700001)(82740400003)(26005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2022 00:19:14.8085 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f410b85f-7474-40de-f93d-08da9c3014de
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2022 00:19:18.5050 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ea9cb46d-c88f-4f4b-a1f3-08da9c301710
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT029.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT068.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4414
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4163
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,121 +111,38 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Alvin Lee <Alvin.Lee2@amd.com>
 
 [Description]
-- Don't use MALL buffering of any kind when the
-  surface is TMZ
-- Workaround for a HW bug
+Accidentally added when should have subtracted
+in calculation
 
 Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Jasdeep Dhillon <jdhillon@amd.com>
 Signed-off-by: Alvin Lee <Alvin.Lee2@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c       |  8 ++++++--
- drivers/gpu/drm/amd/display/dc/dc.h            |  1 +
- .../gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c | 18 ++++++++++--------
- .../drm/amd/display/dc/dml/dcn32/dcn32_fpu.c   |  3 ++-
- 4 files changed, 19 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index b5ad0bf4135a..b82d572c55ae 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -2331,9 +2331,13 @@ static enum surface_update_type det_surface_update(const struct dc *dc,
- 	type = get_scaling_info_update_type(u);
- 	elevate_update_type(&overall_type, type);
- 
--	if (u->flip_addr)
-+	if (u->flip_addr) {
- 		update_flags->bits.addr_update = 1;
--
-+		if (u->flip_addr->address.tmz_surface != u->surface->address.tmz_surface) {
-+			update_flags->bits.tmz_changed = 1;
-+			elevate_update_type(&overall_type, UPDATE_TYPE_FULL);
-+		}
-+	}
- 	if (u->in_transfer_func)
- 		update_flags->bits.in_transfer_func_change = 1;
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index ccb5395a8a90..7db7929a7e81 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -1122,6 +1122,7 @@ union surface_update_flags {
- 		uint32_t clock_change:1;
- 		uint32_t stereo_format_change:1;
- 		uint32_t lut_3d:1;
-+		uint32_t tmz_changed:1;
- 		uint32_t full_update:1;
- 	} bits;
- 
 diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
-index 133bc4085c78..6497246692cf 100644
+index 6497246692cf..85fa17185ccb 100644
 --- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
 +++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
-@@ -355,7 +355,7 @@ bool dcn32_apply_idle_power_optimizations(struct dc *dc, bool enable)
- 	union dmub_rb_cmd cmd;
- 	uint8_t ways, i;
- 	int j;
--	bool stereo_in_use = false;
-+	bool mall_ss_unsupported = false;
- 	struct dc_plane_state *plane = NULL;
- 
- 	if (!dc->ctx->dmub_srv)
-@@ -386,22 +386,23 @@ bool dcn32_apply_idle_power_optimizations(struct dc *dc, bool enable)
- 			 */
- 			ways = dcn32_calculate_cab_allocation(dc, dc->current_state);
- 
--			/* MALL not supported with Stereo3D. If any plane is using stereo,
--			 * don't try to enter MALL.
-+			/* MALL not supported with Stereo3D or TMZ surface. If any plane is using stereo,
-+			 * or TMZ surface, don't try to enter MALL.
- 			 */
- 			for (i = 0; i < dc->current_state->stream_count; i++) {
- 				for (j = 0; j < dc->current_state->stream_status[i].plane_count; j++) {
- 					plane = dc->current_state->stream_status[i].plane_states[j];
- 
--					if (plane->address.type == PLN_ADDR_TYPE_GRPH_STEREO) {
--						stereo_in_use = true;
-+					if (plane->address.type == PLN_ADDR_TYPE_GRPH_STEREO ||
-+							plane->address.tmz_surface) {
-+						mall_ss_unsupported = true;
- 						break;
- 					}
- 				}
--				if (stereo_in_use)
-+				if (mall_ss_unsupported)
- 					break;
- 			}
--			if (ways <= dc->caps.cache_num_ways && !stereo_in_use) {
-+			if (ways <= dc->caps.cache_num_ways && !mall_ss_unsupported) {
- 				memset(&cmd, 0, sizeof(cmd));
- 				cmd.cab.header.type = DMUB_CMD__CAB_FOR_SS;
- 				cmd.cab.header.sub_type = DMUB_CMD__CAB_DCN_SS_FIT_IN_CAB;
-@@ -759,7 +760,8 @@ void dcn32_update_mall_sel(struct dc *dc, struct dc_state *context)
- 				hubp->funcs->hubp_update_mall_sel(hubp,
- 					num_ways <= dc->caps.cache_num_ways &&
- 					pipe->stream->link->psr_settings.psr_version == DC_PSR_VERSION_UNSUPPORTED &&
--					pipe->plane_state->address.type !=  PLN_ADDR_TYPE_GRPH_STEREO ? 2 : 0,
-+					pipe->plane_state->address.type !=  PLN_ADDR_TYPE_GRPH_STEREO &&
-+					!pipe->plane_state->address.tmz_surface ? 2 : 0,
- 							cache_cursor);
- 			}
- 		}
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-index 3202b52224b1..cb97afbee097 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-@@ -674,9 +674,10 @@ static bool dcn32_assign_subvp_pipe(struct dc *dc,
- 		 * - Not able to switch in vactive naturally (switching in active means the
- 		 *   DET provides enough buffer to hide the P-State switch latency -- trying
- 		 *   to combine this with SubVP can cause issues with the scheduling).
-+		 * - Not TMZ surface
+@@ -242,7 +242,7 @@ static uint32_t dcn32_calculate_cab_allocation(struct dc *dc, struct dc_state *c
+ 		 * mall_alloc_width_blk_aligned_l/c = full_vp_width_blk_aligned_l/c
  		 */
- 		if (pipe->plane_state && !pipe->top_pipe &&
--				pipe->stream->mall_stream_config.type == SUBVP_NONE && refresh_rate < 120 &&
-+				pipe->stream->mall_stream_config.type == SUBVP_NONE && refresh_rate < 120 && !pipe->plane_state->address.tmz_surface &&
- 				vba->ActiveDRAMClockChangeLatencyMarginPerState[vba->VoltageLevel][vba->maxMpcComb][vba->pipe_plane[pipe_idx]] <= 0) {
- 			while (pipe) {
- 				num_pipes++;
+ 		mall_alloc_width_blk_aligned = ((pipe->plane_res.scl_data.viewport.x +
+-				pipe->plane_res.scl_data.viewport.width + mblk_width - 1) / mblk_width * mblk_width) +
++				pipe->plane_res.scl_data.viewport.width + mblk_width - 1) / mblk_width * mblk_width) -
+ 						(pipe->plane_res.scl_data.viewport.x / mblk_width * mblk_width);
+ 
+ 		/* full_vp_height_blk_aligned = FLOOR(vp_y_start + full_vp_height + blk_height - 1, blk_height) -
+@@ -251,7 +251,7 @@ static uint32_t dcn32_calculate_cab_allocation(struct dc *dc, struct dc_state *c
+ 		 * mall_alloc_height_blk_aligned_l/c = full_vp_height_blk_aligned_l/c
+ 		 */
+ 		mall_alloc_height_blk_aligned = ((pipe->plane_res.scl_data.viewport.y +
+-				pipe->plane_res.scl_data.viewport.height + mblk_height - 1) / mblk_height * mblk_height) +
++				pipe->plane_res.scl_data.viewport.height + mblk_height - 1) / mblk_height * mblk_height) -
+ 						(pipe->plane_res.scl_data.viewport.y / mblk_height * mblk_height);
+ 
+ 		num_mblks = ((mall_alloc_width_blk_aligned + mblk_width - 1) / mblk_width) *
 -- 
 2.25.1
 
