@@ -1,64 +1,42 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F34485E9A7B
-	for <lists+amd-gfx@lfdr.de>; Mon, 26 Sep 2022 09:33:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D5C75E9A83
+	for <lists+amd-gfx@lfdr.de>; Mon, 26 Sep 2022 09:33:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7A1C10E5C0;
-	Mon, 26 Sep 2022 07:33:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53E5F10E5CA;
+	Mon, 26 Sep 2022 07:33:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ach1ajh116.fra1.oracleemaildelivery.com
- (ach1ajh116.fra1.oracleemaildelivery.com [138.1.108.116])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D82710E1C0
- for <amd-gfx@lists.freedesktop.org>; Fri, 23 Sep 2022 20:26:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=oci-fra1-20220101;
- d=augustwikerfors.se;
- h=Date:To:From:Subject:Message-Id:MIME-Version:Sender;
- bh=ndCYhNAZBZbgHcU18FVTrsBX5+3mkgNgpLzef++0BQU=;
- b=WFXGBT/rlEKu5laIFfFKgd8vFhz42tQQc4MkZ2RnsRTyFQ9WUfSreGMFUozstItmkMzxhU6T+GWm
- pId3LY53WLKhw7dMbhZhO7+WwSdOrceQSZ5Ir3VBTus/RJJ8BGJu4H0lSExH31XQl/O5EF2m0/v8
- XlqBZo02Jr9Md8Okw1CBbpABqMJnfOKhlPmSWQB10OrSCPpMz4JLDDcfnRa0CR5EfH411BpgzBfl
- u7GHlC3Z8pfWltB15580aTr0la0177Ptm9dszDaosM19ts5VDasEwuCrEW4rtx0vKGf64+AFu6/w
- qsNPdXoYnj3319VOnsjZAZIYlgWOJSNFUVeKdw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=prod-fra-20191115;
- d=fra1.rp.oracleemaildelivery.com;
- h=Date:To:From:Subject:Message-Id:MIME-Version:Sender;
- bh=ndCYhNAZBZbgHcU18FVTrsBX5+3mkgNgpLzef++0BQU=;
- b=YShm9dfRt5NcsTk92nfsS2E8sP3EmKrfhSdE4rp4TeDYc9sbnZUMtNacW73CqsxUn65vTmhK3CRS
- en4iTs6nfyWltzRoXFCl+w0EEzUPXj9+7AqjHG4NufbhU+lsnbY7iZV1rZttuuXk9HDek7+nhNJ1
- l/bOsQBacVyV1Tgp9HknyW2Cb7VkUoPsUSrlbSUt9nX2U0UR9eIoXM+k3b4bG4EuDtwAr8oaQEo+
- 2TN39mPyY9wehHaBydo+0WrHkUEQJ5nM2dloh4Z8ic/qeGZkTQ6Yjhdg1RhC0fmCZvwIGxIWv4C4
- 5ihnQHNFZ/zAhKtgkPf5B5bj5uinAb+vLY5dOw==
-Received: by omta-ad3-fd3-302-eu-frankfurt-1.omtaad3.vcndpfra.oraclevcn.com
- (Oracle Communications Messaging Server 8.1.0.1.20220914 64bit (built Sep 14
- 2022)) with ESMTPS id
- <0RIO000VHJGHDL10@omta-ad3-fd3-302-eu-frankfurt-1.omtaad3.vcndpfra.oraclevcn.com>
- for amd-gfx@lists.freedesktop.org; Fri, 23 Sep 2022 20:26:41 +0000 (GMT)
-Message-id: <ea1f1d81-650b-768a-30ab-c9d7d9f9fa54@augustwikerfors.se>
-Date: Fri, 23 Sep 2022 22:26:35 +0200
-MIME-version: 1.0
-Subject: Re: [REGRESSION] Graphical issues on Lenovo Yoga 7 14ARB7 laptop since
- v6.0-rc1 (bisected)
-Content-language: en-US
-To: Leo Li <sunpeng.li@amd.com>, Alex Deucher <alexdeucher@gmail.com>
-References: <c1f8886a-5624-8f49-31b1-e42b6d20dcf5@augustwikerfors.se>
- <eee82fb8-0fc5-98cb-e630-f86891574f21@leemhuis.info>
- <CADnq5_PRP3ekHPLhdXALxt9GL3aHHZQUw5TNAwm4t+ggimUq7g@mail.gmail.com>
- <33cf5071-3157-a3c2-3252-3a8ab926c60d@augustwikerfors.se>
- <f4818fc3-7015-29ed-95c5-ab6a18da33d7@amd.com>
-From: August Wikerfors <git@augustwikerfors.se>
-In-reply-to: <f4818fc3-7015-29ed-95c5-ab6a18da33d7@amd.com>
-Content-type: text/plain; charset=UTF-8; format=flowed
-Content-transfer-encoding: 7bit
-Reporting-Meta: AAEOL0javX7vJbTonMYC2eM4teWqEd60MX20U+3Im6izcE4iNa76d+RAkf65cWfX
- p514OTw7+zyMCBtIa6gaDTMiMR2v31KQAxJrhMTN8BXaqmiK7HM5ZVSh0EH7ZZEc
- aqEqUjEYyWnoRxw41sw4L97Eziwy43WOcgg/Ev64F5PZem3/ZAnlcAQl84J17V5v
- lVuNHqXrm3P3UNmuoB57fkqc7AZZ0gLLpWMP17WOsYUZSmjNETTx1SN3uuo/n5tg
- 66UaK4xdhgweQbxFxy4DaVVV24bWzEL9SiTWHpX1LgWi1L9e2EuOXoPCV+VXrARh
- u4fwMMU7KzqOyhry1zVdu6q2i5oow6qNXK6Oh5uFGy7AFc2YmrB9UEl8XqMQc3SU
- ApCsPm8eJSN1uNyBFuDxHltJdFVrKsxWXPPj3kN8zvUXF7QR/bVuLuD6lG1qzAFx xhhF+/cpvSc=
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D14E10E295;
+ Sat, 24 Sep 2022 13:02:40 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 6F9CDB80D6F;
+ Sat, 24 Sep 2022 13:02:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB5B9C433C1;
+ Sat, 24 Sep 2022 13:02:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1664024557;
+ bh=f9TI+zLW1k/oFp4jM/JMZaUsym4/RFdsc3oPkp8gl1A=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=vITOSzQTGC/YMameL61MhoY34yQPY9hA/15BiGXn3DaQb0P/4ieDqrLxOzgFJD/EC
+ OaJ5R8dLDwURtAdRo2n3a07T27JXSXU6D94vXm+uPBGbELv+Mk6Qeh0ckggaTKWgi3
+ NCAIw6POslOurSMVto1kITZtI4YmGXRMz+l4pFeQ=
+Date: Sat, 24 Sep 2022 15:02:34 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Jim Cromie <jim.cromie@gmail.com>
+Subject: Re: [PATCH v7 0/9] dyndbg: drm.debug adaptation
+Message-ID: <Yy7/6oTBW2lqVSK1@kroah.com>
+References: <20220912052852.1123868-1-jim.cromie@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220912052852.1123868-1-jim.cromie@gmail.com>
 X-Mailman-Approved-At: Mon, 26 Sep 2022 07:33:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,26 +49,30 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: regressions@lists.linux.dev, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Thorsten Leemhuis <regressions@leemhuis.info>,
- Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>
+Cc: robdclark@gmail.com, daniel.vetter@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, linux@rasmusvillemoes.dk,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, jbaron@akamai.com,
+ seanpaul@chromium.org, dri-devel@lists.freedesktop.org, joe@perches.com,
+ intel-gvt-dev@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Leo,
-
-On 2022-09-23 20:41, Leo Li wrote:
-> Hi August,
+On Sun, Sep 11, 2022 at 11:28:43PM -0600, Jim Cromie wrote:
+> hi Greg, Dan, Jason, DRM-folk,
 > 
-> Can you provide a dmesg log with drm.debug=0x16 enabled in kernel cmdline?
-Log is available here: https://files.augustwikerfors.se/dmesg.2022-09-23.txt
+> heres follow-up to V6:
+>   rebased on driver-core/driver-core-next for -v6 applied bits (thanks)
+>   rework drm_debug_enabled{_raw,_instrumented,} per Dan.
+> 
+> It excludes:
+>   nouveau parts (immature)
+>   tracefs parts (I missed --to=Steve on v6)
+>   split _ddebug_site and de-duplicate experiment (way unready)
+> 
+> IOW, its the remaining commits of V6 on which Dan gave his Reviewed-by.
+> 
+> If these are good to apply, I'll rebase and repost the rest separately.
 
-This is what I did during that log:
-1. Boot the system
-2. Type into the password field in SDDM (this is when the problem occurs)
-3. Switch to a TTY to save the log (the problem doesn't happen there)
+All now queued up, thanks.
 
-Regards,
-August Wikerfors
+greg k-h
