@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AC745EE5DD
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Sep 2022 21:41:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BD8B5EE5EC
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Sep 2022 21:42:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD5D510E9C9;
-	Wed, 28 Sep 2022 19:41:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3428D10E9C5;
+	Wed, 28 Sep 2022 19:41:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2075.outbound.protection.outlook.com [40.107.92.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 226FB10E9B1
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2055.outbound.protection.outlook.com [40.107.243.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A752410E9B4
  for <amd-gfx@lists.freedesktop.org>; Wed, 28 Sep 2022 19:41:09 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Sy63ICESK46AHkC5N2TfBoatN6TSxnoR86zSmMknETDkHA4oG3eo/BXx4Tgc++B0CjRybuH4GPMP+V7M1QoxiWydMEoZWYtWUiY/6sHO4p/c/3rT0jmd6tkiHoLd6/j6Q2x5AbXQKB50c5c+S1Oa+DSmaNRX8T8wCMhK77/uG7PsWq4hVfSo422ngJyGLIrtcovH1HYvzGisuazCfSm2RHnc115TyM3rdBRq+YJ5hHzXhepCtQXtslzxbvmQnnwGHiv2PGvPtXOoCsNL5EfohSz9Qt/q2MEytUQk1ByAXqAYYsRStZV+4TyHj2c8DzHW6kVBzy6AuzAbk1MLmP2CMA==
+ b=Xq6n44FlPpe4GDKrF3pgHGWBN7bVadeuHDsIh/Qq+c6o0t3skWi7NZPLzBVZXu9IT5dzj66rwcoYblPwXDwOSXonGmxptCyib2wfsHvbhq7rRAUIM4bghAxQFhfAx54E3vtuqUdJ74u2XQ6QtDOTTg7O4I7P4QuaQMp/lxExXFp3cY37+13YGwnv7Bm7kCMQi55RKCrZZYEvePx9iHqjdWw35F4Wcnml3CbblCXxniKbnlP8Bmc/s7XQRajbSQsg1ejKg5omuDWGgc9wVrXSt7WZevrS3wFj0XXhvslP71v2485FfnAU8h5A6YGCDgWUZ9X3KJGV23Ai6MeJbpcmMQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Em2us7Qz4ULrUr07SjZQVXpQClVVInLXEuWeIkkpipk=;
- b=CIboB5GsFqSdACdgiQxUsnWZBBAFHiztBsU6PBKm3bOoaXykRhZ8McunqF5AgBydM8zWgBLzaldKbSpGULtNpitbQ5oIZ2pH9BmCfJVw4kjkOtFxkYpso9NzQrnP+pXdVV5wMVHqPa+IFCH+Sh48LtOr8F01d6OFUK74YZxpYIJNeee97aWkBFauq8XJ4/6vxC0xZYiC+mf+wzbSBKS2RWVPYtYjhYU0sH5EXVt3MXryHrn5wzic1z7bx9xcb7FiPz+OLVltB4PHGMTcM3g2T1m4b3bfQt/xuBvBd3O32Grbq8DGqFXqCbUjiR6GwipRlazAJan8st8qOHW5cWVSKw==
+ bh=DT4MK8AKlKT2mjHHmCoGhF3ghtI987+vguDBOeCZ3Cg=;
+ b=aLV/1Q1GGEsq05GTtIT0z7yb8zKr9QbPQZyRldX3Jk3M9UGITBavZc1U2pXUQN3nrMbN1FXnoQE0tviLH2DEoKByg+HRZdN3J4hmGZpOdH1gL08/1sNnESH1OFNnoOZdzJWQh+gHFQv8/nw6YB2l9isrd+Xhuujd+CMZZndYTpqVgqCrgbCjvv7hsUXMo/QnZYdXEvja0ZArsoViuCFiZ85S36F+o3vRKSduZ1DeOPZAkwGQgbcKNkYfR7hhcGppqH/nIkOYCcwrtNXUe33XCOJoW2wWqFA6Q5VH2yHzS4/rlVEgxFvX7ln4AZofbpD1HlQ4aJFzVbnbcYwPRqFZCg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Em2us7Qz4ULrUr07SjZQVXpQClVVInLXEuWeIkkpipk=;
- b=YUwX0W0uKPxnGdHmJ8vI8/b7CrEVebdVotCmlo+5ocM/MxFc0YwFFsozl8MTvjiDuqc/tiYdK3QnGNeRU0ihTeDhMs78++tUURTkoesTc+O6AB/BFRY1K1aHnnpDoljHCOEY1e/jH095p4adV1fPFhsdrugU5q5Le6kQpGunQuk=
-Received: from BN9PR03CA0665.namprd03.prod.outlook.com (2603:10b6:408:10e::10)
- by DM4PR12MB6542.namprd12.prod.outlook.com (2603:10b6:8:89::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5654.23; Wed, 28 Sep 2022 19:41:06 +0000
+ bh=DT4MK8AKlKT2mjHHmCoGhF3ghtI987+vguDBOeCZ3Cg=;
+ b=aVyv2+JvZLIZSaKJXWinXVsIpkvVpqMfX5ZwtW/pZZu5ooTJc3iV6ZR376eR0DNv7vw8vF4hHc5mA3+Y6+fi0B3ugjk5vvMykQUHv70P9xZLMYteWS0vAQlOiu9LIcz4WskJf4D7M1XAlgXQpAVwi/rlQeNGrKbXS2g9iYPCRn0=
+Received: from BN9PR03CA0671.namprd03.prod.outlook.com (2603:10b6:408:10e::16)
+ by SN7PR12MB6670.namprd12.prod.outlook.com (2603:10b6:806:26e::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.25; Wed, 28 Sep
+ 2022 19:41:07 +0000
 Received: from BN8NAM11FT107.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:10e:cafe::d4) by BN9PR03CA0665.outlook.office365.com
- (2603:10b6:408:10e::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.17 via Frontend
- Transport; Wed, 28 Sep 2022 19:41:05 +0000
+ (2603:10b6:408:10e:cafe::3d) by BN9PR03CA0671.outlook.office365.com
+ (2603:10b6:408:10e::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.29 via Frontend
+ Transport; Wed, 28 Sep 2022 19:41:07 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN8NAM11FT107.mail.protection.outlook.com (10.13.176.149) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5676.17 via Frontend Transport; Wed, 28 Sep 2022 19:41:05 +0000
+ 15.20.5676.17 via Frontend Transport; Wed, 28 Sep 2022 19:41:07 +0000
 Received: from hamza-pc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 28 Sep
- 2022 14:41:03 -0500
+ 2022 14:41:05 -0500
 From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 12/36] drm/amd/display: For SubVP pipe split case use min
- transition into MPO
-Date: Wed, 28 Sep 2022 15:40:04 -0400
-Message-ID: <20220928194028.144879-13-hamza.mahfooz@amd.com>
+Subject: [PATCH 13/36] drm/amd/display: Add log for LTTPR
+Date: Wed, 28 Sep 2022 15:40:05 -0400
+Message-ID: <20220928194028.144879-14-hamza.mahfooz@amd.com>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20220928194028.144879-1-hamza.mahfooz@amd.com>
 References: <20220928194028.144879-1-hamza.mahfooz@amd.com>
@@ -69,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT107:EE_|DM4PR12MB6542:EE_
-X-MS-Office365-Filtering-Correlation-Id: d04ce999-87fa-4c8d-6ebd-08daa1896263
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT107:EE_|SN7PR12MB6670:EE_
+X-MS-Office365-Filtering-Correlation-Id: a79fe8a2-1fd1-4768-4df9-08daa1896329
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: t5N3aDi0P5PjEfo43j1swno0Tz6u7gRhDYKVasrV7Yv/k+dvc3GXyQiGyJ6Tv8608WhcZAUqMj5raIg3VyqyQd/aQsOMRQwFDOEfB5PgY5emPGS7PRY7DXR6TL4zgo2T4K+ZXSOUMg7Cgm+tPMyOw7jJPf9pBvxUXruV04nmicivtrvT2JC9aT/Zq38BcDyViueYDpjowrfhD3pL3hXsZdEeTGWeFsssZMSb8J3NbTcv5CA/V00EFivPgbGHtmJGymzcVPNgDH/KhhE+uWqx64AOVQMkoEUbBdtXElA0F2ywNoxwT/l9VPvhbJ33O3GLvXRnDCK/kOI4Vn4mnQ61nCM88LwDxhUSJQCJxKlZhYvkY3QtF+ty1LYbtG18m0TW2bwjQLFxkAQL2jrXRZaijaGOx6A7NGztzIzBqjwLZUatxot524BAnNjjU8JACZyc91yrP818z7Y7uDgKEvvdzT0OsEXsmwUD8X+oH51Ijn8O/sSM6+CGHDiy02AeFaYQWWUv/mVC4ieYjqv0jP91qnW9lTYd4c8Tnjl8u0dnnGHJSvg1iDiUYswju52GMQUcRVdHJGx2buPFRIFjee+BZL2kHOgF8QNTgA7ZXdFAWT7+6iWAvWe2a1PwnRnvRN9TEMb2NAnyvqlr9zs3OZJtZlAivcHcs/rKorRyjimXDugq2YHjvBsp1yjpXHu3wM3nXAaVCt9xejDxBmdRRcwXdaUSdq15lp8agXPA7O31cyzgQmxcfAU3TiN/R5ovRIpR149tbTCZw47lWTBQliUVk65pGUj2YEzLKZhhv2zrIXAGiVA0lxtD9JxYP+gKcJdiLTxFINaKFD9qocPP6JoPOA==
+X-Microsoft-Antispam-Message-Info: eDXtZsEefTXZ47O8lQXNDU5v2piIt/9g1Oi4szDa6B1jQ8KEs27jT/u8EWc56lbG1ppZExqSRQSrDQlSzGDsgJce+f9Y56yDiJ0DG5MLswIXVhAGXLO3vXIx+H2ukGJQx/iTw+GOhSwu8oUTHa+03XFgS3s7/1sHc7I3NypAiYNU2KDArOnfyQ7Zzland3Omazl1kZvej8+Nmt0kY/l0dnosTLxNg+t30gqBHVivRF8pWo6vL4YGJez95OT2ksO3kJhEiFXWtph2UTxpkDKqswP6ieyIMbyQvqqVcDE+39aXkQKRjEMxNV6Y9EEmC5LwaNG4Rx0LbGnDvUBC9Lh3HALtW0YwzvN7ZL7FI8g+NrXbGp6x49PYkQfP8qCcaVB0cLShX8W/A4UnrOpmB7KdWw5nSaITN+BK9Q7mrlZrf52jrPUYy6tjoQ5LHvqxeN+N144scPP6tltk9EHm22PceOpyGqj2kAyiCu5y8EOq4H7F8lkBaXCa6GFdATtlDk5GlzocHssUTyjiolL5IIvDT2UYd6yMK/56diW9QNx0lGjJ2/AlVZhldBvHGy9Kvj/fwHyJk1bzU7Fm0X9ZQ3lBO/bKoR+Ov5AtboS67fmAJLL71N3nj5DOEwD8r6MqRJunVfzTvkoWOHRoKIoqDfQ19dUBW3QkGdzuPwQYgFBe+urKHfHIcaxHNxwx3rMr1BF6W1r3wxN7nMMZRI587HpcuUT/s9musMDyjlEMWPXKsSEVFwHGadZEdz2LVJwMQHAPxDO8Jez/fmW/k9dX2AY4EpZvqtplLEZT9fTR8zl9V8nkI9xyljAnLuIPRXIMUX0pYoMKkdq6YChhIiYMhNFjOA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(39860400002)(376002)(346002)(136003)(396003)(451199015)(46966006)(40470700004)(36840700001)(2616005)(336012)(426003)(47076005)(86362001)(16526019)(54906003)(7696005)(316002)(40480700001)(36756003)(26005)(186003)(83380400001)(478600001)(1076003)(6916009)(40460700003)(356005)(81166007)(36860700001)(82740400003)(5660300002)(4326008)(82310400005)(41300700001)(8936002)(2906002)(44832011)(70206006)(8676002)(70586007)(16060500005)(36900700001);
+ SFS:(13230022)(4636009)(39860400002)(136003)(376002)(396003)(346002)(451199015)(40470700004)(46966006)(36840700001)(2906002)(36860700001)(426003)(70206006)(7696005)(82310400005)(41300700001)(83380400001)(70586007)(8936002)(478600001)(5660300002)(1076003)(54906003)(36756003)(44832011)(26005)(40480700001)(356005)(336012)(186003)(16526019)(6916009)(86362001)(81166007)(8676002)(2616005)(4326008)(82740400003)(316002)(47076005)(40460700003)(36900700001)(16060500005);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2022 19:41:05.8527 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d04ce999-87fa-4c8d-6ebd-08daa1896263
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2022 19:41:07.1026 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a79fe8a2-1fd1-4768-4df9-08daa1896329
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT107.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6542
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6670
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,263 +99,115 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, Alvin Lee <Alvin.Lee2@amd.com>,
- wayne.lin@amd.com, Hamza Mahfooz <hamza.mahfooz@amd.com>,
- Jun Lei <Jun.Lei@amd.com>, Bhawanpreet.Lakha@amd.com,
+Cc: stylon.wang@amd.com, Charlene Liu <Charlene.Liu@amd.com>,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
+ Aurabindo.Pillai@amd.com, Hamza Mahfooz <hamza.mahfooz@amd.com>,
+ wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com, Leo Chen <sancchen@amd.com>,
  agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alvin Lee <Alvin.Lee2@amd.com>
+From: Leo Chen <sancchen@amd.com>
 
-[Description]
-- For SubVP pipe split case we need to use a minimial transition
-  when opening MPO video since we are transitioning from 4 pipes
-  to 3 pipes where an OPP for a previous MPCC will change
-- Also save and restore mall config when doing fast_validate in case
-  there was a shallow copy of the dc->current_state
+[Why & How]
+Adding log for LTTPR to facilitate debugging.
 
-Reviewed-by: Jun Lei <Jun.Lei@amd.com>
+Reviewed-by: Charlene Liu <Charlene.Liu@amd.com>
 Acked-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
-Signed-off-by: Alvin Lee <Alvin.Lee2@amd.com>
+Signed-off-by: Leo Chen <sancchen@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c      | 36 ++++++++++
- .../drm/amd/display/dc/dcn32/dcn32_resource.c | 18 +++++
- .../drm/amd/display/dc/dcn32/dcn32_resource.h | 20 ++++++
- .../display/dc/dcn32/dcn32_resource_helpers.c | 71 +++++++++++++++++++
- 4 files changed, 145 insertions(+)
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 29 +++++++++++++++----
+ 1 file changed, 23 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 2584cb8f44e2..9b7c6bac4760 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -3561,6 +3561,7 @@ static bool could_mpcc_tree_change_for_active_pipes(struct dc *dc,
- 
- 	struct dc_stream_status *cur_stream_status = stream_get_status(dc->current_state, stream);
- 	bool force_minimal_pipe_splitting = false;
-+	uint32_t i;
- 
- 	*is_plane_addition = false;
- 
-@@ -3592,6 +3593,36 @@ static bool could_mpcc_tree_change_for_active_pipes(struct dc *dc,
- 		}
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+index 2093120867eb..4ea8acb16161 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -5090,6 +5090,7 @@ bool dp_retrieve_lttpr_cap(struct dc_link *link)
+ 			(dp_convert_to_count(link->dpcd_caps.lttpr_caps.phy_repeater_cnt) == 0)) {
+ 		ASSERT(0);
+ 		link->dpcd_caps.lttpr_caps.phy_repeater_cnt = 0x80;
++		DC_LOG_DC("lttpr_caps forced phy_repeater_cnt = %d\n", link->dpcd_caps.lttpr_caps.phy_repeater_cnt);
  	}
  
-+	/* For SubVP pipe split case when adding MPO video
-+	 * we need to add a minimal transition. In this case
-+	 * there will be 2 streams (1 main stream, 1 phantom
-+	 * stream).
-+	 */
-+	if (cur_stream_status &&
-+			dc->current_state->stream_count == 2 &&
-+			stream->mall_stream_config.type == SUBVP_MAIN) {
-+		bool is_pipe_split = false;
-+
-+		for (i = 0; i < dc->res_pool->pipe_count; i++) {
-+			if (dc->current_state->res_ctx.pipe_ctx[i].stream == stream &&
-+					(dc->current_state->res_ctx.pipe_ctx[i].bottom_pipe ||
-+					dc->current_state->res_ctx.pipe_ctx[i].next_odm_pipe)) {
-+				is_pipe_split = true;
-+				break;
-+			}
-+		}
-+
-+		/* determine if minimal transition is required due to SubVP*/
-+		if (surface_count > 0 && is_pipe_split) {
-+			if (cur_stream_status->plane_count > surface_count) {
-+				force_minimal_pipe_splitting = true;
-+			} else if (cur_stream_status->plane_count < surface_count) {
-+				force_minimal_pipe_splitting = true;
-+				*is_plane_addition = true;
-+			}
-+		}
-+	}
-+
- 	return force_minimal_pipe_splitting;
+ 	/* Attempt to train in LTTPR transparent mode if repeater count exceeds 8. */
+@@ -5098,6 +5099,7 @@ bool dp_retrieve_lttpr_cap(struct dc_link *link)
+ 	if (is_lttpr_present)
+ 		CONN_DATA_DETECT(link, lttpr_dpcd_data, sizeof(lttpr_dpcd_data), "LTTPR Caps: ");
+ 
++	DC_LOG_DC("is_lttpr_present = %d\n", is_lttpr_present);
+ 	return is_lttpr_present;
  }
  
-@@ -3601,6 +3632,7 @@ static bool commit_minimal_transition_state(struct dc *dc,
- 	struct dc_state *transition_context = dc_create_state(dc);
- 	enum pipe_split_policy tmp_mpc_policy;
- 	bool temp_dynamic_odm_policy;
-+	bool temp_subvp_policy;
- 	enum dc_status ret = DC_ERROR_UNEXPECTED;
- 	unsigned int i, j;
- 
-@@ -3615,6 +3647,9 @@ static bool commit_minimal_transition_state(struct dc *dc,
- 	temp_dynamic_odm_policy = dc->debug.enable_single_display_2to1_odm_policy;
- 	dc->debug.enable_single_display_2to1_odm_policy = false;
- 
-+	temp_subvp_policy = dc->debug.force_disable_subvp;
-+	dc->debug.force_disable_subvp = true;
-+
- 	dc_resource_state_copy_construct(transition_base_context, transition_context);
- 
- 	//commit minimal state
-@@ -3643,6 +3678,7 @@ static bool commit_minimal_transition_state(struct dc *dc,
- 		dc->debug.pipe_split_policy = tmp_mpc_policy;
- 
- 	dc->debug.enable_single_display_2to1_odm_policy = temp_dynamic_odm_policy;
-+	dc->debug.force_disable_subvp = temp_subvp_policy;
- 
- 	if (ret != DC_OK) {
- 		/*this should never happen*/
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
-index 05de97ea855f..752a4accb116 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
-@@ -1798,14 +1798,32 @@ bool dcn32_validate_bandwidth(struct dc *dc,
- 	int vlevel = 0;
- 	int pipe_cnt = 0;
- 	display_e2e_pipe_params_st *pipes = kzalloc(dc->res_pool->pipe_count * sizeof(display_e2e_pipe_params_st), GFP_KERNEL);
-+	struct mall_temp_config mall_temp_config;
- 	DC_LOGGER_INIT(dc->ctx->logger);
- 
-+	/* For fast validation, there are situations where a shallow copy of
-+	 * of the dc->current_state is created for the validation. In this case
-+	 * we want to save and restore the mall config because we always
-+	 * teardown subvp at the beginning of validation (and don't attempt
-+	 * to add it back if it's fast validation). If we don't restore the
-+	 * subvp config in cases of fast validation + shallow copy of the
-+	 * dc->current_state, the dc->current_state will have a partially
-+	 * removed subvp state when we did not intend to remove it.
-+	 */
-+	if (fast_validate) {
-+		memset(&mall_temp_config, 0, sizeof(mall_temp_config));
-+		dcn32_save_mall_state(dc, context, &mall_temp_config);
-+	}
-+
- 	BW_VAL_TRACE_COUNT();
- 
- 	DC_FP_START();
- 	out = dcn32_internal_validate_bw(dc, context, pipes, &pipe_cnt, &vlevel, fast_validate);
- 	DC_FP_END();
- 
-+	if (fast_validate)
-+		dcn32_restore_mall_state(dc, context, &mall_temp_config);
-+
- 	if (pipe_cnt == 0)
- 		goto validate_out;
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.h b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.h
-index a24f538bdc4c..f76120e67c16 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.h
-@@ -45,6 +45,17 @@
- extern struct _vcs_dpi_ip_params_st dcn3_2_ip;
- extern struct _vcs_dpi_soc_bounding_box_st dcn3_2_soc;
- 
-+/* Temp struct used to save and restore MALL config
-+ * during validation.
-+ *
-+ * TODO: Move MALL config into dc_state instead of stream struct
-+ * to avoid needing to save/restore.
-+ */
-+struct mall_temp_config {
-+	struct mall_stream_config mall_stream_config[MAX_PIPES];
-+	bool is_phantom_plane[MAX_PIPES];
-+};
-+
- struct dcn32_resource_pool {
- 	struct resource_pool base;
- };
-@@ -122,6 +133,15 @@ void dcn32_determine_det_override(struct dc *dc,
- 
- void dcn32_set_det_allocations(struct dc *dc, struct dc_state *context,
- 	display_e2e_pipe_params_st *pipes);
-+
-+void dcn32_save_mall_state(struct dc *dc,
-+		struct dc_state *context,
-+		struct mall_temp_config *temp_config);
-+
-+void dcn32_restore_mall_state(struct dc *dc,
-+		struct dc_state *context,
-+		struct mall_temp_config *temp_config);
-+
- /* definitions for run time init of reg offsets */
- 
- /* CLK SRC */
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c
-index 7f318ced5dee..d51d0c40ae5b 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c
-@@ -380,3 +380,74 @@ void dcn32_set_det_allocations(struct dc *dc, struct dc_state *context,
- 	} else
- 		dcn32_determine_det_override(dc, context, pipes);
+@@ -5134,6 +5136,7 @@ void dp_get_lttpr_mode_override(struct dc_link *link, enum lttpr_mode *override)
+ 	} else if (link->dc->debug.lttpr_mode_override == LTTPR_MODE_NON_LTTPR) {
+ 		*override = LTTPR_MODE_NON_LTTPR;
+ 	}
++	DC_LOG_DC("lttpr_mode_override chose LTTPR_MODE = %d\n", (uint8_t)(*override));
  }
-+
-+/**
-+ * *******************************************************************************************
-+ * dcn32_save_mall_state: Save MALL (SubVP) state for fast validation cases
-+ *
-+ * This function saves the MALL (SubVP) case for fast validation cases. For fast validation,
-+ * there are situations where a shallow copy of the dc->current_state is created for the
-+ * validation. In this case we want to save and restore the mall config because we always
-+ * teardown subvp at the beginning of validation (and don't attempt to add it back if it's
-+ * fast validation). If we don't restore the subvp config in cases of fast validation +
-+ * shallow copy of the dc->current_state, the dc->current_state will have a partially
-+ * removed subvp state when we did not intend to remove it.
-+ *
-+ * NOTE: This function ONLY works if the streams are not moved to a different pipe in the
-+ *       validation. We don't expect this to happen in fast_validation=1 cases.
-+ *
-+ * @param [in]: dc: Current DC state
-+ * @param [in]: context: New DC state to be programmed
-+ * @param [out]: temp_config: struct used to cache the existing MALL state
-+ *
-+ * @return: void
-+ *
-+ * *******************************************************************************************
-+ */
-+void dcn32_save_mall_state(struct dc *dc,
-+		struct dc_state *context,
-+		struct mall_temp_config *temp_config)
-+{
-+	uint32_t i;
-+
-+	for (i = 0; i < dc->res_pool->pipe_count; i++) {
-+		struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
-+
-+		if (pipe->stream)
-+			temp_config->mall_stream_config[i] = pipe->stream->mall_stream_config;
-+
-+		if (pipe->plane_state)
-+			temp_config->is_phantom_plane[i] = pipe->plane_state->is_phantom;
+ 
+ enum lttpr_mode dp_decide_8b_10b_lttpr_mode(struct dc_link *link)
+@@ -5146,22 +5149,34 @@ enum lttpr_mode dp_decide_8b_10b_lttpr_mode(struct dc_link *link)
+ 		return LTTPR_MODE_NON_LTTPR;
+ 
+ 	if (vbios_lttpr_aware) {
+-		if (vbios_lttpr_force_non_transparent)
++		if (vbios_lttpr_force_non_transparent) {
++			DC_LOG_DC("chose LTTPR_MODE_NON_TRANSPARENT due to VBIOS DCE_INFO_CAPS_LTTPR_SUPPORT_ENABLE set to 1.\n");
+ 			return LTTPR_MODE_NON_TRANSPARENT;
+-		else
++		} else {
++			DC_LOG_DC("chose LTTPR_MODE_NON_TRANSPARENT by default due to VBIOS not set DCE_INFO_CAPS_LTTPR_SUPPORT_ENABLE set to 1.\n");
+ 			return LTTPR_MODE_TRANSPARENT;
++		}
+ 	}
+ 
+ 	if (link->dc->config.allow_lttpr_non_transparent_mode.bits.DP1_4A &&
+-			link->dc->caps.extended_aux_timeout_support)
++			link->dc->caps.extended_aux_timeout_support) {
++		DC_LOG_DC("chose LTTPR_MODE_NON_TRANSPARENT by default and dc->config.allow_lttpr_non_transparent_mode.bits.DP1_4A set to 1.\n");
+ 		return LTTPR_MODE_NON_TRANSPARENT;
 +	}
-+}
+ 
++	DC_LOG_DC("chose LTTPR_MODE_NON_LTTPR.\n");
+ 	return LTTPR_MODE_NON_LTTPR;
+ }
+ 
+ enum lttpr_mode dp_decide_128b_132b_lttpr_mode(struct dc_link *link)
+ {
+-	return dp_is_lttpr_present(link) ? LTTPR_MODE_NON_TRANSPARENT : LTTPR_MODE_NON_LTTPR;
++	enum lttpr_mode mode = LTTPR_MODE_NON_LTTPR;
 +
-+/**
-+ * *******************************************************************************************
-+ * dcn32_restore_mall_state: Restore MALL (SubVP) state for fast validation cases
-+ *
-+ * Restore the MALL state based on the previously saved state from dcn32_save_mall_state
-+ *
-+ * @param [in]: dc: Current DC state
-+ * @param [in/out]: context: New DC state to be programmed, restore MALL state into here
-+ * @param [in]: temp_config: struct that has the cached MALL state
-+ *
-+ * @return: void
-+ *
-+ * *******************************************************************************************
-+ */
-+void dcn32_restore_mall_state(struct dc *dc,
-+		struct dc_state *context,
-+		struct mall_temp_config *temp_config)
-+{
-+	uint32_t i;
++	if (dp_is_lttpr_present(link))
++		mode = LTTPR_MODE_NON_TRANSPARENT;
 +
-+	for (i = 0; i < dc->res_pool->pipe_count; i++) {
-+		struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
-+
-+		if (pipe->stream)
-+			pipe->stream->mall_stream_config = temp_config->mall_stream_config[i];
-+
-+		if (pipe->plane_state)
-+			pipe->plane_state->is_phantom = temp_config->is_phantom_plane[i];
++	DC_LOG_DC("128b_132b chose LTTPR_MODE %d.\n", mode);
++	return mode;
+ }
+ 
+ static bool get_usbc_cable_id(struct dc_link *link, union dp_cable_id *cable_id)
+@@ -5179,9 +5194,10 @@ static bool get_usbc_cable_id(struct dc_link *link, union dp_cable_id *cable_id)
+ 	cmd.cable_id.data.input.phy_inst = resource_transmitter_to_phy_idx(
+ 			link->dc, link->link_enc->transmitter);
+ 	if (dc_dmub_srv_cmd_with_reply_data(link->ctx->dmub_srv, &cmd) &&
+-			cmd.cable_id.header.ret_status == 1)
++			cmd.cable_id.header.ret_status == 1) {
+ 		cable_id->raw = cmd.cable_id.data.output_raw;
+-
++		DC_LOG_DC("usbc_cable_id = %d.\n", cable_id->raw);
 +	}
-+}
+ 	return cmd.cable_id.header.ret_status == 1;
+ }
+ 
+@@ -5228,6 +5244,7 @@ static enum dc_status wa_try_to_wake_dprx(struct dc_link *link, uint64_t timeout
+ 
+ 	lttpr_present = dp_is_lttpr_present(link) ||
+ 			(!vbios_lttpr_interop || !link->dc->caps.extended_aux_timeout_support);
++	DC_LOG_DC("lttpr_present = %d.\n", lttpr_present ? 1 : 0);
+ 
+ 	/* Issue an AUX read to test DPRX responsiveness. If LTTPR is supported the first read is expected to
+ 	 * be to determine LTTPR capabilities. Otherwise trying to read power state should be an innocuous AUX read.
 -- 
 2.37.2
 
