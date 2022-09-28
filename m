@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C83D25EE5E4
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Sep 2022 21:41:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EE945EE5F2
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Sep 2022 21:42:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6E9710E9B7;
-	Wed, 28 Sep 2022 19:41:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3413210E9CC;
+	Wed, 28 Sep 2022 19:42:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2087.outbound.protection.outlook.com [40.107.220.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5516710E9B7
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Sep 2022 19:41:34 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2046.outbound.protection.outlook.com [40.107.94.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B41D10E9B1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Sep 2022 19:41:37 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XUYZOKlN7/Moc+hcvZAY3eVLohy6BgMA+R2/I2JuBNJT8Sc5tOk2McvZed0jdiYv3z31ydEJZNYUHeiRHP/lH6hpx0vf1C8DDGLTRKYHAEadDYSUVDjwCq1xvl82SrAkX2GSfnSOwLv2H6eqUtoopMkmYxJtyRIbrqPC6w6vjlSGuG4Jv9ctXzDva10T9idDxc2pJwZ7W1AsQ1SlGz2xVf1SeSIFJs/zhkvaRi7MSSv3/LOuc1rzxlmuNkXAiDqxm8s/FWRtFSK5DrFkb9PjE0oQVJ2rzmvUDvtMIEn84H7Ei6Zp34n3bQ8kMwFY39GoVR0Y5Iq5a6VNR5tc1JjKjA==
+ b=FgFzysLVUxskHDEbhK4JJmU1I+FIEiIjICpA0Ka80pXrnkQIYWXWnWzLe/kTFOGcqjL3J175iukYeZi3XOXVsx7K/BuSgouLZObdrboV+6y4FSlzTyPlBY/T5JYPFecWr0I3kDZTQH7tS00ZOgBSeE08S6sfKfHtnfVnlQnl3Y3LcTSD+FvePrG9EmrquLgyoSMnTJCghwtk0ceeGqonM2Oz3fNK2T7wOWX0ZclGapNDJao8pTJBwkEnSCYsJp/jnWuaDtMmq4tqV26VhfIdZFfTdoHSKAw4f/sx9tl9pCCqYOiqZUFzA7ky0LuLaU9+cOny65hMWi9i5RcuXVyTbQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7EFS2FKPBGLH9od5SBLxsA7aZhxuXj6nLyIufhYIicc=;
- b=IhYDaV5KirZuGsNYIsKP/oiQkajGtUHTOKMmvxR9LbDkF0BAXYiiDSu/wLh48pRKyLUY6ACeuergWbERs/EER77IBpaqQD7vyaBwvqmbMqEGQIYTHj01dX5+Ct9HaCzfzS9SyNCZBURym8boYSyAT85X3tnK9bwUnBsuCGSvXNK4pOCk5fMhyrZi9xu4iIzbC/5uJJcZvx8aE2qzPBXvg/mL9PXyr5P0DtJBdyyu6+vrhaLkR6eN6qLZQMnNqiNdvlXTRIadSLoReVRTddeaNp84F29wzpmUibbU2MZsnX8TGfFYE/R0gm6FTaktxjlIgsgimC2R7M9GFlYQkCGxuA==
+ bh=iWwe50VHBGiA6G5aRcFah89BUR1n0VI4eQV7LUVqffY=;
+ b=MTZc/sBxj2FAEk6CQI3HPyfKZ6wIWO+1qPZ4gQWE954/tBI/Cyh54ffMcJWhnSdZhdBr2PtSiLO5v7qvy9MhlIcY7ATDqrbvIJbTYoAs7FChOOqkEX/MX2pIUAnGQw1lmG670hhuyPe5dcdRgwnwQbNH6eqKpa2UjLFFwxS6Trb3mgTpO0e8/9WMMe+H7S0rTShpBVKRjypMjeDPJ9E6guY8HhKTChaFprzkSVJZyYJv4mtk9ZEo2o3msFeyYfCERskEELExkwFwR50cSGA78gI5hKh7Bt48bdr2lHHNCOH5jUkGfFmFOaCKloWS240bJjoMHlKibddhqhGPxb6oYg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7EFS2FKPBGLH9od5SBLxsA7aZhxuXj6nLyIufhYIicc=;
- b=tOrwUX8mG57cJlCOQYPidzgcdzuObKoWqxCRyPJzGaztO0u8K3K4pl6bmjHtdiDnod8XBNbDbxs1gC1guhS+hD0udtun/YhWCRTJHWTXOvUFT+HN625aB3C+qtCsHs6LBCtPicozruBlgO4eYY7x8PUeakc7UDCC3YgjBzyXa/A=
-Received: from BN9PR03CA0736.namprd03.prod.outlook.com (2603:10b6:408:110::21)
- by CH2PR12MB4248.namprd12.prod.outlook.com (2603:10b6:610:7a::23)
+ bh=iWwe50VHBGiA6G5aRcFah89BUR1n0VI4eQV7LUVqffY=;
+ b=o87DsX3Evl0jQIx/0rTAPab8tE+zEsVjSgimXKbPvLuBTQRAL8oHf+gYz7uaaBhGjow9Mi3NphJOVyJHfaRjH59Pe6posWp5hh/5U6UkE0xOgEaWAED+WEiakaBwR3J5k+FeH9b0v2NjDw5spJF6jFKgBxcS57vA9Z73FCa/5Yk=
+Received: from BN9PR03CA0746.namprd03.prod.outlook.com (2603:10b6:408:110::31)
+ by PH8PR12MB6721.namprd12.prod.outlook.com (2603:10b6:510:1cc::18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.15; Wed, 28 Sep
- 2022 19:41:31 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.26; Wed, 28 Sep
+ 2022 19:41:34 +0000
 Received: from BN8NAM11FT031.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:110:cafe::f6) by BN9PR03CA0736.outlook.office365.com
- (2603:10b6:408:110::21) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:408:110:cafe::2b) by BN9PR03CA0746.outlook.office365.com
+ (2603:10b6:408:110::31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.17 via Frontend
- Transport; Wed, 28 Sep 2022 19:41:31 +0000
+ Transport; Wed, 28 Sep 2022 19:41:34 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN8NAM11FT031.mail.protection.outlook.com (10.13.177.25) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5676.17 via Frontend Transport; Wed, 28 Sep 2022 19:41:31 +0000
+ 15.20.5676.17 via Frontend Transport; Wed, 28 Sep 2022 19:41:34 +0000
 Received: from hamza-pc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 28 Sep
- 2022 14:41:29 -0500
+ 2022 14:41:30 -0500
 From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 25/36] drm/amd/display: Fix SubVP control flow in the MPO
- context
-Date: Wed, 28 Sep 2022 15:40:17 -0400
-Message-ID: <20220928194028.144879-26-hamza.mahfooz@amd.com>
+Subject: [PATCH 26/36] drm/amd/display: Remove OPTC lock check
+Date: Wed, 28 Sep 2022 15:40:18 -0400
+Message-ID: <20220928194028.144879-27-hamza.mahfooz@amd.com>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20220928194028.144879-1-hamza.mahfooz@amd.com>
 References: <20220928194028.144879-1-hamza.mahfooz@amd.com>
@@ -69,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT031:EE_|CH2PR12MB4248:EE_
-X-MS-Office365-Filtering-Correlation-Id: 785c4fdf-b578-4cea-8cc8-08daa18971cb
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT031:EE_|PH8PR12MB6721:EE_
+X-MS-Office365-Filtering-Correlation-Id: d84a7d79-7a7b-441c-86f5-08daa1897352
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /FUMlbBSOVuKB8CZfCDk7BGb+WTA+F1/FXxe8A3gK4p4MK5KximSWOv/FejvDoUFxypANIOOGP4Upa4rdxmBr07bPxY/n05hkZ2VypoDQhZtqidS7Hcxe7skNQzXfPWHVHyZXws4gnUcZ3KHin4nT06zcfvJiJBc6aVMSokWIVO0TXKnOpj4SIUEqOma7Ynf2TWV81vbGWd5iwahrNuECFPzJxJmf19sFY9taZweivbZXOby+cnhKQtkeyfzBgtSpZrTvjuehMfmiLDahkqp+oD/CNCtOJh5eqvn3Y9JpcXc9GZDjtD2NI6XZTERM6jpnrenD0Wb/tFfgpgawBCIyPX7R66yy7V8ASyTl8ViKL9TJQ35NQczPNd2jgCEg2fri8l/9PY7xuqjogXB0Cc3UxgtE0EXKfRbjoAVEqTg5y+A1/lJFfYhiKKLctvgzyBqKNM4UKP083kO9i6eOPwdGak/1N5G3qqH9/uS2K07etL5pgmeNkjIuITTYg5nUn1B+7AbxMwmpMV2DmAJ6YGk5hrjQxMGeELmxeCOIUkfc/bc20sPhJmjT2vK9STb4t3NQ8OBEHSqbYjGqif7JyNX1vAC9eC7t3RgozbXwR3pcinBFj6N6g0TbXkYLCpk1C0JM+qbXZnlRPmVyqjylIEFzXA08n2paccMrTESOrMcctpFWkvS85N53qiwyQatf9ywiLvtQ4cd9/kscIDp1+iyxQzik4Q6Agp0w2wxikdZiORrz3k7oekReYOPtG+4QnMrZxv07T/NjXVVi9VtWrq02AhKTOBGJLoNTHyMMlWga5m5FDy78AkPbBN/q36exlXhWxvhpsyX0Tze0o91Y9LS6Q==
+X-Microsoft-Antispam-Message-Info: HJVmu0By3yfdc5PPRN9Xvq4pw/BBrFbdw8b37Tydisw5tT2RZQqPrflxPPJ4D9Kz4zYdjBbkvXOsgCTH/nK9uibVost2zjcKTQ3jJbkVeY3jLSHdId1IltVipgUwa5KTJfClWXh17x1gzdCXjOYPAHLrYCf5pWEx8xsQXyvDkxdWKwyZKNeAqmRnQUzT/a9AaqDXPBvI1v7vjZtKyn8BuQ6wnxwxTmKHhnbupk3oThwp2ml8TJZvtuXaEgrsMqoJTTdgopn4IlLJ4vO7FLNpYItDYqJN1a0exmkiPONdXdyMg65BEsr+RZqq+2O0p2wpYXUGVjrv8PPn5WEwHTsNrWZp3jvZXaPA4fsDrh0jjlX7mVXsWLcJYOeCJWPIC25r+8EI0l09ioG19nbi+f2kM8M3BHZG/e/uvCrZT9g5RovBL9ZS37Vio6rORkKi3LAFaTYR1wnwZBpnWAzzc68TolpBEZ5q+ZvjBW9TTCqWquVzRckg4a1iOC+6wH8T7yJlVg2+RXz1lb0WCdVX63myO69IlvC4k/fgwoy9iOcuepT3SMXdM9t3uoSNkqRJoCw+XDDwYY98xEziPbiBRz4sQ0PbtlmfckypmsYK2DqkUsPrpUoBmaFH8yGq4GBzGuuaTbb8Qe+Ev0wWzfD05XeodFs45NWBm0XarHk8QN0k0PNcizFjBgRTHaNu4I75Sa50okB1pVFR3aTS3b3Y6lhYO6Blc9hAZiVTIG9sOrWhIswzwUPVOnNt5Us6zpdYuVSZ8clbJOA+MdDd9SDAXHjsn2m3F3NekPTr14DOaFhTtqm4lWK3LV17ZrV5BBAH8qz1/keefMWJjuSpqoxNZrdeNQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(136003)(39860400002)(396003)(376002)(346002)(451199015)(36840700001)(46966006)(40470700004)(40460700003)(44832011)(41300700001)(47076005)(478600001)(336012)(8936002)(16526019)(426003)(82310400005)(81166007)(356005)(26005)(316002)(6666004)(82740400003)(186003)(86362001)(83380400001)(40480700001)(8676002)(4326008)(1076003)(2616005)(7696005)(36756003)(2906002)(54906003)(36860700001)(6916009)(70206006)(70586007)(5660300002)(36900700001)(16060500005);
+ SFS:(13230022)(4636009)(396003)(39860400002)(376002)(136003)(346002)(451199015)(40470700004)(36840700001)(46966006)(316002)(86362001)(82310400005)(54906003)(478600001)(8936002)(36756003)(70586007)(70206006)(6916009)(4326008)(5660300002)(8676002)(41300700001)(83380400001)(40480700001)(81166007)(40460700003)(26005)(36860700001)(44832011)(1076003)(356005)(7696005)(16526019)(186003)(82740400003)(336012)(47076005)(2616005)(426003)(6666004)(2906002)(16060500005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2022 19:41:31.7322 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 785c4fdf-b578-4cea-8cc8-08daa18971cb
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2022 19:41:34.2945 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d84a7d79-7a7b-441c-86f5-08daa1897352
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT031.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4248
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6721
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,105 +109,112 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 
-SubVP has some issues related to how we allocate and enable it. This
-commit fixes this behavior by adding the proper check and configuration
-to the SubVP code path.
+At some point, we decided to blank HUBP during pixel data blank, and to
+handle that, we added some OPTC lock checks. Later, we realized that
+this change caused multiple regression, and we removed it. Nevertheless,
+we still have some leftovers that might affect some ASIC behavior, and
+this commit drops those changes to keep the code consistent.
 
 Reviewed-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c       | 16 ++++++++++++++--
- .../gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c | 18 ------------------
- .../drm/amd/display/dc/dcn32/dcn32_resource.c  |  6 ++++++
- 3 files changed, 20 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c     | 11 -----------
+ drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.h     |  1 -
+ drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c     |  1 -
+ drivers/gpu/drm/amd/display/dc/dcn31/dcn31_optc.c     |  1 -
+ drivers/gpu/drm/amd/display/dc/inc/core_types.h       |  1 -
+ .../gpu/drm/amd/display/dc/inc/hw/timing_generator.h  |  1 -
+ 6 files changed, 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 1508679873d9..3a4f2d58f2e8 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -2946,6 +2946,12 @@ static bool update_planes_and_stream_state(struct dc *dc,
- 		dc_resource_state_copy_construct(
- 				dc->current_state, context);
- 
-+		/* For each full update, remove all existing phantom pipes first.
-+		 * Ensures that we have enough pipes for newly added MPO planes
-+		 */
-+		if (dc->res_pool->funcs->remove_phantom_pipes)
-+			dc->res_pool->funcs->remove_phantom_pipes(dc, context);
-+
- 		/*remove old surfaces from context */
- 		if (!dc_rem_all_planes_for_stream(dc, stream, context)) {
- 
-@@ -3353,8 +3359,14 @@ static void commit_planes_for_stream(struct dc *dc,
- 		/* Since phantom pipe programming is moved to post_unlock_program_front_end,
- 		 * move the SubVP lock to after the phantom pipes have been setup
- 		 */
--		if (dc->hwss.subvp_pipe_control_lock)
--			dc->hwss.subvp_pipe_control_lock(dc, context, false, should_lock_all_pipes, NULL, subvp_prev_use);
-+		if (should_lock_all_pipes && dc->hwss.interdependent_update_lock) {
-+			if (dc->hwss.subvp_pipe_control_lock)
-+				dc->hwss.subvp_pipe_control_lock(dc, context, false, should_lock_all_pipes, NULL, subvp_prev_use);
-+		} else {
-+			if (dc->hwss.subvp_pipe_control_lock)
-+				dc->hwss.subvp_pipe_control_lock(dc, context, false, should_lock_all_pipes, NULL, subvp_prev_use);
-+		}
-+
- 		return;
- 	}
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-index 7de511fd004b..d732b6f031a1 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-@@ -1860,24 +1860,6 @@ void dcn20_post_unlock_program_front_end(
- 		}
- 	}
- 
--	for (i = 0; i < dc->res_pool->pipe_count; i++) {
--		struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
--		struct pipe_ctx *mpcc_pipe;
--
--		if (pipe->vtp_locked) {
--			dc->hwseq->funcs.wait_for_blank_complete(pipe->stream_res.opp);
--			pipe->plane_res.hubp->funcs->set_blank(pipe->plane_res.hubp, true);
--			pipe->vtp_locked = false;
--
--			for (mpcc_pipe = pipe->bottom_pipe; mpcc_pipe; mpcc_pipe = mpcc_pipe->bottom_pipe)
--				mpcc_pipe->plane_res.hubp->funcs->set_blank(mpcc_pipe->plane_res.hubp, true);
--
--			for (i = 0; i < dc->res_pool->pipe_count; i++)
--				if (context->res_ctx.pipe_ctx[i].update_flags.bits.disable)
--					dc->hwss.disable_plane(dc, &dc->current_state->res_ctx.pipe_ctx[i]);
--		}
--	}
--
- 	for (i = 0; i < dc->res_pool->pipe_count; i++) {
- 		struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
- 		struct pipe_ctx *old_pipe = &dc->current_state->res_ctx.pipe_ctx[i];
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
-index 752a4accb116..9585b25f10e5 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
-@@ -1680,6 +1680,8 @@ static void dcn32_enable_phantom_plane(struct dc *dc,
- 		phantom_plane->clip_rect.y = 0;
- 		phantom_plane->clip_rect.height = phantom_stream->timing.v_addressable;
- 
-+		phantom_plane->is_phantom = true;
-+
- 		dc_add_plane_to_context(dc, phantom_stream, phantom_plane, context);
- 
- 		curr_pipe = curr_pipe->bottom_pipe;
-@@ -1749,6 +1751,10 @@ bool dcn32_remove_phantom_pipes(struct dc *dc, struct dc_state *context)
- 			pipe->stream->mall_stream_config.type = SUBVP_NONE;
- 			pipe->stream->mall_stream_config.paired_stream = NULL;
- 		}
-+
-+		if (pipe->plane_state) {
-+			pipe->plane_state->is_phantom = false;
-+		}
- 	}
- 	return removed_pipe;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
+index ea7739255119..143a900d4d3d 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
+@@ -679,16 +679,6 @@ void optc1_unlock(struct timing_generator *optc)
+ 			OTG_MASTER_UPDATE_LOCK, 0);
  }
+ 
+-bool optc1_is_locked(struct timing_generator *optc)
+-{
+-	struct optc *optc1 = DCN10TG_FROM_TG(optc);
+-	uint32_t locked;
+-
+-	REG_GET(OTG_MASTER_UPDATE_LOCK, UPDATE_LOCK_STATUS, &locked);
+-
+-	return (locked == 1);
+-}
+-
+ void optc1_get_position(struct timing_generator *optc,
+ 		struct crtc_position *position)
+ {
+@@ -1583,7 +1573,6 @@ static const struct timing_generator_funcs dcn10_tg_funcs = {
+ 		.enable_crtc_reset = optc1_enable_crtc_reset,
+ 		.disable_reset_trigger = optc1_disable_reset_trigger,
+ 		.lock = optc1_lock,
+-		.is_locked = optc1_is_locked,
+ 		.unlock = optc1_unlock,
+ 		.enable_optc_clock = optc1_enable_optc_clock,
+ 		.set_drr = optc1_set_drr,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.h b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.h
+index 6323ca6dc3b3..88ac5f6f4c96 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.h
+@@ -654,7 +654,6 @@ void optc1_set_blank(struct timing_generator *optc,
+ 		bool enable_blanking);
+ 
+ bool optc1_is_blanked(struct timing_generator *optc);
+-bool optc1_is_locked(struct timing_generator *optc);
+ 
+ void optc1_program_blank_color(
+ 		struct timing_generator *optc,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c
+index 1782b9c26cf4..02459a64ee21 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c
+@@ -319,7 +319,6 @@ static struct timing_generator_funcs dcn30_tg_funcs = {
+ 		.enable_crtc_reset = optc1_enable_crtc_reset,
+ 		.disable_reset_trigger = optc1_disable_reset_trigger,
+ 		.lock = optc3_lock,
+-		.is_locked = optc1_is_locked,
+ 		.unlock = optc1_unlock,
+ 		.lock_doublebuffer_enable = optc3_lock_doublebuffer_enable,
+ 		.lock_doublebuffer_disable = optc3_lock_doublebuffer_disable,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_optc.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_optc.c
+index 2f7404a97479..d873def1a8f9 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_optc.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_optc.c
+@@ -260,7 +260,6 @@ static struct timing_generator_funcs dcn31_tg_funcs = {
+ 		.enable_crtc_reset = optc1_enable_crtc_reset,
+ 		.disable_reset_trigger = optc1_disable_reset_trigger,
+ 		.lock = optc3_lock,
+-		.is_locked = optc1_is_locked,
+ 		.unlock = optc1_unlock,
+ 		.lock_doublebuffer_enable = optc3_lock_doublebuffer_enable,
+ 		.lock_doublebuffer_disable = optc3_lock_doublebuffer_disable,
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/core_types.h b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
+index 4ff1392633a7..1fd7ad853210 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/core_types.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
+@@ -439,7 +439,6 @@ struct pipe_ctx {
+ 	union pipe_update_flags update_flags;
+ 	struct dwbc *dwbc;
+ 	struct mcif_wb *mcif_wb;
+-	bool vtp_locked;
+ };
+ 
+ /* Data used for dynamic link encoder assignment.
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/timing_generator.h b/drivers/gpu/drm/amd/display/dc/inc/hw/timing_generator.h
+index 72eef7a5ed83..25a1df45b264 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw/timing_generator.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/timing_generator.h
+@@ -209,7 +209,6 @@ struct timing_generator_funcs {
+ 	void (*set_blank)(struct timing_generator *tg,
+ 					bool enable_blanking);
+ 	bool (*is_blanked)(struct timing_generator *tg);
+-	bool (*is_locked)(struct timing_generator *tg);
+ 	void (*set_overscan_blank_color) (struct timing_generator *tg, const struct tg_color *color);
+ 	void (*set_blank_color)(struct timing_generator *tg, const struct tg_color *color);
+ 	void (*set_colors)(struct timing_generator *tg,
 -- 
 2.37.2
 
