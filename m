@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2AC95EE5E6
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Sep 2022 21:41:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76DC15EE5F1
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Sep 2022 21:42:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E91910E9BD;
-	Wed, 28 Sep 2022 19:41:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B11AE10E9CD;
+	Wed, 28 Sep 2022 19:41:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2085.outbound.protection.outlook.com [40.107.243.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B72110E9B1
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Sep 2022 19:41:44 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2064.outbound.protection.outlook.com [40.107.244.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CEDF10E9B7
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Sep 2022 19:41:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=g0uUvWBV5PELh1uvVwhVAjbJPusxoRDYFSP6Kdbm9vnOaHAjS1eQ41beJuceAFHGRH4XW9ixq019MHW1mojJJ7e6NKbhzPpuBfFwvxwZjbnr2IL5EarEawTxSS2frf8AYqr+51d1ZEA4Ru6rhLiGfgOeUFUhMBjoZYnKOtZZ32uNXBgd+F/3WsBIDrsZA9l0VeDIj9gt715Zg/aXLAKy/K4pbpgVFFWNoA1vZWsdRKPANMGz+dQYMhwaLBB2QUsoQilvp9KMUKlccabaMc71PwahKDPf8dB8NQ/fPTm5DtLXl3AOkiebx5v4HGPeY5+nPWfY/7ClDEgCxar/pRxiag==
+ b=fW390qDFSIJXldSBo/NZi51YEFl1yLFyVhN2BRGSKMYueiS5TsYSvog4UtEL6VLQLgh0WeyF2W7KJCQD+UssRrXK+wsFG2fBEUQKwuXHRVkM0pHVDMxBurSMsySQPr/uAXJbZWDlppwKh5n03UxlG4ysJ1IaRafwRs83kVXCR3ub0i2/lp4q1kyQiE5tKq75ZvMnDmhqbABMzXIFHx9dDN7T7GzBz6D9+ByKP1vrvNQVDoT0xCOiWe1LGZKrTQ1/2Ax7rqwm16wHWYpMI3qHVEkhVDNBCA6YqbfxNJ9wkyt06WeNu3pAOgjM0Y4QAviiIH0+g7Slekhr8ka0g2kprw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CdIv//yqC4YXrrm7PXAADfya20soBrqgUdw/DoEZCMw=;
- b=PRik1o7Xz2pFHrxSPS9LjPSrFPDJb12k2ZesLyv1AsxpFGi/SrgO1bj0VPfzMcLDUc3LB5KXxnfTd4uXd/vABQX1R1z1hOAhL4Y3n2NiCSGyThmTkVFvr4+nHHKFEwzhBywr7RK9YoqEN4jZ5mIYU6rEmjCCiYbLGwQY0LaxJgfQDaePSFDFIQTYpCvdQZPocRDPnQlLKaSFm7Yc0aCEfPoGp8N76r0g5AOtd81dF/HimDjZv0WjTkDCHkER0Gq8o9eF1jYsDdvI9XfSt8bw7xFUlVNiX20AMjGdr3OJ8JVnEzXicfhwxZsljYYQlKTi8YDQHhP5tD6fMdO86CypFQ==
+ bh=zCh1tVElD2ZEyUrxGwLAuOeRZ3phq+hzbfyqzWCi9+I=;
+ b=VUrs8fi1lpMD5w94DITzax5a7G22XLhRVPfyynynJp2XvSuaX/OlWSOpozZK352hneMS49gEtLFl72f3xsQ4Trhl5oBN34fhio5eTbLHTECjxDnTvYlSJMix1KUk3UV8T4AeeXxkmsCi0J2aM16UBaQc5UGhocyuxlsHkqLNoo+ngz9iyVYjjOph2ADJJHL6SdDPeceW/LGzbK88WKBwXW8girkJyh1gtF1xPWi1yu34cgtUJLmgSUCVIgA8Ey4sPtAyjWnnXzTZ5juPSXQG0ZsGGqtcFxPJRDsW7AWPkYCpCROSuNw/gctgjKdOLIPGaj4rzNX7DBHrF2gROrO+wA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CdIv//yqC4YXrrm7PXAADfya20soBrqgUdw/DoEZCMw=;
- b=n03GOPouknDk+HS0/2l1gqIiEJOo13DNA4XGI+amAknFLr2oo+9cRqc92y7OPKo1t7K3T06OQd8zSd1k09V5mMytAXyuG078KfWRLlnWvZOqCExYyT/zJpAha2Dn3zzFCce4ZCO1xYWf0ubDxjP70CMsN51Ft0XWl4YarMn0r7Y=
-Received: from BN9PR03CA0313.namprd03.prod.outlook.com (2603:10b6:408:112::18)
- by SA0PR12MB4429.namprd12.prod.outlook.com (2603:10b6:806:73::20)
+ bh=zCh1tVElD2ZEyUrxGwLAuOeRZ3phq+hzbfyqzWCi9+I=;
+ b=GnNwudg/mOu/IIjWX+pHg3N4D4m6km45a+bTnHEhmYyyvZltP1CNFgGr/hF6ByHPlqXpK7astNjYw8pdIrnmqe0PiWg/Q7cLZ0bI7RQkz4XvUAT34wrMQ/kp+eIoiNitShbHHPp1rDSwRksUc54BG9CmuB3eJ5xN7+hCVIE13gU=
+Received: from BN9PR03CA0310.namprd03.prod.outlook.com (2603:10b6:408:112::15)
+ by PH7PR12MB6668.namprd12.prod.outlook.com (2603:10b6:510:1aa::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.25; Wed, 28 Sep
- 2022 19:41:41 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.26; Wed, 28 Sep
+ 2022 19:41:42 +0000
 Received: from BN8NAM11FT015.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:112:cafe::c5) by BN9PR03CA0313.outlook.office365.com
- (2603:10b6:408:112::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.17 via Frontend
- Transport; Wed, 28 Sep 2022 19:41:41 +0000
+ (2603:10b6:408:112:cafe::1e) by BN9PR03CA0310.outlook.office365.com
+ (2603:10b6:408:112::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.29 via Frontend
+ Transport; Wed, 28 Sep 2022 19:41:42 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN8NAM11FT015.mail.protection.outlook.com (10.13.176.90) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5676.17 via Frontend Transport; Wed, 28 Sep 2022 19:41:41 +0000
+ 15.20.5676.17 via Frontend Transport; Wed, 28 Sep 2022 19:41:42 +0000
 Received: from hamza-pc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 28 Sep
- 2022 14:41:39 -0500
+ 2022 14:41:40 -0500
 From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 31/36] drm/amd/display: Add PState change high hook for DCN32
-Date: Wed, 28 Sep 2022 15:40:23 -0400
-Message-ID: <20220928194028.144879-32-hamza.mahfooz@amd.com>
+Subject: [PATCH 32/36] drm/amd/display: unblock mcm_luts
+Date: Wed, 28 Sep 2022 15:40:24 -0400
+Message-ID: <20220928194028.144879-33-hamza.mahfooz@amd.com>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20220928194028.144879-1-hamza.mahfooz@amd.com>
 References: <20220928194028.144879-1-hamza.mahfooz@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT015:EE_|SA0PR12MB4429:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1b05890f-eb5c-4890-b286-08daa18977c1
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT015:EE_|PH7PR12MB6668:EE_
+X-MS-Office365-Filtering-Correlation-Id: 09b6a66c-4776-43f4-35d1-08daa1897828
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: yQ3mB5+XAP7qhNgh+WOTVLCZjAd+4rKpQqNwTH/LV/zwi+ZM0FHk5/BHgp5uLpvOaoltCe+b3j4mjRJ0PUqeFYlfMgk6rNCeoGz9cr2vUc7sf04EL4T6OXmC/cxP05XCTn/SvQxBb/wm12ryasCgKVFjBC1wDdB6wEo/UhhN28RXrvHIRRf5DecBGml3M39wjEVUS8jfvsrPE8eVSfPyFFRcskrVL3UBe0VmRFATySkwiXegv/jwFzd9g8aertZlS1h2wNAvVmIulw4KLcliFFFqJSwtOPj9p1C0a1e1N2fyZl4ipG6I9RQ+A0EOqWlDF5+KYcc/mZr/hllwxUTtzkPHorFHQOqpoFBz55KFFRfdXZPy+im5M31TUmm3COtYvalXlT+nMeacGN4L5gKIsQVsTGiX4G1Fmq2gyUhfJyj9hqMT3mvB9zCR9sYmk63g/NFTkQWg4erWtnMWN2vU2m5jJq6tIpCZV7D9L2vzKQ5v8gN23w3TcrkeFCkUbkj10vy7P6mwqUYiQa0tQyVJUPgXm/xY/CYlacxWEFr1HyyEbV3JPX5tamWob+DlBBYzi6AS4z5D9T3HPELoN2n39J+Q3uK3CJtRFEgPovzc1z/gPxJ17dKxAMmJqg61LjuzQaGTGDe0zdjhd7Kmh3ckiIoel06qsNRWuyf1s4Oe3cFLv5mZFWGSFG5N+cWD1LwEjn3be8uybLwEYdV2TWYn012qZhZjPaj0FjaEPDHcLF1rS/tLzevOF5vNeJ7HhXaCB2sNqtUvDAq1vnLXRtRmxzB/66qQcbkLvbb6+se+Wocz4csBQtKvqHvh1+fYs7Mk74huumfphUvCVq9oPvF96A==
+X-Microsoft-Antispam-Message-Info: YIAmMe5tg8J2OqLzrVVYBtF23B8xPMYh/UUI7R8Tj7/mA9Ug9Me1/Ns9ToIwCauXXe1/9BoV2zWx5uaF9yAvRtmr7ISuVNwblbzOJO5yR4r7aE/DkjsIsxSlQcEwyY85GVQdlbf/MvvB03vEWJ21FbSDdBPsardxJS59bZfLQnlvINIpHSsYBqVvwLlhOY63CIliiDWB3lqFK+VGwGJ3MEgynaK0OLndc+tlFcsGNT+wQWNJ+ksUauxPmYWhhehJCDjy83hd0j53NTZ67y5n7bmZ2vfDad9a6aCrZng3yPEtkbspSh6gjhLBlyhIsGTr7v6Jd6a9zlrpEKi73x2A72/mAyzFDNiK5xwuvt3pHK8WnOr8sQ4OP52WvDAGlGHU3c3YsW+8FEh8g+exxi4ICs66yfs7G6v+XpqxgXWONCl2w+kAi8egT79VjjXd4bgm0ZkpirOKYsdYggDwiGumuOJH6qh9h/1G2/fdSEjGE2Dk/iIl484Z7k0iSrBY8Q7wbWCr1Minfrj2AZK7UHGyarfcxoIXMtOHX24e4NjhrTltFFWPvd+m7ieWzhFngnOSOzKfcZwMd6pjcutceJizpRl/Gw5CT+u5P3CjhPmud46GH+dKpFyiGyhGitMgX+zHjAyEAnDrm5G9IAxZ7glOLGyhkXbdG6g4LizQ01TwqvuKb804hQoKsBfgQcZI1ck0lC48VnmEFjrTljhijaK3GC35UFS41AOiEKucBruk0f+RyNZzJ3G2nzaG0iz1sfEk+M0j1RZ8RTgytKUa0RMNNFSulrxgocGORANrn7lOjlv7x6gc8vT6mUUsehPCZCuzjjYYk4uchB27JxzvsvOqxg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(376002)(396003)(39860400002)(346002)(136003)(451199015)(40470700004)(46966006)(36840700001)(54906003)(2616005)(186003)(1076003)(2906002)(36756003)(44832011)(8936002)(16526019)(336012)(5660300002)(426003)(47076005)(86362001)(4326008)(70206006)(356005)(8676002)(41300700001)(70586007)(26005)(82740400003)(40460700003)(316002)(7696005)(6916009)(478600001)(83380400001)(82310400005)(6666004)(36860700001)(40480700001)(81166007)(16060500005)(36900700001);
+ SFS:(13230022)(4636009)(396003)(346002)(376002)(136003)(39860400002)(451199015)(40470700004)(46966006)(36840700001)(36756003)(86362001)(8676002)(4326008)(70586007)(40460700003)(70206006)(54906003)(6916009)(81166007)(356005)(36860700001)(82740400003)(82310400005)(336012)(478600001)(47076005)(16526019)(26005)(6666004)(7696005)(426003)(83380400001)(41300700001)(316002)(8936002)(5660300002)(2906002)(44832011)(1076003)(2616005)(186003)(40480700001)(36900700001)(16060500005);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2022 19:41:41.7495 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1b05890f-eb5c-4890-b286-08daa18977c1
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2022 19:41:42.4214 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 09b6a66c-4776-43f4-35d1-08daa1897828
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT015.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4429
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6668
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,36 +100,41 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- solomon.chiu@amd.com, Aurabindo Pillai <aurabindo.pillai@amd.com>,
- wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
- pavle.kotarac@amd.com
+ qingqing.zhuo@amd.com, "Leung, Martin" <Martin.Leung@amd.com>,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
+ Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
+ agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+From: "Leung, Martin" <Martin.Leung@amd.com>
 
-For some reason, we missed the PState check for DCN32 which may cause
-issues for clock transition. This commit add that required hook.
+why and how:
+needed to fix bad assumption for enable mcm_luts
 
-Reviewed-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Signed-off-by: Martin Leung <Martin.Leung@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hubbub.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hubbub.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hubbub.c
-index f6d3da475835..9fbb72369c10 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hubbub.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hubbub.c
-@@ -936,6 +936,7 @@ static const struct hubbub_funcs hubbub32_funcs = {
- 	.program_watermarks = hubbub32_program_watermarks,
- 	.allow_self_refresh_control = hubbub1_allow_self_refresh_control,
- 	.is_allow_self_refresh_enabled = hubbub1_is_allow_self_refresh_enabled,
-+	.verify_allow_pstate_change_high = hubbub1_verify_allow_pstate_change_high,
- 	.force_wm_propagate_to_pipes = hubbub32_force_wm_propagate_to_pipes,
- 	.force_pstate_change_control = hubbub3_force_pstate_change_control,
- 	.init_watermarks = hubbub32_init_watermarks,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
+index 8012a48859b5..5213f4443531 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
+@@ -630,10 +630,9 @@ bool dcn32_set_input_transfer_func(struct dc *dc,
+ 			params = &dpp_base->degamma_params;
+ 	}
+ 
+-	result = dpp_base->funcs->dpp_program_gamcor_lut(dpp_base, params);
++	dpp_base->funcs->dpp_program_gamcor_lut(dpp_base, params);
+ 
+-	if (result &&
+-			pipe_ctx->stream_res.opp &&
++	if (pipe_ctx->stream_res.opp &&
+ 			pipe_ctx->stream_res.opp->ctx &&
+ 			hws->funcs.set_mcm_luts)
+ 		result = hws->funcs.set_mcm_luts(pipe_ctx, plane_state);
 -- 
 2.37.2
 
