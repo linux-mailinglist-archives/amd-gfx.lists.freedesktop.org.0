@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A13E95EE5FC
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Sep 2022 21:42:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 130375EE5EB
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Sep 2022 21:42:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A08710E9EE;
-	Wed, 28 Sep 2022 19:42:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A40E010E9C8;
+	Wed, 28 Sep 2022 19:41:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2075.outbound.protection.outlook.com [40.107.93.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B14B10E9B1
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Sep 2022 19:41:40 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2040.outbound.protection.outlook.com [40.107.220.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49A0910E9B1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Sep 2022 19:41:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DnVzszTAplFB5N7hhHqKy+Gd6LGZrZ06kT3leZ/UNmkKep5om8FFayuuqlrU/nIZaoLfduaBQZ+eoRr+XfkxY69arrTNZsj3cVqfcWiAZhpAaUdw+2pHg745p0x/480NVHf82baylHYt+e6Rln80WzNRQT8njlibEywU+70IdZ9tJgLHYcAdLzifWutrbaESmBY0YzBe83T+ArDP2fSSS2/kKyrhB/fjp+U+gRUBp1VR8DjpUioMY898PTExVNRDZAk4rQA7dnNBwuSqRQ40+/6O2Sx2Qf1WC+Y5zb1KwBP1jyX12jxB6N7IrvgmR8fPVWjNqc8isryDF5EN2n9myA==
+ b=P27OYOI0S7IMJwH43vEQeArGrFXGYoJWfAjA42NtrYxARM6UmSX0Ex04bm9QRLwaG5G0NlVBTj3cU763LmU6S5vNbVCVsc2prAGR2Ww1QbzphhPaDiuqSyhB3iYi5NDsPWCsK2cANa3GaLKfSscyQ7+uBBs9irWiSghNeyTKOwHEwlgfW5RX7VJtqHd9L87wyGbKJpRIq9DDIrHVQtvQyc+XAjAsSxIbM34kXCxbaN+Flzdfdez+qUScVorSN+9h2iGXTBlPHlmALDWrKmtO2SsFngwGYykhwABbTNDVVbLrzuyuhuWpu5nH+cHC2XxoGudn6qkjmhRqUbQVj19pwg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ndyYcG4BsQXtk3IVIHLaVsniikTvIzNO0KgyCXtZuks=;
- b=XgT0buOyifl6C2qlm3Cja6z56K42q4IqMOgsx902oh/ajLOh0xZjcaHmJ+YZje3a3cAJQL61g31ZIh3ZDb5aHiAZl/AhMo3/wGT0xqOoVaK0+79vHi0vyLdIhvTGc04Dv5jxmtAw1diDO75P/I44d4A7la06jzzmxCKoHlFQcf/nxcWv9CXHaOiIqrlpyX5HC8U1Xanx1FCJCBpMZb4zybarm08aygyTSRGbX6KccL4iYJN8rKmR5eiLhsXEjcqAelz14vAfoppUWXRgECSj5UFY4q+73JjYL+vspqOCHLNQFyb/Wq2iyThh7m7Prjuhzvybaob8P/etmOmZUBmkAQ==
+ bh=9foskys4jxF6rU4thUFOwFW4h+AT6ODtpjc+WgWZgwk=;
+ b=b8io0juuicpLJkIVRx1q6aVEBScnRqM8x7a2fmIpbyicBMl3rCiS8fBPsDDLotaXDC6L88iBsswvJbAD8BCvYuZ9oD8gg6bevAew5bcQOToZNDaJNYPm41vLPdId4i8T+Xjwv6SlHfFVo20yI8E4+5sjHjOp5mjherucS9xrQPjIJjMxxY4B+lrDTjhgsAJF17XjNZWAKHM+R3/5UZkSLcfXwLHqg0629gUr/GMtIQqFYv3b7wprUH32JIGSpuS2AwMGbQR9CnBWF9hl5fvxnIqpWEowryp28coiNW0Gg4HBn2lhPzISQ3IXzFQgXQW7EiiF4LjtHCe9OjoDIieYrQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ndyYcG4BsQXtk3IVIHLaVsniikTvIzNO0KgyCXtZuks=;
- b=YhUh7X4CqZnkAgKkyYoHHFAAnLekH5Wb8lUNPNX+XFXzaS4ILmS5btfdUvbW7U4HWS3oNrnbcsNEhPpMRWjlOJ4CvSQShJtRq9pAoAedJGw/9BNZDMmdVqJBaVHlxK+ytOk8RDn4N1qaqKqh7Rj3mIaI8PJl/AtZiQu/zJoLnjY=
-Received: from BN9PR03CA0786.namprd03.prod.outlook.com (2603:10b6:408:13f::11)
- by PH7PR12MB7235.namprd12.prod.outlook.com (2603:10b6:510:206::14)
+ bh=9foskys4jxF6rU4thUFOwFW4h+AT6ODtpjc+WgWZgwk=;
+ b=43srubbvM7SS6mslSQA0qexL1jCaL9I/p98S4uY7+vzQm3z86LERwW8fGlTj1vPa+txUsLzXt+QBVTnD8+Y4a8FiVX2e/MWAn8HcWQGC/k9bA8rGknlDGrXorS37LrdYF4kw/d8+J5xAb03jo1a6eUwcNuaAqPgY1Zfigwny748=
+Received: from BN9PR03CA0326.namprd03.prod.outlook.com (2603:10b6:408:112::31)
+ by BY5PR12MB4949.namprd12.prod.outlook.com (2603:10b6:a03:1df::9)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.17; Wed, 28 Sep
- 2022 19:41:38 +0000
-Received: from BN8NAM11FT040.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:13f:cafe::78) by BN9PR03CA0786.outlook.office365.com
- (2603:10b6:408:13f::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.29 via Frontend
- Transport; Wed, 28 Sep 2022 19:41:38 +0000
+ 2022 19:41:40 +0000
+Received: from BN8NAM11FT015.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:112:cafe::d6) by BN9PR03CA0326.outlook.office365.com
+ (2603:10b6:408:112::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.17 via Frontend
+ Transport; Wed, 28 Sep 2022 19:41:39 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,18 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT040.mail.protection.outlook.com (10.13.177.166) with Microsoft SMTP
+ BN8NAM11FT015.mail.protection.outlook.com (10.13.176.90) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5676.17 via Frontend Transport; Wed, 28 Sep 2022 19:41:38 +0000
+ 15.20.5676.17 via Frontend Transport; Wed, 28 Sep 2022 19:41:39 +0000
 Received: from hamza-pc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 28 Sep
- 2022 14:41:35 -0500
+ 2022 14:41:37 -0500
 From: Hamza Mahfooz <hamza.mahfooz@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 29/36] drm/amd/display: Adding missing HDMI ACP SEND register
-Date: Wed, 28 Sep 2022 15:40:21 -0400
-Message-ID: <20220928194028.144879-30-hamza.mahfooz@amd.com>
+Subject: [PATCH 30/36] drm/amd/display: Add missing mask sh for
+ SYM32_TP_SQ_PULSE register
+Date: Wed, 28 Sep 2022 15:40:22 -0400
+Message-ID: <20220928194028.144879-31-hamza.mahfooz@amd.com>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20220928194028.144879-1-hamza.mahfooz@amd.com>
 References: <20220928194028.144879-1-hamza.mahfooz@amd.com>
@@ -68,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT040:EE_|PH7PR12MB7235:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2f19c36c-4cd2-491b-9dac-08daa1897589
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT015:EE_|BY5PR12MB4949:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2af0b4dd-899d-4191-51f1-08daa1897676
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: wB29Cwa1ig+mHbVZMTCsyYzOKKuByNs8W/qn/u/G7TaY8/AojaevJ9n0/tccFTdza/teXbVWRtBR3bpfehgxfvSGhBWpagKkeX/VI3vm7V/9QcFioGKI9QgP8aTd0/7NtoXjnPsoVBqJudhpMra1K9oE43Z0C7GjrEX0zGmq5mDwfn8Ul1fFHwFLf6cMdejNQt43prioxSfvqPR3Fbhqj79cLHAUiTeBEZXtKJCnwdAIvdHR6zsy1oA8qNpxD7qyMgdDSdufcZyZ6zb/71j3lwx0x2MP/tenTByLY6kmI9ZkhX7erQwEOkJ+xURlpJd/8oJ4yMK50GcEYAOS9q/rI8yKiZU++Sl4/MoGyPnJJkymmD7YFWaOOW5HAxrPtOIkf6alJ/8ADM2mz07zrD2ImvXL7rfEV9pm6xUzs211ytZeKMCV/oTwrVvdKMDQ15cyhAUvdiMdUZCOvabkKnGKPKfjLIfU9neU+5o3ZVcauxZFpKh03K9oPYVcVZQx9lFGk0B0R6aWFabxINdIEB9fKyrkKZdoLU/jzGO2rAmrxFOpMtf/O2iyjITtNBJf404RaJZg5ROFwlennp+bDGuqZPHLqgD7R3BaeHBmLpHJcdOQPWbds45lezAUVTOOWujlmK9gvtxVUUKNAJkkLxpaxFtNyq66LbrQkpEUVa16Ao288iPUXOkwLraX9PNEAcB0Ar720o51fqVxz8w5L6gtLso0g+QmXHZMKtIas4Qf2RzL3jgnFkJeqDM79AfHKn2y7sG2Pj2QTfB69dlWUQcLvoPzZkpCd/bujYQt5lXMZWxbdOL/By5cM1xBhumnTjwGOC4MY+AftDEHcDiaKReyCQ==
+X-Microsoft-Antispam-Message-Info: YdIpTt2SLFib65yXpAYQs3PJ5h5a1zeiK9s7unzbO6vDuBHGqsZRY116x5KddSf4AAet+b0MPOr4H112oeo7/gN0eOk0jhIlFxo2Ynrj50TFUwn2Prn+eBs3PdjMTvv5Esdk/GEtzO6w+muH+oeiWUN7lqVuwIN3fV9q/Do6JBh95eBc5dnCrJsqUfH8ow2NbBzZcqS2AcKSSgRxYxA+sceCxgtwfKWBu6rRH4FMcrrdqmfMnirTSdJs3Z0Yqa2+W2KRjequpgInyoIE8R68YVoTSt3wJReztJGd2CMxKAkf2lTFrnC4RRXVEH0RamihjU3Kl6C0stfPY6dSWyBJHCJWbIKZyiwruuojH8P7S9pX+dVCMgTgqEOsVvjg4CEqWOwHt7bPFMXDwSZGWqA5829j89S/eXma3sNrVJ7zZR0Lw2fWbGoZCIeALAGwOO8sG0dNLPyZJJVs31G9qrihw1rJjkyaW1ZEczVKGWgJDmJtJtHNUaPghbNRRPQa+4AxPR62JvXV7NRKes8XZYEIjRo/EFIiY3GEFt7j+viwBrY5SxkA/8ttz4oxA7wgFvB395nzlD2iGfkhxPEnQ+1SW86z+NhFOV2IzkbL9ZK73MFWlrtBaCixZETUv7GfiEFYHS4FM+QN5F5I2fYzEkB2pnLXZwPKJDQI2r3GGNuLE/AzqFLkM1qcmVUH2YMYPM7llxGEu3/6Z6cR2bLEF0kHQEhbxaZs+qiDLjmKfSQNpivJiKD5SoxLzdHQcze8eBOMkO3EPr6qdVk/mOEgv3t49Fz7miOnQ3mrtcvRXrCXJllXPEUoLE+R4OsrhC4FjFZA8MpSZfqLQl/rjhbnzazA2w==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(396003)(346002)(376002)(39860400002)(136003)(451199015)(46966006)(36840700001)(40470700004)(2906002)(36860700001)(6666004)(7696005)(478600001)(36756003)(316002)(82740400003)(81166007)(8676002)(4326008)(70206006)(40460700003)(70586007)(356005)(86362001)(82310400005)(44832011)(41300700001)(40480700001)(8936002)(6916009)(54906003)(5660300002)(16526019)(186003)(2616005)(1076003)(426003)(47076005)(336012)(26005)(16060500005)(36900700001);
+ SFS:(13230022)(4636009)(346002)(136003)(396003)(39860400002)(376002)(451199015)(46966006)(40470700004)(36840700001)(6666004)(6916009)(36756003)(2616005)(36860700001)(316002)(478600001)(54906003)(40480700001)(7696005)(1076003)(186003)(86362001)(2906002)(44832011)(5660300002)(8936002)(8676002)(82740400003)(70206006)(70586007)(426003)(47076005)(82310400005)(41300700001)(4326008)(26005)(336012)(40460700003)(81166007)(16526019)(356005)(16060500005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2022 19:41:38.0266 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2f19c36c-4cd2-491b-9dac-08daa1897589
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2022 19:41:39.5622 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2af0b4dd-899d-4191-51f1-08daa1897676
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT040.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT015.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7235
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4949
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,34 +102,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
  qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- solomon.chiu@amd.com, Aurabindo Pillai <aurabindo.pillai@amd.com>,
- wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
- pavle.kotarac@amd.com
+ Wenjing Liu <wenjing.liu@amd.com>, solomon.chiu@amd.com,
+ Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
+ agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+From: Wenjing Liu <wenjing.liu@amd.com>
 
-Add HDMI ACP bit field definition for DCN32.
+There is a missing register mask in dcn32 causing the hardware
+programming is not executed when programming SQ_num test pattern for
+DP2.
 
-Reviewed-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn32/dcn32_dio_stream_encoder.h | 1 +
+ drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hpo_dp_link_encoder.h | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_dio_stream_encoder.h b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_dio_stream_encoder.h
-index df7e36576ac0..20e5f016a45a 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_dio_stream_encoder.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_dio_stream_encoder.h
-@@ -108,6 +108,7 @@
- 	SE_SF(DIG0_HDMI_VBI_PACKET_CONTROL, HDMI_GC_CONT, mask_sh),\
- 	SE_SF(DIG0_HDMI_VBI_PACKET_CONTROL, HDMI_GC_SEND, mask_sh),\
- 	SE_SF(DIG0_HDMI_VBI_PACKET_CONTROL, HDMI_NULL_SEND, mask_sh),\
-+	SE_SF(DIG0_HDMI_VBI_PACKET_CONTROL, HDMI_ACP_SEND, mask_sh),\
- 	SE_SF(DIG0_HDMI_INFOFRAME_CONTROL0, HDMI_AUDIO_INFO_SEND, mask_sh),\
- 	SE_SF(DIG0_HDMI_INFOFRAME_CONTROL1, HDMI_AUDIO_INFO_LINE, mask_sh),\
- 	SE_SF(DIG0_HDMI_GC, HDMI_GC_AVMUTE, mask_sh),\
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hpo_dp_link_encoder.h b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hpo_dp_link_encoder.h
+index 9db1323e1933..176b1537d2a1 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hpo_dp_link_encoder.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hpo_dp_link_encoder.h
+@@ -47,6 +47,7 @@
+ 	SE_SF(DP_DPHY_SYM320_DP_DPHY_SYM32_TP_CONFIG, TP_PRBS_SEL1, mask_sh),\
+ 	SE_SF(DP_DPHY_SYM320_DP_DPHY_SYM32_TP_CONFIG, TP_PRBS_SEL2, mask_sh),\
+ 	SE_SF(DP_DPHY_SYM320_DP_DPHY_SYM32_TP_CONFIG, TP_PRBS_SEL3, mask_sh),\
++	SE_SF(DP_DPHY_SYM320_DP_DPHY_SYM32_TP_SQ_PULSE, TP_SQ_PULSE_WIDTH, mask_sh),\
+ 	SE_SF(DP_DPHY_SYM320_DP_DPHY_SYM32_SAT_VC0, SAT_STREAM_SOURCE, mask_sh),\
+ 	SE_SF(DP_DPHY_SYM320_DP_DPHY_SYM32_SAT_VC0, SAT_SLOT_COUNT, mask_sh),\
+ 	SE_SF(DP_DPHY_SYM320_DP_DPHY_SYM32_VC_RATE_CNTL0, STREAM_VC_RATE_X, mask_sh),\
 -- 
 2.37.2
 
