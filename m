@@ -2,79 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 583D85EE592
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Sep 2022 21:24:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B3355EE5B5
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Sep 2022 21:31:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76E3010E8C1;
-	Wed, 28 Sep 2022 19:24:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D48DD10E935;
+	Wed, 28 Sep 2022 19:31:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84BC910E83E;
- Wed, 28 Sep 2022 19:18:32 +0000 (UTC)
-Received: from dimapc.. (unknown [109.252.125.248])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 6813066022D1;
- Wed, 28 Sep 2022 20:18:28 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1664392711;
- bh=MMwSk+z9u32nBQDdb29EaZu6/2HmJAl3BYF6699Cp9U=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=fQUna9UItfYVsI3YmLwjTDdh8xo0j4vWh3nEEHIXLO+Q28UjEw4JDSH0fKuwkBfAy
- e6umLKzJtQYJ/RWTcHmVLVhRiYyKhIIMQj/SPQXMBQWU7TMhsWX8FjzD+II7DZQUlh
- j/FIlzVEgCCLT9oK3h02wHhGzTLMIjHoIcKQJn/zXU82t+zx5FNcI9jKCFN9EXSTjR
- Wq8uWNjcM0abz6tHTR/fuAtYWhB6ZWXSGo+wmDq4/vAjfaM+aleU8vFShl/XFS4bt4
- 8uBrNvpwU3TPuaxe6ElzhUmB8R0jvloiQEwe8FhDZxH/rLV+JZ2hibZ+lCmTZBFvsv
- AUfI4L1UKmQSg==
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-To: David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- Daniel Stone <daniel@fooishbar.org>,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rob Clark <robdclark@gmail.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Tomasz Figa <tfiga@chromium.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas_os@shipmail.org>,
- Qiang Yu <yuq825@gmail.com>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Amol Maheshwari <amahesh@qti.qualcomm.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- Leon Romanovsky <leon@kernel.org>, Juergen Gross <jgross@suse.com>,
- Stefano Stabellini <sstabellini@kernel.org>,
- Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
- Tomi Valkeinen <tomba@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Lucas Stach <l.stach@pengutronix.de>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Ruhl Michael J <michael.j.ruhl@intel.com>
-Subject: [PATCH v6 21/21] dma-buf: Remove obsoleted internal lock
-Date: Wed, 28 Sep 2022 22:16:00 +0300
-Message-Id: <20220928191600.5874-22-dmitry.osipenko@collabora.com>
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2060.outbound.protection.outlook.com [40.107.220.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B417B10E935
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Sep 2022 19:31:00 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZXf/a6BilwrB4OD4BnpJIMOc6B4/EWBxFAE8MbYSITG9EQ/o78wD2wEwT/x0t1j0iVBevFCw90lv4OmymEYmzsVRHVG+n9s8mNFiMfeWJYRoGDz4VMV/4O0ho4zXysszqwKfSjxqZN2sz07rh1+8lEjyxhSYjeq92M0lrfLh6D1yJbM1GfcxrWT9euossK8OImnxVhza0WZSvJb8ZGqpsaU4IHT0KeG5fcJTJZIVgwP/QPWIq7ExJGSHr8zUoSKhtKqjld/xiAoby3h7beijMndB6F+p45fIa5RLBKICTO2nxfPZB9RpK6kfIoEuqJaj1WjoFJAjmzEQr5TutbYShw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UYYVgfwidGj2zMLFo/NZdYFEvbR2SPraIUZ57Yn3uds=;
+ b=AtNY/YtS4hc3ro0y90Dvmx1ldOJGAmzaOBWEvtyUZtRSb1nXyZMJkxJjOcsGPyocM/16UPavtpVp+OQPeEIMZ1xYQcByGiEpFmceC4Wh07F3qxQphpz0OuhW3tXYpBdIalkhjdt3lm7WTVfU0B2IKCVtP21XX2RGNJV/kPe5pPFbshiKajA+t4M3JTATCrQot0ymkb8d+h3XarHtIB3GDiKQ9I7rp1UNvl4wqtRUiQZ2z216fpgXsELG9oe6LJ+IdNtIVsWgbHzukDdqYi9/2aQVDIjRnhSqZlhxoSp2LIyE1qFvLGylaiqyA5xBm+okedKXYBme0R1ZZu4uL9P2GA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UYYVgfwidGj2zMLFo/NZdYFEvbR2SPraIUZ57Yn3uds=;
+ b=Sfe4K9MY1scKA3tsORCNjWC65mHKDfNQt0lSet/eDuE/5clNOZTNX8UQo9++clhmyNYZJBClSnZXqnGRMZOSuohInsE9WPgbEQfnpCZCPKRV8phgGb7kdY4A5tZ25sFudcQkw4+f4tk1o9c19d88Ovr7IcnvIjM04+2SfZbkMr4=
+Received: from MW3PR06CA0010.namprd06.prod.outlook.com (2603:10b6:303:2a::15)
+ by DM6PR12MB4220.namprd12.prod.outlook.com (2603:10b6:5:21d::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.26; Wed, 28 Sep
+ 2022 19:30:58 +0000
+Received: from CO1NAM11FT032.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:2a:cafe::88) by MW3PR06CA0010.outlook.office365.com
+ (2603:10b6:303:2a::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.23 via Frontend
+ Transport; Wed, 28 Sep 2022 19:30:58 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT032.mail.protection.outlook.com (10.13.174.218) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5676.17 via Frontend Transport; Wed, 28 Sep 2022 19:30:57 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 28 Sep
+ 2022 14:30:56 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu/gfx10: ignore rlc ucode validation
+Date: Wed, 28 Sep 2022 15:30:43 -0400
+Message-ID: <20220928193043.5729-1-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220928191600.5874-1-dmitry.osipenko@collabora.com>
-References: <20220928191600.5874-1-dmitry.osipenko@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 28 Sep 2022 19:24:04 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT032:EE_|DM6PR12MB4220:EE_
+X-MS-Office365-Filtering-Correlation-Id: 75518449-e2c4-4083-a261-08daa187f803
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: FhrVM5x/JThZ6iV+0mNq4ef9OdXDD+jYI6KuRbHjf8zXZiPej/OpZPBAfYpE8qDqkwxDsHkc0RZaW132qCXlUSqhRiEr0sHAbSsyxZgJrUdTkFlKW4rigdTBDPm9kmAyVB2SC9Od+prl9N0yqJx7Ff2EEdbXpUW97lMYSRhO2M0Y99M7w94quxOJ14hkOeOxuCRRkWItpxPFgBHaVlO3SncR9kZnVRZ3riA1GUw17ZsM1FhAemS0idh4FIkknJrwBlx+9iajtTMDhRRl1PrhADeNUjoWdK8SLGOp1EYjcXYzHxlZTZeBK1hEgFzyVz5NlcpSTMkwuFMUFJDAPEa2abrKTOJpTmXhayBFmVRKqiqO/1FR5eTe5FaDO/4BHSQm0fDR5H+VGbSx6zcEdTjAGOuKp9l4vWgCSljGsJ3oMWpD89qUQbHHe3skYBBl6Qno0Neq8cqaUDDm+aamY9ITTzlicSs6HsRwUrSkhiYzkw0zKHCqOvXOBewClazkTd6r23hxHpycP7Usyj46YkWllcThAmC/9p3NbehIHKCUJ35S5t4AKg9zHoD5TQn83lTjz0TJIILblCuCEW46cDgYKyczHx+Eu/445o1YMcVe9paMK7Vkzl4CLl5TrxyxjmtmQ1LscYIEu2Uvb5ysllKB3tQo5cMkiBCuUD4KwoeIndiwnRR3JWIE57Opn7pqOV+sRuVG9rlPLz5ZYfHqHFhLMntaDa1RsoUhcYnT2haTKw7a8Ib90p5rL6io6ayx7dnG
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230022)(4636009)(39860400002)(136003)(376002)(396003)(346002)(451199015)(40470700004)(46966006)(36840700001)(36756003)(82310400005)(356005)(5660300002)(2906002)(316002)(8936002)(41300700001)(70206006)(86362001)(4326008)(426003)(70586007)(6916009)(47076005)(40480700001)(186003)(40460700003)(16526019)(478600001)(83380400001)(336012)(1076003)(7696005)(82740400003)(36860700001)(81166007)(6666004)(26005)(966005)(2616005)(8676002)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2022 19:30:57.8116 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 75518449-e2c4-4083-a261-08daa187f803
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT032.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4220
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,116 +97,40 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- Dmitry Osipenko <digetx@gmail.com>, kernel@collabora.com,
- linux-media@vger.kernel.org
+Cc: Alex Deucher <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The internal dma-buf lock isn't needed anymore because the updated
-locking specification claims that dma-buf reservation must be locked
-by importers, and thus, the internal data is already protected by the
-reservation lock. Remove the obsoleted internal lock.
+There are apparently ucode versions in the wild with incorrect
+sizes specified in the header.  We never checked this before,
+so don't start now.
 
-Acked-by: Sumit Semwal <sumit.semwal@linaro.org>
-Acked-by: Christian König <christian.koenig@amd.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
-Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/2170
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/dma-buf/dma-buf.c | 14 ++++----------
- include/linux/dma-buf.h   |  9 ---------
- 2 files changed, 4 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
-index e04d504441a5..82f72b5647f8 100644
---- a/drivers/dma-buf/dma-buf.c
-+++ b/drivers/dma-buf/dma-buf.c
-@@ -657,7 +657,6 @@ struct dma_buf *dma_buf_export(const struct dma_buf_export_info *exp_info)
- 
- 	dmabuf->file = file;
- 
--	mutex_init(&dmabuf->lock);
- 	INIT_LIST_HEAD(&dmabuf->attachments);
- 
- 	mutex_lock(&db_list.lock);
-@@ -1503,7 +1502,7 @@ EXPORT_SYMBOL_NS_GPL(dma_buf_mmap, DMA_BUF);
- int dma_buf_vmap(struct dma_buf *dmabuf, struct iosys_map *map)
- {
- 	struct iosys_map ptr;
--	int ret = 0;
-+	int ret;
- 
- 	iosys_map_clear(map);
- 
-@@ -1515,28 +1514,25 @@ int dma_buf_vmap(struct dma_buf *dmabuf, struct iosys_map *map)
- 	if (!dmabuf->ops->vmap)
- 		return -EINVAL;
- 
--	mutex_lock(&dmabuf->lock);
- 	if (dmabuf->vmapping_counter) {
- 		dmabuf->vmapping_counter++;
- 		BUG_ON(iosys_map_is_null(&dmabuf->vmap_ptr));
- 		*map = dmabuf->vmap_ptr;
--		goto out_unlock;
-+		return 0;
- 	}
- 
- 	BUG_ON(iosys_map_is_set(&dmabuf->vmap_ptr));
- 
- 	ret = dmabuf->ops->vmap(dmabuf, &ptr);
- 	if (WARN_ON_ONCE(ret))
--		goto out_unlock;
-+		return ret;
- 
- 	dmabuf->vmap_ptr = ptr;
- 	dmabuf->vmapping_counter = 1;
- 
- 	*map = dmabuf->vmap_ptr;
- 
--out_unlock:
--	mutex_unlock(&dmabuf->lock);
--	return ret;
-+	return 0;
- }
- EXPORT_SYMBOL_NS_GPL(dma_buf_vmap, DMA_BUF);
- 
-@@ -1581,13 +1577,11 @@ void dma_buf_vunmap(struct dma_buf *dmabuf, struct iosys_map *map)
- 	BUG_ON(dmabuf->vmapping_counter == 0);
- 	BUG_ON(!iosys_map_is_equal(&dmabuf->vmap_ptr, map));
- 
--	mutex_lock(&dmabuf->lock);
- 	if (--dmabuf->vmapping_counter == 0) {
- 		if (dmabuf->ops->vunmap)
- 			dmabuf->ops->vunmap(dmabuf, map);
- 		iosys_map_clear(&dmabuf->vmap_ptr);
- 	}
--	mutex_unlock(&dmabuf->lock);
- }
- EXPORT_SYMBOL_NS_GPL(dma_buf_vunmap, DMA_BUF);
- 
-diff --git a/include/linux/dma-buf.h b/include/linux/dma-buf.h
-index f11b5bbc2f37..6fa8d4e29719 100644
---- a/include/linux/dma-buf.h
-+++ b/include/linux/dma-buf.h
-@@ -326,15 +326,6 @@ struct dma_buf {
- 	/** @ops: dma_buf_ops associated with this buffer object. */
- 	const struct dma_buf_ops *ops;
- 
--	/**
--	 * @lock:
--	 *
--	 * Used internally to serialize list manipulation, attach/detach and
--	 * vmap/unmap. Note that in many cases this is superseeded by
--	 * dma_resv_lock() on @resv.
--	 */
--	struct mutex lock;
--
- 	/**
- 	 * @vmapping_counter:
- 	 *
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 18809c3da178..af94ac580d3e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -4061,9 +4061,14 @@ static int gfx_v10_0_init_microcode(struct amdgpu_device *adev)
+ 		err = request_firmware(&adev->gfx.rlc_fw, fw_name, adev->dev);
+ 		if (err)
+ 			goto out;
++		/* don't check this.  There are apparently firmwares in the wild with
++		 * incorrect size in the header
++		 */
+ 		err = amdgpu_ucode_validate(adev->gfx.rlc_fw);
+ 		if (err)
+-			goto out;
++			dev_dbg(adev->dev,
++				"gfx10: amdgpu_ucode_validate() failed \"%s\"\n",
++				fw_name);
+ 		rlc_hdr = (const struct rlc_firmware_header_v2_0 *)adev->gfx.rlc_fw->data;
+ 		version_major = le16_to_cpu(rlc_hdr->header.header_version_major);
+ 		version_minor = le16_to_cpu(rlc_hdr->header.header_version_minor);
 -- 
 2.37.3
 
