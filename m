@@ -1,121 +1,45 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD2005EE11F
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Sep 2022 17:59:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0EC95EE299
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Sep 2022 19:09:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19E8810E33D;
-	Wed, 28 Sep 2022 15:59:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B81F210E47E;
+	Wed, 28 Sep 2022 17:09:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2058.outbound.protection.outlook.com [40.107.244.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8204B10E33D
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Sep 2022 15:59:46 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iI3ceChGTOdwf/rw0DyBnA41JoJ2BY3eeXCKkBs0g0UFedZRLcldSq1DIxqXUWF75SMQoLNeu9Zmqq9JZVac/lhsXveyPIRz4/2uyfI67zR1Nf3cQL7TWKC97f5MmIByf0UWyXm7VmddXhRfNj7DASMrjGIoYBcVPGb02dp0cchEW6dsfiXcx8E9b8lDMtMr/mgIIDQpfzQMDr3VG0JO2XiS2HYYeFOCIgKTCSI01blD+zh2d+eJxcen2eNatuARE/z30h8q+TeSsPH6IVPIzNa3TBKMyS/lb2zuoua6i0F2U90EDwxhS8pYEsM4N+fydAbrEOGQNzQVcaS8xramLg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ntVaQ0QVhvT/fzUbB1G+pSBG68Dargkm3gsFDngwbsw=;
- b=B1RSonSy7urjFXRZQDZSRHGQ3QRbJFOtG+O3+HK8xqXo86gvvP4xOPBThymcSWWJODuEvKpZC2DYTHZ0e8Odl/32SAozwkdVN+erQ6yDcxMqvuVt81RIZOPKV9+YKoCY0cwNaIhp30SIbSj42WUTVkZxU3QGkdhL5NcBpA3cI3TEagoujVnZ0U5V2W0qf3o5p6Ju4VkpZIVv1GqkZzv43xclo97E0bcQ9RVszLU1QbaNFMRSWE7oj6SL1B7QbmSGssQFN6ouX7s0kSl26bwzI5sqjEiulTAlbpgE8JiORVn0VpebdlrYPVoAknzhAdjSpGQO3li9xADuPP1Y9wIfQw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ntVaQ0QVhvT/fzUbB1G+pSBG68Dargkm3gsFDngwbsw=;
- b=nKdcP+kNE8rOU6JOFEBUXmTLxh/iJnyeE40ppZkzX02FLQ/0Ha6i5nAojFn+sYGG3WhUNWDRzMwtSWTFeJXe/7Ax0SR3A+FuCJhcDLjdHGsXk8qC0cbRSzpM37ZW54R+in6G3IsiAHruQjh8mFibVVKIBGu5bf35E+Aeu1IhaXA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
- by DM6PR12MB4386.namprd12.prod.outlook.com (2603:10b6:5:28f::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.17; Wed, 28 Sep
- 2022 15:59:44 +0000
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::3de4:456f:800d:e013]) by BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::3de4:456f:800d:e013%5]) with mapi id 15.20.5676.017; Wed, 28 Sep 2022
- 15:59:44 +0000
-Message-ID: <dd1094f9-439c-7ad0-4244-eff67774a4be@amd.com>
-Date: Wed, 28 Sep 2022 11:59:42 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v4 1/1] drm/amdkfd: Track unified memory when switching
- xnack mode
-Content-Language: en-US
-To: Philip Yang <yangp@amd.com>, Philip Yang <Philip.Yang@amd.com>,
- amd-gfx@lists.freedesktop.org
-References: <20220927154348.20274-1-Philip.Yang@amd.com>
- <b3ad27b5-c101-3e73-cc30-fcb095587c62@amd.com>
- <a2efc2bd-59e9-2e15-40bc-4c0faadc9b01@amd.com>
-From: Felix Kuehling <felix.kuehling@amd.com>
-In-Reply-To: <a2efc2bd-59e9-2e15-40bc-4c0faadc9b01@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YT3PR01CA0132.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:83::16) To BN9PR12MB5115.namprd12.prod.outlook.com
- (2603:10b6:408:118::14)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|DM6PR12MB4386:EE_
-X-MS-Office365-Filtering-Correlation-Id: ec8e817b-704b-4858-bdf6-08daa16a7607
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: M4rziZJczFJYaQvITu03wpvFo7i731qEc8CkjamMS7XFJAGUhLgDLaO/FKZ9CqUW8kzi0LjkOzf5zs48ptXZ+W0taERPITwZjP7u5SxrW//sifs1ojtUB9PkO93Bv6ARjY9exhiIEIz42XXm8JF4mz8Wi542kqE0Q2BEqO6Zjk/HJS5cMc49wZ7xQvN+5GAR2S/CPDUcaBzGDiO0nQ+j/BsXsVgaJ06ri6eQx8h892z6+5NZbM9kjry3zrIQpKo+CuN6yZZxznbfVgvyJs3JRy9mYDsTCVFSYpHdZEPO0JrZ3IjID/TaDlIMccFmL/w54DH6UICpLLePp/dKmUwqj5TSsqTizn91VaHbxKsa11PzqZ+oDbUlSUNWYLCl6vmO+JLpBnh8pwBnU4nZY9vgTENz1E3icGVtGXzyDdxoR9cNG0cqcGVZvWwYDPD9JuIQw1TNr/im6/LAnnG/zgKS8dOMT3ehdSJO3qClVPRlvH+l9O7CiYr+pfjmcaZQiKYmsGRAVUDHxdsu5AC4ijbQmFPfqQsHwjKSnaL+E/8MPbf2XlPHqxPMiu24jtcTG5r+z7mSJHXrhfFJHj221iyinSnDS7guxGHz8mJG5Hx731PD43bb8nmSxzWy/jVHw19aZ1Y36xdKR3A5myXocacsBPzCzRkyxLuRjP1tNI+tODVdSHlW42U7o8W2ZfOzecSyu/Dm0VzRMFwXvP+6J5z2IyiS2Up8FSsJGih8poxvWeB3nsKi3InOcJGpr6wDhFRi72kmT01bEbuhz9MIa+HfV0rxXAAAB7IlVKIOfqKX/MI=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(4636009)(346002)(136003)(366004)(39860400002)(396003)(376002)(451199015)(83380400001)(8936002)(8676002)(66476007)(66556008)(66946007)(31686004)(6486002)(478600001)(186003)(110136005)(2616005)(316002)(6512007)(38100700002)(41300700001)(26005)(36756003)(2906002)(44832011)(31696002)(86362001)(5660300002)(53546011)(6506007)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eVlLb0wvSVVzcHYzVHJkd293MkZuSFQ4bEprR2VrWVZMTjVmd3lzM0xwUm53?=
- =?utf-8?B?c3NvaDEvRDE3SUkwd0RQWngrSlR2bDVyaHJ3aGh2SVBhZ2F5L2VjMXBjdlNC?=
- =?utf-8?B?UFhraENzdk9HcTV4Q0g2MHJsU2IrVWUveERwenI4Y3FiRGFSalFlZ29TYUJO?=
- =?utf-8?B?SGtsNlArbExOblk4bWxIeTZGTm9MbjdoaTI5R2FLV0JGblV4eDVqb1l0cE5h?=
- =?utf-8?B?em5EZHZtWGJtV0tPdWptMHpaT25mOG93L2hWSEt0MythV1pKZXduSmFPRjgx?=
- =?utf-8?B?QXduNW9NMy9Kc0hBRnFWWW03dHhQM01veU5lcEI4M2dVZkVLcjNLazhpYWdX?=
- =?utf-8?B?UUJaK3RQSkJSSzBWVnZqbXlPOUNLdXhST29ycnh5TW92NFlySzhkdFljaFd3?=
- =?utf-8?B?ZUI3VURROGdyNmFrLy9rMkloeVh2eW1wWGJoM0NCaFp5a2ZjRGtUTFdLU3VT?=
- =?utf-8?B?eGlZcDU3OERSWHdtNmMwZCtkWFUwSHVtZ29CcXFVOUdrOWZDYmlSNUFNL0oz?=
- =?utf-8?B?cVNzY2lSY0ZkZXNIcVdUZnZOb3dJNm1menVHNUd0UnBwd2s5dW0xRE1kNEkw?=
- =?utf-8?B?WGhicysyYUZaWWxBV24yOW9LYVp4RzB5K0FMeEc3bjExWHRoSHBmMHdaYU5k?=
- =?utf-8?B?NThva3ZqSmY0cnA5V2pHeC9ucUdJemNQRnNja1BLZHA2MGFDY3dqNENwaGpz?=
- =?utf-8?B?NmZhVHpJcVdKOHRuWkNYTWZCbXdJaWRjdlVyZzkyUGY4TDY2SDlwQTh0UkVu?=
- =?utf-8?B?blhBbTZieDhqMGkvMnBrN0JaQ0lBTUxJYkM0Sk1VeG54ZGhORjR0b1lPOHRE?=
- =?utf-8?B?d1hFTGxCWmdGbytTMGJiSzl3Rk9NeU96NzVjR3hDZmZDaE9zTVV5eS9vVUFM?=
- =?utf-8?B?U1ErM1A3bWNzVkpGWWl0V1NPb2N6aVUrZUxNcUplNEU2NXBxcTAzMWN1SmJ0?=
- =?utf-8?B?cWRCOUpDWU93MUlEM3BhTTJ1NS8xTXExc1ZCWVZ4bnovNXp2bitEWEwwbG1Z?=
- =?utf-8?B?eVhIZSt2T0Q3M2kranYvUHM2T2FDNHR3QlJCa0g0S0pNcHpNMlNXQzR1WGky?=
- =?utf-8?B?YVQxNXgyYkU0QTg5ZEhZK3VOVDNVZ0t3ZFNpY2kxZHVxV25xVFl5ZnkxL2lW?=
- =?utf-8?B?TmhDTTJnb0JSdG9oMTk4bWhzd2YxOE05QXNVMnBkZThpSkJDeDlMaXFhQlZw?=
- =?utf-8?B?OXZMeVMzTHNsNXI3TDdqVlZRS0p2c05kUmwwUDI2WGFEam5oOGdiaThkZ2Rh?=
- =?utf-8?B?eWFPNGRlL0Ntc2tpUDJNVFU1dm93c0FDeWJFajZoOS95UXhiQkw5bGZkMjdL?=
- =?utf-8?B?WVlld1IveTN6cE10UU1zdVFwMFIrcDFwMEFQZ3pTbHRuYjNKSlFLelgrWUxV?=
- =?utf-8?B?WnY0MzBhUjBzNWdwdHVtdDRNaWwwQ3YydmJRbmFUcCsxWGJJTHc3RGMzL01z?=
- =?utf-8?B?clV5dTI3RWJPT0owSVJWS2YwTVlaRXpkaWdmaDRzKzJRTVlWMW1XbEZ4d0s1?=
- =?utf-8?B?L204cFZvTExJakF5bnE4Q1dKN3d6TUJiUG1SN3B1bWJ2NzcyUlg0RTRCc2Ez?=
- =?utf-8?B?RkoyM0gyQkFJeEJUT3REYVptUHlMOHF6blNxQmxqVk1qcHRrNDZpOWRmSkYv?=
- =?utf-8?B?UzhZcTg3NllDSjVjZU9BWkR1K2dreThrWFJ4L0kva3lTNVExSkhLWHZMRVFI?=
- =?utf-8?B?dm1PYnJvLzI0bXpZTXpIQS9GQmJNK2JsazNXZFl0eFFlNmhPa2JIN0hsZjhF?=
- =?utf-8?B?UEV2S3h1UmNOQ2k2cFQ2MGxROVg3eUZoUHVNemNreUpnU2hoZUN4MnAwd1l0?=
- =?utf-8?B?TjFlcGZsN0lwU3dlR1VPUjN1bXAvUzZYNkhyOU8vcWhzNVBrZE9KOGZhSDYw?=
- =?utf-8?B?dFFHMnIrWXROSlY3UkZFS3cwS2VOa2U0NFhQUDJMWm1GbnQxUGtWNnFSeUJO?=
- =?utf-8?B?c2FOSWhxbjR3OXBpSWxWRGJ3YzR3djYwbmJhQWhpc1REaldjYTBkODZjaWZC?=
- =?utf-8?B?cWZWSUhsRjRSZUlBNDE4Sm54SmpDdnl5cHlPOEVwcWpuUnVtUWZlTExsS2RB?=
- =?utf-8?B?Q3U0N0RSRStZdU5pU3ZjcmtaQy82bU1na1BLZ0o5ZUwrZ1p0N0pka2FKWENn?=
- =?utf-8?Q?DNUWPH8Np4uofWUnGL7fPBFre?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ec8e817b-704b-4858-bdf6-08daa16a7607
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2022 15:59:44.7045 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uc3cmxQe401vdO+4H3BwDcH1qDKdVffJa39/wFcB7QtsJ1V/f/AcQG1Scs7fmGMnt0hV8tjsmREOMG76eYBcSg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4386
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 547A610E9FA;
+ Wed, 28 Sep 2022 15:10:29 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id B0924B81FA2;
+ Wed, 28 Sep 2022 15:10:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55C69C433D6;
+ Wed, 28 Sep 2022 15:10:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
+ s=korg; t=1664377826;
+ bh=+HOKwcbw1B0WEYgcZtf8z/9nr2ZbysRiKOhYfv9YVTE=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=IS5sTNnyxfit75fuP9+CKivhPVfr5MuCYX5xkSMvaIHcwj3YlHPHGiuReVZRtFCkO
+ k/7JXAzqhj8lkEcOv3/FuRDU4yiHUhnPML+lIIGP/0mxsk6qSXMxUXyYBHHEAPpFJk
+ OVh6CdYsxMDrs090m2k5tYCYUY4q6QAKNz+LjBGQ=
+Date: Wed, 28 Sep 2022 08:10:17 -0700
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Alistair Popple <apopple@nvidia.com>
+Subject: Re: [PATCH v2 8/8] hmm-tests: Add test for migrate_device_range()
+Message-Id: <20220928081017.3bf0b67d34a674b0a6df6b0d@linux-foundation.org>
+In-Reply-To: <a73cf109de0224cfd118d22be58ddebac3ae2897.1664366292.git-series.apopple@nvidia.com>
+References: <cover.60659b549d8509ddecafad4f498ee7f03bb23c69.1664366292.git-series.apopple@nvidia.com>
+ <a73cf109de0224cfd118d22be58ddebac3ae2897.1664366292.git-series.apopple@nvidia.com>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Wed, 28 Sep 2022 17:09:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,218 +51,279 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Alex Sierra <alex.sierra@amd.com>, Ralph Campbell <rcampbell@nvidia.com>,
+ nouveau@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org, amd-gfx@lists.freedesktop.org,
+ Jason Gunthorpe <jgg@nvidia.com>, John Hubbard <jhubbard@nvidia.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 2022-09-28 um 11:55 schrieb Philip Yang:
->
-> On 2022-09-27 14:58, Felix Kuehling wrote:
->> Am 2022-09-27 um 11:43 schrieb Philip Yang:
->>> Unified memory usage with xnack off is tracked to avoid oversubscribe
->>> system memory, with xnack on, we don't track unified memory usage to
->>> allow memory oversubscribe. When switching xnack mode from off to on,
->>> subsequent free ranges allocated with xnack off will not unreserve
->>> memory. When switching xnack mode from on to off, subsequent free 
->>> ranges
->>> allocated with xnack on will unreserve memory. Both cases cause memory
->>> accounting unbalanced.
->>>
->>> When switching xnack mode from on to off, need reserve already 
->>> allocated
->>> svm range memory. When switching xnack mode from off to on, need
->>> unreserve already allocated svm range memory.
->>>
->>> v4: Handle reservation memory failure
->>> v3: Handle switching xnack mode race with svm_range_deferred_list_work
->>> v2: Handle both switching xnack from on to off and from off to on cases
->>>
->>> Signed-off-by: Philip Yang <Philip.Yang@amd.com>
->>> ---
->>>   drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 26 ++++++++++----
->>>   drivers/gpu/drm/amd/amdkfd/kfd_svm.c     | 44 
->>> +++++++++++++++++++++++-
->>>   drivers/gpu/drm/amd/amdkfd/kfd_svm.h     |  2 +-
->>>   3 files changed, 64 insertions(+), 8 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c 
->>> b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
->>> index 56f7307c21d2..5feaba6a77de 100644
->>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
->>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
->>> @@ -1584,6 +1584,8 @@ static int kfd_ioctl_smi_events(struct file 
->>> *filep,
->>>       return kfd_smi_event_open(pdd->dev, &args->anon_fd);
->>>   }
->>>   +#if IS_ENABLED(CONFIG_HSA_AMD_SVM)
->>> +
->>>   static int kfd_ioctl_set_xnack_mode(struct file *filep,
->>>                       struct kfd_process *p, void *data)
->>>   {
->>> @@ -1594,22 +1596,29 @@ static int kfd_ioctl_set_xnack_mode(struct 
->>> file *filep,
->>>       if (args->xnack_enabled >= 0) {
->>>           if (!list_empty(&p->pqm.queues)) {
->>>               pr_debug("Process has user queues running\n");
->>> -            mutex_unlock(&p->mutex);
->>> -            return -EBUSY;
->>> +            r = -EBUSY;
->>> +            goto out_unlock;
->>>           }
->>> -        if (args->xnack_enabled && !kfd_process_xnack_mode(p, true))
->>> +
->>> +        if (p->xnack_enabled == args->xnack_enabled)
->>> +            goto out_unlock;
->>> +
->>> +        if (args->xnack_enabled && !kfd_process_xnack_mode(p, true)) {
->>>               r = -EPERM;
->>> -        else
->>> -            p->xnack_enabled = args->xnack_enabled;
->>> +            goto out_unlock;
->>> +        }
->>> +
->>> +        r = svm_range_switch_xnack_reserve_mem(p, 
->>> args->xnack_enabled);
->>>       } else {
->>>           args->xnack_enabled = p->xnack_enabled;
->>>       }
->>> +
->>> +out_unlock:
->>>       mutex_unlock(&p->mutex);
->>>         return r;
->>>   }
->>>   -#if IS_ENABLED(CONFIG_HSA_AMD_SVM)
->>>   static int kfd_ioctl_svm(struct file *filep, struct kfd_process 
->>> *p, void *data)
->>>   {
->>>       struct kfd_ioctl_svm_args *args = data;
->>> @@ -1629,6 +1638,11 @@ static int kfd_ioctl_svm(struct file *filep, 
->>> struct kfd_process *p, void *data)
->>>       return r;
->>>   }
->>>   #else
->>> +static int kfd_ioctl_set_xnack_mode(struct file *filep,
->>> +                    struct kfd_process *p, void *data)
->>> +{
->>> +    return -EPERM;
->>> +}
->>>   static int kfd_ioctl_svm(struct file *filep, struct kfd_process 
->>> *p, void *data)
->>>   {
->>>       return -EPERM;
->>> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c 
->>> b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
->>> index cf5b4005534c..13d2867faa0c 100644
->>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
->>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
->>> @@ -278,7 +278,7 @@ static void svm_range_free(struct svm_range 
->>> *prange, bool update_mem_usage)
->>>       svm_range_free_dma_mappings(prange);
->>>         if (update_mem_usage && !p->xnack_enabled) {
->>> -        pr_debug("unreserve mem limit: %lld\n", size);
->>> +        pr_debug("unreserve prange 0x%p size: 0x%llx\n", prange, 
->>> size);
->>>           amdgpu_amdkfd_unreserve_mem_limit(NULL, size,
->>>                       KFD_IOC_ALLOC_MEM_FLAGS_USERPTR);
->>>       }
->>> @@ -2956,6 +2956,48 @@ svm_range_restore_pages(struct amdgpu_device 
->>> *adev, unsigned int pasid,
->>>       return r;
->>>   }
->>>   +int
->>> +svm_range_switch_xnack_reserve_mem(struct kfd_process *p, bool 
->>> xnack_enabled)
->>> +{
->>> +    struct svm_range *prange;
->>> +    uint64_t reserved_size = 0;
->>> +    uint64_t size;
->>> +    int r = 0;
->>> +
->>> +    pr_debug("switching xnack from %d to %d\n", p->xnack_enabled, 
->>> xnack_enabled);
->>> +
->>> +    mutex_lock(&p->svms.lock);
->>> +
->>> +    /* Change xnack mode must be inside svms lock, to avoid race with
->>> +     * svm_range_deferred_list_work unreserve memory in parallel.
->>> +     */
->>> +    p->xnack_enabled = xnack_enabled;
->>
->> This should only be set on a successful return.
->>
->>
->>> +
->>> +    list_for_each_entry(prange, &p->svms.list, list) {
->>> +        size = (prange->last - prange->start + 1) << PAGE_SHIFT;
->>> +        pr_debug("svms 0x%p %s prange 0x%p size 0x%llx\n", &p->svms,
->>> +             xnack_enabled ? "unreserve" : "reserve", prange, size);
->>> +
->>> +        if (xnack_enabled) {
->>> +            amdgpu_amdkfd_unreserve_mem_limit(NULL, size,
->>> +                        KFD_IOC_ALLOC_MEM_FLAGS_USERPTR);
->>> +        } else {
->>> +            r = amdgpu_amdkfd_reserve_mem_limit(NULL, size,
->>> +                        KFD_IOC_ALLOC_MEM_FLAGS_USERPTR);
->>> +            if (r)
->>> +                break;
->>> +            reserved_size += size;
->>> +        }
->>> +    }
->>> +
->>> +    if (r)
->>> +        amdgpu_amdkfd_unreserve_mem_limit(NULL, reserved_size,
->>> +                        KFD_IOC_ALLOC_MEM_FLAGS_USERPTR);
->>> +
->>> +    mutex_unlock(&p->svms.lock);
->>> +    return r;
->>> +}
->>> +
->>>   void svm_range_list_fini(struct kfd_process *p)
->>>   {
->>>       struct svm_range *prange;
->>> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.h 
->>> b/drivers/gpu/drm/amd/amdkfd/kfd_svm.h
->>> index 012c53729516..e58690376e17 100644
->>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.h
->>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.h
->>> @@ -203,11 +203,11 @@ void svm_range_list_lock_and_flush_work(struct 
->>> svm_range_list *svms, struct mm_s
->>>   void svm_range_bo_unref_async(struct svm_range_bo *svm_bo);
->>>     void svm_range_set_max_pages(struct amdgpu_device *adev);
->>> +int svm_range_switch_xnack_reserve_mem(struct kfd_process *p, bool 
->>> xnack_enabled);
->>>     #else
->>>     struct kfd_process;
->>> -
->> Unrelated whitespace change.
->>
->> With these two issues fixed, this patch is
->
-> Thanks for the review. I realize we should handle prange->child_list 
-> when switching xnack mode and reserve memory too
+On Wed, 28 Sep 2022 22:01:22 +1000 Alistair Popple <apopple@nvidia.com> wrote:
 
-Alternatively, you could flush the deferred work before doing the memory 
-accounting. Maybe that would be a more general solution.
+> @@ -1401,22 +1494,7 @@ static int dmirror_device_init(struct dmirror_device *mdevice, int id)
+>  
+>  static void dmirror_device_remove(struct dmirror_device *mdevice)
+>  {
+> -	unsigned int i;
+> -
+> -	if (mdevice->devmem_chunks) {
+> -		for (i = 0; i < mdevice->devmem_count; i++) {
+> -			struct dmirror_chunk *devmem =
+> -				mdevice->devmem_chunks[i];
+> -
+> -			memunmap_pages(&devmem->pagemap);
+> -			if (devmem->pagemap.type == MEMORY_DEVICE_PRIVATE)
+> -				release_mem_region(devmem->pagemap.range.start,
+> -						   range_len(&devmem->pagemap.range));
+> -			kfree(devmem);
+> -		}
+> -		kfree(mdevice->devmem_chunks);
+> -	}
+> -
+> +	dmirror_device_remove_chunks(mdevice);
+>  	cdev_del(&mdevice->cdevice);
+>  }
 
-Sounds like there are some more interesting changes happening to your 
-patch. In that case I'd like to review the final version.
-
-Thanks,
-   Felix
+Needed a bit or rework due to
+https://lkml.kernel.org/r/20220826050631.25771-1-mpenttil@redhat.com. 
+Please check my resolution.
 
 
-> , as there is a small change in sys/kernel/debug/kfd/mem_limit after 
-> overnight test. I will fix this and the two issues you pointed out, 
-> then push the patch.
->
-> Regards,
->
-> Philip
->
->>
->> Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
->>
->>
->>>   static inline int svm_range_list_init(struct kfd_process *p)
->>>   {
->>>       return 0;
->>
+--- a/lib/test_hmm.c~hmm-tests-add-test-for-migrate_device_range
++++ a/lib/test_hmm.c
+@@ -100,6 +100,7 @@ struct dmirror {
+ struct dmirror_chunk {
+ 	struct dev_pagemap	pagemap;
+ 	struct dmirror_device	*mdevice;
++	bool remove;
+ };
+ 
+ /*
+@@ -192,11 +193,15 @@ static int dmirror_fops_release(struct i
+ 	return 0;
+ }
+ 
++static struct dmirror_chunk *dmirror_page_to_chunk(struct page *page)
++{
++	return container_of(page->pgmap, struct dmirror_chunk, pagemap);
++}
++
+ static struct dmirror_device *dmirror_page_to_device(struct page *page)
+ 
+ {
+-	return container_of(page->pgmap, struct dmirror_chunk,
+-			    pagemap)->mdevice;
++	return dmirror_page_to_chunk(page)->mdevice;
+ }
+ 
+ static int dmirror_do_fault(struct dmirror *dmirror, struct hmm_range *range)
+@@ -1218,6 +1223,85 @@ static int dmirror_snapshot(struct dmirr
+ 	return ret;
+ }
+ 
++static void dmirror_device_evict_chunk(struct dmirror_chunk *chunk)
++{
++	unsigned long start_pfn = chunk->pagemap.range.start >> PAGE_SHIFT;
++	unsigned long end_pfn = chunk->pagemap.range.end >> PAGE_SHIFT;
++	unsigned long npages = end_pfn - start_pfn + 1;
++	unsigned long i;
++	unsigned long *src_pfns;
++	unsigned long *dst_pfns;
++
++	src_pfns = kcalloc(npages, sizeof(*src_pfns), GFP_KERNEL);
++	dst_pfns = kcalloc(npages, sizeof(*dst_pfns), GFP_KERNEL);
++
++	migrate_device_range(src_pfns, start_pfn, npages);
++	for (i = 0; i < npages; i++) {
++		struct page *dpage, *spage;
++
++		spage = migrate_pfn_to_page(src_pfns[i]);
++		if (!spage || !(src_pfns[i] & MIGRATE_PFN_MIGRATE))
++			continue;
++
++		if (WARN_ON(!is_device_private_page(spage) &&
++			    !is_device_coherent_page(spage)))
++			continue;
++		spage = BACKING_PAGE(spage);
++		dpage = alloc_page(GFP_HIGHUSER_MOVABLE | __GFP_NOFAIL);
++		lock_page(dpage);
++		copy_highpage(dpage, spage);
++		dst_pfns[i] = migrate_pfn(page_to_pfn(dpage));
++		if (src_pfns[i] & MIGRATE_PFN_WRITE)
++			dst_pfns[i] |= MIGRATE_PFN_WRITE;
++	}
++	migrate_device_pages(src_pfns, dst_pfns, npages);
++	migrate_device_finalize(src_pfns, dst_pfns, npages);
++	kfree(src_pfns);
++	kfree(dst_pfns);
++}
++
++/* Removes free pages from the free list so they can't be re-allocated */
++static void dmirror_remove_free_pages(struct dmirror_chunk *devmem)
++{
++	struct dmirror_device *mdevice = devmem->mdevice;
++	struct page *page;
++
++	for (page = mdevice->free_pages; page; page = page->zone_device_data)
++		if (dmirror_page_to_chunk(page) == devmem)
++			mdevice->free_pages = page->zone_device_data;
++}
++
++static void dmirror_device_remove_chunks(struct dmirror_device *mdevice)
++{
++	unsigned int i;
++
++	mutex_lock(&mdevice->devmem_lock);
++	if (mdevice->devmem_chunks) {
++		for (i = 0; i < mdevice->devmem_count; i++) {
++			struct dmirror_chunk *devmem =
++				mdevice->devmem_chunks[i];
++
++			spin_lock(&mdevice->lock);
++			devmem->remove = true;
++			dmirror_remove_free_pages(devmem);
++			spin_unlock(&mdevice->lock);
++
++			dmirror_device_evict_chunk(devmem);
++			memunmap_pages(&devmem->pagemap);
++			if (devmem->pagemap.type == MEMORY_DEVICE_PRIVATE)
++				release_mem_region(devmem->pagemap.range.start,
++						   range_len(&devmem->pagemap.range));
++			kfree(devmem);
++		}
++		mdevice->devmem_count = 0;
++		mdevice->devmem_capacity = 0;
++		mdevice->free_pages = NULL;
++		kfree(mdevice->devmem_chunks);
++		mdevice->devmem_chunks = NULL;
++	}
++	mutex_unlock(&mdevice->devmem_lock);
++}
++
+ static long dmirror_fops_unlocked_ioctl(struct file *filp,
+ 					unsigned int command,
+ 					unsigned long arg)
+@@ -1272,6 +1356,11 @@ static long dmirror_fops_unlocked_ioctl(
+ 		ret = dmirror_snapshot(dmirror, &cmd);
+ 		break;
+ 
++	case HMM_DMIRROR_RELEASE:
++		dmirror_device_remove_chunks(dmirror->mdevice);
++		ret = 0;
++		break;
++
+ 	default:
+ 		return -EINVAL;
+ 	}
+@@ -1326,9 +1415,13 @@ static void dmirror_devmem_free(struct p
+ 
+ 	mdevice = dmirror_page_to_device(page);
+ 	spin_lock(&mdevice->lock);
+-	mdevice->cfree++;
+-	page->zone_device_data = mdevice->free_pages;
+-	mdevice->free_pages = page;
++
++	/* Return page to our allocator if not freeing the chunk */
++	if (!dmirror_page_to_chunk(page)->remove) {
++		mdevice->cfree++;
++		page->zone_device_data = mdevice->free_pages;
++		mdevice->free_pages = page;
++	}
+ 	spin_unlock(&mdevice->lock);
+ }
+ 
+@@ -1408,22 +1501,7 @@ static int dmirror_device_init(struct dm
+ 
+ static void dmirror_device_remove(struct dmirror_device *mdevice)
+ {
+-	unsigned int i;
+-
+-	if (mdevice->devmem_chunks) {
+-		for (i = 0; i < mdevice->devmem_count; i++) {
+-			struct dmirror_chunk *devmem =
+-				mdevice->devmem_chunks[i];
+-
+-			memunmap_pages(&devmem->pagemap);
+-			if (devmem->pagemap.type == MEMORY_DEVICE_PRIVATE)
+-				release_mem_region(devmem->pagemap.range.start,
+-						   range_len(&devmem->pagemap.range));
+-			kfree(devmem);
+-		}
+-		kfree(mdevice->devmem_chunks);
+-	}
+-
++	dmirror_device_remove_chunks(mdevice);
+ 	cdev_device_del(&mdevice->cdevice, &mdevice->device);
+ }
+ 
+--- a/lib/test_hmm_uapi.h~hmm-tests-add-test-for-migrate_device_range
++++ a/lib/test_hmm_uapi.h
+@@ -36,6 +36,7 @@ struct hmm_dmirror_cmd {
+ #define HMM_DMIRROR_SNAPSHOT		_IOWR('H', 0x04, struct hmm_dmirror_cmd)
+ #define HMM_DMIRROR_EXCLUSIVE		_IOWR('H', 0x05, struct hmm_dmirror_cmd)
+ #define HMM_DMIRROR_CHECK_EXCLUSIVE	_IOWR('H', 0x06, struct hmm_dmirror_cmd)
++#define HMM_DMIRROR_RELEASE		_IOWR('H', 0x07, struct hmm_dmirror_cmd)
+ 
+ /*
+  * Values returned in hmm_dmirror_cmd.ptr for HMM_DMIRROR_SNAPSHOT.
+--- a/tools/testing/selftests/vm/hmm-tests.c~hmm-tests-add-test-for-migrate_device_range
++++ a/tools/testing/selftests/vm/hmm-tests.c
+@@ -1054,6 +1054,55 @@ TEST_F(hmm, migrate_fault)
+ 	hmm_buffer_free(buffer);
+ }
+ 
++TEST_F(hmm, migrate_release)
++{
++	struct hmm_buffer *buffer;
++	unsigned long npages;
++	unsigned long size;
++	unsigned long i;
++	int *ptr;
++	int ret;
++
++	npages = ALIGN(HMM_BUFFER_SIZE, self->page_size) >> self->page_shift;
++	ASSERT_NE(npages, 0);
++	size = npages << self->page_shift;
++
++	buffer = malloc(sizeof(*buffer));
++	ASSERT_NE(buffer, NULL);
++
++	buffer->fd = -1;
++	buffer->size = size;
++	buffer->mirror = malloc(size);
++	ASSERT_NE(buffer->mirror, NULL);
++
++	buffer->ptr = mmap(NULL, size, PROT_READ | PROT_WRITE,
++			   MAP_PRIVATE | MAP_ANONYMOUS, buffer->fd, 0);
++	ASSERT_NE(buffer->ptr, MAP_FAILED);
++
++	/* Initialize buffer in system memory. */
++	for (i = 0, ptr = buffer->ptr; i < size / sizeof(*ptr); ++i)
++		ptr[i] = i;
++
++	/* Migrate memory to device. */
++	ret = hmm_migrate_sys_to_dev(self->fd, buffer, npages);
++	ASSERT_EQ(ret, 0);
++	ASSERT_EQ(buffer->cpages, npages);
++
++	/* Check what the device read. */
++	for (i = 0, ptr = buffer->mirror; i < size / sizeof(*ptr); ++i)
++		ASSERT_EQ(ptr[i], i);
++
++	/* Release device memory. */
++	ret = hmm_dmirror_cmd(self->fd, HMM_DMIRROR_RELEASE, buffer, npages);
++	ASSERT_EQ(ret, 0);
++
++	/* Fault pages back to system memory and check them. */
++	for (i = 0, ptr = buffer->ptr; i < size / (2 * sizeof(*ptr)); ++i)
++		ASSERT_EQ(ptr[i], i);
++
++	hmm_buffer_free(buffer);
++}
++
+ /*
+  * Migrate anonymous shared memory to device private memory.
+  */
+_
+
