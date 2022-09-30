@@ -2,30 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF8065F0D44
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Sep 2022 16:19:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DE795F0D3F
+	for <lists+amd-gfx@lfdr.de>; Fri, 30 Sep 2022 16:19:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D289110ED20;
-	Fri, 30 Sep 2022 14:19:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66EBF10ED1C;
+	Fri, 30 Sep 2022 14:18:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-130.freemail.mail.aliyun.com
- (out30-130.freemail.mail.aliyun.com [115.124.30.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E0B910EB53;
- Fri, 30 Sep 2022 05:39:06 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R571e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018046049;
+Received: from out30-133.freemail.mail.aliyun.com
+ (out30-133.freemail.mail.aliyun.com [115.124.30.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CC9D10EB53;
+ Fri, 30 Sep 2022 05:39:09 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R201e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018045168;
  MF=yang.lee@linux.alibaba.com; NM=1; PH=DS; RN=13; SR=0;
- TI=SMTPD_---0VR0PwWw_1664516340; 
+ TI=SMTPD_---0VR0cMXD_1664516343; 
 Received: from localhost(mailfrom:yang.lee@linux.alibaba.com
- fp:SMTPD_---0VR0PwWw_1664516340) by smtp.aliyun-inc.com;
- Fri, 30 Sep 2022 13:39:01 +0800
+ fp:SMTPD_---0VR0cMXD_1664516343) by smtp.aliyun-inc.com;
+ Fri, 30 Sep 2022 13:39:04 +0800
 From: Yang Li <yang.lee@linux.alibaba.com>
 To: alexander.deucher@amd.com
-Subject: [PATCH -next 1/2] drm/amd/display: clean up one inconsistent indenting
-Date: Fri, 30 Sep 2022 13:38:58 +0800
-Message-Id: <20220930053859.100235-1-yang.lee@linux.alibaba.com>
+Subject: [PATCH -next 2/2] drm/amd/display: clean up one inconsistent indenting
+Date: Fri, 30 Sep 2022 13:38:59 +0800
+Message-Id: <20220930053859.100235-2-yang.lee@linux.alibaba.com>
 X-Mailer: git-send-email 2.20.1.7.g153144c
+In-Reply-To: <20220930053859.100235-1-yang.lee@linux.alibaba.com>
+References: <20220930053859.100235-1-yang.lee@linux.alibaba.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 30 Sep 2022 14:18:56 +0000
@@ -50,26 +52,26 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 clean up one inconsistent indenting
 
-Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=2238
+Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=2321
 Reported-by: Abaci Robot <abaci@linux.alibaba.com>
 Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c | 2 +-
+ drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c b/drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c
-index aed0f689cbbf..b19774f4c78d 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn321/dcn321_resource.c
-@@ -1656,7 +1656,7 @@ static bool dcn321_resource_construct(
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c b/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
+index 559e563d5bc1..f04595b750ab 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
+@@ -852,7 +852,7 @@ static struct hubbub *dcn301_hubbub_create(struct dc_context *ctx)
+ 		vmid->masks = &vmid_masks;
+ 	}
  
- #undef REG_STRUCT
- #define REG_STRUCT dccg_regs
--		dccg_regs_init();
-+	dccg_regs_init();
+-	 hubbub3->num_vmid = res_cap_dcn301.num_vmid;
++	hubbub3->num_vmid = res_cap_dcn301.num_vmid;
  
- 
- 	ctx->dc_bios->regs = &bios_regs;
+ 	return &hubbub3->base;
+ }
 -- 
 2.20.1.7.g153144c
 
