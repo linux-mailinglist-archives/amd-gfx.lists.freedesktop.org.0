@@ -1,57 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3A995F0DEA
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Sep 2022 16:48:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62ECF5F0E17
+	for <lists+amd-gfx@lfdr.de>; Fri, 30 Sep 2022 16:53:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2057410E1B6;
-	Fri, 30 Sep 2022 14:48:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71C4B10ED2D;
+	Fri, 30 Sep 2022 14:53:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com
- [IPv6:2607:f8b0:4864:20::232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6495710E1B6;
- Fri, 30 Sep 2022 14:48:42 +0000 (UTC)
-Received: by mail-oi1-x232.google.com with SMTP id m130so4932135oif.6;
- Fri, 30 Sep 2022 07:48:42 -0700 (PDT)
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com
+ [IPv6:2607:f8b0:4864:20::22c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02C2210ED2D;
+ Fri, 30 Sep 2022 14:53:37 +0000 (UTC)
+Received: by mail-oi1-x22c.google.com with SMTP id w13so4959728oiw.8;
+ Fri, 30 Sep 2022 07:53:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:from:to:cc:subject:date;
- bh=IrD2HiOAvlqhSlCj89Kg6AmBSA4GqWLvYu4q+ahkxqw=;
- b=FTvf7jWuva7dVerCSj72BQDqO1vmZDve/XbFr29Mq3HYSofxF+vBpy5/iZIer9Og4Y
- 9h9F3CcvgYFpfZv/yejrKiCERLYeqz2LvHnqwyadSVZvy1nEtIRl4rT3HlqWRWLdN9Fl
- 6z0FgRXM7sbCz6Z/CQe/zjsqbO0WbtHUvFQJuxhfcMd++iUyY6+M4itfmhGQZbhoBV+/
- z/5sGbycYevtssfYgpjygcJfdUu/LmcZ9NcHFq80jtTHXwXBv/Qdeq1Le8d1AVN+kh6m
- a/h4uMAu3+3AcZPIHZjPsE86B4QD+PgbXUNdsEbbs59ljH5g3agTf5/GQHtlACPfj0hV
- k7EQ==
+ bh=A87k8WDg0ONqkh4Zud4QDSem4Mlz6bv/9WZlMY4L08E=;
+ b=qRXRJDH8/RGWLLBew3/BOPeKItpzuzLS954gUBGGISRKeh8cImELLpSOFmL6MRBhik
+ YRxWaEcFxwq0CUu6Q2AdvMDZwbU6r7Jvo4efP01+46/xKQn2IScGuBwsdFlOGtlag1FK
+ tvwjRiWYw5MOIpLlqmMPjjLerRQC7hu9Fcx6s0Gj7TKMi1fGzWLLgzJITyRYMlAREVIj
+ pXETqA70nDm09lPpA4NfAS3ONX5WU28swbQp0DoWzT+Jp1xzWY8y2T9NeLMatgZbCn8q
+ /QIzt9i73ofp22+QdqSf+6xe5nL2dFDsbMxDpZXobsQtgnXUEFZzqvAgnHUup2pISx4D
+ XDzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:x-gm-message-state:from:to:cc:subject:date;
- bh=IrD2HiOAvlqhSlCj89Kg6AmBSA4GqWLvYu4q+ahkxqw=;
- b=jDqpIBApu4X1qa8zWM3kt69tqwXV4HCtu2A73AhEYCDJfD9xeF3j7/OuV+dKfoKgQy
- zpAltMB0y+UiUtMrWJs3oJvyYLRbDAslTETgPTYX2pm+K2PrXzSNN/ByPVrjXjA+i5Ba
- JDKgPnZEZHJQlGrrOBlFZ6AyFPmwkT5smblPU3LP83FJLySSvRwT51pGcoh9sGXFb5QN
- ZVSE8vu4VHsj8AqXAqicZDE+BvPtCkjwzKOjxXtKfAiiTYn4rUxZVnoMDy+VAzg3zl3U
- FDub6bh3L9U4fU0c4ZDbIyaqTsntIcOs0LOqmgpYYWZUkV5vqGH0b/+QZKVtP122C7Oi
- 9siQ==
-X-Gm-Message-State: ACrzQf39FMzhbVRYwCaJOTwu//UWKv2+6idCo0ktBrqr/+006fYxPe5b
- MaX7snNhW0Q2u7sUWO6+IutYWj0Rf+Td5YoJLzU=
-X-Google-Smtp-Source: AMsMyM6sqVe8c4bTD9YFY2G/C+1svDf3GvVoxIluh8OGYmkdHCKavHRdrDmDo8TK3DWsOb6b2Gm9Uq4Bb3RTeg+9OAc=
+ bh=A87k8WDg0ONqkh4Zud4QDSem4Mlz6bv/9WZlMY4L08E=;
+ b=OB4fOt4/Otb4jDy5XPFhxiib+CkgMokwmV8alKWCBFnfHyUNU5GzVWe+Y8YB6R9bhI
+ fV2vOdUmuhR+UeFQ0ptKGQaaNe/lLroJrk6/M8FbXHhWlJTRXBeYC4yyKhLc+C4ZleS9
+ 1Y0uQ+N+LCKZj2P92kWadR0Sa/qSkT0A/46SZyJ5tfQ+WwO9L+m7DNq9xGdBoC7/ucPh
+ Xg37yIHOdijUEeR264wWbEdobwWw4tMChnbjqj5ZZDMEuIs7KY77a9NnPqRhXPSDkfhT
+ fR+KqvuXJkqa5us+FTUKkaeIkDZPFC3QldtdZOT2+OFZ/jw9izEkq/3+DYJ7U4SWyc3R
+ EScQ==
+X-Gm-Message-State: ACrzQf05p0gAVIjshik/jT7/1ddpW+DhkFoqYyEZeKG0W+GkEETj8cLg
+ P4PLR7BPhO3JHIdtsq+frDtPRS+rEuPkpLKa+O5D0NiK
+X-Google-Smtp-Source: AMsMyM6bh/cW8dszboRbbJ2SL2c5L0ySp/GiIMmhTe21AkhtUCYwcxBtZSVItCT3oP9ZxBLAY1TrsqmyezJOJQpdY74=
 X-Received: by 2002:a05:6808:2194:b0:350:cb3d:ecd2 with SMTP id
- be20-20020a056808219400b00350cb3decd2mr9930656oib.46.1664549321709; Fri, 30
- Sep 2022 07:48:41 -0700 (PDT)
+ be20-20020a056808219400b00350cb3decd2mr9938241oib.46.1664549616325; Fri, 30
+ Sep 2022 07:53:36 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220930053859.100235-1-yang.lee@linux.alibaba.com>
- <20220930053859.100235-2-yang.lee@linux.alibaba.com>
-In-Reply-To: <20220930053859.100235-2-yang.lee@linux.alibaba.com>
+References: <20220929142015.746674-1-yangyingliang@huawei.com>
+In-Reply-To: <20220929142015.746674-1-yangyingliang@huawei.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 30 Sep 2022 10:48:30 -0400
-Message-ID: <CADnq5_O24ZXhE3qfKajjtP1gj8Pd8DO7ZVrQE6QN5cY_vf4Gvw@mail.gmail.com>
-Subject: Re: [PATCH -next 2/2] drm/amd/display: clean up one inconsistent
- indenting
-To: Yang Li <yang.lee@linux.alibaba.com>
+Date: Fri, 30 Sep 2022 10:53:24 -0400
+Message-ID: <CADnq5_M6MtPxu1qsYE_biDXXTshe9Ur65s5Hd4jQAjqhd-q_0w@mail.gmail.com>
+Subject: Re: [PATCH -next] drm/amdgpu/sdma: add missing release_firmware() in
+ amdgpu_sdma_init_microcode()
+To: Yang Yingliang <yangyingliang@huawei.com>
 Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,39 +63,53 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sunpeng.li@amd.com, Abaci Robot <abaci@linux.alibaba.com>,
- Xinhui.Pan@amd.com, Rodrigo.Siqueira@amd.com, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- alexander.deucher@amd.com, christian.koenig@amd.com
+Cc: alexander.deucher@amd.com, Likun.Gao@amd.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Hawking.Zhang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Applied the series.  Thanks!
+Applied.  Thanks.
 
-On Fri, Sep 30, 2022 at 1:39 AM Yang Li <yang.lee@linux.alibaba.com> wrote:
+On Thu, Sep 29, 2022 at 10:04 AM Yang Yingliang
+<yangyingliang@huawei.com> wrote:
 >
-> clean up one inconsistent indenting
+> In some error path in amdgpu_sdma_init_microcode(), release_firmware() is
+> not called, the memory allocated in request_firmware() will be leaked,
+> calling amdgpu_sdma_destroy_inst_ctx() which calls release_firmware() to
+> avoid memory leak.
 >
-> Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=2321
-> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-> Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
+> Fixes: 60704abdddd9 ("drm/amdgpu: add function to init SDMA microcode")
+> Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
 > ---
->  drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c b/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-> index 559e563d5bc1..f04595b750ab 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-> +++ b/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-> @@ -852,7 +852,7 @@ static struct hubbub *dcn301_hubbub_create(struct dc_context *ctx)
->                 vmid->masks = &vmid_masks;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
+> index 3949b7e3907f..43cf8632cc1a 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
+> @@ -222,8 +222,10 @@ int amdgpu_sdma_init_microcode(struct amdgpu_device *adev,
+>                 adev->sdma.instance[instance].fw->data;
+>         version_major = le16_to_cpu(header->header_version_major);
+>
+> -       if ((duplicate && instance) || (!duplicate && version_major > 1))
+> -               return -EINVAL;
+> +       if ((duplicate && instance) || (!duplicate && version_major > 1)) {
+> +               err = -EINVAL;
+> +               goto out;
+> +       }
+>
+>         err = amdgpu_sdma_init_inst_ctx(&adev->sdma.instance[instance]);
+>         if (err)
+> @@ -272,7 +274,7 @@ int amdgpu_sdma_init_microcode(struct amdgpu_device *adev,
+>                                 ALIGN(le32_to_cpu(sdma_hdr->ctl_ucode_size_bytes), PAGE_SIZE);
+>                         break;
+>                 default:
+> -                       return -EINVAL;
+> +                       err = -EINVAL;
+>                 }
 >         }
 >
-> -        hubbub3->num_vmid = res_cap_dcn301.num_vmid;
-> +       hubbub3->num_vmid = res_cap_dcn301.num_vmid;
->
->         return &hubbub3->base;
->  }
 > --
-> 2.20.1.7.g153144c
+> 2.25.1
 >
