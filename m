@@ -1,75 +1,40 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C04775F30B0
-	for <lists+amd-gfx@lfdr.de>; Mon,  3 Oct 2022 15:08:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3B645F30B2
+	for <lists+amd-gfx@lfdr.de>; Mon,  3 Oct 2022 15:09:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5930B10E37B;
-	Mon,  3 Oct 2022 13:08:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DFDE10E38D;
+	Mon,  3 Oct 2022 13:08:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sonic304-25.consmr.mail.ne1.yahoo.com
- (sonic304-25.consmr.mail.ne1.yahoo.com [66.163.191.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 098C910E221
- for <amd-gfx@lists.freedesktop.org>; Fri, 30 Sep 2022 22:38:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=att.net; s=s1024;
- t=1664577530; bh=ERtgRE4InN6kFs4Q16WOiF4jj0etNLf/Fl8uJDJyAzw=;
- h=Date:From:Subject:To:Cc:In-Reply-To:References:From:Subject:Reply-To;
- b=I+z/nKOsR/PPDNsNEbTdJPPARCKklChwfCNl1j2KlFoXbi5qrBVQwjtGZd9SGE5nV7V3RKT15k3r74XD5K9gv4ouAd014Sf89fsi9jTlDlP7BTOhI18SBg62woxSlR5QE03BaZHFqjxk5wKR0Lg48VyTEJxY/QacyoG7C4jSF0k=
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1664577530; bh=PEwfAgM8Qw4TmOLP8uO41WxxY8Ux0xk86dByKfZOppl=;
- h=X-Sonic-MF:Date:From:Subject:To:From:Subject;
- b=obAyoBfCEU/9KerjwYXh4CSjeA2vt9qS1DtpvB68C8kzOnVnnW8MBeDlTexqD0xdrrNhjC3izQO1puM4GCAFAF7SjZ9J7QA1SWxviClCTrm0soD+Vk23iRG4kRPT5oyhXPo5NrRsSX8b9k9d3z9wwAGlj2TW7JD04YXtVEoGNMgHG8nJEAxmoW0N0f8Y5yRiY6b5Xu4IzNufhtyKrB7cE43bh84ULHY/U5VaB5h1ZM2zSY/GVhPgb77wCmnzFfFSVZ82PAR7u0LIsQsab0n2Ey+YSAztDFpqeza7cXj+Cg3ArCAWgpSnM24m0tE7Dfp9o9j+FJXhl4c8mns+AoV2aQ==
-X-YMail-OSG: wQXwh0IVM1nk8YQfH6hYvBkLsEPcSBA4eniy5X.tqa__9u1e7K.h0ffL2xuM18h
- 1cUh_rJU3Ox1dRxwxfYKUvEOlge.YH.5dMnMDoywTKiM.CBG62kOzzMn6PYN8ajnKb2_0V39YniW
- 1Ob4AbMfiHuOMU5GxrJP.a_KURgMz85Lf319iAWViJ5usbnk_ofysJ3_QZVF3YLKamCO3.kA1HXw
- HImf9Ysx4AiOIa09Ypc8OmuFRaqbfbBkGdsVVl__7H8e9d03VyrKj54I0pl.JIKOel0W4E5_4ua5
- G_2KcsNZtVyF7B_FSdVaqgHIkUgCTVZR59Vqxk7Yz2J7HW53NyUq05cbqIGaAcNcwE5_t5kBCCdY
- 9Q3oa3.MSjbHjpbAJpnrwC2_8ucsPD0J6wwOedHPVCcUZDrHHbtK_4z9VSkyZ.OgSSEB1S8E4qbR
- YGROu6fLDmOQTlPZcXw0bXOaba0y_ZmMCn_FPb.hi4X.sUnp4UY8Q__OH8Ugqv_BMt2js5eRzNOU
- UxS6sLvybQm0ZYxWev_kySbxzQqCj6.W.V8YbbCqk42yCPkRSJ8QUCxAXSWQXKCtTgPMPkWaseJt
- X8KBzJ626ClXA.la9Q02OyC_TQuDrX.lQ9I4f_gVa0_Hlvan3NV7aa35lL.p4d.6qrV6MxWKCXcE
- EVgOEfFTSGjXArd5.1_ViESNx1ZTBwrF_3qiXjPYc0S46lMG39_KztaCGgiZPVWgKsbXjtnQxv2m
- YJoA9DIR3eGlTKeaw6Axf1rl85MhKjDNaojbVzME1L1MCNFxMZWvIYpSeJ_PNGpa_.8brX0NTjmG
- hL0bWJ7CDXsjclG7nozJcjAcUz4qH.hAA5290OMyiB_ybw9tdOp9XEfdJzR30bHOWemLPxr.igFK
- di6iSgMZ654Jr1h2tQc9LHwLPIqihzewt4tWG7Z4G3.NEyoD9mXojmWWdlFqJQs2sMfDwxcFlQ0a
- 0CjP7mjUqhtnZ9KSp2qATSruhbHsy3df_iHMrKlKTTHEQfkKgEsyTcx7lsVn8TDBsOIhOHI3yRjS
- vuinwovRqu95HgSV75AJhMdStTeY405a4lC220Motij9TCi4MiioPZ.nmqsYiZMb8PQOhFMw8Y5k
- .0WKqHPmcyGu3c9OBeeJyGr1of0iVuRQf7sCrWi62KyMIQ8z5bPgWO41kIrjqyHnNk1FvzlRCNfL
- eDIqVlHrHBJRnzZBymFRqgRgKgNCbyP1O5szKVmp9NLwHhdDhI4gwrC4aGFLyma_qXZzKh4L6.VA
- 0u3StnSjGbr47w1n6r0hAhdCr_n20EMRC2Irg08LkCb95PuloELdoUBOuuZC.NRr6QoviupFr2uj
- fzr1JLQXtnqSZHzQLbHluHm6NE0LxSGpfCbE4uO_OIjKWqiddSXUTrEgmhUawC0vrz0UH_aB.ULu
- SLP4i9sTXuuDnR.bfZ3e00Tnpdo3Ql4ApNwDALGwk03Gg9np9.IkyQoxQe0S2OrM1leovd6fiknA
- foH3MVzoseo.LG1eOpVmFCSK0bNlvn4g7UBHgi_2BEL5KxA6FRz5Z5jhfTrROOIIo_ktKYWNF_2.
- zCBEyjDFfaFScxQUlpeaBrlGwZI3AioTGe2S96oL_gjv2SShVT6orpjxwzo_V9DjdsCMOixRawsk
- K11uaZqce3AzFL6x_828OA8ir62UY9YB.GznA_TMscPC3ggkhIYXvDzQNXdGevM1QzVVIKaf12Bx
- c89iyLw6lRCj8D2gwIkMqhwEqR9m8KqIKhcFblZa0h8Kgwe5F8hvH2nxrj3cHhQA8GLS0bjml8AP
- A2AiPx6MPuaFq3IUe3ISHg3EoneaQeUVE4gyHvQHS1GXguh46.ejnOxUV6uxboRkFVb4pYGU.JDV
- HD8.pP5QYYf8HRni3vMKc_OkwXQsR6ktXPZFBhrZPYKqokzI5AekM_xTmdk3ezLDUv9GPJHA_M0E
- W1RTFkXY.ojlNM3wvzDMn6DStjQcTxSEERzKCvidu32zO2q0zn.46iijixLo9enG9dh3dMS6MoSH
- v9UIRGkc5qfWdDeSjYPb8zQNCN_8Qd9CBblRKFES1AEWM_eJodep7Le7.p2sQVqfq2axDnnuQ44x
- FFTSZaxP7Z1JdLgYx1WPywgC7TNnvZTflnxsX4g1wP8dN0OohMcXJjRDBJ7tx0PRErm2yXmnJdrx
- LvNAgg2M57IKZGT8YpqumFlWbABz9l_BLpfeB7G_.RvatCchYgO1RfCysYw3XOMXm11CeDzvXxbG
- Qpk7I8kaZ4tE0EBMBzBA46SI-
-X-Sonic-MF: <pheonix.sja@att.net>
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic304.consmr.mail.ne1.yahoo.com with HTTP; Fri, 30 Sep 2022 22:38:50 +0000
-Received: by hermes--production-ne1-6944b4579f-dzb4f (Yahoo Inc. Hermes SMTP
- Server) with ESMTPA ID 6624a487f903e240cc92ac933a633528; 
- Fri, 30 Sep 2022 22:38:47 +0000 (UTC)
-Date: Fri, 30 Sep 2022 18:38:41 -0400
-From: Steven J Abner <pheonix.sja@att.net>
-Subject: Re: [RFC PATCH 1/1] drm/amdgpu: Fix null-ptr-deref in
- amdgpu_device_fini_sw()
-To: Zhang Boyang <zhangboyang.id@gmail.com>
-Message-Id: <H8O1JR.4SM4JR87O02A2@att.net>
-In-Reply-To: <20220930214110.1074226-2-zhangboyang.id@gmail.com>
-References: <20220930214110.1074226-1-zhangboyang.id@gmail.com>
- <20220930214110.1074226-2-zhangboyang.id@gmail.com>
-X-Mailer: geary/3.36.1
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B001C10EE30;
+ Sat,  1 Oct 2022 04:34:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
+ MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:In-Reply-To:References;
+ bh=yzRhoSXitZkteWBbefnaFUu5z/aCl4xs+54yx9AB+xM=; b=k8Xff1HVD0rv8ur41fg0tb3gfc
+ 0j68WNXNxpDQBkeh6B8xJl+W04rbEwAV1/BlY2mAabVb04xDerD2Fzz8Seez2nn+IsHYfLQiH5RrI
+ O9FpnBCAFSheFcMBbaHJPuXcUw40moMQ+B3MnhEhu0zzsNQ0C068s8DFv1qlWoDsbWZAQ7ziixKp/
+ xvQphbJ2rT7CJLiVRmJKg9fCA0xdrijkQa5cU/PyqvZvGG2N6S6tZzFkFkF1CWVQA2AZALzRz0S5F
+ AZ0fnCDXq1bgckjR+CLtC76Qk3vLoQms1nSYbQYgM1cE7ijEW1/k8RK5PqDbDeoR4YbBCgsfnpmIR
+ PihMVxjA==;
+Received: from [2601:1c2:d80:3110::a2e7] (helo=casper.infradead.org)
+ by casper.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1oeUCW-00EpNJ-Lu; Sat, 01 Oct 2022 04:34:09 +0000
+From: Randy Dunlap <rdunlap@infradead.org>
+To: linux-kernel@vger.kernel.org
+Subject: [PATCH] drm: amd: clean up dcn32_fpu.c kernel-doc
+Date: Fri, 30 Sep 2022 21:33:54 -0700
+Message-Id: <20221001043354.22608-1-rdunlap@infradead.org>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 03 Oct 2022 13:08:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -82,81 +47,309 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- "David C . Rankin" <drankinatty@suddenlinkmail.com>,
- Christian =?iso-8859-1?b?S/ZuaWc=?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>, kernel test robot <lkp@intel.com>,
+ Leo Li <sunpeng.li@amd.com>, dri-devel@lists.freedesktop.org,
+ Randy Dunlap <rdunlap@infradead.org>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
+ Nevenko Stupar <Nevenko.Stupar@amd.com>, Alvin Lee <alvin.lee2@amd.com>,
+ George Shen <george.shen@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-I had done more delving into this also, thankfully was not forgotten.
-Additional info to solve blackout, was going to contact AMD:
-The problem as far as I could trace occurs in amdgpu_psp.c in function 
-psp_cmd_submit_buf().
-Normal counter 'timeout' seems to use a max of about 400 with 
-usleep_range(5, 80).
-Under normal operation 'psp->fence_buf' will equal 'index' and drop 
-from loop. I could not track what
-fills the kernel buffer objects 'virtual' pointer's reference 
-(psp->fence_buf). I assume that
-it's to a firmware file that on read is returning an error, and getting 
-stuck in a loop lock.
-The error condition I found occurs when 'psp->fence_buf' does not equal 
-'index',
-breaking from loop with 'timeout' == 0.
-Blackout seemed to be about 80% of reboots, but found that in 
-reconfiguration of kernel,
-on 5.18.19, with CONFIG_ATA_ACPI=y drops blackouts to about 30% of 
-reboots. I have now avoided
-all blackouts with addition of CONFIG_SATA_PMP=y (at least a week 
-free?).
-This is pure guess but, maybe the ARM PSP processor is dependent on 
-libata procedures, one
-of which causes a lock up some of the time.
-Steve
+Rectify multiple kernel-doc warnings in dcn32_fpu.c.
+E.g.:
 
-On Fri, Sep 30, 2022 at 21:41, Zhang Boyang <zhangboyang.id@gmail.com> 
-wrote:
-> After amdgpu_device_init() failed, adev->reset_domain may be NULL. 
-> Thus
-> subsequent call to amdgpu_device_fini_sw() may result in 
-> null-ptr-deref.
-> 
-> This patch fixes the problem by adding a NULL pointer check around the
-> code of releasing adev->reset_domain in amdgpu_device_fini_sw().
-> 
-> Fixes: cfbb6b004744 ("drm/amdgpu: Rework reset domain to be 
-> refcounted.")
-> 
-> Signed-off-by: Zhang Boyang <zhangboyang.id@gmail.com>
-> Link: 
-> https://lore.kernel.org/lkml/a8bce489-8ccc-aa95-3de6-f854e03ad557@suddenlinkmail.com/
-> Link: https://lore.kernel.org/lkml/AT9WHR.3Z1T3VI9A2AQ3@att.net/
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c 
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index be7aff2d4a57..204daad06b32 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -4021,8 +4021,10 @@ void amdgpu_device_fini_sw(struct 
-> amdgpu_device *adev)
->  	if (adev->mman.discovery_bin)
->  		amdgpu_discovery_fini(adev);
-> 
-> -	amdgpu_reset_put_reset_domain(adev->reset_domain);
-> -	adev->reset_domain = NULL;
-> +	if (adev->reset_domain) {
-> +		amdgpu_reset_put_reset_domain(adev->reset_domain);
-> +		adev->reset_domain = NULL;
-> +	}
-> 
->  	kfree(adev->pci_state);
-> 
-> --
-> 2.30.2
-> 
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/dcn32_fpu.c:247: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+    * Finds dummy_latency_index when MCLK switching using firmware based
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/dcn32_fpu.c:484: warning: Function parameter or member 'phantom_stream' not described in 'dcn32_set_phantom_stream_timing'
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/dcn32_fpu.c:601: warning: Function parameter or member 'dc' not described in 'dcn32_assign_subvp_pipe'
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/dcn32_fpu.c:601: warning: Function parameter or member 'context' not described in 'dcn32_assign_subvp_pipe'
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/dcn32_fpu.c:601: warning: Function parameter or member 'index' not described in 'dcn32_assign_subvp_pipe'
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/dcn32_fpu.c:2140: warning: Function parameter or member 'dc' not described in 'dcn32_update_bw_bounding_box_fpu'
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/dcn32_fpu.c:2140: warning: Function parameter or member 'bw_params' not described in 'dcn32_update_bw_bounding_box_fpu'
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/dcn32_fpu.c:2140: warning: expecting prototype for dcn32_update_bw_bounding_box(). Prototype was for dcn32_update_bw_bounding_box_fpu() instead
 
+Reported-by: kernel test robot <lkp@intel.com>
+Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+Cc: George Shen <george.shen@amd.com>
+Cc: Alvin Lee <alvin.lee2@amd.com>
+Cc: Nevenko Stupar <Nevenko.Stupar@amd.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Leo Li <sunpeng.li@amd.com>
+Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+---
+ drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c |  116 ++++------
+ 1 file changed, 49 insertions(+), 67 deletions(-)
 
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
+@@ -243,7 +243,7 @@ void dcn32_build_wm_range_table_fpu(stru
+ 	clk_mgr->base.bw_params->wm_table.nv_entries[WM_D].pmfw_breakdown.max_uclk = 0xFFFF;
+ }
+ 
+-/**
++/*
+  * Finds dummy_latency_index when MCLK switching using firmware based
+  * vblank stretch is enabled. This function will iterate through the
+  * table of dummy pstate latencies until the lowest value that allows
+@@ -290,15 +290,14 @@ int dcn32_find_dummy_latency_index_for_f
+ /**
+  * dcn32_helper_populate_phantom_dlg_params - Get DLG params for phantom pipes
+  * and populate pipe_ctx with those params.
+- *
+- * This function must be called AFTER the phantom pipes are added to context
+- * and run through DML (so that the DLG params for the phantom pipes can be
+- * populated), and BEFORE we program the timing for the phantom pipes.
+- *
+  * @dc: [in] current dc state
+  * @context: [in] new dc state
+  * @pipes: [in] DML pipe params array
+  * @pipe_cnt: [in] DML pipe count
++ *
++ * This function must be called AFTER the phantom pipes are added to context
++ * and run through DML (so that the DLG params for the phantom pipes can be
++ * populated), and BEFORE we program the timing for the phantom pipes.
+  */
+ void dcn32_helper_populate_phantom_dlg_params(struct dc *dc,
+ 					      struct dc_state *context,
+@@ -331,8 +330,9 @@ void dcn32_helper_populate_phantom_dlg_p
+ }
+ 
+ /**
+- * *******************************************************************************************
+- * dcn32_predict_pipe_split: Predict if pipe split will occur for a given DML pipe
++ * dcn32_predict_pipe_split - Predict if pipe split will occur for a given DML pipe
++ * @context: [in] New DC state to be programmed
++ * @pipe_e2e: [in] DML pipe end to end context
+  *
+  * This function takes in a DML pipe (pipe_e2e) and predicts if pipe split is required (both
+  * ODM and MPC). For pipe split, ODM combine is determined by the ODM mode, and MPC combine is
+@@ -343,12 +343,7 @@ void dcn32_helper_populate_phantom_dlg_p
+  * - MPC combine is only chosen if there is no ODM combine requirements / policy in place, and
+  *   MPC is required
+  *
+- * @param [in]: context: New DC state to be programmed
+- * @param [in]: pipe_e2e: DML pipe end to end context
+- *
+- * @return: Number of splits expected (1 for 2:1 split, 3 for 4:1 split, 0 for no splits).
+- *
+- * *******************************************************************************************
++ * Return: Number of splits expected (1 for 2:1 split, 3 for 4:1 split, 0 for no splits).
+  */
+ uint8_t dcn32_predict_pipe_split(struct dc_state *context,
+ 				  display_e2e_pipe_params_st *pipe_e2e)
+@@ -504,7 +499,14 @@ void insert_entry_into_table_sorted(stru
+ }
+ 
+ /**
+- * dcn32_set_phantom_stream_timing: Set timing params for the phantom stream
++ * dcn32_set_phantom_stream_timing - Set timing params for the phantom stream
++ * @dc: current dc state
++ * @context: new dc state
++ * @ref_pipe: Main pipe for the phantom stream
++ * @phantom_stream: target phantom stream state
++ * @pipes: DML pipe params
++ * @pipe_cnt: number of DML pipes
++ * @dc_pipe_idx: DC pipe index for the main pipe (i.e. ref_pipe)
+  *
+  * Set timing params of the phantom stream based on calculated output from DML.
+  * This function first gets the DML pipe index using the DC pipe index, then
+@@ -517,13 +519,6 @@ void insert_entry_into_table_sorted(stru
+  * that separately.
+  *
+  * - Set phantom backporch = vstartup of main pipe
+- *
+- * @dc: current dc state
+- * @context: new dc state
+- * @ref_pipe: Main pipe for the phantom stream
+- * @pipes: DML pipe params
+- * @pipe_cnt: number of DML pipes
+- * @dc_pipe_idx: DC pipe index for the main pipe (i.e. ref_pipe)
+  */
+ void dcn32_set_phantom_stream_timing(struct dc *dc,
+ 				     struct dc_state *context,
+@@ -592,16 +587,14 @@ void dcn32_set_phantom_stream_timing(str
+ }
+ 
+ /**
+- * dcn32_get_num_free_pipes: Calculate number of free pipes
++ * dcn32_get_num_free_pipes - Calculate number of free pipes
++ * @dc: current dc state
++ * @context: new dc state
+  *
+  * This function assumes that a "used" pipe is a pipe that has
+  * both a stream and a plane assigned to it.
+  *
+- * @dc: current dc state
+- * @context: new dc state
+- *
+- * Return:
+- * Number of free pipes available in the context
++ * Return: Number of free pipes available in the context
+  */
+ static unsigned int dcn32_get_num_free_pipes(struct dc *dc, struct dc_state *context)
+ {
+@@ -625,7 +618,10 @@ static unsigned int dcn32_get_num_free_p
+ }
+ 
+ /**
+- * dcn32_assign_subvp_pipe: Function to decide which pipe will use Sub-VP.
++ * dcn32_assign_subvp_pipe - Function to decide which pipe will use Sub-VP.
++ * @dc: current dc state
++ * @context: new dc state
++ * @index: [out] dc pipe index for the pipe chosen to have phantom pipes assigned
+  *
+  * We enter this function if we are Sub-VP capable (i.e. enough pipes available)
+  * and regular P-State switching (i.e. VACTIVE/VBLANK) is not supported, or if
+@@ -639,12 +635,7 @@ static unsigned int dcn32_get_num_free_p
+  * for determining which should be the SubVP pipe (need a way to determine if a pipe / plane doesn't
+  * support MCLK switching naturally [i.e. ACTIVE or VBLANK]).
+  *
+- * @param dc: current dc state
+- * @param context: new dc state
+- * @param index: [out] dc pipe index for the pipe chosen to have phantom pipes assigned
+- *
+- * Return:
+- * True if a valid pipe assignment was found for Sub-VP. Otherwise false.
++ * Return: True if a valid pipe assignment was found for Sub-VP. Otherwise false.
+  */
+ static bool dcn32_assign_subvp_pipe(struct dc *dc,
+ 				    struct dc_state *context,
+@@ -711,7 +702,9 @@ static bool dcn32_assign_subvp_pipe(stru
+ }
+ 
+ /**
+- * dcn32_enough_pipes_for_subvp: Function to check if there are "enough" pipes for SubVP.
++ * dcn32_enough_pipes_for_subvp - Function to check if there are "enough" pipes for SubVP.
++ * @dc: current dc state
++ * @context: new dc state
+  *
+  * This function returns true if there are enough free pipes
+  * to create the required phantom pipes for any given stream
+@@ -723,9 +716,6 @@ static bool dcn32_assign_subvp_pipe(stru
+  * pipe which can be used as the phantom pipe for the non pipe
+  * split pipe.
+  *
+- * @dc: current dc state
+- * @context: new dc state
+- *
+  * Return:
+  * True if there are enough free pipes to assign phantom pipes to at least one
+  * stream that does not already have phantom pipes assigned. Otherwise false.
+@@ -764,7 +754,9 @@ static bool dcn32_enough_pipes_for_subvp
+ }
+ 
+ /**
+- * subvp_subvp_schedulable: Determine if SubVP + SubVP config is schedulable
++ * subvp_subvp_schedulable - Determine if SubVP + SubVP config is schedulable
++ * @dc: current dc state
++ * @context: new dc state
+  *
+  * High level algorithm:
+  * 1. Find longest microschedule length (in us) between the two SubVP pipes
+@@ -772,11 +764,7 @@ static bool dcn32_enough_pipes_for_subvp
+  * pipes still allows for the maximum microschedule to fit in the active
+  * region for both pipes.
+  *
+- * @dc: current dc state
+- * @context: new dc state
+- *
+- * Return:
+- * bool - True if the SubVP + SubVP config is schedulable, false otherwise
++ * Return: True if the SubVP + SubVP config is schedulable, false otherwise
+  */
+ static bool subvp_subvp_schedulable(struct dc *dc, struct dc_state *context)
+ {
+@@ -836,7 +824,10 @@ static bool subvp_subvp_schedulable(stru
+ }
+ 
+ /**
+- * subvp_drr_schedulable: Determine if SubVP + DRR config is schedulable
++ * subvp_drr_schedulable - Determine if SubVP + DRR config is schedulable
++ * @dc: current dc state
++ * @context: new dc state
++ * @drr_pipe: DRR pipe_ctx for the SubVP + DRR config
+  *
+  * High level algorithm:
+  * 1. Get timing for SubVP pipe, phantom pipe, and DRR pipe
+@@ -845,12 +836,7 @@ static bool subvp_subvp_schedulable(stru
+  * 3.If (SubVP Active - Prefetch > Stretched DRR frame + max(MALL region, Stretched DRR frame))
+  * then report the configuration as supported
+  *
+- * @dc: current dc state
+- * @context: new dc state
+- * @drr_pipe: DRR pipe_ctx for the SubVP + DRR config
+- *
+- * Return:
+- * bool - True if the SubVP + DRR config is schedulable, false otherwise
++ * Return: True if the SubVP + DRR config is schedulable, false otherwise
+  */
+ static bool subvp_drr_schedulable(struct dc *dc, struct dc_state *context, struct pipe_ctx *drr_pipe)
+ {
+@@ -914,7 +900,9 @@ static bool subvp_drr_schedulable(struct
+ 
+ 
+ /**
+- * subvp_vblank_schedulable: Determine if SubVP + VBLANK config is schedulable
++ * subvp_vblank_schedulable - Determine if SubVP + VBLANK config is schedulable
++ * @dc: current dc state
++ * @context: new dc state
+  *
+  * High level algorithm:
+  * 1. Get timing for SubVP pipe, phantom pipe, and VBLANK pipe
+@@ -922,11 +910,7 @@ static bool subvp_drr_schedulable(struct
+  * then report the configuration as supported
+  * 3. If the VBLANK display is DRR, then take the DRR static schedulability path
+  *
+- * @dc: current dc state
+- * @context: new dc state
+- *
+- * Return:
+- * bool - True if the SubVP + VBLANK/DRR config is schedulable, false otherwise
++ * Return: True if the SubVP + VBLANK/DRR config is schedulable, false otherwise
+  */
+ static bool subvp_vblank_schedulable(struct dc *dc, struct dc_state *context)
+ {
+@@ -1003,20 +987,18 @@ static bool subvp_vblank_schedulable(str
+ }
+ 
+ /**
+- * subvp_validate_static_schedulability: Check which SubVP case is calculated and handle
+- * static analysis based on the case.
++ * subvp_validate_static_schedulability - Check which SubVP case is calculated
++ * and handle static analysis based on the case.
++ * @dc: current dc state
++ * @context: new dc state
++ * @vlevel: Voltage level calculated by DML
+  *
+  * Three cases:
+  * 1. SubVP + SubVP
+  * 2. SubVP + VBLANK (DRR checked internally)
+  * 3. SubVP + VACTIVE (currently unsupported)
+  *
+- * @dc: current dc state
+- * @context: new dc state
+- * @vlevel: Voltage level calculated by DML
+- *
+- * Return:
+- * bool - True if statically schedulable, false otherwise
++ * Return: True if statically schedulable, false otherwise
+  */
+ static bool subvp_validate_static_schedulability(struct dc *dc,
+ 				struct dc_state *context,
+@@ -2275,7 +2257,7 @@ static int build_synthetic_soc_states(st
+ 	return 0;
+ }
+ 
+-/**
++/*
+  * dcn32_update_bw_bounding_box
+  *
+  * This would override some dcn3_2 ip_or_soc initial parameters hardcoded from
