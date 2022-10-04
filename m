@@ -1,65 +1,47 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1BF75F43F6
-	for <lists+amd-gfx@lfdr.de>; Tue,  4 Oct 2022 15:11:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AB345F43F4
+	for <lists+amd-gfx@lfdr.de>; Tue,  4 Oct 2022 15:11:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF5AE10E602;
-	Tue,  4 Oct 2022 13:11:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D51E10E5F6;
+	Tue,  4 Oct 2022 13:11:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com
- [IPv6:2a00:1450:4864:20::12d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DF8610E226
- for <amd-gfx@lists.freedesktop.org>; Tue,  4 Oct 2022 08:14:55 +0000 (UTC)
-Received: by mail-lf1-x12d.google.com with SMTP id s20so4358934lfi.11
- for <amd-gfx@lists.freedesktop.org>; Tue, 04 Oct 2022 01:14:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=bell-sw-com.20210112.gappssmtp.com; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
- bh=hPaN5F00WNMdLlaDyOEsLhHNGFoDad3WAqwYwUQx6uY=;
- b=KfyD+OiUrVWViL1kJZsMGn8t7Mibe/Tam0ljRwRxIptn+MhEYtqJRsvpHC34hDqVia
- hBcihEX6Ewd9GRs7WfYImo4oQ8WvGCdmYHijfKyZpuqWpiESjiALshG2u5XjNDLYTYOB
- cP0+I4ALEJrbMLFUj3f4XGXiiTe2zZUCSub16FQb/3U/OgPGdLla8BRyoDwTD+qKjkdX
- nsw0tImjoCo2xetzdvKSABAfBL4wPoksoRM4BqtfLJ9QhWFhA7iH17JkCCrB/Bk58olP
- vNnkvnjbUujGDqasadpjOzT4S3pY1BSbk7LPWm6liL7iTjgvkk5Zst0QoreF9CAbi21p
- 4wPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date;
- bh=hPaN5F00WNMdLlaDyOEsLhHNGFoDad3WAqwYwUQx6uY=;
- b=k08zUPzYugJ4wbrdiFinR4ib4hsBJn6bXELwcCt7dYkUAJQtSzVFZKOfnihl1Jx9YG
- d1bkDnZ5dXeoAwJR1+G8Ch90x08yRUnorUzkVeTDJKpntqJOJ3xC4ONd0c9KXfvi/bJA
- M8jtQDqz9VCDGF0AT/KejDrOgN0RH8QnXEwk5bgKGQ/wrkU5WTCX0EYdjGakhlLg+XOR
- 9FrJENs1vYTVgr+MqMFN8SJZ6qpd9qPonLiY6I3wdjv1EWNB6oacIiz240eG7v1I2MOV
- MMraHv4w+iozl4QNh7M6haDjR4Be3/SdgOEA37/WstvlYATYGHAzBbltV+FJ/hoTqcPr
- QV+w==
-X-Gm-Message-State: ACrzQf3nIxTCpcmYTGZp40n5Q4QRl9Sj3bQ3gPvMhKQglXGOHRG3g2Td
- SSFc4OpbnIMUB7cqb5WlTEI8xl0W3sCT
-X-Google-Smtp-Source: AMsMyM68vvXqKyv24OwvaggsIP4KOeaNgpz/TTOVMPLPC1SJ/uTtq7qFmEyuZEuEG66uuKk8RYIKHA==
-X-Received: by 2002:a05:6512:3252:b0:4a2:473f:1fa1 with SMTP id
- c18-20020a056512325200b004a2473f1fa1mr2132696lfr.53.1664871293221; 
- Tue, 04 Oct 2022 01:14:53 -0700 (PDT)
-Received: from localhost.localdomain ([95.161.223.113])
- by smtp.gmail.com with ESMTPSA id
- cf31-20020a056512281f00b00492c663bba2sm1808982lfb.124.2022.10.04.01.14.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 04 Oct 2022 01:14:52 -0700 (PDT)
-From: Alexey Kodanev <aleksei.kodanev@bell-sw.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/amd/pm: smu7_hwmgr: fix potential off-by-one overflow
- in 'performance_levels'
-Date: Tue,  4 Oct 2022 11:14:02 +0300
-Message-Id: <20221004081402.49069-2-aleksei.kodanev@bell-sw.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221004081402.49069-1-aleksei.kodanev@bell-sw.com>
-References: <20221004081402.49069-1-aleksei.kodanev@bell-sw.com>
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AD5710E518
+ for <amd-gfx@lists.freedesktop.org>; Tue,  4 Oct 2022 10:21:39 +0000 (UTC)
+Received: from [192.168.10.9] (unknown [39.45.148.204])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: usama.anjum)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id C775D660225F;
+ Tue,  4 Oct 2022 11:21:34 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1664878897;
+ bh=kCRfJ9AaObCTjuMjz/60HoCPWoad2V9bCCyPAOpjvdw=;
+ h=Date:Cc:To:From:Subject:From;
+ b=MHjFcUDlBvTz76+UUO+VE8j0qQs95Z2vH5n9LKMosEviQfegqNYyh7iKn8LBzH8df
+ w81mgNZzNP8KWWMjsZPy7CuntUVZSUdwBneEBwEGU+vjiD3+SCGmyFsqQEDy3aMAFK
+ QKmt/4ym7sJrNZq0XP9PNZ2Q8Xr2NKwZq5gsDfxTY/d9K8Vs13c7TnlmVQrRJtapgX
+ G0MKNEuUNTg4tCJa3qete5UujYXHAob7JotlR+UdBt6vHQ7fX3mwY2V3s27lPfSYI1
+ FdDD+1X4DSQBqNrisJoTYUpfDYbVRC7NPRYU9zFeq3ffKbjwrJlX30TVfpy4u7sCTW
+ YF7m2iSEhharg==
+Message-ID: <6ffc4718-afb3-883e-418c-79376082ec7a@collabora.com>
+Date: Tue, 4 Oct 2022 15:21:30 +0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Content-Language: en-US
+To: Hawking Zhang <Hawking.Zhang@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>
+From: Muhammad Usama Anjum <usama.anjum@collabora.com>
+Subject: [Bug report] Possible wrong condition
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Tue, 04 Oct 2022 13:11:14 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,35 +54,37 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexey Kodanev <aleksei.kodanev@bell-sw.com>
+Cc: Collabora Kernel ML <kernel@collabora.com>,
+ kernel-janitors <kernel-janitors@vger.kernel.org>,
+ LKML <linux-kernel@vger.kernel.org>, amd-gfx@lists.freedesktop.org,
+ usama.anjum@collabora.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Since 'hardwareActivityPerformanceLevels' is set to the size of the
-'performance_levels' array in smu7_hwmgr_backend_init(), using the
-'<=' assertion to check for the next index value is incorrect.
-Replace it with '<'.
+Hello,
 
-Detected using the static analysis tool - Svace.
-Fixes: 599a7e9fe1b6 ("drm/amd/powerplay: implement smu7 hwmgr to manager asics with smu ip version 7.")
-Signed-off-by: Alexey Kodanev <aleksei.kodanev@bell-sw.com>
----
- drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+It seems there is some dead or not-needed code. Either the if condition
+isn't needed or condition is wrong. As this
+greater-than-or-equal-to-zero comparison of an unsigned value is always
+true. "version_minor >= 0". Please have a look at it.
 
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
-index e4fcbf8a7eb5..7ef7e81525a3 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
-@@ -3603,7 +3603,7 @@ static int smu7_get_pp_table_entry_callback_func_v1(struct pp_hwmgr *hwmgr,
- 			return -EINVAL);
- 
- 	PP_ASSERT_WITH_CODE(
--			(smu7_power_state->performance_level_count <=
-+			(smu7_power_state->performance_level_count <
- 					hwmgr->platform_descriptor.hardwareActivityPerformanceLevels),
- 			"Performance levels exceeds Driver limit!",
- 			return -EINVAL);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.c
+b/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.c
+index 012b72d00e04..be9a6aad8541 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.c
+@@ -526,6 +526,8 @@ int amdgpu_gfx_rlc_init_microcode(struct
+amdgpu_device *adev,
+        if (version_major == 2 && version_minor == 1)
+                adev->gfx.rlc.is_rlc_v2_1 = true;
+
++       // The following condition is always true as version_minor is
+unsigned.
++       // Why is this condition needed at all?
+        if (version_minor >= 0) {
+                err = amdgpu_gfx_rlc_init_microcode_v2_0(adev);
+                if (err) {
+
 -- 
-2.25.1
+Muhammad Usama Anjum
 
