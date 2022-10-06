@@ -2,41 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03DB15F704E
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Oct 2022 23:28:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04DEF5F7052
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Oct 2022 23:28:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A64EC10E8BC;
-	Thu,  6 Oct 2022 21:28:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC9BA10E8C3;
+	Thu,  6 Oct 2022 21:28:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2061.outbound.protection.outlook.com [40.107.92.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4453B10E8B9
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Oct 2022 21:27:57 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2078.outbound.protection.outlook.com [40.107.244.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0687F10E8BA
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Oct 2022 21:27:58 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SO9aE+Da0bL7mNjckAO9cNsyamIhkj8gyed3isNmQyyncId8h74Q0FSDBV3b96kTCdyHELQW1XgJWLctx/X+AdZbLa1HkdjdTZTV7Vt7JcGE8BS8fIV5pe70gKxgAN6uyAszrVGtTW9B8J806GJ8MgbbY5FiMvL8NCkh0rjcJObaPC8a0tas6cQ7YYCXLNBUIySsVJcrVFJH5dwHsBMMNA8XKGcDSoXyBlP/AkTyVyOI+fMvZ1x5BTJ67yHwMgLlHEJCe0McorkqffiYmKkWPIRWt2l+223vrmLkgYLhJN2rBqFfAgAqPUPpXCd1eOcPJm2uIE76MApb0682209C1Q==
+ b=YTx5IUZL23qq+yH/ChusHbDlOoTlcN2P77R1y60koFSe41tRiWmme7WhLpcz9XjkmiwRtm3ViaduPfazSin97K2EOndYi8YU/aV+nD35n1RSL/w7bWkDVR/bHeLBCKtAx3XoYlV2o+WNMW8BcNd3m6AI6bPVEnzQnKzI/ccxyvOAzyJQsee45pOWGnHSE9HAhEJg2ObssXg9f6iB8Skjbd8VAi2DFbDWKFAz00lKMgnzZsw0qgDULZAIGyZrHIAXA3PZ6ASasJCSsvnJMih5Lhbvw049bbpZm97FU/fgDe5wEDb9IS3BULPW9XWKaIMbWLUSy6y4Qiu7jFsovhVPQA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iHqi4h8/liquJecWruxBrHnI0gcxUJdvDuSDpUz3tFM=;
- b=NcqH9cziO5MPi3mXsQDMKGRYTRXsXafbevbW9s3OVdRuFvZ/0aUkTFYbKXzoFpKiIoGZUy2nLiOp21CHQirwStX8G1XPaauj95Z0UvKMdrsF8OWC2SGLz/z66qvDUfRePnmfASNTwjNk6Ex6NDH/cXYfozGHOL7G2ALHuooSS8wNukeY6wk1b+E0OGMNsGxTeOoIV6MmbBpV1N8L7dCkiJja/QE9K1IRnrVVdEDC6FyGBUHWxQouIAyI98AqYSM/15KPql5vGc0yZ9aTPVAuhbmbxO0Wi3e/zwwz+bZuFctPEFHdq5VfEiw2g1qCtxFX6qT8X+IkHPnu5ueAKwb5Fw==
+ bh=oL4DA+3o4FvcEkpJ8QRLyBLWz5VkLM7tPDaxY45gBTk=;
+ b=kh3Ne1G1MLTTicx/DzpNuYreB8BAqSpJW9pjyqkZJSZqpxzF4NkPc//MvwJFkTEpYNgfOvr65bPG7+/HDQEDeuQFqOQqac5UrBOHgFegvYiVUtVKB1mGlarBlyNWAhWN2CTqR29D6hhCT+m6y9/U9aIR7Eq4+Tt5HN1WhLGdYty3aZfCaWn1qum3Y6Hg3FhOWhaZZ66TQ0SmkvAdh4yH/8H198cJQhtMHil9vR5E18lFpM1Q9RKb+tawlL+vJ76z+geEsjW/HWtA7Jy1iOxTgN6bRnTYEet+QnCvUX23M9UwvfUaJcBMtkHxrsQwc4z0m8oAo/u2RgtTc8WgsKo7WA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iHqi4h8/liquJecWruxBrHnI0gcxUJdvDuSDpUz3tFM=;
- b=ozQrLlti5Uuz9fuRVjFzxwVh2apQc/j072wR9rK01p0zPChKOhxOmLa1vAzaSlopzOvNlZz6+rHo38wyHA8vyLr32Tw3x5wgGuU8mqIx/expoKCbRzC4/ML/IsKyAsX+FfIyMZOgJghiba1FwmcPi4keAg8ApMPIWxFgro1RAy4=
-Received: from BN9PR03CA0271.namprd03.prod.outlook.com (2603:10b6:408:f5::6)
- by DM4PR12MB5039.namprd12.prod.outlook.com (2603:10b6:5:38a::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.24; Thu, 6 Oct
+ bh=oL4DA+3o4FvcEkpJ8QRLyBLWz5VkLM7tPDaxY45gBTk=;
+ b=TQoO1NRIlbhDexJCmYEygGucNkO1gy0Ix/bM4wvtTb2TLf55ugGAnnLM9L/11qNfQv1nWUlku6+T1LypUEWkNwL988QvNGT0W0TgFr1cLsATBAXqNREowir6Zc4KbSES4sYDkvRSL/QZf20Zth6Sv70pSMDq5nzK6MJgSDU+D4A=
+Received: from BN9PR03CA0278.namprd03.prod.outlook.com (2603:10b6:408:f5::13)
+ by IA1PR12MB6651.namprd12.prod.outlook.com (2603:10b6:208:3a0::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.28; Thu, 6 Oct
  2022 21:27:55 +0000
 Received: from BN8NAM11FT078.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:f5:cafe::89) by BN9PR03CA0271.outlook.office365.com
- (2603:10b6:408:f5::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.30 via Frontend
+ (2603:10b6:408:f5:cafe::2f) by BN9PR03CA0278.outlook.office365.com
+ (2603:10b6:408:f5::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.24 via Frontend
  Transport; Thu, 6 Oct 2022 21:27:55 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -47,17 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN8NAM11FT078.mail.protection.outlook.com (10.13.176.251) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5709.10 via Frontend Transport; Thu, 6 Oct 2022 21:27:54 +0000
+ 15.20.5709.10 via Frontend Transport; Thu, 6 Oct 2022 21:27:55 +0000
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 6 Oct
- 2022 16:27:50 -0500
+ 2022 16:27:51 -0500
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 18/23] drm/amd/display: Use set_vtotal_min_max to configure
- OTG VTOTAL
-Date: Thu, 6 Oct 2022 17:26:45 -0400
-Message-ID: <20221006212650.561923-19-qingqing.zhuo@amd.com>
+Subject: [PATCH 19/23] drm/amd/display: Drop uncessary OTG lock check
+Date: Thu, 6 Oct 2022 17:26:46 -0400
+Message-ID: <20221006212650.561923-20-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221006212650.561923-1-qingqing.zhuo@amd.com>
 References: <20221006212650.561923-1-qingqing.zhuo@amd.com>
@@ -69,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT078:EE_|DM4PR12MB5039:EE_
-X-MS-Office365-Filtering-Correlation-Id: c3667b19-3584-47f9-6f37-08daa7e1a1d3
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT078:EE_|IA1PR12MB6651:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2f1a3c80-dfe9-4ee5-06f4-08daa7e1a22e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: iC+epV4C6BmF8fMCjA5TYyI2pxAiyEY6hHNO4t1CjtvH2Kr819oBm8Xf6eFBJvuoeikDq4ATdW/Rb4XU8TE1g1YedoRtFxb4UykNZ9DlLRAqXf+hEBvTuwRhzCcMYcPSRmUfaAoDS0pE4YyUxUtCG8wHzRiW9dLrfpFkysyqvwAcSrlBnQL9zhAjWlc1MTzTdZIwar3QWoLGXrWc+pzqg6kMXRjmhFqtt6DYGhlvKhl+FvtEn45UyvyY7Y6Zy+BAN9wjgpVv3MkAb5004VbOz9HsTljzls4kWDT2osvIdfjealUEuYFQYdmz8RpPZ2WMM34YOwkE/q6C2Vpyq95wyrVXO0sCSlKUx41zzYYuXRVPes0AXm909bK4jzBNKQVSk4mtA7P0nWOuDteySZ4nXulPEyR1W33QaUFbiO+OgyJU0za4Lx3YgWuybpRsONBSninKplsCvihDrWNfJ3i5d1gdiIg9gb7eoLCJ+uRet8Aqe5d6nddkcX9vFsuEVsjvX/J/1yHXuAQuywQ4TF3Rlmfp3x4Z7MS5rj6hNsPODW6QD/wJpKC7+FLMikSsrLPYXiKi00V5xdU5P2qDgMkUZkMnJRmFPr03xgI7K7IKIbJFXgP5whJ6DDhb7MAfjLyexBETcgbywquJYhwMZwJtdZa53PZnjVHcr8CdC6syBeiuF1P1kOw79BDl+ybNzcAFGfdpGcFDgVs3PqC9L1wqE1AWCHwlkJHGxWJFTLsfj34pWlRqDkTB0vpY1EnhuaaPwswIpGskTxxHk+7y6f2pS3oMHhZ0FdUyc5Pil5l8rPWp4C12C78r+ZEi6QAJ5onD
+X-Microsoft-Antispam-Message-Info: L74ejEWkMWpr1QXfLMWEHnshHSxasygMsyzDeEcKLR2iqrYX/hF1ihemHkzQtxxKyxFFSPWJ0oKlTAt3FrWbxOpTEZJHXBaMXWzHmXVE2OOBkxk7UrIhDvPsJcoFJQvT6vjCLwkr5Y5Xh202IFU2TtEhpd0we38FJgyEpYMvw3v8LoG068KQbCFh9J961WS3ytyarc791KMjvCemdl3ZG6ByRhvpxIwsNS1kC+Dh5CLvN6uSABWINyamU9SSrdJPKXlQmhBwrI8avbSB6iBcztE8/U/fz6a0oJNhTa/b+xSkXkqu7YHDyEdz4en73wiCgaXCYSHV1b0ckYOo1iuVqbT6peEyMJiO2wrhVxbt4a/5UchjFu3MXrgkX/npYWDvFB+rUTFD/feUQHI4oOPXeSQJIVH77SlQzzDJqzDSwxNGSRBjs42NiqC53KzxF0HIsBcv+QVEdvrVO2GV7J0/3Gtv6h/CHeJ+PInuwv5gCN8vQm9WaAQr18FFNopUzV5doAiiu5UW5+6ex1aBPzlq0eZPpRTiRyIwgAP3+5vUBH9LYjSwbTdlwWXk4rncNtx0TJPEyEh5o1y2ZE6vtWkC2vCZA5VvcB3A8lm64CKbOaH5vkVmrq5FAnzhIhzayV6eA9SpwREG88ajZEUKR4cOtjiuneGuHnp/Fyaj2o9ZHk+6AsfLZkyO1ggUsPJTAJ1EfxBh/EvMlr+QGSHDzBglG2wQRtSSZXrjctXaP2l/R+EJkb9Bq4yT9+EK7Mw5DXqXx+bZ/YoyWlSR2P7RPdWMqQNrX6hEkYvN9jkTgL7OxoXkxBd6qbJ6U+umS0kOW6IE
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(136003)(396003)(376002)(346002)(39860400002)(451199015)(40470700004)(36840700001)(46966006)(6916009)(36756003)(86362001)(36860700001)(44832011)(336012)(16526019)(1076003)(2616005)(83380400001)(356005)(82740400003)(81166007)(47076005)(426003)(186003)(26005)(8676002)(478600001)(6666004)(316002)(70206006)(54906003)(70586007)(4326008)(8936002)(82310400005)(41300700001)(5660300002)(2906002)(40480700001)(40460700003)(36900700001);
+ SFS:(13230022)(4636009)(376002)(346002)(39860400002)(396003)(136003)(451199015)(40470700004)(36840700001)(46966006)(478600001)(2906002)(44832011)(41300700001)(5660300002)(54906003)(70206006)(426003)(82310400005)(186003)(36860700001)(2616005)(1076003)(356005)(336012)(16526019)(36756003)(8676002)(70586007)(4326008)(40460700003)(6916009)(81166007)(6666004)(8936002)(316002)(26005)(40480700001)(47076005)(83380400001)(86362001)(82740400003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2022 21:27:54.9408 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c3667b19-3584-47f9-6f37-08daa7e1a1d3
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2022 21:27:55.5502 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2f1a3c80-dfe9-4ee5-06f4-08daa7e1a22e
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT078.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5039
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6651
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,115 +108,51 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 
-In multiple parts of the DCN code, we
-write directly to the OTG_V_TOTAL_* registers
-in some OPTC functions. Let's avoid it by using
-the set_vtotal_min_max.
+The OTG_MASTER_UPDATE_LOCK_SEL is used for
+GSL and OTGs in the same group for selecting
+the OTG_MASTER_UPDATE_LOCK from the same OTG. At
+some point, it a check was added to see if
+OTG is running or not, which is not necessary,
+and for this reason, this commit dropped that check.
 
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
 Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dcn10/dcn10_optc.c  | 18 ++++--------------
- .../gpu/drm/amd/display/dc/dcn30/dcn30_optc.c  |  2 +-
- .../gpu/drm/amd/display/dc/dcn31/dcn31_optc.c  |  1 -
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h    |  4 ----
- 4 files changed, 5 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c | 11 +----------
+ 1 file changed, 1 insertion(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
-index 143a900d4d3d..dca8a1446120 100644
+index dca8a1446120..33d780218790 100644
 --- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
 +++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
-@@ -207,10 +207,7 @@ void optc1_program_timing(
- 	/* In case of V_TOTAL_CONTROL is on, make sure OTG_V_TOTAL_MAX and
- 	 * OTG_V_TOTAL_MIN are equal to V_TOTAL.
- 	 */
--	REG_SET(OTG_V_TOTAL_MAX, 0,
--		OTG_V_TOTAL_MAX, v_total);
--	REG_SET(OTG_V_TOTAL_MIN, 0,
--		OTG_V_TOTAL_MIN, v_total);
-+	optc->funcs->set_vtotal_min_max(optc, v_total, v_total);
- 
- 	/* v_sync_start = 0, v_sync_end = v_sync_width */
- 	v_sync_end = patched_crtc_timing.v_sync_width;
-@@ -931,11 +928,7 @@ void optc1_set_drr(
- 
- 		}
- 
--		REG_SET(OTG_V_TOTAL_MAX, 0,
--			OTG_V_TOTAL_MAX, params->vertical_total_max - 1);
+@@ -646,13 +646,6 @@ uint32_t optc1_get_vblank_counter(struct timing_generator *optc)
+ void optc1_lock(struct timing_generator *optc)
+ {
+ 	struct optc *optc1 = DCN10TG_FROM_TG(optc);
+-	uint32_t regval = 0;
 -
--		REG_SET(OTG_V_TOTAL_MIN, 0,
--			OTG_V_TOTAL_MIN, params->vertical_total_min - 1);
-+		optc->funcs->set_vtotal_min_max(optc, params->vertical_total_min - 1, params->vertical_total_max - 1);
- 
- 		REG_UPDATE_5(OTG_V_TOTAL_CONTROL,
- 				OTG_V_TOTAL_MIN_SEL, 1,
-@@ -954,11 +947,7 @@ void optc1_set_drr(
- 				OTG_V_TOTAL_MAX_SEL, 0,
- 				OTG_FORCE_LOCK_ON_EVENT, 0);
- 
--		REG_SET(OTG_V_TOTAL_MIN, 0,
--			OTG_V_TOTAL_MIN, 0);
+-	regval = REG_READ(OTG_CONTROL);
 -
--		REG_SET(OTG_V_TOTAL_MAX, 0,
--			OTG_V_TOTAL_MAX, 0);
-+		optc->funcs->set_vtotal_min_max(optc, 0, 0);
- 	}
+-	/* otg is not running, do not need to be locked */
+-	if ((regval & 0x1) == 0x0)
+-		return;
+ 
+ 	REG_SET(OTG_GLOBAL_CONTROL0, 0,
+ 			OTG_MASTER_UPDATE_LOCK_SEL, optc->inst);
+@@ -660,12 +653,10 @@ void optc1_lock(struct timing_generator *optc)
+ 			OTG_MASTER_UPDATE_LOCK, 1);
+ 
+ 	/* Should be fast, status does not update on maximus */
+-	if (optc->ctx->dce_environment != DCE_ENV_FPGA_MAXIMUS) {
+-
++	if (optc->ctx->dce_environment != DCE_ENV_FPGA_MAXIMUS)
+ 		REG_WAIT(OTG_MASTER_UPDATE_LOCK,
+ 				UPDATE_LOCK_STATUS, 1,
+ 				1, 10);
+-	}
  }
  
-@@ -1577,6 +1566,7 @@ static const struct timing_generator_funcs dcn10_tg_funcs = {
- 		.enable_optc_clock = optc1_enable_optc_clock,
- 		.set_drr = optc1_set_drr,
- 		.get_last_used_drr_vtotal = NULL,
-+		.set_vtotal_min_max = optc1_set_vtotal_min_max,
- 		.set_static_screen_control = optc1_set_static_screen_control,
- 		.set_test_pattern = optc1_set_test_pattern,
- 		.program_stereo = optc1_program_stereo,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c
-index 02459a64ee21..892d3c4d01a1 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c
-@@ -325,6 +325,7 @@ static struct timing_generator_funcs dcn30_tg_funcs = {
- 		.enable_optc_clock = optc1_enable_optc_clock,
- 		.set_drr = optc1_set_drr,
- 		.get_last_used_drr_vtotal = optc2_get_last_used_drr_vtotal,
-+		.set_vtotal_min_max = optc3_set_vtotal_min_max,
- 		.set_static_screen_control = optc1_set_static_screen_control,
- 		.program_stereo = optc1_program_stereo,
- 		.is_stereo_left_eye = optc1_is_stereo_left_eye,
-@@ -365,4 +366,3 @@ void dcn30_timing_generator_init(struct optc *optc1)
- 	optc1->min_h_sync_width = 4;
- 	optc1->min_v_sync_width = 1;
- }
--
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_optc.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_optc.c
-index d873def1a8f9..63a677c8ee27 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_optc.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_optc.c
-@@ -201,7 +201,6 @@ void optc31_set_drr(
- 
- 		// Setup manual flow control for EOF via TRIG_A
- 		optc->funcs->setup_manual_trigger(optc);
--
- 	} else {
- 		REG_UPDATE_4(OTG_V_TOTAL_CONTROL,
- 				OTG_SET_V_TOTAL_MIN_MASK, 0,
-diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-index 1d36f0fceb3e..7a8f61517424 100644
---- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-+++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-@@ -2941,11 +2941,7 @@ struct dmub_rb_cmd_get_visual_confirm_color {
- struct dmub_optc_state {
- 	uint32_t v_total_max;
- 	uint32_t v_total_min;
--	uint32_t v_total_mid;
--	uint32_t v_total_mid_frame_num;
- 	uint32_t tg_inst;
--	uint32_t enable_manual_trigger;
--	uint32_t clear_force_vsync;
- };
- 
- struct dmub_rb_cmd_drr_update {
+ void optc1_unlock(struct timing_generator *optc)
 -- 
 2.25.1
 
