@@ -1,42 +1,50 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67D6C5F9F3D
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 Oct 2022 15:14:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2F5B5F9F3C
+	for <lists+amd-gfx@lfdr.de>; Mon, 10 Oct 2022 15:14:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38E8710E1D6;
-	Mon, 10 Oct 2022 13:14:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01A5810E4D1;
+	Mon, 10 Oct 2022 13:14:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 856 seconds by postgrey-1.36 at gabe;
- Sat, 08 Oct 2022 09:34:12 UTC
-Received: from 186.whitelist.crbl.net (186.whitelist.crbl.net
- [162.243.126.186])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3086F10E0CB;
- Sat,  8 Oct 2022 09:34:12 +0000 (UTC)
-Received: from ([60.208.111.195])
- by unicom146.biz-email.net ((D)) with ASMTP (SSL) id DLX00001;
- Sat, 08 Oct 2022 17:14:01 +0800
-Received: from localhost.localdomain (10.200.104.82) by
- jtjnmail201611.home.langchao.com (10.100.2.11) with Microsoft SMTP Server id
- 15.1.2507.12; Sat, 8 Oct 2022 17:14:02 +0800
-From: Deming Wang <wangdeming@inspur.com>
-To: <airlied@gmail.com>, <daniel@ffwll.ch>, <Felix.Kuehling@amd.com>,
- <alexander.deucher@amd.com>, <christian.koenig@amd.com>, <Xinhui.Pan@amd.com>
-Subject: [PATCH] drm/amdkfd: use vma_lookup() instead of find_vma()
-Date: Thu, 6 Oct 2022 22:48:18 -0400
-Message-ID: <20221007024818.4921-1-wangdeming@inspur.com>
-X-Mailer: git-send-email 2.31.1
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2AB810E26D;
+ Sun,  9 Oct 2022 00:09:04 +0000 (UTC)
+Received: from [192.168.2.145] (109-252-119-114.nat.spd-mgts.ru
+ [109.252.119.114])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits))
+ (No client certificate requested)
+ (Authenticated sender: dmitry.osipenko)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id AD61E6602303;
+ Sun,  9 Oct 2022 01:08:59 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1665274142;
+ bh=tRu/AWDhf1iOYLNP6D5ccZEJMnF9oPGtd04+Gk3jRuA=;
+ h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+ b=fH3GVJPP0Agx7FoWitfSeocWjORT1LvnTSnPwSqsxinARwwXtUpOaikNENp0bqUrC
+ PEWSWFEjMZP7lDmv6EU2Grv25zWS7RZ/h7CyD+7zKtjl4QAfnnCEScMPlrHhseb+En
+ Gz6vFJUxlSWNVwbR41RbruaqwCZ47lCdToK+BcEO9GuR8so0PP/P07QqERBUWyAJVb
+ MMo4+FZKLISPnrknOSkksa6Ta/zh2p7kUJ5bKem5cyumvth/JLc9RmmGae3HPvGZFj
+ 1usDID4w07q/Pi3FDQyJlsU/m9taGaBUzV9f+UEhS80kUisNvUwJDrtVlek5svMZjQ
+ SedcaWbpdnMdw==
+Message-ID: <e3ba146d-8153-add5-2cf4-02fe6519abee@collabora.com>
+Date: Sun, 9 Oct 2022 03:08:56 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH v6 10/21] RDMA/umem: Prepare to dynamic dma-buf locking
+ specification
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>
+References: <20220928191600.5874-1-dmitry.osipenko@collabora.com>
+ <20220928191600.5874-11-dmitry.osipenko@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20220928191600.5874-11-dmitry.osipenko@collabora.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.200.104.82]
-tUid: 202210081714012c959af65021b156089005c68f8b32f8
-X-Abuse-Reports-To: service@corp-email.com
-Abuse-Reports-To: service@corp-email.com
-X-Complaints-To: service@corp-email.com
-X-Report-Abuse-To: service@corp-email.com
 X-Mailman-Approved-At: Mon, 10 Oct 2022 13:14:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -49,56 +57,84 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Deming Wang <wangdeming@inspur.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Daniel Almeida <daniel.almeida@collabora.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ Ruhl Michael J <michael.j.ruhl@intel.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, Dmitry Osipenko <digetx@gmail.com>,
+ kernel@collabora.com, Sumit Semwal <sumit.semwal@linaro.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, linux-rdma@vger.kernel.org,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>,
+ Russell King <linux@armlinux.org.uk>, Daniel Stone <daniel@fooishbar.org>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>, Chia-I Wu <olvaffe@gmail.com>,
+ linux-media@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, linaro-mm-sig@lists.linaro.org,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Stefano Stabellini <sstabellini@kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, Juergen Gross <jgross@suse.com>,
+ David Airlie <airlied@linux.ie>, amd-gfx@lists.freedesktop.org,
+ Tomi Valkeinen <tomba@kernel.org>, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ linux-kernel@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
+ Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+ Rob Clark <robdclark@gmail.com>, Qiang Yu <yuq825@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ Amol Maheshwari <amahesh@qti.qualcomm.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Lucas Stach <l.stach@pengutronix.de>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Using vma_lookup() verifies the start address is contained in the found
-vma.  This results in easier to read the code.
+On 9/28/22 22:15, Dmitry Osipenko wrote:
+> Prepare InfiniBand drivers to the common dynamic dma-buf locking
+> convention by starting to use the unlocked versions of dma-buf API
+> functions.
+> 
+> Acked-by: Christian König <christian.koenig@amd.com>
+> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> ---
+>  drivers/infiniband/core/umem_dmabuf.c | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/infiniband/core/umem_dmabuf.c b/drivers/infiniband/core/umem_dmabuf.c
+> index 04c04e6d24c3..43b26bc12288 100644
+> --- a/drivers/infiniband/core/umem_dmabuf.c
+> +++ b/drivers/infiniband/core/umem_dmabuf.c
+> @@ -26,7 +26,8 @@ int ib_umem_dmabuf_map_pages(struct ib_umem_dmabuf *umem_dmabuf)
+>  	if (umem_dmabuf->sgt)
+>  		goto wait_fence;
+>  
+> -	sgt = dma_buf_map_attachment(umem_dmabuf->attach, DMA_BIDIRECTIONAL);
+> +	sgt = dma_buf_map_attachment_unlocked(umem_dmabuf->attach,
+> +					      DMA_BIDIRECTIONAL);
+>  	if (IS_ERR(sgt))
+>  		return PTR_ERR(sgt);
+>  
+> @@ -102,8 +103,8 @@ void ib_umem_dmabuf_unmap_pages(struct ib_umem_dmabuf *umem_dmabuf)
+>  		umem_dmabuf->last_sg_trim = 0;
+>  	}
+>  
+> -	dma_buf_unmap_attachment(umem_dmabuf->attach, umem_dmabuf->sgt,
+> -				 DMA_BIDIRECTIONAL);
+> +	dma_buf_unmap_attachment_unlocked(umem_dmabuf->attach, umem_dmabuf->sgt,
+> +					  DMA_BIDIRECTIONAL);
+>  
+>  	umem_dmabuf->sgt = NULL;
+>  }
 
-Signed-off-by: Deming Wang <wangdeming@inspur.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+Jason / Leon,
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index 64fdf63093a0..cabcc2ca3c23 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -1586,8 +1586,8 @@ static int svm_range_validate_and_map(struct mm_struct *mm,
- 		unsigned long npages;
- 		bool readonly;
- 
--		vma = find_vma(mm, addr);
--		if (!vma || addr < vma->vm_start) {
-+		vma = vma_lookup(mm, addr);
-+		if (!vma) {
- 			r = -EFAULT;
- 			goto unreserve_out;
- 		}
-@@ -2542,8 +2542,8 @@ svm_range_get_range_boundaries(struct kfd_process *p, int64_t addr,
- 	struct interval_tree_node *node;
- 	unsigned long start_limit, end_limit;
- 
--	vma = find_vma(p->mm, addr << PAGE_SHIFT);
--	if (!vma || (addr << PAGE_SHIFT) < vma->vm_start) {
-+	vma = vma_lookup(p->mm, addr << PAGE_SHIFT);
-+	if (!vma) {
- 		pr_debug("VMA does not exist in address [0x%llx]\n", addr);
- 		return -EFAULT;
- 	}
-@@ -2871,8 +2871,8 @@ svm_range_restore_pages(struct amdgpu_device *adev, unsigned int pasid,
- 	/* __do_munmap removed VMA, return success as we are handling stale
- 	 * retry fault.
- 	 */
--	vma = find_vma(mm, addr << PAGE_SHIFT);
--	if (!vma || (addr << PAGE_SHIFT) < vma->vm_start) {
-+	vma = vma_lookup(mm, addr << PAGE_SHIFT);
-+	if (!vma) {
- 		pr_debug("address 0x%llx VMA is removed\n", addr);
- 		r = 0;
- 		goto out_unlock_range;
+Could you please ack this patch?
+
 -- 
-2.27.0
+Best regards,
+Dmitry
 
