@@ -1,46 +1,47 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BDF65F9446
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 Oct 2022 01:54:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2C855F9450
+	for <lists+amd-gfx@lfdr.de>; Mon, 10 Oct 2022 01:54:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 101C110E5AE;
-	Sun,  9 Oct 2022 23:54:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6475A10E5B7;
+	Sun,  9 Oct 2022 23:54:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51D1D10E5AE;
- Sun,  9 Oct 2022 23:54:26 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BE9A10E5B8;
+ Sun,  9 Oct 2022 23:54:41 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id D53C660D57;
- Sun,  9 Oct 2022 23:54:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF0B3C433D7;
- Sun,  9 Oct 2022 23:54:23 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 4886CB80DF1;
+ Sun,  9 Oct 2022 23:54:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8395CC433C1;
+ Sun,  9 Oct 2022 23:54:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1665359665;
- bh=k1aIw9YxKECaGaO2jmbXqWliP/zH74AICWyaTZxJlzY=;
+ s=k20201202; t=1665359679;
+ bh=IqXIc2zb1gPqjZAiZAuDXqBufstMjobSxTTlD79UXjo=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=YX+As//5fuL/ISwn9hP7eN+vAjV/ARtB/IK8Lj5ErKRk/Fu2tdOzeS+grE2AC1B9S
- ZKq9e1+XwCy1vMD5p3zwIOhKZsasjUkq/xqLnG4TzzcatZPgVT062lWOAxpTF4Vajf
- 47o/9SW/7G6xQrifAchZJC9+jshRcA9qOTAOi/GGx+mo9Ko5KwbSnQ9kVJ7FOU/mck
- vInmDX1OFTRBUclciQG9MiQqbN2VrhVN77x5bJ/ntxiCOS5fHZN4mSdjZJz4MKQiov
- yinHzgW+mJ4RAJm1eN6MDvVrFMjL2cg3jL0ivwP6PJvDr+4gGVr6leCx9QUU8i+Sgz
- OaXrOHED2d8pw==
+ b=PgDCXAABSZm7wXIWUF6R9+jwyIZNuDvpUzCG/BH3b2wdVs28L5mFKWItnPDxFiL8e
+ 7AewTnS70oEEbikvZ4KJ/AozFhd5anDoyaEpxLsIeO1bS5Nyqzq/0GbRxsDgcQf0A1
+ 9vxBLA8kGAVegD+WGB5uqRI6puYfUJ+j/4Ilgncqr+TVAQJj8iccQMrDytltzpd8U4
+ xXd600rxs1WJaDt/ht4GS1xDCNg7plNi+E8wGfYmCnS43LWCX/0EHeGFk4hD0A+Dd7
+ BRv376MFaBE0u/DgERAcJenf4BF2tipzrYBOLhh6VT3DHmitM2j+2kB/8wIYMa8bTG
+ ztbt8Tadr5mHQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.19 36/36] drm/amdkfd: Fix UBSAN shift-out-of-bounds
- warning
-Date: Sun,  9 Oct 2022 19:52:22 -0400
-Message-Id: <20221009235222.1230786-36-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 06/25] drm/amd/display: fix overflow on MIN_I64
+ definition
+Date: Sun,  9 Oct 2022 19:54:06 -0400
+Message-Id: <20221009235426.1231313-6-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221009235222.1230786-1-sashal@kernel.org>
-References: <20221009235222.1230786-1-sashal@kernel.org>
+In-Reply-To: <20221009235426.1231313-1-sashal@kernel.org>
+References: <20221009235426.1231313-1-sashal@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
@@ -55,111 +56,60 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ellis Michael <ellis@ellismichael.com>, Sasha Levin <sashal@kernel.org>,
- Felix Kuehling <Felix.Kuehling@amd.com>, Xinhui.Pan@amd.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- daniel@ffwll.ch, Alex Deucher <alexander.deucher@amd.com>, airlied@gmail.com,
- christian.koenig@amd.com, Graham Sider <Graham.Sider@amd.com>
+Cc: Sasha Levin <sashal@kernel.org>, daniel@ffwll.ch, sunpeng.li@amd.com,
+ Tales Aparecida <tales.aparecida@gmail.com>, Xinhui.Pan@amd.com,
+ Rodrigo.Siqueira@amd.com, amd-gfx@lists.freedesktop.org, isabbasso@riseup.net,
+ dri-devel@lists.freedesktop.org, David Gow <davidgow@google.com>,
+ Alex Deucher <alexander.deucher@amd.com>, airlied@gmail.com,
+ harry.wentland@amd.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Felix Kuehling <Felix.Kuehling@amd.com>
+From: David Gow <davidgow@google.com>
 
-[ Upstream commit b292cafe2dd02d96a07147e4b160927e8399d5cc ]
+[ Upstream commit 6ae0632d17759852c07e2d1e0a31c728eb6ba246 ]
 
-This was fixed in initialize_cpsch before, but not in initialize_nocpsch.
-Factor sdma bitmap initialization into a helper function to apply the
-correct implementation in both cases without duplicating it.
+The definition of MIN_I64 in bw_fixed.c can cause gcc to whinge about
+integer overflow, because it is treated as a positive value, which is
+then negated. The temporary positive value is not necessarily
+representable.
 
-v2: Added a range check
+This causes the following warning:
+../drivers/gpu/drm/amd/amdgpu/../display/dc/dml/calcs/bw_fixed.c:30:19:
+warning: integer overflow in expression ‘-9223372036854775808’ of type
+‘long long int’ results in ‘-9223372036854775808’ [-Woverflow]
+  30 |         (int64_t)(-(1LL << 63))
+     |                   ^
 
-Reported-by: Ellis Michael <ellis@ellismichael.com>
-Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
-Reviewed-by: Graham Sider <Graham.Sider@amd.com>
+Writing out (-MAX_I64 - 1) works instead.
+
+Signed-off-by: David Gow <davidgow@google.com>
+Signed-off-by: Tales Aparecida <tales.aparecida@gmail.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- .../drm/amd/amdkfd/kfd_device_queue_manager.c | 45 +++++++++----------
- 1 file changed, 21 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/amd/display/dc/calcs/bw_fixed.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index e1797657b04c..7d3fc5849466 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -1232,6 +1232,24 @@ static void init_interrupts(struct device_queue_manager *dqm)
- 			dqm->dev->kfd2kgd->init_interrupts(dqm->dev->adev, i);
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/calcs/bw_fixed.c b/drivers/gpu/drm/amd/display/dc/calcs/bw_fixed.c
+index 6ca288fb5fb9..2d46bc527b21 100644
+--- a/drivers/gpu/drm/amd/display/dc/calcs/bw_fixed.c
++++ b/drivers/gpu/drm/amd/display/dc/calcs/bw_fixed.c
+@@ -26,12 +26,12 @@
+ #include "bw_fixed.h"
  
-+static void init_sdma_bitmaps(struct device_queue_manager *dqm)
-+{
-+	unsigned int num_sdma_queues =
-+		min_t(unsigned int, sizeof(dqm->sdma_bitmap)*8,
-+		      get_num_sdma_queues(dqm));
-+	unsigned int num_xgmi_sdma_queues =
-+		min_t(unsigned int, sizeof(dqm->xgmi_sdma_bitmap)*8,
-+		      get_num_xgmi_sdma_queues(dqm));
+ 
+-#define MIN_I64 \
+-	(int64_t)(-(1LL << 63))
+-
+ #define MAX_I64 \
+ 	(int64_t)((1ULL << 63) - 1)
+ 
++#define MIN_I64 \
++	(-MAX_I64 - 1)
 +
-+	if (num_sdma_queues)
-+		dqm->sdma_bitmap = GENMASK_ULL(num_sdma_queues-1, 0);
-+	if (num_xgmi_sdma_queues)
-+		dqm->xgmi_sdma_bitmap = GENMASK_ULL(num_xgmi_sdma_queues-1, 0);
-+
-+	dqm->sdma_bitmap &= ~get_reserved_sdma_queues_bitmap(dqm);
-+	pr_info("sdma_bitmap: %llx\n", dqm->sdma_bitmap);
-+}
-+
- static int initialize_nocpsch(struct device_queue_manager *dqm)
- {
- 	int pipe, queue;
-@@ -1260,11 +1278,7 @@ static int initialize_nocpsch(struct device_queue_manager *dqm)
- 
- 	memset(dqm->vmid_pasid, 0, sizeof(dqm->vmid_pasid));
- 
--	dqm->sdma_bitmap = ~0ULL >> (64 - get_num_sdma_queues(dqm));
--	dqm->sdma_bitmap &= ~(get_reserved_sdma_queues_bitmap(dqm));
--	pr_info("sdma_bitmap: %llx\n", dqm->sdma_bitmap);
--
--	dqm->xgmi_sdma_bitmap = ~0ULL >> (64 - get_num_xgmi_sdma_queues(dqm));
-+	init_sdma_bitmaps(dqm);
- 
- 	return 0;
- }
-@@ -1442,9 +1456,6 @@ static int set_sched_resources(struct device_queue_manager *dqm)
- 
- static int initialize_cpsch(struct device_queue_manager *dqm)
- {
--	uint64_t num_sdma_queues;
--	uint64_t num_xgmi_sdma_queues;
--
- 	pr_debug("num of pipes: %d\n", get_pipes_per_mec(dqm));
- 
- 	mutex_init(&dqm->lock_hidden);
-@@ -1453,24 +1464,10 @@ static int initialize_cpsch(struct device_queue_manager *dqm)
- 	dqm->active_cp_queue_count = 0;
- 	dqm->gws_queue_count = 0;
- 	dqm->active_runlist = false;
--
--	num_sdma_queues = get_num_sdma_queues(dqm);
--	if (num_sdma_queues >= BITS_PER_TYPE(dqm->sdma_bitmap))
--		dqm->sdma_bitmap = ULLONG_MAX;
--	else
--		dqm->sdma_bitmap = (BIT_ULL(num_sdma_queues) - 1);
--
--	dqm->sdma_bitmap &= ~(get_reserved_sdma_queues_bitmap(dqm));
--	pr_info("sdma_bitmap: %llx\n", dqm->sdma_bitmap);
--
--	num_xgmi_sdma_queues = get_num_xgmi_sdma_queues(dqm);
--	if (num_xgmi_sdma_queues >= BITS_PER_TYPE(dqm->xgmi_sdma_bitmap))
--		dqm->xgmi_sdma_bitmap = ULLONG_MAX;
--	else
--		dqm->xgmi_sdma_bitmap = (BIT_ULL(num_xgmi_sdma_queues) - 1);
--
- 	INIT_WORK(&dqm->hw_exception_work, kfd_process_hw_exception);
- 
-+	init_sdma_bitmaps(dqm);
-+
- 	return 0;
- }
+ #define FRACTIONAL_PART_MASK \
+ 	((1ULL << BW_FIXED_BITS_PER_FRACTIONAL_PART) - 1)
  
 -- 
 2.35.1
