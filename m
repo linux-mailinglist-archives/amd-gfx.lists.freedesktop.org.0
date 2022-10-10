@@ -2,49 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2F5B5F9F3C
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 Oct 2022 15:14:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 665BE5F9F39
+	for <lists+amd-gfx@lfdr.de>; Mon, 10 Oct 2022 15:14:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01A5810E4D1;
-	Mon, 10 Oct 2022 13:14:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A706210E145;
+	Mon, 10 Oct 2022 13:14:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2AB810E26D;
- Sun,  9 Oct 2022 00:09:04 +0000 (UTC)
-Received: from [192.168.2.145] (109-252-119-114.nat.spd-mgts.ru
- [109.252.119.114])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits))
- (No client certificate requested)
- (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id AD61E6602303;
- Sun,  9 Oct 2022 01:08:59 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1665274142;
- bh=tRu/AWDhf1iOYLNP6D5ccZEJMnF9oPGtd04+Gk3jRuA=;
- h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
- b=fH3GVJPP0Agx7FoWitfSeocWjORT1LvnTSnPwSqsxinARwwXtUpOaikNENp0bqUrC
- PEWSWFEjMZP7lDmv6EU2Grv25zWS7RZ/h7CyD+7zKtjl4QAfnnCEScMPlrHhseb+En
- Gz6vFJUxlSWNVwbR41RbruaqwCZ47lCdToK+BcEO9GuR8so0PP/P07QqERBUWyAJVb
- MMo4+FZKLISPnrknOSkksa6Ta/zh2p7kUJ5bKem5cyumvth/JLc9RmmGae3HPvGZFj
- 1usDID4w07q/Pi3FDQyJlsU/m9taGaBUzV9f+UEhS80kUisNvUwJDrtVlek5svMZjQ
- SedcaWbpdnMdw==
-Message-ID: <e3ba146d-8153-add5-2cf4-02fe6519abee@collabora.com>
-Date: Sun, 9 Oct 2022 03:08:56 +0300
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com
+ [IPv6:2607:f8b0:4864:20::52f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8006210E1CE
+ for <amd-gfx@lists.freedesktop.org>; Mon, 10 Oct 2022 00:47:57 +0000 (UTC)
+Received: by mail-pg1-x52f.google.com with SMTP id 78so9059029pgb.13
+ for <amd-gfx@lists.freedesktop.org>; Sun, 09 Oct 2022 17:47:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
+ h=to:from:cc:content-transfer-encoding:mime-version:message-id:date
+ :subject:from:to:cc:subject:date:message-id:reply-to;
+ bh=b1IdFMAsFWWE5DfX4XR7dO8m7CmzOg+cTazbFUsdzyk=;
+ b=YAXXSlZVKrpp5s11IEofCgqjlOxzLKiNl6J7yBu1bJ/lJVj6EpEmSp9+FdAVhg+4Bs
+ rwLmW4YQ87dKk4gTf+IrBRVMhSiPKfypEacE2Fn+gWDtFSldhSgY3W6qfQqYV/eFqBVu
+ HrFL7z9S3Is8oW5T3Z7C2+2Yd9AGnfsa2pBYLdap8ozcsOXFERUpUJDXVh/0QQ9Z8RBd
+ Q+vV4Hyn/ODK03LWv0FLbdgzakp1v7tHvEi1Uxhzd6mf7uq9zvkucblYqoPbU3cIa46p
+ GLeaWxAKotbwG6jM6OJZ4C+aVeKSJOGE2t/M+RxogTaa2FMXK18MXRJuzi/JyaZvXK3x
+ /yfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=to:from:cc:content-transfer-encoding:mime-version:message-id:date
+ :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=b1IdFMAsFWWE5DfX4XR7dO8m7CmzOg+cTazbFUsdzyk=;
+ b=5fxakuMcV9OQ8i/Okad4LJxvw6ll8Noc9frB/3w1jMt9L0meY1c/ldUs7HP7xsrXY3
+ jSuQ+/sGPkgncFFwXnEqthEyiVd9n8CuWHBK9A4TB8QBXgWWtVZM+GojkSz1xl2h2B4m
+ Eiu5jGcfmD5jDbDI57f4U5Qx4+HkY+thfmhA3OUqx7xWiA7cRLqz+22MjvOf5P42XMfu
+ wZ/o8zofkWBoXTNOQos89mqwbQQ1Ze3shALWyzyaWKlrYavdCaYP0Caj4fJ4j++oSPTu
+ GFl6VTTxmC8/yPkkvJ+qHSyB2c8zdNQVrw90VKco5mHvBR4+9vmDqHifC/rhIPdDW5OY
+ l/XQ==
+X-Gm-Message-State: ACrzQf3C4k/yalVMal5W2bjz91CPaIuGNqOlzOFME9ctl574giXpSxqr
+ 008WK4OaQewyMhfhT/t66+ca8A==
+X-Google-Smtp-Source: AMsMyM6Idd60TBNk5F6K9oYeBS+wWXBfmwdsPd3JoJfR9ZOG7HWoK+tcxai8X3nWCbuJTLdbbQMUHg==
+X-Received: by 2002:a63:441b:0:b0:439:103b:25a4 with SMTP id
+ r27-20020a63441b000000b00439103b25a4mr14169869pga.487.1665362876908; 
+ Sun, 09 Oct 2022 17:47:56 -0700 (PDT)
+Received: from localhost ([50.221.140.188]) by smtp.gmail.com with ESMTPSA id
+ y13-20020aa78f2d000000b00561e46ebf7dsm5498804pfr.216.2022.10.09.17.47.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 09 Oct 2022 17:47:56 -0700 (PDT)
+Subject: [PATCH] drm/amd/display: fix another array-bounds error in
+ dc_stream_remove_writeback()
+Date: Sun,  9 Oct 2022 17:47:36 -0700
+Message-Id: <20221010004736.17170-1-palmer@rivosinc.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [PATCH v6 10/21] RDMA/umem: Prepare to dynamic dma-buf locking
- specification
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-To: Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>
-References: <20220928191600.5874-1-dmitry.osipenko@collabora.com>
- <20220928191600.5874-11-dmitry.osipenko@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20220928191600.5874-11-dmitry.osipenko@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+From: Palmer Dabbelt <palmer@rivosinc.com>
+To: alexander.deucher@amd.com
 X-Mailman-Approved-At: Mon, 10 Oct 2022 13:14:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -57,84 +70,72 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Almeida <daniel.almeida@collabora.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- Ruhl Michael J <michael.j.ruhl@intel.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Gerd Hoffmann <kraxel@redhat.com>, Dmitry Osipenko <digetx@gmail.com>,
- kernel@collabora.com, Sumit Semwal <sumit.semwal@linaro.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, linux-rdma@vger.kernel.org,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>,
- Russell King <linux@armlinux.org.uk>, Daniel Stone <daniel@fooishbar.org>,
- Gustavo Padovan <gustavo.padovan@collabora.com>, Chia-I Wu <olvaffe@gmail.com>,
- linux-media@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, linaro-mm-sig@lists.linaro.org,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Stefano Stabellini <sstabellini@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Juergen Gross <jgross@suse.com>,
- David Airlie <airlied@linux.ie>, amd-gfx@lists.freedesktop.org,
- Tomi Valkeinen <tomba@kernel.org>, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- linux-kernel@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
- Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
- Rob Clark <robdclark@gmail.com>, Qiang Yu <yuq825@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- Amol Maheshwari <amahesh@qti.qualcomm.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Lucas Stach <l.stach@pengutronix.de>
+Cc: amd-gfx@lists.freedesktop.org, linux@rivosinc.com, sunpeng.li@amd.com,
+ harry.wentland@amd.com, dri-devel@lists.freedesktop.org, Xinhui.Pan@amd.com,
+ Rodrigo.Siqueira@amd.com, linux-kernel@vger.kernel.org,
+ Palmer Dabbelt <palmer@rivosinc.com>, hersenwu@amd.com, alex.hung@amd.com,
+ aurabindo.pillai@amd.com, paul.hsieh@amd.com, Alvin.Lee2@amd.com,
+ daniel@ffwll.ch, hanghong.ma@amd.com, Jimmy.Kizito@amd.com, airlied@gmail.com,
+ christian.koenig@amd.com, Pavle.Kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 9/28/22 22:15, Dmitry Osipenko wrote:
-> Prepare InfiniBand drivers to the common dynamic dma-buf locking
-> convention by starting to use the unlocked versions of dma-buf API
-> functions.
-> 
-> Acked-by: Christian König <christian.koenig@amd.com>
-> Signed-off-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> ---
->  drivers/infiniband/core/umem_dmabuf.c | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/infiniband/core/umem_dmabuf.c b/drivers/infiniband/core/umem_dmabuf.c
-> index 04c04e6d24c3..43b26bc12288 100644
-> --- a/drivers/infiniband/core/umem_dmabuf.c
-> +++ b/drivers/infiniband/core/umem_dmabuf.c
-> @@ -26,7 +26,8 @@ int ib_umem_dmabuf_map_pages(struct ib_umem_dmabuf *umem_dmabuf)
->  	if (umem_dmabuf->sgt)
->  		goto wait_fence;
->  
-> -	sgt = dma_buf_map_attachment(umem_dmabuf->attach, DMA_BIDIRECTIONAL);
-> +	sgt = dma_buf_map_attachment_unlocked(umem_dmabuf->attach,
-> +					      DMA_BIDIRECTIONAL);
->  	if (IS_ERR(sgt))
->  		return PTR_ERR(sgt);
->  
-> @@ -102,8 +103,8 @@ void ib_umem_dmabuf_unmap_pages(struct ib_umem_dmabuf *umem_dmabuf)
->  		umem_dmabuf->last_sg_trim = 0;
->  	}
->  
-> -	dma_buf_unmap_attachment(umem_dmabuf->attach, umem_dmabuf->sgt,
-> -				 DMA_BIDIRECTIONAL);
-> +	dma_buf_unmap_attachment_unlocked(umem_dmabuf->attach, umem_dmabuf->sgt,
-> +					  DMA_BIDIRECTIONAL);
->  
->  	umem_dmabuf->sgt = NULL;
->  }
+From: Palmer Dabbelt <palmer@rivosinc.com>
 
-Jason / Leon,
+Without this I get some warnings.  I get the following with GCC 11:
 
-Could you please ack this patch?
+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.c: In function ‘dc_stream_remove_writeback’:
+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.c:527:83: warning: array subscript 1 is above array bounds of ‘struct dc_writeback_info[1]’ [-Warray-bounds]
+  527 |                                 stream->writeback_info[j] = stream->writeback_info[i];
+      |                                                             ~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dc.h:1269,
+                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/inc/core_types.h:29,
+                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/basics/dc_common.h:29,
+                 from drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.c:27:
+./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_stream.h:241:34: note: while referencing ‘writeback_info’
+  241 |         struct dc_writeback_info writeback_info[MAX_DWB_PIPES];
+      |                                  ^~~~~~~~~~~~~~
 
+and something slightly different with GCC 12:
+
+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.c: In function 'dc_stream_remove_writeback':
+rivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.c:527:83: error: array subscript [0, 0] is outside array bounds of 'struct dc_writeback_info[1]' [-Werror=array-bounds]
+  527 |                                 stream->writeback_info[j] = stream->writeback_info[i];
+      |                                                             ~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/dc.h:1269,
+                 from drivers/gpu/drm/amd/amdgpu/../display/dc/inc/core_types.h:29,
+                 from drivers/gpu/drm/amd/amdgpu/../display/dc/basics/dc_common.h:29,
+                 from drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.c:27:
+drivers/gpu/drm/amd/amdgpu/../display/dc/dc_stream.h:241:34: note: while referencing 'writeback_info'
+  241 |         struct dc_writeback_info writeback_info[MAX_DWB_PIPES];
+      |                                  ^~~~~~~~~~~~~~
+
+This fixes both warnings for me.
+
+I'm not sure how sane it is, as MAX_DWB_PIPES is 1 so the loop now
+doesn't do anything: i and j are both 0, so they're always equal, so no
+trimming is ever done.  IIUC that was the case before, though, as the
+only way this could trigger would result in an out of bounds array
+access.
+
+Signed-off-by: Palmer Dabbelt <palmer@rivosinc.com>
+---
+ drivers/gpu/drm/amd/display/dc/core/dc_stream.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
+index ae13887756bf..b64cef17afba 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
+@@ -520,7 +520,7 @@ bool dc_stream_remove_writeback(struct dc *dc,
+ 	}
+ 
+ 	/* remove writeback info for disabled writeback pipes from stream */
+-	for (i = 0, j = 0; i < stream->num_wb_info && j < MAX_DWB_PIPES; i++) {
++	for (i = 0, j = 0; i < stream->num_wb_info && i < MAX_DWB_PIPES && j < MAX_DWB_PIPES; i++) {
+ 		if (stream->writeback_info[i].wb_enabled) {
+ 			if (i != j)
+ 				/* trim the array */
 -- 
-Best regards,
-Dmitry
+2.34.1
 
