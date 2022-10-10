@@ -1,63 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 665BE5F9F39
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 Oct 2022 15:14:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 635B95F9F3E
+	for <lists+amd-gfx@lfdr.de>; Mon, 10 Oct 2022 15:15:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A706210E145;
-	Mon, 10 Oct 2022 13:14:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BA7910E1DD;
+	Mon, 10 Oct 2022 13:14:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com
- [IPv6:2607:f8b0:4864:20::52f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8006210E1CE
- for <amd-gfx@lists.freedesktop.org>; Mon, 10 Oct 2022 00:47:57 +0000 (UTC)
-Received: by mail-pg1-x52f.google.com with SMTP id 78so9059029pgb.13
- for <amd-gfx@lists.freedesktop.org>; Sun, 09 Oct 2022 17:47:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
- h=to:from:cc:content-transfer-encoding:mime-version:message-id:date
- :subject:from:to:cc:subject:date:message-id:reply-to;
- bh=b1IdFMAsFWWE5DfX4XR7dO8m7CmzOg+cTazbFUsdzyk=;
- b=YAXXSlZVKrpp5s11IEofCgqjlOxzLKiNl6J7yBu1bJ/lJVj6EpEmSp9+FdAVhg+4Bs
- rwLmW4YQ87dKk4gTf+IrBRVMhSiPKfypEacE2Fn+gWDtFSldhSgY3W6qfQqYV/eFqBVu
- HrFL7z9S3Is8oW5T3Z7C2+2Yd9AGnfsa2pBYLdap8ozcsOXFERUpUJDXVh/0QQ9Z8RBd
- Q+vV4Hyn/ODK03LWv0FLbdgzakp1v7tHvEi1Uxhzd6mf7uq9zvkucblYqoPbU3cIa46p
- GLeaWxAKotbwG6jM6OJZ4C+aVeKSJOGE2t/M+RxogTaa2FMXK18MXRJuzi/JyaZvXK3x
- /yfQ==
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com
+ [IPv6:2607:f8b0:4864:20::52b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2390610E042;
+ Mon, 10 Oct 2022 06:05:24 +0000 (UTC)
+Received: by mail-pg1-x52b.google.com with SMTP id q1so1176541pgl.11;
+ Sun, 09 Oct 2022 23:05:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:sender:from:to:cc:subject:date:message-id:reply-to;
+ bh=nm7YKL49tk7wRZ/a00qBsDIN6e5MXIummpQ4woA5c14=;
+ b=aQKkENST6CPEq0eO3HKe4qKzPkPrnjeUPOrb5SdGU2Ra0Gvhw4P3PWtN5kaLi8/TqI
+ L8+PLC5sVLeEJwdGUwQvvYZHN+rzSdvK8Vjg22Kmn2Xrur8aE9yia3RWe3+y8O/4d/Z+
+ rGaUijoc659F133JvbySVKEufaxvBy2rEbQoSwq6IRxPRW0D/cr9s5ZraJ1m2F695Bye
+ Cphlv/J5fGJY+jpfT/DoVJeZ0jEg1EkRccyf1PVnqhsUxvmxpjoVjaW4mKftnN452UIv
+ gVZcQmUVBffXXlZOX96tF23slqg+TSF3StTblLue5arE0WPYfAFy35sJDgwUx+xRNhoR
+ ZXNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=to:from:cc:content-transfer-encoding:mime-version:message-id:date
- :subject:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=b1IdFMAsFWWE5DfX4XR7dO8m7CmzOg+cTazbFUsdzyk=;
- b=5fxakuMcV9OQ8i/Okad4LJxvw6ll8Noc9frB/3w1jMt9L0meY1c/ldUs7HP7xsrXY3
- jSuQ+/sGPkgncFFwXnEqthEyiVd9n8CuWHBK9A4TB8QBXgWWtVZM+GojkSz1xl2h2B4m
- Eiu5jGcfmD5jDbDI57f4U5Qx4+HkY+thfmhA3OUqx7xWiA7cRLqz+22MjvOf5P42XMfu
- wZ/o8zofkWBoXTNOQos89mqwbQQ1Ze3shALWyzyaWKlrYavdCaYP0Caj4fJ4j++oSPTu
- GFl6VTTxmC8/yPkkvJ+qHSyB2c8zdNQVrw90VKco5mHvBR4+9vmDqHifC/rhIPdDW5OY
- l/XQ==
-X-Gm-Message-State: ACrzQf3C4k/yalVMal5W2bjz91CPaIuGNqOlzOFME9ctl574giXpSxqr
- 008WK4OaQewyMhfhT/t66+ca8A==
-X-Google-Smtp-Source: AMsMyM6Idd60TBNk5F6K9oYeBS+wWXBfmwdsPd3JoJfR9ZOG7HWoK+tcxai8X3nWCbuJTLdbbQMUHg==
-X-Received: by 2002:a63:441b:0:b0:439:103b:25a4 with SMTP id
- r27-20020a63441b000000b00439103b25a4mr14169869pga.487.1665362876908; 
- Sun, 09 Oct 2022 17:47:56 -0700 (PDT)
-Received: from localhost ([50.221.140.188]) by smtp.gmail.com with ESMTPSA id
- y13-20020aa78f2d000000b00561e46ebf7dsm5498804pfr.216.2022.10.09.17.47.56
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:sender:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=nm7YKL49tk7wRZ/a00qBsDIN6e5MXIummpQ4woA5c14=;
+ b=A4S9K6EwRlnWTuYV/3Pjble5BVhwV2dkm0nF+SEBOxoNZ9K6Q/8UUNoB3Y0k0+cRkR
+ /yPAbEUFFRcyxF+v+QoMZ0iFcAYkUqrAM46xPqlgULKuWO4h6MD0zQOy7r4+sVzAB9P9
+ hovnmMkEKLkztsKwhwXL1oqprlpkRnW+iDnmSe17+qACig87CWAjYJYTtVFxb3DN2yNf
+ ixWtRQctw+JLFSyDMTnwHrp97LueZn0RbnZNTAcwBChlceion+o3sZgxQzljz0WuiUzO
+ bsQHOcGiK/+3u1EKTqMDUMjy6EbqoEQedct1aXf96TlV2ROVnQPNoXvf+U0n4Mv2+Sz/
+ NrJw==
+X-Gm-Message-State: ACrzQf1Jh79EKzg/99WFbI1ZNo52UE58ifP9ST618FLLHcaIACGnGLKr
+ qYM8PvrYane7fd8MhB3UNzga4V9MEC0QLQ==
+X-Google-Smtp-Source: AMsMyM5eqpRu3hcShDlRN0xT43nRbWeP6tnG5AhlUAtINev9Y4zNBPEifY6RuMia1cixXaChZEvSnQ==
+X-Received: by 2002:a05:6a00:10cf:b0:563:34ce:4138 with SMTP id
+ d15-20020a056a0010cf00b0056334ce4138mr6542532pfu.6.1665381923244; 
+ Sun, 09 Oct 2022 23:05:23 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+ by smtp.gmail.com with ESMTPSA id
+ a5-20020a63e405000000b00462ae17a1c4sm803759pgi.33.2022.10.09.23.05.20
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 09 Oct 2022 17:47:56 -0700 (PDT)
-Subject: [PATCH] drm/amd/display: fix another array-bounds error in
- dc_stream_remove_writeback()
-Date: Sun,  9 Oct 2022 17:47:36 -0700
-Message-Id: <20221010004736.17170-1-palmer@rivosinc.com>
-X-Mailer: git-send-email 2.34.1
+ Sun, 09 Oct 2022 23:05:22 -0700 (PDT)
+From: Guenter Roeck <linux@roeck-us.net>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amd/display: fix array-bounds error in
+ dc_stream_remove_writeback() [take 2]
+Date: Sun,  9 Oct 2022 23:05:12 -0700
+Message-Id: <20221010060512.3064524-1-linux@roeck-us.net>
+X-Mailer: git-send-email 2.36.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-From: Palmer Dabbelt <palmer@rivosinc.com>
-To: alexander.deucher@amd.com
 X-Mailman-Approved-At: Mon, 10 Oct 2022 13:14:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,36 +69,30 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, linux@rivosinc.com, sunpeng.li@amd.com,
- harry.wentland@amd.com, dri-devel@lists.freedesktop.org, Xinhui.Pan@amd.com,
- Rodrigo.Siqueira@amd.com, linux-kernel@vger.kernel.org,
- Palmer Dabbelt <palmer@rivosinc.com>, hersenwu@amd.com, alex.hung@amd.com,
- aurabindo.pillai@amd.com, paul.hsieh@amd.com, Alvin.Lee2@amd.com,
- daniel@ffwll.ch, hanghong.ma@amd.com, Jimmy.Kizito@amd.com, airlied@gmail.com,
- christian.koenig@amd.com, Pavle.Kotarac@amd.com
+Cc: regressions@lists.linux.dev, Leo Li <sunpeng.li@amd.com>,
+ David Airlie <airlied@gmail.com>, Xinhui.Pan@amd.com,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ Hamza Mahfooz <hamza.mahfooz@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Guenter Roeck <linux@roeck-us.net>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Palmer Dabbelt <palmer@rivosinc.com>
+Commit 5d8c3e836fc2 ("drm/amd/display: fix array-bounds error in
+dc_stream_remove_writeback()") tried to fix an array bounds error seen
+with gcc 12.0. Unfortunately, that results in another array bounds error,
+seen with older versions of gcc.
 
-Without this I get some warnings.  I get the following with GCC 11:
-
-drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.c: In function ‘dc_stream_remove_writeback’:
-drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.c:527:83: warning: array subscript 1 is above array bounds of ‘struct dc_writeback_info[1]’ [-Warray-bounds]
-  527 |                                 stream->writeback_info[j] = stream->writeback_info[i];
-      |                                                             ~~~~~~~~~~~~~~~~~~~~~~^~~
-In file included from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dc.h:1269,
-                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/inc/core_types.h:29,
-                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/basics/dc_common.h:29,
-                 from drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.c:27:
-./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_stream.h:241:34: note: while referencing ‘writeback_info’
-  241 |         struct dc_writeback_info writeback_info[MAX_DWB_PIPES];
-      |                                  ^~~~~~~~~~~~~~
-
-and something slightly different with GCC 12:
-
-drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.c: In function 'dc_stream_remove_writeback':
-rivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.c:527:83: error: array subscript [0, 0] is outside array bounds of 'struct dc_writeback_info[1]' [-Werror=array-bounds]
+Building csky:allmodconfig ... failed
+--------------
+Error log:
+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.c:
+	In function 'dc_stream_remove_writeback':
+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.c:527:83:
+	error: array subscript 1 is above array bounds of 'struct dc_writeback_info[1]' [-Werror=array-bounds]
   527 |                                 stream->writeback_info[j] = stream->writeback_info[i];
       |                                                             ~~~~~~~~~~~~~~~~~~~~~~^~~
 In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/dc.h:1269,
@@ -108,34 +101,44 @@ In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/dc.h:1269,
                  from drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.c:27:
 drivers/gpu/drm/amd/amdgpu/../display/dc/dc_stream.h:241:34: note: while referencing 'writeback_info'
   241 |         struct dc_writeback_info writeback_info[MAX_DWB_PIPES];
-      |                                  ^~~~~~~~~~~~~~
 
-This fixes both warnings for me.
+We could check both i and j for overflow to fix the problem. That would,
+however, be not make much sense since it is known and provable that j <= i.
+Also, the check introduced with commit 5d8c3e836fc2 does not really add
+value since it checks if j < MAX_DWB_PIPES. Since it is known that j <= i,
+it would make more sense to check if i < MAX_DWB_PIPES. Unfortunately, that
+does not help to solve the problem observed here: gcc still complains.
 
-I'm not sure how sane it is, as MAX_DWB_PIPES is 1 so the loop now
-doesn't do anything: i and j are both 0, so they're always equal, so no
-trimming is ever done.  IIUC that was the case before, though, as the
-only way this could trigger would result in an out of bounds array
-access.
+To solve the problem, replace the subsequent check for 'i != j' with
+'j < i'. This is identical to the original check since we know that j <= i,
+and it makes all versions of gcc happy. Drop the check introduced with
+commit 5d8c3e836fc2 since it is not really useful and does not solve the
+problem.
 
-Signed-off-by: Palmer Dabbelt <palmer@rivosinc.com>
+Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Cc: Hamza Mahfooz <hamza.mahfooz@amd.com>
+Fixes: 5d8c3e836fc2 ("drm/amd/display: fix array-bounds error in dc_stream_remove_writeback()")
+Signed-off-by: Guenter Roeck <linux@roeck-us.net>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_stream.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_stream.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-index ae13887756bf..b64cef17afba 100644
+index ae13887756bf..9f568d618cd0 100644
 --- a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
 +++ b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-@@ -520,7 +520,7 @@ bool dc_stream_remove_writeback(struct dc *dc,
+@@ -520,9 +520,9 @@ bool dc_stream_remove_writeback(struct dc *dc,
  	}
  
  	/* remove writeback info for disabled writeback pipes from stream */
 -	for (i = 0, j = 0; i < stream->num_wb_info && j < MAX_DWB_PIPES; i++) {
-+	for (i = 0, j = 0; i < stream->num_wb_info && i < MAX_DWB_PIPES && j < MAX_DWB_PIPES; i++) {
++	for (i = 0, j = 0; i < stream->num_wb_info; i++) {
  		if (stream->writeback_info[i].wb_enabled) {
- 			if (i != j)
+-			if (i != j)
++			if (j < i)
  				/* trim the array */
+ 				stream->writeback_info[j] = stream->writeback_info[i];
+ 			j++;
 -- 
-2.34.1
+2.36.2
 
