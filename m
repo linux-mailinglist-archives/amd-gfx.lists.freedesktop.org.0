@@ -1,62 +1,61 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3BA8600767
-	for <lists+amd-gfx@lfdr.de>; Mon, 17 Oct 2022 09:11:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C84F600763
+	for <lists+amd-gfx@lfdr.de>; Mon, 17 Oct 2022 09:11:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A0B810ECB6;
-	Mon, 17 Oct 2022 07:11:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D817710ECB0;
+	Mon, 17 Oct 2022 07:11:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com
- [IPv6:2607:f8b0:4864:20::62e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BEEF10EA4A
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 Oct 2022 02:41:42 +0000 (UTC)
-Received: by mail-pl1-x62e.google.com with SMTP id o21so1104620ple.5
- for <amd-gfx@lists.freedesktop.org>; Thu, 13 Oct 2022 19:41:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=ZJ1ZupV4pNYtfLm2nRk080Y8SXTuWCwx9eOCEUYrnLk=;
- b=mOTc8KRBadMqtPwLlQpMoDRG7Y/LhVh3ONQQ0+J/2DeJP9z2WBpqzM2zCbruFAwGQ2
- Cg9NrAsdBApxkVi7G6+/BmIIhGYCILZRVDKJgLmeZAjnkd+DscSYsrIh2d0DhZEicFJ4
- JC0NBSOAxXyESKVnAJK6Z1UcYpKzjFbwvjdW4=
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com
+ [IPv6:2607:f8b0:4864:20::1029])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19C1710E4C9
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Oct 2022 14:15:27 +0000 (UTC)
+Received: by mail-pj1-x1029.google.com with SMTP id 70so5021587pjo.4
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Oct 2022 07:15:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :sender:from:to:cc:subject:date:message-id:reply-to;
+ bh=nxloFMgJyTROJisMRfHtqod4Gekn7f7TARQzQa8Kz/0=;
+ b=JaKP1Le2yJGWDsIPY6pZtFJkjt5nvL8El3Eg/Saps1KvPVhO2Vwn8xihug1b6s8DMm
+ vGQ8+pNrY1FhmCAjQG7cXjgHz/nIeFk6uRO70PXO4KdM9qHnwJH/ReoPmL6RoFJX9NJa
+ SyzNuUfXaAPqZ2TCmgkeke7jKlUtEEDKJGfKPChgjklSSoCjajRCgcc0FjQ1qLuUUVdO
+ 4pIG28b92fVtzznvoeYTGCdsF9tFlJxjkPrK4bAwofPMTSHhFsq9cIffvXO2xk/fydvj
+ E0hGgs+Q7/uZWu6jzZimvkvSThH5UL0wUj2xnFfwMKFEx0A0cHV0frn38RONOzoHBHnX
+ NMDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=ZJ1ZupV4pNYtfLm2nRk080Y8SXTuWCwx9eOCEUYrnLk=;
- b=yDwN+hBkiEMaGaecRPxXAo5RmkxGur/gpOsxj5MBaP+INi3GObwhW3JcrD1jaslWk9
- 4JPAS85dLhYIeNTdHngccc0ZZuV7WV7PF7CZ5o9nEDaVV/4Gjjcy0QvQRb16JdZtMhE2
- K7TTYgdmb7VWtVeyOkpQ5kfgGsT5WwFbkIEJIdLQ+Y7lJ53MOTz2wT7uViLQpNF/RaH2
- faXqDIn9g3YJge11UDVur6r0vGMTT7DkRtSdzlWcGvfBYm5j64KXhHm/Hz8GIGj0aWd0
- 61AkjmU4iX8oqwV7PKoIS14U/i8wAnzCUSgakltc3s5U+HelfZtD6PNGs2WddRpAIMAv
- 9a1w==
-X-Gm-Message-State: ACrzQf1wZCdsF4QMWlRgnZmGsFcjkm2m+adrGz35+h8HoyyeN77ZOn1s
- 8u4l6sIrx7KGUVuVML+GXQa4Mg==
-X-Google-Smtp-Source: AMsMyM4+EvyJIPbh8SsjJ5/w//6R6z4mUB4NPnFpN2sJpNlsISjzDqMI4t1DceTMwEIjNQHzGR0rDg==
-X-Received: by 2002:a17:90a:d983:b0:20a:ec04:e028 with SMTP id
- d3-20020a17090ad98300b0020aec04e028mr14425285pjv.122.1665715301104; 
- Thu, 13 Oct 2022 19:41:41 -0700 (PDT)
-Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=nxloFMgJyTROJisMRfHtqod4Gekn7f7TARQzQa8Kz/0=;
+ b=DQxT+NPtEA4e1ygBatfTAyEs3Qa5uF61O1qqIJu4mBU1VcQCKrrp559mnieSWLMDjz
+ dobIIwbql/kuIOdH+o8rufhTPMFML9JStFDN/nCFxCp0pNyexLvC/XVzDouYJiNNXDqT
+ o75IaBmk6bvRo7cQITzQ1jd4/YZnbADZJOTYIBGX+CyZ6plvsqdS6rDagt0xzGEj3WuT
+ I0nP21R64Trg9cJ90XrKKDl5tzlOrHTGf26xHu+gIPoUVYGlRogqsYu7AXZzSj/VKid5
+ IGgExh8ODAbHVpMX/qY0PZkYqP2DEcpWHi7v8muPOCxjY7fwMpoCuLx8zxnbBqIeNZ83
+ GDSg==
+X-Gm-Message-State: ACrzQf2HlIVsVYuZ7wdE6FLPt3jda+B8X0tJx/4/coD7WoQrpkvE6GVg
+ uxZE9X9ThB25uYB/SSLBtCxROnF8sUA=
+X-Google-Smtp-Source: AMsMyM5dX1cbLWgTAQ8zW4VblcqgSk3q86Tw3q71ZlXZW37smPTFJBliIVMeqcjRJyrGsQ9nDo/Kvg==
+X-Received: by 2002:a17:902:e885:b0:183:dcb7:c4f8 with SMTP id
+ w5-20020a170902e88500b00183dcb7c4f8mr5619862plg.160.1665756926527; 
+ Fri, 14 Oct 2022 07:15:26 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
  by smtp.gmail.com with ESMTPSA id
- o2-20020a170902d4c200b001708c4ebbaesm467745plg.309.2022.10.13.19.41.40
+ w206-20020a627bd7000000b00553d5920a29sm1767609pfc.101.2022.10.14.07.15.24
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 13 Oct 2022 19:41:40 -0700 (PDT)
-Date: Thu, 13 Oct 2022 19:41:39 -0700
-From: Kees Cook <keescook@chromium.org>
-To: "Fabio M. De Francesco" <fmdefrancesco@gmail.com>
-Subject: Re: [PATCH] drm/radeon: Replace kmap() with kmap_local_page()
-Message-ID: <202210131941.5D2AD4403E@keescook>
-References: <20221013210714.16320-1-fmdefrancesco@gmail.com>
+ Fri, 14 Oct 2022 07:15:25 -0700 (PDT)
+Date: Fri, 14 Oct 2022 07:15:24 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Yunxiang Li <Yunxiang.Li@amd.com>
+Subject: Re: [PATCH] drm/amd/display: Fix vblank refcount in vrr transition
+Message-ID: <20221014141524.GA4063757@roeck-us.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221013210714.16320-1-fmdefrancesco@gmail.com>
 X-Mailman-Approved-At: Mon, 17 Oct 2022 07:11:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,42 +68,246 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hwmon@vger.kernel.org, Christian Brauner <brauner@kernel.org>,
- Jean Delvare <jdelvare@suse.com>, Ira Weiny <ira.weiny@intel.com>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Sumit Semwal <sumit.semwal@linaro.org>,
- linaro-mm-sig@lists.linaro.org, "Venkataramanan,
- Anirudh" <anirudh.venkataramanan@intel.com>, linux-hardening@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>, bpf@vger.kernel.org,
- David Airlie <airlied@gmail.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Guenter Roeck <linux@roeck-us.net>, linux-media@vger.kernel.org
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Daniel Wheeler <daniel.wheeler@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 13, 2022 at 11:07:14PM +0200, Fabio M. De Francesco wrote:
-> The use of kmap() is being deprecated in favor of kmap_local_page().
+On Wed, Sep 21, 2022 at 05:20:19PM -0400, Yunxiang Li wrote:
+> manage_dm_interrupts disable/enable vblank using drm_crtc_vblank_off/on
+> which causes drm_crtc_vblank_get in vrr_transition to fail, and later
+> when drm_crtc_vblank_put is called the refcount on vblank will be messed
+> up. Therefore move the call to after manage_dm_interrupts.
 > 
-> There are two main problems with kmap(): (1) It comes with an overhead as
-> the mapping space is restricted and protected by a global lock for
-> synchronization and (2) it also requires global TLB invalidation when the
-> kmap’s pool wraps and it might block when the mapping space is fully
-> utilized until a slot becomes available.
+> Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/1247
+> Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/1380
 > 
-> With kmap_local_page() the mappings are per thread, CPU local, can take
-> page faults, and can be called from any context (including interrupts).
-> It is faster than kmap() in kernels with HIGHMEM enabled. Furthermore,
-> the tasks can be preempted and, when they are scheduled to run again, the
-> kernel virtual addresses are restored and still valid.
-> 
-> Therefore, replace kmap() with kmap_local_page() in radeon_ttm_gtt_read().
-> 
-> Cc: "Venkataramanan, Anirudh" <anirudh.venkataramanan@intel.com>
-> Suggested-by: Ira Weiny <ira.weiny@intel.com>
-> Signed-off-by: Fabio M. De Francesco <fmdefrancesco@gmail.com>
 
-Reviewed-by: Kees Cook <keescook@chromium.org>
+This patch results in a large number of compile errors
+if CONFIG_DEBUG_FS=n. Reverting it fixes the problem.
 
--- 
-Kees Cook
+This is an architecture independent problem.
+
+Guenter
+
+---
+Building loongarch:defconfig ... failed
+--------------
+Error log:
+<stdin>:569:2: warning: #warning syscall fstat not implemented [-Wcpp]
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c: In function 'amdgpu_dm_atomic_commit_tail':
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:7969:14: warning: unused variable 'wait_for_vblank' [-Wunused-variable]
+ 7969 |         bool wait_for_vblank = true;
+      |              ^~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:7968:23: warning: unused variable 'flags' [-Wunused-variable]
+ 7968 |         unsigned long flags;
+      |                       ^~~~~
+In file included from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_trace.h:39,
+                 from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:41:
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c: At top level:
+include/drm/drm_atomic.h:864:9: error: expected identifier or '(' before 'for'
+  864 |         for ((__i) = 0;                                                 \
+      |         ^~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8317:9: note: in expansion of macro 'for_each_new_crtc_in_state'
+ 8317 |         for_each_new_crtc_in_state(state, crtc, new_crtc_state, j)
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+include/drm/drm_atomic.h:865:20: error: expected '=', ',', ';', 'asm' or '__attribute__' before '<' token
+  865 |              (__i) < (__state)->dev->mode_config.num_crtc;              \
+      |                    ^
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8317:9: note: in expansion of macro 'for_each_new_crtc_in_state'
+ 8317 |         for_each_new_crtc_in_state(state, crtc, new_crtc_state, j)
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+include/drm/drm_atomic.h:866:19: error: expected '=', ',', ';', 'asm' or '__attribute__' before '++' token
+  866 |              (__i)++)                                                   \
+      |                   ^~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8317:9: note: in expansion of macro 'for_each_new_crtc_in_state'
+ 8317 |         for_each_new_crtc_in_state(state, crtc, new_crtc_state, j)
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from include/drm/drm_connector.h:32,
+                 from include/drm/display/drm_dp_helper.h:30,
+                 from drivers/gpu/drm/amd/amdgpu/../display/dc/os_types.h:39,
+                 from drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:29,
+                 from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:29:
+include/drm/drm_util.h:63:53: error: expected identifier or '(' before 'else'
+   63 | #define for_each_if(condition) if (!(condition)) {} else
+      |                                                     ^~~~
+include/drm/drm_atomic.h:867:17: note: in expansion of macro 'for_each_if'
+  867 |                 for_each_if ((__state)->crtcs[__i].ptr &&               \
+      |                 ^~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8317:9: note: in expansion of macro 'for_each_new_crtc_in_state'
+ 8317 |         for_each_new_crtc_in_state(state, crtc, new_crtc_state, j)
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+include/drm/drm_atomic.h:864:9: error: expected identifier or '(' before 'for'
+  864 |         for ((__i) = 0;                                                 \
+      |         ^~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8322:9: note: in expansion of macro 'for_each_new_crtc_in_state'
+ 8322 |         for_each_new_crtc_in_state(state, crtc, new_crtc_state, j) {
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+include/drm/drm_atomic.h:865:20: error: expected '=', ',', ';', 'asm' or '__attribute__' before '<' token
+  865 |              (__i) < (__state)->dev->mode_config.num_crtc;              \
+      |                    ^
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8322:9: note: in expansion of macro 'for_each_new_crtc_in_state'
+ 8322 |         for_each_new_crtc_in_state(state, crtc, new_crtc_state, j) {
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+include/drm/drm_atomic.h:866:19: error: expected '=', ',', ';', 'asm' or '__attribute__' before '++' token
+  866 |              (__i)++)                                                   \
+      |                   ^~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8322:9: note: in expansion of macro 'for_each_new_crtc_in_state'
+ 8322 |         for_each_new_crtc_in_state(state, crtc, new_crtc_state, j) {
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+include/drm/drm_util.h:63:53: error: expected identifier or '(' before 'else'
+   63 | #define for_each_if(condition) if (!(condition)) {} else
+      |                                                     ^~~~
+include/drm/drm_atomic.h:867:17: note: in expansion of macro 'for_each_if'
+  867 |                 for_each_if ((__state)->crtcs[__i].ptr &&               \
+      |                 ^~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8322:9: note: in expansion of macro 'for_each_new_crtc_in_state'
+ 8322 |         for_each_new_crtc_in_state(state, crtc, new_crtc_state, j) {
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8331:9: warning: data definition has no type or storage class
+ 8331 |         amdgpu_dm_commit_audio(dev, state);
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8331:9: error: type defaults to 'int' in declaration of 'amdgpu_dm_commit_audio' [-Werror=implicit-int]
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8331:9: warning: parameter names (without types) in function declaration
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8331:9: error: conflicting types for 'amdgpu_dm_commit_audio'; have 'int()'
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:7861:13: note: previous definition of 'amdgpu_dm_commit_audio' with type 'void(struct drm_device *, struct drm_atomic_state *)'
+ 7861 | static void amdgpu_dm_commit_audio(struct drm_device *dev,
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8334:9: error: expected identifier or '(' before 'for'
+ 8334 |         for (i = 0; i < dm->num_of_edps; i++) {
+      |         ^~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8334:23: error: expected '=', ',', ';', 'asm' or '__attribute__' before '<' token
+ 8334 |         for (i = 0; i < dm->num_of_edps; i++) {
+      |                       ^
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8334:43: error: expected '=', ',', ';', 'asm' or '__attribute__' before '++' token
+ 8334 |         for (i = 0; i < dm->num_of_edps; i++) {
+      |                                           ^~
+In file included from include/linux/mmzone.h:8,
+                 from include/linux/gfp.h:7,
+                 from include/linux/slab.h:15,
+                 from drivers/gpu/drm/amd/amdgpu/../display/dc/os_types.h:30:
+include/linux/spinlock.h:379:1: error: expected identifier or '(' before 'do'
+  379 | do {                                                            \
+      | ^~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8344:9: note: in expansion of macro 'spin_lock_irqsave'
+ 8344 |         spin_lock_irqsave(&adev_to_drm(adev)->event_lock, flags);
+      |         ^~~~~~~~~~~~~~~~~
+include/linux/spinlock.h:381:3: error: expected identifier or '(' before 'while'
+  381 | } while (0)
+      |   ^~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8344:9: note: in expansion of macro 'spin_lock_irqsave'
+ 8344 |         spin_lock_irqsave(&adev_to_drm(adev)->event_lock, flags);
+      |         ^~~~~~~~~~~~~~~~~
+include/drm/drm_atomic.h:864:9: error: expected identifier or '(' before 'for'
+  864 |         for ((__i) = 0;                                                 \
+      |         ^~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8345:9: note: in expansion of macro 'for_each_new_crtc_in_state'
+ 8345 |         for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+include/drm/drm_atomic.h:865:20: error: expected '=', ',', ';', 'asm' or '__attribute__' before '<' token
+  865 |              (__i) < (__state)->dev->mode_config.num_crtc;              \
+      |                    ^
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8345:9: note: in expansion of macro 'for_each_new_crtc_in_state'
+ 8345 |         for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+include/drm/drm_atomic.h:866:19: error: expected '=', ',', ';', 'asm' or '__attribute__' before '++' token
+  866 |              (__i)++)                                                   \
+      |                   ^~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8345:9: note: in expansion of macro 'for_each_new_crtc_in_state'
+ 8345 |         for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+include/drm/drm_util.h:63:53: error: expected identifier or '(' before 'else'
+   63 | #define for_each_if(condition) if (!(condition)) {} else
+      |                                                     ^~~~
+include/drm/drm_atomic.h:867:17: note: in expansion of macro 'for_each_if'
+  867 |                 for_each_if ((__state)->crtcs[__i].ptr &&               \
+      |                 ^~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8345:9: note: in expansion of macro 'for_each_new_crtc_in_state'
+ 8345 |         for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8352:32: error: expected declaration specifiers or '...' before '&' token
+ 8352 |         spin_unlock_irqrestore(&adev_to_drm(adev)->event_lock, flags);
+      |                                ^
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8352:64: error: unknown type name 'flags'
+ 8352 |         spin_unlock_irqrestore(&adev_to_drm(adev)->event_lock, flags);
+      |                                                                ^~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8355:9: warning: data definition has no type or storage class
+ 8355 |         drm_atomic_helper_commit_hw_done(state);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8355:9: error: type defaults to 'int' in declaration of 'drm_atomic_helper_commit_hw_done' [-Werror=implicit-int]
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8355:9: warning: parameter names (without types) in function declaration
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8355:9: error: conflicting types for 'drm_atomic_helper_commit_hw_done'; have 'int()'
+In file included from drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:83:
+include/drm/drm_atomic_helper.h:123:6: note: previous declaration of 'drm_atomic_helper_commit_hw_done' with type 'void(struct drm_atomic_state *)'
+  123 | void drm_atomic_helper_commit_hw_done(struct drm_atomic_state *state);
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8357:9: error: expected identifier or '(' before 'if'
+ 8357 |         if (wait_for_vblank)
+      |         ^~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8360:9: warning: data definition has no type or storage class
+ 8360 |         drm_atomic_helper_cleanup_planes(dev, state);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8360:9: error: type defaults to 'int' in declaration of 'drm_atomic_helper_cleanup_planes' [-Werror=implicit-int]
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8360:9: warning: parameter names (without types) in function declaration
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8360:9: error: conflicting types for 'drm_atomic_helper_cleanup_planes'; have 'int()'
+include/drm/drm_atomic_helper.h:108:6: note: previous declaration of 'drm_atomic_helper_cleanup_planes' with type 'void(struct drm_device *, struct drm_atomic_state *)'
+  108 | void drm_atomic_helper_cleanup_planes(struct drm_device *dev,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8363:9: error: expected identifier or '(' before 'if'
+ 8363 |         if (!adev->mman.keep_stolen_vga_memory)
+      |         ^~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8365:31: error: expected declaration specifiers or '...' before '&' token
+ 8365 |         amdgpu_bo_free_kernel(&adev->mman.stolen_extended_memory, NULL, NULL);
+      |                               ^
+In file included from include/uapi/linux/posix_types.h:5,
+                 from include/uapi/linux/types.h:14,
+                 from include/linux/types.h:6,
+                 from include/linux/kasan-checks.h:5,
+                 from include/asm-generic/rwonce.h:26,
+                 from ./arch/loongarch/include/generated/asm/rwonce.h:1,
+                 from include/linux/compiler.h:246,
+                 from include/linux/build_bug.h:5,
+                 from include/linux/container_of.h:5,
+                 from include/linux/list.h:5,
+                 from include/linux/preempt.h:11,
+                 from include/linux/spinlock.h:56:
+include/linux/stddef.h:8:14: error: expected declaration specifiers or '...' before '(' token
+    8 | #define NULL ((void *)0)
+      |              ^
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8365:67: note: in expansion of macro 'NULL'
+ 8365 |         amdgpu_bo_free_kernel(&adev->mman.stolen_extended_memory, NULL, NULL);
+      |                                                                   ^~~~
+include/linux/stddef.h:8:14: error: expected declaration specifiers or '...' before '(' token
+    8 | #define NULL ((void *)0)
+      |              ^
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8365:73: note: in expansion of macro 'NULL'
+ 8365 |         amdgpu_bo_free_kernel(&adev->mman.stolen_extended_memory, NULL, NULL);
+      |                                                                         ^~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8372:9: error: expected identifier or '(' before 'for'
+ 8372 |         for (i = 0; i < crtc_disable_count; i++)
+      |         ^~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8372:23: error: expected '=', ',', ';', 'asm' or '__attribute__' before '<' token
+ 8372 |         for (i = 0; i < crtc_disable_count; i++)
+      |                       ^
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8372:46: error: expected '=', ',', ';', 'asm' or '__attribute__' before '++' token
+ 8372 |         for (i = 0; i < crtc_disable_count; i++)
+      |                                              ^~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8374:38: error: expected ')' before '->' token
+ 8374 |         pm_runtime_mark_last_busy(dev->dev);
+      |                                      ^~
+      |                                      )
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8376:9: error: expected identifier or '(' before 'if'
+ 8376 |         if (dc_state_temp)
+      |         ^~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8378:1: error: expected identifier or '(' before '}' token
+ 8378 | }
+      | ^
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:7861:13: warning: 'amdgpu_dm_commit_audio' defined but not used [-Wunused-function]
+ 7861 | static void amdgpu_dm_commit_audio(struct drm_device *dev,
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:7512:13: warning: 'amdgpu_dm_commit_planes' defined but not used [-Wunused-function]
+ 7512 | static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~
+cc1: some warnings being treated as errors
+make[6]: *** [scripts/Makefile.build:250: drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.o] Error 1
