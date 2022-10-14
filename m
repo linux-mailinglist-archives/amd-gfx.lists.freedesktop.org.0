@@ -1,69 +1,115 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B00B35FEADA
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Oct 2022 10:47:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B9EE5FF04E
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Oct 2022 16:27:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 265EE10EAAE;
-	Fri, 14 Oct 2022 08:47:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FCE510EB00;
+	Fri, 14 Oct 2022 14:27:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com
- [IPv6:2a00:1450:4864:20::635])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37E9C10EAA1;
- Fri, 14 Oct 2022 08:46:59 +0000 (UTC)
-Received: by mail-ej1-x635.google.com with SMTP id k2so9030140ejr.2;
- Fri, 14 Oct 2022 01:46:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=iBqyX0ZmcWTsM5pad6Ti/0zdOrcVF4A9VjvTgy3v7Ek=;
- b=eDyRasRS9L6wcWv2izcla5i/voyZrGnLOVKoSJ+amw8g7vVfkY/dYFF840diqy2WXc
- jLTYRaGUAJs4n+w4lv7hkqhcqsaQ+1G+01jMrw56QmauBlLDhdiF4yPrINgLOvNqW1LT
- rSmKcOif5DBWRfbA56i4RB4p0nAR1HdUEtSJfn7X9Gxpgd3Sqsjbakz6dR1xHJBsRyRl
- WQFSLymqegn3OejaxHjFnZBy1n8ZcjOXyfuzbAZb8unZxL4UiBNH5RAgOTqTDGaV7OtZ
- rAmkDSLWM7Er2ck3v7nN2dJmCcEeLuYvcvIu+L1FPI4/M4aCHurMYH3ArzFoJWxfXzNZ
- U9Mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=iBqyX0ZmcWTsM5pad6Ti/0zdOrcVF4A9VjvTgy3v7Ek=;
- b=IQJPdL+O091yNZWkduCUmN/9evyvBeh7pwYW5r9awmqZj73UiVy6w6FigdKhk8lcpU
- +OeN2uiAU512iUZ62v1lOrR/xNiOQ+b+luZ98xFqSqjKF3aKZM8lOfYIfNBfRFPwmE9S
- gAXuzxRqlTJF+kF3O4qReJdJ0Yx/kK+J0+cVt96AeavBw107AbXAwWkNqabi1xB27wSC
- Sx6tyUwwdzpG96YofqAbVeZtZ+qoJAcFhs/rfe4blZ9vVqMDisJu+AsjonFP1kTZo1+7
- EDsGUh44q+G3DohiCbS4Q4MicCjTlo3GFMoQ9jGezIyDdpJFIt8F5fVnNQ9rcjUtOqMT
- ef/w==
-X-Gm-Message-State: ACrzQf0bOyJysTwBthULgtE+KJ2US5t8QE0AWOwDlTmviYJ/eLxqnbSY
- UMDV7w+bLn50g4v0ZDr+6+Vd4P/7iic=
-X-Google-Smtp-Source: AMsMyM6eF3pGqAm7w/nY8Y/rQTAyfej8KmyUfHJ0wBKSSOC0jmsKj60Bql0MtlL+biTnPfMUy/YEgw==
-X-Received: by 2002:a17:907:6d18:b0:78e:259d:c391 with SMTP id
- sa24-20020a1709076d1800b0078e259dc391mr1511214ejc.615.1665737218788; 
- Fri, 14 Oct 2022 01:46:58 -0700 (PDT)
-Received: from able.fritz.box (p5b0eacfe.dip0.t-ipconnect.de. [91.14.172.254])
- by smtp.gmail.com with ESMTPSA id
- r26-20020aa7d59a000000b00457618d3409sm1379124edq.68.2022.10.14.01.46.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 14 Oct 2022 01:46:58 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: luben.tuikov@amd.com, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Subject: [PATCH 13/13] drm/scheduler: rename dependency callback into
- prepare_job
-Date: Fri, 14 Oct 2022 10:46:41 +0200
-Message-Id: <20221014084641.128280-14-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221014084641.128280-1-christian.koenig@amd.com>
-References: <20221014084641.128280-1-christian.koenig@amd.com>
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2086.outbound.protection.outlook.com [40.107.243.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CD9910EB00
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Oct 2022 14:27:38 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WUQsinnDApSQc+DmB1HZvkV8CLCeVkGRoFbbJPQKPz31eLJK/Bw2vUYKnSzPcG9BNO1qY88Yo6maDHMrZqOFLNyKvw2DNXv+8l92ORPV+qjvrxYUgRKEsmU4LRCuc62PAiYYimr74qeA8tWOJRXqYPpCMhQQPsDAmFWxQUYaf9K9Z7ULBGOkoxQn+VWPYBLG9fmuV+kBvGvOyxxiqsdQtHtzUeGBeQ8SR4hCTP/iAhebuUaCTFpnpa7SU1f/kfJ8TR4Bq2J6q5Jvp46Tc58I1AcxM2PYgNTjAugiy9dp0L3o80mVBhfThvfGo7ZweIIEUF4zxU2Ji4bUisTWYI2yHw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KNXSWUCvqNg8C1pSd/S2t7wesy924Lc/4Bq6RsjkTkM=;
+ b=laYnxmIjQIrq/ZmKw+Xt8TQMmkO7MtxPPDZ2IvzwogClVxu3t/FwoA8OnEFjXGLwyGYS9Yk3Jc78e89wuhpGF3bckiLm/hEAJs/qrVFXZaarkdqb0l1uR+7/gq6wqgxSEweHoX6hGfLUCvqaVh97KedBO+PKzKd/QBUxQInAA8xh/qxanWaHTat4i2lJisPcId6Kx85dV0zKpKuD3Erw1avRvVASk/w0wNy/O04Xhh+faV3yVbfhKGm6+ipq8cY6kAVKpr/xlcIl2vmF9MRWltoRHtq7fSfo7K0cgix8cbMDiD+DS03pUeh8A8dhVNeRTaYEDwd7O4027RVbQp5xqA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KNXSWUCvqNg8C1pSd/S2t7wesy924Lc/4Bq6RsjkTkM=;
+ b=IEVydpAkpcF/7jhZpdodnr97QdC+xoTruAPvqZbw3LRHpERmMWu8U4ajSfMSy+JP0M48g4ompU2AXo8UIYwoRvjrXpQ6D3txg1kSfgICFhcVOokOAxm5kgtQuj1ObnOZ+1t63eBxaa6sqfize4KIxGRtshpC4JHVGgyo6dZJb7o=
+Received: from BL0PR12MB2532.namprd12.prod.outlook.com (2603:10b6:207:4a::20)
+ by SN7PR12MB7323.namprd12.prod.outlook.com (2603:10b6:806:29a::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.29; Fri, 14 Oct
+ 2022 14:27:35 +0000
+Received: from BL0PR12MB2532.namprd12.prod.outlook.com
+ ([fe80::e7bd:5e50:4e73:85a5]) by BL0PR12MB2532.namprd12.prod.outlook.com
+ ([fe80::e7bd:5e50:4e73:85a5%5]) with mapi id 15.20.5723.029; Fri, 14 Oct 2022
+ 14:27:35 +0000
+From: "Li, Yunxiang (Teddy)" <Yunxiang.Li@amd.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Subject: RE: [PATCH] drm/amd/display: Fix vblank refcount in vrr transition
+Thread-Topic: [PATCH] drm/amd/display: Fix vblank refcount in vrr transition
+Thread-Index: AQHY39dsfZ4AWPrFe0CumLVjeQygmK4N8ekQ
+Date: Fri, 14 Oct 2022 14:27:35 +0000
+Message-ID: <BL0PR12MB2532EED10D577BC1481D2946ED249@BL0PR12MB2532.namprd12.prod.outlook.com>
+References: <20221014141524.GA4063757@roeck-us.net>
+In-Reply-To: <20221014141524.GA4063757@roeck-us.net>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=edaa877c-ef4a-4a6a-b1df-e2f6d9620707;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2022-10-14T14:25:23Z;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BL0PR12MB2532:EE_|SN7PR12MB7323:EE_
+x-ms-office365-filtering-correlation-id: c9761d46-bbf5-4ae7-5fa1-08daadf03d06
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: szwzbxT6Kv48iZHCqqVngTxBk9qxxjZdmWS+8bDTQ6+2e6MEpP1T7P5K6GT+Ewgz7PtK/8rNVAa5IQc60elazAHlBSocHessbp+I2KL25e7uJos9jSP1ZMIARChuwf6xvt3a0PlQiyZWGjrsc75HLUxney34kulNu4JXG2qey2/MjfOI70bpEiUUNhER1HG2FWhumWk2OfHDRNECgh2kVBbrN7aa/gzVULT5M9JvqBCSs5PF5dJVHPgEEUBRrCjaMRBJcr1QYAZuJwcHH+T8UE0tsaULPYIYKO+gNnNnuGDKV6cT+FPL9T8FL+Mgz/b4Bs6F5P72YOlTlxsx9E5g4ofHS0xuWudFHbkrsCx7sotWOjfOYIuRjAWeErA0Pvy8kpEKb+j7WpuYwJ63fTMvTqdr10T8THLKA2fR3p31N3YZ4xOMUng3y86DFUcKewMKb9pagBEUaPN99YZ0zI07wfAtwObZ4whL8QlgBu0Mg0wCkkaFhlpwGvkYoFEGxAttwhAT7ZkPRCxMyiFHVHELM+FAI9VLG/feTbDSjM4ypnibO+6N9x3wl7aPZXsr4d4ZNvSPbFOj/wB1kscabCuagwvCZaH2EfwzcyeHpOHgj0RJZOKoKLLVlwdkZEGJt6UntoI4C/0g4hU4renpWMazf3wqJBuLSW3PK+Rli38lY944xgNmUVTHYCRtZX1sJAj+jzsxdjUGGpdHDNCD8rcBMyJmQqhq/TI5aLHjaHHKjrrFBWFtSpY5da2A8Wj5sb70HUkZxULaQHiFsvG8YHDiYw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR12MB2532.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(4636009)(366004)(396003)(346002)(39860400002)(376002)(136003)(451199015)(86362001)(33656002)(38100700002)(122000001)(38070700005)(2906002)(5660300002)(7696005)(4744005)(478600001)(9686003)(26005)(6506007)(186003)(55016003)(8676002)(66556008)(66446008)(64756008)(316002)(54906003)(6916009)(66476007)(4326008)(66946007)(76116006)(41300700001)(52536014)(8936002)(71200400001);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?l38eNBvUUuoK27F0Fjg2eJ36dcCAkzq0zJrRicAjKYgo/CMOnlhvHYGlAHei?=
+ =?us-ascii?Q?JHBdQniqAxSR2UzTGxMXgxFIwSq54DnnjJQLbu/t1ObbCKi9lK+m0DwFvXJE?=
+ =?us-ascii?Q?CE76jHsc01ZOgqIBK7evuj0ODcAEzJlqc/JrBbPY4zpuiJjvc6ngPIFtZ7gz?=
+ =?us-ascii?Q?walDUdl2JCVLjZUtRTqYRf5E24Q9FHcs1dYDLrxmpIl2Wn1e9QWK0r29RuV6?=
+ =?us-ascii?Q?sgvi7vyBVnse2HmtpQslcJDEvQGbKS9P2ZjmFeU+U+0CRwqljNZ2lpGgWUGf?=
+ =?us-ascii?Q?4h1NAPsJnLAUCyIsqKyptmnR3sp/dUL+A0dkffu4GyinfvhZngFEq82CtpjH?=
+ =?us-ascii?Q?CtB1PVNQQ2g5bn6QBcoivUuH4H1z09r2/+7dxw2GGhQPXstdh68GYMKH69oK?=
+ =?us-ascii?Q?h5AAcFkqy9rF+6ixgktJy3CE+tp/DFZ6jzyuoFsW3shIOcbB6IOJxQuVVYyB?=
+ =?us-ascii?Q?HK2vjeITb4JCB6uq6BUq77GsNuD2jYX8KWZOhTHAu6hVMM2QsiI4z0NdxfMs?=
+ =?us-ascii?Q?MOdV5XAKk78K1ITMa73EouHpRpceUH6FJS4JJNdXrKirJC8Q8HAMwR53t9Kq?=
+ =?us-ascii?Q?6ij+YXQ1R2rvAjBOoYcXUi40gUQ+ifkTlRSeg7Q4WqXLvc1VvAbP6Pf6C+kl?=
+ =?us-ascii?Q?+BXNE3szFws6Bg9vTrcgy5Sjp2YfGzgtIcW5S+lxNdJ5gefd/FDjEDQtNl0a?=
+ =?us-ascii?Q?kkXyyW4VxRncNKhmLBFHkHevmvaKXWBy2PlI2fcCLjFOC4Kkpk6Sl/niFBmv?=
+ =?us-ascii?Q?yzFHd+2qfnpq3/ABWfv9xkTLfNz4ti+GoAAotcjBtH9tn+KxXkqRzp1E3eQW?=
+ =?us-ascii?Q?RgRRdxhukwaRqBJ9bo5F//N63gXNnJQxiHI6LgIJ7bOF2YKNW7RUDlxvOvbi?=
+ =?us-ascii?Q?nF5CchtBEHGf9ercl7bC7/sxzRJAjTYKitHpSNZ1l8k5CdpmH9O/D/nhNYRB?=
+ =?us-ascii?Q?GV7XA0xxyXdhqLxIM7ars4eoYaq/x6ICMutQ1HuZd0LP7pfCi5i4mkhbSH9D?=
+ =?us-ascii?Q?qVU+Xx77s4ucV3v5kR81mu7wGUUIy7F3lJws+DFwOKXfx33OT3VyPde67I7t?=
+ =?us-ascii?Q?/MTDfkU9ank79BvkmNZdCvCn9gMrZpfQu3mnyldRECLjlG5Qsk7b8vD5FVO7?=
+ =?us-ascii?Q?Vm2gCdh3LQikbdvPhdpv37KwTKgRqidxt9MELc/1LZeohvgkN/6hEDg/kINF?=
+ =?us-ascii?Q?7Vz4dzuM7YcphTbRuLu//bmEyp8FjGby8j8nu65Zwttlo+G1kXtWTtgaFAG8?=
+ =?us-ascii?Q?bXKEArnnqODGKnaIfF0y8R4zxOSjsnX42jdJWl3X7aR6bgKWRCBb+hZHvPZD?=
+ =?us-ascii?Q?7zxxvJLl0aFgCPoeBlcbdROvpe+rfZftL3Co3SnoJodwItW8iMJ2sZOoCtS/?=
+ =?us-ascii?Q?hwgD25Z/74Mqj3Ztdbdke2i2c4L9Dcs+RRmGaAgPaiN+FTLuUMBrz0kiImOp?=
+ =?us-ascii?Q?Q+gaN3hq0mgAm0ney5HDC6n2ayNWgRCoggEPnTkKU+OWzHgEO4HbAvNrQgbn?=
+ =?us-ascii?Q?978Y6qhYy1WpYAOiiNbjmv0oXIXiEFD9j+dYzXVBags2ifZmxSv44LHJzVm8?=
+ =?us-ascii?Q?mXI1IYCoPUjJd3B4lA4=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2532.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c9761d46-bbf5-4ae7-5fa1-08daadf03d06
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Oct 2022 14:27:35.3461 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 32363N2umdZIRolJyHjSxaN9J1CJL+qmNM+9Z+//E8FPQ1SQ3+hnxaILVnVQdT9DyVBBV5JnpwHfSlERFpoPDQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7323
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,93 +121,24 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Wheeler,
+ Daniel" <Daniel.Wheeler@amd.com>, "Siqueira,
+ Rodrigo" <Rodrigo.Siqueira@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This now matches much better what this is doing.
+[AMD Official Use Only - General]
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c  |  4 ++--
- drivers/gpu/drm/scheduler/sched_entity.c |  4 ++--
- include/drm/gpu_scheduler.h              | 13 ++++++-------
- 3 files changed, 10 insertions(+), 11 deletions(-)
+> This patch results in a large number of compile errors if CONFIG_DEBUG_FS=
+=3Dn. Reverting it fixes the problem.
+>
+> This is an architecture independent problem.
+>
+> Guenter
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-index b8494c3b3b8a..1c4a13693653 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-@@ -237,7 +237,7 @@ int amdgpu_job_submit_direct(struct amdgpu_job *job, struct amdgpu_ring *ring,
- }
- 
- static struct dma_fence *
--amdgpu_job_dependency(struct drm_sched_job *sched_job,
-+amdgpu_job_prepare_job(struct drm_sched_job *sched_job,
- 		      struct drm_sched_entity *s_entity)
- {
- 	struct amdgpu_ring *ring = to_amdgpu_ring(s_entity->rq->sched);
-@@ -326,7 +326,7 @@ void amdgpu_job_stop_all_jobs_on_sched(struct drm_gpu_scheduler *sched)
- }
- 
- const struct drm_sched_backend_ops amdgpu_sched_ops = {
--	.dependency = amdgpu_job_dependency,
-+	.prepare_job = amdgpu_job_prepare_job,
- 	.run_job = amdgpu_job_run,
- 	.timedout_job = amdgpu_job_timedout,
- 	.free_job = amdgpu_job_free_cb
-diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
-index 54ac37cd5017..cf68cd1559ec 100644
---- a/drivers/gpu/drm/scheduler/sched_entity.c
-+++ b/drivers/gpu/drm/scheduler/sched_entity.c
-@@ -397,8 +397,8 @@ drm_sched_job_dependency(struct drm_sched_job *job,
- 	if (!xa_empty(&job->dependencies))
- 		return xa_erase(&job->dependencies, job->last_dependency++);
- 
--	if (job->sched->ops->dependency)
--		return job->sched->ops->dependency(job, entity);
-+	if (job->sched->ops->prepare_job)
-+		return job->sched->ops->prepare_job(job, entity);
- 
- 	return NULL;
- }
-diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-index b1698819ad38..163385e15597 100644
---- a/include/drm/gpu_scheduler.h
-+++ b/include/drm/gpu_scheduler.h
-@@ -306,7 +306,7 @@ struct drm_sched_job {
- 	 */
- 	union {
- 		struct dma_fence_cb		finish_cb;
--		struct irq_work 		work;
-+		struct irq_work			work;
- 	};
- 
- 	uint64_t			id;
-@@ -347,18 +347,17 @@ enum drm_gpu_sched_stat {
-  */
- struct drm_sched_backend_ops {
- 	/**
--	 * @dependency:
-+	 * @prepare_job:
- 	 *
- 	 * Called when the scheduler is considering scheduling this job next, to
- 	 * get another struct dma_fence for this job to block on.  Once it
- 	 * returns NULL, run_job() may be called.
- 	 *
--	 * If a driver exclusively uses drm_sched_job_add_dependency() and
--	 * drm_sched_job_add_implicit_dependencies() this can be ommitted and
--	 * left as NULL.
-+	 * Can be NULL if no additional preparation to the dependencies are
-+	 * necessary. Skipped when jobs are killed instead of run.
- 	 */
--	struct dma_fence *(*dependency)(struct drm_sched_job *sched_job,
--					struct drm_sched_entity *s_entity);
-+	struct dma_fence *(*prepare_job)(struct drm_sched_job *sched_job,
-+					 struct drm_sched_entity *s_entity);
- 
- 	/**
-          * @run_job: Called to execute the job once all of the dependencies
--- 
-2.25.1
+Oops, seem to be because at amdgpu_dm.c:8328 the } should be inside the #en=
+dif not outside.
+
+Yunxiang
 
