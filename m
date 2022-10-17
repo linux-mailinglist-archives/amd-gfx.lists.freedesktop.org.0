@@ -2,116 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E21736023FD
-	for <lists+amd-gfx@lfdr.de>; Tue, 18 Oct 2022 07:44:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E116960248C
+	for <lists+amd-gfx@lfdr.de>; Tue, 18 Oct 2022 08:37:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF25610EE4B;
-	Tue, 18 Oct 2022 05:44:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D475C10EEA1;
+	Tue, 18 Oct 2022 06:37:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2061.outbound.protection.outlook.com [40.107.244.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BFC210EE4B
- for <amd-gfx@lists.freedesktop.org>; Tue, 18 Oct 2022 05:43:59 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hxnPcQem0Yvg0EhLMPuz9xvql94EttLaE7oJLfwo9HAwaI2s/Ipwl704DE+bn8/uVjAT0a3zxx1ldCfLSM9I/9tovSlr6ay4oRLxndsckFQAvgc+69m0660f0pBv+kCHMi8yFgPdzl0my0TF1lMBZ+ZZ0G2MnS+6R6rSAZdapYT3Zlp2q/1rRPFYvDeAuzNOREvAaS5692SJSnY411YwiYlCsW7uG79nszs8sqCEE0PfJ/r9SOH7E6IIsv9xI2cCDCvc8vcyJiSVTrMLgy9NGXgu+gwzMiVwhSczjJqRtuKEOdFP87N8+y/XDKQdpueqRyDJa0Y3/emM9swkUngb9Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=x6CTGSOt/6O1YvJlVelijfFtqmxXTf5fXHKkTGCso5U=;
- b=MPpp5mAmx7qckYl+1EPd5tbUpGsWjH1LerTlgMObHMsZa3EJyFh+8lYQKLtS0AzF3bZag3ztbMmORTqbs8hKj0JyJ2R+bacLOFVg57L58ID+LBezsKWZn6A7GU98QXMXfMqif2KXAj74m42XBU/qCCJHZkY2YsKY31CHN7oJ48V1cpNBbXSRYs8hyzE/gbke+gcadamcCuewPMQn2X05Q3YEYhV8KVJ6VnEQn1Om4ycEsFwq3phYilgFol45RcWyjwefkViQSDNKsIeAGiS94O2F5iOqjhBCmTjWucGRR5WRMRliEoxv1Z5cfJpP0mEVp3qRWxmLUiMt7yh16SrBHg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=x6CTGSOt/6O1YvJlVelijfFtqmxXTf5fXHKkTGCso5U=;
- b=bGeErx3lx/H8t2k9igjiC7GPzYOrPteaC3uJNlthqrY5U7TJ6Iys2YBeprDffO/frbsktVO5Nc0BLM1qIL6FXfoPPoxfkHM7HFb0gRNTncr6kokYj501uzb/HxsYclSc8E+VG62IawdIdGK/GnBVRdz1jlL3lM6FRFMg1voN8CA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BYAPR12MB4614.namprd12.prod.outlook.com (2603:10b6:a03:a6::22)
- by BL3PR12MB6404.namprd12.prod.outlook.com (2603:10b6:208:3b4::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.26; Tue, 18 Oct
- 2022 05:43:57 +0000
-Received: from BYAPR12MB4614.namprd12.prod.outlook.com
- ([fe80::992b:b2b:80dc:86cc]) by BYAPR12MB4614.namprd12.prod.outlook.com
- ([fe80::992b:b2b:80dc:86cc%4]) with mapi id 15.20.5723.033; Tue, 18 Oct 2022
- 05:43:57 +0000
-Message-ID: <113346de-409e-cf30-2e08-4ff1bdc0b823@amd.com>
-Date: Tue, 18 Oct 2022 11:13:46 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH] drm/amdgpu: Remove ATC L2 access for MMHUB 2.1.x
-Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-To: amd-gfx@lists.freedesktop.org
-References: <20221018044724.86179-1-lijo.lazar@amd.com>
-In-Reply-To: <20221018044724.86179-1-lijo.lazar@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN3PR01CA0050.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:98::11) To BYAPR12MB4614.namprd12.prod.outlook.com
- (2603:10b6:a03:a6::22)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E6E610E029;
+ Mon, 17 Oct 2022 23:08:00 +0000 (UTC)
+Received: from [192.168.2.145] (109-252-119-114.nat.spd-mgts.ru
+ [109.252.119.114])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits))
+ (No client certificate requested)
+ (Authenticated sender: dmitry.osipenko)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 7C1C76601FFC;
+ Tue, 18 Oct 2022 00:07:55 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1666048078;
+ bh=2GrMtWd10Wnlax8s/RjhFcf5NhFdqFOsobxcG/TF5FI=;
+ h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+ b=bflFd2fuxbZ7WdPgMNPk0ilhalGuPL0tam7c/LkBESyeP9dfPyXqmQE2X55BbuIE2
+ J8njzZuwoJmxNgPTjcH+VIMmQSKJhTbx/FL9qchckumrfUl1+UnqRJsFfzEtApc4kQ
+ M6C3HqvxZaR0Fp3HPJjXJOE0N5C1EyQOa7wW2/qqKFshkfLd8l6M7uLiln01k5/3VB
+ iTXH0Y0piaoaCq6SmFjssHqYn9MiaeLZ4QwPv+OQIdHYcDqILPGZyq+hztt8T5hOxF
+ zPZfkTs30/4mMFqbqGceyUMiC9MQFseaPdnDhp0lUMHlS4xCxQrKMt0LYCsoMxp2G6
+ 6W3SIGonkpg1w==
+Message-ID: <d943fec8-a1ef-faa5-4132-c7618acb891f@collabora.com>
+Date: Tue, 18 Oct 2022 02:07:53 +0300
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR12MB4614:EE_|BL3PR12MB6404:EE_
-X-MS-Office365-Filtering-Correlation-Id: d1c23543-7a31-4ded-793f-08dab0cbbfd9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: md9S/6Qw0VkNP7sKeYvOUtE9OLUvMh/UXEjdx7iQYiJQ6aRu4Mq00hx/Dx5kVuQeHKwgSUgeNL1tW81xEIyNF/MXYY4Uxr60bD7Mcde6RIcTcbWc2uIlpiYaYXfB3mZCO+F2Q+1JRX6SwuqNmpKUS6+0j5djuggg8xrdmIGXcsgRfq5TQgvkwRBqXQv4pNJ6Q1ETbS+YMbPePTsLZvUSh9fO9+Xqa+KKejfJZpfJVbwGGObKHLmestYQc9L+whQHGASTEBGaj/cuxDXF12qp5ero3/15yVzeNFVEpFQEENNITX0F9xPfW8bSt9kmQPb9EfjicBAHCSWtKFv5l5aJ68Y+1hL7m14l+0UvV7XiOjkr/jGg4R4bK3MmnvXVPZHgnqC0wRh4UqxACKRSeLEWnkak/8YKKTY+nYwKyvRv/vwk3X29rLhNlmBSxb5d21sbvKXsFs72WcdL1uB8oC7VU1+gMP7crWfpRnTjxOVcHIEOlL76G9LmaKaHH/B7TGRKk5jfcZl/6yCFLL8jrgLYITLdZHESlz+rI+/pja9+28jnv/WtJrXHW0qfYsSUgutOisMBpqBE41JESYlFhX5BKL+aU0EVHEPOSShSDapZxOgBBxxMBu9g702qC5zchG+XAnNQmBmbUM6q1NBRUaErGKdXf38KymkPfs3Df91bblrEsJprLn9CtlzG5/wkKMcRsToDHURFb1oz63GOd/3r1s2DqMrwWdxKuk3Liiw+wDMYkhw6SKIgWE0/L/rbDlOzdZM6enA/RoX/IPgyIqbNr4dHg0iO4uLTikWVuAVs7tY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR12MB4614.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(4636009)(39860400002)(366004)(396003)(136003)(346002)(376002)(451199015)(316002)(186003)(2616005)(36756003)(6506007)(4326008)(6916009)(26005)(2906002)(6512007)(8936002)(41300700001)(83380400001)(19627235002)(86362001)(31696002)(66476007)(66946007)(6666004)(66556008)(8676002)(53546011)(5660300002)(38100700002)(31686004)(6486002)(478600001)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UkUwamdBLzhKeWpwYkJkelJTZ1cyWVcrbjVNanoxcUhhTGJzS0RUOHZTRzZk?=
- =?utf-8?B?bU1JZncyTmlVWXdrM2RpNTNmT2ZaKzVjN3FFY0U0VkpTdmF1d2NqdEZ6K1lB?=
- =?utf-8?B?elc1T3pqRGdGNVM3aGVoYmY1MnF5RzBFSUVwYUZGTE4xOUU3N21oUCtFOUk5?=
- =?utf-8?B?Vk9aRmFvVDFJS0syeTJQU25HcWdvRktid2lmb1lsSFZ3SDAyQXZLUEpoNWVM?=
- =?utf-8?B?RmxiRkZseHFDSkJEdGFJbVJUeWxaRDM0TS9wMDMxQ2dta1FGNGM5eDBnZUwy?=
- =?utf-8?B?MTVxWGR3NHJBT2NMaGpzUXd3YmhLUDdVT3EvSFdhRU5zUWs4dGUwaTJHQlky?=
- =?utf-8?B?alhiM2drYXhYNXdqWTV4ZkdveGNHWlA1U0g0eGx4TFBaQWc4SWk0R3BJejFz?=
- =?utf-8?B?NUNkYmFaQ1lzS2NRQS9PclhVQ01vemR3Q3lJcVZqaWtBbmt4a04wMnNPSHJT?=
- =?utf-8?B?aTVLbVFTNzNoNnJPSzQ0SWRYN0pBMWZTT1NGSkpPeGJRMEcxc2JVaHpUWll1?=
- =?utf-8?B?dHMxa2VzZkxIdFgrN0xZUmNTTmVxZUlybWUzc3lJNUpjU1NUK21pcTRob2g4?=
- =?utf-8?B?cEgrSW5tSEFmRnk2VjFWb1BJRkVZWmVjWW9pQ29SY2FsT1E5cGZ6WEdOeTJX?=
- =?utf-8?B?R3RGVU1xYUxLR0JhNUp5ZjZSaFJzRlVEQmJ3bTBIZTI2Slg5dHpmSXBmcTdD?=
- =?utf-8?B?ODJSTGtxOEFTTk05bUNKRUxLbFF6azdwV2NHSk5ROTBNMGZ4Y1ExVitBaE9t?=
- =?utf-8?B?R3A0SXp3b052ZWF2R2g3UEhLWjNyRWlvRWE0eUsxa1BpZUhnU1Nvb1JMb0Rz?=
- =?utf-8?B?M1p4MUdCZ2JaS1kxanlLYXBLdUp4MzhYdXhKdE9RUkNUUkxPR05TSkZtSXRs?=
- =?utf-8?B?QzIrME5GSXVLbmxCd3ZkQXRaelcvYS9kK25zSzdQZThMd01lOElTeGI5Tm44?=
- =?utf-8?B?ajZBSWpCVFNOd25QV1FZU0xWODU2MS9jOUlRaUdnNTFoeUc4dnJDbjZaemRn?=
- =?utf-8?B?OGZSQlBzM01zVVpKMFMwa3ROQmFGTkFaZWg4VnNHM1RZMWxjTFYyc3RmcnVl?=
- =?utf-8?B?L3paUFhMYm9SVmhXakNOMTZVdmU5bmh3S0lKQ2xSSGI0SDZya2ptWHhjS1JV?=
- =?utf-8?B?Y3B6NlF4Yk5XVGYyclN6L1d3d1ZPZGtNL051UkpuejJra3VxL2dNV21uTWhs?=
- =?utf-8?B?YW1CMEhZZ2NQSzFRbFhPN0wyMnJ1ODc4MEJnenFBSjhTdWd5OE9UM0JGTUxy?=
- =?utf-8?B?VWsxNy9nN21zdWpLdDRBR2VGUmZGRkdBd0E5ZjdWU09XVGtKVkpCbktWNHFn?=
- =?utf-8?B?NW1QSm4xTlVCaUp0d3Z1aWNsSFlGTHljNG5GR2V4OTJaSjkwMUcvTy9ubTJv?=
- =?utf-8?B?Qk5XYTRhRGQvTUJoV2FpY0NvdGx5eWlYam1VMnA3aEFpaVZCZ2V3RG5aTTJu?=
- =?utf-8?B?algwYUo1NW1IMVRyZ3lDRHJYQ1lEWTU5TUZ2VTJmQlYwK1RQRnNIZ2VveXBv?=
- =?utf-8?B?Sy9TK3NpcGRVeUpMcTRjQk0vbDZSTDU0OFpuczg1TEVlM3Vrd0VBbXluajFn?=
- =?utf-8?B?V3J2Mkx5Ym54dDNJR0V0RmVCZTZBN3VTWDErdlIzenlBU3luSXRGT1Y0ZzZi?=
- =?utf-8?B?TWdhNUNjaDVRb3F5NXFiTjczb1hySlRFSS9NOWU1OGl6UzREb0Z2cDhvZnU2?=
- =?utf-8?B?UVBteHY1cXpoYmhadW1HRFRYeWFndDZ0YzdrQVNJMjIyYitFZ1MyeWRrWU01?=
- =?utf-8?B?SisxaEd1R2t4Z0ZyOStuenViY2I5NHdOc3pOOEpKcjVOVmgwNW1ZTjdiUHA4?=
- =?utf-8?B?N1JwZDA3b2dLY3BmT2RsRUZ4UFJGL0l2ZEUzSHgwQzZTTTFpRFgzbnpkTkM0?=
- =?utf-8?B?R29zYVVlcXRoUGYySkZqWkROUjFuZHRWOW0xZEpBMWk1MjFGdVFQY28zRG5a?=
- =?utf-8?B?ZUk1Nk9ZSWZWaGU5cXpVanVNZFdVVng3enM3WE1LeXZLdld1VWo1eWlRVkMx?=
- =?utf-8?B?aFhURlloVFhiamo3anNoWEQwOVVMcU1oTDB4K3B1b2YxRjhzeE1TYThLaXNY?=
- =?utf-8?B?U3NjUzhwVnpGV1J0VGJUL1J2VHRoc0pWMDFNZWI5T2RzbkFGcHdXZm5NSCt4?=
- =?utf-8?Q?PBh85VSnmqrxi7sQ/xJVML4YM?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d1c23543-7a31-4ded-793f-08dab0cbbfd9
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4614.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2022 05:43:57.3490 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oFrlbM0CewCO6GrcT4EcE0Vx0SkLBtcdF5U+jB0O9CnKQwu0vVBcFhs1a7jeNeHY
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6404
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH v7 00/21] Move all drivers to a common dma-buf locking
+ convention
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+To: David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
+ <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Gert Wollny <gert.wollny@collabora.com>,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Daniel Stone <daniel@fooishbar.org>,
+ Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, Thierry Reding
+ <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>,
+ Qiang Yu <yuq825@gmail.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Amol Maheshwari <amahesh@qti.qualcomm.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Leon Romanovsky <leon@kernel.org>, Juergen Gross <jgross@suse.com>,
+ Stefano Stabellini <sstabellini@kernel.org>,
+ Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+ Tomi Valkeinen <tomba@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Ruhl Michael J <michael.j.ruhl@intel.com>
+References: <20221017172229.42269-1-dmitry.osipenko@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20221017172229.42269-1-dmitry.osipenko@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 18 Oct 2022 06:37:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,102 +88,168 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, helgaas@kernel.org, Guchun.Chen@amd.com,
- stable@vger.kernel.org, Hawking.Zhang@amd.com
+Cc: linux-rdma@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ Dmitry Osipenko <digetx@gmail.com>, kernel@collabora.com,
+ linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Please ignore this one. A newer one with the correct format is sent.
+On 10/17/22 20:22, Dmitry Osipenko wrote:
+> Hello,
+> 
+> This series moves all drivers to a dynamic dma-buf locking specification.
+> From now on all dma-buf importers are made responsible for holding
+> dma-buf's reservation lock around all operations performed over dma-bufs
+> in accordance to the locking specification. This allows us to utilize
+> reservation lock more broadly around kernel without fearing of a potential
+> deadlocks.
+> 
+> This patchset passes all i915 selftests. It was also tested using VirtIO,
+> Panfrost, Lima, Tegra, udmabuf, AMDGPU and Nouveau drivers. I tested cases
+> of display+GPU, display+V4L and GPU+V4L dma-buf sharing (where appropriate),
+> which covers majority of kernel drivers since rest of the drivers share
+> same or similar code paths.
+> 
+> Changelog:
+> 
+> v7: - Rebased on top of recent drm-misc-next.
+> 
+>     - Added ack from Jason Gunthorpe to the RDMA patch.
+> 
+>     - Added iosys_map_clear() to dma_buf_vmap_unlocked(), making it fully
+>       consistent with dma_buf_vmap().
+> 
+> v6: - Added r-b from Michael Ruhl to the i915 patch.
+> 
+>     - Added acks from Sumit Semwal and updated commit message of the
+>       "Move dma_buf_vmap() to dynamic locking specification" patch like
+>       was suggested by Sumit.
+> 
+>     - Added "!dmabuf" check to dma_buf_vmap_unlocked() to match the locked
+>       variant of the function, for consistency.
+> 
+> v5: - Added acks and r-bs that were given to v4.
+> 
+>     - Changed i915 preparation patch like was suggested by Michael Ruhl.
+>       The scope of reservation locking is smaller now.
+> 
+> v4: - Added dma_buf_mmap() to the "locking convention" documentation,
+>       which was missed by accident in v3.
+> 
+>     - Added acks from Christian König, Tomasz Figa and Hans Verkuil that
+>       they gave to couple v3 patches.
+> 
+>     - Dropped the "_unlocked" postfix from function names that don't have
+>       the locked variant, as was requested by Christian König.
+> 
+>     - Factored out the per-driver preparations into separate patches
+>       to ease reviewing of the changes, which is now doable without the
+>       global dma-buf functions renaming.
+> 
+>     - Factored out the dynamic locking convention enforcements into separate
+>       patches which add the final dma_resv_assert_held(dmabuf->resv) to the
+>       dma-buf API functions.
+> 
+> v3: - Factored out dma_buf_mmap_unlocked() and attachment functions
+>       into aseparate patches, like was suggested by Christian König.
+> 
+>     - Corrected and factored out dma-buf locking documentation into
+>       a separate patch, like was suggested by Christian König.
+> 
+>     - Intel driver dropped the reservation locking fews days ago from
+>       its BO-release code path, but we need that locking for the imported
+>       GEMs because in the end that code path unmaps the imported GEM.
+>       So I added back the locking needed by the imported GEMs, updating
+>       the "dma-buf attachment locking specification" patch appropriately.
+> 
+>     - Tested Nouveau+Intel dma-buf import/export combo.
+> 
+>     - Tested udmabuf import to i915/Nouveau/AMDGPU.
+> 
+>     - Fixed few places in Etnaviv, Panfrost and Lima drivers that I missed
+>       to switch to locked dma-buf vmapping in the drm/gem: Take reservation
+>       lock for vmap/vunmap operations" patch. In a result invalidated the
+>       Christian's r-b that he gave to v2.
+> 
+>     - Added locked dma-buf vmap/vunmap functions that are needed for fixing
+>       vmappping of Etnaviv, Panfrost and Lima drivers mentioned above.
+>       I actually had this change stashed for the drm-shmem shrinker patchset,
+>       but then realized that it's already needed by the dma-buf patches.
+>       Also improved my tests to better cover these code paths.
+> 
+> v2: - Changed locking specification to avoid problems with a cross-driver
+>       ww locking, like was suggested by Christian König. Now the attach/detach
+>       callbacks are invoked without the held lock and exporter should take the
+>       lock.
+> 
+>     - Added "locking convention" documentation that explains which dma-buf
+>       functions and callbacks are locked/unlocked for importers and exporters,
+>       which was requested by Christian König.
+> 
+>     - Added ack from Tomasz Figa to the V4L patches that he gave to v1.
+> 
+> Dmitry Osipenko (21):
+>   dma-buf: Add unlocked variant of vmapping functions
+>   dma-buf: Add unlocked variant of attachment-mapping functions
+>   drm/gem: Take reservation lock for vmap/vunmap operations
+>   drm/prime: Prepare to dynamic dma-buf locking specification
+>   drm/armada: Prepare to dynamic dma-buf locking specification
+>   drm/i915: Prepare to dynamic dma-buf locking specification
+>   drm/omapdrm: Prepare to dynamic dma-buf locking specification
+>   drm/tegra: Prepare to dynamic dma-buf locking specification
+>   drm/etnaviv: Prepare to dynamic dma-buf locking specification
+>   RDMA/umem: Prepare to dynamic dma-buf locking specification
+>   misc: fastrpc: Prepare to dynamic dma-buf locking specification
+>   xen/gntdev: Prepare to dynamic dma-buf locking specification
+>   media: videobuf2: Prepare to dynamic dma-buf locking specification
+>   media: tegra-vde: Prepare to dynamic dma-buf locking specification
+>   dma-buf: Move dma_buf_vmap() to dynamic locking specification
+>   dma-buf: Move dma_buf_attach() to dynamic locking specification
+>   dma-buf: Move dma_buf_map_attachment() to dynamic locking
+>     specification
+>   dma-buf: Move dma_buf_mmap() to dynamic locking specification
+>   dma-buf: Document dynamic locking convention
+>   media: videobuf2: Stop using internal dma-buf lock
+>   dma-buf: Remove obsoleted internal lock
+> 
+>  Documentation/driver-api/dma-buf.rst          |   6 +
+>  drivers/dma-buf/dma-buf.c                     | 216 +++++++++++++++---
+>  drivers/gpu/drm/armada/armada_gem.c           |   8 +-
+>  drivers/gpu/drm/drm_client.c                  |   4 +-
+>  drivers/gpu/drm/drm_gem.c                     |  24 ++
+>  drivers/gpu/drm/drm_gem_dma_helper.c          |   6 +-
+>  drivers/gpu/drm/drm_gem_framebuffer_helper.c  |   6 +-
+>  drivers/gpu/drm/drm_gem_ttm_helper.c          |   9 +-
+>  drivers/gpu/drm/drm_prime.c                   |   6 +-
+>  drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c   |   2 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |   2 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_object.c    |  14 ++
+>  .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |  16 +-
+>  drivers/gpu/drm/lima/lima_sched.c             |   4 +-
+>  drivers/gpu/drm/omapdrm/omap_gem_dmabuf.c     |   4 +-
+>  drivers/gpu/drm/panfrost/panfrost_dump.c      |   4 +-
+>  drivers/gpu/drm/panfrost/panfrost_perfcnt.c   |   6 +-
+>  drivers/gpu/drm/qxl/qxl_object.c              |  17 +-
+>  drivers/gpu/drm/qxl/qxl_prime.c               |   4 +-
+>  drivers/gpu/drm/tegra/gem.c                   |  17 +-
+>  drivers/infiniband/core/umem_dmabuf.c         |   7 +-
+>  .../common/videobuf2/videobuf2-dma-contig.c   |  22 +-
+>  .../media/common/videobuf2/videobuf2-dma-sg.c |  19 +-
+>  .../common/videobuf2/videobuf2-vmalloc.c      |  17 +-
+>  .../platform/nvidia/tegra-vde/dmabuf-cache.c  |   6 +-
+>  drivers/misc/fastrpc.c                        |   6 +-
+>  drivers/xen/gntdev-dmabuf.c                   |   8 +-
+>  include/drm/drm_gem.h                         |   3 +
+>  include/linux/dma-buf.h                       |  17 +-
+>  29 files changed, 325 insertions(+), 155 deletions(-)
+> 
 
-Thanks,
-Lijo
+Applied to drm-misc-next
 
+-- 
+Best regards,
+Dmitry
 
-On 10/18/2022 10:17 AM, Lijo Lazar wrote:
-> MMHUB 2.1.x versions don't have ATCL2. Remove accesses to ATCL2 registers.
-> 
-> Since they are non-existing registers, read access will cause a
-> 'Completer Abort' and gets reported when AER is enabled with the below patch.
-> Tagging with the patch so that this is backported along with it.
-> 
-> Fixes: 8795e182b02d ("PCI/portdrv: Don't disable AER reporting in get_port_device_capability()")
-> 
-> Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c | 28 +++++++------------------
->   1 file changed, 8 insertions(+), 20 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
-> index 4d304f22889e..5ec6d17fed09 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
-> @@ -32,8 +32,6 @@
->   #include "gc/gc_10_1_0_offset.h"
->   #include "soc15_common.h"
->   
-> -#define mmMM_ATC_L2_MISC_CG_Sienna_Cichlid                      0x064d
-> -#define mmMM_ATC_L2_MISC_CG_Sienna_Cichlid_BASE_IDX             0
->   #define mmDAGB0_CNTL_MISC2_Sienna_Cichlid                       0x0070
->   #define mmDAGB0_CNTL_MISC2_Sienna_Cichlid_BASE_IDX              0
->   
-> @@ -574,7 +572,6 @@ static void mmhub_v2_0_update_medium_grain_clock_gating(struct amdgpu_device *ad
->   	case IP_VERSION(2, 1, 0):
->   	case IP_VERSION(2, 1, 1):
->   	case IP_VERSION(2, 1, 2):
-> -		def  = data  = RREG32_SOC15(MMHUB, 0, mmMM_ATC_L2_MISC_CG_Sienna_Cichlid);
->   		def1 = data1 = RREG32_SOC15(MMHUB, 0, mmDAGB0_CNTL_MISC2_Sienna_Cichlid);
->   		break;
->   	default:
-> @@ -608,8 +605,6 @@ static void mmhub_v2_0_update_medium_grain_clock_gating(struct amdgpu_device *ad
->   	case IP_VERSION(2, 1, 0):
->   	case IP_VERSION(2, 1, 1):
->   	case IP_VERSION(2, 1, 2):
-> -		if (def != data)
-> -			WREG32_SOC15(MMHUB, 0, mmMM_ATC_L2_MISC_CG_Sienna_Cichlid, data);
->   		if (def1 != data1)
->   			WREG32_SOC15(MMHUB, 0, mmDAGB0_CNTL_MISC2_Sienna_Cichlid, data1);
->   		break;
-> @@ -634,8 +629,8 @@ static void mmhub_v2_0_update_medium_grain_light_sleep(struct amdgpu_device *ade
->   	case IP_VERSION(2, 1, 0):
->   	case IP_VERSION(2, 1, 1):
->   	case IP_VERSION(2, 1, 2):
-> -		def  = data  = RREG32_SOC15(MMHUB, 0, mmMM_ATC_L2_MISC_CG_Sienna_Cichlid);
-> -		break;
-> +		/* There is no ATCL2 in MMHUB for 2.1.x */
-> +		return;
->   	default:
->   		def  = data  = RREG32_SOC15(MMHUB, 0, mmMM_ATC_L2_MISC_CG);
->   		break;
-> @@ -646,18 +641,8 @@ static void mmhub_v2_0_update_medium_grain_light_sleep(struct amdgpu_device *ade
->   	else
->   		data &= ~MM_ATC_L2_MISC_CG__MEM_LS_ENABLE_MASK;
->   
-> -	if (def != data) {
-> -		switch (adev->ip_versions[MMHUB_HWIP][0]) {
-> -		case IP_VERSION(2, 1, 0):
-> -		case IP_VERSION(2, 1, 1):
-> -		case IP_VERSION(2, 1, 2):
-> -			WREG32_SOC15(MMHUB, 0, mmMM_ATC_L2_MISC_CG_Sienna_Cichlid, data);
-> -			break;
-> -		default:
-> -			WREG32_SOC15(MMHUB, 0, mmMM_ATC_L2_MISC_CG, data);
-> -			break;
-> -		}
-> -	}
-> +	if (def != data)
-> +		WREG32_SOC15(MMHUB, 0, mmMM_ATC_L2_MISC_CG, data);
->   }
->   
->   static int mmhub_v2_0_set_clockgating(struct amdgpu_device *adev,
-> @@ -695,7 +680,10 @@ static void mmhub_v2_0_get_clockgating(struct amdgpu_device *adev, u64 *flags)
->   	case IP_VERSION(2, 1, 0):
->   	case IP_VERSION(2, 1, 1):
->   	case IP_VERSION(2, 1, 2):
-> -		data  = RREG32_SOC15(MMHUB, 0, mmMM_ATC_L2_MISC_CG_Sienna_Cichlid);
-> +		/* There is no ATCL2 in MMHUB for 2.1.x. Keep the status
-> +		 * based on DAGB
-> +		 */
-> +		data |= MM_ATC_L2_MISC_CG__ENABLE_MASK;
->   		data1 = RREG32_SOC15(MMHUB, 0, mmDAGB0_CNTL_MISC2_Sienna_Cichlid);
->   		break;
->   	default:
