@@ -2,80 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E116960248C
-	for <lists+amd-gfx@lfdr.de>; Tue, 18 Oct 2022 08:37:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B17B8602489
+	for <lists+amd-gfx@lfdr.de>; Tue, 18 Oct 2022 08:37:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D475C10EEA1;
-	Tue, 18 Oct 2022 06:37:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A50610EE90;
+	Tue, 18 Oct 2022 06:37:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E6E610E029;
- Mon, 17 Oct 2022 23:08:00 +0000 (UTC)
-Received: from [192.168.2.145] (109-252-119-114.nat.spd-mgts.ru
- [109.252.119.114])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits))
- (No client certificate requested)
- (Authenticated sender: dmitry.osipenko)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 7C1C76601FFC;
- Tue, 18 Oct 2022 00:07:55 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1666048078;
- bh=2GrMtWd10Wnlax8s/RjhFcf5NhFdqFOsobxcG/TF5FI=;
- h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
- b=bflFd2fuxbZ7WdPgMNPk0ilhalGuPL0tam7c/LkBESyeP9dfPyXqmQE2X55BbuIE2
- J8njzZuwoJmxNgPTjcH+VIMmQSKJhTbx/FL9qchckumrfUl1+UnqRJsFfzEtApc4kQ
- M6C3HqvxZaR0Fp3HPJjXJOE0N5C1EyQOa7wW2/qqKFshkfLd8l6M7uLiln01k5/3VB
- iTXH0Y0piaoaCq6SmFjssHqYn9MiaeLZ4QwPv+OQIdHYcDqILPGZyq+hztt8T5hOxF
- zPZfkTs30/4mMFqbqGceyUMiC9MQFseaPdnDhp0lUMHlS4xCxQrKMt0LYCsoMxp2G6
- 6W3SIGonkpg1w==
-Message-ID: <d943fec8-a1ef-faa5-4132-c7618acb891f@collabora.com>
-Date: Tue, 18 Oct 2022 02:07:53 +0300
+Received: from 186.whitelist.crbl.net (186.whitelist.crbl.net
+ [162.243.126.186])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C4B110E030;
+ Tue, 18 Oct 2022 01:22:35 +0000 (UTC)
+Received: from ([60.208.111.195])
+ by unicom145.biz-email.net ((D)) with ASMTP (SSL) id MAN00125;
+ Tue, 18 Oct 2022 08:47:25 +0800
+Received: from jtjnmail201619.home.langchao.com (10.100.2.19) by
+ jtjnmail201624.home.langchao.com (10.100.2.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Tue, 18 Oct 2022 08:47:24 +0800
+Received: from jtjnmail201619.home.langchao.com ([fe80::c426:eceb:41d0:3372])
+ by jtjnmail201619.home.langchao.com ([fe80::c426:eceb:41d0:3372%2])
+ with mapi id 15.01.2507.012; Tue, 18 Oct 2022 08:47:24 +0800
+From: =?utf-8?B?dG9tb3Jyb3cgV2FuZyAo546L5b635piOKQ==?= <wangdeming@inspur.com>
+To: "felix.kuehling@amd.com" <felix.kuehling@amd.com>
+Subject: =?utf-8?B?562U5aSNOiBbUEFUQ0hdIGRybS9hbWRrZmQ6IHVzZSB2bWFfbG9va3VwKCkg?=
+ =?utf-8?Q?instead_of_find=5Fvma()?=
+Thread-Topic: [PATCH] drm/amdkfd: use vma_lookup() instead of find_vma()
+Thread-Index: AQHY2vZO6b6Y9HXq4kWrbMYt0exbfK4SgyyAgADbmcA=
+Date: Tue, 18 Oct 2022 00:47:24 +0000
+Message-ID: <2dc397050eed4d11ade7b9020fe2e298@inspur.com>
+References: <20221007024818.4921-1-wangdeming@inspur.com>
+ <a1d36d76-396a-0bf0-26b7-c009fbae5dd0@amd.com>
+In-Reply-To: <a1d36d76-396a-0bf0-26b7-c009fbae5dd0@amd.com>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.200.104.82]
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
+ micalg=SHA1; boundary="----=_NextPart_000_0009_01D8E2CE.3D0137E0"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [PATCH v7 00/21] Move all drivers to a common dma-buf locking
- convention
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-To: David Airlie <airlied@linux.ie>, Gerd Hoffmann <kraxel@redhat.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Gert Wollny <gert.wollny@collabora.com>,
- Gustavo Padovan <gustavo.padovan@collabora.com>,
- Daniel Stone <daniel@fooishbar.org>,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, Thierry Reding
- <thierry.reding@gmail.com>, Tomasz Figa <tfiga@chromium.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas_os@shipmail.org>,
- Qiang Yu <yuq825@gmail.com>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Amol Maheshwari <amahesh@qti.qualcomm.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- Leon Romanovsky <leon@kernel.org>, Juergen Gross <jgross@suse.com>,
- Stefano Stabellini <sstabellini@kernel.org>,
- Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
- Tomi Valkeinen <tomba@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Lucas Stach <l.stach@pengutronix.de>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Ruhl Michael J <michael.j.ruhl@intel.com>
-References: <20221017172229.42269-1-dmitry.osipenko@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20221017172229.42269-1-dmitry.osipenko@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+tUid: 20221018084725b822b4c2c956701375f65a334ee6c27f
+X-Abuse-Reports-To: service@corp-email.com
+Abuse-Reports-To: service@corp-email.com
+X-Complaints-To: service@corp-email.com
+X-Report-Abuse-To: service@corp-email.com
 X-Mailman-Approved-At: Tue, 18 Oct 2022 06:37:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -88,168 +59,185 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- Dmitry Osipenko <digetx@gmail.com>, kernel@collabora.com,
- linux-media@vger.kernel.org
+Cc: "Xinhui.Pan@amd.com" <Xinhui.Pan@amd.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 10/17/22 20:22, Dmitry Osipenko wrote:
-> Hello,
-> 
-> This series moves all drivers to a dynamic dma-buf locking specification.
-> From now on all dma-buf importers are made responsible for holding
-> dma-buf's reservation lock around all operations performed over dma-bufs
-> in accordance to the locking specification. This allows us to utilize
-> reservation lock more broadly around kernel without fearing of a potential
-> deadlocks.
-> 
-> This patchset passes all i915 selftests. It was also tested using VirtIO,
-> Panfrost, Lima, Tegra, udmabuf, AMDGPU and Nouveau drivers. I tested cases
-> of display+GPU, display+V4L and GPU+V4L dma-buf sharing (where appropriate),
-> which covers majority of kernel drivers since rest of the drivers share
-> same or similar code paths.
-> 
-> Changelog:
-> 
-> v7: - Rebased on top of recent drm-misc-next.
-> 
->     - Added ack from Jason Gunthorpe to the RDMA patch.
-> 
->     - Added iosys_map_clear() to dma_buf_vmap_unlocked(), making it fully
->       consistent with dma_buf_vmap().
-> 
-> v6: - Added r-b from Michael Ruhl to the i915 patch.
-> 
->     - Added acks from Sumit Semwal and updated commit message of the
->       "Move dma_buf_vmap() to dynamic locking specification" patch like
->       was suggested by Sumit.
-> 
->     - Added "!dmabuf" check to dma_buf_vmap_unlocked() to match the locked
->       variant of the function, for consistency.
-> 
-> v5: - Added acks and r-bs that were given to v4.
-> 
->     - Changed i915 preparation patch like was suggested by Michael Ruhl.
->       The scope of reservation locking is smaller now.
-> 
-> v4: - Added dma_buf_mmap() to the "locking convention" documentation,
->       which was missed by accident in v3.
-> 
->     - Added acks from Christian König, Tomasz Figa and Hans Verkuil that
->       they gave to couple v3 patches.
-> 
->     - Dropped the "_unlocked" postfix from function names that don't have
->       the locked variant, as was requested by Christian König.
-> 
->     - Factored out the per-driver preparations into separate patches
->       to ease reviewing of the changes, which is now doable without the
->       global dma-buf functions renaming.
-> 
->     - Factored out the dynamic locking convention enforcements into separate
->       patches which add the final dma_resv_assert_held(dmabuf->resv) to the
->       dma-buf API functions.
-> 
-> v3: - Factored out dma_buf_mmap_unlocked() and attachment functions
->       into aseparate patches, like was suggested by Christian König.
-> 
->     - Corrected and factored out dma-buf locking documentation into
->       a separate patch, like was suggested by Christian König.
-> 
->     - Intel driver dropped the reservation locking fews days ago from
->       its BO-release code path, but we need that locking for the imported
->       GEMs because in the end that code path unmaps the imported GEM.
->       So I added back the locking needed by the imported GEMs, updating
->       the "dma-buf attachment locking specification" patch appropriately.
-> 
->     - Tested Nouveau+Intel dma-buf import/export combo.
-> 
->     - Tested udmabuf import to i915/Nouveau/AMDGPU.
-> 
->     - Fixed few places in Etnaviv, Panfrost and Lima drivers that I missed
->       to switch to locked dma-buf vmapping in the drm/gem: Take reservation
->       lock for vmap/vunmap operations" patch. In a result invalidated the
->       Christian's r-b that he gave to v2.
-> 
->     - Added locked dma-buf vmap/vunmap functions that are needed for fixing
->       vmappping of Etnaviv, Panfrost and Lima drivers mentioned above.
->       I actually had this change stashed for the drm-shmem shrinker patchset,
->       but then realized that it's already needed by the dma-buf patches.
->       Also improved my tests to better cover these code paths.
-> 
-> v2: - Changed locking specification to avoid problems with a cross-driver
->       ww locking, like was suggested by Christian König. Now the attach/detach
->       callbacks are invoked without the held lock and exporter should take the
->       lock.
-> 
->     - Added "locking convention" documentation that explains which dma-buf
->       functions and callbacks are locked/unlocked for importers and exporters,
->       which was requested by Christian König.
-> 
->     - Added ack from Tomasz Figa to the V4L patches that he gave to v1.
-> 
-> Dmitry Osipenko (21):
->   dma-buf: Add unlocked variant of vmapping functions
->   dma-buf: Add unlocked variant of attachment-mapping functions
->   drm/gem: Take reservation lock for vmap/vunmap operations
->   drm/prime: Prepare to dynamic dma-buf locking specification
->   drm/armada: Prepare to dynamic dma-buf locking specification
->   drm/i915: Prepare to dynamic dma-buf locking specification
->   drm/omapdrm: Prepare to dynamic dma-buf locking specification
->   drm/tegra: Prepare to dynamic dma-buf locking specification
->   drm/etnaviv: Prepare to dynamic dma-buf locking specification
->   RDMA/umem: Prepare to dynamic dma-buf locking specification
->   misc: fastrpc: Prepare to dynamic dma-buf locking specification
->   xen/gntdev: Prepare to dynamic dma-buf locking specification
->   media: videobuf2: Prepare to dynamic dma-buf locking specification
->   media: tegra-vde: Prepare to dynamic dma-buf locking specification
->   dma-buf: Move dma_buf_vmap() to dynamic locking specification
->   dma-buf: Move dma_buf_attach() to dynamic locking specification
->   dma-buf: Move dma_buf_map_attachment() to dynamic locking
->     specification
->   dma-buf: Move dma_buf_mmap() to dynamic locking specification
->   dma-buf: Document dynamic locking convention
->   media: videobuf2: Stop using internal dma-buf lock
->   dma-buf: Remove obsoleted internal lock
-> 
->  Documentation/driver-api/dma-buf.rst          |   6 +
->  drivers/dma-buf/dma-buf.c                     | 216 +++++++++++++++---
->  drivers/gpu/drm/armada/armada_gem.c           |   8 +-
->  drivers/gpu/drm/drm_client.c                  |   4 +-
->  drivers/gpu/drm/drm_gem.c                     |  24 ++
->  drivers/gpu/drm/drm_gem_dma_helper.c          |   6 +-
->  drivers/gpu/drm/drm_gem_framebuffer_helper.c  |   6 +-
->  drivers/gpu/drm/drm_gem_ttm_helper.c          |   9 +-
->  drivers/gpu/drm/drm_prime.c                   |   6 +-
->  drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c   |   2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |   2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_object.c    |  14 ++
->  .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |  16 +-
->  drivers/gpu/drm/lima/lima_sched.c             |   4 +-
->  drivers/gpu/drm/omapdrm/omap_gem_dmabuf.c     |   4 +-
->  drivers/gpu/drm/panfrost/panfrost_dump.c      |   4 +-
->  drivers/gpu/drm/panfrost/panfrost_perfcnt.c   |   6 +-
->  drivers/gpu/drm/qxl/qxl_object.c              |  17 +-
->  drivers/gpu/drm/qxl/qxl_prime.c               |   4 +-
->  drivers/gpu/drm/tegra/gem.c                   |  17 +-
->  drivers/infiniband/core/umem_dmabuf.c         |   7 +-
->  .../common/videobuf2/videobuf2-dma-contig.c   |  22 +-
->  .../media/common/videobuf2/videobuf2-dma-sg.c |  19 +-
->  .../common/videobuf2/videobuf2-vmalloc.c      |  17 +-
->  .../platform/nvidia/tegra-vde/dmabuf-cache.c  |   6 +-
->  drivers/misc/fastrpc.c                        |   6 +-
->  drivers/xen/gntdev-dmabuf.c                   |   8 +-
->  include/drm/drm_gem.h                         |   3 +
->  include/linux/dma-buf.h                       |  17 +-
->  29 files changed, 325 insertions(+), 155 deletions(-)
-> 
+------=_NextPart_000_0009_01D8E2CE.3D0137E0
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Applied to drm-misc-next
+Hi,
+The function vma_lookup show below.  Vma valid check is included in it. =
+Or, What other questions do you have?
 
--- 
-Best regards,
-Dmitry
+static inline
+struct vm_area_struct *vma_lookup(struct mm_struct *mm, unsigned long =
+addr)
+ {
+         struct vm_area_struct *vma =3D find_vma(mm, addr);
 
+         if (vma && addr < vma->vm_start)
+                 vma =3D NULL;
+
+         return vma;
+ }
+
+
+> from: Felix Kuehling <felix.kuehling@amd.com>
+> time: 2022=E5=B9=B410=E6=9C=8818=E6=97=A5 3:35
+> to: tomorrow Wang (=E7=8E=8B=E5=BE=B7=E6=98=8E) =
+<wangdeming@inspur.com>;
+> airlied@gmail.com; daniel@ffwll.ch; alexander.deucher@amd.com;
+> christian.koenig@amd.com; Xinhui.Pan@amd.com
+> linux-kernel@vger.kernel.org
+> sub: Re: [PATCH] drm/amdkfd: use vma_lookup() instead of find_vma()
+>=20
+>=20
+> On 2022-10-06 22:48, Deming Wang wrote:
+> > Using vma_lookup() verifies the start address is contained in the
+> > found vma.  This results in easier to read the code.
+>=20
+> Thank you for the patches. This and your other patch look good to me.
+> However, you missed one use of find_vma in svm_range_is_valid. Is that =
+an
+> oversight or is there a reason why we need to use find_vma there?
+>=20
+> If you're going to respin it, you may also squash the two patches into =
+one.
+>=20
+> Thanks,
+>    Felix
+>=20
+>=20
+> >
+> > Signed-off-by: Deming Wang <wangdeming@inspur.com>
+> > ---
+> >   drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 12 ++++++------
+> >   1 file changed, 6 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+> > b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+> > index 64fdf63093a0..cabcc2ca3c23 100644
+> > --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+> > +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+> > @@ -1586,8 +1586,8 @@ static int svm_range_validate_and_map(struct
+> mm_struct *mm,
+> >   		unsigned long npages;
+> >   		bool readonly;
+> >
+> > -		vma =3D find_vma(mm, addr);
+> > -		if (!vma || addr < vma->vm_start) {
+> > +		vma =3D vma_lookup(mm, addr);
+> > +		if (!vma) {
+> >   			r =3D -EFAULT;
+> >   			goto unreserve_out;
+> >   		}
+> > @@ -2542,8 +2542,8 @@ svm_range_get_range_boundaries(struct
+> kfd_process *p, int64_t addr,
+> >   	struct interval_tree_node *node;
+> >   	unsigned long start_limit, end_limit;
+> >
+> > -	vma =3D find_vma(p->mm, addr << PAGE_SHIFT);
+> > -	if (!vma || (addr << PAGE_SHIFT) < vma->vm_start) {
+> > +	vma =3D vma_lookup(p->mm, addr << PAGE_SHIFT);
+> > +	if (!vma) {
+> >   		pr_debug("VMA does not exist in address [0x%llx]\n", addr);
+> >   		return -EFAULT;
+> >   	}
+> > @@ -2871,8 +2871,8 @@ svm_range_restore_pages(struct amdgpu_device
+> *adev, unsigned int pasid,
+> >   	/* __do_munmap removed VMA, return success as we are handling =
+stale
+> >   	 * retry fault.
+> >   	 */
+> > -	vma =3D find_vma(mm, addr << PAGE_SHIFT);
+> > -	if (!vma || (addr << PAGE_SHIFT) < vma->vm_start) {
+> > +	vma =3D vma_lookup(mm, addr << PAGE_SHIFT);
+> > +	if (!vma) {
+> >   		pr_debug("address 0x%llx VMA is removed\n", addr);
+> >   		r =3D 0;
+> >   		goto out_unlock_range;
+
+------=_NextPart_000_0009_01D8E2CE.3D0137E0
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIIK8zCCA6Iw
+ggKKoAMCAQICEGPKUixTOHaaTcIS5DrQVuowDQYJKoZIhvcNAQELBQAwWTETMBEGCgmSJomT8ixk
+ARkWA2NvbTEYMBYGCgmSJomT8ixkARkWCGxhbmdjaGFvMRQwEgYKCZImiZPyLGQBGRYEaG9tZTES
+MBAGA1UEAxMJSU5TUFVSLUNBMB4XDTE3MDEwOTA5MjgzMFoXDTI3MDEwOTA5MzgyOVowWTETMBEG
+CgmSJomT8ixkARkWA2NvbTEYMBYGCgmSJomT8ixkARkWCGxhbmdjaGFvMRQwEgYKCZImiZPyLGQB
+GRYEaG9tZTESMBAGA1UEAxMJSU5TUFVSLUNBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC
+AQEAq+Q17xtjJLyp5hgXDie1r4DeNj76VUvbZNSywWU5zhx+e0Lu0kwcZ0T3KncZdgdWyqYvRJMQ
+/VVqX3gS4VxtLw3zBrg9kGuD0LfpH0cA2b0ZHpxRh5WapP14flcSh/lnawig29z44wfUEg43yTZO
+lOfPKos/Dm6wyrJtaPmD6AF7w4+vFZH0zMYfjQkSN/xGgS3OPBNAB8PTHM2sV+fFmnnlTFpyRg0O
+IIA2foALZvjIjNdUfp8kMGSh/ZVMfHqTH4eo+FcZPZ+t9nTaJQz9cSylw36+Ig6FGZHA/Zq+0fYy
+VCxR1ZLULGS6wsVep8j075zlSinrVpMadguOcArThwIDAQABo2YwZDATBgkrBgEEAYI3FAIEBh4E
+AEMAQTALBgNVHQ8EBAMCAYYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUXlkDprRMWGCRTvYe
+taU5pjLBNWowEAYJKwYBBAGCNxUBBAMCAQAwDQYJKoZIhvcNAQELBQADggEBAErE37vtdSu2iYVX
+Fvmrg5Ce4Y5NyEyvaTh5rTGt/CeDjuFS5kwYpHVLt3UFYJxLPTlAuBKNBwJuQTDXpnEOkBjTwukC
+0VZ402ag3bvF/AQ81FVycKZ6ts8cAzd2GOjRrQylYBwZb/H3iTfEsAf5rD/eYFBNS6a4cJ27OQ3s
+Y4N3ZyCXVRlogsH+dXV8Nn68BsHoY76TvgWbaxVsIeprTdSZUzNCscb5rx46q+fnE0FeHK01iiKA
+xliHryDoksuCJoHhKYxQTuS82A9r5EGALTdmRxhSLL/kvr2M3n3WZmVL6UulBFsNSKJXuIzTe2+D
+mMr5DYcsm0ZfNbDOAVrLPnUwggdJMIIGMaADAgECAhN+AADW2NzeiRillYrtAAAAANbYMA0GCSqG
+SIb3DQEBCwUAMFkxEzARBgoJkiaJk/IsZAEZFgNjb20xGDAWBgoJkiaJk/IsZAEZFghsYW5nY2hh
+bzEUMBIGCgmSJomT8ixkARkWBGhvbWUxEjAQBgNVBAMTCUlOU1BVUi1DQTAeFw0yMDA4MDYxMTEz
+MzdaFw0yNTA4MDUxMTEzMzdaMIGfMRMwEQYKCZImiZPyLGQBGRYDY29tMRgwFgYKCZImiZPyLGQB
+GRYIbGFuZ2NoYW8xFDASBgoJkiaJk/IsZAEZFgRob21lMR4wHAYDVQQLDBXkupHmlbDmja7kuK3l
+v4Ppm4blm6IxEjAQBgNVBAMMCeeOi+W+t+aYjjEkMCIGCSqGSIb3DQEJARYVd2FuZ2RlbWluZ0Bp
+bnNwdXIuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2vlBZLJq8TGM+29yQN3P
+JA6nQmkd95s06bHPiYoLyRo1s8ow3GEo+AXrGTrvfAQSqDuM20xwoTdNxaxzHw73OT/a1WaBGZBG
+LSExU/PwnxpYNWy6VEkOEMgLzb790SRCsJ+tg9JDYzSoQYx2nxVI6qoR4lEOeQcwGkgO76IsJrEk
+L4/i9bgkH8SGGN8OCIG8OyKag4j12raDfKEV4B1g+RhQqPua6orrK30akBWSL0P1anheVOlWDrqy
+osJcF64HTzmDyqPLMzISF69XMhCfmxyaKSkLbFLmNE0eEZVJsdhGyV4e0qAx3kpqeTThtzOYMwkT
+oiUcyhkbr/tlBqNlwQIDAQABo4IDwTCCA70wPQYJKwYBBAGCNxUHBDAwLgYmKwYBBAGCNxUIgvKp
+H4SB13qGqZE9hoD3FYPYj1yBSv2LJoGUp00CAWQCAWAwKQYDVR0lBCIwIAYIKwYBBQUHAwIGCCsG
+AQUFBwMEBgorBgEEAYI3CgMEMAsGA1UdDwQEAwIFoDA1BgkrBgEEAYI3FQoEKDAmMAoGCCsGAQUF
+BwMCMAoGCCsGAQUFBwMEMAwGCisGAQQBgjcKAwQwRAYJKoZIhvcNAQkPBDcwNTAOBggqhkiG9w0D
+AgICAIAwDgYIKoZIhvcNAwQCAgCAMAcGBSsOAwIHMAoGCCqGSIb3DQMHMB0GA1UdDgQWBBT2m8+B
+pv3zOH+FCDvTbpfMkvPbAzAfBgNVHSMEGDAWgBReWQOmtExYYJFO9h61pTmmMsE1ajCCAQ8GA1Ud
+HwSCAQYwggECMIH/oIH8oIH5hoG6bGRhcDovLy9DTj1JTlNQVVItQ0EsQ049SlRDQTIwMTIsQ049
+Q0RQLENOPVB1YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNlcnZpY2VzLENOPUNvbmZpZ3VyYXRp
+b24sREM9aG9tZSxEQz1sYW5nY2hhbyxEQz1jb20/Y2VydGlmaWNhdGVSZXZvY2F0aW9uTGlzdD9i
+YXNlP29iamVjdENsYXNzPWNSTERpc3RyaWJ1dGlvblBvaW50hjpodHRwOi8vSlRDQTIwMTIuaG9t
+ZS5sYW5nY2hhby5jb20vQ2VydEVucm9sbC9JTlNQVVItQ0EuY3JsMIIBKQYIKwYBBQUHAQEEggEb
+MIIBFzCBsQYIKwYBBQUHMAKGgaRsZGFwOi8vL0NOPUlOU1BVUi1DQSxDTj1BSUEsQ049UHVibGlj
+JTIwS2V5JTIwU2VydmljZXMsQ049U2VydmljZXMsQ049Q29uZmlndXJhdGlvbixEQz1ob21lLERD
+PWxhbmdjaGFvLERDPWNvbT9jQUNlcnRpZmljYXRlP2Jhc2U/b2JqZWN0Q2xhc3M9Y2VydGlmaWNh
+dGlvbkF1dGhvcml0eTBhBggrBgEFBQcwAoZVaHR0cDovL0pUQ0EyMDEyLmhvbWUubGFuZ2NoYW8u
+Y29tL0NlcnRFbnJvbGwvSlRDQTIwMTIuaG9tZS5sYW5nY2hhby5jb21fSU5TUFVSLUNBLmNydDBH
+BgNVHREEQDA+oCUGCisGAQQBgjcUAgOgFwwVd2FuZ2RlbWluZ0BpbnNwdXIuY29tgRV3YW5nZGVt
+aW5nQGluc3B1ci5jb20wDQYJKoZIhvcNAQELBQADggEBAKD6Oh0Yu1g2xXDIaczYlx8WZiYqTi7t
+bFCmsNT5DmNUfLaJre5UDyaWjgwW6Z/KN1X19Piy6oS8ex93gaeF4siDuQimREZoKxePJyUeyFs5
+oC6kpsw95f/0RM5zhHb4I8L4AgplfwySCGAeMRr74rThzkYWfoU1AM+c8cBtViIispknx6KxJFo2
+b533lCx168UKeNRb1n7pUANxFYd+1jjdRKCPrszdJcJddFmnLBetcnD4DG0ID62hnw+/g0KoAlfd
+ORikFVBLobsDNy+NQ++5ZYgx1ahEQ6BESIjeWxut+2Zqis6Zbwd5ZsBhm892l5EdzJCuYe5xDEZw
+0Z0bGvUxggOTMIIDjwIBATBwMFkxEzARBgoJkiaJk/IsZAEZFgNjb20xGDAWBgoJkiaJk/IsZAEZ
+FghsYW5nY2hhbzEUMBIGCgmSJomT8ixkARkWBGhvbWUxEjAQBgNVBAMTCUlOU1BVUi1DQQITfgAA
+1tjc3okYpZWK7QAAAADW2DAJBgUrDgMCGgUAoIIB+DAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcB
+MBwGCSqGSIb3DQEJBTEPFw0yMjEwMTgwMDQ3MjJaMCMGCSqGSIb3DQEJBDEWBBST67mw4N90PcF4
+hgqli2sF5Rg5IDB/BgkrBgEEAYI3EAQxcjBwMFkxEzARBgoJkiaJk/IsZAEZFgNjb20xGDAWBgoJ
+kiaJk/IsZAEZFghsYW5nY2hhbzEUMBIGCgmSJomT8ixkARkWBGhvbWUxEjAQBgNVBAMTCUlOU1BV
+Ui1DQQITfgAA1tjc3okYpZWK7QAAAADW2DCBgQYLKoZIhvcNAQkQAgsxcqBwMFkxEzARBgoJkiaJ
+k/IsZAEZFgNjb20xGDAWBgoJkiaJk/IsZAEZFghsYW5nY2hhbzEUMBIGCgmSJomT8ixkARkWBGhv
+bWUxEjAQBgNVBAMTCUlOU1BVUi1DQQITfgAA1tjc3okYpZWK7QAAAADW2DCBkwYJKoZIhvcNAQkP
+MYGFMIGCMAoGCCqGSIb3DQMHMAsGCWCGSAFlAwQBKjALBglghkgBZQMEARYwCwYJYIZIAWUDBAEC
+MA4GCCqGSIb3DQMCAgIAgDANBggqhkiG9w0DAgIBQDAHBgUrDgMCGjALBglghkgBZQMEAgMwCwYJ
+YIZIAWUDBAICMAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQBieZuG7cH9zIGAfzZ/LrYc
+cfFwMZ2EKcBCxCB07+B4iSrawKROtNMcuvp7OEZZWPl4FMctbG28ZbzwcESf9ZY6zGO902Jmkjow
+/Qj+x/D0RkIcdERgcXpp2yqoSbguNHu3sc/dQYzUTP7uyJJcmK2xPZUoZTxuB5SZVuBL17DwGe8x
+hjcsFif3crFo6Y0s9zuCYToOHm0NIROT5tcvIf+vfXEX7yfJYj3QBJQnk7pLt52ayzg4Im8cdFHb
++lvX+XbY3dc/1yXVe61uDacwbvLgADF2/e//6qLDBgtiAyOtzga1IKv0xeuhfMp3v1Fnc87l77s8
+NUW2PUBrBAzPmbLaAAAAAAAA
+
+------=_NextPart_000_0009_01D8E2CE.3D0137E0--
