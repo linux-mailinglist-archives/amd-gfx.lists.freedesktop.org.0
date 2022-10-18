@@ -2,94 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D51E6026FE
-	for <lists+amd-gfx@lfdr.de>; Tue, 18 Oct 2022 10:33:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C075602760
+	for <lists+amd-gfx@lfdr.de>; Tue, 18 Oct 2022 10:45:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11E5310EF0D;
-	Tue, 18 Oct 2022 08:33:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F81310E054;
+	Tue, 18 Oct 2022 08:45:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2063.outbound.protection.outlook.com [40.107.220.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A1D310EEEE
- for <amd-gfx@lists.freedesktop.org>; Tue, 18 Oct 2022 08:33:41 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1anam02on2070.outbound.protection.outlook.com [40.107.96.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5B3B10E054
+ for <amd-gfx@lists.freedesktop.org>; Tue, 18 Oct 2022 08:45:17 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cxVlj4rJ9C2GuCZ21ZtjxP6pDZ6Jc+PcWrsqtx5HBo+E0hoxZg4FFNKMBVEqamgMQntI48aVVubox3jI5+ZgndGLOx0W/MjzggrUvQrAYw/l6/poNlsEo4Tp9qu7G4tuO6sZtg53RB+LR11wm5zRTRdvY1pzB6DMHh5Pbryu8hE/VsnKt67CnnAxTnGgaFqFgaQ+mPxNenQH0Xc6H/ZOOYa7iGu4tXhYg+FWdE8fIZgXA2x4d93pHjO4G662d3tvEtsOaouIBngpllmo7gx/6QcaSdNyzKxb43QcPFvjVhn5o9TyfK56Vociunq3HYGB/R8i6lk9rjzhIDxhYtV9lA==
+ b=SLQ5a6be3w8/Dyoor+iblIxWl0Z3oXdZDKRu5BQZQD6sMXMjg7WRYf7HWS7DtqjJF34luxigrIh5JKvKJzJ3nVct2ZOzPvCCCtZlkmY/v74kJjvImeayUrGf2KMxrmguvM8adhFySHbMezrl8P+J/Gf1STPflfLGm0/NKj91RQdAPDhcnBtnsYa7aavZmQcKbSf8uCa6ljoSHPTrsUKORzL6tUhpIBwuN6ql7E7ffoFXDD73nZp9h81tREXID5jo49fjWcRGoLlD9YWaZgGBGFUuDqQbfeklBQSIBfyCCPm5BH5tB6D1+Daa6QoalGUGeS8SzTS74cFFU1t+LRlwFw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6KUj5JVpPizX77eTIBUuWc7Apnz/6mbHq52uFhbyAUk=;
- b=Wl+PWM763bqQmMmP8lImJU57QEbHUZPD3S2wQ54vjSUBRGS8mbMAha+VkhL1xdRV+tkRZtMVloy/t+1/Uys4wojSqz/z9hTvsKPbC/HCmoicofcDa98bc6VlPNhXqx7bqE9Ch3i8e2teuCO6LSm7y0Uu7qAJKrSKS8oU2Gp7dLVvyaVGcEV6U533l0aKEmVzsIzKL/5LG+gAuoU9Iw5Kw9tYMMdpEG4z15kl3L1XRpYzuoQj2NeNBa0MuFR+CqFq39xKeOQODoefEqRO8QvTMoSbasMOxAo68Nf7g9OtSpE2Pee1VC/vjrlnGKK7NvsPe1hJlWd8fYwBXvePbfq//Q==
+ bh=PDAOoFyQzlzl9WC0i9pDHI66jaY7x792NWPLPwoM6qY=;
+ b=J29nEoVAZPb6Ud5ovtoxk6dxguEURz/0QE8QHIprBR6pj0csAXnxZCqPksuRDzJtNgO/lofjLZe7ZFPEZjK42RRHUjeNcdWNXFs6iY9DO19nRn4m67sbT04cPu4zBRKyMYYK9d3Egrnl7aXTak/Rk7JX1wfCAFb2awxq6jL9OZD/QwIc+TXx4WdV7YL0SbbyhRItS3N/mnYO9Q+elF6lVonagoaETrPrl+WyzfMtuwTFyg5aoHZc3ymtouSXrBmQEcMysTyB/2XKwerOybEmaLYfqGJkUODM4pYM0iqEQvS0msK1AtJeAxLNtawsTDT75ARn0JLpnT/e8tFVY1EOAw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6KUj5JVpPizX77eTIBUuWc7Apnz/6mbHq52uFhbyAUk=;
- b=08T4x1E29kRPwdsrn7dG1Cc+ACjPIz0evoefaqyhM89oNlmW8VxLgWxgz2hNKB2ym91wWU7PSc+bn67AxAmxLRnNPLZuml5xtlOZqwjq0FAR/Z1yd/IBKvgIgv9PUcVMVAU+FMU3Uif8Svo70YIaW6+xPnnWnoHw6WZKAWt7emU=
-Received: from MW4PR03CA0239.namprd03.prod.outlook.com (2603:10b6:303:b9::34)
- by DM4PR12MB6253.namprd12.prod.outlook.com (2603:10b6:8:a6::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.22; Tue, 18 Oct
- 2022 08:33:38 +0000
-Received: from CO1NAM11FT087.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:b9:cafe::50) by MW4PR03CA0239.outlook.office365.com
- (2603:10b6:303:b9::34) with Microsoft SMTP Server (version=TLS1_2,
+ bh=PDAOoFyQzlzl9WC0i9pDHI66jaY7x792NWPLPwoM6qY=;
+ b=gFPAVOZrdCMPdiv7zXdrodCzxQEilaiwZ7DvsJanY6DDzPkMinm9bw93s6WED5Kude9zyT/pjhNZU39+6gu4RvXC8oBEMKLCiF/rMSU5rymAk7HnV+VpTULCC86sf9gQhhkFumj8xJzGLPnAt45ogBTN6rTVPERg9nrpPqGMSas=
+Received: from MW4P220CA0018.NAMP220.PROD.OUTLOOK.COM (2603:10b6:303:115::23)
+ by MN0PR12MB6293.namprd12.prod.outlook.com (2603:10b6:208:3c2::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.33; Tue, 18 Oct
+ 2022 08:45:15 +0000
+Received: from CO1NAM11FT106.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:115:cafe::6e) by MW4P220CA0018.outlook.office365.com
+ (2603:10b6:303:115::23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.30 via Frontend
- Transport; Tue, 18 Oct 2022 08:33:38 +0000
+ Transport; Tue, 18 Oct 2022 08:45:15 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT087.mail.protection.outlook.com (10.13.174.68) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CO1NAM11FT106.mail.protection.outlook.com (10.13.175.44) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5723.20 via Frontend Transport; Tue, 18 Oct 2022 08:33:38 +0000
-Received: from taozhou1u2.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.5723.20 via Frontend Transport; Tue, 18 Oct 2022 08:45:14 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Tue, 18 Oct
- 2022 03:32:47 -0500
-From: Tao Zhou <tao.zhou1@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <hawking.zhang@amd.com>,
- <stanley.yang@amd.com>, <YiPeng.Chai@amd.com>, <candice.li@amd.com>
-Subject: [PATCH 4/4] drm/amdgpu: remove ras_error_status parameter for UMC
- poison handler
-Date: Tue, 18 Oct 2022 16:32:00 +0800
-Message-ID: <20221018083200.15597-4-tao.zhou1@amd.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221018083200.15597-1-tao.zhou1@amd.com>
-References: <20221018083200.15597-1-tao.zhou1@amd.com>
+ 2022 03:45:13 -0500
+Received: from yiqinyao-Pro-E800-G4-WS950T.amd.com (10.180.168.240) by
+ SATLEXMB03.amd.com (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.31
+ via Frontend Transport; Tue, 18 Oct 2022 03:45:11 -0500
+From: Yiqing Yao <yiqing.yao@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] Adjust MES polling timeout for sriov worst case
+Date: Tue, 18 Oct 2022 16:44:44 +0800
+Message-ID: <20221018084444.884671-1-yiqing.yao@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT087:EE_|DM4PR12MB6253:EE_
-X-MS-Office365-Filtering-Correlation-Id: 53c73032-3a5a-417b-1daa-08dab0e37478
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT106:EE_|MN0PR12MB6293:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6d4b27c3-8b6d-4488-2b68-08dab0e513b5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jmgyiCQrRC/b0xuxGc/rAVMm0DBm7okvOk9KRVJGxFeQtqfuDKo/6+xtsMH4C40hay5x1Jttl1tkdeoIrFUchs0RjF+5mRM3P83u7AufTRO+9XvHRrOBXQ+V371LxGsaUwGGd01v5Re2uiNm38o+q/bQQYDZTSfR9rRMBCCgHDbdB2gf9P3xt/9Rv8dCEZ1rYzsGWCJWUtZKUNQS++TuDS4FQ0TLs3Y6LqKSEe1f+AXkNwbeMMIu60C7dKJiHWKMfZz9cphm0GA0NNKCozzmN6wp68b7RMv1IDqCwG+1r8HhuGVPartvqRJ4AYMzeEGPksh9HUV69qHGp8mforr14WBIGuxBCW/qfZBriTq2taVLBmfxTdBg3JrNb7y52VHqxQMllhycWomAzBYoQTUK2ZfnA+yq9D6n6t4r2m9tBnyaCBJJh+c9jX0qr6RuaUeOspDRfjOCXmiYSJZ/4Jg8Q0BsAwOtLG9EPKwLDU0tC2cEIrIEeUra+tKrJyXRzMmYSY/GDBODbLt09rnv5JVCHuGLyjq9Aqbf5rwXNqtMEaw1MJrEyPh6T7dycPRAYcgRtmFTjRP3Qym28fPLSPD6W5t3YPolm/eR0vzzVAd32c/YiJ8D2kkXMjyhcRRq9564YofRSMF6ekb115Wc8alq9RdgtbMmO2J5rHoPgL2ojKivsm4mFPO/GPEVOa6L8WoHwttmfGiWYanYfMUVSBB9yn2zoRY/86V7JwibroRqSs03bZGgP0jpKCvpaZpThQ70z1nkPvRMNv/u5fjaDQbRtndyaWH/DP6Vcayt+KCxLXuwPH0abr442POrv/T3TUyj
+X-Microsoft-Antispam-Message-Info: BpmvdWNisZ2/TpSjfue5rdTZGlcL+bilb57x/WTj/kol6tq+RjAa8z7XB3WOa8zYBaohChTtXk6WbsjyrOL6jHGlCMwCRtQHiFHiQpJfgNOr5PD257J/gT5akSzRHmeVSvkA2Bt0y0XkeJKkMeCfhVj+ii7yrX1EJamvHDX7KuZsp47MQD4ky9UMjpIZOZcT0Jws95qrvUwGsDXuzBzlgPVhAcalNYyriXa0w0HJhdkTUunPM5ANsS4TJzULVos+wEIHgruxz8jxJXr6Gi+gkfwu0+bA2EX/5gRJH0FimYifH2zafZRJ67+IpC9CAFEvnVMGeNmK1Etl9ZPlDdzPPbpF+ifZRS513leWGS1/tZB5BcjJYoowvPMo0PNOL2VSp8ExtxnB/N8HO4xaGccM+dPwN4soeUz85hpJT3NMWZmcmm0Jhu+on2zZRnWFy1tr4RYp+vSrlS7qVblxPh0spLI/vfmXf2dYhP11hI5eEmuBlQnlMS7rBAiqiAGBJVcpu++zj0HyMckl+Lgb8kJ0fHOXtMnaHzERjr1w2nDlCNx7muTWyqKWlzQefbps55CoTld0ha+L6C9aZBMReKiC8kxJN0+DJRPymO4sqEchbR/hc9EN2B+f+KpsROGsj7SpUBJlFcSRcNSiCBA/zn/nrIlmOpgOLEizcJCxRE+gllwoc9PwUhUtWqXUNkvrM5gYGFkBm2lQ+x9XTdRN3MNqE9pWPpNTHjx4tLEsdmx3Pzy5ematddhWUfR1z8UXTZjWjezbFtelSjNbRCAcEXDTl/kW/QJzMK+hOW1aA3hhLtvBettvpt+AVN6FAhZbdGgO
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(396003)(376002)(136003)(39860400002)(346002)(451199015)(46966006)(40470700004)(36840700001)(8936002)(5660300002)(82740400003)(36860700001)(26005)(4326008)(7696005)(6666004)(82310400005)(8676002)(356005)(70206006)(70586007)(83380400001)(81166007)(316002)(6636002)(110136005)(40480700001)(16526019)(41300700001)(478600001)(86362001)(40460700003)(47076005)(2906002)(186003)(2616005)(426003)(336012)(1076003)(36756003)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230022)(4636009)(376002)(346002)(136003)(39860400002)(396003)(451199015)(40470700004)(46966006)(36840700001)(186003)(47076005)(426003)(36860700001)(336012)(2616005)(1076003)(2906002)(82310400005)(7696005)(6916009)(316002)(54906003)(5660300002)(26005)(86362001)(41300700001)(6666004)(82740400003)(70206006)(8676002)(70586007)(83380400001)(40480700001)(356005)(40460700003)(4326008)(81166007)(8936002)(478600001)(36756003)(44832011)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2022 08:33:38.2877 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 53c73032-3a5a-417b-1daa-08dab0e37478
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2022 08:45:14.9267 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6d4b27c3-8b6d-4488-2b68-08dab0e513b5
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT087.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT106.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6253
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6293
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,109 +97,53 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tao Zhou <tao.zhou1@amd.com>
+Cc: alexander.deucher@amd.com, horace.chen@amd.com, hawking.zhang@amd.com,
+ Yiqing Yao <yiqing.yao@amd.com>, haijun.chang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Make the code more simple.
+[why]
+MES response time in sriov may be longer than default value
+due to reset or init in other VF. A timeout value specific
+to sriov is needed.
 
-Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
+[how]
+When in sriov, adjust the timeout value to calculated
+worst case scenario.
+
+Signed-off-by: Yiqing Yao <yiqing.yao@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c |  4 +---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c    |  3 +--
- drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c    | 16 ++++++----------
- drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h    |  4 +---
- 4 files changed, 9 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/mes_v11_0.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-index 0561812aa0a4..37db39ba8718 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-@@ -753,9 +753,7 @@ bool amdgpu_amdkfd_have_atomics_support(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
+index 1174dcc88db5..a207b4f29e9e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
+@@ -98,7 +98,14 @@ static int mes_v11_0_submit_pkt_and_poll_completion(struct amdgpu_mes *mes,
+ 	struct amdgpu_device *adev = mes->adev;
+ 	struct amdgpu_ring *ring = &mes->ring;
+ 	unsigned long flags;
++	signed long timeout = adev->usec_timeout; 
  
- void amdgpu_amdkfd_ras_poison_consumption_handler(struct amdgpu_device *adev, bool reset)
- {
--	struct ras_err_data err_data = {0, 0, 0, NULL};
--
--	amdgpu_umc_poison_handler(adev, &err_data, reset);
-+	amdgpu_umc_poison_handler(adev, reset);
- }
++	if (amdgpu_emu_mode) {
++		timeout *= 100;
++	} else if (amdgpu_sriov_vf(adev)) {
++		timeout = 15 * 600 * 1000; 
++		/* Worst case in sriov where all other VF timeout, each VF needs about 600ms */
++	}
+ 	BUG_ON(size % 4 != 0);
  
- bool amdgpu_amdkfd_ras_query_utcl2_poison_status(struct amdgpu_device *adev)
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index 28463b47ce33..693bce07eb46 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -1561,7 +1561,6 @@ static void amdgpu_ras_interrupt_poison_consumption_handler(struct ras_manager *
- {
- 	bool poison_stat = false;
- 	struct amdgpu_device *adev = obj->adev;
--	struct ras_err_data err_data = {0, 0, 0, NULL};
- 	struct amdgpu_ras_block_object *block_obj =
- 		amdgpu_ras_get_ras_block(adev, obj->head.block, 0);
+ 	spin_lock_irqsave(&mes->ring_lock, flags);
+@@ -118,7 +125,7 @@ static int mes_v11_0_submit_pkt_and_poll_completion(struct amdgpu_mes *mes,
+ 	DRM_DEBUG("MES msg=%d was emitted\n", x_pkt->header.opcode);
  
-@@ -1584,7 +1583,7 @@ static void amdgpu_ras_interrupt_poison_consumption_handler(struct ras_manager *
- 	}
- 
- 	if (!adev->gmc.xgmi.connected_to_cpu)
--		amdgpu_umc_poison_handler(adev, &err_data, false);
-+		amdgpu_umc_poison_handler(adev, false);
- 
- 	if (block_obj->hw_ops->handle_poison_consumption)
- 		poison_stat = block_obj->hw_ops->handle_poison_consumption(adev);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c
-index 22995f371eae..481a8d69911e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c
-@@ -224,27 +224,23 @@ static int amdgpu_umc_do_page_retirement(struct amdgpu_device *adev,
- 	return AMDGPU_RAS_SUCCESS;
- }
- 
--int amdgpu_umc_poison_handler(struct amdgpu_device *adev,
--		void *ras_error_status,
--		bool reset)
-+int amdgpu_umc_poison_handler(struct amdgpu_device *adev, bool reset)
- {
-+	struct ras_err_data err_data = {0, 0, 0, NULL};
- 	int ret;
- 
- 	if (adev->gmc.xgmi.connected_to_cpu) {
--		ret = amdgpu_umc_poison_handler_mca(adev, ras_error_status, reset);
-+		ret = amdgpu_umc_poison_handler_mca(adev, &err_data, reset);
- 	} else {
--		struct ras_err_data *err_data = (struct ras_err_data *)ras_error_status;
- 		struct ras_common_if head = {
- 			.block = AMDGPU_RAS_BLOCK__UMC,
- 		};
- 		struct ras_manager *obj = amdgpu_ras_find_obj(adev, &head);
- 
--		ret =
--			amdgpu_umc_do_page_retirement(adev, ras_error_status, NULL, reset);
--
-+		ret = amdgpu_umc_do_page_retirement(adev, &err_data, NULL, reset);
- 		if (ret == AMDGPU_RAS_SUCCESS && obj) {
--			obj->err_data.ue_count += err_data->ue_count;
--			obj->err_data.ce_count += err_data->ce_count;
-+			obj->err_data.ue_count += err_data.ue_count;
-+			obj->err_data.ce_count += err_data.ce_count;
- 		}
- 	}
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h
-index 659a10de29c9..a6951160f13a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h
-@@ -83,9 +83,7 @@ struct amdgpu_umc {
- };
- 
- int amdgpu_umc_ras_late_init(struct amdgpu_device *adev, struct ras_common_if *ras_block);
--int amdgpu_umc_poison_handler(struct amdgpu_device *adev,
--		void *ras_error_status,
--		bool reset);
-+int amdgpu_umc_poison_handler(struct amdgpu_device *adev, bool reset);
- int amdgpu_umc_process_ecc_irq(struct amdgpu_device *adev,
- 		struct amdgpu_irq_src *source,
- 		struct amdgpu_iv_entry *entry);
+ 	r = amdgpu_fence_wait_polling(ring, ring->fence_drv.sync_seq,
+-		      adev->usec_timeout * (amdgpu_emu_mode ? 100 : 1));
++		      timeout);
+ 	if (r < 1) {
+ 		DRM_ERROR("MES failed to response msg=%d\n",
+ 			  x_pkt->header.opcode);
 -- 
-2.35.1
+2.34.1
 
