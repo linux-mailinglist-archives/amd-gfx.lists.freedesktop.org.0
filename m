@@ -1,61 +1,63 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A90B360248B
-	for <lists+amd-gfx@lfdr.de>; Tue, 18 Oct 2022 08:37:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEFE5602488
+	for <lists+amd-gfx@lfdr.de>; Tue, 18 Oct 2022 08:37:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3E6B10EEA0;
-	Tue, 18 Oct 2022 06:37:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8522910EEA8;
+	Tue, 18 Oct 2022 06:37:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com
- [IPv6:2607:f8b0:4864:20::22d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 506A210E2C3;
- Tue, 18 Oct 2022 00:54:22 +0000 (UTC)
-Received: by mail-oi1-x22d.google.com with SMTP id p127so13374159oih.9;
- Mon, 17 Oct 2022 17:54:22 -0700 (PDT)
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com
+ [IPv6:2607:f8b0:4864:20::235])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9598710E0CC;
+ Tue, 18 Oct 2022 01:28:02 +0000 (UTC)
+Received: by mail-oi1-x235.google.com with SMTP id n83so14081209oif.11;
+ Mon, 17 Oct 2022 18:28:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=tJF+WI60vk4zKRnY5WDcGvuP4IAKRIrw4t1y9atba+c=;
- b=CvJfsU/WmCgQx55S50cP58rTdE2xSJn65d6abDil0brE5yNcP10yKEpAc/a7KKh/Fs
- yqFVefwH05LvTg3rX1S9CEhqqGTzMej6Rk0n38uoOi3n8iOxpz8xatVBOQ1/R885MLk6
- jQoLSjlg+K6kZeWdAibBnwqVed/P4CsxsUtArSPhrDFbEDkR2TXjUxs6FDu4A2PwVMyk
- YvTCbdI0w+08paL2DOILF+jhO5ZKg7H2N9/qray/3nfSbF9EN+jRwYG3w+f7lBY/jAjk
- yYWpHNpe8gjWudH5mK0MpSO1OuMi0vt8deuLacYhX7t68oKkLfzp1DA2ttUkvGaCAzun
- rOWg==
+ bh=ilkmjMRXsx5bN+cKLCPs5nKC2+ATqDeP4QnxRLsugMY=;
+ b=ZzjlLZ4Wx4yqm5zbY/vF/fUjc8wYRue8JEToCLc7+q9CnNI4Ar2AkEJTT4HLh5dNmO
+ CWnN6eKNOFibZWC0diT/gstz/2zarzciwMhRp1t1ewMlVYYA1EpWBBaK01JnhJ9hYzSA
+ DBD3wzUx4+rIC98poEzR8BQTscvrSybtaxL27f+XOPEPryo6RevogBRh3nNt7EuFoIas
+ LYeIAgLijpKEH8j0wyQgsIeHe3X6y5/aFVcGYA7Pm8uy8OJ15VEG/t6VeSgEAYmySHm1
+ b9y35LIzAitN3379gakovwvJTyNILG1MwYgD05ZSKxdVZGfjOVk0oLznGWMJkKt3sptN
+ J1wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=tJF+WI60vk4zKRnY5WDcGvuP4IAKRIrw4t1y9atba+c=;
- b=c5iNg9wen1n/0LyxVbCBnSRm82jffFhdsMX3/VZ04ZEj2CxuDjwYajz7kvWQmsaW3f
- XcS2wAWsDx2Y4ADQQm+/jAUBOabBAuzIRzuZwTZDCjC+RU/ApYUd+p+keyZqqmDlgF3F
- o1MOO43rd7ZgTa1zDSB77QoJb6hNV+Ke9P+8MWUttXEleLSF8/bR0APHUVn109HF9zyp
- hIPgjBuc16p9EHCHRGi87Owx+3ezjW8CdfYqH2F09Y6QG7DvbO4y3XgPrffIkehbGFyY
- FActOvjiuRfhFUx1HHDGznQgpjy1pcGBFL4GiqTsb9QeI00mLPh4Uyidtclv90VgTqvW
- Nj7g==
-X-Gm-Message-State: ACrzQf0FAHZ6HIAi85dW6sqMcq7hvuRPSsf7i+UTWfoHfPlGaTfzQjPb
- 5RN9xfpBAV0bC45lkiPL5JE=
-X-Google-Smtp-Source: AMsMyM79IByIZADRuZXKE3oiNsXeZdoaKL8oknpSXSisoaeefSbJlBgjf2cwkfIV4DxrdgGt6gsrng==
-X-Received: by 2002:a05:6808:1893:b0:354:b5bc:cd0d with SMTP id
- bi19-20020a056808189300b00354b5bccd0dmr14943045oib.244.1666054461473; 
- Mon, 17 Oct 2022 17:54:21 -0700 (PDT)
+ bh=ilkmjMRXsx5bN+cKLCPs5nKC2+ATqDeP4QnxRLsugMY=;
+ b=Ir4w6RO12PaQUpO7pP+ZKJawtBsPvXomzrKAWjmjtC1DWDkFvEoizA+4353cxE0xu2
+ OUALBoVIPwF5R6T2GDHkfGwNfkhsuR7WPdDEfOMIuZ967bHABPZORXjdtDaUqAfavDIj
+ Ckc/NxmYTPnQc8M8jbByT8uEFK3B1W/VB/HMSbGv2F6xF19Ugqn2X+LWxwrLvJPlhrIy
+ SqKtfAX88al2YViOe59rzbBven9jlo7uIzKGb/KuvKk4skkOKqZAZWUlIj3CTno4YuMv
+ o2aWrTmqP2aiFqtaK5suZ8mh5WNGXCXttatFQykBESekMO9bwtt3S6p0/hsE1NHQCJw4
+ SpIQ==
+X-Gm-Message-State: ACrzQf1ELTixHzQToWyD8bxNBe0Lb534eXgcxJCEFXceFh/xKuLs9+zF
+ KuKyVwzzNhe1OHOzFJ1qQkw=
+X-Google-Smtp-Source: AMsMyM41az2Sl9WsDrici9XR23w8mdjfxyfa/Rp7Rod/2DwGKLBHzGwsPH3B5yuRtEt5m1Wlqxd6ag==
+X-Received: by 2002:a05:6808:11cb:b0:353:f841:e390 with SMTP id
+ p11-20020a05680811cb00b00353f841e390mr318449oiv.149.1666056481769; 
+ Mon, 17 Oct 2022 18:28:01 -0700 (PDT)
 Received: from macondo.. ([2804:431:e7cc:1855:b6d2:d55:b2d8:b57d])
  by smtp.gmail.com with ESMTPSA id
- l3-20020a9d7a83000000b00661a2c5fef9sm5420433otn.32.2022.10.17.17.54.18
+ cj7-20020a056830640700b006619533d1ddsm5329572otb.76.2022.10.17.18.27.57
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 17 Oct 2022 17:54:21 -0700 (PDT)
+ Mon, 17 Oct 2022 18:28:01 -0700 (PDT)
 From: Rafael Mendonca <rafaelmendsr@gmail.com>
-To: Evan Quan <evan.quan@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+To: Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>
-Subject: [PATCH] drm/amdgpu/powerplay/psm: Fix memory leak in power state init
-Date: Mon, 17 Oct 2022 21:53:57 -0300
-Message-Id: <20221018005357.887009-1-rafaelmendsr@gmail.com>
+ Daniel Vetter <daniel@ffwll.ch>, Ramesh Errabolu <Ramesh.Errabolu@amd.com>,
+ Oak Zeng <Oak.Zeng@amd.com>
+Subject: [PATCH] drm/amdkfd: Fix memory leak in kfd_mem_dmamap_userptr()
+Date: Mon, 17 Oct 2022 22:27:50 -0300
+Message-Id: <20221018012751.887460-1-rafaelmendsr@gmail.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -76,32 +78,38 @@ Cc: dri-devel@lists.freedesktop.org, Rafael Mendonca <rafaelmendsr@gmail.com>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Commit 902bc65de0b3 ("drm/amdgpu/powerplay/psm: return an error in power
-state init") made the power state init function return early in case of
-failure to get an entry from the powerplay table, but it missed to clean up
-the allocated memory for the current power state before returning.
+If the number of pages from the userptr BO differs from the SG BO then the
+allocated memory for the SG table doesn't get freed before returning
+-EINVAL, which may lead to a memory leak in some error paths. Fix this by
+checking the number of pages before allocating memory for the SG table.
 
-Fixes: 902bc65de0b3 ("drm/amdgpu/powerplay/psm: return an error in power state init")
+Fixes: 264fb4d332f5 ("drm/amdgpu: Add multi-GPU DMA mapping helpers")
 Signed-off-by: Rafael Mendonca <rafaelmendsr@gmail.com>
 ---
- drivers/gpu/drm/amd/pm/powerplay/hwmgr/pp_psm.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/pp_psm.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/pp_psm.c
-index 67d7da0b6fed..1d829402cd2e 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/pp_psm.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/pp_psm.c
-@@ -75,8 +75,10 @@ int psm_init_power_state_table(struct pp_hwmgr *hwmgr)
- 	for (i = 0; i < table_entries; i++) {
- 		result = hwmgr->hwmgr_func->get_pp_table_entry(hwmgr, i, state);
- 		if (result) {
-+			kfree(hwmgr->current_ps);
- 			kfree(hwmgr->request_ps);
- 			kfree(hwmgr->ps);
-+			hwmgr->current_ps = NULL;
- 			hwmgr->request_ps = NULL;
- 			hwmgr->ps = NULL;
- 			return -EINVAL;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+index 978d3970b5cc..84f44f7e4111 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+@@ -510,13 +510,13 @@ kfd_mem_dmamap_userptr(struct kgd_mem *mem,
+ 	struct ttm_tt *ttm = bo->tbo.ttm;
+ 	int ret;
+ 
++	if (WARN_ON(ttm->num_pages != src_ttm->num_pages))
++		return -EINVAL;
++
+ 	ttm->sg = kmalloc(sizeof(*ttm->sg), GFP_KERNEL);
+ 	if (unlikely(!ttm->sg))
+ 		return -ENOMEM;
+ 
+-	if (WARN_ON(ttm->num_pages != src_ttm->num_pages))
+-		return -EINVAL;
+-
+ 	/* Same sequence as in amdgpu_ttm_tt_pin_userptr */
+ 	ret = sg_alloc_table_from_pages(ttm->sg, src_ttm->pages,
+ 					ttm->num_pages, 0,
 -- 
 2.34.1
 
