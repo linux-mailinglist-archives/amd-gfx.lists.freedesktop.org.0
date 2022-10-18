@@ -1,94 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28380602BBC
-	for <lists+amd-gfx@lfdr.de>; Tue, 18 Oct 2022 14:29:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EC70602D20
+	for <lists+amd-gfx@lfdr.de>; Tue, 18 Oct 2022 15:37:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C56410EF2A;
-	Tue, 18 Oct 2022 12:29:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52B8410E67F;
+	Tue, 18 Oct 2022 13:37:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2045.outbound.protection.outlook.com [40.107.94.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BD5210EF32
- for <amd-gfx@lists.freedesktop.org>; Tue, 18 Oct 2022 12:28:57 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Pw2x+2Xbd4RaKxC5Fzgjqiwfszhh9tphYpUq32uGTWsYnPdcS2vKHeaHK+2533qWxqgoDo+lV4UNGC8YZkgXT5o4Fssn7GDtJMiO+sDb+x6a5LV61y7Ie0VLNfaAyuaHTuScwgz8hiOKpw7Fw7Uf6PK+1zIGtofQh7/tAxc5abAWrvewwNJGXxpUYeCRS/qHRXScL7iVRC9XS0MPq6CQptZG3EHmOe5bwRuTQhiXiczBlzPOM/oPZxIy7AteIY4VdsSeHNJlC7n/ByFixsL1B4Z9039c5HnMZ0WSafsoXpkhrCmFQLcWlYsHCZwqDjZST/Ueswq/DeuGCVHR3LDnbQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WWMUkHXT++k5VKZgTkQ+b6urNdxBDOAQRGr0q2Yc5QE=;
- b=kT2CPfMjOpQ10wki3Q5bY2EWygNkC+9RDdY5VvY5KVCXSMY51C4//KRLkCOFZ6UAZw4gNaMo66BVm5Qjcy77bIzis1DikM0wL0VOKrrfUZQBJsGt3+8vWNaOm/ueFiyqx+RYE0SD1bbE/9TkFfUygjYPiopPkjrVHhfg/ZysgC4c+LLZJqe3FJIRLMc1mBwxUfqsVIBFQWmspb7Y/sXRuez422t65ZYUVXRAxUkitCiMovGDYNhI4ygNn/c1vamb2mP+jdVONakQff0bi/bj7zpZCRW6togA8IaYBM2mD6N5griLuAsFyLTfuf8cUI3+cjWxxeJfVreV5owpd08o5w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WWMUkHXT++k5VKZgTkQ+b6urNdxBDOAQRGr0q2Yc5QE=;
- b=PoF3UMbk7CDtglUwqTi9RiKXEUrRTTB2fYt8MgE2Fv3bODYo6gnxAp3D3pMnw+nf6E8ZSDjCQCDJRSnkL/XzEEqK+OGCxC4ILBm6mLm/xxIAlP2PV2aoTO4Yd3ZaKL+y8mUdD/eIke2NjdL//uxJW/N/7MQXxRVcGDqEThP0IDc=
-Received: from DM6PR07CA0124.namprd07.prod.outlook.com (2603:10b6:5:330::34)
- by PH0PR12MB5449.namprd12.prod.outlook.com (2603:10b6:510:e7::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.30; Tue, 18 Oct
- 2022 12:28:54 +0000
-Received: from DM6NAM11FT109.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:330:cafe::3c) by DM6PR07CA0124.outlook.office365.com
- (2603:10b6:5:330::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.31 via Frontend
- Transport; Tue, 18 Oct 2022 12:28:54 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DM6NAM11FT109.mail.protection.outlook.com (10.13.173.178) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5723.20 via Frontend Transport; Tue, 18 Oct 2022 12:28:54 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Tue, 18 Oct
- 2022 07:28:54 -0500
-Received: from arch-sec.hitronhub.home (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.31 via
- Frontend Transport; Tue, 18 Oct 2022 07:28:48 -0500
-From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2 12/12] drm/amd/display: Move dc_state copy in commit_tail
- after dc_commit_state
-Date: Tue, 18 Oct 2022 08:28:26 -0400
-Message-ID: <20221018122826.1790114-13-Rodrigo.Siqueira@amd.com>
-X-Mailer: git-send-email 2.38.0
-In-Reply-To: <20221018122826.1790114-1-Rodrigo.Siqueira@amd.com>
-References: <20221018122826.1790114-1-Rodrigo.Siqueira@amd.com>
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com
+ [209.85.160.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA53E10EF36;
+ Tue, 18 Oct 2022 12:30:24 +0000 (UTC)
+Received: by mail-qt1-f179.google.com with SMTP id bb5so9471224qtb.11;
+ Tue, 18 Oct 2022 05:30:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=LA5Rw3StwiOqL+QwzJgo3njgEZhTbHuX12wcOa2B5Os=;
+ b=vSP6iNVYSYd2aVZ/ob0iR+eul0CC8Px4iQ/gaQOZ0bhycA2tgOyl/M1givlLaRlehO
+ Zk4qFg6xHY2CYORcRN0qIS2bS4w2JJllTTOJD1upvSZB/foodMOfFkuoz07iguH5aKyx
+ IhGPez0Xt9J+GErnFFjFAkrBAl738iPaA2ATybBSqZrczGfbSIHVcEnnsLcSaAl8iMXi
+ bjFkfNTln3+comy3GFnM9ITY2r7pVJf5NPgaGq29Oxtt5evLPKE7E/mQrMq//BJ7pzCw
+ 0AAZC7MMyzDpWSfk3Vn3+oG/vq3elRHH3ZnlxrZvIvYG5GgDXHvTYvEQJmYB0TJB4++v
+ dl3A==
+X-Gm-Message-State: ACrzQf1/UUThqceq/8cbDNIBZo2JR5kgK3HAcCh0dEf3L+82F36Wk7uA
+ 4n23cOKwFUsbxJ5eh/kBupW48bI0CaHqEA==
+X-Google-Smtp-Source: AMsMyM7Wd3Xr9m5hQ04W69XBa+VegRFwIYXJyAeowqZxtIg/g6zXxDbp3bkTVP633XWMUq+n33L2zw==
+X-Received: by 2002:ac8:7fcc:0:b0:39c:f1b4:b3c4 with SMTP id
+ b12-20020ac87fcc000000b0039cf1b4b3c4mr1802692qtk.551.1666096223526; 
+ Tue, 18 Oct 2022 05:30:23 -0700 (PDT)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com.
+ [209.85.128.180]) by smtp.gmail.com with ESMTPSA id
+ h22-20020a05620a245600b006b953a7929csm2338453qkn.73.2022.10.18.05.30.22
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 18 Oct 2022 05:30:23 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id
+ 00721157ae682-35ceeae764dso135625857b3.4; 
+ Tue, 18 Oct 2022 05:30:22 -0700 (PDT)
+X-Received: by 2002:a81:98d:0:b0:357:2422:13b4 with SMTP id
+ 135-20020a81098d000000b00357242213b4mr2107285ywj.316.1666096222450; Tue, 18
+ Oct 2022 05:30:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT109:EE_|PH0PR12MB5449:EE_
-X-MS-Office365-Filtering-Correlation-Id: cc01d3cc-e569-4b82-1b2b-08dab104526c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zN3w8pQ3pIAnYcnUVFIdq/ux/5deMMUKtn8BuXFXT69ZyacGUd/VNElgdvSJbksNsI++tO+4s7ZMiaPHjl/kGd0AumgYuyIRXwYPtwZ/cxzxAEmLDcqhXzGZ2wSAtgaVQcyHPxGaqJXKHnbvR6SnVZkQvYz0zjHwtBuMRi5C5vjxmMOm1d1huhfJd20eGQgMBQtCiEX67J+2imd75VQs6qOwoZ5N8V/KA3+rFmLRSbApPnIOg9UPRz4awPdysNZnjOwsO572Dh9hYwj2v9jRvKEzsp8GAcamms5CMEjDJrobS8wiw5vztf93WIwlamAdEuqYU9IlGqyJwjYn0BxrKt6/pCNKJkfIsZqasZ3f3FrDVTfmizLAheNSISGZROSvLWL/qEktDYCaYB7IsOClUp5OpFi8s5tor/Hn93OJ7LZsJ0XwJANgqFYs+3j4joGj7+q/cdhVOFkzViPMVDzxBsT4SfAS6pKB/RDzMyXzNPT/Y2mjpQlAOywD/4r9oLvonmels1y8L6w9I6T/OQZJn2uoR9G82uff0rsLpKLHEvaE4t0HsHBP72QCCrlDoyyCehxLYOPwa946v6C3rT8WUScfS9am0OmO1jeQ2J/hBeWyViK0p1Zp4lTDZiydUzoi+/4VMPn0cPdp9vCC6dIB+8vMhDeOstRAZVRfX3sD7IMLh0a2njeZ1La5BGSZobtMKI9xCGR+OBFywOMPl5UW5J3LMysnVlY+D0k6wiB3Ijelq5lW6ycQxluMO1DPSuKM3P5bGQe4cXHL/Rqn79b2XZMdLdzAJho69D0O9FT4HjLofQJdFgxA316ayg8iFkbG
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(396003)(376002)(136003)(39860400002)(346002)(451199015)(40470700004)(46966006)(36840700001)(36756003)(36860700001)(86362001)(5660300002)(2906002)(82740400003)(336012)(186003)(2616005)(1076003)(426003)(47076005)(6916009)(81166007)(356005)(83380400001)(26005)(316002)(478600001)(54906003)(41300700001)(70586007)(70206006)(82310400005)(40480700001)(4326008)(8936002)(6666004)(40460700003)(8676002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2022 12:28:54.6523 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cc01d3cc-e569-4b82-1b2b-08dab104526c
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT109.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB5449
+References: <20221017145157.1866351-1-geert@linux-m68k.org>
+ <alpine.DEB.2.22.394.2210171653540.9136@ramsan.of.borg>
+ <alpine.DEB.2.21.2210181126040.50489@angie.orcam.me.uk>
+In-Reply-To: <alpine.DEB.2.21.2210181126040.50489@angie.orcam.me.uk>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 18 Oct 2022 14:30:10 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVbo0wMaVVhe4f4tC9-TW2+DsOVAB77TtLdnsG=us8Q2A@mail.gmail.com>
+Message-ID: <CAMuHMdVbo0wMaVVhe4f4tC9-TW2+DsOVAB77TtLdnsG=us8Q2A@mail.gmail.com>
+Subject: Re: Build regressions/improvements in v6.1-rc1
+To: "Maciej W. Rozycki" <macro@orcam.me.uk>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Tue, 18 Oct 2022 13:37:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,65 +68,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Cc: D Scott Phillips <scott@os.amperecomputing.com>, linux-rdma@vger.kernel.org,
+ linux-um@lists.infradead.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-mips@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, kvm-riscv@lists.infradead.org,
+ sparclinux@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Andrew Jones <ajones@ventanamicro.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Hi Maciej,
 
-The SubVP feature introduces a new mechanism named phantom streams,
-which can be summed up as a fake stream used to calculate the required
-parameters for handing the cache request and cache reading for a small
-portion of the framebuffer used in the sub-viewport. With the new commit
-sequence, we do not want the state to be copied before the call to
-dc_commit_state() since this leaks the phantom streams into new state.
-To address this issue, this commit move the dc state copy right after
-the dc_commit_state() call.
+On Tue, Oct 18, 2022 at 12:39 PM Maciej W. Rozycki <macro@orcam.me.uk> wrote:
+> On Mon, 17 Oct 2022, Geert Uytterhoeven wrote:
+> > .> [1] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/9abf2313adc1ca1b6180c508c25f22f9395cc780/ (all 149 configs)
 
-Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c   | 17 +++++++++--------
- 1 file changed, 9 insertions(+), 8 deletions(-)
+> > >  + {standard input}: Error: branch to a symbol in another ISA mode: 1339 =>
+> > > 2616, 2621
+> >
+> > mips-gcc11/micro32r2_defconfig
+> > mips-gcc11/micro32r2el_defconfig
+>
+>  Where can these configs be obtained from?
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 63f076a46260..17a9108f8186 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -7999,15 +7999,8 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
- 	drm_atomic_helper_update_legacy_modeset_state(dev, state);
- 
- 	dm_state = dm_atomic_get_new_state(state);
--	if (dm_state && dm_state->context) {
-+	if (dm_state && dm_state->context)
- 		dc_state = dm_state->context;
--	} else {
--		/* No state changes, retain current state. */
--		dc_state_temp = dc_create_state(dm->dc);
--		ASSERT(dc_state_temp);
--		dc_state = dc_state_temp;
--		dc_resource_state_copy_construct_current(dm->dc, dc_state);
--	}
- 
- 	for_each_oldnew_crtc_in_state (state, crtc, old_crtc_state,
- 				       new_crtc_state, i) {
-@@ -8127,6 +8120,14 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
- 		mutex_unlock(&dm->dc_lock);
- 	}
- 
-+	if (dc_state == NULL) {
-+		/* No state changes, retain current state. */
-+		dc_state_temp = dc_create_state(dm->dc);
-+		ASSERT(dc_state_temp);
-+		dc_state = dc_state_temp;
-+		dc_resource_state_copy_construct_current(dm->dc, dc_state);
-+	}
-+
- 	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
- 		struct amdgpu_crtc *acrtc = to_amdgpu_crtc(crtc);
- 
--- 
-2.38.0
+By following the links in the URL above you removed while replying? ;-)
 
+http://kisskb.ellerman.id.au/kisskb/buildresult/14818296/
+http://kisskb.ellerman.id.au/kisskb/buildresult/14818298/
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
