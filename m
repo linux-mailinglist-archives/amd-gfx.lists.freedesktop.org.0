@@ -1,39 +1,39 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A659603C56
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 Oct 2022 10:45:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 496BC603C54
+	for <lists+amd-gfx@lfdr.de>; Wed, 19 Oct 2022 10:45:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20A9010F197;
-	Wed, 19 Oct 2022 08:45:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD5BD10F19C;
+	Wed, 19 Oct 2022 08:45:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6FD910EA22
- for <amd-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 03:30:01 +0000 (UTC)
-Received: from dggpemm500020.china.huawei.com (unknown [172.30.72.54])
- by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Msbk81L6QznTV5;
- Wed, 19 Oct 2022 11:26:40 +0800 (CST)
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CD3F10EA22
+ for <amd-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 03:30:33 +0000 (UTC)
+Received: from dggpemm500022.china.huawei.com (unknown [172.30.72.55])
+ by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4MsbpS1MRdzHv24;
+ Wed, 19 Oct 2022 11:30:24 +0800 (CST)
 Received: from dggpemm500001.china.huawei.com (7.185.36.107) by
- dggpemm500020.china.huawei.com (7.185.36.49) with Microsoft SMTP Server
+ dggpemm500022.china.huawei.com (7.185.36.162) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.1.2375.31; Wed, 19 Oct 2022 11:29:58 +0800
 Received: from localhost.localdomain.localdomain (10.175.113.25) by
  dggpemm500001.china.huawei.com (7.185.36.107) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Wed, 19 Oct 2022 11:29:57 +0800
+ 15.1.2375.31; Wed, 19 Oct 2022 11:29:58 +0800
 From: Kefeng Wang <wangkefeng.wang@huawei.com>
 To: <linux-kernel@vger.kernel.org>, Andrew Morton <akpm@linux-foundation.org>
-Subject: [PATCH 4/5] mm: debug_vm_pgtable: use VM_ACCESS_FLAGS
-Date: Wed, 19 Oct 2022 11:49:44 +0800
-Message-ID: <20221019034945.93081-5-wangkefeng.wang@huawei.com>
+Subject: [PATCH 5/5] amdgpu: use VM_ACCESS_FLAGS
+Date: Wed, 19 Oct 2022 11:49:45 +0800
+Message-ID: <20221019034945.93081-6-wangkefeng.wang@huawei.com>
 X-Mailer: git-send-email 2.35.3
 In-Reply-To: <20221019034945.93081-1-wangkefeng.wang@huawei.com>
 References: <20221019034945.93081-1-wangkefeng.wang@huawei.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-Originating-IP: [10.175.113.25]
 X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
  dggpemm500001.china.huawei.com (7.185.36.107)
@@ -50,46 +50,42 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kefeng Wang <wangkefeng.wang@huawei.com>, Dinh Nguyen <dinguyen@kernel.org>,
+Cc: Kefeng Wang <wangkefeng.wang@huawei.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, Dinh Nguyen <dinguyen@kernel.org>,
  Dave Hansen <dave.hansen@linux.intel.com>, amd-gfx@lists.freedesktop.org,
  linux-mm@kvack.org, Jarkko Sakkinen <jarkko@kernel.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ David Airlie <airlied@gmail.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  linux-sgx@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Directly use VM_ACCESS_FLAGS instead VMFLAGS.
+Simplify VM_READ|VM_WRITE|VM_EXEC with VM_ACCESS_FLAGS.
 
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: "Christian König" <christian.koenig@amd.com>
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
 Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
 ---
- mm/debug_vm_pgtable.c | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/mm/debug_vm_pgtable.c b/mm/debug_vm_pgtable.c
-index dc7df1254f0a..2b61fde8c38c 100644
---- a/mm/debug_vm_pgtable.c
-+++ b/mm/debug_vm_pgtable.c
-@@ -38,11 +38,7 @@
-  * Please refer Documentation/mm/arch_pgtable_helpers.rst for the semantics
-  * expectations that are being validated here. All future changes in here
-  * or the documentation need to be in sync.
-- */
--
--#define VMFLAGS	(VM_READ|VM_WRITE|VM_EXEC)
--
--/*
-+ *
-  * On s390 platform, the lower 4 bits are used to identify given page table
-  * entry type. But these bits might affect the ability to clear entries with
-  * pxx_clear() because of how dynamic page table folding works on s390. So
-@@ -1125,7 +1121,7 @@ static int __init init_args(struct pgtable_debug_args *args)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+index 8ef31d687ef3..4728be161828 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+@@ -255,7 +255,7 @@ static int amdgpu_gem_object_mmap(struct drm_gem_object *obj, struct vm_area_str
+ 	 * becoming writable and makes is_cow_mapping(vm_flags) false.
  	 */
- 	memset(args, 0, sizeof(*args));
- 	args->vaddr              = get_random_vaddr();
--	args->page_prot          = vm_get_page_prot(VMFLAGS);
-+	args->page_prot          = vm_get_page_prot(VM_ACCESS_FLAGS);
- 	args->page_prot_none     = vm_get_page_prot(VM_NONE);
- 	args->is_contiguous_page = false;
- 	args->pud_pfn            = ULONG_MAX;
+ 	if (is_cow_mapping(vma->vm_flags) &&
+-	    !(vma->vm_flags & (VM_READ | VM_WRITE | VM_EXEC)))
++	    !(vma->vm_flags & VM_ACCESS_FLAGS))
+ 		vma->vm_flags &= ~VM_MAYWRITE;
+ 
+ 	return drm_gem_ttm_mmap(obj, vma);
 -- 
 2.35.3
 
