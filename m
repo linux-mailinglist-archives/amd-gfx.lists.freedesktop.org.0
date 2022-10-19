@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04D82603C48
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 Oct 2022 10:45:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A659603C56
+	for <lists+amd-gfx@lfdr.de>; Wed, 19 Oct 2022 10:45:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8765910F195;
-	Wed, 19 Oct 2022 08:45:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20A9010F197;
+	Wed, 19 Oct 2022 08:45:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DFBD10EA22
- for <amd-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 03:30:23 +0000 (UTC)
-Received: from dggpemm500021.china.huawei.com (unknown [172.30.72.56])
- by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Msbkb21cWznV2c;
- Wed, 19 Oct 2022 11:27:03 +0800 (CST)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6FD910EA22
+ for <amd-gfx@lists.freedesktop.org>; Wed, 19 Oct 2022 03:30:01 +0000 (UTC)
+Received: from dggpemm500020.china.huawei.com (unknown [172.30.72.54])
+ by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Msbk81L6QznTV5;
+ Wed, 19 Oct 2022 11:26:40 +0800 (CST)
 Received: from dggpemm500001.china.huawei.com (7.185.36.107) by
- dggpemm500021.china.huawei.com (7.185.36.109) with Microsoft SMTP Server
+ dggpemm500020.china.huawei.com (7.185.36.49) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Wed, 19 Oct 2022 11:29:57 +0800
+ 15.1.2375.31; Wed, 19 Oct 2022 11:29:58 +0800
 Received: from localhost.localdomain.localdomain (10.175.113.25) by
  dggpemm500001.china.huawei.com (7.185.36.107) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.1.2375.31; Wed, 19 Oct 2022 11:29:57 +0800
 From: Kefeng Wang <wangkefeng.wang@huawei.com>
 To: <linux-kernel@vger.kernel.org>, Andrew Morton <akpm@linux-foundation.org>
-Subject: [PATCH 3/5] mm: mprotect: use VM_ACCESS_FLAGS
-Date: Wed, 19 Oct 2022 11:49:43 +0800
-Message-ID: <20221019034945.93081-4-wangkefeng.wang@huawei.com>
+Subject: [PATCH 4/5] mm: debug_vm_pgtable: use VM_ACCESS_FLAGS
+Date: Wed, 19 Oct 2022 11:49:44 +0800
+Message-ID: <20221019034945.93081-5-wangkefeng.wang@huawei.com>
 X-Mailer: git-send-email 2.35.3
 In-Reply-To: <20221019034945.93081-1-wangkefeng.wang@huawei.com>
 References: <20221019034945.93081-1-wangkefeng.wang@huawei.com>
@@ -57,27 +57,39 @@ Cc: Kefeng Wang <wangkefeng.wang@huawei.com>, Dinh Nguyen <dinguyen@kernel.org>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Simplify VM_READ|VM_WRITE|VM_EXEC with VM_ACCESS_FLAGS.
+Directly use VM_ACCESS_FLAGS instead VMFLAGS.
 
 Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
 ---
- mm/mprotect.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ mm/debug_vm_pgtable.c | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
 
-diff --git a/mm/mprotect.c b/mm/mprotect.c
-index 668bfaa6ed2a..99762403cc8f 100644
---- a/mm/mprotect.c
-+++ b/mm/mprotect.c
-@@ -756,8 +756,7 @@ static int do_mprotect_pkey(unsigned long start, size_t len,
- 		 * If a permission is not passed to mprotect(), it must be
- 		 * cleared from the VMA.
- 		 */
--		mask_off_old_flags = VM_READ | VM_WRITE | VM_EXEC |
--					VM_FLAGS_CLEAR;
-+		mask_off_old_flags = VM_ACCESS_FLAGS | VM_FLAGS_CLEAR;
- 
- 		new_vma_pkey = arch_override_mprotect_pkey(vma, prot, pkey);
- 		newflags = calc_vm_prot_bits(prot, new_vma_pkey);
+diff --git a/mm/debug_vm_pgtable.c b/mm/debug_vm_pgtable.c
+index dc7df1254f0a..2b61fde8c38c 100644
+--- a/mm/debug_vm_pgtable.c
++++ b/mm/debug_vm_pgtable.c
+@@ -38,11 +38,7 @@
+  * Please refer Documentation/mm/arch_pgtable_helpers.rst for the semantics
+  * expectations that are being validated here. All future changes in here
+  * or the documentation need to be in sync.
+- */
+-
+-#define VMFLAGS	(VM_READ|VM_WRITE|VM_EXEC)
+-
+-/*
++ *
+  * On s390 platform, the lower 4 bits are used to identify given page table
+  * entry type. But these bits might affect the ability to clear entries with
+  * pxx_clear() because of how dynamic page table folding works on s390. So
+@@ -1125,7 +1121,7 @@ static int __init init_args(struct pgtable_debug_args *args)
+ 	 */
+ 	memset(args, 0, sizeof(*args));
+ 	args->vaddr              = get_random_vaddr();
+-	args->page_prot          = vm_get_page_prot(VMFLAGS);
++	args->page_prot          = vm_get_page_prot(VM_ACCESS_FLAGS);
+ 	args->page_prot_none     = vm_get_page_prot(VM_NONE);
+ 	args->is_contiguous_page = false;
+ 	args->pud_pfn            = ULONG_MAX;
 -- 
 2.35.3
 
