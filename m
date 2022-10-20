@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A0176064EB
-	for <lists+amd-gfx@lfdr.de>; Thu, 20 Oct 2022 17:48:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5E986064EE
+	for <lists+amd-gfx@lfdr.de>; Thu, 20 Oct 2022 17:48:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8784510E3B0;
-	Thu, 20 Oct 2022 15:47:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4D5410E177;
+	Thu, 20 Oct 2022 15:48:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2084.outbound.protection.outlook.com [40.107.93.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0033D10E252
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2080.outbound.protection.outlook.com [40.107.220.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 991B910E48F
  for <amd-gfx@lists.freedesktop.org>; Thu, 20 Oct 2022 15:47:47 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Fn0gguDSaHz2r4P4JtmJJkxhnbVhiVfePgfe1GnwaWTe8XASbueavyeRMz/q0elDIfqLmsQZXGqdnTIcU5UsCcAUM23PJkKGAao+OotKt6PwFr0gFeGBm5QWvHS4IaXgHLzaTLW2sEcdrBMd+qkoDD+eRAK0xUUX95zt24NQXpnooqBe0pDheHALyeXowfnRYNOB99SbnQkobIOSgl8tuvT3JHGZOcrdPPW1qANEDtZFV+6gSE+QqiB3Poab7AymNVSD2FN10BkfTjeFdZ1qdSu+oa9AWuaQB+pw/V4oYruNECbZwdqXRulwwnirReZVDSCueFQGp6VGUtYcXnoZSQ==
+ b=XdxE4XuDhDXfQuwegcTxxo7sYH+ktzXyj+aExaq1qdC1Wz3IV0zCZM70RjD9bsj1XEvZXOeTnZ5l+W0RT2EzJt8CdGB5V+g4gHG9OphHU2KN8F3n3H2Y3ricwAupl3z1WlkfJM02NxVnGWorJCWLfTIbl2mmgPNiwZNdixjfbEB3bB72jcPivEPAGCdngC1N1MqNZPxQvOxnf0iKtKqnTcqmuOAffaezAGb245zwkdC8m1xskaSrRaDd4bWxR/XKIBMxJrmuaB5wTRfXiuN50IxYaS9VGlBR44LnaGpxPxGuoIwA8czzCpYND4pfTloYR5U5x2omAHzUAdUdwPvY4w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZMYYlftOqTBJRmVwAqOnQxslI8IfvmCjV0xd0F/zBio=;
- b=mJkqp7wZCVbn+EBX+ajynkGG53dmffrHT4S9auV261LuEaRBzXikNm1l1R5Jg2LuZw/+a4n/0gnlR1OSvbobRhZw89a0v8cXGeC1vGGu6j+h8kZz6aaQdgissFBi3jk7srFvTnh8hiAAE7ZJdtJGBeo3yv3bv86TNXLbc7wnlBeeRQPc31whJ4Rb6gHGP9Pcp6S/DGL/5JMsfsdgLHPd/696tYeFzIBP38wMD4D3zK0gEeypJHi7MPSzECjmyEi1NmkyzzZBaQCA4BNdu2eNFmjq8CcJATi5ye8elFPeZwFUpq9JyxtEzZqfu3VsPliKSDk2WI6Xa6Pwdi4YkEOw5A==
+ bh=309yOT8IekZsJrr6NWc+C82V/2NHBXMiNuRjEhWFgTU=;
+ b=k7/GW8dcrWhRs5cIoOA67/mpI19lS2rLPSWVd4q07e4YXillRYhDHuI9htGZtWaDDCQ1sGPtWCd3f2TvcRFZFnjnVDyOH10QzlIXue0SvVMRq52yAwc5ElFNnOu+tzKFDNmZcKeTNy3AKs9GCGW3/t6Z1W31aUXRpIyTgZOj226yBFO4nQGcUS3Hnp+hzKgjgBP2hos8xtUbSvio5hjXTtCIzo97Jfa6TYLZITNiNkkkPVyKQ7iECe3Bj7/+JR4qshq9gtiCfilH1D51WBljjrhinmDlMzQPshtVeUy+GBNJ5y3lcUGfs/iK9vm+K+aTguheBiki4bC4bJkdt1kasw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZMYYlftOqTBJRmVwAqOnQxslI8IfvmCjV0xd0F/zBio=;
- b=w0MyExfLKv6upWqNxUWF2qkf239okSxgrDlTSIv8bE6WUaUu/x2G+vBtZBqk09xW5bLbi3hnwdhml10p7gOYHfufRX4/iLZj9Q/1B6hiSlH5SikIcgyKJZ3t6J96BINLLmbwOKfyVMGstiIVaHYOXNJzpUqF1DYSFCNUdHuVdjs=
-Received: from DM6PR12CA0020.namprd12.prod.outlook.com (2603:10b6:5:1c0::33)
- by BL1PR12MB5335.namprd12.prod.outlook.com (2603:10b6:208:317::19) with
+ bh=309yOT8IekZsJrr6NWc+C82V/2NHBXMiNuRjEhWFgTU=;
+ b=Y/5MykG2GpccIQPxPrIN/FeXyxHYbgzxXuy/IahRzoPSrePMya7h8uJHpUObtTvYonXplsmExpu42s3ij37X1CigcTEsBHQi2u4AeOlkAYPaD39TB8c/JNGIwfUYpr/fqH5zQn/mHFYl8v20iQMzSmwZjy7hr1slRd/qTkpLFUo=
+Received: from DS7PR03CA0316.namprd03.prod.outlook.com (2603:10b6:8:2b::17) by
+ BN9PR12MB5356.namprd12.prod.outlook.com (2603:10b6:408:105::23) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.35; Thu, 20 Oct
- 2022 15:47:44 +0000
-Received: from DM6NAM11FT064.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:1c0:cafe::5e) by DM6PR12CA0020.outlook.office365.com
- (2603:10b6:5:1c0::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.35 via Frontend
- Transport; Thu, 20 Oct 2022 15:47:44 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.34; Thu, 20 Oct
+ 2022 15:47:45 +0000
+Received: from DM6NAM11FT111.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:8:2b:cafe::c5) by DS7PR03CA0316.outlook.office365.com
+ (2603:10b6:8:2b::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.34 via Frontend
+ Transport; Thu, 20 Oct 2022 15:47:45 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,18 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT064.mail.protection.outlook.com (10.13.172.234) with Microsoft SMTP
+ DM6NAM11FT111.mail.protection.outlook.com (10.13.173.26) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5746.16 via Frontend Transport; Thu, 20 Oct 2022 15:47:44 +0000
+ 15.20.5746.16 via Frontend Transport; Thu, 20 Oct 2022 15:47:45 +0000
 Received: from atma3.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Thu, 20 Oct
- 2022 10:47:42 -0500
+ 2022 10:47:43 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 08/33] drm/amd/display: Convert documentation to a kernel-doc
-Date: Thu, 20 Oct 2022 11:46:37 -0400
-Message-ID: <20221020154702.503934-9-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 09/33] drm/amd/display: Add events log to trace OPTC lock and
+ unlock
+Date: Thu, 20 Oct 2022 11:46:38 -0400
+Message-ID: <20221020154702.503934-10-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221020154702.503934-1-Rodrigo.Siqueira@amd.com>
 References: <20221020154702.503934-1-Rodrigo.Siqueira@amd.com>
@@ -68,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT064:EE_|BL1PR12MB5335:EE_
-X-MS-Office365-Filtering-Correlation-Id: e31a16ad-cbcb-458f-4c04-08dab2b26db3
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT111:EE_|BN9PR12MB5356:EE_
+X-MS-Office365-Filtering-Correlation-Id: aa2cb8d6-9871-4d58-8910-08dab2b26e76
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: brrno0pqKj3elV3bYl6syrxXLgNYSliRsLLgJKP/i0VkVHKaXD/u8cZoEzSxIbLAfGo1K7um86J/+/6mCa6jANqUMkrWs/h/7ty9n4zJXwC2EkfBiSLjudS/92sAiFIq1CKB7m2MuG5nqnpJ+jETYTtEoTvfz7e40bsjpLPHLby/s+zHemwtmQ8Er4DA0CUXcUVNKTRcaFu0smtpqE2eC2KZWss3bFLy6Axb/hjq1FPRWFpxC/3h9LMc1rZ51KXFEJfyrF8+mElzXzCt9qquzbgJacyQEq+gVakWfu1DuvATTWdLzbFAdwcBbj7F6SzZUMuSbiH1yKQ04N/5ULcgLKLwt3D2xEdfRDqB7dpDKKgxqJR6JMd71WD42EmTWoDOFm6c8Nhy1y8gIXM1qopbQBThUfgdpb+48xKCp2Tit9NurImKH0m44kmBlj7tne7FzRhJbjl49zceMJ1NyMjougNQf8CBVYDeN0xuaf8vSV/mMMuwJ8PsHfua1upipyEeLSMIcJRerMo2Ib2W8uctys73mXJFq9DdyAwdZ5lvpsjAmlGKlhO9JK4OS/3APtdEIOACWRS+XcrYTJvWmkydPEGxSzqprsfSGN71oADd6Q+KuMbJMYjrKbhqZSRAKCV3tkReqIWIFomubR3hOKbtailKZVdv6zOV5IlPvRQtTVidvlJ29Hvm7uP13wPiqVaqedunR/Rh5AmYeWm8fLMdtWVMejOTRUQL/XyDY/0ypqZ91Yx98kZKy83g8oFi45Qu310TwfB2318BFEI2FjGxSE/u0jITS1HHwdja+xTTlhTwSqv7ES9WD25AnttSmnx9
+X-Microsoft-Antispam-Message-Info: WSmEVpXK2ErK9QR6cga4dFfBaPZc37gY0QEFLAib96aFLmQ89ogIokGkePkVjFRmsvgS513i7C8NEl/qzH+3k8lazosZHZpvDl1a+AjvoQuPkFsM04lfNVG8ClWmMCm0nwBI5INVlw+eJRAiqS3qiNO44j5rNwQ3S1bllBbCkEnM42704pn6D+WIS5QIw6P+OxuP25blLZ1az6tbMSnUarZ2GhIHEoVzqWe0japxqJoPYEM0sjeSCQYtRBe/8aq39W5fs6tDQMj3IWT9ZZoJfaHabdRS0cOJ7BwekswTigdDDQvgs1sOvIqVUGiOAzSmlWyKah1iLKm5P1xelhn4xg9948T6YwojZ4MVOY9TFO4aVgCNMqICmpQ7ETfz68u8wyUaCN3u9Y3/R2CNn1wJNE8xFaOQ1CuzWsfstUmozKptnpvgP8Po8ZUeNGb9V8EuFzkiKIL4lQKqrLvHjs8PAJpOfO4WrMRPkW12lcGo6c+0FjU8AEEdS6mcPnEkzGHvDCk7+QaggU6uHLBgvqKQY4Bj6LfDPyHXa+2ln5hts2UEg5Pp9one5JSkF76DJ0ULvmuc1TvAkZPjy56y+EfjZr1tp7DJx8YSjf4KuyqQ3tGdUEdSTprZDO75wCXPP6pUgKKpepGQua2FiiA0cyfVe3cTVNTan5XvFKm4+5la7n4BGiFb0/xvPypVFs46KB/DyOmiPqnQXOr5+3l+qqqnPygQ+kArWYryyVo8aYvl0CRzRH8Pwb4BfNv5NRifWBZobWQSi6ZkvJ9MH4KsrDCNkuVlh3gtNAY+eILs3e0pOUQndsVWsLZM9qKfcnQX7OAm
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(346002)(39860400002)(136003)(376002)(396003)(451199015)(40470700004)(46966006)(36840700001)(36756003)(86362001)(82740400003)(356005)(81166007)(36860700001)(83380400001)(316002)(82310400005)(2906002)(336012)(54906003)(186003)(40460700003)(16526019)(1076003)(47076005)(426003)(7696005)(70586007)(70206006)(40480700001)(6666004)(26005)(478600001)(6916009)(2616005)(4326008)(5660300002)(8676002)(41300700001)(8936002)(36900700001);
+ SFS:(13230022)(4636009)(136003)(396003)(376002)(39860400002)(346002)(451199015)(46966006)(40470700004)(36840700001)(2906002)(356005)(186003)(82740400003)(81166007)(66899015)(1076003)(16526019)(40460700003)(478600001)(82310400005)(426003)(8676002)(47076005)(4326008)(2616005)(54906003)(26005)(6916009)(36860700001)(8936002)(336012)(40480700001)(6666004)(86362001)(70206006)(36756003)(41300700001)(83380400001)(7696005)(316002)(70586007)(5660300002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2022 15:47:44.0111 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e31a16ad-cbcb-458f-4c04-08dab2b26db3
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2022 15:47:45.2750 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa2cb8d6-9871-4d58-8910-08dab2b26e76
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT064.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT111.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5335
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5356
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,204 +107,190 @@ Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The dc_dmub_srv file has a lot of documentation associated with SubVP
-that could be converted to a kernel-doc. This commit just changes the
-comment style to a kernel-doc.
+As an attempt to offer more DCN debug tools for cases where the OPTC can
+hang, this commit introduces a trace event responsible for showing OPTC
+status when it requests lock and unlock.
 
 Reviewed-by: Aurabindo Pillai <Aurabindo.Pillai@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c | 124 +++++++------------
- 1 file changed, 48 insertions(+), 76 deletions(-)
+ .../amd/display/amdgpu_dm/amdgpu_dm_trace.h   | 64 +++++++++++++++++++
+ drivers/gpu/drm/amd/display/dc/dc_trace.h     |  2 +
+ .../gpu/drm/amd/display/dc/dcn10/dcn10_optc.c |  5 ++
+ .../gpu/drm/amd/display/dc/dcn30/dcn30_optc.c |  9 +++
+ 4 files changed, 80 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-index 0541e87e4f38..774e06936661 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-+++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-@@ -423,25 +423,20 @@ void dc_dmub_srv_get_visual_confirm_color_cmd(struct dc *dc, struct pipe_ctx *pi
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h
+index fdcaea22b456..a2450c970083 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h
+@@ -36,6 +36,7 @@
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_encoder.h>
+ #include <drm/drm_atomic.h>
++#include "dcn10/dcn10_optc.h"
  
- #ifdef CONFIG_DRM_AMD_DC_DCN
- /**
-- * ***********************************************************************************************
-- * populate_subvp_cmd_drr_info: Helper to populate DRR pipe info for the DMCUB subvp command
-+ * populate_subvp_cmd_drr_info - Helper to populate DRR pipe info for the DMCUB subvp command
-  *
-- * Populate the DMCUB SubVP command with DRR pipe info. All the information required for calculating
-- * the SubVP + DRR microschedule is populated here.
-+ * @dc: [in] current dc state
-+ * @subvp_pipe: [in] pipe_ctx for the SubVP pipe
-+ * @vblank_pipe: [in] pipe_ctx for the DRR pipe
-+ * @pipe_data: [in] Pipe data which stores the VBLANK/DRR info
-+ *
-+ * Populate the DMCUB SubVP command with DRR pipe info. All the information
-+ * required for calculating the SubVP + DRR microschedule is populated here.
-  *
-  * High level algorithm:
-  * 1. Get timing for SubVP pipe, phantom pipe, and DRR pipe
-  * 2. Calculate the min and max vtotal which supports SubVP + DRR microschedule
-  * 3. Populate the drr_info with the min and max supported vtotal values
-- *
-- * @param [in] dc: current dc state
-- * @param [in] subvp_pipe: pipe_ctx for the SubVP pipe
-- * @param [in] vblank_pipe: pipe_ctx for the DRR pipe
-- * @param [in] pipe_data: Pipe data which stores the VBLANK/DRR info
-- *
-- * @return: void
-- *
-- * ***********************************************************************************************
-  */
- static void populate_subvp_cmd_drr_info(struct dc *dc,
- 		struct pipe_ctx *subvp_pipe,
-@@ -493,22 +488,18 @@ static void populate_subvp_cmd_drr_info(struct dc *dc,
+ #include "dc/inc/core_types.h"
+ 
+@@ -661,6 +662,69 @@ TRACE_EVENT(dcn_fpu,
+ 	    )
+ );
+ 
++TRACE_EVENT(dcn_optc_lock_unlock_state,
++	    TP_PROTO(const struct optc *optc_state, int instance, bool lock, const char *function, const int line),
++	    TP_ARGS(optc_state, instance, lock, function, line),
++
++	    TP_STRUCT__entry(
++			     __field(const char *, function)
++			     __field(int, instance)
++			     __field(bool, lock)
++			     __field(int, line)
++			     __field(int, opp_count)
++			     __field(int, max_h_total)
++			     __field(int, max_v_total)
++			     __field(int, min_h_blank)
++			     __field(int, min_h_sync_width)
++			     __field(int, min_v_sync_width)
++			     __field(int, min_v_blank)
++			     __field(int, min_v_blank_interlace)
++			     __field(int, vstartup_start)
++			     __field(int, vupdate_offset)
++			     __field(int, vupdate_width)
++			     __field(int, vready_offset)
++	    ),
++	    TP_fast_assign(
++			   __entry->function = function;
++			   __entry->instance = instance;
++			   __entry->lock = lock;
++			   __entry->line = line;
++			   __entry->opp_count = optc_state->opp_count;
++			   __entry->max_h_total = optc_state->max_h_total;
++			   __entry->max_v_total = optc_state->max_v_total;
++			   __entry->min_h_blank = optc_state->min_h_blank;
++			   __entry->min_h_sync_width = optc_state->min_h_sync_width;
++			   __entry->min_v_sync_width = optc_state->min_v_sync_width;
++			   __entry->min_v_blank = optc_state->min_v_blank;
++			   __entry->min_v_blank_interlace = optc_state->min_v_blank_interlace;
++			   __entry->vstartup_start = optc_state->vstartup_start;
++			   __entry->vupdate_offset = optc_state->vupdate_offset;
++			   __entry->vupdate_width = optc_state->vupdate_width;
++			   __entry->vready_offset = optc_state->vupdate_offset;
++	    ),
++	    TP_printk("%s: %s()+%d: optc_instance=%d opp_count=%d max_h_total=%d max_v_total=%d "
++		      "min_h_blank=%d min_h_sync_width=%d min_v_sync_width=%d min_v_blank=%d "
++		      "min_v_blank_interlace=%d vstartup_start=%d vupdate_offset=%d vupdate_width=%d "
++		      "vready_offset=%d",
++		      __entry->lock ? "Lock" : "Unlock",
++		      __entry->function,
++		      __entry->line,
++		      __entry->instance,
++		      __entry->opp_count,
++		      __entry->max_h_total,
++		      __entry->max_v_total,
++		      __entry->min_h_blank,
++		      __entry->min_h_sync_width,
++		      __entry->min_v_sync_width,
++		      __entry->min_v_blank,
++		      __entry->min_v_blank_interlace,
++		      __entry->vstartup_start,
++		      __entry->vupdate_offset,
++		      __entry->vupdate_width,
++		      __entry->vready_offset
++	    )
++);
++
+ #endif /* _AMDGPU_DM_TRACE_H_ */
+ 
+ #undef TRACE_INCLUDE_PATH
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_trace.h b/drivers/gpu/drm/amd/display/dc/dc_trace.h
+index c711797e5c9e..bbec308a3a5e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_trace.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_trace.h
+@@ -40,3 +40,5 @@
+ 
+ #define TRACE_DCN_FPU(begin, function, line, ref_count) \
+ 	trace_dcn_fpu(begin, function, line, ref_count)
++#define TRACE_OPTC_LOCK_UNLOCK_STATE(optc, inst, lock) \
++	trace_dcn_optc_lock_unlock_state(optc, inst, lock, __func__, __LINE__)
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
+index 33d780218790..c9e53dc49c92 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
+@@ -27,6 +27,7 @@
+ #include "reg_helper.h"
+ #include "dcn10_optc.h"
+ #include "dc.h"
++#include "dc_trace.h"
+ 
+ #define REG(reg)\
+ 	optc1->tg_regs->reg
+@@ -657,6 +658,8 @@ void optc1_lock(struct timing_generator *optc)
+ 		REG_WAIT(OTG_MASTER_UPDATE_LOCK,
+ 				UPDATE_LOCK_STATUS, 1,
+ 				1, 10);
++
++	TRACE_OPTC_LOCK_UNLOCK_STATE(optc1, optc->inst, true);
  }
  
- /**
-- * ***********************************************************************************************
-- * populate_subvp_cmd_vblank_pipe_info: Helper to populate VBLANK pipe info for the DMUB subvp command
-+ * populate_subvp_cmd_vblank_pipe_info - Helper to populate VBLANK pipe info for the DMUB subvp command
-  *
-- * Populate the DMCUB SubVP command with VBLANK pipe info. All the information required to calculate
-- * the microschedule for SubVP + VBLANK case is stored in the pipe_data (subvp_data and vblank_data).
-- * Also check if the VBLANK pipe is a DRR display -- if it is make a call to populate drr_info.
-+ * @dc: [in] current dc state
-+ * @context: [in] new dc state
-+ * @cmd: [in] DMUB cmd to be populated with SubVP info
-+ * @vblank_pipe: [in] pipe_ctx for the VBLANK pipe
-+ * @cmd_pipe_index: [in] index for the pipe array in DMCUB SubVP cmd
-  *
-- * @param [in] dc: current dc state
-- * @param [in] context: new dc state
-- * @param [in] cmd: DMUB cmd to be populated with SubVP info
-- * @param [in] vblank_pipe: pipe_ctx for the VBLANK pipe
-- * @param [in] cmd_pipe_index: index for the pipe array in DMCUB SubVP cmd
-- *
-- * @return: void
-- *
-- * ***********************************************************************************************
-+ * Populate the DMCUB SubVP command with VBLANK pipe info. All the information
-+ * required to calculate the microschedule for SubVP + VBLANK case is stored in
-+ * the pipe_data (subvp_data and vblank_data).  Also check if the VBLANK pipe
-+ * is a DRR display -- if it is make a call to populate drr_info.
-  */
- static void populate_subvp_cmd_vblank_pipe_info(struct dc *dc,
- 		struct dc_state *context,
-@@ -551,22 +542,18 @@ static void populate_subvp_cmd_vblank_pipe_info(struct dc *dc,
+ void optc1_unlock(struct timing_generator *optc)
+@@ -665,6 +668,8 @@ void optc1_unlock(struct timing_generator *optc)
+ 
+ 	REG_SET(OTG_MASTER_UPDATE_LOCK, 0,
+ 			OTG_MASTER_UPDATE_LOCK, 0);
++
++	TRACE_OPTC_LOCK_UNLOCK_STATE(optc1, optc->inst, false);
  }
  
- /**
-- * ***********************************************************************************************
-- * update_subvp_prefetch_end_to_mall_start: Helper for SubVP + SubVP case
-- *
-- * For SubVP + SubVP, we use a single vertical interrupt to start the microschedule for both
-- * SubVP pipes. In order for this to work correctly, the MALL REGION of both SubVP pipes must
-- * start at the same time. This function lengthens the prefetch end to mall start delay of the
-- * SubVP pipe that has the shorter prefetch so that both MALL REGION's will start at the same time.
-- *
-- * @param [in] dc: current dc state
-- * @param [in] context: new dc state
-- * @param [in] cmd: DMUB cmd to be populated with SubVP info
-- * @param [in] subvp_pipes: Array of SubVP pipes (should always be length 2)
-+ * update_subvp_prefetch_end_to_mall_start - Helper for SubVP + SubVP case
-  *
-- * @return: void
-+ * @dc: [in] current dc state
-+ * @context: [in] new dc state
-+ * @cmd: [in] DMUB cmd to be populated with SubVP info
-+ * @subvp_pipes: [in] Array of SubVP pipes (should always be length 2)
-  *
-- * ***********************************************************************************************
-+ * For SubVP + SubVP, we use a single vertical interrupt to start the
-+ * microschedule for both SubVP pipes. In order for this to work correctly, the
-+ * MALL REGION of both SubVP pipes must start at the same time. This function
-+ * lengthens the prefetch end to mall start delay of the SubVP pipe that has
-+ * the shorter prefetch so that both MALL REGION's will start at the same time.
-  */
- static void update_subvp_prefetch_end_to_mall_start(struct dc *dc,
- 		struct dc_state *context,
-@@ -608,22 +595,17 @@ static void update_subvp_prefetch_end_to_mall_start(struct dc *dc,
+ void optc1_get_position(struct timing_generator *optc,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c
+index 892d3c4d01a1..867d60151aeb 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c
+@@ -30,6 +30,7 @@
+ #include "dc_dmub_srv.h"
+ 
+ #include "dml/dcn30/dcn30_fpu.h"
++#include "dc_trace.h"
+ 
+ #define REG(reg)\
+ 	optc1->tg_regs->reg
+@@ -58,6 +59,8 @@ void optc3_triplebuffer_lock(struct timing_generator *optc)
+ 		REG_WAIT(OTG_MASTER_UPDATE_LOCK,
+ 				UPDATE_LOCK_STATUS, 1,
+ 				1, 10);
++
++	TRACE_OPTC_LOCK_UNLOCK_STATE(optc1, optc->inst, true);
  }
  
- /**
-- * ***************************************************************************************
-- * setup_subvp_dmub_command: Helper to populate the SubVP pipe info for the DMUB subvp command
-+ * setup_subvp_dmub_command - Helper to populate the SubVP pipe info for the DMUB subvp command
-  *
-- * Populate the DMCUB SubVP command with SubVP pipe info. All the information required to
-- * calculate the microschedule for the SubVP pipe is stored in the pipe_data of the DMCUB
-- * SubVP command.
-+ * @dc: [in] current dc state
-+ * @context: [in] new dc state
-+ * @cmd: [in] DMUB cmd to be populated with SubVP info
-+ * @subvp_pipe: [in] pipe_ctx for the SubVP pipe
-+ * @cmd_pipe_index: [in] index for the pipe array in DMCUB SubVP cmd
-  *
-- * @param [in] dc: current dc state
-- * @param [in] context: new dc state
-- * @param [in] cmd: DMUB cmd to be populated with SubVP info
-- * @param [in] subvp_pipe: pipe_ctx for the SubVP pipe
-- * @param [in] cmd_pipe_index: index for the pipe array in DMCUB SubVP cmd
-- *
-- * @return: void
-- *
-- * ***************************************************************************************
-+ * Populate the DMCUB SubVP command with SubVP pipe info. All the information
-+ * required to calculate the microschedule for the SubVP pipe is stored in the
-+ * pipe_data of the DMCUB SubVP command.
-  */
- static void populate_subvp_cmd_pipe_info(struct dc *dc,
- 		struct dc_state *context,
-@@ -703,19 +685,14 @@ static void populate_subvp_cmd_pipe_info(struct dc *dc,
+ void optc3_lock_doublebuffer_enable(struct timing_generator *optc)
+@@ -93,6 +96,8 @@ void optc3_lock_doublebuffer_enable(struct timing_generator *optc)
+ 		MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_START_OFFSET, 0,
+ 		MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_END_OFFSET, 100,
+ 		OTG_MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_EN, 1);
++
++	TRACE_OPTC_LOCK_UNLOCK_STATE(optc1, optc->inst, true);
  }
  
- /**
-- * ***************************************************************************************
-- * dc_dmub_setup_subvp_dmub_command: Populate the DMCUB SubVP command
-- *
-- * This function loops through each pipe and populates the DMUB
-- * SubVP CMD info based on the pipe (e.g. SubVP, VBLANK).
-- *
-- * @param [in] dc: current dc state
-- * @param [in] context: new dc state
-- * @param [in] cmd: DMUB cmd to be populated with SubVP info
-+ * dc_dmub_setup_subvp_dmub_command - Populate the DMCUB SubVP command
-  *
-- * @return: void
-+ * @dc: [in] current dc state
-+ * @context: [in] new dc state
-+ * @cmd: [in] DMUB cmd to be populated with SubVP info
-  *
-- * ***************************************************************************************
-+ * This function loops through each pipe and populates the DMUB SubVP CMD info
-+ * based on the pipe (e.g. SubVP, VBLANK).
-  */
- void dc_dmub_setup_subvp_dmub_command(struct dc *dc,
- 		struct dc_state *context,
-@@ -962,19 +939,14 @@ static void dc_build_cursor_attribute_update_payload1(
+ void optc3_lock_doublebuffer_disable(struct timing_generator *optc)
+@@ -108,6 +113,8 @@ void optc3_lock_doublebuffer_disable(struct timing_generator *optc)
+ 
+ 	REG_UPDATE(OTG_GLOBAL_CONTROL2, GLOBAL_UPDATE_LOCK_EN, 0);
+ 	REG_UPDATE(OTG_GLOBAL_CONTROL0, MASTER_UPDATE_LOCK_DB_EN, 0);
++
++	TRACE_OPTC_LOCK_UNLOCK_STATE(optc1, optc->inst, true);
  }
  
- /**
-- * ***************************************************************************************
-- * dc_send_update_cursor_info_to_dmu: Populate the DMCUB Cursor update info command
-+ * dc_send_update_cursor_info_to_dmu - Populate the DMCUB Cursor update info command
-  *
-- * This function would store the cursor related information and pass it into dmub
-+ * @pCtx: [in] pipe context
-+ * @pipe_idx: [in] pipe index
-  *
-- * @param [in] pCtx: pipe context
-- * @param [in] pipe_idx: pipe index
-- *
-- * @return: void
-- *
-- * ***************************************************************************************
-+ * This function would store the cursor related information and pass it into
-+ * dmub
-  */
--
- void dc_send_update_cursor_info_to_dmu(
- 		struct pipe_ctx *pCtx, uint8_t pipe_idx)
- {
+ void optc3_lock(struct timing_generator *optc)
+@@ -122,6 +129,8 @@ void optc3_lock(struct timing_generator *optc)
+ 	REG_WAIT(OTG_MASTER_UPDATE_LOCK,
+ 			UPDATE_LOCK_STATUS, 1,
+ 			1, 10);
++
++	TRACE_OPTC_LOCK_UNLOCK_STATE(optc1, optc->inst, true);
+ }
+ 
+ void optc3_set_out_mux(struct timing_generator *optc, enum otg_out_mux_dest dest)
 -- 
 2.35.1
 
