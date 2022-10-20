@@ -2,119 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B3CE605B20
-	for <lists+amd-gfx@lfdr.de>; Thu, 20 Oct 2022 11:29:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5F51605DA7
+	for <lists+amd-gfx@lfdr.de>; Thu, 20 Oct 2022 12:40:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EC1410E56D;
-	Thu, 20 Oct 2022 09:29:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8D7F10E882;
+	Thu, 20 Oct 2022 10:38:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2058.outbound.protection.outlook.com [40.107.223.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C346B10E56D
- for <amd-gfx@lists.freedesktop.org>; Thu, 20 Oct 2022 09:29:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ckX1MGnxufuifmY5CIza1lJcDx6y7uCyBR9CGdD8GPVQGeUyRljHS+xk5a1gbqrgm48uTWv8zJLS2iWCaiPEblMRt9aDnQkb8tPQPUcJtZI8rse0CGoriLyihrFHTsCEl/CwW/IYiIbm6jI02eX/8itQv1dehrJr6d34U0e+H9del0DRkarA2uUBXsfc4mN+kNXoYZdGl5oIQ1uhV7Tr8Z4vai45O0AjzD/jTmwnE5oT1JBLntXiy4LB6Sxw/fAhtnPq5c5plU/+y9m39WQR7575XXNfMhj4fJ6jLG8eGcqHa15ig3rXYv9Bmbf9xI+g3AsZL3fi+px1tx85JtGhtA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jzER3uU2rtdNMJUHTm6Yht2JxnIuCVw7dgVhvgnB6Pg=;
- b=XgworyHzZjy5nz5gpK4bR5xiYj6dPWN55SPvUa1C+i2g3sZSPtyLIg+etBpOIWkeeUKSrzn9s3Ctu4D6P52dEDMN+4MWyF1qAHDKDP9n+4E1ESpnBx9OQ6hrJWntM2VjKiPEvRa0RtRKG91lUojytOZ4mqtJX1hfhC4Do4jPhJZZASveAf6+8B9od1FZQDZKgpYB1ry/g5AFxVu7O9GHJ3sQvsidtOO5CeWMhihZQrI46L71zk9wZu9qRco7RPE0E8eY4YpECEny4SxficK8HNd49GhRCcyxzUEHypWnk//4KK6COy/wUYUjfqkY25fT9IJ4jEAbT0QHG4xb1EorTA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jzER3uU2rtdNMJUHTm6Yht2JxnIuCVw7dgVhvgnB6Pg=;
- b=WnfA1D5DUD+ZT2LYCUXbH1Wk42gVtWSfBRimo5QcvHoVRzV6n+7HPDHm/Ipi+vHsRSSDHqFSMovg8zpYG5P2ItxeSIyiy+drFSPIOBynl+k2jO3KgsWcALMahC1dX8uRvWu/WZbPc7zEgjOmavF4rqErhPaF9H3E5iUC+bUDUzw=
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com (2603:10b6:408:11e::16)
- by IA0PR12MB7673.namprd12.prod.outlook.com (2603:10b6:208:435::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.30; Thu, 20 Oct
- 2022 09:29:48 +0000
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::8bd7:b65c:13f4:9b]) by BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::8bd7:b65c:13f4:9b%7]) with mapi id 15.20.5723.034; Thu, 20 Oct 2022
- 09:29:48 +0000
-From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
-To: "Zhou1, Tao" <Tao.Zhou1@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "Yang, Stanley" <Stanley.Yang@amd.com>,
- "Chai, Thomas" <YiPeng.Chai@amd.com>, "Li, Candice" <Candice.Li@amd.com>
-Subject: RE: [PATCH 4/4] drm/amdgpu: remove ras_error_status parameter for UMC
- poison handler
-Thread-Topic: [PATCH 4/4] drm/amdgpu: remove ras_error_status parameter for
- UMC poison handler
-Thread-Index: AQHY45KMQUXA+CvRWkCOllFDR+fL964XBY+Q
-Date: Thu, 20 Oct 2022 09:29:48 +0000
-Message-ID: <BN9PR12MB52577A091E6ABE7D897CC8F5FC2A9@BN9PR12MB5257.namprd12.prod.outlook.com>
-References: <20221019081150.31773-1-tao.zhou1@amd.com>
- <20221019081150.31773-4-tao.zhou1@amd.com>
-In-Reply-To: <20221019081150.31773-4-tao.zhou1@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2022-10-20T09:29:46Z; 
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=0d3c6c90-131d-49b7-b1b9-df1aea2103fb;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=1
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN9PR12MB5257:EE_|IA0PR12MB7673:EE_
-x-ms-office365-filtering-correlation-id: ab9e00e4-2728-41fe-f09a-08dab27da1d3
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: TioYXkMj9k3d7GUkXrxEJ0hM9BLZDzD1bgZ53BHN3wG96nAzhl5UiE6MynJzoNzOTogHP4Y76Jn4UqM0lnNfttaqDTYjiH/+n84wtHc80M350SOOS6Why0L41c0wOoY3ba6wC4PEyegwL8hJIr+InrtvJra7yq1ZzY4s+Dqa4Jr5L8yrf8nfedyPREiRwng8HUKKYtBzMion8UhjUvNxWeh+8qBDlxXGv0niNCx8oqBPIOxoCL6pC2LROEoje7bfj7mkxBjcKDKByDtO2TL1y6BDO4JrWNR9QowQtdPASBp7ge9/QDGzEtmPPlBim803D2kFcx7+2rkO5XCgnFmSAeE6H75jx0iAbPFCV2IbzfsRPQUlQBgQpQEMyBLhl+n2oDgutk3qhx+wXoYAe3BOtK63uQzRM7g8sMkbApZxyEBtRgUxLHlQQxGQAZ1s93UU3hlzjU4k8dAIDGFIy/LGSc8uC/FqoCmd10TLQk+w4YEl0CStxa7CPA5hs480OvwD8WERUOyMRlH1O+2gIs9oJqPRsEXLZgCnvy3fmaqHNySRhfOUS/sYgvccnqBd29wj+bsslyLr4s2jhBoDqD2K+X9bc6NxKepof4Tp3qwwUvjKdbQBfsnbOQZ3cQ3onNzdpjNioL++3D+71kIsrNGsexCY2F0Iz8PR74mmaH/Z0sFj/XYLoHg6D7XNwovZ6/8PVYT1SfqbI6GrkJfVrNBNd4p5WduSnDcZ7QZcIMlXNwzWkfDkShIGCvdqo0g88wG6B754soWVx3dRTQLNUisEFw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5257.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(4636009)(396003)(376002)(39860400002)(136003)(366004)(346002)(451199015)(7696005)(66476007)(8676002)(71200400001)(316002)(33656002)(66446008)(478600001)(6506007)(64756008)(6636002)(66946007)(76116006)(122000001)(66556008)(110136005)(41300700001)(38070700005)(55016003)(26005)(186003)(38100700002)(86362001)(83380400001)(53546011)(9686003)(5660300002)(52536014)(8936002)(2906002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?U3WzLxOjQLUvgdDeG72weyULQbqa2p42sgIrCwV8eijYpHN/cR33NfCx7w7W?=
- =?us-ascii?Q?cARoc+Pi25cnx7OuFytDbiXLHaB/3nT+vzVmiC+4wHCGG6kt9FXiSfInpeX9?=
- =?us-ascii?Q?vqxMMud8uZd3lBS3XwLFPRzt6qzEQVeW7rSIqmMcayleVsucJxxtC93YAuq2?=
- =?us-ascii?Q?H/nRocp8GzRBVnkYT4a7EOJH9h3CLzp8KGRZiROHMZH+YMO3ZlmwpR1PCiG6?=
- =?us-ascii?Q?iqCt4Zhb94YX5AlMVytO7rPXUMAlxmRqm714OuD7WvqNNMrhQFA972u6z6RV?=
- =?us-ascii?Q?GjxXfyYQ+pvuQ9xMciwcxkXyKu/PHS79FUiTvLbUBeSVGYF73l6QTFUudRlc?=
- =?us-ascii?Q?BVfjekKPnoIlwASvUwCNSWEJLbe6YTUUN+t7+Q2Mq1MvpiXSJo+0PuDw/aD8?=
- =?us-ascii?Q?8911L0e/06CFbMcd5eAk/Klk5nmpW6dxDgO7FLErxMl0dJGS1A8bl7s+zdwn?=
- =?us-ascii?Q?vVxusnW4omK1hiJPs7Z+RpNxvHwX+KN5vW0EbygbnXosuKdX80vOJ7BMFMA0?=
- =?us-ascii?Q?RFbVhB/za3711loQZh8jo0uIUXgwqv8QiyT1a5UcA/TUGvasQinYttt1Dh/F?=
- =?us-ascii?Q?8zWVQRZ7/xIyHNongFVZ3xbRlY+Nt1G0eojUadCucP/NPMNMEWbb/cVnCjw0?=
- =?us-ascii?Q?MDtv9o2dvc08MPrtkFpokGLbPcnGs5YinFTZvd1BmABYOa69jCqyS8ArKN4I?=
- =?us-ascii?Q?OSRKo6Wj4d7c3u7Oh4aH7U95TOgHBSg/53IRXsa2DIfuevgTAvE82296Qwrl?=
- =?us-ascii?Q?oXJvut0xQEq2TmLhPOVJgeUjkl4P3ecXVRTGkFiZN7PSfi3Iba5/Chcicnld?=
- =?us-ascii?Q?frnr6wy2CBQIO/g020lyAE5nxic18DKhksvtU6r26ULdRGYD2wbxOiiAOp3o?=
- =?us-ascii?Q?I4lenkGuYp2onX+517fqvqD+5G2ajhhE1zp7DEGxibfLpXL0uc+YxQVkJG6h?=
- =?us-ascii?Q?rNVh3iWeZEcix6iO2Kkzi0KliHZ7DAA30hFcTCqEyc22L7PqRKMIZC2ncn9o?=
- =?us-ascii?Q?wWku+5IwzHfPkFCHeUxBTEQfcjDxu+PpIbMv/HLojVOMDM8e3FFVUe2SMSP0?=
- =?us-ascii?Q?gefprrir1WoFdcqBEHHs7a5JjvSvbfTfVWhq4NYEALZxSJ482tnL4GUCYYBh?=
- =?us-ascii?Q?uP7m/dxZ5UKcdQE4hfT3rfmj28fFcI4953OzQvV/p8SsBqjlA/sZFpB4gL0x?=
- =?us-ascii?Q?kZL+3BkxpcRgVNYLFdD65fwF2He8gdQD9A08gN/2hpwgBlnscdf4ryPOWgz2?=
- =?us-ascii?Q?AC1vHt+3ow1FH/jM+/QNnnBay10sS07D95wW8iUWef+hrxtiiVBvRMCwHE1y?=
- =?us-ascii?Q?+esXxcmaYGUAWO4KwdNZRMfsQi28Rja7/ZCROSjbyvFrTNzv7985jw5TyCIb?=
- =?us-ascii?Q?sZb4WJJik78MaRkSPq8AdCy3NnBLWcI/BN7a/GPu7YW5ZZgzuKYZmNyLNK5u?=
- =?us-ascii?Q?NRaCa2Fj0+jStEi0ligenWGShQS9NV+KamgCccC1OP4jpr31WhSuCS1iymtt?=
- =?us-ascii?Q?vuyQFrDa4FKIde2tHrwzfiYUvf4YwNT6KYT8oQrGu2qB7M70Otjgb9faLq22?=
- =?us-ascii?Q?/+JMgOQeQC/YvcNAxT9/MUTN7QaMnIgcGK4EflQP?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA91110E561;
+ Thu, 20 Oct 2022 10:38:00 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 428851F93A;
+ Thu, 20 Oct 2022 10:37:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1666262277; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=Y7BdOtp6TFqwXPX3o6UHDb+9HmQzCsygQB8jvOJl5oY=;
+ b=pexEAXjK3+YaGpJd+JADtO15n0ydGTiAR9QdozIjQlWTGCJGvjDk3GLtnTjahBibfxqKn8
+ e0ZCiKKRAhP4pa+DGq9AHeQHkye84awc19SWK5FgvFa4p4jHOOLv6Ie/+7K77qgyduKGGP
+ 7xA6whgamY9hl61unJ7iRpO/wohJ91Q=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1666262277;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=Y7BdOtp6TFqwXPX3o6UHDb+9HmQzCsygQB8jvOJl5oY=;
+ b=CVcd7TwC6JyEu5wf89r3Wdsik/2sML9uk++MZ6TfBQTpvFyIWJxR+TOmqJlzmQsVkjVxBs
+ WhUhW1hA4SnyrHBQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id BE6B013AF5;
+ Thu, 20 Oct 2022 10:37:56 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id 8BWlLQQlUWPPYwAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Thu, 20 Oct 2022 10:37:56 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org, javierm@redhat.com,
+ mripard@kernel.org, maarten.lankhorst@linux.intel.com
+Subject: [PATCH 00/21] drm/fb-helper: Untangle fbdev emulation and helpers
+Date: Thu, 20 Oct 2022 12:37:34 +0200
+Message-Id: <20221020103755.24058-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5257.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ab9e00e4-2728-41fe-f09a-08dab27da1d3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Oct 2022 09:29:48.1399 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0fzAcD/r+j4PMTHRfHZPpbw4VJT7aC1VKn/AJRtCf4ati7Mv3dA5leZsI8h6agpDQ8RxUUsoa0TTq8ElM5ylqg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7673
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,132 +61,193 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: linux-hyperv@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ virtualization@lists.linux-foundation.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+ xen-devel@lists.xenproject.org, linux-sunxi@lists.linux.dev,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ spice-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-mips@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, freedreno@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - General]
+Separate generic fbdev emulation from the helper code that is shared
+among the various fbdev implementations within DRM. Affects many drivers.
 
-Might squash this with patch 1
+The goal of this patchset is to improve readability and streamline the
+fbdev helper code within DRM. In the long term, we want to get to a point
+where drivers or memory managers can pick and combine the various helpers
+for optimal fbdev support.
 
-Regards,
-Hawking
+Patches 1 to 8 start by preparing drivers. Setting lastclose is not
+required by generic fbdev emulation.
 
------Original Message-----
-From: Zhou1, Tao <Tao.Zhou1@amd.com>=20
-Sent: Wednesday, October 19, 2022 16:12
-To: amd-gfx@lists.freedesktop.org; Zhang, Hawking <Hawking.Zhang@amd.com>; =
-Yang, Stanley <Stanley.Yang@amd.com>; Chai, Thomas <YiPeng.Chai@amd.com>; L=
-i, Candice <Candice.Li@amd.com>
-Cc: Zhou1, Tao <Tao.Zhou1@amd.com>
-Subject: [PATCH 4/4] drm/amdgpu: remove ras_error_status parameter for UMC =
-poison handler
+Two drivers depend on fb helpers implicitly including other Linux header
+files. Fixing this in patches 9 and 10 allows to remove unnecesary include
+statements from the fb-helper header in patch 11.
 
-Make the code more simple.
+Do some renaming in patches 12 to 14.
 
-Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c |  4 +---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c    |  3 +--
- drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c    | 16 ++++++----------
- drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h    |  4 +---
- 4 files changed, 9 insertions(+), 18 deletions(-)
+There are currently various implementation of the fbdev I/O helpers
+with varying feature sets. The fb helpers for fbdev I/O should all call
+fb_sync, which is what fbdev's internal implementation does. For DRM,
+damage handling needs to be performed after updating a framebuffer. The
+damage worker is part of the fb helpers, but the actual update logic only
+works with generic fbdev emulation. Separate the two, which also gives
+other drivers an option so set their own damage handling if neccessary.
+The full-featured I/O helpers can be moved under a shared implementation
+and called by all drivers. Patches 15 to 18 resolve these issues.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_amdkfd.c
-index 0561812aa0a4..37db39ba8718 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-@@ -753,9 +753,7 @@ bool amdgpu_amdkfd_have_atomics_support(struct amdgpu_d=
-evice *adev)
-=20
- void amdgpu_amdkfd_ras_poison_consumption_handler(struct amdgpu_device *ad=
-ev, bool reset)  {
--	struct ras_err_data err_data =3D {0, 0, 0, NULL};
--
--	amdgpu_umc_poison_handler(adev, &err_data, reset);
-+	amdgpu_umc_poison_handler(adev, reset);
- }
-=20
- bool amdgpu_amdkfd_ras_query_utcl2_poison_status(struct amdgpu_device *ade=
-v) diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_ras.c
-index 28463b47ce33..693bce07eb46 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -1561,7 +1561,6 @@ static void amdgpu_ras_interrupt_poison_consumption_h=
-andler(struct ras_manager *  {
- 	bool poison_stat =3D false;
- 	struct amdgpu_device *adev =3D obj->adev;
--	struct ras_err_data err_data =3D {0, 0, 0, NULL};
- 	struct amdgpu_ras_block_object *block_obj =3D
- 		amdgpu_ras_get_ras_block(adev, obj->head.block, 0);
-=20
-@@ -1584,7 +1583,7 @@ static void amdgpu_ras_interrupt_poison_consumption_h=
-andler(struct ras_manager *
- 	}
-=20
- 	if (!adev->gmc.xgmi.connected_to_cpu)
--		amdgpu_umc_poison_handler(adev, &err_data, false);
-+		amdgpu_umc_poison_handler(adev, false);
-=20
- 	if (block_obj->hw_ops->handle_poison_consumption)
- 		poison_stat =3D block_obj->hw_ops->handle_poison_consumption(adev);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_umc.c
-index dd1b1a612343..c040c9104521 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c
-@@ -179,27 +179,23 @@ static int amdgpu_umc_do_page_retirement(struct amdgp=
-u_device *adev,
- 	return AMDGPU_RAS_SUCCESS;
- }
-=20
--int amdgpu_umc_poison_handler(struct amdgpu_device *adev,
--		void *ras_error_status,
--		bool reset)
-+int amdgpu_umc_poison_handler(struct amdgpu_device *adev, bool reset)
- {
-+	struct ras_err_data err_data =3D {0, 0, 0, NULL};
- 	int ret;
-=20
- 	if (adev->gmc.xgmi.connected_to_cpu) {
--		ret =3D amdgpu_umc_poison_handler_mca(adev, ras_error_status, reset);
-+		ret =3D amdgpu_umc_poison_handler_mca(adev, &err_data, reset);
- 	} else {
--		struct ras_err_data *err_data =3D (struct ras_err_data *)ras_error_statu=
-s;
- 		struct ras_common_if head =3D {
- 			.block =3D AMDGPU_RAS_BLOCK__UMC,
- 		};
- 		struct ras_manager *obj =3D amdgpu_ras_find_obj(adev, &head);
-=20
--		ret =3D
--			amdgpu_umc_do_page_retirement(adev, ras_error_status, NULL, reset);
--
-+		ret =3D amdgpu_umc_do_page_retirement(adev, &err_data, NULL, reset);
- 		if (ret =3D=3D AMDGPU_RAS_SUCCESS && obj) {
--			obj->err_data.ue_count +=3D err_data->ue_count;
--			obj->err_data.ce_count +=3D err_data->ce_count;
-+			obj->err_data.ue_count +=3D err_data.ue_count;
-+			obj->err_data.ce_count +=3D err_data.ce_count;
- 		}
- 	}
-=20
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_umc.h
-index 659a10de29c9..a6951160f13a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h
-@@ -83,9 +83,7 @@ struct amdgpu_umc {
- };
-=20
- int amdgpu_umc_ras_late_init(struct amdgpu_device *adev, struct ras_common=
-_if *ras_block); -int amdgpu_umc_poison_handler(struct amdgpu_device *adev,
--		void *ras_error_status,
--		bool reset);
-+int amdgpu_umc_poison_handler(struct amdgpu_device *adev, bool reset);
- int amdgpu_umc_process_ecc_irq(struct amdgpu_device *adev,
- 		struct amdgpu_irq_src *source,
- 		struct amdgpu_iv_entry *entry);
---
-2.35.1
+Patch 19 changes fbdev disablement to work at the level of display
+detection. If disabled, generic fbdev emulation will be initialized,
+but no display will be detected. It can later be enabled by changing
+the parameter in sysfs and plugging in a connector.
+
+Patches 20 and 21 move the generic fbdev emulation into their own source
+and header files and clean up the include statements throughout DRM.
+Many drivers only call drm_fbdev_generic_setup() and can avoid including
+other Linux header files.
+
+Built on x86-64, aarch64, arm, ppc64le. Tested with various combinations
+of bochs, radeon, simpledrm.
+
+Thomas Zimmermann (21):
+  drm/amdgpu: Don't set struct drm_driver.lastclose
+  drm/imx: Don't set struct drm_driver.lastclose
+  drm/ingenic: Don't set struct drm_driver.lastclose
+  drm/komeda: Don't set struct drm_driver.lastclose
+  drm/logicvc: Don't set struct drm_driver.lastclose
+  drm/mcde: Don't set struct drm_driver.lastclose
+  drm/rockchip: Don't set struct drm_driver.lastclose
+  drm/vboxvideo: Don't set struct drm_driver.lastclose
+  drm/panel-ili9341: Include <linux/backlight.h>
+  drm/tve200: Include <linux/of.h>
+  drm/fb-helper: Cleanup include statements in header file
+  drm/fb_helper: Rename field fbdev to info in struct drm_fb_helper
+  drm/fb-helper: Rename drm_fb_helper_alloc_fbi() to use _info postfix
+  drm/fb-helper: Rename drm_fb_helper_unregister_fbi() to use _info
+    postfix
+  drm/fb-helper: Disconnect damage worker from update logic
+  drm/fb-helper: Call fb_sync in I/O functions
+  drm/fb-helper: Perform all fbdev I/O with the same implementation
+  drm/fb_helper: Minimize damage-helper overhead
+  drm/fb-helper: Always initialize generic fbdev emulation
+  drm/fb-helper: Move generic fbdev emulation into separate source file
+  drm/fb-helper: Remove unnecessary include statements
+
+ drivers/gpu/drm/Makefile                      |    2 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_connectors.c    |    1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   |    2 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h      |    1 -
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |    2 -
+ .../gpu/drm/arm/display/komeda/komeda_drv.c   |    2 +-
+ .../gpu/drm/arm/display/komeda/komeda_kms.c   |    2 -
+ drivers/gpu/drm/arm/hdlcd_crtc.c              |    1 -
+ drivers/gpu/drm/arm/hdlcd_drv.c               |    2 +-
+ drivers/gpu/drm/arm/malidp_drv.c              |    2 +-
+ drivers/gpu/drm/armada/armada_fbdev.c         |    6 +-
+ drivers/gpu/drm/aspeed/aspeed_gfx_drv.c       |    2 +-
+ drivers/gpu/drm/ast/ast_drv.c                 |    1 +
+ drivers/gpu/drm/ast/ast_drv.h                 |    1 -
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c  |    2 +-
+ drivers/gpu/drm/bridge/tc358762.c             |    2 +-
+ drivers/gpu/drm/drm_crtc_helper.c             |    1 -
+ drivers/gpu/drm/drm_fb_helper.c               | 1081 ++++++-----------
+ drivers/gpu/drm/drm_fbdev.c                   |  512 ++++++++
+ drivers/gpu/drm/drm_gem_framebuffer_helper.c  |    1 -
+ drivers/gpu/drm/drm_probe_helper.c            |    1 -
+ drivers/gpu/drm/etnaviv/etnaviv_drv.h         |    3 +-
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.c     |    6 +-
+ drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c     |    2 +-
+ drivers/gpu/drm/gma500/framebuffer.c          |    6 +-
+ drivers/gpu/drm/gud/gud_drv.c                 |    2 +-
+ .../gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c   |    1 +
+ .../gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h   |    1 -
+ .../gpu/drm/hisilicon/kirin/kirin_drm_drv.c   |    2 +-
+ drivers/gpu/drm/hyperv/hyperv_drm_drv.c       |    2 +-
+ drivers/gpu/drm/hyperv/hyperv_drm_modeset.c   |    1 -
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |    8 +-
+ drivers/gpu/drm/imx/dcss/dcss-kms.c           |    3 +-
+ drivers/gpu/drm/imx/imx-drm-core.c            |    2 +-
+ drivers/gpu/drm/imx/imx-ldb.c                 |    2 +-
+ drivers/gpu/drm/imx/imx-tve.c                 |    1 -
+ drivers/gpu/drm/imx/parallel-display.c        |    2 +-
+ drivers/gpu/drm/ingenic/ingenic-drm-drv.c     |    3 +-
+ drivers/gpu/drm/kmb/kmb_drv.c                 |    2 +-
+ drivers/gpu/drm/kmb/kmb_plane.c               |    1 -
+ drivers/gpu/drm/logicvc/logicvc_drm.c         |    2 +-
+ drivers/gpu/drm/logicvc/logicvc_mode.c        |    2 -
+ drivers/gpu/drm/mcde/mcde_drv.c               |    3 +-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        |    2 +-
+ drivers/gpu/drm/meson/meson_drv.c             |    2 +-
+ drivers/gpu/drm/mgag200/mgag200_drv.c         |    1 +
+ drivers/gpu/drm/mgag200/mgag200_drv.h         |    1 -
+ drivers/gpu/drm/msm/msm_fbdev.c               |    4 +-
+ drivers/gpu/drm/mxsfb/lcdif_drv.c             |    2 +-
+ drivers/gpu/drm/mxsfb/mxsfb_drv.c             |    2 +-
+ drivers/gpu/drm/nouveau/nouveau_fbcon.c       |   27 +-
+ drivers/gpu/drm/omapdrm/omap_fbdev.c          |    6 +-
+ drivers/gpu/drm/panel/panel-ilitek-ili9341.c  |    3 +-
+ drivers/gpu/drm/pl111/pl111_drv.c             |    2 +-
+ drivers/gpu/drm/qxl/qxl_drv.c                 |    1 +
+ drivers/gpu/drm/qxl/qxl_drv.h                 |    1 -
+ drivers/gpu/drm/radeon/radeon_fb.c            |    6 +-
+ drivers/gpu/drm/rcar-du/rcar_du_drv.c         |    2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |    2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h   |    2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_fb.c    |    2 -
+ drivers/gpu/drm/solomon/ssd130x.c             |    2 +-
+ drivers/gpu/drm/sti/sti_drv.c                 |    2 +-
+ drivers/gpu/drm/stm/drv.c                     |    2 +-
+ drivers/gpu/drm/sun4i/sun4i_drv.c             |    2 +-
+ drivers/gpu/drm/tegra/fb.c                    |    8 +-
+ drivers/gpu/drm/tidss/tidss_drv.c             |    2 +-
+ drivers/gpu/drm/tidss/tidss_kms.c             |    1 -
+ drivers/gpu/drm/tilcdc/tilcdc_drv.c           |    2 +-
+ drivers/gpu/drm/tiny/arcpgu.c                 |    2 +-
+ drivers/gpu/drm/tiny/bochs.c                  |    2 +-
+ drivers/gpu/drm/tiny/cirrus.c                 |    2 +-
+ drivers/gpu/drm/tiny/gm12u320.c               |    2 +-
+ drivers/gpu/drm/tiny/hx8357d.c                |    2 +-
+ drivers/gpu/drm/tiny/ili9163.c                |    2 +-
+ drivers/gpu/drm/tiny/ili9225.c                |    2 +-
+ drivers/gpu/drm/tiny/ili9341.c                |    2 +-
+ drivers/gpu/drm/tiny/ili9486.c                |    2 +-
+ drivers/gpu/drm/tiny/mi0283qt.c               |    2 +-
+ drivers/gpu/drm/tiny/ofdrm.c                  |    2 +-
+ drivers/gpu/drm/tiny/panel-mipi-dbi.c         |    2 +-
+ drivers/gpu/drm/tiny/repaper.c                |    2 +-
+ drivers/gpu/drm/tiny/simpledrm.c              |    2 +-
+ drivers/gpu/drm/tiny/st7586.c                 |    2 +-
+ drivers/gpu/drm/tiny/st7735r.c                |    2 +-
+ drivers/gpu/drm/tve200/tve200_drv.c           |    3 +-
+ drivers/gpu/drm/udl/udl_drv.c                 |    2 +-
+ drivers/gpu/drm/v3d/v3d_drv.c                 |    1 -
+ drivers/gpu/drm/vboxvideo/vbox_drv.c          |    4 +-
+ drivers/gpu/drm/vboxvideo/vbox_main.c         |    1 -
+ drivers/gpu/drm/vc4/vc4_drv.c                 |    2 +-
+ drivers/gpu/drm/virtio/virtgpu_drv.c          |    1 +
+ drivers/gpu/drm/virtio/virtgpu_drv.h          |    1 -
+ drivers/gpu/drm/vkms/vkms_drv.c               |    2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_fb.c            |    3 +
+ drivers/gpu/drm/xen/xen_drm_front_gem.c       |    1 -
+ drivers/gpu/drm/xlnx/zynqmp_dpsub.c           |    2 +-
+ include/drm/drm_fb_helper.h                   |   59 +-
+ include/drm/drm_fbdev.h                       |   15 +
+ 99 files changed, 1019 insertions(+), 883 deletions(-)
+ create mode 100644 drivers/gpu/drm/drm_fbdev.c
+ create mode 100644 include/drm/drm_fbdev.h
+
+
+base-commit: 8c797a984264f04708d2099e83c85978a0fede89
+prerequisite-patch-id: c2b2f08f0eccc9f5df0c0da49fa1d36267deb11d
+prerequisite-patch-id: c67e5d886a47b7d0266d81100837557fda34cb24
+prerequisite-patch-id: 3f204510fcbf9530d6540bd8e6128cce598988b6
+-- 
+2.38.0
+
