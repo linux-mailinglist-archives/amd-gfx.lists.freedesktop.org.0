@@ -2,63 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0E4360712D
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Oct 2022 09:32:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7D62607121
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Oct 2022 09:31:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8629210E601;
-	Fri, 21 Oct 2022 07:32:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B91110E607;
+	Fri, 21 Oct 2022 07:31:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-il1-x133.google.com (mail-il1-x133.google.com
- [IPv6:2607:f8b0:4864:20::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F4B210E4CB
- for <amd-gfx@lists.freedesktop.org>; Thu, 20 Oct 2022 14:44:15 +0000 (UTC)
-Received: by mail-il1-x133.google.com with SMTP id i9so10980631ilv.9
- for <amd-gfx@lists.freedesktop.org>; Thu, 20 Oct 2022 07:44:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linuxfoundation.org; s=google;
- h=content-transfer-encoding:in-reply-to:from:cc:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=IBfoo0ZR1LqUTxxI8nZ0xV01VCZ+TW6nLMULNjoc3uo=;
- b=BeNrTxUjnoASgGvfLINqbhjWfHVS88LX8tTQXJI0f10WwgB/jKB95Jf7uMMF/Bob+1
- jtd7KEnqaaXaD1L8ufyDB8ejfChF/fAwOX/zb4odG+Te/k3bKgNmM4Kl0lHzsl4GYW10
- CmgjztShyYog+12GjTdYkSYajl4e9Ag8lv568=
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com
+ [IPv6:2607:f8b0:4864:20::b2c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2537210E1D6;
+ Thu, 20 Oct 2022 14:52:27 +0000 (UTC)
+Received: by mail-yb1-xb2c.google.com with SMTP id 63so24916053ybq.4;
+ Thu, 20 Oct 2022 07:52:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=qZSF0rU/LadxcXivSMUu41VqTSGqH3cS7lnDUCpCbSE=;
+ b=V4bzuVfCQb8oZNc1313fCgiGezNI7Q0DGAHlDFbsq8DV9fiyV1nE0FOfGBM7Ra3GVs
+ j2yWvCoyZC/1wKa7k8vVGhSwdblPIIEYU0FJ6LzbUk8Pv44Xa4oSSJPAPZCHV+85QgJN
+ iFK1PYjlLgLzQbkgkTRKnmrMM4DExs8WD6MePBGzW18XKq0ejyDIem7dOn5IRA82I6Kd
+ W2VnNun5T0WIU1nqtozcRUmHyhNI7y/IkqnQMr9ab5ycczyl1lk2IAlxMm01TcWlAuUN
+ 4RlUfqIuWImjiAS7StfMe210fvnQmuZ7BihywSl9Hf9w6dpHNhX7iSJLv+eDOlIG1UN3
+ HUdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:cc:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=IBfoo0ZR1LqUTxxI8nZ0xV01VCZ+TW6nLMULNjoc3uo=;
- b=P+m9oLId9C4hzzZyE699Hdr8342NsGvlgBSUpHMSo5Q9TG23jgNRdH1f+TA0bgCAvj
- +LAC3bj28wWOxJua9N4xURVbgJeBiOyuVqwuqzov/RLfnZjY7LmE4dKKlf/tLmvEX5vR
- Rx0r6OVP2FC/hgqGnU0pK2uyzVs7TZqgKt53urY9ZojCoddwH8HKdizzodK4rYdhBZdf
- QlGeooBq1QNS7jYOVAsRK/3cA5DBVfyUyYGBsvKZh5wLImL24TaJQUvU/yZ5nBbFZaVh
- zMCHrB85J1TMsSJycuKHGcs47Df7HM3dZfov+O4B9Mq7tKLjbi7vp98LWTQpLJnJiuJU
- TytQ==
-X-Gm-Message-State: ACrzQf2dg4e9rvDEibW/8ijGu8yqiuCgzmY4oBZE7E8UJMRYJfnS92kS
- hGDNRtQ7gps+KQpUfh+L0OtupQ==
-X-Google-Smtp-Source: AMsMyM5naKfErMEQB2cSjcw+hXsHS9lDCeh77jiptJkXUIX3WtUsqbMT7Go7bDMoAjvstz+us2zbDw==
-X-Received: by 2002:a05:6e02:1d04:b0:2f9:b199:b2ad with SMTP id
- i4-20020a056e021d0400b002f9b199b2admr10279363ila.198.1666277054120; 
- Thu, 20 Oct 2022 07:44:14 -0700 (PDT)
-Received: from [192.168.1.128] ([38.15.45.1]) by smtp.gmail.com with ESMTPSA id
- k10-20020a6bba0a000000b006bbddd49984sm3428467iof.9.2022.10.20.07.44.13
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 20 Oct 2022 07:44:13 -0700 (PDT)
-Message-ID: <7e5388b0-fb60-9557-8bb6-588b3e320bfe@linuxfoundation.org>
-Date: Thu, 20 Oct 2022 08:44:12 -0600
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=qZSF0rU/LadxcXivSMUu41VqTSGqH3cS7lnDUCpCbSE=;
+ b=QB2G+YWmbcewzR6mZyxO2varwTgfCacZRMM5kbZy9OsGRY0F6CWpc2U7IN+OYghinZ
+ UkL/pAI7POTCMAgknkxtlw0aZdHWes+L8MJ6YvRWjGmObOQOJKqlo3wXNUyiOpE2mi6i
+ LLq+j4P3cj4VdOYUml02XIrwRYSwkBgIUarcoqKM6FTVO52Seqie2jE+KRM+DcOljgEL
+ K4ATf6S4Qy8gErJYHNpGXnxQ5tGrY+mULsQxpvLM/bxV/lMNoe4EUNVT2sNH0EzJWeyJ
+ sKhYzhGN7PSy93xyKaGeLRyd4wOtsHbD3x7Nx4a8uWljjM18tN99xkvMaxk/AYWX0sDn
+ UTJA==
+X-Gm-Message-State: ACrzQf3digYxTdb+Yi/fucuQnqvUbhSUVtcI1TLU8h+xKKPu3iol5MwP
+ mElLHeoMe7SflCP94EkrI/CkfZgxfJQ5KKa6eks=
+X-Google-Smtp-Source: AMsMyM6faIOERk3Qv0Bv0TKrmHhqO1XiIx0BoEMZsPkMj+hZHVLPGppqQbzCt2ntAkW5S16O3AjwZdeNXiflEnrWKqY=
+X-Received: by 2002:a25:1807:0:b0:6ca:4e8c:fa5e with SMTP id
+ 7-20020a251807000000b006ca4e8cfa5emr1100089yby.196.1666277546315; Thu, 20 Oct
+ 2022 07:52:26 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH] drm/amdgpu: fix sdma doorbell init ordering on APUs
-Content-Language: en-US
-To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20221020034809.506525-1-alexander.deucher@amd.com>
-From: Shuah Khan <skhan@linuxfoundation.org>
-In-Reply-To: <20221020034809.506525-1-alexander.deucher@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20221019151543.22753-1-samsagax@gmail.com>
+ <ea5d60cd-8d0b-7018-425e-b91e5750a830@amd.com>
+In-Reply-To: <ea5d60cd-8d0b-7018-425e-b91e5750a830@amd.com>
+From: Joaquin Aramendia <samsagax@gmail.com>
+Date: Thu, 20 Oct 2022 11:52:14 -0300
+Message-ID: <CABgtM3igg8+Skj2YNqQN0egctWrLAo8HRrb25UFcbo8+r_P8eg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: Revert logic for plane modifiers
+To: Rodrigo Siqueira Jordao <Rodrigo.Siqueira@amd.com>
+Content-Type: multipart/alternative; boundary="0000000000003ed4e105eb7879de"
 X-Mailman-Approved-At: Fri, 21 Oct 2022 07:30:36 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,35 +65,29 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Shuah Khan <skhan@linuxfoundation.org>
+Cc: sunpeng.li@amd.com, airlied@gmail.com, Xinhui.Pan@amd.com,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, daniel@ffwll.ch, alexander.deucher@amd.com,
+ harry.wentland@amd.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 10/19/22 21:48, Alex Deucher wrote:
-> Commit 8795e182b02d ("PCI/portdrv: Don't disable AER reporting in get_port_device_capability()")
-> uncovered a bug in amdgpu that required a reordering of the driver
-> init sequence to avoid accessing a special register on the GPU
-> before it was properly set up leading to an PCI AER error.  This
-> reordering uncovered a different hw programming ordering dependency
-> in some APUs where the SDMA doorbells need to be programmed before
-> the GFX doorbells. To fix this, move the SDMA doorbell programming
-> back into the soc15 common code, but use the actual doorbell range
-> values directly rather than the values stored in the ring structure
-> since those will not be initialized at this point.
-> 
-> This is a partial revert, but with the doorbell assignment
-> fixed so the proper doorbell index is set before it's used.
-> 
-> Fixes: e3163bc8ffdfdb ("drm/amdgpu: move nbio sdma_doorbell_range() into sdma code for vega")
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> Cc: skhan@linuxfoundation.org
+--0000000000003ed4e105eb7879de
+Content-Type: text/plain; charset="UTF-8"
 
-Thank you for fixing this quickly and getting me back to 6.1-rc1
-on my primary system.
+Hello. Thanks for the reply, Rodrigo
+Will redo the patch and resubmit.
 
-Reported-and-Tested-by: Shuah Khan <skhan@linuxfoundation.org>
+Cheers
 
-thanks,
--- Shuah
+--0000000000003ed4e105eb7879de
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"auto"><div data-smartmail=3D"gmail_signature" dir=3D"auto">Hell=
+o. Thanks for the reply, Rodrigo<br></div><div data-smartmail=3D"gmail_sign=
+ature" dir=3D"auto">Will redo the patch and resubmit.</div><div data-smartm=
+ail=3D"gmail_signature" dir=3D"auto"><br></div><div data-smartmail=3D"gmail=
+_signature" dir=3D"auto">Cheers</div></div>
 
+--0000000000003ed4e105eb7879de--
