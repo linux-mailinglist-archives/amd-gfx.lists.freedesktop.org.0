@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5E986064EE
-	for <lists+amd-gfx@lfdr.de>; Thu, 20 Oct 2022 17:48:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0A7F6064F0
+	for <lists+amd-gfx@lfdr.de>; Thu, 20 Oct 2022 17:48:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4D5410E177;
-	Thu, 20 Oct 2022 15:48:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14D7B10E48F;
+	Thu, 20 Oct 2022 15:48:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2080.outbound.protection.outlook.com [40.107.220.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 991B910E48F
- for <amd-gfx@lists.freedesktop.org>; Thu, 20 Oct 2022 15:47:47 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2079.outbound.protection.outlook.com [40.107.223.79])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 733DB10E0BB
+ for <amd-gfx@lists.freedesktop.org>; Thu, 20 Oct 2022 15:47:50 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XdxE4XuDhDXfQuwegcTxxo7sYH+ktzXyj+aExaq1qdC1Wz3IV0zCZM70RjD9bsj1XEvZXOeTnZ5l+W0RT2EzJt8CdGB5V+g4gHG9OphHU2KN8F3n3H2Y3ricwAupl3z1WlkfJM02NxVnGWorJCWLfTIbl2mmgPNiwZNdixjfbEB3bB72jcPivEPAGCdngC1N1MqNZPxQvOxnf0iKtKqnTcqmuOAffaezAGb245zwkdC8m1xskaSrRaDd4bWxR/XKIBMxJrmuaB5wTRfXiuN50IxYaS9VGlBR44LnaGpxPxGuoIwA8czzCpYND4pfTloYR5U5x2omAHzUAdUdwPvY4w==
+ b=a+JTe8ySJtMnKm1jgdBw+gsK5tGqujzP7xipGBQY7qAeJ463FDE/dCKslqyNTFyh4s5JzqXIJjX1FSTJ2jpoPjTtCccZJS4YRjSKJqPNZPkpJ96PZHob+pDcTX/K8og8S4CfoucRWgsKGC45GiI1E9stdn0om4IZo6noPEeg1R+1Yc3f1g3etNTSQIozrDNFlVHnznetK3QJx9QNCxrOizLd4exC2lry63LBSyU9ojU+MjZvcWqk35+/cfsz5hND8ClC0r6m3BP5sb13VXzegd4hcCo0J+xBPjlaua0bndhXVY0pVw7Dj5MKiQlrIMauHS1l9bOQhyM/BHbQp8ftYw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=309yOT8IekZsJrr6NWc+C82V/2NHBXMiNuRjEhWFgTU=;
- b=k7/GW8dcrWhRs5cIoOA67/mpI19lS2rLPSWVd4q07e4YXillRYhDHuI9htGZtWaDDCQ1sGPtWCd3f2TvcRFZFnjnVDyOH10QzlIXue0SvVMRq52yAwc5ElFNnOu+tzKFDNmZcKeTNy3AKs9GCGW3/t6Z1W31aUXRpIyTgZOj226yBFO4nQGcUS3Hnp+hzKgjgBP2hos8xtUbSvio5hjXTtCIzo97Jfa6TYLZITNiNkkkPVyKQ7iECe3Bj7/+JR4qshq9gtiCfilH1D51WBljjrhinmDlMzQPshtVeUy+GBNJ5y3lcUGfs/iK9vm+K+aTguheBiki4bC4bJkdt1kasw==
+ bh=OpisBk7mmd7VSFSYIMKDsKb+UblxxibZeucq0HcqOr0=;
+ b=TVeWEZ4Tx7g6sjxZSBpvYmyuqasY3+2oayxuhr0G/BHpTCRiTFZPZPkCzCphpnSG5coLNbKKPRJOHxH2srUaLLuVQFvKoVIt3mQF9IVyWh4gaB5cgQlDIml3w1QPpBuIHXMNny3KBfrjgS5uKjMw7WgtpJs1AC31D+FQ1GYKsuA+H2n3nhHxdGzhNA52tRql7Wn6YltYaB5hTriSIN5uzfIMvZt3UT/SNQWEhguBSD2PKYeYPslZibMuR3zCBzfQ/DEC5W/9g/fcds5B/csug6DQN0FICW+D3HAk4WCH/jNJFlDH6uOiSzgWuNedYGWusbXNzhOtUcBgil7iXMsuwA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=309yOT8IekZsJrr6NWc+C82V/2NHBXMiNuRjEhWFgTU=;
- b=Y/5MykG2GpccIQPxPrIN/FeXyxHYbgzxXuy/IahRzoPSrePMya7h8uJHpUObtTvYonXplsmExpu42s3ij37X1CigcTEsBHQi2u4AeOlkAYPaD39TB8c/JNGIwfUYpr/fqH5zQn/mHFYl8v20iQMzSmwZjy7hr1slRd/qTkpLFUo=
-Received: from DS7PR03CA0316.namprd03.prod.outlook.com (2603:10b6:8:2b::17) by
- BN9PR12MB5356.namprd12.prod.outlook.com (2603:10b6:408:105::23) with
+ bh=OpisBk7mmd7VSFSYIMKDsKb+UblxxibZeucq0HcqOr0=;
+ b=pCr4ib1Ct4NMsYPzsHtr18hflpBy/J1hye+HwSkcy1RaFiLdjLu0LTiEnj4ch24phpxBZxeJt+AxWRjjTYMdqpFls0u9pymTlFiQ09j5YSeogwnzBftxoWuxw/UDaGUHvWRMOVyXHtgp6Mhtq2A1MNvfM16Vzc1wvNDkr2dE62U=
+Received: from DM6PR02CA0114.namprd02.prod.outlook.com (2603:10b6:5:1b4::16)
+ by SA0PR12MB4493.namprd12.prod.outlook.com (2603:10b6:806:72::24) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.34; Thu, 20 Oct
- 2022 15:47:45 +0000
-Received: from DM6NAM11FT111.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:2b:cafe::c5) by DS7PR03CA0316.outlook.office365.com
- (2603:10b6:8:2b::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.34 via Frontend
- Transport; Thu, 20 Oct 2022 15:47:45 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.32; Thu, 20 Oct
+ 2022 15:47:47 +0000
+Received: from DM6NAM11FT047.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:1b4:cafe::52) by DM6PR02CA0114.outlook.office365.com
+ (2603:10b6:5:1b4::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.33 via Frontend
+ Transport; Thu, 20 Oct 2022 15:47:47 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,19 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT111.mail.protection.outlook.com (10.13.173.26) with Microsoft SMTP
+ DM6NAM11FT047.mail.protection.outlook.com (10.13.172.139) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5746.16 via Frontend Transport; Thu, 20 Oct 2022 15:47:45 +0000
+ 15.20.5746.16 via Frontend Transport; Thu, 20 Oct 2022 15:47:47 +0000
 Received: from atma3.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Thu, 20 Oct
- 2022 10:47:43 -0500
+ 2022 10:47:44 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 09/33] drm/amd/display: Add events log to trace OPTC lock and
- unlock
-Date: Thu, 20 Oct 2022 11:46:38 -0400
-Message-ID: <20221020154702.503934-10-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 10/33] drm/amd/display: refine wake up aux in retrieve link
+ caps
+Date: Thu, 20 Oct 2022 11:46:39 -0400
+Message-ID: <20221020154702.503934-11-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221020154702.503934-1-Rodrigo.Siqueira@amd.com>
 References: <20221020154702.503934-1-Rodrigo.Siqueira@amd.com>
@@ -69,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT111:EE_|BN9PR12MB5356:EE_
-X-MS-Office365-Filtering-Correlation-Id: aa2cb8d6-9871-4d58-8910-08dab2b26e76
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT047:EE_|SA0PR12MB4493:EE_
+X-MS-Office365-Filtering-Correlation-Id: 048a8c8b-a059-4ec4-071b-08dab2b26fdc
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WSmEVpXK2ErK9QR6cga4dFfBaPZc37gY0QEFLAib96aFLmQ89ogIokGkePkVjFRmsvgS513i7C8NEl/qzH+3k8lazosZHZpvDl1a+AjvoQuPkFsM04lfNVG8ClWmMCm0nwBI5INVlw+eJRAiqS3qiNO44j5rNwQ3S1bllBbCkEnM42704pn6D+WIS5QIw6P+OxuP25blLZ1az6tbMSnUarZ2GhIHEoVzqWe0japxqJoPYEM0sjeSCQYtRBe/8aq39W5fs6tDQMj3IWT9ZZoJfaHabdRS0cOJ7BwekswTigdDDQvgs1sOvIqVUGiOAzSmlWyKah1iLKm5P1xelhn4xg9948T6YwojZ4MVOY9TFO4aVgCNMqICmpQ7ETfz68u8wyUaCN3u9Y3/R2CNn1wJNE8xFaOQ1CuzWsfstUmozKptnpvgP8Po8ZUeNGb9V8EuFzkiKIL4lQKqrLvHjs8PAJpOfO4WrMRPkW12lcGo6c+0FjU8AEEdS6mcPnEkzGHvDCk7+QaggU6uHLBgvqKQY4Bj6LfDPyHXa+2ln5hts2UEg5Pp9one5JSkF76DJ0ULvmuc1TvAkZPjy56y+EfjZr1tp7DJx8YSjf4KuyqQ3tGdUEdSTprZDO75wCXPP6pUgKKpepGQua2FiiA0cyfVe3cTVNTan5XvFKm4+5la7n4BGiFb0/xvPypVFs46KB/DyOmiPqnQXOr5+3l+qqqnPygQ+kArWYryyVo8aYvl0CRzRH8Pwb4BfNv5NRifWBZobWQSi6ZkvJ9MH4KsrDCNkuVlh3gtNAY+eILs3e0pOUQndsVWsLZM9qKfcnQX7OAm
+X-Microsoft-Antispam-Message-Info: TSuKtugpJXuxNX5m/B4Jz4cFHtmvGHKwKumrlQgPrUGVJzdpginQC7xupFD3ruGkJ9PswQSuQq/XMyM0NPRHKc8hmfwzZWEh58P8Gr8hkSKV9iylzZ+ZD4IRic/HZqCLmGZFurLQ8ya9ytCYbVB/6pa3geuBUTb+FMLGrmSIbDLY02l3+/6onTHJdqo552UCOR2mweHdDP1fmgAwLImNzXxI/Mowsmxye6o8COXJdQX4GAYv7C+DE3nDiMEIRA9KaKaxHR59HwBe7ghoodbd5O8tzJ180HM2G6X4bwbv7uP3k3Iq+5HqT7XESbcbbJD/Wi0bOc181WhrGpWNLH80KC6adc6GpCLNqZzWeSiqrqJA5aD04ageOZ2mRQdyzmmQimbHOZi9gjsKCaIVl2cDYQSprANm+c61Jq6xThSC1DqrCrB6uDqBcbudXXL6gvzcI4qrfkwnjEyiX42TfZrjjeiRve4mQ7BrpakP0nKcgA8Y7nmziObiDg7eWd9Y4p5Rysk+o8fgOg9KlaYlLtpB6SNj7dPVZUdMCBWUOEkySZQ+EDEGP/vGB5eLGU19FHT5uWwJH1KzNaW4pIoQfUMScId3Le26EQVYuuoel88FqgEElQ3GU8qK5sqO+c2kDIi4RpttdUQp04xT6F1uZz/+RLvKZ1svAIGS7TCP7NzY1scskHIEoze39Q4OMOdxxYKGTuaRzZZSKf717OxYZdtAYYmqjZyYF1zAtSpunmrNj0FS31tVAV1qsBXcN5lPu07Hbnvu5pp0/MHcd0LeYTO40t8PAeylXwSxLHhViTaIUiM=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(136003)(396003)(376002)(39860400002)(346002)(451199015)(46966006)(40470700004)(36840700001)(2906002)(356005)(186003)(82740400003)(81166007)(66899015)(1076003)(16526019)(40460700003)(478600001)(82310400005)(426003)(8676002)(47076005)(4326008)(2616005)(54906003)(26005)(6916009)(36860700001)(8936002)(336012)(40480700001)(6666004)(86362001)(70206006)(36756003)(41300700001)(83380400001)(7696005)(316002)(70586007)(5660300002)(36900700001);
+ SFS:(13230022)(4636009)(396003)(346002)(136003)(376002)(39860400002)(451199015)(40470700004)(46966006)(36840700001)(6666004)(41300700001)(5660300002)(8936002)(36860700001)(81166007)(36756003)(4326008)(54906003)(478600001)(7696005)(70586007)(16526019)(8676002)(6916009)(40480700001)(40460700003)(1076003)(82740400003)(186003)(336012)(86362001)(82310400005)(426003)(83380400001)(26005)(2616005)(47076005)(356005)(316002)(2906002)(70206006)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2022 15:47:45.2750 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: aa2cb8d6-9871-4d58-8910-08dab2b26e76
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2022 15:47:47.6022 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 048a8c8b-a059-4ec4-071b-08dab2b26fdc
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT111.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT047.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5356
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4493
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,197 +100,262 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
- Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, Lewis Huang <Lewis.Huang@amd.com>, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ roman.li@amd.com, Wenjing Liu <Wenjing.Liu@amd.com>, solomon.chiu@amd.com,
+ Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
+ agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-As an attempt to offer more DCN debug tools for cases where the OPTC can
-hang, this commit introduces a trace event responsible for showing OPTC
-status when it requests lock and unlock.
+From: Lewis Huang <Lewis.Huang@amd.com>
 
-Reviewed-by: Aurabindo Pillai <Aurabindo.Pillai@amd.com>
+[Why]
+Read set_power_state dpcd after HPD cause USB4 CTS 4.2.1.1
+
+[How]
+Read LTTPR caps first. If aux channel not ready, wake up aux channel.
+If wake up aux channel return pass, retrieve lttpr caps again. If wake
+up aux channel return false, register a detection retry timer.
+
+Reviewed-by: Wenjing Liu <Wenjing.Liu@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Signed-off-by: Lewis Huang <Lewis.Huang@amd.com>
 ---
- .../amd/display/amdgpu_dm/amdgpu_dm_trace.h   | 64 +++++++++++++++++++
- drivers/gpu/drm/amd/display/dc/dc_trace.h     |  2 +
- .../gpu/drm/amd/display/dc/dcn10/dcn10_optc.c |  5 ++
- .../gpu/drm/amd/display/dc/dcn30/dcn30_optc.c |  9 +++
- 4 files changed, 80 insertions(+)
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 148 +++++-------------
+ .../gpu/drm/amd/display/dc/inc/dc_link_dp.h   |   2 +-
+ 2 files changed, 41 insertions(+), 109 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h
-index fdcaea22b456..a2450c970083 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h
-@@ -36,6 +36,7 @@
- #include <drm/drm_fourcc.h>
- #include <drm/drm_encoder.h>
- #include <drm/drm_atomic.h>
-+#include "dcn10/dcn10_optc.h"
- 
- #include "dc/inc/core_types.h"
- 
-@@ -661,6 +662,69 @@ TRACE_EVENT(dcn_fpu,
- 	    )
- );
- 
-+TRACE_EVENT(dcn_optc_lock_unlock_state,
-+	    TP_PROTO(const struct optc *optc_state, int instance, bool lock, const char *function, const int line),
-+	    TP_ARGS(optc_state, instance, lock, function, line),
-+
-+	    TP_STRUCT__entry(
-+			     __field(const char *, function)
-+			     __field(int, instance)
-+			     __field(bool, lock)
-+			     __field(int, line)
-+			     __field(int, opp_count)
-+			     __field(int, max_h_total)
-+			     __field(int, max_v_total)
-+			     __field(int, min_h_blank)
-+			     __field(int, min_h_sync_width)
-+			     __field(int, min_v_sync_width)
-+			     __field(int, min_v_blank)
-+			     __field(int, min_v_blank_interlace)
-+			     __field(int, vstartup_start)
-+			     __field(int, vupdate_offset)
-+			     __field(int, vupdate_width)
-+			     __field(int, vready_offset)
-+	    ),
-+	    TP_fast_assign(
-+			   __entry->function = function;
-+			   __entry->instance = instance;
-+			   __entry->lock = lock;
-+			   __entry->line = line;
-+			   __entry->opp_count = optc_state->opp_count;
-+			   __entry->max_h_total = optc_state->max_h_total;
-+			   __entry->max_v_total = optc_state->max_v_total;
-+			   __entry->min_h_blank = optc_state->min_h_blank;
-+			   __entry->min_h_sync_width = optc_state->min_h_sync_width;
-+			   __entry->min_v_sync_width = optc_state->min_v_sync_width;
-+			   __entry->min_v_blank = optc_state->min_v_blank;
-+			   __entry->min_v_blank_interlace = optc_state->min_v_blank_interlace;
-+			   __entry->vstartup_start = optc_state->vstartup_start;
-+			   __entry->vupdate_offset = optc_state->vupdate_offset;
-+			   __entry->vupdate_width = optc_state->vupdate_width;
-+			   __entry->vready_offset = optc_state->vupdate_offset;
-+	    ),
-+	    TP_printk("%s: %s()+%d: optc_instance=%d opp_count=%d max_h_total=%d max_v_total=%d "
-+		      "min_h_blank=%d min_h_sync_width=%d min_v_sync_width=%d min_v_blank=%d "
-+		      "min_v_blank_interlace=%d vstartup_start=%d vupdate_offset=%d vupdate_width=%d "
-+		      "vready_offset=%d",
-+		      __entry->lock ? "Lock" : "Unlock",
-+		      __entry->function,
-+		      __entry->line,
-+		      __entry->instance,
-+		      __entry->opp_count,
-+		      __entry->max_h_total,
-+		      __entry->max_v_total,
-+		      __entry->min_h_blank,
-+		      __entry->min_h_sync_width,
-+		      __entry->min_v_sync_width,
-+		      __entry->min_v_blank,
-+		      __entry->min_v_blank_interlace,
-+		      __entry->vstartup_start,
-+		      __entry->vupdate_offset,
-+		      __entry->vupdate_width,
-+		      __entry->vready_offset
-+	    )
-+);
-+
- #endif /* _AMDGPU_DM_TRACE_H_ */
- 
- #undef TRACE_INCLUDE_PATH
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_trace.h b/drivers/gpu/drm/amd/display/dc/dc_trace.h
-index c711797e5c9e..bbec308a3a5e 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_trace.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_trace.h
-@@ -40,3 +40,5 @@
- 
- #define TRACE_DCN_FPU(begin, function, line, ref_count) \
- 	trace_dcn_fpu(begin, function, line, ref_count)
-+#define TRACE_OPTC_LOCK_UNLOCK_STATE(optc, inst, lock) \
-+	trace_dcn_optc_lock_unlock_state(optc, inst, lock, __func__, __LINE__)
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
-index 33d780218790..c9e53dc49c92 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
-@@ -27,6 +27,7 @@
- #include "reg_helper.h"
- #include "dcn10_optc.h"
- #include "dc.h"
-+#include "dc_trace.h"
- 
- #define REG(reg)\
- 	optc1->tg_regs->reg
-@@ -657,6 +658,8 @@ void optc1_lock(struct timing_generator *optc)
- 		REG_WAIT(OTG_MASTER_UPDATE_LOCK,
- 				UPDATE_LOCK_STATUS, 1,
- 				1, 10);
-+
-+	TRACE_OPTC_LOCK_UNLOCK_STATE(optc1, optc->inst, true);
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+index 697c4925e1e9..dd2e90ec60df 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -5031,7 +5031,7 @@ static bool dpcd_read_sink_ext_caps(struct dc_link *link)
+ 	return true;
  }
  
- void optc1_unlock(struct timing_generator *optc)
-@@ -665,6 +668,8 @@ void optc1_unlock(struct timing_generator *optc)
+-bool dp_retrieve_lttpr_cap(struct dc_link *link)
++enum dc_status dp_retrieve_lttpr_cap(struct dc_link *link)
+ {
+ 	uint8_t lttpr_dpcd_data[8];
+ 	enum dc_status status = DC_ERROR_UNEXPECTED;
+@@ -5099,7 +5099,7 @@ bool dp_retrieve_lttpr_cap(struct dc_link *link)
+ 		CONN_DATA_DETECT(link, lttpr_dpcd_data, sizeof(lttpr_dpcd_data), "LTTPR Caps: ");
  
- 	REG_SET(OTG_MASTER_UPDATE_LOCK, 0,
- 			OTG_MASTER_UPDATE_LOCK, 0);
-+
-+	TRACE_OPTC_LOCK_UNLOCK_STATE(optc1, optc->inst, false);
+ 	DC_LOG_DC("is_lttpr_present = %d\n", is_lttpr_present);
+-	return is_lttpr_present;
++	return status;
  }
  
- void optc1_get_position(struct timing_generator *optc,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c
-index 892d3c4d01a1..867d60151aeb 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c
-@@ -30,6 +30,7 @@
- #include "dc_dmub_srv.h"
- 
- #include "dml/dcn30/dcn30_fpu.h"
-+#include "dc_trace.h"
- 
- #define REG(reg)\
- 	optc1->tg_regs->reg
-@@ -58,6 +59,8 @@ void optc3_triplebuffer_lock(struct timing_generator *optc)
- 		REG_WAIT(OTG_MASTER_UPDATE_LOCK,
- 				UPDATE_LOCK_STATUS, 1,
- 				1, 10);
-+
-+	TRACE_OPTC_LOCK_UNLOCK_STATE(optc1, optc->inst, true);
+ bool dp_is_lttpr_present(struct dc_link *link)
+@@ -5227,76 +5227,45 @@ static void retrieve_cable_id(struct dc_link *link)
+ 				&link->dpcd_caps.cable_id, &usbc_cable_id);
  }
  
- void optc3_lock_doublebuffer_enable(struct timing_generator *optc)
-@@ -93,6 +96,8 @@ void optc3_lock_doublebuffer_enable(struct timing_generator *optc)
- 		MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_START_OFFSET, 0,
- 		MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_END_OFFSET, 100,
- 		OTG_MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_EN, 1);
-+
-+	TRACE_OPTC_LOCK_UNLOCK_STATE(optc1, optc->inst, true);
+-/* DPRX may take some time to respond to AUX messages after HPD asserted.
+- * If AUX read unsuccessful, try to wake unresponsive DPRX by toggling DPCD SET_POWER (0x600).
+- */
+-static enum dc_status wa_try_to_wake_dprx(struct dc_link *link, uint64_t timeout_ms)
++enum dc_status wake_up_aux_channel(struct dc_link *link)
+ {
+ 	enum dc_status status = DC_ERROR_UNEXPECTED;
+-	uint8_t dpcd_data = 0;
+-	uint64_t start_ts = 0;
+-	uint64_t current_ts = 0;
+-	uint64_t time_taken_ms = 0;
+-	enum dc_connection_type type = dc_connection_none;
+-	bool lttpr_present;
+-	bool vbios_lttpr_interop = link->dc->caps.vbios_lttpr_aware;
++	uint32_t aux_channel_retry_cnt = 0;
++	uint8_t dpcd_power_state = '\0';
+ 
+-	lttpr_present = dp_is_lttpr_present(link) ||
+-			(!vbios_lttpr_interop || !link->dc->caps.extended_aux_timeout_support);
+-	DC_LOG_DC("lttpr_present = %d.\n", lttpr_present ? 1 : 0);
++	while (status != DC_OK && aux_channel_retry_cnt < 10) {
++		status = core_link_read_dpcd(link, DP_SET_POWER,
++				&dpcd_power_state, sizeof(dpcd_power_state));
+ 
+-	/* Issue an AUX read to test DPRX responsiveness. If LTTPR is supported the first read is expected to
+-	 * be to determine LTTPR capabilities. Otherwise trying to read power state should be an innocuous AUX read.
+-	 */
+-	if (lttpr_present)
+-		status = core_link_read_dpcd(
+-				link,
+-				DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV,
+-				&dpcd_data,
+-				sizeof(dpcd_data));
+-	else
+-		status = core_link_read_dpcd(
+-				link,
+-				DP_SET_POWER,
+-				&dpcd_data,
+-				sizeof(dpcd_data));
++		/* Delay 1 ms if AUX CH is in power down state. Based on spec
++		 * section 2.3.1.2, if AUX CH may be powered down due to
++		 * write to DPCD 600h = 2. Sink AUX CH is monitoring differential
++		 * signal and may need up to 1 ms before being able to reply.
++		 */
++		if (status != DC_OK || dpcd_power_state == DP_SET_POWER_D3) {
++			udelay(1000);
++			aux_channel_retry_cnt++;
++		}
++	}
+ 
+ 	if (status != DC_OK) {
+-		DC_LOG_WARNING("%s: Read DPCD LTTPR_CAP failed - try to toggle DPCD SET_POWER for %lld ms.",
+-				__func__,
+-				timeout_ms);
+-		start_ts = dm_get_timestamp(link->ctx);
+-
+-		do {
+-			if (!dc_link_detect_sink(link, &type) || type == dc_connection_none)
+-				break;
+-
+-			dpcd_data = DP_SET_POWER_D3;
+-			status = core_link_write_dpcd(
+-					link,
+-					DP_SET_POWER,
+-					&dpcd_data,
+-					sizeof(dpcd_data));
+-
+-			dpcd_data = DP_SET_POWER_D0;
+-			status = core_link_write_dpcd(
+-					link,
+-					DP_SET_POWER,
+-					&dpcd_data,
+-					sizeof(dpcd_data));
+-
+-			current_ts = dm_get_timestamp(link->ctx);
+-			time_taken_ms = div_u64(dm_get_elapse_time_in_ns(link->ctx, current_ts, start_ts), 1000000);
+-		} while (status != DC_OK && time_taken_ms < timeout_ms);
++		dpcd_power_state = DP_SET_POWER_D0;
++		status = core_link_write_dpcd(
++				link,
++				DP_SET_POWER,
++				&dpcd_power_state,
++				sizeof(dpcd_power_state));
+ 
+-		DC_LOG_WARNING("%s: DPCD SET_POWER %s after %lld ms%s",
+-				__func__,
+-				(status == DC_OK) ? "succeeded" : "failed",
+-				time_taken_ms,
+-				(type == dc_connection_none) ? ". Unplugged." : ".");
++		dpcd_power_state = DP_SET_POWER_D3;
++		status = core_link_write_dpcd(
++				link,
++				DP_SET_POWER,
++				&dpcd_power_state,
++				sizeof(dpcd_power_state));
++		return DC_ERROR_UNEXPECTED;
+ 	}
+ 
+-	return status;
++	return DC_OK;
  }
  
- void optc3_lock_doublebuffer_disable(struct timing_generator *optc)
-@@ -108,6 +113,8 @@ void optc3_lock_doublebuffer_disable(struct timing_generator *optc)
+ static bool retrieve_link_cap(struct dc_link *link)
+@@ -5308,7 +5277,6 @@ static bool retrieve_link_cap(struct dc_link *link)
+ 	/*Only need to read 1 byte starting from DP_DPRX_FEATURE_ENUMERATION_LIST.
+ 	 */
+ 	uint8_t dpcd_dprx_data = '\0';
+-	uint8_t dpcd_power_state = '\0';
  
- 	REG_UPDATE(OTG_GLOBAL_CONTROL2, GLOBAL_UPDATE_LOCK_EN, 0);
- 	REG_UPDATE(OTG_GLOBAL_CONTROL0, MASTER_UPDATE_LOCK_DB_EN, 0);
-+
-+	TRACE_OPTC_LOCK_UNLOCK_STATE(optc1, optc->inst, true);
- }
+ 	struct dp_device_vendor_id sink_id;
+ 	union down_stream_port_count down_strm_port_count;
+@@ -5316,11 +5284,9 @@ static bool retrieve_link_cap(struct dc_link *link)
+ 	union dp_downstream_port_present ds_port = { 0 };
+ 	enum dc_status status = DC_ERROR_UNEXPECTED;
+ 	uint32_t read_dpcd_retry_cnt = 3;
+-	uint32_t aux_channel_retry_cnt = 0;
+ 	int i;
+ 	struct dp_sink_hw_fw_revision dp_hw_fw_revision;
+ 	const uint32_t post_oui_delay = 30; // 30ms
+-	bool is_lttpr_present = false;
  
- void optc3_lock(struct timing_generator *optc)
-@@ -122,6 +129,8 @@ void optc3_lock(struct timing_generator *optc)
- 	REG_WAIT(OTG_MASTER_UPDATE_LOCK,
- 			UPDATE_LOCK_STATUS, 1,
- 			1, 10);
-+
-+	TRACE_OPTC_LOCK_UNLOCK_STATE(optc1, optc->inst, true);
- }
+ 	memset(dpcd_data, '\0', sizeof(dpcd_data));
+ 	memset(&down_strm_port_count,
+@@ -5335,51 +5301,17 @@ static bool retrieve_link_cap(struct dc_link *link)
+ 	dc_link_aux_try_to_configure_timeout(link->ddc,
+ 			LINK_AUX_DEFAULT_LTTPR_TIMEOUT_PERIOD);
  
- void optc3_set_out_mux(struct timing_generator *optc, enum otg_out_mux_dest dest)
+-	/* Try to ensure AUX channel active before proceeding. */
+-	if (link->dc->debug.aux_wake_wa.bits.enable_wa) {
+-		uint64_t timeout_ms = link->dc->debug.aux_wake_wa.bits.timeout_ms;
+-
+-		if (link->dc->debug.aux_wake_wa.bits.use_default_timeout)
+-			timeout_ms = LINK_AUX_WAKE_TIMEOUT_MS;
+-		status = wa_try_to_wake_dprx(link, timeout_ms);
+-	}
+-
+-	while (status != DC_OK && aux_channel_retry_cnt < 10) {
+-		status = core_link_read_dpcd(link, DP_SET_POWER,
+-				&dpcd_power_state, sizeof(dpcd_power_state));
+-
+-		/* Delay 1 ms if AUX CH is in power down state. Based on spec
+-		 * section 2.3.1.2, if AUX CH may be powered down due to
+-		 * write to DPCD 600h = 2. Sink AUX CH is monitoring differential
+-		 * signal and may need up to 1 ms before being able to reply.
+-		 */
+-		if (status != DC_OK || dpcd_power_state == DP_SET_POWER_D3) {
+-			udelay(1000);
+-			aux_channel_retry_cnt++;
+-		}
+-	}
++	status = dp_retrieve_lttpr_cap(link);
+ 
+-	/* If aux channel is not active, return false and trigger another detect*/
+ 	if (status != DC_OK) {
+-		dpcd_power_state = DP_SET_POWER_D0;
+-		status = core_link_write_dpcd(
+-				link,
+-				DP_SET_POWER,
+-				&dpcd_power_state,
+-				sizeof(dpcd_power_state));
+-
+-		dpcd_power_state = DP_SET_POWER_D3;
+-		status = core_link_write_dpcd(
+-				link,
+-				DP_SET_POWER,
+-				&dpcd_power_state,
+-				sizeof(dpcd_power_state));
+-		return false;
++		status = wake_up_aux_channel(link);
++		if (status == DC_OK)
++			dp_retrieve_lttpr_cap(link);
++		else
++			return false;
+ 	}
+ 
+-	is_lttpr_present = dp_retrieve_lttpr_cap(link);
+-
+-	if (is_lttpr_present)
++	if (dp_is_lttpr_present(link))
+ 		configure_lttpr_mode_transparent(link);
+ 
+ 	/* Read DP tunneling information. */
+@@ -5406,7 +5338,7 @@ static bool retrieve_link_cap(struct dc_link *link)
+ 		return false;
+ 	}
+ 
+-	if (!is_lttpr_present)
++	if (!dp_is_lttpr_present(link))
+ 		dc_link_aux_try_to_configure_timeout(link->ddc, LINK_AUX_DEFAULT_TIMEOUT_PERIOD);
+ 
+ 	{
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/dc_link_dp.h b/drivers/gpu/drm/amd/display/dc/inc/dc_link_dp.h
+index 99c2ce2e7b9e..0286ada0424c 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/dc_link_dp.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/dc_link_dp.h
+@@ -193,7 +193,7 @@ enum dc_status dpcd_configure_lttpr_mode(
+ 		struct link_training_settings *lt_settings);
+ 
+ enum dp_link_encoding dp_get_link_encoding_format(const struct dc_link_settings *link_settings);
+-bool dp_retrieve_lttpr_cap(struct dc_link *link);
++enum dc_status dp_retrieve_lttpr_cap(struct dc_link *link);
+ bool dp_is_lttpr_present(struct dc_link *link);
+ enum lttpr_mode dp_decide_lttpr_mode(struct dc_link *link, struct dc_link_settings *link_setting);
+ void dp_get_lttpr_mode_override(struct dc_link *link, enum lttpr_mode *override);
 -- 
 2.35.1
 
