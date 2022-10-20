@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68472606501
-	for <lists+amd-gfx@lfdr.de>; Thu, 20 Oct 2022 17:49:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15B7C606509
+	for <lists+amd-gfx@lfdr.de>; Thu, 20 Oct 2022 17:50:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C109910E4D3;
-	Thu, 20 Oct 2022 15:48:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A619210E48A;
+	Thu, 20 Oct 2022 15:50:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2073.outbound.protection.outlook.com [40.107.220.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 576DD10E504
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2082.outbound.protection.outlook.com [40.107.93.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B27810E506
  for <amd-gfx@lists.freedesktop.org>; Thu, 20 Oct 2022 15:48:15 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bKb3CUpSmK5WHaPHqOgvTdTyP8EZshTust4jXdR3nWPXqVYlSyV6dmwv/8dVw00LrlqfI/9wcfpG/HCMlMCj+zL3V/vM4HL8tdMWLN7AssHLDzK2Yh9YTO8MvtV387YtHV+994yx+LN2l6atvgqW28rMGYKBLghOiwDNYB4IuYgztB2OSs/gPCa1UleZyKazQecI9ShwMn7uY1QiP0oGupl6eLyFHhUjPW3Re14h28b+By11BKZo8fNTz4n2JGRdNm4tf0PYJlE1/GwDyGPDpmR9MyPETAAtUA5PcvYuxibEhawnX/+yaSxaK8l6AUYkKm8yuGPgy/OqjOSQiXUjew==
+ b=OkXs0b5X+KSUJS2WWtNO67mZwytPF1lL2fFfQkiwb0ptKe1SPCeoklgo/e6xV/dJyvwS8Wt3OB7s+brmzAb0sMkwoUCy70v55RIojVgqSIJ5oLLUj8xY9V+IB+Chv4DZ/828hiRN85nf+DYELIRbbgKlZGUKPglSIt3fgvMFOiBFPKBTYl0AtsD2Z6rKLcixjVcPwS8otWIt1YfbxpLu330eRZ5DfPFoP5JYzSCgoW5p0BT9X+S9PhgjxXViyaOkyGs3O2KihCqe6kBhggXPJ/ptHSSDrxHVq7zOUL0gAAebekG4s7qqKwVuD3cem+mS3L7M7g6gTbL+JjH8aouiRQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+Vt/A9ap597c/aZk8ha4tmBe7+RSdPacff7lN0AKs08=;
- b=BZKNAtOvI1XzWkikU1p0qkbmhfdVztj/b09LuAmZANscIaaApT2Vh7BZDilpDLLxpXxLESQdUjZ0sS6aG/85av/yPliZFgcvHW1J/BLbTvpjm+rjfFHjdsb/Lsly1PCdUvNeW8GmHjx4aFHx1fhIpk59dNkHFfkgINNoNefn/5h1+3hPdqyg5hpQYuN8asHRDSHb94NOxpBT+TDGEeLNCz2DOJry5fO9xsOXHZY+zBlDHiSzPvNB2eeResR8xo6lDo0MxsTGc9Lwq4xwHjQuBXhJEYGa8+IqjACHJgtv1c6AEGnrPLykCZISjEg9rQt0U59BMvVeJSyBmmJ2dpJLrw==
+ bh=9eMmWRq5bIUwiHoVxOveNHAsQtwka2NaOzp/BlCCpd0=;
+ b=lx4NtowA9JnYXKih/vGHbFiq/Ve004QQ4lFk09lJysB2BWLFLYtQBAgNex04XhDx0KL3TjybV1MFLrbXoXBMdZU13GJinNVeyKcXdGGMWo3UD/05GCs47YFnlW3N3fdsoG6u/0pvK+IgD3iY2arSvWXqiGbG6ijvlw348J0MV7ZLY6CDNNu7/nJeBXH7KHKqfNqXph8F7H4y2ae+LnzrmZRKdIY3O319Tc7XwW8auAtd77mcOTyUBEO89ayLS3Yh0cAHjmsSOSXyH5J2x4T/oVPTVWQ9QtIHDWIZnuV/QvaV0bEFHfn/copaEmNZrCbMlolyy1kmPEiSdnH/KFJVvg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+Vt/A9ap597c/aZk8ha4tmBe7+RSdPacff7lN0AKs08=;
- b=2Lmsy46zLnf08ln4MmihJx4QxdxCyjitaU1LC6OpKnF2BEyCJjr/UZts5A2VwhEA3RhvHsg4q5oZXwY91dy2GyKCCriYCk0lD2LmrRFB8FB3XbU77mWavJ0CSdyg4Toe4x381OhRm2TvRfMdcTRwKOPoX/aI3A7MT1ypdk0ns2I=
-Received: from DS7PR06CA0036.namprd06.prod.outlook.com (2603:10b6:8:54::14) by
- DM4PR12MB5360.namprd12.prod.outlook.com (2603:10b6:5:39f::24) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5723.34; Thu, 20 Oct 2022 15:48:11 +0000
+ bh=9eMmWRq5bIUwiHoVxOveNHAsQtwka2NaOzp/BlCCpd0=;
+ b=U0tNjuD3bxS55GUQkWzmbae/ZIUJKLJMgaoXpY0wRkE+0MzDKKz01XdkfZAcFk2WOHfid/s2R1qBAqwUYQ3znpMUQwfHg5IwU6HcwCIlg0iWzgP2b6DGl7TESr6bBZXvYV7q8Sn80KYyP3y/s5T5FsHfK6cyoJ2H32NXVtKmWYs=
+Received: from DS7PR06CA0034.namprd06.prod.outlook.com (2603:10b6:8:54::18) by
+ CH3PR12MB7644.namprd12.prod.outlook.com (2603:10b6:610:14f::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.34; Thu, 20 Oct
+ 2022 15:48:12 +0000
 Received: from DM6NAM11FT079.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:54:cafe::cb) by DS7PR06CA0036.outlook.office365.com
- (2603:10b6:8:54::14) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:8:54:cafe::d2) by DS7PR06CA0034.outlook.office365.com
+ (2603:10b6:8:54::18) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.35 via Frontend
- Transport; Thu, 20 Oct 2022 15:48:11 +0000
+ Transport; Thu, 20 Oct 2022 15:48:12 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT079.mail.protection.outlook.com (10.13.173.4) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5746.16 via Frontend Transport; Thu, 20 Oct 2022 15:48:11 +0000
+ 15.20.5746.16 via Frontend Transport; Thu, 20 Oct 2022 15:48:12 +0000
 Received: from atma3.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Thu, 20 Oct
- 2022 10:48:08 -0500
+ 2022 10:48:10 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 24/33] drm/amd/display: Fix SDR visual confirm
-Date: Thu, 20 Oct 2022 11:46:53 -0400
-Message-ID: <20221020154702.503934-25-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 25/33] drm/amd/display: wait for vblank during pipe programming
+Date: Thu, 20 Oct 2022 11:46:54 -0400
+Message-ID: <20221020154702.503934-26-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221020154702.503934-1-Rodrigo.Siqueira@amd.com>
 References: <20221020154702.503934-1-Rodrigo.Siqueira@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT079:EE_|DM4PR12MB5360:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8438e671-0422-4618-f604-08dab2b27e47
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT079:EE_|CH3PR12MB7644:EE_
+X-MS-Office365-Filtering-Correlation-Id: bfdce507-54b6-45a8-7d37-08dab2b27e70
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3ZqshT5D+tj7RxyMYE/jdO7P98/hTj/vSKkrSj8t5tU5VC1ecqljg/TrIA3KGMLgbnv0xC1KkGuYpN0mFxvsMmBe1mnA7kCRviEebPwEKAagjrpfPawjh7ESL1ysizfmMZze/XrkUSqFFho+GSnCY7nNLDyRIuBq0+f0WK8ixy+3vbTSRkcxV43Lk9RG/XVhfNEO8juwNH86BiDmMDoQnwWYGyNF2zeah5YB6r2IVPHzC2dBjYe94/UK37Zn8Ln2mwc1vvYRvk4v+7LFDcHJ+PRGM3gO7XO0dRUD9BgVdSiGlF1wcGJ1foHkqrkgddPKbdLHssR/wVshgXl0lnwB2YVmkhjK5eks2t87CUSEuzW2dO7MOoVFP2tYNuV6yFxE4/d2wW0cth+ZYICL+ROVi3fp+e0xhTfbGFuZH5M1FM8JMDvFLPrRnkXXJrpVT7ac/6RhKqy02JnH7Jc1RniNWllCEguzXJMS/YeSDAV5Npuu2C2nMJuo80HZZB6yfqYDARXGYnR/QDsImi34oI4mgwaZH8xzGIqxBCi01OkWcOFn7J7PQD6RQzhu/D3+M0rblHn2op/wMyVN9I+il+btWe++wLZK+gZBVII13b6e5n4KsSfeY6sYNmsq8jlpl12GdDNNy4TlK8ELntpOdlULN04iaUAzNzwcASqljKw3us9f7gFtQT7DkC/3ZeI8naeQw065G2Ofg+aJCzPyazUIPHZI6a1hQjtSzSQlApO+zrYDmFXRNiLSn+X1yWG/Z4YwCT5XLXEOL75geeejI4JfjdnAKSQXJm4TJ5tJGIiao3mmx2g7RqzK1QHrDpmymvKR
+X-Microsoft-Antispam-Message-Info: nJvnZGbaVafLDDJspvRWBaLrAHINQQqkPa5Iq5oD83u44tEbW5fHFU99lPrt9f5ydy+qsEWKi0ebdkxaFXZv5MS/6fmPEbBi4W6wHrbktnPcvx/lxd6Ynfdf9tyFTEoz3UhmjavfY7fdbnr1VT3Eb/2eOIlWKcoR89o/qAnzlWRXVMp+fZbJ1WezKO8E7Gr5eph0WGrHLMkC4Z3sadNPv586pZBoOUKhgwj6C63ITZWe/bm58ZQIll3AKibxflORHp8tRzHBb79Mz/IHL3v3dp4imcYhk30uIEGhh68Xl1U19OifcfG/KkUHX2vlLXacfAcI8EFFk3zAimSo3/VsjLLt8/W3l1c/rxs+mLIErznfDbs1Pc4pfxGe4dpO9u9aIKBoGsofBJKJDG2yGQfSYFRS/Fz84gJAdn5CpEApL6xqCeWaD2I/RhR2yrmOQgo7BSrQvms5lTYDrGFDHRkxTSdji3xeeQ71IX9KvF8vp88p46boiuYSfqX8VFNMOoqHdguOtvEPsGPzattyWjUuy9eVse1X0cYOLxENxewones0A9467F1YAaXLwPnvCzuNZ4N2pLESBOVnBt7Q5ptGTwF5MWBFdx+i4BNB5CyOmztDj6IWgzlhVqKNPWzMHnSBxsA/Wtbop3LPrRvblZSSC+kiWVk8whuKZ3U1ZyTxeIzpVNBU00YJvInEM8FRlRdLRCrKua4OGF9Z1R506vHcgoiVB8lo53qkt+CbbfVzTd1W7seRDKHd597Y1nmV/ySIHFU9MdkFcJqrf+yv++AuwthmHVqzWVSHrVprSXgCUsSrMh6vQvT0aUer2PI7f8LN
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(396003)(136003)(346002)(376002)(39860400002)(451199015)(40470700004)(36840700001)(46966006)(2906002)(186003)(356005)(2616005)(1076003)(82740400003)(81166007)(16526019)(40460700003)(478600001)(82310400005)(4326008)(8676002)(54906003)(47076005)(426003)(86362001)(6916009)(26005)(36860700001)(8936002)(40480700001)(6666004)(7696005)(36756003)(41300700001)(83380400001)(70586007)(70206006)(316002)(336012)(5660300002)(36900700001);
+ SFS:(13230022)(4636009)(39860400002)(136003)(376002)(396003)(346002)(451199015)(40470700004)(36840700001)(46966006)(36756003)(82310400005)(86362001)(47076005)(82740400003)(41300700001)(356005)(36860700001)(83380400001)(426003)(2616005)(81166007)(40460700003)(16526019)(1076003)(186003)(336012)(40480700001)(6666004)(7696005)(478600001)(5660300002)(2906002)(316002)(8936002)(6916009)(70206006)(8676002)(4326008)(26005)(54906003)(70586007)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2022 15:48:11.8289 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8438e671-0422-4618-f604-08dab2b27e47
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2022 15:48:12.0789 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bfdce507-54b6-45a8-7d37-08dab2b27e70
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT079.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5360
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7644
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,69 +99,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Aric Cyr <Aric.Cyr@amd.com>, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
- wayne.lin@amd.com, Jun Lei <Jun.Lei@amd.com>, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Martin Leung <Martin.Leung@amd.com>,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
+ Aurabindo.Pillai@amd.com, Haiyi Zhou <Haiyi.Zhou@amd.com>, wayne.lin@amd.com,
+ Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <Aric.Cyr@amd.com>
+From: Haiyi Zhou <Haiyi.Zhou@amd.com>
 
-Apply SDR visual confirm to RGB10 and FP16 formats as well when needed.
+[WHY]
+Skipping vblank during global sync update request can result in
+underflow on certain displays.
 
-Reviewed-by: Jun Lei <Jun.Lei@amd.com>
+[HOW]
+Roll back to the previous behavior where DC waits for vblank during pipe
+programming.
+
+Fixes: 5d3e14421410 ("drm/amd/display: do not wait for vblank during pipe programming")
+Reviewed-by: Martin Leung <Martin.Leung@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Signed-off-by: Aric Cyr <Aric.Cyr@amd.com>
+Signed-off-by: Haiyi Zhou <Haiyi.Zhou@amd.com>
 ---
- .../gpu/drm/amd/display/dc/core/dc_hw_sequencer.c   | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-index 7c2e3b8dc26a..471078fc3900 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-@@ -366,6 +366,7 @@ void get_hdr_visual_confirm_color(
- 		struct tg_color *color)
- {
- 	uint32_t color_value = MAX_TG_COLOR_VALUE;
-+	bool is_sdr = false;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+index 1ac0ed5be605..feff834d5410 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+@@ -1640,10 +1640,8 @@ static void dcn20_program_pipe(
+ 				pipe_ctx->pipe_dlg_param.vupdate_width);
  
- 	/* Determine the overscan color based on the top-most (desktop) plane's context */
- 	struct pipe_ctx *top_pipe_ctx  = pipe_ctx;
-@@ -382,7 +383,8 @@ void get_hdr_visual_confirm_color(
- 			/* FreeSync 2 ARGB2101010 - set border color to pink */
- 			color->color_r_cr = color_value;
- 			color->color_b_cb = color_value;
--		}
-+		} else
-+			is_sdr = true;
- 		break;
- 	case PIXEL_FORMAT_FP16:
- 		if (top_pipe_ctx->stream->out_transfer_func->tf == TRANSFER_FUNCTION_PQ) {
-@@ -391,14 +393,19 @@ void get_hdr_visual_confirm_color(
- 		} else if (top_pipe_ctx->stream->out_transfer_func->tf == TRANSFER_FUNCTION_GAMMA22) {
- 			/* FreeSync 2 HDR - set border color to green */
- 			color->color_g_y = color_value;
--		}
-+		} else
-+			is_sdr = true;
- 		break;
- 	default:
-+		is_sdr = true;
-+		break;
-+	}
-+
-+	if (is_sdr) {
- 		/* SDR - set border color to Gray */
- 		color->color_r_cr = color_value/2;
- 		color->color_b_cb = color_value/2;
- 		color->color_g_y = color_value/2;
--		break;
- 	}
- }
+ 		if (pipe_ctx->stream->mall_stream_config.type != SUBVP_PHANTOM) {
+-			pipe_ctx->stream_res.tg->funcs->wait_for_state(
+-				pipe_ctx->stream_res.tg, CRTC_STATE_VBLANK);
+-			pipe_ctx->stream_res.tg->funcs->wait_for_state(
+-				pipe_ctx->stream_res.tg, CRTC_STATE_VACTIVE);
++			pipe_ctx->stream_res.tg->funcs->wait_for_state(pipe_ctx->stream_res.tg, CRTC_STATE_VBLANK);
++			pipe_ctx->stream_res.tg->funcs->wait_for_state(pipe_ctx->stream_res.tg, CRTC_STATE_VACTIVE);
+ 		}
  
+ 		pipe_ctx->stream_res.tg->funcs->set_vtg_params(
 -- 
 2.35.1
 
