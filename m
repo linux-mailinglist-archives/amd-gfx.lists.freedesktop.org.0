@@ -2,65 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D804D607115
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Oct 2022 09:31:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 387A7607127
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Oct 2022 09:32:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EC7A10E5FD;
-	Fri, 21 Oct 2022 07:31:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13B7D10E60B;
+	Fri, 21 Oct 2022 07:32:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com
- [IPv6:2607:f8b0:4864:20::235])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6484210E1EF;
- Thu, 20 Oct 2022 22:11:11 +0000 (UTC)
-Received: by mail-oi1-x235.google.com with SMTP id j188so1223466oih.4;
- Thu, 20 Oct 2022 15:11:11 -0700 (PDT)
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
+ [IPv6:2a00:1450:4864:20::433])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 342CE10E232
+ for <amd-gfx@lists.freedesktop.org>; Fri, 21 Oct 2022 00:05:47 +0000 (UTC)
+Received: by mail-wr1-x433.google.com with SMTP id bk15so2073176wrb.13
+ for <amd-gfx@lists.freedesktop.org>; Thu, 20 Oct 2022 17:05:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=ZNcH8NNQ6H+ucEIDfZ6GtfiM1CXoewou+C4DHO1ovk4=;
- b=a8E5Qd8N1dlsyq39Y+t7APU29CWKcb7GobXv9R3jGBeT+H82d9SSPjSLUB/v69b7uF
- mqwmmTJ1EPc57abpt4vdRG5PbC8xgd6MbJNgmxCX8ICCgbFH+2dKiHZnKhuBTQlplydV
- 9b0mw5gmn3c9UQWwicPLknL6TcFstS67+HPa5KN/3oT8SkgjHOJc/Zo7wtPmAWlsLQdd
- iK6IQQv1OiWYoWl7+55pSyKaFZ9g3863K4WbXS0K+HSZKeLN7lofg0puzpCuSYVlQD+O
- T6u63lM3pyamlEp9D8zul2+J2WNfiTiu6tdOgMNJlJ4TH9vn6lob21UhvVaTzpU39uR9
- PdzQ==
+ h=content-transfer-encoding:subject:from:cc:to:content-language
+ :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=ZI9wnb+rLPnb4SEdDKmsnyaiJWwQv5sPefJtBQZaE1E=;
+ b=akwnLT9aOj/VQuVo+4rsVjH+K+uS8+65SFlubUtnPnWobuYyCE4tjkV01s3xZq14rw
+ q02TbbtQ9s7pZuLSeSP4wgxZIBEZ4NjcNDcmOaudzOI1r8cFy8E+eTIe2lhdKz0ipe/a
+ NAOgFGwJUDquBN8Sz97cs/bCDixCzAGI9raxW3g+XHoOFNQAXpllkyyJT6XCMnXtfRr/
+ LrrIXP8+X92A7d9kPQJLmS/qyGIoiGBcbP9jv/cB6/1p/o0WbuKBQmt0QuXV7gDmXVcy
+ QNQDlcAjru5Cnlq+8TYb/6FAdr0Gdu8b2FAsyJy5S0Y5lxbwj0GO2wvDzh5mOYvEj1Sa
+ mjNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=ZNcH8NNQ6H+ucEIDfZ6GtfiM1CXoewou+C4DHO1ovk4=;
- b=CqrUpFJxbNjshzmqOPeMBEkQ+X6C2EFYthdd/r1l7wom76Xwq0gUoZ7YC8gNLpZzII
- 8nmL2mQk71vWJnZTxKZTYpI2FlBkty0r/lYDNqKav52x1TFZtO+amSFGtzw/HhSwrT3B
- 4Tam+Z7Yq3RazQlO/9/Zb98IW+lmPrfsV96Uz64xgUTYDGiriR4YsX6yH9peu5fiTocO
- gbgNUc4NnTRBJhugFALhGHNQmNh3ys5Pom0HcWvBNz+Bou2dw6m1TTgP2ceo3BhD0kg7
- 5CjJeJ+iMoZGC6CWCerWGQLN2iiha6Z6LkE33fnSN1RUnmGT466FslBPXSYYH4JG0U73
- 1FWA==
-X-Gm-Message-State: ACrzQf1thWhdffNhWOp55U/zPCI0SY0cgcbuIjoALP03OHZ8PYa99c5q
- 8ZWpAdXsbkfQe/6PNfZbOiI=
-X-Google-Smtp-Source: AMsMyM7UfZbFJXOnTdCHew1dUKSWIPUiHwIJV3yBwwrPBaBfYg6ojijf0+vWLbd/8EzlK+0HDSR0TQ==
-X-Received: by 2002:a05:6808:16ac:b0:353:b7d7:5fef with SMTP id
- bb44-20020a05680816ac00b00353b7d75fefmr8925133oib.293.1666303870481; 
- Thu, 20 Oct 2022 15:11:10 -0700 (PDT)
-Received: from macondo.. ([2804:431:e7cc:1855:2215:4175:ce03:9ed3])
+ h=content-transfer-encoding:subject:from:cc:to:content-language
+ :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=ZI9wnb+rLPnb4SEdDKmsnyaiJWwQv5sPefJtBQZaE1E=;
+ b=rl+KgmE5H4E59P8n4RaR/F46Cpk2PasjrFGGgIMMjoeSe89/yro6vCET0HHNUQ04/L
+ GdJiQu6vqPFkMstOEbD7v3sUp8GPp9DKtUrMYKEYkPos7kT3piLsVqqL3o2oG+20HL+o
+ 4JwZHpJ6n9yzSjuHe0/6dd15F1Cs3GvZG5UGQF7KYtLfu/Dx49jGnun8c2QgpB5dW5qv
+ EcZkWTK2ySQPZmNuy4i4Ihq7IoqJFDmwdfwP2u65DbH/mXdrl0cu8jFOKDyIwvs+xrIs
+ Yap1ASr6bM/tuFXD2+cmdIbaRGGoH9YsKBvSIaoheEbW+ndNgcla+G+oYdcQC36LO0nr
+ PHsA==
+X-Gm-Message-State: ACrzQf1twgMc7YT3XD1Hzybh1cnPi01p9Tw5EdJVhHUV7Pcm2LM9AtWv
+ 4neKHdX51C49xp4RUkJUdcNMt5k9tASNTw==
+X-Google-Smtp-Source: AMsMyM4b9Vouzpq3wgNeP2l8v99S0PmLuLhqFZZE2YJj3qmWoJujd/NIPU/m8WrjEtf/gduFw2OPDg==
+X-Received: by 2002:a05:6000:607:b0:235:d82c:ccea with SMTP id
+ bn7-20020a056000060700b00235d82ccceamr3796400wrb.135.1666310745445; 
+ Thu, 20 Oct 2022 17:05:45 -0700 (PDT)
+Received: from ?IPV6:2a02:908:4f6:d280::9a6? ([2a02:908:4f6:d280::9a6])
  by smtp.gmail.com with ESMTPSA id
- cp27-20020a056830661b00b006605883eae6sm385512otb.63.2022.10.20.15.11.07
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 20 Oct 2022 15:11:10 -0700 (PDT)
-From: Rafael Mendonca <rafaelmendsr@gmail.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>
-Subject: [PATCH] drm/amd/display: Remove duplicate code for DCN314 DML
- calculation
-Date: Thu, 20 Oct 2022 19:10:50 -0300
-Message-Id: <20221020221051.919704-1-rafaelmendsr@gmail.com>
-X-Mailer: git-send-email 2.34.1
+ b21-20020a05600c4e1500b003a83ca67f73sm980400wmq.3.2022.10.20.17.05.44
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 20 Oct 2022 17:05:45 -0700 (PDT)
+Message-ID: <0115eee0-1384-cd9d-22c8-7dfcc9d754e3@gmail.com>
+Date: Fri, 21 Oct 2022 02:05:43 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Content-Language: en-US
+To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com
+From: Ao Zhong <hacc1225@gmail.com>
+Subject: [PATCH] drm/amd/display: move remaining FPU code to dml folder
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 21 Oct 2022 07:30:36 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -74,296 +72,212 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Rafael Mendonca <rafaelmendsr@gmail.com>,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is an extension of commit fd3bc691fc7b ("drm/amd/display: Remove
-duplicate code across dcn30 and dcn31"), which removed duplicate code for
-the function CalculateBytePerPixelAnd256BBlockSizes() across dcn30 and
-dcn31. At the time the aforementioned commit was introduced, support for
-DCN 3.1.4 was still not merged. Thus, this deletes duplicate code for
-CalculateBytePerPixelAnd256BBlockSizes(), that was introduced later in
-DCN314, in favor of using the respective functionality from
-'display_mode_vba_30.h'.
+Subject: [PATCH] drm/amd/display: move remaining FPU code to dml folder
 
-Additionally, by doing that, we also fix a duplicate argument issue
-reported by coccinelle in 'display_rq_dlg_calc_314.c':
+Move remaining FPU code to dml folder
+in preparation for enabling aarch64 support.
 
-  static bool CalculateBytePerPixelAnd256BBlockSizes(...) {
-    ...
-    } else if (SourcePixelFormat == dm_444_16 || SourcePixelFormat == dm_444_16) {
-    ...
-  }
-
-Signed-off-by: Rafael Mendonca <rafaelmendsr@gmail.com>
+Signed-off-by: Ao Zhong <hacc1225@gmail.com>
 ---
- .../dc/dml/dcn314/display_mode_vba_314.c      | 106 +-----------------
- .../dc/dml/dcn314/display_rq_dlg_calc_314.c   |  91 +--------------
- 2 files changed, 6 insertions(+), 191 deletions(-)
+  .../drm/amd/display/dc/dcn10/dcn10_resource.c | 44 +------------------
+  .../drm/amd/display/dc/dcn32/dcn32_resource.c |  5 ++-
+  .../drm/amd/display/dc/dml/dcn10/dcn10_fpu.c  | 40 +++++++++++++++++
+  .../drm/amd/display/dc/dml/dcn10/dcn10_fpu.h  |  3 ++
+  .../drm/amd/display/dc/dml/dcn32/dcn32_fpu.c  |  8 ++++
+  .../drm/amd/display/dc/dml/dcn32/dcn32_fpu.h  |  3 ++
+  6 files changed, 59 insertions(+), 44 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-index 0d12fd079cd6..6e43cd21a7d3 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-@@ -32,6 +32,7 @@
- #include "../display_mode_lib.h"
- #include "display_mode_vba_314.h"
- #include "../dml_inline_defs.h"
-+#include "dml/dcn30/display_mode_vba_30.h"
- 
- /*
-  * NOTE:
-@@ -90,17 +91,6 @@ typedef struct {
- #define BPP_INVALID 0
- #define BPP_BLENDED_PIPE 0xffffffff
- 
--static bool CalculateBytePerPixelAnd256BBlockSizes(
--		enum source_format_class SourcePixelFormat,
--		enum dm_swizzle_mode SurfaceTiling,
--		unsigned int *BytePerPixelY,
--		unsigned int *BytePerPixelC,
--		double *BytePerPixelDETY,
--		double *BytePerPixelDETC,
--		unsigned int *BlockHeight256BytesY,
--		unsigned int *BlockHeight256BytesC,
--		unsigned int *BlockWidth256BytesY,
--		unsigned int *BlockWidth256BytesC);
- static void DisplayPipeConfiguration(struct display_mode_lib *mode_lib);
- static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerformanceCalculation(struct display_mode_lib *mode_lib);
- static unsigned int dscceComputeDelay(
-@@ -2178,7 +2168,7 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
- 	DTRACE("   return_bus_bw      = %f", v->ReturnBW);
- 
- 	for (k = 0; k < v->NumberOfActivePlanes; ++k) {
--		CalculateBytePerPixelAnd256BBlockSizes(
-+		dml30_CalculateBytePerPixelAnd256BBlockSizes(
- 				v->SourcePixelFormat[k],
- 				v->SurfaceTiling[k],
- 				&v->BytePerPixelY[k],
-@@ -3317,7 +3307,7 @@ static void DisplayPipeConfiguration(struct display_mode_lib *mode_lib)
- 
- 	for (k = 0; k < v->NumberOfActivePlanes; ++k) {
- 
--		CalculateBytePerPixelAnd256BBlockSizes(
-+		dml30_CalculateBytePerPixelAnd256BBlockSizes(
- 				v->SourcePixelFormat[k],
- 				v->SurfaceTiling[k],
- 				&BytePerPixY[k],
-@@ -3371,94 +3361,6 @@ static void DisplayPipeConfiguration(struct display_mode_lib *mode_lib)
- 			&dummysinglestring);
- }
- 
--static bool CalculateBytePerPixelAnd256BBlockSizes(
--		enum source_format_class SourcePixelFormat,
--		enum dm_swizzle_mode SurfaceTiling,
--		unsigned int *BytePerPixelY,
--		unsigned int *BytePerPixelC,
--		double *BytePerPixelDETY,
--		double *BytePerPixelDETC,
--		unsigned int *BlockHeight256BytesY,
--		unsigned int *BlockHeight256BytesC,
--		unsigned int *BlockWidth256BytesY,
--		unsigned int *BlockWidth256BytesC)
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c 
+b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
+index 56d30baf12df..6bfac8088ab0 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
+@@ -1295,47 +1295,6 @@ static uint32_t read_pipe_fuses(struct dc_context 
+*ctx)
+      return value;
+  }
+
+-/*
+- * Some architectures don't support soft-float (e.g. aarch64), on those
+- * this function has to be called with hardfloat enabled, make sure not
+- * to inline it so whatever fp stuff is done stays inside
+- */
+-static noinline void dcn10_resource_construct_fp(
+-    struct dc *dc)
 -{
--	if (SourcePixelFormat == dm_444_64) {
--		*BytePerPixelDETY = 8;
--		*BytePerPixelDETC = 0;
--		*BytePerPixelY = 8;
--		*BytePerPixelC = 0;
--	} else if (SourcePixelFormat == dm_444_32 || SourcePixelFormat == dm_rgbe) {
--		*BytePerPixelDETY = 4;
--		*BytePerPixelDETC = 0;
--		*BytePerPixelY = 4;
--		*BytePerPixelC = 0;
--	} else if (SourcePixelFormat == dm_444_16) {
--		*BytePerPixelDETY = 2;
--		*BytePerPixelDETC = 0;
--		*BytePerPixelY = 2;
--		*BytePerPixelC = 0;
--	} else if (SourcePixelFormat == dm_444_8) {
--		*BytePerPixelDETY = 1;
--		*BytePerPixelDETC = 0;
--		*BytePerPixelY = 1;
--		*BytePerPixelC = 0;
--	} else if (SourcePixelFormat == dm_rgbe_alpha) {
--		*BytePerPixelDETY = 4;
--		*BytePerPixelDETC = 1;
--		*BytePerPixelY = 4;
--		*BytePerPixelC = 1;
--	} else if (SourcePixelFormat == dm_420_8) {
--		*BytePerPixelDETY = 1;
--		*BytePerPixelDETC = 2;
--		*BytePerPixelY = 1;
--		*BytePerPixelC = 2;
--	} else if (SourcePixelFormat == dm_420_12) {
--		*BytePerPixelDETY = 2;
--		*BytePerPixelDETC = 4;
--		*BytePerPixelY = 2;
--		*BytePerPixelC = 4;
--	} else {
--		*BytePerPixelDETY = 4.0 / 3;
--		*BytePerPixelDETC = 8.0 / 3;
--		*BytePerPixelY = 2;
--		*BytePerPixelC = 4;
--	}
+-    if (dc->ctx->dce_version == DCN_VERSION_1_01) {
+-        struct dcn_soc_bounding_box *dcn_soc = dc->dcn_soc;
+-        struct dcn_ip_params *dcn_ip = dc->dcn_ip;
+-        struct display_mode_lib *dml = &dc->dml;
 -
--	if ((SourcePixelFormat == dm_444_64 || SourcePixelFormat == dm_444_32 || SourcePixelFormat == dm_444_16 || SourcePixelFormat == dm_444_8 || SourcePixelFormat == dm_mono_16
--			|| SourcePixelFormat == dm_mono_8 || SourcePixelFormat == dm_rgbe)) {
--		if (SurfaceTiling == dm_sw_linear) {
--			*BlockHeight256BytesY = 1;
--		} else if (SourcePixelFormat == dm_444_64) {
--			*BlockHeight256BytesY = 4;
--		} else if (SourcePixelFormat == dm_444_8) {
--			*BlockHeight256BytesY = 16;
--		} else {
--			*BlockHeight256BytesY = 8;
--		}
--		*BlockWidth256BytesY = 256U / *BytePerPixelY / *BlockHeight256BytesY;
--		*BlockHeight256BytesC = 0;
--		*BlockWidth256BytesC = 0;
--	} else {
--		if (SurfaceTiling == dm_sw_linear) {
--			*BlockHeight256BytesY = 1;
--			*BlockHeight256BytesC = 1;
--		} else if (SourcePixelFormat == dm_rgbe_alpha) {
--			*BlockHeight256BytesY = 8;
--			*BlockHeight256BytesC = 16;
--		} else if (SourcePixelFormat == dm_420_8) {
--			*BlockHeight256BytesY = 16;
--			*BlockHeight256BytesC = 8;
--		} else {
--			*BlockHeight256BytesY = 8;
--			*BlockHeight256BytesC = 8;
--		}
--		*BlockWidth256BytesY = 256U / *BytePerPixelY / *BlockHeight256BytesY;
--		*BlockWidth256BytesC = 256U / *BytePerPixelC / *BlockHeight256BytesC;
--	}
--	return true;
+-        dml->ip.max_num_dpp = 3;
+-        /* TODO how to handle 23.84? */
+-        dcn_soc->dram_clock_change_latency = 23;
+-        dcn_ip->max_num_dpp = 3;
+-    }
+-    if (ASICREV_IS_RV1_F0(dc->ctx->asic_id.hw_internal_rev)) {
+-        dc->dcn_soc->urgent_latency = 3;
+-        dc->debug.disable_dmcu = true;
+-        dc->dcn_soc->fabric_and_dram_bandwidth_vmax0p9 = 41.60f;
+-    }
+-
+-
+-    dc->dcn_soc->number_of_channels = dc->ctx->asic_id.vram_width / 
+ddr4_dram_width;
+-    ASSERT(dc->dcn_soc->number_of_channels < 3);
+-    if (dc->dcn_soc->number_of_channels == 0)/*old sbios bug*/
+-        dc->dcn_soc->number_of_channels = 2;
+-
+-    if (dc->dcn_soc->number_of_channels == 1) {
+-        dc->dcn_soc->fabric_and_dram_bandwidth_vmax0p9 = 19.2f;
+-        dc->dcn_soc->fabric_and_dram_bandwidth_vnom0p8 = 17.066f;
+-        dc->dcn_soc->fabric_and_dram_bandwidth_vmid0p72 = 14.933f;
+-        dc->dcn_soc->fabric_and_dram_bandwidth_vmin0p65 = 12.8f;
+-        if (ASICREV_IS_RV1_F0(dc->ctx->asic_id.hw_internal_rev)) {
+-            dc->dcn_soc->fabric_and_dram_bandwidth_vmax0p9 = 20.80f;
+-        }
+-    }
 -}
 -
- static double CalculateTWait(unsigned int PrefetchMode, double DRAMClockChangeLatency, double UrgentLatency, double SREnterPlusExitTime)
- {
- 	if (PrefetchMode == 0) {
-@@ -3948,7 +3850,7 @@ void dml314_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_
- 	/*Bandwidth Support Check*/
- 
- 	for (k = 0; k < v->NumberOfActivePlanes; k++) {
--		CalculateBytePerPixelAnd256BBlockSizes(
-+		dml30_CalculateBytePerPixelAnd256BBlockSizes(
- 				v->SourcePixelFormat[k],
- 				v->SurfaceTiling[k],
- 				&v->BytePerPixelY[k],
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_rq_dlg_calc_314.c b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_rq_dlg_calc_314.c
-index 61ee9ba063a7..a373d35dd473 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_rq_dlg_calc_314.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_rq_dlg_calc_314.c
-@@ -28,94 +28,7 @@
- #include "../display_mode_vba.h"
- #include "../dml_inline_defs.h"
- #include "display_rq_dlg_calc_314.h"
--
--static bool CalculateBytePerPixelAnd256BBlockSizes(
--		enum source_format_class SourcePixelFormat,
--		enum dm_swizzle_mode SurfaceTiling,
--		unsigned int *BytePerPixelY,
--		unsigned int *BytePerPixelC,
--		double *BytePerPixelDETY,
--		double *BytePerPixelDETC,
--		unsigned int *BlockHeight256BytesY,
--		unsigned int *BlockHeight256BytesC,
--		unsigned int *BlockWidth256BytesY,
--		unsigned int *BlockWidth256BytesC)
--{
--	if (SourcePixelFormat == dm_444_64) {
--		*BytePerPixelDETY = 8;
--		*BytePerPixelDETC = 0;
--		*BytePerPixelY = 8;
--		*BytePerPixelC = 0;
--	} else if (SourcePixelFormat == dm_444_32 || SourcePixelFormat == dm_rgbe) {
--		*BytePerPixelDETY = 4;
--		*BytePerPixelDETC = 0;
--		*BytePerPixelY = 4;
--		*BytePerPixelC = 0;
--	} else if (SourcePixelFormat == dm_444_16 || SourcePixelFormat == dm_444_16) {
--		*BytePerPixelDETY = 2;
--		*BytePerPixelDETC = 0;
--		*BytePerPixelY = 2;
--		*BytePerPixelC = 0;
--	} else if (SourcePixelFormat == dm_444_8) {
--		*BytePerPixelDETY = 1;
--		*BytePerPixelDETC = 0;
--		*BytePerPixelY = 1;
--		*BytePerPixelC = 0;
--	} else if (SourcePixelFormat == dm_rgbe_alpha) {
--		*BytePerPixelDETY = 4;
--		*BytePerPixelDETC = 1;
--		*BytePerPixelY = 4;
--		*BytePerPixelC = 1;
--	} else if (SourcePixelFormat == dm_420_8) {
--		*BytePerPixelDETY = 1;
--		*BytePerPixelDETC = 2;
--		*BytePerPixelY = 1;
--		*BytePerPixelC = 2;
--	} else if (SourcePixelFormat == dm_420_12) {
--		*BytePerPixelDETY = 2;
--		*BytePerPixelDETC = 4;
--		*BytePerPixelY = 2;
--		*BytePerPixelC = 4;
--	} else {
--		*BytePerPixelDETY = 4.0 / 3;
--		*BytePerPixelDETC = 8.0 / 3;
--		*BytePerPixelY = 2;
--		*BytePerPixelC = 4;
--	}
--
--	if ((SourcePixelFormat == dm_444_64 || SourcePixelFormat == dm_444_32 || SourcePixelFormat == dm_444_16 || SourcePixelFormat == dm_444_8 || SourcePixelFormat == dm_mono_16
--			|| SourcePixelFormat == dm_mono_8 || SourcePixelFormat == dm_rgbe)) {
--		if (SurfaceTiling == dm_sw_linear)
--			*BlockHeight256BytesY = 1;
--		else if (SourcePixelFormat == dm_444_64)
--			*BlockHeight256BytesY = 4;
--		else if (SourcePixelFormat == dm_444_8)
--			*BlockHeight256BytesY = 16;
--		else
--			*BlockHeight256BytesY = 8;
--
--		*BlockWidth256BytesY = 256U / *BytePerPixelY / *BlockHeight256BytesY;
--		*BlockHeight256BytesC = 0;
--		*BlockWidth256BytesC = 0;
--	} else {
--		if (SurfaceTiling == dm_sw_linear) {
--			*BlockHeight256BytesY = 1;
--			*BlockHeight256BytesC = 1;
--		} else if (SourcePixelFormat == dm_rgbe_alpha) {
--			*BlockHeight256BytesY = 8;
--			*BlockHeight256BytesC = 16;
--		} else if (SourcePixelFormat == dm_420_8) {
--			*BlockHeight256BytesY = 16;
--			*BlockHeight256BytesC = 8;
--		} else {
--			*BlockHeight256BytesY = 8;
--			*BlockHeight256BytesC = 8;
--		}
--		*BlockWidth256BytesY = 256U / *BytePerPixelY / *BlockHeight256BytesY;
--		*BlockWidth256BytesC = 256U / *BytePerPixelC / *BlockHeight256BytesC;
--	}
--	return true;
--}
-+#include "dml/dcn30/display_mode_vba_30.h"
- 
- static bool is_dual_plane(enum source_format_class source_format)
- {
-@@ -468,7 +381,7 @@ static void get_meta_and_pte_attr(
- 	double byte_per_pixel_det_y;
- 	double byte_per_pixel_det_c;
- 
--	CalculateBytePerPixelAnd256BBlockSizes(
-+	dml30_CalculateBytePerPixelAnd256BBlockSizes(
- 			(enum source_format_class) (source_format),
- 			(enum dm_swizzle_mode) (tiling),
- 			&bytes_per_element_y,
+  static bool verify_clock_values(struct dm_pp_clock_levels_with_voltage 
+*clks)
+  {
+      int i;
+@@ -1510,8 +1469,9 @@ static bool dcn10_resource_construct(
+      memcpy(dc->dcn_ip, &dcn10_ip_defaults, sizeof(dcn10_ip_defaults));
+      memcpy(dc->dcn_soc, &dcn10_soc_defaults, sizeof(dcn10_soc_defaults));
+
+-    /* Other architectures we build for build this with soft-float */
++    DC_FP_START();
+      dcn10_resource_construct_fp(dc);
++    DC_FP_END();
+
+      if (!dc->config.is_vmin_only_asic)
+          if (ASICREV_IS_RAVEN2(dc->ctx->asic_id.hw_internal_rev))
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c 
+b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
+index a88dd7b3d1c1..287b7fa9bf41 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
+@@ -1918,8 +1918,9 @@ int dcn32_populate_dml_pipes_from_context(
+          timing = &pipe->stream->timing;
+
+          pipes[pipe_cnt].pipe.src.gpuvm = true;
+-        pipes[pipe_cnt].pipe.src.dcc_fraction_of_zs_req_luma = 0;
+-        pipes[pipe_cnt].pipe.src.dcc_fraction_of_zs_req_chroma = 0;
++        DC_FP_START();
++        dcn32_zero_pipe_dcc_fraction(pipes, pipe_cnt);
++        DC_FP_END();
+          pipes[pipe_cnt].pipe.dest.vfront_porch = timing->v_front_porch;
+          pipes[pipe_cnt].pipe.src.gpuvm_min_page_size_kbytes = 256; // 
+according to spreadsheet
+          pipes[pipe_cnt].pipe.src.unbounded_req_mode = false;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.c 
+b/drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.c
+index 99644d896222..0495cecaf1df 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.c
+@@ -27,6 +27,8 @@
+  #include "dcn10/dcn10_resource.h"
+
+  #include "dcn10_fpu.h"
++#include "resource.h"
++#include "amdgpu_dm/dc_fpu.h"
+
+  /**
+   * DOC: DCN10 FPU manipulation Overview
+@@ -121,3 +123,41 @@ struct _vcs_dpi_soc_bounding_box_st dcn1_0_soc = {
+      .writeback_dram_clock_change_latency_us = 23.0,
+      .return_bus_width_bytes = 64,
+  };
++
++void dcn10_resource_construct_fp(
++    struct dc *dc)
++{
++    dc_assert_fp_enabled();
++
++    if (dc->ctx->dce_version == DCN_VERSION_1_01) {
++        struct dcn_soc_bounding_box *dcn_soc = dc->dcn_soc;
++        struct dcn_ip_params *dcn_ip = dc->dcn_ip;
++        struct display_mode_lib *dml = &dc->dml;
++
++        dml->ip.max_num_dpp = 3;
++        /* TODO how to handle 23.84? */
++        dcn_soc->dram_clock_change_latency = 23;
++        dcn_ip->max_num_dpp = 3;
++    }
++    if (ASICREV_IS_RV1_F0(dc->ctx->asic_id.hw_internal_rev)) {
++        dc->dcn_soc->urgent_latency = 3;
++        dc->debug.disable_dmcu = true;
++        dc->dcn_soc->fabric_and_dram_bandwidth_vmax0p9 = 41.60f;
++    }
++
++
++    dc->dcn_soc->number_of_channels = dc->ctx->asic_id.vram_width / 
+ddr4_dram_width;
++    ASSERT(dc->dcn_soc->number_of_channels < 3);
++    if (dc->dcn_soc->number_of_channels == 0)/*old sbios bug*/
++        dc->dcn_soc->number_of_channels = 2;
++
++    if (dc->dcn_soc->number_of_channels == 1) {
++        dc->dcn_soc->fabric_and_dram_bandwidth_vmax0p9 = 19.2f;
++        dc->dcn_soc->fabric_and_dram_bandwidth_vnom0p8 = 17.066f;
++        dc->dcn_soc->fabric_and_dram_bandwidth_vmid0p72 = 14.933f;
++        dc->dcn_soc->fabric_and_dram_bandwidth_vmin0p65 = 12.8f;
++        if (ASICREV_IS_RV1_F0(dc->ctx->asic_id.hw_internal_rev)) {
++            dc->dcn_soc->fabric_and_dram_bandwidth_vmax0p9 = 20.80f;
++        }
++    }
++}
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.h 
+b/drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.h
+index e74ed4b4ce5b..dcbfb73b0afd 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.h
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.h
+@@ -27,4 +27,7 @@
+  #ifndef __DCN10_FPU_H__
+  #define __DCN10_FPU_H__
+
++void dcn10_resource_construct_fp(
++    struct dc *dc);
++
+  #endif /* __DCN20_FPU_H__ */
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c 
+b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
+index 819de0f11012..58772fce6437 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
+@@ -2521,3 +2521,11 @@ void dcn32_update_bw_bounding_box_fpu(struct dc 
+*dc, struct clk_bw_params *bw_pa
+      }
+  }
+
++void dcn32_zero_pipe_dcc_fraction(display_e2e_pipe_params_st *pipes,
++                  int pipe_cnt)
++{
++    dc_assert_fp_enabled();
++
++    pipes[pipe_cnt].pipe.src.dcc_fraction_of_zs_req_luma = 0;
++    pipes[pipe_cnt].pipe.src.dcc_fraction_of_zs_req_chroma = 0;
++}
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.h 
+b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.h
+index 3a3dc2ce4c73..ab010e7e840b 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.h
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.h
+@@ -73,4 +73,7 @@ int 
+dcn32_find_dummy_latency_index_for_fw_based_mclk_switch(struct dc *dc,
+
+  void dcn32_patch_dpm_table(struct clk_bw_params *bw_params);
+
++void dcn32_zero_pipe_dcc_fraction(display_e2e_pipe_params_st *pipes,
++                  int pipe_cnt);
++
+  #endif
 -- 
-2.34.1
+2.37.4
 
