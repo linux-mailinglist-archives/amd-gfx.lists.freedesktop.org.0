@@ -2,52 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F8946073CF
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Oct 2022 11:18:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D1EC6077D9
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Oct 2022 15:09:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B330610E671;
-	Fri, 21 Oct 2022 09:18:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15FB110E249;
+	Fri, 21 Oct 2022 13:09:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F8F710E534;
- Fri, 21 Oct 2022 09:18:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1666343906; x=1697879906;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=nVetjXHRfqyVKF1htzqfquwo9eva30/LnRsHGeRwraI=;
- b=h1V89JMANjYL2XQMmYSxMUTH2g3cNVPj6I58cc2nZjBpRv1itAziqdoJ
- Qq1z+Ye/kC7jhd8Z3gsyjbp2SJNCC4vQy1KcXNCchhAw6vR/HjRehjIqO
- D8t00Z+wLtUcUcLbY0SwjdIv96dUkoE+SmYTL/Xkgr5J3F5w+BiSIECcq
- oQxOM76yWXx1cDjchVd+L+nKP6mVTBP1H8JhHUMmH1ROHVCVEM5RlAGtp
- Hzxb70Ju4Iche2wvX4NSXzasY28l4Xxh07MYIlwn2kK4XP2aKZaLvKF1p
- w67hr2z2tNM1mYBGRhfmuXL3KraIwXscQ4Tl2WAXRIi35u7qVfQP8NZCQ Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="290265067"
-X-IronPort-AV: E=Sophos;i="5.95,200,1661842800"; d="scan'208";a="290265067"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2022 02:18:25 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="755707666"
-X-IronPort-AV: E=Sophos;i="5.95,200,1661842800"; d="scan'208";a="755707666"
-Received: from avilla3-mobl2.amr.corp.intel.com (HELO localhost)
- ([10.252.53.153])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2022 02:18:19 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Greg KH
- <gregkh@linuxfoundation.org>
-Subject: Re: [Intel-gfx] [PATCH v7 0/9] dyndbg: drm.debug adaptation
-In-Reply-To: <Y1Fyuh12g/gt3Izn@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20220912052852.1123868-1-jim.cromie@gmail.com>
- <Yy7/6oTBW2lqVSK1@kroah.com> <Y1Fyuh12g/gt3Izn@intel.com>
-Date: Fri, 21 Oct 2022 12:18:17 +0300
-Message-ID: <87a65pfsbq.fsf@intel.com>
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B44F10E5F0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 21 Oct 2022 07:26:06 +0000 (UTC)
+Received: from dggpemm500024.china.huawei.com (unknown [172.30.72.54])
+ by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4Mtwr34fC2zVj5k;
+ Fri, 21 Oct 2022 15:21:23 +0800 (CST)
+Received: from dggpemm500007.china.huawei.com (7.185.36.183) by
+ dggpemm500024.china.huawei.com (7.185.36.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Fri, 21 Oct 2022 15:25:54 +0800
+Received: from [10.174.178.174] (10.174.178.174) by
+ dggpemm500007.china.huawei.com (7.185.36.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Fri, 21 Oct 2022 15:25:53 +0800
+Subject: Re: [PATCH 00/11] fix memory leak while kset_register() fails
+To: Luben Tuikov <luben.tuikov@amd.com>, <linux-kernel@vger.kernel.org>,
+ <qemu-devel@nongnu.org>, <linux-f2fs-devel@lists.sourceforge.net>,
+ <linux-erofs@lists.ozlabs.org>, <ocfs2-devel@oss.oracle.com>,
+ <linux-mtd@lists.infradead.org>, <amd-gfx@lists.freedesktop.org>
+References: <20221021022102.2231464-1-yangyingliang@huawei.com>
+ <d559793a-0ce4-3384-e74e-19855aa31f31@amd.com>
+From: Yang Yingliang <yangyingliang@huawei.com>
+Message-ID: <2a99c52c-d29c-5f5c-57a8-9851018e7420@huawei.com>
+Date: Fri, 21 Oct 2022 15:25:51 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <d559793a-0ce4-3384-e74e-19855aa31f31@amd.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [10.174.178.174]
+X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
+ dggpemm500007.china.huawei.com (7.185.36.183)
+X-CFilter-Loop: Reflected
+X-Mailman-Approved-At: Fri, 21 Oct 2022 13:08:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,47 +56,116 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jim Cromie <jim.cromie@gmail.com>, daniel.vetter@ffwll.ch,
- intel-gfx@lists.freedesktop.org, linux@rasmusvillemoes.dk,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, jbaron@akamai.com,
- seanpaul@chromium.org, dri-devel@lists.freedesktop.org, joe@perches.com,
- intel-gvt-dev@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, richard@nod.at, mst@redhat.com,
+ gregkh@linuxfoundation.org, somlo@cmu.edu, chao@kernel.org,
+ huangjianan@oppo.com, liushixin2@huawei.com, joseph.qi@linux.alibaba.com,
+ jlbec@evilplan.org, hsiangkao@linux.alibaba.com, rafael@kernel.org,
+ jaegeuk@kernel.org, akpm@linux-foundation.org, mark@fasheh.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 20 Oct 2022, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Sat, Sep 24, 2022 at 03:02:34PM +0200, Greg KH wrote:
->> On Sun, Sep 11, 2022 at 11:28:43PM -0600, Jim Cromie wrote:
->> > hi Greg, Dan, Jason, DRM-folk,
->> >=20
->> > heres follow-up to V6:
->> >   rebased on driver-core/driver-core-next for -v6 applied bits (thanks)
->> >   rework drm_debug_enabled{_raw,_instrumented,} per Dan.
->> >=20
->> > It excludes:
->> >   nouveau parts (immature)
->> >   tracefs parts (I missed --to=3DSteve on v6)
->> >   split _ddebug_site and de-duplicate experiment (way unready)
->> >=20
->> > IOW, its the remaining commits of V6 on which Dan gave his Reviewed-by.
->> >=20
->> > If these are good to apply, I'll rebase and repost the rest separately.
->>=20
->> All now queued up, thanks.
+Hi,
+
+On 2022/10/21 13:29, Luben Tuikov wrote:
+> On 2022-10-20 22:20, Yang Yingliang wrote:
+>> The previous discussion link:
+>> https://lore.kernel.org/lkml/0db486eb-6927-927e-3629-958f8f211194@huawei.com/T/
+> The very first discussion on this was here:
 >
-> This stuff broke i915 debugs. When I first load i915 no debug prints are
-> produced. If I then go fiddle around in /sys/module/drm/parameters/debug
-> the debug prints start to suddenly work.
+> https://www.spinics.net/lists/dri-devel/msg368077.html
+>
+> Please use this link, and not the that one up there you which quoted above,
+> and whose commit description is taken verbatim from the this link.
+I found this leaks in 
+bus_register()/class_register()/kset_create_and_add() at first, and describe
+the reason in these patches which is using kobject_set_name() 
+description, here is the patches:
 
-Wait what? I always assumed the default behaviour would stay the same,
-which is usually how we roll. It's a regression in my books. We've got a
-CI farm that's not very helpful in terms of dmesg logging right now
-because of this.
+https://lore.kernel.org/lkml/20221017014957.156645-1-yangyingliang@huawei.com/T/
+https://lore.kernel.org/lkml/20221017031335.1845383-1-yangyingliang@huawei.com/
+https://lore.kernel.org/lkml/Y0zfPKAgQSrYZg5o@kroah.com/T/
 
-BR,
-Jani.
+And then I found other subsystem also have this problem, so posted the 
+fix patches for them
+(including qemu_fw_cfg/f2fs/erofs/ocfs2/amdgpu_discovery):
 
+https://www.mail-archive.com/qemu-devel@nongnu.org/msg915553.html
+https://lore.kernel.org/linux-f2fs-devel/7908686b-9a7c-b754-d312-d689fc28366e@kernel.org/T/#t
+https://lore.kernel.org/linux-erofs/20221018073947.693206-1-yangyingliang@huawei.com/
+https://lore.kernel.org/lkml/0db486eb-6927-927e-3629-958f8f211194@huawei.com/T/
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+https://www.spinics.net/lists/dri-devel/msg368092.html
+In the amdgpu_discovery patch, I sent a old one which using wrong 
+description and you pointer out,
+and then I send a v2.
+
+And then the maintainer of ocfs2 has different thought about this, so we 
+had a discussion in the link
+that I gave out, and Greg suggested me to update kset_register() 
+documentation and then put the fix
+patches together in one series, so I sent this patchset and use the link.
+
+Thanks,
+Yang
+
+>
+>> kset_register() is currently used in some places without calling
+>> kset_put() in error path, because the callers think it should be
+>> kset internal thing to do, but the driver core can not know what
+>> caller doing with that memory at times. The memory could be freed
+>> both in kset_put() and error path of caller, if it is called in
+>> kset_register().
+> As I explained in the link above, the reason there's
+> a memory leak is that one cannot call kset_register() without
+> the kset->kobj.name being set--kobj_add_internal() returns -EINVAL,
+> in this case, i.e. kset_register() fails with -EINVAL.
+>
+> Thus, the most common usage is something like this:
+>
+> 	kobj_set_name(&kset->kobj, format, ...);
+> 	kset->kobj.kset = parent_kset;
+> 	kset->kobj.ktype = ktype;
+> 	res = kset_register(kset);
+>
+> So, what is being leaked, is the memory allocated in kobj_set_name(),
+> by the common idiom shown above. This needs to be mentioned in
+> the documentation, at least, in case, in the future this is absolved
+> in kset_register() redesign, etc.
+>
+> Regards,
+> Luben
+>
+>> So make the function documentation more explicit about calling
+>> kset_put() in the error path of caller first, so that people
+>> have a chance to know what to do here, then fixes this leaks
+>> by calling kset_put() from callers.
+>>
+>> Liu Shixin (1):
+>>    ubifs: Fix memory leak in ubifs_sysfs_init()
+>>
+>> Yang Yingliang (10):
+>>    kset: fix documentation for kset_register()
+>>    kset: add null pointer check in kset_put()
+>>    bus: fix possible memory leak in bus_register()
+>>    kobject: fix possible memory leak in kset_create_and_add()
+>>    class: fix possible memory leak in __class_register()
+>>    firmware: qemu_fw_cfg: fix possible memory leak in
+>>      fw_cfg_build_symlink()
+>>    f2fs: fix possible memory leak in f2fs_init_sysfs()
+>>    erofs: fix possible memory leak in erofs_init_sysfs()
+>>    ocfs2: possible memory leak in mlog_sys_init()
+>>    drm/amdgpu/discovery: fix possible memory leak
+>>
+>>   drivers/base/bus.c                            | 4 +++-
+>>   drivers/base/class.c                          | 6 ++++++
+>>   drivers/firmware/qemu_fw_cfg.c                | 2 +-
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 5 +++--
+>>   fs/erofs/sysfs.c                              | 4 +++-
+>>   fs/f2fs/sysfs.c                               | 4 +++-
+>>   fs/ocfs2/cluster/masklog.c                    | 7 ++++++-
+>>   fs/ubifs/sysfs.c                              | 2 ++
+>>   include/linux/kobject.h                       | 3 ++-
+>>   lib/kobject.c                                 | 5 ++++-
+>>   10 files changed, 33 insertions(+), 9 deletions(-)
+>>
+> .
