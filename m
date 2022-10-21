@@ -1,36 +1,36 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28FA5607118
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Oct 2022 09:31:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F015607120
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Oct 2022 09:31:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0612010E600;
-	Fri, 21 Oct 2022 07:31:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 816BB10E603;
+	Fri, 21 Oct 2022 07:31:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7150C10E0F8
- for <amd-gfx@lists.freedesktop.org>; Fri, 21 Oct 2022 02:22:45 +0000 (UTC)
-Received: from dggpemm500020.china.huawei.com (unknown [172.30.72.54])
- by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Mtp7b16HRzpVdt;
- Fri, 21 Oct 2022 10:19:23 +0800 (CST)
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AED4C10E54B
+ for <amd-gfx@lists.freedesktop.org>; Fri, 21 Oct 2022 02:22:51 +0000 (UTC)
+Received: from dggpemm500022.china.huawei.com (unknown [172.30.72.57])
+ by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4MtpCN18FmzHvCF;
+ Fri, 21 Oct 2022 10:22:40 +0800 (CST)
 Received: from dggpemm500007.china.huawei.com (7.185.36.183) by
- dggpemm500020.china.huawei.com (7.185.36.49) with Microsoft SMTP Server
+ dggpemm500022.china.huawei.com (7.185.36.162) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 21 Oct 2022 10:22:43 +0800
+ 15.1.2375.31; Fri, 21 Oct 2022 10:22:44 +0800
 Received: from huawei.com (10.175.103.91) by dggpemm500007.china.huawei.com
  (7.185.36.183) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Fri, 21 Oct
- 2022 10:22:42 +0800
+ 2022 10:22:43 +0800
 From: Yang Yingliang <yangyingliang@huawei.com>
 To: <linux-kernel@vger.kernel.org>, <qemu-devel@nongnu.org>,
  <linux-f2fs-devel@lists.sourceforge.net>, <linux-erofs@lists.ozlabs.org>,
  <ocfs2-devel@oss.oracle.com>, <linux-mtd@lists.infradead.org>,
  <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 07/11] f2fs: fix possible memory leak in f2fs_init_sysfs()
-Date: Fri, 21 Oct 2022 10:20:58 +0800
-Message-ID: <20221021022102.2231464-8-yangyingliang@huawei.com>
+Subject: [PATCH 08/11] erofs: fix possible memory leak in erofs_init_sysfs()
+Date: Fri, 21 Oct 2022 10:20:59 +0800
+Message-ID: <20221021022102.2231464-9-yangyingliang@huawei.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221021022102.2231464-1-yangyingliang@huawei.com>
 References: <20221021022102.2231464-1-yangyingliang@huawei.com>
@@ -68,40 +68,39 @@ if it fails, but the refcount of kobject is not decreased to
 this by calling kset_put(), so that name can be freed in
 callback function kobject_cleanup().
 
-unreferenced object 0xffff888101b7cc80 (size 8):
-  comm "modprobe", pid 252, jiffies 4294691378 (age 31.760s)
+unreferenced object 0xffff888101d228c0 (size 8):
+  comm "modprobe", pid 276, jiffies 4294722700 (age 13.151s)
   hex dump (first 8 bytes):
-    66 32 66 73 00 88 ff ff                          f2fs....
+    65 72 6f 66 73 00 ff ff                          erofs...
   backtrace:
-    [<000000001db5b408>] __kmalloc_node_track_caller+0x44/0x1b0
-    [<000000002783a073>] kstrdup+0x3a/0x70
-    [<00000000ead2b281>] kstrdup_const+0x63/0x80
-    [<000000003e5cf8f7>] kvasprintf_const+0x149/0x180
-    [<00000000c4d949ff>] kobject_set_name_vargs+0x56/0x150
-    [<0000000044611660>] kobject_set_name+0xab/0xe0
+    [<00000000e2a9a4a6>] __kmalloc_node_track_caller+0x44/0x1b0
+    [<00000000b8ce02de>] kstrdup+0x3a/0x70
+    [<000000004a0e01d2>] kstrdup_const+0x63/0x80
+    [<00000000051b6cda>] kvasprintf_const+0x149/0x180
+    [<000000004dc51dad>] kobject_set_name_vargs+0x56/0x150
+    [<00000000b30f0bad>] kobject_set_name+0xab/0xe0
 
-Fixes: bf9e697ecd42 ("f2fs: expose features to sysfs entry")
+Fixes: 168e9a76200c ("erofs: add sysfs interface")
 Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
-Reviewed-by: Chao Yu <chao@kernel.org>
 ---
- fs/f2fs/sysfs.c | 4 +++-
+ fs/erofs/sysfs.c | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/fs/f2fs/sysfs.c b/fs/f2fs/sysfs.c
-index df27afd71ef4..2ef7a48967be 100644
---- a/fs/f2fs/sysfs.c
-+++ b/fs/f2fs/sysfs.c
-@@ -1250,8 +1250,10 @@ int __init f2fs_init_sysfs(void)
- 	kobject_set_name(&f2fs_kset.kobj, "f2fs");
- 	f2fs_kset.kobj.parent = fs_kobj;
- 	ret = kset_register(&f2fs_kset);
+diff --git a/fs/erofs/sysfs.c b/fs/erofs/sysfs.c
+index 783bb7b21b51..653b35001bc5 100644
+--- a/fs/erofs/sysfs.c
++++ b/fs/erofs/sysfs.c
+@@ -254,8 +254,10 @@ int __init erofs_init_sysfs(void)
+ 	kobject_set_name(&erofs_root.kobj, "erofs");
+ 	erofs_root.kobj.parent = fs_kobj;
+ 	ret = kset_register(&erofs_root);
 -	if (ret)
 +	if (ret) {
-+		kset_put(&f2fs_kset);
- 		return ret;
++		kset_put(&erofs_root);
+ 		goto root_err;
 +	}
  
- 	ret = kobject_init_and_add(&f2fs_feat, &f2fs_feat_ktype,
+ 	ret = kobject_init_and_add(&erofs_feat, &erofs_feat_ktype,
  				   NULL, "features");
 -- 
 2.25.1
