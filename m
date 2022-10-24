@@ -2,70 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5CC2609B0D
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Oct 2022 09:13:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C86E8609B13
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Oct 2022 09:14:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6F0F10E277;
-	Mon, 24 Oct 2022 07:13:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C30A510E0A3;
+	Mon, 24 Oct 2022 07:14:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com
- [IPv6:2607:f8b0:4864:20::72f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A84210E1D1
- for <amd-gfx@lists.freedesktop.org>; Sun, 23 Oct 2022 17:24:12 +0000 (UTC)
-Received: by mail-qk1-x72f.google.com with SMTP id t25so4982888qkm.2
- for <amd-gfx@lists.freedesktop.org>; Sun, 23 Oct 2022 10:24:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=CFEmF23TE/KPW9DxQX3TtUFPLdftcyFj+7wIfV/ySrk=;
- b=Kh9q+3eQ8nMIGJcebGwF6XwmXd4YARrcFepFisWQl6kyl0rT+3DS9w5veA+nBflWs5
- 7E8PL3tnQaX+0hJ48oNI6L0FtpCgy6rc4pXq6MMfr11scKo/CY9n3lAz4qO1wByCA3R0
- JMFM3i686ZVXh+oi+6JXteOyMAf7MHyE39skU=
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com
+ [IPv6:2607:f8b0:4864:20::829])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CE5F10E060
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 01:32:10 +0000 (UTC)
+Received: by mail-qt1-x829.google.com with SMTP id bb5so4919585qtb.11
+ for <amd-gfx@lists.freedesktop.org>; Sun, 23 Oct 2022 18:32:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=i2woeV1xfn23wJfHzwefrC3IjNXDtm0d0F1XSgZEEV4=;
+ b=gla5yXvZzDjpeMxoHTxoYyevgbcvouW8WXqD0W7GdgfNuEhHWq/rKb1kW7bZZisqEq
+ L9MRiHJz8NM03eggEimK6KmWNBU+B/HFOe39jgT5ouspAwmnG56Yz/Np9sRQMujdrOmL
+ CSBSn+U2bV8X2mH2OOmOZlnatWI9q4dpnQHYQxCc42WT67AFfNQBchYmv+fnRsMJVDsv
+ C/KhAgVrM+Kvl1UYPJPS4gI15zRoRG6bdjj4VYOvf9aRiMnpQbpgKLMdAZQuWEuc0uTJ
+ S2OqivP2/k1yowqmU2LSA4gqdvtymRHW3l+QcDRDaTvVn1WK9Veabnzll+396N6/f2ep
+ MKvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=CFEmF23TE/KPW9DxQX3TtUFPLdftcyFj+7wIfV/ySrk=;
- b=IATB4p1hSmylaMxItrMGlJfUoxWDMbnWLN0u32N1Tc9CbaIrPvKDzuWUW/umBhk4VF
- lvnfcuwnlfmGe/dWNRwv2xOqoI8GqOaOif8Z0Ppv5/uPK4aMFlHGwZ29iV2yFTPbgF4E
- SoJPxc/4XA+6/NS3r/gqGgB2TNo3/rhfhvN2WkQDp7vOA+sNpjFTUsPPjbFe2GOtxfM4
- o9s9q9LYwRgrzYKfe4kd3cKSE0Sb80+otujS68+0MmdFtIMyuX7H5cg2TG54hSleNs22
- KYI/PuVWo6hP4Kq50i9MCAyMSnHA96bh5lT2+JP2zG9Wdt1VkuoH41vr1JHOZ25MsHJA
- s7Cw==
-X-Gm-Message-State: ACrzQf2NWw/Bo64KPptle2KAwGONdqerTi/fGuTQAQOO03vy72gPL+ey
- UNLXxM4Ipq1i6k45AYpMkuV4q/k7b8BhfA==
-X-Google-Smtp-Source: AMsMyM7an3PM0ZSL0xJOTaP3Q7HurWiax2QJVbkROZHimvBHHKuNaDlS/whAlLprmyEP+jBFkR+jAA==
-X-Received: by 2002:a05:620a:461e:b0:6ee:e645:662d with SMTP id
- br30-20020a05620a461e00b006eee645662dmr20541781qkb.631.1666545850963; 
- Sun, 23 Oct 2022 10:24:10 -0700 (PDT)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com.
- [209.85.219.181]) by smtp.gmail.com with ESMTPSA id
- h5-20020a05620a284500b006f16148fa96sm3195332qkp.91.2022.10.23.10.24.09
- for <amd-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 23 Oct 2022 10:24:09 -0700 (PDT)
-Received: by mail-yb1-f181.google.com with SMTP id i127so8758463ybc.11
- for <amd-gfx@lists.freedesktop.org>; Sun, 23 Oct 2022 10:24:09 -0700 (PDT)
-X-Received: by 2002:a05:6902:124f:b0:66e:e3da:487e with SMTP id
- t15-20020a056902124f00b0066ee3da487emr27003391ybu.310.1666545849226; Sun, 23
- Oct 2022 10:24:09 -0700 (PDT)
+ h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=i2woeV1xfn23wJfHzwefrC3IjNXDtm0d0F1XSgZEEV4=;
+ b=MVlgnAEttD/sSxFtxMNjv6aD6yC+1q9i45ORyhf9xUADnQT7J9shiy58sIl3ppnP8d
+ lvua6loTVqb6Fy4YLO+le/zngGMs4MeXidPL8CM3Vlb9+PZh590xopfFAAmfGlK928Jv
+ a0+B0AdUCAjx7Er90edt1MrhzBkZaINwjYbgxQ1MLKIDf3qA7q7K58SprzMMO0+QlKqi
+ XvmpMpYkaQVZUINyBxgRAgjV6x0BKtrXxCyYaHyC6HxVg7C94mag6iOG3t1tEKXCo3hD
+ dC+Ia7enl6WHO4Ei/I40zu46IY4O5YVz/DKRGbMyw6kTc6YPCs7tVvGC71bzZLKWRNba
+ 85Zg==
+X-Gm-Message-State: ACrzQf27sKnjVQP+YIwpKcekEjfzwgxkuWUFuc815w6UDDq6pOEmIJ1h
+ F0TTZUSHrE/1Z9GmK1FwbtR1AniHWGHNspxBrpM=
+X-Google-Smtp-Source: AMsMyM5noUWagFbcDbSp+sf3egW7Q1ZvSETHN0c9Bl26w27b+VophiksWRp9S/iD7/kNd1YOtF5+dfLAIZJV6ni59wc=
+X-Received: by 2002:ac8:5991:0:b0:39c:be3a:6f4f with SMTP id
+ e17-20020ac85991000000b0039cbe3a6f4fmr26110935qte.348.1666575129338; Sun, 23
+ Oct 2022 18:32:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAAfT2tdZN5s4WEG1q=VCOK7_1vgb6B8VuL+Jw3UqADMxerRMDA@mail.gmail.com>
-In-Reply-To: <CAAfT2tdZN5s4WEG1q=VCOK7_1vgb6B8VuL+Jw3UqADMxerRMDA@mail.gmail.com>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Sun, 23 Oct 2022 10:23:53 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wghzRGZtwCU+tDSRGD2HC_7dMT6rnU-urD91gz_AkyCTg@mail.gmail.com>
-Message-ID: <CAHk-=wghzRGZtwCU+tDSRGD2HC_7dMT6rnU-urD91gz_AkyCTg@mail.gmail.com>
-Subject: Fwd: amdgpu: update from 5.10.145 to 5.10.146...149 breaks boot on
- Ryzen based computers
-To: Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>
-Content-Type: text/plain; charset="UTF-8"
+References: <3dbf8c82-9e07-5b9f-e969-4a7cd83e4d9e@komputer>
+In-Reply-To: <3dbf8c82-9e07-5b9f-e969-4a7cd83e4d9e@komputer>
+From: Uros Milojkovic <uroshm@gmail.com>
+Date: Sun, 23 Oct 2022 21:32:09 -0400
+Message-ID: <CAP=xWk71RhkpFbS=B2qpcypcpESYGztL13TvwAkJwvRcR8_R3w@mail.gmail.com>
+Subject: Re: Fixing rts5208 driver code style
+To: akpm@linux-foundation.org, linux-kernel@vger.kernel.org, 
+ micky_ching@realsil.com.cn, alexander.deucher@amd.com, 
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, amd-gfx@lists.freedesktop.org
+Content-Type: multipart/alternative; boundary="0000000000009382be05ebbdc2e4"
 X-Mailman-Approved-At: Mon, 24 Oct 2022 07:13:29 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -78,30 +65,73 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This was sent to me, but should have gone to other people.
+--0000000000009382be05ebbdc2e4
+Content-Type: text/plain; charset="UTF-8"
 
-It may already be fixed, but note how the report is about -stable
-kernels, including apparently the current 5.10 stable version (149(.
+Hi I am new to kernel dev and am very passionate, even if this fix isn't
+formatted correctly, could you please give me specific advice on how to do
+so going forward?
+Best,
+Uros
 
-              Linus
+On Sun, Oct 23, 2022 at 3:32 PM uroshm <uroshm@gmail.com> wrote:
 
----------- Forwarded message ---------
-From: Kevin Torkelson <kevin.torkelson@gmail.com>
-Date: Thu, Oct 20, 2022 at 8:09 AM
-Subject: amdgpu: update from 5.10.145 to 5.10.146...149 breaks boot on
-Ryzen based computers
-To: <torvalds@linux-foundation.org>
+>
+> diff --git a/drivers/staging/rts5208/general.c
+> b/drivers/staging/rts5208/general.c
+> index 0f912b011064..4694593af4d9 100644
+> --- a/drivers/staging/rts5208/general.c
+> +++ b/drivers/staging/rts5208/general.c
+> @@ -9,7 +9,7 @@
+>    *   Micky Ching (micky_ching@realsil.com.cn)
+>    */
+>
+> -#include "general.h"
+> + #include "general.h"
+>
+>   int bit1cnt_long(u32 data)
+>   {
+>
+>
+> Signed-off-by: Uros Milojkovic <uroshm@gmail.com>
+>
+>
 
+--0000000000009382be05ebbdc2e4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Linus,
+<div dir=3D"ltr"><div>Hi I am new to kernel dev and am very passionate, eve=
+n if this fix isn&#39;t formatted correctly, could you please give me speci=
+fic advice on how to do so going forward?</div><div>Best,</div><div>Uros<br=
+></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Sun, Oct 23, 2022 at 3:32 PM uroshm &lt;<a href=3D"mailto:uroshm@=
+gmail.com">uroshm@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex"><br>
+diff --git a/drivers/staging/rts5208/general.c <br>
+b/drivers/staging/rts5208/general.c<br>
+index 0f912b011064..4694593af4d9 100644<br>
+--- a/drivers/staging/rts5208/general.c<br>
++++ b/drivers/staging/rts5208/general.c<br>
+@@ -9,7 +9,7 @@<br>
+=C2=A0 =C2=A0*=C2=A0 =C2=A0Micky Ching (<a href=3D"mailto:micky_ching@reals=
+il.com.cn" target=3D"_blank">micky_ching@realsil.com.cn</a>)<br>
+=C2=A0 =C2=A0*/<br>
+<br>
+-#include &quot;general.h&quot;<br>
++ #include &quot;general.h&quot;<br>
+<br>
+=C2=A0 int bit1cnt_long(u32 data)<br>
+=C2=A0 {<br>
+<br>
+<br>
+Signed-off-by: Uros Milojkovic &lt;<a href=3D"mailto:uroshm@gmail.com" targ=
+et=3D"_blank">uroshm@gmail.com</a>&gt;<br>
+<br>
+</blockquote></div>
 
---- Possibly Important ---
-I know several people who are crashing with Debian Bullseye (stable)
-with the most current kernel put out by the distribution. AMD put out
-a fix that seems like it might be related here:
-https://gitlab.freedesktop.org/drm/amd/-/issues/2216
+--0000000000009382be05ebbdc2e4--
