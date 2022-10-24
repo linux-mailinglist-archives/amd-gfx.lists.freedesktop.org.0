@@ -2,60 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 175D260A142
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Oct 2022 13:22:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 974CE60A188
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Oct 2022 13:27:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 084E910E4BB;
-	Mon, 24 Oct 2022 11:20:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD25E10E3BE;
+	Mon, 24 Oct 2022 11:27:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 774DC10E3AD;
- Mon, 24 Oct 2022 11:20:11 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 364C822169;
- Mon, 24 Oct 2022 11:20:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1666610410; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=s8EjyldAvzdOSExh8dLPvPye++M7XBzrxFcMIv6xfEg=;
- b=yXNK7WvqcfSZ73bIs91Y5i7Bf+/SN3NxlKz05cX26OSlw7GDaRM0CnD5Q8pdke1oaKAT3a
- 733QKiclqV7+xhnQy1p/B6dwHMQEKlOE67NXCdjUVPQa5CG4yRbA8jQ51vzzhzFm87CwpA
- LRguV0fRfumlKaA25GcQYN5DK4EWF2k=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1666610410;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=s8EjyldAvzdOSExh8dLPvPye++M7XBzrxFcMIv6xfEg=;
- b=5iYW05vzugOpwdblq+hoaUUilaS6r1R4P1+qqdHtxMEn9I74hlGTuChnD/rLbuMU0RpEgw
- Smdzlcetm0TpzGCw==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 866DC13357;
- Mon, 24 Oct 2022 11:20:09 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id kK6cH+l0VmOYMgAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Mon, 24 Oct 2022 11:20:09 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org, javierm@redhat.com,
- mripard@kernel.org, maarten.lankhorst@linux.intel.com
-Subject: [PATCH v2 21/21] drm/fb-helper: Remove unnecessary include statements
-Date: Mon, 24 Oct 2022 13:19:53 +0200
-Message-Id: <20221024111953.24307-22-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.38.0
-In-Reply-To: <20221024111953.24307-1-tzimmermann@suse.de>
-References: <20221024111953.24307-1-tzimmermann@suse.de>
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2085.outbound.protection.outlook.com [40.107.94.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74C6710E3BE
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Oct 2022 11:27:15 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iAQQgtLekTDnCE0ZE5vBGShn8t1yJLdrtZJsH7VJx3Wrpkl2xgq50a6VKDef99Q4aITrB4Vz7Iyhw1cJg5CxQfc6/m+GMiWsBLmfj2i1ZctktJExtuCAVtC+TjLQwD90kLBZMbpqA5AwhOWqGLvir0mhvECpgHLlylqs33BxBouepSm1ArBHF7CPoj5dJlZInF8E2PgbaTST2qw8ywJAo+oOF43BV/TixIp4YtqGnDxy5P07APWQLbaqIgp59J+e/OVs0hEcGnBpxydfedHzilScuvGHQMCiGPGzl/zG1P9di5keAijWXEIKWegEcECkZnv/71tJAKpzbeypdmoV/g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fkwHOyVV1ficPTEVW1ebpWVhWeTndbHFvZpDxq2hbS0=;
+ b=NB8R7Q+5bV3ZCr5C4QFqjgtBiMsq3TLnxOFjWGzPb2gFkzMYnM1tcCptRg56Y0NbUxu36yl03NUn/1hOCyjEKqhbervKMlYpHq2gCXSQmATchxZMogcH3aGRGaTUeuMMKiTWYUdZ9SCrMyPB/klN6iFtdYo+DlKycwWWqaYgQI0JgyyqTzgo1Xr9z2gb8Odusg/PeCXnCRvIhDB+1iiOv9DckahWCP5wU5s75LErSeFve7rQI6SFSISeikA7iTdNEPbh4QO0I61AjxeLFcAWLpN+BNE3GcjQ2KlTbnAnrvbAzGiLeyPMLChfqcsRfyjL9tA6TJyLKGUJ4vP1D7FodA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fkwHOyVV1ficPTEVW1ebpWVhWeTndbHFvZpDxq2hbS0=;
+ b=Ko4bZKl04qkOzCe5pP8eeHtbVjL85lB8G5StjixTCSrfs5gkM0e7DVKKVD/upGp644pXxhxhMPgtuKD7EJO9Nkol/DgT31+zOZsCd4EXYsXRgVO8s+DCLPUfzZ4kwx7W/TK56RrU07XwuH5IDIPS54NnvnElOIIajerBZkWWDj8=
+Received: from MN2PR18CA0030.namprd18.prod.outlook.com (2603:10b6:208:23c::35)
+ by MW3PR12MB4380.namprd12.prod.outlook.com (2603:10b6:303:5a::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.32; Mon, 24 Oct
+ 2022 11:27:13 +0000
+Received: from BL02EPF0000C405.namprd05.prod.outlook.com
+ (2603:10b6:208:23c:cafe::e7) by MN2PR18CA0030.outlook.office365.com
+ (2603:10b6:208:23c::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5746.23 via Frontend
+ Transport; Mon, 24 Oct 2022 11:27:12 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL02EPF0000C405.mail.protection.outlook.com (10.167.241.7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5723.20 via Frontend Transport; Mon, 24 Oct 2022 11:27:12 +0000
+Received: from majun-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Mon, 24 Oct
+ 2022 06:27:11 -0500
+From: Ma Jun <Jun.Ma2@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <felix.kuehling@amd.com>,
+ <alexander.deucher@amd.com>
+Subject: [PATCH 1/2] drm/amdkfd: Init the base cu processor id
+Date: Mon, 24 Oct 2022 19:26:38 +0800
+Message-ID: <20221024112639.3440664-1-Jun.Ma2@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF0000C405:EE_|MW3PR12MB4380:EE_
+X-MS-Office365-Filtering-Correlation-Id: 64413115-1fc6-4bf5-ed82-08dab5b2b26c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: SmIUKcK6wLBrxXhm51EUedtHr3+8NjpcLu5nQSzCXB0MKPNlqiXoymm2cywMRBGXMC3e9otpX5u1WG8poS2UrxfK6lcmRf5vh+wOfS/emAs4dZ9cS6SYmwK4pc7z5IfU3Rsrn4ruD3ioO48HfuwhIKypAgCsIgD2LA4XImyTl40RkKzO2qzkQ/jOn2iUMjhSh4E2MRhqeuennVofVrjY8gAxojhfrhbiA9nguRoLs/x1+mIguCyDYO2E4ofa0KGGW2eEPpDtE/1U/yVABrE2rvrT49EhvFHwjpEs61ftfwuNy+8Kw2cZPj6duJNwspgzWkGnkLT8PcMF0CCJ09ONFk3s+UJPeDHYR93KJlAYJCKl965VsYGrONn3S+VrvrgTSqbC+AEgSU0odcVeJyTNpCvnJxn8xC3+GJ/Vv90+v9qDmxNRo0IYyZqNxVBks80A2Xeo3m944fNQqWKean85w1rNJLa1umJA1UL4UQWamDZXss0jLzM/MaX0UH7C6VQQ+Bcc4e7HsQXO7RKoX4V6ZvocFvi+s9m92d59T70DijKDa1GZ/TaoyVq1+qiS3ctAJ0WHbZ0Y+ENknSfqlBjg7kMfWWF8UMy51mMceCISxbCHXeRMVzzvfj1vchmfhjlmSGTBC1lO4T6UKaC0iel0Kvx5SI7EtgpdFiznYelOWcEmg20Pk/fKehc7NAnAY5o26l915UdXNwOwIN5YKo00NsXkLRjMMFyfdgciI7PzDF0LdpGxxWIKwIG8tTuUNG9Y/CXqPimshHq2E7cVyaonOE5kBahFOgX7iHwKG+QaHUK5EGlvVTQLAJVm1jI90DhQ
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230022)(4636009)(136003)(346002)(396003)(39860400002)(376002)(451199015)(46966006)(36840700001)(40470700004)(8676002)(41300700001)(5660300002)(82740400003)(8936002)(4326008)(1076003)(82310400005)(26005)(426003)(36756003)(70586007)(478600001)(70206006)(16526019)(336012)(2616005)(7696005)(6666004)(47076005)(86362001)(40480700001)(186003)(81166007)(2906002)(36860700001)(316002)(110136005)(83380400001)(6636002)(40460700003)(356005)(54906003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2022 11:27:12.8323 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 64413115-1fc6-4bf5-ed82-08dab5b2b26c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0000C405.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4380
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,377 +98,128 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hyperv@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- xen-devel@lists.xenproject.org, linux-sunxi@lists.linux.dev,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- spice-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-mips@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- Thomas Zimmermann <tzimmermann@suse.de>, freedreno@lists.freedesktop.org
+Cc: guchun.chen@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Remove include statements for <drm/drm_fb_helper.h> where it is not
-required (i.e., most of them). In a few places include other header
-files that are required by the source code.
+Init and save the base cu processor id for later use
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c  | 1 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c     | 1 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h        | 1 -
- drivers/gpu/drm/arm/hdlcd_crtc.c                | 1 -
- drivers/gpu/drm/ast/ast_drv.h                   | 1 -
- drivers/gpu/drm/bridge/tc358762.c               | 2 +-
- drivers/gpu/drm/drm_crtc_helper.c               | 1 -
- drivers/gpu/drm/drm_gem_framebuffer_helper.c    | 1 -
- drivers/gpu/drm/drm_probe_helper.c              | 1 -
- drivers/gpu/drm/etnaviv/etnaviv_drv.h           | 3 ++-
- drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h | 1 -
- drivers/gpu/drm/hyperv/hyperv_drm_modeset.c     | 1 -
- drivers/gpu/drm/imx/imx-ldb.c                   | 2 +-
- drivers/gpu/drm/imx/imx-tve.c                   | 1 -
- drivers/gpu/drm/imx/parallel-display.c          | 2 +-
- drivers/gpu/drm/kmb/kmb_plane.c                 | 1 -
- drivers/gpu/drm/mgag200/mgag200_drv.h           | 1 -
- drivers/gpu/drm/qxl/qxl_drv.h                   | 1 -
- drivers/gpu/drm/rockchip/rockchip_drm_drv.h     | 2 +-
- drivers/gpu/drm/tidss/tidss_kms.c               | 1 -
- drivers/gpu/drm/v3d/v3d_drv.c                   | 1 -
- drivers/gpu/drm/vboxvideo/vbox_main.c           | 1 -
- drivers/gpu/drm/virtio/virtgpu_drv.h            | 1 -
- drivers/gpu/drm/xen/xen_drm_front_gem.c         | 1 -
- 24 files changed, 6 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_crat.c   | 24 +--------------------
+ drivers/gpu/drm/amd/amdkfd/kfd_device.c | 28 +++++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h   |  3 +++
+ 3 files changed, 32 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-index 491d4846fc02c..e1320edfc5274 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-@@ -26,7 +26,6 @@
- 
- #include <drm/display/drm_dp_helper.h>
- #include <drm/drm_edid.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_probe_helper.h>
- #include <drm/amdgpu_drm.h>
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+index d25ac9cbe5b2..4857ec5b9f46 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+@@ -30,26 +30,6 @@
  #include "amdgpu.h"
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-index dd6f9ae6fbe9f..b32b387599b5c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-@@ -40,7 +40,6 @@
- #include <drm/drm_crtc_helper.h>
- #include <drm/drm_edid.h>
- #include <drm/drm_gem_framebuffer_helper.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_vblank.h>
+ #include "amdgpu_amdkfd.h"
  
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-index 37322550d7508..8a39300b1a845 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-@@ -36,7 +36,6 @@
- #include <drm/drm_encoder.h>
- #include <drm/drm_fixed.h>
- #include <drm/drm_crtc_helper.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_framebuffer.h>
- #include <drm/drm_probe_helper.h>
- #include <linux/i2c.h>
-diff --git a/drivers/gpu/drm/arm/hdlcd_crtc.c b/drivers/gpu/drm/arm/hdlcd_crtc.c
-index 7030339fa2323..ddbe1dd2d44ef 100644
---- a/drivers/gpu/drm/arm/hdlcd_crtc.c
-+++ b/drivers/gpu/drm/arm/hdlcd_crtc.c
-@@ -19,7 +19,6 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_crtc.h>
- #include <drm/drm_fb_dma_helper.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_framebuffer.h>
- #include <drm/drm_gem_dma_helper.h>
- #include <drm/drm_of.h>
-diff --git a/drivers/gpu/drm/ast/ast_drv.h b/drivers/gpu/drm/ast/ast_drv.h
-index 74f41282444f6..d51b81fea9c80 100644
---- a/drivers/gpu/drm/ast/ast_drv.h
-+++ b/drivers/gpu/drm/ast/ast_drv.h
-@@ -38,7 +38,6 @@
- #include <drm/drm_encoder.h>
- #include <drm/drm_mode.h>
- #include <drm/drm_framebuffer.h>
--#include <drm/drm_fb_helper.h>
+-/* GPU Processor ID base for dGPUs for which VCRAT needs to be created.
+- * GPU processor ID are expressed with Bit[31]=1.
+- * The base is set to 0x8000_0000 + 0x1000 to avoid collision with GPU IDs
+- * used in the CRAT.
+- */
+-static uint32_t gpu_processor_id_low = 0x80001000;
+-
+-/* Return the next available gpu_processor_id and increment it for next GPU
+- *	@total_cu_count - Total CUs present in the GPU including ones
+- *			  masked off
+- */
+-static inline unsigned int get_and_inc_gpu_processor_id(
+-				unsigned int total_cu_count)
+-{
+-	int current_id = gpu_processor_id_low;
+-
+-	gpu_processor_id_low += total_cu_count;
+-	return current_id;
+-}
+-
+ /* Static table to describe GPU Cache information */
+ struct kfd_gpu_cache_info {
+ 	uint32_t	cache_size;
+@@ -2223,7 +2203,6 @@ static int kfd_create_vcrat_image_gpu(void *pcrat_image,
+ 	struct crat_subtype_computeunit *cu;
+ 	struct kfd_cu_info cu_info;
+ 	int avail_size = *size;
+-	uint32_t total_num_of_cu;
+ 	int num_of_cache_entries = 0;
+ 	int cache_mem_filled = 0;
+ 	uint32_t nid = 0;
+@@ -2275,8 +2254,7 @@ static int kfd_create_vcrat_image_gpu(void *pcrat_image,
+ 	cu->wave_front_size = cu_info.wave_front_size;
+ 	cu->array_count = cu_info.num_shader_arrays_per_engine *
+ 		cu_info.num_shader_engines;
+-	total_num_of_cu = (cu->array_count * cu_info.num_cu_per_sh);
+-	cu->processor_id_low = get_and_inc_gpu_processor_id(total_num_of_cu);
++	cu->processor_id_low = kdev->processor_id_low;
+ 	cu->num_cu_per_array = cu_info.num_cu_per_sh;
+ 	cu->max_slots_scatch_cu = cu_info.max_scratch_slots_per_cu;
+ 	cu->num_banks = cu_info.num_shader_engines;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+index ae1f0be3f3a1..099df4598a42 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+@@ -38,6 +38,32 @@
  
- #define DRIVER_AUTHOR		"Dave Airlie"
+ #define MQD_SIZE_ALIGNED 768
  
-diff --git a/drivers/gpu/drm/bridge/tc358762.c b/drivers/gpu/drm/bridge/tc358762.c
-index 7f4fce1aa9988..0b6a284368859 100644
---- a/drivers/gpu/drm/bridge/tc358762.c
-+++ b/drivers/gpu/drm/bridge/tc358762.c
-@@ -11,6 +11,7 @@
-  */
++/* GPU Processor ID base for dGPUs for which VCRAT needs to be created.
++ * GPU processor ID are expressed with Bit[31]=1.
++ * The base is set to 0x8000_0000 + 0x1000 to avoid collision with GPU IDs
++ * used in the CRAT.
++ */
++static uint32_t gpu_processor_id_low = 0x80001000;
++
++/* Return the next available gpu_processor_id and increment it for next GPU
++ *	@total_cu_count - Total CUs present in the GPU including ones
++ *			  masked off
++ */
++static inline unsigned int get_and_inc_gpu_processor_id(struct kfd_dev *kfd)
++{
++	struct amdgpu_device *adev = kfd->adev;
++	unsigned int array_count = 0;
++	unsigned int total_cu_count = 0;
++
++	kfd->processor_id_low = gpu_processor_id_low;
++
++	array_count = adev->gfx.config.max_sh_per_se * adev->gfx.config.max_shader_engines;
++	total_cu_count = array_count * adev->gfx.config.max_cu_per_sh;
++
++	gpu_processor_id_low += total_cu_count;
++	return 0;
++}
++
+ /*
+  * kfd_locked is used to lock the kfd driver during suspend or reset
+  * once locked, kfd driver will stop any further GPU execution.
+@@ -656,6 +682,8 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
  
- #include <linux/delay.h>
-+#include <linux/mod_devicetable.h>
- #include <linux/module.h>
- #include <linux/of_graph.h>
- #include <linux/regulator/consumer.h>
-@@ -19,7 +20,6 @@
+ 	amdgpu_amdkfd_get_local_mem_info(kfd->adev, &kfd->local_mem_info);
  
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_crtc.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_mipi_dsi.h>
- #include <drm/drm_of.h>
- #include <drm/drm_panel.h>
-diff --git a/drivers/gpu/drm/drm_crtc_helper.c b/drivers/gpu/drm/drm_crtc_helper.c
-index f5fb22e0d0337..a209659a996c7 100644
---- a/drivers/gpu/drm/drm_crtc_helper.c
-+++ b/drivers/gpu/drm/drm_crtc_helper.c
-@@ -43,7 +43,6 @@
- #include <drm/drm_drv.h>
- #include <drm/drm_edid.h>
- #include <drm/drm_encoder.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_framebuffer.h>
- #include <drm/drm_print.h>
-diff --git a/drivers/gpu/drm/drm_gem_framebuffer_helper.c b/drivers/gpu/drm/drm_gem_framebuffer_helper.c
-index e35e224e6303a..e93533b86037f 100644
---- a/drivers/gpu/drm/drm_gem_framebuffer_helper.c
-+++ b/drivers/gpu/drm/drm_gem_framebuffer_helper.c
-@@ -9,7 +9,6 @@
- #include <linux/module.h>
++	get_and_inc_gpu_processor_id(kfd);
++
+ 	if (kfd_topology_add_device(kfd)) {
+ 		dev_err(kfd_device, "Error adding device to topology\n");
+ 		goto kfd_topology_add_device_error;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+index 182eb67edbc5..4c06b233472f 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+@@ -370,6 +370,9 @@ struct kfd_dev {
  
- #include <drm/drm_damage_helper.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_framebuffer.h>
- #include <drm/drm_gem.h>
-diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm_probe_helper.c
-index 69b0b2b9cc1c5..ef2b41b2eb7b8 100644
---- a/drivers/gpu/drm/drm_probe_helper.c
-+++ b/drivers/gpu/drm/drm_probe_helper.c
-@@ -36,7 +36,6 @@
- #include <drm/drm_client.h>
- #include <drm/drm_crtc.h>
- #include <drm/drm_edid.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_modeset_helper_vtables.h>
- #include <drm/drm_print.h>
-diff --git a/drivers/gpu/drm/etnaviv/etnaviv_drv.h b/drivers/gpu/drm/etnaviv/etnaviv_drv.h
-index f32f4771dada7..2bb4c25565dcb 100644
---- a/drivers/gpu/drm/etnaviv/etnaviv_drv.h
-+++ b/drivers/gpu/drm/etnaviv/etnaviv_drv.h
-@@ -6,13 +6,14 @@
- #ifndef __ETNAVIV_DRV_H__
- #define __ETNAVIV_DRV_H__
+ 	/* Track per device allocated watch points. */
+ 	uint32_t alloc_watch_ids;
++
++	/* cu processor id base */
++	unsigned int	processor_id_low;
+ };
  
-+#include <linux/io.h>
- #include <linux/list.h>
- #include <linux/mm_types.h>
- #include <linux/sizes.h>
- #include <linux/time64.h>
- #include <linux/types.h>
- 
--#include <drm/drm_fb_helper.h>
-+#include <drm/drm_drv.h>
- #include <drm/drm_gem.h>
- #include <drm/etnaviv_drm.h>
- #include <drm/gpu_scheduler.h>
-diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h
-index 4a0cd22c10e21..f957552c6c507 100644
---- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h
-+++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h
-@@ -19,7 +19,6 @@
- #include <linux/i2c.h>
- 
- #include <drm/drm_edid.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_framebuffer.h>
- 
- struct hibmc_connector {
-diff --git a/drivers/gpu/drm/hyperv/hyperv_drm_modeset.c b/drivers/gpu/drm/hyperv/hyperv_drm_modeset.c
-index 28e732f94bf2f..6c6b572987973 100644
---- a/drivers/gpu/drm/hyperv/hyperv_drm_modeset.c
-+++ b/drivers/gpu/drm/hyperv/hyperv_drm_modeset.c
-@@ -8,7 +8,6 @@
- #include <drm/drm_damage_helper.h>
- #include <drm/drm_drv.h>
- #include <drm/drm_edid.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_format_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_framebuffer.h>
-diff --git a/drivers/gpu/drm/imx/imx-ldb.c b/drivers/gpu/drm/imx/imx-ldb.c
-index 41799011f73b6..c45fc8f4744d0 100644
---- a/drivers/gpu/drm/imx/imx-ldb.c
-+++ b/drivers/gpu/drm/imx/imx-ldb.c
-@@ -7,6 +7,7 @@
- 
- #include <linux/clk.h>
- #include <linux/component.h>
-+#include <linux/i2c.h>
- #include <linux/media-bus-format.h>
- #include <linux/mfd/syscon.h>
- #include <linux/mfd/syscon/imx6q-iomuxc-gpr.h>
-@@ -23,7 +24,6 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
- #include <drm/drm_edid.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_managed.h>
- #include <drm/drm_of.h>
- #include <drm/drm_panel.h>
-diff --git a/drivers/gpu/drm/imx/imx-tve.c b/drivers/gpu/drm/imx/imx-tve.c
-index 6b34fac3f73a0..d64ebd2cf15e8 100644
---- a/drivers/gpu/drm/imx/imx-tve.c
-+++ b/drivers/gpu/drm/imx/imx-tve.c
-@@ -19,7 +19,6 @@
- 
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_edid.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_managed.h>
- #include <drm/drm_probe_helper.h>
- #include <drm/drm_simple_kms_helper.h>
-diff --git a/drivers/gpu/drm/imx/parallel-display.c b/drivers/gpu/drm/imx/parallel-display.c
-index 06723b2e9b847..0fa0b590830b6 100644
---- a/drivers/gpu/drm/imx/parallel-display.c
-+++ b/drivers/gpu/drm/imx/parallel-display.c
-@@ -8,6 +8,7 @@
- #include <linux/component.h>
- #include <linux/media-bus-format.h>
- #include <linux/module.h>
-+#include <linux/of.h>
- #include <linux/platform_device.h>
- #include <linux/videodev2.h>
- 
-@@ -16,7 +17,6 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
- #include <drm/drm_edid.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_managed.h>
- #include <drm/drm_of.h>
- #include <drm/drm_panel.h>
-diff --git a/drivers/gpu/drm/kmb/kmb_plane.c b/drivers/gpu/drm/kmb/kmb_plane.c
-index a42f63f6f9573..d172a302f9024 100644
---- a/drivers/gpu/drm/kmb/kmb_plane.c
-+++ b/drivers/gpu/drm/kmb/kmb_plane.c
-@@ -9,7 +9,6 @@
- #include <drm/drm_crtc.h>
- #include <drm/drm_crtc_helper.h>
- #include <drm/drm_fb_dma_helper.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_framebuffer.h>
- #include <drm/drm_gem_dma_helper.h>
-diff --git a/drivers/gpu/drm/mgag200/mgag200_drv.h b/drivers/gpu/drm/mgag200/mgag200_drv.h
-index f0c2349404b46..9e604dbb8e448 100644
---- a/drivers/gpu/drm/mgag200/mgag200_drv.h
-+++ b/drivers/gpu/drm/mgag200/mgag200_drv.h
-@@ -18,7 +18,6 @@
- #include <drm/drm_connector.h>
- #include <drm/drm_crtc.h>
- #include <drm/drm_encoder.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_gem.h>
- #include <drm/drm_gem_shmem_helper.h>
- #include <drm/drm_plane.h>
-diff --git a/drivers/gpu/drm/qxl/qxl_drv.h b/drivers/gpu/drm/qxl/qxl_drv.h
-index 432758ad39a35..76f060810f634 100644
---- a/drivers/gpu/drm/qxl/qxl_drv.h
-+++ b/drivers/gpu/drm/qxl/qxl_drv.h
-@@ -38,7 +38,6 @@
- 
- #include <drm/drm_crtc.h>
- #include <drm/drm_encoder.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_gem_ttm_helper.h>
- #include <drm/drm_ioctl.h>
- #include <drm/drm_gem.h>
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.h b/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
-index 1641440837af5..aeb03a57240fd 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
-@@ -9,10 +9,10 @@
- #ifndef _ROCKCHIP_DRM_DRV_H
- #define _ROCKCHIP_DRM_DRV_H
- 
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_gem.h>
- 
-+#include <linux/i2c.h>
- #include <linux/module.h>
- #include <linux/component.h>
- 
-diff --git a/drivers/gpu/drm/tidss/tidss_kms.c b/drivers/gpu/drm/tidss/tidss_kms.c
-index afb2879980c6c..345bcc3011e4f 100644
---- a/drivers/gpu/drm/tidss/tidss_kms.c
-+++ b/drivers/gpu/drm/tidss/tidss_kms.c
-@@ -10,7 +10,6 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
- #include <drm/drm_crtc_helper.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_gem_framebuffer_helper.h>
- #include <drm/drm_of.h>
- #include <drm/drm_panel.h>
-diff --git a/drivers/gpu/drm/v3d/v3d_drv.c b/drivers/gpu/drm/v3d/v3d_drv.c
-index e8c975b815859..478f1f0f60dec 100644
---- a/drivers/gpu/drm/v3d/v3d_drv.c
-+++ b/drivers/gpu/drm/v3d/v3d_drv.c
-@@ -22,7 +22,6 @@
- #include <linux/reset.h>
- 
- #include <drm/drm_drv.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_managed.h>
- #include <uapi/drm/v3d_drm.h>
- 
-diff --git a/drivers/gpu/drm/vboxvideo/vbox_main.c b/drivers/gpu/drm/vboxvideo/vbox_main.c
-index c9e8b3a63c621..3b83e550f4df5 100644
---- a/drivers/gpu/drm/vboxvideo/vbox_main.c
-+++ b/drivers/gpu/drm/vboxvideo/vbox_main.c
-@@ -11,7 +11,6 @@
- #include <linux/pci.h>
- #include <linux/vbox_err.h>
- 
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_crtc_helper.h>
- #include <drm/drm_damage_helper.h>
- 
-diff --git a/drivers/gpu/drm/virtio/virtgpu_drv.h b/drivers/gpu/drm/virtio/virtgpu_drv.h
-index 9b98470593b06..b7a64c7dcc2c9 100644
---- a/drivers/gpu/drm/virtio/virtgpu_drv.h
-+++ b/drivers/gpu/drm/virtio/virtgpu_drv.h
-@@ -35,7 +35,6 @@
- #include <drm/drm_atomic.h>
- #include <drm/drm_drv.h>
- #include <drm/drm_encoder.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_framebuffer.h>
- #include <drm/drm_gem.h>
-diff --git a/drivers/gpu/drm/xen/xen_drm_front_gem.c b/drivers/gpu/drm/xen/xen_drm_front_gem.c
-index e31554d7139f1..4c95ebcdcc2d3 100644
---- a/drivers/gpu/drm/xen/xen_drm_front_gem.c
-+++ b/drivers/gpu/drm/xen/xen_drm_front_gem.c
-@@ -12,7 +12,6 @@
- #include <linux/scatterlist.h>
- #include <linux/shmem_fs.h>
- 
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_gem.h>
- #include <drm/drm_prime.h>
- #include <drm/drm_probe_helper.h>
+ struct kfd_ipc_obj;
 -- 
-2.38.0
+2.25.1
 
