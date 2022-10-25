@@ -1,65 +1,53 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECCFE60CD20
-	for <lists+amd-gfx@lfdr.de>; Tue, 25 Oct 2022 15:12:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC62D60CD1E
+	for <lists+amd-gfx@lfdr.de>; Tue, 25 Oct 2022 15:12:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5C1310E36D;
-	Tue, 25 Oct 2022 13:12:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DF3110E385;
+	Tue, 25 Oct 2022 13:12:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com
- [IPv6:2607:f8b0:4864:20::22c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC97F10E278;
- Tue, 25 Oct 2022 08:20:38 +0000 (UTC)
-Received: by mail-oi1-x22c.google.com with SMTP id l5so13344366oif.7;
- Tue, 25 Oct 2022 01:20:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=hvpi/0hv5kwOhSpI6auXNn4+exWXdyR8pJzRSsgKkfY=;
- b=SldVfq6UtUw8/E8uuD2Mv2nV74ZmTFj1gsPKITkVZY9Nny096pqIdCIDaZHvkvaHWB
- ila45Io6vb1LMjxDOP/K8zeIpPHQK1j716DNAdkkdmOhkQtej0hgW+YTExbLFCEroavx
- WcFvpgwU8/iNYALOa5sNqRndSqHB97ptGdbDoAgjyqSvLze/2U96HgSAB/UNKNiUQgVR
- jcFHwri1clWWl2qvpCDZ3OJIRdzvROQC66XFpJELNepSiaSrNgibfKqCH26T6RjlbfeV
- /Turt4TaWN9fntByk9k4LThOWfYGX9tE8wNmXyPuzKfVdLrLxhKKL3pjvFS7BWRwc6A2
- Gx7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=hvpi/0hv5kwOhSpI6auXNn4+exWXdyR8pJzRSsgKkfY=;
- b=jBvJgF2/rVCOmWYKKReW1ABP+C1IOGYUPnbIh0TC7pB9sabHD6T7hc1XX1uHEt4Y5G
- cnlBcVtc7S5xMXkIGTxItX/1DHBZtrQlLMzU6+NWqVHXKfh19+ctgc3XOwskCTPrRTO0
- EqYd/fsxIqMkaRCjSKqMZ/xy41MBSTe5Ffr11KzkjoQtto81gsN10a6WLcF/wRkYI4fW
- Zlh8UYLdPR7cxwU59j3nDFtsKY2QoJhbNU8CmxkOUkMmV5IrctXdnrhvmbLy5RV7gh/X
- c+CQT9L159rSWrE5z2Xuu7jDJjw8703NmlLwXsH2d2lm6ahFMNOoCcgvBX/KMa9BfcOI
- zprA==
-X-Gm-Message-State: ACrzQf1eLxUaoxfBih0QRTYdKgECa5HatelrVo0OMAP6mJw0g8ArPa2C
- CLnAmnUNKpfF2tjFQmWhZHfuGzUToCZR73So
-X-Google-Smtp-Source: AMsMyM7N+qbk17bd86+vllWY1SC8PlOgZfEHTrcXMbf7VBSb7zi4qP1+z4oVr2S6VeXjNygOKCKVeg==
-X-Received: by 2002:a17:90a:7805:b0:20d:4fd9:9a0e with SMTP id
- w5-20020a17090a780500b0020d4fd99a0emr43652081pjk.169.1666686027363; 
- Tue, 25 Oct 2022 01:20:27 -0700 (PDT)
-Received: from mail.google.com (122-58-209-93-fibre.sparkbb.co.nz.
- [122.58.209.93]) by smtp.gmail.com with ESMTPSA id
- b10-20020a170902650a00b0017f756563bcsm812496plk.47.2022.10.25.01.20.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 25 Oct 2022 01:20:26 -0700 (PDT)
-Date: Tue, 25 Oct 2022 21:20:19 +1300
-From: Paulo Miguel Almeida <paulo.miguel.almeida.rodenas@gmail.com>
-To: Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH] [next] amdkfd: remove unused struct cdit_header
-Message-ID: <Y1ecQ/cyIpun6eY8@mail.google.com>
+X-Greylist: delayed 352 seconds by postgrey-1.36 at gabe;
+ Tue, 25 Oct 2022 08:27:26 UTC
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk
+ [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EAEC10E278
+ for <amd-gfx@lists.freedesktop.org>; Tue, 25 Oct 2022 08:27:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=EtmojnUqnCVKWOh8C7J92DZrsq9/z0GK3KV0rT9mLpw=; b=BiKMTB/c8/919DvH6LZjZyf2T7
+ Lk+Oc0WQgSHrU043Y+cnUTrcCAWFFIRwbP/gwShZJOH7Ph6ZjNkE4YzQLwl+rZ6FQMYOZVZ1KaAAv
+ JrHnpzzBk58E6Bw1q1q6MogLgb0j7g2H4c3zZg9FWX17eaRq/RM83PQCbfJMvNXNS9KzKq0aINVsM
+ KaygbGcRwn6F39U9DxcVpgeF99Nlne7F879RubTg63DmK7uq37EnDvG5KYZFfCKozoHb2sgk7eO4l
+ lwO6xacAFy+7uJjlKmYCqjbyjVIn9IsBwGV8SHQv4hpDF3zC3DsR7nT9nOHu1R4lpXKIo3O5UJycU
+ fdMcQzOw==;
+Received: from shell.armlinux.org.uk
+ ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34940)
+ by pandora.armlinux.org.uk with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
+ (envelope-from <linux@armlinux.org.uk>)
+ id 1onFBQ-0004Dt-7i; Tue, 25 Oct 2022 09:21:12 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+ (envelope-from <linux@shell.armlinux.org.uk>)
+ id 1onFBL-0007xV-IX; Tue, 25 Oct 2022 09:21:07 +0100
+Date: Tue, 25 Oct 2022 09:21:07 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Jakub Kicinski <kuba@kernel.org>
+Subject: Re: [linux-next:master] BUILD SUCCESS WITH WARNING
+ 76cf65d1377f733af1e2a55233e3353ffa577f54
+Message-ID: <Y1eccygLSjEoPdHV@shell.armlinux.org.uk>
+References: <6356c451.pwLIF+9EvDUrDjTY%lkp@intel.com>
+ <20221024145527.0eff7844@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20221024145527.0eff7844@kernel.org>
 X-Mailman-Approved-At: Tue, 25 Oct 2022 13:12:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,71 +60,38 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: paulo.miguel.almeida.rodenas@gmail.com, linux-kernel@vger.kernel.org
+Cc: kernel test robot <lkp@intel.com>, linux-parisc@vger.kernel.org,
+ netdev@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ linux-mediatek@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
+ ntfs3@lists.linux.dev, linux-arm-kernel@lists.infradead.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-struct cdit_header was never used across any of the amd drivers nor
-this is exposed to UAPI so it can be removed.
+On Mon, Oct 24, 2022 at 02:55:27PM -0700, Jakub Kicinski wrote:
+> On Tue, 25 Oct 2022 00:58:57 +0800 kernel test robot wrote:
+> > drivers/net/phy/phylink.c:588 phylink_validate_mask_caps() warn: variable dereferenced before check 'state' (see line 583)
+> 
+> Hi Russell, I think the warning is semi-legit. Your commit f392a1846489
+> ("net: phylink: provide phylink_validate_mask_caps() helper") added an 
+> if (state) before defer'ing state but it's already deref'ed higher up
+> so can't be null.
 
-This patch removes struct cdit_header and refactor code accordingly
+Not me, Sean. My original implementation of phylink_validate_mask_caps()
+doesn't know anything about rate matching, so my version didn't have
+this issue.
 
-Signed-off-by: Paulo Miguel Almeida <paulo.miguel.almeida.rodenas@gmail.com>
----
+Sean's version of my patch (which is what was submitted) added the
+dereference that causes this, so, it's up to Sean to figure out a fix -
+but he reading his follow up to the build bot's message, he seems to
+be passing it over to me to fix!
 
-At some point, removing this structure was suggested during a review for
-a different patch but the clean up patch was never sent.
+I've got other issues to be worked on right now, and have no time to
+spare to fix other people's mistakes. Sorry.
 
-https://lore.kernel.org/lkml/0eeaa0b7-7ae6-c244-cfcd-86333d8f9b8b@amd.com/
----
- drivers/gpu/drm/amd/amdkfd/kfd_crat.h | 24 +-----------------------
- 1 file changed, 1 insertion(+), 23 deletions(-)
+You can't always rely on the apparent author mentioned in the commit to
+be the actual person responsible for the changes in a patch.
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.h b/drivers/gpu/drm/amd/amdkfd/kfd_crat.h
-index 482ba84a728d..22893ff7b9a1 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.h
-@@ -29,11 +29,10 @@
- #pragma pack(1)
- 
- /*
-- * 4CC signature values for the CRAT and CDIT ACPI tables
-+ * 4CC signature value for the CRAT ACPI table
-  */
- 
- #define CRAT_SIGNATURE	"CRAT"
--#define CDIT_SIGNATURE	"CDIT"
- 
- /*
-  * Component Resource Association Table (CRAT)
-@@ -292,27 +291,6 @@ struct crat_subtype_generic {
- 	uint32_t	flags;
- };
- 
--/*
-- * Component Locality Distance Information Table (CDIT)
-- */
--#define CDIT_OEMID_LENGTH	6
--#define CDIT_OEMTABLEID_LENGTH	8
--
--struct cdit_header {
--	uint32_t	signature;
--	uint32_t	length;
--	uint8_t		revision;
--	uint8_t		checksum;
--	uint8_t		oem_id[CDIT_OEMID_LENGTH];
--	uint8_t		oem_table_id[CDIT_OEMTABLEID_LENGTH];
--	uint32_t	oem_revision;
--	uint32_t	creator_id;
--	uint32_t	creator_revision;
--	uint32_t	total_entries;
--	uint16_t	num_domains;
--	uint8_t		entry[1];
--};
--
- #pragma pack()
- 
- struct kfd_dev;
 -- 
-2.37.3
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
