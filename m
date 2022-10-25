@@ -1,51 +1,77 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43BAA60C4F8
-	for <lists+amd-gfx@lfdr.de>; Tue, 25 Oct 2022 09:25:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA78760C4FB
+	for <lists+amd-gfx@lfdr.de>; Tue, 25 Oct 2022 09:25:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6145510E185;
-	Tue, 25 Oct 2022 07:25:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B01D310E18B;
+	Tue, 25 Oct 2022 07:25:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from szxga08-in.huawei.com (szxga08-in.huawei.com [45.249.212.255])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B663010E0DB
- for <amd-gfx@lists.freedesktop.org>; Tue, 25 Oct 2022 02:16:38 +0000 (UTC)
-Received: from dggpemm500024.china.huawei.com (unknown [172.30.72.56])
- by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4MxFmv6qXjz15M3T;
- Tue, 25 Oct 2022 10:11:43 +0800 (CST)
-Received: from dggpemm500007.china.huawei.com (7.185.36.183) by
- dggpemm500024.china.huawei.com (7.185.36.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Tue, 25 Oct 2022 10:16:35 +0800
-Received: from [10.174.178.174] (10.174.178.174) by
- dggpemm500007.china.huawei.com (7.185.36.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Tue, 25 Oct 2022 10:16:33 +0800
-Subject: Re: [PATCH v2] kset: fix memory leak when kset_register() returns
- error
-To: Luben Tuikov <luben.tuikov@amd.com>, <linux-kernel@vger.kernel.org>,
- <qemu-devel@nongnu.org>, <linux-f2fs-devel@lists.sourceforge.net>,
- <linux-erofs@lists.ozlabs.org>, <ocfs2-devel@oss.oracle.com>,
- <linux-mtd@lists.infradead.org>, <amd-gfx@lists.freedesktop.org>
-References: <20221024121910.1169801-1-yangyingliang@huawei.com>
- <176ae1a1-9240-eef8-04e9-000d47646f4a@amd.com>
- <dcb8b35a-7d0d-cc00-41e3-6e66837c506f@amd.com>
-From: Yang Yingliang <yangyingliang@huawei.com>
-Message-ID: <26c8c125-453c-af32-a66c-2a37e964ce19@huawei.com>
-Date: Tue, 25 Oct 2022 10:16:33 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
-MIME-Version: 1.0
-In-Reply-To: <dcb8b35a-7d0d-cc00-41e3-6e66837c506f@amd.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [10.174.178.174]
-X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
- dggpemm500007.china.huawei.com (7.185.36.183)
-X-CFilter-Loop: Reflected
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com
+ [66.111.4.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B747510E0B0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 25 Oct 2022 03:23:49 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailout.nyi.internal (Postfix) with ESMTP id 5307A5C014E;
+ Mon, 24 Oct 2022 23:23:47 -0400 (EDT)
+Received: from imap47 ([10.202.2.97])
+ by compute5.internal (MEProxy); Mon, 24 Oct 2022 23:23:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lunnova.dev; h=
+ cc:content-transfer-encoding:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to; s=fm1; t=1666668227; x=
+ 1666754627; bh=PTO0nLnc0QQBliLpeSTBo+dWNW3ZR0ukG2MTy7ih80U=; b=r
+ P1Zp3x2xtD6ceQST96JOfJ/L9kZuMoxlYMq3BsvSjJXOM1bAMfNkPA1147mlY85Q
+ /r9TBMvYXe9HviXnCMaGxmf7tT4KH0ZpeGLIjLmNmr52clX6TBDhiRLUES4/jDhS
+ 6LEP+xJC7x9Q/PAbUMwveyMAlE87O5nt4gUvhpKYdqqI+nEl0+WbziBirQK5moCC
+ ePnwe2TbtCgZ7PMjqHWjzjALotHruPA7xpgrwpFohjvfFPzsqP7xq8NHWM+Jw7Bk
+ a/Vqz0yry0RKyWx1wIsqSN5xuaMvnIFU35qwiH6XuZXr4n+0/CrM9IOxyrmyyG7Y
+ CnZFuFSTffhu4baXzCf0Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-transfer-encoding:content-type
+ :date:date:feedback-id:feedback-id:from:from:in-reply-to
+ :in-reply-to:message-id:mime-version:references:reply-to:sender
+ :subject:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender
+ :x-me-sender:x-sasl-enc; s=fm3; t=1666668227; x=1666754627; bh=P
+ TO0nLnc0QQBliLpeSTBo+dWNW3ZR0ukG2MTy7ih80U=; b=q8m8yuLMR4nlaZuS4
+ wkaejhaIpRGyVwQjsXoj/BiyzUVEyryYTh6zj6EkHulFsx9m9zo+Z1Zv5b6cOyYv
+ ahvpYiSUgHJiWKxKnY4jpfwZh1551noBlZBf3RYYeofhLWU3A31FUKcPLHkJKDsu
+ CXrAQXzwtMpn+Lnv183s3FZ8ynCVD8AZ8BxSrLl2LRmJswxTR6eQ6XzkzsIv4jds
+ DeVz8tygDbm/XZY3bQV/fKoVsfi9/4xeA5+1FzzxN4FxZDYXJ2esNAMvpyyGF+G5
+ yXKaz4v9XixMveBfvWN/5r+AqL1sbaRr+uIUv7q6B2tQegWNd3kpJEKthYWCaJFJ
+ lrPqA==
+X-ME-Sender: <xms:w1ZXYxjj2Fi064lFsORrHnw-QuZ1OTb23XtyDhTtyWUv9CIGh8rf3g>
+ <xme:w1ZXY2BddiKFIg0cYw62PgdeDGORJBhez3P34R25dVenMu3FIN5UO_P5awx9svoDz
+ plGb91g5_IzW1H8Pg4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrgedthedgjedvucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucenucfjughrpefofgggkfgjfhffhffvufgtgfesth
+ hqredtreerjeenucfhrhhomhepfdfnuhhnrgcupfhovhgrfdcuoehgihhtsehluhhnnhho
+ vhgrrdguvghvqeenucggtffrrghtthgvrhhnpeejkeetveeluefgtefglefhvedtteelue
+ dvfeehvdeltdeivefhheeugefffeevvdenucevlhhushhtvghrufhiiigvpedtnecurfgr
+ rhgrmhepmhgrihhlfhhrohhmpehgihhtsehluhhnnhhovhgrrdguvghv
+X-ME-Proxy: <xmx:w1ZXYxFaKlANd-B2pxNLvGGOrH9fHM7-3k76k1NrjleeiY8Xu0VslA>
+ <xmx:w1ZXY2QLgzlu3qlJ3Pb0EUPn9w5E-8JkJ6wjSaUgZO53b5u6DgEnLw>
+ <xmx:w1ZXY-x1e60vugmFQdzsq9BBAOKa0WEUdlIgJHKMIdNo-3w-BqHXog>
+ <xmx:w1ZXYzvc5IPTh0QZgb1Qi5XJGdj_QGZCow-bidoxH6s_4CeBfu-Q7A>
+Feedback-ID: i9ac946e8:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+ id 1F8BBA6007C; Mon, 24 Oct 2022 23:23:47 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1047-g9e4af4ada4-fm-20221005.001-g9e4af4ad
+Mime-Version: 1.0
+Message-Id: <f49e6008-fd01-4942-b39a-ab605548ade2@app.fastmail.com>
+In-Reply-To: <20221014084641.128280-2-christian.koenig@amd.com>
+References: <20221014084641.128280-1-christian.koenig@amd.com>
+ <20221014084641.128280-2-christian.koenig@amd.com>
+Date: Mon, 24 Oct 2022 20:23:26 -0700
+From: "Luna Nova" <git@lunnova.dev>
+To: amd-gfx@lists.freedesktop.org, christian.koenig@amd.com
+Subject: Re: [PATCH 01/13] drm/scheduler: fix fence ref counting
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Tue, 25 Oct 2022 07:24:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,98 +84,29 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, richard@nod.at, mst@redhat.com,
- gregkh@linuxfoundation.org, somlo@cmu.edu, chao@kernel.org,
- huangjianan@oppo.com, liushixin2@huawei.com, joseph.qi@linux.alibaba.com,
- jlbec@evilplan.org, hsiangkao@linux.alibaba.com, rafael@kernel.org,
- jaegeuk@kernel.org, akpm@linux-foundation.org, mark@fasheh.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+This patch doesn't apply nicely on 6.0, seems amd-staging-drm-next is mi=
+ssing 9b04369b060fd4885f728b7a4ab4851ffb1abb64 drm/scheduler: Don't kill=
+ jobs in interrupt context
 
-On 2022/10/25 5:25, Luben Tuikov wrote:
-> On 2022-10-24 17:06, Luben Tuikov wrote:
->> On 2022-10-24 08:19, Yang Yingliang wrote:
->>> Inject fault while loading module, kset_register() may fail.
->>> If it fails, the name allocated by kobject_set_name() which
->>> is called before kset_register() is leaked, because refcount
->>> of kobject is hold in kset_init().
->> "is hold" --> "was set".
->>
->> Also, I'd say "which must be called" instead of "is", since
->> we cannot register kobj/kset without a name--the kobj code crashes,
->> and we want to make this clear. IOW, a novice user may wonder
->> where "is" it called, as opposed to learning that they "must"
->> call it to allocate/set a name, before calling kset_register().
->>
->> So, I'd say this:
->>
->> "If it fails, the name allocated by kobject_set_name() which must
->>   be called before a call to kset_regsiter() is leaked, since
->>   refcount of kobj was set in kset_init()."
-> Actually, to be a bit more clear:
->
-> "If kset_register() fails, the name allocated by kobject_set_name(),
->   namely kset.kobj.name, which must be called before a call to kset_register(),
->   may be leaked, if the caller doesn't explicitly free it, say by calling kset_put().
->
->   To mitigate this, we free the name in kset_register() when an error is encountered,
->   i.e. when kset_register() returns an error."
-Thanks for you suggestion.
->
->>> As a kset may be embedded in a larger structure which needs
->>> be freed in release() function or error path in callers, we
->> Drop "As", start with "A kset". "which needs _to_ be".
->> Also please specify that the release is part of the ktype,
->> like this:
->>
->> "A kset may be embedded in a larger structure which needs to be
->>   freed in ktype.release() or error path in callers, we ..."
->>
->>> can not call kset_put() in kset_register(), or it will cause
->>> double free, so just call kfree_const() to free the name and
->>> set it to NULL.
->>>
->>> With this fix, the callers don't need to care about the name
->>> freeing and call an extra kset_put() if kset_register() fails.
->> This is unclear because you're *missing* a verb:
->> "and call an extra kset_put()".
->> Please add the proper verb _between_ "and call", something like,
->>
->> "With this fix, the callers don't need to care about freeing
->>   the name of the kset, and _can_ call kset_put() if kset_register() fails."
-I was mean
-the callers don't need to care about freeing the name of the kset and
-the callers don't need to care about calling kset_put()
+On Fri, 14 Oct 2022, at 01:46, Christian K=C3=B6nig wrote:
+> We leaked dependency fences when processes were beeing killed.
+>=20
+> Additional to that grab a reference to the last scheduled fence.
+> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/dr=
+m/scheduler/sched_entity.c
+> index 43d337d8b153..243ff384cde8 100644
+> --- a/drivers/gpu/drm/scheduler/sched_entity.c
+> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
+> @@ -207,6 +207,7 @@ static void drm_sched_entity_kill_jobs_cb(struct d=
+ma_fence *f,
+> struct drm_sched_job *job =3D container_of(cb, struct drm_sched_job,
+> finish_cb);
+> =20
+> + dma_fence_put(f);
+Conflict here, is INIT_WORK with that commit.
+> init_irq_work(&job->work, drm_sched_entity_kill_jobs_irq_work);
+> irq_work_queue(&job->work);
 
-Thanks,
-Yang
->>
->> Choose a proper verb here: can, should, cannot, should not, etc.
->>
->> We can do this because you set "kset.kobj.name to NULL, and this
->> is checked for in kobject_cleanup(). We just need to stipulate
->> whether they should/shouldn't have to call kset_put(), or can free the kset
->> and/or the embedding object themselves. This really depends
->> on how we want kset_register() to behave in the future, and on
->> user's own ktype.release implementation...
-> Forgot "may", "may not".
->
-> So, do we want to say "may call kset_put()", like:
->
-> "With this fix, the callers need not care about freeing
->   the name of the kset, and _may_ call kset_put() if kset_register() fails."
->
-> Or do we want to say "should" or even "must"--it really depends on
-> what else is (would be) going on in kobj registration.
->
-> Although, the user may have additional work to be done in the ktype.release()
-> callback for the embedding object. It would be good to give them the freedom,
-> i.e. "may", to call kset_put(). If that's not the case, this must be explicitly
-> stipulated with the proper verb.
->
-> Regards,
-> Luben
->
-> .
