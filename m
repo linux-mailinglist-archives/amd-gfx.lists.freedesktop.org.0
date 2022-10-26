@@ -2,64 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0218760E332
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Oct 2022 16:21:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7268F60E383
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Oct 2022 16:38:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FDBA10E501;
-	Wed, 26 Oct 2022 14:20:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8CFE10E27F;
+	Wed, 26 Oct 2022 14:38:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com
- [IPv6:2a00:1450:4864:20::42b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 661A710E4A7
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Oct 2022 11:14:35 +0000 (UTC)
-Received: by mail-wr1-x42b.google.com with SMTP id bk15so25721188wrb.13
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Oct 2022 04:14:35 -0700 (PDT)
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com
+ [IPv6:2001:4860:4864:20::32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E96010E27F
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Oct 2022 14:38:24 +0000 (UTC)
+Received: by mail-oa1-x32.google.com with SMTP id
+ 586e51a60fabf-13b23e29e36so19543115fac.8
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Oct 2022 07:38:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Z2dAxyBdcsGYNCn7JV332sMdo/wGykOw3BmjYudGgAI=;
- b=LqC5CmPnOOwqJE6avCuKn7TR+XuD5PByXL9JHS9lDINKqyTUeUW/3GkLPfQbrHGVGZ
- PJn3G+DXsx9LlqN80yfhs1zGtTx//Mm/n60MjxGLcpjKlEn1vVrmNpb7/pJLhNuK7T2Z
- 8mfQbIKrSNBapFHn3aGdYX9moQgv3B7Ty+vZ3fHjH3b41ImP6pXQo+E21G3OoJDnpvdm
- omW5NsAV95DM+Rc5WmtsLX/EcxOiJmO8jC+5VigtrCcxq1enPD4mrIUEvjuOTsMC0s0l
- PKMokB7f6zTZeGgHmadXzIAhR0cGDVKlgaMKXEDgWhfSFBnCkFBahZ0B/WHXAJGBXNLc
- cz4w==
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=S+8fX6A79f9sD8/3/GDvwe2Xy7TKGF4sInhMCEK7GO4=;
+ b=XThFjJk8ISaXmS8GWS+s7iT+YqOhd+zSq0GAEw7hlOGudNTNZhkDmA49uTGcECbw2y
+ 93WMVC0zVb5j6vgEz05J5N3jWRZE7No2mS4amMiczRCm3Zo0Px7OFrWeKt4vQ5Gm1blj
+ lbETLfADkPKaKfygU+BurYZwrN/xhUNw2pA448G+2RYLK4k7TV4ySvMl+Ph8dLz5i1IZ
+ OOa0aA9sY6z/JBwh8pcCxKqDUwbHYyOLWAawSfP+q4SML7VbP5yBlvNDOJ0IU5yO2ze8
+ JrRm3BqOrOW714EAwvyjSCL3QYQ+1EzAJ27jND9727KvMPtxuumL8DeujWX/BCyMu6Ar
+ WUZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=Z2dAxyBdcsGYNCn7JV332sMdo/wGykOw3BmjYudGgAI=;
- b=kB2Eka4Wghl+39Md/3ySe3OAPvlF8s+41rR2R20i/Yc8w67NbvwLM6kehLv3/s0zCK
- i+ZQiAkUNUPgGS7PSqbjZGjV6Ghf2folw+l9OPqHi3ZrKXqT0yFIOr3cjpsN/7PLKkcY
- nq0fygyAE5wd93PAo+FKEq0tP1Htvwmz4zoPprY8PiFuHG4rZogo+zqwUJNTUDYdG54/
- yCDzSNUm3cfRJCNfsJqXI+m73gOE/g2McYUfziJRDS5kEo2rhsluh/cC6R29MedDT5EG
- A5G3rotNqbaYnZ/UbmP0GtvJ+4zrKZPZRg3kiZ/SxwMf1POptdCb9Vh+3s5Vwyl/BeSc
- zVVw==
-X-Gm-Message-State: ACrzQf3/s3lPZQ4LMv7T8P/74c6w9hHgw2sHuRVEIm75FPAM5CTRXnsZ
- Z8Z4NJyHzIvfJYEP5pSNRM6VNvMcCeiznNvz
-X-Google-Smtp-Source: AMsMyM7K17+3EeB9GcPGFZfV+Jx0j5EbJIknUqiRn4o074JIUKolXFfJYPyFkkJlHHlhENuSampiOw==
-X-Received: by 2002:adf:fb43:0:b0:22b:64:8414 with SMTP id
- c3-20020adffb43000000b0022b00648414mr29190606wrs.70.1666782873651; 
- Wed, 26 Oct 2022 04:14:33 -0700 (PDT)
-Received: from localhost.localdomain ([2a02:908:4f6:d280::9a6])
- by smtp.gmail.com with ESMTPSA id
- bg33-20020a05600c3ca100b003b49bd61b19sm1665827wmb.15.2022.10.26.04.14.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Oct 2022 04:14:33 -0700 (PDT)
-From: Ao Zhong <hacc1225@gmail.com>
-To: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Subject: [PATCH v3 2/2] drm/amd/display: move remaining FPU code to dml folder
-Date: Wed, 26 Oct 2022 13:13:03 +0200
-Message-Id: <20221026111258.25000-2-hacc1225@gmail.com>
-X-Mailer: git-send-email 2.37.4
-In-Reply-To: <e4440d8d-61d3-5d71-ba48-79fec268f4af@amd.com>
-References: <e4440d8d-61d3-5d71-ba48-79fec268f4af@amd.com>
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=S+8fX6A79f9sD8/3/GDvwe2Xy7TKGF4sInhMCEK7GO4=;
+ b=qbJYLo+gnFdL8xX1ObuGZe6KyecdPtDqWDkba+T7f/XehzC5lDAwub20B9nmuCRwyS
+ D+OoiCotbW3BXa3xsZz9dgDKKYNmzc/1jA6E0WSnxRd0TAlbiOPVpFmTD4Y0Ra6YDMDt
+ OiMfdgUZj1owoP3G34nW1bgWwV44hcm1bcb6DnY0aApJLDk3h2KFOOENfX6mvNi7g8ei
+ uBHf091P/u2Zmu31s+fkB6jbnel2lfajOTalNZPd7XjbuA/eBAyHjCHlvB967s2neQ4+
+ lmQXVbx5Z4JKVoM2yCpvEqunM3FmgPwBwUH+BeXxbtG9NPaE7aI42hyhv4XNz1DthA+e
+ miCQ==
+X-Gm-Message-State: ACrzQf1reY2u9bWY+laJVyTO9PyUM8X4slbKa9tQx03dNH4hSsUSwUNF
+ RCXuaV/dQWCPugz7wRkA+WT6GJo/CUUdImxELjA=
+X-Google-Smtp-Source: AMsMyM53m1CKqw009iWjpb/xcwrmJ/CktxYvS4+fma2hXg2ZWSDUnmeomzu+8MvdTN2sCp2zJQXRhTfys+dPlIsMlIQ=
+X-Received: by 2002:a05:6870:a7a4:b0:136:7c39:979e with SMTP id
+ x36-20020a056870a7a400b001367c39979emr2450654oao.96.1666795103148; Wed, 26
+ Oct 2022 07:38:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 26 Oct 2022 14:20:40 +0000
+References: <20221014041456.139813-1-Asher.Song@amd.com>
+ <CANiD2e8PHA7u1qs8YkWkbbjxqB7JCnLNdR5OcHTH=dpfBWe7rg@mail.gmail.com>
+ <DM4PR12MB513603C468CE9BA8DC933D118B309@DM4PR12MB5136.namprd12.prod.outlook.com>
+ <CANiD2e-jjJyycgmBUDirBD+pGjf+Etifbvj5aBa0Q8Zd=KFxOg@mail.gmail.com>
+In-Reply-To: <CANiD2e-jjJyycgmBUDirBD+pGjf+Etifbvj5aBa0Q8Zd=KFxOg@mail.gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 26 Oct 2022 10:38:11 -0400
+Message-ID: <CADnq5_PNhqNTnwkVTdhGXmJ=UNWwQQjuftA-zgdBXejPk4LKqg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Revert "drm/amdgpu: getting fan speed pwm for
+ vega10 properly"
+To: Yury Zhuravlev <stalkerg@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,74 +68,139 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, Ao Zhong <hacc1225@gmail.com>,
- Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org
+Cc: "Chen, Guchun" <Guchun.Chen@amd.com>, "Meng, Xiaohu" <Xiaohu.Meng@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Song,
+ Asher" <Asher.Song@amd.com>, "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "Quan, Evan" <Evan.Quan@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-pipes[pipe_cnt].pipe.src.dcc_fraction_of_zs_req_luma = 0;
-pipes[pipe_cnt].pipe.src.dcc_fraction_of_zs_req_chroma = 0;
-these two operations in dcn32/dcn32_resource.c still need to use FPU,
-This will cause compilation to fail on ARM64 platforms because
--mgeneral-regs-only is enabled by default to disable the hardware FPU.
-Therefore, imitate the dcn31_zero_pipe_dcc_fraction function in
-dml/dcn31/dcn31_fpu.c, declare the dcn32_zero_pipe_dcc_fraction function
-in dcn32_fpu.c, and move above two operations into this function.
+On Wed, Oct 26, 2022 at 5:07 AM Yury Zhuravlev <stalkerg@gmail.com> wrote:
+>
+> Hello Asher,
+>
+> Thanks for the information, is it open-source tests? Can I reproduce it?
+>
+> Also, it seems like Radeon Instinct MI25 was released before Radeon RX Vega, is it possible that they have different PowerPlay subsystems?
 
-Acked-by: Christian König <christian.koenig@amd.com>
-Signed-off-by: Ao Zhong <hacc1225@gmail.com>
----
- drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c | 5 +++--
- drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c  | 8 ++++++++
- drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.h  | 3 +++
- 3 files changed, 14 insertions(+), 2 deletions(-)
+Same silicon, same powerplay implementation.
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
-index a88dd7b3d1c1..287b7fa9bf41 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
-@@ -1918,8 +1918,9 @@ int dcn32_populate_dml_pipes_from_context(
- 		timing = &pipe->stream->timing;
- 
- 		pipes[pipe_cnt].pipe.src.gpuvm = true;
--		pipes[pipe_cnt].pipe.src.dcc_fraction_of_zs_req_luma = 0;
--		pipes[pipe_cnt].pipe.src.dcc_fraction_of_zs_req_chroma = 0;
-+		DC_FP_START();
-+		dcn32_zero_pipe_dcc_fraction(pipes, pipe_cnt);
-+		DC_FP_END();
- 		pipes[pipe_cnt].pipe.dest.vfront_porch = timing->v_front_porch;
- 		pipes[pipe_cnt].pipe.src.gpuvm_min_page_size_kbytes = 256; // according to spreadsheet
- 		pipes[pipe_cnt].pipe.src.unbounded_req_mode = false;
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-index 819de0f11012..58772fce6437 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-@@ -2521,3 +2521,11 @@ void dcn32_update_bw_bounding_box_fpu(struct dc *dc, struct clk_bw_params *bw_pa
- 	}
- }
- 
-+void dcn32_zero_pipe_dcc_fraction(display_e2e_pipe_params_st *pipes,
-+				  int pipe_cnt)
-+{
-+	dc_assert_fp_enabled();
-+
-+	pipes[pipe_cnt].pipe.src.dcc_fraction_of_zs_req_luma = 0;
-+	pipes[pipe_cnt].pipe.src.dcc_fraction_of_zs_req_chroma = 0;
-+}
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.h b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.h
-index 3a3dc2ce4c73..ab010e7e840b 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.h
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.h
-@@ -73,4 +73,7 @@ int dcn32_find_dummy_latency_index_for_fw_based_mclk_switch(struct dc *dc,
- 
- void dcn32_patch_dpm_table(struct clk_bw_params *bw_params);
- 
-+void dcn32_zero_pipe_dcc_fraction(display_e2e_pipe_params_st *pipes,
-+				  int pipe_cnt);
-+
- #endif
--- 
-2.37.4
+Alex
 
+> On my Vega56, all these registers from vega20 are working very well.
+> Seems like we should split implementation somehow.
+>
+> Regards,
+>
+> On Wed, Oct 26, 2022 at 3:51 PM Song, Asher <Asher.Song@amd.com> wrote:
+>>
+>> [AMD Official Use Only - General]
+>>
+>>
+>>
+>> +@Meng, Xiaohu
+>>
+>>
+>>
+>> Hi Zhuravlev,
+>>
+>>
+>>
+>> The information of test card is as following:
+>>
+>> Lspci name: [AMD/ATI] Vega 10 [Radeon Instinct MI25 MxGPU] (rev 05)
+>>
+>> Firmware: ATOM BIOS: 113-D0531800-C04
+>>
+>>
+>>
+>> When run test scripts compute-rocm-*/utils/run_rsmitst.sh, the below test cases fail.
+>>
+>> [  FAILED  ] 4 tests, listed below:
+>>
+>> [  FAILED  ] rsmitstReadOnly.TestOverdriveRead
+>>
+>> [  FAILED  ] rsmitstReadWrite.FanReadWrite
+>>
+>> [  FAILED  ] rsmitstReadWrite.TestOverdriveReadWrite
+>>
+>> [  FAILED  ] rsmitstReadWrite.TestPowerCapReadWrite
+>>
+>>
+>>
+>> Best Regards,
+>>
+>> Asher
+>>
+>> From: Yury Zhuravlev <stalkerg@gmail.com>
+>> Sent: Wednesday, October 26, 2022 9:31 AM
+>> To: Song, Asher <Asher.Song@amd.com>
+>> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Chen, Guchun <Guchun.Chen@amd.com>; Quan, Evan <Evan.Quan@amd.com>; amd-gfx@lists.freedesktop.org
+>> Subject: Re: [PATCH] drm/amdgpu: Revert "drm/amdgpu: getting fan speed pwm for vega10 properly"
+>>
+>>
+>>
+>> Hello,
+>> Can you write here your card name and firmware version? Without this patch, my fan sensors are broken, and it's sensitive to my pc case with water cooling.
+>> My card is:  Sapphire Pulse Radeon RX Vega 56  vd6546 SA
+>> lspci name: [AMD/ATI] Vega 10 XL/XT [Radeon RX Vega 56/64] (rev c3)
+>> Firmware: ATOM BIOS: 113-376XL-UO2
+>> This patch is 100% working correct on my machine, and I tested it last 2 months.
+>>
+>> Regards,
+>>
+>>
+>>
+>> On Fri, Oct 14, 2022 at 1:15 PM Asher Song <Asher.Song@amd.com> wrote:
+>>
+>> This reverts commit fe01cb24b81c0091d7e5668874d51ce913e44a97.
+>>
+>> Unfortunately, that commit causes fan monitors can't be read and written
+>> properly.
+>>
+>> Signed-off-by: Asher Song <Asher.Song@amd.com>
+>> ---
+>>  .../amd/pm/powerplay/hwmgr/vega10_thermal.c   | 25 ++++++++++---------
+>>  1 file changed, 13 insertions(+), 12 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_thermal.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_thermal.c
+>> index 190af79f3236..dad3e3741a4e 100644
+>> --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_thermal.c
+>> +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_thermal.c
+>> @@ -67,21 +67,22 @@ int vega10_fan_ctrl_get_fan_speed_info(struct pp_hwmgr *hwmgr,
+>>  int vega10_fan_ctrl_get_fan_speed_pwm(struct pp_hwmgr *hwmgr,
+>>                 uint32_t *speed)
+>>  {
+>> -       struct amdgpu_device *adev = hwmgr->adev;
+>> -       uint32_t duty100, duty;
+>> -       uint64_t tmp64;
+>> +       uint32_t current_rpm;
+>> +       uint32_t percent = 0;
+>>
+>> -       duty100 = REG_GET_FIELD(RREG32_SOC15(THM, 0, mmCG_FDO_CTRL1),
+>> -                               CG_FDO_CTRL1, FMAX_DUTY100);
+>> -       duty = REG_GET_FIELD(RREG32_SOC15(THM, 0, mmCG_THERMAL_STATUS),
+>> -                               CG_THERMAL_STATUS, FDO_PWM_DUTY);
+>> +       if (hwmgr->thermal_controller.fanInfo.bNoFan)
+>> +               return 0;
+>>
+>> -       if (!duty100)
+>> -               return -EINVAL;
+>> +       if (vega10_get_current_rpm(hwmgr, &current_rpm))
+>> +               return -1;
+>> +
+>> +       if (hwmgr->thermal_controller.
+>> +                       advanceFanControlParameters.usMaxFanRPM != 0)
+>> +               percent = current_rpm * 255 /
+>> +                       hwmgr->thermal_controller.
+>> +                       advanceFanControlParameters.usMaxFanRPM;
+>>
+>> -       tmp64 = (uint64_t)duty * 255;
+>> -       do_div(tmp64, duty100);
+>> -       *speed = MIN((uint32_t)tmp64, 255);
+>> +       *speed = MIN(percent, 255);
+>>
+>>         return 0;
+>>  }
+>> --
+>> 2.25.1
