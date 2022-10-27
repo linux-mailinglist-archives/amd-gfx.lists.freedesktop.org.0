@@ -1,70 +1,69 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43E4E60FAFF
-	for <lists+amd-gfx@lfdr.de>; Thu, 27 Oct 2022 16:59:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9838460FAE8
+	for <lists+amd-gfx@lfdr.de>; Thu, 27 Oct 2022 16:56:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21F8210E669;
-	Thu, 27 Oct 2022 14:58:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C284410E668;
+	Thu, 27 Oct 2022 14:56:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
- [IPv6:2a00:1450:4864:20::42a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C680D10E670
- for <amd-gfx@lists.freedesktop.org>; Thu, 27 Oct 2022 14:46:28 +0000 (UTC)
-Received: by mail-wr1-x42a.google.com with SMTP id h9so2608128wrt.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 27 Oct 2022 07:46:28 -0700 (PDT)
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com
+ [IPv6:2a00:1450:4864:20::62c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA26310E668
+ for <amd-gfx@lists.freedesktop.org>; Thu, 27 Oct 2022 14:56:52 +0000 (UTC)
+Received: by mail-ej1-x62c.google.com with SMTP id q9so5482082ejd.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 27 Oct 2022 07:56:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=boAryHnCv+r1jyRQmdAv8InqtytH0NrdoW3foDIFqi8=;
- b=L3MzKq4OJIXgT3wprDjbyyKr6Kdg/Ovz7jQU4dS20SuL1nmNvPzq4+bCckt6VXoPBV
- xvPA6wEXCIWBhbn3gVI8h94aKkQTDiwOhBoWJbUhj4zY0VBG4KZlS+CFQcHgr0JQ00Mf
- 6iI4223WhIzNtHfzUtkQCB4jFVVmkx8kzSprPhhye2gpVH2CzPgt38J9uLnC6R4HQaKZ
- KDUBiRWaFIAaJ0M/15XkVUy0awW2yEikpeAtqCuwmF53CdxdSseJGeM7h0Lv2gwLIsgO
- CG/+TtYVBLCfIuQOC6cL50V+Z8xIPW1VbvTqw8TFVwzf/0hPxSpB8X36XjQQsNK/LRRP
- P1ZA==
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=Ow7RuCSnQ8gGAfAcZaggwMiQpRWBZfVlHUP9X/icI+c=;
+ b=JKadrv9F+7S5Qwr5zB3bKrXBtlK/nbEtKPZYCkmVAXnAnhhDf17/rWvU0JIr4VoP8r
+ EPZ9mwA6+9xD7Skm8HZN0oOvYG/xBHZt+Av4Ba6vZhigh2XjkQVO/5YPuIrjPrm8eCub
+ CazqHkjrLuVu9NUydMzDl+rFjbkjDM9UNIf4Tq939dBKzOcb8JLdFzIF4KOnYipjLNOg
+ TK1lgNBNUflXlLXJTMBRQ7BIxDwjdaLIzBp/qqYysxxlEPQr4fIrYwaJz36u++IIY/OX
+ Rz2ppWdi3VZAxGp0x0LccRUTXFGPygTUT4C0nTnytp5AjJuQWWvHFNP4IBKWv1yUkmsn
+ abgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=boAryHnCv+r1jyRQmdAv8InqtytH0NrdoW3foDIFqi8=;
- b=6vcJWT2jk48EeyUU+AXYDAlyML1uv/henYC5BtZx5YMLXZWvQYW02QizO0AIlgAN8d
- Oy9OMIGVF4sF1ZmWmHnimOuUPgKh9QBHZnXV6+wSZYlRs4jHFYldsI5+o+BXTPXN930j
- fBmX6sMG14bs2EsKkVNQDLbx6PWg4d2os7gSqyWr8AkONnYt8DyEnVBL7dXFJETO4PDl
- S/BTCOuRF67KIqBT1aeW8ma3FqdeZ+iY1bN/oCNkdHp0usEkur7cUVNqKl5rkEAonrP6
- OKnMZZIn0yVWZsd2eo6dceH1bW1t9PYT0itN6o7zPxzCZ8YAP7AEc1vQFnJToruc2hCC
- dHJg==
-X-Gm-Message-State: ACrzQf3v0wYx2H60nOmr1OR59tGali0fTnWE4COMbTlL0og0x4GQci5T
- N1JIqUo9QPwzI7U0yaSsvso=
-X-Google-Smtp-Source: AMsMyM5MiAsTNZF5Wu9pjxgcsmgm4D0VFWeQB2xxNpggzSa6MmrFAUgDVec4o/kpZriWEoZ8m6ViTw==
-X-Received: by 2002:a05:6000:1688:b0:22e:58cd:5a2b with SMTP id
- y8-20020a056000168800b0022e58cd5a2bmr32178612wrd.365.1666881987036; 
- Thu, 27 Oct 2022 07:46:27 -0700 (PDT)
-Received: from localhost.localdomain ([2a02:908:4f6:d280::9a6])
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=Ow7RuCSnQ8gGAfAcZaggwMiQpRWBZfVlHUP9X/icI+c=;
+ b=C3ND6iZ+ePzSxnYTsfPsVUDFkzxhOZN5hibR6Fxom3qiLlLcA/qisQOSoeWBY0YE+g
+ oMKKpfEkpXwQc1iBbCZZiPWkTh/ZkdTjpisQJ1mgUnMcH1FNBpODj+kc/o1Pca6iex0z
+ 245kX6COko+b1EKflAmCEfnyozZPmGClyQigcuLnQ4iWggjS+ZOHVgs2nrNdZvl7x1Kz
+ wAJH3tpNiWVYHtSRH7Zam3ySbCd1zcNApUbhDswbHdUF2S0w6uj/qlQ+vXVvYK4tFBSU
+ hCdjgySsNkFSDTLwyqANe3QWcWyO3jLx+frBKL9tq04FtXtLJ7BHic3lE+SE+lFVjOXi
+ yYdg==
+X-Gm-Message-State: ACrzQf0DM+cDO/N2/mDmaz+0D12hpyHXvR9gu+YeJT9dZXXYa0zgYSWv
+ 9vJ5d8Yprp5QKBfHAFkYNzlMXubjn3A=
+X-Google-Smtp-Source: AMsMyM6r5+6+tALTEbSHKQsiY53Ek/Uc5Cz5OD8hiOUiLS3tOfDHKPUTKnaqjzZxKvarytrWabh07Q==
+X-Received: by 2002:a17:907:9493:b0:796:1166:70c4 with SMTP id
+ dm19-20020a170907949300b00796116670c4mr35773786ejc.59.1666882611404; 
+ Thu, 27 Oct 2022 07:56:51 -0700 (PDT)
+Received: from ?IPV6:2a02:908:1256:79a0:955d:8a4:c803:d560?
+ ([2a02:908:1256:79a0:955d:8a4:c803:d560])
  by smtp.gmail.com with ESMTPSA id
- f6-20020a5d50c6000000b00236576c8eddsm1340914wrt.12.2022.10.27.07.46.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 27 Oct 2022 07:46:26 -0700 (PDT)
-From: Ao Zhong <hacc1225@gmail.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Arnd Bergmann <arnd@arndb.de>,
- Nathan Chancellor <nathan@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Stephen Rothwell <sfr@canb.auug.org.au>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Subject: [PATCH v2 1/1] drm/amd/display: add DCN support for ARM64
-Date: Thu, 27 Oct 2022 16:45:29 +0200
-Message-Id: <20221027144527.4247-2-hacc1225@gmail.com>
-X-Mailer: git-send-email 2.37.4
-In-Reply-To: <20221027144527.4247-1-hacc1225@gmail.com>
-References: <20221027144527.4247-1-hacc1225@gmail.com>
+ ce12-20020a170906b24c00b007828150a2f1sm877697ejb.36.2022.10.27.07.56.50
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 27 Oct 2022 07:56:50 -0700 (PDT)
+Message-ID: <b9b6e6b9-3620-1fb2-568d-d6c03d5e3940@gmail.com>
+Date: Thu, 27 Oct 2022 16:56:49 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH] drm/amd: Fail the suspend if resources can't be evicted
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ amd-gfx@lists.freedesktop.org
+References: <20221026190355.18166-1-mario.limonciello@amd.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20221026190355.18166-1-mario.limonciello@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 27 Oct 2022 14:58:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,113 +75,98 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ao Zhong <hacc1225@gmail.com>, linux-arm-kernel@lists.infradead.org,
- amd-gfx@lists.freedesktop.org
+Cc: post@davidak.de
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-After moving all FPU code to the DML folder, we can enable DCN support
-for the ARM64 platform. Remove the -mgeneral-regs-only CFLAG from the
-code in the DML folder that needs to use hardware FPU, and add a control
-mechanism for ARM Neon.
+Am 26.10.22 um 21:03 schrieb Mario Limonciello:
+> If a system does not have swap and memory is under 100% usage,
+> amdgpu will fail to evict resources.  Currently the suspend
+> carries on proceeding to reset the GPU:
+>
+> ```
+> [drm] evicting device resources failed
+> [drm:amdgpu_device_ip_suspend_phase2 [amdgpu]] *ERROR* suspend of IP block <vcn_v3_0> failed -12
+> [drm] free PSP TMR buffer
+> [TTM] Failed allocating page table
+> [drm] evicting device resources failed
+> amdgpu 0000:03:00.0: amdgpu: MODE1 reset
+> amdgpu 0000:03:00.0: amdgpu: GPU mode1 reset
+> amdgpu 0000:03:00.0: amdgpu: GPU smu mode1 reset
+> ```
+>
+> At this point if the suspend actually succeeded I think that amdgpu
+> would have recovered because the GPU would have power cut off and
+> restored.  However the kernel fails to continue the suspend from the
+> memory pressure and amdgpu fails to run the "resume" from the aborted
+> suspend.
+>
+> ```
+> ACPI: PM: Preparing to enter system sleep state S3
+> SLUB: Unable to allocate memory on node -1, gfp=0xdc0(GFP_KERNEL|__GFP_ZERO)
+>    cache: Acpi-State, object size: 80, buffer size: 80, default order: 0, min order: 0
+>    node 0: slabs: 22, objs: 1122, free: 0
+> ACPI Error: AE_NO_MEMORY, Could not update object reference count (20210730/utdelete-651)
+>
+> [drm:psp_hw_start [amdgpu]] *ERROR* PSP load kdb failed!
+> [drm:psp_resume [amdgpu]] *ERROR* PSP resume failed
+> [drm:amdgpu_device_fw_loading [amdgpu]] *ERROR* resume of IP block <psp> failed -62
+> amdgpu 0000:03:00.0: amdgpu: amdgpu_device_ip_resume failed (-62).
+> PM: dpm_run_callback(): pci_pm_resume+0x0/0x100 returns -62
+> amdgpu 0000:03:00.0: PM: failed to resume async: error -62
+> ```
+>
+> To avoid this series of unfortunate events, fail amdgpu's suspend
+> when the memory eviction fails.  This will let the system gracefully
+> recover and the user can try suspend again when the memory pressure
+> is relieved.
+>
+> Reported-by: post@davidak.de
+> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2223
+> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 
-Signed-off-by: Ao Zhong <hacc1225@gmail.com>
----
- drivers/gpu/drm/amd/display/Kconfig           |  2 +-
- .../gpu/drm/amd/display/amdgpu_dm/dc_fpu.c    |  6 ++++++
- drivers/gpu/drm/amd/display/dc/dml/Makefile   | 21 ++++++++++++++++++-
- 3 files changed, 27 insertions(+), 2 deletions(-)
+Acked-by: Christian König <christian.koenig@amd.com>
 
-diff --git a/drivers/gpu/drm/amd/display/Kconfig b/drivers/gpu/drm/amd/display/Kconfig
-index 0142affcdaa3..a7f1c4e51719 100644
---- a/drivers/gpu/drm/amd/display/Kconfig
-+++ b/drivers/gpu/drm/amd/display/Kconfig
-@@ -6,7 +6,7 @@ config DRM_AMD_DC
- 	bool "AMD DC - Enable new display engine"
- 	default y
- 	select SND_HDA_COMPONENT if SND_HDA_CORE
--	select DRM_AMD_DC_DCN if (X86 || PPC64)
-+	select DRM_AMD_DC_DCN if (X86 || PPC64 || (ARM64 && KERNEL_MODE_NEON))
- 	help
- 	  Choose this option if you want to use the new display engine
- 	  support for AMDGPU. This adds required support for Vega and
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c b/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
-index ab0c6d191038..1743ca0a3641 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
-@@ -31,6 +31,8 @@
- #elif defined(CONFIG_PPC64)
- #include <asm/switch_to.h>
- #include <asm/cputable.h>
-+#elif defined(CONFIG_ARM64)
-+#include <asm/neon.h>
- #endif
- 
- /**
-@@ -99,6 +101,8 @@ void dc_fpu_begin(const char *function_name, const int line)
- 			preempt_disable();
- 			enable_kernel_fp();
- 		}
-+#elif defined(CONFIG_ARM64)
-+		kernel_neon_begin();
- #endif
- 	}
- 
-@@ -136,6 +140,8 @@ void dc_fpu_end(const char *function_name, const int line)
- 			disable_kernel_fp();
- 			preempt_enable();
- 		}
-+#elif defined(CONFIG_ARM64)
-+		kernel_neon_end();
- #endif
- 	}
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/Makefile b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-index d0c6cf61c676..4e6e1fc0650f 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-@@ -33,6 +33,12 @@ ifdef CONFIG_PPC64
- dml_ccflags := -mhard-float -maltivec
- endif
- 
-+ifdef CONFIG_ARM64
-+ifdef CONFIG_DRM_AMD_DC_DCN
-+dml_rcflags := -mgeneral-regs-only
-+endif
-+endif
-+
- ifdef CONFIG_CC_IS_GCC
- ifeq ($(call cc-ifversion, -lt, 0701, y), y)
- IS_OLD_GCC = 1
-@@ -88,7 +94,6 @@ CFLAGS_$(AMDDALPATH)/dc/dml/calcs/dcn_calcs.o := $(dml_ccflags)
- CFLAGS_$(AMDDALPATH)/dc/dml/calcs/dcn_calc_auto.o := $(dml_ccflags)
- CFLAGS_$(AMDDALPATH)/dc/dml/calcs/dcn_calc_math.o := $(dml_ccflags) -Wno-tautological-compare
- CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/display_mode_vba.o := $(dml_rcflags)
--CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dcn2x/dcn2x.o := $(dml_rcflags)
- CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dcn20/display_mode_vba_20.o := $(dml_rcflags)
- CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dcn20/display_rq_dlg_calc_20.o := $(dml_rcflags)
- CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dcn20/display_mode_vba_20v2.o := $(dml_rcflags)
-@@ -105,6 +110,20 @@ CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dcn32/display_mode_vba_util_32.o := $(dml_rcf
- CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dcn301/dcn301_fpu.o := $(dml_rcflags)
- CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/display_mode_lib.o := $(dml_rcflags)
- CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dsc/rc_calc_fpu.o  := $(dml_rcflags)
-+ifdef CONFIG_ARM64
-+CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dcn10/dcn10_fpu.o := $(dml_rcflags)
-+CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dcn20/dcn20_fpu.o := $(dml_rcflags)
-+CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dcn314/display_mode_vba_314.o := $(dml_rcflags)
-+CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dcn314/display_rq_dlg_calc_314.o := $(dml_rcflags)
-+CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dcn314/dcn314_fpu.o := $(dml_rcflags)
-+CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dcn30/dcn30_fpu.o := $(dml_rcflags)
-+CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dcn32/dcn32_fpu.o := $(dml_rcflags)
-+CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dcn321/dcn321_fpu.o := $(dml_rcflags)
-+CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dcn31/dcn31_fpu.o := $(dml_rcflags)
-+CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dcn302/dcn302_fpu.o := $(dml_rcflags)
-+CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dcn303/dcn303_fpu.o := $(dml_rcflags)
-+CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/calcs/dcn_calc_math.o := $(dml_rcflags)
-+endif
- endif
- CFLAGS_$(AMDDALPATH)/dc/dml/dml1_display_rq_dlg_calc.o := $(dml_ccflags)
- CFLAGS_$(AMDDALPATH)/dc/dml/display_rq_dlg_helpers.o := $(dml_ccflags)
--- 
-2.37.4
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 15 ++++++++++-----
+>   1 file changed, 10 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> index 6f958603c8cc2..ae10acede495e 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> @@ -4060,15 +4060,18 @@ void amdgpu_device_fini_sw(struct amdgpu_device *adev)
+>    * at suspend time.
+>    *
+>    */
+> -static void amdgpu_device_evict_resources(struct amdgpu_device *adev)
+> +static int amdgpu_device_evict_resources(struct amdgpu_device *adev)
+>   {
+> +	int ret;
+> +
+>   	/* No need to evict vram on APUs for suspend to ram or s2idle */
+>   	if ((adev->in_s3 || adev->in_s0ix) && (adev->flags & AMD_IS_APU))
+> -		return;
+> +		return 0;
+>   
+> -	if (amdgpu_ttm_evict_resources(adev, TTM_PL_VRAM))
+> +	ret = amdgpu_ttm_evict_resources(adev, TTM_PL_VRAM);
+> +	if (ret)
+>   		DRM_WARN("evicting device resources failed\n");
+> -
+> +	return ret;
+>   }
+>   
+>   /*
+> @@ -4118,7 +4121,9 @@ int amdgpu_device_suspend(struct drm_device *dev, bool fbcon)
+>   	if (!adev->in_s0ix)
+>   		amdgpu_amdkfd_suspend(adev, adev->in_runpm);
+>   
+> -	amdgpu_device_evict_resources(adev);
+> +	r = amdgpu_device_evict_resources(adev);
+> +	if (r)
+> +		return r;
+>   
+>   	amdgpu_fence_driver_hw_fini(adev);
+>   
 
