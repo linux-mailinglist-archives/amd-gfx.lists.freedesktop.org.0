@@ -2,60 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 845EC6104D2
-	for <lists+amd-gfx@lfdr.de>; Thu, 27 Oct 2022 23:54:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CF546104CD
+	for <lists+amd-gfx@lfdr.de>; Thu, 27 Oct 2022 23:54:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B916D10E714;
-	Thu, 27 Oct 2022 21:53:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A67010E701;
+	Thu, 27 Oct 2022 21:53:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com
- [IPv6:2a00:1450:4864:20::32a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 447A910E6B3
- for <amd-gfx@lists.freedesktop.org>; Thu, 27 Oct 2022 17:44:26 +0000 (UTC)
-Received: by mail-wm1-x32a.google.com with SMTP id
- fn7-20020a05600c688700b003b4fb113b86so1771428wmb.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 27 Oct 2022 10:44:26 -0700 (PDT)
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com
+ [IPv6:2a00:1450:4864:20::42d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3677310E6B3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 27 Oct 2022 17:46:52 +0000 (UTC)
+Received: by mail-wr1-x42d.google.com with SMTP id z14so3478391wrn.7
+ for <amd-gfx@lists.freedesktop.org>; Thu, 27 Oct 2022 10:46:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=XwpKT/OXB7N7mrTeT3Xlmap4y+VEeDdex/xqsHim6hg=;
- b=M7OGysE9hg2D1ANK/gO6NdemMxl1RejHJEoHdyUNA6l68ij3zhKCG3kbpVZpk1Ty1b
- azuip2Zh+WKNL9iT8ZUn8vuoAx3GedErA5mWGueNHgZIwtz0QZ5lw5nFm2zM0Q00Y/1U
- euoli4MUVDF7MxYwlx0AlHgHjrFaB9rhkkRvfrl7hsjsA2k+26xgZLokdL1ASip0PTxx
- nBlcXw/34TVA1Dln+a0qjnUwM8uJMQnDl911VuDqZPyC8bSuS3IsvQesogHp28BN01X7
- 9CSVgJdUkok7gLomOBpHy6yDCqNWtOw3Vhk5briCkksRCkaU7PVxZguLQmYPDhiUFzu0
- CgoQ==
+ bh=VP61fLFjA5LsMsXAfCQvd1k28lduk9sBFeorZEG+mu0=;
+ b=pgbwJulEXuXIQ50hAUVT9G6L6hOa9K+Y3yye8/ahQe2ivm/pSl7NZDiCIPfwAmGr2s
+ POBvZSapa6+cPdqbRqiC+ZedgBkKxOs1nvuiSs60xIqCc+mRfe0my3kL1YacG/gk/6Mk
+ Y12j8tnFzYADa2Ctr8QfxThjL2QlidbU857BSDcVP3PD3IUuixSYrlkp0Y2HFVaYqsfs
+ XixfIIDW9aUTcFN7+A6JlIONeizzYEPc0C3gqIxqaN97qC2PBYRSZZydSKTRpfQszazF
+ TDZZOuWy/eGuv3vA2rUkr+v1g4QQEujaoUMUMf3NR3EeNY6OogZASkRbwPKX+Bxb5vtF
+ LtLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=XwpKT/OXB7N7mrTeT3Xlmap4y+VEeDdex/xqsHim6hg=;
- b=ipf7jOGclptXOiP/6pQ/21seGhMrihmgS3d44r/JKrdiBxFXoC+q1csxp2AttDMqk0
- wpGX0cZaS1bcMLu/zKLVH7A5FsHqdt24JZJBpQ/XRQii5j2Xtkj4q6UEcmLAxAdibP/D
- uThQNpRC5GAh0h+y2aNAUxW7ln+iTph9NLnltaF4zJaLgS+1ZCcC3H1aw34ZDv4hinwJ
- Gqa79UZFMANvrjOngctC81xFW5yryDpWt85KFjLkyikjv6VvyZzl5AuhgWekRV9bPKQc
- 3dqVFtWowMiZEZbz6jNZclDnvAE1UZTIL7q4f4QP3F7bMafsok9mJUc73DWOpLr2ce4z
- kCZQ==
-X-Gm-Message-State: ACrzQf0/sGMWzUNfJdZaFCAHxhfVD7z4NMAPK74Tjcqgrmj/2o2LOsp3
- Z2Fm66i5pXbK9PzBH/1fijQ=
-X-Google-Smtp-Source: AMsMyM6DW6hXC8qyFqVH4b3KU1TFyCmc3jU4TrwAMM/1N5s/8PV54wqi8dWLcUuOSBiAHuhjHnOugA==
-X-Received: by 2002:a05:600c:3488:b0:3c6:cf4d:472b with SMTP id
- a8-20020a05600c348800b003c6cf4d472bmr6790221wmq.73.1666892664425; 
- Thu, 27 Oct 2022 10:44:24 -0700 (PDT)
+ bh=VP61fLFjA5LsMsXAfCQvd1k28lduk9sBFeorZEG+mu0=;
+ b=X0ixzFIrQ8m1aDPyT5dNo8RtSAPcnI+fbx0rSy6yGYuOdSua93nYiarsck/wKMaHpN
+ f9JqSnRjTiOwbvx8j2dDnnPqvqzGdn5bvO3U7TCYRGVqnGvcmHDFdzKIlOAWlSLeregJ
+ ofKGsSSTyj0SZGX/EIDG56+qDt7UXqVJ2Ces530/2jh0UuLupeo3Gd1UZTq4Z+9BP9on
+ 3EZvNktjNe8MsPT+4XIe29Ulf+HAOMGT+EbblBY1lRHqRKm4cXjwCKnZEf7OpE+vJVdt
+ JRmq1vl5qduZtf0IWCDcfDhfIRWxHE6kgrGf3IGq9bCqWzOTVoKDBTEzvDVerUk2nNjI
+ bsIQ==
+X-Gm-Message-State: ACrzQf2HcIfw0ceP7VW4LTNlcd2RTY50Q7aqWD8e3m7UXbyF5O35qU8h
+ y/7p02OkL8/v7hvu03JzgWw=
+X-Google-Smtp-Source: AMsMyM5LNb3K4CHc6WHjeGfX5fxVU7bSRwL/G4yYPgazVruoW4u8kiD5Y9a+UfoTw/cJ0/gs7iQEWg==
+X-Received: by 2002:a5d:5a8c:0:b0:22c:bc97:6fe2 with SMTP id
+ bp12-20020a5d5a8c000000b0022cbc976fe2mr32125837wrb.640.1666892810439; 
+ Thu, 27 Oct 2022 10:46:50 -0700 (PDT)
 Received: from ?IPV6:2a02:908:4f6:d280::9a6? ([2a02:908:4f6:d280::9a6])
  by smtp.gmail.com with ESMTPSA id
- 4-20020a05600c26c400b003b31c560a0csm2030381wmv.12.2022.10.27.10.44.23
+ i17-20020a05600c355100b003a8434530bbsm5785907wmq.13.2022.10.27.10.46.49
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 27 Oct 2022 10:44:24 -0700 (PDT)
-Message-ID: <72e23c01-c205-53dc-f41e-961a8f9f0de9@gmail.com>
-Date: Thu, 27 Oct 2022 19:44:22 +0200
+ Thu, 27 Oct 2022 10:46:50 -0700 (PDT)
+Message-ID: <aa4726b3-1efa-2d3d-db5b-5a09f8a83cde@gmail.com>
+Date: Thu, 27 Oct 2022 19:46:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
 Subject: Re: [PATCH RESEND 1/1] drm/amd/display: add DCN support for ARM64
+Content-Language: en-US
 To: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Arnd Bergmann
  <arnd@arndb.de>, Nathan Chancellor <nathan@kernel.org>,
  Alex Deucher <alexander.deucher@amd.com>,
@@ -64,7 +64,6 @@ References: <20221027002528.15983-1-hacc1225@gmail.com>
  <20221027002528.15983-2-hacc1225@gmail.com>
  <c41b45cb-8a1a-4140-b7f9-08aa481a25c1@app.fastmail.com>
  <8eb69dfb-ae35-dbf2-3f82-e8cc00e5389a@amd.com>
-Content-Language: en-US
 From: Ao Zhong <hacc1225@gmail.com>
 In-Reply-To: <8eb69dfb-ae35-dbf2-3f82-e8cc00e5389a@amd.com>
 Content-Type: text/plain; charset=UTF-8
@@ -86,47 +85,788 @@ Cc: Leo Li <sunpeng.li@amd.com>, Harry Wentland <harry.wentland@amd.com>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Rodrigo,
+Here are some lshw information:
 
-I have done these tests.
-
-CPU: Kunpeng 920 3211k x24 TSV110 Core
-
-GPU: AMD RX 6400
-
-Monitor on DP: Mi Curved Gaming Monitor 34" (support FreeSync and 3440x1440 at 144Hz on DP)
-
-Monitor on HDMI: a cheap 1080P HDMI capture card (ID: 534d:2109)
-
-Distro: Gentoo with Linux 6.0.5 kernel
-
-Desktop Environment: KDE Plasma
-
-KDE-Plasma-Version: 5.25.5
-
-KDE-Frameworks-Version: 5.99.0
-
-Qt-Version: 5.15.5
-
-Graphics Platform: wayland
-
-I tried to plug and unplug the monitor frequently and quickly on both HDMI and DP port.
-
-Both port works very well. I've also tried various different resolutions on my monitor with no issues.
-
-But I can't set my monitor's refresh rate to 144Hz at 3440x1440. With X11, the 144Hz option won't show up
-
-in the system settings, even xrandr won't show this mode. But with wayland, I can set the refresh rate to 144Hz,
-
-but it results in a black screen. Interestingly, under wayland, if I set the refresh rate to 120Hz, the system works
-
-fine, and the monitor shows that the current refresh rate is 120Hz, but if I restart the system, after re-entering the
-
-desktop, the monitor shows that the current refresh rate is 144Hz. Under X11, the current refresh rate showed
-
-by the monitor is the same as that in system settings. I don't know if that is a hardware limitation of the rx6400
-
-or a software bug.
+hacc-arm64-pc
+    description: Desktop Computer
+    product: HUAWEIPGU-WBY0 (C233)
+    vendor: HUAWEI
+    version: D1060
+    serial:
+    width: 64 bits
+    capabilities: smbios-3.2.0 dmi-3.2.0 smp cp15_barrier setend swp tagged_addr_disabled
+    configuration: chassis=desktop family=HUAWEI sku=C233 uuid=
+  *-core
+       description: Motherboard
+       product: HUAWEIPGU-WBY0-PCB
+       vendor: HUAWEI
+       physical id: 0
+       version: D1060
+       serial:
+       slot: Null
+     *-firmware
+          description: BIOS
+          vendor: Byosoft
+          physical id: 2
+          version: 1.11
+          date: 02/07/2020
+          size: 128KiB
+          capabilities: pci pnp upgrade cdboot bootselect edd acpi biosbootspecification uefi
+     *-cache:0
+          description: L1 cache
+          physical id: 5
+          slot: L1 Instruction Cache
+          size: 1536KiB
+          capacity: 1536KiB
+          capabilities: synchronous internal write-back instruction
+          configuration: level=1
+     *-cache:1
+          description: L1 cache
+          physical id: 6
+          slot: L1 Data Cache
+          size: 1536KiB
+          capacity: 1536KiB
+          capabilities: synchronous internal write-back data
+          configuration: level=1
+     *-cache:2
+          description: L2 cache
+          physical id: 7
+          slot: L2 Cache
+          size: 12MiB
+          capacity: 12MiB
+          capabilities: synchronous internal varies unified
+          configuration: level=2
+     *-cache:3
+          description: L3 cache
+          physical id: 8
+          slot: L3 Cache
+          size: 24MiB
+          capacity: 24MiB
+          capabilities: synchronous internal varies unified
+          configuration: level=3
+     *-cpu
+          description: CPU
+          product: ARM (NULL)
+          vendor: HISILICON
+          physical id: 9
+          bus info: cpu@0
+          version: HUAWEI Kunpeng920 3211K
+          serial: NULL
+          slot: CPU0
+          size: 2600MHz
+          capacity: 2600MHz
+          clock: 100MHz
+          capabilities: lm
+          configuration: cores=24 enabledcores=24 threads=24
+     *-memory
+          description: System Memory
+          physical id: a
+          slot: System board or motherboard
+          size: 64GiB
+        *-bank:0
+             description: DIMM DDR4 Synchronous 3200 MHz (0,3 ns)
+             product: F4-3200C22-32GRS
+             vendor: Unknown
+             physical id: 0
+             serial:
+             slot: SODIMM_B
+             size: 32GiB
+             width: 64 bits
+             clock: 3200MHz (0.3ns)
+        *-bank:1
+             description: DIMM DDR4 Synchronous 3200 MHz (0,3 ns)
+             product: F4-3200C22-32GRS
+             vendor: Unknown
+             physical id: 1
+             serial:
+             slot: SODIMM_A
+             size: 32GiB
+             width: 64 bits
+             clock: 3200MHz (0.3ns)
+     *-pci:0
+          description: PCI bridge
+          product: HiSilicon PCIe Root Port with Gen4
+          vendor: Huawei Technologies Co., Ltd.
+          physical id: 100
+          bus info: pci@0000:00:00.0
+          version: 21
+          width: 32 bits
+          clock: 33MHz
+          capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+          configuration: driver=pcieport
+          resources: irq:30 ioport:1000(size=4096) memory:e0c00000-e0efffff ioport:80080000000(size=6442450944)
+        *-pci
+             description: PCI bridge
+             product: Navi 10 XL Upstream Port of PCI Express Switch
+             vendor: Advanced Micro Devices, Inc. [AMD/ATI]
+             physical id: 0
+             bus info: pci@0000:01:00.0
+             version: c7
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:29 memory:e0e00000-e0e03fff ioport:1000(size=4096) memory:e0c00000-e0dfffff ioport:80080000000(size=6442450944)
+           *-pci
+                description: PCI bridge
+                product: Navi 10 XL Downstream Port of PCI Express Switch
+                vendor: Advanced Micro Devices, Inc. [AMD/ATI]
+                physical id: 0
+                bus info: pci@0000:02:00.0
+                version: 00
+                width: 32 bits
+                clock: 33MHz
+                capabilities: pci pm pciexpress msi normal_decode bus_master cap_list
+                configuration: driver=pcieport
+                resources: irq:37 ioport:1000(size=4096) memory:e0c00000-e0dfffff ioport:80080000000(size=6442450944)
+              *-display
+                   description: VGA compatible controller
+                   product: Navi 24 [Radeon RX 6400 / 6500 XT]
+                   vendor: Advanced Micro Devices, Inc. [AMD/ATI]
+                   physical id: 0
+                   bus info: pci@0000:03:00.0
+                   logical name: /dev/fb0
+                   version: c7
+                   width: 64 bits
+                   clock: 33MHz
+                   capabilities: pm pciexpress msi vga_controller bus_master cap_list rom fb
+                   configuration: depth=32 driver=amdgpu latency=0 mode=3440x1440 resolution=3440,1440 visual=truecolor xres=3440 yres=1440
+                   resources: iomemory:8010-800f iomemory:8000-7fff irq:250 memory:80100000000-801ffffffff memory:80080000000-800801fffff ioport:1000(size=256) memory:e0c00000-e0cfffff memory:e0d00000-e0d1ffff
+              *-multimedia
+                   description: Audio device
+                   product: Navi 21/23 HDMI/DP Audio Controller
+                   vendor: Advanced Micro Devices, Inc. [AMD/ATI]
+                   physical id: 0.1
+                   bus info: pci@0000:03:00.1
+                   logical name: card0
+                   logical name: /dev/snd/controlC0
+                   logical name: /dev/snd/hwC0D0
+                   logical name: /dev/snd/pcmC0D3p
+                   logical name: /dev/snd/pcmC0D7p
+                   version: 00
+                   width: 32 bits
+                   clock: 33MHz
+                   capabilities: pm pciexpress msi bus_master cap_list
+                   configuration: driver=snd_hda_intel latency=0
+                   resources: irq:248 memory:e0d20000-e0d23fff
+                 *-input:0
+                      product: HDA ATI HDMI HDMI/DP,pcm=3
+                      physical id: 0
+                      logical name: input4
+                      logical name: /dev/input/event4
+                 *-input:1
+                      product: HDA ATI HDMI HDMI/DP,pcm=7
+                      physical id: 1
+                      logical name: input5
+                      logical name: /dev/input/event5
+     *-pci:1
+          description: PCI bridge
+          product: HiSilicon PCIe Root Port with Gen4
+          vendor: Huawei Technologies Co., Ltd.
+          physical id: 101
+          bus info: pci@0000:00:08.0
+          version: 21
+          width: 32 bits
+          clock: 33MHz
+          capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+          configuration: driver=pcieport
+          resources: irq:31 ioport:2000(size=4096) memory:e0f00000-e10fffff ioport:80018000000(size=2097152)
+        *-nvme
+             description: NVMe device
+             product: KINGSTON SNV2S1000G
+             vendor: Kingston Technology Company, Inc.
+             physical id: 0
+             bus info: pci@0000:04:00.0
+             logical name: /dev/nvme0
+             version: SBI02102
+             serial:
+             width: 64 bits
+             clock: 33MHz
+             capabilities: nvme pm msi pciexpress msix nvm_express bus_master cap_list
+             configuration: driver=nvme latency=0 nqn=nqn.2021-03.com.kingston:nvme:nvm-subsystem-sn- state=live
+             resources: irq:29 memory:e0f00000-e0f03fff
+           *-namespace:0
+                description: NVMe disk
+                physical id: 0
+                logical name: hwmon1
+           *-namespace:1
+                description: NVMe disk
+                physical id: 2
+                logical name: /dev/ng0n1
+           *-namespace:2
+                description: NVMe disk
+                physical id: 1
+                bus info: nvme@0:1
+                logical name: /dev/nvme0n1
+                size: 931GiB (1TB)
+                capabilities: gpt-1.00 partitioned partitioned:gpt
+                configuration: guid= logicalsectorsize=512 sectorsize=512 wwid=eui.00000000000000000026b7784e21fbc5
+              *-volume:0 UNCLAIMED
+                   description: Windows FAT volume
+                   vendor: mkfs.fat
+                   physical id: 1
+                   bus info: nvme@0:1,1
+                   version: FAT32
+                   serial:
+                   size: 98MiB
+                   capacity: 99MiB
+                   capabilities: boot fat initialized
+                   configuration: FATs=2 filesystem=fat
+              *-volume:1
+                   description: EFI partition
+                   physical id: 2
+                   bus info: nvme@0:1,2
+                   logical name: /dev/nvme0n1p2
+                   logical name: /
+                   logical name: /home
+                   serial:
+                   capacity: 866GiB
+                   configuration: mount.fstype=btrfs mount.options=rw,relatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvolid=257,subvol=/@home state=mounted
+              *-volume:2
+                   description: EFI partition
+                   physical id: 3
+                   bus info: nvme@0:1,3
+                   logical name: /dev/nvme0n1p3
+                   logical name: /boot
+                   serial:
+                   capacity: 1023MiB
+                   configuration: mount.fstype=xfs mount.options=rw,relatime,attr2,discard,inode64,logbufs=8,logbsize=32k,noquota state=mounted
+              *-volume:3
+                   description: Linux swap volume
+                   vendor: Linux
+                   physical id: 4
+                   bus info: nvme@0:1,4
+                   logical name: /dev/nvme0n1p4
+                   version: 1
+                   serial:
+                   size: 64GiB
+                   capacity: 64GiB
+                   capabilities: nofs swap initialized
+                   configuration: filesystem=swap pagesize=4096
+     *-pci:2
+          description: PCI bridge
+          product: HiSilicon PCIe Root Port with Gen4
+          vendor: Huawei Technologies Co., Ltd.
+          physical id: 102
+          bus info: pci@0000:00:0a.0
+          version: 21
+          width: 32 bits
+          clock: 33MHz
+          capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+          configuration: driver=pcieport
+          resources: irq:32 ioport:3000(size=4096) memory:e1100000-e12fffff ioport:80018200000(size=2097152)
+        *-nvme
+             description: NVMe device
+             product: KXG60ZNV512G TOSHIBA
+             vendor: Toshiba Corporation
+             physical id: 0
+             bus info: pci@0000:05:00.0
+             logical name: /dev/nvme1
+             version: AGXA4103
+             serial:
+             width: 64 bits
+             clock: 33MHz
+             capabilities: nvme pciexpress pm msi msix nvm_express bus_master cap_list
+             configuration: driver=nvme latency=0 nqn=nqn.2017-03.jp.co.toshiba:KXG60ZNV512G TOSHIBA: state=live
+             resources: irq:29 memory:e1100000-e1103fff
+           *-namespace:0
+                description: NVMe disk
+                physical id: 0
+                logical name: hwmon0
+           *-namespace:1
+                description: NVMe disk
+                physical id: 2
+                logical name: /dev/ng1n1
+           *-namespace:2
+                description: NVMe disk
+                physical id: 1
+                bus info: nvme@1:1
+                logical name: /dev/nvme1n1
+                size: 476GiB (512GB)
+                capabilities: gpt-1.00 partitioned partitioned:gpt
+                configuration: guid= logicalsectorsize=512 sectorsize=512 wwid=eui.00000000000000018ce38e0300176ffe
+              *-volume
+                   description: EFI partition
+                   physical id: 1
+                   bus info: nvme@1:1,1
+                   logical name: /dev/nvme1n1p1
+                   logical name: /mnt/SSD2
+                   serial:
+                   capacity: 476GiB
+                   configuration: mount.fstype=btrfs mount.options=rw,relatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvolid=5,subvol=/ state=mounted
+     *-pci:3
+          description: PCI bridge
+          product: HiSilicon PCIe Root Port with Gen4
+          vendor: Huawei Technologies Co., Ltd.
+          physical id: c
+          bus info: pci@0000:00:0c.0
+          version: 21
+          width: 32 bits
+          clock: 33MHz
+          capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+          configuration: driver=pcieport
+          resources: irq:33 ioport:4000(size=4096) memory:e0000000-e0bfffff ioport:80018400000(size=2097152)
+        *-network UNCLAIMED
+             description: Network controller
+             product: Huawei Technologies Co., Ltd.
+             vendor: Huawei Technologies Co., Ltd.
+             physical id: 0
+             bus info: pci@0000:06:00.0
+             version: 02
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi pciexpress cap_list
+             configuration: latency=0
+             resources: memory:e0000000-e07fffff memory:e0800000-e0803fff
+     *-pci:4
+          description: PCI bridge
+          product: HiSilicon PCIe Root Port with Gen4
+          vendor: Huawei Technologies Co., Ltd.
+          physical id: d
+          bus info: pci@0000:00:0d.0
+          version: 21
+          width: 32 bits
+          clock: 33MHz
+          capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+          configuration: driver=pcieport
+          resources: irq:34 ioport:5000(size=4096) memory:e1300000-e14fffff ioport:80018600000(size=2097152)
+        *-usb
+             description: USB controller
+             product: uPD720202 USB 3.0 Host Controller
+             vendor: Renesas Technology Corp.
+             physical id: 0
+             bus info: pci@0000:07:00.0
+             version: 02
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi msix pciexpress xhci bus_master cap_list
+             configuration: driver=xhci_hcd latency=0
+             resources: irq:29 memory:e1300000-e1301fff
+           *-usbhost:0
+                product: xHCI Host Controller
+                vendor: Linux 6.0.5-gentoo-arm64 xhci-hcd
+                physical id: 0
+                bus info: usb@2
+                logical name: usb2
+                version: 6.00
+                capabilities: usb-2.00
+                configuration: driver=hub slots=2 speed=480Mbit/s
+              *-usb:0
+                   description: USB hub
+                   product: 4-Port USB 2.1 Hub
+                   vendor: Generic
+                   physical id: 1
+                   bus info: usb@2:1
+                   version: 1.01
+                   capabilities: usb-2.10
+                   configuration: driver=hub slots=4 speed=480Mbit/s
+              *-usb:1 UNCLAIMED
+                   description: Communication device
+                   product: Goodix Fingerprint Device
+                   vendor: Shenzhen Goodix Technology Co.,Ltd.
+                   physical id: 2
+                   bus info: usb@2:2
+                   version: 2.00
+                   capabilities: usb-2.00
+                   configuration: maxpower=100mA speed=12Mbit/s
+           *-usbhost:1
+                product: xHCI Host Controller
+                vendor: Linux 6.0.5-gentoo-arm64 xhci-hcd
+                physical id: 1
+                bus info: usb@3
+                logical name: usb3
+                version: 6.00
+                capabilities: usb-3.00
+                configuration: driver=hub slots=2 speed=5000Mbit/s
+              *-usb
+                   description: USB hub
+                   product: 4-Port USB 3.1 Hub
+                   vendor: Generic
+                   physical id: 1
+                   bus info: usb@3:1
+                   version: 1.01
+                   capabilities: usb-3.10
+                   configuration: driver=hub slots=4 speed=5000Mbit/s
+     *-pci:5
+          description: PCI bridge
+          product: HiSilicon PCIe Root Port with Gen4
+          vendor: Huawei Technologies Co., Ltd.
+          physical id: e
+          bus info: pci@0000:00:0e.0
+          version: 21
+          width: 32 bits
+          clock: 33MHz
+          capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+          configuration: driver=pcieport
+          resources: irq:35 ioport:6000(size=4096) memory:e1500000-e16fffff ioport:80018800000(size=2097152)
+     *-pci:6
+          description: PCI bridge
+          product: HiSilicon PCIe Root Port with Gen4
+          vendor: Huawei Technologies Co., Ltd.
+          physical id: f
+          bus info: pci@0000:00:0f.0
+          version: 21
+          width: 32 bits
+          clock: 33MHz
+          capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+          configuration: driver=pcieport
+          resources: irq:36 ioport:7000(size=4096) memory:e1700000-e18fffff ioport:80018a00000(size=2097152)
+     *-pci:7
+          description: PCI bridge
+          product: HiSilicon PCI-PCI Bridge
+          vendor: Huawei Technologies Co., Ltd.
+          physical id: 103
+          bus info: pci@0000:74:00.0
+          version: 20
+          width: 64 bits
+          clock: 33MHz
+          capabilities: pci pciexpress pm normal_decode bus_master cap_list
+          configuration: driver=pcieport
+          resources: iomemory:1010-100f irq:0
+     *-pci:8
+          description: PCI bridge
+          product: HiSilicon PCI-PCI Bridge
+          vendor: Huawei Technologies Co., Ltd.
+          physical id: 104
+          bus info: pci@0000:74:01.0
+          version: 20
+          width: 64 bits
+          clock: 33MHz
+          capabilities: pci pciexpress pm normal_decode bus_master cap_list
+          configuration: driver=pcieport
+          resources: iomemory:1010-100f irq:0 ioport:141000000(size=8388608)
+        *-generic UNCLAIMED
+             description: Unassigned class
+             product: SafeNet (wrong ID)
+             vendor: SafeNet (wrong ID)
+             physical id: 0
+             bus info: pci@0000:76:00.0
+             version: ff
+             width: 32 bits
+             clock: 66MHz
+             capabilities: bus_master vga_palette cap_list
+             configuration: latency=255 maxlatency=255 mingnt=255
+             resources: memory:141000000-1413fffff memory:141400000-1417effff
+     *-sas:0 UNCLAIMED
+          description: Serial Attached SCSI controller
+          product: HiSilicon SAS 3.0 HBA
+          vendor: Huawei Technologies Co., Ltd.
+          physical id: b
+          bus info: pci@0000:74:02.0
+          version: 21
+          width: 32 bits
+          clock: 33MHz
+          capabilities: sas pciexpress msi pm cap_list
+          configuration: latency=0
+          resources: memory:a2000000-a2007fff
+     *-sata
+          description: SATA controller
+          product: HiSilicon AHCI HBA
+          vendor: Huawei Technologies Co., Ltd.
+          physical id: 3
+          bus info: pci@0000:74:03.0
+          version: 21
+          width: 32 bits
+          clock: 33MHz
+          capabilities: sata pciexpress msi pm ahci_1.0 bus_master cap_list
+          configuration: driver=ahci latency=0
+          resources: irq:235 memory:a2010000-a2010fff
+     *-sas:1 UNCLAIMED
+          description: Serial Attached SCSI controller
+          product: HiSilicon SAS 3.0 HBA
+          vendor: Huawei Technologies Co., Ltd.
+          physical id: 4
+          bus info: pci@0000:74:04.0
+          version: 21
+          width: 32 bits
+          clock: 33MHz
+          capabilities: sas pciexpress msi pm cap_list
+          configuration: latency=0
+          resources: memory:a2008000-a200ffff
+     *-pci:9
+          description: PCI bridge
+          product: HiSilicon PCI-PCI Bridge
+          vendor: Huawei Technologies Co., Ltd.
+          physical id: 105
+          bus info: pci@0000:78:00.0
+          version: 20
+          width: 32 bits
+          clock: 33MHz
+          capabilities: pci pciexpress pm normal_decode bus_master cap_list
+          configuration: driver=pcieport
+          resources: irq:0
+     *-raid UNCLAIMED
+          description: RAID bus controller
+          product: HiSilicon RDE Engine
+          vendor: Huawei Technologies Co., Ltd.
+          physical id: 10
+          bus info: pci@0000:78:01.0
+          version: 21
+          width: 64 bits
+          clock: 33MHz
+          capabilities: raid pciexpress msi pm cap_list
+          configuration: latency=0
+          resources: iomemory:20-1f memory:208000000-2083fffff
+     *-usb:0
+          description: USB controller
+          product: HiSilicon USB 1.1 Host Controller
+          vendor: Huawei Technologies Co., Ltd.
+          physical id: 11
+          bus info: pci@0000:7a:00.0
+          version: 21
+          width: 64 bits
+          clock: 33MHz
+          capabilities: pciexpress msi pm ohci bus_master cap_list
+          configuration: driver=ohci-pci latency=0
+          resources: iomemory:20-1f irq:249 memory:20c100000-20c100fff
+        *-usbhost
+             product: OHCI PCI host controller
+             vendor: Linux 6.0.5-gentoo-arm64 ohci_hcd
+             physical id: 1
+             bus info: usb@6
+             logical name: usb6
+             version: 6.00
+             capabilities: usb-1.10
+             configuration: driver=hub slots=2 speed=12Mbit/s
+     *-usb:1
+          description: USB controller
+          product: HiSilicon USB 2.0 2-port Host Controller
+          vendor: Huawei Technologies Co., Ltd.
+          physical id: 1
+          bus info: pci@0000:7a:01.0
+          version: 21
+          width: 64 bits
+          clock: 33MHz
+          capabilities: pciexpress msi pm ehci bus_master cap_list
+          configuration: driver=ehci-pci latency=0
+          resources: iomemory:20-1f irq:237 memory:20c101000-20c101fff
+        *-usbhost
+             product: EHCI Host Controller
+             vendor: Linux 6.0.5-gentoo-arm64 ehci_hcd
+             physical id: 1
+             bus info: usb@1
+             logical name: usb1
+             version: 6.00
+             capabilities: usb-2.00
+             configuration: driver=hub slots=2 speed=480Mbit/s
+           *-usb
+                description: Audio device
+                product: Generic USB Audio
+                vendor: Generic
+                physical id: 1
+                bus info: usb@1:1
+                logical name: card1
+                logical name: /dev/snd/controlC1
+                logical name: /dev/snd/pcmC1D0c
+                logical name: /dev/snd/pcmC1D0p
+                logical name: /dev/snd/pcmC1D1c
+                logical name: /dev/snd/pcmC1D1p
+                logical name: /dev/snd/pcmC1D2c
+                logical name: /dev/snd/pcmC1D2p
+                logical name: input1
+                logical name: /dev/input/event1
+                version: 0.13
+                capabilities: usb-2.00 audio-control usb
+                configuration: driver=usbhid maxpower=100mA speed=480Mbit/s
+     *-usb:2
+          description: USB controller
+          product: HiSilicon USB 3.0 Host Controller
+          vendor: Huawei Technologies Co., Ltd.
+          physical id: 12
+          bus info: pci@0000:7a:02.0
+          version: 21
+          width: 64 bits
+          clock: 33MHz
+          capabilities: pciexpress msi pm xhci bus_master cap_list
+          configuration: driver=xhci_hcd latency=0
+          resources: iomemory:20-1f irq:246 memory:20c000000-20c0fffff
+        *-usbhost:0
+             product: xHCI Host Controller
+             vendor: Linux 6.0.5-gentoo-arm64 xhci-hcd
+             physical id: 0
+             bus info: usb@4
+             logical name: usb4
+             version: 6.00
+             capabilities: usb-2.00
+             configuration: driver=hub slots=1 speed=480Mbit/s
+           *-usb
+                description: USB hub
+                product: 4-Port USB 2.1 Hub
+                vendor: Generic
+                physical id: 1
+                bus info: usb@4:1
+                version: 1.01
+                capabilities: usb-2.10
+                configuration: driver=hub slots=4 speed=480Mbit/s
+              *-usb:0
+                   description: USB hub
+                   product: USB2.1 Hub
+                   vendor: GenesysLogic
+                   physical id: 1
+                   bus info: usb@4:1.1
+                   version: 6.63
+                   capabilities: usb-2.10
+                   configuration: driver=hub maxpower=100mA slots=4 speed=480Mbit/s
+                 *-usb:0
+                      description: Bluetooth wireless interface
+                      product: Bluetooth Radio
+                      vendor: Realtek
+                      physical id: 1
+                      bus info: usb@4:1.1.1
+                      version: 2.00
+                      serial:
+                      capabilities: bluetooth usb-1.10
+                      configuration: driver=btusb maxpower=500mA speed=12Mbit/s
+                 *-usb:1
+                      description: Bluetooth wireless interface
+                      product: Bluetooth Radio
+                      vendor: Realtek
+                      physical id: 2
+                      bus info: usb@4:1.1.2
+                      version: 2.00
+                      serial:
+                      capabilities: bluetooth usb-1.10
+                      configuration: driver=btusb maxpower=500mA speed=12Mbit/s
+                 *-usb:2
+                      description: Video
+                      product: FHD Camera Microphone: FHD Came
+                      vendor: SunplusIT Inc
+                      physical id: 3
+                      bus info: usb@4:1.1.3
+                      logical name: card3
+                      logical name: /dev/snd/controlC3
+                      logical name: /dev/snd/pcmC3D0c
+                      logical name: input6
+                      logical name: /dev/input/event6
+                      version: 10.14
+                      serial: 01.00.00
+                      capabilities: usb-2.00 usb
+                      configuration: driver=snd-usb-audio maxpower=500mA speed=480Mbit/s
+                 *-usb:3
+                      description: USB hub
+                      product: HighSpeed Hub
+                      vendor: NEC Corp.
+                      physical id: 4
+                      bus info: usb@4:1.1.4
+                      version: 1.00
+                      capabilities: usb-2.00
+                      configuration: driver=hub maxpower=100mA slots=3 speed=480Mbit/s
+                    *-usb
+                         description: Keyboard
+                         product: Topre Corporation HHKB Professional
+                         vendor: Topre Corporation
+                         physical id: 1
+                         bus info: usb@4:1.1.4.1
+                         logical name: input3
+                         logical name: /dev/input/event3
+                         logical name: input3::capslock
+                         logical name: input3::compose
+                         logical name: input3::kana
+                         logical name: input3::numlock
+                         logical name: input3::scrolllock
+                         version: 1.02
+                         capabilities: usb-1.10 usb
+                         configuration: driver=usbhid maxpower=100mA speed=12Mbit/s
+              *-usb:1
+                   description: Human interface device
+                   product: SAVITECH Bravo-X USB Audio
+                   vendor: SAVITECH
+                   physical id: 2
+                   bus info: usb@4:1.2
+                   logical name: card2
+                   logical name: /dev/snd/controlC2
+                   logical name: /dev/snd/pcmC2D0p
+                   logical name: /dev/snd/pcmC2D1p
+                   logical name: input2
+                   logical name: /dev/input/event2
+                   version: 0.01
+                   capabilities: usb-1.10 usb
+                   configuration: driver=snd-usb-audio maxpower=100mA speed=12Mbit/s
+        *-usbhost:1
+             product: xHCI Host Controller
+             vendor: Linux 6.0.5-gentoo-arm64 xhci-hcd
+             physical id: 1
+             bus info: usb@5
+             logical name: usb5
+             version: 6.00
+             capabilities: usb-3.00
+             configuration: driver=hub slots=1 speed=5000Mbit/s
+           *-usb
+                description: USB hub
+                product: 4-Port USB 3.1 Hub
+                vendor: Generic
+                physical id: 1
+                bus info: usb@5:1
+                version: 1.01
+                capabilities: usb-3.10
+                configuration: driver=hub slots=4 speed=5000Mbit/s
+              *-usb
+                   description: USB hub
+                   product: USB3.1 Hub
+                   vendor: GenesysLogic
+                   physical id: 1
+                   bus info: usb@5:1.1
+                   version: 6.63
+                   capabilities: usb-3.20
+                   configuration: driver=hub slots=4 speed=5000Mbit/s
+     *-generic
+          description: System peripheral
+          product: HiSilicon Embedded DMA Engine
+          vendor: Huawei Technologies Co., Ltd.
+          physical id: 13
+          bus info: pci@0000:7b:00.0
+          version: 21
+          width: 64 bits
+          clock: 33MHz
+          capabilities: pciexpress msi pm bus_master cap_list
+          configuration: driver=hisi_dma latency=0
+          resources: iomemory:10-f irq:39 memory:148800000-148803fff
+     *-pci:10
+          description: PCI bridge
+          product: HiSilicon PCI-PCI Bridge
+          vendor: Huawei Technologies Co., Ltd.
+          physical id: 0
+          bus info: pci@0000:7c:00.0
+          version: 20
+          width: 64 bits
+          clock: 33MHz
+          capabilities: pci pciexpress pm normal_decode bus_master cap_list
+          configuration: driver=pcieport
+          resources: iomemory:1010-100f irq:0 ioport:120000000(size=2097152)
+        *-network
+             description: Ethernet interface
+             product: HNS GE/10GE/25GE RDMA Network Controller
+             vendor: Huawei Technologies Co., Ltd.
+             physical id: 0
+             bus info: pci@0000:7d:00.0
+             logical name: enp125s0f0
+             version: 21
+             serial:
+             size: 1Gbit/s
+             capacity: 1Gbit/s
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pciexpress msix pm bus_master cap_list ethernet physical tp 10bt 10bt-fd 100bt 100bt-fd 1000bt-fd autonegotiation
+             configuration: autonegotiation=on broadcast=yes driver=hns3 driverversion=6.0.5-gentoo-arm64 duplex=full firmware=1.8.15.0 ip=192.168.1.150 latency=0 link=yes multicast=yes port=twisted pair speed=1Gbit/s
+             resources: iomemory:10-f iomemory:10-f irq:0 memory:120100000-12010ffff memory:120000000-1200fffff
+     *-pnp00:00
+          product: 16550A-compatible COM port
+          physical id: 14
+          capabilities: pnp
+          configuration: driver=serial
+  *-input:0
+       product: Power Button
+       physical id: 1
+       logical name: input0
+       logical name: /dev/input/event0
+       capabilities: platform
+  *-input:1
+       product: MX Vertical Mouse
+       physical id: 2
+       logical name: input7
+       logical name: /dev/input/event7
+       logical name: /dev/input/mouse0
+       capabilities: bluetooth
 
 Am 27.10.22 um 16:29 schrieb Rodrigo Siqueira:
 > Hi Ao/Arnd/Stephen/Nathan,
