@@ -1,60 +1,124 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6627960F73F
-	for <lists+amd-gfx@lfdr.de>; Thu, 27 Oct 2022 14:29:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 892C360F809
+	for <lists+amd-gfx@lfdr.de>; Thu, 27 Oct 2022 14:52:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 776C210E5E5;
-	Thu, 27 Oct 2022 12:29:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DD2610E60E;
+	Thu, 27 Oct 2022 12:52:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com
- [IPv6:2607:f8b0:4864:20::235])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF84F10E5E5;
- Thu, 27 Oct 2022 12:29:21 +0000 (UTC)
-Received: by mail-oi1-x235.google.com with SMTP id i7so1759269oif.4;
- Thu, 27 Oct 2022 05:29:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Xa5GrxnZ3/k298AiI9bwmUqW7auUsL6W5b9kaeulqJg=;
- b=dbo/hFAdohbxbYorkHxEiszhJ416SSL4dcAYp9HQ9/blc7v6iwR/lvhfE+O2FbajH4
- +snhoxSbG83H3opKzvUhXihv+NGpiMxYvtYPq5dhrDzOyA7btYvs2VXGTTK5sErEQaXo
- +MhcyMSOF0gjwhFOcfArxhfZ0ouEfhWmOxyYwF4lmtYvNHH532kE6iJFvUcF+Cdp4561
- KmOhs77lXclY2iKxqa9burqw3eAAhBD8cSJvWjpIh63Fw0DYDr8seEa796s/REaAksum
- fZ/AuyNKvMcxkcE11H7CFEY08cHJhqaiF7ychXdxmKgWJjCrv/F4mz42RLQ4ULP1UZB+
- nVBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=Xa5GrxnZ3/k298AiI9bwmUqW7auUsL6W5b9kaeulqJg=;
- b=cpv7PA72T7BltKp5AxLNYDm6fXjBaxVyfkC0iJG3k3fJslCjF8SN9skE1KNh2BZ/XI
- WJDlE6fEn9ldFNw1ZRlr3vJvJa1E3/warU/Dv9fKDEA0LQqcwhT9PesvdyT935MjsUlK
- vWk4Uitjy1HIx2Wk8MyEGpupGJeNm7ATTGMBsSOWgOC7l88Ms7x0b7+8tnAuXT8uEBmj
- 3MxhTVidBbgpnbu2EJQNc00HzzRHPe99+WeIXADf3R7ohz7LIzmww7JWXqhzgBaNNfSc
- bSUUBw7HObPO/TVHVPGNKlT9uik3I4vheim0PSIH9LjXmsyVW//t30TxjGJufpLIZoaf
- UGng==
-X-Gm-Message-State: ACrzQf3Y37txiTfajZHJOT20GOnl4B/F0L+i8qRoheAifXHPIkLu6Rpo
- ZLe1tOIBI0PaXnukJoy4P2hhpDPrfaG2+su/LaRHUfRc
-X-Google-Smtp-Source: AMsMyM5vrAIU7x2kSV7IFeNFwFJen51NMaIo6s1inO+wV2qpCTq1uhruDI6NZ51lFjNHXwG6G42QGHHVxqTHT7Vo6Pg=
-X-Received: by 2002:a05:6808:998:b0:359:c7f3:1ef8 with SMTP id
- a24-20020a056808099800b00359c7f31ef8mr541268oic.46.1666873761106; Thu, 27 Oct
- 2022 05:29:21 -0700 (PDT)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2041.outbound.protection.outlook.com [40.107.243.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5943B10E60E
+ for <amd-gfx@lists.freedesktop.org>; Thu, 27 Oct 2022 12:52:14 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mLR3aJGnToa1XxkdRq1JSi0YFeW9Ujlh0EhcA4l4k6SK7kwUh+3JAP7py1BsOgbMyypu9JquMBncQrnZgSuhxzbXRJuFgBMjM9A7aNZTW0UjDPssM5v5okMIJYI5ZDxRZE9JC0UJfQnVb0BV2Ir7Vk1YlLL2T+raDEs3NJcPi5ChePBvWxNYFxPfs1hJ7GsTE3QN5xnvk8+HbvQgyT/YieMSwv2sAmA6nowYsfpb5zFklVt+Soea6CWPYv9mZ93OLV0Tu0x+o1bRg7MN8L+geipRv6omtBAPja6MTZb/z6koKbYfiHh3tSLy6d6A2CicjNseAgGqfdRClTsOALT1Gw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ppj/vQ1wHTZwZOkft78fbzhnpo/PzUIaAFYobltofSM=;
+ b=QdqucI6nLkCgxRRVIdpz3760Mg58FE0OdmV9fhwK30TIt8829t20bIrf4ZgPSe/29ndOoFmgshJw95eUDTfeUAkWvrG64re9kTxiDPR8Q6BC2t0TXvAA3naOEp5i+JrsqFyDcshN1ftJ/ROe4WC+4MAfrCgGe/t/MCJnyRd1N70GS+8zMy3C2LP/6Rq81PLC/L3aQk5BtQac8uLjjd5Dgn24xzCzOJ4QDCRqkXO1htsreDzNbtE4rxOjZ1A79kp7SI6SHUk1Uz5mPvBvwZf4d77rQdCtkT22oJKYXtPRz2KUa/TweHcs/+HEs+8wwrv9KhiXA+YbkFn7K8wfHoweXg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ppj/vQ1wHTZwZOkft78fbzhnpo/PzUIaAFYobltofSM=;
+ b=B5QE4Na2Pw0KLFFlOoDWyRSl27426YjLtALQcnkmBVLgQ2Re1T7odaFYXApBzJ2eexLqztquDj30BsXyNAwgQ8Zqeca66IOhYhMGy+Ihwt5DtVtKu+mCe5MnKU0gURNui9TFjLM16FqefEFHZwrNoyUF/YNxu+86AlrFJgYgDRI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
+ by DM4PR12MB5263.namprd12.prod.outlook.com (2603:10b6:5:39b::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.14; Thu, 27 Oct
+ 2022 12:52:12 +0000
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::a350:f29a:f287:7279]) by BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::a350:f29a:f287:7279%4]) with mapi id 15.20.5746.023; Thu, 27 Oct 2022
+ 12:52:11 +0000
+Message-ID: <5ed240e0-34d2-d009-1142-2afc326a573a@amd.com>
+Date: Thu, 27 Oct 2022 14:52:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH RESEND 1/1] drm/amd/display: add DCN support for ARM64
+Content-Language: en-US
+To: Arnd Bergmann <arnd@arndb.de>, Ao Zhong <hacc1225@gmail.com>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Nathan Chancellor <nathan@kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Stephen Rothwell <sfr@canb.auug.org.au>
+References: <20221027002528.15983-1-hacc1225@gmail.com>
+ <20221027002528.15983-2-hacc1225@gmail.com>
+ <c41b45cb-8a1a-4140-b7f9-08aa481a25c1@app.fastmail.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+In-Reply-To: <c41b45cb-8a1a-4140-b7f9-08aa481a25c1@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM6P191CA0022.EURP191.PROD.OUTLOOK.COM
+ (2603:10a6:209:8b::35) To BN8PR12MB3587.namprd12.prod.outlook.com
+ (2603:10b6:408:43::13)
 MIME-Version: 1.0
-References: <20221027024101.6881-1-alexander.deucher@amd.com>
- <DM5PR12MB24693E14F89BD4116EBB51ADF1339@DM5PR12MB2469.namprd12.prod.outlook.com>
-In-Reply-To: <DM5PR12MB24693E14F89BD4116EBB51ADF1339@DM5PR12MB2469.namprd12.prod.outlook.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 27 Oct 2022 08:29:09 -0400
-Message-ID: <CADnq5_ON7UBcr9OfkOZN-vuNcSyEq7UzZoe06iAChS39rNNbnQ@mail.gmail.com>
-Subject: Re: [pull] amdgpu, amdkfd drm-fixes-6.1
-To: "Chen, Guchun" <Guchun.Chen@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|DM4PR12MB5263:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0b323a48-46c8-4064-23c4-08dab81a10b4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: BsiZ2ZmrYKWKSeZ6ZsCFvFbu3OAyf8PDdaD6hSDb40WvqmyZUA9bSABJPyOlG4g8ODql/2rcKWqjopNnkogLhDlaL0XUAYsYJm5KqXxUN6qDQHfuLRbWcg3t0HcdVXV5fYMbEe4fSwZ+1TcDRj2c+dttbszV0j4Ck/lYvsrmU4Z1UZ2jx00WvGTFznJ0pR6MgD9eXbgGj/CZAhb/TcgzK9ZiJPEo4eD1WXHlJ6eCOki8AZ8yVjyi7b6VF3u+jhczN5IsBoQ2d8pZ3LQ+s3pc8AXMbWT3VOMiEhiUTDgOIAiV4J0Qyg12l3ngKNjKD7Eb5/RmpooatiZ/LYIid2LCdJhUP+HFARwu+As/33PyCBb1U1Ckb1i2vZ5I+RiHWoidZZnvro/TtiMmjc56ODD0afHLOjQuJSB2spapMJimU1ZA6b9YlNma8oE+aO0Rc706aj9nP9nK3GiSjhuRilcr7VWCzX5X1LaRSTedubacUio44o46FeRP0Pq/sseeukH6i+oNyuC8wwVUrBMfYqQheD77a3OYGnYGzPCZaLhS7rrJgbsvTjm3t4edGJETlQ6e9N5U6YyJpqX67i0VIGlWLd5HyKu3BlCwxwzhRZF3y+ABIAX4J8n3i6nEloj6Mbz9u+Ysah3oU6lftZaGibH42H+D/Bi6IJ6S7z7RFRfBFFQyJJvPsGaSDr5B1Bp+p02nzMphxQYng9TGJvCk71/8uVRXVy0qC5Ye/X6TVkcj9/J9MW88aGakLHQxz9gtP6SIKdU6OfNegb5IIHtMD+d9blXJnIFNt69wbSqyixSDqkw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(4636009)(366004)(346002)(396003)(136003)(39860400002)(376002)(451199015)(316002)(38100700002)(86362001)(6666004)(31696002)(110136005)(8936002)(26005)(6512007)(5660300002)(2906002)(2616005)(186003)(6506007)(36756003)(4326008)(66556008)(66476007)(66946007)(8676002)(41300700001)(31686004)(6486002)(478600001)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UWVIejI3YTRQdXppdlJJOEFXaGw2WnkrQ3ZHRXE4bW1SR2Qzcm43S1d0V0Np?=
+ =?utf-8?B?b0ticWg1WlQ5anBvTkc2RkMyR2o2WXBqZFk2MTdFd1pBN3VIK1NHWjBmRGZr?=
+ =?utf-8?B?Q3cvZzhMaElzb3VoNjJQUElvUm5TdHdEQThKMGdRMG8rR0w2OFZKeGRoeUhE?=
+ =?utf-8?B?QlBuS0NjUHhjemJNVkhZWXFYTGljRG1BZitRbytZSU5YUmd5dnBRV0NtNmVs?=
+ =?utf-8?B?eHJPNU1JLzRPRnEwSUlUV2EreWdqNlludmVud09yNnBuT1FwTVl2cGdsQnRR?=
+ =?utf-8?B?RXYvTnIxeGg1aEZOSExvUmNlTVBRMWlZMitYVjc2MUZiRFRmK0p5Y09FSGlW?=
+ =?utf-8?B?Wk1DMis4U1V0YU90b1hwbGZGN3dGY2ZmSnNwTDRzbkVBLy8yZkZleEFOaFB1?=
+ =?utf-8?B?Q3NJd1lzNDhmYkFaUUU5RTlVc2FnZURPMWwwRitTRGhQNUtSbXYxTTV2ZUtS?=
+ =?utf-8?B?NzlicTVDeWN2Z2xNSk5PbmgwSmUxMFZMcm5PZ2FqQ0FEVEF3bVZheE5lb3Zh?=
+ =?utf-8?B?UEV2Rk1INTZaNXFYSng5U2hVQ2pTRzRYVlN3d250NFZTOElsY0Q5cFBvZFp6?=
+ =?utf-8?B?S2d6WHFjZ3ZRRjhhODhQd1hqU2xXVlMzM05kRE9qZGQ1eUc2TVN6aDhoNEtm?=
+ =?utf-8?B?cmpoTUlMNWYvZ25aUkhuOUE4QlB5L2VmTTdreEpaVkUyQXFBTkhheENHcjBK?=
+ =?utf-8?B?T3NtdzVGWDBMSzh4Ukk1VVJpWWI1RHNrN05lWDIrZno1TUt1dXNOSW5pNitO?=
+ =?utf-8?B?ZFlQakxMdHRDdkxUVFFIUmRwSGJxdDR4NHBOelpnemhJZzVuQnNCSkdnWHZl?=
+ =?utf-8?B?ZzlCa0lza2NPS2FlbXczaU4wNkVsd2I3NXpUOHl2b1NwdUIwazRWQTNFVlBy?=
+ =?utf-8?B?MGJiL3NTb29nRUFVYkJ1MExUL2dBUHNBOEJEUi9FZktNa0FycFNaeEQ0MGNZ?=
+ =?utf-8?B?QXlvdjl0ZytsbzlRZDBmRjZ1THhrc3J5bWpoaUpLUERBYldIMmRJN1hPWHo3?=
+ =?utf-8?B?VDQzU0pwRmpCT05YVXNiVkFVZDRKQlBYTWRBWnIyYmlxOE5iNE1LUnV3amJm?=
+ =?utf-8?B?K3UwMndkN0REdEZ1eXhMSWkzUzNCMDM1VHZSWFp6MXN2T0laTUc4d2NSS0RT?=
+ =?utf-8?B?VlVyRDZxN2pLZ2pWUk83aGxZOTBBa1RRR0lVWW5OaTJVeWVFUG1EVkwwSXZM?=
+ =?utf-8?B?ajZ1bDhYNUdFa2thaDVFZVJ2djJPVmUwM0IvVEJoYjZ3dzlLQ2c3aUlHMkk5?=
+ =?utf-8?B?SzdDVGFyY0dOT3FaTzM3ckFyVDJXYjI2eHZ4cWRnbExkNEsvclBzRUlqdGFo?=
+ =?utf-8?B?Mmt1SHpPTitTL1FGeFJZMHZFaEhEWHRjeTFmWDJpTnBPTkw2bmVURzJMWmJJ?=
+ =?utf-8?B?NTZBajdMc2hwbXduZklaUTk3d1J4dUVXQ3dJd1g1dGk0QzIyVGdGa0VmVkwx?=
+ =?utf-8?B?U2l5YkpMZTZTYytseXBsWFFscjRjUjhJVlhneEtHcEVTYW9NeDlidDdmRVlK?=
+ =?utf-8?B?a3VXUXEvbm16Nk9EZ2J6blIwNzlsckowUDNjQkxWWTNTbjNSMnBRSEo0N3Ex?=
+ =?utf-8?B?OGplejVQcFZyUTFqUWc2N2JXMVZoRUZqOGRucjFNaGdOYkRyYWNuUG53dU1L?=
+ =?utf-8?B?aEplZjloUVNvMWxmU0NxaXorNHBRRjVUZnU5OHNFaEtxcVZBTlNtNElTc2gx?=
+ =?utf-8?B?dzJFSmpENmxhZlBaaVNqenYyNm4wZG5oMjczQi9aVktjdkJ1S2NOQ2xKZktr?=
+ =?utf-8?B?cDR6dFdkaXVVUEhhSGRLY2VYVHBQdzlOajZBSm1aemxTL1NnNElOaVQ2VjUv?=
+ =?utf-8?B?Q0pxeEk3TE5TTWh0ZjE1cFUyR0NqUzlmcjk0eXFsU2hPTEMvcllXZ1NSeFpQ?=
+ =?utf-8?B?Q1RNNFVBaFk1am4venc0Qit4Smp1OVZVeWt4NWdaNE0rbmRvcDVVNTI4blNl?=
+ =?utf-8?B?ODhZZkRlSFQvejBPWDJXS1Z1VVhMOGZMakRVWTNPNEQwdlV0TmpOeXFwUlFa?=
+ =?utf-8?B?RnVTZ2JzMVBNQUNBbW94eEJvTjlneDdmTmVPc01QQjJ3VE9ZMGtOOUpib3VW?=
+ =?utf-8?B?dnhhRWl4Z1NXbDNhay8xWUpObFhlTU0zWlpjUC9EbWVrb3lSK09iRWpBczhy?=
+ =?utf-8?Q?pGnLNtkWONbr5d7vkbRJm96hY?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b323a48-46c8-4064-23c4-08dab81a10b4
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2022 12:52:11.8841 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +ho7+jF2wu3pcCr1kqLkmilGUrLWEfkii9DNTEtuv78HWgQ7sjel/Qmb3Xhmwg6M
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5263
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,148 +130,58 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Cc: amd-gfx@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 27, 2022 at 1:42 AM Chen, Guchun <Guchun.Chen@amd.com> wrote:
->
-> Hello Alex,
->
-> Regarding below patch, I guess we need to pick "8eb402f16d5b drm/amdgpu: =
-Fix uninitialized warning in mmhub_v2_0_get_clockgating()" together, otherw=
-ise, build will possibly fail. Is it true?
->
+Am 27.10.22 um 12:52 schrieb Arnd Bergmann:
+> On Thu, Oct 27, 2022, at 02:25, Ao Zhong wrote:
+>> After moving all FPU code to the DML folder, we can enable DCN support
+>> for the ARM64 platform. Remove the -mgeneral-regs-only CFLAG from the
+>> code in the DML folder that needs to use hardware FPU, and add a control
+>> mechanism for ARM Neon.
+>>
+>> Signed-off-by: Ao Zhong <hacc1225@gmail.com>
+> There have been problems with stack frame overflows on this code
+> in the past, how much have you tested this with random configurations
+> to see if we still hit them in corner cases on arm64 that may not
+> show up on x86 or powerpc? I would expect to see a few more of them
+> for every new architecture port.
 
-I squashed that fix into the original patch to avoid confusion when
-the patch goes to stable.
+Our display team has worked quite a bit on those.
 
-Alex
+For example instead of putting large structures used for temporary 
+calculations on the stack we now either completely avoid or kmalloc them 
+as part of the CRTC structure.
 
+On the other hand I wouldn't put my hand into the fire that this has 
+fixed all the problematic call paths. So keeping an eye open for this is 
+certainly a good idea.
 
->  " Lijo Lazar (1):
->       drm/amdgpu: Remove ATC L2 access for MMHUB 2.1.x"
+Christian.
+
+>> index d0c6cf61c676..3cdd109189e0 100644
+>> --- a/drivers/gpu/drm/amd/display/dc/dml/Makefile
+>> +++ b/drivers/gpu/drm/amd/display/dc/dml/Makefile
+>> @@ -33,6 +33,12 @@ ifdef CONFIG_PPC64
+>>   dml_ccflags := -mhard-float -maltivec
+>>   endif
+>>
+>> +ifdef CONFIG_ARM64
+>> +ifdef CONFIG_DRM_AMD_DC_DCN
+>> +dml_rcflags_arm64 := -mgeneral-regs-only
+>> +endif
+>> +endif
+>> +
+>>   CFLAGS_$(AMDDALPATH)/dc/dml/calcs/dcn_calcs.o := $(dml_ccflags)
+>>   CFLAGS_$(AMDDALPATH)/dc/dml/calcs/dcn_calc_auto.o := $(dml_ccflags)
+>>   CFLAGS_$(AMDDALPATH)/dc/dml/calcs/dcn_calc_math.o := $(dml_ccflags)
+>> -Wno-tautological-compare
+>> -CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/display_mode_vba.o := $(dml_rcflags)
+>> +CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/display_mode_vba.o :=
+>> $(dml_rcflags) $(dml_rcflags_arm64)
+> Why do you need separate $(dml_rcflags) and $(dml_rcflags_arm64)
+> rather than adding -mgeneral-regs-only to $(dml_rcflags) directly?
 >
-> Regards,
-> Guchun
->
-> -----Original Message-----
-> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Alex D=
-eucher
-> Sent: Thursday, October 27, 2022 10:41 AM
-> To: amd-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; airli=
-ed@gmail.com; daniel.vetter@ffwll.ch
-> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>
-> Subject: [pull] amdgpu, amdkfd drm-fixes-6.1
->
-> Hi Dave, Daniel,
->
-> Fixes for 6.1.  Fixes for new IPs and misc other fixes.
->
-> The following changes since commit cbc543c59e8e7c8bc8604d6ac3e18a029e3d51=
-18:
->
->   Merge tag 'drm-misc-fixes-2022-10-20' of git://anongit.freedesktop.org/=
-drm/drm-misc into drm-fixes (2022-10-21 09:56:14 +1000)
->
-> are available in the Git repository at:
->
->   https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fgit=
-lab.freedesktop.org%2Fagd5f%2Flinux.git&amp;data=3D05%7C01%7Cguchun.chen%40=
-amd.com%7C6bbe7e42eb3d43bf622208dab7c4c906%7C3dd8961fe4884e608e11a82d994e18=
-3d%7C0%7C0%7C638024353059986195%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDA=
-iLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=
-=3DY%2BU1OrPyhCaS44nGQMTrtqBpdkcJwFdFJEAaqWGiaqo%3D&amp;reserved=3D0 tags/a=
-md-drm-fixes-6.1-2022-10-26-1
->
-> for you to fetch changes up to d61e1d1d5225a9baeb995bcbdb904f66f70ed87e:
->
->   drm/amdgpu: disallow gfxoff until GC IP blocks complete s2idle resume (=
-2022-10-26 17:48:43 -0400)
->
-> ----------------------------------------------------------------
-> amd-drm-fixes-6.1-2022-10-26-1:
->
-> amdgpu:
-> - Stable pstate fix
-> - SMU 13.x updates
-> - SR-IOV fixes
-> - PCI AER fix
-> - GC 11.x fixes
-> - Display fixes
-> - Expose IMU firmware version for debugging
-> - Plane modifier fix
-> - S0i3 fix
->
-> amdkfd:
-> - Fix possible memory leak
-> - Fix GC 10.x cache info reporting
->
-> UAPI:
-> - Expose IMU firmware version via existing INFO firmware query
->
-> ----------------------------------------------------------------
-> Alvin Lee (1):
->       drm/amd/display: Don't return false if no stream
->
-> Chengming Gui (1):
->       drm/amdgpu: fix pstate setting issue
->
-> David Francis (1):
->       drm/amd: Add IMU fw version to fw version queries
->
-> Jesse Zhang (1):
->       drm/amdkfd: correct the cache info for gfx1036
->
-> Joaqu=C3=ADn Ignacio Aramend=C3=ADa (1):
->       drm/amd/display: Revert logic for plane modifiers
->
-> Kenneth Feng (2):
->       drm/amd/pm: update driver-if header for smu_v13_0_10
->       drm/amd/pm: allow gfxoff on gc_11_0_3
->
-> Lijo Lazar (1):
->       drm/amdgpu: Remove ATC L2 access for MMHUB 2.1.x
->
-> Prike Liang (2):
->       drm/amdkfd: update gfx1037 Lx cache setting
->       drm/amdgpu: disallow gfxoff until GC IP blocks complete s2idle resu=
-me
->
-> Rafael Mendonca (1):
->       drm/amdkfd: Fix memory leak in kfd_mem_dmamap_userptr()
->
-> Rodrigo Siqueira (1):
->       drm/amd/display: Remove wrong pipe control lock
->
-> Yiqing Yao (1):
->       drm/amdgpu: Adjust MES polling timeout for sriov
->
-> YuBiao Wang (1):
->       drm/amdgpu: skip mes self test for gc 11.0.3 in recover
->
->  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c   |   6 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c            |   5 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c         |  18 +++-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c            |  13 +++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c          |   4 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c           |   1 +
->  drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h        |   1 +
->  drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c             |   1 +
->  drivers/gpu/drm/amd/amdgpu/mes_v11_0.c             |   9 +-
->  drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c            |  28 ++----
->  drivers/gpu/drm/amd/amdkfd/kfd_crat.c              | 106 +++++++++++++++=
-++++-
->  .../drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c    |  50 ++--------
->  drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c |  12 +--
->  .../amd/display/dc/dcn32/dcn32_resource_helpers.c  |   2 +-
->  .../pm/swsmu/inc/pmfw_if/smu13_driver_if_v13_0_0.h | 111 +++++++++++++++=
-------
->  drivers/gpu/drm/amd/pm/swsmu/inc/smu_v13_0.h       |   2 +-
->  drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c     |   7 +-
->  include/uapi/drm/amdgpu_drm.h                      |   2 +
->  18 files changed, 259 insertions(+), 119 deletions(-)
+>      Arnd
+
