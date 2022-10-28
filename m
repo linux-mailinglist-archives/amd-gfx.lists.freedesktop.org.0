@@ -1,64 +1,71 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14E39612D39
-	for <lists+amd-gfx@lfdr.de>; Sun, 30 Oct 2022 23:05:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30C7A613182
+	for <lists+amd-gfx@lfdr.de>; Mon, 31 Oct 2022 09:14:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4ED110E03D;
-	Sun, 30 Oct 2022 22:05:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C10010E145;
+	Mon, 31 Oct 2022 08:14:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com
- [IPv6:2607:f8b0:4864:20::f2b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C61E10E031;
- Sun, 30 Oct 2022 22:05:17 +0000 (UTC)
-Received: by mail-qv1-xf2b.google.com with SMTP id i12so7422806qvs.2;
- Sun, 30 Oct 2022 15:05:17 -0700 (PDT)
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com
+ [IPv6:2a00:1450:4864:20::331])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEB1710E84E
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 15:26:35 +0000 (UTC)
+Received: by mail-wm1-x331.google.com with SMTP id
+ l16-20020a05600c4f1000b003c6c0d2a445so4052051wmq.4
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 08:26:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
+ h=in-reply-to:from:references:cc:to:content-language:subject
+ :user-agent:mime-version:date:message-id:from:to:cc:subject:date
  :message-id:reply-to;
- bh=f9hB5rxf2lQLgckJttK0ClN8TMoVNxkXM2HKpZa8Agc=;
- b=a0gOZaVtXsTqqvaknXuDyBGYtQ6vHGoInWhHeKzJeoOi/Ai0HSf1WstuCPDZMl4w2T
- lYqTptzjjPX8Z+iytIV5TfHJ4GQTKDQLJ5VNYYJ5yZ6jra0TVCfa63ZGgsvdv5rjZPwD
- TaniurNPRZnJDqvQWUumfYMerR9S8gYB2gGIk189avVar+bQZIu16vX6JP7YuDkKcogW
- Zu6Eb5NQe8RdpufxqhkYmn6eCJU4U7ebhwzaueFyH4+DVPMEss2fUgO2UHDeWUdlFlFI
- WqvYj7RDHyR8OQOAb206gOO/Q3g05SnhW6ApTZZFg3Auk5+vtszduXVJacd978WwMx4N
- 6LIA==
+ bh=nP7QJjRq4UzjK0j4jQ6EBtRCWHehfeRnjLM59ebJ0Ks=;
+ b=OI+92Op1cbKagyqfE4sFMvFhsBE5ZuQgT05uMinnLD5Ix30h67M3CaQ4jDqwmeHJJ2
+ GCGX1veFjjzqu6UqIIqENPdWlL0PIZVJs06KdLIGMvVQwNTyBQqpYI0IyA8qXnCzrFTQ
+ hh4wtWsJEv0iRPzSRCAvtAgUEPrNxxphimWJyDGP809tHZbwLXyiDHeknL6RQ9ojGXnU
+ 5cbe03USDzJuFjPRLPPBsQ0AceWAYwOL84DWRj7LdGAVe/pemTvSuA56cHcvDu2ldJMG
+ tkSolsBXRjXpxPM/Cb/uHSkJ9TnrQ/CgSM7P6nrpihVPBZCZVI+6DBuPz9FhGpSAlNvh
+ R7pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=f9hB5rxf2lQLgckJttK0ClN8TMoVNxkXM2HKpZa8Agc=;
- b=NQ0bTtINr6QtNOK5n8ovRo/z4HJeDnBM53moKhoBZKZayvXVoUjjlndo21hrzl6t5e
- QHpfwnTnsmXuaL5Owdq2UmgO/MSMboZnZ/lVygpQtekmkfyqJLTyz9qFS+RWXt1AhcbK
- Sbp6gZXYo2SsiUpcOKk8F+JRLTi2RrODr86NluiFnXJHGG0W2ksgwx26aWcny5mpElhA
- 6iWLaU3tNKmGGs+2fWNuFxglUMXnwQurlhE9CeEASE+6snzyGiXRB+C2HJr4iZWISG9O
- YIK/hmExNYFCQbaV2dCqE6fJNzjtGXC9Caq8SNyIvbsZsPkiCd4DEuSZqGUZtz9aHbVI
- CrEg==
-X-Gm-Message-State: ACrzQf0ZdxMWxm6974/S9JfADhBWLBA02yUdcIqFkH1pRhmixRkM42Gt
- qXbIFZWp++uSqxlt4Iz3de7FrX0aQRsQ1TdC3QM=
-X-Google-Smtp-Source: AMsMyM5YNaLkscCq3Gr169fMozeu918Uutqne2IPuGlkXDLIl8zyqKHeIUbjJpddfiIudrdL/Unrg43psBp74IXNSAc=
-X-Received: by 2002:a05:6214:1c85:b0:4af:86a1:9983 with SMTP id
- ib5-20020a0562141c8500b004af86a19983mr8243490qvb.35.1667167516099; Sun, 30
- Oct 2022 15:05:16 -0700 (PDT)
+ h=in-reply-to:from:references:cc:to:content-language:subject
+ :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=nP7QJjRq4UzjK0j4jQ6EBtRCWHehfeRnjLM59ebJ0Ks=;
+ b=LFzEJ/+9uuUHWPaP3vDPyQ+uQMRqX0sRFky8jpyrzkQySGHsUlfPsLB3c0FCU4+lGr
+ Dt6PHJMYibo1kFRjiNYxwrZCuFk4XeOnvGqsufON7bOWw79gqNZ+O5gtfK9rWjHHpWcx
+ 8vaBrFtIvsbM91JcIWG4t7/lkVepTs737d4rqJQgh85RwMClz2cJanOYCJnU+GtXwK79
+ NNTdNFwP4HBAJVbGicAconLuTX+yIjxPKf8/TDhd4WVGnBGrXE6yXb8qAeTjyxL1C1nq
+ ppzaZZXeZXYEOjE0Mgc39F1Sduy63kt+ZMHdE+FSCyyMzSxr7sFVfDQiMxd+SlnEaYU8
+ UPNA==
+X-Gm-Message-State: ACrzQf2cUPG+JGkQ3wM3MxMiehYllwXPhb6b4qEMzR2ZioRTiH/5aE/v
+ X9LkGCwYiKjORsJsfQjc4yg=
+X-Google-Smtp-Source: AMsMyM7DI3ogDVGCDAbMTKoxPnIED8u8XgpFnEGcrctSS5ye9bKM9Reo9XEwfx5VWOnLWHeJEpJLeA==
+X-Received: by 2002:a7b:c404:0:b0:3b4:faca:cf50 with SMTP id
+ k4-20020a7bc404000000b003b4facacf50mr9916742wmi.67.1666970794186; 
+ Fri, 28 Oct 2022 08:26:34 -0700 (PDT)
+Received: from ?IPV6:2a02:908:4f6:d280::9a6? ([2a02:908:4f6:d280::9a6])
+ by smtp.gmail.com with ESMTPSA id
+ i18-20020a1c5412000000b003cf54b77bfesm4259410wmb.28.2022.10.28.08.26.33
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 28 Oct 2022 08:26:33 -0700 (PDT)
+Content-Type: multipart/alternative;
+ boundary="------------AZWKwcVkxQvAB3KwnM1duD8A"
+Message-ID: <cc79ed1c-99b9-01be-a0f5-5a6b21cce300@gmail.com>
+Date: Fri, 28 Oct 2022 17:26:31 +0200
 MIME-Version: 1.0
-References: <CABXGCsOeQ7VYm98jRVaYp6KaNsFVsAnSb33ZT8JvZxcTcEGW0w@mail.gmail.com>
- <a67598e8-c826-2740-03bb-33d37c8c8e4b@amd.com>
- <CABXGCsNvFvJz4=N=JKYSGVcd=dKfQ3Nv_zOssMb0Z6oK79xZ7g@mail.gmail.com>
- <a537212d-4b42-4ba4-7707-1e397234c8b7@amd.com>
-In-Reply-To: <a537212d-4b42-4ba4-7707-1e397234c8b7@amd.com>
-From: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
-Date: Mon, 31 Oct 2022 03:05:05 +0500
-Message-ID: <CABXGCsMCfACsJRDPqZDYQGMpaA_6LKhQ0XqAmDN04GSMeetXnA@mail.gmail.com>
-Subject: Re: [6.1][regression] after commit
- dd80d9c8eecac8c516da5b240d01a35660ba6cb6
- some games (Cyberpunk 2077, Forza Horizon 4/5) hang at start
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v3 1/1] drm/amd/display: add DCN support for ARM64
+Content-Language: en-US
+To: Nathan Chancellor <nathan@kernel.org>
+References: <20221027195227.5312-1-hacc1225@gmail.com>
+ <20221027195227.5312-2-hacc1225@gmail.com>
+ <Y1vwk3J3HPGugBJO@dev-arch.thelio-3990X>
+From: Ao Zhong <hacc1225@gmail.com>
+In-Reply-To: <Y1vwk3J3HPGugBJO@dev-arch.thelio-3990X>
+X-Mailman-Approved-At: Mon, 31 Oct 2022 08:14:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,43 +77,143 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <alexander.deucher@amd.com>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>, Arnd Bergmann <arnd@arndb.de>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ linux-arm-kernel@lists.infradead.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 26, 2022 at 12:29 PM Christian K=C3=B6nig
-<christian.koenig@amd.com> wrote:
+This is a multi-part message in MIME format.
+--------------AZWKwcVkxQvAB3KwnM1duD8A
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Am 28.10.22 um 17:09 schrieb Nathan Chancellor:
+> Additionally, I see the following errors with GCC 12.2.1 from Fedora
+> when building allmodconfig. Seems like some $(dml_rcflags) might be
+> missing.
 >
-> Attached is the original test patch rebased on current amd-staging-drm-ne=
-xt.
->
-> Can you test if this is enough to make sure that the games start without
-> crashing by fetching the userptrs?
+>   drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.c: In function ‘dcn10_resource_construct_fp’:
+>   drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.c:1313:52: error: ‘-mgeneral-regs-only’ is incompatible with the use of floating-point types
+>   1313 |                 dcn_soc->dram_clock_change_latency = 23;
+>         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+>   drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.c:1317:45: error: ‘-mgeneral-regs-only’ is incompatible with the use of floating-point types
+>   1317 |                 dc->dcn_soc->urgent_latency = 3;
+>         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+>   drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.c:1319:64: error: ‘-mgeneral-regs-only’ is incompatible with the use of floating-point types
+>   1319 |                 dc->dcn_soc->fabric_and_dram_bandwidth_vmax0p9 = 41.60f;
+>         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+>   drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.c:1329:64: error: ‘-mgeneral-regs-only’ is incompatible with the use of floating-point types
+>   1329 |                 dc->dcn_soc->fabric_and_dram_bandwidth_vmax0p9 = 19.2f;
+>         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+>   drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.c:1330:64: error: ‘-mgeneral-regs-only’ is incompatible with the use of floating-point types
+>   1330 |                 dc->dcn_soc->fabric_and_dram_bandwidth_vnom0p8 = 17.066f;
+>         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
+>   drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.c:1331:65: error: ‘-mgeneral-regs-only’ is incompatible with the use of floating-point types
+>   1331 |                 dc->dcn_soc->fabric_and_dram_bandwidth_vmid0p72 = 14.933f;
+>         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
+>   drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.c:1332:65: error: ‘-mgeneral-regs-only’ is incompatible with the use of floating-point types
+>   1332 |                 dc->dcn_soc->fabric_and_dram_bandwidth_vmin0p65 = 12.8f;
+>         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+>   drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.c:1334:72: error: ‘-mgeneral-regs-only’ is incompatible with the use of floating-point types
+>   1334 |                         dc->dcn_soc->fabric_and_dram_bandwidth_vmax0p9 = 20.80f;
+>         |                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+>   make[6]: *** [scripts/Makefile.build:250: drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.o] Error 1
+>   drivers/gpu/drm/amd/amdgpu/../display/dc/dcn32/dcn32_resource.c: In function ‘dcn32_populate_dml_pipes_from_context’:
+>   drivers/gpu/drm/amd/amdgpu/../display/dc/dcn32/dcn32_resource.c:1921:70: error: ‘-mgeneral-regs-only’ is incompatible with the use of floating-point types
+>   1921 |                 pipes[pipe_cnt].pipe.src.dcc_fraction_of_zs_req_luma = 0;
+>         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+>   drivers/gpu/drm/amd/amdgpu/../display/dc/dcn32/dcn32_resource.c:1922:72: error: ‘-mgeneral-regs-only’ is incompatible with the use of floating-point types
+>   1922 |                 pipes[pipe_cnt].pipe.src.dcc_fraction_of_zs_req_chroma = 0;
+>         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+>   make[6]: *** [scripts/Makefile.build:250: drivers/gpu/drm/amd/amdgpu/../display/dc/dcn32/dcn32_resource.o] Error 1
 
-1. Over the past week the list of games affected by this issue updated
-with new games: The Outlast Trials, Gotham Knights, Sackboy: A Big
-Adventure.
+Hi Nathan,
 
-2. I tested the patch and it really solves the problem with the launch
-of all the listed games and does not create new problems.
+it seems like you haven't merged my patch to isolate the remaining FPU code.
 
-3. The only thing I noticed is that in the game Sackboy: A Big
-Adventure, when using the kernel built from the commit
-b229b6ca5abbd63ff40c1396095b1b36b18139c3 + the attached patch, I can=E2=80=
-=99t
-connect to friend coop session due to the steam client hangs. The
-kernel built from commit 736ec9fadd7a1fde8480df7e5cfac465c07ff6f3
-(this is the commit prior to dd80d9c8eecac8c516da5b240d01a35660ba6cb6)
-free of this problem.
+Links: https://patchwork.freedesktop.org/patch/508813/
+Links: https://patchwork.freedesktop.org/patch/508816/
 
-I need to spend some more time to find the commit after which leads to
-hanging [3] the steam client.
+Rodrigo says both patches have been applied, but I haven't seen them in the amd-staging-drm-next branch.
 
-Thanks.
+This error occurs because the remaining FPU code in dcn10_resource.c has not been isolated.
 
---=20
-Best Regards,
-Mike Gavrilov.
+Ao
+
+--------------AZWKwcVkxQvAB3KwnM1duD8A
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    Am 28.10.22 um 17:09 schrieb Nathan Chancellor:<br>
+    <blockquote type="cite"
+      cite="mid:Y1vwk3J3HPGugBJO@dev-arch.thelio-3990X">
+      <pre class="moz-quote-pre" wrap="">Additionally, I see the following errors with GCC 12.2.1 from Fedora
+when building allmodconfig. Seems like some $(dml_rcflags) might be
+missing.
+
+  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.c: In function ‘dcn10_resource_construct_fp’:
+  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.c:1313:52: error: ‘-mgeneral-regs-only’ is incompatible with the use of floating-point types
+  1313 |                 dcn_soc-&gt;dram_clock_change_latency = 23;
+        |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.c:1317:45: error: ‘-mgeneral-regs-only’ is incompatible with the use of floating-point types
+  1317 |                 dc-&gt;dcn_soc-&gt;urgent_latency = 3;
+        |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.c:1319:64: error: ‘-mgeneral-regs-only’ is incompatible with the use of floating-point types
+  1319 |                 dc-&gt;dcn_soc-&gt;fabric_and_dram_bandwidth_vmax0p9 = 41.60f;
+        |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.c:1329:64: error: ‘-mgeneral-regs-only’ is incompatible with the use of floating-point types
+  1329 |                 dc-&gt;dcn_soc-&gt;fabric_and_dram_bandwidth_vmax0p9 = 19.2f;
+        |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.c:1330:64: error: ‘-mgeneral-regs-only’ is incompatible with the use of floating-point types
+  1330 |                 dc-&gt;dcn_soc-&gt;fabric_and_dram_bandwidth_vnom0p8 = 17.066f;
+        |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
+  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.c:1331:65: error: ‘-mgeneral-regs-only’ is incompatible with the use of floating-point types
+  1331 |                 dc-&gt;dcn_soc-&gt;fabric_and_dram_bandwidth_vmid0p72 = 14.933f;
+        |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
+  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.c:1332:65: error: ‘-mgeneral-regs-only’ is incompatible with the use of floating-point types
+  1332 |                 dc-&gt;dcn_soc-&gt;fabric_and_dram_bandwidth_vmin0p65 = 12.8f;
+        |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.c:1334:72: error: ‘-mgeneral-regs-only’ is incompatible with the use of floating-point types
+  1334 |                         dc-&gt;dcn_soc-&gt;fabric_and_dram_bandwidth_vmax0p9 = 20.80f;
+        |                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+  make[6]: *** [scripts/Makefile.build:250: drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.o] Error 1
+  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn32/dcn32_resource.c: In function ‘dcn32_populate_dml_pipes_from_context’:
+  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn32/dcn32_resource.c:1921:70: error: ‘-mgeneral-regs-only’ is incompatible with the use of floating-point types
+  1921 |                 pipes[pipe_cnt].pipe.src.dcc_fraction_of_zs_req_luma = 0;
+        |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn32/dcn32_resource.c:1922:72: error: ‘-mgeneral-regs-only’ is incompatible with the use of floating-point types
+  1922 |                 pipes[pipe_cnt].pipe.src.dcc_fraction_of_zs_req_chroma = 0;
+        |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+  make[6]: *** [scripts/Makefile.build:250: drivers/gpu/drm/amd/amdgpu/../display/dc/dcn32/dcn32_resource.o] Error 1</pre>
+    </blockquote>
+    <p>Hi Nathan,</p>
+    <p>it seems like you haven't merged my patch to <span class="HwtZe"
+        lang="en"><span class="jCAhz ChMk0b"><span class="ryNqvb">isolate
+            the remaining FPU code.</span></span></span></p>
+    <p><span class="HwtZe" lang="en"><span class="jCAhz ChMk0b"><span
+            class="ryNqvb">Links:
+            <a class="moz-txt-link-freetext" href="https://patchwork.freedesktop.org/patch/508813/">https://patchwork.freedesktop.org/patch/508813/</a><br>
+            Links: <a class="moz-txt-link-freetext" href="https://patchwork.freedesktop.org/patch/508816/">https://patchwork.freedesktop.org/patch/508816/</a></span></span></span></p>
+    <p><span class="HwtZe" lang="en"><span class="jCAhz ChMk0b"><span
+            class="ryNqvb">Rodrigo says both patches have been applied,
+            but I haven't seen them in the amd-staging-drm-next branch.</span></span></span></p>
+    <p><span class="HwtZe" lang="en"><span class="jCAhz ChMk0b"><span
+            class="ryNqvb">This error occurs because the remaining FPU
+            code in dcn10_resource.c has not been isolated.</span></span></span></p>
+    <p><span class="HwtZe" lang="en"><span class="jCAhz ChMk0b"><span
+            class="ryNqvb">Ao<br>
+          </span></span></span></p>
+    <p></p>
+  </body>
+</html>
+
+--------------AZWKwcVkxQvAB3KwnM1duD8A--
