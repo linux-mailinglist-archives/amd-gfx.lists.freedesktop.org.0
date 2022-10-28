@@ -2,63 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1049D613186
-	for <lists+amd-gfx@lfdr.de>; Mon, 31 Oct 2022 09:14:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A57C613184
+	for <lists+amd-gfx@lfdr.de>; Mon, 31 Oct 2022 09:14:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E966B10E14B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A91BE10E148;
 	Mon, 31 Oct 2022 08:14:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com
- [IPv6:2607:f8b0:4864:20::433])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCC2010E871
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 16:36:21 +0000 (UTC)
-Received: by mail-pf1-x433.google.com with SMTP id k22so5229911pfd.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 09:36:21 -0700 (PDT)
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com
+ [IPv6:2607:f8b0:4864:20::635])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CF5110E8F4
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 22:48:21 +0000 (UTC)
+Received: by mail-pl1-x635.google.com with SMTP id p21so2178843plr.7
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 15:48:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=fiP/gtk1BinFFJgTXUZEj1NdMWlthKZ0OUfBLn7rLIU=;
- b=nimtRxz4mCnrDpP+awp+tQ1a53a8hyPg7iNtWXfhDq3ltrOL5UCs75i4rozXJGbMPX
- SDVQCO8PRkleubIaQin2/IPNBC4hc/yjrIa8pVbxkiahBacQ89eO+azcDW644Ub8H9WK
- rSEWZcGkj/DmpWCp2i1iWe6DBzQ+UBvL4XPl8=
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=8LWoRkfSMU+CJ60Tm7wanIclajGSfZYvjPsATtyTB9c=;
+ b=kEf8pkaqDLyKKPRro1RzlspOqf9bDj9K9tXuJIfimPasVBVuSbh3nXFfHuKj3Ygv/e
+ Cb2woLyV/0T4hlBWtL+deoHGD9VfD6aKyLYcAQxvNFDXlnQhUFE87y+LQpwOsBtmz5z0
+ nYqVpW7KVwrtYp/ANLZ6FHgmzrBkDHxNW5lig=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=fiP/gtk1BinFFJgTXUZEj1NdMWlthKZ0OUfBLn7rLIU=;
- b=F2bv8+1dWGE8nJNeFBI2e7CJPlIpJV86pU0ZDPNdodWWL/j0IDI3IL/1n5juXQCr1h
- kmQ4YOQforFmYCi3wrXVQ59ut2GhkrvAX7hHTRpfHOUZzEQkVDABKo9HOp4pQ4s0pP++
- 3aew9zyQ5pkqiQvDbLzPGNb01j7usA2I1URIju+ysyjdXPXdpoL8vQK8VzpS5DHhEVa2
- pH6DjEufmMkyHNxhBDQ9xEK4oB9QBwaSBMijS3wL+rbmNS/WGVFasaVeCkiDwFylQx0A
- EiPmoFhxq2/tTIpHsS945FjOjAqE1esL2lx1O2XwSeRn5BS4Uhl5KtpI/266xmGciyOw
- djuw==
-X-Gm-Message-State: ACrzQf0BiITMeIZFVzpf+h5CkdF5Sg+IOustux5VxsYAUS1CpnYGwdcO
- AicL64jna/lhk7UdqEQNvNfmwg==
-X-Google-Smtp-Source: AMsMyM4EYfEXFnyMkOYnJEcYhC2e5fufT2TqnDENGZXbTy1gPAt1ADSI1/a/kujO8yVT2unTkINrkA==
-X-Received: by 2002:a63:5a05:0:b0:434:23a5:a5ca with SMTP id
- o5-20020a635a05000000b0043423a5a5camr296969pgb.515.1666974981269; 
- Fri, 28 Oct 2022 09:36:21 -0700 (PDT)
-Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
- by smtp.gmail.com with ESMTPSA id
- v9-20020a170902ca8900b00180a7ff78ccsm3223888pld.126.2022.10.28.09.36.20
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 28 Oct 2022 09:36:20 -0700 (PDT)
-Date: Fri, 28 Oct 2022 09:36:19 -0700
-From: Kees Cook <keescook@chromium.org>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Subject: Re: [PATCH] [next] drm/amdgpu: Replace one-element array with
- flexible-array member
-Message-ID: <202210280855.9DF8E4D72@keescook>
-References: <Y1tkWdwPUp+UdpM0@mail.google.com>
- <04e37ee1-53b0-97ab-d6d7-a39edfbdc2ea@amd.com>
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=8LWoRkfSMU+CJ60Tm7wanIclajGSfZYvjPsATtyTB9c=;
+ b=AO5PHVl8T+O1SB1WZOFpilXIkjFGo//qtm+tU2/dfB5Mb4PO1JUCYcAX/dRK2E+U3Y
+ /CogZ/wdjDlEbh/yH7mc54haBuBtOWb9kc1kCWFH8XqGX+tzkVX2I78mJpGWwyzXQ5GA
+ beSdoKE1+1BTy/dK+Iz40w4Lpi9Elc7+PvaStbpXLltZR4xzZcVxbHhlScmbpTsq5+bV
+ 2ukF4VGPX7dEmdtFXJMyZWpLUdRWeUi1R49LNXVolHKOKCR6whFwH6c54kdajQu8yDPa
+ qhi44bmCq9LJEDT65bTj4oN/naMeHVQIpbVduEbp52RHllfL8iiyP4v6kXMTmNuKR6uN
+ uv4g==
+X-Gm-Message-State: ACrzQf0oZJVpjC2Kcms/ewjlhI+6e76Q+layUwbpP872MbeKSa+moCdd
+ ocv+SH+JI5+fKRXdeCkKUCfahw==
+X-Google-Smtp-Source: AMsMyM55Sd5sOvrhwfrL/VW2HDZO143InZb28UjVPt6odCwiOqgaUH7lbfeXhLdju9NuiBJ7Ch77ng==
+X-Received: by 2002:a17:90a:c78a:b0:212:e56b:2b17 with SMTP id
+ gn10-20020a17090ac78a00b00212e56b2b17mr1623176pjb.51.1666997300703; 
+ Fri, 28 Oct 2022 15:48:20 -0700 (PDT)
+Received: from localhost ([2620:15c:9d:2:65f9:c180:249c:190f])
+ by smtp.gmail.com with UTF8SMTPSA id
+ 1-20020a17090a0e8100b002009db534d1sm3010415pjx.24.2022.10.28.15.48.19
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 28 Oct 2022 15:48:20 -0700 (PDT)
+From: Brian Norris <briannorris@chromium.org>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui  <Xinhui.Pan@amd.com>
+Subject: [PATCH 1/2] drm/amdgpu: Move racy global PMU list into device
+Date: Fri, 28 Oct 2022 15:48:12 -0700
+Message-Id: <20221028224813.1466450-1-briannorris@chromium.org>
+X-Mailer: git-send-email 2.38.1.273.g43a17bfeac-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <04e37ee1-53b0-97ab-d6d7-a39edfbdc2ea@amd.com>
 X-Mailman-Approved-At: Mon, 31 Oct 2022 08:14:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,59 +67,89 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Paulo Miguel Almeida <paulo.miguel.almeida.rodenas@gmail.com>,
- Grigory Vasilyev <h0tc0d3@gmail.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Slark Xiao <slark_xiao@163.com>, Hans de Goede <hdegoede@redhat.com>,
- Claudio Suarez <cssk@net-c.es>, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Rongguang Wei <weirongguang@kylinos.cn>,
- linux-hardening@vger.kernel.org
+Cc: Brian Norris <briannorris@chromium.org>, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 28, 2022 at 09:18:39AM +0200, Christian König wrote:
-> Am 28.10.22 um 07:10 schrieb Paulo Miguel Almeida:
-> > One-element arrays are deprecated, and we are replacing them with
-> > flexible array members instead. So, replace one-element array with
-> > flexible-array member in struct _ATOM_FAKE_EDID_PATCH_RECORD and
-> > refactor the rest of the code accordingly.
-> > 
-> > This helps with the ongoing efforts to tighten the FORTIFY_SOURCE
-> > routines on memcpy() and help us make progress towards globally
-> > enabling -fstrict-flex-arrays=3 [1].
-> > 
-> > Link: https://github.com/KSPP/linux/issues/79
-> > Link: https://github.com/KSPP/linux/issues/238
-> > Link: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=101836 [1]
-> 
-> I'm not sure if that's a good idea. We had multiple attempts to refactor
-> this now and it always caused a regression.
-> 
-> Additional to that the header in question came from our BIOS team and isn't
-> following Linux styles in general.
-> 
-> Alex what do you think?
+If there are multiple amdgpu devices, this list processing can be racy.
 
-Fake flexible arrays (i.e. 1-element arrays) are deprecated in Linux[1]
-(and, frankly, deprecated in C since 1999 and even well before then given
-the 0-sized extension that was added in GCC), so we can't continue to
-bring them into kernel sources. Their use breaks both compile-time and
-run-time bounds checking efforts, etc.
+We're really treating this like a per-device list, so make that explicit
+and remove the global list.
 
-All that said, converting away from them can be tricky, and I think such
-conversions need to explicitly show how they were checked for binary
-differences[2].
+Signed-off-by: Brian Norris <briannorris@chromium.org>
+---
 
-Paulo, can you please check for deltas and report your findings in the
-commit log? Note that add struct_size() use in the same patch may result
-in binary differences, so for more complex cases, you may want to split
-the 1-element conversion from the struct_size() conversions.
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h     |  4 ++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c | 12 +++++-------
+ 2 files changed, 9 insertions(+), 7 deletions(-)
 
--Kees
-
-[1] https://docs.kernel.org/process/deprecated.html#zero-length-and-one-element-arrays
-[2] https://outflux.net/blog/archives/2022/06/24/finding-binary-differences/
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index 0e6ddf05c23c..e968b7f2417c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -1063,6 +1063,10 @@ struct amdgpu_device {
+ 	struct work_struct		reset_work;
+ 
+ 	bool                            job_hang;
++
++#if IS_ENABLED(CONFIG_PERF_EVENTS)
++	struct list_head pmu_list;
++#endif
+ };
+ 
+ static inline struct amdgpu_device *drm_to_adev(struct drm_device *ddev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c
+index 71ee361d0972..24f2055a2f23 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c
+@@ -23,6 +23,7 @@
+ 
+ #include <linux/perf_event.h>
+ #include <linux/init.h>
++#include <linux/list.h>
+ #include "amdgpu.h"
+ #include "amdgpu_pmu.h"
+ 
+@@ -72,9 +73,6 @@ static ssize_t amdgpu_pmu_event_show(struct device *dev,
+ 			amdgpu_pmu_attr->event_str, amdgpu_pmu_attr->type);
+ }
+ 
+-static LIST_HEAD(amdgpu_pmu_list);
+-
+-
+ struct amdgpu_pmu_attr {
+ 	const char *name;
+ 	const char *config;
+@@ -558,7 +556,7 @@ static int init_pmu_entry_by_type_and_add(struct amdgpu_pmu_entry *pmu_entry,
+ 		pr_info("Detected AMDGPU %d Perf Events.\n", total_num_events);
+ 
+ 
+-	list_add_tail(&pmu_entry->entry, &amdgpu_pmu_list);
++	list_add_tail(&pmu_entry->entry, &pmu_entry->adev->pmu_list);
+ 
+ 	return 0;
+ err_register:
+@@ -579,9 +577,7 @@ void amdgpu_pmu_fini(struct amdgpu_device *adev)
+ {
+ 	struct amdgpu_pmu_entry *pe, *temp;
+ 
+-	list_for_each_entry_safe(pe, temp, &amdgpu_pmu_list, entry) {
+-		if (pe->adev != adev)
+-			continue;
++	list_for_each_entry_safe(pe, temp, &adev->pmu_list, entry) {
+ 		list_del(&pe->entry);
+ 		perf_pmu_unregister(&pe->pmu);
+ 		kfree(pe->pmu.attr_groups);
+@@ -623,6 +619,8 @@ int amdgpu_pmu_init(struct amdgpu_device *adev)
+ 	int ret = 0;
+ 	struct amdgpu_pmu_entry *pmu_entry, *pmu_entry_df;
+ 
++	INIT_LIST_HEAD(&adev->pmu_list);
++
+ 	switch (adev->asic_type) {
+ 	case CHIP_VEGA20:
+ 		pmu_entry_df = create_pmu_entry(adev, AMDGPU_PMU_PERF_TYPE_DF,
 -- 
-Kees Cook
+2.38.1.273.g43a17bfeac-goog
+
