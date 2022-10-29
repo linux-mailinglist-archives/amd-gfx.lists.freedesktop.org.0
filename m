@@ -2,64 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FB74613185
-	for <lists+amd-gfx@lfdr.de>; Mon, 31 Oct 2022 09:14:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E114613183
+	for <lists+amd-gfx@lfdr.de>; Mon, 31 Oct 2022 09:14:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDAFC10E14A;
-	Mon, 31 Oct 2022 08:14:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCB7410E146;
+	Mon, 31 Oct 2022 08:14:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com
- [IPv6:2607:f8b0:4864:20::1029])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F015A10E8F3
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 22:48:22 +0000 (UTC)
-Received: by mail-pj1-x1029.google.com with SMTP id
- u8-20020a17090a5e4800b002106dcdd4a0so11155575pji.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Oct 2022 15:48:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=r0xiJp4XHOD7FpE79mlTo4FZ8hKLVDdbQ6PJGlmtm0c=;
- b=mzDl6TMyHJf63jH7iKtcAAGM8XDN0rgDSAUs7hfgOey2i6dDPc9aOOCZYNZNETkm2j
- yVEIR85X+aSQjrVbZpYjQoDLmGgkswWXkfsecH1i+hYCnMCRGj96w+Nxrz2B/QCGVpZQ
- gtgV0voDj/MPBaheBlaJn/W0fjq4tkMXfBnrw=
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com
+ [IPv6:2607:f8b0:4864:20::633])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8179610E914;
+ Sat, 29 Oct 2022 00:43:40 +0000 (UTC)
+Received: by mail-pl1-x633.google.com with SMTP id u6so6196575plq.12;
+ Fri, 28 Oct 2022 17:43:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=emP2KuZFwj43eFZPPui8vytef4MIQe1Qy4avTg2orQg=;
+ b=jL/I05N9IZ4Mufeh10+xFyT6RfOPoytViWgMLC/woi3Ch5bYYBbbIoVsLZxPpuGB6E
+ oFkR0UqOo/t/UlSzX0qxVeFbL0XVkLxVh/NF4PFn/FgdsjBPZlyXpBZPHydb0aQMDJn0
+ mGzuhrtOcScBvmPjkcGPwdcLpDMdgV8p5LhkqR2rJN9JMtW00AaxJx4KClQPw3sCbuRS
+ WXs+tu1qUcRh4vGXiknLEg0uC3RpQf15HGFlnhSAcKTz/Ub3eI+uzYjrnZNEdjy7C680
+ PK5oJtjkRpYdWG6bHVLeDrEID/9fH8UG7smKr16CJb08jP9kII/Tdn0vUqDZLQZoEE2c
+ V0XA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=r0xiJp4XHOD7FpE79mlTo4FZ8hKLVDdbQ6PJGlmtm0c=;
- b=I9DL7xnnT16WiRkXrL0JCIJ7UGFv2taYXnXHYfG+cabrkEpM4v2T96nsrR1DimNEtt
- RXW7SKz+PaprWFVxFKXyBrYPcZr50U7ZpYWhgEDD2mu+WdIFdmR7q0y93RBJQNDpEnlE
- s592Xlm54l9fyoZIPr9JVZpc9/S/3AD2MYoRy2sCr2C1Yv0Ii7LjEbB2Kw9rhX63T8Io
- czcvtuAeysvgmVtVoeSUnqDGyvST98MuPQSW0tRVYybqpjEtbG99Sw9xGtkDPgH5DqPP
- G9BybQoQDgBHQe0tR/J8Asi1BJy16NpoWATflJ2ireTOyD27KEFOnY/diihzuWdLzNLZ
- SJlA==
-X-Gm-Message-State: ACrzQf2NVMflHa/e2eLUD9Gfik9nIYWHLiFZYQMZ6C4DOljoJYXh+Uxb
- 5WNfotPBNe8uzqN140dJ6BV8JOyv7S/nCA==
-X-Google-Smtp-Source: AMsMyM6gOemtrc+N4udmSmBnnTAvh0sGPbgP5WutWSSxft54Cqt48ebDSnWboQa9R6hvi7GWIMFDSQ==
-X-Received: by 2002:a17:902:848c:b0:17a:b4c0:a02b with SMTP id
- c12-20020a170902848c00b0017ab4c0a02bmr1355571plo.122.1666997302622; 
- Fri, 28 Oct 2022 15:48:22 -0700 (PDT)
-Received: from localhost ([2620:15c:9d:2:65f9:c180:249c:190f])
- by smtp.gmail.com with UTF8SMTPSA id
- bd13-20020a656e0d000000b0043c9da02729sm3161736pgb.6.2022.10.28.15.48.21
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 28 Oct 2022 15:48:22 -0700 (PDT)
-From: Brian Norris <briannorris@chromium.org>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui  <Xinhui.Pan@amd.com>
-Subject: [PATCH 2/2] drm/amdgpu: Set PROBE_PREFER_ASYNCHRONOUS
-Date: Fri, 28 Oct 2022 15:48:13 -0700
-Message-Id: <20221028154718.2.I30f27b240e63cc269076556407e6eddcf5177b5e@changeid>
-X-Mailer: git-send-email 2.38.1.273.g43a17bfeac-goog
-In-Reply-To: <20221028224813.1466450-1-briannorris@chromium.org>
-References: <20221028224813.1466450-1-briannorris@chromium.org>
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=emP2KuZFwj43eFZPPui8vytef4MIQe1Qy4avTg2orQg=;
+ b=3i30XJweRhkrajVGKwXsdTmv0dR9HjrFTdO3McQrpN2RIruXjSlmrmFAAtRXWhtu4I
+ jPOeeg+t0ypiH7LqyXHRLXGy0jFb/MTe1zR183guq2BCZXFpOBMxiRXd/zs/37JDokm5
+ 2mMVFJ6GBzHE1z8IcU1bPwUCDu9uOAuFQ7DFihl2/nglLe4VDuwsWG1dZE5cdbTkFunB
+ llygokRVeZuddql+0/j+r62IkmtdqR+t7KptzRg48SXsD6rvxL+3kFhUOpqv2ZzSHpBs
+ Q9/4O9oYBT8Y+k02whuRLTeZDTKenEQXPZmoBHvmbDvfOHEug/ROfQukfnuMRKfVV4tw
+ fOIA==
+X-Gm-Message-State: ACrzQf1SMwPFav3bEENPvY3AcX91b74s0oiHAD0HJaqctIVKqlbADSlC
+ 0CNiWLKaYMYuIdAQHIgOUqc=
+X-Google-Smtp-Source: AMsMyM64/WABEHWKiRZHSiSa7EhGnCTWdeRCZzpmdY8svnnd1cYqe59ICTB7Kf3PEvSIaWXs/GTFkg==
+X-Received: by 2002:a17:902:f791:b0:17c:c1dd:a3b5 with SMTP id
+ q17-20020a170902f79100b0017cc1dda3b5mr1751822pln.141.1667004219965; 
+ Fri, 28 Oct 2022 17:43:39 -0700 (PDT)
+Received: from mail.google.com (122-58-209-93-fibre.sparkbb.co.nz.
+ [122.58.209.93]) by smtp.gmail.com with ESMTPSA id
+ a2-20020a170902900200b0017f9db0236asm62880plp.82.2022.10.28.17.43.33
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 28 Oct 2022 17:43:39 -0700 (PDT)
+Date: Sat, 29 Oct 2022 13:43:30 +1300
+From: Paulo Miguel Almeida <paulo.miguel.almeida.rodenas@gmail.com>
+To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Subject: Re: [PATCH] [next] drm/amdgpu: Replace one-element array with
+ flexible-array member
+Message-ID: <Y1x3MtRJ8ckXxlJn@mail.google.com>
+References: <Y1tkWdwPUp+UdpM0@mail.google.com>
+ <04e37ee1-53b0-97ab-d6d7-a39edfbdc2ea@amd.com>
+ <202210280855.9DF8E4D72@keescook>
+ <1052fba8-11ac-cec8-92e7-b994266c6970@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <1052fba8-11ac-cec8-92e7-b994266c6970@amd.com>
 X-Mailman-Approved-At: Mon, 31 Oct 2022 08:14:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,45 +76,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Brian Norris <briannorris@chromium.org>, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc: Kees Cook <keescook@chromium.org>, Grigory Vasilyev <h0tc0d3@gmail.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, Slark Xiao <slark_xiao@163.com>,
+ Hans de Goede <hdegoede@redhat.com>, Claudio Suarez <cssk@net-c.es>,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Rongguang Wei <weirongguang@kylinos.cn>, linux-hardening@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This driver often takes over 200ms to start, so it can improve boot
-speed to probe it asynchronously.
+On Fri, Oct 28, 2022 at 07:33:17PM +0200, Christian König wrote:
+> Am 28.10.22 um 18:36 schrieb Kees Cook:
+> 
+> > All that said, converting away from them can be tricky, and I think such
+> > conversions need to explicitly show how they were checked for binary
+> > differences[2].
+> 
+> Oh, that's a great idea! Yes, if this can be guaranteed then the change is
+> obviously perfectly ok.
+> 
+> > 
+> > Paulo, can you please check for deltas and report your findings in the
+> > commit log? Note that add struct_size() use in the same patch may result
+> > in binary differences, so for more complex cases, you may want to split
+> > the 1-element conversion from the struct_size() conversions.
+> > 
+> > -Kees
 
-I did a short review of the driver, and apart from an issue fixed in the
-parent patch ("drm/amdgpu: Move racy global PMU list into device"),
-there don't appear to be many cross-device dependencies or racy accesses
-to global state, so this should be safe.
+Noted. I will reporting my findings on commit logs from now onwards. 
 
-This driver was pinpointed as part of a survey of top slowest initcalls
-(i.e., are built in, and probing synchronously) on a lab of ChromeOS
-systems.
+Given that I split the if-ternary to avoid checking "fake_edid_record->ucFakeEDIDLength"
+twice then (for the current patch), yes, there will be changes to *.o|ko files.
 
-Signed-off-by: Brian Norris <briannorris@chromium.org>
----
+Knowing that Christian would feel more confident with no binary changes
+at this point, I will send a different patch aiming solely on the
+replacement of 1-elem array without incurring binary changes.
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 3c9fecdd6b2f..2d180e48df1b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -2793,7 +2793,10 @@ static struct pci_driver amdgpu_kms_pci_driver = {
- 	.probe = amdgpu_pci_probe,
- 	.remove = amdgpu_pci_remove,
- 	.shutdown = amdgpu_pci_shutdown,
--	.driver.pm = &amdgpu_pm_ops,
-+	.driver = {
-+		.pm = &amdgpu_pm_ops,
-+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-+	},
- 	.err_handler = &amdgpu_pci_err_handler,
- 	.dev_groups = amdgpu_sysfs_groups,
- };
--- 
-2.38.1.273.g43a17bfeac-goog
+--
+Paulo A.
 
