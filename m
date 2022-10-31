@@ -2,57 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01D536138DA
-	for <lists+amd-gfx@lfdr.de>; Mon, 31 Oct 2022 15:19:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 015136138F6
+	for <lists+amd-gfx@lfdr.de>; Mon, 31 Oct 2022 15:29:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 929C910E2C8;
-	Mon, 31 Oct 2022 14:19:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74DE710E2D4;
+	Mon, 31 Oct 2022 14:29:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com
- [IPv6:2001:4860:4864:20::30])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E719010E2C7;
- Mon, 31 Oct 2022 14:19:20 +0000 (UTC)
-Received: by mail-oa1-x30.google.com with SMTP id
- 586e51a60fabf-12c8312131fso13605024fac.4; 
- Mon, 31 Oct 2022 07:19:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=OTCJd+1wJT6G45tYv477hj01EwJNiRQVl/SOj44L6Do=;
- b=EN2PsHEvmyuS/RHMWVKhIgJudBkHIwqUBCRq0/ruHgcNluvapeQQbzhITrOvfVFhvh
- N4tA1SqHjsu5n/0l7t2AZJvQVNR7sgufdFTcg3BTtpvIhfOfzFyVh6jvKDMeVFIZ/GGn
- wqQjct/WGSnYrRE35VU91QDGHxJJrpKwgVOfMRp8NrIJl11f9nCKKdYphmQVUCoJhaJl
- A21TiP1/pX8TW486SbrY128wfDMcBdtAlenaaF67TTgiOXSSJH53fOVWrjGgmKhptIak
- aTyk6wPHx+EQGGpPZO9ScrjcQGKiWNu2rlMoC2DsUjjeYFKe+j2W09ynrN7vWbzP0oe+
- no0A==
+Received: from mail-il1-x133.google.com (mail-il1-x133.google.com
+ [IPv6:2607:f8b0:4864:20::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04DD010E249
+ for <amd-gfx@lists.freedesktop.org>; Mon, 31 Oct 2022 14:21:33 +0000 (UTC)
+Received: by mail-il1-x133.google.com with SMTP id g13so6290650ile.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 31 Oct 2022 07:21:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=Lhc4EkblHbbPD+96+0PH89wXhgm+3piSxAQSO0JjnxM=;
+ b=tjGLldjIWv4CZmbKOjBjCVL2P6AtW9jdRflT4ONyaR2BLdWwfrOP8rW+Y42DhyBOu+
+ NdSErUwhGEUrHYcP/1B0UKOFpMpVV6M8vH4j8U5WvONlQFetEG8KZ61AawGLHyOl98h+
+ 4Mf9MRc+CjFaJNoebRZhOuFAxdEK7uTaO8XiSmNiTYkLLVq2OvpuesUogdvUVtA5dsqN
+ DNISFnyaBth3hyNkWjBfWYdYrAlS6EsRRi5hAJATU05UJxw4nhKytKESe+E3FSiQYy3r
+ 8Yh0Bvpj3FS0+F2xZAXe2Xqiwbkcb0QM+7d2hPKZCecFy/xlHdGga24Q2bsYO02XtMya
+ HBkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=OTCJd+1wJT6G45tYv477hj01EwJNiRQVl/SOj44L6Do=;
- b=EYedEk1iB6VIlwEKuB7F/aQBjgKuiLkhOtoxiFYuc975bJRV+pRBfLoxH/U8qh/37O
- U9Cn5Q6K/WoaKtdcdDSLz+HnkweVRyNDlI3nVy4yF1BJDecBnzaE1KDdEoUGgeu8O+j0
- ot3MeOZ0qgOXXFeChAScpEeaPAriMcLkOdRY19+lk5ZPRcJQpC4rhX9PkBNqoNtgrgXR
- FlWjgv9hPPqAdVrgRHd77dFOyBOKOKytFGN6wRWorlOfxMdL2H4dMd1Jgzuw/HSXYvAh
- QsACcZi/YSH32c09BywyPLw7Pehui0vi+lbllFs2Jek1AupOcQksQCBlQz4NPJFJC4j8
- G3qA==
-X-Gm-Message-State: ACrzQf2jS2/E/6RQ2IJVYg4sqWXRt4LiC76/9yFtzsfyadzdyBVtrgEe
- fU8oNr3ANqPdEvzNuj66qe0kA0SBw5ArDhJnG3o=
-X-Google-Smtp-Source: AMsMyM4zyC9CXeJP/t4xMbCAShy2CtgYfJ4BnKP9ptCpjr6VulD8tFU2J51Klurn9ChU2MTn9r8K73v6WKCMYqNrEyI=
-X-Received: by 2002:a05:6870:a7a4:b0:136:7c39:979e with SMTP id
- x36-20020a056870a7a400b001367c39979emr7714241oao.96.1667225960160; Mon, 31
- Oct 2022 07:19:20 -0700 (PDT)
+ h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=Lhc4EkblHbbPD+96+0PH89wXhgm+3piSxAQSO0JjnxM=;
+ b=LC5sBgnC52TjhTGFF9mWdJLaMmDvWD7DHS4jugdHjm6ul4Px6lirWTwF2na9VEjPws
+ M0XBml5QG0M4CtJEFOdRyYGeI7WzGtSVTyFIfiBtFcNvMUOu2Swu5A1pqXIL7rKZHM/4
+ Vm8Jx8NkXDEv1p6RCgcVPDp7tuxhumizYlnI77PuyAyKhX/CVm3YVCLpd6mP9susOysL
+ JpqyMbGC+pXazPfr4uVItbp4ZsgMCmOWE6oRdQj6IWj9sfxBIxVzn1gEnmz8IPcz8LfL
+ QKOGzGyUx85LTNKgjGTRTrNIn2dtrLP664Len4WVfqC8V1O773eYJknPGtKYMJnqjnBO
+ BcMQ==
+X-Gm-Message-State: ACrzQf0fFfzCuqpLPn6DB1lJUqtQSRum/LnJ45PopfZFktL0sM90ctlA
+ yGWbO1E5bcRokiVskhOJpZzoB4eEBeYtAgeO37OmAA==
+X-Google-Smtp-Source: AMsMyM58rQ+3W7cjTjvM8lThVWn9iA3CBttiqPa81bN4d9JXmcuY3Zl83chUpyB15+SM2jaUUuvYqMwX0McAWR3Jg7E=
+X-Received: by 2002:a05:6e02:b4d:b0:300:b1ee:c17e with SMTP id
+ f13-20020a056e020b4d00b00300b1eec17emr1778319ilu.101.1667226092159; Mon, 31
+ Oct 2022 07:21:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <20221029032110.151981-1-alex.hung@amd.com>
-In-Reply-To: <20221029032110.151981-1-alex.hung@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 31 Oct 2022 10:19:08 -0400
-Message-ID: <CADnq5_O36H2vK_wg5+56nzBHsiyhggKHdajUExs+GZt46KQVUQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: fix an incorrect comment
-To: Alex Hung <alex.hung@amd.com>
+From: Jann Horn <jannh@google.com>
+Date: Mon, 31 Oct 2022 15:20:56 +0100
+Message-ID: <CAG48ez3a_35R48khgW8D1MxokEqmYP3mBsUwhMq5Vfi5BiyYCQ@mail.gmail.com>
+Subject: [BUG] AMDKFD: criu_checkpoint() error path treats userspace pointer
+ as kernel pointer
+To: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>,
+ Felix Kuehling <felix.kuehling@amd.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Mon, 31 Oct 2022 14:29:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,37 +63,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: HaoPing.Liu@amd.com, hacc1225@gmail.com, tao.zhou1@amd.com,
- sunpeng.li@amd.com, Xinhui.Pan@amd.com, Rodrigo.Siqueira@amd.com,
- amd-gfx@lists.freedesktop.org, mwen@igalia.com, airlied@linux.ie,
- YiPeng.Chai@amd.com, dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
- alexander.deucher@amd.com, harry.wentland@amd.com, christian.koenig@amd.com
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ kernel list <linux-kernel@vger.kernel.org>, amd-gfx@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 28, 2022 at 11:22 PM Alex Hung <alex.hung@amd.com> wrote:
->
-> This is a copy-and-paste error. Fix the comment to match the macro
-> definition.
->
-> Signed-off-by: Alex Hung <alex.hung@amd.com>
+be072b06c73970 ("drm/amdkfd: CRIU export BOs as prime dmabuf objects")
+added an error path in criu_checkpoint() that (unless I'm completely
+misreading this) treats the userspace-supplied args->bos (which was
+previously used as a userspace pointer when passed to
+criu_checkpoint_bos()) as a kernel pointer:
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+  ret = criu_checkpoint_bos(p, num_bos, (uint8_t __user *)args->bos,
+      (uint8_t __user *)args->priv_data, &priv_offset);
+  if (ret)
+    goto exit_unlock;
+  [...]
+close_bo_fds:
+  if (ret) {
+    /* If IOCTL returns err, user assumes all FDs opened in
+criu_dump_bos are closed */
+    uint32_t i;
+    struct kfd_criu_bo_bucket *bo_buckets = (struct kfd_criu_bo_bucket
+*) args->bos;
 
-> ---
->  drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.h b/drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.h
-> index 63219ecd8478..1bf6b12f5663 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.h
-> +++ b/drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.h
-> @@ -29,4 +29,4 @@
->
->  void dcn10_resource_construct_fp(struct dc *dc);
->
-> -#endif /* __DCN20_FPU_H__ */
-> +#endif /* __DCN10_FPU_H__ */
-> --
-> 2.38.1
->
+    for (i = 0; i < num_bos; i++) {
+      if (bo_buckets[i].alloc_flags & KFD_IOC_ALLOC_MEM_FLAGS_VRAM)
+        close_fd(bo_buckets[i].dmabuf_fd);
+    }
+  }
+
+This seems very wrong, and also like it's guaranteed to blow up as
+soon as it runs on a machine with SMAP, which makes me think that this
+codepath was probably never exercised?
+
+(Also note that just changing this to copy_from_user() instead would
+still be wrong, because malicious/bogus userspace could change the FD
+number to the KFD device's FD, and the VFS assumes that an FD can't be
+closed while it's being accessed in a single-threaded process.)
