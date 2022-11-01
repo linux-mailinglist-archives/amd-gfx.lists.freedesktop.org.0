@@ -2,119 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 999C16144A8
-	for <lists+amd-gfx@lfdr.de>; Tue,  1 Nov 2022 07:26:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EFD8614604
+	for <lists+amd-gfx@lfdr.de>; Tue,  1 Nov 2022 09:50:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEC6210E11A;
-	Tue,  1 Nov 2022 06:26:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6EEA10E328;
+	Tue,  1 Nov 2022 08:50:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2075.outbound.protection.outlook.com [40.107.220.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16AD410E11A
- for <amd-gfx@lists.freedesktop.org>; Tue,  1 Nov 2022 06:26:43 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MHtuaAyPJ0a8B1kb0TcNrR0Akag7nIx/ZHwH7cxpJi/9aA0CnZJKp2Ls1l2z34YUi/8Na5244m6RoQ7s/kT2+kUTQAsbjfRrl5FraKPuQNYq6GcGoERc60HScxrizpU/HJTJdoc+LuhpkwGgtKUvCi9aD0IUcUAR7E7prm8RWaJT1bwfAojyH4kq7gCqwC0bYKmqS3BZMYbAqFpTgYaSVYRHjHkhEqKDyFChgfYc02U63NilenziNf/jm/7ogf+pOpF7hB18eUHX/RFWqj63gH91T0jgtDztb7lsu8Asr5xE0n3P+RjHzGRuJHk0LFLYa1L9wzv4Q5ZRGXPfJW0IbQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Mc4T2O7sjcW8FGquuAeNyPiLdS2zwKUc2qweu0ipAaI=;
- b=j5GRMUKo6+lvfV0VZ0yhtA7xaAbpxhp2uzcbsdi2WDmxwPmnqR2JhiJTw1d5Ge+vqW8czPZ0Gl5p4NDV6MsHKkLawHWLh2/4PS9IL5ae6YGZpD5fR6paSepSYThUWaXcDYHFUj2WmJdXyQdGJ0kL/eq4xzYrpdhzQF+rzh3LzLImXe+vs2pNbMx23fDwbjjKOtfADlGb3GBl3oCkuw0TW9O1TYh+3ww2OCjzFj2m0wWjN0/ZvAqiVOjkNqk6tuxl6INiyTXMR9y0r7FC3f/z1pO1ccU4RH1+z7jy+UKWztlIqF7BWlJdkJOxs7l+1nsx0VRpBg6tePL13qzNMNU5Vw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Mc4T2O7sjcW8FGquuAeNyPiLdS2zwKUc2qweu0ipAaI=;
- b=z0CB0V0215jL1bMtntizS1bbgMI5DRytsV0Nu6hEAhoQdIwh5Mmo1lxTKbTDD4yOaiIBgiw6/WL9HlZyw+/XTYTXJFQk6gtpvb802vIVu8ZPkQ4kfnFQhljZ+vUkHrGSNeoVo9gIHhsJx9C4Ism30Co/4B1GKtV/O5zIAngLny0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB6351.namprd12.prod.outlook.com (2603:10b6:8:a2::6) by
- CY5PR12MB6203.namprd12.prod.outlook.com (2603:10b6:930:24::17) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5769.15; Tue, 1 Nov 2022 06:26:41 +0000
-Received: from DM4PR12MB6351.namprd12.prod.outlook.com
- ([fe80::dda9:dc0a:4491:ac2]) by DM4PR12MB6351.namprd12.prod.outlook.com
- ([fe80::dda9:dc0a:4491:ac2%6]) with mapi id 15.20.5769.021; Tue, 1 Nov 2022
- 06:26:40 +0000
-Message-ID: <fd6e4c76-68a9-f528-e7a0-382c27c3ae26@amd.com>
-Date: Tue, 1 Nov 2022 14:26:31 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v3] drm/amdkfd: Fix the warning of
- array-index-out-of-bounds
-Content-Language: en-US
-To: Felix Kuehling <felix.kuehling@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
- amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com
-References: <20221027081402.320626-1-Jun.Ma2@amd.com>
- <9db95d91-84f5-4f10-633b-e42e909b14d6@amd.com>
-From: "Ma, Jun" <majun@amd.com>
-In-Reply-To: <9db95d91-84f5-4f10-633b-e42e909b14d6@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SG2PR02CA0059.apcprd02.prod.outlook.com
- (2603:1096:4:54::23) To DM4PR12MB6351.namprd12.prod.outlook.com
- (2603:10b6:8:a2::6)
+Received: from mx0a-00190b01.pphosted.com (mx0a-00190b01.pphosted.com
+ [IPv6:2620:100:9001:583::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DF6910E277;
+ Tue,  1 Nov 2022 00:23:03 +0000 (UTC)
+Received: from pps.filterd (m0050095.ppops.net [127.0.0.1])
+ by m0050095.ppops.net-00190b01. (8.17.1.19/8.17.1.19) with ESMTP id
+ 29VNs83P026381; Tue, 1 Nov 2022 00:20:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akamai.com;
+ h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=jan2016.eng;
+ bh=B8wOpCOlz8J319gLooEyxuwl9Pwn+cBCXFgKHrPIsbg=;
+ b=Y3LODaevB2XF2vq28AYopLWvvozPndg7Me3VO0VYBIg6AXf1wyX7Wmz3+vHtSUedLs3g
+ UFrMqBGJHMlVpxuuDwCvJqhMw7cAiAI3Nr0bQas6RwxBKtkr40ElZM3wHM5dnp/DMeOy
+ zOG144b+ijnhJCRZRZwl5xapbx/01ECxnVTjwD84kiUU6VVyOtQKwOKwLIKxyiIggjGG
+ 1ZNdl5eZVDyRh6QcFzSA2hfgHd4uCfyatG+yW2Aj8LdxHGRExyfDyz8D3gAz0iTN+/dU
+ +TLqRFfI25PM56P+NWvKsWfavgOKGl7nUxkBgZh8DBS9xR5yBUAk2gekY+QxCCZ4mahq yw== 
+Received: from prod-mail-ppoint3
+ (a72-247-45-31.deploy.static.akamaitechnologies.com [72.247.45.31] (may be
+ forged))
+ by m0050095.ppops.net-00190b01. (PPS) with ESMTPS id 3kjre1rc9w-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 01 Nov 2022 00:20:56 +0000
+Received: from pps.filterd (prod-mail-ppoint3.akamai.com [127.0.0.1])
+ by prod-mail-ppoint3.akamai.com (8.17.1.5/8.17.1.5) with ESMTP id
+ 29VNQrea021982; Mon, 31 Oct 2022 20:20:55 -0400
+Received: from prod-mail-relay19.dfw02.corp.akamai.com ([172.27.165.173])
+ by prod-mail-ppoint3.akamai.com (PPS) with ESMTP id 3khhpq1bra-1;
+ Mon, 31 Oct 2022 20:20:55 -0400
+Received: from [0.0.0.0] (prod-ssh-gw01.bos01.corp.akamai.com [172.27.119.138])
+ by prod-mail-relay19.dfw02.corp.akamai.com (Postfix) with ESMTP id 92E5C60100; 
+ Tue,  1 Nov 2022 00:20:54 +0000 (GMT)
+Message-ID: <9ff84a99-e500-625e-ba9d-20cd752d7ff4@akamai.com>
+Date: Mon, 31 Oct 2022 20:20:54 -0400
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB6351:EE_|CY5PR12MB6203:EE_
-X-MS-Office365-Filtering-Correlation-Id: 388f92f9-e1b2-4fc6-7417-08dabbd2098e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: yvGP2BFdfl9r+T5d12aOhsMUHTozBATbNDjekiIP6ObwGquUuXj1R+NrrHXQa2wvH6GV+2g4sWgQ9h3Dici7vuZHQHj4NTNkYoh+Y0jlg9uUxBl/CbaWWkwt4t0OF9AgS2Ou4H2xTjkmV+DKIkk/NPhFc7pJevTRJTvMpHXw9CkFf1PRrq2QyXHgONikW6yPzHUUwlPeXmrw3ZQ1L4nJCDLFgE/2Xqg9nKbYkodPS3cUXSUKUSJdlbqq7lrvJwVY43ZmURVIlzt9qT7T9meDVZr+ji2WAO1zVgdKk/54YBaLEVb+nTh7B/29dRRgOUJSmRl62ErV/7eYqm4LNww8SpXz8S+d8nIFW/CGMkldzSLY/ekwaDc4vLkmmshA++g+pIyMyLfN4J3TISn4eovzqXRBRTslsJPq3iiVGWlaX6hpUCKs/edfVdXEpC/rxQ2zGk8KM/dehrp6FEaDs9+jNvvwpYpI+YlaP/cUMl9mFvIZyekh9pjN5ys9WHAswjtHxO+R/ZKold3vT2MxijoS5iq6Q8ERpajuZtIZovneJngLmRnv8mlF0Nnp9M9O+RIWrCT3X6Dc7F1HhDSlhNqnsLwzkAQ8MvPEjOZEMsLCMj7fnxL0QKg7V/P/aUwq2EsTNsOefE7kGp3MRY3bpLc8Jh8jr/BIvhxoWFr72b2Ur/e5qBfHQ39h7AbVatRUuLQuESjhSNSyHbxKvWBv7rAH11EbhTyGQak4Ab8brpTOpWSR3kAShaXyixcG8/adQdZoRlzr/jqlSx+vhebQ/QYCpY1J5ei5sxLj8bokPhs9jec=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB6351.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(4636009)(376002)(136003)(39860400002)(366004)(346002)(396003)(451199015)(66476007)(6666004)(6486002)(4001150100001)(478600001)(6506007)(110136005)(53546011)(2906002)(5660300002)(36756003)(41300700001)(66556008)(6636002)(31696002)(4326008)(8676002)(8936002)(66946007)(316002)(83380400001)(38100700002)(31686004)(6512007)(2616005)(26005)(186003)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L2xsWWxwdXlpWkRKTEVMQVNLNGgzbHdNM2F2UlpkeEJ6U0xCZ1JXODVtdjNj?=
- =?utf-8?B?WDRQSHBXbmdDKys5OEFhaWlpWEpyZVNFT2Z4dW5WME1rbjJjZVNLeS9wOGE2?=
- =?utf-8?B?Rkl2YlhISVlGZklYd1krSXkvVjMvcktVK3VucVU2Q3RrdWFFREFQbEJXMFMx?=
- =?utf-8?B?OUJ2Y3ZhZ0NDY3NWRlByVGxaSWJKQk5NOCtPR3ZBTWp3UnpZV1BjNENxelRt?=
- =?utf-8?B?YTVBV0Y5NXMzN0hmcm1mWWRsK1VpUWZNUUovVXFPS3AwS29oWFBRdjFneEcx?=
- =?utf-8?B?bGFTWS8reHd6Q3RjS3dGdUI3SXhROXBIb2JUOS82TkxVWWZDaFRueW5Xc3Uv?=
- =?utf-8?B?dGcxOTBZamdIbkNaNUluNFNxZkVwakQxTm9ERS9LcUF5S2ZxcWtlYklBQW5C?=
- =?utf-8?B?ZENqYkFORGlxV0xCcWJMZklReE9uVFA2S1hVMms4S0gwbyt1ZzNIUjJYYVlR?=
- =?utf-8?B?ME8zWS9KSFhWM2cvMHpJUUhSMmtzVHlnTXh3NkNSOWJodHBVNStnNmh6QTI0?=
- =?utf-8?B?L25QRGY4ZThLcHNDM3p1QjA2U0dNTjNNcWZ1eW90Slk5K29XWTdUenJtbVFh?=
- =?utf-8?B?ZXpoc2R5cDVsU1pVUFhBSG1pVWxodzRvemZMUjVWMjF4RUFQaEVTR2g5eURy?=
- =?utf-8?B?a2NIZ1NDemppN3pzZUNuTUl3cWZ4OGV4SzdMbVFzT0Y4UC9rVWM4MUNGS2l4?=
- =?utf-8?B?bytyR0FuVmhzR0pJVEhHSXlSTnphU0NqZjAwOTNjRGhnTjFDc1NEOWhMR2E1?=
- =?utf-8?B?YU5QNmJYSDVYalZSZWVMN3plOHAwck9KSTZqSm1sVGlqdjI2aklNY2lUcGl4?=
- =?utf-8?B?VkRDTFJ1eDUxTFExVFdiak9MaXg2anhqOW9sQ1QzeGVlSW1MWHh4aVRvbnBY?=
- =?utf-8?B?ZmZxNnNET3E3ZVloNXpHbDI3UGtYcWkrQ004OWtLTUhJZ2Vpak44TDMrMVV5?=
- =?utf-8?B?WnlOVURsNDJPK1NQSVBCeHJiYW1DRUxsMzFYS2YvR2xKM3lLQ0pzNUY4K0Zi?=
- =?utf-8?B?bTg3NkJqdko5MTNEbmphajlNbENDVWlOMXlxMkE3MmY0VDU5YTdtM3RLY0Nu?=
- =?utf-8?B?S2pXd1pYRlFLVTJEZE9ZQzJyZ0NscUE4SEIyZElTek1OU2ZKZU8xTFJsd2dq?=
- =?utf-8?B?N3NpZFcvM0JKekhOOVQ2Q3V3eFgySUkvK0w1SE9KUlUxMW42VGx0WjcrK1lu?=
- =?utf-8?B?ZkVvQ0ZERHY0NCtVR1AvT2xhaE9UUFdZNnRCYmtlN3U5eDdOOHJvSERqam5l?=
- =?utf-8?B?ZHlXVHh6aXFsQWxNTEJ1SERNQnVpRU41UUl2MTllbHIwelBBUkM3aXhsaHV4?=
- =?utf-8?B?aE54UXh0UmZCU25ZVHlXdWJXb0luTkxKRXVDVG5UMU1ScDJ6VUN3cGRjZzdT?=
- =?utf-8?B?MTA4dHpoVFNnTS9SQytZU0c1N0s2RTZ5aGZhNUJ3U1crcjdIc3RLTFZwZ1Bq?=
- =?utf-8?B?UjJoNzV5TUs3TVpOaVYxN21pOXhRL3IzalN0MitiV3N1NXVldFdRbTdLdUJt?=
- =?utf-8?B?N1NnUXhITmVqSEM5RGo5T3ZnbWNMTjBUcy9YUVhhTHo4cHpsMGRkcENYOU8y?=
- =?utf-8?B?RlcyVUd5KzE5VExUWkpzR3FTeDdEOUhCbkZLcThaNEU1OGg3Wi9LVi9ITUY3?=
- =?utf-8?B?cVB0QXVJa3RPaTN5TkRRK1dOd3JCblptVkNOYmgreTBhaW1oZ2xQbTRTTzk4?=
- =?utf-8?B?VHN1SFR1NDN0L1lkODF5dlhacVdMU3liTTBMS1VrZ3lQUm1kZ2MrR0cvczBw?=
- =?utf-8?B?SE9INDJpQXJhUkRkWmV3VHRLY1ZGQkI5SllIa2JFUmt0UlAyR3NkVXpHSkZJ?=
- =?utf-8?B?cng2YnM5ZE9GT2tBbTBZM0R6Y3Rwa0hkSHplaFJ1TU05ZTY0SzMwRWNjaDZj?=
- =?utf-8?B?M0FBS0NCVlZ0N1lqVjg1cUdEQm96Z0JVdTJEOUpURDRHakk2d0NmSEx1OCtJ?=
- =?utf-8?B?SlFDaDJZaGFUVjlaRkgvRUE2NlhTK3Z2Vkc2bVU2MUxaODhYOU9vdDJuVnov?=
- =?utf-8?B?YnpSbHRBMXVhaCtJT1RUazYxMzMvNkdSeFdTWjVUVHExNUIydFZ0eW9tY2pR?=
- =?utf-8?B?dUFQeE1Ua2dVU1Q4cnNtUUc0TXRiQ2duTE9TVTNDaEJCTlN0UW1OUWtLU05M?=
- =?utf-8?Q?c2cMbjEgzwqYZAR0tnFYK++ua?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 388f92f9-e1b2-4fc6-7417-08dabbd2098e
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6351.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2022 06:26:40.7172 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: IChPo83uWQZ+AEOvLbI4CO6T5xor4AL+uewau0WP1xwVHL/dn/rW0jfRLNI1/Uhg
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6203
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [Intel-gfx] [PATCH v7 0/9] dyndbg: drm.debug adaptation
+To: jim.cromie@gmail.com, =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>
+References: <20220912052852.1123868-1-jim.cromie@gmail.com>
+ <Yy7/6oTBW2lqVSK1@kroah.com> <Y1Fyuh12g/gt3Izn@intel.com>
+ <87a65pfsbq.fsf@intel.com> <c1807585-f6c8-c05d-bc20-c6a540e59814@akamai.com>
+ <CAJfuBxxWVBxL29sXS3XoE5Es9HTbVyFUi9bQFYNupJAERffAew@mail.gmail.com>
+ <Y1qqurH/lG0u+3ky@intel.com>
+ <CAJfuBxzpG+C1ARLs3c_znXECEU7Ldg8RhruLMUXA67w+DwcrOQ@mail.gmail.com>
+ <Y1rllFeOnT9/PQVA@intel.com>
+ <CAJfuBxw_YFvCtHMwVE0K0fa5GJbrZy4hTOSS9FebeDs6fxUUCA@mail.gmail.com>
+ <Y1/In+ZBzNguVNoy@intel.com>
+ <CAJfuBxxHNXHEWCEPXnPTh64dq4igaddnrU27NT=OHASmnxgudA@mail.gmail.com>
+Content-Language: en-US
+From: Jason Baron <jbaron@akamai.com>
+In-Reply-To: <CAJfuBxxHNXHEWCEPXnPTh64dq4igaddnrU27NT=OHASmnxgudA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-31_22,2022-10-31_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999
+ phishscore=0
+ bulkscore=0 spamscore=0 mlxscore=0 malwarescore=0 adultscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211010000
+X-Proofpoint-GUID: y_KSexqckM-XmzcrBUvcjuPdvx5Z5-nD
+X-Proofpoint-ORIG-GUID: y_KSexqckM-XmzcrBUvcjuPdvx5Z5-nD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-31_22,2022-10-31_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0
+ priorityscore=1501
+ mlxscore=0 lowpriorityscore=0 bulkscore=0 clxscore=1015 malwarescore=0
+ mlxlogscore=999 adultscore=0 suspectscore=0 impostorscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
+ definitions=main-2211010000
+X-Mailman-Approved-At: Tue, 01 Nov 2022 08:50:36 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,174 +95,263 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: guchun.chen@amd.com
+Cc: dri-devel@lists.freedesktop.org, Greg KH <gregkh@linuxfoundation.org>,
+ intel-gfx@lists.freedesktop.org, linux@rasmusvillemoes.dk,
+ linux-kernel@vger.kernel.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ seanpaul@chromium.org, amd-gfx@lists.freedesktop.org, daniel.vetter@ffwll.ch,
+ joe@perches.com, intel-gvt-dev@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
 
-On 10/29/2022 4:17 AM, Felix Kuehling wrote:
-> On 2022-10-27 04:14, Ma Jun wrote:
->> For some GPUs with more CUs, the original sibling_map[32]
+On 10/31/22 6:11 PM, jim.cromie@gmail.com wrote:
+> On Mon, Oct 31, 2022 at 7:07 AM Ville Syrjälä
+> <ville.syrjala@linux.intel.com> wrote:
+>> On Sun, Oct 30, 2022 at 08:42:52AM -0600, jim.cromie@gmail.com wrote:
+>>> On Thu, Oct 27, 2022 at 2:10 PM Ville Syrjälä
+>>> <ville.syrjala@linux.intel.com> wrote:
+>>>> On Thu, Oct 27, 2022 at 01:55:39PM -0600, jim.cromie@gmail.com wrote:
+>>>>> On Thu, Oct 27, 2022 at 9:59 AM Ville Syrjälä
+>>>>> <ville.syrjala@linux.intel.com> wrote:
+>>>>>> On Thu, Oct 27, 2022 at 09:37:52AM -0600, jim.cromie@gmail.com wrote:
+>>>>>>> On Thu, Oct 27, 2022 at 9:08 AM Jason Baron <jbaron@akamai.com> wrote:
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> On 10/21/22 05:18, Jani Nikula wrote:
+>>>>>>>>> On Thu, 20 Oct 2022, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
+>>>>>>>>>> On Sat, Sep 24, 2022 at 03:02:34PM +0200, Greg KH wrote:
+>>>>>>>>>>> On Sun, Sep 11, 2022 at 11:28:43PM -0600, Jim Cromie wrote:
+>>>>>>>>>>>> hi Greg, Dan, Jason, DRM-folk,
+>>>>>>>>>>>>
+>>>>>>>>>>>> heres follow-up to V6:
+>>>>>>>>>>>>    rebased on driver-core/driver-core-next for -v6 applied bits (thanks)
+>>>>>>>>>>>>    rework drm_debug_enabled{_raw,_instrumented,} per Dan.
+>>>>>>>>>>>>
+>>>>>>>>>>>> It excludes:
+>>>>>>>>>>>>    nouveau parts (immature)
+>>>>>>>>>>>>    tracefs parts (I missed --to=Steve on v6)
+>>>>>>>>>>>>    split _ddebug_site and de-duplicate experiment (way unready)
+>>>>>>>>>>>>
+>>>>>>>>>>>> IOW, its the remaining commits of V6 on which Dan gave his Reviewed-by.
+>>>>>>>>>>>>
+>>>>>>>>>>>> If these are good to apply, I'll rebase and repost the rest separately.
+>>>>>>>>>>> All now queued up, thanks.
+>>>>>>>>>> This stuff broke i915 debugs. When I first load i915 no debug prints are
+>>>>>>>>>> produced. If I then go fiddle around in /sys/module/drm/parameters/debug
+>>>>>>>>>> the debug prints start to suddenly work.
+>>>>>>>>> Wait what? I always assumed the default behaviour would stay the same,
+>>>>>>>>> which is usually how we roll. It's a regression in my books. We've got a
+>>>>>>>>> CI farm that's not very helpful in terms of dmesg logging right now
+>>>>>>>>> because of this.
+>>>>>>>>>
+>>>>>>>>> BR,
+>>>>>>>>> Jani.
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>> That doesn't sound good - so you are saying that prior to this change some
+>>>>>>>> of the drm debugs were default enabled. But now you have to manually enable
+>>>>>>>> them?
+>>>>>>>>
+>>>>>>>> Thanks,
+>>>>>>>>
+>>>>>>>> -Jason
+>>>>>>>
+>>>>>>> Im just seeing this now.
+>>>>>>> Any new details ?
+>>>>>> No. We just disabled it as BROKEN for now. I was just today thinking
+>>>>>> about sending that patch out if no solutin is forthcoming soon since
+>>>>>> we need this working before 6.1 is released.
+>>>>>>
+>>>>>> Pretty sure you should see the problem immediately with any driver
+>>>>>> (at least if it's built as a module, didn't try builtin). Or at least
+>>>>>> can't think what would make i915 any more special.
+>>>>>>
+>>>>> So, I should note -
+>>>>> 99% of my time & energy on this dyndbg + drm patchset
+>>>>> has been done using virtme,
+>>>>> so my world-view (and dev-hack-test env) has been smaller, simpler
+>>>>> maybe its been fatally simplistic.
+>>>>>
+>>>>> ive just rebuilt v6.0  (before the trouble)
+>>>>> and run it thru my virtual home box,
+>>>>> I didnt see any unfamiliar drm-debug output
+>>>>> that I might have inadvertently altered somehow
+>>>>>
+>>>>> I have some real HW I can put a reference kernel on,0
+>>>>> to look for the missing output, but its all gonna take some time,
+>>>>> esp to tighten up my dev-test-env
+>>>>>
+>>>>> in the meantime, there is:
+>>>>>
+>>>>> config DRM_USE_DYNAMIC_DEBUG
+>>>>> bool "use dynamic debug to implement drm.debug"
+>>>>> default y
+>>>>> depends on DRM
+>>>>> depends on DYNAMIC_DEBUG || DYNAMIC_DEBUG_CORE
+>>>>> depends on JUMP_LABEL
+>>>>> help
+>>>>>    Use dynamic-debug to avoid drm_debug_enabled() runtime overheads.
+>>>>>    Due to callsite counts in DRM drivers (~4k in amdgpu) and 56
+>>>>>    bytes per callsite, the .data costs can be substantial, and
+>>>>>    are therefore configurable.
+>>>>>
+>>>>> Does changing the default fix things for i915 dmesg ?
+>>>> I think we want to mark it BROKEN in addition to make sure no one
+>>> Ok, I get the distinction now.
+>>> youre spelling that
+>>>    depends on BROKEN
+>>>
+>>> I have a notional explanation, and a conflating commit:
+>>>
+>>> can you eliminate
+>>> git log -p ccc2b496324c13e917ef05f563626f4e7826bef1
+>>>
+>>> as the cause ?
+>> Reverting that doesn't help.
 >>
->> in struct crat_subtype_cache is not enough
+> thanks for eliminating it.
+>
+>>> I do need to clarify, I dont know exactly what debug/logging output
+>>> is missing such that CI is failing
+>> CI isn't failing. But any logs it produces are 100% useless,
+>> as are any user reported logs.
 >>
->> to save the cache information when create the VCRAT table,
+>> The debugs that are missing are anything not coming directly
+>> from drm.ko.
 >>
->> so skip filling the struct crat_subtype_cache info instead
+>> The stuff that I see being printed by i915.ko are drm_info()
+>> and the drm_printer stuff from i915_welcome_messages(). That
+>> also implies that drm_debug_enabled(DRM_UT_DRIVER) does at
+>> least still work correctly.
 >>
->> fill struct kfd_cache_properties directly to fix this problem.
+>> I suspect that the problem is just that the debug calls
+>> aren't getting patched in when a module loads. And fiddling
+>> with the modparam after the fact does trigger that somehow.
 >>
->> v3:
->> - Drop processor id calc function
->> v2:
->> - Remove unnecessary sys interface "cache_ext"
->>
->> Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
->> ---
->>   drivers/gpu/drm/amd/amdkfd/kfd_crat.c     | 307 +++-------------------
->>   drivers/gpu/drm/amd/amdkfd/kfd_crat.h     |  12 +
->>   drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 238 ++++++++++++++++-
->>   drivers/gpu/drm/amd/amdkfd/kfd_topology.h |   5 +-
->>   4 files changed, 278 insertions(+), 284 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
->> index d25ac9cbe5b2..8b7e34b45740 100644
->> --- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
->> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-> [snip]
->> +int get_gpu_cache_info(struct kfd_dev *kdev, struct kfd_gpu_cache_info **pcache_info)
->>   {
->> -	struct kfd_gpu_cache_info *pcache_info;
->>   	struct kfd_gpu_cache_info cache_info[KFD_MAX_CACHE_TYPES];
->>   	int num_of_cache_types = 0;
->> -	int i, j, k;
->> -	int ct = 0;
->> -	int mem_available = available_size;
->> -	unsigned int cu_processor_id;
->> -	int ret;
->> -	unsigned int num_cu_shared;
->>   
->>   	switch (kdev->adev->asic_type) {
-> [snip]
->>
->>   	default:
->>   		switch (KFD_GC_VERSION(kdev)) {
-> [snip]
->>   		case IP_VERSION(11, 0, 0):
->>   		case IP_VERSION(11, 0, 1):
->>   		case IP_VERSION(11, 0, 2):
->>   		case IP_VERSION(11, 0, 3):
->> -			pcache_info = cache_info;
->> +			*pcache_info = cache_info;
-> 
-> This won't work. cache_info is a local variable. It will be out of scope 
-> as soon as this function returns. You'll need to allocate this in some 
-> data structure that will persist after the function returns. Maybe 
-> expect the caller to pass in a pointer to an array in their own stack frame.
+> ok, heres the 'tape' of a virtme boot,
+> then modprobe going wrong.
+>
+> [    1.785873] dyndbg:   2 debug prints in module intel_rapl_msr
+> [    2.040598] virtme-init: udev is done
+> virtme-init: console is ttyS0
+>
+>> load drm driver
+> bash-5.2# modprobe i915
+>
+>> drm module is loaded 1st
+> [    6.549451] dyndbg: add-module: drm.302 sites
+> [    6.549991] dyndbg: class[0]: module:drm base:0 len:10 ty:0
+> [    6.550647] dyndbg:  0: 0 DRM_UT_CORE
+> [    6.551097] dyndbg:  1: 1 DRM_UT_DRIVER
+> [    6.551531] dyndbg:  2: 2 DRM_UT_KMS
+> [    6.551931] dyndbg:  3: 3 DRM_UT_PRIME
+> [    6.552402] dyndbg:  4: 4 DRM_UT_ATOMIC
+> [    6.552799] dyndbg:  5: 5 DRM_UT_VBL
+> [    6.553270] dyndbg:  6: 6 DRM_UT_STATE
+> [    6.553634] dyndbg:  7: 7 DRM_UT_LEASE
+> [    6.554043] dyndbg:  8: 8 DRM_UT_DP
+> [    6.554392] dyndbg:  9: 9 DRM_UT_DRMRES
+> [    6.554776] dyndbg: module:drm attached 1 classes
+> [    6.555241] dyndbg: 302 debug prints in module drm
+>
+>> here modprobe reads /etc/modprobe.d/drm-test.conf:
+> options drm dyndbg="class DRM_UT_CORE +p; class DRM_UT_DRIVER +p"
+> and dyndbg applies it
 
-Yes, this is my mistake. Will fix in next version
+Hi,
 
-> 
-> 
->>   			num_of_cache_types =
->> -				kfd_fill_gpu_cache_info_from_gfx_config(kdev, pcache_info);
->> +				kfd_fill_gpu_cache_info_from_gfx_config(kdev, *pcache_info);
-> [snip]
->> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
->> index e0680d265a66..dc231e248258 100644
->> --- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
->> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-> 
-> [snip]
-> 
->  > int kfd_topology_add_device(struct kfd_dev *gpu)
->>   {
->>   	uint32_t gpu_id;
->> @@ -1759,6 +1970,7 @@ int kfd_topology_add_device(struct kfd_dev *gpu)
->>   			topology_crat_proximity_domain--;
->>   			return res;
->>   		}
->> +
->>   		res = kfd_parse_crat_table(crat_image,
->>   					   &temp_topology_device_list,
->>   					   proximity_domain);
->> @@ -1771,23 +1983,31 @@ int kfd_topology_add_device(struct kfd_dev *gpu)
->>   
->>   		kfd_topology_update_device_list(&temp_topology_device_list,
->>   			&topology_device_list);
->> +		up_write(&topology_lock);
-> 
-> I'm not sure if dropping and re-taking the topology lock here could lead 
-> to race conditions. But this could be avoided, if you moved the 
-> responsibility for topology locking out of kfd_assign_gpu and into the 
-> caller (kfd_topology_add_device).
+I'm a bit confused with this. My understanding is that there
+is a 'regression' here from how this used to work. But the
+'class' keyword is new - are we sure this is the command-line
+we are trying to fix?
 
-Thanks for review.Will fix in next version.
+>
+> [    6.564284] dyndbg: module: drm dyndbg="class DRM_UT_CORE +p; class
+> DRM_UT_DRIVER +p"
+> [    6.564957] dyndbg: query 0: "class DRM_UT_CORE +p" mod:drm
+> [    6.565348] dyndbg: split into words: "class" "DRM_UT_CORE" "+p"
+> [    6.565836] dyndbg: op='+'
+> [    6.566059] dyndbg: flags=0x1
+> [    6.566321] dyndbg: *flagsp=0x1 *maskp=0xffffffff
+> [    6.566875] dyndbg: parsed: func="" file="" module="drm" format=""
+> lineno=0-0 class=DRM_UT_CORE
+> [    6.568753] dyndbg: applied: func="" file="" module="drm" format=""
+> lineno=0-0 class=DRM_UT_CORE
+> [    6.569473] dyndbg: query 1: "class DRM_UT_DRIVER +p" mod:drm
+> [    6.570139] dyndbg: split into words: "class" "DRM_UT_DRIVER" "+p"
+> [    6.570522] dyndbg: op='+'
+> [    6.570699] dyndbg: flags=0x1
+> [    6.570893] dyndbg: *flagsp=0x1 *maskp=0xffffffff
+> [    6.571200] dyndbg: parsed: func="" file="" module="drm" format=""
+> lineno=0-0 class=DRM_UT_DRIVER
+> [    6.571778] dyndbg: no matches for query
+> [    6.572031] dyndbg: no-match: func="" file="" module="drm"
+> format="" lineno=0-0 class=DRM_UT_DRIVER
+> [    6.572615] dyndbg: processed 2 queries, with 61 matches, 0 errs
+> [    6.573286] ACPI: bus type drm_connector registered
+>
+> next required module is loaded, but drm.debug isnt propagated.
+>
+> [    6.578645] dyndbg: add-module: drm_kms_helper.94 sites
+> [    6.579487] dyndbg: class[0]: module:drm_kms_helper base:0 len:10 ty:0
+> [    6.580639] dyndbg:  0: 0 DRM_UT_CORE
+> [    6.581135] dyndbg:  1: 1 DRM_UT_DRIVER
+> [    6.581651] dyndbg:  2: 2 DRM_UT_KMS
+> [    6.582178] dyndbg:  3: 3 DRM_UT_PRIME
+> [    6.582927] dyndbg:  4: 4 DRM_UT_ATOMIC
+> [    6.583627] dyndbg:  5: 5 DRM_UT_VBL
+> [    6.584350] dyndbg:  6: 6 DRM_UT_STATE
+> [    6.584999] dyndbg:  7: 7 DRM_UT_LEASE
+> [    6.585699] dyndbg:  8: 8 DRM_UT_DP
+> [    6.586354] dyndbg:  9: 9 DRM_UT_DRMRES
+> [    6.587040] dyndbg: module:drm_kms_helper attached 1 classes
+> [    6.588103] dyndbg:  94 debug prints in module drm_kms_helper
+>
+> and so on
+>
+> [    6.595628] dyndbg: add-module: drm_display_helper.150 sites
+> [    6.596442] dyndbg: class[0]: module:drm_display_helper base:0 len:10 ty:0
+> [    6.597453] dyndbg:  0: 0 DRM_UT_CORE
+> ...
+> [    6.601678] dyndbg: module:drm_display_helper attached 1 classes
+> [    6.602335] dyndbg: 150 debug prints in module drm_display_helper
+>
+> [    6.692760] dyndbg: add-module: i915.1657 sites
+> [    6.693023] dyndbg: class[0]: module:i915 base:0 len:10 ty:0
+> [    6.693323] dyndbg:  0: 0 DRM_UT_CORE
+> ....
+> [    6.695220] dyndbg: module:i915 attached 1 classes
+> [    6.695463] dyndbg: 1657 debug prints in module i915
+> bash-5.2#
+> bash-5.2#
+>
+>
+> So, what I think I need to add:
+>
+> ddebug_add_module()  scans the module being loaded,
+> looking for a param thats wired to dyndbg's modparam callback.
+> Then it calls that callback, with the val of the sysfs-node
+> (drm.debug in this case), and the module (i915)
 
-Regards,
-Ma Jun
-> 
-> Regards,
->    Felix
-> 
-> 
->> +
->> +		dev = kfd_assign_gpu(gpu);
->> +		if (WARN_ON(!dev)) {
->> +			res = -ENODEV;
->> +			goto err;
->> +		}
->> +
->> +		down_write(&topology_lock);
->> +
->> +		/* Fill the cache affinity information here for the GPUs
->> +		 * using VCRAT
->> +		 */
->> +		kfd_fill_cache_non_crat_info(dev, gpu);
->>   
->>   		/* Update the SYSFS tree, since we added another topology
->>   		 * device
->>   		 */
->>   		res = kfd_topology_update_sysfs();
->>   		up_write(&topology_lock);
->> -
->>   		if (!res)
->>   			sys_props.generation_count++;
->>   		else
->>   			pr_err("Failed to update GPU (ID: 0x%x) to sysfs topology. res=%d\n",
->>   						gpu_id, res);
->> -		dev = kfd_assign_gpu(gpu);
->> -		if (WARN_ON(!dev)) {
->> -			res = -ENODEV;
->> -			goto err;
->> -		}
->>   	}
->>   
->>   	dev->gpu_id = gpu_id;
->> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.h b/drivers/gpu/drm/amd/amdkfd/kfd_topology.h
->> index dc4e239c8f8f..3e8ac87f0ac9 100644
->> --- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.h
->> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.h
->> @@ -87,6 +87,8 @@ struct kfd_mem_properties {
->>   	struct attribute	attr_used;
->>   };
->>   
->> +#define CACHE_SIBLINGMAP_SIZE 64
->> +
->>   struct kfd_cache_properties {
->>   	struct list_head	list;
->>   	uint32_t		processor_id_low;
->> @@ -97,10 +99,11 @@ struct kfd_cache_properties {
->>   	uint32_t		cache_assoc;
->>   	uint32_t		cache_latency;
->>   	uint32_t		cache_type;
->> -	uint8_t			sibling_map[CRAT_SIBLINGMAP_SIZE];
->> +	uint8_t			sibling_map[CACHE_SIBLINGMAP_SIZE];
->>   	struct kfd_dev		*gpu;
->>   	struct kobject		*kobj;
->>   	struct attribute	attr;
->> +	uint32_t		sibling_map_size;
->>   };
->>   
->>   struct kfd_iolink_properties {
+Ok, I thought the sysfs callbacks only happen when
+the sysfs file is written? And thus this works once
+when the sysfs file is explicitly written by the user
+after boot but not before then?
+
+Thanks,
+
+-Jason
+
+>
+> the callback will then run the query to enable callsites per drm.debug.
+>
+> I'll guess the kparams I need to find are in a section somewhere
+> Anyone want to toss a lawn-dart at the code I need to look at, copy ?
+>
+>> --
+>> Ville Syrjälä
+>> Intel
+> thanks again
+> Jim
+
