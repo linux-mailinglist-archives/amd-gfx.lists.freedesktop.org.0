@@ -2,92 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2FC7616708
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Nov 2022 17:04:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7199761671E
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Nov 2022 17:08:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0C8E10E4EE;
-	Wed,  2 Nov 2022 16:04:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C16E10E4F5;
+	Wed,  2 Nov 2022 16:08:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 771DD10E4F0
- for <amd-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 16:04:37 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NZiYeLwpmW1s2eXJLpFERTUyWRBHg/o1foW9h9QJIqHCeSdbUbULoUHpWxo0E8lH4rCEykYJr9Lpif6g8kdNU93DSfKTzGWIAXBH/nQWI0IY2ULRNZ/2vc2xByyapVmCRdZj/rlxDp+Ie091mQRnjGa9lyl81eDHT1NKZNa25dbRWpLcdQp5EaWk2HXtWfbdHrLtXXBGFJqW6n1at70ImmHZSgn7jWEYcVom+sbyWkp9wiwhlBiJB2CLJpmowFa9CjM69w2AiEV56htMN65wlEVrbTvls2LPP8LJ2KeOQkyrt3FJitHu5gBn+B9QnClYurQEn9rg+nHa5RTlZl9y4Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=184YOMjGuGbojxUN8bk8v+5uT7K8oPS1IHT/28lwjMk=;
- b=b19jRy7MYtwGfL94RY3EHxV1E24W7CNuV3Ay0ZkdO2raHtoxjLg8ju6tjToFY5YMtwyDwxdylanJjg4F4n577KPAGH6d8lsXLv5pRFlLWe6oOAPrSxo5rBhQycEhZdlO0EFw+lm4S4NPdUh8ZuioBqPBkyfFN6uVgtgnPg86lWJS0fPmoLiCC/PnJjoi1utOC+sZnerW5iZQP4X43j/GozA9+aoJXEWuxQYpkj/2W/NLEsArIliFl6RjwmRYgwSM9+VpKxM4Uj/U52phUDMB3Oy9cbm8VAoqdf1QjAOtDETRb6uxmPlEIQt/5jE1yOPRoUrSOgycHeBsDL/2hxiqQA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=184YOMjGuGbojxUN8bk8v+5uT7K8oPS1IHT/28lwjMk=;
- b=dNtYguLTySJqR2Q/Z+wiQZN3MAzSB5wD/HftNKyiVc0zTnbRogYFNAFxd/uisqrpeut6C5POtSG6vnzpK9bgCPooj5wxVeXGALTj7hhBVvcxnyu1zpdtXvfzE07UHyMakJp/iZJC8AwJYsO8bKAE5cUAsV1PWSLka2JEDQJnGuI=
-Received: from DS7PR03CA0198.namprd03.prod.outlook.com (2603:10b6:5:3b6::23)
- by DM4PR12MB5772.namprd12.prod.outlook.com (2603:10b6:8:63::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.18; Wed, 2 Nov
- 2022 16:04:34 +0000
-Received: from DM6NAM11FT065.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:3b6:cafe::17) by DS7PR03CA0198.outlook.office365.com
- (2603:10b6:5:3b6::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.22 via Frontend
- Transport; Wed, 2 Nov 2022 16:04:34 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT065.mail.protection.outlook.com (10.13.172.109) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5791.20 via Frontend Transport; Wed, 2 Nov 2022 16:04:34 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Wed, 2 Nov
- 2022 11:04:34 -0500
-Received: from alan-new-dev.amd.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.31 via Frontend
- Transport; Wed, 2 Nov 2022 11:04:30 -0500
-From: Alan Liu <HaoPing.Liu@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 22/22] drm/amd/display: 3.2.211
-Date: Thu, 3 Nov 2022 00:01:17 +0800
-Message-ID: <20221102160117.506511-23-HaoPing.Liu@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221102160117.506511-1-HaoPing.Liu@amd.com>
-References: <20221102160117.506511-1-HaoPing.Liu@amd.com>
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com
+ [IPv6:2607:f8b0:4864:20::336])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87E7010E4F2
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 16:08:26 +0000 (UTC)
+Received: by mail-ot1-x336.google.com with SMTP id
+ a13-20020a9d6e8d000000b00668d65fc44fso10527459otr.9
+ for <amd-gfx@lists.freedesktop.org>; Wed, 02 Nov 2022 09:08:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=dBmsHeS2eZJAKNTW7cQ1+Qo5njaXgxxpurKAk/rvuk8=;
+ b=YH2KVl2+AnpvKyawcd5MicxMkpD5frdhqL3XZi9yjzgCfEn4sXqjDMrkxJ0LkbD0BZ
+ jY74i93aH+RbV1m0WSBUW7zQrhUXzrSpb8yW1In5UVJkWfBQ0z1qHqcYc6zD6tZ7vPgX
+ jMu3RwV/ro9k+FJseFsR0B6kFLGi90dxaVvWZ7yCNheWaDmolwfN9RDS+1DDgOZB9WE6
+ EcK1zN0f+R4WMGIWGoUH+iciJSR1C+U8NS69ZHrbnuuqve1H1l6Mg+sYCawrFadPok1b
+ Z8EB9hNRURzUXyE7n5pu+RkJWEIbV8IbyQU8qCOUBNC20zratzea6++b/qk5vkefjK5m
+ HuKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=dBmsHeS2eZJAKNTW7cQ1+Qo5njaXgxxpurKAk/rvuk8=;
+ b=SFMETsYJ/i9lZNlhEExYrQwqOCMnqoWBGOnsmyJM5EM1xcQ2qWbSnLivKt+aOSNNH0
+ LOP1pvSTn1tvmCV1/GU1dJU8h6Rz7dnOx/V1av3lJfXsvfScpQR/3bqVqTM4nVO5IPL7
+ 6OC6CWZPmzdAaikhT66AVke52bAajYSnPcDQ8QLa0p+mMcztZfd7Pp+CAGtFXTX3NiDN
+ u8DtgNm3dKIdGdFaqR4Phau0jxl3E0VXS979T5BUJEkoSuCzfxNq6Gm4uDCcQzmlwBS2
+ 1pHusv/5PDQED3aMtM0JCLgAySvU81wu76ijLZxG/TFybiB+L4BYVU/85vYICIFkGy3d
+ 0kVQ==
+X-Gm-Message-State: ACrzQf38HY6PaX8hVQDDf4tDFjEDe3Sg6rY95K99VR+bGb1x/eNvUcZb
+ 4YBGOeJvE2AxL3J+aP/V0gEtMgUnVZ+5rnzFUN0=
+X-Google-Smtp-Source: AMsMyM49aLFQIkSUnCL8kAdbMp8sKy0J1fSHedR9/DlNBXKuS5wsyWpmMuPNusCTvHycv6/A1QDLXQOtfhYiG2hwX/Y=
+X-Received: by 2002:a9d:4592:0:b0:66c:6922:8629 with SMTP id
+ x18-20020a9d4592000000b0066c69228629mr5224436ote.233.1667405305777; Wed, 02
+ Nov 2022 09:08:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT065:EE_|DM4PR12MB5772:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5d051b05-c35e-4d45-4750-08dabcebef76
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3ejrfpGy5dpOXed7hpe9n2p2JOqY3RucUZpfkuJKDnYwZyK4mFjKHbSFfEcf2kbFL46gxw+r4yttAy9e7ORJzmGZemO8Fn8dazt55MO/YY6Jv1udf7A6qIvF9owMrUq54edo1VD9nhCLNpOI7TVsi3b7fbMOWTvwCtfyQMsOnOu7dWltZqelt4vZKkuzqeqqGJ2cOqXxUtVw9Sqts6BZ1kMAgrIK9BcRULkWg5uAdEa27itbMHUOmq/yO3zIoAIVYISpsLTd/s72aFO1YAQVBVE5MJqqElf87BArz45WdXhSL7aUNKweq4zKP9BgSCxZWZzG3rGCXU5sSuTtcbwz1K2z51htaHsfBEoT4D0OfsegDzIEjOMh/RTKFQQ7ffzsPiM5OBN0Q3PX3i7hOorVYl/xg8kXCNEedWPAuz7YE32LtnCtbWDDSe/0YpLZgUkG/EibSjBTgC94OaTDfcnweBDrZMRFSOMH2oO9u5XjsWjt3PlCnX/6kH2O+nXbB3UZKHdtNje+MhkG0QKDVRMRFK/s8CwzxjYHurh9UdSUoXhGjhPq9FeAvGTvERaD7PUPp9L+wIh5t/6cKwWKJpccFPj1IFTYkcrGamxy1hFbhO1qq8BAZTDcV42KL3jHqiuepuYan65oSyxegWDSR/y2QyMiKy3CIAmYRrW2VJR+E9yTA5Cr+iMAV4CBccMjCEFrlabJPLyOJQj5oohdVYlsjCFzpRNbupWUdy/pUPlHQSMyOm5socFBla/S9Bbk4rV0l/9oy08M53z8UgZ8gU/Wc5LnaFVvhFjy12Tt0DS5njp1pJDFCZw7Yqpv9uVHAe56
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(346002)(396003)(136003)(376002)(39860400002)(451199015)(36840700001)(46966006)(40470700004)(316002)(26005)(6666004)(478600001)(5660300002)(82310400005)(40480700001)(40460700003)(36756003)(7696005)(54906003)(6916009)(8676002)(4326008)(2616005)(8936002)(70586007)(70206006)(356005)(81166007)(36860700001)(2906002)(82740400003)(86362001)(41300700001)(47076005)(186003)(336012)(1076003)(426003)(83380400001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2022 16:04:34.6407 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5d051b05-c35e-4d45-4750-08dabcebef76
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT065.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5772
+References: <20221102145811.17968-1-christian.koenig@amd.com>
+In-Reply-To: <20221102145811.17968-1-christian.koenig@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 2 Nov 2022 12:08:13 -0400
+Message-ID: <CADnq5_NyEfJspT=A3rRWh5+CH=9jPZFiDoTrXDa9gu+5fuR=Ng@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: workaround for TLB seq race
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,59 +66,65 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Alan Liu <HaoPing.Liu@amd.com>,
- Aric Cyr <Aric.Cyr@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
- Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <Aric.Cyr@amd.com>
+On Wed, Nov 2, 2022 at 10:58 AM Christian K=C3=B6nig
+<ckoenig.leichtzumerken@gmail.com> wrote:
+>
+> It can happen that we query the sequence value before the callback
+> had a chance to run.
+>
+> Work around that by grabbing the fence lock and releasing it again.
 
-DC version 3.2.211 brings along the following fixes:
+workaround
 
-- Wait for VBLANK during pipe programming
-- Adding HDMI SCDC DEVICE_ID define
-- Cursor update refactor: PSR-SU support condition
-- Update 709 gamma to 2.222 as stated in the standerd
-- Consider dp cable id only when data is non zero
-- Waiting for 1 frame to fix the flash issue on PSR1
-- Update SR watermarks for DCN314
-- Allow tuning DCN314 bounding box
-- Zeromem mypipe heap struct before using it
-- Use min transition for SubVP into MPO
-- Disable phantom OTG after enable for plane disable
-- Disable DRR actions during state commit
-- Fix fallback issues for DP LL 1.4a tests
-- Fix FCLK deviation and tool compile issues
-- Fix reg timeout in enc314_enable_fifo
-- Fix gpio port mapping issue
-- Only update link settings after successful MST link train
-- Enforce minimum prefetch time for low memclk on DCN32
-- Set correct EOTF and Gamut flag in VRR info
-- Add margin for max vblank time for SubVP + DRR
-- Populate DP2.0 output type for DML pipe
+> Should be replaced by hw handling soon.
+>
+> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd=
+/amdgpu/amdgpu_vm.h
+> index 9ecb7f663e19..e51a46c9582b 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+> @@ -485,6 +485,21 @@ void amdgpu_debugfs_vm_bo_info(struct amdgpu_vm *vm,=
+ struct seq_file *m);
+>   */
+>  static inline uint64_t amdgpu_vm_tlb_seq(struct amdgpu_vm *vm)
+>  {
+> +       unsigned long flags;
+> +       spinlock_t *lock;
+> +
+> +       /*
+> +        * Work around to stop racing between the fence signaling and han=
+dling
 
-Acked-by: Alan Liu <HaoPing.Liu@amd.com>
-Signed-off-by: Aric Cyr <Aric.Cyr@amd.com>
----
- drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Workaround
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 1ec1b441d5cb..caed5597d1dc 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -47,7 +47,7 @@ struct aux_payload;
- struct set_config_cmd_payload;
- struct dmub_notification;
- 
--#define DC_VER "3.2.210"
-+#define DC_VER "3.2.211"
- 
- #define MAX_SURFACES 3
- #define MAX_PLANES 6
--- 
-2.25.1
+WIth that fixed up, the patch is:
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
+
+> +        * the cb. The lock is static after initially setting it up, just=
+ make
+> +        * sure that the dma_fence structure isn't freed up.
+> +        */
+> +       rcu_read_lock();
+> +       lock =3D vm->last_tlb_flush->lock;
+> +       rcu_read_unlock();
+> +
+> +       spin_lock_irqsave(lock, flags);
+> +       spin_unlock_irqrestore(lock, flags);
+> +
+>         return atomic64_read(&vm->tlb_seq);
+>  }
+>
+> --
+> 2.34.1
+>
