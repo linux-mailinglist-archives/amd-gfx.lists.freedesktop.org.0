@@ -2,46 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 373F061660A
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Nov 2022 16:26:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C95361661F
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Nov 2022 16:28:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EFDB10E4BF;
-	Wed,  2 Nov 2022 15:26:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3950710E4AE;
+	Wed,  2 Nov 2022 15:28:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0C5710E4B2;
- Wed,  2 Nov 2022 15:25:58 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 2150F61920;
- Wed,  2 Nov 2022 15:25:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD4FAC433B5;
- Wed,  2 Nov 2022 15:25:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1667402757;
- bh=hGx+6YDUsiGnguDXLfFqKT39GRFMP/Uu3APqDdfj8VI=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=lZqy94Pqj8EW3jOLG3l7Bn5qWcflGeeQrQ2aXEPTTLim/2BOfS84/XDX9hZ1CA5MF
- 07J5fQoAf+GOtybBC0b7RRqNwEGASwUUsX9zN89OaS3S8Mq/QHVCAhVcyxoeNL+jV8
- ZXhn+p49r1Sp/gTlBogoGPdabtwT+XPsZdevJsh1QbiGgQSXRQQr0lPu8IA1sijYlm
- 4UAXUZlyNRyvgBxm+xrASJGTAvejkT9j4qn9ujsoVP/Z8nPSqG+R7aYQhDKbHJuWlU
- h3NOW80DaL+c/FOS47MxZJ+YOAJdo6Xnerom5o85kIdyH0JsaWVMGg211ndQfpn+DN
- 4Ul89CjYwfcnw==
-From: Nathan Chancellor <nathan@kernel.org>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>
-Subject: [PATCH 2/2] drm/amdgpu: Fix type of second parameter in
- odn_edit_dpm_table() callback
-Date: Wed,  2 Nov 2022 08:25:40 -0700
-Message-Id: <20221102152540.2389891-2-nathan@kernel.org>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221102152540.2389891-1-nathan@kernel.org>
-References: <20221102152540.2389891-1-nathan@kernel.org>
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com
+ [IPv6:2a00:1450:4864:20::332])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CE8010E4C9
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 15:28:38 +0000 (UTC)
+Received: by mail-wm1-x332.google.com with SMTP id
+ ja4-20020a05600c556400b003cf6e77f89cso2540270wmb.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 02 Nov 2022 08:28:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:to:subject:user-agent:mime-version:date:message-id:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=I0gUGsitZ6DPztdnuk5Kl8EruKu0dxceUwd7N7BmKHk=;
+ b=UmIAC8wEJkm8wdbgfjf1BJnZXrYWJgOVXnWgVC7GfwiH7JiW/jWPJJgiEKBsIFtVyL
+ f/7mnryhcfclJSCak4UvqCWY8u1A8onP8qo3jcDIZfjAIOO3qxQP9+t/ECmy/SLSawMB
+ HMwV8bsVqa1pHYO+mawG+A8DQ0XAwznfh8RAC9rd9herJT9lo3sXQMBXFBt9K8Cj2oWV
+ vsgkhIcQwUxWw0TTzSU30jhjyVZ9JKMpap7wI6bPAf9QKDtsGEPAzEt2fxQYBqcF/U7E
+ cKNTzWn7uBMBra9CPQk5EyjyY6Nh37QJRlrXRBhg79jiUCt8tbT8GBYRXO+tMS62t8Jv
+ Tm8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=I0gUGsitZ6DPztdnuk5Kl8EruKu0dxceUwd7N7BmKHk=;
+ b=iZ1CvKzsGPOZFD6X9qUfix8suKGUn0VSj9isIOnFOsSziReo0NU1ZRzz0DiK5DiPA5
+ e8bqNVQZrVJgob8n59k7k+3vwsXXHzRI2c4fysHbaKi/jOpXduRc0hh5HeMdDbQlOVhz
+ Cykyync4nG9hgHHgxQlGilvAqN9QX8lzPJdkYeeLHe2Dyeyg3CrHbTgy7ikLwIlo/mfs
+ yOUxpiQ0gdjO3WQWRIsaugZPHInzNWCkcg/YJu6UmD08MFuMuuguhlCaYQXnabDWohSi
+ uWsUoWJ1KtBjL2133IVyLoy5Hcu54SzOjpkEMnQF21O/cMqaOM9ALp/hJ4cLUNrcyl7t
+ TRFA==
+X-Gm-Message-State: ACrzQf2aze64zDEhorYfVYJtKwowukEYUkNRbplPPhWrseF0WcRg8BOr
+ P3QeJ4GoDYRk/2755ijUFXsSV+Y/jIo=
+X-Google-Smtp-Source: AMsMyM5aymmEfb8xyMBNDIdF6iNcVC6sF5B+6VHK5TEtJYNdT/2OyYIV7/bmshdsXv7jziv2ud9DMw==
+X-Received: by 2002:a05:600c:3547:b0:3cf:7a9f:d6cd with SMTP id
+ i7-20020a05600c354700b003cf7a9fd6cdmr8297998wmq.30.1667402917145; 
+ Wed, 02 Nov 2022 08:28:37 -0700 (PDT)
+Received: from ?IPV6:2a02:908:1256:79a0:7c81:2208:32f3:412e?
+ ([2a02:908:1256:79a0:7c81:2208:32f3:412e])
+ by smtp.gmail.com with ESMTPSA id
+ dn12-20020a05600c654c00b003cf537ec2efsm2745357wmb.36.2022.11.02.08.28.36
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 02 Nov 2022 08:28:36 -0700 (PDT)
+Message-ID: <97315c55-499e-f0ee-4729-c054cc84543d@gmail.com>
+Date: Wed, 2 Nov 2022 16:28:35 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 1/3] drm/amdgpu/gfx9: set gfx.funcs in early init
+To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20221102152333.553521-1-alexander.deucher@amd.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20221102152333.553521-1-alexander.deucher@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -54,76 +75,41 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kees Cook <keescook@chromium.org>, Tom Rix <trix@redhat.com>,
- llvm@lists.linux.dev, Nick Desaulniers <ndesaulniers@google.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- patches@lists.linux.dev, Nathan Chancellor <nathan@kernel.org>,
- amd-gfx@lists.freedesktop.org, Sami Tolvanen <samitolvanen@google.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-With clang's kernel control flow integrity (kCFI, CONFIG_CFI_CLANG),
-indirect call targets are validated against the expected function
-pointer prototype to make sure the call target is valid to help mitigate
-ROP attacks. If they are not identical, there is a failure at run time,
-which manifests as either a kernel panic or thread getting killed. A
-proposed warning in clang aims to catch these at compile time, which
-reveals:
+Am 02.11.22 um 16:23 schrieb Alex Deucher:
+> So the callbacks are set before we use them.
+>
+> Fixes: 0c9646e1a043 ("drm/amdgpu: switch to select_se_sh wrapper for gfx v9_0")
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 
-  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/amdgpu_smu.c:3008:29: error: incompatible function pointer types initializing 'int (*)(void *, uint32_t, long *, uint32_t)' (aka 'int (*)(void *, unsigned int, long *, unsigned int)') with an expression of type 'int (void *, enum PP_OD_DPM_TABLE_COMMAND, long *, uint32_t)' (aka 'int (void *, enum PP_OD_DPM_TABLE_COMMAND, long *, unsigned int)') [-Werror,-Wincompatible-function-pointer-types-strict]
-          .odn_edit_dpm_table      = smu_od_edit_dpm_table,
-                                     ^~~~~~~~~~~~~~~~~~~~~
-  1 error generated.
+Reviewed-by: Christian König <christian.koenig@amd.com> for the series.
 
-There are only two implementations of ->odn_edit_dpm_table() in 'struct
-amd_pm_funcs': smu_od_edit_dpm_table() and pp_odn_edit_dpm_table(). One
-has a second parameter type of 'enum PP_OD_DPM_TABLE_COMMAND' and the
-other uses 'u32'. Ultimately, smu_od_edit_dpm_table() calls
-->od_edit_dpm_table() from 'struct pptable_funcs' and
-pp_odn_edit_dpm_table() calls ->odn_edit_dpm_table() from 'struct
-pp_hwmgr_func', which both have a second parameter type of 'enum
-PP_OD_DPM_TABLE_COMMAND'.
-
-Update the type parameter in both the prototype in 'struct amd_pm_funcs'
-and pp_odn_edit_dpm_table() to 'enum PP_OD_DPM_TABLE_COMMAND', which
-cleans up the warning.
-
-Link: https://github.com/ClangBuiltLinux/linux/issues/1750
-Reported-by: Sami Tolvanen <samitolvanen@google.com>
-Signed-off-by: Nathan Chancellor <nathan@kernel.org>
----
- drivers/gpu/drm/amd/include/kgd_pp_interface.h   | 3 ++-
- drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c | 3 ++-
- 2 files changed, 4 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/include/kgd_pp_interface.h b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
-index a40ead44778a..d18162e9ed1d 100644
---- a/drivers/gpu/drm/amd/include/kgd_pp_interface.h
-+++ b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
-@@ -354,7 +354,8 @@ struct amd_pm_funcs {
- 	int (*get_power_profile_mode)(void *handle, char *buf);
- 	int (*set_power_profile_mode)(void *handle, long *input, uint32_t size);
- 	int (*set_fine_grain_clk_vol)(void *handle, uint32_t type, long *input, uint32_t size);
--	int (*odn_edit_dpm_table)(void *handle, uint32_t type, long *input, uint32_t size);
-+	int (*odn_edit_dpm_table)(void *handle, enum PP_OD_DPM_TABLE_COMMAND type,
-+				  long *input, uint32_t size);
- 	int (*set_mp1_state)(void *handle, enum pp_mp1_state mp1_state);
- 	int (*smu_i2c_bus_access)(void *handle, bool acquire);
- 	int (*gfx_state_change_set)(void *handle, uint32_t state);
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
-index ec055858eb95..1159ae114dd0 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
-@@ -838,7 +838,8 @@ static int pp_set_fine_grain_clk_vol(void *handle, uint32_t type, long *input, u
- 	return hwmgr->hwmgr_func->set_fine_grain_clk_vol(hwmgr, type, input, size);
- }
- 
--static int pp_odn_edit_dpm_table(void *handle, uint32_t type, long *input, uint32_t size)
-+static int pp_odn_edit_dpm_table(void *handle, enum PP_OD_DPM_TABLE_COMMAND type,
-+				 long *input, uint32_t size)
- {
- 	struct pp_hwmgr *hwmgr = handle;
- 
--- 
-2.38.1
+> ---
+>   drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> index 877521230529..5d23a0f03615 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> @@ -1921,8 +1921,6 @@ static int gfx_v9_0_gpu_early_init(struct amdgpu_device *adev)
+>   	u32 gb_addr_config;
+>   	int err;
+>   
+> -	adev->gfx.funcs = &gfx_v9_0_gfx_funcs;
+> -
+>   	switch (adev->ip_versions[GC_HWIP][0]) {
+>   	case IP_VERSION(9, 0, 1):
+>   		adev->gfx.config.max_hw_contexts = 8;
+> @@ -4541,6 +4539,8 @@ static int gfx_v9_0_early_init(void *handle)
+>   {
+>   	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+>   
+> +	adev->gfx.funcs = &gfx_v9_0_gfx_funcs;
+> +
+>   	if (adev->ip_versions[GC_HWIP][0] == IP_VERSION(9, 4, 1) ||
+>   	    adev->ip_versions[GC_HWIP][0] == IP_VERSION(9, 4, 2))
+>   		adev->gfx.num_gfx_rings = 0;
 
