@@ -2,68 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C95361661F
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Nov 2022 16:28:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CCE961670A
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Nov 2022 17:05:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3950710E4AE;
-	Wed,  2 Nov 2022 15:28:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B5CC10E4F0;
+	Wed,  2 Nov 2022 16:05:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com
- [IPv6:2a00:1450:4864:20::332])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CE8010E4C9
- for <amd-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 15:28:38 +0000 (UTC)
-Received: by mail-wm1-x332.google.com with SMTP id
- ja4-20020a05600c556400b003cf6e77f89cso2540270wmb.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 02 Nov 2022 08:28:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:to:subject:user-agent:mime-version:date:message-id:from
- :to:cc:subject:date:message-id:reply-to;
- bh=I0gUGsitZ6DPztdnuk5Kl8EruKu0dxceUwd7N7BmKHk=;
- b=UmIAC8wEJkm8wdbgfjf1BJnZXrYWJgOVXnWgVC7GfwiH7JiW/jWPJJgiEKBsIFtVyL
- f/7mnryhcfclJSCak4UvqCWY8u1A8onP8qo3jcDIZfjAIOO3qxQP9+t/ECmy/SLSawMB
- HMwV8bsVqa1pHYO+mawG+A8DQ0XAwznfh8RAC9rd9herJT9lo3sXQMBXFBt9K8Cj2oWV
- vsgkhIcQwUxWw0TTzSU30jhjyVZ9JKMpap7wI6bPAf9QKDtsGEPAzEt2fxQYBqcF/U7E
- cKNTzWn7uBMBra9CPQk5EyjyY6Nh37QJRlrXRBhg79jiUCt8tbT8GBYRXO+tMS62t8Jv
- Tm8Q==
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com
+ [IPv6:2607:f8b0:4864:20::636])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AF9210E4D0
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Nov 2022 15:42:55 +0000 (UTC)
+Received: by mail-pl1-x636.google.com with SMTP id k7so7227452pll.6
+ for <amd-gfx@lists.freedesktop.org>; Wed, 02 Nov 2022 08:42:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=gbHhHvdRSfNW3M6lKiiBiHsy/aZHIegD8in6WLhhzSY=;
+ b=grx0sX1vyt4doXabEeN05DzVGZaktvYdcCfg6WGKYn2Um48Zgp2UMnzv9yxRjGlvDs
+ s02OzcMqRXmY81P844mFxCquKl032+JyuX8aVk9fGB0kVUT/d3ioGHRtH7AHRaujNbdw
+ 65vnLvXCz2xWmb3ZUvb4RYrBdcrT6g2PSeo3Y=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=I0gUGsitZ6DPztdnuk5Kl8EruKu0dxceUwd7N7BmKHk=;
- b=iZ1CvKzsGPOZFD6X9qUfix8suKGUn0VSj9isIOnFOsSziReo0NU1ZRzz0DiK5DiPA5
- e8bqNVQZrVJgob8n59k7k+3vwsXXHzRI2c4fysHbaKi/jOpXduRc0hh5HeMdDbQlOVhz
- Cykyync4nG9hgHHgxQlGilvAqN9QX8lzPJdkYeeLHe2Dyeyg3CrHbTgy7ikLwIlo/mfs
- yOUxpiQ0gdjO3WQWRIsaugZPHInzNWCkcg/YJu6UmD08MFuMuuguhlCaYQXnabDWohSi
- uWsUoWJ1KtBjL2133IVyLoy5Hcu54SzOjpkEMnQF21O/cMqaOM9ALp/hJ4cLUNrcyl7t
- TRFA==
-X-Gm-Message-State: ACrzQf2aze64zDEhorYfVYJtKwowukEYUkNRbplPPhWrseF0WcRg8BOr
- P3QeJ4GoDYRk/2755ijUFXsSV+Y/jIo=
-X-Google-Smtp-Source: AMsMyM5aymmEfb8xyMBNDIdF6iNcVC6sF5B+6VHK5TEtJYNdT/2OyYIV7/bmshdsXv7jziv2ud9DMw==
-X-Received: by 2002:a05:600c:3547:b0:3cf:7a9f:d6cd with SMTP id
- i7-20020a05600c354700b003cf7a9fd6cdmr8297998wmq.30.1667402917145; 
- Wed, 02 Nov 2022 08:28:37 -0700 (PDT)
-Received: from ?IPV6:2a02:908:1256:79a0:7c81:2208:32f3:412e?
- ([2a02:908:1256:79a0:7c81:2208:32f3:412e])
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=gbHhHvdRSfNW3M6lKiiBiHsy/aZHIegD8in6WLhhzSY=;
+ b=h8a8GE17Wqo0po9t34Z5FDWN4uL7yXXnTOFS+X3QgIxqSI+FM5OTjy4LpGUpXyjKlV
+ GwevnXwH85l7kxPg5H8z8kjuloGXVFPwRqQ6XC/Tsii9l7NwwbDfIgulM0YdVlT8MSLr
+ vXRYV+aWFLQ1Jingv14CNZ59p76GyAe5ibN/px4UaWbWLz+Rw9Txk2UCKKqndoH8UQvs
+ DMXN72y2T2B5Bz8vuraY4xns2vZve8idlp1/KTgmH2aSdbyS2vKeBrHWRMWWBgktE2gI
+ UcjrCS2XvtXQ1kjeskbeMygVPtkt0bi8TtH4wSsOl2W+Q5dDjl0tKGITUEswpjVn3To3
+ nJsA==
+X-Gm-Message-State: ACrzQf0z2N2xvSdZ3yF+DcM+vJJvS6LgUCcrFGJWgmOoQIzzN4sz0sjt
+ 91KbXjl9Kk5H98uwo+1V4URDKQ==
+X-Google-Smtp-Source: AMsMyM5riCGdRLVGt8cheeiKjHf8n8+rR3sMc60dvYFpdMSefduVp5ovnjO/E9dJecAFytPwR3myDw==
+X-Received: by 2002:a17:902:720c:b0:186:fb90:573e with SMTP id
+ ba12-20020a170902720c00b00186fb90573emr25604727plb.160.1667403775155; 
+ Wed, 02 Nov 2022 08:42:55 -0700 (PDT)
+Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
  by smtp.gmail.com with ESMTPSA id
- dn12-20020a05600c654c00b003cf537ec2efsm2745357wmb.36.2022.11.02.08.28.36
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 02 Nov 2022 08:28:36 -0700 (PDT)
-Message-ID: <97315c55-499e-f0ee-4729-c054cc84543d@gmail.com>
-Date: Wed, 2 Nov 2022 16:28:35 +0100
+ a15-20020a170902710f00b001885041d7b8sm47015pll.293.2022.11.02.08.42.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 02 Nov 2022 08:42:54 -0700 (PDT)
+Date: Wed, 2 Nov 2022 08:42:54 -0700
+From: Kees Cook <keescook@chromium.org>
+To: Nathan Chancellor <nathan@kernel.org>
+Subject: Re: [PATCH 1/2] drm/amdgpu: Fix type of second parameter in
+ trans_msg() callback
+Message-ID: <202211020842.8F3ECD397@keescook>
+References: <20221102152540.2389891-1-nathan@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 1/3] drm/amdgpu/gfx9: set gfx.funcs in early init
-To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20221102152333.553521-1-alexander.deucher@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20221102152333.553521-1-alexander.deucher@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221102152540.2389891-1-nathan@kernel.org>
+X-Mailman-Approved-At: Wed, 02 Nov 2022 16:05:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,41 +68,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: llvm@lists.linux.dev, Tom Rix <trix@redhat.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, Nick Desaulniers <ndesaulniers@google.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ patches@lists.linux.dev, amd-gfx@lists.freedesktop.org,
+ Sami Tolvanen <samitolvanen@google.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 02.11.22 um 16:23 schrieb Alex Deucher:
-> So the callbacks are set before we use them.
->
-> Fixes: 0c9646e1a043 ("drm/amdgpu: switch to select_se_sh wrapper for gfx v9_0")
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+On Wed, Nov 02, 2022 at 08:25:39AM -0700, Nathan Chancellor wrote:
+> With clang's kernel control flow integrity (kCFI, CONFIG_CFI_CLANG),
+> indirect call targets are validated against the expected function
+> pointer prototype to make sure the call target is valid to help mitigate
+> ROP attacks. If they are not identical, there is a failure at run time,
+> which manifests as either a kernel panic or thread getting killed. A
+> proposed warning in clang aims to catch these at compile time, which
+> reveals:
+> 
+>   drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c:412:15: error: incompatible function pointer types initializing 'void (*)(struct amdgpu_device *, u32, u32, u32, u32)' (aka 'void (*)(struct amdgpu_device *, unsigned int, unsigned int, unsigned int, unsigned int)') with an expression of type 'void (struct amdgpu_device *, enum idh_request, u32, u32, u32)' (aka 'void (struct amdgpu_device *, enum idh_request, unsigned int, unsigned int, unsigned int)') [-Werror,-Wincompatible-function-pointer-types-strict]
+>           .trans_msg = xgpu_ai_mailbox_trans_msg,
+>                       ^~~~~~~~~~~~~~~~~~~~~~~~~
+>   1 error generated.
+> 
+>   drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c:435:15: error: incompatible function pointer types initializing 'void (*)(struct amdgpu_device *, u32, u32, u32, u32)' (aka 'void (*)(struct amdgpu_device *, unsigned int, unsigned int, unsigned int, unsigned int)') with an expression of type 'void (struct amdgpu_device *, enum idh_request, u32, u32, u32)' (aka 'void (struct amdgpu_device *, enum idh_request, unsigned int, unsigned int, unsigned int)') [-Werror,-Wincompatible-function-pointer-types-strict]
+>           .trans_msg = xgpu_nv_mailbox_trans_msg,
+>                       ^~~~~~~~~~~~~~~~~~~~~~~~~
+>   1 error generated.
+> 
+> The type of the second parameter in the prototype should be 'enum
+> idh_request' instead of 'u32'. Update it to clear up the warnings.
+> 
+> Link: https://github.com/ClangBuiltLinux/linux/issues/1750
+> Reported-by: Sami Tolvanen <samitolvanen@google.com>
+> Signed-off-by: Nathan Chancellor <nathan@kernel.org>
 
-Reviewed-by: Christian König <christian.koenig@amd.com> for the series.
+Reviewed-by: Kees Cook <keescook@chromium.org>
 
-> ---
->   drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> index 877521230529..5d23a0f03615 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> @@ -1921,8 +1921,6 @@ static int gfx_v9_0_gpu_early_init(struct amdgpu_device *adev)
->   	u32 gb_addr_config;
->   	int err;
->   
-> -	adev->gfx.funcs = &gfx_v9_0_gfx_funcs;
-> -
->   	switch (adev->ip_versions[GC_HWIP][0]) {
->   	case IP_VERSION(9, 0, 1):
->   		adev->gfx.config.max_hw_contexts = 8;
-> @@ -4541,6 +4539,8 @@ static int gfx_v9_0_early_init(void *handle)
->   {
->   	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
->   
-> +	adev->gfx.funcs = &gfx_v9_0_gfx_funcs;
-> +
->   	if (adev->ip_versions[GC_HWIP][0] == IP_VERSION(9, 4, 1) ||
->   	    adev->ip_versions[GC_HWIP][0] == IP_VERSION(9, 4, 2))
->   		adev->gfx.num_gfx_rings = 0;
-
+-- 
+Kees Cook
