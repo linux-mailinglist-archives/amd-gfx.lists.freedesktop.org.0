@@ -1,55 +1,69 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A0216192DC
-	for <lists+amd-gfx@lfdr.de>; Fri,  4 Nov 2022 09:37:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78FC0619198
+	for <lists+amd-gfx@lfdr.de>; Fri,  4 Nov 2022 08:10:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE73310E701;
-	Fri,  4 Nov 2022 08:36:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2143E10E6E9;
+	Fri,  4 Nov 2022 07:10:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com
- [IPv6:2a00:1450:4864:20::12f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6E1210E78B
- for <amd-gfx@lists.freedesktop.org>; Thu,  3 Nov 2022 18:19:46 +0000 (UTC)
-Received: by mail-lf1-x12f.google.com with SMTP id f37so4212689lfv.8
- for <amd-gfx@lists.freedesktop.org>; Thu, 03 Nov 2022 11:19:46 -0700 (PDT)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com
+ [IPv6:2a00:1450:4864:20::62b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E72710E6EA
+ for <amd-gfx@lists.freedesktop.org>; Fri,  4 Nov 2022 07:10:14 +0000 (UTC)
+Received: by mail-ej1-x62b.google.com with SMTP id bj12so10903994ejb.13
+ for <amd-gfx@lists.freedesktop.org>; Fri, 04 Nov 2022 00:10:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=mBMwfHbD/obIGpPs9j+V0BXFmqdzMaCJLWzQ7EenF+0=;
- b=X2xULSmcdAu9gJij6k3LSg8njde8A4drH/VRx6Q7eyWoopc2IX1dFT0XdX9xh/Qlqk
- whUsadfEKmNi2mCZXtZAJhmDOOw/wynQJuhOUoRbbVfgB3hLwH3D+u6gEdmt+t4MtgHx
- hf/KUVYySudOJ6aw9TWiqP/bMqNVd7LJZ1LcIUP9YxIo/AnM3akljKVpW7tA2YYPfs5E
- cxMSpDidK4HeIuudiq84FWiMrNupce5W6pukJ/EZP0cGlT6PxvL4qo7caN3yrJxe8HVS
- sTx5bkQOQCZJNM9ye9t0pFMwH+bqLgX75IKyQ+wfwN+RpbXylX6jgyVJ/lqvjNGOru70
- p50w==
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=ei6lh/GN2XQS6Vw7tlxjQlRnpFmDv7VT5d5Td/Gc6/s=;
+ b=NDs2/NMWqcFKcoki4eXHbOfO6GKmUjQmdAB+pBJf1gVGfFTx6+CeMMtWSgCnnpFpCE
+ pZXzerPOWMxrlUMdmUVjpG63GnMsW7s+yXpR8kSSbfRtHo1YEOmh9iZebZcPyjBGg/pT
+ lB6D7mJwDXN6KXmlLxkW2tCb9BejWfqQA4gzIgFZgA31RVfORmmWOLRWzVeJ46TeFUYd
+ 7YrKhzl6L7Y99X/i+8x6rK0x0gB0SNSLmpn772gyVwREYHKae/dgpf5d0wT5HcArHriP
+ QCHYrZ6ldNP6f8zzH5WJqzUIvazhEwTWXpyVJiw8Kn92ux93N7GnRxpknkeeUgKuMB7W
+ IX0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=mBMwfHbD/obIGpPs9j+V0BXFmqdzMaCJLWzQ7EenF+0=;
- b=6zT1ggT33lBdQK8dAcI/54Y/6in70xR9Y7mZYQi6kucNdfQAcRJ9snND0yppzscQO/
- aBPsCrBYSWLbSYWuPU2sBRFW0O+IwhJk+RRIUgSRd7rwq14TA1CznC5irQjvOXUNScLb
- t+vYYPtkz+vi8Y3RRvD/Ouz4SmfkKvDtxq72txJnRQUC2v3ydZpY/2V02A1b8BRj13cz
- TTRjvwBD+optSnKsViLpY3mHGPHIhzYhcpA8XXrLWPFtAteCGAaQN4PDeIBVzqXcVUPH
- e3Gd7AApvqqOKaYPtWk6qmhEQk1jZMuJk4xSROXfBWmu+CS0UIk5R6X2OUDB9SO7FUwI
- Q/Jg==
-X-Gm-Message-State: ACrzQf3i0lakNCszsOv0RAgf3/pQTBZiiBusWEh8gHYXxzuIlagmKM54
- ZFXPE/KSGWOyykGhmTiBeAFPWIuhW6mXvrcdcxuM6m3oTBc=
-X-Google-Smtp-Source: AMsMyM5m6X97qt7HCTWrHMkYajgU8PaWFZ/2b7PUP6VN/wkFMB7hbi7xEPcn3x4Ze1o/iH/I1eq6bNM5ghqrJjpukCM=
-X-Received: by 2002:a19:505d:0:b0:4ac:a13f:9bb7 with SMTP id
- z29-20020a19505d000000b004aca13f9bb7mr13233775lfj.78.1667499584600; Thu, 03
- Nov 2022 11:19:44 -0700 (PDT)
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=ei6lh/GN2XQS6Vw7tlxjQlRnpFmDv7VT5d5Td/Gc6/s=;
+ b=uBUDLz/ovP2AVnI7suP57cCpK5ePpGEcvlkJzE5BhRhAkVZVvYDI8RwpddZ82taSyH
+ BvQJ2B1FsclO5AKrf49t+R8QzZCczy8S7adTcBlZP4Ektb6BICoq2UIbeVZkPFFauO5X
+ n2CUn9jCjBtN+lyqYHkY8RWbL79L2b3oPaCz5bMvmavxESa+vOxBpIbdjkWPZQuIELd1
+ +cotk7vY4+XMXbhj5ZOv+6ll9xCjE1Sy/qJWOTut05X2z3aXjdVUuppWEestkk/T0xKu
+ cblqnwlRRr91DFzpMoG+iJ5NsrKcJUjuEgAxl2ZMw5SXitCzBhF31vCx7Bt19bteSM4a
+ sg4A==
+X-Gm-Message-State: ACrzQf3TrlOARhxBpHozbxDBXiLqTYy9/fG0cT2O5Qf4znKOOZRvJ8r8
+ OsulBwVd8q/zPVhQnLkOhIo=
+X-Google-Smtp-Source: AMsMyM6KZLFtZvN6GJlCav2SQTLLYW8rj8HO8oPMF/m7iH9JdKyTzsHleFXG1K1AT1+Hackn2tlD6A==
+X-Received: by 2002:a17:907:2cea:b0:7a3:4ebe:5eb with SMTP id
+ hz10-20020a1709072cea00b007a34ebe05ebmr32419328ejc.228.1667545812377; 
+ Fri, 04 Nov 2022 00:10:12 -0700 (PDT)
+Received: from ?IPV6:2a02:908:1256:79a0:13f7:f69a:a72b:6707?
+ ([2a02:908:1256:79a0:13f7:f69a:a72b:6707])
+ by smtp.gmail.com with ESMTPSA id
+ gs18-20020a170906f19200b007306a4ecc9dsm1455549ejb.18.2022.11.04.00.10.11
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 04 Nov 2022 00:10:11 -0700 (PDT)
+Message-ID: <4a8e0373-779a-327e-4f98-a7f0a259688f@gmail.com>
+Date: Fri, 4 Nov 2022 08:10:10 +0100
 MIME-Version: 1.0
-From: Stefan Springer <stefanspr94@gmail.com>
-Date: Thu, 3 Nov 2022 19:19:33 +0100
-Message-ID: <CAE4WtP_WeySs-QFueBX0TCN=pMMu+NNMpCikFH7qAKF=7yvdww@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
 Subject: Re: [PATCH] drm/amdgpu: workaround for TLB seq race
-To: amd-gfx@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="000000000000673cf105ec9500c6"
-X-Mailman-Approved-At: Fri, 04 Nov 2022 08:36:50 +0000
+Content-Language: en-US
+To: Philip Yang <yangp@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20221102145811.17968-1-christian.koenig@amd.com>
+ <7028da96-ca19-3ec5-b9a1-b2640157ba19@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <7028da96-ca19-3ec5-b9a1-b2640157ba19@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,29 +75,73 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---000000000000673cf105ec9500c6
-Content-Type: text/plain; charset="UTF-8"
+Am 03.11.22 um 22:18 schrieb Philip Yang:
+>
+> On 2022-11-02 10:58, Christian König wrote:
+>> It can happen that we query the sequence value before the callback
+>> had a chance to run.
+>>
+>> Work around that by grabbing the fence lock and releasing it again.
+>> Should be replaced by hw handling soon.
+>
+> kfd_flush_tlb is always called after waiting for map/unmap to GPU 
+> fence signalled, that means the callback is already executed
 
-Working fine after 26hrs+ of testing, plus another 24hrs of the previous
-version of this patch.
-Sorry if there are multiple replies, I had to figure out how to properly
-reply to a mailing list, such that the reply is picked up by patchwork (1st
-time doing this).
+And exactly that's incorrect.
 
-Tested-by: Stefan Springer <stefanspr94@gmail.com>
+Waiting for the fence to signal means that the callback has started 
+executing, but it doesn't mean that it is finished.
 
---000000000000673cf105ec9500c6
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This can then result in one CPU racing with the callback handler and 
+because of this you see the wrong TLB seq.
 
-<div dir=3D"ltr"><div>Working fine after 26hrs+ of testing, plus another 24=
-hrs of the previous version of this patch.</div><div>Sorry if there are mul=
-tiple replies, I had to figure out how to properly reply to a mailing list,=
- such that the reply is picked up by patchwork (1st time doing this).</div>=
-<div><br></div>Tested-by: Stefan Springer &lt;<a href=3D"mailto:stefanspr94=
-@gmail.com">stefanspr94@gmail.com</a>&gt;</div>
+Regards,
+Christian.
 
---000000000000673cf105ec9500c6--
+> and the sequence is increased if tlb flush is needed, so no such race 
+> from KFD.
+>
+> I am not sure but seems the race does exist for amdgpu to grab vm and 
+> schedule job.
+>
+> Acked-by: Philip Yang <Philip.Yang@amd.com>
+>
+>> Signed-off-by: Christian König <christian.koenig@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h | 15 +++++++++++++++
+>>   1 file changed, 15 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+>> index 9ecb7f663e19..e51a46c9582b 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+>> @@ -485,6 +485,21 @@ void amdgpu_debugfs_vm_bo_info(struct amdgpu_vm 
+>> *vm, struct seq_file *m);
+>>    */
+>>   static inline uint64_t amdgpu_vm_tlb_seq(struct amdgpu_vm *vm)
+>>   {
+>> +    unsigned long flags;
+>> +    spinlock_t *lock;
+>> +
+>> +    /*
+>> +     * Work around to stop racing between the fence signaling and 
+>> handling
+>> +     * the cb. The lock is static after initially setting it up, 
+>> just make
+>> +     * sure that the dma_fence structure isn't freed up.
+>> +     */
+>> +    rcu_read_lock();
+>> +    lock = vm->last_tlb_flush->lock;
+>> +    rcu_read_unlock();
+>> +
+>> +    spin_lock_irqsave(lock, flags);
+>> +    spin_unlock_irqrestore(lock, flags);
+>> +
+>>       return atomic64_read(&vm->tlb_seq);
+>>   }
+
