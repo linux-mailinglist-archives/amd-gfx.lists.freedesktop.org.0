@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2BFB627431
-	for <lists+amd-gfx@lfdr.de>; Mon, 14 Nov 2022 02:43:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71225627451
+	for <lists+amd-gfx@lfdr.de>; Mon, 14 Nov 2022 02:52:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FDDA10E25A;
-	Mon, 14 Nov 2022 01:42:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48AA110E25C;
+	Mon, 14 Nov 2022 01:52:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2062.outbound.protection.outlook.com [40.107.244.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4564E10E258
- for <amd-gfx@lists.freedesktop.org>; Mon, 14 Nov 2022 01:42:52 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4504B10E25C
+ for <amd-gfx@lists.freedesktop.org>; Mon, 14 Nov 2022 01:52:26 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NIWo+Ow7untOGimnXpkNvALOQD4y8oc44zEz3SVlO4TiPf2GeARfqTrzyHgzUfA4orE60+mB4OaM1pYelPGmqup8P00aFWV4sOeex3h7VSmib4QFHJok6K/rU1qZCR01eYEP5RnSFPyQN00Y17Wa4KEPk6FHp36MuwrEnBryzKokmY0c7z5N4KoXD7sqKbvbocZ2BkBjwJuV4Y7/a2pNrzDdv82z+ZS7wEMxrnammNhFCkHBLDh3ckT6ngyQXIQCowtCVph0mHPG6jDS4ilrFSsRIeKDqbrc1v/9StPo7eQLryDbbIDJ/E7XxNlJyy5fNCYhdRHyD5+hT0soL+M/Ug==
+ b=LiAEYvFPPyA2HSj//jx1Qu77nnw6iEKPewSLn+dA0vXDSBwatNKlkJHNGotxjoe9VQXald3sVkmltX1zI/iOALkVoijYqczzpA6MB0HdFLdyR1jtz5nz2sYo7WGDWcml794ROgidclK2tDT54Z52N43n/eXAe+955MgD8W+pFUpQmtscsBxlsYzPeFoKJsmFlkpAo5c+FnQnfSTR0c0Cp9iL7G2VKFMbGfJG6dsqc3J6jtgLz5hkUs3v7qJZSdpwjix9C+OYeGItTFY+KFPgKOQdbfKrvk6eJTcbpWLwU2kL+qY7MZUpIgQ1zAEzdpW27JQQXX0i1p0Vayw/l6tFkg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fvRfSG7tqzbDSGAVuBRUQiOgjuSEnORLkvW9eivXtzI=;
- b=YR/PmqKsCfznZkA9S8o8TfHdU7aVvoSIh4bhlfDBGpwFG3BAJtQHMOH3vveCsEBw4JDpqfCqKYNIoPbEMurxzmDvinhVufMo+121NyM/rSv+ma0xYbK90zvUyU1Q/wlzWwf8XYU4QIouFE99XaBKTz4AzGp5GANhhfZKdpb6Xs6eJFMQHE228pbf1d7t17NyqCpYxURhzuMY/u1GTs7NWvwyQ5UWhTjL3IQmHvjf/gkNmoz1khEzzX5RkmnVA6KGrEEvF5HfFTo+TU/1sg0K7x1qN+EytX7G3n/RDXy3dV31yIRydQXv9C7RQbMeriNNvVFBA+lAm2ZyYpB/rWi84Q==
+ bh=y0Q7SN/k1/bvHdh0p5DPkSPTgcEVkr6FnJYCv3PPS24=;
+ b=DGSjK1P5TuEpw0mEZVP8ddiU9NisdFCyCmJGmdTlnXoaALSZk36YWrDGQPZyXg10lJyPlNb0zddsS9i5sZb6vlii2UAVa/0Ejw3QVddFnGOi0sFauxiVUkuDpHHC365hJyE5Momfgz363j6kmg9qqopr7NMItIZ4XU6LA/fc1Oa+xGNMAYrluGwF0l9+/M6bnwxeCA2/mBcJek+jyPsLF9h3RypgtzZQ5DP4ZTY0qNR1/PuqiMN5bc14QhXf6LNyEyV9EUtzfXV4N/4phgXJuZWNhbHPB5NIU3kGQl5ltQPTtxxbdWP4fVKqcZY7G+fnnc5jIc4W6WamH069F0PQSw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fvRfSG7tqzbDSGAVuBRUQiOgjuSEnORLkvW9eivXtzI=;
- b=hpU2rMEXVFP3KuUqPny5Jsyp2AwhbSsb50tauopJayGVp5Z2QkSMpRuO7k3DZ9aHZnSO0O0/aRqlEmVns4wCqVsygVUL72p4Kuu9dvB5K6Ti0gNsbGOv00RvX5O8QhQE1CAvZGN+8Cxn7VkSyzp5bcwp28v0Q04uPS9wCzs0hzs=
-Received: from DM6PR13CA0059.namprd13.prod.outlook.com (2603:10b6:5:134::36)
- by DS0PR12MB7701.namprd12.prod.outlook.com (2603:10b6:8:130::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.15; Mon, 14 Nov
- 2022 01:42:50 +0000
-Received: from CY4PEPF0000B8E9.namprd05.prod.outlook.com
- (2603:10b6:5:134:cafe::32) by DM6PR13CA0059.outlook.office365.com
- (2603:10b6:5:134::36) with Microsoft SMTP Server (version=TLS1_2,
+ bh=y0Q7SN/k1/bvHdh0p5DPkSPTgcEVkr6FnJYCv3PPS24=;
+ b=Bd/5zTPivy87Oh8nUHQbPle1CjM2gYgLHzDoxGauTZ4C9BkIyiABM9m2l7e9diIQj4wWL1QYRk6nGTV6v3QedknVVB5s5roRxFyNucrMj0RGOpoi5lUQUJiCY81ut+FqBcO74nRhmrMm7we1/m2/ITxdkMTdvqJ6ee7dYlUj6dA=
+Received: from MW4PR03CA0344.namprd03.prod.outlook.com (2603:10b6:303:dc::19)
+ by PH7PR12MB6907.namprd12.prod.outlook.com (2603:10b6:510:1b9::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.17; Mon, 14 Nov
+ 2022 01:52:23 +0000
+Received: from CO1NAM11FT060.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:dc:cafe::d3) by MW4PR03CA0344.outlook.office365.com
+ (2603:10b6:303:dc::19) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.17 via Frontend
- Transport; Mon, 14 Nov 2022 01:42:50 +0000
+ Transport; Mon, 14 Nov 2022 01:52:23 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,22 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000B8E9.mail.protection.outlook.com (10.167.241.5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5813.11 via Frontend Transport; Mon, 14 Nov 2022 01:42:50 +0000
-Received: from equan-buildpc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ CO1NAM11FT060.mail.protection.outlook.com (10.13.175.132) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5813.12 via Frontend Transport; Mon, 14 Nov 2022 01:52:23 +0000
+Received: from thomas-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Sun, 13 Nov
- 2022 19:42:47 -0600
-From: Evan Quan <evan.quan@amd.com>
+ 2022 19:52:15 -0600
+From: YiPeng Chai <YiPeng.Chai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 3/3] drm/amd/pm: fix SMU13 runpm hang due to unintentional
- workaround
-Date: Mon, 14 Nov 2022 09:42:13 +0800
-Message-ID: <20221114014213.1118084-3-evan.quan@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221114014213.1118084-1-evan.quan@amd.com>
-References: <20221114014213.1118084-1-evan.quan@amd.com>
+Subject: [PATCH] drm/amdgpu: Add umc channel index mapping table for umc_v8_10
+Date: Mon, 14 Nov 2022 09:51:34 +0800
+Message-ID: <20221114015134.4079216-1-YiPeng.Chai@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -69,26 +66,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000B8E9:EE_|DS0PR12MB7701:EE_
-X-MS-Office365-Filtering-Correlation-Id: 116e2fd1-87fa-42ea-40ad-08dac5e18a1a
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT060:EE_|PH7PR12MB6907:EE_
+X-MS-Office365-Filtering-Correlation-Id: 46ac0b67-db48-490c-741c-08dac5e2dfa6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xnc/cAJ0mPRdqKyh/BImFTc6CCrJN2J4wuiOC0LsfhrGHUvA6gJty5IrdsInAGRvrNw2enSc5gu68IJMxIYLAYGUnJEOH4lsujDRlBxcJK/DJLW0llsALJ6FYpDHI/Kzv68v495HK237OBTDpD//3jbDI2F2oR8sis7K7GhtbrVZ20v87qKuF86k8kBk7HtfI3Qaaf5Lp1cyf8M5Um7GpBg+iBA3NwQaqxEGrWqV1PtAxKlrXBlhs7Q/yAuV0tpRk6hlWAYmNuWVUp2NNuyOzjJVvhGDXoco0mOy3jFu7Nd2Q4JMzkhvd6XCUK4PeU00zVJGlcrkM8dg5IaGPY1qs+Tm6sle8nVfeKXE9AaZhf9ejbEB/EMgUd4lUlmCziK6LScy9zViW7p5o5you8X+c4HoJBmzzH9r7sjf/v9q3SzS2myDLEV0CDqnrs2g8aXBTYYYm4yH0zWI5xhlUMlSyitxKfMqy/QvDzWOiMUP0IPmGygKAkkpVlA6j77sSOQ7sAvdeN8mUFvOcRrrNg0h2wqXZcQwZgSgJ83065uE0vud+ZWT7p+D7WjJF4LD+eArN1LMb58J3C2FJEAMsOPTHXvGEm7hYBku0NEI5TtXHBi2xxErEAAWhNMpCgtxA8U1Yzz1E3v5jq/qO4RrzRLb9mpMAariQmAPCToixV9DM1ZfG1xplf9OyF5eUHnoXGBrV6Yo/StGJTeAfACgkRV5uwQY4j24Op36SADNzPTZlvNppI+rFENbQryUySKWlNYKKnHZNul8X1ehbEFQSXOr1KGPbiZ3FuqzpomjBp1PrJ/IGGSw9B7Cioo6w3/y0bCZ
+X-Microsoft-Antispam-Message-Info: kWu6Z3pFxqxzzEK0d5Pz0o3+F6oJm5AVlNytV7HW8gm1ai6v1GZCfWxREeQfqF9Z576OcNOSXtOvxeIYCSgaWbPowto3JqT0FV8Tw4w7A0Yz9KXqcVjIkkH5ptUXVZhl6a9ONMN3I26HTNAOx/duryeZZsrVLGlohr1GeaDl71QYPeYrDaJN4Le1f2Mxrzi7I6xe37dzi6c23VhlELHK8Fx6WmLp2fvy+YAy4mtD3cTDuAOqfZg2WLMh/wKcwjIi/T676nj7sOr59iPDxCgNbmlPNCA3mwCXLDBpJXZgH0PLj1hWPb3kjcOtKKIU3opA+NczHKac5r5GbwNGxR/0lP4+tYmg8alfsxdvZYsLauG2Ygh/GFAXBjI29JaPWo2uA379SchB2Qlq6B1VP7yrIQ/7iOTy4gCJPOZLyAwOpJO1FSVefqxV/qHxZiQUZbTVzUQakyRsM3PCDX71fpJRHJJ2rHM0M3lmdKQPPZv2OO8HiIuvaZbAHj+MDkctlVZodVQO1AhF5C4GfuPpH5opM+qBwXJyEcM25VyaqMYQ7iOrBKw+UNWSVA5Vy6KlB3uPdnpzrRCoLbqAfhOHEZonjM4mzrNyVgB/Vb3GSLe78nlLsNJsgc3jmUQ4dmFmXZ+ZZMej8nFFqn+9JdLGvLihCHht3dxfh1b9zwW24ENUjsS7LPujtLiL36qo52UOiyMe5pGBPUX+Pv2/vKMoRzxpIOulSlXcZBfj90wEEET5eNtsA8kswq1jLK/oAnSc1d1QcFy1nJtxWDBvROoIJYmpngjOJu3VrihTAOQTOBNLICqvMDM+wBy5KXxnBIRybu6a
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(376002)(396003)(346002)(136003)(39860400002)(451199015)(36840700001)(40470700004)(46966006)(2906002)(36860700001)(86362001)(6666004)(40480700001)(7696005)(26005)(54906003)(316002)(40460700003)(6916009)(16526019)(47076005)(82740400003)(82310400005)(81166007)(186003)(426003)(336012)(356005)(1076003)(36756003)(2616005)(41300700001)(83380400001)(5660300002)(70586007)(70206006)(478600001)(4326008)(8676002)(44832011)(8936002)(36900700001);
+ SFS:(13230022)(4636009)(376002)(136003)(346002)(396003)(39860400002)(451199015)(46966006)(36840700001)(40470700004)(81166007)(83380400001)(356005)(47076005)(186003)(1076003)(2616005)(16526019)(426003)(336012)(36860700001)(82740400003)(2906002)(8936002)(40460700003)(40480700001)(82310400005)(478600001)(26005)(6666004)(7696005)(8676002)(70586007)(70206006)(4326008)(41300700001)(5660300002)(6916009)(316002)(54906003)(36756003)(86362001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2022 01:42:50.0543 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 116e2fd1-87fa-42ea-40ad-08dac5e18a1a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2022 01:52:23.0292 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 46ac0b67-db48-490c-741c-08dac5e2dfa6
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000B8E9.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT060.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7701
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6907
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,60 +97,72 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, Evan Quan <evan.quan@amd.com>,
- Feifei Xu <FeifeiXu@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Tao.Zhou1@amd.com, Hawking.Zhang@amd.com, YiPeng Chai <YiPeng.Chai@amd.com>,
+ Candice.Li@amd.com, yipechai@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The workaround designed for some specific ASICs is wrongly applied
-to SMU13 ASICs. That leads to some runpm hang.
+Add umc channel index mapping table for umc_v8_10.
 
-Signed-off-by: Evan Quan <evan.quan@amd.com>
+Signed-off-by: YiPeng Chai <YiPeng.Chai@amd.com>
 Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
-Reviewed-by: Feifei Xu <Feifei Xu@amd.com>
-Change-Id: I7cbdc45e9b21eede698afc4dbe26c6306644861f
 ---
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c | 23 +++++++++++------------
- 1 file changed, 11 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c |  5 ++++-
+ drivers/gpu/drm/amd/amdgpu/umc_v8_10.c | 10 ++++++++++
+ drivers/gpu/drm/amd/amdgpu/umc_v8_10.h |  4 ++++
+ 3 files changed, 18 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-index 9492dd638aea..20e5f66f853f 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -1156,22 +1156,21 @@ static int smu_smc_hw_setup(struct smu_context *smu)
- 	uint64_t features_supported;
- 	int ret = 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+index 16f52049d986..96e52ec0fb69 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+@@ -558,7 +558,10 @@ static void gmc_v11_0_set_umc_funcs(struct amdgpu_device *adev)
+ 		adev->umc.node_inst_num = adev->gmc.num_umc;
+ 		adev->umc.max_ras_err_cnt_per_query = UMC_V8_10_TOTAL_CHANNEL_NUM(adev);
+ 		adev->umc.channel_offs = UMC_V8_10_PER_CHANNEL_OFFSET;
+-		adev->umc.channel_idx_tbl = &umc_v8_10_channel_idx_tbl[0][0][0];
++		if (adev->umc.node_inst_num == 4)
++			adev->umc.channel_idx_tbl = &umc_v8_10_channel_idx_tbl_ext0[0][0][0];
++		else
++			adev->umc.channel_idx_tbl = &umc_v8_10_channel_idx_tbl[0][0][0];
+ 		adev->umc.ras = &umc_v8_10_ras;
+ 		break;
+ 	case IP_VERSION(8, 11, 0):
+diff --git a/drivers/gpu/drm/amd/amdgpu/umc_v8_10.c b/drivers/gpu/drm/amd/amdgpu/umc_v8_10.c
+index 91235df54e22..b7da4528cf0a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/umc_v8_10.c
++++ b/drivers/gpu/drm/amd/amdgpu/umc_v8_10.c
+@@ -45,6 +45,16 @@ const struct channelnum_map_colbit umc_v8_10_channelnum_map_colbit_table[] = {
+ 	{6,  11},
+ };
  
--	if (adev->in_suspend && smu_is_dpm_running(smu)) {
--		dev_info(adev->dev, "dpm has been enabled\n");
--		/* this is needed specifically */
--		switch (adev->ip_versions[MP1_HWIP][0]) {
--		case IP_VERSION(11, 0, 7):
--		case IP_VERSION(11, 0, 11):
--		case IP_VERSION(11, 5, 0):
--		case IP_VERSION(11, 0, 12):
-+	switch (adev->ip_versions[MP1_HWIP][0]) {
-+	case IP_VERSION(11, 0, 7):
-+	case IP_VERSION(11, 0, 11):
-+	case IP_VERSION(11, 5, 0):
-+	case IP_VERSION(11, 0, 12):
-+		if (adev->in_suspend && smu_is_dpm_running(smu)) {
-+			dev_info(adev->dev, "dpm has been enabled\n");
- 			ret = smu_system_features_control(smu, true);
- 			if (ret)
- 				dev_err(adev->dev, "Failed system features control!\n");
--			break;
--		default:
--			break;
-+			return ret;
- 		}
--		return ret;
-+		break;
-+	default:
-+		break;
- 	}
++const uint32_t
++	umc_v8_10_channel_idx_tbl_ext0[]
++				[UMC_V8_10_UMC_INSTANCE_NUM]
++				[UMC_V8_10_CHANNEL_INSTANCE_NUM] = {
++	   {{1,   5}, {7,  3}},
++	   {{14, 15}, {13, 12}},
++	   {{10, 11}, {9,  8}},
++	   {{6,   2}, {0,  4}}
++	};
++
+ const uint32_t
+ 	umc_v8_10_channel_idx_tbl[]
+ 				[UMC_V8_10_UMC_INSTANCE_NUM]
+diff --git a/drivers/gpu/drm/amd/amdgpu/umc_v8_10.h b/drivers/gpu/drm/amd/amdgpu/umc_v8_10.h
+index 849ede88e111..25eaf4af5fcf 100644
+--- a/drivers/gpu/drm/amd/amdgpu/umc_v8_10.h
++++ b/drivers/gpu/drm/amd/amdgpu/umc_v8_10.h
+@@ -66,5 +66,9 @@ extern const uint32_t
+ 				[UMC_V8_10_UMC_INSTANCE_NUM]
+ 				[UMC_V8_10_CHANNEL_INSTANCE_NUM];
  
- 	ret = smu_init_display_count(smu, 0);
++extern const uint32_t
++	umc_v8_10_channel_idx_tbl_ext0[]
++				[UMC_V8_10_UMC_INSTANCE_NUM]
++				[UMC_V8_10_CHANNEL_INSTANCE_NUM];
+ #endif
+ 
 -- 
-2.34.1
+2.25.1
 
