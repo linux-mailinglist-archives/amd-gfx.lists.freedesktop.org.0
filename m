@@ -2,58 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96BF7629C1E
-	for <lists+amd-gfx@lfdr.de>; Tue, 15 Nov 2022 15:29:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B95F629C98
+	for <lists+amd-gfx@lfdr.de>; Tue, 15 Nov 2022 15:49:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4DD010E160;
-	Tue, 15 Nov 2022 14:29:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4230110E40B;
+	Tue, 15 Nov 2022 14:49:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com
- [IPv6:2607:f8b0:4864:20::32f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D783910E160;
- Tue, 15 Nov 2022 14:29:33 +0000 (UTC)
-Received: by mail-ot1-x32f.google.com with SMTP id
- 46-20020a9d0631000000b00666823da25fso8628307otn.0; 
- Tue, 15 Nov 2022 06:29:33 -0800 (PST)
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com
+ [IPv6:2a00:1450:4864:20::234])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C90C10E407
+ for <amd-gfx@lists.freedesktop.org>; Tue, 15 Nov 2022 14:32:57 +0000 (UTC)
+Received: by mail-lj1-x234.google.com with SMTP id d20so17713154ljc.12
+ for <amd-gfx@lists.freedesktop.org>; Tue, 15 Nov 2022 06:32:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=YtBjd5U7Z4dTCeEF5mRs9dqAb2tBqOFIzxlotygUWsI=;
- b=UbDmeL2Egx+Mh0V06TI5gyHyoopyFExt4xM+IivRUp8/PPz6WnNm1L0/uujCqzwEKl
- 6ZbA3pRjszKvVUXCNLcq9KYtUHVC3DgwzKJY0c5cAQ9Ec3xYzLBRI4z4fcw1Sgx92A9T
- VHAewMwEzH7onmwHNXu+2NpyXeBGVL51i7M8zHkfI+knvg85jgHoOMFioxO8GjKTnuoy
- 7mAvE0aDMThpyyxpmurxQHnVsfeSDdbsujA8RlVy2AmvcYvqtqk1+zk7zaawjI0m54HV
- O7uNpKRRyDUgg4Ks1erMvJ18as2WI/yj1QhzuMb/9tCP2UNaf7uPsqSgoDAsh1t/E/NB
- ntRw==
+ h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=nmA9IQtPhmRiYmAcsIQmMUcPERu6ZRIIUxXn0bYa/6g=;
+ b=QOwZqVs8fubRz/Zg6o+b7q8eps3gQUTNRxzgyILaWP+VaqiIxTZg8ykjhoGo7DlDF+
+ 3eQpScJcdQuw8ZBRrhpEyfijoHttBOAJXDYPR9p/pk4j54GrccRdxmBiXsocfDcEt+n3
+ VyQKgmn/JiZSbc0lQEuyM5DL6G6Mn6DAJD20JeUGna9WTfRmjh8NVtuJG+HijVxFDFzJ
+ fTzXqTY43Cla0cq3V9CRqLWmLomaKaY56AfHSM69oggmPV7GINWLN54g0euKj2F3DWqI
+ BZgj1XWGAS8OcLfd7s2tASE04yaFwLTB1NCVwcgYxeeMTgjXBIWVSTk7CXWAdd7vudx0
+ a0eA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=YtBjd5U7Z4dTCeEF5mRs9dqAb2tBqOFIzxlotygUWsI=;
- b=k/Jy9xDmiVcB8AZSM0hwRF7+vPzRHgM2GXOS81QzPZaZPNJ4ilwWe7nwpf9r7n0zDe
- ESkAQeA6Cg/+1jhY8KTKdkQ0U7ClHHgzRje2LYeEQ45dkGfHPKdlIN2Q4H3xpJCjrqUl
- k1fu9xMobJ0bg9vwKD/4b7zWcIlJfAJXv+ZiUytvMR07qPtIDiSHFvvJpIRbFGuI/2mt
- h1IMM5LMiXeVVN1pGh/OQwDfXlx8WRqudgDVScx3QfDCaILcoJt+NKip+l3zkC4u5UtJ
- EnDHMbWFuElL+nvGAfT3gopl4veyyDI+2b14ZTAfkpcA1J76EKC/5tflfSQbzedTZS+z
- ZJKw==
-X-Gm-Message-State: ANoB5pkxHK1do6YfWivYabj6rIBY+IuIv8u/QpY/lpnf/M3TwWLI6reF
- mVbJivAZxhkqM/eQKgCp5LO1lcXi/yHgqIOV9Jw=
-X-Google-Smtp-Source: AA0mqf4oytRI4UtYdcHoBBqKQMpel6k+O4QaJylBxHl9qdx+9fAzQwD/KWuhlyO4SRWrNTanEsR3rFV6UbvC5l13RJ0=
-X-Received: by 2002:a05:6830:40af:b0:66c:6afa:5006 with SMTP id
- x47-20020a05683040af00b0066c6afa5006mr8974706ott.233.1668522573087; Tue, 15
- Nov 2022 06:29:33 -0800 (PST)
+ h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=nmA9IQtPhmRiYmAcsIQmMUcPERu6ZRIIUxXn0bYa/6g=;
+ b=I31Jd1CJMwgtOzgAoDohdwlqNyDNavJ5Ka0JZDojIqXFQ8MoG+YCQQ2UU/Yulji53E
+ 9lcYYRyJN8UIsPaMQN/PQZTyV2f+Z38DMV7vXbqffoQ0i04GZK7RbXriGrqL5ZMI1sGJ
+ nbUgQTO6Y7MVoKBTnC2ucKyyf2L5cUMKEGZpjDTJBQug7kXjU4Nb4J0wTHv7MSma1/qV
+ 0K3Lzc2dyV0PBV6jrJYrEZ6qEK+Lr3zSExEdobRM4BiO8Yx7l2WiMxqyk+adXoI+6Y2Z
+ Bd6mWPuC691pudPMkv5zVlxKrWYBMGSA6L+i82Z8dwK4mtpykT7WVXQdZBQEZ3pwwhiR
+ 22/w==
+X-Gm-Message-State: ANoB5pkQuKztuSktLF01J/LR31esJUeYVaOjmkZKyfzFmN4OvBwdiftX
+ 4PbJPOf3EWRG5e/UJ3nIh4x8XNn/9HozvKKd7I+UHrQmRt5sZg==
+X-Google-Smtp-Source: AA0mqf7paaGtSGHjYd9UZgrJFgHQREhXIs9y5X0cJWf1FhybtFyqaPbQK0cmhuHrouM/mWdHgRkWnTNOOuGT3I9/eZ0=
+X-Received: by 2002:a2e:9109:0:b0:26e:9559:972 with SMTP id
+ m9-20020a2e9109000000b0026e95590972mr6664284ljg.453.1668522775701; Tue, 15
+ Nov 2022 06:32:55 -0800 (PST)
 MIME-Version: 1.0
-References: <Y3CgReK3e519a7bs@mail.google.com>
-In-Reply-To: <Y3CgReK3e519a7bs@mail.google.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 15 Nov 2022 09:29:21 -0500
-Message-ID: <CADnq5_PhL5DgHRrKbcniKuk064kJerT_Nau7kD2dGKCv3Mc3fQ@mail.gmail.com>
-Subject: Re: [PATCH] [next] drm/amdgpu: Replace one-elements array with
- flex-array members
-To: Paulo Miguel Almeida <paulo.miguel.almeida.rodenas@gmail.com>
+References: <20221114231325.18698-1-jntesteves@gmail.com>
+ <DM6PR12MB2619FDCED7C17F2B79166462E4049@DM6PR12MB2619.namprd12.prod.outlook.com>
+In-Reply-To: <DM6PR12MB2619FDCED7C17F2B79166462E4049@DM6PR12MB2619.namprd12.prod.outlook.com>
+From: Jonatas Esteves <jntesteves@gmail.com>
+Date: Tue, 15 Nov 2022 11:32:43 -0300
+Message-ID: <CAE+LsM--eb3uXAAbTFziETx4QaJ48PRVZaJ-V7-BHevOm0DpOg@mail.gmail.com>
+Subject: RE: [PATCH] drm/amd/pm: Fix output of pp_od_clk_voltage
+To: "Quan, Evan" <Evan.Quan@amd.com>, 
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Tue, 15 Nov 2022 14:49:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,140 +65,169 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, David Airlie <airlied@gmail.com>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Slark Xiao <slark_xiao@163.com>, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Rongguang Wei <weirongguang@kylinos.cn>, linux-hardening@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Applied.  Thanks.
+>
+> [AMD Official Use Only - General]
+>
+>
+>
+> > -----Original Message-----
+> > From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of
+> > Jonatas Esteves
+> > Sent: Tuesday, November 15, 2022 7:13 AM
+> > To: amd-gfx@lists.freedesktop.org
+> > Cc: Jonatas Esteves <jntesteves@gmail.com>
+> > Subject: [PATCH] drm/amd/pm: Fix output of pp_od_clk_voltage
+> >
+> > Printing the other clock types should not be conditioned on being able
+> > to print OD_SCLK. Some GPUs currently have limited capability of only
+> > printing a subset of these.
+> >
+> > Since this condition was introduced in v5.18-rc1, reading from
+> > `pp_od_clk_voltage` has been returning empty on the Asus ROG Strix G15
+> > (2021).
+> What's the output then with this patch applied?
+```
+$ cat /sys/class/drm/card1/device/pp_od_clk_voltage
+OD_VDDGFX_OFFSET:
+0mV
+OD_RANGE:
+```
 
-Alex
+Changing OD_VDDGFX_OFFSET works for this chip. Changing GFXCLK_LIMITS
+and UCLK_LIMITS is not supported as per the checks in
+sienna_cichlid_ppt.c -> sienna_cichlid_od_edit_dpm_table()
 
-On Sun, Nov 13, 2022 at 2:44 AM Paulo Miguel Almeida
-<paulo.miguel.almeida.rodenas@gmail.com> wrote:
+> Meanwhile can you show me the 'lspci' output( I wonder which asic is used on your system)?
+The ASIC is a RX 6800M / NAVI22 / Navy Flounder / IP_VERSION(11, 0, 11)
+
+```
+$ lspci
+00:00.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir/Cezanne
+Root Complex
+00:00.2 IOMMU: Advanced Micro Devices, Inc. [AMD] Renoir/Cezanne IOMMU
+00:01.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir PCIe
+Dummy Host Bridge
+00:01.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Renoir PCIe GPP Bridge
+00:02.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir PCIe
+Dummy Host Bridge
+00:02.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Renoir/Cezanne
+PCIe GPP Bridge
+00:02.2 PCI bridge: Advanced Micro Devices, Inc. [AMD] Renoir/Cezanne
+PCIe GPP Bridge
+00:02.4 PCI bridge: Advanced Micro Devices, Inc. [AMD] Renoir/Cezanne
+PCIe GPP Bridge
+00:08.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir PCIe
+Dummy Host Bridge
+00:08.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Renoir Internal
+PCIe GPP Bridge to Bus
+00:14.0 SMBus: Advanced Micro Devices, Inc. [AMD] FCH SMBus Controller (rev 51)
+00:14.3 ISA bridge: Advanced Micro Devices, Inc. [AMD] FCH LPC Bridge (rev 51)
+00:18.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Cezanne Data
+Fabric; Function 0
+00:18.1 Host bridge: Advanced Micro Devices, Inc. [AMD] Cezanne Data
+Fabric; Function 1
+00:18.2 Host bridge: Advanced Micro Devices, Inc. [AMD] Cezanne Data
+Fabric; Function 2
+00:18.3 Host bridge: Advanced Micro Devices, Inc. [AMD] Cezanne Data
+Fabric; Function 3
+00:18.4 Host bridge: Advanced Micro Devices, Inc. [AMD] Cezanne Data
+Fabric; Function 4
+00:18.5 Host bridge: Advanced Micro Devices, Inc. [AMD] Cezanne Data
+Fabric; Function 5
+00:18.6 Host bridge: Advanced Micro Devices, Inc. [AMD] Cezanne Data
+Fabric; Function 6
+00:18.7 Host bridge: Advanced Micro Devices, Inc. [AMD] Cezanne Data
+Fabric; Function 7
+01:00.0 PCI bridge: Advanced Micro Devices, Inc. [AMD/ATI] Navi 10 XL
+Upstream Port of PCI Express Switch (rev c3)
+02:00.0 PCI bridge: Advanced Micro Devices, Inc. [AMD/ATI] Navi 10 XL
+Downstream Port of PCI Express Switch
+03:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI]
+Navi 22 [Radeon RX 6700/6700 XT/6750 XT / 6800M] (rev c3)
+03:00.1 Audio device: Advanced Micro Devices, Inc. [AMD/ATI] Navi
+21/23 HDMI/DP Audio Controller
+04:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd.
+RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 15)
+05:00.0 Network controller: MEDIATEK Corp. MT7921 802.11ax PCI Express
+Wireless Network Adapter
+06:00.0 Non-Volatile memory controller: Intel Corporation Device f1aa (rev 03)
+07:00.0 VGA compatible controller: Advanced Micro Devices, Inc.
+[AMD/ATI] Cezanne [Radeon Vega Series / Radeon Vega Mobile Series]
+(rev c4)
+07:00.1 Audio device: Advanced Micro Devices, Inc. [AMD/ATI] Renoir
+Radeon High Definition Audio Controller
+07:00.2 Encryption controller: Advanced Micro Devices, Inc. [AMD]
+Family 17h (Models 10h-1fh) Platform Security Processor
+07:00.3 USB controller: Advanced Micro Devices, Inc. [AMD]
+Renoir/Cezanne USB 3.1
+07:00.4 USB controller: Advanced Micro Devices, Inc. [AMD]
+Renoir/Cezanne USB 3.1
+07:00.5 Multimedia controller: Advanced Micro Devices, Inc. [AMD]
+ACP/ACP3X/ACP6x Audio Coprocessor (rev 01)
+07:00.6 Audio device: Advanced Micro Devices, Inc. [AMD] Family
+17h/19h HD Audio Controller
+```
+
+Here are some SMU initialization logs I think might also be important:
+```
+[  970.119696] amdgpu 0000:03:00.0: amdgpu: SMU is resuming...
+[  970.119701] amdgpu 0000:03:00.0: amdgpu: smu driver if version =
+0x0000000e, smu fw if version = 0x00000012, smu fw program = 0,
+version = 0x00413700 (65.55.0)
+[  970.119704] amdgpu 0000:03:00.0: amdgpu: SMU driver if version not matched
+[  970.119751] amdgpu 0000:03:00.0: amdgpu: use vbios provided pptable
+[  970.183486] amdgpu 0000:03:00.0: amdgpu: SMU is resumed successfully!
+```
+
+Thanks for your attention on this.
+Jonatas
 >
-> One-element arrays are deprecated, and we are replacing them with
-> flexible array members instead. So, replace one-element array with
-> flexible-array member in structs ATOM_I2C_VOLTAGE_OBJECT_V3,
-> ATOM_ASIC_INTERNAL_SS_INFO_V2, ATOM_ASIC_INTERNAL_SS_INFO_V3,
-> and refactor the rest of the code accordingly.
->
-> Important to mention is that doing a build before/after this patch
-> results in no functional binary output differences.
->
-> This helps with the ongoing efforts to tighten the FORTIFY_SOURCE
-> routines on memcpy() and help us make progress towards globally
-> enabling -fstrict-flex-arrays=3 [1].
->
-> Link: https://github.com/KSPP/linux/issues/79
-> Link: https://github.com/KSPP/linux/issues/238
-> Link: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=101836 [1]
->
-> Signed-off-by: Paulo Miguel Almeida <paulo.miguel.almeida.rodenas@gmail.com>
-> ---
-> Binary difference findings:
->
->         Some changes took more than a single line which changed the line
->         number parameter passed to the drm_dbg function (which leverages
->         kernel's dynamic debugging). Functionally-wise, nothing changed
->         after doing a before/after patch build.
->
-> ---
->  .../gpu/drm/amd/display/dc/bios/bios_parser.c | 22 ++++++++++++-------
->  drivers/gpu/drm/amd/include/atombios.h        |  6 ++---
->  2 files changed, 17 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
-> index 6b9e64cd4379..a1a00f432168 100644
-> --- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
-> +++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
-> @@ -665,8 +665,9 @@ static enum bp_result get_ss_info_v3_1(
->         if (!DATA_TABLES(ASIC_InternalSS_Info))
->                 return BP_RESULT_UNSUPPORTED;
->
-> -       ss_table_header_include = GET_IMAGE(ATOM_ASIC_INTERNAL_SS_INFO_V3,
-> -               DATA_TABLES(ASIC_InternalSS_Info));
-> +       ss_table_header_include = ((ATOM_ASIC_INTERNAL_SS_INFO_V3 *) bios_get_image(&bp->base,
-> +                               DATA_TABLES(ASIC_InternalSS_Info),
-> +                               struct_size(ss_table_header_include, asSpreadSpectrum, 1)));
->         table_size =
->                 (le16_to_cpu(ss_table_header_include->sHeader.usStructureSize)
->                                 - sizeof(ATOM_COMMON_TABLE_HEADER))
-> @@ -1032,8 +1033,10 @@ static enum bp_result get_ss_info_from_internal_ss_info_tbl_V2_1(
->         if (!DATA_TABLES(ASIC_InternalSS_Info))
->                 return result;
->
-> -       header = GET_IMAGE(ATOM_ASIC_INTERNAL_SS_INFO_V2,
-> -               DATA_TABLES(ASIC_InternalSS_Info));
-> +       header = ((ATOM_ASIC_INTERNAL_SS_INFO_V2 *) bios_get_image(
-> +                               &bp->base,
-> +                               DATA_TABLES(ASIC_InternalSS_Info),
-> +                               struct_size(header, asSpreadSpectrum, 1)));
->
->         memset(info, 0, sizeof(struct spread_spectrum_info));
->
-> @@ -1712,8 +1715,10 @@ static uint32_t get_ss_entry_number_from_internal_ss_info_tbl_v2_1(
->         if (!DATA_TABLES(ASIC_InternalSS_Info))
->                 return 0;
->
-> -       header_include = GET_IMAGE(ATOM_ASIC_INTERNAL_SS_INFO_V2,
-> -                       DATA_TABLES(ASIC_InternalSS_Info));
-> +       header_include = ((ATOM_ASIC_INTERNAL_SS_INFO_V2 *) bios_get_image(
-> +                               &bp->base,
-> +                               DATA_TABLES(ASIC_InternalSS_Info),
-> +                               struct_size(header_include, asSpreadSpectrum, 1)));
->
->         size = (le16_to_cpu(header_include->sHeader.usStructureSize)
->                         - sizeof(ATOM_COMMON_TABLE_HEADER))
-> @@ -1749,8 +1754,9 @@ static uint32_t get_ss_entry_number_from_internal_ss_info_tbl_V3_1(
->         if (!DATA_TABLES(ASIC_InternalSS_Info))
->                 return number;
->
-> -       header_include = GET_IMAGE(ATOM_ASIC_INTERNAL_SS_INFO_V3,
-> -                       DATA_TABLES(ASIC_InternalSS_Info));
-> +       header_include = ((ATOM_ASIC_INTERNAL_SS_INFO_V3 *) bios_get_image(&bp->base,
-> +                               DATA_TABLES(ASIC_InternalSS_Info),
-> +                               struct_size(header_include, asSpreadSpectrum, 1)));
->         size = (le16_to_cpu(header_include->sHeader.usStructureSize) -
->                         sizeof(ATOM_COMMON_TABLE_HEADER)) /
->                                         sizeof(ATOM_ASIC_SS_ASSIGNMENT_V3);
-> diff --git a/drivers/gpu/drm/amd/include/atombios.h b/drivers/gpu/drm/amd/include/atombios.h
-> index 60c44a8a067f..4dc738c51771 100644
-> --- a/drivers/gpu/drm/amd/include/atombios.h
-> +++ b/drivers/gpu/drm/amd/include/atombios.h
-> @@ -5146,7 +5146,7 @@ typedef struct  _ATOM_I2C_VOLTAGE_OBJECT_V3
->     UCHAR  ucVoltageControlOffset;
->     UCHAR  ucVoltageControlFlag;              // Bit0: 0 - One byte data; 1 - Two byte data
->     UCHAR  ulReserved[3];
-> -   VOLTAGE_LUT_ENTRY asVolI2cLut[1];         // end with 0xff
-> +   VOLTAGE_LUT_ENTRY asVolI2cLut[];         // end with 0xff
->  }ATOM_I2C_VOLTAGE_OBJECT_V3;
->
->  // ATOM_I2C_VOLTAGE_OBJECT_V3.ucVoltageControlFlag
-> @@ -6679,7 +6679,7 @@ typedef struct _ATOM_ASIC_INTERNAL_SS_INFO
->  typedef struct _ATOM_ASIC_INTERNAL_SS_INFO_V2
->  {
->    ATOM_COMMON_TABLE_HEADER         sHeader;
-> -  ATOM_ASIC_SS_ASSIGNMENT_V2        asSpreadSpectrum[1];      //this is point only.
-> +  ATOM_ASIC_SS_ASSIGNMENT_V2        asSpreadSpectrum[];      //this is point only.
->  }ATOM_ASIC_INTERNAL_SS_INFO_V2;
->
->  typedef struct _ATOM_ASIC_SS_ASSIGNMENT_V3
-> @@ -6701,7 +6701,7 @@ typedef struct _ATOM_ASIC_SS_ASSIGNMENT_V3
->  typedef struct _ATOM_ASIC_INTERNAL_SS_INFO_V3
->  {
->    ATOM_COMMON_TABLE_HEADER         sHeader;
-> -  ATOM_ASIC_SS_ASSIGNMENT_V3        asSpreadSpectrum[1];      //this is pointer only.
-> +  ATOM_ASIC_SS_ASSIGNMENT_V3        asSpreadSpectrum[];      //this is pointer only.
->  }ATOM_ASIC_INTERNAL_SS_INFO_V3;
->
->
-> --
-> 2.37.3
->
+> BR
+> Evan
+> >
+> > Fixes: 79c65f3fcbb1 ("drm/amd/pm: do not expose power implementation
+> > details to amdgpu_pm.c")
+> > ---
+> >  drivers/gpu/drm/amd/pm/amdgpu_pm.c | 12 +++++-------
+> >  1 file changed, 5 insertions(+), 7 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> > b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> > index 236657eece47..9d364bbc78e1 100644
+> > --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> > +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> > @@ -869,13 +869,11 @@ static ssize_t
+> > amdgpu_get_pp_od_clk_voltage(struct device *dev,
+> >       }
+> >       if (ret == -ENOENT) {
+> >               size = amdgpu_dpm_print_clock_levels(adev, OD_SCLK, buf);
+> > -             if (size > 0) {
+> > -                     size += amdgpu_dpm_print_clock_levels(adev,
+> > OD_MCLK, buf + size);
+> > -                     size += amdgpu_dpm_print_clock_levels(adev,
+> > OD_VDDC_CURVE, buf + size);
+> > -                     size += amdgpu_dpm_print_clock_levels(adev,
+> > OD_VDDGFX_OFFSET, buf + size);
+> > -                     size += amdgpu_dpm_print_clock_levels(adev,
+> > OD_RANGE, buf + size);
+> > -                     size += amdgpu_dpm_print_clock_levels(adev,
+> > OD_CCLK, buf + size);
+> > -             }
+> > +             size += amdgpu_dpm_print_clock_levels(adev, OD_MCLK,
+> > buf + size);
+> > +             size += amdgpu_dpm_print_clock_levels(adev,
+> > OD_VDDC_CURVE, buf + size);
+> > +             size += amdgpu_dpm_print_clock_levels(adev,
+> > OD_VDDGFX_OFFSET, buf + size);
+> > +             size += amdgpu_dpm_print_clock_levels(adev, OD_RANGE,
+> > buf + size);
+> > +             size += amdgpu_dpm_print_clock_levels(adev, OD_CCLK,
+> > buf + size);
+> >       }
+> >
+> >       if (size == 0)
+> > --
+> > 2.30.2
