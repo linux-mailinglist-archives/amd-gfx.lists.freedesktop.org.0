@@ -2,38 +2,40 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA8BE62D476
-	for <lists+amd-gfx@lfdr.de>; Thu, 17 Nov 2022 08:56:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E59AB62D5AA
+	for <lists+amd-gfx@lfdr.de>; Thu, 17 Nov 2022 09:58:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E329D10E56E;
-	Thu, 17 Nov 2022 07:56:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED8CC10E585;
+	Thu, 17 Nov 2022 08:58:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-4321.protonmail.ch (mail-4321.protonmail.ch [185.70.43.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C621E10E56E
- for <amd-gfx@lists.freedesktop.org>; Thu, 17 Nov 2022 07:56:21 +0000 (UTC)
-Date: Thu, 17 Nov 2022 07:56:09 +0000
-Authentication-Results: mail-4321.protonmail.ch;
- dkim=pass (2048-bit key) header.d=emersion.fr header.i=@emersion.fr
- header.b="MbZLgtY/"
+X-Greylist: delayed 3737 seconds by postgrey-1.36 at gabe;
+ Thu, 17 Nov 2022 08:58:34 UTC
+Received: from mail-4317.proton.ch (mail-4317.proton.ch [185.70.43.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B19810E585
+ for <amd-gfx@lists.freedesktop.org>; Thu, 17 Nov 2022 08:58:34 +0000 (UTC)
+Date: Thu, 17 Nov 2022 08:58:27 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail3; t=1668671775; x=1668930975;
- bh=WYuRefUyKGr6lMweRSCbo3l2TIHxHgZBvU3a5FItoNs=;
+ s=protonmail3; t=1668675511; x=1668934711;
+ bh=6KGa/c+LMHT5tzDXZrMiZV13nLyC2Z5bX9/nNvvGSSA=;
  h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
  Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
  Message-ID:BIMI-Selector;
- b=MbZLgtY/j47Dw22xljN6e7r0bo46ItdP5YGdDrUUoDwx6Vnv8jDKfuXZnGrstuC3x
- MrHMiAlWFV7z1yHgl5Yjf+JQ+4oIv4TF3dGbHvnDY7uYS11pj/zEwCyfodhhPl8obV
- fClzkIiWGaUBDf4yB7/vFfMAsc7579C+XbsN3PecMDD9b04G7juRtBxeZGDHYYsHdR
- pj1GHcMKxAze5bslODwcSfFQCAJDdPSNFgzIePH8rGNj5gQ5RzKI50KsuPHSBnmvuE
- zX0rDm03ODf+NYZKwUAy7Wm3f9I/VZLVfeXcwptLOZ8AcDdrgZJb+TAWW08bHtO1wU
- zwCHQS9vdlR8Q==
-To: Jiasheng Jiang <jiasheng@iscas.ac.cn>
+ b=IsbOVE3OljD4lBU7e8xDRptlfqX+XsvAo8wyAwtXznt3uMixo6cq/eHgCr/iIQVFH
+ sNEyunTIAS2YPznnr2g5pjdaJfm1a9S8w8sROsxA7GNESbjAxxxuC9Zn3GBzbYiEzz
+ VL1gqkwDnLMtCt9GtK3oUl8RYU+SahE4MOp1+I5wQDI92ePULvRNGGJ6TyyqUvdqCG
+ pMKvvXV3drAWe8GjncHHb0Tzhsx3/hefeqxocm7dReRTLx6F6tr0X0Vk0taaONKTzj
+ lCp/FpxKokYcGAi2TclAAPAlCNzaXSVMcs27IzC3YCXgic6SwORhlSQtSqIInLVgnI
+ Pxn/Es5gpPhkg==
+To: =?utf-8?Q?Ville_Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
 From: Simon Ser <contact@emersion.fr>
-Subject: Re: [PATCH] drm/amd/display: rewrite the check for mods
-Message-ID: <rCi2ckxzcwtJsZr86hXMQnk3b1ARq6wXXoNiQe-6cQzinJ7CSzUABqf7k5GfIhKoLQ3wXGOQJPR0TjW2Ddn5sM5ht61w_NEHHeSPdGaIwc0=@emersion.fr>
-In-Reply-To: <20221117073258.21214-1-jiasheng@iscas.ac.cn>
-References: <20221117073258.21214-1-jiasheng@iscas.ac.cn>
+Subject: Re: [PATCH v3 0/6] Add support for atomic async page-flips
+Message-ID: <2gTBGn0MFrQeE-GBD4weUAgOHEYiLDD5_hqTLNxOYKYIOfD1HL_84sEVhjftn7nR3kr0of-bONvg55mHNDCuOiwAhCcKexGrD9RvIN-OHw8=@emersion.fr>
+In-Reply-To: <PJIfCPDOH8tzwE1mwv58g4ICBZbEgW44vwzW-JdUde6PjLDUeF_JNT0kUZ_Z8hZWqii_DTdDFfAYpRbO_T1Tu28wpjiwYlQpRdsrHJXLF58=@emersion.fr>
+References: <20220929184307.258331-1-contact@emersion.fr>
+ <Yzb0uNjB5FpjCIjq@intel.com> <Yzb6203nHF8fVH/W@intel.com>
+ <YzcGw9myJotLRTVl@intel.com>
+ <PJIfCPDOH8tzwE1mwv58g4ICBZbEgW44vwzW-JdUde6PjLDUeF_JNT0kUZ_Z8hZWqii_DTdDFfAYpRbO_T1Tu28wpjiwYlQpRdsrHJXLF58=@emersion.fr>
 Feedback-ID: 1358184:user:proton
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
@@ -49,12 +51,11 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sunpeng.li@amd.com, airlied@gmail.com, Xinhui.Pan@amd.com,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, dri-devel@lists.freedesktop.org,
- nicholas.kazlauskas@amd.com, Jerry.Zuo@amd.com, aurabindo.pillai@amd.com,
- amd-gfx@lists.freedesktop.org, daniel@ffwll.ch, alexander.deucher@amd.com,
- harry.wentland@amd.com, christian.koenig@amd.com, linux-kernel@vger.kernel.org
+Cc: andrealmeid@igalia.com, daniel.vetter@ffwll.ch,
+ dri-devel@lists.freedesktop.org, wayland-devel@lists.freedesktop.org,
+ mwen@igalia.com, amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
+ hwentlan@amd.com, nicholas.kazlauskas@amd.com, joshua@froggi.es
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This breaks the "size" out-parameter.
+Ville, any news on this?
