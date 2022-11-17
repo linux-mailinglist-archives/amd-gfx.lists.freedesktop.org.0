@@ -2,41 +2,34 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B92962D4E8
-	for <lists+amd-gfx@lfdr.de>; Thu, 17 Nov 2022 09:20:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC2B862D4E4
+	for <lists+amd-gfx@lfdr.de>; Thu, 17 Nov 2022 09:19:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAE2E10E1CE;
-	Thu, 17 Nov 2022 08:19:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B80F10E030;
+	Thu, 17 Nov 2022 08:19:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E9E410E544;
- Thu, 17 Nov 2022 06:29:17 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id A3071B81E98;
- Thu, 17 Nov 2022 06:29:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5F55C433D6;
- Thu, 17 Nov 2022 06:29:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1668666554;
- bh=k7mSpJJ0WM6ewes40AUp3GUJji+8y5DOYEMIWFBBoEo=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=DJ8QBLnMiZ4mKv7YRncrXPoLUYkMOvxv0AEKeJ4mEiAuKHxVrB0jkpuaS0lOdZiS1
- XA6SHPwNyF3LP/PUz9Mrobo6+cO8IozvOnVijp3bf6sBgb1MIIxTBWol7n5CnhOl/2
- IFsAYnPcafc3vKUzAL/IaT97mSlVQg2fjBJZ+rnw=
-Date: Thu, 17 Nov 2022 07:29:11 +0100
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Jim Cromie <jim.cromie@gmail.com>
-Subject: Re: [PATCH 0/7] DYNAMIC_DEBUG fixups for rc
-Message-ID: <Y3XUtx2JUIuQLNmU@kroah.com>
-References: <20220912052852.1123868-1-jim.cromie@gmail.com>
- <20221111221715.563020-1-jim.cromie@gmail.com>
+Received: from out30-130.freemail.mail.aliyun.com
+ (out30-130.freemail.mail.aliyun.com [115.124.30.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AC1F10E54D;
+ Thu, 17 Nov 2022 07:07:06 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R391e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018045176;
+ MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=10; SR=0;
+ TI=SMTPD_---0VV.5Etf_1668668818; 
+Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0VV.5Etf_1668668818) by smtp.aliyun-inc.com;
+ Thu, 17 Nov 2022 15:07:02 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: alexander.deucher@amd.com
+Subject: [PATCH 1/2] drm/amd/display: Remove set but unused variable
+ 'TPreMargin'
+Date: Thu, 17 Nov 2022 15:06:54 +0800
+Message-Id: <20221117070655.52749-1-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 2.20.1.7.g153144c
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221111221715.563020-1-jim.cromie@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 17 Nov 2022 08:19:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -49,31 +42,44 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@gmail.com, daniel.vetter@ffwll.ch,
- intel-gfx@lists.freedesktop.org, linux@rasmusvillemoes.dk,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, jbaron@akamai.com,
- seanpaul@chromium.org, dri-devel@lists.freedesktop.org, joe@perches.com,
- intel-gvt-dev@lists.freedesktop.org
+Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, Xinhui.Pan@amd.com,
+ Abaci Robot <abaci@linux.alibaba.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, airlied@gmail.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 11, 2022 at 03:17:08PM -0700, Jim Cromie wrote:
-> hi Jason, Greg, DRM-folk,
-> 
-> drm.debug-on-dyndbg has a regression due to a chicken-&-egg problem;
-> drm.debug is applied to enable dyndbg callsites before the dependent
-> modules' callsites are available to be enabled.
-> 
-> My "fixes" are unready, so lets just mark it BROKEN for now.
-> 
-> Meanwhile, heres some other fixes, a comment tweak, a proof of
-> non-bug, an internal simplification, and a cleanup/improvement to the
-> main macro (API):
-> 
-> Split DECLARE_DYNDBG_CLASSMAP in 1/2; REFERENCE_DYNDBG_CLASSMAP now
-> refers to a classmap DECLARE'd just once.  I think this gives a path
-> away from the coordination-by-identical-classmaps "feature" that Jani
-> and others thought was "weird" (my term).
-> 
+Variable TPreMargin is not effectively used in the function, so delete it.
 
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_util_32.c:3478:10: warning: variable ‘TPreMargin’ set but not used.
+
+Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=3144
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+---
+ .../gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
+index d967264e25cf..7f840c20d213 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
+@@ -3475,7 +3475,6 @@ bool dml32_CalculatePrefetchSchedule(
+ 	double  min_Lsw;
+ 	double  Tsw_est1 = 0;
+ 	double  Tsw_est3 = 0;
+-	double  TPreMargin = 0;
+ 
+ 	if (v->GPUVMEnable == true && v->HostVMEnable == true)
+ 		HostVMDynamicLevelsTrips = v->HostVMMaxNonCachedPageTableLevels;
+@@ -3703,7 +3702,6 @@ bool dml32_CalculatePrefetchSchedule(
+ 	dst_y_prefetch_equ = dml_floor(4.0 * (dst_y_prefetch_equ + 0.125), 1) / 4.0;
+ 	Tpre_rounded = dst_y_prefetch_equ * LineTime;
+ 
+-	TPreMargin = Tpre_rounded - TPreReq;
+ #ifdef __DML_VBA_DEBUG__
+ 	dml_print("DML::%s: dst_y_prefetch_equ: %f (after round)\n", __func__, dst_y_prefetch_equ);
+ 	dml_print("DML::%s: LineTime: %f\n", __func__, LineTime);
+-- 
+2.20.1.7.g153144c
+
