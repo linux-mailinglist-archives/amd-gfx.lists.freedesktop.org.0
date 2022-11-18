@@ -2,58 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66B2462F9DB
-	for <lists+amd-gfx@lfdr.de>; Fri, 18 Nov 2022 17:01:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E3EF62FACC
+	for <lists+amd-gfx@lfdr.de>; Fri, 18 Nov 2022 17:51:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DD4110E765;
-	Fri, 18 Nov 2022 16:01:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75DB910E77E;
+	Fri, 18 Nov 2022 16:51:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com
- [IPv6:2607:f8b0:4864:20::229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9D9410E765
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Nov 2022 16:01:48 +0000 (UTC)
-Received: by mail-oi1-x229.google.com with SMTP id l127so5778228oia.8
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Nov 2022 08:01:48 -0800 (PST)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com
+ [IPv6:2a00:1450:4864:20::629])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 207CD10E77F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Nov 2022 16:50:59 +0000 (UTC)
+Received: by mail-ej1-x629.google.com with SMTP id gv23so14472574ejb.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Nov 2022 08:50:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=9zj8xqHBzpyifKFAgILGM1HPxXlxGp7nmC5m9Wjecq8=;
- b=bEsr6VrgXhPNRSwAXEU9korbYauquGK82u8Ouv0B0N4aInZxAPuGLc50zVfFxp6EVC
- Jai7xnbCibuovi5pZIkIsWw5fhNI9QPe7qXZCOdb598O2nbg3owzTrYa+zRyIs2FTmOx
- 6xt3n676cjwdXJa2+IUPPNjmGQKX6hi7Oqf32lZ+/QTQtKDlJAcBT5J3GpW4LPFAJGM1
- 1l1XJgHX2KoI2WoQzydO0chhGvoSHIL0GiDgqzKfOQb8oyML+IdV/XEZNZ4FkV7EHNNI
- pv4PrLv8sGuPYBz6UnTqb6xTyRxLHrNBPsQJLz0/T94y2IMkqFvYzcJB1MoKdDnRwypo
- MW2A==
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=UEHGjpROLunVEX0g3gtfUD9NB1JX48WxJIXR6gCmaaw=;
+ b=RLWsNJbHZuq/ydGILx3J/ZXBrHGh3AcbfFrLYXsuay+rDzzzBOQ+51MhpC7l0c8Nmz
+ hUZ7wehxWvYIvDNn1a2gWWSTkf5WcODUPKFm55Fc8JJs29A2yltdMSuml+kUPMfCmntB
+ kkQoe6ZcBcHf+4HO0lIhDWQ9S95hdSOmc9ZjEje/R1aRfUIUe+epMIjy0vp9Np9Rugjo
+ pY4BLdAWZR7XDlDY8cKpplYfZuHQSkqam0ydqupKGt43+8xqYc4ZsoGHrdzvyLN+XGGc
+ wLHUJFV5yZ+j6rhAwoRsTrPLR6YH+BMes7cwx24GxR8acFSzH+lJjUije1bHT/vNXeSq
+ 8j/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=9zj8xqHBzpyifKFAgILGM1HPxXlxGp7nmC5m9Wjecq8=;
- b=ZfOPBieSrW+UaTCOx3DFSbD30T8IHo4owjaLTDhCoMjkv5uYzg6nECy7HJT1N16xW+
- lccBoxOO4I8pHswX+UCiWBIMPP1QvUDfTurMDWPMlJezHkzCOZ5AymkIpOS5ifbcJ0JF
- O7JI5L3cDD1HJBt9Gsj5jA7B3aAggnJnXCGoD7XKfu3OBfId2iOugNGJhcQxlIwK7wdB
- 3R+sW4G1ayBcktmBXl/QjLOm9wAu4M9M7pwT5MsLstvb/IvdGAkrceuNVi6bBRo5BnBR
- zk+9YbEnd+7cUrDgmMucHIeoIOR+33nTBcpr/HcTJnhff8DIvNicGBIKGBP/iniUjl5b
- 7cEA==
-X-Gm-Message-State: ANoB5pmI5VXA9MWRV5lby43ywsmz4d9mI7BbGMDm6dVvyIq07Z4SWOnT
- jtEJBY2yMNoWo79BIvcSENtKvv02yilQKgy9fPWA2FUD
-X-Google-Smtp-Source: AA0mqf6hp4gV5VLoFsg9NOUkUYP+y+nUPibMMPnA83vXTzMEfWpGzpYk4zU+wlqDXozof11JNnwV6DGHSzkvpvew4zg=
-X-Received: by 2002:a05:6808:295:b0:357:670f:9e4e with SMTP id
- z21-20020a056808029500b00357670f9e4emr6862674oic.46.1668787307582; Fri, 18
- Nov 2022 08:01:47 -0800 (PST)
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=UEHGjpROLunVEX0g3gtfUD9NB1JX48WxJIXR6gCmaaw=;
+ b=si6gYOkzNXNQMLbFh/02lE4S4vvi754CSx2dF2cyluL01AXebzdvQopkR9EBeqcJRU
+ 2kbCsG0/F6PwtImdG9kwbD3gDcysPuMff+gsIBHDpFGcM7U/pQeyn6+ARvAH5QM3Je4P
+ kEZ2zJo+7nfZCxzXqm/MYZrgZ8jXa/coA60VFxnFuwX05xvVB2bAxoyi2cR7vsHVWhql
+ 94OYtP0QPdv8WiLkh7+eUkawG6FxdMtG1p05lBbaP94g81UZh+0MBrOKaE0Pwcz54JGC
+ 9/UEYkD12N1FlJ5mTfLLh3UW885uLXOLMJbs/hGzR4AiuMvFFqKAB3DjNFXtLwuz/cpR
+ dVqw==
+X-Gm-Message-State: ANoB5pnAnrHCSODgz/CN7rgbPpZjqqjF+uCKWBWPGaGrMHtM73xKdcXK
+ 0Iv/GeF+x0771prsKZscOXE=
+X-Google-Smtp-Source: AA0mqf7VHaeqy3OVadZEMfGlQpKBrxTUlKnWifRHhqtS2RCHhPFSooaI0Pl990Z0fUmn7BLRz4koZQ==
+X-Received: by 2002:a17:906:706:b0:7ac:2e16:eb05 with SMTP id
+ y6-20020a170906070600b007ac2e16eb05mr7028523ejb.26.1668790257556; 
+ Fri, 18 Nov 2022 08:50:57 -0800 (PST)
+Received: from ?IPV6:2a02:908:1256:79a0:6df3:758:835a:3ec8?
+ ([2a02:908:1256:79a0:6df3:758:835a:3ec8])
+ by smtp.gmail.com with ESMTPSA id
+ 10-20020a170906308a00b00782fbb7f5f7sm1879911ejv.113.2022.11.18.08.50.56
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 18 Nov 2022 08:50:56 -0800 (PST)
+Message-ID: <0de80953-e83b-553d-1de5-3a22149c90c7@gmail.com>
+Date: Fri, 18 Nov 2022 17:50:55 +0100
 MIME-Version: 1.0
-References: <20221116164006.2830029-1-alexander.deucher@amd.com>
-In-Reply-To: <20221116164006.2830029-1-alexander.deucher@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 18 Nov 2022 11:01:36 -0500
-Message-ID: <CADnq5_PR8Q3FnRPpkPzL3VV26mYeOr43Z_Sa+AUP=L1-NcoSZA@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
 Subject: Re: [PATCH] drm/amdgpu/psp: don't free PSP buffers on suspend
-To: Alex Deucher <alexander.deucher@amd.com>,
- Arunpravin <Arunpravin.PaneerSelvam@amd.com>, 
- Christian Koenig <christian.koenig@amd.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Language: en-US
+To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20221116164006.2830029-1-alexander.deucher@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20221116164006.2830029-1-alexander.deucher@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,120 +74,115 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 16, 2022 at 11:40 AM Alex Deucher <alexander.deucher@amd.com> wrote:
->
+Am 16.11.22 um 17:40 schrieb Alex Deucher:
 > We can reuse the same buffers on resume.
 >
 > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 
-Anyone want to give me an RB or AB?
+Reviewed-by: Christian König <christian.koenig@amd.com>
 
-Thanks,
-
-Alex
+But I would like to ad the WARN_ON() to not free anything during suspend 
+on newer kernels as well.
 
 > ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 56 +++++++++++++------------
->  1 file changed, 29 insertions(+), 27 deletions(-)
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 56 +++++++++++++------------
+>   1 file changed, 29 insertions(+), 27 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
 > index 0a8c30475dda..d9cb4c4b8289 100644
 > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
 > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
 > @@ -172,6 +172,7 @@ void psp_ta_free_shared_buf(struct ta_mem_context *mem_ctx)
->  {
->         amdgpu_bo_free_kernel(&mem_ctx->shared_bo, &mem_ctx->shared_mc_addr,
->                               &mem_ctx->shared_buf);
-> +       mem_ctx->shared_bo = NULL;
->  }
->
->  static void psp_free_shared_bufs(struct psp_context *psp)
+>   {
+>   	amdgpu_bo_free_kernel(&mem_ctx->shared_bo, &mem_ctx->shared_mc_addr,
+>   			      &mem_ctx->shared_buf);
+> +	mem_ctx->shared_bo = NULL;
+>   }
+>   
+>   static void psp_free_shared_bufs(struct psp_context *psp)
 > @@ -182,6 +183,7 @@ static void psp_free_shared_bufs(struct psp_context *psp)
->         /* free TMR memory buffer */
->         pptr = amdgpu_sriov_vf(psp->adev) ? &tmr_buf : NULL;
->         amdgpu_bo_free_kernel(&psp->tmr_bo, &psp->tmr_mc_addr, pptr);
-> +       psp->tmr_bo = NULL;
->
->         /* free xgmi shared memory */
->         psp_ta_free_shared_buf(&psp->xgmi_context.context.mem_context);
+>   	/* free TMR memory buffer */
+>   	pptr = amdgpu_sriov_vf(psp->adev) ? &tmr_buf : NULL;
+>   	amdgpu_bo_free_kernel(&psp->tmr_bo, &psp->tmr_mc_addr, pptr);
+> +	psp->tmr_bo = NULL;
+>   
+>   	/* free xgmi shared memory */
+>   	psp_ta_free_shared_buf(&psp->xgmi_context.context.mem_context);
 > @@ -743,37 +745,39 @@ static int psp_load_toc(struct psp_context *psp,
->  /* Set up Trusted Memory Region */
->  static int psp_tmr_init(struct psp_context *psp)
->  {
-> -       int ret;
-> +       int ret = 0;
->         int tmr_size;
->         void *tmr_buf;
->         void **pptr;
->
-> -       /*
-> -        * According to HW engineer, they prefer the TMR address be "naturally
-> -        * aligned" , e.g. the start address be an integer divide of TMR size.
-> -        *
-> -        * Note: this memory need be reserved till the driver
-> -        * uninitializes.
-> -        */
-> -       tmr_size = PSP_TMR_SIZE(psp->adev);
+>   /* Set up Trusted Memory Region */
+>   static int psp_tmr_init(struct psp_context *psp)
+>   {
+> -	int ret;
+> +	int ret = 0;
+>   	int tmr_size;
+>   	void *tmr_buf;
+>   	void **pptr;
+>   
+> -	/*
+> -	 * According to HW engineer, they prefer the TMR address be "naturally
+> -	 * aligned" , e.g. the start address be an integer divide of TMR size.
+> -	 *
+> -	 * Note: this memory need be reserved till the driver
+> -	 * uninitializes.
+> -	 */
+> -	tmr_size = PSP_TMR_SIZE(psp->adev);
 > -
-> -       /* For ASICs support RLC autoload, psp will parse the toc
-> -        * and calculate the total size of TMR needed */
-> -       if (!amdgpu_sriov_vf(psp->adev) &&
-> -           psp->toc.start_addr &&
-> -           psp->toc.size_bytes &&
-> -           psp->fw_pri_buf) {
-> -               ret = psp_load_toc(psp, &tmr_size);
-> -               if (ret) {
-> -                       DRM_ERROR("Failed to load toc\n");
-> -                       return ret;
-> +       if (!psp->tmr_bo) {
-> +               /*
-> +                * According to HW engineer, they prefer the TMR address be "naturally
-> +                * aligned" , e.g. the start address be an integer divide of TMR size.
-> +                *
-> +                * Note: this memory need be reserved till the driver
-> +                * uninitializes.
-> +                */
-> +               tmr_size = PSP_TMR_SIZE(psp->adev);
+> -	/* For ASICs support RLC autoload, psp will parse the toc
+> -	 * and calculate the total size of TMR needed */
+> -	if (!amdgpu_sriov_vf(psp->adev) &&
+> -	    psp->toc.start_addr &&
+> -	    psp->toc.size_bytes &&
+> -	    psp->fw_pri_buf) {
+> -		ret = psp_load_toc(psp, &tmr_size);
+> -		if (ret) {
+> -			DRM_ERROR("Failed to load toc\n");
+> -			return ret;
+> +	if (!psp->tmr_bo) {
+> +		/*
+> +		 * According to HW engineer, they prefer the TMR address be "naturally
+> +		 * aligned" , e.g. the start address be an integer divide of TMR size.
+> +		 *
+> +		 * Note: this memory need be reserved till the driver
+> +		 * uninitializes.
+> +		 */
+> +		tmr_size = PSP_TMR_SIZE(psp->adev);
 > +
-> +               /* For ASICs support RLC autoload, psp will parse the toc
-> +                * and calculate the total size of TMR needed */
-> +               if (!amdgpu_sriov_vf(psp->adev) &&
-> +                   psp->toc.start_addr &&
-> +                   psp->toc.size_bytes &&
-> +                   psp->fw_pri_buf) {
-> +                       ret = psp_load_toc(psp, &tmr_size);
-> +                       if (ret) {
-> +                               DRM_ERROR("Failed to load toc\n");
-> +                               return ret;
-> +                       }
->                 }
-> -       }
->
-> -       pptr = amdgpu_sriov_vf(psp->adev) ? &tmr_buf : NULL;
-> -       ret = amdgpu_bo_create_kernel(psp->adev, tmr_size, PSP_TMR_ALIGNMENT,
-> -                                     AMDGPU_GEM_DOMAIN_VRAM,
-> -                                     &psp->tmr_bo, &psp->tmr_mc_addr, pptr);
-> +               pptr = amdgpu_sriov_vf(psp->adev) ? &tmr_buf : NULL;
-> +               ret = amdgpu_bo_create_kernel(psp->adev, tmr_size, PSP_TMR_ALIGNMENT,
-> +                                             AMDGPU_GEM_DOMAIN_VRAM,
-> +                                             &psp->tmr_bo, &psp->tmr_mc_addr, pptr);
-> +       }
->
->         return ret;
->  }
+> +		/* For ASICs support RLC autoload, psp will parse the toc
+> +		 * and calculate the total size of TMR needed */
+> +		if (!amdgpu_sriov_vf(psp->adev) &&
+> +		    psp->toc.start_addr &&
+> +		    psp->toc.size_bytes &&
+> +		    psp->fw_pri_buf) {
+> +			ret = psp_load_toc(psp, &tmr_size);
+> +			if (ret) {
+> +				DRM_ERROR("Failed to load toc\n");
+> +				return ret;
+> +			}
+>   		}
+> -	}
+>   
+> -	pptr = amdgpu_sriov_vf(psp->adev) ? &tmr_buf : NULL;
+> -	ret = amdgpu_bo_create_kernel(psp->adev, tmr_size, PSP_TMR_ALIGNMENT,
+> -				      AMDGPU_GEM_DOMAIN_VRAM,
+> -				      &psp->tmr_bo, &psp->tmr_mc_addr, pptr);
+> +		pptr = amdgpu_sriov_vf(psp->adev) ? &tmr_buf : NULL;
+> +		ret = amdgpu_bo_create_kernel(psp->adev, tmr_size, PSP_TMR_ALIGNMENT,
+> +					      AMDGPU_GEM_DOMAIN_VRAM,
+> +					      &psp->tmr_bo, &psp->tmr_mc_addr, pptr);
+> +	}
+>   
+>   	return ret;
+>   }
 > @@ -2701,8 +2705,6 @@ static int psp_suspend(void *handle)
->         }
->
->  out:
-> -       psp_free_shared_bufs(psp);
+>   	}
+>   
+>   out:
+> -	psp_free_shared_bufs(psp);
 > -
->         return ret;
->  }
->
-> --
-> 2.38.1
->
+>   	return ret;
+>   }
+>   
+
