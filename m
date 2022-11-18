@@ -2,90 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4931062F00E
-	for <lists+amd-gfx@lfdr.de>; Fri, 18 Nov 2022 09:50:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52DEF62F118
+	for <lists+amd-gfx@lfdr.de>; Fri, 18 Nov 2022 10:24:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDB8310E1FF;
-	Fri, 18 Nov 2022 08:50:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 847CB10E20C;
+	Fri, 18 Nov 2022 09:24:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2058.outbound.protection.outlook.com [40.107.92.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3121310E1ED
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Nov 2022 08:50:42 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ivmk3pmigaxPardgo6cETa+j6SXZDRbMILC8GqNEVf74QdW2kskBKynRlcpgvy4GkGeChE04XR3yHKUiVfzV+wx9aOEgPURcWXqgi+qeO0cVGMD5dkzgnC7I+S91wIFhGOJKErwfKffCV+1NRBZbhmkuZzuLP8zIqe5C9C7TfxT8opEXvnWbM4+wPj1mI0O5sdyKyfBbiBlfe/l9vmsbbAD1VmQD9cDHToU921WAceNS0HPrumXFbG2FvC5feBj9sTuHmj6T1lAwZkTxiS5CtVck5i844jS+JzauAOD6Bbbs5uFB+R9EskUgoWx98HYeNB/qqVEZYV6sZHilWBDIxw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Yj/sZbWK3eyEHpph6heyUAOLYxAoItrh4pWLj2fmHKk=;
- b=Ep3jqKTO5rvdRadKVUy81NDs5ovJISu6IAsb3Ev0CZ0T6uBilC8MQHVdwwsZ9pxutSFkfHElkc0Qulc+C2CkYDI830MWSwOLjEbs59tsB85ujsz6EHudyHaYeDJIuYUXcfs7nUmPlgGB4c08bEqib3vsqm5oHOhRoP+C85hBFH7Y/ua8Jmu9o7IZFTibi0r/SXxR7OMCnAXWjMVme+avB0Xgl9Q24wPp9M9LjAhMlW7wlN6D87UroInx+1l4Pg508MWqEcvsMCzkvPT1hDp+xwG9XhfcHcDZ3/jwoxgm1NShCD22NT+DJhiTRbfquJanQTYapruwOKq42LlZzyAckw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Yj/sZbWK3eyEHpph6heyUAOLYxAoItrh4pWLj2fmHKk=;
- b=OHBLCAaiTx2ytlc/JCh2rP6vicmfMz52tfwwJ0aNvJlklJvmbXnKI05THIwfCNgM12EikwGcN19ViHNU8IMuwQzEXBBGWdkXry6JUYxt0jLZmgj0HD66/AEuPw2iD3zI1DCsLBBOAnHhA9g25F0DuTZ4AdHVjZrjliYLd3E7cKU=
-Received: from BL1PR13CA0154.namprd13.prod.outlook.com (2603:10b6:208:2bd::9)
- by BN9PR12MB5321.namprd12.prod.outlook.com (2603:10b6:408:102::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.9; Fri, 18 Nov
- 2022 08:50:38 +0000
-Received: from BL02EPF0000C404.namprd05.prod.outlook.com
- (2603:10b6:208:2bd:cafe::fe) by BL1PR13CA0154.outlook.office365.com
- (2603:10b6:208:2bd::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.9 via Frontend
- Transport; Fri, 18 Nov 2022 08:50:38 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL02EPF0000C404.mail.protection.outlook.com (10.167.241.6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5834.9 via Frontend Transport; Fri, 18 Nov 2022 08:50:38 +0000
-Received: from amdoffice.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 18 Nov
- 2022 02:49:40 -0600
-From: ZhenGuo Yin <zhenguo.yin@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: update documentation of parameter amdgpu_gtt_size
-Date: Fri, 18 Nov 2022 16:49:31 +0800
-Message-ID: <20221118084931.1381499-1-zhenguo.yin@amd.com>
-X-Mailer: git-send-email 2.35.1
+X-Greylist: delayed 386 seconds by postgrey-1.36 at gabe;
+ Fri, 18 Nov 2022 09:24:46 UTC
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B77DA10E20C
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Nov 2022 09:24:46 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4NDB606Phzz9skf;
+ Fri, 18 Nov 2022 10:18:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1668763096;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=lTdyYev7Ss9teMBT/XBdYBNta7QNMGTiSYism0OihVU=;
+ b=K4iIv+pZTFwX+LEDRaLRHyjsgcD4KeBvR0ua48NOL0K5wqITYyjnjgNxRis4zmvj7lI5WQ
+ tKQ/qV08YGd+MwUdViZ892ZR6tyNTo/TeaSnzkcXCI7Baa2CvAjAvVxCN1ebiQ66okaEL0
+ WQXhuqP6Wxiq6m16KKL3Hbo1oOKlKducPVYjbF3EwAZH2zVR+Y4ClR79JKcojy2eakDzzb
+ PCJzbJrb5EKfuHr2kjQYiMoI0Tc8rHhiJBVsG4VJJoX3aNmuVRcYqfLvAhvHFmEOWjWmFz
+ cmTdNo7oTXxjP8RKYYjFKvyrmoLYtpJ5bZFIqEJsqr0d8NlhrQVRW/yBBc5E6A==
+Message-ID: <800a1207-8ff6-4cfa-60f3-6ff456874890@mailbox.org>
+Date: Fri, 18 Nov 2022 10:18:14 +0100
 MIME-Version: 1.0
+Subject: Re: [PATCH] drm/amdgpu: add mb for si
+Content-Language: de-CH-frami, en-CA
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Zhenneng Li <lizhenneng@kylinos.cn>, Alex Deucher <alexander.deucher@amd.com>
+References: <20221118074810.380368-1-lizhenneng@kylinos.cn>
+ <ecd9d251-8941-b2db-71b2-e4ac06f860a3@amd.com>
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel.daenzer@mailbox.org>
+In-Reply-To: <ecd9d251-8941-b2db-71b2-e4ac06f860a3@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0000C404:EE_|BN9PR12MB5321:EE_
-X-MS-Office365-Filtering-Correlation-Id: ddb78703-d119-4ab5-97b4-08dac941f73c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: SwRlS5zFXYYoYJ2JPvUECm956D4vHnBKD0Z8bEyVTC8RLsFIChFKUYyigUZVVYVweNrTtlKcpGVGJ1KdQl8sSFGcmDG3YoQs6e8SBEPr6cTXikTqXKsiY/dwNvNxLT4qbS9Njo/gwblZZEJEe7Fx/DJFAsHVkvg/HZLrBHmh49Yktv/imyOwnMHf4J/tW5SbvQd2f7NCHpsJKZH2z0yaC/Cgfnbg6FUh8+IPjTLu2zjxDXPh0AUGA/gwup9D/ssJzr5RX/HYaznfxtFP5XhQa3vum9R/Nu8AxUoGNfM+HBtcEIENhG2jm1RvvHGAKV9TdmwTwkVwbljapajtgehRzowCfvRlEZW26+qzBig7YXVz3z1EUDkRxIxccO5j7ZUmY6AzbjsvBhi2lRsROx44qOPDRunsrpI92/kjYYxiPW/qeC4LnSFJgFHLewv+igCOVkCz8DiLn1M6p3LYldV2a/KdhxUG4URfQbj5ZVqe5PDGoI7EofzDLetJUaxvO4ctkx/bMQog6/oUDxazXIneVurLQR9SO+zVKsW53w2vjXWf+tGBXNo/4WZu1jB2BwUaoQN1NvaJEHF/z6nN2duqsAl58khch5wrqFO1W2k/yraCzrNCongdWSoOSE8LnfuiRa0FqLTz69uTkeu0CI0Tf6Wfz2BfZtJfGEiMiBOyTYxrNZvpX0TAhEYEcrgdfRFZNa06BzWEU8x6iOW5ypQNbFst+3YrmDfhwbNqja8OyZQ=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(136003)(376002)(396003)(346002)(39860400002)(451199015)(36840700001)(40470700004)(46966006)(36860700001)(86362001)(40480700001)(36756003)(82740400003)(40460700003)(356005)(81166007)(82310400005)(6666004)(26005)(54906003)(6916009)(2906002)(7696005)(316002)(478600001)(336012)(4744005)(426003)(47076005)(83380400001)(41300700001)(2616005)(4326008)(8676002)(70586007)(70206006)(16526019)(1076003)(186003)(8936002)(5660300002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2022 08:50:38.3877 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ddb78703-d119-4ab5-97b4-08dac941f73c
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0000C404.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5321
+X-MBO-RS-META: 1afyttkaptk1qh7bss3ey8wa78i7z3af
+X-MBO-RS-ID: 4afc4dcc6c7cfafea96
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,31 +58,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, ZhenGuo Yin <zhenguo.yin@amd.com>,
- jingwen.chen@amd.com
+Cc: amd-gfx@lists.freedesktop.org, Xinhui.Pan@amd.com,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fixes: f7ba887f606b ("drm/amdgpu: Adjust logic around GTT size (v3)")
-Signed-off-by: ZhenGuo Yin <zhenguo.yin@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+On 11/18/22 09:01, Christian König wrote:
+> Am 18.11.22 um 08:48 schrieb Zhenneng Li:
+>> During reboot test on arm64 platform, it may failure on boot,
+>> so add this mb in smc.
+>>
+>> The error message are as follows:
+>> [    6.996395][ 7] [  T295] [drm:amdgpu_device_ip_late_init [amdgpu]] *ERROR*
+>>                 late_init of IP block <si_dpm> failed -22
+>> [    7.006919][ 7] [  T295] amdgpu 0000:04:00.0: amdgpu_device_ip_late_init failed
+>> [    7.014224][ 7] [  T295] amdgpu 0000:04:00.0: Fatal error during GPU init
+> 
+> Memory barries are not supposed to be sprinkled around like this, you need to give a detailed explanation why this is necessary.
+> 
+> Regards,
+> Christian.
+> 
+>>
+>> Signed-off-by: Zhenneng Li <lizhenneng@kylinos.cn>
+>> ---
+>>   drivers/gpu/drm/amd/pm/legacy-dpm/si_smc.c | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_smc.c b/drivers/gpu/drm/amd/pm/legacy-dpm/si_smc.c
+>> index 8f994ffa9cd1..c7656f22278d 100644
+>> --- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_smc.c
+>> +++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_smc.c
+>> @@ -155,6 +155,8 @@ bool amdgpu_si_is_smc_running(struct amdgpu_device *adev)
+>>       u32 rst = RREG32_SMC(SMC_SYSCON_RESET_CNTL);
+>>       u32 clk = RREG32_SMC(SMC_SYSCON_CLOCK_CNTL_0);
+>>   +    mb();
+>> +
+>>       if (!(rst & RST_REG) && !(clk & CK_DISABLE))
+>>           return true;
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 72b77b3ac4fb..987914532104 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -237,8 +237,7 @@ module_param_named(gartsize, amdgpu_gart_size, uint, 0600);
- 
- /**
-  * DOC: gttsize (int)
-- * Restrict the size of GTT domain in MiB for testing. The default is -1 (It's VRAM size if 3GB < VRAM < 3/4 RAM,
-- * otherwise 3/4 RAM size).
-+ * Restrict the size of GTT domain in MiB for testing. The default is -1 (Use 1/2 RAM, minimum value is 3GB).
-  */
- MODULE_PARM_DESC(gttsize, "Size of the GTT domain in megabytes (-1 = auto)");
- module_param_named(gttsize, amdgpu_gtt_size, int, 0600);
+In particular, it makes no sense in this specific place, since it cannot directly affect the values of rst & clk.
+
+
 -- 
-2.35.1
+Earthling Michel Dänzer            |                  https://redhat.com
+Libre software enthusiast          |         Mesa and Xwayland developer
 
