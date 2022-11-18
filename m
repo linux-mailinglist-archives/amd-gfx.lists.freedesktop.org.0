@@ -2,63 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15AB862F94B
-	for <lists+amd-gfx@lfdr.de>; Fri, 18 Nov 2022 16:30:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A33F662F9DE
+	for <lists+amd-gfx@lfdr.de>; Fri, 18 Nov 2022 17:03:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2091610E191;
-	Fri, 18 Nov 2022 15:30:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FCB110E76D;
+	Fri, 18 Nov 2022 16:02:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com
- [IPv6:2a00:1450:4864:20::62e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8B4E10E191
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Nov 2022 15:30:27 +0000 (UTC)
-Received: by mail-ej1-x62e.google.com with SMTP id m22so13816931eji.10
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Nov 2022 07:30:27 -0800 (PST)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com
+ [IPv6:2a00:1450:4864:20::62a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA68F10E703
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Nov 2022 15:36:38 +0000 (UTC)
+Received: by mail-ej1-x62a.google.com with SMTP id f27so14000387eje.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Nov 2022 07:36:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=NzYUZvQmI1I+AH0A+ButWdNS0jMmFgT8YSDbj9Hq1w8=;
- b=ImFJ2dXlAnrh/Dmw9daIf1JSS9bJCuyAil2tPUKky8uwpjO4dslphaQNyfNY5tMV9Z
- 6uv9HE5+H3sF2/rXoJpfLqhadMVSOBCLeBnmOF7ZXpc5exKTuDh4DVv2KXLboWPV6gef
- 5JdeknPcrszpzBYHBWbdZCw8feH3hnuvgjooJbaugrC8JPNYCHLQR30dHXj+PCE1v2co
- 7DzKXjJZsRSJH8dnWIdPkDhQC4NWU6Qbs3pfpVPhfLQQz+QOFpkLCTr+X8xFwCP8LDO1
- Sj8BwincTLsYIQwCGF6wPb6zEphVfkwh1uLUbeBgM4czHcZicHFAJl+8IngcInol+ZV6
- EWqw==
+ h=mime-version:user-agent:content-transfer-encoding:references
+ :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=MRdablpQbNdvOGn2U15kgE+GafAkwXepvrB7+WqIm+Y=;
+ b=NBYLgOh9lp7dDdUHqoX7/3omUtlo4JF7as1LnQ7hGTFpDFgPJdweWioYLkXTafHwcX
+ CPJEz6hX4bVePGLg8YWCcMFIVS7DqCfU0UvWe0yy7wyNwTKIes5ArWbuTAMujDINh6Ae
+ Nr4m5zl4jaM5sAQtFwM6BmKRWeCyO6yDVwCwwWc5Tl4ZnSbPleSbMj+LOke0OL0SANgI
+ h9pctIhNrxaP420V1Ffza1lXZmqD2xM2yrmZbMpWcaaiRmwg0xosLaJcKlgyRM4Uhn/i
+ xJr8+Am5+2w/ABBKMUVy5mlesdMGCczuut13IhrUZOzj6F4opdfLj2y4pzOgLpGR5wVW
+ hkbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=NzYUZvQmI1I+AH0A+ButWdNS0jMmFgT8YSDbj9Hq1w8=;
- b=phSePJNTNMR8n3D2ocHBTqr4NzoHflscDZ+PtSbUM+tLMtljCI4b2mTCtlLuOP13Cy
- H/jW0II2j4KkzcR496fsj7ynHnIcwKCD3IRLDetRNqJ+HGrqBoUKCOm2s6FqqKoSfyEM
- Xp1owOvCp1NFc6RuGbPOksvXX0C0y4u5QiSaqIqsH62/bXQ8DrYHKWIGdV5SS7G9Gnh+
- lLhgsBRNiPBGwoytmFM/Rc1K9O4cljYo7qLAq/MyfgtR8jEBMjhWrXEdJFjcfuAEy7T6
- GffvSrC6zqttj/ajZ0inOm4Cn2v3/vs1i1l71EMCfexqchFgrecYQtPIPp1nq6TTvyIQ
- xqrA==
-X-Gm-Message-State: ANoB5pk3Jds1DF3oGgGNeCBEOI6U2GxpLPrLMkfIEveKKuwjaoYh7Akg
- Hqdh/cHYVRZHMT4eZ/sYtwMquWuBD04=
-X-Google-Smtp-Source: AA0mqf4p/8z8i5e6g2nDf0Ugc08b4lsdTodgYJGGf+DtqNlEnivW+pKpKtLgywfr1sEwAaIv8izFdA==
-X-Received: by 2002:a17:906:1b15:b0:7ad:dc7e:1b8d with SMTP id
- o21-20020a1709061b1500b007addc7e1b8dmr6300734ejg.276.1668785426251; 
- Fri, 18 Nov 2022 07:30:26 -0800 (PST)
-Received: from EliteBook.fritz.box ([2a02:908:1256:79a0:6df3:758:835a:3ec8])
- by smtp.gmail.com with ESMTPSA id
- bv15-20020a170906b1cf00b007a4e02e32ffsm1812592ejb.60.2022.11.18.07.30.24
+ h=mime-version:user-agent:content-transfer-encoding:references
+ :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=MRdablpQbNdvOGn2U15kgE+GafAkwXepvrB7+WqIm+Y=;
+ b=x9dptXobziRDy0zOiE0nXXCa+1sZMQGPMAzj9KNMkn4j/JunvBdsL6J+RWb19jd8SY
+ lZEDwICHtAvHoAReB/OMI2UCzmcznrtR2npZwn3KNE3yjBXYRGT7FNv5S4L7yqHNeTDB
+ c6BHPylvyFHXnWYu6HIO+fjRw6mVxbugEtPAWPbHDX21WwaBVWoohQLj3dLyQKLY7j4j
+ gvs/IfrvLpe025ZCXu8C7+aY2SRY4ehsd/COswi20SqGeSwbzH64krpDaWH0jC586sNT
+ tAH2gmTP3LpjHBuMqxrk5QdCCVJDT/h1D1jwDFMb971zOqOEZX1HsRQO8lkcfeDcK0fj
+ lqxw==
+X-Gm-Message-State: ANoB5pk5dNCtbgaMc4QZRF/uMmJ//Q1m8557WLaiwohf7hJClm2Xtfve
+ l96MtRXVzie4Lx31C01DwAU=
+X-Google-Smtp-Source: AA0mqf4TSUzlVVZ+mhOMoNMgaw6gdGgpM/d/sdXhI0jqpVXXl5NPsBrVEAZ3g1XLs5PXMbQ2vByZ5A==
+X-Received: by 2002:a17:906:3c4d:b0:78d:f2d8:4623 with SMTP id
+ i13-20020a1709063c4d00b0078df2d84623mr6666461ejg.274.1668785797170; 
+ Fri, 18 Nov 2022 07:36:37 -0800 (PST)
+Received: from [192.168.0.126] (catv-89-134-213-173.catv.fixed.vodafone.hu.
+ [89.134.213.173]) by smtp.gmail.com with ESMTPSA id
+ 25-20020a170906301900b007806c1474e1sm1812094ejz.127.2022.11.18.07.36.35
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 18 Nov 2022 07:30:25 -0800 (PST)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: handle gang submit before VMID
-Date: Fri, 18 Nov 2022 16:30:23 +0100
-Message-Id: <20221118153023.312582-1-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.25.1
+ Fri, 18 Nov 2022 07:36:36 -0800 (PST)
+Message-ID: <3144fa81950d36c0e30d984ecc775664a86f754f.camel@gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: handle gang submit before VMID
+From: Timur =?ISO-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, 
+ amd-gfx@lists.freedesktop.org
+Date: Fri, 18 Nov 2022 16:36:35 +0100
+In-Reply-To: <20221118153023.312582-1-christian.koenig@amd.com>
+References: <20221118153023.312582-1-christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.44.4 (3.44.4-2.fc36) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 18 Nov 2022 16:02:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,46 +74,41 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Alexander.Deucher@amd.com,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
+ Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Otherwise it can happen that not all gang members can get a VMID
-assigned and we deadlock.
-
-Signed-off-by: Christian König <christian.koenig@amd.com>
-Tested-by: Timur Kristóf <timur.kristof@gmail.com>
-Acked-by: Timur Kristóf <timur.kristof@gmail.com>
-Fixes: 68ce8b242242 ("drm/amdgpu: add gang submit backend v2")
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-index cd968e781077..abb99cff8b4b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-@@ -254,6 +254,9 @@ static struct dma_fence *amdgpu_job_dependency(struct drm_sched_job *sched_job,
- 			DRM_ERROR("Error adding fence (%d)\n", r);
- 	}
- 
-+	if (!fence && job->gang_submit)
-+		fence = amdgpu_device_switch_gang(ring->adev, job->gang_submit);
-+
- 	while (fence == NULL && vm && !job->vmid) {
- 		r = amdgpu_vmid_grab(vm, ring, &job->sync,
- 				     &job->base.s_fence->finished,
-@@ -264,9 +267,6 @@ static struct dma_fence *amdgpu_job_dependency(struct drm_sched_job *sched_job,
- 		fence = amdgpu_sync_get_fence(&job->sync);
- 	}
- 
--	if (!fence && job->gang_submit)
--		fence = amdgpu_device_switch_gang(ring->adev, job->gang_submit);
--
- 	return fence;
- }
- 
--- 
-2.25.1
+Q2FuIHlvdSBndXlzIHBsZWFzZSBwdXNoIHRoaXMgaW50byB0aGUgbmV4dCA2LjEgUkM/IFRoaXMg
+c29sdmVzIGEKc2lnbmlmaWNhbnQgaXNzdWUgd2l0aCBnYW5nIHN1Ym1pdC4KCk9uIEZyaSwgMjAy
+Mi0xMS0xOCBhdCAxNjozMCArMDEwMCwgQ2hyaXN0aWFuIEvDtm5pZyB3cm90ZToKPiBPdGhlcndp
+c2UgaXQgY2FuIGhhcHBlbiB0aGF0IG5vdCBhbGwgZ2FuZyBtZW1iZXJzIGNhbiBnZXQgYSBWTUlE
+Cj4gYXNzaWduZWQgYW5kIHdlIGRlYWRsb2NrLgo+IAo+IFNpZ25lZC1vZmYtYnk6IENocmlzdGlh
+biBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KPiBUZXN0ZWQtYnk6IFRpbXVyIEty
+aXN0w7NmIDx0aW11ci5rcmlzdG9mQGdtYWlsLmNvbT4KPiBBY2tlZC1ieTogVGltdXIgS3Jpc3TD
+s2YgPHRpbXVyLmtyaXN0b2ZAZ21haWwuY29tPgo+IEZpeGVzOiA2OGNlOGIyNDIyNDIgKCJkcm0v
+YW1kZ3B1OiBhZGQgZ2FuZyBzdWJtaXQgYmFja2VuZCB2MiIpCj4gLS0tCj4gwqBkcml2ZXJzL2dw
+dS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfam9iLmMgfCA2ICsrKy0tLQo+IMKgMSBmaWxlIGNoYW5n
+ZWQsIDMgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2pvYi5jCj4gYi9kcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGdwdS9hbWRncHVfam9iLmMKPiBpbmRleCBjZDk2OGU3ODEwNzcuLmFiYjk5Y2ZmOGI0
+YiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfam9iLmMK
+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfam9iLmMKPiBAQCAtMjU0
+LDYgKzI1NCw5IEBAIHN0YXRpYyBzdHJ1Y3QgZG1hX2ZlbmNlCj4gKmFtZGdwdV9qb2JfZGVwZW5k
+ZW5jeShzdHJ1Y3QgZHJtX3NjaGVkX2pvYiAqc2NoZWRfam9iLAo+IMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoERSTV9FUlJPUigiRXJyb3IgYWRkaW5nIGZl
+bmNlICglZClcbiIsIHIpOwo+IMKgwqDCoMKgwqDCoMKgwqB9Cj4gwqAKPiArwqDCoMKgwqDCoMKg
+wqBpZiAoIWZlbmNlICYmIGpvYi0+Z2FuZ19zdWJtaXQpCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoGZlbmNlID0gYW1kZ3B1X2RldmljZV9zd2l0Y2hfZ2FuZyhyaW5nLT5hZGV2LCBq
+b2ItCj4gPmdhbmdfc3VibWl0KTsKPiArCj4gwqDCoMKgwqDCoMKgwqDCoHdoaWxlIChmZW5jZSA9
+PSBOVUxMICYmIHZtICYmICFqb2ItPnZtaWQpIHsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoHIgPSBhbWRncHVfdm1pZF9ncmFiKHZtLCByaW5nLCAmam9iLT5zeW5jLAo+IMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCAmam9iLT5iYXNlLnNfZmVuY2UtPmZpbmlzaGVkLAo+IEBAIC0yNjQsOSArMjY3
+LDYgQEAgc3RhdGljIHN0cnVjdCBkbWFfZmVuY2UKPiAqYW1kZ3B1X2pvYl9kZXBlbmRlbmN5KHN0
+cnVjdCBkcm1fc2NoZWRfam9iICpzY2hlZF9qb2IsCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqBmZW5jZSA9IGFtZGdwdV9zeW5jX2dldF9mZW5jZSgmam9iLT5zeW5jKTsKPiDCoMKg
+wqDCoMKgwqDCoMKgfQo+IMKgCj4gLcKgwqDCoMKgwqDCoMKgaWYgKCFmZW5jZSAmJiBqb2ItPmdh
+bmdfc3VibWl0KQo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBmZW5jZSA9IGFtZGdw
+dV9kZXZpY2Vfc3dpdGNoX2dhbmcocmluZy0+YWRldiwgam9iLQo+ID5nYW5nX3N1Ym1pdCk7Cj4g
+LQo+IMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gZmVuY2U7Cj4gwqB9Cj4gwqAKCg==
 
