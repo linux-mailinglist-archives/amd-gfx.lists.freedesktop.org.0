@@ -2,66 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7674762FAFA
-	for <lists+amd-gfx@lfdr.de>; Fri, 18 Nov 2022 18:00:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95B1B62FB01
+	for <lists+amd-gfx@lfdr.de>; Fri, 18 Nov 2022 18:01:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE14A10E78E;
-	Fri, 18 Nov 2022 17:00:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F169010E791;
+	Fri, 18 Nov 2022 17:01:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2052.outbound.protection.outlook.com [40.107.237.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE58410E78A
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Nov 2022 17:00:41 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2084.outbound.protection.outlook.com [40.107.92.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EACCC10E790
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Nov 2022 17:01:22 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=C2F/bKR+Og/pHY8/9ccj6U8MiJ0d5dyzmBizrUpVoiN1YO3FdMJDHlO5RFD8BCaQmrsF2lcVK4qx2ErVZXRFxejegxBO36UFFdFNM7AlFbyBkhsZwGe+s5MQESagOgf0l0/WxWVg+K6+e9bjahFCRkPl+HdslCP64jdUp8gIdor49V8/e8iW6N8p+7MQ0+5CQWaDZ+RdDtLO6ZOkv2lZBjpDDd0tsMguRH0lMFjbTG7rdyQpFHQ1rKCs002icCn127hoYsFO4G883mizhqV/llywXrjBllpLuPRD+uYI6cvJyK/HC014DnjY2DvAUaj37KvUGBnKxTIF348VF6h1QQ==
+ b=Oj13tHupzDTDNG3cTWDVO+/QWKmFuxH/N4Xn+XuGME2+eZxE/2l40dJtfVuqOjf6B3I9BtiLEcw1a/aN9rMTIYYFzUWAkF0HS2iOAARFldWGz2lft+7sPZrLT4GvmjkF1Ng2mhXeY904Qopfh5Yg4Y4ReiZ4ICAjagZGKSgQhijr0CzEk9KPR29fdh5MrCWpU8XPAMHLLZaKBAl4jpiEupOUBKktcJ3CjQilAtXet/LM2wzfZvLTkwu34f0hW6wrEY1o0nJZvlSzaRnjloKh/DysdK5J9Kju7IVLPWtJ1qojIRd5hhYPc1hBltcXyVH0fw+S3RKE/WXk1M6/V/wykw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6OS1Ks1KcGl8GuZFJPHqwnbCdiMtUMb5T4QCOpQ9tqU=;
- b=ZbxWxiPA9S/vK0wB5etNtiXIKG7Hv0FGkrzBQ43XIkajPsdvdeLkw0IZ5jjJk8YIfTFMmJ5iK3gCyJiJ+HYoIwiLkPNhce3Bax4Kps3532ck7mK3qhQoFbqj9WVHC+hynu45eTCAqAZQwrTKeQ90gHrluOdAF0m32/IpY52gzKgWLoYu8wnGI46mt36tSUDwhyxbvGL+XIm0sIoHZouBJTvkNFmc+ImeFoaqRRhelSYIl+JNrletr5CKDUUVkhng2FjrZ5dFnCvvetMsr0FOCTVdlsXSTY4OE118tzbcA6lxPeoQBF7gekY2OkHa1vktl/XmMQXT4HAHp43kRt/M8g==
+ bh=tu9RN3ysxgLclJCd72bUUxoVMSMUzYe8FAHVdcfN2Oc=;
+ b=Rju/9x4e4bCsc8JV8tu8ByAUyZ5kaXJuJhe4WLRWKRGnfYroIxMoSMfwgbzx4CpshZ6TJ9eTYIjPri/iEwVBktZa6CZWMbV6FTHtL6nM+kAtHpNPx96X+CHkbWwNgx88xCabCME2FKjJy45UnKRbyXUQlG2k22nMA7l6RDtBnJZg6B9QmROkSHkNmxY6IGbnd0+dHsyMpAUfbEBaidftWnQMpOsPq1YfNmW6Ln/manxHQ8cBYEX4hQB1Lixg6k50me79NmozktwMhxAFATHFuOrd4bjZdDLbSX6kS2m+9Y4rhp+4p8HDjVe31QZqA8m4ng8a2s4yY2CH7rh8BqL6+w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6OS1Ks1KcGl8GuZFJPHqwnbCdiMtUMb5T4QCOpQ9tqU=;
- b=kry/d8vKUKh/4BJM2lgYXPsY08xdTSfBxhuy/C1cBxV1QESsOc6GqpRI7YzwxJsHgFf6C9asKnnkjsU9Q7Nb9mKushESK2uzehHIVT5Q6ICrOwaIucEr06YFesIJzHStHTebD7fYOKqIOR7u4A+FhuERbWWanfSBS3dCS6j/JJE=
-Received: from MW3PR06CA0025.namprd06.prod.outlook.com (2603:10b6:303:2a::30)
- by SJ2PR12MB7798.namprd12.prod.outlook.com (2603:10b6:a03:4c0::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.19; Fri, 18 Nov
- 2022 17:00:38 +0000
-Received: from CO1NAM11FT091.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:2a:cafe::96) by MW3PR06CA0025.outlook.office365.com
- (2603:10b6:303:2a::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.20 via Frontend
- Transport; Fri, 18 Nov 2022 17:00:38 +0000
+ bh=tu9RN3ysxgLclJCd72bUUxoVMSMUzYe8FAHVdcfN2Oc=;
+ b=q7c4xISYQvm2WcWyMbvJIrIftQ1A41vNxqJBqfw0l7YINc419zjUZ9fh9nHqzkbBY/t2PzcyLFzKZfT42opaVsQDNy1E1QGysK3Cy9PcNP+C5ZLkP8nGT51W0oZWJVqkn1pXRomV4Wot4QyZiK9TyUW5XxnOGjKkGca5r1y2Z40=
+Received: from DS7PR05CA0067.namprd05.prod.outlook.com (2603:10b6:8:57::12) by
+ CY5PR12MB6226.namprd12.prod.outlook.com (2603:10b6:930:22::5) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5813.18; Fri, 18 Nov 2022 17:01:19 +0000
+Received: from DM6NAM11FT019.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:8:57:cafe::8c) by DS7PR05CA0067.outlook.office365.com
+ (2603:10b6:8:57::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.9 via Frontend
+ Transport; Fri, 18 Nov 2022 17:01:18 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT091.mail.protection.outlook.com (10.13.175.146) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT019.mail.protection.outlook.com (10.13.172.172) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5834.8 via Frontend Transport; Fri, 18 Nov 2022 17:00:38 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.5834.8 via Frontend Transport; Fri, 18 Nov 2022 17:01:17 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 18 Nov
- 2022 11:00:37 -0600
+ 2022 11:01:00 -0600
 Received: from brianchang-HP-EliteDesk-805-G6-Small-Form-Factor-PC.amd.com
  (10.180.168.240) by SATLEXMB03.amd.com (10.181.40.144) with Microsoft SMTP
- Server id 15.1.2375.34 via Frontend Transport; Fri, 18 Nov 2022 11:00:33
+ Server id 15.1.2375.34 via Frontend Transport; Fri, 18 Nov 2022 11:00:37
  -0600
 From: brichang <Brian.Chang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 13/22] drm/amd/display: Phase 1 Add Bw Allocation source and
- header files
-Date: Fri, 18 Nov 2022 20:59:26 +0800
-Message-ID: <20221118125935.4013669-14-Brian.Chang@amd.com>
+Subject: [PATCH 14/22] drm/amd/display: No display after resume from
+ WB/CB[modify]
+Date: Fri, 18 Nov 2022 20:59:27 +0800
+Message-ID: <20221118125935.4013669-15-Brian.Chang@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221118125935.4013669-1-Brian.Chang@amd.com>
 References: <20221118125935.4013669-1-Brian.Chang@amd.com>
@@ -70,26 +70,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT091:EE_|SJ2PR12MB7798:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9edf1b36-0653-41cc-8b6d-08dac9866add
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT019:EE_|CY5PR12MB6226:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4f144502-519e-46f8-876a-08dac9868295
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: rmebZoAtERsWr9ECnIVcN9KJOLAGpBkZsqNUYVio3fuOkRX13FbmoU7IYe0TDdt5HDdc2Q69p4FblTeCcwvlsxdtO6DKG1UgyR2SJyvD7jDsYzHhOOgECtl1BaHypmfIfC+hPT/OiN8Q8KEJf3a9sqy3TNry4yg16c0X1qejb2aVU6nxbIzIslvKEngTtevtGnzASANrDuBoBaIO5lmKkJVmUFjxqPN4Huf6adX3z/vEf0ASGD3+WS3AP3WPxZVVYrROumPrSYLcWtzPq33d+YexRN7TX8J3V25xbtBR4jRfTCXSDgeX02IAs0xXq5VX5VMsjzJAVJCr9N6qV+HLEomLri6oJy69sLREIYlj+gYl/yXAz1Kaq9tVuLCP35ErHEAxSZGqEUxej0v6XBDT7bA1giOw0nEvbNgoxVtI0AN0cPHiQM+fSwQVLDHqNoXJ/juvbh77mSj3EFNkkOV18xpsEUc+zyNQHeiXZ+9wtnQl00eROtN+6pWMIqxKLnc3BL034IiDIb008PnUBFqVPugXETMnTvYbfU1SoAM7wtwApCk1/KMglj4e0X0wNt3mJI35Qh7p9gKB62rj8utpkkdVSKhQEUPV762aJgCa9AcObqNG4pX29RDTyKMvTssijL7iTTuaoiiNDaqN3dxnD+FxnBzW/GyUtAZkgth/a9je8deN3Xw0158VOBbn/QlVdwCW3CxwO3dQZWwvBJvBysWtsB/Erjn3zFCxwppAC1h2Bb5dBvgqxZ+ohP3AAULCr3g8Amo3cJWQu6q7HHsvhJIHGTx9LUuiIVevaHJk5/g=
+X-Microsoft-Antispam-Message-Info: uq6YdQXx5BSADP0vTEY0ARa8hjSTwqGBAG5h0wXV5TZCP5sbydKfM77yu1BHrjugkZu/ikc/U/LEruQ59fjaP9tAbNr5i5PegIpsTmPOYqV9t4GtJfnps6pX8pBlEe+4beaB0htFysP6sx57kWlWDyZMn4LYIGTMrhn79W38dBDJTXAcOtDRsRy7AOsEROm/H9pJ4wzVt2GFOPRw0okRSqvvgi1dsS/i0A8nLlqRyxB7G4pq2s2W9EBsEN2Bxk11DP73NGM6ISepfIR/MtXUk1aIkDCU7HEji3nl+Dq4f/HfI5G2PwR61JtJmWWBjPOFQYVaEeLJrz5fp3GBISX4MEM7ps52Xx1PujozErB4DCOYET/eY+wkry4fR43IdnrSBxqze0oT5bv/VDjFCQRgmydme7DcP4FyKGoacO3kmvsgdP9J40xQyO9cgruTLDgL8BvvARyQp3pdWIIsdfEHwaeeYhjkOtJ3vlxNrJE5q/w+nSy+rzU/7PMBYRb5Omdh040w8XL2PjMOgtekUBv7ZLhFYlC1UoprYOZKyudHkmVGw4dwDOh6pYoIfKn/KAB34DT1ZVD+DLrwOqY2bQDw4R/LykHSJTTFkQC7/gwFoK05Q7NXnFthTCFU62FLgsEgcTc15PUGnLMTWZDAIvXtxGc7jtPB/PCAV/p283+2acMK1LEG81duTSSH/xAOu1BoQHzLIiLjSxf31X1wKovpDNtwJYr8f0u2E4FMeobC/OOlF/Ediz163xuEwCge2+YwpN01DPYpfL/Hs6hd8VQXZw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(396003)(136003)(346002)(376002)(39860400002)(451199015)(36840700001)(46966006)(40470700004)(81166007)(356005)(66899015)(2906002)(40480700001)(5660300002)(8936002)(8676002)(41300700001)(70586007)(336012)(70206006)(83380400001)(66574015)(26005)(6666004)(186003)(36756003)(82310400005)(2616005)(426003)(1076003)(47076005)(86362001)(36860700001)(7696005)(82740400003)(6916009)(478600001)(54906003)(316002)(40460700003)(4326008)(43062005)(21314003)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230022)(4636009)(376002)(39860400002)(136003)(346002)(396003)(451199015)(36840700001)(46966006)(40470700004)(36756003)(356005)(86362001)(81166007)(83380400001)(36860700001)(40460700003)(2906002)(40480700001)(1076003)(5660300002)(336012)(426003)(2616005)(186003)(47076005)(7696005)(82740400003)(26005)(82310400005)(4326008)(70206006)(478600001)(6916009)(70586007)(6666004)(41300700001)(54906003)(8676002)(316002)(8936002)(43062005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2022 17:00:38.0645 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9edf1b36-0653-41cc-8b6d-08dac9866add
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2022 17:01:17.9203 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4f144502-519e-46f8-876a-08dac9868295
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT091.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT019.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7798
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6226
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,170 +101,76 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Brian Chang <Brian.Chang@amd.com>,
- Jun Lei <Jun.Lei@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- Wenjing Liu <Wenjing.Liu@amd.com>, solomon.chiu@amd.com,
- Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
- Mustapha Ghaddar <mghaddar@amd.com>, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, Brian Chang <Brian.Chang@amd.com>, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ roman.li@amd.com, solomon.chiu@amd.com, Jerry Zuo <Jerry.Zuo@amd.com>,
+ Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
+ tsunglin <tsung-hua.lin@amd.com>, agustin.gutierrez@amd.com,
+ pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Mustapha Ghaddar <mghaddar@amd.com>
+From: Tsung-hua Lin <Tsung-hua.Lin@amd.com>
 
-[WHY]
-To implement BW Allocation as per USB4 spec chapter 10.7
+[why]
+First MST sideband message returns AUX_RET_ERROR_HPD_DISCON
+on certain intel platform. Aux transaction considered failure
+if HPD unexpected pulled low. The actual aux transaction success
+in such case, hence do not return error.
 
-[HOW]
-Implement the DP-Tx portion of the logic to interact with DPIA
+[how]
+Not returning error when AUX_RET_ERROR_HPD_DISCON detected
+on the first sideband message.
 
-Reviewed-by: Wenjing Liu <Wenjing.Liu@amd.com>
-Reviewed-by: Jun Lei <Jun.Lei@amd.com>
+Reviewed-by: Jerry Zuo <Jerry.Zuo@amd.com>
 Acked-by: Brian Chang <Brian.Chang@amd.com>
-Signed-off-by: Mustapha Ghaddar <mghaddar@amd.com>
+Signed-off-by: tsunglin <tsung-hua.lin@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc_link.h      | 14 ++++
- .../drm/amd/display/dc/link/link_dp_dpia_bw.c | 28 ++++++++
- .../drm/amd/display/dc/link/link_dp_dpia_bw.h | 69 +++++++++++++++++++
- 3 files changed, 111 insertions(+)
- create mode 100644 drivers/gpu/drm/amd/display/dc/link/link_dp_dpia_bw.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/link/link_dp_dpia_bw.h
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_link.h b/drivers/gpu/drm/amd/display/dc/dc_link.h
-index dc6afe33bca2..2e18bcf6b11a 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_link.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_link.h
-@@ -151,6 +151,20 @@ struct dc_panel_config {
- 		bool optimize_edp_link_rate; /* eDP ILR */
- 	} ilr;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 5b97723ff6fa..eff14e978e90 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -1372,7 +1372,7 @@ static const struct dmi_system_id hpd_disconnect_quirk_table[] = {
+ 	{
+ 		.matches = {
+ 			DMI_MATCH(DMI_SYS_VENDOR, "Dell Inc."),
+-			DMI_MATCH(DMI_PRODUCT_NAME, "OptiPlex Tower 7010 Plus"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "OptiPlex Tower Plus 7010"),
+ 		},
+ 	},
+ 	{
+@@ -1384,7 +1384,7 @@ static const struct dmi_system_id hpd_disconnect_quirk_table[] = {
+ 	{
+ 		.matches = {
+ 			DMI_MATCH(DMI_SYS_VENDOR, "Dell Inc."),
+-			DMI_MATCH(DMI_PRODUCT_NAME, "OptiPlex SFF 7010 Plus"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "OptiPlex SFF Plus 7010"),
+ 		},
+ 	},
+ 	{
+@@ -1396,16 +1396,17 @@ static const struct dmi_system_id hpd_disconnect_quirk_table[] = {
+ 	{
+ 		.matches = {
+ 			DMI_MATCH(DMI_SYS_VENDOR, "Dell Inc."),
+-			DMI_MATCH(DMI_PRODUCT_NAME, "OptiPlex MFF 7010 Plus"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "OptiPlex Micro Plus 7010"),
+ 		},
+ 	},
+ 	{
+ 		.matches = {
+ 			DMI_MATCH(DMI_SYS_VENDOR, "Dell Inc."),
+-			DMI_MATCH(DMI_PRODUCT_NAME, "OptiPlex MFF 7010"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "OptiPlex Micro 7010"),
+ 		},
+ 	},
+ 	{}
++	/* TODO: refactor this from a fixed table to a dynamic option */
  };
-+
-+/*
-+ *  USB4 DPIA BW ALLOCATION STRUCTS
-+ */
-+struct dc_dpia_bw_alloc {
-+	int sink_verified_bw;  // The Verified BW that sink can allocated and use that has been verified already
-+	int sink_allocated_bw; // The Actual Allocated BW that sink currently allocated
-+	int padding_bw;        // The Padding "Un-used" BW allocated by CM for padding reasons
-+	int sink_max_bw;       // The Max BW that sink can require/support
-+	int estimated_bw;      // The estimated available BW for this DPIA
-+	int bw_granularity;    // BW Granularity
-+	bool bw_alloc_enabled; // The BW Alloc Mode Support is turned ON for all 3:  DP-Tx & Dpia & CM
-+};
-+
- /*
-  * A link contains one or more sinks and their connected status.
-  * The currently active signal type (HDMI, DP-SST, DP-MST) is also reported.
-diff --git a/drivers/gpu/drm/amd/display/dc/link/link_dp_dpia_bw.c b/drivers/gpu/drm/amd/display/dc/link/link_dp_dpia_bw.c
-new file mode 100644
-index 000000000000..801a95b34e8c
---- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/link/link_dp_dpia_bw.c
-@@ -0,0 +1,28 @@
-+
-+/*
-+ * Copyright 2022 Advanced Micro Devices, Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ * Authors: AMD
-+ *
-+ */
-+/*********************************************************************/
-+//				USB4 DPIA BANDWIDTH ALLOCATION LOGIC
-+/*********************************************************************/
-diff --git a/drivers/gpu/drm/amd/display/dc/link/link_dp_dpia_bw.h b/drivers/gpu/drm/amd/display/dc/link/link_dp_dpia_bw.h
-new file mode 100644
-index 000000000000..669e995f825f
---- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/link/link_dp_dpia_bw.h
-@@ -0,0 +1,69 @@
-+/*
-+ * Copyright 2021 Advanced Micro Devices, Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ * Authors: AMD
-+ *
-+ */
-+
-+#ifndef DC_INC_LINK_DP_DPIA_BW_H_
-+#define DC_INC_LINK_DP_DPIA_BW_H_
-+
-+// XXX: TODO: Re-add for Phase 2
-+/* Number of Host Routers per motherboard is 2 and 2 DPIA per host router */
-+#define MAX_HR_NUM 2
-+
-+struct dc_host_router_bw_alloc {
-+	int max_bw[MAX_HR_NUM];             // The Max BW that each Host Router has available to be shared btw DPIAs
-+	int total_estimated_bw[MAX_HR_NUM]; // The Total Verified and available BW that Host Router has
-+};
-+
-+/*
-+ * Enable BW Allocation Mode Support from the DP-Tx side
-+ *
-+ * @link: pointer to the dc_link struct instance
-+ *
-+ * return: SUCCESS or FAILURE
-+ */
-+bool set_dptx_usb4_bw_alloc_support(struct dc_link *link);
-+
-+/*
-+ * Send a request from DP-Tx requesting to allocate BW remotely after
-+ * allocating it locally. This will get processed by CM and a CB function
-+ * will be called.
-+ *
-+ * @link: pointer to the dc_link struct instance
-+ * @req_bw: The requested bw in Kbyte to allocated
-+ *
-+ * return: none
-+ */
-+void set_usb4_req_bw_req(struct dc_link *link, int req_bw);
-+
-+/*
-+ * CB function for when the status of the Req above is complete. We will
-+ * find out the result of allocating on CM and update structs accordingly
-+ *
-+ * @link: pointer to the dc_link struct instance
-+ *
-+ * return: none
-+ */
-+void get_usb4_req_bw_resp(struct dc_link *link);
-+
-+#endif /* DC_INC_LINK_DP_DPIA_BW_H_ */
+ 
+ static void retrieve_dmi_info(struct amdgpu_display_manager *dm)
 -- 
 2.25.1
 
