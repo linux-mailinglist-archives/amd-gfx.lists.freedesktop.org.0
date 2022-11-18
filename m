@@ -2,69 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7392562FAFE
-	for <lists+amd-gfx@lfdr.de>; Fri, 18 Nov 2022 18:01:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DE0762FB02
+	for <lists+amd-gfx@lfdr.de>; Fri, 18 Nov 2022 18:02:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DBDA10E790;
-	Fri, 18 Nov 2022 17:01:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0AFE10E792;
+	Fri, 18 Nov 2022 17:02:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2068.outbound.protection.outlook.com [40.107.102.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02B8010E793
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Nov 2022 17:01:20 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2077.outbound.protection.outlook.com [40.107.92.77])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5724410E792
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Nov 2022 17:01:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CFrdBc2T0OCtT754z2MZqw78ca+YPDjWCCcknXH7MxfQ42Gxrq6LHt47oKYvZ1VKdM/v8H5AWMYBpBoFdsf1Ma5bgMQ8qnI84gIwvt2wcJafuQ+72T1FZ7UaWYI+umdnLBsu14XUcMqJQVGYctDyU2mKXvhT6lh15CA1EGTMQxgst7zts3vCRxBx+eymNFjxjlyDogBzN4sOTE5X6HXMoM0Vh4rRaYIa9W+ft7H9/DIXdX5RsyjJOULYu3j7Bra/3aepkOI8ceSxKdd9M0R3Xeqw7z7SFESggKZ1VOjdBWfqpdLL8bsqDYMmXD8YR0sg/PvcXLZBcdSZgeUmzfor7w==
+ b=QJXzsMna6nr8PFeWwnwS6SvMYE3Ce1ZafwiyqDhB43TrRxWUYAqA0FSNF3/ZfyfQpGX/kKsCME7QfA7Hg2B46j/Hw7WTFChQYx2iJOc7lPko2iXfYXmwW4ntaIt6WV1pasnLOJe/+uQwJn6vDbuRgVfHPICUGdrf6zk7BM1wBeqf+FXyA0RQBY6sJShLO9FGnJs3qB6lFgxdKLo8dLqLCLmHVIb7JzGub7snKtQLMJ/2cKP3WGPryUx6iNRhCmqJL6weosyd3Jeo/6GURjTbUXVoGMADaR9ppvjI+f5GNjDT336O+bY4wyEoI0bjIDXTbuHQHQt+KXqnqMW+c+naXw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iCm1hMnLxY55FQgh4n6roYslwrTMnjDQ46F9S30rquM=;
- b=M6RDve03tfKqI6oW8Y9xhH6RdDK7h8/Su9uqsgGssdNm9UpLaVKfoxeN5jVsK2fIqKMAUFZmf8O0lDbBRVf7tPyaOzyh0GH9bDeH4C03hiLqZdTKfO/6TwYH19oE3mQKx/h5M80e81t+4uTFkmunumDBBtb4Tr8Nij+lgQsEs0rD9/IRBMU3UDMEUV7wKKRhkFf0hrFNw/o7+Splz9gDVI52HTtdrxkXXh4B81JsMGzNT+Y2fK5qB+l53u0ijjp9VhCLIOU00Qm8E/h3NKYn/q2Z4aGaT4fChNmkmnPcw0p8J34w2H6mi3kmDsIPvpWqodM42RnSWZM/xcC79S1LGg==
+ bh=aY3CDL/AawljBtipuufBI4/RzARgBS+JENOEjjaCGLY=;
+ b=YfHlLVdEyjeuZ/CPdh4frNnP6w10yFAql+Jhd3qkNnPR97U4TjiuUpj9w7+Vg8D6GYdFQyAQMDVnwP38VLmzX+OzkBAxh0iNv33kTRrS/vbhe+7me4IaiQNBxb0HitrTbxfng45SvaDi4jsa9obCbtdnrRgXj1dITkGd2IOJ5w2TXFpdDsvTSxqwC1Zyi9MjSG4l5CIu4cTOU05LRe85DS19xQQw/OTZMtQxVXAQh+FIShO7ImI5bZbTI6qjkyIemlukIff4ICwv62J/R2nXMAixfB3bcfsopl1bLBs1QRJeS4Yi929sORmO3yfwkQOJ6lSGbN5lOYCuJ6zvFylNKA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iCm1hMnLxY55FQgh4n6roYslwrTMnjDQ46F9S30rquM=;
- b=g50unosPwt2Pbladg9Q3dUbTuTv66JTa5FBUkkcDX5S0DPwhZzP56bchFcLpsMAqdrInJ+gzBWYAp8q2KLRCItMioaV13MeD6q7iYk4NEkSJtI13gx0dQ5XvMLT5xTYYEwNeVKFN/avsb70+RbJDtll1NyfX2UxflNdYP1Bi+vs=
-Received: from MW4PR04CA0315.namprd04.prod.outlook.com (2603:10b6:303:82::20)
- by CY8PR12MB7290.namprd12.prod.outlook.com (2603:10b6:930:55::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.18; Fri, 18 Nov
- 2022 17:01:17 +0000
-Received: from CO1NAM11FT019.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:82:cafe::d3) by MW4PR04CA0315.outlook.office365.com
- (2603:10b6:303:82::20) with Microsoft SMTP Server (version=TLS1_2,
+ bh=aY3CDL/AawljBtipuufBI4/RzARgBS+JENOEjjaCGLY=;
+ b=ah3kosK+6RqnwP3bK+/9sMATDGaTuzfyAqCPtns1uqzBEMKU5uJcCvAX0LXfu+k0BkmuGi2905fwNe6RaqIum43sCcgInJCqYbxk4aMZxcvrd4+ye9/EY1y+O/EhpklrCzxmwixlKwvxMqdK9L3q0Xgxbuz+Z4YETJenTtBQIME=
+Received: from DS7PR03CA0237.namprd03.prod.outlook.com (2603:10b6:5:3ba::32)
+ by LV2PR12MB5847.namprd12.prod.outlook.com (2603:10b6:408:174::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.20; Fri, 18 Nov
+ 2022 17:01:56 +0000
+Received: from DM6NAM11FT025.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:3ba:cafe::f0) by DS7PR03CA0237.outlook.office365.com
+ (2603:10b6:5:3ba::32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5813.20 via Frontend
- Transport; Fri, 18 Nov 2022 17:01:17 +0000
+ Transport; Fri, 18 Nov 2022 17:01:56 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT019.mail.protection.outlook.com (10.13.175.57) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT025.mail.protection.outlook.com (10.13.172.197) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5834.8 via Frontend Transport; Fri, 18 Nov 2022 17:01:17 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.5834.8 via Frontend Transport; Fri, 18 Nov 2022 17:01:56 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 18 Nov
- 2022 11:01:16 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 18 Nov
- 2022 11:01:13 -0600
+ 2022 11:01:20 -0600
 Received: from brianchang-HP-EliteDesk-805-G6-Small-Form-Factor-PC.amd.com
  (10.180.168.240) by SATLEXMB03.amd.com (10.181.40.144) with Microsoft SMTP
- Server id 15.1.2375.34 via Frontend Transport; Fri, 18 Nov 2022 11:01:10
+ Server id 15.1.2375.34 via Frontend Transport; Fri, 18 Nov 2022 11:01:16
  -0600
 From: brichang <Brian.Chang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 17/22] drm/amd/display: Fix display corruption w/ VSR enable
-Date: Fri, 18 Nov 2022 20:59:30 +0800
-Message-ID: <20221118125935.4013669-18-Brian.Chang@amd.com>
+Subject: [PATCH 18/22] drm/amd/display: Avoid setting pixel rate divider to N/A
+Date: Fri, 18 Nov 2022 20:59:31 +0800
+Message-ID: <20221118125935.4013669-19-Brian.Chang@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221118125935.4013669-1-Brian.Chang@amd.com>
 References: <20221118125935.4013669-1-Brian.Chang@amd.com>
@@ -73,26 +69,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT019:EE_|CY8PR12MB7290:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2e26767c-a550-4252-e762-08dac9868249
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT025:EE_|LV2PR12MB5847:EE_
+X-MS-Office365-Filtering-Correlation-Id: 722f6b7a-1f6e-4fde-621f-08dac98699ab
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QJHG7Doox585/6PsDwvoIk8FymrmeTjtM7E82eQT1jggFVBDDybcFT8O757atgJrWlqiorA2Az9KpvV28G+glLC2IHiG2/T2/Q1a3glsAfQoukcVP8niQXOu6g45gbk/VGrVx89z7/3vdnrLsOt9wXpjx5mpz74LcqaVsZOzq7hQz2zoDZdkwdAXR9LWmHPdQSEPi+w1HAvIyB9qzRN13J1e0ZOkdutrS2ICGqdsrqnTO/y5giqD1G+S/xiTAkA5158AaerczfLnZ87nkbo4sx/wHrGFxuaNChAuiFYyYRPdlUO/MIUixu3jQvErKuuZq/VyvmHqb5PtDJM5O+EyvCwWx2AQ0LbNMVzE2e17IZFBSsTblpcLUSf2M+esQn1EM4PgvzN3ge22yDkCuJKZzvyZRLx9OyYtm1OcIkn0KO95pvwDpKk1NevWJnlSDu9UE5iqSxzhgDXkTjNkJ+9SB0q1378wV7TdeRNaugKyLG0oPePymlP70GixbUgv1CWF/hnPGH9LwJpyAWT9bxiJM5fuggx4QA1mBnGmaLiD+2EzA47ZuyRkbKCI0PeqQh/O1ZSuESpwQdb5+TRqyGtaIqX0KIoWA+u5KAOdj24G0g8GUwWgAexAyyjEh9b3dc/64az2hLIsIixh4fwGwerN0SwYOiXF1CAWb+1lwW6fEiRCuRjpns4Gtn01W9kXKahSYiPMTp6o5gE2HWBpqar0AjBR2t8uqLzSfNhuvooMtLnd3ISfYfFnUUnZYnTwnFnnCIC9qpaqjZNgfDswnE/R9g==
+X-Microsoft-Antispam-Message-Info: xRw7Far0Y01VbN5qND96MvPQ2Px2FyQNhnEDeXlYGrajomhPXF5LIGsIibwIeqPiAwo3siyDyrrY7mZ3AAsnx2kjDDjwJQUbsltN7xv2JPhVVi/eDXMooYWP3O07c3UqMCyvl5r2XMQFftTi+7+Ficf/p+RG6Fq2Ux7RyEiidVFsSfmgyfKI3OpuT41yKlCvSGmvEs6+I6fxG86KGBNezVAZGBfn9F6WKjPajXdPvaWnbYW6rkIXyVk7MotLpKRfdEtqIa/NpmRZ0Zno3xeFaaIbuc90X+HV+yN/XhQYkZ8y1bNHROOvVzaR9XT/LrNAsoCDLY9O/05dI6JhxMvf8o/nHNlnzWE2sr693RFwD+Hu6hRE8PGIWX4An7BOvLYCfHOei1hzVdra0rDYs0/qkTWY4wxOKxPXGRgwFVVv/Ngd/lgIDi2lnPhOhsdD2OXcNZGCwNlnJWBioZ7tisKqe/xS8yJ2U9s75YSlOXqsXQiIld/dXhCIW5h+uegopJ0m0Nww9+sgxSRsN0eYbyrNNgfc75j0u/e7kYAAGvbltjQ8sxr4p8IYpkfsyLR7N5WmZmxgli4sB2UWqtEBx/Nvxj27lsvtCjiDTIho3yqylr8S2PIwSLtnNLgKBD44qSBx4jAx48T5gWm88mGmVimfDD8u1FdPN60NjVgQD8ddN9AUtS0d/y0Cp+Dd3qJ4G5HmFgkO6MM+l39ZEfS9am00QjKGR7ZC2suBHzTBJDfbuTMzznEr+cep1gzvq9MGh1aH
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(346002)(396003)(136003)(376002)(39860400002)(451199015)(40470700004)(46966006)(36840700001)(316002)(6666004)(4326008)(7696005)(6916009)(54906003)(70586007)(70206006)(8676002)(478600001)(26005)(426003)(47076005)(186003)(1076003)(41300700001)(336012)(2906002)(83380400001)(2616005)(36756003)(40460700003)(5660300002)(8936002)(36860700001)(82310400005)(82740400003)(81166007)(356005)(40480700001)(86362001)(43062005)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230022)(4636009)(376002)(346002)(136003)(396003)(39860400002)(451199015)(46966006)(40470700004)(36840700001)(36756003)(81166007)(82740400003)(356005)(478600001)(40480700001)(82310400005)(86362001)(83380400001)(36860700001)(2906002)(5660300002)(426003)(2616005)(47076005)(40460700003)(26005)(4326008)(6666004)(7696005)(8936002)(186003)(70206006)(1076003)(70586007)(54906003)(6916009)(336012)(8676002)(316002)(41300700001)(43062005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2022 17:01:17.3309 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2e26767c-a550-4252-e762-08dac9868249
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2022 17:01:56.6511 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 722f6b7a-1f6e-4fde-621f-08dac98699ab
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT019.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT025.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7290
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5847
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,44 +100,109 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Ilya Bakoulin <Ilya.Bakoulin@amd.com>,
- Dillon Varone <Dillon.Varone@amd.com>, Brian Chang <Brian.Chang@amd.com>,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
+Cc: stylon.wang@amd.com, Brian Chang <Brian.Chang@amd.com>, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ roman.li@amd.com, Taimur Hassan <Syed.Hassan@amd.com>, solomon.chiu@amd.com,
  Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+ Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>, agustin.gutierrez@amd.com,
+ pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Ilya Bakoulin <Ilya.Bakoulin@amd.com>
+From: Taimur Hassan <Syed.Hassan@amd.com>
 
 [Why]
-Brief corruption is observed on hotplug/unplug with certain display
-configurations when VSR is enabled.
+Pixel rate divider values should never be set to N/A (0xF) as the K1/K2
+field is only 1/2 bits wide.
 
 [How]
-Work around the issue by avoiding 2to1 ODM when stream plane_count is 0.
+Set valid divider values for virtual and FRL/DP2 cases.
 
-Reviewed-by: Dillon Varone <Dillon.Varone@amd.com>
+Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Brian Chang <Brian.Chang@amd.com>
-Signed-off-by: Ilya Bakoulin <Ilya.Bakoulin@amd.com>
+Signed-off-by: Taimur Hassan <Syed.Hassan@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/dcn314/dcn314_dccg.c  | 7 +++++++
+ drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.c | 6 ++----
+ drivers/gpu/drm/amd/display/dc/dcn32/dcn32_dccg.c    | 4 +++-
+ drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c   | 4 +---
+ 4 files changed, 13 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
-index 827eef7e1787..99ddd2232322 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
-@@ -1924,7 +1924,7 @@ int dcn32_populate_dml_pipes_from_context(
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_dccg.c b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_dccg.c
+index 367cb6e6d074..0b769ee71405 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_dccg.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_dccg.c
+@@ -96,6 +96,13 @@ static void dccg314_set_pixel_rate_div(
+ 	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
+ 	enum pixel_rate_div cur_k1 = PIXEL_RATE_DIV_NA, cur_k2 = PIXEL_RATE_DIV_NA;
  
- 		pipes[pipe_cnt].pipe.dest.odm_combine_policy = dm_odm_combine_policy_dal;
- 		if (context->stream_count == 1 &&
--				context->stream_status[0].plane_count <= 1 &&
-+				context->stream_status[0].plane_count == 1 &&
- 				!dc_is_hdmi_signal(res_ctx->pipe_ctx[i].stream->signal) &&
- 				is_h_timing_divisible_by_2(res_ctx->pipe_ctx[i].stream) &&
- 				pipe->stream->timing.pix_clk_100hz * 100 > DCN3_2_VMIN_DISPCLK_HZ &&
++	// Don't program 0xF into the register field. Not valid since
++	// K1 / K2 field is only 1 / 2 bits wide
++	if (k1 == PIXEL_RATE_DIV_NA || k2 == PIXEL_RATE_DIV_NA) {
++		BREAK_TO_DEBUGGER();
++		return;
++	}
++
+ 	dccg314_get_pixel_rate_div(dccg, otg_inst, &cur_k1, &cur_k2);
+ 	if (k1 == cur_k1 && k2 == cur_k2)
+ 		return;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.c
+index 588c1c71241f..a0741794db62 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.c
+@@ -348,10 +348,8 @@ unsigned int dcn314_calculate_dccg_k1_k2_values(struct pipe_ctx *pipe_ctx, unsig
+ 	two_pix_per_container = optc2_is_two_pixels_per_containter(&stream->timing);
+ 	odm_combine_factor = get_odm_config(pipe_ctx, NULL);
+ 
+-	if (pipe_ctx->stream->signal == SIGNAL_TYPE_VIRTUAL)
+-		return odm_combine_factor;
+-
+ 	if (is_dp_128b_132b_signal(pipe_ctx)) {
++		*k1_div = PIXEL_RATE_DIV_BY_1;
+ 		*k2_div = PIXEL_RATE_DIV_BY_1;
+ 	} else if (dc_is_hdmi_tmds_signal(pipe_ctx->stream->signal) || dc_is_dvi_signal(pipe_ctx->stream->signal)) {
+ 		*k1_div = PIXEL_RATE_DIV_BY_1;
+@@ -359,7 +357,7 @@ unsigned int dcn314_calculate_dccg_k1_k2_values(struct pipe_ctx *pipe_ctx, unsig
+ 			*k2_div = PIXEL_RATE_DIV_BY_2;
+ 		else
+ 			*k2_div = PIXEL_RATE_DIV_BY_4;
+-	} else if (dc_is_dp_signal(pipe_ctx->stream->signal)) {
++	} else if (dc_is_dp_signal(pipe_ctx->stream->signal) || dc_is_virtual_signal(pipe_ctx->stream->signal)) {
+ 		if (two_pix_per_container) {
+ 			*k1_div = PIXEL_RATE_DIV_BY_1;
+ 			*k2_div = PIXEL_RATE_DIV_BY_2;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_dccg.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_dccg.c
+index e4daed44ef5f..df4f25119142 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_dccg.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_dccg.c
+@@ -96,8 +96,10 @@ static void dccg32_set_pixel_rate_div(
+ 
+ 	// Don't program 0xF into the register field. Not valid since
+ 	// K1 / K2 field is only 1 / 2 bits wide
+-	if (k1 == PIXEL_RATE_DIV_NA || k2 == PIXEL_RATE_DIV_NA)
++	if (k1 == PIXEL_RATE_DIV_NA || k2 == PIXEL_RATE_DIV_NA) {
++		BREAK_TO_DEBUGGER();
+ 		return;
++	}
+ 
+ 	dccg32_get_pixel_rate_div(dccg, otg_inst, &cur_k1, &cur_k2);
+ 	if (k1 == cur_k1 && k2 == cur_k2)
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
+index 61f129faf251..2f19f711d8be 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
+@@ -1175,10 +1175,8 @@ unsigned int dcn32_calculate_dccg_k1_k2_values(struct pipe_ctx *pipe_ctx, unsign
+ 	two_pix_per_container = optc2_is_two_pixels_per_containter(&stream->timing);
+ 	odm_combine_factor = get_odm_config(pipe_ctx, NULL);
+ 
+-	if (pipe_ctx->stream->signal == SIGNAL_TYPE_VIRTUAL)
+-		return odm_combine_factor;
+-
+ 	if (is_dp_128b_132b_signal(pipe_ctx)) {
++		*k1_div = PIXEL_RATE_DIV_BY_1;
+ 		*k2_div = PIXEL_RATE_DIV_BY_1;
+ 	} else if (dc_is_hdmi_tmds_signal(pipe_ctx->stream->signal) || dc_is_dvi_signal(pipe_ctx->stream->signal)) {
+ 		*k1_div = PIXEL_RATE_DIV_BY_1;
 -- 
 2.25.1
 
