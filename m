@@ -1,57 +1,58 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE22C633E94
-	for <lists+amd-gfx@lfdr.de>; Tue, 22 Nov 2022 15:12:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF266633F41
+	for <lists+amd-gfx@lfdr.de>; Tue, 22 Nov 2022 15:50:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECA6310E1D3;
-	Tue, 22 Nov 2022 14:12:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA63C10E3FE;
+	Tue, 22 Nov 2022 14:49:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com
- [IPv6:2001:4860:4864:20::30])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4646A10E1D3
- for <amd-gfx@lists.freedesktop.org>; Tue, 22 Nov 2022 14:12:16 +0000 (UTC)
-Received: by mail-oa1-x30.google.com with SMTP id
- 586e51a60fabf-14286d5ebc3so14052240fac.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 22 Nov 2022 06:12:16 -0800 (PST)
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com
+ [IPv6:2607:f8b0:4864:20::22f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AFBF10E3FB;
+ Tue, 22 Nov 2022 14:49:50 +0000 (UTC)
+Received: by mail-oi1-x22f.google.com with SMTP id h132so16071277oif.2;
+ Tue, 22 Nov 2022 06:49:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=fnk6I4i+IQT7oC3cvWQnuIHaKdiQ8/CvwU8yPeOGi7E=;
- b=HtnFBx/tlb5CmtOvRGDkitL8H50pAfHWR6xK6+Rl4EV7lbJA4zF7yQjwACcnlm2/I8
- 2/W84MitFTMRRidwsxgqiCt8b84YXsNVeAALbOzCdrZeO6lWvDPrMu35zfCiP9apOA7U
- vv6HJVA/trdviUUno/jP5MciGFjvknVFKwnmlvTlTk0SL/IH0TQe4S82sGY/ZPvVTcAv
- vCvuR4hoD5+b1dVn6+uD/cuuZoiD2R8w4behZnUHcJLpPtwfI5/ItAIXaPM/yO1Vgqip
- mIveLGeHtHLDUfZBBu7xwmaOgU2qlFzBz31aNGE+0dH6+4ueb7d+XPjmOD4uPzHddktz
- +EaA==
+ bh=Hwgro+Mm4grcLsTI4z1CQ0gU6+UP66+rkYIgqXTF/rQ=;
+ b=hpFYUH249Ic1nL0AqhXFotGqEgkRx8sf1g9pza49gOxeUJLCAzb7JsbpO3oHEz+XD6
+ bJ+nyZAFg/XR2OtRO39KOI2/1fyZO2t9F5ils9Cvn5xnt7X2MItbBMvK8bwg+jPsny9c
+ xrJ4NdhFWaDAi8XLrj600h/Jqjn2uoJqlhnPBAim2UFijNX9DyAX+beFBHuocfyRB5Gv
+ nhfh5AaREN84WTay/HtyFpBVv8RUl5iad7XIrEOZcIVtYS2utU/lPMSmCFnSa9/zbXwm
+ cclPBnUkkSp/TjxpaxXfkqv3z1HRQdrHOi75bn4h0ISfioHrk/XMnY0s1LXtbmoiQYAR
+ N40Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=fnk6I4i+IQT7oC3cvWQnuIHaKdiQ8/CvwU8yPeOGi7E=;
- b=75i2yWOMtH4iYstL5F3FKyX+JotOVmrflU/t0pMOCiA/IvMWhhdo0y/EYbvGUCuRQb
- 4BHpzGdCnw9gp3UjJm+V25Pmd0OxGzG8JADQuzBIJHvhk02h2kbH5ceq6MqNdT9DsaJK
- DhcVidz4JXQkhNazGQppC8DGf2tLPgwY1pVrBmumBykX8RLNn9GlqNmEYwb8YPJ5SIha
- Dcy/t7LuHyvuwbzeFAisKw7mGNA1BAMsqm2T6Ye5S+YWcNbY5fhH57nzhq4zGCekWlwq
- HNBnwPUvDUHKer9t/ltQRFe5KXonb/s9Ggqe4EcMnOFtFLMMlNa/5JlyZW5UuMkOj7wh
- ID3w==
-X-Gm-Message-State: ANoB5pm3Bh3DW4kxCs0GMKnAE5X+Ilxf7EL2jjhknQjGmVdZe5K3cUq/
- +/x34VAiguJnH/6MBEHY+gNZpedhHQXrXuLsMSE=
-X-Google-Smtp-Source: AA0mqf7u12LQ/o2l/pToTc96vlIsp8jB0Ndut4/lqjf315L/h+hgkUG+njS6VJtHXZjQWYO99k80lwdTuwyXANdstDc=
-X-Received: by 2002:a05:6870:b07:b0:13b:d07f:f29d with SMTP id
- lh7-20020a0568700b0700b0013bd07ff29dmr2079655oab.96.1669126335372; Tue, 22
- Nov 2022 06:12:15 -0800 (PST)
+ bh=Hwgro+Mm4grcLsTI4z1CQ0gU6+UP66+rkYIgqXTF/rQ=;
+ b=5AqDavWvFMecW3ARH28M1v44+DA9Ti8hSsQ1KbG/4vB3+Lybh1G18Mu2pFnoZKJQ20
+ uZxpzqdbh81nzKIj2ftvn19PLjQI6YvL9QGMQN8acsu6l3uKpW15ifz2SD0ppySEsH54
+ Q1YCG7VuBCwdFZnGuAWM5XzjQiC32LKIVQFRoBGrwpyuF4Z7hHXPJtAggpf917Es4VMa
+ RqPrt/vrO1Z3O3Pa7MEKiAhR5VAQfwY607f7D4PIDQyJrR6ChmoeX1sUKw3lBrM36N42
+ pRp30XpB+RLFky5KQr0p4pw+RDifwUZFClHYHj0bmhULXNZyjtMReqbLShzFQFROBhCd
+ +QlQ==
+X-Gm-Message-State: ANoB5pngXMOL58Yt3AUx+sN5I39OIEB3U8CnNZkf456FoheT2p9NY3Eh
+ +1pXniftrZ+xDBHZSup+YoFLCX8OPwz2U7F7t3k=
+X-Google-Smtp-Source: AA0mqf6pR02AvMqIQNHUy/xIW6cpnuZtBTZtDyYB2bN4HiiF4twoE9RF3lIvW3txzEnSq0pOHz2WFAjBVHIA3Tbj5tk=
+X-Received: by 2002:a05:6808:9b8:b0:34f:97ea:14d with SMTP id
+ e24-20020a05680809b800b0034f97ea014dmr1764935oig.96.1669128589816; Tue, 22
+ Nov 2022 06:49:49 -0800 (PST)
 MIME-Version: 1.0
-References: <622f20c5-5c24-d1c5-f874-6cb80b365e2e@collabora.com>
-In-Reply-To: <622f20c5-5c24-d1c5-f874-6cb80b365e2e@collabora.com>
+References: <20221122113043.18715-1-wangxiongfeng2@huawei.com>
+ <20221122113043.18715-2-wangxiongfeng2@huawei.com>
+In-Reply-To: <20221122113043.18715-2-wangxiongfeng2@huawei.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 22 Nov 2022 09:12:03 -0500
-Message-ID: <CADnq5_PKxfk9wEbQp8Mcxszp8R02qqe6ZtuonZ-TH4Zg9Lhrdg@mail.gmail.com>
-Subject: Re: Help debug amdgpu faults
-To: Robert Beckett <bob.beckett@collabora.com>
+Date: Tue, 22 Nov 2022 09:49:38 -0500
+Message-ID: <CADnq5_NxLhU+zeNv4Esm=3Wn-=qHkRCzOmqT9a208BVZUn29pw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] drm/radeon: Fix PCI device refcount leak in
+ radeon_atrm_get_bios()
+To: Xiongfeng Wang <wangxiongfeng2@huawei.com>
 Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,85 +65,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dmitrii Osipenko <dmitry.osipenko@collabora.com>,
- =?UTF-8?Q?Adri=C3=A1n_Mart=C3=ADnez_Larumbe?=
- <adrian.larumbe@collabora.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org, Daniel Stone <daniels@collabora.com>
+Cc: Xinhui.Pan@amd.com, lijo.lazar@amd.com, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, daniel@ffwll.ch, yangyingliang@huawei.com,
+ alexander.deucher@amd.com, airlied@gmail.com, christian.koenig@amd.com,
+ Hawking.Zhang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 22, 2022 at 6:53 AM Robert Beckett
-<bob.beckett@collabora.com> wrote:
+On Tue, Nov 22, 2022 at 6:12 AM Xiongfeng Wang
+<wangxiongfeng2@huawei.com> wrote:
 >
-> Hi,
+> As comment of pci_get_class() says, it returns a pci_device with its
+> refcount increased and decreased the refcount for the input parameter
+> @from if it is not NULL.
 >
->
-> does anyone know any documentation, or can provide advice on debugging amdgpu fault reports?
+> If we break the loop in radeon_atrm_get_bios() with 'pdev' not NULL, we
+> need to call pci_dev_put() to decrease the refcount. Add the missing
+> pci_dev_put() to avoid refcount leak.
 
-This is a GPU page fault so it refers the the GPU virtual address
-space of the application .  Each process (well fd really), gets its
-own GPU virtual address space into which system memory, system mmio
-space, or vram can be mapped.  The user mode drivers control their GPU
-virtual address space.
-
->
->
-> e.g:
->
-> Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:8 vmid:1 pasid:32769, for process vkcube pid 999 thread vkcube pid 999)
-
-This is the process that caused the fault.
-
-> Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu:   in page starting at address 0x0000800100700000 from client 0x1b (UTCL2)
-
-This is the virtual address that faulted.
-
-> Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00101A10
-> Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu:          Faulty UTCL2 client ID: SDMA0 (0xd)
-
-The fault came from the SDMA engine.
-
-> Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu:          MORE_FAULTS: 0x0
-> Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu:          WALKER_ERROR: 0x0
-> Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu:          PERMISSION_FAULTS: 0x1
-
-The page was not marked as valid in the GPU page table.
-
-> Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu:          MAPPING_ERROR: 0x0
-> Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu:          RW: 0x0
-
-SDMA attempted to read an invalid page.
-
->
->
->
-> see https://gitlab.freedesktop.org/drm/amd/-/issues/2267 for more context.
->
-> We have a complicated setup involving rendering then blitting to virtio-gpu exported dmabufs, with plenty of hacks in the mesa and xwayland stacks, so we are considering this our issue to debug, and not an issue with the driver at this point.
-> However, having debugged all the interesting parts leading to these faults, I am unable to decode the fault report to correlate to a buffer.
->
-> in the fault report, what address space is the address from?
-> given that the fault handler shifts the reported addres up by 12, I assume it is a 4K pfn which makes me assume a physical address is this correct?
-> if so, is that a vram pa or a host system memory pa?
-> is there any documentation for the other fields reported like the fault status etc?
-
-See the comments above.  There is some kernel doc as well:
-https://docs.kernel.org/gpu/amdgpu/driver-core.html#amdgpu-virtual-memory
-
->
-> I'd appreciate any advice you could give to help us debug further.
-
-Some operation you are doing in the user mode driver is reading an
-invalid page.  Possibly reading past the end of a buffer or something
-mis-aligned.  Compare the faulting GPU address to the GPU virtual
-address space in the application and you should be able to track down
-what is happening.
+For both patches, I think pci_dev_put() needs to go into the loops.
+There are 2 or more GPUs on the systems where this is relevant.
 
 Alex
 
 >
-> Thanks
+> Fixes: d8ade3526b2a ("drm/radeon: handle non-VGA class pci devices with ATRM")
+> Fixes: c61e2775873f ("drm/radeon: split ATRM support out from the ATPX handler (v3)")
+> Signed-off-by: Xiongfeng Wang <wangxiongfeng2@huawei.com>
+> ---
+>  drivers/gpu/drm/radeon/radeon_bios.c | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> Bob
+> diff --git a/drivers/gpu/drm/radeon/radeon_bios.c b/drivers/gpu/drm/radeon/radeon_bios.c
+> index 33121655d50b..2df6ce3e32cb 100644
+> --- a/drivers/gpu/drm/radeon/radeon_bios.c
+> +++ b/drivers/gpu/drm/radeon/radeon_bios.c
+> @@ -227,6 +227,7 @@ static bool radeon_atrm_get_bios(struct radeon_device *rdev)
+>
+>         if (!found)
+>                 return false;
+> +       pci_dev_put(pdev);
+>
+>         rdev->bios = kmalloc(size, GFP_KERNEL);
+>         if (!rdev->bios) {
+> --
+> 2.20.1
 >
