@@ -2,45 +2,39 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19C93633BD3
-	for <lists+amd-gfx@lfdr.de>; Tue, 22 Nov 2022 12:53:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9240F633F13
+	for <lists+amd-gfx@lfdr.de>; Tue, 22 Nov 2022 15:37:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0830A10E3CD;
-	Tue, 22 Nov 2022 11:53:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF80010E3F0;
+	Tue, 22 Nov 2022 14:37:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C34B710E07E
- for <amd-gfx@lists.freedesktop.org>; Tue, 22 Nov 2022 11:53:23 +0000 (UTC)
-Received: from [192.168.178.53] (82-71-8-225.dsl.in-addr.zen.co.uk
- [82.71.8.225])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: bbeckett)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 265876602AD8;
- Tue, 22 Nov 2022 11:53:22 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1669118002;
- bh=Aovf2CwNDzFui7lUmvufMoQOABRhlN8HJreRHfDIgys=;
- h=Date:To:Cc:From:Subject:From;
- b=odgL/lqPh2qovKbnpD5q/VBlbdR9GkPBhr0D6gS2htkmk7cOVZIAlrcWAElGuI5PW
- NZjbsaDjjuJLFuT3xWVAzvVxtQ00NI/O8UzJPWg0Kc583csJgNOMwllaqIU8GlvmeS
- Zek+WpmM8VwRZkvA97iZU3UJvrnkGs7mtn2YH+gx8FMyv1UQdhljmHz4pE3okJ66nM
- fk7c7wAP644HP16qW1KzZA4Ymy+3gWEZOwplcpqlrPH8gZIlIxriUSFH2vD4h+P2+C
- A35mg9nRo0G+RDB+3HTjQ37tOIRSIaimV/P8v8XEHpm70uY1ThnFeh2Cw7N/kJGOsO
- s00dj73yH9ZWg==
-Content-Type: multipart/alternative;
- boundary="------------g9ekZyd0eKzlxu70zP0O3wcz"
-Message-ID: <622f20c5-5c24-d1c5-f874-6cb80b365e2e@collabora.com>
-Date: Tue, 22 Nov 2022 11:53:19 +0000
+X-Greylist: delayed 301 seconds by postgrey-1.36 at gabe;
+ Tue, 22 Nov 2022 11:01:36 UTC
+Received: from albert.telenet-ops.be (albert.telenet-ops.be
+ [IPv6:2a02:1800:110:4::f00:1a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FB5210E3C2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 22 Nov 2022 11:01:36 +0000 (UTC)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed10:4821:1ba5:2638:5c3a])
+ by albert.telenet-ops.be with bizsmtp
+ id nNwZ2800A5WXlCv06NwZjj; Tue, 22 Nov 2022 11:56:33 +0100
+Received: from geert (helo=localhost)
+ by ramsan.of.borg with local-esmtp (Exim 4.93)
+ (envelope-from <geert@linux-m68k.org>)
+ id 1oxQx6-001C3A-OH; Tue, 22 Nov 2022 11:56:32 +0100
+Date: Tue, 22 Nov 2022 11:56:32 +0100 (CET)
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+X-X-Sender: geert@ramsan.of.borg
+To: linux-kernel@vger.kernel.org
+Subject: Re: Build regressions/improvements in v6.1-rc6
+In-Reply-To: <20221122105054.4062213-1-geert@linux-m68k.org>
+Message-ID: <alpine.DEB.2.22.394.2211221154280.284524@ramsan.of.borg>
+References: <CAHk-=wjKJyzfJmOzBdEOqCFRc8Fh-rdGM4tvMXfW0WXbbHwV0w@mail.gmail.com>
+ <20221122105054.4062213-1-geert@linux-m68k.org>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-To: amd-gfx@lists.freedesktop.org, =?UTF-8?Q?Christian_K=c3=b6nig?=
- <christian.koenig@amd.com>
-Content-Language: en-US
-From: Robert Beckett <bob.beckett@collabora.com>
-Subject: Help debug amdgpu faults
+Content-Type: text/plain; charset=US-ASCII; format=flowed
+X-Mailman-Approved-At: Tue, 22 Nov 2022 14:37:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,111 +46,41 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Adri=c3=a1n_Mart=c3=adnez_Larumbe?=
- <adrian.larumbe@collabora.com>, Daniel Stone <daniels@collabora.com>,
- Dmitrii Osipenko <dmitry.osipenko@collabora.com>
+Cc: linux-rdma@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-um@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------g9ekZyd0eKzlxu70zP0O3wcz
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+On Tue, 22 Nov 2022, Geert Uytterhoeven wrote:
+> JFYI, when comparing v6.1-rc6[1] to v6.1-rc5[3], the summaries are:
+>  - build errors: +6/-0
 
-Hi,
+   + /kisskb/src/arch/sh/include/asm/io.h: error: cast to pointer from integer of different size [-Werror=int-to-pointer-cast]:  => 239:34
 
+sh4-gcc11/sh-allmodconfig (in cvm_oct_free_hw_memory())
 
-does anyone know any documentation, or can provide advice on debugging 
-amdgpu fault reports?
+   + /kisskb/src/arch/um/include/asm/processor-generic.h: error: called object is not a function or function pointer:  => 94:18
+   + /kisskb/src/drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c: error: control reaches end of non-void function [-Werror=return-type]:  => 1934:1
 
+um-x86_64/um-all{mod,yes}config (in kfd_cpumask_to_apic_id())
 
-e.g:
+   + /kisskb/src/drivers/infiniband/hw/qib/qib_wc_x86_64.c: error: 'X86_VENDOR_AMD' undeclared (first use in this function):  => 149:37
+   + /kisskb/src/drivers/infiniband/hw/qib/qib_wc_x86_64.c: error: 'struct cpuinfo_um' has no member named 'x86_vendor':  => 149:22
+   + /kisskb/src/drivers/infiniband/hw/qib/qib_wc_x86_64.c: error: control reaches end of non-void function [-Werror=return-type]:  => 150:1
 
-Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu: [gfxhub] 
-page fault (src_id:0 ring:8 vmid:1 pasid:32769, for process vkcube pid 
-999 thread vkcube pid 999)
-Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu: in page 
-starting at address 0x0000800100700000 from client 0x1b (UTCL2)
-Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu: 
-GCVM_L2_PROTECTION_FAULT_STATUS:0x00101A10
-Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu: Faulty UTCL2 
-client ID: SDMA0 (0xd)
-Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu: MORE_FAULTS: 0x0
-Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu: 
-WALKER_ERROR: 0x0
-Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu: 
-PERMISSION_FAULTS: 0x1
-Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu: 
-MAPPING_ERROR: 0x0
-Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu: RW: 0x0
+um-x86_64/um-allyesconfig
 
+> [1] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/eb7081409f94a9a8608593d0fb63a1aa3d6f95d8/ (all 149 configs)
+> [3] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/094226ad94f471a9f19e8f8e7140a09c2625abaa/ (all 149 configs)
 
+Gr{oetje,eeting}s,
 
-seehttps://gitlab.freedesktop.org/drm/amd/-/issues/2267  for more context.
+ 						Geert
 
-We have a complicated setup involving rendering then blitting to virtio-gpu exported dmabufs, with plenty of hacks in the mesa and xwayland stacks, so we are considering this our issue to debug, and not an issue with the driver at this point.
-However, having debugged all the interesting parts leading to these faults, I am unable to decode the fault report to correlate to a buffer.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-in the fault report, what address space is the address from?
-given that the fault handler shifts the reported addres up by 12, I assume it is a 4K pfn which makes me assume a physical address is this correct?
-if so, is that a vram pa or a host system memory pa?
-is there any documentation for the other fields reported like the fault status etc?
-
-I'd appreciate any advice you could give to help us debug further.
-
-Thanks
-
-Bob
-
---------------g9ekZyd0eKzlxu70zP0O3wcz
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>Hi,</p>
-    <p><br>
-    </p>
-    <p>does anyone know any documentation, or can provide advice on
-      debugging amdgpu fault reports?</p>
-    <p><br>
-    </p>
-    <p>e.g:</p>
-    <pre class="code highlight" lang="plaintext"><span id="LC1" class="line" lang="plaintext">Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu: [gfxhub] page fault (src_<a class="moz-txt-link-freetext" href="id:0">id:0</a> <a class="moz-txt-link-freetext" href="ring:8">ring:8</a> <a class="moz-txt-link-freetext" href="vmid:1">vmid:1</a> <a class="moz-txt-link-freetext" href="pasid:32769">pasid:32769</a>, for process vkcube pid 999 thread vkcube pid 999)                                                                                                                                                        </span>
-<span id="LC2" class="line" lang="plaintext">Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu:   in page starting at address 0x0000800100700000 from client 0x1b (UTCL2)                   </span>
-<span id="LC3" class="line" lang="plaintext">Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_<a class="moz-txt-link-freetext" href="STATUS:0x00101A10">STATUS:0x00101A10</a>                                                                                                                                                                                                                        </span>
-<span id="LC4" class="line" lang="plaintext">Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu:          Faulty UTCL2 client ID: SDMA0 (0xd)                 </span>
-<span id="LC5" class="line" lang="plaintext">Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu:          MORE_FAULTS: 0x0</span>
-<span id="LC6" class="line" lang="plaintext">Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu:          WALKER_ERROR: 0x0</span>
-<span id="LC7" class="line" lang="plaintext">Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu:          PERMISSION_FAULTS: 0x1</span>
-<span id="LC8" class="line" lang="plaintext">Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu:          MAPPING_ERROR: 0x0</span>
-<span id="LC9" class="line" lang="plaintext">Nov 21 19:17:06 fedora kernel: amdgpu 0000:01:00.0: amdgpu:          RW: 0x0</span>
-
-
-
-see <a class="moz-txt-link-freetext" href="https://gitlab.freedesktop.org/drm/amd/-/issues/2267">https://gitlab.freedesktop.org/drm/amd/-/issues/2267</a> for more context.
-
-We have a complicated setup involving rendering then blitting to virtio-gpu exported dmabufs, with plenty of hacks in the mesa and xwayland stacks, so we are considering this our issue to debug, and not an issue with the driver at this point.
-However, having debugged all the interesting parts leading to these faults, I am unable to decode the fault report to correlate to a buffer.
-
-in the fault report, what address space is the address from?
-given that the fault handler shifts the reported addres up by 12, I assume it is a 4K pfn which makes me assume a physical address is this correct?
-if so, is that a vram pa or a host system memory pa?
-is there any documentation for the other fields reported like the fault status etc?
-
-I'd appreciate any advice you could give to help us debug further.
-
-Thanks
-
-Bob
-
-</pre>
-    <p></p>
-  </body>
-</html>
-
---------------g9ekZyd0eKzlxu70zP0O3wcz--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+ 							    -- Linus Torvalds
