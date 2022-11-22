@@ -2,38 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9240F633F13
-	for <lists+amd-gfx@lfdr.de>; Tue, 22 Nov 2022 15:37:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4BF7633F10
+	for <lists+amd-gfx@lfdr.de>; Tue, 22 Nov 2022 15:37:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF80010E3F0;
-	Tue, 22 Nov 2022 14:37:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B86F10E3EA;
+	Tue, 22 Nov 2022 14:37:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 301 seconds by postgrey-1.36 at gabe;
- Tue, 22 Nov 2022 11:01:36 UTC
-Received: from albert.telenet-ops.be (albert.telenet-ops.be
- [IPv6:2a02:1800:110:4::f00:1a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FB5210E3C2
- for <amd-gfx@lists.freedesktop.org>; Tue, 22 Nov 2022 11:01:36 +0000 (UTC)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed10:4821:1ba5:2638:5c3a])
- by albert.telenet-ops.be with bizsmtp
- id nNwZ2800A5WXlCv06NwZjj; Tue, 22 Nov 2022 11:56:33 +0100
-Received: from geert (helo=localhost)
- by ramsan.of.borg with local-esmtp (Exim 4.93)
- (envelope-from <geert@linux-m68k.org>)
- id 1oxQx6-001C3A-OH; Tue, 22 Nov 2022 11:56:32 +0100
-Date: Tue, 22 Nov 2022 11:56:32 +0100 (CET)
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-X-X-Sender: geert@ramsan.of.borg
-To: linux-kernel@vger.kernel.org
-Subject: Re: Build regressions/improvements in v6.1-rc6
-In-Reply-To: <20221122105054.4062213-1-geert@linux-m68k.org>
-Message-ID: <alpine.DEB.2.22.394.2211221154280.284524@ramsan.of.borg>
-References: <CAHk-=wjKJyzfJmOzBdEOqCFRc8Fh-rdGM4tvMXfW0WXbbHwV0w@mail.gmail.com>
- <20221122105054.4062213-1-geert@linux-m68k.org>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+X-Greylist: delayed 1907 seconds by postgrey-1.36 at gabe;
+ Tue, 22 Nov 2022 11:53:41 UTC
+Received: from smtpbgsg1.qq.com (smtpbgsg1.qq.com [54.254.200.92])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09FD710E07E;
+ Tue, 22 Nov 2022 11:53:40 +0000 (UTC)
+X-QQ-mid: bizesmtp72t1669116099txffgh0h
+Received: from localhost.localdomain ( [113.57.152.160])
+ by bizesmtp.qq.com (ESMTP) with 
+ id ; Tue, 22 Nov 2022 19:21:37 +0800 (CST)
+X-QQ-SSF: 01400000000000E0R000000C0000000
+X-QQ-FEAT: +ynUkgUhZJlLDq+nP6+uedbXvgas1IUa13PrtWgKs2DOViskOswrChYt+MFKv
+ Pl7pXSgPAC9YYzk66eyueb4WltFQHvZSCvT3pmXv1se7I7PYRHHS2+1FKm7VBkBJICOOW8B
+ kK3W9lrRUW/buANCKL1Wyp2c+1nEoipKiy6JgwdUq3RRSUWkt6Otm7FKIjn7koJ3WcNt5U1
+ HCfEsmgZBOHhvElsFR/C8Zo/QMfTfy3Tuj/xOWkzr1h7gtV6oVBaD9kndG5aPvZ5y+5HrWm
+ +IB/Qsw+TMBz8rvwDV2InH89ZTSvxtWCalAOe4Gh6p8sl8iI1ql3AyD0jf9HTaHiiQ5H9jU
+ 0cXEbZXTvvLg/v9KKHunEUcUQkl8vYnVIPxMovw9J360ql9NDpQpoyOBRfLR9AO/8hLpun8
+ K5v013a9cN8=
+X-QQ-GoodBg: 1
+From: hongao <hongao@uniontech.com>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch, nicholas.kazlauskas@amd.com,
+ aurabindo.pillai@amd.com, roman.li@amd.com, Jerry.Zuo@amd.com
+Subject: [PATCH] drm/amd/display: Fix set scaling doesn's work
+Date: Tue, 22 Nov 2022 19:20:34 +0800
+Message-Id: <20221122112034.30080-1-hongao@uniontech.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:uniontech.com:qybglogicsvr:qybglogicsvr6
 X-Mailman-Approved-At: Tue, 22 Nov 2022 14:37:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -46,41 +52,36 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-rdma@vger.kernel.org, linux-staging@lists.linux.dev,
- linux-um@lists.infradead.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
+Cc: hongao <hongao@uniontech.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 22 Nov 2022, Geert Uytterhoeven wrote:
-> JFYI, when comparing v6.1-rc6[1] to v6.1-rc5[3], the summaries are:
->  - build errors: +6/-0
+[Why]
+Setting scaling does not correctly update CRTC state. As a result
+dc stream state's src (composition area) && dest (addressable area)
+was not calculated as expected. This causes set scaling doesn's work.
 
-   + /kisskb/src/arch/sh/include/asm/io.h: error: cast to pointer from integer of different size [-Werror=int-to-pointer-cast]:  => 239:34
+[How]
+Correctly update CRTC state when setting scaling property.
 
-sh4-gcc11/sh-allmodconfig (in cvm_oct_free_hw_memory())
+Signed-off-by: hongao <hongao@uniontech.com>
 
-   + /kisskb/src/arch/um/include/asm/processor-generic.h: error: called object is not a function or function pointer:  => 94:18
-   + /kisskb/src/drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c: error: control reaches end of non-void function [-Werror=return-type]:  => 1934:1
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 3e1ecca72430..a88a6f758748 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -9386,8 +9386,8 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
+ 			goto fail;
+ 		}
+ 
+-		if (dm_old_con_state->abm_level !=
+-		    dm_new_con_state->abm_level)
++		if (dm_old_con_state->abm_level != dm_new_con_state->abm_level ||
++		    dm_old_con_state->scaling != dm_new_con_state->scaling)
+ 			new_crtc_state->connectors_changed = true;
+ 	}
+ 
+-- 
+2.20.1
 
-um-x86_64/um-all{mod,yes}config (in kfd_cpumask_to_apic_id())
-
-   + /kisskb/src/drivers/infiniband/hw/qib/qib_wc_x86_64.c: error: 'X86_VENDOR_AMD' undeclared (first use in this function):  => 149:37
-   + /kisskb/src/drivers/infiniband/hw/qib/qib_wc_x86_64.c: error: 'struct cpuinfo_um' has no member named 'x86_vendor':  => 149:22
-   + /kisskb/src/drivers/infiniband/hw/qib/qib_wc_x86_64.c: error: control reaches end of non-void function [-Werror=return-type]:  => 150:1
-
-um-x86_64/um-allyesconfig
-
-> [1] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/eb7081409f94a9a8608593d0fb63a1aa3d6f95d8/ (all 149 configs)
-> [3] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/094226ad94f471a9f19e8f8e7140a09c2625abaa/ (all 149 configs)
-
-Gr{oetje,eeting}s,
-
- 						Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
- 							    -- Linus Torvalds
