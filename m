@@ -1,47 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE8C5633F12
-	for <lists+amd-gfx@lfdr.de>; Tue, 22 Nov 2022 15:37:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23A6A633E37
+	for <lists+amd-gfx@lfdr.de>; Tue, 22 Nov 2022 14:55:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0574A10E3EF;
-	Tue, 22 Nov 2022 14:37:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF34410E3D2;
+	Tue, 22 Nov 2022 13:55:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7169A10E3CC;
- Tue, 22 Nov 2022 11:12:50 +0000 (UTC)
-Received: from dggpemm500023.china.huawei.com (unknown [172.30.72.55])
- by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4NGhNY0FJNzJnnT;
- Tue, 22 Nov 2022 19:09:33 +0800 (CST)
-Received: from dggpemm500002.china.huawei.com (7.185.36.229) by
- dggpemm500023.china.huawei.com (7.185.36.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Tue, 22 Nov 2022 19:12:48 +0800
-Received: from localhost.localdomain.localdomain (10.175.113.25) by
- dggpemm500002.china.huawei.com (7.185.36.229) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Tue, 22 Nov 2022 19:12:47 +0800
-From: Xiongfeng Wang <wangxiongfeng2@huawei.com>
-To: <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
- <Xinhui.Pan@amd.com>, <airlied@gmail.com>, <daniel@ffwll.ch>,
- <lijo.lazar@amd.com>, <Hawking.Zhang@amd.com>
-Subject: [PATCH 2/2] drm/amdgpu: Fix PCI device refcount leak in
- amdgpu_atrm_get_bios()
-Date: Tue, 22 Nov 2022 19:30:43 +0800
-Message-ID: <20221122113043.18715-3-wangxiongfeng2@huawei.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20221122113043.18715-1-wangxiongfeng2@huawei.com>
-References: <20221122113043.18715-1-wangxiongfeng2@huawei.com>
+Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com
+ [IPv6:2607:f8b0:4864:20::c36])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D1C010E3D0;
+ Tue, 22 Nov 2022 13:55:29 +0000 (UTC)
+Received: by mail-oo1-xc36.google.com with SMTP id
+ j6-20020a4ab1c6000000b004809a59818cso2273657ooo.0; 
+ Tue, 22 Nov 2022 05:55:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=2SBGeqgV8aQ4ClE1rxARDUjCn/QaGrg5bogBswoE+Gk=;
+ b=SnJrJJJB+uAOWpogJlqoVY6znPbePuzs8v8E+Jasq1bg9moQq8Gbla8WPFPotFYdUs
+ rdiNTyjJgUOpZ//qEmNSffWMfpXCemCqV4jqqOLcafNGMG3y7VzHk2z9V6YfIYYTp81D
+ df5NkH3zm4zUw3PzBRdPGQ4f8CJIBaeUTQh9hasrwmNEXQM/Q4hIQ6dVrmQyovTykNlk
+ RNdlw5G+f5UCJDWk4RkG0HUq6cWwz+Pat2UDROelcqWZxV0KlNgJCCVHtdzbVNto0nKe
+ fES8l3XJEdiw4y/2lEdykL46NhCsN3MbN/y7RDB/FanhyNqBLX9zLaQeCHNrj9s0p+p2
+ fKaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=2SBGeqgV8aQ4ClE1rxARDUjCn/QaGrg5bogBswoE+Gk=;
+ b=L+bvtEpxChyu0ZNZ/uDI2qRlHbmE7xc4HtnlA0Ai69lopH1n2pK2QPK4HPJfSVvNWR
+ lg3e1vwEl+8PpbEIl2UZ6Az5hlHB8YRUqJlrXoIEoX3MgThrNg5BqQEJm3aH7dZgOMcG
+ heejroBw6Kda6oXVhVXjtL/wpMmELBkBsjWApyXRxs3H6d9uNe7Yl9Q3j2MX7zu3NHzF
+ zrz4dnWZMlsN+TgQOWold63XgcaWCIk5vxAdTNRdK33aSS3sMdd14P7MIpvkNuksVu/m
+ rPNV0D/AotV9r5ujcgk/YJAgye4b3QzJ1HlD17RX1KAsJ1zPxh7niu3ZGmIETNk03VXd
+ R7pQ==
+X-Gm-Message-State: ANoB5pneuZjRAQ/ylRwWJtsuG3yXpu7SzOkVUPhMbVLsq33xeK/ur8/v
+ hoyX7N78fl6OwpLK+2m0skKCavk9EqcqCn4+/MU=
+X-Google-Smtp-Source: AA0mqf7ykzweR9BqX2Z1bFr3kRAAU5C3xDVsZgtZl+Svh5PRx1RmM9Dz5FRt4dxqYY1KiJhP24NikZC0YwM35U5Onhk=
+X-Received: by 2002:a4a:d1b2:0:b0:498:ce46:9fb1 with SMTP id
+ z18-20020a4ad1b2000000b00498ce469fb1mr6131515oor.97.1669125328656; Tue, 22
+ Nov 2022 05:55:28 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.175.113.25]
-X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
- dggpemm500002.china.huawei.com (7.185.36.229)
-X-CFilter-Loop: Reflected
-X-Mailman-Approved-At: Tue, 22 Nov 2022 14:37:39 +0000
+References: <CAHk-=wjKJyzfJmOzBdEOqCFRc8Fh-rdGM4tvMXfW0WXbbHwV0w@mail.gmail.com>
+ <20221122105054.4062213-1-geert@linux-m68k.org>
+ <alpine.DEB.2.22.394.2211221154280.284524@ramsan.of.borg>
+In-Reply-To: <alpine.DEB.2.22.394.2211221154280.284524@ramsan.of.borg>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 22 Nov 2022 08:55:17 -0500
+Message-ID: <CADnq5_PvouSKugXxJXqkVeZf+kbP8+hhUKFgVALSO=MOW3jzvA@mail.gmail.com>
+Subject: Re: Build regressions/improvements in v6.1-rc6
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,37 +66,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: wangxiongfeng2@huawei.com, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, yangyingliang@huawei.com
+Cc: linux-rdma@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-um@lists.infradead.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-As comment of pci_get_class() says, it returns a pci_device with its
-refcount increased and decreased the refcount for the input parameter
-@from if it is not NULL.
+On Tue, Nov 22, 2022 at 5:56 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> On Tue, 22 Nov 2022, Geert Uytterhoeven wrote:
+> > JFYI, when comparing v6.1-rc6[1] to v6.1-rc5[3], the summaries are:
+> >  - build errors: +6/-0
+>
+>    + /kisskb/src/arch/sh/include/asm/io.h: error: cast to pointer from integer of different size [-Werror=int-to-pointer-cast]:  => 239:34
+>
+> sh4-gcc11/sh-allmodconfig (in cvm_oct_free_hw_memory())
+>
+>    + /kisskb/src/arch/um/include/asm/processor-generic.h: error: called object is not a function or function pointer:  => 94:18
+>    + /kisskb/src/drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c: error: control reaches end of non-void function [-Werror=return-type]:  => 1934:1
+>
+> um-x86_64/um-all{mod,yes}config (in kfd_cpumask_to_apic_id())
 
-If we break the loop in amdgpu_atrm_get_bios() with 'pdev' not NULL, we
-need to call pci_dev_put() to decrease the refcount. Add the missing
-pci_dev_put() to avoid refcount leak.
+Presumably cpu_data is not defined on um-x86_64?  Does it even make
+sense to build drivers on um-x86_64?
 
-Fixes: d38ceaf99ed0 ("drm/amdgpu: add core driver (v4)")
-Signed-off-by: Xiongfeng Wang <wangxiongfeng2@huawei.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c | 1 +
- 1 file changed, 1 insertion(+)
+Alex
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-index e363f56c72af..30c28a69e847 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-@@ -317,6 +317,7 @@ static bool amdgpu_atrm_get_bios(struct amdgpu_device *adev)
- 
- 	if (!found)
- 		return false;
-+	pci_dev_put(pdev);
- 
- 	adev->bios = kmalloc(size, GFP_KERNEL);
- 	if (!adev->bios) {
--- 
-2.20.1
-
+>
+>    + /kisskb/src/drivers/infiniband/hw/qib/qib_wc_x86_64.c: error: 'X86_VENDOR_AMD' undeclared (first use in this function):  => 149:37
+>    + /kisskb/src/drivers/infiniband/hw/qib/qib_wc_x86_64.c: error: 'struct cpuinfo_um' has no member named 'x86_vendor':  => 149:22
+>    + /kisskb/src/drivers/infiniband/hw/qib/qib_wc_x86_64.c: error: control reaches end of non-void function [-Werror=return-type]:  => 150:1
+>
+> um-x86_64/um-allyesconfig
+>
+> > [1] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/eb7081409f94a9a8608593d0fb63a1aa3d6f95d8/ (all 149 configs)
+> > [3] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/094226ad94f471a9f19e8f8e7140a09c2625abaa/ (all 149 configs)
+>
+> Gr{oetje,eeting}s,
+>
+>                                                 Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                                             -- Linus Torvalds
