@@ -1,118 +1,119 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69DBD634D62
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Nov 2022 02:44:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2853634D66
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Nov 2022 02:45:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5828310E4C3;
-	Wed, 23 Nov 2022 01:44:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1020410E4C8;
+	Wed, 23 Nov 2022 01:45:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2084.outbound.protection.outlook.com [40.107.94.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72E2710E4C4
- for <amd-gfx@lists.freedesktop.org>; Wed, 23 Nov 2022 01:44:39 +0000 (UTC)
+ (mail-mw2nam10on20601.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e89::601])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CFE710E4C7
+ for <amd-gfx@lists.freedesktop.org>; Wed, 23 Nov 2022 01:44:43 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hiHcw98VKXg/yZp2wpWNTHg/TrZ/VlirPtusF7ZMDS81ATJEHRDTwhACljubZha/dWewi/jCG92Ifvz0+chSmuNRxm5CFLWyaZIv5BireNjr5aYCYmBC9aJPPq/6KZcZnS/akc7kAQdz+fENluESg5lCRj9HKolAZt5aCdrqM//oZEBNAVwpQwOm2JwDDv0zlHm16tSFJqDpU1LI/gv9Hdw4OerXmXovzgj/GyjIbEJ4dFgOSGDzXvmi+UaBOX2uJmmBGLn8RrYQhFicajaaKnHq0lYHpYhx1xM60Qw5HDkrAfJdp+TLRqEMZpq//328DRvw+pekFrS3HVZ9LD1cjQ==
+ b=PSXpYg14HgZB/DM+e1hD7jlPBBIgLD5J4+qD/hklLa89ULgyhfUIh1J2gM3p4eUB6wKW77aHk/BZR2Ymv9GXSA1zRRuPY/9x1Jlh1wR9/BeYXsSoXmYZHTijwsY+lbtMSlHZqmUHKDBMirFu3LFHGAQtwszWefX439zKn8Yt+WTaLGSLTII4+q2JbJFIicCxoN7EHeHE3oSGYx3cryC4Qhq1TDPPkZEUNEnB6uKkPccGNLaScLfFnXUqfZCnFDL+AA7hE0V9OktN1qIRIuGqRrr77++bqquRRG2WU/QEGO3S6tE8iXRR427J7Ne5DRdkD+BTnlMCcoKq4lrGVl58Jw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=N6HXRw0jmlQhSfxcHfNIHQayJGntFj5gEtRK2S9WuIs=;
- b=ExtHnH3wcPRxRzMsG3rLofXLLWLJk3bTnmSZQ9A/gmWE3fgPQPY7QKnufn8SM7hKAh0XPGvx5GjA/YUEhSN1/vNqBV/gY3LAgFRSVIjTpORLmW9L8J/DuU4+BMp+NYZwk259SOPVWNNrhBb7NY4sThpr2fymnAWLjgJaY9Zy/Tn8hqIgsEGG6RQgrN3w0/kqgFzmedFP4y29/fY1i37GY0fS9mhj2n0X6v66AuENWsqy/WRus/t5nQiLzUfZiMcGWzocQzRK+NNfVt+cdN0do3p2oQ+Je3eW6zKo3VSogkdpZz43maA3nJDIjZA7xy5PdXNtFDDQCSuhdxd3c6goqw==
+ bh=wbAfJ+Z+byZSxpdvLRL7tQT4tt/CPmt5QNSkj0V0zyY=;
+ b=UYwt+5kiQEGeJgdAjvSS9L8OTmie3LQJGduedSZAt1EPfgVfrAFnAEATGyFqxcUCATpu7dj/U9Cbfxe//+TMTT4j5t6PdAJt0frtDUn/u8m8sQ7EWJY3gtbtIOxg9DfXIYDCHYg7nxxY+lnQBBxkIsVTLOCbcHTat1kCS81OeCtC1C8K72yvXXGmQa9Al1s8YC4l2Goyx+nxvryRJ31bXEdlLYkGbRAeNqcnV8+Ivmgq97yonog7fq9dqtgHnUOkv7lg7QY8fO2MaEeGCK7qsFDXq9ITEYjP3aRSCjKWL+/Wgxg3zuMwU7sftnny4q/FAqpkbTMtDwm6wzOXvbv9AA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=N6HXRw0jmlQhSfxcHfNIHQayJGntFj5gEtRK2S9WuIs=;
- b=s9bb8oVhtnoC/BK60FEh9Ku3TyP58xg8Kt9gMidahbuN3TC8kM48Q9m34xRYv8sBr2SG3+EOfPBYxAlhR0K4W4im7kiS6DdYFQKSxj6aA6RMnoRxD7SQWLCugOAdjj50S01V0DzoKhvSJ0E6hvhE3cScDFFnCq3wX44NA+VWP9E=
+ bh=wbAfJ+Z+byZSxpdvLRL7tQT4tt/CPmt5QNSkj0V0zyY=;
+ b=p+GKythMY45y+I15NOCaqz6armYcG0SkJN7TbCzjsGTd2v2ge2Awfz8vQjY5g7EgnLr3XzAUykh+p4y4vo/DoAYHW69NgD4tPt5ongV11992L/YAYl2A9lhfFgLVAz3YuVgA34uT/PSUHpnnLhPAo47lvi3Adrp/xijvwSUiCgM=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
 Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
  by CH2PR12MB4296.namprd12.prod.outlook.com (2603:10b6:610:af::10)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.15; Wed, 23 Nov
- 2022 01:44:38 +0000
+ 2022 01:44:41 +0000
 Received: from BN9PR12MB5115.namprd12.prod.outlook.com
  ([fe80::5d8:f3f2:d940:5350]) by BN9PR12MB5115.namprd12.prod.outlook.com
  ([fe80::5d8:f3f2:d940:5350%3]) with mapi id 15.20.5834.015; Wed, 23 Nov 2022
- 01:44:38 +0000
-Message-ID: <45ae7684-c25c-1957-bf49-8e690ce883da@amd.com>
-Date: Tue, 22 Nov 2022 18:38:34 -0500
+ 01:44:41 +0000
+Message-ID: <7ea5d8ba-0c2f-a521-889b-a26fba5802f3@amd.com>
+Date: Tue, 22 Nov 2022 18:50:49 -0500
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.3
-Subject: Re: [PATCH 05/29] drm/amdgpu: setup hw debug registers on driver
- initialization
+Subject: Re: [PATCH 06/29] drm/amdgpu: add gfx9 hw debug mode enable and
+ disable calls
 Content-Language: en-US
 To: Jonathan Kim <jonathan.kim@amd.com>, amd-gfx@lists.freedesktop.org
 References: <20221031162359.445805-1-jonathan.kim@amd.com>
- <20221031162359.445805-5-jonathan.kim@amd.com>
+ <20221031162359.445805-6-jonathan.kim@amd.com>
 From: Felix Kuehling <felix.kuehling@amd.com>
-In-Reply-To: <20221031162359.445805-5-jonathan.kim@amd.com>
+In-Reply-To: <20221031162359.445805-6-jonathan.kim@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR13CA0001.namprd13.prod.outlook.com
- (2603:10b6:a03:2c0::6) To BN9PR12MB5115.namprd12.prod.outlook.com
+X-ClientProxiedBy: SJ0PR13CA0009.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c0::14) To BN9PR12MB5115.namprd12.prod.outlook.com
  (2603:10b6:408:118::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|CH2PR12MB4296:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3733b03e-9d5f-45d9-aa3f-08daccf447fb
+X-MS-Office365-Filtering-Correlation-Id: eed321f9-2632-4bac-48f7-08daccf44a3f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: W8UjmVGtl8QDYbSNBrfTL+YDy/OVODNRpUj753iBImQNDaj8MUZmr5CfccUZKka2RSP6up6C0AaQ1Wo0FyysDDIKFFiFTuVSGj2zme98ZIz8kEJFdV/RyjD0YfH74fS7k0BK7tH+q3Kro4ahxpZUAbAr9xW4VdWa8Srvbm9B1r8WgLn5pp7CxAzyjpcO26rNGwMb6ad5eC4ShqxgzOQMqcZbW2BYYwbI/LnLpGTaZ/+S5YQ7G6qvSmdTTYevKQMxb5TPoMBsq94oRkyYZIUa/5eu8GJkGx2pfONmOSILZ3LeFikyfxqrAyI0i15I5VqMVbEaPfBsZxZgerBLXmN5WD6NH5PeJFdO5Ssj2st1uUM3c3bY4xAjBhIt/D/xQkQMcxs33KqFCIdTZuOB6xce1400c0EkpGQrpZck4WwDmpEglCiDOIpp+VOroibpWbfyFxC54wrhHhfus7+IqOYFZOzCEzPgbzKKupTfDdJYMQRqmEhVJ4qgLbhkTCfaKp7LAsp7L0YPAucukNJvaz8rRz3YQtT40lLPkEjw3FRL4bO87M/Rl6ZVdH2NLo+nDdafMlpI0cD16RFS9cD2p8HdJGDD9PSQvHO9Fhq0bnSPvpfp+vwuCSs1j8cLNIsIqlHdDqH0KZqXMNuCV/6b8zN5eoEY2APMvwRBJEDXb1WqgcDj6xZQdGc8spi+G/XFBlFA3WPFagGtbeesbS4kE6eLTxmmyxw19Jd4YfWzeDK7fKI=
+X-Microsoft-Antispam-Message-Info: Yn6OYx00A1AqEe9/Pn11Rhtdz64+L15FKs7lH9c4Tqee++1vpjTLFHdgVES2rJrWKDnxGS4eSHCN4sH0pJSlVW/s3JyxsQkiEsTCxHzDm2So7Fj/sUMwUPDwA76A+VWWT4u64p8+oGYNG13XY/TzDa3HYe+Yxd9TNLBiCUy/0fSxBBoEVIEl2g21jBUvDKn7wO3GtpaZvbFBuvd492UqF7OtwEoJ3IOVLcCLf2CtqCr19r84WpGs2WvKO1m8ieRiaFg/WBfKn/4MarMsjzxR5cll4B+xS4EZKxWHgQGAJbn76Ic0yAvaiMjrQkA3OkechW1TSH02rzcqibphxjUH1xKtqpQvzlx6qs9o1QIjSXHjg9l1aEomeKXuTkHa81JBY9i3cK93yh5xcfsYP1y2DclfqtBfd3/1gygcHRsANPCK9m4vlmwHXMDuVDMVBNF3twmEdkvQ5KH3EsVtrbwiOfuZl3KZ0kXYs/Ct4K0HKRbALH/rjvTiRkPQAWxVX4xlOcWRpyAApy0u1nOoiusWbqZed+uP/4UxPXSELJL1kSNb7fpgFD/2JBnVTMFfTavotdGdmQ0i6aQC6s8wYeudc6AE4fRv8Ypmt0L9UARYfSYd4SU5mFqTSGI0GYFvl5C6AMo7s+lxXmUgr54Aw0GO7yPtAziqmKk2/V6fknQ+zKssjNXNOQGFOTG8NTldbdIsL+pkyjLK7XCQybqPi9iLZPqIJPNCS6/jT+WWiz6pBfc=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(4636009)(366004)(376002)(136003)(39860400002)(396003)(346002)(451199015)(66946007)(83380400001)(36756003)(26005)(6512007)(66476007)(41300700001)(316002)(6506007)(2616005)(53546011)(66556008)(8676002)(6666004)(6486002)(30864003)(44832011)(38100700002)(2906002)(186003)(478600001)(4001150100001)(5660300002)(8936002)(31686004)(31696002)(86362001)(45980500001)(43740500002);
+ SFS:(13230022)(4636009)(366004)(376002)(136003)(39860400002)(396003)(346002)(451199015)(66946007)(83380400001)(36756003)(26005)(6512007)(66476007)(41300700001)(316002)(6506007)(2616005)(53546011)(66556008)(8676002)(6486002)(44832011)(38100700002)(2906002)(186003)(478600001)(4001150100001)(5660300002)(8936002)(31686004)(31696002)(86362001)(45980500001)(43740500002);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bHEvdFRLS0IyK1VGTEtsRVQ3TW1HU3c5dFN5ZFJsam1UZU5NQzBHTDJzUlNJ?=
- =?utf-8?B?TysrMVBLNWFzdXFiRk12UVFNMDNQVGw2dXlnN0xzLzFybnAydWpyL29JQTJr?=
- =?utf-8?B?QjVtVzJQWk9iWTJhVk9TZ3Zlc2xWcGpFU2x6TVhWRWRMcHdSOXlhNEs3WnV3?=
- =?utf-8?B?ZFdSODJmR3NaS2hvTVhTNzlmMXo4SXVlZHc4TEl0TlB4ZHZyaGlrWWk4UVRI?=
- =?utf-8?B?VERVeTBDcnBaeUpRa1VUS0JvRXMxWUNiVmxLUE84TGxzV3N2T0VvM1pCOW43?=
- =?utf-8?B?MTB5YXQ4a1psdjZoOTZoSmIxaUhCVnhvRGRDM3FoNHUxT3hiUTBFZWNrUFA5?=
- =?utf-8?B?VkFhM2xlNGNndktONGQzdUNPNW8zaUhLYzh4MjRDUWQ2SWZtTmhnbWc4eGZh?=
- =?utf-8?B?R2xBVW02OGtoVkNQenJYNGZNOGFzT011MmZlMkVOUlZBWW53YzZmL3Z5N1Fr?=
- =?utf-8?B?OEQxWE1XVzRPd1UvMTdaOUNwRmdQN1NOWFM0RzlaTVJkTU83bEdUMitrRjAz?=
- =?utf-8?B?RjB1dHBZUTI0elYvK2JEL3o1VVROSENIdXFkc0FINlI2dkxYeWZ5OWNhTlNX?=
- =?utf-8?B?QS9pdmo3ZStielpMRFZHTU5jWDNEYVBRUWJ2cmFVYTdUdmFVRStXNHdPd2or?=
- =?utf-8?B?K1ZpMXJGRjRGSVhna2p3WjYvb2lLR3RMRXljUnYvZmhHaGpMZk1WeEpuRFR5?=
- =?utf-8?B?RGJnUXh1RDNMWWtHUmh2NSsxcHJ6a3VQUFZmUXhrazFxQTNZNEYybTl4RXl1?=
- =?utf-8?B?OGk4N0NWQnRPUGxKQ2Y4RHBjMGhwOW9pVVlmdDhMa2RmRjlXR1pBT2Z1ZlZQ?=
- =?utf-8?B?MnJiQ0dpalc0eG0ydDVQQXJncWhQR1RBYnp3VExyRFJyaUhTem12ZktXaGRl?=
- =?utf-8?B?aDBXQmNtNWxMeEhBZ2YwVHVKVVNjY1NvQkdnby9VaEJsNnhMOFp0TDlzU2dB?=
- =?utf-8?B?OHd4bTVqd09IRzdwbmo1eDJGdzN1ZWhPZExOZEdpVU14UFhENzM4dFdjTUFH?=
- =?utf-8?B?djNsczRkdytGdXdDSllSaFNvRjlITjB4dmpweUVYallIVUdMYmZENVFwRWYr?=
- =?utf-8?B?S0FaWk5iNk5GN2Z6dHYvY293Ymk0RlJsNXFjd2lJa3UyWTcvV2pIY3Zxamto?=
- =?utf-8?B?d0c4am9YQXJGRXh3bzN3SWtjWlFlOHRWNzhUOUxtSEtSR1dnb296b01yMnhC?=
- =?utf-8?B?UHN1UXJ0WmFxUmg1ZU1SYU5ZbXJmVE11NWhyaS9WQjNNVTZuVUpzODE2VHAx?=
- =?utf-8?B?YmNmOWtsd0tyRmVhN2Z6Q0x1UkpFeTBlNmtnQ0RuUVRIb1FGaUliRWtQWDhx?=
- =?utf-8?B?aXVFdzV0MXllTEFvbHR1R2hMZWQyY2QxZVhGZnBVYXJmYktkaDFBaVpSWkJ5?=
- =?utf-8?B?YzU2emd0WTNyNXhyYktsMmh2NDRKVm5iRmx2WVN4b3JiM3JaSGcwcUd5WEpE?=
- =?utf-8?B?N2FrbVo4RHkrSURha0dXQ1F0SlEvTW9lcHVNZTdjYnZSbUZ3N29yRkVWZDZE?=
- =?utf-8?B?S0xPK0psN0ZuM01wSjZSbk90VENIbW81QXBvRjJrNjl3N2xrY1lEYWRaMEdh?=
- =?utf-8?B?WkwxR0dBejJQNW9iM1BaOXZIWHhlOU91WkVwZENSRFpHK3dSNklWRVlPRHc3?=
- =?utf-8?B?eVErT01ScXIveTVTbVpWTHlyYWFBNW44WEFTYzJ0d3Q2Ry83RWR6Um12cjhx?=
- =?utf-8?B?NzZ2WkZqdnlYVXZ1a0FXYVlKOHNHZnVVTUR6dWJVaG1tQ0pzSDhVUXBFVVNY?=
- =?utf-8?B?dk14MDN5Q1FzVXBMc1ZpUStLSG5qc3o0eHhsUE9STi9qaFNBUDU4RlVwWjAr?=
- =?utf-8?B?KzVXSEdNV0VlMVEyV1hmWWhtaWlRWVpPbW5HNzhRNEVLM2Z5ZUNWWkxad2Fu?=
- =?utf-8?B?R0JaYVFZRjBEYUFlZlJZeERkZUpwT2l5N2hhOWJ0UHl4dXE5WkQrYXUzekZ4?=
- =?utf-8?B?YzVGQ0RoWnllK1c2c2pldnRJcms5czY1azlXRHJwSUpobTRneEJiZi9USTQx?=
- =?utf-8?B?cFFBVXVhQ3piQ0NkTXFOL3NxZEplcmtCcWsyYUtsUGR5SG1yendnMGMwRlBu?=
- =?utf-8?B?MERnb3Q5YlhEa2ZCL1h3Z29iMjlHYXlsOHMzei91cjlyYlZ5QWZnVVIvZldK?=
- =?utf-8?Q?xd9hOV8GGIUqBtuApoqRhK13a?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R1F4Q3NnTTlNdW1zUGxrcDJyaHpLam5WU1ExZ2ZEUHRWL0k0Qk5oa2FLWUti?=
+ =?utf-8?B?SXZEUlh2b25xbkFXK2dYU0NpMHg2ZzF3REFWZ2V0TXdKTVRldHE2R09xa2xS?=
+ =?utf-8?B?dnRXYWplL3orUGNZSVNGcXJmSDVpdGxLSlFFRkVUM1graWdvZ1kxUFBXSWtR?=
+ =?utf-8?B?NmdxeWZRcUF4ZGhJSU1kbFlUWFlFWDlVV0lBUWc5TDA2V0t4c3BhRnhvVU5q?=
+ =?utf-8?B?VC90a2dhaW5BTVQwZkVRTnNUdU85WnVIYWd6WFBoRnkzRlFHYnFLZXNGVTZN?=
+ =?utf-8?B?Wk5EYkJrVWc1U2NYR0xiWWZ1TzRuaExscDBxUEZIK0FpZHVPT2Fnb3dDV3hK?=
+ =?utf-8?B?N09aa2l3YjhvcGpEa2U3WkpOWFZRamhsQUdBdkJVcCs1eUs2OTNyS2FnWUMx?=
+ =?utf-8?B?OVM0ODVoNjZ1R1hMeG5sKzBrajJYYzhhTTVIUkxRYVExbmhPOWx1a3psVjAy?=
+ =?utf-8?B?bE93dE8wQXpHQjRHVmZwRzVsY3dBKy9JZW1CYkxiRjlmM1FlVGp1VWF5Rll3?=
+ =?utf-8?B?aEZlQnMzN1NmQy9Xc0REQWJhR1Q2S1ZzVldTdXd6ZU1CYzA3OEtwMlF1OW41?=
+ =?utf-8?B?cWQyZEl0ZTVPTy9LUFZMRXljMlVyV2FucnVLcldwdHdCQWRqbEw4R0pmOUU1?=
+ =?utf-8?B?Yi93QWUyaXVnK1pPV3ZGQ2tSVVE0K2R5anpQYVNqS0YrcEZGdjdMdXI4RnJr?=
+ =?utf-8?B?WmFQOTZoeGdDVXBPUDh1SHkzb3NvZ3UybXZkNXluMCtOSS85VXhGTzlxbkV6?=
+ =?utf-8?B?bFE5T2RmZ21WVW5tL2V5b3RDNzVCalI3a0ZqNy85QmQxOHVWbnBrRCs2dWg5?=
+ =?utf-8?B?bzVFQ3JKMkdpWm9DekxpZzkzcEhPcjczL2t6d05FRk1OcGtjaG5hYzY4bXJj?=
+ =?utf-8?B?aHpmYTBhQkNWVjk4S1lidlJyTE5nN01XemRKdCtVdDVXc0FPZTIrOFJyRTBV?=
+ =?utf-8?B?NEVHN2VVZExTTFFaQXZ2WjdPc0pnNi9URnRzTTJpckUzWXlJajBRRktHY1NO?=
+ =?utf-8?B?U3VabmdHUEJOSTNxNEo4Tmo5MHRWQmh4OGlqcXdBNjc2b0Vzcm4yd0xxMXlw?=
+ =?utf-8?B?ME9ybTE5YVptTlA3VzlBSjJnZDArc1BWZStHWERlbGF1bVlXYmQ3SjJnNTEy?=
+ =?utf-8?B?T0MwSTNZRlU2QmZjM2hBb1BzVUlQWmJVUEloc0dZWHo1eUR1akwyYStPbDB3?=
+ =?utf-8?B?ZzZ5a2daZzBHSjk0a2Z1UjJKTVY0VnRFbEc3OXhlT1RyMm1CTjNHL2tyY3p0?=
+ =?utf-8?B?OWxIZW9nSmtyUnBkZmZZYXJzcjZOOE1vVGxzZTRoTEppanJzcTNQLytYcndz?=
+ =?utf-8?B?VlZXNnZ4VjRHUElWME9NUFQ0UStaRjVJU1liMjZMTlhFbWtYTmpLK3Bhb0k1?=
+ =?utf-8?B?WmtERENjdVJHRU93VGlxMXdLdkNIMVFLN1RkNFVoQ2tHbVhpd2REb1RxTlg3?=
+ =?utf-8?B?Nmc4R0J6TFM2VjlJd0syQmVlVDYyb3dDN2VDTmhGakdGTXQxU2pjeXdwVjNI?=
+ =?utf-8?B?ZzlMSXN3V2N0MU5PZXQ3RWwzVWhJdVV2Ny9aWW91VUQ1VGd1blhUdmVXWjZ6?=
+ =?utf-8?B?VHNOZ1pTYlpBbWNlRmdJSEQ1U0MraEtyV2tteU42NlNRcGdVeUpIMHlIcUdr?=
+ =?utf-8?B?a0ZoQjkwaGVvMmwvRlNVdDNoc0c5WEFkb2NJSFEzY2tKRW5MYjh2SitvUnFN?=
+ =?utf-8?B?UWVkWFE2bEY0UWFITnl2ZGw4SUxDWWlaQ0h6SURES0VPS3ZJcFNqNFh4dGsr?=
+ =?utf-8?B?aTR1QzlXU2hvRk5EZzhYNUxVby9WYW9ONy8rWHVwMlJGcGNDZHF5aWRzM2pM?=
+ =?utf-8?B?blpRVTN0QTdnemh3TnM2ZFAxMUIycjhFSlJCazVxM201THZCWkV4N21CSkNJ?=
+ =?utf-8?B?TmVOSTNEYnZKWG40UkdTdkptOGxiMitXZHhjOURySUlYMXRTWnl0N1ZzWDgw?=
+ =?utf-8?B?c3NrejFVdk55bkdWTWFTYi9DWTZUN2ZVNDZnMGFHbnBjbUNzZ011T3g4N2sz?=
+ =?utf-8?B?RS9ISlU4VWx2WXhrZGRmOXpoRjltQjg3TWRxZWY3UUtqMG9qdEZTMXpUekVY?=
+ =?utf-8?B?SEZpSHlIdDNody9BcTVzUGxybW5kTnAzUm40Y2NTSWQ1R2xCVit3ZUUrUTc3?=
+ =?utf-8?Q?2vWc5w7njurzjY0my/4edQC7M?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3733b03e-9d5f-45d9-aa3f-08daccf447fb
+X-MS-Exchange-CrossTenant-Network-Message-Id: eed321f9-2632-4bac-48f7-08daccf44a3f
 X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2022 01:44:37.9827 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2022 01:44:41.7344 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9i43hk+/S0m7kbd6M6XMh2Vy7Fh5pGM26lGGHme2B647zPTwnRtV0A2SoFpf5U6wY2wko7pOyKQF5BXVCZyvEQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: KZ9T5xGEV3tp3zyAYcAtqdRiOxdqGj+/LwKXQikVQa03CzwyhO66x4Y7bGCcoV8rIDW0qxLZAcWeXK0zgBFO8A==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4296
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -130,321 +131,255 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
 On 2022-10-31 12:23, Jonathan Kim wrote:
-> Add missing debug trap registers references and initialize all debug
-> registers on boot by clearing the hardware exception overrides and the
-> wave allocation ID index.
+> Implement the per-device calls to enable or disable HW debug mode for
+> GFX9 prior to GFX9.4.1.
 >
-> For debug devices that only support single process debugging, enable
-> trap temporary setup by default.
+> GFX9.4.1 and onward will require their own enable/disable sequence as
+> follow on patches.
 >
-> Debug devices that support multi-process debugging require trap
-> temporary setup to be disabled by default in order to satisfy microbench
-> performance when in non-debug mode.
-
-Where is this done? I don't think it's in the MQD setup because that 
-happens unconditionally on all GPUs.
-
-
+> When hardware debug mode setting is requested, waves will inherit
+> these settings in the Shader Processor Input's (SPI) Sequencer Global
+> Block (SQG). This means that the KGD must drain all waves from the SPI
+> into SQG (approximately 96 SPI clock cycles) prior to debug mode setting
+> to ensure that the order of operations that the debugger expects with
+> regards to debug mode setting transaction requests and wave inheritence
+> of that mode is upheld.
 >
-> The debugger requires that TTMPs 6 & 7 save the dispatch ID to map
-> waves onto dispatch during compute context inspection.
-> In order to correctly this up, set the special reserved CP bit by default
-> whenever the MQD is initailized.
+> Also ensure that exception overrides are reset to their original state
+> prior to debug enable or disable.
+>
+> Signed-off-by: Jonathan Kim <jonathan.kim@amd.com>
+> ---
+>   .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c | 100 ++++++++++++++++--
+>   .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.h |   9 ++
+>   drivers/gpu/drm/amd/amdkfd/kfd_debug.h        |   3 +
+>   3 files changed, 102 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
+> index 81e3b528bbc9..e1aac6f6d369 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
+> @@ -46,14 +46,14 @@ enum hqd_dequeue_request_type {
+>   	SAVE_WAVES
+>   };
+>   
+> -static void lock_srbm(struct amdgpu_device *adev, uint32_t mec, uint32_t pipe,
+> +static void kgd_gfx_v9_lock_srbm(struct amdgpu_device *adev, uint32_t mec, uint32_t pipe,
+>   			uint32_t queue, uint32_t vmid)
 
-There is a word missing here. "In order to correctly _set_ this up ..."?
+What's the reason for renaming these functions? It seems unnecessary and 
+unrelated to the rest of the patch.
 
-This patch covers GFXv9 and 10. Will GFXv11 be handled separately?
+
+>   {
+>   	mutex_lock(&adev->srbm_mutex);
+>   	soc15_grbm_select(adev, mec, pipe, queue, vmid);
+>   }
+>   
+> -static void unlock_srbm(struct amdgpu_device *adev)
+> +static void kgd_gfx_v9_unlock_srbm(struct amdgpu_device *adev)
+>   {
+>   	soc15_grbm_select(adev, 0, 0, 0, 0);
+>   	mutex_unlock(&adev->srbm_mutex);
+> @@ -65,7 +65,7 @@ static void acquire_queue(struct amdgpu_device *adev, uint32_t pipe_id,
+>   	uint32_t mec = (pipe_id / adev->gfx.mec.num_pipe_per_mec) + 1;
+>   	uint32_t pipe = (pipe_id % adev->gfx.mec.num_pipe_per_mec);
+>   
+> -	lock_srbm(adev, mec, pipe, queue_id, 0);
+> +	kgd_gfx_v9_lock_srbm(adev, mec, pipe, queue_id, 0);
+>   }
+>   
+>   static uint64_t get_queue_mask(struct amdgpu_device *adev,
+> @@ -79,7 +79,7 @@ static uint64_t get_queue_mask(struct amdgpu_device *adev,
+>   
+>   static void release_queue(struct amdgpu_device *adev)
+>   {
+> -	unlock_srbm(adev);
+> +	kgd_gfx_v9_unlock_srbm(adev);
+>   }
+>   
+>   void kgd_gfx_v9_program_sh_mem_settings(struct amdgpu_device *adev, uint32_t vmid,
+> @@ -88,13 +88,13 @@ void kgd_gfx_v9_program_sh_mem_settings(struct amdgpu_device *adev, uint32_t vmi
+>   					uint32_t sh_mem_ape1_limit,
+>   					uint32_t sh_mem_bases)
+>   {
+> -	lock_srbm(adev, 0, 0, 0, vmid);
+> +	kgd_gfx_v9_lock_srbm(adev, 0, 0, 0, vmid);
+>   
+>   	WREG32_RLC(SOC15_REG_OFFSET(GC, 0, mmSH_MEM_CONFIG), sh_mem_config);
+>   	WREG32_RLC(SOC15_REG_OFFSET(GC, 0, mmSH_MEM_BASES), sh_mem_bases);
+>   	/* APE1 no longer exists on GFX9 */
+>   
+> -	unlock_srbm(adev);
+> +	kgd_gfx_v9_unlock_srbm(adev);
+>   }
+>   
+>   int kgd_gfx_v9_set_pasid_vmid_mapping(struct amdgpu_device *adev, u32 pasid,
+> @@ -164,13 +164,13 @@ int kgd_gfx_v9_init_interrupts(struct amdgpu_device *adev, uint32_t pipe_id)
+>   	mec = (pipe_id / adev->gfx.mec.num_pipe_per_mec) + 1;
+>   	pipe = (pipe_id % adev->gfx.mec.num_pipe_per_mec);
+>   
+> -	lock_srbm(adev, mec, pipe, 0, 0);
+> +	kgd_gfx_v9_lock_srbm(adev, mec, pipe, 0, 0);
+>   
+>   	WREG32_SOC15(GC, 0, mmCPC_INT_CNTL,
+>   		CP_INT_CNTL_RING0__TIME_STAMP_INT_ENABLE_MASK |
+>   		CP_INT_CNTL_RING0__OPCODE_ERROR_INT_ENABLE_MASK);
+>   
+> -	unlock_srbm(adev);
+> +	kgd_gfx_v9_unlock_srbm(adev);
+>   
+>   	return 0;
+>   }
+> @@ -646,6 +646,84 @@ int kgd_gfx_v9_wave_control_execute(struct amdgpu_device *adev,
+>   	return 0;
+>   }
+>   
+> +/*
+> + * GFX9 helper for wave launch stall requirements on debug trap setting.
+> + *
+> + * vmid:
+> + *   Target VMID to stall/unstall.
+> + *
+> + * stall:
+> + *   0-unstall wave launch (enable), 1-stall wave launch (disable).
+> + *   After wavefront launch has been stalled, allocated waves must drain from
+> + *   SPI in order for debug trap settings to take effect on those waves.
+> + *   This is roughly a ~96 clock cycle wait on SPI where a read on
+> + *   SPI_GDBG_WAVE_CNTL translates to ~32 clock cycles.
+> + *   KGD_GFX_V9_WAVE_LAUNCH_SPI_DRAIN_LATENCY indicates the number of reads required.
+> + *
+> + *   NOTE: We can afford to clear the entire STALL_VMID field on unstall
+> + *   because GFX9.4.1 cannot support multi-process debugging due to trap
+> + *   configuration and masking being limited to global scope.  Always assume
+> + *   single process conditions.
+> +
+> + */
+> +#define KGD_GFX_V9_WAVE_LAUNCH_SPI_DRAIN_LATENCY	3
+> +void kgd_gfx_v9_set_wave_launch_stall(struct amdgpu_device *adev,
+> +					uint32_t vmid,
+> +					bool stall)
+> +{
+> +	int i;
+> +	uint32_t data = RREG32(SOC15_REG_OFFSET(GC, 0, mmSPI_GDBG_WAVE_CNTL));
+> +
+> +	if (adev->ip_versions[GC_HWIP][0] == IP_VERSION(9, 4, 1))
+> +		data = REG_SET_FIELD(data, SPI_GDBG_WAVE_CNTL, STALL_VMID,
+> +							stall ? 1 << vmid : 0);
+> +	else
+> +		data = REG_SET_FIELD(data, SPI_GDBG_WAVE_CNTL, STALL_RA,
+> +							stall ? 1 : 0);
+> +
+> +	WREG32(SOC15_REG_OFFSET(GC, 0, mmSPI_GDBG_WAVE_CNTL), data);
+> +
+> +	if (!stall)
+> +		return;
+> +
+> +	for (i = 0; i < KGD_GFX_V9_WAVE_LAUNCH_SPI_DRAIN_LATENCY; i++)
+> +		RREG32(SOC15_REG_OFFSET(GC, 0, mmSPI_GDBG_WAVE_CNTL));
+> +}
+> +
+> +uint32_t kgd_gfx_v9_enable_debug_trap(struct amdgpu_device *adev,
+> +				bool restore_dbg_registers,
+> +				uint32_t vmid)
+> +{
+> +	mutex_lock(&adev->grbm_idx_mutex);
+> +
+> +	kgd_gfx_v9_set_wave_launch_stall(adev, vmid, true);
+> +
+> +	WREG32(SOC15_REG_OFFSET(GC, 0, mmSPI_GDBG_TRAP_MASK), 0);
+> +
+> +	kgd_gfx_v9_set_wave_launch_stall(adev, vmid, false);
+> +
+> +	mutex_unlock(&adev->grbm_idx_mutex);
+> +
+> +	return 0;
+> +}
+> +
+> +uint32_t kgd_gfx_v9_disable_debug_trap(struct amdgpu_device *adev,
+> +					bool keep_trap_enabled,
+> +					uint32_t vmid)
+> +{
+> +	mutex_lock(&adev->grbm_idx_mutex);
+> +
+> +	kgd_gfx_v9_set_wave_launch_stall(adev, vmid, true);
+> +
+> +	WREG32(SOC15_REG_OFFSET(GC, 0, mmSPI_GDBG_TRAP_MASK), 0);
+> +
+> +	kgd_gfx_v9_set_wave_launch_stall(adev, vmid, false);
+> +
+> +	mutex_unlock(&adev->grbm_idx_mutex);
+> +
+> +	return 0;
+> +}
+
+The enable and disable functions do exactly the same thing. And they 
+ignore the restore_dbg_registers and keep_trap_enabled arguments. Maybe 
+add a comment why that is.
 
 Regards,
    Felix
 
 
->
-> Signed-off-by: Jonathan Kim <jonathan.kim@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c        | 26 +++++++
->   drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c         | 30 ++++++++
->   .../gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c  |  5 ++
->   .../gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c   |  5 ++
->   .../include/asic_reg/gc/gc_10_1_0_offset.h    | 14 ++++
->   .../include/asic_reg/gc/gc_10_1_0_sh_mask.h   | 69 +++++++++++++++++++
->   .../include/asic_reg/gc/gc_10_3_0_offset.h    | 10 +++
->   .../include/asic_reg/gc/gc_10_3_0_sh_mask.h   |  4 ++
->   8 files changed, 163 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> index af94ac580d3e..d49aff0b4ba3 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> @@ -4904,6 +4904,29 @@ static u32 gfx_v10_0_init_pa_sc_tile_steering_override(struct amdgpu_device *ade
->   
->   #define DEFAULT_SH_MEM_BASES	(0x6000)
->   
-> +static void gfx_v10_0_debug_trap_config_init(struct amdgpu_device *adev,
-> +				uint32_t first_vmid,
-> +				uint32_t last_vmid)
-> +{
-> +	uint32_t data;
-> +	uint32_t trap_config_vmid_mask = 0;
-> +	int i;
 > +
-> +	/* Calculate trap config vmid mask */
-> +	for (i = first_vmid; i < last_vmid; i++)
-> +		trap_config_vmid_mask |= (1 << i);
-> +
-> +	data = REG_SET_FIELD(0, SPI_GDBG_TRAP_CONFIG,
-> +			VMID_SEL, trap_config_vmid_mask);
-> +	data = REG_SET_FIELD(data, SPI_GDBG_TRAP_CONFIG,
-> +			TRAP_EN, 1);
-> +	WREG32(SOC15_REG_OFFSET(GC, 0, mmSPI_GDBG_TRAP_CONFIG), data);
-> +	WREG32(SOC15_REG_OFFSET(GC, 0, mmSPI_GDBG_TRAP_MASK), 0);
-> +
-> +	WREG32(SOC15_REG_OFFSET(GC, 0, mmSPI_GDBG_TRAP_DATA0), 0);
-> +	WREG32(SOC15_REG_OFFSET(GC, 0, mmSPI_GDBG_TRAP_DATA1), 0);
-> +}
-> +
->   static void gfx_v10_0_init_compute_vmid(struct amdgpu_device *adev)
+>   void kgd_gfx_v9_set_vm_context_page_table_base(struct amdgpu_device *adev,
+>   			uint32_t vmid, uint64_t page_table_base)
 >   {
->   	int i;
-> @@ -4935,6 +4958,9 @@ static void gfx_v10_0_init_compute_vmid(struct amdgpu_device *adev)
->   		WREG32_SOC15_OFFSET(GC, 0, mmGDS_GWS_VMID0, i, 0);
->   		WREG32_SOC15_OFFSET(GC, 0, mmGDS_OA_VMID0, i, 0);
->   	}
-> +
-> +	gfx_v10_0_debug_trap_config_init(adev, adev->vm_manager.first_kfd_vmid,
-> +					AMDGPU_NUM_VMID);
->   }
->   
->   static void gfx_v10_0_init_gds_vmid(struct amdgpu_device *adev)
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> index 0320be4a5fc6..a0e5ad342f13 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> @@ -2337,6 +2337,29 @@ static void gfx_v9_0_setup_rb(struct amdgpu_device *adev)
->   	adev->gfx.config.num_rbs = hweight32(active_rbs);
->   }
->   
-> +static void gfx_v9_0_debug_trap_config_init(struct amdgpu_device *adev,
-> +				uint32_t first_vmid,
-> +				uint32_t last_vmid)
-> +{
-> +	uint32_t data;
-> +	uint32_t trap_config_vmid_mask = 0;
-> +	int i;
-> +
-> +	/* Calculate trap config vmid mask */
-> +	for (i = first_vmid; i < last_vmid; i++)
-> +		trap_config_vmid_mask |= (1 << i);
-> +
-> +	data = REG_SET_FIELD(0, SPI_GDBG_TRAP_CONFIG,
-> +			VMID_SEL, trap_config_vmid_mask);
-> +	data = REG_SET_FIELD(data, SPI_GDBG_TRAP_CONFIG,
-> +			TRAP_EN, 1);
-> +	WREG32(SOC15_REG_OFFSET(GC, 0, mmSPI_GDBG_TRAP_CONFIG), data);
-> +	WREG32(SOC15_REG_OFFSET(GC, 0, mmSPI_GDBG_TRAP_MASK), 0);
-> +
-> +	WREG32(SOC15_REG_OFFSET(GC, 0, mmSPI_GDBG_TRAP_DATA0), 0);
-> +	WREG32(SOC15_REG_OFFSET(GC, 0, mmSPI_GDBG_TRAP_DATA1), 0);
-> +}
-> +
->   #define DEFAULT_SH_MEM_BASES	(0x6000)
->   static void gfx_v9_0_init_compute_vmid(struct amdgpu_device *adev)
+> @@ -833,7 +911,7 @@ void kgd_gfx_v9_get_cu_occupancy(struct amdgpu_device *adev, int pasid,
+>   void kgd_gfx_v9_program_trap_handler_settings(struct amdgpu_device *adev,
+>                           uint32_t vmid, uint64_t tba_addr, uint64_t tma_addr)
 >   {
-> @@ -4609,6 +4632,13 @@ static int gfx_v9_0_late_init(void *handle)
->   	if (r)
->   		return r;
+> -	lock_srbm(adev, 0, 0, 0, vmid);
+> +	kgd_gfx_v9_lock_srbm(adev, 0, 0, 0, vmid);
 >   
-> +	if (adev->ip_versions[GC_HWIP][0] == IP_VERSION(9, 4, 2))
-> +		gfx_v9_4_2_debug_trap_config_init(adev,
-> +			adev->vm_manager.first_kfd_vmid, AMDGPU_NUM_VMID);
-> +	else
-> +		gfx_v9_0_debug_trap_config_init(adev,
-> +			adev->vm_manager.first_kfd_vmid, AMDGPU_NUM_VMID);
-> +
->   	return 0;
+>   	/*
+>   	 * Program TBA registers
+> @@ -851,7 +929,7 @@ void kgd_gfx_v9_program_trap_handler_settings(struct amdgpu_device *adev,
+>   	WREG32_SOC15(GC, 0, mmSQ_SHADER_TMA_HI,
+>   			upper_32_bits(tma_addr >> 8));
+>   
+> -	unlock_srbm(adev);
+> +	kgd_gfx_v9_unlock_srbm(adev);
 >   }
 >   
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
-> index d3e2b6a599a4..cb484ace17de 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
-> @@ -117,6 +117,11 @@ static void init_mqd(struct mqd_manager *mm, void **mqd,
->   			1 << CP_HQD_QUANTUM__QUANTUM_SCALE__SHIFT |
->   			1 << CP_HQD_QUANTUM__QUANTUM_DURATION__SHIFT;
+>   const struct kfd2kgd_calls gfx_v9_kfd2kgd = {
+> @@ -871,6 +949,8 @@ const struct kfd2kgd_calls gfx_v9_kfd2kgd = {
+>   	.get_atc_vmid_pasid_mapping_info =
+>   			kgd_gfx_v9_get_atc_vmid_pasid_mapping_info,
+>   	.set_vm_context_page_table_base = kgd_gfx_v9_set_vm_context_page_table_base,
+> +	.enable_debug_trap = kgd_gfx_v9_enable_debug_trap,
+> +	.disable_debug_trap = kgd_gfx_v9_disable_debug_trap,
+>   	.get_cu_occupancy = kgd_gfx_v9_get_cu_occupancy,
+>   	.program_trap_handler_settings = kgd_gfx_v9_program_trap_handler_settings,
+>   };
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.h
+> index c7ed3bc9053c..d39256162616 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.h
+> @@ -58,3 +58,12 @@ void kgd_gfx_v9_get_cu_occupancy(struct amdgpu_device *adev, int pasid,
+>   		int *pasid_wave_cnt, int *max_waves_per_cu);
+>   void kgd_gfx_v9_program_trap_handler_settings(struct amdgpu_device *adev,
+>   		uint32_t vmid, uint64_t tba_addr, uint64_t tma_addr);
+> +void kgd_gfx_v9_set_wave_launch_stall(struct amdgpu_device *adev,
+> +					uint32_t vmid,
+> +					bool stall);
+> +uint32_t kgd_gfx_v9_enable_debug_trap(struct amdgpu_device *adev,
+> +				      bool restore_dbg_registers,
+> +				      uint32_t vmid);
+> +uint32_t kgd_gfx_v9_disable_debug_trap(struct amdgpu_device *adev,
+> +					bool keep_trap_enabled,
+> +					uint32_t vmid);
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_debug.h b/drivers/gpu/drm/amd/amdkfd/kfd_debug.h
+> index b2217eb1399c..8aa7a3ad4e97 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_debug.h
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_debug.h
+> @@ -25,6 +25,9 @@
 >   
-> +	/* Set cp_hqd_hq_scheduler0 bit 14 to 1 to have the CP set up the
-> +	 * DISPATCH_PTR.  This is required for the kfd debugger
-> +	 */
-> +	m->cp_hqd_hq_scheduler0 = 1 << 14;
-> +
->   	if (q->format == KFD_QUEUE_FORMAT_AQL) {
->   		m->cp_hqd_aql_control =
->   			1 << CP_HQD_AQL_CONTROL__CONTROL0__SHIFT;
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
-> index 0778e587a2d6..86f1cf090246 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
-> @@ -164,6 +164,11 @@ static void init_mqd(struct mqd_manager *mm, void **mqd,
->   			1 << CP_HQD_QUANTUM__QUANTUM_SCALE__SHIFT |
->   			1 << CP_HQD_QUANTUM__QUANTUM_DURATION__SHIFT;
+>   #include "kfd_priv.h"
 >   
-> +	/* Set cp_hqd_hq_scheduler0 bit 14 to 1 to have the CP set up the
-> +	 * DISPATCH_PTR.  This is required for the kfd debugger
-> +	 */
-> +	m->cp_hqd_hq_status0 = 1 << 14;
-> +
->   	if (q->format == KFD_QUEUE_FORMAT_AQL) {
->   		m->cp_hqd_aql_control =
->   			1 << CP_HQD_AQL_CONTROL__CONTROL0__SHIFT;
-> diff --git a/drivers/gpu/drm/amd/include/asic_reg/gc/gc_10_1_0_offset.h b/drivers/gpu/drm/amd/include/asic_reg/gc/gc_10_1_0_offset.h
-> index 18d34bbceebe..7d384f86bd67 100644
-> --- a/drivers/gpu/drm/amd/include/asic_reg/gc/gc_10_1_0_offset.h
-> +++ b/drivers/gpu/drm/amd/include/asic_reg/gc/gc_10_1_0_offset.h
-> @@ -5190,6 +5190,20 @@
->   #define mmSPI_WCL_PIPE_PERCENT_CS6_BASE_IDX                                                            0
->   #define mmSPI_WCL_PIPE_PERCENT_CS7                                                                     0x1f70
->   #define mmSPI_WCL_PIPE_PERCENT_CS7_BASE_IDX                                                            0
-> +#define mmSPI_GDBG_WAVE_CNTL                                                                           0x1f71
-> +#define mmSPI_GDBG_WAVE_CNTL_BASE_IDX                                                                  0
-> +#define mmSPI_GDBG_TRAP_CONFIG                                                                         0x1f72
-> +#define mmSPI_GDBG_TRAP_CONFIG_BASE_IDX                                                                0
-> +#define mmSPI_GDBG_TRAP_MASK                                                                           0x1f73
-> +#define mmSPI_GDBG_TRAP_MASK_BASE_IDX                                                                  0
-> +#define mmSPI_GDBG_WAVE_CNTL2                                                                          0x1f74
-> +#define mmSPI_GDBG_WAVE_CNTL2_BASE_IDX                                                                 0
-> +#define mmSPI_GDBG_WAVE_CNTL3                                                                          0x1f75
-> +#define mmSPI_GDBG_WAVE_CNTL3_BASE_IDX                                                                 0
-> +#define mmSPI_GDBG_TRAP_DATA0                                                                          0x1f78
-> +#define mmSPI_GDBG_TRAP_DATA0_BASE_IDX                                                                 0
-> +#define mmSPI_GDBG_TRAP_DATA1                                                                          0x1f79
-> +#define mmSPI_GDBG_TRAP_DATA1_BASE_IDX                                                                 0
->   #define mmSPI_COMPUTE_QUEUE_RESET                                                                      0x1f7b
->   #define mmSPI_COMPUTE_QUEUE_RESET_BASE_IDX                                                             0
->   #define mmSPI_RESOURCE_RESERVE_CU_0                                                                    0x1f7c
-> diff --git a/drivers/gpu/drm/amd/include/asic_reg/gc/gc_10_1_0_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/gc/gc_10_1_0_sh_mask.h
-> index 4127896ffcdf..08772ba845b0 100644
-> --- a/drivers/gpu/drm/amd/include/asic_reg/gc/gc_10_1_0_sh_mask.h
-> +++ b/drivers/gpu/drm/amd/include/asic_reg/gc/gc_10_1_0_sh_mask.h
-> @@ -19646,6 +19646,75 @@
->   //SPI_WCL_PIPE_PERCENT_CS7
->   #define SPI_WCL_PIPE_PERCENT_CS7__VALUE__SHIFT                                                                0x0
->   #define SPI_WCL_PIPE_PERCENT_CS7__VALUE_MASK                                                                  0x7FL
-> +//SPI_GDBG_WAVE_CNTL
-> +#define SPI_GDBG_WAVE_CNTL__STALL_RA__SHIFT                                                                   0x0
-> +#define SPI_GDBG_WAVE_CNTL__STALL_VMID__SHIFT                                                                 0x1
-> +#define SPI_GDBG_WAVE_CNTL__STALL_RA_MASK                                                                     0x00000001L
-> +#define SPI_GDBG_WAVE_CNTL__STALL_VMID_MASK                                                                   0x0001FFFEL
-> +//SPI_GDBG_TRAP_CONFIG
-> +#define SPI_GDBG_TRAP_CONFIG__ME_SEL__SHIFT                                                                   0x0
-> +#define SPI_GDBG_TRAP_CONFIG__PIPE_SEL__SHIFT                                                                 0x2
-> +#define SPI_GDBG_TRAP_CONFIG__QUEUE_SEL__SHIFT                                                                0x4
-> +#define SPI_GDBG_TRAP_CONFIG__ME_MATCH__SHIFT                                                                 0x7
-> +#define SPI_GDBG_TRAP_CONFIG__PIPE_MATCH__SHIFT                                                               0x8
-> +#define SPI_GDBG_TRAP_CONFIG__QUEUE_MATCH__SHIFT                                                              0x9
-> +#define SPI_GDBG_TRAP_CONFIG__TRAP_EN__SHIFT                                                                  0xf
-> +#define SPI_GDBG_TRAP_CONFIG__VMID_SEL__SHIFT                                                                 0x10
-> +#define SPI_GDBG_TRAP_CONFIG__ME_SEL_MASK                                                                     0x00000003L
-> +#define SPI_GDBG_TRAP_CONFIG__PIPE_SEL_MASK                                                                   0x0000000CL
-> +#define SPI_GDBG_TRAP_CONFIG__QUEUE_SEL_MASK                                                                  0x00000070L
-> +#define SPI_GDBG_TRAP_CONFIG__ME_MATCH_MASK                                                                   0x00000080L
-> +#define SPI_GDBG_TRAP_CONFIG__PIPE_MATCH_MASK                                                                 0x00000100L
-> +#define SPI_GDBG_TRAP_CONFIG__QUEUE_MATCH_MASK                                                                0x00000200L
-> +#define SPI_GDBG_TRAP_CONFIG__TRAP_EN_MASK                                                                    0x00008000L
-> +#define SPI_GDBG_TRAP_CONFIG__VMID_SEL_MASK                                                                   0xFFFF0000L
-> +//SPI_GDBG_TRAP_MASK
-> +#define SPI_GDBG_TRAP_MASK__EXCP_EN__SHIFT                                                                    0x0
-> +#define SPI_GDBG_TRAP_MASK__REPLACE__SHIFT                                                                    0x9
-> +#define SPI_GDBG_TRAP_MASK__EXCP_EN_MASK                                                                      0x01FFL
-> +#define SPI_GDBG_TRAP_MASK__REPLACE_MASK                                                                      0x0200L
-> +//SPI_GDBG_WAVE_CNTL2
-> +#define SPI_GDBG_WAVE_CNTL2__VMID_MASK__SHIFT                                                                 0x0
-> +#define SPI_GDBG_WAVE_CNTL2__MODE__SHIFT                                                                      0x10
-> +#define SPI_GDBG_WAVE_CNTL2__VMID_MASK_MASK                                                                   0x0000FFFFL
-> +#define SPI_GDBG_WAVE_CNTL2__MODE_MASK                                                                        0x00030000L
-> +//SPI_GDBG_WAVE_CNTL3
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_PS__SHIFT                                                                  0x0
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_VS__SHIFT                                                                  0x1
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_GS__SHIFT                                                                  0x2
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_HS__SHIFT                                                                  0x3
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_CSG__SHIFT                                                                 0x4
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_CS0__SHIFT                                                                 0x5
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_CS1__SHIFT                                                                 0x6
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_CS2__SHIFT                                                                 0x7
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_CS3__SHIFT                                                                 0x8
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_CS4__SHIFT                                                                 0x9
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_CS5__SHIFT                                                                 0xa
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_CS6__SHIFT                                                                 0xb
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_CS7__SHIFT                                                                 0xc
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_DURATION__SHIFT                                                            0xd
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_MULT__SHIFT                                                                0x1c
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_PS_MASK                                                                    0x00000001L
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_VS_MASK                                                                    0x00000002L
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_GS_MASK                                                                    0x00000004L
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_HS_MASK                                                                    0x00000008L
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_CSG_MASK                                                                   0x00000010L
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_CS0_MASK                                                                   0x00000020L
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_CS1_MASK                                                                   0x00000040L
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_CS2_MASK                                                                   0x00000080L
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_CS3_MASK                                                                   0x00000100L
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_CS4_MASK                                                                   0x00000200L
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_CS5_MASK                                                                   0x00000400L
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_CS6_MASK                                                                   0x00000800L
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_CS7_MASK                                                                   0x00001000L
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_DURATION_MASK                                                              0x0FFFE000L
-> +#define SPI_GDBG_WAVE_CNTL3__STALL_MULT_MASK                                                                  0x10000000L
-> +//SPI_GDBG_TRAP_DATA0
-> +#define SPI_GDBG_TRAP_DATA0__DATA__SHIFT                                                                      0x0
-> +#define SPI_GDBG_TRAP_DATA0__DATA_MASK                                                                        0xFFFFFFFFL
-> +//SPI_GDBG_TRAP_DATA1
-> +#define SPI_GDBG_TRAP_DATA1__DATA__SHIFT                                                                      0x0
-> +#define SPI_GDBG_TRAP_DATA1__DATA_MASK                                                                        0xFFFFFFFFL
->   //SPI_COMPUTE_QUEUE_RESET
->   #define SPI_COMPUTE_QUEUE_RESET__RESET__SHIFT                                                                 0x0
->   #define SPI_COMPUTE_QUEUE_RESET__RESET_MASK                                                                   0x01L
-> diff --git a/drivers/gpu/drm/amd/include/asic_reg/gc/gc_10_3_0_offset.h b/drivers/gpu/drm/amd/include/asic_reg/gc/gc_10_3_0_offset.h
-> index 3973110f149c..d09f1a06f4bf 100644
-> --- a/drivers/gpu/drm/amd/include/asic_reg/gc/gc_10_3_0_offset.h
-> +++ b/drivers/gpu/drm/amd/include/asic_reg/gc/gc_10_3_0_offset.h
-> @@ -26,6 +26,8 @@
->   #define mmSQ_DEBUG_STS_GLOBAL_BASE_IDX                                                                 0
->   #define mmSQ_DEBUG_STS_GLOBAL2                                                                         0x10B0
->   #define mmSQ_DEBUG_STS_GLOBAL2_BASE_IDX                                                                0
-> +#define mmSQ_DEBUG                                                                                     0x10B1
-> +#define mmSQ_DEBUG_BASE_IDX                                                                            0
->   
->   // addressBlock: gc_sdma0_sdma0dec
->   // base address: 0x4980
-> @@ -4849,10 +4851,18 @@
->   #define mmSPI_WCL_PIPE_PERCENT_CS3_BASE_IDX                                                            0
->   #define mmSPI_GDBG_WAVE_CNTL                                                                           0x1f71
->   #define mmSPI_GDBG_WAVE_CNTL_BASE_IDX                                                                  0
-> +#define mmSPI_GDBG_TRAP_CONFIG                                                                         0x1f72
-> +#define mmSPI_GDBG_TRAP_CONFIG_BASE_IDX                                                                0
->   #define mmSPI_GDBG_TRAP_MASK                                                                           0x1f73
->   #define mmSPI_GDBG_TRAP_MASK_BASE_IDX                                                                  0
->   #define mmSPI_GDBG_WAVE_CNTL2                                                                          0x1f74
->   #define mmSPI_GDBG_WAVE_CNTL2_BASE_IDX                                                                 0
-> +#define mmSPI_GDBG_WAVE_CNTL3                                                                          0x1f75
-> +#define mmSPI_GDBG_WAVE_CNTL3_BASE_IDX                                                                 0
-> +#define mmSPI_GDBG_TRAP_DATA0                                                                          0x1f78
-> +#define mmSPI_GDBG_TRAP_DATA0_BASE_IDX                                                                 0
-> +#define mmSPI_GDBG_TRAP_DATA1                                                                          0x1f79
-> +#define mmSPI_GDBG_TRAP_DATA1_BASE_IDX                                                                 0
->   #define mmSPI_COMPUTE_QUEUE_RESET                                                                      0x1f7b
->   #define mmSPI_COMPUTE_QUEUE_RESET_BASE_IDX                                                             0
->   #define mmSPI_RESOURCE_RESERVE_CU_0                                                                    0x1f7c
-> diff --git a/drivers/gpu/drm/amd/include/asic_reg/gc/gc_10_3_0_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/gc/gc_10_3_0_sh_mask.h
-> index d4e8ff22ecb8..fc85aee010fe 100644
-> --- a/drivers/gpu/drm/amd/include/asic_reg/gc/gc_10_3_0_sh_mask.h
-> +++ b/drivers/gpu/drm/amd/include/asic_reg/gc/gc_10_3_0_sh_mask.h
-> @@ -47853,6 +47853,10 @@
->   
->   
->   // addressBlock: sqind
-> +//SQ_DEBUG
-> +#define SQ_DEBUG__SINGLE_MEMOP_MASK 0x00000001L
-> +#define SQ_DEBUG__SINGLE_MEMOP__SHIFT 0x00000000
-> +
->   //SQ_DEBUG_STS_GLOBAL
->   #define SQ_DEBUG_STS_GLOBAL2__FIFO_LEVEL_GFX0_MASK 0x000000ffL
->   #define SQ_DEBUG_STS_GLOBAL2__FIFO_LEVEL_GFX0__SHIFT 0x00000000
+> +void kgd_gfx_v9_set_wave_launch_stall(struct amdgpu_device *adev,
+> +					uint32_t vmid,
+> +					bool stall);
+>   int kfd_dbg_trap_disable(struct kfd_process *target);
+>   int kfd_dbg_trap_enable(struct kfd_process *target, uint32_t fd,
+>   			void __user *runtime_info,
