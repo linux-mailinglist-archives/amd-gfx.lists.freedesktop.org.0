@@ -2,43 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37974635D20
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Nov 2022 13:42:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B6FC635D4B
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Nov 2022 13:43:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BDD410E2E3;
-	Wed, 23 Nov 2022 12:42:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2414D10E541;
+	Wed, 23 Nov 2022 12:43:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org
- [IPv6:2604:1380:4601:e00::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34DF210E2E3;
- Wed, 23 Nov 2022 12:42:12 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9689D10E3F8;
+ Wed, 23 Nov 2022 12:43:18 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 5D665B81F3F;
- Wed, 23 Nov 2022 12:42:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1E0AC433D6;
- Wed, 23 Nov 2022 12:42:08 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 12CB161C55;
+ Wed, 23 Nov 2022 12:43:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2490C433C1;
+ Wed, 23 Nov 2022 12:43:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1669207330;
- bh=9CdGFcI6NSYYFit7v8Tf2qp4SHvPUavvWg7w2trO2Qg=;
+ s=k20201202; t=1669207397;
+ bh=be7RItbymvFf9t9+XrPeDGdWk6wnSf3Lociabth5Pj4=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=SDQueprYJALAkgiJ/N91J6zEo5mBZETwnY/8vK5FNoEqo+wagX5nMJ2tOj9MISGZa
- 0bmNh32AxG4br64Xv1avrk9e5Tqa9qgiwU1Mmc1rm3zoj3O7MDCcTAhLNud4aEPtRK
- CVmu438goyqB6KhTAeI9s1uP6rk3DHxqWorGVD53EUqqNXYTOxApSRKmt45qM+3qAp
- nmbfSl+NXj50vlZltcZ4uEDF/XBAiIG1e+or2Hj0nwRhdfM9XZTj9KbgsEv+lX6ZPO
- xNQNezsy+vU8zN936WEuoXoZD2p4LIOGtOgaFsMyjZ5q+rd5suZ+ybTPZLS5xP79sX
- p5wJj+YbdyJOQ==
+ b=WjxkFtMaCqxe8jj33SxseFpOU+NFLFxWgqZT0Jv9x3Y8XKYxphByC+FLRY024XcMF
+ BwYKdgpDKc2pSyGc8AU/bLGQLnsgQBtIkZybcqkkO9ZdICYfpPWN3Iw9sudNOCZu29
+ rTM0BR/kzztPIgO5aM0cuymir37b6lmGZUUGOwD8wvcwgy6a7oEIo5v1jI4DEaqGBA
+ JkEG0b4VcdMQTZgyUf0M9rZlGsJAMXRyeYOO3kTqwoxEjvgsp78RPfVHCMQJXFxNWV
+ zQe9k0pms74hr+te2dWaNIduEchGPIQKCrub7eVh0A8Xm5kaILozQ+LoNQyEm6fOgZ
+ Tg7KDImNEpbVQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.0 28/44] drm/amdkfd: Fix a memory limit issue
-Date: Wed, 23 Nov 2022 07:40:37 -0500
-Message-Id: <20221123124057.264822-28-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 17/31] drm/amdgpu: disable BACO support on more
+ cards
+Date: Wed, 23 Nov 2022 07:42:18 -0500
+Message-Id: <20221123124234.265396-17-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221123124057.264822-1-sashal@kernel.org>
-References: <20221123124057.264822-1-sashal@kernel.org>
+In-Reply-To: <20221123124234.265396-1-sashal@kernel.org>
+References: <20221123124234.265396-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -54,48 +55,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, Felix Kuehling <Felix.Kuehling@amd.com>,
- Xinhui.Pan@amd.com, amd-gfx@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>, dri-devel@lists.freedesktop.org,
- daniel@ffwll.ch, Eric Huang <jinhuieric.huang@amd.com>, airlied@gmail.com,
+Cc: Sasha Levin <sashal@kernel.org>, sathishkumar.sundararaju@amd.com,
+ lijo.lazar@amd.com, Guchun Chen <guchun.chen@amd.com>, danijel.slivka@amd.com,
+ Xinhui.Pan@amd.com, amd-gfx@lists.freedesktop.org, luben.tuikov@amd.com,
+ Mohammadzafar.ziya@amd.com, dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
+ Alex Deucher <alexander.deucher@amd.com>, evan.quan@amd.com, airlied@gmail.com,
  christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Eric Huang <jinhuieric.huang@amd.com>
+From: Guchun Chen <guchun.chen@amd.com>
 
-[ Upstream commit 6f9eea4392a178af19360694b1db64f985d0b459 ]
+[ Upstream commit 192039f12233c9063d040266e7c98188c7c89dec ]
 
-It is to resolve a regression, which fails to allocate
-VRAM due to no free memory in application, the reason
-is we add check of vram_pin_size for memory limit, and
-application is pinning the memory for Peerdirect, KFD
-should not count it in memory limit. So removing
-vram_pin_size will resolve it.
+Otherwise, some unexpected PCIE AER errors will be observed
+in runtime suspend/resume cycle.
 
-Signed-off-by: Eric Huang <jinhuieric.huang@amd.com>
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+Signed-off-by: Guchun Chen <guchun.chen@amd.com>
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-index 93ad00453f4b..7db4aef9c45c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-@@ -170,9 +170,7 @@ int amdgpu_amdkfd_reserve_mem_limit(struct amdgpu_device *adev,
- 	    (kfd_mem_limit.ttm_mem_used + ttm_mem_needed >
- 	     kfd_mem_limit.max_ttm_mem_limit) ||
- 	    (adev && adev->kfd.vram_used + vram_needed >
--	     adev->gmc.real_vram_size -
--	     atomic64_read(&adev->vram_pin_size) -
--	     reserved_for_pt)) {
-+	     adev->gmc.real_vram_size - reserved_for_pt)) {
- 		ret = -ENOMEM;
- 		goto release;
- 	}
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+index ca6fa133993c..82a8c184526d 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+@@ -368,6 +368,10 @@ static void sienna_cichlid_check_bxco_support(struct smu_context *smu)
+ 		    ((adev->pdev->device == 0x73BF) &&
+ 		    (adev->pdev->revision == 0xCF)) ||
+ 		    ((adev->pdev->device == 0x7422) &&
++		    (adev->pdev->revision == 0x00)) ||
++		    ((adev->pdev->device == 0x73A3) &&
++		    (adev->pdev->revision == 0x00)) ||
++		    ((adev->pdev->device == 0x73E3) &&
+ 		    (adev->pdev->revision == 0x00)))
+ 			smu_baco->platform_support = false;
+ 
 -- 
 2.35.1
 
