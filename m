@@ -1,34 +1,53 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3E4863610E
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Nov 2022 15:05:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96AA46360BC
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Nov 2022 14:58:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A474110E55B;
-	Wed, 23 Nov 2022 14:05:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81C5D10E558;
+	Wed, 23 Nov 2022 13:58:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx.swemel.ru (mx.swemel.ru [95.143.211.150])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 181F310E310;
- Wed, 23 Nov 2022 12:06:08 +0000 (UTC)
-From: Denis Arefev <arefev@swemel.ru>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=swemel.ru; s=mail;
- t=1669205166;
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 052CB10E57A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 23 Nov 2022 13:58:04 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4NHN4T0gR6z9sW1;
+ Wed, 23 Nov 2022 14:58:01 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1669211881;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=dyDdQ0ouK6C8bS9bKimyo6WyQoc/XZnFKa1MkRVBOUU=;
- b=StRJTY6tCzqUr8ujdrLKIZnx9EuyTdxSVBJ4mSdRS38m/cOi2Ok76V9AAVwuup48EALRur
- 4/YK8INrJHDGX9lNXUzwnugggA6JGddpSWA3vX7bnh4w25pNFs6ZjaBATEIFvnodqrBmHN
- ziqzBPGwPXwb1OZTBY1FcA3ucZq8qgA=
-To: Harry Wentland <harry.wentland@amd.com>
-Subject: [PATCH] drm/amdgpu/display: Add pointer check
-Date: Wed, 23 Nov 2022 15:06:05 +0300
-Message-Id: <20221123120605.37265-1-arefev@swemel.ru>
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=DT5Wc1bXYwX1SLznej3PLe1bw76NCL70kW9YZv8SMkU=;
+ b=xxCMqV/CfCS7cvK+/7AbggnTB9Mz05FCCmsSipNfNK1rPgmbJyMzASw5rh749CIN3vIhKG
+ 2IwE0xwVDI/3gE0D2XNerXpT2U6oghk9I0K0wzGt4U9arqQ8AVPeFe50jmzPE+2NU4Ko9A
+ UHJ9EpT3SX9WVqLPGoV8Hn7oP/pk/dL3criAThfTLoXrR+lKRITpDNeIbTIWFJ6AX2YfJk
+ BJwUnh/2QtNZBjT9BA98E1DZm6e482bqvFWNsvrfQk51afYPpxmJrqeyhAIwKg8UJFV02W
+ g5d3qK59vLUfSzo/GBnWRrNWAyDvZq75ZM4dMXdMVk2Z+XSnpxDcuKay6+XBQw==
+Message-ID: <8827a1e7-c3a1-9a7d-d774-918bf373c07e@mailbox.org>
+Date: Wed, 23 Nov 2022 14:57:59 +0100
 MIME-Version: 1.0
+Subject: Re: [PATCH 3/3] drm/amdgpu: add printing to indicate rpm completeness
+To: "Chen, Guchun" <Guchun.Chen@amd.com>, "Lazar, Lijo" <Lijo.Lazar@amd.com>, 
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "Zhang, Hawking" <Hawking.Zhang@amd.com>, "Quan, Evan" <Evan.Quan@amd.com>
+References: <20221123014408.263645-1-guchun.chen@amd.com>
+ <24eb1835-d49f-f938-c0cc-ac8cfedaba4b@amd.com>
+ <DM5PR12MB2469BEB165320703CC12E1B5F10C9@DM5PR12MB2469.namprd12.prod.outlook.com>
+Content-Language: en-CA
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel.daenzer@mailbox.org>
+In-Reply-To: <DM5PR12MB2469BEB165320703CC12E1B5F10C9@DM5PR12MB2469.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 23 Nov 2022 14:05:15 +0000
+X-MBO-RS-META: nqb8izwmxwcm7xx9s3y3ywzg6ikp4rwd
+X-MBO-RS-ID: 19ef2550fbf17fe255e
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,39 +59,18 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, trufanov@swemel.ru,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Return value of a function 'dc_create_state' is
-dereferenced at amdgpu_dm.c:2027 without checking for null
+On 11/23/22 07:09, Chen, Guchun wrote:
+> Hi Lijo,
+> 
+> Thanks for your review. The cause for this change is, so far, except one line printing like "amdgpu: free PSP TMR buffer", there are no other printings once system completes rpm suspend. And moreover, "free PSP TMR buffer" sometimes confuses audiences.
 
-Found by Linux Verification Center (linuxtesting.org) with SVACE.
+How about making those messages not printed by default then, instead of adding more?
 
-Signed-off-by: Denis Arefev <arefev@swemel.ru>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 0f7749e9424d..529483997154 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -1960,7 +1960,9 @@ static int dm_resume(void *handle)
- 	dc_release_state(dm_state->context);
- 	dm_state->context = dc_create_state(dm->dc);
- 	/* TODO: Remove dc_state->dccg, use dc->dccg directly. */
--	dc_resource_state_construct(dm->dc, dm_state->context);
-+	if (dm_state->context) {
-+		dc_resource_state_construct(dm->dc, dm_state->context);
-+	}
- 
- 	/* Before powering on DC we need to re-initialize DMUB. */
- 	r = dm_dmub_hw_init(adev);
 -- 
-2.25.1
+Earthling Michel Dänzer            |                  https://redhat.com
+Libre software enthusiast          |         Mesa and Xwayland developer
 
