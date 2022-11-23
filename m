@@ -1,49 +1,34 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B6FC635D4B
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Nov 2022 13:43:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3E4863610E
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Nov 2022 15:05:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2414D10E541;
-	Wed, 23 Nov 2022 12:43:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A474110E55B;
+	Wed, 23 Nov 2022 14:05:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9689D10E3F8;
- Wed, 23 Nov 2022 12:43:18 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 12CB161C55;
- Wed, 23 Nov 2022 12:43:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2490C433C1;
- Wed, 23 Nov 2022 12:43:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1669207397;
- bh=be7RItbymvFf9t9+XrPeDGdWk6wnSf3Lociabth5Pj4=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=WjxkFtMaCqxe8jj33SxseFpOU+NFLFxWgqZT0Jv9x3Y8XKYxphByC+FLRY024XcMF
- BwYKdgpDKc2pSyGc8AU/bLGQLnsgQBtIkZybcqkkO9ZdICYfpPWN3Iw9sudNOCZu29
- rTM0BR/kzztPIgO5aM0cuymir37b6lmGZUUGOwD8wvcwgy6a7oEIo5v1jI4DEaqGBA
- JkEG0b4VcdMQTZgyUf0M9rZlGsJAMXRyeYOO3kTqwoxEjvgsp78RPfVHCMQJXFxNWV
- zQe9k0pms74hr+te2dWaNIduEchGPIQKCrub7eVh0A8Xm5kaILozQ+LoNQyEm6fOgZ
- Tg7KDImNEpbVQ==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 17/31] drm/amdgpu: disable BACO support on more
- cards
-Date: Wed, 23 Nov 2022 07:42:18 -0500
-Message-Id: <20221123124234.265396-17-sashal@kernel.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221123124234.265396-1-sashal@kernel.org>
-References: <20221123124234.265396-1-sashal@kernel.org>
+Received: from mx.swemel.ru (mx.swemel.ru [95.143.211.150])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 181F310E310;
+ Wed, 23 Nov 2022 12:06:08 +0000 (UTC)
+From: Denis Arefev <arefev@swemel.ru>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=swemel.ru; s=mail;
+ t=1669205166;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=dyDdQ0ouK6C8bS9bKimyo6WyQoc/XZnFKa1MkRVBOUU=;
+ b=StRJTY6tCzqUr8ujdrLKIZnx9EuyTdxSVBJ4mSdRS38m/cOi2Ok76V9AAVwuup48EALRur
+ 4/YK8INrJHDGX9lNXUzwnugggA6JGddpSWA3vX7bnh4w25pNFs6ZjaBATEIFvnodqrBmHN
+ ziqzBPGwPXwb1OZTBY1FcA3ucZq8qgA=
+To: Harry Wentland <harry.wentland@amd.com>
+Subject: [PATCH] drm/amdgpu/display: Add pointer check
+Date: Wed, 23 Nov 2022 15:06:05 +0300
+Message-Id: <20221123120605.37265-1-arefev@swemel.ru>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 23 Nov 2022 14:05:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,45 +40,39 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, sathishkumar.sundararaju@amd.com,
- lijo.lazar@amd.com, Guchun Chen <guchun.chen@amd.com>, danijel.slivka@amd.com,
- Xinhui.Pan@amd.com, amd-gfx@lists.freedesktop.org, luben.tuikov@amd.com,
- Mohammadzafar.ziya@amd.com, dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
- Alex Deucher <alexander.deucher@amd.com>, evan.quan@amd.com, airlied@gmail.com,
- christian.koenig@amd.com
+Cc: Leo Li <sunpeng.li@amd.com>, trufanov@swemel.ru,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Guchun Chen <guchun.chen@amd.com>
+Return value of a function 'dc_create_state' is
+dereferenced at amdgpu_dm.c:2027 without checking for null
 
-[ Upstream commit 192039f12233c9063d040266e7c98188c7c89dec ]
+Found by Linux Verification Center (linuxtesting.org) with SVACE.
 
-Otherwise, some unexpected PCIE AER errors will be observed
-in runtime suspend/resume cycle.
-
-Signed-off-by: Guchun Chen <guchun.chen@amd.com>
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Denis Arefev <arefev@swemel.ru>
 ---
- drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-index ca6fa133993c..82a8c184526d 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-@@ -368,6 +368,10 @@ static void sienna_cichlid_check_bxco_support(struct smu_context *smu)
- 		    ((adev->pdev->device == 0x73BF) &&
- 		    (adev->pdev->revision == 0xCF)) ||
- 		    ((adev->pdev->device == 0x7422) &&
-+		    (adev->pdev->revision == 0x00)) ||
-+		    ((adev->pdev->device == 0x73A3) &&
-+		    (adev->pdev->revision == 0x00)) ||
-+		    ((adev->pdev->device == 0x73E3) &&
- 		    (adev->pdev->revision == 0x00)))
- 			smu_baco->platform_support = false;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 0f7749e9424d..529483997154 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -1960,7 +1960,9 @@ static int dm_resume(void *handle)
+ 	dc_release_state(dm_state->context);
+ 	dm_state->context = dc_create_state(dm->dc);
+ 	/* TODO: Remove dc_state->dccg, use dc->dccg directly. */
+-	dc_resource_state_construct(dm->dc, dm_state->context);
++	if (dm_state->context) {
++		dc_resource_state_construct(dm->dc, dm_state->context);
++	}
  
+ 	/* Before powering on DC we need to re-initialize DMUB. */
+ 	r = dm_dmub_hw_init(adev);
 -- 
-2.35.1
+2.25.1
 
