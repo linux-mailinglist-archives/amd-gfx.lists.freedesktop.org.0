@@ -2,52 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9989D638B68
-	for <lists+amd-gfx@lfdr.de>; Fri, 25 Nov 2022 14:40:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 260F2638E51
+	for <lists+amd-gfx@lfdr.de>; Fri, 25 Nov 2022 17:36:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB2D310E79D;
-	Fri, 25 Nov 2022 13:40:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D378E10E10B;
+	Fri, 25 Nov 2022 16:36:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC50E10E79D;
- Fri, 25 Nov 2022 13:40:32 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 0838C62430;
- Fri, 25 Nov 2022 13:40:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56DFAC433C1;
- Fri, 25 Nov 2022 13:40:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1669383631;
- bh=1Vi9cYPQdsFlwN2CupqS3SDHphAahEkfEFQ47zI6WhI=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=IDp9FDBQ2WGmmAcEkiW2GHNzyxAljeKVhmaOAfdahPkFsZNnZiasCvP1PntCi4W3e
- GdEz0mFYBRPy29WZVxfhOBAawsChZgsLOoIHfTYwMmbtZgGsChvUcST6MfaW/s71Vo
- KPJQ3//yg32O0vdIclPMxYCXM+ljCguSNfdSwUXYNjOmf+qT6NHGo5PyWc3UREuH0i
- yrNz5x8nhfPJBgCw34SrK4K9MvyJBb1fzwr60V9x2oKu7nn4A13dTR9IDNT0yE8v2c
- JKWdqpz1CGd8tfrzaFv9GQFw9/2u6iBVY2eFAHDM3ewlUT63r2qYYtKupXIZC0FjC9
- WeArEEzwpq4eA==
-Date: Fri, 25 Nov 2022 13:40:23 +0000
-From: Lee Jones <lee@kernel.org>
-To: arnd@arndb.de, akpm@linux-foundation.org, nathan@kernel.org,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
- ndesaulniers@google.com, trix@redhat.com, harry.wentland@amd.com,
- sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com
-Subject: Re: [PATCH v2 2/2] Kconfig.debug: Provide a little extra FRAME_WARN
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com
+ [66.111.4.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F26410E5D5;
+ Fri, 25 Nov 2022 10:05:49 +0000 (UTC)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailout.nyi.internal (Postfix) with ESMTP id E5F2B5C0097;
+ Fri, 25 Nov 2022 05:05:46 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+ by compute3.internal (MEProxy); Fri, 25 Nov 2022 05:05:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm3; t=1669370746; x=1669457146; bh=nCUDBJBJHd
+ ePT/oDuUKf6UFCDmSjLUzfGVmKPcZYTHc=; b=oc85BrLut4eMUnLgtSRs1dBRTq
+ yTswdBUuAAzRMymMAHCp/TQIRDoBx518DMQgvdN0tkYLQJpNvtdYuXNpOQesU0I+
+ oRLgfx53QU9qBPgO7jaUGNLiJeQGDpik4jgwggvcyPCGzcdvSg+OtH3Ttk6zJbtT
+ PCPek/BYIY+11yocO7hR6Gqs5UHpbXoLhXqS4Fz/99rnMxXfdBXPv1CB216C4LOm
+ F5EVAtvkGVYzC9NsMSCA55+arEPPG4yXyg1HXi0uYp7j+K6qOdXBKmQkRHQZhGzZ
+ Q3IXjBaj2FpFr0oL3GgWK5EOwHIDITpVSqgSzCViu/6hKxGsj0zQ1A0BXVUw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+ :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+ :mime-version:references:reply-to:sender:subject:subject:to:to
+ :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm1; t=1669370746; x=1669457146; bh=nCUDBJBJHdePT/oDuUKf6UFCDmSj
+ LUzfGVmKPcZYTHc=; b=ggjyDftopnn52yQ2dDvZS842qcWdpe2HJmciqGNBdASv
+ pNuccXdeNieJIhwXCRb09AHgoOg9k/z3sqKT7kT+ekaYpfqaywl7agbgTTiIlF3+
+ WSHZGyjwnK/JFMXWbK98v94+qUcJnpAoU2WWhud10sTVXfe3tYLarAzoJFCeoWED
+ s/Jvbh+gkf4WCnyn1qiLsXayabbm7irh8J7kTXEJmJC+PoheT71zl69x5M3BRkhy
+ pgh6dzcj03fFnzCpZLLNAIwaDoSz9dJwPJkO+SigUonK+JegC22mEy110GII/zet
+ D9yxsIrf8q+KwtM5Qcs8i0v7r7DzI1HZzsgvUoBDlw==
+X-ME-Sender: <xms:epOAY-3Eda9GKDnL0an58UF2OVpH0x6YAVoG1C_Sdtgb3vikBvwipA>
+ <xme:epOAYxHjg9wa3ByCOZWnpG1N28dOcQDleoLQhy88eiqhIEAxBPDOIrfj7cFFVoDtR
+ QdTOMhYUGeiMy5y4qQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrieehgdduvdcutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
+ ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
+ gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
+ ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
+ hnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:epOAY25MNWvqDiJnbPXQ9uy9Y4zHwqSgeaRqeB54Mf9XjqKdBspppA>
+ <xmx:epOAY_3Kp6Z2JNnZpur8lT89l6uifeBJU4CvKOGt1Fwvyj5RD9NjMA>
+ <xmx:epOAYxGAUHlSw1G2EmHIdcsjKUDlArxIcMu4YFSxe0lU3ZpzeaufaA>
+ <xmx:epOAY__-3AAdEaTnWCpWNS3s6huDcSrM1uHPHzV-rz-3qU8_cyt-Sg>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+ id 96163B60086; Fri, 25 Nov 2022 05:05:46 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1115-g8b801eadce-fm-20221102.001-g8b801ead
+Mime-Version: 1.0
+Message-Id: <aec6ed25-6999-45a7-90d0-121ce315f45d@app.fastmail.com>
+In-Reply-To: <20221125092517.3074989-4-lee@kernel.org>
+References: <20221125092517.3074989-1-lee@kernel.org>
+ <20221125092517.3074989-4-lee@kernel.org>
+Date: Fri, 25 Nov 2022 11:05:25 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Lee Jones" <lee@kernel.org>, "Andrew Morton" <akpm@linux-foundation.org>, 
+ "Nathan Chancellor" <nathan@kernel.org>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, mripard@kernel.org,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "Dave Airlie" <airlied@gmail.com>, 
+ "Daniel Vetter" <daniel@ffwll.ch>,
+ "Nick Desaulniers" <ndesaulniers@google.com>, "Tom Rix" <trix@redhat.com>,
+ "Harry Wentland" <harry.wentland@amd.com>, "Leo Li" <sunpeng.li@amd.com>,
+ "Rodrigo Siqueira" <Rodrigo.Siqueira@amd.com>,
+ "Alex Deucher" <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui.Pan@amd.com
+Subject: Re: [PATCH 3/3] Kconfig.debug: Provide a little extra FRAME_WARN
  leeway when KASAN is enabled
-Message-ID: <Y4DFx20YXDLcuVJm@google.com>
-References: <20221125120750.3537134-1-lee@kernel.org>
- <20221125120750.3537134-3-lee@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221125120750.3537134-3-lee@kernel.org>
+Content-Type: text/plain
+X-Mailman-Approved-At: Fri, 25 Nov 2022 16:36:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,37 +99,35 @@ Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 25 Nov 2022, Lee Jones wrote:
-
+On Fri, Nov 25, 2022, at 10:25, Lee Jones wrote:
 > When enabled, KASAN enlarges function's stack-frames.  Pushing quite a
 > few over the current threshold.  This can mainly be seen on 32-bit
 > architectures where the present limit (when !GCC) is a lowly
 > 1024-Bytes.
-> 
+>
 > Signed-off-by: Lee Jones <lee@kernel.org>
+
+Acked-by: Arnd Bergmann <arnd@arndb.de>
+
+If this affects only clang but not gcc, I wonder if we could
+limit the scope and keep the 1024 byte limit on gcc builds.
+
 > ---
 >  lib/Kconfig.debug | 1 +
 >  1 file changed, 1 insertion(+)
-> 
+>
 > diff --git a/lib/Kconfig.debug b/lib/Kconfig.debug
 > index c3c0b077ade33..82d475168db95 100644
 > --- a/lib/Kconfig.debug
 > +++ b/lib/Kconfig.debug
 > @@ -399,6 +399,7 @@ config FRAME_WARN
 >  	default 2048 if GCC_PLUGIN_LATENT_ENTROPY
->  	default 2048 if PARISC
->  	default 1536 if (!64BIT && XTENSA)
-> +	default 1280 if KASAN && !64BIT
->  	default 1024 if !64BIT
->  	default 2048 if 64BIT
->  	help
 
-Note this also fixes 61 warnings when
+This is actually a related bug that we should fix: allmodconfig
+with gcc turns on GCC_PLUGIN_LATENT_ENTROPY, so the limit
+ends up being way too high. I think we need to either ensure
+that allmodconfig turns off the latent entropy plugin,
+or that the limit gets lowered again to something that is
+not any higher than the KASAN limit.
 
-  (GCC && !GCC_PLUGIN_LATENT_ENTROPY)
-
-... which as Arnd says should not be enabled by default.  We'll
-address that issue once this set has been applied.
-
--- 
-Lee Jones [李琼斯]
+     Arnd
