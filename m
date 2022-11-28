@@ -1,50 +1,47 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9611863A2ED
-	for <lists+amd-gfx@lfdr.de>; Mon, 28 Nov 2022 09:26:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5BC063A243
+	for <lists+amd-gfx@lfdr.de>; Mon, 28 Nov 2022 08:47:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FFF310E2B2;
-	Mon, 28 Nov 2022 08:26:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E47A510E29D;
+	Mon, 28 Nov 2022 07:47:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
- [IPv6:2a01:488:42:1000:50ed:8234::])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3ECD210E04D
- for <amd-gfx@lists.freedesktop.org>; Sun, 27 Nov 2022 10:56:16 +0000 (UTC)
-Received: from [2a02:8108:963f:de38:eca4:7d19:f9a2:22c5]; authenticated
- by wp530.webpack.hosteurope.de running ExIM with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- id 1ozFKV-0000Ap-To; Sun, 27 Nov 2022 11:56:11 +0100
-Message-ID: <5a013de5-87f8-3d5e-27c0-aee32f5c1171@leemhuis.info>
-Date: Sun, 27 Nov 2022 11:56:11 +0100
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E85A10E29D;
+ Mon, 28 Nov 2022 07:47:18 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 8AE40B80AF0;
+ Mon, 28 Nov 2022 07:47:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3266EC433D6;
+ Mon, 28 Nov 2022 07:47:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1669621635;
+ bh=+WYQFpWUKXr9b62rzVenfF+a3NLG9DBKuJ3zWIaJbFA=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=trelwF4unhGqqJGOzUJ2U/lkT86Tjnibc09mApQkJO/TZ2q0Mrmah178G0hbKdiyQ
+ EQnzDwZrv/ScpfLZ1b2cGjnZC/VPkC8RZuGfdaIoWesbK14u3nv17qMoTv+jQrWDlV
+ bCH6iANTSynehLUnJnqJ9iPhELkk3SSyRfaHpLvfnQagMMdYvCs/l5MCHRpmwZJxGZ
+ HAr+LxGZms0NZS/glR1N58y53ypXoE2J7TOHso9rc5OOgM9EfTu487WUM1d181ZDd/
+ v+cSSAscgZr4odczemM+jp7Xe0ZaV3zqT61Yq1WzKSNuHZC3eRLHm2QF8ngrWgP55g
+ dUFTpihSBZcfQ==
+Date: Mon, 28 Nov 2022 07:47:06 +0000
+From: Lee Jones <lee@kernel.org>
+To: Andrew Morton <akpm@linux-foundation.org>
+Subject: Re: [PATCH v2 0/2] Fix a bunch of allmodconfig errors
+Message-ID: <Y4RnesCbA0yOFI8/@google.com>
+References: <20221125120750.3537134-1-lee@kernel.org>
+ <20221125161325.bed715211b887d0a298813de@linux-foundation.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [6.1][regression] after commit
- dd80d9c8eecac8c516da5b240d01a35660ba6cb6 some games (Cyberpunk 2077, Forza
- Horizon 4/5) hang at start #forregzbot
-Content-Language: en-US, de-DE
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-To: amd-gfx list <amd-gfx@lists.freedesktop.org>
-References: <CABXGCsOeQ7VYm98jRVaYp6KaNsFVsAnSb33ZT8JvZxcTcEGW0w@mail.gmail.com>
- <a67598e8-c826-2740-03bb-33d37c8c8e4b@amd.com>
- <CABXGCsNvFvJz4=N=JKYSGVcd=dKfQ3Nv_zOssMb0Z6oK79xZ7g@mail.gmail.com>
- <a537212d-4b42-4ba4-7707-1e397234c8b7@amd.com>
- <CABXGCsMCfACsJRDPqZDYQGMpaA_6LKhQ0XqAmDN04GSMeetXnA@mail.gmail.com>
- <ca6c98eb-fdb0-5fee-3925-5b697e3e6b50@gmail.com>
- <CABXGCsPJFvNXfbdR=_sb4gLdd2E30aRN9usSiZc2XYmZNSKBcQ@mail.gmail.com>
- <dc802bd0-ed77-d268-25e2-1cf162202912@gmail.com>
- <c5c4f572-4720-04ff-3c70-30bba9c37202@amd.com>
- <acb1c70c-0155-4d8b-205e-42514b95ebc8@leemhuis.info>
-In-Reply-To: <acb1c70c-0155-4d8b-205e-42514b95ebc8@leemhuis.info>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1669546576;
- a989ff56; 
-X-HE-SMSGID: 1ozFKV-0000Ap-To
-X-Mailman-Approved-At: Mon, 28 Nov 2022 08:26:27 +0000
+In-Reply-To: <20221125161325.bed715211b887d0a298813de@linux-foundation.org>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,29 +53,37 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>
+Cc: llvm@lists.linux.dev, daniel@ffwll.ch, arnd@arndb.de, sunpeng.li@amd.com,
+ ndesaulniers@google.com, dri-devel@lists.freedesktop.org, Xinhui.Pan@amd.com,
+ maarten.lankhorst@linux.intel.com, linux-kernel@vger.kernel.org,
+ mripard@kernel.org, nathan@kernel.org, harry.wentland@amd.com,
+ amd-gfx@lists.freedesktop.org, tzimmermann@suse.de, trix@redhat.com,
+ alexander.deucher@amd.com, Rodrigo.Siqueira@amd.com, airlied@gmail.com,
+ christian.koenig@amd.com, linux-arm-kernel@lists.infradead.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Fri, 25 Nov 2022, Andrew Morton wrote:
 
-
-On 20.11.22 18:25, Thorsten Leemhuis wrote:
-> [Note: this mail is primarily send for documentation purposes and/or for
-> regzbot, my Linux kernel regression tracking bot. That's why I removed
-> most or all folks from the list of recipients, but left any that looked
-> like a mailing lists. These mails usually contain '#forregzbot' in the
-> subject, to make them easy to spot and filter out.]
+> On Fri, 25 Nov 2022 12:07:48 +0000 Lee Jones <lee@kernel.org> wrote:
 > 
-> On 14.11.22 14:22, Christian König wrote:
->>
->> I've found and fixed a few problems around the userptr handling which
->> might explain what you see here.
->>
->> A series of four patches starting with "drm/amdgpu: always register an
->> MMU notifier for userptr" is under review now.
+> > Since b339ec9c229aa ("kbuild: Only default to -Werror if COMPILE_TEST") WERROR 
+> > now defaults to COMPILE_TEST meaning that it's enabled for allmodconfig        
+> > builds.  This leads to some interesting failures, each resolved in this set.   
 > 
-> #regzbot monitor:
-> https://lore.kernel.org/all/20221115133853.7950-1-christian.koenig@amd.com/
-> #regzbot fixed-by: fec8fdb54e8f
+> I'm not sure who this patchset is aimed at, so I'll take my usual
+> approach of grabbing it and seeing who complains.
+> 
+> > With this set applied, I am able to obtain a successful allmodconfig Arm build.
+> 
+> b339ec9c229aa is a year old and I've been doing arm allmodconfig for
+> ever.  What am I missing here?
+> 
+> A broken arm allmodconfig is pretty irritating - I'm thinking that a
+> fix should be backported into -stable kernels.  But I'm clearly missing
+> something here.
 
-#regzbot fixed-by: 4458da0bb09d443595
+I will be taking these through all applicable Stable kernels.
+
+-- 
+Lee Jones [李琼斯]
