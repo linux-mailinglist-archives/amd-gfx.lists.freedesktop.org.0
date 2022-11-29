@@ -2,91 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2EC863BB1D
-	for <lists+amd-gfx@lfdr.de>; Tue, 29 Nov 2022 08:56:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A50CC63BC3D
+	for <lists+amd-gfx@lfdr.de>; Tue, 29 Nov 2022 09:55:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 299EF89CCE;
-	Tue, 29 Nov 2022 07:56:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E335D10E248;
+	Tue, 29 Nov 2022 08:55:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2062e.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7eaa::62e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D62D89CCE
- for <amd-gfx@lists.freedesktop.org>; Tue, 29 Nov 2022 07:56:07 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nctf7zSMu33l7YoGw/51QAaQx7hNLq/+moFfpNAI3/CblQdQH1ZybDG9Yl4zvdjHFMG8ArMvkBs0O50I8ZYae1/UGayTD9B3pKPfSkz9yGZUdrIpBmBnSu9hgeM5RKqwJdw3yH6SV5mjt8W8IFrEkSXrmGfrbMX/wHj0LIwd23f987xqcPFJxTlPAz79zoxXgbZwxz/FaYQ19OQ1ES5tsgbOadNDdwMl5fprI3pDdoswn1x4cc7LWrnScDQbNLLcugsnVytRZMev43WAWoKaSZLH30BwgUFfWbJru0u9qXk8pkJrx83OULQQ+gBpeVgDCg7nUG0O17M1pC2A/b7pfw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HnwY6zUBM6hJRVcpawmvLRjNWl9/s80g4ajl9fKbMS0=;
- b=UwR+GYbNCHy/YenoylIP3mt0EpTZsQqvhg4rDjvLmZYNL+8n7NsMcE4vsWtyNMYLgu/sYAYAlgB7hJZ1msU3GNbM52blyqbTxFJHYwOW8cNvI2XjYkZdDrCNmiOMzsr7lUVu8y6qdhMUqxmcDy6nKzC65BNtZ6LkHRekh8gwYJV2Nz/zYJ81t//NnyL2IT5R1/O0/VwvIugXNMsvJ1PIPfGPIa4AH6hlA5Zwo1RzHei6+2TiSxKvUtDGi7OFnxTHwAPqT4m0RPL7yQhvave5I0cNPvJ3smrylV4S31nxDZeZUcy4qTrn+cv8ogV8+xPQW1s9CfddF6uuQY2YLw41cw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HnwY6zUBM6hJRVcpawmvLRjNWl9/s80g4ajl9fKbMS0=;
- b=tkusdD9C/wP5CDF0+BNJ+Xnu2n0C9h4myVoXzNvQMtY83S+x/JMCE4aMRk1uqkn0wWLGuJcJgjUN2jPokS2TeiN7XU4lA/+zI9TS6OCTgovWwXkzhJZbY/s82dT+48qoYyWlYeTu5qjxkRu+FhGk2d0cFdCa1DxtCchoY+xvWZk=
-Received: from MW4P222CA0012.NAMP222.PROD.OUTLOOK.COM (2603:10b6:303:114::17)
- by PH7PR12MB7210.namprd12.prod.outlook.com (2603:10b6:510:205::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.23; Tue, 29 Nov
- 2022 07:56:05 +0000
-Received: from CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:114:cafe::ae) by MW4P222CA0012.outlook.office365.com
- (2603:10b6:303:114::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.23 via Frontend
- Transport; Tue, 29 Nov 2022 07:56:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT064.mail.protection.outlook.com (10.13.175.77) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5834.8 via Frontend Transport; Tue, 29 Nov 2022 07:56:04 +0000
-Received: from taozhou1u2.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 29 Nov
- 2022 01:56:03 -0600
-From: Tao Zhou <tao.zhou1@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <hawking.zhang@amd.com>
-Subject: [PATCH] drm/amdgpu: enable VCN RAS poison for VCN v4.0
-Date: Tue, 29 Nov 2022 15:55:54 +0800
-Message-ID: <20221129075554.30067-1-tao.zhou1@amd.com>
-X-Mailer: git-send-email 2.35.1
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com
+ [IPv6:2a00:1450:4864:20::62f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B390410E248
+ for <amd-gfx@lists.freedesktop.org>; Tue, 29 Nov 2022 08:55:27 +0000 (UTC)
+Received: by mail-ej1-x62f.google.com with SMTP id n21so32030642ejb.9
+ for <amd-gfx@lists.freedesktop.org>; Tue, 29 Nov 2022 00:55:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=uvXYQIUjlpODv2ASDgCCHhGurCSk0rWLiF7tIMDKiSQ=;
+ b=ZCrRoUf96bXE+e1flhHdjOmDaWE7eIIT4me2XSrHtXbU6qEpoULtOqXJPpHK20ja9c
+ uNdNXj0YwPig7BRUtozEewQ4xkBqHqC7p12w7ahd6Mv/O9uH1fDe/CzU29DvoxF2/Yl3
+ QJdPkumi1emCqxlsrCS0SzZ4aOe5VSXeM5g+n+9edLkA2tfxZJKtulq5jFan4JwiXXzw
+ //qayJdhcg5zJO/HFk/hhc3IDODoBeec+hbqNWbtQ6E8blZoeGqSusOFdxcsegjEHzRW
+ KV3/B/gLHP3p3xITvcYc/sma4JSiJmBhx5Ev12sHa1ti4cOBhDMa4TPerop/k+ghHSRg
+ hEww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=uvXYQIUjlpODv2ASDgCCHhGurCSk0rWLiF7tIMDKiSQ=;
+ b=VrUaNA1xiDMIXlBlfV+z4wH2K10VIG2YL2sPqj9f/uRUqxsuuwqgjPFoffIduixmGt
+ VffSlgfc/DVI2Ak5GNwUR+SN42NZYiQmWxMoVnVmoQUbs4/vOEJM8I1nDTetdwDEIXav
+ 2+8Vi5XsvNl7+TgYEWG6zWAAAH2X4SQJQZA0zaD0HenWiBfFPWxlmEf5iV5Kq77Ks+Kl
+ jHIc8c2QegWFWaFW6V1qe/wbT1wXwc6RQZp4nPvr4Lo4UW1cnGAjoLSDV9FoN2LP7EF3
+ 3A5xbA3Ygh2fnhcs1SE49CNdJUJ7+MzHVO6MbxF5Jzs28aXg38v8+xkkBRNfHZVMtF+f
+ ONCA==
+X-Gm-Message-State: ANoB5pmJinHPYtf3x9bOaWHkO4tUGrHvwt8JXFW/IWCGhXNhMELKS4B6
+ nuJc7yadivTfv6z+V8izMh+a2iEstnM=
+X-Google-Smtp-Source: AA0mqf6sKD4XHaBnVDr6epTz5G++32nU4Q5ty4VJfYD9qAFOaT+Q1IBnz2pZr5F/dgOTh8kDHMTghw==
+X-Received: by 2002:a17:907:16a5:b0:7be:42dc:4cfc with SMTP id
+ hc37-20020a17090716a500b007be42dc4cfcmr11929959ejc.128.1669712126147; 
+ Tue, 29 Nov 2022 00:55:26 -0800 (PST)
+Received: from ?IPV6:2a02:908:1256:79a0:95af:cbdd:b71c:d5f5?
+ ([2a02:908:1256:79a0:95af:cbdd:b71c:d5f5])
+ by smtp.gmail.com with ESMTPSA id
+ j9-20020a1709066dc900b007ba46867e6asm5996889ejt.16.2022.11.29.00.55.25
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 29 Nov 2022 00:55:25 -0800 (PST)
+Message-ID: <a67622d3-b640-16fb-ec42-b68eceeaa146@gmail.com>
+Date: Tue, 29 Nov 2022 09:55:24 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: =?UTF-8?B?UmU6IOWbnuWkjTogW1BBVENIXSBkcm0vYW1kZ3B1OiBOZXcgbWV0aG9k?=
+ =?UTF-8?Q?_to_check_block_continuous?=
+To: "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+References: <20221127053926.119084-1-xinhui.pan@amd.com>
+ <1908a95c-82ff-f68d-9463-a5d92db43191@gmail.com>
+ <DM4PR12MB516512AD1912AE858D85784087129@DM4PR12MB5165.namprd12.prod.outlook.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <DM4PR12MB516512AD1912AE858D85784087129@DM4PR12MB5165.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT064:EE_|PH7PR12MB7210:EE_
-X-MS-Office365-Filtering-Correlation-Id: ec37e98e-3762-4c67-c8ca-08dad1df2aad
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Byz5O+E52IHrqVXs2WTPY8s/ht4a26pAK9DdoAGDiprOuvhI9WbzCNa8c4I8QdmbZCQWHgMl/gzWrsL3zzbYgL6Skj7jSigef67oeY1o1JlzD3jvk6MMV5UWOrsMjmCu4PBqmggtH+p4quGulBy4V96Sv6NzWPa4ltYkXj6Fz5SUUbISHrdBaRqHrOQshbiNy1pSwGpFY4hmegvg5YCn+je2YEh4sG+8mse1XjRJcVqezG2Atd5Ev0HcK+lk/5Bwrt3lLswRuxyRUeIhuQDpIKmDkL62ajX9MIcU+SSQLMUm2HZo7jMdua5VlPZUY1kJSnaHvYbjoehiwUBNm9TbrVg6bigrla9M1mYqpViq/lt8HhjjQnSNTfFXnBuo25OTuhXu8GXeppRtMOQ5y+l6i+6i75Tt30nn2qaGGdCQ1V8GLuadXPW9Jmt25obzK5IEptrl+kpMpnUBgy2wwVsplYBY1Rq+nDxo2SDIQnqurD5+U/tBRJ1oXaH27ts+NeMxgIgAVDK22UBrLZakJBgJ9qxO6952DcfiBGWF4tTwVa4Z/1NN+Q70doPM1lYd/37S2Al2tNpqSRwj09rSdfzE4Z4Lg0BoenExaXlSjr2sAfDNHKoGcdk7HW/mqx08erDtKaqea6toPRAQ28EzfEVw1pQvKxt7uT9YxyWtvDv6MXWd/lcjK2+dBRi9dj3Ig7V2EilO9u2gE67ftmmKxCHt1YoSYWVHIuy8QCOITD7V2js=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(346002)(376002)(39860400002)(396003)(136003)(451199015)(36840700001)(40470700004)(46966006)(2906002)(83380400001)(82310400005)(36860700001)(478600001)(47076005)(70206006)(81166007)(7696005)(426003)(82740400003)(1076003)(86362001)(6666004)(8676002)(4326008)(356005)(70586007)(40480700001)(36756003)(26005)(316002)(16526019)(186003)(40460700003)(5660300002)(110136005)(2616005)(41300700001)(6636002)(8936002)(336012)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2022 07:56:04.8572 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ec37e98e-3762-4c67-c8ca-08dad1df2aad
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7210
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,56 +78,89 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tao Zhou <tao.zhou1@amd.com>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Configure related registers.
+Hi Xinhui,
 
-Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+Am 29.11.22 um 03:11 schrieb Pan, Xinhui:
+> [AMD Official Use Only - General]
+>
+> What I am thinking is that
+> Hi Chris,
+>
+> For continuous memory allocation, of course the blocks are in ascending order.
+>
+> For non-continuous memory allocation, the allocated memory might be continuous while the blocks are not in ascending order.
+>
+> Anyway, could we just re-sort these blocks in ascending order if memory is indeed continuous?
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-index 66b3f42764df..0bc65b2f0ce8 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-@@ -862,6 +862,25 @@ static void vcn_v4_0_enable_clock_gating(struct amdgpu_device *adev, int inst)
- 	return;
- }
- 
-+static void vcn_v4_0_enable_ras(struct amdgpu_device *adev, int inst_idx,
-+				bool indirect)
-+{
-+	uint32_t tmp;
-+
-+	tmp = VCN_RAS_CNTL__VCPU_VCODEC_REARM_MASK |
-+	      VCN_RAS_CNTL__VCPU_VCODEC_IH_EN_MASK |
-+	      VCN_RAS_CNTL__VCPU_VCODEC_PMI_EN_MASK |
-+	      VCN_RAS_CNTL__VCPU_VCODEC_STALL_EN_MASK;
-+	WREG32_SOC15_DPG_MODE(inst_idx,
-+			      SOC15_DPG_MODE_OFFSET(VCN, 0, regVCN_RAS_CNTL),
-+			      tmp, 0, indirect);
-+
-+	tmp = UVD_SYS_INT_EN__RASCNTL_VCPU_VCODEC_EN_MASK;
-+	WREG32_SOC15_DPG_MODE(inst_idx,
-+			      SOC15_DPG_MODE_OFFSET(VCN, 0, regUVD_SYS_INT_EN),
-+			      tmp, 0, indirect);
-+}
-+
- /**
-  * vcn_v4_0_start_dpg_mode - VCN start with dpg mode
-  *
-@@ -950,6 +969,8 @@ static int vcn_v4_0_start_dpg_mode(struct amdgpu_device *adev, int inst_idx, boo
- 	WREG32_SOC15_DPG_MODE(inst_idx, SOC15_DPG_MODE_OFFSET(
- 		VCN, inst_idx, regUVD_LMI_CTRL2), tmp, 0, indirect);
- 
-+	vcn_v4_0_enable_ras(adev, inst_idx, indirect);
-+
- 	/* enable master interrupt */
- 	WREG32_SOC15_DPG_MODE(inst_idx, SOC15_DPG_MODE_OFFSET(
- 		VCN, inst_idx, regUVD_MASTINT_EN),
--- 
-2.35.1
+Well that the blocks are in continuous order by coincident is just 
+extremely unlikely.
+
+So this doesn't make much sense.
+
+Regards,
+Christian.
+
+>
+> thanks
+> xinhui
+>
+> ________________________________________
+> 发件人: Christian König <ckoenig.leichtzumerken@gmail.com>
+> 发送时间: 2022年11月29日 1:11
+> 收件人: Pan, Xinhui; amd-gfx@lists.freedesktop.org
+> 抄送: Deucher, Alexander
+> 主题: Re: [PATCH] drm/amdgpu: New method to check block continuous
+>
+> Am 27.11.22 um 06:39 schrieb xinhui pan:
+>> Blocks are not guarnteed to be in ascending order.
+> Well certainly a NAK. Blocks are required to be in ascending order to be
+> contiguous.
+>
+> Regards,
+> Christian.
+>
+>> Signed-off-by: xinhui pan <xinhui.pan@amd.com>
+>> ---
+>>    drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 21 ++++++++------------
+>>    1 file changed, 8 insertions(+), 13 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+>> index 27159f1d112e..17175d284869 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+>> @@ -59,22 +59,17 @@ amdgpu_vram_mgr_first_block(struct list_head *list)
+>>    static inline bool amdgpu_is_vram_mgr_blocks_contiguous(struct list_head *head)
+>>    {
+>>        struct drm_buddy_block *block;
+>> -     u64 start, size;
+>> +     u64 start = LONG_MAX, end = 0, size = 0;
+>>
+>> -     block = amdgpu_vram_mgr_first_block(head);
+>> -     if (!block)
+>> -             return false;
+>> +     list_for_each_entry(block, head, link) {
+>> +             u64 bstart = amdgpu_vram_mgr_block_start(block);
+>> +             u64 bsize = amdgpu_vram_mgr_block_size(block);
+>>
+>> -     while (head != block->link.next) {
+>> -             start = amdgpu_vram_mgr_block_start(block);
+>> -             size = amdgpu_vram_mgr_block_size(block);
+>> -
+>> -             block = list_entry(block->link.next, struct drm_buddy_block, link);
+>> -             if (start + size != amdgpu_vram_mgr_block_start(block))
+>> -                     return false;
+>> +             start = min(bstart, start);
+>> +             end = max(bstart + bsize, end);
+>> +             size += bsize;
+>>        }
+>> -
+>> -     return true;
+>> +     return end == start + size;
+>>    }
+>>
+>>
 
