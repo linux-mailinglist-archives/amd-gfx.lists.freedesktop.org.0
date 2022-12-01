@@ -2,58 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1022663F1D8
-	for <lists+amd-gfx@lfdr.de>; Thu,  1 Dec 2022 14:39:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7766163F281
+	for <lists+amd-gfx@lfdr.de>; Thu,  1 Dec 2022 15:17:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 580E210E5E5;
-	Thu,  1 Dec 2022 13:39:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C9F010E5F7;
+	Thu,  1 Dec 2022 14:16:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com
- [IPv6:2607:f8b0:4864:20::331])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D53910E5E5
- for <amd-gfx@lists.freedesktop.org>; Thu,  1 Dec 2022 13:39:37 +0000 (UTC)
-Received: by mail-ot1-x331.google.com with SMTP id
- a7-20020a056830008700b0066c82848060so953272oto.4
- for <amd-gfx@lists.freedesktop.org>; Thu, 01 Dec 2022 05:39:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=3d2zjXAvFCgKTN9l2ndJOVLE++1FzcNBvbhL7LfqE1E=;
- b=VDkHxX8o9J84KyVFE88taZWspnC8OcZjfdjAOIh4L/yM60dA+1/ed9c2YOhtGjofrr
- KK3j02f2jr2+VYYzpTuzY8VK66Se1NHzwFDVJlQjierpMbhVHqL1LgQ0vxsDL4x1F4fg
- JL/ck+0loGz/wvtu6uTZiy5zZH6fJkeJO8a5PB3KCemV7DYYDu2qQfNwDaMPNfpTkrxq
- Bf7pmdsBLJXAUg3mADOC2R/2b2VxIfwpMW8De0LkBXS7T++cS5aFs+TemNRsm98WrAqD
- V13z0M+6JGTmSG9fSZuVT7cCpOyN6SspnpH2wO9E6wDslo+lBThkCjk2HAS9D8LyES1G
- SGbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=3d2zjXAvFCgKTN9l2ndJOVLE++1FzcNBvbhL7LfqE1E=;
- b=ZiK2PQaYVZV7pgm4G1Wk2FYEQ3OdrzK+4c7th87WGBTN61t1bDpuM7UYY9MCYShuYz
- Otrgi6mBzatqVDobyhNQcHrZizcfOcmx+jb1b7QhmCqGLKZqlrrpRH3Cvya+UlxSB/pJ
- CTcyiNaA5qld/ik5X+xYiF7cVn+x/VPIX7IPEH4ditnAEagD35ntQjhC+fVW/vCquRFq
- aVcyF/wfS4+jtzEFH18LRQthtVylXczQHlVigZ9RO/9CZxXwNi9Ezulwmco5Ysl3xud1
- RYtCwdXtH75duaHYGE4FSnoPn0xNvMZrYeL9ngKH4Y/nMqnmtMfX78ta6JZ4b5aZ0RWw
- 4rLA==
-X-Gm-Message-State: ANoB5pm5nTTyZmTU7/UyNIguQILv46yBZ408y+QXp8aXEeAFculL26Ax
- MMlNZUXxCz+2S3Qowrw//jewnLc14OI70mhh9Z8=
-X-Google-Smtp-Source: AA0mqf6AlMIsMuLRmUgb0XtNMyqI/Q49PBvMaIhkoCvpEiLWkOePMzbkhjpq+kiDfaERxhlq9zWyjukY3f4hdHCRFzg=
-X-Received: by 2002:a05:6830:1b62:b0:66c:7982:2d45 with SMTP id
- d2-20020a0568301b6200b0066c79822d45mr22973671ote.123.1669901976303; Thu, 01
- Dec 2022 05:39:36 -0800 (PST)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C29B210E5ED;
+ Thu,  1 Dec 2022 14:01:05 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 264A3D6E;
+ Thu,  1 Dec 2022 06:01:11 -0800 (PST)
+Received: from [10.57.71.118] (unknown [10.57.71.118])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C06383F73D;
+ Thu,  1 Dec 2022 06:01:03 -0800 (PST)
+Message-ID: <087f62d7-7d82-4e42-305b-c48176d7d77b@arm.com>
+Date: Thu, 1 Dec 2022 14:00:58 +0000
 MIME-Version: 1.0
-References: <20221201075631.983346-1-Prike.Liang@amd.com>
-In-Reply-To: <20221201075631.983346-1-Prike.Liang@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 1 Dec 2022 08:39:24 -0500
-Message-ID: <CADnq5_MoME88oiE2yr=BPNr-YN+UncNifPJr4Ux+hh+A8vPNwA@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/amdgpu/sdma_v4_0: turn off SDMA ring buffer in the
- s2idle suspend
-To: Prike Liang <Prike.Liang@amd.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: Screen corruption using radeon kernel driver
+Content-Language: en-GB
+To: Mikhail Krylov <sqarert@gmail.com>, Alex Deucher <alexdeucher@gmail.com>
+References: <CADnq5_NTyvZR16_N0TzMo3f9Mg6EwOuwuBgYzDA=U7tur7Fmnw@mail.gmail.com>
+ <Y4UelMnRkY7/0G6U@sqrt.uni.cx>
+ <CADnq5_MactA_n4sTKZ_-TpYFZnOfEeygHF3r+zH94By2Dm86cA@mail.gmail.com>
+ <Y4YsWo8MPAeg9DRQ@sqrt.uni.cx>
+ <CADnq5_MNmOHVuszVfCZ8Ajm85Wb5roe4-20BEXXzsEVpAC_Rkg@mail.gmail.com>
+ <Y4Y9SJC7gtUxP4+R@sqrt.uni.cx> <a5f73cfa-bd2a-3ab8-1e5c-253cfd832ea7@arm.com>
+ <CADnq5_M5ScTd0AYddRBRiEupxRsV16eHFnLnZ3QYzE5gyMPqhw@mail.gmail.com>
+ <adf4a9b2-c30d-1e74-9848-7a63b3e0c674@arm.com>
+ <CADnq5_PCGVhpk0TpnJKBx7BODV8xWk4hAyXM27tCxBpyS2y9gw@mail.gmail.com>
+ <Y4e2NU4E6ZvFlEaL@sqrt.uni.cx>
+From: Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <Y4e2NU4E6ZvFlEaL@sqrt.uni.cx>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Thu, 01 Dec 2022 14:16:48 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,102 +52,150 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, stable@vger.kernel.org, Lijo.Lazar@amd.com,
- Mario.Limonciello@amd.com, amd-gfx@lists.freedesktop.org
+Cc: Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 1, 2022 at 2:56 AM Prike Liang <Prike.Liang@amd.com> wrote:
->
-> In the SDMA s0ix save process requires to turn off SDMA ring buffer for
-> avoiding the SDMA in-flight request, otherwise will suffer from SDMA page
-> fault which causes by page request from in-flight SDMA ring accessing at
-> SDMA restore phase.
->
-> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2248
-> Cc: stable@vger.kernel.org # 6.0
-> Fixes: f8f4e2a51834 ("drm/amdgpu: skipping SDMA hw_init and hw_fini for S0ix.")
->
-> Signed-off-by: Prike Liang <Prike.Liang@amd.com>
+On 2022-11-30 19:59, Mikhail Krylov wrote:
+> On Wed, Nov 30, 2022 at 11:07:32AM -0500, Alex Deucher wrote:
+>> On Wed, Nov 30, 2022 at 10:42 AM Robin Murphy <robin.murphy@arm.com> wrote:
+>>>
+>>> On 2022-11-30 14:28, Alex Deucher wrote:
+>>>> On Wed, Nov 30, 2022 at 7:54 AM Robin Murphy <robin.murphy@arm.com> wrote:
+>>>>>
+>>>>> On 2022-11-29 17:11, Mikhail Krylov wrote:
+>>>>>> On Tue, Nov 29, 2022 at 11:05:28AM -0500, Alex Deucher wrote:
+>>>>>>> On Tue, Nov 29, 2022 at 10:59 AM Mikhail Krylov <sqarert@gmail.com> wrote:
+>>>>>>>>
+>>>>>>>> On Tue, Nov 29, 2022 at 09:44:19AM -0500, Alex Deucher wrote:
+>>>>>>>>> On Mon, Nov 28, 2022 at 3:48 PM Mikhail Krylov <sqarert@gmail.com> wrote:
+>>>>>>>>>>
+>>>>>>>>>> On Mon, Nov 28, 2022 at 09:50:50AM -0500, Alex Deucher wrote:
+>>>>>>>>>>
+>>>>>>>>>>>>> [excessive quoting removed]
+>>>>>>>>>>
+>>>>>>>>>>>> So, is there any progress on this issue? I do understand it's not a high
+>>>>>>>>>>>> priority one, and today I've checked it on 6.0 kernel, and
+>>>>>>>>>>>> unfortunately, it still persists...
+>>>>>>>>>>>>
+>>>>>>>>>>>> I'm considering writing a patch that will allow user to override
+>>>>>>>>>>>> need_dma32/dma_bits setting with a module parameter. I'll have some time
+>>>>>>>>>>>> after the New Year for that.
+>>>>>>>>>>>>
+>>>>>>>>>>>> Is it at all possible that such a patch will be merged into kernel?
+>>>>>>>>>>>>
+>>>>>>>>>>> On Mon, Nov 28, 2022 at 9:31 AM Mikhail Krylov <sqarert@gmail.com> wrote:
+>>>>>>>>>>> Unless someone familiar with HIMEM can figure out what is going wrong
+>>>>>>>>>>> we should just revert the patch.
+>>>>>>>>>>>
+>>>>>>>>>>> Alex
+>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>> Okay, I was suggesting that mostly because
+>>>>>>>>>>
+>>>>>>>>>> a) it works for me with dma_bits = 40 (I understand that's what it is
+>>>>>>>>>> without the original patch applied);
+>>>>>>>>>>
+>>>>>>>>>> b) there's a hint of uncertainity on this line
+>>>>>>>>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/radeon/radeon_device.c#n1359
+>>>>>>>>>> saying that for AGP dma_bits = 32 is the safest option, so apparently there are
+>>>>>>>>>> setups, unlike mine, where dma_bits = 32 is better than 40.
+>>>>>>>>>>
+>>>>>>>>>> But I'm in no position to argue, just wanted to make myself clear.
+>>>>>>>>>> I'm okay with rebuilding the kernel for my machine until the original
+>>>>>>>>>> patch is reverted or any other fix is applied.
+>>>>>>>>>
+>>>>>>>>> What GPU do you have and is it AGP?  If it is AGP, does setting
+>>>>>>>>> radeon.agpmode=-1 also fix it?
+>>>>>>>>>
+>>>>>>>>> Alex
+>>>>>>>>
+>>>>>>>> That is ATI Radeon X1950, and, unfortunately, radeon.agpmode=-1 doesn't
+>>>>>>>> help, it just makes 3D acceleration in games such as OpenArena stop
+>>>>>>>> working.
+>>>>>>>
+>>>>>>> Just to confirm, is the board AGP or PCIe?
+>>>>>>>
+>>>>>>> Alex
+>>>>>>
+>>>>>> It is AGP. That's an old machine.
+>>>>>
+>>>>> Can you check whether dma_addressing_limited() is actually returning the
+>>>>> expected result at the point of radeon_ttm_init()? Disabling highmem is
+>>>>> presumably just hiding whatever problem exists, by throwing away all
+>>>>>    >32-bit RAM such that use_dma32 doesn't matter.
+>>>>
+>>>> The device in question only supports a 32 bit DMA mask so
+>>>> dma_addressing_limited() should return true.  Bounce buffers are not
+>>>> really usable on GPUs because they map so much memory.  If
+>>>> dma_addressing_limited() returns false, that would explain it.
+>>>
+>>> Right, it appears to be the only part of the offending commit that
+>>> *could* reasonably make any difference, so I'm primarily wondering if
+>>> dma_get_required_mask() somehow gets confused.
+>>
+>> Mikhail,
+>>
+>> Can you see that dma_addressing_limited() and dma_get_required_mask()
+>> return in this case?
+>>
+>> Alex
+>>
+>>
+>>>
+>>> Thanks,
+>>> Robin.
+> 
+> Unfortunately, right now I don't have enough time for kernel
+> modifications and rebuilds (I will later!), so I did a quick-and-dirty
+> research with kprobe.
+> 
+> The problem is that dma_addressing_limited() seems to be inlined and
+> kprobe fails to intercept it.
+> 
+> But I managed to get the result of dma_get_required_mask(). It returns
+> 0x7fffffff (!) on the vanilla (with the patch, buggy) kernel:
+>   
+> $ sudo kprobe-perf 'r:dma_get_required_mask $retval'
+> Tracing kprobe dma_get_required_mask. Ctrl-C to end.
+>          modprobe-1244    [000] d...   105.582816: dma_get_required_mask: (radeon_ttm_init+0x61/0x240 [radeon] <- dma_get_required_mask) arg1=0x7fffffff
+> 
+> This function does not even get called in the kernel without the patch
+> that I built myself. I believe that's because ttm_bo_device_init()
+> doesn't call it without the patch.
+> 
+> Hope that helps at least a bit. If not, I'll be able to do more thorough
+> research in a couple of weeks, probably.
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Hmm, just to clarify, what's your actual RAM layout? I've been assuming
+that the issue must be caused by unexpected DMA address truncation, but
+double-checking the older threads it seems that might not be the case.
+I just did a quick sanity-check of both HIGHMEM4G and HIGHMEM64G configs
+in a VM with either 2GB or 4GB of RAM assigned, and the
+dma_direct_get_required_mask() calculation seemed to return the
+appropriate result for all combinations.
 
-> ---
-> -v2: change the name sdma_v4_0_gfx_stop() to sdma_v4_0_gfx_enable() (Lijo)
-> ---
->  drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c | 24 +++++++++++++++---------
->  1 file changed, 15 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-> index 1122bd4eae98..4d780e4430e7 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-> @@ -907,13 +907,13 @@ static void sdma_v4_0_ring_emit_fence(struct amdgpu_ring *ring, u64 addr, u64 se
->
->
->  /**
-> - * sdma_v4_0_gfx_stop - stop the gfx async dma engines
-> + * sdma_v4_0_gfx_enable - enable the gfx async dma engines
->   *
->   * @adev: amdgpu_device pointer
-> - *
-> - * Stop the gfx async dma ring buffers (VEGA10).
-> + * @enable: enable SDMA RB/IB
-> + * control the gfx async dma ring buffers (VEGA10).
->   */
-> -static void sdma_v4_0_gfx_stop(struct amdgpu_device *adev)
-> +static void sdma_v4_0_gfx_enable(struct amdgpu_device *adev, bool enable)
->  {
->         u32 rb_cntl, ib_cntl;
->         int i;
-> @@ -922,10 +922,10 @@ static void sdma_v4_0_gfx_stop(struct amdgpu_device *adev)
->
->         for (i = 0; i < adev->sdma.num_instances; i++) {
->                 rb_cntl = RREG32_SDMA(i, mmSDMA0_GFX_RB_CNTL);
-> -               rb_cntl = REG_SET_FIELD(rb_cntl, SDMA0_GFX_RB_CNTL, RB_ENABLE, 0);
-> +               rb_cntl = REG_SET_FIELD(rb_cntl, SDMA0_GFX_RB_CNTL, RB_ENABLE, enable ? 1 : 0);
->                 WREG32_SDMA(i, mmSDMA0_GFX_RB_CNTL, rb_cntl);
->                 ib_cntl = RREG32_SDMA(i, mmSDMA0_GFX_IB_CNTL);
-> -               ib_cntl = REG_SET_FIELD(ib_cntl, SDMA0_GFX_IB_CNTL, IB_ENABLE, 0);
-> +               ib_cntl = REG_SET_FIELD(ib_cntl, SDMA0_GFX_IB_CNTL, IB_ENABLE, enable ? 1 : 0);
->                 WREG32_SDMA(i, mmSDMA0_GFX_IB_CNTL, ib_cntl);
->         }
->  }
-> @@ -1044,7 +1044,7 @@ static void sdma_v4_0_enable(struct amdgpu_device *adev, bool enable)
->         int i;
->
->         if (!enable) {
-> -               sdma_v4_0_gfx_stop(adev);
-> +               sdma_v4_0_gfx_enable(adev, enable);
->                 sdma_v4_0_rlc_stop(adev);
->                 if (adev->sdma.has_page_queue)
->                         sdma_v4_0_page_stop(adev);
-> @@ -1960,8 +1960,10 @@ static int sdma_v4_0_suspend(void *handle)
->         struct amdgpu_device *adev = (struct amdgpu_device *)handle;
->
->         /* SMU saves SDMA state for us */
-> -       if (adev->in_s0ix)
-> +       if (adev->in_s0ix) {
-> +               sdma_v4_0_gfx_enable(adev, false);
->                 return 0;
-> +       }
->
->         return sdma_v4_0_hw_fini(adev);
->  }
-> @@ -1971,8 +1973,12 @@ static int sdma_v4_0_resume(void *handle)
->         struct amdgpu_device *adev = (struct amdgpu_device *)handle;
->
->         /* SMU restores SDMA state for us */
-> -       if (adev->in_s0ix)
-> +       if (adev->in_s0ix) {
-> +               sdma_v4_0_enable(adev, true);
-> +               sdma_v4_0_gfx_enable(adev, true);
-> +               amdgpu_ttm_set_buffer_funcs_status(adev, true);
->                 return 0;
-> +       }
->
->         return sdma_v4_0_hw_init(adev);
->  }
-> --
-> 2.25.1
->
+Otherwise, the only significant difference of use_dma32 seems to be to
+switch TTM's allocation flags from GFP_HIGHUSER to GFP_DMA32. Could it
+just be that the highmem support somewhere between TTM and radeon has
+bitrotted, and it hasn't been noticed until this change because everyone
+still using a 32-bit system with highmem also happens not to be using a
+newer 40-bit-capable GPU? Or perhaps it never worked for AGP at all, in
+which case an explicit special case might be clearer?
+
+diff --git a/drivers/gpu/drm/radeon/radeon_ttm.c b/drivers/gpu/drm/radeon/radeon_ttm.c
+index d33fec488713..acb2d534bff5 100644
+--- a/drivers/gpu/drm/radeon/radeon_ttm.c
++++ b/drivers/gpu/drm/radeon/radeon_ttm.c
+@@ -696,6 +696,7 @@ int radeon_ttm_init(struct radeon_device *rdev)
+  			       rdev->ddev->anon_inode->i_mapping,
+  			       rdev->ddev->vma_offset_manager,
+  			       rdev->need_swiotlb,
++			       rdev->flags & RADEON_IS_AGP ||
+  			       dma_addressing_limited(&rdev->pdev->dev));
+  	if (r) {
+  		DRM_ERROR("failed initializing buffer object driver(%d).\n", r);
+  
+
+Robin.
