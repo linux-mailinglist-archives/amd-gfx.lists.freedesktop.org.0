@@ -2,33 +2,33 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF086644E50
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Dec 2022 23:04:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75F2E644E51
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Dec 2022 23:04:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E333A10E155;
-	Tue,  6 Dec 2022 22:04:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F7B410E15B;
+	Tue,  6 Dec 2022 22:04:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mx.swemel.ru (mx.swemel.ru [95.143.211.150])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED7C289CF6;
- Tue,  6 Dec 2022 09:43:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1920810E120;
+ Tue,  6 Dec 2022 10:48:00 +0000 (UTC)
 From: Denis Arefev <arefev@swemel.ru>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=swemel.ru; s=mail;
- t=1670319783;
+ t=1670323677;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding;
- bh=2JW7gMUzxibRP+GHgK8qpM96Hq/qafYCWCOIJkhoC7M=;
- b=KcIUWuiXVk3IwtwMxtT4aKYFQWrP40qyqqpg2MzjWGXlOH5h4Ki6IJFYZwiw3CdyRUAfCh
- Hj7szKU7U4WTUVGpe7sjngFjwdCUceZeH1goOOJxa4X6qS+v2qn2BDqhEOHBWkwKswyRI3
- /R1GIXHBdNITD2NXoZafkI1oXpCXSFQ=
+ bh=dyDdQ0ouK6C8bS9bKimyo6WyQoc/XZnFKa1MkRVBOUU=;
+ b=eUZgBGctez7/faDwGHUnXo0cKQutXkFVBBoyVX6M9Qvwybd7AhC7TAbCcDg+bdqNrSYtVs
+ 6Ca9APE+/edoMT9CpKngwaL8dd6GjVYFKBuy35NnW30qm/U1zrLoFJH7KURuQ8xidTAmeE
+ UKmkFX0dnTNI9TPEUU/JCFrrlOgqNhA=
 To: Harry Wentland <harry.wentland@amd.com>
-Subject: 
-Date: Tue,  6 Dec 2022 12:43:03 +0300
-Message-Id: <20221206094303.29282-1-arefev@swemel.ru>
+Subject: [PATCH] drm/amd/display: Added pointer check
+Date: Tue,  6 Dec 2022 13:47:57 +0300
+Message-Id: <20221206104757.31512-1-arefev@swemel.ru>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 06 Dec 2022 22:04:12 +0000
+X-Mailman-Approved-At: Tue, 06 Dec 2022 22:04:13 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,9 +51,6 @@ Cc: trufanov@swemel.ru, lvc-project@linuxtesting.org,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-
-Date: Thu, 10 Nov 2022 16:47:26 +0300
-Subject: [PATCH] drm/amdgpu/display: Add pointer check
 
 Return value of a function 'dc_create_state' is
 dereferenced at amdgpu_dm.c:2027 without checking for null
