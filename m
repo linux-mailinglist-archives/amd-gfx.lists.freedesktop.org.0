@@ -2,59 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77E04645D14
-	for <lists+amd-gfx@lfdr.de>; Wed,  7 Dec 2022 15:59:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 330FF645DCC
+	for <lists+amd-gfx@lfdr.de>; Wed,  7 Dec 2022 16:45:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39B6210E109;
-	Wed,  7 Dec 2022 14:58:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADDE910E086;
+	Wed,  7 Dec 2022 15:45:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com
- [IPv6:2001:4860:4864:20::30])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FEFA10E109
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 Dec 2022 14:58:51 +0000 (UTC)
-Received: by mail-oa1-x30.google.com with SMTP id
- 586e51a60fabf-14455716674so15422328fac.7
- for <amd-gfx@lists.freedesktop.org>; Wed, 07 Dec 2022 06:58:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=dnsAlzMws8feEwK9BnFGuDj2giVPz6pahFN0B57RgNQ=;
- b=RwVs81sWd0YOCNeGXT3aW+6BUYGoisICIy06QVcgVCYTnUgsVN9ekyyEwkrRyXN2rx
- M1OeHiQ/waiCFpX2QMWV6vkB0i+oezlp5FwME27dPYloKtmvuzZcb4KJrPvLemF7ZdNT
- XtN0xevyZyhnKkhaNxiFtz7eFvnDs+/BQUtX7BAtFxSENGJQESRdxm9oRJdFB2KgJQw5
- CQYMWj4P8WiN0rwQGRo8Ap5Wnw+EV0Sf6djDqgTS6o9Sq29A2JflC56BvbyLqCnlJPgV
- 7qY29wjRFl6WgM7RUbOszx4fFp8nM8klaonihK4ej3ksAL7sFNPZskG3FFsee03ukZ1m
- n49w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=dnsAlzMws8feEwK9BnFGuDj2giVPz6pahFN0B57RgNQ=;
- b=ut2y6ib4fKGt100j7BpujvXJoJwKejJ/e9kaGMme5LM/ax38n9X5iG29HUdmv6RzfE
- 1UdRF/ABXXuJfQXGhQ7sCOxu2Vh0N+tibLUJGJNZb33lhadRjeOl60WihzeKUn9LNNXX
- v4tcdHYOQzt3RJE6Ga5Zg1bdEIlz/clA1vRCLsWy5mn8rb9kYG+NutqBS7rCbC0G+wsc
- s9JZCM+exWPrYXCHSMaoNSG6z+yYX2/S9HPhcz/fuiUlMzG45sq62xd9hVFMcIe/ccKU
- qtgyh3Lp0W47NmnsMO87spE11ab4MVd+8mvZr4LC6hqS2VxRKObuufrz6PsPkOUOmWKf
- uiNw==
-X-Gm-Message-State: ANoB5pm2aS6Tr0EaDlfFjWstJGAWPk8GQDXiCvLLoDoUqIT2Lmh/0Fxg
- tkWWjjgjS0o/5gZeuVA1p394c+mtPZYmZtvnKVs=
-X-Google-Smtp-Source: AA0mqf6UKRvsSUUFWT4WOAY30LTUv7r50R0rLME00huHEUG5o8n8KtXkC/cSXSYOA4JZ+eVVr+4dzXGm6v2hI9SQJg8=
-X-Received: by 2002:a05:6870:7a0c:b0:143:8a81:116c with SMTP id
- hf12-20020a0568707a0c00b001438a81116cmr28719436oab.96.1670425130260; Wed, 07
- Dec 2022 06:58:50 -0800 (PST)
+Received: from cstnet.cn (smtp23.cstnet.cn [159.226.251.23])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1F1D910E1A0;
+ Wed,  7 Dec 2022 10:13:58 +0000 (UTC)
+Received: from localhost.localdomain (unknown [124.16.138.125])
+ by APP-03 (Coremail) with SMTP id rQCowAAnLnJRZ5BjUr8+BQ--.9743S2;
+ Wed, 07 Dec 2022 18:13:38 +0800 (CST)
+From: Jiasheng Jiang <jiasheng@iscas.ac.cn>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch, bas@basnieuwenhuizen.nl,
+ Martin.Leung@amd.com, Jun.Lei@amd.com, Chris.Park@amd.com,
+ aurabindo.pillai@amd.com, mwen@igalia.com
+Subject: [PATCH] drm/amd/display: Add check for kzalloc
+Date: Wed,  7 Dec 2022 18:13:36 +0800
+Message-Id: <20221207101336.22264-1-jiasheng@iscas.ac.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <CABXGCsM7jMMomy_=oNN236LfLJzMJbcNR=YWWJ74TgNO_16PWQ@mail.gmail.com>
-In-Reply-To: <CABXGCsM7jMMomy_=oNN236LfLJzMJbcNR=YWWJ74TgNO_16PWQ@mail.gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 7 Dec 2022 09:58:39 -0500
-Message-ID: <CADnq5_PUCRGZoUu3RHrbD6+Dr_RHWdqkJKDBD2cWenWhQQiyKw@mail.gmail.com>
-Subject: Re: [bug][vaapi][h264] The commit
- 7cbe08a930a132d84b4cf79953b00b074ec7a2a7
- on certain video files leads to problems with VAAPI hardware decoding.
-To: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: rQCowAAnLnJRZ5BjUr8+BQ--.9743S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxCryDCFWDCw1rCF1xWr1xZrb_yoWrJry7pa
+ 1xJw1jqwsrAF4ktFy3JF1UWF4rJ3WIka4FkrZ8A3sIvF1UAryrCry5AF1jvanYgF4DAr17
+ J3Wjgr45WFnFyrUanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUUkE14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+ 6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
+ Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+ I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r
+ 4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+ n2kIc2xKxwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F4
+ 0E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_Wryl
+ IxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxV
+ AFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j
+ 6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JU6c_
+ fUUUUU=
+X-Originating-IP: [124.16.138.125]
+X-CM-SenderInfo: pmld2xxhqjqxpvfd2hldfou0/
+X-Mailman-Approved-At: Wed, 07 Dec 2022 15:45:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,104 +58,92 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <alexander.deucher@amd.com>, James.Zhu@amd.com,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, "Chen,
- Guchun" <guchun.chen@amd.com>
+Cc: Jiasheng Jiang <jiasheng@iscas.ac.cn>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 7, 2022 at 9:44 AM Mikhail Gavrilov
-<mikhail.v.gavrilov@gmail.com> wrote:
->
-> Hi,
->
-> I found a commit that on certain video files leads to problems with
-> VAAPI hardware decoding.
-> Reproducing the issue requires mesa to be built with the h264 hardware
-> encoder enabled and the attached file to be playable in the vlc
-> player.
-> Before kernel 5.16 this only led to an artifact in the form of a green
-> bar at the top of the screen, then starting from 5.17 the GPU began to
-> freeze.
-> In 6.0, the problem with GPU freezing is solved, but the kernel itself
-> freezes when certain actions are performed. And the vlc application
-> cannot be terminated in any way.
+As kzalloc may fail and return NULL pointer, it should be better to check
+the return value in order to avoid the NULL pointer dereference.
+Moreover, dcn3_clk_mgr_construct should return the error and
+should be checked cascadingly.
 
-What GPU do you have and what entries do you have in
-sys/class/drm/card0/device/ip_discovery/die/0/UVD for the device?
-specifically the harvest settings for each instance if there are
-multiple instances.  If you had an rx6700 you might have been using
-software rendering prior to commit
-7cbe08a930a132d84b4cf79953b00b074ec7a2a.
+Fixes: 4d55b0dd1cdd ("drm/amd/display: Add DCN3 CLK_MGR")
+Signed-off-by: Jiasheng Jiang <jiasheng@iscas.ac.cn>
+---
+ drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c         | 9 ++++++---
+ .../gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c | 6 +++++-
+ .../gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.h | 2 +-
+ 3 files changed, 12 insertions(+), 5 deletions(-)
 
-Alex
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c
+index f276abb63bcd..c08916bd5650 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c
+@@ -257,15 +257,18 @@ struct clk_mgr *dc_clk_mgr_create(struct dc_context *ctx, struct pp_smu_funcs *p
+ 			return NULL;
+ 		}
+ 		if (ASICREV_IS_SIENNA_CICHLID_P(asic_id.hw_internal_rev)) {
+-			dcn3_clk_mgr_construct(ctx, clk_mgr, pp_smu, dccg);
++			if (dcn3_clk_mgr_construct(ctx, clk_mgr, pp_smu, dccg))
++				return NULL;
+ 			return &clk_mgr->base;
+ 		}
+ 		if (ASICREV_IS_DIMGREY_CAVEFISH_P(asic_id.hw_internal_rev)) {
+-			dcn3_clk_mgr_construct(ctx, clk_mgr, pp_smu, dccg);
++			if (dcn3_clk_mgr_construct(ctx, clk_mgr, pp_smu, dccg))
++				return NULL;
+ 			return &clk_mgr->base;
+ 		}
+ 		if (ASICREV_IS_BEIGE_GOBY_P(asic_id.hw_internal_rev)) {
+-			dcn3_clk_mgr_construct(ctx, clk_mgr, pp_smu, dccg);
++			if (dcn3_clk_mgr_construct(ctx, clk_mgr, pp_smu, dccg))
++				return NULL;
+ 			return &clk_mgr->base;
+ 		}
+ 		if (asic_id.chip_id == DEVICE_ID_NV_13FE) {
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c
+index 3ce0ee0d012f..86c29dc45b70 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c
+@@ -517,7 +517,7 @@ struct clk_mgr_funcs dcn3_fpga_funcs = {
+ };
+ 
+ /*todo for dcn30 for clk register offset*/
+-void dcn3_clk_mgr_construct(
++int dcn3_clk_mgr_construct(
+ 		struct dc_context *ctx,
+ 		struct clk_mgr_internal *clk_mgr,
+ 		struct pp_smu_funcs *pp_smu,
+@@ -568,11 +568,15 @@ void dcn3_clk_mgr_construct(
+ 	dce_clock_read_ss_info(clk_mgr);
+ 
+ 	clk_mgr->base.bw_params = kzalloc(sizeof(*clk_mgr->base.bw_params), GFP_KERNEL);
++	if (!clk_mgr->base.bw_params)
++		return -ENOMEM;
+ 
+ 	/* need physical address of table to give to PMFW */
+ 	clk_mgr->wm_range_table = dm_helpers_allocate_gpu_mem(clk_mgr->base.ctx,
+ 			DC_MEM_ALLOC_TYPE_GART, sizeof(WatermarksExternal_t),
+ 			&clk_mgr->wm_range_table_addr);
++
++	return 0;
+ }
+ 
+ void dcn3_clk_mgr_destroy(struct clk_mgr_internal *clk_mgr)
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.h b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.h
+index 2cd95ec38266..8bdfed735184 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.h
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn30/dcn30_clk_mgr.h
+@@ -88,7 +88,7 @@
+ #endif
+ void dcn3_init_clocks(struct clk_mgr *clk_mgr_base);
+ 
+-void dcn3_clk_mgr_construct(struct dc_context *ctx,
++int dcn3_clk_mgr_construct(struct dc_context *ctx,
+ 		struct clk_mgr_internal *clk_mgr,
+ 		struct pp_smu_funcs *pp_smu,
+ 		struct dccg *dccg);
+-- 
+2.25.1
 
->
-> The kernel trace would be like:
-> [  976.184187] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault
-> (src_id:0 ring:40 vmid:1 pasid:32785, for process vlc pid 9905 thread
-> vlc:cs0 pid 9956)
-> [  976.184205] amdgpu 0000:03:00.0: amdgpu:   in page starting at
-> address 0x0000800106b53000 from client 0x12 (VMC)
-> [  976.184210] amdgpu 0000:03:00.0: amdgpu:
-> MMVM_L2_PROTECTION_FAULT_STATUS:0x00141651
-> [  976.184213] amdgpu 0000:03:00.0: amdgpu: Faulty UTCL2 client ID: VCN0 (0xb)
-> [  976.184216] amdgpu 0000:03:00.0: amdgpu: MORE_FAULTS: 0x1
-> [  976.184219] amdgpu 0000:03:00.0: amdgpu: WALKER_ERROR: 0x0
-> [  976.184222] amdgpu 0000:03:00.0: amdgpu: PERMISSION_FAULTS: 0x5
-> [  976.184225] amdgpu 0000:03:00.0: amdgpu: MAPPING_ERROR: 0x0
-> [  976.184228] amdgpu 0000:03:00.0: amdgpu: RW: 0x1
-> [  976.184234] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault
-> (src_id:0 ring:40 vmid:1 pasid:32785, for process vlc pid 9905 thread
-> vlc:cs0 pid 9956)
-> [  976.184238] amdgpu 0000:03:00.0: amdgpu:   in page starting at
-> address 0x0000800106b52000 from client 0x12 (VMC)
-> [  976.184242] amdgpu 0000:03:00.0: amdgpu:
-> MMVM_L2_PROTECTION_FAULT_STATUS:0x00000000
-> [  976.184245] amdgpu 0000:03:00.0: amdgpu: Faulty UTCL2 client ID:
-> unknown (0x0)
-> [  976.184248] amdgpu 0000:03:00.0: amdgpu: MORE_FAULTS: 0x0
-> [  976.184251] amdgpu 0000:03:00.0: amdgpu: WALKER_ERROR: 0x0
-> [  976.184253] amdgpu 0000:03:00.0: amdgpu: PERMISSION_FAULTS: 0x0
-> [  976.184256] amdgpu 0000:03:00.0: amdgpu: MAPPING_ERROR: 0x0
-> [  976.184259] amdgpu 0000:03:00.0: amdgpu: RW: 0x0
-> [  976.184264] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault
-> (src_id:0 ring:40 vmid:1 pasid:32785, for process vlc pid 9905 thread
-> vlc:cs0 pid 9956)
-> [  976.184268] amdgpu 0000:03:00.0: amdgpu:   in page starting at
-> address 0x0000800106b53000 from client 0x12 (VMC)
-> [  976.184271] amdgpu 0000:03:00.0: amdgpu:
-> MMVM_L2_PROTECTION_FAULT_STATUS:0x00000000
-> [  976.184273] amdgpu 0000:03:00.0: amdgpu: Faulty UTCL2 client ID:
-> unknown (0x0)
-> [  976.184276] amdgpu 0000:03:00.0: amdgpu: MORE_FAULTS: 0x0
-> [  976.184279] amdgpu 0000:03:00.0: amdgpu: WALKER_ERROR: 0x0
-> [  976.184281] amdgpu 0000:03:00.0: amdgpu: PERMISSION_FAULTS: 0x0
-> [  976.184284] amdgpu 0000:03:00.0: amdgpu: MAPPING_ERROR: 0x0
-> [  976.184286] amdgpu 0000:03:00.0: amdgpu: RW: 0x0
->
->
-> The problematic commit is:
-> commit 7cbe08a930a132d84b4cf79953b00b074ec7a2a7 (HEAD)
-> Author: Alex Deucher <alexander.deucher@amd.com>
-> Date:   Mon Aug 9 11:22:20 2021 -0400
->
->     drm/amdgpu: handle VCN instances when harvesting (v2)
->
->     There may be multiple instances and only one is harvested.
->
->     v2: fix typo in commit message
->
->     Fixes: 83a0b8639185 ("drm/amdgpu: add judgement when add ip blocks (v2)")
->     Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/1673
->     Reviewed-by: Guchun Chen <guchun.chen@amd.com>
->     Reviewed-by: James Zhu <James.Zhu@amd.com>
->     Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
->     Cc: stable@vger.kernel.org
->
->
-> Thanks!
->
-> --
-> Best Regards,
-> Mike Gavrilov.
