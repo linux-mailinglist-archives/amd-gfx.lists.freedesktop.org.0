@@ -1,59 +1,119 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D691647528
-	for <lists+amd-gfx@lfdr.de>; Thu,  8 Dec 2022 18:50:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3708F647537
+	for <lists+amd-gfx@lfdr.de>; Thu,  8 Dec 2022 18:56:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0879E10E4CD;
-	Thu,  8 Dec 2022 17:50:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8707B10E4CB;
+	Thu,  8 Dec 2022 17:56:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com
- [IPv6:2001:4860:4864:20::29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A8D810E1E0;
- Thu,  8 Dec 2022 17:50:43 +0000 (UTC)
-Received: by mail-oa1-x29.google.com with SMTP id
- 586e51a60fabf-14455716674so2675965fac.7; 
- Thu, 08 Dec 2022 09:50:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=EcDib7bnYJl/Unwetka3jeGow0uypTS8xDJA3Nr+9ew=;
- b=l06xBHdQVkajTuW7VX6uuHvMIl1RK9SMqeMSWCTAKB5XUhqLqmc9mAymE2iOCDxYAO
- syHdyaUequqZSnvWv/kMv9oBmyfZMlcyPvA1+GFuNTEdiCTZNZ7sGFR8FzU+cQxuRqSK
- 8ZPzeFuAjqnvFSMqTKQ5YTPFgsTS06BCqqOloaW5P2/GsqHm7MPOqxwz5pl84x4INS30
- WN+wShP+a52htV46LnSO3BuboU5LOPC1AZvUZPORjoz48ahBPnmica10L6fee7Xm6Gwl
- mFu/C6F1c7WFEKR/pcT8wo96eCRhvfc7EsD48dEKFL8Yfe22jE+BXtmKyQPXrgsdT5nn
- BYKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=EcDib7bnYJl/Unwetka3jeGow0uypTS8xDJA3Nr+9ew=;
- b=B7DfGPSjlFYxJ3db89RZmD12XALgQ5jgoR9XaJnv8mmFgBVT8Pp85mlQwjGTbmPKdH
- 4bHrvMXBluHDpboHxxCgiRPeruM8YYa5GsCveFAkxfbQuRPBSMZXIxTsEPW/CbqovlKo
- pXZKEFjovjRWO/i+yzWev0A2uFcEViyyea8HXKoXZIPThoDqklI5Bg3hYh4QQmtiS/K+
- PYaDlkGnqzKysP13ygV/H6HukgzjCYvXX3l9fNDoIQWQsfZsgt7k4HGMVjcpg0hPKr4b
- vTetmDOZnHtKXvaj2bPEpGfS3Y1bZiGDY5yd1IViygKJLE/JYMCUi9kMHyy6sTTeYjZO
- LWbA==
-X-Gm-Message-State: ANoB5pktWoD0W0OW+14Q70ESvCbQqO8+HgcvG01Q6OegWLtsL/ji2n5b
- CQ8R7/q6UEu8QhJ9IQZvfxiC9tZ3X820W085/YRhIzv+
-X-Google-Smtp-Source: AA0mqf45SvHm6kzi6ZeuT3Fspud9r0wFsO3c0zqTSaFW8u5+a19GLvzh8KfOeGWpOGfak5/ALktSWVh2t9AukR9HO/4=
-X-Received: by 2002:a05:6870:2b05:b0:12d:58c1:33f9 with SMTP id
- ld5-20020a0568702b0500b0012d58c133f9mr43749954oab.46.1670521842232; Thu, 08
- Dec 2022 09:50:42 -0800 (PST)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B07F210E4CB
+ for <amd-gfx@lists.freedesktop.org>; Thu,  8 Dec 2022 17:56:30 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SGjgh09lkrz8R0qAWlv5hqZz0XTFIgwUGSKDDsEcpOX4B33f1r+cDF8IWXpjHhgtE4XICAEFUjqnxw4KALyTEyjbPg2XfyObV4DLAAbRUZLOhe8LvmxCckTvjA9Ha8Hvv5bktyeRy5YTRw1MGkiltiqMhzei+wMyBb2vQrNExkYB2HLrLM37yqKhSD2xJVjJ75UGU/6ubBidwHB8gTNiFuJNYjmAbcvx94xqItXp4LhMfGCRhYqhC43Aq+ziFJo5YPOC0EZZZZe9ZcJMHBRxviTusuWkQx5urA4cy8Rovk4+xeyffyiEuLqWj939aVLrLEd8H0Xlb309NsvBkyAdyQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vrNC2nvOq3McZXt25R/uFKYFlRwpz9dgm5AUD2B1KnY=;
+ b=UrR/aDNIUVccZs5GL2dqebAhJBDX7lpM6aZPgnip3OxaLjNmf4dN6bJ8dkNETF3CJYSkhkpyW4flTh+TlvAWc3pqtzQLS24M+DnbH9b9rfVR3OpZIOi4nfhykRakdeIMtbDSwEDIzq7kNFT32MtH7qcuQmurUMRZtJRCeUeCHm8lzhT4+sSCtQT9s3lDFF76+xyDR848uXPoloJ26ruTmGTM82QqxtS/u3CT7W1SqfnA++2gU+S0tucRmzDlu2ujx8Gue8n8tO6Nt1+8qThrckwDHfXEtaTBUdOkTH8pEExXZi+dUBWgUBDQI8S4WLiLK1/g6Balfvr28+g0yUdFNA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vrNC2nvOq3McZXt25R/uFKYFlRwpz9dgm5AUD2B1KnY=;
+ b=OGCa+CI+ZK9KqeCcPIOPJxXBwS2dLXeObVKoBHCIrFrguQ1a6Kjdim4ovYFI8rbRWOwQbRZGGMkFLydi6pVtuBH8b7HZ38BWUfX1Y6LBX0sTVg0R3TMlFg4hc593Op2Vyivbbh3gf+PqnHHTHqej4d2YCvt3I2uQVgjsM0mfHv4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MN0PR12MB6101.namprd12.prod.outlook.com (2603:10b6:208:3cb::10)
+ by BN9PR12MB5065.namprd12.prod.outlook.com (2603:10b6:408:132::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.14; Thu, 8 Dec
+ 2022 17:56:28 +0000
+Received: from MN0PR12MB6101.namprd12.prod.outlook.com
+ ([fe80::ff3c:2d37:75f3:442a]) by MN0PR12MB6101.namprd12.prod.outlook.com
+ ([fe80::ff3c:2d37:75f3:442a%4]) with mapi id 15.20.5880.014; Thu, 8 Dec 2022
+ 17:56:28 +0000
+Message-ID: <9b82e8c7-9308-1f99-a144-2cd2a770db73@amd.com>
+Date: Thu, 8 Dec 2022 11:56:25 -0600
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v3 1/3] ACPI: video: Allow GPU drivers to report no panels
+Content-Language: en-US
+To: Daniel Dadap <ddadap@nvidia.com>
+References: <20221208164207.13518-1-mario.limonciello@amd.com>
+ <20221208164207.13518-2-mario.limonciello@amd.com>
+ <Y5IjqZH8ocDkG2hx@ddadap-lakeline.nvidia.com>
+From: "Limonciello, Mario" <mario.limonciello@amd.com>
+In-Reply-To: <Y5IjqZH8ocDkG2hx@ddadap-lakeline.nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BL0PR1501CA0022.namprd15.prod.outlook.com
+ (2603:10b6:207:17::35) To MN0PR12MB6101.namprd12.prod.outlook.com
+ (2603:10b6:208:3cb::10)
 MIME-Version: 1.0
-References: <20221206073156.43453-1-xurui@kylinos.cn>
-In-Reply-To: <20221206073156.43453-1-xurui@kylinos.cn>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 8 Dec 2022 12:50:30 -0500
-Message-ID: <CADnq5_ONUkteQrhgMVfst5UCK5+GjVQaj-=-ABo8bYczeGCRLg@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Retry DDC probing on DVI on failure if we got
- an HPD interrupt
-To: xurui <xurui@kylinos.cn>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR12MB6101:EE_|BN9PR12MB5065:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9e3d90d0-5765-4b93-3f5c-08dad94587af
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 2EShImsYqpDsY9FZkTiCWwEvbsQuoqY9foVlnVWMEHLpzfnCGoFIwUIt8CADKjDxkNhGSr4BnFwrJC0xF4RqjJT6WUJhP92l+fKSitfFwnrtytk6jBiIg6wdUAANPguV9wpcj+89JtZuhJhUEbKaOqxi84JqYvMCQ1pfvIf47VbhaIqzZUiDrpzd7xvzNHdOot+AH5vLVW2i403Ms0sQag5q4JHcWKpskTPcSDa0tcUN9kmml3pD7vTdV3lzDn/omLLvW9Trk6argHDzmofGVoD0yM7KqiJzIjrnVoM1NrrZatfAqW8Knjl28IGXWoeD+naoEMj/X/izTbGDxystqEdi3rTaT446/i3uSVVxJg2eLBOi/j6adJ9hxAHxb7xXyrxXnqgwkmWzf4doiEV2LX6oBGYg9xPAUToan8JEB/y3Vl+t4Cju0cty/dRq5s0g+EXxctrI8p3YZDN6MHvoobTxanJ37pvGqaK7Qze32Pkjh85lVGUIaXkHEx0A5qJ3zdSqKvdFKDMfkiotoS5abSPhzifnIYOeh5kwhvgAYeWUJ4q0i+tpzPDug49PZLougrVJvvnuKdLmreEvhg1HBjvcZOX4/Dgw+E8cRZhvjYA0Zkg+uQINu67M3dn6xlylnhmAn48Xnf7ityeMa+OG+mwv7ni/Yajdc3KDebfIROGkYMVefwBr4aOv8zlRWEtaasiF8XCtwiKf3vhTKjUAlbcuR8w67ZShui6zmNBJPPY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR12MB6101.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(4636009)(396003)(136003)(39860400002)(346002)(376002)(366004)(451199015)(66946007)(83380400001)(31686004)(86362001)(41300700001)(31696002)(2906002)(5660300002)(8936002)(4326008)(6666004)(8676002)(26005)(186003)(6506007)(6512007)(53546011)(2616005)(6916009)(6486002)(316002)(478600001)(66476007)(54906003)(66556008)(36756003)(38100700002)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bmNmb3VDQlVRWS9LcVZYdTkzRlBGdHNqTmU1L0hQT3puVkVVa1VkeGVBelhs?=
+ =?utf-8?B?M20ra1JiUEx0QmRHUXVhUEFpRU8ySlkvWEpURVpyd2NzYUR2alA2VFIrSFlL?=
+ =?utf-8?B?TCticThCNnJ3S3RCS1pBSmtCUFhZdWljZzZwd0dqWGpudTJkQUpKQ002OTNn?=
+ =?utf-8?B?QzgwVXBZSzhwem5QbG1rbktuQ3ZnYkllMU5aT0VOYlFuZTZwM2hLM0hEdzFW?=
+ =?utf-8?B?WWQ1dGl0VXRaRmRrSVFDYjBxT2EzYVhhWjJPZ3ZTV1ptK0Rmem5BT0lSMW0z?=
+ =?utf-8?B?L0lORTRRSVVYcjE0R20rWXVQQXpVd3JFbVRrTFl3SUxoclJVT3I2cXBkMDR1?=
+ =?utf-8?B?Mk9aQ2JiUDFFeU8zd00vQlN6MzZHdlBUbWZrMHY2a2ROeFpYUDB2bWE0ckZ1?=
+ =?utf-8?B?bG5ob3BqNVAxZERVTjhrRThLbG1Da2FHeWJjT2FBVjVobmJ5Z1lQUCs3TUIw?=
+ =?utf-8?B?RWZKT1UwUEVMaUJNY2t5bFBWR1FXWTlxL0xYcEdhZ0lWdTNwUDNsLzZjZDQ4?=
+ =?utf-8?B?YkFpeUVPZDYxcXU4TStubW5IS2JuM0R2S0YyV0dlUjRpanI3cWJzbFJWeTBt?=
+ =?utf-8?B?dTByckV0M2hHUzdDOUxxZXpQbUdGblU4cGZBQlJ6aDlvdW90MXI4eCtIY0wy?=
+ =?utf-8?B?UUNjZjNhbVhkcC9MRVFvd3lrcUwxcWJaM0NwMHdweTVhNHZoRXZVTHNNbjZy?=
+ =?utf-8?B?dDRUQ1hxMXptYlJ1M1RCTFhZemtHeThFaFgwT2lrSDByYU5SR0hsaSt4aDU1?=
+ =?utf-8?B?eG5GYUJETmFvenZxbmh6NTNHUzNDMnhEWXArUFhBcnpic29KVFRHWWI4K2pW?=
+ =?utf-8?B?YmMxOE4wTzBJL3l2QzloTG5WM3ZuOTh5UVpLYUNqT2VwYjRaemR6cmUrdVBv?=
+ =?utf-8?B?K3ZvajhNQ2ZCY05yVTdDU2FMSXNKVGVnMWJrclZwekhreEVLZVNrdFZsRk5v?=
+ =?utf-8?B?WmZyTnFHYzZlWWx1dkFLMlljcHJpalM2OUUzN0Z6YjlLSDdveHpWOE1vZUlt?=
+ =?utf-8?B?NTVSNzdLNjk2T2hWQllpb0Z5ZzhhS25NRmh6YmVyR1BUMmJERGlnS1FUdzhX?=
+ =?utf-8?B?T1p4SEN4ZUNqVXErNnYwLzNtV0JUYThDcm8wN3F3T3VwbDVjdGFZWndaQitC?=
+ =?utf-8?B?elRpTWsrVklHT05CeFFNZVVoNWJIU1daUStDVHp6MVdtK0U5Z3hRVUdGbnVD?=
+ =?utf-8?B?dExtVnRaMFNUN3ZXdklDVzFoZzhsL2E4OHRXTEw1UkpyL1hPQlBmemZiZzhy?=
+ =?utf-8?B?OFRBdU5STlpEWmNzWGlHMVowVGdxSXBkdFJHbHorbGFhMXg4UHZsVjdyOEJh?=
+ =?utf-8?B?T2tST0VENk14YWNoUkV6MHh6NjBwNytaVmxlSFJwQVg2bERnUy91elM2UWZh?=
+ =?utf-8?B?Um03R3VlK1lmamxEUit4dGorb0daYVNUTW1odllaZVNmVFZGRmlwbHRMc1Jy?=
+ =?utf-8?B?UzAzbE0zQVNwTjhROE5NWTVOSHhYa2M1QkJibzRoUlJ6Yzl2aWlrQlI5MHJq?=
+ =?utf-8?B?R3gxNk1YTzgrN1hrQnkzQWtyRXlGQzg3MjVLdlo5ekQ3clloenhjTno0S252?=
+ =?utf-8?B?NWVOaWczQ3J6OFFYdldNWTU4VG11UEc5VSsxSmgxZFdXbUMvcHVMNms3SXBx?=
+ =?utf-8?B?N1g4a0JucVE1QzRQMlpDbXYzN01XQ3dHU0ZwUmxyZHBtYkdwZy9Ibk1YZTEv?=
+ =?utf-8?B?N1ZBUk9ZckpWdERmK1hucUhuajBNR2VXUGdjOStsaTJtZGN6cnNnSE5DejFR?=
+ =?utf-8?B?KzhZVTVOR2hRQ2d1ejNiSXIyTU1CNnNJOEx3WFBRWUVCNG1qYUUwR21UeUJK?=
+ =?utf-8?B?ckJpbkZnUWRqakk2RlpqU0tydXpWb1hkSmd0Y2xJdGFJUjdkenl6cGN0L21V?=
+ =?utf-8?B?MytVLzYyTDBBUUljWjZrcEZ4UmNjSWVnbGNQVGhUL3RCMjg0N1JUcG44SlJ2?=
+ =?utf-8?B?NnhwalRkekw5c3FJNEFXZm9zeE9pU3F0OHYwNHErVDZOektJSGdBb1NnbjBK?=
+ =?utf-8?B?Qkh1SXZSUXdQOWNWWDZQM0N2UEFOWEY4dkdrN1FucTNqdFQ0dXZMOVl5azJp?=
+ =?utf-8?B?N3NHRTY0QTdpZlNVSmtaaGNSdHJmUWd6TFRuckNKR0ljMFYxMTI2N2Y0bDRK?=
+ =?utf-8?Q?jSq0rAdMzAM3B8Aihxitprfaj?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9e3d90d0-5765-4b93-3f5c-08dad94587af
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB6101.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2022 17:56:28.0232 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Ex0iujTexd1uxdw9X44GdyIs/yK4VBMmM8dDVXjcxnIAGGTjQFQPYhlKOWdDe1lWVpLOMiOa8e+bhHtFxU/gtw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5065
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,94 +125,121 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: guchun.chen@amd.com, Xinhui.Pan@amd.com, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, aurabindo.pillai@amd.com, cssk@net-c.es,
- dri-devel@lists.freedesktop.org, tzimmermann@suse.de,
- alexander.deucher@amd.com, sam@ravnborg.org, christian.koenig@amd.com
+Cc: Alexander Deucher <Alexander.Deucher@amd.com>,
+ Hans de Goede <hdegoede@redhat.com>, linux-acpi@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, "Rafael J . Wysocki" <rafael@kernel.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 7, 2022 at 3:09 AM xurui <xurui@kylinos.cn> wrote:
->
-> HPD signals on DVI ports can be fired off before the pins required for
-> DDC probing actually make contact, due to the pins for HPD making
-> contact first. This results in a HPD signal being asserted but DDC
-> probing failing, resulting in hotplugging occasionally failing.
+On 12/8/2022 11:49, Daniel Dadap wrote:
+> On Thu, Dec 08, 2022 at 10:42:05AM -0600, Mario Limonciello wrote:
+>> The current logic for the ACPI backlight detection will create
+>> a backlight device if no native or vendor drivers have created
+>> 8 seconds after the system has booted if the ACPI tables
+>> included backlight control methods.
+>>
+>> If the GPU drivers have loaded, they may be able to report whether
+>> any LCD panels were found.  Allow using this information to factor
+>> in whether to enable the fallback logic for making an acpi_video0
+>> backlight device.
+>>
+>> Suggested-by: Hans de Goede <hdegoede@redhat.com>
+>> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+>> Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+>> ---
+>> v2->v3:
+>>   * Add Hans' R-b
+>>   * Add missing declaration for non CONFIG_ACPI_VIDEO case
+>> v1->v2:
+>>   * Cancel registration for backlight device instead (Hans)
+>>   * drop desktop check (Dan)
+>> ---
+>>   drivers/acpi/acpi_video.c | 11 +++++++++++
+>>   include/acpi/video.h      |  2 ++
+>>   2 files changed, 13 insertions(+)
+>>
+>> diff --git a/drivers/acpi/acpi_video.c b/drivers/acpi/acpi_video.c
+>> index 32953646caeb..f64fdb029090 100644
+>> --- a/drivers/acpi/acpi_video.c
+>> +++ b/drivers/acpi/acpi_video.c
+>> @@ -2178,6 +2178,17 @@ static bool should_check_lcd_flag(void)
+>>   	return false;
+>>   }
+>>   
+>> +/*
+>> + * At least one graphics driver has reported that no LCD is connected
+>> + * via the native interface. cancel the registration for fallback acpi_video0.
+>> + * If another driver still deems this necessary, it can explicitly register it.
+>> + */
+>> +void acpi_video_report_nolcd(void)
+>> +{
+>> +	cancel_delayed_work(&video_bus_register_backlight_work);
+>> +}
+>> +EXPORT_SYMBOL(acpi_video_report_nolcd);
+>> +
+> 
+> Thanks for removing the desktop check.
 
-It seems like DP should get a similar fix.
+Sure.
 
->
-> Rescheduling the hotplug work for a second when we run into an HPD
-> signal with a failing DDC probe usually gives enough time for the rest
-> of the connector's pins to make contact, and fixes this issue.
+> 
+> It's not entirely clear to me what happens if you try to cancel a
+> delayed work that was never scheduled. I got as far as determining that
+> del_timer() in kernel/time/timer.c will probably return 0, but I didn't
+> really feel like walking through the rest of try_to_grab_pending() to
+> figure out what happens next. You've probably already tested this with
+> the default disabled timer, so as long as nothing bad happened there,
+> this seems fine.
+> 
 
-This looks reasonable.  Please address the kernel test robot reports.
+Yeah; I did test it and nothing blew up during my test.
 
-Thanks,
+> This is probably overly complicated, so if you think it's worth doing, I
+> would definitely add it later, but I wonder if it might make sense to
+> pass an acpi_handle to a _BC[LM] method or one of its parents, so that
+> this could be scoped to a particular device. Looking at the ACPI table
+> dump from a random multi-GPU laptop, it looks like there are two
+> instances of _BCL, one under _SB.GP<number>.VGA.LCD for the iGPU, and
+> the other under _SB.PCI<num>.GPP<num>.PEGP.EDP<num> for the dGPU. The
+> caller would pass in handles for methods/devices that it will handle,
+> and then the fallback, if it runs at all, would skip any handles that
+> were registered with it when it crawls for _BC[LM]. Or the equivalent
+> inverse logic, or something else like that. I think it's probably fine
+> to keep the current unscoped design and just assert that any other GPU
+> drivers that want the ACPI video driver to handle panel backlight should
+> register it explicitly; if for some reason that ends up not working out,
+> we could revisit scoping it then.
 
-Alex
+Yeah that is a lot more complex but complete setup.  I think if we end 
+up having to revert the 3rd patch and having GPU drivers call the 
+registration explicitly isn't a good idea for some reason it's worth 
+considering.
 
->
-> Signed-off-by: xurui <xurui@kylinos.cn>
-> ---
->  .../gpu/drm/amd/amdgpu/amdgpu_connectors.c    | 22 ++++++++++++++++++-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h      |  1 +
->  2 files changed, 22 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-> index cfb262911bfc..dd8d414249a5 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-> @@ -997,13 +997,33 @@ amdgpu_connector_dvi_detect(struct drm_connector *connector, bool force)
->                 }
->         }
->
-> +       if (amdgpu_connector->detected_hpd_without_ddc) {
-> +               force = true;
-> +               amdgpu_connector->detected_hpd_without_ddc = false;
-> +       }
-> +
->         if (!force && amdgpu_connector_check_hpd_status_unchanged(connector)) {
->                 ret = connector->status;
->                 goto exit;
->         }
->
-> -       if (amdgpu_connector->ddc_bus)
-> +       if (amdgpu_connector->ddc_bus) {
->                 dret = amdgpu_display_ddc_probe(amdgpu_connector, false);
-> +
-> +               /* Sometimes the pins required for the DDC probe on DVI
-> +                * connectors don't make contact at the same time that the ones
-> +                * for HPD do. If the DDC probe fails even though we had an HPD
-> +                * signal, try again later
-> +                */
-> +               if (!dret && !force &&
-> +                   amdgpu_display_hpd_sense(adev, amdgpu_connector->hpd.hpd)) {
-> +                       DRM_DEBUG_KMS("hpd detected without ddc, retrying in 1 second\n");
-> +                       amdgpu_connector->detected_hpd_without_ddc = true;
-> +                       schedule_delayed_work(&adev->hotplug_work,
-> +                                             msecs_to_jiffies(1000));
-> +                       goto exit;
-> +               }
-> +       }
->         if (dret) {
->                 amdgpu_connector->detected_by_load = false;
->                 amdgpu_connector_free_edid(connector);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-> index 37322550d750..bf009de59710 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-> @@ -535,6 +535,7 @@ struct amdgpu_connector {
->         void *con_priv;
->         bool dac_load_detect;
->         bool detected_by_load; /* if the connection status was determined by load */
-> +       bool detected_hpd_without_ddc; /* if an HPD signal was detected on DVI, but ddc probing failed */
->         uint16_t connector_object_id;
->         struct amdgpu_hpd hpd;
->         struct amdgpu_router router;
-> --
-> 2.25.1
->
->
-> No virus found
->                 Checked by Hillstone Network AntiVirus
+> 
+>>   int acpi_video_register(void)
+>>   {
+>>   	int ret = 0;
+>> diff --git a/include/acpi/video.h b/include/acpi/video.h
+>> index a275c35e5249..a56c8d45e9f8 100644
+>> --- a/include/acpi/video.h
+>> +++ b/include/acpi/video.h
+>> @@ -53,6 +53,7 @@ enum acpi_backlight_type {
+>>   };
+>>   
+>>   #if IS_ENABLED(CONFIG_ACPI_VIDEO)
+>> +extern void acpi_video_report_nolcd(void);
+>>   extern int acpi_video_register(void);
+>>   extern void acpi_video_unregister(void);
+>>   extern void acpi_video_register_backlight(void);
+>> @@ -69,6 +70,7 @@ extern int acpi_video_get_levels(struct acpi_device *device,
+>>   				 struct acpi_video_device_brightness **dev_br,
+>>   				 int *pmax_level);
+>>   #else
+>> +static inline void acpi_video_report_nolcd(void) { return; };
+>>   static inline int acpi_video_register(void) { return -ENODEV; }
+>>   static inline void acpi_video_unregister(void) { return; }
+>>   static inline void acpi_video_register_backlight(void) { return; }
+>> -- 
+>> 2.34.1
+>>
+
