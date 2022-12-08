@@ -2,94 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72D1F647485
-	for <lists+amd-gfx@lfdr.de>; Thu,  8 Dec 2022 17:42:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8193A647506
+	for <lists+amd-gfx@lfdr.de>; Thu,  8 Dec 2022 18:37:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD87610E1CD;
-	Thu,  8 Dec 2022 16:42:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC1A410E1C8;
+	Thu,  8 Dec 2022 17:37:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2061.outbound.protection.outlook.com [40.107.223.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5BE110E1CD
- for <amd-gfx@lists.freedesktop.org>; Thu,  8 Dec 2022 16:42:42 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=k4hgNUcsKulIWBa7Y5WAa5xFuLPMwKqJvCVr5O7oppuHjfZ4NC8dwL+HLZKnK+7n95VcBCuzciD8lQaAJFtQIOd/HA+laRS5Bt0sc9p5X6jqpNTcGPX9DZmNEoFcq02vaVi+8GIm25HDf3X2iu++DX9T9bomq1rcPlOs95rzH52V5SICNu5X4xYpmCsx1E0OgTjbwp2KVL8MZmnOxFO9v01F0K8KILdQhOG9weZY0yaw0vkxbg0sE1W1bT7k2wcg6MvrWyE4UHeu82xgnYgN5So5xTK8ShEkkzeb8C6VZd8iWszAJEoT6jLNT7lQIgoxBuFQrKQYhOa1LNSN9PdOpw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S55bNDPeGdOCZxbCyAmWx1sJTYmGm/iCBQwhMSyqvHw=;
- b=ocLeZVBNY+Tfp6lYHamlnT/ub7UBndQ89eg76JIat+KaucADXeT6loXXzIIl7T4bXS0bVfYLI+NWaQ1nHbW18CioTCB9tiqsMd7/0pTJ8mmARb7AbuZ3BBDgA8vyULHSJo/omWGAdnGbwtUzBzhFIPoTQDoMItNLZOAgiyqWX6aIhsaWONPaB9BqANw23nB3cGvh9uN0JeTHUC6hqd6ZpuM8G5Jiqj9vhJUQfm4oBICdll0abjbPpLKsP/uCRYX0ZSiNqVRSu0QxPXIJrxgioIOexgrOLG3oQXV5FTbQwGzDjlS1wC4B54jtOF+7BoiwOgCY46aY5e51Pk1DO/8iSA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S55bNDPeGdOCZxbCyAmWx1sJTYmGm/iCBQwhMSyqvHw=;
- b=WEcoYm8gX6b+BvaQ/Ldkd3H22evruXLyU2pCi3rqVYbPFlpAEcHr74S06iJx/kRbAVx1ac4Weo0LIQkX99xR/m5Idy5xIwRsfj3hz9GPYMHGoOh6gGVaGR93K/C70xDBK9Iyazp6oWgG5YLTjxMtkO4BwtLV0z1fohzp79CUQCA=
-Received: from MW4PR04CA0371.namprd04.prod.outlook.com (2603:10b6:303:81::16)
- by DS7PR12MB6117.namprd12.prod.outlook.com (2603:10b6:8:9b::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5880.14; Thu, 8 Dec 2022 16:42:41 +0000
-Received: from CO1NAM11FT015.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:81:cafe::66) by MW4PR04CA0371.outlook.office365.com
- (2603:10b6:303:81::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.16 via Frontend
- Transport; Thu, 8 Dec 2022 16:42:40 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT015.mail.protection.outlook.com (10.13.175.130) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5901.17 via Frontend Transport; Thu, 8 Dec 2022 16:42:27 +0000
-Received: from AUS-LX-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 8 Dec
- 2022 10:42:25 -0600
-From: Mario Limonciello <mario.limonciello@amd.com>
-To: "Rafael J . Wysocki" <rafael@kernel.org>, Alexander Deucher
- <Alexander.Deucher@amd.com>, Hans de Goede <hdegoede@redhat.com>
-Subject: [PATCH v3 3/3] ACPI: video: Don't enable fallback path for creating
- ACPI backlight by default
-Date: Thu, 8 Dec 2022 10:42:07 -0600
-Message-ID: <20221208164207.13518-4-mario.limonciello@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221208164207.13518-1-mario.limonciello@amd.com>
-References: <20221208164207.13518-1-mario.limonciello@amd.com>
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com
+ [IPv6:2607:f8b0:4864:20::232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B397810E1C8
+ for <amd-gfx@lists.freedesktop.org>; Thu,  8 Dec 2022 17:37:01 +0000 (UTC)
+Received: by mail-oi1-x232.google.com with SMTP id v70so2107409oie.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 08 Dec 2022 09:37:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=UOKmQgtoNy6eTWB7tvXGadXipgDDyIdmbaqYhv7iBCQ=;
+ b=kYFsRdM0l8A1AaEkFscWFOEIFJBVwf5P593XQQvIrtjmnE9XgMt9zd+6bsdZIYdgP8
+ iL+UoHe0biAgL4PAyls9Nz6oXOJjHOWiwb9Y0XnXpvtNkaRO+oPPuCM8OmPfI5oJUPlm
+ +RZNWtDCzLBhxSoAdkQmwEilH5xrVs6cr7gLqk2ufq7kbVP+P+PTncppnNVQsGMG2b3D
+ OEgfKSmhOTNy7Zaq51adOBWiMXSz2CvXbrd8nPDALS0Y6hckJCFQ0vwBHytqcWrkfTVX
+ NAs9bTWfaJWwVT8xJ4AYfsiAZlkzXYM7izEHfhDcyXuf73dGlfh+xER/NN08yQ4heF1i
+ O+0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=UOKmQgtoNy6eTWB7tvXGadXipgDDyIdmbaqYhv7iBCQ=;
+ b=jglqsuBgSfhBTiWgZtLwyLdrHNWG5u1TxblKoFNeJcsdd1tMNKn5vSekzUvBggWyi+
+ ZNf8rfPqMP0d+ogaUJC3JCGmq66j8ZrwBlH5FYuSOJQo6nX/bWAyYHb102k3XR0WGo+v
+ kepBxJqoRXNDpZzlc+U0W9SqRr/w4dgM/CPb5g0OhE+UmYF7gLuznSPiBfeL2/q2J9Ky
+ zLnP5XE0uKO4Qk8iefsBZV5tWQFSZK6Oce9KdS7qfbIoFcW5Ut8fd8H+GxZBLI5rDfPg
+ kznC4Ibu2n8gsEEFxMHRcrc2PPPOmwuw41MXlDs7QWAkAQT1ljhG3+M5FJ1ZrE7cWxQ6
+ 2jzg==
+X-Gm-Message-State: ANoB5pnA3w70rxKtB7Ri8Q/aB2AXE2x8ZizPzgsTxat9mFSyqVgJNVor
+ ZQBmJNCPcR3/qHMpyVkQQ5EepR/k+aRCxpWwpAjxTIlb
+X-Google-Smtp-Source: AA0mqf7lCoA3l/XfxT4Cti8EPjcjcJdHdErUWj3fHQPoVsxMpzSu+yPTeazg4D1xIRtYVqutgoI8LUHOfl8U69KdlE0=
+X-Received: by 2002:aca:1913:0:b0:35b:f5f7:3ed0 with SMTP id
+ l19-20020aca1913000000b0035bf5f73ed0mr12333324oii.46.1670521020884; Thu, 08
+ Dec 2022 09:37:00 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT015:EE_|DS7PR12MB6117:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8add979e-4e68-4607-683f-08dad93b38e1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: AqVDjJuA6ukuTDK5B49eF2LAQYwpne7RHEzZqKoKT86SXKn4QzyByxhc7hceK7E49L7G/cZ+vciqBCrE8XR8mqBPwgS+OnMhW2bxflpow09CDwYiCZsOw3ekoDe3UED5fAQzly7gDZHJiOvaANIpScfgQgL8e0a7RBGgXlD2uxCpQuYa5lCEFBH3PJbgX3M6CdASrU68vbctY1xZmYlYLsQX+9TfzsQU6EipLbQw4YnZm3TKVJSNquJTZm5gHQzUdXdx9m+VvVHU3z4sm5jWD9NdaP0T4Cp0HBDPx3Nr0j6oN3fTei/2iktBvgaMMFzcWUDe9ICGIJflnJzxfDhEcgzEX2/uktGW+8+EnBqi3NRmfGmGZhUCrKutXSWwxs2nBYW674mRXgxDzGcztoTWAre3yphIzZuqe1u74GW3JpehliHbnmaOmyJtkLqJtEY/bcSJiz/0UHFbyulrOFFENuF0gD5pgSufKhNDnh1BB/rnWCWsyPIN4tfl2xrmbKZ9/spaKJbx0n3ahnYh3k4NxjlCRVRHXPo9ldSNeHIfQa/6Cleq/rs8r7byYt7chhBhXeUNqBDPGwG9FFZlceocD7on2yaMOeZqG2/zY9R9D9Z9Fo8DjI59kerAFaI/R4Js1h33l6Z9//q8IrXk0tl4JbcunwkiMcRworz5VTl61g+A9QAPkRwjYhoz8da7e5FVcBuobLOolUNDtNyjV8c6XMWraDlL/ekE6hOO8F7YoJU=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(136003)(396003)(376002)(346002)(39860400002)(451199015)(46966006)(40470700004)(36840700001)(2906002)(40480700001)(426003)(5660300002)(41300700001)(36756003)(83380400001)(8936002)(82740400003)(86362001)(110136005)(2616005)(70586007)(70206006)(44832011)(54906003)(316002)(8676002)(4326008)(16526019)(82310400005)(47076005)(478600001)(7696005)(26005)(6666004)(336012)(1076003)(36860700001)(356005)(186003)(81166007)(40460700003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2022 16:42:27.1792 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8add979e-4e68-4607-683f-08dad93b38e1
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT015.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6117
+References: <20221205104333.12536-1-christian.koenig@amd.com>
+ <20221205104333.12536-4-christian.koenig@amd.com>
+In-Reply-To: <20221205104333.12536-4-christian.koenig@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 8 Dec 2022 12:36:49 -0500
+Message-ID: <CADnq5_PEqkBws6ZODrnpiL5Tz9BHF+AtovhxyP3BPV3F1NGgXA@mail.gmail.com>
+Subject: Re: [PATCH 4/4] drm/amdgpu: rework reserved VMID handling
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,50 +66,168 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-acpi@vger.kernel.org, Mario Limonciello <mario.limonciello@amd.com>,
- amd-gfx@lists.freedesktop.org, Daniel Dadap <ddadap@nvidia.com>
+Cc: Alexander.Deucher@amd.com, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The ACPI video detection code has a module parameter
-`register_backlight_delay` which is currently configured to 8 seconds.
-This means that if after 8 seconds of booting no native driver has created
-a backlight device then the code will attempt to make an ACPI video
-backlight device.
+Series is:
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
-This was intended as a safety mechanism with the backlight overhaul that
-occurred in kernel 6.1, but as it doesn't appear necesssary set it to be
-disabled by default.
-
-Suggested-by: Hans de Goede <hdegoede@redhat.com>
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-Reviewed-by: Hans de Goede <hdegoede@redhat.com>
----
-v2->v3:
- * Add Hans' R-b
-v1->v2:
- * New patch
----
- drivers/acpi/acpi_video.c | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
-
-diff --git a/drivers/acpi/acpi_video.c b/drivers/acpi/acpi_video.c
-index f64fdb029090..0c79f463fbfd 100644
---- a/drivers/acpi/acpi_video.c
-+++ b/drivers/acpi/acpi_video.c
-@@ -70,11 +70,7 @@ module_param(device_id_scheme, bool, 0444);
- static int only_lcd = -1;
- module_param(only_lcd, int, 0444);
- 
--/*
-- * Display probing is known to take up to 5 seconds, so delay the fallback
-- * backlight registration by 5 seconds + 3 seconds for some extra margin.
-- */
--static int register_backlight_delay = 8;
-+static int register_backlight_delay;
- module_param(register_backlight_delay, int, 0444);
- MODULE_PARM_DESC(register_backlight_delay,
- 	"Delay in seconds before doing fallback (non GPU driver triggered) "
--- 
-2.34.1
-
+On Mon, Dec 5, 2022 at 5:43 AM Christian K=C3=B6nig
+<ckoenig.leichtzumerken@gmail.com> wrote:
+>
+> Instead of reserving a VMID for a single process allow that many
+> processes use the reserved ID. This allows for proper isolation
+> between the processes.
+>
+> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c | 45 ++++++++++++-------------
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ids.h |  3 +-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h  |  6 +---
+>  3 files changed, 24 insertions(+), 30 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_ids.c
+> index 7e5aad241295..6481b43ffe25 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
+> @@ -279,12 +279,13 @@ static int amdgpu_vmid_grab_reserved(struct amdgpu_=
+vm *vm,
+>  {
+>         struct amdgpu_device *adev =3D ring->adev;
+>         unsigned vmhub =3D ring->funcs->vmhub;
+> +       struct amdgpu_vmid_mgr *id_mgr =3D &adev->vm_manager.id_mgr[vmhub=
+];
+>         uint64_t fence_context =3D adev->fence_context + ring->idx;
+>         bool needs_flush =3D vm->use_cpu_for_update;
+>         uint64_t updates =3D amdgpu_vm_tlb_seq(vm);
+>         int r;
+>
+> -       *id =3D vm->reserved_vmid[vmhub];
+> +       *id =3D id_mgr->reserved;
+>         if ((*id)->owner !=3D vm->immediate.fence_context ||
+>             !amdgpu_vmid_compatible(*id, job) ||
+>             (*id)->flushed_updates < updates ||
+> @@ -464,31 +465,27 @@ int amdgpu_vmid_alloc_reserved(struct amdgpu_device=
+ *adev,
+>                                struct amdgpu_vm *vm,
+>                                unsigned vmhub)
+>  {
+> -       struct amdgpu_vmid_mgr *id_mgr;
+> -       struct amdgpu_vmid *idle;
+> -       int r =3D 0;
+> +       struct amdgpu_vmid_mgr *id_mgr =3D &adev->vm_manager.id_mgr[vmhub=
+];
+>
+> -       id_mgr =3D &adev->vm_manager.id_mgr[vmhub];
+>         mutex_lock(&id_mgr->lock);
+>         if (vm->reserved_vmid[vmhub])
+>                 goto unlock;
+> -       if (atomic_inc_return(&id_mgr->reserved_vmid_num) >
+> -           AMDGPU_VM_MAX_RESERVED_VMID) {
+> -               DRM_ERROR("Over limitation of reserved vmid\n");
+> -               atomic_dec(&id_mgr->reserved_vmid_num);
+> -               r =3D -EINVAL;
+> -               goto unlock;
+> +
+> +       ++id_mgr->reserved_use_count;
+> +       if (!id_mgr->reserved) {
+> +               struct amdgpu_vmid *id;
+> +
+> +               id =3D list_first_entry(&id_mgr->ids_lru, struct amdgpu_v=
+mid,
+> +                                     list);
+> +               /* Remove from normal round robin handling */
+> +               list_del_init(&id->list);
+> +               id_mgr->reserved =3D id;
+>         }
+> -       /* Select the first entry VMID */
+> -       idle =3D list_first_entry(&id_mgr->ids_lru, struct amdgpu_vmid, l=
+ist);
+> -       list_del_init(&idle->list);
+> -       vm->reserved_vmid[vmhub] =3D idle;
+> -       mutex_unlock(&id_mgr->lock);
+> +       vm->reserved_vmid[vmhub] =3D true;
+>
+> -       return 0;
+>  unlock:
+>         mutex_unlock(&id_mgr->lock);
+> -       return r;
+> +       return 0;
+>  }
+>
+>  void amdgpu_vmid_free_reserved(struct amdgpu_device *adev,
+> @@ -498,12 +495,12 @@ void amdgpu_vmid_free_reserved(struct amdgpu_device=
+ *adev,
+>         struct amdgpu_vmid_mgr *id_mgr =3D &adev->vm_manager.id_mgr[vmhub=
+];
+>
+>         mutex_lock(&id_mgr->lock);
+> -       if (vm->reserved_vmid[vmhub]) {
+> -               list_add(&vm->reserved_vmid[vmhub]->list,
+> -                       &id_mgr->ids_lru);
+> -               vm->reserved_vmid[vmhub] =3D NULL;
+> -               atomic_dec(&id_mgr->reserved_vmid_num);
+> +       if (vm->reserved_vmid[vmhub] &&
+> +           !--id_mgr->reserved_use_count) {
+> +               /* give the reserved ID back to normal round robin */
+> +               list_add(&id_mgr->reserved->list, &id_mgr->ids_lru);
+>         }
+> +       vm->reserved_vmid[vmhub] =3D false;
+>         mutex_unlock(&id_mgr->lock);
+>  }
+>
+> @@ -570,7 +567,7 @@ void amdgpu_vmid_mgr_init(struct amdgpu_device *adev)
+>
+>                 mutex_init(&id_mgr->lock);
+>                 INIT_LIST_HEAD(&id_mgr->ids_lru);
+> -               atomic_set(&id_mgr->reserved_vmid_num, 0);
+> +               id_mgr->reserved_use_count =3D 0;
+>
+>                 /* manage only VMIDs not used by KFD */
+>                 id_mgr->num_ids =3D adev->vm_manager.first_kfd_vmid;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.h b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_ids.h
+> index 06c8a0034fa5..c573a8ffff47 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.h
+> @@ -67,7 +67,8 @@ struct amdgpu_vmid_mgr {
+>         unsigned                num_ids;
+>         struct list_head        ids_lru;
+>         struct amdgpu_vmid      ids[AMDGPU_NUM_VMID];
+> -       atomic_t                reserved_vmid_num;
+> +       struct amdgpu_vmid      *reserved;
+> +       unsigned int            reserved_use_count;
+>  };
+>
+>  int amdgpu_pasid_alloc(unsigned int bits);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd=
+/amdgpu/amdgpu_vm.h
+> index 6546e786bf00..094bb4807303 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+> @@ -119,9 +119,6 @@ struct amdgpu_bo_vm;
+>  /* Reserve 2MB at top/bottom of address space for kernel use */
+>  #define AMDGPU_VA_RESERVED_SIZE                        (2ULL << 20)
+>
+> -/* max vmids dedicated for process */
+> -#define AMDGPU_VM_MAX_RESERVED_VMID    1
+> -
+>  /* See vm_update_mode */
+>  #define AMDGPU_VM_USE_CPU_FOR_GFX (1 << 0)
+>  #define AMDGPU_VM_USE_CPU_FOR_COMPUTE (1 << 1)
+> @@ -298,8 +295,7 @@ struct amdgpu_vm {
+>         struct dma_fence        *last_unlocked;
+>
+>         unsigned int            pasid;
+> -       /* dedicated to vm */
+> -       struct amdgpu_vmid      *reserved_vmid[AMDGPU_MAX_VMHUBS];
+> +       bool                    reserved_vmid[AMDGPU_MAX_VMHUBS];
+>
+>         /* Flag to indicate if VM tables are updated by CPU or GPU (SDMA)=
+ */
+>         bool                                    use_cpu_for_update;
+> --
+> 2.34.1
+>
