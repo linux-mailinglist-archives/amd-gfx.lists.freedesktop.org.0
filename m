@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE710648699
-	for <lists+amd-gfx@lfdr.de>; Fri,  9 Dec 2022 17:37:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 389B4648692
+	for <lists+amd-gfx@lfdr.de>; Fri,  9 Dec 2022 17:37:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2E4D10E56E;
-	Fri,  9 Dec 2022 16:37:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1610C10E567;
+	Fri,  9 Dec 2022 16:37:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2063.outbound.protection.outlook.com [40.107.94.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0A1A10E562
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2074.outbound.protection.outlook.com [40.107.243.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22F5710E562
  for <amd-gfx@lists.freedesktop.org>; Fri,  9 Dec 2022 16:37:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fOdaX27Dmx5CEdZdOBuMDJisGzPkdrhvhIjzwwKxwwXwyB30Q5bqE6+s3V5zBW6dIpw4iGfskV6gUIFniU/wmNwkbKuMBae8EOds4NpB6As3dI3NV0PvY+2K/mh7tlYjC9Y8cWsjqMQMz2wM6Z8I1EVmWJKGmEd7M7uSsIIwy4RLW+fawaekKh7HC+TeFh9g7mqdIMljGYavMn9A84KmDp6f1JlUfiNLmrrt5YV4v06Up99695CvEXDOs01xpfdY/oQTmQ2v19UsQhOzxI4sl9WECDbMD6UWh8nc7Jv6+VI+0bqySGL3oOAf333TJLs/3iv7qwl3dsGXj06sNJquQg==
+ b=HXqkGDCmxHZPyNpjdoIOmk7tbAyzX46gtlGH7fLiqJzzZwiLN8dY8Mc1B7UEMSK84I90GX+h2wObB7S4c7hiIpKG1gzXVCWipWcIkujrA7okjxqY/SOD+2M+MjDyuH1GK3TcBclqdckzMnsFgYxxprF5Oc31+WMo/6A+W63u4UHi1qpEv14pFBfEiFNCE6gvFGS0xgv2l2NA95Pla1AuE0Ale2wAbHf0unlf30fhzK/7vc742Xbs2iE2svAX0Unj0twG6ppetJ4MdkvLGwFb3sBJKx9oVRSjKMRxJwVLqX+DzOY72xym4GCGwt1NYX2d3m3krh8RHLqMe3WHJrCc3A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mGW2tpCv+iHrVJqoXX+7jdSGRGn3S+ta3RJ7sGo9nq8=;
- b=MtVtt/T2lC35GFqelm0Y2VWXrLqP4tpE7cyI45mt7sVYhG91hd55AA5rOxEkdIh5ES3ljCAIwdmeDN6sThiabUY+TiREKViNFXTe24VpJQVhOH6gWN303HLhu8EeA9poa+XLGvYoY8d0mUIY95rWsGGUq13uWvu7xWG+728dIzG6Z5JRNMExZtYng6OgUnvnO5ooMT8jIsV7E+nAcisktMESf1LeqCkl1VLEOVOwBZJ2245uSn9Gc6ErypjB5lzC43FEUsi/e+AzMuHRmn0xHMMga5cXtWJ1MNieQPPL7c23qknN9/d16gzXWzi9fbo5pK1vCXA9jkrqPoyTftWReA==
+ bh=YzqjdmXePaSuHE+fdSA+MLpxAY+alWfJN+ctAOJ/qRs=;
+ b=WsQch5+ipT8YSMYwh8go/Qayn3z8TXe1IQrQ++NUK6t4QnzCAxYrWAdPP5/0sI68v8H+fr8Qo03oDwWX0eK9Rh5cDiV5evMamXXNTY6ojvjJZuk4RThrtFdKe1Ulcpy2piIVPDzrYdVcZj2kR82LxYBQHAr0g1DCe8hHegcgjDwuNtr1ZnlvkNtmpVJykbRM44Hp5ZOSsfPRnoVHHOn5tBR8rUG3fbVKKwZqPSIZ3gtx0NSwsrIst17hZ4bDxPt+Xg/221+egMf3hqxdFMzSzXeid3rRNOy4jJuwukFmbL/PntqT4+wU4+9BpU4lXV+AJo7sAbb7TZyyKCLiItugjw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mGW2tpCv+iHrVJqoXX+7jdSGRGn3S+ta3RJ7sGo9nq8=;
- b=Xw6jwTqxIb/ydxlxunFv8Lj+Nwjn0id+5hFREsBYUu9WC0IKFYURZ0wLsKy9l3BBSFvxmfZZ0R4M5YolcNEBcIAIuzYIcyI8Sy1Jf+XrostakB8c1ePMmSHtM7jsDzCw9exD/qHY74u8ZsHE11XyeW203L6XuI+qWYXLg5h+G0c=
-Received: from MW4PR04CA0343.namprd04.prod.outlook.com (2603:10b6:303:8a::18)
- by BN9PR12MB5147.namprd12.prod.outlook.com (2603:10b6:408:118::16)
+ bh=YzqjdmXePaSuHE+fdSA+MLpxAY+alWfJN+ctAOJ/qRs=;
+ b=lncGVyqzKuHKaeVuXhVvf/ALeT6WvJkmsKgMcG7QDVUgzAmRWAO5JcOiL2xgT5tmG78yyzl0kxagFA76HvVTQeVVniH8gdhpay44ZeZdv9SbjpU5MHUvhM8W1kH/hn8X/9RKZbph+QOcSufKo3XAbnerUNpdzwTdzUI+9FJEvpE=
+Received: from MW4PR04CA0359.namprd04.prod.outlook.com (2603:10b6:303:8a::34)
+ by PH0PR12MB8128.namprd12.prod.outlook.com (2603:10b6:510:294::9)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.16; Fri, 9 Dec
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.14; Fri, 9 Dec
  2022 16:37:30 +0000
 Received: from CO1NAM11FT085.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8a:cafe::bd) by MW4PR04CA0343.outlook.office365.com
- (2603:10b6:303:8a::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.18 via Frontend
- Transport; Fri, 9 Dec 2022 16:37:29 +0000
+ (2603:10b6:303:8a:cafe::d4) by MW4PR04CA0359.outlook.office365.com
+ (2603:10b6:303:8a::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.16 via Frontend
+ Transport; Fri, 9 Dec 2022 16:37:30 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CO1NAM11FT085.mail.protection.outlook.com (10.13.174.137) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5901.17 via Frontend Transport; Fri, 9 Dec 2022 16:37:29 +0000
+ 15.20.5901.17 via Frontend Transport; Fri, 9 Dec 2022 16:37:30 +0000
 Received: from jasdeep-System-Product-Name.phub.net.cable.rogers.com
  (10.180.168.240) by SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Fri, 9 Dec 2022 10:37:27 -0600
+ 15.1.2375.34; Fri, 9 Dec 2022 10:37:28 -0600
 From: jdhillon <jdhillon@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 12/23] drm/amd/display: Block FPO / SubVP (DRR) on HDMI VRR
- configs
-Date: Fri, 9 Dec 2022 11:36:36 -0500
-Message-ID: <20221209163647.25704-13-jdhillon@amd.com>
+Subject: [PATCH 13/23] drm/amd/display: Clear link res when merging a pipe
+ split
+Date: Fri, 9 Dec 2022 11:36:37 -0500
+Message-ID: <20221209163647.25704-14-jdhillon@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221209163647.25704-1-jdhillon@amd.com>
 References: <20221209163647.25704-1-jdhillon@amd.com>
@@ -69,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT085:EE_|BN9PR12MB5147:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2b6935d7-9201-4ca4-fe2e-08dada03a9ff
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT085:EE_|PH0PR12MB8128:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7acb7baf-cd90-435c-cf1f-08dada03aa74
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: G9I1mMB60jzNumgcu7Ta4VZjNfzut4ZsdKJEJc9uMmm6+EL0UVM7S6BEtlUv5vVu+2GzwF/gTKD0Pyu/L4e0rYNp1UhOfwwWNBoV4vyPb9x+bFdVv7EIU8jTsVW1q3CpTmt4CZ30ZCcVM8VdJW5X1G0i/JPt9AZ3Q3bYDn5pBWjR+WrmC+GtvtDjLKUZ/tOhg7low9uIXzc4pgtuvqqu0HFtA0ud8tlPa1xxIqMrSuX/rZxJQtO2NpwNV1RYiHScBymdCQvh9WWnFi5gQVJrWPCSrxCaKJUSWuS62CUXAXhSOWlrfi2fnJEdfsTZgmxo24k/dahu6toYx4RMxg5Ac4Dbn0Ogcmv3qaZ+vXDFxiM6LSbTXP+Ja3wnktoGQIJ6fhEME5pB6Cbfte4fFKKJ7L7GdwTctRF54mKxOBdqhy7wLG2DHkIKc7L7sCNR/wn9JMd/qHesVuowlgxYUPrtjBnktm/yxOoJ2+8NlD+K2Pg+ZsGzTnXZi22J9P0uP727kjWiehIsq/TQpnkmzHLfzXjw8T2Izvx0cihW6vy9EA3Hm2PEUIS7tg9sjm2p6zMo0ouzUqM1Sv3jIz9+AurqV8pk6yluGjBu9vTWKXOWkVH++OJqCy35ocTFTKo0Xv/7/vbNQbKTEfqO/7zCgYgouLUeBe1L1qCh9I38sdLFq88nXldmKYyJTPNffs9YgWCluAhSzdSEghJ36MhCQq2hBXAvt8NS37pm44U+6291DKs=
+X-Microsoft-Antispam-Message-Info: qDsNKk7PLiOLsboPoTpsdVRmAg8rmvxgXGHS74lkIMSPMYArp7dQxVycAkGyqXT2P6eRU4MxVdpv+jVwHYIKwR/iJKB/yprp8rdQ4pRNrgcO+fLZz8Xt5PHSzSZX2BsPqUewZxVEQblkU3sFx8jGRHLAI8qN31VOxzHDyrN1oWrESHnrCfv3YAjbN6DlylwhuSVZEQvZ1mX30u6Pr2/g9eQOj00frNJVPbxtWVT4UUZyQ4ASQMSv04f9Z3FQ8kU/2TsF+SGDjRk+O9PEMKmTgCm6aztXupN33fIrE3CKJpWOm11yY/8+aeFMY1Oqa1KHCKp7fa9E0/7KdIMi1RJXOXT6IKJUSZ6BhtrRE4JGBoeLpTwSFiixomSC41uNrvKe+YFpJ2jdgOrRXG70GNcaqSiyibNZTA00tjRPOxpyy6zEWMKTzmhrMU2h8q0Zj7fqe2IXboe1pi6qdOJEUFgBFwwgifVzdvAc3KHwmr/ww3dsVOZOYlt591/tQkjZndg6jAOvkP8xVUpMFLHuVXmKn3C3amypEIitUjIbYTcTT0qjFr+zOKnrLnyagbqSjIE89NR2T8TxkvZvx4IFVkx+Z3AQ8we8DlLgP89AGnjpV3U2kB/Hnwnw7DeI4v5WJsuLDiH/vLD1f1yDte9VKO1QI1OW4cnHUxP6DQWIF2ks4lw+G2/CLeXAO7+/9bmjUBDDSB6OfY5GNF2e+U/7+ZRGgXNkv3uv1AAmS4Xhmd9qTYU=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(346002)(136003)(376002)(39860400002)(396003)(451199015)(36840700001)(40470700004)(46966006)(36860700001)(336012)(2616005)(1076003)(16526019)(40480700001)(2906002)(83380400001)(40460700003)(54906003)(36756003)(81166007)(5660300002)(8936002)(6916009)(70206006)(316002)(4326008)(70586007)(356005)(41300700001)(8676002)(6666004)(47076005)(426003)(82310400005)(82740400003)(186003)(478600001)(26005)(36900700001);
+ SFS:(13230022)(4636009)(376002)(39860400002)(396003)(136003)(346002)(451199015)(36840700001)(46966006)(40470700004)(82310400005)(70206006)(2616005)(40460700003)(336012)(1076003)(70586007)(40480700001)(41300700001)(16526019)(36756003)(54906003)(356005)(426003)(6666004)(8936002)(316002)(47076005)(5660300002)(6916009)(478600001)(186003)(82740400003)(81166007)(26005)(4326008)(8676002)(2906002)(36860700001)(83380400001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2022 16:37:29.6667 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2b6935d7-9201-4ca4-fe2e-08dada03a9ff
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2022 16:37:30.4166 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7acb7baf-cd90-435c-cf1f-08dada03aa74
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT085.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5147
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8128
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,68 +102,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
  qingqing.zhuo@amd.com, Jasdeep Dhillon <jdhillon@amd.com>,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
- Aurabindo.Pillai@amd.com, Nevenko Stupar <Nevenko.Stupar@amd.com>,
- Alvin Lee <Alvin.Lee2@amd.com>, wayne.lin@amd.com, Jun Lei <Jun.Lei@amd.com>,
- Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com, Wenjing Liu <Wenjing.Liu@amd.com>,
+ solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
+ Nevenko Stupar <Nevenko.Stupar@amd.com>, Alvin Lee <Alvin.Lee2@amd.com>,
+ wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
+ pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Alvin Lee <Alvin.Lee2@amd.com>
 
 [Description]
-- Current policy does not support HDMI VRR by default, so we
-  cannot enable FPO / SubVP (DRR) cases
+- When merging a pipe that was previously pipe split, we need
+  to also clear the link resources or the next stream/plane that
+  uses the pipe may have an incorrect link resource state
 
+Reviewed-by: Wenjing Liu <Wenjing.Liu@amd.com>
 Reviewed-by: Nevenko Stupar <Nevenko.Stupar@amd.com>
-Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Jasdeep Dhillon <jdhillon@amd.com>
 Signed-off-by: Alvin Lee <Alvin.Lee2@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c    | 2 +-
- drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c | 9 ++++++---
- 2 files changed, 7 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 6a6e4c844316..37c6be337a85 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -8359,7 +8359,7 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
- 			new_crtc_state = drm_atomic_get_new_crtc_state(state, &acrtc->base);
- 			old_crtc_state = drm_atomic_get_old_crtc_state(state, &acrtc->base);
- 		}
--		
-+
- 		if (old_crtc_state)
- 			pr_debug("old crtc en: %x a: %x m: %x a-chg: %x c-chg: %x\n",
- 			old_crtc_state->enable,
 diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-index ff5f3ef8be0a..815cf13ebe11 100644
+index 815cf13ebe11..13e5542a7028 100644
 --- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
 +++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-@@ -979,8 +979,11 @@ static bool subvp_vblank_schedulable(struct dc *dc, struct dc_state *context)
- 	}
- 	// Use ignore_msa_timing_param flag to identify as DRR
- 	if (found && context->res_ctx.pipe_ctx[vblank_index].stream->ignore_msa_timing_param) {
--		// SUBVP + DRR case
--		schedulable = subvp_drr_schedulable(dc, context, &context->res_ctx.pipe_ctx[vblank_index]);
-+		// SUBVP + DRR case -- don't enable SubVP + DRR for HDMI VRR cases
-+		if (context->res_ctx.pipe_ctx[vblank_index].stream->allow_freesync)
-+			schedulable = subvp_drr_schedulable(dc, context, &context->res_ctx.pipe_ctx[vblank_index]);
-+		else
-+			schedulable = false;
- 	} else if (found) {
- 		main_timing = &subvp_pipe->stream->timing;
- 		phantom_timing = &subvp_pipe->stream->mall_stream_config.paired_stream->timing;
-@@ -1195,7 +1198,7 @@ static void dcn32_full_validate_bw_helper(struct dc *dc,
- 					    pipe->stream->mall_stream_config.type == SUBVP_NONE) {
- 						non_subvp_pipes++;
- 						// Use ignore_msa_timing_param flag to identify as DRR
--						if (pipe->stream->ignore_msa_timing_param) {
-+						if (pipe->stream->ignore_msa_timing_param && pipe->stream->allow_freesync) {
- 							drr_pipe_found = true;
- 							drr_pipe_index = i;
- 						}
+@@ -1660,6 +1660,7 @@ bool dcn32_internal_validate_bw(struct dc *dc,
+ 				dcn20_release_dsc(&context->res_ctx, dc->res_pool, &pipe->stream_res.dsc);
+ 			memset(&pipe->plane_res, 0, sizeof(pipe->plane_res));
+ 			memset(&pipe->stream_res, 0, sizeof(pipe->stream_res));
++			memset(&pipe->link_res, 0, sizeof(pipe->link_res));
+ 			repopulate_pipes = true;
+ 		} else if (pipe->top_pipe && pipe->top_pipe->plane_state == pipe->plane_state) {
+ 			struct pipe_ctx *top_pipe = pipe->top_pipe;
+@@ -1675,6 +1676,7 @@ bool dcn32_internal_validate_bw(struct dc *dc,
+ 			pipe->stream = NULL;
+ 			memset(&pipe->plane_res, 0, sizeof(pipe->plane_res));
+ 			memset(&pipe->stream_res, 0, sizeof(pipe->stream_res));
++			memset(&pipe->link_res, 0, sizeof(pipe->link_res));
+ 			repopulate_pipes = true;
+ 		} else
+ 			ASSERT(0); /* Should never try to merge master pipe */
 -- 
 2.34.1
 
