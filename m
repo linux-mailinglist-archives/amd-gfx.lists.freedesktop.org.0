@@ -2,43 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6657B648691
-	for <lists+amd-gfx@lfdr.de>; Fri,  9 Dec 2022 17:37:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A500648694
+	for <lists+amd-gfx@lfdr.de>; Fri,  9 Dec 2022 17:37:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 979A610E566;
-	Fri,  9 Dec 2022 16:37:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C975510E569;
+	Fri,  9 Dec 2022 16:37:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on20607.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e8b::607])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EA7C10E558
- for <amd-gfx@lists.freedesktop.org>; Fri,  9 Dec 2022 16:37:28 +0000 (UTC)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02on20604.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e83::604])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8471E10E558
+ for <amd-gfx@lists.freedesktop.org>; Fri,  9 Dec 2022 16:37:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TLvfdQ05c3gNMxz6tiGoP+D6F1U0s7OJCE3uWyk5lP0d+wbtzfxtBQd8XezTqXKaryoOB0iADNxd6VNLwUm2ARmwXuTopJ1O5mLvqTIbGIC1AG8soQbZaJkY8shj7PYoeS6oqvAc4Gss42CBBdHiPzyYPt/GDMdTssn1YLAn/L1bYE9J3oQzNXsZBwH1+y7JQj9FvNpX5Jb2DMXlU28dszKlDjgheeWxVTq9QScNkMPErr8CgymqOA5ugDJnCPWEXJ7/pGLQoCAhQMBpBc8xA0IuIIAYJSIO6gTqvNf3Nto2stb9kM/gEmYkgk1XYTlVSgqsjcdZluTlWw9FddqWwQ==
+ b=j5cSQzx6+hfkIEi6jdnzit81A6ne8V7yLdDv2Y8ZsbcBeXlEn6LvFh4u2Kii1aXDjvvg5gHq7MLkyNCn+jHeMKCBf/ulspA3pe2fnU7Z86HhtuGrPj6IzeX2VpOQW1Mlcu/ZWJu8TrK1pnVrRlgNmMsh8HyBwSyfm9iijIjuW+cjwv3ypfxt8ucItVRElM2TUKT0N1mC78b97T4uMqzw+xiVZTr1HKhSPfnXlaUe4l1IWECO88jL9axDbjwLYDpSW+veQQNOK7YpZcl5nW9eTYrKW6C/LY6isOuMyNfcDcch+2GN4FGScTsLFo3/5TYuZllMhJWsuUjsW+1QEPEg0g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wXIxsPxjzXojtfNONZohPkPxrvL08Zpo+H4ZAradWec=;
- b=amPU8KVdLCnMwclr9wcP0ZK8c2xoA7i899lSOrwF6kDzbvnZ5ZWE7em/oBwy2cdIm5fZKrVfBjP4W26z2IAO9v89EhgH23HA2LNpeDxxEZUUcMBND/E3vKdbFbbMkD3fQl5Kr4hZR18JFDAhAmDW642pgn/sgsOPKh+PigkRi1M9fYYmxPFl0fBCwjTtbkQ6zhm/EIgPX5Z0Ew0dCqyRbmp5TzOopDqkV6TatI3Uldiog1yBfdyaF02Titg+34teYxciBSRMzbItM0SnID8UOfw3N9e7UwbamyO6b/cDgMwkAAYeAgpxGsM8Ks/fs9Rz7rgyGmOJYhPTjdlLW84v3w==
+ bh=OjYbxa6bjjKqaQl4DuZuk42TSBuRCMKVDLbrny9Piss=;
+ b=mmQsD20jb3PAbtQwoJH7aff8coBw8Au+PLo/nGUA3JSWVFThRrEAUp/ULDVH6h5D0XahdDnYuJ0gxb5wOhuRAVMqSHwYYpgLewYDZtkG5z/NPtnLvJkNYRVb5h3GQWjOpGRgcXwcKVDHBZFbtBXUDResHegu+WvUL/l9yr8TAxdJisLrRpqeS1uEnM+f0dik1mnoG18LA9zDo4eM2WW1ENx2jz9M/e+frbVHMdy/LxkaWRIQ+LQQoZgrDuaUHrpv4uiXRRM4cwTQjeKQO/h3a81ori40L11cCuj+dV9j4PiVh80QneRdyribtuW4Jlv5fJlNGNKq4LUFADghRmglqw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wXIxsPxjzXojtfNONZohPkPxrvL08Zpo+H4ZAradWec=;
- b=dpvq71wRRMwyR6Mxo/yD3jTbzHmZNlxOW/5p+aRPJW1fc7BAGUrsCKBBo3crnIO+AOqV3khdl7r1IBpO6xn4rtQMyvWKglWIFpr4wKVDs5YGwjfXF7W6obvMucVEip97PxTzQIh09OZ9yDs8eJ7QeDUqKooWGZPm+zmOZ8F89Jo=
-Received: from MW4PR04CA0382.namprd04.prod.outlook.com (2603:10b6:303:81::27)
- by CO6PR12MB5459.namprd12.prod.outlook.com (2603:10b6:303:13b::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.16; Fri, 9 Dec
- 2022 16:37:25 +0000
-Received: from CO1NAM11FT047.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:81:cafe::55) by MW4PR04CA0382.outlook.office365.com
- (2603:10b6:303:81::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.16 via Frontend
- Transport; Fri, 9 Dec 2022 16:37:25 +0000
+ bh=OjYbxa6bjjKqaQl4DuZuk42TSBuRCMKVDLbrny9Piss=;
+ b=qfV9lNS8llCGMDhwKYM3rNjNNv/upuaT9EtD4482QTY15uKEzz1ozkH4OMfgZQdn7mBJyImGs3QTNBqCGbcEIqAR33wUrPjizGLOoj3rdPFHDZFIyw+yuDBJSiLaDj7ZnDZtOKbYyBLrZRohqNT3IPl6s50oWwQoQuCB15zx7ls=
+Received: from MW4PR04CA0332.namprd04.prod.outlook.com (2603:10b6:303:8a::7)
+ by DM4PR12MB6012.namprd12.prod.outlook.com (2603:10b6:8:6c::5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5880.18; Fri, 9 Dec 2022 16:37:28 +0000
+Received: from CO1NAM11FT085.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:8a:cafe::4) by MW4PR04CA0332.outlook.office365.com
+ (2603:10b6:303:8a::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.18 via Frontend
+ Transport; Fri, 9 Dec 2022 16:37:28 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -46,19 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT047.mail.protection.outlook.com (10.13.174.132) with Microsoft SMTP
+ CO1NAM11FT085.mail.protection.outlook.com (10.13.174.137) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5901.17 via Frontend Transport; Fri, 9 Dec 2022 16:37:24 +0000
+ 15.20.5901.17 via Frontend Transport; Fri, 9 Dec 2022 16:37:27 +0000
 Received: from jasdeep-System-Product-Name.phub.net.cable.rogers.com
  (10.180.168.240) by SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Fri, 9 Dec 2022 10:37:23 -0600
+ 15.1.2375.34; Fri, 9 Dec 2022 10:37:24 -0600
 From: jdhillon <jdhillon@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 08/23] drm/amd/display: run subvp validation with supported
- vlevel
-Date: Fri, 9 Dec 2022 11:36:32 -0500
-Message-ID: <20221209163647.25704-9-jdhillon@amd.com>
+Subject: [PATCH 09/23] drm/amd/display: save restore hdcp desired for disp
+ unplug plug from mst hub
+Date: Fri, 9 Dec 2022 11:36:33 -0500
+Message-ID: <20221209163647.25704-10-jdhillon@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221209163647.25704-1-jdhillon@amd.com>
 References: <20221209163647.25704-1-jdhillon@amd.com>
@@ -70,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT047:EE_|CO6PR12MB5459:EE_
-X-MS-Office365-Filtering-Correlation-Id: e70cd963-051c-4255-ddd1-08dada03a733
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT085:EE_|DM4PR12MB6012:EE_
+X-MS-Office365-Filtering-Correlation-Id: f112359d-602d-4355-230c-08dada03a8fc
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0ugwCNB+2UALBfRNpuidu9f/BUEbol1BjUitVQIYakOdVN0aMPdVwxnhEc2hoqwEooU4ErutsdQaVhk8CMh+eP6NEgOL/YFpv4auVEg85MzSmCaUv4KdRPB0AU2Lqfjd8MnXHQlVUO8tmkf+9JxB/x3JOszUj0md3jaEc7dc46xJF7jdP4wHyfVb2QDm1aUTbY85HgpSsOAcltsUGatn79Qn1Gpoh/JD3tLHFZylWTvLtQDGcJOirf3IlbYFTTkRNr4SA7VizqOAs1AQou7FvzlSs1Wb5sNg7IM7O8d+Tq6ZF9krN4g/dsRE09d0lv43gXR6F7KxMciA1D0rWppSIVOo34ojvEWeaUL/43wLl3KdqRyWZPXcZVwKZgMKqFuAK3viJJW+qLbEViUqhREFq/ptDTEOlRj0A3bsw2FMKLAZES2oUUzbtjl3F8NFWJmSAhcXRD18uDKmoZloLwQvUZ9sFHGaZaQ0KHOvG/T0e8uZbGQ/C099h2e4NjjF3BRFhCtITAWpnYp1qmPD+Lb1/Ntt3gVJ1rU9r1jxbnrGpPAWLHVqxvbgmJLxDUAFkVdJV7/5qZYVboUdfIsgEqpyviubXVoOFKy520rKLRLLTZ713R7YRV3XpK0YBFNc/yC+VwrZNyoVGMqgq76z6sG+8dqkKUCEPgd2XoHt3sSGf2SwjA0EOCdRKPuiRztjeNd1rK2SY2sg0EY/yFsg5FPW/N+dm1Bgh5XpxnFuSx6DPIk=
+X-Microsoft-Antispam-Message-Info: HOJz/y+GJ6rSzZR4UGrk5sj34Supb8lF9BkqEM4gQDpFqU1de9gwbRqrcxBK4j/HUbplp9ZU/YeOC1AMy9/tL5wDdLeRVxhIQ1VBPYR4xcFiL3EjqlapYEULQFzkhBNcU1a/RCGYNiruLzVWZi7SK59YvUT4R/Yhpru9+KrGr6yz6CaP0G0qVwQRYW8spW7mq6/g21fxomxN6/AeCgslNMY80ks3/MAxF9PWlAwEfZRe568zpxlcLPp5xNyDvQmaD+j9VMeQfetkizEvRjAe/HeLxNQNXQ7KXpIDRmmrsQwqD2DEx0+PUJIrEXN0PmB9hpTBgYHuLNBwDKTg0D6CJ7/gzcP1n15D31lLRd9VMysU04V4VSniSFI9mB9E6839Bojk/XWF3+4cFhxBaAILoUG/y94nMdw3FugAJjz3KTsJ9XRfmtSkbqwHRASiQOAx+dFw0SP//3CUEZnszH9KGvJlMCPxVyQZVdyzqFXgpjPi0WYJuK0ul9Lfql5jtpEDdYYocbqQ1T9gDv2ZmmrS2kbGj3ZIkRr9tpzC0aJE6+Y9nh55dnbTj7I3Peq+YPxwZQRNtC9704DvvOFrBebPzdI0scZZTL475lwpPVKjxFHEsO9mGfZcFRbresiHhLzTPv+kWoKKXKxOp+TO/SKLHQwRwsB3/7lHHeJHsrOShv5XU/l+XBabba+nwwUx81tvyi+y3lScriOLFFW79iQYnIVwaObhT0eu9nqWn0N9G6U=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(136003)(346002)(396003)(376002)(39860400002)(451199015)(46966006)(36840700001)(40470700004)(36860700001)(2906002)(40480700001)(40460700003)(336012)(70206006)(4326008)(8676002)(41300700001)(36756003)(70586007)(2616005)(82740400003)(316002)(356005)(26005)(6916009)(83380400001)(81166007)(82310400005)(186003)(5660300002)(426003)(47076005)(16526019)(1076003)(478600001)(8936002)(54906003)(6666004)(36900700001);
+ SFS:(13230022)(4636009)(136003)(396003)(39860400002)(346002)(376002)(451199015)(36840700001)(40470700004)(46966006)(36860700001)(426003)(47076005)(70586007)(8676002)(8936002)(4326008)(70206006)(82310400005)(36756003)(41300700001)(83380400001)(478600001)(186003)(26005)(40480700001)(81166007)(356005)(6666004)(82740400003)(1076003)(336012)(40460700003)(2616005)(16526019)(316002)(54906003)(6916009)(2906002)(5660300002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2022 16:37:24.9891 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e70cd963-051c-4255-ddd1-08dada03a733
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2022 16:37:27.9481 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f112359d-602d-4355-230c-08dada03a8fc
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT047.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT085.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5459
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6012
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,54 +100,238 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Dillon Varone <Dillon.Varone@amd.com>,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- Jasdeep Dhillon <jdhillon@amd.com>, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, Alvin Lee <Alvin.Lee2@amd.com>,
- wayne.lin@amd.com, Jun Lei <Jun.Lei@amd.com>, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Jasdeep Dhillon <jdhillon@amd.com>,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
+ Aurabindo.Pillai@amd.com, hersen wu <hersenxs.wu@amd.com>, wayne.lin@amd.com,
+ Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Dillon Varone <Dillon.Varone@amd.com>
+From: hersen wu <hersenxs.wu@amd.com>
 
-[WHY]
-Subvp portion validation currently assumes that if vlevel provided does not
-support pstate, then none will, and so subvp is not used.
+[Why]
+connector hdcp properties are lost after display is
+unplgged from mst hub. connector is destroyed with
+dm_dp_mst_connector_destroy. when display is plugged
+back, hdcp is not desired, hdcp could not be enabled
+by linux kernel automatically.
 
-[HOW]
-After get vlevel, use lowest vlevel that supports pstate if it
-exists, and use that for subvp validation.
+[How]
+save hdcp properties into hdcp_work within
+amdgpu_dm_atomic_commit_tail. if the same display is
+plugged back with same display index, its hdcp
+properties will be retrieved from hdcp_work within
+dm_dp_mst_get_modes
 
-Reviewed-by: Alvin Lee <Alvin.Lee2@amd.com>
-Reviewed-by: Jun Lei <Jun.Lei@amd.com>
+Reviewed-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 Acked-by: Jasdeep Dhillon <jdhillon@amd.com>
-Signed-off-by: Dillon Varone <Dillon.Varone@amd.com>
+Signed-off-by: hersen wu <hersenxs.wu@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 104 +++++++++++++++++-
+ .../amd/display/amdgpu_dm/amdgpu_dm_hdcp.h    |  13 +++
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  25 +++++
+ 3 files changed, 138 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-index a42ddb911e1d..ff5f3ef8be0a 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-@@ -1169,6 +1169,16 @@ static void dcn32_full_validate_bw_helper(struct dc *dc,
- 			pipes[0].clks_cfg.dppclk_mhz = get_dppclk_calculated(&context->bw_ctx.dml, pipes, *pipe_cnt, 0);
- 			*vlevel = dml_get_voltage_level(&context->bw_ctx.dml, pipes, *pipe_cnt);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index bbacd764bf0f..7affe0899418 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -8292,15 +8292,65 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
+ 		}
+ 	}
+ #ifdef CONFIG_DRM_AMD_DC_HDCP
++	for_each_oldnew_connector_in_state(state, connector, old_con_state, new_con_state, i) {
++		struct dm_connector_state *dm_new_con_state = to_dm_connector_state(new_con_state);
++		struct amdgpu_crtc *acrtc = to_amdgpu_crtc(dm_new_con_state->base.crtc);
++		struct amdgpu_dm_connector *aconnector = to_amdgpu_dm_connector(connector);
++
++		pr_debug("[HDCP_DM] -------------- i : %x ----------\n", i);
++
++		if (!connector)
++			continue;
++
++		pr_debug("[HDCP_DM] connector->index: %x connect_status: %x dpms: %x\n",
++			connector->index, connector->status, connector->dpms);
++		pr_debug("[HDCP_DM] state protection old: %x new: %x\n",
++			old_con_state->content_protection, new_con_state->content_protection);
++
++		if (aconnector->dc_sink) {
++			if (aconnector->dc_sink->sink_signal != SIGNAL_TYPE_VIRTUAL &&
++				aconnector->dc_sink->sink_signal != SIGNAL_TYPE_NONE) {
++				pr_debug("[HDCP_DM] pipe_ctx dispname=%s\n",
++				aconnector->dc_sink->edid_caps.display_name);
++			}
++		}
++
++		new_crtc_state = NULL;
++		old_crtc_state = NULL;
++
++		if (acrtc) {
++			new_crtc_state = drm_atomic_get_new_crtc_state(state, &acrtc->base);
++			old_crtc_state = drm_atomic_get_old_crtc_state(state, &acrtc->base);
++		}
++		if (old_crtc_state)
++			pr_debug("old crtc en: %x a: %x m: %x a-chg: %x c-chg: %x\n",
++			old_crtc_state->enable,
++			old_crtc_state->active,
++			old_crtc_state->mode_changed,
++			old_crtc_state->active_changed,
++			old_crtc_state->connectors_changed);
++
++		if (new_crtc_state)
++			pr_debug("NEW crtc en: %x a: %x m: %x a-chg: %x c-chg: %x\n",
++			new_crtc_state->enable,
++			new_crtc_state->active,
++			new_crtc_state->mode_changed,
++			new_crtc_state->active_changed,
++			new_crtc_state->connectors_changed);
++	}
++
+ 	for_each_oldnew_connector_in_state(state, connector, old_con_state, new_con_state, i) {
+ 		struct dm_connector_state *dm_new_con_state = to_dm_connector_state(new_con_state);
+ 		struct amdgpu_crtc *acrtc = to_amdgpu_crtc(dm_new_con_state->base.crtc);
+ 		struct amdgpu_dm_connector *aconnector = to_amdgpu_dm_connector(connector);
  
-+			/* Check that vlevel requested supports pstate or not
-+			 * if not, select the lowest vlevel that supports it
+ 		new_crtc_state = NULL;
++		old_crtc_state = NULL;
+ 
+-		if (acrtc)
++		if (acrtc) {
+ 			new_crtc_state = drm_atomic_get_new_crtc_state(state, &acrtc->base);
++			old_crtc_state = drm_atomic_get_old_crtc_state(state, &acrtc->base);
++		}
+ 
+ 		dm_new_crtc_state = to_dm_crtc_state(new_crtc_state);
+ 
+@@ -8312,11 +8362,57 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
+ 			continue;
+ 		}
+ 
+-		if (is_content_protection_different(new_con_state, old_con_state, connector, adev->dm.hdcp_workqueue))
++		if (is_content_protection_different(
++			new_crtc_state,
++			old_crtc_state,
++			new_con_state,
++			old_con_state,
++			connector,
++			adev->dm.hdcp_workqueue)) {
++			/* when display is unplugged from mst hub, connctor will
++			 * be destroyed within dm_dp_mst_connector_destroy. connector
++			 * hdcp perperties, like type, undesired, desired, enabled,
++			 * will be lost. So, save hdcp properties into hdcp_work within
++			 * amdgpu_dm_atomic_commit_tail. if the same display is
++			 * plugged back with same display index, its hdcp properties
++			 * will be retrieved from hdcp_work within dm_dp_mst_get_modes
 +			 */
-+			for (i = *vlevel; i < context->bw_ctx.dml.soc.num_states; i++) {
-+				if (vba->DRAMClockChangeSupport[i][vba->maxMpcComb] != dm_dram_clock_change_unsupported) {
-+					*vlevel = i;
-+					break;
-+				}
++
++			bool enable_encryption = false;
++
++			if (new_con_state->content_protection ==
++				DRM_MODE_CONTENT_PROTECTION_DESIRED)
++				enable_encryption = true;
++
++
++			if (aconnector->dc_link && aconnector->dc_sink &&
++				aconnector->dc_link->type == dc_connection_mst_branch) {
++				struct hdcp_workqueue *hdcp_work = adev->dm.hdcp_workqueue;
++				struct hdcp_workqueue *hdcp_w =
++					&hdcp_work[aconnector->dc_link->link_index];
++
++				hdcp_w->hdcp_content_type[connector->index] =
++					new_con_state->hdcp_content_type;
++				hdcp_w->content_protection[connector->index] =
++					new_con_state->content_protection;
 +			}
 +
- 			if (*vlevel < context->bw_ctx.dml.soc.num_states &&
- 			    vba->DRAMClockChangeSupport[*vlevel][vba->maxMpcComb] != dm_dram_clock_change_unsupported
- 			    && subvp_validate_static_schedulability(dc, context, *vlevel)) {
++			if (new_crtc_state && new_crtc_state->mode_changed &&
++				new_con_state->content_protection >=
++					DRM_MODE_CONTENT_PROTECTION_DESIRED) {
++				enable_encryption = true;
++			}
++
++			DRM_INFO("[HDCP_DM] hdcp_update_display enable_encryption = %x\n",
++				enable_encryption);
++
+ 			hdcp_update_display(
+-				adev->dm.hdcp_workqueue, aconnector->dc_link->link_index, aconnector,
++				adev->dm.hdcp_workqueue, 
++				aconnector->dc_link->link_index, 
++				aconnector,
+ 				new_con_state->hdcp_content_type,
+-				new_con_state->content_protection == DRM_MODE_CONTENT_PROTECTION_DESIRED);
++				enable_encryption);
++		}
+ 	}
+ #endif
+ 
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
+index 6e2537e579fa..69b445b011c8 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
+@@ -52,6 +52,19 @@ struct hdcp_workqueue {
+ 	struct mod_hdcp_link link;
+ 
+ 	enum mod_hdcp_encryption_status encryption_status[AMDGPU_DM_MAX_DISPLAY_INDEX];
++	/* when display is unplugged from mst hub, connctor will be
++	 * destroyed within dm_dp_mst_connector_destroy. connector
++	 * hdcp perperties, like type, undesired, desired, enabled,
++	 * will be lost. So, save hdcp properties into hdcp_work within
++	 * amdgpu_dm_atomic_commit_tail. if the same display is
++	 * plugged back with same display index, its hdcp properties
++	 * will be retrieved from hdcp_work within dm_dp_mst_get_modes
++	 */
++	/* un-desired, desired, enabled */
++	unsigned int content_protection[AMDGPU_DM_MAX_DISPLAY_INDEX];
++	/* hdcp1.x, hdcp2.x */
++	unsigned int hdcp_content_type[AMDGPU_DM_MAX_DISPLAY_INDEX];
++
+ 	uint8_t max_link;
+ 
+ 	uint8_t *srm;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+index eef71940e43d..3270c61d3afe 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+@@ -31,6 +31,9 @@
+ #include "amdgpu.h"
+ #include "amdgpu_dm.h"
+ #include "amdgpu_dm_mst_types.h"
++#ifdef CONFIG_DRM_AMD_DC_HDCP
++#include "amdgpu_dm_hdcp.h"
++#endif
+ 
+ #include "dc.h"
+ #include "dm_helpers.h"
+@@ -344,6 +347,28 @@ static int dm_dp_mst_get_modes(struct drm_connector *connector)
+ 		/* dc_link_add_remote_sink returns a new reference */
+ 		aconnector->dc_sink = dc_sink;
+ 
++		/* when display is unplugged from mst hub, connctor will be
++		 * destroyed within dm_dp_mst_connector_destroy. connector
++		 * hdcp perperties, like type, undesired, desired, enabled,
++		 * will be lost. So, save hdcp properties into hdcp_work within
++		 * amdgpu_dm_atomic_commit_tail. if the same display is
++		 * plugged back with same display index, its hdcp properties
++		 * will be retrieved from hdcp_work within dm_dp_mst_get_modes
++		 */
++#ifdef CONFIG_DRM_AMD_DC_HDCP
++		if (aconnector->dc_sink && connector->state) {
++			struct drm_device *dev = connector->dev;
++			struct amdgpu_device *adev = drm_to_adev(dev);
++			struct hdcp_workqueue *hdcp_work = adev->dm.hdcp_workqueue;
++			struct hdcp_workqueue *hdcp_w = &hdcp_work[aconnector->dc_link->link_index];
++
++			connector->state->hdcp_content_type =
++			hdcp_w->hdcp_content_type[connector->index];
++			connector->state->content_protection =
++			hdcp_w->content_protection[connector->index];
++		}
++#endif
++
+ 		if (aconnector->dc_sink) {
+ 			amdgpu_dm_update_freesync_caps(
+ 					connector, aconnector->edid);
 -- 
 2.34.1
 
