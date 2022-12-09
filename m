@@ -2,43 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19B3D648696
-	for <lists+amd-gfx@lfdr.de>; Fri,  9 Dec 2022 17:37:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6657B648691
+	for <lists+amd-gfx@lfdr.de>; Fri,  9 Dec 2022 17:37:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C914510E56D;
-	Fri,  9 Dec 2022 16:37:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 979A610E566;
+	Fri,  9 Dec 2022 16:37:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on20614.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e8b::614])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9920710E562
- for <amd-gfx@lists.freedesktop.org>; Fri,  9 Dec 2022 16:37:26 +0000 (UTC)
+ (mail-dm6nam04on20607.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e8b::607])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EA7C10E558
+ for <amd-gfx@lists.freedesktop.org>; Fri,  9 Dec 2022 16:37:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IPpGXRbkuCD+jcqeKraBt4sVaH0R5syr+h/PB5WtLzC4DeqX9vVnIGOyp2Ph/GW2nHLX82HpBqxw0qPiVvSE/VRW+WSSFx2dMWPAMIGdhowhAe+6AwQcuqoj7aiZWtlC1OfolyMKEP9pmOUfg/xY07ZjIsQ345I4rjCF/R+mlHnoKTQkfl3tz408CcVAzLafWk/a6CGU3fGmYfrETMkSRxALbqfP7EneDuJbXsCnMBeoCxVHm8aNd5nkhxPxDpn7Meybv8KIfuYYHjRfJpwmAZQj+TUu4wVx4bQPWzke/8irVCmLkAb3NLEt3oAdDRLrDvSbv9bPMR2PDbErmLUcAg==
+ b=TLvfdQ05c3gNMxz6tiGoP+D6F1U0s7OJCE3uWyk5lP0d+wbtzfxtBQd8XezTqXKaryoOB0iADNxd6VNLwUm2ARmwXuTopJ1O5mLvqTIbGIC1AG8soQbZaJkY8shj7PYoeS6oqvAc4Gss42CBBdHiPzyYPt/GDMdTssn1YLAn/L1bYE9J3oQzNXsZBwH1+y7JQj9FvNpX5Jb2DMXlU28dszKlDjgheeWxVTq9QScNkMPErr8CgymqOA5ugDJnCPWEXJ7/pGLQoCAhQMBpBc8xA0IuIIAYJSIO6gTqvNf3Nto2stb9kM/gEmYkgk1XYTlVSgqsjcdZluTlWw9FddqWwQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oJEqCx+/4PF2p3/yfBg4QNnQ9m477aKr7D1YPFwuV6U=;
- b=eKyPZ8QV7IL8YX7FfwKORzigHAHPDzStJgAn0+SVMJUwexO2nOPBID5mtEL6+lMnKXsi6INGxLmHCtBqKQPzaFVpLQIp8i8Qy4wEZJOfPiusM4PaUAEKRdEQq5Ffv9SOTt5guQNC9GNImqHb3O5Ev4xFyxk2HYt+BE9MRAoAIilgN9iml0x/0Hk9Ed/QKCkF4mjMXHb3HbnoXxMW7sUwlRWz5oH7LjO1lTrylhmM2X/Qp3A0iBzffD7AGygLw8i5fNtnZiPuBwcLmgT83qTfF/L6FFvuynmV7mEbT4yAeWLCvIE9X/Ms3SIo2vcsE+0yLHrORTm6C+eg/czUVhcRtw==
+ bh=wXIxsPxjzXojtfNONZohPkPxrvL08Zpo+H4ZAradWec=;
+ b=amPU8KVdLCnMwclr9wcP0ZK8c2xoA7i899lSOrwF6kDzbvnZ5ZWE7em/oBwy2cdIm5fZKrVfBjP4W26z2IAO9v89EhgH23HA2LNpeDxxEZUUcMBND/E3vKdbFbbMkD3fQl5Kr4hZR18JFDAhAmDW642pgn/sgsOPKh+PigkRi1M9fYYmxPFl0fBCwjTtbkQ6zhm/EIgPX5Z0Ew0dCqyRbmp5TzOopDqkV6TatI3Uldiog1yBfdyaF02Titg+34teYxciBSRMzbItM0SnID8UOfw3N9e7UwbamyO6b/cDgMwkAAYeAgpxGsM8Ks/fs9Rz7rgyGmOJYhPTjdlLW84v3w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oJEqCx+/4PF2p3/yfBg4QNnQ9m477aKr7D1YPFwuV6U=;
- b=zogIZroERsjTCM06tM8XtpIn9WGtSXAtOyiclHNVghe1qxkMM3eOOIYtIMejUKPTbc1gUrI/4g4RGnr3fDjSvqbHh75Mmp+SEhNkXNRdhKUwRxzveMxz8cnvgzG5yKBZ0EySz+tDkkv2JMwKRo2RzYg3i5433cMJMqUJgGwsbGQ=
-Received: from MW4PR04CA0366.namprd04.prod.outlook.com (2603:10b6:303:81::11)
- by SJ1PR12MB6193.namprd12.prod.outlook.com (2603:10b6:a03:459::21)
+ bh=wXIxsPxjzXojtfNONZohPkPxrvL08Zpo+H4ZAradWec=;
+ b=dpvq71wRRMwyR6Mxo/yD3jTbzHmZNlxOW/5p+aRPJW1fc7BAGUrsCKBBo3crnIO+AOqV3khdl7r1IBpO6xn4rtQMyvWKglWIFpr4wKVDs5YGwjfXF7W6obvMucVEip97PxTzQIh09OZ9yDs8eJ7QeDUqKooWGZPm+zmOZ8F89Jo=
+Received: from MW4PR04CA0382.namprd04.prod.outlook.com (2603:10b6:303:81::27)
+ by CO6PR12MB5459.namprd12.prod.outlook.com (2603:10b6:303:13b::16)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.16; Fri, 9 Dec
- 2022 16:37:24 +0000
+ 2022 16:37:25 +0000
 Received: from CO1NAM11FT047.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:81:cafe::f9) by MW4PR04CA0366.outlook.office365.com
- (2603:10b6:303:81::11) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:303:81:cafe::55) by MW4PR04CA0382.outlook.office365.com
+ (2603:10b6:303:81::27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.16 via Frontend
- Transport; Fri, 9 Dec 2022 16:37:24 +0000
+ Transport; Fri, 9 Dec 2022 16:37:25 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -52,13 +52,13 @@ Received: from SATLEXMB04.amd.com (165.204.84.17) by
 Received: from jasdeep-System-Product-Name.phub.net.cable.rogers.com
  (10.180.168.240) by SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Fri, 9 Dec 2022 10:37:21 -0600
+ 15.1.2375.34; Fri, 9 Dec 2022 10:37:23 -0600
 From: jdhillon <jdhillon@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 07/23] drm/amd/display: Demote Error Level When ODM Transition
- Supported
-Date: Fri, 9 Dec 2022 11:36:31 -0500
-Message-ID: <20221209163647.25704-8-jdhillon@amd.com>
+Subject: [PATCH 08/23] drm/amd/display: run subvp validation with supported
+ vlevel
+Date: Fri, 9 Dec 2022 11:36:32 -0500
+Message-ID: <20221209163647.25704-9-jdhillon@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221209163647.25704-1-jdhillon@amd.com>
 References: <20221209163647.25704-1-jdhillon@amd.com>
@@ -70,26 +70,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT047:EE_|SJ1PR12MB6193:EE_
-X-MS-Office365-Filtering-Correlation-Id: f877993b-9127-4732-80ef-08dada03a6d4
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT047:EE_|CO6PR12MB5459:EE_
+X-MS-Office365-Filtering-Correlation-Id: e70cd963-051c-4255-ddd1-08dada03a733
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3wkIDpLer+8G+xnXBvoCX4u166ZJG9C0kHkid4nT2te9zPrTjJJXfC1LAdadr0tPoFp7bbmO0JtiG3uLo82TrA4La30yVuHFMMLmS3ArtRC3Ods7PFoIgDPWNqp2+W40aucsBtEAebsB3YtAq3K7HwNJb3QHpDVS0g3+1e00IW+jnwdcWkUS++0/maLwV9K/oXd6QbZ//9ooGOBwBNb28xoUPw8ZxUoo6Wr068bHl6nTB3H6ZydrdEONAEdVOxjltTxL/SyfVXYBuatY2MRnZdOFWFzZMmlfCcPtxwmC7c1xBRr5cNZpj44npktoFpwH73ZBh5heJlMXR6s3cJqYlnYlDpUGecZ99yefqklkz1DQJTRFQ2pHyTqYPjHfuuV5T7NdyAglZ5TM1QHnga6gVM9a3cOcPegZjDkzTtNBx5EWHXumeHhEpxK6c2JeU4fAEHAEDkdtR7bGVcGjLP5xEgsEZw886/f9NXwOm88/KgbCxrXRW4TU43/OhgFqrId1UZ2PtrTp73qwQluLjJ5cM9+0Lo7UdpEtl93rXwYLykMU9ruEZYScQrEqHeV8s4qj3uFFmh3dx8N94RKnTTCf3Hp8AO65Pt3nX16TuA4SMrgECChGQjKzvpU5kHbeHjpQd0zUCU4NH8Z8EyL4ICgSOY3AhZmcMONSsUIPyYekBjgB1Mllc1XtGB2o4QIKVsyvO9S46iRWxWxNek+BU9HFSboRwLkX6qwONklzuOBncqU=
+X-Microsoft-Antispam-Message-Info: 0ugwCNB+2UALBfRNpuidu9f/BUEbol1BjUitVQIYakOdVN0aMPdVwxnhEc2hoqwEooU4ErutsdQaVhk8CMh+eP6NEgOL/YFpv4auVEg85MzSmCaUv4KdRPB0AU2Lqfjd8MnXHQlVUO8tmkf+9JxB/x3JOszUj0md3jaEc7dc46xJF7jdP4wHyfVb2QDm1aUTbY85HgpSsOAcltsUGatn79Qn1Gpoh/JD3tLHFZylWTvLtQDGcJOirf3IlbYFTTkRNr4SA7VizqOAs1AQou7FvzlSs1Wb5sNg7IM7O8d+Tq6ZF9krN4g/dsRE09d0lv43gXR6F7KxMciA1D0rWppSIVOo34ojvEWeaUL/43wLl3KdqRyWZPXcZVwKZgMKqFuAK3viJJW+qLbEViUqhREFq/ptDTEOlRj0A3bsw2FMKLAZES2oUUzbtjl3F8NFWJmSAhcXRD18uDKmoZloLwQvUZ9sFHGaZaQ0KHOvG/T0e8uZbGQ/C099h2e4NjjF3BRFhCtITAWpnYp1qmPD+Lb1/Ntt3gVJ1rU9r1jxbnrGpPAWLHVqxvbgmJLxDUAFkVdJV7/5qZYVboUdfIsgEqpyviubXVoOFKy520rKLRLLTZ713R7YRV3XpK0YBFNc/yC+VwrZNyoVGMqgq76z6sG+8dqkKUCEPgd2XoHt3sSGf2SwjA0EOCdRKPuiRztjeNd1rK2SY2sg0EY/yFsg5FPW/N+dm1Bgh5XpxnFuSx6DPIk=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(39860400002)(396003)(376002)(136003)(346002)(451199015)(36840700001)(40470700004)(46966006)(6666004)(478600001)(6916009)(26005)(36860700001)(8676002)(4326008)(316002)(70206006)(70586007)(41300700001)(47076005)(83380400001)(426003)(5660300002)(2906002)(54906003)(8936002)(82740400003)(40480700001)(81166007)(356005)(16526019)(2616005)(336012)(1076003)(186003)(36756003)(40460700003)(82310400005)(36900700001);
+ SFS:(13230022)(4636009)(136003)(346002)(396003)(376002)(39860400002)(451199015)(46966006)(36840700001)(40470700004)(36860700001)(2906002)(40480700001)(40460700003)(336012)(70206006)(4326008)(8676002)(41300700001)(36756003)(70586007)(2616005)(82740400003)(316002)(356005)(26005)(6916009)(83380400001)(81166007)(82310400005)(186003)(5660300002)(426003)(47076005)(16526019)(1076003)(478600001)(8936002)(54906003)(6666004)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2022 16:37:24.3641 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f877993b-9127-4732-80ef-08dada03a6d4
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2022 16:37:24.9891 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e70cd963-051c-4255-ddd1-08dada03a733
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT047.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6193
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5459
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,59 +104,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Cc: stylon.wang@amd.com, Dillon Varone <Dillon.Varone@amd.com>,
  Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
  Jasdeep Dhillon <jdhillon@amd.com>, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- solomon.chiu@amd.com, Fangzhi Zuo <Jerry.Zuo@amd.com>,
- Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
+ solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, Alvin Lee <Alvin.Lee2@amd.com>,
+ wayne.lin@amd.com, Jun Lei <Jun.Lei@amd.com>, Bhawanpreet.Lakha@amd.com,
  agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Fangzhi Zuo <Jerry.Zuo@amd.com>
+From: Dillon Varone <Dillon.Varone@amd.com>
 
-[Why && How]
-On dcn32, HW supports odm transition in fast update. Hence this
-error message is considered false positive. Downgrade the error level
-to avoid catching unnecessary attention.
+[WHY]
+Subvp portion validation currently assumes that if vlevel provided does not
+support pstate, then none will, and so subvp is not used.
 
-Reviewed-by: Dillon Varone <Dillon.Varone@amd.com>
+[HOW]
+After get vlevel, use lowest vlevel that supports pstate if it
+exists, and use that for subvp validation.
+
+Reviewed-by: Alvin Lee <Alvin.Lee2@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Jasdeep Dhillon <jdhillon@amd.com>
-Signed-off-by: Fangzhi Zuo <Jerry.Zuo@amd.com>
+Signed-off-by: Dillon Varone <Dillon.Varone@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index da164685547d..002b7b512b09 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -3810,6 +3810,8 @@ void check_syncd_pipes_for_disabled_master_pipe(struct dc *dc,
- 	int i;
- 	struct pipe_ctx *pipe_ctx, *pipe_ctx_check;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
+index a42ddb911e1d..ff5f3ef8be0a 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
+@@ -1169,6 +1169,16 @@ static void dcn32_full_validate_bw_helper(struct dc *dc,
+ 			pipes[0].clks_cfg.dppclk_mhz = get_dppclk_calculated(&context->bw_ctx.dml, pipes, *pipe_cnt, 0);
+ 			*vlevel = dml_get_voltage_level(&context->bw_ctx.dml, pipes, *pipe_cnt);
  
-+	DC_LOGGER_INIT(dc->ctx->logger);
++			/* Check that vlevel requested supports pstate or not
++			 * if not, select the lowest vlevel that supports it
++			 */
++			for (i = *vlevel; i < context->bw_ctx.dml.soc.num_states; i++) {
++				if (vba->DRAMClockChangeSupport[i][vba->maxMpcComb] != dm_dram_clock_change_unsupported) {
++					*vlevel = i;
++					break;
++				}
++			}
 +
- 	pipe_ctx = &context->res_ctx.pipe_ctx[disabled_master_pipe_idx];
- 	if ((GET_PIPE_SYNCD_FROM_PIPE(pipe_ctx) != disabled_master_pipe_idx) ||
- 		!IS_PIPE_SYNCD_VALID(pipe_ctx))
-@@ -3820,9 +3822,16 @@ void check_syncd_pipes_for_disabled_master_pipe(struct dc *dc,
- 		pipe_ctx_check = &context->res_ctx.pipe_ctx[i];
- 
- 		if ((GET_PIPE_SYNCD_FROM_PIPE(pipe_ctx_check) == disabled_master_pipe_idx) &&
--			IS_PIPE_SYNCD_VALID(pipe_ctx_check) && (i != disabled_master_pipe_idx))
--			DC_ERR("DC: Failure: pipe_idx[%d] syncd with disabled master pipe_idx[%d]\n",
--				i, disabled_master_pipe_idx);
-+			IS_PIPE_SYNCD_VALID(pipe_ctx_check) && (i != disabled_master_pipe_idx)) {
-+			/* On dcn32, this error isn't fatal since hw supports odm transition in fast update*/
-+			if (dc->ctx->dce_version == DCN_VERSION_3_2 ||
-+					dc->ctx->dce_version == DCN_VERSION_3_21)
-+				DC_LOG_DEBUG("DC: pipe_idx[%d] syncd with disabled master pipe_idx[%d]\n",
-+					i, disabled_master_pipe_idx);
-+			else
-+				DC_ERR("DC: Failure: pipe_idx[%d] syncd with disabled master pipe_idx[%d]\n",
-+					i, disabled_master_pipe_idx);
-+		}
- 	}
- }
- 
+ 			if (*vlevel < context->bw_ctx.dml.soc.num_states &&
+ 			    vba->DRAMClockChangeSupport[*vlevel][vba->maxMpcComb] != dm_dram_clock_change_unsupported
+ 			    && subvp_validate_static_schedulability(dc, context, *vlevel)) {
 -- 
 2.34.1
 
