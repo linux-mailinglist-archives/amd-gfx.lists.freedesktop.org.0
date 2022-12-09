@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29E9A648698
-	for <lists+amd-gfx@lfdr.de>; Fri,  9 Dec 2022 17:37:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 001B164869C
+	for <lists+amd-gfx@lfdr.de>; Fri,  9 Dec 2022 17:37:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9854F10E565;
-	Fri,  9 Dec 2022 16:37:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA89010E570;
+	Fri,  9 Dec 2022 16:37:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2052.outbound.protection.outlook.com [40.107.94.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB69910E56E
+ (mail-mw2nam10on2064.outbound.protection.outlook.com [40.107.94.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A4C010E56C
  for <amd-gfx@lists.freedesktop.org>; Fri,  9 Dec 2022 16:37:40 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ilXNdBBlSEyPrdi7awKaXP8VchLGu9h2Pw5esN6mwtE86IG1Vk/MU1BOA5xVZn5whL0dEZwG7L3MkdvMw1XtUUSmjr4XgvB0s9Z5cr796bsqWS6MJpa0OYSzIqU6ZBBPIHxQwXkqqocM/hG6NOpcDLELhZCPMprDZXxPaLkF9gABpQqiiMOtR5fhUVMu8Jc/ihmQDN8eGpRMa9MFMXLK5b7m5kt59dWZSjnieHpvYazkZvXt/w1nYRC0542Q5KOLpKAVbPabMSIyQ+r59mTGs6fIaiGaT7vx+ynHX8apNfCYZoKadRkG7uNN/yBORjg4puTiD5a+8ZizbNVmSzKidg==
+ b=I9RV+xsOzM2cvgkTfTfVy1xULPeBjiyuVSMPgKqo28fIOqN5BBahbAWghNafpUBMwcSjwTPVQi960GjAVfReEYNH41s4Vip7GtbZcf6mD5u+o2iWD1ItdsxltBtxp/LvDfM9VHrUJon8H0dsiFm5Jo3BTe8Dru4yfPyvvN73S+07ZNwLcc8420tlMHyW8h7vEob2dk/+EqFvkc/+ypDQfjccpZb+vUAliUFV4eJ5W4/4TX2PaBEr/OLSoGUG/1IbPClfHT+6p/AQLuoZXMS0Kpt7V/BWd5GpntVgKgXoXHysaIrmWglnYHkQXon744NVaxMWW/3ag8lkyxBz0EpIvA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9VJVlWjokNj9YL4b5FZ1N0lu8pboEnkGLEhAB6BouWs=;
- b=Ps7w59mvHp57GwjcqI8LWUf0V2DeK+2xXbx/FdOGFHm/YJ3FjCbYpwH+zivRvKBA3+dAGc8BOgDrghvmR2ZpjkxXSYx40DAROHgTziatecVjvyYh/cU/ce4hcJBytKqZbE255lxxWCIZMYOy9bqgw89LXXcHQlJ68CHy9L7E2xXmOviy4ln4r9N1aRPVxRj8X7E+MwBX3g9gWaU1KAK2uw8bZQwrNc+8kZfUmo/LhlJo1Z70nwQ5KOjPEIqH4YKiSCrSQWcEJ5HDdtgQSaou3W5Pqk/uY6tGK07tX0NtQ4Uz44ENPTh/dmTtHBRfGtU1BiPgPMMmF3qV1JEY4Fv3Kw==
+ bh=ysH0fZDxfLLMfvgRb9vfb6CEmfXRogkaKIkuX2O7juE=;
+ b=gKoe9gumVU+5HJ0tp8K+TnrbBfq9VtqQVRO3yuB5Wu4sztkY/tcpPP3THI7iY8VSiyRNJMObm5P42WlK70J8oVUMZ9BnkN1IzApWU1CA7iXWPtckdgVUu4ppBWaMJYRjeRjS8t3XYCCpEomAtM6jX5y3zl0LAgCCG0K9mPuLF8HBErFQOR4uovHfSCvEE3YMve1ejJsyjuT/UwruJyDvY1Hm5X5eyHewjgzim6QVN/Twq28Zc00d6Yp/XAJzDGUMv/TyCp7cx9oDmap94AtTCLxDqBUc9mE+4IXSFMesERjsiS9ltsfw5Gr9wluiC1YaSRMHwAamgcaQLvYAGY3PNQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9VJVlWjokNj9YL4b5FZ1N0lu8pboEnkGLEhAB6BouWs=;
- b=gFiI7m0z7/l0IuaaGc77o2EGLPmO/nJsaWnw4Qy+BAISqP3dOeuT0cnyGTWWqvHkuicL7zfTb/Qwxsx0g0G+cIA0Vf/q8688QvDNrHWB/s6XE6k7NGeaku80dfGFPU65WXvTq5jNQKyXjgidBYbXISkpG/V+N6UdmWLlAhU7zJw=
-Received: from MW4PR04CA0158.namprd04.prod.outlook.com (2603:10b6:303:85::13)
- by CO6PR12MB5457.namprd12.prod.outlook.com (2603:10b6:5:355::16) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=ysH0fZDxfLLMfvgRb9vfb6CEmfXRogkaKIkuX2O7juE=;
+ b=G4UE7tvbd+arzjuzvHXrekt7dW07P0rVESSvHjJtGqxTeGGawVwIfgQj/+3jSdmcq2nWIKiKVoSCGk4+MTz11bGcaTsDlvvVDLYG0Wm0T3VtPng05peMmCWzPliSODopY3or9iR+Iicu8ASFEPZCMpkyZW5AoT9eS3xxb5PgepM=
+Received: from MW4PR04CA0168.namprd04.prod.outlook.com (2603:10b6:303:85::23)
+ by BY5PR12MB4210.namprd12.prod.outlook.com (2603:10b6:a03:203::8)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.16; Fri, 9 Dec
  2022 16:37:38 +0000
 Received: from CO1NAM11FT089.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:85:cafe::65) by MW4PR04CA0158.outlook.office365.com
- (2603:10b6:303:85::13) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:303:85:cafe::ac) by MW4PR04CA0168.outlook.office365.com
+ (2603:10b6:303:85::23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.18 via Frontend
- Transport; Fri, 9 Dec 2022 16:37:37 +0000
+ Transport; Fri, 9 Dec 2022 16:37:38 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CO1NAM11FT089.mail.protection.outlook.com (10.13.175.179) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5901.17 via Frontend Transport; Fri, 9 Dec 2022 16:37:37 +0000
+ 15.20.5901.17 via Frontend Transport; Fri, 9 Dec 2022 16:37:38 +0000
 Received: from jasdeep-System-Product-Name.phub.net.cable.rogers.com
  (10.180.168.240) by SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Fri, 9 Dec 2022 10:37:34 -0600
+ 15.1.2375.34; Fri, 9 Dec 2022 10:37:36 -0600
 From: jdhillon <jdhillon@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 19/23] drm/amd/display: Block subvp if center timing is in use
-Date: Fri, 9 Dec 2022 11:36:43 -0500
-Message-ID: <20221209163647.25704-20-jdhillon@amd.com>
+Subject: [PATCH 20/23] drm/amd/display: Revert Reduce delay when sink device
+ not able to ACK 00340h write
+Date: Fri, 9 Dec 2022 11:36:44 -0500
+Message-ID: <20221209163647.25704-21-jdhillon@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221209163647.25704-1-jdhillon@amd.com>
 References: <20221209163647.25704-1-jdhillon@amd.com>
@@ -68,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT089:EE_|CO6PR12MB5457:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6d3baf37-adb4-413a-5ec0-08dada03aebc
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT089:EE_|BY5PR12MB4210:EE_
+X-MS-Office365-Filtering-Correlation-Id: a899d3ef-f53d-4a69-f64b-08dada03af16
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 368Z7YU8di4qmEJtn7J+LIXCpTTvf3ebd68FRsLI9i2dtvmEclb6TxVOgFgikh2svw7ryIBTEpqZfbdt3nW2INyv2DpHKCPWcdck7tUqbu3qVGGyJ48n7ypFFiCN8jkpiUDmbPBvfLRKHvDnMCfAnJwAFH6f+8U1SBYGDsQN6JwWtdgwdeUiI+soJYuoFnQEoYtH1V4cODZfDIR+eWr0ILmlCiSMUcfHBwQKUtvAdDvA74CAi/1ezbO1MyrS2FErtN0eEbx4X9emU9bV3JSnBLXOvvpFNvt8Cxj11+TakiEUK5eZvtnu4wZaFu2IYRIcYn3suZOBLZbm/3EwYY6fv2p1NA0Iz7e1e74C8+WNvBtMjjwAd+MvSb364Luns4+AiqyMeYFZylatLdavbhxFv4rRfjiLhLvzeF6xGdc9RRibZwSWNYgT8jcHeYGh2d8j0noHcRQPDcuYm6dCG7+Gf+bhIKbXYkLPLdpRJkCbbx55b/qFQQ7mSuT59MQZrxfhHJhV4C1EoByA/m7A7iGGTW79Ey8kJkLL+zLOOSIeH/jphfAFXmfR1dt0oIa6m0cPD4gCxN9OTSWxmqNGSESrj7zY2ALPwXGnqJsWbj2S0kHLuYT9LV8hlN9DJF+KZspIx1ahHSZDEZjdqmpeREcyvizfM1L+Yj68NnyofHzbgyqP7hxQU/VFYWxTb32XRv3ebKEV0l1MiS/AzTBqSUVhIR+ImjYDavHPr79axFH0x8HQkv1gbVTarsyE34rPDe0h
+X-Microsoft-Antispam-Message-Info: 27KfKUfFvajuvmRypLvUnG5NeAHncgeSzJGh+zAvdWxsj7P56dC487lxvYSWVYmMbTjMQ6RZWklo7ueOnIRDWFsqOJXSLXiq+yFqzPWazTNEV6TqTijugjO+kDCxiqjZJKIUzODXTm+jFDNTGLDeHuJ+VcS9Xpfu5LnSZhbYQUhdgjz9AUjISIF9xWNP3tSJe9eAuo9+jqHdImLQfdInczSiQbGuQKpYXA3znfZR4M4db1x9qD4c4p8P4IAxGOCRK5k+jKlcnMwQxxiXZ8pbG1cEnef5loKe4sOW+/JEl0jgvY5ENe2FYF8jTJ+/S1skzKI1HvS4ltPMGFAm4p5nToA8w6o3nbVbHjyGOzP6QeougfAvqssn1nzGxqG3uUD29QrY4+S+s2opd3v6dgwWXquvFt4FkR3ZZohMd4p4TgpRIUWjzFupY/ByyZLTUxIYZ5alISAcUa3B1g4aoGRcg9pOaDmTEs8QNt1KxTxisUXhbUQ/9S7rLHIvJe1lolTpvzNpjpuaZkrtYkUajR7aHOpiOkvb1/lxJve4F4V6Mfi9zmpvr/0/0Z5os1z06C5m8oDf6aRkOy6JQ1650nxsoSN5bSQoyhvW2HSXg0YbxYUDn0pcf2cyGJL7tTAeKnecfV8H7EsVQEARAaEsbyb+u0qubuttIFlwIEf6BM7XTOJ+anme7+E8BFS7CGuRk9EY/3dcgzcUr6bvHS2g0tbX9Q98zExDPaCuDyKSvnbqvaI=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(39860400002)(396003)(136003)(376002)(346002)(451199015)(40470700004)(46966006)(36840700001)(336012)(4326008)(8676002)(83380400001)(8936002)(5660300002)(82310400005)(36756003)(426003)(26005)(47076005)(36860700001)(2906002)(16526019)(6916009)(186003)(54906003)(316002)(1076003)(82740400003)(70586007)(81166007)(70206006)(40480700001)(41300700001)(6666004)(356005)(478600001)(40460700003)(2616005)(36900700001)(44824005);
+ SFS:(13230022)(4636009)(136003)(396003)(346002)(376002)(39860400002)(451199015)(46966006)(36840700001)(40470700004)(41300700001)(70586007)(40480700001)(8676002)(36756003)(4326008)(40460700003)(336012)(70206006)(2616005)(82310400005)(186003)(1076003)(5660300002)(426003)(6666004)(47076005)(54906003)(478600001)(6916009)(16526019)(81166007)(356005)(82740400003)(8936002)(316002)(26005)(83380400001)(2906002)(36860700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2022 16:37:37.6278 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6d3baf37-adb4-413a-5ec0-08dada03aebc
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2022 16:37:38.2058 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a899d3ef-f53d-4a69-f64b-08dada03af16
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT089.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5457
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4210
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,83 +100,83 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Jasdeep Dhillon <jdhillon@amd.com>,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
- Aurabindo.Pillai@amd.com, Alvin Lee <Alvin.Lee2@amd.com>, wayne.lin@amd.com,
- Jun Lei <Jun.Lei@amd.com>, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, Ian Chen <ian.chen@amd.com>, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Jasdeep Dhillon <jdhillon@amd.com>, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, Wayne Lin <Wayne.Lin@amd.com>,
+ Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alvin Lee <Alvin.Lee2@amd.com>
+From: Ian Chen <ian.chen@amd.com>
 
-[Description]
-- FW scheduling algorithm doesn't take into account of it's
-  a center timing
-- This affects where the subvp mclk switch can be scheduled
-  (prevents HUBP vline interrupt from coming in if scheduled
-  incorrectly)
-- Block subvp center timing cases for now
+[WHY]
+It causes regression AMD source will not write DPCD 340.
 
-Reviewed-by: Jun Lei <Jun.Lei@amd.com>
+Reviewed-by: Wayne Lin <Wayne.Lin@amd.com>
 Acked-by: Jasdeep Dhillon <jdhillon@amd.com>
-Signed-off-by: Alvin Lee <Alvin.Lee2@amd.com>
+Signed-off-by: Ian Chen <ian.chen@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dcn32/dcn32_resource.h   |  1 +
- .../amd/display/dc/dcn32/dcn32_resource_helpers.c   | 13 +++++++++++++
- .../gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c    |  2 +-
- 3 files changed, 15 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c    |  6 ------
+ drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 14 +++-----------
+ drivers/gpu/drm/amd/display/dc/dc_dp_types.h     |  1 -
+ 3 files changed, 3 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.h b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.h
-index 13fbc574910b..57ce1d670abe 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.h
-@@ -112,6 +112,7 @@ bool dcn32_subvp_in_use(struct dc *dc,
- bool dcn32_mpo_in_use(struct dc_state *context);
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+index 342e906ae26e..1ca3328b492c 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+@@ -1916,12 +1916,6 @@ struct dc_link *link_create(const struct link_init_data *init_params)
+ 	if (false == dc_link_construct(link, init_params))
+ 		goto construct_fail;
  
- bool dcn32_any_surfaces_rotated(struct dc *dc, struct dc_state *context);
-+bool dcn32_is_center_timing(struct pipe_ctx *pipe);
+-	/*
+-	 * Must use preferred_link_setting, not reported_link_cap or verified_link_cap,
+-	 * since struct preferred_link_setting won't be reset after S3.
+-	 */
+-	link->preferred_link_setting.dpcd_source_device_specific_field_support = true;
+-
+ 	return link;
  
- struct pipe_ctx *dcn32_acquire_idle_pipe_for_head_pipe_in_layer(
- 		struct dc_state *state,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c
-index 04fca788c50b..e5287e5f66d5 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource_helpers.c
-@@ -255,6 +255,19 @@ bool dcn32_any_surfaces_rotated(struct dc *dc, struct dc_state *context)
- 	return false;
- }
+ construct_fail:
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+index 905642349ba2..af9411ee3c74 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -6584,18 +6584,10 @@ void dpcd_set_source_specific_data(struct dc_link *link)
  
-+bool dcn32_is_center_timing(struct pipe_ctx *pipe)
-+{
-+	bool is_center_timing = false;
-+
-+	if (pipe->stream) {
-+		if (pipe->stream->timing.v_addressable != pipe->stream->dst.height ||
-+				pipe->stream->timing.v_addressable != pipe->stream->src.height) {
-+			is_center_timing = true;
-+		}
-+	}
-+	return is_center_timing;
-+}
-+
- /**
-  * *******************************************************************************************
-  * dcn32_determine_det_override: Determine DET allocation for each pipe
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-index 13e5542a7028..e7459fd50bf9 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-@@ -691,7 +691,7 @@ static bool dcn32_assign_subvp_pipe(struct dc *dc,
- 		 *   to combine this with SubVP can cause issues with the scheduling).
- 		 * - Not TMZ surface
- 		 */
--		if (pipe->plane_state && !pipe->top_pipe &&
-+		if (pipe->plane_state && !pipe->top_pipe && !dcn32_is_center_timing(pipe) &&
- 				pipe->stream->mall_stream_config.type == SUBVP_NONE && refresh_rate < 120 && !pipe->plane_state->address.tmz_surface &&
- 				vba->ActiveDRAMClockChangeLatencyMarginPerState[vba->VoltageLevel][vba->maxMpcComb][vba->pipe_plane[pipe_idx]] <= 0) {
- 			while (pipe) {
+ 			uint8_t hblank_size = (uint8_t)link->dc->caps.min_horizontal_blanking_period;
+ 
+-			if (link->preferred_link_setting.dpcd_source_device_specific_field_support) {
+-				result_write_min_hblank = core_link_write_dpcd(link,
+-					DP_SOURCE_MINIMUM_HBLANK_SUPPORTED, (uint8_t *)(&hblank_size),
+-					sizeof(hblank_size));
+-
+-				if (result_write_min_hblank == DC_ERROR_UNEXPECTED)
+-					link->preferred_link_setting.dpcd_source_device_specific_field_support = false;
+-			} else {
+-				DC_LOG_DC("Sink device does not support 00340h DPCD write. Skipping on purpose.\n");
+-			}
++			result_write_min_hblank = core_link_write_dpcd(link,
++				DP_SOURCE_MINIMUM_HBLANK_SUPPORTED, (uint8_t *)(&hblank_size),
++				sizeof(hblank_size));
+ 		}
+-
+ 		DC_TRACE_LEVEL_MESSAGE(DAL_TRACE_LEVEL_INFORMATION,
+ 							WPP_BIT_FLAG_DC_DETECTION_DP_CAPS,
+ 							"result=%u link_index=%u enum dce_version=%d DPCD=0x%04X min_hblank=%u branch_dev_id=0x%x branch_dev_name='%c%c%c%c%c%c'",
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_dp_types.h b/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
+index b4eddd83b330..73f58ac3b93f 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
+@@ -149,7 +149,6 @@ struct dc_link_settings {
+ 	enum dc_link_spread link_spread;
+ 	bool use_link_rate_set;
+ 	uint8_t link_rate_set;
+-	bool dpcd_source_device_specific_field_support;
+ };
+ 
+ union dc_dp_ffe_preset {
 -- 
 2.34.1
 
