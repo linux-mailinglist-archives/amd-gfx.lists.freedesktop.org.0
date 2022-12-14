@@ -2,40 +2,40 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C2E064D237
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 Dec 2022 23:17:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF6FA64D23C
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 Dec 2022 23:17:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BA5810E037;
-	Wed, 14 Dec 2022 22:17:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DB6610E4B5;
+	Wed, 14 Dec 2022 22:17:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2062.outbound.protection.outlook.com [40.107.237.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39D6710E037
- for <amd-gfx@lists.freedesktop.org>; Wed, 14 Dec 2022 22:17:15 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2087.outbound.protection.outlook.com [40.107.223.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8107C10E4AC
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 Dec 2022 22:17:17 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Q6Y1zrc8cMILfb3nnz70pB3H0PG6G3fsdn1SpPAsqIimHLCmw3Mppjb7fbOABhK91xjejEwRkOxzDTLL2jREJbEuqlg7dKS9KHjg130dRZDmswROBnRDyzG9ghaSSDuocxrKSYjZRa7vPAc9zzi+F5oSCq9qMMXkud5GEskdDJsWrXZhRlEYVhGidn1GBxdJmzjNnDMcfRxdy+RCCObELOomixQGIg8Syv3H2u0RNwNaigne5J93/gLpG0bc+qi6l5E7IBbGD92614ovKCPEJZW9WqBq/zAOL3UTKztpUjbHrnh/f4XxYiegqEPRkN/eiF+UWJ3ZmuM0YlIlQseRGQ==
+ b=CVNrrlNU1xRdDtKsKjxcXfKaXPgorN9oAKI0Dfvj0cTs2ak5MsYC3+bE9kjTbNRqcylON/KnhDRjyK+mBHM/nyfLXUe07E8xEH9YXMBh7IeQa/4ki5e4ouJgAXdWMMRd8Uv7AvB/72EzKWTZtWwCRR69UU72jLGJrJmd2Ik22krIn5m1xbdJdtL+8ibAmCtsLH/gFxNgm4ZkIEDKsY6Tg6IVBMlHJz8UmhAbM5vnt85YhNjg2pMZ/QQNj78MIwOLWEUk95BXlTZCWgFT5B7NhSqEf7wprZcdvEC4jhO5NmBXdEVf/YF05Dqv0iidQYCdpSY+0gTFJo5//mqhb55sVA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SzNbnk6yBRWUJ2z0AVrC2eKbfKV1jixBU6lQoAQhoQQ=;
- b=RsnAvMDmifjPYMwK77NgnR2aYHy1+r1XIYHgN+7NRVOjMaYHVSFoNI/q2tnQeLkx8qPSiWcqIQ7+QoIuIktpl2CO1IllbJVnI+4d7utJr3wFCtuPKE90JV4PBmmPjJQpUNqu/wiZ2Cfkw3821/StrzfwwstJsXD3LkeK45M28Wz4IXEET3QZKcpTBzYTjo2oXASIDmhm6uMh9R/chtU39XH95UUCrAQRWVWv44H5M2gXr57/8wGKhJeTAfCqhr/IofcjQDEJA9l6AwsbauvgDofztOF/VMpTK691hFnzkI2kVV6LXf9t4Qn3asRV+HTN78VYLpFQm03QqSXhezU51w==
+ bh=FxmUlAZ20+OaQ8pjRYvngmLY6KktUf83pzEYK9cdxK0=;
+ b=B4KBKUB6Uzx+dX1o+SGPjGT7F61yz1WO1WiX88YfyuLdMBVLomrVicWhYdPJc7RVouEJoFMZCePMcdPobgyHK4lU4yz0Hv3Cod5OdvaL+orh6JGFQUBCmb0VHRDQTXa6fLtIQsj93nJxJ6NUZS+I+2KHYuC1FasTksIrWS3tvwg7397y4k1KveEVbctc4sPPGBxs2+O3lq7wE8PGvJBXPw6phFb3qCXcfT+fY+Fj/rxXrF1bB60wYJ3FM/LRiPMMRwlXxKb782YPS7P1WWTPa3/sBDUbYTEq6ubPQ9DVsLbtgAC3e46AKBb4Fs8eYVynj/631169VF88KSjgzBtpWw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SzNbnk6yBRWUJ2z0AVrC2eKbfKV1jixBU6lQoAQhoQQ=;
- b=FgkGFm8MznJIUgNaPAfwVLfzM+xr+FvaUYQMCRND/1g7kcYVxRvNXHjApU+R0jl1/wFc56upA4FOI19Gfx/N9JCjQaBkkhBc1euaYScikUUvjV/hfbt8wODmlyxOnFmclQYcWzK2B7QRubZmRDqM7c2r8/6KVn5nybrSYhQ/b/Q=
-Received: from DS7PR03CA0307.namprd03.prod.outlook.com (2603:10b6:8:2b::13) by
- DM6PR12MB4265.namprd12.prod.outlook.com (2603:10b6:5:211::14) with
+ bh=FxmUlAZ20+OaQ8pjRYvngmLY6KktUf83pzEYK9cdxK0=;
+ b=1ahwJPA48RjMNPdPwyt1XaEPuFzW6VXO6vmNHKG8fqDvV9VWUKuZ/MzoJ4ozUCEslMNNpJB6O+0o7zDZAix6JulT3Pj529lkzLapjb9T06Fr84G+9uYfaN5CVWHjUiHyLc61NNCiU4sFHaCKU/JaRFsr5/wiRpbSss0zcw2TXBs=
+Received: from DS7PR03CA0318.namprd03.prod.outlook.com (2603:10b6:8:2b::32) by
+ MN2PR12MB4224.namprd12.prod.outlook.com (2603:10b6:208:1dd::8) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.20.5924.11; Wed, 14 Dec 2022 22:17:13 +0000
 Received: from DM6NAM11FT031.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:2b:cafe::85) by DS7PR03CA0307.outlook.office365.com
- (2603:10b6:8:2b::13) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:8:2b:cafe::14) by DS7PR03CA0318.outlook.office365.com
+ (2603:10b6:8:2b::32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5924.11 via Frontend
  Transport; Wed, 14 Dec 2022 22:17:13 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -54,10 +54,9 @@ Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  2022 16:17:11 -0600
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 4/7] drm/amdgpu: don't mess with SDMA clock or powergating in
- S0ix
-Date: Wed, 14 Dec 2022 17:16:51 -0500
-Message-ID: <20221214221654.1625194-5-alexander.deucher@amd.com>
+Subject: [PATCH 5/7] drm/amdgpu: for S0ix, skip SMDA 5.x+ suspend/resume
+Date: Wed, 14 Dec 2022 17:16:52 -0500
+Message-ID: <20221214221654.1625194-6-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20221214221654.1625194-1-alexander.deucher@amd.com>
 References: <20221214221654.1625194-1-alexander.deucher@amd.com>
@@ -69,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT031:EE_|DM6PR12MB4265:EE_
-X-MS-Office365-Filtering-Correlation-Id: efa7d063-5862-46cd-c203-08dade20f38d
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT031:EE_|MN2PR12MB4224:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3c2bb3b5-bcd1-4f2c-ac04-08dade20f3b8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: iZXR850YQLw2CEPBmqOmxpMMwmFsmGXxp/7Ih9JVIL02l+wiGc1THXRPdy4ulQQuCtAkmhQZPYQNivvCLKK5T3VKVo7GIDHZ02joR+0WZbyEiey4/XXRLGQDyfANDJHobzeI1RLSufDkS6v3HykCphoVTGhAbLiDIC3l9iWV8AVJDYpgobMwMmsKjoFkB2MwNZEl2wRYiu9x1Me2gKdH3OsUk/ucTBaTLObNSuLi9V1US0y15AZwfC0PPWAyc8m8PnfGFppZ/fhVlVzqAgZl29geDhtYcovU935sgBOFJ31UsDEOsxI9D7qfDl+cydlG2WG/g5LhVCgcfHWxMjn1kyIQ3Kcbmar2WY/bb3eGPXejUbmA6QaWxnelWnCiyASQuYo4W4oQbkNdwgicn8uMlqIPQP0ZluE60GyXUfBjE1V52P9u2uH+Eh/WfvFPdwusq8wBbfbSyunz9ZQXAL6O3fyU+rbWe54IyzCDivIc+zeco62wkt7HeDLN0Ybz9LAbPfHAqi48x1LhmZwK3Oe1XxyhGrpjm5JNXU621NjISywU01oEbOgNUs+GE+TJc2tWYmTHJ3uGLDu6OTHzVTfDh0nxGBnXRHV9hGfpSwcTev7LP8MCOg1sYxSWfuEsrjMKGi/cuUDDs8AHj9z4g5cXKw/QBCEiFiw8c1ZzlEXhMTBwVG/xco3tuVpqGydpjuPZ6lbp/kOWXuGKJse9X9RdUypvMPmrRHrLJdAityHAyCnFwkpP9C7Ufhy8ls6J+fifWVtbm7VjlUP/DRFT5dTf5A==
+X-Microsoft-Antispam-Message-Info: J10ozIK3/rUAMIRPytrk40clSEsR/w/O8Eh5jXzOG651A+nNCpEI4ecORcJQaE65flEAdHtewjtm9Ix+yhKqsgcbBs6P3teyHJylh5p3Srn3j+dKtNQM6qg9TGzaZIpas0WCc7Kcdb0ifXdMWzAPpvyK3RVSEHG+mewO75UAqndSf+IeftgX6b7sw6FOOn9Iumttd8h/oaAoTcy6KJIvo421OWF1arZfrHMhqru5s/DWuSSLg+4xH9sDjQU6s2vg1FMHUYtwS4obFxVn2gl5bUj3h69LVoSzWtMg0IZQAYiuECmVa/H+2LZY2xyO3Xv1VAc5wZ35O/Jr0i9cOxCI8fCyX+Rwm4H0g61t8CzKNoyl0e/wvbEVpHAu3rm2pXwZcUmsysatD/buwP81vEw7LC80Gr0VfZepP4oFhdzKgXPHEK3D3BAeGf/w0BMV9QHNVnDnr40ioTbF0DUP4yYdQ98MuNDddSvQFBBVoeg9/abqjJWrG5SjDcdLsaFuJni/c2bs7AX4HSLW+WCAU/OOoVrdT4PVKXdfN+kSfPqLgSCorAs6hsgi/8WEvInaba7xq14YQnzpan/XWeI8FYyPH/xwXIc50av5wmy9BnQiM9on9r5BdXQNQvtffsBRbdUchni3mUHErlPTu0dHh3hieAj+1+LBtWCdwFaTaO9EkWelHwS/QmZsAvW5J87Jziwtvmy056KhLqVqAK9mODEV+d86dEIY1o/O6EpyYeIhmBJ83k9WXAyAHhFA9b2ESXs/PhMKGqUVbCHnn+RtzTyEZtxIt8mQDkkYhqay8dmNGt0=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:CA; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(39860400002)(346002)(376002)(136003)(396003)(451199015)(36840700001)(46966006)(40470700004)(83380400001)(336012)(2616005)(86362001)(47076005)(81166007)(82740400003)(8936002)(36860700001)(356005)(426003)(41300700001)(1076003)(5660300002)(40460700003)(40480700001)(26005)(82310400005)(16526019)(478600001)(6666004)(7696005)(4326008)(70586007)(70206006)(8676002)(186003)(6916009)(316002)(2906002)(36756003)(32563001)(36900700001);
+ SFS:(13230022)(4636009)(39860400002)(396003)(346002)(376002)(136003)(451199015)(46966006)(40470700004)(36840700001)(36756003)(2906002)(40480700001)(40460700003)(36860700001)(5660300002)(336012)(8936002)(86362001)(1076003)(15650500001)(2616005)(81166007)(356005)(426003)(47076005)(83380400001)(82740400003)(6916009)(186003)(316002)(16526019)(6666004)(4326008)(82310400005)(41300700001)(26005)(8676002)(70206006)(478600001)(7696005)(70586007)(21314003)(32563001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Dec 2022 22:17:13.2038 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: efa7d063-5862-46cd-c203-08dade20f38d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Dec 2022 22:17:13.5007 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3c2bb3b5-bcd1-4f2c-ac04-08dade20f3b8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT031.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4265
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4224
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,44 +103,34 @@ Cc: Alex Deucher <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-It's handled by GFXOFF for SDMA 5.x and SMU saves the state on
-SDMA 4.x.
+SDMA 5.x is part of the GFX block so it's controlled via
+GFXOFF.  Skip suspend as it should be handled the same
+as GFX.
+
+v2: drop SDMA 4.x.  That requires special handling.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 64660a41d53c..a99b327d5f09 100644
+index a99b327d5f09..5c0719c03c37 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -2581,9 +2581,10 @@ int amdgpu_device_set_cg_state(struct amdgpu_device *adev,
- 		i = state == AMD_CG_STATE_GATE ? j : adev->num_ip_blocks - j - 1;
- 		if (!adev->ip_blocks[i].status.late_initialized)
+@@ -3028,6 +3028,12 @@ static int amdgpu_device_ip_suspend_phase2(struct amdgpu_device *adev)
+ 		     adev->ip_blocks[i].version->type == AMD_IP_BLOCK_TYPE_GFX))
  			continue;
--		/* skip CG for GFX on S0ix */
-+		/* skip CG for GFX, SDMA on S0ix */
- 		if (adev->in_s0ix &&
--		    adev->ip_blocks[i].version->type == AMD_IP_BLOCK_TYPE_GFX)
-+		    (adev->ip_blocks[i].version->type == AMD_IP_BLOCK_TYPE_GFX ||
-+		     adev->ip_blocks[i].version->type == AMD_IP_BLOCK_TYPE_SDMA))
- 			continue;
- 		/* skip CG for VCE/UVD, it's handled specially */
- 		if (adev->ip_blocks[i].version->type != AMD_IP_BLOCK_TYPE_UVD &&
-@@ -2617,9 +2618,10 @@ int amdgpu_device_set_pg_state(struct amdgpu_device *adev,
- 		i = state == AMD_PG_STATE_GATE ? j : adev->num_ip_blocks - j - 1;
- 		if (!adev->ip_blocks[i].status.late_initialized)
- 			continue;
--		/* skip PG for GFX on S0ix */
-+		/* skip PG for GFX, SDMA on S0ix */
- 		if (adev->in_s0ix &&
--		    adev->ip_blocks[i].version->type == AMD_IP_BLOCK_TYPE_GFX)
-+		    (adev->ip_blocks[i].version->type == AMD_IP_BLOCK_TYPE_GFX ||
-+		     adev->ip_blocks[i].version->type == AMD_IP_BLOCK_TYPE_SDMA))
- 			continue;
- 		/* skip CG for VCE/UVD, it's handled specially */
- 		if (adev->ip_blocks[i].version->type != AMD_IP_BLOCK_TYPE_UVD &&
+ 
++		/* SDMA 5.x+ is part of GFX power domain so it's covered by GFXOFF */
++		if (adev->in_s0ix &&
++		    (adev->ip_versions[SDMA0_HWIP][0] >= IP_VERSION(5, 0, 0)) &&
++		    (adev->ip_blocks[i].version->type == AMD_IP_BLOCK_TYPE_SDMA))
++			continue;
++
+ 		/* XXX handle errors */
+ 		r = adev->ip_blocks[i].version->funcs->suspend(adev);
+ 		/* XXX handle errors */
 -- 
 2.38.1
 
