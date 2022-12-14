@@ -2,58 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5836C64D1FD
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 Dec 2022 22:54:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FCFE64D20D
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 Dec 2022 23:03:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AFD310E49C;
-	Wed, 14 Dec 2022 21:54:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07D9610E4A4;
+	Wed, 14 Dec 2022 22:02:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com
- [IPv6:2607:f8b0:4864:20::22e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A34C110E4A3
- for <amd-gfx@lists.freedesktop.org>; Wed, 14 Dec 2022 21:54:19 +0000 (UTC)
-Received: by mail-oi1-x22e.google.com with SMTP id l127so3772948oia.8
- for <amd-gfx@lists.freedesktop.org>; Wed, 14 Dec 2022 13:54:19 -0800 (PST)
+Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com
+ [IPv6:2001:4860:4864:20::2c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A437710E4A4;
+ Wed, 14 Dec 2022 22:02:29 +0000 (UTC)
+Received: by mail-oa1-x2c.google.com with SMTP id
+ 586e51a60fabf-142b72a728fso18529702fac.9; 
+ Wed, 14 Dec 2022 14:02:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=HLH2XySlmItWCgaR7KmWWzrbiQ5J9iIU4jWh/dNkwg0=;
- b=Z4WhNbgTx1BJSXDWlTFwxi9jr9k16RGOnNPjcl8eGzzjZu9R30gEIBIbKgLaYVbn4p
- jbBI0hNfNz93ulWFBFiR8jVZ9nG2l/zaTX63b4ZR2f5pW6NgF5SdrynlFF4mCRUEGFUi
- tl/CCSr3Wze+IPbhBjiQtTOzey5973OuCWdQsfkCcaw/nyjvfG2jTK+6JS9NlksZZb95
- 7Es8ZlReB0DFDc085fwrP7V0Kf5/omggolmEBaIlKVobj0eJFdKRSkAz/WipSvX0Tr/d
- TGvqZkN2KliAQ1WipdptXTSNMO+j1W4trltnKsGEUqwFoYeYcTbVT/XuplHT7l/+SLMK
- AAOg==
+ bh=CHqqGiu7bjPtMDWYi9f2Odo86D5HUF5FSIG3qyrejAo=;
+ b=exIywM6NmlUvni/Ejgyx7FJw2CriC3asXSWeEsZubFM42Sv7gjeLvJB3AKRAklU1Qx
+ bZ9uOmM37uTOWD/DlyFDB9u4MZwWZ6n46nL8O3RVzNyDY1rYQEeahJtq5CIGFD02f2eK
+ r8/Lqo6xoPBPoaISd6YO+wuvIQ8aGxybZXsXEZ6qT9nPPT1u+4+Ba8+Tpf9PfOfvBpwz
+ JVEji9ZkFncSSfT1zoUGG8SPFcEJz2IgTJJspzvIQL19+C9qCleTMVIA23sNvN7+pgyx
+ EqwGukNiFioMgGdnQpD7sYuK85UZcZtk/pze13nFt2BmJUmhyPzfCjtGNuh6WaMaZcEq
+ akQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=HLH2XySlmItWCgaR7KmWWzrbiQ5J9iIU4jWh/dNkwg0=;
- b=KjrncfsDnTTHz/DKg5MiCq3BHvUXq4uTFi136n/KWtk6P51MGVwD1H+sHr2NFkigWj
- 2C9XPyVSL3qjhPYQJCxjRDg0yXinOMl7AVpV9Gwelh5UEJRKGDO7oLIkwemojDwEcSQ8
- sXtDW+KlMjuprHB1FleqXTRHOxqUWbRqahMQSp4dg/myGG/WjAwWg7nEwSbmz/CnFubg
- nfuL8vzTuseqSv9J8Ik80rz6hYE09snk4S0oUsEeK6zBvmIPONz79E1+rzlsWEgSor7Y
- SvHwV30jLmUXqAyWnZxLP1pKISIp1J2QaQw5P0Joj3i8K2BgaTt6TabYBqdQaaQMukK3
- O7UQ==
-X-Gm-Message-State: ANoB5plDnV6BOTt0QMJ0T5t2HuMg7b96X3niCqMsjSBaTXSyKGhbCxRb
- cSrtw2GNb3MpFzZ6/tGTAAnEfdGgx/cZ+faIWT5GbTkL
-X-Google-Smtp-Source: AA0mqf5IKpva+r97YgLYRfj0zONSZkaSGq3k2654oSyG1yNXytIs4GR3qPZ+xKIWMyAAWQDfJCT17XTHPP5I7wlHAUo=
-X-Received: by 2002:a05:6808:1886:b0:35b:d93f:cbc4 with SMTP id
- bi6-20020a056808188600b0035bd93fcbc4mr225147oib.96.1671054858905; Wed, 14 Dec
- 2022 13:54:18 -0800 (PST)
+ bh=CHqqGiu7bjPtMDWYi9f2Odo86D5HUF5FSIG3qyrejAo=;
+ b=0fQKE3kw77vVtKQL5RMkp4akBbe+7+lnGCGzpdfJnieTJgZomOpX8NQ4A7Bqr6GfId
+ wuovSMlcSlWmg05tvrxa02tEEK5XHnjFIFjbY/Sqgs18iNU3azxrsJ3TF1ejeI8LVZQD
+ AqrE/me6IxTRK94opHxNtT7qAnH7WEIE4icSftVbhYb5xdszN/fLnYb5kvWaY2422q7n
+ CXGlTTtZgsbScZTjO8VR3ZBLgevVAzZ0PxhcXAooNb2QNTwbtfoRPgARM1gaqLShLS5t
+ mssecQXipToj4DSz1ntBxjBIKWL1FWU7ySIwwCVdGtEBJXkKWn1yhg8p8GMSl9sdbkXj
+ C8Cw==
+X-Gm-Message-State: AFqh2kpvMxKmiRlacPvQB8p+LperVwy+hEzlyIXoxlVpp5Q0zh0Si0/E
+ bxoE6bedJwvt9Dd792K0V6ps6dHr9Ttiz5C0D4HcZjlxU50=
+X-Google-Smtp-Source: AMrXdXvg+TstAO0CfcycB4xtYJBzdbbKRkkM3c96vACkGyJhoLn8xgOIJT/acXdWahReLW9SfR9GEWNwqe+q8werqvs=
+X-Received: by 2002:a05:6870:4687:b0:143:8a81:116c with SMTP id
+ a7-20020a056870468700b001438a81116cmr426024oap.96.1671055348736; Wed, 14 Dec
+ 2022 14:02:28 -0800 (PST)
 MIME-Version: 1.0
-References: <20221214202141.1721178-1-aurabindo.pillai@amd.com>
- <20221214202141.1721178-6-aurabindo.pillai@amd.com>
- <CADnq5_PKy2+2-5X+zn4Ax2wp1iuiZ7E-r-bQ3cSHifE34FYfRA@mail.gmail.com>
- <2938ab78-3224-4097-f5d1-f64c354e5eb6@amd.com>
-In-Reply-To: <2938ab78-3224-4097-f5d1-f64c354e5eb6@amd.com>
+References: <20221211114226.57398-1-luben.tuikov@amd.com>
+ <20221212020821.8248-1-luben.tuikov@amd.com>
+ <a02c2cc9-f265-16ff-da44-9e44381c486c@arm.com>
+In-Reply-To: <a02c2cc9-f265-16ff-da44-9e44381c486c@arm.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 14 Dec 2022 16:54:07 -0500
-Message-ID: <CADnq5_P83EkSqXxe29diJZ2eJH8-8v308jLRZxJ4f8e7FnEOmw@mail.gmail.com>
-Subject: Re: [PATCH 05/18] drm/amd/display: Use mdelay to avoid crashes
-To: Alex Hung <alex.hung@amd.com>
+Date: Wed, 14 Dec 2022 17:02:17 -0500
+Message-ID: <CADnq5_MoD7oEXGivWPqO0m3XpqqAhg2k=X+zXcNPePYGpq0keQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/radeon: Fix screen corruption (v2)
+To: Robin Murphy <robin.murphy@arm.com>
 Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,88 +66,111 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- amd-gfx@lists.freedesktop.org, solomon.chiu@amd.com,
- Aurabindo Pillai <aurabindo.pillai@amd.com>, wayne.lin@amd.com,
- Harry.Wentland@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: Alex Deucher <Alexander.Deucher@amd.com>,
+ Mikhail Krylov <sqarert@gmail.com>, Luben Tuikov <luben.tuikov@amd.com>,
+ Direct Rendering Infrastructure - Development
+ <dri-devel@lists.freedesktop.org>,
+ AMD Graphics <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 14, 2022 at 4:50 PM Alex Hung <alex.hung@amd.com> wrote:
+On Wed, Dec 14, 2022 at 4:54 PM Robin Murphy <robin.murphy@arm.com> wrote:
 >
->
->
-> On 2022-12-14 13:48, Alex Deucher wrote:
-> > On Wed, Dec 14, 2022 at 3:22 PM Aurabindo Pillai
-> > <aurabindo.pillai@amd.com> wrote:
-> >>
-> >> From: Alex Hung <alex.hung@amd.com>
-> >>
-> >> [Why]
-> >> When running IGT kms_bw test with DP monitor, some systems crash from
-> >> msleep no matter how long or short the time is.
-> >>
-> >> [How]
-> >> To replace msleep with mdelay.
+> On 2022-12-12 02:08, Luben Tuikov wrote:
+> > Fix screen corruption on older 32-bit systems using AGP chips.
 > >
-> > Can you provide a bit more info about the crash?  A lot of platforms
-> > don't support delay larger than 2-4ms so this change will generate
-> > errors on ARM and possibly other platforms.
-> >
-> > Alex
+> > On older systems with little memory, for instance 1.5 GiB, using an AGP chip,
+> > the device's DMA mask is 0xFFFFFFFF, but the memory mask is 0x7FFFFFF, and
+> > subsequently dma_addressing_limited() returns 0xFFFFFFFF < 0x7FFFFFFF,
+> > false. As such the result of this static inline isn't suitable for the last
+> > argument to ttm_device_init()--it simply needs to now whether to use GFP_DMA32
+> > when allocating DMA buffers.
 >
-> The msleep was introduced in eec3303de3378 for non-compliant display
-> port monitors but IGT's kms_bw test can cause a recent h/w to hang at
-> msleep(60) when calling "igt_remove_fb" in IGT
-> (https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/blob/master/tests/kms_bw.c#L197)
+> This sounds wrong to me. If the issues happen on systems without PAE it
+> clearly can't have anything to with the actual DMA address size. Not to
+> mention that AFAICS 32-bit x86 doesn't even have ZONE_DMA32, so
+> GFP_DMA32 would be functionally meaningless anyway. Although the
+> reported symptoms initially sounded like they could be caused by DMA
+> going to the wrong place, that is also equally consistent with a loss of
+> cache coherency.
 >
-> It is possible to workaround this by reversing order of
-> igt_remove_fb(&buffer[i]), as the following example:
+> My (limited) understanding of AGP is that the GART can effectively alias
+> memory to a second physical address, so I could well believe that
+> something somewhere in the driver stack needs to perform some cache
+> maintenance to avoid coherency issues, and that in these particular
+> setups whatever that is might be assuming the memory is direct-mapped
+> and thus going wrong for highmem pages.
 >
->    igt_create_color_fb with the order buffer[0], buffer[1], buffer[2]
->
-> Hangs:
->    igt_remove_fb with the order buffer[0], buffer[1], buffer[2]
->
-> No hangs:
->    igt_remove_fb with the reversed order buffer[2], buffer[1], buffer[0]
->
-> However, IGT simply exposes the problem and it makes more sense to stop
-> the hang from occurring.
->
-> I also tried to remove the msleep completely and it also work, but I
-> didn't want to break the fix for the original problematic hardware
-> configuration.
+> So as I said before, I really think this is not about using GFP_DMA32 at
+> all, but about *not* using GFP_HIGHUSER.
 
-Why does sleep vs delay make a difference?  Is there some race that we
-are not locking against?
+One of the wonderful features of AGP is that it has to be used with
+uncached memory.  The aperture basically just provides a remapping of
+physical pages into a linear aperture that you point the GPU at.  TTM
+has to jump through quite a few hoops to get uncached memory in the
+first place, so it's likely that that somehow isn't compatible with
+HIGHMEM.  Can you get uncached HIGHMEM?
 
 Alex
 
 >
+> Thanks,
+> Robin.
+>
+> > Partially reverts commit 33b3ad3788aba846fc8b9a065fe2685a0b64f713.
 > >
-> >>
-> >> Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-> >> Signed-off-by: Alex Hung <alex.hung@amd.com>
-> >> Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-> >> ---
-> >>   drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c | 2 +-
-> >>   1 file changed, 1 insertion(+), 1 deletion(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-> >> index 913a1fe6b3da..e6251ccadb70 100644
-> >> --- a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-> >> +++ b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-> >> @@ -1215,7 +1215,7 @@ void dce110_blank_stream(struct pipe_ctx *pipe_ctx)
-> >>                           * After output is idle pattern some sinks need time to recognize the stream
-> >>                           * has changed or they enter protection state and hang.
-> >>                           */
-> >> -                       msleep(60);
-> >> +                       mdelay(60);
-> >>                  } else if (pipe_ctx->stream->signal == SIGNAL_TYPE_EDP) {
-> >>                          if (!link->dc->config.edp_no_power_sequencing) {
-> >>                                  /*
-> >> --
-> >> 2.39.0
-> >>
+> > v2: Amend the commit description.
+> >
+> > Cc: Mikhail Krylov <sqarert@gmail.com>
+> > Cc: Alex Deucher <Alexander.Deucher@amd.com>
+> > Cc: Robin Murphy <robin.murphy@arm.com>
+> > Cc: Direct Rendering Infrastructure - Development <dri-devel@lists.freedesktop.org>
+> > Cc: AMD Graphics <amd-gfx@lists.freedesktop.org>
+> > Fixes: 33b3ad3788aba8 ("drm/radeon: handle PCIe root ports with addressing limitations")
+> > Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
+> > ---
+> >   drivers/gpu/drm/radeon/radeon.h        | 1 +
+> >   drivers/gpu/drm/radeon/radeon_device.c | 2 +-
+> >   drivers/gpu/drm/radeon/radeon_ttm.c    | 2 +-
+> >   3 files changed, 3 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/radeon/radeon.h b/drivers/gpu/drm/radeon/radeon.h
+> > index 37dec92339b16a..4fe38fd9be3267 100644
+> > --- a/drivers/gpu/drm/radeon/radeon.h
+> > +++ b/drivers/gpu/drm/radeon/radeon.h
+> > @@ -2426,6 +2426,7 @@ struct radeon_device {
+> >       struct radeon_wb                wb;
+> >       struct radeon_dummy_page        dummy_page;
+> >       bool                            shutdown;
+> > +     bool                            need_dma32;
+> >       bool                            need_swiotlb;
+> >       bool                            accel_working;
+> >       bool                            fastfb_working; /* IGP feature*/
+> > diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
+> > index 6344454a772172..3643a3cfe061bd 100644
+> > --- a/drivers/gpu/drm/radeon/radeon_device.c
+> > +++ b/drivers/gpu/drm/radeon/radeon_device.c
+> > @@ -1370,7 +1370,7 @@ int radeon_device_init(struct radeon_device *rdev,
+> >       if (rdev->family == CHIP_CEDAR)
+> >               dma_bits = 32;
+> >   #endif
+> > -
+> > +     rdev->need_dma32 = dma_bits == 32;
+> >       r = dma_set_mask_and_coherent(&rdev->pdev->dev, DMA_BIT_MASK(dma_bits));
+> >       if (r) {
+> >               pr_warn("radeon: No suitable DMA available\n");
+> > diff --git a/drivers/gpu/drm/radeon/radeon_ttm.c b/drivers/gpu/drm/radeon/radeon_ttm.c
+> > index bdb4c0e0736ba2..3debaeb720d173 100644
+> > --- a/drivers/gpu/drm/radeon/radeon_ttm.c
+> > +++ b/drivers/gpu/drm/radeon/radeon_ttm.c
+> > @@ -696,7 +696,7 @@ int radeon_ttm_init(struct radeon_device *rdev)
+> >                              rdev->ddev->anon_inode->i_mapping,
+> >                              rdev->ddev->vma_offset_manager,
+> >                              rdev->need_swiotlb,
+> > -                            dma_addressing_limited(&rdev->pdev->dev));
+> > +                            rdev->need_dma32);
+> >       if (r) {
+> >               DRM_ERROR("failed initializing buffer object driver(%d).\n", r);
+> >               return r;
+> >
+> > base-commit: 20e03e7f6e8efd42168db6d3fe044b804e0ede8f
