@@ -2,97 +2,93 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B0F064D112
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 Dec 2022 21:22:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CFCB64D11F
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 Dec 2022 21:23:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FFA210E472;
-	Wed, 14 Dec 2022 20:22:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8422610E47B;
+	Wed, 14 Dec 2022 20:22:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDB9D10E472
- for <amd-gfx@lists.freedesktop.org>; Wed, 14 Dec 2022 20:22:03 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2058.outbound.protection.outlook.com [40.107.220.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E286810E478
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 Dec 2022 20:22:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ca062Y74z43UsaEMZkpGHkn5yyySWFIpd31lqtLNjaqpVXaScwFdDQ/gvyKy72ltE+U9RjJoqko7ovuQSxdsu/gbNEamt95jLqOxmdbuM5qNIEkVTIt40GnKphmB5bAhTEOXyUlj7rr1JvwSWJ5fpJj6jtHhlHCBzZ0h0oKqFL8mVHPV4sYRemiQCMus0MObY1ZnW4R/xD1gu39RgyKoUSiJdlX/CklHSgcTRIr7fBbZ6zd9gNq1nbudz4igjGkMu9r50JzQdC9aTjLImTVMQrnNubsSVQezzE3e/lvAuW8VvcX85Gbiuxe+sXbniYKn4O7zhESJHIdTGVm95Aetjw==
+ b=WLHPiae1/GAbzY74vguiQWvHZfmsbWD9zzTFyTb67eKRK8enjuBHnygSOd5pUfTYlRyKzAzX3qIuLOZ91S40crkp0CfdgUlXDLB3U239UcyQnbUzk4wGD30YH/HHgC56z2HHlPIY/RlhVYoM2pxUn/OOk9Nxe70duI/RyhD7p7+LU0wDvkAPrK9Ya4e7YSd5ni3Nc4qD+GdBf5f/SIwS85fVCErbXcJtmsTCjFAxCoI++WvsmssPp+hE8R/OFD5SboAdQ8wN0enBz0DZC+9QWYGhdnBg+Re934z6ps7S7+W5pHeG7oLWAIzfM4HkMyYbMib402PpCImEFPecjbhMOQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1e5GYZwaYNHTusaPX+VA8Zj1/kJH69ixCaEh6QJYAV4=;
- b=N0kI/d5dwgf8AC4CRi6iaeXCZ6X8QB4UgaczILcQuAmX8PaaJe8vz54alo98N3fYY4/pvPGSi5pseKBefmIaGhojB3ejWVvWsoBQxLbBX/BsNp7tyBVSUuS9DMphqtV5qpSPj7EEflERBNqOJZEtRMN1EdNqcL4CKKRodOb5VDcVnsiRCvqDB+p/gK471XTq474b3znzGs2kdjWPpV8yvlIsAGXX8QOCl4D/OZ6WHCqCmS/ANigpFxboNBoJXaxRidljYqExZNYomIj2cxxXWqjhnr/x17N876svY82BekNFeoiUxLOXwivSdV0s39fUkV5+TJBm4zq2G9cyfGchng==
+ bh=YKmPKgd0Z8X1MgYLFth8JmfHEE3ebEIcNRDLOxnPQJo=;
+ b=FrNOUcC7pPLrngUmN0WqVYNy5L20M+0EbKiVvRbclVJjGVDPFweDD856AfBVyNh4MY3/X/47vvWnLmOPFymzAbNRZc2dZoBAm6Nb6nMLrM9B8BkGmh9yxAgqkgmCrs57iiSFSq2n2tRY4aCgr8wBWxXy00kDbzmYivPLIdYehVQoAX8330ugt09kA4AzG/6WCx3cK0n23Cty/Fs6kYY1hbyvFp3w7XYeFMMEmEARI3TIj6VOwQHflcQu2iJqzmvOoasvMBOToYX74ao/mRWpf8D3b813y8qurBklJsMrA0xVkSenkcQp/4Fc9FMGTeszejr49f/GDXsCt5HKx5JL2w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1e5GYZwaYNHTusaPX+VA8Zj1/kJH69ixCaEh6QJYAV4=;
- b=exAhbgO4x2cTkOWMVXFnblitCbDu/enwRuiqDgkGkUv1Dnw+R0Iec60CG5CK1DVUqndbW3Xi4U/bZ/bfNTDxUS1EBPHDxQnR2naQF44d1zLK1/ZIxAr5yguvNohJa+Kqeno6WRqdMwkLFwwuAmpNyZKG/2L5xdzKQcSCYWlr0OE=
-Received: from MW2PR2101CA0030.namprd21.prod.outlook.com (2603:10b6:302:1::43)
- by MW4PR12MB5627.namprd12.prod.outlook.com (2603:10b6:303:16a::8)
+ bh=YKmPKgd0Z8X1MgYLFth8JmfHEE3ebEIcNRDLOxnPQJo=;
+ b=1OBIvGNsPkAWDp9i6K7N5yIXwVSlOw4T4EqWinYdbFB2DXO7K1BSTdNoquKBYc3tdiLB9Hr3UG14Fcdk2w9S4auv8euMU99wWqaGzRH6vpx6Eme1PB4qxZ+srjV4CyjdsFW0Cl7MH+HfKJs/HBhqYHXQIfw3bqrPqmsUjvm/IKU=
+Received: from MW4PR03CA0115.namprd03.prod.outlook.com (2603:10b6:303:b7::30)
+ by LV2PR12MB5775.namprd12.prod.outlook.com (2603:10b6:408:179::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.19; Wed, 14 Dec
- 2022 20:22:01 +0000
-Received: from CO1NAM11FT032.eop-nam11.prod.protection.outlook.com
- (2603:10b6:302:1:cafe::5) by MW2PR2101CA0030.outlook.office365.com
- (2603:10b6:302:1::43) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.2 via Frontend
- Transport; Wed, 14 Dec 2022 20:22:01 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.16; Wed, 14 Dec
+ 2022 20:22:03 +0000
+Received: from CO1NAM11FT060.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:b7:cafe::a9) by MW4PR03CA0115.outlook.office365.com
+ (2603:10b6:303:b7::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.19 via Frontend
+ Transport; Wed, 14 Dec 2022 20:22:02 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT032.mail.protection.outlook.com (10.13.174.218) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT060.mail.protection.outlook.com (10.13.175.132) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5924.11 via Frontend Transport; Wed, 14 Dec 2022 20:21:59 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.5924.11 via Frontend Transport; Wed, 14 Dec 2022 20:22:02 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 14 Dec
  2022 14:21:58 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB08.amd.com
- (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 14 Dec
- 2022 12:21:57 -0800
 Received: from aaurabin-elitedesk-arch.amd.com (10.180.168.240) by
  SATLEXMB03.amd.com (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34
- via Frontend Transport; Wed, 14 Dec 2022 14:21:56 -0600
+ via Frontend Transport; Wed, 14 Dec 2022 14:21:57 -0600
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 08/18] drm/amd/display: patch cases with unknown plane state
- to prevent warning
-Date: Wed, 14 Dec 2022 15:21:31 -0500
-Message-ID: <20221214202141.1721178-9-aurabindo.pillai@amd.com>
+Subject: [PATCH 09/18] drm/amd/display: Defer DIG FIFO disable after VID
+ stream enable
+Date: Wed, 14 Dec 2022 15:21:32 -0500
+Message-ID: <20221214202141.1721178-10-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20221214202141.1721178-1-aurabindo.pillai@amd.com>
 References: <20221214202141.1721178-1-aurabindo.pillai@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT032:EE_|MW4PR12MB5627:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3afe852b-4c30-4bb4-63c5-08dade10daa9
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT060:EE_|LV2PR12MB5775:EE_
+X-MS-Office365-Filtering-Correlation-Id: cd252eb6-f464-4615-083b-08dade10dc91
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 46bUoKOqstSLmcCWz9BjgGNy+tO/Azpoow0E50WOtDdBD3l7W5BD/Ft9NRKJ3ZSwYnuBCzHbyKOqwF46gAN5fysLRYNqygvulg71tP1rjSVb0J2tjWUwOi9ErAZzwObnWRgU3c8asuqvy53FKT5EDqRErASl193B0zhTxRae01o5lFf/2qgDk4rAdqtEXV5J8sDrnbXQaY/3WlHMw6zKkP+7EH8nLv4pAsd6Ss4hRNdDVxYJmtrHSH/Je96uDOFjLQmon9IzmvcOy0x9nb5kq7xFNvEzWyXl16ttkW0ONtxhjMMK+hYQGW0F7wVVSxq55oKRapTnINUDohyur/RtG1cHuaypzOLGNe243Rv5Vg5jhpVbawgU1gazkgmzjVsn4tzlDZuAdyNbP181fFYaxmXdK5egkIbHKDdZFH0YycTJLy9B+MQ0qDzApupF2Br5/asGI8otBHHkyVWbhlbsZh7mYknJlfDhytD9BrAHZw2IsoipGJV4CgMah7jAQlVnxDCrrQJThrX+Ei30EDz6b8hS5f00BCkF4+HhFCNaLaILdKDa95ZIP1GsZUIdwme0n08ZMTA9MF+Y89RjJBmiEaDFTKO91ql3VOwlr4JsXGJNHx9OlURWjVw5X9mOzcJ0Le6cuIqkjcL3yfVG+J3qIAW8bpCQv7SYC29d+DP6JX737bfeasnx+KxDTwpOPEE2168lGUfpJoXhU7rJwFnw2K8Bem992oRrtEAIjQA0krE=
+X-Microsoft-Antispam-Message-Info: jOkICx3bOkl4ZFqSmtPFYC9RNsG+c18W+xA16KrOcZh6mL0P2mNoncz2sPxzvmAy3cGW51iAQaGGADY6Pn+Mp/XyE+4CJSbuFpDc9Rb6L+Q6Gi0tFUTchyAwgwIjXbTcmaD4v04W5DSTRqurdwI+4EKPHhi5Nat7+ybJMnrLaVfLyVCg5kGbfDZHbDxNTx13SJ4afje9VKtnVE2eGTNMRFyFQc0xSc5G1J4Cfvk/HKOecHWthDDJA2xG3hItxeJcYC4OvpkdsybuMV0GS2nPK5u1ycB6tHPVLGpmI5mDg0NbIrjQiEAeEkf3DRGYsQCeKX1McqDsONRwdL9a1lBDWMq0SAX9eh8cao62HezaZkT6CW44NpB2Q7fIgKbVFByRF2/wJ6KWryACd+YybsehjIouGQmFbZ2S4AkwwBDvYZvqvn9c2+G8K502T01qm4VcR5NGDeJ0BW8AGuIhRe2WmJMm4t49LdJNE+ksbY6s/0WpoUjVY3HTG2Rz1rNdAU2lhp3H/d2hbdH7kPSKBHcfuX7JjWuqM/N7xbGDUlR1VsNDqbDeGZM11BDQmo+nmYL2Cf9KYD09EPct2VSI4vqo2SWQYpZpWwCJCYX/qiyR1XwMt4ZewkBs9oCUoHc19h6aGgFo4Ucpv6RJx6erqkj0xNkn2WoEu8na6GIup4JYxQqi341all3gX5p1Bgq6rEWtmTvKUNavbiryNWFFAXzGVBJd+eCuSAK+/puxbhJ+5PX6bS+xBE9/7I4EjHSyGRB6ZgSUkyZsIeMrJleW9Zsj15O9aqY8u5ACms/ikFzuVRc=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:CA; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(39860400002)(346002)(376002)(396003)(136003)(451199015)(46966006)(36840700001)(40470700004)(82310400005)(186003)(7696005)(26005)(1076003)(426003)(47076005)(2906002)(6666004)(316002)(2616005)(336012)(70586007)(54906003)(36756003)(8676002)(36860700001)(41300700001)(4326008)(70206006)(83380400001)(82740400003)(44832011)(81166007)(8936002)(5660300002)(478600001)(6916009)(40480700001)(40460700003)(86362001)(356005)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230022)(4636009)(396003)(376002)(136003)(346002)(39860400002)(451199015)(40470700004)(36840700001)(46966006)(2906002)(8676002)(86362001)(44832011)(70206006)(4326008)(41300700001)(40460700003)(8936002)(54906003)(70586007)(316002)(5660300002)(36860700001)(82740400003)(26005)(36756003)(82310400005)(6916009)(6666004)(7696005)(478600001)(83380400001)(336012)(426003)(356005)(1076003)(40480700001)(47076005)(81166007)(2616005)(186003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Dec 2022 20:21:59.4161 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3afe852b-4c30-4bb4-63c5-08dade10daa9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Dec 2022 20:22:02.5963 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cd252eb6-f464-4615-083b-08dade10dc91
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT032.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT060.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB5627
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5775
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,48 +100,53 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Swapnil Patel <Swapnil.Patel@amd.com>,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
- Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
- Sung joon Kim <Sungjoon.Kim@amd.com>, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ Syed Hassan <Syed.Hassan@amd.com>, solomon.chiu@amd.com,
+ Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>, agustin.gutierrez@amd.com,
+ pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Swapnil Patel <Swapnil.Patel@amd.com>
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
 [Why]
-DCN301 resource function is missing function pointer to
-handle cases with unknown plane state.
-This causes assertion when global state is validated while
-using swizzle parameter as “DC_UNKNOWN”
+On some monitors we see a brief flash of corruption during the
+monitor disable sequence caused by FIFO being disabled in the middle
+of an active DP stream.
 
 [How]
-Add function pointer to handle and patch cases when plane
-state is unknown.
+Wait until DP vid stream is disabled before turning off the FIFO.
+
+The FIFO reset on DP unblank should take care of clearing any FIFO
+error, if any.
 
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Signed-off-by: Swapnil Patel <Swapnil.Patel@amd.com>
-Reviewed-by: Sung joon Kim <Sungjoon.Kim@amd.com>
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Reviewed-by: Syed Hassan <Syed.Hassan@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ .../drm/amd/display/dc/dcn314/dcn314_dio_stream_encoder.c   | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c b/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-index 8cf10351f271..ee62ae3eb98f 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-@@ -1414,7 +1414,8 @@ static struct resource_funcs dcn301_res_pool_funcs = {
- 	.find_first_free_match_stream_enc_for_link = dcn10_find_first_free_match_stream_enc_for_link,
- 	.acquire_post_bldn_3dlut = dcn30_acquire_post_bldn_3dlut,
- 	.release_post_bldn_3dlut = dcn30_release_post_bldn_3dlut,
--	.update_bw_bounding_box = dcn301_update_bw_bounding_box
-+	.update_bw_bounding_box = dcn301_update_bw_bounding_box,
-+	.patch_unknown_plane_state = dcn20_patch_unknown_plane_state
- };
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_dio_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_dio_stream_encoder.c
+index 38842f938bed..0926db018338 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_dio_stream_encoder.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_dio_stream_encoder.c
+@@ -278,10 +278,10 @@ static void enc314_stream_encoder_dp_blank(
+ 	struct dc_link *link,
+ 	struct stream_encoder *enc)
+ {
+-	/* New to DCN314 - disable the FIFO before VID stream disable. */
+-	enc314_disable_fifo(enc);
+-
+ 	enc1_stream_encoder_dp_blank(link, enc);
++
++	/* Disable FIFO after the DP vid stream is disabled to avoid corruption. */
++	enc314_disable_fifo(enc);
+ }
  
- static bool dcn301_resource_construct(
+ static void enc314_stream_encoder_dp_unblank(
 -- 
 2.39.0
 
