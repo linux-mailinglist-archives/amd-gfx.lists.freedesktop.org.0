@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A66064D10F
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 Dec 2022 21:22:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8FDF64D111
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 Dec 2022 21:22:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40BD210E471;
-	Wed, 14 Dec 2022 20:21:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 279CC10E476;
+	Wed, 14 Dec 2022 20:22:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24D0C10E050
- for <amd-gfx@lists.freedesktop.org>; Wed, 14 Dec 2022 20:21:51 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2046.outbound.protection.outlook.com [40.107.94.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2511610E472
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 Dec 2022 20:21:57 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BmPtmosN17+0HKpxERuPDoyUaVsEuIZOToDnw1RracrMMhRvipoAqZzMAl1yx7/ecC3wJaBJghFBMRln+rhb0/I5sxJmFo1laGXh2yaLtE3aonzjR1HaVuJH0YGBE0UD80B9HBv+N6PjiBfB7dxP7ugDTYr2j+qRkYkhnW7fMOR2ZEf/mbDWqYHXXn6B34mXbin5nQ35saSl6Ie6nwtjWRSVhvBqYoKNncl6d+VKIaMJs4euMQiJuBeFycoKT9EHjuhAbzbbJUaCGzrpJhZummHMiTFEIGqxtKh51BlaOnwiK9w2s+4fPg90883BAbGQYzhpPP+jYvV41bBBni4pfQ==
+ b=lXoPI8GQiSXZox3/nF+ff3JYtmTanFLi69QK4s3proIHk95TREq1reMcYZjxx1Mx84gCWizxoDJtIGy0mltZIQ6dFF5/sqj1ryBvJ+tpLHgZVj8xP7KgY36xOlngpyiM43tMO6xN0l2lJNHQc4XZXuHy8Cx2GeWs+WfUymmLeLvowmDc8MjXz9nRebvCRpIqjxQnCiBMDLW+cGi0/ppIoWT3rwLNe7m/Dz1tvOiueO6yrTH9cGRILn0J5jPZUnR6vAMI8hfFsVH4fo01VX2OqpOljJimSsprulSkkN5wG9XJtXabUnZVR1pZ/4TlN7CBAvpyNB2qKEhZNN+jYB2Zew==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=niYZKL67e3AnetP94qZ4unNCBM+700kDWxVF4a7qCF4=;
- b=H8u/nlqr8Y3z3fOFUb3JS5JTlhWC9QcjCE9Nauydw64cxQtdHtMdQcGEGBIoLdiZN6me8hSzgcGQc4wK7NUJThaetQNftDfeFg7QaS1+QibrANb6jI5qn/ZQjVqQDW8PVFDGbKj5H999hR1aCvb5G94ganJ2zN67kK9NW1tSE5yaYMHg47nC+exIyPkIS1IE41GipELi6vDB04zO5Tfhb8piEOomviatsMAf3lPsB131JgXzo0SDlT/0cAuQ2c9XGvN/qp1ims4DEIsejaFNyt3NwEqDeu/1srU5wdG0Hwz71Sj038JLp+tm14gnADH3rQiheR9QVlH5esEiWCnZgA==
+ bh=ag63EvmEXOfQX5XmWWqwFxS41B0KYUjq3isMz7A4v+U=;
+ b=kCCBRCA2vZ2cYU/8iqxgKu/8nQBvmJ6JD9xA8yoetJ8ujeqQah+9CHDUZhWSLmkg1ZaJXXPBoEczNLtIdUgeDaO/3TBIs+pRKrL8p43OFJBhxAcQCNSO/1gAXHn+77Jgj0A4+eN3xiyrEYehT4k9gC63Q5IWjshAGY5P3bBtBWoVN82jnG22Meb2FZAYbQOWBHYRy8fFFHQbtStvBHg0C2/lA45wTaOiRXUkMo3vUr4Pp0pXvtbKC2YydR6nnFzR+X2Dj3s3gC+HsBISxZ2pJGeiH+WlaGT55jS/KPY0zj2wklsXutxVu9dgq5oqbJ/ZU2mqMcmmcip38vKNHOwvlQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=niYZKL67e3AnetP94qZ4unNCBM+700kDWxVF4a7qCF4=;
- b=ZnrJcZubfz0oULrkjpn1hs0a2VeaSowGn/3u84q5oI7pm0J4SF9GdpSwazHKv8z3ZjhcuE16TeN88euSa9LEzLKb8Hvoz3x4a76Y+/q1SKL2o5JVBFHTPnCAtR5sW9yupHNDLJND/vEQ57BB1k0rcpJB2yI9aOKdoKBOFluzVm8=
-Received: from MWH0EPF00056D02.namprd21.prod.outlook.com
- (2603:10b6:30f:fff2:0:1:0:f) by DM4PR12MB6159.namprd12.prod.outlook.com
- (2603:10b6:8:a8::5) with Microsoft SMTP Server (version=TLS1_2,
+ bh=ag63EvmEXOfQX5XmWWqwFxS41B0KYUjq3isMz7A4v+U=;
+ b=aHv9+sVQ2IW3RY3FvZoDK3noH+sWBhQBMFQAJgirQaj6XLLI1XwXpEHOliVtQD2XVMof9iqS+49gHjKdbXjCX0HRWo1OM4uG46EDqK9gnMwJI5ApwIX95Mb9F4oB1dBfupBuYuRBx5GSnZIJhRP/VWQb1+oMnDEHoL95BfoFSBw=
+Received: from MWH0EPF00056D06.namprd21.prod.outlook.com
+ (2603:10b6:30f:fff2:0:1:0:10) by PH7PR12MB6786.namprd12.prod.outlook.com
+ (2603:10b6:510:1ac::18) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.19; Wed, 14 Dec
- 2022 20:21:48 +0000
+ 2022 20:21:50 +0000
 Received: from CO1NAM11FT106.eop-nam11.prod.protection.outlook.com
- (2a01:111:f400:7eab::201) by MWH0EPF00056D02.outlook.office365.com
+ (2a01:111:f400:7eab::206) by MWH0EPF00056D06.outlook.office365.com
  (2603:1036:d20::b) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.4 via Frontend
- Transport; Wed, 14 Dec 2022 20:21:48 +0000
+ Transport; Wed, 14 Dec 2022 20:21:49 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,24 +47,23 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  CO1NAM11FT106.mail.protection.outlook.com (10.13.175.44) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5924.11 via Frontend Transport; Wed, 14 Dec 2022 20:21:47 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
+ 15.20.5924.11 via Frontend Transport; Wed, 14 Dec 2022 20:21:49 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 14 Dec
- 2022 14:21:44 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ 2022 14:21:45 -0600
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB07.amd.com
+ (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 14 Dec
- 2022 14:21:44 -0600
+ 2022 12:21:45 -0800
 Received: from aaurabin-elitedesk-arch.amd.com (10.180.168.240) by
  SATLEXMB03.amd.com (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34
- via Frontend Transport; Wed, 14 Dec 2022 14:21:43 -0600
+ via Frontend Transport; Wed, 14 Dec 2022 14:21:44 -0600
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 01/18] drm/amd/display: save restore hdcp state when display
- is unplugged from mst hub
-Date: Wed, 14 Dec 2022 15:21:24 -0500
-Message-ID: <20221214202141.1721178-2-aurabindo.pillai@amd.com>
+Subject: [PATCH 02/18] drm/amd/display: phase3 mst hdcp for multiple displays
+Date: Wed, 14 Dec 2022 15:21:25 -0500
+Message-ID: <20221214202141.1721178-3-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20221214202141.1721178-1-aurabindo.pillai@amd.com>
 References: <20221214202141.1721178-1-aurabindo.pillai@amd.com>
@@ -73,26 +72,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT106:EE_|DM4PR12MB6159:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3e79d6aa-bfc1-4846-4e62-08dade10d371
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT106:EE_|PH7PR12MB6786:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2d1a05ef-b8bb-44dd-ed33-08dade10d498
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: j8FjUCVOEDdlVxrmV6gdxxs4NWLeg6yvsbBV1v1ijfJKO1qCfoeeF/C5ZSqjsiCvKyrDh9wW+TN7yTQ9r6X486HNI+WZozyPMaWqa87er0K37dTdLRRvvDpybAAihjozqYOLrHpMK/r/XGiGmVL3/HYB28v/94XUQgrNBn8kzLE6jMXCKLeUmW/zlKCUY5p2dzJOck7zSpx+7M6zxpBlBElDJqUeItuvee+zhNxWaISbdYur0ESTIPvuAfHcSNw8BIPETprRFNZl4naHC0JUaguUVgNwl0G6ZFLLVnxkedx3bwydpe/jwYuNhSHg/8lb3Sk1R7xabXp/rOJz86zxDMO9DDIa86Gpo4zxDjW64nTXJDNBUEAA4GDXPC20/7ZTA20/fiEgEItM/gwJn20a+eghAJrdMISBcW0E7MSzJBb00qahRYuGs/50uw1WUoKNNwsqhERjIvHxhjAFkku3VGm9b4IN9wgKw2UlCVJympapma6O1Yt0YfOSSiEH5x3vRVtUbZ066yQgwRygBiSfZtiHFf7zFjGnTnrIFIYIQhP5D1jwlI+mvk056rS7KQ7RKtJo7bFWoZ2LjtHOvvGr6I7Pz0Df8CxUJ72XYCAqRukAYAN1X7oossT1Q4HcdwcEkkpGTKgqBab3jLlaK/XCQX/HC7RqST2CH9MpDPucT9YLs7PIsO37xfiGmt4LyoK5KKtKIaLHnhKOzbQD0LktBCqPKyAFGpwYCGr7b3EYfHk=
+X-Microsoft-Antispam-Message-Info: UEeTlXU8XOjDyoUZ8gpTYTPq9dCnxlBK5Tw0EX6iK/yXDO7h3KWx9eTg82Zsq9JxEmTzn4rTR+HFc1/gWkYZ418xEdX/QmFiDkXT/04p4r5GDe6xAyQ80WADXXltRUb3vOFF6FiTOcRvH0jw6s63aDGDk3OhZ7hUrBPLeQUd7nfzNs9dOAFbX4beJXMGWjMei4EaDyWaIb0ZnOWbY2LvSlcJJdoz33jWczs0EiR/36vLsqqJJACYH6gkRlvj7DPhFrVKLQLlN7lsWKRaVC9g+G9PoGwBl/KK/gUKzx+/6lzGaWE4cOZkbXP/WyHOqbTGnEtHeMfCtzZMJyW2/BcLEdC91QY/d+09eS8X12HctVKyypbqHp8JMBwp2jADKxZuqIaNHzNWTdKiSJvEmeQyotfXC5bOPPiqGuqUdXzyHt5POozIsnS/M+i911lrB2c1XMY0WpWQiR4iqu9iOhTFKMEY8/+qUYnKvRBJiERDjycJLodU2iy/if0B8+zt0VsujeDW+1WHBGl7zOE3BxZDIN4jhseoDYXjQVE908AYJZTNflAgFhaPMBM9eehcng3MgPiqzZjqUKNqx8tnv6Y/YIWdQKygJGaFYQ4DzL4r6h8thuVr53//HrxfzDitrsS/EhUIJ03maCoSgArOLhUNXmnMroR4Ocvv0EaUUX77utwDlHS830cezYSWZxuRc/Oodk5rlObNNpLF9keO/fWq0jWjsnaau98VNBP+OfN9tTE=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:CA; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(39860400002)(346002)(396003)(376002)(136003)(451199015)(36840700001)(46966006)(40470700004)(336012)(86362001)(478600001)(83380400001)(7696005)(316002)(44832011)(36756003)(6916009)(82310400005)(54906003)(36860700001)(186003)(5660300002)(41300700001)(4326008)(8676002)(426003)(2616005)(47076005)(70586007)(70206006)(81166007)(6666004)(356005)(2906002)(8936002)(40460700003)(26005)(40480700001)(1076003)(82740400003)(36900700001);
+ SFS:(13230022)(4636009)(346002)(376002)(136003)(396003)(39860400002)(451199015)(36840700001)(40470700004)(46966006)(36756003)(26005)(41300700001)(83380400001)(36860700001)(186003)(478600001)(6666004)(54906003)(6916009)(316002)(5660300002)(8936002)(86362001)(82310400005)(70586007)(8676002)(70206006)(4326008)(426003)(47076005)(7696005)(44832011)(356005)(81166007)(336012)(40480700001)(30864003)(82740400003)(1076003)(2906002)(40460700003)(2616005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Dec 2022 20:21:47.2889 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3e79d6aa-bfc1-4846-4e62-08dade10d371
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Dec 2022 20:21:49.2419 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2d1a05ef-b8bb-44dd-ed33-08dade10d498
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT106.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6159
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6786
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,135 +114,299 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: hersen wu <hersenxs.wu@amd.com>
 
 [Why]
-connector hdcp properties are lost after display is
-unplgged from mst hub. connector is destroyed with
-dm_dp_mst_connector_destroy. when display is plugged
-back, hdcp is not desired and it wouldnt be enabled.
+multiple display hdcp are enabled within event_property_validate,
+event_property_update by looping all displays on mst hub. when
+one of display on mst hub in unplugged or disabled, hdcp are
+disabled for all displays on mst hub within hdcp_reset_display
+by looping all displays of mst link. for displays still active,
+their encryption status are off. kernel driver will not run hdcp
+authentication again. therefore, hdcp are not enabled automatically.
 
 [How]
-save hdcp properties into hdcp_work within
-amdgpu_dm_atomic_commit_tail. If the same display is
-plugged back with same display index, its hdcp
-properties will be retrieved from hdcp_work within
-dm_dp_mst_get_modes.
+within is_content_protection_different, check drm_crtc_state changes
+of all displays on mst hub, if need, triger hdcp_update_display to
+re-run hdcp authentication.
 
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 Signed-off-by: hersen wu <hersenxs.wu@amd.com>
 Reviewed-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 24 ++++++++++++++++-
- .../amd/display/amdgpu_dm/amdgpu_dm_hdcp.h    | 14 ++++++++++
- .../display/amdgpu_dm/amdgpu_dm_mst_types.c   | 26 +++++++++++++++++++
- 3 files changed, 63 insertions(+), 1 deletion(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 183 ++++++++++++++----
+ 1 file changed, 142 insertions(+), 41 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index a60b3729752a..acd78fde6121 100644
+index acd78fde6121..24443547bd02 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -8317,11 +8317,33 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
+@@ -7379,27 +7379,55 @@ is_scaling_state_different(const struct dm_connector_state *dm_state,
+ }
+ 
+ #ifdef CONFIG_DRM_AMD_DC_HDCP
+-static bool is_content_protection_different(struct drm_connector_state *state,
+-					    const struct drm_connector_state *old_state,
+-					    const struct drm_connector *connector, struct hdcp_workqueue *hdcp_w)
++static bool is_content_protection_different(struct drm_crtc_state *new_crtc_state,
++					    struct drm_crtc_state *old_crtc_state,
++					    struct drm_connector_state *new_conn_state,
++					    struct drm_connector_state *old_conn_state,
++					    const struct drm_connector *connector,
++					    struct hdcp_workqueue *hdcp_w)
+ {
+ 	struct amdgpu_dm_connector *aconnector = to_amdgpu_dm_connector(connector);
+ 	struct dm_connector_state *dm_con_state = to_dm_connector_state(connector->state);
+ 
+-	/* Handle: Type0/1 change */
+-	if (old_state->hdcp_content_type != state->hdcp_content_type &&
+-	    state->content_protection != DRM_MODE_CONTENT_PROTECTION_UNDESIRED) {
+-		state->content_protection = DRM_MODE_CONTENT_PROTECTION_DESIRED;
++	pr_debug("[HDCP_DM] connector->index: %x connect_status: %x dpms: %x\n",
++		connector->index, connector->status, connector->dpms);
++	pr_debug("[HDCP_DM] state protection old: %x new: %x\n",
++		old_conn_state->content_protection, new_conn_state->content_protection);
++
++	if (old_crtc_state)
++		pr_debug("[HDCP_DM] old crtc en: %x a: %x m: %x a-chg: %x c-chg: %x\n",
++		old_crtc_state->enable,
++		old_crtc_state->active,
++		old_crtc_state->mode_changed,
++		old_crtc_state->active_changed,
++		old_crtc_state->connectors_changed);
++
++	if (new_crtc_state)
++		pr_debug("[HDCP_DM] NEW crtc en: %x a: %x m: %x a-chg: %x c-chg: %x\n",
++		new_crtc_state->enable,
++		new_crtc_state->active,
++		new_crtc_state->mode_changed,
++		new_crtc_state->active_changed,
++		new_crtc_state->connectors_changed);
++
++	/* hdcp content type change */
++	if (old_conn_state->hdcp_content_type != new_conn_state->hdcp_content_type &&
++	    new_conn_state->content_protection != DRM_MODE_CONTENT_PROTECTION_UNDESIRED) {
++		new_conn_state->content_protection = DRM_MODE_CONTENT_PROTECTION_DESIRED;
++		pr_debug("[HDCP_DM] Type0/1 change %s :true\n", __func__);
+ 		return true;
+ 	}
+ 
+-	/* CP is being re enabled, ignore this
+-	 *
+-	 * Handles:	ENABLED -> DESIRED
+-	 */
+-	if (old_state->content_protection == DRM_MODE_CONTENT_PROTECTION_ENABLED &&
+-	    state->content_protection == DRM_MODE_CONTENT_PROTECTION_DESIRED) {
+-		state->content_protection = DRM_MODE_CONTENT_PROTECTION_ENABLED;
++	/* CP is being re enabled, ignore this */
++	if (old_conn_state->content_protection == DRM_MODE_CONTENT_PROTECTION_ENABLED &&
++	    new_conn_state->content_protection == DRM_MODE_CONTENT_PROTECTION_DESIRED) {
++		if (new_crtc_state && new_crtc_state->mode_changed) {
++			new_conn_state->content_protection = DRM_MODE_CONTENT_PROTECTION_DESIRED;
++			pr_debug("[HDCP_DM] ENABLED->DESIRED & mode_changed %s :true\n", __func__);
++			return true;
++		};
++		new_conn_state->content_protection = DRM_MODE_CONTENT_PROTECTION_ENABLED;
++		pr_debug("[HDCP_DM] ENABLED -> DESIRED %s :false\n", __func__);
+ 		return false;
+ 	}
+ 
+@@ -7407,9 +7435,9 @@ static bool is_content_protection_different(struct drm_connector_state *state,
+ 	 *
+ 	 * Handles:	UNDESIRED -> ENABLED
+ 	 */
+-	if (old_state->content_protection == DRM_MODE_CONTENT_PROTECTION_UNDESIRED &&
+-	    state->content_protection == DRM_MODE_CONTENT_PROTECTION_ENABLED)
+-		state->content_protection = DRM_MODE_CONTENT_PROTECTION_DESIRED;
++	if (old_conn_state->content_protection == DRM_MODE_CONTENT_PROTECTION_UNDESIRED &&
++	    new_conn_state->content_protection == DRM_MODE_CONTENT_PROTECTION_ENABLED)
++		new_conn_state->content_protection = DRM_MODE_CONTENT_PROTECTION_DESIRED;
+ 
+ 	/* Stream removed and re-enabled
+ 	 *
+@@ -7419,10 +7447,12 @@ static bool is_content_protection_different(struct drm_connector_state *state,
+ 	 *
+ 	 * Handles:	DESIRED -> DESIRED (Special case)
+ 	 */
+-	if (!(old_state->crtc && old_state->crtc->enabled) &&
+-		state->crtc && state->crtc->enabled &&
++	if (!(old_conn_state->crtc && old_conn_state->crtc->enabled) &&
++		new_conn_state->crtc && new_conn_state->crtc->enabled &&
+ 		connector->state->content_protection == DRM_MODE_CONTENT_PROTECTION_DESIRED) {
+ 		dm_con_state->update_hdcp = false;
++		pr_debug("[HDCP_DM] DESIRED->DESIRED (Stream removed and re-enabled) %s :true\n",
++			__func__);
+ 		return true;
+ 	}
+ 
+@@ -7434,35 +7464,42 @@ static bool is_content_protection_different(struct drm_connector_state *state,
+ 	 *
+ 	 * Handles:	DESIRED -> DESIRED (Special case)
+ 	 */
+-	if (dm_con_state->update_hdcp && state->content_protection == DRM_MODE_CONTENT_PROTECTION_DESIRED &&
+-	    connector->dpms == DRM_MODE_DPMS_ON && aconnector->dc_sink != NULL) {
++	if (dm_con_state->update_hdcp &&
++	new_conn_state->content_protection == DRM_MODE_CONTENT_PROTECTION_DESIRED &&
++	connector->dpms == DRM_MODE_DPMS_ON && aconnector->dc_sink != NULL) {
+ 		dm_con_state->update_hdcp = false;
++		pr_debug("[HDCP_DM] DESIRED->DESIRED (Hot-plug, headless s3, dpms) %s :true\n",
++			__func__);
+ 		return true;
+ 	}
+ 
+-	/*
+-	 * Handles:	UNDESIRED -> UNDESIRED
+-	 *		DESIRED -> DESIRED
+-	 *		ENABLED -> ENABLED
+-	 */
+-	if (old_state->content_protection == state->content_protection)
++	if (old_conn_state->content_protection == new_conn_state->content_protection) {
++		if (new_conn_state->content_protection >= DRM_MODE_CONTENT_PROTECTION_DESIRED) {
++			if (new_crtc_state && new_crtc_state->mode_changed) {
++				pr_debug("[HDCP_DM] DESIRED->DESIRED or ENABLE->ENABLE mode_change %s :true\n",
++					__func__);
++				return true;
++			};
++			pr_debug("[HDCP_DM] DESIRED->DESIRED & ENABLE->ENABLE %s :false\n",
++				__func__);
++			return false;
++		};
++
++		pr_debug("[HDCP_DM] UNDESIRED->UNDESIRED %s :false\n", __func__);
+ 		return false;
++	}
+ 
+-	/*
+-	 * Handles:	UNDESIRED -> DESIRED
+-	 *		DESIRED -> UNDESIRED
+-	 *		ENABLED -> UNDESIRED
+-	 */
+-	if (state->content_protection != DRM_MODE_CONTENT_PROTECTION_ENABLED)
++	if (new_conn_state->content_protection != DRM_MODE_CONTENT_PROTECTION_ENABLED) {
++		pr_debug("[HDCP_DM] UNDESIRED->DESIRED or DESIRED->UNDESIRED or ENABLED->UNDESIRED %s :true\n",
++			__func__);
+ 		return true;
++	}
+ 
+-	/*
+-	 * Handles:	DESIRED -> ENABLED
+-	 */
++	pr_debug("[HDCP_DM] DESIRED->ENABLED %s :false\n", __func__);
+ 	return false;
+ }
+-
+ #endif
++
+ static void remove_stream(struct amdgpu_device *adev,
+ 			  struct amdgpu_crtc *acrtc,
+ 			  struct dc_stream_state *stream)
+@@ -8297,15 +8334,66 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
+ 		}
+ 	}
+ #ifdef CONFIG_DRM_AMD_DC_HDCP
++	for_each_oldnew_connector_in_state(state, connector, old_con_state, new_con_state, i) {
++		struct dm_connector_state *dm_new_con_state = to_dm_connector_state(new_con_state);
++		struct amdgpu_crtc *acrtc = to_amdgpu_crtc(dm_new_con_state->base.crtc);
++		struct amdgpu_dm_connector *aconnector = to_amdgpu_dm_connector(connector);
++
++		pr_debug("[HDCP_DM] -------------- i : %x ----------\n", i);
++
++		if (!connector)
++			continue;
++
++		pr_debug("[HDCP_DM] connector->index: %x connect_status: %x dpms: %x\n",
++			connector->index, connector->status, connector->dpms);
++		pr_debug("[HDCP_DM] state protection old: %x new: %x\n",
++			old_con_state->content_protection, new_con_state->content_protection);
++
++		if (aconnector->dc_sink) {
++			if (aconnector->dc_sink->sink_signal != SIGNAL_TYPE_VIRTUAL &&
++				aconnector->dc_sink->sink_signal != SIGNAL_TYPE_NONE) {
++				pr_debug("[HDCP_DM] pipe_ctx dispname=%s\n",
++				aconnector->dc_sink->edid_caps.display_name);
++			}
++		}
++
++		new_crtc_state = NULL;
++		old_crtc_state = NULL;
++
++		if (acrtc) {
++			new_crtc_state = drm_atomic_get_new_crtc_state(state, &acrtc->base);
++			old_crtc_state = drm_atomic_get_old_crtc_state(state, &acrtc->base);
++		}
++
++		if (old_crtc_state)
++			pr_debug("old crtc en: %x a: %x m: %x a-chg: %x c-chg: %x\n",
++			old_crtc_state->enable,
++			old_crtc_state->active,
++			old_crtc_state->mode_changed,
++			old_crtc_state->active_changed,
++			old_crtc_state->connectors_changed);
++
++		if (new_crtc_state)
++			pr_debug("NEW crtc en: %x a: %x m: %x a-chg: %x c-chg: %x\n",
++			new_crtc_state->enable,
++			new_crtc_state->active,
++			new_crtc_state->mode_changed,
++			new_crtc_state->active_changed,
++			new_crtc_state->connectors_changed);
++	}
++
+ 	for_each_oldnew_connector_in_state(state, connector, old_con_state, new_con_state, i) {
+ 		struct dm_connector_state *dm_new_con_state = to_dm_connector_state(new_con_state);
+ 		struct amdgpu_crtc *acrtc = to_amdgpu_crtc(dm_new_con_state->base.crtc);
+ 		struct amdgpu_dm_connector *aconnector = to_amdgpu_dm_connector(connector);
+ 
+ 		new_crtc_state = NULL;
++		old_crtc_state = NULL;
+ 
+-		if (acrtc)
++		if (acrtc) {
+ 			new_crtc_state = drm_atomic_get_new_crtc_state(state, &acrtc->base);
++			old_crtc_state = drm_atomic_get_old_crtc_state(state, &acrtc->base);
++		}
+ 
+ 		dm_new_crtc_state = to_dm_crtc_state(new_crtc_state);
+ 
+@@ -8317,7 +8405,8 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
  			continue;
  		}
  
--		if (is_content_protection_different(new_con_state, old_con_state, connector, adev->dm.hdcp_workqueue))
-+		if (is_content_protection_different(new_con_state, old_con_state, connector, adev->dm.hdcp_workqueue)) {
-+			/* when display is unplugged from mst hub, connctor will
-+			 * be destroyed within dm_dp_mst_connector_destroy. connector
-+			 * hdcp perperties, like type, undesired, desired, enabled,
-+			 * will be lost. So, save hdcp properties into hdcp_work within
-+			 * amdgpu_dm_atomic_commit_tail. if the same display is
-+			 * plugged back with same display index, its hdcp properties
-+			 * will be retrieved from hdcp_work within dm_dp_mst_get_modes
-+			 */
+-		if (is_content_protection_different(new_con_state, old_con_state, connector, adev->dm.hdcp_workqueue)) {
++		if (is_content_protection_different(new_crtc_state, old_crtc_state, new_con_state,
++          old_con_state, connector, adev->dm.hdcp_workqueue)) {
+ 			/* when display is unplugged from mst hub, connctor will
+ 			 * be destroyed within dm_dp_mst_connector_destroy. connector
+ 			 * hdcp perperties, like type, undesired, desired, enabled,
+@@ -8327,6 +8416,12 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
+ 			 * will be retrieved from hdcp_work within dm_dp_mst_get_modes
+ 			 */
+ 
++			bool enable_encryption = false;
 +
-+			if (aconnector->dc_link && aconnector->dc_sink &&
-+				aconnector->dc_link->type == dc_connection_mst_branch) {
-+				struct hdcp_workqueue *hdcp_work = adev->dm.hdcp_workqueue;
-+				struct hdcp_workqueue *hdcp_w =
-+					&hdcp_work[aconnector->dc_link->link_index];
++			if (new_con_state->content_protection ==
++				DRM_MODE_CONTENT_PROTECTION_DESIRED)
++				enable_encryption = true;
 +
-+				hdcp_w->hdcp_content_type[connector->index] =
-+					new_con_state->hdcp_content_type;
-+				hdcp_w->content_protection[connector->index] =
-+					new_con_state->content_protection;
+ 			if (aconnector->dc_link && aconnector->dc_sink &&
+ 				aconnector->dc_link->type == dc_connection_mst_branch) {
+ 				struct hdcp_workqueue *hdcp_work = adev->dm.hdcp_workqueue;
+@@ -8339,10 +8434,16 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
+ 					new_con_state->content_protection;
+ 			}
+ 
++			if (new_crtc_state && new_crtc_state->mode_changed && new_con_state->content_protection >=
++          DRM_MODE_CONTENT_PROTECTION_DESIRED) {
++        enable_encryption = true;
 +			}
++
++			DRM_INFO("[HDCP_DM] hdcp_update_display enable_encryption = %x\n", enable_encryption);
 +
  			hdcp_update_display(
  				adev->dm.hdcp_workqueue, aconnector->dc_link->link_index, aconnector,
- 				new_con_state->hdcp_content_type,
- 				new_con_state->content_protection == DRM_MODE_CONTENT_PROTECTION_DESIRED);
-+    }
+-				new_con_state->hdcp_content_type,
+-				new_con_state->content_protection == DRM_MODE_CONTENT_PROTECTION_DESIRED);
++				new_con_state->hdcp_content_type, enable_encryption);
+     }
  	}
  #endif
- 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
-index 09294ff122fe..bbbf7d0eff82 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
-@@ -52,6 +52,20 @@ struct hdcp_workqueue {
- 	struct mod_hdcp_link link;
- 
- 	enum mod_hdcp_encryption_status encryption_status;
-+
-+	/* when display is unplugged from mst hub, connctor will be
-+	 * destroyed within dm_dp_mst_connector_destroy. connector
-+	 * hdcp perperties, like type, undesired, desired, enabled,
-+	 * will be lost. So, save hdcp properties into hdcp_work within
-+	 * amdgpu_dm_atomic_commit_tail. if the same display is
-+	 * plugged back with same display index, its hdcp properties
-+	 * will be retrieved from hdcp_work within dm_dp_mst_get_modes
-+	 */
-+	/* un-desired, desired, enabled */
-+	unsigned int content_protection[AMDGPU_DM_MAX_DISPLAY_INDEX];
-+	/* hdcp1.x, hdcp2.x */
-+	unsigned int hdcp_content_type[AMDGPU_DM_MAX_DISPLAY_INDEX];
-+
- 	uint8_t max_link;
- 
- 	uint8_t *srm;
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-index eef71940e43d..ad02435a3bfd 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-@@ -32,6 +32,10 @@
- #include "amdgpu_dm.h"
- #include "amdgpu_dm_mst_types.h"
- 
-+#ifdef CONFIG_DRM_AMD_DC_HDCP
-+#include "amdgpu_dm_hdcp.h"
-+#endif
-+
- #include "dc.h"
- #include "dm_helpers.h"
- 
-@@ -344,6 +348,28 @@ static int dm_dp_mst_get_modes(struct drm_connector *connector)
- 		/* dc_link_add_remote_sink returns a new reference */
- 		aconnector->dc_sink = dc_sink;
- 
-+		/* when display is unplugged from mst hub, connctor will be
-+		 * destroyed within dm_dp_mst_connector_destroy. connector
-+		 * hdcp perperties, like type, undesired, desired, enabled,
-+		 * will be lost. So, save hdcp properties into hdcp_work within
-+		 * amdgpu_dm_atomic_commit_tail. if the same display is
-+		 * plugged back with same display index, its hdcp properties
-+		 * will be retrieved from hdcp_work within dm_dp_mst_get_modes
-+		 */
-+#ifdef CONFIG_DRM_AMD_DC_HDCP
-+		if (aconnector->dc_sink && connector->state) {
-+			struct drm_device *dev = connector->dev;
-+			struct amdgpu_device *adev = drm_to_adev(dev);
-+			struct hdcp_workqueue *hdcp_work = adev->dm.hdcp_workqueue;
-+			struct hdcp_workqueue *hdcp_w = &hdcp_work[aconnector->dc_link->link_index];
-+
-+			connector->state->hdcp_content_type =
-+			hdcp_w->hdcp_content_type[connector->index];
-+			connector->state->content_protection =
-+			hdcp_w->content_protection[connector->index];
-+		}
-+#endif
-+
- 		if (aconnector->dc_sink) {
- 			amdgpu_dm_update_freesync_caps(
- 					connector, aconnector->edid);
 -- 
 2.39.0
 
