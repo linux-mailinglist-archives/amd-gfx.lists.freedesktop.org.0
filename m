@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E40664D56A
-	for <lists+amd-gfx@lfdr.de>; Thu, 15 Dec 2022 04:03:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D546464D665
+	for <lists+amd-gfx@lfdr.de>; Thu, 15 Dec 2022 07:18:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 817F510E4E6;
-	Thu, 15 Dec 2022 03:02:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B44210E4EA;
+	Thu, 15 Dec 2022 06:17:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2058.outbound.protection.outlook.com [40.107.101.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA74410E4E2;
- Thu, 15 Dec 2022 03:02:28 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2051.outbound.protection.outlook.com [40.107.223.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B38510E093
+ for <amd-gfx@lists.freedesktop.org>; Thu, 15 Dec 2022 06:17:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EjvdOive1yXsnP3HcdJN8Y4SkgZsS3F+UJBC+H5oEHIQMqH9j7v9LDQQujM7kUCCLcCHKbRutrIrRqRYhLclhfsfOJFTh54NqdacpRElXcUdH9Pbx7JPq5jAn2jR6CS9LCdA5KHb18qftf6RCy+6Nya27M+dqqyoVR/hKBnpkbYYykh7j/Ozs5fjw+ibcfYQdOEmkzAWOcNNoEWP5yvhJkArsj30xT+6DZsoqkln/Nmi6ymI3F2IwMzJExZIICiqOXeYeWFmLGZCNdavvgYqJa25FShceOVtF10q2kRz/I85RrdwqCqBxfDX3wVHdG3TBEQ71k656cPOrf5f/Uw7cA==
+ b=Y0NqwULg1VqUmssbvTJtFUJXwwD1Hbfl4WDMC6rUxc9YpZlUlCSLg9ni3LYGqukKeqsJOKfGtA6q1xqlyFWQBLZNelb7vkNW5Bl/fd0F8veuy4zYHY8sHuMo9nuehH01FfAqbvKxNcfsxo2j3HAIzHZfw+UnDU9xQbPds4LeEjuH0LITTbxVsDjZYXyA3Bak5lzYjc3rFlLGmzJuz1hO/FbRTIVbWxAO9Rtgzd4N4o9tGyXH55MrVIF2ZwILFLTIsffrJfF3h5G3yxfhzh2ziEBT5sSGAnC8U+KLveCB+/szTgFI9zQ1kJFSqjLKlfbIdXPDF4Gwx8t6OD9k73Nv9w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tlyRAEDXpTA6omtt17Y0RY0gn2v2KwxhejVniC3qMi0=;
- b=oCeCXm2/M0/737YYBKZe05ildiAQdv5+QqNY4LpYavd1rexvZVlwd9/T43x8nl8Idd/uA30f7MaRSyqJpbx0K9bCgafgl3pOHD98kjdus3iPNacDwwPHQWK+ZqVW+UULgWEpu6FnH7Q4dvUoUHIBXclWdNy0qKln3Q92RegxjErp/yRKh5eOO0UiemA7GR7FtFar2ZSdbbNx7VRn9WS/3rRcBy0kguKpM4DgTfuLCMZ3IHUaU3H6eVm+zxLXJE+xD51TDjhRVxmAxGQBfegRHB7M4YFMFY4sDW3Vy1D1HPD165nreKBWXDs+QwnJ90SLREff/sq1P6qj4LDY3YRpmQ==
+ bh=dttvfpjrDz+QIy+OogIWQAcoMjtfnW3oP49lUgeAvHM=;
+ b=k5OWTNJ3/WKB6kIhgPHN5n3UUmjehfL60eClzwYiyi5avu20wHgWkaIKrpOHS9oFYmWpJrNH/u1rNY1luXKsr0BzUmqRuPvebDdxIdac8O287kmDqHgd5e4RxP2E5kJPP47B4JR/4DltTrWup3DfEvN1gR7EhR7eVe5l1GnkMmLeez+UrAeOBcfSGF+kvOgKnuL+jkE04rHZAAkKJo2a6TesWowEon4kiFQ12qf9N9kthFQdBDnUarkWKtXp57/U2aMzB26ru7ry2OPzH+NpU+r/OFgGWUiw2sZKp/bLHUc6Uhcf4iWrSVY+nIVR3jam+rNRDMUg9RVzBRzvR++LnQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tlyRAEDXpTA6omtt17Y0RY0gn2v2KwxhejVniC3qMi0=;
- b=KFkq4230N+CDbKYTJGunRw0lCICJNtkLjluwwo3uM+Ynvxm4k/U5dq47mxIWYXtDfSpqCvkXtOgeoVyvd5XN6M3YOuzzqPCrMsob0r5HDc0KGu1tPVZ+SxPf0cx0yA3gqEy7OoXcRLmYYkORCkV5bSpJZZ+Y226xPej+clb+fMI=
-Received: from BN9PR03CA0603.namprd03.prod.outlook.com (2603:10b6:408:106::8)
- by SN7PR12MB7348.namprd12.prod.outlook.com (2603:10b6:806:29b::11)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=dttvfpjrDz+QIy+OogIWQAcoMjtfnW3oP49lUgeAvHM=;
+ b=4YGIRaxbipsPr1jbkZFtfduKbXW70By7p3d0WZmx/3EsLL9VXhftB8+crIuAk6av6gKkK/E4Tq5aRHOAX2P/I5Yl6AHRxSTrlhdSiu5NBJ8M0xxbaUzFoYmElsiGan0ri+DFYaUgizn43l8J810rXERB7JV9po+BQtzdlFABS4A=
+Received: from DS7PR03CA0296.namprd03.prod.outlook.com (2603:10b6:5:3ad::31)
+ by CH2PR12MB4309.namprd12.prod.outlook.com (2603:10b6:610:a4::17) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.19; Thu, 15 Dec
- 2022 03:02:26 +0000
-Received: from BN8NAM11FT017.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:106:cafe::b4) by BN9PR03CA0603.outlook.office365.com
- (2603:10b6:408:106::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5924.11 via Frontend
- Transport; Thu, 15 Dec 2022 03:02:25 +0000
+ 2022 06:17:21 +0000
+Received: from CY4PEPF0000B8E8.namprd05.prod.outlook.com
+ (2603:10b6:5:3ad:cafe::3) by DS7PR03CA0296.outlook.office365.com
+ (2603:10b6:5:3ad::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5924.12 via Frontend
+ Transport; Thu, 15 Dec 2022 06:17:20 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,49 +45,48 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT017.mail.protection.outlook.com (10.13.177.93) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5924.12 via Frontend Transport; Thu, 15 Dec 2022 03:02:25 +0000
-Received: from majun-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ CY4PEPF0000B8E8.mail.protection.outlook.com (10.167.241.4) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5813.11 via Frontend Transport; Thu, 15 Dec 2022 06:17:19 +0000
+Received: from equan-buildpc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 14 Dec
- 2022 21:02:24 -0600
-From: Ma Jun <majun@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <daniel.vetter@ffwll.ch>
-Subject: [RESEND PATCH] drm/plane-helper: Add the missing declaration of
- drm_atomic_state
-Date: Thu, 15 Dec 2022 11:01:46 +0800
-Message-ID: <20221215030146.1142523-1-majun@amd.com>
-X-Mailer: git-send-email 2.25.1
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 15 Dec
+ 2022 00:17:17 -0600
+From: Evan Quan <evan.quan@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/2] drm/amd/pm: add support for WINDOW3D profile mode on
+ SMU13.0.0
+Date: Thu, 15 Dec 2022 14:16:57 +0800
+Message-ID: <20221215061658.3894208-1-evan.quan@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT017:EE_|SN7PR12MB7348:EE_
-X-MS-Office365-Filtering-Correlation-Id: b2850a3b-9f72-4084-5a21-08dade48cb6c
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000B8E8:EE_|CH2PR12MB4309:EE_
+X-MS-Office365-Filtering-Correlation-Id: d567cfac-d59d-432f-5641-08dade640552
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: D4bQ/1HK9tpNxaEkiX6ZKPJtrJrT2HDmNlHPFBQ7KmhYFcvnt3DsSED7ileCRil7y7HCMFOVnEvlY37+JWRPV+tf+biIAxfTTpNjmKdAgeNxw6Rl/WidpPfTIyHHws6ei17XWPzFXMHVZtZa9Cwn0tE/f8k3qaOWYAF77UHX6uq6FCkm+wX2ZibWgTWGFbrRkF/dcDrrrLO8GKGzNWGpd3Qm+jrx5WyZZGy0G5uB0G/Tzh6li0C8SUgsq9joltTSxx8cDqGJE3PhYajNSqeLz8L04kXEYLOFwxSc7ebpr8WPIY6G9Zm+zaw5LQeyUopbcGaHEgXN2joe2jB8TcOM2dPvWYPeKRkFaKi3+ATnyXQxqvBVLIFPLegKTIIznOp/fiZ33VszzpBbhT4m+NjBxA0vcYHZGCS1oBoiRX8Y4wi9MTT/zyHJgiOhuTXj87QzkCp5PRLmjBAQsAYwV+WNBltn9a4Dbv8iuzARyjKB02yBhzkD7+CdFq1gGXy10eiNa//wR2EKBkY/bX6ibHA6pcUjXwtKXD/tZ9E4GK/CTEWG5zkfKRfDhK6tDSfCULIo1JvIfQwgsLwLgPna6+pDEXa8jI8Z+DG67r7MTYJnkX8GDYMUnkGz3IFHr7RxCsuP0FAHerGBqLyHLqSIkhzzVpoexYGxFb8o2M633Vmbf4gw3b9ZTO4x0Fo7x44mRu8LCneX8atLDzDBIWkhfIssE8gndnWH3ZDxd1/klTjUtJN8J5J2HRqwe7WeXpSGRcAl
+X-Microsoft-Antispam-Message-Info: sYi+XDMZeIFQFQgv1sX29RRDJ+Vx38sbCJ29hRH0VOcxyEKVnzzHPF0onNRXrI0bjVofGk/7jeayF9RqZPi7OV52Bb7h9qT/K3XvhPV/+nPpOjqibOuV1WqhwWODGjq/KQwtI4PSnfiGRRrGir/62WDlXG+RuSkEqTh2mHpNr1aF5o2S9VgvoJselahwmxgpQ0nLGHDw/hcpZDj14EPweJpd4j5C21N5wNtXKUbon5zGksbAGHIR/0ug6dbMADwfOXjd9sW3CN+Mi/nQg4uHHNWiuqyUH2fKhkD3lZNXdCOi2Bl7ni07v4lcdrbmo+08ULa+L4odaDt7d3xFIefxYAyuk5vm0EcdXc981p8Caz29hY6CDzDRmVmHDOR1Mvw44zM2Uuv+dcujky2BAVE2InIZ9CHRU6O6SzvOR1iLY+M3OeNXtxCzJTTyfGbFLSypamhL6gth+pz3mpl69H/ykdcycjqG+VJc7ZOTaRWCEg34uPTygvjFyK/VvVtMgnyQoCwoDp10qM80kwstp0lRDP10T+Pfx5guk5mFcg2xlRDvyORM2JbHe3bIuwM2JwHjSWAi5fKDxmRH7GjAzLWpd8ioMMCJ2l1rWGMLh6TCzd1GL2MFEU3URWotrZEKjwKEFe+IqmVVDqqgIJFGvreAJl8IFkq6ml0OhdVDn0Ys2lw+c5eZj2bnKYhJk27Ts93Bu754wTIlZn5TM1iGPGz8va3JJdgGcyoAP5dfyid6NBWUP1mqPk8usYHTsHriFNWv
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:CA; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(136003)(346002)(39860400002)(376002)(396003)(451199015)(40470700004)(36840700001)(46966006)(478600001)(16526019)(41300700001)(5660300002)(8676002)(4326008)(6666004)(316002)(2906002)(110136005)(47076005)(81166007)(82310400005)(1076003)(4744005)(8936002)(70586007)(26005)(2616005)(40460700003)(70206006)(40480700001)(7696005)(356005)(426003)(336012)(82740400003)(36756003)(186003)(83380400001)(36860700001)(2101003)(36900700001);
+ SFS:(13230022)(4636009)(136003)(346002)(396003)(376002)(39860400002)(451199015)(40470700004)(36840700001)(46966006)(26005)(6666004)(2906002)(1076003)(36756003)(86362001)(47076005)(7696005)(426003)(44832011)(6916009)(70206006)(4326008)(5660300002)(70586007)(8676002)(54906003)(316002)(41300700001)(83380400001)(16526019)(2616005)(36860700001)(356005)(40480700001)(186003)(81166007)(336012)(8936002)(40460700003)(82740400003)(82310400005)(478600001)(32563001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2022 03:02:25.7921 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b2850a3b-9f72-4084-5a21-08dade48cb6c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2022 06:17:19.2474 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d567cfac-d59d-432f-5641-08dade640552
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT017.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000B8E8.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7348
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4309
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,32 +98,48 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Alexander.Deucher@amd.com, Evan Quan <evan.quan@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add the missing declaration of struct drm_atomic_state to fix the
-compile error below:
+Add the support for WINDOW3D profile mode as for other profile modes.
 
-error: 'struct drm_atomic_state' declared inside parameter
-list will not be visible outside of this definition or declaration [-Werror]
-
-Signed-off-by: Ma Jun <majun@amd.com>
+Signed-off-by: Evan Quan <evan.quan@amd.com>
+Change-Id: If05d1c7cbe5b6bc9f9c3c5036c01f6580d534164
 ---
- include/drm/drm_plane_helper.h | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/include/drm/drm_plane_helper.h b/include/drm/drm_plane_helper.h
-index b00ad36cf5b6..530f88176db4 100644
---- a/include/drm/drm_plane_helper.h
-+++ b/include/drm/drm_plane_helper.h
-@@ -30,6 +30,7 @@ struct drm_crtc;
- struct drm_framebuffer;
- struct drm_modeset_acquire_ctx;
- struct drm_plane;
-+struct drm_atomic_state;
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
+index 713fb6ad39f6..09a0b41088ec 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
+@@ -240,6 +240,7 @@ static struct cmn2asic_mapping smu_v13_0_0_workload_map[PP_SMC_POWER_PROFILE_COU
+ 	WORKLOAD_MAP(PP_SMC_POWER_PROFILE_VR,			WORKLOAD_PPLIB_VR_BIT),
+ 	WORKLOAD_MAP(PP_SMC_POWER_PROFILE_COMPUTE,		WORKLOAD_PPLIB_COMPUTE_BIT),
+ 	WORKLOAD_MAP(PP_SMC_POWER_PROFILE_CUSTOM,		WORKLOAD_PPLIB_CUSTOM_BIT),
++	WORKLOAD_MAP(PP_SMC_POWER_PROFILE_WINDOW3D,		WORKLOAD_PPLIB_WINDOW_3D_BIT),
+ };
  
- int drm_plane_helper_update_primary(struct drm_plane *plane, struct drm_crtc *crtc,
- 				    struct drm_framebuffer *fb,
+ static const uint8_t smu_v13_0_0_throttler_map[] = {
+@@ -1544,7 +1545,7 @@ static int smu_v13_0_0_get_power_profile_mode(struct smu_context *smu,
+ 			title[0], title[1], title[2], title[3], title[4], title[5],
+ 			title[6], title[7], title[8], title[9]);
+ 
+-	for (i = 0; i <= PP_SMC_POWER_PROFILE_CUSTOM; i++) {
++	for (i = 0; i < PP_SMC_POWER_PROFILE_COUNT; i++) {
+ 		/* conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT */
+ 		workload_type = smu_cmn_to_asic_specific_index(smu,
+ 							       CMN2ASIC_MAPPING_WORKLOAD,
+@@ -1606,7 +1607,7 @@ static int smu_v13_0_0_set_power_profile_mode(struct smu_context *smu,
+ 
+ 	smu->power_profile_mode = input[size];
+ 
+-	if (smu->power_profile_mode > PP_SMC_POWER_PROFILE_CUSTOM) {
++	if (smu->power_profile_mode >= PP_SMC_POWER_PROFILE_COUNT) {
+ 		dev_err(smu->adev->dev, "Invalid power profile mode %d\n", smu->power_profile_mode);
+ 		return -EINVAL;
+ 	}
 -- 
-2.25.1
+2.34.1
 
