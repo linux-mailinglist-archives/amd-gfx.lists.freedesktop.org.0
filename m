@@ -2,63 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6EF264EBA4
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 Dec 2022 13:56:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8726664ED31
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 Dec 2022 15:57:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F086810E5C5;
-	Fri, 16 Dec 2022 12:56:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C58310E133;
+	Fri, 16 Dec 2022 14:57:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE32310E094;
- Fri, 16 Dec 2022 12:56:10 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 7357D5CE81;
- Fri, 16 Dec 2022 12:56:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1671195369; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=ilJVFLsxKaeipGCoe35ncTDgKRzVEBqvBE90fXQaIqU=;
- b=S5/Z/6l4ppYgmEQ9feqL9mhWn3YfVk3FFcmNYZLKN2pmM18jbUSyy7MPIrOx3XwXuZKtyX
- PHFoowhx12B2DWXCBpgWUzBcTTLgYpEBlfr3340IJU4PaqpUvMlaXg7AAZyl6SSwgYXBeu
- SliEd9z6IYFHeFKQD+A+MwIs/ZE7+o8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1671195369;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=ilJVFLsxKaeipGCoe35ncTDgKRzVEBqvBE90fXQaIqU=;
- b=YO3feOXOYTwLG7ReTVSlVIflOgGf3V21DlZ+qIJrLcBVEKGkho1d84cdbUPvBWBoFvI0BP
- e1wuSQ2gONXlFYDQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 59512138FD;
- Fri, 16 Dec 2022 12:56:09 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id 7Pa0FOlqnGMGOgAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Fri, 16 Dec 2022 12:56:09 +0000
-Message-ID: <0e57d62e-ff98-6335-7338-c5f27f861864@suse.de>
-Date: Fri, 16 Dec 2022 13:56:08 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH V2] drm/plane-helper: Add the missing declaration of
- drm_atomic_state
-Content-Language: en-US
-To: Ma Jun <majun@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, daniel.vetter@ffwll.ch
-References: <20221216030526.1335609-1-majun@amd.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <20221216030526.1335609-1-majun@amd.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------GdTXntuRAJ08Pcr62x1ImZXH"
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com
+ [66.111.4.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B46CF10E004;
+ Fri, 16 Dec 2022 12:39:09 +0000 (UTC)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+ by mailout.nyi.internal (Postfix) with ESMTP id 6A85E5C0105;
+ Fri, 16 Dec 2022 07:39:06 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+ by compute6.internal (MEProxy); Fri, 16 Dec 2022 07:39:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+ :cc:content-transfer-encoding:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to; s=fm1; t=1671194346; x=
+ 1671280746; bh=v13bQYs2n+9QBeyAU8UmiJ8+cb8v3Ev1Pl4Y5TMgwH8=; b=j
+ JWqk0txtOZiWrct3dFGDcC8TKG/oDmLBuOKg6EIjKEsjbVbg+G2PtnYjB6HdPr8a
+ MxyBCzENdMTWO6xZHX/kgTovst5huAAzoVbSzfHyXPe2VsTrOkGBU9yniekm+a60
+ w0dLJM28NpxvV8EtX1aJ32hX4sDiT0SUrDa8avXUN4d9GkfS+NAeyn9uGad5yGjy
+ JgrhTbBJdV2TJBdNrS1hvUryYN5AT9SORGTMHcZRSgPyRG9PcRz2tMsXSdOK96ZQ
+ B7Ty0cstN06W+wUh+o+0/6Vn3u37Z6q0woQwJ0K0LRIFITsiozwjo66h6TgCZPd8
+ r1BbDwmRoZhEyQJE86V9Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:date:date:feedback-id:feedback-id:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1671194346; x=
+ 1671280746; bh=v13bQYs2n+9QBeyAU8UmiJ8+cb8v3Ev1Pl4Y5TMgwH8=; b=m
+ Hgb8DPVRCUzX12DLRvXbjCCMspLJ7JLst+KQ1gV0ELEV+J4Hoqv88Wt0gQtnH9UN
+ WzrvBYBVW8LzTNunP1+IFiVlJxMDKhkWAQRSrzOBXvYwh0lotKvBMzVI5fAmzmyX
+ H+UklUgSVhiiQHHSdb9OfAl8XLO4nJpXlD4uhYR4bjv3tJejJpiCaozsTJT4nKaz
+ HT8zNabF6Y8Z6Cb6oXJz+/0/uweYGpy4YHt2XdP65CkA8Kdae9PUXZDbCJzYH8fo
+ tY4SPqMEmraS3AtXCJkmh6UxNbWURJaBCcLeTxJmacNSIOXs07jVzkUrZTaP/q8T
+ W8ccgyDBkpXrSIkRPOzLg==
+X-ME-Sender: <xms:6macY-5R5qod0JjeEr7qy9DfsHC0b71XuKh6ePwTYLCPNTYhR_XJDw>
+ <xme:6macY37SCuX9VwnDHIzNwyc7H3UgLulBV93LoSL6CE3qCvEbggp-1kEm7bb6Eib7E
+ 8vUVKMppkE4r7ig91g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeejgdegvdcutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedftehr
+ nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+ htvghrnhepgeefjeehvdelvdffieejieejiedvvdfhleeivdelveehjeelteegudektdfg
+ jeevnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+ hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:6macY9crQYbkLe3P53NCpvtfWtiZbuN3lSsv1YkbUHkvR_cvnHLkyw>
+ <xmx:6macY7JAOtgFcXIiCsggQo3dFbtmBGaoCM74UTKFjYIETaaaUZPMCw>
+ <xmx:6macYyI8SaNxTt8Dr-XY3g7Slyr3S6KI_QBbA_87I0oKiepuhvMYXg>
+ <xmx:6macY9axU8M2qGEpKljuhbp_9NpM7j9v9pMd_3pOP49N1kp5KR61Tw>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+ id 24D2BB60086; Fri, 16 Dec 2022 07:39:06 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1185-g841157300a-fm-20221208.002-g84115730
+Mime-Version: 1.0
+Message-Id: <f7900514-15d1-4da8-a330-ddd2d68a426e@app.fastmail.com>
+In-Reply-To: <dc11c746-7d06-4b9f-ddc4-9b8e72297e3f@mailbox.org>
+References: <20221215163743.452648-1-arnd@kernel.org>
+ <dc11c746-7d06-4b9f-ddc4-9b8e72297e3f@mailbox.org>
+Date: Fri, 16 Dec 2022 13:38:45 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
+ "Arnd Bergmann" <arnd@kernel.org>, "Harry Wentland" <harry.wentland@amd.com>, 
+ "Leo Li" <sunpeng.li@amd.com>, "Rodrigo Siqueira" <Rodrigo.Siqueira@amd.com>
+Subject: Re: [PATCH] drm/amd/display: fix dp_retrieve_lttpr_cap return code
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Fri, 16 Dec 2022 14:57:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,69 +87,58 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Alan Liu <HaoPing.Liu@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Wenjing Liu <wenjing.liu@amd.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, George Shen <george.shen@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@gmail.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------GdTXntuRAJ08Pcr62x1ImZXH
-Content-Type: multipart/mixed; boundary="------------PkdoOAXEwSIF675gFBNRFbWZ";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Ma Jun <majun@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, daniel.vetter@ffwll.ch
-Message-ID: <0e57d62e-ff98-6335-7338-c5f27f861864@suse.de>
-Subject: Re: [PATCH V2] drm/plane-helper: Add the missing declaration of
- drm_atomic_state
-References: <20221216030526.1335609-1-majun@amd.com>
-In-Reply-To: <20221216030526.1335609-1-majun@amd.com>
+On Thu, Dec 15, 2022, at 18:56, Michel D=C3=A4nzer wrote:
+> On 12/15/22 17:37, Arnd Bergmann wrote:
+/amd/display/dc/core/dc_link_dp.c
+>> index af9411ee3c74..95dbfa4e996a 100644
+>> --- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+>> +++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+>> @@ -5095,7 +5095,7 @@ enum dc_status dp_retrieve_lttpr_cap(struct dc_=
+link *link)
+>>  	bool vbios_lttpr_interop =3D link->dc->caps.vbios_lttpr_aware;
+>> =20
+>>  	if (!vbios_lttpr_interop || !link->dc->caps.extended_aux_timeout_su=
+pport)
+>> -		return false;
+>> +		return DC_OK;
+>
+> 		return status;
+>
+> seems more appropriate. (Otherwise the status =3D DC_ERROR_UNEXPECTED=20
+> initialization has no effect)
 
---------------PkdoOAXEwSIF675gFBNRFbWZ
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+Ok, makes sense. I'd also remove the unused initialization in that
+case though:
 
-SGkNCg0KQW0gMTYuMTIuMjIgdW0gMDQ6MDUgc2NocmllYiBNYSBKdW46DQo+IEFkZCB0aGUg
-bWlzc2luZyBkZWNsYXJhdGlvbiBvZiBzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSB0byBmaXgg
-dGhlDQo+IGNvbXBpbGUgZXJyb3IgYmVsb3c6DQo+IA0KPiBlcnJvcjogJ3N0cnVjdCBkcm1f
-YXRvbWljX3N0YXRlJyBkZWNsYXJlZCBpbnNpZGUgcGFyYW1ldGVyDQo+IGxpc3Qgd2lsbCBu
-b3QgYmUgdmlzaWJsZSBvdXRzaWRlIG9mIHRoaXMgZGVmaW5pdGlvbiBvciBkZWNsYXJhdGlv
-biBbLVdlcnJvcl0NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IE1hIEp1biA8bWFqdW5AYW1kLmNv
-bT4NCg0KVGhhbmtzLiBJIGFkZGVkIGEgRml4ZXMgdGFnIGFuZCBtZXJnZWQgdGhlIHBhdGNo
-IGludG8gZHJtLW1pc2MtZml4ZXMuDQoNCkJlc3QgcmVnYXJkcw0KVGhvbWFzDQoNCj4gLS0t
-DQo+ICAgaW5jbHVkZS9kcm0vZHJtX3BsYW5lX2hlbHBlci5oIHwgMSArDQo+ICAgMSBmaWxl
-IGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9k
-cm0vZHJtX3BsYW5lX2hlbHBlci5oIGIvaW5jbHVkZS9kcm0vZHJtX3BsYW5lX2hlbHBlci5o
-DQo+IGluZGV4IGIwMGFkMzZjZjViNi4uOTAxNTZlMTNhYzExIDEwMDY0NA0KPiAtLS0gYS9p
-bmNsdWRlL2RybS9kcm1fcGxhbmVfaGVscGVyLmgNCj4gKysrIGIvaW5jbHVkZS9kcm0vZHJt
-X3BsYW5lX2hlbHBlci5oDQo+IEBAIC0yNiw2ICsyNiw3IEBADQo+ICAgDQo+ICAgI2luY2x1
-ZGUgPGxpbnV4L3R5cGVzLmg+DQo+ICAgDQo+ICtzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZTsN
-Cj4gICBzdHJ1Y3QgZHJtX2NydGM7DQo+ICAgc3RydWN0IGRybV9mcmFtZWJ1ZmZlcjsNCj4g
-ICBzdHJ1Y3QgZHJtX21vZGVzZXRfYWNxdWlyZV9jdHg7DQoNCi0tIA0KVGhvbWFzIFppbW1l
-cm1hbm4NCkdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXINClNVU0UgU29mdHdhcmUgU29sdXRp
-b25zIEdlcm1hbnkgR21iSA0KTWF4ZmVsZHN0ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBHZXJt
-YW55DQooSFJCIDM2ODA5LCBBRyBOw7xybmJlcmcpDQpHZXNjaMOkZnRzZsO8aHJlcjogSXZv
-IFRvdGV2DQo=
+ enum dc_status dp_retrieve_lttpr_cap(struct dc_link *link)
+ {
+        uint8_t lttpr_dpcd_data[8];
+-       enum dc_status status =3D DC_ERROR_UNEXPECTED;
+-       bool is_lttpr_present =3D false;
++       enum dc_status status;
++       bool is_lttpr_present;
+=20
+        /* Logic to determine LTTPR support*/
+        bool vbios_lttpr_interop =3D link->dc->caps.vbios_lttpr_aware;
+=20
+        if (!vbios_lttpr_interop || !link->dc->caps.extended_aux_timeout=
+_support)
+-               return false;
++               return DC_ERROR_UNEXPECTED;
+=20
+        /* By reading LTTPR capability, RX assumes that we will enable
+         * LTTPR extended aux timeout if LTTPR is present.
 
---------------PkdoOAXEwSIF675gFBNRFbWZ--
+I'll send that as a v2 once that passes my build test and nobody
+has further suggestions.
 
---------------GdTXntuRAJ08Pcr62x1ImZXH
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmOcaugFAwAAAAAACgkQlh/E3EQov+Br
-jQ/+NmIaEwYvR5NlBH4+mf05csxJJTkF0ziRlnx/yJ6S3yVmgPcqAtOZYvXjixEXX/X6ycbAPWkf
-zlmB+AZ8/1SoLEedbJCKB9+dwAmsFa6tx9hH4r2akWkEpeVAFv284tRTHpxDBBgV6N2YppMaPU74
-VD8BeMBEGKRrsLtlOt69hwvvoYB+K5LdkjLrNirGJ4Kqg24Rr6HQLy9P/LkPjZke69Vx8gmvIgv8
-OmdcwCJRiaIxzGVUUkq0Rk2+lAEl62YPiYv7m2GsfFiEDUcOqqZDubDHqLcGHGxH7AbPG6Bn5XM7
-uGMRUqWZDoKpFvGvjd0WNH0SoG1QMinusfp6tIu7C42Uzt9Mi8zX3yBhZPCPrA43UxjunJzK7Tot
-joWGJUZIIVajefVbiqtMCvpEPcRYqK0KLwWB/2Wal57NBY99MFSIgZm0LUoOu5asVmhJNQzvMqhZ
-JFdoJH+7BqYuYlMTMJWDW2dXBfBLdK741JNW8z1MIp7o9WhCXdMW/3oNVg7QXaGuDTIKOKB45dxm
-XRSqzmwQva6SgRgA30k04QhDQOkFzeWFLKLgsnnWwA+3hMYRqixqmaA+vwIQVJeqBdVYafx4Hy2F
-ldLbKQC7JbmLOMoDc7Mmo6WjZrvxXqazizv06TZQulTcMbx/BSoOHCgtY6oCRp+VypkYQIWXk++W
-rAk=
-=zXct
------END PGP SIGNATURE-----
-
---------------GdTXntuRAJ08Pcr62x1ImZXH--
+       Arnd
