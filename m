@@ -2,40 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3576164EB02
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 Dec 2022 12:56:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5270E64E9EE
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 Dec 2022 12:03:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EC8A10E5BB;
-	Fri, 16 Dec 2022 11:56:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A365E10E105;
+	Fri, 16 Dec 2022 11:02:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from szxga08-in.huawei.com (szxga08-in.huawei.com [45.249.212.255])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C82C610E10E;
- Fri, 16 Dec 2022 10:26:16 +0000 (UTC)
-Received: from kwepemm600014.china.huawei.com (unknown [172.30.72.57])
- by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4NYQGG5BtZz16Lj2;
- Fri, 16 Dec 2022 18:25:10 +0800 (CST)
-Received: from ubuntu1804.huawei.com (10.67.175.28) by
- kwepemm600014.china.huawei.com (7.193.23.54) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Fri, 16 Dec 2022 18:26:10 +0800
-From: Yi Yang <yiyang13@huawei.com>
-To: <harry.wentland@amd.com>, <sunpeng.li@amd.com>,
- <Rodrigo.Siqueira@amd.com>, <alexander.deucher@amd.com>,
- <christian.koenig@amd.com>, <Xinhui.Pan@amd.com>, <airlied@gmail.com>,
- <daniel@ffwll.ch>, <yiyang13@huawei.com>
-Subject: [PATCH -next] drm/amd/display: Remove redundant assignment to
- variable dc
-Date: Fri, 16 Dec 2022 18:23:18 +0800
-Message-ID: <20221216102318.197994-1-yiyang13@huawei.com>
-X-Mailer: git-send-email 2.17.1
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AC2910E105;
+ Fri, 16 Dec 2022 11:02:33 +0000 (UTC)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4NYR4l3l5Hz9slD;
+ Fri, 16 Dec 2022 12:01:59 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1671188519;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=cLKLVnU8lWyYUBUKHXHb82A0UDytP7Ny5dkjlNktQ4c=;
+ b=Ym5ClZ4SFebx0ak6Brk+p6dh6I5YYTfR0SV+EfhRUI6IWywykEI4tBbhGxcnABshGCStRe
+ t6a8SYg814kBCVccbzRiO6jNlAfc3fSAXFZjYDi2nCvvMiTVNrCPhuEaGUJvWT99yD2QS2
+ eI7bStQ+oSzm2IGyqfHJ6i1hUiG8SPWcRRcpTtC4coGz4cfLkmbniNqLtid7tUskvspzfp
+ 4JBkF8Ljx+wWIOdj5Eq2/0Cc6/Fi8aFktZhLchxJSUu3xMCu6C6AvZyERlqmWR7T5+8j4o
+ BUHAOgPCE9ZpGSrFoJuOVLjs2iQVIMLwrTwQOcP5LVml00KIlqoLl9ChlIJDKg==
+Message-ID: <e4417835-13d4-e7b0-b400-b0e488e3b3f9@mailbox.org>
+Date: Fri, 16 Dec 2022 12:01:57 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.67.175.28]
-X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
- kwepemm600014.china.huawei.com (7.193.23.54)
-X-CFilter-Loop: Reflected
-X-Mailman-Approved-At: Fri, 16 Dec 2022 11:56:47 +0000
+Subject: Re: [PATCH 16/16] drm/amd/display: Don't restrict bpc to 8 bpc
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel.daenzer@mailbox.org>
+To: Alex Deucher <alexdeucher@gmail.com>, Pekka Paalanen <ppaalanen@gmail.com>
+References: <20221212182137.374625-1-harry.wentland@amd.com>
+ <20221212182137.374625-17-harry.wentland@amd.com>
+ <114c2e02-41c8-8576-f88d-1c50f41deb9e@mailbox.org>
+ <20221214110128.1cd58dea@eldfell>
+ <CADnq5_M8Z2QRze60AFtmF6jTw8zpTpM-MPPmgejoUCb7Rv1ZrA@mail.gmail.com>
+ <57d2c440-a622-bcff-c3b5-e22404ef7eb6@mailbox.org>
+Content-Language: en-CA
+In-Reply-To: <57d2c440-a622-bcff-c3b5-e22404ef7eb6@mailbox.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: qmgrcj7q1uadkjsizjb81m1nw7s347um
+X-MBO-RS-ID: e15b9ddb666f255e4b1
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,38 +59,65 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Cc: Sebastian Wick <sebastian.wick@redhat.com>, amd-gfx@lists.freedesktop.org,
+ Uma Shankar <uma.shankar@intel.com>, dri-devel@lists.freedesktop.org,
+ Joshua Ashton <joshua@froggi.es>, Vitaly.Prosyak@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Smatch report warning as follows:
+On 12/15/22 10:07, Michel Dänzer wrote:
+> On 12/14/22 16:46, Alex Deucher wrote:
+>> On Wed, Dec 14, 2022 at 4:01 AM Pekka Paalanen <ppaalanen@gmail.com> wrote:
+>>> On Tue, 13 Dec 2022 18:20:59 +0100
+>>> Michel Dänzer <michel.daenzer@mailbox.org> wrote:
+>>>> On 12/12/22 19:21, Harry Wentland wrote:
+>>>>> This will let us pass kms_hdr.bpc_switch.
+>>>>>
+>>>>> I don't see any good reasons why we still need to
+>>>>> limit bpc to 8 bpc and doing so is problematic when
+>>>>> we enable HDR.
+>>>>>
+>>>>> If I remember correctly there might have been some
+>>>>> displays out there where the advertised link bandwidth
+>>>>> was not large enough to drive the default timing at
+>>>>> max bpc. This would leave to an atomic commit/check
+>>>>> failure which should really be handled in compositors
+>>>>> with some sort of fallback mechanism.
+>>>>>
+>>>>> If this somehow turns out to still be an issue I
+>>>>> suggest we add a module parameter to allow users to
+>>>>> limit the max_bpc to a desired value.
+>>>>
+>>>> While leaving the fallback for user space to handle makes some sense
+>>>> in theory, in practice most KMS display servers likely won't handle
+>>>> it.
+>>>>
+>>>> Another issue is that if mode validation is based on the maximum bpc
+>>>> value, it may reject modes which would work with lower bpc.
+>>>>
+>>>>
+>>>> What Ville (CC'd) suggested before instead (and what i915 seems to be
+>>>> doing already) is that the driver should do mode validation based on
+>>>> the *minimum* bpc, and automatically make the effective bpc lower
+>>>> than the maximum as needed to make the rest of the atomic state work.
+>>>
+>>> A driver is always allowed to choose a bpc lower than max_bpc, so it
+>>> very well should do so when necessary due to *known* hardware etc.
+>>> limitations.
+>>>
+>>
+>> In the amdgpu case, it's more of a preference thing.  The driver would
+>> enable higher bpcs at the expense of refresh rate and it seemed most
+>> users want higher refresh rates than higher bpc. 
+> 
+> I wrote the above because I thought that this patch might result in some modes getting pruned because they can't work with the max bpc. However, I see now that cbd14ae7ea93 ("drm/amd/display: Fix incorrectly pruned modes with deep color") should prevent that AFAICT.
+> 
+> The question then is: What happens if user space tries to use a mode which doesn't work with the max bpc? Does the driver automatically lower the effective bpc as needed, or does the atomic commit (check) fail? The latter would seem bad.
 
-Line 53679: drivers/gpu/drm/amd/display/dc/core/dc_stream.c:402
-dc_stream_set_cursor_position() warn: variable dereferenced before
-check 'stream'
+Per my previous post in the other sub-thread, cbd14ae7ea93 ("drm/amd/display: Fix incorrectly pruned modes with deep color") seems to do the former. The commit log of this patch should probably be changed to reflect that.
 
-The value of 'dc' has been assigned after check whether 'stream' is
-NULL. Fix it by remove redundant assignment.
 
-Signed-off-by: Yi Yang <yiyang13@huawei.com>
----
- drivers/gpu/drm/amd/display/dc/core/dc_stream.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-index 20e534f73513..78d31bb875d1 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-@@ -408,7 +408,7 @@ bool dc_stream_set_cursor_position(
- 	struct dc_stream_state *stream,
- 	const struct dc_cursor_position *position)
- {
--	struct dc  *dc = stream->ctx->dc;
-+	struct dc *dc;
- 	bool reset_idle_optimizations = false;
- 
- 	if (NULL == stream) {
 -- 
-2.17.1
+Earthling Michel Dänzer            |                  https://redhat.com
+Libre software enthusiast          |         Mesa and Xwayland developer
 
