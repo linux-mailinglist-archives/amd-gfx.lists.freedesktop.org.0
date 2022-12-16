@@ -2,68 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD19464E84F
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 Dec 2022 09:50:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B2B364E9AC
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 Dec 2022 11:45:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C364110E0A5;
-	Fri, 16 Dec 2022 08:50:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2C6910E5AC;
+	Fri, 16 Dec 2022 10:45:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
- [IPv6:2a00:1450:4864:20::631])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53B6710E0A5
- for <amd-gfx@lists.freedesktop.org>; Fri, 16 Dec 2022 08:49:56 +0000 (UTC)
-Received: by mail-ej1-x631.google.com with SMTP id u19so4513165ejm.8
- for <amd-gfx@lists.freedesktop.org>; Fri, 16 Dec 2022 00:49:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=lEwFdkbtvEaDLJgWa1Adj/FcYd4AKD61eRdwcky2uEo=;
- b=CwxC35ype1LayzYNZRCjlr2GtZwphZDoLaL6K6I6TcZm+2/+jLy8zLEqSMixgqfV19
- 1Z4gXeGGiNfTeCrkQVj0z99sS5nZuWz243DIFfYLtAL6P/OdKNB5cTI3aB//c6nffuf1
- EwVlXqZw3RqhT+LGhRQmlcMp/snemyAJ8BrLafnVD/lnk/ALFudkeeYUCri68Qalbj5m
- DxJgROBeuNg1VCUaHBF/m2/7Frb4hnEf/j1HHQJemJY0pHGAu4teqK93MRb5E7RtRf4D
- 7L6EDa/9UZlxBubYoOepH5f/Vr00hUhsEGWNrHT7e8rq7phSVYqFZEeB/L0fi50yxk/g
- VzzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=lEwFdkbtvEaDLJgWa1Adj/FcYd4AKD61eRdwcky2uEo=;
- b=HcAKSbejAjSKhS1XN4yC6I128EHQ88MyQRbr8PHYnsLHYHs8TKNa1XkZXqvOerziZ9
- HE362HV94qhNRwfDUUEpeok7lSp8ZAMYQLLhW2u3agGXeeFeRRVOIrUQX82cqHd1jW/1
- awdmvzlWIektu7UAT7EOZWuW58TjpHazoS+kBJHCs/kqy4iOj8fq+htmeRqZtAII4zFD
- 8EicOM5bge6Vf4fUjJv98v0pOAj4sIeIvL/rtyEX7JgCzWRkH0HSAGx42ggwhvZs0+qZ
- Ape0/vzlyfo0sgHZ4N6gK41iWPKG21Ecx3KTQjmvWyHzymD72Pg0D/7OIFeSetaajQUW
- R8qw==
-X-Gm-Message-State: ANoB5pm1W2Qxou7/5bcHSJLLHasd++u3sGFr8JNMbdCENyoqW6imt7oT
- Z0aGFdZ99pJtKbA8Le0E42c=
-X-Google-Smtp-Source: AA0mqf4Md86Bez9vnnXWnVUGISkOK20KN27aazCYV1UrG9NIQSSz+VcGuund4Yasym6byae35BNGCA==
-X-Received: by 2002:a17:906:3a18:b0:7ba:5085:869 with SMTP id
- z24-20020a1709063a1800b007ba50850869mr26604776eje.9.1671180594759; 
- Fri, 16 Dec 2022 00:49:54 -0800 (PST)
-Received: from ?IPV6:2a02:908:1256:79a0:90a2:619d:95d:a3f3?
- ([2a02:908:1256:79a0:90a2:619d:95d:a3f3])
- by smtp.gmail.com with ESMTPSA id
- z8-20020a170906240800b007c14d4c9633sm600663eja.99.2022.12.16.00.49.53
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 16 Dec 2022 00:49:54 -0800 (PST)
-Message-ID: <4cb9ed9d-310b-b226-895a-a7346c0cf67a@gmail.com>
-Date: Fri, 16 Dec 2022 09:49:52 +0100
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2064.outbound.protection.outlook.com [40.107.92.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EACB910E5AC
+ for <amd-gfx@lists.freedesktop.org>; Fri, 16 Dec 2022 10:45:44 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=exZDu5yd+EolZ1G8Bcg0XPq5jVo/JQvc7gjEtkDvnSOAaWPYTVNDWIddAC5ILUW3r0vgmsAavRHHserbFKHEUMXEBYPCTLHhEo9hfPxaUQ1LbeEqUd4gAalHajU3BI1cv6cQTl5EcxEw6pOf25mbGy7zNayeRx1lmVFHQ3/Q0T+GQkVTWUwtW8mUFmdk1TKxjwI1KYnrD+aAXP4h/J9cAoZLxMMYyBIW3afzSlEDbzY9PaYt8mpY3bTPA5gmYpVmc+sfiCk53Y5Dv0psYdvapwz8Befb7IpI2vx6eFaAdFd8yiduljNODWAR+tt3eiPrj8H+9Pg+kXbMaB5kON+bIw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iLBD85f3JfVGDoFvAlRJw12bHAtBGvqdaO3GLhQGFt4=;
+ b=fTV2eT2Br8XntDl5jlGLQnqpALRyRPna+7pZ+fTgkJFfma61TPK2DhI9uu4QsNLTG00AzmF7I0unEUz+K6XkkkxiNmqDATjbSsG0F2zHl/qfAWcpKGnqdfxrDuJNW6akyQiMTJglqzJuUu0wD5OXM8GJa6iniBJZKSd+uIa46IP5clukCu+VzxdGxX240At5vkbkjuoM8LUylKQLZgebC46ZxmtB/4bkQSOs1jDvkgMlQT2negkxLkslqPL8oA+Q0I7Wwwoc8oNT89gwZBpfiAt/+eVaGLR8qfb31Qsgg+38lkbt5jjL5ZHdgfBfOurCdz8ZCiMlNeODXXjRWXlWyQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iLBD85f3JfVGDoFvAlRJw12bHAtBGvqdaO3GLhQGFt4=;
+ b=uIY1qW9MGvuQDXbdBDEHWOfGo+cDdepiqmyZlKbPLuTLztyfL2j/Uib9OrJ4DZ13ArmOwJAum4roRvtEKgsa4Kc11Zm/Vgkfl2lZfuNK11NElhw6wkB8OXGKG4kFD+c6VqkjR7ICUPx15bZRi2oJCEeHhRlwLLIWAXO5YNAdN74=
+Received: from BN9PR03CA0362.namprd03.prod.outlook.com (2603:10b6:408:f7::7)
+ by DS0PR12MB7510.namprd12.prod.outlook.com (2603:10b6:8:132::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.19; Fri, 16 Dec
+ 2022 10:45:42 +0000
+Received: from BN8NAM11FT050.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:f7:cafe::63) by BN9PR03CA0362.outlook.office365.com
+ (2603:10b6:408:f7::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5924.15 via Frontend
+ Transport; Fri, 16 Dec 2022 10:45:42 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT050.mail.protection.outlook.com (10.13.177.5) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5924.15 via Frontend Transport; Fri, 16 Dec 2022 10:45:42 +0000
+Received: from pswarnak-Sharkstooth.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Fri, 16 Dec 2022 04:45:40 -0600
+From: Praful Swarnakar <praful.swarnakar@amd.com>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ "Alex Deucher" <alexander.deucher@amd.com>
+Subject: [PATCH] drm/amd/display: Remove redundant logs from DSC code
+Date: Fri, 16 Dec 2022 16:05:18 +0530
+Message-ID: <20221216103518.308578-1-praful.swarnakar@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH] drm/amdgpu: Fixed bug on error when uninstalling amdgpu
-Content-Language: en-US
-To: YiPeng Chai <YiPeng.Chai@amd.com>, amd-gfx@lists.freedesktop.org,
- "Paneer Selvam, Arunpravin" <Arunpravin.PaneerSelvam@amd.com>
-References: <20221216025621.176460-1-YiPeng.Chai@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20221216025621.176460-1-YiPeng.Chai@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT050:EE_|DS0PR12MB7510:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6681c159-71d4-40a7-0941-08dadf52adea
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: vCC9Kkzt3KNR/3hX5KcPzjhNZiKeAE4wt1zB4T4GNWOCQo/pmIzDWgPv3KcX2tkAwEknB1sKCyWPKM7u8kANTHvpbqK7H9GSM/6ceKCH+7XgB+AFbbRog3V3j7fB5u7NAptCVjFh3A4YwsB9UdV4WlfslQlHSnX6qGMAgaRqoeiwtvZxPGJFCSffylMyh3m84MkjJ4DF0Ks9+cVUQAvw7ICqw9xxBZhXqqQAdu5ADrGL+q7hlu8Xv4nDh9V1D7u6SFfm8vYGmQXRQqw2mJbQ+lxUbJw0OANwTAIVNe7tQRk03AUV+QsGYvI+WUcBElsbvYA0+h9JIiboD6EwVPvm9LjJMWsrgJAnBFjaE6qZySMF9MRu/lRJcE+MUThy6jFt4Qwbg+VAC7M9xYyDKFeSwQ4FVEoaGzPIjdZ34UnitGzEqMZxpipg7jBbl1v+KJPE4V9UKl92G6/dPO+T4W6Va56CNvvnCD+HDA46gitbbfeX/luJeDxJQCf1ELXbdtMxN09pEkG47X4hM5GzsClDPThlRhyDm10k+k+QPCSm61jOsmuU+2VFISL3NN5mu/zGuWq/zTGWdoi4uM16HsKUa9+vYlXgjtlW9udJ2PEhVM8Ijr2rP4fHkncLlIwI91uxbLbsuXyXpbtLkoh3s0ffLLsfvSeBb6o5LvEDOCKGESvKvYOBBzYdwj56klMqBXM4FhdEq0safinrM4xnDIrXw5+ZrpBrtlgs2rX2/vhwlo8=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230022)(4636009)(346002)(136003)(39860400002)(396003)(376002)(451199015)(46966006)(40470700004)(36840700001)(86362001)(2616005)(36756003)(54906003)(40460700003)(6636002)(83380400001)(336012)(1076003)(16526019)(47076005)(110136005)(426003)(356005)(82310400005)(478600001)(26005)(6666004)(186003)(7696005)(82740400003)(70586007)(4326008)(2906002)(40480700001)(8676002)(41300700001)(8936002)(5660300002)(81166007)(316002)(44832011)(70206006)(36860700001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2022 10:45:42.4142 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6681c159-71d4-40a7-0941-08dadf52adea
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT050.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7510
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,75 +98,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: yipechai@amd.com, Tao.Zhou1@amd.com, Hawking.Zhang@amd.com
+Cc: Praful Swarnakar <praful.swarnakar@amd.com>, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 16.12.22 um 03:56 schrieb YiPeng Chai:
-> Fixed bug on error when uninstalling amdgpu.
-> The error message is as follows:
-> [  304.852489] kernel BUG at drivers/gpu/drm/drm_buddy.c:278!
-> [  304.852503] invalid opcode: 0000 [#1] PREEMPT SMP NOPTI
-> [  304.852510] CPU: 2 PID: 4192 Comm: modprobe Tainted: G        W IOE     5.19.0-thomas #1
-> [  304.852519] Hardware name: ASUS System Product Name/PRIME Z390-A, BIOS 2004 11/02/2021
-> [  304.852526] RIP: 0010:drm_buddy_free_block+0x26/0x30 [drm_buddy]
-> [  304.852535] Code: 00 00 00 90 0f 1f 44 00 00 48 8b 0e 89 c8 25 00 0c 00 00 3d 00 04 00 00 75 10 48 8b 47 18 48 d3 e0 48 01 47 28 e9 fa fe ff ff <0f> 0b 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 41 54 55 48 89 f5 53
-> [  304.852549] RSP: 0018:ffff9afac17bbcb8 EFLAGS: 00010287
-> [  304.852556] RAX: 0000000000000000 RBX: ffff8dacd37fd778 RCX: 0000000000000000
-> [  304.852563] RDX: ffff8dacd37fd7a0 RSI: ffff8dacd37fd3b8 RDI: ffff8dac672a5f80
-> [  304.852570] RBP: ffff8dacd37fd3a0 R08: 0000000000000001 R09: 0000000000000000
-> [  304.852577] R10: ffff8dac68185500 R11: ffff9afac17bbd00 R12: ffff8dac672a5f80
-> [  304.852584] R13: ffff8dac672a5fe0 R14: ffff8dacd37fd380 R15: ffff8dac672a5f80
-> [  304.852590] FS:  00007f0fa9b30c40(0000) GS:ffff8dadb6480000(0000) knlGS:0000000000000000
-> [  304.852598] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [  304.852604] CR2: 00007f4bf1a1ba50 CR3: 0000000108c58004 CR4: 00000000003706e0
-> [  304.852611] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-> [  304.852618] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-> [  304.852625] Call Trace:
-> [  304.852629]  <TASK>
-> [  304.852632]  drm_buddy_free_list+0x2a/0x60 [drm_buddy]
-> [  304.852639]  amdgpu_vram_mgr_fini+0xea/0x180 [amdgpu]
-> [  304.852827]  amdgpu_ttm_fini+0x1f9/0x280 [amdgpu]
-> [  304.852925]  amdgpu_bo_fini+0x22/0x90 [amdgpu]
-> [  304.853022]  gmc_v11_0_sw_fini+0x26/0x30 [amdgpu]
-> [  304.853132]  amdgpu_device_fini_sw+0xc5/0x3b0 [amdgpu]
-> [  304.853229]  amdgpu_driver_release_kms+0x12/0x30 [amdgpu]
-> [  304.853327]  drm_dev_release+0x20/0x40 [drm]
-> [  304.853352]  release_nodes+0x35/0xb0
-> [  304.853359]  devres_release_all+0x8b/0xc0
-> [  304.853364]  device_unbind_cleanup+0xe/0x70
-> [  304.853370]  device_release_driver_internal+0xee/0x160
-> [  304.853377]  driver_detach+0x44/0x90
-> [  304.853382]  bus_remove_driver+0x55/0xe0
-> [  304.853387]  pci_unregister_driver+0x3b/0x90
-> [  304.853393]  amdgpu_exit+0x11/0x69 [amdgpu]
-> [  304.853540]  __x64_sys_delete_module+0x142/0x260
-> [  304.853548]  ? exit_to_user_mode_prepare+0x3e/0x190
-> [  304.853555]  do_syscall_64+0x38/0x90
-> [  304.853562]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
->
-> Signed-off-by: YiPeng Chai <YiPeng.Chai@amd.com>
+[Why & How]
+Remove redundant log in DSC that just add additional blank prints
 
-The subject line should probably read "when unloading amdgpu", but apart 
-from that good catch.
+Signed-off-by: Praful Swarnakar <praful.swarnakar@amd.com>
+---
+ drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 1 -
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c | 1 -
+ 2 files changed, 2 deletions(-)
 
-Reviewed-by: Christian König <christian.koenig@amd.com>
-
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> index 0b598b510bd8..eb63324c30d2 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> @@ -829,7 +829,7 @@ void amdgpu_vram_mgr_fini(struct amdgpu_device *adev)
->   		kfree(rsv);
->   
->   	list_for_each_entry_safe(rsv, temp, &mgr->reserved_pages, blocks) {
-> -		drm_buddy_free_list(&mgr->mm, &rsv->blocks);
-> +		drm_buddy_free_list(&mgr->mm, &rsv->allocated);
->   		kfree(rsv);
->   	}
->   	drm_buddy_fini(&mgr->mm);
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+index af9411ee3c74..f2b6d40e4f5c 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -7510,7 +7510,6 @@ bool dp_set_dsc_pps_sdp(struct pipe_ctx *pipe_ctx, bool enable, bool immediate_u
+ 		dsc_cfg.is_odm = pipe_ctx->next_odm_pipe ? true : false;
+ 		dsc_cfg.dc_dsc_cfg = stream->timing.dsc_cfg;
+ 
+-		DC_LOG_DSC(" ");
+ 		dsc->funcs->dsc_get_packed_pps(dsc, &dsc_cfg, &dsc_packed_pps[0]);
+ 		memcpy(&stream->dsc_packed_pps[0], &dsc_packed_pps[0], sizeof(stream->dsc_packed_pps));
+ 		if (dc_is_dp_signal(stream->signal)) {
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c
+index 784a8b6f360d..c08c01e05dcf 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c
+@@ -200,7 +200,6 @@ static void dsc2_set_config(struct display_stream_compressor *dsc, const struct
+ 	bool is_config_ok;
+ 	struct dcn20_dsc *dsc20 = TO_DCN20_DSC(dsc);
+ 
+-	DC_LOG_DSC(" ");
+ 	DC_LOG_DSC("Setting DSC Config at DSC inst %d", dsc->inst);
+ 	dsc_config_log(dsc, dsc_cfg);
+ 	is_config_ok = dsc_prepare_config(dsc_cfg, &dsc20->reg_vals, dsc_optc_cfg);
+-- 
+2.25.1
 
