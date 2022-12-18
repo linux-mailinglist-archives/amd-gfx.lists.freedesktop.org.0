@@ -2,34 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82A1264FF0D
-	for <lists+amd-gfx@lfdr.de>; Sun, 18 Dec 2022 15:06:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D416464FF7D
+	for <lists+amd-gfx@lfdr.de>; Sun, 18 Dec 2022 17:03:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D370C10E1A9;
-	Sun, 18 Dec 2022 14:06:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E38C610E1D0;
+	Sun, 18 Dec 2022 16:03:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ms7.webland.ch (ms7.webland.ch [92.43.217.107])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47B9910E1A9;
- Sun, 18 Dec 2022 14:06:01 +0000 (UTC)
-Received: from [192.168.1.137] ([188.62.80.205])
- by ms7.webland.ch (12.3.0 build 2 x64) with ASMTP (SSL) id
- 01202212181505568893; Sun, 18 Dec 2022 15:05:56 +0100
-Message-ID: <b29ae8cf-76f3-56cd-7409-da8b153c7e23@daenzer.net>
-Date: Sun, 18 Dec 2022 15:05:54 +0100
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D79A10E1CB;
+ Sun, 18 Dec 2022 16:03:11 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id C740560DC9;
+ Sun, 18 Dec 2022 16:02:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66690C433D2;
+ Sun, 18 Dec 2022 16:02:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1671379360;
+ bh=2z2kx3GfS55LxRLsKjgo8pcqfUBZUKUOXS4w7KtOlKs=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=bgt0jytGj7JY/bWy+7M3WDvU8+6DhXmv/ybFuQ6Z7xYq9pvjKUBe8qGRxvcs5Y4HQ
+ kfxMVduKOckCznBKpFlPOHpwT8v/Vo0y9wtxhWU7Yk5I8t0OhPuTv7vRzBtuHT5hum
+ FLAV6A4BIHhApKb+QBUAlL0XI9rZwTMUHjtmb+c5Ps+QV2J0rHaQYSG2btvZG9ucmP
+ ++AjSXn+IzIlFA6LPjRwMerwDN+DQZIzoXC4gDHtp6uu/JD7HUumlKHELvTcj9jlR7
+ +Ra3nrFGMBZ+SmILs/TmFMtqKMiefYvGrJ2v15MQG1y4DMV1J1pWef6oJFN+tNRour
+ WsB04VvRhWFNQ==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.1 12/85] drm/amd/display: skip commit minimal
+ transition state
+Date: Sun, 18 Dec 2022 11:00:29 -0500
+Message-Id: <20221218160142.925394-12-sashal@kernel.org>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20221218160142.925394-1-sashal@kernel.org>
+References: <20221218160142.925394-1-sashal@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
-To: amd-gfx@lists.freedesktop.org
-References: <d09c335c-b4e8-2ad8-f135-dbac6f99f8cf@daenzer.net>
-Content-Language: en-CA
-Subject: Re: DRM scheduler & amdgpu splats followed by GPU hang
-In-Reply-To: <d09c335c-b4e8-2ad8-f135-dbac6f99f8cf@daenzer.net>
-Content-Type: text/plain; charset=UTF-8
+X-stable: review
+X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
-X-CTCH: RefID="str=0001.0A782F21.639F1E44.000B,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0";
- Spam="Unknown"; VOD="Unknown"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,25 +54,79 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: Sasha Levin <sashal@kernel.org>, HaoPing.Liu@amd.com,
+ Mark Broadworth <mark.broadworth@amd.com>, daniel@ffwll.ch,
+ amd-gfx@lists.freedesktop.org, sunpeng.li@amd.com, airlied@gmail.com,
+ dri-devel@lists.freedesktop.org, Xinhui.Pan@amd.com,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Samson.Tam@amd.com,
+ wenjing.liu@amd.com, meenakshikumar.somasundaram@amd.com, alex.hung@amd.com,
+ Dillon Varone <Dillon.Varone@amd.com>, Alvin.Lee2@amd.com,
+ zhikzhai <zhikai.zhai@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Jun.Lei@amd.com, harry.wentland@amd.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 12/17/22 13:12, Michel Dänzer wrote:
-> 
-> With the drm-next-2022-12-13 changes for 6.2 merged on top of a 6.1.0 kernel, I hit a GPU (Picasso APU) hang in the menu of Trackmania (free-to-play Windows game, running via Wine).
+From: zhikzhai <zhikai.zhai@amd.com>
 
-It happened again when starting Return to Monkey Island, which is Linux native and uses Vulkan. It seems to be quite easy to hit with games using Vulkan (specifically Mesa's RADV).
+[ Upstream commit 1e8fd864afdc7a52df375e888a03b8472fc24f5d ]
 
-Curiously though, I haven't hit it with games using Vulkan on a different machine with Navi 21 dGPU.
+[WHY]
+Now dynamic ODM will now be disabled when MPO is required safe
+transitions to avoid underflow, but we are triggering the way of minimal
+transition too often. Commit state of dc with no check will do pipeline
+setup which may re-initialize the component with no need such as audio.
 
+[HOW]
+Just do the minimal transition when all of pipes are in use, otherwise
+return true to skip.
 
-> After rebooting, I noticed the attached splats in the journal. I can't be sure that the GPU hang was directly related to these, but it seems plausible.
+Tested-by: Mark Broadworth <mark.broadworth@amd.com>
+Reviewed-by: Dillon Varone <Dillon.Varone@amd.com>
+Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Signed-off-by: zhikzhai <zhikai.zhai@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/amd/display/dc/core/dc.c | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-Given the similar reports by Borislav Petkov and Mikhail Gavrilov, it seems likely.
-
-
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index 997ab031f816..5c00907099c1 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -3650,10 +3650,32 @@ static bool commit_minimal_transition_state(struct dc *dc,
+ 	bool temp_subvp_policy;
+ 	enum dc_status ret = DC_ERROR_UNEXPECTED;
+ 	unsigned int i, j;
++	unsigned int pipe_in_use = 0;
+ 
+ 	if (!transition_context)
+ 		return false;
+ 
++	/* check current pipes in use*/
++	for (i = 0; i < dc->res_pool->pipe_count; i++) {
++		struct pipe_ctx *pipe = &transition_base_context->res_ctx.pipe_ctx[i];
++
++		if (pipe->plane_state)
++			pipe_in_use++;
++	}
++
++	/* When the OS add a new surface if we have been used all of pipes with odm combine
++	 * and mpc split feature, it need use commit_minimal_transition_state to transition safely.
++	 * After OS exit MPO, it will back to use odm and mpc split with all of pipes, we need
++	 * call it again. Otherwise return true to skip.
++	 *
++	 * Reduce the scenarios to use dc_commit_state_no_check in the stage of flip. Especially
++	 * enter/exit MPO when DCN still have enough resources.
++	 */
++	if (pipe_in_use != dc->res_pool->pipe_count) {
++		dc_release_state(transition_context);
++		return true;
++	}
++
+ 	if (!dc->config.is_vmin_only_asic) {
+ 		tmp_mpc_policy = dc->debug.pipe_split_policy;
+ 		dc->debug.pipe_split_policy = MPC_SPLIT_AVOID;
 -- 
-Earthling Michel Dänzer            |                  https://redhat.com
-Libre software enthusiast          |         Mesa and Xwayland developer
+2.35.1
 
