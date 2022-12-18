@@ -2,43 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A12CB650042
-	for <lists+amd-gfx@lfdr.de>; Sun, 18 Dec 2022 17:12:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD00A65005E
+	for <lists+amd-gfx@lfdr.de>; Sun, 18 Dec 2022 17:13:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8E4B10E24B;
-	Sun, 18 Dec 2022 16:12:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B78F10E24D;
+	Sun, 18 Dec 2022 16:13:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BD5310E23D;
- Sun, 18 Dec 2022 16:11:59 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E9A210E24D;
+ Sun, 18 Dec 2022 16:13:51 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id A135AB80B43;
- Sun, 18 Dec 2022 16:11:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 548D1C433D2;
- Sun, 18 Dec 2022 16:11:54 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 9A0D260DDB;
+ Sun, 18 Dec 2022 16:13:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A893C433F0;
+ Sun, 18 Dec 2022 16:13:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1671379916;
- bh=AmB2MwSLienkqebbxknN/fIW6Ra4Dau+j0MHNDTFaX4=;
+ s=k20201202; t=1671379998;
+ bh=9cMVz/7RUy1bBNQ+ZXNVi7CT5W2f04dwS8UO0J5cu94=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=k2CFrU27E3R4DW5QN4WUrlUI3gtC0A4IXiDDPZCnwkQtFt4rYver+80KMJvuT95Qh
- KOZrMOcqpn3dhUaP72Gc07bAzjOS2n9gWxBoGOuDFa3ohu88PCRmBYEa685MIt+sW9
- jxbv3sZXRsoGNKuR6BzAb8Rc6gJ1unL2LYVRXMan2BP8kx5rhAKWYhUA37BBYbSFqI
- B11yVJShvj3O5j3zYvY2ZovPXSeiDfq35vlKeANThJhZvQHYEFgkyJ3F3iklyKfSta
- M4MdOc0c8G9T5T8pfIsn18oBFiSmjXPX2oZ6+ktzzfsqSnsoV4ZXL8UWAD2LhrPX04
- fNJzchRq+n3Kw==
+ b=i02OmITmBri586SezchYlx5mE3yDYcGSNDaV8jTt2mBcAErqMxK2k8AnroNoAryV3
+ x9lBCyQDoi+hvfKTH+sHAEQGsaVNWP6d3YN5MnD/IZ5DK9n4TKDlIn2b1ixq4OWal+
+ ZRcIR4bTSrv94McXDRSXikuW8yFijVsf6ZFSrsdtW8tK4lscBb15ZAgarQRj0HX9vR
+ 9ptnQR1DOZf/ZROx+0KTUbUDsDyy+WIUXc4NKE3SO3X1Flo/KVIwMmSScQqBOYKTwc
+ Kkj3srrhsmfsz0osWfmh/LXMXs7rn3EIXtQpn4A0t5i3dOt4bifVQhjRL0Ycbyff9e
+ 56nqwcOkXhAXQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.0 56/73] drm/amd/display: Fix DTBCLK disable
- requests and SRC_SEL programming
-Date: Sun, 18 Dec 2022 11:07:24 -0500
-Message-Id: <20221218160741.927862-56-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 08/46] drm/amd/display: prevent memory leak
+Date: Sun, 18 Dec 2022 11:12:06 -0500
+Message-Id: <20221218161244.930785-8-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221218160741.927862-1-sashal@kernel.org>
-References: <20221218160741.927862-1-sashal@kernel.org>
+In-Reply-To: <20221218161244.930785-1-sashal@kernel.org>
+References: <20221218161244.930785-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -54,73 +53,80 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, jiapeng.chong@linux.alibaba.com,
- Dillon Varone <Dillon.Varone@amd.com>, george.shen@amd.com, sunpeng.li@amd.com,
- airlied@gmail.com, dri-devel@lists.freedesktop.org, Xinhui.Pan@amd.com,
- Rodrigo.Siqueira@amd.com, Syed.Hassan@amd.com, samson.tam@amd.com,
- aurabindo.pillai@amd.com, eric.bernstein@amd.com,
- Alvin Lee <Alvin.Lee2@amd.com>, daniel@ffwll.ch,
- Jasdeep Dhillon <jdhillon@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
- amd-gfx@lists.freedesktop.org, harry.wentland@amd.com,
- christian.koenig@amd.com
+Cc: Sasha Levin <sashal@kernel.org>, HaoPing.Liu@amd.com, sunpeng.li@amd.com,
+ harry.wentland@amd.com, Xinhui.Pan@amd.com,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
+ alex.hung@amd.com, aurabindo.pillai@amd.com, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, Alex Deucher <alexander.deucher@amd.com>, airlied@gmail.com,
+ gehao <gehao@kylinos.cn>, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alvin Lee <Alvin.Lee2@amd.com>
+From: gehao <gehao@kylinos.cn>
 
-[ Upstream commit f6015da7f2410109bd2ccd2e2828f26185aeb81d ]
+[ Upstream commit d232afb1f3417ae8194ccf19ad3a8360e70e104e ]
 
-[Description]
-- When transitioning FRL / DP2 is not required, we will always request
-  DTBCLK = 0Mhz, but PMFW returns the min freq
-- This causes us to make DTBCLK requests every time we call optimize
-  after transitioning from FRL to non-FRL
-- If DTBCLK is not required, request the min instead (then we only need
-  to make 1 extra request at boot time)
-- Also when programming PIPE_DTO_SRC_SEL, don't programming for DP
-  first, just programming once for the required selection (programming
-  DP on an HDMI connection then switching back causes corruption)
+In dce6(0,1,4)_create_resource_pool and dce80_create_resource_pool
+the allocated memory should be released if construct pool fails.
 
-Reviewed-by: Dillon Varone <Dillon.Varone@amd.com>
-Acked-by: Jasdeep Dhillon <jdhillon@amd.com>
-Signed-off-by: Alvin Lee <Alvin.Lee2@amd.com>
+Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Signed-off-by: gehao <gehao@kylinos.cn>
+Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- .../gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c    | 2 +-
- drivers/gpu/drm/amd/display/dc/dcn32/dcn32_dccg.c           | 6 +-----
- 2 files changed, 2 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c | 3 +++
+ drivers/gpu/drm/amd/display/dc/dce80/dce80_resource.c | 2 ++
+ 2 files changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
-index e7f1d5f8166f..59a29c32f66a 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c
-@@ -436,7 +436,7 @@ static void dcn32_update_clocks(struct clk_mgr *clk_mgr_base,
- 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c b/drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c
+index dcfa0a3efa00..bf72d3f60d7f 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dce60/dce60_resource.c
+@@ -1127,6 +1127,7 @@ struct resource_pool *dce60_create_resource_pool(
+ 	if (dce60_construct(num_virtual_links, dc, pool))
+ 		return &pool->base;
  
- 	if (!new_clocks->dtbclk_en) {
--		new_clocks->ref_dtbclk_khz = 0;
-+		new_clocks->ref_dtbclk_khz = clk_mgr_base->bw_params->clk_table.entries[0].dtbclk_mhz * 1000;
- 	}
++	kfree(pool);
+ 	BREAK_TO_DEBUGGER();
+ 	return NULL;
+ }
+@@ -1324,6 +1325,7 @@ struct resource_pool *dce61_create_resource_pool(
+ 	if (dce61_construct(num_virtual_links, dc, pool))
+ 		return &pool->base;
  
- 	/* clock limits are received with MHz precision, divide by 1000 to prevent setting clocks at every call */
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_dccg.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_dccg.c
-index 6dd8dadd68a5..6f160f65c8fa 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_dccg.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_dccg.c
-@@ -225,11 +225,7 @@ void dccg32_set_dtbclk_dto(
- 	} else {
- 		REG_UPDATE_2(OTG_PIXEL_RATE_CNTL[params->otg_inst],
- 				DTBCLK_DTO_ENABLE[params->otg_inst], 0,
--				PIPE_DTO_SRC_SEL[params->otg_inst], 1);
--		if (params->is_hdmi)
--			REG_UPDATE(OTG_PIXEL_RATE_CNTL[params->otg_inst],
--				PIPE_DTO_SRC_SEL[params->otg_inst], 0);
--
-+				PIPE_DTO_SRC_SEL[params->otg_inst], params->is_hdmi ? 0 : 1);
- 		REG_WRITE(DTBCLK_DTO_MODULO[params->otg_inst], 0);
- 		REG_WRITE(DTBCLK_DTO_PHASE[params->otg_inst], 0);
- 	}
++	kfree(pool);
+ 	BREAK_TO_DEBUGGER();
+ 	return NULL;
+ }
+@@ -1517,6 +1519,7 @@ struct resource_pool *dce64_create_resource_pool(
+ 	if (dce64_construct(num_virtual_links, dc, pool))
+ 		return &pool->base;
+ 
++	kfree(pool);
+ 	BREAK_TO_DEBUGGER();
+ 	return NULL;
+ }
+diff --git a/drivers/gpu/drm/amd/display/dc/dce80/dce80_resource.c b/drivers/gpu/drm/amd/display/dc/dce80/dce80_resource.c
+index 725d92e40cd3..52d1f9746e8c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce80/dce80_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dce80/dce80_resource.c
+@@ -1138,6 +1138,7 @@ struct resource_pool *dce80_create_resource_pool(
+ 	if (dce80_construct(num_virtual_links, dc, pool))
+ 		return &pool->base;
+ 
++	kfree(pool);
+ 	BREAK_TO_DEBUGGER();
+ 	return NULL;
+ }
+@@ -1337,6 +1338,7 @@ struct resource_pool *dce81_create_resource_pool(
+ 	if (dce81_construct(num_virtual_links, dc, pool))
+ 		return &pool->base;
+ 
++	kfree(pool);
+ 	BREAK_TO_DEBUGGER();
+ 	return NULL;
+ }
 -- 
 2.35.1
 
