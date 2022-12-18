@@ -2,40 +2,40 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66DB364FF80
-	for <lists+amd-gfx@lfdr.de>; Sun, 18 Dec 2022 17:03:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CEEA64FF9A
+	for <lists+amd-gfx@lfdr.de>; Sun, 18 Dec 2022 17:04:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A095810E1C1;
-	Sun, 18 Dec 2022 16:03:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5659410E1D9;
+	Sun, 18 Dec 2022 16:04:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F91610E1C1;
- Sun, 18 Dec 2022 16:02:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92EE210E1D9;
+ Sun, 18 Dec 2022 16:04:15 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 0B7E360C58;
- Sun, 18 Dec 2022 16:02:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CB11C433EF;
- Sun, 18 Dec 2022 16:02:54 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 0E2B160DD6;
+ Sun, 18 Dec 2022 16:03:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA37FC433F1;
+ Sun, 18 Dec 2022 16:03:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1671379376;
- bh=cKcs5UaNh9wdeK8ZKEnxZS5PGWlb87e1zZzIcQ7tstg=;
+ s=k20201202; t=1671379423;
+ bh=aUaNdeCDNjxXbiUNjQciyDQdOEDWKmEgRFQfJ/YA+bw=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=jGLZYr0OnJ6j5+InjrzcV8oRH7aX2lZO8pG/Phd8ajxADlhOYGGiExoMz6p+Vvoi5
- UBwZi7a6dH7GgXQmH8SjnKtYSQFen81CHav5Gh+J8GyYqRbgC9kj4ypkCOs7c9NEDu
- ssSmU6vPvOkashwIoHIQBPfe/W6BAgDfgS34/MXZ/QEwKJ1wpa1rsN5GVcNCtoVlXQ
- 8FenuR4oCcP6gmssaBuzNgLyzwJRT6vPt8p0tKcsmLFWsC6b2bOHL8EaxbiZHLRifQ
- tY2DWLlpCJV2K7kLhvuNF7uK3T+u3hbR4yZiFHRGlYZ92Gj9q38IfTxHMhKNG2Ulq7
- k+GqVgkYCvTEg==
+ b=S08IOkEe3xGPcixxmmhGVaI47IDBwfb5eq4w7KbvbHUzPvGpskzaPGqr8XcvrHMWt
+ xPKeIxozelhlbonH6oYhKmcOnBpsUWR5uLMXLtLd0UEQ8i4WzQc01t03IZZdG4YWQ6
+ AjoXrrjqbvAbQnQN0pDP1zNjSKFXqFfZcgzD34MpaInAOf+bTWre9Sa2YYaYfADzgo
+ zuDU4W385W+e8IgPM3CqL+kiTWmQbNjh8Atyc7zbqPv5bNcRvDAAoo5VfI//2v7JwJ
+ 0YKEdeuAUmUHGyHQyvNCHDP9xF0zi1epKlR2NaD5ybHIyednRkrGqe3hwbC903Tkbm
+ rE3Q02oGdxFMQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.1 15/85] Revert "drm/amd/display: Limit max DSC
- target bpp for specific monitors"
-Date: Sun, 18 Dec 2022 11:00:32 -0500
-Message-Id: <20221218160142.925394-15-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.1 31/85] drm/amdgpu: Fix type of second parameter in
+ trans_msg() callback
+Date: Sun, 18 Dec 2022 11:00:48 -0500
+Message-Id: <20221218160142.925394-31-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221218160142.925394-1-sashal@kernel.org>
 References: <20221218160142.925394-1-sashal@kernel.org>
@@ -54,86 +54,76 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, ian.chen@amd.com, sunpeng.li@amd.com,
- airlied@gmail.com, dri-devel@lists.freedesktop.org, Xinhui.Pan@amd.com,
- Rodrigo.Siqueira@amd.com, amd-gfx@lists.freedesktop.org, Jerry.Zuo@amd.com,
- Hamza Mahfooz <hamza.mahfooz@amd.com>, daniel@ffwll.ch, Wayne.Lin@amd.com,
- Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>, christian.koenig@amd.com,
- colin.i.king@gmail.com
+Cc: Sasha Levin <sashal@kernel.org>, llvm@lists.linux.dev, lijo.lazar@amd.com,
+ Kees Cook <keescook@chromium.org>, dri-devel@lists.freedesktop.org,
+ horace.chen@amd.com, Xinhui.Pan@amd.com, ndesaulniers@google.com,
+ amd-gfx@lists.freedesktop.org, Nathan Chancellor <nathan@kernel.org>,
+ Victor.Zhao@amd.com, danijel.slivka@amd.com,
+ Sami Tolvanen <samitolvanen@google.com>,
+ Alex Deucher <alexander.deucher@amd.com>, daniel@ffwll.ch,
+ victor.skvortsov@amd.com, airlied@gmail.com, christian.koenig@amd.com,
+ Hawking.Zhang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Hamza Mahfooz <hamza.mahfooz@amd.com>
+From: Nathan Chancellor <nathan@kernel.org>
 
-[ Upstream commit 6803dfd3a69ccb318772463a86e40929fd4fbac7 ]
+[ Upstream commit f0d0f1087333714ee683cc134a95afe331d7ddd9 ]
 
-This reverts commit 55eea8ef98641f6e1e1c202bd3a49a57c1dd4059.
+With clang's kernel control flow integrity (kCFI, CONFIG_CFI_CLANG),
+indirect call targets are validated against the expected function
+pointer prototype to make sure the call target is valid to help mitigate
+ROP attacks. If they are not identical, there is a failure at run time,
+which manifests as either a kernel panic or thread getting killed. A
+proposed warning in clang aims to catch these at compile time, which
+reveals:
 
-This quirk is now handled in the DRM core, so we can drop all of
-the internal code that was added to handle it.
+  drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c:412:15: error: incompatible function pointer types initializing 'void (*)(struct amdgpu_device *, u32, u32, u32, u32)' (aka 'void (*)(struct amdgpu_device *, unsigned int, unsigned int, unsigned int, unsigned int)') with an expression of type 'void (struct amdgpu_device *, enum idh_request, u32, u32, u32)' (aka 'void (struct amdgpu_device *, enum idh_request, unsigned int, unsigned int, unsigned int)') [-Werror,-Wincompatible-function-pointer-types-strict]
+          .trans_msg = xgpu_ai_mailbox_trans_msg,
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~
+  1 error generated.
 
-Reviewed-by: Harry Wentland <harry.wentland@amd.com>
-Signed-off-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
+  drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c:435:15: error: incompatible function pointer types initializing 'void (*)(struct amdgpu_device *, u32, u32, u32, u32)' (aka 'void (*)(struct amdgpu_device *, unsigned int, unsigned int, unsigned int, unsigned int)') with an expression of type 'void (struct amdgpu_device *, enum idh_request, u32, u32, u32)' (aka 'void (struct amdgpu_device *, enum idh_request, unsigned int, unsigned int, unsigned int)') [-Werror,-Wincompatible-function-pointer-types-strict]
+          .trans_msg = xgpu_nv_mailbox_trans_msg,
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~
+  1 error generated.
+
+The type of the second parameter in the prototype should be 'enum
+idh_request' instead of 'u32'. Update it to clear up the warnings.
+
+Link: https://github.com/ClangBuiltLinux/linux/issues/1750
+Reported-by: Sami Tolvanen <samitolvanen@google.com>
+Reviewed-by: Kees Cook <keescook@chromium.org>
+Signed-off-by: Nathan Chancellor <nathan@kernel.org>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 35 -------------------
- 1 file changed, 35 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-index f0b01c8dc4a6..f72c013d3a5b 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-@@ -42,39 +42,6 @@
- #include "dm_helpers.h"
- #include "ddc_service_types.h"
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
+index 49c4347d154c..2b9d806e23af 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
+@@ -75,6 +75,8 @@ struct amdgpu_vf_error_buffer {
+ 	uint64_t data[AMDGPU_VF_ERROR_ENTRY_SIZE];
+ };
  
--struct monitor_patch_info {
--	unsigned int manufacturer_id;
--	unsigned int product_id;
--	void (*patch_func)(struct dc_edid_caps *edid_caps, unsigned int param);
--	unsigned int patch_param;
--};
--static void set_max_dsc_bpp_limit(struct dc_edid_caps *edid_caps, unsigned int param);
--
--static const struct monitor_patch_info monitor_patch_table[] = {
--{0x6D1E, 0x5BBF, set_max_dsc_bpp_limit, 15},
--{0x6D1E, 0x5B9A, set_max_dsc_bpp_limit, 15},
--};
--
--static void set_max_dsc_bpp_limit(struct dc_edid_caps *edid_caps, unsigned int param)
--{
--	if (edid_caps)
--		edid_caps->panel_patch.max_dsc_target_bpp_limit = param;
--}
--
--static int amdgpu_dm_patch_edid_caps(struct dc_edid_caps *edid_caps)
--{
--	int i, ret = 0;
--
--	for (i = 0; i < ARRAY_SIZE(monitor_patch_table); i++)
--		if ((edid_caps->manufacturer_id == monitor_patch_table[i].manufacturer_id)
--			&&  (edid_caps->product_id == monitor_patch_table[i].product_id)) {
--			monitor_patch_table[i].patch_func(edid_caps, monitor_patch_table[i].patch_param);
--			ret++;
--		}
--
--	return ret;
--}
--
- /* dm_helpers_parse_edid_caps
-  *
-  * Parse edid caps
-@@ -149,8 +116,6 @@ enum dc_edid_status dm_helpers_parse_edid_caps(
- 	kfree(sads);
- 	kfree(sadb);
++enum idh_request;
++
+ /**
+  * struct amdgpu_virt_ops - amdgpu device virt operations
+  */
+@@ -84,7 +86,8 @@ struct amdgpu_virt_ops {
+ 	int (*req_init_data)(struct amdgpu_device *adev);
+ 	int (*reset_gpu)(struct amdgpu_device *adev);
+ 	int (*wait_reset)(struct amdgpu_device *adev);
+-	void (*trans_msg)(struct amdgpu_device *adev, u32 req, u32 data1, u32 data2, u32 data3);
++	void (*trans_msg)(struct amdgpu_device *adev, enum idh_request req,
++			  u32 data1, u32 data2, u32 data3);
+ };
  
--	amdgpu_dm_patch_edid_caps(edid_caps);
--
- 	return result;
- }
- 
+ /*
 -- 
 2.35.1
 
