@@ -2,60 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79DD4653820
-	for <lists+amd-gfx@lfdr.de>; Wed, 21 Dec 2022 22:14:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DC17654362
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Dec 2022 15:51:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EDBC10E154;
-	Wed, 21 Dec 2022 21:13:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BABE10E040;
+	Thu, 22 Dec 2022 14:51:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com
- [IPv6:2001:4860:4864:20::29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5148E88CBF
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Dec 2022 21:13:54 +0000 (UTC)
-Received: by mail-oa1-x29.google.com with SMTP id
- 586e51a60fabf-142b72a728fso270204fac.9
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Dec 2022 13:13:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=zp5C1FpylgQp/NreKkgXLSu0SsgmZpzgIsbCArAqtXw=;
- b=fMNseHZHcCliVBltomhCuwrO3LaELsdwnN0LYTsixch9nJ+MaPq/bbrpXiJqnAoXjk
- M0y2RmoyGu8je/+FcPjK3e3LF2ZbZtYQhyppYpqWHvfvIBx+j5BrM2klUs+sZDEjm7yW
- Mnnfx6y8gcv+Uytbuvyw8Mm8IocKZx/lDSfYm0/iKLONuto52knop2wBr0uUnQrifmsb
- 7h0eLX+e5Ava0O09hBL4b3ykDZZ+00v8F9gG7Ql6QE8ipP4owI5D6kQvnAvXT+SGEMyX
- XAFqmbatD1FeXfLH5Ki/rdlEk6JG7AftnMU7gzc1WsNEoO+CmO2zT67k/M8Ek5oinjKW
- d3sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=zp5C1FpylgQp/NreKkgXLSu0SsgmZpzgIsbCArAqtXw=;
- b=wFgjXzk6ySv8oyE6es6q1H7U+zqwwTFUvf56dsKwU6gch85hPAjWvzbmUAJdN5Ji+G
- /O60L0g6qkkG+r9N1Utn3O9uxW2rFTx/t85Ht2Zl36E1mFqpLivqG98oaYaW+Q+N1gEA
- lkrxyBCL5C820v8cvnZCNHn1hcq7hs/FPaL+m1EJDRO5HK89MoGEE1v/M1pYi20WZsq1
- a1NSPa4teKyrXKQ7q21wmGA4H9tD8Y6w1YpMJutbROjxFwNWGHDhH6XNKmEU6dc3ejBE
- y7PAPYjEpXIUdVikfb3HMpQ+sWhTvD/NK7HCu4NZBCxSiMXFw10yvI7ZKmqKKqagrtJ/
- BSPg==
-X-Gm-Message-State: AFqh2kqP9fe1sIx/vV7OLpceLUanf3QAuDUQq/xGC7Q2akCc++DB2L91
- kI1CrQTHl2JlXVqB3dFOtZWiphzPBUTLvqZPe00ricZ0
-X-Google-Smtp-Source: AMrXdXv+v3CkNWXR4Wqfp2CWdSO06rVpcGMoqljuMkEEdxjGSROjglDXZm6H3BMlV/AKy0MaOpk96K/J5hJwyXwz4Sc=
-X-Received: by 2002:a05:6871:4410:b0:14c:6b59:b014 with SMTP id
- nd16-20020a056871441000b0014c6b59b014mr256710oab.96.1671657233732; Wed, 21
- Dec 2022 13:13:53 -0800 (PST)
-MIME-Version: 1.0
-References: <20221221152413.883409-1-michel@daenzer.net>
-In-Reply-To: <20221221152413.883409-1-michel@daenzer.net>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 21 Dec 2022 16:13:42 -0500
-Message-ID: <CADnq5_PyXw8XvmBLkXNZiNts6PY1qsdytasO1HuSGvNyvKoorw@mail.gmail.com>
-Subject: Re: [PATCH] Revert "drm/amd/display: Enable Freesync Video Mode by
- default"
-To: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>
+X-Greylist: delayed 2840 seconds by postgrey-1.36 at gabe;
+ Wed, 21 Dec 2022 21:59:58 UTC
+Received: from mout.web.de (mout.web.de [212.227.17.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 056AF10E429
+ for <amd-gfx@lists.freedesktop.org>; Wed, 21 Dec 2022 21:59:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de; s=s29768273;
+ t=1671659990; bh=9rewaK9ZAsG8JOUNoPV+KJ7eJcL5xQAqhOngCk7ongU=;
+ h=X-UI-Sender-Class:Subject:From:To:Cc:Date;
+ b=VEFWfjjsF8oWdtNXgF2fhgirPLJAUKaLVI2cNUMA8vWJIcfN2d1PlzSm7URYeieRf
+ Sy2eduyLELESUNfV2NXM4BWGi+VcB28QV04edBnYmq6GQazwOqw2N3C2aO916yNZUn
+ tfQiA0Sj/2DI4poP/fWFw/koP9/mIsfV7op7NLj4Z0V2s1PRmdvXD1XTVBwc3rR4S4
+ j++G0UKlxdtYXoOign8GtqNIuzu/Fs+vt/5ocfm0NiCav6NyrnrYbqRiG2UKoybuab
+ kiXEZBHhuGTt8FgJweW5p5s+FDZh0MdbQhGK8UarPgV24XKcyPgPQUQn8xTnmXaOho
+ MDTUYVq/xjOCg==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.0.101] ([176.198.191.160]) by smtp.web.de (mrweb106
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1M8Bw1-1pBhtF35Gt-005DCf; Wed, 21
+ Dec 2022 22:59:50 +0100
+Message-ID: <5689088a11f6b2f4b15cd09a73b09c1aeff9f878.camel@web.de>
+Subject: Re: [PATCH 10/13] drm/amdgpu: use scheduler depenencies for CS
+From: Bert Karwatzki <spasswolf@web.de>
+To: amd-gfx@lists.freedesktop.org
+Date: Wed, 21 Dec 2022 22:59:50 +0100
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.46.2-1 
+MIME-Version: 1.0
+X-Provags-ID: V03:K1:F1y42t6XhqjGF6ONGXTP090JLiZyxvLhs1d0jyTJIH3mJC3jYr0
+ gfG323sSuEuTEgbkjP1Lh59CeksPnsDIp1hrHeOwiqcjOLGN5JZu+BbM7fMpP8T37w9MSH1
+ bO3Tt2iEq8JxT+8Z6Wrqmb9p1AVulHfFUWcWWy0EHRX7KkhbcqX5xJhCgtu0tVc1YXJFCUR
+ TVKgahErSeWLLHtFapnYA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:m0HTN3iJP+Y=;FALBlE1EB+j6JW+GG5qOtc6Ksx4
+ qRetmv+a9TgbX2woKIF8I4ntytjSwqMsJ/en4w7etE2fxGKsIF5uLkPzgV7w7ImqUXp9APZe0
+ ex5PXxdVE3DJOESDWtWaC0n3XEuUI2ou6cs+XeNmEuh0OCTh+nKvfe+eMfuRaiT81WIS/xQU4
+ 37qw7cyhFLy6IEXsGNtwbXDzlEjFG/6l0PKDKnQaHkCrimppRDcLpZMJ+YljgwzgOVxfEfCq1
+ r/Szzs2tHkFi34x8Sxh1QAtpM8+g71bX0AUFbjVexUc288kOUyM6lStE7Q9jYdVN8iBynl+3M
+ /PQXLRrMe5F58hGE79Xg6AcKo1qw/YTMhDED2yushotqn+xylIUZAu8yBg/RFA7xTAuXHsboa
+ qdT2XK8XY0sdpSmRzYEVFL7x/zohJhBZwFQxtOi8GbaPm8UeJE3Axkq6sXMsaTt53rClizvfr
+ gcchlXUYxlJ7mWge5vDI0w7MB58h0MTgSDm93YT5CZPCk/rVhEi3jDbqGpeLhVTT77LBbNIzI
+ 9vQAvWhi3sQ81BPlCtF009ULOEBnFK1MaXmxY3MCIUv4hBQKbwsPqk5Q3qPExrjiCTIjTP9gq
+ ByY6XQnb//NIR9QadCTm40uU6isUr/2k4nG3KPuIE+hiEcfDpsD2vEPTUIR5a53lZniLT7URR
+ ufVDstPvWaRPeGxHcTAhWzCVkhvxfJQMUA1fsXi3mwkKBJO6IAs7kFAxsqh1jqse9awL7F/oa
+ FP6rj7T+27Zs40vaIFrOKNUchZxMid8MuY11pE7QmNVHK3C9tghkOyxvMRbGNK64/mAIp2xSS
+ T+yXlotdCC8KEI0wUoqAFBS9TCbvHuMTC71QzvMldDuDu9oEBTLk1361K0S0l0kk6Z8AHa2U1
+ SZE1NZt+PDMDGWVrRfqcK7093VweE74nH6j+oRmLUkC0Q1ri2tLHOjp0hZn1KXcrWZCRabMtH
+ V/7PM3EQ04lxGQhj0IcW1J5CZX8=
+X-Mailman-Approved-At: Thu, 22 Dec 2022 14:51:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,174 +68,32 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- amd-gfx@lists.freedesktop.org, Solomon Chiu <solomon.chiu@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Mike Lothian <mike@fireburn.co.uk>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Applied.  Thanks!
+Q2FuIHlvdSB0ZXN0IGlmIHRoaXMgc29sdmVzIHRoZSBmcmVlemVzOgpkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X29iamVjdC5jCmIvZHJpdmVycy9ncHUvZHJt
+L2FtZC9hbWRncHUvYW1kZ3B1X29iamVjdC5jCmluZGV4IDkxOWJiZWEyZTNhYy4uNGU2ODRjMmFm
+YzcwIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfb2JqZWN0
+LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X29iamVjdC5jCkBAIC0x
+NTA2LDcgKzE1MDksOCBAQCB1NjQgYW1kZ3B1X2JvX2dwdV9vZmZzZXRfbm9fY2hlY2soc3RydWN0
+CmFtZGdwdV9ibyAqYm8pCsKgdWludDMyX3QgYW1kZ3B1X2JvX2dldF9wcmVmZXJyZWRfZG9tYWlu
+KHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2LArCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCB1aW50MzJfdCBkb21haW4pCsKgewotwqDCoMKgwqDCoMKgwqBpZiAoZG9tYWluID09IChBTURH
+UFVfR0VNX0RPTUFJTl9WUkFNIHwKQU1ER1BVX0dFTV9ET01BSU5fR1RUKSkgeworwqDCoMKgwqDC
+oMKgwqBpZiAoKGRvbWFpbiA9PSAoQU1ER1BVX0dFTV9ET01BSU5fVlJBTSB8CkFNREdQVV9HRU1f
+RE9NQUlOX0dUVCkpICYmCivCoMKgwqDCoMKgwqDCoMKgwqDCoCAoKGFkZXYtPmFzaWNfdHlwZSA9
+PSBDSElQX0NBUlJJWk8pIHx8IChhZGV2LT5hc2ljX3R5cGUgPT0KQ0hJUF9TVE9ORVkpKSkgewrC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGRvbWFpbiA9IEFNREdQVV9HRU1fRE9NQUlO
+X1ZSQU07CsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaWYgKGFkZXYtPmdtYy5yZWFs
+X3ZyYW1fc2l6ZSA8PSBBTURHUFVfU0dfVEhSRVNIT0xEKQrCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBkb21haW4gPSBBTURHUFVfR0VNX0RPTUFJTl9HVFQ7
+CsKgCgpUaGlzIHNvbHZlcyBhIGxvdCBvZiBzZWVtaW5nbHkgdW5yZWxhdGVkIGVycm9yczoKaHR0
+cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9hbWQvLS9pc3N1ZXMvMjI1NQpodHRwczov
+L2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2FtZC8tL2lzc3Vlcy8yMjcwCmh0dHBzOi8vZ2l0
+bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vYW1kLy0vaXNzdWVzLzIyODEKaHR0cHM6Ly9naXRsYWIu
+ZnJlZWRlc2t0b3Aub3JnL2RybS9hbWQvLS9pc3N1ZXMvMjI4MgpodHRwczovL2dpdGxhYi5mcmVl
+ZGVza3RvcC5vcmcvZHJtL2FtZC8tL2lzc3Vlcy8yMjkxCgpCZXJ0IEthcndhdHpraQoK
 
-Alex
-
-On Wed, Dec 21, 2022 at 10:24 AM Michel D=C3=A4nzer <michel@daenzer.net> wr=
-ote:
->
-> From: Michel D=C3=A4nzer <mdaenzer@redhat.com>
->
-> This reverts commit de05abe6b9d0fe08f65d744f7f75a4cba4df27ad.
->
-> The bug referenced below was bisected to this commit. There has been no
-> activity toward fixing it in 3 months, so let's revert for now.
->
-> Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/2162
-> Signed-off-by: Michel D=C3=A4nzer <mdaenzer@redhat.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  1 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       | 27 +++++++++++++++++++
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 12 +++++----
->  3 files changed, 35 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/am=
-dgpu/amdgpu.h
-> index 6b74df446694..e3e2e6e3b485 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> @@ -195,6 +195,7 @@ extern int amdgpu_emu_mode;
->  extern uint amdgpu_smu_memory_pool_size;
->  extern int amdgpu_smu_pptable_id;
->  extern uint amdgpu_dc_feature_mask;
-> +extern uint amdgpu_freesync_vid_mode;
->  extern uint amdgpu_dc_debug_mask;
->  extern uint amdgpu_dc_visual_confirm;
->  extern uint amdgpu_dm_abm_level;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_drv.c
-> index b4f2d61ea0d5..1353ffd08988 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> @@ -181,6 +181,7 @@ int amdgpu_mes_kiq;
->  int amdgpu_noretry =3D -1;
->  int amdgpu_force_asic_type =3D -1;
->  int amdgpu_tmz =3D -1; /* auto */
-> +uint amdgpu_freesync_vid_mode;
->  int amdgpu_reset_method =3D -1; /* auto */
->  int amdgpu_num_kcq =3D -1;
->  int amdgpu_smartshift_bias;
-> @@ -879,6 +880,32 @@ module_param_named(backlight, amdgpu_backlight, bint=
-, 0444);
->  MODULE_PARM_DESC(tmz, "Enable TMZ feature (-1 =3D auto (default), 0 =3D =
-off, 1 =3D on)");
->  module_param_named(tmz, amdgpu_tmz, int, 0444);
->
-> +/**
-> + * DOC: freesync_video (uint)
-> + * Enable the optimization to adjust front porch timing to achieve seaml=
-ess
-> + * mode change experience when setting a freesync supported mode for whi=
-ch full
-> + * modeset is not needed.
-> + *
-> + * The Display Core will add a set of modes derived from the base FreeSy=
-nc
-> + * video mode into the corresponding connector's mode list based on comm=
-only
-> + * used refresh rates and VRR range of the connected display, when users=
- enable
-> + * this feature. From the userspace perspective, they can see a seamless=
- mode
-> + * change experience when the change between different refresh rates und=
-er the
-> + * same resolution. Additionally, userspace applications such as Video p=
-layback
-> + * can read this modeset list and change the refresh rate based on the v=
-ideo
-> + * frame rate. Finally, the userspace can also derive an appropriate mod=
-e for a
-> + * particular refresh rate based on the FreeSync Mode and add it to the
-> + * connector's mode list.
-> + *
-> + * Note: This is an experimental feature.
-> + *
-> + * The default value: 0 (off).
-> + */
-> +MODULE_PARM_DESC(
-> +       freesync_video,
-> +       "Enable freesync modesetting optimization feature (0 =3D off (def=
-ault), 1 =3D on)");
-> +module_param_named(freesync_video, amdgpu_freesync_vid_mode, uint, 0444)=
-;
-> +
->  /**
->   * DOC: reset_method (int)
->   * GPU reset method (-1 =3D auto (default), 0 =3D legacy, 1 =3D mode0, 2=
- =3D mode1, 3 =3D mode2, 4 =3D baco)
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/=
-gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index 50c783e19f5a..c9dff07127d9 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -5831,7 +5831,8 @@ create_stream_for_sink(struct amdgpu_dm_connector *=
-aconnector,
->                  */
->                 DRM_DEBUG_DRIVER("No preferred mode found\n");
->         } else {
-> -               recalculate_timing =3D is_freesync_video_mode(&mode, acon=
-nector);
-> +               recalculate_timing =3D amdgpu_freesync_vid_mode &&
-> +                                is_freesync_video_mode(&mode, aconnector=
-);
->                 if (recalculate_timing) {
->                         freesync_mode =3D get_highest_refresh_rate_mode(a=
-connector, false);
->                         drm_mode_copy(&saved_mode, &mode);
-> @@ -6982,7 +6983,7 @@ static void amdgpu_dm_connector_add_freesync_modes(=
-struct drm_connector *connect
->         struct amdgpu_dm_connector *amdgpu_dm_connector =3D
->                 to_amdgpu_dm_connector(connector);
->
-> -       if (!edid)
-> +       if (!(amdgpu_freesync_vid_mode && edid))
->                 return;
->
->         if (amdgpu_dm_connector->max_vfreq - amdgpu_dm_connector->min_vfr=
-eq > 10)
-> @@ -8846,7 +8847,8 @@ static int dm_update_crtc_state(struct amdgpu_displ=
-ay_manager *dm,
->                  * TODO: Refactor this function to allow this check to wo=
-rk
->                  * in all conditions.
->                  */
-> -               if (dm_new_crtc_state->stream &&
-> +               if (amdgpu_freesync_vid_mode &&
-> +                   dm_new_crtc_state->stream &&
->                     is_timing_unchanged_for_freesync(new_crtc_state, old_=
-crtc_state))
->                         goto skip_modeset;
->
-> @@ -8881,7 +8883,7 @@ static int dm_update_crtc_state(struct amdgpu_displ=
-ay_manager *dm,
->                 if (!dm_old_crtc_state->stream)
->                         goto skip_modeset;
->
-> -               if (dm_new_crtc_state->stream &&
-> +               if (amdgpu_freesync_vid_mode && dm_new_crtc_state->stream=
- &&
->                     is_timing_unchanged_for_freesync(new_crtc_state,
->                                                      old_crtc_state)) {
->                         new_crtc_state->mode_changed =3D false;
-> @@ -8893,7 +8895,7 @@ static int dm_update_crtc_state(struct amdgpu_displ=
-ay_manager *dm,
->                         set_freesync_fixed_config(dm_new_crtc_state);
->
->                         goto skip_modeset;
-> -               } else if (aconnector &&
-> +               } else if (amdgpu_freesync_vid_mode && aconnector &&
->                            is_freesync_video_mode(&new_crtc_state->mode,
->                                                   aconnector)) {
->                         struct drm_display_mode *high_mode;
-> --
-> 2.38.1
->
