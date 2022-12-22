@@ -2,63 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A37E655151
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 Dec 2022 15:24:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51D786546C6
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Dec 2022 20:42:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0370F10E665;
-	Fri, 23 Dec 2022 14:23:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2A1110E564;
+	Thu, 22 Dec 2022 19:42:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com
- [IPv6:2a00:1450:4864:20::32b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9785710E559;
- Thu, 22 Dec 2022 18:53:26 +0000 (UTC)
-Received: by mail-wm1-x32b.google.com with SMTP id
- ay2-20020a05600c1e0200b003d22e3e796dso1999227wmb.0; 
- Thu, 22 Dec 2022 10:53:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
- :to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=mZRm9urdOthWqTYxAw02fxkoMKYNKeTirXSn3tbLtpc=;
- b=DqydNKpoK6xZ9NSkK2c/6XM/aLr5fmVcnfv97GPGX4t5d7SoTa1+Vj7MbKtmyUz2kG
- wEZv9euJIhxdwnS5KDjjxd7WRLWoknTnb7dET+eUcY2RTZ3kIF3m+H4D2G5Ky0PknVfL
- Pb9zTvvYizHD2gGeZwV1XN15iZSqKwdQAZZQMkQzluqK20AayXQfNV9HR5CljPueba3M
- c5JXXjGBW71+n2yDA7hqZ74NPrTba2GW9H8fRTM2AVHcN4M9Zcp/XU5uf5DrmEdLdUwc
- uweuf1M7V6MRMRcExOe2U6+80LMwxr2u7ZMnirQicpzKUo+UtZU0ibU3OTdmV9HcNAjU
- eKCg==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19EBD10E564
+ for <amd-gfx@lists.freedesktop.org>; Thu, 22 Dec 2022 19:42:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1671738126;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=c6opeyDV1vvYEXPZl4nDcDDesr0ymBrUc8eK9By1AXY=;
+ b=BiztlWglow8mY+dKSlIFW/yAYPI07bA7CRMuovMKxHGHfa0I5xVs12ctageipRBL9Crrlh
+ mN41NAP1j+TS9N3v0L/HCNprDvndhqJ0Hr2JP1qAqWr4Oh8tQgMJduCf9eDta8y/b5wjaA
+ oIn0XGLV8Lyc4LkydNF0BY7SpvTDV88=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-134-EwbYRKv-P3iEmbjRDB1TMA-1; Thu, 22 Dec 2022 14:42:02 -0500
+X-MC-Unique: EwbYRKv-P3iEmbjRDB1TMA-1
+Received: by mail-wm1-f70.google.com with SMTP id
+ i132-20020a1c3b8a000000b003d0f49bc21bso2723613wma.6
+ for <amd-gfx@lists.freedesktop.org>; Thu, 22 Dec 2022 11:42:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
- :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=mZRm9urdOthWqTYxAw02fxkoMKYNKeTirXSn3tbLtpc=;
- b=xpa6+7hlkTKNe+L8m1wM53TvjqBNERqPKnNnbK1eQl1AWyldJG5znsDFNHjTk+Bxcq
- sb0WHin8vqR9doMvZDSy8ze7o+g3xY7BlD/+5st6Zq5afCFYRSPj7PlrVfIkfmhR2kcO
- O81TjUZcrM1/0fniR2R/qohAslf0l3NyjsSwCAuDPKgJl5FhmHTDDQl8dcsSwvKDrRdD
- uvWwc5SX1ciozIPfiE1QaePG7PTsgpv/iYEb6LWbUuYoxV+g6U3Hvch+v1aIkmk7QZao
- 0QSe3I54T+R7NUDmPaHM3vWJw4odVVWxDXMfvUwvJETeHaUMaFtcNX1CXTxYhB/xw58f
- BYPg==
-X-Gm-Message-State: AFqh2kovhb581eBgUTQXtFDfzmtQizDw3Ex5HNA6wK0MaPWOroGh31lK
- aU6m67lbCDkBwxarKQn3nnI=
-X-Google-Smtp-Source: AMrXdXsiZnZT37+W2XIO83aQjb+0JFc6XJ5Ad9sd0DAmV5sXvHfzSlJOJgF0vWfO7rAT6BENa8pdNQ==
-X-Received: by 2002:a05:600c:15d4:b0:3d1:d746:d95b with SMTP id
- v20-20020a05600c15d400b003d1d746d95bmr7888624wmf.41.1671735205373; 
- Thu, 22 Dec 2022 10:53:25 -0800 (PST)
-Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
- a6-20020adff7c6000000b002421db5f279sm1163666wrq.78.2022.12.22.10.53.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 22 Dec 2022 10:53:24 -0800 (PST)
-Date: Thu, 22 Dec 2022 21:53:20 +0300
-From: Dan Carpenter <error27@gmail.com>
-To: oe-kbuild@lists.linux.dev, xinhui pan <xinhui.pan@amd.com>,
- amd-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v6] drm: Optimise for continuous memory allocation
-Message-ID: <202212222042.6Dhv6XWG-lkp@intel.com>
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=c6opeyDV1vvYEXPZl4nDcDDesr0ymBrUc8eK9By1AXY=;
+ b=nF6tmWX3x+KIuVTl1oMOJV/jXxbznx9h/UPAFi66u5coI55vZy0bV3jHLSegclUwaT
+ xRCLoGqNPDJNe0iPXCwnZgTel8zRkrEEHLQTa69xgECM2RtzbiQo8rJIxE4njv26g7D5
+ +wTjc2oiGHn9R272Y9sf1QlBPSXMF/8uez2tgrmZ621puXah/3r7Chz7yFaMHQPd1EX+
+ hy/KBRl4LWEdzSkdsqFa08vIUBBE4G6MkXeG7D3aqWuFKFkqFovwACl6QlFyRMKnQzow
+ JNMVAO/WpAE49RLd/7RK5sJhwMmON5MZnacFRwxgrYOjHX62nGpvh0+cn0bo1ChH9usz
+ hcDw==
+X-Gm-Message-State: AFqh2kqON0cfw5j9xz/k//Y8rMhWrCCRU2zlHlnfJI3qWYP4pXCVjgxK
+ 4FtRAjUaHTeJePBpK2aqgGMYGOCBrAgEBiRNB3Kb3U+tS1L4fxIl1l0haqpDaW+YB4yl+5pcwiN
+ SKdBaZeSxoGR65VbGkOnOw5Tk1Q==
+X-Received: by 2002:a1c:770b:0:b0:3cf:a18d:399c with SMTP id
+ t11-20020a1c770b000000b003cfa18d399cmr5474542wmi.1.1671738121090; 
+ Thu, 22 Dec 2022 11:42:01 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXua2pBCLdIUTK2il3tyI+qb37XQYcbG9+c/wf8ZI9xsGdWo4nMVaeXno0nD2PPtp5ugEfOmfA==
+X-Received: by 2002:a1c:770b:0:b0:3cf:a18d:399c with SMTP id
+ t11-20020a1c770b000000b003cfa18d399cmr5474531wmi.1.1671738120918; 
+ Thu, 22 Dec 2022 11:42:00 -0800 (PST)
+Received: from [192.168.1.130] (205.pool92-176-231.dynamic.orange.es.
+ [92.176.231.205]) by smtp.gmail.com with ESMTPSA id
+ 6-20020a05600c024600b003cfd0bd8c0asm1820428wmj.30.2022.12.22.11.41.59
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 22 Dec 2022 11:42:00 -0800 (PST)
+Message-ID: <a8a6a28a-2d24-8a85-d87a-1289b9eb26a7@redhat.com>
+Date: Thu, 22 Dec 2022 20:41:59 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221218065708.93332-1-xinhui.pan@amd.com>
-X-Mailman-Approved-At: Fri, 23 Dec 2022 14:23:33 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH 0/2] Recover from failure to probe GPU
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, linux-efi@vger.kernel.org,
+ Thomas Zimmermann <tzimmermann@suse.de>
+References: <20221222183012.1046-1-mario.limonciello@amd.com>
+From: Javier Martinez Canillas <javierm@redhat.com>
+In-Reply-To: <20221222183012.1046-1-mario.limonciello@amd.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,89 +86,92 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lkp@intel.com, arunpravin.paneerselvam@amd.com,
- intel-gfx@lists.freedesktop.org, xinhui pan <xinhui.pan@amd.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- matthew.auld@intel.com, daniel@ffwll.ch, oe-kbuild-all@lists.linux.dev,
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Carlos Soriano Sanchez <csoriano@redhat.com>, David Airlie <airlied@gmail.com>,
  christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi xinhui,
+[adding Thomas Zimmermann to CC list]
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Hello Mario,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/xinhui-pan/drm-Optimise-for-continuous-memory-allocation/20221218-145922
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20221218065708.93332-1-xinhui.pan%40amd.com
-patch subject: [PATCH v6] drm: Optimise for continuous memory allocation
-config: s390-randconfig-m041-20221218
-compiler: s390-linux-gcc (GCC) 12.1.0
+Interesting case.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <error27@gmail.com>
+On 12/22/22 19:30, Mario Limonciello wrote:
+> One of the first thing that KMS drivers do during initialization is
+> destroy the system firmware framebuffer by means of
+> `drm_aperture_remove_conflicting_pci_framebuffers`
+>
 
-smatch warnings:
-drivers/gpu/drm/drm_buddy.c:501 find_continuous_blocks() error: uninitialized symbol 'block'.
+The reason why that's done at the very beginning is that there are no
+guarantees that the firmware-provided framebuffer would keep working
+after the real display controller driver re-initializes the IP block.
 
-vim +/block +501 drivers/gpu/drm/drm_buddy.c
+> This means that if for any reason the GPU failed to probe the user
+> will be stuck with at best a screen frozen at the last thing that
+> was shown before the KMS driver continued it's probe.
+>
+> The problem is most pronounced when new GPU support is introduced
+> because users will need to have a recent linux-firmware snapshot
+> on their system when they boot a kernel with matching support.
+>
 
-8a257b57bc11a2 xinhui pan 2022-12-18  472  static struct drm_buddy_block *
-8a257b57bc11a2 xinhui pan 2022-12-18  473  find_continuous_blocks(struct drm_buddy *mm,
-8a257b57bc11a2 xinhui pan 2022-12-18  474  		       int order,
-8a257b57bc11a2 xinhui pan 2022-12-18  475  		       unsigned long flags,
-8a257b57bc11a2 xinhui pan 2022-12-18  476  		       struct drm_buddy_block **lb)
-8a257b57bc11a2 xinhui pan 2022-12-18  477  {
-8a257b57bc11a2 xinhui pan 2022-12-18  478  	struct list_head *head = &mm->free_list[order - 1];
-8a257b57bc11a2 xinhui pan 2022-12-18  479  	struct drm_buddy_block *free_block, *first = NULL, *last = NULL;
-8a257b57bc11a2 xinhui pan 2022-12-18  480  
-8a257b57bc11a2 xinhui pan 2022-12-18  481  	/*
-8a257b57bc11a2 xinhui pan 2022-12-18  482  	 * Look for continuous free memory in buddy and buddy-in-law.
-8a257b57bc11a2 xinhui pan 2022-12-18  483  	 * IOW, the most left blocks at right of free block and the most right
-8a257b57bc11a2 xinhui pan 2022-12-18  484  	 * blocks at left of free block.
-8a257b57bc11a2 xinhui pan 2022-12-18  485  	 */
-8a257b57bc11a2 xinhui pan 2022-12-18  486  
-8a257b57bc11a2 xinhui pan 2022-12-18  487  	list_for_each_entry(free_block, head, link) {
-8a257b57bc11a2 xinhui pan 2022-12-18  488  		struct drm_buddy_block *buddy, *parent, *block;
-8a257b57bc11a2 xinhui pan 2022-12-18  489  		int left, min_order = 0;
-8a257b57bc11a2 xinhui pan 2022-12-18  490  		LIST_HEAD(fbl);
-8a257b57bc11a2 xinhui pan 2022-12-18  491  
-8a257b57bc11a2 xinhui pan 2022-12-18  492  		parent = free_block->parent;
-8a257b57bc11a2 xinhui pan 2022-12-18  493  		if (!parent)
-8a257b57bc11a2 xinhui pan 2022-12-18  494  			continue;
-8a257b57bc11a2 xinhui pan 2022-12-18  495  
-8a257b57bc11a2 xinhui pan 2022-12-18  496  		left = parent->left == free_block;
-8a257b57bc11a2 xinhui pan 2022-12-18  497  		list_add(&free_block->tmp_link, &fbl);
-8a257b57bc11a2 xinhui pan 2022-12-18  498  		buddy = __get_buddy(free_block);
-8a257b57bc11a2 xinhui pan 2022-12-18  499  		__continuous_block_in_tree(buddy, &fbl, left, min_order);
-8a257b57bc11a2 xinhui pan 2022-12-18  500  
-8a257b57bc11a2 xinhui pan 2022-12-18 @501  		while (parent && !((parent->left == block) ^ left)) {
-                                                                                            ^^^^^
-Not initialized on first iteration.
+Right. That's a problem indeed but as mentioned there's a gap between
+the firmware-provided framebuffer is removed and the real driver sets
+up its framebuffer.
+ 
+> However the problem is further exaggerated in the case of amdgpu because
+> it has migrated to "IP discovery" where amdgpu will attempt to load
+> on "ALL" AMD GPUs even if the driver is missing support for IP blocks
+> contained in that GPU.
+> 
+> IP discovery requires some probing and isn't run until after the
+> framebuffer has been destroyed.
+>
+> This means a situation can occur where a user purchases a new GPU not
+> yet supported by a distribution and when booting the installer it will
+> "freeze" even if the distribution doesn't have the matching kernel support
+> for those IP blocks.
+> 
+> The perfect example of this is Ubuntu 21.10 and the new dGPUs just
+> launched by AMD.  The installation media ships with kernel 5.19 (which
+> has IP discovery) but the amdgpu support for those IP blocks landed in
+> kernel 6.0. The matching linux-firmware was released after 21.10's launch.
+> The screen will freeze without nomodeset. Even if a user manages to install
+> and then upgrades to kernel 6.0 after install they'll still have the
+> problem of missing firmware, and the same experience.
+> 
+> This is quite jarring for users, particularly if they don't know
+> that they have to use "nomodeset" to install.
+>
 
-8a257b57bc11a2 xinhui pan 2022-12-18  502  			block = parent;
-8a257b57bc11a2 xinhui pan 2022-12-18  503  			parent = parent->parent;
-8a257b57bc11a2 xinhui pan 2022-12-18  504  		}
-8a257b57bc11a2 xinhui pan 2022-12-18  505  
-8a257b57bc11a2 xinhui pan 2022-12-18  506  		if (!parent)
-8a257b57bc11a2 xinhui pan 2022-12-18  507  			continue;
-8a257b57bc11a2 xinhui pan 2022-12-18  508  
-8a257b57bc11a2 xinhui pan 2022-12-18  509  		buddy = __get_buddy(block);
-8a257b57bc11a2 xinhui pan 2022-12-18  510  		__continuous_block_in_tree(buddy, &fbl, !left, min_order);
-8a257b57bc11a2 xinhui pan 2022-12-18  511  
-8a257b57bc11a2 xinhui pan 2022-12-18  512  		/* list head of fbl is invalid outside.
-8a257b57bc11a2 xinhui pan 2022-12-18  513  		 * Walk through list from first fo last only.
-8a257b57bc11a2 xinhui pan 2022-12-18  514  		 */
-8a257b57bc11a2 xinhui pan 2022-12-18  515  		if (__free_block_in_order(&fbl, free_block, order, &first, &last))
-8a257b57bc11a2 xinhui pan 2022-12-18  516  			break;
-8a257b57bc11a2 xinhui pan 2022-12-18  517  	}
-8a257b57bc11a2 xinhui pan 2022-12-18  518  
-8a257b57bc11a2 xinhui pan 2022-12-18  519  	*lb = last;
-8a257b57bc11a2 xinhui pan 2022-12-18  520  	return first;
-8a257b57bc11a2 xinhui pan 2022-12-18  521  }
+I'm not familiar with AMD GPUs, but could be possible that this discovery
+and firmware loading step be done at the beginning before the firmware FB
+is removed ? That way the FB removal will not happen unless that succeeds.
+ 
+> To help the situation, allow drivers to re-run the init process for the
+> firmware framebuffer during a failed probe. As this problem is most
+> pronounced with amdgpu, this is the only driver changed.
+> 
+> But if this makes sense more generally for other KMS drivers, the call
+> can be added to the cleanup routine for those too.
+> 
+
+The problem I see is that depending on how far the driver's probe function
+went, there may not be possible to re-run the init process. Since firmware
+provided framebuffer may already been destroyed or the IP block just be in
+a half initialized state.
+
+I'm not against this series if it solves the issue in practice for amdgpu,
+but don't think is a general solution and would like to know Thomas' opinion
+on this before as well.
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
