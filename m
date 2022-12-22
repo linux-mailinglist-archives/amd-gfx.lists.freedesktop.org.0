@@ -2,48 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE067654363
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Dec 2022 15:52:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AB9D65454E
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Dec 2022 17:43:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44B0110E51B;
-	Thu, 22 Dec 2022 14:51:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E577A10E548;
+	Thu, 22 Dec 2022 16:42:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 1161 seconds by postgrey-1.36 at gabe;
- Thu, 22 Dec 2022 12:50:36 UTC
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
- [80.237.130.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B797810E11C
- for <amd-gfx@lists.freedesktop.org>; Thu, 22 Dec 2022 12:50:36 +0000 (UTC)
-Received: from [2a02:8108:963f:de38:eca4:7d19:f9a2:22c5]; authenticated
- by wp530.webpack.hosteurope.de running ExIM with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- id 1p8KjA-0002nv-4B; Thu, 22 Dec 2022 13:31:12 +0100
-Message-ID: <28c5c38b-de13-b2b5-0ffa-8a08d96391df@leemhuis.info>
-Date: Thu, 22 Dec 2022 13:31:11 +0100
+Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com
+ [209.85.219.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62C7810E548
+ for <amd-gfx@lists.freedesktop.org>; Thu, 22 Dec 2022 16:42:52 +0000 (UTC)
+Received: by mail-qv1-f48.google.com with SMTP id i12so1585414qvs.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 22 Dec 2022 08:42:52 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=fSG4zYUj7P9Kgd+tx/TGwxdJYqamamppxaq2ATrBM24=;
+ b=tskY0afMqyoAlQp8pAnMs6HHKmix9s1o0eOdbvjCHz/ytQqA1f5RFu532kn+i+UQHZ
+ L3XrHDehDYTxRI9EqhGVSK7p8GHFndqE9iAhtSf6WsxEi/4Hzqg/rghMQfbApzFx8hmu
+ lK8U4Wknlzl2tDrxaDNJABemIfq4kxm5IFL+DvjbeoMiJqOivYDpSl9jRXXPRZWDoGpy
+ 3pkKBmiOhquH16cN2Etks+AfSb5ATGRmon0+UgGomWlIF41UQm95iluqwu3E//o3zuGH
+ BOxoAYJt1Zw2SMXD/LyUxoE3irdiviayOyyjgFxsmHCfAqAvOIsrNW9pQFeDDsyv3pdk
+ Kt6g==
+X-Gm-Message-State: AFqh2koEmYRbEPwBEorE+satvO5fqqvD9PkrtnVTTnBWdBUSSZB74yPZ
+ /rA3utrElRN1Rd+2GghUQsoAnvNtI70WCQvsVxQ=
+X-Google-Smtp-Source: AMrXdXsZFdpO33sUccLBgM5DQFt0F7BiKU2fEqrR0SD5IJsittclD8nA5IuXCdJ3dQ7XhNJeW4xjYbPfDTTeKPBigjQ=
+X-Received: by 2002:a0c:c345:0:b0:4c7:27cf:dfca with SMTP id
+ j5-20020a0cc345000000b004c727cfdfcamr270636qvi.3.1671727371530; Thu, 22 Dec
+ 2022 08:42:51 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [6.2][regression] looks like commit
- aab9cf7b6954136f4339136a1a7fc0602a2c4d8b leads to use-after-free and random
- computer hangs
-Content-Language: en-US, de-DE
-To: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <Christian.Koenig@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Linux List Kernel Mailing <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, luben.tuikov@amd.com,
- "regressions@lists.linux.dev" <regressions@lists.linux.dev>
-References: <CABXGCsNryN9Koz48DiSTPwTBSOKo0U0B3PnW3+gEf2B8n8u0GA@mail.gmail.com>
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-In-Reply-To: <CABXGCsNryN9Koz48DiSTPwTBSOKo0U0B3PnW3+gEf2B8n8u0GA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1671713436;
- 0b60710d; 
-X-HE-SMSGID: 1p8KjA-0002nv-4B
-X-Mailman-Approved-At: Thu, 22 Dec 2022 14:51:39 +0000
+References: <20221208164207.13518-1-mario.limonciello@amd.com>
+ <MN0PR12MB61014F8D6D5B04B90997480DE2E19@MN0PR12MB6101.namprd12.prod.outlook.com>
+ <CAJZ5v0hm00E4xNC6r9MieOTFtdchQHj9k8a34fk-0Oi6UzwLQA@mail.gmail.com>
+In-Reply-To: <CAJZ5v0hm00E4xNC6r9MieOTFtdchQHj9k8a34fk-0Oi6UzwLQA@mail.gmail.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Thu, 22 Dec 2022 17:42:40 +0100
+Message-ID: <CAJZ5v0g8eF5B1D0qUGMXeSuMBenCJ4NixHALPpxS_xc+B5z89w@mail.gmail.com>
+Subject: Re: [PATCH v3 0/3] Adjust ACPI video detection fallback path
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,42 +55,92 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Dadap <ddadap@nvidia.com>,
+ "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Hans de Goede <hdegoede@redhat.com>, "Limonciello,
+ Mario" <Mario.Limonciello@amd.com>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi, this is your Linux kernel regression tracker.
-
-On 18.12.22 14:28, Mikhail Gavrilov wrote:
+On Thu, Dec 15, 2022 at 8:38 PM Rafael J. Wysocki <rafael@kernel.org> wrote:
 >
-> The kernel 6.2 preparation cycle has begun.
-> And after the kernel was updated on my Fedora Rawhide I started
-> receiving use-after-free errors with complete computer hangs.
-> At least a good reproducer of this behaviour is launch of the game
-> "Marvel's Avengers".
-> 
-> The backtrace of the issue looks like:
-> [...]
+> On Thu, Dec 15, 2022 at 8:20 PM Limonciello, Mario
+> <Mario.Limonciello@amd.com> wrote:
+> >
+> > [Public]
+> >
+> > > -----Original Message-----
+> > > From: Limonciello, Mario <Mario.Limonciello@amd.com>
+> > > Sent: Thursday, December 8, 2022 10:42
+> > > To: Rafael J . Wysocki <rafael@kernel.org>; Deucher, Alexander
+> > > <Alexander.Deucher@amd.com>; Hans de Goede
+> > > <hdegoede@redhat.com>
+> > > Cc: amd-gfx@lists.freedesktop.org; linux-acpi@vger.kernel.org; Daniel
+> > > Dadap <ddadap@nvidia.com>; Limonciello, Mario
+> > > <Mario.Limonciello@amd.com>
+> > > Subject: [PATCH v3 0/3] Adjust ACPI video detection fallback path
+> > >
+> > > In kernel 6.1 the backlight registration code was overhauled so that
+> > > at most one backlight device got registered. As part of this change
+> > > there was code added to still allow making an acpi_video0 device if the
+> > > BIOS contained backlight control methods but no native or vendor drivers
+> > > registered.
+> > >
+> > > Even after the overhaul this fallback logic is failing on the BIOS from
+> > > a number of motherboard manufacturers supporting Ryzen APUs.
+> > > What happens is the amdgpu driver finishes registration and as expected
+> > > doesn't create a backlight control device since no eDP panels are connected
+> > > to a desktop.
+> > >
+> > > Then 8 seconds later the ACPI video detection code creates an
+> > > acpi_video0 device that is non-operational. GNOME then creates a
+> > > backlight slider.
+> > >
+> > > To avoid this situation from happening make two sets of changes:
+> > >
+> > > Prevent desktop problems w/ fallback logic
+> > > ------------------------------------------
+> > > 1) Add support for the video detect code to let native drivers cancel the
+> > > fallback logic if they didn't find a panel.
+> > >
+> > > This is done this way so that if another driver decides that the ACPI
+> > > mechanism is still needed it can instead directly call the registration
+> > > function.
+> > >
+> > > 2) Add code to amdgpu to notify the ACPI video detection code that no panel
+> > > was detected on an APU.
+> > >
+> > > Disable fallback logic by default
+> > > ---------------------------------
+> > > This fallback logic was introduced to prevent regressions in the backlight
+> > > overhaul.  As it has been deemed unnecessary by Hans explicitly disable the
+> > > timeout.  If this turns out to be mistake and this part is reverted, the
+> > > other patches for preventing desktop problems will avoid regressions on
+> > > desktops.
+> > >
+> > > Mario Limonciello (3):
+> > >   ACPI: video: Allow GPU drivers to report no panels
+> > >   drm/amd/display: Report to ACPI video if no panels were found
+> > >   ACPI: video: Don't enable fallback path for creating ACPI backlight by
+> > >     default
+> > >
+> > >  drivers/acpi/acpi_video.c                       | 17 ++++++++++++-----
+> > >  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c   |  4 ++++
+> > >  include/acpi/video.h                            |  2 ++
+> > >  3 files changed, 18 insertions(+), 5 deletions(-)
+> > >
+> > > --
+> > > 2.34.1
+> >
+> > FYI, besides me, this series also tested successfully by one of the
+> > reporters to the Red Hat bugzilla.
+> >
+> > https://bugzilla.redhat.com/show_bug.cgi?id=1783786#c8
+>
+> Thanks for letting me know!
+>
+> I'll queue it up for 6.2-rc next week.
 
-Thx for your report. I'm not one of the developers for this area of the
-kernel, but to my untrained eyes it looks like this patch might fix your
-problem:
-
-https://lore.kernel.org/all/20221219104718.21677-1-christian.koenig@amd.com/
-
-Anyway, to be sure the issue doesn't fall through the cracks unnoticed,
-I'm adding it to regzbot, my Linux kernel regression tracking bot:
-
-#regzbot ^introduced aab9cf7b695413
-#regzbot title drm: amdgpu: use-after-free and random computer hangs
-#regzbot monitor:
-https://lore.kernel.org/all/20221219104718.21677-1-christian.koenig@amd.com/
-#regzbot fix: drm/amdgpu: grab extra fence reference for
-drm_sched_job_add_dependency
-#regzbot ignore-activity
-
-Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
-
-P.S.: As the Linux kernel's regression tracker I deal with a lot of
-reports and sometimes miss something important when writing mails like
-this. If that's the case here, don't hesitate to tell me in a public
-reply, it's in everyone's interest to set the public record straight.
+Done now, thanks!
