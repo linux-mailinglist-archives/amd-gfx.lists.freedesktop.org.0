@@ -2,47 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3EC8655152
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 Dec 2022 15:24:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0D38655153
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Dec 2022 15:24:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D31B810E65B;
-	Fri, 23 Dec 2022 14:23:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8093110E667;
+	Fri, 23 Dec 2022 14:23:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mailgw.kylinos.cn (unknown [124.126.103.232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0592210E632;
- Fri, 23 Dec 2022 09:29:18 +0000 (UTC)
-X-UUID: 7d4311e6ee30446498370e3383998856-20221223
-X-CPASD-INFO: 52648073b6d0463481704968378616f7@foJwVGViZWOOVqZ8g3l-blhiZ2BkZVa
- HdXFYZl9mkleVhH5xTV5nX1V9gnNXZF5dXFV3dnBQYmBhXVJ3i3-XblBgXoZgUZB3hHRwVGheZw==
-X-CLOUD-ID: 52648073b6d0463481704968378616f7
-X-CPASD-SUMMARY: SIP:-1, APTIP:-2.0, KEY:0.0, FROMBLOCK:1, OB:0.0, URL:-5,
- TVAL:173.
- 0, ESV:0.0, ECOM:-5.0, ML:0.0, FD:0.0, CUTS:364.0, IP:-2.0, MAL:-5.0, PHF:-5.0,
- PHC:-5
- .0, SPF:4.0, EDMS:-5, IPLABEL:4480.0, FROMTO:0, AD:0, FFOB:0.0, CFOB:0.0, SPC:0,
- SIG:-
- 5, AUF:3, DUF:11092, ACD:180, DCD:180, SL:0, EISP:0, AG:0, CFC:0.547,
- CFSR:0.057, UAT:0
- , RAF:0, IMG:-5.0, DFA:0, DTA:0, IBL:-2.0, ADI:-5, SBL:0, REDM:0, REIP:0, ESB:0,
- ATTNUM: 0,EAF:0,CID:-5.0,VERSION:2.3.17
-X-CPASD-ID: 7d4311e6ee30446498370e3383998856-20221223
-X-CPASD-BLOCK: 1000
-X-CPASD-STAGE: 1
-X-UUID: 7d4311e6ee30446498370e3383998856-20221223
-X-User: xurui@kylinos.cn
-Received: from localhost.localdomain [(116.128.244.169)] by mailgw
- (envelope-from <xurui@kylinos.cn>) (Generic MTA)
- with ESMTP id 1526182169; Fri, 23 Dec 2022 17:29:09 +0800
-From: xurui <xurui@kylinos.cn>
-To: alexander.deucher@amd.com
-Subject: [PATCH v2] drm/amdgpu: Retry DDC probing on DVI on failure if we got
- an HPD interrupt
-Date: Fri, 23 Dec 2022 17:28:58 +0800
-Message-Id: <20221223092858.1830944-1-xurui@kylinos.cn>
-X-Mailer: git-send-email 2.25.1
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D17A710E630
+ for <amd-gfx@lists.freedesktop.org>; Fri, 23 Dec 2022 10:00:42 +0000 (UTC)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+ by smtp-out1.suse.de (Postfix) with ESMTP id 0CFE56AF92;
+ Fri, 23 Dec 2022 10:00:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1671789641; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=ylwa3UXbYSA1BZ0BDMVS+iRPlorVsmnmMrRmEkRE598=;
+ b=iIORwIYeZr9K5U7APGTecJeJnkUSBpQtAqEfGB69Lg+c+vB05zvucvdhgtS/+f/3Oc1QOA
+ qmIvbF27RoAYd9UjV4hBwjfbfexCY5U5hQEdZPCdcPS1R+x+1Lshp1wi4OLlE4K4J22ASt
+ di0UstZz0TDC1O3vIzELz+2eU9NV3Gk=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1671789641;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=ylwa3UXbYSA1BZ0BDMVS+iRPlorVsmnmMrRmEkRE598=;
+ b=qCzSslcR3GosBl81J3Ev+AnOZjNuTMlGyVjbnGAPmkI6BNLNr8fs+fxtUQZyE4X81fDjnX
+ UhRYRIzD8qY0I3Bg==
+Received: from lion.mk-sys.cz (unknown [10.100.200.14])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by relay2.suse.de (Postfix) with ESMTPS id EDB392C142;
+ Fri, 23 Dec 2022 10:00:40 +0000 (UTC)
+Received: by lion.mk-sys.cz (Postfix, from userid 1000)
+ id C12E460412; Fri, 23 Dec 2022 11:00:38 +0100 (CET)
+Date: Fri, 23 Dec 2022 11:00:38 +0100
+From: Michal Kubecek <mkubecek@suse.cz>
+To: Christian =?utf-8?B?S8O2bmln?= <ckoenig.leichtzumerken@gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: grab extra fence reference for
+ drm_sched_job_add_dependency
+Message-ID: <20221223100038.uooxfoz42bq52gnw@lion.mk-sys.cz>
+References: <20221219104718.21677-1-christian.koenig@amd.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature"; boundary="rsgg4klgmlizj5ft"
+Content-Disposition: inline
+In-Reply-To: <20221219104718.21677-1-christian.koenig@amd.com>
 X-Mailman-Approved-At: Fri, 23 Dec 2022 14:23:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -55,238 +62,69 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel test robot <lkp@intel.com>, Xinhui.Pan@amd.com,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, daniel@ffwll.ch, xurui <xurui@kylinos.cn>,
- airlied@gmail.com, christian.koenig@amd.com
+Cc: mikhail.v.gavrilov@gmail.com, michel@daenzer.net, bp@alien8.de,
+ amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-HPD signals on DVI ports can be fired off before the pins required for
-DDC probing actually make contact, due to the pins for HPD making
-contact first. This results in a HPD signal being asserted but DDC
-probing failing, resulting in hotplugging occasionally failing.
 
-Rescheduling the hotplug work for a second when we run into an HPD
-signal with a failing DDC probe usually gives enough time for the rest
-of the connector's pins to make contact, and fixes this issue.
+--rsgg4klgmlizj5ft
+Content-Type: text/plain; charset=iso-8859-2
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: xurui <xurui@kylinos.cn>
-Reported-by: kernel test robot<lkp@intel.com>
----
-V1 -> V2: Fixed a compilation error
+On Mon, Dec 19, 2022 at 11:47:18AM +0100, Christian K=F6nig wrote:
+> That function consumes the reference.
+>=20
+> Signed-off-by: Christian K=F6nig <christian.koenig@amd.com>
+> Fixes: aab9cf7b6954 ("drm/amdgpu: use scheduler dependencies for VM updat=
+es")
 
- drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  2 +-
- .../gpu/drm/amd/amdgpu/amdgpu_connectors.c    | 22 ++++++++++++++++++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h      |  1 +
- drivers/gpu/drm/amd/amdgpu/dce_v10_0.c        |  6 ++---
- drivers/gpu/drm/amd/amdgpu/dce_v11_0.c        |  6 ++---
- drivers/gpu/drm/amd/amdgpu/dce_v6_0.c         |  6 ++---
- drivers/gpu/drm/amd/amdgpu/dce_v8_0.c         |  6 ++---
- 8 files changed, 36 insertions(+), 15 deletions(-)
+Tested-by: Michal Kubecek <mkubecek@suse.cz>
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 6b74df446694..b1d901fe578e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -870,7 +870,7 @@ struct amdgpu_device {
- 	struct amdgpu_vkms_output       *amdgpu_vkms_output;
- 	struct amdgpu_mode_info		mode_info;
- 	/* For pre-DCE11. DCE11 and later are in "struct amdgpu_device->dm" */
--	struct work_struct		hotplug_work;
-+	struct delayed_work         hotplug_work;
- 	struct amdgpu_irq_src		crtc_irq;
- 	struct amdgpu_irq_src		vline0_irq;
- 	struct amdgpu_irq_src		vupdate_irq;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-index 2ebbc6382a06..d2abd334b1b5 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-@@ -996,13 +996,33 @@ amdgpu_connector_dvi_detect(struct drm_connector *connector, bool force)
- 		}
- 	}
- 
-+	if (amdgpu_connector->detected_hpd_without_ddc) {
-+		force = true;
-+		amdgpu_connector->detected_hpd_without_ddc = false;
-+	}
-+
- 	if (!force && amdgpu_connector_check_hpd_status_unchanged(connector)) {
- 		ret = connector->status;
- 		goto exit;
- 	}
- 
--	if (amdgpu_connector->ddc_bus)
-+	if (amdgpu_connector->ddc_bus) {
- 		dret = amdgpu_display_ddc_probe(amdgpu_connector, false);
-+
-+		/* Sometimes the pins required for the DDC probe on DVI
-+		 * connectors don't make contact at the same time that the ones
-+		 * for HPD do. If the DDC probe fails even though we had an HPD
-+		 * signal, try again later
-+		 */
-+		if (!dret && !force &&
-+		    amdgpu_display_hpd_sense(adev, amdgpu_connector->hpd.hpd)) {
-+			DRM_DEBUG_KMS("hpd detected without ddc, retrying in 1 second\n");
-+			amdgpu_connector->detected_hpd_without_ddc = true;
-+			schedule_delayed_work(&adev->hotplug_work,
-+					      msecs_to_jiffies(1000));
-+			goto exit;
-+		}
-+	}
- 	if (dret) {
- 		amdgpu_connector->detected_by_load = false;
- 		amdgpu_connector_free_edid(connector);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-index b22471b3bd63..a876648e3d7a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-@@ -63,7 +63,7 @@
- void amdgpu_display_hotplug_work_func(struct work_struct *work)
- {
- 	struct amdgpu_device *adev = container_of(work, struct amdgpu_device,
--						  hotplug_work);
-+						  hotplug_work.work);
- 	struct drm_device *dev = adev_to_drm(adev);
- 	struct drm_mode_config *mode_config = &dev->mode_config;
- 	struct drm_connector *connector;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-index 8a39300b1a84..93c73faa5714 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-@@ -534,6 +534,7 @@ struct amdgpu_connector {
- 	void *con_priv;
- 	bool dac_load_detect;
- 	bool detected_by_load; /* if the connection status was determined by load */
-+	bool detected_hpd_without_ddc; /* if an HPD signal was detected on DVI, but ddc probing failed */
- 	uint16_t connector_object_id;
- 	struct amdgpu_hpd hpd;
- 	struct amdgpu_router router;
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-index 248f1a4e915f..e85e57933cc4 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-@@ -2837,7 +2837,7 @@ static int dce_v10_0_sw_init(void *handle)
- 	if (r)
- 		return r;
- 
--	INIT_WORK(&adev->hotplug_work,
-+	INIT_DELAYED_WORK(&adev->hotplug_work,
- 		  amdgpu_display_hotplug_work_func);
- 
- 	drm_kms_helper_poll_init(adev_to_drm(adev));
-@@ -2902,7 +2902,7 @@ static int dce_v10_0_hw_fini(void *handle)
- 
- 	dce_v10_0_pageflip_interrupt_fini(adev);
- 
--	flush_work(&adev->hotplug_work);
-+	flush_delayed_work(&adev->hotplug_work);
- 
- 	return 0;
- }
-@@ -3302,7 +3302,7 @@ static int dce_v10_0_hpd_irq(struct amdgpu_device *adev,
- 
- 	if (disp_int & mask) {
- 		dce_v10_0_hpd_int_ack(adev, hpd);
--		schedule_work(&adev->hotplug_work);
-+		schedule_delayed_work(&adev->hotplug_work, 0);
- 		DRM_DEBUG("IH: HPD%d\n", hpd + 1);
- 	}
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-index cd9c19060d89..6b406bb7f3f3 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-@@ -2956,7 +2956,7 @@ static int dce_v11_0_sw_init(void *handle)
- 	if (r)
- 		return r;
- 
--	INIT_WORK(&adev->hotplug_work,
-+	INIT_DELAYED_WORK(&adev->hotplug_work,
- 		  amdgpu_display_hotplug_work_func);
- 
- 	drm_kms_helper_poll_init(adev_to_drm(adev));
-@@ -3032,7 +3032,7 @@ static int dce_v11_0_hw_fini(void *handle)
- 
- 	dce_v11_0_pageflip_interrupt_fini(adev);
- 
--	flush_work(&adev->hotplug_work);
-+	flush_delayed_work(&adev->hotplug_work);
- 
- 	return 0;
- }
-@@ -3426,7 +3426,7 @@ static int dce_v11_0_hpd_irq(struct amdgpu_device *adev,
- 
- 	if (disp_int & mask) {
- 		dce_v11_0_hpd_int_ack(adev, hpd);
--		schedule_work(&adev->hotplug_work);
-+		schedule_delayed_work(&adev->hotplug_work, 0);
- 		DRM_DEBUG("IH: HPD%d\n", hpd + 1);
- 	}
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-index 76323deecc58..2aa21eec0e06 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-@@ -2715,7 +2715,7 @@ static int dce_v6_0_sw_init(void *handle)
- 		return r;
- 
- 	/* Pre-DCE11 */
--	INIT_WORK(&adev->hotplug_work,
-+	INIT_DELAYED_WORK(&adev->hotplug_work,
- 		  amdgpu_display_hotplug_work_func);
- 
- 	drm_kms_helper_poll_init(adev_to_drm(adev));
-@@ -2776,7 +2776,7 @@ static int dce_v6_0_hw_fini(void *handle)
- 
- 	dce_v6_0_pageflip_interrupt_fini(adev);
- 
--	flush_work(&adev->hotplug_work);
-+	flush_delayed_work(&adev->hotplug_work);
- 
- 	return 0;
- }
-@@ -3103,7 +3103,7 @@ static int dce_v6_0_hpd_irq(struct amdgpu_device *adev,
- 		tmp = RREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd]);
- 		tmp |= DC_HPD1_INT_CONTROL__DC_HPD1_INT_ACK_MASK;
- 		WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd], tmp);
--		schedule_work(&adev->hotplug_work);
-+		schedule_delayed_work(&adev->hotplug_work, 0);
- 		DRM_DEBUG("IH: HPD%d\n", hpd + 1);
- 	}
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-index 01cf3ab111cb..9da338889d36 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-@@ -2739,7 +2739,7 @@ static int dce_v8_0_sw_init(void *handle)
- 		return r;
- 
- 	/* Pre-DCE11 */
--	INIT_WORK(&adev->hotplug_work,
-+	INIT_DELAYED_WORK(&adev->hotplug_work,
- 		  amdgpu_display_hotplug_work_func);
- 
- 	drm_kms_helper_poll_init(adev_to_drm(adev));
-@@ -2802,7 +2802,7 @@ static int dce_v8_0_hw_fini(void *handle)
- 
- 	dce_v8_0_pageflip_interrupt_fini(adev);
- 
--	flush_work(&adev->hotplug_work);
-+	flush_delayed_work(&adev->hotplug_work);
- 
- 	return 0;
- }
-@@ -3195,7 +3195,7 @@ static int dce_v8_0_hpd_irq(struct amdgpu_device *adev,
- 		tmp = RREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd]);
- 		tmp |= DC_HPD1_INT_CONTROL__DC_HPD1_INT_ACK_MASK;
- 		WREG32(mmDC_HPD1_INT_CONTROL + hpd_offsets[hpd], tmp);
--		schedule_work(&adev->hotplug_work);
-+		schedule_delayed_work(&adev->hotplug_work, 0);
- 		DRM_DEBUG("IH: HPD%d\n", hpd + 1);
- 	}
- 
--- 
-2.25.1
+I can still see weird artefacts in some windows (firefox, konsole) but
+those are probably unrelated, the refcount errors are gone with this patch.
 
+Michal
+
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c b/drivers/gpu/dr=
+m/amd/amdgpu/amdgpu_vm_sdma.c
+> index 59cf64216fbb..535cd6569bcc 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c
+> @@ -238,8 +238,10 @@ static int amdgpu_vm_sdma_update(struct amdgpu_vm_up=
+date_params *p,
+>  	/* Wait for PD/PT moves to be completed */
+>  	dma_resv_iter_begin(&cursor, bo->tbo.base.resv, DMA_RESV_USAGE_KERNEL);
+>  	dma_resv_for_each_fence_unlocked(&cursor, fence) {
+> +		dma_fence_get(fence);
+>  		r =3D drm_sched_job_add_dependency(&p->job->base, fence);
+>  		if (r) {
+> +			dma_fence_put(fence);
+>  			dma_resv_iter_end(&cursor);
+>  			return r;
+>  		}
+> --=20
+> 2.34.1
+>=20
+
+--rsgg4klgmlizj5ft
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEWN3j3bieVmp26mKO538sG/LRdpUFAmOlfD4ACgkQ538sG/LR
+dpUTbQgAhgI1G9eAH6Rxz3W+odSF4eiTKQmJUdVwiWPGsVDzIoWy2KODnFZhoK+a
+/R+kun1hOLUhBIpoMVkQ+0XMNF6Ka5pOz3yYW/HEzTGEQXhN0Bq8OHbfV9J2w9SV
+AsI8p7DUarDvDSakbM9fhHIzywVDUhVNVV2CnlYFzbIcFL6f3/Hiu+oVhOK64/TV
+Niqo2+pFrq5I/lzvQYfC4p6pSCwTUdq2vqsSaRaJqxt8NsdMdynPK/+ehj8L2INf
+rK6jaLKzQ2/fMVgRv4YkAFex9JNqjKhEIkqSV6a884jBlX4LaUQ5yHvj2MSectZz
+HghddJHmGVjYzhVwPHCDFnGvDQCt5Q==
+=T4i5
+-----END PGP SIGNATURE-----
+
+--rsgg4klgmlizj5ft--
