@@ -2,39 +2,37 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32998656C91
-	for <lists+amd-gfx@lfdr.de>; Tue, 27 Dec 2022 16:34:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40493656C92
+	for <lists+amd-gfx@lfdr.de>; Tue, 27 Dec 2022 16:34:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27AC610E040;
-	Tue, 27 Dec 2022 15:34:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5D8210E084;
+	Tue, 27 Dec 2022 15:34:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
- [80.237.130.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B506810E0D9
- for <amd-gfx@lists.freedesktop.org>; Mon, 26 Dec 2022 13:26:18 +0000 (UTC)
-Received: from [2a02:8108:963f:de38:eca4:7d19:f9a2:22c5]; authenticated
- by wp530.webpack.hosteurope.de running ExIM with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- id 1p9nUa-0005in-9g; Mon, 26 Dec 2022 14:26:12 +0100
-Message-ID: <163d5366-35d9-f7db-cf50-796d6b011c0a@leemhuis.info>
-Date: Mon, 26 Dec 2022 14:26:11 +0100
+X-Greylist: delayed 325 seconds by postgrey-1.36 at gabe;
+ Mon, 26 Dec 2022 18:16:07 UTC
+Received: from exchange.fintech.ru (e10edge.fintech.ru [195.54.195.159])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A8C510E0F3;
+ Mon, 26 Dec 2022 18:16:07 +0000 (UTC)
+Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
+ (195.54.195.169) with Microsoft SMTP Server (TLS) id 14.3.498.0; Mon, 26 Dec
+ 2022 21:10:28 +0300
+Received: from localhost (10.0.253.157) by Ex16-01.fintech.ru (10.0.10.18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Mon, 26 Dec
+ 2022 21:10:28 +0300
+From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+To: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH] drm/radeon: Fix potential null-ptr-deref
+Date: Mon, 26 Dec 2022 10:10:23 -0800
+Message-ID: <20221226181023.86196-1-n.zhandarovich@fintech.ru>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH] ALSA: hda/hdmi: Use only dynamic PCM device allocation
- #forregzbot
-Content-Language: en-US, de-DE
-To: ALSA development <alsa-devel@alsa-project.org>
-References: <20220922084017.25925-1-perex@perex.cz>
- <1c9c00dec72c241a399b3b7c0a305382a5712529.camel@bi-co.net>
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-In-Reply-To: <1c9c00dec72c241a399b3b7c0a305382a5712529.camel@bi-co.net>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1672061178;
- bba30278; 
-X-HE-SMSGID: 1p9nUa-0005in-9g
+Content-Type: text/plain
+X-Originating-IP: [10.0.253.157]
+X-ClientProxiedBy: Ex16-01.fintech.ru (10.0.10.18) To Ex16-01.fintech.ru
+ (10.0.10.18)
 X-Mailman-Approved-At: Tue, 27 Dec 2022 15:33:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -47,67 +45,44 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "regressions@lists.linux.dev" <regressions@lists.linux.dev>,
- amd-gfx@lists.freedesktop.org
+Cc: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ lvc-project@linuxtesting.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Note: this mail contains only information for Linux kernel regression
-tracking. Mails like these contain '#forregzbot' in the subject to make
-then easy to spot and filter out. The author also tried to remove most
-or all individuals from the list of recipients to spare them the hassle.]
+radeon_get_connector_for_encoder() assigns radeon_encoder->enc_priv to
+mst_enc which is dereferenced later without being checked for NULL
+beforehand. It is possible for radeon_encoder->enc_priv and therefore
+mst_enc, to be NULL due to potential lack of memory.
 
-On 25.12.22 13:14, Michael Laß wrote:
-> CC'ing amd-gfx as this might be an issue in the amd driver.
-> 
-> This change causes a regression in Linux 6.1 at least on some AMD APUs.
-> There are reports from users with Ryzen 4750U, 5800U and 5850U chips
-> where the HDMI sound devices don't show up anymore. I'm affected by
-> this as well.
-> 
-> Reverting this commit (ef6f5494) makes the HDMI audio devices show up
-> again. I verified that this is still an issue in current Linux git
-> (72a85e2b).
+This patch adds a sanity NULL-check to prevent the issue.
 
-Thanks for the report. To be sure below issue doesn't fall through the
-cracks unnoticed, I'm adding it to regzbot, my Linux kernel regression
-tracking bot:
+Found by Linux Verification Center (linuxtesting.org) with SVACE.
 
-#regzbot ^introduced ef6f5494faf6a37c74990689a
-#regzbot title alsa: hda/hdmi: HDMI sound devices don't show up anymore
-with some AMD APUs
-#regzbot ignore-activity
+Fixes: 9843ead08f18 ("drm/radeon: add DisplayPort MST support (v2)")
+Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+---
+ drivers/gpu/drm/radeon/radeon_encoders.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+diff --git a/drivers/gpu/drm/radeon/radeon_encoders.c b/drivers/gpu/drm/radeon/radeon_encoders.c
+index 46549d5179ee..3f68f0af443a 100644
+--- a/drivers/gpu/drm/radeon/radeon_encoders.c
++++ b/drivers/gpu/drm/radeon/radeon_encoders.c
+@@ -251,6 +251,9 @@ radeon_get_connector_for_encoder(struct drm_encoder *encoder)
+ 				continue;
+ 
+ 			mst_enc = radeon_encoder->enc_priv;
++			if (!mst_enc)
++				return NULL;
++
+ 			if (mst_enc->connector == radeon_connector->mst_port)
+ 				return connector;
+ 		} else if (radeon_encoder->active_device & radeon_connector->devices)
+-- 
+2.25.1
 
-P.S.: As the Linux kernel's regression tracker I deal with a lot of
-reports and sometimes miss something important when writing mails like
-this. If that's the case here, don't hesitate to tell me in a public
-reply, it's in everyone's interest to set the public record straight.
-
-
-> Am Donnerstag, dem 22.09.2022 um 10:40 +0200 schrieb Jaroslav Kysela:
->>> Per discussion on the alsa-devel mailing list [1], the legacy PIN to PCM
->>> device mapping is obsolete nowadays. The maximum number of the simultaneously
->>> usable PCM devices is equal to the HDMI codec converters.
->>>
->>> Remove the extra PCM devices (beyond the detected converters) and force
->>> the use of the dynamic PCM device allocation. The legacy code is removed.
->>>
->>> I believe that all HDMI codecs have the jack sensing feature. Move the check
->>> to the codec probe function and print a warning, if a codec without this
->>> feature is detected.
-> 
-> The corresponding message ("jack not detectable") is not shown on the
-> affected system.
-> 
->>> [1] https://lore.kernel.org/alsa-devel/2f37e0b2-1e82-8c0b-2bbd-1e5038d6ecc6@perex.cz/
-> 
-> Links to some reports of this issue:
-> https://bugzilla.kernel.org/show_bug.cgi?id=216836
-> https://bbs.archlinux.org/viewtopic.php?pid=2075700
-> https://bugs.archlinux.org/task/76917
-> https://www.reddit.com/r/archlinux/comments/zsqq7i/hdmi_audio_is_broken_after_updating_kernel_to_611
-> 
-> Best regards,
-> Michael
