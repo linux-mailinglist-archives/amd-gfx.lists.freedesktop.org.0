@@ -2,101 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C257656D34
-	for <lists+amd-gfx@lfdr.de>; Tue, 27 Dec 2022 18:06:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A3EC656D21
+	for <lists+amd-gfx@lfdr.de>; Tue, 27 Dec 2022 17:58:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E331D10E0AA;
-	Tue, 27 Dec 2022 17:05:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 032D210E04D;
+	Tue, 27 Dec 2022 16:58:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from IND01-MAX-obe.outbound.protection.outlook.com
- (mail-maxind01olkn2089.outbound.protection.outlook.com [40.92.102.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D010910E15C
- for <amd-gfx@lists.freedesktop.org>; Tue, 27 Dec 2022 16:15:38 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FL1NDXCeNb6Pj0vVd8XynkNroGsZwMDDB6clLrs5jwEQ67SZMxvGDxzlE1/POHF3XWyf5FGF7nAtLwZEsMEC96uaJHbzbT7kqDHiyL4rXFe/ZK9PSHaxVF9ZAHnqGBkCMM8hJ3Sc2dNB4J/02NeBDvL+Aip8hF91gFRJsqTEzIY7jfW6DB2YeOrEg7yvXsSzxGsQ+9mprfnTEEkTDlGISvNN+KWrk6vvoWCFhv7mzhYazp4MwTJz3YcvfKlwxjouGCXqowfGC8JhTiGbXz+5Qhr9hqD/OY0TudcU0NRhwLhEwzzPiW5EXzS2o04KlVPEJ7W75wHvj0EzFYWR4J/N9g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ch/8saabiqztRNfU0DJmTYSWgrPfXf1rFDJ8hLMsEMI=;
- b=FQvU2hafkMJEzPZ6NG7wS1vFRl7+ElVTjpmoFWt+AzeO7rL3o/XDaojpVWVOVzRkG+n5bop7UAZehIpd3r4GVfRS9vIg5zcFcR4GwYW2tqKHFy7a5DdzaHWZKQEvch/aKFPNhBDuA2Y5zrfUeUj/72cPyCtRX+2mBf6YTndD20cs20hkcvBAPU4FOUq74cjmX5cq2pWQW9Xxy0Zv9VN6NMSHlg+oqPRuJjHBH602xS2gJ09jdTI7L8S1+I2hrOBIuFuylrnJNo4UX92CJWsgCaCgxSbfcD9eolFqrFElx93A5f8+E48vp3YOUszHeldHxijZsCh87VPWX8ZALsGGWw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ch/8saabiqztRNfU0DJmTYSWgrPfXf1rFDJ8hLMsEMI=;
- b=kLsHqgGlzBbTDBjDaGFD1Q8ZgpsW+feaS6gfYBWiV1ctYr/kxq562EA+U1+PMpHtPP1/tFrxzZgDkD/N2T2+qIpk8btc1xv++zbuXXwc3Ac1v7Hx+p4pLea3KxtSGL4GzJRe9umqhpxs9rL5b9wBFztQIgLFIG/OnUOfnn7t8OnDjUpw/kOl+kOy2DKFNzzgLFl/MjzfPzikr0i7eHcuQBtjiAm3fZVTVkPpxfoCcivLVJIGaiIhobjMIOLS6UYq5jgXQxyqlU6AAaTjCFtAsdMBl41etHZ9HN0MW4WnpagyxhSxbjg8zDUODZI6psmItu7R4fpD6FJ1y5bMofgtkQ==
-Received: from BM1PR01MB0931.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00:2::9) by
- PN0PR01MB9023.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:161::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.16; Tue, 27 Dec
- 2022 16:15:33 +0000
-Received: from BM1PR01MB0931.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::f90e:46bc:7a0f:23bc]) by BM1PR01MB0931.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::f90e:46bc:7a0f:23bc%7]) with mapi id 15.20.5944.016; Tue, 27 Dec 2022
- 16:15:33 +0000
-From: Aditya Garg <gargaditya08@live.com>
-To: Alex Deucher <alexdeucher@gmail.com>
-Subject: Re: [BUG] AMD Radeon Pro 5600M with 8GB of HBM2 memory shows blank
- screen on Linux
-Thread-Topic: [BUG] AMD Radeon Pro 5600M with 8GB of HBM2 memory shows blank
- screen on Linux
-Thread-Index: AQHZGRb6yHJ4kgfUzkiN2hv0kLVX366B5SuAgAAFeIA=
-Date: Tue, 27 Dec 2022 16:15:33 +0000
-Message-ID: <CA3D493A-3695-46ED-A78A-D6C6709FDBF1@live.com>
-References: <3AFB9142-2BD0-46F9-AEA9-C9C5D13E68E6@live.com>
- <CADnq5_NiDE7a5dmhhuLntQe88DS5JmiZTGqQ6ongXuWyh1A4wg@mail.gmail.com>
-In-Reply-To: <CADnq5_NiDE7a5dmhhuLntQe88DS5JmiZTGqQ6ongXuWyh1A4wg@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [eVqTPu8KSWUbnc7CWJOzSNjGj9jIjhJLHiqtUQI4dqf5S8CXeBViSRnN+E3eI84Z]
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BM1PR01MB0931:EE_|PN0PR01MB9023:EE_
-x-ms-office365-filtering-correlation-id: a3b5ff3b-61d0-4841-3de3-08dae82594ab
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: CY9ctoMPo86sJm5HzuGez0OwTUxb0BEuSJqeFyJ5obk9xrkJorBCWchzOxki8iGtwM1vGyMnot+Sxc7B7dytgUqm3r4pD7ud1fpLsrNz+lgJHyXCAwLTzi/bVsJSMprAKtcVQw5AMms8uFn7IroKgZ9oueleQuNlGtSe+Xf2FML/8Uy6OQyWa3TVBIvPZ3Ji9T6o542YROLnq8GZoUS5SUJbm3VtE37y+BQCqZDAUim7RM88uQStT/05xc1ZTXAtD2TVMuC/PBSbcUp/xoY6lzjla9IJqk3yCYK3cIv5K3xH55ymjUvXozg74UVyim7+qu3xjk50ed+NkcZexXOU3bGm5K3jMgdAOLLpSMM1TAB8hRKbYSv9JeEy4R5Nv6FeyBdVHqvN26n02ysSSspfRJnqAmyHmeDhZy2mxMYRZVfa2WqJMZu6mMzHMZN9skkFe1+ykhNKdWx0j3FR+ttfWck134HU27otOolSUzECRYSZo5o+7ba4n6/+36xr+HLQulQpBvmp1+0U+1boz0uYVQTHXhygyI765jerrFF9ad67o07clRXVTMrYGIIvKeq6hHj3jmaBbF4481osZlIiT2XK+lGI31xIdSCh+0biPhY=
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?82PR6Flf5UFc6libtbZU2uH8lK4RK+dgGqlWOfStpwYZnL0aHyG4y3+9tB5L?=
- =?us-ascii?Q?sPn9VhBa5jHpSpqAEayZFB5B4n4JgyoCUkXfgIEAnG3TP5LvCND3Yw8T4MTI?=
- =?us-ascii?Q?HPdlhJ/jfWKhll7i0H2OwZu5LM6+7Fevud2SSJ4MXtYhwYDVGBP80qT0QRer?=
- =?us-ascii?Q?TSuyYyiYHcu9lMIE1zFjMnr687VcAyJFzNVhQxoN4DnkYH6sPPIuPFPNZrRG?=
- =?us-ascii?Q?Sa3bfQmaIK91AAFAQe++xGSvMiU+8u1V4N7oM5RFAPnA3quSBEHv010xAOD3?=
- =?us-ascii?Q?C+nC4QhyPXk2K+roAudjLT0SGwtGD7wcz+KT3yMSa55C7OKWV7vNj4wodKua?=
- =?us-ascii?Q?jiGAdugX2VkNG3MmXjhnJ6gjtL6OoBI3zl1CNqG5pDvKj7vr1CQ63zYiE6ZJ?=
- =?us-ascii?Q?huTwGR0gl+EodjCQVtHiAvcMl3NNEOWhZOjXhOgKqOIFj18argILhsf/KI7f?=
- =?us-ascii?Q?S8LGJ1vWPA9DkwYUNrukdr7c6Wq+0r5z/3VKnV4B/+Z9AEygb6hgYcZjbFgl?=
- =?us-ascii?Q?bLjELMLb7yEn7uM7AAPkQ0gAuJk+beBWR5ArdD+zkb/DwhrJ6IR3iJXuv7/x?=
- =?us-ascii?Q?1SJFs2DVWPTXci4VKScuyBWlF6MjN/UCxbZGTy2zRTHjY/iER+oRqh7xxI7q?=
- =?us-ascii?Q?eWZd8l8WEODe443Bir+LiHRdLcP1/rrKbRUX5a9OLJzkLsKnkjkYMDjibGYw?=
- =?us-ascii?Q?4DYw5IzPCLYYhBRlQp5GBag35FaqQ3TdQXlkNQN1Ht3NhqlvG/8St0/hGCpO?=
- =?us-ascii?Q?SQMkGPmE+bt5GHLbTm29V+gomjKNQabFpyDnmTUgklRPjmsxl8KA69Ksafeq?=
- =?us-ascii?Q?NRHboPqHH5+fuTl8ZJu5vavFXDpqyGTcqrXeXnMtMsHwaeXJ2WSuQuX2D9G8?=
- =?us-ascii?Q?3xEZYzSrMBaofpP1qBipMwKMR8kCTJbla+BxbR3dAtWKMJJauAQX77m4+Hnx?=
- =?us-ascii?Q?cdrUjMczx3AkzNqN5VGvjIVWQNnGswtdi6gOEpuLHRz0ox5SzBerQyAodg6L?=
- =?us-ascii?Q?NbgfPZ9MXu6056y9gVn2P7BOx708trj3II+WgmJMrlYpPIq+NjQBx0N1FFbI?=
- =?us-ascii?Q?YSNvo9JMhZwaeO9q8EQoSkfqT4ZoHFvUU2EGSMAU9nJ2Fx8Ry9PIDnKirQf3?=
- =?us-ascii?Q?utmwlghqMULd5HOHmoIUHj1ApBXOZJVDpYqT1wjnYPpkmiJgvvTpihhoqD9p?=
- =?us-ascii?Q?SMHGaxhskNZfNvgNmaoxItg67PvRyP5kayJJ6/RLFunnR2Bp7qZ1LqkwRC/m?=
- =?us-ascii?Q?gdLPBye4NlIoLo9LXAx4M0GcGZMt0ahE8NzZNX12QTaR4xkL981uAUch+RKv?=
- =?us-ascii?Q?BD91o0bqesqquTKCJS0aKITV3Rz+3JfAXBHoa4p3oZ5q1g=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <708A828935568A4786CD6872AE50C6C8@INDPRD01.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com
+ [IPv6:2001:4860:4864:20::2c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F69110E04D
+ for <amd-gfx@lists.freedesktop.org>; Tue, 27 Dec 2022 16:58:21 +0000 (UTC)
+Received: by mail-oa1-x2c.google.com with SMTP id
+ 586e51a60fabf-1433ef3b61fso16005783fac.10
+ for <amd-gfx@lists.freedesktop.org>; Tue, 27 Dec 2022 08:58:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=AyXseZFZh5knyyF3iP8g85eQ12QVwnloyhpXOn65cKU=;
+ b=FOHPUIrujIlweCY1xrUaXQY+Z/m8pCGlDXBzUa9AfCw7YFE6gM+Lg3GObCQ/+yCOg9
+ 3DUqihNERLVeFGBxfB1NqHli044n4qB64mWdkxWkIvZ83IbfAboGLEw6qdwBpAiUm014
+ ugaqy6ZmBZdRTKwkfvv2S4i8BzDus8knJJLCSllYopZnkaYO/x/nPrv2mwsGkbVI8iqq
+ 8MpPynzZsMqNkfrNFWAjQz4LIwkDsajqsQjaf8jSJzJiZgHSqEx5a9UWlijKakIKbWQQ
+ aYlNAAOYocIdMri90WDqYRzn4vCrEiPLsMEdExdT9Od0tSUO1pZvJVryMQ7eZN4DqJHG
+ PUfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=AyXseZFZh5knyyF3iP8g85eQ12QVwnloyhpXOn65cKU=;
+ b=M+opemTnIIgLcmxaBExETKj0GLBglo2FLU4cEM7Hlq0WYqnpBjS5Fz2whiP/9I/UGC
+ GKJ9ev6rpitgr/s0EFBQ+7GqQOdQK3f9+dvy5dQLxCbPWM+2d7E+yItXNfrRVY/qEQ8N
+ uYZ+r1x0vGwCMLGNwHCFh5bvLFUZ9j3onVOTgPFMFVydq77BO+GYfeYSTkzuXtlDZgEC
+ 2zcpJPwcr9+sKjXLGwUA3FLpbZ1dgJFlr27wiZ3/nXDdYUIBwaAxz9Su/R/qYXw0ZKSm
+ RBeTY31jcRY2aFTuezpKJ/UF/adodJzLHZe8rtYYGz+L/e6tS6RP9OJI3V7yzr2XfvxP
+ gg2w==
+X-Gm-Message-State: AFqh2kogpv6IlgS+/qhJVKPanL7XRILDnKhvgEOCm6vXLc0hLojLCa0n
+ T/GVt4SGCopNNir8bmDv80J42isK/GBRDfn4oFk=
+X-Google-Smtp-Source: AMrXdXvO8dJqNXsfa1snHbWatUW7r5dUjJrfgVi6E4PD64kszc6N6Htr4JYhp5dalAS8vdVo9SJqO6blRHuG4B9u9ac=
+X-Received: by 2002:a05:6871:4410:b0:14c:6b59:b014 with SMTP id
+ nd16-20020a056871441000b0014c6b59b014mr1636858oab.96.1672160300459; Tue, 27
+ Dec 2022 08:58:20 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-42ed3.templateTenant
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BM1PR01MB0931.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: a3b5ff3b-61d0-4841-3de3-08dae82594ab
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Dec 2022 16:15:33.1562 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0PR01MB9023
-X-Mailman-Approved-At: Tue, 27 Dec 2022 17:05:29 +0000
+References: <20221223193655.1972-1-shashank.sharma@amd.com>
+ <20221223193655.1972-2-shashank.sharma@amd.com>
+ <CAP+8YyGPy5oXpOcuWfaS1vNhGajG1VGZc4p_QiUxaLAFCtt5KQ@mail.gmail.com>
+In-Reply-To: <CAP+8YyGPy5oXpOcuWfaS1vNhGajG1VGZc4p_QiUxaLAFCtt5KQ@mail.gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 27 Dec 2022 11:58:09 -0500
+Message-ID: <CADnq5_MpGojmU3WTNvvOiYie_c5WWAXbMp5W+dWx7_SHKDn9+g@mail.gmail.com>
+Subject: Re: [RFC 1/7] drm/amdgpu: UAPI for user queue management
+To: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,35 +66,153 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Orlando Chamberlain <redecorating@protonmail.com>,
- "sunpeng.li@amd.com" <sunpeng.li@amd.com>,
- "Xinhui.Pan@amd.com" <Xinhui.Pan@amd.com>,
- "Rodrigo.Siqueira@amd.com" <Rodrigo.Siqueira@amd.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
- "harry.wentland@amd.com" <harry.wentland@amd.com>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>
+Cc: arunpravin.paneerselvam@amd.com, Shashank Sharma <shashank.sharma@amd.com>,
+ amd-gfx@lists.freedesktop.org, arvind.yadav@amd.com,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian Koenig <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
->=20
-> Can you file a bug report:
-> https://gitlab.freedesktop.org/drm/amd/-/issues/
+On Sat, Dec 24, 2022 at 3:21 PM Bas Nieuwenhuizen
+<bas@basnieuwenhuizen.nl> wrote:
+>
+> On Fri, Dec 23, 2022 at 8:37 PM Shashank Sharma <shashank.sharma@amd.com> wrote:
+> >
+> > From: Alex Deucher <alexander.deucher@amd.com>
+> >
+> > This patch intorduces new UAPI/IOCTL for usermode graphics
+> > queue. The userspace app will fill this structure and request
+> > the graphics driver to add a graphics work queue for it. The
+> > output of this UAPI is a queue id.
+> >
+> > This UAPI maps the queue into GPU, so the graphics app can start
+> > submitting work to the queue as soon as the call returns.
+> >
+> > Cc: Alex Deucher <alexander.deucher@amd.com>
+> > Cc: Christian Koenig <christian.koenig@amd.com>
+> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> > Signed-off-by: Shashank Sharma <shashank.sharma@amd.com>
+> > ---
+> >  include/uapi/drm/amdgpu_drm.h | 52 +++++++++++++++++++++++++++++++++++
+> >  1 file changed, 52 insertions(+)
+> >
+> > diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
+> > index 0d93ec132ebb..a3d0dd6f62c5 100644
+> > --- a/include/uapi/drm/amdgpu_drm.h
+> > +++ b/include/uapi/drm/amdgpu_drm.h
+> > @@ -54,6 +54,7 @@ extern "C" {
+> >  #define DRM_AMDGPU_VM                  0x13
+> >  #define DRM_AMDGPU_FENCE_TO_HANDLE     0x14
+> >  #define DRM_AMDGPU_SCHED               0x15
+> > +#define DRM_AMDGPU_USERQ               0x16
+> >
+> >  #define DRM_IOCTL_AMDGPU_GEM_CREATE    DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_CREATE, union drm_amdgpu_gem_create)
+> >  #define DRM_IOCTL_AMDGPU_GEM_MMAP      DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_MMAP, union drm_amdgpu_gem_mmap)
+> > @@ -71,6 +72,7 @@ extern "C" {
+> >  #define DRM_IOCTL_AMDGPU_VM            DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_VM, union drm_amdgpu_vm)
+> >  #define DRM_IOCTL_AMDGPU_FENCE_TO_HANDLE DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_FENCE_TO_HANDLE, union drm_amdgpu_fence_to_handle)
+> >  #define DRM_IOCTL_AMDGPU_SCHED         DRM_IOW(DRM_COMMAND_BASE + DRM_AMDGPU_SCHED, union drm_amdgpu_sched)
+> > +#define DRM_IOCTL_AMDGPU_USERQ         DRM_IOW(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ, union drm_amdgpu_userq)
+> >
+> >  /**
+> >   * DOC: memory domains
+> > @@ -288,6 +290,56 @@ union drm_amdgpu_ctx {
+> >         union drm_amdgpu_ctx_out out;
+> >  };
+> >
+> > +/* user queue IOCTL */
+> > +#define AMDGPU_USERQ_OP_CREATE 1
+> > +#define AMDGPU_USERQ_OP_FREE   2
+> > +
+> > +#define AMDGPU_USERQ_MQD_FLAGS_SECURE  (1 << 0)
+> > +#define AMDGPU_USERQ_MQD_FLAGS_AQL     (1 << 1)
+>
+> Can we document what AQL means here?
 
-https://gitlab.freedesktop.org/drm/amd/-/issues/2318
+AQL is the packet format used by KFD/ROCm.  The idea is to be able to
+create queues that support either format (AQL or PM4).
 
->=20
-> What sort of monitor are you using?  It looks to be failing mode validati=
-on:
-> [drm] Mode Validation Warning: Urgent latency failed validation.
->=20
+>
+>
+> > +
+> > +struct drm_amdgpu_userq_mqd {
+> > +       /** Flags: AMDGPU_USERQ_MQD_FLAGS_* */
+> > +       __u32   flags;
+> > +       /** IP type: AMDGPU_HW_IP_* */
+> > +       __u32   ip_type;
+> > +       /** GEM object handle */
+> > +       __u32   doorbell_handle;
+> > +       /** Doorbell offset in dwords */
+> > +       __u32   doorbell_offset;
+>
+> What are the doorbell handle/offset for? I don't see any of them used
+> in the rest of the series (we only check the handle isn't 0, which
+> isn't enough validation for a GEM handle to consider it valid), and
+> the kernel seems to allocate some kind of doorbell index in patch 4.
+> Does userspace need to know about that one? (similarly use_doorbell in
+> that patch seems like it is never explicitly written to)
 
-Well its Apple's 16 inch built in Retina display.
+The doorbell is how you trigger the engine to start processing the
+user queue.  The idea is that each user process allocates a page of
+doorbell space (one of the PCI BARs) and then each 64 bit segment in
+that page could be used for a user mode queue.  So the UMD writes its
+data to the queue, updates the wptr, and then writes to the doorbell
+to tell the firmware to start processing the queue.
 
-The same is used in models with :-
-1. AMD Radeon Pro 5300M with 4GB of GDDR6 memory
-2. AMD Radeon Pro 5500M with 4GB of GDDR6 memory
-3. AMD Radeon Pro 5500M with 8GB of GDDR6 memory
+>
+> The other questions I have are about how this interacts with memory
+> management. Does this have access to all BOs allocated with
+> AMDGPU_GEM_CREATE_VM_ALWAYS_VALID? What about imported BOs? How does
+> this interact with VA unmap/map operations? (AFAICT we have no way to
+> tell if pagetable modifying operations are complete from userspace for
+> now). What happens if we need to spill BOs from VRAM due to
+> (cross-process) memory pressure?
 
-But these models work perfectly with AMD GPU enabled.=
+Effectively everything you map on the GPU would be valid.  If there is
+memory pressure, the kernel driver will behave similarly to KFD.  It
+will unmap the queues (which preempts all work on the engines), do any
+memory migrations, and then map the queues again.
+
+Alex
+
+>
+> > +       /** GPU virtual address of the queue */
+> > +       __u64   queue_va;
+> > +       /** Size of the queue in bytes */
+> > +       __u64   queue_size;
+> > +       /** GPU virtual address of the rptr */
+> > +       __u64   rptr_va;
+> > +       /** GPU virtual address of the wptr */
+> > +       __u64   wptr_va;
+> > +};
+> > +
+> > +struct drm_amdgpu_userq_in {
+> > +       /** AMDGPU_USERQ_OP_* */
+> > +       __u32   op;
+> > +       /** Flags */
+> > +       __u32   flags;
+> > +       /** Context handle to associate the queue with */
+> > +       __u32   ctx_id;
+> > +       __u32   pad;
+> > +       /** Queue descriptor */
+> > +       struct drm_amdgpu_userq_mqd mqd;
+> > +};
+> > +
+> > +struct drm_amdgpu_userq_out {
+> > +       /** Queue handle */
+> > +       __u32   q_id;
+> > +       /** Flags */
+> > +       __u32   flags;
+> > +};
+> > +
+> > +union drm_amdgpu_userq {
+> > +       struct drm_amdgpu_userq_in in;
+> > +       struct drm_amdgpu_userq_out out;
+> > +};
+> > +
+> >  /* vm ioctl */
+> >  #define AMDGPU_VM_OP_RESERVE_VMID      1
+> >  #define AMDGPU_VM_OP_UNRESERVE_VMID    2
+> > --
+> > 2.34.1
+> >
