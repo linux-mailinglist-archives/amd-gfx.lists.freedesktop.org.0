@@ -2,58 +2,101 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DC25656CAD
-	for <lists+amd-gfx@lfdr.de>; Tue, 27 Dec 2022 16:56:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C257656D34
+	for <lists+amd-gfx@lfdr.de>; Tue, 27 Dec 2022 18:06:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EFC310E146;
-	Tue, 27 Dec 2022 15:55:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E331D10E0AA;
+	Tue, 27 Dec 2022 17:05:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com
- [IPv6:2607:f8b0:4864:20::334])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48CE010E146
- for <amd-gfx@lists.freedesktop.org>; Tue, 27 Dec 2022 15:55:55 +0000 (UTC)
-Received: by mail-ot1-x334.google.com with SMTP id
- l8-20020a056830054800b006705fd35eceso8390668otb.12
- for <amd-gfx@lists.freedesktop.org>; Tue, 27 Dec 2022 07:55:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=fe45rFYfSm2HbigixmWKAkwrW9ACl6r8YGAqEd7Zx00=;
- b=lujBgaGh9t1eTVAiI3m+hTSpzZ+GGGMLGHOhLQy02BjUC/3zs6dh825vM6jbzAspGX
- BCCSn3nP62rmMdM3zOi3HE74FBAOnllRboZWf7yPgS5x73NISahYQHI9Ifp6mCT4P1Gw
- LRRIIEcs/6Xf/13AKyvLbT/kbSzVuvzMVVMkfmoA3uj+JYYOoFTszPvOAVzbQgFxi/JG
- LnvAKGRI4GPMKyAK/bROcmRVNCFmX/xtvIzftM+TI4uKDCHGWzLTyWr8MlkwVTurgYal
- VY2RLlnK5jrZL+YfnhacaGL+sEzhYZRQdC5Pg+jQCtuyGwxP3HwP0mX5aZOGE28u4eZ7
- n5Wg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=fe45rFYfSm2HbigixmWKAkwrW9ACl6r8YGAqEd7Zx00=;
- b=T7d/2/z12M0koL28eZtaw0tv8xxrY/7Q22WQEc1hhXeUiR3QNS2tMUCeHRIss3XLI8
- uAQ0zH49q6sccB+WUpEw7OE7agvSzf73z9qd38Jr0msGclkEOs0ReTMFjkfbOUi2+ddY
- Nx9396BB4fca3SjROuAPyGYEYy3E6ARZXVeSfpkpet1crmxLjAZ9nQ9kKLWWN5SK/hBJ
- n5LAnV1G9J1Fnnw/NLrqFueO6mmJCmDg20EHwZYk9sQ4KCcpyDSnaZtHALscDSz/HIsx
- cnqQLM5fW9A4vqg2n97fkuYnPkHeUoCPKefJNQtx7bZ6YGf2PvRMxr/PaLXxTNi3HrSF
- 5B9Q==
-X-Gm-Message-State: AFqh2kpg8VHE1F3unD3/D3rGMhAMvu4Gfe9fxEmnJ0UPg8vwR36DgFU1
- aNiSpCFA8bBXeM4KK3h419SZjSxbYKUHm1FQhOI=
-X-Google-Smtp-Source: AMrXdXvuSoSdQsOkCuE55fO4itoYf8YbnH0Qj1pGcdv+byyJE+7NaYkg7O2fC/C1kB89A5ox7l1i2EKoUOPcIQovYh0=
-X-Received: by 2002:a9d:6ac6:0:b0:671:cacb:681f with SMTP id
- m6-20020a9d6ac6000000b00671cacb681fmr1424604otq.233.1672156554384; Tue, 27
- Dec 2022 07:55:54 -0800 (PST)
-MIME-Version: 1.0
-References: <3AFB9142-2BD0-46F9-AEA9-C9C5D13E68E6@live.com>
-In-Reply-To: <3AFB9142-2BD0-46F9-AEA9-C9C5D13E68E6@live.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 27 Dec 2022 10:55:43 -0500
-Message-ID: <CADnq5_NiDE7a5dmhhuLntQe88DS5JmiZTGqQ6ongXuWyh1A4wg@mail.gmail.com>
+Received: from IND01-MAX-obe.outbound.protection.outlook.com
+ (mail-maxind01olkn2089.outbound.protection.outlook.com [40.92.102.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D010910E15C
+ for <amd-gfx@lists.freedesktop.org>; Tue, 27 Dec 2022 16:15:38 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FL1NDXCeNb6Pj0vVd8XynkNroGsZwMDDB6clLrs5jwEQ67SZMxvGDxzlE1/POHF3XWyf5FGF7nAtLwZEsMEC96uaJHbzbT7kqDHiyL4rXFe/ZK9PSHaxVF9ZAHnqGBkCMM8hJ3Sc2dNB4J/02NeBDvL+Aip8hF91gFRJsqTEzIY7jfW6DB2YeOrEg7yvXsSzxGsQ+9mprfnTEEkTDlGISvNN+KWrk6vvoWCFhv7mzhYazp4MwTJz3YcvfKlwxjouGCXqowfGC8JhTiGbXz+5Qhr9hqD/OY0TudcU0NRhwLhEwzzPiW5EXzS2o04KlVPEJ7W75wHvj0EzFYWR4J/N9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ch/8saabiqztRNfU0DJmTYSWgrPfXf1rFDJ8hLMsEMI=;
+ b=FQvU2hafkMJEzPZ6NG7wS1vFRl7+ElVTjpmoFWt+AzeO7rL3o/XDaojpVWVOVzRkG+n5bop7UAZehIpd3r4GVfRS9vIg5zcFcR4GwYW2tqKHFy7a5DdzaHWZKQEvch/aKFPNhBDuA2Y5zrfUeUj/72cPyCtRX+2mBf6YTndD20cs20hkcvBAPU4FOUq74cjmX5cq2pWQW9Xxy0Zv9VN6NMSHlg+oqPRuJjHBH602xS2gJ09jdTI7L8S1+I2hrOBIuFuylrnJNo4UX92CJWsgCaCgxSbfcD9eolFqrFElx93A5f8+E48vp3YOUszHeldHxijZsCh87VPWX8ZALsGGWw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ch/8saabiqztRNfU0DJmTYSWgrPfXf1rFDJ8hLMsEMI=;
+ b=kLsHqgGlzBbTDBjDaGFD1Q8ZgpsW+feaS6gfYBWiV1ctYr/kxq562EA+U1+PMpHtPP1/tFrxzZgDkD/N2T2+qIpk8btc1xv++zbuXXwc3Ac1v7Hx+p4pLea3KxtSGL4GzJRe9umqhpxs9rL5b9wBFztQIgLFIG/OnUOfnn7t8OnDjUpw/kOl+kOy2DKFNzzgLFl/MjzfPzikr0i7eHcuQBtjiAm3fZVTVkPpxfoCcivLVJIGaiIhobjMIOLS6UYq5jgXQxyqlU6AAaTjCFtAsdMBl41etHZ9HN0MW4WnpagyxhSxbjg8zDUODZI6psmItu7R4fpD6FJ1y5bMofgtkQ==
+Received: from BM1PR01MB0931.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00:2::9) by
+ PN0PR01MB9023.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:161::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.16; Tue, 27 Dec
+ 2022 16:15:33 +0000
+Received: from BM1PR01MB0931.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::f90e:46bc:7a0f:23bc]) by BM1PR01MB0931.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::f90e:46bc:7a0f:23bc%7]) with mapi id 15.20.5944.016; Tue, 27 Dec 2022
+ 16:15:33 +0000
+From: Aditya Garg <gargaditya08@live.com>
+To: Alex Deucher <alexdeucher@gmail.com>
 Subject: Re: [BUG] AMD Radeon Pro 5600M with 8GB of HBM2 memory shows blank
  screen on Linux
-To: Aditya Garg <gargaditya08@live.com>
-Content-Type: text/plain; charset="UTF-8"
+Thread-Topic: [BUG] AMD Radeon Pro 5600M with 8GB of HBM2 memory shows blank
+ screen on Linux
+Thread-Index: AQHZGRb6yHJ4kgfUzkiN2hv0kLVX366B5SuAgAAFeIA=
+Date: Tue, 27 Dec 2022 16:15:33 +0000
+Message-ID: <CA3D493A-3695-46ED-A78A-D6C6709FDBF1@live.com>
+References: <3AFB9142-2BD0-46F9-AEA9-C9C5D13E68E6@live.com>
+ <CADnq5_NiDE7a5dmhhuLntQe88DS5JmiZTGqQ6ongXuWyh1A4wg@mail.gmail.com>
+In-Reply-To: <CADnq5_NiDE7a5dmhhuLntQe88DS5JmiZTGqQ6ongXuWyh1A4wg@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [eVqTPu8KSWUbnc7CWJOzSNjGj9jIjhJLHiqtUQI4dqf5S8CXeBViSRnN+E3eI84Z]
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BM1PR01MB0931:EE_|PN0PR01MB9023:EE_
+x-ms-office365-filtering-correlation-id: a3b5ff3b-61d0-4841-3de3-08dae82594ab
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: CY9ctoMPo86sJm5HzuGez0OwTUxb0BEuSJqeFyJ5obk9xrkJorBCWchzOxki8iGtwM1vGyMnot+Sxc7B7dytgUqm3r4pD7ud1fpLsrNz+lgJHyXCAwLTzi/bVsJSMprAKtcVQw5AMms8uFn7IroKgZ9oueleQuNlGtSe+Xf2FML/8Uy6OQyWa3TVBIvPZ3Ji9T6o542YROLnq8GZoUS5SUJbm3VtE37y+BQCqZDAUim7RM88uQStT/05xc1ZTXAtD2TVMuC/PBSbcUp/xoY6lzjla9IJqk3yCYK3cIv5K3xH55ymjUvXozg74UVyim7+qu3xjk50ed+NkcZexXOU3bGm5K3jMgdAOLLpSMM1TAB8hRKbYSv9JeEy4R5Nv6FeyBdVHqvN26n02ysSSspfRJnqAmyHmeDhZy2mxMYRZVfa2WqJMZu6mMzHMZN9skkFe1+ykhNKdWx0j3FR+ttfWck134HU27otOolSUzECRYSZo5o+7ba4n6/+36xr+HLQulQpBvmp1+0U+1boz0uYVQTHXhygyI765jerrFF9ad67o07clRXVTMrYGIIvKeq6hHj3jmaBbF4481osZlIiT2XK+lGI31xIdSCh+0biPhY=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?82PR6Flf5UFc6libtbZU2uH8lK4RK+dgGqlWOfStpwYZnL0aHyG4y3+9tB5L?=
+ =?us-ascii?Q?sPn9VhBa5jHpSpqAEayZFB5B4n4JgyoCUkXfgIEAnG3TP5LvCND3Yw8T4MTI?=
+ =?us-ascii?Q?HPdlhJ/jfWKhll7i0H2OwZu5LM6+7Fevud2SSJ4MXtYhwYDVGBP80qT0QRer?=
+ =?us-ascii?Q?TSuyYyiYHcu9lMIE1zFjMnr687VcAyJFzNVhQxoN4DnkYH6sPPIuPFPNZrRG?=
+ =?us-ascii?Q?Sa3bfQmaIK91AAFAQe++xGSvMiU+8u1V4N7oM5RFAPnA3quSBEHv010xAOD3?=
+ =?us-ascii?Q?C+nC4QhyPXk2K+roAudjLT0SGwtGD7wcz+KT3yMSa55C7OKWV7vNj4wodKua?=
+ =?us-ascii?Q?jiGAdugX2VkNG3MmXjhnJ6gjtL6OoBI3zl1CNqG5pDvKj7vr1CQ63zYiE6ZJ?=
+ =?us-ascii?Q?huTwGR0gl+EodjCQVtHiAvcMl3NNEOWhZOjXhOgKqOIFj18argILhsf/KI7f?=
+ =?us-ascii?Q?S8LGJ1vWPA9DkwYUNrukdr7c6Wq+0r5z/3VKnV4B/+Z9AEygb6hgYcZjbFgl?=
+ =?us-ascii?Q?bLjELMLb7yEn7uM7AAPkQ0gAuJk+beBWR5ArdD+zkb/DwhrJ6IR3iJXuv7/x?=
+ =?us-ascii?Q?1SJFs2DVWPTXci4VKScuyBWlF6MjN/UCxbZGTy2zRTHjY/iER+oRqh7xxI7q?=
+ =?us-ascii?Q?eWZd8l8WEODe443Bir+LiHRdLcP1/rrKbRUX5a9OLJzkLsKnkjkYMDjibGYw?=
+ =?us-ascii?Q?4DYw5IzPCLYYhBRlQp5GBag35FaqQ3TdQXlkNQN1Ht3NhqlvG/8St0/hGCpO?=
+ =?us-ascii?Q?SQMkGPmE+bt5GHLbTm29V+gomjKNQabFpyDnmTUgklRPjmsxl8KA69Ksafeq?=
+ =?us-ascii?Q?NRHboPqHH5+fuTl8ZJu5vavFXDpqyGTcqrXeXnMtMsHwaeXJ2WSuQuX2D9G8?=
+ =?us-ascii?Q?3xEZYzSrMBaofpP1qBipMwKMR8kCTJbla+BxbR3dAtWKMJJauAQX77m4+Hnx?=
+ =?us-ascii?Q?cdrUjMczx3AkzNqN5VGvjIVWQNnGswtdi6gOEpuLHRz0ox5SzBerQyAodg6L?=
+ =?us-ascii?Q?NbgfPZ9MXu6056y9gVn2P7BOx708trj3II+WgmJMrlYpPIq+NjQBx0N1FFbI?=
+ =?us-ascii?Q?YSNvo9JMhZwaeO9q8EQoSkfqT4ZoHFvUU2EGSMAU9nJ2Fx8Ry9PIDnKirQf3?=
+ =?us-ascii?Q?utmwlghqMULd5HOHmoIUHj1ApBXOZJVDpYqT1wjnYPpkmiJgvvTpihhoqD9p?=
+ =?us-ascii?Q?SMHGaxhskNZfNvgNmaoxItg67PvRyP5kayJJ6/RLFunnR2Bp7qZ1LqkwRC/m?=
+ =?us-ascii?Q?gdLPBye4NlIoLo9LXAx4M0GcGZMt0ahE8NzZNX12QTaR4xkL981uAUch+RKv?=
+ =?us-ascii?Q?BD91o0bqesqquTKCJS0aKITV3Rz+3JfAXBHoa4p3oZ5q1g=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <708A828935568A4786CD6872AE50C6C8@INDPRD01.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-42ed3.templateTenant
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BM1PR01MB0931.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: a3b5ff3b-61d0-4841-3de3-08dae82594ab
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Dec 2022 16:15:33.1562 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0PR01MB9023
+X-Mailman-Approved-At: Tue, 27 Dec 2022 17:05:29 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,25 +120,23 @@ Cc: Orlando Chamberlain <redecorating@protonmail.com>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 26, 2022 at 8:19 AM Aditya Garg <gargaditya08@live.com> wrote:
->
-> The AMD Radeon Pro 5600M with 8GB of HBM2 memory GPU is found in MacBook Pro 16 inch, 2019 (MacBookPro16,4).
->
-> The GPU fails to work on Linux, thus a blank black screen gets displayed on boot.
->
-> If nomodeset is added as a kernel parameter, we are able to access Linux easily.
->
-> The link below contains the journalctl of the failed boot :-
-> https://gist.github.com/AdityaGarg8/dfe1a1c23bf2b92b640dad89f55b73c7
+>=20
+> Can you file a bug report:
+> https://gitlab.freedesktop.org/drm/amd/-/issues/
 
-Can you file a bug report:
-https://gitlab.freedesktop.org/drm/amd/-/issues/
+https://gitlab.freedesktop.org/drm/amd/-/issues/2318
 
-What sort of monitor are you using?  It looks to be failing mode validation:
-[drm] Mode Validation Warning: Urgent latency failed validation.
+>=20
+> What sort of monitor are you using?  It looks to be failing mode validati=
+on:
+> [drm] Mode Validation Warning: Urgent latency failed validation.
+>=20
 
-Alex
+Well its Apple's 16 inch built in Retina display.
 
->
-> Thanks
-> Aditya
+The same is used in models with :-
+1. AMD Radeon Pro 5300M with 4GB of GDDR6 memory
+2. AMD Radeon Pro 5500M with 4GB of GDDR6 memory
+3. AMD Radeon Pro 5500M with 8GB of GDDR6 memory
+
+But these models work perfectly with AMD GPU enabled.=
