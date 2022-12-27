@@ -2,49 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 913F5656C90
-	for <lists+amd-gfx@lfdr.de>; Tue, 27 Dec 2022 16:34:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FB91656C94
+	for <lists+amd-gfx@lfdr.de>; Tue, 27 Dec 2022 16:34:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DBBB10E07C;
-	Tue, 27 Dec 2022 15:34:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9E1510E0C2;
+	Tue, 27 Dec 2022 15:34:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 488 seconds by postgrey-1.36 at gabe;
- Mon, 26 Dec 2022 19:32:45 UTC
-Received: from mail1.perex.cz (mail1.perex.cz [77.48.224.245])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 167C010E12E
- for <amd-gfx@lists.freedesktop.org>; Mon, 26 Dec 2022 19:32:45 +0000 (UTC)
-Received: from mail1.perex.cz (localhost [127.0.0.1])
- by smtp1.perex.cz (Perex's E-mail Delivery System) with ESMTP id 89DACA003F;
- Mon, 26 Dec 2022 20:24:16 +0100 (CET)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.perex.cz 89DACA003F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=perex.cz; s=default;
- t=1672082656; bh=G+feGOdiLCP3tiUA/WiebYF7xmjX4QgATt6Yoy3yzMc=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=2P9cw4xV0sfTsmKCNRmPtGqCR4N78rkcFlOheLZnSLaJMlidFWyJZigNKefI8Pegq
- UF2iWY1e9EaXE04wKOfHY4wo8wnjuYtDI/ivgaD6eDWto8SAEWNcYZtPviWlh18Iak
- syN0AN6eAEC//Q7FHfbwzeDrczoAKaNHeAGAeFUU=
-Received: from [192.168.100.98] (unknown [192.168.100.98])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: perex)
- by mail1.perex.cz (Perex's E-mail Delivery System) with ESMTPSA;
- Mon, 26 Dec 2022 20:24:11 +0100 (CET)
-Message-ID: <47f3590c-f371-c997-374f-0a2a3dde86dc@perex.cz>
-Date: Mon, 26 Dec 2022 20:24:11 +0100
+X-Greylist: delayed 575 seconds by postgrey-1.36 at gabe;
+ Tue, 27 Dec 2022 08:46:35 UTC
+Received: from gauss.telenet-ops.be (gauss.telenet-ops.be [195.130.132.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D79B10E0B5
+ for <amd-gfx@lists.freedesktop.org>; Tue, 27 Dec 2022 08:46:35 +0000 (UTC)
+Received: from albert.telenet-ops.be (albert.telenet-ops.be
+ [IPv6:2a02:1800:110:4::f00:1a])
+ by gauss.telenet-ops.be (Postfix) with ESMTPS id 4Nh7Kc00kdz4x04L
+ for <amd-gfx@lists.freedesktop.org>; Tue, 27 Dec 2022 09:36:19 +0100 (CET)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed10:312a:feb:527f:f392])
+ by albert.telenet-ops.be with bizsmtp
+ id 1LbH290023T8eJe06LbH8w; Tue, 27 Dec 2022 09:35:19 +0100
+Received: from geert (helo=localhost)
+ by ramsan.of.borg with local-esmtp (Exim 4.93)
+ (envelope-from <geert@linux-m68k.org>)
+ id 1pA5Qa-001J4O-Tj; Tue, 27 Dec 2022 09:35:16 +0100
+Date: Tue, 27 Dec 2022 09:35:16 +0100 (CET)
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+X-X-Sender: geert@ramsan.of.borg
+To: linux-kernel@vger.kernel.org
+Subject: Re: Build regressions/improvements in v6.2-rc1
+In-Reply-To: <20221227082932.798359-1-geert@linux-m68k.org>
+Message-ID: <alpine.DEB.2.22.394.2212270933530.311423@ramsan.of.borg>
+References: <CAHk-=wgf929uGOVpiWALPyC7pv_9KbwB2EAvQ3C4woshZZ5zqQ@mail.gmail.com>
+ <20221227082932.798359-1-geert@linux-m68k.org>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH] ALSA: hda/hdmi: Use only dynamic PCM device allocation
-Content-Language: en-US
-To: Takashi Iwai <tiwai@suse.de>, =?UTF-8?Q?Michael_La=c3=9f?=
- <bevan@bi-co.net>
-References: <20220922084017.25925-1-perex@perex.cz>
- <1c9c00dec72c241a399b3b7c0a305382a5712529.camel@bi-co.net>
- <87edsnxqmo.wl-tiwai@suse.de>
-From: Jaroslav Kysela <perex@perex.cz>
-In-Reply-To: <87edsnxqmo.wl-tiwai@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/mixed; boundary="8323329-1893319093-1672130116=:311423"
 X-Mailman-Approved-At: Tue, 27 Dec 2022 15:33:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -57,57 +49,99 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ALSA development <alsa-devel@alsa-project.org>,
- amd-gfx@lists.freedesktop.org, Kai Vehmanen <kai.vehmanen@linux.intel.com>
+Cc: linux-xtensa@linux-xtensa.org, linux-sh@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-mips@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-f2fs-devel@lists.sourceforge.net,
+ kasan-dev@googlegroups.com, linuxppc-dev@lists.ozlabs.org,
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 25. 12. 22 19:52, Takashi Iwai wrote:
-> On Sun, 25 Dec 2022 13:14:28 +0100,
-> Michael LaÃŸ wrote:
->>
->> CC'ing amd-gfx as this might be an issue in the amd driver.
->>
->> This change causes a regression in Linux 6.1 at least on some AMD APUs.
->> There are reports from users with Ryzen 4750U, 5800U and 5850U chips
->> where the HDMI sound devices don't show up anymore. I'm affected by
->> this as well.
->>
->> Reverting this commit (ef6f5494) makes the HDMI audio devices show up
->> again. I verified that this is still an issue in current Linux git
->> (72a85e2b).
->>
->> Am Donnerstag, dem 22.09.2022 um 10:40 +0200 schrieb Jaroslav Kysela:
->>>> Per discussion on the alsa-devel mailing list [1], the legacy PIN to PCM
->>>> device mapping is obsolete nowadays. The maximum number of the simultaneously
->>>> usable PCM devices is equal to the HDMI codec converters.
->>>>
->>>> Remove the extra PCM devices (beyond the detected converters) and force
->>>> the use of the dynamic PCM device allocation. The legacy code is removed.
->>>>
->>>> I believe that all HDMI codecs have the jack sensing feature. Move the check
->>>> to the codec probe function and print a warning, if a codec without this
->>>> feature is detected.
->>
->> The corresponding message ("jack not detectable") is not shown on the
->> affected system.
->>
->>>> [1] https://lore.kernel.org/alsa-devel/2f37e0b2-1e82-8c0b-2bbd-1e5038d6ecc6@perex.cz/
->>
->> Links to some reports of this issue:
->> https://bugzilla.kernel.org/show_bug.cgi?id=216836
->> https://bbs.archlinux.org/viewtopic.php?pid=2075700
->> https://bugs.archlinux.org/task/76917
->> https://www.reddit.com/r/archlinux/comments/zsqq7i/hdmi_audio_is_broken_after_updating_kernel_to_611
-> 
-> Could you give alsa-info.sh outputs from both working and non-working
-> cases?  Run the script with --no-upload option during the playback of
-> HDMI stream, and attach the outputs.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-BugLink: https://bugzilla.kernel.org/show_bug.cgi?id=216836
+--8323329-1893319093-1672130116=:311423
+Content-Type: text/plain; charset=ISO-8859-15; format=flowed
+Content-Transfer-Encoding: 8BIT
 
-				Jaroslav
+On Tue, 27 Dec 2022, Geert Uytterhoeven wrote:
+> Below is the list of build error/warning regressions/improvements in
+> v6.2-rc1[1] compared to v6.1[2].
+>
+> Summarized:
+>  - build errors: +11/-13
 
--- 
-Jaroslav Kysela <perex@perex.cz>
-Linux Sound Maintainer; ALSA Project; Red Hat, Inc.
+amd-gfx@lists.freedesktop.org
+linux-arm-kernel@lists.infradead.org
+linux-media@vger.kernel.org
+linux-wireless@vger.kernel.org
+linux-mips@vger.kernel.org
+linux-sh@vger.kernel.org
+linux-f2fs-devel@lists.sourceforge.net
+linuxppc-dev@lists.ozlabs.org
+kasan-dev@googlegroups.com
+linux-xtensa@linux-xtensa.org
+
+   + /kisskb/src/drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn31/display_mode_vba_31.c: error: the frame size of 2224 bytes is larger than 2048 bytes [-Werror=frame-larger-than=]:  => 7082:1
+   + /kisskb/src/drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn314/display_mode_vba_314.c: error: the frame size of 2208 bytes is larger than 2048 bytes [-Werror=frame-larger-than=]:  => 7127:1
+
+arm64-gcc5/arm64-allmodconfig
+
+   + /kisskb/src/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c: error: array subscript 2 is above array bounds of 'u32[2]' {aka 'unsigned int[2]'} [-Werror=array-bounds]:  => 641:28
+   + /kisskb/src/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c: error: array subscript 3 is above array bounds of 'u32[2]' {aka 'unsigned int[2]'} [-Werror=array-bounds]:  => 641:28
+
+m68k-gcc8/m68k-allmodconfig
+See also https://lore.kernel.org/all/CAMuHMdWpPX2mpqFEWjjbjsQvDBQOXyjjdpKnQu9qURAuVZXmMw@mail.gmail.com
+
+   + /kisskb/src/include/linux/bitfield.h: error: call to '__field_overflow' declared with attribute error: value doesn't fit into mask:  => 151:3
+
+In function 'u32_encode_bits',
+     inlined from 'ieee80211_mlo_multicast_tx' at /kisskb/src/net/mac80211/tx.c:4435:17,
+     inlined from 'ieee80211_subif_start_xmit' at /kisskb/src/net/mac80211/tx.c:4483:3:
+
+mipsel-gcc5/mips-allmodconfig
+
+   + /kisskb/src/include/linux/compiler_types.h: error: call to '__compiletime_assert_262' declared with attribute error: Unsupported access size for {READ,WRITE}_ONCE().:  => 358:45
+   + /kisskb/src/include/linux/compiler_types.h: error: call to '__compiletime_assert_263' declared with attribute error: Unsupported access size for {READ,WRITE}_ONCE().:  => 358:45
+
+In function 'follow_pmd_mask',
+     inlined from 'follow_pud_mask' at /kisskb/src/mm/gup.c:735:9,
+     inlined from 'follow_p4d_mask' at /kisskb/src/mm/gup.c:752:9,
+     inlined from 'follow_page_mask' at /kisskb/src/mm/gup.c:809:9:
+
+sh4-gcc11/sh-defconfig (Günter wondered if pmd_t should use union)
+
+   + /kisskb/src/include/linux/fortify-string.h: error: '__builtin_memcpy' offset [0, 127] is out of the bounds [0, 0] [-Werror=array-bounds]:  => 57:33
+
+/kisskb/src/arch/s390/kernel/setup.c: In function 'setup_lowcore_dat_on':
+s390x-gcc11/s390-all{mod,yes}config
+
+   + /kisskb/src/include/linux/fortify-string.h: error: '__builtin_memset' pointer overflow between offset [28, 898293814] and size [-898293787, -1] [-Werror=array-bounds]:  => 59:33
+
+/kisskb/src/fs/f2fs/inline.c: In function 'f2fs_move_inline_dirents':
+
+powerpc-gcc11/ppc64_book3e_allmodconfig
+powerpc-gcc11/powerpc-all{mod,yes}config
+
+   + /kisskb/src/kernel/kcsan/kcsan_test.c: error: the frame size of 1680 bytes is larger than 1536 bytes [-Werror=frame-larger-than=]:  => 257:1
+
+xtensa-gcc11/xtensa-allmodconfig (patch available)
+
+   + {standard input}: Error: unknown pseudo-op: `.cfi_def_c':  => 1718
+
+sh4-gcc11/sh-allmodconfig (ICE = internal compiler error)
+
+> [1] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/1b929c02afd37871d5afb9d498426f83432e71c2/ (all 152 configs)
+> [2] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/830b3c68c1fb1e9176028d02ef86f3cf76aa2476/ (all 152 configs)
+
+Gr{oetje,eeting}s,
+
+ 						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+ 							    -- Linus Torvalds
+--8323329-1893319093-1672130116=:311423--
