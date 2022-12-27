@@ -2,59 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A3EC656D21
-	for <lists+amd-gfx@lfdr.de>; Tue, 27 Dec 2022 17:58:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0C50656D33
+	for <lists+amd-gfx@lfdr.de>; Tue, 27 Dec 2022 18:05:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 032D210E04D;
-	Tue, 27 Dec 2022 16:58:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38C2710E05D;
+	Tue, 27 Dec 2022 17:05:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com
- [IPv6:2001:4860:4864:20::2c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F69110E04D
- for <amd-gfx@lists.freedesktop.org>; Tue, 27 Dec 2022 16:58:21 +0000 (UTC)
-Received: by mail-oa1-x2c.google.com with SMTP id
- 586e51a60fabf-1433ef3b61fso16005783fac.10
- for <amd-gfx@lists.freedesktop.org>; Tue, 27 Dec 2022 08:58:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=AyXseZFZh5knyyF3iP8g85eQ12QVwnloyhpXOn65cKU=;
- b=FOHPUIrujIlweCY1xrUaXQY+Z/m8pCGlDXBzUa9AfCw7YFE6gM+Lg3GObCQ/+yCOg9
- 3DUqihNERLVeFGBxfB1NqHli044n4qB64mWdkxWkIvZ83IbfAboGLEw6qdwBpAiUm014
- ugaqy6ZmBZdRTKwkfvv2S4i8BzDus8knJJLCSllYopZnkaYO/x/nPrv2mwsGkbVI8iqq
- 8MpPynzZsMqNkfrNFWAjQz4LIwkDsajqsQjaf8jSJzJiZgHSqEx5a9UWlijKakIKbWQQ
- aYlNAAOYocIdMri90WDqYRzn4vCrEiPLsMEdExdT9Od0tSUO1pZvJVryMQ7eZN4DqJHG
- PUfA==
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com
+ [IPv6:2a00:1450:4864:20::12f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A231410E15D
+ for <amd-gfx@lists.freedesktop.org>; Tue, 27 Dec 2022 17:04:42 +0000 (UTC)
+Received: by mail-lf1-x12f.google.com with SMTP id g13so20363483lfv.7
+ for <amd-gfx@lists.freedesktop.org>; Tue, 27 Dec 2022 09:04:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=bell-sw-com.20210112.gappssmtp.com; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=Ivb/DkY93Aog9U4yxwMe4hUkXXEZzyc9VEnmd3oUMqc=;
+ b=7J1IvD/0DcGkmp6OLLooUcVHWxxHnLsIRphRAVW9dZ3b3TOvHBW6SgSpHDL8NInmya
+ c3le/Uv94MTb11n+igIRqylE7C50XabbhO92/KFNu82cWjJOdXpiqnz5SgPdQsrkD2YL
+ T1aSMpeNJo5uc/deBiC1NmhhVj3ZHBXPEzucMgjkn60rF/qJspTatGgbz+HBRJvGhhSK
+ P7v9Si5f/TkcpUrq/+PnstL7/b3VK3F8bNqht2Gi1Hiu9Yo1YuErBrdq/uovO10b10O4
+ IMMfvsiZYRBPpRp8BKs8M14j2nQSyWo5dLmvfHd03wrq0S74hfVQH0eV6IoJp894RTsJ
+ 8mRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=AyXseZFZh5knyyF3iP8g85eQ12QVwnloyhpXOn65cKU=;
- b=M+opemTnIIgLcmxaBExETKj0GLBglo2FLU4cEM7Hlq0WYqnpBjS5Fz2whiP/9I/UGC
- GKJ9ev6rpitgr/s0EFBQ+7GqQOdQK3f9+dvy5dQLxCbPWM+2d7E+yItXNfrRVY/qEQ8N
- uYZ+r1x0vGwCMLGNwHCFh5bvLFUZ9j3onVOTgPFMFVydq77BO+GYfeYSTkzuXtlDZgEC
- 2zcpJPwcr9+sKjXLGwUA3FLpbZ1dgJFlr27wiZ3/nXDdYUIBwaAxz9Su/R/qYXw0ZKSm
- RBeTY31jcRY2aFTuezpKJ/UF/adodJzLHZe8rtYYGz+L/e6tS6RP9OJI3V7yzr2XfvxP
- gg2w==
-X-Gm-Message-State: AFqh2kogpv6IlgS+/qhJVKPanL7XRILDnKhvgEOCm6vXLc0hLojLCa0n
- T/GVt4SGCopNNir8bmDv80J42isK/GBRDfn4oFk=
-X-Google-Smtp-Source: AMrXdXvO8dJqNXsfa1snHbWatUW7r5dUjJrfgVi6E4PD64kszc6N6Htr4JYhp5dalAS8vdVo9SJqO6blRHuG4B9u9ac=
-X-Received: by 2002:a05:6871:4410:b0:14c:6b59:b014 with SMTP id
- nd16-20020a056871441000b0014c6b59b014mr1636858oab.96.1672160300459; Tue, 27
- Dec 2022 08:58:20 -0800 (PST)
+ bh=Ivb/DkY93Aog9U4yxwMe4hUkXXEZzyc9VEnmd3oUMqc=;
+ b=3odJ8Y8wMKMnokeFrn9fBz5GfA7W8AcKvVJGkn1YTB077JEIZsqhS0ZQ9m9Yx3w+Mu
+ cipHxDbxhvoHtn0JSVu8x99klT2cxKeZnGprBKug7Hsj4COdmVv98vJIAIRipb0ySeML
+ HcJ+OXGUu+/qvpcj7aSwJpEmWb9NgSmxr2blkZvAe80fz8urwsIklEmpMX8Lm/a76Yte
+ Z/WteVyFVV4fYqDWTytcADOWco6L1rf1assK3k9GQ37mFAG41wWBzIiv2bg1SfZnyRNC
+ v5tvspzsX2968SuraFXyZF/sSYGOOo2yuSZG6kEhgTJsOTXPn6VQaMvyjIa6MVVW04M7
+ zRbg==
+X-Gm-Message-State: AFqh2ko/Wr5XHC30oonnHkDkb2/v47+tyFFFbgqFbsK6Z4wExT5Hj8o4
+ Unca8pVUdVOIKcYaw/ZZSyjiTTuHp/gXgBg=
+X-Google-Smtp-Source: AMrXdXtF63rUZJ8onZPpnR1C7FG1+Erz2+9B7+BE05wFGYWgkREo4SbGeGQijtk4zZ35LP2vBP4N2g==
+X-Received: by 2002:a19:f705:0:b0:4be:a4cb:be37 with SMTP id
+ z5-20020a19f705000000b004bea4cbbe37mr6003307lfe.15.1672160680616; 
+ Tue, 27 Dec 2022 09:04:40 -0800 (PST)
+Received: from localhost.localdomain ([95.161.223.113])
+ by smtp.gmail.com with ESMTPSA id
+ n4-20020ac242c4000000b004b0a1e77cb2sm2331052lfl.137.2022.12.27.09.04.38
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 27 Dec 2022 09:04:39 -0800 (PST)
+From: Alexey Kodanev <aleksei.kodanev@bell-sw.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amd/display: drop unnecessary NULL checks in debugfs
+Date: Tue, 27 Dec 2022 20:04:15 +0300
+Message-Id: <20221227170415.209904-1-aleksei.kodanev@bell-sw.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20221223193655.1972-1-shashank.sharma@amd.com>
- <20221223193655.1972-2-shashank.sharma@amd.com>
- <CAP+8YyGPy5oXpOcuWfaS1vNhGajG1VGZc4p_QiUxaLAFCtt5KQ@mail.gmail.com>
-In-Reply-To: <CAP+8YyGPy5oXpOcuWfaS1vNhGajG1VGZc4p_QiUxaLAFCtt5KQ@mail.gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 27 Dec 2022 11:58:09 -0500
-Message-ID: <CADnq5_MpGojmU3WTNvvOiYie_c5WWAXbMp5W+dWx7_SHKDn9+g@mail.gmail.com>
-Subject: Re: [RFC 1/7] drm/amdgpu: UAPI for user queue management
-To: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 27 Dec 2022 17:05:29 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,153 +69,228 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: arunpravin.paneerselvam@amd.com, Shashank Sharma <shashank.sharma@amd.com>,
- amd-gfx@lists.freedesktop.org, arvind.yadav@amd.com,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian Koenig <christian.koenig@amd.com>
+Cc: Alexey Kodanev <aleksei.kodanev@bell-sw.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Dec 24, 2022 at 3:21 PM Bas Nieuwenhuizen
-<bas@basnieuwenhuizen.nl> wrote:
->
-> On Fri, Dec 23, 2022 at 8:37 PM Shashank Sharma <shashank.sharma@amd.com> wrote:
-> >
-> > From: Alex Deucher <alexander.deucher@amd.com>
-> >
-> > This patch intorduces new UAPI/IOCTL for usermode graphics
-> > queue. The userspace app will fill this structure and request
-> > the graphics driver to add a graphics work queue for it. The
-> > output of this UAPI is a queue id.
-> >
-> > This UAPI maps the queue into GPU, so the graphics app can start
-> > submitting work to the queue as soon as the call returns.
-> >
-> > Cc: Alex Deucher <alexander.deucher@amd.com>
-> > Cc: Christian Koenig <christian.koenig@amd.com>
-> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > Signed-off-by: Shashank Sharma <shashank.sharma@amd.com>
-> > ---
-> >  include/uapi/drm/amdgpu_drm.h | 52 +++++++++++++++++++++++++++++++++++
-> >  1 file changed, 52 insertions(+)
-> >
-> > diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
-> > index 0d93ec132ebb..a3d0dd6f62c5 100644
-> > --- a/include/uapi/drm/amdgpu_drm.h
-> > +++ b/include/uapi/drm/amdgpu_drm.h
-> > @@ -54,6 +54,7 @@ extern "C" {
-> >  #define DRM_AMDGPU_VM                  0x13
-> >  #define DRM_AMDGPU_FENCE_TO_HANDLE     0x14
-> >  #define DRM_AMDGPU_SCHED               0x15
-> > +#define DRM_AMDGPU_USERQ               0x16
-> >
-> >  #define DRM_IOCTL_AMDGPU_GEM_CREATE    DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_CREATE, union drm_amdgpu_gem_create)
-> >  #define DRM_IOCTL_AMDGPU_GEM_MMAP      DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_MMAP, union drm_amdgpu_gem_mmap)
-> > @@ -71,6 +72,7 @@ extern "C" {
-> >  #define DRM_IOCTL_AMDGPU_VM            DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_VM, union drm_amdgpu_vm)
-> >  #define DRM_IOCTL_AMDGPU_FENCE_TO_HANDLE DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_FENCE_TO_HANDLE, union drm_amdgpu_fence_to_handle)
-> >  #define DRM_IOCTL_AMDGPU_SCHED         DRM_IOW(DRM_COMMAND_BASE + DRM_AMDGPU_SCHED, union drm_amdgpu_sched)
-> > +#define DRM_IOCTL_AMDGPU_USERQ         DRM_IOW(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ, union drm_amdgpu_userq)
-> >
-> >  /**
-> >   * DOC: memory domains
-> > @@ -288,6 +290,56 @@ union drm_amdgpu_ctx {
-> >         union drm_amdgpu_ctx_out out;
-> >  };
-> >
-> > +/* user queue IOCTL */
-> > +#define AMDGPU_USERQ_OP_CREATE 1
-> > +#define AMDGPU_USERQ_OP_FREE   2
-> > +
-> > +#define AMDGPU_USERQ_MQD_FLAGS_SECURE  (1 << 0)
-> > +#define AMDGPU_USERQ_MQD_FLAGS_AQL     (1 << 1)
->
-> Can we document what AQL means here?
+pipe_ctx pointer cannot be NULL when getting the address of
+an element of the pipe_ctx array. Moreover, the MAX_PIPES is
+defined as 6, so pipe_ctx is not NULL after the loop either.
 
-AQL is the packet format used by KFD/ROCm.  The idea is to be able to
-create queues that support either format (AQL or PM4).
+Detected using the static analysis tool - Svace.
+Signed-off-by: Alexey Kodanev <aleksei.kodanev@bell-sw.com>
+---
+ .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 72 +++++--------------
+ 1 file changed, 16 insertions(+), 56 deletions(-)
 
->
->
-> > +
-> > +struct drm_amdgpu_userq_mqd {
-> > +       /** Flags: AMDGPU_USERQ_MQD_FLAGS_* */
-> > +       __u32   flags;
-> > +       /** IP type: AMDGPU_HW_IP_* */
-> > +       __u32   ip_type;
-> > +       /** GEM object handle */
-> > +       __u32   doorbell_handle;
-> > +       /** Doorbell offset in dwords */
-> > +       __u32   doorbell_offset;
->
-> What are the doorbell handle/offset for? I don't see any of them used
-> in the rest of the series (we only check the handle isn't 0, which
-> isn't enough validation for a GEM handle to consider it valid), and
-> the kernel seems to allocate some kind of doorbell index in patch 4.
-> Does userspace need to know about that one? (similarly use_doorbell in
-> that patch seems like it is never explicitly written to)
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+index 461037a3dd75..cec16eaf2fb0 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+@@ -1375,16 +1375,11 @@ static ssize_t dp_dsc_clock_en_read(struct file *f, char __user *buf,
+ 
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
+-		if (pipe_ctx && pipe_ctx->stream &&
++		if (pipe_ctx->stream &&
+ 		    pipe_ctx->stream->link == aconnector->dc_link)
+ 			break;
+ 	}
+ 
+-	if (!pipe_ctx) {
+-		kfree(rd_buf);
+-		return -ENXIO;
+-	}
+-
+ 	dsc = pipe_ctx->stream_res.dsc;
+ 	if (dsc)
+ 		dsc->funcs->dsc_read_state(dsc, &dsc_state);
+@@ -1481,12 +1476,12 @@ static ssize_t dp_dsc_clock_en_write(struct file *f, const char __user *buf,
+ 
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
+-		if (pipe_ctx && pipe_ctx->stream &&
++		if (pipe_ctx->stream &&
+ 		    pipe_ctx->stream->link == aconnector->dc_link)
+ 			break;
+ 	}
+ 
+-	if (!pipe_ctx || !pipe_ctx->stream)
++	if (!pipe_ctx->stream)
+ 		goto done;
+ 
+ 	// Get CRTC state
+@@ -1566,16 +1561,11 @@ static ssize_t dp_dsc_slice_width_read(struct file *f, char __user *buf,
+ 
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
+-		if (pipe_ctx && pipe_ctx->stream &&
++		if (pipe_ctx->stream &&
+ 		    pipe_ctx->stream->link == aconnector->dc_link)
+ 			break;
+ 	}
+ 
+-	if (!pipe_ctx) {
+-		kfree(rd_buf);
+-		return -ENXIO;
+-	}
+-
+ 	dsc = pipe_ctx->stream_res.dsc;
+ 	if (dsc)
+ 		dsc->funcs->dsc_read_state(dsc, &dsc_state);
+@@ -1670,12 +1660,12 @@ static ssize_t dp_dsc_slice_width_write(struct file *f, const char __user *buf,
+ 
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
+-		if (pipe_ctx && pipe_ctx->stream &&
++		if (pipe_ctx->stream &&
+ 		    pipe_ctx->stream->link == aconnector->dc_link)
+ 			break;
+ 	}
+ 
+-	if (!pipe_ctx || !pipe_ctx->stream)
++	if (!pipe_ctx->stream)
+ 		goto done;
+ 
+ 	// Safely get CRTC state
+@@ -1755,16 +1745,11 @@ static ssize_t dp_dsc_slice_height_read(struct file *f, char __user *buf,
+ 
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
+-		if (pipe_ctx && pipe_ctx->stream &&
++		if (pipe_ctx->stream &&
+ 		    pipe_ctx->stream->link == aconnector->dc_link)
+ 			break;
+ 	}
+ 
+-	if (!pipe_ctx) {
+-		kfree(rd_buf);
+-		return -ENXIO;
+-	}
+-
+ 	dsc = pipe_ctx->stream_res.dsc;
+ 	if (dsc)
+ 		dsc->funcs->dsc_read_state(dsc, &dsc_state);
+@@ -1859,12 +1844,12 @@ static ssize_t dp_dsc_slice_height_write(struct file *f, const char __user *buf,
+ 
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
+-		if (pipe_ctx && pipe_ctx->stream &&
++		if (pipe_ctx->stream &&
+ 		    pipe_ctx->stream->link == aconnector->dc_link)
+ 			break;
+ 	}
+ 
+-	if (!pipe_ctx || !pipe_ctx->stream)
++	if (!pipe_ctx->stream)
+ 		goto done;
+ 
+ 	// Get CRTC state
+@@ -1940,16 +1925,11 @@ static ssize_t dp_dsc_bits_per_pixel_read(struct file *f, char __user *buf,
+ 
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
+-		if (pipe_ctx && pipe_ctx->stream &&
++		if (pipe_ctx->stream &&
+ 		    pipe_ctx->stream->link == aconnector->dc_link)
+ 			break;
+ 	}
+ 
+-	if (!pipe_ctx) {
+-		kfree(rd_buf);
+-		return -ENXIO;
+-	}
+-
+ 	dsc = pipe_ctx->stream_res.dsc;
+ 	if (dsc)
+ 		dsc->funcs->dsc_read_state(dsc, &dsc_state);
+@@ -2041,12 +2021,12 @@ static ssize_t dp_dsc_bits_per_pixel_write(struct file *f, const char __user *bu
+ 
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
+-		if (pipe_ctx && pipe_ctx->stream &&
++		if (pipe_ctx->stream &&
+ 		    pipe_ctx->stream->link == aconnector->dc_link)
+ 			break;
+ 	}
+ 
+-	if (!pipe_ctx || !pipe_ctx->stream)
++	if (!pipe_ctx->stream)
+ 		goto done;
+ 
+ 	// Get CRTC state
+@@ -2120,16 +2100,11 @@ static ssize_t dp_dsc_pic_width_read(struct file *f, char __user *buf,
+ 
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
+-		if (pipe_ctx && pipe_ctx->stream &&
++		if (pipe_ctx->stream &&
+ 		    pipe_ctx->stream->link == aconnector->dc_link)
+ 			break;
+ 	}
+ 
+-	if (!pipe_ctx) {
+-		kfree(rd_buf);
+-		return -ENXIO;
+-	}
+-
+ 	dsc = pipe_ctx->stream_res.dsc;
+ 	if (dsc)
+ 		dsc->funcs->dsc_read_state(dsc, &dsc_state);
+@@ -2181,16 +2156,11 @@ static ssize_t dp_dsc_pic_height_read(struct file *f, char __user *buf,
+ 
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
+-		if (pipe_ctx && pipe_ctx->stream &&
++		if (pipe_ctx->stream &&
+ 		    pipe_ctx->stream->link == aconnector->dc_link)
+ 			break;
+ 	}
+ 
+-	if (!pipe_ctx) {
+-		kfree(rd_buf);
+-		return -ENXIO;
+-	}
+-
+ 	dsc = pipe_ctx->stream_res.dsc;
+ 	if (dsc)
+ 		dsc->funcs->dsc_read_state(dsc, &dsc_state);
+@@ -2257,16 +2227,11 @@ static ssize_t dp_dsc_chunk_size_read(struct file *f, char __user *buf,
+ 
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
+-		if (pipe_ctx && pipe_ctx->stream &&
++		if (pipe_ctx->stream &&
+ 		    pipe_ctx->stream->link == aconnector->dc_link)
+ 			break;
+ 	}
+ 
+-	if (!pipe_ctx) {
+-		kfree(rd_buf);
+-		return -ENXIO;
+-	}
+-
+ 	dsc = pipe_ctx->stream_res.dsc;
+ 	if (dsc)
+ 		dsc->funcs->dsc_read_state(dsc, &dsc_state);
+@@ -2333,16 +2298,11 @@ static ssize_t dp_dsc_slice_bpg_offset_read(struct file *f, char __user *buf,
+ 
+ 	for (i = 0; i < MAX_PIPES; i++) {
+ 		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
+-		if (pipe_ctx && pipe_ctx->stream &&
++		if (pipe_ctx->stream &&
+ 		    pipe_ctx->stream->link == aconnector->dc_link)
+ 			break;
+ 	}
+ 
+-	if (!pipe_ctx) {
+-		kfree(rd_buf);
+-		return -ENXIO;
+-	}
+-
+ 	dsc = pipe_ctx->stream_res.dsc;
+ 	if (dsc)
+ 		dsc->funcs->dsc_read_state(dsc, &dsc_state);
+-- 
+2.25.1
 
-The doorbell is how you trigger the engine to start processing the
-user queue.  The idea is that each user process allocates a page of
-doorbell space (one of the PCI BARs) and then each 64 bit segment in
-that page could be used for a user mode queue.  So the UMD writes its
-data to the queue, updates the wptr, and then writes to the doorbell
-to tell the firmware to start processing the queue.
-
->
-> The other questions I have are about how this interacts with memory
-> management. Does this have access to all BOs allocated with
-> AMDGPU_GEM_CREATE_VM_ALWAYS_VALID? What about imported BOs? How does
-> this interact with VA unmap/map operations? (AFAICT we have no way to
-> tell if pagetable modifying operations are complete from userspace for
-> now). What happens if we need to spill BOs from VRAM due to
-> (cross-process) memory pressure?
-
-Effectively everything you map on the GPU would be valid.  If there is
-memory pressure, the kernel driver will behave similarly to KFD.  It
-will unmap the queues (which preempts all work on the engines), do any
-memory migrations, and then map the queues again.
-
-Alex
-
->
-> > +       /** GPU virtual address of the queue */
-> > +       __u64   queue_va;
-> > +       /** Size of the queue in bytes */
-> > +       __u64   queue_size;
-> > +       /** GPU virtual address of the rptr */
-> > +       __u64   rptr_va;
-> > +       /** GPU virtual address of the wptr */
-> > +       __u64   wptr_va;
-> > +};
-> > +
-> > +struct drm_amdgpu_userq_in {
-> > +       /** AMDGPU_USERQ_OP_* */
-> > +       __u32   op;
-> > +       /** Flags */
-> > +       __u32   flags;
-> > +       /** Context handle to associate the queue with */
-> > +       __u32   ctx_id;
-> > +       __u32   pad;
-> > +       /** Queue descriptor */
-> > +       struct drm_amdgpu_userq_mqd mqd;
-> > +};
-> > +
-> > +struct drm_amdgpu_userq_out {
-> > +       /** Queue handle */
-> > +       __u32   q_id;
-> > +       /** Flags */
-> > +       __u32   flags;
-> > +};
-> > +
-> > +union drm_amdgpu_userq {
-> > +       struct drm_amdgpu_userq_in in;
-> > +       struct drm_amdgpu_userq_out out;
-> > +};
-> > +
-> >  /* vm ioctl */
-> >  #define AMDGPU_VM_OP_RESERVE_VMID      1
-> >  #define AMDGPU_VM_OP_UNRESERVE_VMID    2
-> > --
-> > 2.34.1
-> >
