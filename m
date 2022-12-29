@@ -2,71 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D18D6583CF
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Dec 2022 17:52:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC554658F1D
+	for <lists+amd-gfx@lfdr.de>; Thu, 29 Dec 2022 17:37:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66F0310E3CF;
-	Wed, 28 Dec 2022 16:52:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B90510E3F6;
+	Thu, 29 Dec 2022 16:37:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com
- [IPv6:2607:f8b0:4864:20::332])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDE3C10E1BF;
- Wed, 28 Dec 2022 16:52:28 +0000 (UTC)
-Received: by mail-ot1-x332.google.com with SMTP id
- l8-20020a056830054800b006705fd35eceso10133277otb.12; 
- Wed, 28 Dec 2022 08:52:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=rcJgDms0q5Mau7rSrXM4H9/ZdrlCbuV2AGO7FUdmI/s=;
- b=RpcOYZwN2T1cO2HJHO5uySGSfcM5qyB6fNRAhCm5aOlBSUH00l70mjCSYXTmCoJWpq
- hUPjw2rbcqpiVI8FONDMjObsKuMB3yiItExMj6zHCor2GpllnOruQpY0RsPROqP5hije
- Cd2AbJK48uh3JBHv/L5KHQS98RwoHSqOzEMoCLRK1CP0NJ8AtxFZco+kc1bis7/WqiwU
- gdNTBTh7tZ3IMCjVO6B/JkFP9+1500KyixHjSviLlkjg8FildhsTQIGSNb3PM4cZBH/9
- PmXsUsFXkH35PowtmPIt3qDzbZjUKJXA+SXHJyGU3P+zuRAerG6T4SQCNfw5x7QlpnQa
- AtnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=rcJgDms0q5Mau7rSrXM4H9/ZdrlCbuV2AGO7FUdmI/s=;
- b=wqp2wL9G9KiPTm4cUFpj97I5E/IWGKo6d8Dyfy5Ft/uiamgAT+3dA4MuH5sIFES6ds
- j/cIXtDlBEOrs3injPSceJiNwf/fPqVWYWf3Da2MTLbTgaYQ74ILfkVOZICNVUHFAhZo
- bYpwPF/N52iwXYiYf35v8aHXi3WG7JWidiglMje76kQzVplP+dJUyBucV/HOB50nw7wN
- 4sxudmcDIP4N25qeJul70Q2+HpQ35wsnksLQPLzljfFZIEK6vVe47vVSWznEutlHU1Sg
- ThhN5I0cqc0DvfV61Du/E4o8KC59Zm9cK4v1qBz1mX/0AI23a6Gh6mD29Mq4XoVQYZfL
- epfQ==
-X-Gm-Message-State: AFqh2kpAh6YWWzAmN9CdUVmpRiA1fRJDL9JNe7mEU5kZpqIY1jVRSrb0
- 9/jdZWwTGd0KZgaxDB++yhSHhEMEPc18n6gw3z4=
-X-Google-Smtp-Source: AMrXdXs6ftjwNiEZ583NZ2hb+q4ufv8ybKdnCpcJZbmHS5rOXLIsZU0ue7YE4NFGn5sVhTsegXJQYdL9fiQeL1vBB3Q=
-X-Received: by 2002:a9d:7310:0:b0:678:272b:41e1 with SMTP id
- e16-20020a9d7310000000b00678272b41e1mr1337722otk.328.1672246343957; Wed, 28
- Dec 2022 08:52:23 -0800 (PST)
+X-Greylist: delayed 1430 seconds by postgrey-1.36 at gabe;
+ Thu, 29 Dec 2022 01:27:05 UTC
+Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18EBE10E15E;
+ Thu, 29 Dec 2022 01:27:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
+ MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:In-Reply-To:References;
+ bh=neOorG1ELpQLrTAY1AQ78oFCGRV3rTRmNpiDswYp1jY=; b=rkq4YJiOUBp77g6pZ2GKL/KDa1
+ gnSEUWkJq5yu4RQT3Sa9gaT7uPzYF3vFvDbG5aP6V8iXJLxXxaI58m0SgheKehGBnboStecRc9PvU
+ /4mkxE98noUe54MUIsy7iQwc/fYnQo/otZlQeWVBeTwkDQBQaaQrUIEWozlpjZuXE+J/xIxCSJAmC
+ GaRuiHBtnbiyzDuVGnddnlqYx9bE+OZ3wjGaD5Ct/6Dy3BiU4wrPov8j50ASEoRawLr685abJu/BZ
+ TbmgKiHsfIo6FITC4dmVg5qQ5BpXuNTxTYNijJyxzg+MRaZRuCHvrmVeoPaESdjYxl+BP6Zidpiv/
+ qkRFtxHA==;
+Received: from [2601:1c2:d80:3110::a2e7] (helo=casper.infradead.org)
+ by casper.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1pAhIB-009XL4-LR; Thu, 29 Dec 2022 01:01:08 +0000
+From: Randy Dunlap <rdunlap@infradead.org>
+To: dri-devel@lists.freedesktop.org
+Subject: [PATCH] drm: amd: display: fix dc/core/dc.c kernel-doc
+Date: Wed, 28 Dec 2022 17:00:51 -0800
+Message-Id: <20221229010051.5397-1-rdunlap@infradead.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-References: <20221014084641.128280-1-christian.koenig@amd.com>
- <20221014084641.128280-13-christian.koenig@amd.com>
- <1b1fae07-a5c3-e982-94a2-c35ab26f0e91@collabora.com>
- <da420e53-cafd-b46f-90df-ed54e6de09a3@amd.com>
- <9722032c-f1b3-37ff-91d2-6ed965300047@collabora.com>
- <ef732036-895b-0f5c-d06b-d7e4a739541a@gmail.com>
- <74d74689-9c8e-1691-a232-c18271974f37@collabora.com>
- <126a8c1e-69ec-5068-1aad-30f5e7c3ef21@collabora.com>
- <4f5766ab-d31f-d0c8-6b1e-0c7e0fbabfed@amd.com>
- <50308598-324f-f628-a4f1-55da3935a2f5@collabora.com>
- <067ffcf2-5d46-fd37-3df8-0de1714573e4@amd.com>
- <647e876a-9710-c6bd-9cf3-a513d879c36a@collabora.com>
- <CAF6AEGtKsN=KX3Y7bBCrKBD_GsTnXMG67CxoS8jbM6pqgmY9CA@mail.gmail.com>
-In-Reply-To: <CAF6AEGtKsN=KX3Y7bBCrKBD_GsTnXMG67CxoS8jbM6pqgmY9CA@mail.gmail.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Wed, 28 Dec 2022 08:52:13 -0800
-Message-ID: <CAF6AEGv=GJm5Hyea7a0oDgWDYXw72HwTB4sreeppYVEKCsw0Ew@mail.gmail.com>
-Subject: Re: [PATCH 12/13] drm/scheduler: rework entity flush, kill and fini
-To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 29 Dec 2022 16:37:06 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,91 +48,164 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jonathan <jonathan@marek.ca>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- amd-gfx@lists.freedesktop.org, luben.tuikov@amd.com,
- dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>, kernel test robot <lkp@intel.com>,
+ Leo Li <sunpeng.li@amd.com>, Randy Dunlap <rdunlap@infradead.org>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
+ Hamza Mahfooz <hamza.mahfooz@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 28, 2022 at 8:27 AM Rob Clark <robdclark@gmail.com> wrote:
->
-> On Thu, Nov 17, 2022 at 7:12 AM Dmitry Osipenko
-> <dmitry.osipenko@collabora.com> wrote:
-> >
-> > On 11/17/22 18:09, Christian K=C3=B6nig wrote:
-> > > Am 17.11.22 um 15:41 schrieb Dmitry Osipenko:
-> > >> [SNIP]
-> > >>> drm_sched_entity_flush() should be called from the flush callback f=
-rom
-> > >>> the file_operations structure of panfrost. See amdgpu_flush() and
-> > >>> amdgpu_ctx_mgr_entity_flush(). This makes sure that we wait for all
-> > >>> entities of the process/file descriptor to be flushed out.
-> > >>>
-> > >>> drm_sched_entity_fini() must be called before you free the memory t=
-he
-> > >>> entity structure or otherwise we would run into an use after free.
-> > >> Right, drm_sched_entity_destroy() invokes these two functions and
-> > >> Panfrost uses drm_sched_entity_destroy().
-> > >
-> > > Than I have no idea what's going wrong here.
-> > >
-> > > The scheduler should trivially finish with the entity and call
-> > > complete(&entity->entity_idle) in it's main loop. No idea why this
-> > > doesn't happen. Can you investigate?
-> >
-> > I'll take a closer look. Hoped you may have a quick idea of what's wron=
-g :)
-> >
->
-> As Jonathan mentioned, the same thing is happening on msm.  I can
-> reproduce this by adding an assert in mesa (in this case, triggered
-> after 100 draws) and running an app under gdb.  After the assert is
-> hit, if I try to exit mesa, it hangs.
->
-> The problem is that we somehow call drm_sched_entity_kill() twice.
-> The first time completes, but now the entity_idle completion is no
-> longer done, so the second call hangs forever.
+Fix all kernel-doc warnings in dc/core/dc.c:
 
-Maybe we should:
+dc.c:385: warning: missing initial short description on line:
+ *  dc_stream_adjust_vmin_vmax:
+dc.c:392: warning: contents before sections
+dc.c:399: warning: No description found for return value of 'dc_stream_adjust_vmin_vmax'
+dc.c:434: warning: Excess function parameter 'adjust' description in 'dc_stream_get_last_used_drr_vtotal'
+dc.c:434: warning: No description found for return value of 'dc_stream_get_last_used_drr_vtotal'
+dc.c:574: warning: No description found for return value of 'dc_stream_configure_crc'
+dc.c:1746: warning: No description found for return value of 'dc_commit_state_no_check'
+dc.c:4991: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+ * dc_extended_blank_supported 0 Decide whether extended blank is supported
+dc.c:4991: warning: missing initial short description on line:
+ * dc_extended_blank_supported 0 Decide whether extended blank is supported
+dc.c:4723: warning: Function parameter or member 'dc' not described in 'dc_enable_dmub_outbox'
+dc.c:4926: warning: Function parameter or member 'dc' not described in 'dc_process_dmub_dpia_hpd_int_enable'
+dc.c:4926: warning: Function parameter or member 'hpd_int_enable' not described in 'dc_process_dmub_dpia_hpd_int_enable'
+12 warnings
 
-------
-diff --git a/drivers/gpu/drm/scheduler/sched_entity.c
-b/drivers/gpu/drm/scheduler/sched_entity.c
-index fe09e5be79bd..3d7c671d05e3 100644
---- a/drivers/gpu/drm/scheduler/sched_entity.c
-+++ b/drivers/gpu/drm/scheduler/sched_entity.c
-@@ -222,7 +226,6 @@ static void drm_sched_entity_kill(struct
-drm_sched_entity *entity)
- long drm_sched_entity_flush(struct drm_sched_entity *entity, long timeout)
- {
-        struct drm_gpu_scheduler *sched;
--       struct task_struct *last_user;
-        long ret =3D timeout;
+Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+Reported-by: kernel test robot <lkp@intel.com>
+Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Hamza Mahfooz <hamza.mahfooz@amd.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Leo Li <sunpeng.li@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+---
+Based on linux-next-20221226 but also applies to mainline.
 
-        if (!entity->rq)
-@@ -244,12 +247,6 @@ long drm_sched_entity_flush(struct
-drm_sched_entity *entity, long timeout)
-                                    drm_sched_entity_is_idle(entity));
-        }
+ drivers/gpu/drm/amd/display/dc/core/dc.c |   40 +++++++++++++--------
+ 1 file changed, 25 insertions(+), 15 deletions(-)
 
--       /* For killed process disable any more IBs enqueue right now */
--       last_user =3D cmpxchg(&entity->last_user, current->group_leader, NU=
-LL);
--       if ((!last_user || last_user =3D=3D current->group_leader) &&
--           (current->flags & PF_EXITING) && (current->exit_code =3D=3D SIG=
-KILL))
--               drm_sched_entity_kill(entity);
--
-        return ret;
+diff -- a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -382,16 +382,18 @@ static void dc_perf_trace_destroy(struct
  }
- EXPORT_SYMBOL(drm_sched_entity_flush);
-----
-
-Maybe there is a better fix, but special handling for SIGKILL seems
-dubious to me (vs just relying on the drm device fd close path).  I
-wonder if that code path was tested at all?
-
-BR,
--R
+ 
+ /**
+- *  dc_stream_adjust_vmin_vmax:
++ *  dc_stream_adjust_vmin_vmax - look up pipe context & update parts of DRR
++ *  @dc:     dc reference
++ *  @stream: Initial dc stream state
++ *  @adjust: Updated parameters for vertical_total_min and vertical_total_max
+  *
+  *  Looks up the pipe context of dc_stream_state and updates the
+  *  vertical_total_min and vertical_total_max of the DRR, Dynamic Refresh
+  *  Rate, which is a power-saving feature that targets reducing panel
+  *  refresh rate while the screen is static
+  *
+- *  @dc:     dc reference
+- *  @stream: Initial dc stream state
+- *  @adjust: Updated parameters for vertical_total_min and vertical_total_max
++ *  Return: %true if the pipe context is found and adjusted;
++ *          %false if the pipe context is not found.
+  */
+ bool dc_stream_adjust_vmin_vmax(struct dc *dc,
+ 		struct dc_stream_state *stream,
+@@ -419,14 +421,17 @@ bool dc_stream_adjust_vmin_vmax(struct d
+ }
+ 
+ /**
+- * dc_stream_get_last_used_drr_vtotal - dc_stream_get_last_vrr_vtotal
++ * dc_stream_get_last_used_drr_vtotal - Looks up the pipe context of
++ * dc_stream_state and gets the last VTOTAL used by DRR (Dynamic Refresh Rate)
+  *
+  * @dc: [in] dc reference
+  * @stream: [in] Initial dc stream state
+- * @adjust: [in] Updated parameters for vertical_total_min and
++ * @refresh_rate: [in] new refresh_rate
+  *
+- * Looks up the pipe context of dc_stream_state and gets the last VTOTAL used
+- * by DRR (Dynamic Refresh Rate)
++ * Return: %true if the pipe context is found and there is an associated
++ *         timing_generator for the DC;
++ *         %false if the pipe context is not found or there is no
++ *         timing_generator for the DC.
+  */
+ bool dc_stream_get_last_used_drr_vtotal(struct dc *dc,
+ 		struct dc_stream_state *stream,
+@@ -567,7 +572,10 @@ dc_stream_forward_crc_window(struct dc_s
+  *              once.
+  *
+  * By default, only CRC0 is configured, and the entire frame is used to
+- * calculate the crc.
++ * calculate the CRC.
++ *
++ * Return: %false if the stream is not found or CRC capture is not supported;
++ *         %true if the stream has been configured.
+  */
+ bool dc_stream_configure_crc(struct dc *dc, struct dc_stream_state *stream,
+ 			     struct crc_params *crc_window, bool enable, bool continuous)
+@@ -636,7 +644,7 @@ bool dc_stream_configure_crc(struct dc *
+  * dc_stream_configure_crc needs to be called beforehand to enable CRCs.
+  *
+  * Return:
+- * false if stream is not found, or if CRCs are not enabled.
++ * %false if stream is not found, or if CRCs are not enabled.
+  */
+ bool dc_stream_get_crc(struct dc *dc, struct dc_stream_state *stream,
+ 		       uint32_t *r_cr, uint32_t *g_y, uint32_t *b_cb)
+@@ -1741,6 +1749,8 @@ void dc_z10_save_init(struct dc *dc)
+  *
+  * Applies given context to the hardware and copy it into current context.
+  * It's up to the user to release the src context afterwards.
++ *
++ * Return: an enum dc_status result code for the operation
+  */
+ static enum dc_status dc_commit_state_no_check(struct dc *dc, struct dc_state *context)
+ {
+@@ -4705,7 +4715,7 @@ bool dc_enable_dmub_notifications(struct
+ /**
+  * dc_enable_dmub_outbox - Enables DMUB unsolicited notification
+  *
+- * dc: [in] dc structure
++ * @dc: [in] dc structure
+  *
+  * Enables DMUB unsolicited notifications to x86 via outbox.
+  */
+@@ -4906,8 +4916,8 @@ enum dc_status dc_process_dmub_set_mst_s
+ /**
+  * dc_process_dmub_dpia_hpd_int_enable - Submits DPIA DPD interruption
+  *
+- * @dc [in]: dc structure
+- * @hpd_int_enable [in]: 1 for hpd int enable, 0 to disable
++ * @dc: [in] dc structure
++ * @hpd_int_enable: [in] 1 for hpd int enable, 0 to disable
+  *
+  * Submits dpia hpd int enable command to dmub via inbox message
+  */
+@@ -4988,7 +4998,7 @@ void dc_notify_vsync_int_state(struct dc
+ }
+ 
+ /**
+- * dc_extended_blank_supported 0 Decide whether extended blank is supported
++ * dc_extended_blank_supported - Decide whether extended blank is supported
+  *
+  * @dc: [in] Current DC state
+  *
+@@ -4997,7 +5007,7 @@ void dc_notify_vsync_int_state(struct dc
+  * ability to enter z9/z10.
+  *
+  * Return:
+- * Indicate whether extended blank is supported (true or false)
++ * Indicate whether extended blank is supported (%true or %false)
+  */
+ bool dc_extended_blank_supported(struct dc *dc)
+ {
