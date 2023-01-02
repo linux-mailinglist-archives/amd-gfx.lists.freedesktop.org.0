@@ -1,58 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71E0F65B613
-	for <lists+amd-gfx@lfdr.de>; Mon,  2 Jan 2023 18:57:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9A1165BC45
+	for <lists+amd-gfx@lfdr.de>; Tue,  3 Jan 2023 09:32:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A4B910E1BF;
-	Mon,  2 Jan 2023 17:57:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D20410E3AC;
+	Tue,  3 Jan 2023 08:32:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com
- [IPv6:2a00:1450:4864:20::633])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 518F610E1BF
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Jan 2023 17:57:25 +0000 (UTC)
-Received: by mail-ej1-x633.google.com with SMTP id qk9so68103435ejc.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 02 Jan 2023 09:57:25 -0800 (PST)
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com
+ [IPv6:2a00:1450:4864:20::231])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F51510E347;
+ Mon,  2 Jan 2023 14:17:09 +0000 (UTC)
+Received: by mail-lj1-x231.google.com with SMTP id q2so29164069ljp.6;
+ Mon, 02 Jan 2023 06:17:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
+ h=cc:to:subject:message-id:date:from:references:in-reply-to
  :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=35eOASSBwYJrOIjmXkkOcDuahKm7/bsXatq6iYQbFlM=;
- b=Yzw3A5Bvb8NJJ4h1p+4R2fw+vvqzK3oHpBib6mTH+3RCToLE1GZL68p/OoyYGLEdFj
- QcEujXctERDkgSA2n6mPFBOpZqCclfvefVgoQiN6UcMfqYE2KgEqQF9Ne9PW/kW9LLLR
- zqPJISOmMs6mE+CsH/hOFgWJr7/sLX9CwyaPqSByVEE5g8RLWCRSG4b4epYmKCu6MOrC
- i4fGdgfsmzv5N56CSoj2VBgQ/MJ3tFqPonPotj7GrWWcpOoXFx0InKre1+8xBkeeIUsC
- lO7lCG2bYwUAMcn+pU0xPFajOpKJ3EaJ5gUZ8BtRompm51h1fhNTCWabb1ROMXwwQbWT
- LlsQ==
+ bh=5eDCfRWak7WjzcJrVJ87WGs9sC09qEtPHBY0lhigWsk=;
+ b=bzt/zVqcL4dO0+9oAWHk71070RmkWBKqqYkEVqyQpVelltbUmmN5g1vA8pyM1elWhd
+ krPdCxHzKPjrWSqVyR5ZgI1dase2Uz0MF90YK8UPesJ3YjcS5lg8pe446zO6Cfv9ynEN
+ oUYfjRjGfV74uTTk9xNtE024DQfiChn3lWEKSeHlqevkfZLcRKZUfVnpDsAem2aD/qKW
+ Hz+oxiLpw57vFe2D+jfGjQCDNI0CN1kVqqu9/gy8i8mMiYz0Lt0JwZScw1CxjACf7ixx
+ HeqJ/Fxp4KrqoWNTGYJrT9IOVWDoOsyH+swpt2rCeC03IopusOBaKeTxDM3B5clNOpNS
+ Ch4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
+ h=cc:to:subject:message-id:date:from:references:in-reply-to
  :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=35eOASSBwYJrOIjmXkkOcDuahKm7/bsXatq6iYQbFlM=;
- b=mrjErIzBRsfuM9tEtIimu6CjtDiWjX1I9JeYrLikk8Na5hObOtV49iVYcILofU410p
- CLC2VvB7KSGptmaerVYf8ckQ5VrJYg+D/3KG3mI9C3TDQP6wNKhLfa7ifgqquTnApXuj
- m12Ooj/apVMmbO+xY6JId80Gq0WuRpGGF0NcFcA8UxQScvrN3ynnnz92HKy0bVnd6+dD
- tjmjQ+z1PDFszLHgaE/L7nCrOSyKzO2Fi/feBdo5OZWJ5cQBvm+bA8sseWm8v9Pz6lAx
- 0VpKjH/0tVlWRi+N3Mnpzn1OasZdGBXVpe1zRxQnYm52Q+g8t6FadC4IzgMjFnlQqELG
- nYcg==
-X-Gm-Message-State: AFqh2koB7r0Un4e8UmG8NkJIa8xtxzKxnL+djjWcRvu/MgsWfqk/Drxs
- rjv9NUIyOW7mO7LgqlRZwOuoKdyQ1nwva49xzQa9bNEu
-X-Google-Smtp-Source: AMrXdXsCCBh1IUCr76ENX5T7P/8nnqsWDoG+Q10QvtQqZ/mFSHt1YtvU01j9/clvTVWdShH5BA6mlbhUZ1KDNKqSIas=
-X-Received: by 2002:a17:906:1407:b0:7c1:7226:c935 with SMTP id
- p7-20020a170906140700b007c17226c935mr4789739ejc.338.1672682243780; Mon, 02
- Jan 2023 09:57:23 -0800 (PST)
+ bh=5eDCfRWak7WjzcJrVJ87WGs9sC09qEtPHBY0lhigWsk=;
+ b=OcC4sE/ErVUIRp8JEo1ODoymzrBrhu+YiSIIwvOa1AJk/PCKKIHE24fKGaOSZVmxK1
+ WX5OuFQYbq4y7rE5BlBAAoLyQS9F0BuRgPDYx/2oQ00+uZwUpqSFx1HVemnrS50yfZwR
+ Z15eIF5FfeG4QBR0O8B5Qp0UzlCqo8JhL1HRY4xzXc+cdNuGLan9dLBE6i4/0Sp2i4xK
+ PsCbqFPbN6S92Tuf5VWxLTuszRAp1ZwEtOWSqJYmI4hvPLQUcTTAn/zJ0JYm3f5JskuX
+ 1f/O4okerp2oRnilst9Smcxkfdi9paLz5mUvgwRriiTNfoCgx2jV4Qwr0/H6tSIdubzz
+ Mp9w==
+X-Gm-Message-State: AFqh2kqBHzGNUUeYqxJZeZLk6B+y1WlXCV0vghCJFw1LH0Q99LYaQ15T
+ oX7WOnhqW0PhbjiJlqJ+m2teMPKjDptitWFCaToBBSm8
+X-Google-Smtp-Source: AMrXdXsJ9eNbKvYJgTW6iP7SGuBqn3GMKNN0GLu35vqPA8KncHYCg+7KJBerz1Sdow9jSzMMoEkFmygGq9veb9S/2YM=
+X-Received: by 2002:a2e:7e05:0:b0:27f:bf18:e5f2 with SMTP id
+ z5-20020a2e7e05000000b0027fbf18e5f2mr1521788ljc.476.1672669027454; Mon, 02
+ Jan 2023 06:17:07 -0800 (PST)
 MIME-Version: 1.0
-References: <CAAxE2A5su09qWsCekUX4ZzTMAX+9m-BemDxqL2Hh9328Z1WDqw@mail.gmail.com>
- <355bab4f-2ca8-3dd2-4cbc-264931fe9d7a@gmail.com>
-In-Reply-To: <355bab4f-2ca8-3dd2-4cbc-264931fe9d7a@gmail.com>
-From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
-Date: Mon, 2 Jan 2023 12:57:11 -0500
-Message-ID: <CAAxE2A487Ra9ropymBGZpXSt=Zz81cjf56p_7wq+tK4cDfn1sA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] drm/amdgpu: add AMDGPU_INFO_VM_STAT to return GPU VM
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Content-Type: multipart/alternative; boundary="000000000000f674d805f14bae52"
+Received: by 2002:ab3:7791:0:b0:203:5a56:d66a with HTTP; Mon, 2 Jan 2023
+ 06:17:06 -0800 (PST)
+In-Reply-To: <6ef84968-2874-49b0-9fbc-bdc897382b0e@collabora.com>
+References: <CAF6AEGv=GJm5Hyea7a0oDgWDYXw72HwTB4sreeppYVEKCsw0Ew@mail.gmail.com>
+ <20230101182907.1662-1-youling257@gmail.com>
+ <6ef84968-2874-49b0-9fbc-bdc897382b0e@collabora.com>
+From: youling 257 <youling257@gmail.com>
+Date: Mon, 2 Jan 2023 22:17:06 +0800
+Message-ID: <CAOzgRda9JCguwJa6UT+q7hJ7pzcfxhJU5rxjTmoCb79DtWMqOw@mail.gmail.com>
+Subject: Re: [PATCH 12/13] drm/scheduler: rework entity flush, kill and fini
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Tue, 03 Jan 2023 08:32:32 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,94 +68,73 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx mailing list <amd-gfx@lists.freedesktop.org>
+Cc: jonathan@marek.ca, ckoenig.leichtzumerken@gmail.com,
+ dri-devel@lists.freedesktop.org, robdclark@gmail.com, luben.tuikov@amd.com,
+ amd-gfx@lists.freedesktop.org, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---000000000000f674d805f14bae52
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+which patch?
 
-What are you talking about? Is fdinfo in sysfs? Userspace drivers can't
-access sysfs.
-
-Marek
-
-On Mon, Jan 2, 2023, 10:56 Christian K=C3=B6nig <ckoenig.leichtzumerken@gma=
-il.com>
-wrote:
-
-> Well first of all don't mess with the VM internals outside of the VM code=
-.
+2023-01-02 17:24 GMT+08:00, Dmitry Osipenko <dmitry.osipenko@collabora.com>:
+> On 1/1/23 21:29, youling257 wrote:
+>> Linux 6.2-rc1 has memory leak on amdgpu, git bisect bad commit is
+>> "drm/scheduler: rework entity flush, kill and fini".
+>> git bisect start
+>> # status: waiting for both good and bad commits
+>> # good: [eb7081409f94a9a8608593d0fb63a1aa3d6f95d8] Linux 6.1-rc6
+>> git bisect good eb7081409f94a9a8608593d0fb63a1aa3d6f95d8
+>> # status: waiting for bad commit, 1 good commit known
+>> # bad: [66efff515a6500d4b4976fbab3bee8b92a1137fb] Merge tag
+>> 'amd-drm-next-6.2-2022-12-07' of
+>> https://gitlab.freedesktop.org/agd5f/linux into drm-next
+>> git bisect bad 66efff515a6500d4b4976fbab3bee8b92a1137fb
+>> # good: [49e8e6343df688d68b12c2af50791ca37520f0b7] Merge tag
+>> 'amd-drm-next-6.2-2022-11-04' of
+>> https://gitlab.freedesktop.org/agd5f/linux into drm-next
+>> git bisect good 49e8e6343df688d68b12c2af50791ca37520f0b7
+>> # bad: [fc58764bbf602b65a6f63c53e5fd6feae76c510c] Merge tag
+>> 'amd-drm-next-6.2-2022-11-18' of
+>> https://gitlab.freedesktop.org/agd5f/linux into drm-next
+>> git bisect bad fc58764bbf602b65a6f63c53e5fd6feae76c510c
+>> # bad: [4e291f2f585313efa5200cce655e17c94906e50a] Merge tag
+>> 'drm-misc-next-2022-11-10-1' of git://anongit.freedesktop.org/drm/drm-misc
+>> into drm-next
+>> git bisect bad 4e291f2f585313efa5200cce655e17c94906e50a
+>> # good: [78a43c7e3b2ff5aed1809f93b4f87a418355789e] drm/nouveau/gr/gf100-:
+>> make global attrib_cb actually global
+>> git bisect good 78a43c7e3b2ff5aed1809f93b4f87a418355789e
+>> # bad: [611fc22c9e5e13276c819a7f7a7d19b794bbed1a] drm/arm/hdlcd: remove
+>> calls to drm_mode_config_cleanup()
+>> git bisect bad 611fc22c9e5e13276c819a7f7a7d19b794bbed1a
+>> # bad: [a8d9621b9fc67957b3de334cc1b5f47570fb90a0] drm/ingenic: Don't set
+>> struct drm_driver.output_poll_changed
+>> git bisect bad a8d9621b9fc67957b3de334cc1b5f47570fb90a0
+>> # good: [2cf9886e281678ae9ee57e24a656749071d543bb] drm/scheduler: remove
+>> drm_sched_dependency_optimized
+>> git bisect good 2cf9886e281678ae9ee57e24a656749071d543bb
+>> # bad: [8e4e4c2f53ffcb0ef746dc3b87ce1a57c5c94c7d] Merge drm/drm-next into
+>> drm-misc-next
+>> git bisect bad 8e4e4c2f53ffcb0ef746dc3b87ce1a57c5c94c7d
+>> # bad: [47078311b8efebdefd5b3b2f87e2b02b14f49c66] drm/ingenic: Fix missing
+>> platform_driver_unregister() call in ingenic_drm_init()
+>> git bisect bad 47078311b8efebdefd5b3b2f87e2b02b14f49c66
+>> # bad: [a82f30b04c6aaefe62cbbfd297e1bb23435b6b3a] drm/scheduler: rename
+>> dependency callback into prepare_job
+>> git bisect bad a82f30b04c6aaefe62cbbfd297e1bb23435b6b3a
+>> # bad: [2fdb8a8f07c2f1353770a324fd19b8114e4329ac] drm/scheduler: rework
+>> entity flush, kill and fini
+>> git bisect bad 2fdb8a8f07c2f1353770a324fd19b8114e4329ac
+>> # first bad commit: [2fdb8a8f07c2f1353770a324fd19b8114e4329ac]
+>> drm/scheduler: rework entity flush, kill and fini
+>>
+>> @Rob Clark, i test your patch fixed my problem.
 >
-> Then why would we want to expose this through the IOCTL interface? We
-> already have this in the fdinfo.
+> The linux-next already carried the fix for a couple weeks. It will land
+> to 6.2-rc once drm-fixes branch will be synced with the 6.2.
 >
-> Christian.
->
-> Am 30.12.22 um 23:07 schrieb Marek Ol=C5=A1=C3=A1k:
->
-> To give userspace a detailed view about its GPU memory usage and eviction=
-s.
-> This will help performance investigations.
->
-> Signed-off-by: Marek Ol=C5=A1=C3=A1k <marek.olsak@amd.com>
->
-> The patch is attached.
->
-> Marek
+> --
+> Best regards,
+> Dmitry
 >
 >
->
-
---000000000000f674d805f14bae52
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">What are=C2=A0you talking about? Is fdinfo in sysfs? User=
-space drivers can&#39;t access sysfs.<div dir=3D"auto"><br></div><div dir=
-=3D"auto">Marek</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
-class=3D"gmail_attr">On Mon, Jan 2, 2023, 10:56 Christian K=C3=B6nig &lt;<a=
- href=3D"mailto:ckoenig.leichtzumerken@gmail.com">ckoenig.leichtzumerken@gm=
-ail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
- =20
-   =20
- =20
-  <div>
-    Well first of all don&#39;t mess with the VM internals outside of the V=
-M
-    code.<br>
-    <br>
-    Then why would we want to expose this through the IOCTL interface?
-    We already have this in the fdinfo.<br>
-    <br>
-    Christian.<br>
-    <br>
-    <div>Am 30.12.22 um 23:07 schrieb Marek
-      Ol=C5=A1=C3=A1k:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <div dir=3D"ltr">To give userspace a detailed view about its GPU
-        memory usage and evictions.<br>
-        This will help performance investigations.<br>
-        <br>
-        <div>Signed-off-by: Marek Ol=C5=A1=C3=A1k &lt;<a href=3D"mailto:mar=
-ek.olsak@amd.com" target=3D"_blank" rel=3D"noreferrer">marek.olsak@amd.com<=
-/a>&gt;</div>
-        <div><br>
-        </div>
-        <div>The patch is attached.</div>
-        <div><br>
-        </div>
-        <div>Marek<br>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </div>
-
-</blockquote></div>
-
---000000000000f674d805f14bae52--
