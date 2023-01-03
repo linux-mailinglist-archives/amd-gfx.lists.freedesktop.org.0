@@ -1,72 +1,70 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 366EB65BC3F
-	for <lists+amd-gfx@lfdr.de>; Tue,  3 Jan 2023 09:31:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61AE365BC48
+	for <lists+amd-gfx@lfdr.de>; Tue,  3 Jan 2023 09:33:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEC3710E3A0;
-	Tue,  3 Jan 2023 08:31:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D27DA10E3AE;
+	Tue,  3 Jan 2023 08:33:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com
- [IPv6:2a00:1450:4864:20::32b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD06410E3A0
- for <amd-gfx@lists.freedesktop.org>; Tue,  3 Jan 2023 08:31:28 +0000 (UTC)
-Received: by mail-wm1-x32b.google.com with SMTP id
- fm16-20020a05600c0c1000b003d96fb976efso20383516wmb.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 03 Jan 2023 00:31:28 -0800 (PST)
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
+ [IPv6:2a00:1450:4864:20::42f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38C3D10E3AE
+ for <amd-gfx@lists.freedesktop.org>; Tue,  3 Jan 2023 08:33:10 +0000 (UTC)
+Received: by mail-wr1-x42f.google.com with SMTP id j17so23325489wrr.7
+ for <amd-gfx@lists.freedesktop.org>; Tue, 03 Jan 2023 00:33:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=in-reply-to:from:references:cc:to:content-language:subject
  :user-agent:mime-version:date:message-id:from:to:cc:subject:date
  :message-id:reply-to;
- bh=eS7oSs5UaHu4Oi5d3bocmiLSbqCNW4u4bW3c+byimv4=;
- b=hxoVP9GcXhh1QrMjbgNzd2a8kEKlgJeT/Cl6wm5kI4ZL7xST6G+pa1BGpSWtczQvQp
- s2tEGtv+rL0V8F4R/OMrwgE/tM4zURB9e1O/cKB7UMW3uQZq99kwDCE4MS/WYathve3S
- O0yIt2R3S/SAvR0B9YDQwSx5ThfwdPW9BxVGXSFAE/YJSocZzoZ+3h8Lo2iW5RwzegGR
- Sp660PWQHBW5IIWVVP3UN78YRmYLoLxYkyoWrINkxJgBqc2GT7h/fVZrpMVbAIZkxpz5
- X4/lH0JjFbvLjMwA4CP0+nKG5+o1F3FVub79Ok7+al1ngQl0q8QP02WPBIiFkf3f5ycW
- aA8Q==
+ bh=d7kiahq3dJHrk7yNoIrzAdgmHp8t5bL1gN+YCkOpaoY=;
+ b=n8NStT+wJPfqanwNCaEZyAwxR8Lbt/f9E3NW64ixBjq43bh6nOut6ZkhtfmcBthX3S
+ 7lUlDUKNsPwjIv1C5aBQCm9hNyjyfD6Us/X/KrGAPRPpebffPaFTQ6hRzrT9Bite3aY7
+ jO3eAz5bJcs0yb0U8D2PuUF7EkghuA7+cAwlQDrglk4hH2I31GycDOPlFV53ockehM3G
+ 2nAaBChGMvsEIUiyo6qinWJAPYIhxZHxmIQZZNTrx9OC4eWkAyPJtDSgUUzo3m36w33A
+ 6jXSyyvPPLEuW89AB5OF6CT50AlBM5pUeKRxcZ1xgCUmL9jvUHc32tpvguTPSubfbOOV
+ wp0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=in-reply-to:from:references:cc:to:content-language:subject
  :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
  :cc:subject:date:message-id:reply-to;
- bh=eS7oSs5UaHu4Oi5d3bocmiLSbqCNW4u4bW3c+byimv4=;
- b=aS81GFFtwLH3RNSZIgSPQK9soU5Iq3olCbylzc+RBB29uCSUMTz0YWxg0JjSi+NQPK
- wqqWkRzskDIvmN37M9ioiNV7sPvqnEMDR/l7LQ2q7nWpGs2muvfUt/uE+5xBMsk+duzg
- LFCttI2DkqndRsuPBhMdbhIms4N5pV8/7osACsfsvss7rxUEqEXaIHFX6WdchXPPF+Zx
- OaG/dGqokJ9+Z8pve6flVjxq5CAubD1rmKjwIKCI5gC8Ff8vS8yqleff6siOes9f3ib4
- YbYydeJ8UsHP4YMOS0uwmUEYZmf+Tp/nP//xxQ3XZcMgcogsGg4rF6QaeHgnyujLCwPu
- U5WQ==
-X-Gm-Message-State: AFqh2kqHxxGs0D6j862r9ozrlav6OCfvJzYE4sF/a/J3OFRy5uoSrVfh
- KeUANmCzUnJ+vbye/i8H8G4=
-X-Google-Smtp-Source: AMrXdXsMchkXIO/Ts709Gm0JHJO0uBWdaaGMPgVht0sQQ7AmU/1Dj5ROweUQjTp5R56FuGtJhOgJaw==
-X-Received: by 2002:a7b:c3d6:0:b0:3d3:5ccc:4442 with SMTP id
- t22-20020a7bc3d6000000b003d35ccc4442mr30471667wmj.26.1672734687460; 
- Tue, 03 Jan 2023 00:31:27 -0800 (PST)
+ bh=d7kiahq3dJHrk7yNoIrzAdgmHp8t5bL1gN+YCkOpaoY=;
+ b=HAAeeGwEgaCSSOYm+QeWeo72cJPy82L3hk/ueqnVqzJ2OZcIT8GJFegLHYBTMpOvDw
+ WCeIH8vHvCtyUKtCDKU+tLyplyGN/8h4KbgKqyB5zQCyx/hIDzgUJy3imx9R9h1O+k1W
+ 8iEl8Apx5C6J8qwIJRJLkPmhbyya4trBWfgaxabGTAR9l5qDNXaEQl+T3dRIEbizyOu7
+ pvyK040/YPMV6D2I9L1vCQmevSUxIWBiq2Shl6ooNr0eOF++2Xe0mzhKa4/mDyzcBEo+
+ B1sbPHeUjOI56yxkW224EXbTJEM074SuS1/HAkaHIXeqtcRG08jx7y7XqYQxvJ6pHvmd
+ vzLQ==
+X-Gm-Message-State: AFqh2kp5dU6wEHQB/3cNVsawc/ntGPCuqpZ1HcYQgBMg16TrF87tSHb8
+ NDuHzyTHjW8xvIUBE2GXaDI=
+X-Google-Smtp-Source: AMrXdXtIQ306W2bul2gK9s7i48FSJjmFHmjQZBsRFgV90ED+YtR2DDCHTU/53UwQUcHknWrq3E2EnA==
+X-Received: by 2002:adf:d851:0:b0:242:1522:24a0 with SMTP id
+ k17-20020adfd851000000b00242152224a0mr25567964wrl.47.1672734788654; 
+ Tue, 03 Jan 2023 00:33:08 -0800 (PST)
 Received: from ?IPV6:2a02:908:1256:79a0:91f2:4ffb:eef9:7882?
  ([2a02:908:1256:79a0:91f2:4ffb:eef9:7882])
  by smtp.gmail.com with ESMTPSA id
- v2-20020a05600c214200b003b492753826sm41015547wml.43.2023.01.03.00.31.26
+ h6-20020adffa86000000b0024246991121sm31445135wrr.116.2023.01.03.00.33.07
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 03 Jan 2023 00:31:26 -0800 (PST)
+ Tue, 03 Jan 2023 00:33:08 -0800 (PST)
 Content-Type: multipart/alternative;
- boundary="------------8rQSwnVgCQluSh3NS9E0emfZ"
-Message-ID: <35304b1e-98a7-d342-9f1b-50f07b45cf98@gmail.com>
-Date: Tue, 3 Jan 2023 09:31:26 +0100
+ boundary="------------lRcVO7J3CJgraqGpvFaEHatO"
+Message-ID: <1d0ddc01-b315-a5ff-f4cc-30b8aedfeb57@gmail.com>
+Date: Tue, 3 Jan 2023 09:33:07 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 1/2] drm/amdgpu: return the PCIe gen and lanes from the
- INFO
+Subject: Re: [PATCH 2/2] drm/amdgpu: add AMDGPU_INFO_VM_STAT to return GPU VM
 Content-Language: en-US
 To: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
-References: <CAAxE2A720cJguG5b+0zbP=G4TxTjpqKBvOqDXXAP0LWHZEuj0A@mail.gmail.com>
- <0931a762-c3a3-16c3-33a5-88e83fca4bcb@gmail.com>
- <CAAxE2A5pBqOkny15tSRCWn_UW8=TTE=zYPChBZofZCrHZoQbww@mail.gmail.com>
+References: <CAAxE2A5su09qWsCekUX4ZzTMAX+9m-BemDxqL2Hh9328Z1WDqw@mail.gmail.com>
+ <355bab4f-2ca8-3dd2-4cbc-264931fe9d7a@gmail.com>
+ <CAAxE2A487Ra9ropymBGZpXSt=Zz81cjf56p_7wq+tK4cDfn1sA@mail.gmail.com>
 From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <CAAxE2A5pBqOkny15tSRCWn_UW8=TTE=zYPChBZofZCrHZoQbww@mail.gmail.com>
+In-Reply-To: <CAAxE2A487Ra9ropymBGZpXSt=Zz81cjf56p_7wq+tK4cDfn1sA@mail.gmail.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,52 +81,47 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 This is a multi-part message in MIME format.
---------------8rQSwnVgCQluSh3NS9E0emfZ
+--------------lRcVO7J3CJgraqGpvFaEHatO
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Sure they can, those files are accessible to everyone.
+Take a look at /proc/self/fdinfo/$fd.
 
-The massive advantage is that this is standard for all PCIe devices, so 
-it should work vendor independent.
+The Intel guys made that vendor agnostic and are using it within their 
+IGT gpu top tool.
 
 Christian.
 
-Am 02.01.23 um 18:55 schrieb Marek Olšák:
-> Userspace drivers can't access sysfs.
+Am 02.01.23 um 18:57 schrieb Marek Olšák:
+> What are you talking about? Is fdinfo in sysfs? Userspace drivers 
+> can't access sysfs.
 >
 > Marek
 >
-> On Mon, Jan 2, 2023, 10:54 Christian König 
+> On Mon, Jan 2, 2023, 10:56 Christian König 
 > <ckoenig.leichtzumerken@gmail.com> wrote:
 >
->     That stuff is already available as current_link_speed and
->     current_link_width in sysfs.
+>     Well first of all don't mess with the VM internals outside of the
+>     VM code.
 >
->     I'm a bit reluctant duplicating this information in the IOCTL
->     interface.
+>     Then why would we want to expose this through the IOCTL interface?
+>     We already have this in the fdinfo.
 >
 >     Christian.
 >
 >     Am 30.12.22 um 23:07 schrieb Marek Olšák:
->>     For computing PCIe bandwidth in userspace and troubleshooting PCIe
->>     bandwidth issues.
->>
->>     For example, my Navi21 has been limited to PCIe gen 1 and this is
->>     the first time I noticed it after 2 years.
->>
->>     Note that this intentionally fills a hole and padding
->>     in drm_amdgpu_info_device.
+>>     To give userspace a detailed view about its GPU memory usage and
+>>     evictions.
+>>     This will help performance investigations.
 >>
 >>     Signed-off-by: Marek Olšák <marek.olsak@amd.com>
 >>
 >>     The patch is attached.
 >>
 >>     Marek
->>
 >
 
---------------8rQSwnVgCQluSh3NS9E0emfZ
+--------------lRcVO7J3CJgraqGpvFaEHatO
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
@@ -137,27 +130,28 @@ Content-Transfer-Encoding: 8bit
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   </head>
   <body>
-    Sure they can, those files are accessible to everyone.<br>
+    Take a look at /proc/self/fdinfo/$fd.<br>
     <br>
-    The massive advantage is that this is standard for all PCIe devices,
-    so it should work vendor independent.<br>
+    The Intel guys made that vendor agnostic and are using it within
+    their IGT gpu top tool.<br>
     <br>
     Christian.<br>
     <br>
-    <div class="moz-cite-prefix">Am 02.01.23 um 18:55 schrieb Marek
+    <div class="moz-cite-prefix">Am 02.01.23 um 18:57 schrieb Marek
       Olšák:<br>
     </div>
     <blockquote type="cite"
-cite="mid:CAAxE2A5pBqOkny15tSRCWn_UW8=TTE=zYPChBZofZCrHZoQbww@mail.gmail.com">
+cite="mid:CAAxE2A487Ra9ropymBGZpXSt=Zz81cjf56p_7wq+tK4cDfn1sA@mail.gmail.com">
       <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div dir="auto">Userspace drivers can't access sysfs.
+      <div dir="auto">What are you talking about? Is fdinfo in sysfs?
+        Userspace drivers can't access sysfs.
         <div dir="auto"><br>
         </div>
         <div dir="auto">Marek</div>
       </div>
       <br>
       <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Mon, Jan 2, 2023, 10:54
+        <div dir="ltr" class="gmail_attr">On Mon, Jan 2, 2023, 10:56
           Christian König &lt;<a
             href="mailto:ckoenig.leichtzumerken@gmail.com"
             moz-do-not-send="true" class="moz-txt-link-freetext">ckoenig.leichtzumerken@gmail.com</a>&gt;
@@ -165,27 +159,20 @@ cite="mid:CAAxE2A5pBqOkny15tSRCWn_UW8=TTE=zYPChBZofZCrHZoQbww@mail.gmail.com">
         </div>
         <blockquote class="gmail_quote" style="margin:0 0 0
           .8ex;border-left:1px #ccc solid;padding-left:1ex">
-          <div> That stuff is already available as current_link_speed
-            and current_link_width in sysfs.<br>
+          <div> Well first of all don't mess with the VM internals
+            outside of the VM code.<br>
             <br>
-            I'm a bit reluctant duplicating this information in the
-            IOCTL interface.<br>
+            Then why would we want to expose this through the IOCTL
+            interface? We already have this in the fdinfo.<br>
             <br>
-            Christian. <br>
+            Christian.<br>
             <br>
             <div>Am 30.12.22 um 23:07 schrieb Marek Olšák:<br>
             </div>
             <blockquote type="cite">
-              <div dir="ltr">For computing PCIe bandwidth in userspace
-                and troubleshooting PCIe<br>
-                bandwidth issues.<br>
-                <br>
-                For example, my Navi21 has been limited to PCIe gen 1
-                and this is<br>
-                the first time I noticed it after 2 years.<br>
-                <br>
-                Note that this intentionally fills a hole and padding<br>
-                in drm_amdgpu_info_device.<br>
+              <div dir="ltr">To give userspace a detailed view about its
+                GPU memory usage and evictions.<br>
+                This will help performance investigations.<br>
                 <br>
                 <div>Signed-off-by: Marek Olšák &lt;<a
                     href="mailto:marek.olsak@amd.com" target="_blank"
@@ -198,7 +185,6 @@ cite="mid:CAAxE2A5pBqOkny15tSRCWn_UW8=TTE=zYPChBZofZCrHZoQbww@mail.gmail.com">
                 </div>
                 <div>Marek<br>
                 </div>
-                <br>
               </div>
             </blockquote>
             <br>
@@ -210,4 +196,4 @@ cite="mid:CAAxE2A5pBqOkny15tSRCWn_UW8=TTE=zYPChBZofZCrHZoQbww@mail.gmail.com">
   </body>
 </html>
 
---------------8rQSwnVgCQluSh3NS9E0emfZ--
+--------------lRcVO7J3CJgraqGpvFaEHatO--
