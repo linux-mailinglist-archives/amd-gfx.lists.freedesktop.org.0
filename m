@@ -2,44 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3E9A65D569
-	for <lists+amd-gfx@lfdr.de>; Wed,  4 Jan 2023 15:18:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1A5765D3F9
+	for <lists+amd-gfx@lfdr.de>; Wed,  4 Jan 2023 14:18:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B55F10E20D;
-	Wed,  4 Jan 2023 14:18:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C94E10E1CE;
+	Wed,  4 Jan 2023 13:18:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C75B410E082;
- Wed,  4 Jan 2023 12:41:26 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 532DA6141C;
- Wed,  4 Jan 2023 12:41:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32396C433D2;
- Wed,  4 Jan 2023 12:41:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1672836085;
- bh=TOXTQ60NVRt1UUZ7zJB1nKXUtQdnqTmRrybEAGs47wA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=eRG5aar/3NtyK6sTqpmMnnO4GuWi0LCInUB6dkAtQXjlLDWjw9LKhNFakYC1j6lTI
- pUnuDZ1JtTo5R1G93Kb4FbbrqLXbLJFmwzj4eKv1kplm1h8E0pR5vkRAy58xli7oPv
- H356a3QfNzlrx9nlcPS+2Sr+njyBTFzdwO94oaus=
-Date: Wed, 4 Jan 2023 13:41:22 +0100
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Dragos-Marian Panait <dragos.panait@windriver.com>
-Subject: Re: [PATCH 4.19 1/1] drm/amdkfd: Check for null pointer after
- calling kmemdup
-Message-ID: <Y7Vz8mm0X+1h844b@kroah.com>
-References: <20230103184308.511448-1-dragos.panait@windriver.com>
- <20230103184308.511448-2-dragos.panait@windriver.com>
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com
+ [IPv6:2a00:1450:4864:20::633])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E93CA10E1CE;
+ Wed,  4 Jan 2023 13:18:23 +0000 (UTC)
+Received: by mail-ej1-x633.google.com with SMTP id u9so82636855ejo.0;
+ Wed, 04 Jan 2023 05:18:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=84fez/ucWTww6NSVV6G0atDkJcgY0oGG1v+FAR1TxNY=;
+ b=JAgCx2eqLgGc08EMjQPLJLJdM45V4H24UGXWCqCVcWPnLC4RuTaC39AX5sQnrkz2Ok
+ /ukjXXhCKa1m3/Co+aDvmf7nqhkWG8e0qbvF3ec77Sq3udTiqU5A7TuQeb7nWxZxqrK/
+ Kh+8jlqycp7H1ONgeowiSQSMImrMRKnWZELw3GHUqKswDca3xGcU7HOvLOg74zT8RoJo
+ YqrH7o9715DW21d928mrvGgGanh50mhKM4rqZbcRA+W8vrExPYly+InUk4Q05GgH91zh
+ psQFK3XZyCbanbMLOiU+7CkjwDVJrV9FB43AD/MymRnBr/iZ8VmW0sw2XhElkb/EbKvx
+ 7hWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=84fez/ucWTww6NSVV6G0atDkJcgY0oGG1v+FAR1TxNY=;
+ b=H4aYCkjeu+e2jkqYe50SBkyjkOrOfv+oIxKv5VQ+9QP3+DfKeOKQOnpWSOpMtm5RIB
+ 2R2oZBnCKqZU1XNCZ81y+L5RfAGrzAXBO+gFFNqgEW+StHwbMvvyPuAKEibXPkJJUBTe
+ OffJfqqbMs/4QvpMRtPYd98qyM+kRic2aUijGL7OHwicHhtj7WBJNdx/MAsYcF0Zv7r0
+ Ea4neVsfFBqhLVD5B6wlhkGbFDPd1GSUTPngAV9DauiKRr+lLwC6wp49KkQL1vFQRBoH
+ ABpJ5tUaHWNWzZbxugMKsjG+s/pIG+h0SNP7xoH7PWfKbnW3BMiD6YzRWO1eCjNBGGx+
+ Vk1Q==
+X-Gm-Message-State: AFqh2ko/MTc+F75jvjiOjNf31w1Co9E8FJ/NvYlT/ZUe5x4+fr1doUBF
+ ainN8lwSC8ylOAjzv/t2W9M=
+X-Google-Smtp-Source: AMrXdXvPIrhB2XSa5IXQh0PW2kHoCxgIGUZ5fln0nOiQ8734erNw+n5Ikqlf7f9g9MESnAEjB0wIYA==
+X-Received: by 2002:a17:907:a485:b0:7c0:e23f:17ca with SMTP id
+ vp5-20020a170907a48500b007c0e23f17camr38689262ejc.34.1672838302310; 
+ Wed, 04 Jan 2023 05:18:22 -0800 (PST)
+Received: from [192.168.178.21] (p5b0ea2e7.dip0.t-ipconnect.de.
+ [91.14.162.231]) by smtp.gmail.com with ESMTPSA id
+ u17-20020a1709061db100b0084c70c27407sm9767146ejh.84.2023.01.04.05.18.20
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 04 Jan 2023 05:18:21 -0800 (PST)
+Message-ID: <61ed5d45-c79c-0c5e-ae18-b51d8925386f@gmail.com>
+Date: Wed, 4 Jan 2023 14:18:20 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230103184308.511448-2-dragos.panait@windriver.com>
-X-Mailman-Approved-At: Wed, 04 Jan 2023 14:18:53 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v4 27/27] drm/amd: Optimize SRIOV switch/case for PSP
+ microcode load
+Content-Language: en-US
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, linux-kernel@vger.kernel.org
+References: <20230103221852.22813-1-mario.limonciello@amd.com>
+ <20230103221852.22813-28-mario.limonciello@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20230103221852.22813-28-mario.limonciello@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,43 +76,57 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Oded Gabbay <oded.gabbay@gmail.com>, David Zhou <David1.Zhou@amd.com>,
- amd-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- Felix Kuehling <Felix.Kuehling@amd.com>, Jiasheng Jiang <jiasheng@iscas.ac.cn>,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>, Lazar Lijo <Lijo.Lazar@amd.com>,
+ Javier Martinez Canillas <javierm@redhat.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Carlos Soriano Sanchez <csoriano@redhat.com>, David Airlie <airlied@gmail.com>,
+ christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 03, 2023 at 08:43:08PM +0200, Dragos-Marian Panait wrote:
-> From: Jiasheng Jiang <jiasheng@iscas.ac.cn>
-> 
-> [ Upstream commit abfaf0eee97925905e742aa3b0b72e04a918fa9e ]
-> 
-> As the possible failure of the allocation, kmemdup() may return NULL
-> pointer.
-> Therefore, it should be better to check the 'props2' in order to prevent
-> the dereference of NULL pointer.
-> 
-> Fixes: 3a87177eb141 ("drm/amdkfd: Add topology support for dGPUs")
-> Signed-off-by: Jiasheng Jiang <jiasheng@iscas.ac.cn>
-> Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
-> Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> Signed-off-by: Dragos-Marian Panait <dragos.panait@windriver.com>
+Am 03.01.23 um 23:18 schrieb Mario Limonciello:
+> Now that IP version decoding is used, a number of case statements
+> can be combined.
+>
+> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+
+This patch can probably be pushed as small cleanup independent of the 
+previous patches.
+
+In general I usually suggest to push those separately to make the patch 
+set concentrate on the real changes at hand.
+
+Anyway this patch here is Reviewed-by: Christian König 
+<christian.koenig@amd.com>
+
+Regards,
+Christian.
+
 > ---
->  drivers/gpu/drm/amd/amdkfd/kfd_crat.c | 3 +++
->  1 file changed, 3 insertions(+)
+> v3->v4:
+>   * New patch
+>
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 8 +-------
+>   1 file changed, 1 insertion(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> index f45362dd8228..83e253b5d928 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> @@ -132,14 +132,8 @@ static int psp_init_sriov_microcode(struct psp_context *psp)
+>   
+>   	switch (adev->ip_versions[MP0_HWIP][0]) {
+>   	case IP_VERSION(9, 0, 0):
+> -		adev->virt.autoload_ucode_id = AMDGPU_UCODE_ID_CP_MEC2;
+> -		ret = psp_init_cap_microcode(psp, ucode_prefix);
+> -		break;
+> -	case IP_VERSION(11, 0, 9):
+> -		adev->virt.autoload_ucode_id = AMDGPU_UCODE_ID_CP_MEC2;
+> -		ret = psp_init_cap_microcode(psp, ucode_prefix);
+> -		break;
+>   	case IP_VERSION(11, 0, 7):
+> +	case IP_VERSION(11, 0, 9):
+>   		adev->virt.autoload_ucode_id = AMDGPU_UCODE_ID_CP_MEC2;
+>   		ret = psp_init_cap_microcode(psp, ucode_prefix);
+>   		break;
 
-For obvious reasons, I can't take a patch for 4.19.y and not newer
-kernel releases, right?
-
-Please provide backports for all kernels if you really need to see this
-merged.  And note, it's not a real bug at all, and given that a CVE was
-allocated for it that makes me want to even more reject it to show the
-whole folly of that mess.
-
-thanks,
-
-greg k-h
