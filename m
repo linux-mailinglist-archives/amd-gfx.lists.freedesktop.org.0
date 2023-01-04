@@ -1,117 +1,130 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFBE365DB69
-	for <lists+amd-gfx@lfdr.de>; Wed,  4 Jan 2023 18:44:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB1DC65DC15
+	for <lists+amd-gfx@lfdr.de>; Wed,  4 Jan 2023 19:27:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 216DE10E45E;
-	Wed,  4 Jan 2023 17:44:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA26D10E06F;
+	Wed,  4 Jan 2023 18:27:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam02on2088.outbound.protection.outlook.com [40.107.95.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63AFA10E45E
- for <amd-gfx@lists.freedesktop.org>; Wed,  4 Jan 2023 17:43:58 +0000 (UTC)
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com
+ [205.220.166.238])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD64110E463;
+ Wed,  4 Jan 2023 18:24:13 +0000 (UTC)
+Received: from pps.filterd (m0250809.ppops.net [127.0.0.1])
+ by mx0a-0064b401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
+ 304DfW1Q015774; Wed, 4 Jan 2023 09:52:13 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+ h=from : to : cc :
+ subject : date : message-id : content-transfer-encoding : content-type :
+ mime-version; s=PPS06212021;
+ bh=x+JyT3I+9BdQfDpmrYqtQhZhDBNailMtbw5VqSSjzkQ=;
+ b=Lrom+vUohHGlhR/ZU3JP/QhF4cvhiueJgjsgilCdqJUBgIthHwCBhtETj/CvD9KvU3DT
+ uC30nacSrLRgEH1b4SLdj69wH5vC137HNTlW3vesDZBgn8stvxSkzXB6+krP0wOIcHj3
+ KQn2uIJKAev126B4r+o/ENm4AjGxU1gxGLezBAUEgKUevjuvGpKsor9AHFVoVL8eV0dH
+ OsXzcmcKrB9jiO+P4ybEvnqTh0y6mq4psS8u5H9LF/vRgn7Pki9Kb5i03w0poMoLuAMj
+ 3Kr/CVENMCeCkqf1AsL1hnRG2jZve3SRhldgQ88y65sW7W+31d6ln+wWH6ddtiaBWVkg mQ== 
+Received: from nam12-bn8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12lp2174.outbound.protection.outlook.com [104.47.55.174])
+ by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3mtnfrtfcp-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 04 Jan 2023 09:52:13 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gRBToopsOTxYvPm9BVb9Rg2tWCFunSHhe7T3Pm6h2dxde2ktij/JO2HUwKu6GmFJwXbW2wS57snIFx2Mo7BZSLVokSmPQbWCW7bNDvim0Cpxpy6kha/+0RbEZH7dzNlGGTZ5aI0eXw+17IHqvIH/lZkLQoBxg+rK9vJ8Kh3dOnF1iBc8gzqZpatmdNPbLx83sXAfEhMN6H/7ft6BnsYSF2JVtjSWlR8MEHCe+F0rkhXsdDnRsGJ9bP4n65916hJnZtI2tLlZleU/ULV7piCHOU7OtdpQkzfsd4B4z+/9oienUEARVfvWpXvQ/xXJMHI8BgifjNlz5isdIju8902iBw==
+ b=hRZdhLCJNxDuTsYDZKiN8QwYqPgx8zTPTVeu5OYr7Jc5w5WrNTxVqQoTdVXlFAgoGwH/tV+yKjEg83QBoWon2KrzPUBtGYRMCxMIttRvYrUd62GRFOdabplqfRu4m6j/HcQ3NrMOTCbJcvyBY6rUMdfAiYth2DyAm5Bt3+x88cq4MkVhFdqquA070In74WkoggjzxrFqyrlDJtGLa6tgbOsbSzu/rL4B0dy3y9wB/0WykjtnEoEVSTK0cBWKLTpy6XvfxoSem2/kpwDl14B+W/IQY+I8owdvBpaKeOcnYdchhYipceyXxoxmqzzgzHTSvum9igcr1/ORW/lHHTEQaQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MSOc7YUhwqJtku6zxXSmFEF++bNBVCWrjRj9dy901J8=;
- b=BqghbzcddH+A3C6mb82gfClH8Li2+ABXUM9gO+GzBYcpY76+GTH3HqaBhp83YX51O1h0TBiB3qYVkmfNv4qqaeK+W8Yd1fhXXxAVzERd+RiyNmRrjd8is4b4DYbV1OtDh/1ncfh33VOo7a3DoA9F0hIDe+9TnPHwbQfHllgNUoZNw1DQRg2OImV5tDLwNqbvO6geQL1Vde1/R40cLRZODrNfY/mTIWEyMJcaDFhMY9g9QyKPgPsycQbB6M037hDmaL0H0fedYYyqygbRh9p02KWqxSC4WHCICCHYMXhbbkJMSVEjiNFv/JGDEqUINb+17LIT7tJWi+OpiQT5P19QVw==
+ bh=x+JyT3I+9BdQfDpmrYqtQhZhDBNailMtbw5VqSSjzkQ=;
+ b=WsbBpOR3M6wGA+UD8RlpnSR828t/ViCi0mN7Ye1Fl+ErPj5JPcuBZtOgGNhx1i7fi/E/xN5hrWoMYO0CgNRsCQ9oQKBJzWY8V3jHHnM4aSXGwfCm1Gx33uRCQXCz/QW2LqEnf6qrKQ7IIcf9E4jevx5keVaRcefsD2QbJYhzO97CIHWKuXn0CSBK/nFMxZwqew2K3V5uaoNgAw/x60KKwbdLug39sXF8F67M6DqZnlFMe7MQ2yTs0VOOW83U+6j6AXPy5HSloAujMFfCL4hzCX4mgBYuUpQrZ5yaMJVGuofaETqcmwKaahT0RzaoUNE3r3gCyFVMMxKLhI7PQXLIEw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MSOc7YUhwqJtku6zxXSmFEF++bNBVCWrjRj9dy901J8=;
- b=zdeiHYi8Rhds5sJ/xeLLSMU6cgtyoc2UwHI+yRSTX68tuamEpEdwIHVJ5bGQnsedZGL0VuMryCpO1Q0liNcozd1oFBev8h3e46UFqWCBqwUCfUE+2TzykcHR60/+fqDhTjgbVMzL4i49gH0jYG2XzvqCXwONX/3tH6eWu7ZvLzs=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB6280.namprd12.prod.outlook.com (2603:10b6:8:a2::11) by
- MN0PR12MB5857.namprd12.prod.outlook.com (2603:10b6:208:378::10) with
- Microsoft SMTP Server (version=TLS1_2,
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Received: from PH0PR11MB4952.namprd11.prod.outlook.com (2603:10b6:510:40::15)
+ by IA1PR11MB8223.namprd11.prod.outlook.com (2603:10b6:208:450::19)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.19; Wed, 4 Jan
- 2023 17:43:56 +0000
-Received: from DM4PR12MB6280.namprd12.prod.outlook.com
- ([fe80::5935:7d8d:e955:6298]) by DM4PR12MB6280.namprd12.prod.outlook.com
- ([fe80::5935:7d8d:e955:6298%7]) with mapi id 15.20.5944.019; Wed, 4 Jan 2023
- 17:43:56 +0000
-Message-ID: <ab72c997-3f6b-57fe-6c64-72f4e1ba456c@amd.com>
-Date: Wed, 4 Jan 2023 12:44:47 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH] drm/amd/display: drop unnecessary NULL checks in debugfs
-To: Alexey Kodanev <aleksei.kodanev@bell-sw.com>, amd-gfx@lists.freedesktop.org
-References: <20221227170415.209904-1-aleksei.kodanev@bell-sw.com>
-Content-Language: en-US
-From: Hamza Mahfooz <hamza.mahfooz@amd.com>
-In-Reply-To: <20221227170415.209904-1-aleksei.kodanev@bell-sw.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YQBPR0101CA0003.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c00::16) To DM4PR12MB6280.namprd12.prod.outlook.com
- (2603:10b6:8:a2::11)
+ 2023 17:52:10 +0000
+Received: from PH0PR11MB4952.namprd11.prod.outlook.com
+ ([fe80::52f4:f398:b983:2380]) by PH0PR11MB4952.namprd11.prod.outlook.com
+ ([fe80::52f4:f398:b983:2380%7]) with mapi id 15.20.5944.019; Wed, 4 Jan 2023
+ 17:52:10 +0000
+From: Dragos-Marian Panait <dragos.panait@windriver.com>
+To: stable@vger.kernel.org
+Subject: [PATCH 5.4 0/1] drm/amdkfd: Check for null pointer after calling
+ kmemdup
+Date: Wed,  4 Jan 2023 19:51:54 +0200
+Message-Id: <20230104175155.1415258-1-dragos.panait@windriver.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: VI1PR09CA0133.eurprd09.prod.outlook.com
+ (2603:10a6:803:12c::17) To PH0PR11MB4952.namprd11.prod.outlook.com
+ (2603:10b6:510:40::15)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB6280:EE_|MN0PR12MB5857:EE_
-X-MS-Office365-Filtering-Correlation-Id: c4754d8a-d69f-4016-b520-08daee7b4084
+X-MS-TrafficTypeDiagnostic: PH0PR11MB4952:EE_|IA1PR11MB8223:EE_
+X-MS-Office365-Filtering-Correlation-Id: 82b7e77a-75a3-438c-c073-08daee7c66cd
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hVjYuacJvs75dzQr+UuKoatzaarKwo9MxaFn9KdeUxugMCoX1m9QpnlqC9gU2gFpTML1JrN8faARfXw/sjtZ/XZFrH4K6b2RdipYXxkVdLojz5MPnXGioLa9QK9V2tceDZlMnKpitVsitArV5ZgrxA8p1DBE9Z6VE05om5SHIaXXDeCUI3yJmIr9N8+16qD+uqb5QIU1g9MejsBQrCka2rfD/izPKv20Wtrqro8OxsSelmatTAc8k4/W7E4UgcqsojFF+FUjpaQIXZQb7Ptcph+1PeE3I7YGC/UsiYXCUj9QDtR2BP6gFQT01hvjg0mrLHJueeovAoqPPDLihqVWz0EyJxBkVIi0eTMV6JxkdNoUpAbJk+CAa3Cvjaw4PHGBFDiJaUWVCSbA68J2tcKzuZP1p+flM6UBeCjoZ0JhEK0s13N5T7FEBqrRd/YT0EAK/EAWudPtt5Qcy0l8Wx3Oh6zyqW0hyBfFeuj8CBUYRS4/eSvr8R+pVGkNr6mwHqL6HAwa8s/pwHt/yRXmOoFlE8R5BxPfqBbwwflK8zexNSkcgd+AYS7R0aw7zbcV+o757f8Kbsw0gu0fofcr3HHs1uHHAk0WL4kZIoSmQ/Wf608sG7jx8IdkikBfRAvCaBIzcy/4aP6vhwsI0+L/vjyWrwT8LD2SjvXi77BwHTZQz+kjubQYLndrlfV3PMLl6tLD1TpEuRLeeckNAhEWXFn96MxWf24xsN9mTYVNskP2RSU=
+X-Microsoft-Antispam-Message-Info: 4kBWxrLMuLh9AwGdtMvJdqY2a0OcFC35xQLRfeWynb4eJ15n++i050hGBJy4BHqbhDY14FrCkqtKcW6TkDS/zKEMzGhodUDz+aJkTJ6GkPMHxz4WqIeWcmgfA+vDdLFuDNIaf/KY9xDvAbk8ll4UBW6te9Dd89oudF43pkV5hP0iNq+nTOzEoE4Z7ze2r0ToJWTnVir/LLzs6p0gTtq9CHzFaaWb256fQ4eu/fQd6Fh5P5osK665YzuR4WZxjODDogatICp+zqwjvQJytjYaBChxtBN9XH4YsgT5Gbnmc7Sa8DH3kxx2EGKUgrp7IMJyovdQgzAkwOhusVmLFRO1iMKzzq+7l5Uzw4cO6Mpn2bXRZwZ/+h8J/Uw7DrCCrPgYZTA1JIRlMJlhh7VfGEmx/CcUCf2ukl1w34uU827X430nNgbZdG096kNiVAWtQs2SsVYG9vyEmhuU7hJhz1Jc4Ml1Kt8nJuSV/cvydY5ANwXhZKyEcLyEbw4ijX8DYHOsVxW+kq+qMkIXov/32TcQgzAhVLE6y2CGPR9xmP0SZ9n1D+s+wuiwhK33JAUI5kR4mAPbfNj4Td/8jC1DQ2emyVGpOjm25lzl8P9s52074OJQrPLEtZFbVxCqVL3KuXtbVyFqQSQbga0llHQcolcrkHiBl1Y/+Hd+5Df9XHDBh77MkzKn9vstJuoRV3ycY4eJt1QhmkC1Xj4ciBOfAPVWy5yN9FfIK368fDK2U+TRbH0=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB6280.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(4636009)(366004)(376002)(136003)(39860400002)(346002)(396003)(451199015)(5660300002)(2906002)(44832011)(8936002)(41300700001)(478600001)(316002)(8676002)(66476007)(66946007)(66556008)(6486002)(31686004)(6666004)(6512007)(26005)(6506007)(83380400001)(186003)(38100700002)(53546011)(2616005)(31696002)(86362001)(36756003)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:PH0PR11MB4952.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(4636009)(376002)(136003)(346002)(396003)(366004)(39850400004)(451199015)(38100700002)(38350700002)(36756003)(86362001)(1076003)(66556008)(6916009)(6666004)(6506007)(2616005)(66476007)(478600001)(6512007)(6486002)(186003)(26005)(966005)(316002)(52116002)(54906003)(8676002)(2906002)(66946007)(41300700001)(4326008)(8936002)(4744005)(5660300002)(7416002);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SjE3emZoUE4yRG9xMnJBMHpsS2h1Ti9md1haeDdQYmxLL0dUd2FmVmtHbi9p?=
- =?utf-8?B?VmU3c2YyZWdKdm1LMXNkd1pkZ3hsMGFKVUJjRzFmcCtlZmdjNVlXNlhCcEpI?=
- =?utf-8?B?Y1dwTUJjSkdvQjJSYk9JWW1GWHhMTWh1eE5adXF2anJrVG5JVy9rdHJwYmE1?=
- =?utf-8?B?YmZ6ZEZGSUhOTnRoNUxVdUVOeXJ5MllwTTUwNWhtTWdGdk8va1FxRWxWeUtx?=
- =?utf-8?B?a3hCM3R3ZVR1Y0I4OTdWeFYyaUd0c01hM3ZRdXp1UzkrWlR4WEhjdWt1UHFW?=
- =?utf-8?B?UUF6cHdmaGhDYmY1QW5uWXBjcXJpTkxyWk9FQzcrcmsrakJNS2NJRUJCU2FK?=
- =?utf-8?B?dGtlL05va2pXOE40QnUzRTJOUzdGTm9TTkp4UUZmVnR2ekZSaVJ6cjhIaWdJ?=
- =?utf-8?B?QWcrUjdpRXhtb0FnNmRZaTVkcllUMjdwNlh1V2hQTndUQU5RYzZHYTl4TlJj?=
- =?utf-8?B?NmJLQlFuNjBhRXgrN25wTHRYMjU1SUhRclJwbzVZdlR4TGR1Zmx0blZ4anhm?=
- =?utf-8?B?bCtPZndna21GY2RYQzlIVEc4WFBwNEppVkEvc0hsTEpQeW5sbURFZW41OFBi?=
- =?utf-8?B?RFdJQndPSEFOWnBneWxPdU8wNHVLS01VbGxZeTFDZWl1b1pBQ1dWTVdzZ01s?=
- =?utf-8?B?eDl4eGVWekQ2YVdYZC9PdjMwUys2OS9lNDdORnVkQzRPdDI4TWJRdkVHUFBa?=
- =?utf-8?B?cWp4dmNweWxBMDBleVNRWFpuUkFOeEh6cUg0R2pWSzBFdkxhMEpiVzRlL0lY?=
- =?utf-8?B?WFlmRUNzcVMzU1haVE14anV5R2VQZU9JYnJYeVViVmxpb2syanRTVERrS2sz?=
- =?utf-8?B?OWUrSFpBamR1WjdpSmtwWnJWSE5MZ1RlOXo3VVFKTE9jYUR1dTB1bHFrbFN1?=
- =?utf-8?B?Z0MyK3pDNTlieXpZS2VMdFg0a0gvaUEvN1FrZk00Y2hobkhzcVNRRHlTb0NM?=
- =?utf-8?B?RnMzaEY4NmFDTGdkMW1CWmhxMTZqcTBwekNjL3ByaEdxWVhsK2pUTm41WnRN?=
- =?utf-8?B?eWM0d3hpSWQ0ZHJiWnMzYnZaQWFWdWRtZGY4b2xEblZKL1hieHl0K1pjR3p4?=
- =?utf-8?B?aUlOK25iUUNubVZsaUJ6L3NoS0JPRlU1SmJtL3dHbkhFd2dySEUzMXU1WWFL?=
- =?utf-8?B?dUxxRnJMVnFVdHVHNkFPZFNnNENWVXBhMkpMTVVDaFFtZ2dZZjJ5NncxZ0F3?=
- =?utf-8?B?VkUxSDBMZnJUdlNDS1E5NEJ4OWs3OEFxUE43MkdUbGJGUDJxOTB5ZVZlU1Vu?=
- =?utf-8?B?cE5TbE1xRHpVQTIwMzZMYjlZZ2U1RDMvL2NSamYrc2NoOUlCWDliOGdNQ21Y?=
- =?utf-8?B?SFdLUDgxTSs1YlQrRUFVNklteHBNVXZuaXRIak1tV2liWWk2L0NDbS9rdG5L?=
- =?utf-8?B?eU45eVAvdW92dXhJNldJNXgweTdPU21YV0tRd2h4WUo3MVB1UUdVdEZEbCtC?=
- =?utf-8?B?VmVmM0hkK3VTdmVFc0k3UEdFb2lsbDRFRnhCYlZVL3dTQVhvRmdXOERyc1dK?=
- =?utf-8?B?RlJkUm1FQXB5a1dscXRkU1BFSThOdjZIRG04OVNoQ2RrWTRWQThIQnlJRERr?=
- =?utf-8?B?REFTeDMvNFRMaFhvOXRTcmc3L2Y4ZCsvaDlHc2V5S1ViYnQwSUhyUWxRZXRj?=
- =?utf-8?B?dFZLWjdGSVpKMWUvMUNMYlllZ3BuNVdtbUkyNFAvQzBoRTFsRVVLWGdGZGh5?=
- =?utf-8?B?OGtPYjQrTmtPYkpZeTlrLzA3YVRtOStQMnFCWnFCbUMyZ0gwQzBpNmlQR1pa?=
- =?utf-8?B?dTR4cWtqTHZvZ0VCMDUveDRtbURDamJaMzlocHNHQy9JQ0Q4SFJNU3hzRVJZ?=
- =?utf-8?B?V0ptaURhbk8xZTJ1eVIyeExMdm5XazNsNW5XRVF6WWp1a3BhRmgwR2dhS2hZ?=
- =?utf-8?B?TXdiK1EyTW8zcEN1bE1haHpOdW82TnVjcnZaSURmdTNBOUsxTzVuMExIbk1w?=
- =?utf-8?B?czFoQ2tBcnVBamVpQWpkeVNJeVpwTFp5dVd5ZGVJdlZPVko5eHZ6V2FxYk5x?=
- =?utf-8?B?bXBnZE5SNmY3SjBTUVhvK1VCVlhTempEc3JCeEFUdkJ1TU4vYkgyOTZYQ0pa?=
- =?utf-8?B?ODdpTTFWaTAyNFFyb3MyYjVmMWdmZ0RQL3pxck0wcmZVakNWWC9CSm1yaCtN?=
- =?utf-8?Q?/+GHcPz+ch8qh0HKCZwQyThbP?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c4754d8a-d69f-4016-b520-08daee7b4084
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6280.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?aRtVUG0ReUpOsxrI+encK+KhgJudJlICUQAAzg7jqUiKySb7qq431edBFxoH?=
+ =?us-ascii?Q?QGCjO5lf74RHsLHgm1Ggu5E7extcy3/yQzU0hI4cj2OZAufpV+dFuRXG1Aa/?=
+ =?us-ascii?Q?3gv/qpdaw4FoZV5WHj7j9SQW6enIEakLoHsOkOEKmMB/ceaLFOoPe6fM0xFx?=
+ =?us-ascii?Q?UdypeQvK+mNef7dvLAoUZI+WTpG4QUCL+8OgoawT8TsYjy0J7iORT7uZDGBx?=
+ =?us-ascii?Q?jQzUbnP6etMGwboWcFTJGrM4gthlICh2a0htL7Itt26iwL47OX9vI+y+G1jz?=
+ =?us-ascii?Q?df2k+lShkhffbFRGioaCHH7mvpeM2wnRsVy0nKjG+CTWBR10THK23jTdVQIq?=
+ =?us-ascii?Q?7RoKRbP1gQYgS3tmkfBaTj5Q4rxewcPzwzu4cbOJOcs3Dr9v233SP1iHAZ2t?=
+ =?us-ascii?Q?91oDH9DIbodLnesfcDiqGBFNiKSDUSR6HPuqIbK5MKSJiH18ksIcCu05wJpn?=
+ =?us-ascii?Q?JEnw9UlEHZhD7Pvq6OXYNPX7A+vNXUv/WjwU7HaGqOEe+PSQ4eSuj5ojrw91?=
+ =?us-ascii?Q?by1EVLjsQUDKi1qbK9QkvxdhM5W8+KWINMp2T4doIZw+7qMHUX1IsL/XzBlr?=
+ =?us-ascii?Q?++J4R4Hx2GhJvoWCZlcBIA6TPZeQClbaeloaLIBCcNpg8gYl/3mJpwgDtfbS?=
+ =?us-ascii?Q?80K+86vSqPJMhtctYa9iRX5OffRoks2Ts6HZKzO/Lj3qIE3YMDyJqH0tc4gS?=
+ =?us-ascii?Q?t/y2S8w/ywX2fDoj8nYAFVGUuhDwNujavOiUKm1wWoIObPAtbvso1BmL2Wgu?=
+ =?us-ascii?Q?S6NdESZg22c/0XIETB6R0WwhDkDpJsi/KMoezLArkQTWeCSZ+JkHkbecKtd+?=
+ =?us-ascii?Q?r6KZlwovFezsO+E8U4NSr06DLX5hcItjS2y/k/UVfQuhHauhXF6DK//u27EO?=
+ =?us-ascii?Q?ZUAIDMIABgONQWnBrsEs2s69j4M0dtWciIk6rkjn3hQe+67exGkeLKtKwjXT?=
+ =?us-ascii?Q?3YaG1K3Ws+ZhIvGwUH9VKDRrx6CS9iAsxwrBZ4/aeBewlpHPINs70XG1N7cX?=
+ =?us-ascii?Q?47RylgnYeZb3IZgEr+Y1e3iCGtVDpX/cNWKeBYP6sKASc5LkhREr/c6tzmWx?=
+ =?us-ascii?Q?wPsZYDw8lwUkcAguHaCWImN3u2xp0b9uykwKSCGImF3EsR6YV5nK0ftxzMWW?=
+ =?us-ascii?Q?RbTgS+JeFgpR1GtccWDNlmbLcf3Rheel8TqO/KrG42ODeYcz/Du3OxB0dFSR?=
+ =?us-ascii?Q?BrlmW7nMGCKvsA61OjScHA/HOwrZ9kU+ZXwipz/UB5k+wJAwMLP9PKFz5tpe?=
+ =?us-ascii?Q?gzZOAJ3oakrhFe9QaftAVth73MDNPvuod3955KQWl3H/VnNIuPgK9h0T11HQ?=
+ =?us-ascii?Q?VKi0Mxa3h8AscwRU86hFqxEAq7R7GlstNKGU5LnsehiV0BFw4cs2UHhQyDJ1?=
+ =?us-ascii?Q?xoBIrDZdiQFrQxpprSIesWlmzhuPz6VAMh25ZJQ7O4aLM7/C1eoR6OGcy4la?=
+ =?us-ascii?Q?scx46xnIjn3IOvkuKDGv4BkxC2IB563WUEyeBNArOzaimoWCSEVQFGA9ocp+?=
+ =?us-ascii?Q?/rK3kDzIFwGOmrKGip6t5AcoVLsL+05qyufHGEp36qMLahpwQ1HNVxCoH06f?=
+ =?us-ascii?Q?WO5FGRZvQAli00piBcqlZuuN/lPP0FqjEQa6YuGPjWZtezXET61PoJeV7nKH?=
+ =?us-ascii?Q?Zg=3D=3D?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 82b7e77a-75a3-438c-c073-08daee7c66cd
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB4952.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jan 2023 17:43:56.2485 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jan 2023 17:52:09.8680 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +nZww+cr47UlqiQwv7lelBW+Ty0cMm6rVGzONdeh8yOp8oEHZk/pwygZO7ZcFK+RRvTgrqE7vbPa8/tBijyDCQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5857
+X-MS-Exchange-CrossTenant-UserPrincipalName: m5NQAmErZipnzt+rUk/d/kalsu/OcKqq9PyaVdgL++s1kRwORdebeRF9oB6BNGOnJoyCHjgdIT6USAdm0Db9q5bJ7x/x31g/lBDeUuccjeI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8223
+X-Proofpoint-ORIG-GUID: a5MHEW1ZkSyxHzaRdrKzPZFyiXR4WXW5
+X-Proofpoint-GUID: a5MHEW1ZkSyxHzaRdrKzPZFyiXR4WXW5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-04_07,2023-01-04_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 mlxlogscore=643
+ impostorscore=0 mlxscore=0 spamscore=0 clxscore=1011 lowpriorityscore=0
+ bulkscore=0 priorityscore=1501 adultscore=0 malwarescore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2301040149
+X-Mailman-Approved-At: Wed, 04 Jan 2023 18:27:13 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,232 +136,28 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Oded Gabbay <oded.gabbay@gmail.com>, amd-gfx@lists.freedesktop.org,
+ David Airlie <airlied@linux.ie>, Ben Goz <ben.goz@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>, Jiasheng Jiang <jiasheng@iscas.ac.cn>,
+ Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Kent Russell <kent.russell@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 12/27/22 12:04, Alexey Kodanev wrote:
-> pipe_ctx pointer cannot be NULL when getting the address of
-> an element of the pipe_ctx array. Moreover, the MAX_PIPES is
-> defined as 6, so pipe_ctx is not NULL after the loop either.
-> 
-> Detected using the static analysis tool - Svace.
-> Signed-off-by: Alexey Kodanev <aleksei.kodanev@bell-sw.com>
+The following commit is needed to fix CVE-2022-3108:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=abfaf0eee97925905e742aa3b0b72e04a918fa9e
 
-Applied, thanks!
+Jiasheng Jiang (1):
+  drm/amdkfd: Check for null pointer after calling kmemdup
 
-> ---
->   .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 72 +++++--------------
->   1 file changed, 16 insertions(+), 56 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-> index 461037a3dd75..cec16eaf2fb0 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-> @@ -1375,16 +1375,11 @@ static ssize_t dp_dsc_clock_en_read(struct file *f, char __user *buf,
->   
->   	for (i = 0; i < MAX_PIPES; i++) {
->   		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-> -		if (pipe_ctx && pipe_ctx->stream &&
-> +		if (pipe_ctx->stream &&
->   		    pipe_ctx->stream->link == aconnector->dc_link)
->   			break;
->   	}
->   
-> -	if (!pipe_ctx) {
-> -		kfree(rd_buf);
-> -		return -ENXIO;
-> -	}
-> -
->   	dsc = pipe_ctx->stream_res.dsc;
->   	if (dsc)
->   		dsc->funcs->dsc_read_state(dsc, &dsc_state);
-> @@ -1481,12 +1476,12 @@ static ssize_t dp_dsc_clock_en_write(struct file *f, const char __user *buf,
->   
->   	for (i = 0; i < MAX_PIPES; i++) {
->   		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-> -		if (pipe_ctx && pipe_ctx->stream &&
-> +		if (pipe_ctx->stream &&
->   		    pipe_ctx->stream->link == aconnector->dc_link)
->   			break;
->   	}
->   
-> -	if (!pipe_ctx || !pipe_ctx->stream)
-> +	if (!pipe_ctx->stream)
->   		goto done;
->   
->   	// Get CRTC state
-> @@ -1566,16 +1561,11 @@ static ssize_t dp_dsc_slice_width_read(struct file *f, char __user *buf,
->   
->   	for (i = 0; i < MAX_PIPES; i++) {
->   		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-> -		if (pipe_ctx && pipe_ctx->stream &&
-> +		if (pipe_ctx->stream &&
->   		    pipe_ctx->stream->link == aconnector->dc_link)
->   			break;
->   	}
->   
-> -	if (!pipe_ctx) {
-> -		kfree(rd_buf);
-> -		return -ENXIO;
-> -	}
-> -
->   	dsc = pipe_ctx->stream_res.dsc;
->   	if (dsc)
->   		dsc->funcs->dsc_read_state(dsc, &dsc_state);
-> @@ -1670,12 +1660,12 @@ static ssize_t dp_dsc_slice_width_write(struct file *f, const char __user *buf,
->   
->   	for (i = 0; i < MAX_PIPES; i++) {
->   		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-> -		if (pipe_ctx && pipe_ctx->stream &&
-> +		if (pipe_ctx->stream &&
->   		    pipe_ctx->stream->link == aconnector->dc_link)
->   			break;
->   	}
->   
-> -	if (!pipe_ctx || !pipe_ctx->stream)
-> +	if (!pipe_ctx->stream)
->   		goto done;
->   
->   	// Safely get CRTC state
-> @@ -1755,16 +1745,11 @@ static ssize_t dp_dsc_slice_height_read(struct file *f, char __user *buf,
->   
->   	for (i = 0; i < MAX_PIPES; i++) {
->   		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-> -		if (pipe_ctx && pipe_ctx->stream &&
-> +		if (pipe_ctx->stream &&
->   		    pipe_ctx->stream->link == aconnector->dc_link)
->   			break;
->   	}
->   
-> -	if (!pipe_ctx) {
-> -		kfree(rd_buf);
-> -		return -ENXIO;
-> -	}
-> -
->   	dsc = pipe_ctx->stream_res.dsc;
->   	if (dsc)
->   		dsc->funcs->dsc_read_state(dsc, &dsc_state);
-> @@ -1859,12 +1844,12 @@ static ssize_t dp_dsc_slice_height_write(struct file *f, const char __user *buf,
->   
->   	for (i = 0; i < MAX_PIPES; i++) {
->   		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-> -		if (pipe_ctx && pipe_ctx->stream &&
-> +		if (pipe_ctx->stream &&
->   		    pipe_ctx->stream->link == aconnector->dc_link)
->   			break;
->   	}
->   
-> -	if (!pipe_ctx || !pipe_ctx->stream)
-> +	if (!pipe_ctx->stream)
->   		goto done;
->   
->   	// Get CRTC state
-> @@ -1940,16 +1925,11 @@ static ssize_t dp_dsc_bits_per_pixel_read(struct file *f, char __user *buf,
->   
->   	for (i = 0; i < MAX_PIPES; i++) {
->   		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-> -		if (pipe_ctx && pipe_ctx->stream &&
-> +		if (pipe_ctx->stream &&
->   		    pipe_ctx->stream->link == aconnector->dc_link)
->   			break;
->   	}
->   
-> -	if (!pipe_ctx) {
-> -		kfree(rd_buf);
-> -		return -ENXIO;
-> -	}
-> -
->   	dsc = pipe_ctx->stream_res.dsc;
->   	if (dsc)
->   		dsc->funcs->dsc_read_state(dsc, &dsc_state);
-> @@ -2041,12 +2021,12 @@ static ssize_t dp_dsc_bits_per_pixel_write(struct file *f, const char __user *bu
->   
->   	for (i = 0; i < MAX_PIPES; i++) {
->   		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-> -		if (pipe_ctx && pipe_ctx->stream &&
-> +		if (pipe_ctx->stream &&
->   		    pipe_ctx->stream->link == aconnector->dc_link)
->   			break;
->   	}
->   
-> -	if (!pipe_ctx || !pipe_ctx->stream)
-> +	if (!pipe_ctx->stream)
->   		goto done;
->   
->   	// Get CRTC state
-> @@ -2120,16 +2100,11 @@ static ssize_t dp_dsc_pic_width_read(struct file *f, char __user *buf,
->   
->   	for (i = 0; i < MAX_PIPES; i++) {
->   		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-> -		if (pipe_ctx && pipe_ctx->stream &&
-> +		if (pipe_ctx->stream &&
->   		    pipe_ctx->stream->link == aconnector->dc_link)
->   			break;
->   	}
->   
-> -	if (!pipe_ctx) {
-> -		kfree(rd_buf);
-> -		return -ENXIO;
-> -	}
-> -
->   	dsc = pipe_ctx->stream_res.dsc;
->   	if (dsc)
->   		dsc->funcs->dsc_read_state(dsc, &dsc_state);
-> @@ -2181,16 +2156,11 @@ static ssize_t dp_dsc_pic_height_read(struct file *f, char __user *buf,
->   
->   	for (i = 0; i < MAX_PIPES; i++) {
->   		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-> -		if (pipe_ctx && pipe_ctx->stream &&
-> +		if (pipe_ctx->stream &&
->   		    pipe_ctx->stream->link == aconnector->dc_link)
->   			break;
->   	}
->   
-> -	if (!pipe_ctx) {
-> -		kfree(rd_buf);
-> -		return -ENXIO;
-> -	}
-> -
->   	dsc = pipe_ctx->stream_res.dsc;
->   	if (dsc)
->   		dsc->funcs->dsc_read_state(dsc, &dsc_state);
-> @@ -2257,16 +2227,11 @@ static ssize_t dp_dsc_chunk_size_read(struct file *f, char __user *buf,
->   
->   	for (i = 0; i < MAX_PIPES; i++) {
->   		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-> -		if (pipe_ctx && pipe_ctx->stream &&
-> +		if (pipe_ctx->stream &&
->   		    pipe_ctx->stream->link == aconnector->dc_link)
->   			break;
->   	}
->   
-> -	if (!pipe_ctx) {
-> -		kfree(rd_buf);
-> -		return -ENXIO;
-> -	}
-> -
->   	dsc = pipe_ctx->stream_res.dsc;
->   	if (dsc)
->   		dsc->funcs->dsc_read_state(dsc, &dsc_state);
-> @@ -2333,16 +2298,11 @@ static ssize_t dp_dsc_slice_bpg_offset_read(struct file *f, char __user *buf,
->   
->   	for (i = 0; i < MAX_PIPES; i++) {
->   		pipe_ctx = &aconnector->dc_link->dc->current_state->res_ctx.pipe_ctx[i];
-> -		if (pipe_ctx && pipe_ctx->stream &&
-> +		if (pipe_ctx->stream &&
->   		    pipe_ctx->stream->link == aconnector->dc_link)
->   			break;
->   	}
->   
-> -	if (!pipe_ctx) {
-> -		kfree(rd_buf);
-> -		return -ENXIO;
-> -	}
-> -
->   	dsc = pipe_ctx->stream_res.dsc;
->   	if (dsc)
->   		dsc->funcs->dsc_read_state(dsc, &dsc_state);
+ drivers/gpu/drm/amd/amdkfd/kfd_crat.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
+
+base-commit: 851c2b5fb7936d54e1147f76f88e2675f9f82b52
 -- 
-Hamza
+2.38.1
 
