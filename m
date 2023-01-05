@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0AD665E365
-	for <lists+amd-gfx@lfdr.de>; Thu,  5 Jan 2023 04:23:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 247DF65E363
+	for <lists+amd-gfx@lfdr.de>; Thu,  5 Jan 2023 04:23:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33C3810E62A;
-	Thu,  5 Jan 2023 03:23:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D15210E628;
+	Thu,  5 Jan 2023 03:23:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2048.outbound.protection.outlook.com [40.107.92.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BF7810E62A
- for <amd-gfx@lists.freedesktop.org>; Thu,  5 Jan 2023 03:23:25 +0000 (UTC)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02on2048.outbound.protection.outlook.com [40.107.95.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDB1510E628
+ for <amd-gfx@lists.freedesktop.org>; Thu,  5 Jan 2023 03:23:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZbgVbfq8NWIOP0rQ2Z4YYdsKfGU4Z1vtevv6i8FoxTXiuxLVECM9IGHHQ7Nxc4JmA3u6+nUAKHmleMOCiELxyova6CrD8IbzRClQa6iOXxLMOvjXfZLWFVhXOZjvloVBtmgCFWzyRXeH7rzFdqUarnyi0XrdNsOwk4fwPjaBB8IJZidr0bjjTcL2/9YB/mEIXd461HJMxPJiU1knnng6imEnUE1qWUeG9NpmHH9fdZWJbt+BZmv7DUEtGa0Ipy4B4BJfoMYR7Oo/hxlsaRswYXHLvNhuy44RYyD4rnr/iCSG9/1FoshAXGXjJv1aCSFtHP0I7ffrTx/RXxAflMNUzw==
+ b=nGO5RsmdtbDwgG9CWOVeq2kOwYVqmU3UgQYwuTIVVfN8QtSUixYBYUDeVfGOdWKFztX86V0zomDgEzSXYkD4TG3d+5GyHhFfVLl3Wsih02rRQHPIVRpnzg8DWC4shUHCZIgc5gVNftFBQoEfeSA/sUoPRPZ7DPA1d9k45v/cMYM8+AuxeAdR4O/jabybrlzxVQsoZgXEc15N9Gp7+IQSANTUmIGd67oTuqxoBx1e+tgv1mWEOb1g9IVflEEJrr2hIMCLs2f6Myk83BUsV4/XcckiqB1USxFRX7MKMp8q3GRtixlW2c1cdMcSRa9tFAnz9VC6q/7H18L1CZaJrDdeFQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FfxlXafYRlTuguj6HYKDvgf67iOBfqxUqipF7H1gOI4=;
- b=DtugDEFRCPw3gsEugONMPx/8GqXpNsPhw2OCSY2DY/lwsQzY33p/jgR1aeuq7UmS2SA6IQThwYVUgV6k5wgmrOMYhI+haAtNBBQfa3qUdx3lVUrQX45+nue6N4R9zCcr+V9YzY1c6hJUH/uz9CcaiU4o1BJ8oJT5cwB3WtuMQeNAQUuPXMw7G2SBU4OL0gmXmeHebyBj390wEoKIWrP4g8OU99cTYXJVA+XAhxXAVhVb0Pl1clTMeSlpp+ul60hw3IqGV4Drz6XEXbWX6qpH+7kuuG/ppQmEdWJ28+i7sAeB+C3cjVUq5dgNgq93jsczCkkE7NYKC05c/QaQ8c4LuQ==
+ bh=ot+wds6oRdU55eQbyu2evYAt2/ruy3PGs5mgj5Q6aOI=;
+ b=N96Mxzbo0F3/7wdYKc12mI2hH+2HX+2O17Rz4u1cEnFkkTFsGhP1YUJEmecs5KBPRTJSDa7FuEmfa7W4wFlWQ0tbx8KeTmb2cxr4brYQ4hv+19uFEszvoAYAjAn/Je67GTTxsOcbaDUhWQNPd5UOnxBf5QEq4aqegTA/QyBpFXnRJj9TBp3AyF0BPECHjkyZomDMDu0piiwZNkIhXNewUGsSNFd+nhOza/UlvvdgSv37jfxsxGuJ28bPNB06wrgzrD/mBCYTt7p/dIOYKirk40EIdB8eWiAFTi+fD8ul/O4w9HrERvTDth+ysJDV94VKhBYjDMzZrnhbQ0yfJCOkog==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FfxlXafYRlTuguj6HYKDvgf67iOBfqxUqipF7H1gOI4=;
- b=LUAje/RHCbm4QTwQMYQd5m+SExcWicEcr5QF9LeLXdfS0ObJyaiCN/fPYyFnFX53XtwwkAhG2qUvs91rRgpql8N5ONpdnqDWf382DcoR7brf26d0lAanOCP2wc94Trv5RiI3+ZSuePZVgtHhwM6whGEzQg3Uteeos7Fl//ADfeo=
+ bh=ot+wds6oRdU55eQbyu2evYAt2/ruy3PGs5mgj5Q6aOI=;
+ b=wq4Ep2W/BwSrWw8fkk2mR0fTirW1A7BIzNMevrDOQ1LevIWjrJe2VmmZiIoonl1Q+MwL/1d2O9eOAp1jxcqyxYbea7BFvc7dRuf4w9Pvb6GET3U2Kg2XvS2Q86JXjAmV5Tqyi0qx/2j2P1GkfZBcy5GxHpMNgpi+dPSO3b9Re60=
 Received: from BN9PR03CA0603.namprd03.prod.outlook.com (2603:10b6:408:106::8)
- by IA1PR12MB7566.namprd12.prod.outlook.com (2603:10b6:208:42e::16)
+ by PH8PR12MB6746.namprd12.prod.outlook.com (2603:10b6:510:1c1::17)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.19; Thu, 5 Jan
- 2023 03:23:21 +0000
+ 2023 03:23:22 +0000
 Received: from BN8NAM11FT094.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:106:cafe::78) by BN9PR03CA0603.outlook.office365.com
+ (2603:10b6:408:106:cafe::61) by BN9PR03CA0603.outlook.office365.com
  (2603:10b6:408:106::8) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.14 via Frontend
- Transport; Thu, 5 Jan 2023 03:23:21 +0000
+ Transport; Thu, 5 Jan 2023 03:23:22 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,18 +47,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN8NAM11FT094.mail.protection.outlook.com (10.13.176.131) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5944.17 via Frontend Transport; Thu, 5 Jan 2023 03:23:21 +0000
+ 15.20.5944.17 via Frontend Transport; Thu, 5 Jan 2023 03:23:22 +0000
 Received: from equan-buildpc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 4 Jan
- 2023 21:23:18 -0600
+ 2023 21:23:19 -0600
 From: Evan Quan <evan.quan@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 1/8] drm/amdgpu: add bitmask controll for power related sysfs
- interfaces
-Date: Thu, 5 Jan 2023 11:22:52 +0800
-Message-ID: <20230105032259.2032789-1-evan.quan@amd.com>
+Subject: [PATCH 2/8] drm/amd/pm: refine the checks for sysfs interfaces support
+Date: Thu, 5 Jan 2023 11:22:53 +0800
+Message-ID: <20230105032259.2032789-2-evan.quan@amd.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230105032259.2032789-1-evan.quan@amd.com>
+References: <20230105032259.2032789-1-evan.quan@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -67,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT094:EE_|IA1PR12MB7566:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9ddb5591-8f75-4c82-290a-08daeecc329d
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT094:EE_|PH8PR12MB6746:EE_
+X-MS-Office365-Filtering-Correlation-Id: 140dca2a-a871-4248-e9b2-08daeecc32df
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 1cDaXkWv0/89U0BzohFvN95kzWpyOoGRMopORzo1RjH6J6hJAZtM9stfJKl4vdDtFQ12cYi2RU7+BFYjvNLiNaqiPFykHsNpbHZQpMWi7oJ7QBjGRdVykZIXV6/9vbGewqvs2tf6yNPPkDQb/l8LviyDGi2GOz242p705hyCW2Q1bxjLgaW5/f1ksYipXlLEq/mXkT1wAlWKQWKogmGNZaXHfIQi8abg55OFba+mnbPFIaHx1yjvqHT+FfwHUb5G+VBwBKfczoNHz3L1pux7hBKAsiwH1aQsQf+zpPOErGxIPUscg5ImgVPFj1GzDuRePbUbsjLTavCtLMVXWpzF5TJYNECCUk54IAwAqKWnf1VM5Uk/wmhJbrE653qwwjTKjRnI4gwiUbmPM4bHuPuQQK8cqJsabluris5r2Wi/DlSbHZChXPbFOgk4Gr8XMCh3ZRQ2RDUKKz21k0+uzr3ufBVZDgwvP9SIg898j7QlS8oiMZHMA98XEHB0b98lgzFgaSauETLWyZw35rhUiV2YuHzPW6dZ3WXQJgoNa3/76S1YUM5Ox0cSwODdyn3eXyaiTc+sRmZibcgSflZ03IoyoJDUeG8Ea+Go6FfSlpMSZn0Xd69OX0ixk2lEuCXKAWgnFW83aLxxnHla3673d00FY6WbqT+NsuLYaNeDHzvjGxpKrrSLVHYj3SVWmKbcd0E+SbSBHTdbJY6tmaZPS2rXxsiy7D8nIRrqOE5Qhz4x7JQ=
+X-Microsoft-Antispam-Message-Info: VrDYI2r2+GKxhkmMisvUnzudoNJdY1HIFhKSl/j/CBzG0mUQcOJi7MzoGiSGJpil1CxAsjAXT6hWwuJDlnTGpea/aK1ZMTcpVsufz/kKAoI1LcPd4KJBjZ+PPp6Ta0urF8ywUtfSpuZx12CBpenfI1ezbnXIHyu9joSrpnSZFBKWFwC24d8MIuu+/CKu6/xp0A2+APOb3HTqA3Xa5RrEXXjKbuyt1lSL/dtxmLIIWE6h/usqcih7H7yuZ0Tn5+bhDjmzFQra0ZN01mPKkZFunCUqRtqPTlUvDOI6dnLotGgUozBYPRXJJpsRQ6ONM9VMUZ4cVJyaXjgw37P2eG7Zpf7OkWhW1mkWtf60ftKL4V6IglnkWW/WhWpf22CxLcZFc2JieNF0Si5wnC9ACbfi6Ji6tzrDYALuXrE+jYzEeI19athMXbt3B/+uEGgqBQyUADmYp+tK4quX8DLOYWWnyyBK8VUg0LvxwESH6aFg20ig0mwAiJp8vVGPKv65haprsfixZ8hZYl+INfaw8Rdmo7wG8Dj6/Dd9Sn0EPrFrc+nx9a49PpHDXlX+tmGz+CuPImcm2mXYRMc42iczz+8tH5YFQKevnHxgwRXi1OxcAy+MU+n0imtL1gpK/STDH0DQkjGqjYamitkdzbeKhKSHDdgR5JRlMHdZnW8s417IPE5Io8JXGnv4PUtkx4+J5Mey5I+AFqIAJoAR3llTCcT3eUj8jFE7rH3drZXW3eSWcx0=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(346002)(396003)(39860400002)(376002)(136003)(451199015)(40470700004)(36840700001)(46966006)(40460700003)(5660300002)(8676002)(316002)(70586007)(70206006)(6666004)(4326008)(41300700001)(8936002)(7696005)(2906002)(6916009)(54906003)(478600001)(30864003)(356005)(336012)(81166007)(82740400003)(186003)(1076003)(426003)(47076005)(16526019)(26005)(2616005)(36860700001)(36756003)(40480700001)(44832011)(86362001)(82310400005)(83380400001)(36900700001);
+ SFS:(13230022)(4636009)(136003)(396003)(39860400002)(346002)(376002)(451199015)(46966006)(40470700004)(36840700001)(36756003)(2906002)(478600001)(54906003)(40460700003)(6916009)(86362001)(316002)(356005)(81166007)(82740400003)(82310400005)(26005)(186003)(336012)(7696005)(6666004)(16526019)(1076003)(47076005)(426003)(44832011)(70206006)(4326008)(2616005)(41300700001)(36860700001)(5660300002)(8676002)(70586007)(8936002)(83380400001)(40480700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jan 2023 03:23:21.5777 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9ddb5591-8f75-4c82-290a-08daeecc329d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jan 2023 03:23:22.0152 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 140dca2a-a871-4248-e9b2-08daeecc32df
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT094.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7566
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6746
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,273 +103,254 @@ Cc: Alexander.Deucher@amd.com, Evan Quan <evan.quan@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Via this, the logic for adding/dropping the support for some specific
-sysfs interface can be greatly simplified.
+Make the code more clean and readable with no real logics
+change.
 
 Signed-off-by: Evan Quan <evan.quan@amd.com>
-Change-Id: Ica470cb8afd5b6cf7cc2a47b8310746b6c3b6f97
+Change-Id: I21c879fa9abad9f6da3b5289adf3124950d2f4eb
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |   9 ++
- drivers/gpu/drm/amd/pm/amdgpu_pm.c         | 115 +++++++++++++++------
- drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h    |  37 +++++++
- drivers/gpu/drm/amd/pm/inc/amdgpu_pm.h     |  16 +--
- 4 files changed, 141 insertions(+), 36 deletions(-)
+ drivers/gpu/drm/amd/pm/amdgpu_pm.c | 200 ++++++++++++++---------------
+ 1 file changed, 98 insertions(+), 102 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 2017b3466612..b1943336551f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -3639,6 +3639,15 @@ int amdgpu_device_init(struct amdgpu_device *adev,
- 	ratelimit_state_init(&adev->throttling_logging_rs, (60 - 1) * HZ, 1);
- 	ratelimit_set_flags(&adev->throttling_logging_rs, RATELIMIT_MSG_ON_RELEASE);
- 
-+	/*
-+	 * At default, all sysfs interfaces are claimed to be supported.
-+	 * And every sysfs interface is readable and writable. However,
-+	 * each ASIC can have its own setting by overriding these.
-+	 */
-+	adev->pm.sysfs_if_supported = AMD_SYSFS_IF_BITMASK_ALL_SUPPORTED;
-+	for (i = 0; i < AMD_MAX_NUMBER_OF_SYSFS_IF_SUPPORTED; i++)
-+		adev->pm.sysfs_if_attr_mode[i] = S_IRUGO | S_IWUGO;
-+
- 	/* Registers mapping */
- 	/* TODO: block userspace mapping of io register */
- 	if (adev->asic_type >= CHIP_BONAIRE) {
 diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-index 236657eece47..fb6a7d45693a 100644
+index fb6a7d45693a..c69db29eea24 100644
 --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
 +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-@@ -1913,36 +1913,92 @@ static int ss_bias_attr_update(struct amdgpu_device *adev, struct amdgpu_device_
- }
+@@ -2006,9 +2006,6 @@ static int default_attr_update(struct amdgpu_device *adev, struct amdgpu_device_
+ 			       uint32_t mask, enum amdgpu_device_attr_states *states)
+ {
+ 	struct device_attribute *dev_attr = &attr->dev_attr;
+-	uint32_t mp1_ver = adev->ip_versions[MP1_HWIP][0];
+-	uint32_t gc_ver = adev->ip_versions[GC_HWIP][0];
+-	const char *attr_name = dev_attr->attr.name;
  
- static struct amdgpu_device_attr amdgpu_device_attrs[] = {
--	AMDGPU_DEVICE_ATTR_RW(power_dpm_state,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RW(power_dpm_force_performance_level,	ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RO(pp_num_states,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RO(pp_cur_state,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RW(pp_force_state,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RW(pp_table,					ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RW(pp_dpm_sclk,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RW(pp_dpm_mclk,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RW(pp_dpm_socclk,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RW(pp_dpm_fclk,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RW(pp_dpm_vclk,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RW(pp_dpm_dclk,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RW(pp_dpm_dcefclk,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RW(pp_dpm_pcie,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RW(pp_sclk_od,				ATTR_FLAG_BASIC),
--	AMDGPU_DEVICE_ATTR_RW(pp_mclk_od,				ATTR_FLAG_BASIC),
--	AMDGPU_DEVICE_ATTR_RW(pp_power_profile_mode,			ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RW(pp_od_clk_voltage,			ATTR_FLAG_BASIC),
--	AMDGPU_DEVICE_ATTR_RO(gpu_busy_percent,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RO(mem_busy_percent,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RO(pcie_bw,					ATTR_FLAG_BASIC),
--	AMDGPU_DEVICE_ATTR_RW(pp_features,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RO(unique_id,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RW(thermal_throttling_logging,		ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RO(gpu_metrics,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
--	AMDGPU_DEVICE_ATTR_RO(smartshift_apu_power,			ATTR_FLAG_BASIC,
-+	AMDGPU_DEVICE_ATTR_RW(power_dpm_state,
-+			      AMD_SYSFS_IF_POWER_DPM_STATE_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RW(power_dpm_force_performance_level,
-+			      AMD_SYSFS_IF_POWER_DPM_FORCE_PERFORMANCE_LEVEL_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RO(pp_num_states,
-+			      AMD_SYSFS_IF_PP_NUM_STATES_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RO(pp_cur_state,
-+			      AMD_SYSFS_IF_PP_CUR_STATE_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RW(pp_force_state,
-+			      AMD_SYSFS_IF_PP_FORCE_STATE_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RW(pp_table,
-+			      AMD_SYSFS_IF_PP_TABLE_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RW(pp_dpm_sclk,
-+			      AMD_SYSFS_IF_PP_DPM_SCLK_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RW(pp_dpm_mclk,
-+			      AMD_SYSFS_IF_PP_DPM_MCLK_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RW(pp_dpm_socclk,
-+			      AMD_SYSFS_IF_PP_DPM_SOCCLK_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RW(pp_dpm_fclk,
-+			      AMD_SYSFS_IF_PP_DPM_FCLK_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RW(pp_dpm_vclk,
-+			      AMD_SYSFS_IF_PP_DPM_VCLK_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RW(pp_dpm_dclk,
-+			      AMD_SYSFS_IF_PP_DPM_DCLK_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RW(pp_dpm_dcefclk,
-+			      AMD_SYSFS_IF_PP_DPM_DCEFCLK_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RW(pp_dpm_pcie,
-+			      AMD_SYSFS_IF_PP_DPM_PCIE_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RW(pp_sclk_od,
-+			      AMD_SYSFS_IF_PP_SCLK_OD_BIT,
-+			      ATTR_FLAG_BASIC),
-+	AMDGPU_DEVICE_ATTR_RW(pp_mclk_od,
-+			      AMD_SYSFS_IF_PP_MCLK_OD_BIT,
-+			      ATTR_FLAG_BASIC),
-+	AMDGPU_DEVICE_ATTR_RW(pp_power_profile_mode,
-+			      AMD_SYSFS_IF_PP_POWER_PROFILE_MODE_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RW(pp_od_clk_voltage,
-+			      AMD_SYSFS_IF_PP_OD_CLK_VOLTAGE_BIT,
-+			      ATTR_FLAG_BASIC),
-+	AMDGPU_DEVICE_ATTR_RO(gpu_busy_percent,
-+			      AMD_SYSFS_IF_GPU_BUSY_PERCENT_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RO(mem_busy_percent,
-+			      AMD_SYSFS_IF_MEM_BUSY_PERCENT_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RO(pcie_bw,
-+			      AMD_SYSFS_IF_PCIE_BW_BIT,
-+			      ATTR_FLAG_BASIC),
-+	AMDGPU_DEVICE_ATTR_RW(pp_features,
-+			      AMD_SYSFS_IF_PP_FEATURES_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RO(unique_id,
-+			      AMD_SYSFS_IF_UNIQUE_ID_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RW(thermal_throttling_logging,
-+			      AMD_SYSFS_IF_THERMAL_THROTTLING_LOGGING_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RO(gpu_metrics,
-+			      AMD_SYSFS_IF_GPU_METRICS_BIT,
-+			      ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
-+	AMDGPU_DEVICE_ATTR_RO(smartshift_apu_power,
-+			      AMD_SYSFS_IF_SMARTSHIFT_APU_POWER_BIT,
-+			      ATTR_FLAG_BASIC,
- 			      .attr_update = ss_power_attr_update),
--	AMDGPU_DEVICE_ATTR_RO(smartshift_dgpu_power,			ATTR_FLAG_BASIC,
-+	AMDGPU_DEVICE_ATTR_RO(smartshift_dgpu_power,
-+			      AMD_SYSFS_IF_SMARTSHIFT_DGPU_POWER_BIT,
-+			      ATTR_FLAG_BASIC,
- 			      .attr_update = ss_power_attr_update),
--	AMDGPU_DEVICE_ATTR_RW(smartshift_bias,				ATTR_FLAG_BASIC,
-+	AMDGPU_DEVICE_ATTR_RW(smartshift_bias,
-+			      AMD_SYSFS_IF_SMARTSHIFT_BIAS_BIT,
-+			      ATTR_FLAG_BASIC,
- 			      .attr_update = ss_bias_attr_update),
- };
- 
-@@ -1954,7 +2010,8 @@ static int default_attr_update(struct amdgpu_device *adev, struct amdgpu_device_
- 	uint32_t gc_ver = adev->ip_versions[GC_HWIP][0];
- 	const char *attr_name = dev_attr->attr.name;
- 
--	if (!(attr->flags & mask)) {
-+	if (!(attr->flags & mask) ||
-+	      !(AMD_SYSFS_IF_BITMASK(attr->if_bit) & adev->pm.sysfs_if_supported))  {
- 		*states = ATTR_STATE_UNSUPPORTED;
+ 	if (!(attr->flags & mask) ||
+ 	      !(AMD_SYSFS_IF_BITMASK(attr->if_bit) & adev->pm.sysfs_if_supported))  {
+@@ -2016,112 +2013,14 @@ static int default_attr_update(struct amdgpu_device *adev, struct amdgpu_device_
  		return 0;
  	}
-diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-index cb5b9df78b4d..bbee77087226 100644
---- a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-+++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
-@@ -312,6 +312,39 @@ struct config_table_setting
- 	uint16_t fclk_average_tau;
+ 
+-#define DEVICE_ATTR_IS(_name)	(!strcmp(attr_name, #_name))
+-
+-	if (DEVICE_ATTR_IS(pp_dpm_socclk)) {
+-		if (gc_ver < IP_VERSION(9, 0, 0))
+-			*states = ATTR_STATE_UNSUPPORTED;
+-	} else if (DEVICE_ATTR_IS(pp_dpm_dcefclk)) {
+-		if (gc_ver < IP_VERSION(9, 0, 0) ||
+-		    gc_ver == IP_VERSION(9, 4, 1) ||
+-		    gc_ver == IP_VERSION(9, 4, 2))
+-			*states = ATTR_STATE_UNSUPPORTED;
+-	} else if (DEVICE_ATTR_IS(pp_dpm_fclk)) {
+-		if (mp1_ver < IP_VERSION(10, 0, 0))
+-			*states = ATTR_STATE_UNSUPPORTED;
+-	} else if (DEVICE_ATTR_IS(pp_od_clk_voltage)) {
+-		*states = ATTR_STATE_UNSUPPORTED;
+-		if (amdgpu_dpm_is_overdrive_supported(adev))
+-			*states = ATTR_STATE_SUPPORTED;
+-	} else if (DEVICE_ATTR_IS(mem_busy_percent)) {
+-		if (adev->flags & AMD_IS_APU || gc_ver == IP_VERSION(9, 0, 1))
+-			*states = ATTR_STATE_UNSUPPORTED;
+-	} else if (DEVICE_ATTR_IS(pcie_bw)) {
+-		/* PCIe Perf counters won't work on APU nodes */
+-		if (adev->flags & AMD_IS_APU)
+-			*states = ATTR_STATE_UNSUPPORTED;
+-	} else if (DEVICE_ATTR_IS(unique_id)) {
+-		switch (gc_ver) {
+-		case IP_VERSION(9, 0, 1):
+-		case IP_VERSION(9, 4, 0):
+-		case IP_VERSION(9, 4, 1):
+-		case IP_VERSION(9, 4, 2):
+-		case IP_VERSION(10, 3, 0):
+-		case IP_VERSION(11, 0, 0):
+-			*states = ATTR_STATE_SUPPORTED;
+-			break;
+-		default:
+-			*states = ATTR_STATE_UNSUPPORTED;
+-		}
+-	} else if (DEVICE_ATTR_IS(pp_features)) {
+-		if (adev->flags & AMD_IS_APU || gc_ver < IP_VERSION(9, 0, 0))
+-			*states = ATTR_STATE_UNSUPPORTED;
+-	} else if (DEVICE_ATTR_IS(gpu_metrics)) {
+-		if (gc_ver < IP_VERSION(9, 1, 0))
+-			*states = ATTR_STATE_UNSUPPORTED;
+-	} else if (DEVICE_ATTR_IS(pp_dpm_vclk)) {
+-		if (!(gc_ver == IP_VERSION(10, 3, 1) ||
+-		      gc_ver == IP_VERSION(10, 3, 0) ||
+-		      gc_ver == IP_VERSION(10, 1, 2) ||
+-		      gc_ver == IP_VERSION(11, 0, 0) ||
+-		      gc_ver == IP_VERSION(11, 0, 2)))
+-			*states = ATTR_STATE_UNSUPPORTED;
+-	} else if (DEVICE_ATTR_IS(pp_dpm_dclk)) {
+-		if (!(gc_ver == IP_VERSION(10, 3, 1) ||
+-		      gc_ver == IP_VERSION(10, 3, 0) ||
+-		      gc_ver == IP_VERSION(10, 1, 2) ||
+-		      gc_ver == IP_VERSION(11, 0, 0) ||
+-		      gc_ver == IP_VERSION(11, 0, 2)))
+-			*states = ATTR_STATE_UNSUPPORTED;
+-	} else if (DEVICE_ATTR_IS(pp_power_profile_mode)) {
+-		if (amdgpu_dpm_get_power_profile_mode(adev, NULL) == -EOPNOTSUPP)
+-			*states = ATTR_STATE_UNSUPPORTED;
+-		else if (gc_ver == IP_VERSION(10, 3, 0) && amdgpu_sriov_vf(adev))
+-			*states = ATTR_STATE_UNSUPPORTED;
+-	}
+-
+-	switch (gc_ver) {
+-	case IP_VERSION(9, 4, 1):
+-	case IP_VERSION(9, 4, 2):
+-		/* the Mi series card does not support standalone mclk/socclk/fclk level setting */
+-		if (DEVICE_ATTR_IS(pp_dpm_mclk) ||
+-		    DEVICE_ATTR_IS(pp_dpm_socclk) ||
+-		    DEVICE_ATTR_IS(pp_dpm_fclk)) {
+-			dev_attr->attr.mode &= ~S_IWUGO;
+-			dev_attr->store = NULL;
+-		}
+-		break;
+-	case IP_VERSION(10, 3, 0):
+-		if (DEVICE_ATTR_IS(power_dpm_force_performance_level) &&
+-		    amdgpu_sriov_vf(adev)) {
+-			dev_attr->attr.mode &= ~0222;
+-			dev_attr->store = NULL;
+-		}
+-		break;
+-	default:
+-		break;
+-	}
+-
+-	if (DEVICE_ATTR_IS(pp_dpm_dcefclk)) {
+-		/* SMU MP1 does not support dcefclk level setting */
+-		if (gc_ver >= IP_VERSION(10, 0, 0)) {
+-			dev_attr->attr.mode &= ~S_IWUGO;
+-			dev_attr->store = NULL;
+-		}
+-	}
+-
+-	/* setting should not be allowed from VF if not in one VF mode */
+-	if (amdgpu_sriov_vf(adev) && !amdgpu_sriov_is_pp_one_vf(adev)) {
++	if (!(adev->pm.sysfs_if_attr_mode[attr->if_bit] & S_IWUGO)) {
+ 		dev_attr->attr.mode &= ~S_IWUGO;
+ 		dev_attr->store = NULL;
+ 	}
+ 
+-#undef DEVICE_ATTR_IS
+-
+ 	return 0;
+ }
+ 
+-
+ static int amdgpu_device_attr_create(struct amdgpu_device *adev,
+ 				     struct amdgpu_device_attr *attr,
+ 				     uint32_t mask, struct list_head *attr_list)
+@@ -3411,6 +3310,101 @@ static const struct attribute_group *hwmon_groups[] = {
+ 	NULL
  };
  
-+/* Bitmasks for controlling which Sysfs interface to support */
-+#define AMD_SYSFS_IF_POWER_DPM_STATE_BIT			0U
-+#define AMD_SYSFS_IF_POWER_DPM_FORCE_PERFORMANCE_LEVEL_BIT	1U
-+#define AMD_SYSFS_IF_PP_NUM_STATES_BIT				2U
-+#define AMD_SYSFS_IF_PP_CUR_STATE_BIT				3U
-+#define AMD_SYSFS_IF_PP_FORCE_STATE_BIT				4U
-+#define AMD_SYSFS_IF_PP_TABLE_BIT				5U
-+#define AMD_SYSFS_IF_PP_DPM_SCLK_BIT				6U
-+#define AMD_SYSFS_IF_PP_DPM_MCLK_BIT				7U
-+#define AMD_SYSFS_IF_PP_DPM_SOCCLK_BIT				8U
-+#define AMD_SYSFS_IF_PP_DPM_FCLK_BIT				9U
-+#define AMD_SYSFS_IF_PP_DPM_VCLK_BIT				10U
-+#define AMD_SYSFS_IF_PP_DPM_DCLK_BIT				11U
-+#define AMD_SYSFS_IF_PP_DPM_DCEFCLK_BIT				12U
-+#define AMD_SYSFS_IF_PP_DPM_PCIE_BIT				13U
-+#define AMD_SYSFS_IF_PP_SCLK_OD_BIT				14U
-+#define AMD_SYSFS_IF_PP_MCLK_OD_BIT				15U
-+#define AMD_SYSFS_IF_PP_POWER_PROFILE_MODE_BIT			16U
-+#define AMD_SYSFS_IF_PP_OD_CLK_VOLTAGE_BIT			17U
-+#define AMD_SYSFS_IF_GPU_BUSY_PERCENT_BIT			18U
-+#define AMD_SYSFS_IF_MEM_BUSY_PERCENT_BIT			19U
-+#define AMD_SYSFS_IF_PCIE_BW_BIT				20U
-+#define AMD_SYSFS_IF_PP_FEATURES_BIT				21U
-+#define AMD_SYSFS_IF_UNIQUE_ID_BIT				22U
-+#define AMD_SYSFS_IF_THERMAL_THROTTLING_LOGGING_BIT		23U
-+#define AMD_SYSFS_IF_GPU_METRICS_BIT				24U
-+#define AMD_SYSFS_IF_SMARTSHIFT_APU_POWER_BIT			25U
-+#define AMD_SYSFS_IF_SMARTSHIFT_DGPU_POWER_BIT			26U
-+#define AMD_SYSFS_IF_SMARTSHIFT_BIAS_BIT			27U
-+#define AMD_MAX_NUMBER_OF_SYSFS_IF_SUPPORTED			64U
-+#define AMD_SYSFS_IF_BITMASK(if_bit)				(1ULL << (if_bit))
-+#define AMD_SYSFS_IF_BITMASK_ALL_SUPPORTED			ULLONG_MAX
++static void amdgpu_sysfs_if_support_check(struct amdgpu_device *adev)
++{
++	uint64_t *sysfs_if_supported = &adev->pm.sysfs_if_supported;
++	umode_t *sysfs_if_attr_mode = adev->pm.sysfs_if_attr_mode;
++	uint32_t mp1_ver = adev->ip_versions[MP1_HWIP][0];
++	uint32_t gc_ver = adev->ip_versions[GC_HWIP][0];
++	int i;
 +
- struct amdgpu_pm {
- 	struct mutex		mutex;
- 	u32                     current_sclk;
-@@ -364,6 +397,10 @@ struct amdgpu_pm {
- 	struct config_table_setting config_table;
- 	/* runtime mode */
- 	enum amdgpu_runpm_mode rpm_mode;
++	/* All but those specific ASICs support these */
++	*sysfs_if_supported &= ~BIT_ULL(AMD_SYSFS_IF_UNIQUE_ID_BIT);
++	*sysfs_if_supported &= ~(BIT_ULL(AMD_SYSFS_IF_PP_DPM_VCLK_BIT) |
++				 BIT_ULL(AMD_SYSFS_IF_PP_DPM_DCLK_BIT));
 +
-+	/* bitmasks for clarifying which sysfs interfaces supported */
-+	uint64_t		sysfs_if_supported;
-+	umode_t			sysfs_if_attr_mode[AMD_MAX_NUMBER_OF_SYSFS_IF_SUPPORTED];
- };
++	if (gc_ver < IP_VERSION(9, 1, 0)) {
++		*sysfs_if_supported &= ~BIT_ULL(AMD_SYSFS_IF_GPU_METRICS_BIT);
++
++		if (gc_ver == IP_VERSION(9, 0, 1)) {
++			*sysfs_if_supported &= ~BIT_ULL(AMD_SYSFS_IF_MEM_BUSY_PERCENT_BIT);
++			*sysfs_if_supported |= BIT_ULL(AMD_SYSFS_IF_UNIQUE_ID_BIT);
++		}
++
++		if (gc_ver < IP_VERSION(9, 0, 0))
++			*sysfs_if_supported &= ~(BIT_ULL(AMD_SYSFS_IF_PP_DPM_SOCCLK_BIT) |
++						 BIT_ULL(AMD_SYSFS_IF_PP_DPM_DCEFCLK_BIT) |
++						 BIT_ULL(AMD_SYSFS_IF_PP_FEATURES_BIT));
++	} else {
++		switch (gc_ver) {
++		case IP_VERSION(9, 4, 0):
++			*sysfs_if_supported |= BIT_ULL(AMD_SYSFS_IF_UNIQUE_ID_BIT);
++			break;
++		case IP_VERSION(9, 4, 1):
++		case IP_VERSION(9, 4, 2):
++			*sysfs_if_supported &= ~BIT_ULL(AMD_SYSFS_IF_PP_DPM_DCEFCLK_BIT);
++			*sysfs_if_supported |= BIT_ULL(AMD_SYSFS_IF_UNIQUE_ID_BIT);
++			/* the Mi series card does not support standalone mclk/socclk/fclk level setting */
++			sysfs_if_attr_mode[AMD_SYSFS_IF_PP_DPM_MCLK_BIT] &= ~S_IWUGO;
++			sysfs_if_attr_mode[AMD_SYSFS_IF_PP_DPM_SOCCLK_BIT] &= ~S_IWUGO;
++			sysfs_if_attr_mode[AMD_SYSFS_IF_PP_DPM_FCLK_BIT] &= ~S_IWUGO;
++			break;
++		case IP_VERSION(10, 1, 2):
++			*sysfs_if_supported |= BIT_ULL(AMD_SYSFS_IF_PP_DPM_VCLK_BIT) |
++					       BIT_ULL(AMD_SYSFS_IF_PP_DPM_DCLK_BIT);
++			break;
++		case IP_VERSION(10, 3, 0):
++			*sysfs_if_supported |= BIT_ULL(AMD_SYSFS_IF_UNIQUE_ID_BIT);
++			*sysfs_if_supported |= BIT_ULL(AMD_SYSFS_IF_PP_DPM_VCLK_BIT) |
++					       BIT_ULL(AMD_SYSFS_IF_PP_DPM_DCLK_BIT);
++			if (amdgpu_sriov_vf(adev)) {
++				*sysfs_if_supported &= ~BIT_ULL(AMD_SYSFS_IF_PP_POWER_PROFILE_MODE_BIT);
++				sysfs_if_attr_mode[AMD_SYSFS_IF_POWER_DPM_FORCE_PERFORMANCE_LEVEL_BIT] &= ~S_IWUGO;
++			}
++			break;
++		case IP_VERSION(10, 3, 1):
++			*sysfs_if_supported |= BIT_ULL(AMD_SYSFS_IF_PP_DPM_VCLK_BIT) |
++					       BIT_ULL(AMD_SYSFS_IF_PP_DPM_DCLK_BIT);
++			break;
++		case IP_VERSION(11, 0, 0):
++			*sysfs_if_supported |= BIT_ULL(AMD_SYSFS_IF_UNIQUE_ID_BIT);
++			*sysfs_if_supported |= BIT_ULL(AMD_SYSFS_IF_PP_DPM_VCLK_BIT) |
++					       BIT_ULL(AMD_SYSFS_IF_PP_DPM_DCLK_BIT);
++			break;
++		case IP_VERSION(11, 0, 2):
++			*sysfs_if_supported |= BIT_ULL(AMD_SYSFS_IF_PP_DPM_VCLK_BIT) |
++					       BIT_ULL(AMD_SYSFS_IF_PP_DPM_DCLK_BIT);
++			break;
++		default:
++			break;
++		}
++	}
++
++	if (mp1_ver < IP_VERSION(10, 0, 0))
++		*sysfs_if_supported &= ~BIT_ULL(AMD_SYSFS_IF_PP_DPM_FCLK_BIT);
++
++	if (adev->flags & AMD_IS_APU)
++		*sysfs_if_supported &= ~(BIT_ULL(AMD_SYSFS_IF_MEM_BUSY_PERCENT_BIT) |
++					 BIT_ULL(AMD_SYSFS_IF_PCIE_BW_BIT) |
++					 BIT_ULL(AMD_SYSFS_IF_PP_FEATURES_BIT));
++
++	if (!amdgpu_dpm_is_overdrive_supported(adev))
++		*sysfs_if_supported &= ~BIT_ULL(AMD_SYSFS_IF_PP_OD_CLK_VOLTAGE_BIT);
++
++	if (amdgpu_dpm_get_power_profile_mode(adev, NULL) == -EOPNOTSUPP)
++		*sysfs_if_supported &= ~BIT_ULL(AMD_SYSFS_IF_PP_POWER_PROFILE_MODE_BIT);
++
++	if (gc_ver >= IP_VERSION(10, 0, 0))
++		sysfs_if_attr_mode[AMD_SYSFS_IF_PP_DPM_DCEFCLK_BIT] &= ~S_IWUGO;
++
++	/* setting should not be allowed from VF if not in one VF mode */
++	if (amdgpu_sriov_vf(adev) &&
++	    !amdgpu_sriov_is_pp_one_vf(adev)) {
++		for (i = 0; i < AMD_MAX_NUMBER_OF_SYSFS_IF_SUPPORTED; i++)
++			sysfs_if_attr_mode[i] &= ~S_IWUGO;
++	}
++}
++
+ int amdgpu_pm_sysfs_init(struct amdgpu_device *adev)
+ {
+ 	int ret;
+@@ -3424,6 +3418,8 @@ int amdgpu_pm_sysfs_init(struct amdgpu_device *adev)
+ 	if (adev->pm.dpm_enabled == 0)
+ 		return 0;
  
- int amdgpu_dpm_read_sensor(struct amdgpu_device *adev, enum amd_pp_sensors sensor,
-diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_pm.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_pm.h
-index 52045ad59bed..bffc1bc94641 100644
---- a/drivers/gpu/drm/amd/pm/inc/amdgpu_pm.h
-+++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_pm.h
-@@ -46,6 +46,7 @@ enum amdgpu_device_attr_states {
- 
- struct amdgpu_device_attr {
- 	struct device_attribute dev_attr;
-+	uint64_t if_bit;
- 	enum amdgpu_device_attr_flags flags;
- 	int (*attr_update)(struct amdgpu_device *adev, struct amdgpu_device_attr *attr,
- 			   uint32_t mask, enum amdgpu_device_attr_states *states);
-@@ -60,24 +61,25 @@ struct amdgpu_device_attr_entry {
- #define to_amdgpu_device_attr(_dev_attr) \
- 	container_of(_dev_attr, struct amdgpu_device_attr, dev_attr)
- 
--#define __AMDGPU_DEVICE_ATTR(_name, _mode, _show, _store, _flags, ...)	\
-+#define __AMDGPU_DEVICE_ATTR(_name, _mode, _show, _store, _bit, _flags, ...)	\
- 	{ .dev_attr = __ATTR(_name, _mode, _show, _store),		\
-+	  .if_bit = _bit,					\
- 	  .flags = _flags,						\
- 	  ##__VA_ARGS__, }
- 
--#define AMDGPU_DEVICE_ATTR(_name, _mode, _flags, ...)			\
-+#define AMDGPU_DEVICE_ATTR(_name, _mode, _bit, _flags, ...)		\
- 	__AMDGPU_DEVICE_ATTR(_name, _mode,				\
- 			     amdgpu_get_##_name, amdgpu_set_##_name,	\
--			     _flags, ##__VA_ARGS__)
-+			     _bit, _flags, ##__VA_ARGS__)
- 
--#define AMDGPU_DEVICE_ATTR_RW(_name, _flags, ...)			\
-+#define AMDGPU_DEVICE_ATTR_RW(_name, _bit, _flags, ...)		\
- 	AMDGPU_DEVICE_ATTR(_name, S_IRUGO | S_IWUSR,			\
--			   _flags, ##__VA_ARGS__)
-+			   _bit, _flags, ##__VA_ARGS__)
- 
--#define AMDGPU_DEVICE_ATTR_RO(_name, _flags, ...)			\
-+#define AMDGPU_DEVICE_ATTR_RO(_name, _bit, _flags, ...)		\
- 	__AMDGPU_DEVICE_ATTR(_name, S_IRUGO,				\
- 			     amdgpu_get_##_name, NULL,			\
--			     _flags, ##__VA_ARGS__)
-+			     _bit, _flags, ##__VA_ARGS__)
- 
- int amdgpu_pm_sysfs_init(struct amdgpu_device *adev);
- int amdgpu_pm_virt_sysfs_init(struct amdgpu_device *adev);
++	amdgpu_sysfs_if_support_check(adev);
++
+ 	adev->pm.int_hwmon_dev = hwmon_device_register_with_groups(adev->dev,
+ 								   DRIVER_NAME, adev,
+ 								   hwmon_groups);
 -- 
 2.34.1
 
