@@ -1,64 +1,93 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F4A46646AB
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Jan 2023 17:56:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ED1E664714
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Jan 2023 18:11:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 333F310E607;
-	Tue, 10 Jan 2023 16:56:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8063310E62A;
+	Tue, 10 Jan 2023 17:11:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
- [IPv6:2a00:1450:4864:20::631])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C69110E608
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Jan 2023 16:56:23 +0000 (UTC)
-Received: by mail-ej1-x631.google.com with SMTP id az20so11252896ejc.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Jan 2023 08:56:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=LIdaCEfGmr2feDjsujBA+yiZoQF3RTPK1+x7tHaVBzA=;
- b=Dwq6Jopw6FFLpUH/V6udPUFu+KxU1OYhCO3RKNhF5oQE/NYGCuj1xM5dcUOlaB0QYS
- 2lBXJC4c5dc0TZylYJndQruD9YDd0ijgG1P9sn1WoPyNvB6z0zIkSTpt6VJX8JsunxjN
- dPqtx6uN10dHStPmaB9oNyWmzkxbfZfHKwOnuDx9oW/Ch99CjxBiAwb6aUt74C0bVCyG
- GaH4f2ShGV9PKuJPl93VQlXQJY8SUHm+NtofMYTWyjQeRZg1Bs+yKsF7WizY4erS2Bkf
- +ShTlntqeUWwnuqNj5SRdTwHk3cxmc5nsX1yoZGXpptkYIHdzFsGoSqr0exw7gjeR/q+
- Zk0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=LIdaCEfGmr2feDjsujBA+yiZoQF3RTPK1+x7tHaVBzA=;
- b=UdcItKn0hMa9ATQXcy/YF3t8aFComkXi73Vjpvh54AmX0hd7CHpZ2C0cCDbVQrQNoj
- N2oWjlYHbeFP6TU5Ac/85wCS+0jHWB8AF3garKakVeKnf6e2r80fSJHv+zVcra07Vjp4
- 8NX6IxzGTApVvyCn50wV+X3vO9+74/uwrO+eK52RNj3WvqARuHKJ63ONtSEjGDjFoCuN
- YQPFRgvzOo8CNxRm5AG5HTnI45RKMnzTKcKIjx/FOre9UnsGEmtATZfwMS/gK+BgNbgD
- TscdvwQELDSR+hFPsjUQ8Tjl2ELOdrNGAialHW4pGb4ydoqOFq6lQqUKmhRbJ03CNM6H
- krFA==
-X-Gm-Message-State: AFqh2kqw1uzqdHCr+1K26vnGzIV0ozzyEEdm8akKwTJriHx9q7BaS5i7
- r+IcSww6hMg5w8jyYYh6tuLBWvldh6sx4M7inn78numJBYM=
-X-Google-Smtp-Source: AMrXdXtawvDKWBPpoMqB/8+Np+Vrt0Dv7gAS0t65kkQmz+EJvlLo2L854uX0ELB0IO/v8KujYUZqCHKlE0xVRDqeNEw=
-X-Received: by 2002:a17:906:40cf:b0:7c1:ff6:615b with SMTP id
- a15-20020a17090640cf00b007c10ff6615bmr4024638ejk.118.1673369781996; Tue, 10
- Jan 2023 08:56:21 -0800 (PST)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2052.outbound.protection.outlook.com [40.107.93.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55DD210E62A
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Jan 2023 17:11:54 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=M21m//Q1LTobW4gunKpB5WfZ2Z31LHODNB4fwglre9gXQvyalUd6m2Nc2HNQwyy1LQmHxvr1YMOCO87lSJt6MyCtd2Ef+QU8guEAOWs+gwz6KpS+dXpNklS55bvElaCFQmUykMNFwMmQZw+LXAGFqhXj6R6cowKwZLgPh18tafKLjWptNh8ksOH3/7g75N1w0wVrU761Bd4juaBjADV/5+aVDNy1xul56+t++08B0Eg7iNeLEe7fWf4+O7unQctT51u+XOzNIFntoIoe113vAfDE1nP//qSvOJqMFIOyhNUFI2on7vmi7IB7hAOONvrLxceknJd4p5jpVsOneSEpHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EZ+rWlmYHrbIXIySr8XIcd+7GPPcnURKP2ddN4SnLWA=;
+ b=ApZTNMQZc95aE+MD6M9WP81YRoT/0qcd5DwImFiS4YNI2udvbR5vxwvVSGuCGTMCWxOkDD0xyhdpdOeJSyvX5OT7EBTWHUDt2rRSz2kGab1Kn5Z9mcwrNckt0wEcSRdgy9cu/2/jOR6XcVOSdIfkTFFIFFtS6UajyePHlEosGB4GC5/uxpoXa/9KnfPF1oL8Bk9qdqxij6adRg5V6sUliyiLIWuUFelVUaEY/iCbCoOlsV6JM7ZwKFOcy6+ovaXXy760aQh9KEujDSGdlVKhC32NlfUO3UDxBZFVdJRtvakKn8Aj45CTkZPQE+hJdwLs06+rcFlBxCETIZ+YzwATtw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EZ+rWlmYHrbIXIySr8XIcd+7GPPcnURKP2ddN4SnLWA=;
+ b=LIPob+REl+WnSZsNNj2wY4CRYC5D8RjuMQHFOqijpdHsp8C1FHQVywQv0t1budKRK6GAyNPIGEkDqfnH5EFuE2dnt+kwX2SnkTiXZylgOxNZ246lXKuICSiuks2tUcsw9YL6W4pGSQoa4ACYhcxeJoR5QwKRJPDlWG74hIT8K8M=
+Received: from DM6PR08CA0025.namprd08.prod.outlook.com (2603:10b6:5:80::38) by
+ SJ0PR12MB5488.namprd12.prod.outlook.com (2603:10b6:a03:3ad::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Tue, 10 Jan
+ 2023 17:11:52 +0000
+Received: from DS1PEPF0000E650.namprd02.prod.outlook.com
+ (2603:10b6:5:80:cafe::1b) by DM6PR08CA0025.outlook.office365.com
+ (2603:10b6:5:80::38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18 via Frontend
+ Transport; Tue, 10 Jan 2023 17:11:52 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS1PEPF0000E650.mail.protection.outlook.com (10.167.18.6) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6002.11 via Frontend Transport; Tue, 10 Jan 2023 17:11:52 +0000
+Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 10 Jan
+ 2023 11:11:49 -0600
+From: Philip Yang <Philip.Yang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdkfd: Page aligned memory reserve size
+Date: Tue, 10 Jan 2023 12:11:22 -0500
+Message-ID: <20230110171122.10380-1-Philip.Yang@amd.com>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20230110000112.29730-1-Philip.Yang@amd.com>
+References: <20230110000112.29730-1-Philip.Yang@amd.com>
 MIME-Version: 1.0
-References: <CAAxE2A5su09qWsCekUX4ZzTMAX+9m-BemDxqL2Hh9328Z1WDqw@mail.gmail.com>
- <355bab4f-2ca8-3dd2-4cbc-264931fe9d7a@gmail.com>
- <CAAxE2A487Ra9ropymBGZpXSt=Zz81cjf56p_7wq+tK4cDfn1sA@mail.gmail.com>
- <1d0ddc01-b315-a5ff-f4cc-30b8aedfeb57@gmail.com>
- <CAAxE2A69e+rHQJP+wHYOxywB0+B4Vp4XsO429euoGE=H-VRsPw@mail.gmail.com>
- <d1463910-1eab-2dac-a633-812ada011cc4@gmail.com>
- <CAAxE2A5fWDp==muWuXSXuGGHtT_RThLpC1rK92c2mLVLdmGdUQ@mail.gmail.com>
- <fe0ca4a4-b339-20ab-fd42-68b2a5e00e9c@gmail.com>
-In-Reply-To: <fe0ca4a4-b339-20ab-fd42-68b2a5e00e9c@gmail.com>
-From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
-Date: Tue, 10 Jan 2023 11:55:45 -0500
-Message-ID: <CAAxE2A71r9sQqFCPajK2VhL5GBJZ=Js5YRvYkrrsRtTRT5yxTg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] drm/amdgpu: add AMDGPU_INFO_VM_STAT to return GPU VM
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Content-Type: multipart/alternative; boundary="0000000000006f26cb05f1ebc349"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS1PEPF0000E650:EE_|SJ0PR12MB5488:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9ab0b55e-598e-494f-e06f-08daf32dc494
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: l/BaXqWL75UGSMAsU2/QVDWA1bqqDbfeXKJUgH41pKMv7oRe1uHXDbAOy/4GNuRhLEYfO9rrmRWgJg0X1+wtiBs710n08LOiGsGoB0ZeGwiYRjBbvrTweeNaRpUg+TZ4wqVkko9hqElMNTmfQcQpheNiCqXraZBuYPX37Ya21fcG4Bs4WtRin+ERVDEJAFfBTHq95DqQu/fvtlRj5cctzeDhyq/MmmEYbvsPZdYKMe//660sQQYPGf1V/lfacNBmQ6YOvNxLmCIEAqOBCeHob+ANZA+22IsOgi7ELPY6PR+IIU4CvfDMHMcJYPQ/Ph29UWNKHHn7lxqtQyctg3D1AhKdjwMmidr/CaGSSCGp+OWG8Fh86NKPOxd493Lfn5V0h3HWUEZoAV/b0+tnGvK8Bzjv2XVRN6Ew5XPeKygWGR6uCkIjHJvkIyXaQH1iBmuKUQBH140bbGX408HJk9TVh4j0HN8tDqvboYlyEILmHZYDWL080qOOKon3Ogzsyb+myZjieE+cvLMXD1CyYfBiG/u1VLBjMHWOnCwvznIzb5QIkmBpKYhUsORdnSN3lIEUgNGvnoOiknzuexGHWTg4iw2j4t6BFC1hpHD/OYc+dv5GqZh+3P95sRty0t9lgOdr8YDCYFeRrWcEwOaqJuEX4tU45oqGmWceu/0+7vhil9930wE+na4Bxp3JE2YqzoT5vBxiAD6DAA+e0b411aFfS0nymY4KUBCp9OSHRFjbYCQ=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230022)(4636009)(396003)(346002)(39860400002)(136003)(376002)(451199015)(46966006)(36840700001)(40470700004)(36860700001)(82740400003)(2906002)(6666004)(81166007)(356005)(2616005)(1076003)(26005)(7696005)(186003)(16526019)(40480700001)(478600001)(316002)(5660300002)(82310400005)(8936002)(83380400001)(36756003)(86362001)(47076005)(426003)(40460700003)(41300700001)(70586007)(4326008)(8676002)(70206006)(336012)(6916009)(54906003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2023 17:11:52.2734 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9ab0b55e-598e-494f-e06f-08daf32dc494
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0000E650.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5488
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,338 +99,95 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx mailing list <amd-gfx@lists.freedesktop.org>
+Cc: Philip Yang <Philip.Yang@amd.com>, felix.kuehling@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---0000000000006f26cb05f1ebc349
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Use page aligned size to reserve memory usage because page aligned TTM
+BO size is used to unreserve memory usage, otherwise no page aligned
+size causes memory usage accounting unbalanced.
 
-On Tue, Jan 10, 2023 at 11:23 AM Christian K=C3=B6nig <
-ckoenig.leichtzumerken@gmail.com> wrote:
+Change vram_used definition type to int64_t to be able to trigger
+WARN_ONCE(adev && adev->kfd.vram_used < 0, "..."), to help debug the
+accouting issue with warning and backtrace.
 
-> Am 10.01.23 um 16:28 schrieb Marek Ol=C5=A1=C3=A1k:
->
-> On Wed, Jan 4, 2023 at 9:51 AM Christian K=C3=B6nig <
-> ckoenig.leichtzumerken@gmail.com> wrote:
->
->> Am 04.01.23 um 00:08 schrieb Marek Ol=C5=A1=C3=A1k:
->>
->> I see about the access now, but did you even look at the patch?
->>
->>
->> I did look at the patch, but I haven't fully understood yet what you are
->> trying to do here.
->>
->
-> First and foremost, it returns the evicted size of VRAM and visible VRAM,
-> and returns visible VRAM usage. It should be obvious which stat includes
-> the size of another.
->
->
->> Because what the patch does isn't even exposed to common drm code, such
->> as the preferred domain and visible VRAM placement, so it can't be in
->> fdinfo right now.
->>
->> Or do you even know what fdinfo contains? Because it contains nothing
->> useful. It only has VRAM and GTT usage, which we already have in the INF=
-O
->> ioctl, so it has nothing that we need. We mainly need the eviction
->> information and visible VRAM information now. Everything else is a bonus=
-.
->>
->>
->> Well the main question is what are you trying to get from that
->> information? The eviction list for example is completely meaningless to
->> userspace, that stuff is only temporary and will be cleared on the next =
-CS
->> again.
->>
->
-> I don't know what you mean. The returned eviction stats look correct and
-> are stable (they don't change much). You can suggest changes if you think
-> some numbers are not reported correctly.
->
->
->>
->> What we could expose is the VRAM over-commit value, e.g. how much BOs
->> which where supposed to be in VRAM are in GTT now. I think that's what y=
-ou
->> are looking for here, right?
->>
->
-> The VRAM overcommit value is "evicted_vram".
->
->
->>
->> Also, it's undesirable to open and parse a text file if we can just call
->> an ioctl.
->>
->>
->> Well I see the reasoning for that, but I also see why other drivers do a
->> lot of the stuff we have as IOCTL as separate files in sysfs, fdinfo or
->> debugfs.
->>
->> Especially repeating all the static information which were already
->> available under sysfs in the INFO IOCTL was a design mistake as far as I
->> can see. Just compare what AMDGPU and the KFD code is doing to what for
->> example i915 is doing.
->>
->> Same for things like debug information about a process. The fdinfo stuff
->> can be queried from external tools (gdb, gputop, umr etc...) as well whi=
-ch
->> makes that interface more preferred.
->>
->
-> Nothing uses fdinfo in Mesa. No driver uses sysfs in Mesa except drm
-> shims, noop drivers, and Intel for perf metrics. sysfs itself is an
-> unusable mess for the PCIe query and is missing information.
->
-> I'm not against exposing more stuff through sysfs and fdinfo for tools,
-> but I don't see any reason why drivers should use it (other than for
-> slowing down queries and initialization).
->
->
-> That's what I'm asking: Is this for some tool or to make some driver
-> decision based on it?
->
-> If you just want the numbers for over displaying then I think it would be
-> better to put this into fdinfo together with the other existing stuff the=
-re.
->
+Signed-off-by: Philip Yang <Philip.Yang@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h       | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 9 ++++++---
+ drivers/gpu/drm/amd/amdkfd/kfd_chardev.c         | 7 +++++--
+ 3 files changed, 12 insertions(+), 6 deletions(-)
 
-> If you want to make allocation decisions based on this then we should hav=
-e
-> that as IOCTL or even better as mmap() page between kernel and userspace.
-> But in this case I would also calculation the numbers completely differen=
-t
-> as well.
->
-> See we have at least the following things in the kernel:
-> 1. The eviction list in the VM.
->     Those are the BOs which are currently evicted and tried to moved back
-> in on the next CS.
->
-> 2. The VRAM over commit value.
->     In other words how much more VRAM than available has the application
-> tried to allocate?
->
-> 3. The visible VRAM usage by this application.
->
-> The end goal is that the eviction list will go away, e.g. we will always
-> have stable allocations based on allocations of other applications and no=
-t
-> constantly swap things in and out.
->
-> When you now expose the eviction list to userspace we will be stuck with
-> this interface forever.
->
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+index fb41869e357a..333780491867 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+@@ -97,7 +97,7 @@ struct amdgpu_amdkfd_fence {
+ 
+ struct amdgpu_kfd_dev {
+ 	struct kfd_dev *dev;
+-	uint64_t vram_used;
++	int64_t vram_used;
+ 	uint64_t vram_used_aligned;
+ 	bool init_complete;
+ 	struct work_struct reset_work;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+index 2a118669d0e3..7efee672bc41 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+@@ -1598,6 +1598,7 @@ int amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu(
+ 	struct amdgpu_bo *bo;
+ 	struct drm_gem_object *gobj = NULL;
+ 	u32 domain, alloc_domain;
++	uint64_t aligned_size;
+ 	u64 alloc_flags;
+ 	int ret;
+ 
+@@ -1653,13 +1654,15 @@ int amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu(
+ 	 * the memory.
+ 	 */
+ 	if ((*mem)->aql_queue)
+-		size = size >> 1;
++		size >>= 1;
++
++	aligned_size = PAGE_ALIGN(size);
+ 
+ 	(*mem)->alloc_flags = flags;
+ 
+ 	amdgpu_sync_create(&(*mem)->sync);
+ 
+-	ret = amdgpu_amdkfd_reserve_mem_limit(adev, size, flags);
++	ret = amdgpu_amdkfd_reserve_mem_limit(adev, aligned_size, flags);
+ 	if (ret) {
+ 		pr_debug("Insufficient memory\n");
+ 		goto err_reserve_limit;
+@@ -1725,7 +1728,7 @@ int amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu(
+ 	/* Don't unreserve system mem limit twice */
+ 	goto err_reserve_limit;
+ err_bo_create:
+-	amdgpu_amdkfd_unreserve_mem_limit(adev, size, flags);
++	amdgpu_amdkfd_unreserve_mem_limit(adev, aligned_size, flags);
+ err_reserve_limit:
+ 	mutex_destroy(&(*mem)->lock);
+ 	if (gobj)
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+index 6d291aa6386b..e11451100a20 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+@@ -1127,8 +1127,11 @@ static int kfd_ioctl_alloc_memory_of_gpu(struct file *filep,
+ 	}
+ 
+ 	/* Update the VRAM usage count */
+-	if (flags & KFD_IOC_ALLOC_MEM_FLAGS_VRAM)
+-		WRITE_ONCE(pdd->vram_usage, pdd->vram_usage + args->size);
++	if (flags & KFD_IOC_ALLOC_MEM_FLAGS_VRAM) {
++		if (flags & KFD_IOC_ALLOC_MEM_FLAGS_AQL_QUEUE_MEM)
++			args->size >>= 1;
++		WRITE_ONCE(pdd->vram_usage, pdd->vram_usage + PAGE_ALIGN(args->size));
++	}
+ 
+ 	mutex_unlock(&p->mutex);
+ 
+-- 
+2.35.1
 
-It's for the GALLIUM HUD.
-
-The only missing thing is the size of all evicted VRAM allocations, and the
-size of all evicted visible VRAM allocations.
-
-1. No list is exposed. Only sums of buffer sizes are exposed. Also, the
-eviction list has no meaning here. All lists are treated equally, and
-mem_type is compared with preferred_domains to determine where buffers are
-and where they should be.
-
-2. I'm not interested in the overcommit value. I'm only interested in
-knowing the number of bytes of evicted VRAM right now. It can be as
-variable as the CPU load, but in practice it shouldn't be because PCIe
-doesn't have the bandwidth to move things quickly.
-
-3. Yes, that's true.
-
-Marek
-
---0000000000006f26cb05f1ebc349
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Tue, Jan 10, 2023 at 11:23 AM Christian K=C3=B6nig &lt;<a href=3D=
-"mailto:ckoenig.leichtzumerken@gmail.com">ckoenig.leichtzumerken@gmail.com<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
- =20
-   =20
- =20
-  <div>
-    Am 10.01.23 um 16:28 schrieb Marek Ol=C5=A1=C3=A1k:<br>
-    <blockquote type=3D"cite">
-     =20
-      <div dir=3D"ltr">
-        <div class=3D"gmail_quote">
-          <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jan 4, 2023 at 9:51
-            AM Christian K=C3=B6nig &lt;<a href=3D"mailto:ckoenig.leichtzum=
-erken@gmail.com" target=3D"_blank">ckoenig.leichtzumerken@gmail.com</a>&gt;
-            wrote:<br>
-          </div>
-          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-            <div> Am 04.01.23 um 00:08 schrieb Marek Ol=C5=A1=C3=A1k:<br>
-              <blockquote type=3D"cite">
-                <div dir=3D"ltr">
-                  <div>I see about the access now, but did you even look
-                    at the patch?</div>
-                </div>
-              </blockquote>
-              <br>
-              I did look at the patch, but I haven&#39;t fully understood
-              yet what you are trying to do here.<br>
-            </div>
-          </blockquote>
-          <div><br>
-          </div>
-          <div>First and foremost, it returns the evicted size of VRAM
-            and visible VRAM, and returns visible VRAM usage. It should
-            be obvious which stat includes the size of another.<br>
-          </div>
-          <div><br>
-          </div>
-          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-            <div> <br>
-              <blockquote type=3D"cite">
-                <div dir=3D"ltr">
-                  <div> Because what the patch does isn&#39;t even exposed
-                    to common drm code, such as the preferred domain and
-                    visible VRAM placement, so it can&#39;t be in fdinfo
-                    right now.<br>
-                  </div>
-                  <div><br>
-                  </div>
-                  <div>Or do you even know what fdinfo contains? Because
-                    it contains nothing useful. It only has VRAM and GTT
-                    usage, which we already have in the INFO ioctl, so
-                    it has nothing that we need. We mainly need the
-                    eviction information and visible VRAM information
-                    now. Everything else is a bonus.<br>
-                  </div>
-                </div>
-              </blockquote>
-              <br>
-              Well the main question is what are you trying to get from
-              that information? The eviction list for example is
-              completely meaningless to userspace, that stuff is only
-              temporary and will be cleared on the next CS again.<br>
-            </div>
-          </blockquote>
-          <div><br>
-          </div>
-          <div>I don&#39;t know what you mean. The returned eviction stats
-            look correct and are stable (they don&#39;t change much). You
-            can suggest changes if you think some numbers are not
-            reported correctly.<br>
-          </div>
-          <div>=C2=A0</div>
-          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-            <div> <br>
-              What we could expose is the VRAM over-commit value, e.g.
-              how much BOs which where supposed to be in VRAM are in GTT
-              now. I think that&#39;s what you are looking for here, right?=
-<br>
-            </div>
-          </blockquote>
-          <div><br>
-          </div>
-          <div>The VRAM overcommit value is &quot;evicted_vram&quot;.<br>
-          </div>
-          <div>=C2=A0</div>
-          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-            <div> <br>
-              <blockquote type=3D"cite">
-                <div dir=3D"ltr">
-                  <div>
-                    <div>Also, it&#39;s undesirable to open and parse a tex=
-t
-                      file if we can just call an ioctl.</div>
-                  </div>
-                </div>
-              </blockquote>
-              <br>
-              Well I see the reasoning for that, but I also see why
-              other drivers do a lot of the stuff we have as IOCTL as
-              separate files in sysfs, fdinfo or debugfs.<br>
-              <br>
-              Especially repeating all the static information which were
-              already available under sysfs in the INFO IOCTL was a
-              design mistake as far as I can see. Just compare what
-              AMDGPU and the KFD code is doing to what for example i915
-              is doing.<br>
-              <br>
-              Same for things like debug information about a process.
-              The fdinfo stuff can be queried from external tools (gdb,
-              gputop, umr etc...) as well which makes that interface
-              more preferred.<br>
-            </div>
-          </blockquote>
-          <div><br>
-          </div>
-          <div>Nothing uses fdinfo in Mesa. No driver uses sysfs in Mesa
-            except drm shims, noop drivers, and Intel for perf metrics.
-            sysfs itself is an unusable mess for the PCIe query and is
-            missing information.</div>
-          <div><br>
-          </div>
-          <div>I&#39;m not against exposing more stuff through sysfs and
-            fdinfo for tools, but I don&#39;t see any reason why drivers
-            should use it (other than for slowing down queries and
-            initialization).</div>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-    That&#39;s what I&#39;m asking: Is this for some tool or to make some d=
-river
-    decision based on it?<br>
-    <br>
-    If you just want the numbers for over displaying then I think it
-    would be better to put this into fdinfo together with the other
-    existing stuff there.<br></div></blockquote><blockquote class=3D"gmail_=
-quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
-204);padding-left:1ex"><div>
-    <br>
-    If you want to make allocation decisions based on this then we
-    should have that as IOCTL or even better as mmap() page between
-    kernel and userspace. But in this case I would also calculation the
-    numbers completely different as well.<br>
-    <br>
-    See we have at least the following things in the kernel:<br>
-    1. The eviction list in the VM.<br>
-    =C2=A0=C2=A0=C2=A0 Those are the BOs which are currently evicted and tr=
-ied to moved
-    back in on the next CS.<br>
-    <br>
-    2. The VRAM over commit value.<br>
-    =C2=A0=C2=A0=C2=A0 In other words how much more VRAM than available has=
- the
-    application tried to allocate?<br>
-    <br>
-    3. The visible VRAM usage by this application.<br>
-    <br>
-    The end goal is that the eviction list will go away, e.g. we will
-    always have stable allocations based on allocations of other
-    applications and not constantly swap things in and out.<br>
-    <br>
-    When you now expose the eviction list to userspace we will be stuck
-    with this interface forever.<br></div></blockquote><div><br></div><div>=
-It&#39;s for the GALLIUM HUD.</div><div><br></div><div>The only missing thi=
-ng is the size of all evicted VRAM allocations, and the size of all evicted=
- visible VRAM allocations.<br></div><div><br></div><div>1. No list is expos=
-ed. Only sums of buffer sizes are exposed. Also, the eviction list has no m=
-eaning here. All lists are treated equally, and mem_type is compared with p=
-referred_domains to determine where buffers are and where they should be.<b=
-r></div><div><br></div><div>2. I&#39;m not interested in the overcommit val=
-ue. I&#39;m only interested in knowing the number of bytes of evicted VRAM =
-right now. It can be as variable as the CPU load, but in practice it should=
-n&#39;t be because PCIe doesn&#39;t have the bandwidth to move things quick=
-ly.<br></div><div><br></div><div>3. Yes, that&#39;s true.</div><div><br></d=
-iv><div>Marek</div><br></div></div>
-
---0000000000006f26cb05f1ebc349--
