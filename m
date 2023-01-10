@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73090664534
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Jan 2023 16:45:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14A5F664532
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Jan 2023 16:45:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3800A10E5F7;
-	Tue, 10 Jan 2023 15:45:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E253A10E5F6;
+	Tue, 10 Jan 2023 15:45:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2043.outbound.protection.outlook.com [40.107.223.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57A0510E5EE
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Jan 2023 15:45:26 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CB0A10E5F4
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Jan 2023 15:45:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lI4dLvye1Fy3VM8MFIHIjlrt+MlWvOt5IRlP+4NhGQ6TGB0aSK9GGt1PcaLLEjSf/9SI6IXKbOXsLnxRvGWLoULpgtYD6HZ1FN7QfFfRTYxKPU9KhZXWBRct2bK85pK6WIuNzrnqGRTpAr2injJkD4DcC0Ce5G6wgeVNMQN/LVO1wdF0z08B1Oa1PikBiZPiUV6/y6ZfmOKYQu9gUdxuu738WEPi0O23yaIermWc211nu+4FvAklYVNMgKd0xz19nI+FcnC89iZeUXLcBx6qsvB2ceTTi6HNkumGvMH4KvEfYCmeFeTyyCyn8M42ETojlKPoi2le67JuVJWIZ9D2Rg==
+ b=dJWJuWIp1aGol2F5Z8vk0IJIMmI5tkcc/klYD6sz39a3gc5cARUFGvBgEVvWsEhBReka6lTbsZYm2yolgPrSNZzZ5rziuGs+rgsdqM+QGgRKtmG8wPFhndD7aiev9JuEWpAS/Oq1r/BQMJaqVAy7tyPl0sWlS+ezORNRq408XR1LfRe5hkvbEtrSEnhho518EHCE58tS9ItSuMLILMKvZRG4gJCukypCLauBZVHOPIkANKY4JzkxyihE9hUkJS5L7moU+twWWpCDMZjgr/LigPek90s9yQ9Kmw3B0P/ve385vhRFaZ428ILKhfSnBEzgUWFnOjMf8xKR1ZNbtYOD8w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S61EjN7efGIVuLDh5Nps4L/xmGcSZvReJwIK9yBfFF8=;
- b=m6R/aSw74NyYW6xXIMu3b/N1fhjEEIkJzEvS+dZoCZxHOSe61VNsSSnClnQFjrDBwpVc0FGeXbsAZqdcrznauf7Ckrgv+p5eNL7YwakBh1aj7HJ2ZVlnitrLqhquHUsIgunWu6nAWa6poA4ZqdJzLL4V9iXpiJ/krzxdqxXrKHlVwNCC6MmuiE+HHiy6nGnZfRZyzKyNZBilfoDb53H0wK2z4OB+W5IHQsyAPE7mvTRz+Qq1fo9bgrf8G62gYIJ2k4e8pt1bZKesPd7rph/41wHTtBBkR8Cbe35tYCOjMM849kEd30CR2J2px4UMyGRCMf3VPxAt4xUWutxYCvb5rQ==
+ bh=p+xnGqDi7wSJAqdceH5rWilU2tJmVWNnTAC/bBQV7dU=;
+ b=KDGfzrGsPU30PG0M1Kvo3FvD0hrWPGbaHkdKmOmUTxUDmj6X4+Uw29phInc9uyucT/JuLggI4YTZ7weRZxnYC6W0M7KwKCRNgRAhFAZ1VG7LtEK8guu7BCVaS4a7pFSHT2gowE6HdPldH9W+o4BsNmM1gaIg0K6zAhnvxVLGrd9IcTJVmxrfz12wg6qTIVt7e8h4XPBheUi2iZcXzye0ke3/6wkxdX1mB3SbrbspmA19GHFI4TX5tSgP8JWmRctdb2OXAtIPAcjHJBmES+Jgl4Row73enKYSYHPsF7PeOQSfBk1yL9bQvHL2UR5mf1691IT/YB+xxYZx5lNPsYB5IA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S61EjN7efGIVuLDh5Nps4L/xmGcSZvReJwIK9yBfFF8=;
- b=rzAbvQJ9gxo4WQ8KgkV+0MiUz6xt5brUVrEkwKaz83CPrqmTU2cqVXNVYHhiGEWkBlIdOh5nTAOVCBqGCicY4DHGfaT9M0an2KcDx31p3SJB9G9qPqoISmG8vfXXZGQoZlpuCMAS25hd/HdMWv/RLnhs4sX3n0ogwxlW8fQLLsM=
-Received: from DM6PR07CA0045.namprd07.prod.outlook.com (2603:10b6:5:74::22) by
- SJ0PR12MB5609.namprd12.prod.outlook.com (2603:10b6:a03:42c::12) with
+ bh=p+xnGqDi7wSJAqdceH5rWilU2tJmVWNnTAC/bBQV7dU=;
+ b=QFb6YRdZda0mQNqVwiQ6QcF0QX8uUfBkZmyMYauMKNzrwCQwHMnpgYbAjcTa5IaOi27ztS2HrMgzKqhyQi+D7AItORAwnK0n2O+lwxFg5V/SHSgZne83jBU8gTPdOj6I8xuvB1sUNLO3lK9JvYPrwfdT6uF6hqaFMBcnZkki6fQ=
+Received: from DM6PR07CA0047.namprd07.prod.outlook.com (2603:10b6:5:74::24) by
+ PH7PR12MB7259.namprd12.prod.outlook.com (2603:10b6:510:207::14) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Tue, 10 Jan
- 2023 15:45:24 +0000
+ 2023 15:45:25 +0000
 Received: from DM6NAM11FT056.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:74:cafe::1f) by DM6PR07CA0045.outlook.office365.com
- (2603:10b6:5:74::22) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:5:74:cafe::c3) by DM6PR07CA0047.outlook.office365.com
+ (2603:10b6:5:74::24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18 via Frontend
- Transport; Tue, 10 Jan 2023 15:45:24 +0000
+ Transport; Tue, 10 Jan 2023 15:45:25 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT056.mail.protection.outlook.com (10.13.173.99) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5986.18 via Frontend Transport; Tue, 10 Jan 2023 15:45:24 +0000
+ 15.20.5986.18 via Frontend Transport; Tue, 10 Jan 2023 15:45:25 +0000
 Received: from atma-again.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 10 Jan
- 2023 09:44:52 -0600
+ 2023 09:45:23 -0600
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>
-Subject: [PATCH 7/9] drm/amd/display: Use PrefetchPixelLinesTime from struct
- instead of local variable
-Date: Tue, 10 Jan 2023 10:43:23 -0500
-Message-ID: <20230110154325.3350916-8-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 8/9] drm/amd/display: Use
+ DCFCLKRequiredForPeakBandwidthPerPlane from struct
+Date: Tue, 10 Jan 2023 10:43:24 -0500
+Message-ID: <20230110154325.3350916-9-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230110154325.3350916-1-Rodrigo.Siqueira@amd.com>
 References: <20230110154325.3350916-1-Rodrigo.Siqueira@amd.com>
@@ -69,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT056:EE_|SJ0PR12MB5609:EE_
-X-MS-Office365-Filtering-Correlation-Id: a540c53a-63c5-4e60-a157-08daf321b02f
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT056:EE_|PH7PR12MB7259:EE_
+X-MS-Office365-Filtering-Correlation-Id: 972b6bf8-19bd-4057-1be4-08daf321b112
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Fo7Riflqtv1U5YBLDPrjRiSG1BiCOa290u74ZPJSmcRky5Dkzp1yDiE1rO+By/NrOU/lLvXEquCKDJmgVTWRD2QDwk32bjrgKlmIAj53pNs1Avw8QKW2ItIt0jHQ280qQ+4JG6BQO49cNcNRInlYSVt6omqkQt0eAurXpDPhQg2gHfBjMiMrSiI1cHDzCx+Q4PqeWBWxALYFXDT+BI61oM0DEPWqRnBkJcPWuclUb3qgaiSyUt4njRlweZcs5zoOGS7VMMJ1n2a1DQSjhKydl3x7osgDSseH6yWSqdfKnMNYNvJznrOsyQIda/NUCf7VRNCOtEX1wvV7yZbZYytvThGkcj9zKya+assG9Pf8nA/fvnb723L840auQVIpEmw2QnDcgCQJ+zRIuFvhyEz2JkViTOA7aY3pJpnW2HSsFDrVrI6iCyXNQD1yCUZxjBon5oisvnWxR+4g5QGvZiW4aVmdMUpP4R9iePCtFTL+dS8GBJRkpsipqVy44ixoC3vZA944g3iYD/rB4vvPsZUrgfsGv/R2DsilTCGPsTb9FbxNUqY25yz6Q+b+oOexjhpnvM95orA+LFCNxQu7qI6rNEiihgkGjPb506xwjhCrqnkZwTVHl1mAr8e0gOC4aitPzYWUrDObZ/XjlNF5KyeK8XrWhjROItBbeAfzB0tCEEq1Td3N0NWu05IIlDn4+TMq0Unh1QNK658OzEwiaKkaI5Ym6j8V8oR6u8hwvVx6xX6vWcT57pfjc9YXFP9gCrGtLABhqJCH/UpPQ2snk/I47fSDipTevx7ode5vAXLCaE8=
+X-Microsoft-Antispam-Message-Info: opG/nEMFFsgsEOn+iYWyj893x4Nyq849jUMVSxpjJDZ200DNfF+OkSsu9bNQISSw1HebaDqYAivJfoF1de5R71kcyPVh00BLLRpgV6xJ9/iKxXRY59LZCU6NwvprbZHTuMQ0dR3o+P/OfMw8tctayLjQ3jszOvzy/38zBHPCyJ51V7dQWj8Xp4DQBGt2BfvOiYp4ItnFilT1GLXJOJuSVFfhwW6VnTeOhOlPPFGmRTC5IhmF314c2jlOitoPpqv7Mrm4r4RS2eLp4mRRJvB7ROSTXgPzV+pA1q14zcupECrynb3G6OMNECaOVsMS8mFk++CF4GBTcWG0nrHQltjLhVIzEpZ7EDAZGawdERhrgzruO/mcvxIDCE8s4osOj3dmfWaLx6qzWOaw4LVWaGfaHz+J5aevXvP1oPKtPxYlpxIY+v6fDNNvFsuYEQOg7ruLe9PJCR8G5cBjp4Eyxwy8EB5oQ5oNQPebIq9+9UeLvDFg65jRdiFFCMR27iUm281SmhLgzZszBfOVpjG9iCnxYYKlIwSgBp3Sp6hkl0vuuagK5z85tyM+Yvg86uaxoXjqDwLbBxHDP31RJmAXclEtBPdtkC8n8Wef63j4p+5JaL1lqI/BvKMi4IsVP0LEPFt3/8V7/qX1EMwbwGD1fOR3kN2axk4K+oIUgY4wz7PWo7g51RWllKgJTZTcjZX4xzLA4odvt14pqKtPz78bc6wm2qVdcQwD4dh7IzmzwiYQHxjUw20sI8V+QeOwo3hG+FvgiVFfXTUqA54DgAQOpFsqFjbLRGOgwQcSk4Ient6i/fsHdwWYCzLLari9zeX+lSyB
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(346002)(396003)(39860400002)(136003)(376002)(451199015)(36840700001)(46966006)(40470700004)(40460700003)(47076005)(41300700001)(426003)(4326008)(1076003)(2616005)(6636002)(19627235002)(110136005)(8676002)(70206006)(336012)(316002)(36756003)(70586007)(54906003)(82310400005)(40480700001)(86362001)(36860700001)(8936002)(356005)(81166007)(5660300002)(83380400001)(82740400003)(2906002)(66899015)(966005)(16526019)(26005)(6666004)(186003)(478600001)(7696005)(36900700001)(44824005);
+ SFS:(13230022)(4636009)(396003)(136003)(346002)(376002)(39860400002)(451199015)(40470700004)(46966006)(36840700001)(19627235002)(16526019)(1076003)(316002)(40480700001)(5660300002)(26005)(7696005)(186003)(478600001)(966005)(2616005)(47076005)(426003)(40460700003)(41300700001)(6636002)(54906003)(70586007)(4326008)(70206006)(110136005)(336012)(8676002)(82310400005)(8936002)(83380400001)(86362001)(36756003)(36860700001)(82740400003)(2906002)(356005)(66899015)(81166007)(213903007)(36900700001)(44824005);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2023 15:45:24.0165 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a540c53a-63c5-4e60-a157-08daf321b02f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2023 15:45:25.5164 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 972b6bf8-19bd-4057-1be4-08daf321b112
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT056.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5609
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7259
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,8 +116,8 @@ size issue:
 frame size of 2208 bytes is larger than 2048 bytes
 [-Werror=frame-larger-than=]
 
-This commit replaces the local PrefetchPixelLinesTime from the same
-version in the UseMinimumDCFCLK_vars struct.
+This commit replaces the local DCFCLKRequiredForPeakBandwidthPerPlane
+from the same version in the UseMinimumDCFCLK_vars struct.
 
 Cc: Alex Deucher <alexdeucher@gmail.com>
 Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
@@ -128,57 +128,61 @@ Link: https://lore.kernel.org/all/20221227082932.798359-1-geert@linux-m68k.org/
 Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
 Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../amd/display/dc/dml/dcn314/display_mode_vba_314.c  | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
+ .../display/dc/dml/dcn314/display_mode_vba_314.c  | 15 +++++++--------
+ 1 file changed, 7 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-index 8de1f7840b5a..f51885d3dd2d 100644
+index f51885d3dd2d..0811b18c22c3 100644
 --- a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
 +++ b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
 @@ -6976,7 +6976,6 @@ static void UseMinimumDCFCLK(
  	NormalEfficiency = v->PercentOfIdealFabricAndSDPPortBWReceivedAfterUrgLatency / 100.0;
  	for (i = 0; i < v->soc.num_states; ++i) {
  		for (j = 0; j <= 1; ++j) {
--			double PrefetchPixelLinesTime[DC__NUM_DPP__MAX];
- 			double DCFCLKRequiredForPeakBandwidthPerPlane[DC__NUM_DPP__MAX];
+-			double DCFCLKRequiredForPeakBandwidthPerPlane[DC__NUM_DPP__MAX];
  			double DynamicMetadataVMExtraLatency[DC__NUM_DPP__MAX];
  			double MinimumTWait;
-@@ -7034,7 +7033,7 @@ static void UseMinimumDCFCLK(
- 						+ v->PDEAndMetaPTEBytesPerFrame[i][j][k] / NormalEfficiency / NormalEfficiency / v->ReturnBusWidth * (v->GPUVMMaxPageTableLevels > 2 ? 1 : 0)
- 						+ 2 * v->DPTEBytesPerRow[i][j][k] / NormalEfficiency / NormalEfficiency / v->ReturnBusWidth
- 						+ 2 * v->MetaRowBytes[i][j][k] / NormalEfficiency / v->ReturnBusWidth + v->UseMinimumDCFCLK_stack_reduction.PixelDCFCLKCyclesRequiredInPrefetch[k];
--				PrefetchPixelLinesTime[k] = dml_max(v->PrefetchLinesY[i][j][k], v->PrefetchLinesC[i][j][k]) * v->HTotal[k] / v->PixelClock[k];
-+				v->UseMinimumDCFCLK_stack_reduction.PrefetchPixelLinesTime[k] = dml_max(v->PrefetchLinesY[i][j][k], v->PrefetchLinesC[i][j][k]) * v->HTotal[k] / v->PixelClock[k];
- 				ExpectedPrefetchBWAcceleration = (v->VActivePixelBandwidth[i][j][k] + v->VActiveCursorBandwidth[i][j][k])
- 						/ (v->ReadBandwidthLuma[k] + v->ReadBandwidthChroma[k]);
- 				DynamicMetadataVMExtraLatency[k] =
-@@ -7049,9 +7048,9 @@ static void UseMinimumDCFCLK(
- 				if (PrefetchTime > 0) {
- 					double ExpectedVRatioPrefetch;
+ 			double NonDPTEBandwidth;
+@@ -7050,14 +7049,14 @@ static void UseMinimumDCFCLK(
  
--					ExpectedVRatioPrefetch = PrefetchPixelLinesTime[k]
-+					ExpectedVRatioPrefetch = v->UseMinimumDCFCLK_stack_reduction.PrefetchPixelLinesTime[k]
+ 					ExpectedVRatioPrefetch = v->UseMinimumDCFCLK_stack_reduction.PrefetchPixelLinesTime[k]
  							/ (PrefetchTime * v->UseMinimumDCFCLK_stack_reduction.PixelDCFCLKCyclesRequiredInPrefetch[k] / DCFCLKCyclesRequiredInPrefetch);
--					DCFCLKRequiredForPeakBandwidthPerPlane[k] = NoOfDPPState[k] * v->UseMinimumDCFCLK_stack_reduction.PixelDCFCLKCyclesRequiredInPrefetch[k] / PrefetchPixelLinesTime[k]
-+					DCFCLKRequiredForPeakBandwidthPerPlane[k] = NoOfDPPState[k] * v->UseMinimumDCFCLK_stack_reduction.PixelDCFCLKCyclesRequiredInPrefetch[k] / v->UseMinimumDCFCLK_stack_reduction.PrefetchPixelLinesTime[k]
+-					DCFCLKRequiredForPeakBandwidthPerPlane[k] = NoOfDPPState[k] * v->UseMinimumDCFCLK_stack_reduction.PixelDCFCLKCyclesRequiredInPrefetch[k] / v->UseMinimumDCFCLK_stack_reduction.PrefetchPixelLinesTime[k]
++					v->UseMinimumDCFCLK_stack_reduction.DCFCLKRequiredForPeakBandwidthPerPlane[k] = NoOfDPPState[k] * v->UseMinimumDCFCLK_stack_reduction.PixelDCFCLKCyclesRequiredInPrefetch[k] / v->UseMinimumDCFCLK_stack_reduction.PrefetchPixelLinesTime[k]
  							* dml_max(1.0, ExpectedVRatioPrefetch) * dml_max(1.0, ExpectedVRatioPrefetch / 4) * ExpectedPrefetchBWAcceleration;
  					if (v->HostVMEnable == true || v->ImmediateFlipRequirement[0] == dm_immediate_flip_required) {
- 						DCFCLKRequiredForPeakBandwidthPerPlane[k] = DCFCLKRequiredForPeakBandwidthPerPlane[k]
-@@ -7110,12 +7109,12 @@ static void UseMinimumDCFCLK(
- 				double MaximumTvmPlus2Tr0PlusTsw;
- 
- 				MaximumTvmPlus2Tr0PlusTsw = (v->MaximumVStartup[i][j][k] - 2) * v->HTotal[k] / v->PixelClock[k] - MinimumTWait - DynamicMetadataVMExtraLatency[k];
--				if (MaximumTvmPlus2Tr0PlusTsw <= MinimumTvmPlus2Tr0 + PrefetchPixelLinesTime[k] / 4) {
-+				if (MaximumTvmPlus2Tr0PlusTsw <= MinimumTvmPlus2Tr0 + v->UseMinimumDCFCLK_stack_reduction.PrefetchPixelLinesTime[k] / 4) {
- 					DCFCLKRequiredForPeakBandwidth = v->DCFCLKPerState[i];
+-						DCFCLKRequiredForPeakBandwidthPerPlane[k] = DCFCLKRequiredForPeakBandwidthPerPlane[k]
++						v->UseMinimumDCFCLK_stack_reduction.DCFCLKRequiredForPeakBandwidthPerPlane[k] = v->UseMinimumDCFCLK_stack_reduction.DCFCLKRequiredForPeakBandwidthPerPlane[k]
+ 								+ NoOfDPPState[k] * DPTEBandwidth / NormalEfficiency / NormalEfficiency / v->ReturnBusWidth;
+ 					}
  				} else {
- 					DCFCLKRequiredForPeakBandwidth = dml_max3(
- 							DCFCLKRequiredForPeakBandwidth,
--							2 * ExtraLatencyCycles / (MaximumTvmPlus2Tr0PlusTsw - MinimumTvmPlus2Tr0 - PrefetchPixelLinesTime[k] / 4),
-+							2 * ExtraLatencyCycles / (MaximumTvmPlus2Tr0PlusTsw - MinimumTvmPlus2Tr0 - v->UseMinimumDCFCLK_stack_reduction.PrefetchPixelLinesTime[k] / 4),
- 							(2 * ExtraLatencyCycles + v->UseMinimumDCFCLK_stack_reduction.PixelDCFCLKCyclesRequiredInPrefetch[k]) / (MaximumTvmPlus2Tr0PlusTsw - MinimumTvmPlus2Tr0));
+-					DCFCLKRequiredForPeakBandwidthPerPlane[k] = v->DCFCLKPerState[i];
++					v->UseMinimumDCFCLK_stack_reduction.DCFCLKRequiredForPeakBandwidthPerPlane[k] = v->DCFCLKPerState[i];
+ 				}
+ 				if (v->DynamicMetadataEnable[k] == true) {
+ 					double TSetupPipe;
+@@ -7088,17 +7087,17 @@ static void UseMinimumDCFCLK(
+ 					AllowedTimeForUrgentExtraLatency = v->MaximumVStartup[i][j][k] * v->HTotal[k] / v->PixelClock[k] - MinimumTWait - TSetupPipe - TdmbfPipe - TdmecPipe
+ 							- TdmsksPipe - DynamicMetadataVMExtraLatency[k];
+ 					if (AllowedTimeForUrgentExtraLatency > 0) {
+-						DCFCLKRequiredForPeakBandwidthPerPlane[k] = dml_max(
+-								DCFCLKRequiredForPeakBandwidthPerPlane[k],
++						v->UseMinimumDCFCLK_stack_reduction.DCFCLKRequiredForPeakBandwidthPerPlane[k] = dml_max(
++								v->UseMinimumDCFCLK_stack_reduction.DCFCLKRequiredForPeakBandwidthPerPlane[k],
+ 								ExtraLatencyCycles / AllowedTimeForUrgentExtraLatency);
+ 					} else {
+-						DCFCLKRequiredForPeakBandwidthPerPlane[k] = v->DCFCLKPerState[i];
++						v->UseMinimumDCFCLK_stack_reduction.DCFCLKRequiredForPeakBandwidthPerPlane[k] = v->DCFCLKPerState[i];
+ 					}
  				}
  			}
+ 			DCFCLKRequiredForPeakBandwidth = 0;
+ 			for (k = 0; k <= v->NumberOfActivePlanes - 1; ++k)
+-				DCFCLKRequiredForPeakBandwidth = DCFCLKRequiredForPeakBandwidth + DCFCLKRequiredForPeakBandwidthPerPlane[k];
++				DCFCLKRequiredForPeakBandwidth = DCFCLKRequiredForPeakBandwidth + v->UseMinimumDCFCLK_stack_reduction.DCFCLKRequiredForPeakBandwidthPerPlane[k];
+ 
+ 			MinimumTvmPlus2Tr0 = v->UrgLatency[i]
+ 					* (v->GPUVMEnable == true ?
 -- 
 2.39.0
 
