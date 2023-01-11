@@ -1,68 +1,61 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8245665CA1
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Jan 2023 14:34:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6606D665CE9
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Jan 2023 14:49:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B161D10E137;
-	Wed, 11 Jan 2023 13:34:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D54AD10E154;
+	Wed, 11 Jan 2023 13:49:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 545FA10E749;
- Wed, 11 Jan 2023 13:34:03 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 82136490A;
- Wed, 11 Jan 2023 13:34:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1673444041; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=PQfggEzGnvBFeEXWLzjrgSpzQCF+2CjSg9PArVQ0M0w=;
- b=yybNIva1uk5HIOnoeUO/Uelc+4KrelGuK/vjSaYSGL6Ugn7cfnqig0cDcve3VGBfT0RtCp
- 5Hro+3T5YHP7xA9TPEIyyO1W8RLPY/Hl4JBwBtPu2og5d+X3D+UA9um6lTRXSNJh7u/Xxl
- 7ZtBS0vH2kZLX0uZ0ztahTZ/MfRTBxI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1673444041;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=PQfggEzGnvBFeEXWLzjrgSpzQCF+2CjSg9PArVQ0M0w=;
- b=rpIIFwSx44H2ghSdyc9Hm/+VwbYAgK1W+ZtPbi5bjOKejsfyrvJ+mRYkL8EHhHvraWb85t
- LIemRSW0Mf5uu2BA==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 216EB1358A;
- Wed, 11 Jan 2023 13:34:01 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id brXfBsm6vmMjbwAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Wed, 11 Jan 2023 13:34:01 +0000
-Message-ID: <4e3adb3a-cc08-83fd-68c8-021b16fdc700@suse.de>
-Date: Wed, 11 Jan 2023 14:34:00 +0100
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com
+ [IPv6:2607:f8b0:4864:20::333])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3546610E154
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Jan 2023 13:49:05 +0000 (UTC)
+Received: by mail-ot1-x333.google.com with SMTP id
+ cc13-20020a05683061cd00b00684b8cf2f4dso603488otb.12
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Jan 2023 05:49:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=egXhKLvUWnUE0Rb4v1WAOmgqSXCapW86SxppYiuDsvk=;
+ b=BCcTQEmq3snJ31Ox84xohXBUbLhviGA/c+xY7ULlFl1Lmssg+NG1TrZwuLA/sZkxpU
+ 3DVU3EaYfPKbvIG4W9bBVgzBGQ+QGGhdAFIbV6UF7rIWcnXfvmYTiiJC2CpPXM/PUQFU
+ hUMajxUrdDMKowqi0OOQFUUvIDzFTVs9IvH+YrDL+KXVCuRB2sHoYwPwSRLwZQy59mYb
+ 4YwuH6ZRxVOufeQf/q75DLUJz15SepEQ/pwY7e6tMz4dvY5BQzOuA156wqCq4Xibm/ey
+ VLLKf9GhV4jU5GK0ZFverzFdIG3iNKWhf4jyoO2r1fBUH9RIGzecZX4JjM2zgX3Y1kFK
+ ybFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=egXhKLvUWnUE0Rb4v1WAOmgqSXCapW86SxppYiuDsvk=;
+ b=SYYlGSap1zupZl73zJAruX4lqGMbx/6wXzHB0cUL6fcDsctB/Zs71lE33+KTXYj4V/
+ 2ixsUJaGfmIPhg8Cj52W2ztnJ/n+4uLeshCgk/W+WOFhWKxR0n/HjOOLewlh4esO+T9r
+ Ea3PGMuvYha+Gh46O53UOpBQWES4O/KCwFdmSFuEMotDVjJmpw6MlAG9aJZrj4UBSl/a
+ yB84WXqia8fgcA39TEuz+VsdF0TFSmv+rkfdgrPbM0BYWuXv+qaApMN+3tEzjXz9G79k
+ 4HbLZ7Yus+KlvVODXJvRanavjrYZ518FuCoHBKNINop8xyZWR1hN0B+NrlvUI4EAXgOK
+ FkuA==
+X-Gm-Message-State: AFqh2koc/qE4lNyA+1sn3P8OwaJuc1wd1nx61r7XwVcjUDXZ4AAHS1oU
+ EqD1baoezGd8auaJN6JUk6wOg4NvpUQVk7VeMzk=
+X-Google-Smtp-Source: AMrXdXsMzt7x1u/HMvBZ7LMIYiyI4R6l5dpxLbtF+rR43mEtpLKcly3NL0z3X+qg3ryqgcYR1xyGDsXk6vemFaa3wXQ=
+X-Received: by 2002:a9d:489:0:b0:684:bedc:4f54 with SMTP id
+ 9-20020a9d0489000000b00684bedc4f54mr21631otm.233.1673444944426; Wed, 11 Jan
+ 2023 05:49:04 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 07/10] drm/amdgpu: Do not include <drm/drm_fb_helper.h>
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- alexander.deucher@amd.com, airlied@gmail.com, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- patrik.r.jakobsson@gmail.com, thierry.reding@gmail.com, sam@ravnborg.org,
- f.fainelli@gmail.com, james.qian.wang@arm.com, liviu.dudau@arm.com
-References: <20230111130206.29974-1-tzimmermann@suse.de>
- <20230111130206.29974-8-tzimmermann@suse.de>
- <d92c4dfc-065f-f062-2b0e-0ce9db879d70@amd.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <d92c4dfc-065f-f062-2b0e-0ce9db879d70@amd.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------5xPe7YrKgCBS7By3m63rydwt"
+References: <CANiD2e9bdhxdJr_N9wb7O0Su+LRhzE1n=TepvbBiOoqmKRRgeg@mail.gmail.com>
+ <DM5PR12MB24692E12F2C533BD8D88508AF1FC9@DM5PR12MB2469.namprd12.prod.outlook.com>
+In-Reply-To: <DM5PR12MB24692E12F2C533BD8D88508AF1FC9@DM5PR12MB2469.namprd12.prod.outlook.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 11 Jan 2023 08:48:52 -0500
+Message-ID: <CADnq5_M8ECkmggxLJRmO6S1fP2SCT_rudz2gbxV-KcNL-V2MCA@mail.gmail.com>
+Subject: Re: Wrong revert commit in stable channel
+To: "Chen, Guchun" <Guchun.Chen@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,111 +67,68 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arm-kernel@lists.infradead.org, amd-gfx@lists.freedesktop.org,
- bcm-kernel-feedback-list@broadcom.com, linux-rpi-kernel@lists.infradead.org,
- dri-devel@lists.freedesktop.org
+Cc: Yury Zhuravlev <stalkerg@gmail.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------5xPe7YrKgCBS7By3m63rydwt
-Content-Type: multipart/mixed; boundary="------------0Z9PQeVWhMxn992GDhJUC3DR";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- alexander.deucher@amd.com, airlied@gmail.com, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- patrik.r.jakobsson@gmail.com, thierry.reding@gmail.com, sam@ravnborg.org,
- f.fainelli@gmail.com, james.qian.wang@arm.com, liviu.dudau@arm.com
-Cc: dri-devel@lists.freedesktop.org, bcm-kernel-feedback-list@broadcom.com,
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- amd-gfx@lists.freedesktop.org
-Message-ID: <4e3adb3a-cc08-83fd-68c8-021b16fdc700@suse.de>
-Subject: Re: [PATCH v2 07/10] drm/amdgpu: Do not include <drm/drm_fb_helper.h>
-References: <20230111130206.29974-1-tzimmermann@suse.de>
- <20230111130206.29974-8-tzimmermann@suse.de>
- <d92c4dfc-065f-f062-2b0e-0ce9db879d70@amd.com>
-In-Reply-To: <d92c4dfc-065f-f062-2b0e-0ce9db879d70@amd.com>
+Yes, the revert was reverted.
 
---------------0Z9PQeVWhMxn992GDhJUC3DR
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+Alex
 
-SGkNCg0KQW0gMTEuMDEuMjMgdW0gMTQ6MjEgc2NocmllYiBDaHJpc3RpYW4gS8O2bmlnOg0K
-PiBBbSAxMS4wMS4yMyB1bSAxNDowMiBzY2hyaWViIFRob21hcyBaaW1tZXJtYW5uOg0KPj4g
-SW5jbHVkaW5nIDxkcm0vZHJtX2ZiX2hlbHBlci5oPiBpcyBub3QgcmVxdWlyZWQsIHNvIHJl
-bW92ZSB0aGUgaW5jbHVkZQ0KPj4gc3RhdGVtZW50cy4gTm8gZnVuY3Rpb25hbCBjaGFuZ2Vz
-Lg0KPiANCj4gUmV2aWV3ZWQtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2Vu
-aWdAYW1kLmNvbT4gZm9yIHRoaXMgb25lIGFuZCANCj4gdGhlIHJhZGVvbiBwYXRjaGVzICM5
-IGFuZCAjMTAgaW4gdGhpcyBzZXQuDQo+IA0KPiBEbyB5b3Ugd2FudCB0byBwdXNoIHRoZW0g
-dG8gZHJtLW1pc2MtbmV4dCBiZWNhdXNlIG9mIHNvbWUgDQo+IGludGVyLWRlcGVuZGVuY2ll
-cyBvciBzaG91bGQgSSBwaWNrIHRoZW0gdXAgdGhyb3VnaCBhbWQtc3RhZ2luZy1kcm0tbmV4
-dD8NCg0KSSdkIGxpa2UgdG8gdGFrZSB0aGUgd2hvbGUgcGF0Y2hzZXQgdmlhIGRybS1taXNj
-LW5leHQuIFRoZSBlYXJsaWVyIE9GIA0KYW5kIGJhY2tsaWdodCBpbmNsdWRlcyBhcmUgcmVx
-dWlyZWQgZm9yIHNvbWUgb2YgdGhlIGxhdGVyIHJlbW92YWxzLiBCZXN0IA0KdG8ga2VlcCB0
-aGlzIGluIG9uZSBwaWVjZS4NCg0KQmVzdCByZWdhcmRzDQpUaG9tYXMNCg0KDQo+IA0KPiBD
-aHJpc3RpYW4uDQo+IA0KPj4NCj4+IFNpZ25lZC1vZmYtYnk6IFRob21hcyBaaW1tZXJtYW5u
-IDx0emltbWVybWFubkBzdXNlLmRlPg0KPj4gLS0tDQo+PiDCoCBkcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9kY2VfdjEwXzAuYyB8IDEgLQ0KPj4gwqAgZHJpdmVycy9ncHUvZHJtL2Ft
-ZC9hbWRncHUvZGNlX3YxMV8wLmMgfCAxIC0NCj4+IMKgIGRyaXZlcnMvZ3B1L2RybS9hbWQv
-YW1kZ3B1L2RjZV92Nl8wLmPCoCB8IDEgLQ0KPj4gwqAgZHJpdmVycy9ncHUvZHJtL2FtZC9h
-bWRncHUvZGNlX3Y4XzAuY8KgIHwgMSAtDQo+PiDCoCA0IGZpbGVzIGNoYW5nZWQsIDQgZGVs
-ZXRpb25zKC0pDQo+Pg0KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
-Z3B1L2RjZV92MTBfMC5jIA0KPj4gYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9kY2Vf
-djEwXzAuYw0KPj4gaW5kZXggMjQ4ZjFhNGU5MTVmLi5hMjQ1MmZjMzA0YzUgMTAwNjQ0DQo+
-PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9kY2VfdjEwXzAuYw0KPj4gKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZGNlX3YxMF8wLmMNCj4+IEBAIC0yMSw3
-ICsyMSw2IEBADQo+PiDCoMKgICoNCj4+IMKgwqAgKi8NCj4+IC0jaW5jbHVkZSA8ZHJtL2Ry
-bV9mYl9oZWxwZXIuaD4NCj4+IMKgICNpbmNsdWRlIDxkcm0vZHJtX2ZvdXJjYy5oPg0KPj4g
-wqAgI2luY2x1ZGUgPGRybS9kcm1fdmJsYW5rLmg+DQo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL2FtZC9hbWRncHUvZGNlX3YxMV8wLmMgDQo+PiBiL2RyaXZlcnMvZ3B1L2Ry
-bS9hbWQvYW1kZ3B1L2RjZV92MTFfMC5jDQo+PiBpbmRleCBjZDljMTkwNjBkODkuLjZhYzY4
-MGM0YzZlMiAxMDA2NDQNCj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2Rj
-ZV92MTFfMC5jDQo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9kY2VfdjEx
-XzAuYw0KPj4gQEAgLTIxLDcgKzIxLDYgQEANCj4+IMKgwqAgKg0KPj4gwqDCoCAqLw0KPj4g
-LSNpbmNsdWRlIDxkcm0vZHJtX2ZiX2hlbHBlci5oPg0KPj4gwqAgI2luY2x1ZGUgPGRybS9k
-cm1fZm91cmNjLmg+DQo+PiDCoCAjaW5jbHVkZSA8ZHJtL2RybV92YmxhbmsuaD4NCj4+IGRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9kY2VfdjZfMC5jIA0KPj4g
-Yi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9kY2VfdjZfMC5jDQo+PiBpbmRleCA3NjMy
-M2RlZWNjNTguLjM1NGFlMDljYzlhMiAxMDA2NDQNCj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9hbWQvYW1kZ3B1L2RjZV92Nl8wLmMNCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQv
-YW1kZ3B1L2RjZV92Nl8wLmMNCj4+IEBAIC0yMyw3ICsyMyw2IEBADQo+PiDCoCAjaW5jbHVk
-ZSA8bGludXgvcGNpLmg+DQo+PiAtI2luY2x1ZGUgPGRybS9kcm1fZmJfaGVscGVyLmg+DQo+
-PiDCoCAjaW5jbHVkZSA8ZHJtL2RybV9mb3VyY2MuaD4NCj4+IMKgICNpbmNsdWRlIDxkcm0v
-ZHJtX3ZibGFuay5oPg0KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
-Z3B1L2RjZV92OF8wLmMgDQo+PiBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2RjZV92
-OF8wLmMNCj4+IGluZGV4IDAxY2YzYWIxMTFjYi4uMzM5NzdiMGJhMTlkIDEwMDY0NA0KPj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZGNlX3Y4XzAuYw0KPj4gKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZGNlX3Y4XzAuYw0KPj4gQEAgLTIxLDcgKzIx
-LDYgQEANCj4+IMKgwqAgKg0KPj4gwqDCoCAqLw0KPj4gLSNpbmNsdWRlIDxkcm0vZHJtX2Zi
-X2hlbHBlci5oPg0KPj4gwqAgI2luY2x1ZGUgPGRybS9kcm1fZm91cmNjLmg+DQo+PiDCoCAj
-aW5jbHVkZSA8ZHJtL2RybV92YmxhbmsuaD4NCj4gDQoNCi0tIA0KVGhvbWFzIFppbW1lcm1h
-bm4NCkdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXINClNVU0UgU29mdHdhcmUgU29sdXRpb25z
-IEdlcm1hbnkgR21iSA0KTWF4ZmVsZHN0ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBHZXJtYW55
-DQooSFJCIDM2ODA5LCBBRyBOw7xybmJlcmcpDQpHZXNjaMOkZnRzZsO8aHJlcjogSXZvIFRv
-dGV2DQo=
-
---------------0Z9PQeVWhMxn992GDhJUC3DR--
-
---------------5xPe7YrKgCBS7By3m63rydwt
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmO+usgFAwAAAAAACgkQlh/E3EQov+BF
-0w//cF9/YZkszQB+S5VKfNga78yvFB1pafwH9JUmr7nkfMRPQ7OyJBhwmevewOnJ/77J5pR4+A7K
-W5yoM3VHOPsiJcDA5GJHA8oVKxRPZvBKBsNnnLntj5728DFZwNXLqefkcoFTWmSpLtU0UbeLyTYj
-EwBojn7SAHsQ8GwyRQYczxNGWg1Izx/KmW7c7DXtWZ0zX5cKc85qGaxpHhJsKEjFO4S/fiar0luK
-xvYF0Xec4O589T/sc5hSXb4kOaRjQYWFT4+t/dJsNYJC7GB/yorkgt4Z70Nq+mf6lgjTXtEpKdau
-EXEuG7PG1r8udilhL2ngHAuwInaTF8TRm9uSZdYJWd6/h/3PPRNb4F0BM26OC0tnnIQ5bpk5wdJb
-HOVSgr71uVleIFVUhMhILzveHf3QphU+5rWAs12CykiFqjYetaiAz+ZfoGQj7fW2+KBeIEq8rqMU
-m+1r1DEygR/joRksarRHlmDL2n9qJHiHVQUXP2ODbZSDAeO1QcWf9RJjcYuKdo6uEEsmJXN6kpQB
-eRhtSLh+D785Z5/hx5s+yuoVTTdmRlVgM7DngnPg5P1oo28yElNvCsTzlSif/aul1p/V1LoBLskH
-P7D9CzmNlfqyxpf0CJu0U+doZP4TcH4cPxtRBM3RQ5osnxzv0Fw60Kl3fk0x3P+z7Uv4frsfuhjG
-SBI=
-=MvdK
------END PGP SIGNATURE-----
-
---------------5xPe7YrKgCBS7By3m63rydwt--
+On Wed, Jan 11, 2023 at 3:35 AM Chen, Guchun <Guchun.Chen@amd.com> wrote:
+>
+> Hi Yury,
+>
+>
+>
+> My understanding is though that=E2=80=99s a revert of your original patch=
+, we did a revert again on top of the reverted patch later on. Can you plea=
+se sync to below commit to check again? Or do I understand wrong?
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit=
+/drivers/gpu/drm/amd/pm/powerplay/hwmgr?h=3Dv6.2-rc3&id=3Df936f535fa70f35ce=
+3369b1418ebae0e657cda6a
+>
+>
+>
+> Regards,
+>
+> Guchun
+>
+>
+>
+> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Yury Z=
+huravlev
+> Sent: Wednesday, January 11, 2023 4:26 PM
+> To: amd-gfx@lists.freedesktop.org
+> Subject: Wrong revert commit in stable channel
+>
+>
+>
+> Hello,
+>
+>
+>
+> Something went wrong, and we commited what we diced not commit.
+>
+>
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit=
+/?h=3Dv6.2-rc3&id=3De5b781c56d46c44c52caa915f1b65064f2f7c1ba
+>
+>
+>
+> and
+>
+>
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit=
+/?h=3Dv6.2-rc3&id=3D4545ae2ed3f2f7c3f615a53399c9c8460ee5bca7
+>
+>
+>
+> It's wrong reverts because, initially was an issue with a test case, not =
+a patch itself.
+>
+> My GPU is not working correctly again after such "stable" patch.
