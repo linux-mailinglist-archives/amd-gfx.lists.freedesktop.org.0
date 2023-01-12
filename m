@@ -2,52 +2,33 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E294666949
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Jan 2023 04:05:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32F646669A6
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Jan 2023 04:32:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D02C810E852;
-	Thu, 12 Jan 2023 03:05:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BFCD10E85B;
+	Thu, 12 Jan 2023 03:32:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A064410E84E;
- Thu, 12 Jan 2023 03:05:44 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id EFEB861F48;
- Thu, 12 Jan 2023 03:05:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C101C433AF;
- Thu, 12 Jan 2023 03:05:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1673492743;
- bh=J83wF7k7E0HU61W5ENYtGO7bGrsUpcp8KJIdVMaGB7s=;
- h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=Mb9PnUo8YVEMyxMGibvXcV9p1VYvPFlAE/83Y636eQxZC+SCt5tEuCTIW7OB/9Ony
- 477IRakir6QrRIe/6NPfw9tKzYDQ/J2Ps3CUGrOvXLfLTVVr1UDvbEfR9JkY37oEy4
- BsWfUKoIa7s2hDIyt3jnQZhOA6Mo9ruwxMgh6asn/QjJBzfySz+6+nnwFS7s7oju2Y
- XCRF0Uq1i2YB9Sk8e3LhJR3V4niPvP9mIlY1sV6croT7Aptn8eHeq8FAzwoDjejyb7
- mXjUJsj/CRpGat52WYTHfGLUG80AlrluZhnnBMT5w4TvB9Im3ZuOYq1YPoTCn7oLG1
- XErKtEh3qpAsw==
-From: Nathan Chancellor <nathan@kernel.org>
-Date: Wed, 11 Jan 2023 20:05:09 -0700
-Subject: [PATCH v2 12/14] drm/amd/display: Do not add '-mhard-float' to
- dml_ccflags for clang
+Received: from out30-133.freemail.mail.aliyun.com
+ (out30-133.freemail.mail.aliyun.com [115.124.30.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D3CE10E859;
+ Thu, 12 Jan 2023 03:21:20 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R961e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018045168;
+ MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=13; SR=0;
+ TI=SMTPD_---0VZPGIgC_1673493651; 
+Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0VZPGIgC_1673493651) by smtp.aliyun-inc.com;
+ Thu, 12 Jan 2023 11:21:16 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: harry.wentland@amd.com
+Subject: [PATCH] drm/amd/display: Remove useless else if
+Date: Thu, 12 Jan 2023 11:20:49 +0800
+Message-Id: <20230112032049.128610-1-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 2.20.1.7.g153144c
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20221228-drop-qunused-arguments-v2-12-9adbddd20d86@kernel.org>
-References: <20221228-drop-qunused-arguments-v2-0-9adbddd20d86@kernel.org>
-In-Reply-To: <20221228-drop-qunused-arguments-v2-0-9adbddd20d86@kernel.org>
-To: masahiroy@kernel.org
-X-Mailer: b4 0.12-dev-78c63
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1279; i=nathan@kernel.org;
- h=from:subject:message-id; bh=J83wF7k7E0HU61W5ENYtGO7bGrsUpcp8KJIdVMaGB7s=;
- b=owGbwMvMwCEmm602sfCA1DTG02pJDMn7K/78jF1rcKBxUaNA1oNO7i/ZDNc+di+83b5J6vDJ1qXm
- B4UzO0pZGMQ4GGTFFFmqH6seNzScc5bxxqlJMHNYmUCGMHBxCsBEVrcyMpxnaur+LrQtxuOEF1/17C
- khDDETv8iem5qx/dREsxsB0W2MDP8dFRkZVp8OWaoVob7Jfb3OrJtK+XPsxYIVubk7n01V4wUA
-X-Developer-Key: i=nathan@kernel.org; a=openpgp;
- fpr=2437CB76E544CB6AB3D9DFD399739260CB6CB716
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 12 Jan 2023 03:32:25 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,48 +40,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: nicolas@fjasle.eu, linux-kbuild@vger.kernel.org, trix@redhat.com,
- llvm@lists.linux.dev, ndesaulniers@google.com, amd-gfx@lists.freedesktop.org,
- Nathan Chancellor <nathan@kernel.org>, dri-devel@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>
+Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, sunpeng.li@amd.com,
+ Abaci Robot <abaci@linux.alibaba.com>, Xinhui.Pan@amd.com,
+ Rodrigo.Siqueira@amd.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, alexander.deucher@amd.com, airlied@gmail.com,
+ christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When clang's -Qunused-arguments is dropped from KBUILD_CPPFLAGS, it
-warns:
+The assignment of the else and if branches is the same, so the if else
+here is redundant, so we remove it.
 
-  clang-16: error: argument unused during compilation: '-mhard-float' [-Werror,-Wunused-command-line-argument]
+./drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:1951:2-4: WARNING: possible condition with no effect (if == else).
 
-Similar to commit 84edc2eff827 ("selftest/fpu: avoid clang warning"),
-just add this flag to GCC builds. Commit 0f0727d971f6 ("drm/amd/display:
-readd -msse2 to prevent Clang from emitting libcalls to undefined SW FP
-routines") added '-msse2' to prevent clang from emitting software
-floating point routines.
-
-Signed-off-by: Nathan Chancellor <nathan@kernel.org>
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=3719
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
 ---
-Cc: amd-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
----
- drivers/gpu/drm/amd/display/dc/dml/Makefile | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/Makefile b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-index 0ecea87cf48f..9d0f79dff2e3 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-@@ -26,7 +26,8 @@
- # subcomponents.
- 
- ifdef CONFIG_X86
--dml_ccflags := -mhard-float -msse
-+dml_ccflags-$(CONFIG_CC_IS_GCC) := -mhard-float
-+dml_ccflags := $(dml_ccflags-y) -msse
- endif
- 
- ifdef CONFIG_PPC64
-
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 4300ce98ce8d..aa3024e58d12 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -1948,10 +1948,7 @@ static int dm_dmub_sw_init(struct amdgpu_device *adev)
+ 		dmub_asic = DMUB_ASIC_DCN21;
+ 		break;
+ 	case IP_VERSION(3, 0, 0):
+-		if (adev->ip_versions[GC_HWIP][0] == IP_VERSION(10, 3, 0))
+-			dmub_asic = DMUB_ASIC_DCN30;
+-		else
+-			dmub_asic = DMUB_ASIC_DCN30;
++		dmub_asic = DMUB_ASIC_DCN30;
+ 		break;
+ 	case IP_VERSION(3, 0, 1):
+ 		dmub_asic = DMUB_ASIC_DCN301;
 -- 
-2.39.0
+2.20.1.7.g153144c
 
