@@ -2,62 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72008667344
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Jan 2023 14:36:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55462667343
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Jan 2023 14:36:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADB7910E8E9;
-	Thu, 12 Jan 2023 13:35:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A68DF10E8E3;
+	Thu, 12 Jan 2023 13:35:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com
- [IPv6:2a00:1450:4864:20::233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B443A10E189
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 09:41:23 +0000 (UTC)
-Received: by mail-lj1-x233.google.com with SMTP id x37so18719323ljq.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 01:41:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=bell-sw-com.20210112.gappssmtp.com; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=xcBBA5m/IiORnDaKHbjnduMHgdd58lT2vpAvoSmhJOA=;
- b=0+KRRgm3Eq15s4x5Fy/5XZcojr4CB8aLFyrcB9p3aFRUAHqVn0rJTUNmhLG0T+kGYj
- R4GLPDI19cZ534hJjq2cJT/fMnfkObtYpR8N6C27p0x7Z7T6B8xY2AuSFksofI8+0isk
- nTtSufvCcFGMTwqM+G19dxd0s/OYGEpGG5ohUvcdcXuBDl+sQD4/T3ALiPUolSpd53d0
- l4xn+vzWBuGRsk3abBjpdNK2CNaLPhbKDmWEEEGwvedL6oqFlRM/4w5Q9FPmstEBJpjM
- ppamOBdRJ/tbZvZ60V+sgWpeGUsGhJQNfkMaiAM4vc9QtxM0sfHXqsM83YRow9m5tXqM
- 16fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=xcBBA5m/IiORnDaKHbjnduMHgdd58lT2vpAvoSmhJOA=;
- b=sjZSGvgL4ttwSV67PBZuXpM0fM4OH9KIThoxZXu33eJ4vYV7MD7kW/aBo6lIjBh6Qn
- Elw3kvW4XnhVUpAb2YY3XBkQvB3ZwzOcXTqAXToEiB64uh2Iy2Th6rrR9VgU2Vw8SFxt
- jWdTW+cr/Jng2bl0yPuEV7V8cYqhDZek2OxHYzBe9lowqTp7+nFrTzw/J9MpF5cVVUH8
- yvPapoRajXJERqb4l9dJgJXAaFS35GvH9wGYqAiBUWZh2aFNd84sIbGKq9A8RwH4NTOY
- m9bQ8sZ4LLpWVL/p3hFHuD8gejYfXYwEgXrWubJvA4f+suMyu3c0DqlkdDaqGtM7/UiJ
- c9aA==
-X-Gm-Message-State: AFqh2kr3GOKUicgE/r4LE3PqanlEgTJA+p0Yv1ZERZqO4c2px0EWlmUi
- 87aMLb7ANXldXo9vPulHNZr0zd/GPxjy0rw=
-X-Google-Smtp-Source: AMrXdXu4vThKbG6u8k9NV/985waTyDGlS3et+u5PH8TP2PrXJN7ol3PD2+Gwts+LZqpSN+aINOyFzw==
-X-Received: by 2002:a2e:8e88:0:b0:285:8a8:1c08 with SMTP id
- z8-20020a2e8e88000000b0028508a81c08mr4386069ljk.38.1673516481746; 
- Thu, 12 Jan 2023 01:41:21 -0800 (PST)
-Received: from localhost.localdomain ([95.161.223.113])
- by smtp.gmail.com with ESMTPSA id
- v16-20020a2ea450000000b002799d097c02sm2091985ljn.32.2023.01.12.01.41.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 12 Jan 2023 01:41:21 -0800 (PST)
-From: Alexey Kodanev <aleksei.kodanev@bell-sw.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amd/display: drop unnecessary NULL check in
- dce60_should_enable_fbc()
-Date: Thu, 12 Jan 2023 12:40:34 +0300
-Message-Id: <20230112094034.177220-1-aleksei.kodanev@bell-sw.com>
-X-Mailer: git-send-email 2.25.1
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE54A10E8DC;
+ Thu, 12 Jan 2023 12:47:58 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id AEA3E60A69;
+ Thu, 12 Jan 2023 12:47:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 837E4C433F1;
+ Thu, 12 Jan 2023 12:47:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1673527677;
+ bh=7zZrtN8lmZKOOP4+fso5bw1M8rjneci9uxIRHPuWDgc=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=blPoptpCI5TVw04j6Uhfv3eMlNkUaOX5zUB2uS8oijYwVXOJP9UpjgZbfm+h4Utms
+ pSR+QBlb2klOw1xHCe5LkrZsFcpd0DBiBzpP1Rcfdr6K816Fz0OJS2KBpsbm72BkD7
+ MGb++JTPURweTALy/PkKhEGelWwvB8qYR6SFw7NE=
+Date: Thu, 12 Jan 2023 13:47:53 +0100
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Dragos-Marian Panait <dragos.panait@windriver.com>
+Subject: Re: [PATCH 5.10 1/1] drm/amdkfd: Check for null pointer after
+ calling kmemdup
+Message-ID: <Y8ABeXQLzWdoaGAY@kroah.com>
+References: <20230104175633.1420151-1-dragos.panait@windriver.com>
+ <20230104175633.1420151-2-dragos.panait@windriver.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230104175633.1420151-2-dragos.panait@windriver.com>
 X-Mailman-Approved-At: Thu, 12 Jan 2023 13:35:57 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,33 +51,46 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexey Kodanev <aleksei.kodanev@bell-sw.com>
+Cc: Oded Gabbay <oded.gabbay@gmail.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>,
+ Jiasheng Jiang <jiasheng@iscas.ac.cn>,
+ Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+ Kent Russell <kent.russell@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-pipe_ctx pointer cannot be NULL when getting the address of
-an element of the pipe_ctx array.
+On Wed, Jan 04, 2023 at 07:56:33PM +0200, Dragos-Marian Panait wrote:
+> From: Jiasheng Jiang <jiasheng@iscas.ac.cn>
+> 
+> [ Upstream commit abfaf0eee97925905e742aa3b0b72e04a918fa9e ]
+> 
+> As the possible failure of the allocation, kmemdup() may return NULL
+> pointer.
+> Therefore, it should be better to check the 'props2' in order to prevent
+> the dereference of NULL pointer.
+> 
+> Fixes: 3a87177eb141 ("drm/amdkfd: Add topology support for dGPUs")
+> Signed-off-by: Jiasheng Jiang <jiasheng@iscas.ac.cn>
+> Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+> Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> Signed-off-by: Dragos-Marian Panait <dragos.panait@windriver.com>
+> ---
+>  drivers/gpu/drm/amd/amdkfd/kfd_crat.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+> index 86b4dadf772e..02e3c650ed1c 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+> @@ -408,6 +408,9 @@ static int kfd_parse_subtype_iolink(struct crat_subtype_iolink *iolink,
+>  			return -ENODEV;
+>  		/* same everything but the other direction */
+>  		props2 = kmemdup(props, sizeof(*props2), GFP_KERNEL);
+> +		if (!props2)
+> +			return -ENOMEM;
 
-Detected using the static analysis tool - Svace.
-Signed-off-by: Alexey Kodanev <aleksei.kodanev@bell-sw.com>
----
- drivers/gpu/drm/amd/display/dc/dce60/dce60_hw_sequencer.c | 3 ---
- 1 file changed, 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/dce60/dce60_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dce60/dce60_hw_sequencer.c
-index 920c7ae29d53..f0c002a6a538 100644
---- a/drivers/gpu/drm/amd/display/dc/dce60/dce60_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce60/dce60_hw_sequencer.c
-@@ -72,9 +72,6 @@ static bool dce60_should_enable_fbc(struct dc *dc,
- 
- 			pipe_ctx = &res_ctx->pipe_ctx[i];
- 
--			if (!pipe_ctx)
--				continue;
--
- 			/* fbc not applicable on underlay pipe */
- 			if (pipe_ctx->pipe_idx != underlay_idx) {
- 				*pipe_idx = i;
--- 
-2.25.1
-
+Not going to queue this up as this is a bogus CVE.
