@@ -1,66 +1,44 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13B8966737F
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Jan 2023 14:48:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 747F4667472
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Jan 2023 15:08:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66F3D10E8EF;
-	Thu, 12 Jan 2023 13:48:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F195E10E8F9;
+	Thu, 12 Jan 2023 14:08:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
- [IPv6:2a00:1450:4864:20::32e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DE2110E8EF
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 13:48:18 +0000 (UTC)
-Received: by mail-wm1-x32e.google.com with SMTP id
- z8-20020a05600c220800b003d33b0bda11so4120876wml.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 05:48:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=RGQsrm1IJJWRkmth32s3b5ebf1blQsYL76Jhp0hncXE=;
- b=mrFdv6TAaeCM3aFaFz1N7WTp8qOkxUxHuSnaGbsTWQtSqdnvFC78mC5oUVH4nfNaWe
- F/wQY3m7fjjG5NKzhbgSkJue8kYLzO3LaYugN+jWrkkR4siFXCthjFbFQofEZeYtrRKN
- je3vtzfC8zP2dsZGZmBZl1LFSlJeRfDziFFDi4ybS6eWqrz3c1kifsUwYj0F9aGJhgqm
- sjpAN+E8HzMgKIFrCTEDe0VOXNRMj2hIOCNslnwmuOTYq84oQnVgNKtbCAwZBVDHnl/n
- CPN5UXDLyL2rUgc8vm2qvKxEc1Zch0kHpiOpQlfb1i94QFoYwr4qqrA9y/YVhn3ank4m
- aJUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=RGQsrm1IJJWRkmth32s3b5ebf1blQsYL76Jhp0hncXE=;
- b=PHn5PBahDmBw9jdpiHe3h36K2ZRXYA9B1/GIhrVM6fmfrRPieCfH9AJO0PgWNZ/Z36
- e0n1kVD4dJnU6m95rrXxs/br53Vg6UZzIe/5sWLO0XVmbyvUULHHz96ziUnHP9d2rK8C
- km3vfhmjKCRdj+EZgTJH7+h+gkExeY+uEUBVaRDac/nklcVRNoMSYYD7bK9ib6N0RxMY
- dj8uUDSAOp+6GrGrso6ygx4q8Y0x5okI1kP447oLH5gIWptjPMFCHcVUkP0ULwHHqYvM
- PCtBF9pIAKxCgL+L6GUi8CHcpS2/suw7+D4lw+eQIQ/UYL7A22dCvQKUSeUpXNT8jfPJ
- xgog==
-X-Gm-Message-State: AFqh2kpexY1ts51edyw8L5MAHE09QG5nwz5Wp5NABEgd6jjbgciRo/dJ
- VsoWbTNrNIidsfuYftI74Xk=
-X-Google-Smtp-Source: AMrXdXsTX6vsZQ7Fr26xXPRhxwarqKz1XSYw51S7iWmujTUcGOH2zpO+l/5FrEGPqof2b4RfCy5Xew==
-X-Received: by 2002:a05:600c:1f18:b0:3cf:5583:8b3f with SMTP id
- bd24-20020a05600c1f1800b003cf55838b3fmr53901971wmb.20.1673531296925; 
- Thu, 12 Jan 2023 05:48:16 -0800 (PST)
-Received: from EliteBook.fritz.box (p5b0ea2e7.dip0.t-ipconnect.de.
- [91.14.162.231]) by smtp.gmail.com with ESMTPSA id
- l14-20020a05600c1d0e00b003da105437besm4140963wms.29.2023.01.12.05.48.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 12 Jan 2023 05:48:16 -0800 (PST)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: thong.thai@amd.com,
-	amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: fix amdgpu_job_free_resources
-Date: Thu, 12 Jan 2023 14:48:11 +0100
-Message-Id: <20230112134811.495086-1-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from msg-2.mailo.com (msg-2.mailo.com [213.182.54.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39F0110E8EC;
+ Thu, 12 Jan 2023 13:51:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailo.com; s=mailo;
+ t=1673531496; bh=ZAn7ZSvuny3A40ep6L1C3DqFhwPZfavNHTKFbfUsRxU=;
+ h=X-EA-Auth:Date:From:To:Cc:Subject:Message-ID:MIME-Version:
+ Content-Type;
+ b=hsLsYzmBjETINLz1Ja9/z1RFZVcBYUbHn7a9lGQeWWxVIR2aOvEaCHM3hW/0vW3Wg
+ 4uQveX+YjNjCQ7FeCzMA0owVm4zZaIibEUhv69J8B1+mduCsJuL/r6IvseMXRAIcLL
+ UKBbH2XziNiSDioZE0ffoofCAATDAKel1aRhBse4=
+Received: by b-3.in.mailobj.net [192.168.90.13] with ESMTP
+ via ip-206.mailobj.net [213.182.55.206]
+ Thu, 12 Jan 2023 14:51:36 +0100 (CET)
+X-EA-Auth: Jql7kLVBTRErAY5Y8kPmRih3iDlhh+Av3Q2tRc5pWKa4/h+rUuSd4pAfiyzp58G/Z7umku8+u+IV1WMtssm9vCSzWYHyaSk2
+Date: Thu, 12 Jan 2023 19:21:30 +0530
+From: Deepak R Varma <drv@mailo.com>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/amd/display: Conversion to bool not necessary
+Message-ID: <Y8AQYhVkJjV86VXV@ubun2204.myguest.virtualbox.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Thu, 12 Jan 2023 14:08:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,39 +50,40 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Praveen Kumar <kumarpraveen@linux.microsoft.com>,
+ Saurabh Singh Sengar <ssengar@microsoft.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-It can be that neither fence were initialized when we run out of UVD
-streams for example.
+A logical evaluation already results in bool. There is no need for using
+a ternary operator based evaluation and bool conversion of the outcome.
+Issue identified using boolconv.cocci Coccinelle semantic patch.
+This was also reported by the Kernel Test Robot. Hence
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
+Fixes: 473683a03495 ("drm/amd/display: Create a file dedicated for CRTC")
+
+Reported-by: kernel test robot <lkp@intel.com>
+Signed-off-by: Deepak R Varma <drv@mailo.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-index 9e549923622b..28929c6219a7 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-@@ -161,8 +161,14 @@ void amdgpu_job_free_resources(struct amdgpu_job *job)
- 	struct dma_fence *f;
- 	unsigned i;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
+index 22125daf9dcf..1e39d0939700 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
+@@ -105,8 +105,7 @@ static void vblank_control_worker(struct work_struct *work)
+ 	else if (dm->active_vblank_irq_count)
+ 		dm->active_vblank_irq_count--;
  
--	/* use sched fence if available */
--	f = job->base.s_fence ? &job->base.s_fence->finished :  &job->hw_fence;
-+	/* Check if any fences where initialized */
-+	if (job->base.s_fence && job->base.s_fence->finished->ops)
-+		f = &job->base.s_fence->finished;
-+	else if (job->hw_fence.ops)
-+		f = &job->hw_fence;
-+	else
-+		f = NULL;
-+
- 	for (i = 0; i < job->num_ibs; ++i)
- 		amdgpu_ib_free(ring->adev, &job->ibs[i], f);
- }
+-	dc_allow_idle_optimizations(
+-		dm->dc, dm->active_vblank_irq_count == 0 ? true : false);
++	dc_allow_idle_optimizations(dm->dc, dm->active_vblank_irq_count == 0);
+ 
+ 	DRM_DEBUG_KMS("Allow idle optimizations (MALL): %d\n", dm->active_vblank_irq_count == 0);
+ 
 -- 
-2.25.1
+2.34.1
+
+
 
