@@ -1,80 +1,64 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 334EA6671A1
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Jan 2023 13:05:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72008667344
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Jan 2023 14:36:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 373FC10E16D;
-	Thu, 12 Jan 2023 12:05:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADB7910E8E9;
+	Thu, 12 Jan 2023 13:35:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com
- [IPv6:2a00:1450:4864:20::634])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D38C10E16D
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 12:05:47 +0000 (UTC)
-Received: by mail-ej1-x634.google.com with SMTP id hw16so32358725ejc.10
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 04:05:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=IAVp4cGzc8ptPOJDGpiYjhqVP6BpuWQdw6GGc/EH+H8=;
- b=f79F8olQT5gPtDh9n/jb1OC9/s4dLQLPzon4Xz+pz9Z2Yyb1DhQ/vRhHOM+pjgqlx5
- NOL/9i6xc7MQq9oyYKxux4/7EYLwIFZuBOwNA4an2kj1pRPc1uyapuCkWjXm3Pqz18Sc
- Be0KLEzC5ebVaLsA6Hu59Z1Q1z9VcXQIR4EfhIqNxSKZjlADUO7wcxjkB0u1+wHZo5A8
- mSs2KZCaxK6qmbPXNKl6jNAIHZo6sWiC469PsnPBNrvjKp1huop8Z9rGZnIl5J3/knX6
- H574DtEuGyVqO4fLD8d3BTezRYJNhJQP+AN0lAEddPrMIbjM17LVbrckdd7WoxMfRa2E
- dhfA==
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com
+ [IPv6:2a00:1450:4864:20::233])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B443A10E189
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 09:41:23 +0000 (UTC)
+Received: by mail-lj1-x233.google.com with SMTP id x37so18719323ljq.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 01:41:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=bell-sw-com.20210112.gappssmtp.com; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=xcBBA5m/IiORnDaKHbjnduMHgdd58lT2vpAvoSmhJOA=;
+ b=0+KRRgm3Eq15s4x5Fy/5XZcojr4CB8aLFyrcB9p3aFRUAHqVn0rJTUNmhLG0T+kGYj
+ R4GLPDI19cZ534hJjq2cJT/fMnfkObtYpR8N6C27p0x7Z7T6B8xY2AuSFksofI8+0isk
+ nTtSufvCcFGMTwqM+G19dxd0s/OYGEpGG5ohUvcdcXuBDl+sQD4/T3ALiPUolSpd53d0
+ l4xn+vzWBuGRsk3abBjpdNK2CNaLPhbKDmWEEEGwvedL6oqFlRM/4w5Q9FPmstEBJpjM
+ ppamOBdRJ/tbZvZ60V+sgWpeGUsGhJQNfkMaiAM4vc9QtxM0sfHXqsM83YRow9m5tXqM
+ 16fg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=IAVp4cGzc8ptPOJDGpiYjhqVP6BpuWQdw6GGc/EH+H8=;
- b=RMbbLVVylZQC/zeNHGxG0CSFQZwgW2Bx8M0sFC6YTPMd930XCIMoF07iX/++wHIyo0
- eovvph8gqHC73js29SwBAWYcV3P57+ncHIaF5g+aE3/wjtFr84P7I0LnxFGhynK/uiot
- LRHtYgx64RWYeNO0sTwe2PbRjSyki8l8yVnRT8Stq3NjXie+nMJRWCk0klA5FKYjveH2
- ecQJiQvcpKu6KoL+Cwg269fFg7JZRlYY4EaMegED12eC0bGWYeWXg/LriZm5huWJmniW
- KW9OK2nVI7aOuoqglzZqgKTyB0SMSjvW6zYAmQ0yUX6K8yLPJcznfdoh3zM3CQMmKdpx
- SrOw==
-X-Gm-Message-State: AFqh2krzWy00JWGJjJbeKniqCGum7v2te3gAO5zgvA51x5WxBejQX4Su
- bsNzeFUDLYvEgq1/1xQnQhc=
-X-Google-Smtp-Source: AMrXdXt+MK8JKUoD/jqbD/kL22v5cfzDr/YOV1pE2odNL8/z7Xo7mtT/PlqhOtjdhZRlnBZbUqNoXg==
-X-Received: by 2002:a17:906:9f20:b0:84d:43a0:7090 with SMTP id
- fy32-20020a1709069f2000b0084d43a07090mr13594262ejc.77.1673525145640; 
- Thu, 12 Jan 2023 04:05:45 -0800 (PST)
-Received: from [192.168.178.21] (p5b0ea2e7.dip0.t-ipconnect.de.
- [91.14.162.231]) by smtp.gmail.com with ESMTPSA id
- hq15-20020a1709073f0f00b0084c7029b24dsm7387394ejc.151.2023.01.12.04.05.44
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 12 Jan 2023 04:05:44 -0800 (PST)
-Message-ID: <b2608d35-00e6-3935-3f87-297270be7073@gmail.com>
-Date: Thu, 12 Jan 2023 13:05:43 +0100
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=xcBBA5m/IiORnDaKHbjnduMHgdd58lT2vpAvoSmhJOA=;
+ b=sjZSGvgL4ttwSV67PBZuXpM0fM4OH9KIThoxZXu33eJ4vYV7MD7kW/aBo6lIjBh6Qn
+ Elw3kvW4XnhVUpAb2YY3XBkQvB3ZwzOcXTqAXToEiB64uh2Iy2Th6rrR9VgU2Vw8SFxt
+ jWdTW+cr/Jng2bl0yPuEV7V8cYqhDZek2OxHYzBe9lowqTp7+nFrTzw/J9MpF5cVVUH8
+ yvPapoRajXJERqb4l9dJgJXAaFS35GvH9wGYqAiBUWZh2aFNd84sIbGKq9A8RwH4NTOY
+ m9bQ8sZ4LLpWVL/p3hFHuD8gejYfXYwEgXrWubJvA4f+suMyu3c0DqlkdDaqGtM7/UiJ
+ c9aA==
+X-Gm-Message-State: AFqh2kr3GOKUicgE/r4LE3PqanlEgTJA+p0Yv1ZERZqO4c2px0EWlmUi
+ 87aMLb7ANXldXo9vPulHNZr0zd/GPxjy0rw=
+X-Google-Smtp-Source: AMrXdXu4vThKbG6u8k9NV/985waTyDGlS3et+u5PH8TP2PrXJN7ol3PD2+Gwts+LZqpSN+aINOyFzw==
+X-Received: by 2002:a2e:8e88:0:b0:285:8a8:1c08 with SMTP id
+ z8-20020a2e8e88000000b0028508a81c08mr4386069ljk.38.1673516481746; 
+ Thu, 12 Jan 2023 01:41:21 -0800 (PST)
+Received: from localhost.localdomain ([95.161.223.113])
+ by smtp.gmail.com with ESMTPSA id
+ v16-20020a2ea450000000b002799d097c02sm2091985ljn.32.2023.01.12.01.41.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 12 Jan 2023 01:41:21 -0800 (PST)
+From: Alexey Kodanev <aleksei.kodanev@bell-sw.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amd/display: drop unnecessary NULL check in
+ dce60_should_enable_fbc()
+Date: Thu, 12 Jan 2023 12:40:34 +0300
+Message-Id: <20230112094034.177220-1-aleksei.kodanev@bell-sw.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH] drm/amdgpu: grab extra fence reference for
- drm_sched_job_add_dependency
-Content-Language: en-US
-To: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
-References: <20221219104718.21677-1-christian.koenig@amd.com>
- <Y6BuZ2jv8n9dEVxS@zn.tnic>
- <CADnq5_M+TgiYw84meQNRJKnKYmr9V4v-scWZRAeFtG1o=aEeCw@mail.gmail.com>
- <7275efdb-4d22-eb76-cea3-333391472853@gmail.com>
- <CADnq5_NxbAgF6sXF6HuGzgcOoY8QOHU-0d9ghuKarx0jpt3Vog@mail.gmail.com>
- <CABXGCsOmtfo=7YWUv0QmGGrCat1Md59oz7UWw9-7MPn7f6AAdA@mail.gmail.com>
- <e6b6a599-8fdd-a4fc-a2bb-d0750e6d477d@gmail.com>
- <CABXGCsOL2SVg=FSOfhzo3wFHB9DqU=B34x+grCxQMhJsmTCMnw@mail.gmail.com>
- <CADnq5_P0Nq-y1U5X4EgYyPSKXOdVsjxX+UOCmzZKnX8FfHC86w@mail.gmail.com>
- <f4c965d9-d985-0030-7411-6d8d0f750058@gmail.com>
- <CABXGCsMJxX3wo8yhQA=nOk0ouzh-WGp_65DJBYb_9v2m4kk7Mw@mail.gmail.com>
- <82c8b18d-4e51-a137-6078-43b380661c37@gmail.com>
- <CABXGCsPpTTVXMTtZi_Yw_27VHHnPL_XSidMENzRniWZgZXd_NA@mail.gmail.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <CABXGCsPpTTVXMTtZi_Yw_27VHHnPL_XSidMENzRniWZgZXd_NA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 12 Jan 2023 13:35:57 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,45 +70,33 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexdeucher@gmail.com>, michel@daenzer.net,
- Borislav Petkov <bp@alien8.de>, amd-gfx@lists.freedesktop.org
+Cc: Alexey Kodanev <aleksei.kodanev@bell-sw.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+pipe_ctx pointer cannot be NULL when getting the address of
+an element of the pipe_ctx array.
 
+Detected using the static analysis tool - Svace.
+Signed-off-by: Alexey Kodanev <aleksei.kodanev@bell-sw.com>
+---
+ drivers/gpu/drm/amd/display/dc/dce60/dce60_hw_sequencer.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
-Am 10.01.23 um 19:21 schrieb Mikhail Gavrilov:
-> On Mon, Jan 9, 2023 at 6:40 PM Christian König
-> <ckoenig.leichtzumerken@gmail.com> wrote:
->> That looks like an out of memory situation is not gracefully handled.
->>
->> In other words we have a missing NULL check in drm_sched_job_cleanup().
->>
->> Going to take a look.
-> Very strange because it just reproduced again. Almost no memory leaked.
->
-> ❯ free
->                 total        used        free      shared  buff/cache   available
-> Mem:        65589600    34060388     1520668     3033284    30008544    27767260
-> Swap:       75497464      994560    74502904
-
-Mhm, our UVD guys reported similar problems when they open up to many 
-concurrent streams.
-
-Most likely some random issue cause by one of the gang submit patches.
-
-Could you try to better reproduce this? If we can reproduce this 
-reliable compiling the kernel with KASAN might help figuring out where 
-exactly something goes wrong.
-
-Christian.
-
->
->
->
->
->
-> --
-> Best Regards,
-> Mike Gavrilov.
+diff --git a/drivers/gpu/drm/amd/display/dc/dce60/dce60_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dce60/dce60_hw_sequencer.c
+index 920c7ae29d53..f0c002a6a538 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce60/dce60_hw_sequencer.c
++++ b/drivers/gpu/drm/amd/display/dc/dce60/dce60_hw_sequencer.c
+@@ -72,9 +72,6 @@ static bool dce60_should_enable_fbc(struct dc *dc,
+ 
+ 			pipe_ctx = &res_ctx->pipe_ctx[i];
+ 
+-			if (!pipe_ctx)
+-				continue;
+-
+ 			/* fbc not applicable on underlay pipe */
+ 			if (pipe_ctx->pipe_idx != underlay_idx) {
+ 				*pipe_idx = i;
+-- 
+2.25.1
 
