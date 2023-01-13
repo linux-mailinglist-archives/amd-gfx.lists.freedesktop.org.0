@@ -2,70 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4744F669BDC
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jan 2023 16:22:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78CD2669C8F
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jan 2023 16:38:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA64010EA1D;
-	Fri, 13 Jan 2023 15:22:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B22710EA24;
+	Fri, 13 Jan 2023 15:38:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com
- [IPv6:2a00:1450:4864:20::42c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36D7610EA1D
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 15:22:25 +0000 (UTC)
-Received: by mail-wr1-x42c.google.com with SMTP id q10so2067839wrs.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 07:22:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=0nN9ne5LVly5O2usN+AVPFxjEj48c/opPwIO+Cybe5U=;
- b=I1pm6fD0hTheocdjpxWstOuL28w1VKyWCm0/vyUYV6cTe7Fs3Dt+hso7voGZ4Wfefm
- 3FFU95M+ZSify/cij4TiwGWXmuAylQ0XdfLN/UJ3Iys3ybBuMpReC8iWxZco2/2bg2b8
- H60jP1LyW05DO9zb5nQczdjZpNPIfFTH/oI28CsvImkiTXw1PaPFs3cb/Obh0WcPDd4c
- jj94P+FROO4jji8DGGnokaw5/RvVi245YYt/zB5Yw5znVabaongl0/Y5QLg4ewCRFIGr
- 7f5WETTS4q/oHdthHRz1qtukSr/LUFZzCPsMqx4gDgMueqHlVCxeuIxl8UyM8aKjbync
- jsxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=0nN9ne5LVly5O2usN+AVPFxjEj48c/opPwIO+Cybe5U=;
- b=vZBVyqAV+TkhxSsFTf19FvlPxHhEmhO5Kl8OjdCu7u1dX0pefEV4YH46A+Z0fbZ8ch
- FGxvgkDDlAq94Ne9Dg3F3GPaKEJbDlZ+dHTdO4LKKAqpixPm4ul0m5wKszxpljp08QWq
- YyEyucQPftpWzm0LbNHrtcH8UvkWz4vHxJEoHxYvn1Dc+WQpIPRExnGSxphGVWxuoty0
- 33QIZkIOo3u1MP5dUin2lCeC72c3g4YRyTY1XwgacEFzwVcWv7T53YCueoGxNWEeCQjh
- stJnEo8FCrwD+nWfzBHazsod4HXL1bVuM8ObZefW5+43v4HNIcxWLkukTr0Ri2Z/qraj
- 4ZUg==
-X-Gm-Message-State: AFqh2krVY351rIRkIONz/f2Nw7tQ/iJrLEqoD59z6ojyrN5ma7V4AfsC
- AzgNeOkVYjAV8dPInX1vong=
-X-Google-Smtp-Source: AMrXdXumOYJVIeR+L80VaBfg+7EE3ziiM7hvJc28Az+7LMAzDmKLWnJZVSlOj1uopvZsN+XlQMhKhQ==
-X-Received: by 2002:a5d:5257:0:b0:2a8:e91d:ad31 with SMTP id
- k23-20020a5d5257000000b002a8e91dad31mr23985107wrc.62.1673623343775; 
- Fri, 13 Jan 2023 07:22:23 -0800 (PST)
-Received: from ?IPV6:2a02:908:1256:79a0:9fe7:7ab3:383d:1efb?
- ([2a02:908:1256:79a0:9fe7:7ab3:383d:1efb])
- by smtp.gmail.com with ESMTPSA id
- j14-20020adff00e000000b0024cb961b6aesm18778177wro.104.2023.01.13.07.22.22
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 13 Jan 2023 07:22:23 -0800 (PST)
-Message-ID: <bb96bd81-b62b-4f1e-25c9-a9ab66841988@gmail.com>
-Date: Fri, 13 Jan 2023 16:22:22 +0100
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B02E910EA23;
+ Fri, 13 Jan 2023 15:38:21 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id EA74C3ED04;
+ Fri, 13 Jan 2023 15:38:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1673624299; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=yZ63ucHm+CbxyutEFMxxdOAPNKxldaw5i/kT+04LaWc=;
+ b=2T/l/emzAreqGFdQveZ4qw0fogX29R38Dlt+DmzWenLId2bWb+i0NGgB3uA6+UYQMUUiG5
+ 8oXmBl5+IBu0ct9xtMWyiGcOZAZ6e8HZfjRkredgVIBpukUQI2l3YU66hsEOS79wX5pliR
+ SuFJH+vg1zjZPvUJDwTOYb329yKbhs8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1673624299;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=yZ63ucHm+CbxyutEFMxxdOAPNKxldaw5i/kT+04LaWc=;
+ b=piy0CWf35Dsp+SeNnBhmak9uU0kJRk9bYockc7qIKwvCHYeZnLRSZdc7ks8sk736Ah3I1B
+ rDWWOQj2zBEb4PAQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id AB8D313913;
+ Fri, 13 Jan 2023 15:38:19 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id hsPkKOt6wWPgPQAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Fri, 13 Jan 2023 15:38:19 +0000
+Message-ID: <91385d70-a58e-bc3e-d171-eb71dcb65ef5@suse.de>
+Date: Fri, 13 Jan 2023 16:38:19 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: Is "perfectly equal monitors" really required to reclock MCLK
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 01/10] drm: Include <linux/backlight.h> where needed
 Content-Language: en-US
-To: Alex Deucher <alexdeucher@gmail.com>, Braiam <braiamp@gmail.com>
-References: <CAG=7Bt9ivGs8rtZx3rzZj_uoTzeGwnYRYQ6ohfpxVFMNV3YtOw@mail.gmail.com>
- <CADnq5_Nx2H+ywnFZmwix8tRc3mk54Nw=4L60ibtWybiO0CJZuw@mail.gmail.com>
- <CAG=7Bt8xY_SHQwNCDgFCSNczBPxjUwjf_yvR_Ox-_XS+DVuJxA@mail.gmail.com>
- <CADnq5_NEznbC8FDjaA+WPqTMLX7nuN7MdvdFWDYNXK_F3y=hQQ@mail.gmail.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <CADnq5_NEznbC8FDjaA+WPqTMLX7nuN7MdvdFWDYNXK_F3y=hQQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+To: Sam Ravnborg <sam@ravnborg.org>
+References: <20230111130206.29974-1-tzimmermann@suse.de>
+ <20230111130206.29974-2-tzimmermann@suse.de> <Y8F0EW3rVPiuzciK@ravnborg.org>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <Y8F0EW3rVPiuzciK@ravnborg.org>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------Lkgm8dNnII7GyCNNXTvXw0tK"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,100 +69,127 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: f.fainelli@gmail.com, liviu.dudau@arm.com, dri-devel@lists.freedesktop.org,
+ thierry.reding@gmail.com, james.qian.wang@arm.com,
+ amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
+ bcm-kernel-feedback-list@broadcom.com, christian.koenig@amd.com,
+ linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 13.01.23 um 16:09 schrieb Alex Deucher:
-> On Fri, Jan 13, 2023 at 10:05 AM Braiam <braiamp@gmail.com> wrote:
->> AMD RX 590. Forgot to include it. How do I know the blanking period?
-> OK polaris falls into the first bucket.  Look at the full modelines.
-> E.g., xrandr --verbose.
->
->> Would variable refresh rate mess up with that?
-> Probably.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------Lkgm8dNnII7GyCNNXTvXw0tK
+Content-Type: multipart/mixed; boundary="------------1jgr0EovOjZDVbH0Kh0i4KuW";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Sam Ravnborg <sam@ravnborg.org>
+Cc: f.fainelli@gmail.com, amd-gfx@lists.freedesktop.org, liviu.dudau@arm.com,
+ dri-devel@lists.freedesktop.org, thierry.reding@gmail.com,
+ james.qian.wang@arm.com, alexander.deucher@amd.com,
+ bcm-kernel-feedback-list@broadcom.com, christian.koenig@amd.com,
+ linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org
+Message-ID: <91385d70-a58e-bc3e-d171-eb71dcb65ef5@suse.de>
+Subject: Re: [PATCH v2 01/10] drm: Include <linux/backlight.h> where needed
+References: <20230111130206.29974-1-tzimmermann@suse.de>
+ <20230111130206.29974-2-tzimmermann@suse.de> <Y8F0EW3rVPiuzciK@ravnborg.org>
+In-Reply-To: <Y8F0EW3rVPiuzciK@ravnborg.org>
 
-Totally, as far as I know VRR is currently a complete show stopper for 
-reclocking the MCLK.
+--------------1jgr0EovOjZDVbH0Kh0i4KuW
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-But on the other hand VRR could potentially be used to artificially 
-create some overlapping VBLANK period to do the actually reclocking. 
-Interesting idea.
+SGkNCg0KQW0gMTMuMDEuMjMgdW0gMTY6MDkgc2NocmllYiBTYW0gUmF2bmJvcmc6DQo+IEhp
+IFRob21hcywNCj4gT24gV2VkLCBKYW4gMTEsIDIwMjMgYXQgMDI6MDE6NTdQTSArMDEwMCwg
+VGhvbWFzIFppbW1lcm1hbm4gd3JvdGU6DQo+PiBJbmNsdWRlIDxsaW51eC9iYWNrbGlnaHQu
+aD4gaW4gc291cmNlIGZpbGVzIHRoYXQgbmVlZCBpdC4gU29tZSBvZg0KPj4gRFJNJ3Mgc291
+cmNlIGNvZGUgZ2V0cyB0aGUgYmFja2xpZ2h0IGhlYWRlciB2aWEgZHJtX2NydGNfaGVscGVy
+LmgNCj4+IGFuZCA8bGludXgvZmIuaD4sIHdoaWNoIGNhbiBsZWVkIHRvIHVubmVjZXNzYXJ5
+IHJlY29tcGlsYXRpb24uIElmDQo+PiBwb3NzaWJsZSwgZG8gbm90IGluY2x1ZGUgZHJtX2Ny
+dGNfaGVscGVyLmggYW55IGxvbmdlci4NCj4gQXJlIHlvdSBwbGFubmluZyBhIGNsZWFuLXVw
+IG9mIGRybV9jcnRjX2hlbHBlci5oIGxhdGVyPw0KDQo+IFdpdGggYSBoYW5kZnVsIG9mIGZv
+cndhcmQgaXQgY291bGQgbG9zc2UgYWxsIGluY2x1ZGVzLg0KDQpJbmRlZWQsIGxvb2tzIGxp
+a2UgaXQuIEFuZCBhIHF1aWNrIGdyZXAgc2hvd3MgdGhhdCBtYW55IHNvdXJjZSBmaWxlcyAN
+CmluY2x1ZGUgdGhpcyBoZWFkZXIuIEkga2VlcCBpdCBpbiBtaW5kIHRvIHRyeSB0byBpbXBy
+b3ZlIHRoYXQuDQoNCj4gDQo+Pg0KPj4gU2lnbmVkLW9mZi1ieTogVGhvbWFzIFppbW1lcm1h
+bm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+DQo+PiBBY2tlZC1ieTogQ2hyaXN0aWFuIEvDtm5p
+ZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPiAjIGFtZA0KPiBSZXZpZXdlZC1ieTogU2Ft
+IFJhdm5ib3JnIDxzYW1AcmF2bmJvcmcub3JnPg0KDQpJJ3ZlIGFscmVhZHkgbWVyZ2VkIHRo
+ZSBzZXJpZXMuIE1heGltZSBnYXZlIGFuIGEtYiB2aWEgSVJDLiBTdGlsbCB0aGFua3MgDQpm
+b3IgcmV2aWV3aW5nLg0KDQpCZXN0IHJlZ2FyZHMNClRob21hcw0KDQo+PiAtLS0NCj4+ICAg
+ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2FjcGkuYyAgICAgICAgICB8IDIg
+Ky0NCj4+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRncHVf
+ZG0uYyB8IDEgKw0KPj4gICBkcml2ZXJzL2dwdS9kcm0vZ21hNTAwL2JhY2tsaWdodC5jICAg
+ICAgICAgICAgICAgIHwgMiArKw0KPj4gICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVv
+bl9hY3BpLmMgICAgICAgICAgICAgIHwgMiArLQ0KPj4gICA0IGZpbGVzIGNoYW5nZWQsIDUg
+aW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCj4+DQo+PiBkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2FjcGkuYyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9hbWQvYW1kZ3B1L2FtZGdwdV9hY3BpLmMNCj4+IGluZGV4IDU3YjVlMTE0NDZjNi4uZjI5
+YzFkMGFkNGMxIDEwMDY0NA0KPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
+YW1kZ3B1X2FjcGkuYw0KPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
+Z3B1X2FjcGkuYw0KPj4gQEAgLTI0LDYgKzI0LDcgQEANCj4+ICAgDQo+PiAgICNpbmNsdWRl
+IDxsaW51eC9wY2kuaD4NCj4+ICAgI2luY2x1ZGUgPGxpbnV4L2FjcGkuaD4NCj4+ICsjaW5j
+bHVkZSA8bGludXgvYmFja2xpZ2h0Lmg+DQo+PiAgICNpbmNsdWRlIDxsaW51eC9zbGFiLmg+
+DQo+PiAgICNpbmNsdWRlIDxsaW51eC9wb3dlcl9zdXBwbHkuaD4NCj4+ICAgI2luY2x1ZGUg
+PGxpbnV4L3BtX3J1bnRpbWUuaD4NCj4+IEBAIC0zMSw3ICszMiw2IEBADQo+PiAgICNpbmNs
+dWRlIDxhY3BpL3ZpZGVvLmg+DQo+PiAgICNpbmNsdWRlIDxhY3BpL2FjdGJsLmg+DQo+PiAg
+IA0KPj4gLSNpbmNsdWRlIDxkcm0vZHJtX2NydGNfaGVscGVyLmg+DQo+PiAgICNpbmNsdWRl
+ICJhbWRncHUuaCINCj4+ICAgI2luY2x1ZGUgImFtZGdwdV9wbS5oIg0KPj4gICAjaW5jbHVk
+ZSAiYW1kZ3B1X2Rpc3BsYXkuaCINCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+YW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5jIGIvZHJpdmVycy9ncHUvZHJtL2Ft
+ZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRncHVfZG0uYw0KPj4gaW5kZXggMWI3ZjIwYTlkNGFl
+Li41NWE4NDVlYjBjNmQgMTAwNjQ0DQo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rp
+c3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5jDQo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
+YW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5jDQo+PiBAQCAtNjcsNiArNjcsNyBA
+QA0KPj4gICAjaW5jbHVkZSAiaXZzcmNpZC9pdnNyY2lkX3Zpc2xhbmRzMzAuaCINCj4+ICAg
+DQo+PiAgICNpbmNsdWRlICJpMmNhdXhfaW50ZXJmYWNlLmgiDQo+PiArI2luY2x1ZGUgPGxp
+bnV4L2JhY2tsaWdodC5oPg0KPj4gICAjaW5jbHVkZSA8bGludXgvbW9kdWxlLmg+DQo+PiAg
+ICNpbmNsdWRlIDxsaW51eC9tb2R1bGVwYXJhbS5oPg0KPj4gICAjaW5jbHVkZSA8bGludXgv
+dHlwZXMuaD4NCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZ21hNTAwL2JhY2ts
+aWdodC5jIGIvZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9iYWNrbGlnaHQuYw0KPj4gaW5kZXgg
+NTc3YTQ5ODdiMTkzLi44NzExYTdhNWI4ZGEgMTAwNjQ0DQo+PiAtLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vZ21hNTAwL2JhY2tsaWdodC5jDQo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vZ21h
+NTAwL2JhY2tsaWdodC5jDQo+PiBAQCAtNyw2ICs3LDggQEANCj4+ICAgICogQXV0aG9yczog
+RXJpYyBLbm9wcA0KPj4gICAgKi8NCj4+ICAgDQo+PiArI2luY2x1ZGUgPGxpbnV4L2JhY2ts
+aWdodC5oPg0KPj4gKw0KPj4gICAjaW5jbHVkZSA8YWNwaS92aWRlby5oPg0KPj4gICANCj4+
+ICAgI2luY2x1ZGUgInBzYl9kcnYuaCINCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vcmFkZW9uL3JhZGVvbl9hY3BpLmMgYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVv
+bl9hY3BpLmMNCj4+IGluZGV4IGI2MDNjMGI3NzA3NS4uNTc3MWQxZmNiMDczIDEwMDY0NA0K
+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fYWNwaS5jDQo+PiArKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9hY3BpLmMNCj4+IEBAIC0yMiw2ICsy
+Miw3IEBADQo+PiAgICAqLw0KPj4gICANCj4+ICAgI2luY2x1ZGUgPGxpbnV4L2FjcGkuaD4N
+Cj4+ICsjaW5jbHVkZSA8bGludXgvYmFja2xpZ2h0Lmg+DQo+PiAgICNpbmNsdWRlIDxsaW51
+eC9wY2kuaD4NCj4+ICAgI2luY2x1ZGUgPGxpbnV4L3BtX3J1bnRpbWUuaD4NCj4+ICAgI2lu
+Y2x1ZGUgPGxpbnV4L3Bvd2VyX3N1cHBseS5oPg0KPj4gQEAgLTMwLDcgKzMxLDYgQEANCj4+
+ICAgI2luY2x1ZGUgPGFjcGkvYWNwaV9idXMuaD4NCj4+ICAgI2luY2x1ZGUgPGFjcGkvdmlk
+ZW8uaD4NCj4+ICAgDQo+PiAtI2luY2x1ZGUgPGRybS9kcm1fY3J0Y19oZWxwZXIuaD4NCj4+
+ICAgI2luY2x1ZGUgPGRybS9kcm1fcHJvYmVfaGVscGVyLmg+DQo+PiAgIA0KPj4gICAjaW5j
+bHVkZSAiYXRvbS5oIg0KPj4gLS0gDQo+PiAyLjM5LjANCg0KLS0gDQpUaG9tYXMgWmltbWVy
+bWFubg0KR3JhcGhpY3MgRHJpdmVyIERldmVsb3Blcg0KU1VTRSBTb2Z0d2FyZSBTb2x1dGlv
+bnMgR2VybWFueSBHbWJIDQpNYXhmZWxkc3RyLiA1LCA5MDQwOSBOw7xybmJlcmcsIEdlcm1h
+bnkNCihIUkIgMzY4MDksIEFHIE7DvHJuYmVyZykNCkdlc2Now6RmdHNmw7xocmVyOiBJdm8g
+VG90ZXYNCg==
 
-We might want to ping Harry or somebody else form the DC team if they 
-have thought about that yet.
+--------------1jgr0EovOjZDVbH0Kh0i4KuW--
 
-Christian.
+--------------Lkgm8dNnII7GyCNNXTvXw0tK
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
->
-> Alex
->
->> On Fri, Jan 13, 2023 at 10:57 AM Alex Deucher <alexdeucher@gmail.com> wrote:
->>> On Fri, Jan 13, 2023 at 9:47 AM Braiam <braiamp@gmail.com> wrote:
->>>> Hi,
->>>>
->>>> I have two monitors with the current following configuration:
->>>>
->>>> Screen 0: minimum 320 x 200, current 5120 x 1440, maximum 16384 x 16384
->>>> DisplayPort-0 connected primary 2560x1440+0+0 (normal left inverted
->>>> right x axis y axis) 597mm x 336mm
->>>>     2560x1440    164.83 +  59.95 + 120.05*   96.01    72.01    60.01
->>>> 143.97   120.00    74.97
->>>> [snip]
->>>> DisplayPort-1 connected 2560x1440+2560+0 (normal left inverted right x
->>>> axis y axis) 597mm x 336mm
->>>>     2560x1440    165.00 +  59.95 + 120.06*   96.04    72.01    60.01
->>>> 50.01    48.01   144.00   119.99    99.99
->>>> [snip]
->>>> HDMI-A-0 disconnected (normal left inverted right x axis y axis)
->>>> HDMI-A-1 disconnected (normal left inverted right x axis y axis)
->>>> DVI-D-0 disconnected (normal left inverted right x axis y axis)
->>>>
->>>> The pp_profile_mode:
->>>>
->>>> NUM        MODE_NAME     SCLK_UP_HYST   SCLK_DOWN_HYST
->>>> SCLK_ACTIVE_LEVEL     MCLK_UP_HYST   MCLK_DOWN_HYST MCLK_ACTIVE_LEVEL
->>>>    0   BOOTUP_DEFAULT:        -                -                -
->>>>           -                -                -
->>>>    1 3D_FULL_SCREEN *:        0              100               30
->>>>          10               60               25
->>>>    2     POWER_SAVING:       10                0               30
->>>>           -                -                -
->>>>    3            VIDEO:        -                -                -
->>>>          10               16               31
->>>>    4               VR:        0               11               50
->>>>           0              100               10
->>>>    5          COMPUTE:        0                5               30
->>>>           -                -                -
->>>>    6           CUSTOM:        -                -                -
->>>>           -                -                -
->>>>
->>>> I have set their refresh rate to 72.01 which is a mode equal for both,
->>>> and the MCLK wasn't downclocked either. They are branded HP and
->>>> Scepter. Using a vtty doesn't help either.
->>>>
->>>> Is having the exact same monitor really required? If not, how can I
->>>> check what is causing
->>>> the memory clock to be pegged that high?
->>> It depends what GPU you have.  Older ones can only reclock memory
->>> during the vertical blanking period assuming it's long enough as the
->>> whole reclocking process takes a certain amount of time.  If it
->>> doesn't happen during the blanking period you will get visible
->>> glitches on the screen when the reclock happens.  If the vertical
->>> blanking period is not long enough or if the vblank periods are not
->>> aligned when using multiple monitors, the driver doesn't reclock.  The
->>> mode lines (not just the refresh rate) have to be the exact same for
->>> the vblanks to line up when using multiple monitors.  Your best bet is
->>> to take the mode line you want to use from one monitor and apply it to
->>> the other monitor.  Newer GPUs have more flexibility and can reclock
->>> memory in more situations, but there are still some monitors where the
->>> timing may not work out.
->>>
->>> What GPU do you have?
->>>
->>> Alex
->>
->>
->> --
->> Braiam
+-----BEGIN PGP SIGNATURE-----
 
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmPBeusFAwAAAAAACgkQlh/E3EQov+BX
+gRAAzMAFXiW6nyZ/XKvxeAliz6cmsRLu7yD+w1ZksIAyp2Dq1SZG0D3o1Y6i53yy7xaEazVYBqYw
+DBUu8LFsxaqlcThwb2NNpwLZjCcs4eRT+MepVCTDHEBE9KsAdzM7HORvAiDeLJFXGO3JfFt0QiXO
+I40D/vx/UC8QpBRfwdt4eH7/7ommD7kPaLAag1/Pzt6kEL4buk8w6GuVbS2LQOvbXoMAuBvb3b0Y
+3q1VIVrwgTxRXmZ2yS3lTVMuFoBpwNLSbxQYanKLTambyDlHkg2mpmsi8zcKvCv6PHy/raAJaImu
+voCwZvAqnDkWw/JB09ppmin0W3ZUUhOPEYBc99UoYTWGr0D/7FsZ9wM6YWM+VcK6WXecb/++EdWu
+MAz/XHvTvdj/DKWv67v5jEZowbd6IiqpbS+Yoa8VFk+t9mI+ezXP7D0eOxDi8cnzAlvNybGg6iDq
+amRC/8xVxj3H1cgDp0MOItG3qWhbRZv6ji7VshJ7cb2RRoYRZkQUM5+B9meWzxjWc35HLCXNtUdL
+cBilviJ2BEvgw997uQfxW469LLcWwD4pFuLD1PkbI8335pSRBvGIms9AxED5ao/6dfhvLnxm9tVJ
+KQaPWCFIiEVgtbHzL/4IMVGIWo2s1FhOTJ8sk7jPF9woURDzgCyzJWHVH3Wdbstjd1SBL6yKOu/Z
+Jh4=
+=gZMw
+-----END PGP SIGNATURE-----
+
+--------------Lkgm8dNnII7GyCNNXTvXw0tK--
