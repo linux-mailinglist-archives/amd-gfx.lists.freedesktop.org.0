@@ -1,59 +1,58 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C102D669B7B
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jan 2023 16:09:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19944669B6A
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jan 2023 16:07:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39D6110EA15;
-	Fri, 13 Jan 2023 15:09:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49D4C10EA12;
+	Fri, 13 Jan 2023 15:07:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com
- [IPv6:2607:f8b0:4864:20::735])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CEBF10EA18
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 15:05:06 +0000 (UTC)
-Received: by mail-qk1-x735.google.com with SMTP id s8so7687494qkj.6
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 07:05:06 -0800 (PST)
+Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com
+ [IPv6:2001:4860:4864:20::2e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C63510EA27
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 15:07:50 +0000 (UTC)
+Received: by mail-oa1-x2e.google.com with SMTP id
+ 586e51a60fabf-15eeec85280so1433828fac.11
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 07:07:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=uVrK1cyxYV/072COOLGKft9M2+XTzGZUJIv8QdAx04g=;
- b=diXi2Kj3sCn6cGao3w7W9xxAY4xJR+frVq0nca0vwpI7SH6fzzHphD37CLuAnPRBdv
- ebnNzl4cW8PIHTyJJz8yHoAhXx+noI0l7Fpk/gO7VoY/4UNZUAf9GoRnpIIj+BhanuNA
- qkk0t8PJkawToo8m/5IJeE94pT6Z7U9SD1LPPdQci9lmKSP0mO0Iv+uhL1utxcPb1esU
- 2hSGNl5p1wE8Lnzl+QhhMG/Foqkdt7tcdxP0EWAJnAIBvSZYZthOsqh5KQsou/006o10
- hS30L7d17fgjp3Yowh3fVZKD43JiNuUNnSlYjrtEqzW3/7vJrll4NUfTyhJ/gkzzppjT
- jtRg==
+ bh=3squmkvf8+Hyo4sOkO0tbwQ+mJfb+vZx3IOuGl3coY8=;
+ b=Q7A2tf6w3gi52IDlJV+0i5/KUmJ/Mo8eWOyKXlX7mmSGGCDYUhceXDF4vBtzS/HwIj
+ DF2wfaKAp8Gmy9QVAtTlrNz1oT2Vz8V61OipirH40HnEQhcFBQiNUVMPsnCVODpNoNqN
+ Ecep8w5svMt6dzKBrAvwwi2Ns9mCdzYrASk9zQg8p22jlFA+g2ZqREZvYS8fV6dddMSh
+ K19k+Sw6eQUTUTj8Jxi4v5C0J0wx7G8C6Md1uKMpik5fWMYP36mUdqZIi52+SUNW+Y3N
+ sbe07teVIX/ufomNOcqEvYMR/B943WRfI5SukdEe0W7fUqFpQyB9HI8w8dB0J4LdFqna
+ 33YQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=uVrK1cyxYV/072COOLGKft9M2+XTzGZUJIv8QdAx04g=;
- b=0IQMaPNy3ZukYVg5pWpO0RwsmDLBeshBs0fwWR4ZCZURc9i6eddPYQrYEA5TbNGxYl
- jVlkShf4oiIlAQO2pqPeW+i7zfthosYBBi/DDIdvkgrhkrnmek/euAcnqfKoDI5MXGrq
- JIZ0bgWZK8dYR+thtKGYJpkEpWEktXEzUlounP1cR225FGq6jJo5Sgmt/tGsDu/H0qvo
- Vr8/HC32JqExii1BcNORYFkWwEgWmD+nMYg+2iMgN9/fyjHoh4rtPkVEG88TZQFoEHjD
- wN1I/3yfBlFQXcd2dDrZkaPW1Yja+ZAfttHVJ4fH3tsDBWaszU8x0/wuexn+BGgg1EPd
- cWrA==
-X-Gm-Message-State: AFqh2kpDc+milb6Na7hSyNtYOdjg5mEsYDkiJ3uwnF6lPaI2W894KkL6
- oz3POYyugWCTgwWHtkbiv58O2uSSTJO+oLdfCLw=
-X-Google-Smtp-Source: AMrXdXuRpHbCrepUL1bu7kUIGygGY5t4qsbs0nd3yfUN5y4mPdD4RkSnv6rQIKfjxB+umxAgYtBh8mDuZevh3fj8XYw=
-X-Received: by 2002:a05:620a:6d8:b0:706:219b:d3de with SMTP id
- 24-20020a05620a06d800b00706219bd3demr69365qky.34.1673622305418; Fri, 13 Jan
- 2023 07:05:05 -0800 (PST)
+ bh=3squmkvf8+Hyo4sOkO0tbwQ+mJfb+vZx3IOuGl3coY8=;
+ b=wrscJuR7EHmymJunChJ4ufOsiJzkB3HAHAncpxCPLGu3SmbzI2MBsx7ZPdaZ2yvjxV
+ T8lF4/GZMPx72r8OQpp8Uc/DHmCJdyr01GvGO/4YBUv1I2xjfMEt4DZ1j9zG8Bo3ec5t
+ 8rKIlKR8zZYQ0iCRgYenXZWBX+LwbYLceaXQPiGF4K+wBgMSFZXHQCd/opB0828TOK8t
+ Kvr/e4crHyGjl/JIKAW3t6OHrOF45MN6/xT2x5z6HH48ugzXylmwVUBLTqNT0m7NcscT
+ xD+MgbctqO+Y1MxgnEMH7e7z5Vmj6mS/m5t+qM1tTtBrHPOsgJaXZ9f/xF3M3cpDCzHF
+ xFSA==
+X-Gm-Message-State: AFqh2kr8tBXgyOYRhJskFFZHr/kTFKDz9XD27Ryt9FBG3SdnDpO3+O1J
+ k78DAL7uKuJdOz/Q38cjFAwPL0vrVnx7cfPCJi736oYI
+X-Google-Smtp-Source: AMrXdXtsq8XabHAo4Dfy/VX2EaLmSZJs7TcfO9oJKDZbKTnYSE7iLuhbAP97U9Za3q3jFwKzjjPEfsqQ3uFQ3EZWnGY=
+X-Received: by 2002:a05:6870:970e:b0:148:3c8f:15ab with SMTP id
+ n14-20020a056870970e00b001483c8f15abmr6930876oaq.46.1673622469199; Fri, 13
+ Jan 2023 07:07:49 -0800 (PST)
 MIME-Version: 1.0
-References: <CAG=7Bt9ivGs8rtZx3rzZj_uoTzeGwnYRYQ6ohfpxVFMNV3YtOw@mail.gmail.com>
- <CADnq5_Nx2H+ywnFZmwix8tRc3mk54Nw=4L60ibtWybiO0CJZuw@mail.gmail.com>
-In-Reply-To: <CADnq5_Nx2H+ywnFZmwix8tRc3mk54Nw=4L60ibtWybiO0CJZuw@mail.gmail.com>
-From: Braiam <braiamp@gmail.com>
-Date: Fri, 13 Jan 2023 11:04:55 -0400
-Message-ID: <CAG=7Bt8xY_SHQwNCDgFCSNczBPxjUwjf_yvR_Ox-_XS+DVuJxA@mail.gmail.com>
-Subject: Re: Is "perfectly equal monitors" really required to reclock MCLK
-To: Alex Deucher <alexdeucher@gmail.com>
+References: <20230113094445.5933-1-vitaly.prosyak@amd.com>
+In-Reply-To: <20230113094445.5933-1-vitaly.prosyak@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 13 Jan 2023 10:07:37 -0500
+Message-ID: <CADnq5_N85j2NCem0-d0y3EBmyvR=ba0hF44+1DQrj982WgA-Zg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: revert part of a commit fac53471d0ea9
+To: vitaly.prosyak@amd.com
 Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Fri, 13 Jan 2023 15:09:50 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,82 +64,60 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: alexander.deucher@amd.com, yipeng.chai@amd.com, christian.koenig@amd.com,
+ amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-AMD RX 590. Forgot to include it. How do I know the blanking period?
-Would variable refresh rate mess up with that?
-
-On Fri, Jan 13, 2023 at 10:57 AM Alex Deucher <alexdeucher@gmail.com> wrote:
+On Fri, Jan 13, 2023 at 4:44 AM <vitaly.prosyak@amd.com> wrote:
 >
-> On Fri, Jan 13, 2023 at 9:47 AM Braiam <braiamp@gmail.com> wrote:
-> >
-> > Hi,
-> >
-> > I have two monitors with the current following configuration:
-> >
-> > Screen 0: minimum 320 x 200, current 5120 x 1440, maximum 16384 x 16384
-> > DisplayPort-0 connected primary 2560x1440+0+0 (normal left inverted
-> > right x axis y axis) 597mm x 336mm
-> >    2560x1440    164.83 +  59.95 + 120.05*   96.01    72.01    60.01
-> > 143.97   120.00    74.97
-> > [snip]
-> > DisplayPort-1 connected 2560x1440+2560+0 (normal left inverted right x
-> > axis y axis) 597mm x 336mm
-> >    2560x1440    165.00 +  59.95 + 120.06*   96.04    72.01    60.01
-> > 50.01    48.01   144.00   119.99    99.99
-> > [snip]
-> > HDMI-A-0 disconnected (normal left inverted right x axis y axis)
-> > HDMI-A-1 disconnected (normal left inverted right x axis y axis)
-> > DVI-D-0 disconnected (normal left inverted right x axis y axis)
-> >
-> > The pp_profile_mode:
-> >
-> > NUM        MODE_NAME     SCLK_UP_HYST   SCLK_DOWN_HYST
-> > SCLK_ACTIVE_LEVEL     MCLK_UP_HYST   MCLK_DOWN_HYST MCLK_ACTIVE_LEVEL
-> >   0   BOOTUP_DEFAULT:        -                -                -
-> >          -                -                -
-> >   1 3D_FULL_SCREEN *:        0              100               30
-> >         10               60               25
-> >   2     POWER_SAVING:       10                0               30
-> >          -                -                -
-> >   3            VIDEO:        -                -                -
-> >         10               16               31
-> >   4               VR:        0               11               50
-> >          0              100               10
-> >   5          COMPUTE:        0                5               30
-> >          -                -                -
-> >   6           CUSTOM:        -                -                -
-> >          -                -                -
-> >
-> > I have set their refresh rate to 72.01 which is a mode equal for both,
-> > and the MCLK wasn't downclocked either. They are branded HP and
-> > Scepter. Using a vtty doesn't help either.
-> >
-> > Is having the exact same monitor really required? If not, how can I
-> > check what is causing
-> > the memory clock to be pegged that high?
+> From: Vitaly Prosyak <vitaly.prosyak@amd.com>
 >
-> It depends what GPU you have.  Older ones can only reclock memory
-> during the vertical blanking period assuming it's long enough as the
-> whole reclocking process takes a certain amount of time.  If it
-> doesn't happen during the blanking period you will get visible
-> glitches on the screen when the reclock happens.  If the vertical
-> blanking period is not long enough or if the vblank periods are not
-> aligned when using multiple monitors, the driver doesn't reclock.  The
-> mode lines (not just the refresh rate) have to be the exact same for
-> the vblanks to line up when using multiple monitors.  Your best bet is
-> to take the mode line you want to use from one monitor and apply it to
-> the other monitor.  Newer GPUs have more flexibility and can reclock
-> memory in more situations, but there are still some monitors where the
-> timing may not work out.
+> Revert the following change: move drm_dev_unplug call after
+> amdgpu_driver_unload_kms in amdgpu_pci_remove.
+> The reason is following: amdgpu_pci_remove calls drm_dev_unregister
+> and it should be called first to ensure userspace can't access the
+> device instance anymore. If we call drm_dev_unplug after
+> amdgpu_driver_unload_kms then we observe IGT PCI software unplug
+> test failure (kernel hung) for all ASIC's. This is how this
+> regression was found.
+
+Maybe just revert the entire patch rather than a partial revert?  That
+said, reverting the change will break
+driver unload because we need to send certain messages to the PSP to
+clean things up.  I'm not sure
+what the best way around that is.
+
+Alex
+
 >
-> What GPU do you have?
+> Signed-off-by: Vitaly Prosyak <vitaly.prosyak@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 >
-> Alex
-
-
-
--- 
-Braiam
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> index 06aba201d4db..8a1047224000 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> @@ -2226,6 +2226,8 @@ amdgpu_pci_remove(struct pci_dev *pdev)
+>         struct drm_device *dev = pci_get_drvdata(pdev);
+>         struct amdgpu_device *adev = drm_to_adev(dev);
+>
+> +       drm_dev_unplug(dev);
+> +
+>         if (adev->pm.rpm_mode != AMDGPU_RUNPM_NONE) {
+>                 pm_runtime_get_sync(dev->dev);
+>                 pm_runtime_forbid(dev->dev);
+> @@ -2265,7 +2267,7 @@ amdgpu_pci_remove(struct pci_dev *pdev)
+>
+>         amdgpu_driver_unload_kms(dev);
+>
+> -       drm_dev_unplug(dev);
+> +
+>
+>         /*
+>          * Flush any in flight DMA operations from device.
+> --
+> 2.25.1
+>
