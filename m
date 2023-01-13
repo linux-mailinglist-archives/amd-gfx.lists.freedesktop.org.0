@@ -2,58 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D3D5669B76
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jan 2023 16:09:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEF59669C0D
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jan 2023 16:27:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBAE710EA14;
-	Fri, 13 Jan 2023 15:09:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40D1510EA25;
+	Fri, 13 Jan 2023 15:27:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com
- [IPv6:2607:f8b0:4864:20::22f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9924010EA14
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 15:09:30 +0000 (UTC)
-Received: by mail-oi1-x22f.google.com with SMTP id r205so17899558oib.9
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 07:09:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=qWsmA91njJFI48LoPfQPZEYK4lxRnEt8yXihY6/F4gM=;
- b=llvECa0G46ghb0PsZ8ielz3IwkKWjgB2dd4h2QnnzpSlaUGEC+ljKGZeiq+Tjip/d3
- tbuwTIkMnhUWtbyY0sQzv5HzPHQL3mLo/+oRdblbflsdPdFeEsEnFnqG911zCncvD85c
- s1aYr4W7h4cs5x2/McY+REOTMkfK1M/pItdmCtVZWEASqGBuH0aez/I8ZXDlrAW4PGT1
- pZYgCbhQgO8ZhShEdeTl0XMh7umay+INWF3gEp3jahM3vXZ0DLxIFSRWLY7/yrDd19pa
- 7o6bpd3HvaJ/eOttGyubR8F3ZSEPmA5xw+vL6aJ9zsiDg9HRK/KxADDGyVaOX6Sah8PC
- KW1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=qWsmA91njJFI48LoPfQPZEYK4lxRnEt8yXihY6/F4gM=;
- b=eIFJJXpdYkoMj6ue+4ZKoVj77GAA13/skv7BfzpMhuqvXmO8j1P7gv1HQdr7Wp6Wl4
- nxcB/q6eP89n4jCjxu165enOVjNSJPHZuHetd0k7KjWgubcw6xOaIyC8ZrIkQGaHuTZG
- S9p2EAcIpoDU2+O8ggERg5r18oswUnGJROw+vvtsTJXETIxyw5ZgFJ9uVpRM/q/vmpdL
- A1eRrMqhjPloDa9MUXsNvJX9/RJH6XvchJw4QD3F2UmBpflAp4grVyJ1GoqdTJPOsGhm
- 48U+VLmYV97FbOtjgqr79kNxUyx1ueJ6eTGvuzTiclTobMpBwt/dNGac4bRurvRjQVEy
- Mhzg==
-X-Gm-Message-State: AFqh2krYHDKEMnJQqPx7vycGNCEpd8UAQh9yZveEpVaGQDEgABZmRxWi
- WTMgJsPu0SsiJ08rM+NemEu5YT3TUOacCkIjmROdTOfa
-X-Google-Smtp-Source: AMrXdXtj1BRoQaKNxRRMM36k08WWjfD4tXW5wz6kMxW+Wvn3dcIZasEQIh99gnqfcntDaYM93FRnN+3DUDDOdLgsd9k=
-X-Received: by 2002:a05:6808:2001:b0:35b:d93f:cbc4 with SMTP id
- q1-20020a056808200100b0035bd93fcbc4mr5260649oiw.96.1673622569839; Fri, 13 Jan
- 2023 07:09:29 -0800 (PST)
+X-Greylist: delayed 963 seconds by postgrey-1.36 at gabe;
+ Fri, 13 Jan 2023 15:27:55 UTC
+Received: from mailrelay4-1.pub.mailoutpod2-cph3.one.com
+ (mailrelay4-1.pub.mailoutpod2-cph3.one.com [IPv6:2a02:2350:5:403::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B580410EA21
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 15:27:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ravnborg.org; s=rsa2;
+ h=in-reply-to:content-transfer-encoding:content-type:mime-version:references:
+ message-id:subject:cc:to:from:date:from;
+ bh=7xo0lUqCXtQjj7HGe3/XSw+dtrQw47PwsMVRGQgaRxU=;
+ b=Gfuwc/lJ0xNywxrgcVr48BselpyBkpaBoWwhUvL4mNqL5Mggl/50eqdxrH5JAiNCigYYziRwepSy1
+ jf931xWWfONpIG3UUMGPj2OlCIzmzlG1XOpaiJ8uXIQUBvkodfkXPiq1h42+4Z8/xqVM3B7YUYXUXn
+ Bgn3Y37MFtMLD8ip4InSORuFJ+o6BCtD0wquGdfuWYB8UgyVB4N/G3xSK78jf4f7mHHusqoKLcz/Ek
+ 2sDNYyAmb8Ljqiv7mKIwKkr8UKf0M815JRqi2Br1igGgnQpvp6fyUoaRPEwP+meOlBzp8S8wr8QxJN
+ iNhMIMUezmGK0c8XDHAFxMWfS3/485A==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+ d=ravnborg.org; s=ed2;
+ h=in-reply-to:content-transfer-encoding:content-type:mime-version:references:
+ message-id:subject:cc:to:from:date:from;
+ bh=7xo0lUqCXtQjj7HGe3/XSw+dtrQw47PwsMVRGQgaRxU=;
+ b=cKLS8SjnnALmqkSd3WPu/c5io07sZiabEUQ2OZ/dbK4D3ulg8nzrS6MoL+o1QiSQGboUHCBXVJKjl
+ xIECvdcCA==
+X-HalOne-ID: 9997ceb3-9354-11ed-a77e-87783a957ad9
+Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
+ by mailrelay4 (Halon) with ESMTPSA
+ id 9997ceb3-9354-11ed-a77e-87783a957ad9;
+ Fri, 13 Jan 2023 15:11:49 +0000 (UTC)
+Date: Fri, 13 Jan 2023 16:11:48 +0100
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH v2 02/10] drm: Include <linux/of.h> where needed
+Message-ID: <Y8F0tM/mt0EQyfwo@ravnborg.org>
+References: <20230111130206.29974-1-tzimmermann@suse.de>
+ <20230111130206.29974-3-tzimmermann@suse.de>
+ <Y77fCmivLygHyuZ+@intel.com>
 MIME-Version: 1.0
-References: <CAG=7Bt9ivGs8rtZx3rzZj_uoTzeGwnYRYQ6ohfpxVFMNV3YtOw@mail.gmail.com>
- <CADnq5_Nx2H+ywnFZmwix8tRc3mk54Nw=4L60ibtWybiO0CJZuw@mail.gmail.com>
- <CAG=7Bt8xY_SHQwNCDgFCSNczBPxjUwjf_yvR_Ox-_XS+DVuJxA@mail.gmail.com>
-In-Reply-To: <CAG=7Bt8xY_SHQwNCDgFCSNczBPxjUwjf_yvR_Ox-_XS+DVuJxA@mail.gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 13 Jan 2023 10:09:18 -0500
-Message-ID: <CADnq5_NEznbC8FDjaA+WPqTMLX7nuN7MdvdFWDYNXK_F3y=hQQ@mail.gmail.com>
-Subject: Re: Is "perfectly equal monitors" really required to reclock MCLK
-To: Braiam <braiamp@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Y77fCmivLygHyuZ+@intel.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,93 +60,34 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: f.fainelli@gmail.com, Thomas Zimmermann <tzimmermann@suse.de>,
+ amd-gfx@lists.freedesktop.org, liviu.dudau@arm.com,
+ dri-devel@lists.freedesktop.org, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, thierry.reding@gmail.com, james.qian.wang@arm.com,
+ patrik.r.jakobsson@gmail.com, daniel@ffwll.ch, alexander.deucher@amd.com,
+ bcm-kernel-feedback-list@broadcom.com, airlied@gmail.com,
+ christian.koenig@amd.com, linux-arm-kernel@lists.infradead.org,
+ linux-rpi-kernel@lists.infradead.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 13, 2023 at 10:05 AM Braiam <braiamp@gmail.com> wrote:
->
-> AMD RX 590. Forgot to include it. How do I know the blanking period?
+Hi Ville,
+On Wed, Jan 11, 2023 at 06:08:42PM +0200, Ville Syrjälä wrote:
+> On Wed, Jan 11, 2023 at 02:01:58PM +0100, Thomas Zimmermann wrote:
+> > Include <linux/of.h> in source files that need it. Some of DRM's
+> > source code gets OF header via drm_crtc_helper.h and <linux/fb.h>,
+> > which can leed to unnecessary recompilation.
+> > 
+> > In drm_modes.c, add a comment on the reason for still including
+> > <linux/fb.h>. The header file is required to get KHZ2PICOS(). The
+> > macro is part of the UAPI headers, so it cannot be moved to a less
+> > prominent location.
+> 
+> I never liked that KHZ2PICOS() thing in there. Maybe we should
+> just nuke it and see if anyone notices?
+https://github.com/search?q=KHZ2PICOS&type=code
 
-OK polaris falls into the first bucket.  Look at the full modelines.
-E.g., xrandr --verbose.
+tells me that it will be noticed.
+So it is part of the UAPI
 
-> Would variable refresh rate mess up with that?
-
-Probably.
-
-Alex
-
->
-> On Fri, Jan 13, 2023 at 10:57 AM Alex Deucher <alexdeucher@gmail.com> wrote:
-> >
-> > On Fri, Jan 13, 2023 at 9:47 AM Braiam <braiamp@gmail.com> wrote:
-> > >
-> > > Hi,
-> > >
-> > > I have two monitors with the current following configuration:
-> > >
-> > > Screen 0: minimum 320 x 200, current 5120 x 1440, maximum 16384 x 16384
-> > > DisplayPort-0 connected primary 2560x1440+0+0 (normal left inverted
-> > > right x axis y axis) 597mm x 336mm
-> > >    2560x1440    164.83 +  59.95 + 120.05*   96.01    72.01    60.01
-> > > 143.97   120.00    74.97
-> > > [snip]
-> > > DisplayPort-1 connected 2560x1440+2560+0 (normal left inverted right x
-> > > axis y axis) 597mm x 336mm
-> > >    2560x1440    165.00 +  59.95 + 120.06*   96.04    72.01    60.01
-> > > 50.01    48.01   144.00   119.99    99.99
-> > > [snip]
-> > > HDMI-A-0 disconnected (normal left inverted right x axis y axis)
-> > > HDMI-A-1 disconnected (normal left inverted right x axis y axis)
-> > > DVI-D-0 disconnected (normal left inverted right x axis y axis)
-> > >
-> > > The pp_profile_mode:
-> > >
-> > > NUM        MODE_NAME     SCLK_UP_HYST   SCLK_DOWN_HYST
-> > > SCLK_ACTIVE_LEVEL     MCLK_UP_HYST   MCLK_DOWN_HYST MCLK_ACTIVE_LEVEL
-> > >   0   BOOTUP_DEFAULT:        -                -                -
-> > >          -                -                -
-> > >   1 3D_FULL_SCREEN *:        0              100               30
-> > >         10               60               25
-> > >   2     POWER_SAVING:       10                0               30
-> > >          -                -                -
-> > >   3            VIDEO:        -                -                -
-> > >         10               16               31
-> > >   4               VR:        0               11               50
-> > >          0              100               10
-> > >   5          COMPUTE:        0                5               30
-> > >          -                -                -
-> > >   6           CUSTOM:        -                -                -
-> > >          -                -                -
-> > >
-> > > I have set their refresh rate to 72.01 which is a mode equal for both,
-> > > and the MCLK wasn't downclocked either. They are branded HP and
-> > > Scepter. Using a vtty doesn't help either.
-> > >
-> > > Is having the exact same monitor really required? If not, how can I
-> > > check what is causing
-> > > the memory clock to be pegged that high?
-> >
-> > It depends what GPU you have.  Older ones can only reclock memory
-> > during the vertical blanking period assuming it's long enough as the
-> > whole reclocking process takes a certain amount of time.  If it
-> > doesn't happen during the blanking period you will get visible
-> > glitches on the screen when the reclock happens.  If the vertical
-> > blanking period is not long enough or if the vblank periods are not
-> > aligned when using multiple monitors, the driver doesn't reclock.  The
-> > mode lines (not just the refresh rate) have to be the exact same for
-> > the vblanks to line up when using multiple monitors.  Your best bet is
-> > to take the mode line you want to use from one monitor and apply it to
-> > the other monitor.  Newer GPUs have more flexibility and can reclock
-> > memory in more situations, but there are still some monitors where the
-> > timing may not work out.
-> >
-> > What GPU do you have?
-> >
-> > Alex
->
->
->
-> --
-> Braiam
+	Sam
