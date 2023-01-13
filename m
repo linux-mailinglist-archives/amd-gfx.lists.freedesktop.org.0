@@ -2,57 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE455669AD6
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jan 2023 15:45:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72A09669B16
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jan 2023 15:57:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E66D10EA07;
-	Fri, 13 Jan 2023 14:45:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFD1210EA0D;
+	Fri, 13 Jan 2023 14:57:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com
- [IPv6:2001:4860:4864:20::2c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B74510E191
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 14:45:38 +0000 (UTC)
-Received: by mail-oa1-x2c.google.com with SMTP id
- 586e51a60fabf-15eeec85280so1359859fac.11
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 06:45:38 -0800 (PST)
+Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com
+ [IPv6:2001:4860:4864:20::2b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B679E10EA0D
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 14:57:23 +0000 (UTC)
+Received: by mail-oa1-x2b.google.com with SMTP id
+ 586e51a60fabf-15b9c93848dso14241612fac.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 06:57:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=pOEdK6Jk16UoY1TNrYVh/E2UAtLn7eRFKluM4jz1XHM=;
- b=KZTydsAzAFHW/pSTz2+IB18i4jGrlcu6Srk6bDYMUloCTIBBCSfwPTSwR6vFq+SaZJ
- OFb1bf8tcqQ+C5o57nshbrHOaWAUogmvSrJFAWPn8fdLgMoQmgC2rR30VAqFegg0Jb/S
- TDmdN/xu0kyKWzHyFpwpiB4bFlXhvBo+taDWDrN3/c/JeoSUnTJJtV80JIBw6npBaTSr
- QqFPeV6hBfNSmm2qQ0pHrB/spNHnp/Ne2v0ZVOAnNLgCJN3O83ptAORIvxnvFpHKQEcF
- cylz3eSSzK7DhwwQ+3/8Xo5JaaaJRvEUU8FD9LQETjMp7xnkzWJLysdKADQ6zY2IZBSg
- M1Yg==
+ bh=LhVDQTTXtSQ6BxMIT+bnPOa36PNjhng8Gf5+BHqXVcU=;
+ b=Z5qX4BVVtw6A50/wh7FRkRul6lLdnPdfl4zJMKpKABoaelV3oYR1vHg3kAUiems+mp
+ 0mNymWGe7FsIRMrD9f5VHM+Sh9Ek7t/YhRoehBSPwA2drSTP9C++Kb4PJY2joD783Jd/
+ 5Ff8Qqq9YmMFSdUv0tFYk9yh6/+M4t26FzuldiCbZZPYCBHiRssIP7hbtCrzMAOszW7N
+ jabNQ23zVR7Qyz9GTPESYSZa32TTJPogOpqnAJmOSbkZPXPBiBXsdpxwQxm70tcey9NC
+ AH2lWTHSXRGgnUgkLTdeKaqLUdHBpitkeoNaUoAVW2CrNFoWn+FhSnjwoIdOIlgcPRg7
+ Byxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=pOEdK6Jk16UoY1TNrYVh/E2UAtLn7eRFKluM4jz1XHM=;
- b=l3ugDUNKjhhscRyO16AYKQqaQBvmufdJ8Uwr7E5h6bcBTwm7IujMEF4iI1yRdlOvlA
- SyVtNdGMwsE+l17+JVxWYcR4vZyhiDisfQsyUERvcSv/5EFGpRi9FqgaevYAKD/A4wmX
- bOueyJN70fML7bIh3lSX4UFuaAE6qEhZxk3edK/9XSesHn3jOWoxG0P/SEaCbW+h84Ec
- UezmAJKZG4zZgBCZVrhfmrcItsM2dK7sW5Eb+5a6kji6aDhiNP7i5f3Q1jD4VNcotRv7
- g1XdsbPo+diKVrM3vYKtY9EpLmUkRAOiLU46565LgxA8tURvnh/yKIJKMHwZrZYu01BE
- /+qQ==
-X-Gm-Message-State: AFqh2koqrv5ll4WrqM1G1/VBQ6IIr6T1KLTuTnsTr1I/2Umc8GIiXBcP
- a+bPzoiQZtDUWOgspHaIHDGYshL0puY7bGp4C5NdFlCj
-X-Google-Smtp-Source: AMrXdXu4OVuhKqtHy88iJzZrvBdYmyVL9kRg2sc3Cwl6OEY8+t0icQyBiZJOYQn3vxSJVc+8hTLFju2rPV4he/jCZio=
+ bh=LhVDQTTXtSQ6BxMIT+bnPOa36PNjhng8Gf5+BHqXVcU=;
+ b=Y93DzUmpAcdG4CPo/QnlUKki0y7n8PiOxtOjgtXAKJuCfXAK8C5qTZJE4fp4UC7ywB
+ C6sEIwGz06ERONgw7T2/cBL3PAIJ1RD1BKRYUXsxkWzoaOUjwppzZZ/PDieZPctmMRhz
+ nWU/HNAPYKG5dso5n0kDY3zqB9PEDkg8JkND/GiJmIr5x8r7URTVfp8XR9oBq2QVRQAW
+ 71BaN5Fdioh7abOy9M8uKKsqjPnag9XRYK1K1fVzIn4mqN/1dzvJEckz5FK8bVHWujUp
+ PaQDU0xsbPg8PfTgME4TkLmvcTPMUqoj/7AI9Sp2w4zAeDBD1Ed+aDxAc4TvHeH38qUW
+ dViQ==
+X-Gm-Message-State: AFqh2koy+XLf5NcokM53uDVjLzl66WVMefwaegAcQ9L1qOfspnLIlAD4
+ HgCPFrsap862HbylP/KCsCUC+Ds9gikGZzQ0aA60S4l7
+X-Google-Smtp-Source: AMrXdXth3M1VQj9d2kMHaGvXy8UAbXLa7m/1SxLLRcW0atOe84ZnxacG21Md3wzaK55/p1G89zR/DuMpS1UNhcEpHQ4=
 X-Received: by 2002:a05:6870:c59c:b0:150:d9aa:4011 with SMTP id
- ba28-20020a056870c59c00b00150d9aa4011mr3218967oab.96.1673621137594; Fri, 13
- Jan 2023 06:45:37 -0800 (PST)
+ ba28-20020a056870c59c00b00150d9aa4011mr3222520oab.96.1673621842964; Fri, 13
+ Jan 2023 06:57:22 -0800 (PST)
 MIME-Version: 1.0
-References: <DM4PR12MB515254D7E44C0DA90F3A907FE3C29@DM4PR12MB5152.namprd12.prod.outlook.com>
- <BL1PR12MB52373015FC820A8B41AB45C9F0C29@BL1PR12MB5237.namprd12.prod.outlook.com>
-In-Reply-To: <BL1PR12MB52373015FC820A8B41AB45C9F0C29@BL1PR12MB5237.namprd12.prod.outlook.com>
+References: <CAG=7Bt9ivGs8rtZx3rzZj_uoTzeGwnYRYQ6ohfpxVFMNV3YtOw@mail.gmail.com>
+In-Reply-To: <CAG=7Bt9ivGs8rtZx3rzZj_uoTzeGwnYRYQ6ohfpxVFMNV3YtOw@mail.gmail.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 13 Jan 2023 09:45:26 -0500
-Message-ID: <CADnq5_NAd1OcL0GNaVX=XptCoAv-pbiJGmQm=6yadtL6UNhAfQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Renoir/Cezanne GPU power reporting issue
-To: "Liu, Aaron" <Aaron.Liu@amd.com>
+Date: Fri, 13 Jan 2023 09:57:11 -0500
+Message-ID: <CADnq5_Nx2H+ywnFZmwix8tRc3mk54Nw=4L60ibtWybiO0CJZuw@mail.gmail.com>
+Subject: Re: Is "perfectly equal monitors" really required to reclock MCLK
+To: Braiam <braiamp@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,96 +64,72 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Zhang,
- Jesse\(Jie\)" <Jesse.Zhang@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+On Fri, Jan 13, 2023 at 9:47 AM Braiam <braiamp@gmail.com> wrote:
+>
+> Hi,
+>
+> I have two monitors with the current following configuration:
+>
+> Screen 0: minimum 320 x 200, current 5120 x 1440, maximum 16384 x 16384
+> DisplayPort-0 connected primary 2560x1440+0+0 (normal left inverted
+> right x axis y axis) 597mm x 336mm
+>    2560x1440    164.83 +  59.95 + 120.05*   96.01    72.01    60.01
+> 143.97   120.00    74.97
+> [snip]
+> DisplayPort-1 connected 2560x1440+2560+0 (normal left inverted right x
+> axis y axis) 597mm x 336mm
+>    2560x1440    165.00 +  59.95 + 120.06*   96.04    72.01    60.01
+> 50.01    48.01   144.00   119.99    99.99
+> [snip]
+> HDMI-A-0 disconnected (normal left inverted right x axis y axis)
+> HDMI-A-1 disconnected (normal left inverted right x axis y axis)
+> DVI-D-0 disconnected (normal left inverted right x axis y axis)
+>
+> The pp_profile_mode:
+>
+> NUM        MODE_NAME     SCLK_UP_HYST   SCLK_DOWN_HYST
+> SCLK_ACTIVE_LEVEL     MCLK_UP_HYST   MCLK_DOWN_HYST MCLK_ACTIVE_LEVEL
+>   0   BOOTUP_DEFAULT:        -                -                -
+>          -                -                -
+>   1 3D_FULL_SCREEN *:        0              100               30
+>         10               60               25
+>   2     POWER_SAVING:       10                0               30
+>          -                -                -
+>   3            VIDEO:        -                -                -
+>         10               16               31
+>   4               VR:        0               11               50
+>          0              100               10
+>   5          COMPUTE:        0                5               30
+>          -                -                -
+>   6           CUSTOM:        -                -                -
+>          -                -                -
+>
+> I have set their refresh rate to 72.01 which is a mode equal for both,
+> and the MCLK wasn't downclocked either. They are branded HP and
+> Scepter. Using a vtty doesn't help either.
+>
+> Is having the exact same monitor really required? If not, how can I
+> check what is causing
+> the memory clock to be pegged that high?
 
-On Thu, Jan 12, 2023 at 9:11 PM Liu, Aaron <Aaron.Liu@amd.com> wrote:
->
-> Reviewed-by: Aaron Liu aaron.liu@amd.com
->
->
->
-> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Zhang, Jesse(Jie)
-> Sent: Friday, January 13, 2023 10:07 AM
-> To: Deucher, Alexander <Alexander.Deucher@amd.com>
-> Cc: amd-gfx@lists.freedesktop.org
-> Subject: [PATCH] drm/amdgpu: Renoir/Cezanne GPU power reporting issue
->
->
->
-> [AMD Official Use Only - General]
->
->
->
->
->
->     drm/amdgpu: Correct the power calcultion for Renior/Cezanne.
->
->     From smu firmware,the value of power is transferred  in units of watts.
->
->     Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/2321
->
->     Fixes: 137aac26a2ed ("drm/amdgpu/smu12: fix power reporting on renoir")
->
->
->
->     Acked-by: Alex Deucher alexander.deucher@amd.com
->
->     Signed-off-by: Jesse Zhang Jesse.Zhang@amd.com
->
->
->
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
->
-> index 85e22210963f..96a49a3b3ad9 100644
->
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
->
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
->
-> @@ -1171,6 +1171,7 @@ static int renoir_get_smu_metrics_data(struct smu_context *smu,
->
->         int ret = 0;
->
->         uint32_t apu_percent = 0;
->
->         uint32_t dgpu_percent = 0;
->
-> +       struct amdgpu_device *adev = smu->adev;
->
->
->
->
->
->         ret = smu_cmn_get_metrics_table(smu,
->
-> @@ -1196,7 +1197,11 @@ static int renoir_get_smu_metrics_data(struct smu_context *smu,
->
->                 *value = metrics->AverageUvdActivity / 100;
->
->                 break;
->
->         case METRICS_AVERAGE_SOCKETPOWER:
->
-> -               *value = (metrics->CurrentSocketPower << 8) / 1000;
->
-> +               if (((adev->ip_versions[MP1_HWIP][0] == IP_VERSION(12, 0, 1)) && (adev->pm.fw_version >= 0x40000f))
->
-> +                       || ((adev->ip_versions[MP1_HWIP][0] == IP_VERSION(12, 0, 0)) && (adev->pm.fw_version >= 0x373200)))
->
-> +                       *value = metrics->CurrentSocketPower << 8;
->
-> +               else
->
-> +                       *value = (metrics->CurrentSocketPower << 8) / 1000;
->
->                 break;
->
->         case METRICS_TEMPERATURE_EDGE:
->
->                 *value = (metrics->GfxTemperature / 100) *
+It depends what GPU you have.  Older ones can only reclock memory
+during the vertical blanking period assuming it's long enough as the
+whole reclocking process takes a certain amount of time.  If it
+doesn't happen during the blanking period you will get visible
+glitches on the screen when the reclock happens.  If the vertical
+blanking period is not long enough or if the vblank periods are not
+aligned when using multiple monitors, the driver doesn't reclock.  The
+mode lines (not just the refresh rate) have to be the exact same for
+the vblanks to line up when using multiple monitors.  Your best bet is
+to take the mode line you want to use from one monitor and apply it to
+the other monitor.  Newer GPUs have more flexibility and can reclock
+memory in more situations, but there are still some monitors where the
+timing may not work out.
+
+What GPU do you have?
+
+Alex
