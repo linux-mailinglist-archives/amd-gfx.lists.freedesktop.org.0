@@ -2,93 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04B56668E66
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jan 2023 07:55:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECE356690B4
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jan 2023 09:24:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46BE610E996;
-	Fri, 13 Jan 2023 06:55:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72B8910E36B;
+	Fri, 13 Jan 2023 08:24:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2064.outbound.protection.outlook.com [40.107.102.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC5AA10E995
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 06:55:21 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fAcq+OSsRbSdMKT3Pj4auxWHWAEeXv6x95kfKtlXlJTkvb3D30HAVXX/Vkpb8oncODBVC++vw9ty69s8/TKHKcW9I1JsyjibOsDMym+dhb0iLL/FCIAfYuZ07okIGkKi4dszdcK01fhPJgvK/zeSrYOiOxh5sIbrQRNgIWS/PDajlIi0jyiZxSVi1B4v5vm68pmro64raSLkN96LSjb2Rm35Oir2yoO/nG/lhXbYBbrN3Pt/dePqRvWwquQx7zcSBhWmT+aKuQ8om0iRGo1R5Y3KBVpeqvnS54khvt8V3F81g8YN51MDcXZhQGZqXuFz59+oBqage2Cf9B9JqLPZJw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9UH0Jtp9+u/lQYbRPr02AOtptpgStwnFEn7Y5P+8aYI=;
- b=ikzEOmJuKSAGvX444vMIsBaJqj06+bZk6HAo7D+w3XgeMswD1F9cqvpANwJNBjyBgG+ebh7BVAnr41IgrCtATeFkCuWOHq7d8vqO8/FerAd/AhHzoyXf/su1op1if+c4rBsmmJTGRBMgCRcGSw+p5FYgMv+BZiEl1z9YKn3o4cKsfE62EmSSXNVhYA4zCmVquu/W3/vhPRPqqTykq/nKr9/m+I4Vf0I4vXWjJmWGfQzid2jKC0A+tck8hp9N6xtY1JgDug6Kb1klBg05aeQJC2OVSHwZIsQPE8r7nHQW//5uPswSr6wj1nTYUaWeIDDNlpurd192CKPzvYOFt4pLBw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9UH0Jtp9+u/lQYbRPr02AOtptpgStwnFEn7Y5P+8aYI=;
- b=lCtCRNdmULWw4ml7CTetX6s9E7PhNmtU7bWwmB7cLmQ77PJ1P3b+4qR2wE9+PXtm1MRCWmR9HjXSp7gjzWw1UhzQZmVTwpewFGOf1gRo6lwJH5arLPMbOR/cKwa8hjkhu4ej0a7urv4fgOJYsQOoq6o8UShrVO2efGh3ZOzbs1Q=
-Received: from DM6PR02CA0133.namprd02.prod.outlook.com (2603:10b6:5:1b4::35)
- by SJ1PR12MB6026.namprd12.prod.outlook.com (2603:10b6:a03:48b::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.18; Fri, 13 Jan
- 2023 06:55:19 +0000
-Received: from DS1PEPF0000E64B.namprd02.prod.outlook.com
- (2603:10b6:5:1b4:cafe::ee) by DM6PR02CA0133.outlook.office365.com
- (2603:10b6:5:1b4::35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.14 via Frontend
- Transport; Fri, 13 Jan 2023 06:55:19 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS1PEPF0000E64B.mail.protection.outlook.com (10.167.18.41) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6002.11 via Frontend Transport; Fri, 13 Jan 2023 06:55:19 +0000
-Received: from thomas-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 13 Jan
- 2023 00:55:16 -0600
-From: YiPeng Chai <YiPeng.Chai@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 2/2] drm/amdgpu: Adjust ras support check condition for
- special asic
-Date: Fri, 13 Jan 2023 14:54:15 +0800
-Message-ID: <20230113065415.1727983-2-YiPeng.Chai@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230113065415.1727983-1-YiPeng.Chai@amd.com>
-References: <20230113065415.1727983-1-YiPeng.Chai@amd.com>
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com
+ [IPv6:2607:f8b0:4864:20::829])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39FA510E986
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 04:30:21 +0000 (UTC)
+Received: by mail-qt1-x829.google.com with SMTP id bp44so18366920qtb.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Jan 2023 20:30:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pefoley.com; s=google;
+ h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+ :date:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=p0dBrxhwzNc4hP4DgOVMhl62x5+l/CjTKJPM4tbmqzY=;
+ b=YNDyGcfRgEU/Kq6pPTLt+tyMpJK1rsOqsYI8KPXwxZYIamFSE406hKfGFfzeEerv1h
+ 1xzx78ssO7r5z0r2Y51K2WiuU2PiGpD430GfLFw4iWyqHQaNGETSPhMo9muJQH7N3ekA
+ /m1YAwav1xw/rVrcjgfP3J4/vdAeMZVUOrHsI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+ :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=p0dBrxhwzNc4hP4DgOVMhl62x5+l/CjTKJPM4tbmqzY=;
+ b=UJOTK64ZmXV1SJM8rCU8DQiIsFt4PC58irwT+0WcUsRF6tvNPLrPgKxoxaTrPgnZyF
+ 6fT6PxOESp1+ckWcrZCOO9RHLiefyfx4XQZlwYFOIO+ndWUorh0QznxlAO/U07kn1jL6
+ RrOZRuM7umKAbB7DZB3o6QbJcQmUQnF61qkixZKn+Y9ONqxR7maKxXjtlH03lZSYw3VX
+ 3Q1pS+Gha8rrA7E6RK7yJXCY45Wc8mto8tMFNExts6cr6Jvqk4Oz59Hdv9BfzsUsKa2z
+ IRcF8BxMgEU5iIlZFiXV7yvuE6Vh8hME9hpjLRJdhmO1v7Gdn0ePv0UqQkljoSWTfRlY
+ ybpA==
+X-Gm-Message-State: AFqh2krj9afoxh8sz3SkAFRx9ixVjJwlJuUdUHCMq3qTcoWLNvn9wgyj
+ HBDBWgsu6ffKZe31ZHQpG+MtJQ==
+X-Google-Smtp-Source: AMrXdXvheG74WaJ4gLRhKTBR9pU9wGyMsZMdYlR+zcKAn6f+t5K5H6COUVAnxs9Rkc5f5FnHEAbx2A==
+X-Received: by 2002:ac8:45c1:0:b0:3b2:ad80:4ed9 with SMTP id
+ e1-20020ac845c1000000b003b2ad804ed9mr2315153qto.3.1673584220004; 
+ Thu, 12 Jan 2023 20:30:20 -0800 (PST)
+Received: from [192.168.1.3] ([2600:4040:29fb:d300:887b:7eff:fe74:68b2])
+ by smtp.gmail.com with ESMTPSA id
+ k8-20020ac80748000000b0038b684a1642sm9990711qth.32.2023.01.12.20.30.19
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 12 Jan 2023 20:30:19 -0800 (PST)
+From: Peter Foley <pefoley2@pefoley.com>
+Date: Thu, 12 Jan 2023 23:30:07 -0500
+Subject: [PATCH] amdgpu: Avoid building on UML
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF0000E64B:EE_|SJ1PR12MB6026:EE_
-X-MS-Office365-Filtering-Correlation-Id: 144f1c48-39c3-4266-993b-08daf533224c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: suYYzvu/QNe/dQ1CmbDLCa71cLDA7Fe+S94dYQEUA/VUViVPHPGBmIQN6gSspN8XykoeZ/Yrx8JbCNG6g+zjWWeK2duByByr/Bnl9ryCVDwd9j1SteUEGuUB8jg/yyUBzAtZOebFoz9DLsdLayYGKFAawCXMRH8rcGw148xPEBGM4ae3Rh6qZ4iNuP6JzteM72b0XZNSdVO12cZO/sy/ftwMi9fzkRrRwzpm+Q9Mp3Ha8S8JhYi2aiyd1ZrdB8y9qfNvutu35VvTyCKzMd8ILPxms0nzW5sbuVRIMFJhyWURAbyLW23w6j59zw9++AkMvLILrUHXnVqMvj6q3/sMz8Xg81wQrnzJG/m9cVTl8dUV03+g7qLvrlTsdEtX7o6Flb8Gd+vTHV4t6DfWrFWoV+hETMK9efvHAZx4O/8FDgd4XMeu5XUFo1ouQcdiiU53vngm2yGNf3HhjGIWGREaa5ERi/c98WaC1Yhq7qn3jGqUbLEllPUVBiJqmHjeTdiE5J4eUbHUxoBrsx58AoXNHbuHsnhrAULb7c87zWu+jEHxrcCAjEOJrBXk+gXCJZFpt4ukrdWXZ7OvX8vcT8J5FcXQOn+16wH1lRMPkMWgiS3/9J1B2jBEy3tK5dIAF6Dvug1/zzbM5NhNiqDxPHqcxXS7mqPeMnR9XhGJJBFY/y0DNn5Gkv2VMVSdr/UBU0WImdzeVISglIc0Fc+B2wBx5nHS5Dj4q2gLLHH1wH3UAok=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(136003)(396003)(39860400002)(346002)(376002)(451199015)(40470700004)(36840700001)(46966006)(2616005)(54906003)(36756003)(40480700001)(4326008)(8676002)(36860700001)(82740400003)(70206006)(336012)(2906002)(41300700001)(426003)(6916009)(47076005)(316002)(70586007)(1076003)(40460700003)(356005)(5660300002)(82310400005)(8936002)(81166007)(86362001)(83380400001)(478600001)(16526019)(26005)(186003)(7696005)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2023 06:55:19.3147 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 144f1c48-39c3-4266-993b-08daf533224c
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0000E64B.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6026
+Message-Id: <20230112-amduml-v1-1-5e4a0d37de16@pefoley.com>
+X-B4-Tracking: v=1; b=H4sIAE/ewGMC/x2NQQqDMBAAvyJ7NmASU2i/UjxszFoXmrTs2lII/
+ r3R4zADU0FJmBRuXQWhLyu/SgPbdzCvWB5kODUGNzg/WOsM5vTJTxMu4epD8mNcIrQ4opKJgmVe
+ jzyjbiSHeAst/DsP92nf/zXBjh9xAAAA
+To: Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?utf-8?q?K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>
+X-Mailer: b4 0.11.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1673584219; l=1421;
+ i=pefoley2@pefoley.com; s=20230111; h=from:subject:message-id;
+ bh=V3EDjbwX5C9xijdyynQFeDCFZ4HzmtuuGO+aY7RnMrQ=;
+ b=GWzJZguVtyMb5JcgRjAen1+KzgR+kAdz0XRNAOYpK4eBDV2AKONnUWnifIZ5CfMcjKl88KPVrRPX
+ l03poj0LCnXMaRqG5RRghTm92bCkLke87D+Qsx+OXDh1+y4Pjk0Y
+X-Developer-Key: i=pefoley2@pefoley.com; a=ed25519;
+ pk=DCQqIdN6rHnvfQH58WQiQzJFfGUo1HyWSvdYG8vnO5o=
+X-Mailman-Approved-At: Fri, 13 Jan 2023 08:24:51 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,64 +79,44 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tao Zhou <tao.zhou1@amd.com>, Hawking.Zhang@amd.com,
- YiPeng Chai <YiPeng.Chai@amd.com>, Candice.Li@amd.com, yipechai@amd.com
+Cc: Peter Foley <pefoley2@pefoley.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Why]:
-     Amdgpu ras uses amdgpu_ras_is_supported to check whether
-  the ras block supports the ras function. amdgpu_ras_is_supported
-  uses .ras_enabled to determine whether the ras function of the
-  block is enabled.
-     But for special asic with mem ecc enabled but sram ecc not
-  enabled, some ras blocks support poison mode but their ras function
-  is not enabled on .ras_enabled, these ras blocks will run abnormally.
+The amdgpu driver tries to use fields not supported by UML's cpuinfo
+struct. Disable the driver when targeting UML to avoid tripping up
+allyesconfig.
 
-[How]:
-    If the ras block is not supported on .ras_enabled but the asic
-  supports poison mode and the ras block has ras configuration, it
-  can be considered that the ras block supports ras function.
+e.g.
+../drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu7_hwmgr.c: In function ‘intel_core_rkl_chk’:
+../drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu7_hwmgr.c:1742:33: error: initialization of ‘struct cpuinfo_x86 *’ from incompatible pointer type ‘struct cpuinfo_um *’ [-Werror=incompatible-pointer-types
+]
+../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c: In function ‘kfd_cpumask_to_apic_id’:
+../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:2157:48: error: ‘struct cpuinfo_um’ has no member named ‘apicid’
 
-Signed-off-by: YiPeng Chai <YiPeng.Chai@amd.com>
-Reviewed-by: Tao Zhou <tao.zhou1@amd.com>
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+Signed-off-by: Peter Foley <pefoley2@pefoley.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/Kconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index 3f1e987bdf83..6e543558386d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -3022,11 +3022,26 @@ int amdgpu_ras_set_context(struct amdgpu_device *adev, struct amdgpu_ras *ras_co
- int amdgpu_ras_is_supported(struct amdgpu_device *adev,
- 		unsigned int block)
- {
-+	int ret = 0;
- 	struct amdgpu_ras *ras = amdgpu_ras_get_context(adev);
- 
- 	if (block >= AMDGPU_RAS_BLOCK_COUNT)
- 		return 0;
--	return ras && (adev->ras_enabled & (1 << block));
-+
-+	ret = ras && (adev->ras_enabled & (1 << block));
-+
-+	/* For the special asic with mem ecc enabled but sram ecc
-+	 * not enabled, even if the ras block is not supported on
-+	 * .ras_enabled, if the asic supports poison mode and the
-+	 * ras block has ras configuration, it can be considered
-+	 * that the ras block supports ras function.
-+	 */
-+	if (!ret &&
-+	    amdgpu_ras_is_poison_mode_supported(adev) &&
-+	    amdgpu_ras_get_ras_block(adev, block, 0))
-+		ret = 1;
-+
-+	return ret;
- }
- 
- int amdgpu_ras_reset_gpu(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/Kconfig b/drivers/gpu/drm/amd/amdgpu/Kconfig
+index 5fcd510f1abb..aa0008ff8712 100644
+--- a/drivers/gpu/drm/amd/amdgpu/Kconfig
++++ b/drivers/gpu/drm/amd/amdgpu/Kconfig
+@@ -3,6 +3,7 @@
+ config DRM_AMDGPU
+ 	tristate "AMD GPU"
+ 	depends on DRM && PCI && MMU
++	depends on !UML
+ 	select FW_LOADER
+ 	select DRM_DISPLAY_DP_HELPER
+ 	select DRM_DISPLAY_HDMI_HELPER
+
+---
+base-commit: 1b929c02afd37871d5afb9d498426f83432e71c2
+change-id: 20230112-amduml-565935d34bfb
+
+Best regards,
 -- 
-2.25.1
-
+Peter Foley <pefoley2@pefoley.com>
