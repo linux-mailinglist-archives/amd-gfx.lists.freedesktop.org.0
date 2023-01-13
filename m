@@ -1,63 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CD65669681
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jan 2023 13:10:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E77B1669AD8
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Jan 2023 15:46:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BA2910EA09;
-	Fri, 13 Jan 2023 12:10:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72E5710E191;
+	Fri, 13 Jan 2023 14:46:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AEC210E9F8;
- Fri, 13 Jan 2023 12:10:37 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 2120B6AF4B;
- Fri, 13 Jan 2023 12:10:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1673611836; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=sXpapRuX916Le+bJNj5IyZ3za3IyLIEyf+ZchkfgtPU=;
- b=nmihVpa8mYRVJH7OXWFvnHHE40gzYLmUktrtmnYos+FvV7CZ/gu6L5xpCm+uQNJgNPLe7x
- vcHD4ObtKcGprs5ym0hpDH7HhDrFhkTQ287XQUKEddp6cubx1w+46cRA+br8YlQkZM2aNS
- LA65D7dn6qbMgzKqSw0AXGejCynz6+w=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1673611836;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=sXpapRuX916Le+bJNj5IyZ3za3IyLIEyf+ZchkfgtPU=;
- b=6XbabrpdxspIXnKCfpYCnNt9YDv6oTZ1GeAlVXqO4NJVkI85PihJ9W+iiamz9xuNkPYlOv
- pjgqL2OEA/FM6HAg==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id DC4021358A;
- Fri, 13 Jan 2023 12:10:35 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id PhGqNDtKwWP6SwAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Fri, 13 Jan 2023 12:10:35 +0000
-Message-ID: <6043efee-7b52-2be8-6fca-13c11e0e946e@suse.de>
-Date: Fri, 13 Jan 2023 13:10:35 +0100
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com
+ [IPv6:2a00:1450:4864:20::42d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D535D10E15E
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 10:07:47 +0000 (UTC)
+Received: by mail-wr1-x42d.google.com with SMTP id q10so1246516wrs.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Jan 2023 02:07:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=LgdeVYZ+deMRc/ei+kMH+4SXCwx2TEgssACm0boSjEM=;
+ b=aOdehrQKCnmwEtX56FiU6NCxjPIOxuIzXVpC4QiHmPZZfby+fTkgW3dhSZ30bzAFEO
+ Y2gywrOWSy7zPamNyLCa2YDVNJfJlhzq0zdCGsjAkZ/fE8Wh8Ev6ZXXrozy4BBe6yn4Q
+ pUR+xr5aHbRnxR2gdgmWO+Qu+/VlILMMP1SWIcitWSmGt/GAljeuN43l7Zc/izzsBxHw
+ totc1kX0LN9AUAEyA4GqlEPHJ93aWSTWZN0vwa0Qp5pGXXDq2DDyqYRayvKcySkyCtBU
+ 0wQCZzW0DJF9Mcr1JXtY3NQHRSKfQaeHOTuBGT6Rm5CQXkm1RWFAg8ZnHpEXgxU1pxEF
+ Rddg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=LgdeVYZ+deMRc/ei+kMH+4SXCwx2TEgssACm0boSjEM=;
+ b=0QsTLBSge2fGW8z8sehP36PIktN7Ev2I1xCr5QDdqerQMWBeXLxYgEmWUGz6F6eWXq
+ EGw0dIeyjlbnQR5vvC63UjntUcv9LxyE+mEHyEytZ4gzY3WOsAnuM6K0mMT5j7cTl82D
+ y6TZYLL2AIOVsKvfM1BBMg0cgAuKGwqD7mlbBWs/NjhmhEZluFzkoA+YjKKFS22cASSP
+ NOj7nD/AvjXoiJIRgY8ZN8suDRytsmSshrk46cTPVxATZuAO9dJgkXIxo/Axr4XSENui
+ 1fkpTXGcUVKP8vIWnfiCR9EA1XFVhUUxrnKa2+0PpjBx1l35m1X0xwZ1EOmNfXkvETV7
+ bSLg==
+X-Gm-Message-State: AFqh2ko/JyzLdV/u8MkyXTdhGxSF8w5/0KKx50oXXoF7D6JW/GflmFPY
+ 8yHeC/EyClX7dsndjwbd+TA=
+X-Google-Smtp-Source: AMrXdXvsko1ZJDxi4t9nddmcNn062AcrE+xH8KlU5ueUwz/6CI/UwTOcW8zDwjENTNO4bcjlJLKg7w==
+X-Received: by 2002:adf:e193:0:b0:2a5:74c9:a8c1 with SMTP id
+ az19-20020adfe193000000b002a574c9a8c1mr22046389wrb.16.1673604466261; 
+ Fri, 13 Jan 2023 02:07:46 -0800 (PST)
+Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
+ bp28-20020a5d5a9c000000b00273cd321a1bsm18564014wrb.107.2023.01.13.02.07.45
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 13 Jan 2023 02:07:45 -0800 (PST)
+Date: Fri, 13 Jan 2023 13:07:42 +0300
+From: Dan Carpenter <error27@gmail.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>
+Subject: [PATCH] drm/amdgpu: Add a missing tab
+Message-ID: <Y8EtbpVGFJSDxM/m@kili>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 0/5] drm: Do not include <linux/fb.h> unnecessarily
-Content-Language: en-US
-To: Maxime Ripard <maxime@cerno.tech>
-References: <20230109101243.26995-1-tzimmermann@suse.de>
- <20230113103604.bh6ey24ehpufwuab@houat>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <20230113103604.bh6ey24ehpufwuab@houat>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------TpAfTuHW6zhmfUyhhkbNq8qp"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailer: git-send-email haha only kidding
+X-Mailman-Approved-At: Fri, 13 Jan 2023 14:46:57 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,71 +68,42 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: f.fainelli@gmail.com, dri-devel@lists.freedesktop.org,
- thierry.reding@gmail.com, bcm-kernel-feedback-list@broadcom.com,
- amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com, sam@ravnborg.org,
- christian.koenig@amd.com, linux-arm-kernel@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org
+Cc: Jack Xiao <Jack.Xiao@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ kernel-janitors@vger.kernel.org, David Airlie <airlied@gmail.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Haohui Mai <ricetons@gmail.com>, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Evan Quan <evan.quan@amd.com>,
+ Lang Yu <Lang.Yu@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------TpAfTuHW6zhmfUyhhkbNq8qp
-Content-Type: multipart/mixed; boundary="------------hghfHyrdK0FB5Pr05Det0N8j";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Maxime Ripard <maxime@cerno.tech>
-Cc: f.fainelli@gmail.com, amd-gfx@lists.freedesktop.org, sam@ravnborg.org,
- thierry.reding@gmail.com, bcm-kernel-feedback-list@broadcom.com,
- dri-devel@lists.freedesktop.org, alexander.deucher@amd.com,
- christian.koenig@amd.com, linux-arm-kernel@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org
-Message-ID: <6043efee-7b52-2be8-6fca-13c11e0e946e@suse.de>
-Subject: Re: [PATCH 0/5] drm: Do not include <linux/fb.h> unnecessarily
-References: <20230109101243.26995-1-tzimmermann@suse.de>
- <20230113103604.bh6ey24ehpufwuab@houat>
-In-Reply-To: <20230113103604.bh6ey24ehpufwuab@houat>
+This tab was deleted accidentally and triggers a Smatch warning:
 
---------------hghfHyrdK0FB5Pr05Det0N8j
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+    drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c:1006 gfx_v8_0_init_microcode()
+    warn: inconsistent indenting
 
-DQoNCkFtIDEzLjAxLjIzIHVtIDExOjM2IHNjaHJpZWIgTWF4aW1lIFJpcGFyZDoNCj4gT24g
-TW9uLCBKYW4gMDksIDIwMjMgYXQgMTE6MTI6MzhBTSArMDEwMCwgVGhvbWFzIFppbW1lcm1h
-bm4gd3JvdGU6DQo+PiBSZW1vdmUgdW5uZWNlc3NhcnkgaW5jbHVkZSBzdGF0ZW1lbnRzIGZv
-ciA8bGludXgvZmIuaD4uIEkgcmVjZW50bHkNCj4+IGNoYW5nZWQgdGhpcyBoZWFkZXIgYW5k
-IGhhZCB0byByZWJ1aWxkIGEgZ29vZCBwYXJ0IG9mIERSTS4gU28gYXZvaWQNCj4+IHRoaXMg
-YnkgcmVtb3ZpbmcgdGhlIGRlcGVuZGVuY3kuDQo+Pg0KPj4gU29tZSBzb3VyY2UgZmlsZXMg
-cmVxdWlyZSB0aGUgT0Ygb3IgYmFja2xpZ2h0IGhlYWRlcnMuIEluY2x1ZGUgdGhvc2UNCj4+
-IGluc3RlYWQuDQo+IA0KPiBGb3IgdGhlIHNlcmllczoNCj4gQWNrZWQtYnk6IE1heGltZSBS
-aXBhcmQgPG1heGltZUBjZXJuby50ZWNoPg0KDQpwZXIgaXJjIGRpc2N1c3Npb24sIGFja2Vk
-IGZvciBhbGwgb2YgdjIgYXMgd2VsbA0KDQo+IA0KPiBNYXhpbWUNCg0KLS0gDQpUaG9tYXMg
-WmltbWVybWFubg0KR3JhcGhpY3MgRHJpdmVyIERldmVsb3Blcg0KU1VTRSBTb2Z0d2FyZSBT
-b2x1dGlvbnMgR2VybWFueSBHbWJIDQpNYXhmZWxkc3RyLiA1LCA5MDQwOSBOw7xybmJlcmcs
-IEdlcm1hbnkNCihIUkIgMzY4MDksIEFHIE7DvHJuYmVyZykNCkdlc2Now6RmdHNmw7xocmVy
-OiBJdm8gVG90ZXYNCg==
+Add it back.
 
---------------hghfHyrdK0FB5Pr05Det0N8j--
+Fixes: 0aaafb7359d2 ("drm/amd: Use `amdgpu_ucode_*` helpers for GFX8")
+Signed-off-by: Dan Carpenter <error27@gmail.com>
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---------------TpAfTuHW6zhmfUyhhkbNq8qp
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmPBSjsFAwAAAAAACgkQlh/E3EQov+A2
-Jw/7BNND+t1Q54sWZe1MTEjrDibY/BBs6jY+i+004NhWPU7enGrmfwkRJroiYZ0f71X+3rHeveE3
-uEkfK+dvdgquB25V+NP1oQjccOn+YJxqfnc5bDiomY42km0t/Ajcjxuziwa6DW9mijJdvAtBAeWq
-tTFVy+66BA7fW/rvXV2wCNNITkxpEdp+skVWXno85nABlE2Gkp/icfQGPhf4A7OyuTpn/7anW2JS
-NvvWWJSeE32scsht/TSWokUZCSkzQX3IQRjJsOtMTrdnDIE5mCQbdop2KKdk/pzumMRUONNhE/aR
-mQ6A1qgsUsW29FCrD5e7LKT6gLi39u6Zss+k8Fe7Y4X9bhzUeqr1xWHLuel5YCs9bl7o1zxyc3ro
-vuJ1NKRIOP7HLVYuWj9WkRwF+5u1+E0DpH7LlErCwTVYNchztyjfuEbDzNtGKJFxlsdB1SOPhCoc
-lepqbVmuqukh+SZrSFEsJGdoTCmyYrbAIt4lu70CyE2tnRKO9MX4CSdCdf7kJAOMpDV1rt2slwWz
-wbyNd9ZGi0zD7f4V860MAUBGoxoKNslHRZSmEq2VloE+gXQ5Ju5192BZIwptyV/aJ0NuKTrdzy3L
-XPl/HowSZvTF0pBsYxSK5OtQOgRALkI2WQKSm9dvktmC3SgaIXiI5017gavLnYpdfWgburzh2EmK
-Wo8=
-=dkAk
------END PGP SIGNATURE-----
-
---------------TpAfTuHW6zhmfUyhhkbNq8qp--
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
+index 4fb577d047fd..b1f2684d854a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
+@@ -1003,7 +1003,7 @@ static int gfx_v8_0_init_microcode(struct amdgpu_device *adev)
+ 		err = amdgpu_ucode_request(adev, &adev->gfx.me_fw, fw_name);
+ 		if (err == -ENODEV) {
+ 			snprintf(fw_name, sizeof(fw_name), "amdgpu/%s_me.bin", chip_name);
+-		err = amdgpu_ucode_request(adev, &adev->gfx.me_fw, fw_name);
++			err = amdgpu_ucode_request(adev, &adev->gfx.me_fw, fw_name);
+ 		}
+ 	} else {
+ 		snprintf(fw_name, sizeof(fw_name), "amdgpu/%s_me.bin", chip_name);
+--
+2.35.1
