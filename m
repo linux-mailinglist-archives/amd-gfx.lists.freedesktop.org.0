@@ -1,91 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBC1366A8CE
-	for <lists+amd-gfx@lfdr.de>; Sat, 14 Jan 2023 04:02:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD2F666B20D
+	for <lists+amd-gfx@lfdr.de>; Sun, 15 Jan 2023 16:29:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7989610E22C;
-	Sat, 14 Jan 2023 03:02:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8653510E102;
+	Sun, 15 Jan 2023 15:29:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4565D10E22C
- for <amd-gfx@lists.freedesktop.org>; Sat, 14 Jan 2023 03:02:08 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I5oNJt2r5H2ZzwOWWXZv1IEsbKspPktHoEbfCbH//BFV74kY3y5C7NAT1ePRN0AmBDzOYGAR+UcGQNdZpRWvs/l2ITmE1RjlcRi67J1iSdzCncUTFKxSfr4cGq9s9eyLUmcByaPcX11qtUib7/ThASpl5Kt7qr9/Zs17gBFoYc8CwZPnzpbQpn1X1jaQ/8SWmT9kOFegilfRwYPZmqVyfdAhIQsYVtuoACfIDMDiaviU6aITX5yg4/4tQah8dJKMnbfCrdDVNElV7X+GhLAPBouLuqsMlfBJ9Pw05p7PNSbCgLvpTC20jQf0s+4p3wOwNYjEcCs58fEZyoNPvZihnQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=z9KpN63fedBHXUPW1AbruDYCZQcMHeto4Gb+LjpDyVE=;
- b=kLXLjEC5RM4mcjxU7qfBsyG0Uhcac0uQN8hawEQcWEqtL732JGTa+lOYW0iE4xJh3CwpqJ5CE8Fqsn6ZMDsnTsTZwWSVBlvGepvKkwZM0QkHVihFw9qCq5C8Ea8r9nscBold1B6mLEX15mVtoAtM2WkEH+A9ZT1+CldMpLAhFPshyQa09lHReKyBkV0unt6tPZWWqGdwyfEVTNhl7MnHNyxpKrwZLBBUzav4xx4l0VUUaepfU/sX74FshaA2I7IKnawBzOn+0ArmDd7Xgh0xcbCbkfCvf8l7j+3xHy+BKwIrYzIed3NVTQ56Wxs9GHLfI06rJ3Y/3bFnWFxtVupM9w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=z9KpN63fedBHXUPW1AbruDYCZQcMHeto4Gb+LjpDyVE=;
- b=mk8bF2ye2brbvvcfV/mp9eN1nagOmDgu5e5kgCGd5xXKit0WYsRT9TMbpFsdAeEanBypCVMpohvkdZkZNtHDHOke+y0Zb5EOnm+SGGlTPWrUKO7XFCDt5W1i+quNA7cYv+iU9lx1W73/uKAWD30pN3OcGn0ngjjT+ySNr+Ptgyg=
-Received: from DM6PR07CA0095.namprd07.prod.outlook.com (2603:10b6:5:337::28)
- by CY8PR12MB7242.namprd12.prod.outlook.com (2603:10b6:930:59::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.19; Sat, 14 Jan
- 2023 03:02:05 +0000
-Received: from DM6NAM11FT066.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:337:cafe::b7) by DM6PR07CA0095.outlook.office365.com
- (2603:10b6:5:337::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.14 via Frontend
- Transport; Sat, 14 Jan 2023 03:02:04 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT066.mail.protection.outlook.com (10.13.173.179) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6002.13 via Frontend Transport; Sat, 14 Jan 2023 03:02:04 +0000
-Received: from AUS-LX-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 13 Jan
- 2023 21:02:01 -0600
-From: Mario Limonciello <mario.limonciello@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amd: Fix renoir/green sardine MP0 IP version detection
-Date: Fri, 13 Jan 2023 21:01:48 -0600
-Message-ID: <20230114030148.139-1-mario.limonciello@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D031310E080;
+ Sat, 14 Jan 2023 13:10:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+ Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=ahP7iHedGLjDB4IYyG19dWKuUkhVdOTZ48Fj8bXqNqg=; b=MYsGi6qOahttpMQOXap7WOYFPQ
+ TxUpv+ZSB3PIJFo4Y8uMrIqttpFFR5I0YZOu4wr52xavDlWgv0GAi/GlJLmL7wYBek1ravtpeT7py
+ DgKE9+9K88Vpynf7PoWUimppwCPSbcYNUC5K2aCxeJFpo2cmXN4yOc/Y82auFwuw62uzCvsncX2vH
+ hDcn6WU3DSb/8gUmbhYp/eqPM3HyF5N7vIIAtPJIw17ZXzcXFwm3qWeLcQdYvHJquJk5in97mRIEf
+ 1tlUD/rQeoc2NknAf9yS2rHzRTAM11GYYHg02gUfmvaphKSkoGMlWq95fnU9LQb3d1TxV9MFBrw2j
+ Sa7gmn2w==;
+Received: from [187.56.70.205] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1pGgIL-007y9B-54; Sat, 14 Jan 2023 14:10:02 +0100
+From: "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amd/display: Fix warning caused by a bad fake property
+Date: Sat, 14 Jan 2023 10:09:37 -0300
+Message-Id: <20230114130937.778199-1-gpiccoli@igalia.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT066:EE_|CY8PR12MB7242:EE_
-X-MS-Office365-Filtering-Correlation-Id: accde5e8-dabb-47e2-5b6b-08daf5dbb74d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6r5ycZ67bqLiZvSVQy4MiOXyQ0fNd7jLPl3Ci7/4avueeuYmFmV0rgC+6dqQXLvwNPJetsL6OSQpi19mnG5JWA972M5xyZ8dArh6ttZWsoJqRiil9NPbjyJOxymyxvdDJrYUVsTdEnoDsRzf5hqY8iqcFIk/KmYDD9GLP/2OMYYbLuaeVRl1rJ/HaLqV2DEALw525UvmSIKnVvuIIIQKUaMJNsPF65kZ0y5ZK+V3xuI/Dl5MZDWgM+IFMBugHTeEkgwU7FvSp9+mVuA4FkQiBx+6vlZCaF3HoLcA2FfV+W5piPlirro8jHd1ePKtrMudFQar8gpQt+EpMLngm1DH2M50U/aBOEx9jfrLK8wmPOGQ7gLDXsn36DNegscAhQp6hu1ic+im52U4X+4+/lGzUzboTlInvaevVrWzqh43n/Isj7qjTTumVhADKs7TdnJIDIxxYy7R4SZnFQuEWBm4owZRQTh0arK1ZS6qKV3D7pBrJ0yNBmNXuv0XQEAHZmPIroAnKJBGYYC1MHG98unp1rpoO3gZvDE3s5jOQpZoc8HTZ3EUarTI3EdqmCpkEDVZwhm/lbQJz4qP8jRpV5JbcN1SQeFKZ5UgBfrFn18tx8jpUgwR2iuKpdYHzkcNhKwEqiwXPgaj0xRTXjv8CIE9rPqDQ7WSEQ+nLPQV2q8KgSGoQAru+0Cw7ETHOj7MVuo62PtRk1izl1C92OCJvkCPgcielJc6gQndptzi8O1/EWM=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(376002)(396003)(136003)(346002)(39860400002)(451199015)(46966006)(40470700004)(36840700001)(36756003)(356005)(44832011)(2906002)(86362001)(81166007)(5660300002)(40460700003)(82310400005)(8936002)(41300700001)(40480700001)(36860700001)(47076005)(426003)(83380400001)(82740400003)(54906003)(6666004)(478600001)(6916009)(7696005)(8676002)(4326008)(70206006)(2616005)(316002)(70586007)(336012)(16526019)(1076003)(186003)(26005)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jan 2023 03:02:04.7508 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: accde5e8-dabb-47e2-5b6b-08daf5dbb74d
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT066.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7242
+X-Mailman-Approved-At: Sun, 15 Jan 2023 15:29:29 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,61 +49,71 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Hung <Alex.Hung@amd.com>, Nicholas Choi <Nicholas.Choi@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Ekene Akuneme <Ekene.Akuneme@amd.com>
+Cc: kernel@gpiccoli.net, Leo Li <sunpeng.li@amd.com>, Xinhui.Pan@amd.com,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, dri-devel@lists.freedesktop.org,
+ Melissa Wen <mwen@igalia.com>, "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+ Fangzhi Zuo <Jerry.Zuo@amd.com>, Mark Broadworth <mark.broadworth@amd.com>,
+ kernel-dev@igalia.com, alexander.deucher@amd.com,
+ Harry Wentland <harry.wentland@amd.com>, christian.koenig@amd.com,
+ Sung Joon Kim <Sungjoon.Kim@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The existing codebase never had a case for detecting MP0 version on
-Renoir and instead relied upon hardcoded chip name.  This was missed as
-part of the changes to migrate all IP blocks to build filenames from
-`amdgpu_ucode.c`.
+Commit 5468c36d6285 ("drm/amd/display: Filter Invalid 420 Modes for HDMI TMDS")
+added a validation on driver probe to prevent invalid TMDS modes. For that,
+it requires to fake some plane properties before submitting to the validation
+routines.
 
-Consequently, Renoir tries to fetch a binary with 11_0_3 in the filename
-and since it's supposed to have "renoir" in the filename fails to probe.
-The fbdev still works though so the series worked.
+Happens that one of such fake properties (swizzle) causes a boot-time
+warning due to an assert on swizzle routines. Since it's a fake property,
+change it hereby to a valid value to prevent such warning. Also, while at
+it, fix the unnecessary double assignment of this same property in code.
 
-Add a case for Renoir into the legacy table to ensure the right ASD and
-TA firmware load again.
-
-Reported-by: Ekene Akuneme <Ekene.Akuneme@amd.com>
-Reported-by: Nicholas Choi <Nicholas.Choi@amd.com>
-Cc: Alex Hung <Alex.Hung@amd.com>
-Fixes: 994a97447e38 ("drm/amd: Parse both v1 and v2 TA microcode headers using same function")
-Fixes: 54a3e032340e ("drm/amd: Add a legacy mapping to "amdgpu_ucode_ip_version_decode")
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+Fixes: 5468c36d6285 ("drm/amd/display: Filter Invalid 420 Modes for HDMI TMDS")
+Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/2264
+Reported-by: Melissa Wen <mwen@igalia.com>
+Cc: Fangzhi Zuo <Jerry.Zuo@amd.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Leo Li <sunpeng.li@amd.com>
+Cc: Mark Broadworth <mark.broadworth@amd.com>
+Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Cc: Sung Joon Kim <Sungjoon.Kim@amd.com>
+Signed-off-by: Guilherme G. Piccoli <gpiccoli@igalia.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
-index 47549d659d9b0..c03824d0311bd 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
-@@ -1087,6 +1087,8 @@ static const char *amdgpu_ucode_legacy_naming(struct amdgpu_device *adev, int bl
- 			return "navi10";
- 		case IP_VERSION(11, 0, 2):
- 			return "vega20";
-+		case IP_VERSION(11, 0, 3):
-+			return "renoir";
- 		case IP_VERSION(11, 0, 4):
- 			return "arcturus";
- 		case IP_VERSION(11, 0, 5):
-@@ -1104,12 +1106,7 @@ static const char *amdgpu_ucode_legacy_naming(struct amdgpu_device *adev, int bl
- 		case IP_VERSION(11, 5, 0):
- 			return "vangogh";
- 		case IP_VERSION(12, 0, 1):
--			if (adev->asic_type == CHIP_RENOIR) {
--				if (adev->apu_flags & AMD_APU_IS_RENOIR)
--					return "renoir";
--				return "green_sardine";
--			}
--			break;
-+			return "green_sardine";
- 		case IP_VERSION(13, 0, 2):
- 			return "aldebaran";
- 		case IP_VERSION(13, 0, 1):
+
+Hi folks, notice my choice here was to set swizzle to DC_SW_LINEAR;
+I've considered creating a new enum member (like "DC_SW_FAKE", or
+something like that) but seems it's easier to just use the LINEAR
+one. In my (very cheap!) understanding, this shouldn't affect the
+purpose of the TMDS validation thing.
+
+Lemme know if there's something to improve here, and thanks in
+advance for reviews/comments.
+Cheers,
+
+
+Guilherme
+
+
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 1b7f20a9d4ae..35ab39fd9345 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -6261,9 +6261,8 @@ static enum dc_status dm_validate_stream_and_context(struct dc *dc,
+ 	dc_plane_state->plane_size.surface_size.width  = stream->src.width;
+ 	dc_plane_state->plane_size.chroma_size.height  = stream->src.height;
+ 	dc_plane_state->plane_size.chroma_size.width   = stream->src.width;
+-	dc_plane_state->tiling_info.gfx9.swizzle =  DC_SW_UNKNOWN;
+ 	dc_plane_state->format = SURFACE_PIXEL_FORMAT_GRPH_ARGB8888;
+-	dc_plane_state->tiling_info.gfx9.swizzle = DC_SW_UNKNOWN;
++	dc_plane_state->tiling_info.gfx9.swizzle = DC_SW_LINEAR;
+ 	dc_plane_state->rotation = ROTATION_ANGLE_0;
+ 	dc_plane_state->is_tiling_rotated = false;
+ 	dc_plane_state->tiling_info.gfx8.array_mode = DC_ARRAY_LINEAR_GENERAL;
 -- 
-2.34.1
+2.39.0
 
