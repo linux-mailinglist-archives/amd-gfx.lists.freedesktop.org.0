@@ -2,43 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CF2C66B209
-	for <lists+amd-gfx@lfdr.de>; Sun, 15 Jan 2023 16:29:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3AB866B22B
+	for <lists+amd-gfx@lfdr.de>; Sun, 15 Jan 2023 16:41:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD1C110E013;
-	Sun, 15 Jan 2023 15:29:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1E6C10E380;
+	Sun, 15 Jan 2023 15:41:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from msg-1.mailo.com (msg-1.mailo.com [213.182.54.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D9CE10E0EA;
- Sun, 15 Jan 2023 10:00:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailo.com; s=mailo;
- t=1673776843; bh=/iD5FdGsACL4AeAQezA9XNB8C/O5bx6Q/X5pHtL9znk=;
- h=X-EA-Auth:Date:From:To:Cc:Subject:Message-ID:MIME-Version:
- Content-Type;
- b=j/AHSimET66MvDWv+l8/PtEAWvnrhLtKagZQwJmMQZcGGc2STk00RUpyw8LALrtNM
- ZnsIOPFDKQvAX/0CNhJx6g+LV5WxkZpCK/+5ao00eYs/low/H+qAJjJcLjhzpGnWfw
- tEoHNhFdf3SdsMewyN0YhTKDmukAc7EcXt/C0cQo=
-Received: by b-2.in.mailobj.net [192.168.90.12] with ESMTP
- via ip-206.mailobj.net [213.182.55.206]
- Sun, 15 Jan 2023 11:00:43 +0100 (CET)
-X-EA-Auth: QUVQkKdtaa3ThPmH0jN9hkKBEF3clhbPL9AScoOFF2o6Ipb8m9b2YiEd1CacQfHgw+lTtqJAFAhum5ZmXRrFw35fBU6TjDC8
-Date: Sun, 15 Jan 2023 15:30:38 +0530
-From: Deepak R Varma <drv@mailo.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/amd/display: Simplify same effect if/else blocks
-Message-ID: <Y8POxreeC3EvOXhC@ubun2204.myguest.virtualbox.org>
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com
+ [IPv6:2607:f8b0:4864:20::32b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51BC210E37F
+ for <amd-gfx@lists.freedesktop.org>; Sun, 15 Jan 2023 15:41:25 +0000 (UTC)
+Received: by mail-ot1-x32b.google.com with SMTP id
+ k44-20020a9d19af000000b00683e176ab01so14886910otk.13
+ for <amd-gfx@lists.freedesktop.org>; Sun, 15 Jan 2023 07:41:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=XOuan4LsCgRqpEescxEfB9Yp34m7vUZ9ubhoTXItw4M=;
+ b=jMF3nUMXCg3r1DdU4FI+GyRQa9irIGqSBlh21rN4Mg1OfJ6ZGgY0zg4pVw0y/1xMMx
+ l24WJXPXwNTx4cPnAJSB0e93RcD4dcUmZRbynKME9AUdh53+2HzPF3XqG7CLRfdG6cYp
+ kXcSjzyva6FVS1KGsABBHHIeELl/trM9JQTD6X42xPro96oJWJODWaNQZ7HsmSfkIRTv
+ 5+1fAQ3GtvDQsAybPkmg/anKM0s0V6eL/Wv7l6CZTxcMsEw33DyY7Z2nQukPIcGIqas/
+ H5hKLnHaWKxT5vvM1vU7KSJpq+8qjWUBDs9nDs1+QXJ+wf2QiF2jVH+LItPHPaRq51TD
+ lWfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=XOuan4LsCgRqpEescxEfB9Yp34m7vUZ9ubhoTXItw4M=;
+ b=yUrRG0JCUZJIgtGaQRi5CpxtlO/1xSKXqWIcge+Uo60FbheGLNbS6JpHZwb/Na9k01
+ SWp8ZJuacTaZ+IWcPmm/Te8JhW8R9qPawWuvhzHc6ithtuVtxKfg9hMcJD59yMqp8tP2
+ 7sPEn6nWyuEPQloOcTYL8UQB2pLoivwTz0wxJw6PLPF+SOIzme9LjRP1ZYsnP105MBTM
+ 7xns/tKpqVYe1KJA6+15N1Kp3pYbxGT+cGY2+++fhcAjdbFndFi5x/kwk7qjDeNKD7YB
+ nEOPlRM+wgf2JAW3LZhqrYXje9VP0w6d10Pq9bunmAjupOQcJ27v4Wnapy7sWQQg4koP
+ dE2A==
+X-Gm-Message-State: AFqh2ko4pL1nfinY8c7hc7Ixp+ZOD70Xn01S9L5Uo4ULIogCFLIYe7nh
+ i2Mw1A/Zdn2A5YRutga8tgAOyoqGUBtNkapzEb4WM+Dc
+X-Google-Smtp-Source: AMrXdXsvCm0L3a6rXWdIpHsKCh8Pcs3U8DOcCWI02xYQSSQvWWfBVXTypomNenlrlIT1yHlxpsEcDJUtLR/wgdlftEk=
+X-Received: by 2002:a9d:62d1:0:b0:675:cde9:90b9 with SMTP id
+ z17-20020a9d62d1000000b00675cde990b9mr5738407otk.123.1673797284579; Sun, 15
+ Jan 2023 07:41:24 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailman-Approved-At: Sun, 15 Jan 2023 15:29:29 +0000
+References: <20230114030148.139-1-mario.limonciello@amd.com>
+In-Reply-To: <20230114030148.139-1-mario.limonciello@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Sun, 15 Jan 2023 10:41:13 -0500
+Message-ID: <CADnq5_P5kQ99vwLviYh+Gsr=DJ+8zRb4LYbFe1yCT_j7XZcaWA@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd: Fix renoir/green sardine MP0 IP version detection
+To: Mario Limonciello <mario.limonciello@amd.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,50 +64,66 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Praveen Kumar <kumarpraveen@linux.microsoft.com>,
- Saurabh Singh Sengar <ssengar@microsoft.com>
+Cc: Alex Hung <Alex.Hung@amd.com>, Nicholas Choi <Nicholas.Choi@amd.com>,
+ Ekene Akuneme <Ekene.Akuneme@amd.com>, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The if / else block code has same effect irrespective of the logical
-evaluation.  Hence, simply the implementation by removing the unnecessary
-conditional evaluation. While at it, also fix the long line checkpatch
-complaint. Issue identified using cond_no_effect.cocci Coccinelle
-semantic patch script.
+On Fri, Jan 13, 2023 at 10:02 PM Mario Limonciello
+<mario.limonciello@amd.com> wrote:
+>
+> The existing codebase never had a case for detecting MP0 version on
+> Renoir and instead relied upon hardcoded chip name.  This was missed as
+> part of the changes to migrate all IP blocks to build filenames from
+> `amdgpu_ucode.c`.
+>
+> Consequently, Renoir tries to fetch a binary with 11_0_3 in the filename
+> and since it's supposed to have "renoir" in the filename fails to probe.
+> The fbdev still works though so the series worked.
+>
+> Add a case for Renoir into the legacy table to ensure the right ASD and
+> TA firmware load again.
+>
+> Reported-by: Ekene Akuneme <Ekene.Akuneme@amd.com>
+> Reported-by: Nicholas Choi <Nicholas.Choi@amd.com>
+> Cc: Alex Hung <Alex.Hung@amd.com>
+> Fixes: 994a97447e38 ("drm/amd: Parse both v1 and v2 TA microcode headers using same function")
+> Fixes: 54a3e032340e ("drm/amd: Add a legacy mapping to "amdgpu_ucode_ip_version_decode")
+> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 
-Signed-off-by: Deepak R Varma <drv@mailo.com>
----
-Please note: The proposed change is compile tested only. If there are any
-inbuilt test cases that I should run for further verification, I will appreciate
-guidance about it. Thank you.
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
- drivers/gpu/drm/amd/display/dc/core/dc.c | 11 +++--------
- 1 file changed, 3 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 0cb8d1f934d1..776209e5d21f 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -3470,14 +3470,9 @@ static void commit_planes_for_stream(struct dc *dc,
- 		/* Since phantom pipe programming is moved to post_unlock_program_front_end,
- 		 * move the SubVP lock to after the phantom pipes have been setup
- 		 */
--		if (should_lock_all_pipes && dc->hwss.interdependent_update_lock) {
--			if (dc->hwss.subvp_pipe_control_lock)
--				dc->hwss.subvp_pipe_control_lock(dc, context, false, should_lock_all_pipes, NULL, subvp_prev_use);
--		} else {
--			if (dc->hwss.subvp_pipe_control_lock)
--				dc->hwss.subvp_pipe_control_lock(dc, context, false, should_lock_all_pipes, NULL, subvp_prev_use);
--		}
--
-+		if (dc->hwss.subvp_pipe_control_lock)
-+			dc->hwss.subvp_pipe_control_lock(dc, context, false, should_lock_all_pipes,
-+							 NULL, subvp_prev_use);
- 		return;
- 	}
- 
--- 
-2.34.1
-
-
-
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c | 9 +++------
+>  1 file changed, 3 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
+> index 47549d659d9b0..c03824d0311bd 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
+> @@ -1087,6 +1087,8 @@ static const char *amdgpu_ucode_legacy_naming(struct amdgpu_device *adev, int bl
+>                         return "navi10";
+>                 case IP_VERSION(11, 0, 2):
+>                         return "vega20";
+> +               case IP_VERSION(11, 0, 3):
+> +                       return "renoir";
+>                 case IP_VERSION(11, 0, 4):
+>                         return "arcturus";
+>                 case IP_VERSION(11, 0, 5):
+> @@ -1104,12 +1106,7 @@ static const char *amdgpu_ucode_legacy_naming(struct amdgpu_device *adev, int bl
+>                 case IP_VERSION(11, 5, 0):
+>                         return "vangogh";
+>                 case IP_VERSION(12, 0, 1):
+> -                       if (adev->asic_type == CHIP_RENOIR) {
+> -                               if (adev->apu_flags & AMD_APU_IS_RENOIR)
+> -                                       return "renoir";
+> -                               return "green_sardine";
+> -                       }
+> -                       break;
+> +                       return "green_sardine";
+>                 case IP_VERSION(13, 0, 2):
+>                         return "aldebaran";
+>                 case IP_VERSION(13, 0, 1):
+> --
+> 2.34.1
+>
