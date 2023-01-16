@@ -1,52 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6037666C005
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Jan 2023 14:43:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93B0C66BEEA
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Jan 2023 14:12:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D46610E00D;
-	Mon, 16 Jan 2023 13:43:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD66A10E402;
+	Mon, 16 Jan 2023 13:12:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 302 seconds by postgrey-1.36 at gabe;
- Sun, 15 Jan 2023 20:57:19 UTC
-Received: from relay.hostedemail.com (smtprelay0010.hostedemail.com
- [216.40.44.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 797CD10E3B0;
- Sun, 15 Jan 2023 20:57:19 +0000 (UTC)
-Received: from omf10.hostedemail.com (a10.router.float.18 [10.200.18.1])
- by unirelay04.hostedemail.com (Postfix) with ESMTP id 55F981A0A53;
- Sun, 15 Jan 2023 20:52:15 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by
- omf10.hostedemail.com (Postfix) with ESMTPA id A6A8832; 
- Sun, 15 Jan 2023 20:52:11 +0000 (UTC)
-Message-ID: <33ecbe8971bb9c90d72c67d43ca740abac160908.camel@perches.com>
-Subject: Re: [PATCH] drm/amd/display: Simplify same effect if/else blocks
-From: Joe Perches <joe@perches.com>
-To: Deepak R Varma <drv@mailo.com>, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Christian
- =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, "Pan, Xinhui"
- <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>, Daniel Vetter
- <daniel@ffwll.ch>,  amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org,  linux-kernel@vger.kernel.org
-Date: Sun, 15 Jan 2023 12:52:10 -0800
-In-Reply-To: <Y8POxreeC3EvOXhC@ubun2204.myguest.virtualbox.org>
-References: <Y8POxreeC3EvOXhC@ubun2204.myguest.virtualbox.org>
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 (3.44.4-2.fc36) 
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9C2C10E072;
+ Mon, 16 Jan 2023 13:12:38 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 6377167773;
+ Mon, 16 Jan 2023 13:12:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1673874757; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=YQ1YlOVInu6WsLhZgXbEIaFPrF+YO75TAo9I3Omn8lU=;
+ b=Dkv3ssXgPwtN3kjuLt7Xxr/dpn86Y80sgPw+gQlpFgefvho7hRs6ljDYQCyek6cMEtIUnp
+ SGEO72jh9B2QUiQxGcZyPKQaYAjaBkQX6BEYNtY97jAsb7ULX/NOuF6qTPbpybqJn3siaP
+ eD2uYvokqxFn1uMu5oUg76PGtAveSj0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1673874757;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=YQ1YlOVInu6WsLhZgXbEIaFPrF+YO75TAo9I3Omn8lU=;
+ b=YKR9ZNdxeA1F59bn4EWw8CGDO8y6VBcLVvAazzlL5QGqy3h8+ATlpHDblpJITTnrXS4Km0
+ xUgsEi/Z9reSwIDw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 1E2A3138FA;
+ Mon, 16 Jan 2023 13:12:37 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id CRPmBUVNxWNrNQAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Mon, 16 Jan 2023 13:12:37 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: sam@ravnborg.org,
+	daniel@ffwll.ch,
+	airlied@gmail.com
+Subject: [PATCH 00/22] drm: Remove includes for drm_crtc_helper.h
+Date: Mon, 16 Jan 2023 14:12:13 +0100
+Message-Id: <20230116131235.18917-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-X-Rspamd-Queue-Id: A6A8832
-X-Spam-Status: No, score=-0.11
-X-Rspamd-Server: rspamout03
-X-Stat-Signature: nmp5jzgs6mbr4ybrsoi3t7kdy77pzftq
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Session-ID: U2FsdGVkX1+vcIh7h853zIRDiyU/iVp2UCz25hch+jM=
-X-HE-Tag: 1673815931-499090
-X-HE-Meta: U2FsdGVkX1/EeyVIfaSREYkP20+/ZisoRlOpWZ33AFH9Y7nb5ddC0nDiZ8wdYjIk0gbCITI5svD3Yr3xHWrKTg==
-X-Mailman-Approved-At: Mon, 16 Jan 2023 13:43:36 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,68 +62,165 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Praveen Kumar <kumarpraveen@linux.microsoft.com>,
- Saurabh Singh Sengar <ssengar@microsoft.com>
+Cc: linux-aspeed@lists.ozlabs.org, nouveau@lists.freedesktop.org,
+ linux-mips@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sun, 2023-01-15 at 15:30 +0530, Deepak R Varma wrote:
-> The if / else block code has same effect irrespective of the logical
-> evaluation.  Hence, simply the implementation by removing the unnecessary
-> conditional evaluation. While at it, also fix the long line checkpatch
-> complaint. Issue identified using cond_no_effect.cocci Coccinelle
-> semantic patch script.
->=20
-> Signed-off-by: Deepak R Varma <drv@mailo.com>
-> ---
-> Please note: The proposed change is compile tested only. If there are any
-> inbuilt test cases that I should run for further verification, I will app=
-reciate
-> guidance about it. Thank you.
+A lot of source files include drm_crtc_helper.h for its contained
+include statements. This leads to excessive compile-time dependencies.
 
-Preface: I do not know the code.
+Where possible, remove the include statements for drm_crtc_helper.h
+and include the required source files directly. Also remove the
+include statements from drm_crtc_helper.h itself, which doesn't need
+most of them.
 
-Perhaps Rodrigo Siqueira made a copy/paste error submitting the code for
-commit 9114b55fabae ("drm/amd/display: Fix SubVP control flow in the MPO co=
-ntext")
-as the code prior to this change is identical.
+I built this patchset on x86-64, aarch64 and arm. Hopefully I found
+all include dependencies.
 
-Perhaps one of the false uses should be true or dependent on the
-interdependent_update_lock state.
+Thanks to Sam Ravnborg for bringing this to my attention.
 
-> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/a=
-md/display/dc/core/dc.c
-[]
-> @@ -3470,14 +3470,9 @@ static void commit_planes_for_stream(struct dc *dc=
-,
->  		/* Since phantom pipe programming is moved to post_unlock_program_fron=
-t_end,
->  		 * move the SubVP lock to after the phantom pipes have been setup
->  		 */
-> -		if (should_lock_all_pipes && dc->hwss.interdependent_update_lock) {
-> -			if (dc->hwss.subvp_pipe_control_lock)
-> -				dc->hwss.subvp_pipe_control_lock(dc, context, false, should_lock_all=
-_pipes, NULL, subvp_prev_use);
-> -		} else {
-> -			if (dc->hwss.subvp_pipe_control_lock)
-> -				dc->hwss.subvp_pipe_control_lock(dc, context, false, should_lock_all=
-_pipes, NULL, subvp_prev_use);
-> -		}
-> -
+Thomas Zimmermann (22):
+  drm/amdgpu: Fix coding style
+  drm: Remove unnecessary include statements for drm_crtc_helper.h
+  drm/amdgpu: Remove unnecessary include statements for
+    drm_crtc_helper.h
+  drm/arm/komeda: Remove unnecessary include statements for
+    drm_crtc_helper.h
+  drm/aspeed: Remove unnecessary include statements for
+    drm_crtc_helper.h
+  drm/ast: Remove unnecessary include statements for drm_crtc_helper.h
+  drm/bridge: Remove unnecessary include statements for
+    drm_crtc_helper.h
+  drm/gma500: Remove unnecessary include statements for
+    drm_crtc_helper.h
+  drm/i2c/ch7006: Remove unnecessary include statements for
+    drm_crtc_helper.h
+  drm/ingenic: Remove unnecessary include statements for
+    drm_crtc_helper.h
+  drm/kmb: Remove unnecessary include statements for drm_crtc_helper.h
+  drm/logicvc: Remove unnecessary include statements for
+    drm_crtc_helper.h
+  drm/nouveau: Remove unnecessary include statements for
+    drm_crtc_helper.h
+  drm/radeon: Remove unnecessary include statements for
+    drm_crtc_helper.h
+  drm/rockchip: Remove unnecessary include statements for
+    drm_crtc_helper.h
+  drm/shmobile: Remove unnecessary include statements for
+    drm_crtc_helper.h
+  drm/sprd: Remove unnecessary include statements for drm_crtc_helper.h
+  drm/sun4i: Remove unnecessary include statements for drm_crtc_helper.h
+  drm/tidss: Remove unnecessary include statements for drm_crtc_helper.h
+  drm/udl: Remove unnecessary include statements for drm_crtc_helper.h
+  drm/vboxvideo: Remove unnecessary include statements for
+    drm_crtc_helper.h
+  drm/crtc-helper: Remove most include statements from drm_crtc_helper.h
 
-Perhaps something like:
+ drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c     |  2 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c         |  5 +++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c        |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_encoders.c       |  1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c            |  1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h           |  1 -
+ drivers/gpu/drm/amd/amdgpu/atombios_crtc.c         |  1 -
+ drivers/gpu/drm/amd/amdgpu/atombios_encoders.c     |  1 -
+ drivers/gpu/drm/amd/amdgpu/dce_v10_0.c             |  2 ++
+ drivers/gpu/drm/amd/amdgpu/dce_v11_0.c             |  2 ++
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c              |  2 ++
+ drivers/gpu/drm/amd/amdgpu/dce_v8_0.c              |  2 ++
+ drivers/gpu/drm/arm/display/komeda/komeda_crtc.c   |  1 -
+ drivers/gpu/drm/arm/display/komeda/komeda_kms.h    |  1 -
+ drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c           |  1 -
+ drivers/gpu/drm/aspeed/aspeed_gfx_drv.c            |  1 -
+ drivers/gpu/drm/aspeed/aspeed_gfx_out.c            |  1 -
+ drivers/gpu/drm/ast/ast_drv.c                      |  1 -
+ drivers/gpu/drm/ast/ast_main.c                     |  1 -
+ drivers/gpu/drm/ast/ast_mode.c                     |  1 -
+ drivers/gpu/drm/bridge/analogix/analogix-anx6345.c |  1 -
+ drivers/gpu/drm/bridge/analogix/anx7625.c          |  1 -
+ .../gpu/drm/bridge/cadence/cdns-mhdp8546-core.c    |  1 -
+ drivers/gpu/drm/bridge/ite-it6505.c                |  1 -
+ drivers/gpu/drm/bridge/ite-it66121.c               |  1 -
+ drivers/gpu/drm/bridge/tc358768.c                  |  1 -
+ drivers/gpu/drm/bridge/tc358775.c                  |  1 -
+ drivers/gpu/drm/drm_crtc_helper.c                  |  1 -
+ drivers/gpu/drm/drm_lease.c                        |  2 +-
+ drivers/gpu/drm/drm_plane_helper.c                 |  1 -
+ drivers/gpu/drm/gma500/cdv_device.c                |  1 +
+ drivers/gpu/drm/gma500/cdv_intel_crt.c             |  2 ++
+ drivers/gpu/drm/gma500/cdv_intel_display.c         |  1 +
+ drivers/gpu/drm/gma500/cdv_intel_dp.c              |  1 +
+ drivers/gpu/drm/gma500/cdv_intel_hdmi.c            |  2 ++
+ drivers/gpu/drm/gma500/cdv_intel_lvds.c            |  2 ++
+ drivers/gpu/drm/gma500/framebuffer.c               |  2 ++
+ drivers/gpu/drm/gma500/gma_display.c               |  2 ++
+ drivers/gpu/drm/gma500/oaktrail_crtc.c             |  1 +
+ drivers/gpu/drm/gma500/oaktrail_hdmi.c             |  2 ++
+ drivers/gpu/drm/gma500/oaktrail_lvds.c             |  1 +
+ drivers/gpu/drm/gma500/psb_device.c                |  1 +
+ drivers/gpu/drm/gma500/psb_intel_display.c         |  3 +++
+ drivers/gpu/drm/gma500/psb_intel_drv.h             |  1 -
+ drivers/gpu/drm/gma500/psb_intel_lvds.c            |  2 ++
+ drivers/gpu/drm/gma500/psb_intel_sdvo.c            |  2 ++
+ drivers/gpu/drm/i2c/ch7006_drv.c                   |  2 ++
+ drivers/gpu/drm/i2c/ch7006_priv.h                  |  1 -
+ drivers/gpu/drm/ingenic/ingenic-drm-drv.c          |  1 -
+ drivers/gpu/drm/kmb/kmb_crtc.c                     |  1 -
+ drivers/gpu/drm/kmb/kmb_plane.c                    |  1 -
+ drivers/gpu/drm/logicvc/logicvc_interface.c        |  1 -
+ drivers/gpu/drm/logicvc/logicvc_mode.c             |  1 -
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c            |  1 +
+ drivers/gpu/drm/nouveau/dispnv04/dac.c             |  2 +-
+ drivers/gpu/drm/nouveau/dispnv04/dfp.c             |  2 +-
+ drivers/gpu/drm/nouveau/dispnv04/tvmodesnv17.c     |  1 -
+ drivers/gpu/drm/nouveau/dispnv04/tvnv04.c          |  2 +-
+ drivers/gpu/drm/nouveau/dispnv04/tvnv17.c          |  1 +
+ drivers/gpu/drm/nouveau/dispnv50/head.c            |  1 -
+ drivers/gpu/drm/nouveau/nouveau_drm.c              |  1 -
+ drivers/gpu/drm/nouveau/nouveau_vga.c              |  1 -
+ drivers/gpu/drm/radeon/atombios_crtc.c             |  2 +-
+ drivers/gpu/drm/radeon/atombios_encoders.c         |  1 +
+ drivers/gpu/drm/radeon/r300.c                      |  1 -
+ drivers/gpu/drm/radeon/radeon_asic.c               |  1 -
+ drivers/gpu/drm/radeon/radeon_connectors.c         |  1 +
+ drivers/gpu/drm/radeon/radeon_display.c            |  1 +
+ drivers/gpu/drm/radeon/radeon_drv.c                |  1 -
+ drivers/gpu/drm/radeon/radeon_encoders.c           |  1 -
+ drivers/gpu/drm/radeon/radeon_irq_kms.c            |  1 -
+ drivers/gpu/drm/radeon/radeon_legacy_crtc.c        |  2 +-
+ drivers/gpu/drm/radeon/radeon_legacy_encoders.c    |  2 +-
+ drivers/gpu/drm/radeon/radeon_legacy_tv.c          |  1 -
+ drivers/gpu/drm/radeon/radeon_mode.h               |  2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       |  1 -
+ drivers/gpu/drm/shmobile/shmob_drm_crtc.c          |  2 ++
+ drivers/gpu/drm/shmobile/shmob_drm_drv.c           |  1 -
+ drivers/gpu/drm/shmobile/shmob_drm_plane.c         |  1 -
+ drivers/gpu/drm/sprd/sprd_dpu.c                    |  1 -
+ drivers/gpu/drm/sprd/sprd_drm.c                    |  1 -
+ drivers/gpu/drm/sprd/sprd_dsi.c                    |  1 -
+ drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c              |  2 +-
+ drivers/gpu/drm/tidss/tidss_crtc.c                 |  1 -
+ drivers/gpu/drm/tidss/tidss_drv.c                  |  1 -
+ drivers/gpu/drm/tidss/tidss_encoder.c              |  2 +-
+ drivers/gpu/drm/tidss/tidss_kms.c                  |  1 -
+ drivers/gpu/drm/tidss/tidss_plane.c                |  1 -
+ drivers/gpu/drm/udl/udl_drv.c                      |  2 +-
+ drivers/gpu/drm/udl/udl_modeset.c                  |  1 -
+ drivers/gpu/drm/vboxvideo/vbox_drv.c               |  2 +-
+ drivers/gpu/drm/vboxvideo/vbox_main.c              |  1 -
+ include/drm/drm_crtc_helper.h                      | 14 +++++++++-----
+ include/drm/drm_fixed.h                            |  1 +
+ 94 files changed, 70 insertions(+), 70 deletions(-)
 
-		if (dc->hwss.subvp_pipe_control_lock)
-			dc->hwss.subvp_pipe_control_lock(dc, context,
-							 should_lock_all_pipes &&
-							 dc->hwss.interdependent_update_lock,
-							 should_lock_all_pipes, NULL, subvp_prev_use);
 
-> +		if (dc->hwss.subvp_pipe_control_lock)
-> +			dc->hwss.subvp_pipe_control_lock(dc, context, false, should_lock_all_=
-pipes,
-> +							 NULL, subvp_prev_use);
->  		return;
->  	}
-> =20
+base-commit: 68d139b609a97a83e7c231189d4864aba4e1679b
+prerequisite-patch-id: 0aa359f6144c4015c140c8a6750be19099c676fb
+prerequisite-patch-id: c67e5d886a47b7d0266d81100837557fda34cb24
+prerequisite-patch-id: 3f204510fcbf9530d6540bd8e6128cce598988b6
+-- 
+2.39.0
 
