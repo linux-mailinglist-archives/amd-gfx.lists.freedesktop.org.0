@@ -2,66 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0B7866CFEC
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Jan 2023 21:12:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 835FD66CFFE
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Jan 2023 21:16:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 689A410E4AE;
-	Mon, 16 Jan 2023 20:12:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D7B310E04D;
+	Mon, 16 Jan 2023 20:16:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com
- [IPv6:2a00:1450:4864:20::62b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4357510E04D
- for <amd-gfx@lists.freedesktop.org>; Mon, 16 Jan 2023 20:12:23 +0000 (UTC)
-Received: by mail-ej1-x62b.google.com with SMTP id cf18so64168776ejb.5
- for <amd-gfx@lists.freedesktop.org>; Mon, 16 Jan 2023 12:12:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=HFjDO5U6/iRRr8060PjKyCg5Jlp4Qful1+ofUOZVw5o=;
- b=EoZ/HWpSZiO0j9XpxSS26PhRork7cEwqS2akggsoat+efEFDiuvYMG8pbc1qqjHLW7
- pVP2zudawNqW00H/+pBuDUslwUDUfTSqffQoSADyO+xkPrAgnQpAvVNYlB6ZvunbD0wj
- breoV78F5t/xJ4PHrSedF2TlG1OKP1OA0x8dU81xmMfeDT123QhMeB7VGAWoT51tgmLQ
- eg31O7IXAmp2wGa9UvAkgaj8mputGJpu4sCuWNxVIZNALFbBeN5yFBzOS8kCGzHlOSZU
- +978bLXIcpg9xQc7sDo0mGdcUr4psBF8V1nHulKmTWo76je1lE/UligZvPjdQ9bsla2C
- 9xxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=HFjDO5U6/iRRr8060PjKyCg5Jlp4Qful1+ofUOZVw5o=;
- b=tkL+/OzKQtf8A57pVkP/EIl89MgH3xBzz65Dgl9/n4FXIwpOmc2Mmx7QN1QRLZG3PX
- 5orJMIJ5M5O/VAmV2MFjTKjY7YsIlKz6G/Lgjx9HrmQi6IzacRmrLfXkaFcCXvwtKzmf
- NQxqo6cQ96QKaufVzD5hXxFbZYb1qFzBPImfXcnhAhWmb0gYBsncZrlN1EQBB1qB/3by
- C3/F301rSME8R6GWYALpCmznFkr3CULplcg8VR7Xr3h8BBkJOtmS6XUxACO1mpPZdJJc
- R2PwWMnkfkl3Mqm9BXvOxbCIFuRn+RK7LzC4zoXOYTgGKfVHd0WHsLkX6pE01A8wgqmD
- agWw==
-X-Gm-Message-State: AFqh2kouacaWNY9bbddW3q7Q6Z1IzqhmT0PzBPOSMAEdpDhZ89XAgAzh
- N8gMi6kHq0pHsEPcI5b3cE3bp6mW6os=
-X-Google-Smtp-Source: AMrXdXtSGL68OSQA139X5el316KArrFyFkU/mj3pp//S0eKJW5iso2NBRqLIWSAYx99b6g13GgNMnA==
-X-Received: by 2002:a17:906:fac3:b0:7c1:808e:7660 with SMTP id
- lu3-20020a170906fac300b007c1808e7660mr232853ejb.43.1673899941665; 
- Mon, 16 Jan 2023 12:12:21 -0800 (PST)
-Received: from able.fritz.box (p5b0ea2e7.dip0.t-ipconnect.de. [91.14.162.231])
- by smtp.gmail.com with ESMTPSA id
- g3-20020a1709067c4300b007c0a7286ac8sm12238492ejp.69.2023.01.16.12.12.20
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Jan 2023 12:12:21 -0800 (PST)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: thong.thai@amd.com,
-	amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/amdgpu: simplify and cleanup amdgpu_uvd_send_msg
-Date: Mon, 16 Jan 2023 21:12:18 +0100
-Message-Id: <20230116201218.5113-2-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230116201218.5113-1-christian.koenig@amd.com>
-References: <20230116201218.5113-1-christian.koenig@amd.com>
+Received: from mailrelay1-1.pub.mailoutpod2-cph3.one.com
+ (mailrelay1-1.pub.mailoutpod2-cph3.one.com [46.30.211.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A07110E04D
+ for <amd-gfx@lists.freedesktop.org>; Mon, 16 Jan 2023 20:16:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ravnborg.org; s=rsa2;
+ h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+ from:date:from;
+ bh=qWZKxlX4KW/JmPpNe4hoOYISYsciP5gHQlpn+CvfXf8=;
+ b=kt2RebpVMaIBssccQkMEgek+nwW85G6J0siMHGZ1qETVQeJlMBKmjG0mlVm3r7ePnu8jfPm81ygq7
+ Mz8rQydCpwnm7+yWjbjNIN/fzDJe5WsKcBoAUsBadcQc0vOYb6T41tQjEeU/05VcOGjEkJnNNqYFDv
+ W6Hs6b61sUUwtJAeXWksNEBFK4Y9hM1amCX4haYovx3yLNNcTv+aB4AWsRcwfANqGXT1LV3gcWRrqV
+ ROUTznYXXwPl8HONFIMoZCbhWD4ezvanZv5cXNNxoJUbsVJ4K/EAnSMi/8BPSb4nuXYYFMXiL4SyAH
+ nCwGrMJpVzOvZphymhAQroedp3D9X1Q==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+ d=ravnborg.org; s=ed2;
+ h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+ from:date:from;
+ bh=qWZKxlX4KW/JmPpNe4hoOYISYsciP5gHQlpn+CvfXf8=;
+ b=xE4aoD0tRO5MstpdlKpx4S2jKlZCleYS/37b6LqWjWapIOw44SoqoiaLAWrBeI0WODd2oUSv6O6cJ
+ cNcxfeJCQ==
+X-HalOne-ID: 90146bb7-95da-11ed-afa2-11abd97b9443
+Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
+ by mailrelay1 (Halon) with ESMTPSA
+ id 90146bb7-95da-11ed-afa2-11abd97b9443;
+ Mon, 16 Jan 2023 20:15:49 +0000 (UTC)
+Date: Mon, 16 Jan 2023 21:15:47 +0100
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [PATCH 02/22] drm: Remove unnecessary include statements for
+ drm_crtc_helper.h
+Message-ID: <Y8Wwcy3LuknhDQz1@ravnborg.org>
+References: <20230116131235.18917-1-tzimmermann@suse.de>
+ <20230116131235.18917-3-tzimmermann@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230116131235.18917-3-tzimmermann@suse.de>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,89 +57,91 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: linux-aspeed@lists.ozlabs.org, nouveau@lists.freedesktop.org,
+ linux-mips@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, daniel@ffwll.ch, airlied@gmail.com,
+ linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-We only need one offset and not an array of it.
+Hi Thomas.
 
-We have a wait in the amdgpu_bo_kmap() code for quite a while now, so
-waiting here isn't needed any more.
+On Mon, Jan 16, 2023 at 02:12:15PM +0100, Thomas Zimmermann wrote:
+> Several DRM core and helper source files include drm_crtc_helper.h
+> without needing it or only to get its transitive include statements;
+> leading to unnecessary compile-time dependencies.
+> 
+> Directly include required headers and drop drm_crtc_helper.h where
+> possible. The header file, drm_fixed.h, includes <linux/kernel.h>
+> for lower_32_bits().
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
+>  drivers/gpu/drm/drm_crtc_helper.c  | 1 -
+>  drivers/gpu/drm/drm_lease.c        | 2 +-
+>  drivers/gpu/drm/drm_plane_helper.c | 1 -
+>  include/drm/drm_fixed.h            | 1 +
+>  4 files changed, 2 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_crtc_helper.c b/drivers/gpu/drm/drm_crtc_helper.c
+> index a209659a996c..e7a23e18140c 100644
+> --- a/drivers/gpu/drm/drm_crtc_helper.c
+> +++ b/drivers/gpu/drm/drm_crtc_helper.c
+> @@ -39,7 +39,6 @@
+>  #include <drm/drm_atomic_uapi.h>
+>  #include <drm/drm_bridge.h>
+>  #include <drm/drm_crtc.h>
+> -#include <drm/drm_crtc_helper.h>
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c | 38 +++++++------------------
- 1 file changed, 10 insertions(+), 28 deletions(-)
+drm_crtc_helper.c may not require drm/drm_crtc_helper.h, but it should
+include it so we get a warning in case there is a mismatch between the
+header file and the implementation.
+I think sparse would also complain that the function is not declared
+or something like that.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
-index b67a5fb2ff3e..229419c0c031 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
-@@ -1118,30 +1118,26 @@ static int amdgpu_uvd_send_msg(struct amdgpu_ring *ring, struct amdgpu_bo *bo,
- {
- 	struct amdgpu_device *adev = ring->adev;
- 	struct dma_fence *f = NULL;
-+	uint32_t offset, data[4];
- 	struct amdgpu_job *job;
- 	struct amdgpu_ib *ib;
--	uint32_t data[4];
- 	uint64_t addr;
--	long r;
--	int i;
--	unsigned offset_idx = 0;
--	unsigned offset[3] = { UVD_BASE_SI, 0, 0 };
-+	int i, r;
- 
- 	r = amdgpu_job_alloc_with_ib(adev, 64, direct ? AMDGPU_IB_POOL_DIRECT :
- 				     AMDGPU_IB_POOL_DELAYED, &job);
- 	if (r)
- 		return r;
- 
--	if (adev->asic_type >= CHIP_VEGA10) {
--		offset_idx = 1 + ring->me;
--		offset[1] = adev->reg_offset[UVD_HWIP][0][1];
--		offset[2] = adev->reg_offset[UVD_HWIP][1][1];
--	}
-+	if (adev->asic_type >= CHIP_VEGA10)
-+		offset = adev->reg_offset[UVD_HWIP][ring->me][1];
-+	else
-+		offset = UVD_BASE_SI;
- 
--	data[0] = PACKET0(offset[offset_idx] + UVD_GPCOM_VCPU_DATA0, 0);
--	data[1] = PACKET0(offset[offset_idx] + UVD_GPCOM_VCPU_DATA1, 0);
--	data[2] = PACKET0(offset[offset_idx] + UVD_GPCOM_VCPU_CMD, 0);
--	data[3] = PACKET0(offset[offset_idx] + UVD_NO_OP, 0);
-+	data[0] = PACKET0(offset + UVD_GPCOM_VCPU_DATA0, 0);
-+	data[1] = PACKET0(offset + UVD_GPCOM_VCPU_DATA1, 0);
-+	data[2] = PACKET0(offset + UVD_GPCOM_VCPU_CMD, 0);
-+	data[3] = PACKET0(offset + UVD_NO_OP, 0);
- 
- 	ib = &job->ibs[0];
- 	addr = amdgpu_bo_gpu_offset(bo);
-@@ -1158,24 +1154,10 @@ static int amdgpu_uvd_send_msg(struct amdgpu_ring *ring, struct amdgpu_bo *bo,
- 	ib->length_dw = 16;
- 
- 	if (direct) {
--		r = dma_resv_wait_timeout(bo->tbo.base.resv,
--					  DMA_RESV_USAGE_KERNEL, false,
--					  msecs_to_jiffies(10));
--		if (r == 0)
--			r = -ETIMEDOUT;
--		if (r < 0)
--			goto err_free;
--
- 		r = amdgpu_job_submit_direct(job, ring, &f);
- 		if (r)
- 			goto err_free;
- 	} else {
--		r = amdgpu_sync_resv(adev, &job->sync, bo->tbo.base.resv,
--				     AMDGPU_SYNC_ALWAYS,
--				     AMDGPU_FENCE_OWNER_UNDEFINED);
--		if (r)
--			goto err_free;
--
- 		r = amdgpu_job_submit(job, &adev->uvd.entity,
- 				      AMDGPU_FENCE_OWNER_UNDEFINED, &f);
- 		if (r)
--- 
-2.34.1
+With this fixed:
+Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
 
+>  #include <drm/drm_drv.h>
+>  #include <drm/drm_edid.h>
+>  #include <drm/drm_encoder.h>
+> diff --git a/drivers/gpu/drm/drm_lease.c b/drivers/gpu/drm/drm_lease.c
+> index 08ab75303a00..150fe1555068 100644
+> --- a/drivers/gpu/drm/drm_lease.c
+> +++ b/drivers/gpu/drm/drm_lease.c
+> @@ -6,7 +6,7 @@
+>  #include <linux/uaccess.h>
+>  
+>  #include <drm/drm_auth.h>
+> -#include <drm/drm_crtc_helper.h>
+> +#include <drm/drm_crtc.h>
+>  #include <drm/drm_drv.h>
+>  #include <drm/drm_file.h>
+>  #include <drm/drm_lease.h>
+> diff --git a/drivers/gpu/drm/drm_plane_helper.c b/drivers/gpu/drm/drm_plane_helper.c
+> index ba6a9136a065..c91e454eba09 100644
+> --- a/drivers/gpu/drm/drm_plane_helper.c
+> +++ b/drivers/gpu/drm/drm_plane_helper.c
+> @@ -28,7 +28,6 @@
+>  #include <drm/drm_atomic.h>
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_atomic_uapi.h>
+> -#include <drm/drm_crtc_helper.h>
+>  #include <drm/drm_device.h>
+>  #include <drm/drm_drv.h>
+>  #include <drm/drm_encoder.h>
+> diff --git a/include/drm/drm_fixed.h b/include/drm/drm_fixed.h
+> index 553210c02ee0..255645c1f9a8 100644
+> --- a/include/drm/drm_fixed.h
+> +++ b/include/drm/drm_fixed.h
+> @@ -25,6 +25,7 @@
+>  #ifndef DRM_FIXED_H
+>  #define DRM_FIXED_H
+>  
+> +#include <linux/kernel.h>
+>  #include <linux/math64.h>
+>  
+>  typedef union dfixed {
+> -- 
+> 2.39.0
