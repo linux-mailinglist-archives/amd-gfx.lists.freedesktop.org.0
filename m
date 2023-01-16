@@ -2,62 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4904366BF1E
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Jan 2023 14:13:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD8C466C04B
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Jan 2023 14:51:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48D3A10E42F;
-	Mon, 16 Jan 2023 13:12:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30B9610E032;
+	Mon, 16 Jan 2023 13:51:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23BAE10E40E;
- Mon, 16 Jan 2023 13:12:45 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id D486F3751A;
- Mon, 16 Jan 2023 13:12:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1673874763; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=OO536y1oIIavqxJbggquU+Ve/xMHXk1PsPJeSriBnEc=;
- b=Udkbksja4U2SmueaT/CBQsB1+CnfK2yVlqG1l9ZE5v78J3trCBUlXz2roVXvwoK8JV+j/5
- RJBpTXJMbF1eF1IVQTt5IsaogDnmOtmBRNYkOH3qPIyZY2v7XlyXWADk1UpBB17xSI4khU
- CZJDLkGyF0XQJr3XVOuEWpBhmMoHRt4=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1673874763;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=OO536y1oIIavqxJbggquU+Ve/xMHXk1PsPJeSriBnEc=;
- b=9MzN2mh+4Y19EA2xQcARcGH/wwJ5CLbTFhxyzTEtdsZAzOAJxfT4YnHxkMNDoB0Q8nvGy/
- kHh7OuLMzJlFZ8AQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 94FAB138FA;
- Mon, 16 Jan 2023 13:12:43 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id WB17I0tNxWNrNQAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Mon, 16 Jan 2023 13:12:43 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: sam@ravnborg.org,
-	daniel@ffwll.ch,
-	airlied@gmail.com
-Subject: [PATCH 22/22] drm/crtc-helper: Remove most include statements from
- drm_crtc_helper.h
-Date: Mon, 16 Jan 2023 14:12:35 +0100
-Message-Id: <20230116131235.18917-23-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230116131235.18917-1-tzimmermann@suse.de>
-References: <20230116131235.18917-1-tzimmermann@suse.de>
+Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com
+ [IPv6:2001:4860:4864:20::31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6B7110E03D
+ for <amd-gfx@lists.freedesktop.org>; Mon, 16 Jan 2023 13:51:29 +0000 (UTC)
+Received: by mail-oa1-x31.google.com with SMTP id
+ 586e51a60fabf-15ed38a9b04so10257005fac.8
+ for <amd-gfx@lists.freedesktop.org>; Mon, 16 Jan 2023 05:51:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=6AN1hciLHtE8NjF6MqwI5BHLs0Uwr6NEg43L1FYTYPU=;
+ b=oBnwn5Gt3TWlDabJB7XBEUJRtpOqd5p/Kbr/WqiUxgf1paw1GiRc+SwyO54C6Ynsyt
+ QSTirgCQw+elPq7biWxAq4AoCzeGhxd9cu83FZSd4W0/CKct76+VlcFxIDukdqyl7iXg
+ QGk4skVEu9lpgBgDxPcA5ps52iP7w3BBRHe0NtyU5xnOIUe1yCwOpshoDXiTZjNKnwKE
+ VtxQw1DGMoU9rVAfNRB8EWATF4fGrQ8veOB2FaU+sHpV//GeJ5J3NRs+1NPVOZjsHFcV
+ eQWXRQJatrE4qOZ+sVM6BzJn5omEd0zOpyHT3KcVKY2wFHCwervLNPrfM1RDXVa8OvpW
+ B/NA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=6AN1hciLHtE8NjF6MqwI5BHLs0Uwr6NEg43L1FYTYPU=;
+ b=EaRN8XPI9oWb99cpk5gjdwTImr2o0P57om6PWVB5weg9Ih4aXj/AGorN2ZCyamIn3D
+ 423qh66RFQUi89ouhXgzgw8pqLFTCzE0nP29heykW8QZLfDc44mlCtprd8orYmDeYWl2
+ Jiwf0KGjQq0AqF13Jutv3MIPUeaFBVARAd1NrR9ncFzlzdauYnQZy/iMhWKc6Zv81HpD
+ YOb18pSu3tX4c9Oqic+TT/ZmsZqOhPgtINPD8BQz7w8nLRb7GFvxKMVRqssEwGeQ45zF
+ on3XWkQ+FsMZS9BFW1G2+E3fHXZorPp9GMNIwqvIGBuxsEFvqcdxb/WGWcRpugaZFfKD
+ g8BA==
+X-Gm-Message-State: AFqh2ko0fdEhRh6RRtWWGqdaDY5+iJNIEiGdFIO/zt4pr9V1deiBRsEu
+ zZhoxggPMSFPYAZisC+twuPvwo69wQF/SJPFpkk=
+X-Google-Smtp-Source: AMrXdXv0IZV4g2aM2FK6lOG6p9uHkKY2MfxuLI596Fw41ZhSYxGwcsqZnQ24fQN0g58nhQQT7k0aHQzjso5cpZGID0s=
+X-Received: by 2002:a05:6870:c59c:b0:150:d9aa:4011 with SMTP id
+ ba28-20020a056870c59c00b00150d9aa4011mr3885295oab.96.1673877088792; Mon, 16
+ Jan 2023 05:51:28 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230115192144.4566-1-mario.limonciello@amd.com>
+In-Reply-To: <20230115192144.4566-1-mario.limonciello@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 16 Jan 2023 08:51:17 -0500
+Message-ID: <CADnq5_OW7rmBqGbW=X+LHGkhW6Dr5tC628JPboAg7cP+uHct1Q@mail.gmail.com>
+Subject: Re: [PATCH 1/3] drm/amd: Adjust legacy IP discovery for
+ Picasso/Raven/Raven2
+To: Mario Limonciello <mario.limonciello@amd.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,51 +65,55 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-aspeed@lists.ozlabs.org, nouveau@lists.freedesktop.org,
- linux-mips@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
- dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Remove most include statements from crm_crtc_helper.h and forward-
-declare the contained types in drm_crtc_helper.h. Only keep <linux/types.h>
-for the definition of 'bool'.
+On Sun, Jan 15, 2023 at 2:22 PM Mario Limonciello
+<mario.limonciello@amd.com> wrote:
+>
+> The switch/case statement currently combines 10.0.0 and 10.0.1, but
+> 10.0.1 is only used for Raven 2.  So split the two cases up to
+> make this clearer.
 
-Suggested-by: Sam Ravnborg <sam@ravnborg.org>
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- include/drm/drm_crtc_helper.h | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
+Keep the logic as is.  We don't know the revision id which is used to
+differentiate the raven variants until after IP discovery so we can't
+assign the proper IP versions for each raven variant and raven asics
+don't have an IP discovery table (it's hardcoded in
+amdgpu_discovery.c).
 
-diff --git a/include/drm/drm_crtc_helper.h b/include/drm/drm_crtc_helper.h
-index 072bc4f90349..8c886fc46ef2 100644
---- a/include/drm/drm_crtc_helper.h
-+++ b/include/drm/drm_crtc_helper.h
-@@ -33,13 +33,17 @@
- #ifndef __DRM_CRTC_HELPER_H__
- #define __DRM_CRTC_HELPER_H__
- 
--#include <linux/spinlock.h>
- #include <linux/types.h>
--#include <linux/idr.h>
- 
--#include <drm/drm_crtc.h>
--#include <drm/drm_modeset_helper_vtables.h>
--#include <drm/drm_modeset_helper.h>
-+struct drm_atomic_state;
-+struct drm_connector;
-+struct drm_crtc;
-+struct drm_device;
-+struct drm_display_mode;
-+struct drm_encoder;
-+struct drm_framebuffer;
-+struct drm_mode_set;
-+struct drm_modeset_acquire_ctx;
- 
- void drm_helper_disable_unused_functions(struct drm_device *dev);
- int drm_crtc_helper_set_config(struct drm_mode_set *set,
--- 
-2.39.0
+Alex
 
+>
+> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c | 12 ++++--------
+>  1 file changed, 4 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
+> index c03824d0311bd..0d950ae14b27c 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
+> @@ -1074,15 +1074,11 @@ static const char *amdgpu_ucode_legacy_naming(struct amdgpu_device *adev, int bl
+>                         }
+>                         break;
+>                 case IP_VERSION(10, 0, 0):
+> +                       if (adev->apu_flags & AMD_APU_IS_PICASSO)
+> +                               return "picasso";
+> +                       return "raven";
+>                 case IP_VERSION(10, 0, 1):
+> -                       if (adev->asic_type == CHIP_RAVEN) {
+> -                               if (adev->apu_flags & AMD_APU_IS_RAVEN2)
+> -                                       return "raven2";
+> -                               else if (adev->apu_flags & AMD_APU_IS_PICASSO)
+> -                                       return "picasso";
+> -                               return "raven";
+> -                       }
+> -                       break;
+> +                       return "raven2";
+>                 case IP_VERSION(11, 0, 0):
+>                         return "navi10";
+>                 case IP_VERSION(11, 0, 2):
+> --
+> 2.25.1
+>
