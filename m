@@ -1,54 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4B0966E545
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Jan 2023 18:51:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7994866E57C
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Jan 2023 18:59:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02C3910E308;
-	Tue, 17 Jan 2023 17:51:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C701110E30A;
+	Tue, 17 Jan 2023 17:59:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CC3910E305;
- Tue, 17 Jan 2023 17:51:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673977893; x=1705513893;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=n0FgE4J8em7zQXCwUH4vknV/VS6zROjS7xx2r3TK52k=;
- b=iHJyFU1e2aR6zsZkpz263q3Uo8Z02IYcmR8Kj9bwiIaOCYNPKXi0YHeN
- dsneEhanzer3/yNUDSUMOcyKVna5xhCt7cKShYgIMEIKPD6F4H1wBzb4+
- P+LED2e1kJFooMdppUVZA/dpQ+KeMhcup8ebjxjTzbPnkCgFTu7cze4CE
- 2kjx3N90G21eYQnM3/ZRl3Wez71FUp5QUR4yZBpsEQvcMMkzoAOtUW5Nw
- 4f/3Zgndflan1vEy76TVE7jlVjiaudtCciUZZO26Qr5x3VgFHYicesJdO
- 4haLoqSjzwYFUjaJjMb+3AvOFUKupwXliiTBOSOvcCzGjC0+7ia4T3Zpa Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="387111630"
-X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; d="scan'208";a="387111630"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2023 09:51:32 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="659463220"
-X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; d="scan'208";a="659463220"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.251.222.166])
- ([10.251.222.166])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2023 09:51:31 -0800
-Message-ID: <b1b8cc97-f102-8820-3b5d-1cce97fc398f@linux.intel.com>
-Date: Tue, 17 Jan 2023 18:51:28 +0100
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BE8410E300;
+ Tue, 17 Jan 2023 17:59:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+ Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=wulx1i+YnfVXqlJt+RBnpDlK1qUt7qPJU6WMVdTl8ho=; b=PGNVzOhdtwDWb90uFVv8szwoXI
+ FxHpDmO31xSONhzguIUMY7ACCjOtoqE/DkHs1caYYCaM0vuPf0f2OSog6FeNRo3diA0hMAyYbGSXx
+ ChNBhbjkeBZ+F/6zDytGIwn7wpsheXG0p0lrB4Db5d7BW7xg/wQsGhVyIeHpP5hmWugDCTQJTKz1M
+ SUMWJ02QqiXQYoozO+H+l9c0jumT6OzeybTgVts76s7lczQm77g+4wBroa2rmcJXQn619Qd6TZck8
+ Y0Dmzs5C3z+4GhwoRMUovIxWMoN2T1NTXg9jhuHnFjcjcAr4e3kVqayl9ITwsx/Co3f0HlnpJ3heO
+ PDtl6fNQ==;
+Received: from [187.56.70.205] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1pHqEb-00Aprf-Ft; Tue, 17 Jan 2023 18:58:58 +0100
+From: "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH v2 1/2] drm/amdgpu/vcn: Adjust firmware names indentation
+Date: Tue, 17 Jan 2023 14:58:35 -0300
+Message-Id: <20230117175836.914304-1-gpiccoli@igalia.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH 1/2] drm/radeon: Do not use deprecated drm log API
-Content-Language: en-US
-To: Alex Deucher <alexdeucher@gmail.com>, Nirmoy Das <nirmoy.das@intel.com>
-References: <20230117174447.21870-1-nirmoy.das@intel.com>
- <CADnq5_P-vC9zfEPUk7LwPWuS1s+e4nqZtEqWf2mo0BfnVwYqJA@mail.gmail.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <CADnq5_P-vC9zfEPUk7LwPWuS1s+e4nqZtEqWf2mo0BfnVwYqJA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 17 Jan 2023 17:59:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,62 +49,87 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org
+Cc: Sonny Jiang <sonny.jiang@amd.com>, kernel@gpiccoli.net, Xinhui.Pan@amd.com,
+ dri-devel@lists.freedesktop.org, Lazar Lijo <Lijo.Lazar@amd.com>,
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+ Mario Limonciello <mario.limonciello@amd.com>, kernel-dev@igalia.com,
+ alexander.deucher@amd.com, James Zhu <James.Zhu@amd.com>,
+ Leo Liu <leo.liu@amd.com>, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+This is an incredibly trivial fix, just for the sake of
+"aesthetical" organization of the defines. Some were space based,
+most were tab based and there was a lack of "alignment", now it's
+all the same and aligned.
 
-On 1/17/2023 6:48 PM, Alex Deucher wrote:
-> On Tue, Jan 17, 2023 at 12:45 PM Nirmoy Das <nirmoy.das@intel.com> wrote:
->> Replace deprecated DRM_DEBUG_KMS_RATELIMITED() and DRM_ERROR()
->> with proper APIs.
->>
->> Cc: Alex Deucher <alexander.deucher@amd.com>
->> Cc: Christian König <christian.koenig@amd.com>
->>
->> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->> ---
->>   drivers/gpu/drm/radeon/radeon_dp_auxch.c | 5 ++---
->>   1 file changed, 2 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/radeon/radeon_dp_auxch.c b/drivers/gpu/drm/radeon/radeon_dp_auxch.c
->> index 69379b95146e..76ce66efb5f8 100644
->> --- a/drivers/gpu/drm/radeon/radeon_dp_auxch.c
->> +++ b/drivers/gpu/drm/radeon/radeon_dp_auxch.c
->> @@ -158,7 +158,7 @@ radeon_dp_aux_transfer_native(struct drm_dp_aux *aux, struct drm_dp_aux_msg *msg
->>          } while (retry_count++ < 1000);
->>
->>          if (retry_count >= 1000) {
->> -               DRM_ERROR("auxch hw never signalled completion, error %08x\n", tmp);
->> +               pr_err("auxch hw never signalled completion, error %08x\n", tmp);
-> Please use dev_err() instead so we get device identification on error
-> messages.  Makes it much easier when you have multiple GPUs in a
-> system.
+Cc: James Zhu <James.Zhu@amd.com>
+Cc: Lazar Lijo <Lijo.Lazar@amd.com>
+Cc: Leo Liu <leo.liu@amd.com>
+Cc: Mario Limonciello <mario.limonciello@amd.com>
+Cc: Sonny Jiang <sonny.jiang@amd.com>
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Guilherme G. Piccoli <gpiccoli@igalia.com>
+---
 
 
-Thanks for your quick review, Alex. I will resend with dev_err().
+V2:
+* Added Alex's review tag - thanks!
 
 
-Nirmoy
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c | 38 ++++++++++++-------------
+ 1 file changed, 19 insertions(+), 19 deletions(-)
 
->
-> Alex
->
->>                  ret = -EIO;
->>                  goto done;
->>          }
->> @@ -168,8 +168,7 @@ radeon_dp_aux_transfer_native(struct drm_dp_aux *aux, struct drm_dp_aux_msg *msg
->>                  goto done;
->>          }
->>          if (tmp & AUX_RX_ERROR_FLAGS) {
->> -               DRM_DEBUG_KMS_RATELIMITED("dp_aux_ch flags not zero: %08x\n",
->> -                                         tmp);
->> +               drm_dbg_kms_ratelimited(dev, "dp_aux_ch flags not zero: %08x\n", tmp);
->>                  ret = -EIO;
->>                  goto done;
->>          }
->> --
->> 2.39.0
->>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+index f8397d993f23..1b1a3c9e1863 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+@@ -36,26 +36,26 @@
+ #include "soc15d.h"
+ 
+ /* Firmware Names */
+-#define FIRMWARE_RAVEN		"amdgpu/raven_vcn.bin"
+-#define FIRMWARE_PICASSO	"amdgpu/picasso_vcn.bin"
+-#define FIRMWARE_RAVEN2		"amdgpu/raven2_vcn.bin"
+-#define FIRMWARE_ARCTURUS	"amdgpu/arcturus_vcn.bin"
+-#define FIRMWARE_RENOIR		"amdgpu/renoir_vcn.bin"
+-#define FIRMWARE_GREEN_SARDINE	"amdgpu/green_sardine_vcn.bin"
+-#define FIRMWARE_NAVI10		"amdgpu/navi10_vcn.bin"
+-#define FIRMWARE_NAVI14		"amdgpu/navi14_vcn.bin"
+-#define FIRMWARE_NAVI12		"amdgpu/navi12_vcn.bin"
+-#define FIRMWARE_SIENNA_CICHLID	"amdgpu/sienna_cichlid_vcn.bin"
+-#define FIRMWARE_NAVY_FLOUNDER	"amdgpu/navy_flounder_vcn.bin"
+-#define FIRMWARE_VANGOGH	"amdgpu/vangogh_vcn.bin"
++#define FIRMWARE_RAVEN			"amdgpu/raven_vcn.bin"
++#define FIRMWARE_PICASSO		"amdgpu/picasso_vcn.bin"
++#define FIRMWARE_RAVEN2			"amdgpu/raven2_vcn.bin"
++#define FIRMWARE_ARCTURUS		"amdgpu/arcturus_vcn.bin"
++#define FIRMWARE_RENOIR			"amdgpu/renoir_vcn.bin"
++#define FIRMWARE_GREEN_SARDINE		"amdgpu/green_sardine_vcn.bin"
++#define FIRMWARE_NAVI10			"amdgpu/navi10_vcn.bin"
++#define FIRMWARE_NAVI14			"amdgpu/navi14_vcn.bin"
++#define FIRMWARE_NAVI12			"amdgpu/navi12_vcn.bin"
++#define FIRMWARE_SIENNA_CICHLID		"amdgpu/sienna_cichlid_vcn.bin"
++#define FIRMWARE_NAVY_FLOUNDER		"amdgpu/navy_flounder_vcn.bin"
++#define FIRMWARE_VANGOGH		"amdgpu/vangogh_vcn.bin"
+ #define FIRMWARE_DIMGREY_CAVEFISH	"amdgpu/dimgrey_cavefish_vcn.bin"
+-#define FIRMWARE_ALDEBARAN	"amdgpu/aldebaran_vcn.bin"
+-#define FIRMWARE_BEIGE_GOBY	"amdgpu/beige_goby_vcn.bin"
+-#define FIRMWARE_YELLOW_CARP	"amdgpu/yellow_carp_vcn.bin"
+-#define FIRMWARE_VCN_3_1_2	"amdgpu/vcn_3_1_2.bin"
+-#define FIRMWARE_VCN4_0_0	"amdgpu/vcn_4_0_0.bin"
+-#define FIRMWARE_VCN4_0_2	"amdgpu/vcn_4_0_2.bin"
+-#define FIRMWARE_VCN4_0_4      "amdgpu/vcn_4_0_4.bin"
++#define FIRMWARE_ALDEBARAN		"amdgpu/aldebaran_vcn.bin"
++#define FIRMWARE_BEIGE_GOBY		"amdgpu/beige_goby_vcn.bin"
++#define FIRMWARE_YELLOW_CARP		"amdgpu/yellow_carp_vcn.bin"
++#define FIRMWARE_VCN_3_1_2		"amdgpu/vcn_3_1_2.bin"
++#define FIRMWARE_VCN4_0_0		"amdgpu/vcn_4_0_0.bin"
++#define FIRMWARE_VCN4_0_2		"amdgpu/vcn_4_0_2.bin"
++#define FIRMWARE_VCN4_0_4		"amdgpu/vcn_4_0_4.bin"
+ 
+ MODULE_FIRMWARE(FIRMWARE_RAVEN);
+ MODULE_FIRMWARE(FIRMWARE_PICASSO);
+-- 
+2.39.0
+
