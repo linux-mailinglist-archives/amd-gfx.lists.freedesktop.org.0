@@ -2,54 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31F1366E636
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Jan 2023 19:41:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F36A466E666
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Jan 2023 19:49:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E665410E5B2;
-	Tue, 17 Jan 2023 18:41:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 873CE10E328;
+	Tue, 17 Jan 2023 18:49:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3639610E5A4;
- Tue, 17 Jan 2023 18:17:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=sVLrriLzNWuTkASPXhLh0iNImC/zJdYCmZuTrTCVsJc=; b=Q5D2FLsj5AdKLKLioJZglxOjkl
- IIhBuso9kgtbg0Nt8whjK8ysiKGN39oVMs7ku/gzdeJ6NuiHcjx1lZ6eBtmDAie6LHHjcx/mi4Ms1
- CLndNiczNMnplNit3tYgRF+dWbC0pxmvKN3qKJSIMj6Rr1poYPucdLhL1yOUgxN6iHVfooVR2CxJv
- Aw551yoluTq5wIj4u+46c7BKxzUtkCFzzqsl/jAI5fnGA9T4J08MDpAGsFxZAPLaeQy43/xVmKIrp
- Sku4x6Qj5CG0d5V5bEA3iYnFTndLDbNmkPlCEVcsPlqyUzqMZs1jQXtxtfj+/KYSmaGDjW0g6UVAF
- wjAwRyfw==;
-Received: from [187.56.70.205] (helo=[192.168.1.60])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1pHqWU-00AqlK-NV; Tue, 17 Jan 2023 19:17:26 +0100
-Message-ID: <0e2b4f14-11b7-5713-59a9-6add5f3cb32a@igalia.com>
-Date: Tue, 17 Jan 2023 15:17:03 -0300
+Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com
+ [IPv6:2001:4860:4864:20::2e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CECC710E328;
+ Tue, 17 Jan 2023 18:49:48 +0000 (UTC)
+Received: by mail-oa1-x2e.google.com with SMTP id
+ 586e51a60fabf-15bb8ec196aso21196733fac.3; 
+ Tue, 17 Jan 2023 10:49:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=d3KD/4A2J8yQYLK7u5mPtbJnPhhTITEco8MNWNkQ76g=;
+ b=P6U1VOaWh8x4YcUJxRl6J6wwXbXG7MtxzhJ4Mc+FSSsop+ENKFGfbyCXu/XGhj2/5Y
+ lR6hOUklvHeJaofwTzHRMuc3xgRBWrqyFN8ZiDbCJWr9p17gh6lpKBlWyFvdoSvB//0q
+ zhwwmOyVDtqHEQ5Ma37i6mS8gIJEJyzWzWDz1cVrJQdGaGGP9NIMIbsnq5DFqz6uwwkK
+ pmleAFJbFNFRcjalDef6u7fFYz27hNXZ+8u6t91lGhQd296Hrt4AMicy7/kwXJBd01A5
+ ISBqqTzFQeMd2Bs5+1b9hXV0zW54H7iswqOdSKJoDIabz8mwAmXgZ43O/F6qculBvHqF
+ OceQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=d3KD/4A2J8yQYLK7u5mPtbJnPhhTITEco8MNWNkQ76g=;
+ b=w/tD3taiz5pElI9W1YohZZG2Wl9bckXxcMTc/uC2qThmr21/Yhrdtm/Wzt5nhi5EDB
+ HUll6sdKR0yESJ8/Cov/Psm85NQBRgGB29hfJdZaSEvfTPQLPj1z7ZdYSoWHpJzYSumH
+ +fAKTgD4ucBRIHgtJFfOslPxS30rCGR1oH44oqZ6Elct3HRbAA/u578FO//XcuvYgotk
+ F1XH5NJ82+Il/uS/xej4Y0AnC29QH1VEQGFXFadSJQ4/TOgmWBEZzYT+sOfU9E1RWrLu
+ ijGgySPVT0r14Av2uEEV/d8dJ094Kdi51iC3ip5qNY8boHWkpYUFQ1JyZPXS0BlOZiXj
+ d9qQ==
+X-Gm-Message-State: AFqh2kpkKuYw6NVf6dkxKqIG2YDQjdRmNNAzDOHICbfbIy9RoNqjGNDe
+ /UxTQhRzzrL1CvPOc/D8UzIDcwMbw2WhCTdYUxM=
+X-Google-Smtp-Source: AMrXdXuE0mA0a5beSu7kR+h55N7zRNPT9zXoMGW6u/7Q8EalF0r55KdVpBqjN/42xP98OSAXzS1VK80zAguFzatRIs4=
+X-Received: by 2002:a05:6871:4593:b0:150:d9aa:4011 with SMTP id
+ nl19-20020a056871459300b00150d9aa4011mr351570oab.96.1673981388073; Tue, 17
+ Jan 2023 10:49:48 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v2 2/2] drm/amdgpu/vcn: Remove redundant indirect SRAM HW
+References: <20230117181524.915372-1-gpiccoli@igalia.com>
+ <20230117181524.915372-2-gpiccoli@igalia.com>
+In-Reply-To: <20230117181524.915372-2-gpiccoli@igalia.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 17 Jan 2023 13:49:34 -0500
+Message-ID: <CADnq5_OE9eURUJ2LwyOrTbrNBSd--Nhc330UFV-Z0-d4q7VOPA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] drm/amdgpu/vcn: Remove redundant indirect SRAM HW
  model check
-Content-Language: en-US
-To: "Limonciello, Mario" <Mario.Limonciello@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>
-References: <20230117175836.914304-1-gpiccoli@igalia.com>
- <20230117175836.914304-2-gpiccoli@igalia.com>
- <MN0PR12MB6101FE6B2CC0AABB239DB06BE2C69@MN0PR12MB6101.namprd12.prod.outlook.com>
- <3526e25c-c0bb-a61f-319f-1c313f8fbea1@igalia.com>
- <MN0PR12MB61019DC93A66101D672C3E9AE2C69@MN0PR12MB6101.namprd12.prod.outlook.com>
-From: "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-In-Reply-To: <MN0PR12MB61019DC93A66101D672C3E9AE2C69@MN0PR12MB6101.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Tue, 17 Jan 2023 18:41:05 +0000
+To: "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,55 +66,145 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Jiang, Sonny" <Sonny.Jiang@amd.com>,
- "kernel@gpiccoli.net" <kernel@gpiccoli.net>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Lazar,
- Lijo" <Lijo.Lazar@amd.com>, "kernel-dev@igalia.com" <kernel-dev@igalia.com>,
- "Zhu, James" <James.Zhu@amd.com>, "Liu, Leo" <Leo.Liu@amd.com>, "Koenig,
- Christian" <Christian.Koenig@amd.com>
+Cc: Lazar Lijo <Lijo.Lazar@amd.com>, kernel@gpiccoli.net, Xinhui.Pan@amd.com,
+ dri-devel@lists.freedesktop.org, Sonny Jiang <sonny.jiang@amd.com>,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
+ Alex Deucher <Alexander.Deucher@amd.com>, James Zhu <James.Zhu@amd.com>,
+ Leo Liu <leo.liu@amd.com>, christian.koenig@amd.com,
+ Mario Limonciello <mario.limonciello@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 17/01/2023 15:14, Limonciello, Mario wrote:
-> [Public]
-> 
-> 
-> 
->> -----Original Message-----
->> From: Guilherme G. Piccoli <gpiccoli@igalia.com>
->> Sent: Tuesday, January 17, 2023 12:14
->> To: Limonciello, Mario <Mario.Limonciello@amd.com>; amd-
->> gfx@lists.freedesktop.org; Deucher, Alexander
->> <Alexander.Deucher@amd.com>
->> Cc: dri-devel@lists.freedesktop.org; Koenig, Christian
->> <Christian.Koenig@amd.com>; Pan, Xinhui <Xinhui.Pan@amd.com>;
->> kernel@gpiccoli.net; kernel-dev@igalia.com; Zhu, James
->> <James.Zhu@amd.com>; Lazar, Lijo <Lijo.Lazar@amd.com>; Liu, Leo
->> <Leo.Liu@amd.com>; Jiang, Sonny <Sonny.Jiang@amd.com>
->> Subject: Re: [PATCH v2 2/2] drm/amdgpu/vcn: Remove redundant indirect
->> SRAM HW model check
->>
->> On 17/01/2023 15:08, Limonciello, Mario wrote:
->>> [...]
->>>
->>> Should have added this tag too:
->>> Suggested-by: Alexander Deucher <Alexander.Deucher@amd.com>
->>>
->>> Looks good to me, thanks!
->>> Reviewed-by: Mario Limonciello <mario.limonciello@amd.com>
->>>
->>
->> You're totally right, thanks for the reminder and apologies for missing
->> that! Just sending V3 heheh
->>
->> Ah, thanks for the reviews and prompt responses.
->> Cheers,
->>
->>
->> Guilherme
-> 
-> No need to resend.  Patchwork will embed the tags when we pick this up.
+Applied the series.  Thanks!
 
-Already did, but thanks again for the info - learning a lot in this
-thread =)
+Alex
+
+On Tue, Jan 17, 2023 at 1:15 PM Guilherme G. Piccoli
+<gpiccoli@igalia.com> wrote:
+>
+> The HW model validation that guards the indirect SRAM checking in the
+> VCN code path is redundant - there's no model that's not included in the
+> switch, making it useless in practice [0].
+>
+> So, let's remove this switch statement for good.
+>
+> [0] lore.kernel.org/amd-gfx/MN0PR12MB61013D20B8A2263B22AE1BCFE2C19@MN0PR12MB6101.namprd12.prod.outlook.com
+>
+> Suggested-by: Alex Deucher <Alexander.Deucher@amd.com>
+> Reviewed-by: Mario Limonciello <mario.limonciello@amd.com>
+> Cc: James Zhu <James.Zhu@amd.com>
+> Cc: Lazar Lijo <Lijo.Lazar@amd.com>
+> Cc: Leo Liu <leo.liu@amd.com>
+> Cc: Sonny Jiang <sonny.jiang@amd.com>
+> Signed-off-by: Guilherme G. Piccoli <gpiccoli@igalia.com>
+> ---
+>
+>
+> V3:
+> * Added Mario's review tag and Alex's suggested tag - thanks
+> for the reminder Mario!
+>
+> V2:
+> * Changed the approach after ML discussion- instead of cleaning up
+> the switch statement, removed it entirely - special thanks to Alex
+> and Mario for the feedback!
+>
+>
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c | 81 +------------------------
+>  1 file changed, 3 insertions(+), 78 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+> index 1b1a3c9e1863..02d428ddf2f8 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+> @@ -110,84 +110,9 @@ int amdgpu_vcn_sw_init(struct amdgpu_device *adev)
+>         for (i = 0; i < adev->vcn.num_vcn_inst; i++)
+>                 atomic_set(&adev->vcn.inst[i].dpg_enc_submission_cnt, 0);
+>
+> -       switch (adev->ip_versions[UVD_HWIP][0]) {
+> -       case IP_VERSION(1, 0, 0):
+> -       case IP_VERSION(1, 0, 1):
+> -       case IP_VERSION(2, 5, 0):
+> -               if ((adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) &&
+> -                   (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
+> -                       adev->vcn.indirect_sram = true;
+> -               break;
+> -       case IP_VERSION(2, 2, 0):
+> -               if ((adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) &&
+> -                   (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
+> -                       adev->vcn.indirect_sram = true;
+> -               break;
+> -       case IP_VERSION(2, 6, 0):
+> -               if ((adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) &&
+> -                   (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
+> -                       adev->vcn.indirect_sram = true;
+> -               break;
+> -       case IP_VERSION(2, 0, 0):
+> -               if ((adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) &&
+> -                   (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
+> -                       adev->vcn.indirect_sram = true;
+> -               break;
+> -       case IP_VERSION(2, 0, 2):
+> -               if ((adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) &&
+> -                   (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
+> -                       adev->vcn.indirect_sram = true;
+> -               break;
+> -       case IP_VERSION(3, 0, 0):
+> -       case IP_VERSION(3, 0, 64):
+> -       case IP_VERSION(3, 0, 192):
+> -               if ((adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) &&
+> -                   (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
+> -                       adev->vcn.indirect_sram = true;
+> -               break;
+> -       case IP_VERSION(3, 0, 2):
+> -               if ((adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) &&
+> -                   (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
+> -                       adev->vcn.indirect_sram = true;
+> -               break;
+> -       case IP_VERSION(3, 0, 16):
+> -               if ((adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) &&
+> -                   (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
+> -                       adev->vcn.indirect_sram = true;
+> -               break;
+> -       case IP_VERSION(3, 0, 33):
+> -               if ((adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) &&
+> -                   (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
+> -                       adev->vcn.indirect_sram = true;
+> -               break;
+> -       case IP_VERSION(3, 1, 1):
+> -               if ((adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) &&
+> -                   (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
+> -                       adev->vcn.indirect_sram = true;
+> -               break;
+> -       case IP_VERSION(3, 1, 2):
+> -               if ((adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) &&
+> -                   (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
+> -                       adev->vcn.indirect_sram = true;
+> -               break;
+> -       case IP_VERSION(4, 0, 0):
+> -               if ((adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) &&
+> -                       (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
+> -                       adev->vcn.indirect_sram = true;
+> -               break;
+> -       case IP_VERSION(4, 0, 2):
+> -               if ((adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) &&
+> -                       (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
+> -                       adev->vcn.indirect_sram = true;
+> -               break;
+> -       case IP_VERSION(4, 0, 4):
+> -               if ((adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) &&
+> -                       (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
+> -                       adev->vcn.indirect_sram = true;
+> -               break;
+> -       default:
+> -               return -EINVAL;
+> -       }
+> +       if ((adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) &&
+> +           (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
+> +               adev->vcn.indirect_sram = true;
+>
+>         hdr = (const struct common_firmware_header *)adev->vcn.fw->data;
+>         adev->vcn.fw_version = le32_to_cpu(hdr->ucode_version);
+> --
+> 2.39.0
+>
