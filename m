@@ -1,126 +1,154 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CBD766E5A0
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Jan 2023 19:09:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF82566E637
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Jan 2023 19:41:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 660FC10E5A0;
-	Tue, 17 Jan 2023 18:09:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CBD210E5B3;
+	Tue, 17 Jan 2023 18:41:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2065.outbound.protection.outlook.com [40.107.102.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E3B710E2FC;
- Tue, 17 Jan 2023 18:09:02 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D812C10E320;
+ Tue, 17 Jan 2023 18:13:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1673979181; x=1705515181;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=mrYl0ASZXOBff9lQgEZaSBq+/8jaHcB49+65WRgQYdw=;
+ b=FwES/TD8PSAbhCDWikFM5IcxITxfgd+VsIVN5rwAFo7g+oJlHCnXQt4n
+ 8kgEYBiPTBRnsmDTqhHWB+KW2qYRI8YsEeTCNWOjas+hapgUDWnCZjYLw
+ k4Vc5UAoRZTTr8f1CG9bxPGzmLM7QFZEaUhKWOduM9g3rIoAls311+MnD
+ p+ep6rb3luOBuJJj0tpMntrPpYZEKnO9Se/eVVxmATc6gw3bJ8FUFmc2T
+ 5ak/c/tfmoVgrRkOIaBtMgt1vTV4/Lm2DNVHHgHmf07Y032h9LDDDfEBE
+ BlKgnpOZ3NFyKgxJ/DfNIQHoHONyIm60BUIhA3iywmhJGsPd8ey5VxojM A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="326846805"
+X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; d="scan'208";a="326846805"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2023 10:13:00 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10592"; a="748129303"
+X-IronPort-AV: E=Sophos;i="5.97,224,1669104000"; d="scan'208";a="748129303"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by FMSMGA003.fm.intel.com with ESMTP; 17 Jan 2023 10:12:54 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Tue, 17 Jan 2023 10:12:53 -0800
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16; Tue, 17 Jan 2023 10:12:52 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Tue, 17 Jan 2023 10:12:52 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Tue, 17 Jan 2023 10:12:51 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=L2RG6T0gBtI/QZEHEvH1kPY97Syql3bstsHEjbRrt+RhOV8Q4Ulcrw1QSADH38s9gFCPxKwVSLlzdvKx7BYXEsHWEgyo/fOZzlrXeAauc08xpa8lhno5FCmqknIKfcNBaitPXTTOUUUNIu0+z8Vh2/wn6SUhpucl1fTqefXw8eePWEWOzR0dTBN79PwIM9fKob70iMBvieEimDd1fQpZq4PoQZPAhCzYUlpkJKbA2ijchVsd999gENK5SiQ7uMN5NnNOapKd1jj0HmNRuJvyIm5PXHfGaPqKKBhLhfrGlQEHfRRY6QtP0KgdWPZ5hA/Z1KhWfH1nhINdYWzLCThw6A==
+ b=bdBBg/ikBkhQNaC76wnWGFMptroh62GeK6ehmPyLQhtDJFtigBky31TcU9R3mt4p24DBivWiWMp1R6I4l2So8tt4KbqQc4d63x020C+Y3ECwYRGG522A6qqpKYm1CwY0vwcb1lD36ElOynID+ZMBk4RlgBApiEik6nkFwHxrRbaVrMhN9GmnK7AsjLIU78SNwRTDdySsEWIhjEH99bsXw3iRTgD+c+JjRfuhThP5+lQW29Te32hen02uVDdQlHHqKXdo+uCvC/G0yRjsW8gWmp/85xtJzN17R4BzVRnMjfDzbyGLaW+3eAkXL+bYbgVpKpvPCBNps44xtyqqGySQeQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ealXIeCoobKSQKEzlizstH+yg7rncn+KgL2966DjYvQ=;
- b=FJ2Mh6FshiyYrAfgZSXGrxiL8ObOwo20UqbESf+zxDAqY9JHbC2AJ9h8uJvnPi9/qFpl31JLH8MEVZ9GKT3TUiRRVlkgzZ70jznyyj/U+KcgeLwvvXuvYIJJ3HaXD1QuBVPUEHlojiqMbe9QlBH/qachgcYqwg3NHukU6xSo9qvB3qkQjfnOxMrBGqSJ6AMSKieWKsdBuINzjc7Z1+IbQ/5ZnUlxnFajWNWgqmA1o5fokIzrdO8k9W4c7xHP39/PvZC0jO6GsA0rFXT18s4jbxNaKrLJEvJi0fI8zfRxeUKFskwrvvWplExOcPj8QGNvCjUO0+TvHBcX4HruDAU+/g==
+ bh=AK0DSzS08nMHvmhsp0JD3fdXO8b1sMP/vxXmgXCfbWg=;
+ b=S715F139ZPNGfUMNj2/fyT80sWfpm0Ot1H4jd5X6ctZQoaeVbgQyuxgMsG96lMESAP/5SMnuH+7Fyxxon4n8JNZSTlrHsGZiWYmbQb/PRJzvj4BFOyms+vlohJIjiflpIsjWVgrWg4dcQ8NpzNtWDQVRrc6CvbOTBV36SNknypqd1NAToohTBddA2k+8ucGTAMN6/r/3B55PXw7NG5ebhQSpUsNG/YWxWCmCcei9Llsqs83lCaWWQcY/67wE8h7BYk3W2FimQAb7Mxiom9HBypMdtDMFV+yI/Rzjl9lKmJd9k7GjSsqEpQ9/JFZWts8uRvcfUtMeGq0/cnZ+92ZRsQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ealXIeCoobKSQKEzlizstH+yg7rncn+KgL2966DjYvQ=;
- b=xbR+hAmr5YNCQjqh4zPEPYExJEB6EPLIe+fD3kRQRDmmngmw1x6QLzp3vhOhpapcMSIrnCKvla3JyqcDnAW0cGAshi2aJIpbxl6uy9NAuRymGrz2RkTeIUHTvsL6h+paPBucYTWRcf3csgoVplKlvbwLGt59CX/wyqJLHVvvwFA=
-Received: from MN0PR12MB6101.namprd12.prod.outlook.com (2603:10b6:208:3cb::10)
- by SJ1PR12MB6195.namprd12.prod.outlook.com (2603:10b6:a03:457::12)
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BL0PR11MB2961.namprd11.prod.outlook.com (2603:10b6:208:76::23)
+ by PH7PR11MB5795.namprd11.prod.outlook.com (2603:10b6:510:132::6)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.13; Tue, 17 Jan
- 2023 18:08:59 +0000
-Received: from MN0PR12MB6101.namprd12.prod.outlook.com
- ([fe80::ff3c:2d37:75f3:442a]) by MN0PR12MB6101.namprd12.prod.outlook.com
- ([fe80::ff3c:2d37:75f3:442a%8]) with mapi id 15.20.5986.023; Tue, 17 Jan 2023
- 18:08:59 +0000
-From: "Limonciello, Mario" <Mario.Limonciello@amd.com>
-To: "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH v2 2/2] drm/amdgpu/vcn: Remove redundant indirect SRAM HW
- model check
-Thread-Topic: [PATCH v2 2/2] drm/amdgpu/vcn: Remove redundant indirect SRAM HW
- model check
-Thread-Index: AQHZKp2l1MSpqVkrKES+9mLYPlTkJa6i5/Ig
-Date: Tue, 17 Jan 2023 18:08:59 +0000
-Message-ID: <MN0PR12MB6101FE6B2CC0AABB239DB06BE2C69@MN0PR12MB6101.namprd12.prod.outlook.com>
-References: <20230117175836.914304-1-gpiccoli@igalia.com>
- <20230117175836.914304-2-gpiccoli@igalia.com>
-In-Reply-To: <20230117175836.914304-2-gpiccoli@igalia.com>
-Accept-Language: en-US
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.23; Tue, 17 Jan
+ 2023 18:12:49 +0000
+Received: from BL0PR11MB2961.namprd11.prod.outlook.com
+ ([fe80::755:cc4:8c46:509f]) by BL0PR11MB2961.namprd11.prod.outlook.com
+ ([fe80::755:cc4:8c46:509f%6]) with mapi id 15.20.6002.013; Tue, 17 Jan 2023
+ 18:12:49 +0000
+Message-ID: <982599d1-2480-72ff-1515-425b2693e3b5@intel.com>
+Date: Tue, 17 Jan 2023 19:12:45 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 2/2] drm_print: Remove deprecated
+ DRM_DEBUG_KMS_RATELIMITED()
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Enabled=true;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SetDate=2023-01-17T18:08:58Z; 
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Method=Privileged;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Name=Public-AIP 2.0;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ActionId=1cea829e-de52-49ea-8527-2bfd31cf2150;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ContentBits=1
-msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_enabled: true
-msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_setdate: 2023-01-17T18:08:58Z
-msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_method: Privileged
-msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_name: Public-AIP 2.0
-msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
-msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_actionid: 9502d296-c0fa-43d2-876e-85890abbba4a
-msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_contentbits: 0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MN0PR12MB6101:EE_|SJ1PR12MB6195:EE_
-x-ms-office365-filtering-correlation-id: 6f8f4834-d1c9-4354-060c-08daf8b5e838
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 5Pjzuzy1IzDL4/R7UcWk/rUL0CeQjbGKcvFGx+j++ZgmoF1ADxsqqq1AiI9uuKn0dVYXyvkWYozXVYpqimLXu+2rVyD4k4083pwysW4M3qhxoibmKaHEVgZAf2iBja0VP8AjOsHw9+LeAvdYTfylqrdm25SSVQlIOCREmOs0g269y93JI/OdbHSdjW9CKpajnSlb746mBf0zVlvbKBmcLnL+5N7J/m92zJd6aDXnB5GYDCry85J+p+IBkamwsn8TEOOmKksNfV5+eAZ5AxNRR/nUQwj6+or1AYze6pMHkfmGrDWcXJ9o9tw77aeulGl1hAW3oAif68YM+B1eZllmsu+CjgNaRObdTlVTCrf/lN+g7M/KVfxuR1G0nh+/tt+Nm+6gPV7+X+09WAi+WmKCxAPSAByo3IdNZTHrNnPJqWnfVTr/9yspnTpNLJxCi79D4cfFFe85DFfZL2kjb62SK8W6ggVgPv0Q1euITMnwXKtbnTe8hafTX/7vj01MVN1rIZ6RwiXbJU8H4TIuwqiW85ow/5Z1dKIsJoRmjp0LjUMTJnC+KMH6KgJWso1FF79trxTmAa4sZym2WNtv4R6E2+MM7nXO3vrtZZ3JVleHHh+RLOTRfUOcjCmeQG8eILUuUN4pPgPQlHElqXJJ8cilHYGCaYaD2hiiTIN5RT2CdW02croueWVmY+L6yV2G5S59YPP68HCjM882WPFR5pQqmpwJXumX2lh56y92hhbMhgw=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR12MB6101.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(4636009)(366004)(39860400002)(346002)(396003)(136003)(376002)(451199015)(55016003)(33656002)(186003)(71200400001)(478600001)(7696005)(110136005)(45080400002)(54906003)(9686003)(26005)(2906002)(6506007)(41300700001)(52536014)(8936002)(5660300002)(316002)(4326008)(66476007)(8676002)(76116006)(66446008)(86362001)(66556008)(64756008)(53546011)(66946007)(38100700002)(38070700005)(122000001)(83380400001)(84970400001);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?FXpTs+Fdd3W0IwQzcTyGN2+Sg5D+zsab4SNn8YACTKrdxOJgaJHce00osaLU?=
- =?us-ascii?Q?wWV+iZw1b3MnFrKnKBcCwCCkjq48SzIwbG3VfCYZy3JXjv0SUOq0tQybLsk/?=
- =?us-ascii?Q?YoR2lz+vFN8DnCwy5zchg5xjTkiPb1E4G2wAqsQWNgX1gCKrqRB+qK67EzZH?=
- =?us-ascii?Q?YtIFJCgR7HtohhYw5kPxjR98vegVKccZ9nkZvVwR/3UT4T9efK1vtUiMHLdm?=
- =?us-ascii?Q?+vSW7FT+n5nF63IlqCl9xR/dXASRh72re/MIUBBEJCM8cl62q2hgg1sRTHTQ?=
- =?us-ascii?Q?e+GssOTAe/ZB39QggRDJ98+JNn0WeMQX7Y2LrEyzBIFl2/3XWYNgzdZtmRTa?=
- =?us-ascii?Q?zWjlRAn9enwUMF9c2MTWNdgI8imnjqEo68LB4FNt9YTPs4rjTLNrAJjAN/He?=
- =?us-ascii?Q?2UWLKYfhB6lgsl5vQm86YU3ZG1dDgAjWYgd+IHtIhJhPh9vChRVjvdnl+Oil?=
- =?us-ascii?Q?4XPwX9Fq5q/rxVjQF5lm3Gt5rJrM3H6sNC/EN7A1JSA1POSQV885XslRjHzh?=
- =?us-ascii?Q?bAVjEm0LAydXftufdZkS9fcw84GRt8jHW1u0FewBzpJhd6HCrPtoaET96obg?=
- =?us-ascii?Q?DOdN4Z3vpGkZ0R4AoffsMnkGfK1t4nqiIjP73/m9Uu7HXxwAI1JHmKpKIZhI?=
- =?us-ascii?Q?A5coQWuihQWKQQ95ZGWG/XGOcXR/luEj7eImeki+1t866wE/b1xez1NYRs35?=
- =?us-ascii?Q?hAVvgS6Nwpag6vsGwaocoU2P3pkAOn3AqgN4iUol4gLgVYhUy7SxEmadpyVa?=
- =?us-ascii?Q?qc1Z2apDsAqhAPuMTuDjIJpsUoz1DM3rJlAbxUjO3yOvk4IYo4yHWggv9zeF?=
- =?us-ascii?Q?1NyZbMPJz4QKK79I732NgSjO45nDozPXlqpqsckhJ6XvhCoYCNcjjd0ySWvf?=
- =?us-ascii?Q?xHuTiOHGQHbQzrhjzbMG+Zxhz9EFMjz/Z7ZNVwPURpC91g+o/y1+3sO+y4wS?=
- =?us-ascii?Q?8stV4Ab8YO6DkAaagPB1bejQgyUOH3szE5egmVM8iJo30E5pyz+gQsTh9st4?=
- =?us-ascii?Q?rgGrJ49CsmhqxsM9PVVPP3z1UgxFgvSlHbk7RS/8jwlT3t5ytAO2Cm7jWz9z?=
- =?us-ascii?Q?IAuSybZdNRBgxX0d9Bej02qeOY7ELBby5s9qBpmCfrzQntudHoDb9XMUKCRx?=
- =?us-ascii?Q?ISQ+nSQG7s2v4mbXwm5Al7UZLOLtimkNZgjCD/k14CfzKUq/ogj9m1g1c17Q?=
- =?us-ascii?Q?K864AL+2r9U70MuJ5j8X+Ey4DodPa93RF7Y7366nA6MLMewZm9tZwsTDMtC4?=
- =?us-ascii?Q?Ho642CCbm6c2CKSo7hgfC+6i7XuIXmOY23g6DixT5O3zUlhY8Vd9EWzixTj4?=
- =?us-ascii?Q?EMuJNmq2gpkkggXJWhaAc9DG2cDdUNk4q2ljLviuI4TPOaXZFMw+duqbxhqG?=
- =?us-ascii?Q?fXxlJ7o/W4IXjm/j1ZDFVPjjTXVOh888Q6jKugJp1nJkWZWhAzTLO0rZf1MW?=
- =?us-ascii?Q?6WBGBcYs765luoaN/1OTN1l0ETSl9Q+R5QRVm8qXsqhtwkeP79Ld1vw495rR?=
- =?us-ascii?Q?BXK6cuhLtvsI9BoxzytUylRa+eS4hCqrcMMlnsdfRWMGHD6ZtcOtCfTVB9Kl?=
- =?us-ascii?Q?Ny6tK3ucHXlG4ACexWI=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+To: Alex Deucher <alexdeucher@gmail.com>
+References: <20230117180417.21066-1-nirmoy.das@intel.com>
+ <20230117180417.21066-2-nirmoy.das@intel.com>
+ <CADnq5_NY9B4dtswNzowG_KrPuSSFdtpsonY_7wNhtzW0G7uJXQ@mail.gmail.com>
+From: "Das, Nirmoy" <nirmoy.das@intel.com>
+In-Reply-To: <CADnq5_NY9B4dtswNzowG_KrPuSSFdtpsonY_7wNhtzW0G7uJXQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR0P281CA0107.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:a8::20) To BL0PR11MB2961.namprd11.prod.outlook.com
+ (2603:10b6:208:76::23)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL0PR11MB2961:EE_|PH7PR11MB5795:EE_
+X-MS-Office365-Filtering-Correlation-Id: 89240092-de7b-4b4c-4fd9-08daf8b67140
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Ifyh85VHPTP2brFFkS24J60Xivoo46khQcFZ9XKl1nXHEVO5M3+gNv/vPWB1wrRJmzor2TANVmotWMS1w/qj7o5vI/2K7E75oLXExHNxhcf86Olt2UPrlSfeeqLhJXCIT1AGwUuUQ4SKWhUhq067ZrcYRR8ffs74Y4d/KoDgDl8t3B4fbroVk66QS7yCfm1wklROgjHuszN7/I2FG2d+hp2fKimiP0WdWWb0qx1o3BKCXJpmWbNqEeBZx9oqRxjw4kLbKSAClhh1DVnLzhSnsNUcC34d48e04nKr+8ZT5HHT1b5boHhn2rnfdCXX7z+jxHva8UeAEq6FZP+DhjcYs4G21pBey2xNLA5DrolvExKejMRzGKL7bN7SkBILTR/NqRsmrbiVnBoJw9IiLborBQnwAddHbT2NuyW7uikshPkLpeyoXZjDEvP+xeaLjMyIlsWSBoAc1L4xWk3bamWcZhJyKiOuX1QQw0IUqT+Bxga0PYHXbAmc7GMvWj+/uKXP0SJoaekgdDMrw5iNFq8UVle5iHDyiuU+BwSqL05Pgz+SyoRT/9Ui7x7p5qKcLtEhzG22b2HpCwzH5Rwy4kfmVkGmU/qx2MO4g8scAWYPNhEoBGhqIeaUkFe2cNNPNvI2cTKUIoxyZy73pAnCR4KxFr83hMZykisUpuKFTQZcPd8q7aI2aXEmFT74BRLtdootPPseCwQ1lRYhH9ye+tJtUcf5Rgv2+pzW68+W/TfzBUo=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR11MB2961.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(39860400002)(396003)(376002)(136003)(366004)(346002)(451199015)(31686004)(66476007)(66946007)(86362001)(2616005)(66556008)(6512007)(26005)(53546011)(186003)(6916009)(4326008)(36756003)(31696002)(41300700001)(8676002)(83380400001)(5660300002)(82960400001)(8936002)(6666004)(54906003)(478600001)(6506007)(316002)(2906002)(38100700002)(6486002)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z3hlYWpOeURqZURBR0FQLzlvTFdpbXBHenc2VTM0RkxtVTdsV2Y3UForMXEx?=
+ =?utf-8?B?emtYbFIrL0daS2dqam1tMWxGODRFVGtValVTVjlFZmdmdUZXaHpUU3E0bnNJ?=
+ =?utf-8?B?YmNpeXNWd0VkSXN4WGVWL3l4Q3V6eG9pdlluaTFHWjlTWnBWdGdWNmV1ckxu?=
+ =?utf-8?B?dHJXQzloenMxYVMvdXhZVlo0T0RibVhIUDI1aS80M0VKNFptUEZYWXdrSUhJ?=
+ =?utf-8?B?bDVTbXdMVGl3SGhYMVZWbHdXMDVKQTRrS1M2bzdMRk10YU1wQThjWXJ4MTIw?=
+ =?utf-8?B?LzdRNG5PakxqaE10VU42eFVCTkpKdS9TNElwOGQrVVhZSVJkb3BNd3Vidlo0?=
+ =?utf-8?B?dEFXTVFrL25MZlFDUUp0a2F5UkFheHR3QU9aN0xxTTgzdm9WTCs3VjNJU0h1?=
+ =?utf-8?B?dVhHMzNNbHNxaWdUNUIrelpJUzBqTXpQR041eFhBS2p3Q3Q1TDIxem1wbTJ2?=
+ =?utf-8?B?RjhHVDUyLzNOZ2pKZkZHc3ZCUm1sRkU1M3pNZW1JVGduVDFaT3FWUnN2Y1hF?=
+ =?utf-8?B?c2ZhWm12VnR1MkY3S0Nxd1EybTFHZEJSLzNSVkd6bmZyOEVSSjZwQkZiZ2w1?=
+ =?utf-8?B?V2VFTXN6QVFJVlFrZ2ZjUWpSOG9HejVpazNnRHR2MHk5eTQ3ZUtKZzZvUTdW?=
+ =?utf-8?B?dkxjUkVSV3RQTDh6SGRxU0tHTUZvRmF2U1hvVFlPZHBqNTgzYi9tdDZmMEp6?=
+ =?utf-8?B?K2xSNGU0cmdpb0dPclR4amJyd2xQVzRwZFNzRVM4QmZnWlF4bVpXSXZWZm9S?=
+ =?utf-8?B?Ujg4ck0zdTB4RGdxZVRpS0dsbnprbk5ZVXRLZmp3MTYzWTg0c0NtTjF6eFZ0?=
+ =?utf-8?B?aHRpT1B3bTVnc293VTRxaU40bDFqSW83VDFnZDZydGN4MkNSbWZWZDMzOFRn?=
+ =?utf-8?B?aG9VcDlVTGZrUDJib1ZILytobjQ5V1lCQldpWm1nNjZOK1N2NXNnbVJENWFw?=
+ =?utf-8?B?ZzRVSTh5Y2x0VHNPNXNrQ1d3NUE4VzFITTFlSHlkT2lyaUQ3dEJzbFpSYTNa?=
+ =?utf-8?B?YndoVXp1eXIyZDc1QjhDSkNWMGV5MVFxRFhpc21FUVBBcHdNaEkwV3dHdTNO?=
+ =?utf-8?B?Y3A5OWRjVDczRHlqdEY0Q0oyYlN3VGVJTHRJYUU1WVZpL2lqSExQQ2cvWFcx?=
+ =?utf-8?B?M1RtUzRMbnF3Z0ZvVlpEQWxiUGsyamJLZk9xcDlWYy9oWU1pd2RmNFVzMWJw?=
+ =?utf-8?B?R3hkSmdqN1dCRjVZSTZUeGFNZHBSaTB3Y0NFWGlZNVd0aSszY1hRZDNVNkpq?=
+ =?utf-8?B?RlJzalM0azhYQnlKM3h3QnN6NVdybjJCazVNVXNXQjcvaVN5aHBENFpVdFRh?=
+ =?utf-8?B?NjVreW9JZU1tN0h0TGlCWitlbktJem1TRVBLYytJZ3ZwaGs4Sk04VjVla1kv?=
+ =?utf-8?B?VXU4REhERFVpZjdTTDc1QzY3dnZHUFBWWmlKbVNldEJJZGlIdkRvMVg3Qmtn?=
+ =?utf-8?B?cGFFdFhUelY4bTM3Ylo2ZUxsc3A3cVkyb09xR28vd0FuWEZxMTFoTGt6QURL?=
+ =?utf-8?B?d2c2WDRFbUc0WWwxWGwzN3ZGMC9jNHdvSlMyQitlbk9NaVJQdnpNbGZZclpO?=
+ =?utf-8?B?Ry9OU2RuTVR4SmZUbVpBMjNGTU9vbUppMjU0TWgyZUlsdUdNYXpYcml2RElz?=
+ =?utf-8?B?UlBrY0dJNktHdmlPWTJjM2ZrY0kzV0I2aHhmQ3J1eG44Zzh5SGM4R21NVm5S?=
+ =?utf-8?B?Q2tleXJxalpreVIrcEZMeVJmazBFY0tpRUI5dUlKMWgyY1BYVE5HRjlzbm5p?=
+ =?utf-8?B?azE0QnNWVHh6LzhTSEx4M2phUHNOeTBJeDdwYjBmSVplTVN3cFVOa2JkbmRC?=
+ =?utf-8?B?UUE3OS9JYW02Tmd1bzI5TUYzOU9temxqaWpQdXBPK2VuaG84TDNqODk1R09N?=
+ =?utf-8?B?WmFhTWlWRUVFbk5LbEFQNVhlRzNkYlN6K2ZJVVlncmNOMG5pZjNqNk5zRC83?=
+ =?utf-8?B?SUJnYkxDTitXM2hXWU55b25ld1BDbEVwQUY4RGNqQUd3TTZUdGFCVDc3YUdT?=
+ =?utf-8?B?U09QYXJIZWNuTDdKUUVIT0tHNWdMUjlhYk90dDBoQnNyYWdxL01CNE9FRFVq?=
+ =?utf-8?B?RkRhQU5CeVNiMGlWclZ6ZWYxSk80V3I5c1N3Q1R5WWlORVl2RUorWHhyZnFj?=
+ =?utf-8?Q?aKQi6K3zNfEe08XxEoRjr7JLP?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 89240092-de7b-4b4c-4fd9-08daf8b67140
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR11MB2961.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB6101.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6f8f4834-d1c9-4354-060c-08daf8b5e838
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jan 2023 18:08:59.4632 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jZPozl7xXSViGhD2Lf5OnxeYkA/KyVN8MldFo1V8QobFyo/eSKgXEqdSlqpg8PgTAOuD+yH5Eali8m20ZF4LNA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6195
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2023 18:12:49.7091 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: m19MSof0D8W8VIFTRzNwrk0frbQafr/laxdPyzAAJyhRJClN1NZomFsuvLWYCdQPIqOrYIvLbQjyMVZcCrJ8Yw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5795
+X-OriginatorOrg: intel.com
+X-Mailman-Approved-At: Tue, 17 Jan 2023 18:41:05 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,180 +160,60 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Jiang, Sonny" <Sonny.Jiang@amd.com>,
- "kernel@gpiccoli.net" <kernel@gpiccoli.net>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Lazar,
- Lijo" <Lijo.Lazar@amd.com>, "kernel-dev@igalia.com" <kernel-dev@igalia.com>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Zhu,
- James" <James.Zhu@amd.com>, "Liu, Leo" <Leo.Liu@amd.com>, "Koenig,
- Christian" <Christian.Koenig@amd.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>, Sam Ravnborg <sam@ravnborg.org>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Public]
+Hi Alex,
+
+On 1/17/2023 7:06 PM, Alex Deucher wrote:
+> On Tue, Jan 17, 2023 at 1:05 PM Nirmoy Das <nirmoy.das@intel.com> wrote:
+>> There are no current users of DRM_DEBUG_KMS_RATELIMITED()
+>> so remove it.
+>>
+>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> Cc: Maxime Ripard <mripard@kernel.org>
+>> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+>> Cc: David Airlie <airlied@gmail.com>
+>> Cc: Daniel Vetter <daniel@ffwll.ch>
+>> Cc: Sam Ravnborg <sam@ravnborg.org>
+>>
+>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+> Series is:
+> Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+>
+> Feel free to take the patches through whatever tree you want.
 
 
+Please help me with this, I don't have committer rights for any tree.
 
-> -----Original Message-----
-> From: Guilherme G. Piccoli <gpiccoli@igalia.com>
-> Sent: Tuesday, January 17, 2023 11:59
-> To: amd-gfx@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org; Deucher, Alexander
-> <Alexander.Deucher@amd.com>; Koenig, Christian
-> <Christian.Koenig@amd.com>; Pan, Xinhui <Xinhui.Pan@amd.com>;
-> kernel@gpiccoli.net; kernel-dev@igalia.com; Guilherme G. Piccoli
-> <gpiccoli@igalia.com>; Zhu, James <James.Zhu@amd.com>; Lazar, Lijo
-> <Lijo.Lazar@amd.com>; Liu, Leo <Leo.Liu@amd.com>; Limonciello, Mario
-> <Mario.Limonciello@amd.com>; Jiang, Sonny <Sonny.Jiang@amd.com>
-> Subject: [PATCH v2 2/2] drm/amdgpu/vcn: Remove redundant indirect SRAM
-> HW model check
->=20
-> The HW model validation that guards the indirect SRAM checking in the
-> VCN code path is redundant - there's no model that's not included in the
-> switch, making it useless in practice [0].
->=20
-> So, let's remove this switch statement for good.
->=20
-> [0] lore.kernel.org/amd-
-> gfx/MN0PR12MB61013D20B8A2263B22AE1BCFE2C19@MN0PR12MB6101.na
-> mprd12.prod.outlook.com
->=20
-> Cc: James Zhu <James.Zhu@amd.com>
-> Cc: Lazar Lijo <Lijo.Lazar@amd.com>
-> Cc: Leo Liu <leo.liu@amd.com>
-> Cc: Mario Limonciello <mario.limonciello@amd.com>
-> Cc: Sonny Jiang <sonny.jiang@amd.com>
-> Signed-off-by: Guilherme G. Piccoli <gpiccoli@igalia.com>
 
-Should have added this tag too:
-Suggested-by: Alexander Deucher <Alexander.Deucher@amd.com>
+Nirmoy
 
-Looks good to me, thanks!
-Reviewed-by: Mario Limonciello <mario.limonciello@amd.com>
 
-> ---
->=20
->=20
-> V2:
-> * Changed the approach after ML discussion- instead of cleaning up
-> the switch statement, removed it entirely - special thanks to Alex
-> and Mario for the feedback!
->=20
-> Notice that patch 3 was dropped from this series after reviews.
->=20
->=20
->  drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c | 81 +------------------------
->  1 file changed, 3 insertions(+), 78 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-> index 1b1a3c9e1863..02d428ddf2f8 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-> @@ -110,84 +110,9 @@ int amdgpu_vcn_sw_init(struct amdgpu_device
-> *adev)
->  	for (i =3D 0; i < adev->vcn.num_vcn_inst; i++)
->  		atomic_set(&adev->vcn.inst[i].dpg_enc_submission_cnt, 0);
->=20
-> -	switch (adev->ip_versions[UVD_HWIP][0]) {
-> -	case IP_VERSION(1, 0, 0):
-> -	case IP_VERSION(1, 0, 1):
-> -	case IP_VERSION(2, 5, 0):
-> -		if ((adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP)
-> &&
-> -		    (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
-> -			adev->vcn.indirect_sram =3D true;
-> -		break;
-> -	case IP_VERSION(2, 2, 0):
-> -		if ((adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP)
-> &&
-> -		    (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
-> -			adev->vcn.indirect_sram =3D true;
-> -		break;
-> -	case IP_VERSION(2, 6, 0):
-> -		if ((adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP)
-> &&
-> -		    (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
-> -			adev->vcn.indirect_sram =3D true;
-> -		break;
-> -	case IP_VERSION(2, 0, 0):
-> -		if ((adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP)
-> &&
-> -		    (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
-> -			adev->vcn.indirect_sram =3D true;
-> -		break;
-> -	case IP_VERSION(2, 0, 2):
-> -		if ((adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP)
-> &&
-> -		    (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
-> -			adev->vcn.indirect_sram =3D true;
-> -		break;
-> -	case IP_VERSION(3, 0, 0):
-> -	case IP_VERSION(3, 0, 64):
-> -	case IP_VERSION(3, 0, 192):
-> -		if ((adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP)
-> &&
-> -		    (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
-> -			adev->vcn.indirect_sram =3D true;
-> -		break;
-> -	case IP_VERSION(3, 0, 2):
-> -		if ((adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP)
-> &&
-> -		    (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
-> -			adev->vcn.indirect_sram =3D true;
-> -		break;
-> -	case IP_VERSION(3, 0, 16):
-> -		if ((adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP)
-> &&
-> -		    (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
-> -			adev->vcn.indirect_sram =3D true;
-> -		break;
-> -	case IP_VERSION(3, 0, 33):
-> -		if ((adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP)
-> &&
-> -		    (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
-> -			adev->vcn.indirect_sram =3D true;
-> -		break;
-> -	case IP_VERSION(3, 1, 1):
-> -		if ((adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP)
-> &&
-> -		    (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
-> -			adev->vcn.indirect_sram =3D true;
-> -		break;
-> -	case IP_VERSION(3, 1, 2):
-> -		if ((adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP)
-> &&
-> -		    (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
-> -			adev->vcn.indirect_sram =3D true;
-> -		break;
-> -	case IP_VERSION(4, 0, 0):
-> -		if ((adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP)
-> &&
-> -			(adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
-> -			adev->vcn.indirect_sram =3D true;
-> -		break;
-> -	case IP_VERSION(4, 0, 2):
-> -		if ((adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP)
-> &&
-> -			(adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
-> -			adev->vcn.indirect_sram =3D true;
-> -		break;
-> -	case IP_VERSION(4, 0, 4):
-> -		if ((adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP)
-> &&
-> -			(adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
-> -			adev->vcn.indirect_sram =3D true;
-> -		break;
-> -	default:
-> -		return -EINVAL;
-> -	}
-> +	if ((adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_PSP) &&
-> +	    (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG))
-> +		adev->vcn.indirect_sram =3D true;
->=20
->  	hdr =3D (const struct common_firmware_header *)adev->vcn.fw-
-> >data;
->  	adev->vcn.fw_version =3D le32_to_cpu(hdr->ucode_version);
-> --
-> 2.39.0
+>
+> Alex
+>
+>> ---
+>>   include/drm/drm_print.h | 3 ---
+>>   1 file changed, 3 deletions(-)
+>>
+>> diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+>> index a44fb7ef257f..c3753da97c4e 100644
+>> --- a/include/drm/drm_print.h
+>> +++ b/include/drm/drm_print.h
+>> @@ -605,9 +605,6 @@ void __drm_err(const char *format, ...);
+>>   #define drm_dbg_kms_ratelimited(drm, fmt, ...) \
+>>          __DRM_DEFINE_DBG_RATELIMITED(KMS, drm, fmt, ## __VA_ARGS__)
+>>
+>> -/* NOTE: this is deprecated in favor of drm_dbg_kms_ratelimited(NULL, ...). */
+>> -#define DRM_DEBUG_KMS_RATELIMITED(fmt, ...) drm_dbg_kms_ratelimited(NULL, fmt, ## __VA_ARGS__)
+>> -
+>>   /*
+>>    * struct drm_device based WARNs
+>>    *
+>> --
+>> 2.39.0
+>>
