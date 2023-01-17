@@ -1,94 +1,54 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7337666D4D5
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Jan 2023 04:05:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4706766D7FC
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Jan 2023 09:22:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99E3510E082;
-	Tue, 17 Jan 2023 03:05:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5E0D10E496;
+	Tue, 17 Jan 2023 08:22:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 604CE10E082
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Jan 2023 03:05:36 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=B1zPez+mlkWfPpR7zj6/WoKMhqtqyxmbouUH5NGB0ExNm5ekmYMbkzKOxEdATMuBvpeztxDeZM+DJlEz8LQ56pXukvh5vVdOrTmM8LBUQCMLq4/FHKouITlMF0nUrnZfOEcSq4TuaEpm9URthi0x2pRMbGp8tWTpUKhR27RtDXlHGmjJ9I54hEo2tyOj8sSVGzEJxBZqvZ+pwd1OCBdcE/KTNru0xOutnSn75KMx+2J8knC/xuf9WzgaypASaIOfJFReRG+XUdQCS0KXjH/1aidE0ff+L8KOUp1YRDjj51k7cXSQ8Hy2bTTohIKJnP1r56WP+AIv3MuHZYowcSSejQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aC+xsX/8jql/RRZeD54NuJdwf44RJle5HMh6ioXzSJs=;
- b=ULGFUdr8sc6owKNdPwmWZGrGccWb3brCjlg66doAC09cggKKVujAXZg54pxlZxK8Lyf1XI+Gy8XxgTDbdReYNZkA/1eUgveLyuIWJenCEqKnfqsch829W6koy6TiX5BUKUWXkBcdb09WvK2JiEITHSQdVWKPFqxhnWnm+QdT7xUahquJQua0Pb7+8QCmlHstu1o+HPTK2hNfWqdO1PNb0979b5AvZosJL3AP/fiwE9k5EcjXywXYAEkfcfyjPEWq3kHBUU3HPoGzJsGsBcqTLpohZyASEjtgbT7yA1TebSEaaZyF0zOXnmWcAzs09r9/73gxtPD5sLkCFFfXid+W3w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aC+xsX/8jql/RRZeD54NuJdwf44RJle5HMh6ioXzSJs=;
- b=XgwXtrkYJj0F8iprc/JG+Igph7jxVGKIXsUG35xedZjumNLWeVZbT2QWC6OF/bvq1wBV/CgZwn+wdywWxzaD4uvuX6whoQj4V/3klrU1GJrYs9tmO8yEhmqbdKsIceSbEts2eqFDRtRu2H9pki3grN4VE3Ugxx+lSakXvfTr0+U=
-Received: from MW4PR03CA0132.namprd03.prod.outlook.com (2603:10b6:303:8c::17)
- by IA1PR12MB6330.namprd12.prod.outlook.com (2603:10b6:208:3e4::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.23; Tue, 17 Jan
- 2023 03:05:33 +0000
-Received: from CO1NAM11FT080.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8c:cafe::c5) by MW4PR03CA0132.outlook.office365.com
- (2603:10b6:303:8c::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.19 via Frontend
- Transport; Tue, 17 Jan 2023 03:05:33 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT080.mail.protection.outlook.com (10.13.174.99) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6002.13 via Frontend Transport; Tue, 17 Jan 2023 03:05:33 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 16 Jan
- 2023 21:05:32 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 16 Jan
- 2023 21:05:32 -0600
-Received: from jane-X10DRi.amd.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Mon, 16 Jan 2023 21:05:30 -0600
-From: Jane Jian <Jane.Jian@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu/smu: skip pptable init under sriov
-Date: Tue, 17 Jan 2023 11:05:28 +0800
-Message-ID: <20230117030528.13525-1-Jane.Jian@amd.com>
-X-Mailer: git-send-email 2.17.1
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89CA610E170;
+ Tue, 17 Jan 2023 00:47:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=7rA3dOZYWNXtMCsmezhMtKfclk/IKSdCdL3lUcKIGqo=; b=FU54kzvbdSnqn+Ve8r7bMnrBAv
+ WulqJ+KYg0XBL682MyaPd4t5WCXPuLPBcAgDPqnlpPpTC+GZDx74eIlDaxlo0VACHAqvBAYkFQYAG
+ Y74QE//xaTPLIA3D+KCYuYuiFbfiSZSMIzPBN3OO19pdGjvTVJbtr0lHPU6tzE8J0ai000Emfb+cx
+ CsIBYR/zUCGBkfpxY9SyNysFBDN6HcIWn0OL4hwYcRsTicSQt0T2O3C55y65BRh/RoS4VC9jnmdZa
+ kHdPxHdMx+om1taKJl/iOplBbpgv3O3SeRiD4XzEPxt+cVwzUnMPQBajHTEow9jiT10yYb8jfJE1p
+ rNq8FtcA==;
+Received: from [187.56.70.205] (helo=[192.168.1.60])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1pHa8j-00AEPd-Ui; Tue, 17 Jan 2023 01:47:50 +0100
+Message-ID: <a6680b24-372f-673c-4b3c-1fd3c309f242@igalia.com>
+Date: Mon, 16 Jan 2023 21:47:41 -0300
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT080:EE_|IA1PR12MB6330:EE_
-X-MS-Office365-Filtering-Correlation-Id: a3c36e29-3588-4f8c-98c4-08daf837b2b9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Uv0wLaxBrnanQTciRxz5qodNGieuPvaHZHNh0FHRqSENtzCsVhBAznkcTAEFWrwEwqqcptWM8gi+lmNTsjc0Zt+I5H+kvBgemwCZKH6ryAXN6D7f3t3geI7jK1x+HRkgLjrO5/tgiLRdJeZS3SNXVtDVacgjeDyshfMpbkq0ZxThPxZYkrk5NRKnnjNDZvSep56zgbyaqn4Y1af4SDCZyDdbM139hiuqSfaROsinyvMBOuFzfkT4Sgi+8nIJfbdjslhSz4JLwzaxjIM2nJcKTtdBMgVzOBfWsnrpbwd0Z4ZheJXyi3lZXrEiNv+3r1xrC8QYScyvS7Jgg38jjkFvorQ6QcWreHYtJqY5ff2Q+euKKZ6zj6p556XPm1LMVaJQKVagRq1z0Lx0yyB6bLY3GqLZY5CCQvIPQ35AY6Ejz3MkxQhCyWwI8oBNpOZhO21IW4KyRC5o79faYxY1D0+xyh7zGr3fddUzY0Sf+oyPaz1tevIHqWtSMpj9KiIVeDoFbq53JObKGFonCbV4sQV0sUWMcOyPMUAsJJGQtndnKj7r41Thb4zNkr0SIGYqXU5gwM3ds6Feg3znTSrGd6EWr4pPfeOKojGJhMazEaPO4t6pMTYtAXBJEBH1MoNym3uTebCzeStlcMGhHFl3HyRQU8FrT2nto7N4o0H7FoWQH9k+CsfLl8nevIFp1tOuLwG80nAYlG6UPxmFs0SyovYnJxc2DxyATTlES7kzLXblBIo=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(376002)(346002)(396003)(39860400002)(136003)(451199015)(40470700004)(36840700001)(46966006)(40480700001)(40460700003)(36756003)(47076005)(426003)(41300700001)(4326008)(8676002)(70586007)(336012)(6916009)(70206006)(5660300002)(186003)(478600001)(26005)(8936002)(1076003)(54906003)(316002)(7696005)(2616005)(86362001)(82310400005)(356005)(82740400003)(2906002)(81166007)(36860700001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2023 03:05:33.0181 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a3c36e29-3588-4f8c-98c4-08daf837b2b9
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT080.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6330
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 3/3] drm/amdgpu/vcn: Add parameter to force (en/dis)abling
+ indirect SRAM mode
+Content-Language: en-US
+To: Alex Deucher <alexdeucher@gmail.com>
+References: <20230116212004.860968-1-gpiccoli@igalia.com>
+ <20230116212004.860968-3-gpiccoli@igalia.com>
+ <CADnq5_Oh5Vdygo12evQKxw3w-ipRoQMvSNFHGcKtBNbSmtW7GQ@mail.gmail.com>
+ <DM8PR12MB53991481A19B6AC8BA7A4E0AE5C19@DM8PR12MB5399.namprd12.prod.outlook.com>
+ <b8a7253e-6902-e143-1bf2-ff107f25fd2b@igalia.com>
+ <CADnq5_NJ7Kjoi7d+8bL2KNY3Leg8Jy7QL5reDS_dyEt7MUB0wA@mail.gmail.com>
+From: "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+In-Reply-To: <CADnq5_NJ7Kjoi7d+8bL2KNY3Leg8Jy7QL5reDS_dyEt7MUB0wA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Tue, 17 Jan 2023 08:22:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,42 +60,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Horace.Chen@amd.com, Jane Jian <Jane.Jian@amd.com>, HaiJun.Chang@amd.com
+Cc: "Lazar, Lijo" <Lijo.Lazar@amd.com>,
+ "kernel@gpiccoli.net" <kernel@gpiccoli.net>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Jiang,
+ Sonny" <Sonny.Jiang@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "kernel-dev@igalia.com" <kernel-dev@igalia.com>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>, "Zhu, James" <James.Zhu@amd.com>, "Liu,
+ Leo" <Leo.Liu@amd.com>, "Koenig, Christian" <Christian.Koenig@amd.com>,
+ Pierre-Loup Griffais <pgriffais@valvesoftware.com>, "Limonciello,
+ Mario" <Mario.Limonciello@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-sriov does not need to init pptable from amdgpu driver
-we finish it from PF
+On 16/01/2023 20:00, Alex Deucher wrote:
+> [...]
+> 
+> It's not clear to me when this would be used.  We only disable it
+> briefly during new asic bring up, after that we never touch it again.
+> No end user on production hardware should ever have to change it and
+> doing so would break VCN on their system.
+> 
+> Alex
 
-Signed-off-by: Jane Jian <Jane.Jian@amd.com>
----
- drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+[+ Pierre-Loup]
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-index d0cdc578344d..7d711861b90e 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c
-@@ -407,6 +407,9 @@ static int smu_v13_0_0_setup_pptable(struct smu_context *smu)
- 	struct amdgpu_device *adev = smu->adev;
- 	int ret = 0;
- 
-+	if (amdgpu_sriov_vf(smu->adev))
-+		return 0;
-+
- 	ret = smu_v13_0_0_get_pptable_from_pmfw(smu,
- 						&smu_table->power_play_table,
- 						&smu_table->power_play_table_size);
-@@ -1257,6 +1260,9 @@ static int smu_v13_0_0_get_thermal_temperature_range(struct smu_context *smu,
- 		table_context->power_play_table;
- 	PPTable_t *pptable = smu->smu_table.driver_pptable;
- 
-+	if (amdgpu_sriov_vf(smu->adev))
-+		return 0;
-+
- 	if (!range)
- 		return -EINVAL;
- 
--- 
-2.17.1
+Steam Deck is facing a pretty weird scenario then heheh
 
+Commit 82132ecc543 ("drm/amdgpu: enable Vangogh VCN indirect sram mode")
+corrected a long-term issue in which the indirect SRAM mode wasn't
+enabled for Vangogh - and Deck GPU architecture is Vangogh, so it was
+working perfectly with that disabled.
+
+Happens that a bad FW candidate seems to have broken something - it was
+a bit convoluted to debug, but we proved that disabling indirect SRAM is
+a good workaround so far, it "restored the behavior" pre-82132ecc543.
+
+Hence my proposal - this parameter would've made life so much easier,
+and we're start using it "downstream" now. While I understand that of
+course the FW should be fixed, meanwhile this is a cheap solution to
+allow further debug and real use of the system.
+
+Thanks,
+
+
+Guilherme
