@@ -2,58 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED92066E489
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Jan 2023 18:12:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42B8266E48C
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Jan 2023 18:12:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7906C10E301;
-	Tue, 17 Jan 2023 17:12:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E670B10E593;
+	Tue, 17 Jan 2023 17:12:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 215EC10E188;
- Tue, 17 Jan 2023 16:35:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=HvfSDUM7klsKahX/nOAuRsWnPJafumSV3ao8UaWB83I=; b=ptaJrX5m0yz26EhNMcl/jPDGaB
- 4rLhsv6L9koT2KfgsVWtQoczlm+LyJ/WivakHmuHUEWZl+XAxrIUBEtTxzB4WVn6afLZvSrIjLozm
- q19U5kRcTAwnAyeS8jrQ1PKe0TgbBPImETcQMVTzEdKaJ6IXIkGhHOHcKrHRRQ0QxU6TdrjyoeiGp
- xaOzg8rZe7JP72rXzcuK1vQ3FqIC+CNxCQAZwJcdbk0bY2j0ELH1pp0mSeN8JRof7YIf+g1Bdt1cT
- M9OxM+qN88GZiYOoyNZsv9XKtWv3fqqrP+N/hzN3B5+EpOe5WwfgJUNS/LNYymkFAy0uqF5MuxT4T
- GxEgMdCQ==;
-Received: from [187.56.70.205] (helo=[192.168.1.60])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1pHovO-00AmiQ-J8; Tue, 17 Jan 2023 17:35:02 +0100
-Message-ID: <97e63839-ae89-7bc5-ce10-0a45a1071a5c@igalia.com>
-Date: Tue, 17 Jan 2023 13:34:37 -0300
+Received: from outpost1.zedat.fu-berlin.de (outpost1.zedat.fu-berlin.de
+ [130.133.4.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56E6110E1B0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 17 Jan 2023 16:42:43 +0000 (UTC)
+Received: from inpost2.zedat.fu-berlin.de ([130.133.4.69])
+ by outpost.zedat.fu-berlin.de (Exim 4.95) with esmtps (TLS1.3)
+ tls TLS_AES_256_GCM_SHA384
+ (envelope-from <glaubitz@zedat.fu-berlin.de>)
+ id 1pHp2k-001f9B-4y; Tue, 17 Jan 2023 17:42:38 +0100
+Received: from p57bd9464.dip0.t-ipconnect.de ([87.189.148.100]
+ helo=[192.168.178.81]) by inpost2.zedat.fu-berlin.de (Exim 4.95)
+ with esmtpsa (TLS1.3) tls TLS_AES_128_GCM_SHA256
+ (envelope-from <glaubitz@physik.fu-berlin.de>)
+ id 1pHp2j-002q0C-UX; Tue, 17 Jan 2023 17:42:38 +0100
+Message-ID: <3800eaa8-a4da-b2f0-da31-6627176cb92e@physik.fu-berlin.de>
+Date: Tue, 17 Jan 2023 17:42:37 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
-Subject: Re: [PATCH 3/3] drm/amdgpu/vcn: Add parameter to force (en/dis)abling
- indirect SRAM mode
+Subject: Calculating array sizes in C - was: Re: Build
+ regressions/improvements in v6.2-rc1
 Content-Language: en-US
-To: "Limonciello, Mario" <Mario.Limonciello@amd.com>,
- Alex Deucher <alexdeucher@gmail.com>
-References: <20230116212004.860968-1-gpiccoli@igalia.com>
- <20230116212004.860968-3-gpiccoli@igalia.com>
- <CADnq5_Oh5Vdygo12evQKxw3w-ipRoQMvSNFHGcKtBNbSmtW7GQ@mail.gmail.com>
- <DM8PR12MB53991481A19B6AC8BA7A4E0AE5C19@DM8PR12MB5399.namprd12.prod.outlook.com>
- <b8a7253e-6902-e143-1bf2-ff107f25fd2b@igalia.com>
- <CADnq5_NJ7Kjoi7d+8bL2KNY3Leg8Jy7QL5reDS_dyEt7MUB0wA@mail.gmail.com>
- <a6680b24-372f-673c-4b3c-1fd3c309f242@igalia.com>
- <968afa8d-d402-311f-cf14-fd2dd27bf385@amd.com>
- <16d17ee0-bda7-af95-b148-df5ce649336f@igalia.com>
- <CADnq5_OzgMy3s_w4Aa-+51PqJHG+iBeaHYu2gv2t3J-5tExGmw@mail.gmail.com>
- <MN0PR12MB6101E722B07AC8C46BC3D22CE2C69@MN0PR12MB6101.namprd12.prod.outlook.com>
-From: "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-In-Reply-To: <MN0PR12MB6101E722B07AC8C46BC3D22CE2C69@MN0PR12MB6101.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+References: <CAHk-=wgf929uGOVpiWALPyC7pv_9KbwB2EAvQ3C4woshZZ5zqQ@mail.gmail.com>
+ <20221227082932.798359-1-geert@linux-m68k.org>
+ <alpine.DEB.2.22.394.2212270933530.311423@ramsan.of.borg>
+ <c05bee5d-0d69-289b-fe4b-98f4cd31a4f5@physik.fu-berlin.de>
+ <CAMuHMdXNJveXHeS=g-aHbnxtyACxq1wCeaTg8LbpYqJTCqk86g@mail.gmail.com>
+From: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+In-Reply-To: <CAMuHMdXNJveXHeS=g-aHbnxtyACxq1wCeaTg8LbpYqJTCqk86g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Original-Sender: glaubitz@physik.fu-berlin.de
+X-Originating-IP: 87.189.148.100
 X-Mailman-Approved-At: Tue, 17 Jan 2023 17:12:10 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,61 +55,79 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Lazar, Lijo" <Lijo.Lazar@amd.com>,
- "kernel@gpiccoli.net" <kernel@gpiccoli.net>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Jiang,
- Sonny" <Sonny.Jiang@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "kernel-dev@igalia.com" <kernel-dev@igalia.com>, "Deucher,
- Alexander" <Alexander.Deucher@amd.com>, "Zhu, James" <James.Zhu@amd.com>, "Liu,
- Leo" <Leo.Liu@amd.com>, "Koenig, Christian" <Christian.Koenig@amd.com>,
- Pierre-Loup Griffais <pgriffais@valvesoftware.com>
+Cc: linux-xtensa@linux-xtensa.org, linux-sh@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-mips@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kasan-dev@googlegroups.com,
+ Michael Karcher <kernel@mkarcher.dialup.fu-berlin.de>,
+ linux-f2fs-devel@lists.sourceforge.net, linuxppc-dev@lists.ozlabs.org,
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 17/01/2023 13:24, Limonciello, Mario wrote:
-> [...]
->>> Though I see two problems with that: first, I'm not sure what's the
->>> impact in the GPU functioning when I disable some IP block.
->>>
-> 
-> It depends on the individual block what the impact is.  For example
-> if you don't have VCN, then you can't do any accelerated video playback.
-> 
->>> Second, the parameter is a bit hard to figure - we need to clear a bit
->>> for the IP block we want to disable, and the doc suggest to read on
->>> dmesg to get this information (it seems it changes depending on the HW
->>> model), but I couldn't parse the proper bit from dmesg. Needed to
->>> instrument the kernel to find the proper bit heh
->>>
-> 
-> Isn't it this stuff (taken from a CZN system):
-> 
-> [    7.797779] [drm] add ip block number 0 <soc15_common>
-> [    7.797781] [drm] add ip block number 1 <gmc_v9_0>
-> [    7.797782] [drm] add ip block number 2 <vega10_ih>
-> [    7.797783] [drm] add ip block number 3 <psp>
-> [    7.797783] [drm] add ip block number 4 <smu>
-> [    7.797784] [drm] add ip block number 5 <dm>
-> [    7.797785] [drm] add ip block number 6 <gfx_v9_0>
-> [    7.797786] [drm] add ip block number 7 <sdma_v4_0>
-> [    7.797787] [drm] add ip block number 8 <vcn_v2_0>
-> [    7.797788] [drm] add ip block number 9 <jpeg_v2_0>
-> 
-> So for that system it would be bit 8 to disable vcn.
-> 
-> In terms of how debugging would work:
-> I would expect when you get your failure it will have been the previous
-> block # that failed, and so you can reboot with that block masked and
-> see if you get further.
-> 
+Hi Geert!
 
-Thanks Mario, much appreciated! You're totally right and I messed up not
-seeing these obvious messages...
+On 1/6/23 16:17, Geert Uytterhoeven wrote:
+>> I'm not seeing this one, but I am getting this one instead:
+>>
+>> In file included from ./arch/sh/include/asm/hw_irq.h:6,
+>>                    from ./include/linux/irq.h:596,
+>>                    from ./include/asm-generic/hardirq.h:17,
+>>                    from ./arch/sh/include/asm/hardirq.h:9,
+>>                    from ./include/linux/hardirq.h:11,
+>>                    from ./include/linux/interrupt.h:11,
+>>                    from ./include/linux/serial_core.h:13,
+>>                    from ./include/linux/serial_sci.h:6,
+>>                    from arch/sh/kernel/cpu/sh2/setup-sh7619.c:11:
+>> ./include/linux/sh_intc.h:100:63: error: division 'sizeof (void *) / sizeof (void)' does not compute the number of array elements [-Werror=sizeof-pointer-div]
+>>     100 | #define _INTC_ARRAY(a) a, __same_type(a, NULL) ? 0 : sizeof(a)/sizeof(*a)
+>>         |                                                               ^
+>> ./include/linux/sh_intc.h:105:31: note: in expansion of macro '_INTC_ARRAY'
+>>     105 |         _INTC_ARRAY(vectors), _INTC_ARRAY(groups),      \
+>>         |                               ^~~~~~~~~~~
+> 
+> The easiest fix for the latter is to disable CONFIG_WERROR.
+> Unfortunately I don't know a simple solution to get rid of the warning.
 
-So, I'll just drop the parameter on V2.
-Cheers,
+I did some research and it seems that what the macro _INT_ARRAY() does with "sizeof(a)/sizeof(*a)"
+is a commonly used way to calculate array sizes and the kernel has even its own macro for that
+called ARRAY_SIZE() which Linus asks people to use here [1].
 
+So, I replaced _INTC_ARRAY() with ARRAY_SIZE() (see below), however the kernel's own ARRAY_SIZE()
+macro triggers the same compiler warning. I'm CC'ing Michael Karcher who has more knowledge on
+writing proper C code than me and maybe an idea how to fix this warning.
 
-Guilherme
+Thanks,
+Adrian
+
+> [1] https://lkml.org/lkml/2015/9/3/428
+
+diff --git a/include/linux/sh_intc.h b/include/linux/sh_intc.h
+index c255273b0281..07a187686a84 100644
+--- a/include/linux/sh_intc.h
++++ b/include/linux/sh_intc.h
+@@ -97,14 +97,12 @@ struct intc_hw_desc {
+         unsigned int nr_subgroups;
+  };
+  
+-#define _INTC_ARRAY(a) a, __same_type(a, NULL) ? 0 : sizeof(a)/sizeof(*a)
+-
+  #define INTC_HW_DESC(vectors, groups, mask_regs,       \
+                      prio_regs, sense_regs, ack_regs)   \
+  {                                                      \
+-       _INTC_ARRAY(vectors), _INTC_ARRAY(groups),      \
+-       _INTC_ARRAY(mask_regs), _INTC_ARRAY(prio_regs), \
+-       _INTC_ARRAY(sense_regs), _INTC_ARRAY(ack_regs), \
++       ARRAY_SIZE(vectors), ARRAY_SIZE(groups),        \
++       ARRAY_SIZE(mask_regs), ARRAY_SIZE(prio_regs),   \
++       ARRAY_SIZE(sense_regs), ARRAY_SIZE(ack_regs),   \
+  }
+  
+  struct intc_desc {
+
+-- 
+  .''`.  John Paul Adrian Glaubitz
+: :' :  Debian Developer
+`. `'   Physicist
+   `-    GPG: 62FF 8A75 84E0 2956 9546  0006 7426 3B37 F5B5 F913
+
