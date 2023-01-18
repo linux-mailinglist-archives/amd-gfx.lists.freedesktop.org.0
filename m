@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68FE1672B92
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Jan 2023 23:47:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CCBD672B95
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Jan 2023 23:47:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FE7810E860;
-	Wed, 18 Jan 2023 22:47:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 791FB10E864;
+	Wed, 18 Jan 2023 22:47:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB28010E860
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Jan 2023 22:47:16 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2058.outbound.protection.outlook.com [40.107.223.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC73410E862
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Jan 2023 22:47:19 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FfIrFPhfXOOYsGgio8xkvJWT1MRSlcA6PRL0HmLCJveXrvaK81kD1aSPpZ0Mm3CLvqeL59MCYpMBbrbeFRxxnLJ2GlLCVLgWw1c/8uNJt0KTQR0CvQZL9tCDM5uN0zq+LcRKiK7swqWv+LePbhZoxNowSnfGz37IlXhKGdJRPqhY5O40pFmDcvPkYCZuZoZJM/427dLwyMPmRtSXqDh37whKFA5bUBHv4IyzRLk2+kzCA1E0TMloqlOOjqzF7gDCLy+a0hDCnTBYNNOlKANEuH1aN2DwA/66zLNpkGLrEzf80jTCYhU3dZMFKt3F6TYP/lIUsfJiRw2KW8LQCh/cBA==
+ b=fyofqfhvAnMWeW5hyCelG3wy2iAeJ8/PLK49ASM3YvOfoA1zNGgrhd1Bu2pUGu/VdxwpV+oimdd38Es2jxBm0JX+1YOP11wbDr718MYHMr4ZlEgEiGYSZyR25dZbwq7a3w/nnknOI6h76ZMs0cTgCQE4RpheFiYjcj6kjFetZFgXN7F2fvq7MoHUnMNCNnlLUNrXlpaIDYBiZZBrmLrCI16Z0ZzBthjtl8zZBbacwArgQbmt7c58ZrX25ytM5G4q1nL4MJ/tQLGXfs2SrFUb3OUiKPzDv37j4BJg0EvAgIzQPxQDy1pUMUtcWum/wnfmXnRufXHITWGpH+Fvy+TwUg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5zhUFR0Y6xI9EplYvBMnEWX60sBOkUbTWeKvyuvxw5s=;
- b=MrSI22n6IFM+yNmc0wtGbOalFDGGsISm3QTaUOLEONxVPaTlRDI3M/kExwjhTmKBYeghbIXQIZNLudcLnfjKBYhLPHQSfNDROp+UFOlTB3+aB5PCzLQTNw9SGlf37UrjB7VZeecEg9spYauuUiGjK6ovVyfA70VVDDD/1IVGif/aYFzVgb7Mq/xg3M1PbP7h3YY0wIO4epTTLQziYbVhUp1qgD4a5U/zZPKuInGE4s5kCr3UE4dKACoQG/k2CY0uy6JIzetvOGs4YB81vF3l03z7E9bsAU+3SRy8TTjSOpHQ2CU7/w4NIC0kXmOAcOtfoZUkzMc71ALBLNaAJHQqVg==
+ bh=IDA9Ix50sdvn78WUcwSrqVm0j4YMSDcfZJdf9+EoCfY=;
+ b=Oz5x9EiHCz2+43Iwt4k1fWRHsp2ic+JgrrNV8wVVlPQk2tMXXTWMaCq0q68sXV7YRlPKV1NW1vOtSyFsKxHeIjHMsSwNj2OPIOuSYanGYlrIvD+L/pL3TOETxPrMtOFmreNRUsptCPtguYaeia2X/1nlP5Rs0NBOPGpBzJdTalc3ICPXOJJE0RICOp90+iegVp4rvKFYvbCuSjdDP7KJ83nb5y/Ec07PsIvgWFEvF8q63s6/9ddYaPJbbLw8w1dRoIF7/FZlHndSBmueWbz91Hye5jNnNk2T2YF7nb1WzkeLv4Af7aPCVq5vlSHgqbrFZzbJfYj38W0LC93DbZQGcg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5zhUFR0Y6xI9EplYvBMnEWX60sBOkUbTWeKvyuvxw5s=;
- b=H1cU913IU1dW2EuX1pwTrnPGprtOx9/NF/udxx+ng0mW/EYEO5pEgSAO3xSwkDy95Un5ohcw+onKjOR41o2g4JkQSWQJH9iRZvjEH8LUbRrLlbbB5nbI6thUqCIt/hf3KtHAknIhiICP7aei1v3c/43kWIN9PNRoPvXwGHwlCNg=
-Received: from CY5PR20CA0017.namprd20.prod.outlook.com (2603:10b6:930:3::13)
- by SA0PR12MB4573.namprd12.prod.outlook.com (2603:10b6:806:9c::24) with
+ bh=IDA9Ix50sdvn78WUcwSrqVm0j4YMSDcfZJdf9+EoCfY=;
+ b=wgLqQhR1bmlyMR1UGNVXqO7gXo8nuItwzOc77CcEu9qa7GFID/o+B2xpGIY8e071tIRmNMWP+gjJV/cmzhnQqJ/vpRR/sphE6VYl0SOqK5eR+Hb0Uapaqf11kMaSHNpSEIjU7FnyJuWlXc5xVyuMkCIJyxFAmwLEBv24v7ct/ZE=
+Received: from CY5PR20CA0027.namprd20.prod.outlook.com (2603:10b6:930:3::21)
+ by DM4PR12MB5325.namprd12.prod.outlook.com (2603:10b6:5:390::11) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.24; Wed, 18 Jan
- 2023 22:47:14 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.13; Wed, 18 Jan
+ 2023 22:47:15 +0000
 Received: from CY4PEPF0000C979.namprd02.prod.outlook.com
- (2603:10b6:930:3:cafe::d4) by CY5PR20CA0017.outlook.office365.com
- (2603:10b6:930:3::13) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:930:3:cafe::7b) by CY5PR20CA0027.outlook.office365.com
+ (2603:10b6:930:3::21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.19 via Frontend
- Transport; Wed, 18 Jan 2023 22:47:14 +0000
+ Transport; Wed, 18 Jan 2023 22:47:15 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -54,10 +54,10 @@ Received: from AUS-LX-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  2023 16:47:13 -0600
 From: Mario Limonciello <mario.limonciello@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 1/3] drm/amd/display: Decrease messaging about DP alt mode
- state to debug
-Date: Wed, 18 Jan 2023 16:47:09 -0600
-Message-ID: <20230118224711.6832-2-mario.limonciello@amd.com>
+Subject: [PATCH 2/3] drm/amd: Decrease warning about missing SRAT table to
+ debug
+Date: Wed, 18 Jan 2023 16:47:10 -0600
+Message-ID: <20230118224711.6832-3-mario.limonciello@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230118224711.6832-1-mario.limonciello@amd.com>
 References: <20230118224711.6832-1-mario.limonciello@amd.com>
@@ -69,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000C979:EE_|SA0PR12MB4573:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5a3c79cc-1598-4819-b824-08daf9a5f1a7
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000C979:EE_|DM4PR12MB5325:EE_
+X-MS-Office365-Filtering-Correlation-Id: dba5b5fd-741c-4bb6-c861-08daf9a5f1f8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: F25WtIqEjkKMKXZiAv5l1rL9g3PZP7NZ+T/vrkHpJykjkDyXqUvy6kTvUx1+hbQ0CcwTckSAeYQ8BkJ77YMHWLjCjYFJ3G/vKrav92Tqi+yAcKGXMxiz1JeJiTjTnFFQrDRdjMUzEx/5eG+2zNHfoz9BtV5QvlZdMX5AFFypzG/vCNQHlB5baSenxfHqQdKo80V8vy8aWd1bHiOnhbU0q+SePJcD/rbcahKMxKT6e6Mnkmfs7TOSJ27emCY3sa1vi3apoL5oHIclwgtdwD+zFXApXuLhZ17NqjOi83/b1buBpub3QSaOTuoK/dnqSWUzIIvYRjF7mzIXpZTd7E/TIK7Ufb3QAtX/88uKZggvkNWFqnBOopYcQJhZcIz5b3a3FCKpqfQuMRUD9jz3b5nmT9bAl93IEnkxdioPDOBlI+3AqMoDLXelLfstmlJtxxtfRL6ia6nSR9FzgrEUjJfnLYpIe5n6SuIIXMcCMgYgNsUx+bGq2HFKcU8Nuf7wPpry5sMoLxYIoxoJM/I9eVyMP1Su34xS5j+zZ52AXmwkUwJyU/zfovXYJJEEsigktG7URCgk8TQGKDEdwfbATe/LUJ505/N5Aghl+i/8upOW4GCmQvzQDjedH9m0C9pSViX93JaHexQASKa6Q/mBcaODrftWqqLNKmuy3dN/gH21UMORLFpu29Ghx7oxUm+YKtQpEXnaS3cfL4LwwlGvrBka6t2gyB6XT3QPvgVQqEkHf5s=
+X-Microsoft-Antispam-Message-Info: GlcHoOQ4S3G6DChwhnwIas6UQJKwK2FFV5MtX6QnLD4G2PVX1BvbrDGAYMfxySqxnr1MGIDWNzhvgI3hnFEfRp/tMZzK+ThGFU1nTQrkQ5qIjineDgphfZPm1dGKfUZciNKDoqMt7oZESNFf5SjBhiUhUgX2T909+m4u0m8Ilkj53GU0aqD6CZOACmUngElxGYKbPt128hKfnSX8QfXBIPLZkoyArh184DRZNJHTLuZe5QQkzOHbWdo3qpbQ1f+7Pt7A/fEasHShaOua5ZLEFd1eQx0Rhk/Gny3FNuxjrWm1CYHCPVh/Sqk1gPUm8m2E2JZby//FBIgDs+8MdbGlDEBin3WbgU07pCnM3jPVI+fObAG/RIqffWJ5/G6hdooGBrsx3kDXIrmB7n1/cHLrI9FRtEwEwr+cce1QW3RlnOaWF1MUd6icxHdq4d3/uCYVBRPyKqCbQ7Th4NMIqS+NHswLq/WDRJiLxMW8Dg79J8a7+xdJRVd2xt8/xxJdj3utK+/9MjStZu4gcWhWCr2SFRi1hVizzD9kpL1ODGeN5gZAJfhwh4tlG87lG776B/qiEI1sCi5PvuwpLtQbzLqoKEh5aSCgCfEcf+zYoTEAvZkN7UrwaEOvPfJLKjfCE19Qr0WztfBpYeSfHbqUo0hTXm4PlDJEpNhDreqNkxRU4S7qCUdpTTihUWOQ4n2PhLgyeuRBZ2pz++igbOzsAyKNseTQdM+1oewlJXXoPAKLMfw=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230022)(4636009)(396003)(39860400002)(346002)(376002)(136003)(451199015)(46966006)(36840700001)(40470700004)(36860700001)(82310400005)(426003)(47076005)(356005)(86362001)(44832011)(83380400001)(81166007)(82740400003)(8936002)(2906002)(5660300002)(4744005)(41300700001)(40480700001)(40460700003)(4326008)(6666004)(1076003)(2616005)(478600001)(186003)(336012)(26005)(316002)(16526019)(8676002)(70586007)(70206006)(6916009)(7696005)(36756003)(36900700001);
+ SFS:(13230022)(4636009)(39860400002)(376002)(346002)(396003)(136003)(451199015)(46966006)(36840700001)(40470700004)(478600001)(8676002)(6916009)(4326008)(26005)(16526019)(82310400005)(426003)(86362001)(41300700001)(36756003)(83380400001)(40460700003)(4744005)(44832011)(8936002)(47076005)(186003)(7696005)(5660300002)(336012)(316002)(2616005)(81166007)(2906002)(1076003)(356005)(82740400003)(40480700001)(70206006)(36860700001)(70586007)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2023 22:47:14.4629 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5a3c79cc-1598-4819-b824-08daf9a5f1a7
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2023 22:47:14.9942 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: dba5b5fd-741c-4bb6-c861-08daf9a5f1f8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000C979.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4573
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5325
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,30 +104,29 @@ Cc: Mario Limonciello <mario.limonciello@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Currently plugging in a USB-C device that issues an HPD will emit
-a warning level message `DP Alt mode state on HPD: %d`.
-
-This is needlessly noisy for most people, decrease it to debug so
-that it can be turned on by dynamic debug as needed.
+As OEMs will control what ACPI tables are on their systems, SRAT
+might not be present. To avoid making an assumption that it is
+there but still be useful for debugging a missing table decrease
+warning about missing table to debug.
 
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_link.c | 2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_crat.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-index 5cd81348a88b7..d9e490eca10f4 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-@@ -837,7 +837,7 @@ static bool wait_for_entering_dp_alt_mode(struct dc_link *link)
- 		return true;
- 
- 	is_in_alt_mode = link->link_enc->funcs->is_in_alt_mode(link->link_enc);
--	DC_LOG_WARNING("DP Alt mode state on HPD: %d\n", is_in_alt_mode);
-+	DC_LOG_DC("DP Alt mode state on HPD: %d\n", is_in_alt_mode);
- 
- 	if (is_in_alt_mode)
- 		return true;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+index 3251f4783ba10..a309cbc235c61 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+@@ -1904,7 +1904,7 @@ static void kfd_find_numa_node_in_srat(struct kfd_dev *kdev)
+ 	/* Fetch the SRAT table from ACPI */
+ 	status = acpi_get_table(ACPI_SIG_SRAT, 0, &table_header);
+ 	if (status == AE_NOT_FOUND) {
+-		pr_warn("SRAT table not found\n");
++		pr_debug("SRAT table not found\n");
+ 		return;
+ 	} else if (ACPI_FAILURE(status)) {
+ 		const char *err = acpi_format_exception(status);
 -- 
 2.34.1
 
