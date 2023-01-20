@@ -2,57 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 234B9675B99
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Jan 2023 18:32:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE89B675C6F
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Jan 2023 19:06:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B27A10EAAE;
-	Fri, 20 Jan 2023 17:32:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5365A10EAC3;
+	Fri, 20 Jan 2023 18:05:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com
- [IPv6:2607:f8b0:4864:20::231])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B14B710EAA4;
- Fri, 20 Jan 2023 17:32:53 +0000 (UTC)
-Received: by mail-oi1-x231.google.com with SMTP id s66so5002363oib.7;
- Fri, 20 Jan 2023 09:32:53 -0800 (PST)
+Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com
+ [IPv6:2001:4860:4864:20::33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59F7210E02F;
+ Fri, 20 Jan 2023 17:46:38 +0000 (UTC)
+Received: by mail-oa1-x33.google.com with SMTP id
+ 586e51a60fabf-15f83e0fc63so6989993fac.11; 
+ Fri, 20 Jan 2023 09:46:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=87t+oUf+a0Dntkm1neH5VXJkrRsI/op4lJUax3qjibo=;
- b=C11141WGDsrnqbvFx18+o4BqFM9T5uzgu0a9bCtay8eJiafXb5ICVY922ub5/qLDah
- ksS3XsCN7F9xF6+eDXHHtozZjAq2Q2yg1Br5q4PspU+33c5btcapDYnRoBfGozvMs8xB
- ej/M2h86SQGaj6x+pUobn/yPXfV2EANiLb2MsHJlXMvUoDg8zxRRgClQgAaOVM0nWMiQ
- pMgarJMIeI6mpiNKd35zAGAm9GydqW7tGeAfQDwBJDyNBer2x6N7+5cwXxk6w+4JZxse
- AYPPaewMvXfaeqjXr/zkeCNwTejY8ljAqKBhSYEviFnMpnOVlga5XZBHp8ISiu3e8t5Q
- AeCg==
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+ :reply-to; bh=hUvUA2IIr3qtMnOvBvL5zQt24HHkmc2C85O4j7dXdfU=;
+ b=i3bO+kPprrkq3bNt7btyN6LWwl4miHQ7RE8ySv8ircxiwhR7SB2yHxjuyS9/VgUp9H
+ NvRVDLhgOcUZivlnJE5bZkekhw3Ye4ajaNqbuKh0d3oyd1kmPWUpAFlSIZfjYEuvJAxt
+ FLcb5wIc/evmZOhM4yH4gCoWbOhV/9Zz3wz3qB2d4uxw8sWr6mjXwoXzLguXJ1cmIkhU
+ pcMuXKqi8tn+wn0eUMuhQi/t5F/Km/mO6xp2vwSVOTeDafxJokeSiNyP9brfqfY5b19t
+ nUmw+HhZg+uC8Y3jYHwxmDQMRW4egVvoPAFPsPCJQhlRODFcVh+yTQrffuuR5aH1wN60
+ /nRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=87t+oUf+a0Dntkm1neH5VXJkrRsI/op4lJUax3qjibo=;
- b=Y/r2VSLzfgrjF5xBSM38nHXa0dz8ZyiFbXtdVyZTX39Fbn3rkmB84KX5DgBXeh7IjN
- x7aKr/9utFhdicEsfC6qv3tm34cUNUy2QSdqmaBEpoFcnjB/7sqgjc5VxYPFiA4YyrzN
- 3ZMwymH+/wj1gxT4PqYB4GLf1CtNixc7gayyFK3lsgHZuR1N7axCqEDM2eSDYAk7hxzs
- sc4ooz7kCsCjwvRP3Y1HnqXRV6LKOde7pGINa71d3IwYYI9iFcpbXoA6/k6LlFTt41+4
- TWmBOdcbGnfIOhg3c+0l40TSVRfLicjVU/N6Yd9Ld/6T0/O9T/uow6hpPsf00n/0CWAj
- 1AQQ==
-X-Gm-Message-State: AFqh2ko6Uxc7Gz8MgKFzq2oIH8n+mSu7+T2uuX7bC7PE+qxqj8tENmTi
- Vijf+e8TcdUVGl0T7JEGGl2O2JgqpwYwQx9yFUE=
-X-Google-Smtp-Source: AMrXdXsOtiPsMwKEFnxgJcl1dP7zHFtGdt88xKMd5HouHyfTb+B956vMHCeiRA78YVCNR81SkmOrLXSdERXCJuRPYQk=
-X-Received: by 2002:a05:6808:4387:b0:35b:d93f:cbc4 with SMTP id
- dz7-20020a056808438700b0035bd93fcbc4mr886518oib.96.1674235972772; Fri, 20 Jan
- 2023 09:32:52 -0800 (PST)
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=hUvUA2IIr3qtMnOvBvL5zQt24HHkmc2C85O4j7dXdfU=;
+ b=iYGmQfjdrbTu+ccrMMmJYbPs9s4/bIcAlix27oarqDpN3kEAt/ReCGIfNI+Xcdr6Qj
+ NOkYSjaUiOgvcZ09nCpQRBMNK6lRsV+efwi0bPFYY18XLzTXLeBKwsn7tzj3MPhVqlMM
+ +c5zhGHIDzTCdFpEEbJTHkjMoZrB+7lBtmghy6Q3OvskAhH/tB/3zRkQ7N7RmxUkQw2X
+ 6sIYz/tCFS6ZNAhPxW2uMDOh4zkAwwtCF4EN/MNw+vzAc/V+jNeAoEIz/C9/+jdrojL/
+ WdFZsZJWi0w7txGfiPY8lDuQvACssOWGL52xLR/cFPS20dV6s15EbzrpQ6LqCVrgnMXw
+ wXDA==
+X-Gm-Message-State: AFqh2koYES/nnMx4pCsIvAmXV3Jn3U9yyqo+sE3ikcZQPcnL8w9p7foA
+ 42G3oFfL9vdnmScYEj16Ig8=
+X-Google-Smtp-Source: AMrXdXs3gWMMWtehBRolAqaRrPB1xApkqkraSR4LaVvXxomzpHUftM+HKwaGNiCVay5j9fehIgQsPA==
+X-Received: by 2002:a05:6870:c20b:b0:15f:1bd4:6f67 with SMTP id
+ z11-20020a056870c20b00b0015f1bd46f67mr9524957oae.29.1674236797477; 
+ Fri, 20 Jan 2023 09:46:37 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+ by smtp.gmail.com with ESMTPSA id
+ o41-20020a056870912900b0015f9cc16ef7sm3513480oae.46.2023.01.20.09.46.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 20 Jan 2023 09:46:36 -0800 (PST)
+Date: Fri, 20 Jan 2023 09:46:34 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Wayne Lin <Wayne.Lin@amd.com>
+Subject: Re: [PATCH] Revert "drm/display/dp_mst: Move all payload info into
+ the atomic state"
+Message-ID: <20230120174634.GA889896@roeck-us.net>
+References: <20230112085044.1706379-1-Wayne.Lin@amd.com>
 MIME-Version: 1.0
-References: <20230120173226.98569-1-hamza.mahfooz@amd.com>
-In-Reply-To: <20230120173226.98569-1-hamza.mahfooz@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 20 Jan 2023 12:32:40 -0500
-Message-ID: <CADnq5_MVRBeduHKqUAcPSRF9ruAU5WVOG0w407edocCKME8nXQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: use a more appropriate return value in
- dp_retrieve_lttpr_cap()
-To: Hamza Mahfooz <hamza.mahfooz@amd.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230112085044.1706379-1-Wayne.Lin@amd.com>
+X-Mailman-Approved-At: Fri, 20 Jan 2023 18:05:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,43 +72,32 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arnd Bergmann <arnd@arndb.de>, Leo Li <sunpeng.li@amd.com>,
- Wenjing Liu <wenjing.liu@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: dri-devel@lists.freedesktop.org, stable@vger.kernel.org,
+ stanislav.lisovskiy@intel.com, bskeggs@redhat.com,
+ Fangzhi Zuo <Jerry.Zuo@amd.com>, amd-gfx@lists.freedesktop.org,
+ mario.limonciello@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+On Thu, Jan 12, 2023 at 04:50:44PM +0800, Wayne Lin wrote:
+> This reverts commit 4d07b0bc403403438d9cf88450506240c5faf92f.
+> 
+> [Why]
+> Changes cause regression on amdgpu mst.
+> E.g.
+> In fill_dc_mst_payload_table_from_drm(), amdgpu expects to add/remove payload
+> one by one and call fill_dc_mst_payload_table_from_drm() to update the HW
+> maintained payload table. But previous change tries to go through all the
+> payloads in mst_state and update amdpug hw maintained table in once everytime
+> driver only tries to add/remove a specific payload stream only. The newly
+> design idea conflicts with the implementation in amdgpu nowadays.
+> 
+> [How]
+> Revert this patch first. After addressing all regression problems caused by
+> this previous patch, will add it back and adjust it.
 
-On Fri, Jan 20, 2023 at 12:31 PM Hamza Mahfooz <hamza.mahfooz@amd.com> wrote:
->
-> Not all ASICs support LTTPR, however if they don't it doesn't mean that
-> we have encountered unexpected behaviour. So, use DC_NOT_SUPPORTED
-> instead of DC_ERROR_UNEXPECTED.
->
-> Reviewed-by: Wenjing Liu <wenjing.liu@amd.com>
-> Signed-off-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
-> ---
->  drivers/gpu/drm/amd/display/dc/link/link_dp_capability.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/dc/link/link_dp_capability.c b/drivers/gpu/drm/amd/display/dc/link/link_dp_capability.c
-> index e72ad1b8330f..21fd9275ae4c 100644
-> --- a/drivers/gpu/drm/amd/display/dc/link/link_dp_capability.c
-> +++ b/drivers/gpu/drm/amd/display/dc/link/link_dp_capability.c
-> @@ -1462,7 +1462,7 @@ enum dc_status dp_retrieve_lttpr_cap(struct dc_link *link)
->         bool vbios_lttpr_interop = link->dc->caps.vbios_lttpr_aware;
->
->         if (!vbios_lttpr_interop || !link->dc->caps.extended_aux_timeout_support)
-> -               return DC_ERROR_UNEXPECTED;
-> +               return DC_NOT_SUPPORTED;
->
->         /* By reading LTTPR capability, RX assumes that we will enable
->          * LTTPR extended aux timeout if LTTPR is present.
-> --
-> 2.39.0
->
+Has there been any progress on this revert, or on fixing the underlying
+problem ?
+
+Thanks,
+Guenter
