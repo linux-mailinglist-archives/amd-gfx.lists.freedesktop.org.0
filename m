@@ -1,42 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96A576772AC
-	for <lists+amd-gfx@lfdr.de>; Sun, 22 Jan 2023 22:33:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 476AC6772B0
+	for <lists+amd-gfx@lfdr.de>; Sun, 22 Jan 2023 22:33:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9786910E1CA;
-	Sun, 22 Jan 2023 21:33:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B15E810E2FE;
+	Sun, 22 Jan 2023 21:33:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5464410E14E
- for <amd-gfx@lists.freedesktop.org>; Sat, 21 Jan 2023 07:20:33 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF93F10E05A
+ for <amd-gfx@lists.freedesktop.org>; Sat, 21 Jan 2023 07:28:22 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 14899606DC;
- Sat, 21 Jan 2023 07:20:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10DDCC433D2;
- Sat, 21 Jan 2023 07:20:30 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 49F57B82A23;
+ Sat, 21 Jan 2023 07:28:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89570C433EF;
+ Sat, 21 Jan 2023 07:28:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1674285631;
- bh=PnVSxXkaLYKWQfgTwGiRvhv/631TKMtH6r7V3MnhUjE=;
+ s=korg; t=1674286099;
+ bh=uelgkkZaVqe9jys5JEJEwc7kCy9WMXkTngwZlLUTO98=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=CGVVHl+901mj841DkQ2+w2VR97373sUHMkCDOghEHcOWA1pfL1RGPRwRzyaDjBZa6
- 4rXUkYyPUp6Z2xu2LfLZ3jbO1vDGYF9xbykdYjnEYn2d/LOvYSQYXiraqdQoBmY2Or
- BSSvubc/g2KSCM9x8I36Wk6ssk+5iOM1GQDmzAVo=
-Date: Sat, 21 Jan 2023 08:20:28 +0100
+ b=RZj7zOmZx4ZeiLs0jZLeZMGauIj7LrvvUlujVoVmB4FMVRDd25R1M1Uh8ou4k2dnS
+ e/F9G58buKo8i24ohcNp2za464IXZhUdMUrO9k53bZwFJ0cCMU6u+y17J6QHzRQfPj
+ NZKcSJLBmGvT3Dt1yKoE1eUHe9S/prcVM2cIKnvk=
+Date: Sat, 21 Jan 2023 08:28:17 +0100
 From: Greg KH <gregkh@linuxfoundation.org>
 To: Tim Huang <tim.huang@amd.com>
-Subject: Re: [PATCH v2] drm/amd/pm: drop unneeded dpm features disablement
- for SMU 13.0.4/11
-Message-ID: <Y8uSPP34u39uPvvp@kroah.com>
-References: <20230121024955.1601467-1-tim.huang@amd.com>
+Subject: Re: [PATCH RESEND] drm/amdgpu: skip psp suspend for IMU enabled
+ ASICs mode2 reset
+Message-ID: <Y8uUEUwXCq0yztbq@kroah.com>
+References: <20230121021216.1596133-1-tim.huang@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230121024955.1601467-1-tim.huang@amd.com>
+In-Reply-To: <20230121021216.1596133-1-tim.huang@amd.com>
 X-Mailman-Approved-At: Sun, 22 Jan 2023 21:32:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -55,14 +56,16 @@ Cc: mario.limonciello@amd.com, Yifan1.zhang@amd.com, Xiaojian.Du@amd.com,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Jan 21, 2023 at 10:49:55AM +0800, Tim Huang wrote:
-> PMFW will handle that properly for gpu reset case. Driver involvement
-> may cause some unexpected issues.
+On Sat, Jan 21, 2023 at 10:12:16AM +0800, Tim Huang wrote:
+> The psp suspend & resume should be skipped to avoid destroy
+> the TMR and reload FWs again for IMU enabled APU ASICs.
 > 
 > Signed-off-by: Tim Huang <tim.huang@amd.com>
+> Acked-by: Alex Deucher <alexander.deucher@amd.com>
+> Reviewed-by: Mario Limonciello <mario.limonciello@amd.com>
 > ---
->  drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
 
 <formletter>
