@@ -2,44 +2,40 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B98B06772AF
-	for <lists+amd-gfx@lfdr.de>; Sun, 22 Jan 2023 22:33:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 601026772AB
+	for <lists+amd-gfx@lfdr.de>; Sun, 22 Jan 2023 22:33:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A52F10E2FD;
-	Sun, 22 Jan 2023 21:33:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44F5110E1C3;
+	Sun, 22 Jan 2023 21:33:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from msg-2.mailo.com (msg-2.mailo.com [213.182.54.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E480810E1A3;
- Sun, 22 Jan 2023 18:46:01 +0000 (UTC)
+Received: from msg-4.mailo.com (msg-4.mailo.com [213.182.54.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0F1310E1A6;
+ Sun, 22 Jan 2023 18:53:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailo.com; s=mailo;
- t=1674413155; bh=J41ioDWqknlOzdipOF5sD31nhNZl3NF7T0hUSNvNhsI=;
+ t=1674413605; bh=rhAsGMbfg+PGnakQKnQpMWQ6FxgRoSYxPcJe5xXrEP4=;
  h=X-EA-Auth:Date:From:To:Cc:Subject:Message-ID:References:
  MIME-Version:Content-Type:In-Reply-To;
- b=f2vIwTa7gBjC8QW6zWihuU2CxvUGZIQ4lWSAAJlEknZHH1gQPn/chKhj0P2B3ADr3
- 6ljtIFr4O7T2RQiDTIMJkNU+erNDHvRrCizCJoNWofiZJE97w1pYFTWD6mQuSCJVY7
- e3+tYz4LnDkCixQalsK1OwmPlwBwutWHkDA8qCwM=
-Received: by b-1.in.mailobj.net [192.168.90.11] with ESMTP
+ b=hT8NPtqnyUtg+ElcMwV88lvqkCGTlGRVq4YQGAh3fAn5RkzBzKGAjttv8MwWKTfSw
+ 4YJauRG89NBJzra+gabj9BFbuW3SBxhmHoxvZqYMc2IQCvNOXrYDYwDKcuM+meIJ1Q
+ Tdjvlg6yAtpzzC+s+HuYI/jTsSipE3mMDUuM1KBE=
+Received: by b-5.in.mailobj.net [192.168.90.15] with ESMTP
  via ip-206.mailobj.net [213.182.55.206]
- Sun, 22 Jan 2023 19:45:55 +0100 (CET)
-X-EA-Auth: LxLdcSa5DAPkBdm3lAE5Zi4Ztr6lojNLOTcMK4tmNwTIrMEaL45b16ba2tEHLBsIZr6K+6GtA76prZjHrpgzJvjUV0jW4QZq
-Date: Mon, 23 Jan 2023 00:15:50 +0530
+ Sun, 22 Jan 2023 19:53:25 +0100 (CET)
+X-EA-Auth: sQZjZHsUkHUGta+zBnh7yPGpKpJVDiCrF1C498o1U618e/SJLNy3cV3sT4ijWDGAMV5xW3Qdj6ueHRi05+1t3RVsHHs9s1PC
+Date: Mon, 23 Jan 2023 00:23:19 +0530
 From: Deepak R Varma <drv@mailo.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+To: Joe Perches <joe@perches.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/4] drm/amd/display: Use min()/max() helper macros
-Message-ID: <Y82EXrIgJyJTVAFk@ubun2204.myguest.virtualbox.org>
-References: <cover.1673730293.git.drv@mailo.com>
+ Aurabindo Pillai <aurabindo.pillai@amd.com>
+Subject: Re: [PATCH] drm/amd/display: Simplify same effect if/else blocks
+Message-ID: <Y82GHzOUHgEqTUq7@ubun2204.myguest.virtualbox.org>
+References: <Y8POxreeC3EvOXhC@ubun2204.myguest.virtualbox.org>
+ <33ecbe8971bb9c90d72c67d43ca740abac160908.camel@perches.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1673730293.git.drv@mailo.com>
+In-Reply-To: <33ecbe8971bb9c90d72c67d43ca740abac160908.camel@perches.com>
 X-Mailman-Approved-At: Sun, 22 Jan 2023 21:32:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -52,41 +48,79 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Praveen Kumar <kumarpraveen@linux.microsoft.com>,
- Saurabh Singh Sengar <ssengar@microsoft.com>
+Cc: Saurabh Singh Sengar <ssengar@microsoft.com>, Leo Li <sunpeng.li@amd.com>,
+ David Airlie <airlied@gmail.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org,
+ Praveen Kumar <kumarpraveen@linux.microsoft.com>,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Jan 15, 2023 at 02:48:45AM +0530, Deepak R Varma wrote:
-> This patch series proposes using standard min() / max() helper macros instead of
-> direct variable comparison using the ternary operator or if/else evaluations. I
-> have tested the change using a dummy module and similar simulations on my x86
-> machine.
+On Sun, Jan 15, 2023 at 12:52:10PM -0800, Joe Perches wrote:
+> On Sun, 2023-01-15 at 15:30 +0530, Deepak R Varma wrote:
+> > The if / else block code has same effect irrespective of the logical
+> > evaluation.  Hence, simply the implementation by removing the unnecessary
+> > conditional evaluation. While at it, also fix the long line checkpatch
+> > complaint. Issue identified using cond_no_effect.cocci Coccinelle
+> > semantic patch script.
+> > 
+> > Signed-off-by: Deepak R Varma <drv@mailo.com>
+> > ---
+> > Please note: The proposed change is compile tested only. If there are any
+> > inbuilt test cases that I should run for further verification, I will appreciate
+> > guidance about it. Thank you.
+> 
+> Preface: I do not know the code.
+> 
+> Perhaps Rodrigo Siqueira made a copy/paste error submitting the code for
+> commit 9114b55fabae ("drm/amd/display: Fix SubVP control flow in the MPO context")
+> as the code prior to this change is identical.
+> 
+> Perhaps one of the false uses should be true or dependent on the
+> interdependent_update_lock state.
 
-Hello,
-May I request a review feedback and comments on this patch set please?
+Thank you Joe for the recommendation.
+
+Hi Rodrigo,
+Can you review and comment on if and what is wrong with your commit?
 
 Thank you,
 ./drv
 
 > 
-> Deepak R Varma (4):
->   drm/amd/display: Use min()/max() macros in dcn_calc_math
->   drm/amd/display: dcn20: Use min()/max() helper macros
->   drm/amd/display: dcn21: Use min()/max() helper macros
->   drm/amd/display: dcn32: Use min()/max() helper macros
+> > diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+> []
+> > @@ -3470,14 +3470,9 @@ static void commit_planes_for_stream(struct dc *dc,
+> >  		/* Since phantom pipe programming is moved to post_unlock_program_front_end,
+> >  		 * move the SubVP lock to after the phantom pipes have been setup
+> >  		 */
+> > -		if (should_lock_all_pipes && dc->hwss.interdependent_update_lock) {
+> > -			if (dc->hwss.subvp_pipe_control_lock)
+> > -				dc->hwss.subvp_pipe_control_lock(dc, context, false, should_lock_all_pipes, NULL, subvp_prev_use);
+> > -		} else {
+> > -			if (dc->hwss.subvp_pipe_control_lock)
+> > -				dc->hwss.subvp_pipe_control_lock(dc, context, false, should_lock_all_pipes, NULL, subvp_prev_use);
+> > -		}
+> > -
 > 
->  .../gpu/drm/amd/display/dc/dml/calcs/dcn_calc_math.c   | 10 +++++-----
->  .../drm/amd/display/dc/dml/dcn20/display_mode_vba_20.c |  5 +----
->  .../amd/display/dc/dml/dcn20/display_mode_vba_20v2.c   |  5 +----
->  .../drm/amd/display/dc/dml/dcn21/display_mode_vba_21.c |  5 +----
->  drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c   |  4 ++--
->  5 files changed, 10 insertions(+), 19 deletions(-)
+> Perhaps something like:
 > 
-> -- 
-> 2.34.1
+> 		if (dc->hwss.subvp_pipe_control_lock)
+> 			dc->hwss.subvp_pipe_control_lock(dc, context,
+> 							 should_lock_all_pipes &&
+> 							 dc->hwss.interdependent_update_lock,
+> 							 should_lock_all_pipes, NULL, subvp_prev_use);
 > 
-> 
+> > +		if (dc->hwss.subvp_pipe_control_lock)
+> > +			dc->hwss.subvp_pipe_control_lock(dc, context, false, should_lock_all_pipes,
+> > +							 NULL, subvp_prev_use);
+> >  		return;
+> >  	}
+> >  
 > 
 
 
