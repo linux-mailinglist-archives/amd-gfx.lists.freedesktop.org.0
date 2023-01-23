@@ -1,60 +1,44 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A82AB677DA6
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Jan 2023 15:09:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B7E9677DBA
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Jan 2023 15:14:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 801D410E49D;
-	Mon, 23 Jan 2023 14:09:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE1E110E4A4;
+	Mon, 23 Jan 2023 14:14:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com
- [IPv6:2607:f8b0:4864:20::32b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5427B10E49D
- for <amd-gfx@lists.freedesktop.org>; Mon, 23 Jan 2023 14:09:37 +0000 (UTC)
-Received: by mail-ot1-x32b.google.com with SMTP id
- x21-20020a056830245500b006865ccca77aso7368268otr.11
- for <amd-gfx@lists.freedesktop.org>; Mon, 23 Jan 2023 06:09:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=VeuBZyNeTGyU/wqW/UfJ6LFekK3d5sFwETjIwj7Rbdw=;
- b=bjeT9OMfgYD7Gw5IAjFjxeYBt730OlUBTLW19g4d2jNARM3z/uXanQCKkbmuSJbObd
- 3vZGW+XkHQASMaA5696iKebUEMNsxgl83WelE4NIgw5oqpWj9yUCqoK0BjXWOLXtUAdD
- XxRMMnzBl2ky0+tQzHZHiC8QkbN1rcHSpCwHIRVUfKOJAF0T7iDQgRd5ZNQcRB7hGI9t
- jP6HQZ8rf5eVPjA/rsb34Yrv9baudH5oSSy6M3X0rs00jWTIVuB2coE3STazLz0KXJJR
- B85+ppLqkgGP3F6gamCKxTHoQH6MSho7CFc4UVoRf0Ijrv3fLnpzZrrlPfJyNnLWdHwY
- oNPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=VeuBZyNeTGyU/wqW/UfJ6LFekK3d5sFwETjIwj7Rbdw=;
- b=CnuawYNlNEas78/8dg6qVY9n58s19NL3hiqWf5Ri/zv2aX9Z2WSXqGOLjVTWTJ24fD
- impIM3txDhTBD+aUdGsy636bG7eCq6qt82BrIjdX1534n3YZ19i9eYyQmiY+cF04G/Qs
- 3Ax+Abk/UPLhdgxUajVMfJsLsqaekrM2sYH/IxKTj2WLleXpGA5aIMkUYpt2nfmIDf9Y
- gD6sqPVW+4585gGzVoVMSFtVqI2h0RpOeG3h4tHeKqskgrqUfYzUx+gNNgTAuLeLHGjn
- x8I6nRX+EmCl/7adHAA/7hjkMjj58GUQXIj8GAnZWxRdzZq44Y9W/C46JRceJlOGFvDj
- /Ylw==
-X-Gm-Message-State: AFqh2kp7ZiNkGRUATC14s+N0fP2c3rAfFGYMS6mlxTUKs69mfb5fSk68
- 8GM+2ORWTxuWszkodhvvZmNktSGylzIT05IuQa0=
-X-Google-Smtp-Source: AMrXdXsQ+6X9JnD8dif1GGpn1WDTAIy9sfmwswYlWZYrYqTwO4GU9oVPjGUK7qBvDhoe4rN8OukCg2VJJmUKozIU3u4=
-X-Received: by 2002:a05:6830:26d9:b0:686:9219:3704 with SMTP id
- m25-20020a05683026d900b0068692193704mr848990otu.123.1674482976437; Mon, 23
- Jan 2023 06:09:36 -0800 (PST)
+Received: from c3po.tilda.center (c3po.tilda.center [108.61.164.129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EC4310E4A4
+ for <amd-gfx@lists.freedesktop.org>; Mon, 23 Jan 2023 14:14:12 +0000 (UTC)
+Received: from [192.168.111.186] (meka.rs [109.93.255.137])
+ by c3po.tilda.center (Postfix) with ESMTPSA id 4122D3501C;
+ Mon, 23 Jan 2023 15:13:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tilda.center;
+ s=c3po; t=1674483209;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=XSglieW65IuypdPrBP9zmRg+aUKZWPn3hthfVBFnY/0=;
+ b=mcQcDUzol1+lzloHzEA7c9dmfBf+dSX/AXHo02j6AvtJTA5HHCsvc86am01kLIwvPtDJH8
+ gBUnLs3fzUu3HE2iY4NIoua9DZstUB7kkz7zzbmqQBSix0lLjO0IRdEEjqP+6Wn04WedCv
+ 9HKpTHqZ7Z4/d3zsPTjh9igf5v6qhbk=
+Message-ID: <1f394961-4991-e684-c0f6-0c3142ef825e@tilda.center>
+Date: Mon, 23 Jan 2023 15:14:08 +0100
 MIME-Version: 1.0
-References: <6cd6acdb-06f9-d0b1-642e-e93b17ba37ca@tilda.center>
-In-Reply-To: <6cd6acdb-06f9-d0b1-642e-e93b17ba37ca@tilda.center>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 23 Jan 2023 09:09:24 -0500
-Message-ID: <CADnq5_N8AH+Ay8V1oqX4FptDKM6Uz=6a22JOr47Jw98VeJqRBA@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; FreeBSD amd64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
 Subject: Re: Minimal kernel version for 7900XT
-To: =?UTF-8?B?R29yYW4gTWVracSH?= <meka@tilda.center>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
+To: Alex Deucher <alexdeucher@gmail.com>
+References: <6cd6acdb-06f9-d0b1-642e-e93b17ba37ca@tilda.center>
+ <CADnq5_N8AH+Ay8V1oqX4FptDKM6Uz=6a22JOr47Jw98VeJqRBA@mail.gmail.com>
+From: =?UTF-8?Q?Goran_Meki=c4=87?= <meka@tilda.center>
+In-Reply-To: <CADnq5_N8AH+Ay8V1oqX4FptDKM6Uz=6a22JOr47Jw98VeJqRBA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,33 +54,36 @@ Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 23, 2023 at 5:11 AM Goran Meki=C4=87 <meka@tilda.center> wrote:
->
-> Hello,
->
-> I'm trying to figure out what's the minimal kernel version that supports
-> the 7900XT. I found that the driver supports SLES 15:
-> https://www.amd.com/en/support/graphics/amd-radeon-rx-7000-series/amd-rad=
-eon-rx-7900-series/amd-radeon-rx-7900xt
->
-> I also found that SLES 15 SP 4 runs on 5.14:
-> https://www.suse.com/support/kb/doc/?id=3D000019587#SLE15SP4
+On 1/23/23 15:09, Alex Deucher wrote:
+> On Mon, Jan 23, 2023 at 5:11 AM Goran Mekić <meka@tilda.center> wrote:
+>>
+>> Hello,
+>>
+>> I'm trying to figure out what's the minimal kernel version that supports
+>> the 7900XT. I found that the driver supports SLES 15:
+>> https://www.amd.com/en/support/graphics/amd-radeon-rx-7000-series/amd-radeon-rx-7900-series/amd-radeon-rx-7900xt
+>>
+>> I also found that SLES 15 SP 4 runs on 5.14:
+>> https://www.suse.com/support/kb/doc/?id=000019587#SLE15SP4
+> 
+> Kernel 6.0 or newer.
+> 
+>>
+>> The problem I have is that I can't find PCI ID (for my card it's 744c)
+>> in the list:
+>> https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c#L1654
+>>
+>> Can you help me understand how this card works with Linux without PCI ID
+>> anywhere mentioned in the code, please? Thank you!
+> 
+> 
+> The driver binds to all 0x1002 vendor ID display class devices.  Once
+> loaded, the driver parses a data table on the device to enumerate all
+> of the engines on the GPU.  If they are all supported, the driver
+> loads.
+> 
+> Alex
+Thank you for the details!
 
-Kernel 6.0 or newer.
-
->
-> The problem I have is that I can't find PCI ID (for my card it's 744c)
-> in the list:
-> https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/amd/amdgpu/=
-amdgpu_drv.c#L1654
->
-> Can you help me understand how this card works with Linux without PCI ID
-> anywhere mentioned in the code, please? Thank you!
-
-
-The driver binds to all 0x1002 vendor ID display class devices.  Once
-loaded, the driver parses a data table on the device to enumerate all
-of the engines on the GPU.  If they are all supported, the driver
-loads.
-
-Alex
+Regards,
+meka
