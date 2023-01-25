@@ -1,55 +1,93 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EB1867B7EA
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Jan 2023 18:09:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA49267B83B
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Jan 2023 18:16:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63C5810E373;
-	Wed, 25 Jan 2023 17:08:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5472D10E7F4;
+	Wed, 25 Jan 2023 17:16:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40E5410E102;
- Wed, 25 Jan 2023 17:08:09 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id C11031FD87;
- Wed, 25 Jan 2023 17:08:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
- t=1674666487; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=FNzsO8QkHd4bwcFXjgFFOOBC/xElVC4T91KIaFtN0Io=;
- b=D/br1xSsxQfk6apBfZHBB6RWB236iiiYqtOZ2eZ95J8WjWhuYAEVV+tXTEh0QKRmA1b4xH
- QN55Gxk1acvIRqe6qMTQwSbVuwI9C24RIc9UEoj8Q4rbZSCTfRh25I8IC+VWb1YjIErqcg
- 9b1EbAjGibksBO3NPm+wpmCzLKQPsIY=
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 7757F1358F;
- Wed, 25 Jan 2023 17:08:07 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id T+qcHPdh0WP1JAAAMHmgww
- (envelope-from <mhocko@suse.com>); Wed, 25 Jan 2023 17:08:07 +0000
-Date: Wed, 25 Jan 2023 18:08:06 +0100
-From: Michal Hocko <mhocko@suse.com>
-To: Suren Baghdasaryan <surenb@google.com>
-Subject: Re: [PATCH v2 4/6] mm: replace vma->vm_flags indirect modification
- in ksm_madvise
-Message-ID: <Y9Fh9joU3vTCwYbX@dhcp22.suse.cz>
-References: <20230125083851.27759-1-surenb@google.com>
- <20230125083851.27759-5-surenb@google.com>
- <Y9D4rWEsajV/WfNx@dhcp22.suse.cz>
- <CAJuCfpGd2eG0RSMte9OVgsRVWPo+Sj7+t8EOo8o_iKzZoh1MXA@mail.gmail.com>
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam04on2059.outbound.protection.outlook.com [40.107.102.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14DC710E7F4
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 Jan 2023 17:16:36 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GigaqC917KSYrbhiD1IC+BwqxLuorhU3VkqtGR/TF6rQspD3INOFU/ANebh7j81sLKR82tfJ2xtxdSzi/YWqkvWelHlnPjcV6aQwjNqDiTXfIh1cNS7kzbHDu0XtFjw0Yy5zmPBd9jgH68+gGI8446RunMtEGhzNk1Tvl5xayawIejal5RrPZ0Oo86ZWumjozllZ5D3INevzaHMF5YQA68tRx2KI41H2Dzf6c+NlE2WlwJGOVJ4YY2/dd+BGwK3F5z/OB10bp+Fu0mFjS/ZZyCXIWpXjulZ3QAJgGYSD/jj6GtCAmlqmnrUUVTgwgMkTkNfPWuEIVRn1EdtB8sVkFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=j/FmFY3leZ4Yr5noFDC7pbzv2QYcGT6u2XSLxXWpzMQ=;
+ b=FFlqOX/1pR8hWGssvGllTqndRWE1A8XbYYM8jMGsIDCrZeOPIhqDKFS6Ks/AMIdIjJ48DmXQPZJWxQi+I7ilaItzMmFJwDeVs7LP1NHQ+ZqtTa9L1zA00vgJzjT6T0baj9NsFbLl9twehAT+g3MRbtr9J0BuwrL8hcmIOoLwTTQRI1n7KNjVVHHYdvKNJASzdwxYcPWSVEaGzrtbEYlDF2D+tupwBqaMopi3DaCZk88wrWwJ0vceMWstgMOFgwUbXbIgEI5tzAFvNJc4VyX0FmYTvsr/nxOMOBQ4QjZYgmhsetvw/3r0I+tYYnNVkn9Qz30icfxZj+L4/tZfJ9A3/w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=j/FmFY3leZ4Yr5noFDC7pbzv2QYcGT6u2XSLxXWpzMQ=;
+ b=vka6yPpZOL4kizURe2epv6dDh5vdVjSLt+13hddOGSFAXf826684KXwlD+DE2P5dT2332w67LefX1O2JP4kwAe1m1oLd0sxR2lEPetLhMj38HiZzFReqgPhmRZmhsU35GLqYzbdFPtMY/6VQ+QrIAu0HEy6QmVegPmlceDgO+Zw=
+Received: from BN0PR04CA0067.namprd04.prod.outlook.com (2603:10b6:408:ea::12)
+ by DM8PR12MB5400.namprd12.prod.outlook.com (2603:10b6:8:3b::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.21; Wed, 25 Jan
+ 2023 17:16:33 +0000
+Received: from BL02EPF0000EE3E.namprd05.prod.outlook.com
+ (2603:10b6:408:ea:cafe::ca) by BN0PR04CA0067.outlook.office365.com
+ (2603:10b6:408:ea::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.17 via Frontend
+ Transport; Wed, 25 Jan 2023 17:16:33 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL02EPF0000EE3E.mail.protection.outlook.com (10.167.241.135) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6043.10 via Frontend Transport; Wed, 25 Jan 2023 17:16:33 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 25 Jan
+ 2023 11:16:32 -0600
+Received: from desktop-host.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Wed, 25 Jan 2023 11:16:32 -0600
+From: <vitaly.prosyak@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <christian.koenig@amd.com>,
+ <alexander.deucher@amd.com>, <yipeng.chai@amd.com>
+Subject: [PATCH 1/3] Revert "drm/amdgpu: TA unload messages are not actually
+ sent to psp when amdgpu is uninstalled"
+Date: Wed, 25 Jan 2023 12:16:28 -0500
+Message-ID: <20230125171630.112605-1-vitaly.prosyak@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAJuCfpGd2eG0RSMte9OVgsRVWPo+Sj7+t8EOo8o_iKzZoh1MXA@mail.gmail.com>
-X-Mailman-Approved-At: Wed, 25 Jan 2023 17:08:52 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF0000EE3E:EE_|DM8PR12MB5400:EE_
+X-MS-Office365-Filtering-Correlation-Id: d23b2f8a-4161-4d95-eb98-08dafef7e857
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: BIoQQ0+qCMQyl7lo4KnTP1xErJ4VW46xzoYbS1tfT8xLjwo5ksv+YlXVBZH0uJwr8fKwqHW5XppzFYLZpLkJJ3UN9waFbhkFQ1VfDR3hUrmyd2BQBqLMjrFUa/kEYnxJ3tQRZ/pIp15ao3ZZbeH9S0esdhpsODBy9GNfGSRbzlgq6HYZhCs39Yc9N5iwiufvJh9IqT4Ap7IpL+u8KVE8DU249hyUwqaBV2iGRpXiR3tBseheJpn8BT5PJYKZrW58sK1N9FO/l3o8NEu5+c40aXVFwHI0Qr1+JQtCAGEJ08cwcrNkvEjw5vG6lRyI+NOTXa/U4Tafty7j24V2KO5mMfeR2UnuUY7sR/nKbTuoRdCu492S9G3R4ZJ0HCR4kMqaxjyT7+KGw4G2RomumELeq4jo2OxRRQmL8LUu9XZLyCYEJVXrpAqiFaPLGWrXwlqWFjCS2lMchLH640D5Qd3+3FCnw5QTjVaftqpYc5Hm8sncF4hNhMpuLPFppP1lOYxQkZQGBiZk1e44ClvrOpeuxtzsHjVsNo/QxTVisrYtsnI24UYM3g8WSCVNFRO1lV/9T/qtoc+z5PqCH1j6Gqik2uK+KFluZEjcj72RGCq6bo95hP4ZZzSceheD7nn3YO+9WBFOvlBBeHKSADUwROLE1Ell0qhHGDXTwD8ZVrh5JGg7ScsbNQs45C8C/vw1tj21RtbcFPMAQiv0cOEMfkQCuhcgy6NMsP7On/S1sZjgh8Q=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230025)(4636009)(39860400002)(396003)(136003)(376002)(346002)(451199018)(36840700001)(40470700004)(46966006)(47076005)(186003)(36756003)(8676002)(6636002)(40460700003)(81166007)(40480700001)(356005)(36860700001)(2616005)(336012)(86362001)(83380400001)(426003)(26005)(82310400005)(478600001)(5660300002)(6666004)(316002)(7696005)(1076003)(70206006)(82740400003)(41300700001)(8936002)(70586007)(2876002)(2906002)(4326008)(110136005)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2023 17:16:33.4019 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d23b2f8a-4161-4d95-eb98-08dafef7e857
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0000EE3E.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR12MB5400
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,86 +99,71 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: michel@lespinasse.org, nvdimm@lists.linux.dev, heiko@sntech.de,
- leewalsh@google.com, dri-devel@lists.freedesktop.org, perex@perex.cz,
- jglisse@google.com, arjunroy@google.com, m.szyprowski@samsung.com,
- linux-arch@vger.kernel.org, qianweili@huawei.com,
- linux-samsung-soc@vger.kernel.org, aneesh.kumar@linux.ibm.com,
- chenhuacai@kernel.org, kasan-dev@googlegroups.com, linux-acpi@vger.kernel.org,
- rientjes@google.com, xen-devel@lists.xenproject.org, devel@lists.orangefs.org,
- robdclark@gmail.com, minchan@google.com, robert.jarzmik@free.fr,
- linux-um@lists.infradead.org, etnaviv@lists.freedesktop.org, npiggin@gmail.com,
- alex.williamson@redhat.com, viro@zeniv.linux.org.uk, luto@kernel.org,
- gthelen@google.com, tglx@linutronix.de, ldufour@linux.ibm.com,
- linux-sgx@vger.kernel.org, martin.petersen@oracle.com,
- linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-perf-users@vger.kernel.org, linux-crypto@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, akpm@linux-foundation.org,
- linux-media@vger.kernel.org, freedreno@lists.freedesktop.org,
- joelaf@google.com, linux-aio@kvack.org, linux-fbdev@vger.kernel.org,
- linux-ia64@vger.kernel.org, david@redhat.com, dave.hansen@linux.intel.com,
- virtualization@lists.linux-foundation.org, edumazet@google.com,
- target-devel@vger.kernel.org, punit.agrawal@bytedance.com,
- linux-s390@vger.kernel.org, dave@stgolabs.net, deller@gmx.de, hughd@google.com,
- andrii@kernel.org, patrik.r.jakobsson@gmail.com,
- linux-stm32@st-md-mailman.stormreply.com, linux-rockchip@lists.infradead.org,
- linux-graphics-maintainer@vmware.com, kernel-team@android.com,
- jayalk@intworks.biz, soheil@google.com, selinux@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, mripard@kernel.org, shakeelb@google.com,
- haojian.zhuang@gmail.com, loongarch@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, tytso@mit.edu, nico@fluxnic.net,
- muchun.song@linux.dev, hjc@rock-chips.com, mcoquelin.stm32@gmail.com,
- tatashin@google.com, mike.kravetz@oracle.com, songliubraving@fb.com,
- jasowang@redhat.com, alsa-devel@alsa-project.org, peterx@redhat.com,
- linux-tegra@vger.kernel.org, kraxel@redhat.com, will@kernel.org,
- dmaengine@vger.kernel.org, bhe@redhat.com, miklos@szeredi.hu,
- linux-rdma@vger.kernel.org, linux-staging@lists.linux.dev, willy@infradead.org,
- gurua@google.com, dgilbert@interlog.com, xiang@kernel.org, pabeni@redhat.com,
- jejb@linux.ibm.com, quic_abhinavk@quicinc.com, bp@alien8.de,
- mchehab@kernel.org, linux-ext4@vger.kernel.org, tomba@kernel.org,
- hughlynch@google.com, sre@kernel.org, tfiga@chromium.org,
- linux-xfs@vger.kernel.org, zhangfei.gao@linaro.org, wangzhou1@hisilicon.com,
- netdev@vger.kernel.org, bpf@vger.kernel.org, linux-erofs@lists.ozlabs.org,
- davem@davemloft.net, kvm@vger.kernel.org, mst@redhat.com, peterz@infradead.org,
- bigeasy@linutronix.de, alexandre.torgue@foss.st.com, dhowells@redhat.com,
- linux-mm@kvack.org, ray.huang@amd.com, adilger.kernel@dilger.ca,
- kuba@kernel.org, sparclinux@vger.kernel.org, airlied@gmail.com,
- anton.ivanov@cambridgegreys.com, herbert@gondor.apana.org.au,
- linux-scsi@vger.kernel.org, richard@nod.at, x86@kernel.org, vkoul@kernel.org,
- mingo@redhat.com, axelrasmussen@google.com, intel-gfx@lists.freedesktop.org,
- daniel@ffwll.ch, paulmck@kernel.org, jannh@google.com, chao@kernel.org,
- maarten.lankhorst@linux.intel.com, liam.howlett@oracle.com,
- hdegoede@redhat.com, linux-mediatek@lists.infradead.org,
- matthias.bgg@gmail.com, vbabka@suse.cz, dimitri.sivanich@hpe.com,
- amd-gfx@lists.freedesktop.org, posk@google.com, lstoakes@gmail.com,
- peterjung1337@gmail.com, yoshfuji@linux-ipv6.org,
- linuxppc-dev@lists.ozlabs.org, dsahern@kernel.org, kent.overstreet@linux.dev,
- kexec@lists.infradead.org, tiwai@suse.com, krzysztof.kozlowski@linaro.org,
- tzimmermann@suse.de, hannes@cmpxchg.org, dmitry.baryshkov@linaro.org,
- johannes@sipsolutions.net, mgorman@techsingularity.net,
- linux-accelerators@lists.ozlabs.org, l.stach@pengutronix.de
+Cc: Vitaly Prosyak <vitaly.prosyak@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed 25-01-23 08:57:48, Suren Baghdasaryan wrote:
-> On Wed, Jan 25, 2023 at 1:38 AM 'Michal Hocko' via kernel-team
-> <kernel-team@android.com> wrote:
-> >
-> > On Wed 25-01-23 00:38:49, Suren Baghdasaryan wrote:
-> > > Replace indirect modifications to vma->vm_flags with calls to modifier
-> > > functions to be able to track flag changes and to keep vma locking
-> > > correctness. Add a BUG_ON check in ksm_madvise() to catch indirect
-> > > vm_flags modification attempts.
-> >
-> > Those BUG_ONs scream to much IMHO. KSM is an MM internal code so I
-> > gueess we should be willing to trust it.
-> 
-> Yes, but I really want to prevent an indirect misuse since it was not
-> easy to find these. If you feel strongly about it I will remove them
-> or if you have a better suggestion I'm all for it.
+From: Vitaly Prosyak <vitaly.prosyak@amd.com>
 
-You can avoid that by making flags inaccesible directly, right?
+This reverts commit fac53471d0ea9693d314aa2df08d62b2e7e3a0f8.
+The following change: move the drm_dev_unplug call after
+amdgpu_driver_unload_kms in amdgpu_pci_remove. The reason is
+the following: amdgpu_pci_remove calls drm_dev_unregister
+and it should be called first to ensure userspace can't access the
+device instance anymore. If we call drm_dev_unplug after
+amdgpu_driver_unload_kms then we observe IGT PCI software unplug
+test failure (kernel hung) for all ASICs. This is how this
+regression was found.
 
+After this revert, the following commands do work not, but it would
+be fixed in the next commit:
+ - sudo modprobe -r amdgpu
+ - sudo modprobe amdgpu
+
+Signed-off-by: Vitaly Prosyak <vitaly.prosyak@amd.com>
+Reviewed-by Alex Deucher <alexander.deucher@amd.com>
+Change-Id: Ia5c6c174dddb89a33dd93b641fd05466ffb3500c
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 3 ++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 4 ++--
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 0f9a5b12c3a5..a10b627c8357 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -4031,7 +4031,8 @@ void amdgpu_device_fini_hw(struct amdgpu_device *adev)
+ 
+ 	amdgpu_gart_dummy_page_fini(adev);
+ 
+-	amdgpu_device_unmap_mmio(adev);
++	if (drm_dev_is_unplugged(adev_to_drm(adev)))
++		amdgpu_device_unmap_mmio(adev);
+ 
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index a75dba2caeca..7edbaa90fac9 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -2227,6 +2227,8 @@ amdgpu_pci_remove(struct pci_dev *pdev)
+ 	struct drm_device *dev = pci_get_drvdata(pdev);
+ 	struct amdgpu_device *adev = drm_to_adev(dev);
+ 
++	drm_dev_unplug(dev);
++
+ 	if (adev->pm.rpm_mode != AMDGPU_RUNPM_NONE) {
+ 		pm_runtime_get_sync(dev->dev);
+ 		pm_runtime_forbid(dev->dev);
+@@ -2266,8 +2268,6 @@ amdgpu_pci_remove(struct pci_dev *pdev)
+ 
+ 	amdgpu_driver_unload_kms(dev);
+ 
+-	drm_dev_unplug(dev);
+-
+ 	/*
+ 	 * Flush any in flight DMA operations from device.
+ 	 * Clear the Bus Master Enable bit and then wait on the PCIe Device
 -- 
-Michal Hocko
-SUSE Labs
+2.25.1
+
