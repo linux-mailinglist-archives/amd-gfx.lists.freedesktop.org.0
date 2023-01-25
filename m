@@ -2,90 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 273A567B929
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Jan 2023 19:19:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F25967BEF0
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Jan 2023 22:46:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 991A010E11F;
-	Wed, 25 Jan 2023 18:19:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBBA310E1BB;
+	Wed, 25 Jan 2023 21:46:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2047.outbound.protection.outlook.com [40.107.94.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76AC510E11F
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 Jan 2023 18:19:41 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KQIn2zHfwAh7YsPCyppXk7U9BqCD5jbMxFgaXJYaGgdPDq4nhseuq8pcMwivvDTUy25+n7+vKaBoO0WoTpwI+yjAfd8ETvBNDCDnRZZ/8GWWdiwQ9PzB38VUbNnAjPgj9XW0UYrE3FFWDeGuI/9fO5QhOlRsDs9vTsftDm4xGcsMZVDM0o6KsoDe1j2GHc/C4dR8B6UqxOOnCulGvNaIAuV0Iz7W43GU4nMAErZRXMSfnKQT1pwL7SYXF8gXO306cfwBOZYHRiSGPKEPhVw7TtwNRoAsdEeOoIWaeEgbt9wE96d5JKL55YsKLgVExH6xonyvvsMPaoDNEJ6ZgpRsIA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KpTSVbFJou/hCne7HwTKFbe25r1HyMTjhCpSRbmLLXA=;
- b=FsEcqTIJNOSy7o8fnoHysZueNBK/agCktwPu6tdC4HWxu7S+06WeYWfcHzytoTYoKceZZZE4uoN8LJ5Uv7L+dTeOtcCJCNqlKkcC+VxKtkYZDcoiyfW7e0wc5zyFbqr+be13CNwN5k0UHVGzRkT7i240VUIdtML/jjIc+O9yM7/jNKgqEIcyKZNDPW+lJ3ZXdHNbhHg0YRQ+JVhrTPuL4d0M4BPAOkJIUHNraL2+ACDRX3g5895PI2QYnm+ojVqLeDudURsS7dcDLMVJ2rPyL1IThcWMPd0ZNMzlWB9lGKo9GYQv7RuQd/nBvVHrlm6W5YxQ+ItjBvXIkMMSuv2gEg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KpTSVbFJou/hCne7HwTKFbe25r1HyMTjhCpSRbmLLXA=;
- b=GcyOXwWxUcMicp0Q3TomaasUHCjyHWFS65ZRfBKqtU/pd6cqKp3rBv/kEptBpVowPmYPPL+SthtzhF418ZAkpVyB4xT75bBbPFEkSw7HTKgCG8Qjr8Qb4OS4C98RN/bpYXO/iHVb7MvJYd2Cx+l23OPh0c/VZLXb6Q67gNlYCNY=
-Received: from MW4PR03CA0033.namprd03.prod.outlook.com (2603:10b6:303:8e::8)
- by BY5PR12MB4951.namprd12.prod.outlook.com (2603:10b6:a03:1d2::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.33; Wed, 25 Jan
- 2023 18:19:38 +0000
-Received: from CO1NAM11FT078.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8e:cafe::d3) by MW4PR03CA0033.outlook.office365.com
- (2603:10b6:303:8e::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.21 via Frontend
- Transport; Wed, 25 Jan 2023 18:19:38 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT078.mail.protection.outlook.com (10.13.175.177) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6023.16 via Frontend Transport; Wed, 25 Jan 2023 18:19:38 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 25 Jan
- 2023 12:19:36 -0600
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amd/display: disable S/G display on DCN 3.1.2/3
-Date: Wed, 25 Jan 2023 13:19:19 -0500
-Message-ID: <20230125181919.7719-1-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.39.1
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E39A710E815;
+ Wed, 25 Jan 2023 19:04:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=WhE3p5nMlMDjaV/irGLArTSJUCL3MW0izpTScdbc1OU=; b=mx74wVm8uyXRMzRkznkmPv14f3
+ DM5mkZY0d2Y454KV/p1DBO6bVWUBYmLnjNwq5de4oOCp4K1tzlZ+pYhblaAnUsgNim9Cg22n4lXC7
+ YVziRodKlXV3h1dcA4wCil3iZ6I2W+LteukgjO5nFw9bnJFOnLJvx0ni4Ju6wCzLw38ztU2xqwXDF
+ Hz7a4pCnrIPatIpdvDFmrtxTdMVr7eH9j59LSpJj79ys6zGb7fhMV69syzXZoxm/q67WE7IxkNx+x
+ YR6wIJfVUlSwCzFkthS2vqR79CZmfDxbuiYrAaQdlm8CD16FJpwzTtCFj0zPf7AtdmoIV8Mlhhb7E
+ KwDK04uQ==;
+Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
+ Hat Linux)) id 1pKkaL-0066XZ-MG; Wed, 25 Jan 2023 18:33:25 +0000
+Date: Wed, 25 Jan 2023 18:33:25 +0000
+From: Matthew Wilcox <willy@infradead.org>
+To: Suren Baghdasaryan <surenb@google.com>
+Subject: Re: [PATCH v2 1/6] mm: introduce vma->vm_flags modifier functions
+Message-ID: <Y9F19QEDX5d/44EV@casper.infradead.org>
+References: <20230125083851.27759-1-surenb@google.com>
+ <20230125083851.27759-2-surenb@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT078:EE_|BY5PR12MB4951:EE_
-X-MS-Office365-Filtering-Correlation-Id: b28be276-06ab-40ce-5242-08daff00b84d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2kD2R6n8iPNdTBXuvFxIk8vclIRDTQy0fy/5gGp+spHDr2VcdmOmvsEV7oh9C/ZPqo2sO6Ji2KCPz6lwUjJerYl+K0QH+gKKwbZTD/PBs9s5ian1gsRFjT2l1/eDk6eQmWYreb/nfOPpfcq81SFtnAiHcgvAmX3ni9g/nAFaPfVmowqj/V/5opzUda+M4EiTGrfvLs76PrdHmLBNNGcbaM3lxu1Fp5me05p+wX2CwLRX52czov79ZbUsMQWLIXBiZPKTZN+4qgoV4GeP75wjz3zfNWl+v7Rzby8r1kOEeL5MnxyN9c3rmhetFmrJlB2duVgXpA8ClbdEJRvTgbQ0BrKV5Ew49SoFWka7ayHdmVDD6O/9cfyqQw/H3STf7YWqg7s6DpT2TDyKqvrrNZOz8MIAHpcTQPSyNloIeL91miPaKsiGBpQTyuUrKKVYQKqOY5RXx5ijgrMQbhwXYvix8B/IT8Y49In+tu6miRSsHv5yRFpdGY+0hcR3uns+EglYANsmxET66EWE7S1r+CZD/ZE8xUrlBpQsWWarbd1ev93aFWrKUDc1SYMgAARYaDu5mySFf9UEBoPL7Fs5ttHIjggHfupHL4BCi3H6hiur6sn9eSq3TADGPybt2F6fnlQy+KeBMW70EVccWHSkxptsQN8P+fm6KGPbBu71EeLfQ52tVrv49rctiiEX1cmhmBxf
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(376002)(39860400002)(136003)(396003)(346002)(451199018)(46966006)(40470700004)(36840700001)(86362001)(6916009)(70586007)(70206006)(40480700001)(83380400001)(36860700001)(4744005)(8936002)(82740400003)(47076005)(2906002)(5660300002)(40460700003)(41300700001)(82310400005)(54906003)(426003)(36756003)(4326008)(8676002)(316002)(16526019)(966005)(336012)(478600001)(356005)(1076003)(2616005)(81166007)(6666004)(26005)(186003)(7696005)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2023 18:19:38.1785 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b28be276-06ab-40ce-5242-08daff00b84d
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT078.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4951
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230125083851.27759-2-surenb@google.com>
+X-Mailman-Approved-At: Wed, 25 Jan 2023 21:46:32 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,35 +48,86 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, yifan1.zhang@amd.com,
- roman.li@amd.com
+Cc: michel@lespinasse.org, nvdimm@lists.linux.dev, heiko@sntech.de,
+ leewalsh@google.com, dri-devel@lists.freedesktop.org, perex@perex.cz,
+ jglisse@google.com, arjunroy@google.com, m.szyprowski@samsung.com,
+ linux-arch@vger.kernel.org, qianweili@huawei.com,
+ linux-samsung-soc@vger.kernel.org, aneesh.kumar@linux.ibm.com,
+ chenhuacai@kernel.org, kasan-dev@googlegroups.com, linux-acpi@vger.kernel.org,
+ rientjes@google.com, xen-devel@lists.xenproject.org, devel@lists.orangefs.org,
+ robdclark@gmail.com, minchan@google.com, robert.jarzmik@free.fr,
+ linux-um@lists.infradead.org, etnaviv@lists.freedesktop.org, npiggin@gmail.com,
+ alex.williamson@redhat.com, viro@zeniv.linux.org.uk, luto@kernel.org,
+ gthelen@google.com, tglx@linutronix.de, ldufour@linux.ibm.com,
+ linux-sgx@vger.kernel.org, martin.petersen@oracle.com,
+ linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-perf-users@vger.kernel.org, linux-crypto@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, akpm@linux-foundation.org,
+ linux-media@vger.kernel.org, freedreno@lists.freedesktop.org,
+ joelaf@google.com, linux-aio@kvack.org, linux-fbdev@vger.kernel.org,
+ linux-ia64@vger.kernel.org, david@redhat.com, dave.hansen@linux.intel.com,
+ virtualization@lists.linux-foundation.org, edumazet@google.com,
+ target-devel@vger.kernel.org, punit.agrawal@bytedance.com,
+ linux-s390@vger.kernel.org, dave@stgolabs.net, deller@gmx.de, hughd@google.com,
+ andrii@kernel.org, patrik.r.jakobsson@gmail.com,
+ linux-stm32@st-md-mailman.stormreply.com, linux-rockchip@lists.infradead.org,
+ linux-graphics-maintainer@vmware.com, kernel-team@android.com,
+ jayalk@intworks.biz, soheil@google.com, selinux@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, mripard@kernel.org, shakeelb@google.com,
+ haojian.zhuang@gmail.com, loongarch@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, tytso@mit.edu, nico@fluxnic.net,
+ muchun.song@linux.dev, hjc@rock-chips.com, mcoquelin.stm32@gmail.com,
+ tatashin@google.com, mike.kravetz@oracle.com, songliubraving@fb.com,
+ jasowang@redhat.com, alsa-devel@alsa-project.org, peterx@redhat.com,
+ linux-tegra@vger.kernel.org, kraxel@redhat.com, will@kernel.org,
+ dmaengine@vger.kernel.org, bhe@redhat.com, miklos@szeredi.hu,
+ linux-rdma@vger.kernel.org, linux-staging@lists.linux.dev,
+ amd-gfx@lists.freedesktop.org, gurua@google.com, dgilbert@interlog.com,
+ xiang@kernel.org, pabeni@redhat.com, jejb@linux.ibm.com,
+ quic_abhinavk@quicinc.com, bp@alien8.de, mchehab@kernel.org,
+ linux-ext4@vger.kernel.org, tomba@kernel.org, hughlynch@google.com,
+ sre@kernel.org, tfiga@chromium.org, linux-xfs@vger.kernel.org,
+ zhangfei.gao@linaro.org, wangzhou1@hisilicon.com, netdev@vger.kernel.org,
+ bpf@vger.kernel.org, linux-erofs@lists.ozlabs.org, davem@davemloft.net,
+ mhocko@suse.com, kvm@vger.kernel.org, mst@redhat.com, peterz@infradead.org,
+ bigeasy@linutronix.de, alexandre.torgue@foss.st.com, dhowells@redhat.com,
+ linux-mm@kvack.org, ray.huang@amd.com, adilger.kernel@dilger.ca,
+ kuba@kernel.org, sparclinux@vger.kernel.org, airlied@gmail.com,
+ anton.ivanov@cambridgegreys.com, herbert@gondor.apana.org.au,
+ linux-scsi@vger.kernel.org, richard@nod.at, x86@kernel.org, vkoul@kernel.org,
+ mingo@redhat.com, axelrasmussen@google.com, intel-gfx@lists.freedesktop.org,
+ daniel@ffwll.ch, paulmck@kernel.org, jannh@google.com, chao@kernel.org,
+ maarten.lankhorst@linux.intel.com, liam.howlett@oracle.com,
+ hdegoede@redhat.com, linux-mediatek@lists.infradead.org,
+ matthias.bgg@gmail.com, vbabka@suse.cz, dimitri.sivanich@hpe.com,
+ posk@google.com, lstoakes@gmail.com, peterjung1337@gmail.com,
+ yoshfuji@linux-ipv6.org, linuxppc-dev@lists.ozlabs.org, dsahern@kernel.org,
+ kent.overstreet@linux.dev, kexec@lists.infradead.org, tiwai@suse.com,
+ krzysztof.kozlowski@linaro.org, tzimmermann@suse.de, hannes@cmpxchg.org,
+ dmitry.baryshkov@linaro.org, johannes@sipsolutions.net,
+ mgorman@techsingularity.net, linux-accelerators@lists.ozlabs.org,
+ l.stach@pengutronix.de
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Causes flickering or white screens in some configurations.
-Disable it for now until we can fix the issue.
+On Wed, Jan 25, 2023 at 12:38:46AM -0800, Suren Baghdasaryan wrote:
+> +/* Use when VMA is not part of the VMA tree and needs no locking */
+> +static inline void init_vm_flags(struct vm_area_struct *vma,
+> +				 unsigned long flags)
+> +{
+> +	vma->vm_flags = flags;
 
-Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/2352
-Cc: roman.li@amd.com
-Cc: yifan1.zhang@amd.com
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 --
- 1 file changed, 2 deletions(-)
+vm_flags are supposed to have type vm_flags_t.  That's not been
+fully realised yet, but perhaps we could avoid making it worse?
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 42d99bf4bbc9..0c6b60183b0d 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -1536,8 +1536,6 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
- 			break;
- 		case IP_VERSION(2, 1, 0):
- 		case IP_VERSION(3, 0, 1):
--		case IP_VERSION(3, 1, 2):
--		case IP_VERSION(3, 1, 3):
- 		case IP_VERSION(3, 1, 6):
- 			init_data.flags.gpu_vm_support = true;
- 			break;
--- 
-2.39.1
+>  	pgprot_t vm_page_prot;
+> -	unsigned long vm_flags;		/* Flags, see mm.h. */
+> +
+> +	/*
+> +	 * Flags, see mm.h.
+> +	 * WARNING! Do not modify directly.
+> +	 * Use {init|reset|set|clear|mod}_vm_flags() functions instead.
+> +	 */
+> +	unsigned long vm_flags;
 
+Including changing this line to vm_flags_t
