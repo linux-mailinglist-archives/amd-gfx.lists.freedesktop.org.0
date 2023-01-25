@@ -2,59 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C601267B96D
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Jan 2023 19:36:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDE3A67BEED
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Jan 2023 22:46:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 435C410E043;
-	Wed, 25 Jan 2023 18:36:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39E0510E130;
+	Wed, 25 Jan 2023 21:46:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com
- [IPv6:2001:4860:4864:20::35])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4307F10E043
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 Jan 2023 18:36:09 +0000 (UTC)
-Received: by mail-oa1-x35.google.com with SMTP id
- 586e51a60fabf-16346330067so573426fac.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 Jan 2023 10:36:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=WiNtgOteKc1D1fo4SM18Bj6K7LIrU5shUeIrozs/DGI=;
- b=WsOnTWsdM6He9xFZTOGfIrgTYZno1TxOSlbycSyGG0SQyZchPmLxynwd74//5DJCUk
- y/JOpOJq4rwD8pFWanTLI7dGEZ1rw9kWDPgQGe+mUrrcHHELnGr4+10r3/QSzTm26Iyw
- 60ssgAk1/kJ1xeU/vqJRYVA5xeAqS+V+pQ5/tBC0o8dqX9M+nE2dIUbrX2xH5f9R3s2+
- e+5t43tnmtV2R/nYs5fU72P/OGEyEwL4AqNLnkPpvrF3dcS+Whi0cNMSNhV16wOFrDlB
- qo0d5EdlzURgzmWZxhu8LM+Z7z/J7IgFUTgR8w5/iOpB4j/oiCGLx9V2w20BB+lrnMtq
- K27A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=WiNtgOteKc1D1fo4SM18Bj6K7LIrU5shUeIrozs/DGI=;
- b=tEesDuYYvxk+Xdo/ceF4Izn2Ca99Ls7wK9FyzkdvQ7t2RIHmmTaKOFmtNf5VvKc0+p
- I+pDozYZ2ldZsKt1KluC6YXRzwaHOXcE4FTZqfQN6ENML9CD5VBg8h0GuMc4TNgEEURT
- f9VA3DYbJgB33S0FCT2atS9DbkpzDdtJtJosZn94ogH6CseuSOPnKwkUuCFdf3BTgRic
- gmWAnV8jhtdiJdFkcqQQpZ+wMV/VRz7S/w9jPya8m72ZghTBy/Roc710XpjWxOkn/fSa
- ffIg97P9/jvXO8FdKLc/QgxF8xQ706C2RnSqbqIphJPuXBYWT+TndFWUwT0ISp1c4O/y
- baEQ==
-X-Gm-Message-State: AFqh2kq31m3GslobvElLOcQAnKhDArBq9otRR5L0c73sI+OF8G/WzFq3
- BMKf7Z3QHoF6G8lb0mgOt6771kBPOrhzEN5mrajzHgxp
-X-Google-Smtp-Source: AMrXdXvVv7QyNcz6IWET2VOhO8SQ8Sx5bcoZQZ+NHFbyG9U066Ycg1tqSfHwwj38VCsEQa7QA+l7tgPpPgspSogsezA=
-X-Received: by 2002:a05:6870:7a18:b0:15f:5509:9a0d with SMTP id
- hf24-20020a0568707a1800b0015f55099a0dmr3072312oab.46.1674671768478; Wed, 25
- Jan 2023 10:36:08 -0800 (PST)
+X-Greylist: delayed 1406 seconds by postgrey-1.36 at gabe;
+ Wed, 25 Jan 2023 19:02:27 UTC
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7B5A10E815;
+ Wed, 25 Jan 2023 19:02:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=j8xmcwaWWp8ClSuIcWbfPO9W4DI7+K1SIXYR1hupOAY=; b=uqNynxzucz1vO4Sybud/wnfqlG
+ XxsLNOwKfxMMQq2z+2mEwSQepA2Cgl288rz8ppyGnCDD245OrpnK+lLHo83C85yAJqJOOkyy9NCp4
+ qmW1PdDBkKx7H5H7CuTrTaW668Ax6XD7hJfO7woN7MoWAjzhSqQRaCuht1RFhZ03cdOhzx8vskmyo
+ utYjRqoPln+RK+MIFkiqDBv2fEqneNERI4c9/pWDfp7yn00dEjgBzAOu+9ajSFVQvgY4Ml53E7t5d
+ 4KvoHjjGbdeWlMlk7Lgwsa8VGdyruWiJYIAak7bpfijYPXdYqIwuOD9Kmo+xWyNX8MhOoxpc82QLY
+ /xONblxA==;
+Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
+ Hat Linux)) id 1pKkeP-0066hH-0o; Wed, 25 Jan 2023 18:37:37 +0000
+Date: Wed, 25 Jan 2023 18:37:36 +0000
+From: Matthew Wilcox <willy@infradead.org>
+To: Suren Baghdasaryan <surenb@google.com>
+Subject: Re: [PATCH v2 1/6] mm: introduce vma->vm_flags modifier functions
+Message-ID: <Y9F28J9njAtwifuL@casper.infradead.org>
+References: <20230125083851.27759-1-surenb@google.com>
+ <20230125083851.27759-2-surenb@google.com>
+ <Y9Dx0cPXF2yoLwww@hirez.programming.kicks-ass.net>
+ <CAJuCfpEcVCZaCGzc-Wim25eaV5e6YG1YJAAdKwZ6JHViB0z8aw@mail.gmail.com>
 MIME-Version: 1.0
-References: <20230125183339.15664-1-mario.limonciello@amd.com>
-In-Reply-To: <20230125183339.15664-1-mario.limonciello@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 25 Jan 2023 13:35:57 -0500
-Message-ID: <CADnq5_Pqa+qZFWzvTDPz+u3fXM6JVm4VTE9PEfquztuGRdcayQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd: Allow s0ix without BIOS support
-To: Mario Limonciello <mario.limonciello@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAJuCfpEcVCZaCGzc-Wim25eaV5e6YG1YJAAdKwZ6JHViB0z8aw@mail.gmail.com>
+X-Mailman-Approved-At: Wed, 25 Jan 2023 21:46:32 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,88 +52,91 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Rafael_=C3=81vila_de_Esp=C3=ADndola?= <rafael@espindo.la>,
- amd-gfx@lists.freedesktop.org
+Cc: michel@lespinasse.org, nvdimm@lists.linux.dev, heiko@sntech.de,
+ leewalsh@google.com, dri-devel@lists.freedesktop.org, perex@perex.cz,
+ jglisse@google.com, arjunroy@google.com, m.szyprowski@samsung.com,
+ linux-arch@vger.kernel.org, qianweili@huawei.com,
+ linux-samsung-soc@vger.kernel.org, aneesh.kumar@linux.ibm.com,
+ chenhuacai@kernel.org, kasan-dev@googlegroups.com, linux-acpi@vger.kernel.org,
+ rientjes@google.com, xen-devel@lists.xenproject.org, devel@lists.orangefs.org,
+ robdclark@gmail.com, minchan@google.com, robert.jarzmik@free.fr,
+ linux-um@lists.infradead.org, etnaviv@lists.freedesktop.org, npiggin@gmail.com,
+ alex.williamson@redhat.com, viro@zeniv.linux.org.uk, luto@kernel.org,
+ gthelen@google.com, tglx@linutronix.de, ldufour@linux.ibm.com,
+ linux-sgx@vger.kernel.org, martin.petersen@oracle.com,
+ linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-perf-users@vger.kernel.org, linux-crypto@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, akpm@linux-foundation.org,
+ linux-media@vger.kernel.org, freedreno@lists.freedesktop.org,
+ joelaf@google.com, linux-aio@kvack.org, linux-fbdev@vger.kernel.org,
+ linux-ia64@vger.kernel.org, david@redhat.com, dave.hansen@linux.intel.com,
+ virtualization@lists.linux-foundation.org, edumazet@google.com,
+ target-devel@vger.kernel.org, punit.agrawal@bytedance.com,
+ linux-s390@vger.kernel.org, dave@stgolabs.net, deller@gmx.de, hughd@google.com,
+ andrii@kernel.org, patrik.r.jakobsson@gmail.com,
+ linux-stm32@st-md-mailman.stormreply.com, linux-rockchip@lists.infradead.org,
+ linux-graphics-maintainer@vmware.com, kernel-team@android.com,
+ jayalk@intworks.biz, soheil@google.com, selinux@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, mripard@kernel.org, shakeelb@google.com,
+ haojian.zhuang@gmail.com, loongarch@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, tytso@mit.edu, nico@fluxnic.net,
+ muchun.song@linux.dev, hjc@rock-chips.com, mcoquelin.stm32@gmail.com,
+ tatashin@google.com, mike.kravetz@oracle.com, songliubraving@fb.com,
+ jasowang@redhat.com, alsa-devel@alsa-project.org, peterx@redhat.com,
+ linux-tegra@vger.kernel.org, kraxel@redhat.com, will@kernel.org,
+ dmaengine@vger.kernel.org, bhe@redhat.com, miklos@szeredi.hu,
+ linux-rdma@vger.kernel.org, linux-staging@lists.linux.dev,
+ amd-gfx@lists.freedesktop.org, gurua@google.com, dgilbert@interlog.com,
+ xiang@kernel.org, pabeni@redhat.com, jejb@linux.ibm.com,
+ quic_abhinavk@quicinc.com, bp@alien8.de, mchehab@kernel.org,
+ linux-ext4@vger.kernel.org, tomba@kernel.org, hughlynch@google.com,
+ sre@kernel.org, tfiga@chromium.org, linux-xfs@vger.kernel.org,
+ zhangfei.gao@linaro.org, wangzhou1@hisilicon.com, netdev@vger.kernel.org,
+ bpf@vger.kernel.org, linux-erofs@lists.ozlabs.org, davem@davemloft.net,
+ mhocko@suse.com, kvm@vger.kernel.org, mst@redhat.com,
+ Peter Zijlstra <peterz@infradead.org>, bigeasy@linutronix.de,
+ alexandre.torgue@foss.st.com, dhowells@redhat.com, linux-mm@kvack.org,
+ ray.huang@amd.com, adilger.kernel@dilger.ca, kuba@kernel.org,
+ sparclinux@vger.kernel.org, airlied@gmail.com, anton.ivanov@cambridgegreys.com,
+ herbert@gondor.apana.org.au, linux-scsi@vger.kernel.org, richard@nod.at,
+ x86@kernel.org, vkoul@kernel.org, mingo@redhat.com, axelrasmussen@google.com,
+ intel-gfx@lists.freedesktop.org, daniel@ffwll.ch, paulmck@kernel.org,
+ jannh@google.com, chao@kernel.org, maarten.lankhorst@linux.intel.com,
+ liam.howlett@oracle.com, hdegoede@redhat.com,
+ linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com, vbabka@suse.cz,
+ dimitri.sivanich@hpe.com, posk@google.com, lstoakes@gmail.com,
+ peterjung1337@gmail.com, yoshfuji@linux-ipv6.org,
+ linuxppc-dev@lists.ozlabs.org, dsahern@kernel.org, kent.overstreet@linux.dev,
+ kexec@lists.infradead.org, tiwai@suse.com, krzysztof.kozlowski@linaro.org,
+ tzimmermann@suse.de, hannes@cmpxchg.org, dmitry.baryshkov@linaro.org,
+ johannes@sipsolutions.net, mgorman@techsingularity.net,
+ linux-accelerators@lists.ozlabs.org, l.stach@pengutronix.de
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 25, 2023 at 1:33 PM Mario Limonciello
-<mario.limonciello@amd.com> wrote:
->
-> We guard the suspend entry code from running unless we have proper
-> BIOS support for either S3 mode or s0ix mode.
->
-> If a user's system doesn't support either of these modes the kernel
-> still does offer s2idle in `/sys/power/mem_sleep` so there is an
-> expectation from users that it works even if the power consumption
-> remains very high.
->
-> Rafael =C3=81vila de Esp=C3=ADndola reports that a system of his has a
-> non-functional graphics stack after resuming.  That system doesn't
-> support S3 and the FADT doesn't indicate support for low power idle.
->
-> Through some experimentation it was concluded that even without the
-> hardware s0i3 support provided by the amd_pmc driver the power
-> consumption over suspend is decreased by running amdgpu's s0ix
-> suspend routine.
->
-> The numbers over suspend showed:
-> * No patch: 9.2W
-> * Skip amdgpu suspend entirely: 10.5W
-> * Run amdgpu s0ix routine: 7.7W
->
-> As this does improve the power, remove some of the guard rails in
-> `amdgpu_acpi.c` for only running s0ix suspend routines in the right
-> circumstances.
->
-> However if this turns out to cause regressions for anyone, we should
-> revert this change and instead opt for skipping suspend/resume routines
-> entirely or try to fix the underlying behavior that makes graphics fail
-> after resume without underlying platform support.
->
-> Reported-by: Rafael =C3=81vila de Esp=C3=ADndola <rafael@espindo.la>
-> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2364
-> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+On Wed, Jan 25, 2023 at 08:49:50AM -0800, Suren Baghdasaryan wrote:
+> On Wed, Jan 25, 2023 at 1:10 AM Peter Zijlstra <peterz@infradead.org> wrote:
+> > > +     /*
+> > > +      * Flags, see mm.h.
+> > > +      * WARNING! Do not modify directly.
+> > > +      * Use {init|reset|set|clear|mod}_vm_flags() functions instead.
+> > > +      */
+> > > +     unsigned long vm_flags;
+> >
+> > We have __private and ACCESS_PRIVATE() to help with enforcing this.
+> 
+> Thanks for pointing this out, Peter! I guess for that I'll need to
+> convert all read accesses and provide get_vm_flags() too? That will
+> cause some additional churt (a quick search shows 801 hits over 248
+> files) but maybe it's worth it? I think Michal suggested that too in
+> another patch. Should I do that while we are at it?
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Here's a trick I saw somewhere in the VFS:
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c | 8 ++------
->  1 file changed, 2 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_acpi.c
-> index 57b5e11446c65..fa7375b97fd47 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-> @@ -1079,20 +1079,16 @@ bool amdgpu_acpi_is_s0ix_active(struct amdgpu_dev=
-ice *adev)
->          * S0ix even though the system is suspending to idle, so return f=
-alse
->          * in that case.
->          */
-> -       if (!(acpi_gbl_FADT.flags & ACPI_FADT_LOW_POWER_S0)) {
-> +       if (!(acpi_gbl_FADT.flags & ACPI_FADT_LOW_POWER_S0))
->                 dev_warn_once(adev->dev,
->                               "Power consumption will be higher as BIOS h=
-as not been configured for suspend-to-idle.\n"
->                               "To use suspend-to-idle change the sleep mo=
-de in BIOS setup.\n");
-> -               return false;
-> -       }
->
->  #if !IS_ENABLED(CONFIG_AMD_PMC)
->         dev_warn_once(adev->dev,
->                       "Power consumption will be higher as the kernel has=
- not been compiled with CONFIG_AMD_PMC.\n");
-> -       return false;
-> -#else
-> -       return true;
->  #endif /* CONFIG_AMD_PMC */
-> +       return true;
->  }
->
->  #endif /* CONFIG_SUSPEND */
-> --
-> 2.25.1
->
+	union {
+		const vm_flags_t vm_flags;
+		vm_flags_t __private __vm_flags;
+	};
+
+Now it can be read by anybody but written only by those using
+ACCESS_PRIVATE.
