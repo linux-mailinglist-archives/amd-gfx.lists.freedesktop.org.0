@@ -2,51 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3405A67F396
-	for <lists+amd-gfx@lfdr.de>; Sat, 28 Jan 2023 02:13:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1274A680746
+	for <lists+amd-gfx@lfdr.de>; Mon, 30 Jan 2023 09:18:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C048B10E1C0;
-	Sat, 28 Jan 2023 01:13:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8161810E132;
+	Mon, 30 Jan 2023 08:18:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 456FD10E1C0
- for <amd-gfx@lists.freedesktop.org>; Sat, 28 Jan 2023 01:13:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674868386; x=1706404386;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=JM0DsUAXnIVbnyyRDEiq76v4MhII6gm7ppcnS6Lm9Js=;
- b=PEBqaJDJO80/yttrBOMY8t3uqlD9xZmBNFUFuNcuVh8v87DtkgL+Y1eb
- F87eeaKvSBfUY73gnsbTLmsp2PJnsaKu3FuwZNMD11NVR4SiO7fdadNeU
- gBEHL/UIKhhIhzKs5leG+2O5hH+C2sNtb0rH5s2+vr/eVo+DNqeOrdHOj
- RFaMqnaH2ftyKN9M4B2O5snCBnAeJsbSoduPFzdMf3odFoN+fIJUEQj06
- LZf+7QJd4k6purWZNbiuHXbHMnec6HD5BxQUwXaEA/jOEGZreBjNnSxyn
- VTuayhFHXLE2CizwEiXf5UYr7yi1uUPHieSMBjsjCObsFpBU8xp8MaxIw g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10603"; a="307586088"
-X-IronPort-AV: E=Sophos;i="5.97,252,1669104000"; d="scan'208";a="307586088"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2023 17:12:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10603"; a="695721767"
-X-IronPort-AV: E=Sophos;i="5.97,252,1669104000"; d="scan'208";a="695721767"
-Received: from lkp-server01.sh.intel.com (HELO ffa7f14d1d0f) ([10.239.97.150])
- by orsmga001.jf.intel.com with ESMTP; 27 Jan 2023 17:12:40 -0800
-Received: from kbuild by ffa7f14d1d0f with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pLZln-0000AT-0S;
- Sat, 28 Jan 2023 01:12:39 +0000
-Date: Sat, 28 Jan 2023 09:11:50 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Subject: [linux-next:master] BUILD REGRESSION
- 9fbee811e479aca2f3523787cae1f46553141b40
-Message-ID: <63d47656.PrqiDwRpfWhLZF/8%lkp@intel.com>
-User-Agent: Heirloom mailx 12.5 6/20/10
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
+Received: from mxct.zte.com.cn (mxct.zte.com.cn [58.251.27.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31F8110E2E2
+ for <amd-gfx@lists.freedesktop.org>; Sat, 28 Jan 2023 01:39:45 +0000 (UTC)
+Received: from mxde.zte.com.cn (unknown [10.35.20.121])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mxct.zte.com.cn (FangMail) with ESMTPS id 4P3cZ53Hbyz1DF4
+ for <amd-gfx@lists.freedesktop.org>; Sat, 28 Jan 2023 09:39:41 +0800 (CST)
+Received: from mxus.zte.com.cn (unknown [10.207.168.8])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mxde.zte.com.cn (FangMail) with ESMTPS id 4P3cYk0Pb1zBRK7W
+ for <amd-gfx@lists.freedesktop.org>; Sat, 28 Jan 2023 09:39:22 +0800 (CST)
+Received: from mxhk.zte.com.cn (unknown [192.168.250.137])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mxus.zte.com.cn (FangMail) with ESMTPS id 4P3cYf4tlszdmX8h
+ for <amd-gfx@lists.freedesktop.org>; Sat, 28 Jan 2023 09:39:18 +0800 (CST)
+Received: from mse-fl2.zte.com.cn (unknown [10.5.228.133])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mxhk.zte.com.cn (FangMail) with ESMTPS id 4P3cYZ2KBQz8R039;
+ Sat, 28 Jan 2023 09:39:14 +0800 (CST)
+Received: from xaxapp01.zte.com.cn ([10.88.99.176])
+ by mse-fl2.zte.com.cn with SMTP id 30S1d71v045972;
+ Sat, 28 Jan 2023 09:39:07 +0800 (+08)
+ (envelope-from ye.xingchen@zte.com.cn)
+Received: from mapi (xaxapp01[null]) by mapi (Zmail) with MAPI id mid31;
+ Sat, 28 Jan 2023 09:39:08 +0800 (CST)
+Date: Sat, 28 Jan 2023 09:39:08 +0800 (CST)
+X-Zmail-TransId: 2af963d47cbcffffffffea16db64
+X-Mailer: Zmail v1.0
+Message-ID: <202301280939083976293@zte.com.cn>
+Mime-Version: 1.0
+From: <ye.xingchen@zte.com.cn>
+To: <alexander.deucher@amd.com>
+Subject: =?UTF-8?B?W1BBVENIXSBkcm0vYW1kZ3B1L2Rpc3BsYXk6IHJlbW92ZSBkdXBsaWNhdGUgaW5jbHVkZSBoZWFkZXIgaW4gZmlsZXM=?=
+Content-Type: text/plain;
+	charset="UTF-8"
+X-MAIL: mse-fl2.zte.com.cn 30S1d71v045972
+X-FangMail-Bounce-Flag: 1674869958.63D47CC5.000
+X-FangMail-Outinfo: 1674869958/63D47CC5.000/4P3cYf4tlszdmX8h/ye.xingchen@zte.com.cn/1
+X-Fangmail-Gw-Spam-Type: 0
+X-FangMail-Miltered: at cgslv5.04-192.168.251.14.novalocal with ID
+ 63D47CDC.001 by FangMail milter!
+X-FangMail-Envelope: 1674869981/4P3cZ53Hbyz1DF4/63D47CDC.001/10.35.20.121/[10.35.20.121]/mxde.zte.com.cn/<ye.xingchen@zte.com.cn>
+X-Fangmail-Anti-Spam-Filtered: true
+X-Fangmail-MID-QID: 63D47CDC.001/4P3cZ53Hbyz1DF4
+X-Mailman-Approved-At: Mon, 30 Jan 2023 08:18:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,133 +69,35 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux Memory Management List <linux-mm@kvack.org>, netdev@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-media@vger.kernel.org
+Cc: haoping.liu@amd.com, ian.chen@amd.com, dingchen.zhang@amd.com,
+ sunpeng.li@amd.com, harry.wentland@amd.com, xinhui.pan@amd.com,
+ rodrigo.siqueira@amd.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, wenjing.liu@amd.com,
+ dri-devel@lists.freedesktop.org, daniel@ffwll.ch, george.shen@amd.com,
+ airlied@gmail.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-branch HEAD: 9fbee811e479aca2f3523787cae1f46553141b40  Add linux-next specific files for 20230125
+From: ye xingchen <ye.xingchen@zte.com.cn>
 
-Error/Warning: (recently discovered and may have been fixed)
+opp.h is included more than once.
 
-ERROR: modpost: "devm_platform_ioremap_resource" [drivers/dma/fsl-edma.ko] undefined!
-ERROR: modpost: "devm_platform_ioremap_resource" [drivers/dma/idma64.ko] undefined!
-drivers/gpu/drm/amd/amdgpu/../display/dc/link/accessories/link_dp_trace.c:148:6: warning: no previous prototype for 'link_dp_trace_set_edp_power_timestamp' [-Wmissing-prototypes]
-drivers/gpu/drm/amd/amdgpu/../display/dc/link/accessories/link_dp_trace.c:158:10: warning: no previous prototype for 'link_dp_trace_get_edp_poweron_timestamp' [-Wmissing-prototypes]
-drivers/gpu/drm/amd/amdgpu/../display/dc/link/accessories/link_dp_trace.c:163:10: warning: no previous prototype for 'link_dp_trace_get_edp_poweroff_timestamp' [-Wmissing-prototypes]
-drivers/gpu/drm/amd/amdgpu/../display/dc/link/protocols/link_dp_capability.c:1294:32: warning: variable 'result_write_min_hblank' set but not used [-Wunused-but-set-variable]
-drivers/gpu/drm/amd/amdgpu/../display/dc/link/protocols/link_dp_capability.c:1295:32: warning: variable 'result_write_min_hblank' set but not used [-Wunused-but-set-variable]
-drivers/gpu/drm/amd/amdgpu/../display/dc/link/protocols/link_dp_capability.c:278:42: warning: variable 'ds_port' set but not used [-Wunused-but-set-variable]
-drivers/gpu/drm/amd/amdgpu/../display/dc/link/protocols/link_dp_capability.c:279:42: warning: variable 'ds_port' set but not used [-Wunused-but-set-variable]
-drivers/gpu/drm/amd/amdgpu/../display/dc/link/protocols/link_dp_training.c:1585:38: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+Signed-off-by: ye xingchen <ye.xingchen@zte.com.cn>
+---
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-Unverified Error/Warning (likely false positive, please contact us if interested):
-
-drivers/media/i2c/max9286.c:802 max9286_s_stream() error: buffer overflow 'priv->fmt' 4 <= 32
-drivers/nvmem/imx-ocotp.c:599:21: sparse: sparse: symbol 'imx_ocotp_layout' was not declared. Should it be static?
-net/devlink/leftover.c:7160 devlink_fmsg_prepare_skb() error: uninitialized symbol 'err'.
-
-Error/Warning ids grouped by kconfigs:
-
-gcc_recent_errors
-|-- arc-randconfig-m031-20230123
-|   `-- drivers-media-i2c-max9286.c-max9286_s_stream()-error:buffer-overflow-priv-fmt
-|-- loongarch-randconfig-r014-20230123
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-accessories-link_dp_trace.c:warning:no-previous-prototype-for-link_dp_trace_get_edp_poweroff_timestamp
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-accessories-link_dp_trace.c:warning:no-previous-prototype-for-link_dp_trace_get_edp_poweron_timestamp
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-accessories-link_dp_trace.c:warning:no-previous-prototype-for-link_dp_trace_set_edp_power_timestamp
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-ds_port-set-but-not-used
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_training.c:warning:variable-result-set-but-not-used
-|-- riscv-randconfig-s033-20230123
-|   `-- drivers-nvmem-imx-ocotp.c:sparse:sparse:symbol-imx_ocotp_layout-was-not-declared.-Should-it-be-static
-|-- s390-allmodconfig
-|   |-- ERROR:devm_platform_ioremap_resource-drivers-dma-fsl-edma.ko-undefined
-|   `-- ERROR:devm_platform_ioremap_resource-drivers-dma-idma64.ko-undefined
-|-- s390-randconfig-c042-20230123
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-accessories-link_dp_trace.c:warning:no-previous-prototype-for-link_dp_trace_get_edp_poweroff_timestamp
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-accessories-link_dp_trace.c:warning:no-previous-prototype-for-link_dp_trace_get_edp_poweron_timestamp
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-accessories-link_dp_trace.c:warning:no-previous-prototype-for-link_dp_trace_set_edp_power_timestamp
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-ds_port-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-link-protocols-link_dp_capability.c:warning:variable-result_write_min_hblank-set-but-not-used
-|-- s390-randconfig-r032-20230123
-|   `-- ERROR:devm_platform_ioremap_resource-drivers-dma-idma64.ko-undefined
-`-- x86_64-randconfig-m001-20230123
-    `-- net-devlink-leftover.c-devlink_fmsg_prepare_skb()-error:uninitialized-symbol-err-.
-
-elapsed time: 4125m
-
-configs tested: 62
-configs skipped: 2
-
-gcc tested configs:
-um                             i386_defconfig
-x86_64                            allnoconfig
-um                           x86_64_defconfig
-x86_64                          rhel-8.3-func
-powerpc                           allnoconfig
-x86_64                    rhel-8.3-kselftests
-x86_64                              defconfig
-i386                                defconfig
-x86_64                           rhel-8.3-syz
-x86_64                         rhel-8.3-kunit
-x86_64                           rhel-8.3-kvm
-x86_64                           rhel-8.3-bpf
-arc                                 defconfig
-s390                             allmodconfig
-alpha                               defconfig
-x86_64                               rhel-8.3
-x86_64               randconfig-a002-20230123
-arm                                 defconfig
-i386                 randconfig-a004-20230123
-ia64                             allmodconfig
-i386                 randconfig-a003-20230123
-s390                                defconfig
-sh                               allmodconfig
-x86_64               randconfig-a001-20230123
-x86_64                           allyesconfig
-arc                  randconfig-r043-20230123
-arm                  randconfig-r046-20230123
-i386                 randconfig-a002-20230123
-x86_64               randconfig-a004-20230123
-m68k                             allyesconfig
-i386                 randconfig-a001-20230123
-x86_64               randconfig-a003-20230123
-s390                             allyesconfig
-x86_64               randconfig-a005-20230123
-i386                 randconfig-a005-20230123
-i386                             allyesconfig
-m68k                             allmodconfig
-mips                             allyesconfig
-x86_64               randconfig-a006-20230123
-i386                 randconfig-a006-20230123
-powerpc                          allmodconfig
-arc                              allyesconfig
-alpha                            allyesconfig
-arm64                            allyesconfig
-arm                              allyesconfig
-
-clang tested configs:
-x86_64                          rhel-8.3-rust
-x86_64               randconfig-a013-20230123
-x86_64               randconfig-a011-20230123
-i386                 randconfig-a012-20230123
-x86_64               randconfig-a012-20230123
-i386                 randconfig-a013-20230123
-i386                 randconfig-a011-20230123
-x86_64               randconfig-a015-20230123
-hexagon              randconfig-r041-20230123
-x86_64               randconfig-a014-20230123
-x86_64               randconfig-a016-20230123
-i386                 randconfig-a014-20230123
-hexagon              randconfig-r045-20230123
-i386                 randconfig-a016-20230123
-i386                 randconfig-a015-20230123
-s390                 randconfig-r044-20230123
-riscv                randconfig-r042-20230123
-
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+index 6475664baa8a..1a2ab934b4bd 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+@@ -46,7 +46,6 @@
+ #include "dpcd_defs.h"
+ #include "dmcu.h"
+ #include "dsc.h"
+-#include "opp.h"
+ #include "hw/clk_mgr.h"
+ #include "dce/dmub_psr.h"
+ #include "dmub/dmub_srv.h"
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.25.1
