@@ -1,54 +1,49 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7134867FD7A
-	for <lists+amd-gfx@lfdr.de>; Sun, 29 Jan 2023 08:56:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABB6D680747
+	for <lists+amd-gfx@lfdr.de>; Mon, 30 Jan 2023 09:18:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39EF810E170;
-	Sun, 29 Jan 2023 07:56:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 146C010E140;
+	Mon, 30 Jan 2023 08:18:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B56CC10E170;
- Sun, 29 Jan 2023 07:55:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674978957; x=1706514957;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=x4WTrpuvv+/zgSnOBDWsX2EtXNw7Yj18SFXCDGN2RQU=;
- b=DU7Q/0g4medleQrls4KK5j0VZ2WWfftEYNC9n9dYcF/9ZEe4c6yxGLeC
- 9ZUNRt+6UzJX9HRcA67JCNQ7O62zSRdBQMvJkHNxrXcob29oPu9EagFFz
- F8SzDMA4Q/xG4SVjXmkiHL9P9xmPKOuxp3sae8AWmnRM5bRGi/uJe6+zx
- qlvr3g9p6t0KlnaU8nEPjyzUh+eBJUFNMzqMOwXsYCFyXQ5frtp8Pw2sQ
- R/q5X6HJDhALh6PEYEAPlsuWfywQXvgHPCX8AY3w1w2zEPR2YaZ4Lgb+9
- EtRoE9j79aor8tViX6KNDA7b90+O2pao/6wjKau6Vty8/QvNjc+O5v2lk Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10604"; a="389753587"
-X-IronPort-AV: E=Sophos;i="5.97,254,1669104000"; d="scan'208";a="389753587"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2023 23:55:56 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10604"; a="752450871"
-X-IronPort-AV: E=Sophos;i="5.97,254,1669104000"; d="scan'208";a="752450871"
-Received: from lkp-server01.sh.intel.com (HELO ffa7f14d1d0f) ([10.239.97.150])
- by FMSMGA003.fm.intel.com with ESMTP; 28 Jan 2023 23:55:53 -0800
-Received: from kbuild by ffa7f14d1d0f with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pM2XZ-0002aw-0E;
- Sun, 29 Jan 2023 07:55:53 +0000
-Date: Sun, 29 Jan 2023 15:55:34 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jonathan Kim <jonathan.kim@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 08/32] drm/amdgpu: add gfx10 hw debug mode enable and
- disable calls
-Message-ID: <202301291502.el73Nchv-lkp@intel.com>
-References: <20230125195401.4183544-9-jonathan.kim@amd.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D407D10E057;
+ Sun, 29 Jan 2023 13:31:54 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 4CD2560D3A;
+ Sun, 29 Jan 2023 13:31:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 573CFC433EF;
+ Sun, 29 Jan 2023 13:31:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1674999112;
+ bh=vbOcOQvLI7LJlxcTePJ5Zy1AAvu47HqN45gtrJuttt4=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=P6GacKiwueCw3hOihvbZQYjL+kShUibaANrpvwDF2j7San2zs3U8gCZl7/4ti7Wcl
+ NsNyi36DdWbyg4i7M8gB6ooxQvWE+U9vQCVthKZYrwQtIBN99Os0jYzTdfS0y0kyFz
+ uMpK5+mQyoE6XBmMqfzR9zWcSRSmABylszZFXvyU=
+Date: Sun, 29 Jan 2023 14:31:49 +0100
+From: Greg KH <gregkh@linuxfoundation.org>
+To: "Limonciello, Mario" <Mario.Limonciello@amd.com>
+Subject: Re: [PATCH] Revert "drm/display/dp_mst: Move all payload info into
+ the atomic state"
+Message-ID: <Y9Z1RdnfM4ypM/zW@kroah.com>
+References: <20230112085044.1706379-1-Wayne.Lin@amd.com>
+ <20230120174634.GA889896@roeck-us.net>
+ <a9deecb3-5955-ee4e-c76f-2654ee9f1a92@amd.com>
+ <Y9N/wiIL758c3ozv@kroah.com>
+ <36e72298-e9d3-967e-8b14-7197719953cb@leemhuis.info>
+ <MN0PR12MB610184AF496001F3B92706BDE2CC9@MN0PR12MB6101.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230125195401.4183544-9-jonathan.kim@amd.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <MN0PR12MB610184AF496001F3B92706BDE2CC9@MN0PR12MB6101.namprd12.prod.outlook.com>
+X-Mailman-Approved-At: Mon, 30 Jan 2023 08:18:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,116 +55,98 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Felix.Kuehling@amd.com, Jonathan.Kim@amd.com, oe-kbuild-all@lists.linux.dev
+Cc: Linux regressions mailing list <regressions@lists.linux.dev>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>,
+ "stanislav.lisovskiy@intel.com" <stanislav.lisovskiy@intel.com>, "Zuo,
+ Jerry" <Jerry.Zuo@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Lin,
+ Wayne" <Wayne.Lin@amd.com>, Guenter Roeck <linux@roeck-us.net>,
+ "bskeggs@redhat.com" <bskeggs@redhat.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Jonathan,
+On Fri, Jan 27, 2023 at 03:02:41PM +0000, Limonciello, Mario wrote:
+> [Public]
+> 
+> 
+> 
+> > -----Original Message-----
+> > From: Linux kernel regression tracking (Thorsten Leemhuis)
+> > <regressions@leemhuis.info>
+> > Sent: Friday, January 27, 2023 03:15
+> > To: Greg KH <gregkh@linuxfoundation.org>; Limonciello, Mario
+> > <Mario.Limonciello@amd.com>
+> > Cc: dri-devel@lists.freedesktop.org; stable@vger.kernel.org;
+> > stanislav.lisovskiy@intel.com; Zuo, Jerry <Jerry.Zuo@amd.com>; amd-
+> > gfx@lists.freedesktop.org; Lin, Wayne <Wayne.Lin@amd.com>; Guenter
+> > Roeck <linux@roeck-us.net>; bskeggs@redhat.com
+> > Subject: Re: [PATCH] Revert "drm/display/dp_mst: Move all payload info into
+> > the atomic state"
+> > 
+> > On 27.01.23 08:39, Greg KH wrote:
+> > > On Fri, Jan 20, 2023 at 11:51:04AM -0600, Limonciello, Mario wrote:
+> > >> On 1/20/2023 11:46, Guenter Roeck wrote:
+> > >>> On Thu, Jan 12, 2023 at 04:50:44PM +0800, Wayne Lin wrote:
+> > >>>> This reverts commit 4d07b0bc403403438d9cf88450506240c5faf92f.
+> > >>>>
+> > >>>> [Why]
+> > >>>> Changes cause regression on amdgpu mst.
+> > >>>> E.g.
+> > >>>> In fill_dc_mst_payload_table_from_drm(), amdgpu expects to
+> > add/remove payload
+> > >>>> one by one and call fill_dc_mst_payload_table_from_drm() to update
+> > the HW
+> > >>>> maintained payload table. But previous change tries to go through all
+> > the
+> > >>>> payloads in mst_state and update amdpug hw maintained table in once
+> > everytime
+> > >>>> driver only tries to add/remove a specific payload stream only. The
+> > newly
+> > >>>> design idea conflicts with the implementation in amdgpu nowadays.
+> > >>>>
+> > >>>> [How]
+> > >>>> Revert this patch first. After addressing all regression problems caused
+> > by
+> > >>>> this previous patch, will add it back and adjust it.
+> > >>>
+> > >>> Has there been any progress on this revert, or on fixing the underlying
+> > >>> problem ?
+> > >>>
+> > >>> Thanks,
+> > >>> Guenter
+> > >>
+> > >> Hi Guenter,
+> > >>
+> > >> Wayne is OOO for CNY, but let me update you.
+> > >>
+> > >> Harry has sent out this series which is a collection of proper fixes.
+> > >> https://patchwork.freedesktop.org/series/113125/
+> > >>
+> > >> Once that's reviewed and accepted, 4 of them are applicable for 6.1.
+> > >
+> > > Any hint on when those will be reviewed and accepted?  patchwork
+> > doesn't
+> > > show any activity on them, or at least I can't figure it out...
+> > 
+> > I didn't look closer (hence please correct me if I'm wrong), but the
+> > core changes afaics are in the DRM pull airlied send a few hours ago to
+> > Linus (note the "amdgpu […] DP MST fixes" line):
+> > 
+> > https://lore.kernel.org/all/CAPM%3D9tzuu4xnx6T5v7sKsK%2BA5HEaPOc1ie
+> > MyzNSYQZGztJ%3D6Qw@mail.gmail.com/
+> 
+> That's right.  There are 4 commits in that PR with the appropriate stable tags
+> that should fix the majority of the MST issues introduced in 6.1 by 4d07b0bc40340
+> ("drm/display/dp_mst: Move all payload info into the atomic state"):
+> 
+>       drm/amdgpu/display/mst: Fix mst_state->pbn_div and slot count assignments
+>       drm/amdgpu/display/mst: limit payload to be updated one by one
+>       drm/amdgpu/display/mst: update mst_mgr relevant variable when long HPD
+>       drm/display/dp_mst: Correct the kref of port.
+> 
+> There will be follow ups for any remaining corner cases.
 
-Thank you for the patch! Perhaps something to improve:
+Great, thanks for this, all are now queued up in the 6.1.y queue.
 
-[auto build test WARNING on drm-tip/drm-tip]
-[also build test WARNING on linus/master v6.2-rc5]
-[cannot apply to drm-misc/drm-misc-next drm/drm-next drm-exynos/exynos-drm-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Jonathan-Kim/drm-amdkfd-add-debug-and-runtime-enable-interface/20230128-092952
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20230125195401.4183544-9-jonathan.kim%40amd.com
-patch subject: [PATCH 08/32] drm/amdgpu: add gfx10 hw debug mode enable and disable calls
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20230129/202301291502.el73Nchv-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/ca722ec7f4d749b61a30b4654fabf05f03d8d2cf
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Jonathan-Kim/drm-amdkfd-add-debug-and-runtime-enable-interface/20230128-092952
-        git checkout ca722ec7f4d749b61a30b4654fabf05f03d8d2cf
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=x86_64 olddefconfig
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/amd/amdgpu/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c:750:10: warning: no previous prototype for 'kgd_gfx_v10_enable_debug_trap' [-Wmissing-prototypes]
-     750 | uint32_t kgd_gfx_v10_enable_debug_trap(struct amdgpu_device *adev,
-         |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c:787:10: warning: no previous prototype for 'kgd_gfx_v10_disable_debug_trap' [-Wmissing-prototypes]
-     787 | uint32_t kgd_gfx_v10_disable_debug_trap(struct amdgpu_device *adev,
-         |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/dc_types.h:36,
-                    from drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:30,
-                    from drivers/gpu/drm/amd/amdgpu/../include/dm_pp_interface.h:26,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu.h:64,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c:22:
-   drivers/gpu/drm/amd/amdgpu/../display/dc/dc_hdmi_types.h:53:22: warning: 'dp_hdmi_dongle_signature_str' defined but not used [-Wunused-const-variable=]
-      53 | static const uint8_t dp_hdmi_dongle_signature_str[] = "DP-HDMI ADAPTOR";
-         |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-vim +/kgd_gfx_v10_enable_debug_trap +750 drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c
-
-   749	
- > 750	uint32_t kgd_gfx_v10_enable_debug_trap(struct amdgpu_device *adev,
-   751					bool restore_dbg_registers,
-   752					uint32_t vmid)
-   753	{
-   754	
-   755		mutex_lock(&adev->grbm_idx_mutex);
-   756	
-   757		kgd_gfx_v10_set_wave_launch_stall(adev, vmid, true);
-   758	
-   759		/* assume gfx off is disabled for the debug session if rlc restore not supported. */
-   760		if (restore_dbg_registers) {
-   761			uint32_t data = 0;
-   762	
-   763			data = REG_SET_FIELD(data, SPI_GDBG_TRAP_CONFIG,
-   764					VMID_SEL, 1 << vmid);
-   765			data = REG_SET_FIELD(data, SPI_GDBG_TRAP_CONFIG,
-   766					TRAP_EN, 1);
-   767			WREG32(SOC15_REG_OFFSET(GC, 0, mmSPI_GDBG_TRAP_CONFIG), data);
-   768			WREG32(SOC15_REG_OFFSET(GC, 0, mmSPI_GDBG_TRAP_DATA0), 0);
-   769			WREG32(SOC15_REG_OFFSET(GC, 0, mmSPI_GDBG_TRAP_DATA1), 0);
-   770	
-   771			kgd_gfx_v10_set_wave_launch_stall(adev, vmid, false);
-   772	
-   773			mutex_unlock(&adev->grbm_idx_mutex);
-   774	
-   775			return 0;
-   776		}
-   777	
-   778		WREG32(SOC15_REG_OFFSET(GC, 0, mmSPI_GDBG_TRAP_MASK), 0);
-   779	
-   780		kgd_gfx_v10_set_wave_launch_stall(adev, vmid, false);
-   781	
-   782		mutex_unlock(&adev->grbm_idx_mutex);
-   783	
-   784		return 0;
-   785	}
-   786	
- > 787	uint32_t kgd_gfx_v10_disable_debug_trap(struct amdgpu_device *adev,
-   788						bool keep_trap_enabled,
-   789						uint32_t vmid)
-   790	{
-   791		mutex_lock(&adev->grbm_idx_mutex);
-   792	
-   793		kgd_gfx_v10_set_wave_launch_stall(adev, vmid, true);
-   794	
-   795		WREG32(SOC15_REG_OFFSET(GC, 0, mmSPI_GDBG_TRAP_MASK), 0);
-   796	
-   797		kgd_gfx_v10_set_wave_launch_stall(adev, vmid, false);
-   798	
-   799		mutex_unlock(&adev->grbm_idx_mutex);
-   800	
-   801		return 0;
-   802	}
-   803	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+greg k-h
