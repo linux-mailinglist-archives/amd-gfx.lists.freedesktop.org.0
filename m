@@ -1,17 +1,17 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58F67681CAA
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Jan 2023 22:26:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ADC1681DED
+	for <lists+amd-gfx@lfdr.de>; Mon, 30 Jan 2023 23:18:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF4CB10E115;
-	Mon, 30 Jan 2023 21:26:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08CE510E168;
+	Mon, 30 Jan 2023 22:18:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43AED10E126;
- Mon, 30 Jan 2023 19:56:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71CB110E122;
+ Mon, 30 Jan 2023 21:45:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
@@ -19,25 +19,26 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
  In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=9XQaoJ7LDoCXPduWr2aD6SVTOAoLNF/BGWXbCC0eBLg=; b=mL8E4UAqmtdD8kboXApFofEBDV
- veQ7MfZUfECa9Ae5XlCingOIHzFnj6uQhQ2ipOvziMCcFws0WoWGIkeJfR/H1gAnK+bNfcvSpqvqA
- fsEzn/roRWLTMijar76CTzkNixnFjSOkYmnb94RZxTvJ/f5sRnS5NaXYtCveHp5WFWezNKqEFGmno
- b1EGrsJlGPiggMG5UuFHifG1QrlplTZUdRud9jyu/AkyXgURMh9sPSnIsTonlGTNBLcmQi4mcyn7w
- UK9Ab12W17q8wEZZ+x3zOGZwp+KPH4n/MpAvbAWV0O3yu1hZ2cXM2f82HXiBxaDxaruAUV6oc5ipA
- t/ZQMVYQ==;
+ bh=k/ew6dlCi+VDM/qSRseYAYhMrxpcvE3y1oa+474XSBA=; b=akzzg2b522Wj5L3OKQwpdWUl6z
+ CC/N9+v2b8vitTfmNr7Er3JUx8GU+H2Krrx4qOmBRatne9wcSObCWzVisaOIVa6TZugVw2dFoG+mR
+ hiY0RTwPtxtLyEbkAEZLMQCHAVxvQ9bqQ07nGtbQglvpyOewKxEb3DsbBf5WxJWJxnFUkx8KrpRZy
+ e8iA0dGdpF9y/k29qlUqiwB5A6N4DVX/59TOqzunTV14DIlKEStqDUCCZsjcvWtcLVsOPzJmoZ2ZF
+ qefvr0tC9Y9OsPvflMYC6O4lYHQDN+HKQVIoDjACGfIjlR+hVFGZd2uh+V56FpMGkp3hqtV2GaDaz
+ 8PzK0pOQ==;
 Received: from [177.94.21.70] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1pMaGJ-004lup-Tl; Mon, 30 Jan 2023 20:56:20 +0100
+ id 1pMbxo-004pva-NC; Mon, 30 Jan 2023 22:45:21 +0100
 From: "Guilherme G. Piccoli" <gpiccoli@igalia.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amd/display: Trivial swizzle-related code clean-ups
-Date: Mon, 30 Jan 2023 16:56:07 -0300
-Message-Id: <20230130195607.1297694-1-gpiccoli@igalia.com>
+Subject: [PATCH] drm/amdgpu/fence: Fix oops due to non-matching drm_sched
+ init/fini
+Date: Mon, 30 Jan 2023 18:45:04 -0300
+Message-Id: <20230130214504.1305042-1-gpiccoli@igalia.com>
 X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 30 Jan 2023 21:26:54 +0000
+X-Mailman-Approved-At: Mon, 30 Jan 2023 22:18:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,102 +50,98 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel@gpiccoli.net, Swapnil Patel <Swapnil.Patel@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Xinhui.Pan@amd.com,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Fangzhi Zuo <Jerry.Zuo@amd.com>,
- dri-devel@lists.freedesktop.org, Mark Broadworth <mark.broadworth@amd.com>,
- Melissa Wen <mwen@igalia.com>, "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
- Daniel Wheeler <daniel.wheeler@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>, kernel-dev@igalia.com,
- alexander.deucher@amd.com, Harry Wentland <harry.wentland@amd.com>,
- christian.koenig@amd.com, Sung Joon Kim <Sungjoon.Kim@amd.com>
+Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>, kernel@gpiccoli.net,
+ Guchun Chen <guchun.chen@amd.com>, Xinhui.Pan@amd.com,
+ dri-devel@lists.freedesktop.org, "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+ Mario Limonciello <mario.limonciello@amd.com>, kernel-dev@igalia.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is a very trivial code clean-up related to commit 5468c36d6285
-("drm/amd/display: Filter Invalid 420 Modes for HDMI TMDS"). This commit
-added a validation on driver probe to prevent invalid TMDS modes, but one
-of the fake properties (swizzle) ended-up causing a warning on driver
-probe; was reported here: https://gitlab.freedesktop.org/drm/amd/-/issues/2264.
+Currently amdgpu calls drm_sched_fini() from the fence driver sw fini
+routine - such function is expected to be called only after the
+respective init function - drm_sched_init() - was executed successfully.
 
-It was fixed by commit 105a8b8698e2 ("drm/amd/display: patch cases with
-unknown plane state to prevent warning"), but the validation code had
-a double variable assignment, which we hereby remove. Also, the fix relies
-in the dcn2{0,1}patch_unknown_plane_state() callbacks, so while at it we
-took the opportunity to perform a small code clean-up in such routines.
+Happens that we faced a driver probe failure in the Steam Deck
+recently, and the function drm_sched_fini() was called even without
+its counter-part had been previously called, causing the following oops:
 
-Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Cc: Daniel Wheeler <daniel.wheeler@amd.com>
-Cc: Fangzhi Zuo <Jerry.Zuo@amd.com>
-Cc: Harry Wentland <harry.wentland@amd.com>
-Cc: Leo Li <sunpeng.li@amd.com>
-Cc: Mark Broadworth <mark.broadworth@amd.com>
-Cc: Melissa Wen <mwen@igalia.com>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Cc: Sung Joon Kim <Sungjoon.Kim@amd.com>
-Cc: Swapnil Patel <Swapnil.Patel@amd.com>
+amdgpu: probe of 0000:04:00.0 failed with error -110
+BUG: kernel NULL pointer dereference, address: 0000000000000090
+PGD 0 P4D 0
+Oops: 0002 [#1] PREEMPT SMP NOPTI
+CPU: 0 PID: 609 Comm: systemd-udevd Not tainted 6.2.0-rc3-gpiccoli #338
+Hardware name: Valve Jupiter/Jupiter, BIOS F7A0113 11/04/2022
+RIP: 0010:drm_sched_fini+0x84/0xa0 [gpu_sched]
+[...]
+Call Trace:
+ <TASK>
+ amdgpu_fence_driver_sw_fini+0xc8/0xd0 [amdgpu]
+ amdgpu_device_fini_sw+0x2b/0x3b0 [amdgpu]
+ amdgpu_driver_release_kms+0x16/0x30 [amdgpu]
+ devm_drm_dev_init_release+0x49/0x70
+ [...]
+
+To prevent that, check if the drm_sched was properly initialized for a
+given ring before calling its fini counter-part.
+
+Notice ideally we'd use sched.ready for that; such field is set as the latest
+thing on drm_sched_init(). But amdgpu seems to "override" the meaning of such
+field - in the above oops for example, it was a GFX ring causing the crash, and
+the sched.ready field was set to true in the ring init routine, regardless of
+the state of the DRM scheduler. Hence, we ended-up using another sched field.
+
+Fixes: 067f44c8b459 ("drm/amdgpu: avoid over-handle of fence driver fini in s3 test (v2)")
+Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+Cc: Guchun Chen <guchun.chen@amd.com>
+Cc: Mario Limonciello <mario.limonciello@amd.com>
 Signed-off-by: Guilherme G. Piccoli <gpiccoli@igalia.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c     | 1 -
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 8 ++------
- drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c | 6 ++----
- 3 files changed, 4 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 86a2f7f58550..e71e94663d14 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -6336,7 +6336,6 @@ static enum dc_status dm_validate_stream_and_context(struct dc *dc,
- 	dc_plane_state->plane_size.surface_size.width  = stream->src.width;
- 	dc_plane_state->plane_size.chroma_size.height  = stream->src.height;
- 	dc_plane_state->plane_size.chroma_size.width   = stream->src.width;
--	dc_plane_state->tiling_info.gfx9.swizzle =  DC_SW_UNKNOWN;
- 	dc_plane_state->format = SURFACE_PIXEL_FORMAT_GRPH_ARGB8888;
- 	dc_plane_state->tiling_info.gfx9.swizzle = DC_SW_UNKNOWN;
- 	dc_plane_state->rotation = ROTATION_ANGLE_0;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index 531f405d2554..3af24ef9cb2d 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -2225,14 +2225,10 @@ enum dc_status dcn20_patch_unknown_plane_state(struct dc_plane_state *plane_stat
- 	enum surface_pixel_format surf_pix_format = plane_state->format;
- 	unsigned int bpp = resource_pixel_format_to_bpp(surf_pix_format);
+
+Hi folks, first of all thanks in advance for reviews / comments!
+Notice that I've used the Fixes tag more in the sense to bring it
+to stable, I didn't find a good patch candidate that added the
+call to drm_sched_fini(), was reaching way too old commits...so
+067f44c8b459 seems a good candidate - or maybe not?
+
+Now, with regards sched.ready, spent a bit of time to figure what
+was happening...would be feasible maybe to stop using that to
+mark some kind ring status? I think it should be possible to add a
+flag to the ring structure for that, and free sched.ready from
+being manipulate by the amdgpu driver, what's your thoughts on that?
+
+I could try myself, but first of course I'd like to raise the
+"temperature" on this topic and check if somebody is already working
+on that.
+
+Cheers,
+
+Guilherme
+
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+index 00444203220d..e154eb8241fb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+@@ -618,7 +618,13 @@ void amdgpu_fence_driver_sw_fini(struct amdgpu_device *adev)
+ 		if (!ring || !ring->fence_drv.initialized)
+ 			continue;
  
--	enum swizzle_mode_values swizzle = DC_SW_LINEAR;
--
-+	plane_state->tiling_info.gfx9.swizzle = DC_SW_64KB_S;
- 	if (bpp == 64)
--		swizzle = DC_SW_64KB_D;
--	else
--		swizzle = DC_SW_64KB_S;
-+		plane_state->tiling_info.gfx9.swizzle = DC_SW_64KB_D;
+-		if (!ring->no_scheduler)
++		/*
++		 * Notice we check for sched.name since there's some
++		 * override on the meaning of sched.ready by amdgpu.
++		 * The natural check would be sched.ready, which is
++		 * set as drm_sched_init() finishes...
++		 */
++		if (!ring->no_scheduler && ring->sched.name)
+ 			drm_sched_fini(&ring->sched);
  
--	plane_state->tiling_info.gfx9.swizzle = swizzle;
- 	return DC_OK;
- }
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-index fbcf0afeae0d..8f9244fe5c86 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-@@ -1393,15 +1393,13 @@ static uint32_t read_pipe_fuses(struct dc_context *ctx)
- 
- static enum dc_status dcn21_patch_unknown_plane_state(struct dc_plane_state *plane_state)
- {
--	enum dc_status result = DC_OK;
--
- 	if (plane_state->ctx->dc->debug.disable_dcc == DCC_ENABLE) {
- 		plane_state->dcc.enable = 1;
- 		/* align to our worst case block width */
- 		plane_state->dcc.meta_pitch = ((plane_state->src_rect.width + 1023) / 1024) * 1024;
- 	}
--	result = dcn20_patch_unknown_plane_state(plane_state);
--	return result;
-+
-+	return dcn20_patch_unknown_plane_state(plane_state);
- }
- 
- static const struct resource_funcs dcn21_res_pool_funcs = {
+ 		for (j = 0; j <= ring->fence_drv.num_fences_mask; ++j)
 -- 
 2.39.0
 
