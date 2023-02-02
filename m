@@ -1,114 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8D3C68738F
-	for <lists+amd-gfx@lfdr.de>; Thu,  2 Feb 2023 04:02:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6375C687423
+	for <lists+amd-gfx@lfdr.de>; Thu,  2 Feb 2023 04:49:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 257E910E2D6;
-	Thu,  2 Feb 2023 03:02:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27E2D10E1BD;
+	Thu,  2 Feb 2023 03:49:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from APC01-PSA-obe.outbound.protection.outlook.com
- (mail-psaapc01on20702.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:feae::702])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A742410E2D6
- for <amd-gfx@lists.freedesktop.org>; Thu,  2 Feb 2023 02:59:22 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DU7gUFgkMJDkBY2ZpMxKbdKHtWCvyVw1wFkO0mSqVxSHcPd7Avka6hz87s4kvO+c49XchoJg+cFSJ7gHEDdqiHWHuQ1i2HBkzhjA5OYqRt5YK3vq1OjVLNXyuXIAfSb5g4ihj86BQefvCQ37CNaKnLDKdAIu01xXcRTFDWjKR8ib5F/2zA+/wKkpOzyozqH4k1ZlW7yI2ko9KS+DAy8bCHtMysyjubiNMCxBRlOmoLmy3JdupcvHrIW3kKL/8Ji0I3TETsU1iGrp0/XgZBFRcQT0wND9wnn4ybV8UkbkyCLG23MlayJ1Q6k3qvvMlIUXmRLAvzQ7AoW2TonMpsYksw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NwmYgmsvrXVf/ye8fcTFO0/kkTAM3I7aGPkv3SAs1w0=;
- b=Va9tgY7wUexHhx9/AMa6K+vgMusZCr5AgtAcufStaHuul9IZbmbbZGcZx0gKHxUNK+0A5Soy57Xpd2XGWNRHE8krYT6buEm2oAOtw5sJZmrMuvFSHGIIWRQXqKshnCx7pQa3G5sR/SWMdnb6NpHm9F2jwcjQpgigjfsd8ufNqRxibfBVEyz0d1umVtNk8EUxIO4g8A7+FqqKFdYZaWrdxN1YPHP5bwKxT9SUKSbmpY0kMnP7AkDhXLv5szCx/s7aG7AKc39ycG6U8s+auEeQdBQalUYUlTSjfQLZsXHeN4/8R38j708k8H/+bgf+c2+YY0Up49lddittl9q4GQt69A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NwmYgmsvrXVf/ye8fcTFO0/kkTAM3I7aGPkv3SAs1w0=;
- b=zjdz91GTH3Zv9l0lUjneMtU2oZ/q4WWLy3kTC4u66qJ12lglC3WQlQWF3i0LRm1TFW+HJ8xnpTOdOtGj1NZlRl5FkoyytPrZDkbtW5iE9jV4EzTR9BAn/UORYawFjBeqqEOAVD2YlPJZUuVNHGPOae7BmVsLYsb3aIkQ1tSzS0xJXgWAlPaOTP3UvtMcZqJrnIApa5V/LaGXff4K0//fcf6kxLcStVFcgy3HaQso0xxqo3a7bUKg0c2etgnUtUmUT6y6CG7BS/9ukervD8LBIEOCQzbw36IiynII3SZQdP5K2jUcWPK9FUVld6aBXUWDYnz7IW+wwX1T8C49x03Vgg==
-Received: from TY2PR06MB3213.apcprd06.prod.outlook.com (2603:1096:404:97::16)
- by SI2PR06MB3929.apcprd06.prod.outlook.com (2603:1096:4:f9::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.7; Thu, 2 Feb
- 2023 02:59:19 +0000
-Received: from TY2PR06MB3213.apcprd06.prod.outlook.com
- ([fe80::b113:70f9:7dc9:543f]) by TY2PR06MB3213.apcprd06.prod.outlook.com
- ([fe80::b113:70f9:7dc9:543f%7]) with mapi id 15.20.6064.022; Thu, 2 Feb 2023
- 02:59:19 +0000
-From: Neal Liu <neal_liu@aspeedtech.com>
-To: Andrew Jeffery <andrew@aj.id.au>
-Subject: RE: [linux-next:master] BUILD REGRESSION
- 66eee64b235411d512bed4d672c2d00683239daf
-Thread-Topic: [linux-next:master] BUILD REGRESSION
- 66eee64b235411d512bed4d672c2d00683239daf
-Thread-Index: AQHZNqLYPleILitAVkyvMXcyMi0fNa669sTw
-Date: Thu, 2 Feb 2023 02:59:18 +0000
-Message-ID: <TY2PR06MB321334CFD4ED1BD4AF97965380D69@TY2PR06MB3213.apcprd06.prod.outlook.com>
-References: <63da97b5.3V1HSQEat507LFIr%lkp@intel.com>
- <76f4dea0-9a39-4238-a213-0167477f5d54@app.fastmail.com>
-In-Reply-To: <76f4dea0-9a39-4238-a213-0167477f5d54@app.fastmail.com>
-Accept-Language: en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY2PR06MB3213:EE_|SI2PR06MB3929:EE_
-x-ms-office365-filtering-correlation-id: 0000665a-9487-4af9-31d1-08db04c97a6c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: BKb/ldn1nm1OAwkJG1HF270esNNM7v92acGqv7wuSpZHAd2NtqCjUneNWbyPOoVEE7l/CfVix4kpFhjsdZUYMw0BxCqkcvbnaiiJY3Vq92r3RffwV/8r8wEjVeOcs+3wf/+8/U/imFn0UhlGrzUzsMGQFOD8gwSOrxHJYwXbFzk+KB6dM6Ehct5VjH3ypj9T2ICr8+oAqgUDRJ4pcJ8Wx6mXn6OzrGT6ck6RtUZYPT0XMKcqOHrdPjc2Q8U4q5tPfHyg8dMEG9nU7iDEadup0BZYynv5OWxCnwE5zYCf97BWz8hNnWVHMg6Za5ya411L8JD6IYc+0OyFJ2btp+iiAHJA9J1RqFvRPtuG5YrooLZZEpC018mKFSpYor1xd9d1CEzvSuXA6Oj9XFoNSSsBz+mmbfqRYdZGQhR053c3GuN6DdGTsuUBDDFLBuYeZRAVWsQEjwAQ6vCbNyLAJYdHHPvdrOPkck/Q6HewWlgindNTeajNXYQLwSoN2aCgnnUuO7M1RuMz4lxDPxHeZWq/653ltHLjLA6/YeMrdLrvy02ycEpH1kzPdCDjyRzOEa1ndIFFclmjlz9Rko5p0TMVSmNZaX21zTqWmEFT0J5lHOu20QcO4T8jHba/Ey/2uCNio+gfe9ugF8tB8itlAJYqqipMDlKt2txKDZwx/DSatVxmXdLJKO+2RvNtmBpaqmLcWGnugd03Mw55K3VgDnGatPcqtQuRiV8KMppU+PiVDVg=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:TY2PR06MB3213.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(136003)(346002)(376002)(396003)(39850400004)(366004)(451199018)(6916009)(8676002)(4326008)(41300700001)(64756008)(66446008)(66556008)(66946007)(66476007)(76116006)(86362001)(38070700005)(54906003)(8936002)(38100700002)(5660300002)(122000001)(7416002)(52536014)(33656002)(316002)(55016003)(9686003)(26005)(71200400001)(186003)(7696005)(2906002)(966005)(83380400001)(478600001)(6506007);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ElUlFQ0BxtxBRmDV5JTfD1Yp/0OgzJIB1GxO0twWmXi+D82QwQ1wpiuurf3y?=
- =?us-ascii?Q?Pc5b2kgVDI0oVuvs6CEvgn7hqsDMTSC4xU5wGUB7YPWzG+xJhMrPtzDsbWTC?=
- =?us-ascii?Q?yCGjQ8Vu90sGEs7I2T/f0INspMZZWviH2AS27HNZtPtz7Zn7ex2bgnFRJ1TB?=
- =?us-ascii?Q?lvZO49JsU/BGUeq453+mk17NLB+F97FsE4L2FXf7mk+7uHQW6z3Ef8oD7Bdb?=
- =?us-ascii?Q?QpAh0m+V3IeVN/HBPv0Wvy3kLJiwKFVlN0HeweUSB5pBRwlAgpdhKQxWMQGm?=
- =?us-ascii?Q?/8R+Q1VUcl/+CuBt6rXrPg3THhtOoC2GFemU3BSQ/rJCo5eQFQB0iGWVO5by?=
- =?us-ascii?Q?DLXbjx+LqWDDMLg2MHa4nstjmJreDpo4B/3Pl79QdjL/TmfvOeEHAbNv56jz?=
- =?us-ascii?Q?3DMoKpOMWeffgjOPrOzYlXzE8SbHFHf9pAowEuvNVjvHwKrHGgXnKAEhDNHj?=
- =?us-ascii?Q?YeGE9VwEki9P44nTkpz8+xOLIm7IEy5t1uulZhDGBMRkCfZkRHiwqzoXBsfY?=
- =?us-ascii?Q?AVKGXPPsjNPRl/agfccuid9X/Dt5k+1VLYqlYKDyrGzi7nrkZz0/dn6DduHS?=
- =?us-ascii?Q?FBmHKEgJofTrrtPekwg1iPw+kwvXr/Bbian0zkMvKkfaClf4mCzuVMHiDg5S?=
- =?us-ascii?Q?P4JObLzkqxIgQchXq7+oDD5zLKSNehXGSQ+avDbws4S3zvyhwg/QlsnGVS0Z?=
- =?us-ascii?Q?c4JSmzPJDmIIBfDuaHMLjf1nPVKvDUTSnQUgoSkxNw6Bq4crJAE6Hk86vTTx?=
- =?us-ascii?Q?JguY04ozKr6KuqJ3KqajDoj7gQZlDeV2tDhXvevaBl0ECtz8PEz1GaJaiF3W?=
- =?us-ascii?Q?pf5sFMudFH2kgpQBqOvAZ7aWcB9kIpkDA/406yUI+kFp1rpLwqaoTztQ0MEw?=
- =?us-ascii?Q?jozUmq5DNG3ADAUnMV3JBEFTrkkAUiRAguBMp4FuhRqfMkn9J9vYdww7MZDT?=
- =?us-ascii?Q?hTueL2Mnz1GZSPd1tCpX9pUQdf/DCXpLGMnUeU1NaMeOOzpj1Z4+PWcZH04Z?=
- =?us-ascii?Q?J6vqsx2tfvgzCgoz6LyfSn9yI/qz86XOgpabKghDnjUQ8jo5f55kwL02Ppm6?=
- =?us-ascii?Q?yBVdbyDVfvOmTZav2t4Ue8lH/mSLgstylxZW+GTUG8ZfFvYg6msdhOMsJ+ZB?=
- =?us-ascii?Q?hw30U1hPsqkm2brR7a6GSt+tpuL7MTLIw3SY19yPi1oEo0fNVb01wOXAY7CV?=
- =?us-ascii?Q?d+ehLh+XS+2oD8Z3TrYbGnJZnbA/ve05ZGdgzwrIj+KiFK6o9tyJx3dYXTzq?=
- =?us-ascii?Q?eOFec54oIcQsdp6NdIFal8b1kyo7kpoPhyc1EGEvLjK/0+n/Il8f2BuNuSix?=
- =?us-ascii?Q?EsGahXMmYR4DPfY8J5LtkSMig0ECxriuwkEbbDzO3/g4plK2KdPAcjf9RChO?=
- =?us-ascii?Q?K0sCfrzCmQqm8SdIpPIHk2o4p6ophqjbIiGfiisf9CiVVLatzDCebPZrMgeP?=
- =?us-ascii?Q?ozKdP4XqxF/3K31B8QuDyYNdIjEoxp5ggGKbZ5tPiKp1fQCKm+WWJ3jekr6r?=
- =?us-ascii?Q?1ZAg/1hvC8KH1So8GHKBCKrfmqWYH9MQmlVVfKGbh0EO+LnlDIcaCA0lHtQY?=
- =?us-ascii?Q?bvQmhs/ue8o93QAceZtCQt4KSbhLaW9V4UA1ZPry?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com
+ [IPv6:2001:4860:4864:20::35])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A46AE10E1BD
+ for <amd-gfx@lists.freedesktop.org>; Thu,  2 Feb 2023 03:49:24 +0000 (UTC)
+Received: by mail-oa1-x35.google.com with SMTP id
+ 586e51a60fabf-16332831ed0so934124fac.10
+ for <amd-gfx@lists.freedesktop.org>; Wed, 01 Feb 2023 19:49:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=hP1zDGXgCJM9/Zlc/Vjz8LCV90QhvNKSjxx7mIADnVo=;
+ b=l2iVtqGgAXXMFMc2pvBttpwuXmXk2rgFBZA6+Pzuz7YKTsIUerbCr0N5i8GnGkjHWE
+ Xmk0eM+B/GoIOk/AfTWSaYbmzQxlsYmQZEKHSG1yrY/vBup3f9XWpbeYI3JxIgAqRnyL
+ r3AlHX7XRm+AtlsOkQK8FR3XiMIHS0JLvFy8X5b7Yko4YCw17kVbXsrOSHTPDYVRLh9i
+ O2gCJZSJi8QveIUptzGlsqTYANA/JsMUu/8393wyqkjdTyIO1qW4nIaoOj1mj1AAOcMu
+ tInXJaWjU4I4GFrmPXGIyNbvcbc4JV9BkPx0Tlibk2DTirFE11d+2IaQ9HXXDWAYFom9
+ P9uQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=hP1zDGXgCJM9/Zlc/Vjz8LCV90QhvNKSjxx7mIADnVo=;
+ b=US1FHHe8GMUeIDsK17C19uj7HXEKKWm+p3gbLX07ZiryZVOns/uYDrLjVFJv1SRpsx
+ tLYIhyw7y6ifB02/DBfBHFTJCR2sFl7lkgYaP3/JeCV3UH4WbiNgZZnlaiEIVKMToJfc
+ vyjluoyb+cxSLV+dtI1M4VLoVIh2iw1XpQa2pOMEsn2KktjN1IUrRL5Y5k3KO0uf7XzC
+ 41YGNLtbFASuc4i+7kwgAXfY/1NnmplRc6lbQB8F7sB8KFs2oSZL+ADVu9/thBfAcWWs
+ JX0amVZEXuJbp65jUA1ftCHfPpuzLPu4AcWnaFLWO4tH5xTbhYk/Eu7lqg0ulLXRZ6+o
+ 7+Tw==
+X-Gm-Message-State: AO0yUKWGYbxhypceuJWRG0FR2Wk0pG3HoYvfYWP0o3tWBR3HkRRm6zrh
+ UyPG0AURtqYRdsYpJvpVZ3ooDpHa5wqOnTiEFp0=
+X-Google-Smtp-Source: AK7set/aIHx4qW1r6bUrGWen90e75NWvrG9wH/bN5qftVmqHbdsVbly0K0WaCv/vjYSNHNMFZulKEZQ2cbI5soLBJRE=
+X-Received: by 2002:a05:6870:891f:b0:163:8cc6:86a with SMTP id
+ i31-20020a056870891f00b001638cc6086amr172668oao.46.1675309763880; Wed, 01 Feb
+ 2023 19:49:23 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY2PR06MB3213.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0000665a-9487-4af9-31d1-08db04c97a6c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Feb 2023 02:59:19.1437 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Zi3FHqtDe6U3xsU9SGyghQmZl5G1QkFgVNgiBJgiosg03YiIbL4vAZtIRQdTTM4CbmblJjjWH635XwZsdReyPw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR06MB3929
-X-Mailman-Approved-At: Thu, 02 Feb 2023 03:02:01 +0000
+References: <20230125183339.15664-1-mario.limonciello@amd.com>
+In-Reply-To: <20230125183339.15664-1-mario.limonciello@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 1 Feb 2023 22:49:12 -0500
+Message-ID: <CADnq5_NvUVJG8k_VPrm6N48ZUhnJTDBBB3WUrpCpeBTuq8YP8w@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd: Allow s0ix without BIOS support
+To: Mario Limonciello <mario.limonciello@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,53 +66,94 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- kbuild test robot <lkp@intel.com>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "kvmarm@lists.cs.columbia.edu" <kvmarm@lists.cs.columbia.edu>,
- Linux Memory Management List <linux-mm@kvack.org>,
- "kvmarm@lists.linux.dev" <kvmarm@lists.linux.dev>,
- Andrew Morton <akpm@linux-foundation.org>,
- "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
- "linux-trace-kernel@vger.kernel.org" <linux-trace-kernel@vger.kernel.org>
+Cc: =?UTF-8?Q?Rafael_=C3=81vila_de_Esp=C3=ADndola?= <rafael@espindo.la>,
+ amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-> Hi Neal,
->=20
-> On Thu, 2 Feb 2023, at 03:17, kernel test robot wrote:
-> > tree/branch:
-> > https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-> > master
-> > branch HEAD: 66eee64b235411d512bed4d672c2d00683239daf  Add
-> linux-next
-> > specific files for 20230201
-> >
-> >
-> > Unverified Error/Warning (likely false positive, please contact us if
-> > interested):
-> >
-> > drivers/crypto/aspeed/aspeed-acry.c:295:37: sparse: sparse: incorrect
-> > type in assignment (different base types)
-> > drivers/crypto/aspeed/aspeed-acry.c:305:28: sparse: sparse: cast
-> > removes address space '__iomem' of expression
-> > drivers/crypto/aspeed/aspeed-acry.c:606:24: sparse: sparse: symbol
-> > 'aspeed_acry_akcipher_algs' was not declared. Should it be static?
->=20
-> Can you please look into these issues with the ACRY driver?
->=20
-> Cheers,
->=20
-> Andrew
+On Wed, Jan 25, 2023 at 1:33 PM Mario Limonciello
+<mario.limonciello@amd.com> wrote:
+>
+> We guard the suspend entry code from running unless we have proper
+> BIOS support for either S3 mode or s0ix mode.
+>
+> If a user's system doesn't support either of these modes the kernel
+> still does offer s2idle in `/sys/power/mem_sleep` so there is an
+> expectation from users that it works even if the power consumption
+> remains very high.
+>
+> Rafael =C3=81vila de Esp=C3=ADndola reports that a system of his has a
+> non-functional graphics stack after resuming.  That system doesn't
+> support S3 and the FADT doesn't indicate support for low power idle.
+>
+> Through some experimentation it was concluded that even without the
+> hardware s0i3 support provided by the amd_pmc driver the power
+> consumption over suspend is decreased by running amdgpu's s0ix
+> suspend routine.
+>
+> The numbers over suspend showed:
+> * No patch: 9.2W
+> * Skip amdgpu suspend entirely: 10.5W
+> * Run amdgpu s0ix routine: 7.7W
+>
+> As this does improve the power, remove some of the guard rails in
+> `amdgpu_acpi.c` for only running s0ix suspend routines in the right
+> circumstances.
+>
+> However if this turns out to cause regressions for anyone, we should
+> revert this change and instead opt for skipping suspend/resume routines
+> entirely or try to fix the underlying behavior that makes graphics fail
+> after resume without underlying platform support.
+>
+> Reported-by: Rafael =C3=81vila de Esp=C3=ADndola <rafael@espindo.la>
+> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2364
+> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c | 8 ++------
+>  1 file changed, 2 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/drm/a=
+md/amdgpu/amdgpu_acpi.c
+> index 57b5e11446c65..fa7375b97fd47 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+> @@ -1079,20 +1079,16 @@ bool amdgpu_acpi_is_s0ix_active(struct amdgpu_dev=
+ice *adev)
+>          * S0ix even though the system is suspending to idle, so return f=
+alse
+>          * in that case.
+>          */
+> -       if (!(acpi_gbl_FADT.flags & ACPI_FADT_LOW_POWER_S0)) {
+> +       if (!(acpi_gbl_FADT.flags & ACPI_FADT_LOW_POWER_S0))
+>                 dev_warn_once(adev->dev,
+>                               "Power consumption will be higher as BIOS h=
+as not been configured for suspend-to-idle.\n"
+>                               "To use suspend-to-idle change the sleep mo=
+de in BIOS setup.\n");
+> -               return false;
 
-I just send patch to fix the first 2 warnings, and the last one warning is =
-already fixed by another patch.
-[PATCH-next] crypto: aspeed: fix type warnings
-https://patchwork.ozlabs.org/project/linux-aspeed/patch/20230119014859.1900=
-136-1-yangyingliang@huawei.com/
-Thanks
+Thinking about this more, I think we may need to check the asic type
+here.  Pre-Raven APUs didn't support S0ix at all so this may break
+them if they have any checks that use amdgpu_acpi_is_s0ix_active() in
+their code paths.
 
--Neal
+Alex
+
+
+> -       }
+>
+>  #if !IS_ENABLED(CONFIG_AMD_PMC)
+>         dev_warn_once(adev->dev,
+>                       "Power consumption will be higher as the kernel has=
+ not been compiled with CONFIG_AMD_PMC.\n");
+> -       return false;
+> -#else
+> -       return true;
+>  #endif /* CONFIG_AMD_PMC */
+> +       return true;
+>  }
+>
+>  #endif /* CONFIG_SUSPEND */
+> --
+> 2.25.1
+>
