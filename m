@@ -1,62 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E531688606
-	for <lists+amd-gfx@lfdr.de>; Thu,  2 Feb 2023 19:05:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B054688629
+	for <lists+amd-gfx@lfdr.de>; Thu,  2 Feb 2023 19:13:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F130E10E5C6;
-	Thu,  2 Feb 2023 18:05:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C283610E15B;
+	Thu,  2 Feb 2023 18:13:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 759 seconds by postgrey-1.36 at gabe;
- Thu, 02 Feb 2023 17:53:29 UTC
-Received: from mout.web.de (mout.web.de [212.227.17.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33E9E10E15B
- for <amd-gfx@lists.freedesktop.org>; Thu,  2 Feb 2023 17:53:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de; s=s29768273;
- t=1675360407; bh=mN21eH/XPnPq9kXuZrjxHtctM5qZSpOe1u7MdwrZ9zQ=;
- h=X-UI-Sender-Class:Subject:From:To:Date;
- b=k2sgI/iePeFTG95EhM6bpRBSnw5oIEMBeYR0A+DvE2ZezymJEfEXT/tm27J5bvEth
- uEVK9sYTqWR8qxlJrRxqiPijQ8967V8o700mhfRyGOkCgALSkkcRKbCODvyoYz1GzU
- 7+9ZOpGhojsW9od8e1RQuQYbGR6IglnwPyfuv33CuqLBEwaDZ6t/1ziWhN7Dr0SDNZ
- iNveXhKpn9Gfj9LLzOfC3WvuicLXbL+bSX/6jj6U0zlezr+xRhJGA+6zb4cBNpIJhY
- A7T6QDN28lS5reBZrDxkcEPhmVSM22Q/lb+Pqxkg/lL/4TAIUaHrU7UlDvCLIv9wGR
- yj0BzMnBBHWJg==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.0.101] ([176.198.191.160]) by smtp.web.de (mrweb105
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MYLii-1p9lpF3o38-00VXsR for
- <amd-gfx@lists.freedesktop.org>; Thu, 02 Feb 2023 18:40:48 +0100
-Message-ID: <905de6ced5f1798deb21a523910a05cf9ff691bc.camel@web.de>
-Subject: [PATCH] drm/amd: fix memory leak in amdgpu_cs_sync_rings
-From: Bert Karwatzki <spasswolf@web.de>
-To: amd-gfx@lists.freedesktop.org
-Date: Thu, 02 Feb 2023 18:40:45 +0100
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.3-1 
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com
+ [IPv6:2607:f8b0:4864:20::22e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3352810E15B
+ for <amd-gfx@lists.freedesktop.org>; Thu,  2 Feb 2023 18:13:45 +0000 (UTC)
+Received: by mail-oi1-x22e.google.com with SMTP id r205so2126628oib.9
+ for <amd-gfx@lists.freedesktop.org>; Thu, 02 Feb 2023 10:13:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=Uf/2wUtRE6JXY4wvtpdfNB3DwHlvu9eeDWmxhPLSBYs=;
+ b=jdMo4/I4fZz7TtckdPWxn9nfI9kN8j62s1szXQoLN937nIe0/Cj/kFBppQ9GLUY9pi
+ awTQ/oilODDeZuRwXhJdQdv4SrEcSnTmSHBqIrpqO4QaZMcIMhJ/Zc2ay5KGTuZcSMv1
+ PQXh01R0psnQ0CIFD3mmPX27os87B+iixdSlT4yMKL1AYIJbgOKc6vglBAnLG2JdHw0y
+ zjkbQBKDPgLWQukDAykriTX0ubVA8xBKfnTqAH9Em8r7lKd7toRDuQzDpFsMXlAAbVPO
+ VBuoyiWTZmM8/XwOFDIdfFXaO7jXZ/e72gNQD72Gp2tU5K/WeV+WY5F4wPBQAQXa+7Y0
+ bLyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Uf/2wUtRE6JXY4wvtpdfNB3DwHlvu9eeDWmxhPLSBYs=;
+ b=F/OADevobzG68jH20TW/OppLTXOWLxytbaJzAZnFsyAq2BWRHr5P3nkaqmqVfaX3aE
+ NlcIqLxohroJZ8ysK7ZE3KsLQnunw+CJT7428z1GMJx5lqliSUqmjOPwvZfu/TY6Hqus
+ Cb3j00dG/SvCQ+zXoS2XPodpAXXAnYAPrv5DmWdSt5OiXd6PI9KQrTIYtFkmod2vKFVW
+ VFrbAMcXTwp+1MC67vRtrDmX3CTwlj3XSdfammhwpSK4t3/wLiJ/IPPCgOc1LnzweUJ6
+ wn7/TzzF/LmQ5qV+lmCGVbW5aFxWqjyHVQ29a1y6gAFq+4VeugIgfaDyreqhUzaCrMd/
+ WGBQ==
+X-Gm-Message-State: AO0yUKVZqOWjOBfVGajgNFd3p4nIYmSyvmbFTpaNzNpnj2PnweVBbh44
+ Q29K/EVqoyOT7kZy2b0Qt1H6lZLNZEijMWkbWYLjRrNyEpg=
+X-Google-Smtp-Source: AK7set9h2A2N+a+CIyIzfSYU2ZR0eFxm7+OmNJM7ZgoO8MGA3TDi5/bbhq04yW16G6VsKQEg1cPQSWF82YzayP3dbIE=
+X-Received: by 2002:aca:e1c2:0:b0:35b:d93f:cbc4 with SMTP id
+ y185-20020acae1c2000000b0035bd93fcbc4mr217287oig.96.1675361624357; Thu, 02
+ Feb 2023 10:13:44 -0800 (PST)
 MIME-Version: 1.0
-X-Provags-ID: V03:K1:i5yE1HN6bET0YP4a/qcQLUlDdP4se0en6eFR68wttDnbCYTB45J
- jURyhgYxgdq1FhaXN181zUmvpt+6Lw4b0oLdQ9KEgKokJoJlvhzsPKZhuX9+WSeCTRlBrSw
- OufF46uYzGWMoQFEWEeJQZc7e3e840+XWeo0KebAIcZBsbWN6bl/HI0ROeez+o5vU5LTk72
- jmZoFPu2ETJ1BCttzyQEQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:N3GkSDQMxwo=;FgbrDn/ujakhF1vHeTVltPYg74D
- 6OqlwrKirQ4zXAU0HIOHjQgrHDbU0rgnJ7YokKDJrpLPwZgBCqPtziZ+BNH8w6VBo4GRZM7Zm
- k8dcyVtn2RgJCpwCIs5VFvUF/hPb+r1qQCGf6Kz+5GP4gTSi9HFZNvfwc51hgzqg8N/ZiMWoJ
- c/jRoHdPqqq4QpNpzzDjguExHvZxO6lz9kUdGoJN122qr3QhEx47O3/dwYWH7NLbIusERVgyI
- F3c02H/RSnlVygL7KJLAkIDO69LKIx1e5H7TZpDV1trJF2MXk1GIZFpqE44uhlcTq4Z3RGX8D
- YPOirrfGUFCOibDeP/PAuhZfITkuR4VmW3vyxamTQ2N3dLmbNzFLb2TctuAQvMQjZgu4/+0uO
- eE+dBR2Sjd568Z+Grf/DS+zm5CSQ38Jb+l+gSMPm27YuEKdVMr8Vbx/Ecbcg2V16tCy+jF2ad
- 23JK6ZHaxcmz6IcnAX/TfJSWLsOrX7e/+1VuTA4sO6g/Je6jlXw5bO2nUj8uE5JbJXuRgR21X
- q3JmcRtsQ4c4qm2V6EokixPHBXUbrdOOzREvl60HoyzrDxZaDSAkoW+l/0bl8VjEoHh2MC3ld
- OTuuoDqQnAJkn+rcKVZHG+ZBvAIOH3AftCmRkIr3xj7xPbhaTPzPdDbJo3SPJrlVlLtgi3HI1
- lXS8914I6dLs+4AQd9LeaobhVWesjwWSyrA4MzuSsPTj4b/IPqn5V2uMbAzUBvEVJ1w5NpY/M
- I9L7QvPeONDSTZS5wk+on6xXM0oJyH24fR1QPk9+KoWrLgk6OpREFlH3giyk137YFIVyAtF56
- w5V0SIzyvqH2CTX/QCSXBBqUadyb8jUgK4cxZqcGB7iJgTekWNJVtxdjpbA+4qocdJNtQ7pVE
- 1bBRH5yywEenbj7Wkc+07TYtQQ0ZCh8TRiZguiqMM60tCRTRA9VT8fmi+5jzzhdM3B0NMwHOH
- HjWJag==
-X-Mailman-Approved-At: Thu, 02 Feb 2023 18:05:32 +0000
+References: <905de6ced5f1798deb21a523910a05cf9ff691bc.camel@web.de>
+In-Reply-To: <905de6ced5f1798deb21a523910a05cf9ff691bc.camel@web.de>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 2 Feb 2023 13:13:32 -0500
+Message-ID: <CADnq5_N97JdMT_yk-X+RgMuO_=P3FNaYFN7URvNc38icGkjxWQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd: fix memory leak in amdgpu_cs_sync_rings
+To: Bert Karwatzki <spasswolf@web.de>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,37 +63,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-amdgpu_sync_get_fence deletes the returned fence from the syncobj, so
-the refcount of fence needs to lowered to avoid a memory leak:
-https://gitlab.freedesktop.org/drm/amd/-/issues/2360
+On Thu, Feb 2, 2023 at 1:05 PM Bert Karwatzki <spasswolf@web.de> wrote:
+>
+> amdgpu_sync_get_fence deletes the returned fence from the syncobj, so
+> the refcount of fence needs to lowered to avoid a memory leak:
+> https://gitlab.freedesktop.org/drm/amd/-/issues/2360
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index 0f4cb41078c1..08eced097bd8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -1222,10 +1222,13 @@ static int amdgpu_cs_sync_rings(struct
-amdgpu_cs_parser *p)
-                 * next job actually sees the results from the previous
-one
-                 * before we start executing on the same scheduler
-ring.
-                 */
--               if (!s_fence || s_fence->sched !=3D sched)
-+               if (!s_fence || s_fence->sched !=3D sched) {
-+                       dma_fence_put(fence);
-                        continue;
-+               }
-=20
-                r =3D amdgpu_sync_fence(&p->gang_leader->explicit_sync,
-fence);
-+               dma_fence_put(fence);
-                if (r)
-                        return r;
-        }
+Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/2360
 
+Please send a proper patch using git-format-patch.  Also, please add
+your Signed-off-by line.
 
-Bert Karwatzki
+With those fixed, the patch is:
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> index 0f4cb41078c1..08eced097bd8 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> @@ -1222,10 +1222,13 @@ static int amdgpu_cs_sync_rings(struct
+> amdgpu_cs_parser *p)
+>                  * next job actually sees the results from the previous
+> one
+>                  * before we start executing on the same scheduler
+> ring.
+>                  */
+> -               if (!s_fence || s_fence->sched != sched)
+> +               if (!s_fence || s_fence->sched != sched) {
+> +                       dma_fence_put(fence);
+>                         continue;
+> +               }
+>
+>                 r = amdgpu_sync_fence(&p->gang_leader->explicit_sync,
+> fence);
+> +               dma_fence_put(fence);
+>                 if (r)
+>                         return r;
+>         }
+>
+>
+> Bert Karwatzki
