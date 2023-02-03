@@ -1,127 +1,53 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7A8E688F5A
-	for <lists+amd-gfx@lfdr.de>; Fri,  3 Feb 2023 07:05:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 982EF689473
+	for <lists+amd-gfx@lfdr.de>; Fri,  3 Feb 2023 10:56:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B14910E715;
-	Fri,  3 Feb 2023 06:05:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2254010E4C2;
+	Fri,  3 Feb 2023 09:56:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE80710E715
- for <amd-gfx@lists.freedesktop.org>; Fri,  3 Feb 2023 06:05:03 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YrWibYvAQP4uPDByZ/xZNOb/oBQ9GF8wa64m9yf6voj7FD+zMJJCDmh5omlLUjaXi6S33hYCoONs8ZlmawKs3pobDTElztomR2wE8V5mQXyMdlfiDJaT+eadtfjE2z9g7WgBRaxDnF1ZVKNUpgs0aXEpIDrg22Fw195vyiV2zE3ItzfmyxxVIDKCrc3V+9PiCHDJ1MhV/PTZi1ni2nxaTtgyCo9rykBtoM8mtmAf+Na+6lpRkrNSMVUA+Dw4Z6UWh4UiS9YRo7/w9sWwBklj8MufJEfywAtsc8CF6nNm+Awte1Dwt4ounqXYZNM6FsbmEFoTxy/fshfP2Up870+npw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IUB3pWBfkQ464VBAp1BCb7cOeWCxtwnczhVcXjX5nKg=;
- b=Ps9FjgpNBltpdayMT0gV2N2ZngO3DEP59molQczI777QYdNoA7uof6g/6GrOtFXAiSjXJERbSHfW8u1xx6BdL7WRncgBzEdm5vfzAtxZhqDHjf1UB5gYVGzln0X4Fw4Z6UWHshQN0yGYvBKX8XTspw6Ka3qyZY3OO0o2/6YMO0mtBRkhTyM+nlHRw2lZuPNPv5/M7u7deOhlNv42MR6PF47zeAbrTptZBNheTBdBmA86AGrmFKvXCY5pwiP8buVC7QZPYJhAssLiCdglWuFDbgghEL6pya8yUSgoXTA+dCBefR8w1v971dgY470fNZY4nqJ4lOd/+8lqgrlceWkA6g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IUB3pWBfkQ464VBAp1BCb7cOeWCxtwnczhVcXjX5nKg=;
- b=Ou6oZ0ds6fRYFxyJF7N1Fy9hK2xkvz+bRlcQv2i9gitSqPXgY1gxCtCKYanqv2UWf2Qe9c2BmXr8vpYir0tbRvNzdLQmsWMVgddX0NiEErUGWWvq7DXmgqxYVEGXjLzEQUEdyx8/sddQvLkgK5n7UN4Fkkeug9S6Rd5Er4cnpA0=
-Received: from MW3PR12MB4458.namprd12.prod.outlook.com (2603:10b6:303:5d::10)
- by LV2PR12MB5992.namprd12.prod.outlook.com (2603:10b6:408:14e::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.29; Fri, 3 Feb
- 2023 06:05:00 +0000
-Received: from MW3PR12MB4458.namprd12.prod.outlook.com
- ([fe80::bac5:385f:b991:c9c0]) by MW3PR12MB4458.namprd12.prod.outlook.com
- ([fe80::bac5:385f:b991:c9c0%7]) with mapi id 15.20.6064.027; Fri, 3 Feb 2023
- 06:04:59 +0000
-From: "Xiao, Jack" <Jack.Xiao@amd.com>
-To: "Koenig, Christian" <Christian.Koenig@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Deucher,
- Alexander" <Alexander.Deucher@amd.com>
-Subject: RE: [PATCH] drm/amdgpu: only WARN freeing buffers when DMA is
- unavailable
-Thread-Topic: [PATCH] drm/amdgpu: only WARN freeing buffers when DMA is
- unavailable
-Thread-Index: AQHZNuxfg8FNVol4pke6J9qzLuANM667iUeAgAExmRA=
-Date: Fri, 3 Feb 2023 06:04:59 +0000
-Message-ID: <MW3PR12MB4458B37F3A4E9AF91F35279FEFD79@MW3PR12MB4458.namprd12.prod.outlook.com>
-References: <20230202095416.4039818-1-Jack.Xiao@amd.com>
- <BYAPR12MB35899E39061894E55AC07FE383D69@BYAPR12MB3589.namprd12.prod.outlook.com>
-In-Reply-To: <BYAPR12MB35899E39061894E55AC07FE383D69@BYAPR12MB3589.namprd12.prod.outlook.com>
-Accept-Language: en-001, zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2023-02-03T06:04:55Z; 
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=b7025091-7a1d-4cf6-a18f-7d7fe639988a;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=1
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_enabled: true
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_setdate: 2023-02-03T06:04:55Z
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_method: Standard
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_name: General
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_actionid: adca154d-77cc-4c1a-9622-09d80d1e5952
-msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_contentbits: 0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MW3PR12MB4458:EE_|LV2PR12MB5992:EE_
-x-ms-office365-filtering-correlation-id: 9895acbb-9def-4748-8788-08db05ac94f4
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: iIczPKzLF3uDMmf1mf3NpwPFmkP4Hgkra36MvoUI263YLprQ5C05RVAmzsvda7VTUlmurLaoMj9Y16kC5WaWqzJFyIFEkgdLzZtkvQWfdHLWpq2b71WWQ9ryVAg7vLEtZpSKmR5Kf1mjTVYJomUV5Yt673+s7a2WFnxoSLNE3DucC+36OZ3HT0C4KH3Jj4Rf6VKxcjrfY4lytbcIRptXwvFvnzEXzFpiV9vBCspsXcejy0/LXsNfKTNVMtr+oScsNLjdCA2pM3eixgmlY+QQs1u8KHln+Z3njaZQD2rO2rkU+SnHgvCRga+PYw1FQxuD3PBQ0KmsSA8+eBRbIWD7R9d5ers+Zg4KJr5bx1G9b5BgYsw27f8LKi2qImFsFBI6N+OTiYPCqz3rhCzkc3n26xlNwpmzcmg3470rzXwzNxXNKTsEQ0MVqdLmSmVTJEMgnrwLwMOuYP52B3WcNTZa85Ff2pjAzaDh8uLqK+3XmjGbS3KByMpYfuzrC5b5Xeqv9ldntFTCVoW9A3+8tX3x8iP0ZMcLbFcnjPAbq4NuV8yzabt6XiGuUgv5Sk6Lbmkc1HxDTokJUh7eExObtwi2d8sfl4X/wkmdOjz/+io6a19bNIPoGWbbepR4G5U6kxgJ8XT2ATC7dEiRSvOwHX+8MyTKRFvH/o1pbhCOVYUwP5faE8GyvNL3SZ01zLJPaHGIPNDIRahu9uA3CIE3Srlpsw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW3PR12MB4458.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(4636009)(136003)(376002)(396003)(346002)(366004)(39860400002)(451199018)(122000001)(38100700002)(316002)(5660300002)(6636002)(110136005)(52536014)(83380400001)(33656002)(38070700005)(55016003)(86362001)(7696005)(186003)(2906002)(26005)(9686003)(478600001)(71200400001)(66946007)(66446008)(64756008)(66476007)(66556008)(76116006)(6506007)(8676002)(41300700001)(53546011)(8936002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?rk+XmNoZN/RObe9DH+YHeGt6UaJuZvZdGEh1rb3dU7aSS9gQtTrdRaxnF/C9?=
- =?us-ascii?Q?ifZFX5QOVpsVRaYTz7kn2ICR1aH7CnzAstgi0WTekO10XNKSUP3av4+7YUIC?=
- =?us-ascii?Q?arBVWcOhEYmojH294UGY5aG6nbkT6uMnUdGnaylJCVk497RcL6DZEzEhuqMH?=
- =?us-ascii?Q?i1bm08MlXuripy1xUAxP3NOhwdp9ZIsC4dNdIqnyoB4Bi5jfrpz4ZUiTRuml?=
- =?us-ascii?Q?CRVJyfnLaxtx/sHWx73SHoE6v5TthWZP0sYyvC1s8FQqbAHUfyKNVdwEaED3?=
- =?us-ascii?Q?lX2Bft2+LgFURRZz/diioGBzg3grMd3AA6IFy9eop+8R6s8V0HsNH9Dzu/u2?=
- =?us-ascii?Q?srL+p+P9QpxuI/YJ/4k/I0YaI4eJMIGrK2BiYQjzb1nqu4C17RvB/k/06YQ5?=
- =?us-ascii?Q?tGMqmfGFWIr0TJLc4+01uE8Tse58LBMHwENeegprOl0LD/eNHFDdSOwHM2Uy?=
- =?us-ascii?Q?asy1BLgR16ADXxb799zHZt06/eFELfCY8Zp5NQK2U/GtVg0NLaQ051ovZ/2c?=
- =?us-ascii?Q?k7Ha/U7BKoCkRiDaaJ7uTZKZ1Cqxd8TPz8Br5eJhbAuib3Q4qpuTfjxnbCYj?=
- =?us-ascii?Q?0h83WDNkzsw2NK6bDjJ5hJaYETNTwFIpnkWBWXxam2KM5LF5HKpH/TNAZaSZ?=
- =?us-ascii?Q?KDGUnrwn+fuAIAhFJnHhUM5KjaIKC7yNK3Wgo/mAU93YHdNlo8fMfCIllgGI?=
- =?us-ascii?Q?Nt2hjNuu7rm2kSole+U0fwNxroviQ2JlCeIPJZuXmQ/UDpx1+MzcMfJ0bcYF?=
- =?us-ascii?Q?NJ/ZCkB6HhOqTN7D2IUBCthjRpOVpSX4hiu0Rs26lwYxgtXxaGuLF10Nnlo4?=
- =?us-ascii?Q?iGic5zbvmtCYBDKnpoC3wlY5Xdv66rrDstMMTowNNR/pceXAQliUr6zVXmRB?=
- =?us-ascii?Q?JuJRl6b1PmLBSsH0d6h1Xv+5BG26A26J0XfUCmJytY0Hkp4bPdGz6K51Vgq8?=
- =?us-ascii?Q?UltphJtkG1zOouxkLEKejQdzQClqHzaWAMCJ2pkmQXVrV3EywilwPt4ZSVBo?=
- =?us-ascii?Q?loTjae+NPFOAwldndbN1cMHOuloSw6P6G986gFNNazd568mNQJ+3Pn5CkVAL?=
- =?us-ascii?Q?8eHc9bClaodk9ts07mQqh6fIEkon5oYIN/d4/ECW/ZDiInvH6z4YIceQB4cb?=
- =?us-ascii?Q?oaxLzCt7tWRwZI/EM6Vgf/PKL6I+UwvApF7ecm0vukgTStgqy6SxEHt12F3Q?=
- =?us-ascii?Q?vU2+5CtlNxIiP0wCGfiMbrFAiDwWI2lvAIwXnPlxovOjNEJhDCgP1HajVxkz?=
- =?us-ascii?Q?u8BjjwhdeuY/myfdCN+MMccM0E8CyNSk7VhB5pB5LeoiPOnnfb4ADrwkIgic?=
- =?us-ascii?Q?DbuwaUIvE5OoTltRspWx7ik4V7rPegKtus7EYhtTrKzfKhCN7qoqOzLj14f7?=
- =?us-ascii?Q?vMebOkv7u+cV9yRFXrkUElJREDLlnl4czE12VQy/8N6w7bSyGjbuRvBgooYX?=
- =?us-ascii?Q?t+rcKnlI0ufEfVJ1G5YidFCzOxtgjA8bEY31UisgqMuvJP0Z52UW/MN2aI2Z?=
- =?us-ascii?Q?COATQxVvJvCwjZlbLRP0emEf49X9QdXdZOMn1D0ATUBWC9eRhAEARwyt4eMJ?=
- =?us-ascii?Q?GXWRfsEJfQHuIZrjuVM=3D?=
-Content-Type: multipart/alternative;
- boundary="_000_MW3PR12MB4458B37F3A4E9AF91F35279FEFD79MW3PR12MB4458namp_"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7F0B10E204;
+ Fri,  3 Feb 2023 09:34:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1675416850; x=1706952850;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=lD7oSSRofIqXsWOTqg3W9n3eJ2CdBBqnJIZvkqZb5aQ=;
+ b=aC65koGkUyQ2nzD0x3iaH8uELzJCMh/3po335LtJIc6OBRkzfN+umDod
+ 7aHTJ9mzB5tc51JxoZrTqYhejRKPYEn+JJdFuvsVW7aS7C4I5u8nI11lD
+ 7v7OikYhzkVFzA+0unLJmw1bbRHa8pEL5b6rTvh6jeRxIdg3YwtJcewdA
+ BF1zx2pI3e8vJtcFVLRHK/r7JtEppBrC2iT1XDGePxEBVfinyT7gUEnil
+ xEIrpW4pQzIu0ZpbokqKXKmBYPL80N5FMhSxFnC64MLEI16PLebZfrsst
+ Qbb7Awjsvbf/X3XoNX2yTVkENAS3g9nS2DqTppY1mt7sWfjcnWxcgQQ42 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="312359639"
+X-IronPort-AV: E=Sophos;i="5.97,270,1669104000"; d="scan'208";a="312359639"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2023 01:34:10 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10609"; a="729207325"
+X-IronPort-AV: E=Sophos;i="5.97,270,1669104000"; d="scan'208";a="729207325"
+Received: from cciobanu-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.35.96])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2023 01:34:05 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Jim Cromie <jim.cromie@gmail.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v3 00/19] fix DRM_USE_DYNAMIC_DEBUG regression
+In-Reply-To: <20230125203743.564009-1-jim.cromie@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230125203743.564009-1-jim.cromie@gmail.com>
+Date: Fri, 03 Feb 2023 11:34:02 +0200
+Message-ID: <87a61v14ad.fsf@intel.com>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MW3PR12MB4458.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9895acbb-9def-4748-8788-08db05ac94f4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Feb 2023 06:04:59.4468 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 96C1rp/fCIropiPDQvILUA4V+d5CMvsEidkoosXki4DKhS/9lfxgL6fCpw93zI4Q
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5992
+Content-Type: text/plain
+X-Mailman-Approved-At: Fri, 03 Feb 2023 09:56:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,252 +59,235 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jim Cromie <jim.cromie@gmail.com>, daniel.vetter@ffwll.ch,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, robdclark@gmail.com, seanpaul@chromium.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, Greg KH <gregkh@linuxfoundation.org>,
+ Dave Airlie <airlied@gmail.com>, ville.syrjala@linux.intel.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---_000_MW3PR12MB4458B37F3A4E9AF91F35279FEFD79MW3PR12MB4458namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-[AMD Official Use Only - General]
-
->> It's simply illegal to free up memory during suspend.
-Why? In my understanding, the limit was caused by DMA shutdown.
-
-Regards,
-Jack
-
-From: Koenig, Christian <Christian.Koenig@amd.com>
-Sent: Thursday, February 2, 2023 7:43 PM
-To: Xiao, Jack <Jack.Xiao@amd.com>; amd-gfx@lists.freedesktop.org; Deucher,=
- Alexander <Alexander.Deucher@amd.com>
-Subject: AW: [PATCH] drm/amdgpu: only WARN freeing buffers when DMA is unav=
-ailable
-
-Big NAK to this! This warning is not related in any way to the hw state.
-
-It's simply illegal to free up memory during suspend.
-
-Regards,
-Christian.
-
-________________________________
-Von: Xiao, Jack <Jack.Xiao@amd.com<mailto:Jack.Xiao@amd.com>>
-Gesendet: Donnerstag, 2. Februar 2023 10:54
-An: amd-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org> <am=
-d-gfx@lists.freedesktop.org<mailto:amd-gfx@lists.freedesktop.org>>; Deucher=
-, Alexander <Alexander.Deucher@amd.com<mailto:Alexander.Deucher@amd.com>>; =
-Koenig, Christian <Christian.Koenig@amd.com<mailto:Christian.Koenig@amd.com=
->>
-Cc: Xiao, Jack <Jack.Xiao@amd.com<mailto:Jack.Xiao@amd.com>>
-Betreff: [PATCH] drm/amdgpu: only WARN freeing buffers when DMA is unavaila=
-ble
-
-Reduce waringings, only warn when DMA is unavailable.
-
-Signed-off-by: Jack Xiao <Jack.Xiao@amd.com<mailto:Jack.Xiao@amd.com>>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_object.c
-index 2d237f3d3a2e..e3e3764ea697 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -422,7 +422,8 @@ void amdgpu_bo_free_kernel(struct amdgpu_bo **bo, u64 *=
-gpu_addr,
-         if (*bo =3D=3D NULL)
-                 return;
-
--       WARN_ON(amdgpu_ttm_adev((*bo)->tbo.bdev)->in_suspend);
-+       WARN_ON(amdgpu_ttm_adev((*bo)->tbo.bdev)->in_suspend &&
-+               !amdgpu_ttm_adev((*bo)->tbo.bdev)->ip_blocks[AMD_IP_BLOCK_T=
-YPE_SDMA].status.hw);
-
-         if (likely(amdgpu_bo_reserve(*bo, true) =3D=3D 0)) {
-                 if (cpu_addr)
---
-2.37.3
-
---_000_MW3PR12MB4458B37F3A4E9AF91F35279FEFD79MW3PR12MB4458namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On Wed, 25 Jan 2023, Jim Cromie <jim.cromie@gmail.com> wrote:
+> Hi everyone,
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:DengXian;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@DengXian";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-p.msipheaderdf3d92d6, li.msipheaderdf3d92d6, div.msipheaderdf3d92d6
-	{mso-style-name:msipheaderdf3d92d6;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
-break-word">
-<div class=3D"WordSection1">
-<p class=3D"msipheaderdf3d92d6" style=3D"margin:0in"><span style=3D"font-si=
-ze:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:blue">[AMD Officia=
-l Use Only - General]</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&gt;&gt; It's simply illegal to free up memory durin=
-g suspend.<o:p></o:p></p>
-<p class=3D"MsoNormal">Why? In my understanding, the limit was caused by DM=
-A shutdown.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Jack<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b>From:</b> Koenig, Christian &lt;Christian.Koenig@=
-amd.com&gt; <br>
-<b>Sent:</b> Thursday, February 2, 2023 7:43 PM<br>
-<b>To:</b> Xiao, Jack &lt;Jack.Xiao@amd.com&gt;; amd-gfx@lists.freedesktop.=
-org; Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;<br>
-<b>Subject:</b> AW: [PATCH] drm/amdgpu: only WARN freeing buffers when DMA =
-is unavailable<o:p></o:p></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal">Big NAK to this! This warning is not related in any =
-way to the hw state.<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">It's simply illegal to free up memory during suspend=
-.<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Christian.<o:p></o:p></p>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
-<hr size=3D"2" width=3D"98%" align=3D"center">
-</div>
-<div id=3D"divRplyFwdMsg">
-<p class=3D"MsoNormal"><b><span style=3D"color:black">Von:</span></b><span =
-style=3D"color:black"> Xiao, Jack &lt;<a href=3D"mailto:Jack.Xiao@amd.com">=
-Jack.Xiao@amd.com</a>&gt;<br>
-<b>Gesendet:</b> Donnerstag, 2. Februar 2023 10:54<br>
-<b>An:</b> <a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.f=
-reedesktop.org</a> &lt;<a href=3D"mailto:amd-gfx@lists.freedesktop.org">amd=
--gfx@lists.freedesktop.org</a>&gt;; Deucher, Alexander &lt;<a href=3D"mailt=
-o:Alexander.Deucher@amd.com">Alexander.Deucher@amd.com</a>&gt;;
- Koenig, Christian &lt;<a href=3D"mailto:Christian.Koenig@amd.com">Christia=
-n.Koenig@amd.com</a>&gt;<br>
-<b>Cc:</b> Xiao, Jack &lt;<a href=3D"mailto:Jack.Xiao@amd.com">Jack.Xiao@am=
-d.com</a>&gt;<br>
-<b>Betreff:</b> [PATCH] drm/amdgpu: only WARN freeing buffers when DMA is u=
-navailable</span>
-<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
-</div>
-</div>
-<div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">Reduce waringings, on=
-ly warn when DMA is unavailable.<br>
-<br>
-Signed-off-by: Jack Xiao &lt;<a href=3D"mailto:Jack.Xiao@amd.com">Jack.Xiao=
-@amd.com</a>&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 3 ++-<br>
-&nbsp;1 file changed, 2 insertions(+), 1 deletion(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_object.c<br>
-index 2d237f3d3a2e..e3e3764ea697 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c<br>
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c<br>
-@@ -422,7 +422,8 @@ void amdgpu_bo_free_kernel(struct amdgpu_bo **bo, u64 *=
-gpu_addr,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (*bo =3D=3D NULL)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; return;<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WARN_ON(amdgpu_ttm_adev((*bo)-&gt;tbo=
-.bdev)-&gt;in_suspend);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WARN_ON(amdgpu_ttm_adev((*bo)-&gt;tbo=
-.bdev)-&gt;in_suspend &amp;&amp;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; !amdgpu_ttm_adev((*bo)-&gt;tbo.bdev)-&gt;ip_blocks[AMD_IP_BLOCK_=
-TYPE_SDMA].status.hw);<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (likely(amdgpu_bo_reser=
-ve(*bo, true) =3D=3D 0)) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; if (cpu_addr)<br>
--- <br>
-2.37.3<o:p></o:p></p>
-</div>
-</div>
-</div>
-</body>
-</html>
+> In v6.1 DRM_USE_DYNAMIC_DEBUG=y has a regression enabling drm.debug in
+> drivers at modprobe.
 
---_000_MW3PR12MB4458B37F3A4E9AF91F35279FEFD79MW3PR12MB4458namp_--
+I realize we haven't actually addressed the regression in any way yet,
+and any distro enabling DYNAMIC_DEBUG || DYNAMIC_DEBUG_CORE will have
+DRM_USE_DYNAMIC_DEBUG=y by default, and we're hitting the issue with
+trying to gather logs from users on v6.1 or later. It hampers debugging
+pretty badly.
+
+I appreciate the effort in fixing the problem properly here, but we'll
+need a fix that we can backport to stable kernels.
+
+Maybe just Ville's idea of
+
+ config DRM_USE_DYNAMIC_DEBUG
+        bool "use dynamic debug to implement drm.debug"
+-       default y
++       default n
++       depends on BROKEN
+        depends on DRM
+        depends on DYNAMIC_DEBUG || DYNAMIC_DEBUG_CORE
+
+but we'll need that as a patch and merged and backported ASAP.
+
+In the mean time, is there a workaround that the user could enable, say,
+on the kernel command line, to enable drm debugs on driver kernel
+modules, all the way from boot?
+
+
+BR,
+Jani.
+
+
+
+
+>
+> It is due to a chicken-egg problem loading modules; on `modprobe
+> i915`, drm is loaded 1st, and drm/parameters/debug is set.  When
+> drm_debug_enabled() tested __drm_debug at runtime, this just worked.
+>
+> But with DRM_USE_DYNAMIC_DEBUG=y, the runtime test is replaced with a
+> static_key for each drm_dbg/dyndbg callsite, enabled by dyndbg's
+> kparam callback on __drm_debug.  So with drm.ko loaded and initialized
+> before the dependent modules, their debug callsites aren't yet present
+> to be enabled.
+>
+> STATUS - v3
+>
+> not quite ready.
+> rebased on -rc5, hopefully applies to patchwork head 
+> still has RFC patch -> CI_ONLY temporary, to avoid panics
+> boots on my amdgpu box, drm.debug=0x3ff works at boot-time
+> the "toggled" warning is repeatable with test_dynamic_debug*.ko
+> it also occurs on amdgpu, so not just artificial.
+> v2 is https://lore.kernel.org/lkml/20230113193016.749791-1-jim.cromie@gmail.com/
+>
+> OVERVIEW
+>
+> As Jani Nikula noted rather more gently, DECLARE_DYNDBG_CLASSMAP is
+> error-prone enough to call broken: sharing of a common classmap
+> required identical classmap definitions in all modules using DRM_UT_*,
+> which is inherently error-prone.  IOW, it muddled the K&R distinction
+> between a (single) definition, and multiple references.
+>
+> So patches 10-13 split it into:
+>
+> DYNDBG_CLASSMAP_DEFINE	used once per subsystem to define each classmap.
+> DYNDBG_CLASSMAP_USE	declare dependence on a DEFINEd classmap.
+>
+> DYNDBG_CLASSMAP_DEFINE initializes the classmap, stores it into the
+> (existing) __dyndbg_classes section, and exports the struct var
+> (unlike DECLARE_DYNDBG_CLASSMAP).
+>
+> DYNDBG_CLASSMAP_USE initializes a class-ref struct, containing the
+> user-module-name, and a ref to the exported classmap var.
+>
+> The distinction allows separate treatment of classmaps and
+> classmap-refs, the latter getting additional behavior to propagate
+> parent's kparam settings to USEr. (forex: drm.debug to drm-drivers) 
+>
+> . lookup the classmap defn being referenced, and its module
+> . find the module's kernel-params using the classmap
+> . propagate kparam vals into the prdgs in module being added.
+>
+> It also makes the weird coordinated-changes-by-identical-classmaps
+> "feature" unnecessary.
+>
+> Patch-10 splits the DECLARE macro into DEFINE & USE, and updates uses.
+>
+> Patch-11 is the core of it; the separate treatment begins in
+> ddebug_add_module().  It calls ddebug_attach_module_classes(1) to
+> handle class-defns; this adds ddebug_attach_client_module_classes(2)
+> to handle class-refs, as they are found while modprobing drm
+> drivers. (2) calls ddebug_apply_parents_params(3) on each USEr's
+> referred classmap definition.
+>
+> (3) scans kernel-params owned by the module DEFINEing the classmap,
+> either builtin or loadable, calls ddebug_match_apply_kparam(4) on each.
+>
+> (4) looks for kparams which are wired to dyndbg's param-ops.  Those
+> params have a struct ddebug_class_param attached, which has a classmap
+> and a ref to a state-var (__drm_debug for DRM case).  If the kparam's
+> classmap is the same as from (2), then apply its state-var to the
+> client module by calling ddebug_apply_class_bitmap().
+>
+> Patch-12 cleans up DYNDBG_CLASSMAP_USE, dropping now unneeded args.
+>
+> Patch-13 improves DYNDBG_CLASSMAP_DEFINE, by accepting DRM_UT_*
+> symbols directly, not "DRM_UT_*" (their strings).  It adds new
+> include/linux/map.h to support this.
+>
+> Patches 1-9 are prep, refactor, cleanup, tighten interfaces
+>
+> Patches 15-18 extend test_dynamic_debug to recreate DRM's multi-module
+> regression; it builds both test_dynamic_debug.ko and _submod.ko, with
+> an ifdef to _DEFINE in the main module, and _USE in the submod.  This
+> gives both modules identical set of prdbgs, which is helpful for
+> comparing results.
+>
+> here it is, working properly:
+>
+> doing class DRM_UT_CORE -p
+> [ 9904.961750] dyndbg: read 21 bytes from userspace
+> [ 9904.962286] dyndbg: query 0: "class DRM_UT_CORE -p" mod:*
+> [ 9904.962848] dyndbg: split into words: "class" "DRM_UT_CORE" "-p"
+> [ 9904.963444] dyndbg: op='-' flags=0x0 maskp=0xfffffffe
+> [ 9904.963945] dyndbg: parsed: func="" file="" module="" format="" lineno=0-0 class=DRM_UT_CORE
+> [ 9904.964781] dyndbg: good-class: drm.DRM_UT_CORE  module:drm nd:302 nc:1 nu:0
+> [ 9904.966411] dyndbg: class-ref: drm_kms_helper.DRM_UT_CORE  module:drm_kms_helper nd:95 nc:0 nu:1
+> [ 9904.967265] dyndbg: class-ref: drm_display_helper.DRM_UT_CORE  module:drm_display_helper nd:150 nc:0 nu:1
+> [ 9904.968349] dyndbg: class-ref: i915.DRM_UT_CORE  module:i915 nd:1659 nc:0 nu:1
+> [ 9904.969801] dyndbg: class-ref: amdgpu.DRM_UT_CORE  module:amdgpu nd:4425 nc:0 nu:1
+> [ 9904.977079] dyndbg: class-ref: nouveau.DRM_UT_CORE  module:nouveau nd:103 nc:0 nu:1
+> [ 9904.977830] dyndbg: processed 1 queries, with 507 matches, 0 errs
+> doing class DRM_UT_DRIVER +p
+> [ 9906.151761] dyndbg: read 23 bytes from userspace
+> [ 9906.152241] dyndbg: query 0: "class DRM_UT_DRIVER +p" mod:*
+> [ 9906.152793] dyndbg: split into words: "class" "DRM_UT_DRIVER" "+p"
+> [ 9906.153388] dyndbg: op='+' flags=0x1 maskp=0xffffffff
+> [ 9906.153896] dyndbg: parsed: func="" file="" module="" format="" lineno=0-0 class=DRM_UT_DRIVER
+> [ 9906.154746] dyndbg: good-class: drm.DRM_UT_DRIVER  module:drm nd:302 nc:1 nu:0
+> [ 9906.155433] dyndbg: class-ref: drm_kms_helper.DRM_UT_DRIVER  module:drm_kms_helper nd:95 nc:0 nu:1
+> [ 9906.156267] dyndbg: class-ref: drm_display_helper.DRM_UT_DRIVER  module:drm_display_helper nd:150 nc:0 nu:1
+> [ 9906.157365] dyndbg: class-ref: i915.DRM_UT_DRIVER  module:i915 nd:1659 nc:0 nu:1
+> [ 9906.163848] dyndbg: class-ref: amdgpu.DRM_UT_DRIVER  module:amdgpu nd:4425 nc:0 nu:1
+> [ 9906.178963] dyndbg: class-ref: nouveau.DRM_UT_DRIVER  module:nouveau nd:103 nc:0 nu:1
+> [ 9906.179934] dyndbg: processed 1 queries, with 1286 matches, 0 errs
+>
+>
+> Patch-19 is a *workaround* for a panic: __jump_label_patch can "crash
+> the box" when the jump-entry is in the wrong state.  The current code
+> makes no distinction between a well-formed "toggled" state and an
+> "insane" state.  Not for keeps.
+>
+> It fixes mis-initialization problems like this:
+>
+> [ 1594.032504] dyndbg: query 0: "class D2_DRIVER -p" mod:*
+> [ 1594.032823] dyndbg: split into words: "class" "D2_DRIVER" "-p"
+> [ 1594.033183] dyndbg: op='-' flags=0x0 maskp=0xfffffffe
+> [ 1594.033507] dyndbg: parsed: func="" file="" module="" format="" lineno=0-0 class=D2_DRIVER
+> [ 1594.034014] dyndbg: good-class: test_dynamic_debug.D2_DRIVER  module:test_dynamic_debug nd:32 nc:4 nu:0
+> [ 1594.034695] dyndbg: changed lib/test_dynamic_debug.c:156 [test_dynamic_debug]do_cats p => _
+> [ 1594.035304] dyndbg: class-ref: test_dynamic_debug_submod.D2_DRIVER  module:test_dynamic_debug_submod nd:32 nc:0 nu:4
+> [ 1594.036052] jump_label: found toggled op at do_cats+0x16/0x180 [test_dynamic_debug_submod] [00000000ff2582ac] (0f 1f 44 00 00 != e9 e1 00 00 00)) size:5 type:0
+> [ 1594.037036] dyndbg: changed lib/test_dynamic_debug.c:156 [test_dynamic_debug_submod]do_cats p => _
+> [ 1594.037604] dyndbg: processed 1 queries, with 2 matches, 0 errs
+> [ 1594.037968] dyndbg: bit_1: 2 matches on class: D2_DRIVER -> 0x0
+>
+> These errors are reliably reproduced by a shell-func which modprobes
+> (with the right args) the test mod & submod.ko (in the commit message).
+>
+> So this isnt really ready for inclusion, but Id like to send the whole
+> set to the CI-gym for a workout.  The RFC/for-TESTING patch will
+> mitigate panics, and still be detectable.
+>
+> Besides, Murphys law requires I publish some error before I can make progress.
+>
+>
+> Jim Cromie (19):
+>   test-dyndbg: fixup CLASSMAP usage error
+>   test-dyndbg: show that DEBUG enables prdbgs at compiletime
+>   dyndbg: replace classmap list with a vector
+>   dyndbg: make ddebug_apply_class_bitmap more selective
+>   dyndbg: split param_set_dyndbg_classes to inner/outer fns
+>   dyndbg: drop NUM_TYPE_ARRAY
+>   dyndbg: reduce verbose/debug clutter
+>   dyndbg: tighten ddebug_class_name() 1st arg
+>   dyndbg: constify ddebug_apply_class_bitmap args
+>   dyndbg-API: split DECLARE_(DYNDBG_CLASSMAP) to $1(_DEFINE|_USE)
+>   dyndbg-API: specialize DYNDBG_CLASSMAP_(DEFINE|USE)
+>   dyndbg-API: DYNDBG_CLASSMAP_USE drop extra args
+>   dyndbg-API: DYNDBG_CLASSMAP_DEFINE() improvements
+>   drm_print: fix stale macro-name in comment
+>   test-dyndbg: build test_dynamic_debug_submod
+>   test-dyndbg: rename DD_SYS_WRAP to DYNDBG_CLASSMAP_PARAM
+>   test-dyndbg: disable WIP dyndbg-trace params
+>   test-dyndbg: tune sub-module behavior
+>   jump_label: RFC / temporary for CI - tolerate toggled state
+>
+>  arch/x86/kernel/jump_label.c            |  24 ++-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |  14 +-
+>  drivers/gpu/drm/display/drm_dp_helper.c |  14 +-
+>  drivers/gpu/drm/drm_crtc_helper.c       |  14 +-
+>  drivers/gpu/drm/drm_print.c             |  22 +-
+>  drivers/gpu/drm/i915/i915_params.c      |  14 +-
+>  drivers/gpu/drm/nouveau/nouveau_drm.c   |  14 +-
+>  include/asm-generic/vmlinux.lds.h       |   1 +
+>  include/drm/drm_print.h                 |   6 +-
+>  include/linux/dynamic_debug.h           |  57 ++++--
+>  include/linux/map.h                     |  55 +++++
+>  kernel/module/main.c                    |   3 +
+>  lib/Makefile                            |   3 +-
+>  lib/dynamic_debug.c                     | 258 ++++++++++++++++++------
+>  lib/test_dynamic_debug.c                | 118 +++++++----
+>  lib/test_dynamic_debug_submod.c         |  10 +
+>  16 files changed, 437 insertions(+), 190 deletions(-)
+>  create mode 100644 include/linux/map.h
+>  create mode 100644 lib/test_dynamic_debug_submod.c
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
