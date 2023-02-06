@@ -1,67 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26A6F68CA5F
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 Feb 2023 00:15:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27EC668CCE7
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 Feb 2023 04:00:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FDAF10E1A9;
-	Mon,  6 Feb 2023 23:15:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A16010E1CB;
+	Tue,  7 Feb 2023 03:00:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 304 seconds by postgrey-1.36 at gabe;
- Mon, 06 Feb 2023 23:15:09 UTC
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3BCC10E1A9
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 Feb 2023 23:15:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.de; s=s31663417;
- t=1675725308; bh=Z8Jj1SBT3YwXW9UPxHTdzy4KhmJWr2P4RAjnidDbliQ=;
- h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:In-Reply-To;
- b=ZQkKm5StYQh8BHKUnFYQ808tBaV4L94mkJuf00LA6ZXS1V3ZalH2kA21qMGT4xgI3
- dHGermjGRurLuJ9241VfQuv+ZZIpSvY0MFlaPP4haMiAR/S3zDjJKjLazNJy+PrDj/
- QHkrElujdjvsVR94LujTsAVln1K2y7KIIpi+2w8/aAo3iUHy8YmQj99/r/iHvvpSmJ
- viPIaqkjDpdURGBG4caWKrTBM9tTe0VTZsDmHBS1+o9F8dAhME6QqRDUW9lXwa7pGp
- kouDA7UHfi5spkOL2Gizqyxxoemg/B9HJEjJal3t3oJinC8853RWy87OdVaJ6G/Li6
- O1PWtnTEOyucw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [172.20.2.10] ([217.9.99.227]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1M6DWi-1pVmKW1VRQ-006iHU; Tue, 07
- Feb 2023 00:10:00 +0100
-Message-ID: <4211e472-042e-a384-25ca-0a109004fb41@gmx.de>
-Date: Tue, 7 Feb 2023 00:09:59 +0100
+Received: from mail-4325.protonmail.ch (mail-4325.protonmail.ch [185.70.43.25])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A75110E138
+ for <amd-gfx@lists.freedesktop.org>; Mon,  6 Feb 2023 22:48:14 +0000 (UTC)
+Date: Mon, 06 Feb 2023 22:48:06 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+ s=protonmail3; t=1675723692; x=1675982892;
+ bh=NNxsv7LNVkYVwuCc8YpJqi6KhqDnVHT3qMDNOdRv03E=;
+ h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+ Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+ Message-ID:BIMI-Selector;
+ b=wDvmpajKWydnZIvK07ypLArT//YhOC3ifyxg4m1uFQEtYGjYNqlgYztjnubcJAXmv
+ Bw/Au4V1YBJKAX+x65DqHcpuR8Ob8n9g4yoKCmE1qxyWIzuJhy3ytxPynRVeS1Lijn
+ oSywJ3pDBHpgoE+949k8u7ncHNT6dwaqDriG7aRFyxA/8s5GvPhqbX+UyKpj+4wNzV
+ 5eBqIR4qDbMcYNWpOOe6QcWA1AHaQRv0W/8o9RP/AFoACLFOgTAbP0HludhWs4/i0k
+ KA6Vh43H/RdlacKcFiAckyF04Kani99cVGWdHj8vXf+fsUZegtS9108ipT8RVA5Cz7
+ EqLTq+HpwcTJA==
+To: Alex Deucher <alexdeucher@gmail.com>
+From: sfrcorne <sfrcorne@protonmail.com>
+Subject: Re: gpu_metrics does not provide 'current_gfxclk', 'current_uclk',
+ 'average_cpu_power' & 'temperature_core' on AMD Ryzen 7000 CPU
+Message-ID: <IGhLMOrDFqjKG7Ct93T4NCqIKeGLdSNO9Q5p3CkgzBVK15kInfRfGdv4aFCRJO3TmR2shr_bqjxYmlAgI3BojoM0F9q24Jv82FLmm2fvpp0=@protonmail.com>
+In-Reply-To: <CADnq5_O__w5jkOoUALv96hybKP8qJs-=wcQAhcxy5kbiBg_vCw@mail.gmail.com>
+References: <rEMJPv8L9uDl7PSSJ_OtbkCcM9ABocJ_Mk8DuSUQpaB2fPEPNB6EBBo7XLlCKqsfF5bCz5jvr9CFt1pVzb37_KZBldUNBMcf2-2B3xDNVN0=@protonmail.com>
+ <CADnq5_O__w5jkOoUALv96hybKP8qJs-=wcQAhcxy5kbiBg_vCw@mail.gmail.com>
+Feedback-ID: 66916551:user:proton
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH] drm/amdgpu: Use the TGID for trace_amdgpu_vm_update_ptes
-Content-Language: en-US
-To: Alex Deucher <Alexander.Deucher@amd.com>
-References: <20230202162103.5811-1-friedrich.vock@gmx.de>
- <44330b41-b7a9-d82e-2614-e9fd291e356f@amd.com>
- <CADnq5_M--J7ERZqLML3SL56zj14RkSe7YVnDwv22nHtjyZJ1RQ@mail.gmail.com>
-From: Friedrich Vock <friedrich.vock@gmx.de>
-In-Reply-To: <CADnq5_M--J7ERZqLML3SL56zj14RkSe7YVnDwv22nHtjyZJ1RQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:y4Zf1a3U1hsEVc6ZoHVjxnK6LBURJGsUq8Zpiv6iM52CYLhmx8X
- qf+2oUOTg9XM2MBxJzI0Wpjit5QEe8pn5/9MXXDl7lsxbNU8/jakr7jIX9ahyy0AfHXT5Xa
- xah1GxoQyBYEsJ/pSQ6WkqT4I/KS+Bq5A7IQ3Gz4Oo6Af2T7tv8FWH3C6c8EduwGthBiXyV
- bk3yAguXAFlwdJTK0Fs8g==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:4p7yh9ugLQ8=;XfCVLP15yunkxWHlvhxOegb3mGp
- wLcow6OKEWw8bNBxQwA+vBSM8fQlkUnBdUT0kumoE8bEjcp81mDcRxQbOtumMH/CNgWQJhcTe
- 1ts/VwO25SyfvsfKitMEXa+0A9llxaEW99UXPCF6sesQOs/W1paYP0RcyK5lQsJ7OxHE3AZm6
- /XmXOpq2exsbDuJRGaoMvl2TGvVxD9023ZmVbpz27cvEZfgjcNmhlWiECvBGiobil4rmcTIZB
- YwKZ6cTaKL6fW+Hzi4TlV7UaavigeeWbohLGNDHAM6WWbOss5YALmG7pzTW+84Hvv8rQT6TVy
- mHnQQh4JxVeOaxYw+9hndcu2sGxAuOFXYmYaw9cpsCjGCN762G5lmInBPO+AymK4ZaslZbgJB
- SIAhJKe0ex4LOQnos7NWAEjUixff9BANdXqJB5Tb/E8VdAcCAU5tHEvlde1B3vsy1vfGEIhlA
- IkKVFGaPl9Lw+IGTxOI8NxUbyaPLvGF7xJ6jrc4WBdVbDVRjKbjPI6EwLaXCcqleaMe1fOYeP
- VTkBzNc571Lou0uKdzqjBIAf3GRGrOeKuAO7yJZWjD9yHiQ1ysleZNWv0vCPrOJv5pYZxsHwE
- VcMVjuHEyzKtPjuNx4irf1r4R7jXCGxi3sfE3i1b4JCwucpQRCK8F5Os6TBKnGHM1Gz2PORDP
- KSHHzUIbNio1gEKrJAc3IjOxskODagsvL0DDtAY6QousOpH7jGMyxDa1eZ7SswmKMXI+HNwjn
- 6LS5nueO/j+GN0uSV5vM40POnvFfxJCL5mNbsBMMIyMhemgXHZRrM+3d9omwhYvceW5QLEYCO
- LuMogD82TlMeGZjuOP0ARZ85a/sRUaG8Dx7t2HmW/jHPoHmduQamRaZ55N9zmr8NV3N7LYApo
- 2tyNsWlLHhbpILQ/X23CSjnvLaDKHXF3gwxSEkythgoJRoX8wEBvAWcCFMhe9BTX4dc6WcpuH
- eNPrcYkNjWndi7+uWQgdMyZkoZM=
+X-Mailman-Approved-At: Tue, 07 Feb 2023 03:00:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,74 +49,77 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Dear Alex,
 
-thanks for applying the patch!
+First of all, thank you for your response. Personally, I use a Ryzen 5 7600=
+X however people with a Ryzen 9 7900X are also reporting this issue. The re=
+levant bug report in Mangohud can be found here: "https://github.com/flight=
+lessmango/MangoHud/issues/868".
 
-Do you think it'd also be possible to backport it to previous kernel
-versions or do you already plan to do that?
-Since it is a one-liner bugfix it shouldn't be too hard to backport.
+I looked around a bit in both the Mangohud source code and the Linux kernel=
+ source code.
 
-Thank you,
-Friedrich Vock
+(Mangohud source): From what I understand, Mangohud looks for a file "/sys/=
+class/drm/card*/device/gpu_metrics". If this file exists (and it does exist=
+s on my machine), it tries to read this file and extract the relevant GPU d=
+ata (and in case of an APU also the CPU data) from it (these are the values=
+ I was talking about in my previous mail). When the file "/sys/class/drm/ca=
+rd*/device/gpu_metrics" exists, it will not use the data provided by hwmon =
+(/sys/class/hwmon/hwmon*/*).
 
-On 06.02.23 21:26, Alex Deucher wrote:
-> Applied.  Thanks!
->
+(Linux kernel): The gpu_metrics file contains different data, depending on =
+what version is used. All valid versions can be found in the source code: "=
+https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/amd/include/=
+kgd_pp_interface.h#L725". For my CPU/APU the 'gpu_metrics_v2_1' structure i=
+s used (I tested this by reading the gpu_metrics file myself). Furthermore,=
+ I think that for my case, this structure is set by the function "https://e=
+lixir.bootlin.com/linux/latest/source/drivers/gpu/drm/amd/pm/swsmu/smu13/sm=
+u_v13_0_5_ppt.c#L459" but I am not completely sure about this.
+
+Lastly, I am not familiar with umr. I assume that you are referring to "htt=
+ps://gitlab.freedesktop.org/tomstdenis/umr"? If I find some time this weeke=
+nd, then I will look into this some more.
+
+Kind regards,
+sfrcorne
+
+------- Original Message -------
+On Monday, February 6th, 2023 at 22:22, Alex Deucher <alexdeucher@gmail.com=
+> wrote:
+
+> On Mon, Feb 6, 2023 at 9:22 AM sfrcorne sfrcorne@protonmail.com wrote:
+>=20
+> > Hello,
+> >=20
+> > I hope this is the correct place to ask my question. I was not sure if =
+I should have opened a new issue on Gitlab or send an email here, since I d=
+on't know know whether this is a bug or intended behaviour.
+> >=20
+> > The question is about the new AMD Ryzen 7000 CPU's. These new CPU's hav=
+e an iGPU and consequently provide a gpu_metrics file for monitoring the GP=
+U/CPU (APU?). This file is used by programs like Mangohud, that try to read=
+ (among other values) the following 4 values:
+> > - current_gfxclk
+> > - current_uclk
+> > - average_cpu_power
+> > - temperature_core
+> > However it appears that on AMD Ryzen 7000 CPU's these 4 values are not =
+provided/updated in the gpu_metrics file. Other values like 'average_core_p=
+ower', 'temperature_l3' and the other 'current_<x>clk' are also not provide=
+d/updated but these are not used by Mangohud at the moment.
+> >=20
+> > Is this intentional or a bug? And will this be fix and/or will support =
+for these 4 values be added in the future?
+>=20
+>=20
+> What specific CPU/APU is this? I don't recall off hand how mangohud
+> queries this stuff, but you can take a look at the hwmon interfaces
+> exposed by the driver or if you want the whole metrics table, you can
+> use umr to fetch and decode it via the kernel interface. That will
+> allow you to verify that the firmware is producing the proper data.
+>=20
 > Alex
->
-> On Mon, Feb 6, 2023 at 3:35 AM Christian K=C3=B6nig <christian.koenig@am=
-d.com> wrote:
->>
->>
->> Am 02.02.23 um 17:21 schrieb Friedrich Vock:
->>> The pid field corresponds to the result of gettid() in userspace.
->>> However, userspace cannot reliably attribute PTE events to processes
->>> with just the thread id. This patch allows userspace to easily
->>> attribute PTE update events to specific processes by comparing this
->>> field with the result of getpid().
->>>
->>> For attributing events to specific threads, the thread id is also
->>> contained in the common fields of each trace event.
->>>
->>> Signed-off-by: Friedrich Vock <friedrich.vock@gmx.de>
->> Ah, yes that makes more sense. Reviewed-by: Christian K=C3=B6nig
->> <christian.koenig@amd.com>
->>
->> Alex do you pick this up or should I take care of it?
->>
->> Thanks,
->> Christian.
->>
->>> ---
->>>    drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c | 2 +-
->>>    1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c b/drivers/gpu/d=
-rm/amd/amdgpu/amdgpu_vm_pt.c
->>> index b5f3bba851db..01e42bdd8e4e 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
->>> @@ -974,7 +974,7 @@ int amdgpu_vm_ptes_update(struct amdgpu_vm_update_=
-params *params,
->>>                        trace_amdgpu_vm_update_ptes(params, frag_start,=
- upd_end,
->>>                                                    min(nptes, 32u), ds=
-t, incr,
->>>                                                    upd_flags,
->>> -                                                 vm->task_info.pid,
->>> +                                                 vm->task_info.tgid,
->>>                                                    vm->immediate.fence=
-_context);
->>>                        amdgpu_vm_pte_update_flags(params, to_amdgpu_bo=
-_vm(pt),
->>>                                                   cursor.level, pe_sta=
-rt, dst,
->>> --
->>> 2.39.1
->>>
