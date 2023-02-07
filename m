@@ -2,42 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27EC668CCE7
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 Feb 2023 04:00:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 167E868CBD5
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 Feb 2023 02:17:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A16010E1CB;
-	Tue,  7 Feb 2023 03:00:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98B2C10E1C3;
+	Tue,  7 Feb 2023 01:17:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-4325.protonmail.ch (mail-4325.protonmail.ch [185.70.43.25])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A75110E138
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 Feb 2023 22:48:14 +0000 (UTC)
-Date: Mon, 06 Feb 2023 22:48:06 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
- s=protonmail3; t=1675723692; x=1675982892;
- bh=NNxsv7LNVkYVwuCc8YpJqi6KhqDnVHT3qMDNOdRv03E=;
- h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
- Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
- Message-ID:BIMI-Selector;
- b=wDvmpajKWydnZIvK07ypLArT//YhOC3ifyxg4m1uFQEtYGjYNqlgYztjnubcJAXmv
- Bw/Au4V1YBJKAX+x65DqHcpuR8Ob8n9g4yoKCmE1qxyWIzuJhy3ytxPynRVeS1Lijn
- oSywJ3pDBHpgoE+949k8u7ncHNT6dwaqDriG7aRFyxA/8s5GvPhqbX+UyKpj+4wNzV
- 5eBqIR4qDbMcYNWpOOe6QcWA1AHaQRv0W/8o9RP/AFoACLFOgTAbP0HludhWs4/i0k
- KA6Vh43H/RdlacKcFiAckyF04Kani99cVGWdHj8vXf+fsUZegtS9108ipT8RVA5Cz7
- EqLTq+HpwcTJA==
-To: Alex Deucher <alexdeucher@gmail.com>
-From: sfrcorne <sfrcorne@protonmail.com>
-Subject: Re: gpu_metrics does not provide 'current_gfxclk', 'current_uclk',
- 'average_cpu_power' & 'temperature_core' on AMD Ryzen 7000 CPU
-Message-ID: <IGhLMOrDFqjKG7Ct93T4NCqIKeGLdSNO9Q5p3CkgzBVK15kInfRfGdv4aFCRJO3TmR2shr_bqjxYmlAgI3BojoM0F9q24Jv82FLmm2fvpp0=@protonmail.com>
-In-Reply-To: <CADnq5_O__w5jkOoUALv96hybKP8qJs-=wcQAhcxy5kbiBg_vCw@mail.gmail.com>
-References: <rEMJPv8L9uDl7PSSJ_OtbkCcM9ABocJ_Mk8DuSUQpaB2fPEPNB6EBBo7XLlCKqsfF5bCz5jvr9CFt1pVzb37_KZBldUNBMcf2-2B3xDNVN0=@protonmail.com>
- <CADnq5_O__w5jkOoUALv96hybKP8qJs-=wcQAhcxy5kbiBg_vCw@mail.gmail.com>
-Feedback-ID: 66916551:user:proton
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com
+ [IPv6:2607:f8b0:4864:20::12c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B81010E1C3
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Feb 2023 01:17:18 +0000 (UTC)
+Received: by mail-il1-x12c.google.com with SMTP id z17so2219146ilm.7
+ for <amd-gfx@lists.freedesktop.org>; Mon, 06 Feb 2023 17:17:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=to:from:subject:message-id:date:content-transfer-encoding
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=P9LvxCDgZiqQ3mfejZh50Yl4QLgGf8+vSDYAHKjeZgY=;
+ b=ScfOSH5w7wcz/eZuRmXjcHXEYKvIPNfdAZSKuTPa2Raa1RpQtZkbzoSpSIVjDt/Laz
+ mAZHydZ4E5E/48uLlTO6Evi6DKcl6lZSdvKD7hob5pku+nUF0OV3g0P8gA4NAHm+lI8Q
+ 3SnxoMCLJlFodVJPIr4QnQbDVbmT4HR2lB2u2YF9B8KMC8uMnYpdh9GiXMKJuFiDLUx4
+ ubQpA0HdAB0d85S5R9poCu8bhsb3br0mSefMVwJC/hw6TzjF4IT8IctdJZJwj4dsO2g5
+ 36mMjHPdreQJjW4Ug9pFNbR2JxSf8OtUr4s0iYMwFNCblCfoObfoALo4vkgcz68t7F16
+ JiCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=to:from:subject:message-id:date:content-transfer-encoding
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=P9LvxCDgZiqQ3mfejZh50Yl4QLgGf8+vSDYAHKjeZgY=;
+ b=kpMqXtgpETfwRUnmaGV4cQthl5mL2EZwl/LIh/rWw6TqY1Z0dI5g7Y2nZqPd8iT0J+
+ 0D+760MaumflMQagubVWQcCcrB9M9d8gWKeqv17sNdSnkBVWKqdxHCTtDtSa9Mx5CbQj
+ S1N0LGya5Hh38YbmN/xXqYlMsqG1fBpdWb5KPNB4NQ27ky0u2R4O51ApvSgb7UGYG/ks
+ +tGC4sz1TQkUnWEGgBbBNNgfgRAFihZfHezBAYoLyG+4OLyx5zfh36Gqop/1hPjls/ce
+ ZocGfsADELIcoPKtj4j8hkLb7X/ev+UFC6zL2J+/t5yxLMFVzViN34GIy4r4dk4vedGH
+ IRLw==
+X-Gm-Message-State: AO0yUKV16VTpMF9uokrkDA9pVgY8PO8cqd6/kTsay86pKgbkxlJfrkLT
+ t9y0hQgPOHAH+T1hEj1qpTDsuzCGrbw=
+X-Google-Smtp-Source: AK7set9J69nJGbfK928JKUMjiNXfa8kPAofZMDFTggYrW9CgQAQUxWHMmifenyCyDdhkWzLoB4+CEw==
+X-Received: by 2002:a92:7a0e:0:b0:310:9a14:9662 with SMTP id
+ v14-20020a927a0e000000b003109a149662mr1186197ilc.16.1675732637218; 
+ Mon, 06 Feb 2023 17:17:17 -0800 (PST)
+Received: from localhost ([2602:47:d3e7:3200:aa5e:45ff:fed0:7395])
+ by smtp.gmail.com with ESMTPSA id
+ i20-20020a02ca14000000b003a958f51423sm3978094jak.167.2023.02.06.17.17.16
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 06 Feb 2023 17:17:16 -0800 (PST)
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 07 Feb 2023 03:00:08 +0000
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 06 Feb 2023 18:17:16 -0700
+Message-Id: <CQBXN5LYZ99S.333O6ZIGOX2JS@mcoffin-dev-tower>
+Subject: Indexing of FeatureCtrlMask for SMU13 OverDrive
+From: "Matt Coffin" <mcoffin13@gmail.com>
+To: <amd-gfx@lists.freedesktop.org>, "Quan, Evan" <Evan.Quan@amd.com>
+X-Mailer: aerc 0.14.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,77 +68,106 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Dear Alex,
+Hello again,
 
-First of all, thank you for your response. Personally, I use a Ryzen 5 7600=
-X however people with a Ryzen 9 7900X are also reporting this issue. The re=
-levant bug report in Mangohud can be found here: "https://github.com/flight=
-lessmango/MangoHud/issues/868".
+I've been working on OverDrive support for smu13, as you probably
+already know. In that endeavor, it also contains the following:
 
-I looked around a bit in both the Mangohud source code and the Linux kernel=
- source code.
+1. I've come up with a few patterns that I think will reduce the
+amount of boilerplate and SMU-specific code required to do
+implement these interfaces in the future.
+2. Since the old pp_od_clk_voltage sysfs interface is inadequate for
+usage in setting values other than a few indexed clock/voltage settings,
+I'll likely be sending a proposed "generic" interface, where OD settings
+are exposed to userspace by ASIC-specific indexed identifiers.
 
-(Mangohud source): From what I understand, Mangohud looks for a file "/sys/=
-class/drm/card*/device/gpu_metrics". If this file exists (and it does exist=
-s on my machine), it tries to read this file and extract the relevant GPU d=
-ata (and in case of an APU also the CPU data) from it (these are the values=
- I was talking about in my previous mail). When the file "/sys/class/drm/ca=
-rd*/device/gpu_metrics" exists, it will not use the data provided by hwmon =
-(/sys/class/hwmon/hwmon*/*).
+But, those are beside the point, for now.
 
-(Linux kernel): The gpu_metrics file contains different data, depending on =
-what version is used. All valid versions can be found in the source code: "=
-https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/amd/include/=
-kgd_pp_interface.h#L725". For my CPU/APU the 'gpu_metrics_v2_1' structure i=
-s used (I tested this by reading the gpu_metrics file myself). Furthermore,=
- I think that for my case, this structure is set by the function "https://e=
-lixir.bootlin.com/linux/latest/source/drivers/gpu/drm/amd/pm/swsmu/smu13/sm=
-u_v13_0_5_ppt.c#L459" but I am not completely sure about this.
+While picking through the existing headers, the information in
+smu_v13_0_0_pptable.h seems to not quite be in line with what I'm seeing
+coming from the card, so I'm instead focusing mainly on
+smu13_driver_if_v13_0_0.h.
 
-Lastly, I am not familiar with umr. I assume that you are referring to "htt=
-ps://gitlab.freedesktop.org/tomstdenis/umr"? If I find some time this weeke=
-nd, then I will look into this some more.
+In the two OverDrive-related structs, OverDriveTable_t and
+OverDriveLimits_t, the FeatureCtrlMask member seems to be controlling
+which of the "features" of OverDrive would actually be in use. As of
+yet, I haven't been able to find an index of what the bits in here
+actually mean. Is there any way you could help me out with that?
 
-Kind regards,
-sfrcorne
+My best guess thus far is that they are by each element of the
+OverDriveTable_t struct, but that's only just a guess.
 
-------- Original Message -------
-On Monday, February 6th, 2023 at 22:22, Alex Deucher <alexdeucher@gmail.com=
-> wrote:
+For reference, here are the values I'm seeing present in each at boot
+time.
 
-> On Mon, Feb 6, 2023 at 9:22 AM sfrcorne sfrcorne@protonmail.com wrote:
->=20
-> > Hello,
-> >=20
-> > I hope this is the correct place to ask my question. I was not sure if =
-I should have opened a new issue on Gitlab or send an email here, since I d=
-on't know know whether this is a bug or intended behaviour.
-> >=20
-> > The question is about the new AMD Ryzen 7000 CPU's. These new CPU's hav=
-e an iGPU and consequently provide a gpu_metrics file for monitoring the GP=
-U/CPU (APU?). This file is used by programs like Mangohud, that try to read=
- (among other values) the following 4 values:
-> > - current_gfxclk
-> > - current_uclk
-> > - average_cpu_power
-> > - temperature_core
-> > However it appears that on AMD Ryzen 7000 CPU's these 4 values are not =
-provided/updated in the gpu_metrics file. Other values like 'average_core_p=
-ower', 'temperature_l3' and the other 'current_<x>clk' are also not provide=
-d/updated but these are not used by Mangohud at the moment.
-> >=20
-> > Is this intentional or a bug? And will this be fix and/or will support =
-for these 4 values be added in the future?
->=20
->=20
-> What specific CPU/APU is this? I don't recall off hand how mangohud
-> queries this stuff, but you can take a look at the hwmon interfaces
-> exposed by the driver or if you want the whole metrics table, you can
-> use umr to fetch and decode it via the kernel interface. That will
-> allow you to verify that the firmware is producing the proper data.
->=20
-> Alex
+Since FeatureCtrlMask is 0b11111001101, the current theory is that the
+"unsupported" features would be VddGfxVmax, GfxclkFmin, GfxclkFmax. Does
+that line up with what we'd be expecting for this ASIC?
+
+Thanks in advance for any information you can provide. I really
+appreciate the work that you all do.
+
+Thanks,
+Matt
+
+OverDriveLimits:
+        FeatureCtrlMask: [0x000007cd, 0x000007cd]
+        VoltageOffsetPerZoneBoundary: [-450, 0]
+        VddGfxVmax: [0, 0]
+        IdlePwrSavingFeaturesCtrl: [0x00, 0x00]
+        RuntimePwrSavingFeaturesCtrl: [0x00, 0x00]
+        GfxclkFmin: [500, 5000]
+        GfxclkFmax: [500, 5000]
+        UclkFmin: [97, 1500]
+        UclkFmax: [97, 1500]
+        Ppt: [-10, 15], Tdc: [-10, 0]
+        FanLinearPwmPoints: [23, 100]
+        FanLinearTempPoints: [25, 100]
+        FanMinimumPwm: [23, 100]
+        AcousticTargetRpmThreshold: [500, 3200]
+        AcousticLimitRpmThreshold: [500, 3200]
+        FanTargetTemperature: [25, 105]
+        FanZeroRpmEnable: [0, 1]
+        FanZeroRpmStopTemp: [25, 100]
+        FanMode: [0, 1]
+        MaxOpTemp: [50, 110]
+OverDriveTable:
+        FeatureCtrlMask: 0x00000000
+        VoltageOffsetPerZoneBoundary[0]: 0
+        VoltageOffsetPerZoneBoundary[1]: 0
+        VoltageOffsetPerZoneBoundary[2]: 0
+        VoltageOffsetPerZoneBoundary[3]: 0
+        VoltageOffsetPerZoneBoundary[4]: 0
+        VoltageOffsetPerZoneBoundary[5]: 0
+        VddGfxVmax: 1150
+        IdlePwrSavingFeaturesCtrl: 0x00
+        RuntimePwrSavingFeaturesCtrl: 0x00
+        GfxclkFmin: 500
+        GfxclkFmax: 2890
+        UclkFmin: 97
+        UclkFmax: 1249
+        Ppt: 0
+        Tdc: 0
+        FanLinearPwmPoints[0]: 0
+        FanLinearPwmPoints[1]: 0
+        FanLinearPwmPoints[2]: 0
+        FanLinearPwmPoints[3]: 0
+        FanLinearPwmPoints[4]: 0
+        FanLinearPwmPoints[5]: 0
+        FanLinearTempPoints[0]: 0
+        FanLinearTempPoints[1]: 0
+        FanLinearTempPoints[2]: 0
+        FanLinearTempPoints[3]: 0
+        FanLinearTempPoints[4]: 0
+        FanLinearTempPoints[5]: 0
+        FanMinimumPwm: 35
+        AcousticTargetRpmThreshold: 1250
+        AcousticLimitRpmThreshold: 1500
+        FanTargetTemperature: 94
+        FanZeroRpmEnable: 1
+        FanZeroRpmStopTemp: 55
+        FanMode: 0
+        MaxOpTemp: 110
