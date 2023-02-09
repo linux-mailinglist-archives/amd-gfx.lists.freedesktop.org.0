@@ -2,70 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF3A0690A46
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Feb 2023 14:33:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DAFB690AB6
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Feb 2023 14:43:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E34CA10EACF;
-	Thu,  9 Feb 2023 13:33:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAE1610EAE8;
+	Thu,  9 Feb 2023 13:43:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com
- [IPv6:2a00:1450:4864:20::333])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 750F310E218;
- Thu,  9 Feb 2023 12:53:33 +0000 (UTC)
-Received: by mail-wm1-x333.google.com with SMTP id
- bg13-20020a05600c3c8d00b003d9712b29d2so3793696wmb.2; 
- Thu, 09 Feb 2023 04:53:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=0h7PVwX7xOWVpu8EJbubLGeuc2859Qjp2vbcmTCnktc=;
- b=fbnHjjgQI3X7zo0eXFOg5iKisI9B4oh8x8/1bKMPzb8ZMzuB3Mj6Hzyc8BxBl2sThs
- BcZM8fyPY0WexE7gv/xmhq+ltHvewwaZNonHfp4NdDRRZDZfzHhSaqWMI7FmJ31mzSQ0
- 3W724Yt0qFOA+KgHgrujZvpA0/U3vUMYzEmkYhqLsEXOdHW/Xj0kkVcPOs1/Bczf5ZX/
- 5DC9wLJv5BvfP45faMQ+/jBHfeEdJNxiHLZMt7MP5CCxNzE25yiZ18Nxnl5AAzSkWtoM
- pVJnuIp8bI+8Diot6gTt1nbAUp6dLqsfkHyw2rHC7VsxcEJsd81YezxgnkdvsktZN68n
- 081A==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D441D10EAD2
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Feb 2023 13:41:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1675950060;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=OzV7p16/yEZQKmwWUFxj9RZMdMX7gGqoUkNDU++eOPw=;
+ b=L9fnaGfd06AluNk7o4BdXtsyuJ3uQqdit/2s5BHbKCTOewP87RS6raPqb6NqykkF2du9nl
+ xmO/UoGTBf3bBScgEcVrSXmaoPJfMRMH7Uj9j2Je0z9h18DjrGvpeacfJSq/3LsXnimUxY
+ StWp+jNHqAwb+fih4uqjHWvu2XRtLh8=
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
+ [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-439-CCE5BFHQOm2b2ZHrO6CKuw-1; Thu, 09 Feb 2023 08:40:59 -0500
+X-MC-Unique: CCE5BFHQOm2b2ZHrO6CKuw-1
+Received: by mail-qt1-f198.google.com with SMTP id
+ bs11-20020ac86f0b000000b003b9b4ec27c4so1077095qtb.19
+ for <amd-gfx@lists.freedesktop.org>; Thu, 09 Feb 2023 05:40:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=0h7PVwX7xOWVpu8EJbubLGeuc2859Qjp2vbcmTCnktc=;
- b=RZR9NbxaZ0LLO/4mPRkcrOTbJiC349fOhSQd1h3V4706TjVZihDiIF53ADEcei1HZF
- XvYGooBXCwTM/aW4tLHxBkORTes+jri7DGTa9pPRx2nwvNfzbYRQuFVrO94Oa/gNr/JB
- wQavJ2TkogAcAlATzaZ6AFBAKk/tsROYEyRiZAiq7n0ZHQeCf3P5LNHCW/chVVjYIeg0
- uf+PuZVCJhGaCjdVuKQCZgser01QPaXm9hjVtkYIcWnSB1BOzP2pgVs14afaqeW3x4WV
- yi1O/th7B9SkmfQTClkalD+rOowJ0Ybxp8UHZlW3zSBiw+cRyhv01ok+EypZ0cGyXRL3
- q/vw==
-X-Gm-Message-State: AO0yUKXCpmJzVklVojJBws9rU1+f8Ri4rNZW7HVtOlzDWxDa8crO3lDp
- vEWIm2PfJwZkbwoUqO1eSD0=
-X-Google-Smtp-Source: AK7set/e2dVQryskil9JvOXwCVkJylpvCnVrdI6FrmQzPl4/BLKQd9oGbNtLBKUjWNQWYnRrE1z8IQ==
-X-Received: by 2002:a05:600c:164a:b0:3df:1673:90b6 with SMTP id
- o10-20020a05600c164a00b003df167390b6mr9442829wmn.39.1675947211990; 
- Thu, 09 Feb 2023 04:53:31 -0800 (PST)
-Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
- [80.193.200.194]) by smtp.gmail.com with ESMTPSA id
- k21-20020a05600c1c9500b003e01493b136sm5128690wms.43.2023.02.09.04.53.31
+ bh=OzV7p16/yEZQKmwWUFxj9RZMdMX7gGqoUkNDU++eOPw=;
+ b=jMdTbOnDgymvrbKmNR87JE/TRe1D7ZSrgakklPHgGboz1kUQDwO9WXqYSFx+fG1Bnp
+ sXg7wdLXLoC5AX3c5fndaG7dgNfpYjh2db592ogvBMSZpz3Z4GiYvAtOwHva1lHNo+Pu
+ 5jJ3xvvQOt3dPdNheLmgq6JO4THfMMtHyhnEmp5dahC+XaDsv1VIU4W8SUMwFXD9+Shq
+ xjut/o/PP/PmsOaeujK5o6MN3TK/zKRZMZ3nxsmaecucecIXKPvq7aDw5Qlj7qR1gvni
+ A9dgaxy1gE7EVsHq9BM8LlkTB/i8zqbcbO7vBWRhzjr2T6totF3M5PhP/DVdukwTBSZE
+ wYhw==
+X-Gm-Message-State: AO0yUKVw8dUrYqK0SDo5NT2jjv7TDchPx5ygqQ62D9bg7fniumqhAV05
+ xACPe6Zl12nSS0Urm1BoSvHdGfaPilfNt7Gx6GuY4R4qil4D9+PrlxjQIiwt9FPf8QfIZBr8z69
+ lw7nw7l8BaLR58x0zfQmKDwdfZA==
+X-Received: by 2002:a05:6214:2684:b0:56b:f2d7:f66d with SMTP id
+ gm4-20020a056214268400b0056bf2d7f66dmr21321720qvb.46.1675950058604; 
+ Thu, 09 Feb 2023 05:40:58 -0800 (PST)
+X-Google-Smtp-Source: AK7set8nFqGwwydA/Qv//jTnLpI8YmlDl2IBDR+nilaOo8Jek16gZhJgf+ALhc6AphqS+W1bio6i8w==
+X-Received: by 2002:a05:6214:2684:b0:56b:f2d7:f66d with SMTP id
+ gm4-20020a056214268400b0056bf2d7f66dmr21321696qvb.46.1675950058373; 
+ Thu, 09 Feb 2023 05:40:58 -0800 (PST)
+Received: from localhost.localdomain.com (024-205-208-113.res.spectrum.com.
+ [24.205.208.113]) by smtp.gmail.com with ESMTPSA id
+ t187-20020ae9dfc4000000b0073902217c00sm224072qkf.23.2023.02.09.05.40.56
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 09 Feb 2023 04:53:31 -0800 (PST)
-From: Colin Ian King <colin.i.king@gmail.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui.Pan@amd.com, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH][next] drm/amd/display: Fix spelling mistakes of function name
- in error message
-Date: Thu,  9 Feb 2023 12:53:30 +0000
-Message-Id: <20230209125330.1433481-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.30.2
+ Thu, 09 Feb 2023 05:40:58 -0800 (PST)
+From: Tom Rix <trix@redhat.com>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch, Dmytro.Laktyushkin@amd.com,
+ qingqing.zhuo@amd.com, Charlene.Liu@amd.com, nicholas.kazlauskas@amd.com,
+ meenakshikumar.somasundaram@amd.com
+Subject: [PATCH] drm/amd/display: set should_disable_otg
+ storage-class-specifier to static
+Date: Thu,  9 Feb 2023 05:40:49 -0800
+Message-Id: <20230209134049.2000865-1-trix@redhat.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 09 Feb 2023 13:33:26 +0000
+Content-Type: text/plain; charset="US-ASCII"; x-default=true
+X-Mailman-Approved-At: Thu, 09 Feb 2023 13:43:50 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,41 +85,35 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Tom Rix <trix@redhat.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The function name is being reported as dc_link_contruct when it is
-actually dc_link_construct_phy. Fix this by using %s and the __func__
-for the function name.
+smatch reports
+drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn315/dcn315_clk_mgr.c:90:6:
+  warning: symbol 'should_disable_otg' was not declared. Should it be static?
 
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+should_disable_otg() is only used in dcn315_clk_mgr.c, so it should be static
+
+Signed-off-by: Tom Rix <trix@redhat.com>
 ---
- drivers/gpu/drm/amd/display/dc/link/link_factory.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_clk_mgr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/link/link_factory.c b/drivers/gpu/drm/amd/display/dc/link/link_factory.c
-index 13a766273755..3fc93fc593fb 100644
---- a/drivers/gpu/drm/amd/display/dc/link/link_factory.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/link_factory.c
-@@ -452,7 +452,7 @@ static bool dc_link_construct_phy(struct dc_link *link,
- 	link->psr_settings.psr_vtotal_control_support = false;
- 	link->psr_settings.psr_version = DC_PSR_VERSION_UNSUPPORTED;
- 
--	DC_LOG_DC("BIOS object table - dc_link_contruct finished successfully.\n");
-+	DC_LOG_DC("BIOS object table - %s finished successfully.\n", __func__);
- 	return true;
- device_tag_fail:
- 	link->link_enc->funcs->destroy(&link->link_enc);
-@@ -469,7 +469,7 @@ static bool dc_link_construct_phy(struct dc_link *link,
- 		link->hpd_gpio = NULL;
- 	}
- 
--	DC_LOG_DC("BIOS object table - dc_link_contruct failed.\n");
-+	DC_LOG_DC("BIOS object table - %s failed.\n", __func__);
- 	return false;
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_clk_mgr.c
+index 8c368bcc8e7e..a737782b2840 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn315/dcn315_clk_mgr.c
+@@ -87,7 +87,7 @@ static int dcn315_get_active_display_cnt_wa(
+ 	return display_count;
  }
  
+-bool should_disable_otg(struct pipe_ctx *pipe)
++static bool should_disable_otg(struct pipe_ctx *pipe)
+ {
+ 	bool ret = true;
+ 
 -- 
-2.30.2
+2.26.3
 
