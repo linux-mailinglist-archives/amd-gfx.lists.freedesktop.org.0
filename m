@@ -2,59 +2,84 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF2326922AB
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Feb 2023 16:53:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE36C692301
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Feb 2023 17:10:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A01810ED6C;
-	Fri, 10 Feb 2023 15:53:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6468410E293;
+	Fri, 10 Feb 2023 16:10:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com
- [IPv6:2001:4860:4864:20::35])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CA4810ED6C
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Feb 2023 15:53:42 +0000 (UTC)
-Received: by mail-oa1-x35.google.com with SMTP id
- 586e51a60fabf-16ab8581837so7089280fac.4
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Feb 2023 07:53:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=zSFRNBGbg5RyVjgWiI+7ths83CFO6oNClYx+2xqQNtI=;
- b=OcT4ZGtq/U5q/qWwcF2XlCd9Zdq0FB1Dxiqi/hbC43HgQS0TKqov6/Kfc2E0Qwo8WM
- flozifGrCLGtQcoEWhlje3bH5qUg9ARuzchUATFH3nA8ou0cYru3xPm1jaQPT5iuE/Xg
- MDk5QrF5f4c6NCttHF6q6bikO9CC+tg69Nx0sitFZVjMzKhYEzLjTUgYAOmuoNqwvh20
- Mofgm+6ZPOjHRS9S/gFOvPUYoyWlMBetMJakeypEOSV6qAprF87U58HhpLM8zH1+ThjD
- RDBWaAjaui98pVRdTFldn/yJK2PtZTreBfgG+DBeoAEA+MuQ4q+gjw/WiluXvgdG7SO4
- wm0g==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB1E010E28A
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Feb 2023 16:07:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1676045237;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=BlezyZ0ctjzjBsdQv4yB2m2kychWterO+IryIxlv3FU=;
+ b=g5ml9bXE8mS1NxP86hPI2/QgAGsfbqg6eGbCakKvi8KVWMWWln0MeRJkI2jK9/qrVIskaB
+ torVeLE3NwvZMS4mPZk7WNzszCiCqNJ03f0Rwlae9kzeX7t9s5dq3NNaUmUpIJvNDe65u2
+ zp8xIYmqNqezxVgpBca1/XiPDt0ATfw=
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
+ [209.85.208.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-412-bIYx1Gp6OO23CMUDwv5jTQ-1; Fri, 10 Feb 2023 11:07:16 -0500
+X-MC-Unique: bIYx1Gp6OO23CMUDwv5jTQ-1
+Received: by mail-ed1-f69.google.com with SMTP id
+ s20-20020a05640217d400b004ab46449f12so1706476edy.23
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Feb 2023 08:07:16 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=zSFRNBGbg5RyVjgWiI+7ths83CFO6oNClYx+2xqQNtI=;
- b=XR0dpY/AvD7W78wGPdOGXimY4e7K7Wp+N1iZcSv2te5eZVpiYXsjKH7/qv5BLPQ3OV
- K2pC+/5WYJ4ylgs868Jvl+99u/ppzNp3YOvW5rOdoyJAdRLzeSV39kVcj2VYKzXlobrS
- zOBy1kV/g3WbSE0y+VMGx9e3ksW772AZAt1CpGtktbScBZ5T0Phs/eTUicvCs7me55Pn
- QX+NYGKa2+SGLBNfbCyG3Os49gs/Ufm65Yn29rG5p9CaY7Xh7yCwKNQAsnoDxZlO9xZ/
- lP9iqQ6UpCApIX3LppKsz1Lp0W7XP/Fan38vMj+rRRmAMoRnIFK/+KVYqRJR0YhjDyj3
- 6bfg==
-X-Gm-Message-State: AO0yUKWWsSTEbatl9IF3rDKio+82KnS+Bk9z4N/C7hY9fnhpl+IYdLkL
- 7k0iWT5JGVrUIx2IZDO+gyduV4SE+9Z1rXAYDAg=
-X-Google-Smtp-Source: AK7set+qcoWEy9BYLGru9/034H+UQQd/562uEsdB2l51urNRCUIVKIl8Rlv7cIg64dgBI4M0+lgIJ0rB927Y0qI3KvQ=
-X-Received: by 2002:a05:6870:13d1:b0:163:a303:fe2f with SMTP id
- 17-20020a05687013d100b00163a303fe2fmr1456936oat.96.1676044421471; Fri, 10 Feb
- 2023 07:53:41 -0800 (PST)
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=BlezyZ0ctjzjBsdQv4yB2m2kychWterO+IryIxlv3FU=;
+ b=3rSCDisZqdMkeTbLMMUMbrRSZQSU1lDlFd1dP9gy0wSgGocB7wNeZJvrfJUDHe2Qpo
+ qys9Bcf9OYAxloVUygMYCkH9j80rGQKXXi3P0asTM4ZMn/qDsuCQlwmAdcgMolUJZV1t
+ 0IxMBAES3IJ7Cb1UNz/nH23XKASCYo/Ap74vEA6a8QTA0EaEfroiMRnggF+gl6Np/Cgo
+ CmTpOcXMPQGXhgc+tGulAN21Xru9BReWMYUPQLl+yKq6H76PQUHv7Fkt7vpjWTdRm5IS
+ b1asg9jYBcbkTJZPAU4mCn3fA9kE5BVAxSv04CF9dm4degOuafSXbjbiZhesZNhb0GfP
+ pnDg==
+X-Gm-Message-State: AO0yUKW2Vnz1RL7h+D7GesH+fJ2IGXVk8sjw2ZNaHMpbrZyjzlfxG7Dz
+ /J7oIjTyBUj2GIUqDYntXXGmpNqH1gautJLhx52CLgdebd7sj05tyulABCAB1D7pNq7Vu2Ggu05
+ m6nwtfVBCY1fWzh68YQv9BQfoag==
+X-Received: by 2002:a17:906:6a20:b0:8af:33f8:dcb3 with SMTP id
+ qw32-20020a1709066a2000b008af33f8dcb3mr8867483ejc.57.1676045235446; 
+ Fri, 10 Feb 2023 08:07:15 -0800 (PST)
+X-Google-Smtp-Source: AK7set8xLB5+EcBlsR4FtkzhXIqY7I7EBw8qioq1VaRXVB+Bc7ZWbenCJq8C4WMCGwJXM+0m0vfbkw==
+X-Received: by 2002:a17:906:6a20:b0:8af:33f8:dcb3 with SMTP id
+ qw32-20020a1709066a2000b008af33f8dcb3mr8867452ejc.57.1676045235208; 
+ Fri, 10 Feb 2023 08:07:15 -0800 (PST)
+Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
+ (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
+ by smtp.gmail.com with ESMTPSA id
+ v7-20020a170906858700b00883ec4c63ddsm2586397ejx.146.2023.02.10.08.07.13
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 10 Feb 2023 08:07:14 -0800 (PST)
+Message-ID: <b3a2d525-b30c-164c-705c-97fcb0016540@redhat.com>
+Date: Fri, 10 Feb 2023 17:07:13 +0100
 MIME-Version: 1.0
-References: <20230210044826.9834-1-orlandoch.dev@gmail.com>
- <20230210044826.9834-10-orlandoch.dev@gmail.com>
-In-Reply-To: <20230210044826.9834-10-orlandoch.dev@gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 10 Feb 2023 10:53:28 -0500
-Message-ID: <CADnq5_PVsrk4+K45kVgU=r98B9GgC2CxbC8AvGUXRtv2sZAHPg@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
 Subject: Re: [RFC PATCH 9/9] drm/amdgpu: register a vga_switcheroo client for
  all GPUs that are not thunderbolt attached
-To: Orlando Chamberlain <orlandoch.dev@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+To: Alex Deucher <alexdeucher@gmail.com>,
+ Orlando Chamberlain <orlandoch.dev@gmail.com>
+References: <20230210044826.9834-1-orlandoch.dev@gmail.com>
+ <20230210044826.9834-10-orlandoch.dev@gmail.com>
+ <CADnq5_PVsrk4+K45kVgU=r98B9GgC2CxbC8AvGUXRtv2sZAHPg@mail.gmail.com>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <CADnq5_PVsrk4+K45kVgU=r98B9GgC2CxbC8AvGUXRtv2sZAHPg@mail.gmail.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, nl
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Fri, 10 Feb 2023 16:10:44 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,85 +104,116 @@ Cc: alsa-devel@alsa-project.org,
  Aun-Ali Zaidi <admin@kodeit.net>,
  Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
  Bokun Zhang <Bokun.Zhang@amd.com>, Mark Gross <markgross@kernel.org>,
- Hans de Goede <hdegoede@redhat.com>, Jaroslav Kysela <perex@perex.cz>,
- Kerem Karabay <kekrby@gmail.com>, platform-driver-x86@vger.kernel.org,
- Jack Xiao <Jack.Xiao@amd.com>, Kai Vehmanen <kai.vehmanen@linux.intel.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ Jaroslav Kysela <perex@perex.cz>, Kerem Karabay <kekrby@gmail.com>,
+ platform-driver-x86@vger.kernel.org, Jack Xiao <Jack.Xiao@amd.com>,
+ Kai Vehmanen <kai.vehmanen@linux.intel.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
  Aditya Garg <gargaditya08@live.com>, Daniel Vetter <daniel@ffwll.ch>,
- =?UTF-8?B?QW1hZGV1c3ogU8WCYXdpxYRza2k=?= <amadeuszx.slawinski@linux.intel.com>,
+ =?UTF-8?Q?Amadeusz_S=c5=82awi=c5=84ski?= <amadeuszx.slawinski@linux.intel.com>,
  Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
  Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 10, 2023 at 3:04 AM Orlando Chamberlain
-<orlandoch.dev@gmail.com> wrote:
->
-> From: Kerem Karabay <kekrby@gmail.com>
->
-> Commit 3840c5bcc245 ("drm/amdgpu: disentangle runtime pm and
-> vga_switcheroo") made amdgpu only register a vga_switcheroo client for
-> GPU's with PX, however AMD GPUs in dual gpu Apple Macbooks do need to
-> register, but don't have PX. Instead of AMD's PX, they use apple-gmux.
+Hi,
 
-Is there a way to detect apple-gmux instead?  Otherwise, we register
-vga_switcheroo on any system with multiple GPUs which is not what we
-want.
+On 2/10/23 16:53, Alex Deucher wrote:
+> On Fri, Feb 10, 2023 at 3:04 AM Orlando Chamberlain
+> <orlandoch.dev@gmail.com> wrote:
+>>
+>> From: Kerem Karabay <kekrby@gmail.com>
+>>
+>> Commit 3840c5bcc245 ("drm/amdgpu: disentangle runtime pm and
+>> vga_switcheroo") made amdgpu only register a vga_switcheroo client for
+>> GPU's with PX, however AMD GPUs in dual gpu Apple Macbooks do need to
+>> register, but don't have PX. Instead of AMD's PX, they use apple-gmux.
+> 
+> Is there a way to detect apple-gmux instead?  Otherwise, we register
+> vga_switcheroo on any system with multiple GPUs which is not what we
+> want.
 
-Alex
+Yes since 6.1.y (either stable series or just take 6.2.0) the apple-gmux
+detect code has been factored out into a stand-alone
+apple_gmux_detect() helper inside:
 
->
-> Revert to the old logic of registering for all non-thunderbolt gpus,
-> like radeon and nouveau.
->
-> Fixes: 3840c5bcc245 ("drm/amdgpu: disentangle runtime pm and vga_switcheroo")
-> Signed-off-by: Kerem Karabay <kekrby@gmail.com>
-> [Orlando Chamberlain <orlandoch.dev@gmail.com>: add commit description]
-> Signed-off-by: Orlando Chamberlain <orlandoch.dev@gmail.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 18 +++++++++++-------
->  1 file changed, 11 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index 2f28a8c02f64..0bb553a61552 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -3919,12 +3919,13 @@ int amdgpu_device_init(struct amdgpu_device *adev,
->         if ((adev->pdev->class >> 8) == PCI_CLASS_DISPLAY_VGA)
->                 vga_client_register(adev->pdev, amdgpu_device_vga_set_decode);
->
-> -       if (amdgpu_device_supports_px(ddev)) {
-> -               px = true;
-> -               vga_switcheroo_register_client(adev->pdev,
-> -                                              &amdgpu_switcheroo_ops, px);
-> +       px = amdgpu_device_supports_px(ddev);
-> +
-> +       if (!pci_is_thunderbolt_attached(adev->pdev))
-> +               vga_switcheroo_register_client(adev->pdev, &amdgpu_switcheroo_ops, px);
-> +
-> +       if (px)
->                 vga_switcheroo_init_domain_pm_ops(adev->dev, &adev->vga_pm_domain);
-> -       }
->
->         if (adev->gmc.xgmi.pending_reset)
->                 queue_delayed_work(system_wq, &mgpu_info.delayed_reset_work,
-> @@ -4048,10 +4049,13 @@ void amdgpu_device_fini_sw(struct amdgpu_device *adev)
->
->         kfree(adev->bios);
->         adev->bios = NULL;
-> -       if (amdgpu_device_supports_px(adev_to_drm(adev))) {
-> +
-> +       if (!pci_is_thunderbolt_attached(adev->pdev))
->                 vga_switcheroo_unregister_client(adev->pdev);
-> +
-> +       if (amdgpu_device_supports_px(adev_to_drm(adev)))
->                 vga_switcheroo_fini_domain_pm_ops(adev->dev);
-> -       }
-> +
->         if ((adev->pdev->class >> 8) == PCI_CLASS_DISPLAY_VGA)
->                 vga_client_unregister(adev->pdev);
->
-> --
-> 2.39.1
->
+include/linux/apple-gmux.h
+
+For usage outside of the actual apple-gmux driver you can simply
+pass NULL for both arguments.
+
+This was necessary to reliably check if the apple-gmux should be
+used for backlight control.
+
+Note there also is the older apple_gmux_present() helper, which is
+already used in some drm code. That function is not reliable though
+it detects if the ACPI tables contain an ACPI device describing
+the presence of a gmux, but it turns out even Apple has buggy ACPI
+tables and the mere presence of that ACPI device is not a reliable
+indicator the gmux is actually there.
+
+I have not changed over any of the existing apple_gmux_present()
+users for fear of unwanted side effects...
+
+Regards,
+
+Hans
+
+
+
+
+>> Revert to the old logic of registering for all non-thunderbolt gpus,
+>> like radeon and nouveau.
+>>
+>> Fixes: 3840c5bcc245 ("drm/amdgpu: disentangle runtime pm and vga_switcheroo")
+>> Signed-off-by: Kerem Karabay <kekrby@gmail.com>
+>> [Orlando Chamberlain <orlandoch.dev@gmail.com>: add commit description]
+>> Signed-off-by: Orlando Chamberlain <orlandoch.dev@gmail.com>
+>> ---
+>>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 18 +++++++++++-------
+>>  1 file changed, 11 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>> index 2f28a8c02f64..0bb553a61552 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>> @@ -3919,12 +3919,13 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+>>         if ((adev->pdev->class >> 8) == PCI_CLASS_DISPLAY_VGA)
+>>                 vga_client_register(adev->pdev, amdgpu_device_vga_set_decode);
+>>
+>> -       if (amdgpu_device_supports_px(ddev)) {
+>> -               px = true;
+>> -               vga_switcheroo_register_client(adev->pdev,
+>> -                                              &amdgpu_switcheroo_ops, px);
+>> +       px = amdgpu_device_supports_px(ddev);
+>> +
+>> +       if (!pci_is_thunderbolt_attached(adev->pdev))
+>> +               vga_switcheroo_register_client(adev->pdev, &amdgpu_switcheroo_ops, px);
+>> +
+>> +       if (px)
+>>                 vga_switcheroo_init_domain_pm_ops(adev->dev, &adev->vga_pm_domain);
+>> -       }
+>>
+>>         if (adev->gmc.xgmi.pending_reset)
+>>                 queue_delayed_work(system_wq, &mgpu_info.delayed_reset_work,
+>> @@ -4048,10 +4049,13 @@ void amdgpu_device_fini_sw(struct amdgpu_device *adev)
+>>
+>>         kfree(adev->bios);
+>>         adev->bios = NULL;
+>> -       if (amdgpu_device_supports_px(adev_to_drm(adev))) {
+>> +
+>> +       if (!pci_is_thunderbolt_attached(adev->pdev))
+>>                 vga_switcheroo_unregister_client(adev->pdev);
+>> +
+>> +       if (amdgpu_device_supports_px(adev_to_drm(adev)))
+>>                 vga_switcheroo_fini_domain_pm_ops(adev->dev);
+>> -       }
+>> +
+>>         if ((adev->pdev->class >> 8) == PCI_CLASS_DISPLAY_VGA)
+>>                 vga_client_unregister(adev->pdev);
+>>
+>> --
+>> 2.39.1
+>>
+> 
+
