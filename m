@@ -2,59 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6274169197E
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Feb 2023 09:04:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 409EC691983
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Feb 2023 09:04:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DA2D10EC86;
-	Fri, 10 Feb 2023 08:04:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 613A810EC8E;
+	Fri, 10 Feb 2023 08:04:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com
- [IPv6:2607:f8b0:4864:20::42b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C68C10EC5C
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Feb 2023 04:50:09 +0000 (UTC)
-Received: by mail-pf1-x42b.google.com with SMTP id s20so2769545pfe.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 09 Feb 2023 20:50:09 -0800 (PST)
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com
+ [IPv6:2607:f8b0:4864:20::102d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E99D10EC55
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Feb 2023 04:50:19 +0000 (UTC)
+Received: by mail-pj1-x102d.google.com with SMTP id
+ v6-20020a17090ad58600b00229eec90a7fso7819586pju.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 09 Feb 2023 20:50:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=5mAzAHTdZsC5IqNul3xJsl6wPXmAHfKwZ27VCzKXGF4=;
- b=JVtiloj7yRa4BQFYW86RmJebSQYTmr6ulQWbaNdE813YnQNwxXxigdeqKGwJ547OA9
- iKneGqYybribFvactjWAxLOC1FFyHyE+vrJN9XEm4Abm2yHTeo6rcn+1OgEhy5wP98gZ
- +ThcUd3YSIgv/n1tSUkAQD0bQGEO9epBP65UtYfzB4TDt5HkYEHAUsO9ybZHG+TDzu0u
- hqJKP33cLtrVl0eYH6Qi6HmbIoL1D0nmoU8eLgaP0zLDynkeKmwUzTLzZaRDN3rU0PL/
- En5vvM6GmtpTk46YMQcS55SP+xFg1xh1ZcTgKWrbYfmIOMTZVYpC6OIy+kKwcbJ4fUCF
- NfGw==
+ bh=Y8Z+rw3Lo4ZI53HBYFrES/rZyYmIcMPWeV9Tjc6GjJE=;
+ b=dfjrwZCUTXg0++zE/wVkz4Z96Dke9cdiJGPWOJx+bSbwOuQzxzamUP7h08RKQKxmci
+ TJuBqsc+PY+NgKeBk1dK5ehjoB56e05oCGCVdL0fCqIdQhc0VEGhFat0cmuxanHzAMg0
+ PkBLd+8yttsFpd3mZCaA1SzojWL4FcQ3HiMdQp77gFhOpZsKqeYz/jeR1LyHxN4YyLTb
+ 3ZMp1vTJystxqoDQUey6c9p8i3s2QjUBsSsvBZ5rfq9WUIORdJzIDSR0QALHgrjXZ77j
+ ScTwjw3ohujsiuZkCI2r2hTPzZp/mGapCXYydIZhMspEsgiXfPGfK8D+y5YVUcqfbqEh
+ 3VYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=5mAzAHTdZsC5IqNul3xJsl6wPXmAHfKwZ27VCzKXGF4=;
- b=6tsr6IURWZLjG9ZIewJGj1MtbY7X8T9Kjqn12xC306DFwUhbvM7NuamHoz7DCTK26F
- Yz6IPVPyMNt9fy7DDILeqI5+2Gff05DP67jHnmLByGkJZLkwZWbmk6H9QIaPtAJ8nB/g
- CjO1Q5rUhcAw/cumbalttESTcWJ96vkcghPnSF+vSi+OJqj5xsLC93wm/LMn4tyxRTqY
- dq7Yb/59OoyGSskPXDjEr+MpgtjWGVAcI19BtXakPCJuTIFcgCYkcBCnJyTKW4IoFs0R
- T1XKd80jXyfButIueQIeHA2UKWup/ajLxMZsHqeTNdj8Ym2OA8qeAOD81EQpK/JC6XVh
- 6s5g==
-X-Gm-Message-State: AO0yUKWIzpPv0KJAnhn0+I/4mPzO4Ouorn1/sfim/JjusMMpCvFucGws
- sZLhYvD7RpTY5Gk63q5GUKg=
-X-Google-Smtp-Source: AK7set8TKp+XoOdzFSSniCiSLofONjJNjijxRgei3TQG94xGgDFfQ+8mh0QAUiI4aSA+indqTsT/jA==
-X-Received: by 2002:a62:1c13:0:b0:593:2289:f01c with SMTP id
- c19-20020a621c13000000b005932289f01cmr11514678pfc.25.1676004609052; 
- Thu, 09 Feb 2023 20:50:09 -0800 (PST)
+ bh=Y8Z+rw3Lo4ZI53HBYFrES/rZyYmIcMPWeV9Tjc6GjJE=;
+ b=tJ0RRGQrxrZEE4YDzjJOi62t8fIqc9cjxe0BZsJCy75sKkFhdLTjOqRsrheSWy9YGW
+ /UIVfGAw/Y91OIOB9AdcrGByyKj5Qh+3hlcTLwdm1J7mrBiuDLoGWLAyWcZkvxw/a6r2
+ n7NbcwqU0TzDaNROFxRnPZYzDAtE1i7gHb/ScKW5dUUEz3HYfTTQ1r9EJRnBBXYu9hsF
+ QWGg+CAYtf6dz9E1ncTYIYiZ5+rP3T2OKORYXqtOWL01/fGSWE4rBkGyP0f8V2bj8P6b
+ HZ0ocaCytE3xif+bxErS7POxJv62Yg7YP1mWKnvPZnYNibBNUAvo+6Xgg36vXrW3GQ0o
+ iTcg==
+X-Gm-Message-State: AO0yUKUHcpNVavhW0VrGgtd2DmApl22OjaRMuuldhraRdeULqQWasrvp
+ yezG1cOUF5U53lY/3HeHAGA=
+X-Google-Smtp-Source: AK7set/7KSbVgE9qkN7uNWue+wzw+pXkSmt+auWpnDKP9/ad63Y3Jn6uOO0PkG79K7jm7BGnaA7Ihg==
+X-Received: by 2002:a05:6a21:339a:b0:bf:22ca:ef55 with SMTP id
+ yy26-20020a056a21339a00b000bf22caef55mr17822193pzb.37.1676004618944; 
+ Thu, 09 Feb 2023 20:50:18 -0800 (PST)
 Received: from localhost.localdomain ([202.53.32.211])
  by smtp.gmail.com with ESMTPSA id
- t13-20020a62ea0d000000b0057fec210d33sm2269218pfh.152.2023.02.09.20.49.59
+ t13-20020a62ea0d000000b0057fec210d33sm2269218pfh.152.2023.02.09.20.50.09
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 09 Feb 2023 20:50:08 -0800 (PST)
+ Thu, 09 Feb 2023 20:50:18 -0800 (PST)
 From: Orlando Chamberlain <orlandoch.dev@gmail.com>
 To: platform-driver-x86@vger.kernel.org, amd-gfx@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
-Subject: [RFC PATCH 1/9] apple-gmux: use cpu_to_be32 instead of manual reorder
-Date: Fri, 10 Feb 2023 15:48:18 +1100
-Message-Id: <20230210044826.9834-2-orlandoch.dev@gmail.com>
+Subject: [RFC PATCH 2/9] apple-gmux: consolidate version reading
+Date: Fri, 10 Feb 2023 15:48:19 +1100
+Message-Id: <20230210044826.9834-3-orlandoch.dev@gmail.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230210044826.9834-1-orlandoch.dev@gmail.com>
 References: <20230210044826.9834-1-orlandoch.dev@gmail.com>
@@ -96,51 +97,76 @@ Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Currently it manually flips the byte order, but we can instead use
-cpu_to_be32(val) for this.
+Read gmux version in one go as 32 bits on both indexed and classic
+gmux's.
+
+Classic gmux's used to read the version as
+
+major = inb(base + 0x4);
+minor = inb(base + 0x5);
+release = inb(base + 0x6);
+
+but this can instead be done the same way as indexed gmux's with
+gmux_read32(), so the same version reading code is used for classic
+and indexed gmux's (as well as mmio gmux's that will be added to this
+driver).
 
 Signed-off-by: Orlando Chamberlain <orlandoch.dev@gmail.com>
 ---
- drivers/platform/x86/apple-gmux.c | 18 ++----------------
- 1 file changed, 2 insertions(+), 16 deletions(-)
+ drivers/platform/x86/apple-gmux.c | 14 ++++++--------
+ include/linux/apple-gmux.h        |  6 +-----
+ 2 files changed, 7 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/platform/x86/apple-gmux.c b/drivers/platform/x86/apple-gmux.c
-index 9333f82cfa8a..e8cb084cb81f 100644
+index e8cb084cb81f..67628104f31a 100644
 --- a/drivers/platform/x86/apple-gmux.c
 +++ b/drivers/platform/x86/apple-gmux.c
-@@ -94,13 +94,7 @@ static u32 gmux_pio_read32(struct apple_gmux_data *gmux_data, int port)
- static void gmux_pio_write32(struct apple_gmux_data *gmux_data, int port,
- 			     u32 val)
- {
--	int i;
--	u8 tmpval;
--
--	for (i = 0; i < 4; i++) {
--		tmpval = (val >> (i * 8)) & 0xff;
--		outb(tmpval, gmux_data->iostart + port + i);
--	}
-+	outl(cpu_to_be32(val), gmux_data->iostart + port);
- }
+@@ -580,15 +580,13 @@ static int gmux_probe(struct pnp_dev *pnp, const struct pnp_device_id *id)
+ 	if (indexed) {
+ 		mutex_init(&gmux_data->index_lock);
+ 		gmux_data->indexed = true;
+-		version = gmux_read32(gmux_data, GMUX_PORT_VERSION_MAJOR);
+-		ver_major = (version >> 24) & 0xff;
+-		ver_minor = (version >> 16) & 0xff;
+-		ver_release = (version >> 8) & 0xff;
+-	} else {
+-		ver_major = gmux_read8(gmux_data, GMUX_PORT_VERSION_MAJOR);
+-		ver_minor = gmux_read8(gmux_data, GMUX_PORT_VERSION_MINOR);
+-		ver_release = gmux_read8(gmux_data, GMUX_PORT_VERSION_RELEASE);
+ 	}
++
++	version = gmux_read32(gmux_data, GMUX_PORT_VERSION_MAJOR);
++	ver_major = (version >> 24) & 0xff;
++	ver_minor = (version >> 16) & 0xff;
++	ver_release = (version >> 8) & 0xff;
++
+ 	pr_info("Found gmux version %d.%d.%d [%s]\n", ver_major, ver_minor,
+ 		ver_release, (gmux_data->indexed ? "indexed" : "classic"));
  
- static int gmux_index_wait_ready(struct apple_gmux_data *gmux_data)
-@@ -177,16 +171,8 @@ static u32 gmux_index_read32(struct apple_gmux_data *gmux_data, int port)
- static void gmux_index_write32(struct apple_gmux_data *gmux_data, int port,
- 			       u32 val)
+diff --git a/include/linux/apple-gmux.h b/include/linux/apple-gmux.h
+index 1f68b49bcd68..eb2caee04abd 100644
+--- a/include/linux/apple-gmux.h
++++ b/include/linux/apple-gmux.h
+@@ -67,7 +67,6 @@ static inline bool apple_gmux_is_indexed(unsigned long iostart)
+  */
+ static inline bool apple_gmux_detect(struct pnp_dev *pnp_dev, bool *indexed_ret)
  {
--	int i;
--	u8 tmpval;
--
- 	mutex_lock(&gmux_data->index_lock);
--
--	for (i = 0; i < 4; i++) {
--		tmpval = (val >> (i * 8)) & 0xff;
--		outb(tmpval, gmux_data->iostart + GMUX_PORT_VALUE + i);
--	}
--
-+	outl(cpu_to_be32(val), gmux_data->iostart + GMUX_PORT_VALUE);
- 	gmux_index_wait_ready(gmux_data);
- 	outb(port & 0xff, gmux_data->iostart + GMUX_PORT_WRITE);
- 	gmux_index_wait_complete(gmux_data);
+-	u8 ver_major, ver_minor, ver_release;
+ 	struct device *dev = NULL;
+ 	struct acpi_device *adev;
+ 	struct resource *res;
+@@ -95,10 +94,7 @@ static inline bool apple_gmux_detect(struct pnp_dev *pnp_dev, bool *indexed_ret)
+ 	 * Invalid version information may indicate either that the gmux
+ 	 * device isn't present or that it's a new one that uses indexed io.
+ 	 */
+-	ver_major = inb(res->start + GMUX_PORT_VERSION_MAJOR);
+-	ver_minor = inb(res->start + GMUX_PORT_VERSION_MINOR);
+-	ver_release = inb(res->start + GMUX_PORT_VERSION_RELEASE);
+-	if (ver_major == 0xff && ver_minor == 0xff && ver_release == 0xff) {
++	if (!(~inl(res->start + GMUX_PORT_VERSION_MAJOR))) {
+ 		indexed = apple_gmux_is_indexed(res->start);
+ 		if (!indexed)
+ 			goto out;
 -- 
 2.39.1
 
