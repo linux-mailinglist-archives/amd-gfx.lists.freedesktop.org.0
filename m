@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E79E691984
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Feb 2023 09:04:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52D7B69197C
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Feb 2023 09:04:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3B4E10EC90;
-	Fri, 10 Feb 2023 08:04:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E38F10EC8A;
+	Fri, 10 Feb 2023 08:04:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-124.freemail.mail.aliyun.com
- (out30-124.freemail.mail.aliyun.com [115.124.30.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D034F10E125;
- Fri, 10 Feb 2023 02:28:51 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R171e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018046056;
+Received: from out30-130.freemail.mail.aliyun.com
+ (out30-130.freemail.mail.aliyun.com [115.124.30.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0D8A10EC31;
+ Fri, 10 Feb 2023 02:43:55 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R161e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018045168;
  MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=10; SR=0;
- TI=SMTPD_---0VbI6omF_1675996121; 
+ TI=SMTPD_---0VbICT0J_1675997026; 
 Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
- fp:SMTPD_---0VbI6omF_1675996121) by smtp.aliyun-inc.com;
- Fri, 10 Feb 2023 10:28:46 +0800
+ fp:SMTPD_---0VbICT0J_1675997026) by smtp.aliyun-inc.com;
+ Fri, 10 Feb 2023 10:43:51 +0800
 From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
 To: alexander.deucher@amd.com
-Subject: [PATCH] drm/amd/display: Remove the unused variable ds_port
-Date: Fri, 10 Feb 2023 10:28:39 +0800
-Message-Id: <20230210022839.3152-1-jiapeng.chong@linux.alibaba.com>
+Subject: [PATCH] drm/amd/display: Remove the unused variable
+ pre_connection_type
+Date: Fri, 10 Feb 2023 10:43:43 +0800
+Message-Id: <20230210024343.26220-1-jiapeng.chong@linux.alibaba.com>
 X-Mailer: git-send-email 2.20.1.7.g153144c
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 10 Feb 2023 08:04:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -48,39 +48,35 @@ Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, Xinhui.Pan@amd.com,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Variable ds_port is not effectively used, so delete it.
-
-drivers/gpu/drm/amd/amdgpu/../display/dc/link/protocols/link_dp_capability.c:280:35: warning: variable ‘ds_port’ set but not used.
+Variable pre_connection_type is not effectively used, so delete it.
 
 Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=4030
+Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=4031
 Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
 ---
- .../drm/amd/display/dc/link/protocols/link_dp_capability.c    | 4 ----
- 1 file changed, 4 deletions(-)
+ drivers/gpu/drm/amd/display/dc/link/link_detection.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
-index 24d356ebd7a9..816bf4ff8017 100644
---- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
-@@ -277,7 +277,6 @@ static void dp_wa_power_up_0010FA(struct dc_link *link, uint8_t *dpcd_data,
- 		int length)
- {
- 	int retry = 0;
--	union dp_downstream_port_present ds_port = { 0 };
+diff --git a/drivers/gpu/drm/amd/display/dc/link/link_detection.c b/drivers/gpu/drm/amd/display/dc/link/link_detection.c
+index 63e75c392031..d224a44c4cc8 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/link_detection.c
++++ b/drivers/gpu/drm/amd/display/dc/link/link_detection.c
+@@ -886,7 +886,6 @@ static bool detect_link_and_local_sink(struct dc_link *link,
+ 	struct dc_sink *prev_sink = NULL;
+ 	struct dpcd_caps prev_dpcd_caps;
+ 	enum dc_connection_type new_connection_type = dc_connection_none;
+-	enum dc_connection_type pre_connection_type = dc_connection_none;
+ 	const uint32_t post_oui_delay = 30; // 30ms
  
- 	if (!link->dpcd_caps.dpcd_rev.raw) {
- 		do {
-@@ -290,9 +289,6 @@ static void dp_wa_power_up_0010FA(struct dc_link *link, uint8_t *dpcd_data,
- 		} while (retry++ < 4 && !link->dpcd_caps.dpcd_rev.raw);
- 	}
+ 	DC_LOGGER_INIT(link->ctx->logger);
+@@ -923,7 +922,6 @@ static bool detect_link_and_local_sink(struct dc_link *link,
  
--	ds_port.byte = dpcd_data[DP_DOWNSTREAMPORT_PRESENT -
--				 DP_DPCD_REV];
--
- 	if (link->dpcd_caps.dongle_type == DISPLAY_DONGLE_DP_VGA_CONVERTER) {
- 		switch (link->dpcd_caps.branch_dev_id) {
- 		/* 0010FA active dongles (DP-VGA, DP-DLDVI converters) power down
+ 	link_disconnect_sink(link);
+ 	if (new_connection_type != dc_connection_none) {
+-		pre_connection_type = link->type;
+ 		link->type = new_connection_type;
+ 		link->link_state_valid = false;
+ 
 -- 
 2.20.1.7.g153144c
 
