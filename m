@@ -2,60 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 409EC691983
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Feb 2023 09:04:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8D3869197D
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Feb 2023 09:04:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 613A810EC8E;
-	Fri, 10 Feb 2023 08:04:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F240F10EC8B;
+	Fri, 10 Feb 2023 08:04:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com
- [IPv6:2607:f8b0:4864:20::102d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E99D10EC55
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Feb 2023 04:50:19 +0000 (UTC)
-Received: by mail-pj1-x102d.google.com with SMTP id
- v6-20020a17090ad58600b00229eec90a7fso7819586pju.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 09 Feb 2023 20:50:19 -0800 (PST)
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com
+ [IPv6:2607:f8b0:4864:20::430])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05B9D10EC55
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Feb 2023 04:50:28 +0000 (UTC)
+Received: by mail-pf1-x430.google.com with SMTP id n2so2772140pfo.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 09 Feb 2023 20:50:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=Y8Z+rw3Lo4ZI53HBYFrES/rZyYmIcMPWeV9Tjc6GjJE=;
- b=dfjrwZCUTXg0++zE/wVkz4Z96Dke9cdiJGPWOJx+bSbwOuQzxzamUP7h08RKQKxmci
- TJuBqsc+PY+NgKeBk1dK5ehjoB56e05oCGCVdL0fCqIdQhc0VEGhFat0cmuxanHzAMg0
- PkBLd+8yttsFpd3mZCaA1SzojWL4FcQ3HiMdQp77gFhOpZsKqeYz/jeR1LyHxN4YyLTb
- 3ZMp1vTJystxqoDQUey6c9p8i3s2QjUBsSsvBZ5rfq9WUIORdJzIDSR0QALHgrjXZ77j
- ScTwjw3ohujsiuZkCI2r2hTPzZp/mGapCXYydIZhMspEsgiXfPGfK8D+y5YVUcqfbqEh
- 3VYA==
+ bh=zqShi3EgLDtgztLIgW/MuPsWv2vSLPgVWXrp/LobXww=;
+ b=Om+u/6VnAJG9TE8AtmP7qvhlFAe++DibsHxfnKB/uw1rT0M0wwXXptoFr0Xv+20ydo
+ eakNNTYlCCk2g+ALxRE6kmjCfzNbNOYJFbMBHqWvHvIm2k/uZfv6KIo0xugx3nQig2py
+ J1no3BHk6c8ezYo6oWs4KfkhLQOu7YRb0G1aFzEpM6YreNPESvbQ4vwbkdQg1ll66Mfa
+ qmCJAD9lIdQ09n5BrE3kzDSLu8s0jx5ZJ2hqM233WpFqKrLUDc8SXFgEQ8iWwYwFo7zR
+ SkcsIvSD7qiSPHhO2o5OR47wO55x0ECXZiVlRFfBnNKUyj1V+gZQOOhi2rAshPHtOKDE
+ yP0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=Y8Z+rw3Lo4ZI53HBYFrES/rZyYmIcMPWeV9Tjc6GjJE=;
- b=tJ0RRGQrxrZEE4YDzjJOi62t8fIqc9cjxe0BZsJCy75sKkFhdLTjOqRsrheSWy9YGW
- /UIVfGAw/Y91OIOB9AdcrGByyKj5Qh+3hlcTLwdm1J7mrBiuDLoGWLAyWcZkvxw/a6r2
- n7NbcwqU0TzDaNROFxRnPZYzDAtE1i7gHb/ScKW5dUUEz3HYfTTQ1r9EJRnBBXYu9hsF
- QWGg+CAYtf6dz9E1ncTYIYiZ5+rP3T2OKORYXqtOWL01/fGSWE4rBkGyP0f8V2bj8P6b
- HZ0ocaCytE3xif+bxErS7POxJv62Yg7YP1mWKnvPZnYNibBNUAvo+6Xgg36vXrW3GQ0o
- iTcg==
-X-Gm-Message-State: AO0yUKUHcpNVavhW0VrGgtd2DmApl22OjaRMuuldhraRdeULqQWasrvp
- yezG1cOUF5U53lY/3HeHAGA=
-X-Google-Smtp-Source: AK7set/7KSbVgE9qkN7uNWue+wzw+pXkSmt+auWpnDKP9/ad63Y3Jn6uOO0PkG79K7jm7BGnaA7Ihg==
-X-Received: by 2002:a05:6a21:339a:b0:bf:22ca:ef55 with SMTP id
- yy26-20020a056a21339a00b000bf22caef55mr17822193pzb.37.1676004618944; 
- Thu, 09 Feb 2023 20:50:18 -0800 (PST)
+ bh=zqShi3EgLDtgztLIgW/MuPsWv2vSLPgVWXrp/LobXww=;
+ b=l/7SdRGyT1WLdts6F42nApka5teDhLLgSNhdxUNKgpVGvZx37Ym3kVQxkJD1Q04Vdz
+ qYqwFZBv8ba+a7YK6xg3+l+8Dd6QZLJaEUr9L+cHsEV7cwMSbSUOyhUtkb9oPe3++3B9
+ L72LcRCVsOYyuVrGZARZZGSsrv9OESxteMhJJkulnA3nG6LRsfO18xH+u69GW5aSiYth
+ wnNEqroTt3/0MTDFfpkWx+8lj8ygal90zkI+WvyZZDy3Oq+cQWxCDRSUi+Tu9PwbRcYC
+ EKAIDNkT9WdJZaS1LBL3sTHkY8juzveSmdpQutmSR7R6vlRvW3Lb3RZTYzjeIbF5ws3k
+ y5lQ==
+X-Gm-Message-State: AO0yUKViwfG4TarQWnvlDRBNz8rtYlAE6G1p9VXpoLEe4pAdjHER8Vyg
+ SWk6kgOXPWkYxsYi60yXe9I=
+X-Google-Smtp-Source: AK7set//ZS0OEdNcYuTp0DRJ59S0YHaU7AVoVK7clC6F+urpcBjbK1/I7g8ZJg3rnX+smO5B0TtQfg==
+X-Received: by 2002:a62:6458:0:b0:5a8:6bb7:5fc5 with SMTP id
+ y85-20020a626458000000b005a86bb75fc5mr1170747pfb.19.1676004628485; 
+ Thu, 09 Feb 2023 20:50:28 -0800 (PST)
 Received: from localhost.localdomain ([202.53.32.211])
  by smtp.gmail.com with ESMTPSA id
- t13-20020a62ea0d000000b0057fec210d33sm2269218pfh.152.2023.02.09.20.50.09
+ t13-20020a62ea0d000000b0057fec210d33sm2269218pfh.152.2023.02.09.20.50.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 09 Feb 2023 20:50:18 -0800 (PST)
+ Thu, 09 Feb 2023 20:50:28 -0800 (PST)
 From: Orlando Chamberlain <orlandoch.dev@gmail.com>
 To: platform-driver-x86@vger.kernel.org, amd-gfx@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
-Subject: [RFC PATCH 2/9] apple-gmux: consolidate version reading
-Date: Fri, 10 Feb 2023 15:48:19 +1100
-Message-Id: <20230210044826.9834-3-orlandoch.dev@gmail.com>
+Subject: [RFC PATCH 3/9] apple-gmux: use first bit to check switch state
+Date: Fri, 10 Feb 2023 15:48:20 +1100
+Message-Id: <20230210044826.9834-4-orlandoch.dev@gmail.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230210044826.9834-1-orlandoch.dev@gmail.com>
 References: <20230210044826.9834-1-orlandoch.dev@gmail.com>
@@ -97,76 +96,39 @@ Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Read gmux version in one go as 32 bits on both indexed and classic
-gmux's.
+On T2 Macs with MMIO gmux, when GMUX_PORT_SWITCH_DISPLAY is read, it can
+have values of 2, 3, 4, and 5. Odd values correspond to the discrete gpu,
+and even values correspond to the integrated gpu. The current logic is
+that only 2 corresponds to IGD, but this doesn't work for T2 Macs.
+Instead, check the first bit to determine the connected gpu.
 
-Classic gmux's used to read the version as
-
-major = inb(base + 0x4);
-minor = inb(base + 0x5);
-release = inb(base + 0x6);
-
-but this can instead be done the same way as indexed gmux's with
-gmux_read32(), so the same version reading code is used for classic
-and indexed gmux's (as well as mmio gmux's that will be added to this
-driver).
+As T2 Macs with gmux only can switch the internal display, it is
+untested if this change (or a similar change) would be applicable
+to GMUX_PORT_SWITCH_DDC and GMUX_PORT_SWITCH_EXTERNAL.
 
 Signed-off-by: Orlando Chamberlain <orlandoch.dev@gmail.com>
 ---
- drivers/platform/x86/apple-gmux.c | 14 ++++++--------
- include/linux/apple-gmux.h        |  6 +-----
- 2 files changed, 7 insertions(+), 13 deletions(-)
+ drivers/platform/x86/apple-gmux.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/platform/x86/apple-gmux.c b/drivers/platform/x86/apple-gmux.c
-index e8cb084cb81f..67628104f31a 100644
+index 67628104f31a..6109f4c2867c 100644
 --- a/drivers/platform/x86/apple-gmux.c
 +++ b/drivers/platform/x86/apple-gmux.c
-@@ -580,15 +580,13 @@ static int gmux_probe(struct pnp_dev *pnp, const struct pnp_device_id *id)
- 	if (indexed) {
- 		mutex_init(&gmux_data->index_lock);
- 		gmux_data->indexed = true;
--		version = gmux_read32(gmux_data, GMUX_PORT_VERSION_MAJOR);
--		ver_major = (version >> 24) & 0xff;
--		ver_minor = (version >> 16) & 0xff;
--		ver_release = (version >> 8) & 0xff;
--	} else {
--		ver_major = gmux_read8(gmux_data, GMUX_PORT_VERSION_MAJOR);
--		ver_minor = gmux_read8(gmux_data, GMUX_PORT_VERSION_MINOR);
--		ver_release = gmux_read8(gmux_data, GMUX_PORT_VERSION_RELEASE);
- 	}
-+
-+	version = gmux_read32(gmux_data, GMUX_PORT_VERSION_MAJOR);
-+	ver_major = (version >> 24) & 0xff;
-+	ver_minor = (version >> 16) & 0xff;
-+	ver_release = (version >> 8) & 0xff;
-+
- 	pr_info("Found gmux version %d.%d.%d [%s]\n", ver_major, ver_minor,
- 		ver_release, (gmux_data->indexed ? "indexed" : "classic"));
+@@ -332,10 +332,10 @@ static void gmux_read_switch_state(struct apple_gmux_data *gmux_data)
+ 	else
+ 		gmux_data->switch_state_ddc = VGA_SWITCHEROO_DIS;
  
-diff --git a/include/linux/apple-gmux.h b/include/linux/apple-gmux.h
-index 1f68b49bcd68..eb2caee04abd 100644
---- a/include/linux/apple-gmux.h
-+++ b/include/linux/apple-gmux.h
-@@ -67,7 +67,6 @@ static inline bool apple_gmux_is_indexed(unsigned long iostart)
-  */
- static inline bool apple_gmux_detect(struct pnp_dev *pnp_dev, bool *indexed_ret)
- {
--	u8 ver_major, ver_minor, ver_release;
- 	struct device *dev = NULL;
- 	struct acpi_device *adev;
- 	struct resource *res;
-@@ -95,10 +94,7 @@ static inline bool apple_gmux_detect(struct pnp_dev *pnp_dev, bool *indexed_ret)
- 	 * Invalid version information may indicate either that the gmux
- 	 * device isn't present or that it's a new one that uses indexed io.
- 	 */
--	ver_major = inb(res->start + GMUX_PORT_VERSION_MAJOR);
--	ver_minor = inb(res->start + GMUX_PORT_VERSION_MINOR);
--	ver_release = inb(res->start + GMUX_PORT_VERSION_RELEASE);
--	if (ver_major == 0xff && ver_minor == 0xff && ver_release == 0xff) {
-+	if (!(~inl(res->start + GMUX_PORT_VERSION_MAJOR))) {
- 		indexed = apple_gmux_is_indexed(res->start);
- 		if (!indexed)
- 			goto out;
+-	if (gmux_read8(gmux_data, GMUX_PORT_SWITCH_DISPLAY) == 2)
+-		gmux_data->switch_state_display = VGA_SWITCHEROO_IGD;
+-	else
++	if (gmux_read8(gmux_data, GMUX_PORT_SWITCH_DISPLAY) & 1)
+ 		gmux_data->switch_state_display = VGA_SWITCHEROO_DIS;
++	else
++		gmux_data->switch_state_display = VGA_SWITCHEROO_IGD;
+ 
+ 	if (gmux_read8(gmux_data, GMUX_PORT_SWITCH_EXTERNAL) == 2)
+ 		gmux_data->switch_state_external = VGA_SWITCHEROO_IGD;
 -- 
 2.39.1
 
