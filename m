@@ -1,71 +1,61 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4792E692EBF
-	for <lists+amd-gfx@lfdr.de>; Sat, 11 Feb 2023 07:35:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4757F693349
+	for <lists+amd-gfx@lfdr.de>; Sat, 11 Feb 2023 20:24:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0760310E0E6;
-	Sat, 11 Feb 2023 06:35:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F6A110E360;
+	Sat, 11 Feb 2023 19:24:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com
- [IPv6:2607:f8b0:4864:20::536])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D6E910EC5D
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Feb 2023 23:55:02 +0000 (UTC)
-Received: by mail-pg1-x536.google.com with SMTP id r18so4831360pgr.12
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Feb 2023 15:55:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:from:to:cc:subject:date
- :message-id:reply-to;
- bh=sac/fX0wt9v0DHBtkfOe72qxgSq2ZxL7sJ1RWk0mQzQ=;
- b=Oh6mXmII+Z7iHd6314WW1IkZYatL53ousxgQOW7+m/EyoqbBUNzdiADjeTgbLBh4MM
- r6WJWYin1EetsFpHoW2v/rrFOwVTFqYi97k7uzhc4gSRvCjsxPbOKxKPpNQkuplwxMYj
- iJwCrNrYgb7Q4kVc9EykNh6RO4shGUuPYn7oB59kkng+UMxT94IJ2E+7NoB6UI0oVts0
- FCPkDXToksMdz/CKXYy7M2Daa6U4j7HT90WhTUHMbghRVOdfyqFpkjfMKOor2poztRAF
- qszAjfqrMzBPVc4sCRbSolXncQ4LD4B3G2ruzxF0kEglUfAL/afRdWpGGqLPYj16bMnc
- NvDw==
+Received: from mail-vk1-xa2a.google.com (mail-vk1-xa2a.google.com
+ [IPv6:2607:f8b0:4864:20::a2a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E844910E11A;
+ Sat, 11 Feb 2023 19:24:34 +0000 (UTC)
+Received: by mail-vk1-xa2a.google.com with SMTP id b81so4366222vkf.1;
+ Sat, 11 Feb 2023 11:24:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1676143474;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=UxlJ1ylLIbukjk1rqvmj0yN/uchUwg9M7RlTwLyGWuY=;
+ b=GkOee6yuha8KCFlJkb58KhoIf1WvDhoQGtKv5bfk3o8tsTw+l/AsWr+2V/5JogWj5S
+ e+tne2hDNFv1lpCplUyRYJ8XvXJT/A86j9C6i4RrCLDhYDzUH1pdJxgLHNZVq73aui39
+ 5rcNE3u8qrpeAfy17RxKjgbVwdyWKa+QtwOz4hidJv8eZzgjnKhWEyvMMx14AqZH4Nq4
+ TG8+24y9MmfpA6DBbd/7StK3VZjcYSfq4ZkK0A81/+Jg014d+TErR5x9m4vwOP0lQK2R
+ C0H5Kz2iqI0dL1Yq2gcKuiAF8/iGmlIS/Vl6F/BWWqtKm9JR3f9wyanfKxR5l86KD4+I
+ fzXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=sac/fX0wt9v0DHBtkfOe72qxgSq2ZxL7sJ1RWk0mQzQ=;
- b=XPfJD8ex1/iw6EFO1xoCR6IxHvLj7EoT8Eh/AmX/OjwBVhEpYS2OULFwkuTJ9HAJAw
- SCKCeWqZ6uUTIKIzbkLl0yVq45lncZNwcedlJTyOy/NnQvk12qGj6CCevewL1nYkQCgU
- Xs+R7cz/Twbmk6CLpUEFIpt9hAfd6QFyZW667l6JVwrBxhVZvsRIQIrNpOr/5AzCO9Zi
- soomLlyDSpedr6N+tbLxNHQx3YQbEr6Spt//GePwd3lTy+7Al6rOBqtFYvBv5fWUJ3Pr
- AnxtkV2s2pprZRgMyHrnpQNJKv35FbJWA9F/RYD8gLaM83U054dxFOtXmRfG5xFHfMYY
- 7F4A==
-X-Gm-Message-State: AO0yUKX+LzxZf3iv+SyYWtGXVXm15zcfGU642utIlbtc0WarUHNwwM4C
- gwEOV51Y86rjMgWX6aa6tsQ=
-X-Google-Smtp-Source: AK7set9nPEtV76VsB+ysNcWvcdA/XjTiAQwDc+XnZPZ2oGeO6JBsSezTX4grz36H63ofrjyYlHusKg==
-X-Received: by 2002:a62:1b8a:0:b0:592:fc9f:8ae5 with SMTP id
- b132-20020a621b8a000000b00592fc9f8ae5mr14453938pfb.23.1676073301644; 
- Fri, 10 Feb 2023 15:55:01 -0800 (PST)
-Received: from redecorated-mbp ([202.53.32.211])
- by smtp.gmail.com with ESMTPSA id
- g8-20020aa78188000000b0056be1581126sm3888031pfi.143.2023.02.10.15.54.53
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 10 Feb 2023 15:55:01 -0800 (PST)
-Date: Sat, 11 Feb 2023 10:54:47 +1100
-From: Orlando Chamberlain <orlandoch.dev@gmail.com>
-To: Alex Deucher <alexdeucher@gmail.com>
-Subject: Re: [RFC PATCH 9/9] drm/amdgpu: register a vga_switcheroo client
- for all GPUs that are not thunderbolt attached
-Message-ID: <20230211105447.0d8dda6b@redecorated-mbp>
-In-Reply-To: <CADnq5_PXa=d8ie8jj7sGxvxfn+ZNwed-eSyNg89PfWCvpo8LCw@mail.gmail.com>
-References: <20230210044826.9834-1-orlandoch.dev@gmail.com>
- <20230210044826.9834-10-orlandoch.dev@gmail.com>
- <CADnq5_PVsrk4+K45kVgU=r98B9GgC2CxbC8AvGUXRtv2sZAHPg@mail.gmail.com>
- <b3a2d525-b30c-164c-705c-97fcb0016540@redhat.com>
- <CADnq5_PXa=d8ie8jj7sGxvxfn+ZNwed-eSyNg89PfWCvpo8LCw@mail.gmail.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.35; x86_64-pc-linux-gnu)
+ d=1e100.net; s=20210112; t=1676143474;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=UxlJ1ylLIbukjk1rqvmj0yN/uchUwg9M7RlTwLyGWuY=;
+ b=Q57PO+OnV7MMnnQaLlOY2UrbrpONIb4At7LlrrJct1F7C7t2euXx4vOIMh0gWBivd3
+ Ah/ZKl4vKUTjRnNgu4VQqivPPUgzDWjsqwzprKApqNakNkkXK0v6pPjp40lwAAsd3+QN
+ YhLTpfJf0i7RwNTofIAFLq3tKQ/a/6ZBNDM7GeQbcsDx5CjXRP9cVtB6Jn93WG1bB2ea
+ 5jvqj3YSIxlhgIk/ogdJxlIrRLOylKAri67sbgmrSvnmvxqbvndXPa0JyQ6Ijkwc9mdV
+ SMLM4K3CYfprUGQ+68/3sCuCWBrGnxNsouGDASRzJ2O/xcAeTsQTca3H4WdRzAqsQCOa
+ uYyw==
+X-Gm-Message-State: AO0yUKV3CC3jN4LmeLx+MERdEKMtZ/TGZXEIRmZ/T8t5TEknXBbtny8k
+ 9g+pij2MU7s+GYNU1X4WsyYIlu91kjclbtt1HjE=
+X-Google-Smtp-Source: AK7set+VxozcaMiBwzTBA/oB2AIISrAuQ7Bedp9xn0ogNT61aLcgqppS9XrHSr2WISoF0Ecv104SL7WHbg5llfrzjs4=
+X-Received: by 2002:a1f:1444:0:b0:400:db9c:7a9f with SMTP id
+ 65-20020a1f1444000000b00400db9c7a9fmr3680755vku.6.1676143473964; Sat, 11 Feb
+ 2023 11:24:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Sat, 11 Feb 2023 06:35:05 +0000
+References: <20230125203743.564009-1-jim.cromie@gmail.com>
+ <20230125203743.564009-15-jim.cromie@gmail.com>
+In-Reply-To: <20230125203743.564009-15-jim.cromie@gmail.com>
+From: jim.cromie@gmail.com
+Date: Sat, 11 Feb 2023 12:24:07 -0700
+Message-ID: <CAJfuBxw+g6w9_p2ym-hpCQNbr01crRMK_aYb4oV4j_BhoPwQjw@mail.gmail.com>
+Subject: Re: [PATCH v3 14/19] drm_print: fix stale macro-name in comment
+To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,161 +67,64 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- Rander Wang <rander.wang@intel.com>, Lijo Lazar <lijo.lazar@amd.com>,
- Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
- YiPeng Chai <YiPeng.Chai@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- David Airlie <airlied@gmail.com>, Evan Quan <evan.quan@amd.com>,
- Takashi Iwai <tiwai@suse.com>,
- Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
- amd-gfx@lists.freedesktop.org, Yong Zhi <yong.zhi@intel.com>,
- Aun-Ali Zaidi <admin@kodeit.net>, Bokun Zhang <Bokun.Zhang@amd.com>,
- Mark Gross <markgross@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
- Jaroslav Kysela <perex@perex.cz>, Kerem Karabay <kekrby@gmail.com>,
- platform-driver-x86@vger.kernel.org, Jack Xiao <Jack.Xiao@amd.com>,
- Kai Vehmanen <kai.vehmanen@linux.intel.com>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- Aditya Garg <gargaditya08@live.com>, Daniel Vetter <daniel@ffwll.ch>,
- Amadeusz =?UTF-8?B?U8WCYXdpxYRza2k=?= <amadeuszx.slawinski@linux.intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: jani.nikula@intel.com, daniel.vetter@ffwll.ch, robdclark@gmail.com,
+ seanpaul@chromium.org, ville.syrjala@linux.intel.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 10 Feb 2023 11:37:08 -0500
-Alex Deucher <alexdeucher@gmail.com> wrote:
+On Wed, Jan 25, 2023 at 1:38 PM Jim Cromie <jim.cromie@gmail.com> wrote:
+>
+> Cited commit uses stale macro name, fix this, and explain better.
 
-> On Fri, Feb 10, 2023 at 11:07 AM Hans de Goede <hdegoede@redhat.com>
-> wrote:
-> >
-> > Hi,
-> >
-> > On 2/10/23 16:53, Alex Deucher wrote:  
-> > > On Fri, Feb 10, 2023 at 3:04 AM Orlando Chamberlain
-> > > <orlandoch.dev@gmail.com> wrote:  
-> > >>
-> > >> From: Kerem Karabay <kekrby@gmail.com>
-> > >>
-> > >> Commit 3840c5bcc245 ("drm/amdgpu: disentangle runtime pm and
-> > >> vga_switcheroo") made amdgpu only register a vga_switcheroo
-> > >> client for GPU's with PX, however AMD GPUs in dual gpu Apple
-> > >> Macbooks do need to register, but don't have PX. Instead of
-> > >> AMD's PX, they use apple-gmux.  
-> > >
-> > > Is there a way to detect apple-gmux instead?  Otherwise, we
-> > > register vga_switcheroo on any system with multiple GPUs which is
-> > > not what we want.  
-> >
-> > Yes since 6.1.y (either stable series or just take 6.2.0) the
-> > apple-gmux detect code has been factored out into a stand-alone
-> > apple_gmux_detect() helper inside:
-> >
-> > include/linux/apple-gmux.h
-> >
-> > For usage outside of the actual apple-gmux driver you can simply
-> > pass NULL for both arguments.
-> >
-> > This was necessary to reliably check if the apple-gmux should be
-> > used for backlight control.
-> >
-> > Note there also is the older apple_gmux_present() helper, which is
-> > already used in some drm code. That function is not reliable though
-> > it detects if the ACPI tables contain an ACPI device describing
-> > the presence of a gmux, but it turns out even Apple has buggy ACPI
-> > tables and the mere presence of that ACPI device is not a reliable
-> > indicator the gmux is actually there.
-> >
-> > I have not changed over any of the existing apple_gmux_present()
-> > users for fear of unwanted side effects...  
-> 
-> Looks like we could maybe use the PWRD ACPI check like patch 8 does
-> as well.
 
-I wasn't using apple_gmux_detect as I mistakenly thought
-pnp_get_resource would fail if apple-gmux had bound to the resource but
-it looks like I was wrong about that so we can use that to determine if
-the system has a gmux. I think I'll do that in v2.
 
-As far as I know there's only one internal (non
-thunderbolt) amd gpu inside all Macbooks with gmux so we probably
-wouldn't need to check for PWRD to ensure it's  the right gpu.
 
-With PWRD, I don't know if its present on all Dual GPU Macbooks, I've
-only found the acpi tables for Macbookpro14,x to Macbookpro16,x, so I
-don't know if it will work on older Macs (I'm also not sure if those
-macs are using radeon or amdgpu).
+So this patch is somehow drawing an 'F' flag from patchwork,
+but theres no hint of what went wrong.
+(I have seen a merge conflict, probably not that).
 
-> Alex
-> 
-> >
-> > Regards,
-> >
-> > Hans
-> >
-> >
-> >
-> >  
-> > >> Revert to the old logic of registering for all non-thunderbolt
-> > >> gpus, like radeon and nouveau.
-> > >>
-> > >> Fixes: 3840c5bcc245 ("drm/amdgpu: disentangle runtime pm and
-> > >> vga_switcheroo") Signed-off-by: Kerem Karabay <kekrby@gmail.com>
-> > >> [Orlando Chamberlain <orlandoch.dev@gmail.com>: add commit
-> > >> description] Signed-off-by: Orlando Chamberlain
-> > >> <orlandoch.dev@gmail.com> ---
-> > >>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 18
-> > >> +++++++++++------- 1 file changed, 11 insertions(+), 7
-> > >> deletions(-)
-> > >>
-> > >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> > >> b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c index
-> > >> 2f28a8c02f64..0bb553a61552 100644 ---
-> > >> a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c +++
-> > >> b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c @@ -3919,12
-> > >> +3919,13 @@ int amdgpu_device_init(struct amdgpu_device *adev,
-> > >> if ((adev->pdev->class >> 8) == PCI_CLASS_DISPLAY_VGA)
-> > >> vga_client_register(adev->pdev, amdgpu_device_vga_set_decode);
-> > >>
-> > >> -       if (amdgpu_device_supports_px(ddev)) {
-> > >> -               px = true;
-> > >> -               vga_switcheroo_register_client(adev->pdev,
-> > >> -
-> > >> &amdgpu_switcheroo_ops, px);
-> > >> +       px = amdgpu_device_supports_px(ddev);
-> > >> +
-> > >> +       if (!pci_is_thunderbolt_attached(adev->pdev))
-> > >> +               vga_switcheroo_register_client(adev->pdev,
-> > >> &amdgpu_switcheroo_ops, px); +
-> > >> +       if (px)
-> > >>                 vga_switcheroo_init_domain_pm_ops(adev->dev,
-> > >> &adev->vga_pm_domain);
-> > >> -       }
-> > >>
-> > >>         if (adev->gmc.xgmi.pending_reset)
-> > >>                 queue_delayed_work(system_wq,
-> > >> &mgpu_info.delayed_reset_work, @@ -4048,10 +4049,13 @@ void
-> > >> amdgpu_device_fini_sw(struct amdgpu_device *adev)
-> > >>
-> > >>         kfree(adev->bios);
-> > >>         adev->bios = NULL;
-> > >> -       if (amdgpu_device_supports_px(adev_to_drm(adev))) {
-> > >> +
-> > >> +       if (!pci_is_thunderbolt_attached(adev->pdev))
-> > >>                 vga_switcheroo_unregister_client(adev->pdev);
-> > >> +
-> > >> +       if (amdgpu_device_supports_px(adev_to_drm(adev)))
-> > >>                 vga_switcheroo_fini_domain_pm_ops(adev->dev);
-> > >> -       }
-> > >> +
-> > >>         if ((adev->pdev->class >> 8) == PCI_CLASS_DISPLAY_VGA)
-> > >>                 vga_client_unregister(adev->pdev);
-> > >>
-> > >> --
-> > >> 2.39.1
-> > >>  
-> > >  
-> >  
+https://patchwork.freedesktop.org/series/113361/
 
+https://patchwork.freedesktop.org/patch/520460/?series=113361&rev=1
+
+Without this resolved, I cant see BAT results or the more exhaustive tests.
+
+
+
+
+
+>
+> When DRM_USE_DYNAMIC_DEBUG=y, DYNDBG_CLASSMAP_DEFINE() maps DRM_UT_*
+> onto BITs in drm.debug.  This still uses enum drm_debug_category, but
+> it is somewhat indirect, with the ordered set of DRM_UT_* enum-vals.
+> This requires that the macro args: DRM_UT_* list must be kept in sync
+> and in order.
+>
+> Fixes: f158936b60a7 ("drm: POC drm on dyndbg - use in core, 2 helpers, 3 drivers.")
+> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+> ---
+> . emphasize ABI non-change despite enum val change - Jani Nikula
+> . reorder to back of patchset to follow API name changes.
+> ---
+>  include/drm/drm_print.h | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+>
+> diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+> index 6a27e8f26770..7695ba31b3a4 100644
+> --- a/include/drm/drm_print.h
+> +++ b/include/drm/drm_print.h
+> @@ -276,7 +276,10 @@ static inline struct drm_printer drm_err_printer(const char *prefix)
+>   *
+>   */
+>  enum drm_debug_category {
+> -       /* These names must match those in DYNAMIC_DEBUG_CLASSBITS */
+> +       /*
+> +        * Keep DYNDBG_CLASSMAP_DEFINE args in sync with changes here,
+> +        * the enum-values define BIT()s in drm.debug, so are ABI.
+> +        */
+>         /**
+>          * @DRM_UT_CORE: Used in the generic drm code: drm_ioctl.c, drm_mm.c,
+>          * drm_memory.c, ...
+> --
+> 2.39.1
+>
