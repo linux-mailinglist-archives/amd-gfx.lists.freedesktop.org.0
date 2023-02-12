@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2EC46938E2
-	for <lists+amd-gfx@lfdr.de>; Sun, 12 Feb 2023 18:00:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8717F6938E4
+	for <lists+amd-gfx@lfdr.de>; Sun, 12 Feb 2023 18:00:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C322510E1E3;
-	Sun, 12 Feb 2023 17:00:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59F7910E2E4;
+	Sun, 12 Feb 2023 17:00:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2062.outbound.protection.outlook.com [40.107.102.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A17710E1E3
- for <amd-gfx@lists.freedesktop.org>; Sun, 12 Feb 2023 17:00:37 +0000 (UTC)
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2061.outbound.protection.outlook.com [40.107.100.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C487E10E1E3
+ for <amd-gfx@lists.freedesktop.org>; Sun, 12 Feb 2023 17:00:38 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FzqnF1Ddtm+hfM+z8Vlnu8JaTezwcESW0ZO+XBvPfO5Q8VdUEOehLVko1YuLXC4N5knvBwL0+IxxiAt3XB1g9FvqkeDz/JBlLRWf7LUbIndD+zUTYVGJ9AG/+WhMOz1G3y2ZK0V8OfyZwHH4kRu7dEaLPceTDedC3UAC5ZqFb2vxMmO4VLKjWuLuB2fHGGZJDrIoHuPJR0D6JZGr/k8j4c9Z02QYYoCbo6zT6hgcS/laniwJc4b5OjV+H96xvlmpyIQNIjYDufMns5grPGeOrMkvb5gRkUganeKV9Zwfnl1rQNmTAWRXwhIz/WSe122ECQv317RBbiMGJkW+k4WYMQ==
+ b=mOi/N2cQmrUFz2+FXhdUB/Ktm87OumziRI/07NRK/OctFd5GERdAPu3jZgWpspCmY+iTJnUmSdBcU/08L099esM598A5cJZYWY+cIFOrdMQ/ZlPgLVOOpjXbDeeZMZlzgZJKzDDtpxOgduuWLssRxALc2PKQfFKBT00Y76Dr3V6PDNqKxxu19bNkWfOmOJBuDLPus9ctsy3BOdKHjiCj7PfHgSyytV8VMAizDB+ZSf/rSxQBZxwyI2SgDinO85Hd8Xoebdxai+m8vU34AREyYng38MTBDHqRIfkC5O6ydMCr17uK+KL8+5hmMN6iv55//sg4ZlTcSacBO/Z719jxjQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V913vkMUqtAWUB9qXWZKmZT63hKBWil9F7Qth3NhdzM=;
- b=UJlcDaHTv7N64C3PctCbhxSf8j3yTf5KHszfjxiuuKEe9wX3enNAt/7fm/9IqBVhTMf5Mjc5fUin0i6n5laBVI63T3YjxO+ZBBa60IuPx1CAt/ziuiUaMQtNcXCGrm1lUS9PPxUDtV+9KedSyLj4g3VY4KN96DqkrFr0KYTUhKEE1piPgr0bmcgPJBeygW1hVvwPgrfTYnJhT/j5iTnzl8H33GhBW4Xv1jLixA61bBYkKQRw2WtkVgL6s2N29HdVHq/1PWyUX2oO656dcQcCWuO7ndV96/xgGtlBZpKXX4P60vwhKmE2FHaMT5d9zix3tQHOq+EkKmOaqN+fOUnv8w==
+ bh=zNYgb0NxQZ3bEQogWJPtYYdS8ZZ7gpjUB2UHbReJbYU=;
+ b=f2LWKlVzsPWyl2G8yaumgBZjn0Qa7Mz/8hVF9aLtcXkxcd+1YxIyK0/mWczYkLxLh1oJoXtM9AgBo1+dOAdiaK4at2iTIcQvyVcFnO3knEG45EtrCdt87RBwkhEDwWSA8cZ1aXH3lP7PYv3bWnsQ4jQwjyZ8APZuiCh8+dw2T3FCvsjbkiatxaDsFvunJCyWik75NHTIj7AEShi8QZ0Axc52Sdyrjm3B/6z83P2ORo572WxAe/wNj6srzC+uMSYc7rk5Ovp8uq+rxVGc+4fsCk89JonmrTe95wI+uuxb6sEcPBscIUQ8Si8sN2wn/yylTNfqISp+PCKjHJYhSdF5YA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=V913vkMUqtAWUB9qXWZKmZT63hKBWil9F7Qth3NhdzM=;
- b=kIKU28tcKyofS2hPwCO8sLtaNaGV6s+YY3pLBU84padxZzzgKaodvnIUE+xH+0Y0YvuOv/dNkZz6Wctg43OD5W1diSmw/AZ8tkKWOZAlP2xwfs0StZe8uNB4m4t44mesJvHjtygO/z1ZUyJqYwM/cxHjxjEYBDP5YjmFAHW1Aaw=
-Received: from DS7PR05CA0012.namprd05.prod.outlook.com (2603:10b6:5:3b9::17)
- by SJ1PR12MB6099.namprd12.prod.outlook.com (2603:10b6:a03:45e::13) with
+ bh=zNYgb0NxQZ3bEQogWJPtYYdS8ZZ7gpjUB2UHbReJbYU=;
+ b=O2FVIuvhLdvORi9/nAFCDcjIhUOp3cL+DM/kozsR5M7QDUIWTnFPKH9px8Za+w2b0mbtW7paAXJBe8K9BNO/Q8XX4Gqq0EuFAmIdijSmrUc04RDmlP0fXAJvPTxyW1FA+rd6l6+Y/sRy2fVei32EnNedTJ6JLhy0Q01sfFTw9Tw=
+Received: from DS7PR05CA0014.namprd05.prod.outlook.com (2603:10b6:5:3b9::19)
+ by SA0PR12MB4494.namprd12.prod.outlook.com (2603:10b6:806:94::20) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.19; Sun, 12 Feb
- 2023 17:00:32 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.23; Sun, 12 Feb
+ 2023 17:00:34 +0000
 Received: from DM6NAM11FT030.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:3b9:cafe::61) by DS7PR05CA0012.outlook.office365.com
- (2603:10b6:5:3b9::17) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:5:3b9:cafe::c3) by DS7PR05CA0014.outlook.office365.com
+ (2603:10b6:5:3b9::19) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.9 via Frontend
- Transport; Sun, 12 Feb 2023 17:00:32 +0000
+ Transport; Sun, 12 Feb 2023 17:00:33 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,21 +47,24 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  DM6NAM11FT030.mail.protection.outlook.com (10.13.172.146) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6086.23 via Frontend Transport; Sun, 12 Feb 2023 17:00:32 +0000
+ 15.20.6086.23 via Frontend Transport; Sun, 12 Feb 2023 17:00:33 +0000
 Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Sun, 12 Feb
- 2023 11:00:31 -0600
+ 2023 11:00:32 -0600
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Sun, 12 Feb
- 2023 11:00:30 -0600
+ 2023 11:00:31 -0600
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 00/22] DC Patches Feb 13, 2023
-Date: Sun, 12 Feb 2023 11:59:33 -0500
-Message-ID: <20230212165955.1993601-1-qingqing.zhuo@amd.com>
+Subject: [PATCH 01/22] drm/amd/display: Move DCN314 DOMAIN power control to
+ DMCUB
+Date: Sun, 12 Feb 2023 11:59:34 -0500
+Message-ID: <20230212165955.1993601-2-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230212165955.1993601-1-qingqing.zhuo@amd.com>
+References: <20230212165955.1993601-1-qingqing.zhuo@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -70,26 +73,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB06.amd.com
  (10.181.40.147)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT030:EE_|SJ1PR12MB6099:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3100075c-e9ac-40e9-8893-08db0d1aa6f9
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT030:EE_|SA0PR12MB4494:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6ee32a6a-dc0a-401e-17b4-08db0d1aa7d0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: T3ad3nYx+eC35a5+XFZB2qy60VQuw+qUR3BGTwpUS93aR53s68f8oLSzRcMenG3KJHAJYsff7dMs03yspb3jNyVyRgTSI4WytzfARhZ6ep0UrkrVA17Fz6yZQMs9flxDel76CZ+QOVdhKcnk5Ehr/mo00R6B0YQSufyBen2OwEtnFjKlor9w+v2pjPvyGfTGQqa6zkuWe437hLS4kG4qKWmsHrZW7WKCSTY0ZnEObRwARGC2pHaitZSCWNtTclCwXw6D2dO8e0nVNPC+Ai2QhntHKe1SaqQyMy4EYmOP7BS1cJpjH9+OjivADEZrieepJ8TdecGql2JX6TEWwEjnr7SQsYzwHg+nYwwM22/+i7RyTRyTwtDp7Ix6rq1JIJgwIj/qzGCOY7T29qys/OTr7f5GP5mvSMS39jO/CEpZvyffW4iZH7G0sGIHHoA7sS6C9MRwaJbLUmIpktZuirdqYubDsDSNJQqppFGLMBwuu5xLh75Vz9LKOYC5+x4/Y8ETCo/WH4e1vrApvVWVu6KtsDoqlF0xk3fgDw6CO4UdTVYT4VTZw5i7cxIrbAiQHxCxAYaU4GZXr1+rJX2KJpv6UQvE34c0UVpGkdvfd3FOoLN01aQHwTs5mb0YjXMyroHmg6oVAmWueRf5s4/m9LxuM+ZfqfeurDEMjuOt23UOF80eXrMkSYovokLRjgTAM0dKjQEhyTT1rBxARLWNs6eQnRvF9CPnVXIb/9b3JV+kh74=
+X-Microsoft-Antispam-Message-Info: uzYcedX0qztmlHsAqvoM1Cm+xYfTnPetWlCMD6Vc6f2gEkUH6qcxjMYaokHcVH+AyUbnEcTqxFkbCBxt7TwktxjfH6BIm5oxdVD9IWHbBqPA7nH7ai32iKSiGq9NkkHe3Y1B2GNzO9/4cIdBOLdxunRC/bhhVVQW5D2nPZkiyoR9HF+ZLzUcjEHkSmNUNbueCaBU5xbI5+8IxBvDoknKRRURGRvsZTL4ouI0VG2UIKPuCB/HQqa3zlIyHqKLbjh88hC4hbi2T9BR2hE1Ycmkk+qIIA9a7r5xv2QNNa6U6Mu5RwKfllfc1H1KXWku3CdUPF5DC+HwQmo9yiOelVW6sN59ZQoORaPp3dQ00eb0N5tfPC0u/b2qpcuC7VbKODDNzT9ip/b5yvU3zphIiafFUSO5WJqnQDwiVQVxp59XV34aUle7+Yw+fmLlb3q5ANnfRDsc1TkBwQG9jfg9NCVnMO7Jy03hgxZxTJReP1kX1OPaxwyPp7NxWINAIWbEKCGI6erKuY9BULwu37PVcQM18Zle/PibaWB2dt8i3OcOcjRuZKYuRb/zK5sZwvs0iytIfq53tRwnt/dhdEGIBsj9Mk7wPbWd+m+speP7WnOJrHtgdxZmED/XWA3I7FF6wo/di3YdbB95wUXoEYKF0LC8kaewXg+3zIqKuggr5d/lnxlEMsokKmbEbo9SbKgI6OFgjBZ3AArzUNnZQmYa3Exb70NkZiDROP83KDCIFePgFAo=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(376002)(136003)(346002)(396003)(39860400002)(451199018)(40470700004)(46966006)(36840700001)(66899018)(316002)(356005)(81166007)(36756003)(82740400003)(82310400005)(86362001)(26005)(36860700001)(2616005)(426003)(47076005)(336012)(1076003)(186003)(478600001)(16526019)(83380400001)(8936002)(41300700001)(5660300002)(44832011)(54906003)(2906002)(70206006)(4326008)(40480700001)(6916009)(8676002)(40460700003)(70586007)(36900700001);
+ SFS:(13230025)(4636009)(376002)(346002)(136003)(39860400002)(396003)(451199018)(46966006)(36840700001)(40470700004)(356005)(2906002)(8936002)(426003)(40480700001)(36756003)(47076005)(36860700001)(5660300002)(86362001)(70586007)(8676002)(82310400005)(4326008)(6916009)(70206006)(54906003)(83380400001)(316002)(41300700001)(478600001)(40460700003)(44832011)(16526019)(336012)(1076003)(82740400003)(186003)(26005)(2616005)(81166007)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2023 17:00:32.1770 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3100075c-e9ac-40e9-8893-08db0d1aa6f9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2023 17:00:33.8019 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ee32a6a-dc0a-401e-17b4-08db0d1aa7d0
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT030.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6099
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4494
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,129 +104,146 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- solomon.chiu@amd.com, Daniel Wheeler <daniel.wheeler@amd.com>,
+Cc: stylon.wang@amd.com, Hansen Dsouza <hansen.dsouza@amd.com>,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
  Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>, agustin.gutierrez@amd.com,
+ pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This DC patchset brings improvements in multiple areas. In summary, we highlight:
-- Move domain power control to DMCUB for DCN314
-- Enable P-state validation check for DCN314
-- Add support for multiple overlay planes
-- Fixes in prefetch, k1 k2 divider programming and more
-- Code cleanup
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
-Cc: Daniel Wheeler <daniel.wheeler@amd.com>
+[Why]
+DOMAIN power gating control is now required to be done via firmware
+due to interlock with other power features. This is to avoid
+intermittent issues in the LB memories.
 
+[How]
+If the firmware supports the command then use the new firmware as
+the sequence can avoid potential display corruption issues.
 
-Alvin Lee (2):
-  drm/amd/display: Set max vratio for prefetch to 7.9 for YUV420 MPO
-  drm/amd/display: Fix prefetch vratio check
+The command will be ignored on firmware that does not support DOMAIN
+power control and the pipes will remain always on - frequent PG cycling
+can cause the issue to occur on the old sequence, so we should avoid it.
 
-Aric Cyr (1):
-  drm/amd/display: Promote DAL to 3.2.223
+Reviewed-by: Hansen Dsouza <hansen.dsouza@amd.com>
+Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+---
+ .../drm/amd/display/dc/dcn314/dcn314_hwseq.c  | 24 ++++++++++++++++++
+ .../drm/amd/display/dc/dcn314/dcn314_hwseq.h  |  2 ++
+ .../drm/amd/display/dc/dcn314/dcn314_init.c   |  2 +-
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   | 25 +++++++++++++++++++
+ 4 files changed, 52 insertions(+), 1 deletion(-)
 
-Aurabindo Pillai (1):
-  drm/amd/display: fix k1 k2 divider programming for phantom streams
-
-Ayush Gupta (1):
-  drm/amd/display: temporary fix for page faulting
-
-Bhawanpreet Lakha (1):
-  drm/amd/display: Add support for multiple overlay planes
-
-Charlene Liu (1):
-  drm/amd/display: add NULL pointer check
-
-Daniel Miess (1):
-  Revert "drm/amd/display: Correct bw_params population"
-
-Leo (Hanghong) Ma (1):
-  drm/amd/display: Fix FreeSync active bit issue
-
-Mustapha Ghaddar (1):
-  drm/amd/display: upstream link_dp_dpia_bw.c
-
-Nasir Osman (2):
-  drm/amd/display: Remove stutter only configurations
-  drm/amd/display: Disable unbounded request mode during rotation
-
-Nicholas Kazlauskas (4):
-  drm/amd/display: Move DCN314 DOMAIN power control to DMCUB
-  drm/amd/display: Enable P-state validation checks for DCN314
-  drm/amd/display: Update Z8 SR exit/enter latencies
-  drm/amd/display: Disable HUBP/DPP PG on DCN314 for now
-
-Samson Tam (1):
-  drm/amd/display: enable DPG when disabling plane for phantom pipe
-
-Tom Chung (1):
-  drm/amd/display: Fix video glitch while drag window in PSR-SU
-
-Wenjing Liu (4):
-  drm/amd/display: do not set RX back to SST mode for non 0 mst stream
-    count
-  drm/amd/display: Extract temp drm mst deallocation wa into its own
-    function
-  drm/amd/display: on dp link lost event toggle dpms for master pipe
-    only
-  drm/amd/display: move public dc link function implementation to
-    dc_link_exports
-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  83 +++-
- .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |  22 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_plane.h   |   1 +
- drivers/gpu/drm/amd/display/dc/Makefile       |   2 +-
- .../dc/clk_mgr/dcn314/dcn314_clk_mgr.c        |  31 +-
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  47 +-
- .../drm/amd/display/dc/core/dc_link_exports.c | 103 +++++
- drivers/gpu/drm/amd/display/dc/dc.h           | 211 +++++----
- drivers/gpu/drm/amd/display/dc/dc_ddc_types.h |   3 +
- drivers/gpu/drm/amd/display/dc/dc_dp_types.h  | 136 ++++++
- drivers/gpu/drm/amd/display/dc/dc_link.h      |  60 +--
- drivers/gpu/drm/amd/display/dc/dc_types.h     | 109 ++---
- .../amd/display/dc/dcn10/dcn10_hw_sequencer.c |  16 +-
- .../drm/amd/display/dc/dcn30/dcn30_resource.c |  16 +-
- .../drm/amd/display/dc/dcn30/dcn30_resource.h |   3 +-
- .../drm/amd/display/dc/dcn31/dcn31_resource.c |   2 +-
- .../drm/amd/display/dc/dcn314/dcn314_hwseq.c  |  24 +
- .../drm/amd/display/dc/dcn314/dcn314_hwseq.h  |   2 +
- .../drm/amd/display/dc/dcn314/dcn314_init.c   |   2 +-
- .../amd/display/dc/dcn314/dcn314_resource.c   |  61 ++-
- .../amd/display/dc/dcn314/dcn314_resource.h   |   4 +
- .../drm/amd/display/dc/dcn32/dcn32_hwseq.c    |   4 +-
- .../drm/amd/display/dc/dcn32/dcn32_resource.h |   2 +
- .../drm/amd/display/dc/dml/dcn30/dcn30_fpu.c  |   2 +-
- .../amd/display/dc/dml/dcn314/dcn314_fpu.c    |   7 +-
- .../drm/amd/display/dc/dml/dcn32/dcn32_fpu.c  |  32 ++
- .../dc/dml/dcn32/display_mode_vba_32.c        |  17 +-
- .../dc/dml/dcn32/display_mode_vba_32.h        |   3 +-
- .../dc/dml/dcn32/display_mode_vba_util_32.c   |  31 +-
- .../dc/dml/dcn32/display_mode_vba_util_32.h   |   5 +-
- .../amd/display/dc/dml/display_mode_structs.h |   1 +
- .../drm/amd/display/dc/dml/display_mode_vba.c |   1 +
- .../drm/amd/display/dc/dml/display_mode_vba.h |   1 +
- drivers/gpu/drm/amd/display/dc/inc/link.h     |  18 +
- .../display/dc/link/accessories/link_dp_cts.c |  45 +-
- .../drm/amd/display/dc/link/link_detection.c  |  51 +--
- .../gpu/drm/amd/display/dc/link/link_dpms.c   | 220 ++++++++--
- .../gpu/drm/amd/display/dc/link/link_dpms.h   |   5 +
- .../drm/amd/display/dc/link/link_resource.c   |  41 +-
- .../drm/amd/display/dc/link/link_resource.h   |   2 +
- .../drm/amd/display/dc/link/link_validation.c |  14 +-
- .../dc/link/protocols/link_dp_dpia_bw.c       | 413 ++++++++++++++++++
- .../dc/link/protocols/link_dp_dpia_bw.h       |  29 --
- .../dc/link/protocols/link_dp_irq_handler.c   |  46 +-
- .../display/dc/link/protocols/link_dp_phy.c   |  11 -
- .../display/dc/link/protocols/link_dp_phy.h   |   4 -
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |  27 +-
- .../amd/display/modules/freesync/freesync.c   |  12 +-
- 48 files changed, 1471 insertions(+), 511 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/display/dc/core/dc_link_exports.c
-
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.c
+index d725260336fe..575d3501c848 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.c
+@@ -389,3 +389,27 @@ void dcn314_set_pixels_per_cycle(struct pipe_ctx *pipe_ctx)
+ 		pipe_ctx->stream_res.stream_enc->funcs->set_input_mode(pipe_ctx->stream_res.stream_enc,
+ 				pix_per_cycle);
+ }
++
++void dcn314_hubp_pg_control(struct dce_hwseq *hws, unsigned int hubp_inst, bool power_on)
++{
++	struct dc_context *ctx = hws->ctx;
++	union dmub_rb_cmd cmd;
++
++	if (hws->ctx->dc->debug.disable_hubp_power_gate)
++		return;
++
++	PERF_TRACE();
++
++	memset(&cmd, 0, sizeof(cmd));
++	cmd.domain_control.header.type = DMUB_CMD__VBIOS;
++	cmd.domain_control.header.sub_type = DMUB_CMD__VBIOS_DOMAIN_CONTROL;
++	cmd.domain_control.header.payload_bytes = sizeof(cmd.domain_control.data);
++	cmd.domain_control.data.inst = hubp_inst;
++	cmd.domain_control.data.power_gate = !power_on;
++
++	dc_dmub_srv_cmd_queue(ctx->dmub_srv, &cmd);
++	dc_dmub_srv_cmd_execute(ctx->dmub_srv);
++	dc_dmub_srv_wait_idle(ctx->dmub_srv);
++
++	PERF_TRACE();
++}
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.h b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.h
+index 244280298212..c419d3dbdfee 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_hwseq.h
+@@ -41,4 +41,6 @@ unsigned int dcn314_calculate_dccg_k1_k2_values(struct pipe_ctx *pipe_ctx, unsig
+ 
+ void dcn314_set_pixels_per_cycle(struct pipe_ctx *pipe_ctx);
+ 
++void dcn314_hubp_pg_control(struct dce_hwseq *hws, unsigned int hubp_inst, bool power_on);
++
+ #endif /* __DC_HWSS_DCN314_H__ */
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_init.c b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_init.c
+index 5b6c2d94ec71..343f4d9dd5e3 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_init.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_init.c
+@@ -137,7 +137,7 @@ static const struct hwseq_private_funcs dcn314_private_funcs = {
+ 	.plane_atomic_disable = dcn20_plane_atomic_disable,
+ 	.plane_atomic_power_down = dcn10_plane_atomic_power_down,
+ 	.enable_power_gating_plane = dcn314_enable_power_gating_plane,
+-	.hubp_pg_control = dcn31_hubp_pg_control,
++	.hubp_pg_control = dcn314_hubp_pg_control,
+ 	.program_all_writeback_pipes_in_tree = dcn30_program_all_writeback_pipes_in_tree,
+ 	.update_odm = dcn314_update_odm,
+ 	.dsc_pg_control = dcn314_dsc_pg_control,
+diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+index c9f3d65893b0..88af952b62bf 100644
+--- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
++++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+@@ -457,6 +457,10 @@ enum dmub_cmd_vbios_type {
+ 	 * Query DP alt status on a transmitter.
+ 	 */
+ 	DMUB_CMD__VBIOS_TRANSMITTER_QUERY_DP_ALT  = 26,
++	/**
++	 * Controls domain power gating
++	 */
++	DMUB_CMD__VBIOS_DOMAIN_CONTROL = 28,
+ };
+ 
+ //==============================================================================
+@@ -1213,6 +1217,23 @@ struct dmub_rb_cmd_dig1_transmitter_control {
+ 	union dmub_cmd_dig1_transmitter_control_data transmitter_control; /**< payload */
+ };
+ 
++/**
++ * struct dmub_rb_cmd_domain_control_data - Data for DOMAIN power control
++ */
++struct dmub_rb_cmd_domain_control_data {
++	uint8_t inst : 6; /**< DOMAIN instance to control */
++	uint8_t power_gate : 1; /**< 1=power gate, 0=power up */
++	uint8_t reserved[3]; /**< Reserved for future use */
++};
++
++/**
++ * struct dmub_rb_cmd_domain_control - Controls DOMAIN power gating
++ */
++struct dmub_rb_cmd_domain_control {
++	struct dmub_cmd_header header; /**< header */
++	struct dmub_rb_cmd_domain_control_data data; /**< payload */
++};
++
+ /**
+  * DPIA tunnel command parameters.
+  */
+@@ -3322,6 +3343,10 @@ union dmub_rb_cmd {
+ 	 * Definition of a DMUB_CMD__VBIOS_DIG1_TRANSMITTER_CONTROL command.
+ 	 */
+ 	struct dmub_rb_cmd_dig1_transmitter_control dig1_transmitter_control;
++	/**
++	 * Definition of a DMUB_CMD__VBIOS_DOMAIN_CONTROL command.
++	 */
++	struct dmub_rb_cmd_domain_control domain_control;
+ 	/**
+ 	 * Definition of a DMUB_CMD__PSR_SET_VERSION command.
+ 	 */
 -- 
 2.25.1
 
