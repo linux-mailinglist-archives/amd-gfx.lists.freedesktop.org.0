@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B785A6938E7
-	for <lists+amd-gfx@lfdr.de>; Sun, 12 Feb 2023 18:00:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DDC96938E9
+	for <lists+amd-gfx@lfdr.de>; Sun, 12 Feb 2023 18:00:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E24C10E2EB;
-	Sun, 12 Feb 2023 17:00:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CD8310E2F6;
+	Sun, 12 Feb 2023 17:00:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2048.outbound.protection.outlook.com [40.107.237.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D07910E2E7
- for <amd-gfx@lists.freedesktop.org>; Sun, 12 Feb 2023 17:00:41 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2078.outbound.protection.outlook.com [40.107.92.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 219E489CCE
+ for <amd-gfx@lists.freedesktop.org>; Sun, 12 Feb 2023 17:00:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bVm42A7Xmk2RNbSukhJs+Jn3BOpZHVpNGOSvdZyEU2gAPFSn/8ZlfPEly7QKa+A/oeq5TyDvWYlg64SlAYkczMIDnJL/Unw/yKiMr1W2PWIP6NBc9clx5RC32J/3Pf1SH2bGdlocW0+NEtKg6MCFI4amVWDJVH9GIKdNlY6SszuqPF/N6+xyJX2KeqnFKfpPOC7xOqTJ5lNGfc/fiSJBxk6F9gV6zCiCs5rUvFXXZ8lbZGSpkrJIRvZzg2fn9uZBefjSoClQc28txFKRZx7jxz/RNYRsGy9kcJw8v2JHcisjjqRkY/7gBzYcTIpCKpjSQSYw5iMXsL/laY8JIMnWbQ==
+ b=PeRiGAFx94PEocUO2n3JDo17bry/svJPmnJZ2u2TuAa8MVn4PiZ1DqI4nOlK8LpxGpNyfl9En1cPTWTLGQ7xoZ2Ori8UnDJBUtwv5bEZYOZ301YcLMSeDOnCaM/akPNMyniMYDBe4//V9XUgaq5ySD51Ux5yJgAn7/dL6q0VP2LCis73+1/8xsZl8TzJm3oVH+vJBD6GsMXWF/t+PqGCyOLDSU4pkerOFFYpEFU+oZvaRRwCxRwhwwgrN7cnHI1pjT6SelckVO6z9FWjZzw2cHTpJPCDwN8dl48zLXeXVh2cuaaTEzBKecZJMU2OtT6Du7wnGdppLOr6TjlUhQ9IqA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CrbFyu9yzfFyKcDQGYU/WDIEK9rEUNDR4la6hyYoxtE=;
- b=JpUohSAQWnCzRKv+JtrtZR7f0V2ReUnTKvycucSdDAv2Ftkr5suOs17VMW8oky0ogEHYh4cTx5VeBbnBj61foO2p4B7NMYrLKEdAszpJDIls8wTV18e1uGmdEaBDMirXmD0czj2MU2GBOBfZowxogHXAI0KtgPByrmvUC7ncpn2l98P+v/EoIRHU73Kg/wpZsS2+v3pwKT3NBT5ODfzJD54YYI3tI5zaA1vv5WUb3CGaI+JH8B0dmyh1z0jCrAgQX4nvyanxmzWGt3aYDGBh1wGwaNR20JtP/KHHbK/mz45/9lcupmrQE1tVQWgWjLzf4Sl7CxtNy/4Un0lznubr6Q==
+ bh=oKUQA1G10MSVVfXw02I/Pz7JIUG9V3mSZsSuCTeA4Q4=;
+ b=RbWPNgY5cTP4DjsXEWkeM+F7zWIJpPxzJjEodpizKjDSPXylxEFa/BmlCG/jpZ87u/ZTL/+oqhGRgXGbkoM2u4OLMY688K7zxH3kh/XfI3BFp/zE5VGFrHhTduPW4kk+FmiAhxeG34XETw6YYD5SVb3diBAfjK+N4zA3HVFM8BPelt23Sxg5ni5dRXtkKvfLrsLzwWVvxj+w2DInHX45Lv3+dGK1I0QitewF+EU/PikS9RFgR4kSjRPWOZ7kW7SxRQ07/MLx1CXDTwDgV8tbmwk8+0VN4gOX11j1+zSy4aMTL7HYIhyljzgtWDLIXm9I9YAe5tEBBPUD3rCzUaU43Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CrbFyu9yzfFyKcDQGYU/WDIEK9rEUNDR4la6hyYoxtE=;
- b=AcCbiADe1WZJTX80lizDpOlg1tvZjES61rm0xcunEO+lp1y3IcfPriHSF1485TgDdrf/DRKe+1O/JxrJjL6F2HJcirkEevL0IO0Abjnl5Lf++qa4dJ7XQf61BwMDEtnwWaemaF80I0Wt9UWedA4kz9LHqgGHVVcxIGvvv7CisHM=
-Received: from DS7P222CA0002.NAMP222.PROD.OUTLOOK.COM (2603:10b6:8:2e::30) by
- PH0PR12MB5606.namprd12.prod.outlook.com (2603:10b6:510:141::16) with
+ bh=oKUQA1G10MSVVfXw02I/Pz7JIUG9V3mSZsSuCTeA4Q4=;
+ b=u4vg31esoKP9tZWD4XrFJD6U+mq6kf5JFiAjxmtdhYHhYulJa/rAkOl5HXqlSLWhNJlcEi3IbE34bnAZTcIu6ILkxlOWJQBvkhB34F/gI8Vnl9Ze6qDd6gliVNa2BMreAlv1iR8UltsnxRsuHdUsNSBKuytac79Dh1wCaOXpeIw=
+Received: from DS7P222CA0024.NAMP222.PROD.OUTLOOK.COM (2603:10b6:8:2e::13) by
+ BL1PR12MB5160.namprd12.prod.outlook.com (2603:10b6:208:311::11) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.22; Sun, 12 Feb
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.23; Sun, 12 Feb
  2023 17:00:38 +0000
 Received: from DM6NAM11FT057.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:2e:cafe::ff) by DS7P222CA0002.outlook.office365.com
- (2603:10b6:8:2e::30) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:8:2e:cafe::33) by DS7P222CA0024.outlook.office365.com
+ (2603:10b6:8:2e::13) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.23 via Frontend
- Transport; Sun, 12 Feb 2023 17:00:37 +0000
+ Transport; Sun, 12 Feb 2023 17:00:38 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,21 +47,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  DM6NAM11FT057.mail.protection.outlook.com (10.13.172.252) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6086.23 via Frontend Transport; Sun, 12 Feb 2023 17:00:37 +0000
+ 15.20.6086.23 via Frontend Transport; Sun, 12 Feb 2023 17:00:38 +0000
 Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Sun, 12 Feb
- 2023 11:00:37 -0600
+ 2023 11:00:38 -0600
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Sun, 12 Feb
- 2023 11:00:36 -0600
+ 2023 11:00:37 -0600
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 06/22] drm/amd/display: do not set RX back to SST mode for non
- 0 mst stream count
-Date: Sun, 12 Feb 2023 11:59:39 -0500
-Message-ID: <20230212165955.1993601-7-qingqing.zhuo@amd.com>
+Subject: [PATCH 07/22] Revert "drm/amd/display: Correct bw_params population"
+Date: Sun, 12 Feb 2023 11:59:40 -0500
+Message-ID: <20230212165955.1993601-8-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230212165955.1993601-1-qingqing.zhuo@amd.com>
 References: <20230212165955.1993601-1-qingqing.zhuo@amd.com>
@@ -73,26 +72,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB06.amd.com
  (10.181.40.147)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT057:EE_|PH0PR12MB5606:EE_
-X-MS-Office365-Filtering-Correlation-Id: ef034c3e-669a-4df1-8240-08db0d1aaa38
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT057:EE_|BL1PR12MB5160:EE_
+X-MS-Office365-Filtering-Correlation-Id: d628e5d6-c69f-4b44-2e94-08db0d1aaa87
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6vrwJT7IM2cJGKjYcDN156W7rK+/GrdpjPu5qxnigcIovxJdSeUJFFKyGnL4MGWknACoiwT40TBunfBg/RsR0DTwgt+S4iSqOsWG2JzxV4RmdoT3LMWCi1D3/rMYwEsuh1aQlp75ZlVzRnd3EsoXCqJwLFPtqzMoCnHADSAq+35CtMKvPFoes1cZEg/ex8mw+PQhVF3bVCKTF0z76TmXKjZCOPHIm1jaayYNNUzaVf0v8w8EUKJJdt8yisVF9HOmQR4SUkXc3eFSzKiYoCCMsHZthdPhjDuTTWWRaRhVLoR40o+HIYvAq61SxxSIEXUR2BjGB8Py0MPKN4IS+4DgeoQqNhjwv7N/4AoBPZglpzYgIQWS1dPg7FROfh+OnfEZ83SiiW8vgLM2XcbZ3ucmIwcjj/XMeeJ76Y4j//nlOkVXlCXmcP+p8Vesz7kj+2G8tTnUKp9R4ZOrd7M75+8LeQbik9cpZDPigpUW6MpII4rnqQvq0KXuN3NUYFLrTwjT5eap6xV3bq1XGEKG5ToNSoGjfm2wxVwnDNuWy0pxpYm/j6UpuYyzcyvH+BsXYLfbMFUc7IL8ikOjMY01T+8TTVA/9MvSCu+Jiw/0LYLANNNuFe7dXhJywfjmapZibymsP0NAP9E8oLKXGEsbQDf5RmG3no5tocHUPRDex2qaH7b57bNxogVPsFhPn1YXHn78SZ2XtP0LKakT+RP5o0veg9zBHbtjUmziecTd5T4xpYM=
+X-Microsoft-Antispam-Message-Info: 9vfbLTzMo6RNSXwQ8EVkNUTApv0rmSCMCM6RVmaz0xJ3EJJn6NQMk7Eui8mZyItKK8s3Aq4kIufRuVllQvwd0nvo0dCGcoYEH0vfxce5+ftOmLvlJN2CGuNd53QwS7fMGDA3+K8XkiQVX+WHY6U/ntZtcpk0OKD9GVSAK1jYkSL14mDD7P7nL0DjEaPNQDF27PZzIeOLdpzReK8KjipzKHPX1y587r7STK8aeA5VCwuKkAKt2Lvw6FUobtAGbbs2/vvIYns9y/HhN0q5I7zV8XOA7580X8CD3t6qs5mHTTn+mPjJmQOFOKA204iu0WnmjPGTomPa/Km9en2L2JbYrOfqf55CPi7/YDwyQp+dakVmjdT3iyozUseBlSass834p4xodPiB91gE6NOpI3Fvf4MPVrgQPyVdKkPJU/C6kIBglgyeRBTRcLsFka2XWS3CLvuR+3yczo7IaVSiSFhW7M/Yt6AqPe8tHPA5YALIydes/zWMIQnptao8pl5ctL2yBuqqOIuwEpqzTzViK+3wLcwUmcixucjOdniwtl+mC1GWalG2LnGeqN4HkpUJ1NuwJiIE8zQWqzAlD0j3BE9MP9afhHGArbfrUwW8KBmmH7ty8qs+yPpFh3Mr9+xEocigcGT4xgR0WaVPU5Koeb2ye9l//jMTzNsdf9r61LY22zAKMuqNMO4mMif5TtUOeoHb4nxKj3bNvwlsrC5iO5M3zCzeoAmFoh2vKtxw6B4MFFA=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(136003)(376002)(396003)(39860400002)(346002)(451199018)(46966006)(40470700004)(36840700001)(82310400005)(86362001)(44832011)(186003)(26005)(5660300002)(16526019)(47076005)(426003)(40460700003)(83380400001)(82740400003)(81166007)(36860700001)(36756003)(2616005)(2906002)(356005)(336012)(40480700001)(8676002)(4326008)(6916009)(70586007)(70206006)(478600001)(54906003)(316002)(8936002)(1076003)(66899018)(41300700001)(36900700001);
+ SFS:(13230025)(4636009)(39860400002)(346002)(396003)(136003)(376002)(451199018)(46966006)(40470700004)(36840700001)(36860700001)(316002)(83380400001)(40480700001)(40460700003)(4326008)(6916009)(70206006)(70586007)(2616005)(426003)(336012)(47076005)(36756003)(2906002)(44832011)(8936002)(8676002)(82740400003)(356005)(478600001)(86362001)(5660300002)(54906003)(41300700001)(6666004)(16526019)(82310400005)(1076003)(26005)(186003)(81166007)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2023 17:00:37.8416 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ef034c3e-669a-4df1-8240-08db0d1aaa38
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2023 17:00:38.3572 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d628e5d6-c69f-4b44-2e94-08db0d1aaa87
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT057.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB5606
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5160
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,138 +103,105 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- Samson Tam <Samson.Tam@amd.com>, Wenjing Liu <wenjing.liu@amd.com>,
- solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
- Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, Daniel Miess <Daniel.Miess@amd.com>,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
+ Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
+ Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>, agustin.gutierrez@amd.com,
+ pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Wenjing Liu <wenjing.liu@amd.com>
+From: Daniel Miess <Daniel.Miess@amd.com>
 
-[why]
-a recent regression has caused us to mistakenly switch RX back to SST mode
-when there are remaining mst stream enabled to the link. We are missing
-a condition check for stream count before setting RX back to SST mode.
+This reverts commit 59ce92eba0df932949c7c557868a9b2f379baa5e
 
-[how]
-Add stream count check condition back and do some further refactor so the
-logic is easier to understand to prevent future coding error in this sequence.
+[Why]
+This commit causes corruption when viewing a P010
+video clip on a 300Hz eDP
 
-Reviewed-by: Samson Tam <Samson.Tam@amd.com>
+Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
-Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
+Signed-off-by: Daniel Miess <Daniel.Miess@amd.com>
 ---
- .../gpu/drm/amd/display/dc/link/link_dpms.c   | 51 +++++++++----------
- .../display/dc/link/protocols/link_dp_phy.c   | 11 ----
- .../display/dc/link/protocols/link_dp_phy.h   |  4 --
- 3 files changed, 25 insertions(+), 41 deletions(-)
+ .../dc/clk_mgr/dcn314/dcn314_clk_mgr.c        | 31 ++++++-------------
+ 1 file changed, 10 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/link/link_dpms.c b/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-index 9cdfa7f7dc77..22538b4f529b 100644
---- a/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-@@ -1783,37 +1783,36 @@ enum dc_status link_increase_mst_payload(struct pipe_ctx *pipe_ctx, uint32_t bw_
- 	return DC_OK;
- }
- 
--static void disable_link(struct dc_link *link, const struct link_resource *link_res,
-+static void disable_link_dp(struct dc_link *link,
-+		const struct link_resource *link_res,
- 		enum signal_type signal)
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_clk_mgr.c
+index f5276bacfa4e..89df7244b272 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_clk_mgr.c
+@@ -572,11 +572,10 @@ static void dcn314_clk_mgr_helper_populate_bw_params(struct clk_mgr_internal *cl
  {
--	/*
--	 * TODO: implement call for dp_set_hw_test_pattern
--	 * it is needed for compliance testing
--	 */
-+	struct dc_link_settings link_settings = link->cur_link_settings;
+ 	struct clk_bw_params *bw_params = clk_mgr->base.bw_params;
+ 	struct clk_limit_table_entry def_max = bw_params->clk_table.entries[bw_params->clk_table.num_entries - 1];
+-	uint32_t max_pstate = 0, max_fclk = 0, max_dispclk = 0, max_dppclk = 0;
+-	uint32_t min_pstate = 0, min_fclk = clock_table->DfPstateTable[0].FClk;
++	uint32_t max_pstate = 0,  max_fclk = 0,  min_pstate = 0, max_dispclk = 0, max_dppclk = 0;
+ 	int i;
  
--	/* Here we need to specify that encoder output settings
--	 * need to be calculated as for the set mode,
--	 * it will lead to querying dynamic link capabilities
--	 * which should be done before enable output
--	 */
-+	if (signal == SIGNAL_TYPE_DISPLAY_PORT_MST &&
-+			link->mst_stream_alloc_table.stream_count > 0)
-+		/* disable MST link only when last vc payload is deallocated */
-+		return;
- 
-+	dp_disable_link_phy(link, link_res, signal);
-+
-+	if (signal == SIGNAL_TYPE_DISPLAY_PORT_MST)
-+		/* set the sink to SST mode after disabling the link */
-+		enable_mst_on_sink(link, false);
-+
-+	if (link_dp_get_encoding_format(&link_settings) ==
-+			DP_8b_10b_ENCODING) {
-+		dp_set_fec_enable(link, false);
-+		dp_set_fec_ready(link, link_res, false);
-+	}
-+}
-+
-+static void disable_link(struct dc_link *link,
-+		const struct link_resource *link_res,
-+		enum signal_type signal)
-+{
- 	if (dc_is_dp_signal(signal)) {
--		/* SST DP, eDP */
--		struct dc_link_settings link_settings = link->cur_link_settings;
--		if (dc_is_dp_sst_signal(signal)) {
--			dp_disable_link_phy(link, link_res, signal);
--		} else {
--			dp_disable_link_phy_mst(link, link_res, signal);
--			/* set the sink to SST mode after disabling the link */
--			enable_mst_on_sink(link, false);
--		}
--		if (dc_is_dp_sst_signal(signal) ||
--				link->mst_stream_alloc_table.stream_count == 0) {
--			if (link_dp_get_encoding_format(&link_settings) == DP_8b_10b_ENCODING) {
--				dp_set_fec_enable(link, false);
--				dp_set_fec_ready(link, link_res, false);
--			}
--		}
-+		disable_link_dp(link, link_res, signal);
- 	} else if (signal != SIGNAL_TYPE_VIRTUAL) {
- 		link->dc->hwss.disable_link_output(link, link_res, signal);
+-	/* Find highest and lowest valid fclk pstate */
++	/* Find highest valid fclk pstate */
+ 	for (i = 0; i < clock_table->NumDfPstatesEnabled; i++) {
+ 		if (is_valid_clock_value(clock_table->DfPstateTable[i].FClk) &&
+ 		    clock_table->DfPstateTable[i].FClk > max_fclk) {
+@@ -585,14 +584,6 @@ static void dcn314_clk_mgr_helper_populate_bw_params(struct clk_mgr_internal *cl
+ 		}
  	}
-diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_phy.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_phy.c
-index ea3873dae3ad..cd9fb8126bcf 100644
---- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_phy.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_phy.c
-@@ -85,17 +85,6 @@ void dp_disable_link_phy(struct dc_link *link,
- 		dc->clk_mgr->funcs->notify_link_rate_change(dc->clk_mgr, link);
- }
  
--void dp_disable_link_phy_mst(struct dc_link *link,
--		const struct link_resource *link_res,
--		enum signal_type signal)
--{
--	/* MST disable link only when no stream use the link */
--	if (link->mst_stream_alloc_table.stream_count > 0)
--		return;
+-	for (i = 0; i < clock_table->NumDfPstatesEnabled; i++) {
+-		if (is_valid_clock_value(clock_table->DfPstateTable[i].FClk) &&
+-		    clock_table->DfPstateTable[i].FClk < min_fclk) {
+-			min_fclk = clock_table->DfPstateTable[i].FClk;
+-			min_pstate = i;
+-		}
+-	}
 -
--	dp_disable_link_phy(link, link_res, signal);
--}
--
- static inline bool is_immediate_downstream(struct dc_link *link, uint32_t offset)
- {
- 	return (dp_parse_lttpr_repeater_count(link->dpcd_caps.lttpr_caps.phy_repeater_cnt) ==
-diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_phy.h b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_phy.h
-index 6ce0b7958d51..dba1f29df319 100644
---- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_phy.h
-+++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_phy.h
-@@ -38,10 +38,6 @@ void dp_disable_link_phy(struct dc_link *link,
- 		const struct link_resource *link_res,
- 		enum signal_type signal);
+ 	/* We expect the table to contain at least one valid fclk entry. */
+ 	ASSERT(is_valid_clock_value(max_fclk));
  
--void dp_disable_link_phy_mst(struct dc_link *link,
--		const struct link_resource *link_res,
--		enum signal_type signal);
--
- void dp_set_hw_lane_settings(
- 		struct dc_link *link,
- 		const struct link_resource *link_res,
+@@ -608,17 +599,15 @@ static void dcn314_clk_mgr_helper_populate_bw_params(struct clk_mgr_internal *cl
+ 
+ 	/* Base the clock table on dcfclk, need at least one entry regardless of pmfw table */
+ 	for (i = 0; i < clock_table->NumDcfClkLevelsEnabled; i++) {
+-		uint32_t max_level_fclk = clock_table->DfPstateTable[0].FClk;
+-		uint32_t max_level_pstate = 0;
++		uint32_t min_fclk = clock_table->DfPstateTable[0].FClk;
+ 		int j;
+ 
+-		/* Look for the maximum supported FCLK for the current voltage. */
+ 		for (j = 1; j < clock_table->NumDfPstatesEnabled; j++) {
+ 			if (is_valid_clock_value(clock_table->DfPstateTable[j].FClk) &&
+-			    clock_table->DfPstateTable[j].FClk > max_level_fclk &&
++			    clock_table->DfPstateTable[j].FClk < min_fclk &&
+ 			    clock_table->DfPstateTable[j].Voltage <= clock_table->SocVoltage[i]) {
+-				max_level_fclk = clock_table->DfPstateTable[j].FClk;
+-				max_level_pstate = j;
++				min_fclk = clock_table->DfPstateTable[j].FClk;
++				min_pstate = j;
+ 			}
+ 		}
+ 
+@@ -632,15 +621,15 @@ static void dcn314_clk_mgr_helper_populate_bw_params(struct clk_mgr_internal *cl
+ 		bw_params->clk_table.entries[i].dtbclk_mhz = bw_params->clk_table.entries[j].dtbclk_mhz;
+ 
+ 		/* Now update clocks we do read */
+-		bw_params->clk_table.entries[i].fclk_mhz = max_level_fclk;
+-		bw_params->clk_table.entries[i].memclk_mhz = clock_table->DfPstateTable[max_level_pstate].MemClk;
+-		bw_params->clk_table.entries[i].voltage = clock_table->DfPstateTable[max_level_pstate].Voltage;
++		bw_params->clk_table.entries[i].fclk_mhz = min_fclk;
++		bw_params->clk_table.entries[i].memclk_mhz = clock_table->DfPstateTable[min_pstate].MemClk;
++		bw_params->clk_table.entries[i].voltage = clock_table->DfPstateTable[min_pstate].Voltage;
+ 		bw_params->clk_table.entries[i].dcfclk_mhz = clock_table->DcfClocks[i];
+ 		bw_params->clk_table.entries[i].socclk_mhz = clock_table->SocClocks[i];
+ 		bw_params->clk_table.entries[i].dispclk_mhz = max_dispclk;
+ 		bw_params->clk_table.entries[i].dppclk_mhz = max_dppclk;
+ 		bw_params->clk_table.entries[i].wck_ratio = convert_wck_ratio(
+-			clock_table->DfPstateTable[max_level_pstate].WckRatio);
++			clock_table->DfPstateTable[min_pstate].WckRatio);
+ 	}
+ 
+ 	/* Make sure to include at least one entry at highest pstate */
 -- 
 2.25.1
 
