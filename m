@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF1836938F1
-	for <lists+amd-gfx@lfdr.de>; Sun, 12 Feb 2023 18:01:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2722A6938EF
+	for <lists+amd-gfx@lfdr.de>; Sun, 12 Feb 2023 18:01:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6D4010E302;
-	Sun, 12 Feb 2023 17:00:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 896CA10E2EE;
+	Sun, 12 Feb 2023 17:00:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2048.outbound.protection.outlook.com [40.107.223.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BAEB10E2ED
- for <amd-gfx@lists.freedesktop.org>; Sun, 12 Feb 2023 17:00:52 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2051.outbound.protection.outlook.com [40.107.93.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A838410E302
+ for <amd-gfx@lists.freedesktop.org>; Sun, 12 Feb 2023 17:00:49 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UR8c0+gzKQFq17y20Awr4DAa33Tc4eEcmuYrnqNFobEPFR3tIJAyJTcqB8Q2MWyNYrbxzVds8JhwNGCvxled54gceeXmGmBlBRef6jNs6GbPAjncmJ3eSeEh8AJcmNoQywCWiMFO/JGt//2MY59gCDqX3mn8x8yGewdZbwWxUaSsioC7f4NgJxDezAQaV3CAHjXkVfbbSaZ07KD4GAvWWv0bmXGC1u9Ij9pNnwKEW/K0ccKC1D8Xq9QaSNXrRd0NpfH6K4ASlKoYvYAZbhMmW/O9SWD3ouBa7L7oXnt9Q8rmqDkhmXC4Z/o4w5zjz4U6FYLpOG7v2yZVgq1tB0fFLA==
+ b=V9ceLPGT7Z1I5sduNefq5boXHjxn/B6WG3FF6cvAq6cesHzVuIkkZKNAX70J/PiLtMpWsytjE7pFkTA0F+9/7e4nmbpVLBG/cGtRDqaOpUPdT7jHPUgxnoMCL/sSJYtmOgqTnaiDcz5XJeuEqUgN3Y48xWziROKzdwPP0BnAJCeaW7ijbe6++XMkQOmKdMDTKwoMvpx7D7SxJcR5hzddHee97rUu+6/vt5Sbea3IsWbYQI2cEJrwgDZAHUeXB85EGFgNwOIUNlxUEHX6b1YMKryQ8Famc4bDzthzLKaMydjwwBM0csJSZbM8oSDLWsReKtH/w6bAoytqNyVGEsEFPw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RJb0k0L3xT63Bf8JZD6oRUKztHpZBPkQ5+vEVmtFYBs=;
- b=K+tA0fVTydvPwHiOVWiKE0ySxHgJZPBTVpgrN5ZIIIPOLGaQPqsHrWyrbZUbAPZE0z2o89vtTmjQ0zY4CU+cKpKepMyh47eVONcJ2ANQ85AW1ZCZDHjfcovVcuzEZIwM8nqRRtO9nIS/AATBgHvHDpjkcVhFErJBFGZJ+DbOcqHHqEo48wh7RbVgvgKD64lDloAeNTlE/JXw6Gmp+sfCnD4IBK2rGG4i0Nt6YFsiXaEEvdJB8jioY+mjHJfKk0PpF4xTToct37YPsiXjxMNCFrIMvBRFEB9RovW5kaEsYKRYtM62jl4H10tpoO69LsauD9dcgSXvEj6fXduC+AC7/A==
+ bh=gT/jpP07/N4DUAYayg0zalQv8Ed70LhAeVOvnUdRlC4=;
+ b=URee6N7HsiMBib1a6zR/HIWKKqyKxe5WFufK7ig9BUGVRUwuKELb87G9kLLOfPeaVilyIO5Pfj95L++hWlv505I54t30E9q/TaZcC4we8OgK2rB3hkdKVecL4l3jGE1sq3bAxAc+GjbqdDsHQKDI9RUZdLTaEmbzcGB2Mb++GfNMiPpSt1Qz+BffyLIE/MwB756ys4RU3YUswKq6RiOlvcYIO69UdqyxGEsWmjQrTjYVpP2kWR/+oRBWJJrsyOmlBze8Pba6YRQk6BL4sAjirOrOdOe2B5SiKEU7/vA1NK+LpwU8mSC/9hzq/wX82fsdhwRlg2+zF3sjanuzJP4IHQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RJb0k0L3xT63Bf8JZD6oRUKztHpZBPkQ5+vEVmtFYBs=;
- b=Njf8NOlXzsk/5raJnLWQL/rtdXRiVarAD6nDW6uEmKHJDKfnJTQM6O0XzNnmnSQRjz1zex+8slEcJhNNonk3sbKOCTOIm7Bt3eOPiYATUvnPKjFBybywVQ9E/E/GHhXkukqxIfaY0FY54g6F68foPQoKaYFr4DycI38y1Mq40W0=
-Received: from DM6PR02CA0091.namprd02.prod.outlook.com (2603:10b6:5:1f4::32)
- by CH2PR12MB4055.namprd12.prod.outlook.com (2603:10b6:610:78::15) with
+ bh=gT/jpP07/N4DUAYayg0zalQv8Ed70LhAeVOvnUdRlC4=;
+ b=aOz6ebRJpSIGoRe9uowTqRwr6orC91uDm1T/dIQwIVCCjSe5Tkdrz23vu6J/nXRpOpXaFVAT6PAfxDd98YPadrhtjzLMAMtoIf4l1wJ0Tkp5716LeyUMLNuNb1OdX4WxU8tzxxz8YGT03O0w4xYYjSdRAWdfmR5Qoo0254mAJpM=
+Received: from DM6PR02CA0076.namprd02.prod.outlook.com (2603:10b6:5:1f4::17)
+ by SA0PR12MB4512.namprd12.prod.outlook.com (2603:10b6:806:71::9) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.23; Sun, 12 Feb
- 2023 17:00:46 +0000
+ 2023 17:00:47 +0000
 Received: from DM6NAM11FT070.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:1f4:cafe::bb) by DM6PR02CA0091.outlook.office365.com
- (2603:10b6:5:1f4::32) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:5:1f4:cafe::b3) by DM6PR02CA0076.outlook.office365.com
+ (2603:10b6:5:1f4::17) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.23 via Frontend
- Transport; Sun, 12 Feb 2023 17:00:46 +0000
+ Transport; Sun, 12 Feb 2023 17:00:47 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,21 +47,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  DM6NAM11FT070.mail.protection.outlook.com (10.13.173.51) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6086.23 via Frontend Transport; Sun, 12 Feb 2023 17:00:45 +0000
+ 15.20.6086.23 via Frontend Transport; Sun, 12 Feb 2023 17:00:47 +0000
 Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Sun, 12 Feb
- 2023 11:00:42 -0600
+ 2023 11:00:43 -0600
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Sun, 12 Feb
- 2023 11:00:41 -0600
+ 2023 11:00:42 -0600
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 12/22] drm/amd/display: Fix video glitch while drag window in
- PSR-SU
-Date: Sun, 12 Feb 2023 11:59:45 -0500
-Message-ID: <20230212165955.1993601-13-qingqing.zhuo@amd.com>
+Subject: [PATCH 13/22] drm/amd/display: Remove stutter only configurations
+Date: Sun, 12 Feb 2023 11:59:46 -0500
+Message-ID: <20230212165955.1993601-14-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230212165955.1993601-1-qingqing.zhuo@amd.com>
 References: <20230212165955.1993601-1-qingqing.zhuo@amd.com>
@@ -73,26 +72,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB06.amd.com
  (10.181.40.147)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT070:EE_|CH2PR12MB4055:EE_
-X-MS-Office365-Filtering-Correlation-Id: bb6deb19-c63e-4974-11fb-08db0d1aaeda
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT070:EE_|SA0PR12MB4512:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1485724a-1480-44c6-8ba1-08db0d1aafdb
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MdzHVd7SFyXjU0rVByaMqRF78YA0GpjVMwi14oIrzWFSKsUUUJxJh9P1EuJIE7NUucyZJSjG1yanV5L8ay1JBzHDeAMgpy5y82EI9TaEZTzlC3X8LASnB4qMqeayzT5++8LQvNOajJ63Q4Vg4WCBuqKApEdRknAl1Mwf3ATTMvQoVmXhEbKsT+jk3eEdUIIZZcOFrNUFvNCTwDp98avK3xSfMI0/ZHnI4HLIHiC7Jn7LMkZSBSHXJNZtcs/tj7Jufk3PSYXaa3zbVf/E45jQ86/816gjF4+Oh6AQWX09fETQJ4sZkt6ARtj8bUVzWIEKZt6jxlJVna7pEIOv7+DgDhJdXix3H4LjfbfdlzPJe9fKWNia78fqZPO/2C9FJXWgDuuIjl2jy8wWYG1OHt1SGv5sYxEhX9C7t5b6R7DZcHiG1VOmYQI89TGpBHVOtwKLkcPVISU5/iLnZ57refB4WlbJLIAQLBhzJjAOPfHVChoo0/Ixf2b+dWA+nnswRVNzla4/40mps7ls+nlaR1+Fw1G6QwvtnxWERboHv6XVMayPTkFLn9P32Yjv016AyV5sQAJBmkMEM4F+L7FhvvOj0kN0GirtKd1/QdFqpmlvJGN3V6G6jkpJFI87KNVfBctrKMMr7nKyhQwu5cfxJ45GGZPIsIwHGZs2bG5uQKOcca4epFDR3TCd3/4rMbhV3wtGKFneU25czSHaB2ZPPOGU4YpUk2RPa+7qJfXygsF4fOw=
+X-Microsoft-Antispam-Message-Info: BdGOroRI0yIzxL0ZjkIqdgEc4GFwuhdcaDpyebrzo5yITpVOkCATygmxwhM1dYxGMInCDL+5DqROVL7Iqr4xKgRTpVr3euz4d4XMcVnzZO/DplpmrvPzsfHc/QR9umK5eh1VbUPyekV5Pq2yQSyb7urdLMiRc/ejlRZkMy9T/jLmDKcuNBhCWoLet6yg4629q1kRVL9w4OOR62XJBFZEGWgo4TyRme0l2hKIm/JkLO6ldkwsQ9VjHJjikXHEz1V4CAaOc9eNFmHmrs/pP4VGurlo6bxQm1W1pgKL42xiem0yo9GtP3sRKzeFIj66XtASq1C/RDhTbiiLVdFyC7kGy6l4yLRl1PrU/8u5dF6Ij0I+meri/lETzrZKjJlxc83FRfUlKfdmSe/QAd8n2KKZXtkk4eXB1v0d6toifDqYmN1USpLD/B9Rua95msd9oJ+ARuah75UtFheaEshCDeSqgcOTtXeXREW9zM4NcY7cYI6YmeUy6Zh86V7enlB9Gd27Al/vwXYd7vYri1cO1T8AlNzfX6Esj6Og4/qXY8VUou4DC/MiF5PkL5l2JZ+FtOIFYJ+kSqlA2kBxZkBz3o/gid564Nlu/i5BQMpEr7oYZRdP6Ue2rZX0maCbU5q4TYJS0BvVkFwcEWQ46idw8gcaiJVOAwk8Tl0BHN+9jtXpOiFSwHE8KlpK1EGRzTpig+cmGPu66nY5h5udVHCrKWSGl3DDUyE+Gucc95RdbyOZSRs=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(376002)(396003)(136003)(39860400002)(346002)(451199018)(46966006)(36840700001)(40470700004)(83380400001)(5660300002)(41300700001)(8936002)(44832011)(426003)(47076005)(81166007)(36860700001)(82740400003)(82310400005)(86362001)(36756003)(40480700001)(356005)(40460700003)(2906002)(316002)(54906003)(1076003)(26005)(186003)(16526019)(4326008)(6916009)(336012)(478600001)(2616005)(8676002)(70586007)(70206006)(36900700001);
+ SFS:(13230025)(4636009)(396003)(376002)(136003)(39860400002)(346002)(451199018)(46966006)(40470700004)(36840700001)(83380400001)(5660300002)(41300700001)(8936002)(44832011)(426003)(47076005)(81166007)(36860700001)(82740400003)(82310400005)(86362001)(36756003)(40480700001)(356005)(40460700003)(2906002)(316002)(54906003)(1076003)(26005)(186003)(16526019)(4326008)(6916009)(336012)(478600001)(2616005)(8676002)(70586007)(70206006)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2023 17:00:45.6113 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bb6deb19-c63e-4974-11fb-08db0d1aaeda
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2023 17:00:47.2987 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1485724a-1480-44c6-8ba1-08db0d1aafdb
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT070.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4055
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4512
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,148 +103,218 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Tom Chung <chiahsuan.chung@amd.com>,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
- Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
+ Nasir Osman <nasir.osman@amd.com>, Bhawanpreet.Lakha@amd.com,
+ Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>, agustin.gutierrez@amd.com,
+ pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Tom Chung <chiahsuan.chung@amd.com>
+From: Nasir Osman <nasir.osman@amd.com>
 
-[Why]
-Dmub will cache the video position data during PSR-SU enable.
-The dmub will use an outdated MPO video position if user try
-to drag the video window and it will cause video glitch.
+[why]
+Newer ASICs such as DCN314 needs to allow for both self refresh and mem
+clk switching rather than just self refresh only. Otherwise, we can see
+some p-state hangs on ASICs that do support mem clk switching.
 
-[How]
-Disable the PSR-SU temporarily while user drag the video window.
-The PSR-SU will be re-enabled after the video window is stable.
+[how]
+Added an allow_self_refresh_only flag for dcn30_internal_validate_bw
+and created a validate_bw method for DCN314 with the allow_self_refresh_only
+flag set to false (to support mem clk switching).
 
-Reviewed-by: Sun peng Li <Sunpeng.Li@amd.com>
+Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
-Signed-off-by: Tom Chung <chiahsuan.chung@amd.com>
+Signed-off-by: Nasir Osman <nasir.osman@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 41 ++++++++++++++++---
- drivers/gpu/drm/amd/display/dc/dc_link.h      |  1 +
- 2 files changed, 37 insertions(+), 5 deletions(-)
+ .../drm/amd/display/dc/dcn30/dcn30_resource.c | 16 +++---
+ .../drm/amd/display/dc/dcn30/dcn30_resource.h |  3 +-
+ .../drm/amd/display/dc/dcn31/dcn31_resource.c |  2 +-
+ .../amd/display/dc/dcn314/dcn314_resource.c   | 57 ++++++++++++++++++-
+ .../amd/display/dc/dcn314/dcn314_resource.h   |  4 ++
+ .../drm/amd/display/dc/dml/dcn30/dcn30_fpu.c  |  2 +-
+ 6 files changed, 73 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 833d7137c4f4..922adc10894a 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -5036,6 +5036,7 @@ static inline void fill_dc_dirty_rect(struct drm_plane *plane,
-  * @new_plane_state: New state of @plane
-  * @crtc_state: New state of CRTC connected to the @plane
-  * @flip_addrs: DC flip tracking struct, which also tracts dirty rects
-+ * @dirty_regions_changed: dirty regions changed
-  *
-  * For PSR SU, DC informs the DMUB uController of dirty rectangle regions
-  * (referred to as "damage clips" in DRM nomenclature) that require updating on
-@@ -5052,7 +5053,8 @@ static void fill_dc_dirty_rects(struct drm_plane *plane,
- 				struct drm_plane_state *old_plane_state,
- 				struct drm_plane_state *new_plane_state,
- 				struct drm_crtc_state *crtc_state,
--				struct dc_flip_addrs *flip_addrs)
-+				struct dc_flip_addrs *flip_addrs,
-+				bool *dirty_regions_changed)
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
+index feb4bb491525..9353581d8b17 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
+@@ -1648,7 +1648,8 @@ noinline bool dcn30_internal_validate_bw(
+ 		display_e2e_pipe_params_st *pipes,
+ 		int *pipe_cnt_out,
+ 		int *vlevel_out,
+-		bool fast_validate)
++		bool fast_validate,
++		bool allow_self_refresh_only)
  {
- 	struct dm_crtc_state *dm_crtc_state = to_dm_crtc_state(crtc_state);
- 	struct rect *dirty_rects = flip_addrs->dirty_rects;
-@@ -5061,6 +5063,7 @@ static void fill_dc_dirty_rects(struct drm_plane *plane,
- 	bool bb_changed;
- 	bool fb_changed;
- 	u32 i = 0;
-+	*dirty_regions_changed = false;
+ 	bool out = false;
+ 	bool repopulate_pipes = false;
+@@ -1675,7 +1676,7 @@ noinline bool dcn30_internal_validate_bw(
  
- 	/*
- 	 * Cursor plane has it's own dirty rect update interface. See
-@@ -5105,6 +5108,8 @@ static void fill_dc_dirty_rects(struct drm_plane *plane,
- 		new_plane_state->plane->base.id,
- 		bb_changed, fb_changed, num_clips);
+ 	dml_log_pipe_params(&context->bw_ctx.dml, pipes, pipe_cnt);
  
-+	*dirty_regions_changed = bb_changed;
-+
- 	if (bb_changed) {
- 		fill_dc_dirty_rect(new_plane_state->plane, &dirty_rects[i],
- 				   new_plane_state->crtc_x,
-@@ -7858,7 +7863,7 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
- 				    bool wait_for_vblank)
- {
- 	u32 i;
--	u64 timestamp_ns;
-+	u64 timestamp_ns = ktime_get_ns();
- 	struct drm_plane *plane;
- 	struct drm_plane_state *old_plane_state, *new_plane_state;
- 	struct amdgpu_crtc *acrtc_attach = to_amdgpu_crtc(pcrtc);
-@@ -7873,6 +7878,7 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
- 	bool vrr_active = amdgpu_dm_vrr_active(acrtc_state);
- 	bool cursor_update = false;
- 	bool pflip_present = false;
-+	bool dirty_rects_changed = false;
- 	struct {
- 		struct dc_surface_update surface_updates[MAX_SURFACES];
- 		struct dc_plane_info plane_infos[MAX_SURFACES];
-@@ -7960,10 +7966,32 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
- 		bundle->surface_updates[planes_count].plane_info =
- 			&bundle->plane_infos[planes_count];
- 
--		if (acrtc_state->stream->link->psr_settings.psr_feature_enabled)
-+		if (acrtc_state->stream->link->psr_settings.psr_feature_enabled) {
- 			fill_dc_dirty_rects(plane, old_plane_state,
- 					    new_plane_state, new_crtc_state,
--					    &bundle->flip_addrs[planes_count]);
-+					    &bundle->flip_addrs[planes_count],
-+					    &dirty_rects_changed);
-+
-+			/*
-+			 * If the dirty regions changed, PSR-SU need to be disabled temporarily
-+			 * and enabled it again after dirty regions are stable to avoid video glitch.
-+			 * PSR-SU will be enabled in vblank_control_worker() if user pause the video
-+			 * during the PSR-SU was disabled.
-+			 */
-+			if (acrtc_state->stream->link->psr_settings.psr_version >= DC_PSR_VERSION_SU_1 &&
-+			    acrtc_attach->dm_irq_params.allow_psr_entry &&
-+#ifdef CONFIG_DRM_AMD_SECURE_DISPLAY
-+			    !amdgpu_dm_crc_window_is_activated(acrtc_state->base.crtc) &&
-+#endif
-+			    dirty_rects_changed) {
-+				mutex_lock(&dm->dc_lock);
-+				acrtc_state->stream->link->psr_settings.psr_dirty_rects_change_timestamp_ns =
-+				timestamp_ns;
-+				if (acrtc_state->stream->link->psr_settings.psr_allow_active)
-+					amdgpu_dm_psr_disable(acrtc_state->stream);
-+				mutex_unlock(&dm->dc_lock);
-+			}
-+		}
- 
+-	if (!fast_validate) {
++	if (!fast_validate || !allow_self_refresh_only) {
  		/*
- 		 * Only allow immediate flips for fast updates that don't
-@@ -8182,7 +8210,10 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
- #ifdef CONFIG_DRM_AMD_SECURE_DISPLAY
- 			    !amdgpu_dm_crc_window_is_activated(acrtc_state->base.crtc) &&
- #endif
--			    !acrtc_state->stream->link->psr_settings.psr_allow_active)
-+			    !acrtc_state->stream->link->psr_settings.psr_allow_active &&
-+			    (timestamp_ns -
-+			    acrtc_state->stream->link->psr_settings.psr_dirty_rects_change_timestamp_ns) >
-+			    500000000)
- 				amdgpu_dm_psr_enable(acrtc_state->stream);
- 		} else {
- 			acrtc_attach->dm_irq_params.allow_psr_entry = false;
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_link.h b/drivers/gpu/drm/amd/display/dc/dc_link.h
-index 99cfe6c9858c..ae51e4c1a98e 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_link.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_link.h
-@@ -102,6 +102,7 @@ struct psr_settings {
- 	bool psr_allow_active;			// PSR is currently active
- 	enum dc_psr_version psr_version;		// Internal PSR version, determined based on DPCD
- 	bool psr_vtotal_control_support;	// Vtotal control is supported by sink
-+	unsigned long long psr_dirty_rects_change_timestamp_ns;	// for delay of enabling PSR-SU
+ 		 * DML favors voltage over p-state, but we're more interested in
+ 		 * supporting p-state over voltage. We can't support p-state in
+@@ -1688,11 +1689,12 @@ noinline bool dcn30_internal_validate_bw(
+ 		if (vlevel < context->bw_ctx.dml.soc.num_states)
+ 			vlevel = dcn20_validate_apply_pipe_split_flags(dc, context, vlevel, split, merge);
+ 	}
+-	if (fast_validate || vlevel == context->bw_ctx.dml.soc.num_states ||
+-			vba->DRAMClockChangeSupport[vlevel][vba->maxMpcComb] == dm_dram_clock_change_unsupported) {
++	if (allow_self_refresh_only &&
++	    (fast_validate || vlevel == context->bw_ctx.dml.soc.num_states ||
++			vba->DRAMClockChangeSupport[vlevel][vba->maxMpcComb] == dm_dram_clock_change_unsupported)) {
+ 		/*
+-		 * If mode is unsupported or there's still no p-state support then
+-		 * fall back to favoring voltage.
++		 * If mode is unsupported or there's still no p-state support
++		 * then fall back to favoring voltage.
+ 		 *
+ 		 * We don't actually support prefetch mode 2, so require that we
+ 		 * at least support prefetch mode 1.
+@@ -2063,7 +2065,7 @@ bool dcn30_validate_bandwidth(struct dc *dc,
+ 	BW_VAL_TRACE_COUNT();
  
- 	/* These parameters are calculated in Driver,
- 	 * based on display timing and Sink capabilities.
+ 	DC_FP_START();
+-	out = dcn30_internal_validate_bw(dc, context, pipes, &pipe_cnt, &vlevel, fast_validate);
++	out = dcn30_internal_validate_bw(dc, context, pipes, &pipe_cnt, &vlevel, fast_validate, true);
+ 	DC_FP_END();
+ 
+ 	if (pipe_cnt == 0)
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.h b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.h
+index 7d063c7d6a4b..8e6b8b7368fd 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.h
+@@ -64,7 +64,8 @@ bool dcn30_internal_validate_bw(
+ 		display_e2e_pipe_params_st *pipes,
+ 		int *pipe_cnt_out,
+ 		int *vlevel_out,
+-		bool fast_validate);
++		bool fast_validate,
++		bool allow_self_refresh_only);
+ void dcn30_calculate_wm_and_dlg(
+ 		struct dc *dc, struct dc_state *context,
+ 		display_e2e_pipe_params_st *pipes,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
+index 3ca517dcc82d..d3918a10773a 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
+@@ -1795,7 +1795,7 @@ bool dcn31_validate_bandwidth(struct dc *dc,
+ 	BW_VAL_TRACE_COUNT();
+ 
+ 	DC_FP_START();
+-	out = dcn30_internal_validate_bw(dc, context, pipes, &pipe_cnt, &vlevel, fast_validate);
++	out = dcn30_internal_validate_bw(dc, context, pipes, &pipe_cnt, &vlevel, fast_validate, true);
+ 	DC_FP_END();
+ 
+ 	// Disable fast_validate to set min dcfclk in alculate_wm_and_dlg
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
+index bc7f2b735327..ea1cb90f8b92 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
+@@ -1695,6 +1695,61 @@ static void dcn314_get_panel_config_defaults(struct dc_panel_config *panel_confi
+ 	*panel_config = panel_config_defaults;
+ }
+ 
++bool dcn314_validate_bandwidth(struct dc *dc,
++		struct dc_state *context,
++		bool fast_validate)
++{
++	bool out = false;
++
++	BW_VAL_TRACE_SETUP();
++
++	int vlevel = 0;
++	int pipe_cnt = 0;
++	display_e2e_pipe_params_st *pipes = kzalloc(dc->res_pool->pipe_count * sizeof(display_e2e_pipe_params_st), GFP_KERNEL);
++	DC_LOGGER_INIT(dc->ctx->logger);
++
++	BW_VAL_TRACE_COUNT();
++
++	DC_FP_START();
++	// do not support self refresh only
++	out = dcn30_internal_validate_bw(dc, context, pipes, &pipe_cnt, &vlevel, fast_validate, false);
++	DC_FP_END();
++
++	// Disable fast_validate to set min dcfclk in calculate_wm_and_dlg
++	if (pipe_cnt == 0)
++		fast_validate = false;
++
++	if (!out)
++		goto validate_fail;
++
++	BW_VAL_TRACE_END_VOLTAGE_LEVEL();
++
++	if (fast_validate) {
++		BW_VAL_TRACE_SKIP(fast);
++		goto validate_out;
++	}
++
++	dc->res_pool->funcs->calculate_wm_and_dlg(dc, context, pipes, pipe_cnt, vlevel);
++
++	BW_VAL_TRACE_END_WATERMARKS();
++
++	goto validate_out;
++
++validate_fail:
++	DC_LOG_WARNING("Mode Validation Warning: %s failed validation.\n",
++		dml_get_status_message(context->bw_ctx.dml.vba.ValidationStatus[context->bw_ctx.dml.vba.soc.num_states]));
++
++	BW_VAL_TRACE_SKIP(fail);
++	out = false;
++
++validate_out:
++	kfree(pipes);
++
++	BW_VAL_TRACE_FINISH();
++
++	return out;
++}
++
+ static struct resource_funcs dcn314_res_pool_funcs = {
+ 	.destroy = dcn314_destroy_resource_pool,
+ 	.link_enc_create = dcn31_link_encoder_create,
+@@ -1702,7 +1757,7 @@ static struct resource_funcs dcn314_res_pool_funcs = {
+ 	.link_encs_assign = link_enc_cfg_link_encs_assign,
+ 	.link_enc_unassign = link_enc_cfg_link_enc_unassign,
+ 	.panel_cntl_create = dcn31_panel_cntl_create,
+-	.validate_bandwidth = dcn31_validate_bandwidth,
++	.validate_bandwidth = dcn314_validate_bandwidth,
+ 	.calculate_wm_and_dlg = dcn31_calculate_wm_and_dlg,
+ 	.update_soc_for_wm_a = dcn31_update_soc_for_wm_a,
+ 	.populate_dml_pipes = dcn314_populate_dml_pipes_from_context,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.h b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.h
+index 0dd3153aa5c1..49ffe71018df 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.h
+@@ -39,6 +39,10 @@ struct dcn314_resource_pool {
+ 	struct resource_pool base;
+ };
+ 
++bool dcn314_validate_bandwidth(struct dc *dc,
++		struct dc_state *context,
++		bool fast_validate);
++
+ struct resource_pool *dcn314_create_resource_pool(
+ 		const struct dc_init_data *init_data,
+ 		struct dc *dc);
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn30/dcn30_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn30/dcn30_fpu.c
+index d4c0f9cdac8e..4fa636364793 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn30/dcn30_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn30/dcn30_fpu.c
+@@ -634,7 +634,7 @@ int dcn30_find_dummy_latency_index_for_fw_based_mclk_switch(struct dc *dc,
+ 	while (dummy_latency_index < max_latency_table_entries) {
+ 		context->bw_ctx.dml.soc.dram_clock_change_latency_us =
+ 				dc->clk_mgr->bw_params->dummy_pstate_table[dummy_latency_index].dummy_pstate_latency_us;
+-		dcn30_internal_validate_bw(dc, context, pipes, &pipe_cnt, &vlevel, false);
++		dcn30_internal_validate_bw(dc, context, pipes, &pipe_cnt, &vlevel, false, true);
+ 
+ 		if (context->bw_ctx.dml.soc.allow_dram_self_refresh_or_dram_clock_change_in_vblank ==
+ 			dm_allow_self_refresh_and_mclk_switch)
 -- 
 2.25.1
 
