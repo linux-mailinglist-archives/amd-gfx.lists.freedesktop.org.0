@@ -1,41 +1,41 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D13E6938EA
-	for <lists+amd-gfx@lfdr.de>; Sun, 12 Feb 2023 18:00:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B785A6938E7
+	for <lists+amd-gfx@lfdr.de>; Sun, 12 Feb 2023 18:00:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6078B10E2F9;
-	Sun, 12 Feb 2023 17:00:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E24C10E2EB;
+	Sun, 12 Feb 2023 17:00:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2062.outbound.protection.outlook.com [40.107.93.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06D1110E2EB
- for <amd-gfx@lists.freedesktop.org>; Sun, 12 Feb 2023 17:00:43 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2048.outbound.protection.outlook.com [40.107.237.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D07910E2E7
+ for <amd-gfx@lists.freedesktop.org>; Sun, 12 Feb 2023 17:00:41 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PZgDUQ4xwepzgZv/ULmUpJyFYOzNkDQRf8kCzGvRf/VPq0+tqWTqhMpwZanHQtF62wWsNw3AudXE3HS2tm6K+zqhhwybwqkgqk12CmOZiYCJ/UWZJcAsjc5B0T/kgk0bbHVlNOOMcny+rZipgsvYtjWwKXgUNPqiAiQ3FoefBPR0kBbKOZFyjaNQLXdQOGYPLPUCufPygHDeN1rY1vgnsDil/TKV3nwlyDXJ5wOXXYdgSVZ60h+awY4BGVeoEjHoaS6VyMNd2JxkQZt4kBzl9RNtRdatj+dqD9lkIEK55sUIOjC4PW8Je757nw7Al2ZUSpQpf9G0BI9TCt1HYUjH1A==
+ b=bVm42A7Xmk2RNbSukhJs+Jn3BOpZHVpNGOSvdZyEU2gAPFSn/8ZlfPEly7QKa+A/oeq5TyDvWYlg64SlAYkczMIDnJL/Unw/yKiMr1W2PWIP6NBc9clx5RC32J/3Pf1SH2bGdlocW0+NEtKg6MCFI4amVWDJVH9GIKdNlY6SszuqPF/N6+xyJX2KeqnFKfpPOC7xOqTJ5lNGfc/fiSJBxk6F9gV6zCiCs5rUvFXXZ8lbZGSpkrJIRvZzg2fn9uZBefjSoClQc28txFKRZx7jxz/RNYRsGy9kcJw8v2JHcisjjqRkY/7gBzYcTIpCKpjSQSYw5iMXsL/laY8JIMnWbQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p3gYZ15hRqDlAv0BCg6grJANa7P33fItkcVc15TMNiU=;
- b=ZptYY7vUQ4mEDxc/Y1x8GOssIdEzO6DfxiqmMZjAFrh3ZX1Hu1LkYDMKMAuAYlyRT9zY2SxejkJ6DmlXxJDhO8eoKhWTQ4Ezk/9TOfY7LgmDddVFpXslMBQv2FYdeEQBtWIAvw1FnrYvBBOC5zLhO7pQPcb6etgdVNSuSRxQWwlqzAjg8LvRUHKntu8ocewxBAMb/UKB0SjezMICPHIjmDwDpbsUfx/NnJALV6CMXp97mWcIGhjuOAnQB7K2BVesrxuNd+8XJWwFDGXUwoY3ys0OANqLRC1kEXFdhVB8EleABoT9EXwDDkvl0Are35i9gtFPSiBOI8NOzPNn3N+1zA==
+ bh=CrbFyu9yzfFyKcDQGYU/WDIEK9rEUNDR4la6hyYoxtE=;
+ b=JpUohSAQWnCzRKv+JtrtZR7f0V2ReUnTKvycucSdDAv2Ftkr5suOs17VMW8oky0ogEHYh4cTx5VeBbnBj61foO2p4B7NMYrLKEdAszpJDIls8wTV18e1uGmdEaBDMirXmD0czj2MU2GBOBfZowxogHXAI0KtgPByrmvUC7ncpn2l98P+v/EoIRHU73Kg/wpZsS2+v3pwKT3NBT5ODfzJD54YYI3tI5zaA1vv5WUb3CGaI+JH8B0dmyh1z0jCrAgQX4nvyanxmzWGt3aYDGBh1wGwaNR20JtP/KHHbK/mz45/9lcupmrQE1tVQWgWjLzf4Sl7CxtNy/4Un0lznubr6Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p3gYZ15hRqDlAv0BCg6grJANa7P33fItkcVc15TMNiU=;
- b=Q910sP7Nl9o1zv2H0x0RRiW3asZD+nh09l7gouInHOHWC7sAPX6fqhiINzO76JHzkWupacJylbuHFY7+u75bF7FnwufhhoY0DQ5q6768Wquw5z8PuOSOd0STq7c3i/DCZyQSAQT/1Q6rd7IcwoNMGlQxOoGMt9pSULxaQH86P/U=
-Received: from DS7P222CA0024.NAMP222.PROD.OUTLOOK.COM (2603:10b6:8:2e::13) by
- PH7PR12MB7914.namprd12.prod.outlook.com (2603:10b6:510:27d::13) with
+ bh=CrbFyu9yzfFyKcDQGYU/WDIEK9rEUNDR4la6hyYoxtE=;
+ b=AcCbiADe1WZJTX80lizDpOlg1tvZjES61rm0xcunEO+lp1y3IcfPriHSF1485TgDdrf/DRKe+1O/JxrJjL6F2HJcirkEevL0IO0Abjnl5Lf++qa4dJ7XQf61BwMDEtnwWaemaF80I0Wt9UWedA4kz9LHqgGHVVcxIGvvv7CisHM=
+Received: from DS7P222CA0002.NAMP222.PROD.OUTLOOK.COM (2603:10b6:8:2e::30) by
+ PH0PR12MB5606.namprd12.prod.outlook.com (2603:10b6:510:141::16) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.23; Sun, 12 Feb
- 2023 17:00:37 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.22; Sun, 12 Feb
+ 2023 17:00:38 +0000
 Received: from DM6NAM11FT057.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:2e:cafe::b3) by DS7P222CA0024.outlook.office365.com
- (2603:10b6:8:2e::13) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:8:2e:cafe::ff) by DS7P222CA0002.outlook.office365.com
+ (2603:10b6:8:2e::30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.23 via Frontend
  Transport; Sun, 12 Feb 2023 17:00:37 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -51,16 +51,17 @@ Received: from SATLEXMB03.amd.com (165.204.84.17) by
 Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Sun, 12 Feb
- 2023 11:00:36 -0600
+ 2023 11:00:37 -0600
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Sun, 12 Feb
- 2023 11:00:35 -0600
+ 2023 11:00:36 -0600
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 05/22] drm/amd/display: Fix prefetch vratio check
-Date: Sun, 12 Feb 2023 11:59:38 -0500
-Message-ID: <20230212165955.1993601-6-qingqing.zhuo@amd.com>
+Subject: [PATCH 06/22] drm/amd/display: do not set RX back to SST mode for non
+ 0 mst stream count
+Date: Sun, 12 Feb 2023 11:59:39 -0500
+Message-ID: <20230212165955.1993601-7-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230212165955.1993601-1-qingqing.zhuo@amd.com>
 References: <20230212165955.1993601-1-qingqing.zhuo@amd.com>
@@ -72,26 +73,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB06.amd.com
  (10.181.40.147)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT057:EE_|PH7PR12MB7914:EE_
-X-MS-Office365-Filtering-Correlation-Id: e1715c90-51f0-4b40-febf-08db0d1aa9d1
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT057:EE_|PH0PR12MB5606:EE_
+X-MS-Office365-Filtering-Correlation-Id: ef034c3e-669a-4df1-8240-08db0d1aaa38
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: FtYl1w5bGhvCMJRT/n09IOGtrOkKLHQyZUbwMSTXbMcZ9bmyXTgj5lDKZjYxYuLossrfFXNZsqScZjYjodX+Am4aeX3Sg4Y2bKA1LL5o86DkQ122Jr5tHhp852VD9lXib+ClOHGmcYcFlTfqaV7QPAmPhbN4Ll1Qeqtf/0/L2756XI5CMJOieMjlM+MKE+RX85vBL84m5rUcHHgPs5F+jDW3PucZyuYXrZsEPyF+tyf4++Sz2Xd+LtGe0KGkiJboNpypszG/CiZLe1aRKW1SZKIKBUC4W+JqVZ5lIHD7VsoZ9+3H05vMZ2Bpap9wAojQKfl3OE2FaRUzLzfOeB+VftCZZN3H7e73yGEEemHvvRJz3Rx18va2Nq7OxqKOlGRjoZDGC/4Q7gviufHor+ZpRa/SazhqENtxMkN1d/5hkJjO8nqtPckDr650n61N9pTUXrlN4r8uOv0/OUFaDFRgDxDQ+Bdi4gZgiEQZElURZCXz72PVYfJw8WYieZ9GaL59ArK8XzsJCPVy9rjWpPaQieWTqIAmchq+6cJiZiRKsV6rLv0CRKLc4i4HMglVuiXDHmO/Hg4XeykwsxUH7ShlnhyZwHrxIC0eFqcEIbiiCl/ojjt7QJay+kVncZpPj7WiQaqWO9vI7Zhs51dSxvdaTpK0t43o5XA+jyK2+EcURo9vMpY234ArqL/9gwWoFeazWSnRK925MsKdEMRmrIQdlKp1CJK2PsafUrcosqnL4ek=
+X-Microsoft-Antispam-Message-Info: 6vrwJT7IM2cJGKjYcDN156W7rK+/GrdpjPu5qxnigcIovxJdSeUJFFKyGnL4MGWknACoiwT40TBunfBg/RsR0DTwgt+S4iSqOsWG2JzxV4RmdoT3LMWCi1D3/rMYwEsuh1aQlp75ZlVzRnd3EsoXCqJwLFPtqzMoCnHADSAq+35CtMKvPFoes1cZEg/ex8mw+PQhVF3bVCKTF0z76TmXKjZCOPHIm1jaayYNNUzaVf0v8w8EUKJJdt8yisVF9HOmQR4SUkXc3eFSzKiYoCCMsHZthdPhjDuTTWWRaRhVLoR40o+HIYvAq61SxxSIEXUR2BjGB8Py0MPKN4IS+4DgeoQqNhjwv7N/4AoBPZglpzYgIQWS1dPg7FROfh+OnfEZ83SiiW8vgLM2XcbZ3ucmIwcjj/XMeeJ76Y4j//nlOkVXlCXmcP+p8Vesz7kj+2G8tTnUKp9R4ZOrd7M75+8LeQbik9cpZDPigpUW6MpII4rnqQvq0KXuN3NUYFLrTwjT5eap6xV3bq1XGEKG5ToNSoGjfm2wxVwnDNuWy0pxpYm/j6UpuYyzcyvH+BsXYLfbMFUc7IL8ikOjMY01T+8TTVA/9MvSCu+Jiw/0LYLANNNuFe7dXhJywfjmapZibymsP0NAP9E8oLKXGEsbQDf5RmG3no5tocHUPRDex2qaH7b57bNxogVPsFhPn1YXHn78SZ2XtP0LKakT+RP5o0veg9zBHbtjUmziecTd5T4xpYM=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(376002)(346002)(136003)(39860400002)(396003)(451199018)(46966006)(36840700001)(40470700004)(356005)(2906002)(8936002)(426003)(40480700001)(36756003)(47076005)(36860700001)(5660300002)(86362001)(70586007)(8676002)(82310400005)(4326008)(6916009)(70206006)(19627235002)(54906003)(83380400001)(316002)(41300700001)(478600001)(40460700003)(44832011)(16526019)(336012)(1076003)(82740400003)(186003)(26005)(2616005)(81166007)(36900700001);
+ SFS:(13230025)(4636009)(136003)(376002)(396003)(39860400002)(346002)(451199018)(46966006)(40470700004)(36840700001)(82310400005)(86362001)(44832011)(186003)(26005)(5660300002)(16526019)(47076005)(426003)(40460700003)(83380400001)(82740400003)(81166007)(36860700001)(36756003)(2616005)(2906002)(356005)(336012)(40480700001)(8676002)(4326008)(6916009)(70586007)(70206006)(478600001)(54906003)(316002)(8936002)(1076003)(66899018)(41300700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2023 17:00:37.1698 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e1715c90-51f0-4b40-febf-08db0d1aa9d1
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2023 17:00:37.8416 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ef034c3e-669a-4df1-8240-08db0d1aaa38
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT057.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7914
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB5606
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,138 +106,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
  qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, Alvin Lee <Alvin.Lee2@amd.com>,
- wayne.lin@amd.com, Jun Lei <Jun.Lei@amd.com>, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+ Samson Tam <Samson.Tam@amd.com>, Wenjing Liu <wenjing.liu@amd.com>,
+ solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
+ Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alvin Lee <Alvin.Lee2@amd.com>
+From: Wenjing Liu <wenjing.liu@amd.com>
 
-[Why & How]
-- For prefetch max vratio check, use the calculated
-  prefetch bandwidth from dml32_CalculatePrefetchSchedule
-  instead of max prefetch bandwidth
-- Also multiply prefetch bandwidth by VRatio since scaling
-  is not considered one calculating require prefetch bw
+[why]
+a recent regression has caused us to mistakenly switch RX back to SST mode
+when there are remaining mst stream enabled to the link. We are missing
+a condition check for stream count before setting RX back to SST mode.
 
-Reviewed-by: Jun Lei <Jun.Lei@amd.com>
+[how]
+Add stream count check condition back and do some further refactor so the
+logic is easier to understand to prevent future coding error in this sequence.
+
+Reviewed-by: Samson Tam <Samson.Tam@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
-Signed-off-by: Alvin Lee <Alvin.Lee2@amd.com>
+Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
 ---
- .../dc/dml/dcn32/display_mode_vba_32.c        |  9 ++++++++
- .../dc/dml/dcn32/display_mode_vba_util_32.c   | 21 ++++++++++++++-----
- .../dc/dml/dcn32/display_mode_vba_util_32.h   |  5 ++++-
- 3 files changed, 29 insertions(+), 6 deletions(-)
+ .../gpu/drm/amd/display/dc/link/link_dpms.c   | 51 +++++++++----------
+ .../display/dc/link/protocols/link_dp_phy.c   | 11 ----
+ .../display/dc/link/protocols/link_dp_phy.h   |  4 --
+ 3 files changed, 25 insertions(+), 41 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
-index 55567b9fcfc8..7a99a6656676 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
-@@ -942,6 +942,9 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
- 					v->UrgBurstFactorLumaPre,
- 					v->UrgBurstFactorChromaPre,
- 					v->UrgBurstFactorCursorPre,
-+					v->PrefetchBandwidth,
-+					v->VRatio,
-+					v->MaxVRatioPre,
- 
- 					/* output */
- 					&MaxTotalRDBandwidth,
-@@ -972,6 +975,9 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
- 					v->dummy_vars.DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerformanceCalculation.dummy_unit_vector,
- 					v->dummy_vars.DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerformanceCalculation.dummy_unit_vector,
- 					v->dummy_vars.DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerformanceCalculation.dummy_unit_vector,
-+					v->PrefetchBandwidth,
-+					v->VRatio,
-+					v->MaxVRatioPre,
- 
- 					/* output */
- 					&v->dummy_vars.DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerformanceCalculation.dummy_single[0],
-@@ -3373,6 +3379,9 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
- 							mode_lib->vba.UrgentBurstFactorLumaPre,
- 							mode_lib->vba.UrgentBurstFactorChromaPre,
- 							mode_lib->vba.UrgentBurstFactorCursorPre,
-+							v->PrefetchBW,
-+							v->VRatio,
-+							v->MaxVRatioPre,
- 
- 							/* output */
- 							&v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.dummy_single[0],   // Single  *PrefetchBandwidth
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
-index 069e9abb83cb..d1000aa4c481 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
-@@ -6143,9 +6143,12 @@ void dml32_CalculatePrefetchBandwithSupport(unsigned int NumberOfActiveSurfaces,
- 		double UrgentBurstFactorLumaPre[],
- 		double UrgentBurstFactorChromaPre[],
- 		double UrgentBurstFactorCursorPre[],
-+		double PrefetchBW[],
-+		double VRatio[],
-+		double MaxVRatioPre,
- 
- 		/* output */
--		double  *PrefetchBandwidth,
-+		double  *MaxPrefetchBandwidth,
- 		double  *FractionOfUrgentBandwidth,
- 		bool *PrefetchBandwidthSupport)
- {
-@@ -6153,25 +6156,33 @@ void dml32_CalculatePrefetchBandwithSupport(unsigned int NumberOfActiveSurfaces,
- 	double ActiveBandwidthPerSurface;
- 	bool NotEnoughUrgentLatencyHiding = false;
- 	double TotalActiveBandwidth = 0;
-+	double TotalPrefetchBandwidth = 0;
-+
- 	for (k = 0; k < NumberOfActiveSurfaces; ++k) {
- 		if (NotUrgentLatencyHiding[k]) {
- 			NotEnoughUrgentLatencyHiding = true;
- 		}
- 	}
- 
--	*PrefetchBandwidth = 0;
-+	*MaxPrefetchBandwidth = 0;
- 	for (k = 0; k < NumberOfActiveSurfaces; ++k) {
- 		ActiveBandwidthPerSurface = ReadBandwidthLuma[k] * UrgentBurstFactorLuma[k] + ReadBandwidthChroma[k] * UrgentBurstFactorChroma[k] + cursor_bw[k] * UrgentBurstFactorCursor[k] + NumberOfDPP[k] * (meta_row_bandwidth[k] + dpte_row_bandwidth[k]);
- 
- 		TotalActiveBandwidth += ActiveBandwidthPerSurface;
- 
--		*PrefetchBandwidth = *PrefetchBandwidth + dml_max3(NumberOfDPP[k] * prefetch_vmrow_bw[k],
-+		TotalPrefetchBandwidth = TotalPrefetchBandwidth + PrefetchBW[k] * VRatio[k];
-+
-+		*MaxPrefetchBandwidth = *MaxPrefetchBandwidth + dml_max3(NumberOfDPP[k] * prefetch_vmrow_bw[k],
- 				ActiveBandwidthPerSurface,
- 				NumberOfDPP[k] * (PrefetchBandwidthLuma[k] * UrgentBurstFactorLumaPre[k] + PrefetchBandwidthChroma[k] * UrgentBurstFactorChromaPre[k]) + cursor_bw_pre[k] * UrgentBurstFactorCursorPre[k]);
- 	}
- 
--	*PrefetchBandwidthSupport = (*PrefetchBandwidth <= ReturnBW) &&  (*PrefetchBandwidth <= TotalActiveBandwidth * __DML_MAX_BW_RATIO_PRE__) && !NotEnoughUrgentLatencyHiding;
--	*FractionOfUrgentBandwidth = *PrefetchBandwidth / ReturnBW;
-+	if (MaxVRatioPre == __DML_MAX_VRATIO_PRE__)
-+		*PrefetchBandwidthSupport = (*MaxPrefetchBandwidth <= ReturnBW) && (TotalPrefetchBandwidth <= TotalActiveBandwidth * __DML_MAX_BW_RATIO_PRE__) && !NotEnoughUrgentLatencyHiding;
-+	else
-+		*PrefetchBandwidthSupport = (*MaxPrefetchBandwidth <= ReturnBW) && !NotEnoughUrgentLatencyHiding;
-+
-+	*FractionOfUrgentBandwidth = *MaxPrefetchBandwidth / ReturnBW;
+diff --git a/drivers/gpu/drm/amd/display/dc/link/link_dpms.c b/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
+index 9cdfa7f7dc77..22538b4f529b 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
++++ b/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
+@@ -1783,37 +1783,36 @@ enum dc_status link_increase_mst_payload(struct pipe_ctx *pipe_ctx, uint32_t bw_
+ 	return DC_OK;
  }
  
- double dml32_CalculateBandwidthAvailableForImmediateFlip(unsigned int NumberOfActiveSurfaces,
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.h b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.h
-index d41c4d8b0c7a..9ba792c633a5 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.h
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.h
-@@ -1096,9 +1096,12 @@ void dml32_CalculatePrefetchBandwithSupport(unsigned int NumberOfActiveSurfaces,
- 		double UrgentBurstFactorLumaPre[],
- 		double UrgentBurstFactorChromaPre[],
- 		double UrgentBurstFactorCursorPre[],
-+		double PrefetchBW[],
-+		double VRatio[],
-+		double MaxVRatioPre,
+-static void disable_link(struct dc_link *link, const struct link_resource *link_res,
++static void disable_link_dp(struct dc_link *link,
++		const struct link_resource *link_res,
+ 		enum signal_type signal)
+ {
+-	/*
+-	 * TODO: implement call for dp_set_hw_test_pattern
+-	 * it is needed for compliance testing
+-	 */
++	struct dc_link_settings link_settings = link->cur_link_settings;
  
- 		/* output */
--		double  *PrefetchBandwidth,
-+		double  *MaxPrefetchBandwidth,
- 		double  *FractionOfUrgentBandwidth,
- 		bool *PrefetchBandwidthSupport);
+-	/* Here we need to specify that encoder output settings
+-	 * need to be calculated as for the set mode,
+-	 * it will lead to querying dynamic link capabilities
+-	 * which should be done before enable output
+-	 */
++	if (signal == SIGNAL_TYPE_DISPLAY_PORT_MST &&
++			link->mst_stream_alloc_table.stream_count > 0)
++		/* disable MST link only when last vc payload is deallocated */
++		return;
  
++	dp_disable_link_phy(link, link_res, signal);
++
++	if (signal == SIGNAL_TYPE_DISPLAY_PORT_MST)
++		/* set the sink to SST mode after disabling the link */
++		enable_mst_on_sink(link, false);
++
++	if (link_dp_get_encoding_format(&link_settings) ==
++			DP_8b_10b_ENCODING) {
++		dp_set_fec_enable(link, false);
++		dp_set_fec_ready(link, link_res, false);
++	}
++}
++
++static void disable_link(struct dc_link *link,
++		const struct link_resource *link_res,
++		enum signal_type signal)
++{
+ 	if (dc_is_dp_signal(signal)) {
+-		/* SST DP, eDP */
+-		struct dc_link_settings link_settings = link->cur_link_settings;
+-		if (dc_is_dp_sst_signal(signal)) {
+-			dp_disable_link_phy(link, link_res, signal);
+-		} else {
+-			dp_disable_link_phy_mst(link, link_res, signal);
+-			/* set the sink to SST mode after disabling the link */
+-			enable_mst_on_sink(link, false);
+-		}
+-		if (dc_is_dp_sst_signal(signal) ||
+-				link->mst_stream_alloc_table.stream_count == 0) {
+-			if (link_dp_get_encoding_format(&link_settings) == DP_8b_10b_ENCODING) {
+-				dp_set_fec_enable(link, false);
+-				dp_set_fec_ready(link, link_res, false);
+-			}
+-		}
++		disable_link_dp(link, link_res, signal);
+ 	} else if (signal != SIGNAL_TYPE_VIRTUAL) {
+ 		link->dc->hwss.disable_link_output(link, link_res, signal);
+ 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_phy.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_phy.c
+index ea3873dae3ad..cd9fb8126bcf 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_phy.c
++++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_phy.c
+@@ -85,17 +85,6 @@ void dp_disable_link_phy(struct dc_link *link,
+ 		dc->clk_mgr->funcs->notify_link_rate_change(dc->clk_mgr, link);
+ }
+ 
+-void dp_disable_link_phy_mst(struct dc_link *link,
+-		const struct link_resource *link_res,
+-		enum signal_type signal)
+-{
+-	/* MST disable link only when no stream use the link */
+-	if (link->mst_stream_alloc_table.stream_count > 0)
+-		return;
+-
+-	dp_disable_link_phy(link, link_res, signal);
+-}
+-
+ static inline bool is_immediate_downstream(struct dc_link *link, uint32_t offset)
+ {
+ 	return (dp_parse_lttpr_repeater_count(link->dpcd_caps.lttpr_caps.phy_repeater_cnt) ==
+diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_phy.h b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_phy.h
+index 6ce0b7958d51..dba1f29df319 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_phy.h
++++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_phy.h
+@@ -38,10 +38,6 @@ void dp_disable_link_phy(struct dc_link *link,
+ 		const struct link_resource *link_res,
+ 		enum signal_type signal);
+ 
+-void dp_disable_link_phy_mst(struct dc_link *link,
+-		const struct link_resource *link_res,
+-		enum signal_type signal);
+-
+ void dp_set_hw_lane_settings(
+ 		struct dc_link *link,
+ 		const struct link_resource *link_res,
 -- 
 2.25.1
 
