@@ -2,16 +2,16 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD84769633B
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Feb 2023 13:14:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 286C6696339
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Feb 2023 13:14:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2411710E8B5;
-	Tue, 14 Feb 2023 12:14:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C384110E1E2;
+	Tue, 14 Feb 2023 12:14:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96A6A10E8B1
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 12:14:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7716C10E89D
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 12:14:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -19,22 +19,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=HRjyoFpu7GFAe6CAKmDRcmxaj/ejcuirGwxv1Ez2c/s=; b=B1n2A2q6UyfUwztrpI+0BeRuRV
- TCJWB5u7vVRRck5mv0yTQ0cpUYWvehbSQh9J+g/Ta90ni86Pp05FgCxlkVdSRY5sdWO3o+YFoTg2Y
- QL7AAf6qhb3mhT40UcIPsNcblZkPPffefWWmNDwuRx9zg4uhfI+PWIh+IgHl5lWKwhoPTVcDOYVn5
- m8rfVXLp1quYRqk13qViJZUaBT/ZYE5aicvyjfTs3PRHD4Ah8XwQRRPSiRIr9z+Zj7avP5gejK/DO
- RzjnVQiUq8h3JobFvKl378LZ5TPlUaCTFI2orOHvnbub17H38UQLf7tVZjrfcbzhr0lP2VQtWql0S
- zb4gIyzQ==;
+ bh=8DSoxSqkKqUbKO1/ORrdwwxc3Lx4jnHZYHTAPvzg7VY=; b=f+YuEReuWxUIYcFvpURBouyOp7
+ 13Qs+oPIjf803D05z+Ge4QqVQHI+9/2Ej6mc4WdGShPG7dz0Pue9qd9cZASdHubMm+NRB+zyoHt0T
+ EylJIR3eLFtKrSd3NHWGz0nRBOvrnGmFCAnGJNOq4KCKfQM7U5XwJu6x6hqTDwd7nmSFgYsorRA2z
+ 4FjGJWVT1ugiEfUV4ArydfqnREoEBohz8oQlrQIyqLhHJlSz/E45bEIs5MNSkqRDQO2vEuoygWjSF
+ KHF6XNBx5tmXlF2ICd5UP3TNVOST2o20yLz0qu4TPwz5v/Or4DLIqS4dCcuuWh+JapPv3DONyM4cK
+ f6ckiNmw==;
 Received: from [38.44.66.31] (helo=killbill.home)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1pRuCJ-0022pF-CT; Tue, 14 Feb 2023 13:14:11 +0100
+ id 1pRuCK-0022pF-62; Tue, 14 Feb 2023 13:14:12 +0100
 From: Melissa Wen <mwen@igalia.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 4/6] drm/amd/display: unset initial value for tf since it's
- never used
-Date: Tue, 14 Feb 2023 11:14:04 -0100
-Message-Id: <20230214121406.97750-5-mwen@igalia.com>
+Subject: [PATCH 5/6] drm/amd/display: remove unused func declaration from
+ resource headers
+Date: Tue, 14 Feb 2023 11:14:05 -0100
+Message-Id: <20230214121406.97750-6-mwen@igalia.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230214121406.97750-1-mwen@igalia.com>
 References: <20230214121406.97750-1-mwen@igalia.com>
@@ -57,38 +57,30 @@ Cc: sunpeng.li@amd.com, Xinhui.Pan@amd.com, Rodrigo.Siqueira@amd.com,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-In mod_color_calculate_{degamma/regamma}_params(), a tf variable is
-initialized as TRANSFER_FUNCTION_SRGB but tf is only used after tf =
-input->tf, therefore, better to just remove this initial value and avoid
-misleading interpretations.
+The function resource_validate_ctx_update_pointer_after_copy() is
+declared in resource.h but never defined, therefore, remove its
+declaration from headers.
 
 Signed-off-by: Melissa Wen <mwen@igalia.com>
 ---
- drivers/gpu/drm/amd/display/modules/color/color_gamma.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/dc/inc/resource.h | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/modules/color/color_gamma.c b/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
-index fdb20dfc70c9..6e606b11286a 100644
---- a/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
-+++ b/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
-@@ -1883,7 +1883,7 @@ bool mod_color_calculate_degamma_params(struct dc_color_caps *dc_caps,
- 	struct pwl_float_data_ex *curve = NULL;
- 	struct gamma_pixel *axis_x = NULL;
- 	struct pixel_gamma_point *coeff = NULL;
--	enum dc_transfer_func_predefined tf = TRANSFER_FUNCTION_SRGB;
-+	enum dc_transfer_func_predefined tf;
- 	uint32_t i;
- 	bool ret = false;
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/resource.h b/drivers/gpu/drm/amd/display/dc/inc/resource.h
+index 4ab029e3326d..fa6da93caa88 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/resource.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/resource.h
+@@ -165,10 +165,6 @@ bool resource_validate_attach_surfaces(
+ 		struct dc_state *context,
+ 		const struct resource_pool *pool);
  
-@@ -2125,7 +2125,7 @@ bool mod_color_calculate_regamma_params(struct dc_transfer_func *output_tf,
- 	struct pwl_float_data_ex *rgb_regamma = NULL;
- 	struct gamma_pixel *axis_x = NULL;
- 	struct pixel_gamma_point *coeff = NULL;
--	enum dc_transfer_func_predefined tf = TRANSFER_FUNCTION_SRGB;
-+	enum dc_transfer_func_predefined tf;
- 	bool do_clamping = true;
- 	bool ret = false;
- 
+-void resource_validate_ctx_update_pointer_after_copy(
+-		const struct dc_state *src_ctx,
+-		struct dc_state *dst_ctx);
+-
+ enum dc_status resource_map_clock_resources(
+ 		const struct dc *dc,
+ 		struct dc_state *context,
 -- 
 2.39.0
 
