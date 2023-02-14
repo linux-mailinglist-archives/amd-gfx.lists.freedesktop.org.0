@@ -2,43 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83E77696905
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Feb 2023 17:15:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08FBD696909
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Feb 2023 17:16:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E07F810E927;
-	Tue, 14 Feb 2023 16:15:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 743A510E91E;
+	Tue, 14 Feb 2023 16:16:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on20621.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe5a::621])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 666EF10E926
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 16:15:56 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on20610.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe5b::610])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A93010E92D
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 16:15:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OHt6Io+ckvn0hD99SESpxCzOsPu9Tw+GcDJIO4I9vWTX8McCH7oaNg1dM2uH05bVtRuhBpgwt6/CM/N8XcWWvC+Ak/xqJ7ptu5LMGIHZv77QYPuKV5gZe62j3OXtMhV0BgzLerbV6Gb3cHsOEAzE0ukRjcgS/ufU7z//SdW/vTcKlJNsYBEVl5hnMKxTJtb6Vi1tDWRReXHZBFiyGR2Fmt+Rx37zfCqjQfrr5SO60k3mvI3TIQBJM8S3twfQQmbGHI3hAvRrDgn//WRpKeBUu/h5hPxMGkwmG1Z2OiEf5bxlMCY3cUIGzo3AiMOtSkxjDy/NRNOArvtkLE2XT8VaQw==
+ b=cY5OeQKkrDDBesVShAsapHNJesHVOh/XICRR8wYukFq2hRxWQfQ1q5bUA/Mlpr7r3Lk0Bvhf4kkjCDYB5VszGzcW0JI1IRM/8+YCUPfI/IHE/4ijmqI2rxDriJZTdBou/grExcvDPiOH3lpHkcWmrmiw5mWDnXVL18bDPNA0c4uWxaURH1VBxODWMawwldfVKhCxw1mfhOIWyuwh9D/q+MXR6wI/G2kSXa65NMvEaL3980v2gf2leGgEsNrb6cy9JLaGIZujwyZLyuxbr91lyrFtKh6xbdOjsuFV4YaiJlpDRnpf0bBzWFlvD+d3f1/Rvh9GcpBvSKmEiu8eKAIwbA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qhZkT53Wvz28kl1nnuB3PSCAWfJ/Z7YlgSgpnQPErCs=;
- b=LVwcqZ4c1gHisweC/Dn4tVXVHp4//zHt+u8y3KYc88n6txu6iJaVdzRYu3CXdgv+BTc48GEtKpb44T6Y2iYDfgA0qpr2y51XRvMS5ESl7dFqHy2wsZBYtswicxAGc0MQPkWMKifH79bRHHMqy1lASv/4QRUHeyW34+2e2a0dtfVDZHe1fXVykLvB7mmhkCoGTiXspOFlMwY8ReI+Xq7MsHC4VVmXAqeUjSwoZtDXPv22hrz1SZj6isU03CSK/uXLJmcC4ANlDeiS9adPD0uLNXMWUhJuiJ4dwwry7Tu8BNuRZ7xD6rSUVKe5ZxiUIPFSwb72226jIqjUAtqRQ+aD1w==
+ bh=DpAEDo8JFkD9YP0aBskNQOPhmwbrGBEDlemXD/2+iyM=;
+ b=YbzTAlGXqH5/OrO8/j+lJ3KVzGp6s/cNhM70QIGYamxr/6ub2xFevt3rsVmFnIrK/JRcvSO0odr1bd9s2eExSalJ/0WoO9Al7fPy1RPDZK5o8es8tu6bghQNRTM9JJlYBgReoFlKGD5awKTKNagFeMw4TQ42EFcs6/igul+k4KcFP+/mjBe62w7CNoim1ukxVUd7V3V6g3U4ITyPCHMObxzehFKo0Ok7p35mx2//FHMSXETxEKwj848fXoLrB5jHamhfiEG63mXC2X2LS8dW2hZaM7KviC1SwGjkqxjzRwyULd41N1FePbuxsIllBAYCoVBTNBd+QpfNprlQhZPU0Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qhZkT53Wvz28kl1nnuB3PSCAWfJ/Z7YlgSgpnQPErCs=;
- b=JmaeYu2MnygmCgNifZpGf5rkBoz62jKntb6yHDT8xutTDAz31A9mL8OuRShzJi2uhjSPBMwFUUCa6EZKJ1SRwAWuKEjiSSSvD1PlnweDOiQbPD0qrapqaffILz/EevkW7jujnyqXxVXBUWQ3i64qKOS7Z5XGWEJCtVvmoCD6zUI=
-Received: from MW2PR16CA0054.namprd16.prod.outlook.com (2603:10b6:907:1::31)
- by MW6PR12MB7070.namprd12.prod.outlook.com (2603:10b6:303:238::7) with
+ bh=DpAEDo8JFkD9YP0aBskNQOPhmwbrGBEDlemXD/2+iyM=;
+ b=OgjigQMf3ZJ4i+ZThFzRbi2o99duOo3j/zUBolqyWLbkGHi9ij9ih2sOcFiTZ9DH1C30NhZsQKeGt8LrydMiXGC/3ECkZ7PKhs7w/BNp+DlfZnr80CN+xyZsTg8a12g/Ut9cq7ViViz90Hz8rgSciTdIt+r+vQxXYK62UB3DqiY=
+Received: from BN9PR03CA0084.namprd03.prod.outlook.com (2603:10b6:408:fc::29)
+ by DS7PR12MB5960.namprd12.prod.outlook.com (2603:10b6:8:7f::14) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.24; Tue, 14 Feb
- 2023 16:15:54 +0000
-Received: from CO1NAM11FT059.eop-nam11.prod.protection.outlook.com
- (2603:10b6:907:1:cafe::da) by MW2PR16CA0054.outlook.office365.com
- (2603:10b6:907:1::31) with Microsoft SMTP Server (version=TLS1_2,
+ 2023 16:15:57 +0000
+Received: from BN8NAM11FT064.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:fc:cafe::ed) by BN9PR03CA0084.outlook.office365.com
+ (2603:10b6:408:fc::29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.26 via Frontend
- Transport; Tue, 14 Feb 2023 16:15:54 +0000
+ Transport; Tue, 14 Feb 2023 16:15:56 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -46,18 +46,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT059.mail.protection.outlook.com (10.13.174.160) with Microsoft SMTP
+ BN8NAM11FT064.mail.protection.outlook.com (10.13.176.160) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6086.24 via Frontend Transport; Tue, 14 Feb 2023 16:15:54 +0000
+ 15.20.6086.26 via Frontend Transport; Tue, 14 Feb 2023 16:15:56 +0000
 Received: from MUN-L-SHSHARMA.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 14 Feb
- 2023 10:15:52 -0600
+ 2023 10:15:54 -0600
 From: Shashank Sharma <shashank.sharma@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2 6/8] drm/amdgpu: get doorbell memory
-Date: Tue, 14 Feb 2023 17:15:08 +0100
-Message-ID: <20230214161510.2153-7-shashank.sharma@amd.com>
+Subject: [PATCH v2 7/8] drm/amdgpu: create doorbell kernel object
+Date: Tue, 14 Feb 2023 17:15:09 +0100
+Message-ID: <20230214161510.2153-8-shashank.sharma@amd.com>
 X-Mailer: git-send-email 2.38.0.windows.1
 In-Reply-To: <20230214161510.2153-1-shashank.sharma@amd.com>
 References: <20230214161510.2153-1-shashank.sharma@amd.com>
@@ -69,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT059:EE_|MW6PR12MB7070:EE_
-X-MS-Office365-Filtering-Correlation-Id: f9e5c006-11a8-4c3a-1679-08db0ea6bf8d
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT064:EE_|DS7PR12MB5960:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5c9f8ef0-0982-4446-59db-08db0ea6c101
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Pq6j4cLoI6g5fWAxJuhEviNMOZOiVj+maW8sP6e6fm9meFBCrj0n7xAzaRLMjLoTwKsh5oz6ZG0AkNuyMYbDrsBpq12TkmuCFNWvHe6sRBL4KTnoyo9OIvbsYBliEA5nvIX/pXUiexngn4EhgNghd9/Zovbn5KTzTSMsXO9TIDXqxNi+npUXiUS54pPDoZ1xyoGd7Df5YfEitUkuvnETg0/UgmH5HYhupG1aWD3KN42XQS2blRPnIOJKVyNoxBCCHy5pwuEaI51CUNT03PyZcmvjge0lAZ7KWqUtnudPAuS2WypltA37NNmcaGkfHc2R6N/DrcW8HjRsFM0CYBqS3vQCu1LfCjcz7i3mqlyKwg5wZxTVsG06vtfLSOs0Hbih6CVI0LRrmu6Ds3eJbY/vbTHtIoCxTR72ZgCiBZ0170O/eux1FpY4Jh3zFL+XbRnX7VX/AIlWVPBVA9oj255xVt96rU+UO0hcmr3g9jBX9+AFv+S0vHBPHqUqWIAC6lWTCsW+61onUQ6u8Vl/OJ4tzoqE1mBqgUcA9okWGTAHOr6VNxyNc4Am31+2M8glgCgUKngJ6SNURk0cz0fVObymMlpx1a3oUCWOEqTgENMld3t5MDJx5soc6dji+9/Lp3SXiTcCodBkB9hn2JIONGMwYmx5eTanQ54gJwy9nUcMiTafY2Cfg+jojj25TMD8kBvoodNK2tRUPWi0rEreP0hulOZbNc/PjLjM7sLW6S5DF0M=
+X-Microsoft-Antispam-Message-Info: 5h1y1PEE7jhwlvKP+AYx3XKRuMGeuFl+pNWLm9x3MPIjWpbB/RKde15hvi9QHl4bC21Bz4KDmkWoioe12tRU8gqrR8HsChuHtf+/CHsfv5X+CYsi74DXuYkXmBQPxBhru9k0h9gdm6r+UUos6b1nJHY5C2peNtEfi7RJmXAgM9jIa0EOjK9n6K8n1X0IZZ6mt2ic5zmKNAlquFKeYPMAtOLeEkCkYTUbwgm4lKHr2So1je4k7uFjbfJx7yplZHClYsc6iI2SLevzB5BNTk2bwrjoyU+UuAw/Z6a49mLyG8vQNOd4ymfPHKqUk0ha8Ht61kDwO3C7LvZNBDR4cIGDE3IowJkyibncA1VeyKOwPHK1X9vwu4D04XOHHolhlOsXlhU8h52rInFTHpIzSGgrLBLmVcgLVf0DJInL5lm5bkYVLlzmq6TO7jiq1Pd+PzcZewKNSxNUPFKtvq8wOqnBydywEDAsrznYnG7/uZZRc/ZzTbl3qMuxXBhEZ/SmR0ybG7o0MqHL/834AOaEtYSOtOjY9/NV9T68aNZoNub4lippzUliFX7zQy54Bj8sS1UB8tVylSG13rzEywfsncUDzYMHtaxaBm6JGXj48YgKOTGw0SEFUNOZY2nlyjJbmfCGBiFZn24pmikaYgpuutTPl8qSxjruiD579B38tiFXiSo6xVjRcYv79GQwACYUg23OKIHoqr7CbiWcyZrGs/v9EYV7ON9BhNxlLFJZP30jmnU=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(39860400002)(136003)(376002)(346002)(396003)(451199018)(46966006)(40470700004)(36840700001)(5660300002)(47076005)(83380400001)(426003)(26005)(186003)(36756003)(2906002)(44832011)(1076003)(82310400005)(86362001)(41300700001)(40460700003)(6666004)(478600001)(7696005)(8936002)(40480700001)(81166007)(16526019)(336012)(82740400003)(36860700001)(356005)(2616005)(316002)(54906003)(70206006)(70586007)(4326008)(6916009)(8676002)(36900700001);
+ SFS:(13230025)(4636009)(376002)(346002)(396003)(39860400002)(136003)(451199018)(40470700004)(46966006)(36840700001)(44832011)(8936002)(426003)(5660300002)(82740400003)(41300700001)(16526019)(186003)(26005)(1076003)(6666004)(70206006)(70586007)(6916009)(8676002)(7696005)(40480700001)(478600001)(83380400001)(4326008)(356005)(82310400005)(36860700001)(86362001)(2906002)(2616005)(47076005)(336012)(54906003)(316002)(40460700003)(81166007)(36756003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2023 16:15:54.2549 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f9e5c006-11a8-4c3a-1679-08db0ea6bf8d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2023 16:15:56.8039 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c9f8ef0-0982-4446-59db-08db0ea6c101
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT059.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT064.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB7070
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5960
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,172 +100,100 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, christian.koenig@amd.com, Arvind.Yadav@amd.com,
- shashank.sharma@amd.com
+Cc: alexander.deucher@amd.com,
+ Shashank Sharma <contactshashanksharma@gmail.com>, christian.koenig@amd.com,
+ Arvind.Yadav@amd.com, shashank.sharma@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alex Deucher <alexander.deucher@amd.com>
+From: Shashank Sharma <contactshashanksharma@gmail.com>
 
-This patch adds section for doorbell memory in memory status
-reporting functions like vm/bo_get_memory.
+This patch does the following:
+- Initializes TTM range management for domain DOORBELL.
+- Introduces a kernel bo for doorbell management in form of mman.doorbell_kernel_bo.
+  This bo holds the kernel doorbell space now.
+- Removes ioremapping of doorbell-kernel memory, as its not required now.
 
-V2: Rebase
+V2:
+- Addressed review comments from Christian:
+    - do not use kernel_create_at(0), use kernel_create() instead.
+    - do not use ttm_resource_manager, use range_manager instead.
+    - do not ioremap doorbell, TTM will do that.
+- Split one big patch into 2
 
 Cc: Alex Deucher <alexander.deucher@amd.com>
 Cc: Christian Koenig <christian.koenig@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Shashank Sharma <shashank.sharma@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c |  4 ++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c |  9 ++++++++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.h |  3 ++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c     | 15 ++++++++-------
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h     |  3 ++-
- 5 files changed, 22 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 22 ++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h |  7 +++++++
+ 2 files changed, 29 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
-index 99a7855ab1bc..202df09ba5de 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
-@@ -60,7 +60,7 @@ void amdgpu_show_fdinfo(struct seq_file *m, struct file *f)
- 	struct amdgpu_fpriv *fpriv = file->driver_priv;
- 	struct amdgpu_vm *vm = &fpriv->vm;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+index e9dc24191fc8..086e83c17c0f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@ -1879,12 +1879,32 @@ int amdgpu_ttm_init(struct amdgpu_device *adev)
+ 		return r;
+ 	}
  
--	uint64_t vram_mem = 0, gtt_mem = 0, cpu_mem = 0;
-+	uint64_t vram_mem = 0, gtt_mem = 0, cpu_mem = 0, doorbell_mem = 0;
- 	ktime_t usage[AMDGPU_HW_IP_NUM];
- 	uint32_t bus, dev, fn, domain;
- 	unsigned int hw_ip;
-@@ -75,7 +75,7 @@ void amdgpu_show_fdinfo(struct seq_file *m, struct file *f)
- 	if (ret)
- 		return;
++	r = amdgpu_ttm_init_on_chip(adev, AMDGPU_PL_DOORBELL, adev->doorbell.doorbell_aper_size);
++	if (r) {
++		DRM_ERROR("Failed initializing oa heap.\n");
++		return r;
++	}
++
+ 	if (amdgpu_bo_create_kernel(adev, PAGE_SIZE, PAGE_SIZE,
+ 				AMDGPU_GEM_DOMAIN_GTT,
+ 				&adev->mman.sdma_access_bo, NULL,
+ 				&adev->mman.sdma_access_ptr))
+ 		DRM_WARN("Debug VRAM access will use slowpath MM access\n");
  
--	amdgpu_vm_get_memory(vm, &vram_mem, &gtt_mem, &cpu_mem);
-+	amdgpu_vm_get_memory(vm, &vram_mem, &gtt_mem, &cpu_mem, &doorbell_mem);
- 	amdgpu_bo_unreserve(vm->root.bo);
- 
- 	amdgpu_ctx_mgr_usage(&fpriv->ctx_mgr, usage);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index ff9979fecfd2..90e97abc1454 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -1275,7 +1275,8 @@ void amdgpu_bo_move_notify(struct ttm_buffer_object *bo,
++	/* Create a doorbell BO for kernel usages */
++	r = amdgpu_bo_create_kernel(adev,
++				    adev->mman.doorbell_kernel_bo_size,
++				    PAGE_SIZE,
++				    AMDGPU_GEM_DOMAIN_DOORBELL,
++				    &adev->mman.doorbell_kernel_bo,
++				    &adev->mman.doorbell_gpu_addr,
++				    (void **)&adev->mman.doorbell_cpu_addr);
++
++	if (r) {
++		DRM_ERROR("Failed to create doorbell BO, err=%d\n", r);
++		return r;
++	}
++
+ 	return 0;
  }
  
- void amdgpu_bo_get_memory(struct amdgpu_bo *bo, uint64_t *vram_mem,
--				uint64_t *gtt_mem, uint64_t *cpu_mem)
-+			  uint64_t *gtt_mem, uint64_t *cpu_mem,
-+			  uint64_t *doorbell_mem)
- {
- 	unsigned int domain;
+@@ -1908,6 +1928,8 @@ void amdgpu_ttm_fini(struct amdgpu_device *adev)
+ 				      NULL, NULL);
+ 	amdgpu_bo_free_kernel(&adev->mman.sdma_access_bo, NULL,
+ 					&adev->mman.sdma_access_ptr);
++	amdgpu_bo_free_kernel(&adev->mman.doorbell_kernel_bo,
++			      NULL, (void **)&adev->mman.doorbell_cpu_addr);
+ 	amdgpu_ttm_fw_reserve_vram_fini(adev);
+ 	amdgpu_ttm_drv_reserve_vram_fini(adev);
  
-@@ -1287,6 +1288,9 @@ void amdgpu_bo_get_memory(struct amdgpu_bo *bo, uint64_t *vram_mem,
- 	case AMDGPU_GEM_DOMAIN_GTT:
- 		*gtt_mem += amdgpu_bo_size(bo);
- 		break;
-+	case AMDGPU_GEM_DOMAIN_DOORBELL:
-+		*doorbell_mem += amdgpu_bo_size(bo);
-+		break;
- 	case AMDGPU_GEM_DOMAIN_CPU:
- 	default:
- 		*cpu_mem += amdgpu_bo_size(bo);
-@@ -1565,6 +1569,9 @@ u64 amdgpu_bo_print_info(int id, struct amdgpu_bo *bo, struct seq_file *m)
- 	case AMDGPU_GEM_DOMAIN_GTT:
- 		placement = " GTT";
- 		break;
-+	case AMDGPU_GEM_DOMAIN_DOORBELL:
-+		placement = "DOOR";
-+		break;
- 	case AMDGPU_GEM_DOMAIN_CPU:
- 	default:
- 		placement = " CPU";
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-index 93207badf83f..bf9759758f0d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-@@ -326,7 +326,8 @@ int amdgpu_bo_sync_wait(struct amdgpu_bo *bo, void *owner, bool intr);
- u64 amdgpu_bo_gpu_offset(struct amdgpu_bo *bo);
- u64 amdgpu_bo_gpu_offset_no_check(struct amdgpu_bo *bo);
- void amdgpu_bo_get_memory(struct amdgpu_bo *bo, uint64_t *vram_mem,
--				uint64_t *gtt_mem, uint64_t *cpu_mem);
-+			  uint64_t *gtt_mem, uint64_t *cpu_mem,
-+			  uint64_t *doorbell_mem);
- void amdgpu_bo_add_to_shadow_list(struct amdgpu_bo_vm *vmbo);
- int amdgpu_bo_restore_shadow(struct amdgpu_bo *shadow,
- 			     struct dma_fence **fence);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index dc379dc22c77..1561d138945b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -918,7 +918,8 @@ int amdgpu_vm_update_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+index 9cf5d8419965..50748ff1dd3c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+@@ -97,6 +97,13 @@ struct amdgpu_mman {
+ 	/* PAGE_SIZE'd BO for process memory r/w over SDMA. */
+ 	struct amdgpu_bo	*sdma_access_bo;
+ 	void			*sdma_access_ptr;
++
++	/* doorbells reserved for the kernel driver */
++	u32			num_kernel_doorbells;	/* Number of doorbells actually reserved for kernel */
++	uint64_t		doorbell_kernel_bo_size;
++	uint64_t		doorbell_gpu_addr;
++	struct amdgpu_bo	*doorbell_kernel_bo;
++	u32			*doorbell_cpu_addr;
+ };
  
- void amdgpu_vm_get_memory(struct amdgpu_vm *vm, uint64_t *vram_mem,
--				uint64_t *gtt_mem, uint64_t *cpu_mem)
-+			  uint64_t *gtt_mem, uint64_t *cpu_mem,
-+			  uint64_t *doorbell_mem)
- {
- 	struct amdgpu_bo_va *bo_va, *tmp;
- 
-@@ -927,37 +928,37 @@ void amdgpu_vm_get_memory(struct amdgpu_vm *vm, uint64_t *vram_mem,
- 		if (!bo_va->base.bo)
- 			continue;
- 		amdgpu_bo_get_memory(bo_va->base.bo, vram_mem,
--				gtt_mem, cpu_mem);
-+				     gtt_mem, cpu_mem, doorbell_mem);
- 	}
- 	list_for_each_entry_safe(bo_va, tmp, &vm->evicted, base.vm_status) {
- 		if (!bo_va->base.bo)
- 			continue;
- 		amdgpu_bo_get_memory(bo_va->base.bo, vram_mem,
--				gtt_mem, cpu_mem);
-+				     gtt_mem, cpu_mem, doorbell_mem);
- 	}
- 	list_for_each_entry_safe(bo_va, tmp, &vm->relocated, base.vm_status) {
- 		if (!bo_va->base.bo)
- 			continue;
- 		amdgpu_bo_get_memory(bo_va->base.bo, vram_mem,
--				gtt_mem, cpu_mem);
-+				     gtt_mem, cpu_mem, doorbell_mem);
- 	}
- 	list_for_each_entry_safe(bo_va, tmp, &vm->moved, base.vm_status) {
- 		if (!bo_va->base.bo)
- 			continue;
- 		amdgpu_bo_get_memory(bo_va->base.bo, vram_mem,
--				gtt_mem, cpu_mem);
-+				     gtt_mem, cpu_mem, doorbell_mem);
- 	}
- 	list_for_each_entry_safe(bo_va, tmp, &vm->invalidated, base.vm_status) {
- 		if (!bo_va->base.bo)
- 			continue;
- 		amdgpu_bo_get_memory(bo_va->base.bo, vram_mem,
--				gtt_mem, cpu_mem);
-+				     gtt_mem, cpu_mem, doorbell_mem);
- 	}
- 	list_for_each_entry_safe(bo_va, tmp, &vm->done, base.vm_status) {
- 		if (!bo_va->base.bo)
- 			continue;
- 		amdgpu_bo_get_memory(bo_va->base.bo, vram_mem,
--				gtt_mem, cpu_mem);
-+				     gtt_mem, cpu_mem, doorbell_mem);
- 	}
- 	spin_unlock(&vm->status_lock);
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-index 094bb4807303..b8ac7d311c8b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-@@ -458,7 +458,8 @@ void amdgpu_vm_set_task_info(struct amdgpu_vm *vm);
- void amdgpu_vm_move_to_lru_tail(struct amdgpu_device *adev,
- 				struct amdgpu_vm *vm);
- void amdgpu_vm_get_memory(struct amdgpu_vm *vm, uint64_t *vram_mem,
--				uint64_t *gtt_mem, uint64_t *cpu_mem);
-+			  uint64_t *gtt_mem, uint64_t *cpu_mem,
-+			  uint64_t *doorbell_mem);
- 
- int amdgpu_vm_pt_clear(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 		       struct amdgpu_bo_vm *vmbo, bool immediate);
+ struct amdgpu_copy_mem {
 -- 
 2.34.1
 
