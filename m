@@ -2,16 +2,16 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC121696337
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Feb 2023 13:14:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7669269633A
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Feb 2023 13:14:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF04310E8A6;
-	Tue, 14 Feb 2023 12:14:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 276E410E8AB;
+	Tue, 14 Feb 2023 12:14:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35F2610E1E2
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 12:14:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2505010E89C
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 12:14:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -19,22 +19,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=VXNuM2Q0JHGOXpY0JQ2FsN4bpU/a23X4yQRVwHk5wkU=; b=dVX6QhbV6Pr9mJSLyqFDpQ0ogy
- H331QqlPPE2/dudiGbmw1oQVOdvtXdd37ccR3Mc3idGV/bTX9B6SGiYGlCuxL48XvUVbzuc8Ad7OU
- u6XZ0xHb92BJfua4aX9sRs2d5kdE22UYDGzMAzQXnTiQDs3l9OyhanoEE0ho+WOd/d7n7OEXAk7qK
- iePzZ64Ek3hpf64MsiX7EHNBVtt+3RyDd6B9p1JaNzCE7eo1ra+KHF7ALfLhLNltL2YolIAgK4Xpy
- k4xKN52K0z/vIN+REz+NThHkt63Z18qDj9c5DYhKB/bws9evkp2lycBoukFe6nsopoRSeZpTVk9LR
- wLsLX9Qw==;
+ bh=eYSpjz7o38JdMJjHK2uieOmBHCjJl4/xRnrpLSURMcU=; b=eAx5m6zmV1XEb1hgp3aygmo08r
+ 8j1BtrKW/rWPyFQYCoeIuxnC0ro8htQ21UTP2yF//k1+v+MEwcGGDRxXuXrm88jR5pWjM7gWGnvyF
+ iOmBscyXYny+b94IjQLa7vBu+Of9jr1ak9PFhrtCoqbmdevle68EaAVPaYypXXqUfkFz/e0n6v7G+
+ RLzu+3ZW098Fo+CAR2InrzIzBPqeijw8KqtuF6ZPIq6GxkyIDmcjE64QYFxxZdsK4P5WeATbmJ4ph
+ PJ08AxxK0HD5taI8l70VSqf1LWiI7Qrgg3fqqfLELd4DB6cgtjzBuVwN8LC3NqEdPDL/d4nZC3dQM
+ cKhnvCjQ==;
 Received: from [38.44.66.31] (helo=killbill.home)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1pRuCG-0022pF-VF; Tue, 14 Feb 2023 13:14:09 +0100
+ id 1pRuCH-0022pF-Om; Tue, 14 Feb 2023 13:14:09 +0100
 From: Melissa Wen <mwen@igalia.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 1/6] drm/amd/display: ident braces in
- dcn30_acquire_post_bldn_3dlut correctly
-Date: Tue, 14 Feb 2023 11:14:01 -0100
-Message-Id: <20230214121406.97750-2-mwen@igalia.com>
+Subject: [PATCH 2/6] drm/amd/display: clean code-style issues in
+ dcn30_set_mpc_shaper_3dlut
+Date: Tue, 14 Feb 2023 11:14:02 -0100
+Message-Id: <20230214121406.97750-3-mwen@igalia.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230214121406.97750-1-mwen@igalia.com>
 References: <20230214121406.97750-1-mwen@igalia.com>
@@ -57,25 +57,87 @@ Cc: sunpeng.li@amd.com, Xinhui.Pan@amd.com, Rodrigo.Siqueira@amd.com,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+This function has many conditions and all code style issues (identation,
+missing braces, etc.) make reading it really annoying.
+
 Signed-off-by: Melissa Wen <mwen@igalia.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../drm/amd/display/dc/dcn30/dcn30_hwseq.c    | 37 ++++++++++---------
+ 1 file changed, 19 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-index feb4bb491525..60bb5634b6e2 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-@@ -1477,8 +1477,8 @@ bool dcn30_acquire_post_bldn_3dlut(
- 				state->bits.mpc_rmu2_mux = mpcc_id;
- 			ret = true;
- 			break;
--			}
- 		}
-+	}
- 	return ret;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
+index 9ce86f288130..df787fcf8e86 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
+@@ -90,8 +90,8 @@ bool dcn30_set_blend_lut(
+ 	return result;
  }
  
+-static bool dcn30_set_mpc_shaper_3dlut(
+-	struct pipe_ctx *pipe_ctx, const struct dc_stream_state *stream)
++static bool dcn30_set_mpc_shaper_3dlut(struct pipe_ctx *pipe_ctx,
++				       const struct dc_stream_state *stream)
+ {
+ 	struct dpp *dpp_base = pipe_ctx->plane_res.dpp;
+ 	int mpcc_id = pipe_ctx->plane_res.hubp->inst;
+@@ -103,19 +103,18 @@ static bool dcn30_set_mpc_shaper_3dlut(
+ 	const struct pwl_params *shaper_lut = NULL;
+ 	//get the shaper lut params
+ 	if (stream->func_shaper) {
+-		if (stream->func_shaper->type == TF_TYPE_HWPWL)
++		if (stream->func_shaper->type == TF_TYPE_HWPWL) {
+ 			shaper_lut = &stream->func_shaper->pwl;
+-		else if (stream->func_shaper->type == TF_TYPE_DISTRIBUTED_POINTS) {
+-			cm_helper_translate_curve_to_hw_format(
+-					stream->func_shaper,
+-					&dpp_base->shaper_params, true);
++		} else if (stream->func_shaper->type == TF_TYPE_DISTRIBUTED_POINTS) {
++			cm_helper_translate_curve_to_hw_format(stream->func_shaper,
++							       &dpp_base->shaper_params, true);
+ 			shaper_lut = &dpp_base->shaper_params;
+ 		}
+ 	}
+ 
+ 	if (stream->lut3d_func &&
+-		stream->lut3d_func->state.bits.initialized == 1 &&
+-		stream->lut3d_func->state.bits.rmu_idx_valid == 1) {
++	    stream->lut3d_func->state.bits.initialized == 1 &&
++	    stream->lut3d_func->state.bits.rmu_idx_valid == 1) {
+ 		if (stream->lut3d_func->state.bits.rmu_mux_num == 0)
+ 			mpcc_id_projected = stream->lut3d_func->state.bits.mpc_rmu0_mux;
+ 		else if (stream->lut3d_func->state.bits.rmu_mux_num == 1)
+@@ -124,20 +123,22 @@ static bool dcn30_set_mpc_shaper_3dlut(
+ 			mpcc_id_projected = stream->lut3d_func->state.bits.mpc_rmu2_mux;
+ 		if (mpcc_id_projected != mpcc_id)
+ 			BREAK_TO_DEBUGGER();
+-		/*find the reason why logical layer assigned a differant mpcc_id into acquire_post_bldn_3dlut*/
++		/* find the reason why logical layer assigned a different
++		 * mpcc_id into acquire_post_bldn_3dlut
++		 */
+ 		acquired_rmu = mpc->funcs->acquire_rmu(mpc, mpcc_id,
+-				stream->lut3d_func->state.bits.rmu_mux_num);
++						       stream->lut3d_func->state.bits.rmu_mux_num);
+ 		if (acquired_rmu != stream->lut3d_func->state.bits.rmu_mux_num)
+ 			BREAK_TO_DEBUGGER();
+-		result = mpc->funcs->program_3dlut(mpc,
+-								&stream->lut3d_func->lut_3d,
+-								stream->lut3d_func->state.bits.rmu_mux_num);
++
++		result = mpc->funcs->program_3dlut(mpc, &stream->lut3d_func->lut_3d,
++						   stream->lut3d_func->state.bits.rmu_mux_num);
+ 		result = mpc->funcs->program_shaper(mpc, shaper_lut,
+-				stream->lut3d_func->state.bits.rmu_mux_num);
+-	} else
+-		/*loop through the available mux and release the requested mpcc_id*/
++						    stream->lut3d_func->state.bits.rmu_mux_num);
++	} else {
++		// loop through the available mux and release the requested mpcc_id
+ 		mpc->funcs->release_rmu(mpc, mpcc_id);
+-
++	}
+ 
+ 	return result;
+ }
 -- 
 2.39.0
 
