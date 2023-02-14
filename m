@@ -2,43 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91F4C69633C
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Feb 2023 13:14:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEE9D6963DF
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Feb 2023 13:48:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8249A10E8AD;
-	Tue, 14 Feb 2023 12:14:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DC3F10E0DA;
+	Tue, 14 Feb 2023 12:48:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46F6710E8AD
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 12:14:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=kbn5zqUciJHutZ48knDotdoIrC0XOwEHbm7VZUjlILk=; b=H7kmNe+F0aDgHCuQpv3sG2NT2m
- E8cL0dUlEYUxaTbZzFOC4AwzTVUE2eExwhJBCRa8+Rcb8TvhDyfZDmClVz0mDRXQhWtY8JaN4U6gS
- SYxqc0HNjwknIGAf3Fu9+0X8mNT3KiJRovIIryVMpU678y58YO6j9BEm1XLuw2DZTOT/nLQ4P8b39
- sfK2y3JEDEXsfzycG9EDEHftD0tnp7X1mesrF3p4hCTXxt5XbepCn4ir5SQuOgxbziezEH1ybw7EA
- apL1dKad5xKqMG13IKiycCrlg/i1WYQsior9V5OCve6hWCg2rU1MQ8XyKUiFGaj4TZJc1+gW6hcKl
- e3cYrSRg==;
-Received: from [38.44.66.31] (helo=killbill.home)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1pRuCK-0022pF-W5; Tue, 14 Feb 2023 13:14:13 +0100
-From: Melissa Wen <mwen@igalia.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 6/6] drm/amd/display: remove unused _calculate_degamma_curve
- function
-Date: Tue, 14 Feb 2023 11:14:06 -0100
-Message-Id: <20230214121406.97750-7-mwen@igalia.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230214121406.97750-1-mwen@igalia.com>
-References: <20230214121406.97750-1-mwen@igalia.com>
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com
+ [IPv6:2a00:1450:4864:20::436])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AF6F10E0DA
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 12:48:47 +0000 (UTC)
+Received: by mail-wr1-x436.google.com with SMTP id by3so14202387wrb.10
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 04:48:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=ynWFsuN10LTcQ5w1SbtSKS8QX5tSJTLF/ql04cbEBCg=;
+ b=ATxWZefcbCaUQbI4t6VU/6ikBR3ZzS6XQklUgBG4sypT1iB65oon1S0usqUEnQvJLD
+ 5MhWnz9biMDou4u8L0vpW6g5w37abyDSfwGprEnw+Gr/pPMpibuwSe95mPfq0e35AKVL
+ hdpvZibRv2y3DMALBzxex7McJubGPsXD5T49KZz27afYn8/uPQQdD1PdlEuritzCFREp
+ covFua6g70uYcTrzMkPbSX3B9zfY9T4FTzX9EAf5IdZAfGVgYwYthlfD3cwZbf9MoavX
+ ljzAtWDl7nvAPuST57XyCSbWyujpxxaMtOT+XL91HZzHDzJdNL2R8rcakw5fhjTPmR+o
+ nPFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=ynWFsuN10LTcQ5w1SbtSKS8QX5tSJTLF/ql04cbEBCg=;
+ b=z2l4mljDcEO8HhunNckp6n1LfeFUtbj4agdpayqUPMYxrQNicTPhXGI+QGAnCh+M44
+ F/HTeUc2GFbdRdnKmCdunlKyavLZ+sfoDTiVTod9g3j5qESW4ktkT3plCc12QJqEYv2g
+ VoCuQRUT0u8qVE4HLZQ93OmpxJWvR8ke7eZnj5PZrc/fwkTom9n3vd3bP4oCb8HVgPig
+ z1MXt6MtJgCUwK69+l9RCe/Q7+/VmT1ukASdC/iRiNLyTCa9aK70OBx8HjLUH1cJfCzc
+ KlVUVve0j8uTGsWaqfVOQ17t9lma4SqCrucsLcSaPVrUvKZraz+DcQYfUlEy6cMml7hX
+ wlkA==
+X-Gm-Message-State: AO0yUKUmEdtY5D28MNNPZ0iAtqemZGodCFs5GCewU784S44kCojWgqzt
+ TMryc0Zo0KYWnWHgu6MMEAg=
+X-Google-Smtp-Source: AK7set+6D/xGNyAdgThsHNzjql3Xmot8prZwdj6dTaC1V26CCJSmMpS998Ftwp9AuE7r8ZCbEFHxbA==
+X-Received: by 2002:adf:fe43:0:b0:2c5:4d35:5260 with SMTP id
+ m3-20020adffe43000000b002c54d355260mr1604867wrs.16.1676378926059; 
+ Tue, 14 Feb 2023 04:48:46 -0800 (PST)
+Received: from [192.168.178.21] (p5b0ea2e7.dip0.t-ipconnect.de.
+ [91.14.162.231]) by smtp.gmail.com with ESMTPSA id
+ r3-20020a5d6943000000b002c551ae8cc1sm7883909wrw.67.2023.02.14.04.48.44
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 14 Feb 2023 04:48:45 -0800 (PST)
+Message-ID: <75defc22-3b18-262e-5917-c42ab8ee3c28@gmail.com>
+Date: Tue, 14 Feb 2023 13:48:44 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 0/6] Trivial code cleanup around color resources
+Content-Language: en-US
+To: Melissa Wen <mwen@igalia.com>, amd-gfx@lists.freedesktop.org
+References: <20230214121406.97750-1-mwen@igalia.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20230214121406.97750-1-mwen@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -57,122 +79,47 @@ Cc: sunpeng.li@amd.com, Xinhui.Pan@amd.com, Rodrigo.Siqueira@amd.com,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-We don't use this function anywhere, therefore, remove it.
+Am 14.02.23 um 13:14 schrieb Melissa Wen:
+> Hi,
+>
+> Sorry for the noise, but while I've been working on wiring 3D LUT
+> support to AMD display driver [1] I found some annoying code style
+> issues in the shared-code part. So I'm just sending what I've been
+> cleaning to better examine the code.
+>
+> Most seem trivial, except the last one "remove unused
+> _calculate_degamma_curve" since this could just be a matter of missing
+> parts. If so, happy to remove the patch and include a comment describing
+> the situation (or the potential usage of it).
 
-Signed-off-by: Melissa Wen <mwen@igalia.com>
----
- .../amd/display/modules/color/color_gamma.c   | 86 -------------------
- .../amd/display/modules/color/color_gamma.h   |  3 -
- 2 files changed, 89 deletions(-)
+The display stack is not my field of expertise, but those cleanups are 
+so obvious that I think I can safely give my Reviewed-by: Christian 
+König <christian.koenig@amd.com> for the entire series.
 
-diff --git a/drivers/gpu/drm/amd/display/modules/color/color_gamma.c b/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
-index 6e606b11286a..67a062af3ab0 100644
---- a/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
-+++ b/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
-@@ -2217,89 +2217,3 @@ bool mod_color_calculate_regamma_params(struct dc_transfer_func *output_tf,
- rgb_user_alloc_fail:
- 	return ret;
- }
--
--bool  mod_color_calculate_degamma_curve(enum dc_transfer_func_predefined trans,
--				struct dc_transfer_func_distributed_points *points)
--{
--	uint32_t i;
--	bool ret = false;
--	struct pwl_float_data_ex *rgb_degamma = NULL;
--
--	if (trans == TRANSFER_FUNCTION_UNITY ||
--		trans == TRANSFER_FUNCTION_LINEAR) {
--
--		for (i = 0; i <= MAX_HW_POINTS ; i++) {
--			points->red[i]    = coordinates_x[i].x;
--			points->green[i]  = coordinates_x[i].x;
--			points->blue[i]   = coordinates_x[i].x;
--		}
--		ret = true;
--	} else if (trans == TRANSFER_FUNCTION_PQ) {
--		rgb_degamma = kvcalloc(MAX_HW_POINTS + _EXTRA_POINTS,
--				       sizeof(*rgb_degamma),
--				       GFP_KERNEL);
--		if (!rgb_degamma)
--			goto rgb_degamma_alloc_fail;
--
--
--		build_de_pq(rgb_degamma,
--				MAX_HW_POINTS,
--				coordinates_x);
--		for (i = 0; i <= MAX_HW_POINTS ; i++) {
--			points->red[i]    = rgb_degamma[i].r;
--			points->green[i]  = rgb_degamma[i].g;
--			points->blue[i]   = rgb_degamma[i].b;
--		}
--		ret = true;
--
--		kvfree(rgb_degamma);
--	} else if (trans == TRANSFER_FUNCTION_SRGB ||
--		trans == TRANSFER_FUNCTION_BT709 ||
--		trans == TRANSFER_FUNCTION_GAMMA22 ||
--		trans == TRANSFER_FUNCTION_GAMMA24 ||
--		trans == TRANSFER_FUNCTION_GAMMA26) {
--		rgb_degamma = kvcalloc(MAX_HW_POINTS + _EXTRA_POINTS,
--				       sizeof(*rgb_degamma),
--				       GFP_KERNEL);
--		if (!rgb_degamma)
--			goto rgb_degamma_alloc_fail;
--
--		build_degamma(rgb_degamma,
--				MAX_HW_POINTS,
--				coordinates_x,
--				trans);
--		for (i = 0; i <= MAX_HW_POINTS ; i++) {
--			points->red[i]    = rgb_degamma[i].r;
--			points->green[i]  = rgb_degamma[i].g;
--			points->blue[i]   = rgb_degamma[i].b;
--		}
--		ret = true;
--
--		kvfree(rgb_degamma);
--	} else if (trans == TRANSFER_FUNCTION_HLG) {
--		rgb_degamma = kvcalloc(MAX_HW_POINTS + _EXTRA_POINTS,
--				       sizeof(*rgb_degamma),
--				       GFP_KERNEL);
--		if (!rgb_degamma)
--			goto rgb_degamma_alloc_fail;
--
--		build_hlg_degamma(rgb_degamma,
--				MAX_HW_POINTS,
--				coordinates_x,
--				80, 1000);
--		for (i = 0; i <= MAX_HW_POINTS ; i++) {
--			points->red[i]    = rgb_degamma[i].r;
--			points->green[i]  = rgb_degamma[i].g;
--			points->blue[i]   = rgb_degamma[i].b;
--		}
--		ret = true;
--		kvfree(rgb_degamma);
--	}
--	points->end_exponent = 0;
--	points->x_point_at_y1_red = 1;
--	points->x_point_at_y1_green = 1;
--	points->x_point_at_y1_blue = 1;
--
--rgb_degamma_alloc_fail:
--	return ret;
--}
-diff --git a/drivers/gpu/drm/amd/display/modules/color/color_gamma.h b/drivers/gpu/drm/amd/display/modules/color/color_gamma.h
-index 2893abf48208..ee5c466613de 100644
---- a/drivers/gpu/drm/amd/display/modules/color/color_gamma.h
-+++ b/drivers/gpu/drm/amd/display/modules/color/color_gamma.h
-@@ -115,9 +115,6 @@ bool mod_color_calculate_degamma_params(struct dc_color_caps *dc_caps,
- 		struct dc_transfer_func *output_tf,
- 		const struct dc_gamma *ramp, bool mapUserRamp);
- 
--bool mod_color_calculate_degamma_curve(enum dc_transfer_func_predefined trans,
--				struct dc_transfer_func_distributed_points *points);
--
- bool calculate_user_regamma_coeff(struct dc_transfer_func *output_tf,
- 		const struct regamma_lut *regamma,
- 		struct calculate_buffer *cal_buffer,
--- 
-2.39.0
+Thanks,
+Christian.
+
+>
+> Thanks,
+>
+> Melissa
+>
+> [1] https://lore.kernel.org/dri-devel/20230109143846.1966301-1-mwen@igalia.com/
+>
+> Melissa Wen (6):
+>    drm/amd/display: ident braces in dcn30_acquire_post_bldn_3dlut
+>      correctly
+>    drm/amd/display: clean code-style issues in dcn30_set_mpc_shaper_3dlut
+>    drm/amd/display: camel case cleanup in color_gamma file
+>    drm/amd/display: unset initial value for tf since it's never used
+>    drm/amd/display: remove unused func declaration from resource headers
+>    drm/amd/display: remove unused _calculate_degamma_curve function
+>
+>   .../drm/amd/display/dc/dcn30/dcn30_hwseq.c    |  37 ++---
+>   .../drm/amd/display/dc/dcn30/dcn30_resource.c |   2 +-
+>   drivers/gpu/drm/amd/display/dc/inc/resource.h |   4 -
+>   .../amd/display/modules/color/color_gamma.c   | 140 ++++--------------
+>   .../amd/display/modules/color/color_gamma.h   |   3 -
+>   5 files changed, 48 insertions(+), 138 deletions(-)
+>
 
