@@ -2,40 +2,40 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05A98696904
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Feb 2023 17:15:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A427696908
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Feb 2023 17:16:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF08010E924;
-	Tue, 14 Feb 2023 16:15:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3602010E92C;
+	Tue, 14 Feb 2023 16:15:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2046.outbound.protection.outlook.com [40.107.93.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8533A10E91D
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 16:15:52 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2066.outbound.protection.outlook.com [40.107.92.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63E8A10E924
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Feb 2023 16:15:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QBWgLZmbYrhJl/nDdGjWtlJMw3sGBj88suPYgN9OeguMdQb6xBPpMtSRBtzHn9Y2E5A0ejFYKF22KoB6EEwXMxGleUnHWLMrJG8iD0zXGrBZTJrd/1Ldr6dG3saX4e7y/q1FXYqm7NFOXTAUgBr1R7Z3MJdiW0KqAeiyGLRNn5yErpOgNaHg87SngyVspfTS1uOxv4h8ZGChJZxIPFDjy3/6Kq9fyydRrqp3EU4KDDMLTBcss8KhL49kj751TMEpx2k7VFeZwQhf/SuPCg0WxTcyofQk/90Rs4PGhqr9nf6pB48p4taLeAJQ9GPJfu/2m8TzGal/JgUlSSoZSQ+rig==
+ b=KKlp3T7xtJRtw7arZXTcJMs3Er3CPbrtKe2goiA7SnRlXz+9evsRTm807nzrd1RKfuDfymiYQPVKgeyby8kUY0vrGqfzR752nb3lEOe4chshihjpC49LXdHvs2E/UCg2xVJax1fF8mFaNWYY+SVV3JEYL/Fi//q2RDkaNaVyg0hN0h963OPiuzd67r50Z8HAi51bictA3S90Q81MC3+sheCZ4unS2QjYgN/pbG2PpVANpCGTY6hf07bNuU1QwDUn6vzvGhrMP/Obe4Syh7/D0Q+EDmE1c+o/0taPCOHDgM9ONSklG4Br0b0mzTq4WXX2qggYwAGxj6k5e/Eqj0cEDw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZEIhdmk8or/Po8m9M1bM+S/FbXAgkB1yWXmNHeizQDY=;
- b=Sv4hwZmNfzr+SZR8bUiJx1kycMl/fmA9AowN9jdPplvTf6vjb9z7OHa17Y6aTB96il7DmFYR8/P69DpDPVUbiTD2Bff26yD1GNsHzNMxKAHuGiOUST9MSI1pWMDG2p2l9PaKS9yKBFxa2sku/3nNjRzbBQaLra/ydtql1/BNea4G65+sQx4kQ15iSpBjE/tgN2jda2oBp30zalurGBvJ2zyYxsQLsfh5CeksJJ/JShGkgxmLubbR/ZQ9he85QbZMLeE8RagiP+9EhSMIAUD6DZ3Fe7WyJ4zPdtlWC0G11uusMPB7ruOghRmtDUa/CnPVYBN3qby9rIIzB6Rvxh97SQ==
+ bh=f8cbnVT5posFuhMDVIJps11hOEWWQAqq4PGzh4K8ye8=;
+ b=gFWQvqtTkKDk9drUdbmxSyfG6LtiKT3Gz9jnhuHveiEgRIMZ2pqC6XMBzWVFIBsQknWWgelkOM61jyH5zeE4LPrdbda+LDDvmzdImbzlQFGtzkDWgIIDwPtV/b4jQnpKmNQd1zRFjLSMuZvMFS/D+TfLsbY+sH43asQF4hQ85tX5R5pp3kwV8AIJoeOn0jmcv0aEuz+/aHhRv2K/Tm4P4Po0k9DiGJxTimwDMZS7H0p+CcWsaZwKd1mDiKXqsQ34ozxEUXfJXFMLVDNUint+Bh1/uxEW2xQ7bPPxz3MLJQsOkFFAGuB+ibSdmtUEHHqXhooV3wKZB8wo+Diub9UMIg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZEIhdmk8or/Po8m9M1bM+S/FbXAgkB1yWXmNHeizQDY=;
- b=mqqj+He+Dpf7n/f5RG1dfvL/RVd4xGhn4e1D9lfGC+o/PdB3o76SIFMuXnD7tRjTZeEQ9x0subzoC/Qm+aAo4ubFITM5c2+wu81msNR9LCLOQOMvVZOis3mg+5hjxJKmzv1WEN7xqivyIJnMXY1S1H68gQCHfD0geYcvjlgSt2A=
-Received: from MW2PR16CA0060.namprd16.prod.outlook.com (2603:10b6:907:1::37)
- by DM4PR12MB7696.namprd12.prod.outlook.com (2603:10b6:8:100::10) with
+ bh=f8cbnVT5posFuhMDVIJps11hOEWWQAqq4PGzh4K8ye8=;
+ b=I8jrjk7gNOky+x8xRrlAY3HCT5Z4voLVzwAsP93aX2g+Jg641zGUKXegh58FsIFfTw0HACbj0nNQq+v3z5d8IZtxMz06lZjHpnPaeesKSebRBZBd1eizJLdWDHlb/L6ka5ruo3K7oXoF2aN/ayBQXzUG+saYWgIOGUs/AB33c14=
+Received: from MW2PR16CA0055.namprd16.prod.outlook.com (2603:10b6:907:1::32)
+ by SJ0PR12MB7007.namprd12.prod.outlook.com (2603:10b6:a03:486::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.24; Tue, 14 Feb
- 2023 16:15:50 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.26; Tue, 14 Feb
+ 2023 16:15:51 +0000
 Received: from CO1NAM11FT059.eop-nam11.prod.protection.outlook.com
- (2603:10b6:907:1:cafe::98) by MW2PR16CA0060.outlook.office365.com
- (2603:10b6:907:1::37) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:907:1:cafe::a2) by MW2PR16CA0055.outlook.office365.com
+ (2603:10b6:907:1::32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.26 via Frontend
  Transport; Tue, 14 Feb 2023 16:15:50 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -51,12 +51,12 @@ Received: from SATLEXMB04.amd.com (165.204.84.17) by
 Received: from MUN-L-SHSHARMA.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 14 Feb
- 2023 10:15:47 -0600
+ 2023 10:15:49 -0600
 From: Shashank Sharma <shashank.sharma@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2 3/8] drm/amdgpu: rename gmc.aper_base/size
-Date: Tue, 14 Feb 2023 17:15:05 +0100
-Message-ID: <20230214161510.2153-4-shashank.sharma@amd.com>
+Subject: [PATCH v2 4/8] drm/amdgpu: rename doorbell variables
+Date: Tue, 14 Feb 2023 17:15:06 +0100
+Message-ID: <20230214161510.2153-5-shashank.sharma@amd.com>
 X-Mailer: git-send-email 2.38.0.windows.1
 In-Reply-To: <20230214161510.2153-1-shashank.sharma@amd.com>
 References: <20230214161510.2153-1-shashank.sharma@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT059:EE_|DM4PR12MB7696:EE_
-X-MS-Office365-Filtering-Correlation-Id: 991ad1c3-5ba0-42d4-8547-08db0ea6bd23
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT059:EE_|SJ0PR12MB7007:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5610a174-dcdc-456f-f5f3-08db0ea6bd76
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: a7HyI9LgstByzafBa0/Xi7I2QV7pUkOCYsQEjnlak7SwXoAlg42osAAcsUH5WtRYOFmUgcyGN6+AJZeXqXX1MFHvKj3r7VjRSpqYGiOnWBRxCIIFLL1Zxw3zwODVFx4nasdNU1p4MmhbejADhg4HvQIlVdEz7p1llf8wNafn31k6/pNW32tFVmfukVUsY3jH4hortCxzaTE4p5UURbKZwND1cQL42xv8+NNT5BR21xiAcLq6FGYxl/aJRAABmwq/n43nSYtRsWJmRDqWKvFqe8LljVf/LDgNtb9/URq7J9kLXsVII8RnqdEWyzdou4DLgeGKEMBTbGTKVENA7epJyGYwbKEwOjYpGpyno0+aT4zdPZWHBI43muzldl/u9Ka2P+l1zmEhgYx3X2c7GrIYd5D6k0iaWyySiRsBiviqAxLcOzHeNHfIEascUig5UUwpmcBMZ7tnke0NWk2yOAp+cLmTrch73tBPE3M8S64n1noVH3zBTLNTHZ5owd904E0wCpjsmnjpYpYuMfSecAVfiOt9lWsfLkzXAp59phtU0S37hoXLrBLKwVSmhOJk2hDnQfuNBVcxVGppz/gUwhLyETtG/7FaKBuhkL+Z8kwgzCHN6CIe5AEfKEZhwsajeHFFmwTkq72AN8vQivtnnKjsKEsfFo3gY9j4fbQTKdKQcufugkphuocZvTTxv0VAMioSCBXA5l8c42KupRvIaTpkcs3VrnmPAUOBLuxcTZeCPL8=
+X-Microsoft-Antispam-Message-Info: k8xBXgHuLr+F1IZ0ZN0AFSGbtge9boW9YLZ9Hx5Wl0CsjavlvcQ+6ae9wBK/pk8+A7YxhwapyQwRg5dnZbW8J7wOLXS5sOXwdPqwXPKrSBL2OQfytkKzQDHyfaeobMWJsCFF9sBJkNOiw+jSChzFvyATr6vODODqV1mTxamctDQBxugPz3e7Vewd8Sx7tTtlMJe/38OB815532+22b6yIK+waCaAZDgTNPb+jq0lJdAPYxTkgpIdQAUylDQavcr1dl/aFUVdM3NRBGvNdjF+pf6dbj0eSULfEb8Us5n+fiZmYfkTp99bACfBRdP1fOjWvp3GsGr3gnE0fM/yWgTZQsGKRECn7FQhdfaH4SoUxPbHpnQXCCeltCMU7OYN0u+p6FiIjmILjDmedbkIezmP6Mc65r9WhP5yefZSeJhPbeATm5o/4iBrqmjK256LGs1o0wybVnYSflendxjVzfbZAnj1opOgPQz/gh/qtSAmwiDyVkt1/n65hJ8s22VpehLYDU/nS2Xl4Ab9/8B+FSOvVY8tYWd4o64uqHUC0eeVV4JLnxowYo8ARXYB7kR8oP4d2MOeddD/8TmwzO1Do4HcGFwJ8IrqK7QAY3usliUQEdjPdigvwyF8ro2A/VOHdY/L9pleDrEkH872RxWtmqStLZRfxUH8Y1p/8xB/CVJTQe4zAs5XN1GOgI8NR0uGRlCBfmNvwnBzEHQPXduvspmFkexXIIJuB9pnhfPoh2N59EY=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(376002)(39860400002)(136003)(346002)(396003)(451199018)(36840700001)(40470700004)(46966006)(41300700001)(6916009)(4326008)(8676002)(426003)(7696005)(36860700001)(47076005)(83380400001)(70586007)(70206006)(316002)(8936002)(54906003)(30864003)(40460700003)(82740400003)(44832011)(36756003)(2906002)(40480700001)(356005)(5660300002)(478600001)(16526019)(1076003)(6666004)(336012)(2616005)(26005)(186003)(86362001)(81166007)(82310400005)(36900700001);
+ SFS:(13230025)(4636009)(396003)(136003)(376002)(39860400002)(346002)(451199018)(36840700001)(40470700004)(46966006)(83380400001)(54906003)(36756003)(86362001)(82310400005)(186003)(26005)(1076003)(426003)(47076005)(7696005)(40480700001)(40460700003)(16526019)(2906002)(70586007)(30864003)(44832011)(70206006)(4326008)(8936002)(36860700001)(8676002)(6916009)(41300700001)(2616005)(478600001)(336012)(5660300002)(6666004)(81166007)(82740400003)(356005)(316002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2023 16:15:50.2076 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 991ad1c3-5ba0-42d4-8547-08db0ea6bd23
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2023 16:15:50.7701 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5610a174-dcdc-456f-f5f3-08db0ea6bd76
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT059.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7696
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB7007
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,377 +106,308 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Alex Deucher <alexander.deucher@amd.com>
 
-This patch renames aper_base and aper_size parameters (in adev->gmc),
-to vram_aper_base and vram_aper_size, to differentiate it from the
-doorbell BAR.
+This patch:
+- renames the adev->doorbell.base to adev->doorbell.doorbell_aper_base
+- renames the adev->doorbell.size to adev->doorbell.doorbell_aper_size
+- moves the adev->doorbell.ptr to adev->mman.doorbell_aper_base_kaddr
 
-V2: rebase
+rest of the changes are just to accommodate these variable name changes.
+
+V2: Mered 2 patches into this one doorbell clean-up patch.
 
 Cc: Alex Deucher <alexander.deucher@amd.com>
 Cc: Christian Koenig <christian.koenig@amd.com>
-
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Shashank Sharma <shashank.sharma@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c   |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c   |  6 +++---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c      |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h      |  4 ++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c   | 12 ++++++------
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c      |  8 ++++----
- drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c |  2 +-
- drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c       | 10 +++++-----
- drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c       | 10 +++++-----
- drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c        |  6 +++---
- drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c        | 12 ++++++------
- drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c        | 10 +++++-----
- drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c        | 10 +++++-----
- drivers/gpu/drm/amd/amdkfd/kfd_migrate.c     |  4 ++--
- 14 files changed, 49 insertions(+), 49 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c   |  8 ++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c   | 34 ++++++++++----------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell.h |  5 ++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c      |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h      |  1 +
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c        |  2 +-
+ drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c       |  4 +--
+ drivers/gpu/drm/amd/amdgpu/nbio_v4_3.c       |  4 +--
+ drivers/gpu/drm/amd/amdgpu/nbio_v6_1.c       |  4 +--
+ drivers/gpu/drm/amd/amdgpu/nbio_v7_2.c       |  4 +--
+ drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c       |  4 +--
+ drivers/gpu/drm/amd/amdgpu/nbio_v7_7.c       |  4 +--
+ 12 files changed, 38 insertions(+), 38 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-index f99d4873bf22..58689b2a2d1c 100644
+index 58689b2a2d1c..0493c64e9d0a 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-@@ -438,7 +438,7 @@ void amdgpu_amdkfd_get_local_mem_info(struct amdgpu_device *adev,
- 	mem_info->vram_width = adev->gmc.vram_width;
- 
- 	pr_debug("Address base: %pap public 0x%llx private 0x%llx\n",
--			&adev->gmc.aper_base,
-+			&adev->gmc.vram_aper_base,
- 			mem_info->local_mem_size_public,
- 			mem_info->local_mem_size_private);
- 
+@@ -106,13 +106,13 @@ static void amdgpu_doorbell_get_kfd_info(struct amdgpu_device *adev,
+ 		 * not initialized as AMDGPU manages the whole
+ 		 * doorbell space.
+ 		 */
+-		*aperture_base = adev->doorbell.base;
++		*aperture_base = adev->doorbell.doorbell_aper_base;
+ 		*aperture_size = 0;
+ 		*start_offset = 0;
+-	} else if (adev->doorbell.size > adev->doorbell.num_doorbells *
++	} else if (adev->doorbell.doorbell_aper_size > adev->doorbell.num_doorbells *
+ 						sizeof(u32)) {
+-		*aperture_base = adev->doorbell.base;
+-		*aperture_size = adev->doorbell.size;
++		*aperture_base = adev->doorbell.doorbell_aper_base;
++		*aperture_size = adev->doorbell.doorbell_aper_size;
+ 		*start_offset = adev->doorbell.num_doorbells * sizeof(u32);
+ 	} else {
+ 		*aperture_base = 0;
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 0b6a394e109b..45588b7919fe 100644
+index 45588b7919fe..43c1b67c2778 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -3961,7 +3961,7 @@ static void amdgpu_device_unmap_mmio(struct amdgpu_device *adev)
- 	/* Memory manager related */
- 	if (!adev->gmc.xgmi.connected_to_cpu) {
- 		arch_phys_wc_del(adev->gmc.vram_mtrr);
--		arch_io_free_memtype_wc(adev->gmc.aper_base, adev->gmc.aper_size);
-+		arch_io_free_memtype_wc(adev->gmc.vram_aper_base, adev->gmc.vram_aper_size);
- 	}
- }
+@@ -597,7 +597,7 @@ u32 amdgpu_mm_rdoorbell(struct amdgpu_device *adev, u32 index)
+ 		return 0;
  
-@@ -5562,14 +5562,14 @@ bool amdgpu_device_is_peer_accessible(struct amdgpu_device *adev,
- 	uint64_t address_mask = peer_adev->dev->dma_mask ?
- 		~*peer_adev->dev->dma_mask : ~((1ULL << 32) - 1);
- 	resource_size_t aper_limit =
--		adev->gmc.aper_base + adev->gmc.aper_size - 1;
-+		adev->gmc.vram_aper_base + adev->gmc.vram_aper_size - 1;
- 	bool p2p_access =
- 		!adev->gmc.xgmi.connected_to_cpu &&
- 		!(pci_p2pdma_distance(adev->pdev, peer_adev->dev, false) < 0);
- 
- 	return pcie_p2p && p2p_access && (adev->gmc.visible_vram_size &&
- 		adev->gmc.real_vram_size == adev->gmc.visible_vram_size &&
--		!(adev->gmc.aper_base & address_mask ||
-+		!(adev->gmc.vram_aper_base & address_mask ||
- 		  aper_limit & address_mask));
- #else
- 	return false;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-index 02a4c93673ce..c7e64e234de6 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-@@ -775,7 +775,7 @@ uint64_t amdgpu_gmc_vram_pa(struct amdgpu_device *adev, struct amdgpu_bo *bo)
-  */
- uint64_t amdgpu_gmc_vram_cpu_pa(struct amdgpu_device *adev, struct amdgpu_bo *bo)
- {
--	return amdgpu_bo_gpu_offset(bo) - adev->gmc.vram_start + adev->gmc.aper_base;
-+	return amdgpu_bo_gpu_offset(bo) - adev->gmc.vram_start + adev->gmc.vram_aper_base;
- }
- 
- int amdgpu_gmc_vram_checking(struct amdgpu_device *adev)
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-index 0305b660cd17..bb7076ecbf01 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-@@ -167,8 +167,8 @@ struct amdgpu_gmc {
- 	 * gart/vram_start/end field as the later is from
- 	 * GPU's view and aper_base is from CPU's view.
- 	 */
--	resource_size_t		aper_size;
--	resource_size_t		aper_base;
-+	resource_size_t		vram_aper_size;
-+	resource_size_t		vram_aper_base;
- 	/* for some chips with <= 32MB we need to lie
- 	 * about vram size near mc fb location */
- 	u64			mc_vram_size;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index 25a68d8888e0..b48c9fd60c43 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -1046,8 +1046,8 @@ int amdgpu_bo_init(struct amdgpu_device *adev)
- 	/* On A+A platform, VRAM can be mapped as WB */
- 	if (!adev->gmc.xgmi.connected_to_cpu) {
- 		/* reserve PAT memory space to WC for VRAM */
--		int r = arch_io_reserve_memtype_wc(adev->gmc.aper_base,
--				adev->gmc.aper_size);
-+		int r = arch_io_reserve_memtype_wc(adev->gmc.vram_aper_base,
-+				adev->gmc.vram_aper_size);
- 
- 		if (r) {
- 			DRM_ERROR("Unable to set WC memtype for the aperture base\n");
-@@ -1055,13 +1055,13 @@ int amdgpu_bo_init(struct amdgpu_device *adev)
- 		}
- 
- 		/* Add an MTRR for the VRAM */
--		adev->gmc.vram_mtrr = arch_phys_wc_add(adev->gmc.aper_base,
--				adev->gmc.aper_size);
-+		adev->gmc.vram_mtrr = arch_phys_wc_add(adev->gmc.vram_aper_base,
-+				adev->gmc.vram_aper_size);
- 	}
- 
- 	DRM_INFO("Detected VRAM RAM=%lluM, BAR=%lluM\n",
- 		 adev->gmc.mc_vram_size >> 20,
--		 (unsigned long long)adev->gmc.aper_size >> 20);
-+		 (unsigned long long)adev->gmc.vram_aper_size >> 20);
- 	DRM_INFO("RAM width %dbits %s\n",
- 		 adev->gmc.vram_width, amdgpu_vram_names[adev->gmc.vram_type]);
- 	return amdgpu_ttm_init(adev);
-@@ -1083,7 +1083,7 @@ void amdgpu_bo_fini(struct amdgpu_device *adev)
- 
- 		if (!adev->gmc.xgmi.connected_to_cpu) {
- 			arch_phys_wc_del(adev->gmc.vram_mtrr);
--			arch_io_free_memtype_wc(adev->gmc.aper_base, adev->gmc.aper_size);
-+			arch_io_free_memtype_wc(adev->gmc.vram_aper_base, adev->gmc.vram_aper_size);
- 		}
- 		drm_dev_exit(idx);
- 	}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index 73b831b47892..0e8f580769ab 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -583,7 +583,7 @@ static int amdgpu_ttm_io_mem_reserve(struct ttm_device *bdev,
- 			mem->bus.addr = (u8 *)adev->mman.vram_aper_base_kaddr +
- 					mem->bus.offset;
- 
--		mem->bus.offset += adev->gmc.aper_base;
-+		mem->bus.offset += adev->gmc.vram_aper_base;
- 		mem->bus.is_iomem = true;
- 		break;
- 	default:
-@@ -600,7 +600,7 @@ static unsigned long amdgpu_ttm_io_mem_pfn(struct ttm_buffer_object *bo,
- 
- 	amdgpu_res_first(bo->resource, (u64)page_offset << PAGE_SHIFT, 0,
- 			 &cursor);
--	return (adev->gmc.aper_base + cursor.start) >> PAGE_SHIFT;
-+	return (adev->gmc.vram_aper_base + cursor.start) >> PAGE_SHIFT;
- }
- 
- /**
-@@ -1752,12 +1752,12 @@ int amdgpu_ttm_init(struct amdgpu_device *adev)
- #ifdef CONFIG_64BIT
- #ifdef CONFIG_X86
- 	if (adev->gmc.xgmi.connected_to_cpu)
--		adev->mman.vram_aper_base_kaddr = ioremap_cache(adev->gmc.aper_base,
-+		adev->mman.vram_aper_base_kaddr = ioremap_cache(adev->gmc.vram_aper_base,
- 				adev->gmc.visible_vram_size);
- 
- 	else
- #endif
--		adev->mman.vram_aper_base_kaddr = ioremap_wc(adev->gmc.aper_base,
-+		adev->mman.vram_aper_base_kaddr = ioremap_wc(adev->gmc.vram_aper_base,
- 				adev->gmc.visible_vram_size);
- #endif
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-index 9fa1d814508a..d66caad04c24 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-@@ -649,7 +649,7 @@ int amdgpu_vram_mgr_alloc_sgt(struct amdgpu_device *adev,
- 	 */
- 	amdgpu_res_first(res, offset, length, &cursor);
- 	for_each_sgtable_sg((*sgt), sg, i) {
--		phys_addr_t phys = cursor.start + adev->gmc.aper_base;
-+		phys_addr_t phys = cursor.start + adev->gmc.vram_aper_base;
- 		size_t size = cursor.size;
- 		dma_addr_t addr;
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-index 21e46817d82d..b2e4f4f06bdb 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-@@ -825,18 +825,18 @@ static int gmc_v10_0_mc_init(struct amdgpu_device *adev)
- 		if (r)
- 			return r;
- 	}
--	adev->gmc.aper_base = pci_resource_start(adev->pdev, 0);
--	adev->gmc.aper_size = pci_resource_len(adev->pdev, 0);
-+	adev->gmc.vram_aper_base = pci_resource_start(adev->pdev, 0);
-+	adev->gmc.vram_aper_size = pci_resource_len(adev->pdev, 0);
- 
- #ifdef CONFIG_X86_64
- 	if ((adev->flags & AMD_IS_APU) && !amdgpu_passthrough(adev)) {
--		adev->gmc.aper_base = adev->gfxhub.funcs->get_mc_fb_offset(adev);
--		adev->gmc.aper_size = adev->gmc.real_vram_size;
-+		adev->gmc.vram_aper_base = adev->gfxhub.funcs->get_mc_fb_offset(adev);
-+		adev->gmc.vram_aper_size = adev->gmc.real_vram_size;
- 	}
- #endif
- 
- 	/* In case the PCI BAR is larger than the actual amount of vram */
--	adev->gmc.visible_vram_size = adev->gmc.aper_size;
-+	adev->gmc.visible_vram_size = adev->gmc.vram_aper_size;
- 	if (adev->gmc.visible_vram_size > adev->gmc.real_vram_size)
- 		adev->gmc.visible_vram_size = adev->gmc.real_vram_size;
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-index 4326078689cd..f993ce264c3f 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-@@ -692,17 +692,17 @@ static int gmc_v11_0_mc_init(struct amdgpu_device *adev)
- 		if (r)
- 			return r;
- 	}
--	adev->gmc.aper_base = pci_resource_start(adev->pdev, 0);
--	adev->gmc.aper_size = pci_resource_len(adev->pdev, 0);
-+	adev->gmc.vram_aper_base = pci_resource_start(adev->pdev, 0);
-+	adev->gmc.vram_aper_size = pci_resource_len(adev->pdev, 0);
- 
- #ifdef CONFIG_X86_64
- 	if ((adev->flags & AMD_IS_APU) && !amdgpu_passthrough(adev)) {
--		adev->gmc.aper_base = adev->mmhub.funcs->get_mc_fb_offset(adev);
--		adev->gmc.aper_size = adev->gmc.real_vram_size;
-+		adev->gmc.vram_aper_base = adev->mmhub.funcs->get_mc_fb_offset(adev);
-+		adev->gmc.vram_aper_size = adev->gmc.real_vram_size;
- 	}
- #endif
- 	/* In case the PCI BAR is larger than the actual amount of vram */
--	adev->gmc.visible_vram_size = adev->gmc.aper_size;
-+	adev->gmc.visible_vram_size = adev->gmc.vram_aper_size;
- 	if (adev->gmc.visible_vram_size > adev->gmc.real_vram_size)
- 		adev->gmc.visible_vram_size = adev->gmc.real_vram_size;
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
-index ec291d28edff..cd159309e9e5 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
-@@ -324,9 +324,9 @@ static int gmc_v6_0_mc_init(struct amdgpu_device *adev)
- 		if (r)
- 			return r;
- 	}
--	adev->gmc.aper_base = pci_resource_start(adev->pdev, 0);
--	adev->gmc.aper_size = pci_resource_len(adev->pdev, 0);
--	adev->gmc.visible_vram_size = adev->gmc.aper_size;
-+	adev->gmc.vram_aper_base = pci_resource_start(adev->pdev, 0);
-+	adev->gmc.vram_aper_size = pci_resource_len(adev->pdev, 0);
-+	adev->gmc.visible_vram_size = adev->gmc.vram_aper_size;
- 
- 	/* set the gart size */
- 	if (amdgpu_gart_size == -1) {
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
-index 979da6f510e8..8ee9731a0c8c 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
-@@ -377,20 +377,20 @@ static int gmc_v7_0_mc_init(struct amdgpu_device *adev)
- 		if (r)
- 			return r;
- 	}
--	adev->gmc.aper_base = pci_resource_start(adev->pdev, 0);
--	adev->gmc.aper_size = pci_resource_len(adev->pdev, 0);
-+	adev->gmc.vram_aper_base = pci_resource_start(adev->pdev, 0);
-+	adev->gmc.vram_aper_size = pci_resource_len(adev->pdev, 0);
- 
- #ifdef CONFIG_X86_64
- 	if ((adev->flags & AMD_IS_APU) &&
--	    adev->gmc.real_vram_size > adev->gmc.aper_size &&
-+	    adev->gmc.real_vram_size > adev->gmc.vram_aper_size &&
- 	    !amdgpu_passthrough(adev)) {
--		adev->gmc.aper_base = ((u64)RREG32(mmMC_VM_FB_OFFSET)) << 22;
--		adev->gmc.aper_size = adev->gmc.real_vram_size;
-+		adev->gmc.vram_aper_base = ((u64)RREG32(mmMC_VM_FB_OFFSET)) << 22;
-+		adev->gmc.vram_aper_size = adev->gmc.real_vram_size;
- 	}
- #endif
- 
- 	/* In case the PCI BAR is larger than the actual amount of vram */
--	adev->gmc.visible_vram_size = adev->gmc.aper_size;
-+	adev->gmc.visible_vram_size = adev->gmc.vram_aper_size;
- 	if (adev->gmc.visible_vram_size > adev->gmc.real_vram_size)
- 		adev->gmc.visible_vram_size = adev->gmc.real_vram_size;
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
-index 382dde1ce74c..259d797358f1 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
-@@ -577,18 +577,18 @@ static int gmc_v8_0_mc_init(struct amdgpu_device *adev)
- 		if (r)
- 			return r;
- 	}
--	adev->gmc.aper_base = pci_resource_start(adev->pdev, 0);
--	adev->gmc.aper_size = pci_resource_len(adev->pdev, 0);
-+	adev->gmc.vram_aper_base = pci_resource_start(adev->pdev, 0);
-+	adev->gmc.vram_aper_size = pci_resource_len(adev->pdev, 0);
- 
- #ifdef CONFIG_X86_64
- 	if ((adev->flags & AMD_IS_APU) && !amdgpu_passthrough(adev)) {
--		adev->gmc.aper_base = ((u64)RREG32(mmMC_VM_FB_OFFSET)) << 22;
--		adev->gmc.aper_size = adev->gmc.real_vram_size;
-+		adev->gmc.vram_aper_base = ((u64)RREG32(mmMC_VM_FB_OFFSET)) << 22;
-+		adev->gmc.vram_aper_size = adev->gmc.real_vram_size;
- 	}
- #endif
- 
- 	/* In case the PCI BAR is larger than the actual amount of vram */
--	adev->gmc.visible_vram_size = adev->gmc.aper_size;
-+	adev->gmc.visible_vram_size = adev->gmc.vram_aper_size;
- 	if (adev->gmc.visible_vram_size > adev->gmc.real_vram_size)
- 		adev->gmc.visible_vram_size = adev->gmc.real_vram_size;
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-index 08d6cf79fb15..a7074995d97e 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-@@ -1509,8 +1509,8 @@ static int gmc_v9_0_mc_init(struct amdgpu_device *adev)
- 		if (r)
- 			return r;
- 	}
--	adev->gmc.aper_base = pci_resource_start(adev->pdev, 0);
--	adev->gmc.aper_size = pci_resource_len(adev->pdev, 0);
-+	adev->gmc.vram_aper_base = pci_resource_start(adev->pdev, 0);
-+	adev->gmc.vram_aper_size = pci_resource_len(adev->pdev, 0);
- 
- #ifdef CONFIG_X86_64
- 	/*
-@@ -1528,16 +1528,16 @@ static int gmc_v9_0_mc_init(struct amdgpu_device *adev)
- 	if (((adev->flags & AMD_IS_APU) && !amdgpu_passthrough(adev)) ||
- 	    (adev->gmc.xgmi.supported &&
- 	     adev->gmc.xgmi.connected_to_cpu)) {
--		adev->gmc.aper_base =
-+		adev->gmc.vram_aper_base =
- 			adev->gfxhub.funcs->get_mc_fb_offset(adev) +
- 			adev->gmc.xgmi.physical_node_id *
- 			adev->gmc.xgmi.node_segment_size;
--		adev->gmc.aper_size = adev->gmc.real_vram_size;
-+		adev->gmc.vram_aper_size = adev->gmc.real_vram_size;
- 	}
- 
- #endif
- 	/* In case the PCI BAR is larger than the actual amount of vram */
--	adev->gmc.visible_vram_size = adev->gmc.aper_size;
-+	adev->gmc.visible_vram_size = adev->gmc.vram_aper_size;
- 	if (adev->gmc.visible_vram_size > adev->gmc.real_vram_size)
- 		adev->gmc.visible_vram_size = adev->gmc.real_vram_size;
- 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-index 10048ce16aea..c86c6705b470 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-@@ -1002,8 +1002,8 @@ int svm_migrate_init(struct amdgpu_device *adev)
- 	 */
- 	size = ALIGN(adev->gmc.real_vram_size, 2ULL << 20);
- 	if (adev->gmc.xgmi.connected_to_cpu) {
--		pgmap->range.start = adev->gmc.aper_base;
--		pgmap->range.end = adev->gmc.aper_base + adev->gmc.aper_size - 1;
-+		pgmap->range.start = adev->gmc.vram_aper_base;
-+		pgmap->range.end = adev->gmc.vram_aper_base + adev->gmc.vram_aper_size - 1;
- 		pgmap->type = MEMORY_DEVICE_COHERENT;
+ 	if (index < adev->doorbell.num_doorbells) {
+-		return readl(adev->doorbell.ptr + index);
++		return readl(adev->mman.doorbell_aper_base_kaddr + index);
  	} else {
- 		res = devm_request_free_mem_region(adev->dev, &iomem_resource, size);
+ 		DRM_ERROR("reading beyond doorbell aperture: 0x%08x!\n", index);
+ 		return 0;
+@@ -620,7 +620,7 @@ void amdgpu_mm_wdoorbell(struct amdgpu_device *adev, u32 index, u32 v)
+ 		return;
+ 
+ 	if (index < adev->doorbell.num_doorbells) {
+-		writel(v, adev->doorbell.ptr + index);
++		writel(v, adev->mman.doorbell_aper_base_kaddr + index);
+ 	} else {
+ 		DRM_ERROR("writing beyond doorbell aperture: 0x%08x!\n", index);
+ 	}
+@@ -641,7 +641,7 @@ u64 amdgpu_mm_rdoorbell64(struct amdgpu_device *adev, u32 index)
+ 		return 0;
+ 
+ 	if (index < adev->doorbell.num_doorbells) {
+-		return atomic64_read((atomic64_t *)(adev->doorbell.ptr + index));
++		return atomic64_read((atomic64_t *)(adev->mman.doorbell_aper_base_kaddr + index));
+ 	} else {
+ 		DRM_ERROR("reading beyond doorbell aperture: 0x%08x!\n", index);
+ 		return 0;
+@@ -664,7 +664,7 @@ void amdgpu_mm_wdoorbell64(struct amdgpu_device *adev, u32 index, u64 v)
+ 		return;
+ 
+ 	if (index < adev->doorbell.num_doorbells) {
+-		atomic64_set((atomic64_t *)(adev->doorbell.ptr + index), v);
++		atomic64_set((atomic64_t *)(adev->mman.doorbell_aper_base_kaddr + index), v);
+ 	} else {
+ 		DRM_ERROR("writing beyond doorbell aperture: 0x%08x!\n", index);
+ 	}
+@@ -1035,10 +1035,10 @@ static int amdgpu_device_doorbell_init(struct amdgpu_device *adev)
+ 
+ 	/* No doorbell on SI hardware generation */
+ 	if (adev->asic_type < CHIP_BONAIRE) {
+-		adev->doorbell.base = 0;
+-		adev->doorbell.size = 0;
++		adev->doorbell.doorbell_aper_base = 0;
++		adev->doorbell.doorbell_aper_size = 0;
+ 		adev->doorbell.num_doorbells = 0;
+-		adev->doorbell.ptr = NULL;
++		adev->mman.doorbell_aper_base_kaddr = NULL;
+ 		return 0;
+ 	}
+ 
+@@ -1048,15 +1048,15 @@ static int amdgpu_device_doorbell_init(struct amdgpu_device *adev)
+ 	amdgpu_asic_init_doorbell_index(adev);
+ 
+ 	/* doorbell bar mapping */
+-	adev->doorbell.base = pci_resource_start(adev->pdev, 2);
+-	adev->doorbell.size = pci_resource_len(adev->pdev, 2);
++	adev->doorbell.doorbell_aper_base = pci_resource_start(adev->pdev, 2);
++	adev->doorbell.doorbell_aper_size = pci_resource_len(adev->pdev, 2);
+ 
+ 	if (adev->enable_mes) {
+ 		adev->doorbell.num_doorbells =
+-			adev->doorbell.size / sizeof(u32);
++			adev->doorbell.doorbell_aper_size / sizeof(u32);
+ 	} else {
+ 		adev->doorbell.num_doorbells =
+-			min_t(u32, adev->doorbell.size / sizeof(u32),
++			min_t(u32, adev->doorbell.doorbell_aper_size / sizeof(u32),
+ 			      adev->doorbell_index.max_assignment+1);
+ 		if (adev->doorbell.num_doorbells == 0)
+ 			return -EINVAL;
+@@ -1071,10 +1071,10 @@ static int amdgpu_device_doorbell_init(struct amdgpu_device *adev)
+ 			adev->doorbell.num_doorbells += 0x400;
+ 	}
+ 
+-	adev->doorbell.ptr = ioremap(adev->doorbell.base,
+-				     adev->doorbell.num_doorbells *
+-				     sizeof(u32));
+-	if (adev->doorbell.ptr == NULL)
++	adev->mman.doorbell_aper_base_kaddr = ioremap(adev->doorbell.doorbell_aper_base,
++						      adev->doorbell.num_doorbells *
++						      sizeof(u32));
++	if (adev->mman.doorbell_aper_base_kaddr == NULL)
+ 		return -ENOMEM;
+ 
+ 	return 0;
+@@ -1089,8 +1089,8 @@ static int amdgpu_device_doorbell_init(struct amdgpu_device *adev)
+  */
+ static void amdgpu_device_doorbell_fini(struct amdgpu_device *adev)
+ {
+-	iounmap(adev->doorbell.ptr);
+-	adev->doorbell.ptr = NULL;
++	iounmap(adev->mman.doorbell_aper_base_kaddr);
++	adev->mman.doorbell_aper_base_kaddr = NULL;
+ }
+ 
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell.h
+index 7199b6b0be81..526b6b4a86dd 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell.h
+@@ -26,9 +26,8 @@
+  */
+ struct amdgpu_doorbell {
+ 	/* doorbell mmio */
+-	resource_size_t		base;
+-	resource_size_t		size;
+-	u32 __iomem		*ptr;
++	resource_size_t		doorbell_aper_base;
++	resource_size_t		doorbell_aper_size;
+ 	u32			num_doorbells;	/* Number of doorbells actually reserved for amdgpu. */
+ };
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
+index 0c546245793b..b79fb369f0f6 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
+@@ -126,7 +126,7 @@ static int amdgpu_mes_doorbell_init(struct amdgpu_device *adev)
+ 		roundup(doorbell_start_offset,
+ 			amdgpu_mes_doorbell_process_slice(adev));
+ 
+-	doorbell_aperture_size = adev->doorbell.size;
++	doorbell_aperture_size = adev->doorbell.doorbell_aper_size;
+ 	doorbell_aperture_size =
+ 			rounddown(doorbell_aperture_size,
+ 				  amdgpu_mes_doorbell_process_slice(adev));
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+index 929bc8abac28..967b265dbfa1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+@@ -51,6 +51,7 @@ struct amdgpu_mman {
+ 	struct ttm_device		bdev;
+ 	bool				initialized;
+ 	void __iomem			*vram_aper_base_kaddr;
++	u32 __iomem			*doorbell_aper_base_kaddr;
+ 
+ 	/* buffer handling */
+ 	const struct amdgpu_buffer_funcs	*buffer_funcs;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+index f202b45c413c..7722da8e7cb4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+@@ -3526,7 +3526,7 @@ static int gfx_v9_0_kiq_init_register(struct amdgpu_ring *ring)
+ 		 */
+ 		if (check_if_enlarge_doorbell_range(adev))
+ 			WREG32_SOC15(GC, 0, mmCP_MEC_DOORBELL_RANGE_UPPER,
+-					(adev->doorbell.size - 4));
++					(adev->doorbell.doorbell_aper_size - 4));
+ 		else
+ 			WREG32_SOC15(GC, 0, mmCP_MEC_DOORBELL_RANGE_UPPER,
+ 					(adev->doorbell_index.userqueue_end * 2) << 2);
+diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
+index aa761ff3a5fa..c5fd58d5fef9 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
+@@ -173,9 +173,9 @@ static void nbio_v2_3_enable_doorbell_selfring_aperture(struct amdgpu_device *ad
+ 				    DOORBELL_SELFRING_GPA_APER_SIZE, 0);
+ 
+ 		WREG32_SOC15(NBIO, 0, mmBIF_BX_PF_DOORBELL_SELFRING_GPA_APER_BASE_LOW,
+-			     lower_32_bits(adev->doorbell.base));
++			     lower_32_bits(adev->doorbell.doorbell_aper_base));
+ 		WREG32_SOC15(NBIO, 0, mmBIF_BX_PF_DOORBELL_SELFRING_GPA_APER_BASE_HIGH,
+-			     upper_32_bits(adev->doorbell.base));
++			     upper_32_bits(adev->doorbell.doorbell_aper_base));
+ 	}
+ 
+ 	WREG32_SOC15(NBIO, 0, mmBIF_BX_PF_DOORBELL_SELFRING_GPA_APER_CNTL,
+diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v4_3.c b/drivers/gpu/drm/amd/amdgpu/nbio_v4_3.c
+index 15eb3658d70e..9d716ec71f28 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nbio_v4_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/nbio_v4_3.c
+@@ -169,9 +169,9 @@ static void nbio_v4_3_enable_doorbell_selfring_aperture(struct amdgpu_device *ad
+ 				    DOORBELL_SELFRING_GPA_APER_SIZE, 0);
+ 
+ 		WREG32_SOC15(NBIO, 0, regBIF_BX_PF0_DOORBELL_SELFRING_GPA_APER_BASE_LOW,
+-			     lower_32_bits(adev->doorbell.base));
++			     lower_32_bits(adev->doorbell.doorbell_aper_base));
+ 		WREG32_SOC15(NBIO, 0, regBIF_BX_PF0_DOORBELL_SELFRING_GPA_APER_BASE_HIGH,
+-			     upper_32_bits(adev->doorbell.base));
++			     upper_32_bits(adev->doorbell.doorbell_aper_base));
+ 	}
+ 
+ 	WREG32_SOC15(NBIO, 0, regBIF_BX_PF0_DOORBELL_SELFRING_GPA_APER_CNTL,
+diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v6_1.c b/drivers/gpu/drm/amd/amdgpu/nbio_v6_1.c
+index 37615a77287b..19e175cc7340 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nbio_v6_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/nbio_v6_1.c
+@@ -121,9 +121,9 @@ static void nbio_v6_1_enable_doorbell_selfring_aperture(struct amdgpu_device *ad
+ 		      REG_SET_FIELD(tmp, BIF_BX_PF0_DOORBELL_SELFRING_GPA_APER_CNTL, DOORBELL_SELFRING_GPA_APER_SIZE, 0);
+ 
+ 		WREG32_SOC15(NBIO, 0, mmBIF_BX_PF0_DOORBELL_SELFRING_GPA_APER_BASE_LOW,
+-			     lower_32_bits(adev->doorbell.base));
++			     lower_32_bits(adev->doorbell.doorbell_aper_base));
+ 		WREG32_SOC15(NBIO, 0, mmBIF_BX_PF0_DOORBELL_SELFRING_GPA_APER_BASE_HIGH,
+-			     upper_32_bits(adev->doorbell.base));
++			     upper_32_bits(adev->doorbell.doorbell_aper_base));
+ 	}
+ 
+ 	WREG32_SOC15(NBIO, 0, mmBIF_BX_PF0_DOORBELL_SELFRING_GPA_APER_CNTL, tmp);
+diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_2.c b/drivers/gpu/drm/amd/amdgpu/nbio_v7_2.c
+index 31776b12e4c4..bb2f1857b1e2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_2.c
++++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_2.c
+@@ -175,10 +175,10 @@ static void nbio_v7_2_enable_doorbell_selfring_aperture(struct amdgpu_device *ad
+ 
+ 		WREG32_SOC15(NBIO, 0,
+ 			regBIF_BX_PF0_DOORBELL_SELFRING_GPA_APER_BASE_LOW,
+-			lower_32_bits(adev->doorbell.base));
++			lower_32_bits(adev->doorbell.doorbell_aper_base));
+ 		WREG32_SOC15(NBIO, 0,
+ 			regBIF_BX_PF0_DOORBELL_SELFRING_GPA_APER_BASE_HIGH,
+-			upper_32_bits(adev->doorbell.base));
++			upper_32_bits(adev->doorbell.doorbell_aper_base));
+ 	}
+ 
+ 	WREG32_SOC15(NBIO, 0, regBIF_BX_PF0_DOORBELL_SELFRING_GPA_APER_CNTL,
+diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
+index 19455a725939..ee1982bb06aa 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
++++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
+@@ -223,9 +223,9 @@ static void nbio_v7_4_enable_doorbell_selfring_aperture(struct amdgpu_device *ad
+ 		      REG_SET_FIELD(tmp, DOORBELL_SELFRING_GPA_APER_CNTL, DOORBELL_SELFRING_GPA_APER_SIZE, 0);
+ 
+ 		WREG32_SOC15(NBIO, 0, mmDOORBELL_SELFRING_GPA_APER_BASE_LOW,
+-			     lower_32_bits(adev->doorbell.base));
++			     lower_32_bits(adev->doorbell.doorbell_aper_base));
+ 		WREG32_SOC15(NBIO, 0, mmDOORBELL_SELFRING_GPA_APER_BASE_HIGH,
+-			     upper_32_bits(adev->doorbell.base));
++			     upper_32_bits(adev->doorbell.doorbell_aper_base));
+ 	}
+ 
+ 	WREG32_SOC15(NBIO, 0, mmDOORBELL_SELFRING_GPA_APER_CNTL, tmp);
+diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_7.c b/drivers/gpu/drm/amd/amdgpu/nbio_v7_7.c
+index def89379b51a..180d50bcb40f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_7.c
++++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_7.c
+@@ -132,10 +132,10 @@ static void nbio_v7_7_enable_doorbell_selfring_aperture(struct amdgpu_device *ad
+ 
+ 		WREG32_SOC15(NBIO, 0,
+ 			regBIF_BX_PF0_DOORBELL_SELFRING_GPA_APER_BASE_LOW,
+-			lower_32_bits(adev->doorbell.base));
++			lower_32_bits(adev->doorbell.doorbell_aper_base));
+ 		WREG32_SOC15(NBIO, 0,
+ 			regBIF_BX_PF0_DOORBELL_SELFRING_GPA_APER_BASE_HIGH,
+-			upper_32_bits(adev->doorbell.base));
++			upper_32_bits(adev->doorbell.doorbell_aper_base));
+ 	}
+ 
+ 	WREG32_SOC15(NBIO, 0, regBIF_BX_PF0_DOORBELL_SELFRING_GPA_APER_CNTL,
 -- 
 2.34.1
 
