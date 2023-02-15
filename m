@@ -2,47 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA0C36985EE
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Feb 2023 21:46:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F368B6986A5
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Feb 2023 21:55:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E45B10E154;
-	Wed, 15 Feb 2023 20:46:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 786ED10EC04;
+	Wed, 15 Feb 2023 20:55:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 414C210E154;
- Wed, 15 Feb 2023 20:46:36 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id C110DB823BD;
- Wed, 15 Feb 2023 20:46:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC43DC433EF;
- Wed, 15 Feb 2023 20:46:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1676493994;
- bh=/dHB7S/tKDWgQrM6FbPgvEFxvU3XqnY7GE0MJ4coEJA=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=rOkzV6OJMp/MCffkAIr2cDNivoZsKhgyAkd+UCmV2Am9WV5pgskQdR5if5Az3QUxj
- mcD0JaUrpau3t280ZS1OgEngRF0QFUVDAujstaao16wsupCiui3vUmvZ8gVg4BoRcP
- ExDIkMPiJLKeWvYCjlenMsJfdr7LPxJGuZTTNVyVm6usEmaFZt1o/MLjg4v8oV/ljX
- C43yBwoYRRj5cvKONhqw+1JVSHplX/b++A2sTWAR2XI8PRdFOmOk7kjFgKzsUQJvVr
- BX54vsBkjGXyjAGEPn7g0cs33RfzEE3wuyrjzIpPuEw4AjF6cNG9S9yT1syTgpy+5i
- PK/GtRD7ghbow==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.1 24/24] drm/amd/display: disable S/G display on DCN
- 3.1.2/3
-Date: Wed, 15 Feb 2023 15:45:47 -0500
-Message-Id: <20230215204547.2760761-24-sashal@kernel.org>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230215204547.2760761-1-sashal@kernel.org>
-References: <20230215204547.2760761-1-sashal@kernel.org>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E39B810E142;
+ Wed, 15 Feb 2023 20:53:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=MIME-Version:Content-Transfer-Encoding:Content-Type:Date:Cc:To:
+ From:Subject:Message-ID:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=DbZhMIqbxxxVLTui1okwUmu8iO/ZN5e4U1qMEUfbdtU=; b=ZvFsUU3+u3FgKVWAPWwQbxZW94
+ SdCoE/rVS2BNGSYETy8LJSh7krL6LwpBL+5EWl6D9zhaoiRA+tyDs62+2KF48egXWoDtDANTJtAcl
+ uI5bJ3SWVbIklJ1STLUDs3VaOJFcjoJnyrM70zpeI750DfP2oowqZlKCo/JY6ZRSXE8IzOitNlMDr
+ FQlODtgPes1Pb0zWn68FV+YUPhKNTC0rSC95YyKR0BMQ4nD2CDFKfVYqm9/CG7xRQlawzkgT0q7SD
+ Qp+xCPiFY6LMYm5B+HZWoV3kBWIBCtr96bPvyj85mIUGJ1Aq9ftXvzQkTE+O2d4azajeaTuN3EOmk
+ PkSMYvDQ==;
+Received: from 137.red-83-52-2.dynamicip.rima-tde.net ([83.52.2.137]
+ helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1pSOmQ-003Vjs-Sg; Wed, 15 Feb 2023 21:53:30 +0100
+Message-ID: <c1c2591a7f7c9bcb05b69b08da529ddb8fc8145c.camel@igalia.com>
+Subject: 2023 X.Org Board of Directors Elections Nomination period is NOW
+From: Ricardo Garcia <rgarcia@igalia.com>
+To: members@x.org, events@lists.x.org, xorg-devel@lists.freedesktop.org, 
+ wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ libre-soc-dev <libre-soc-dev@lists.libre-soc.org>
+Date: Wed, 15 Feb 2023 21:53:30 +0100
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 15 Feb 2023 20:55:35 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,45 +55,51 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, yifan1.zhang@amd.com, stylon.wang@amd.com,
- sunpeng.li@amd.com, airlied@gmail.com, Xinhui.Pan@amd.com,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, amd-gfx@lists.freedesktop.org,
- Jerry.Zuo@amd.com, aurabindo.pillai@amd.com, dri-devel@lists.freedesktop.org,
- daniel@ffwll.ch, Alex Deucher <alexander.deucher@amd.com>,
- harry.wentland@amd.com, christian.koenig@amd.com
+Cc: board <board@foundation.x.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alex Deucher <alexander.deucher@amd.com>
+We are seeking nominations for candidates for election to the X.Org
+Foundation Board of Directors. All X.Org Foundation members are eligible
+for election to the board.
 
-[ Upstream commit 077e9659581acab70f2dcc04b5bc799aca3a056b ]
+Nominations for the 2023 election are now open and will remain open
+until 23:59 UTC on 19 March 2023.
 
-Causes flickering or white screens in some configurations.
-Disable it for now until we can fix the issue.
+The Board consists of directors elected from the membership. Each year,
+an election is held to bring the total number of directors to eight. The
+four members receiving the highest vote totals will serve as directors
+for two year terms.
 
-Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/2352
-Cc: roman.li@amd.com
-Cc: yifan1.zhang@amd.com
-Reviewed-by: Yifan Zhang <yifan1.zhang@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 --
- 1 file changed, 2 deletions(-)
+The directors who received two year terms starting in 2022 were Emma
+Anholt, Mark Filion, Alyssa Rosenzweig and Ricardo Garcia. They will
+continue to serve until their term ends in 2024. Current directors whose
+term expires in 2023 are Samuel Iglesias Gons=C3=A1lvez, Manasi D Navare,
+Lyude Paul and Daniel Vetter.
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 988b1c947aefc..c026ba532b733 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -1524,8 +1524,6 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
- 			break;
- 		case IP_VERSION(2, 1, 0):
- 		case IP_VERSION(3, 0, 1):
--		case IP_VERSION(3, 1, 2):
--		case IP_VERSION(3, 1, 3):
- 		case IP_VERSION(3, 1, 6):
- 			init_data.flags.gpu_vm_support = true;
- 			break;
--- 
-2.39.0
+A director is expected to participate in the fortnightly IRC meeting to
+discuss current business and to attend the annual meeting of the X.Org
+Foundation, which will be held at a location determined in advance by
+the Board of Directors.
+
+A member may nominate themselves or any other member they feel is
+qualified. Nominations should be sent to the Election Committee at
+elections at x.org.
+
+Nominees shall be required to be current members of the X.Org
+Foundation, and submit a personal statement of up to 200 words that will
+be provided to prospective voters. The collected statements, along with
+the statement of contribution to the X.Org Foundation in the member's
+account page on http://members.x.org, will be made available to all
+voters to help them make their voting decisions.
+
+Nominations, membership applications or renewals and completed personal
+statements must be received no later than 23:59 UTC on 19 March 2023.
+
+The slate of candidates will be published 26 March 2023 and candidate
+Q&A will begin then. The deadline for Xorg membership applications and
+renewals is 26 March 2023.
+
+Cheers,
+Ricardo Garcia, on behalf of the X.Org BoD
 
