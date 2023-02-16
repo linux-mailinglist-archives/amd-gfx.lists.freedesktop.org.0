@@ -2,72 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAF28699435
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Feb 2023 13:22:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C237C69962B
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Feb 2023 14:45:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7984510ED54;
-	Thu, 16 Feb 2023 12:22:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 051F910E2C0;
+	Thu, 16 Feb 2023 13:45:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
- [IPv6:2a00:1450:4864:20::334])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C854310ED54
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Feb 2023 12:22:36 +0000 (UTC)
-Received: by mail-wm1-x334.google.com with SMTP id
- bg5-20020a05600c3c8500b003e00c739ce4so1478148wmb.5
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Feb 2023 04:22:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=fMx8BAbpdIXe34VxGByr3BaVtPqvuKphKamIlgh1Bag=;
- b=jFS5B3ov23EVHiXg76y/Qls8c8kS5y7Lwf3MZM6cvLmcaQoZTqcOyE2eKLGHfKtXzR
- 2F/4W5eojFzCqnXSm2mPQa/Rn36IMBIoMG9UZCFDJFMCylfIJTvyUuOWSmBbM5VRRpfI
- j54HBH8FfzB0FGFhORF/3d5khsCliiMapJ2mw=
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com
+ [IPv6:2607:f8b0:4864:20::42e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79A8210ED1D;
+ Thu, 16 Feb 2023 10:31:46 +0000 (UTC)
+Received: by mail-pf1-x42e.google.com with SMTP id ct17so1135259pfb.12;
+ Thu, 16 Feb 2023 02:31:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=29OzWpxyOz2YKbe7gk+wlUnvCGzWDi9lW+7/pophrnY=;
+ b=VuOklK73RybRMNGEpT6+1i1b0r2ft7MGsgRP6Do4TXn0wOAtQ453gLKLV0vCs72wE2
+ LIEVFUbzD7N3Axn92WbHDNmCRUx40OTMkWuFJcAH/BzsSEvbWWxbfnklwTRuYC9ZNcfB
+ Z3PVBqri9y2hBZYTbSA0tVDV7LeDaAm3T2Sw1K4H8uNUuilPCli5gCtosahCKn+WEn0q
+ dlRyWmxqZM/+4IlhLl7Yyt/XbQQIV6y2sfkLaWCIkA+R/NPiZNnnhgomGfM1xBwMvOGB
+ eagKWtVDzIDMP8Qvt6LbQtqp0PaosXeiBitO7VnnwVTS7QBgEDv3SBHIw/rwr8Vbh+Rm
+ QMuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=fMx8BAbpdIXe34VxGByr3BaVtPqvuKphKamIlgh1Bag=;
- b=ceqTRZDNKc5KQjLnryuxvbe4rMQN3jgZmyHagESlULZfv4H+Vwr2pue9g3We1xUk5G
- gHZkKHCHSaz4k3mlW9TuVzP5V/jIZtkti8J1XdPogV0ImYA9Ydt1qJvoKcaS6/Iceyho
- ncpKszIcoj4kh3qHgQSOfGUX2F1hxqrQU5VLWaRrbvsyjsYIRpTdx1/RwKfHCZMgXYsp
- s1jeuDWXhb0Yafa+FTBgh4a3Yl+cbOTow+3eHgrm8yY7XpJQ5hzyJ1EmdAMaYCt8ygX6
- UxJ0XcvkLWML1f0zFxGzQRJz69fJVFmU1Skl+uraQZkGuo1ysXZ2kVcaRhF0ocBmj1h7
- tVpQ==
-X-Gm-Message-State: AO0yUKVNut9Fn0uc1vJ+KvePHKRPT/1I8onDtT2YLuiL4W8C9Om8VQ9t
- xQTSip/a4opZZCTarKpfG6UXyw==
-X-Google-Smtp-Source: AK7set878VoREr295XMcS6wu4BQXtwW3RR2m5A5tx7mG4sonETPT3aTcl3quaxvVHsPvuMSUhQZMXQ==
-X-Received: by 2002:a05:600c:4f46:b0:3db:2922:2b99 with SMTP id
- m6-20020a05600c4f4600b003db29222b99mr5572712wmq.4.1676550155209; 
- Thu, 16 Feb 2023 04:22:35 -0800 (PST)
-Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
- [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- d21-20020a05600c34d500b003daffc2ecdesm5282033wmq.13.2023.02.16.04.22.34
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=29OzWpxyOz2YKbe7gk+wlUnvCGzWDi9lW+7/pophrnY=;
+ b=6A101SZVsvsR23vlyMcuP3uuut6kmQmrVw4elMy9CEQ1Zx15ChRZyPwKk/HW/++qtw
+ p++pUPttaeFOfaTKCvi0o0bENWjxvkglB5GCb21QzuQLO0oLIQ2npYzPHpdNR9LfWa9C
+ 9Xxkog1hTEI+a6OvnC7bY0r5Az932LCa9E+LAn0ihsdgt5qwMMtimo3XtXuKI2UVaNmq
+ ibh/39a0pPxYOE8EAh/ojHOsjMIQDodmsT1no7YLDuRtd8YQrr+1x1uNpSmRKthX0/q+
+ RZy2zJpyPZ0gWPTVwe/hhKPGZ6khLqymNYqc13C6X4a+GnrDpgE6Qcd7N3lkVAZ7HL0w
+ MM4g==
+X-Gm-Message-State: AO0yUKXpe7yW/uiLG1ZmYwgRB27+2VGaiUeXG7yObNDe9iXu4ikFu8XB
+ p/1atoiPFjzBoe9NorC1qiragsd6q+6wJA==
+X-Google-Smtp-Source: AK7set84rxDE0S2Ui4h6nOB6QxOphwCKGJ1gDgb+KixrIcbphyNjJYz+yWMyPkvq3gRdiMhOY4RW7Q==
+X-Received: by 2002:a05:6a00:3010:b0:5a8:aa5e:4bc3 with SMTP id
+ ay16-20020a056a00301000b005a8aa5e4bc3mr1724493pfb.1.1676543505864; 
+ Thu, 16 Feb 2023 02:31:45 -0800 (PST)
+Received: from localhost.localdomain ([202.53.32.211])
+ by smtp.gmail.com with ESMTPSA id
+ x17-20020a62fb11000000b005893f281d43sm975790pfm.27.2023.02.16.02.31.41
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Feb 2023 04:22:34 -0800 (PST)
-Date: Thu, 16 Feb 2023 13:22:29 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Dmitry Osipenko <digetx@gmail.com>
-Subject: Re: [PATCH 1/6] drm/amdgpu: Generalize KFD dmabuf import
-Message-ID: <Y+4gBb3V1uBf3l1c@phenom.ffwll.local>
-References: <cab37a40-9737-1b77-3a3f-87965d4c70b2@amd.com>
- <9b5b20e0-e04b-f7f6-9459-42d5a4bb44c7@amd.com>
- <1437874c-4b4b-191f-4486-de6ac69e99cc@amd.com>
- <19873c87-5d01-30dd-84d2-ced61b236fa0@amd.com>
- <27d2a3eb-541f-fd5b-6a92-77e49c74d1b4@gmail.com>
- <e55cc02a-3180-20b9-8255-f95f5910e7fe@amd.com>
- <bac027e4-0e91-8341-3baa-74520c60c808@amd.com>
- <b5101ba0-aa12-b3f1-10c0-368dc50ae4ac@amd.com>
- <8e121589-9e53-9237-6fa3-2a78ecc2dd8a@gmail.com>
- <9eb1a440-159f-1eb4-d4a7-93cc6beb1682@gmail.com>
+ Thu, 16 Feb 2023 02:31:45 -0800 (PST)
+From: Orlando Chamberlain <orlandoch.dev@gmail.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCHv2] drm/amdgpu: register a vga_switcheroo client for MacBooks
+ with apple-gmux
+Date: Thu, 16 Feb 2023 21:28:57 +1100
+Message-Id: <20230216102856.11987-1-orlandoch.dev@gmail.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <9eb1a440-159f-1eb4-d4a7-93cc6beb1682@gmail.com>
-X-Operating-System: Linux phenom 5.19.0-2-amd64 
+X-Mailman-Approved-At: Thu, 16 Feb 2023 13:45:49 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,89 +69,91 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Chen, Xiaogang" <xiaogang.chen@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Felix Kuehling <felix.kuehling@amd.com>, dri-devel@lists.freedesktop.org,
- Rob Clark <robdclark@gmail.com>, amd-gfx@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Aun-Ali Zaidi <admin@kodeit.net>, Kerem Karabay <kekrby@gmail.com>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Aditya Garg <gargaditya08@live.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ Evan Quan <evan.quan@amd.com>, David Airlie <airlied@gmail.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Orlando Chamberlain <orlandoch.dev@gmail.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 17, 2023 at 04:06:05AM +0300, Dmitry Osipenko wrote:
-> 16.01.2023 18:11, Christian König пишет:
-> > 
-> >>>>>
-> >>>>>> mmapping the memory with that new offset should still work. The
-> >>>>>> imported BO is created with ttm_bo_type_sg, and AFAICT ttm_bo_vm.c
-> >>>>>> supports mapping of SG BOs.
-> >>>>>
-> >>>>> Actually it shouldn't. This can go boom really easily.
-> >>>>
-> >>>> OK. I don't think we're doing this, but after Xiaogang raised the
-> >>>> question I went looking through the code whether it's theoretically
-> >>>> possible. I didn't find anything in the code that says that mmapping
-> >>>> imported dmabufs would be prohibited or even dangerous. On the
-> >>>> contrary, I found that ttm_bo_vm explicitly supports mmapping SG BOs.
-> >>>>
-> >>>>
-> >>>>>
-> >>>>> When you have imported a BO the only correct way of to mmap() it is
-> >>>>> to do so on the original exporter.
-> >>>>
-> >>>> That seems sensible, and this is what we do today. That said, if
-> >>>> mmapping an imported BO is dangerous, I'm missing a mechanism to
-> >>>> protect against this. It could be as simple as setting
-> >>>> AMDGPU_GEM_CREATE_NO_CPU_ACCESS in amdgpu_dma_buf_create_obj.
-> >>>
-> >>> At least for the GEM mmap() handler this is double checked very early
-> >>> by looking at obj->import_attach and then either rejecting it or
-> >>> redirecting the request to the DMA-buf file instead.
-> >>
-> >> Can you point me at where this check is? I see a check for
-> >> obj->import_attach in drm_gem_dumb_map_offset. But I can't see how
-> >> this function is called in amdgpu. I don't think it is used at all.
-> > 
-> > Uff, good question! @Thomas and @Dmitry: I clearly remember that one of
-> > you guys was involved in the DRM/GEM mmap cleanup and DMA-buf with
-> > workarounds for the KFD and DMA-buf.
-> > 
-> > What was the final solution to this? I can't find it of hand any more.
-> 
-> I was looking at it. The AMDGPU indeed allows to map imported GEMs, but
-> then touching the mapped area by CPU results in a bus fault. You,
-> Christian, suggested that this an AMDGPU bug that should be fixed by
-> prohibiting the mapping in the first place and I was going to fix it,
-> but then the plan changed from prohibiting the mapping into fixing it.
-> 
-> The first proposal was to make DRM core to handle the dma-buf mappings
-> for all drivers universally [1]. Then we decided that will be better to
-> prohibit mapping of imported GEMs [2]. In the end, Rob Clark argued that
-> better to implement the [1], otherwise current userspace (Android) will
-> be broken if mapping will be prohibited.
-> 
-> The last question was about the cache syncing of imported dma-bufs, how
-> to ensure that drivers will do the cache maintenance/syncing properly.
-> Rob suggested that it should be a problem for drivers and not for DRM core.
-> 
-> I was going to re-send the [1], but other things were getting priority.
-> It's good that you reminded me about it :) I may re-send it sometime
-> soon if there are no new objections.
-> 
-> [1] https://patchwork.freedesktop.org/patch/487481/
-> 
-> [2]
-> https://lore.kernel.org/all/20220701090240.1896131-1-dmitry.osipenko@collabora.com/
+Commit 3840c5bcc245 ("drm/amdgpu: disentangle runtime pm and
+vga_switcheroo") made amdgpu only register a vga_switcheroo client for
+GPU's with PX, however AMD GPUs in dual gpu Apple Macbooks do need to
+register, but don't have PX. Instead of AMD's PX, they use apple-gmux.
 
-Hm I still don't like allowing this in general, because in general it just
-doesn't work.
+Use apple_gmux_detect() to identify these gpus, and
+pci_is_thunderbolt_attached() to ensure eGPUs connected to Dual GPU
+Macbooks don't register with vga_switcheroo.
 
-I think more like a per-driver opt-in or something might be needed, so
-that drivers which "know" that it's ok to just mmap without coherency can
-allow that. Allowing this in general essentially gives up on the entire
-idea of dma-buf cache flushing completely.
--Daniel
+Fixes: 3840c5bcc245 ("drm/amdgpu: disentangle runtime pm and vga_switcheroo")
+Link: https://lore.kernel.org/amd-gfx/20230210044826.9834-10-orlandoch.dev@gmail.com/
+Signed-off-by: Orlando Chamberlain <orlandoch.dev@gmail.com>
+---
+v1->v2: Use apple_gmux_detect()
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 21 ++++++++++++++++-----
+ 1 file changed, 16 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 2f28a8c02f64..ef8b996f0622 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -35,6 +35,7 @@
+ #include <linux/devcoredump.h>
+ #include <generated/utsrelease.h>
+ #include <linux/pci-p2pdma.h>
++#include <linux/apple-gmux.h>
+ 
+ #include <drm/drm_aperture.h>
+ #include <drm/drm_atomic_helper.h>
+@@ -3919,12 +3920,15 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+ 	if ((adev->pdev->class >> 8) == PCI_CLASS_DISPLAY_VGA)
+ 		vga_client_register(adev->pdev, amdgpu_device_vga_set_decode);
+ 
+-	if (amdgpu_device_supports_px(ddev)) {
+-		px = true;
++	px = amdgpu_device_supports_px(ddev);
++
++	if (px || (!pci_is_thunderbolt_attached(adev->pdev) &&
++				apple_gmux_detect(NULL, NULL)))
+ 		vga_switcheroo_register_client(adev->pdev,
+ 					       &amdgpu_switcheroo_ops, px);
++
++	if (px)
+ 		vga_switcheroo_init_domain_pm_ops(adev->dev, &adev->vga_pm_domain);
+-	}
+ 
+ 	if (adev->gmc.xgmi.pending_reset)
+ 		queue_delayed_work(system_wq, &mgpu_info.delayed_reset_work,
+@@ -4029,6 +4033,7 @@ void amdgpu_device_fini_hw(struct amdgpu_device *adev)
+ void amdgpu_device_fini_sw(struct amdgpu_device *adev)
+ {
+ 	int idx;
++	bool px;
+ 
+ 	amdgpu_fence_driver_sw_fini(adev);
+ 	amdgpu_device_ip_fini(adev);
+@@ -4048,10 +4053,16 @@ void amdgpu_device_fini_sw(struct amdgpu_device *adev)
+ 
+ 	kfree(adev->bios);
+ 	adev->bios = NULL;
+-	if (amdgpu_device_supports_px(adev_to_drm(adev))) {
++
++	px = amdgpu_device_supports_px(adev_to_drm(adev));
++
++	if (px || (!pci_is_thunderbolt_attached(adev->pdev) &&
++				apple_gmux_detect(NULL, NULL)))
+ 		vga_switcheroo_unregister_client(adev->pdev);
++
++	if (px)
+ 		vga_switcheroo_fini_domain_pm_ops(adev->dev);
+-	}
++
+ 	if ((adev->pdev->class >> 8) == PCI_CLASS_DISPLAY_VGA)
+ 		vga_client_unregister(adev->pdev);
+ 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.39.1
+
