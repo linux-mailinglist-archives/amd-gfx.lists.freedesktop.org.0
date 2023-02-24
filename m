@@ -2,137 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7052C6A1E61
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Feb 2023 16:19:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33DAA6A1F03
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 Feb 2023 16:55:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1411B10EC53;
-	Fri, 24 Feb 2023 15:19:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A879510EC65;
+	Fri, 24 Feb 2023 15:55:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2062c.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe5a::62c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D689E10EC48;
- Fri, 24 Feb 2023 15:19:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lImvHofE3c5BWMyw1vnKYS1kghM3GnDDBO/6yvt9ZzvyEyr3nUD7iXep1wyza6OB97ixt31Kd/Jjo25Uwflc8ITV/weCwwBKst1XV4Y3lmiiZpeOUKJdUohj5am7SMz7DwtqMRci2ybJdNjyeHBYXPJPDOBSosrZKXVnvZWAPTBzAL7vfUHEZeKaQ/L6DmQygf5ri1GwtyZfFbvv7tHgwULgdeeiagIHgKgrSiGY8v3CafT8oJ31GQ65GIC45gImyl+lBtkGejrDf3QsrpgpqjAP8I6622PFClPVIZDmh9eS8f3VuwGcFKX2zIpki1Mdp+ISjoirdgIcbq93kjAwVA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wsjqPSfnm3Ygi4Io01Tn1OMFABOCofeh5v8NtS11/2E=;
- b=VCtAIxNdya0AiMhozyGYPRdPL1OtsGyicOfwPUEkQqasvbs4AFAwvoGAiXtEwX+JJ+1kxEUnK7XTWOGo+ROVI9lGNfSaaN3tNVKQawbmqpVVW2nzP2AdZf1szT9h92AmbhybL6RgTAwxhhn24cwS1F4fPSDFTAgHG07d4vxRE+3ZsQ5zCJugbJUcxNvcDPSPdsLhXbAjUEXhpnxnUv4g3uSWQYga9QiKDxVmJ69ed3dhx/EoQIZjrmASE4ixozOU19+iZkCPHKyfdU79pLOU5pkMZnZFyLR7IsZyh9x86CMIc2ra/5LyPiRFTHXKRAJGeH17XmbAhlpaMUvlhMvUIQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wsjqPSfnm3Ygi4Io01Tn1OMFABOCofeh5v8NtS11/2E=;
- b=oQ/0YCsJx18U6FHhuqF1+00z84f580UHIAXAiEAt3c93FTlI4XlEZmoY20UdKeH9u4WSTz8sLhVbELWZUrofSfR2fGRdaxelnaSUlyRQkckk9iBWwbhPVZzOc6UvYzDWz3UyBfsZihctFgV9+sieJBOZLnfKCIi77Rx2XR3k87o=
-Received: from PH0PR12MB5434.namprd12.prod.outlook.com (2603:10b6:510:d5::8)
- by IA1PR12MB8190.namprd12.prod.outlook.com (2603:10b6:208:3f2::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.21; Fri, 24 Feb
- 2023 15:19:08 +0000
-Received: from PH0PR12MB5434.namprd12.prod.outlook.com
- ([fe80::d292:d108:c1b0:41ea]) by PH0PR12MB5434.namprd12.prod.outlook.com
- ([fe80::d292:d108:c1b0:41ea%9]) with mapi id 15.20.6134.021; Fri, 24 Feb 2023
- 15:19:07 +0000
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by MN2PR12MB4127.namprd12.prod.outlook.com (2603:10b6:208:1d1::24)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.24; Fri, 24 Feb
- 2023 07:12:28 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::2e4f:4041:28be:ba7a]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::2e4f:4041:28be:ba7a%6]) with mapi id 15.20.6134.021; Fri, 24 Feb 2023
- 07:12:28 +0000
-Message-ID: <57e38bdd-8369-adb7-f095-26652d4ad8d5@amd.com>
-Date: Fri, 24 Feb 2023 08:12:22 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Keyword Review - Re: amdgpu didn't start with pci=nocrs parameter,
- get error "Fatal error during GPU init"
-Content-Language: en-US
-To: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Linux List Kernel Mailing <linux-kernel@vger.kernel.org>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>
-References: <CABXGCsMbqw2qzWSCDfp3cNrYVJ1oxLv8Aixfm_Dt91x1cvFX4w@mail.gmail.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <CABXGCsMbqw2qzWSCDfp3cNrYVJ1oxLv8Aixfm_Dt91x1cvFX4w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR0P281CA0138.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:96::7) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+Received: from mout.web.de (mout.web.de [212.227.17.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9AEC10E878
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 Feb 2023 10:51:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de; s=s29768273;
+ t=1677235898; i=spasswolf@web.de;
+ bh=I9/UjtVDJ+caW+EvKiZDZdjpa32RRJ/wdw17FHfa+eo=;
+ h=X-UI-Sender-Class:Subject:From:To:Date:In-Reply-To:References;
+ b=CW+tGzLvOxKlZRF+4nx077pWf/9BL+hj3c7Or6JeLEQeyDXA97h2YlOFOYL6bb/r0
+ y9vkJQdkW1qwTlDxmtbRJXGzCuaKJlPSihp5ncgGaQG0DQVl3N46TsL3PGbC4wMMo9
+ ABsco5ce1Ba8aNBEfcz21rJczIf0Y542VRpl7Sq7ZUdHX7or3KkBlx6aO/bD8t3Qp5
+ 5mXYOyyofgKF7I2QKpkU6FlDuXMRuJ7eBlScZ11gNHVJvXhQfXWH3xXy/jB+Z/6Qns
+ 1tsCnL5DF0fzxG4340ufgL/UZq2VxqmWUf3svzzVNLnRjnyWCTNJ0vTIrz1u9w9JwW
+ n9PmFM6PahHCg==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.0.101] ([176.198.191.160]) by smtp.web.de (mrweb105
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1M1rP8-1pTJjq308m-002Q8S; Fri, 24
+ Feb 2023 11:46:30 +0100
+Message-ID: <787d2fde7506de27038f191f831ceeda712a97df.camel@web.de>
+Subject: Re: [PATCH] drm/amd: use drm_kms_helper_poll_fini in
+ amdgpu_device_suspend to avoid warning
+From: Bert Karwatzki <spasswolf@web.de>
+To: "Chen, Guchun" <Guchun.Chen@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Date: Fri, 24 Feb 2023 11:46:29 +0100
+In-Reply-To: <DM5PR12MB24697477DE905E5985169EECF1A89@DM5PR12MB2469.namprd12.prod.outlook.com>
+References: <002235887cbe5ee00240b568223fdb3bb3a25c53.camel@web.de>
+ <DM5PR12MB24697477DE905E5985169EECF1A89@DM5PR12MB2469.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-1 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|MN2PR12MB4127:EE_|IA1PR12MB8190:EE_
-X-MS-Office365-Filtering-Correlation-Id: 97a91925-96f9-4ea4-8cec-08db16367c40
-X-Moderation-Data: 2/24/2023 3:19:06 PM
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: v8382IwWZc95aD1RLQiwrDRfWIVY5nI12Bg1L8N2q7uJ1wiB+pbBL0rZTuI/VQGHtVe57xWRMGTOQP4ucDWUlBNwN1Aq8McI0/xDAwF3teG9Z6umcnRJ0g0T8tnaO2qFsN6tG29qqZI5xWCVkOOZ2mV6navzKseXHnk5jW6KwRoJm4FZ5kYephqSzHWr5IaVy0hxxTFiOftGzX+F9Vp9Q4C9OcjMaCX/zZ9RA6cehMiXAisFuOXxuSgfklbyS+JXEBQlUPcsxYzZZYECriHSTwk6QrrVt1BF9dW8iZg/YVWlsGWdSkPtEj7QSr8lAO27cHPUqWfk3St9ML0qGuazD6jCqY5ZTB6kj1kNJ9fsx0G9meFEFsCC3wt+UhiUhp/YRDGtKUMBCIrzj2EwWUeGYOlyCKhlLb5IWreDU5hEExmx6kopKlMs0A0f2JyUgzXSWlCeKxRJkQ967nm80h6c9LNHQGjlskmgm5z8ValBlBI8ljqOaFpB0V0DePXNAGG9gJ/sSqTRGpjtj22rBYTj0EEX7y4Q+ZhUQQv1EkR4rrmrR/G/N54N5o5RSE2+/ZXCNga2r+sP1ItgZev5cs4m50Q9SwYv3m7AMkhILK8tFiNvp+I9alvVjDWdjdtq5CeIgyqeDRqNM5hcHwkxQLq6mqhb5NkATGAh0v+oSYfnxZwfVeJ6Oi3/dpmnv7JlmEFYo8R5CGkkv8a6XWbWOs309BEDlrSN8U1LnjsfpO0uUxA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH0PR12MB5434.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(4636009)(366004)(376002)(396003)(346002)(39860400002)(136003)(451199018)(478600001)(5660300002)(2906002)(2616005)(38100700002)(6636002)(83380400001)(110136005)(6486002)(316002)(36756003)(186003)(6506007)(6512007)(6666004)(8936002)(41300700001)(31696002)(8676002)(86362001)(66476007)(66556008)(66946007)(31686004)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S081U3Vxak53M0l0bHhKN253VVlrYUIwVkNpOTJQSzNTLzF5NFM1czZCVUpK?=
- =?utf-8?B?UDhVK1hzdkxWazlqRERvUTd2OTZ1OTZPZEJWYW1tT3pBbXFwQnRHcE9kY2xX?=
- =?utf-8?B?TVJ0T0o3Q2xENnQvajV1Z0QySzhPSGlFK0ZsZENhMU11bERFZ21wRmNFTlQ4?=
- =?utf-8?B?Qnp6WFcxNDJTRnM4aXNJTGVwdVNOSEdqNmxIMWNTVStCWnJXY1ZkYUN1SFZS?=
- =?utf-8?B?dXQyQnljbmxzZDBvMzlQTzFuamJlSHd0Y21GQUJNSWJIRHZYV0xZMFIxZzFM?=
- =?utf-8?B?SXpoNnRDR0pJVzlrQ0kxbWU2TXpjL01JeHB6d3c4UlBIY3EyU1V0ZWJMRktK?=
- =?utf-8?B?RGN6dHJpd0VqTzBGMDVvOFRyZUxmZ1o2RVVIN0IwVmJPODEwOFBkZ0p4QWF3?=
- =?utf-8?B?ZEdaYnJEbWUveENuSW1wZUM2amhYdmg5NjA3dWJTQUY4bnBHVFVFNTVNVmpE?=
- =?utf-8?B?QjdqYXB0bUFjUkRIcXBPam83MUxROE5GYVpmVC9ZZ3d1dVh4NjFDZXV0T1Fx?=
- =?utf-8?B?NER6T0FjTHpCdmRIWXk4WDVrTGVZblBYSUo4MllCaDNJNXRqWlZ1Vklyd24r?=
- =?utf-8?B?QTVlVXRmTW1EQ2VBWm9CbGZCYVlJRWYwNFpUZGROTWlnT2gxK0JCcU5hNEts?=
- =?utf-8?B?d0JUbXo2WjdYWlJjeFFQS2JaZ25ZOVU1UUFtbWdXa2I1REdzSllSdDlnUWRQ?=
- =?utf-8?B?ZzAxNTh5anZkYmkzdm5MVUFKQWFaOGtCU3JUaGZzWXgyTnlpcm8vMmpSNUFB?=
- =?utf-8?B?cTcxMWViUlRscGorY0J5TUZGK25iMFVXTzR5M0lZZ3ZZM3JJdlc1SnJRTzk3?=
- =?utf-8?B?My8wNXVINkU5K3FBbXNMaUhDdmdYOFNHc1VIQ2VOcVVnVTdUNGdqampEL09J?=
- =?utf-8?B?YVhUV0dEVXoyeEgvSDc1NWthdkZ4Qi9CbUc3ejUrc0o1Uk43ckx1TUhlWW5v?=
- =?utf-8?B?VzluVmZKaE5ZTHk5OXBBRDhKRDBQVUcrb21VM0V5QStjWGJqZFR6VWZ5NkFP?=
- =?utf-8?B?S0VVbDJha2pJK254RTR5cUNPOVA0UEE2cEhqNVRXVzByM2xJd2NDQW1oT1B0?=
- =?utf-8?B?czRTMnhXN3FWZW5YZjRKek50enIrMUxndkNTNnB1TXBaZVlYblJuMTB6Wm5q?=
- =?utf-8?B?RDlwak1IKzNJV0dwMy8zWEtDeVN5ZllJMHBwZDljVjdwMCsxY291UFZuVEEw?=
- =?utf-8?B?VENRbW9CTW9BckpiU3ArUlFlS2IzUHB0TWQ2Q0ExN29sZC96VERwNC9maWx5?=
- =?utf-8?B?Yy9uVmdQQjVwOHc2TjI5eVFkbGJGWXczclVETUFtVWZENkI0RUc2WkZRd3Nk?=
- =?utf-8?B?TG9QMFlWa1ZJSHphVlRVVkNzeitqbXZpNFhTL1ZnM0prY001SVdTM2hDVk93?=
- =?utf-8?B?cWx1TUcwZlpWWHhFbUdFa1ZVc21JMmRBVVpGSG5VMksxQTk2Y0h2aFBKUGVy?=
- =?utf-8?B?dlVKWHFKMG05QUtWcHpyZjdrK3lxSVYxQlpKVFF0aXRsNmpVSCtXMThaVjZw?=
- =?utf-8?B?Q3JRL1VkZXZnbW91a3k0WTFCVjg4L01KZ3dZR0JCdnR4WVJNQ1J0bXhDc1lh?=
- =?utf-8?B?cWhndEJ2M2RFRWdkWTBaN2V5MVQzSWxpMUZKRlp3R2REcDkwZElEOXl6aEF2?=
- =?utf-8?B?dFAydXFEa2xVcnoveFhCTHI2ZEtCc0pDMnZsblV2aWNReDFlUkd0OUhkNSs0?=
- =?utf-8?B?UWhZVjBrSWljVThPYWgvNHJlVHN5bVdLcHZ1eEdUK0VWeXM2ZmlQb2xWd2lN?=
- =?utf-8?B?RFZBYXlYMXpiLzEvRkQ3VzBIOE9SS3RYV3pXYzIvZEFjSllXMFF2bjJoMkZz?=
- =?utf-8?B?dlI0Uzh1ZjhwOGM3Y0s5cG5KbDNHM0JiYXU0T25iaFdBZXpQTUFhZ0tndEEv?=
- =?utf-8?B?WGRETEdjWU9SajhoWk1uNHNMWit4aS9zMmFzQnZmZUIzYjhKbFRzQ1hLdE1V?=
- =?utf-8?B?enpCbUdpQXIxYlZZZGgzSDRhSkZ2MmFLQmxJeWg4MUVHd3ZiVldoU25sbTk3?=
- =?utf-8?B?WmNLZTVrYTRvWnBuOVhXQytBaW5nam96dzZmcnNZTVI3V1krT3QxSVhHVkNH?=
- =?utf-8?B?ZDFCOTVzSDFrQmtMdWlSQ0tUbm1PNjRlSGlPRS9NZmNDQ1JMYlI4VFpSZUpM?=
- =?utf-8?B?QUZ0dm1aaUdSQkJXU3NrTmdsb3VNR09uQy91YzN3U2NVTE1PamxJNjBNU0M5?=
- =?utf-8?B?ZFkzM0hCM1NJWWROSjM1MDkwUTJYcld5K1dFYThST2h2YVA0YVlXUkFPNXZS?=
- =?utf-8?B?VVFGOFNoL2NjRWV2RzRzNGE4ZTZTOUtUNC8xSG9ZblBZNWw5RE43bzltdmNP?=
- =?utf-8?B?RHgxaVFwNkpUUnFGSTlxRXliMUNsRHRLc0U0Q01UTFkvaUR2b3VveEd3NEhn?=
- =?utf-8?Q?DB2o8w3a0dTZvtwXT+2clRGvQDu90WPa2RCskwzLqtQsQ?=
-X-MS-Exchange-AntiSpam-MessageData-1: kKeTFWWn1FRYt1VjJztwB1xahn/kgUUXh8JVaEU5462aTq9T8zFFlK+F
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 97a91925-96f9-4ea4-8cec-08db16367c40
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: spN+QuPmfvOx1JPKpEoFHuHgXLEphW5qK8vBfZUw19dY7N3SJvbcm1Pgs1UXfJSec8jSuMgcQmvY7JMESTw5VXL922N/JQztC6zfEvi+lJZDnNpUWpynjwyQFuXniTTwdR/7ldry69p3OaLT4FkZ/IrID2P/5/K3PRVY7YqnwuiDaYKBBrOTsj9fNKTLbTYEmzTvcGqWuamWeJ7Jtm4vfQCUOA6nNdM292RuStB0Pbw=
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2023 15:19:07.4098 (UTC)
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8190
+X-Provags-ID: V03:K1:ozgkUnt/5xDBlRwARzw+CnhJcXDFGTJeLTu4MXDcQsKysXHXw8l
+ IdkFXOOUmhxVYsI+Xc8xZYxXMOXLcQlzLmj/cBq/udRFI3xFbhZ4h9Rzof81ye/ZxaGaAQf
+ 6ytFSs6zwK4LAoMUdz2ZgIeNHjeSwUlavwBWEilSQcq2alD/ClOgtxF6gDbLpCVSwJ/wh0z
+ lV5oLgR8W88YtnXyAsAAw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:nbfjDlq0dGM=;DCoJLaD+1uT5FDocvxNmGbmv+22
+ pDk43qhEa9inw23QXhWG4dIM9Jb11Bte+nNHoOoY2yYViaj7oEHRYvYtdocr0tDvsByvZKoO2
+ 1nNpJNP5hae1QOyZO+PFtsnq2PYFHAdRLiv3TpFYRM7CzWwevYN3s4oW8ps502X5Pziye7Qrp
+ LutqevhcrLoIHIrEyisoq714v0Z0DS4Cvi4blVaLpKF4d6d9pMt+L6JRRhaR+MnVmlQVOdSOZ
+ ydLkWShi7SIY+8B3xXfg6uHuWP+xM39YEvPlyJmy48TyXfWBOqtJ/jPFbCxjN9AJLFyPezGqC
+ Z1UmG5uthIVal8nsA6KGHpgf+7FpeKzqpnqkE4g9flTLb/wqid2jCgqXp7Iloq9fZ8NoT3PCu
+ DXkNoXAV9o8b+j9Sa/V/aPZHIQ2C1GcJUmG/6PVJiCVR1JCvfwnBSvCl8s/exGU3hvIEZCDh/
+ 0boldnUtZGqvB8E8Fz6VLx7aRpGfUT6QimlYuS8yEJg05AP+M0b8esOjOStDKQ2tVERVPgSre
+ xHvmpu10Q7o5taxdeVNz/nbeW3yxN9ivBGCbkVv5UPCEPjG75Nq9ATOX3qcYQLieIVbHRYwYN
+ N5b4qBR0K3AjvR28zWghc63g+nVYdNCubmd6/C3Qkp05h+UfpFYJyZct+sOKbrvp1PZ5R7Znq
+ VwR7MO2yVqFbO9cqenPZhtPSA3U5YHXKwl+U+PkC7QecBY/fGrOXoVAK2WdpRj7nbG/eixsHq
+ gdgjRj3oUA40HRCwz8GB5lxOtsNMcmLS7SJnH/ttY80yYHyfdV9K77Si5jg/V0jVxFRqPPaPr
+ XhWCkgEduPOYH01vagQYRfuotxTNJWkhg+Z3aAUCIhe5dh460f7uODf9Zw3Xw43hiA4cRoh7k
+ KT5cK/hfgA3a2/kiskDZG3eVxIs+Bi21IKmUUUEZ+Nh2lREtyNWBfvWpYsSG0lJIBK2E1o/eZ
+ 4k5mCmUg1m/+vlKexNKhrTsxlM8=
+X-Mailman-Approved-At: Fri, 24 Feb 2023 15:55:54 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,82 +75,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Mikhail,
+Am Freitag, dem 24.02.2023 um 02:26 +0000 schrieb Chen, Guchun:
+> > Hi Bert,
+> >=20
+> > Thanks for your patch. As we will can drm_kms_helper_poll_enable in
+> > resume, so it may not make sense using drm_kms_helper_poll_fini in
+> > suspend, from code pairing perspective.
+> >=20
+> > For your case, is it possible to fix the problem by limiting the
+> > access of drm_kms_helper_poll_disable with checking
+> > mode_config_initialized in adev structure? We can get rid of the
+> > code
+> > change in drm core in this way.
+> >=20
+> > Regards,
+> > Guchun
+> >=20
+> > -----Original Message-----
+> > From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of
+> > Bert Karwatzki
+> > Sent: Friday, February 24, 2023 4:52 AM
+> > To: amd-gfx@lists.freedesktop.org
+> > Subject: Re: [PATCH] drm/amd: use drm_kms_helper_poll_fini in
+> > amdgpu_device_suspend to avoid warning
+> >=20
+> > When drm_kms_helper_poll_disable is used in amdgpu_device_suspend
+> > without drm_kms_helper_poll_init having been called it causes a
+> > warning in __flush_work:
+> > https://gitlab.freedesktop.org/drm/amd/-/issues/2411
+> > To avoid this one can use drm_kms_helper_poll_fini instead:
+> > Send a second time because Evolution seems to have garbled the
+> > first
+> > patch.=20
+> >=20
+> > From 51cba3ae1e9f557cca8e37eb43b9b9310d0d504d Mon Sep 17 00:00:00
+> > 2001
+> > From: Bert Karwatzki <spasswolf@web.de>
+> > Date: Thu, 16 Feb 2023 10:34:11 +0100
+> > Subject: [PATCH] Use drm_kms_helper_poll_fini instead of
+> > =C2=A0drm_kms_helper_poll_disable in amdgpu_device.c to avoid a warning
+> > from
+> > =C2=A0__flush_work.
+> >=20
+> > Signed-off-by: Bert Karwatzki <spasswolf@web.de>
+> > ---
+> > =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 +-
+> > =C2=A0drivers/gpu/drm/drm_probe_helper.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 | 7 ++++---
+> > =C2=A02 files changed, 5 insertions(+), 4 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > index b325f7039e0e..dc9e9868a84b 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > @@ -4145,7 +4145,7 @@ int amdgpu_device_suspend(struct drm_device
+> > *dev, bool fbcon)
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (amdgpu_acpi_smart_s=
+hift_update(dev, AMDGPU_SS_DEV_D3))
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0DRM_WARN("smart shift update failed\n");
+> > =C2=A0
+> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_kms_helper_poll_disable(=
+dev);
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_kms_helper_poll_fini(dev=
+);
+> > =C2=A0
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (fbcon)
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_fb_helper_set_suspend_unlocked(adev_to_drm(a=
+dev
+> > )-
+> > > > fb_helper, true);
+> > diff --git a/drivers/gpu/drm/drm_probe_helper.c
+> > b/drivers/gpu/drm/drm_probe_helper.c
+> > index 8127be134c39..105d00d5ebf3 100644
+> > --- a/drivers/gpu/drm/drm_probe_helper.c
+> > +++ b/drivers/gpu/drm/drm_probe_helper.c
+> > @@ -842,9 +842,10 @@ EXPORT_SYMBOL(drm_kms_helper_is_poll_worker);
+> > =C2=A0 *
+> > =C2=A0 * This function disables the output polling work.
+> > =C2=A0 *
+> > - * Drivers can call this helper from their device suspend
+> > implementation. It is
+> > - * not an error to call this even when output polling isn't
+> > enabled
+> > or already
+> > - * disabled. Polling is re-enabled by calling
+> > drm_kms_helper_poll_enable().
+> > + * Drivers can call this helper from their device suspend
+> > implementation. If it
+> > + * is not known if drm_kms_helper_poll_init has been called before
+> > the
+> > driver
+> > + * should use drm_kms_helper_poll_fini_instead.
+> > + * Polling is re-enabled by calling drm_kms_helper_poll_enable().
+> > =C2=A0 *
+> > =C2=A0 * Note that calls to enable and disable polling must be strictly
+> > ordered, which
+> > =C2=A0 * is automatically the case when they're only call from
+> > suspend/resume
+> >=20
+No, that does not work for me. I tried (in linux-next-20230224):
 
-this is pretty clearly a problem with the system and/or it's BIOS and 
-not the GPU hw or the driver.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index c4a4e2fe6681..27fb42b1bde4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -4145,7 +4145,13 @@ int amdgpu_device_suspend(struct drm_device
+*dev, bool fbcon)
+        if (amdgpu_acpi_smart_shift_update(dev, AMDGPU_SS_DEV_D3))
+                DRM_WARN("smart shift update failed\n");
+=20
+-       drm_kms_helper_poll_disable(dev);
++       if (adev->mode_info.mode_config_initialized) {
++               printk(KERN_INFO "adev-
+>mode_info.mode_config_initialized =3D %d\n",
++                               adev-
+>mode_info.mode_config_initialized);
++               printk(KERN_INFO "dev->mode_config.poll_enabled =3D
+%d\n",
++                               dev->mode_config.poll_enabled);
++               drm_kms_helper_poll_disable(dev);
++       }
+=20
+        if (fbcon)
+                drm_fb_helper_set_suspend_unlocked(adev_to_drm(adev)-
+>fb_helper, true);
 
-The option pci=nocrs makes the kernel ignore additional resource windows 
-the BIOS reports through ACPI. This then most likely leads to problems 
-with amdgpu because it can't bring up its PCIe resources any more.
+and found that mode_config_initialized=3D1 but dev-
+>mode_config.poll_enabled=3D0 with the usual warning:
+[   23.287058] adev->mode_info.mode_config_initialized =3D 1
+[   23.287061] dev->mode_config.poll_enabled =3D 0
+[   23.287063] ------------[ cut here ]------------
+[   23.287064] WARNING: CPU: 0 PID: 16 at kernel/workqueue.c:3167
+__flush_work.isra.0+0x261/0x270
 
-The output of "sudo lspci -vvvv -s $BUSID_OF_AMDGPU" might help 
-understand the problem, but I strongly suggest to try a BIOS update first.
-
-Regards,
-Christian.
-
-Am 24.02.23 um 00:40 schrieb Mikhail Gavrilov:
-> Hi,
-> I have a laptop ASUS ROG Strix G15 Advantage Edition G513QY-HQ007. But
-> it is impossible to use without AC power because the system losts nvme
-> when I disconnect the power adapter.
->
-> Messages from kernel log when it happens:
-> nvme nvme0: controller is down; will reset: CSTS=0xffffffff, PCI_STATUS=0x10
-> nvme nvme0: Does your device have a faulty power saving mode enabled?
-> nvme nvme0: Try "nvme_core.default_ps_max_latency_us=0 pcie_aspm=off"
-> and report a bug
->
-> I tried to use recommended parameters
-> (nvme_core.default_ps_max_latency_us=0 and pcie_aspm=off) to resolve
-> this issue, but without successed.
->
-> In the linux-nvme mail list the last advice was to try the "pci=nocrs"
-> parameter.
->
-> But with this parameter the amdgpu driver refuses to work and makes
-> the system unbootable. I can solve the problem with the booting system
-> by blacklisting the driver but it is not a good solution, because I
-> don't wanna lose the GPU.
->
-> Why amdgpu not work with "pci=nocrs" ?
-> And is it possible to solve this incompatibility?
-> It is very important because when I boot the system without amdgpu
-> driver with "pci=nocrs" nvme is not losts when I disconnect the power
-> adapter. So "pci=nocrs" really helps.
->
-> Below that I see in kernel log when adds "pci=nocrs" parameter:
->
-> amdgpu 0000:03:00.0: amdgpu: Fetched VBIOS from ATRM
-> amdgpu: ATOM BIOS: SWBRT77321.001
-> [drm] VCN(0) decode is enabled in VM mode
-> [drm] VCN(0) encode is enabled in VM mode
-> [drm] JPEG decode is enabled in VM mode
-> Console: switching to colour dummy device 80x25
-> amdgpu 0000:03:00.0: amdgpu: Trusted Memory Zone (TMZ) feature
-> disabled as experimental (default)
-> [drm] GPU posting now...
-> [drm] vm size is 262144 GB, 4 levels, block size is 9-bit, fragment
-> size is 9-bit
-> amdgpu 0000:03:00.0: amdgpu: VRAM: 12272M 0x0000008000000000 -
-> 0x00000082FEFFFFFF (12272M used)
-> amdgpu 0000:03:00.0: amdgpu: GART: 512M 0x0000000000000000 - 0x000000001FFFFFFF
-> amdgpu 0000:03:00.0: amdgpu: AGP: 267894784M 0x0000008400000000 -
-> 0x0000FFFFFFFFFFFF
-> [drm] Detected VRAM RAM=12272M, BAR=16384M
-> [drm] RAM width 192bits GDDR6
-> [drm] amdgpu: 12272M of VRAM memory ready
-> [drm] amdgpu: 31774M of GTT memory ready.
-> amdgpu 0000:03:00.0: amdgpu: (-14) failed to allocate kernel bo
-> [drm] Debug VRAM access will use slowpath MM access
-> amdgpu 0000:03:00.0: amdgpu: Failed to DMA MAP the dummy page
-> [drm:amdgpu_device_init [amdgpu]] *ERROR* sw_init of IP block
-> <gmc_v10_0> failed -12
-> amdgpu 0000:03:00.0: amdgpu: amdgpu_device_ip_init failed
-> amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
-> amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
->
-> Of course a full system log is also attached.
->
+The flag that needs to be checked to avoid the warning is dev-
+>mode_config.poll_enabled which gets set by drm_kms_helper_poll_init
+and drm_kms_helper_poll_fini does just that. Changing the comment of
+drms_kms_helper_poll_disable is technically not necessary though.
+Bert Karwatzki
 
