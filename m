@@ -1,91 +1,44 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 563B66A3B59
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Feb 2023 07:45:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE1786A3EE9
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Feb 2023 10:57:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79B3510E15A;
-	Mon, 27 Feb 2023 06:45:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2046F10E3A4;
+	Mon, 27 Feb 2023 09:57:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B37910E35F
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Feb 2023 06:45:50 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mONOsBYfSkp2eA5hUDTNnSEx6ftsCbaRIaqAFuTmyosTku3e0o6pPzxaMAeoYMDktsM2xiZE7625z3XQYcozINVYWqCKm7C9H5onGsQZ4893dhpyAKb7qJLL2PxMOHScVys51HRRDQ0Iv5S8x0bQTRm0jQBDp9Y8Pm/qGfTnB1vCWHdde7rjAszSZFn+oNr5ls5pi2uUJVaOt/O/rP7Z0HOXFP32N4sqs9eJBgvOUN/tfMAYmOQRhtQYkXDdDEdAtrVF3M879NIRnEhpkcGSApAQYw7p8efujkHVAFrzR5HuPXm9/aiOsTZqzy7O4Jh27cs0iPsTuq8TktQO8ZwSNQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FJ1OxLm8RiVVuq7eYcvus0H8SqAZU6ZsOKBtG54oYZA=;
- b=OYczSd7DK84OXXVZKFGLFyKfkQpO28+1JwP1nNX3pauZKUXG0s4026iONvT65o5feOfbWKp7LYl2JvtGjOa8rvDAyENlj4Cf3saDrGw9srGX9hXjoUfITqAp5gxYY2f95fNxzMmZb0PlzMALTPZhbQKT80snHWjWAqllR6M0F1MEF7CSE23qczyTEcA33vxc0unnllM1IWds3ARr8oxPjk8Frmzm8CwYB57A5wkMj/GOvPyt+dhO9jNFh6hxT3AunhsvYOsu3cBdOX3eWy8GMkmm2PtYe64JeqGo6VMRQEM096akeWNJrO0O+oYG7YR7XIv+6yn0al++sGO6DT5Bpg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FJ1OxLm8RiVVuq7eYcvus0H8SqAZU6ZsOKBtG54oYZA=;
- b=HK96E4qmqQMbNcFKnKE8dWBD12GAULHK57wHv9o0WAzylJj8s48Tzsm2S21tUdUOZdnTDMfOPEFSqh7eHRsVvYMSHtg2yy8Bm8MmWbyYIDutsEM1WlwRP0WMm60Z4eP0XQlah36rbo6mY5rsZP4szJC999ZU0fR5kK3VGA6ucLs=
-Received: from BN9PR03CA0439.namprd03.prod.outlook.com (2603:10b6:408:113::24)
- by DS7PR12MB8249.namprd12.prod.outlook.com (2603:10b6:8:ea::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.27; Mon, 27 Feb
- 2023 06:45:47 +0000
-Received: from BN8NAM11FT051.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:113:cafe::a4) by BN9PR03CA0439.outlook.office365.com
- (2603:10b6:408:113::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.29 via Frontend
- Transport; Mon, 27 Feb 2023 06:45:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT051.mail.protection.outlook.com (10.13.177.66) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6156.16 via Frontend Transport; Mon, 27 Feb 2023 06:45:47 +0000
-Received: from leiyaoyao-Super-Server.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Mon, 27 Feb 2023 00:45:46 -0600
-From: Yaoyao Lei <yaoyao.lei@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: Stop clearing kiq position during fini
-Date: Mon, 27 Feb 2023 14:45:30 +0800
-Message-ID: <20230227064530.2699469-1-yaoyao.lei@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from forward105j.mail.yandex.net (forward105j.mail.yandex.net
+ [5.45.198.248])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C09DE10E0E6;
+ Sun, 26 Feb 2023 14:19:16 +0000 (UTC)
+Received: from iva2-656890eaceb5.qloud-c.yandex.net
+ (iva2-656890eaceb5.qloud-c.yandex.net
+ [IPv6:2a02:6b8:c0c:6902:0:640:6568:90ea])
+ by forward105j.mail.yandex.net (Yandex) with ESMTP id E15C54EC884D;
+ Sun, 26 Feb 2023 17:11:14 +0300 (MSK)
+Received: by iva2-656890eaceb5.qloud-c.yandex.net (smtp/Yandex) with ESMTPSA
+ id tATvDFdaca61-J9iv9dTu; Sun, 26 Feb 2023 17:11:13 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lach.pw; s=mail;
+ t=1677420673; bh=tAhynSMDZaX+iE0zy9k7GywiZkOsJcg+z8IRMMvTpoY=;
+ h=Message-Id:Date:Cc:Subject:To:From;
+ b=TR1CW72vBYYFefZkrQMYOD+4ie7UrqgZUN7ogmOXv2lTkyg7MNIhcqr5SQ3d5LUAg
+ JMbaDFI29RSQ7d4BFUoqQYEIjrJ8cVobYe3F4KRLGmHI06RsVAkkAHemJeNq+UMMRg
+ kgoQowo48Otam6wrTvxWqqayZJBvwuK9JHdmdaAI=
+Authentication-Results: iva2-656890eaceb5.qloud-c.yandex.net;
+ dkim=pass header.i=@lach.pw
+From: Yaroslav Bolyukin <iam@lach.pw>
+To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v3] drm/edid DSC pass-through timing support
+Date: Sun, 26 Feb 2023 15:10:49 +0100
+Message-Id: <20230226141051.21767-1-iam@lach.pw>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT051:EE_|DS7PR12MB8249:EE_
-X-MS-Office365-Filtering-Correlation-Id: 28ec8685-c54c-49da-989e-08db188e4202
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zJZsjGB17SjsEb0o61ggJYckIXZG8EbOuUJ8e3DJ645ekKqSyuYZjdSOWBM3dFXnYXRjyFt27mV/062IAphlpsYsW3oY+bYVCD229D4rHPMY2jn148E4Dyi+/iLyJ2smZpk6XKgp4z8Q50TGMTlJDcjr3rPLCgmKzpcESz5fR+UPsMbgd4jAMxM9sYS4/kmCLg4QNpx0ZIvnetzPzWY9HWKXKUjId/a1E8zTrOserL2UAnluwUJgero/wQAi5IDNzumYwURDs9AcYD0AOFIEjBR9DR73ScIgW1w5OD+zwxlWckvvpjwiQze9gcMdbX05QsmBP+NlHTBlfbPlIaXJjC6gMA7tvvC8wrz7Li6HpvBRTYBC7f865K8z5yU+IZgfZogak/MqsUnEElej75Cv4n9ERyZzp9dV/kaUtNZ5hZMcgs5ugfPmHTBwjMWzTI+dkx4k+WrXozwOHjSiFV8F7hhLss0a9+YvSVSQHQ6ON7etx7zRvjbIFU6f2ecl660Ia9ldBmAjnHYmxLCJkUmdd78KuKuWZoljL8Kgrm/zkjHy3UZ2rmIZW1YWVqqCKKyqG3gIU+JLKj3z+657/pGf9HRU7c9lq/7LQHfsftH2zUpNBjrnSTFXAfSNsnKFPOh3KcXfJKOVPPGeeIgc8OamLrHtNj0QlPzVGjyp+0pN1Q67ygr6P+M+/owbClo/mK2PcknbTGvtBX7CJww4n/FxcCVIcnRVRpDpZjf154ugosQ=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(376002)(346002)(39860400002)(136003)(396003)(451199018)(40470700004)(46966006)(36840700001)(83380400001)(8676002)(6666004)(36756003)(40460700003)(36860700001)(86362001)(8936002)(82740400003)(81166007)(426003)(47076005)(356005)(5660300002)(40480700001)(478600001)(82310400005)(2616005)(186003)(26005)(336012)(1076003)(6916009)(70206006)(4326008)(7696005)(2906002)(44832011)(41300700001)(70586007)(316002)(16526019)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2023 06:45:47.4477 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 28ec8685-c54c-49da-989e-08db188e4202
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT051.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8249
+X-Mailman-Approved-At: Mon, 27 Feb 2023 09:57:31 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,44 +50,55 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: yaoyao.lei@amd.com
+Cc: Thomas Zimmermann <tzimmermann@suse.de>, Leo Li <sunpeng.li@amd.com>,
+ David Airlie <airlied@gmail.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Maxime Ripard <mripard@kernel.org>, Jani Nikula <jani.nikula@intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Yaroslav Bolyukin <iam@lach.pw>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Do not clear kiq position in RLC_CP_SCHEDULER so that CP could perform
-IDLE-SAVE after VF fini.
-Otherwise it could cause GFX hang if another Win guest is rendering.
+VESA DisplayID spec allows the device to force its DSC bits per pixel
+value.
 
-Signed-off-by: Yaoyao Lei <yaoyao.lei@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 14 +++-----------
- 1 file changed, 3 insertions(+), 11 deletions(-)
+For example, the HTC Vive Pro 2 VR headset uses this value in
+high-resolution modes (3680x1836@90-120, 4896x2448@90-120), and when the
+kernel doesn't respect this parameter, the garbage is displayed on HMD
+instead.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-index 6983acc456b2..073f5f23bc3b 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-@@ -7285,17 +7285,9 @@ static int gfx_v10_0_hw_fini(void *handle)
- 
- 	if (amdgpu_sriov_vf(adev)) {
- 		gfx_v10_0_cp_gfx_enable(adev, false);
--		/* Program KIQ position of RLC_CP_SCHEDULERS during destroy */
--		if (adev->ip_versions[GC_HWIP][0] >= IP_VERSION(10, 3, 0)) {
--			tmp = RREG32_SOC15(GC, 0, mmRLC_CP_SCHEDULERS_Sienna_Cichlid);
--			tmp &= 0xffffff00;
--			WREG32_SOC15(GC, 0, mmRLC_CP_SCHEDULERS_Sienna_Cichlid, tmp);
--		} else {
--			tmp = RREG32_SOC15(GC, 0, mmRLC_CP_SCHEDULERS);
--			tmp &= 0xffffff00;
--			WREG32_SOC15(GC, 0, mmRLC_CP_SCHEDULERS, tmp);
--		}
--
-+		/* Remove the steps of clearing KIQ position.
-+		 * It causes GFX hang when another Win guest is rendering.
-+		 */
- 		return 0;
- 	}
- 	gfx_v10_0_cp_enable(adev, false);
--- 
-2.25.1
+I am unaware of any other hardware using this value; however, multiple
+users have tested this patch on the Vive Pro 2, and it is known to work and
+not break anything else.
 
+Regarding driver support - I have looked at amdgpu and Nvidia's
+open-gpu-kernel-modules, and both seem to have some indication for this
+value; however, in Linux, it is unused in both. 
+
+Amdgpu integration was trivial, so I implemented it in the second patch;
+other kernel drivers still need the support of this value, and I don't have
+the necessary hardware to implement and test the handling of this value on
+them.
+
+BR,
+Yaroslav
+
+Yaroslav Bolyukin (2):
+  drm/edid: parse DRM VESA dsc bpp target
+  drm/amd: use fixed dsc bits-per-pixel from edid
+
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  2 +
+ .../gpu/drm/amd/display/dc/core/dc_stream.c   |  2 +
+ drivers/gpu/drm/amd/display/dc/dc_types.h     |  3 ++
+ drivers/gpu/drm/drm_edid.c                    | 42 ++++++++++++-------
+ include/drm/drm_connector.h                   |  6 +++
+ include/drm/drm_displayid.h                   |  4 ++
+ 6 files changed, 45 insertions(+), 14 deletions(-)
+
+
+base-commit: a48bba98380cb0b43dcd01d276c7efc282e3c33f
+--
+2.39.1
