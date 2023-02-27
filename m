@@ -2,58 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 287BD6A3EEA
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Feb 2023 10:57:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAF866A3EE7
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Feb 2023 10:57:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41B9610E3A6;
-	Mon, 27 Feb 2023 09:57:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BABB10E3A3;
+	Mon, 27 Feb 2023 09:57:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
- [IPv6:2a00:1450:4864:20::435])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5ACC10E0EF
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Feb 2023 07:12:21 +0000 (UTC)
-Received: by mail-wr1-x435.google.com with SMTP id r7so5069424wrz.6
- for <amd-gfx@lists.freedesktop.org>; Sun, 26 Feb 2023 23:12:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=oyeg5wP42IWBECtz7xqXMlTgUnHhR/85mRaNmVQW2Ls=;
- b=F5CvI9/LYnbqJtmDeJqmvrF3xrxJEFOycgowdmuGjcFdBzk21YLSTIrhXUTydn8geg
- PiA955VCXC+ftrGO6UOdixA3lw20EdiXgbZ4JqoYEVVOeDaDMw6y+cMTR3RTNjQppayh
- Y9Wq2Zy6xDIIREKgVQtloQkxamFe9IB4KZpMOwSIF6e3K3YJdPm5/M6ANlcgBY+6B6PG
- M4r7Th8kJB6Q04QEah1raqctSYQhUxDaB5Bvh1+qXQNVbirz5D0rZ5jvzu9n9jdMnHcO
- INQDaVgWNWLFWFQYP2s4TrASnh54G50k+pZHDgkDtfpjw9LItNCwMYN2G/3AaZDnOvuq
- r03Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=oyeg5wP42IWBECtz7xqXMlTgUnHhR/85mRaNmVQW2Ls=;
- b=HACkflyoa682impr6mepaDHWtJwciQxFact1OGkFHnZ7+crmEiPZhm5GEkWHJVDDum
- hTddpfZnY3qNRqNdl7APrwekAPPAJE64I++DYGkv6Y5PaJ66cEb7I32odbuLK8je5baz
- wdhsV8uPka9Ah2rfLAO08ePpI7gKPSv/FE92QB0Mo30tXz4TH9bwkBjk9EGotkpnSz8L
- PXK1PIggDJ5pwRcYGypdSUzimHSpCT+LAmJ00FzMeg1iAbAIdS/tKtKbgn76NdLOEE3e
- BYC48hhg4hNvaVMUKcEs+aIED7BOJV6FR0I/8U5oeFGLSRKt0QLIe//CPdKUHbuIB5wC
- bqmw==
-X-Gm-Message-State: AO0yUKXh4Sz1Q6gxk/GRMKNI6X1EjjR4uAZIzdZ7SjJ3k7CtLUKlj8cH
- rfJogvGtVZy1qE3di7dnp0M=
-X-Google-Smtp-Source: AK7set87N1youREmQwxO6+eyumctKwvn8O/d2IWNgToVGwYeD7gFXj/mLxH+SNAyaJpv/V6YJQeOzw==
-X-Received: by 2002:a05:6000:10e:b0:2cc:26be:8aad with SMTP id
- o14-20020a056000010e00b002cc26be8aadmr614248wrx.45.1677481940082; 
- Sun, 26 Feb 2023 23:12:20 -0800 (PST)
-Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
- t3-20020a5d6903000000b002c56af32e8csm6260829wru.35.2023.02.26.23.12.18
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 26 Feb 2023 23:12:19 -0800 (PST)
-Date: Mon, 27 Feb 2023 10:12:07 +0300
-From: Dan Carpenter <error27@gmail.com>
-To: sancchen@amd.com
-Subject: [bug report] drm/amd/display: Various logs added
-Message-ID: <Y/xXx2KXpxI2WoF8@kili>
+X-Greylist: delayed 739 seconds by postgrey-1.36 at gabe;
+ Mon, 27 Feb 2023 07:56:46 UTC
+Received: from smtpbg150.qq.com (smtpbg150.qq.com [18.132.163.193])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E5BF10E350;
+ Mon, 27 Feb 2023 07:56:46 +0000 (UTC)
+X-QQ-mid: bizesmtp89t1677483605t3p8ysbx
+Received: from localhost.localdomain ( [58.240.82.166])
+ by bizesmtp.qq.com (ESMTP) with 
+ id ; Mon, 27 Feb 2023 15:39:57 +0800 (CST)
+X-QQ-SSF: 0040000000200070C000B00A0000000
+X-QQ-FEAT: 3GqwhZhMvTvfQjpR/B2tBV5yWXh5qI9xpTn1g/xB6K4m9QHxfp3TKCpkbOi8u
+ SX5oUZA8JPczDI7eBe50wCktPsgIy1DvR6QkcJz8aadvplJS9cG3FdSW4H9Aszizw9J8jyx
+ s2nfL1FENw50Bg44lyJOzCnosxyJ/cbCNojhlE4wCQSdjqrFTeyOJnZ9cag+w2jDY+8NN9K
+ Do2eaGpNa70chPZuBddq2qdshf62XTDae70QLL6kbfih0XFnnBFBAubjZ2xKHXdtWNT2Mr7
+ XHs2720dKbvcEZqugi94t0x+/Gnh/QRM1p1InHydsKA5KZBY4HrKRhRD8EuyMguxfNDPguV
+ pgOrrGW0l8Q0ANch2M1QkXI4fLqARvZboCI0p6vfu8cROaBM9KH9NxY9zL11G0wXEtlKGZC
+ awVGfvFsflY=
+X-QQ-GoodBg: 2
+From: Yuanzhi Wang <wangyuanzhi@uniontech.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch, mario.limonciello@amd.com,
+ Bokun.Zhang@amd.com, tzimmermann@suse.de, hdegoede@redhat.com,
+ jingyuwang_vip@163.com, rafael.j.wysocki@intel.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] amdgpu: add a filter condition when set brightness
+Date: Mon, 27 Feb 2023 15:39:53 +0800
+Message-Id: <20230227073953.326-1-wangyuanzhi@uniontech.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:uniontech.com:qybglogicsvr:qybglogicsvr2
 X-Mailman-Approved-At: Mon, 27 Feb 2023 09:57:31 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,32 +55,47 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
+Cc: Yuanzhi Wang <wangyuanzhi@uniontech.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello Leo Chen,
+When the laptop is plugged into AC or DC power supply,
+the brightness obtained ACPI may be smaller than current
+brightness.As a result the screen becomes dark，this is
+not what people want.
 
-This is a semi-automatic email about new static checker warnings.
+Signed-off-by: Yuanzhi Wang <wangyuanzhi@uniontech.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-The patch 7ef414375fcc: "drm/amd/display: Various logs added" from 
-Aug 29, 2022, leads to the following Smatch complaint:
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+index d4196fcb85a0..93f1567028c5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+@@ -406,6 +406,7 @@ static int amdgpu_atif_handler(struct amdgpu_device *adev,
+ {
+ 	struct amdgpu_atif *atif = &amdgpu_acpi_priv.atif;
+ 	int count;
++	int old_brightness;
+ 
+ 	DRM_DEBUG_DRIVER("event, device_class = %s, type = %#x\n",
+ 			event->device_class, event->type);
+@@ -443,7 +444,13 @@ static int amdgpu_atif_handler(struct amdgpu_device *adev,
+ 				 * hardwired to post BACKLIGHT_UPDATE_SYSFS.
+ 				 * It probably should accept 'reason' parameter.
+ 				 */
+-				backlight_device_set_brightness(atif->bd, req.backlight_level);
++				old_brightness = backlight_get_brightness(atif->bd);
++				if (old_brightness > req.backlight_level)
++					DRM_WARN("old brightness %d is greater than ACPI brightness
++						%d\n", old_brightness, req.backlight_level);
++				else
++					backlight_device_set_brightness(atif->bd,
++						req.backlight_level);
+ 			}
+ 		}
+ 
+-- 
+2.20.1
 
-    ./drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c:1862 get_firmware_info_v3_2()
-    warn: variable dereferenced before check 'smu_info_v3_2' (see line 1861)
-
-./drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-  1860								DATA_TABLES(smu_info));
-  1861			DC_LOG_BIOS("gpuclk_ss_percentage (unit of 0.001 percent): %d\n", smu_info_v3_2->gpuclk_ss_percentage);
-                                                                                          ^^^^^^^^^^^^^^^
-Log adds a crash.
-
-  1862			if (!smu_info_v3_2)
-                             ^^^^^^^^^^^^^
-Too late.
-
-  1863				return BP_RESULT_BADBIOSTABLE;
-  1864	
-
-regards,
-dan carpenter
