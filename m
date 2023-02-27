@@ -2,44 +2,30 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B3EA6A3EE8
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Feb 2023 10:57:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B95106A3EEB
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Feb 2023 10:57:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04D5E10E39A;
-	Mon, 27 Feb 2023 09:57:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47DDE10E3A7;
+	Mon, 27 Feb 2023 09:57:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 381 seconds by postgrey-1.36 at gabe;
- Sun, 26 Feb 2023 14:17:54 UTC
-Received: from forward108j.mail.yandex.net (forward108j.mail.yandex.net
- [IPv6:2a02:6b8:0:801:2::253])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3A9610E0FE;
- Sun, 26 Feb 2023 14:17:54 +0000 (UTC)
-Received: from iva2-656890eaceb5.qloud-c.yandex.net
- (iva2-656890eaceb5.qloud-c.yandex.net
- [IPv6:2a02:6b8:c0c:6902:0:640:6568:90ea])
- by forward108j.mail.yandex.net (Yandex) with ESMTP id 9464E3F215F8;
- Sun, 26 Feb 2023 17:11:30 +0300 (MSK)
-Received: by iva2-656890eaceb5.qloud-c.yandex.net (smtp/Yandex) with ESMTPSA
- id tATvDFdaca61-K1oQtVIF; Sun, 26 Feb 2023 17:11:29 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lach.pw; s=mail;
- t=1677420689; bh=4OZH6E6CsjLO+EJW2LJh4x68QtAphhfAjHOaUhriUQw=;
- h=Message-Id:Date:In-Reply-To:Cc:Subject:References:To:From;
- b=Bq3mjqWKGG+aRyBMIRQvvUaXlBGNUVmOPd8PZxlOY0f9q6/WR31LtRUUC+RQiItZz
- QtSyWfRrAkIEKLUUazGYZrh33mLGeEDa//HuYKeKJbDJTxqYwMRyEziFQUflQPOcnZ
- AjWKdn8iZ52hvgtxSGykBxWP8KX1W2UicVhgz+0Y=
-Authentication-Results: iva2-656890eaceb5.qloud-c.yandex.net;
- dkim=pass header.i=@lach.pw
-From: Yaroslav Bolyukin <iam@lach.pw>
-To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] drm/amd: use fixed dsc bits-per-pixel from edid
-Date: Sun, 26 Feb 2023 15:10:51 +0100
-Message-Id: <20230226141051.21767-3-iam@lach.pw>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230226141051.21767-1-iam@lach.pw>
-References: <20230226141051.21767-1-iam@lach.pw>
+Received: from out30-132.freemail.mail.aliyun.com
+ (out30-132.freemail.mail.aliyun.com [115.124.30.132])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4513510E319;
+ Mon, 27 Feb 2023 02:07:49 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R491e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018045176;
+ MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=10; SR=0;
+ TI=SMTPD_---0VcVCSC._1677463663; 
+Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0VcVCSC._1677463663) by smtp.aliyun-inc.com;
+ Mon, 27 Feb 2023 10:07:45 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: alexander.deucher@amd.com
+Subject: [PATCH] drm/amdgpu: make umc_v8_10_convert_error_address static
+Date: Mon, 27 Feb 2023 10:07:31 +0800
+Message-Id: <20230227020731.114822-1-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 2.20.1.7.g153144c
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 27 Feb 2023 09:57:31 +0000
@@ -54,70 +40,37 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, Leo Li <sunpeng.li@amd.com>,
- David Airlie <airlied@gmail.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Maxime Ripard <mripard@kernel.org>, Jani Nikula <jani.nikula@intel.com>,
- Daniel Vetter <daniel@ffwll.ch>, Wayne Lin <Wayne.Lin@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Yaroslav Bolyukin <iam@lach.pw>
+Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, Xinhui.Pan@amd.com,
+ Abaci Robot <abaci@linux.alibaba.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, airlied@gmail.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-VESA vendor header from DisplayID spec may contain fixed bit per pixel
-rate, it should be respected by drm driver
+This symbol is not used outside of umc_v8_10.c, so marks it static.
 
-Signed-off-by: Yaroslav Bolyukin <iam@lach.pw>
-Reviewed-by: Wayne Lin <Wayne.Lin@amd.com>
+drivers/gpu/drm/amd/amdgpu/umc_v8_10.c:212:6: warning: no previous prototype for function 'umc_v8_10_convert_error_address'.
+
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=4230
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 2 ++
- drivers/gpu/drm/amd/display/dc/core/dc_stream.c           | 2 ++
- drivers/gpu/drm/amd/display/dc/dc_types.h                 | 3 +++
- 3 files changed, 7 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/umc_v8_10.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-index 6fdc2027c2b4..dba720d5df4c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-@@ -89,6 +89,8 @@ enum dc_edid_status dm_helpers_parse_edid_caps(
+diff --git a/drivers/gpu/drm/amd/amdgpu/umc_v8_10.c b/drivers/gpu/drm/amd/amdgpu/umc_v8_10.c
+index 66158219f791..048ab4202e9f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/umc_v8_10.c
++++ b/drivers/gpu/drm/amd/amdgpu/umc_v8_10.c
+@@ -209,7 +209,7 @@ static int umc_v8_10_swizzle_mode_na_to_pa(struct amdgpu_device *adev,
+ 	return 0;
+ }
  
- 	edid_caps->edid_hdmi = connector->display_info.is_hdmi;
- 
-+	edid_caps->dsc_fixed_bits_per_pixel_x16 = connector->display_info.dp_dsc_bpp;
-+
- 	sad_count = drm_edid_to_sad((struct edid *) edid->raw_edid, &sads);
- 	if (sad_count <= 0)
- 		return result;
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-index 72b261ad9587..a82362417379 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-@@ -103,6 +103,8 @@ static bool dc_stream_construct(struct dc_stream_state *stream,
- 
- 	/* EDID CAP translation for HDMI 2.0 */
- 	stream->timing.flags.LTE_340MCSC_SCRAMBLE = dc_sink_data->edid_caps.lte_340mcsc_scramble;
-+	stream->timing.dsc_fixed_bits_per_pixel_x16 =
-+		dc_sink_data->edid_caps.dsc_fixed_bits_per_pixel_x16;
- 
- 	memset(&stream->timing.dsc_cfg, 0, sizeof(stream->timing.dsc_cfg));
- 	stream->timing.dsc_cfg.num_slices_h = 0;
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_types.h b/drivers/gpu/drm/amd/display/dc/dc_types.h
-index 27d0242d6cbd..22fedf4c7547 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_types.h
-@@ -228,6 +228,9 @@ struct dc_edid_caps {
- 	bool edid_hdmi;
- 	bool hdr_supported;
- 
-+	/* DisplayPort caps */
-+	uint32_t dsc_fixed_bits_per_pixel_x16;
-+
- 	struct dc_panel_patch panel_patch;
- };
- 
+-void umc_v8_10_convert_error_address(struct amdgpu_device *adev,
++static void umc_v8_10_convert_error_address(struct amdgpu_device *adev,
+ 				    struct ras_err_data *err_data, uint64_t err_addr,
+ 				    uint32_t ch_inst, uint32_t umc_inst,
+ 				    uint32_t node_inst, uint64_t mc_umc_status)
 -- 
-2.39.1
+2.20.1.7.g153144c
 
