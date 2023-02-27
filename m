@@ -1,52 +1,123 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C7546A4382
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Feb 2023 14:58:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 036206A442C
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Feb 2023 15:20:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBDF310E20D;
-	Mon, 27 Feb 2023 13:58:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A523E10E414;
+	Mon, 27 Feb 2023 14:20:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E940C10E20D
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Feb 2023 13:58:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677506282; x=1709042282;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=LyjZENe9a58xVacAUqqOV7tjA6jkVjLtJKW3Hpgpaoo=;
- b=ixoxlW4B/uwlp4BH/WC3KSP7q9VzkXra5TMwdGgvGxvNVY5bt8Z31BtG
- iKeWiSdFEIfQWlJvPLsnNjAWclA079WX6XpN5kfXG9XeNr9wlJjCL2Vxv
- 0ohgCtUbURulRfR2Omwm9f4tyCI4LT0BxG19fD2kIpVIJkhPeay8+iNEr
- u/LuM5dUDKya9AL7vI3KA9KhbuDCiPa/LnPYU9azZtvaw8gld0KMKCVsR
- wwUGj9kCx5hY+sWm84A2hppq4hv8sjU+lLMTLqlXGbl66bPWRoLl/ixlC
- HR70kFwufLatN2C1jQM+Q69dmuB/9/rUD5oCMEDE+4rLOuJyYHD+8ADm/ A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="361419432"
-X-IronPort-AV: E=Sophos;i="5.98,332,1673942400"; d="scan'208";a="361419432"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2023 05:57:46 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="797641398"
-X-IronPort-AV: E=Sophos;i="5.98,332,1673942400"; d="scan'208";a="797641398"
-Received: from lkp-server01.sh.intel.com (HELO 3895f5c55ead) ([10.239.97.150])
- by orsmga004.jf.intel.com with ESMTP; 27 Feb 2023 05:57:44 -0800
-Received: from kbuild by 3895f5c55ead with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pWe0d-0004TT-11;
- Mon, 27 Feb 2023 13:57:43 +0000
-Date: Mon, 27 Feb 2023 21:57:08 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Subject: [linux-next:master] BUILD REGRESSION
- 7f7a8831520f12a3cf894b0627641fad33971221
-Message-ID: <63fcb6b4.yGpADaCT3Jus/Y+Z%lkp@intel.com>
-User-Agent: Heirloom mailx 12.5 6/20/10
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2080.outbound.protection.outlook.com [40.107.243.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C49910E413;
+ Mon, 27 Feb 2023 14:20:21 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nYxAdH2bewmOscqwbZVxsaMtAa8vMO5K8Wn+LDSVf7FHRECxCVKTRJ0S34CnF1AbBHcL7RI0FkDbFdAFhoaVbxUxgD2vAqhF4K8wRQaKr+1lNoBDljI+jwgqEqeXZn69p+oZ1VSteiQzdoHwsIkMl4laLpMruwJQEMQHlSBxlNrXPRsLTG51qqOsqqJ0nt76t4JFyCbRnct8WLfpytbiFHIEp3vFaFNaifb4rFIIiA4g17STSv2lw2/mfB6RBvZmdz7jRtLFwFU3grbiIbVm9BF6jlZu5kFXtNFV513gpar5seuuu7I0eeONdkuaQoWv557j4Eb0AJMUrg5umUy3yw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=H6mAd7vZlatsvU36fI9qjKB+U27EqBLthVv+GWqQsz4=;
+ b=EECnUh+XNvKddyWPyGc78JF/HGFDNzyUH1tFhQCapjuDcKny9ZrrYbYZJ3FE5+kitmRsxubsGtubOZCXjupkLtimYJYU9M66JRiv0hiT1jUTRY7JkX9qFsmk6wGDh0DzV3VF8iV4hTH6cKtLYGYHJy77GhDnnFN6AdSCH28ke2YAWeVDceSawEE+XJo3zRw8cmB53K5mD6nwfu0O9GE9AHAyFO4bT7K0SXTl58FSX7IFcghuqNiNlG7AOsI+JJUG8h70FeDKAdtiHJZRfVhu9n/QexWd9GDUEqQKUuAbLDGCZ6HIjiV2GYjBjXhxkfiJmLG0csW6lFs1Oowkm8ct4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=H6mAd7vZlatsvU36fI9qjKB+U27EqBLthVv+GWqQsz4=;
+ b=k1XAP8TLlEZBVkEVrEXJKFFUtynqo985YN5g+tR+yIT7gyJcau5XbLuBnt5hMjvHAwWYjETsXNIvwQhl167F5/JIDGJbs0d7/Qf+GeVrx0RaZH6jYcsbeMZczMmaq2I780ufhZNwRhlX9qsDTiDJCs9F/8o2mddpi8TUlaYTciQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MN0PR12MB6101.namprd12.prod.outlook.com (2603:10b6:208:3cb::10)
+ by DM4PR12MB5086.namprd12.prod.outlook.com (2603:10b6:5:389::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.29; Mon, 27 Feb
+ 2023 14:20:19 +0000
+Received: from MN0PR12MB6101.namprd12.prod.outlook.com
+ ([fe80::a59e:bafb:f202:313c]) by MN0PR12MB6101.namprd12.prod.outlook.com
+ ([fe80::a59e:bafb:f202:313c%6]) with mapi id 15.20.6134.029; Mon, 27 Feb 2023
+ 14:20:18 +0000
+Message-ID: <2975957e-51a9-fc44-9157-f3c4dba3cd0a@amd.com>
+Date: Mon, 27 Feb 2023 08:20:15 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH] amdgpu: add a filter condition when set brightness
+Content-Language: en-US
+To: Yuanzhi Wang <wangyuanzhi@uniontech.com>, alexander.deucher@amd.com,
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
+ daniel@ffwll.ch, Bokun.Zhang@amd.com, tzimmermann@suse.de,
+ hdegoede@redhat.com, jingyuwang_vip@163.com, rafael.j.wysocki@intel.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20230227073953.326-1-wangyuanzhi@uniontech.com>
+From: Mario Limonciello <mario.limonciello@amd.com>
+In-Reply-To: <20230227073953.326-1-wangyuanzhi@uniontech.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SN7P222CA0025.NAMP222.PROD.OUTLOOK.COM
+ (2603:10b6:806:124::35) To MN0PR12MB6101.namprd12.prod.outlook.com
+ (2603:10b6:208:3cb::10)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR12MB6101:EE_|DM4PR12MB5086:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5e04c800-27ab-418b-07ac-08db18cdc0d2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7UzqEMYRJCqVzI1Xtvs7Xi6OI3URM09Duh+ipbX8MiOzdnLLFlv9pa4s+8T8j7JIxIHv6whkXVH3oJs1UPNyfvc4h84mvecC7vmzHf3+CoQbDxExhKlEdKLmI0RyoAZgNLQHTV/jNZ3YkgUweguAbEnQ1xsV2yjxj0srJr3cIEniphoeeaFcc6Y5iWL6jvDqPuCyQlA6GwnCp4IV139W97dwpMGxv8Fym0NzfEruheiRNI0InnFpvbnQawCtjr0YuUUIdHqP8bT+RQt1xqzENK0m/ZvaU0CmSqBUTcvAvwDDaFIok/OcEC5FVtDmzHi/UvJrFnneJkaokGobjB62x0CbO5vX/clxjN9u1TPlFh9Nc5cAXlV0GYPSTavr+W07aby+fGmZ8DFlyKpgQyn8C1vYLfLRANAGJ++YWZbxSyMRb42dK1FRunt9wWsoLBy8DVQM64m/lzokzwhL/tunlHPaSj9WtpOCSQ52JGv6r41y8qzXRRWhMCymdOvwSbB5ur17+hNDod1Oiy51lEP/tYkXJaSZdDb4dDNAqisuYvt44F5+LIUI/NB8fQB4i2oHbZCdIbOJaHdorZKnVEnrvfe33oJaJR331X5sMZHEe4bzVmLA+kdOxGBQUMTRI3WwFS5Yk/66ASMvwS1Bmt3b+hIvVCc7qbxtj3KSiNaHRw+OAxDgJfh7qcOl8C3VytB3II+reC2EhKuafDaSkPrmvaN7zN6pANFcU7SbhrDw3QKoHDrI97M3FvC7MjJS2fot
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR12MB6101.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(4636009)(366004)(136003)(376002)(346002)(396003)(39860400002)(451199018)(8936002)(2906002)(5660300002)(31686004)(7416002)(41300700001)(44832011)(66556008)(66476007)(66946007)(8676002)(316002)(478600001)(6486002)(6666004)(6512007)(186003)(53546011)(6506007)(2616005)(86362001)(83380400001)(921005)(36756003)(38100700002)(31696002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SVZkbFFPaUM0Q0FkL2QwNGZXWlFTbkZINjFWSlRpZEd4L2w0TTJtYUxJYU5T?=
+ =?utf-8?B?dXJkRkFXVGhNc0RleFVkd1daOGpPSXRhalhKUjdlTnQxNEE5RFhLM0ZadVlp?=
+ =?utf-8?B?aXhUb29QZXNrRlFva0pGWEFMTm1NU1pSU1FML08wbXdRSTErVlRuM1ljYkJr?=
+ =?utf-8?B?T3gzV2Y5ajFmeG4zOC9QazFFRXowVENFOTlDTVMvZFdKbjZCZC90YU5kTjVK?=
+ =?utf-8?B?U2ZDWW9LcEJxTEJIMzljQnlUaHRiK3ZnRXlhc3VSOWxaaFVpNERZd1Uwc1Rn?=
+ =?utf-8?B?dDRZRXQvbzg4WE1lSWFWQ2J6NU52Mk9ndnE3OHBTZVF0TUpGckxkVkNlZlBL?=
+ =?utf-8?B?eXpndmcycFkrUVpPVUJ2R1NQSU85R3ZZN2dpaTRLYnIzUUlIQW9SZ1BvNkZE?=
+ =?utf-8?B?UkxpOUc3WTZ2NHVpd3IxdzRNRlE5c29YRURyOThNTDVRUWJBQkRqL05pYkl6?=
+ =?utf-8?B?SDUzdXEzc1ZkSDNic3ZsNm5wYnBMWGpGTmxrbkhTV3JjWjJZR0g4OUs5Rmtl?=
+ =?utf-8?B?YVdsVDJSOUQ0NG9xT0xGbWJTWFdsUGdsM0gyNDZJdkVNUFVYaDFsb09heWRC?=
+ =?utf-8?B?VG14RjN5VmhsTHRrVEMxNGNkeE5VSStGSWdSWmk1M2U2MlVLdWZLYklWZ2xO?=
+ =?utf-8?B?b2ZqMEVrQmNGSUR3alh2TzVncFBGd2RSd1Y3aTFTaks3cENrai9ucEZvYWRC?=
+ =?utf-8?B?UnFGZFRqc2RJLzRPbFliczZGdUc4M0JIUVRiSktVdmo5QzNNWHEzYU9jTjdx?=
+ =?utf-8?B?OWp6SHdpampHQTlXckE5ZU5JT3NJMURqU1VXaGtaa24wcFUvVzJiK3FmMDdy?=
+ =?utf-8?B?SlA4eURWcTFRa01EODRmSWN1R01vbUNNRld5WklwRWtyUS9mb0Nxa1pMeE9P?=
+ =?utf-8?B?N1FBQnlmQ1ptWlhtaHdmRU1RUmRRUEZRbSswR2pkN2thV1JMWSszZ0Q5a0l5?=
+ =?utf-8?B?RzBZVHplSXRUcDIvdVVjWlZmdytmNVRseXU4Ry9tMzBjL2xyNUpoYTR1MDJl?=
+ =?utf-8?B?MmdnODRkd3NGWDZ2RzlveU40ZlNhZi82WG01SE1vcEk5UWNRMUFzaDU1aGJK?=
+ =?utf-8?B?VGZhR1FWMXYzMC9PSFpBb3h1dlFreFBlQW94M08yWDVBOXIzVmNIZy91VDhE?=
+ =?utf-8?B?cDJna3RhNVZoZUNWRGdBRktOS29YUFFtU0swL3Q4aUwrV1FaT016Y3F0QU9p?=
+ =?utf-8?B?Qzcrdjhua3pPOWxVT05KYXQycmxIbUlMOG1SaVhKelFlUnhyczYwdFBDbnBt?=
+ =?utf-8?B?cjZTQTlSNWZWT1NlUTZxcWltVWp2OE9FTmZPNVpOdytDdy9FUWVjZStDWHBy?=
+ =?utf-8?B?ajFQNEV1NXdrcml4NVVrSnFBbDdiUXhQSFVFR0NKYVdoMTZWSUV4L3Q4VWox?=
+ =?utf-8?B?dFQ4aEFjRWhWM2NDcmd0d1c3WlJMWm96U1hWYXRKTVZ3UWxscDhON0ZPREdD?=
+ =?utf-8?B?ZjdqcFdMUEdFcDV0am1laEx4aTFWWmtsc0s2aE5ReERYTW8zalFaODQ0MndD?=
+ =?utf-8?B?V2tEdkRnaWNqSC83RHBZQUhiTjNaaTBYWldGVGkzMVZ1ZGdxMHFMTUptcmFG?=
+ =?utf-8?B?bmY1YytMdXNrUXBZMmpLTUloR0d4Y0hoRXpmbXNXQng5Rzg1SjRRc3dZMlNQ?=
+ =?utf-8?B?cFFRRy96ZWEvY2NGUlEzNkZSVEVoUGVETENleS92eEVGbHp3TlN0emlCN2ln?=
+ =?utf-8?B?RXU3QnA0WmVBQTZRNEZlTXZob0dxWmRCV1F3ZEJQQ2lZT3FSQ3hZZmFQbmcz?=
+ =?utf-8?B?MHJ4am9rcjdUeVFhVU9MWk51U3JZLzErOUxURWtKLzhoS3FacFhidXgyQ0tx?=
+ =?utf-8?B?NnN0NW4yUnk0RkpVSlk3TG1wVys5SVM5a3dGZ25hZHFaY1l3Y2VVZGYrM2Zj?=
+ =?utf-8?B?OXdDeEpxQitWdmFTMG5Bd1V0SW1VQTFoeEdCTGpmbmRuV2pET1lsMU80MjZq?=
+ =?utf-8?B?d1JKQTJxTmUyMEg0S0xMSmJrMkRkblpCYWpoeWI1YmxjME9NZ0Q2K3pKK0Vt?=
+ =?utf-8?B?MTBJNEYreitndFdheVhkYnBTRGw3N1NJb0ttb1JDaGNoS3JOK2lKcW4yQzNz?=
+ =?utf-8?B?cEE1T3lnRVlERXAxV2lkbjFoK2M2bnJWTTMvQmhZR2drS3NRM0dwamVGN1Qw?=
+ =?utf-8?B?YjgySmJXeGd0NEJFZ1RrT29sRGJieUlnM284TCtRRjhEVWdtSUNSMCtsMEZ2?=
+ =?utf-8?Q?/zFh0ZF0FtUgcg7bg4yDNICkSqjxkR50Io6TgVbD/WgT?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5e04c800-27ab-418b-07ac-08db18cdc0d2
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB6101.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2023 14:20:18.7597 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: anUKTWaFmfHpljV38Mw/IWYqgaj9xWR/2fRJ8+Fhz6tdWXPNXVmoDFagpvadoksjTFPvPJPfzMGdJw2BZwXZ0A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5086
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,261 +129,58 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arch@vger.kernel.org,
- Linux Memory Management List <linux-mm@kvack.org>, linux-usb@vger.kernel.org,
- amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-branch HEAD: 7f7a8831520f12a3cf894b0627641fad33971221  Add linux-next specific files for 20230227
+On 2/27/23 01:39, Yuanzhi Wang wrote:
+> When the laptop is plugged into AC or DC power supply,
+> the brightness obtained ACPI may be smaller than current
+> brightness.As a result the screen becomes dark，this is
+> not what people want.
+> 
 
-Error/Warning reports:
+Do you have a matching bug report with more information included?
 
-https://lore.kernel.org/oe-kbuild-all/202302111601.jtY4lKrA-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202302170355.Ljqlzucu-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202302210350.lynWcL4t-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202302242257.4W4myB9z-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202302262324.Xemtp2Zk-lkp@intel.com
+Some relevant details I think we need:
+kernel version
+laptop model
+BIOS version
+if it's the latest BIOS
+some sample numbers that this new warning/behavior catches
+acpidump
 
-Error/Warning: (recently discovered and may have been fixed)
+At least as described this sounds like a BIOS bug.
 
-FAILED: load BTF from vmlinux: No data available
-drivers/block/zram/zram_drv.c:1234:23: error: incompatible pointer types passing 'atomic_long_t *' (aka 'atomic_t *') to parameter of type 'const atomic64_t *' [-Werror,-Wincompatible-pointer-types]
-drivers/block/zram/zram_drv.c:1234:44: error: passing argument 1 of 'atomic64_read' from incompatible pointer type [-Werror=incompatible-pointer-types]
-drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_optc.c:294:6: warning: no previous prototype for 'optc3_wait_drr_doublebuffer_pending_clear' [-Wmissing-prototypes]
-idma64.c:(.text+0x145a): undefined reference to `devm_platform_ioremap_resource'
-idma64.c:(.text+0xacc): undefined reference to `devm_platform_ioremap_resource'
-include/asm-generic/div64.h:238:36: error: passing argument 1 of '__div64_32' from incompatible pointer type [-Werror=incompatible-pointer-types]
+> Signed-off-by: Yuanzhi Wang <wangyuanzhi@uniontech.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c | 9 ++++++++-
+>   1 file changed, 8 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+> index d4196fcb85a0..93f1567028c5 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+> @@ -406,6 +406,7 @@ static int amdgpu_atif_handler(struct amdgpu_device *adev,
+>   {
+>   	struct amdgpu_atif *atif = &amdgpu_acpi_priv.atif;
+>   	int count;
+> +	int old_brightness;
+>   
+>   	DRM_DEBUG_DRIVER("event, device_class = %s, type = %#x\n",
+>   			event->device_class, event->type);
+> @@ -443,7 +444,13 @@ static int amdgpu_atif_handler(struct amdgpu_device *adev,
+>   				 * hardwired to post BACKLIGHT_UPDATE_SYSFS.
+>   				 * It probably should accept 'reason' parameter.
+>   				 */
+> -				backlight_device_set_brightness(atif->bd, req.backlight_level);
+> +				old_brightness = backlight_get_brightness(atif->bd);
+> +				if (old_brightness > req.backlight_level)
+> +					DRM_WARN("old brightness %d is greater than ACPI brightness
+> +						%d\n", old_brightness, req.backlight_level);
+> +				else
+> +					backlight_device_set_brightness(atif->bd,
+> +						req.backlight_level);
+>   			}
+>   		}
+>   
 
-Unverified Error/Warning (likely false positive, please contact us if interested):
-
-drivers/usb/gadget/composite.c:2082:33: sparse: sparse: restricted __le16 degrades to integer
-mm/page_alloc.c:257:1: sparse: sparse: symbol 'check_pages_enabled' was not declared. Should it be static?
-
-Error/Warning ids grouped by kconfigs:
-
-gcc_recent_errors
-|-- alpha-randconfig-s031-20230226
-|   |-- drivers-usb-gadget-composite.c:sparse:sparse:restricted-__le16-degrades-to-integer
-|   `-- mm-page_alloc.c:sparse:sparse:symbol-check_pages_enabled-was-not-declared.-Should-it-be-static
-|-- arc-allyesconfig
-|   |-- drivers-block-zram-zram_drv.c:error:passing-argument-of-atomic64_read-from-incompatible-pointer-type
-|   `-- include-asm-generic-div64.h:error:passing-argument-of-__div64_32-from-incompatible-pointer-type
-|-- arm-allmodconfig
-|   |-- drivers-block-zram-zram_drv.c:error:passing-argument-of-atomic64_read-from-incompatible-pointer-type
-|   `-- include-asm-generic-div64.h:error:passing-argument-of-__div64_32-from-incompatible-pointer-type
-|-- arm-allyesconfig
-|   |-- drivers-block-zram-zram_drv.c:error:passing-argument-of-atomic64_read-from-incompatible-pointer-type
-|   `-- include-asm-generic-div64.h:error:passing-argument-of-__div64_32-from-incompatible-pointer-type
-|-- arm64-allyesconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn30-dcn30_optc.c:warning:no-previous-prototype-for-optc3_wait_drr_doublebuffer_pending_clear
-|-- csky-allmodconfig
-|   |-- drivers-block-zram-zram_drv.c:error:passing-argument-of-atomic64_read-from-incompatible-pointer-type
-|   `-- include-asm-generic-div64.h:error:passing-argument-of-__div64_32-from-incompatible-pointer-type
-|-- csky-randconfig-r001-20230226
-|   `-- drivers-block-zram-zram_drv.c:error:passing-argument-of-atomic64_read-from-incompatible-pointer-type
-|-- i386-allyesconfig
-|   |-- drivers-block-zram-zram_drv.c:error:passing-argument-of-atomic64_read-from-incompatible-pointer-type
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn30-dcn30_optc.c:warning:no-previous-prototype-for-optc3_wait_drr_doublebuffer_pending_clear
-|-- m68k-allmodconfig
-|   `-- drivers-block-zram-zram_drv.c:error:passing-argument-of-atomic64_read-from-incompatible-pointer-type
-|-- m68k-defconfig
-|   `-- drivers-block-zram-zram_drv.c:error:passing-argument-of-atomic64_read-from-incompatible-pointer-type
-|-- m68k-hp300_defconfig
-|   `-- drivers-block-zram-zram_drv.c:error:passing-argument-of-atomic64_read-from-incompatible-pointer-type
-|-- m68k-mvme16x_defconfig
-|   `-- drivers-block-zram-zram_drv.c:error:passing-argument-of-atomic64_read-from-incompatible-pointer-type
-|-- microblaze-randconfig-c043-20230226
-|   `-- drivers-block-zram-zram_drv.c:error:passing-argument-of-atomic64_read-from-incompatible-pointer-type
-|-- mips-allmodconfig
-|   `-- drivers-block-zram-zram_drv.c:error:passing-argument-of-atomic64_read-from-incompatible-pointer-type
-|-- mips-allyesconfig
-|   `-- drivers-block-zram-zram_drv.c:error:passing-argument-of-atomic64_read-from-incompatible-pointer-type
-|-- nios2-randconfig-s032-20230226
-|   `-- mm-page_alloc.c:sparse:sparse:symbol-check_pages_enabled-was-not-declared.-Should-it-be-static
-|-- nios2-randconfig-s053-20230226
-|   |-- drivers-usb-gadget-composite.c:sparse:sparse:restricted-__le16-degrades-to-integer
-|   |-- include-asm-generic-cmpxchg-local.h:sparse:sparse:cast-truncates-bits-from-constant-value-(-becomes-)
-|   |-- include-asm-generic-cmpxchg-local.h:sparse:sparse:cast-truncates-bits-from-constant-value-(aaa31337-becomes-)
-|   `-- mm-page_alloc.c:sparse:sparse:symbol-check_pages_enabled-was-not-declared.-Should-it-be-static
-|-- openrisc-randconfig-r002-20230227
-|   `-- drivers-block-zram-zram_drv.c:error:passing-argument-of-atomic64_read-from-incompatible-pointer-type
-|-- parisc-randconfig-s052-20230226
-|   |-- FAILED:load-BTF-from-vmlinux:No-data-available
-|   |-- drivers-usb-gadget-composite.c:sparse:sparse:restricted-__le16-degrades-to-integer
-|   `-- mm-page_alloc.c:sparse:sparse:symbol-check_pages_enabled-was-not-declared.-Should-it-be-static
-|-- powerpc-allmodconfig
-clang_recent_errors
-|-- hexagon-randconfig-r032-20230227
-|   `-- drivers-block-zram-zram_drv.c:error:incompatible-pointer-types-passing-atomic_long_t-(aka-atomic_t-)-to-parameter-of-type-const-atomic64_t-Werror-Wincompatible-pointer-types
-|-- hexagon-randconfig-r041-20230226
-|   `-- drivers-block-zram-zram_drv.c:error:incompatible-pointer-types-passing-atomic_long_t-(aka-atomic_t-)-to-parameter-of-type-const-atomic64_t-Werror-Wincompatible-pointer-types
-|-- hexagon-randconfig-r045-20230226
-|   `-- drivers-block-zram-zram_drv.c:error:incompatible-pointer-types-passing-atomic_long_t-(aka-atomic_t-)-to-parameter-of-type-const-atomic64_t-Werror-Wincompatible-pointer-types
-|-- i386-randconfig-a005-20230227
-|   `-- drivers-block-zram-zram_drv.c:error:incompatible-pointer-types-passing-atomic_long_t-(aka-atomic_t-)-to-parameter-of-type-const-atomic64_t-Werror-Wincompatible-pointer-types
-|-- powerpc-mpc8560_ads_defconfig
-|   `-- error:unknown-target-CPU
-|-- powerpc-ppa8548_defconfig
-|   `-- error:unknown-target-CPU
-|-- powerpc-socrates_defconfig
-|   `-- error:unknown-target-CPU
-`-- powerpc-tqm8540_defconfig
-    `-- error:unknown-target-CPU
-
-elapsed time: 724m
-
-configs tested: 145
-configs skipped: 11
-
-tested configs:
-alpha                            allyesconfig   gcc  
-alpha        buildonly-randconfig-r005-20230227   gcc  
-alpha                               defconfig   gcc  
-alpha                randconfig-r035-20230226   gcc  
-arc                               allnoconfig   gcc  
-arc                              allyesconfig   gcc  
-arc          buildonly-randconfig-r003-20230226   gcc  
-arc                                 defconfig   gcc  
-arc                  randconfig-r032-20230226   gcc  
-arc                  randconfig-r034-20230226   gcc  
-arc                  randconfig-r043-20230226   gcc  
-arc                  randconfig-r043-20230227   gcc  
-arm                     am200epdkit_defconfig   clang
-arm                           h3600_defconfig   gcc  
-arm                  randconfig-r036-20230226   clang
-arm                  randconfig-r046-20230226   gcc  
-arm                  randconfig-r046-20230227   clang
-arm                           tegra_defconfig   gcc  
-arm64                            allyesconfig   gcc  
-arm64        buildonly-randconfig-r006-20230226   gcc  
-arm64                               defconfig   gcc  
-csky                                defconfig   gcc  
-csky                 randconfig-r001-20230226   gcc  
-csky                 randconfig-r004-20230227   gcc  
-csky                 randconfig-r011-20230227   gcc  
-hexagon              randconfig-r013-20230226   clang
-hexagon              randconfig-r015-20230226   clang
-hexagon              randconfig-r032-20230227   clang
-hexagon              randconfig-r041-20230226   clang
-hexagon              randconfig-r041-20230227   clang
-hexagon              randconfig-r045-20230226   clang
-hexagon              randconfig-r045-20230227   clang
-i386                             allyesconfig   gcc  
-i386                              debian-10.3   gcc  
-i386                                defconfig   gcc  
-i386                 randconfig-a001-20230227   clang
-i386                 randconfig-a002-20230227   clang
-i386                 randconfig-a003-20230227   clang
-i386                 randconfig-a004-20230227   clang
-i386                 randconfig-a005-20230227   clang
-i386                 randconfig-a006-20230227   clang
-i386                 randconfig-a011-20230227   gcc  
-i386                 randconfig-a012-20230227   gcc  
-i386                 randconfig-a013-20230227   gcc  
-i386                 randconfig-a014-20230227   gcc  
-i386                 randconfig-a015-20230227   gcc  
-i386                 randconfig-a016-20230227   gcc  
-i386                 randconfig-r034-20230227   clang
-ia64                             allmodconfig   gcc  
-ia64         buildonly-randconfig-r002-20230227   gcc  
-ia64                                defconfig   gcc  
-ia64                 randconfig-r036-20230227   gcc  
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch                           defconfig   gcc  
-loongarch            randconfig-r002-20230226   gcc  
-loongarch            randconfig-r003-20230226   gcc  
-loongarch            randconfig-r005-20230227   gcc  
-loongarch            randconfig-r011-20230226   gcc  
-m68k                             allmodconfig   gcc  
-m68k         buildonly-randconfig-r004-20230227   gcc  
-m68k                                defconfig   gcc  
-m68k                          hp300_defconfig   gcc  
-m68k                        mvme16x_defconfig   gcc  
-m68k                 randconfig-r004-20230226   gcc  
-m68k                 randconfig-r013-20230227   gcc  
-m68k                 randconfig-r016-20230227   gcc  
-mips                             allmodconfig   gcc  
-mips                             allyesconfig   gcc  
-mips         buildonly-randconfig-r005-20230226   clang
-mips                  cavium_octeon_defconfig   clang
-mips                           ip28_defconfig   clang
-mips                    maltaup_xpa_defconfig   gcc  
-mips                 randconfig-r014-20230227   clang
-mips                          rm200_defconfig   clang
-nios2                               defconfig   gcc  
-nios2                randconfig-r001-20230227   gcc  
-openrisc             randconfig-r002-20230227   gcc  
-openrisc             randconfig-r031-20230226   gcc  
-openrisc             randconfig-r031-20230227   gcc  
-parisc       buildonly-randconfig-r004-20230226   gcc  
-parisc                              defconfig   gcc  
-parisc                generic-32bit_defconfig   gcc  
-parisc               randconfig-r015-20230227   gcc  
-parisc               randconfig-r035-20230227   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc      buildonly-randconfig-r001-20230227   gcc  
-powerpc      buildonly-randconfig-r003-20230227   gcc  
-powerpc                      cm5200_defconfig   gcc  
-powerpc                        icon_defconfig   clang
-powerpc                   microwatt_defconfig   clang
-powerpc                 mpc8560_ads_defconfig   clang
-powerpc                     ppa8548_defconfig   clang
-powerpc                    socrates_defconfig   clang
-powerpc                     tqm8540_defconfig   clang
-riscv                            allmodconfig   gcc  
-riscv                             allnoconfig   gcc  
-riscv                               defconfig   gcc  
-riscv             nommu_k210_sdcard_defconfig   gcc  
-riscv                randconfig-r003-20230227   clang
-riscv                randconfig-r006-20230226   gcc  
-riscv                randconfig-r006-20230227   clang
-riscv                randconfig-r042-20230226   clang
-riscv                randconfig-r042-20230227   gcc  
-riscv                          rv32_defconfig   gcc  
-s390                             allmodconfig   gcc  
-s390                             allyesconfig   gcc  
-s390                                defconfig   gcc  
-s390                 randconfig-r044-20230226   clang
-s390                 randconfig-r044-20230227   gcc  
-sh                               allmodconfig   gcc  
-sh                                  defconfig   gcc  
-sh                        edosk7760_defconfig   gcc  
-sh                          r7785rp_defconfig   gcc  
-sh                   randconfig-r005-20230226   gcc  
-sh                   randconfig-r012-20230226   gcc  
-sh                          rsk7269_defconfig   gcc  
-sh                          sdk7780_defconfig   gcc  
-sparc                               defconfig   gcc  
-sparc                randconfig-r016-20230226   gcc  
-sparc                       sparc64_defconfig   gcc  
-um                             i386_defconfig   gcc  
-um                           x86_64_defconfig   gcc  
-x86_64                            allnoconfig   gcc  
-x86_64                           allyesconfig   gcc  
-x86_64                              defconfig   gcc  
-x86_64                                  kexec   gcc  
-x86_64               randconfig-a001-20230227   clang
-x86_64               randconfig-a002-20230227   clang
-x86_64               randconfig-a003-20230227   clang
-x86_64               randconfig-a004-20230227   clang
-x86_64               randconfig-a005-20230227   clang
-x86_64               randconfig-a006-20230227   clang
-x86_64               randconfig-a011-20230227   gcc  
-x86_64               randconfig-a012-20230227   gcc  
-x86_64               randconfig-a013-20230227   gcc  
-x86_64               randconfig-a014-20230227   gcc  
-x86_64               randconfig-a015-20230227   gcc  
-x86_64               randconfig-a016-20230227   gcc  
-x86_64                               rhel-8.3   gcc  
-xtensa       buildonly-randconfig-r006-20230227   gcc  
-xtensa               randconfig-r033-20230226   gcc  
-xtensa               randconfig-r033-20230227   gcc  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
