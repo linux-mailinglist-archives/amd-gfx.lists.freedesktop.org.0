@@ -1,73 +1,76 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E29CF6AB836
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 Mar 2023 09:28:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D8C16AB839
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 Mar 2023 09:28:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B534310E141;
-	Mon,  6 Mar 2023 08:28:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1822910E154;
+	Mon,  6 Mar 2023 08:28:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85CC710E180
- for <amd-gfx@lists.freedesktop.org>; Sat,  4 Mar 2023 15:26:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 629A110E1B5
+ for <amd-gfx@lists.freedesktop.org>; Sat,  4 Mar 2023 16:22:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1677943611;
+ s=mimecast20190719; t=1677946944;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding;
- bh=/UDCKfL+7KAewaP80OA62WS4MzOdBiesWSnnrtlTFvY=;
- b=P2vqV2lsHDrXUfVQkr/KgvymexII/vCwEFOmNysn0HER0FVKhZNXZR2jSNjZQITSTjVdfZ
- glvQ3vdS8tXj17nTVUjmBXCaUGt8wlDYkI6FljJs9pz16bvkV1ySZtKD39Q0t83WYjrfIC
- ItYj5QxYfsernCssFfStFBZa92u7h8k=
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=dmotLXem4e3x/uxYnezILl2DZNq6o+kU9ZnW6R95Pzc=;
+ b=fktkH2vqk0bEsc7tKIxe76DHQIBzc9bVVRmELnjL6UjY8pzJcvqKKMetsUh9j8dZ3Yo8PU
+ XiRmy9VIwo6GS4am0iDdxipDjokqgoOXg+qu+9ZtrFbc7MZErVm5lDXUTCsKRi6yhQ86bM
+ pnNrGoAUMgnDoJgWQEvGREl0Id+MYTQ=
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
+ [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-516-HI_SUfjyObGfWEoqJ1IuSw-1; Sat, 04 Mar 2023 10:26:50 -0500
-X-MC-Unique: HI_SUfjyObGfWEoqJ1IuSw-1
-Received: by mail-qk1-f197.google.com with SMTP id
- q25-20020a37f719000000b00742bfdd63ecso3161068qkj.4
- for <amd-gfx@lists.freedesktop.org>; Sat, 04 Mar 2023 07:26:50 -0800 (PST)
+ us-mta-110-9LZbKWtoMFSgCq-p3P1IFQ-1; Sat, 04 Mar 2023 11:22:22 -0500
+X-MC-Unique: 9LZbKWtoMFSgCq-p3P1IFQ-1
+Received: by mail-qt1-f198.google.com with SMTP id
+ c5-20020ac85185000000b003bfae3b8051so3135750qtn.0
+ for <amd-gfx@lists.freedesktop.org>; Sat, 04 Mar 2023 08:22:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1677943609;
+ d=1e100.net; s=20210112; t=1677946942;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=/UDCKfL+7KAewaP80OA62WS4MzOdBiesWSnnrtlTFvY=;
- b=teBZJ3+CqTJqp2KwRNl818b/8Xw2dbXwAeJ/RY3j1EsLbDB5uiMKRH7TdRxn3P29GH
- 4rZGmkQo4Y7kV9HRBlxnEgfWZpvDYu1z6bQYyzcM4lN0UHKUXtG9TiO6IGAFPNIZ++gi
- KannFnEMX5OephiGblZdM+4oSiW0fW6HnCUoQ5wg7gQalurzA5Qt7AFgP0hj/YRb0UpZ
- eG3sE+qynAgWgsKT2uCmnN4ZEx4c4nWe1/POzndK/zbnR61ajI9KJZa4KIr/R9ALdWVY
- hasTM+m9wepXknHrzH/61ZZXn/PIAYHUKJpOoNL4YgTFazVEZiBpEGCTCVQjayGUwAsZ
- 21rg==
-X-Gm-Message-State: AO0yUKWSmtCYgoSYpZRluZryldHHiU2a8SRkWdDimLeNR3oq4KpSJNjt
- kKYSzwwvL4dpNLaDl10SEatITiyLmhScm/ndtCXajAacVghfOUM/O5iXBjm/oXhPA58wh+Xp786
- MGwVZpCwt4txy1UzNZTqqktT+yA==
-X-Received: by 2002:a05:622a:91:b0:3bf:e320:ba5d with SMTP id
- o17-20020a05622a009100b003bfe320ba5dmr9306168qtw.17.1677943609587; 
- Sat, 04 Mar 2023 07:26:49 -0800 (PST)
-X-Google-Smtp-Source: AK7set/MOHotq65z85YoYXsl+9GxKlOMDwDiVF39R9D7RfzOLxzdvuuX5Qo/4zrs6kDMXmPcM2L2fg==
-X-Received: by 2002:a05:622a:91:b0:3bf:e320:ba5d with SMTP id
- o17-20020a05622a009100b003bfe320ba5dmr9306142qtw.17.1677943609343; 
- Sat, 04 Mar 2023 07:26:49 -0800 (PST)
+ bh=dmotLXem4e3x/uxYnezILl2DZNq6o+kU9ZnW6R95Pzc=;
+ b=VuwIDakx4qFi2HESkltHXd12WwoiHo8qz8Q0e0fIp6wItRBXb/r+F5I4gA+QG6c6pf
+ NtGGhs/8KQnBE0/f9a5UNK3XUcrG5HRtwDmnccLmnPsUESSDeP1+/OPA0d4kMRJNgzh/
+ Yal1WV1aeQVWwd8XIfg/e2ZPdaTp6DBO12/6NLZZk9tGv5xYb3Z5Zyz9bZXSaPK2t6Jg
+ L7XFVPbClnGdtrhyGvDdhHtrnkPm5qUMiHx7m5JSN7dIW+v1TcguEH8X5i7NAZER5VbZ
+ 5mQktybvDiuzkdecNuizxD3t/rVf4LSmtBUqvDPMCuxJBQkacppNw1lE6YBDFkDAz3gd
+ wQKA==
+X-Gm-Message-State: AO0yUKV0J+9cVDqvHYcKiLnhrc6Huxi2JkBecG2/ToBObbKbbq7RYBWE
+ nwphK65jyokoPBscdPKDlN1aa6BBBNWUxpwgbODsVZG7nq5JY5usuvUmM8JX6wMSEAPo1/zjhoP
+ udSpQNmn9Mc3Pgv3ouK6U4UMLAQ==
+X-Received: by 2002:a05:6214:f09:b0:577:5b89:577e with SMTP id
+ gw9-20020a0562140f0900b005775b89577emr10603078qvb.32.1677946942372; 
+ Sat, 04 Mar 2023 08:22:22 -0800 (PST)
+X-Google-Smtp-Source: AK7set/JOVgua1W48N5/fE0WY936nqy/GjjBYTH7jYlDd1pCaIPB4j3tzfLMIQGDzqH29BsEliUTcQ==
+X-Received: by 2002:a05:6214:f09:b0:577:5b89:577e with SMTP id
+ gw9-20020a0562140f0900b005775b89577emr10603032qvb.32.1677946942084; 
+ Sat, 04 Mar 2023 08:22:22 -0800 (PST)
 Received: from dell-per740-01.7a2m.lab.eng.bos.redhat.com
  (nat-pool-bos-t.redhat.com. [66.187.233.206])
  by smtp.gmail.com with ESMTPSA id
- j26-20020ac874da000000b003b82489d8acsm3884477qtr.21.2023.03.04.07.26.48
+ s144-20020a374596000000b0073bb4312842sm3904539qka.128.2023.03.04.08.22.20
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 04 Mar 2023 07:26:48 -0800 (PST)
+ Sat, 04 Mar 2023 08:22:21 -0800 (PST)
 From: Tom Rix <trix@redhat.com>
 To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
  alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch, jiapeng.chong@linux.alibaba.com,
- Pavle.Kotarac@amd.com, oliver.logush@amd.com, alex.hung@amd.com,
- aurabindo.pillai@amd.com, HaoPing.Liu@amd.com
-Subject: [PATCH] drm/amd/display: change several dcn201 variables
+ airlied@gmail.com, daniel@ffwll.ch, alvin.lee2@amd.com, javierm@redhat.com,
+ hamza.mahfooz@amd.com, eric.bernstein@amd.com, roman.li@amd.com,
+ wenjing.liu@amd.com, praful.swarnakar@amd.com, tzimmermann@suse.de,
+ jiapeng.chong@linux.alibaba.com, Pavle.Kotarac@amd.com,
+ hansen.dsouza@amd.com, Charlene.Liu@amd.com, Josip.Pavic@amd.com,
+ Jun.Lei@amd.com, chiahsuan.chung@amd.com
+Subject: [PATCH] drm/amd/display: change several dcn20 variables
  storage-class-specifier to static
-Date: Sat,  4 Mar 2023 10:26:40 -0500
-Message-Id: <20230304152640.1938302-1-trix@redhat.com>
+Date: Sat,  4 Mar 2023 11:22:13 -0500
+Message-Id: <20230304162213.1939515-1-trix@redhat.com>
 X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
@@ -91,73 +94,78 @@ Cc: Tom Rix <trix@redhat.com>, dri-devel@lists.freedesktop.org,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-smatch reports these similar problems in dcn201
-drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn201/dcn201_clk_mgr.c:165:22:
-  warning: symbol 'dcn201_funcs' was not declared. Should it be static?
-drivers/gpu/drm/amd/amdgpu/../display/dc/dcn201/dcn201_resource.c:77:30:
-  warning: symbol 'dcn201_ip' was not declared. Should it be static?
-drivers/gpu/drm/amd/amdgpu/../display/dc/dcn201/dcn201_resource.c:139:37:
-  warning: symbol 'dcn201_soc' was not declared. Should it be static?
-drivers/gpu/drm/amd/amdgpu/../display/dc/dcn201/dcn201_mpc.c:79:24:
-  warning: symbol 'dcn201_mpc_funcs' was not declared. Should it be static?
+smatch reports these similar problems in dcn20
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_dsc.c:53:24:
+  warning: symbol 'dcn20_dsc_funcs' was not declared. Should it be static?
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_dwb.c:304:25:
+  warning: symbol 'dcn20_dwbc_funcs' was not declared. Should it be static?
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_mmhubbub.c:300:28:
+  warning: symbol 'dcn20_mmhubbub_funcs' was not declared. Should it be static?
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_mpc.c:545:24:
+  warning: symbol 'dcn20_mpc_funcs' was not declared. Should it be static?
 
 All of these are only used in their definition file, so they should be static
 
 Signed-off-by: Tom Rix <trix@redhat.com>
 ---
- .../gpu/drm/amd/display/dc/clk_mgr/dcn201/dcn201_clk_mgr.c    | 2 +-
- drivers/gpu/drm/amd/display/dc/dcn201/dcn201_mpc.c            | 2 +-
- drivers/gpu/drm/amd/display/dc/dcn201/dcn201_resource.c       | 4 ++--
- 3 files changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c      | 2 +-
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dwb.c      | 2 +-
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_mmhubbub.c | 2 +-
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_mpc.c      | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn201/dcn201_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn201/dcn201_clk_mgr.c
-index f0577dcd1af6..811720749faf 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn201/dcn201_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn201/dcn201_clk_mgr.c
-@@ -162,7 +162,7 @@ static void dcn201_update_clocks(struct clk_mgr *clk_mgr_base,
- 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c
+index 42344aec60d6..5bd698cd6d20 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dsc.c
+@@ -50,7 +50,7 @@ static void dsc2_enable(struct display_stream_compressor *dsc, int opp_pipe);
+ static void dsc2_disable(struct display_stream_compressor *dsc);
+ static void dsc2_disconnect(struct display_stream_compressor *dsc);
+ 
+-const struct dsc_funcs dcn20_dsc_funcs = {
++static const struct dsc_funcs dcn20_dsc_funcs = {
+ 	.dsc_get_enc_caps = dsc2_get_enc_caps,
+ 	.dsc_read_state = dsc2_read_state,
+ 	.dsc_validate_stream = dsc2_validate_stream,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dwb.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dwb.c
+index f1490e97b6ce..f8667be57046 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dwb.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dwb.c
+@@ -301,7 +301,7 @@ void dwb2_set_scaler(struct dwbc *dwbc, struct dc_dwb_params *params)
+ 
  }
  
--struct clk_mgr_funcs dcn201_funcs = {
-+static struct clk_mgr_funcs dcn201_funcs = {
- 	.get_dp_ref_clk_frequency = dce12_get_dp_ref_freq_khz,
- 	.update_clocks = dcn201_update_clocks,
- 	.init_clocks = dcn201_init_clocks,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn201/dcn201_mpc.c b/drivers/gpu/drm/amd/display/dc/dcn201/dcn201_mpc.c
-index 95c4c55f067c..1af03a86ec9b 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn201/dcn201_mpc.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn201/dcn201_mpc.c
-@@ -76,7 +76,7 @@ static void mpc201_init_mpcc(struct mpcc *mpcc, int mpcc_inst)
- 	mpcc->shared_bottom = false;
+-const struct dwbc_funcs dcn20_dwbc_funcs = {
++static const struct dwbc_funcs dcn20_dwbc_funcs = {
+ 	.get_caps		= dwb2_get_caps,
+ 	.enable			= dwb2_enable,
+ 	.disable		= dwb2_disable,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_mmhubbub.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_mmhubbub.c
+index ccd91792991b..259a98e4ee2c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_mmhubbub.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_mmhubbub.c
+@@ -297,7 +297,7 @@ void mcifwb2_dump_frame(struct mcif_wb *mcif_wb,
+ 	dump_info->size		= dest_height * (mcif_params->luma_pitch + mcif_params->chroma_pitch);
  }
  
--const struct mpc_funcs dcn201_mpc_funcs = {
-+static const struct mpc_funcs dcn201_mpc_funcs = {
+-const struct mcif_wb_funcs dcn20_mmhubbub_funcs = {
++static const struct mcif_wb_funcs dcn20_mmhubbub_funcs = {
+ 	.enable_mcif		= mmhubbub2_enable_mcif,
+ 	.disable_mcif		= mmhubbub2_disable_mcif,
+ 	.config_mcif_buf	= mmhubbub2_config_mcif_buf,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_mpc.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_mpc.c
+index 116f67a0b989..5da6e44f284a 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_mpc.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_mpc.c
+@@ -542,7 +542,7 @@ static struct mpcc *mpc2_get_mpcc_for_dpp(struct mpc_tree *tree, int dpp_id)
+ 	return NULL;
+ }
+ 
+-const struct mpc_funcs dcn20_mpc_funcs = {
++static const struct mpc_funcs dcn20_mpc_funcs = {
  	.read_mpcc_state = mpc1_read_mpcc_state,
  	.insert_plane = mpc1_insert_plane,
  	.remove_mpcc = mpc1_remove_mpcc,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn201/dcn201_resource.c b/drivers/gpu/drm/amd/display/dc/dcn201/dcn201_resource.c
-index 407d995bfa99..cd46701398d9 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn201/dcn201_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn201/dcn201_resource.c
-@@ -74,7 +74,7 @@
- #define MIN_DISP_CLK_KHZ 100000
- #define MIN_DPP_CLK_KHZ 100000
- 
--struct _vcs_dpi_ip_params_st dcn201_ip = {
-+static struct _vcs_dpi_ip_params_st dcn201_ip = {
- 	.gpuvm_enable = 0,
- 	.hostvm_enable = 0,
- 	.gpuvm_max_page_table_levels = 4,
-@@ -136,7 +136,7 @@ struct _vcs_dpi_ip_params_st dcn201_ip = {
- 	.number_of_cursors = 1,
- };
- 
--struct _vcs_dpi_soc_bounding_box_st dcn201_soc = {
-+static struct _vcs_dpi_soc_bounding_box_st dcn201_soc = {
- 	.clock_limits = {
- 			{
- 				.state = 0,
 -- 
 2.27.0
 
