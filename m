@@ -1,52 +1,95 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDA316AE3C5
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 Mar 2023 16:03:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DD9B6AE408
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 Mar 2023 16:11:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2F3110E4E1;
-	Tue,  7 Mar 2023 15:03:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1849310E4EB;
+	Tue,  7 Mar 2023 15:11:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3978810E4E0
- for <amd-gfx@lists.freedesktop.org>; Tue,  7 Mar 2023 15:03:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678201431; x=1709737431;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=dD7/vAAn4YW8k4L1ZL28fs42vlmmEZEdoamXsQ8zEOM=;
- b=cDnjEsfhWBfZOr+5N7ZMvhYFMDf+kdcz4mU4mW/YDZbQh41ueaiyc2yt
- O+MO3I+gVc/v1ODwtvsaPRx0yzKfNeAXE6oseQsYV2F7Z8snjXHPWqnlQ
- CEsJVrlp78LlCozVXGxehPueGAS0Nc9YeCvgU1MEgfdX6khRq15bYWeaG
- UpF0ds/xBisEvBIvcq4tAQdE38QGXQ0hEVtf2NADUjo8UePoKNyNxbr98
- QnbOXEOzwNxhR6ALE/V5fWhZa9xEXO3sx5dd5L6IDQOMVFEh7qGFxhzQl
- 0gXZIfwmdfFdvNDEO62Iu2pF8luia2x1ElxGX2zieo4HuycUCpk4oj7+Q Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="319698801"
-X-IronPort-AV: E=Sophos;i="5.98,241,1673942400"; d="scan'208";a="319698801"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2023 07:03:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="676590732"
-X-IronPort-AV: E=Sophos;i="5.98,241,1673942400"; d="scan'208";a="676590732"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
- by orsmga002.jf.intel.com with ESMTP; 07 Mar 2023 07:03:09 -0800
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pZYqL-0001PX-0K;
- Tue, 07 Mar 2023 15:03:09 +0000
-Date: Tue, 07 Mar 2023 23:02:57 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Subject: [linux-next:master] BUILD SUCCESS WITH WARNING
- 709c6adf19dc558e44ab5c01659b09a16a2d3c82
-Message-ID: <64075221.UqJaC4j/w2D0ATu0%lkp@intel.com>
-User-Agent: Heirloom mailx 12.5 6/20/10
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2074.outbound.protection.outlook.com [40.107.92.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCBFD10E4E5;
+ Tue,  7 Mar 2023 15:11:21 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hFPgjhRRcbvsxZL5WnBAib2yIvzEhhF+VMhNZqpH9jM2OBUW3ZlkCfkEHWmLz8vQAo5m4owQ14X5jD7lSaPpDU2Q4uJObpUTiE26RFuMMHhMDIb4Os/8073ID49PXEdY+muI3JZ9I9qNfbiHRCsxeSKaFG+CN/Dccz6ZpQ+8stuYMz+8DAXUZ04MN2dZjejeuToyZcZUPnzojq6liIB3743aXBaV1DllIq86RM4rQH05BHKYkWdlgxIFC84nHiArGivxliwghBRjkfIEHm/TledXOJIPH3nM5VXRGrr7WTnVjxzlRGGrK4wa9WRfsx1lRBTOYxD5pXobNZXFNg37cA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SeogpEk/d2KU+crAhYUnduHPODZurQfoU4/59fYWwYM=;
+ b=BfduA2cFEg802SSqEMlm4QjK3hoKd6sc5KAYyyPB7CidASdi4WDmVyZZZAoTCMl6zLeWzCp5tAlJEX+Lxi7teMa2BzbRh1tCJfXz7GZA/I9UxdGHAThT8GdA9n/w8o0Eb6XJFexfGTk542udxVpe0GZrdC3kZNZCY8HYkpM3M8dvCRd/jijq/mQ/OovWXQHPaGTxOtwpSLffgeZsvP53SP/2jxO5zMkueB6dGMozpvC4UxcOijVvTHmUpezkaRo67bO9SjloeQ3ZkuvdnmhK8IfsCI/Xm50FnVTZtATFYkC/1jHIGvlZWe1N2P2B6YMpHjsVr5juebnNExqT+kcPTA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SeogpEk/d2KU+crAhYUnduHPODZurQfoU4/59fYWwYM=;
+ b=q+uENXMqp+k3bpk65FiKuzrw7EU+dq8+KUjZ2HQNtIEdoE0ew7ktUHl/yd2NcHHmqhSUtu0aeyaieLbHDGr1hBg0l9/Rp3osI0CLEgs9JY9DEzbyIePbbKrYUSM1yqJ8zKBAMG/aEKqy4ZrUfXYiUUamu+xDaxUBrVt+VbqCiMc=
+Received: from DM5PR07CA0061.namprd07.prod.outlook.com (2603:10b6:4:ad::26) by
+ MN2PR12MB4471.namprd12.prod.outlook.com (2603:10b6:208:26f::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.29; Tue, 7 Mar
+ 2023 15:11:15 +0000
+Received: from DS1PEPF0000E631.namprd02.prod.outlook.com
+ (2603:10b6:4:ad:cafe::cc) by DM5PR07CA0061.outlook.office365.com
+ (2603:10b6:4:ad::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.29 via Frontend
+ Transport; Tue, 7 Mar 2023 15:11:15 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DS1PEPF0000E631.mail.protection.outlook.com (10.167.17.135) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6178.13 via Frontend Transport; Tue, 7 Mar 2023 15:11:15 +0000
+Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 7 Mar
+ 2023 09:11:14 -0600
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB08.amd.com
+ (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 7 Mar
+ 2023 07:11:14 -0800
+Received: from localhost.localdomain (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Tue, 7 Mar 2023 09:11:13 -0600
+From: Harry Wentland <harry.wentland@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
+Subject: [PATCH v3 00/17] Enable Colorspace connector property in amdgpu
+Date: Tue, 7 Mar 2023 10:10:50 -0500
+Message-ID: <20230307151107.49649-1-harry.wentland@amd.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS1PEPF0000E631:EE_|MN2PR12MB4471:EE_
+X-MS-Office365-Filtering-Correlation-Id: fc9d73cb-ead4-483f-a3fb-08db1f1e3209
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: yJflTJPas7SSkp82vgPe2yQnDiQX0/fiK+r3crdcH738GcXyL9M3GEhL/2S+KC5IVb6pYfoNttDJVOHzJVOePTA7svWi+0dYZvGiSMN3FYSkqGIYP+v5Esma/CbUEdUWvewO1RggJOFUU+lJ5yzahvxKlhk2KZ+lBGIFuxAzmArWVrJfniJRAh/GVyDVz8ADqxce7omNN9NtBWlz51tlMtsjxp6dboPXBQXlH7WAXHg7/2XhL+2zp08yeI93EWNbr1xMxWrKnebKEQe3n3MPKvamFQyIfj8jp2YJPgNoT96P5Ig8Z7XXjRQWuIV/LBwOkUTbAIC4KoZTc4fs8YBE1jTruAGQbGyaWF7fN7T/5dVHTf8Uld6gu11gfklGR8M99h63oLhYMI4kqtD/mYKfRok1i/BYD/OTNc3NUUkOhZ+SMoP6AF/7h08Op64PxBSciyu39fde8YLLFKzeXZTw83s5bIheeqSYh/3AcYyTvL1axoIdqI8Y9AHtJxzgdF9JGsujapOdRiacTqxPpoE0LQWJQPKcEMpRQiLmjy75mJTRF880eLv6RZmy+2pBAvAZEnnorgJMZga0Fg1cyZNWKCAkxiYxC+UvMfG6rz157oLE/7+IqHOgM1hosFm99uwe1h2HwNxOwNc3Y4oR8SaM+Dy0UfmzIqSgRWJZzOemKBCEfdtBOzFLzazDhP5GUGrn
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230025)(4636009)(376002)(39860400002)(136003)(346002)(396003)(451199018)(36840700001)(40470700004)(46966006)(44832011)(83380400001)(70586007)(8676002)(4326008)(70206006)(86362001)(82310400005)(426003)(81166007)(40480700001)(2616005)(336012)(356005)(186003)(36860700001)(82740400003)(26005)(36756003)(110136005)(6666004)(966005)(1076003)(478600001)(66574015)(47076005)(40460700003)(316002)(54906003)(5660300002)(2906002)(8936002)(41300700001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2023 15:11:15.1092 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc9d73cb-ead4-483f-a3fb-08db1f1e3209
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0000E631.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4471
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,239 +101,130 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-watchdog@vger.kernel.org, linux-rdma@vger.kernel.org,
- linux-usb@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Linux Memory Management List <linux-mm@kvack.org>,
- linux-serial@vger.kernel.org
+Cc: Sebastian Wick <sebastian.wick@redhat.com>,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Pekka Paalanen <ppaalanen@gmail.com>, Uma Shankar <uma.shankar@intel.com>,
+ Vitaly.Prosyak@amd.com, Joshua Ashton <joshua@froggi.es>,
+ Harry Wentland <harry.wentland@amd.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-branch HEAD: 709c6adf19dc558e44ab5c01659b09a16a2d3c82  Add linux-next specific files for 20230307
+This patchset is based on Joshua's previous patchset [1], as well
+as my previous patchset [2].
 
-Warning reports:
+It is
+- enabling support for the colorspace property in amdgpu, as well as
+- allowing drivers to specify the supported set of colorspaces, and
+- deprecating the BT2020_YCC and BT2020_RGB properties in favor of
+  a common BT2020 property. We leave the BT2020_CYCC property untouched
+  for now, same as the other _YVV properties. If they'll see use later
+  we might need to do something similar there, or allow userspace to
+  decide on the output encoding (RGB vs YUV).
 
-https://lore.kernel.org/oe-kbuild-all/202302111601.jtY4lKrA-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202303071444.sIbZTDCy-lkp@intel.com
+Colorspace, Infoframes, and YCbCr matrix
+---------------------------------------
 
-Warning: (recently discovered and may have been fixed)
+Even though the initial intent of the colorspace property was to set the
+colorspace field in the respective HDMI AVI and DP SDP infoframes that
+is not sufficient in all scenarios. For DP the colorspace information
+also affects the MSA (main stream attribute) packet. For YUV output the
+colorspace affects the RGB-to-YCbCr conversion matrix. The colorspace
+field of the infopackets also depends on the encoding used, which is
+something that is decided by the driver and not known to userspace.
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_optc.c:294:6: warning: no previous prototype for 'optc3_wait_drr_doublebuffer_pending_clear' [-Wmissing-prototypes]
-drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu11/vangogh_ppt.c:1600:5: warning: no previous prototype for function 'vangogh_set_apu_thermal_limit' [-Wmissing-prototypes]
-drivers/infiniband/ulp/srp/ib_srp.c:66: warning: "DEFINE_DYNAMIC_DEBUG_METADATA" redefined
-drivers/infiniband/ulp/srp/ib_srp.c:67: warning: "DYNAMIC_DEBUG_BRANCH" redefined
+For these reasons a driver will need to be able to select the supported
+colorspaces at property creation.
 
-Unverified Warning (likely false positive, please contact us if interested):
+Note: There seems to be an understanding that the colorspace property
+should ONLY modify the infoframe. While this is current behavior and
+sufficient in some cases it is nowhere specified that this should be the
+only use of this property. As outlined above this limitation is not
+going to work in all cases.
 
-drivers/tty/serial/8250/8250_dfl.c:63 dfl_uart_get_params() error: uninitialized symbol 'clk_freq'.
-drivers/tty/serial/8250/8250_dfl.c:69 dfl_uart_get_params() error: uninitialized symbol 'fifo_len'.
-drivers/tty/serial/8250/8250_dfl.c:90 dfl_uart_get_params() error: uninitialized symbol 'reg_layout'.
-drivers/usb/gadget/composite.c:2082:33: sparse: sparse: restricted __le16 degrades to integer
-drivers/watchdog/imx2_wdt.c:442:22: sparse: sparse: symbol 'imx_wdt' was not declared. Should it be static?
-drivers/watchdog/imx2_wdt.c:446:22: sparse: sparse: symbol 'imx_wdt_legacy' was not declared. Should it be static?
+This patchset does not affect current behavior for the drivers that
+implement this property: i915 and vc4.
 
-Warning ids grouped by kconfigs:
+In the future we might want to give userspace control over the encoding
+format on the wire, in particular to avoid use of YUV420 when image
+fidelity is important. This work would likely go hand in hand with a
+min_bpc property and wouldn't conflict with the work done in this
+patchset.
 
-gcc_recent_errors
-|-- arc-randconfig-r011-20230305
-|   |-- drivers-infiniband-ulp-srp-ib_srp.c:warning:DEFINE_DYNAMIC_DEBUG_METADATA-redefined
-|   `-- drivers-infiniband-ulp-srp-ib_srp.c:warning:DYNAMIC_DEBUG_BRANCH-redefined
-|-- arm64-allyesconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn30-dcn30_optc.c:warning:no-previous-prototype-for-optc3_wait_drr_doublebuffer_pending_clear
-|-- csky-randconfig-m031-20230305
-|   |-- drivers-tty-serial-8250_dfl.c-dfl_uart_get_params()-error:uninitialized-symbol-clk_freq-.
-|   |-- drivers-tty-serial-8250_dfl.c-dfl_uart_get_params()-error:uninitialized-symbol-fifo_len-.
-|   `-- drivers-tty-serial-8250_dfl.c-dfl_uart_get_params()-error:uninitialized-symbol-reg_layout-.
-|-- csky-randconfig-s031-20230305
-|   |-- drivers-usb-gadget-composite.c:sparse:sparse:restricted-__le16-degrades-to-integer
-|   |-- drivers-watchdog-imx2_wdt.c:sparse:sparse:symbol-imx_wdt-was-not-declared.-Should-it-be-static
-|   `-- drivers-watchdog-imx2_wdt.c:sparse:sparse:symbol-imx_wdt_legacy-was-not-declared.-Should-it-be-static
-|-- i386-allyesconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn30-dcn30_optc.c:warning:no-previous-prototype-for-optc3_wait_drr_doublebuffer_pending_clear
-|-- i386-randconfig-s001
-|   `-- drivers-usb-gadget-composite.c:sparse:sparse:restricted-__le16-degrades-to-integer
-|-- i386-randconfig-s003
-|   `-- drivers-usb-gadget-composite.c:sparse:sparse:restricted-__le16-degrades-to-integer
-|-- ia64-randconfig-s043-20230305
-|   `-- drivers-usb-gadget-composite.c:sparse:sparse:restricted-__le16-degrades-to-integer
-|-- sparc-randconfig-s032-20230305
-|   |-- drivers-watchdog-imx2_wdt.c:sparse:sparse:symbol-imx_wdt-was-not-declared.-Should-it-be-static
-|   `-- drivers-watchdog-imx2_wdt.c:sparse:sparse:symbol-imx_wdt_legacy-was-not-declared.-Should-it-be-static
-|-- sparc-randconfig-s042-20230305
-|   `-- drivers-usb-gadget-composite.c:sparse:sparse:restricted-__le16-degrades-to-integer
-|-- sparc64-randconfig-s041-20230305
-|   |-- drivers-usb-gadget-composite.c:sparse:sparse:restricted-__le16-degrades-to-integer
-|   |-- drivers-watchdog-imx2_wdt.c:sparse:sparse:symbol-imx_wdt-was-not-declared.-Should-it-be-static
-|   `-- drivers-watchdog-imx2_wdt.c:sparse:sparse:symbol-imx_wdt_legacy-was-not-declared.-Should-it-be-static
-|-- x86_64-allyesconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-dcn30-dcn30_optc.c:warning:no-previous-prototype-for-optc3_wait_drr_doublebuffer_pending_clear
-`-- x86_64-randconfig-s021
-    `-- drivers-usb-gadget-composite.c:sparse:sparse:restricted-__le16-degrades-to-integer
-clang_recent_errors
-`-- arm-randconfig-r025-20230305
-    `-- drivers-gpu-drm-amd-amdgpu-..-pm-swsmu-smu11-vangogh_ppt.c:warning:no-previous-prototype-for-function-vangogh_set_apu_thermal_limit
+Colorspace on crtc or connector?
+--------------------------------
 
-elapsed time: 729m
+There have been suggestions of programming 'colorspace' on the drm_crtc
+but I don't think the crtc is the right place for this property. The
+drm_plane and drm_crtc will be used to offload color processing that
+would normally be done via the GFX or other pipelines. The drm_connector
+controls the signalling with the display and ensures the wire format is
+appropriate for the encoding by programming the RGB-to-YCbCr matrix.
 
-configs tested: 154
-configs skipped: 13
+[1] https://patchwork.freedesktop.org/series/113632/
+[2] https://patchwork.freedesktop.org/series/111865/
 
-tested configs:
-alpha                            alldefconfig   gcc  
-alpha                            allyesconfig   gcc  
-alpha                               defconfig   gcc  
-alpha                randconfig-r034-20230306   gcc  
-arc                              allyesconfig   gcc  
-arc          buildonly-randconfig-r005-20230306   gcc  
-arc                                 defconfig   gcc  
-arc                  randconfig-r004-20230306   gcc  
-arc                  randconfig-r011-20230305   gcc  
-arc                  randconfig-r014-20230305   gcc  
-arc                  randconfig-r035-20230305   gcc  
-arc                  randconfig-r043-20230305   gcc  
-arm                              allmodconfig   gcc  
-arm                              allyesconfig   gcc  
-arm                         bcm2835_defconfig   clang
-arm                          collie_defconfig   clang
-arm                                 defconfig   gcc  
-arm                      footbridge_defconfig   gcc  
-arm                  randconfig-r006-20230305   gcc  
-arm                  randconfig-r025-20230305   clang
-arm                  randconfig-r046-20230305   clang
-arm                         socfpga_defconfig   clang
-arm64                            allyesconfig   gcc  
-arm64        buildonly-randconfig-r002-20230305   clang
-arm64        buildonly-randconfig-r006-20230305   clang
-arm64                               defconfig   gcc  
-arm64                randconfig-r001-20230306   gcc  
-arm64                randconfig-r004-20230305   clang
-arm64                randconfig-r012-20230306   clang
-arm64                randconfig-r015-20230305   gcc  
-csky                                defconfig   gcc  
-hexagon      buildonly-randconfig-r003-20230305   clang
-hexagon              randconfig-r041-20230305   clang
-hexagon              randconfig-r045-20230305   clang
-i386                             allyesconfig   gcc  
-i386                              debian-10.3   gcc  
-i386                                defconfig   gcc  
-i386                 randconfig-a001-20230306   gcc  
-i386                 randconfig-a002-20230306   gcc  
-i386                 randconfig-a003-20230306   gcc  
-i386                 randconfig-a004-20230306   gcc  
-i386                 randconfig-a005-20230306   gcc  
-i386                 randconfig-a006-20230306   gcc  
-i386                 randconfig-a011-20230306   clang
-i386                 randconfig-a012-20230306   clang
-i386                 randconfig-a013-20230306   clang
-i386                 randconfig-a014-20230306   clang
-i386                 randconfig-a015-20230306   clang
-i386                 randconfig-a016-20230306   clang
-i386                          randconfig-c001   gcc  
-ia64                             allmodconfig   gcc  
-ia64                                defconfig   gcc  
-ia64                 randconfig-r005-20230305   gcc  
-ia64                 randconfig-r005-20230306   gcc  
-ia64                 randconfig-r013-20230305   gcc  
-ia64                 randconfig-r033-20230306   gcc  
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch    buildonly-randconfig-r001-20230305   gcc  
-loongarch                           defconfig   gcc  
-m68k                             alldefconfig   gcc  
-m68k                             allmodconfig   gcc  
-m68k                         apollo_defconfig   gcc  
-m68k                                defconfig   gcc  
-m68k                       m5208evb_defconfig   gcc  
-m68k                          sun3x_defconfig   gcc  
-microblaze   buildonly-randconfig-r004-20230305   gcc  
-mips                             allmodconfig   gcc  
-mips                             allyesconfig   gcc  
-mips                            ar7_defconfig   gcc  
-mips                        bcm63xx_defconfig   clang
-mips                           ip22_defconfig   clang
-mips                          malta_defconfig   clang
-mips                        qi_lb60_defconfig   clang
-mips                 randconfig-r026-20230305   clang
-nios2                               defconfig   gcc  
-nios2                randconfig-r022-20230305   gcc  
-nios2                randconfig-r031-20230305   gcc  
-openrisc     buildonly-randconfig-r002-20230306   gcc  
-parisc                              defconfig   gcc  
-parisc               randconfig-r016-20230306   gcc  
-parisc               randconfig-r032-20230305   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc                      arches_defconfig   gcc  
-powerpc                        icon_defconfig   clang
-powerpc                 mpc836x_rdk_defconfig   clang
-powerpc                     mpc83xx_defconfig   gcc  
-powerpc                 mpc8540_ads_defconfig   gcc  
-powerpc              randconfig-r014-20230306   clang
-powerpc              randconfig-r016-20230305   gcc  
-powerpc              randconfig-r024-20230305   gcc  
-powerpc              randconfig-r026-20230306   clang
-powerpc              randconfig-r035-20230306   gcc  
-powerpc                  storcenter_defconfig   gcc  
-powerpc                     stx_gp3_defconfig   gcc  
-powerpc                     tqm8555_defconfig   gcc  
-riscv                            allmodconfig   gcc  
-riscv                             allnoconfig   gcc  
-riscv                               defconfig   gcc  
-riscv                randconfig-r003-20230305   clang
-riscv                randconfig-r042-20230305   gcc  
-riscv                          rv32_defconfig   gcc  
-s390                             allmodconfig   gcc  
-s390                             allyesconfig   gcc  
-s390         buildonly-randconfig-r005-20230305   gcc  
-s390                                defconfig   gcc  
-s390                 randconfig-r003-20230306   gcc  
-s390                 randconfig-r031-20230306   gcc  
-s390                 randconfig-r032-20230306   gcc  
-s390                 randconfig-r044-20230305   gcc  
-sh                               allmodconfig   gcc  
-sh                        apsh4ad0a_defconfig   gcc  
-sh                        dreamcast_defconfig   gcc  
-sh                ecovec24-romimage_defconfig   gcc  
-sh                             espt_defconfig   gcc  
-sh                          polaris_defconfig   gcc  
-sh                   randconfig-r006-20230306   gcc  
-sh                   randconfig-r023-20230305   gcc  
-sh                           se7750_defconfig   gcc  
-sh                            titan_defconfig   gcc  
-sparc                               defconfig   gcc  
-sparc                randconfig-r002-20230306   gcc  
-sparc                randconfig-r023-20230306   gcc  
-sparc                randconfig-r034-20230305   gcc  
-sparc                randconfig-r036-20230305   gcc  
-um                             i386_defconfig   gcc  
-um                           x86_64_defconfig   gcc  
-x86_64                            allnoconfig   gcc  
-x86_64                           allyesconfig   gcc  
-x86_64       buildonly-randconfig-r003-20230306   gcc  
-x86_64                              defconfig   gcc  
-x86_64                                  kexec   gcc  
-x86_64               randconfig-a001-20230306   gcc  
-x86_64               randconfig-a002-20230306   gcc  
-x86_64               randconfig-a003-20230306   gcc  
-x86_64               randconfig-a004-20230306   gcc  
-x86_64               randconfig-a005-20230306   gcc  
-x86_64               randconfig-a006-20230306   gcc  
-x86_64               randconfig-a011-20230306   clang
-x86_64               randconfig-a012-20230306   clang
-x86_64               randconfig-a013-20230306   clang
-x86_64               randconfig-a014-20230306   clang
-x86_64               randconfig-a015-20230306   clang
-x86_64               randconfig-a016-20230306   clang
-x86_64               randconfig-r022-20230306   clang
-x86_64               randconfig-r025-20230306   clang
-x86_64                               rhel-8.3   gcc  
-xtensa       buildonly-randconfig-r004-20230306   gcc  
-xtensa               randconfig-r002-20230305   gcc  
-xtensa               randconfig-r011-20230306   gcc  
-xtensa               randconfig-r021-20230305   gcc  
-xtensa               randconfig-r024-20230306   gcc  
+v2:
+- Tested with DP and HDMI analyzers
+- Confirmed driver will fallback to lower bpc when needed
+- Dropped hunk to set HDMI AVI infoframe as it was a no-op
+- Fixed BT.2020 YCbCr colorimetry (JoshuaAshton)
+- Simplify initialization of supported colorspaces (Jani)
+- Fix kerneldoc (kernel test robot)
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+v3:
+- Added documentation for colorspaces (Pekka, Joshua)
+- Split 'Allow drivers to pass list of supported colorspaces' patch
+  to pull out code to create common colorspace array and keep it separate
+  from change to create only supported colorspaces
+
+Cc: Pekka Paalanen <ppaalanen@gmail.com>
+Cc: Sebastian Wick <sebastian.wick@redhat.com>
+Cc: Vitaly.Prosyak@amd.com
+Cc: Uma Shankar <uma.shankar@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Joshua Ashton <joshua@froggi.es>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Michel Dänzer <michel.daenzer@mailbox.org>
+Cc: dri-devel@lists.freedesktop.org
+Cc: amd-gfx@lists.freedesktop.org
+
+Harry Wentland (12):
+  drm/connector: Convert DRM_MODE_COLORIMETRY to enum
+  drm/connector: Pull out common create_colorspace_property code
+  drm/connector: Use common colorspace_names array
+  drm/connector: Print connector colorspace in state debugfs
+  drm/connector: Allow drivers to pass list of supported colorspaces
+  drm/amd/display: Always pass connector_state to stream validation
+  drm/amd/display: Register Colorspace property for DP and HDMI
+  drm/amd/display: Signal mode_changed if colorspace changed
+  drm/amd/display: Send correct DP colorspace infopacket
+  drm/amd/display: Add support for explicit BT601_YCC
+  drm/amd/display: Add debugfs for testing output colorspace
+  drm/amd/display: Add default case for output_color_space switch
+
+Joshua Ashton (5):
+  drm/connector: Add enum documentation to drm_colorspace
+  drm/connector: Deprecate split for BT.2020 in drm_colorspace enum
+  drm/amd/display: Always set crtcinfo from create_stream_for_sink
+  drm/amd/display: Fallback to 2020_YCBCR if the pixel encoding is not
+    RGB
+  drm/amd/display: Refactor avi_info_frame colorimetry determination
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  84 +++++---
+ .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c |  57 ++++++
+ .../gpu/drm/amd/display/dc/core/dc_resource.c |  28 +--
+ drivers/gpu/drm/display/drm_hdmi_helper.c     |   7 +-
+ drivers/gpu/drm/drm_atomic.c                  |   1 +
+ drivers/gpu/drm/drm_connector.c               | 182 +++++++++++-------
+ .../gpu/drm/i915/display/intel_connector.c    |   4 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |  14 +-
+ drivers/gpu/drm/vc4/vc4_hdmi.c                |   2 +-
+ include/drm/display/drm_dp.h                  |   2 +-
+ include/drm/drm_connector.h                   | 128 +++++++++---
+ 11 files changed, 363 insertions(+), 146 deletions(-)
+
+--
+2.39.2
+
