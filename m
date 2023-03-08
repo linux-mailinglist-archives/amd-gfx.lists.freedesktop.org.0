@@ -2,93 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 304B16B06C3
-	for <lists+amd-gfx@lfdr.de>; Wed,  8 Mar 2023 13:17:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E46B16B0AC1
+	for <lists+amd-gfx@lfdr.de>; Wed,  8 Mar 2023 15:14:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC36C10E5C8;
-	Wed,  8 Mar 2023 12:17:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56DD410E5F4;
+	Wed,  8 Mar 2023 14:14:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2083.outbound.protection.outlook.com [40.107.102.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 435F410E2CA;
- Wed,  8 Mar 2023 12:17:37 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BZ/+jJMc0B60J9OBUCaTPEvjX/QEeeV/1rbRvkOHvYT9cfHTNmpSPXwoWdhkI6gFi5q3L+i6WMZuojm2B4kkHOlUPlHUoIPUeQuMhPrAigPz8GFxJsJpApjJTYeG29uu+ZZCVEzsbsrQNliRUn0xnm6e6kK838rHiLX75Oq010KwelU/on4floysFEMma/Hsvz8D8BfxDE5C8uIKX0No5rFj0zAYh9sBfOgyKE0BjhGdNfRfGa3dgaXen25xUTG03q9P20POWl1YrLhuEjslbCyt+BjjxsKi5hasMPpZ/Hk7fY25wsB4B3AHPSAMaWGa9ijUU//mgFXAiYOCLslqdQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2f1jc7JEegY3TTqi7KArcSPfplPcav3nTCioCR9V7Es=;
- b=PQCi64dB5tAw5X1In0fCD5z/yCTCa5C8qGXKsAobqHz9JCtjZ0wRdhFNFr+jHmE2g2O6D2k2EVxb/jAE063iw7475EM0SinCcc5ikSscnHbepmg6Gf09NsHKLqgO+JxmiZUYnp30FiVByJCuO/DkSiH8JhI+94gicy8p45/kXPqsAdJag70F/rVIUTfef9QbYLx3RLvhL97P5/s/yJfIlNHLStFEk92mjWUlsC2X17ZjkibscI0BuI8P87hWsKid6MiT9IZLdL15KW/ZrZpi99AJd5wZ05FqH3HIY5aD5t/Izx1g7bxYLx+9EU5cZyGXRV5GMt++JkrAa1Y95O6H9w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2f1jc7JEegY3TTqi7KArcSPfplPcav3nTCioCR9V7Es=;
- b=xcoPwFn9pS88mwGV0H/F5jXm1eseTUtxP2SgBNPkKvehrbf8eioGpj48dSht5a+1C7wNZXtoMIWmUKDcCVEiE0m3qr7+UsWwO/Z9Ku5rO0cCG8IzdgvP3cuSBrEIeYA6rxOkM1o2Vv2Y2R/DkIh3qLRGbEGlM669UFL1pHdtmxQ=
-Received: from BN9PR03CA0161.namprd03.prod.outlook.com (2603:10b6:408:f4::16)
- by SN7PR12MB6765.namprd12.prod.outlook.com (2603:10b6:806:26b::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.17; Wed, 8 Mar
- 2023 12:17:34 +0000
-Received: from BL02EPF000108E8.namprd05.prod.outlook.com
- (2603:10b6:408:f4:cafe::60) by BN9PR03CA0161.outlook.office365.com
- (2603:10b6:408:f4::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.17 via Frontend
- Transport; Wed, 8 Mar 2023 12:17:34 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL02EPF000108E8.mail.protection.outlook.com (10.167.241.201) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6178.13 via Frontend Transport; Wed, 8 Mar 2023 12:17:33 +0000
-Received: from guchchen-System-Product-Name.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Wed, 8 Mar 2023 06:17:31 -0600
-From: Guchun Chen <guchun.chen@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <alexander.deucher@amd.com>, <hawking.zhang@amd.com>,
- <dmitry.baryshkov@linaro.org>, <spasswolf@web.de>
-Subject: [PATCH 2/2] drm/probe_helper: warning on poll_enabled for issue
- catching
-Date: Wed, 8 Mar 2023 20:17:18 +0800
-Message-ID: <20230308121718.2586933-1-guchun.chen@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EC4210E0F1
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Mar 2023 10:42:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1678272126;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=GXwtob7mHiGV/HDAwC/8VbKaxcTJLMG7xjqq8FDlVMk=;
+ b=HW8u7xH3w81hm+gNCI8So+EVfbu1SL86/NhQ2l9f3UwEcXZn4CV9Cg3k3GtbIFhUXlF9j6
+ WxIMYGJ+OPd+2HQ4R9NL8euW9On0I71BPGfsTsW1qrOprei2w484H+edPYAOa+NxldecJ1
+ 74hk2zLrjEmPU14VT26JmXwgtMijy1g=
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
+ [209.85.208.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-207-Rm3Vbk5LOFm7qynfeujL1w-1; Wed, 08 Mar 2023 05:42:04 -0500
+X-MC-Unique: Rm3Vbk5LOFm7qynfeujL1w-1
+Received: by mail-ed1-f70.google.com with SMTP id
+ b7-20020a056402350700b004d2a3d5cd3fso17999650edd.8
+ for <amd-gfx@lists.freedesktop.org>; Wed, 08 Mar 2023 02:42:04 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1678272123;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=GXwtob7mHiGV/HDAwC/8VbKaxcTJLMG7xjqq8FDlVMk=;
+ b=q9dg3LHmkS8bOMIskL9Cb2YdnbogItRWC4YeLfSR4A+XQqSvTGfTEDfdMiX1iYmNSD
+ Nqqn5YoUt33uO9owcCuoYep6pp/KDx8doWMERmnJAp5NEPlvdoToQ4WZkydDQysCmnb6
+ BML9e04jAeTK/dsxrWR1zwAIho1ec7yb/EwPCI7iNb+qXBW/YYyN9JM0KOjiTt8ly0NK
+ cuYBAt+xR8n5N9vGr7fqaeums7DnFkuU5ZBcG3ymc/ezfu5U6j+sgz3sK+McmiL3mViJ
+ J993aac3+94kEJ3S5SXVZJIbh8aHge/utKBXOJMligl3/3EqA/irtYXLyP6nUaL2JbZJ
+ y0rw==
+X-Gm-Message-State: AO0yUKXj1sJ1BOcsU4L+xNe1JM14gLhnoT1A3ZouD89uw0tgVOb/ncSk
+ QtnTfkP8EiZXiRi4wXgikBnQvNs4Q6kKqEfyVWHCGWWGQQ+fjMEBTKZzErAyXQpRaqmeFcAHaP1
+ f439E1prEDFhOsE0iq/ZY3OYj3VmDVeB4mA==
+X-Received: by 2002:a17:906:3002:b0:8b2:fb3d:9f22 with SMTP id
+ 2-20020a170906300200b008b2fb3d9f22mr16818136ejz.33.1678272123539; 
+ Wed, 08 Mar 2023 02:42:03 -0800 (PST)
+X-Google-Smtp-Source: AK7set9MuC60mZ5Ycylm2kSUYIx4Veowf3DJRuxRTVdYipVCktABmp02rpAjKlcUcnC2sPx4jWcbDA==
+X-Received: by 2002:a17:906:3002:b0:8b2:fb3d:9f22 with SMTP id
+ 2-20020a170906300200b008b2fb3d9f22mr16818121ejz.33.1678272123295; 
+ Wed, 08 Mar 2023 02:42:03 -0800 (PST)
+Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
+ (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
+ by smtp.gmail.com with ESMTPSA id
+ 21-20020a170906309500b008b1779ba3c1sm7275516ejv.115.2023.03.08.02.42.02
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 08 Mar 2023 02:42:02 -0800 (PST)
+Message-ID: <b64a6aa0-bae9-71bc-7672-18481daf963f@redhat.com>
+Date: Wed, 8 Mar 2023 11:42:02 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF000108E8:EE_|SN7PR12MB6765:EE_
-X-MS-Office365-Filtering-Correlation-Id: 791432a2-d3bc-4b9f-c5a1-08db1fcf18db
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: y/Zfyz22MRixUKv0ir8QYTpq6GmGpDvQLp/dI81NHYFzXbss7xlHMd74qM8pn0/e3OaN63PVdsS3GAdA9Evd4hot0VZnNAkb9ROyh18YnCgvwCLx/ibMbbxBM7hgjqqJAZKocnujPcSsz/b8+z6aYmOwYySyntvhBJ8J7Ec8RXnVh57X/47EYs9/50syY54v94i6fQCDtfbCSJYohph4zNDkDRZi1Pa6GxeipizLAuaM+uteC6i6UkfnHm2ZZglV0VaLULbtTPiYQ6rk/se8U/S8KhrWA0tlQijWBoiUj//q6eRyiV3Ip5pSTAVD4ZnssqhWp7RU+l8NTJVGCF2dtFx4n86u7QIsNiCRdCcBim3H8Q3M1w+FGbj0N6hUJ3B+XHnYUwezKv8hwKLYoN4bKmWSjtHLtYljQnVY1iB9XWcRfF7JlPLlplRMia04wsagNgHb5uzqvgp4AlhSZra4KwUZ0HUo84T33G9XvhPYKqkOcH8MoSEAz46xVSV96yUtDZrR9HI7+Fi4Fb7qDNp7lD9wOmH4zY8IYOlrBTwiURCGdE6J6b6dYqDGSOeQ4intawTRRZGnT8oMMUxdt/KsU3IIqHMQKLXZFY6EN5W9fTJ6SBB7iK8rKA4y5kj+oll6MpwOpyPNkl9ERQxWQPiAilll69qb3oYSccUY2jpNl8VvXBivE/OsOvcEXy0XYuFD
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(39860400002)(136003)(346002)(376002)(396003)(451199018)(36840700001)(40470700004)(46966006)(356005)(26005)(186003)(70206006)(70586007)(6666004)(44832011)(82310400005)(1076003)(8676002)(16526019)(8936002)(4326008)(40480700001)(966005)(2616005)(86362001)(336012)(316002)(83380400001)(7696005)(5660300002)(40460700003)(426003)(478600001)(47076005)(36756003)(2906002)(110136005)(36860700001)(81166007)(4744005)(41300700001)(82740400003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Mar 2023 12:17:33.8335 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 791432a2-d3bc-4b9f-c5a1-08db1fcf18db
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF000108E8.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6765
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [RFC] drm/amd/display: Pass proper parent for DM backlight device
+ registration
+To: Alex Deucher <alexander.deucher@amd.com>,
+ Christian Koenig <christian.koenig@amd.com>
+References: <20230215113833.477999-1-hdegoede@redhat.com>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <20230215113833.477999-1-hdegoede@redhat.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, nl
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Wed, 08 Mar 2023 14:14:14 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,35 +89,110 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Guchun Chen <guchun.chen@amd.com>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-In order to catch issues in other drivers to ensure proper call
-sequence of polling function.
+Hi,
 
-Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/2411
-Fixes: a4e771729a51("drm/probe_helper: sort out poll_running vs poll_enabled")
-Reported-by: Bert Karwatzki <spasswolf@web.de>
-Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Guchun Chen <guchun.chen@amd.com>
----
- drivers/gpu/drm/drm_probe_helper.c | 2 ++
- 1 file changed, 2 insertions(+)
+On 2/15/23 12:38, Hans de Goede wrote:
+> The parent for the backlight device should be the drm-connector object,
+> not the PCI device.
+> 
+> Userspace relies on this to be able to detect which backlight class device
+> to use on hybrid gfx devices where there may be multiple native (raw)
+> backlight devices registered.
+> 
+> Specifically gnome-settings-daemon expects the parent device to have
+> an "enabled" sysfs attribute (as drm_connector devices do) and tests
+> that this returns "enabled" when read.
+> 
+> This aligns the parent of the backlight device with i915, nouveau, radeon.
+> Note that drivers/gpu/drm/amd/amdgpu/atombios_encoders.c also already
+> uses the drm_connector as parent, only amdgpu_dm.c used the PCI device
+> as parent before this change.
+> 
+> Note this is marked as a RFC because I don't have hw to test, so this
+> has only been compile tested! If someone can test this on actual
+> hw which hits the changed code path that would be great.
+> 
+> Link: https://gitlab.gnome.org/GNOME/gnome-settings-daemon/-/issues/730
+> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 
-diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm_probe_helper.c
-index 8127be134c39..85e0e80d4a52 100644
---- a/drivers/gpu/drm/drm_probe_helper.c
-+++ b/drivers/gpu/drm/drm_probe_helper.c
-@@ -852,6 +852,8 @@ EXPORT_SYMBOL(drm_kms_helper_is_poll_worker);
-  */
- void drm_kms_helper_poll_disable(struct drm_device *dev)
- {
-+	WARN_ON(!dev->mode_config.poll_enabled);
-+
- 	if (dev->mode_config.poll_running)
- 		drm_kms_helper_disable_hpd(dev);
- 
--- 
-2.25.1
+Self NACK. This has been tested by 2 reporters of:
+
+https://gitlab.gnome.org/GNOME/gnome-settings-daemon/-/issues/730
+
+Now and it does not work. Instead of setting the parent device pointer correctly,
+this makes the backlight device not have a parent device any more at all.
+I already was afraid this might happen, since the drm_connector object is not yet
+registered at the time when the amdgpu code calls backlight_device_register().
+
+Other drivers like e.g. nouveau register the backlight later from
+a drm_connector_funcs.late_register callback. I was hoping doing it
+the simple way as this patch did would work, but it looks like some bigger
+changes to the amdgpu code (using a drm_connector_funcs.late_register callback)
+are necessary.
+
+I'll try to make some time to prepare a new patch.
+
+Regards,
+
+Hans
+
+
+
+> ---
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index 31bce529f685..33b0e1de2770 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -4065,7 +4065,8 @@ static const struct backlight_ops amdgpu_dm_backlight_ops = {
+>  };
+>  
+>  static void
+> -amdgpu_dm_register_backlight_device(struct amdgpu_display_manager *dm)
+> +amdgpu_dm_register_backlight_device(struct amdgpu_display_manager *dm,
+> +				    struct amdgpu_dm_connector *aconnector)
+>  {
+>  	char bl_name[16];
+>  	struct backlight_properties props = { 0 };
+> @@ -4088,7 +4089,7 @@ amdgpu_dm_register_backlight_device(struct amdgpu_display_manager *dm)
+>  		 adev_to_drm(dm->adev)->primary->index + dm->num_of_edps);
+>  
+>  	dm->backlight_dev[dm->num_of_edps] = backlight_device_register(bl_name,
+> -								       adev_to_drm(dm->adev)->dev,
+> +								       aconnector->base.kdev,
+>  								       dm,
+>  								       &amdgpu_dm_backlight_ops,
+>  								       &props);
+> @@ -4141,6 +4142,7 @@ static int initialize_plane(struct amdgpu_display_manager *dm,
+>  
+>  
+>  static void register_backlight_device(struct amdgpu_display_manager *dm,
+> +				      struct amdgpu_dm_connector *aconnector,
+>  				      struct dc_link *link)
+>  {
+>  	if ((link->connector_signal & (SIGNAL_TYPE_EDP | SIGNAL_TYPE_LVDS)) &&
+> @@ -4151,7 +4153,7 @@ static void register_backlight_device(struct amdgpu_display_manager *dm,
+>  		 * is better then a black screen.
+>  		 */
+>  		if (!dm->backlight_dev[dm->num_of_edps])
+> -			amdgpu_dm_register_backlight_device(dm);
+> +			amdgpu_dm_register_backlight_device(dm, aconnector);
+>  
+>  		if (dm->backlight_dev[dm->num_of_edps]) {
+>  			dm->backlight_link[dm->num_of_edps] = link;
+> @@ -4337,7 +4339,7 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
+>  
+>  			if (ret) {
+>  				amdgpu_dm_update_connector_after_detect(aconnector);
+> -				register_backlight_device(dm, link);
+> +				register_backlight_device(dm, aconnector, link);
+>  
+>  				if (dm->num_of_edps)
+>  					update_connector_ext_caps(aconnector);
 
