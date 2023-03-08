@@ -1,63 +1,55 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76D036B1436
-	for <lists+amd-gfx@lfdr.de>; Wed,  8 Mar 2023 22:37:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 660186B14AA
+	for <lists+amd-gfx@lfdr.de>; Wed,  8 Mar 2023 22:59:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CE7810E71F;
-	Wed,  8 Mar 2023 21:37:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9069B10E729;
+	Wed,  8 Mar 2023 21:59:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com
- [IPv6:2607:f8b0:4864:20::62e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E474110E71E;
- Wed,  8 Mar 2023 21:37:35 +0000 (UTC)
-Received: by mail-pl1-x62e.google.com with SMTP id p20so18962305plw.13;
- Wed, 08 Mar 2023 13:37:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1678311455;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=zV+om0NR+cnzqVQPHGOta3zbRdhEgtVU/fLMzwYN8as=;
- b=HsSBs0dJvWceXh5LSp0xnmwmEIPus+4IAVNqxtCvnlYpMiaI5Htyx/EN2gHnm+3ovs
- Ao/ax8gNdbDYlfcjbFZYC5oPKd0QvT9zsadpIs2xlFtoi7rDldSE02ylVJYzh283EQBu
- ltmTRgfU/qThsfu7JSxlPzvNsbPys8ygoOSD4eTxJyZmCsYiol2iCD4CIes8oEQfNccx
- bAeGvGa8/eJ3x/UngESYq19f3J17U1FJd+NC/qIgNWTmCgIc/XV/6ySSXkRuq31sFPrT
- 4gUu6hk7DSk8gdXzn3SPJv+RBaZXzQEz6rqtdWmSX+1gts1F30/S+R5X275zn6Vq7A0B
- dxHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1678311455;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=zV+om0NR+cnzqVQPHGOta3zbRdhEgtVU/fLMzwYN8as=;
- b=RjxlJ39gamhEf0aE0UpAVbOpzTavIfivq5qtQjfGBbC49qYr3FNVNVTIZYcRAOHu51
- rf7dyhcmObl4ygmPCG2kNDsm6JLyiE0eg8TDY7DHkjwG0n2eDSG73qEtOWlRodeP9sOy
- IXmWhWx/QNtW/19+vBi1R7P+bjdGxv7eQeK30SS77wQ+uUf5+vLMbKh8aAI0jPJ5LqTk
- xvQvXubqw+w28rxL4jMbfVSk5nw0nos22mWiMPQNMBkMP+ct+HPQOOOpUmfXE3qRiRih
- PPjt618pvf24PUhGqc79GpaazCp/XmvggpuU5MuYeRao/mpNO67rtwH+7PAOqGs2sV9J
- lcFw==
-X-Gm-Message-State: AO0yUKWjPBDf6/kBCj9H5dIuodaIHP76e9gwrKGpkCD1MyyAVjOWoHb4
- n9ukRniBKskr4mjNfR5Etpbg+tFqGkI=
-X-Google-Smtp-Source: AK7set/9NpYoFpvd2vl0jKgvL9WPaSnHj9b5Kb4Pnus9IHEFb47PDh0N0Xkxv8nFi1QYKc6kzQFsyQ==
-X-Received: by 2002:a17:903:2307:b0:19a:7060:948 with SMTP id
- d7-20020a170903230700b0019a70600948mr21142631plh.1.1678311454942; 
- Wed, 08 Mar 2023 13:37:34 -0800 (PST)
-Received: from olv-ct-22.c.googlers.com.com
- (132.111.125.34.bc.googleusercontent.com. [34.125.111.132])
- by smtp.gmail.com with ESMTPSA id
- iw3-20020a170903044300b0019ca68ef7c3sm10285073plb.74.2023.03.08.13.37.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Mar 2023 13:37:34 -0800 (PST)
-From: Chia-I Wu <olvaffe@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH] drm/amdkfd: fix potential kgd_mem UAFs
-Date: Wed,  8 Mar 2023 13:37:24 -0800
-Message-Id: <20230308213724.3396058-1-olvaffe@gmail.com>
-X-Mailer: git-send-email 2.40.0.rc1.284.g88254d51c5-goog
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6C6610E721
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Mar 2023 21:58:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1678312724;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=bpflyvgP7Tk2FiT7NC9tK3mz7yhJSeyaL97M7+sFE6c=;
+ b=HgC3z0WyMU6PcEMzNZcd8xO8lfxTB0jVsC/wMFVGWovWNH9E/DjqZ/Ze2fmVTvoPGj0Yn/
+ Cx4PCRPaFel3zvbAtRLM1h7Q55Rd226AEfRrmctB4GrAAHNn1CBkDHHopPLx1qY9KdiEqu
+ cv7h81rYMOvnjq12VW1Qa5hpayefD2s=
+Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
+ [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-554-ogRfrDZcMZK6yjQtodHy4g-1; Wed, 08 Mar 2023 16:58:41 -0500
+X-MC-Unique: ogRfrDZcMZK6yjQtodHy4g-1
+Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.rdu2.redhat.com
+ [10.11.54.5])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id BD4553C58C46;
+ Wed,  8 Mar 2023 21:58:40 +0000 (UTC)
+Received: from localhost.localdomain (unknown [10.39.195.179])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id F37CC440E0;
+ Wed,  8 Mar 2023 21:58:39 +0000 (UTC)
+From: Hans de Goede <hdegoede@redhat.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Subject: [RFC v2 0/6] drm/amd/display: Pass proper parent for DM backlight
+ device v2
+Date: Wed,  8 Mar 2023 22:58:25 +0100
+Message-Id: <20230308215831.782266-1-hdegoede@redhat.com>
 MIME-Version: 1.0
+X-Scanned-By: MIMEDefang 3.1 on 10.11.54.5
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"; x-default=true
+X-Mailman-Approved-At: Wed, 08 Mar 2023 21:59:55 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,95 +61,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Felix Kuehling <Felix.Kuehling@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Hans de Goede <hdegoede@redhat.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-kgd_mem should be accessed with p->mutex locked, or it could have been
-freed by kfd_ioctl_free_memory_of_gpu.
+Hi All,
 
-Signed-off-by: Chia-I Wu <olvaffe@gmail.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 16 ++++++++++------
- 1 file changed, 10 insertions(+), 6 deletions(-)
+Here is version 2 of my patch series to pass the proper parent device
+to backlight_device_register().
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-index 6d291aa6386bd..3c630114210d6 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-@@ -1293,14 +1293,14 @@ static int kfd_ioctl_map_memory_to_gpu(struct file *filep,
- 		args->n_success = i+1;
- 	}
- 
--	mutex_unlock(&p->mutex);
--
- 	err = amdgpu_amdkfd_gpuvm_sync_memory(dev->adev, (struct kgd_mem *) mem, true);
- 	if (err) {
- 		pr_debug("Sync memory failed, wait interrupted by user signal\n");
- 		goto sync_memory_failed;
- 	}
- 
-+	mutex_unlock(&p->mutex);
-+
- 	/* Flush TLBs after waiting for the page table updates to complete */
- 	for (i = 0; i < args->n_devices; i++) {
- 		peer_pdd = kfd_process_device_data_by_id(p, devices_arr[i]);
-@@ -1316,9 +1316,9 @@ static int kfd_ioctl_map_memory_to_gpu(struct file *filep,
- bind_process_to_device_failed:
- get_mem_obj_from_handle_failed:
- map_memory_to_gpu_failed:
-+sync_memory_failed:
- 	mutex_unlock(&p->mutex);
- copy_from_user_failed:
--sync_memory_failed:
- 	kfree(devices_arr);
- 
- 	return err;
-@@ -1332,6 +1332,7 @@ static int kfd_ioctl_unmap_memory_from_gpu(struct file *filep,
- 	void *mem;
- 	long err = 0;
- 	uint32_t *devices_arr = NULL, i;
-+	bool flush_tlb;
- 
- 	if (!args->n_devices) {
- 		pr_debug("Device IDs array empty\n");
-@@ -1384,16 +1385,19 @@ static int kfd_ioctl_unmap_memory_from_gpu(struct file *filep,
- 		}
- 		args->n_success = i+1;
- 	}
--	mutex_unlock(&p->mutex);
- 
--	if (kfd_flush_tlb_after_unmap(pdd->dev)) {
-+	flush_tlb = kfd_flush_tlb_after_unmap(pdd->dev);
-+	if (flush_tlb) {
- 		err = amdgpu_amdkfd_gpuvm_sync_memory(pdd->dev->adev,
- 				(struct kgd_mem *) mem, true);
- 		if (err) {
- 			pr_debug("Sync memory failed, wait interrupted by user signal\n");
- 			goto sync_memory_failed;
- 		}
-+	}
-+	mutex_unlock(&p->mutex);
- 
-+	if (flush_tlb) {
- 		/* Flush TLBs after waiting for the page table updates to complete */
- 		for (i = 0; i < args->n_devices; i++) {
- 			peer_pdd = kfd_process_device_data_by_id(p, devices_arr[i]);
-@@ -1409,9 +1413,9 @@ static int kfd_ioctl_unmap_memory_from_gpu(struct file *filep,
- bind_process_to_device_failed:
- get_mem_obj_from_handle_failed:
- unmap_memory_from_gpu_failed:
-+sync_memory_failed:
- 	mutex_unlock(&p->mutex);
- copy_from_user_failed:
--sync_memory_failed:
- 	kfree(devices_arr);
- 	return err;
- }
+New in version 2 is delaying the registering of the backlight_dev till
+after the drm_connector is registered by doing it from
+drm_connector_funcs.late_register.
+
+This involves first reworking the code a bit to allow delaying
+the registering, so this has turned from a single patch into
+a 6 patch set.
+
+Regards,
+
+Hans
+
+
+Hans de Goede (6):
+  drm/amd/display/amdgpu_dm: Fix backlight_device_register() error
+    handling
+  drm/amd/display/amdgpu_dm: Refactor register_backlight_device()
+  drm/amd/display/amdgpu_dm: Add a bl_idx to amdgpu_dm_connector
+  drm/amd/display/amdgpu_dm: Move most backlight setup into
+    setup_backlight_device()
+  drm/amd/display/amdgpu_dm: Make amdgpu_dm_register_backlight_device()
+    take an amdgpu_dm_connector
+  drm/amd/display: Pass proper parent for DM backlight device
+    registration v2
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 99 ++++++++-----------
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  1 +
+ 2 files changed, 44 insertions(+), 56 deletions(-)
+
 -- 
-2.40.0.rc1.284.g88254d51c5-goog
+2.39.1
 
