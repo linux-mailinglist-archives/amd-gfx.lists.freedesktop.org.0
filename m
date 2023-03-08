@@ -2,70 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D45FC6B0ABE
-	for <lists+amd-gfx@lfdr.de>; Wed,  8 Mar 2023 15:14:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 194426B0AC2
+	for <lists+amd-gfx@lfdr.de>; Wed,  8 Mar 2023 15:14:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E99C710E5E4;
-	Wed,  8 Mar 2023 14:14:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDACA10E5F9;
+	Wed,  8 Mar 2023 14:14:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D96D910E5E2
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Mar 2023 14:10:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C53310E5E3
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Mar 2023 14:11:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1678284601;
+ s=mimecast20190719; t=1678284686;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding;
- bh=mXndFig5MxMz39oru/IvohSxV+rytJfkgOQsYDdo+fQ=;
- b=GUwUdwBjjxq+VPBzYbMlhrML2aMcWfpZ1UwVNiHO3IW1zqLTikPo5deEIg+3Vp6QG1axFl
- KY3If1CbMW4jdOeB+XUg4uU6JxN2pDa4HSThzWymV7TTLO9MuzeRCigPhkjxswbVQDxaUF
- 5dVuT8I808WzSw8ch7LGhACGkG5OPq8=
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=m81gFkR2y1XD7ZSB1IHW7cdgZ+75l9heGqDR7NPaKd4=;
+ b=JH6YCTjSyeaOVAHrPSBRmAwnuhjMogbaeCqnHQq+yIBu4DshANB7Q27awUINA+lE0wsP2G
+ sVw2/dTzLTrFI7CKPla2f8hzlSIZm3ODZEJeWHsPQ+uX9s/IEMlxr3dwQv/btxaxM93ddP
+ ehG7BBbY14C8na2CXViQoCeWjJ86bzU=
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-193-WhqoILbiPkyC7holBxgAUg-1; Wed, 08 Mar 2023 09:10:00 -0500
-X-MC-Unique: WhqoILbiPkyC7holBxgAUg-1
-Received: by mail-qv1-f71.google.com with SMTP id
- jo13-20020a056214500d00b004c6c72bf1d0so9261045qvb.9
- for <amd-gfx@lists.freedesktop.org>; Wed, 08 Mar 2023 06:09:54 -0800 (PST)
+ us-mta-597-SDmAQ5-AOUW0sMfK2znEdA-1; Wed, 08 Mar 2023 09:11:24 -0500
+X-MC-Unique: SDmAQ5-AOUW0sMfK2znEdA-1
+Received: by mail-qk1-f199.google.com with SMTP id
+ x14-20020ae9e90e000000b007429af46d5eso9344834qkf.12
+ for <amd-gfx@lists.freedesktop.org>; Wed, 08 Mar 2023 06:11:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1678284594;
+ d=1e100.net; s=20210112; t=1678284684;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=mXndFig5MxMz39oru/IvohSxV+rytJfkgOQsYDdo+fQ=;
- b=kaE3Z3K298PV0+Lp9Xc4FxDNjcbHIzxIs1T3nQJsSz53ZKg2A8GyebtqMUseDnuu1j
- gHPUF95oXfn2KZzW3/9pkssFMbLV7s6tcypGCGay7swoMzZLHR/RzK28cM9fqEtA2hsH
- 92O7rQWB7OHPsCNfBOq5ZMrobcrdLFSFSquI1OH5QrDcw54MnKhLQ1IHAWdrz1VZLGKz
- UKDyHDvCI35REBRTI3J7J0ZIamTiE9IL+w/HPTeectlC0qWRbwwDWBj/9zYzeD7PT9vM
- TOhgR/sP2hHZ3OoT/ueGGoU5rj3EMbqBcANTZosBP0pu4D93Rph6P7P0xJ7eQfEEOp9b
- l7vw==
-X-Gm-Message-State: AO0yUKVdKGD2dDuHQ+ANLieaDxkPbiipi3vlgPmyChU+zeyaE2fohba+
- 3Y87AcQJ0MLeY1jiNC/3Q8897gt9qWC2oqxEV21ngNsbo+FoPBqp7/yEAyaj8oFu8MfTijc4gqJ
- cp/gsTjNs68bwrR4cPi8ZYN1VAw==
-X-Received: by 2002:a05:622a:1443:b0:3bf:d4c3:365d with SMTP id
- v3-20020a05622a144300b003bfd4c3365dmr4212478qtx.14.1678284593681; 
- Wed, 08 Mar 2023 06:09:53 -0800 (PST)
-X-Google-Smtp-Source: AK7set/OjUR2DEyaB2HDQqosX6A/GPRFh2BbK8gtM7CV145ROLD4Op15ZKZMuAH5bQJg0F1d3/souw==
-X-Received: by 2002:a05:622a:1443:b0:3bf:d4c3:365d with SMTP id
- v3-20020a05622a144300b003bfd4c3365dmr4212441qtx.14.1678284593432; 
- Wed, 08 Mar 2023 06:09:53 -0800 (PST)
+ bh=m81gFkR2y1XD7ZSB1IHW7cdgZ+75l9heGqDR7NPaKd4=;
+ b=FWpy1ChysP7eXM68WlQCns3ek7UrdLy7rxszFRJm6mRVW1kuA0dr3hZIko3QQslfnY
+ UMZRRQRGXzvUDC7vy37oGyDRe5gGk3TlZiwCJ2ggzmH3iXbtC8cKrYlgNMHfS77UFJwZ
+ qFdIBrBINGYN+9M0ynNCLzwszucdARDlwmSciNWK7ruCQao/KISsW1iJHviV5pZq2qOn
+ IEv3tfYrvGqI4/VEHWGJfYeKSMKPsH1WvekTUBxJ6O/Q39dZ656C+MtQy6Lm4tZQOkZv
+ gCvl8CvoOi9p1SuU8WwmxxRowyzLAhvXloSJrezHoxHKy7Fv9Y70oByFJYCobFjrO8f/
+ GQXg==
+X-Gm-Message-State: AO0yUKUR/DrBbwPszFqnlKV9WnfG3OKxrQdkvLgYnyIAT+SbJOdZtVBc
+ lsJWv7YD4+ytu5VB9h7bk/clcen5C+Lp96QKCV9bUrtWUCuGvMvApHiGQyl627ZvZJAy/l3fP0D
+ ZLQ5N8ChVBZW1K5xPZoiprZ3zlA==
+X-Received: by 2002:a05:6214:202d:b0:572:6ed8:e494 with SMTP id
+ 13-20020a056214202d00b005726ed8e494mr36527169qvf.18.1678284684065; 
+ Wed, 08 Mar 2023 06:11:24 -0800 (PST)
+X-Google-Smtp-Source: AK7set/PozfFJrQLJrJyxgwp36xRY3RsiKsiNwx4ETYM7tgGHq8Lwp8dvr5WLBt6+Jo4Oiup/CBkQg==
+X-Received: by 2002:a05:6214:202d:b0:572:6ed8:e494 with SMTP id
+ 13-20020a056214202d00b005726ed8e494mr36527115qvf.18.1678284683835; 
+ Wed, 08 Mar 2023 06:11:23 -0800 (PST)
 Received: from dell-per740-01.7a2m.lab.eng.bos.redhat.com
  (nat-pool-bos-t.redhat.com. [66.187.233.206])
  by smtp.gmail.com with ESMTPSA id
- b1-20020ac812c1000000b003bfa932525dsm11523571qtj.51.2023.03.08.06.09.52
+ q79-20020a374352000000b0073b27323c6dsm11187764qka.136.2023.03.08.06.11.21
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Mar 2023 06:09:53 -0800 (PST)
+ Wed, 08 Mar 2023 06:11:23 -0800 (PST)
 From: Tom Rix <trix@redhat.com>
 To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
  alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch, lyude@redhat.com, Wayne.Lin@amd.com,
- hersenxs.wu@amd.com, hamza.mahfooz@amd.com, Jerry.Zuo@amd.com
-Subject: [PATCH] drm/amd/display: remove unused variable res_pool
-Date: Wed,  8 Mar 2023 09:09:43 -0500
-Message-Id: <20230308140943.2009970-1-trix@redhat.com>
+ airlied@gmail.com, daniel@ffwll.ch, wenjing.liu@amd.com,
+ qingqing.zhuo@amd.com, Jun.Lei@amd.com, mghaddar@amd.com,
+ candice.li@amd.com, aric.cyr@amd.com
+Subject: [PATCH] drm/amd/display: remove unused variable available
+Date: Wed,  8 Mar 2023 09:10:57 -0500
+Message-Id: <20230308141057.2010361-1-trix@redhat.com>
 X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
@@ -90,38 +91,51 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 With gcc and W=1, there is this error
-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_mst_types.c:1214:31:
-  error: variable ‘res_pool’ set but not used [-Werror=unused-but-set-variable]
- 1214 |         struct resource_pool *res_pool;
-      |                               ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/link/protocols/link_dp_dpia_bw.c:297:13: error:
+  variable ‘available’ set but not used [-Werror=unused-but-set-variable]
+  297 |         int available = 0;
+      |             ^~~~~~~~~
 
-Since res_pool is unused, remove it.
+Since available is unused, remove it.
 
 Signed-off-by: Tom Rix <trix@redhat.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c | 2 --
- 1 file changed, 2 deletions(-)
+ .../drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c   | 8 --------
+ 1 file changed, 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-index 2739bef9b90c..4b9b5e4050fc 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-@@ -1211,7 +1211,6 @@ static int pre_compute_mst_dsc_configs_for_state(struct drm_atomic_state *state,
- 	bool computed_streams[MAX_PIPES];
- 	struct amdgpu_dm_connector *aconnector;
- 	struct drm_dp_mst_topology_mgr *mst_mgr;
--	struct resource_pool *res_pool;
- 	int link_vars_start_index = 0;
- 	int ret = 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c
+index f14217cc16fd..2f0311c42f90 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c
++++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c
+@@ -294,7 +294,6 @@ bool link_dp_dpia_set_dptx_usb4_bw_alloc_support(struct dc_link *link)
+ void dpia_handle_bw_alloc_response(struct dc_link *link, uint8_t bw, uint8_t result)
+ {
+ 	int bw_needed = 0;
+-	int available = 0;
+ 	int estimated = 0;
+ 	int host_router_total_estimated_bw = 0;
  
-@@ -1220,7 +1219,6 @@ static int pre_compute_mst_dsc_configs_for_state(struct drm_atomic_state *state,
+@@ -373,20 +372,13 @@ void dpia_handle_bw_alloc_response(struct dc_link *link, uint8_t bw, uint8_t res
  
- 	for (i = 0; i < dc_state->stream_count; i++) {
- 		stream = dc_state->streams[i];
--		res_pool = stream->ctx->dc->res_pool;
- 
- 		if (stream->signal != SIGNAL_TYPE_DISPLAY_PORT_MST)
- 			continue;
+ 		// 1. If due to unplug of other sink
+ 		if (estimated == host_router_total_estimated_bw) {
+-
+ 			// First update the estimated & max_bw fields
+ 			if (link->dpia_bw_alloc_config.estimated_bw < estimated) {
+-				available = estimated - link->dpia_bw_alloc_config.estimated_bw;
+ 				link->dpia_bw_alloc_config.estimated_bw = estimated;
+ 			}
+ 		}
+ 		// 2. If due to realloc bw btw 2 dpia due to plug OR realloc unused Bw
+ 		else {
+-
+-			// We took from another unplugged/problematic sink to give to us
+-			if (link->dpia_bw_alloc_config.estimated_bw < estimated)
+-				available = estimated - link->dpia_bw_alloc_config.estimated_bw;
+-
+ 			// We lost estimated bw usually due to plug event of other dpia
+ 			link->dpia_bw_alloc_config.estimated_bw = estimated;
+ 		}
 -- 
 2.27.0
 
