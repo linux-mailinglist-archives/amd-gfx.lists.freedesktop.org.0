@@ -1,97 +1,93 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F36D76B4F63
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Mar 2023 18:48:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DE3F6B4F66
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Mar 2023 18:49:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71BA010E30D;
-	Fri, 10 Mar 2023 17:48:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71BF710E315;
+	Fri, 10 Mar 2023 17:49:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on20618.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe59::618])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4084610E30D
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Mar 2023 17:48:53 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2080.outbound.protection.outlook.com [40.107.244.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 274EB10E315
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Mar 2023 17:48:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HzHFt5IfesVK1UxcgD3+KMNe6hWFyFNWowvFlFe+BrRFsFsJdLktrKiE/j3D63u8TWjq2p3H5RbTyvQ0OE0ieIKceuuBbAnXz5XTiZl7SE65DLRMUAtrTLYMjgAjH6/DDZmIT94VqGdE5EK+4j4secSAIySaxF/k8532ZKaxq1CyW2gIwCdL4e4Bvv6hfO84YweGPT7giMO/EX2/DA7wMEbOru37CMNn662gNqTn4oViwdg0dPVU3GDILVPPWwmqSF2usYkL3pcAvVVimhPXgKJ3vdIOXDQvM/ZAgeRM6X27NEVOFiufTDD6bYIXch18c5cKS4hTEbRRBCnxUdng7Q==
+ b=hjbmVuDfQyzRt209Mk3aKNlOrwVn5D5WDaEnbP3ttpsYSSlb4+Q4NLLjEm4VGR5ZAlOqp7XQijEQ6EP0A/+PyUupMCodDbeb92F3IfYr6kgWJZyLB7tKkOOsWlF4KceCMkjoV3N0K9N28MlNydv/tfvOlvb24Skz2xpIcWt24L/6rdS2roRSxzpQQbTxlmTF8fCoT4TcOtG8jlNwGN1EoN/J05aEoiHhsoBKney3RWg2UoMGS47Mng1xkRObuzO71JPemQ6FbtEzaTvphuK8vaJ/KMLx8aI+AROQW5gmhpk4cm8E49zlC9QZWMxBATgB3vu30SwuQb7o51hd4xxRnQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BSd3oM3c4b4MYCEgRVc9sUtDHRoOIlSt0bPKufidKXg=;
- b=lEx2Kgnxy3wIBfcW1Oskj7l4pSoo75j8l11bhPO8lWeGpqYM8uV9+SIx8rJApgbdeFf2D/OuSBfeJCKCIRi2BTBSKX3UWKGUIISP6U37YKI3zodpksmpV2bvV8CzCdiZo4sX9TtNnAp6yXGzl1TU/07Dx/EG7Vo3CaEKcqRlzZTDYx6L6QpN3PvjAz37MqWmgbYxmR0FjFQJmtBi+SvD3Uor6Dmx4oZ2bNNExunX6bSsm5iUxK5xqDoc+f6KKpKZKrRdbnhOdLojYbpTzpbVbULplh/7o8BfF5TxEwxOyKlldaZroa6miGf3/QhIMMvW2doWHn8wQrZQUOTFzIV1IA==
+ bh=amp1rfsMuSPCwhiq9INv/Z9errusE/graz/S3H6JACQ=;
+ b=JgV2X3cC0EZ3D4P71XJa/dVQbT+RNc5A5+ScumlerCtaEx1M8vbqk7rBgxx1DQUAkIkeozEDP1O5IfdnWW+MJYgCGNErUhkGXquNXPXVE7d6YzeaZbAvOoRHofVUC/PX+B1NY1p6rDuf6BudF1gKASQanwwj+YDReLf72NM2aNmQ+nxJC8tEyGDBkg/XA8FrduYGmIarP6uRnKgty7RcnwulvLhTjZK73y/8qiF3/dxvep97AT50uBmI+wUtGhAOsWMPI0a19OGVfji9pqwdEeNijwJq5r2Ow+58h6jpyWCK6HZBWNvjX8Ryp4dE5hF5Ty2NQITr+eMDEGL+ZPDVIA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BSd3oM3c4b4MYCEgRVc9sUtDHRoOIlSt0bPKufidKXg=;
- b=ZxGNmSJv+Oa18YefL40QvmXvUku6UxTtAvMYvn7PnXBtP8QPeN+oxJcjg5+NSLg/Qj29h2Cl0Rgea+kK+wuVMbiYSEVGf+qQJzoez4p71BTaCe0hQU8kYvDO4QsEyhO/sOTbXRP3pV6pW7is2coWYf5h5YCXZRko4FdaWJrR3hw=
-Received: from DS7PR05CA0066.namprd05.prod.outlook.com (2603:10b6:8:57::11) by
- BL3PR12MB6572.namprd12.prod.outlook.com (2603:10b6:208:38f::13) with
+ bh=amp1rfsMuSPCwhiq9INv/Z9errusE/graz/S3H6JACQ=;
+ b=Pa8UW5w3X/rgyR4+vIpUAXDN/hxHtEwxpj794O9Poc6hQ7095TKT5OwEenI8yeuZC9mxh5yTjIw1Is4trIp6UOIWuOrHHm3HiCQ/DAwz7WHl7s0rK7LbQrcZOVyF1UlyRmL/0gLJB7B5Q8O5fFT7HZAWoTRCZkHcPwJYZv5T2sw=
+Received: from DM6PR17CA0028.namprd17.prod.outlook.com (2603:10b6:5:1b3::41)
+ by MW5PR12MB5650.namprd12.prod.outlook.com (2603:10b6:303:19e::12) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.19; Fri, 10 Mar
- 2023 17:48:51 +0000
-Received: from DM6NAM11FT096.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:57:cafe::d6) by DS7PR05CA0066.outlook.office365.com
- (2603:10b6:8:57::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.20 via Frontend
- Transport; Fri, 10 Mar 2023 17:48:50 +0000
+ 2023 17:48:57 +0000
+Received: from DS1PEPF0000E64A.namprd02.prod.outlook.com
+ (2603:10b6:5:1b3:cafe::e0) by DM6PR17CA0028.outlook.office365.com
+ (2603:10b6:5:1b3::41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.19 via Frontend
+ Transport; Fri, 10 Mar 2023 17:48:56 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT096.mail.protection.outlook.com (10.13.173.145) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6178.20 via Frontend Transport; Fri, 10 Mar 2023 17:48:50 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DS1PEPF0000E64A.mail.protection.outlook.com (10.167.18.40) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6178.13 via Frontend Transport; Fri, 10 Mar 2023 17:48:56 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 10 Mar
- 2023 11:48:50 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 10 Mar
- 2023 09:48:49 -0800
+ 2023 11:48:55 -0600
 Received: from aaurabin-elitedesk-arch.amd.com (10.180.168.240) by
  SATLEXMB03.amd.com (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34
- via Frontend Transport; Fri, 10 Mar 2023 11:48:49 -0600
+ via Frontend Transport; Fri, 10 Mar 2023 11:48:50 -0600
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 1/2] drm/amd/display: Add missing description to DMCUB
- definitions
-Date: Fri, 10 Mar 2023 12:48:48 -0500
-Message-ID: <20230310174849.1619771-1-aurabindo.pillai@amd.com>
+Subject: [PATCH 2/2] drm/amd/display: Enable FAMS for DCN3x
+Date: Fri, 10 Mar 2023 12:48:49 -0500
+Message-ID: <20230310174849.1619771-2-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230310174849.1619771-1-aurabindo.pillai@amd.com>
+References: <20230310174849.1619771-1-aurabindo.pillai@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT096:EE_|BL3PR12MB6572:EE_
-X-MS-Office365-Filtering-Correlation-Id: d95bdafc-7e1a-4d19-0e42-08db218fb53f
+X-MS-TrafficTypeDiagnostic: DS1PEPF0000E64A:EE_|MW5PR12MB5650:EE_
+X-MS-Office365-Filtering-Correlation-Id: efd40151-b59c-44f5-dabd-08db218fb8b4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: KRqZAHtESzoN8eDkOWsTQK7TjbYyS1+HQg74j3iZAcW2D8E8hyg7xGV9H6HThjkbIUAJeHMBtHQmqLuUmT6kmgFbPV7LZyikLtBSp1jbEd1/hHdS5bO0lJXQa3xTK2w2+vYVqBAGldgofRh4aW0tCzMqd8uBmImS5tu758SKb3DvZhGnwRKYl7VAdoB/V3Rvl8IamEP77AppM1EtZlQFhlcqo0PqE4Ee9gGNJymLr87UqZH9cbIv98IT4inEKSrZ7ZY5txA2DYHPnqqMLPcl9O8ckSVgiWWrJtj8rc2cQOvtO36QIxt9NG1X4zIU3woHK3KW4MBgP5CqbY+Rk8xKHnaJJoFSJVYThcKtB5qf/82BuDqwXPFcGGs3gN4eeUJL90ViJAaVFq/ZsDLeXAuR95qTttZj9tsE9NKYCsyFpQYBnzvSxsFqpHpd7j5UROiPHzv1NZqJkIsIbpWvydRYPCy9dRyFFoImH4Zj+jeTUXVnORKl4HRnndUMggGeacMH7op/RfI/O64Bl0DyIsnna+oNr5oeyC4quPIY4GUNWIPM/Kt1dwcRiWEHS5fY/Sr3gKb4IcHo93EhxIcFHwTVciM1QG46YvVTVV1kMdeM37jMJ7ClJUtC8xWcNn6786bhkSgPFTC+/fgoKWdGDxSdvQH79de6cl/MFA5k3u/VntXWlYpcSzHYLpBn1hJvtQZzqBF4ilISRvIukaZbQYuFZhD4HXtXnfqTQ/6M4huV05U=
+X-Microsoft-Antispam-Message-Info: f6Bs27WbUYA4SBbamnUmn4D2YQQkykxN0bSk/SyU1gmkerezyIQwSngMyIgX+uPaXOmbMRnFXZ+7CWx8toZzHoEOm0nkGi0gqoheqFIhXXx3NYvcXyY8FVPaLzBKTek3ey46bHQWzK+EHCFQM5ANJPAfwoXlZxCBgh4xKMogMKEP7xNbR73hOnqElQvHULMlAYR6TlmZsiuCGarrUbx+gghcxng0OeybruJREw5eE7GfYjWH3kiRFDMc5+CWrYBpI1pakWUkz4CIWa/FUaIEEbLgbETJEaEeBBFqT5RTJCt7HgaZATYWwjQSsbReBb6pnrKSkog/oFBiQjC3kmiXp+gP8T5ETe4WbHHga+F4xokCG9ofctoDTKGK19UJuu3234l5PgXZhrMa3W0FoPCcUdczz11SNeQTXnmcFLuPckWi0ZxzwWUfv2Q4UPOPKNDWDm5rVvxNOj6oKqZK5nOVLSXJyWHqpNmNQEerwJT/WpVvlvzIkEepSlxpG8IhjjlbamBe1OjDJRz553cXKl/R/oagF5hQoOqy1ctLeNVjFdOmpVNOu9qNu5vlTfBnzrf9qrcicjTGRYWQXROEXH+MzDMVmW8j5DljtEGck/vOWuzr8bekAoYzkdxwRFbeu2mQvi3TrVQBHdItfWw7Xb7KvYsk0vbSGgj59lYVXakuirzWXDAfGdpb0Fx002t3q0SKfTEd5pLX2nsuZbl1TwP+Nh5I0BhGEzKspOpxZC79Kj/csl2j1slzLzMLSeQPV5Uv
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(346002)(376002)(39860400002)(136003)(396003)(451199018)(40470700004)(46966006)(36840700001)(40460700003)(36756003)(54906003)(5660300002)(7696005)(6916009)(316002)(4744005)(2906002)(8936002)(44832011)(70206006)(70586007)(8676002)(41300700001)(4326008)(40480700001)(26005)(82740400003)(36860700001)(186003)(1076003)(356005)(86362001)(81166007)(2616005)(478600001)(83380400001)(47076005)(336012)(426003)(82310400005)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230025)(4636009)(39860400002)(346002)(396003)(376002)(136003)(451199018)(40470700004)(46966006)(36840700001)(2906002)(83380400001)(7696005)(36756003)(44832011)(40460700003)(26005)(30864003)(5660300002)(186003)(40480700001)(41300700001)(8676002)(2616005)(316002)(86362001)(47076005)(6916009)(356005)(426003)(4326008)(70586007)(70206006)(336012)(81166007)(478600001)(8936002)(82740400003)(1076003)(54906003)(36860700001)(82310400005)(32563001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2023 17:48:50.7124 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d95bdafc-7e1a-4d19-0e42-08db218fb53f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2023 17:48:56.5175 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: efd40151-b59c-44f5-dabd-08db218fb8b4
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT096.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0000E64A.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6572
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR12MB5650
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,42 +99,231 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: harry.wentland@amd.com, aurabindo.pillai@amd.com, rodrigo.siqueira@amd.com,
- hamza.mahfooz@amd.com
+Cc: harry.wentland@amd.com, aurabindo.pillai@amd.com,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, hamza.mahfooz@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 [Why&How]
-Provides description for some enums used by DMCUB
+Firmware Assisted Memclk Switching enables lowering mclk using DMCUB
+when it cannot be normally done due to not having enough time within
+vblank. FAMS extends vblank on monitors that support variable refresh
+rate thereby allowing enough time to do an mclk switch sequence
+during vblank.
+
+When tested with 4k@144Hz monitor on DCN32, power consumption of about
+40W was saved since multiple clocks like MCLK, SOCCLK, and FCLK
+were brought down.
 
 Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ .../gpu/drm/amd/display/dc/dcn30/dcn30_optc.c |  7 +-
+ .../drm/amd/display/dc/dcn30/dcn30_resource.h |  3 +
+ .../drm/amd/display/dc/dcn31/dcn31_hwseq.c    |  4 ++
+ .../drm/amd/display/dc/dcn32/dcn32_hwseq.c    |  2 +
+ .../drm/amd/display/dc/dcn32/dcn32_resource.c |  2 +-
+ .../drm/amd/display/dc/dml/dcn30/dcn30_fpu.c  | 71 ++++++++++++++++---
+ .../drm/amd/display/dc/dml/dcn32/dcn32_fpu.c  |  5 ++
+ 7 files changed, 84 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-index 734b34902fa7..4f67124d8e68 100644
---- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-+++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-@@ -717,7 +717,7 @@ enum dmub_cmd_type {
- 	 */
- 	DMUB_CMD__PANEL_CNTL = 74,
- 	/**
--	 * Command type used for <TODO:description>
-+	 * Command type used for all CAB commands.
- 	 */
- 	DMUB_CMD__CAB_FOR_SS = 75,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c
+index 08b92715e2e6..9963bffb1e07 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c
+@@ -301,7 +301,12 @@ void optc3_wait_drr_doublebuffer_pending_clear(struct timing_generator *optc)
  
-@@ -997,6 +997,9 @@ struct dmub_rb_cmd_cab_for_ss {
- 	uint8_t debug_bits;     /* debug bits */
- };
+ void optc3_set_vtotal_min_max(struct timing_generator *optc, int vtotal_min, int vtotal_max)
+ {
+-	optc1_set_vtotal_min_max(optc, vtotal_min, vtotal_max);
++	struct dc *dc = optc->ctx->dc;
++
++	if (dc->caps.dmub_caps.mclk_sw && !dc->debug.disable_fams)
++		dc_dmub_srv_drr_update_cmd(dc, optc->inst, vtotal_min, vtotal_max);
++	else
++		optc1_set_vtotal_min_max(optc, vtotal_min, vtotal_max);
+ }
  
-+/**
-+ * Enum for indicating which MCLK switch mode per pipe
-+ */
- enum mclk_switch_mode {
- 	NONE = 0,
- 	FPO = 1,
+ void optc3_tg_init(struct timing_generator *optc)
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.h b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.h
+index 8e6b8b7368fd..d8805618a9a1 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.h
+@@ -102,6 +102,9 @@ void dcn30_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params
+ 
+ bool dcn30_can_support_mclk_switch_using_fw_based_vblank_stretch(struct dc *dc, struct dc_state *context);
+ void dcn30_setup_mclk_switch_using_fw_based_vblank_stretch(struct dc *dc, struct dc_state *context);
++
++void dcn30_setup_mclk_switch_using_fw_based_vblank_stretch(struct dc *dc, struct dc_state *context);
++
+ int dcn30_find_dummy_latency_index_for_fw_based_mclk_switch(struct dc *dc, struct dc_state *context,
+ 		display_e2e_pipe_params_st *pipes, int pipe_cnt, int vlevel);
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
+index 80a0c5a575a9..40080113ed5e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
+@@ -295,6 +295,10 @@ void dcn31_init_hw(struct dc *dc)
+ 	if (dc->res_pool->hubbub->funcs->init_crb)
+ 		dc->res_pool->hubbub->funcs->init_crb(dc->res_pool->hubbub);
+ #endif
++	/* Get DMCUB capabilities */
++	dc_dmub_srv_query_caps_cmd(dc->ctx->dmub_srv->dmub);
++	dc->caps.dmub_caps.psr = dc->ctx->dmub_srv->dmub->feature_caps.psr;
++	dc->caps.dmub_caps.mclk_sw = dc->ctx->dmub_srv->dmub->feature_caps.fw_assisted_mclk_switch;
+ }
+ 
+ void dcn31_dsc_pg_control(
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
+index f87db2271924..3220f9ad8a47 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
+@@ -919,6 +919,8 @@ void dcn32_init_hw(struct dc *dc)
+ 	if (dc->ctx->dmub_srv) {
+ 		dc_dmub_srv_query_caps_cmd(dc->ctx->dmub_srv->dmub);
+ 		dc->caps.dmub_caps.psr = dc->ctx->dmub_srv->dmub->feature_caps.psr;
++		dc->caps.dmub_caps.mclk_sw = dc->ctx->dmub_srv->dmub->feature_caps.fw_assisted_mclk_switch;
++
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
+index 100b6df33b33..b1944e49a65d 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_resource.c
+@@ -2013,7 +2013,7 @@ int dcn32_populate_dml_pipes_from_context(
+ 	// In general cases we want to keep the dram clock change requirement
+ 	// (prefer configs that support MCLK switch). Only override to false
+ 	// for SubVP
+-	if (subvp_in_use)
++	if (context->bw_ctx.bw.dcn.clk.fw_based_mclk_switching || subvp_in_use)
+ 		context->bw_ctx.dml.soc.dram_clock_change_requirement_final = false;
+ 	else
+ 		context->bw_ctx.dml.soc.dram_clock_change_requirement_final = true;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn30/dcn30_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn30/dcn30_fpu.c
+index 4fa636364793..53f21b0b3630 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn30/dcn30_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn30/dcn30_fpu.c
+@@ -368,7 +368,9 @@ void dcn30_fpu_update_soc_for_wm_a(struct dc *dc, struct dc_state *context)
+ 	dc_assert_fp_enabled();
+ 
+ 	if (dc->clk_mgr->bw_params->wm_table.nv_entries[WM_A].valid) {
+-		context->bw_ctx.dml.soc.dram_clock_change_latency_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_A].dml_input.pstate_latency_us;
++		if (!context->bw_ctx.bw.dcn.clk.fw_based_mclk_switching ||
++				context->bw_ctx.dml.soc.dram_clock_change_latency_us == 0)
++			context->bw_ctx.dml.soc.dram_clock_change_latency_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_A].dml_input.pstate_latency_us;
+ 		context->bw_ctx.dml.soc.sr_enter_plus_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_A].dml_input.sr_enter_plus_exit_time_us;
+ 		context->bw_ctx.dml.soc.sr_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_A].dml_input.sr_exit_time_us;
+ 	}
+@@ -384,9 +386,34 @@ void dcn30_fpu_calculate_wm_and_dlg(
+ 	int i, pipe_idx;
+ 	double dcfclk = context->bw_ctx.dml.vba.DCFCLKState[vlevel][maxMpcComb];
+ 	bool pstate_en = context->bw_ctx.dml.vba.DRAMClockChangeSupport[vlevel][maxMpcComb] != dm_dram_clock_change_unsupported;
++	unsigned int dummy_latency_index = 0;
+ 
+ 	dc_assert_fp_enabled();
+ 
++	context->bw_ctx.bw.dcn.clk.fw_based_mclk_switching = false;
++
++	if (!pstate_en) {
++		/* only when the mclk switch can not be natural, is the fw based vblank stretch attempted */
++		context->bw_ctx.bw.dcn.clk.fw_based_mclk_switching =
++			dcn30_can_support_mclk_switch_using_fw_based_vblank_stretch(dc, context);
++
++		if (context->bw_ctx.bw.dcn.clk.fw_based_mclk_switching) {
++			dummy_latency_index = dcn30_find_dummy_latency_index_for_fw_based_mclk_switch(dc,
++				context, pipes, pipe_cnt, vlevel);
++
++			/* After calling dcn30_find_dummy_latency_index_for_fw_based_mclk_switch
++			 * we reinstate the original dram_clock_change_latency_us on the context
++			 * and all variables that may have changed up to this point, except the
++			 * newly found dummy_latency_index
++			 */
++			context->bw_ctx.dml.soc.dram_clock_change_latency_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_A].dml_input.pstate_latency_us;
++			dcn30_internal_validate_bw(dc, context, pipes, &pipe_cnt, &vlevel, false, true);
++			maxMpcComb = context->bw_ctx.dml.vba.maxMpcComb;
++			dcfclk = context->bw_ctx.dml.vba.DCFCLKState[vlevel][context->bw_ctx.dml.vba.maxMpcComb];
++			pstate_en = context->bw_ctx.dml.vba.DRAMClockChangeSupport[vlevel][maxMpcComb] != dm_dram_clock_change_unsupported;
++		}
++	}
++
+ 	if (context->bw_ctx.dml.soc.min_dcfclk > dcfclk)
+ 		dcfclk = context->bw_ctx.dml.soc.min_dcfclk;
+ 
+@@ -449,15 +476,29 @@ void dcn30_fpu_calculate_wm_and_dlg(
+ 		unsigned int min_dram_speed_mts = context->bw_ctx.dml.vba.DRAMSpeed;
+ 		unsigned int min_dram_speed_mts_margin = 160;
+ 
+-		if (context->bw_ctx.dml.vba.DRAMClockChangeSupport[vlevel][context->bw_ctx.dml.vba.maxMpcComb] == dm_dram_clock_change_unsupported)
+-			min_dram_speed_mts = dc->clk_mgr->bw_params->clk_table.entries[dc->clk_mgr->bw_params->clk_table.num_entries - 1].memclk_mhz * 16;
++		context->bw_ctx.dml.soc.dram_clock_change_latency_us =
++			dc->clk_mgr->bw_params->dummy_pstate_table[0].dummy_pstate_latency_us;
+ 
+-		/* find largest table entry that is lower than dram speed, but lower than DPM0 still uses DPM0 */
+-		for (i = 3; i > 0; i--)
+-			if (min_dram_speed_mts + min_dram_speed_mts_margin > dc->clk_mgr->bw_params->dummy_pstate_table[i].dram_speed_mts)
+-				break;
++		if (context->bw_ctx.dml.vba.DRAMClockChangeSupport[vlevel][maxMpcComb] ==
++			dm_dram_clock_change_unsupported) {
++			int min_dram_speed_mts_offset = dc->clk_mgr->bw_params->clk_table.num_entries - 1;
++
++			min_dram_speed_mts =
++				dc->clk_mgr->bw_params->clk_table.entries[min_dram_speed_mts_offset].memclk_mhz * 16;
++		}
+ 
+-		context->bw_ctx.dml.soc.dram_clock_change_latency_us = dc->clk_mgr->bw_params->dummy_pstate_table[i].dummy_pstate_latency_us;
++		if (!context->bw_ctx.bw.dcn.clk.fw_based_mclk_switching) {
++			/* find largest table entry that is lower than dram speed,
++			 * but lower than DPM0 still uses DPM0
++			 */
++			for (dummy_latency_index = 3; dummy_latency_index > 0; dummy_latency_index--)
++				if (min_dram_speed_mts + min_dram_speed_mts_margin >
++					dc->clk_mgr->bw_params->dummy_pstate_table[dummy_latency_index].dram_speed_mts)
++					break;
++		}
++
++		context->bw_ctx.dml.soc.dram_clock_change_latency_us =
++			dc->clk_mgr->bw_params->dummy_pstate_table[dummy_latency_index].dummy_pstate_latency_us;
+ 
+ 		context->bw_ctx.dml.soc.sr_enter_plus_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_C].dml_input.sr_enter_plus_exit_time_us;
+ 		context->bw_ctx.dml.soc.sr_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_C].dml_input.sr_exit_time_us;
+@@ -520,6 +561,20 @@ void dcn30_fpu_calculate_wm_and_dlg(
+ 		pipe_idx++;
+ 	}
+ 
++	/* WA: restrict FW MCLK switch to use first non-strobe mode (Beige Goby BW issue) */
++	if (context->bw_ctx.bw.dcn.clk.fw_based_mclk_switching &&
++			dc->dml.soc.num_chans <= 4 &&
++			context->bw_ctx.dml.vba.DRAMSpeed <= 1700 &&
++			context->bw_ctx.dml.vba.DRAMSpeed >= 1500) {
++
++		for (i = 0; i < dc->dml.soc.num_states; i++) {
++			if (dc->dml.soc.clock_limits[i].dram_speed_mts > 1700) {
++				context->bw_ctx.dml.vba.DRAMSpeed = dc->dml.soc.clock_limits[i].dram_speed_mts;
++				break;
++			}
++		}
++	}
++
+ 	dcn20_calculate_dlg_params(dc, context, pipes, pipe_cnt, vlevel);
+ 
+ 	if (!pstate_en)
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
+index 077674be452b..ee2683200799 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
+@@ -1331,6 +1331,11 @@ static void dcn32_calculate_dlg_params(struct dc *dc, struct dc_state *context,
+ 			context->bw_ctx.dml.vba.DRAMClockChangeSupport[vlevel][context->bw_ctx.dml.vba.maxMpcComb]
+ 					!= dm_dram_clock_change_unsupported;
+ 
++	/* Pstate change might not be supported by hardware, but it might be
++	 * possible with firmware driven vertical blank stretching.
++	 */
++	context->bw_ctx.bw.dcn.clk.p_state_change_support |= context->bw_ctx.bw.dcn.clk.fw_based_mclk_switching;
++
+ 	context->bw_ctx.bw.dcn.clk.dppclk_khz = 0;
+ 	context->bw_ctx.bw.dcn.clk.dtbclk_en = is_dtbclk_required(dc, context);
+ 	context->bw_ctx.bw.dcn.clk.ref_dtbclk_khz = context->bw_ctx.dml.vba.DTBCLKPerState[vlevel] * 1000;
 -- 
 2.39.2
 
