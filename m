@@ -2,43 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D99D6B3A89
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Mar 2023 10:32:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC5B26B3A8C
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Mar 2023 10:32:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5766910E9AC;
-	Fri, 10 Mar 2023 09:32:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5ED2810E9A8;
+	Fri, 10 Mar 2023 09:32:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on20624.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7eab::624])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14F2E10E9A6
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Mar 2023 09:32:28 +0000 (UTC)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02on2082.outbound.protection.outlook.com [40.107.95.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF02410E9A8
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Mar 2023 09:32:35 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EPyMvZn0YgrlrKFwccxEGwOormEsfZjZ+qLwEoAuuzHxWpOZZi+VEg7D+BMZoN74g9xonlnht8UKnSkUe5aIsMVOdFNUuCde+xf4qGvKHa6KLXwG9aa6sLOg4mtZK1nrBi4QPL8O1cyW23Q7NPjyGQqJmw1Ni2qkwsI3WE089z1FyWI4Yzs2nkhvH4wJyaHUESOW1Ay96glbVwYuf0LG4rme/wkrt9gyo0Cno7Mw2Ngq2x2YRBKKmdj4ZJyReBdsUmNONxRhCYC9UzgeYy26/3r8d3GExr7QAoRgFBEhbUqpFE9xZzhplGu/OVMmx28O6eHyJLS2sbWsDkhMGLGEGw==
+ b=JtYW+qrWs73t5DyRl8APYh2SdqxuVDtV5FTg0FL4dNP+zVPoNpSYAlKGZVSScYBADruPVjy0tUvZOhnCkDqluVtsI6tGohTM0+LOP9/Q6c7A+SOC0XMmeefcFPQaGY/47ymkkvLudqiAA0eS3HxkEX0d55XAB8UdJKlJDUEUcR+ElKpc0P9k/kn2VHnepxs4F6ETHW5aR0z7v8ocivvKzUWcJ9mcwQgjDjmdpGWIEphiMWL6hc+7R1+98Mhu9GGzKCcjzSX3yVTi5lNgomHTTleaQdQ/9kPhDj4/8Y5ibXNMEXsAp/4xlfdE/iJhRbPGlLLZ45/UzPCV9zDg0mZaHw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=B4lhSZzdNQOVvI0RKlz2yYGXJg1czLUF3a8ag6WML8A=;
- b=j7VXm8WkUcLtiw5ljTCXsFPcyhvqjq4gy7jPbUeQhiKx0RATcC/zNieR2RibfL75s7gp1TgwEiX34jGBp0x/AU362CsYYPXiS8+u4SD9ym94P0HcngoSzZaKynp17H+Jo93he0VvIzTRYo2ZdmC1GDolX1065zNnMNSqY0RbbmaT2IjsUndJ7c9NyyAxPMlGhzXfjDrNIInxr3mVZnzxzaoPtlnlcpapbH46TCeytgXLgphdCEJgB8lUKKatJs5pQc7BJ1YTAYfZTnRF6LiZ1Vr6421LmKYJlhHKHOF3lFEtazjj0JFSH9SyJfREhH2axE7ctGzuwAOawZLQKUu6Mg==
+ bh=Tk0LCwNEgkzyJ008Mysbjn2hvu7esKkhoOug1CSshUk=;
+ b=OYjMkfrldAlHInXf7LleeaNq1ugs8p359J2PIqM6cgRHaleH1WReppT3XVgH2SOCR7wwSHiZ19MwgOckeuifphmnz8Ws51/HwnjwcAnJ3jXQlbht9z7oynrqEtpo+vm2MAuxH3n9h3Ha4hOEiDnRmGrB/euFSLE3HXumj8OPRTdOTTIFfhPqUGHrftckTQpydkq+AanSq3jrIIbB96pQlMIFVCBcO1yPqCYawOKAwdB2h+5Z4AEoIZH++ISpChHBvVLIuqox6DrYdM5nOkm/B+YsiDI/I51dBaw7byVj6S+opVQ9jYzpOe9Cv6w6OW0t2cWab67/nTRJCJP3DD0Dig==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=B4lhSZzdNQOVvI0RKlz2yYGXJg1czLUF3a8ag6WML8A=;
- b=4lZGKIqG6JfHSa/mw/EJrYS5ZF6Qim4v0ce6v/yrSlaahhu5sUkd2HxE1IQwKMP/nx3joqc9KakpWmVPwqyqdt55SnyyleatWlcoxbID1Tj6os6G68gSOKvTR5RDb3iYQtlEXNRxWHDJbM+vQ+pSKLQahCNYtX3ibaquIq1Sw4k=
-Received: from DM6PR12CA0033.namprd12.prod.outlook.com (2603:10b6:5:1c0::46)
- by SN7PR12MB6862.namprd12.prod.outlook.com (2603:10b6:806:265::22) with
+ bh=Tk0LCwNEgkzyJ008Mysbjn2hvu7esKkhoOug1CSshUk=;
+ b=JXbm05eZ8ZYAdKh++NeObCc6PX19rnZFLaE3jrpBSkkO6LPy/UPyrZ5I/HZRJRpCRJ0N/YeJealoQeO2A85HT0NJUULqQ7Z+PsGXXcxThjZHXj9Yw7AVDl/cbPJS0Lf+6zXCoR2BIfAJCgf8CJvbVd8S9dzCRnOXYybOI8ky5co=
+Received: from DM6PR12CA0012.namprd12.prod.outlook.com (2603:10b6:5:1c0::25)
+ by PH0PR12MB5481.namprd12.prod.outlook.com (2603:10b6:510:d4::15) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.19; Fri, 10 Mar
- 2023 09:32:26 +0000
+ 2023 09:32:31 +0000
 Received: from CY4PEPF0000C979.namprd02.prod.outlook.com
- (2603:10b6:5:1c0:cafe::5c) by DM6PR12CA0033.outlook.office365.com
- (2603:10b6:5:1c0::46) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.19 via Frontend
- Transport; Fri, 10 Mar 2023 09:32:26 +0000
+ (2603:10b6:5:1c0:cafe::83) by DM6PR12CA0012.outlook.office365.com
+ (2603:10b6:5:1c0::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.20 via Frontend
+ Transport; Fri, 10 Mar 2023 09:32:31 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,17 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CY4PEPF0000C979.mail.protection.outlook.com (10.167.241.137) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6178.13 via Frontend Transport; Fri, 10 Mar 2023 09:32:26 +0000
+ 15.20.6178.13 via Frontend Transport; Fri, 10 Mar 2023 09:32:31 +0000
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 10 Mar
- 2023 03:32:19 -0600
+ 2023 03:32:25 -0600
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 07/19] drm/amd/display: Remove OTG DIV register write for
- Virtual signals.
-Date: Fri, 10 Mar 2023 04:31:05 -0500
-Message-ID: <20230310093117.3030-8-qingqing.zhuo@amd.com>
+Subject: [PATCH 08/19] drm/amd/display: Add Validate BW for USB4 Links
+Date: Fri, 10 Mar 2023 04:31:06 -0500
+Message-ID: <20230310093117.3030-9-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230310093117.3030-1-qingqing.zhuo@amd.com>
 References: <20230310093117.3030-1-qingqing.zhuo@amd.com>
@@ -70,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000C979:EE_|SN7PR12MB6862:EE_
-X-MS-Office365-Filtering-Correlation-Id: 103d328e-0e86-464e-6fb1-08db214a5c38
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000C979:EE_|PH0PR12MB5481:EE_
+X-MS-Office365-Filtering-Correlation-Id: ebc91d6b-6132-44aa-75de-08db214a5f65
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: dJTQuVmFFlfmhyoRzjrMlDJqgpzEcQERuX4+0uS9TG16SdpPEEosl1p4ByYlS2DEA7gHmS8WwYR3NTeMbedUQkkC2mltrLvWXseedg0ho7vtTU6AgYAXvnnUjyudsqbmggUdVdcTLY4MWiPbkSGhnlF7kUOJDiDU7b9P+W6WhyXOJqU3/rlig0JG0gKktVk3w8v8/MPqjjuXix2B+fyXqozKMjx1zpRDe75LEZjmlm7JJqVx1XIKmh5G+5RkmXjJpwnnH109AtTXz0NSGxphmojp8/ZRTU4nprwpGQSsgz5GVM9Q5brpJXgEZoYLFSe6tH030/GlUF9eNnM0/DmXm+/paPJr4RG5qxk5fQASnEX2/Okav3vhOzq8YwtoftLFYB5JpGB3Nh/j/IZWO5C852LH2rWQFH7EbNnJgb9nibkdOB2D9WHUa8VnW3+btPOtT7Wo0E/3wKqI8GsIH0P7Rq+H0A/5V+J+YLCVOWT1WeiBsufaAeFPVPhd0ny7Yb0vXqHYUekrBYyWplEXZ+Q+4oRTbF0uzMIktybp/NV5K08Q1oU37KpXRg+oNCI7jcb0y8ahq9tX2Nrhgw1MK0hgDkFTIIrMkKoE7HNoT241At+9oSZ2HJb4wMBGHyZtrJqze4THgnGDZmSfT7o/NDgKxugqI/3OVwmWK8Ht9GolPYpSdjq8PR5rBlyB1PWJPICkMMPMrNxv3ojESwj1cYVbQNh5YcDJnnitvEgeTvtuWv0=
+X-Microsoft-Antispam-Message-Info: QOUk1Ipk8RqdM3aydNc5vezepGanVm/SikiSopSbCWPX/rPKTaBFZveg6/tRmH2Mw58uwXe/z/Yd6zwyHrnbDA0tpp8OLg7OKg8dhZPmS9YOXlC7TZL9ENgZljAn8AWILg6+KdvXeuKGst+DUb+W5mQunHGyZqLqJwEuvpCe/Gt0huqC0LZ9IkNB0llZG+xWsIRy6LqAjoGA8zC55hSdaaBTnWXJhzMUtYxxR22Q3qZArNjdze8W58n+39ytSPxa28e9A8FZpKtg61hobcuV7xL/+p392p3LNrDZPyWWxYXmS3weV41IJOcvhVK0+dCHdvaoQDFmjnfSOiduyQ9joQrotE9X4oWy9CccyTW/i6GVsl9vHEniYIY5PwO6pX4rfyPoSIrO/5E+G9kEleh1MT4v3ZwPZYIaknawdZLF0J4eyt4IAGOAIm9Wrzhbsg3WUW1u37ejTerD8ZtwleZm2rwcSkWbaK1hfjtMnNIewe5o9YlF4+aNet1pnheFucVNbs3NeCkxsPI9uFVSZo8XZqBqRuwlDBVbaLyOtqwceVmMfFLWstCE7L9uoDu4fotCk+i1rO5lVJ6ERhillcVdycv1ZECDcKhHVJuVc9JjrnyYgKgcgEJ79VAPMNGJTz2JOp68caWfArcgCfeILrwR0JWrzWBVj3EimYyxOsdukIKEIOjJjht0gAP5KgP57fDW9VI0EuJJL2aKd7upnLQRAezaa+Nnq77ajK78bHu104Q=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(136003)(39860400002)(376002)(396003)(346002)(451199018)(40470700004)(36840700001)(46966006)(8936002)(36756003)(5660300002)(26005)(1076003)(82740400003)(6666004)(36860700001)(82310400005)(336012)(83380400001)(47076005)(426003)(81166007)(186003)(16526019)(2616005)(8676002)(86362001)(54906003)(316002)(41300700001)(4326008)(70586007)(70206006)(6916009)(40460700003)(356005)(40480700001)(478600001)(2906002)(44832011)(36900700001);
+ SFS:(13230025)(4636009)(396003)(39860400002)(136003)(346002)(376002)(451199018)(36840700001)(40470700004)(46966006)(36756003)(6666004)(66574015)(426003)(26005)(47076005)(82740400003)(83380400001)(36860700001)(16526019)(1076003)(15650500001)(40460700003)(186003)(2616005)(8936002)(86362001)(41300700001)(6916009)(4326008)(70206006)(8676002)(2906002)(70586007)(44832011)(54906003)(316002)(81166007)(5660300002)(478600001)(40480700001)(336012)(356005)(82310400005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2023 09:32:26.0618 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 103d328e-0e86-464e-6fb1-08db214a5c38
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2023 09:32:31.3900 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ebc91d6b-6132-44aa-75de-08db214a5f65
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000C979.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6862
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB5481
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,52 +99,111 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Samson Tam <Samson.Tam@amd.com>, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, stable@vger.kernel.org, Alvin Lee <Alvin.Lee2@amd.com>,
- solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
- Mario Limonciello <mario.limonciello@amd.com>, wayne.lin@amd.com,
- Saaem Rizvi <SyedSaaem.Rizvi@amd.com>, Bhawanpreet.Lakha@amd.com,
+Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ Wenjing Liu <Wenjing.Liu@amd.com>, solomon.chiu@amd.com,
+ Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
+ Mustapha Ghaddar <mghaddar@amd.com>, Bhawanpreet.Lakha@amd.com,
  agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Saaem Rizvi <SyedSaaem.Rizvi@amd.com>
+From: Mustapha Ghaddar <mghaddar@amd.com>
 
 [WHY]
-Hot plugging and then hot unplugging leads to k1 and k2 values to
-change, as signal is detected as a virtual signal on hot unplug. Writing
-these values to OTG_PIXEL_RATE_DIV register might cause primary display
-to blank (known hw bug).
+To validate the BW used for DPIAs per HostRouter
 
 [HOW]
-No longer write k1 and k2 values to register if signal is virtual, we
-have safe guards in place in the case that k1 and k2 is unassigned so
-that an unknown value is not written to the register either.
+Add the Validate function in C source file
 
-Cc: stable@vger.kernel.org
-Cc: Mario Limonciello <mario.limonciello@amd.com>
-Reviewed-by: Samson Tam <Samson.Tam@amd.com>
-Reviewed-by: Alvin Lee <Alvin.Lee2@amd.com>
+Reviewed-by: Wenjing Liu <Wenjing.Liu@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
-Signed-off-by: Saaem Rizvi <SyedSaaem.Rizvi@amd.com>
+Signed-off-by: Mustapha Ghaddar <mghaddar@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../dc/link/protocols/link_dp_dpia_bw.c       | 34 +++++++++++++++++++
+ .../dc/link/protocols/link_dp_dpia_bw.h       | 14 ++++++++
+ 2 files changed, 48 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
-index 5016b1313f3d..f9073b722b36 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn32/dcn32_hwseq.c
-@@ -1111,7 +1111,7 @@ unsigned int dcn32_calculate_dccg_k1_k2_values(struct pipe_ctx *pipe_ctx, unsign
- 			*k2_div = PIXEL_RATE_DIV_BY_2;
- 		else
- 			*k2_div = PIXEL_RATE_DIV_BY_4;
--	} else if (dc_is_dp_signal(stream->signal) || dc_is_virtual_signal(stream->signal)) {
-+	} else if (dc_is_dp_signal(stream->signal)) {
- 		if (two_pix_per_container) {
- 			*k1_div = PIXEL_RATE_DIV_BY_1;
- 			*k2_div = PIXEL_RATE_DIV_BY_2;
+diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c
+index 2f0311c42f90..7c001227f2dc 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c
++++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.c
+@@ -33,6 +33,10 @@
+ #define DC_LOGGER \
+ 	link->ctx->logger
+ 
++/* Number of Host Routers per motherboard is 2 */
++#define MAX_HR_NUM			2
++/* Number of DPIA per host router is 2 */
++#define MAX_DPIA_NUM		MAX_HR_NUM * 2
+ #define Kbps_TO_Gbps (1000 * 1000)
+ 
+ // ------------------------------------------------------------------
+@@ -458,3 +462,33 @@ int link_dp_dpia_allocate_usb4_bandwidth_for_stream(struct dc_link *link, int re
+ out:
+ 	return ret;
+ }
++bool dpia_validate_usb4_bw(struct dc_link **link, int *bw_needed_per_dpia, uint8_t num_dpias)
++{
++	bool ret = true;
++	int bw_needed_per_hr[MAX_HR_NUM] = { 0, 0 };
++	uint8_t lowest_dpia_index = 0, dpia_index = 0;
++
++	if (!num_dpias || num_dpias > MAX_DPIA_NUM)
++		return ret;
++
++	//Get total Host Router BW & Validate against each Host Router max BW
++	for (uint8_t i = 0; i < num_dpias; ++i) {
++
++		if (!link[i]->dpia_bw_alloc_config.bw_alloc_enabled)
++			continue;
++
++		lowest_dpia_index = get_lowest_dpia_index(link[i]);
++		if (link[i]->link_index < lowest_dpia_index)
++			continue;
++
++		dpia_index = (link[i]->link_index - lowest_dpia_index) / 2;
++		bw_needed_per_hr[dpia_index] += bw_needed_per_dpia[i];
++		if (bw_needed_per_hr[dpia_index] > get_host_router_total_bw(link[i], HOST_ROUTER_BW_ALLOCATED)) {
++
++			ret = false;
++			break;
++		}
++	}
++
++	return ret;
++}
+diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.h b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.h
+index cfb255b63dd1..382616c8b698 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.h
++++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_dpia_bw.h
+@@ -25,7 +25,9 @@
+ 
+ #ifndef DC_INC_LINK_DP_DPIA_BW_H_
+ #define DC_INC_LINK_DP_DPIA_BW_H_
++
+ #include "link.h"
++
+ /*
+  * Host Router BW type
+  */
+@@ -80,4 +82,16 @@ int dpia_handle_usb4_bandwidth_allocation_for_link(struct dc_link *link, int pea
+  */
+ void dpia_handle_bw_alloc_response(struct dc_link *link, uint8_t bw, uint8_t result);
+ 
++/*
++ * Handle the validation of total BW here and confirm that the bw used by each
++ * DPIA doesn't exceed available BW for each host router (HR)
++ *
++ * @link[]: array of link pointer to all possible DPIA links
++ * @bw_needed[]: bw needed for each DPIA link based on timing
++ * @num_dpias: Number of DPIAs for the above 2 arrays. Should always be <= MAX_DPIA_NUM
++ *
++ * return: TRUE if bw used by DPIAs doesn't exceed available BW else return FALSE
++ */
++bool dpia_validate_usb4_bw(struct dc_link **link, int *bw_needed, uint8_t num_dpias);
++
+ #endif /* DC_INC_LINK_DP_DPIA_BW_H_ */
 -- 
 2.34.1
 
