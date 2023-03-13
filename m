@@ -1,48 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C136B6B7858
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Mar 2023 14:02:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03E716B765E
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Mar 2023 12:44:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C167B10E511;
-	Mon, 13 Mar 2023 13:02:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91E7510E004;
+	Mon, 13 Mar 2023 11:44:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30DCB10E4DB;
- Mon, 13 Mar 2023 10:57:09 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id ABBD1611CC;
- Mon, 13 Mar 2023 10:57:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE141C433EF;
- Mon, 13 Mar 2023 10:57:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1678705028;
- bh=dzid3AOct63MVlrkCg/dDgzaLRlt2EhD3OpRgsV1ZH0=;
- h=Subject:To:Cc:From:Date:From;
- b=O9cfxhJw/F4GODQKEOO4dtdSrhrpYYXnemaDABRXbHeVsVg0W3zeyTFX1xz/oGs2j
- onJNwmPUKrZR6yOuYhS2LQvJOmL0ZFSEGNZVMtnRPFPrBXL/YvmOzzn7uKr3Eibww8
- Ax2CmUCrK7JENTET89br9iGvFzVAi0bh4CnVaE18=
-Subject: Patch "drm/display: Don't block HDR_OUTPUT_METADATA on unknown EOTF"
- has been added to the 6.2-stable tree
-To: Vitaly.Prosyak@amd.com, alexander.deucher@amd.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- gregkh@linuxfoundation.org, harry.wentland@amd.com,
- jani.nikula@linux.intel.com, joshua@froggi.es, pekka.paalanen@collabora.com,
- ppaalanen@gmail.com, sebastian.wick@redhat.com, uma.shankar@intel.com,
- ville.syrjala@linux.intel.com
-From: <gregkh@linuxfoundation.org>
-Date: Mon, 13 Mar 2023 11:55:21 +0100
-Message-ID: <167870492122588@kroah.com>
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam04on2089.outbound.protection.outlook.com [40.107.101.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1339010E004
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Mar 2023 11:44:04 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GW5/lQrsM1M1qyDS23/Cyp9NYGudZj8B71HmC6ukLkDlUpkMkhL2tNmkZMHo0GMbxmxKmX706eq5ayW8dWwl8vdUuUdyCUJHBvZLP1+P5WLMALpxeRNfTrDd8SGy2I8rOkZ/PzZjwkDjLnLCsotvsSt6Hm1u3kP1FQQEfQrKfVsnhX5CIYRwhrQVqwSZ8uHBt4tdIdXe6Bv4MN6AnVqhveCCnfyNCvA/yjhH3R7Ecslh8/ygo9O9W0xBAvgUu1mFL7p1SQGM/9uEeo9PErrG08w5bvZeCnhP7PYPp4kIVgpP2pXNQU7B5osAV8y246twrARAYPRfYgnx6EifOYhRXA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RBY3IOkhjrxw2EFDJ36St58EhgrgVFj5A36I30lQwEE=;
+ b=VPTQLpfB3xQNskJg+3x0QXY5RhJ+8jExHPo1SvlYqkB8EPNc/3X3hXDNZJ/AxsPb0krV9jl6GUuqT0JrkqMYzEL90nqOvh9MWW701CWMOIfSc7RpmPj7qPHRKoPcOs4kFNiiYIAaw1aAs6SfthapzUUwsghmwKTgWfyClG16r+yeyGcFSbr07rDsqxd6lHuqxkF3hf9lNj9UxjaHSbRS753m9CrfCti0s6xV8VJtQ6MuXEWIWmDzqaHrPjh6pYvwNmuOpeK5Rcd4GHjzAN2CNAST1QknKvF+zdyTyJ1fxDGn/YXptMJWj9NP8HiOoQOjqxC/ZP6oC3m6eaSZwjJcpQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RBY3IOkhjrxw2EFDJ36St58EhgrgVFj5A36I30lQwEE=;
+ b=YWXN5WmLH5i12dMyv2eJdLLXChORasvrDZOwSED4vqNywPITd04W0eO728vE6GLZdHdyC01tcwrcLWxE18reCnGvmcJcSC4V/F1fzkOaWQQHsgD/ErjqZnoQ7VNVOpdyY/9y7Fngr02hyALaiT+X6eZZn18Xzl0tw/PpBDgp930=
+Received: from DS7PR03CA0185.namprd03.prod.outlook.com (2603:10b6:5:3b6::10)
+ by PH8PR12MB6987.namprd12.prod.outlook.com (2603:10b6:510:1be::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.24; Mon, 13 Mar
+ 2023 11:44:01 +0000
+Received: from DM6NAM11FT018.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:3b6:cafe::89) by DS7PR03CA0185.outlook.office365.com
+ (2603:10b6:5:3b6::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.25 via Frontend
+ Transport; Mon, 13 Mar 2023 11:44:00 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT018.mail.protection.outlook.com (10.13.172.110) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6178.18 via Frontend Transport; Mon, 13 Mar 2023 11:44:00 +0000
+Received: from ldev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 13 Mar
+ 2023 06:43:58 -0500
+From: Tim Huang <tim.huang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu: skip ASIC reset for GC IP v11.0.4/11 when go to S4
+Date: Mon, 13 Mar 2023 19:42:09 +0800
+Message-ID: <20230313114209.148894-1-tim.huang@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-stable: commit
-X-Patchwork-Hint: ignore 
-X-Mailman-Approved-At: Mon, 13 Mar 2023 13:02:28 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT018:EE_|PH8PR12MB6987:EE_
+X-MS-Office365-Filtering-Correlation-Id: 02733efc-0a55-4335-269f-08db23b83cd9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Vyxm30WepRq5w4jn/N/jmSPo/0MQ1CB3w4t5PgRII/QrH7IiqMKwIZC3DACqK0xtdyYJR73G1Zi01Q7gLIWiFcYTpHQFpNJ2fT849fdOHZTjI9jpzFa83dIb5E583oQdpeccn8dmZoCqStlW5IDzsZPYgHnFi+qV1g5A7d0tW/RK4DSjHkKKt348dKbX1TiLeOIqgpmlTvv7AepEGYyfNGuKi9TBeewpFlM4/ilnF4wos3m5X8mX3YFRFp2mwx2h29D+fXBz+sdXiMpOvbPyUkk9CH4gtNrCqu17tLi1ZARqYuQgHucyjsJvjDx1xOwSknCh9GcVfmt3Q0tndzY+Jg21GE5mess+HBytLAN1SVPA46UNwhW/QKJjnVWLA8qDGahHMVD2QbzkqyBvTMFQmSA24L04AG6npLZ2axSDUGwg04ov36LIOyne8XsuEpG3HJMa+idA+HIGRu3XTxfIP7yvHRjw27oMaU1lVDIhgQ5tnJwEmK3bqDMrA6gsCNnQxvtPzzQSmGQIjoPkGwmzDVUwjw1jpqX5pAefMNcwRVVqTTJjy94AOF/2AaHvSj3Inw6wYPi1/onXTDXpdEIVEXA2XQwXL7/Dlud3koUImoRCQi8Omnu+pNfugpfecO9C9fz5PjJTBGtoR5XpVV5MkuBtP8/LQmKIB2yVSLTqnQiLdwxPBb+WqJoktNkICfQfVmg/4yH1mPDgPYAMVO8IZ8bbauLKMYzIVvxneaXJ9go=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230025)(4636009)(376002)(136003)(396003)(346002)(39860400002)(451199018)(40470700004)(46966006)(36840700001)(2906002)(81166007)(82740400003)(83380400001)(36756003)(44832011)(40460700003)(5660300002)(40480700001)(8676002)(70206006)(41300700001)(8936002)(70586007)(356005)(6916009)(4326008)(316002)(54906003)(36860700001)(86362001)(82310400005)(478600001)(426003)(47076005)(336012)(2616005)(16526019)(186003)(6666004)(26005)(1076003)(7696005)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2023 11:44:00.4094 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 02733efc-0a55-4335-269f-08db23b83cd9
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT018.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6987
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,107 +97,47 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable-commits@vger.kernel.org
+Cc: Yifan1.zhang@amd.com, Xiaojian.Du@amd.com, Tim
+ Huang <tim.huang@amd.com>, li.ma@amd.com, Alexander.Deucher@amd.com,
+ mario.limonciello@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+[Why]
+For GC IP v11.0.4/11, PSP TMR need to be reserved
+for ASIC mode2 reset. But for S4, when psp suspend,
+it will destroy the TMR that fails the ASIC reset.
 
-This is a note to let you know that I've just added the patch titled
+[  96.006101] amdgpu 0000:62:00.0: amdgpu: MODE2 reset
+[  100.409717] amdgpu 0000:62:00.0: amdgpu: SMU: I'm not done with your previous command: SMN_C2PMSG_66:0x00000011 SMN_C2PMSG_82:0x00000002
+[  100.411593] amdgpu 0000:62:00.0: amdgpu: Mode2 reset failed!
+[  100.412470] amdgpu 0000:62:00.0: PM: pci_pm_freeze(): amdgpu_pmops_freeze+0x0/0x50 [amdgpu] returns -62
+[  100.414020] amdgpu 0000:62:00.0: PM: dpm_run_callback(): pci_pm_freeze+0x0/0xd0 returns -62
+[  100.415311] amdgpu 0000:62:00.0: PM: pci_pm_freeze+0x0/0xd0 returned -62 after 4623202 usecs
+[  100.416608] amdgpu 0000:62:00.0: PM: failed to freeze async: error -62
 
-    drm/display: Don't block HDR_OUTPUT_METADATA on unknown EOTF
+[How]
+Skip the ASIC reset for S4, assuming we can resume properly without
+reset.
 
-to the 6.2-stable tree which can be found at:
-    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
-
-The filename of the patch is:
-     drm-display-don-t-block-hdr_output_metadata-on-unknown-eotf.patch
-and it can be found in the queue-6.2 subdirectory.
-
-If you, or anyone else, feels it should not be added to the stable tree,
-please let <stable@vger.kernel.org> know about it.
-
-
-From e5eef23e267c72521d81f23f7f82d1f523d4a253 Mon Sep 17 00:00:00 2001
-From: Harry Wentland <harry.wentland@amd.com>
-Date: Fri, 13 Jan 2023 11:24:08 -0500
-Subject: drm/display: Don't block HDR_OUTPUT_METADATA on unknown EOTF
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-From: Harry Wentland <harry.wentland@amd.com>
-
-commit e5eef23e267c72521d81f23f7f82d1f523d4a253 upstream.
-
-The EDID of an HDR display defines EOTFs that are supported
-by the display and can be set in the HDR metadata infoframe.
-Userspace is expected to read the EDID and set an appropriate
-HDR_OUTPUT_METADATA.
-
-In drm_parse_hdr_metadata_block the kernel reads the supported
-EOTFs from the EDID and stores them in the
-drm_connector->hdr_sink_metadata. While doing so it also
-filters the EOTFs to the EOTFs the kernel knows about.
-When an HDR_OUTPUT_METADATA is set it then checks to
-make sure the EOTF is a supported EOTF. In cases where
-the kernel doesn't know about a new EOTF this check will
-fail, even if the EDID advertises support.
-
-Since it is expected that userspace reads the EDID to understand
-what the display supports it doesn't make sense for DRM to block
-an HDR_OUTPUT_METADATA if it contains an EOTF the kernel doesn't
-understand.
-
-This comes with the added benefit of future-proofing metadata
-support. If the spec defines a new EOTF there is no need to
-update DRM and an compositor can immediately make use of it.
-
-Bug: https://gitlab.freedesktop.org/wayland/weston/-/issues/609
-
-v2: Distinguish EOTFs defind in kernel and ones defined
-    in EDID in the commit description (Pekka)
-
-v3: Rebase; drm_hdmi_infoframe_set_hdr_metadata moved
-    to drm_hdmi_helper.c
-
-Signed-off-by: Harry Wentland <harry.wentland@amd.com>
-Cc: Pekka Paalanen <ppaalanen@gmail.com>
-Cc: Sebastian Wick <sebastian.wick@redhat.com>
-Cc: Vitaly.Prosyak@amd.com
-Cc: Uma Shankar <uma.shankar@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Joshua Ashton <joshua@froggi.es>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: amd-gfx@lists.freedesktop.org
-Acked-by: Pekka Paalanen <pekka.paalanen@collabora.com>
-Reviewed-By: Joshua Ashton <joshua@froggi.es>
-Link: https://patchwork.freedesktop.org/patch/msgid/20230113162428.33874-2-harry.wentland@amd.com
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Cc: stable@vger.kernel.org
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Signed-off-by: Tim Huang <tim.huang@amd.com>
 ---
- drivers/gpu/drm/display/drm_hdmi_helper.c |    6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_4_ppt.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
---- a/drivers/gpu/drm/display/drm_hdmi_helper.c
-+++ b/drivers/gpu/drm/display/drm_hdmi_helper.c
-@@ -44,10 +44,8 @@ int drm_hdmi_infoframe_set_hdr_metadata(
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_4_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_4_ppt.c
+index 8fa9a36c38b6..ba02b0d9ef7e 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_4_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_4_ppt.c
+@@ -980,6 +980,8 @@ static int smu_v13_0_4_set_performance_level(struct smu_context *smu,
  
- 	/* Sink EOTF is Bit map while infoframe is absolute values */
- 	if (!is_eotf_supported(hdr_metadata->hdmi_metadata_type1.eotf,
--	    connector->hdr_sink_metadata.hdmi_type1.eotf)) {
--		DRM_DEBUG_KMS("EOTF Not Supported\n");
--		return -EINVAL;
--	}
-+	    connector->hdr_sink_metadata.hdmi_type1.eotf))
-+		DRM_DEBUG_KMS("Unknown EOTF %d\n", hdr_metadata->hdmi_metadata_type1.eotf);
- 
- 	err = hdmi_drm_infoframe_init(frame);
- 	if (err < 0)
+ static int smu_v13_0_4_mode2_reset(struct smu_context *smu)
+ {
++	if (!amdgpu_in_reset(smu->adev)) /* Skip the reset for S4 */
++		return 0;
+ 	return smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_GfxDeviceDriverReset,
+ 					       SMU_RESET_MODE_2, NULL);
+ }
+-- 
+2.25.1
 
-
-Patches currently in stable-queue which might be from harry.wentland@amd.com are
-
-queue-6.2/drm-connector-print-max_requested_bpc-in-state-debugfs.patch
-queue-6.2/drm-display-don-t-block-hdr_output_metadata-on-unknown-eotf.patch
