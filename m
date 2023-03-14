@@ -2,46 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EFE66B9458
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Mar 2023 13:44:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA22A6B95BB
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Mar 2023 14:13:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79C0010E7D2;
-	Tue, 14 Mar 2023 12:44:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7814410E7CE;
+	Tue, 14 Mar 2023 13:13:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EC9110E7CE;
- Tue, 14 Mar 2023 12:44:36 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id CF7F0B81928;
- Tue, 14 Mar 2023 12:44:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FED0C4339B;
- Tue, 14 Mar 2023 12:44:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1678797873;
- bh=Vvlkfw1XBPKnsH1TRnFkFFGGOcbsDu06ehvesBWwqbs=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=osfMhknKMZwDNevKq/filbkSqHQdS0SXowxS2pSC+dXBaFfwBfR4s/4mPuCOgToDU
- HQOyUk+E4DoqypaGt1qM+rKR3vq3Gl6BBGMmiU8bX8iaacIA/tRT81LcbWWIMmqOMy
- d3pPBHjm6YfuvtgdmwADVvW+m2bsWaGeLou/4HPPqy43y4DnWqXnegMxjjD4iQZSpj
- Jyf8pxBx/nFIG80JRJsrMGFHTlZwZMl8gX3HYsHM/6KwyNcv+DELgSiNgFtnxQ5Rp5
- VRx2TsFHRIDb5RxlEXqxFZqT+gBIl8LV9Ol3+w4qqiF99hAMm5xuUnArQQv9sQTjBG
- Z/AVTItjJlCoA==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 6/7] drm/amdkfd: Fix an illegal memory access
-Date: Tue, 14 Mar 2023 08:44:23 -0400
-Message-Id: <20230314124424.471460-6-sashal@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230314124424.471460-1-sashal@kernel.org>
-References: <20230314124424.471460-1-sashal@kernel.org>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8301910E7D8
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Mar 2023 13:07:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1678799228;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=hMEgWvZUG6qO1PqKglF/V8CaNHty0qtVjMQOxDeWDFc=;
+ b=IdP0cXG+wRLq2kZWHkH5HUG/+g5YjYN3CFE/UltMYAzkbHLvUwuiMrN7YrEFwJ01QB3FZU
+ g0jeoRbi5LrXIF3XZo0ZKVOt4oeJC9cTwRtrif2zs7wniAPdC7fjMtBI6dskrTCC//MFFk
+ xNTGfvdiySPLUIr/TupRPkwZvrkMbWU=
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-554-hBWWxG8WM0e_ON-hO0kBLQ-1; Tue, 14 Mar 2023 09:06:42 -0400
+X-MC-Unique: hBWWxG8WM0e_ON-hO0kBLQ-1
+Received: by mail-qk1-f199.google.com with SMTP id
+ az31-20020a05620a171f00b00745746178e2so3360732qkb.6
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Mar 2023 06:06:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1678799182;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=hMEgWvZUG6qO1PqKglF/V8CaNHty0qtVjMQOxDeWDFc=;
+ b=hxcwROVutTfVY4Q9+jFJrJ0vYKjma63uBha3Oy+nw4GLBG2QU7dhgbPGzzRvPKH6gT
+ PNT9TAmiois4P8H42EdkzeiM5IRF8hLCBz5GOfeA7XWb6poGIIWIbg3hNEcE8R2KJro/
+ bswD8OSY0+od+RfEiBq5azmCEhjeFsrts6SfRGCjNy5YjNkRxrv0N3i3ZWLRobeGmMnZ
+ gNSbuwJNFjK93lRkh+fHT90Dvtm6WscqkkdMc32ip0FOmCptpHUTtJnsMp7NlIkm/I1+
+ SaqQCfgZaLiCA6H7xH9LH7rA9UcO6J5PbW688ahTmJFk+84ThcN1T20UsY10aFYG78qg
+ ApCA==
+X-Gm-Message-State: AO0yUKURs0nGfk6cqEIOnf3XR9iHtyGvEGYslj4teEn58N+mXU1bXY2p
+ okZ6rCtILv+BeqAxsR0SxF/BsRPL2wSJY8BA2D2EDESeGWHpxxhi8eG7ahjGzWgUi3InzIYRzQq
+ /HIObg6HbgsxRo4wE4aWvoWafzA==
+X-Received: by 2002:ac8:5e08:0:b0:3bf:c83d:5d4c with SMTP id
+ h8-20020ac85e08000000b003bfc83d5d4cmr59779107qtx.64.1678799182206; 
+ Tue, 14 Mar 2023 06:06:22 -0700 (PDT)
+X-Google-Smtp-Source: AK7set9k9IedTfQ65vtzZ6gDRjmULVgJGaURZvyzzIxUwogrHRw3OQKTz3pFVe2b8l6tkgGNH294DA==
+X-Received: by 2002:ac8:5e08:0:b0:3bf:c83d:5d4c with SMTP id
+ h8-20020ac85e08000000b003bfc83d5d4cmr59779062qtx.64.1678799181828; 
+ Tue, 14 Mar 2023 06:06:21 -0700 (PDT)
+Received: from dell-per740-01.7a2m.lab.eng.bos.redhat.com
+ (nat-pool-bos-t.redhat.com. [66.187.233.206])
+ by smtp.gmail.com with ESMTPSA id
+ 185-20020a3706c2000000b0070648cf78bdsm1731416qkg.54.2023.03.14.06.06.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 14 Mar 2023 06:06:21 -0700 (PDT)
+From: Tom Rix <trix@redhat.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch
+Subject: [PATCH] drm/radeon: remove unused variable rbo
+Date: Tue, 14 Mar 2023 09:06:16 -0400
+Message-Id: <20230314130616.2170856-1-trix@redhat.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 14 Mar 2023 13:13:50 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,87 +82,46 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, oded.gabbay@gmail.com, airlied@linux.ie,
- Felix Kuehling <Felix.Kuehling@amd.com>, Qu Huang <qu.huang@linux.dev>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>, christian.koenig@amd.com
+Cc: Tom Rix <trix@redhat.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Qu Huang <qu.huang@linux.dev>
+gcc with W=1 reports this error
+drivers/gpu/drm/radeon/radeon_ttm.c:201:27: error:
+  variable ‘rbo’ set but not used [-Werror=unused-but-set-variable]
+  201 |         struct radeon_bo *rbo;
+      |                           ^~~
 
-[ Upstream commit 4fc8fff378b2f2039f2a666d9f8c570f4e58352c ]
+rbo use was removed with
+commit f87c1f0b7b79 ("drm/ttm: prevent moving of pinned BOs")
+Since the variable is not used, remove it.
 
-In the kfd_wait_on_events() function, the kfd_event_waiter structure is
-allocated by alloc_event_waiters(), but the event field of the waiter
-structure is not initialized; When copy_from_user() fails in the
-kfd_wait_on_events() function, it will enter exception handling to
-release the previously allocated memory of the waiter structure;
-Due to the event field of the waiters structure being accessed
-in the free_waiters() function, this results in illegal memory access
-and system crash, here is the crash log:
-
-localhost kernel: RIP: 0010:native_queued_spin_lock_slowpath+0x185/0x1e0
-localhost kernel: RSP: 0018:ffffaa53c362bd60 EFLAGS: 00010082
-localhost kernel: RAX: ff3d3d6bff4007cb RBX: 0000000000000282 RCX: 00000000002c0000
-localhost kernel: RDX: ffff9e855eeacb80 RSI: 000000000000279c RDI: ffffe7088f6a21d0
-localhost kernel: RBP: ffffe7088f6a21d0 R08: 00000000002c0000 R09: ffffaa53c362be64
-localhost kernel: R10: ffffaa53c362bbd8 R11: 0000000000000001 R12: 0000000000000002
-localhost kernel: R13: ffff9e7ead15d600 R14: 0000000000000000 R15: ffff9e7ead15d698
-localhost kernel: FS:  0000152a3d111700(0000) GS:ffff9e855ee80000(0000) knlGS:0000000000000000
-localhost kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-localhost kernel: CR2: 0000152938000010 CR3: 000000044d7a4000 CR4: 00000000003506e0
-localhost kernel: Call Trace:
-localhost kernel: _raw_spin_lock_irqsave+0x30/0x40
-localhost kernel: remove_wait_queue+0x12/0x50
-localhost kernel: kfd_wait_on_events+0x1b6/0x490 [hydcu]
-localhost kernel: ? ftrace_graph_caller+0xa0/0xa0
-localhost kernel: kfd_ioctl+0x38c/0x4a0 [hydcu]
-localhost kernel: ? kfd_ioctl_set_trap_handler+0x70/0x70 [hydcu]
-localhost kernel: ? kfd_ioctl_create_queue+0x5a0/0x5a0 [hydcu]
-localhost kernel: ? ftrace_graph_caller+0xa0/0xa0
-localhost kernel: __x64_sys_ioctl+0x8e/0xd0
-localhost kernel: ? syscall_trace_enter.isra.18+0x143/0x1b0
-localhost kernel: do_syscall_64+0x33/0x80
-localhost kernel: entry_SYSCALL_64_after_hwframe+0x44/0xa9
-localhost kernel: RIP: 0033:0x152a4dff68d7
-
-Allocate the structure with kcalloc, and remove redundant 0-initialization
-and a redundant loop condition check.
-
-Signed-off-by: Qu Huang <qu.huang@linux.dev>
-Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Tom Rix <trix@redhat.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_events.c | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/radeon/radeon_ttm.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_events.c b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
-index 892077377339a..8f23192b67095 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_events.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
-@@ -529,16 +529,13 @@ static struct kfd_event_waiter *alloc_event_waiters(uint32_t num_events)
- 	struct kfd_event_waiter *event_waiters;
- 	uint32_t i;
+diff --git a/drivers/gpu/drm/radeon/radeon_ttm.c b/drivers/gpu/drm/radeon/radeon_ttm.c
+index 2220cdf6a3f6..0ea430ee5256 100644
+--- a/drivers/gpu/drm/radeon/radeon_ttm.c
++++ b/drivers/gpu/drm/radeon/radeon_ttm.c
+@@ -198,7 +198,6 @@ static int radeon_bo_move(struct ttm_buffer_object *bo, bool evict,
+ {
+ 	struct ttm_resource *old_mem = bo->resource;
+ 	struct radeon_device *rdev;
+-	struct radeon_bo *rbo;
+ 	int r;
  
--	event_waiters = kmalloc_array(num_events,
--					sizeof(struct kfd_event_waiter),
--					GFP_KERNEL);
-+	event_waiters = kcalloc(num_events, sizeof(struct kfd_event_waiter),
-+				GFP_KERNEL);
- 	if (!event_waiters)
- 		return NULL;
+ 	if (new_mem->mem_type == TTM_PL_TT) {
+@@ -211,7 +210,6 @@ static int radeon_bo_move(struct ttm_buffer_object *bo, bool evict,
+ 	if (r)
+ 		return r;
  
--	for (i = 0; (event_waiters) && (i < num_events) ; i++) {
-+	for (i = 0; i < num_events; i++)
- 		init_wait(&event_waiters[i].wait);
--		event_waiters[i].activated = false;
--	}
- 
- 	return event_waiters;
- }
+-	rbo = container_of(bo, struct radeon_bo, tbo);
+ 	rdev = radeon_get_rdev(bo->bdev);
+ 	if (!old_mem || (old_mem->mem_type == TTM_PL_SYSTEM &&
+ 			 bo->ttm == NULL)) {
 -- 
-2.39.2
+2.27.0
 
