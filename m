@@ -1,42 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46FF56B97DD
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Mar 2023 15:24:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56C516B98E4
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Mar 2023 16:23:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C384610E80D;
-	Tue, 14 Mar 2023 14:24:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DAA210E81C;
+	Tue, 14 Mar 2023 15:23:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 444 seconds by postgrey-1.36 at gabe;
- Tue, 14 Mar 2023 13:43:40 UTC
-Received: from mail.joinfa.autos (unknown [45.13.189.76])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0DF7610E7E6
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Mar 2023 13:43:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=dkim; d=joinfa.autos;
- h=Date:From:To:Subject:MIME-Version:Content-Type:List-Unsubscribe:Message-ID;
- i=kohlsbonuses@joinfa.autos; bh=VzVQ7yMeEZw+OAWdQnehqypg5UM=;
- b=ThhdbAm7keHLEPFfc+tXTno+EJEnAnZ4L0dJctG6BRz0q7PqrmiB2MlKr4LGMfjW0yYa4sVMYsxE
- 5ctGqUWI3U4b0ErjZ5KfS1afBtSb2WYhZ9EpButCxuPsudNnLZEXdNArOvgTMet3gpmlL8Ws3DwS
- Ovnqqgj3YaeXVuW46xQ=
-DomainKey-Signature: a=rsa-sha1; c=nofws; q=dns; s=dkim; d=joinfa.autos;
- b=OVMd89V9bAQ5cJN3/+tDxm5ZjZG+IV6KH+VjFWeRVj7ChN5+Tf8Zbldw1NKjbHBMvva8OlAE4Kfm
- 0tJLQ+0iO/VB4yffRtgFrcV6lKQ8vmn9vAMMebI+WBle2vSsCjxZidbeBYDbuLRVnBJFsVgsVX6A
- UmSnfhyMPcKtYl3Gl5I=;
-Received: by mail.joinfa.autos id h227240001g1 for
- <amd-gfx@lists.freedesktop.org>;
- Tue, 14 Mar 2023 10:51:33 -0400 (envelope-from
- <kohlsbonuses-amd+2Dgfx=lists.freedesktop.org@joinfa.autos>)
-Date: Tue, 14 Mar 2023 10:51:33 -0400
-From: KohlsBonuses <kohlsbonuses@joinfa.autos>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: Exclusive: Secure your complimentary Knife Set from Kohl's now
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com
+ [IPv6:2607:f8b0:4864:20::235])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA98C10E81C;
+ Tue, 14 Mar 2023 15:23:10 +0000 (UTC)
+Received: by mail-oi1-x235.google.com with SMTP id bi17so12057420oib.3;
+ Tue, 14 Mar 2023 08:23:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1678807390;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=OZthyf9O7m+4xnS4ELJlsYXDAkPMiY/lLsht07DclGg=;
+ b=i9GIoQK6IG1EhUNatHWrIDXSgiVA6QYilOjlsQcjN6aAjRokymSQMk/MpQVe2k8k3P
+ X4+1BRavCnPk3i77vvRPiuAFNpeFa1aqA72h6R9FqtmLQtTnvbGHT77xWXDHOig3gdYh
+ apn/OHfsZf0qK/RziVA5noSb3R5Zsb3HI2VNqkC6YkvjCL/Cyq9yHHqas/vAjltC/rYZ
+ w8Z4Qmk+H6pSCHNmiNKVtO0nZkuFYvsEOsI5E3wZRRBm6kKQFOuhqdSVRyslrKe+tJAg
+ kusYYbrF+vSWYZjkuPGk5XZF7uecTdi3BholAmn/Deatgd45JrwqN/QoSplSc1+CQdS6
+ tkag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1678807390;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=OZthyf9O7m+4xnS4ELJlsYXDAkPMiY/lLsht07DclGg=;
+ b=giZ1R3I7W+wkFq0/ntKeGCQ7bN2++7WJSHoLbB39RGvKamgTLHYig7m8PmHOV7+dM7
+ ABJWYXn+dwU9RzTKNcZBA2h9EsX5ossYSw/mTGl4ZpGG/e0olC78sb/IyffQ/uPdCKdZ
+ d68kyRj2AFDs+oPbqY/gTbfWFG9AMU7FySq7iGJuNToFZNGkXkoMExDRqglTlSnvnz6H
+ mcHLXAUIGjNraBwFu7cvDl8AJrgx+a33AIluqNvDF3AvY/JqHyVjyHOCConVuhhS7Ecc
+ 4H2l7502J7GZuXYO4giZ5h12b6J2GtC3b2DiYdaux1dn1W0POoKVWnUCHKeGGukvMhyW
+ 46jQ==
+X-Gm-Message-State: AO0yUKVHmCgYxEQm6uHb8+X2gcc7VTCZK2UrTpenXVyrfHWDxd4MyaGA
+ oYmy2KPgzkoD+wUDMjtF+hh7JeVqIxyGyYuHpD0=
+X-Google-Smtp-Source: AK7set94v1q4xLwDYtzPczh6Lmqc0MOw4TXfK+D1Yib/S6HGBlKAmKq/i19ZBpZ6z/63O59YIBlMj08NJipEKwDHlRM=
+X-Received: by 2002:a05:6808:354:b0:37f:b1b8:4a19 with SMTP id
+ j20-20020a056808035400b0037fb1b84a19mr11212188oie.3.1678807390120; Tue, 14
+ Mar 2023 08:23:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/alternative; 
- boundary="----=_Part_502_1513852489.1678800335031"
-Message-ID: <0.0.0.37.1D9568477F10F40.F4072@mail.joinfa.autos>
-X-Mailman-Approved-At: Tue, 14 Mar 2023 14:24:50 +0000
+References: <20230314042605.346458-1-kai.heng.feng@canonical.com>
+In-Reply-To: <20230314042605.346458-1-kai.heng.feng@canonical.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 14 Mar 2023 11:22:56 -0400
+Message-ID: <CADnq5_OkFhONSKn2DbGhxaXyaSjzu0RBnydd99wgsVudxW3kxQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu/nv: Apply ASPM quirk on Intel ADL + AMD Navi
+To: Kai-Heng Feng <kai.heng.feng@canonical.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,81 +66,160 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, dri-devel@lists.freedesktop.org,
+ YiPeng Chai <YiPeng.Chai@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>, Likun Gao <Likun.Gao@amd.com>,
+ amd-gfx@lists.freedesktop.org,
+ Veerabadhran Gopalakrishnan <veerabadhran.gopalakrishnan@amd.com>,
+ Kenneth Feng <kenneth.feng@amd.com>,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Victor Zhao <Victor.Zhao@amd.com>, Bokun Zhang <Bokun.Zhang@amd.com>,
+ Jiansong Chen <Jiansong.Chen@amd.com>, Evan Quan <evan.quan@amd.com>,
+ Jack Xiao <Jack.Xiao@amd.com>, Richard Gong <richard.gong@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>, Xinhui.Pan@amd.com,
+ linux-kernel@vger.kernel.org, alexander.deucher@amd.com,
+ Leo Liu <leo.liu@amd.com>, christian.koenig@amd.com,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-------=_Part_502_1513852489.1678800335031
-Content-Type: text/html; charset=us-ascii
-Content-Transfer-Encoding: 7bit
+On Tue, Mar 14, 2023 at 12:35=E2=80=AFAM Kai-Heng Feng
+<kai.heng.feng@canonical.com> wrote:
+>
+> S2idle resume freeze can be observed on Intel ADL + AMD WX5500. This is
+> caused by commit 0064b0ce85bb ("drm/amd/pm: enable ASPM by default").
+>
+> The root cause is still not clear for now.
+>
+> So extend and apply the ASPM quirk from commit e02fe3bc7aba
+> ("drm/amdgpu: vi: disable ASPM on Intel Alder Lake based systems"), to
+> workaround the issue on Navi cards too.
+>
+> Fixes: 0064b0ce85bb ("drm/amd/pm: enable ASPM by default")
+> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2458
+> Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  1 +
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 15 +++++++++++++++
+>  drivers/gpu/drm/amd/amdgpu/nv.c            |  2 +-
+>  drivers/gpu/drm/amd/amdgpu/vi.c            | 15 ---------------
+>  4 files changed, 17 insertions(+), 16 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/am=
+dgpu/amdgpu.h
+> index 164141bc8b4a..c697580f1ee4 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> @@ -1272,6 +1272,7 @@ void amdgpu_device_pci_config_reset(struct amdgpu_d=
+evice *adev);
+>  int amdgpu_device_pci_reset(struct amdgpu_device *adev);
+>  bool amdgpu_device_need_post(struct amdgpu_device *adev);
+>  bool amdgpu_device_should_use_aspm(struct amdgpu_device *adev);
+> +bool aspm_support_quirk_check(void);
+>
+>  void amdgpu_cs_report_moved_bytes(struct amdgpu_device *adev, u64 num_by=
+tes,
+>                                   u64 num_vis_bytes);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_device.c
+> index c4a4e2fe6681..c09f19385628 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> @@ -80,6 +80,10 @@
+>
+>  #include <drm/drm_drv.h>
+>
+> +#if IS_ENABLED(CONFIG_X86)
+> +#include <asm/intel-family.h>
+> +#endif
+> +
+>  MODULE_FIRMWARE("amdgpu/vega10_gpu_info.bin");
+>  MODULE_FIRMWARE("amdgpu/vega12_gpu_info.bin");
+>  MODULE_FIRMWARE("amdgpu/raven_gpu_info.bin");
+> @@ -1356,6 +1360,17 @@ bool amdgpu_device_should_use_aspm(struct amdgpu_d=
+evice *adev)
+>         return pcie_aspm_enabled(adev->pdev);
+>  }
+>
+> +bool aspm_support_quirk_check(void)
 
-<!DOCTYPE html>
-<html lang="en">
- <head> 
-  <meta charset="UTF-8" /> 
-  <meta content="IE=edge" http-equiv="X-UA-Compatible" /> 
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" /> 
-  <title>04031323</title> 
- </head> 
- <body style="padding: 7% 0%;"> 
-  <div style="max-width: 600px; margin: auto;"> 
-   <div style="max-width: 600px; margin: auto;"> 
-    <header class="new_kohls_grypus"> 
-     <div id="especial-kongs">
-      <span style="text-align: center; display: block; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-weight: 900; font-size: 250%;"><b style="color: #830000;">KOHL'S</b> <b style="color: #202020;">Rewards</b></span> 
-      <p style="font-size: 145%; color: #555555; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 5% 0%; text-align: center;  "><strong>amd-gfx@lists.freedesktop.org</strong></p> 
-     </div> 
-    </header> 
-    <section class="renew"> 
-     <div id="topet_cow"> 
-      <div>
-       <span style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 500; text-align: justify; font-size: 85%; line-height: 150%; display: block; width: 90%; margin: auto;">We hope this email finds you well. At <strong>Kohl's Rewards</strong>, we value your feedback and are committed to providing you with the best shopping experience possible. That's why we want to offer you a special token for taking the time to complete our customer survey.</span>
-      </div> 
-      <div> 
-       <div style="display: inline-block; max-width: 28%; vertical-align: top; margin-top: 3%; margin-left: 4%;">
-        <a href="http://www.joinfa.autos/solidify-varnish/d146wx239t5RXC8611y4f8eN12a4y30FDiH-ZY7fhbwxwEYvIIHIwgxstEsvZ7zQhQn9d5SO1k06YPpw@D" target="_blank"><img alt="" src="http://www.joinfa.autos/structurally-appurtenances/15c6ON2s395CD7ta13KX4hf90Z12a4X30DDiH-ZY7fhbwxwEYvIIHIwgxstEsvZ7gQhQn9d6tQ1zK06bTypwD" width="100%" /></a>
-       </div> 
-       <div style="display: inline-block; max-width: 60%; vertical-align: top; margin: 4.5% 1.5% 0% 0%;">
-        <a href="http://www.joinfa.autos/solidify-varnish/d146wx239t5RXC8611y4f8eN12a4y30FDiH-ZY7fhbwxwEYvIIHIwgxstEsvZ7zQhQn9d5SO1k06YPpw@D" target="_blank"><img alt="" src="http://www.joinfa.autos/Metcalf-bespectacled/eb86K23rq95U7aCV12b4rf91l12a4P30YDiH-ZY7fhbwxwEYvIIHIwgxstEsvZ7SQhQn9d5bVt106dlwJD@" width="100%" /></a>
-       </div> 
-       <span style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 500; text-align: center; font-size: 85%; line-height: 150%; display: block; width: 90%; margin: auto; padding: 5% 0%;">To take advantage of this offer, simply click on the button below to access the survey. Your feedback is important to us and will help us continue to improve the shopping experience for all our customers</span> 
-       <div style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; font-size: 115%; text-align: center;">
-        <a href="http://www.joinfa.autos/solidify-varnish/d146wx239t5RXC8611y4f8eN12a4y30FDiH-ZY7fhbwxwEYvIIHIwgxstEsvZ7zQhQn9d5SO1k06YPpw@D" style="color:#3d8b51;" target="_blank">Take The Survery</a>
-       </div> 
-       <span style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 500; text-align: center; font-size: 75%; line-height: 150%; display: block; width: 90%; margin: auto; padding: 5% 0%;">Thank you for your continued support and for taking the time to fill out our survey. We look forward to hearing from you soon.<br /> <br /> <b>Best regards,<br /> The Kohl's Rewards Survey Team</b></span>
-      </div> 
-     </div> 
-    </section> 
-    <hr /> 
-    <footer class="final_shot" style="width: 90%; max-width: 600px; margin: auto; ; padding: 5px 0px; "> 
-     <address> 
-      <div style="text-align: center; font-weight: normal; font-size: 10px; color: #000000; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif; font-weight: 500;"> 
-       <p><small><span style="text-decoration: none; ">To change your email options,</span><a href="http://www.joinfa.autos/Metcalf-bespectacled/d325i239h5NWS8611G4f8fg12a4k30pDiH-ZY7fhbwxwEYvIIHIwgxstEsvZ7XQhQn9d7vq1vj0J5LNBwD" style="text-decoration-line: none; color: rgb(0, 0, 0)"> <span>Click Here Now </span> </a><br /> 126 E 23rd St New York, NY, US 10010<br /> <br /> <br /> <br /> <span><span></span></span><span color="registry"></span><span size="reopen"></span><small></small><font color="purses"><span></span></font><small></small><style style="parties"></style><span></span> </small></p> 
-      </div> </address> 
-    </footer> 
-   </div> 
-   <table align="center" border="0" cellpadding="0" cellspacing="0" class="full-wrap" role="presentation" style="width: 600px; max-width: 600px; mso-table-lspace: 0pt; mso-table-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;" width="600"> 
-    <tbody> 
-     <tr> 
-      <td align="center" style=" mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%; padding: 0px 0px;" valign="middle">&nbsp;</td> 
-     </tr> 
-     <tr> 
-      <td align="center" style=" mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%; padding: 0px 0px;" valign="middle">&nbsp;</td> 
-     </tr> 
-     <tr> 
-      <td align="center" style=" mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%; padding: 20px 0px;" valign="middle">&nbsp;</td> 
-     </tr> 
-    </tbody> 
-   </table> 
-   <table align="center" border="0" cellpadding="0" cellspacing="0" class="full-wrap" role="presentation" style="width: 600px; max-width: 600px; mso-table-lspace: 0pt; mso-table-rspace: 0pt; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;" width="600"> 
-    <tbody> 
-     <tr> 
-      <td align="center" style="padding: 0px 30px 0px 30px;">&nbsp;</td> 
-     </tr> 
-    </tbody> 
-   </table> 
-  </div>   
- <img src="http://www.joinfa.autos/24b6Nh23P95kk8V512D4f92LZ12a4T30QDiH-ZY7fhbwxwEYvIIHIwgxstEsvZ7HQhQn9d6p10YgO6zWLwBD/legibly-deliverer" alt=""/></body>
-</html>
+For consistency with naming, rename this
+amdgpu_device_aspm_support_quirk().  Other than that, looks good to
+me.  With that fixed:
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
-------=_Part_502_1513852489.1678800335031--
+Alex
 
+
+> +{
+> +#if IS_ENABLED(CONFIG_X86)
+> +       struct cpuinfo_x86 *c =3D &cpu_data(0);
+> +
+> +       return !(c->x86 =3D=3D 6 && c->x86_model =3D=3D INTEL_FAM6_ALDERL=
+AKE);
+> +#else
+> +       return true;
+> +#endif
+> +}
+> +
+>  /* if we get transitioned to only one device, take VGA back */
+>  /**
+>   * amdgpu_device_vga_set_decode - enable/disable vga decode
+> diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu=
+/nv.c
+> index 855d390c41de..921adf66e3c4 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/nv.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/nv.c
+> @@ -578,7 +578,7 @@ static void nv_pcie_gen3_enable(struct amdgpu_device =
+*adev)
+>
+>  static void nv_program_aspm(struct amdgpu_device *adev)
+>  {
+> -       if (!amdgpu_device_should_use_aspm(adev))
+> +       if (!amdgpu_device_should_use_aspm(adev) || !aspm_support_quirk_c=
+heck())
+>                 return;
+>
+>         if (!(adev->flags & AMD_IS_APU) &&
+> diff --git a/drivers/gpu/drm/amd/amdgpu/vi.c b/drivers/gpu/drm/amd/amdgpu=
+/vi.c
+> index 12ef782eb478..e61ae372d674 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/vi.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/vi.c
+> @@ -81,10 +81,6 @@
+>  #include "mxgpu_vi.h"
+>  #include "amdgpu_dm.h"
+>
+> -#if IS_ENABLED(CONFIG_X86)
+> -#include <asm/intel-family.h>
+> -#endif
+> -
+>  #define ixPCIE_LC_L1_PM_SUBSTATE       0x100100C6
+>  #define PCIE_LC_L1_PM_SUBSTATE__LC_L1_SUBSTATES_OVERRIDE_EN_MASK       0=
+x00000001L
+>  #define PCIE_LC_L1_PM_SUBSTATE__LC_PCI_PM_L1_2_OVERRIDE_MASK   0x0000000=
+2L
+> @@ -1138,17 +1134,6 @@ static void vi_enable_aspm(struct amdgpu_device *a=
+dev)
+>                 WREG32_PCIE(ixPCIE_LC_CNTL, data);
+>  }
+>
+> -static bool aspm_support_quirk_check(void)
+> -{
+> -#if IS_ENABLED(CONFIG_X86)
+> -       struct cpuinfo_x86 *c =3D &cpu_data(0);
+> -
+> -       return !(c->x86 =3D=3D 6 && c->x86_model =3D=3D INTEL_FAM6_ALDERL=
+AKE);
+> -#else
+> -       return true;
+> -#endif
+> -}
+> -
+>  static void vi_program_aspm(struct amdgpu_device *adev)
+>  {
+>         u32 data, data1, orig;
+> --
+> 2.34.1
+>
