@@ -2,118 +2,123 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 570C86B8C17
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Mar 2023 08:38:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E8BC6B8E20
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Mar 2023 10:06:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 801FF10E714;
-	Tue, 14 Mar 2023 07:38:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B73A10E744;
+	Tue, 14 Mar 2023 09:06:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam02on2068.outbound.protection.outlook.com [40.107.96.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8A0F10E088
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Mar 2023 07:38:07 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2081.outbound.protection.outlook.com [40.107.220.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1AB810E744
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Mar 2023 09:06:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Il/oUGURFL/jeFrvReU51FDNxEV3MaRlGEs62Paw7oWtnSkLBtzrmtv2SdVoowX5t6AfvfnPnUYZHpX5z09Grxn2HeAIKAEVMDmqvn+vIFtbpRKsz1n9+snHWYxgkyAMTRAyJOYWy0/VXGEsGn+OkhHN4ECErWBZLRTwgRJzt8okWpl9SBNFnJmNkrc+jxrK+aQobUDiTCfz3em+4Ly2nrIJA9nde8txZXAeUJ/7lMKDSAVegfGG4Bx2GLEGOHNYCMFx7dfECtkvUOolKA/cRld4wPK9UgJYzWWm9AFyouMKhUaWfpiNtGvs8Gdsmf94OZ3TT+NdwrQmpNk/HaFzcQ==
+ b=DeQy8fCpcU0uSBkL+sQiMmjFHdKHPdKB4/KLotHOhZ/E5lws0N1NEBz8+zK7FOrW6LJNg7aMPQU1XNgusNv5TxAdxl6k3pfWNDpk/HGHiP0dbFXEc6XSCD+vE+ysh8D0ppMl63boSZUhUfGj+emNy6P5run3EQSPBHqWx+5SwTyp6QDttUofh3CFCiERfGZt7+cTFAbz/sEAg/G+oGZIGqgzu1gAwFvKaK8ogtlLMip+TP+ygG1mWuqDzMTzP1/cbNhgfLf7tsQxCRripMOJHdSmp7ipSm3k4pvCtSHdTvPhUmMBa/nTaet42Pk9OsTkTMrR7v/q1cHaLU8gUfcBRg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a9LR1q43pYlqWFpG0zdeGme044NrTxWL81ZBIRcXSmY=;
- b=HYc1czWHZk9n0flTGATaDf8KWz5q/RtfmTcUq6wfnyDDYuCMZ1ZQTNWSTD1chNolvrJ0HWgSQob8JXrkkYjjPV8dDOP81niOAup8MKGHvbcelidVn8CHzkKFnT7JNB7yqMg52l7VdhQbkKTrYtQpcY05IJDelnuus/X8r2SdlyN114GpfX3UM+rN+2pvsby/QZc9+mSQV+HoKrzDMGtjhB8K1eZ8SJd/4Aifj9PIz4hg144bTtI9/b3TOhYofH7fwCmAEoWwba87UlZNlF2sTCjeQVJ1K4iuFjJUJlvRIJwpct+VNwnd+z3vcR1h9I2m3l/mEpqZtp8SoJSyX4MAmQ==
+ bh=c9ZAVFbAZP9iTtHLTg2MqnlC9v73Y1ix1CqXc8rW1yU=;
+ b=FYXGTlEA+mESRermeNxckikp1b8OhvmYxQFWmr4H1Y+fJ3YHlXBbw2QGBHw02AMFQcRDqwbUlQkmeJ0ty//fV1bQhU4q7PyLsYB8p+jZwSVJstfB7z3algysLAjdTSGRhNwlvjVYneIwyTuEaOJbxvKkJLiDENdXziLgrBz5HSUGh5vvFgoeVMtPE2RND8LGM7uuLcOl6a6oo5QOKBSPG8J7acTRCl/YS5ggm1ORaVaAt5+vUSFR+Ydc0eoYXNkq7hLRZIeDSAHsbQbQgJw5Oga1MCm9qhzwdH9xF/he/1o/eje153s9k2qo3QpiuhN9fsY9BFg2SW3clHzg/18QuQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=a9LR1q43pYlqWFpG0zdeGme044NrTxWL81ZBIRcXSmY=;
- b=vYc46vdKpiEONe2loG/vzoxwoieU+0DoP0TzKapgM0ZTlZJZQtGN3H5/loA2HX1QsVLo/IivppWemoYb+O5sYzKfw0tVwGqtUU66VHM69GJ/gCKxL5juzdkXns3C2RsKvYxTCW1YU++sJA6Ii6sDTe8z4FV+EGxmxK4o3AQJM84=
-Received: from BL1PR12MB5061.namprd12.prod.outlook.com (2603:10b6:208:310::13)
- by MN2PR12MB4237.namprd12.prod.outlook.com (2603:10b6:208:1d6::7)
+ bh=c9ZAVFbAZP9iTtHLTg2MqnlC9v73Y1ix1CqXc8rW1yU=;
+ b=xGyUfKkJPj/KZjCMvigFgslhwakdI5PhrjgOXcRRWk+e6iV3j4iWJZnPMO042jhOJ6YFPsqOA6bYVeIU68OmaaZ6AnV8/71FSp/jAhAQXJt3qO4wYvElgj0BSxEbjJXlzHNsPGnJXMJ4HJebocjU1wP+Y1pBEcKOw+S8CPTBKO0=
+Received: from BYAPR12MB4614.namprd12.prod.outlook.com (2603:10b6:a03:a6::22)
+ by SJ0PR12MB5437.namprd12.prod.outlook.com (2603:10b6:a03:302::19)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.26; Tue, 14 Mar
- 2023 07:38:04 +0000
-Received: from BL1PR12MB5061.namprd12.prod.outlook.com
- ([fe80::583:6b12:72a2:444f]) by BL1PR12MB5061.namprd12.prod.outlook.com
- ([fe80::583:6b12:72a2:444f%5]) with mapi id 15.20.6178.024; Tue, 14 Mar 2023
- 07:38:04 +0000
-From: "Chen, Horace" <Horace.Chen@amd.com>
-To: "Zha, YiFan(Even)" <Yifan.Zha@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "Deucher, Alexander"
- <Alexander.Deucher@amd.com>, "Zhang, Hawking" <Hawking.Zhang@amd.com>
-Subject: RE: [PATCH] drm/amdgpu: Init MMVM_CONTEXTS_DISABLE in gmc11 golden
- setting under SRIOV
-Thread-Topic: [PATCH] drm/amdgpu: Init MMVM_CONTEXTS_DISABLE in gmc11 golden
- setting under SRIOV
-Thread-Index: AQHZT/zZnV+DLUDfKEeLG+T03PX4rK7578PQ
-Date: Tue, 14 Mar 2023 07:38:04 +0000
-Message-ID: <BL1PR12MB50613144C3EC2CEA3D2B81DEE1BE9@BL1PR12MB5061.namprd12.prod.outlook.com>
-References: <20230306072459.2334191-1-Yifan.Zha@amd.com>
-In-Reply-To: <20230306072459.2334191-1-Yifan.Zha@amd.com>
-Accept-Language: zh-CN, en-US
+ 2023 09:06:31 +0000
+Received: from BYAPR12MB4614.namprd12.prod.outlook.com
+ ([fe80::3e46:4948:b543:8dba]) by BYAPR12MB4614.namprd12.prod.outlook.com
+ ([fe80::3e46:4948:b543:8dba%2]) with mapi id 15.20.6178.024; Tue, 14 Mar 2023
+ 09:06:30 +0000
+From: "Lazar, Lijo" <Lijo.Lazar@amd.com>
+To: "Chen, Guchun" <Guchun.Chen@amd.com>, Zhenneng Li <lizhenneng@kylinos.cn>
+Subject: RE: [PATCH v2] drm/amdgpu: resove reboot exception for si oland
+Thread-Topic: [PATCH v2] drm/amdgpu: resove reboot exception for si oland
+Thread-Index: AQHZVYRm6Gc/WARhgEq/8+wnG0sTdK75dueAgACGBzA=
+Date: Tue, 14 Mar 2023 09:06:30 +0000
+Message-ID: <BYAPR12MB46140D57681AA4BC9E42E3DA97BE9@BYAPR12MB4614.namprd12.prod.outlook.com>
+References: <20230313025648.3103971-1-lizhenneng@kylinos.cn>
+ <20230313025648.3103971-2-lizhenneng@kylinos.cn>
+ <DM5PR12MB2469106B445537FF8F7EBA19F1BE9@DM5PR12MB2469.namprd12.prod.outlook.com>
+In-Reply-To: <DM5PR12MB2469106B445537FF8F7EBA19F1BE9@DM5PR12MB2469.namprd12.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=e330cf87-f323-4ff0-8943-0fbb7b12cb8f;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
+msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2023-03-14T09:06:26Z; 
  MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
  MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2023-03-14T07:37:45Z;
  MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=79413af5-bef3-4aa1-82fd-6149d86e86c5;
+ MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=1
+msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_enabled: true
+msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_setdate: 2023-03-14T09:06:26Z
+msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_method: Standard
+msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_name: General
+msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
+msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_actionid: f6eec745-b90e-45bc-8a67-ba302a613b12
+msip_label_4342314e-0df4-4b58-84bf-38bed6170a0f_contentbits: 0
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL1PR12MB5061:EE_|MN2PR12MB4237:EE_
-x-ms-office365-filtering-correlation-id: b521e2bd-c409-438f-ae4d-08db245f0bd1
+x-ms-traffictypediagnostic: BYAPR12MB4614:EE_|SJ0PR12MB5437:EE_
+x-ms-office365-filtering-correlation-id: 7ef00035-6ca6-4f1c-a559-08db246b666a
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: JblrgwlNR4fRMc0TR17cWqGlhD3tshnwRwjwJQRii9iI8Q8tSfqPzQhsgmWzS+9LepLpdQcaB2hv+bGN7e30FDMb2S5hQ+md3OXVf7fq+B73++oq3Sg3Z7DdAkJrsmb2ddKT5yEwo+7BinlPKhR4YrF8L4AFeDnHnqGhgEDmyrdj+jpC/XTSxKnCxn86BYBFEJ0dXo3hB1dmrYrf6BdFUAvkq/pDl0vhUI3z4Wec603X7YezX1NcwDxulDCqdio5QJJNIU8yks5oKhNiVuqBRptk4T31ptmh7J5Fj1FkG+7jge+gUmkR+SaJ7/0gLTqhNisQkbbckEZvtu4SlB5J7lixGM2bl5fDQIwb4QY1kCvqYt8Hzod4y5utiMLoy9EGe8TmWhp1QRWUOUR3TMh/nTiroyrehhMfEccznZc8h2MbtGuMcLj3pLmYEKOIAHnHitvRe+KNakL/4R8XQe7acmXkkP5yzGTWeCR7eSL8Sj+MjlLiExvKCaNMzFClcbSK44rD+rcA56sxSSpEqwaPZ6mCRIpCqW6Mkveo5nVem7w3duMKkHQAiZ0xCt1i2gyMTf8RgrOfEbbPg3CZ1RUaYjcWG4/r0ibYQ2+FUqBfWUDrhG4axMEr9BIPJxqKKrDHokYMKC9/azBw/mvUeYYgO0F1bmsfJxHncrlhz8oa8UY8Cto5y8tOSIiXPu0i9oGgH8+2QSt9PwIGMrNIzsARuw==
+x-microsoft-antispam-message-info: VMAhJQ2NMPLGbcFmiIyURgWLKOJUeNeh3F61nZTyOOhJAfepoBNhRhMdbwdBlVaUywzgmIX5Iiu1OElZwdLJjmkiLkWzPQoPKtR5h1jLDal3jP/ZhkuoTQwIY+DnELETcCY0FWIHww8G5bcdPU/QGo2VMPut+tBm/jxZbiPHBLxMwEMpWX3L77mL0mhiB8tc0RVGv1cquS1zECAI0C2Tdt1RBTCxDXzT/PyX7w9qOAd27oQc3ls9G3vXQ+F/930Rq0UFMCUFZyCSAd8/1QojvWj1lCRs66owDGHKDxdsntnOOULf27TPEFX/vJNBjDUzOB3rtpp4G0qh/EAGUOA7JfDheXROySYjV6w+dql4HxBzxcQI6Hwe6n5dRJ5uuuF3/w54R89HMMUGskjnSiHzuyxqVNaGBEst353vfPF6MNakRQYTfXy98ZygCxoZhGbVCWVeLxAWWjLfI6p4ZfDQBE/9LZhD0tXx7ulwPY7rqH49mvsDYPimInNDVV8SnsHXknDjk7IIASq7XJ3uGMtedWNdfbOf8eZIFRGA8/yYcWfu/qgEpBmUSC9bJKFMz0KiJMRuvTK7aTh41NOGGGk4j4+kaCTglo7ye9i0YA711WQUBQZTYk96uApvT7urt+IVXcwCpdguflICDPZVq+vuzid9guNuhnkeo9qx7tdgqVBt76osciVXX9vS/QBdSMVxY+5dbjaDf3sr2faUVVkD/A==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5061.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(4636009)(366004)(136003)(346002)(396003)(376002)(39860400002)(451199018)(38070700005)(86362001)(33656002)(122000001)(38100700002)(2906002)(52536014)(8936002)(5660300002)(41300700001)(55016003)(4326008)(9686003)(186003)(26005)(6506007)(53546011)(83380400001)(54906003)(6636002)(316002)(110136005)(8676002)(64756008)(66946007)(66476007)(66446008)(66556008)(76116006)(478600001)(71200400001)(7696005);
+ IPV:NLI; SFV:NSPM; H:BYAPR12MB4614.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(4636009)(396003)(136003)(376002)(39860400002)(346002)(366004)(451199018)(2906002)(122000001)(83380400001)(5660300002)(8676002)(64756008)(55016003)(52536014)(66946007)(66446008)(66556008)(33656002)(41300700001)(8936002)(4326008)(76116006)(38070700005)(316002)(38100700002)(66476007)(110136005)(86362001)(54906003)(478600001)(7696005)(9686003)(186003)(71200400001)(6506007)(26005)(53546011);
  DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?zgNKNzR8sBlCcda7XrspWXdICRqZEKG2VZ21JtVqH2NlhnzF61WzpWD/Fi19?=
- =?us-ascii?Q?gYqImS/6Jwop1/ltoGy+TaK5jmxwuipk2FX3gj97iiIMXcQ1pPFDfdrkkcMR?=
- =?us-ascii?Q?H07tvKpRC9iU4lH2HRBU7G7ePlTZjZVkFUDnh9JqB+XOrK6PpSi2m7wz3Sy1?=
- =?us-ascii?Q?aySHLlCQOPGSL3HNG3wZWBVsoyVyqb73jBpIQth49bBkUj0cCnhJkx3fhxsK?=
- =?us-ascii?Q?rlT6P+/a1EbakZUZdmA+TiHqfrcQPaXTFGAq4oFz0D4/0RRG5s0/Sbxffs6P?=
- =?us-ascii?Q?gtfeeRjvFKZ+68deqtH5YP5N//H+OxR2NvLXLH5l25445VAgRtWIjOslIRWR?=
- =?us-ascii?Q?j7eFK1B/KmFnoVXeBI7FPmHK8yDsX2GP6x1ZUEhZ6fA3mIQ5YDxoSV/5PAQX?=
- =?us-ascii?Q?Vt801soQdvyCKiU84K/W+UTdi3CECy3w+4xuKqsNCZPj0ekFcTe+3udaHM7b?=
- =?us-ascii?Q?NJuHsjfRz77G9XEagw5YslkGi+k12un4ZytsDxJcSYBKdtUOHz7aH5IHf5Cn?=
- =?us-ascii?Q?dwr2uj4fdaXkPey4te3LgSJJMeh/uAqHe5TmqJ0ot702Ax5w9Lh8tqvaP4Sc?=
- =?us-ascii?Q?FkQFYNROT7ENPbnlXTjChAWohfocbWvnf0SqxIZdFnBBKb/oIiBQBd8s8npf?=
- =?us-ascii?Q?4Skf+FlW6RuqK0izJtjIR2vrJVk9BMEx6Exi00cEgj0pgTBJNXXG/8U3Rn85?=
- =?us-ascii?Q?LgUrQu/CrP7e8mpNE4SJ2lqBmeKVA3UtE2EemvgL3+pdw0I4Xf9Yl/kzxDi6?=
- =?us-ascii?Q?JRJVp/lyILEWCjrsDqxfcZJo0PedFcKa+PPaFtbh+Ie0/zbehS01yuMpOtKG?=
- =?us-ascii?Q?o1kcDTK6WwrzVzOOt8Em3mtmMTsg8qCSJEn4hIqxTo+gQXKmQW4aL5j0kxz6?=
- =?us-ascii?Q?69a+RCX4EU7nuA+j7jJqsFpV1OxessdCCsLLTRsAKNSD5zYhDY9oDnb4mxRc?=
- =?us-ascii?Q?dUVYfHJmDxdc+6x132YNXKy5WEgrHzr6OFCNZ9Q9KKxjFzfnWXC9Cip33OVk?=
- =?us-ascii?Q?I5U7PHY1o5IccahhQdrnvg1JMj46PEiTqOA5ziMci/918mNcbsVfA3SFjQc2?=
- =?us-ascii?Q?xMtm3b15Ai0+yZSFjIQfPfwRbcwiuadRk/RyjJilrIYWdhD19TBuMiWugrKx?=
- =?us-ascii?Q?NGcR8ld54eu1Sdmj0vGjWnDh8bcKHwo0X1medYqMrc1jBAjtyVDVvnxj9iiz?=
- =?us-ascii?Q?/ZkzLiR9KrfKiVo1nCfy13EfogSd/Ts0T8Oc4MivQ9SYSxFuv414mRaeIMDr?=
- =?us-ascii?Q?WWdt/djK6m/U4Wu2/2iD0wu6CSosOnfF1RWOEPdtg9s8mLnGqxYHTcLnxJ+i?=
- =?us-ascii?Q?GccQtgu6vFllolfEmr6WegX3ZdBA4cJhS6H6eBAqnQ2Lxq2VrirMNQJkwnLp?=
- =?us-ascii?Q?xoALIdT5Zg8aVdU+Kon7vrhuGDQp0zWGd176rDe4rimqnDPqO9CCvixv/z0P?=
- =?us-ascii?Q?ijaI81vlxxHzs7qPCQcsNnOsPMrrL78006W5MI88Tg3mRDIdecaJzFixiMvF?=
- =?us-ascii?Q?JV8IIxHnHZ7+59DpFPj+xCaAxx3myIwWglKrIJRkyxWdHl91EAaV9P5Id6A0?=
- =?us-ascii?Q?3B93UQCEGaxhUEfo4/E=3D?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?K963hYGBt568TJN58SzlN/W7A1Z8xLZeo6t86vEDamjN9rGm0wqrt05ZpE8L?=
+ =?us-ascii?Q?QoI21CH28cQHK16h9799tIRSIYNFUx1+Z3dzoYjmttufJcJxnqc5H6udlmXB?=
+ =?us-ascii?Q?rI2hVt7SDuV0w5VnwZ5r9UnNo/ne5/y18WVX9adcA2t6SiUgly3nJNs0OSgF?=
+ =?us-ascii?Q?QEtOgqCcxMQgG2jdAe9PrMxVAEqiai9AqqNcdFPbBHWCToYH/4P7EYPz6TzI?=
+ =?us-ascii?Q?0G3qEuHSUEeppnie4XWj6zPTt0/R17u7OS8LXbTYWOq3CBgaVdY4yU6IqLpa?=
+ =?us-ascii?Q?/cpO2i8V20C4zhy/1eUuviApMhHhKq3EV3/779kXIduDozRbBPkNjjUd/wPv?=
+ =?us-ascii?Q?xlqAVLuA6YZci1y+jhqxrM9hy4Ase3m3rma+mcFWPgZtpS1eTI0oOKHcnfOS?=
+ =?us-ascii?Q?YieLmboqenvvQk6XzVB1jiPkUZUPGgZY94SSrbwBTAcA1MV9jk9vYSCW+7Dd?=
+ =?us-ascii?Q?cu5TRPwRQDSB82XBTrq1UF5P6PFNO9B2FkAZv7NSFpkD/rdzigHlFNdK/Akk?=
+ =?us-ascii?Q?8wrVm7a7P8IqA+/rjSOn90d41ohHA1fnvJEMN6QyZmZ/2rg8O3aUJcNYIXAx?=
+ =?us-ascii?Q?lrCR82bWRiE4Xo++9Gv7IqEwecw+RKQ+lBj7qK46SRAV7Lms6HpKNZHpCn5+?=
+ =?us-ascii?Q?iif4H/UWSNZSm8sS070AUHjg+pb210MM1tbUyH1PfeK5rdf/Cgk8mY40ByXo?=
+ =?us-ascii?Q?1fqiWVJh5jTSmcuv/dRVUL9xdWApQgm/b5SOHveJ5E7yTgTBcM8TA9OIpIDg?=
+ =?us-ascii?Q?lcYDX0n8OVF95D8Vhg2HEnX/VFXu9mpudY/awAfl71Lc0OpBdnv7rrygDQy9?=
+ =?us-ascii?Q?wsDSl5PNiSgDY3c8y20pugVF47AkoT4h4qN/hOFACUvrgwWebRCCB2EYQPdS?=
+ =?us-ascii?Q?3bDWygk1ztdikVFfYhHw9TaiH9EbZlw2BTZwsdn/+Ifq45I8KOCDitDkXUDy?=
+ =?us-ascii?Q?U4mndN4eL8sRwQFKOsucIFQ2dvgCjlolNw7QxCh9bcrOgceX0oxnQv4MaevE?=
+ =?us-ascii?Q?v0AOQY64/yI45TnlsDNOpf9zOgxWmLcXoRZRh7jw1fFqmTB3NIXd0M3jn1Yc?=
+ =?us-ascii?Q?lELyEugGju3POXfnA7S+Am5o9dMTnufodA+ancR46xsuh+wddZrJSQiP3MjS?=
+ =?us-ascii?Q?qMSkOHonloXX8w5YTAKVt7jn2E8DpAXoMBXx1NFZsea0Ut8d2WymWxV4OpR8?=
+ =?us-ascii?Q?7Nz0Y09jUTKdt0qMH4OIxG35ZnBeD2Fn1U/2eVj4hd1qLr4Sk5O6i9Hk3sRG?=
+ =?us-ascii?Q?jVN2ns+CHHgVq1Z765SDqs9xJmxMju7MMxVhfAnUcz/2FWbYRMCgzM2r2luE?=
+ =?us-ascii?Q?JiX+ZmrzS4wBvThLh3oSmBYnzE6cqMX1vs04dDEP7KQdVatsyMTgKKS4gN02?=
+ =?us-ascii?Q?0XsoPbUcwmRl34RqT4Zsdsx1TPoSgK4r8T/QafHVuC1z9ouk4CNB64gmD6d3?=
+ =?us-ascii?Q?5KXD8qJxbFgHT1eVwKkNaO9NtheuuysOwmhR+yzdMo4eRr4yrZGDRvD7eYIz?=
+ =?us-ascii?Q?Afeyx/My201pHBkU2dY8sWfoMVnCumOkfCqYHFGyIsN7CgiWh2V5WE+KMt+s?=
+ =?us-ascii?Q?/ujWF0Jenao8e8G2tNc=3D?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5061.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b521e2bd-c409-438f-ae4d-08db245f0bd1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Mar 2023 07:38:04.1372 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4614.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7ef00035-6ca6-4f1c-a559-08db246b666a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Mar 2023 09:06:30.1266 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: lXvuBGDhWVIVRzPgkeG0/JiJJ2/Z6O6UPgkeftEfkbg/auUuvZ62QRPiC3mGyeSb
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4237
+X-MS-Exchange-CrossTenant-userprincipalname: fnJxlDIUkWSwrNliKEizCK5ParNt0awBHeRdmf3cTsms4txAIGmFDO20fjEM7skk
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5437
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,85 +130,90 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Zha, YiFan\(Even\)" <Yifan.Zha@amd.com>, "Chang,
- HaiJun" <HaiJun.Chang@amd.com>
+Cc: David Airlie <airlied@linux.ie>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 [AMD Official Use Only - General]
 
-Reviewed-by: Horace Chen <Horace.Chen@amd.com>
+Hi Guchun,
+
+This patch doesn't look correct. Without dpm enabled, temperature range sho=
+uldn't be set at all. The patch posted by Zhenneng is good enough or better=
+ to skip late init altogether as it remains an empty function with that pat=
+ch.
+
+Thanks,
+Lijo
 
 -----Original Message-----
-From: Yifan Zha <Yifan.Zha@amd.com>
-Sent: Monday, March 6, 2023 3:25 PM
-To: amd-gfx@lists.freedesktop.org; Deucher, Alexander <Alexander.Deucher@am=
-d.com>; Zhang, Hawking <Hawking.Zhang@amd.com>
-Cc: Chen, Horace <Horace.Chen@amd.com>; Chang, HaiJun <HaiJun.Chang@amd.com=
->; Zha, YiFan(Even) <Yifan.Zha@amd.com>
-Subject: [PATCH] drm/amdgpu: Init MMVM_CONTEXTS_DISABLE in gmc11 golden set=
-ting under SRIOV
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Chen, Gu=
+chun
+Sent: Tuesday, March 14, 2023 6:35 AM
+To: Zhenneng Li <lizhenneng@kylinos.cn>
+Cc: David Airlie <airlied@linux.ie>; Pan, Xinhui <Xinhui.Pan@amd.com>; amd-=
+gfx@lists.freedesktop.org; Daniel Vetter <daniel@ffwll.ch>; Deucher, Alexan=
+der <Alexander.Deucher@amd.com>; Koenig, Christian <Christian.Koenig@amd.co=
+m>
+Subject: RE: [PATCH v2] drm/amdgpu: resove reboot exception for si oland
 
-[Why]
-If disable the mmhub vm contexts(set MMVM_CONTEXTS_DISABLE to 0xffff), driv=
-er loading failed on vf due to fence fallback timer expired on all rings.
-FLR cannot reset MMVM_CONTEXTS_DISABLE.
-So this vf can not be recovered anymore unless trigger a whole gpu reset.
+Will attached patch help?
 
-[How]
-Under SRIOV, init MMVM_CONTEXTS_DISABLE in gmc11 golden register setting.
+Regards,
+Guchun
 
-Signed-off-by: Yifan Zha <Yifan.Zha@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h | 2 ++  drivers/gpu/drm/amd/amdgpu=
-/gmc_v11_0.c  | 6 ++++++  drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.c | 3 +++
- 3 files changed, 11 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_gmc.h
-index 0305b660cd17..fad3034b35ee 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-@@ -104,6 +104,8 @@ struct amdgpu_vmhub {
-        uint32_t        vm_cntx_cntl_vm_fault;
-        uint32_t        vm_l2_bank_select_reserved_cid2;
-
-+       uint32_t        vm_contexts_disable;
-+
-        const struct amdgpu_vmhub_funcs *vmhub_funcs;  };
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/gmc_v11_0.c
-index 0a31a341aa43..7481f2f2804c 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-@@ -875,6 +875,12 @@ static int gmc_v11_0_sw_fini(void *handle)
-
- static void gmc_v11_0_init_golden_registers(struct amdgpu_device *adev)  {
-+       if (amdgpu_sriov_vf(adev)) {
-+               struct amdgpu_vmhub *hub =3D &adev->vmhub[AMDGPU_MMHUB_0];
-+
-+               WREG32(hub->vm_contexts_disable, 0);
-+               return;
-+       }
- }
-
- /**
-diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.c b/drivers/gpu/drm/amd/=
-amdgpu/mmhub_v3_0.c
-index 164948c50ac3..17a792616979 100644
---- a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.c
-@@ -517,6 +517,9 @@ static void mmhub_v3_0_init(struct amdgpu_device *adev)
-        hub->vm_l2_bank_select_reserved_cid2 =3D
-                SOC15_REG_OFFSET(MMHUB, 0, regMMVM_L2_BANK_SELECT_RESERVED_=
-CID2);
-
-+       hub->vm_contexts_disable =3D
-+               SOC15_REG_OFFSET(MMHUB, 0, regMMVM_CONTEXTS_DISABLE);
-+
-        hub->vmhub_funcs =3D &mmhub_v3_0_vmhub_funcs;  }
-
---
-2.25.1
-
+> -----Original Message-----
+> From: Zhenneng Li <lizhenneng@kylinos.cn>
+> Sent: Monday, March 13, 2023 10:57 AM
+> To: Chen, Guchun <Guchun.Chen@amd.com>
+> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian=20
+> <Christian.Koenig@amd.com>; Pan, Xinhui <Xinhui.Pan@amd.com>; David=20
+> Airlie <airlied@linux.ie>; Daniel Vetter <daniel@ffwll.ch>; amd-=20
+> gfx@lists.freedesktop.org; Zhenneng Li <lizhenneng@kylinos.cn>
+> Subject: [PATCH v2] drm/amdgpu: resove reboot exception for si oland
+>=20
+> During reboot test on arm64 platform, it may failure on boot.
+>=20
+> The error message are as follows:
+> [    6.996395][ 7] [  T295] [drm:amdgpu_device_ip_late_init [amdgpu]]
+> *ERROR*
+> 			    late_init of IP block <si_dpm> failed -22
+> [    7.006919][ 7] [  T295] amdgpu 0000:04:00.0: amdgpu_device_ip_late_in=
+it
+> failed
+> [    7.014224][ 7] [  T295] amdgpu 0000:04:00.0: Fatal error during GPU i=
+nit
+> ---
+>  drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c | 12 ------------
+>  1 file changed, 12 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+> b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+> index d6d9e3b1b2c0..ca9bce895dbe 100644
+> --- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+> +++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+> @@ -7626,18 +7626,6 @@ static int si_dpm_process_interrupt(struct=20
+> amdgpu_device *adev,
+>=20
+>  static int si_dpm_late_init(void *handle)  {
+> -	int ret;
+> -	struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
+> -
+> -	if (!adev->pm.dpm_enabled)
+> -		return 0;
+> -
+> -	ret =3D si_set_temperature_range(adev);
+> -	if (ret)
+> -		return ret;
+> -#if 0 //TODO ?
+> -	si_dpm_powergate_uvd(adev, true);
+> -#endif
+>  	return 0;
+>  }
+>=20
+> --
+> 2.25.1
