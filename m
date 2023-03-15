@@ -1,93 +1,45 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16C246BAE6D
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Mar 2023 12:05:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AB206BB2A9
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Mar 2023 13:37:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 853E410E9A6;
-	Wed, 15 Mar 2023 11:05:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7189A10EAF3;
+	Wed, 15 Mar 2023 12:37:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2073.outbound.protection.outlook.com [40.107.223.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C00610E9A6
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Mar 2023 11:05:15 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Z6LTLNFg67Frme53BVPO1R5pmpRpu75a9W265k/yuIvoxhw9WTzWz0SZ1aYounVLpsK+xWcM+MmpRofyH3Cc2Z0Odkavo51ZfkN+lvEdNw8sz+6G1QU6MFh3HMRVZg7eVPDfg6zlcCiDyGnHAV3TFXe9EpesA3RaByL/KgDaJyBz8P5Q+gHy9l8+b8g4+0ZvNEIq9/+uLU8mp+Y5SjtgoQlY/mYdFw6uTDnciXrS+FAJgKCYYj4fUqzoZe0yfE4VDOvVIsCeUmyclasPdNVJFuoLa0F4nxUHqwlv7rai3hD16RMicWOSeQ9rb/3pphkms3avUTmcKZc58Y4q4BfP6w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YZsPIy1aB5aX08Ka/h7j1zqksUUlD5Moa7I3+o1Psmo=;
- b=D6QWxHe/HaemTazc4sIy4Kydq/SejPwgJjWeg8nGsrzYZB5biMaukUcjYGmDXVUitg1pedA2IOlDYpbh1rrtAi7xndGbgyQH2c3Z4UT6rpyWnqnwL4Fgc8sL7ysC5SsxVOAK44FKZQTKHxnQlFMJv2U9y6xC7EsS0eAJCnWVjy3IWQiqJbwKf45ABnHzTwcAfqnF+EqQk6Mqz1i3WzoADAHEgC1YlZ4pqsmvDcCZRge7cG59eXnmwueK2jLEs9KYHExGNp/ajm+Ja1tF3C20dM/RZe+Zlvoi1OoLeflb1fVCsMloOrmZouvPHyrJi92Aw0uEBNGVQPFPUhhN1BprTA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YZsPIy1aB5aX08Ka/h7j1zqksUUlD5Moa7I3+o1Psmo=;
- b=lsD8jTGDHIaJfFDxbFPp9UZN0Twu06iKkV5eIvUVvbY83vBeWHA3/Z1tTfJta4GaGsM09LEwMJeawwrY+xDVPI5EmFiXFKOdXKkqLWGODMFoOGAs2LdyioZf2G/5hsbKimdqKzQRqwyfbZODWlpEIF3DN8XA0sYHIqCqaxAaGEg=
-Received: from MW4PR03CA0001.namprd03.prod.outlook.com (2603:10b6:303:8f::6)
- by PH7PR12MB8015.namprd12.prod.outlook.com (2603:10b6:510:26a::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.26; Wed, 15 Mar
- 2023 11:05:13 +0000
-Received: from CO1NAM11FT098.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8f:cafe::2e) by MW4PR03CA0001.outlook.office365.com
- (2603:10b6:303:8f::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.26 via Frontend
- Transport; Wed, 15 Mar 2023 11:05:13 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT098.mail.protection.outlook.com (10.13.174.207) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6199.16 via Frontend Transport; Wed, 15 Mar 2023 11:05:13 +0000
-Received: from ldev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 15 Mar
- 2023 06:05:06 -0500
-From: Tim Huang <tim.huang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 2/2] drm/amdgpu: skip ASIC reset for APUs when go to S4
-Date: Wed, 15 Mar 2023 19:03:41 +0800
-Message-ID: <20230315110341.248166-2-tim.huang@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230315110341.248166-1-tim.huang@amd.com>
-References: <20230315110341.248166-1-tim.huang@amd.com>
+Received: from smtp-relay-canonical-1.canonical.com
+ (smtp-relay-canonical-1.canonical.com [185.125.188.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0082E10E052;
+ Wed, 15 Mar 2023 12:10:26 +0000 (UTC)
+Received: from localhost.localdomain (unknown [10.101.196.174])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPSA id BA15241FB9; 
+ Wed, 15 Mar 2023 12:10:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+ s=20210705; t=1678882225;
+ bh=8EFN3s1YBGw+XJzxDq8BOR1GtZMD+11bJZblpHMeHfM=;
+ h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+ b=hdp71cWKJQoiO3f9FT1GwnaRpiTTe24QrX1hyze4MMgWPtQhao39l3Uc9R196LRIq
+ iQeK/JpCDm+u3CvXLQrht72vgvIvEGi0nrfRfE9622z3OEq24egGPto0pgBwoHp9pf
+ zzsLOWaFkcXaxXaex0bietq2Ig5SCanZj7OYsowWm0MDG3hYDjjDTACOaYgnNYIhe1
+ bEdVyX4aCZOx0vYl2FOcvpbZ1qozbJ1XssqokOHI2v8sZ7MKoM9pKp1dMRU7obQvYs
+ 5LE5YCj19shhvzCN6ySwfV/mt/RrUwsVUWL6q1RaMmdWE8aSnAtIa4pGDmAJ8XMwVX
+ p7S9+PPOF9oQQ==
+From: Kai-Heng Feng <kai.heng.feng@canonical.com>
+To: alexander.deucher@amd.com,
+	christian.koenig@amd.com,
+	Xinhui.Pan@amd.com
+Subject: [PATCH v2] drm/amdgpu/nv: Apply ASPM quirk on Intel ADL + AMD Navi
+Date: Wed, 15 Mar 2023 20:07:23 +0800
+Message-Id: <20230315120726.427486-1-kai.heng.feng@canonical.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT098:EE_|PH7PR12MB8015:EE_
-X-MS-Office365-Filtering-Correlation-Id: 725933c9-c0f5-4e9e-d44e-08db254526ba
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TQRffCeOQDoBKN8LgEvxqViwikZpgL8c5G0ev91GrrzOfduytL8bKpMWIfXx42FAmQ+id8kVGC1oNwVJymwtZ0diiUa1TIHN4jZsvn6lWnr8nVikFIOiVNJbaeYKWzh/UjXFL74upltBKl4RLNlgln4gDRaySc6LCEoY1HHLXtiAXAJeu1eh+uPMMmSjagw+3EamfmMoFUQdD/G1PKQLTPAtd9db4hFRp6+G5j4Y1/wujhOFc/HpH1OlJxr1zpJmrLZaeCQahxJhpPpLZBoEZYNqC7mpHdLMIXrulRvmm9LA1upIvdNNIn8v0DrYG7FJ70d4EEJQVYA1q88P3IwVnOMxQp6beIqlPMyWpthdfDhM9egzIL9YRrmKESbwtwkiwIWX+2xMqQdLkuR/0atnz97QRlzflYHekMkkzigWCLD5C7IG7a5O6gMVs1NngWEaZpBxe2CHiljL+7q1o2qnCjJcpsy8HUb/bD9UGbowcEN4cEtuVApTEPpISmTsEB+N48Ky4OyfsDDPo3gU3rXe6Aoh2bPwLq73UO/8qJNn/9hocRHBgFzbtIAjyaxB3DyEKYTficOO0c/LUclkHIdTuKT0RMxZ40LYW+N/ITQujzai1vRCDAsUPizKEaAZV5bKkHd9uV3kawEtJmfyJ31fA0LDmeIFU2+CslsWbWDaWRKPOAiUw8Mjj0hbUs+dLls0ImFkMnxdoVRQ6r/2uF+Eto55pbHuwsbuut2rS2dn8jU=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(396003)(39860400002)(346002)(136003)(376002)(451199018)(46966006)(40470700004)(36840700001)(86362001)(356005)(82740400003)(36860700001)(81166007)(36756003)(8936002)(41300700001)(2906002)(5660300002)(44832011)(4326008)(40460700003)(82310400005)(40480700001)(26005)(83380400001)(6916009)(316002)(186003)(16526019)(1076003)(2616005)(47076005)(426003)(336012)(54906003)(6666004)(70586007)(70206006)(478600001)(7696005)(8676002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2023 11:05:13.4244 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 725933c9-c0f5-4e9e-d44e-08db254526ba
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT098.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8015
+X-Mailman-Approved-At: Wed, 15 Mar 2023 12:37:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,47 +51,145 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, Yifan1.zhang@amd.com, mario.limonciello@amd.com,
- Tim Huang <tim.huang@amd.com>
+Cc: Lijo Lazar <lijo.lazar@amd.com>, dri-devel@lists.freedesktop.org,
+ YiPeng Chai <YiPeng.Chai@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>, Likun Gao <Likun.Gao@amd.com>,
+ David Airlie <airlied@gmail.com>, amd-gfx@lists.freedesktop.org,
+ Jiansong Chen <Jiansong.Chen@amd.com>, Kenneth Feng <kenneth.feng@amd.com>,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Victor Zhao <Victor.Zhao@amd.com>, Bokun Zhang <Bokun.Zhang@amd.com>,
+ Veerabadhran Gopalakrishnan <veerabadhran.gopalakrishnan@amd.com>,
+ Evan Quan <evan.quan@amd.com>, Jack Xiao <Jack.Xiao@amd.com>,
+ Richard Gong <richard.gong@amd.com>, Felix Kuehling <Felix.Kuehling@amd.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ linux-kernel@vger.kernel.org, Kai-Heng Feng <kai.heng.feng@canonical.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Leo Liu <leo.liu@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-For GC IP v11.0.4/11, PSP TMR need to be reserved
-for ASIC mode2 reset. But for S4, when psp suspend,
-it will destroy the TMR that fails the ASIC reset.
+S2idle resume freeze can be observed on Intel ADL + AMD WX5500. This is
+caused by commit 0064b0ce85bb ("drm/amd/pm: enable ASPM by default").
 
-[  96.006101] amdgpu 0000:62:00.0: amdgpu: MODE2 reset
-[  100.409717] amdgpu 0000:62:00.0: amdgpu: SMU: I'm not done with your previous command: SMN_C2PMSG_66:0x00000011 SMN_C2PMSG_82:0x00000002
-[  100.411593] amdgpu 0000:62:00.0: amdgpu: Mode2 reset failed!
-[  100.412470] amdgpu 0000:62:00.0: PM: pci_pm_freeze(): amdgpu_pmops_freeze+0x0/0x50 [amdgpu] returns -62
-[  100.414020] amdgpu 0000:62:00.0: PM: dpm_run_callback(): pci_pm_freeze+0x0/0xd0 returns -62
-[  100.415311] amdgpu 0000:62:00.0: PM: pci_pm_freeze+0x0/0xd0 returned -62 after 4623202 usecs
-[  100.416608] amdgpu 0000:62:00.0: PM: failed to freeze async: error -62
+The root cause is still not clear for now.
 
-We can skip the reset on APUs, assuming we can resume them
-properly. Verified on some GFX11, GFX10 and old GFX9 APUs.
+So extend and apply the ASPM quirk from commit e02fe3bc7aba
+("drm/amdgpu: vi: disable ASPM on Intel Alder Lake based systems"), to
+workaround the issue on Navi cards too.
 
-Signed-off-by: Tim Huang <tim.huang@amd.com>
+Fixes: 0064b0ce85bb ("drm/amd/pm: enable ASPM by default")
+Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2458
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+v2:
+ - Rename the quirk function.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 5f02c530e2cc..64214996278b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -2467,7 +2467,10 @@ static int amdgpu_pmops_freeze(struct device *dev)
- 	adev->in_s4 = false;
- 	if (r)
- 		return r;
--	return amdgpu_asic_reset(adev);
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 15 +++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/nv.c            |  2 +-
+ drivers/gpu/drm/amd/amdgpu/vi.c            | 17 +----------------
+ 4 files changed, 18 insertions(+), 17 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index 164141bc8b4a..5f3b139c1f99 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -1272,6 +1272,7 @@ void amdgpu_device_pci_config_reset(struct amdgpu_device *adev);
+ int amdgpu_device_pci_reset(struct amdgpu_device *adev);
+ bool amdgpu_device_need_post(struct amdgpu_device *adev);
+ bool amdgpu_device_should_use_aspm(struct amdgpu_device *adev);
++bool amdgpu_device_aspm_support_quirk(void);
+ 
+ void amdgpu_cs_report_moved_bytes(struct amdgpu_device *adev, u64 num_bytes,
+ 				  u64 num_vis_bytes);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index c4a4e2fe6681..05a34ff79e78 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -80,6 +80,10 @@
+ 
+ #include <drm/drm_drv.h>
+ 
++#if IS_ENABLED(CONFIG_X86)
++#include <asm/intel-family.h>
++#endif
 +
-+	if (amdgpu_acpi_should_gpu_reset(adev))
-+		return amdgpu_asic_reset(adev);
-+	return 0;
+ MODULE_FIRMWARE("amdgpu/vega10_gpu_info.bin");
+ MODULE_FIRMWARE("amdgpu/vega12_gpu_info.bin");
+ MODULE_FIRMWARE("amdgpu/raven_gpu_info.bin");
+@@ -1356,6 +1360,17 @@ bool amdgpu_device_should_use_aspm(struct amdgpu_device *adev)
+ 	return pcie_aspm_enabled(adev->pdev);
  }
  
- static int amdgpu_pmops_thaw(struct device *dev)
++bool amdgpu_device_aspm_support_quirk(void)
++{
++#if IS_ENABLED(CONFIG_X86)
++	struct cpuinfo_x86 *c = &cpu_data(0);
++
++	return !(c->x86 == 6 && c->x86_model == INTEL_FAM6_ALDERLAKE);
++#else
++	return true;
++#endif
++}
++
+ /* if we get transitioned to only one device, take VGA back */
+ /**
+  * amdgpu_device_vga_set_decode - enable/disable vga decode
+diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
+index 855d390c41de..26733263913e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nv.c
++++ b/drivers/gpu/drm/amd/amdgpu/nv.c
+@@ -578,7 +578,7 @@ static void nv_pcie_gen3_enable(struct amdgpu_device *adev)
+ 
+ static void nv_program_aspm(struct amdgpu_device *adev)
+ {
+-	if (!amdgpu_device_should_use_aspm(adev))
++	if (!amdgpu_device_should_use_aspm(adev) || !amdgpu_device_aspm_support_quirk())
+ 		return;
+ 
+ 	if (!(adev->flags & AMD_IS_APU) &&
+diff --git a/drivers/gpu/drm/amd/amdgpu/vi.c b/drivers/gpu/drm/amd/amdgpu/vi.c
+index 12ef782eb478..ceab8783575c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vi.c
++++ b/drivers/gpu/drm/amd/amdgpu/vi.c
+@@ -81,10 +81,6 @@
+ #include "mxgpu_vi.h"
+ #include "amdgpu_dm.h"
+ 
+-#if IS_ENABLED(CONFIG_X86)
+-#include <asm/intel-family.h>
+-#endif
+-
+ #define ixPCIE_LC_L1_PM_SUBSTATE	0x100100C6
+ #define PCIE_LC_L1_PM_SUBSTATE__LC_L1_SUBSTATES_OVERRIDE_EN_MASK	0x00000001L
+ #define PCIE_LC_L1_PM_SUBSTATE__LC_PCI_PM_L1_2_OVERRIDE_MASK	0x00000002L
+@@ -1138,24 +1134,13 @@ static void vi_enable_aspm(struct amdgpu_device *adev)
+ 		WREG32_PCIE(ixPCIE_LC_CNTL, data);
+ }
+ 
+-static bool aspm_support_quirk_check(void)
+-{
+-#if IS_ENABLED(CONFIG_X86)
+-	struct cpuinfo_x86 *c = &cpu_data(0);
+-
+-	return !(c->x86 == 6 && c->x86_model == INTEL_FAM6_ALDERLAKE);
+-#else
+-	return true;
+-#endif
+-}
+-
+ static void vi_program_aspm(struct amdgpu_device *adev)
+ {
+ 	u32 data, data1, orig;
+ 	bool bL1SS = false;
+ 	bool bClkReqSupport = true;
+ 
+-	if (!amdgpu_device_should_use_aspm(adev) || !aspm_support_quirk_check())
++	if (!amdgpu_device_should_use_aspm(adev) || !amdgpu_device_aspm_support_quirk())
+ 		return;
+ 
+ 	if (adev->flags & AMD_IS_APU ||
 -- 
-2.25.1
+2.34.1
 
