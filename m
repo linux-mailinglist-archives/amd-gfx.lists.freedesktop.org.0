@@ -2,41 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02B236BBE3A
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Mar 2023 21:57:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58AB36BBD14
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Mar 2023 20:15:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FC3210E332;
-	Wed, 15 Mar 2023 20:57:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1879210E2FF;
+	Wed, 15 Mar 2023 19:15:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 912A010E2A9;
- Wed, 15 Mar 2023 17:54:56 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 7560761E01;
- Wed, 15 Mar 2023 17:54:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A93ECC433EF;
- Wed, 15 Mar 2023 17:54:53 +0000 (UTC)
-Date: Wed, 15 Mar 2023 13:54:51 -0400
-From: Steven Rostedt <rostedt@goodmis.org>
-To: Christian =?UTF-8?B?S8O2bmln?= <ckoenig.leichtzumerken@gmail.com>
-Subject: Re: [BUG 6.3-rc1] Bad lock in ttm_bo_delayed_delete()
-Message-ID: <20230315135451.1f7b5e06@gandalf.local.home>
-In-Reply-To: <20230315115712.56b3c21f@gandalf.local.home>
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com
+ [IPv6:2a00:1450:4864:20::12e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C9DE10E2FF;
+ Wed, 15 Mar 2023 19:15:51 +0000 (UTC)
+Received: by mail-lf1-x12e.google.com with SMTP id bi9so3426022lfb.12;
+ Wed, 15 Mar 2023 12:15:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1678907749;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=s/TbcNqKWN0M5lu3wJAR1U2s2LeA07pOPBmN8acExL0=;
+ b=O5ur8jSvdB/27xbe32AESiRGhcveHvRo5NOaDMOW1kpL0OswesjyshUT7QTDwawvGN
+ vx/xKxwCiKLsKEJkO1qWFU2FXLc4atOFdLRmZ3076bqob4ti2vI1cECaFybQvMKz5pZv
+ /bHto9NZ01y2aSX9adBezC6aYsnn+1b+rY6uhUv2O8/DrGn8KQVVlCVpS/6fGWQbv1uU
+ gWbM7JHpV8JnX5u+M+33xxdoyG7FOo2M5edJsKRthcQfvqf9M8Hk4pwzDp0fjfPmCKxD
+ ZuKfWkLnY3oUfQF5Su3evoeUpfkg6RgrTpD0LLO806HlCoeLQBEc7dPwq5e1BTqIGQD8
+ 2vjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1678907749;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=s/TbcNqKWN0M5lu3wJAR1U2s2LeA07pOPBmN8acExL0=;
+ b=cn3qqdoHBttY47mzzRShAKyOJYwpqlJDWUSLX0KDE2g+rxZPIHql7nOxRyd1P9kuC0
+ CmWl9/sQyMyTMhUatpuC4q733XrjztEL18N5jRzPr+Ay69qb5JtQ7mS/xSvqFi3YBmZA
+ /Uk6iANsuX6e7REW79s88dgh6tKAgJICX8dI1i4i3p/M+JcSJB5hSX9fEwCnguUX6zpF
+ xPnc9bjKXN+uj1vTLJEmXQqYb5yGuz8h5L8k0ujA46Glz//ABjpil+/fD7Sqgjrrrk01
+ hrpplJDmfdhiamAtI7euqcdZXoNH94pq6uxvoQL9xvD+7fTS9wXjmbjSjCFda+ciwcbi
+ V+QQ==
+X-Gm-Message-State: AO0yUKVziX8lLYyJg/0dFrYQpeq57KFTSr1jB9Crmw8rD4HxsoY+kzkc
+ EpBqRy30Eg5nMIC+zKk0JF8kefFa9j+/kIr+DU8=
+X-Google-Smtp-Source: AK7set+RLtA8GIwiFyS4rsBM8IKpZnaihakScemGdopDS8WcGoKzTe0kT84u6FhuozpIRdVObQcJElU+HSk0NKRv5fk=
+X-Received: by 2002:ac2:5df9:0:b0:4db:2554:93a2 with SMTP id
+ z25-20020ac25df9000000b004db255493a2mr2378777lfq.10.1678907749244; Wed, 15
+ Mar 2023 12:15:49 -0700 (PDT)
+MIME-Version: 1.0
 References: <20230307212223.7e49384a@gandalf.local.home>
  <20230307212615.7a099103@gandalf.local.home>
  <b919b550-6da8-f9f0-a0eb-0fd8af513817@amd.com>
- <20230315110949.1e11b3aa@gandalf.local.home>
- <07597f3e-0b35-c22b-91ec-fa3875d6fe22@gmail.com>
- <20230315115712.56b3c21f@gandalf.local.home>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Wed, 15 Mar 2023 20:57:22 +0000
+ <20230308074333.49546088@gandalf.local.home>
+ <980021d5-09f7-9fc3-2726-44884a57822f@gmail.com>
+In-Reply-To: <980021d5-09f7-9fc3-2726-44884a57822f@gmail.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Wed, 15 Mar 2023 19:15:21 +0000
+Message-ID: <CAM0jSHPf5u4=GGWm6x-zVkLA_LScAxq371ny2NoozuNjHfQefQ@mail.gmail.com>
+Subject: Re: [Intel-gfx] [BUG 6.3-rc1] Bad lock in ttm_bo_delayed_delete()
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,164 +70,134 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org,
+Cc: amd-gfx@lists.freedesktop.org,
  Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
  intel-gfx@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>,
- amd-gfx@lists.freedesktop.org, Masami Hiramatsu <mhiramat@kernel.org>,
+ dri-devel@lists.freedesktop.org, Steven Rostedt <rostedt@goodmis.org>,
  Felix Kuehling <Felix.Kuehling@amd.com>,
  Linus Torvalds <torvalds@linux-foundation.org>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
  linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 15 Mar 2023 11:57:12 -0400
-Steven Rostedt <rostedt@goodmis.org> wrote:
+On Wed, 15 Mar 2023 at 18:41, Christian K=C3=B6nig
+<ckoenig.leichtzumerken@gmail.com> wrote:
+>
+> Am 08.03.23 um 13:43 schrieb Steven Rostedt:
+> > On Wed, 8 Mar 2023 07:17:38 +0100
+> > Christian K=C3=B6nig <christian.koenig@amd.com> wrote:
+> >
+> >> What test case/environment do you run to trigger this?
+> > I'm running a 32bit x86 qemu instance. Attached is the config.
+> >
+> > The libvirt xml file is here: https://rostedt.org/vm-images/tracetest-3=
+2.xml
+> > and the VM image itself is here: https://rostedt.org/vm-images/tracetes=
+t-32.qcow2.bz2
+>
+> I've started to download that, but it will take about an hour. So I
+> tried to avoid that for now.
+>
+> But looks like there isn't any other way to reproduce this, the code
+> seems to work with both amdgpu and radeon.
+>
+> My suspicion is that we just have a reference count issue in qxl or ttm
+> which was never noticed because it didn't caused any problems (except
+> for a minor memory corruption).
 
-> The WARN_ON triggered:
-> 
-> [   21.481449] mpls_gso: MPLS GSO support
-> [   21.488795] IPI shorthand broadcast: enabled
-> [   21.488873] ------------[ cut here ]------------
-> [   21.490101] ------------[ cut here ]------------
-> 
-> [   21.491693] WARNING: CPU: 1 PID: 38 at drivers/gpu/drm/ttm/ttm_bo.c:332 ttm_bo_release+0x2ac/0x2fc  <<<---- Line of the added WARN_ON()
-> 
-> [   21.492940] refcount_t: underflow; use-after-free.
-> [   21.492965] WARNING: CPU: 0 PID: 84 at lib/refcount.c:28 refcount_warn_saturate+0xb6/0xfc
-> [   21.496116] Modules linked in:
-> [   21.497197] Modules linked in:
-> [   21.500105] CPU: 1 PID: 38 Comm: kworker/1:1 Not tainted 6.3.0-rc2-test-00047-g6015b1aca1a2-dirty #993
-> [   21.500789] CPU: 0 PID: 84 Comm: kworker/0:1H Not tainted 6.3.0-rc2-test-00047-g6015b1aca1a2-dirty #993
-> [   21.501882] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 1.16.0-debian-1.16.0-5 04/01/2014
-> [   21.503533] sched_clock: Marking stable (20788024762, 714243692)->(22140778105, -638509651)
-> [   21.504080] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 1.16.0-debian-1.16.0-5 04/01/2014
-> [   21.504089] Workqueue: ttm ttm_bo_delayed_delete
-> [   21.507196] Workqueue: events drm_fb_helper_damage_work
-> [   21.509235] 
-> [   21.510291] registered taskstats version 1
-> [   21.510302] Running ring buffer tests...
-> [   21.511792] 
-> [   21.513870] EIP: refcount_warn_saturate+0xb6/0xfc
-> [   21.515261] EIP: ttm_bo_release+0x2ac/0x2fc
-> [   21.516566] Code: 68 00 27 0c d8 e8 36 3b aa ff 0f 0b 58 c9 c3 90 80 3d 41 c2 37 d8 00 75 8a c6 05 41 c2 37 d8 01 68 2c 27 0c d8 e8 16 3b aa ff <0f> 0b 59 c9 c3 80 3d 3f c2 37 d8 00 0f 85 67 ff ff ff c6 05 3f c2
-> [   21.516998] Code: ff 8d b4 26 00 00 00 00 66 90 0f 0b 8b 43 10 85 c0 0f 84 a1 fd ff ff 8d 76 00 0f 0b 8b 43 28 85 c0 0f 84 9c fd ff ff 8d 76 00 <0f> 0b e9 92 fd ff ff 8d b4 26 00 00 00 00 66 90 c7 43 18 00 00 00
-> [   21.517905] EAX: 00000026 EBX: c129d150 ECX: 00000040 EDX: 00000002
-> [   21.518987] EAX: d78c8550 EBX: c129d134 ECX: c129d134 EDX: 00000001
-> [   21.519337] ESI: c129d0bc EDI: f6f91200 EBP: c2b8bf18 ESP: c2b8bf14
-> [   21.520617] ESI: c129d000 EDI: c126a7a0 EBP: c1839c24 ESP: c1839bec
-> [   21.521546] DS: 007b ES: 007b FS: 00d8 GS: 0000 SS: 0068 EFLAGS: 00010286
-> [   21.526154] DS: 007b ES: 007b FS: 00d8 GS: 0000 SS: 0068 EFLAGS: 00010286
-> [   21.526162] CR0: 80050033 CR2: 00000000 CR3: 18506000 CR4: 00150ef0
-> [   21.526166] Call Trace:
-> [   21.526189]  ? ww_mutex_unlock+0x3a/0x94
-> [   21.530300] CR0: 80050033 CR2: ff9ff000 CR3: 18506000 CR4: 00150ef0
-> [   21.531722]  ? ttm_bo_cleanup_refs+0xc4/0x1e0
-> [   21.533114] Call Trace:
-> [   21.534516]  ttm_mem_evict_first+0x3d3/0x568
-> [   21.535901]  ttm_bo_delayed_delete+0x9c/0xa4
-> [   21.537391]  ? kfree+0x6b/0xdc
-> [   21.538901]  process_one_work+0x21a/0x484
-> [   21.540279]  ? ttm_range_man_alloc+0xe0/0xec
-> [   21.540854]  worker_thread+0x14a/0x39c
-> [   21.541714]  ? ttm_range_man_fini_nocheck+0xe8/0xe8
-> [   21.543332]  kthread+0xea/0x10c
+Why does ttm_bo_cleanup_refs() do a bo_put() at the end? It doesn't
+make sense to me. Say if the BO is in the process of being delay freed
+(bo->deleted =3D true), and we just did the kref_init() in
+ttm_bo_release(), it might drop that ref hitting ttm_bo_release() yet
+again, this time doing the actual bo->destroy(), which frees the
+object. The worker then fires at some later point calling
+ttm_bo_delayed_delete(), but the BO has already been freed.
 
-So I triggered it again, and the same backtrace is there.
-
-> [   21.544301]  ttm_bo_mem_space+0x1d0/0x1e4
-
-It looks like the object is being reserved before it's fully removed. And
-it's somewhere in this tty_bo_mem_space() (which comes from the
-qxl_bo_create()).
-
-I don't know this code at all, nor do I have any idea of what it's trying
-to do. All I know is that this is triggering often (not always), and it has
-to do with some race.
-
-Now my config has lots of debugging enabled, which slows down the system
-quite a bit. This also happens to open up race windows. Just because your
-testing doesn't trigger it, doesn't mean that the race doesn't exist. It's
-just likely to be very hard to hit.
-
-> [   21.544942]  ? process_one_work+0x484/0x484
-> [   21.545887]  ttm_bo_validate+0xc5/0x19c
-> [   21.546986]  ? kthread_complete_and_exit+0x1c/0x1c
-> [   21.547680]  ttm_bo_init_reserved+0x15e/0x1fc
-> [   21.548716]  ret_from_fork+0x1c/0x28
-> [   21.549650]  qxl_bo_create+0x145/0x20c
-
-Here's the latest backtrace:
-
-[  170.817449] ------------[ cut here ]------------
-[  170.817455] ------------[ cut here ]------------
-[  170.818210] refcount_t: underflow; use-after-free.
-[  170.818228] WARNING: CPU: 0 PID: 267 at lib/refcount.c:28 refcount_warn_saturate+0xb6/0xfc
-[  170.819352] WARNING: CPU: 3 PID: 2382 at drivers/gpu/drm/ttm/ttm_bo.c:332 ttm_bo_release+0x278/0x2c8
-[  170.820124] Modules linked in:
-[  170.822127] Modules linked in:
-[  170.823829] 
-[  170.823832] CPU: 0 PID: 267 Comm: kworker/0:10H Not tainted 6.3.0-rc2-test-00047-g6015b1aca1a2-dirty #998
-[  170.824610] 
-[  170.825121] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 1.16.0-debian-1.16.0-5 04/01/2014
-[  170.825124] Workqueue: ttm ttm_bo_delayed_delete
-[  170.825498] CPU: 3 PID: 2382 Comm: kworker/3:3 Not tainted 6.3.0-rc2-test-00047-g6015b1aca1a2-dirty #998
-[  170.826996] 
-[  170.827367] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 1.16.0-debian-1.16.0-5 04/01/2014
-[  170.828839] EIP: refcount_warn_saturate+0xb6/0xfc
-[  170.829842] Workqueue: events drm_fb_helper_damage_work
-[  170.831325] Code: 68 50 ab ef d3 e8 76 ce b2 ff 0f 0b 58 c9 c3 90 80 3d 4e e0 18 d4 00 75 8a c6 05 4e e0 18 d4 01 68 7c ab ef d3 e8 56 ce b2 ff <0f> 0b 59 c9 c3 80 3d 4c e0 18 d4 00 0f 85 67 ff ff ff c6 05 4c e0
-[  170.831670] 
-[  170.833138] EAX: 00000026 EBX: c2aa6ef4 ECX: 00000002 EDX: 80000002
-[  170.834080] EIP: ttm_bo_release+0x278/0x2c8
-[  170.834910] ESI: c27744e0 EDI: f758eaa8 EBP: c3083f34 ESP: c3083f30
-[  170.838453] Code: 00 90 89 f8 e9 91 fe ff ff 90 0f 0b 8b 43 10 85 c0 0f 84 d5 fd ff ff 8d 76 00 0f 0b 8b 43 28 85 c0 0f 84 d0 fd ff ff 8d 76 00 <0f> 0b e9 c6 fd ff ff 8d b4 26 00 00 00 00 66 90 c7 43 18 00 00 00
-[  170.838714] DS: 007b ES: 007b FS: 00d8 GS: 0000 SS: 0068 EFLAGS: 00010286
-[  170.839872] EAX: d3835cf0 EBX: c2aa6ed8 ECX: c2aa6ed8 EDX: 00000001
-[  170.840546] CR0: 80050033 CR2: 005ce01c CR3: 03afa000 CR4: 00150ef0
-[  170.841669] ESI: c2aa6e00 EDI: c11333d8 EBP: c3b15ca0 ESP: c3b15c68
-[  170.844583] Call Trace:
-[  170.845738] DS: 007b ES: 007b FS: 00d8 GS: 0000 SS: 0068 EFLAGS: 00010286
-[  170.846732]  ttm_bo_delayed_delete+0x7c/0x84
-[  170.847766] CR0: 80050033 CR2: 005b59b1 CR3: 03b12000 CR4: 00150ef0
-[  170.848761]  process_one_work+0x18a/0x350
-[  170.849177] Call Trace:
-[  170.850250]  worker_thread+0x136/0x378
-[  170.850942]  ? ttm_resource_free+0x57/0x6c
-[  170.851928]  ? _raw_spin_unlock_irqrestore+0x25/0x40
-[  170.852583]  ? ttm_bo_cleanup_memtype_use+0x5f/0x64
-[  170.853002]  kthread+0xda/0xfc
-[  170.853608]  ? ttm_bo_cleanup_refs+0xbb/0x1c8
-[  170.854266]  ? rescuer_thread+0x340/0x340
-[  170.855058]  ttm_mem_evict_first+0x324/0x3a0
-[  170.855840]  ? kthread_complete_and_exit+0x1c/0x1c
-[  170.856341]  ttm_bo_mem_space+0x1d8/0x1ec
-[  170.857056]  ret_from_fork+0x1c/0x28
-[  170.857702]  ttm_bo_validate+0xb3/0x13c
-[  170.858393] ---[ end trace 0000000000000000 ]---
-[  170.859167]  ttm_bo_init_reserved+0x12e/0x1cc
-[  170.863261] systemd[1]: Starting Create System Users...
-[  170.863964]  qxl_bo_create+0x14a/0x1f8
-[  170.892037]  ? qxl_ttm_debugfs_init+0x48/0x48
-[  170.892043]  qxl_alloc_bo_reserved+0x39/0x98
-         Starting ESC[0;1;39mCreat[  170.892047]  ? kmalloc_trace+0x22/0x84
-e System UsersESC[0m...
-[  170.895826]  qxl_image_alloc_objects+0x91/0xfc
-[  170.897122]  qxl_draw_dirty_fb+0x159/0x440
-[  170.898207] systemd[1]: Finished Set the console keyboard layout.
-[  170.898329]  qxl_framebuffer_surface_dirty+0xfb/0x1cc
-[  170.901528]  ? qxl_create_plane+0xc4/0xc4
-[  170.901533]  drm_fbdev_fb_dirty+0x129/0x1ac
-[ESC[0;32m  OK  ESC[0m] Finished ESC[0[  170.901537]  drm_fb_helper_damage_work+0x8f/0x158
-;1;39mSet the console keyboard layoutESC[0m.
-[  170.905435]  process_one_work+0x18a/0x350
-[  170.906578]  worker_thread+0x136/0x378
-[  170.906832] systemd[1]: Finished Load/Save Random Seed.
-[  170.907195]  ? _raw_spin_unlock_irqrestore+0x25/0x40
-[  170.910267]  kthread+0xda/0xfc
-[  170.910271]  ? rescuer_thread+0x340/0x340
-[  170.910275]  ? kthread_complete_and_exit+0x1c/0x1c
-[  170.910278]  ret_from_fork+0x1c/0x28
-[  170.910282] ---[ end trace 0000000000000000 ]---
-
--- Steve
+>
+> Now you get a rain of warnings because we try to grab the lock in the
+> delete worker.
+>
+> Christian.
+>
+> >
+> > It happened again in another test (it's not 100% reproducible).
+> >
+> > [   23.234838] ------------[ cut here ]------------
+> > [   23.236391] DEBUG_LOCKS_WARN_ON(lock->magic !=3D lock)
+> > [   23.236429] WARNING: CPU: 0 PID: 61 at kernel/locking/mutex.c:582 __=
+ww_mutex_lock.constprop.0+0x566/0xfec
+> > [   23.240990] Modules linked in:
+> > [   23.242368] CPU: 0 PID: 61 Comm: kworker/0:1H Not tainted 6.3.0-rc1-=
+test-00001-ga98bd42762ed-dirty #972
+> > [   23.245106] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS=
+ 1.16.0-debian-1.16.0-5 04/01/2014
+> > [   23.247900] Workqueue: ttm ttm_bo_delayed_delete
+> > [   23.249642] EIP: __ww_mutex_lock.constprop.0+0x566/0xfec
+> > [   23.251563] Code: e8 2b 5a 95 ff 85 c0 0f 84 25 fb ff ff 8b 0d 18 71=
+ 3b c8 85 c9 0f 85 17 fb ff ff 68 c0 58 07 c8 68 07 77 05 c8 e8 e6 0a 40 ff=
+ <0f> 0b 58 5a e9 ff fa ff ff e8 f8 59 95 ff 85 c0 74 0e 8b 0d 18 71
+> > [   23.256901] EAX: 00000028 EBX: 00000000 ECX: c1847dd8 EDX: 00000002
+> > [   23.258849] ESI: 00000000 EDI: c12958bc EBP: c1847f00 ESP: c1847eac
+> > [   23.260786] DS: 007b ES: 007b FS: 00d8 GS: 0000 SS: 0068 EFLAGS: 000=
+10286
+> > [   23.262840] CR0: 80050033 CR2: ffbff000 CR3: 0850e000 CR4: 00150ef0
+> > [   23.264781] Call Trace:
+> > [   23.265899]  ? lock_is_held_type+0xbe/0x10c
+> > [   23.267434]  ? ttm_bo_delayed_delete+0x30/0x94
+> > [   23.268971]  ww_mutex_lock+0x32/0x94
+> > [   23.270327]  ttm_bo_delayed_delete+0x30/0x94
+> > [   23.271818]  process_one_work+0x21a/0x538
+> > [   23.273242]  worker_thread+0x146/0x398
+> > [   23.274616]  kthread+0xea/0x10c
+> > [   23.275859]  ? process_one_work+0x538/0x538
+> > [   23.277312]  ? kthread_complete_and_exit+0x1c/0x1c
+> > [   23.278899]  ret_from_fork+0x1c/0x28
+> > [   23.280223] irq event stamp: 33
+> > [   23.281440] hardirqs last  enabled at (33): [<c7d28089>] _raw_spin_u=
+nlock_irqrestore+0x2d/0x58
+> > [   23.283860] hardirqs last disabled at (32): [<c71d4ba5>] kvfree_call=
+_rcu+0x155/0x2ec
+> > [   23.286066] softirqs last  enabled at (0): [<c71217fd>] copy_process=
++0x989/0x2368
+> > [   23.288220] softirqs last disabled at (0): [<00000000>] 0x0
+> > [   23.289952] ---[ end trace 0000000000000000 ]---
+> > [   23.291501] ------------[ cut here ]------------
+> > [   23.293027] refcount_t: underflow; use-after-free.
+> > [   23.294644] WARNING: CPU: 0 PID: 61 at lib/refcount.c:28 refcount_wa=
+rn_saturate+0xb6/0xfc
+> > [   23.296959] Modules linked in:
+> > [   23.298168] CPU: 0 PID: 61 Comm: kworker/0:1H Tainted: G        W   =
+       6.3.0-rc1-test-00001-ga98bd42762ed-dirty #972
+> > [   23.301073] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS=
+ 1.16.0-debian-1.16.0-5 04/01/2014
+> > [   23.303642] Workqueue: ttm ttm_bo_delayed_delete
+> > [   23.305190] EIP: refcount_warn_saturate+0xb6/0xfc
+> > [   23.306767] Code: 68 70 e1 0c c8 e8 f6 d6 a9 ff 0f 0b 58 c9 c3 90 80=
+ 3d 8a 78 38 c8 00 75 8a c6 05 8a 78 38 c8 01 68 9c e1 0c c8 e8 d6 d6 a9 ff=
+ <0f> 0b 59 c9 c3 80 3d 88 78 38 c8 00 0f 85 67 ff ff ff c6 05 88 78
+> > [   23.311935] EAX: 00000026 EBX: c1295950 ECX: c1847e40 EDX: 00000002
+> > [   23.313884] ESI: c12958bc EDI: f7591100 EBP: c1847f18 ESP: c1847f14
+> > [   23.315840] DS: 007b ES: 007b FS: 00d8 GS: 0000 SS: 0068 EFLAGS: 000=
+10246
+> > [   23.317887] CR0: 80050033 CR2: ffbff000 CR3: 0850e000 CR4: 00150ef0
+> > [   23.319859] Call Trace:
+> > [   23.320978]  ttm_bo_delayed_delete+0x8c/0x94
+> > [   23.322492]  process_one_work+0x21a/0x538
+> > [   23.323959]  worker_thread+0x146/0x398
+> > [   23.325353]  kthread+0xea/0x10c
+> > [   23.326609]  ? process_one_work+0x538/0x538
+> > [   23.328081]  ? kthread_complete_and_exit+0x1c/0x1c
+> > [   23.329683]  ret_from_fork+0x1c/0x28
+> > [   23.331011] irq event stamp: 33
+> > [   23.332251] hardirqs last  enabled at (33): [<c7d28089>] _raw_spin_u=
+nlock_irqrestore+0x2d/0x58
+> > [   23.334334] hardirqs last disabled at (32): [<c71d4ba5>] kvfree_call=
+_rcu+0x155/0x2ec
+> > [   23.336176] softirqs last  enabled at (0): [<c71217fd>] copy_process=
++0x989/0x2368
+> > [   23.337904] softirqs last disabled at (0): [<00000000>] 0x0
+> > [   23.339313] ---[ end trace 0000000000000000 ]---
+> >
+> > -- Steve
+>
