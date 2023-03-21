@@ -1,94 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9B386C284B
-	for <lists+amd-gfx@lfdr.de>; Tue, 21 Mar 2023 03:41:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1B7A6C2879
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 Mar 2023 04:05:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F08D310E308;
-	Tue, 21 Mar 2023 02:41:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3F0D10E6BA;
+	Tue, 21 Mar 2023 03:05:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2089.outbound.protection.outlook.com [40.107.101.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64F2610E0D0
- for <amd-gfx@lists.freedesktop.org>; Tue, 21 Mar 2023 02:41:20 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RRBhpzFLHPmjmjJNurJ8YurP5uLydNMRTbYpTR9105Ct0GTMlwsW2wFeJdrukvllmKsMoQdC82Qw+35V+LHqd9j9INZpwKEHwbzf39EYgQZZfEW77Hi5sxvXBUASXcHG/4KEgawuEdsuIY53BoIwtW5fXbblRtt73Y4iIdN9sm+FelPQ4xkOJ+LzXqbBKwZ1gkr9VWNheb6L3p7qFmNz0RVAWnORNfsvH+pYMuBnGNsYRbo3aXijIoM+tEPG6ZbdsYwT/1JGB7+KrNVF+hg5MCJePz+Rw1CoRs4XOeUjrOsQFuKtR0kc3zKrm/kg114Ab05VA7UbLkTfYSFvai61Pg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0ZzxoiCYGGMhYb0uy8WKdeanmYBFSccun+f60VvGkNE=;
- b=O9PaA2oUHshio4tUD2lxj9CSR2WuutFl47acUeRk1aqocBR0e3jZ/U1KSHMa6409pKE68+MIIWE/xXb49aYhP+O3bTCUBqMCFzqUcGxvV94vU8irij+KUZ1ET1271BXA4qBmtw6hOn57/Zbz1B6Bwae0WTH+TgV9Ra979zwzRXu+2qOzM3gcbJoel8M5SZLKyoF1inF11gCTkwsdweLdgQIW4/0uMSNtaJMI3KrIGgbn+4JUK9sGBvL2q0lIx5m1XhTtH8LG+IvTCbHRqbcTCJpkMBGAixTyN36+Y+wE2kdQl9rjFdANq7tWaksQ8mLFxdtIhXAP9b3BYBe8UW13lg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0ZzxoiCYGGMhYb0uy8WKdeanmYBFSccun+f60VvGkNE=;
- b=O9oZEh/hz1drL3H87l+Uacuyjq7yntzPqE5hRiV4/kEGXOSJ2X6hY1uYZcwqNUuF0AzLX+puc5vSoj3Dj/lD/Zg+WJjXrvMLgvVGxAdPPYffZzXDPMDoPRFgMQyjFcQhNIfMgurGkiNo91JsmlG+0XJlIRfPMG+mDZYj/Saf31w=
-Received: from BN9PR03CA0853.namprd03.prod.outlook.com (2603:10b6:408:13d::18)
- by SA1PR12MB6847.namprd12.prod.outlook.com (2603:10b6:806:25e::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37; Tue, 21 Mar
- 2023 02:41:18 +0000
-Received: from BN8NAM11FT049.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:13d:cafe::ea) by BN9PR03CA0853.outlook.office365.com
- (2603:10b6:408:13d::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37 via Frontend
- Transport; Tue, 21 Mar 2023 02:41:18 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT049.mail.protection.outlook.com (10.13.177.157) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6222.16 via Frontend Transport; Tue, 21 Mar 2023 02:41:18 +0000
-Received: from thomas-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 20 Mar
- 2023 21:41:16 -0500
-From: YiPeng Chai <YiPeng.Chai@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 3/3] drm/amdgpu: resume ras for gfx v11_0_3 during reset on
- SRIOV
-Date: Tue, 21 Mar 2023 10:40:20 +0800
-Message-ID: <20230321024020.139199-3-YiPeng.Chai@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230321024020.139199-1-YiPeng.Chai@amd.com>
-References: <20230321024020.139199-1-YiPeng.Chai@amd.com>
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
+ [IPv6:2a00:1450:4864:20::52b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 507C110E6BA
+ for <amd-gfx@lists.freedesktop.org>; Tue, 21 Mar 2023 03:05:43 +0000 (UTC)
+Received: by mail-ed1-x52b.google.com with SMTP id eg48so54367658edb.13
+ for <amd-gfx@lists.freedesktop.org>; Mon, 20 Mar 2023 20:05:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1679367941;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=1HEs7Pl+kT1a9pyZLb16RddWdzigEeXbd53zhKfC4zc=;
+ b=VCxaFZ1MMKNdWEoh3fzBblh5sptDIRZVlGWFbntgNTLFuCySXfLhNt1rpjojs8tMoQ
+ ZVMk2vwVofGFDRT1LKp6wh9UhuDHFViS0WB+ntrjvIIUKYKcvIgrLflQXKuuPOLWKam+
+ CmYwf1S3q7SKYhMPeaPrX+mKAql5SadurJjkcO4ah8Z/i3dljneanMT9PLUfjKQ2uMxc
+ Rw4Pr681ThpnQvLEKLOVIOKuuOlJvxcoraG49tf/vwDnrohFLwDmjtp597wC0o+ti0sb
+ G6OmUU3CGz/QNnbnS8+4uNYq3r+fLVc5Pd4+oziIfU4RBLfDaT59v+tOTvj3ezZWgmLX
+ adfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1679367941;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=1HEs7Pl+kT1a9pyZLb16RddWdzigEeXbd53zhKfC4zc=;
+ b=UobnvG1zLIxmLozWKudv0eUw6LdFO9FiaigcXBZNintWW8g6201dMJ7QTz8HR952XE
+ OUvGxg2aSyKp4e7fVn9nimmexNHBZfySX7R1sxWy/ukOWaC8scFPdbnKNe3p8kJfQ+S1
+ MUPyQJ6IajZi1RBO67KW70SKF5SThhN61tBOQrdRRzRgv+1IZbWYD3o9Vhkg9nCQu1uh
+ Rz7/k5ZdNIGm8pst7481lIZuY+yE7pP1kL3c8ebvkE2XB22RqxyRzJ1gYFyMplm1lUa5
+ q+3cMp4szmHPP4hDHADbjKv99yggMr77YBA9eJpDyafEea0Pa1qw8pbLyv9JdXEPWi5I
+ Hnkw==
+X-Gm-Message-State: AO0yUKUIhDSg1O8oN30gzctJ1LhdDFAqngKU4qeFcl3lP0zBlkHiujne
+ c3XVEw4ejjpVt/3XcCRy9VqvT6WgkasZ03u96ZpgiCQWuZU=
+X-Google-Smtp-Source: AK7set9jwnN6k8b3yFcPD9ER7Y+Bx8/izWYLTj26jvo/G/ISeX/OoprPxQ+QsCeCt/GzrKdzpihX7eCvSFMMENX8B3A=
+X-Received: by 2002:a17:906:c7ca:b0:922:26ae:c68c with SMTP id
+ dc10-20020a170906c7ca00b0092226aec68cmr5355677ejb.5.1679367941599; Mon, 20
+ Mar 2023 20:05:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT049:EE_|SA1PR12MB6847:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0a6de1ef-f7f1-41eb-9f95-08db29b5bfc0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Kb7YWzj6gM99Tl9/HsR+ho1S6e3fxmu2qFQVHh+UVtK42fweKRcU1YR2vgVVIACRUq3JVKhnFVlotrTcAIgo82UuHgS81DWQwYnvJFrun/EGIaPzjm6jiSwYXKvTfuXRF/u+sn9+eKFWdVoewpn5WOrhuMa+nMWfvSxIsBAVdkrKHepUicuXzhs6OvMDhP9gX1PrCfua3iTsm9qtEWsld4ol4X+q/8sAzfKKd4qVi+KRjMvGG1Lqhfn+ddjMMMZIeF319fA+3qWdYmxbSRm8p3r81KfVrU+rwUw35kH7fzxoZ5gB1NjHwPPw/jpso9BYD5Zh5IuJltQ1VHkauSNYp4oXxHhH+8MWj92XpBJu7msC0s8gyzLiTXhzEDOeY1CCAvMd52AmmdHK7KtZz+8La8NkDmK9edlCS2HJJ6ZNNVptKzUcwn2LtCfiyqAm3FychyDZnnweyE/GHqDZ6ZwgIZcRfQ+K3DWWOTUllI0xS6wxZIxU/COpqOiA5zJ7zwI1N4wrW5tmb9PJ38EM29MsKzOlEiBgqRWZZD+f/d3p5i+dzz3WNNlZhVQHGDPRMcnXQYdzOxTLmQLkVhCdDRh3Vl41CIr9+TaXqcxj7EwNC+quq9j3JzzX3pHvFSCbO0qnNCCDxgp2QATabUPhjohRkMFOAZM5qqWjd/Nv1SSy/R0hI0QGA7KToyUlT3IFBvz0jZ+/JRnU8Nq8BUFcv7vUR3JGXWB6WZ4dsL/vpa3fHc0=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(346002)(136003)(396003)(39860400002)(376002)(451199018)(40470700004)(36840700001)(46966006)(5660300002)(36860700001)(41300700001)(82310400005)(86362001)(356005)(40480700001)(8936002)(36756003)(40460700003)(82740400003)(81166007)(2906002)(6666004)(4326008)(336012)(83380400001)(478600001)(426003)(7696005)(47076005)(2616005)(186003)(16526019)(26005)(1076003)(8676002)(54906003)(316002)(70586007)(70206006)(6916009)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2023 02:41:18.5479 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0a6de1ef-f7f1-41eb-9f95-08db29b5bfc0
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT049.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6847
+References: <20220926214014.5450-1-shashank.sharma@amd.com>
+ <20220926214014.5450-2-shashank.sharma@amd.com>
+In-Reply-To: <20220926214014.5450-2-shashank.sharma@amd.com>
+From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
+Date: Mon, 20 Mar 2023 23:05:05 -0400
+Message-ID: <CAAxE2A67NMxra-a9ZYbY8e8S4fjfdXgB1cpjYZsSS8DcUu=LbA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/5] drm/amdgpu: add UAPI for workload hints to ctx
+ ioctl
+To: Shashank Sharma <shashank.sharma@amd.com>
+Content-Type: multipart/alternative; boundary="0000000000009b347605f7605186"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,36 +66,184 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tao.Zhou1@amd.com, Hawking.Zhang@amd.com, YiPeng
- Chai <YiPeng.Chai@amd.com>, yipechai@amd.com
+Cc: alexander.deucher@amd.com, amaranath.somalapuram@amd.com,
+ christian.koenig@amd.com, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Gfx v11_0_3 supports ras on SRIOV, so need to resume ras
-during reset.
+--0000000000009b347605f7605186
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: YiPeng Chai <YiPeng.Chai@amd.com>
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+I think we should do it differently because this interface will be mostly
+unused by open source userspace in its current form.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index d74d05802566..14d756caf839 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -5313,8 +5313,9 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 		if (r)
- 			adev->asic_reset_res = r;
- 
--		/* Aldebaran supports ras in SRIOV, so need resume ras during reset */
--		if (adev->ip_versions[GC_HWIP][0] == IP_VERSION(9, 4, 2))
-+		/* Aldebaran and gfx_11_0_3 support ras in SRIOV, so need resume ras during reset */
-+		if (adev->ip_versions[GC_HWIP][0] == IP_VERSION(9, 4, 2) ||
-+		    adev->ip_versions[GC_HWIP][0] == IP_VERSION(11, 0, 3))
- 			amdgpu_ras_resume(adev);
- 	} else {
- 		r = amdgpu_do_asic_reset(device_list_handle, reset_context);
--- 
-2.34.1
+Let's set the workload hint in drm_amdgpu_ctx_in::flags, and that will be
+immutable for the lifetime of the context. No other interface is needed.
 
+Marek
+
+On Mon, Sep 26, 2022 at 5:41=E2=80=AFPM Shashank Sharma <shashank.sharma@am=
+d.com>
+wrote:
+
+> Allow the user to specify a workload hint to the kernel.
+> We can use these to tweak the dpm heuristics to better match
+> the workload for improved performance.
+>
+> V3: Create only set() workload UAPI (Christian)
+>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> Signed-off-by: Shashank Sharma <shashank.sharma@amd.com>
+> ---
+>  include/uapi/drm/amdgpu_drm.h | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>
+> diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.=
+h
+> index c2c9c674a223..23d354242699 100644
+> --- a/include/uapi/drm/amdgpu_drm.h
+> +++ b/include/uapi/drm/amdgpu_drm.h
+> @@ -212,6 +212,7 @@ union drm_amdgpu_bo_list {
+>  #define AMDGPU_CTX_OP_QUERY_STATE2     4
+>  #define AMDGPU_CTX_OP_GET_STABLE_PSTATE        5
+>  #define AMDGPU_CTX_OP_SET_STABLE_PSTATE        6
+> +#define AMDGPU_CTX_OP_SET_WORKLOAD_PROFILE     7
+>
+>  /* GPU reset status */
+>  #define AMDGPU_CTX_NO_RESET            0
+> @@ -252,6 +253,17 @@ union drm_amdgpu_bo_list {
+>  #define AMDGPU_CTX_STABLE_PSTATE_MIN_MCLK  3
+>  #define AMDGPU_CTX_STABLE_PSTATE_PEAK  4
+>
+> +/* GPU workload hints, flag bits 8-15 */
+> +#define AMDGPU_CTX_WORKLOAD_HINT_SHIFT     8
+> +#define AMDGPU_CTX_WORKLOAD_HINT_MASK      (0xff <<
+> AMDGPU_CTX_WORKLOAD_HINT_SHIFT)
+> +#define AMDGPU_CTX_WORKLOAD_HINT_NONE      (0 <<
+> AMDGPU_CTX_WORKLOAD_HINT_SHIFT)
+> +#define AMDGPU_CTX_WORKLOAD_HINT_3D        (1 <<
+> AMDGPU_CTX_WORKLOAD_HINT_SHIFT)
+> +#define AMDGPU_CTX_WORKLOAD_HINT_VIDEO     (2 <<
+> AMDGPU_CTX_WORKLOAD_HINT_SHIFT)
+> +#define AMDGPU_CTX_WORKLOAD_HINT_VR        (3 <<
+> AMDGPU_CTX_WORKLOAD_HINT_SHIFT)
+> +#define AMDGPU_CTX_WORKLOAD_HINT_COMPUTE   (4 <<
+> AMDGPU_CTX_WORKLOAD_HINT_SHIFT)
+> +#define AMDGPU_CTX_WORKLOAD_HINT_MAX      AMDGPU_CTX_WORKLOAD_HINT_COMPU=
+TE
+> +#define AMDGPU_CTX_WORKLOAD_INDEX(n)      (n >>
+> AMDGPU_CTX_WORKLOAD_HINT_SHIFT)
+> +
+>  struct drm_amdgpu_ctx_in {
+>         /** AMDGPU_CTX_OP_* */
+>         __u32   op;
+> @@ -281,6 +293,11 @@ union drm_amdgpu_ctx_out {
+>                         __u32   flags;
+>                         __u32   _pad;
+>                 } pstate;
+> +
+> +               struct {
+> +                       __u32   flags;
+> +                       __u32   _pad;
+> +               } workload;
+>  };
+>
+>  union drm_amdgpu_ctx {
+> --
+> 2.34.1
+>
+>
+
+--0000000000009b347605f7605186
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>I think we should do it differently because this inte=
+rface will be mostly unused by open source userspace in its current form.</=
+div><div><br></div><div>Let&#39;s set the workload hint in drm_amdgpu_ctx_i=
+n::flags, and that will be immutable for the lifetime of the context. No ot=
+her interface is needed.<br></div><div><br></div><div>Marek<br></div></div>=
+<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon=
+, Sep 26, 2022 at 5:41=E2=80=AFPM Shashank Sharma &lt;<a href=3D"mailto:sha=
+shank.sharma@amd.com">shashank.sharma@amd.com</a>&gt; wrote:<br></div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
+1px solid rgb(204,204,204);padding-left:1ex">Allow the user to specify a wo=
+rkload hint to the kernel.<br>
+We can use these to tweak the dpm heuristics to better match<br>
+the workload for improved performance.<br>
+<br>
+V3: Create only set() workload UAPI (Christian)<br>
+<br>
+Signed-off-by: Alex Deucher &lt;<a href=3D"mailto:alexander.deucher@amd.com=
+" target=3D"_blank">alexander.deucher@amd.com</a>&gt;<br>
+Signed-off-by: Shashank Sharma &lt;<a href=3D"mailto:shashank.sharma@amd.co=
+m" target=3D"_blank">shashank.sharma@amd.com</a>&gt;<br>
+---<br>
+=C2=A0include/uapi/drm/amdgpu_drm.h | 17 +++++++++++++++++<br>
+=C2=A01 file changed, 17 insertions(+)<br>
+<br>
+diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h<=
+br>
+index c2c9c674a223..23d354242699 100644<br>
+--- a/include/uapi/drm/amdgpu_drm.h<br>
++++ b/include/uapi/drm/amdgpu_drm.h<br>
+@@ -212,6 +212,7 @@ union drm_amdgpu_bo_list {<br>
+=C2=A0#define AMDGPU_CTX_OP_QUERY_STATE2=C2=A0 =C2=A0 =C2=A04<br>
+=C2=A0#define AMDGPU_CTX_OP_GET_STABLE_PSTATE=C2=A0 =C2=A0 =C2=A0 =C2=A0 5<=
+br>
+=C2=A0#define AMDGPU_CTX_OP_SET_STABLE_PSTATE=C2=A0 =C2=A0 =C2=A0 =C2=A0 6<=
+br>
++#define AMDGPU_CTX_OP_SET_WORKLOAD_PROFILE=C2=A0 =C2=A0 =C2=A07<br>
+<br>
+=C2=A0/* GPU reset status */<br>
+=C2=A0#define AMDGPU_CTX_NO_RESET=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+0<br>
+@@ -252,6 +253,17 @@ union drm_amdgpu_bo_list {<br>
+=C2=A0#define AMDGPU_CTX_STABLE_PSTATE_MIN_MCLK=C2=A0 3<br>
+=C2=A0#define AMDGPU_CTX_STABLE_PSTATE_PEAK=C2=A0 4<br>
+<br>
++/* GPU workload hints, flag bits 8-15 */<br>
++#define AMDGPU_CTX_WORKLOAD_HINT_SHIFT=C2=A0 =C2=A0 =C2=A08<br>
++#define AMDGPU_CTX_WORKLOAD_HINT_MASK=C2=A0 =C2=A0 =C2=A0 (0xff &lt;&lt; A=
+MDGPU_CTX_WORKLOAD_HINT_SHIFT)<br>
++#define AMDGPU_CTX_WORKLOAD_HINT_NONE=C2=A0 =C2=A0 =C2=A0 (0 &lt;&lt; AMDG=
+PU_CTX_WORKLOAD_HINT_SHIFT)<br>
++#define AMDGPU_CTX_WORKLOAD_HINT_3D=C2=A0 =C2=A0 =C2=A0 =C2=A0 (1 &lt;&lt;=
+ AMDGPU_CTX_WORKLOAD_HINT_SHIFT)<br>
++#define AMDGPU_CTX_WORKLOAD_HINT_VIDEO=C2=A0 =C2=A0 =C2=A0(2 &lt;&lt; AMDG=
+PU_CTX_WORKLOAD_HINT_SHIFT)<br>
++#define AMDGPU_CTX_WORKLOAD_HINT_VR=C2=A0 =C2=A0 =C2=A0 =C2=A0 (3 &lt;&lt;=
+ AMDGPU_CTX_WORKLOAD_HINT_SHIFT)<br>
++#define AMDGPU_CTX_WORKLOAD_HINT_COMPUTE=C2=A0 =C2=A0(4 &lt;&lt; AMDGPU_CT=
+X_WORKLOAD_HINT_SHIFT)<br>
++#define AMDGPU_CTX_WORKLOAD_HINT_MAX=C2=A0 =C2=A0 =C2=A0 AMDGPU_CTX_WORKLO=
+AD_HINT_COMPUTE<br>
++#define AMDGPU_CTX_WORKLOAD_INDEX(n)=C2=A0 =C2=A0 =C2=A0 (n &gt;&gt; AMDGP=
+U_CTX_WORKLOAD_HINT_SHIFT)<br>
++<br>
+=C2=A0struct drm_amdgpu_ctx_in {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 /** AMDGPU_CTX_OP_* */<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 __u32=C2=A0 =C2=A0op;<br>
+@@ -281,6 +293,11 @@ union drm_amdgpu_ctx_out {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 __u32=C2=A0 =C2=A0flags;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 __u32=C2=A0 =C2=A0_pad;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 } pstate;<br>
++<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0struct {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0__u32=C2=A0 =C2=A0flags;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0__u32=C2=A0 =C2=A0_pad;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0} workload;<br>
+=C2=A0};<br>
+<br>
+=C2=A0union drm_amdgpu_ctx {<br>
+-- <br>
+2.34.1<br>
+<br>
+</blockquote></div>
+
+--0000000000009b347605f7605186--
