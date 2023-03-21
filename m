@@ -1,59 +1,59 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28FA66C2653
-	for <lists+amd-gfx@lfdr.de>; Tue, 21 Mar 2023 01:30:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ADAA6C2658
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 Mar 2023 01:31:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A220C10E092;
-	Tue, 21 Mar 2023 00:30:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F5D810E35F;
+	Tue, 21 Mar 2023 00:31:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com
- [IPv6:2a00:1450:4864:20::531])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9275610E092
- for <amd-gfx@lists.freedesktop.org>; Tue, 21 Mar 2023 00:30:02 +0000 (UTC)
-Received: by mail-ed1-x531.google.com with SMTP id cn12so7950502edb.4
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 Mar 2023 17:30:02 -0700 (PDT)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
+ [IPv6:2a00:1450:4864:20::52b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB39D10E35F
+ for <amd-gfx@lists.freedesktop.org>; Tue, 21 Mar 2023 00:31:42 +0000 (UTC)
+Received: by mail-ed1-x52b.google.com with SMTP id b20so20650842edd.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 20 Mar 2023 17:31:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1679358601;
+ d=gmail.com; s=20210112; t=1679358701;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=OFa0bU0rjppvt9eRKWUyfqcgMGloxvhm9DmS5F1WZvc=;
- b=Bhnc/yOFXOqerV6rVosdok/KZBsplWrrbYzYNHRreQ+bxgzXh6bajJDGY/B3XuUpxz
- vGIOmLILglICOR/XwRAbTmgAqm1F+4dUrp8hgrUpWoF7MjTf/XsWthXd5DQ0bf0C6Olx
- Ab0rnGXOpfuelI0SIMAJA5WZSENNJ85Ai9MZF9x6Fv07PTF7YIPQK7G8f4I35lIXAjRP
- k1EfarlPXWqk8eW+veNDOis5gKM4LydRG9BnsY+hYDk7W89jUvwGc2QiIVWbV719KoXd
- FJTHrRq2rghSWFY58F2N5np3At1zxS2tLh2rFeqMpwB9quOUXbPOwZnTKC47kx166XcO
- oOXQ==
+ bh=nYGxSswtUGawkIPbz7SE9pPxzVtMWIKw2yaxv2vnR7k=;
+ b=S74R78KlaRk6FsL0YYOhEoaqY5TKpX07QAyJUgIKryfdvlODGJqgTVlIz0xTsY9MM0
+ v9KsHvlr2ec22M6lBUlDPZ36EJh/56bi3jwUqzp0rbfElbAopHmCxcbrDy/nKon/+Uje
+ yfhddneMB567B7n1i/iaUSHMMLbbwoF9GIIgcUTFdfMtrTC8xPf849jxd0EEDnrKMeZo
+ ZfDRDyGq82PTBbWV+V/abSr6XU+Y3IpG15ibJBzAcrXunuInFrq/tdQU9+enlVyo+s4B
+ 59wpSOW25NPSlXxjNQ+2ACARYh0q0pC5RWdOJdetY5dvCL4TLTo0xaWyFSbB/n08qHD6
+ YvNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1679358601;
+ d=1e100.net; s=20210112; t=1679358701;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=OFa0bU0rjppvt9eRKWUyfqcgMGloxvhm9DmS5F1WZvc=;
- b=uu+X4DiDyjkIEpvcaFLyNjESAexbf5uV0maZtVBR42yOU1euIqrBlcCPBOaZ9G39hV
- Y55D9JOQVzuXMicCaJgI0wc0GTvxfy4hSdvopSWYU4srN9T2NjhZTck4DWZHKsdIJPiT
- v0K0s4zgpTM1OyYfZ6JOA8oUfxUIPGOyWvWR7E8flLqUsvi3Xu11trOCfRETHOqE54O8
- NjOrymm38qN4HHrWJDaJ1ShNBprCBUirreAYIdQ+FFKrQdM9tsOAEUyvaevwYS9hjcym
- LN9PwacPRGaYRKae+OCiMO2WDHkiooArzE7gWbaxU5SYkkbB93FZFiRdB1q5gmnjBnjb
- DEfA==
-X-Gm-Message-State: AO0yUKW68Ncuyz0Wl1HuoJd9ymivSTBRMt71TmoJE+zsjF79PugjyNPz
- t3O0jWAoLG0q0S9Y5ZJwVHbMFXlGS5DnHk19ewFyydra
-X-Google-Smtp-Source: AK7set8cqiseTw6BrZfXHcDjcTIhG6AEn22t7vTT8BOW+Uc9JtptBVp+kdwOBQd1gPm3vMLLXVa/zO9SVRHqd9FbgCU=
-X-Received: by 2002:a50:9554:0:b0:4fc:532e:215d with SMTP id
- v20-20020a509554000000b004fc532e215dmr688210eda.6.1679358600962; Mon, 20 Mar
- 2023 17:30:00 -0700 (PDT)
+ bh=nYGxSswtUGawkIPbz7SE9pPxzVtMWIKw2yaxv2vnR7k=;
+ b=32yNrj4E71OzvYLiBp5XsDrwVZcEVIe6oVnrwTaIkpgsTxcjzTg7ZFVgsqgJEfD2yA
+ WyJ7udkUbyH6ltObbrXVi0RsX6KP1qdWuh9RD96quvxldYuYoTaLpp8H7by3KEVxoPlr
+ RTF7pgRtxH0RhBH7fJPNrfatuGr7A2rPCezFurHlZYDrBnz1VK4UfwwqaB+PJ/Hf/PV6
+ jW/D11RlXcUNLHm2MmX0IBVvoC4Nd1nSEs+9tzFIfonR6QeocMHAc9t4f9fXAWhxMVSk
+ CR4zKeKnSVSjDMCGevZTrm+oORx4DXeOsHStB80VdYzNeX6rNtcQqHxobM7cyWutEphy
+ UcIg==
+X-Gm-Message-State: AO0yUKUQy15HVsutZ9YmkWGJZyCEo/cqv76IEMB8nk5aci8fIFySJBuP
+ Or8ODHQwi0c1fYDjWwNS/lGoqeHb2NCZlUERP9X9shQi
+X-Google-Smtp-Source: AK7set9qkemyi665jR5HfXih8hvNYI0Ys525YPivj33prC3ENCz9Z2YraHkuw8bsZXLqxOVSaazyyiPUfj7CiTTx1BI=
+X-Received: by 2002:a50:a6c5:0:b0:501:c965:33bd with SMTP id
+ f5-20020a50a6c5000000b00501c96533bdmr684344edc.6.1679358701186; Mon, 20 Mar
+ 2023 17:31:41 -0700 (PDT)
 MIME-Version: 1.0
 References: <20230320173810.250835-1-alexander.deucher@amd.com>
  <20230320173810.250835-8-alexander.deucher@amd.com>
 In-Reply-To: <20230320173810.250835-8-alexander.deucher@amd.com>
 From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
-Date: Mon, 20 Mar 2023 20:29:25 -0400
-Message-ID: <CAAxE2A4oPbDtZfCg=PQhT8Et_KN2Wrs0Dz7jiLv-raeH2u9AEQ@mail.gmail.com>
+Date: Mon, 20 Mar 2023 20:31:05 -0400
+Message-ID: <CAAxE2A7enKdyE_cBsCwCFZJjSWQZgOGZYCfUT5ShZN2DGa+Qbw@mail.gmail.com>
 Subject: Re: [PATCH 07/11] drm/amdgpu: add UAPI to query GFX shadow sizes
 To: Alex Deucher <alexander.deucher@amd.com>
-Content-Type: multipart/alternative; boundary="000000000000dc671205f75e244d"
+Content-Type: multipart/alternative; boundary="000000000000d5b41e05f75e2a09"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,7 +69,7 @@ Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---000000000000dc671205f75e244d
+--000000000000d5b41e05f75e2a09
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -97,38 +97,23 @@ h
 >         #define AMDGPU_INFO_VIDEO_CAPS_ENCODE           1
 > +#define AMDGPU_INFO_CP_GFX_SHADOW_SIZE         0x22
 >
->  #define AMDGPU_INFO_MMR_SE_INDEX_SHIFT 0
->  #define AMDGPU_INFO_MMR_SE_INDEX_MASK  0xff
-> @@ -1203,6 +1204,15 @@ struct drm_amdgpu_info_video_caps {
->         struct drm_amdgpu_info_video_codec_info
-> codec_info[AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_COUNT];
->  };
->
-> +struct drm_amdgpu_info_cp_gfx_shadow_size {
-> +       __u32 shadow_size;
-> +       __u32 shadow_alignment;
-> +       __u32 csa_size;
-> +       __u32 csa_alignment;
-> +       __u32 gds_size;
-> +       __u32 gds_alignment;
->
 
-Can you document the fields? What is CSA? Also, why is GDS there when the
-hw deprecated it and replaced it with GDS registers?
+Can you put this into the device structure instead? Let's minimize the
+number of kernel queries as much as possible.
 
 Thanks,
 Marek
 
---000000000000dc671205f75e244d
+--000000000000d5b41e05f75e2a09
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
-mail_attr">On Mon, Mar 20, 2023 at 1:38=E2=80=AFPM Alex Deucher &lt;<a href=
-=3D"mailto:alexander.deucher@amd.com">alexander.deucher@amd.com</a>&gt; wro=
-te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
-0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Add UAPI to =
-query the GFX shadow buffer requirements<br>
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Mon, Mar 20, 2023 at 1:38=E2=80=AFPM Alex Deucher &lt;<a href=3D"=
+mailto:alexander.deucher@amd.com" target=3D"_blank">alexander.deucher@amd.c=
+om</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
+">Add UAPI to query the GFX shadow buffer requirements<br>
 for preemption on GFX11.=C2=A0 UMDs need to specify the shadow<br>
 areas for preemption.<br>
 <br>
@@ -150,24 +135,9 @@ index 3d9474af6566..19a806145371 100644<br>
 =C2=A0 =C2=A0 =C2=A0 =C2=A0 #define AMDGPU_INFO_VIDEO_CAPS_ENCODE=C2=A0 =C2=
 =A0 =C2=A0 =C2=A0 =C2=A0 =C2=A01<br>
 +#define AMDGPU_INFO_CP_GFX_SHADOW_SIZE=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00x=
-22<br>
-<br>
-=C2=A0#define AMDGPU_INFO_MMR_SE_INDEX_SHIFT 0<br>
-=C2=A0#define AMDGPU_INFO_MMR_SE_INDEX_MASK=C2=A0 0xff<br>
-@@ -1203,6 +1204,15 @@ struct drm_amdgpu_info_video_caps {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 struct drm_amdgpu_info_video_codec_info codec_i=
-nfo[AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_COUNT];<br>
-=C2=A0};<br>
-<br>
-+struct drm_amdgpu_info_cp_gfx_shadow_size {<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 shadow_size;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 shadow_alignment;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 csa_size;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 csa_alignment;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 gds_size;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 gds_alignment;<br></blockquote><div><br><=
-/div><div>Can you document the fields? What is CSA? Also, why is GDS there =
-when the hw deprecated it and replaced it with GDS registers?</div><div><br=
-></div><div>Thanks,</div><div>Marek</div></div></div>
+22<br></blockquote><div><br></div><div>Can you put this into the device str=
+ucture instead? Let&#39;s minimize the number of kernel queries as much as =
+possible.<br></div><div><br></div><div>Thanks,</div><div>Marek</div><br></d=
+iv></div>
 
---000000000000dc671205f75e244d--
+--000000000000d5b41e05f75e2a09--
