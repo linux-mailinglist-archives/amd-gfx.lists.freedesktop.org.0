@@ -2,43 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A715A6C4601
-	for <lists+amd-gfx@lfdr.de>; Wed, 22 Mar 2023 10:16:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A189B6C4604
+	for <lists+amd-gfx@lfdr.de>; Wed, 22 Mar 2023 10:16:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B81410E8CF;
-	Wed, 22 Mar 2023 09:16:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D2F010E8CE;
+	Wed, 22 Mar 2023 09:16:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on20620.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e89::620])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C7DE10E8CD
- for <amd-gfx@lists.freedesktop.org>; Wed, 22 Mar 2023 09:16:22 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2087.outbound.protection.outlook.com [40.107.237.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2111A10E8CD
+ for <amd-gfx@lists.freedesktop.org>; Wed, 22 Mar 2023 09:16:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Cs0uGzE8m8PtYG1Fc1tIMr5OSKovm1FyqB15QoSiXXPnR4wuTeoqrys4e/5odislIoPwhpA8Uj00rVB3lHiQndnV/Zb1ZnX3J91r5WjWRBcVrQ1VGBQrMaKBsTckpPZFdS1Q9JBFUCNbaR/1OAwrgncYi/q3PUbqojJcqdsi2z8S9OWgAl+FRd4dHerxKluIfLoRU4DdvIZKYRYmHdejrEqIhZWj3VjItzjGP22ZVjgfh1rE6gvjp1wMMoKrr+VaGSpXttV7BBa7xOPxB8rA2A6nMep70m/ufLzm/YNjSwcxqNca3hHnrvGuF6rxrJPXkxITIFvAcR+/lHkVx4w74Q==
+ b=FVpKufnuvgO9fXnVHZsd5y4Ne5dS0AoaFYW9f67fHrrC5T2dNVfwV/dtjhO2KLj7YukVhOD4561Z5zoxgrWkT1Qu3y4zqmXTPvtNUatGMRlDV17Ic2D40oXlwzQ1rOhKt4dL0TiQYuW0q+PGIxJz+n3mUGeEftLFMperD7+gLwQDkpoJD/MLoeMXRUtWnIj4mOzBMbxgIGHF20iYYkgBpvYl3f3LS3ZvxmxPk/Axp6ZJLZ0uWzhxo2R5VXlbEsgEGiPAPxIGk/2vIG1fn1nempmR1DDBA3eRwN5cQ44DG1VRbSffcaPMH+JFu5DyIeeqtFsQyi6hI/HhZQkRrcLuOw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dJb4EaEge8xromOgCgEIk7V9MdGZCIR7p1J8/P4YPPs=;
- b=W/7hWR+DSzOjwLLgK1saqnndG1uVQIHtfUqIwidGbimXsgSRTSBxCqeLdwwnS2tIMSv3Lk03BE42kWUE+Zefp5KJXrheapJ3vc7RLhCJkBb9c/0y79pcB+G5jS+mPHfCemYP3fIKJKMG+RUFs54pk/9CvL04PclYYYICf2FVCxhtoSJdivEwESs80WEPTwW3E7AItfKpDfKGZctn7m7Ooqc9tkF4XtEDzpP9ZIxmJ1I1zhc1Fx/ynkHCSRo21ACZcrfWijuwwIt7j+WZl+eKJlpLjppsLiVfcebbFmuePAvn2bOBS2oDRPkbLLVG35PPyIli0IWsNQY7E9LHVAynzw==
+ bh=LmTiRXTGYuwXQxDQXEl94jM3xJEebqi9Vszh1wLPBjU=;
+ b=E1eD7jKPZlHP/azNqNnJvdI6OEJZDmdfo2gLeLAB41D3TvUZa4r05f9AgtsLnmi+qpSlmeSeJfjnmeDPVZEhcK9F2pC0xdXXI21Cn28ATO42yIcqKGa0qX5CNi7O/HSuNgkbnjmeSqtaWiqhBWPzB0RvmkRvqHIR4/JstOnBgz8e8rxUJOsOKF0M9Yhvh6guApEYgj2knxxF7659RIRDPJ5cjWM9q12iq/5KDbpBtf3KmDpkBc0hbBgMYUaMJ91YnAM8f2dzD+4bNiNaKKAc3eMfrENO+L4MSZN5poN50KPdPVv/7kVT44Ssfhq4rBFUMPiF0LByA4Hg7oPKviABtw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dJb4EaEge8xromOgCgEIk7V9MdGZCIR7p1J8/P4YPPs=;
- b=Vt4UCEA1TLV+RniY9AgQJaYj42h8nkHrQwonjKTcJM7tgw9jufnlsKxA+ZWCp7Kg2ukDiWFFD9C0hjsBUI+Mob5h0+qzeI3WIqwNr0rRRHIA6MrXHEaHu4vZmxQRxQPhV2rr8E2HWK+/4Ws0lBkJddQiR9Rlusj1xBzs7XaaK5g=
-Received: from MW4PR03CA0153.namprd03.prod.outlook.com (2603:10b6:303:8d::8)
- by SA3PR12MB8000.namprd12.prod.outlook.com (2603:10b6:806:31f::17) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=LmTiRXTGYuwXQxDQXEl94jM3xJEebqi9Vszh1wLPBjU=;
+ b=X4c/uXJapf/1cNJBOqS4XvWLeb9m+KFaI64A4ZVU+fdNUa38Guu5uYVUdJCuEvR7W+xa/UpY6PMl4Ymdn55KHRwGSjeEqY5oCO74rbWrYXbWvKcZVmSzdzoBt3GKbxDFbe77nKvktlKn3fLafnBXNpgmO+azInCosMUowtUEqsA=
+Received: from MW4PR03CA0107.namprd03.prod.outlook.com (2603:10b6:303:b7::22)
+ by LV2PR12MB5799.namprd12.prod.outlook.com (2603:10b6:408:179::11)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37; Wed, 22 Mar
- 2023 09:16:20 +0000
-Received: from CO1NAM11FT004.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8d:cafe::1d) by MW4PR03CA0153.outlook.office365.com
- (2603:10b6:303:8d::8) with Microsoft SMTP Server (version=TLS1_2,
+ 2023 09:16:23 +0000
+Received: from CO1NAM11FT116.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:b7:cafe::da) by MW4PR03CA0107.outlook.office365.com
+ (2603:10b6:303:b7::22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37 via Frontend
- Transport; Wed, 22 Mar 2023 09:16:20 +0000
+ Transport; Wed, 22 Mar 2023 09:16:23 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -46,27 +45,26 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT004.mail.protection.outlook.com (10.13.175.89) with Microsoft SMTP
+ CO1NAM11FT116.mail.protection.outlook.com (10.13.174.243) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6222.17 via Frontend Transport; Wed, 22 Mar 2023 09:16:19 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
+ 15.20.6222.17 via Frontend Transport; Wed, 22 Mar 2023 09:16:22 +0000
+Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 22 Mar
- 2023 04:16:19 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ 2023 04:16:22 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB08.amd.com
+ (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 22 Mar
- 2023 04:16:18 -0500
+ 2023 02:16:21 -0700
 Received: from archlinux.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Wed, 22 Mar 2023 04:16:16 -0500
+ Transport; Wed, 22 Mar 2023 04:16:19 -0500
 From: Wenyou Yang <WenYou.Yang@amd.com>
 To: <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
  <Xinhui.Pan@amd.com>
-Subject: [Resend PATCH v1 1/3] cpu/smt: add a notifier to notify the SMT
- changes
-Date: Wed, 22 Mar 2023 17:16:05 +0800
-Message-ID: <20230322091607.1609145-2-WenYou.Yang@amd.com>
+Subject: [Resend PATCH v1 2/3] drm/amd/pm: send the SMT-enable message to pmfw
+Date: Wed, 22 Mar 2023 17:16:06 +0800
+Message-ID: <20230322091607.1609145-3-WenYou.Yang@amd.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230322091607.1609145-1-WenYou.Yang@amd.com>
 References: <20230322091607.1609145-1-WenYou.Yang@amd.com>
@@ -75,26 +73,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT004:EE_|SA3PR12MB8000:EE_
-X-MS-Office365-Filtering-Correlation-Id: adba83e0-e4ae-4852-e8e1-08db2ab61967
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT116:EE_|LV2PR12MB5799:EE_
+X-MS-Office365-Filtering-Correlation-Id: d5f19e68-e8b0-4734-f12e-08db2ab61b10
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hqfDfgyt02Rw72deWkxNOlJILWwAOdgr7du0PKskeiAFMs/tTwqMwX5lh41DkoJMHQiljVI2zlYFUwn98z57YD3mf6Gd3fh7gp7UFQu+/qtQAjRDAQkcJqsOlEQl4KlHTuRHMMIBXdfmPHKnFFsQEznTTyGF4QlWrysTnOIqteQ78WI+W8QlPm3az4uuwKbD5mOvaRoZTBGBbpAcdwGvtZlSSqK1fepwmNIPlh2/Xz2nswC/EmOFqAvCx+8exy1/XeEo8JX0mQcdajxxeDFADKW65xfJLMpp9SdeE0NWqo/NqXWUBDq1cqfwUfPTLsRwJUq5uZMFlMZO7YrJaPicgGRIB53XX59/UPBo4offhZeIMlaotAea7fwEUJtFK1Fz0rRfkKT35bzPqVTEEb3iKdwnvEHSuNd6mPz0O9ME8RydFnfvbxztkkONXHG6kkHioMP+fD3t1EroRBobLbbLhR07GJn7duee320uQWHrGcT8K1V6A1re0VBvn4Y3YVjCk8qT4ZveCd07rsIRcSrUizfHwxEbGrYh5NPExXPSguXku5NFCN+zLWqHZFcTXGwzA6TLHVymCLJ3zJTkOwBRyTXJcWUR2NVB3Zit14emP5H4/c/l0jkJvQwgyGu8Fkpg5z27TmGUHMKnDDZw4Wb5bWTfWonwIymwir3kVrjZ5xRM4nbTk6OCgxz+nxapkm5/FE7i0rOmMpgkBW9MfFoNYNFPlYj3geut0tncS2Tm5fs=
+X-Microsoft-Antispam-Message-Info: 7b437QXxnN9zbJ8rRglzZp2mKpX4nbX2TNOIR4iKsqe4Mk9/5H3XdIqxV4WqRTbxYUP91x1cIiebTa9sNIOgaBP49CW7tHiaJzRxEYc17ZOmQWKKdUI0BKhFIhMX82ApkRON2akIQaqPJTPKfE0l/md5zp6ypTUJnYi7Wa2yAGjqNviziGNcxzdHhS9EYj2ODf0ODc9sisIk2H5j4PVWscbq5iHK0XVuv+SKoaJcnI4ycIt1/+GHTSQympSePgp2ySKELmfpnsMqPwXXHynmce2AwOBdba87QYA2MHIamKKOFR2Qnjwv7gl2oiSPEkPUPvYcGP8qfAPU8nszG03pOeEN/AnYyIuGaIZ0p8/QViochGkv1htn8JK3avzaPcRrZUv52igFm5AC3WPcMAmss2FOQ0tpmNzLFHcfwGxg1XgY+QGWdMTPHbeEtLCgb4RF01ryaukdLl9P150cLeppcy/oFfsH77DYb7QyhW2N/sFoEOENzz+ra3F/oRBC2TshHp1x6w6fDVm8yNWYh2m2b2TEHi2KAKqi6NSULnRD0r5d80ocvP7BWw0tilQdHab1vFKHhowuIrtKhSiZOFF7e4r1tIz1nE2MO0mUfjlisacvBx5xK5nWGKnx8M6Nf83zT4gKGWup9h34zBfSK6Zc7Hdp3wWQArS0sKpjGTk7MGowCVPzBa/ad7zwx+e42q1LGtVRe26NDTTdHfq4PJZVcJez2+UZm3mAm9fWTWGvcoE=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230025)(4636009)(39860400002)(396003)(376002)(136003)(346002)(451199018)(40470700004)(36840700001)(46966006)(2616005)(110136005)(336012)(26005)(47076005)(1076003)(426003)(6666004)(4326008)(316002)(70206006)(83380400001)(186003)(54906003)(70586007)(8676002)(478600001)(6636002)(36860700001)(41300700001)(8936002)(5660300002)(81166007)(2906002)(82740400003)(356005)(7696005)(82310400005)(86362001)(40480700001)(36756003)(40460700003)(36900700001);
+ SFS:(13230025)(4636009)(396003)(136003)(39860400002)(346002)(376002)(451199018)(36840700001)(40470700004)(46966006)(7696005)(86362001)(40460700003)(36756003)(82310400005)(40480700001)(70586007)(4326008)(478600001)(6636002)(8676002)(5660300002)(83380400001)(110136005)(2616005)(186003)(1076003)(26005)(70206006)(426003)(6666004)(47076005)(316002)(336012)(54906003)(356005)(36860700001)(2906002)(8936002)(81166007)(82740400003)(41300700001)(15650500001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2023 09:16:19.9993 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: adba83e0-e4ae-4852-e8e1-08db2ab61967
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2023 09:16:22.8004 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d5f19e68-e8b0-4734-f12e-08db2ab61b10
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT004.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT116.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB8000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5799
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,68 +109,122 @@ Cc: weiyuan2@amd.com, ying.li@amd.com, amd-gfx@lists.freedesktop.org,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add the notifier chain to notify the cpu SMT status changes
+When the CPU SMT status change in the fly, sent the SMT-enable
+message to pmfw to notify it that the SMT status changed.
 
 Signed-off-by: Wenyou Yang <WenYou.Yang@amd.com>
 ---
- include/linux/cpu.h |  5 +++++
- kernel/cpu.c        | 11 ++++++++++-
- 2 files changed, 15 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     | 41 +++++++++++++++++++
+ drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h |  5 +++
+ 2 files changed, 46 insertions(+)
 
-diff --git a/include/linux/cpu.h b/include/linux/cpu.h
-index 314802f98b9d..9a842317fe2d 100644
---- a/include/linux/cpu.h
-+++ b/include/linux/cpu.h
-@@ -213,6 +213,11 @@ enum cpuhp_smt_control {
- 	CPU_SMT_NOT_IMPLEMENTED,
- };
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+index b5d64749990e..5cd85a9d149d 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+@@ -22,6 +22,7 @@
  
-+enum cpuhp_smt_status {
-+	SMT_ENABLED,
-+	SMT_DISABLED,
+ #define SWSMU_CODE_LAYER_L1
+ 
++#include <linux/cpu.h>
+ #include <linux/firmware.h>
+ #include <linux/pci.h>
+ 
+@@ -69,6 +70,14 @@ static int smu_set_fan_speed_rpm(void *handle, uint32_t speed);
+ static int smu_set_gfx_cgpg(struct smu_context *smu, bool enabled);
+ static int smu_set_mp1_state(void *handle, enum pp_mp1_state mp1_state);
+ 
++static int smt_notifier_callback(struct notifier_block *nb, unsigned long action, void *data);
++
++extern struct raw_notifier_head smt_notifier_head;
++
++static struct notifier_block smt_notifier = {
++	.notifier_call = smt_notifier_callback,
 +};
 +
- #if defined(CONFIG_SMP) && defined(CONFIG_HOTPLUG_SMT)
- extern enum cpuhp_smt_control cpu_smt_control;
- extern void cpu_smt_disable(bool force);
-diff --git a/kernel/cpu.c b/kernel/cpu.c
-index 6c0a92ca6bb5..accae0fa9868 100644
---- a/kernel/cpu.c
-+++ b/kernel/cpu.c
-@@ -89,6 +89,9 @@ static DEFINE_PER_CPU(struct cpuhp_cpu_state, cpuhp_state) = {
- cpumask_t cpus_booted_once_mask;
- #endif
+ static int smu_sys_get_pp_feature_mask(void *handle,
+ 				       char *buf)
+ {
+@@ -625,6 +634,8 @@ static int smu_set_funcs(struct amdgpu_device *adev)
+ 	return 0;
+ }
  
-+RAW_NOTIFIER_HEAD(smt_notifier_head);
-+EXPORT_SYMBOL(smt_notifier_head);
++static struct smu_context *current_smu;
 +
- #if defined(CONFIG_LOCKDEP) && defined(CONFIG_SMP)
- static struct lockdep_map cpuhp_state_up_map =
- 	STATIC_LOCKDEP_MAP_INIT("cpuhp_state-up", &cpuhp_state_up_map);
-@@ -2281,8 +2284,10 @@ int cpuhp_smt_disable(enum cpuhp_smt_control ctrlval)
- 		 */
- 		cpuhp_offline_cpu_device(cpu);
- 	}
--	if (!ret)
-+	if (!ret) {
- 		cpu_smt_control = ctrlval;
-+		raw_notifier_call_chain(&smt_notifier_head, SMT_DISABLED, NULL);
-+	}
- 	cpu_maps_update_done();
+ static int smu_early_init(void *handle)
+ {
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+@@ -645,6 +656,7 @@ static int smu_early_init(void *handle)
+ 	mutex_init(&smu->message_lock);
+ 
+ 	adev->powerplay.pp_handle = smu;
++	current_smu = smu;
+ 	adev->powerplay.pp_funcs = &swsmu_pm_funcs;
+ 
+ 	r = smu_set_funcs(adev);
+@@ -1105,6 +1117,8 @@ static int smu_sw_init(void *handle)
+ 	if (!smu->ppt_funcs->get_fan_control_mode)
+ 		smu->adev->pm.no_fan = true;
+ 
++	raw_notifier_chain_register(&smt_notifier_head, &smt_notifier);
++
+ 	return 0;
+ }
+ 
+@@ -1122,6 +1136,8 @@ static int smu_sw_fini(void *handle)
+ 
+ 	smu_fini_microcode(smu);
+ 
++	raw_notifier_chain_unregister(&smt_notifier_head, &smt_notifier);
++
+ 	return 0;
+ }
+ 
+@@ -3241,3 +3257,28 @@ int smu_send_hbm_bad_channel_flag(struct smu_context *smu, uint32_t size)
+ 
  	return ret;
  }
-@@ -2303,7 +2308,11 @@ int cpuhp_smt_enable(void)
- 		/* See comment in cpuhp_smt_disable() */
- 		cpuhp_online_cpu_device(cpu);
- 	}
-+	if (!ret)
-+		raw_notifier_call_chain(&smt_notifier_head, SMT_ENABLED, NULL);
 +
- 	cpu_maps_update_done();
++static int smu_set_cpu_smt_enable(struct smu_context *smu, bool enable)
++{
++	int ret = -EINVAL;
 +
- 	return ret;
- }
- #endif
++	if (smu->ppt_funcs && smu->ppt_funcs->set_cpu_smt_enable)
++		ret = smu->ppt_funcs->set_cpu_smt_enable(smu, enable);
++
++	return ret;
++}
++
++static int smt_notifier_callback(struct notifier_block *nb,
++				 unsigned long action, void *data)
++{
++	struct smu_context *smu = current_smu;
++	int ret = NOTIFY_OK;
++
++	ret = (action == SMT_ENABLED) ?
++				smu_set_cpu_smt_enable(smu, true) :
++				smu_set_cpu_smt_enable(smu, false);
++	if (ret)
++		ret = NOTIFY_BAD;
++
++	return ret;
++}
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
+index 09469c750a96..7c6594bba796 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
++++ b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
+@@ -1354,6 +1354,11 @@ struct pptable_funcs {
+ 	 * @init_pptable_microcode: Prepare the pptable microcode to upload via PSP
+ 	 */
+ 	int (*init_pptable_microcode)(struct smu_context *smu);
++
++	/**
++	 * @set_cpu_smt_enable: Set the CPU SMT status
++	 */
++	int (*set_cpu_smt_enable)(struct smu_context *smu, bool enable);
+ };
+ 
+ typedef enum {
 -- 
 2.39.2
 
