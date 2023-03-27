@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B7E96CAEE0
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Mar 2023 21:37:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D56AD6CAEDF
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Mar 2023 21:37:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89E2F10E73A;
-	Mon, 27 Mar 2023 19:37:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6CEE10E734;
+	Mon, 27 Mar 2023 19:36:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA59110E728
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Mar 2023 19:36:41 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2065.outbound.protection.outlook.com [40.107.92.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75A8310E728
+ for <amd-gfx@lists.freedesktop.org>; Mon, 27 Mar 2023 19:36:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LSYA1DC3DDptPIkFCX+imPG3JWSKmueSGEU8jMFdmiYs/3hxzof2+j87nxlvexQGf/ECnKlQuaAt1o9pWIweogwOZ8W/aRJI0yIz0ekjUFirK1mST66eqPKKTdgpKMLUfdhBxlhFQ7TDgxlWwf/YGmzEfQeHXw9Jdxr1cEVsQQh25CI0Rrke9FCJ3GvERxV7dQKpceEPjo8QFSDS9eUzxn33wNxTJ2z9Y+rTrSvFOtYtujtuB6h4NMWeC/wvuB+3nt5pgjNcqregm4GndHLWudp3tc/ZiGSSlvYJ3O9DLBLgmbvBIKij/FGsZAI4CcS027kj9/jynoVUPS51zgjpPw==
+ b=BljbWWgXYIG2zEemx7Xc41mgUuUZGVmq9sMWJNNvy2cjiKmbhHLg1OqeXHG2l7WhUcQdmt/8ydAvXwTC01/C3iyJeyk3T3Uz8OpT5iXCncWSrGBdYAGfyUl3Ht/C7jg3hiKGRRa9yKxSlR/n/qh4D8MSLJiiWRHTCbwc65+YiFMYTm+lBGEfBSRVtdc7dKMVOCj7aLOOd/Bz2Q1bCP3Hql/fedPlV4rADP02S38NjaGzQYcdS9SqMcI+zw3NKxN5avira2lmyxE4UUdhIcDNfvxiy7OjJqHTuDGghqy69GoJ/tJ1LCZd/QLwsINgVqPka/FnHQtIrzqL4F9uBNETgQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fY+2m3Yw4Qdes+kdc4L+gw2m9j3qJeqWd1nNB4cQOiQ=;
- b=JKJPUaF8jNCR3plHbldg4MDVtWqgSkgY0pRFKlzsXr13JXSbvhTbAi2weIVEKNnhBDDmC7yrPdjmbc6lJCrc6QT/0WVPTB7oe9JlvDes1P4vyUj3zG/d6uL72GsSg/iuoS7vie2WWfaNVe5WtDy9kbbUHfGu5WmqAmuM2Dqx/CeB1iq/zjuVc+flYGz+6AM/he8Ee9U3eaJlFVtkRoYjdKkKa7jMDW7c70vxLQwxbhQMbIuS+3bFqu1GnNs3esecCHbXhA+kPugl6T0lf0BN020YUXFt0+mq+bsaw0qt+SjOYlBrjPEpwZsWSOQsbOxMdhu8ZAFth0JBT2UjOk6h5g==
+ bh=AgmRFav4SWeFi0ke3FOL3/Nv+BDG0LOBnhmAepVZJPc=;
+ b=k5oKNufaSpEbjXqyOp8MUnaMv8TKttP7BmLbBnw6O0cKhHpjPhVNAik2hb4XjaVDNHvg7vhYlYXh7a9emSfT9lbRm2YQ1t7heNbB2P0gHuCCy47jiRqcv0QAFCGqtn0umMlFX6lYuatWGt9Ah0LlDZyseDdjVTxTJCakUmC2d0nRLrJWoYLUUffe6uyxlzLqDK3clHJN3PrY9VThFJAAvPqWMNci/yQIJMzHV05JSk/h7GHFzkyq8Gz/SRHVttQlEWKvUFEKRqw7fQpyaeGuhnFONDAcWX8xhjo234XRnYCgyCHoo5vFZJI2nBRrxCBNxKoCioQx+m9seI1lRyxjYA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fY+2m3Yw4Qdes+kdc4L+gw2m9j3qJeqWd1nNB4cQOiQ=;
- b=zl9DoWTPyYr4Lmc/c+NexidMggzSdci9O8qKsIpORtP1WRb4QyD3TecQ9ueNpVoM8TB4FYax68ti6W7l6GMAkH2ya719JWlcbKvojq51WkIh8ZFWA5hH5rrYKc7oYWp9SSkolua1WmD/bhGI82YMVXW5x9xhXn+l5EV4QsMwTyw=
-Received: from BL1PR13CA0374.namprd13.prod.outlook.com (2603:10b6:208:2c0::19)
- by PH7PR12MB6538.namprd12.prod.outlook.com (2603:10b6:510:1f1::11)
+ bh=AgmRFav4SWeFi0ke3FOL3/Nv+BDG0LOBnhmAepVZJPc=;
+ b=BgpOYHs5pQ10bpwZPwwkot1CKxGppWEhpVn0eCW8v0BGjHZxp+WlMx1Ezqas9tMrPwNe+ciKGhsykiMSat8pVyP7OYN2he0VOfI2vdHxl1mc8Q8bJJW9id/MLbLlPivs8fJ85Kgh9AHgiYvayOvKbx8HwitaPJ6FKHA9tQqq0L0=
+Received: from BL1PR13CA0389.namprd13.prod.outlook.com (2603:10b6:208:2c0::34)
+ by BL1PR12MB5349.namprd12.prod.outlook.com (2603:10b6:208:31f::7)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.41; Mon, 27 Mar
- 2023 19:36:39 +0000
+ 2023 19:36:40 +0000
 Received: from BL02EPF000100D2.namprd05.prod.outlook.com
- (2603:10b6:208:2c0:cafe::91) by BL1PR13CA0374.outlook.office365.com
- (2603:10b6:208:2c0::19) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:208:2c0:cafe::88) by BL1PR13CA0389.outlook.office365.com
+ (2603:10b6:208:2c0::34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.16 via Frontend
- Transport; Mon, 27 Mar 2023 19:36:39 +0000
+ Transport; Mon, 27 Mar 2023 19:36:40 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BL02EPF000100D2.mail.protection.outlook.com (10.167.241.206) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6178.30 via Frontend Transport; Mon, 27 Mar 2023 19:36:39 +0000
+ 15.20.6178.30 via Frontend Transport; Mon, 27 Mar 2023 19:36:40 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 27 Mar
- 2023 14:36:37 -0500
+ 2023 14:36:38 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 27/28] drm/amdgpu: Use the correct API to read register
-Date: Mon, 27 Mar 2023 15:36:01 -0400
-Message-ID: <20230327193602.7901-27-alexander.deucher@amd.com>
+Subject: [PATCH 28/28] drm/amdgpu/: add more macro to support offset variant
+Date: Mon, 27 Mar 2023 15:36:02 -0400
+Message-ID: <20230327193602.7901-28-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230327193602.7901-1-alexander.deucher@amd.com>
 References: <20230327193602.7901-1-alexander.deucher@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF000100D2:EE_|PH7PR12MB6538:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7f6a30ed-12b4-49b3-7a3a-08db2efa95db
+X-MS-TrafficTypeDiagnostic: BL02EPF000100D2:EE_|BL1PR12MB5349:EE_
+X-MS-Office365-Filtering-Correlation-Id: adcbb705-3b72-4581-74aa-08db2efa9657
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: frOhYy2pCPJaXw8/0tZ47QYxPVK1AWTCVXkQfZEEDo8rOwxNuX9cYCsuyUEzO674zylcZnp1S664ixvukIWNe4ePG9fw5uEIW+s7eb1mdT8DWsnjzKJMQSckuPP09Ipe+ywjkFI3QywtvToM5dYZLbsKCFdXH14GyjvJxLfWRvZsazssGqJLfEc5tXmlXnvn5f6DM7Si+pJA2OujqVuH6HlcOU+W9WmoDCpC4082s39A2MGyig8NVAlH7A81OHGuGOvgxUhgGH8RWk4/yWcmRSe9sEdCGrcnSHQvZZltKwOyslG2qjnF1iodKaBnGEfPsJmx/WowsWsE5naPLy80ZgnzX0VYZoU7sZyFVH6eI1VQcCAp5I/JTG+6NTelNyRPqEYzsHhBkJG2h5l1JdXSF8iTKkCYOQBflItAkzIwsBNXTOvau8JqNualMgmb9mKyIXzPVweLCwHKqOQUqjKo5cK9oG1GVQQPFjpb05xBrYc+uk8XdEwQm2xfhed+cv/OfRfpaVWXzOThndmnigx/QeB1KWFFwWTQ7TwiaoHcAF//jFfTqRoGdH2jh69IdxUqBiKF1FMm0W9AsUHWqWIKTE4Sn18LheQUIWA1QW5AGZo/GnKu5iLtUSi2S+t0vfO7CnXtE1YzLwry+U33s6e+Q/7/3FaR6I3I+rWVC8dJ/Z4DNI9n/3EXGR38NOxTQDdwIzaKReecSEwyfpfOXcEC0bJVNFfoS/TcxMrD04uDGRs=
+X-Microsoft-Antispam-Message-Info: vsDKekheJn7QFiTuTqQiziENOyKdFGl1+c4TxVr44QGNfirrlfxQUw7GFNvnvcRfErT7wf1pEA7cfFsGVkdnX/caD+2i0aiaiSXTErLAHj5DFRajwkPT5FmfSUn+ynznqrc3mek6O5tknJ55EyAUXa24gHCiaiFxS8XKQnE0QQFIAZYr3OquOtZrESykxEDpt4oFQT91Vfy3T9XAaGeoWcWKisUK9mJoLgF7adG2jzuBkfMDMn5x7CuYSfcxYhPTqIa6XZdG5jgNXLqNGSRMP87CNSFs7cZaNDjYv2KQggEl0YLtstPFZh0nYFAS5hycO9D6GbnML9oVTx+CB3QvIlt3gk0zeYG5Lk/1gq5MqdQa88rIHBJDoiqcqnJl8WRQo6R0G6lCyF7ZBqFaJt4eDt9++LJcSWP99sbXRv6rYfvhdVdROaF1JzVhrnkFMpEfCHU1zYOocDl+UqA3fB+SX9Q/uoEwI+HqzKRn8SxNO7I+QsQbqD26ji2ZPCNT6QijaanMH/oItEfCmScIulmUfWbo/WmL6yfDyq5kZuIpdOC/Ey4I49m25mafY8QVYi3yVQdfH/SL0HyEAkctP1m1et4FrsOYMioxnZIhV+l1oB8duk1a5SqQAnAcRf+dhZOY0xhUxwfYPV63zOmjMFwoE7HgY1UnuIj+wvuRyC7ntoiRYZjM7CEEv3sQn6hddry4LQToLMLWDC65BH0kuvS4qlLCC0FgonEm0UTs2cgJEcw=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(39860400002)(346002)(136003)(376002)(451199021)(40470700004)(36840700001)(46966006)(26005)(40460700003)(8676002)(81166007)(70206006)(316002)(4326008)(6916009)(70586007)(36860700001)(8936002)(82740400003)(5660300002)(54906003)(186003)(16526019)(41300700001)(4744005)(47076005)(7696005)(2616005)(426003)(1076003)(336012)(83380400001)(6666004)(478600001)(40480700001)(86362001)(356005)(2906002)(82310400005)(36756003)(36900700001);
+ SFS:(13230028)(4636009)(39860400002)(346002)(376002)(396003)(136003)(451199021)(46966006)(40470700004)(36840700001)(2616005)(47076005)(7696005)(82310400005)(83380400001)(356005)(40460700003)(86362001)(70586007)(26005)(1076003)(426003)(70206006)(6666004)(36860700001)(16526019)(186003)(41300700001)(8676002)(6916009)(478600001)(316002)(54906003)(336012)(36756003)(4326008)(5660300002)(2906002)(81166007)(8936002)(82740400003)(40480700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2023 19:36:39.3478 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f6a30ed-12b4-49b3-7a3a-08db2efa95db
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2023 19:36:40.1603 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: adcbb705-3b72-4581-74aa-08db2efa9657
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL02EPF000100D2.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6538
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5349
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,35 +99,129 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, James Zhu <James.Zhu@amd.com>,
+ Leo Liu <leo.liu@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Lijo Lazar <lijo.lazar@amd.com>
+From: James Zhu <James.Zhu@amd.com>
 
-Use SOC15 API so that the register offset is calculated correctly.
+Add more macro to support offset variant and
+simplify macro SOC15_WAIT_ON_RREG.
 
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+Signed-off-by: James Zhu <James.Zhu@amd.com>
+Reviewed-by: Leo Liu <leo.liu@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  3 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 28 +++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/soc15_common.h  | 36 +++++++---------------
+ 3 files changed, 42 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-index 048e21d202d4..204b069c587d 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-@@ -1642,7 +1642,7 @@ static int gfx_v9_4_3_mqd_init(struct amdgpu_ring *ring)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index bdc1190601d4..786b28821324 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -1103,6 +1103,9 @@ size_t amdgpu_device_aper_access(struct amdgpu_device *adev, loff_t pos,
  
- 	/* set static priority for a queue/ring */
- 	gfx_v9_4_3_mqd_set_priority(ring, mqd);
--	mqd->cp_hqd_quantum = RREG32(regCP_HQD_QUANTUM);
-+	mqd->cp_hqd_quantum = RREG32_SOC15(GC, 0, regCP_HQD_QUANTUM);
+ void amdgpu_device_vram_access(struct amdgpu_device *adev, loff_t pos,
+ 			       void *buf, size_t size, bool write);
++uint32_t amdgpu_device_wait_on_rreg(struct amdgpu_device *adev,
++			    uint32_t inst, uint32_t reg_addr, char reg_name[],
++			    uint32_t expected_value, uint32_t mask);
+ uint32_t amdgpu_device_rreg(struct amdgpu_device *adev,
+ 			    uint32_t reg, uint32_t acc_flags);
+ void amdgpu_device_wreg(struct amdgpu_device *adev,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 12dd2aa85b39..aa3c27b6035a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -6059,3 +6059,31 @@ bool amdgpu_device_has_display_hardware(struct amdgpu_device *adev)
+ 		return true;
+ 	}
+ }
++
++uint32_t amdgpu_device_wait_on_rreg(struct amdgpu_device *adev,
++		uint32_t inst, uint32_t reg_addr, char reg_name[],
++		uint32_t expected_value, uint32_t mask)
++{
++	uint32_t ret = 0;
++	uint32_t old_ = 0;
++	uint32_t tmp_ = RREG32(reg_addr);
++	uint32_t loop = adev->usec_timeout;
++
++	while ((tmp_ & (mask)) != (expected_value)) {
++		if (old_ != tmp_) {
++			loop = adev->usec_timeout;
++			old_ = tmp_;
++		} else
++			udelay(1);
++		tmp_ = RREG32(reg_addr);
++		loop--;
++		if (!loop) {
++			DRM_WARN("Register(%d) [%s] failed to reach value 0x%08x != 0x%08xn",
++				  inst, reg_name, (uint32_t)expected_value,
++				  (uint32_t)(tmp_ & (mask)));
++			ret = -ETIMEDOUT;
++			break;
++		}
++	}
++	return ret;
++}
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15_common.h b/drivers/gpu/drm/amd/amdgpu/soc15_common.h
+index 3f6dac856d49..eb35096756b8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc15_common.h
++++ b/drivers/gpu/drm/amd/amdgpu/soc15_common.h
+@@ -26,6 +26,8 @@
  
- 	/* map_queues packet doesn't need activate the queue,
- 	 * so only kiq need set this field.
+ /* Register Access Macros */
+ #define SOC15_REG_OFFSET(ip, inst, reg)	(adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg)
++#define SOC15_REG_OFFSET1(ip, inst, reg, offset) \
++	(adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + (reg)+(offset))
+ 
+ #define __WREG32_SOC15_RLC__(reg, value, flag, hwip) \
+ 	((amdgpu_sriov_vf(adev) && adev->gfx.rlc.funcs && adev->gfx.rlc.rlcg_reg_access_supported) ? \
+@@ -86,31 +88,15 @@
+ 	 __WREG32_SOC15_RLC__((adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg) + offset, \
+ 			  value, 0, ip##_HWIP)
+ 
+-#define SOC15_WAIT_ON_RREG(ip, inst, reg, expected_value, mask) \
+-({	int ret = 0;						\
+-	do {							\
+-		uint32_t old_ = 0;				\
+-		uint32_t tmp_ = RREG32(adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg); \
+-		uint32_t loop = adev->usec_timeout;		\
+-		ret = 0;					\
+-		while ((tmp_ & (mask)) != (expected_value)) {	\
+-			if (old_ != tmp_) {			\
+-				loop = adev->usec_timeout;	\
+-				old_ = tmp_;			\
+-			} else					\
+-				udelay(1);			\
+-			tmp_ = RREG32(adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg); \
+-			loop--;					\
+-			if (!loop) {				\
+-				DRM_WARN("Register(%d) [%s] failed to reach value 0x%08x != 0x%08x\n", \
+-					  inst, #reg, (unsigned)expected_value, (unsigned)(tmp_ & (mask))); \
+-				ret = -ETIMEDOUT;		\
+-				break;				\
+-			}					\
+-		}						\
+-	} while (0);						\
+-	ret;							\
+-})
++#define SOC15_WAIT_ON_RREG(ip, inst, reg, expected_value, mask)      \
++	amdgpu_device_wait_on_rreg(adev, inst,                       \
++	(adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + (reg)), \
++	#reg, expected_value, mask)
++
++#define SOC15_WAIT_ON_RREG_OFFSET(ip, inst, reg, offset, expected_value, mask)  \
++	amdgpu_device_wait_on_rreg(adev, inst,                                  \
++	(adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + (reg) + (offset)), \
++	#reg, expected_value, mask)
+ 
+ #define WREG32_RLC(reg, value) \
+ 	__WREG32_SOC15_RLC__(reg, value, AMDGPU_REGS_RLC, GC_HWIP)
 -- 
 2.39.2
 
