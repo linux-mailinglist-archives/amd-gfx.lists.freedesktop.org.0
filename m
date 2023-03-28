@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 614576CC58D
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Mar 2023 17:15:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7BDB6CC590
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Mar 2023 17:15:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A37810E908;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5AEC10E924;
 	Tue, 28 Mar 2023 15:15:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2079.outbound.protection.outlook.com [40.107.244.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0F8D10E915
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 15:14:46 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2061.outbound.protection.outlook.com [40.107.92.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 227DE10E91A
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 15:14:49 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PyRtuW4Wfe0hRO0RiXq/jF6Lu2yOAWXKgv6Rfae9YuzQB3bAw7p24j4Ua8lfhib274oFmHjDSRX0W6YcEADNRXV/mw3I0V6UDtJqtoNHZ47mBShEqUMvNkRKEIorSGXz9ox2Q1qaAp7qpEiSNoNEZTKEvVV6/E2V5wCoHf9MzK9TwXYXiYKIpA6UiZXHi2Kk2zktLi/spFPBnEyv4SXs9B7g590RjeIEL2qiZtLPQJpzq8od37icURugh1FLC92/l4LqANfDktX8KCs0DHJHmU4aJJ+TWLL300VBsNJvYW8V1L8jrQkTPWf8ovZvet5YtsUaPXoP1uFpyFmAtv/CoA==
+ b=e10p03mJF0l9eN+0cMgOFWdSidw2FZ7zcB8byDcCCWq7avsrd6xj1LQL8UwMmSBUm9gU1fZtEicsBZ4G9DBRYvf/AbwtyW1zyFhxeOY0p8UFARYHT0ZO4m0bnTFsyrqQxva3sfQsjv2XtckC5tTvw11fC15GxaOxUY5trlHqw1vsBOZCP4RzKehAl40GovYI/xAxFSg9SbLUMKHESThFPc5tflF8d9Dottc7g5VwEdLM1bTk1D+EzgN0zXY/Cwd2XJLGsIE8bbDbSW2SibK2dAo/SUYqxg4DqVlC7seulDfX6B9m8K0ixRZ6jbi0DJ5Yl20CT5WB4zHs6GoF/Xfq+g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=X8r3ow1p5TUzTeRZDLJNkZeZAdVzKklRuLE54wWMpFw=;
- b=g2IXRCwtUkOS+GBskLE/XRFRSepctBQxZqFGyIMQRc2ycz+XXbcCQFpvjHMjNqPOkpP3XDHiBJxowErhyl9F/PNj6T4n8z8yn/UflBnPINoDlwdYiunubcTB3mpw8AevoAf0rkNbE96NiCzbfZuQA5VmObXS4G+G8Dsyf4c9A0ucBuhHMd9tBrba3hs9spOqfU3MwGSJSZrI2Q6Hg2U/KFu1p6xJ53bISRwnkOu7yDgQRMEeIEr/bwoFDRk3s6Vv5DhUOVMx0PLl584JzbRANXnJQqQ668Cd2ukklCMwikX0N306HX4j3lVgYT5R+Pcv8j0NbroiK/66LhF2LgOmRA==
+ bh=v0Fk1FhzRJAGmvRbfBTIbGYuGbSCT9ghv6kLbfV1Gq0=;
+ b=If3xInR2d3VEjMn0YAPsRubB8B1Ran1ad+KXi3zZ4v+R85USnaIfALOvPH65nnKJL6p+R4LRE2qeBCHKjOWNgiaGeDLbqugwtoGtyOoHl0pc9Exh0RWMwGN6iOF3z8uJmfD6wzvnzPcFxS5btgUxWJglQit+PyjRIHqJU7G58cWFwFc5X97yZ93BGD8FR72BghT75zfDRZpg38eLeWPu/uwGS+1YAzl6CiO19tTxwcRXl9bJgEXnuW3MIezJkbrp0AOTMJP7BYbUHh7pWisiyb7rJNtF5GR56WbkoI6Q2c/QpSY45sdq1fYvdbYr70rkhHRPbPRu32Js8f1eSGXcwA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=X8r3ow1p5TUzTeRZDLJNkZeZAdVzKklRuLE54wWMpFw=;
- b=ZVwWHCCXaquFn0pGHp7WDho3CTnJfJt1N4y62IaOD5JxzZ6fpJp2YQhiGvei9qvOYx7jox8MAjDWKMwgWHG5tVjW3yHxSQz2fMBDwg708wuKLxwD7iUeC8mNcggSKcq/Yc/nF7QY8sMbV78chocZSD0glft+Ay3qWsrio7Ipt7U=
-Received: from BL1PR13CA0070.namprd13.prod.outlook.com (2603:10b6:208:2b8::15)
- by CY5PR12MB6034.namprd12.prod.outlook.com (2603:10b6:930:2e::12)
+ bh=v0Fk1FhzRJAGmvRbfBTIbGYuGbSCT9ghv6kLbfV1Gq0=;
+ b=qQQuLtSKS4V2f4nmFoQzNJFUWS+jDLPLhXca6jgZp9yF54FyjbY1Do0cSBPWsQr5bD1nSQ6Wqajh/rGUe9S3nXbUDv12DyeCgvAXGiq4pfTGZCf7Wf2iJDJ7BQKtShkn0yNtm734klwTCu89HIs269t7vdSB5Kvtvp8TFCjYAho=
+Received: from BL1PR13CA0064.namprd13.prod.outlook.com (2603:10b6:208:2b8::9)
+ by BY5PR12MB4116.namprd12.prod.outlook.com (2603:10b6:a03:210::13)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.28; Tue, 28 Mar
- 2023 15:14:45 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.30; Tue, 28 Mar
+ 2023 15:14:46 +0000
 Received: from BL02EPF000100D2.namprd05.prod.outlook.com
- (2603:10b6:208:2b8:cafe::f7) by BL1PR13CA0070.outlook.office365.com
- (2603:10b6:208:2b8::15) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:208:2b8:cafe::9a) by BL1PR13CA0064.outlook.office365.com
+ (2603:10b6:208:2b8::9) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.18 via Frontend
- Transport; Tue, 28 Mar 2023 15:14:44 +0000
+ Transport; Tue, 28 Mar 2023 15:14:45 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BL02EPF000100D2.mail.protection.outlook.com (10.167.241.206) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6178.30 via Frontend Transport; Tue, 28 Mar 2023 15:14:44 +0000
+ 15.20.6178.30 via Frontend Transport; Tue, 28 Mar 2023 15:14:45 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 28 Mar
- 2023 10:14:44 -0500
+ 2023 10:14:45 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 21/32] drm/amdgpu: assign the doorbell index in 1st page to
- sdma page queue
-Date: Tue, 28 Mar 2023 11:13:33 -0400
-Message-ID: <20230328151344.1934291-21-alexander.deucher@amd.com>
+Subject: [PATCH 22/32] drm/amdgpu: adjust some basic elements for multiple AID
+ case
+Date: Tue, 28 Mar 2023 11:13:34 -0400
+Message-ID: <20230328151344.1934291-22-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230328151344.1934291-1-alexander.deucher@amd.com>
 References: <20230328151344.1934291-1-alexander.deucher@amd.com>
@@ -69,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF000100D2:EE_|CY5PR12MB6034:EE_
-X-MS-Office365-Filtering-Correlation-Id: b85df66d-916e-4c02-67e9-08db2f9f29bb
+X-MS-TrafficTypeDiagnostic: BL02EPF000100D2:EE_|BY5PR12MB4116:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2fd2777c-5ba1-44e0-fe94-08db2f9f2a53
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +Gy1jmUulL4lHz6uuqHTCROLjZxHTatV5NovX7yfDsV401fN2ntQaaOSO/qIP96GtWY6P5WvWmd5pLpYHcq0LkkmoGCFXVrU50Jl36hOP6lxCM0dIO+7Ut8w48d/T2vfz339cfKwt0GB2Za3NEs691lsVEkxuoE9E/D3C0CYl6Iu+iNnuq0AHFH/oM32/WUjONVlFrPk45x2/s1dKBrMKEyUHm6zlgjk6NVsP2AjzjO+iLcpMGFwhpg1bEeL+CFIaTyhtYpr/KUoQpz2vtef/dibamkDnVushfp4A6l6zv035kM8Qz6Hulu7tyRHPJSYT4QNusfbEimmxbvAum11gNq4L7zNrm8+QShw47XTMIyfTZvLlZBOlFrQLSF4qmLuy+NFwjzCk3u0nwYa7iS1wGKUe05KkjU0crKlFmAYf6kAXzAs/w3r2qucWUvGhLv/sALlT/q4NUyqHUystLCTH85s1JPTujgA9GWBPWvu7/vgSF7MvYaevEI4qXgIAfq2iO+C5GRchrp4WWDuFSDlsTzJeNE2azTr7L71Vue18GuT6bjCa2eh+T8x7+L+V6TUASSzQwB8wfwqj8zdOgZ/UeFTpkMiye04Gfn13+FU70kEyA/HtfzneSspK/+jsfc6vnf1sQGhQzvGLcmJKgYS4ulHFJONslHUAOLwf3+Y0rpiTrDgAvnjqpY6gFs0nPpgtTl7l3mRmyLdUK8CcBmDFKgvu47i85IfVAvcV57H7s8=
+X-Microsoft-Antispam-Message-Info: HmPd4sbqn33u4XxzvuP9FPpJeShRBfxCRp7fqV1U8C8ArEfrsb2EHHavMoTE+PZRaxXcBUbVoHyMvqW27se8MmiSxiKnThN85um81ma48UrQE8hO6Gn+PIk7b2iWt18FNWfofF7xN413mInFHHYtCmVJGHn/UhVu7Z86isamTY7+BKrIVDgyHmMqTYbFTvxR6ZgFj26jUd8NDYMRNvphSnbjk1zLBCDKUHWkV79pcMdGGWu9rOAYFHU/lAQq5FxEZjbmt4NFvCZAijprHsmOKaSkXlgBt2ZBsOJGU76AHEIrn0aDmSxmOABakYih2+mX6XMXZk+eCwNhHMDiHZIcrLVq8nbPmqoO2p2m6D3k1M6qSA6AlBE5XCmaariMTaDerecF3gl+/IPtO9MAju9pYy31YnmteQCqNlx3Riryhlm6kZRleDy7ytw53WZNTIFbyxVP5ecF41846e/CpVztwcbRueyh07HCK38lxnkTBVm18EWRt5SQf20p2gPHXupLuoo/Frd5rCg0mrM2hBOWAK1cJ3C7kVNhnhHvLZq6el88n6fisDe+Gd1xynp6hbYMMM0V55gVJaWc8wYoVg9Oe4M2oQ9vnJzsaA7xJ3bQL3v/LqpAVKoAIEhUTptIAXySgyG5/tk9eksy9SNoiGwgqvZ2sKBzjXkFFSGl4BBThgq7/M6sOSTaX7fY/gffTUiG3KdfXwt5j17Pup97z/WZs0WzH7Ne3yRVZQlwlIzEGiQ=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(39860400002)(346002)(396003)(136003)(376002)(451199021)(40470700004)(46966006)(36840700001)(8936002)(47076005)(426003)(83380400001)(336012)(2616005)(41300700001)(36860700001)(36756003)(86362001)(5660300002)(356005)(81166007)(40460700003)(82740400003)(478600001)(40480700001)(54906003)(7696005)(70586007)(2906002)(8676002)(6916009)(70206006)(4326008)(16526019)(6666004)(82310400005)(186003)(316002)(1076003)(26005)(36900700001);
+ SFS:(13230028)(4636009)(39860400002)(136003)(396003)(376002)(346002)(451199021)(40470700004)(36840700001)(46966006)(86362001)(36756003)(82310400005)(2906002)(40480700001)(40460700003)(478600001)(6666004)(426003)(336012)(83380400001)(54906003)(26005)(47076005)(2616005)(7696005)(4326008)(1076003)(70586007)(70206006)(6916009)(36860700001)(81166007)(316002)(8676002)(186003)(16526019)(41300700001)(356005)(8936002)(82740400003)(5660300002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 15:14:44.9041 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b85df66d-916e-4c02-67e9-08db2f9f29bb
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 15:14:45.9041 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2fd2777c-5ba1-44e0-fe94-08db2f9f2a53
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL02EPF000100D2.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6034
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4116
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,81 +107,84 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Le Ma <le.ma@amd.com>
 
-Previously for vega10, the sdma_doorbell_range is only enough for sdma
-gfx queue, thus the index on second doorbell page is allocated for sdma
-page queue. From vega20, the sdma_doorbell_range on 1st page is enlarged.
-Therefore, just leverage these index instead of allocation on 2nd page.
+add some elements below:
+ - num_aid
+ - aid_id for each sdma instance
+ - num_inst_per_aid for sdma
 
-v2: change "(x << 1) + 2" to "(x + 1) << 1" for readability and add comments.
+and extend macro size below:
+ - SDMA_MAX_INSTANCES to 16
+ - AMDGPU_MAX_RINGS to 96
+ - AMDGPU_MAX_HWIP_RINGS to 32
+
+v2: move aid_id from amdgpu_ring to amdgpu_sdma_instance. (Lijo)
 
 Signed-off-by: Le Ma <le.ma@amd.com>
 Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
 Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  3 ++-
- drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c     | 14 ++++++++++++--
- drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c   |  7 +++----
- 3 files changed, 17 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h      | 1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h | 4 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h | 4 +++-
+ 3 files changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 1c657273d9ee..518e89a7d9ae 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -1090,7 +1090,8 @@ static int amdgpu_device_doorbell_init(struct amdgpu_device *adev)
- 		 * doorbells are in the first page. So with paging queue enabled,
- 		 * the max num_doorbells should + 1 page (0x400 in dword)
- 		 */
--		if (adev->asic_type >= CHIP_VEGA10)
-+		if (adev->ip_versions[SDMA0_HWIP][0] >= IP_VERSION(4, 0, 0) &&
-+		    adev->ip_versions[SDMA0_HWIP][0] < IP_VERSION(4, 2, 0))
- 			adev->doorbell.num_doorbells += 0x400;
- 	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index 786b28821324..ca9c4d31e352 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -1072,6 +1072,7 @@ struct amdgpu_device {
  
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-index dfe91ebc7b43..68c6d0c8fe76 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-@@ -1847,8 +1847,18 @@ static int sdma_v4_0_sw_init(void *handle)
- 			/* paging queue use same doorbell index/routing as gfx queue
- 			 * with 0x400 (4096 dwords) offset on second doorbell page
- 			 */
--			ring->doorbell_index = adev->doorbell_index.sdma_engine[i] << 1;
--			ring->doorbell_index += 0x400;
-+			if (adev->ip_versions[SDMA0_HWIP][0] >= IP_VERSION(4, 0, 0) &&
-+			    adev->ip_versions[SDMA0_HWIP][0] < IP_VERSION(4, 2, 0)) {
-+				ring->doorbell_index =
-+					adev->doorbell_index.sdma_engine[i] << 1;
-+				ring->doorbell_index += 0x400;
-+			} else {
-+				/* From vega20, the sdma_doorbell_range in 1st
-+				 * doorbell page is reserved for page queue.
-+				 */
-+				ring->doorbell_index =
-+					(adev->doorbell_index.sdma_engine[i] + 1) << 1;
-+			}
+ 	bool                            job_hang;
+ 	bool                            dc_enabled;
++	uint32_t			num_aid;
+ };
  
- 			if (adev->ip_versions[SDMA0_HWIP][0] == IP_VERSION(4, 2, 2) && i >= 5)
- 				ring->vm_hub = AMDGPU_MMHUB1(0);
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-index 7efe7c43fffb..441d6911fd20 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-@@ -1323,11 +1323,10 @@ static int sdma_v4_4_2_sw_init(void *handle)
- 			ring->ring_obj = NULL;
- 			ring->use_doorbell = true;
+ static inline struct amdgpu_device *drm_to_adev(struct drm_device *ddev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+index 72a7afb852d0..f4467e5cf882 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+@@ -36,8 +36,8 @@ struct amdgpu_job;
+ struct amdgpu_vm;
  
--			/* paging queue use same doorbell index/routing as gfx queue
--			 * with 0x400 (4096 dwords) offset on second doorbell page
-+			/* doorbell index of page queue is assigned right after
-+			 * gfx queue on the same instance
- 			 */
--			ring->doorbell_index = adev->doorbell_index.sdma_engine[i] << 1;
--			ring->doorbell_index += 0x400;
-+			ring->doorbell_index = (adev->doorbell_index.sdma_engine[i] + 1) << 1;
- 			ring->vm_hub = AMDGPU_MMHUB0(0);
+ /* max number of rings */
+-#define AMDGPU_MAX_RINGS		28
+-#define AMDGPU_MAX_HWIP_RINGS		8
++#define AMDGPU_MAX_RINGS		96
++#define AMDGPU_MAX_HWIP_RINGS		32
+ #define AMDGPU_MAX_GFX_RINGS		2
+ #define AMDGPU_MAX_SW_GFX_RINGS         2
+ #define AMDGPU_MAX_COMPUTE_RINGS	8
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
+index fc8528812598..67975dcede5d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
+@@ -26,7 +26,7 @@
+ #include "amdgpu_ras.h"
  
- 			sprintf(ring->name, "page%d", i);
+ /* max number of IP instances */
+-#define AMDGPU_MAX_SDMA_INSTANCES		8
++#define AMDGPU_MAX_SDMA_INSTANCES		16
+ 
+ enum amdgpu_sdma_irq {
+ 	AMDGPU_SDMA_IRQ_INSTANCE0  = 0,
+@@ -49,6 +49,7 @@ struct amdgpu_sdma_instance {
+ 	struct amdgpu_ring	ring;
+ 	struct amdgpu_ring	page;
+ 	bool			burst_nop;
++	uint32_t		aid_id;
+ };
+ 
+ struct amdgpu_sdma_ras {
+@@ -66,6 +67,7 @@ struct amdgpu_sdma {
+ 	struct amdgpu_irq_src	srbm_write_irq;
+ 
+ 	int			num_instances;
++	int			num_inst_per_aid;
+ 	uint32_t                    srbm_soft_reset;
+ 	bool			has_page_queue;
+ 	struct ras_common_if	*ras_if;
 -- 
 2.39.2
 
