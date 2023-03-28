@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD6D46CC58B
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Mar 2023 17:15:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61AC96CC5D3
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Mar 2023 17:18:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 650E510E920;
-	Tue, 28 Mar 2023 15:15:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68F6210E0E0;
+	Tue, 28 Mar 2023 15:18:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2069.outbound.protection.outlook.com [40.107.244.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BAF410E91B
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 15:14:56 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2051.outbound.protection.outlook.com [40.107.93.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 957B010E0E0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 15:18:41 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dZFZOGQ80FsK9k4tXeejqwk3h6LYnB4dqONAphW1YsZGbcgUa+TPzfXfeGKVFVdWxwcVyqew3hKZxR+/bTKUaf7m/uH6WRPLPhP+8ooYIuFvHOt7SzoKwdbGQbe6VHHwtzCdYZIGX/4gfKmVGx2dbDfxF6jye9CyXLPNpnjoXPjgTz+nYNhmu+miPhhIm7SmgEi6uOkavh8sOCryPBEyxCwLYPhLecL19ccN9K+Np8Ga3aa51eJwL1Fd95mgbnEm/EUL/+6ozWajtNyCxQtElTnc4f/MM8GhxnnCIK8XBFFOUMKLXSsQhUs+XfScu0r2z6H5SxI8EwWZnFESmAYJAw==
+ b=Yw9+b9sWCQ3gn1hefqfx2JMuIhnIqyiGN+RxdCeIgwg4jwRWJC66jbIyIlK5vFrdZWXLmompu/QLohfMuy6/MVhTbW+nC6e59Mwt3iomIvtvmEoQfVLi269h608dcGqclNzOOuPnXVZ4XAvIPNEpEQmyjj5JMW7eaMbTK4fPQ5FODhX/dv3K/H+gBmY0mtgECYRafohhv1en/vZJHCaXzyOFoNvfb1M+45PsY3vog+XL+Ql6OW1Uvqr0/nd68Rw5+/GQ/wXVW75O+oq29fK0L9aRqwUHzyNwjeHsdqixmFMPSxZAgt+4+emGz/vZ62CTq3m79p4huCZUfrKWZb050A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7/slm5R2FZOHhfXwtMIFMUgeovCa5UOvyeG8Klv1k6Y=;
- b=BwzremH+sFMoArWfnuWR8Ev7nptnwRnMxhg8U9BHME9E33OXEmGF+7/HmxprkIteFwPWzjwyTFEhsF/TZY+TX5Cdr2do9Urt+zWT0F5+CJNSy7vKdVbRyrSCTJmY2OHUG3gvMH7EmrJP1S5d+0BuKy9BfsaOT3fM1LoS+gfs8FcgdSQHp4ZtB3n1LZi5DOt2V9NlD4f6M46QYcuF8xwiqkE77slALr7M1Z00agAYCEvgh9p0Zht03mADIwTwIKLZVFxnBj6tPU0XR6XQzFozci4AO5iESTAzEDdvrZsPEDkqVMSWznQ+11Ty1sw6n3ISztwN00U5r0wxtM9JdMmcLA==
+ bh=asyPwQLLqBXOn1BYeCG/t15RjBg9183p7xhfjbyf9+I=;
+ b=lhMkmI2dAhfkrYRajCufQdyTSDy6VynFbei+51hBFtcv2ghjnM17UBepnfHBjahsI76t3fAyt2q+7PAGcJmhu6CTv6SAkgDzG+4XKjENRkNkCYZmGNccT0OshvG6G2g8DTJpEfThdZDvxayudAxnF8AnQcETU5XU8RT/huihadL+liz7nwWCXMZUYsmUqCa3KCfI7RtQ/3ew+4tNt6aYinvWidg0b6uql1tGsYFBtdaDNuVajqqek+UDd3FqzRW2CUI2BhDoVXXQ3bq745QLfJFZGebyE9DoZo6AekzAZHLttul45SVINzKhfeUKLYc+h2TWXYi1vqNeRtXBaBvIsg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7/slm5R2FZOHhfXwtMIFMUgeovCa5UOvyeG8Klv1k6Y=;
- b=qZ/wUAnyYV/XThgthO5Um3Jd77TAidMvtJmJtV9fHbpZeJrzm36LmtGrFJZxQBUaIaoHR/q/7RQyGFwJ54cIJXDwbY9YUGOFkR1CpcsidO5hT9ID3UYulE8RbT33ilk0uSf/w3mEK151nZPtKymhKzkBoYlslPj90u1l8uUR9I0=
-Received: from BLAP220CA0030.NAMP220.PROD.OUTLOOK.COM (2603:10b6:208:32c::35)
- by DS0PR12MB8246.namprd12.prod.outlook.com (2603:10b6:8:de::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Tue, 28 Mar
- 2023 15:14:54 +0000
-Received: from BL02EPF000100D1.namprd05.prod.outlook.com
- (2603:10b6:208:32c:cafe::91) by BLAP220CA0030.outlook.office365.com
- (2603:10b6:208:32c::35) with Microsoft SMTP Server (version=TLS1_2,
+ bh=asyPwQLLqBXOn1BYeCG/t15RjBg9183p7xhfjbyf9+I=;
+ b=wXoxb0INkxAUeMF46QjvPya33b1yMcblasQ+a2DqXc8c0qQwbgB4cpbm57nrOjWdujNb0+o+aQ9+T5LjpexUZKTYVMwsJAhXy0pyc1dB5ehny6alI8AQp03yVGxwsFi66Eymvv4UvRhlvfuUYk5oNtr6jeqhnfpEnLZFWP+IJss=
+Received: from BN0PR08CA0025.namprd08.prod.outlook.com (2603:10b6:408:142::10)
+ by IA1PR12MB6459.namprd12.prod.outlook.com (2603:10b6:208:3a9::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.26; Tue, 28 Mar
+ 2023 15:18:39 +0000
+Received: from BL02EPF000100D0.namprd05.prod.outlook.com
+ (2603:10b6:408:142:cafe::99) by BN0PR08CA0025.outlook.office365.com
+ (2603:10b6:408:142::10) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.43 via Frontend
- Transport; Tue, 28 Mar 2023 15:14:54 +0000
+ Transport; Tue, 28 Mar 2023 15:18:39 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,21 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL02EPF000100D1.mail.protection.outlook.com (10.167.241.205) with Microsoft
+ BL02EPF000100D0.mail.protection.outlook.com (10.167.241.204) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6178.30 via Frontend Transport; Tue, 28 Mar 2023 15:14:54 +0000
+ 15.20.6178.30 via Frontend Transport; Tue, 28 Mar 2023 15:18:38 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 28 Mar
- 2023 10:14:53 -0500
+ 2023 10:18:38 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 32/32] drm/amdkfd: add gpu compute cores io links for gfx9.4.3
-Date: Tue, 28 Mar 2023 11:13:44 -0400
-Message-ID: <20230328151344.1934291-32-alexander.deucher@amd.com>
+Subject: [PATCH 1/6] drm/amdkfd: Fix SDMA in CPX mode
+Date: Tue, 28 Mar 2023 11:18:19 -0400
+Message-ID: <20230328151824.1934600-1-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230328151344.1934291-1-alexander.deucher@amd.com>
-References: <20230328151344.1934291-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -68,26 +66,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF000100D1:EE_|DS0PR12MB8246:EE_
-X-MS-Office365-Filtering-Correlation-Id: 71baed4b-19e3-4e44-4e13-08db2f9f2fa3
+X-MS-TrafficTypeDiagnostic: BL02EPF000100D0:EE_|IA1PR12MB6459:EE_
+X-MS-Office365-Filtering-Correlation-Id: 53d0746c-2746-42a9-223e-08db2f9fb540
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: R/96nI+OxacuZ8HY+G0DaDbr+tW3aY8GaOu4uNGrrdyI9NeNWvJ6g9UEPHWGwiJs5E5vdcb2spTIL0ADodhJkHprEPyz/eczMofWngNvEYVLM7ZqDo6opuYocgnKGN96SgMN2l2n7Zio/K72OvXazLhT1lwOLexv/LnbKdpyX7RIFpFSOQB3HGabifCMWF+44/QaxEAGt6GGwKrZ3ofRDBOSALn4A7bdUkncOGXH0PHdi+YdtDty2Uc0+oI1LJPTGdkBY6e964urW+4mGzywQAc3AK76JCXEh0DrVdrtuWDyUTCI4OhSZxboXlXIpFZt341rRb2CB4vO3mgLL/tiWuyHHLtkfieBS7/b1+9mzbgg2+cRhWP4RUGluDbmCd07isyqQT+hnVFv3IjKUybxJCG0D4pXSFMf6GNI/OURCxHAIJR09wtkyhFCh/azozkCoagdjFoHpOQFirjxx2AX2k2e79HlxUzFdXyQ8sRE6Cj4BBLGnhmAz11lmTNURYOmJE6Hy6q8SkPT73Vd72oW0USHSoTgSIyE0O6YO4bQ5NIneWEqH/HhO1/uuQU2UQKbGXdjut14B9L6H/Q4G/pL0cS/jyFOzP/xULOVH21aQjvNK1gcXCxzXWHGpj+SXIukiV0LxkkWeYZ6/iLAuiUTV0xio2HOBMv7RmhIywsQYOwHcsqD8gjr8LRYW7mRNxci9UY10tccVKskLwGKhJmzAM25I14IPsprL2ny60o+roA=
+X-Microsoft-Antispam-Message-Info: y0pZRnyr1JAQRPV0FBmYYU3UwCLnbjqUVl7q9Vz9wRiXI57w5b8GbVptWWcCN7lHZQ6ZcGSxvawtNa0vloHE/mpzNVDAZQtIAzhDAr2MpADblzN33139jSvKoTwMn2s/I3ebn1GdTbxKpU+k5M5Nbxwn3Y6YD3rWcorglhHmTCMoLak76JkhhnEM4fhNs2IrDB8wLX1vFPLwVUZUc1ZuolPM4rY1Ob6W6cZHNHa+3wLyFUwBeKYNCFhjhOZwymkCRB3PDYahkeUVuLeueyi8f+w8qDp9ipN8YX4xCUsJuRJRch7YwZMDHuF4lsqz8Hfv5eyv/uJNj6psJTsVErFsl54D0EXqCU5At+NyNdj8OkvxTBAp+XNxN2ZHGJlkf8EAwd+vGqMoWTr3TvGPmV9tVoXI3/pjlfqhw+MpojKrNrlNjwvbZ/7G+/ITF1AIB7HHRpsdcZOe2R6Bm0tXHM2nFzJj0mGBsAq4UsM/vgVUeu4SkNFZyWjtYmU/vz7vG5dPKlcn7mgIrS3i+zTA30Jk3dQT4DuR+G/hb+yAHIPgGHkt3O3jFgvopeu0kWDnGPErHGl5K+ydjWodqPxOOAKFxSJxSf17N/TkTeC8di9FiJDFo+sGEVmSn04HbRsEh9fSeLKepuZo5Jyl0XqJFQrO0i4tuTLcu+vX9i+cBx/S68gtJ990iJuKzeuHpBp7TJZ2ggil1ipxvsHBPLZXV1uLrRbLDfFYmNemrjgc/BuvGLY=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(136003)(39860400002)(376002)(346002)(396003)(451199021)(40470700004)(36840700001)(46966006)(7696005)(40480700001)(4326008)(6916009)(41300700001)(36860700001)(40460700003)(70586007)(70206006)(316002)(478600001)(8676002)(54906003)(2906002)(83380400001)(16526019)(5660300002)(2616005)(82310400005)(186003)(336012)(426003)(86362001)(47076005)(36756003)(82740400003)(6666004)(1076003)(26005)(81166007)(8936002)(356005)(36900700001);
+ SFS:(13230028)(4636009)(39860400002)(396003)(346002)(136003)(376002)(451199021)(40470700004)(36840700001)(46966006)(316002)(40460700003)(54906003)(36756003)(86362001)(5660300002)(40480700001)(82310400005)(6916009)(82740400003)(16526019)(1076003)(356005)(336012)(83380400001)(2616005)(81166007)(8936002)(36860700001)(2906002)(6666004)(426003)(70206006)(186003)(41300700001)(4326008)(70586007)(7696005)(478600001)(47076005)(8676002)(26005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 15:14:54.8125 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71baed4b-19e3-4e44-4e13-08db2f9f2fa3
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 15:18:38.9929 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 53d0746c-2746-42a9-223e-08db2f9fb540
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF000100D1.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF000100D0.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8246
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6459
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,187 +97,87 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Felix Kuehling <felix.kuehling@amd.com>, Jonathan Kim <jonathan.kim@amd.com>
+Cc: Amber Lin <Amber.Lin@amd.com>, Mukul Joshi <mukul.joshi@amd.com>, Alex
+ Deucher <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jonathan Kim <jonathan.kim@amd.com>
+From: Mukul Joshi <mukul.joshi@amd.com>
 
-The PSP TA will only provide xGMI topology info for links between GPU
-sockets so links between partitions from different sockets will be
-hardcoded as 3 xGMI hops with 1 hops weighted as xGMI and 2 hops
-weighted with a new intra-socket weight to indicate the longest
-possible distance.
+When creating a user-mode SDMA queue, CP FW expects
+driver to use/set virtual SDMA engine id in MAP_QUEUES
+packet instead of using the physical SDMA engine id.
+Each partition node's virtual SDMA number should start
+from 0. However, when allocating doorbell for the queue,
+KFD needs to allocate the doorbell from doorbell space
+corresponding to the physical SDMA engine id, otherwise
+the hwardware will not see the doorbell press.
 
-If the link between a partition and the CPU is non-PCIe, then assume
-the CPU (CCDs) is located within the same socket as the partition
-and represent the link as an intra-socket weighted single hop XGMI link
-with memory bandwidth.
-
-Links between partitions within a single socket will be abstracted as
-single hop xGMI links weighted with the new intra-socket weight and
-will have memory bandwidth.
-
-Finally, use the unused function bits in the location ID to represent the
-coordinates of the compute partition within its socket.
-
-A follow on patch will resolve the requirement for GPU socket xGMI
-link representation sometime later.
-
-Signed-off-by: Jonathan Kim <jonathan.kim@amd.com>
-Reviewed-by: Felix Kuehling <felix.kuehling@amd.com>
+Signed-off-by: Mukul Joshi <mukul.joshi@amd.com>
+Reviewed-by: Amber Lin <Amber.Lin@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_crat.c     | 49 ++++++++++++++++-------
- drivers/gpu/drm/amd/amdkfd/kfd_crat.h     |  2 +-
- drivers/gpu/drm/amd/amdkfd/kfd_device.c   |  8 ++++
- drivers/gpu/drm/amd/amdkfd/kfd_topology.c |  4 ++
- 4 files changed, 47 insertions(+), 16 deletions(-)
+ .../drm/amd/amdkfd/kfd_device_queue_manager.c | 19 +++++++++++++++----
+ 1 file changed, 15 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-index f5aebba31e88..dc93a67257e1 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-@@ -1166,7 +1166,7 @@ static int kfd_parse_subtype_iolink(struct crat_subtype_iolink *iolink,
- 			if (props->iolink_type == CRAT_IOLINK_TYPE_PCIEXPRESS)
- 				props->weight = 20;
- 			else if (props->iolink_type == CRAT_IOLINK_TYPE_XGMI)
--				props->weight = 15 * iolink->num_hops_xgmi;
-+				props->weight = iolink->weight_xgmi;
- 			else
- 				props->weight = node_distance(id_from, id_to);
- 
-@@ -1972,6 +1972,9 @@ static void kfd_find_numa_node_in_srat(struct kfd_node *kdev)
- }
- #endif
- 
-+#define KFD_CRAT_INTRA_SOCKET_WEIGHT	13
-+#define KFD_CRAT_XGMI_WEIGHT		15
-+
- /* kfd_fill_gpu_direct_io_link - Fill in direct io link from GPU
-  * to its NUMA node
-  *	@avail_size: Available size in the memory
-@@ -2003,6 +2006,12 @@ static int kfd_fill_gpu_direct_io_link_to_cpu(int *avail_size,
- 	 * TODO: Fill-in other fields of iolink subtype
- 	 */
- 	if (kdev->adev->gmc.xgmi.connected_to_cpu) {
-+		bool ext_cpu = KFD_GC_VERSION(kdev) != IP_VERSION(9, 4, 3);
-+		int mem_bw = 819200, weight = ext_cpu ? KFD_CRAT_XGMI_WEIGHT :
-+							KFD_CRAT_INTRA_SOCKET_WEIGHT;
-+		uint32_t bandwidth = ext_cpu ? amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(
-+							kdev->adev, NULL, true) : mem_bw;
-+
- 		/*
- 		 * with host gpu xgmi link, host can access gpu memory whether
- 		 * or not pcie bar type is large, so always create bidirectional
-@@ -2010,14 +2019,9 @@ static int kfd_fill_gpu_direct_io_link_to_cpu(int *avail_size,
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+index 62838d84b6f1..527a2e0eef81 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+@@ -363,7 +363,16 @@ static int allocate_doorbell(struct qcm_process_device *qpd,
  		 */
- 		sub_type_hdr->flags |= CRAT_IOLINK_FLAGS_BI_DIRECTIONAL;
- 		sub_type_hdr->io_interface_type = CRAT_IOLINK_TYPE_XGMI;
--		sub_type_hdr->num_hops_xgmi = 1;
--		if (KFD_GC_VERSION(kdev) == IP_VERSION(9, 4, 2)) {
--			sub_type_hdr->minimum_bandwidth_mbs =
--					amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(
--							kdev->adev, NULL, true);
--			sub_type_hdr->maximum_bandwidth_mbs =
--					sub_type_hdr->minimum_bandwidth_mbs;
--		}
-+		sub_type_hdr->weight_xgmi = weight;
-+		sub_type_hdr->minimum_bandwidth_mbs = bandwidth;
-+		sub_type_hdr->maximum_bandwidth_mbs = bandwidth;
- 	} else {
- 		sub_type_hdr->io_interface_type = CRAT_IOLINK_TYPE_PCIEXPRESS;
- 		sub_type_hdr->minimum_bandwidth_mbs =
-@@ -2050,6 +2054,8 @@ static int kfd_fill_gpu_xgmi_link_to_gpu(int *avail_size,
- 			uint32_t proximity_domain_from,
- 			uint32_t proximity_domain_to)
- {
-+	bool use_ta_info = kdev->kfd->num_nodes == 1;
-+
- 	*avail_size -= sizeof(struct crat_subtype_iolink);
- 	if (*avail_size < 0)
- 		return -ENOMEM;
-@@ -2064,12 +2070,25 @@ static int kfd_fill_gpu_xgmi_link_to_gpu(int *avail_size,
- 	sub_type_hdr->io_interface_type = CRAT_IOLINK_TYPE_XGMI;
- 	sub_type_hdr->proximity_domain_from = proximity_domain_from;
- 	sub_type_hdr->proximity_domain_to = proximity_domain_to;
--	sub_type_hdr->num_hops_xgmi =
--		amdgpu_amdkfd_get_xgmi_hops_count(kdev->adev, peer_kdev->adev);
--	sub_type_hdr->maximum_bandwidth_mbs =
--		amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(kdev->adev, peer_kdev->adev, false);
--	sub_type_hdr->minimum_bandwidth_mbs = sub_type_hdr->maximum_bandwidth_mbs ?
--		amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(kdev->adev, NULL, true) : 0;
-+
-+	if (use_ta_info) {
-+		sub_type_hdr->weight_xgmi = KFD_CRAT_XGMI_WEIGHT *
-+			amdgpu_amdkfd_get_xgmi_hops_count(kdev->adev, peer_kdev->adev);
-+		sub_type_hdr->maximum_bandwidth_mbs =
-+			amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(kdev->adev,
-+							peer_kdev->adev, false);
-+		sub_type_hdr->minimum_bandwidth_mbs = sub_type_hdr->maximum_bandwidth_mbs ?
-+			amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(kdev->adev, NULL, true) : 0;
-+	} else {
-+		bool is_single_hop = kdev->kfd == peer_kdev->kfd;
-+		int weight = is_single_hop ? KFD_CRAT_INTRA_SOCKET_WEIGHT :
-+			(2 * KFD_CRAT_INTRA_SOCKET_WEIGHT) + KFD_CRAT_XGMI_WEIGHT;
-+		int mem_bw = 819200;
-+
-+		sub_type_hdr->weight_xgmi = weight;
-+		sub_type_hdr->maximum_bandwidth_mbs = is_single_hop ? mem_bw : 0;
-+		sub_type_hdr->minimum_bandwidth_mbs = is_single_hop ? mem_bw : 0;
-+	}
  
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.h b/drivers/gpu/drm/amd/amdkfd/kfd_crat.h
-index 3d0e533b93b9..fc719389b5d6 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.h
-@@ -275,7 +275,7 @@ struct crat_subtype_iolink {
- 	uint32_t	maximum_bandwidth_mbs;
- 	uint32_t	recommended_transfer_size;
- 	uint8_t		reserved2[CRAT_IOLINK_RESERVED_LENGTH - 1];
--	uint8_t		num_hops_xgmi;
-+	uint8_t		weight_xgmi;
- };
- 
- /*
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-index 1b5a4928eb74..9ed32c1b2f5b 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-@@ -694,6 +694,14 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
- 	if (amdgpu_use_xgmi_p2p)
- 		kfd->hive_id = kfd->adev->gmc.xgmi.hive_id;
- 
-+	/*
-+	 * For GFX9.4.3, the KFD abstracts all partitions within a socket as
-+	 * xGMI connected in the topology so assign a unique hive id per
-+	 * device based on the pci device location if device is in PCIe mode.
-+	 */
-+	if (!kfd->hive_id && (KFD_GC_VERSION(kfd) == IP_VERSION(9, 4, 3)) && kfd->num_nodes > 1)
-+		kfd->hive_id = pci_dev_id(kfd->adev->pdev);
+ 		uint32_t *idx_offset = dev->kfd->shared_resources.sdma_doorbell_idx;
+-		uint32_t valid_id = idx_offset[q->properties.sdma_engine_id]
 +
- 	kfd->noretry = kfd->adev->gmc.noretry;
++		/*
++		 * q->properties.sdma_engine_id corresponds to the virtual
++		 * sdma engine number. However, for doorbell allocation,
++		 * we need the physical sdma engine id in order to get the
++		 * correct doorbell offset.
++		 */
++		uint32_t valid_id = idx_offset[qpd->dqm->dev->node_id *
++					       get_num_all_sdma_engines(qpd->dqm) +
++					       q->properties.sdma_engine_id]
+ 						+ (q->properties.sdma_queue_id & 1)
+ 						* KFD_QUEUE_DOORBELL_MIRROR_OFFSET
+ 						+ (q->properties.sdma_queue_id >> 1);
+@@ -1388,7 +1397,6 @@ static int allocate_sdma_queue(struct device_queue_manager *dqm,
+ 		}
  
- 	/* If CRAT is broken, won't set iommu enabled */
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-index 6d958bf0fe90..d3e70341dfad 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-@@ -1926,7 +1926,11 @@ int kfd_topology_add_device(struct kfd_node *gpu)
- 	dev->node_props.capability |=
- 		((dev->gpu->adev->rev_id << HSA_CAP_ASIC_REVISION_SHIFT) &
- 			HSA_CAP_ASIC_REVISION_MASK);
-+
- 	dev->node_props.location_id = pci_dev_id(gpu->adev->pdev);
-+	if (KFD_GC_VERSION(dev->gpu->kfd) == IP_VERSION(9, 4, 3))
-+		dev->node_props.location_id |= dev->gpu->node_id;
-+
- 	dev->node_props.domain = pci_domain_nr(gpu->adev->pdev->bus);
- 	dev->node_props.max_engine_clk_fcompute =
- 		amdgpu_amdkfd_get_max_engine_clock_in_mhz(dev->gpu->adev);
+ 		q->properties.sdma_engine_id =
+-			dqm->dev->node_id * get_num_all_sdma_engines(dqm) +
+ 			q->sdma_id % kfd_get_num_sdma_engines(dqm->dev);
+ 		q->properties.sdma_queue_id = q->sdma_id /
+ 				kfd_get_num_sdma_engines(dqm->dev);
+@@ -1418,7 +1426,6 @@ static int allocate_sdma_queue(struct device_queue_manager *dqm,
+ 		 * PCIe-optimized ones
+ 		 */
+ 		q->properties.sdma_engine_id =
+-			dqm->dev->node_id * get_num_all_sdma_engines(dqm) +
+ 			kfd_get_num_sdma_engines(dqm->dev) +
+ 			q->sdma_id % kfd_get_num_xgmi_sdma_engines(dqm->dev);
+ 		q->properties.sdma_queue_id = q->sdma_id /
+@@ -2486,6 +2493,7 @@ int dqm_debugfs_hqds(struct seq_file *m, void *data)
+ 	int pipe, queue;
+ 	int r = 0, xcc;
+ 	uint32_t inst;
++	uint32_t sdma_engine_start;
+ 
+ 	if (!dqm->sched_running) {
+ 		seq_puts(m, " Device is stopped\n");
+@@ -2530,7 +2538,10 @@ int dqm_debugfs_hqds(struct seq_file *m, void *data)
+ 		}
+ 	}
+ 
+-	for (pipe = 0; pipe < get_num_all_sdma_engines(dqm); pipe++) {
++	sdma_engine_start = dqm->dev->node_id * get_num_all_sdma_engines(dqm);
++	for (pipe = sdma_engine_start;
++	     pipe < (sdma_engine_start + get_num_all_sdma_engines(dqm));
++	     pipe++) {
+ 		for (queue = 0;
+ 		     queue < dqm->dev->kfd->device_info.num_sdma_queues_per_engine;
+ 		     queue++) {
 -- 
 2.39.2
 
