@@ -2,40 +2,40 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81DAC6CC593
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Mar 2023 17:15:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD6D46CC58B
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Mar 2023 17:15:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33CB110E929;
-	Tue, 28 Mar 2023 15:15:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 650E510E920;
+	Tue, 28 Mar 2023 15:15:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2076.outbound.protection.outlook.com [40.107.93.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A404B10E917
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 15:14:58 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2069.outbound.protection.outlook.com [40.107.244.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BAF410E91B
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 15:14:56 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cwenSJh7SbJ5bYoyYFuio+rxaCd40rpFvm8Q4zlP4P0Wd2PiVZhjP/7tFloH4O/Ezg9rhJp4W7vfPDbPofXN+mbJOXLzi26LpE1G8S9n9oegNsdmlusxrbq1Ky1R8rKoSvzxd2Gvo5b4rVEwVvxSikuQna15k73jL3ZPqluIMcmgYDg/3bWCY9WRdLfp9HxToxR9RmG5XiVTGIw9MOFHRCJK8yAc+wlttnS4PEDDIT3vuX1+PwidQgb4UqdwB5lAJT7iUg2HEuXb+U6bCs+jBaiJjVkUlE5Pi00yJqWSJ9xvZ4XupbTPKtnb7Tm7Zly1iilfreBlDbnKkyTxAHaCHw==
+ b=dZFZOGQ80FsK9k4tXeejqwk3h6LYnB4dqONAphW1YsZGbcgUa+TPzfXfeGKVFVdWxwcVyqew3hKZxR+/bTKUaf7m/uH6WRPLPhP+8ooYIuFvHOt7SzoKwdbGQbe6VHHwtzCdYZIGX/4gfKmVGx2dbDfxF6jye9CyXLPNpnjoXPjgTz+nYNhmu+miPhhIm7SmgEi6uOkavh8sOCryPBEyxCwLYPhLecL19ccN9K+Np8Ga3aa51eJwL1Fd95mgbnEm/EUL/+6ozWajtNyCxQtElTnc4f/MM8GhxnnCIK8XBFFOUMKLXSsQhUs+XfScu0r2z6H5SxI8EwWZnFESmAYJAw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=k5qIOR0ogusbhy7woGMl2bXWByQU+RgiJde6r/GO9PE=;
- b=bIYoAuuXJLVzH34TnRoQfFOjc+n+SslcYJd8J/RiTXC+4or9aqDaz0I5doPlhxjJEde45tC8bBcb2L0IHe1sgySbfnkoq7mLJYvzZg+zX6w+wvSec9kcb49kaOyd/ijYq9N+omImsltcRbruEPwh9dWZ/cQKBmBgDoi9WfC7Abvn/OyBAbuMrkYnAfqfLS0CH0RF1jQkkSbsvtf3mIAeQ3fRz2CEYqhI2d+ksmgZXrBXXbnEEIOz4pwxNINppbXnukbQEiORK3mlk4EpPwIKDPBTriLK0keEvw7acnGTtk3jwRfDi44ccQCpRoenP6xYhxg/SZmmYvPW1vtW4mlEZg==
+ bh=7/slm5R2FZOHhfXwtMIFMUgeovCa5UOvyeG8Klv1k6Y=;
+ b=BwzremH+sFMoArWfnuWR8Ev7nptnwRnMxhg8U9BHME9E33OXEmGF+7/HmxprkIteFwPWzjwyTFEhsF/TZY+TX5Cdr2do9Urt+zWT0F5+CJNSy7vKdVbRyrSCTJmY2OHUG3gvMH7EmrJP1S5d+0BuKy9BfsaOT3fM1LoS+gfs8FcgdSQHp4ZtB3n1LZi5DOt2V9NlD4f6M46QYcuF8xwiqkE77slALr7M1Z00agAYCEvgh9p0Zht03mADIwTwIKLZVFxnBj6tPU0XR6XQzFozci4AO5iESTAzEDdvrZsPEDkqVMSWznQ+11Ty1sw6n3ISztwN00U5r0wxtM9JdMmcLA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k5qIOR0ogusbhy7woGMl2bXWByQU+RgiJde6r/GO9PE=;
- b=1ciH/oyLGKvOx/OlTq0r61cbWjGdFB9bPUCt3aSsRCo1kFOCru7vJrCy063UntJz8ajqZZz0bHsdJFm4JuRQIQ7RiPXvhLWM6muWUN9/kWs7U1iDyp0/qDk6vawP+nxw6l1SOfsJJh9PxLGeu+FplDaem0RXCQu0mXW08UIxbxA=
-Received: from BLAP220CA0018.NAMP220.PROD.OUTLOOK.COM (2603:10b6:208:32c::23)
- by SJ0PR12MB8139.namprd12.prod.outlook.com (2603:10b6:a03:4e8::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.41; Tue, 28 Mar
+ bh=7/slm5R2FZOHhfXwtMIFMUgeovCa5UOvyeG8Klv1k6Y=;
+ b=qZ/wUAnyYV/XThgthO5Um3Jd77TAidMvtJmJtV9fHbpZeJrzm36LmtGrFJZxQBUaIaoHR/q/7RQyGFwJ54cIJXDwbY9YUGOFkR1CpcsidO5hT9ID3UYulE8RbT33ilk0uSf/w3mEK151nZPtKymhKzkBoYlslPj90u1l8uUR9I0=
+Received: from BLAP220CA0030.NAMP220.PROD.OUTLOOK.COM (2603:10b6:208:32c::35)
+ by DS0PR12MB8246.namprd12.prod.outlook.com (2603:10b6:8:de::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Tue, 28 Mar
  2023 15:14:54 +0000
 Received: from BL02EPF000100D1.namprd05.prod.outlook.com
- (2603:10b6:208:32c:cafe::54) by BLAP220CA0018.outlook.office365.com
- (2603:10b6:208:32c::23) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:208:32c:cafe::91) by BLAP220CA0030.outlook.office365.com
+ (2603:10b6:208:32c::35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.43 via Frontend
  Transport; Tue, 28 Mar 2023 15:14:54 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -51,13 +51,12 @@ Received: from SATLEXMB04.amd.com (165.204.84.17) by
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 28 Mar
- 2023 10:14:52 -0500
+ 2023 10:14:53 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 31/32] drm/amdgpu: introduce new doorbell assignment table for
- GC 9.4.3
-Date: Tue, 28 Mar 2023 11:13:43 -0400
-Message-ID: <20230328151344.1934291-31-alexander.deucher@amd.com>
+Subject: [PATCH 32/32] drm/amdkfd: add gpu compute cores io links for gfx9.4.3
+Date: Tue, 28 Mar 2023 11:13:44 -0400
+Message-ID: <20230328151344.1934291-32-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230328151344.1934291-1-alexander.deucher@amd.com>
 References: <20230328151344.1934291-1-alexander.deucher@amd.com>
@@ -69,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF000100D1:EE_|SJ0PR12MB8139:EE_
-X-MS-Office365-Filtering-Correlation-Id: 34fb0910-0184-4720-16d9-08db2f9f2f4b
+X-MS-TrafficTypeDiagnostic: BL02EPF000100D1:EE_|DS0PR12MB8246:EE_
+X-MS-Office365-Filtering-Correlation-Id: 71baed4b-19e3-4e44-4e13-08db2f9f2fa3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UDjgmPB+t3jI9mwt/Ha9R3da6BpHSpwWPhxhcnr4UkXPWF2Eh95SqN+kkgm29i6SPEq74DpegQreq7QaRv/kfUqBYkJvC58BPco9AOvdcXQrhobVmt6/XM67H/oGSxkGcmfQdNiYTbQjBMesxDBwOrMHNSveYGployTGF4zNXqn4MlInVShSgx/+2H3cMpHgLREubcacu8xbFYZurYA6X+8RpmJnV5WCrpLIGkLMpfAgy0i2B5TrpFSV7KkDRLnjdq8PjcbebIQmWeR0XztRd0UpvbSHM3zDJfgq6BXVPFKASK3r1hllllg6rx6Dmu3jftmBGSY47/zB6GFl1TrYdniWmlrpNe2fbiPD3tveXI6LVkn6VXjjAIr6L737/RlL24VNFtzWsvX+TpULEfZ/BosPYWd4HKqTIq05dxmGv5wrArD7h/yzTQhKoLgy80vpVk/xIGVpk6x6tafZYCEHffA3vaIgv2YA6vEY083h5ANnEwFY1uRcLV63flXpvIsHz0zj0oBwZUHwj+iX6TlBqlNntuN9wDeZj/9mHU/T2RzAbyMStzJS3gFPSYg/ifZ5HZM0bNg3E5MrSdPqjfm4InLF+HT9cnmX7tYC27j1aSFcGE+9fnDzJF3A5MYUG1YRAey2GjqcJ5DBBP0JzIYytXIBnDvVOrTLElvxGJLtx2hJYUnaIHCOmlb/ZKe7ZlLlT5Pk3R9bbr+DEYEwTptLtmZMTgKy8evuT1DSjgsdOCQ=
+X-Microsoft-Antispam-Message-Info: R/96nI+OxacuZ8HY+G0DaDbr+tW3aY8GaOu4uNGrrdyI9NeNWvJ6g9UEPHWGwiJs5E5vdcb2spTIL0ADodhJkHprEPyz/eczMofWngNvEYVLM7ZqDo6opuYocgnKGN96SgMN2l2n7Zio/K72OvXazLhT1lwOLexv/LnbKdpyX7RIFpFSOQB3HGabifCMWF+44/QaxEAGt6GGwKrZ3ofRDBOSALn4A7bdUkncOGXH0PHdi+YdtDty2Uc0+oI1LJPTGdkBY6e964urW+4mGzywQAc3AK76JCXEh0DrVdrtuWDyUTCI4OhSZxboXlXIpFZt341rRb2CB4vO3mgLL/tiWuyHHLtkfieBS7/b1+9mzbgg2+cRhWP4RUGluDbmCd07isyqQT+hnVFv3IjKUybxJCG0D4pXSFMf6GNI/OURCxHAIJR09wtkyhFCh/azozkCoagdjFoHpOQFirjxx2AX2k2e79HlxUzFdXyQ8sRE6Cj4BBLGnhmAz11lmTNURYOmJE6Hy6q8SkPT73Vd72oW0USHSoTgSIyE0O6YO4bQ5NIneWEqH/HhO1/uuQU2UQKbGXdjut14B9L6H/Q4G/pL0cS/jyFOzP/xULOVH21aQjvNK1gcXCxzXWHGpj+SXIukiV0LxkkWeYZ6/iLAuiUTV0xio2HOBMv7RmhIywsQYOwHcsqD8gjr8LRYW7mRNxci9UY10tccVKskLwGKhJmzAM25I14IPsprL2ny60o+roA=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(346002)(396003)(136003)(39860400002)(376002)(451199021)(46966006)(36840700001)(40470700004)(6916009)(356005)(40480700001)(36756003)(40460700003)(86362001)(82310400005)(8676002)(70586007)(70206006)(316002)(336012)(8936002)(5660300002)(2616005)(41300700001)(16526019)(6666004)(186003)(7696005)(478600001)(54906003)(26005)(1076003)(4326008)(36860700001)(81166007)(47076005)(426003)(2906002)(82740400003)(83380400001)(36900700001);
+ SFS:(13230028)(4636009)(136003)(39860400002)(376002)(346002)(396003)(451199021)(40470700004)(36840700001)(46966006)(7696005)(40480700001)(4326008)(6916009)(41300700001)(36860700001)(40460700003)(70586007)(70206006)(316002)(478600001)(8676002)(54906003)(2906002)(83380400001)(16526019)(5660300002)(2616005)(82310400005)(186003)(336012)(426003)(86362001)(47076005)(36756003)(82740400003)(6666004)(1076003)(26005)(81166007)(8936002)(356005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 15:14:54.2344 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 34fb0910-0184-4720-16d9-08db2f9f2f4b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 15:14:54.8125 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 71baed4b-19e3-4e44-4e13-08db2f9f2fa3
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL02EPF000100D1.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB8139
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8246
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,166 +99,187 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Le Ma <le.ma@amd.com>,
- Lijo Lazar <lijo.lazar@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Felix Kuehling <felix.kuehling@amd.com>, Jonathan Kim <jonathan.kim@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Le Ma <le.ma@amd.com>
+From: Jonathan Kim <jonathan.kim@amd.com>
 
-Four basic reasons as below to do the change:
-  1. number of ring expand a lot on GC 9.4.3, and adjustment on old
-     assignment cannot make each ring in a continuous doorbell space.
-  2. the SDMA doorbell index should not exceed 0x1FF on SDMA 4.2.2 due to
-     regDOORBELLx_CTRL_ENTRY.BIF_DOORBELLx_RANGE_OFFSET_ENTRY field width.
-  3. re-design the doorbell assignment and unify the calculation as
-     "start + ring/inst id" will make the code much concise.
-  4. only defining the START/END makes the table look simple
+The PSP TA will only provide xGMI topology info for links between GPU
+sockets so links between partitions from different sockets will be
+hardcoded as 3 xGMI hops with 1 hops weighted as xGMI and 2 hops
+weighted with a new intra-socket weight to indicate the longest
+possible distance.
 
-v2: (Lijo)
-  1. replace name
-  2. use num_inst_per_aid/sdma_doorbell_range instead of hardcoding
+If the link between a partition and the CPU is non-PCIe, then assume
+the CPU (CCDs) is located within the same socket as the partition
+and represent the link as an intra-socket weighted single hop XGMI link
+with memory bandwidth.
 
-Signed-off-by: Le Ma <le.ma@amd.com>
-Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
+Links between partitions within a single socket will be abstracted as
+single hop xGMI links weighted with the new intra-socket weight and
+will have memory bandwidth.
+
+Finally, use the unused function bits in the location ID to represent the
+coordinates of the compute partition within its socket.
+
+A follow on patch will resolve the requirement for GPU socket xGMI
+link representation sometime later.
+
+Signed-off-by: Jonathan Kim <jonathan.kim@amd.com>
+Reviewed-by: Felix Kuehling <felix.kuehling@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell.h | 32 +++++++++++++++++---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c      |  6 +---
- drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c      |  8 +----
- drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c     | 19 ++----------
- 4 files changed, 33 insertions(+), 32 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_crat.c     | 49 ++++++++++++++++-------
+ drivers/gpu/drm/amd/amdkfd/kfd_crat.h     |  2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_device.c   |  8 ++++
+ drivers/gpu/drm/amd/amdkfd/kfd_topology.c |  4 ++
+ 4 files changed, 47 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell.h
-index 613bc035f2e4..93cbb307db93 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_doorbell.h
-@@ -54,7 +54,7 @@ struct amdgpu_doorbell_index {
- 	uint32_t gfx_ring1;
- 	uint32_t gfx_userqueue_start;
- 	uint32_t gfx_userqueue_end;
--	uint32_t sdma_engine[8];
-+	uint32_t sdma_engine[16];
- 	uint32_t mes_ring0;
- 	uint32_t mes_ring1;
- 	uint32_t ih;
-@@ -78,9 +78,6 @@ struct amdgpu_doorbell_index {
- 	};
- 	uint32_t first_non_cp;
- 	uint32_t last_non_cp;
--	uint32_t xcc1_kiq_start;
--	uint32_t xcc1_mec_ring0_start;
--	uint32_t aid1_sdma_start;
- 	uint32_t max_assignment;
- 	/* Per engine SDMA doorbell size in dword */
- 	uint32_t sdma_doorbell_range;
-@@ -307,6 +304,33 @@ typedef enum _AMDGPU_DOORBELL64_ASSIGNMENT
- 	AMDGPU_DOORBELL64_INVALID                 = 0xFFFF
- } AMDGPU_DOORBELL64_ASSIGNMENT;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+index f5aebba31e88..dc93a67257e1 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+@@ -1166,7 +1166,7 @@ static int kfd_parse_subtype_iolink(struct crat_subtype_iolink *iolink,
+ 			if (props->iolink_type == CRAT_IOLINK_TYPE_PCIEXPRESS)
+ 				props->weight = 20;
+ 			else if (props->iolink_type == CRAT_IOLINK_TYPE_XGMI)
+-				props->weight = 15 * iolink->num_hops_xgmi;
++				props->weight = iolink->weight_xgmi;
+ 			else
+ 				props->weight = node_distance(id_from, id_to);
  
-+typedef enum _AMDGPU_DOORBELL_ASSIGNMENT_LAYOUT1
-+{
-+	/* KIQ: 0~7 for maximum 8 XCD */
-+	AMDGPU_DOORBELL_LAYOUT1_KIQ_START               = 0x000,
-+	AMDGPU_DOORBELL_LAYOUT1_HIQ                     = 0x008,
-+	AMDGPU_DOORBELL_LAYOUT1_DIQ                     = 0x009,
-+	/* Compute: 0x0A ~ 0x49 */
-+	AMDGPU_DOORBELL_LAYOUT1_MEC_RING_START          = 0x00A,
-+	AMDGPU_DOORBELL_LAYOUT1_MEC_RING_END            = 0x049,
-+	AMDGPU_DOORBELL_LAYOUT1_USERQUEUE_START         = 0x04A,
-+	AMDGPU_DOORBELL_LAYOUT1_USERQUEUE_END           = 0x0C9,
-+	/* SDMA: 0x100 ~ 0x19F */
-+	AMDGPU_DOORBELL_LAYOUT1_sDMA_ENGINE_START       = 0x100,
-+	AMDGPU_DOORBELL_LAYOUT1_sDMA_ENGINE_END         = 0x19F,
-+	/* IH: 0x1A0 ~ 0x1AF */
-+	AMDGPU_DOORBELL_LAYOUT1_IH                      = 0x1A0,
-+	/* VCN: 0x1B0 ~ 0x1C2 */
-+	AMDGPU_DOORBELL_LAYOUT1_VCN_START               = 0x1B0,
-+	AMDGPU_DOORBELL_LAYOUT1_VCN_END                 = 0x1C2,
+@@ -1972,6 +1972,9 @@ static void kfd_find_numa_node_in_srat(struct kfd_node *kdev)
+ }
+ #endif
+ 
++#define KFD_CRAT_INTRA_SOCKET_WEIGHT	13
++#define KFD_CRAT_XGMI_WEIGHT		15
 +
-+	AMDGPU_DOORBELL_LAYOUT1_FIRST_NON_CP            = AMDGPU_DOORBELL_LAYOUT1_sDMA_ENGINE_START,
-+	AMDGPU_DOORBELL_LAYOUT1_LAST_NON_CP             = AMDGPU_DOORBELL_LAYOUT1_VCN_END,
+ /* kfd_fill_gpu_direct_io_link - Fill in direct io link from GPU
+  * to its NUMA node
+  *	@avail_size: Available size in the memory
+@@ -2003,6 +2006,12 @@ static int kfd_fill_gpu_direct_io_link_to_cpu(int *avail_size,
+ 	 * TODO: Fill-in other fields of iolink subtype
+ 	 */
+ 	if (kdev->adev->gmc.xgmi.connected_to_cpu) {
++		bool ext_cpu = KFD_GC_VERSION(kdev) != IP_VERSION(9, 4, 3);
++		int mem_bw = 819200, weight = ext_cpu ? KFD_CRAT_XGMI_WEIGHT :
++							KFD_CRAT_INTRA_SOCKET_WEIGHT;
++		uint32_t bandwidth = ext_cpu ? amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(
++							kdev->adev, NULL, true) : mem_bw;
 +
-+	AMDGPU_DOORBELL_LAYOUT1_MAX_ASSIGNMENT          = 0x1C2,
-+	AMDGPU_DOORBELL_LAYOUT1_INVALID                 = 0xFFFF
-+} AMDGPU_DOORBELL_ASSIGNMENT_LAYOUT1;
+ 		/*
+ 		 * with host gpu xgmi link, host can access gpu memory whether
+ 		 * or not pcie bar type is large, so always create bidirectional
+@@ -2010,14 +2019,9 @@ static int kfd_fill_gpu_direct_io_link_to_cpu(int *avail_size,
+ 		 */
+ 		sub_type_hdr->flags |= CRAT_IOLINK_FLAGS_BI_DIRECTIONAL;
+ 		sub_type_hdr->io_interface_type = CRAT_IOLINK_TYPE_XGMI;
+-		sub_type_hdr->num_hops_xgmi = 1;
+-		if (KFD_GC_VERSION(kdev) == IP_VERSION(9, 4, 2)) {
+-			sub_type_hdr->minimum_bandwidth_mbs =
+-					amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(
+-							kdev->adev, NULL, true);
+-			sub_type_hdr->maximum_bandwidth_mbs =
+-					sub_type_hdr->minimum_bandwidth_mbs;
+-		}
++		sub_type_hdr->weight_xgmi = weight;
++		sub_type_hdr->minimum_bandwidth_mbs = bandwidth;
++		sub_type_hdr->maximum_bandwidth_mbs = bandwidth;
+ 	} else {
+ 		sub_type_hdr->io_interface_type = CRAT_IOLINK_TYPE_PCIEXPRESS;
+ 		sub_type_hdr->minimum_bandwidth_mbs =
+@@ -2050,6 +2054,8 @@ static int kfd_fill_gpu_xgmi_link_to_gpu(int *avail_size,
+ 			uint32_t proximity_domain_from,
+ 			uint32_t proximity_domain_to)
+ {
++	bool use_ta_info = kdev->kfd->num_nodes == 1;
 +
- u32 amdgpu_mm_rdoorbell(struct amdgpu_device *adev, u32 index);
- void amdgpu_mm_wdoorbell(struct amdgpu_device *adev, u32 index, u32 v);
- u64 amdgpu_mm_rdoorbell64(struct amdgpu_device *adev, u32 index);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-index d48f80469533..77a42f73c3de 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-@@ -315,11 +315,7 @@ int amdgpu_gfx_kiq_init_ring(struct amdgpu_device *adev,
- 	ring->use_doorbell = true;
- 	ring->xcc_id = xcc_id;
- 	ring->vm_hub = AMDGPU_GFXHUB(xcc_id);
--	if (xcc_id >= 1)
--		ring->doorbell_index = (adev->doorbell_index.xcc1_kiq_start +
--					xcc_id - 1) << 1;
--	else
--		ring->doorbell_index = adev->doorbell_index.kiq << 1;
-+	ring->doorbell_index = (adev->doorbell_index.kiq + xcc_id) << 1;
+ 	*avail_size -= sizeof(struct crat_subtype_iolink);
+ 	if (*avail_size < 0)
+ 		return -ENOMEM;
+@@ -2064,12 +2070,25 @@ static int kfd_fill_gpu_xgmi_link_to_gpu(int *avail_size,
+ 	sub_type_hdr->io_interface_type = CRAT_IOLINK_TYPE_XGMI;
+ 	sub_type_hdr->proximity_domain_from = proximity_domain_from;
+ 	sub_type_hdr->proximity_domain_to = proximity_domain_to;
+-	sub_type_hdr->num_hops_xgmi =
+-		amdgpu_amdkfd_get_xgmi_hops_count(kdev->adev, peer_kdev->adev);
+-	sub_type_hdr->maximum_bandwidth_mbs =
+-		amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(kdev->adev, peer_kdev->adev, false);
+-	sub_type_hdr->minimum_bandwidth_mbs = sub_type_hdr->maximum_bandwidth_mbs ?
+-		amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(kdev->adev, NULL, true) : 0;
++
++	if (use_ta_info) {
++		sub_type_hdr->weight_xgmi = KFD_CRAT_XGMI_WEIGHT *
++			amdgpu_amdkfd_get_xgmi_hops_count(kdev->adev, peer_kdev->adev);
++		sub_type_hdr->maximum_bandwidth_mbs =
++			amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(kdev->adev,
++							peer_kdev->adev, false);
++		sub_type_hdr->minimum_bandwidth_mbs = sub_type_hdr->maximum_bandwidth_mbs ?
++			amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(kdev->adev, NULL, true) : 0;
++	} else {
++		bool is_single_hop = kdev->kfd == peer_kdev->kfd;
++		int weight = is_single_hop ? KFD_CRAT_INTRA_SOCKET_WEIGHT :
++			(2 * KFD_CRAT_INTRA_SOCKET_WEIGHT) + KFD_CRAT_XGMI_WEIGHT;
++		int mem_bw = 819200;
++
++		sub_type_hdr->weight_xgmi = weight;
++		sub_type_hdr->maximum_bandwidth_mbs = is_single_hop ? mem_bw : 0;
++		sub_type_hdr->minimum_bandwidth_mbs = is_single_hop ? mem_bw : 0;
++	}
  
- 	r = amdgpu_gfx_kiq_acquire(adev, ring, xcc_id);
- 	if (r)
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-index bd375e472823..d103832630f3 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-@@ -822,13 +822,7 @@ static int gfx_v9_4_3_compute_ring_init(struct amdgpu_device *adev, int ring_id,
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.h b/drivers/gpu/drm/amd/amdkfd/kfd_crat.h
+index 3d0e533b93b9..fc719389b5d6 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.h
+@@ -275,7 +275,7 @@ struct crat_subtype_iolink {
+ 	uint32_t	maximum_bandwidth_mbs;
+ 	uint32_t	recommended_transfer_size;
+ 	uint8_t		reserved2[CRAT_IOLINK_RESERVED_LENGTH - 1];
+-	uint8_t		num_hops_xgmi;
++	uint8_t		weight_xgmi;
+ };
  
- 	ring->ring_obj = NULL;
- 	ring->use_doorbell = true;
--	if (xcc_id >= 1)
--		ring->doorbell_index =
--				(adev->doorbell_index.xcc1_mec_ring0_start +
--				ring_id - adev->gfx.num_compute_rings) << 1;
--	else
--		ring->doorbell_index =
--				(adev->doorbell_index.mec_ring0 + ring_id) << 1;
-+	ring->doorbell_index = (adev->doorbell_index.mec_ring0 + ring_id) << 1;
- 	ring->eop_gpu_addr = adev->gfx.mec.hpd_eop_gpu_addr
- 				+ (ring_id * GFX9_MEC_HPD_SIZE);
- 	ring->vm_hub = AMDGPU_GFXHUB(xcc_id);
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-index d3c7f9a43ef1..9b53174925f8 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-@@ -1310,14 +1310,7 @@ static int sdma_v4_4_2_sw_init(void *handle)
- 				ring->use_doorbell?"true":"false");
+ /*
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+index 1b5a4928eb74..9ed32c1b2f5b 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+@@ -694,6 +694,14 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
+ 	if (amdgpu_use_xgmi_p2p)
+ 		kfd->hive_id = kfd->adev->gmc.xgmi.hive_id;
  
- 		/* doorbell size is 2 dwords, get DWORD offset */
--		if (aid_id > 0)
--			ring->doorbell_index =
--				(adev->doorbell_index.aid1_sdma_start << 1)
--				+ adev->doorbell_index.sdma_doorbell_range
--				* (i - adev->sdma.num_inst_per_aid);
--		else
--			ring->doorbell_index =
--				adev->doorbell_index.sdma_engine[i] << 1;
-+		ring->doorbell_index = adev->doorbell_index.sdma_engine[i] << 1;
- 		ring->vm_hub = AMDGPU_MMHUB0(aid_id);
++	/*
++	 * For GFX9.4.3, the KFD abstracts all partitions within a socket as
++	 * xGMI connected in the topology so assign a unique hive id per
++	 * device based on the pci device location if device is in PCIe mode.
++	 */
++	if (!kfd->hive_id && (KFD_GC_VERSION(kfd) == IP_VERSION(9, 4, 3)) && kfd->num_nodes > 1)
++		kfd->hive_id = pci_dev_id(kfd->adev->pdev);
++
+ 	kfd->noretry = kfd->adev->gmc.noretry;
  
- 		sprintf(ring->name, "sdma%d.%d", aid_id,
-@@ -1336,14 +1329,8 @@ static int sdma_v4_4_2_sw_init(void *handle)
- 			/* doorbell index of page queue is assigned right after
- 			 * gfx queue on the same instance
- 			 */
--			if (aid_id > 0)
--				ring->doorbell_index =
--					((adev->doorbell_index.aid1_sdma_start + 1) << 1)
--					+ adev->doorbell_index.sdma_doorbell_range
--					* (i - adev->sdma.num_inst_per_aid);
--			else
--				ring->doorbell_index =
--					(adev->doorbell_index.sdma_engine[i] + 1) << 1;
-+			ring->doorbell_index =
-+				(adev->doorbell_index.sdma_engine[i] + 1) << 1;
- 			ring->vm_hub = AMDGPU_MMHUB0(aid_id);
- 
- 			sprintf(ring->name, "page%d.%d", aid_id,
+ 	/* If CRAT is broken, won't set iommu enabled */
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+index 6d958bf0fe90..d3e70341dfad 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+@@ -1926,7 +1926,11 @@ int kfd_topology_add_device(struct kfd_node *gpu)
+ 	dev->node_props.capability |=
+ 		((dev->gpu->adev->rev_id << HSA_CAP_ASIC_REVISION_SHIFT) &
+ 			HSA_CAP_ASIC_REVISION_MASK);
++
+ 	dev->node_props.location_id = pci_dev_id(gpu->adev->pdev);
++	if (KFD_GC_VERSION(dev->gpu->kfd) == IP_VERSION(9, 4, 3))
++		dev->node_props.location_id |= dev->gpu->node_id;
++
+ 	dev->node_props.domain = pci_domain_nr(gpu->adev->pdev->bus);
+ 	dev->node_props.max_engine_clk_fcompute =
+ 		amdgpu_amdkfd_get_max_engine_clock_in_mhz(dev->gpu->adev);
 -- 
 2.39.2
 
