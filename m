@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83D6D6CC570
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Mar 2023 17:14:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B92B86CC57B
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Mar 2023 17:14:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BCC910E909;
-	Tue, 28 Mar 2023 15:14:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4922310E90A;
+	Tue, 28 Mar 2023 15:14:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam02on2041.outbound.protection.outlook.com [40.107.96.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1F1510E8FB
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 15:14:15 +0000 (UTC)
+ (mail-sn1nam02on2078.outbound.protection.outlook.com [40.107.96.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB2DB10E908
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 15:14:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XSH0AuqIrizmPi9fQNsm8gROpU9zwrkaOIhRsS//q4j8gVj7mx9Zon73NbV9abBOCWD9JRLKIqqxyBp2dMzwZ609dfRoiUok5jVBOwfuHAvPKXNPfXOuxp0wfxnxK2Z46O+nUr3+VxjMK/iW01bE45x4XKCGC7GMfrDzTrmWlcfot9AfcPwUJ24inJrqWCgt3+8YxeOEicJ2RZNC3H5go8/urqnrsc10liRe8JpuXXkyM97wmeHI4HjUbxOI0Z+ICgQjVUbYWfkF2VAhGcHBak8/F18lN3zCx39z3F9eIJmPhLehMCLjgpMUB+6njaLFnLmpJ4zESYEF+icAfkrf+w==
+ b=O0FsMB9fVkMgQb7+VH0UU0kVmPtWcMuKYFYtFgDyR8V9FhxafwYWKvovygx8OhZovQ9pOMq/xguEHS9caHhdMXW0hD1tvIleRGHSsIV950WdBPC5RCIkqufIVdsQ+n5icxEgOQl3FtqxoRmMhXuKA8aLJqCYdGDM56iTaAcFQ/SRkg+fD0PaOV1ruFwblGiY3LkXwDFpjrjhcjgJM25F5aX/IkFZMxAkXSV06DBR+Auu0d5fmH6Sz3+FQWS1M9IdQfDfXECYcNtfpjZPKIwiWM2NKJXu2OkahbSDqTnCFy4nDGDO+ru0wzpqKlaC+eEnu00i+A28JFI1grEr3N8R0w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+D8LzhfoxvvAE9nQNvLIRdhgKDOgugQOtMx05h8c+/I=;
- b=ABHbiVidIeicAURZuX9kmj3hHvd8lJNitonFtK++MWhRqvVm+szgjyO3qOXc2NdZU7uM+Vw+/B1kHY29cOZH9fSvBvw25zMqlaCvkeA34mVrazkt5SUp326LQUgSLW+1rk8F61sszIqG27MKXF6alzmHGfSvDfUHYtt7rH54VbYTaCV2JteyzkS4t2Vk0GcGPckDAs1LV0+LvLoIClGUMWLXmJruaOFJRMU9Eno+uaRA4baj3WlD/5Ss9AzapzL66TBXA3AGKBZiK3kSRLHAgjGKrd3SMSy9411pz3afrMQywJBzJYCeZ89r9JL/THHy6LazcdD3GY4UWl4MD9dI8Q==
+ bh=bdOzfPGsdt5APsnYkzqv+b6s0JQe2mgSMDYNYBus/Oo=;
+ b=jJdASRVlzHMbSiV3KM/h21c5ESXMN0jqKb8K2VqV0+ju59R6BIZJdL8R+7km8gCnwVTUmjRuzA+QbMZ3zEIXxJPNLnjE2es2BDvR26oSVGZdAcV/dfH8MaYDz/Q3iNT2Q4zCw2EFn74Ub3nct8iadZrhqv8GjDive2nexHteBvTA0tBmzBpNFXD2VtKDo6cllrLPnBpZDL7o08s3fsu8WH4lGdfVQbuPSbxmtdUysUB9Ky4GPBkT3IVImad64kHdxYFrDNdt1Fo+hdxn/eij0oqLB+i4xKDktEbreo0suhi9Ur8kP2DFa0UCRY1vgPRJBnCw7Gl3O7h+b9CC4W2BsQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+D8LzhfoxvvAE9nQNvLIRdhgKDOgugQOtMx05h8c+/I=;
- b=EQJKtwF6jWD68mZ52hclqwzGIW9Kquxx10LhOJ/LvxaKMorzbYdzvuKfgYQI5EaDq1u1mO4vxUHX5yTPSG4bea75vXwhfQubqzQkh4/CcoMPOXS5UhT62HMHnFYQO3tSoUVr59wDlTxs1ZOalc2Ti+VvKvhHbDB9Hpc68f7UCCU=
-Received: from BN0PR02CA0034.namprd02.prod.outlook.com (2603:10b6:408:e5::9)
- by SA1PR12MB8161.namprd12.prod.outlook.com (2603:10b6:806:330::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.32; Tue, 28 Mar
- 2023 15:14:12 +0000
-Received: from BL02EPF000100D3.namprd05.prod.outlook.com
- (2603:10b6:408:e5:cafe::2e) by BN0PR02CA0034.outlook.office365.com
- (2603:10b6:408:e5::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.19 via Frontend
- Transport; Tue, 28 Mar 2023 15:14:12 +0000
+ bh=bdOzfPGsdt5APsnYkzqv+b6s0JQe2mgSMDYNYBus/Oo=;
+ b=xK9lKBFvv56P173GTBLrP5vSm/LfskDRLbwausdV6yIuPBLIkr5PhWjggKkIK40aBnp5wqZOO6feptHfJa/rWc2AU9I2oWakyACC4W0ue65gjfCJ2bJpjoycAk806WRmuV0QYGOXqNqDxWPYEJQjYXUbkzZGpiPF7tKKULaU9Os=
+Received: from BN9PR03CA0069.namprd03.prod.outlook.com (2603:10b6:408:fc::14)
+ by PH8PR12MB7207.namprd12.prod.outlook.com (2603:10b6:510:225::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.38; Tue, 28 Mar
+ 2023 15:14:36 +0000
+Received: from BN8NAM11FT022.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:fc:cafe::4d) by BN9PR03CA0069.outlook.office365.com
+ (2603:10b6:408:fc::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.43 via Frontend
+ Transport; Tue, 28 Mar 2023 15:14:36 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,18 +45,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL02EPF000100D3.mail.protection.outlook.com (10.167.241.207) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6178.30 via Frontend Transport; Tue, 28 Mar 2023 15:14:12 +0000
+ BN8NAM11FT022.mail.protection.outlook.com (10.13.176.112) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6254.9 via Frontend Transport; Tue, 28 Mar 2023 15:14:36 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 28 Mar
- 2023 10:14:09 -0500
+ 2023 10:14:10 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 07/32] drm/amdkfd: Add spatial partitioning support in KFD
-Date: Tue, 28 Mar 2023 11:13:19 -0400
-Message-ID: <20230328151344.1934291-7-alexander.deucher@amd.com>
+Subject: [PATCH 08/32] drm/amdkfd: Update MQD management on multi XCC setup
+Date: Tue, 28 Mar 2023 11:13:20 -0400
+Message-ID: <20230328151344.1934291-8-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230328151344.1934291-1-alexander.deucher@amd.com>
 References: <20230328151344.1934291-1-alexander.deucher@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF000100D3:EE_|SA1PR12MB8161:EE_
-X-MS-Office365-Filtering-Correlation-Id: 53837d43-7c1f-4f5f-4687-08db2f9f1668
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT022:EE_|PH8PR12MB7207:EE_
+X-MS-Office365-Filtering-Correlation-Id: 51faf9d2-ddc7-40a6-4889-08db2f9f248a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: h1DC5gwH7uK2Fhgk4Lnhn3OPXAuci39BUdF3XxBXUWcJMlTSwPg1PrfDJ3sGDFMCX7EZ27XN/UB0Rp9A1V8F2jqpNelTMuKGHmsnLx5QA723jZeuRws68EqE/XIYDS9RtYvgCKoZg4jcJkMAAyZK4CBh/sOSSPzwUAyB1kcdptEDhNqWsS2tFFTg1WSj6R/72jbzTmhU45UkCKVui3TFN9i3VpICno0lriKYnvLHMUZQDUAoBbpxXlmPtBJVqOrBUPFpXChBaneW1Mwp4yh9Yc3yaHbOEDaBAGZwdtscLbYep97FjD9KaNvtvz468y7JPMudSkF+H3hrBQSitwEJKQ2gOeWXIdEa+zc/aNHeS0inrlwTHRPItaFEOxibrct2K2GCE4e2Uer+tWVQCe3XVeRYufqD4TCqgQ9j3cT9/UoXcZ/X1TiCQ5lKaCtyohujJnn5uZYOIi3MnxLWLHjgVbNOFSvsv4uU4OJdWsIaepNxYhh+cYjQuI1QJ/yidKOb9WjvhR7ewEijttbSNOmRNGa09l1B6gTnANLEXhDvs4sCVJvIFMT7CqCuhje1Uuhw2oN9rpbL7NwaIgKiaEGMsa99HAGMtA5qxqsVxqZUkoRtUgNZVT6CjZQt39PB0LgvpLK1v3fZggzSXOlAa2om5vdWkhH1KLyYa2hTFDObfVteZu9/d2YKTp2UI46DBEZDjL6yMKFNxmjkg6fqdr6rrGqp3UA1m2ZIZ4SQLdOT8hg=
+X-Microsoft-Antispam-Message-Info: WPFTHKMnoz8fJxi84Ra/ELkr7mO3KZspyUFNLqWouk5itmvSXpmSn0D9Ik0ExM+R99hvdTrVQrCxqeeB22FysCtukOlfVxQ7PPGbaeRHi3V0tlLgWso4bBhm27n+jtrggMpufjnwiMVa2MPhK5xRkoeNSYvNYrV5hP35bF8PiV9JsagV6YRD9yMtf8h6mZV66DXeRDsjqPQsdw2MhEGX6xQna+yL1Dil+5APcsSfLCZUJ3f2enIuLWMa8h8nhJ/yThgXfo1Q+HLhOQThZX6e7rJ0UYl61UwQFZqJKmZeINK5+1aOPjENQl+GyoGFySmF5tkplrJWDsTmFyKmYFFLQcgtTPs9hUV6Bf+maUS5oNRv7UgAwpx92F492swjEPrTGFQF5XSfOdbhspKl6RsqK8JatNt/JJLjPI6mAnaNluech7Y2//daUDf7TGzCCi4lZmvLUTV6x7t9uZ9XM1DxTxL9mo/3gBiBJEFwKUt8gC86tcm7/cwU6eccQF5g1SvVFCnYPHv8coIbkfUQBp/cV0OCYtHQGy478pNKCUJ9gXug8FDa4Bc3LzKwfTifdSv162DXbdlCKwFjzkkXU0FSiqlb1aRwTGXRnq7IfOgBoO0OK7JIwCOc0ufwsU5MZcxO262txpF9O7RnA3MOlz69XaTPhYqFedXRn/DXvff6mCijz1Zf5W3MHbPB2fskOuhoIXBErTMNQs0zrgX+kGbZAJrSydzl3I08xKNNJ5IhbCQ=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(346002)(376002)(396003)(136003)(39860400002)(451199021)(36840700001)(40470700004)(46966006)(40460700003)(82740400003)(6916009)(70206006)(4326008)(36860700001)(8676002)(316002)(70586007)(8936002)(356005)(81166007)(41300700001)(30864003)(1076003)(5660300002)(26005)(186003)(16526019)(7696005)(2616005)(83380400001)(47076005)(426003)(478600001)(336012)(6666004)(54906003)(40480700001)(86362001)(2906002)(36756003)(82310400005)(36900700001);
+ SFS:(13230028)(4636009)(376002)(136003)(346002)(39860400002)(396003)(451199021)(40470700004)(46966006)(36840700001)(6666004)(7696005)(70206006)(70586007)(86362001)(40480700001)(2906002)(6916009)(83380400001)(316002)(478600001)(36756003)(15650500001)(54906003)(82740400003)(40460700003)(16526019)(36860700001)(41300700001)(8676002)(26005)(82310400005)(2616005)(81166007)(5660300002)(30864003)(47076005)(4326008)(426003)(8936002)(1076003)(356005)(186003)(336012)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 15:14:12.4826 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 53837d43-7c1f-4f5f-4687-08db2f9f1668
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 15:14:36.2092 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 51faf9d2-ddc7-40a6-4889-08db2f9f248a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF000100D3.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT022.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8161
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7207
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,658 +106,737 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Mukul Joshi <mukul.joshi@amd.com>
 
-This patch introduces multi-partition support in KFD.
-This patch includes:
-- Support for maximum 8 spatial partitions in KFD.
-- Initialize one HIQ per partition.
-- Management of VMID range depending on partition mode.
-- Management of doorbell aperture space between all
-  partitions.
-- Each partition does its own queue management, interrupt
-  handling, SMI event reporting.
-- IOMMU, if enabled with multiple partitions, will only work
-  on first partition.
-- SPM is only supported on the first partition.
-- Currently, there is no support for resetting individual
-  partitions. All partitions will reset together.
+Update MQD management for both HIQ and user-mode compute
+queues on a multi XCC setup. MQDs needs to be allocated,
+initialized, loaded and destroyed for each XCC in the KFD
+node.
 
 Signed-off-by: Mukul Joshi <mukul.joshi@amd.com>
+Signed-off-by: Amber Lin <Amber.Lin@amd.com>
 Tested-by: Amber Lin <Amber.Lin@amd.com>
 Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_device.c       | 214 +++++++++++++-----
- .../drm/amd/amdkfd/kfd_device_queue_manager.c |   2 +-
- drivers/gpu/drm/amd/amdkfd/kfd_iommu.c        |  13 +-
- drivers/gpu/drm/amd/amdkfd/kfd_migrate.c      |   8 +-
- drivers/gpu/drm/amd/amdkfd/kfd_priv.h         |  16 +-
- drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c   |  24 +-
- drivers/gpu/drm/amd/amdkfd/kfd_topology.c     |   8 +-
- 7 files changed, 208 insertions(+), 77 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       |  51 ++-
+ .../drm/amd/amdkfd/kfd_device_queue_manager.c |   3 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c  |  28 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h  |   8 +
+ .../gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c  |   3 +
+ .../gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c  |   3 +
+ .../gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c   | 292 ++++++++++++++++--
+ .../gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c   |   3 +
+ .../amd/amdkfd/kfd_process_queue_manager.c    |  16 +-
+ drivers/gpu/drm/amd/include/v9_structs.h      |  30 +-
+ 10 files changed, 380 insertions(+), 57 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-index b0231ee08ea3..363114edb3c0 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-@@ -559,23 +559,27 @@ static int kfd_init_node(struct kfd_node *node)
- 	return err;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+index ce34b73d05bc..a26e9009d4e6 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@ -804,6 +804,41 @@ static void amdgpu_ttm_tt_unpin_userptr(struct ttm_device *bdev,
+ 	sg_free_table(ttm->sg);
  }
  
--static void kfd_cleanup_node(struct kfd_dev *kfd)
-+static void kfd_cleanup_nodes(struct kfd_dev *kfd, unsigned int num_nodes)
- {
--	struct kfd_node *knode = kfd->node;
--
--	device_queue_manager_uninit(knode->dqm);
--	kfd_interrupt_exit(knode);
--	kfd_topology_remove_device(knode);
--	if (knode->gws)
--		amdgpu_amdkfd_free_gws(knode->adev, knode->gws);
--	kfree(knode);
--	kfd->node = NULL;
-+	struct kfd_node *knode;
-+	unsigned int i;
-+
-+	for (i = 0; i < num_nodes; i++) {
-+		knode = kfd->nodes[i];
-+		device_queue_manager_uninit(knode->dqm);
-+		kfd_interrupt_exit(knode);
-+		kfd_topology_remove_device(knode);
-+		if (knode->gws)
-+			amdgpu_amdkfd_free_gws(knode->adev, knode->gws);
-+		kfree(knode);
-+		kfd->nodes[i] = NULL;
-+	}
- }
- 
- bool kgd2kfd_device_init(struct kfd_dev *kfd,
- 			 const struct kgd2kfd_shared_resources *gpu_resources)
- {
--	unsigned int size, map_process_packet_size;
-+	unsigned int size, map_process_packet_size, i;
- 	struct kfd_node *node;
- 	uint32_t first_vmid_kfd, last_vmid_kfd, vmid_num_kfd;
- 	unsigned int max_proc_per_quantum;
-@@ -588,9 +592,18 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
- 			KGD_ENGINE_SDMA1);
- 	kfd->shared_resources = *gpu_resources;
- 
--	first_vmid_kfd = ffs(gpu_resources->compute_vmid_bitmap)-1;
--	last_vmid_kfd = fls(gpu_resources->compute_vmid_bitmap)-1;
--	vmid_num_kfd = last_vmid_kfd - first_vmid_kfd + 1;
-+	if (kfd->adev->gfx.num_xcd == 0 || kfd->adev->gfx.num_xcd == 1 ||
-+	    kfd->adev->gfx.num_xcc_per_xcp == 0)
-+		kfd->num_nodes = 1;
-+	else
-+		kfd->num_nodes =
-+			kfd->adev->gfx.num_xcd/kfd->adev->gfx.num_xcc_per_xcp;
-+	if (kfd->num_nodes == 0) {
-+		dev_err(kfd_device,
-+			"KFD num nodes cannot be 0, GC inst: %d, num_xcc_in_node: %d\n",
-+			kfd->adev->gfx.num_xcd, kfd->adev->gfx.num_xcc_per_xcp);
-+		goto out;
-+	}
- 
- 	/* Allow BIF to recode atomics to PCIe 3.0 AtomicOps.
- 	 * 32 and 64-bit requests are possible and must be
-@@ -609,6 +622,26 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
- 		return false;
- 	}
- 
-+	first_vmid_kfd = ffs(gpu_resources->compute_vmid_bitmap)-1;
-+	last_vmid_kfd = fls(gpu_resources->compute_vmid_bitmap)-1;
-+	vmid_num_kfd = last_vmid_kfd - first_vmid_kfd + 1;
-+
-+	/* For GFX9.4.3, we need special handling for VMIDs depending on
-+	 * partition mode.
-+	 * In CPX mode, the VMID range needs to be shared between XCDs.
-+	 * Additionally, there are 13 VMIDs (3-15) available for KFD. To
-+	 * divide them equally, we change starting VMID to 4 and not use
-+	 * VMID 3.
-+	 * If the VMID range changes for GFX9.4.3, then this code MUST be
-+	 * revisited.
-+	 */
-+	if (KFD_GC_VERSION(kfd) == IP_VERSION(9, 4, 3) &&
-+	    kfd->adev->gfx.partition_mode == AMDGPU_CPX_PARTITION_MODE &&
-+	    kfd->num_nodes != 1) {
-+		vmid_num_kfd /= 2;
-+		first_vmid_kfd = last_vmid_kfd + 1 - vmid_num_kfd*2;
-+	}
-+
- 	/* Verify module parameters regarding mapped process number*/
- 	if (hws_max_conc_proc >= 0)
- 		max_proc_per_quantum = min((u32)hws_max_conc_proc, vmid_num_kfd);
-@@ -674,6 +707,7 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
- 
- 	kfd_cwsr_init(kfd);
- 
-+	/* TODO: Needs to be updated for memory partitioning */
- 	svm_migrate_init(kfd->adev);
- 
- 	/* Allocate the KFD node */
-@@ -692,12 +726,51 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
- 	node->max_proc_per_quantum = max_proc_per_quantum;
- 	atomic_set(&node->sram_ecc_flag, 0);
- 
--	/* Initialize the KFD node */
--	if (kfd_init_node(node)) {
--		dev_err(kfd_device, "Error initializing KFD node\n");
--		goto node_init_error;
-+	dev_info(kfd_device, "Total number of KFD nodes to be created: %d\n",
-+				kfd->num_nodes);
-+	for (i = 0; i < kfd->num_nodes; i++) {
-+		node = kzalloc(sizeof(struct kfd_node), GFP_KERNEL);
-+		if (!node)
-+			goto node_alloc_error;
-+
-+		node->adev = kfd->adev;
-+		node->kfd = kfd;
-+		node->kfd2kgd = kfd->kfd2kgd;
-+		node->vm_info.vmid_num_kfd = vmid_num_kfd;
-+		node->num_xcc_per_node = max(1U, kfd->adev->gfx.num_xcc_per_xcp);
-+		node->start_xcc_id = node->num_xcc_per_node * i;
-+
-+		if (KFD_GC_VERSION(kfd) == IP_VERSION(9, 4, 3) &&
-+		    kfd->adev->gfx.partition_mode == AMDGPU_CPX_PARTITION_MODE &&
-+		    kfd->num_nodes != 1) {
-+			/* For GFX9.4.3 and CPX mode, first XCD gets VMID range
-+			 * 4-9 and second XCD gets VMID range 10-15.
-+			 */
-+
-+			node->vm_info.first_vmid_kfd = (i%2 == 0) ?
-+						first_vmid_kfd :
-+						first_vmid_kfd+vmid_num_kfd;
-+			node->vm_info.last_vmid_kfd = (i%2 == 0) ?
-+						last_vmid_kfd-vmid_num_kfd :
-+						last_vmid_kfd;
-+			node->compute_vmid_bitmap =
-+				((0x1 << (node->vm_info.last_vmid_kfd + 1)) - 1) -
-+				((0x1 << (node->vm_info.first_vmid_kfd)) - 1);
-+		} else {
-+			node->vm_info.first_vmid_kfd = first_vmid_kfd;
-+			node->vm_info.last_vmid_kfd = last_vmid_kfd;
-+			node->compute_vmid_bitmap =
-+				gpu_resources->compute_vmid_bitmap;
-+		}
-+		node->max_proc_per_quantum = max_proc_per_quantum;
-+		atomic_set(&node->sram_ecc_flag, 0);
-+		/* Initialize the KFD node */
-+		if (kfd_init_node(node)) {
-+			dev_err(kfd_device, "Error initializing KFD node\n");
-+			goto node_init_error;
-+		}
-+		kfd->nodes[i] = node;
- 	}
--	kfd->node = node;
- 
- 	if (kfd_resume_iommu(kfd))
- 		goto kfd_resume_iommu_error;
-@@ -714,9 +787,9 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
- 	goto out;
- 
- kfd_resume_iommu_error:
--	kfd_cleanup_node(kfd);
- node_init_error:
- node_alloc_error:
-+	kfd_cleanup_nodes(kfd, i);
- device_iommu_error:
- 	kfd_doorbell_fini(kfd);
- kfd_doorbell_error:
-@@ -734,7 +807,9 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
- void kgd2kfd_device_exit(struct kfd_dev *kfd)
- {
- 	if (kfd->init_complete) {
--		kfd_cleanup_node(kfd);
-+		/* Cleanup KFD nodes */
-+		kfd_cleanup_nodes(kfd, kfd->num_nodes);
-+		/* Cleanup common/shared resources */
- 		kfd_doorbell_fini(kfd);
- 		ida_destroy(&kfd->doorbell_ida);
- 		kfd_gtt_sa_fini(kfd);
-@@ -746,18 +821,23 @@ void kgd2kfd_device_exit(struct kfd_dev *kfd)
- 
- int kgd2kfd_pre_reset(struct kfd_dev *kfd)
- {
--	struct kfd_node *node = kfd->node;
-+	struct kfd_node *node;
-+	int i;
- 
- 	if (!kfd->init_complete)
- 		return 0;
- 
--	kfd_smi_event_update_gpu_reset(node, false);
--
--	node->dqm->ops.pre_reset(node->dqm);
-+	for (i = 0; i < kfd->num_nodes; i++) {
-+		node = kfd->nodes[i];
-+		kfd_smi_event_update_gpu_reset(node, false);
-+		node->dqm->ops.pre_reset(node->dqm);
-+	}
- 
- 	kgd2kfd_suspend(kfd, false);
- 
--	kfd_signal_reset_event(node);
-+	for (i = 0; i < kfd->num_nodes; i++)
-+		kfd_signal_reset_event(kfd->nodes[i]);
-+
- 	return 0;
- }
- 
-@@ -770,19 +850,25 @@ int kgd2kfd_pre_reset(struct kfd_dev *kfd)
- int kgd2kfd_post_reset(struct kfd_dev *kfd)
- {
- 	int ret;
--	struct kfd_node *node = kfd->node;
-+	struct kfd_node *node;
-+	int i;
- 
- 	if (!kfd->init_complete)
- 		return 0;
- 
--	ret = kfd_resume(node);
--	if (ret)
--		return ret;
--	atomic_dec(&kfd_locked);
-+	for (i = 0; i < kfd->num_nodes; i++) {
-+		ret = kfd_resume(kfd->nodes[i]);
-+		if (ret)
-+			return ret;
-+	}
- 
--	atomic_set(&node->sram_ecc_flag, 0);
-+	atomic_dec(&kfd_locked);
- 
--	kfd_smi_event_update_gpu_reset(node, true);
-+	for (i = 0; i < kfd->num_nodes; i++) {
-+		node = kfd->nodes[i];
-+		atomic_set(&node->sram_ecc_flag, 0);
-+		kfd_smi_event_update_gpu_reset(node, true);
-+	}
- 
- 	return 0;
- }
-@@ -794,7 +880,8 @@ bool kfd_is_locked(void)
- 
- void kgd2kfd_suspend(struct kfd_dev *kfd, bool run_pm)
- {
--	struct kfd_node *node = kfd->node;
-+	struct kfd_node *node;
-+	int i;
- 
- 	if (!kfd->init_complete)
- 		return;
-@@ -806,21 +893,25 @@ void kgd2kfd_suspend(struct kfd_dev *kfd, bool run_pm)
- 			kfd_suspend_all_processes();
- 	}
- 
--	node->dqm->ops.stop(node->dqm);
-+	for (i = 0; i < kfd->num_nodes; i++) {
-+		node = kfd->nodes[i];
-+		node->dqm->ops.stop(node->dqm);
-+	}
- 	kfd_iommu_suspend(kfd);
- }
- 
- int kgd2kfd_resume(struct kfd_dev *kfd, bool run_pm)
- {
--	int ret, count;
--	struct kfd_node *node = kfd->node;
-+	int ret, count, i;
- 
- 	if (!kfd->init_complete)
- 		return 0;
- 
--	ret = kfd_resume(node);
--	if (ret)
--		return ret;
-+	for (i = 0; i < kfd->num_nodes; i++) {
-+		ret = kfd_resume(kfd->nodes[i]);
-+		if (ret)
-+			return ret;
-+	}
- 
- 	/* for runtime resume, skip unlocking kfd */
- 	if (!run_pm) {
-@@ -884,10 +975,10 @@ static inline void kfd_queue_work(struct workqueue_struct *wq,
- /* This is called directly from KGD at ISR. */
- void kgd2kfd_interrupt(struct kfd_dev *kfd, const void *ih_ring_entry)
- {
--	uint32_t patched_ihre[KFD_MAX_RING_ENTRY_SIZE];
-+	uint32_t patched_ihre[KFD_MAX_RING_ENTRY_SIZE], i;
- 	bool is_patched = false;
- 	unsigned long flags;
--	struct kfd_node *node = kfd->node;
-+	struct kfd_node *node;
- 
- 	if (!kfd->init_complete)
- 		return;
-@@ -897,16 +988,22 @@ void kgd2kfd_interrupt(struct kfd_dev *kfd, const void *ih_ring_entry)
- 		return;
- 	}
- 
--	spin_lock_irqsave(&node->interrupt_lock, flags);
--
--	if (node->interrupts_active
--	    && interrupt_is_wanted(node, ih_ring_entry,
--				   patched_ihre, &is_patched)
--	    && enqueue_ih_ring_entry(node,
--				     is_patched ? patched_ihre : ih_ring_entry))
--		kfd_queue_work(node->ih_wq, &node->interrupt_work);
-+	for (i = 0; i < kfd->num_nodes; i++) {
-+		node = kfd->nodes[i];
-+		spin_lock_irqsave(&node->interrupt_lock, flags);
-+
-+		if (node->interrupts_active
-+		    && interrupt_is_wanted(node, ih_ring_entry,
-+			    	patched_ihre, &is_patched)
-+		    && enqueue_ih_ring_entry(node,
-+			    	is_patched ? patched_ihre : ih_ring_entry)) {
-+			kfd_queue_work(node->ih_wq, &node->interrupt_work);
-+			spin_unlock_irqrestore(&node->interrupt_lock, flags);
-+				return;
-+		}
-+		spin_unlock_irqrestore(&node->interrupt_lock, flags);
-+	}
- 
--	spin_unlock_irqrestore(&node->interrupt_lock, flags);
- }
- 
- int kgd2kfd_quiesce_mm(struct mm_struct *mm, uint32_t trigger)
-@@ -1173,8 +1270,13 @@ int kfd_gtt_sa_free(struct kfd_node *node, struct kfd_mem_obj *mem_obj)
- 
- void kgd2kfd_set_sram_ecc_flag(struct kfd_dev *kfd)
- {
-+	/*
-+	 * TODO: Currently update SRAM ECC flag for first node.
-+	 * This needs to be updated later when we can
-+	 * identify SRAM ECC error on other nodes also.
-+	 */
- 	if (kfd)
--		atomic_inc(&kfd->node->sram_ecc_flag);
-+		atomic_inc(&kfd->nodes[0]->sram_ecc_flag);
- }
- 
- void kfd_inc_compute_active(struct kfd_node *node)
-@@ -1194,8 +1296,14 @@ void kfd_dec_compute_active(struct kfd_node *node)
- 
- void kgd2kfd_smi_event_throttle(struct kfd_dev *kfd, uint64_t throttle_bitmask)
- {
-+	/*
-+	 * TODO: For now, raise the throttling event only on first node.
-+	 * This will need to change after we are able to determine
-+	 * which node raised the throttling event.
-+	 */
- 	if (kfd && kfd->init_complete)
--		kfd_smi_event_update_thermal_throttling(kfd->node, throttle_bitmask);
-+		kfd_smi_event_update_thermal_throttling(kfd->nodes[0],
-+							throttle_bitmask);
- }
- 
- /* kfd_get_num_sdma_engines returns the number of PCIe optimized SDMA and
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index 34977d89f01c..6ee17100c333 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -1426,7 +1426,7 @@ static int set_sched_resources(struct device_queue_manager *dqm)
- 	int i, mec;
- 	struct scheduling_resources res;
- 
--	res.vmid_mask = dqm->dev->kfd->shared_resources.compute_vmid_bitmap;
-+	res.vmid_mask = dqm->dev->compute_vmid_bitmap;
- 
- 	res.queue_mask = 0;
- 	for (i = 0; i < KGD_MAX_QUEUES; ++i) {
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_iommu.c b/drivers/gpu/drm/amd/amdkfd/kfd_iommu.c
-index 6eee9a0944f3..808ee010520a 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_iommu.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_iommu.c
-@@ -121,6 +121,12 @@ int kfd_iommu_bind_process_to_device(struct kfd_process_device *pdd)
- 		return -EINVAL;
- 	}
- 
-+	if (!kfd_is_first_node(dev)) {
-+		dev_warn_once(kfd_device,
-+				"IOMMU supported only on first node\n");
-+		return 0;
-+	}
-+
- 	err = amd_iommu_bind_pasid(dev->adev->pdev, p->pasid, p->lead_thread);
- 	if (!err)
- 		pdd->bound = PDD_BOUND;
-@@ -138,7 +144,8 @@ void kfd_iommu_unbind_process(struct kfd_process *p)
- 	int i;
- 
- 	for (i = 0; i < p->n_pdds; i++)
--		if (p->pdds[i]->bound == PDD_BOUND)
-+		if ((p->pdds[i]->bound == PDD_BOUND) &&
-+		    (kfd_is_first_node((p->pdds[i]->dev))))
- 			amd_iommu_unbind_pasid(p->pdds[i]->dev->adev->pdev,
- 					       p->pasid);
- }
-@@ -281,7 +288,7 @@ void kfd_iommu_suspend(struct kfd_dev *kfd)
- 	if (!kfd->use_iommu_v2)
- 		return;
- 
--	kfd_unbind_processes_from_device(kfd->node);
-+	kfd_unbind_processes_from_device(kfd->nodes[0]);
- 
- 	amd_iommu_set_invalidate_ctx_cb(kfd->adev->pdev, NULL);
- 	amd_iommu_set_invalid_ppr_cb(kfd->adev->pdev, NULL);
-@@ -312,7 +319,7 @@ int kfd_iommu_resume(struct kfd_dev *kfd)
- 	amd_iommu_set_invalid_ppr_cb(kfd->adev->pdev,
- 				     iommu_invalid_ppr_cb);
- 
--	err = kfd_bind_processes_to_device(kfd->node);
-+	err = kfd_bind_processes_to_device(kfd->nodes[0]);
- 	if (err) {
- 		amd_iommu_set_invalidate_ctx_cb(kfd->adev->pdev, NULL);
- 		amd_iommu_set_invalid_ppr_cb(kfd->adev->pdev, NULL);
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-index 1e187677c90a..5f4dc2a45bd0 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-@@ -423,7 +423,7 @@ svm_migrate_vma_to_vram(struct amdgpu_device *adev, struct svm_range *prange,
- 
- 	kfd_smi_event_migration_start(adev->kfd.dev, p->lead_thread->pid,
- 				      start >> PAGE_SHIFT, end >> PAGE_SHIFT,
--				      0, adev->kfd.dev->node->id, prange->prefetch_loc,
-+				      0, adev->kfd.dev->nodes[0]->id, prange->prefetch_loc,
- 				      prange->preferred_loc, trigger);
- 
- 	r = migrate_vma_setup(&migrate);
-@@ -456,7 +456,7 @@ svm_migrate_vma_to_vram(struct amdgpu_device *adev, struct svm_range *prange,
- 
- 	kfd_smi_event_migration_end(adev->kfd.dev, p->lead_thread->pid,
- 				    start >> PAGE_SHIFT, end >> PAGE_SHIFT,
--				    0, adev->kfd.dev->node->id, trigger);
-+				    0, adev->kfd.dev->nodes[0]->id, trigger);
- 
- 	svm_range_dma_unmap(adev->dev, scratch, 0, npages);
- 	svm_range_free_dma_mappings(prange);
-@@ -701,7 +701,7 @@ svm_migrate_vma_to_ram(struct amdgpu_device *adev, struct svm_range *prange,
- 
- 	kfd_smi_event_migration_start(adev->kfd.dev, p->lead_thread->pid,
- 				      start >> PAGE_SHIFT, end >> PAGE_SHIFT,
--				      adev->kfd.dev->node->id, 0, prange->prefetch_loc,
-+				      adev->kfd.dev->nodes[0]->id, 0, prange->prefetch_loc,
- 				      prange->preferred_loc, trigger);
- 
- 	r = migrate_vma_setup(&migrate);
-@@ -737,7 +737,7 @@ svm_migrate_vma_to_ram(struct amdgpu_device *adev, struct svm_range *prange,
- 
- 	kfd_smi_event_migration_end(adev->kfd.dev, p->lead_thread->pid,
- 				    start >> PAGE_SHIFT, end >> PAGE_SHIFT,
--				    adev->kfd.dev->node->id, 0, trigger);
-+				    adev->kfd.dev->nodes[0]->id, 0, trigger);
- 
- 	svm_range_dma_unmap(adev->dev, scratch, 0, npages);
- 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-index fdb97e5d0c01..873b49238dc1 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-@@ -255,6 +255,8 @@ struct kfd_vmid_info {
- 	uint32_t vmid_num_kfd;
- };
- 
-+#define MAX_KFD_NODES	8
-+
- struct kfd_dev;
- 
- struct kfd_node {
-@@ -267,6 +269,10 @@ struct kfd_node {
- 					      */
- 	struct kfd_vmid_info vm_info;
- 	unsigned int id;                /* topology stub index */
-+	unsigned int num_xcc_per_node;
-+	unsigned int start_xcc_id;	/* Starting XCC instance
-+					 * number for the node
-+					 */
- 	/* Interrupts */
- 	struct kfifo ih_fifo;
- 	struct workqueue_struct *ih_wq;
-@@ -300,6 +306,8 @@ struct kfd_node {
- 	/* Maximum process number mapped to HW scheduler */
- 	unsigned int max_proc_per_quantum;
- 
-+	unsigned int compute_vmid_bitmap;
-+
- 	struct kfd_dev *kfd;
- };
- 
-@@ -368,7 +376,8 @@ struct kfd_dev {
- 	/* HMM page migration MEMORY_DEVICE_PRIVATE mapping */
- 	struct dev_pagemap pgmap;
- 
--	struct kfd_node *node;
-+	struct kfd_node *nodes[MAX_KFD_NODES];
-+	unsigned int num_nodes;
- };
- 
- enum kfd_mempool {
-@@ -1397,6 +1406,11 @@ static inline int kfd_devcgroup_check_permission(struct kfd_node *kfd)
- #endif
- }
- 
-+static inline bool kfd_is_first_node(struct kfd_node *node)
++/*
++ * total_pages is constructed as MQD0+CtrlStack0 + MQD1+CtrlStack1 + ...
++ * MQDn+CtrlStackn where n is the number of XCCs per partition.
++ * pages_per_xcc is the size of one MQD+CtrlStack. The first page is MQD
++ * and uses memory type default, UC. The rest of pages_per_xcc are
++ * Ctrl stack and modify their memory type to NC.
++ */
++static void amdgpu_ttm_gart_bind_gfx9_mqd(struct amdgpu_device *adev,
++				struct ttm_tt *ttm, uint64_t flags)
 +{
-+	return (node == node->kfd->nodes[0]);
++	struct amdgpu_ttm_tt *gtt = (void *)ttm;
++	uint64_t total_pages = ttm->num_pages;
++	int num_xcc = max(1U, adev->gfx.num_xcc_per_xcp);
++	uint64_t page_idx, pages_per_xcc = total_pages / num_xcc;
++	int i;
++	uint64_t ctrl_flags = (flags & ~AMDGPU_PTE_MTYPE_VG10_MASK) |
++			AMDGPU_PTE_MTYPE_VG10(AMDGPU_MTYPE_NC);
++
++	for (i = 0, page_idx = 0; i < num_xcc; i++, page_idx += pages_per_xcc) {
++		/* MQD page: use default flags */
++		amdgpu_gart_bind(adev,
++				gtt->offset + (page_idx << PAGE_SHIFT),
++				1, &gtt->ttm.dma_address[page_idx], flags);
++		/*
++		 * Ctrl pages - modify the memory type to NC (ctrl_flags) from
++		 * the second page of the BO onward.
++		 */
++		amdgpu_gart_bind(adev,
++				gtt->offset + ((page_idx + 1) << PAGE_SHIFT),
++				pages_per_xcc - 1,
++				&gtt->ttm.dma_address[page_idx + 1],
++				ctrl_flags);
++	}
 +}
 +
- /* Debugfs */
+ static void amdgpu_ttm_gart_bind(struct amdgpu_device *adev,
+ 				 struct ttm_buffer_object *tbo,
+ 				 uint64_t flags)
+@@ -816,21 +851,7 @@ static void amdgpu_ttm_gart_bind(struct amdgpu_device *adev,
+ 		flags |= AMDGPU_PTE_TMZ;
+ 
+ 	if (abo->flags & AMDGPU_GEM_CREATE_CP_MQD_GFX9) {
+-		uint64_t page_idx = 1;
+-
+-		amdgpu_gart_bind(adev, gtt->offset, page_idx,
+-				 gtt->ttm.dma_address, flags);
+-
+-		/* The memory type of the first page defaults to UC. Now
+-		 * modify the memory type to NC from the second page of
+-		 * the BO onward.
+-		 */
+-		flags &= ~AMDGPU_PTE_MTYPE_VG10_MASK;
+-		flags |= AMDGPU_PTE_MTYPE_VG10(AMDGPU_MTYPE_NC);
+-
+-		amdgpu_gart_bind(adev, gtt->offset + (page_idx << PAGE_SHIFT),
+-				 ttm->num_pages - page_idx,
+-				 &(gtt->ttm.dma_address[page_idx]), flags);
++		amdgpu_ttm_gart_bind_gfx9_mqd(adev, ttm, flags);
+ 	} else {
+ 		amdgpu_gart_bind(adev, gtt->offset, ttm->num_pages,
+ 				 gtt->ttm.dma_address, flags);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+index 6ee17100c333..0f0a7d73fad3 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+@@ -2247,7 +2247,8 @@ static int allocate_hiq_sdma_mqd(struct device_queue_manager *dqm)
+ 	uint32_t size = dqm->mqd_mgrs[KFD_MQD_TYPE_SDMA]->mqd_size *
+ 		get_num_all_sdma_engines(dqm) *
+ 		dev->kfd->device_info.num_sdma_queues_per_engine +
+-		dqm->mqd_mgrs[KFD_MQD_TYPE_HIQ]->mqd_size;
++		(dqm->mqd_mgrs[KFD_MQD_TYPE_HIQ]->mqd_size +
++		dqm->dev->num_xcc_per_node);
+ 
+ 	retval = amdgpu_amdkfd_alloc_gtt_mem(dev->adev, size,
+ 		&(mem_obj->gtt_mem), &(mem_obj->gpu_addr),
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c
+index 61f6dd68c84b..074f6075ccc7 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c
+@@ -76,7 +76,8 @@ struct kfd_mem_obj *allocate_sdma_mqd(struct kfd_node *dev,
+ 		q->sdma_queue_id) *
+ 		dev->dqm->mqd_mgrs[KFD_MQD_TYPE_SDMA]->mqd_size;
+ 
+-	offset += dev->dqm->mqd_mgrs[KFD_MQD_TYPE_HIQ]->mqd_size;
++	offset += dev->dqm->mqd_mgrs[KFD_MQD_TYPE_HIQ]->mqd_size *
++		  dev->num_xcc_per_node;
+ 
+ 	mqd_mem_obj->gtt_mem = (void *)((uint64_t)dev->dqm->hiq_sdma_mqd.gtt_mem
+ 				+ offset);
+@@ -246,3 +247,28 @@ bool kfd_is_occupied_sdma(struct mqd_manager *mm, void *mqd,
+ {
+ 	return mm->dev->kfd2kgd->hqd_sdma_is_occupied(mm->dev->adev, mqd);
+ }
++
++uint64_t kfd_hiq_mqd_stride(struct kfd_node *dev)
++{
++	return dev->dqm->mqd_mgrs[KFD_MQD_TYPE_HIQ]->mqd_size;
++}
++
++void kfd_get_hiq_xcc_mqd(struct kfd_node *dev, struct kfd_mem_obj *mqd_mem_obj,
++		     uint32_t virtual_xcc_id)
++{
++	uint64_t offset;
++
++	offset = kfd_hiq_mqd_stride(dev) * virtual_xcc_id;
++
++	mqd_mem_obj->gtt_mem = (virtual_xcc_id == 0) ?
++			dev->dqm->hiq_sdma_mqd.gtt_mem : NULL;
++	mqd_mem_obj->gpu_addr = dev->dqm->hiq_sdma_mqd.gpu_addr + offset;
++	mqd_mem_obj->cpu_ptr = (uint32_t *)((uintptr_t)
++				dev->dqm->hiq_sdma_mqd.cpu_ptr + offset);
++}
++
++uint64_t kfd_mqd_stride(struct mqd_manager *mm,
++			struct queue_properties *q)
++{
++	return mm->mqd_size;
++}
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h
+index 46fc3f273d0d..eb18be74f559 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h
+@@ -119,6 +119,8 @@ struct mqd_manager {
+ 	int	(*debugfs_show_mqd)(struct seq_file *m, void *data);
+ #endif
+ 	uint32_t (*read_doorbell_id)(void *mqd);
++	uint64_t (*mqd_stride)(struct mqd_manager *mm,
++				struct queue_properties *p);
+ 
+ 	struct mutex	mqd_mutex;
+ 	struct kfd_node	*dev;
+@@ -164,4 +166,10 @@ bool kfd_is_occupied_sdma(struct mqd_manager *mm, void *mqd,
+ 		uint64_t queue_address, uint32_t pipe_id,
+ 		uint32_t queue_id);
+ 
++void kfd_get_hiq_xcc_mqd(struct kfd_node *dev,
++		struct kfd_mem_obj *mqd_mem_obj, uint32_t virtual_xcc_id);
++
++uint64_t kfd_hiq_mqd_stride(struct kfd_node *dev);
++uint64_t kfd_mqd_stride(struct mqd_manager *mm,
++			struct queue_properties *q);
+ #endif /* KFD_MQD_MANAGER_H_ */
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c
+index 03e04d5e5a11..ca1966466759 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c
+@@ -428,6 +428,7 @@ struct mqd_manager *mqd_manager_init_cik(enum KFD_MQD_TYPE type,
+ 		mqd->destroy_mqd = kfd_destroy_mqd_cp;
+ 		mqd->is_occupied = kfd_is_occupied_cp;
+ 		mqd->mqd_size = sizeof(struct cik_mqd);
++		mqd->mqd_stride = kfd_mqd_stride;
+ #if defined(CONFIG_DEBUG_FS)
+ 		mqd->debugfs_show_mqd = debugfs_show_mqd;
+ #endif
+@@ -442,6 +443,7 @@ struct mqd_manager *mqd_manager_init_cik(enum KFD_MQD_TYPE type,
+ 		mqd->destroy_mqd = kfd_destroy_mqd_cp;
+ 		mqd->is_occupied = kfd_is_occupied_cp;
+ 		mqd->mqd_size = sizeof(struct cik_mqd);
++		mqd->mqd_stride = kfd_mqd_stride;
+ #if defined(CONFIG_DEBUG_FS)
+ 		mqd->debugfs_show_mqd = debugfs_show_mqd;
+ #endif
+@@ -457,6 +459,7 @@ struct mqd_manager *mqd_manager_init_cik(enum KFD_MQD_TYPE type,
+ 		mqd->checkpoint_mqd = checkpoint_mqd_sdma;
+ 		mqd->restore_mqd = restore_mqd_sdma;
+ 		mqd->mqd_size = sizeof(struct cik_sdma_rlc_registers);
++		mqd->mqd_stride = kfd_mqd_stride;
+ #if defined(CONFIG_DEBUG_FS)
+ 		mqd->debugfs_show_mqd = debugfs_show_mqd_sdma;
+ #endif
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
+index 7a93be0ebb19..c9565ea99df5 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
+@@ -432,6 +432,7 @@ struct mqd_manager *mqd_manager_init_v10(enum KFD_MQD_TYPE type,
+ 		mqd->get_wave_state = get_wave_state;
+ 		mqd->checkpoint_mqd = checkpoint_mqd;
+ 		mqd->restore_mqd = restore_mqd;
++		mqd->mqd_stride = kfd_mqd_stride;
+ #if defined(CONFIG_DEBUG_FS)
+ 		mqd->debugfs_show_mqd = debugfs_show_mqd;
+ #endif
+@@ -447,6 +448,7 @@ struct mqd_manager *mqd_manager_init_v10(enum KFD_MQD_TYPE type,
+ 		mqd->destroy_mqd = kfd_destroy_mqd_cp;
+ 		mqd->is_occupied = kfd_is_occupied_cp;
+ 		mqd->mqd_size = sizeof(struct v10_compute_mqd);
++		mqd->mqd_stride = kfd_mqd_stride;
+ #if defined(CONFIG_DEBUG_FS)
+ 		mqd->debugfs_show_mqd = debugfs_show_mqd;
+ #endif
+@@ -478,6 +480,7 @@ struct mqd_manager *mqd_manager_init_v10(enum KFD_MQD_TYPE type,
+ 		mqd->checkpoint_mqd = checkpoint_mqd_sdma;
+ 		mqd->restore_mqd = restore_mqd_sdma;
+ 		mqd->mqd_size = sizeof(struct v10_sdma_mqd);
++		mqd->mqd_stride = kfd_mqd_stride;
+ #if defined(CONFIG_DEBUG_FS)
+ 		mqd->debugfs_show_mqd = debugfs_show_mqd_sdma;
+ #endif
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
+index 007453e271d9..fa89606099b8 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
+@@ -33,6 +33,21 @@
+ #include "sdma0/sdma0_4_0_sh_mask.h"
+ #include "amdgpu_amdkfd.h"
+ 
++static void update_mqd(struct mqd_manager *mm, void *mqd,
++		       struct queue_properties *q,
++		       struct mqd_update_info *minfo);
++
++static uint64_t mqd_stride_v9(struct mqd_manager *mm,
++				struct queue_properties *q)
++{
++	if (mm->dev->kfd->cwsr_enabled &&
++	    q->type == KFD_QUEUE_TYPE_COMPUTE)
++		return ALIGN(q->ctl_stack_size, PAGE_SIZE) +
++			ALIGN(sizeof(struct v9_mqd), PAGE_SIZE);
++
++	return mm->mqd_size;
++}
++
+ static inline struct v9_mqd *get_mqd(void *mqd)
+ {
+ 	return (struct v9_mqd *)mqd;
+@@ -110,8 +125,9 @@ static struct kfd_mem_obj *allocate_mqd(struct kfd_node *node,
+ 		if (!mqd_mem_obj)
+ 			return NULL;
+ 		retval = amdgpu_amdkfd_alloc_gtt_mem(node->adev,
+-			ALIGN(q->ctl_stack_size, PAGE_SIZE) +
+-				ALIGN(sizeof(struct v9_mqd), PAGE_SIZE),
++			(ALIGN(q->ctl_stack_size, PAGE_SIZE) +
++			ALIGN(sizeof(struct v9_mqd), PAGE_SIZE)) *
++			node->num_xcc_per_node,
+ 			&(mqd_mem_obj->gtt_mem),
+ 			&(mqd_mem_obj->gpu_addr),
+ 			(void *)&(mqd_mem_obj->cpu_ptr), true);
+@@ -164,24 +180,9 @@ static void init_mqd(struct mqd_manager *mm, void **mqd,
+ 			1 << CP_HQD_QUANTUM__QUANTUM_SCALE__SHIFT |
+ 			1 << CP_HQD_QUANTUM__QUANTUM_DURATION__SHIFT;
+ 
+-	if (q->format == KFD_QUEUE_FORMAT_AQL) {
++	if (q->format == KFD_QUEUE_FORMAT_AQL)
+ 		m->cp_hqd_aql_control =
+ 			1 << CP_HQD_AQL_CONTROL__CONTROL0__SHIFT;
+-		if (KFD_GC_VERSION(mm->dev) == IP_VERSION(9, 4, 3)) {
+-			/* On GC 9.4.3, DW 41 is re-purposed as
+-			 * compute_tg_chunk_size.
+-			 * TODO: review this setting when active CUs in the
+-			 * partition play a role
+-			 */
+-			m->compute_static_thread_mgmt_se6 = 1;
+-		}
+-	} else {
+-		/* PM4 queue */
+-		if (KFD_GC_VERSION(mm->dev) == IP_VERSION(9, 4, 3)) {
+-			m->compute_static_thread_mgmt_se6 = 0;
+-			/* TODO: program pm4_target_xcc */
+-		}
+-	}
+ 
+ 	if (q->tba_addr) {
+ 		m->compute_pgm_rsrc2 |=
+@@ -204,7 +205,7 @@ static void init_mqd(struct mqd_manager *mm, void **mqd,
+ 	*mqd = m;
+ 	if (gart_addr)
+ 		*gart_addr = addr;
+-	mm->update_mqd(mm, m, q, NULL);
++	update_mqd(mm, m, q, NULL);
+ }
+ 
+ static int load_mqd(struct mqd_manager *mm, void *mqd,
+@@ -268,13 +269,10 @@ static void update_mqd(struct mqd_manager *mm, void *mqd,
+ 	m->cp_hqd_vmid = q->vmid;
+ 
+ 	if (q->format == KFD_QUEUE_FORMAT_AQL) {
+-		m->cp_hqd_pq_control |=
++		m->cp_hqd_pq_control |= CP_HQD_PQ_CONTROL__NO_UPDATE_RPTR_MASK |
+ 				2 << CP_HQD_PQ_CONTROL__SLOT_BASED_WPTR__SHIFT |
+ 				1 << CP_HQD_PQ_CONTROL__QUEUE_FULL_EN__SHIFT |
+ 				1 << CP_HQD_PQ_CONTROL__WPP_CLAMP_EN__SHIFT;
+-		if (KFD_GC_VERSION(mm->dev) != IP_VERSION(9, 4, 3))
+-			m->cp_hqd_pq_control |=
+-				CP_HQD_PQ_CONTROL__NO_UPDATE_RPTR_MASK;
+ 		m->cp_hqd_pq_doorbell_control |= 1 <<
+ 			CP_HQD_PQ_DOORBELL_CONTROL__DOORBELL_BIF_DROP__SHIFT;
+ 	}
+@@ -465,6 +463,224 @@ static void restore_mqd_sdma(struct mqd_manager *mm, void **mqd,
+ 	qp->is_active = 0;
+ }
+ 
++static void init_mqd_hiq_v9_4_3(struct mqd_manager *mm, void **mqd,
++			struct kfd_mem_obj *mqd_mem_obj, uint64_t *gart_addr,
++			struct queue_properties *q)
++{
++	struct v9_mqd *m;
++	int xcc = 0;
++	struct kfd_mem_obj xcc_mqd_mem_obj;
++	uint64_t xcc_gart_addr = 0;
++
++	memset(&xcc_mqd_mem_obj, 0x0, sizeof(struct kfd_mem_obj));
++
++	for (xcc = 0; xcc < mm->dev->num_xcc_per_node; xcc++) {
++		kfd_get_hiq_xcc_mqd(mm->dev, &xcc_mqd_mem_obj, xcc);
++
++		init_mqd(mm, (void **)&m, &xcc_mqd_mem_obj, &xcc_gart_addr, q);
++
++		m->cp_hqd_pq_control |= CP_HQD_PQ_CONTROL__NO_UPDATE_RPTR_MASK |
++					1 << CP_HQD_PQ_CONTROL__PRIV_STATE__SHIFT |
++					1 << CP_HQD_PQ_CONTROL__KMD_QUEUE__SHIFT;
++		m->cp_mqd_stride_size = kfd_hiq_mqd_stride(mm->dev);
++		if (xcc == 0) {
++			/* Set no_update_rptr = 0 in Master XCC */
++			m->cp_hqd_pq_control &= ~CP_HQD_PQ_CONTROL__NO_UPDATE_RPTR_MASK;
++
++			/* Set the MQD pointer and gart address to XCC0 MQD */
++			*mqd = m;
++			*gart_addr = xcc_gart_addr;
++		}
++	}
++}
++
++static int hiq_load_mqd_kiq_v9_4_3(struct mqd_manager *mm, void *mqd,
++			uint32_t pipe_id, uint32_t queue_id,
++			struct queue_properties *p, struct mm_struct *mms)
++{
++	int xcc, err;
++	void *xcc_mqd;
++	uint64_t hiq_mqd_size = kfd_hiq_mqd_stride(mm->dev);
++
++	for (xcc = 0; xcc < mm->dev->num_xcc_per_node; xcc++) {
++		xcc_mqd = mqd + hiq_mqd_size * xcc;
++		err = mm->dev->kfd2kgd->hiq_mqd_load(mm->dev->adev, xcc_mqd,
++						     pipe_id, queue_id,
++						     p->doorbell_off);
++		if (err) {
++			pr_debug("Failed to load HIQ MQD for XCC: %d\n", xcc);
++			break;
++		}
++	}
++
++	return err;
++}
++
++static int destroy_hiq_mqd_v9_4_3(struct mqd_manager *mm, void *mqd,
++			enum kfd_preempt_type type, unsigned int timeout,
++			uint32_t pipe_id, uint32_t queue_id)
++{
++	int xcc = 0, err;
++	void *xcc_mqd;
++	uint64_t hiq_mqd_size = kfd_hiq_mqd_stride(mm->dev);
++
++	for (xcc = 0; xcc < mm->dev->num_xcc_per_node; xcc++) {
++		xcc_mqd = mqd + hiq_mqd_size * xcc;
++		err = mm->dev->kfd2kgd->hqd_destroy(mm->dev->adev, xcc_mqd,
++						    type, timeout, pipe_id,
++						    queue_id);
++		if (err) {
++			pr_debug("Destroy MQD failed for xcc: %d\n", xcc);
++			break;
++		}
++	}
++
++	return err;
++}
++
++static void get_xcc_mqd(struct kfd_mem_obj *mqd_mem_obj,
++			       struct kfd_mem_obj *xcc_mqd_mem_obj,
++			       uint64_t offset)
++{
++	xcc_mqd_mem_obj->gtt_mem = (offset == 0) ?
++					mqd_mem_obj->gtt_mem : NULL;
++	xcc_mqd_mem_obj->gpu_addr = mqd_mem_obj->gpu_addr + offset;
++	xcc_mqd_mem_obj->cpu_ptr = (uint32_t *)((uintptr_t)mqd_mem_obj->cpu_ptr
++						+ offset);
++}
++
++static void init_mqd_v9_4_3(struct mqd_manager *mm, void **mqd,
++			struct kfd_mem_obj *mqd_mem_obj, uint64_t *gart_addr,
++			struct queue_properties *q)
++{
++	struct v9_mqd *m;
++	int xcc = 0;
++	struct kfd_mem_obj xcc_mqd_mem_obj;
++	uint64_t xcc_gart_addr = 0;
++	uint64_t offset = mm->mqd_stride(mm, q);
++
++	memset(&xcc_mqd_mem_obj, 0x0, sizeof(struct kfd_mem_obj));
++	for (xcc = 0; xcc < mm->dev->num_xcc_per_node; xcc++) {
++		get_xcc_mqd(mqd_mem_obj, &xcc_mqd_mem_obj, offset*xcc);
++
++		init_mqd(mm, (void **)&m, &xcc_mqd_mem_obj, &xcc_gart_addr, q);
++
++		m->cp_mqd_stride_size = offset;
++		if (q->format == KFD_QUEUE_FORMAT_AQL) {
++			m->compute_tg_chunk_size = 1;
++
++			switch (xcc) {
++			case 0:
++				/* Master XCC */
++				m->cp_hqd_pq_control &=
++					~CP_HQD_PQ_CONTROL__NO_UPDATE_RPTR_MASK;
++				m->compute_current_logic_xcc_id =
++					mm->dev->num_xcc_per_node - 1;
++				break;
++			default:
++				m->compute_current_logic_xcc_id =
++					xcc - 1;
++				break;
++			}
++		} else {
++			/* PM4 Queue */
++			m->compute_current_logic_xcc_id = 0;
++			m->compute_tg_chunk_size = 0;
++		}
++
++		if (xcc == 0) {
++			/* Set the MQD pointer and gart address to XCC0 MQD */
++			*mqd = m;
++			*gart_addr = xcc_gart_addr;
++		}
++	}
++}
++
++static void update_mqd_v9_4_3(struct mqd_manager *mm, void *mqd,
++		      struct queue_properties *q, struct mqd_update_info *minfo)
++{
++	struct v9_mqd *m;
++	int xcc = 0;
++	uint64_t size = mm->mqd_stride(mm, q);
++
++	for (xcc = 0; xcc < mm->dev->num_xcc_per_node; xcc++) {
++		m = get_mqd(mqd + size * xcc);
++		update_mqd(mm, m, q, minfo);
++
++		if (q->format == KFD_QUEUE_FORMAT_AQL) {
++			switch (xcc) {
++			case 0:
++				/* Master XCC */
++				m->cp_hqd_pq_control &=
++					~CP_HQD_PQ_CONTROL__NO_UPDATE_RPTR_MASK;
++				m->compute_current_logic_xcc_id =
++					mm->dev->num_xcc_per_node - 1;
++				break;
++			default:
++				m->compute_current_logic_xcc_id =
++					xcc - 1;
++				break;
++			}
++			m->compute_tg_chunk_size = 1;
++		} else {
++			/* PM4 Queue */
++			m->compute_current_logic_xcc_id = 0;
++			m->compute_tg_chunk_size = 0;
++		}
++	}
++}
++
++static int destroy_mqd_v9_4_3(struct mqd_manager *mm, void *mqd,
++		   enum kfd_preempt_type type, unsigned int timeout,
++		   uint32_t pipe_id, uint32_t queue_id)
++{
++	int xcc = 0, err;
++	void *xcc_mqd;
++	struct v9_mqd *m;
++	uint64_t mqd_offset;
++
++	m = get_mqd(mqd);
++	mqd_offset = m->cp_mqd_stride_size;
++
++	for (xcc = 0; xcc < mm->dev->num_xcc_per_node; xcc++) {
++		xcc_mqd = mqd + mqd_offset * xcc;
++		err = mm->dev->kfd2kgd->hqd_destroy(mm->dev->adev, xcc_mqd,
++						    type, timeout, pipe_id,
++						    queue_id);
++		if (err) {
++			pr_debug("Destroy MQD failed for xcc: %d\n", xcc);
++			break;
++		}
++	}
++
++	return err;
++}
++
++static int load_mqd_v9_4_3(struct mqd_manager *mm, void *mqd,
++			uint32_t pipe_id, uint32_t queue_id,
++			struct queue_properties *p, struct mm_struct *mms)
++{
++	/* AQL write pointer counts in 64B packets, PM4/CP counts in dwords. */
++	uint32_t wptr_shift = (p->format == KFD_QUEUE_FORMAT_AQL ? 4 : 0);
++	int xcc = 0, err;
++	void *xcc_mqd;
++	uint64_t mqd_stride_size = mm->mqd_stride(mm, p);
++
++	for (xcc = 0; xcc < mm->dev->num_xcc_per_node; xcc++) {
++		xcc_mqd = mqd + mqd_stride_size * xcc;
++		err = mm->dev->kfd2kgd->hqd_load(mm->dev->adev, xcc_mqd,
++					 pipe_id, queue_id,
++					(uint32_t __user *)p->write_ptr,
++					wptr_shift, 0, mms);
++		if (err) {
++			pr_debug("Load MQD failed for xcc: %d\n", xcc);
++			break;
++		}
++	}
++
++	return err;
++}
++
  #if defined(CONFIG_DEBUG_FS)
  
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
-index a0bf6558f4ac..b703da59e067 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
-@@ -254,17 +254,17 @@ void kfd_smi_event_page_fault_start(struct kfd_dev *dev, pid_t pid,
- 				    unsigned long address, bool write_fault,
- 				    ktime_t ts)
- {
--	kfd_smi_event_add(pid, dev->node, KFD_SMI_EVENT_PAGE_FAULT_START,
-+	kfd_smi_event_add(pid, dev->nodes[0], KFD_SMI_EVENT_PAGE_FAULT_START,
- 			  "%lld -%d @%lx(%x) %c\n", ktime_to_ns(ts), pid,
--			  address, dev->node->id, write_fault ? 'W' : 'R');
-+			  address, dev->nodes[0]->id, write_fault ? 'W' : 'R');
- }
+ static int debugfs_show_mqd(struct seq_file *m, void *data)
+@@ -500,34 +716,49 @@ struct mqd_manager *mqd_manager_init_v9(enum KFD_MQD_TYPE type,
+ 	switch (type) {
+ 	case KFD_MQD_TYPE_CP:
+ 		mqd->allocate_mqd = allocate_mqd;
+-		mqd->init_mqd = init_mqd;
+ 		mqd->free_mqd = kfd_free_mqd_cp;
+-		mqd->load_mqd = load_mqd;
+-		mqd->update_mqd = update_mqd;
+-		mqd->destroy_mqd = kfd_destroy_mqd_cp;
+ 		mqd->is_occupied = kfd_is_occupied_cp;
+ 		mqd->get_wave_state = get_wave_state;
+ 		mqd->get_checkpoint_info = get_checkpoint_info;
+ 		mqd->checkpoint_mqd = checkpoint_mqd;
+ 		mqd->restore_mqd = restore_mqd;
+ 		mqd->mqd_size = sizeof(struct v9_mqd);
++		mqd->mqd_stride = mqd_stride_v9;
+ #if defined(CONFIG_DEBUG_FS)
+ 		mqd->debugfs_show_mqd = debugfs_show_mqd;
+ #endif
++		if (KFD_GC_VERSION(dev) == IP_VERSION(9, 4, 3)) {
++			mqd->init_mqd = init_mqd_v9_4_3;
++			mqd->load_mqd = load_mqd_v9_4_3;
++			mqd->update_mqd = update_mqd_v9_4_3;
++			mqd->destroy_mqd = destroy_mqd_v9_4_3;
++		} else {
++			mqd->init_mqd = init_mqd;
++			mqd->load_mqd = load_mqd;
++			mqd->update_mqd = update_mqd;
++			mqd->destroy_mqd = kfd_destroy_mqd_cp;
++		}
+ 		break;
+ 	case KFD_MQD_TYPE_HIQ:
+ 		mqd->allocate_mqd = allocate_hiq_mqd;
+-		mqd->init_mqd = init_mqd_hiq;
+ 		mqd->free_mqd = free_mqd_hiq_sdma;
+-		mqd->load_mqd = kfd_hiq_load_mqd_kiq;
+ 		mqd->update_mqd = update_mqd;
+-		mqd->destroy_mqd = kfd_destroy_mqd_cp;
+ 		mqd->is_occupied = kfd_is_occupied_cp;
+ 		mqd->mqd_size = sizeof(struct v9_mqd);
++		mqd->mqd_stride = kfd_mqd_stride;
+ #if defined(CONFIG_DEBUG_FS)
+ 		mqd->debugfs_show_mqd = debugfs_show_mqd;
+ #endif
+ 		mqd->read_doorbell_id = read_doorbell_id;
++		if (KFD_GC_VERSION(dev) == IP_VERSION(9, 4, 3)) {
++			mqd->init_mqd = init_mqd_hiq_v9_4_3;
++			mqd->load_mqd = hiq_load_mqd_kiq_v9_4_3;
++			mqd->destroy_mqd = destroy_hiq_mqd_v9_4_3;
++		} else {
++			mqd->init_mqd = init_mqd_hiq;
++			mqd->load_mqd = kfd_hiq_load_mqd_kiq;
++			mqd->destroy_mqd = kfd_destroy_mqd_cp;
++		}
+ 		break;
+ 	case KFD_MQD_TYPE_DIQ:
+ 		mqd->allocate_mqd = allocate_mqd;
+@@ -553,6 +784,7 @@ struct mqd_manager *mqd_manager_init_v9(enum KFD_MQD_TYPE type,
+ 		mqd->checkpoint_mqd = checkpoint_mqd_sdma;
+ 		mqd->restore_mqd = restore_mqd_sdma;
+ 		mqd->mqd_size = sizeof(struct v9_sdma_mqd);
++		mqd->mqd_stride = kfd_mqd_stride;
+ #if defined(CONFIG_DEBUG_FS)
+ 		mqd->debugfs_show_mqd = debugfs_show_mqd_sdma;
+ #endif
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c
+index f6b4a5686dcb..8736a3cdbe1e 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c
+@@ -486,6 +486,7 @@ struct mqd_manager *mqd_manager_init_vi(enum KFD_MQD_TYPE type,
+ 		mqd->destroy_mqd = kfd_destroy_mqd_cp;
+ 		mqd->is_occupied = kfd_is_occupied_cp;
+ 		mqd->mqd_size = sizeof(struct vi_mqd);
++		mqd->mqd_stride = kfd_mqd_stride;
+ #if defined(CONFIG_DEBUG_FS)
+ 		mqd->debugfs_show_mqd = debugfs_show_mqd;
+ #endif
+@@ -500,6 +501,7 @@ struct mqd_manager *mqd_manager_init_vi(enum KFD_MQD_TYPE type,
+ 		mqd->destroy_mqd = kfd_destroy_mqd_cp;
+ 		mqd->is_occupied = kfd_is_occupied_cp;
+ 		mqd->mqd_size = sizeof(struct vi_mqd);
++		mqd->mqd_stride = kfd_mqd_stride;
+ #if defined(CONFIG_DEBUG_FS)
+ 		mqd->debugfs_show_mqd = debugfs_show_mqd;
+ #endif
+@@ -515,6 +517,7 @@ struct mqd_manager *mqd_manager_init_vi(enum KFD_MQD_TYPE type,
+ 		mqd->checkpoint_mqd = checkpoint_mqd_sdma;
+ 		mqd->restore_mqd = restore_mqd_sdma;
+ 		mqd->mqd_size = sizeof(struct vi_sdma_mqd);
++		mqd->mqd_stride = kfd_mqd_stride;
+ #if defined(CONFIG_DEBUG_FS)
+ 		mqd->debugfs_show_mqd = debugfs_show_mqd_sdma;
+ #endif
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
+index 5602498e713f..b1fb017b2ef8 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
+@@ -927,7 +927,9 @@ int pqm_debugfs_mqds(struct seq_file *m, void *data)
+ 	struct queue *q;
+ 	enum KFD_MQD_TYPE mqd_type;
+ 	struct mqd_manager *mqd_mgr;
+-	int r = 0;
++	int r = 0, xcc, num_xccs = 1;
++	void *mqd;
++	uint64_t size = 0;
  
- void kfd_smi_event_page_fault_end(struct kfd_dev *dev, pid_t pid,
- 				  unsigned long address, bool migration)
- {
--	kfd_smi_event_add(pid, dev->node, KFD_SMI_EVENT_PAGE_FAULT_END,
-+	kfd_smi_event_add(pid, dev->nodes[0], KFD_SMI_EVENT_PAGE_FAULT_END,
- 			  "%lld -%d @%lx(%x) %c\n", ktime_get_boottime_ns(),
--			  pid, address, dev->node->id, migration ? 'M' : 'U');
-+			  pid, address, dev->nodes[0]->id, migration ? 'M' : 'U');
- }
+ 	list_for_each_entry(pqn, &pqm->queues, process_queue_list) {
+ 		if (pqn->q) {
+@@ -943,6 +945,7 @@ int pqm_debugfs_mqds(struct seq_file *m, void *data)
+ 				seq_printf(m, "  Compute queue on device %x\n",
+ 					   q->device->id);
+ 				mqd_type = KFD_MQD_TYPE_CP;
++				num_xccs = q->device->num_xcc_per_node;
+ 				break;
+ 			default:
+ 				seq_printf(m,
+@@ -951,6 +954,8 @@ int pqm_debugfs_mqds(struct seq_file *m, void *data)
+ 				continue;
+ 			}
+ 			mqd_mgr = q->device->dqm->mqd_mgrs[mqd_type];
++			size = mqd_mgr->mqd_stride(mqd_mgr,
++							&q->properties);
+ 		} else if (pqn->kq) {
+ 			q = pqn->kq->queue;
+ 			mqd_mgr = pqn->kq->mqd_mgr;
+@@ -972,9 +977,12 @@ int pqm_debugfs_mqds(struct seq_file *m, void *data)
+ 			continue;
+ 		}
  
- void kfd_smi_event_migration_start(struct kfd_dev *dev, pid_t pid,
-@@ -273,7 +273,7 @@ void kfd_smi_event_migration_start(struct kfd_dev *dev, pid_t pid,
- 				   uint32_t prefetch_loc, uint32_t preferred_loc,
- 				   uint32_t trigger)
- {
--	kfd_smi_event_add(pid, dev->node, KFD_SMI_EVENT_MIGRATE_START,
-+	kfd_smi_event_add(pid, dev->nodes[0], KFD_SMI_EVENT_MIGRATE_START,
- 			  "%lld -%d @%lx(%lx) %x->%x %x:%x %d\n",
- 			  ktime_get_boottime_ns(), pid, start, end - start,
- 			  from, to, prefetch_loc, preferred_loc, trigger);
-@@ -283,7 +283,7 @@ void kfd_smi_event_migration_end(struct kfd_dev *dev, pid_t pid,
- 				 unsigned long start, unsigned long end,
- 				 uint32_t from, uint32_t to, uint32_t trigger)
- {
--	kfd_smi_event_add(pid, dev->node, KFD_SMI_EVENT_MIGRATE_END,
-+	kfd_smi_event_add(pid, dev->nodes[0], KFD_SMI_EVENT_MIGRATE_END,
- 			  "%lld -%d @%lx(%lx) %x->%x %d\n",
- 			  ktime_get_boottime_ns(), pid, start, end - start,
- 			  from, to, trigger);
-@@ -292,16 +292,16 @@ void kfd_smi_event_migration_end(struct kfd_dev *dev, pid_t pid,
- void kfd_smi_event_queue_eviction(struct kfd_dev *dev, pid_t pid,
- 				  uint32_t trigger)
- {
--	kfd_smi_event_add(pid, dev->node, KFD_SMI_EVENT_QUEUE_EVICTION,
-+	kfd_smi_event_add(pid, dev->nodes[0], KFD_SMI_EVENT_QUEUE_EVICTION,
- 			  "%lld -%d %x %d\n", ktime_get_boottime_ns(), pid,
--			  dev->node->id, trigger);
-+			  dev->nodes[0]->id, trigger);
- }
- 
- void kfd_smi_event_queue_restore(struct kfd_dev *dev, pid_t pid)
- {
--	kfd_smi_event_add(pid, dev->node, KFD_SMI_EVENT_QUEUE_RESTORE,
-+	kfd_smi_event_add(pid, dev->nodes[0], KFD_SMI_EVENT_QUEUE_RESTORE,
- 			  "%lld -%d %x\n", ktime_get_boottime_ns(), pid,
--			  dev->node->id);
-+			  dev->nodes[0]->id);
- }
- 
- void kfd_smi_event_queue_restore_rescheduled(struct mm_struct *mm)
-@@ -328,9 +328,9 @@ void kfd_smi_event_unmap_from_gpu(struct kfd_dev *dev, pid_t pid,
- 				  unsigned long address, unsigned long last,
- 				  uint32_t trigger)
- {
--	kfd_smi_event_add(pid, dev->node, KFD_SMI_EVENT_UNMAP_FROM_GPU,
-+	kfd_smi_event_add(pid, dev->nodes[0], KFD_SMI_EVENT_UNMAP_FROM_GPU,
- 			  "%lld -%d @%lx(%lx) %x %d\n", ktime_get_boottime_ns(),
--			  pid, address, last - address + 1, dev->node->id, trigger);
-+			  pid, address, last - address + 1, dev->nodes[0]->id, trigger);
- }
- 
- int kfd_smi_event_open(struct kfd_node *dev, uint32_t *fd)
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-index 06a11186d947..94af37df3ed2 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-@@ -555,7 +555,8 @@ static ssize_t node_show(struct kobject *kobj, struct attribute *attr,
- 				      dev->gpu->kfd->sdma_fw_version);
- 		sysfs_show_64bit_prop(buffer, offs, "unique_id",
- 				      dev->gpu->adev->unique_id);
--
-+		sysfs_show_32bit_prop(buffer, offs, "num_xcc",
-+				      dev->gpu->num_xcc_per_node);
+-		r = mqd_mgr->debugfs_show_mqd(m, q->mqd);
+-		if (r != 0)
+-			break;
++		for (xcc = 0; xcc < num_xccs; xcc++) {
++			mqd = q->mqd + size * xcc;
++			r = mqd_mgr->debugfs_show_mqd(m, mqd);
++			if (r != 0)
++				break;
++		}
  	}
  
- 	return sysfs_show_32bit_prop(buffer, offs, "max_engine_clk_ccompute",
-@@ -1160,7 +1161,7 @@ void kfd_topology_shutdown(void)
- static uint32_t kfd_generate_gpu_id(struct kfd_node *gpu)
- {
- 	uint32_t hashout;
--	uint32_t buf[7];
-+	uint32_t buf[8];
- 	uint64_t local_mem_size;
- 	int i;
- 
-@@ -1177,8 +1178,9 @@ static uint32_t kfd_generate_gpu_id(struct kfd_node *gpu)
- 	buf[4] = gpu->adev->pdev->bus->number;
- 	buf[5] = lower_32_bits(local_mem_size);
- 	buf[6] = upper_32_bits(local_mem_size);
-+	buf[7] = gpu->start_xcc_id | (gpu->num_xcc_per_node << 16);
- 
--	for (i = 0, hashout = 0; i < 7; i++)
-+	for (i = 0, hashout = 0; i < 8; i++)
- 		hashout ^= hash_32(buf[i], KFD_GPU_ID_HASH_WIDTH);
- 
- 	return hashout;
+ 	return r;
+diff --git a/drivers/gpu/drm/amd/include/v9_structs.h b/drivers/gpu/drm/amd/include/v9_structs.h
+index a0c672889fe4..a2f81b9c38af 100644
+--- a/drivers/gpu/drm/amd/include/v9_structs.h
++++ b/drivers/gpu/drm/amd/include/v9_structs.h
+@@ -196,10 +196,20 @@ struct v9_mqd {
+ 	uint32_t compute_wave_restore_addr_lo;
+ 	uint32_t compute_wave_restore_addr_hi;
+ 	uint32_t compute_wave_restore_control;
+-	uint32_t compute_static_thread_mgmt_se4;
+-	uint32_t compute_static_thread_mgmt_se5;
+-	uint32_t compute_static_thread_mgmt_se6;
+-	uint32_t compute_static_thread_mgmt_se7;
++	union {
++		struct {
++			uint32_t compute_static_thread_mgmt_se4;
++			uint32_t compute_static_thread_mgmt_se5;
++			uint32_t compute_static_thread_mgmt_se6;
++			uint32_t compute_static_thread_mgmt_se7;
++		};
++		struct {
++			uint32_t compute_current_logic_xcc_id; // offset: 39  (0x27)
++			uint32_t compute_restart_cg_tg_id; // offset: 40  (0x28)
++			uint32_t compute_tg_chunk_size; // offset: 41  (0x29)
++			uint32_t compute_restore_tg_chunk_size; // offset: 42  (0x2A)
++		};
++	};
+ 	uint32_t reserved_43;
+ 	uint32_t reserved_44;
+ 	uint32_t reserved_45;
+@@ -382,8 +392,16 @@ struct v9_mqd {
+ 	uint32_t iqtimer_pkt_dw29;
+ 	uint32_t iqtimer_pkt_dw30;
+ 	uint32_t iqtimer_pkt_dw31;
+-	uint32_t reserved_225;
+-	uint32_t reserved_226;
++	union {
++		struct {
++			uint32_t reserved_225;
++			uint32_t reserved_226;
++		};
++		struct {
++			uint32_t pm4_target_xcc_in_xcp; // offset: 225  (0xE1)
++			uint32_t cp_mqd_stride_size; // offset: 226  (0xE2)
++		};
++	};
+ 	uint32_t reserved_227;
+ 	uint32_t set_resources_header;
+ 	uint32_t set_resources_dw1;
 -- 
 2.39.2
 
