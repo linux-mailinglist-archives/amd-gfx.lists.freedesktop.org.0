@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 661186CC586
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Mar 2023 17:14:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 358246CC594
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Mar 2023 17:15:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDD4610E90E;
-	Tue, 28 Mar 2023 15:14:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5165510E92A;
+	Tue, 28 Mar 2023 15:15:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2075.outbound.protection.outlook.com [40.107.220.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D092C10E918
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 15:14:45 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2080.outbound.protection.outlook.com [40.107.243.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD6D110E910
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Mar 2023 15:14:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KOUJoEF1TtqgDBimM8P2L8trImkFIsKxtV9yp/ZxT8LsstqKcGB/dnYRlxQRElIqVF4jVzx5F96LQInmGEPsGL9egFqfR1PA/p0OIqSdfdmfM22gQALHwmVZI9bIlBtbZNSO5fBvkcpJijFKqiCOi4oeIIMMfOJ9CPhWOzx2P+IhFL0HYFxZcSF6lL0x8mAtiDRWo/ZV95GXDvQ1VJCLPfaIwFwVlZ1/nH8VgGedH2yGABqfzwTEoi/arLq4vJ1h6myBsrVRo4rwcIo/G/qPKCm/5KAcjeiitX7wf/ptmMpMXKxaKbDFFBI5RipMzSlsyAfP2SpidnMRHjTlJf74NA==
+ b=aqaw0PAqAAcMDiwVkbpxlQwOMavaBN4j4fl5aLDW6B4QPN4wwhgBGXajsYR5St2EUQUHPDYXBrWViWnb7y3ZO2aPWn1h2Q3w30+GRYRCJwOM4cxf14QxB8mMySm2MHx1FWmsiVZLYgJTOR4XDwdVZeXqgeqUI5pwx5YJRaJ1YuRd1730IyKwhAxl02WU65JvnowPRmh/eF5M6PrmNvsqew2BrLJcK+Agx6Elg43lewd5eZFnRl7+Vf0xwcvGFAvD2dhbcYMXLwzecmwvnoJpvZXwWlVwKGO2aAhLHzPHOGDvMiyP2b69aL1wptrEXoT9pALFkl7GbX3kDO/DZBbiMA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RHVEOawhbh0BVNyv5RqrkAG0T5rn5GUxj1gAhTiNG7Y=;
- b=FFu0a85wohdU94+G0LTNXY7RR7UR5oTZKGLyo04D3VT6XXE5GNsPHwnFvxtWUyQJhW2gSw8VADgwp3SceU7dOtgtpj4LMbTv5jPgIco2EPTIxjcBG2b4gFLDzOmeXVOvQBJcKlNBFkHZGR9Ph1C0Q4tmKJ9aAwbhMk7+8avCN1Ov+1NN3JfJSqKjAkfmdeCPiUeVa/dldaSOXckP9IvsooHdeOnPB7I7xCmwdvQ2m80fneZtkfj05E21lugBiA7cV7XvqT52jpnBzahSKhxxehqX9ty6z35ovT/CZAN7SokRf5suFtXg/WqvcZUAkRbertFYoxEByGalqLNq8YUnNQ==
+ bh=oikK3t1cqymA2LEDzXhg5cxG6o0qvrLUt7uGOEu5kz4=;
+ b=oDgIt12VsSzJphejs63LrN29xYCL1Pgfx2GMi992wJuupqfiYhiQ/4VmstI7ehLDAhVa8d6kRQs5WnFZ2PAKRFmUF4cTfsmxu+Kdb09in/Hazi2IX9fB51cNvu6cp9Kp9cpzqkpKqi5vVHpKiD7VsLl2BYQphVPWvQ2JDGJVxUMD+pSOptNR4GOcTQLquXw45RenT7DJcmTNYiKiPhWaGkLM1RKcCvbaBOfd25rNe/l0SKNUoBFnTjSWGS0iSDehHxgeJPVyjAUystdSuehShQHGSfiMIpodZe3C0lSSqSNFY8b/bgH0QdtFeNMtdHIRxszt7meDwC0d2SbuRF6+uw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RHVEOawhbh0BVNyv5RqrkAG0T5rn5GUxj1gAhTiNG7Y=;
- b=VWevhYEUzo/ayGDLRWwR95qKFl3dWsgQFcmxvN66Uc3YvzOnyyP32CuILNL+8GDrGwWjWgo2uB86iIixvbdaqHhUcAH35dDXt+RYB1/hR7Hy98hk+qt66U3aZIQEomcNJoDLsWe0PW8EEF6ywRDMreJj7sJSUAtksp95HXbUYjk=
+ bh=oikK3t1cqymA2LEDzXhg5cxG6o0qvrLUt7uGOEu5kz4=;
+ b=0iTUGp873YAWS4VhhcjGhQdxeXjReAWItMkce4UFhcNCYyDxJzqCKkb4CsjXNn4EbDxIEweP/Q+ONGdX1J9h9Rhh6Ca1siRVO1rD40vsPn3GxutCke1ZU4n0ji+mLa0PspNLvlzPvfjPSU2+Mol5p2eibaryP3wUyNutGidS70Y=
 Received: from BL1PR13CA0074.namprd13.prod.outlook.com (2603:10b6:208:2b8::19)
- by SA1PR12MB7149.namprd12.prod.outlook.com (2603:10b6:806:29c::9)
+ by SN7PR12MB7299.namprd12.prod.outlook.com (2603:10b6:806:2af::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Tue, 28 Mar
- 2023 15:14:43 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.38; Tue, 28 Mar
+ 2023 15:14:44 +0000
 Received: from BL02EPF000100D2.namprd05.prod.outlook.com
- (2603:10b6:208:2b8:cafe::8f) by BL1PR13CA0074.outlook.office365.com
+ (2603:10b6:208:2b8:cafe::a) by BL1PR13CA0074.outlook.office365.com
  (2603:10b6:208:2b8::19) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.18 via Frontend
- Transport; Tue, 28 Mar 2023 15:14:43 +0000
+ Transport; Tue, 28 Mar 2023 15:14:44 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BL02EPF000100D2.mail.protection.outlook.com (10.167.241.206) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6178.30 via Frontend Transport; Tue, 28 Mar 2023 15:14:43 +0000
+ 15.20.6178.30 via Frontend Transport; Tue, 28 Mar 2023 15:14:44 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 28 Mar
- 2023 10:14:41 -0500
+ 2023 10:14:43 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 19/32] drm/amdgpu: Use new atomfirmware init for GC 9.4.3
-Date: Tue, 28 Mar 2023 11:13:31 -0400
-Message-ID: <20230328151344.1934291-19-alexander.deucher@amd.com>
+Subject: [PATCH 20/32] drm/amdgpu: Set XNACK per process on GC 9.4.3
+Date: Tue, 28 Mar 2023 11:13:32 -0400
+Message-ID: <20230328151344.1934291-20-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230328151344.1934291-1-alexander.deucher@amd.com>
 References: <20230328151344.1934291-1-alexander.deucher@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF000100D2:EE_|SA1PR12MB7149:EE_
-X-MS-Office365-Filtering-Correlation-Id: 508c7a24-8c0e-4e16-e5b5-08db2f9f2916
+X-MS-TrafficTypeDiagnostic: BL02EPF000100D2:EE_|SN7PR12MB7299:EE_
+X-MS-Office365-Filtering-Correlation-Id: 62ee7620-a8bc-4a73-4540-08db2f9f2957
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4Lx7b6XfX/2G26SaC3eA5RIspEzqdxFgS02tYz4BGbJpnzIrOo4Ystm+o9Kmz/Hh8uSIUgw9cACK8F+B9McptzEqO0j8Vnx3COwD5xh5nSsnfmVcjnZkPEeMYyfUgg2l0yjwUSDOY1RESsng23t7HgXGaA47pKzaTUMa49P0mws/E/+CVAoBw9/09+AZBusYVM2SldasGdzsgl+mplmVIcrC/smLkRiVX37ep/ARF155M3Mf2SZtYt5jqYE8q87wrrA8cdeeh71qjIRID3M8Dyf6LB6JMU225pyxXJhIkrhfS2PmrGhW9MsYmL5VxIhpjLuytNqo3PXp3tdIMYTAZlszcgJgE14e0RAaJ5QX96D0a05JNYkaOUc8RU4TaQ3B458j6cJsYRTzsVBsx9ImGWk6rEavLk3op8GZezqyr71taD9r/olioHrjlO+oGdzTYQkpfDJe0/E8HllRYDuA5FKDPZ9sRMlhT4hxuOoKErYqN/djrqogk2BdfasydXwTrOWR1LG304sukqey6uaMqdGVpzXDEWbCD+bbLcStNS9ovPY/P8rldfpwz5Fc8rBpIklc/7VCdJ+lmHU12D4cxgAvK53/L8bIA1d1I9Sw7wEKGfAQ7SggDtQ2SnWRFJ3sTWKc3N1lXm9i1XHzmSQn/LWWZZHs0IVaZ5FiAkEyP/xlce8ElWHENR/hkW/J0QmJUTlLrBsHPF7AJ6bUHkMwaA2+nX9QXSfwqOxGCrKBMCA=
+X-Microsoft-Antispam-Message-Info: hf8oA5HbiBAro5xJQ8v31rhAYvO6kE/WWkMulcoJNJi5TnUnXcr2Wxk3ck5RJe3Ly+iMoISsWE5wjLf7a+Us5CktasJgloyZ3/JwJPYdq7Y9XGzEEmDHjb9YtvflYQtkBpuHAFoTnRfCr3oYUXs9oMQ5JyiinccPynzCBDRELZgTK4QfOreGZT0HoJzGdMlLfKo9lgNcNIeh7LqHsb2D8aGVBok4EMDL7dmzW4CP4h2v6tCooMKImiwczFk/C/JGmEI5yl567N0FcooB76Vd3G5wblZuPbYzryuxvS3FtddzVFpgHLn/hmxV9vBV7wubnabNLovzbOmYMh6dfkU2iQSnKKQp3d2cHLTdIlXyQ8L5FGBWw32fKxSOuUbUgfj60c9oK4VrmCmvLzXeAwCnKNRLrc8jtkz82QmNGTVXVFxkF1eC90ScbJdBwleZYZQCd9mEL32ZK0kIVTTDueOF07CFPyOi5cqbsGBQVZWVpQdbWeQPu/eYTlEJ22uvBVhqhfmvcuS32y5geianhKlka4ZS78eNfWv3JyaLPaWnEYg0OZaLsrA83ry7/ecX+zvfRuaWE3kQO00fqTGNaa2nYhEiuVhKjzhLN4kDTrWeaJPhP4n2hbEnSoC0/XIs2yQGalrbybuLFNW0m/lanmnmI376mvpzQfsW6owijj1XGZEYV9BpGpR64h7jSWtzsY8zVTmts/e9e7Sj3VQ6hDMGweeK+0k338gjYHsM3cPtf/M=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(136003)(39860400002)(376002)(346002)(396003)(451199021)(40470700004)(36840700001)(46966006)(7696005)(40480700001)(4326008)(6916009)(41300700001)(36860700001)(40460700003)(70586007)(70206006)(316002)(478600001)(8676002)(54906003)(2906002)(83380400001)(16526019)(5660300002)(2616005)(82310400005)(186003)(336012)(426003)(86362001)(47076005)(36756003)(82740400003)(6666004)(1076003)(26005)(81166007)(8936002)(356005)(36900700001);
+ SFS:(13230028)(4636009)(136003)(346002)(376002)(396003)(39860400002)(451199021)(36840700001)(40470700004)(46966006)(54906003)(8676002)(70206006)(6916009)(4326008)(2906002)(16526019)(356005)(36756003)(41300700001)(8936002)(7696005)(186003)(316002)(82740400003)(336012)(82310400005)(26005)(86362001)(478600001)(6666004)(5660300002)(2616005)(1076003)(40460700003)(70586007)(81166007)(40480700001)(83380400001)(36860700001)(47076005)(426003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 15:14:43.8104 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 508c7a24-8c0e-4e16-e5b5-08db2f9f2916
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 15:14:44.2479 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 62ee7620-a8bc-4a73-4540-08db2f9f2957
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL02EPF000100D2.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7149
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7299
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,37 +99,59 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Amber Lin <Amber.Lin@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Lijo Lazar <lijo.lazar@amd.com>
+From: Amber Lin <Amber.Lin@amd.com>
 
-Use the new atomfirmware initialization logic for GC 9.4.3 based ASICs
-also. ASIC init logic doesn't consider boot clocks during init.
+Set RETRY_PERMISSION_OR_INVALID_PAGE_FAULT bit in VM_CONTEXT1_CNTL
+as well so XNACK can be enabled in the SQ per process.
 
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+Signed-off-by: Amber Lin <Amber.Lin@amd.com>
+Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c | 6 ++++--
+ drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c  | 2 +-
+ 2 files changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index aa3c27b6035a..1c657273d9ee 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -941,7 +941,8 @@ static int amdgpu_device_asic_init(struct amdgpu_device *adev)
- {
- 	amdgpu_asic_pre_asic_init(adev);
- 
--	if (adev->ip_versions[GC_HWIP][0] >= IP_VERSION(11, 0, 0))
-+	if (adev->ip_versions[GC_HWIP][0] == IP_VERSION(9, 4, 3) ||
-+	    adev->ip_versions[GC_HWIP][0] >= IP_VERSION(11, 0, 0))
- 		return amdgpu_atomfirmware_asic_init(adev, true);
- 	else
- 		return amdgpu_atom_asic_init(adev->mode_info.atom_context);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c
+index e5016fea1f28..d74621662311 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c
+@@ -328,13 +328,15 @@ static void gfxhub_v1_2_setup_vmid_config(struct amdgpu_device *adev)
+ 					    PAGE_TABLE_BLOCK_SIZE,
+ 					    block_size);
+ 			/* Send no-retry XNACK on fault to suppress VM fault storm.
+-			 * On Aldebaran, XNACK can be enabled in the SQ per-process.
++			 * On 9.4.2 and 9.4.3, XNACK can be enabled in
++			 * the SQ per-process.
+ 			 * Retry faults need to be enabled for that to work.
+ 			 */
+ 			tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL,
+ 					    RETRY_PERMISSION_OR_INVALID_PAGE_FAULT,
+ 					    !adev->gmc.noretry ||
+-					    adev->asic_type == CHIP_ALDEBARAN);
++					    adev->ip_versions[GC_HWIP][0] == IP_VERSION(9, 4, 2) ||
++					    adev->ip_versions[GC_HWIP][0] == IP_VERSION(9, 4, 3));
+ 			WREG32_SOC15_OFFSET(GC, j, regVM_CONTEXT1_CNTL,
+ 					    i * hub->ctx_distance, tmp);
+ 			WREG32_SOC15_OFFSET(GC, j,
+diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c
+index 9ec06f9db761..3883758b7993 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c
++++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c
+@@ -288,7 +288,7 @@ static void mmhub_v1_8_setup_vmid_config(struct amdgpu_device *adev)
+ 		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL,
+ 				    PAGE_TABLE_BLOCK_SIZE,
+ 				    block_size);
+-		/* On Aldebaran, XNACK can be enabled in the SQ per-process.
++		/* On 9.4.3, XNACK can be enabled in the SQ per-process.
+ 		 * Retry faults need to be enabled for that to work.
+ 		 */
+ 		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL,
 -- 
 2.39.2
 
