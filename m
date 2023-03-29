@@ -2,41 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD8D86CF40B
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Mar 2023 22:09:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 834746CF411
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Mar 2023 22:10:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D45310EC3C;
-	Wed, 29 Mar 2023 20:09:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F337A10EC1C;
+	Wed, 29 Mar 2023 20:10:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2086.outbound.protection.outlook.com [40.107.223.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5397410EC11
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 20:09:54 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2077.outbound.protection.outlook.com [40.107.237.77])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 829FD10EC22
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 20:09:55 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lmhKlL1hXvsOXZ5Lpehbpc27LBUXD5yU5gDsyVZC4YoKOaXCzSRVbyhzsHzta8KyRr34WuCGHEE+2r9ltVqnGk3aQqkYxsjHMQ0hhGbNZjAKBv2FaBuaJNiUtdVdBtkSAq8xyW7JSuTHFlfkiuL29xawzg6l416hYffXXgXx3ef1MFGB0/8pA5QYRNCvshHM1efDG/qf4DjTM0HFdYTd9rEpoxy6UQgcVQJIT/y6/HvFx4aSy6lhgGfd744GdAS0QYuaDd1tiivjS5tnBnuKFJ+p4oJsjX/vzoO1vUYtKzgQthaCKNmKm6lEe8wQ+WNCbgBIyXAZZQulCrnvySlF0A==
+ b=RwE+ZOH2oLRFpFvWyIeM9P+voEHkAijeBwlQ7jIadROck4e7yHNRbe4p2AerIbCHmvrcg+rKiUMm7BKIpk1kQ9hYcMaAnhfaoPKeohs6qLM8Qox+y0T9aMGlve7ICyHPckLp0HwnXo9ofhwlQDAEnOBehF4GqFXkZJhHsrlCPIZPeFb4S4Sp99tJfypcE6EXAeBRMYTMp0hnSNsSE8bXSbMr4pdrrdiAYyrA1Nz4uhcj/ecwLZZwzhQHI5wbKwJX/4airxWTsjOOqdfELtUSLqrCPfAEA1bOJszlwTbvDq4ZZtwuAeadAfYG/ZXqgnQxc8n4+1wP4PMMwLy6wa0Wkw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sbwXZnlIfndWEeIExIsIO0sZdLKz4w6zLfhQwTnB3PE=;
- b=VzMlYKXO2JPhYHKIyqQ0Y/iJbxrfBOZMVz2ipZE2FmqCj7qJxe/xfCepZTelI7M39fShbpARsv2HfrmPrPwNphe8DEAtRhQJC9X8xDyLXQiSo63tErfmuVWuMPCxHq1PbWQo7B7b+tMHWU/cpGliPhyLF844V9zXMTwdNMus+X/Pi79n4/RfrdLKJ0ZZvyiXHAJfxr/LGHTVlEmGklYx8ch67hZCC+MOO/TIlyJkG2WjfZjxH1EguQNaNwhhVg9Q7mEWBC2j7CBP8LIp+dtThEV0mkFHSmzuApilm0l47R1b0F6EprY3GsOXEYNoEBX+0zGh2sZw1bkZzQD2dtSzTg==
+ bh=ngGAYtZ1K54nAu7Hnh501T7S5wHaEkxrc2n5eBEBKDQ=;
+ b=FzmHaTw6VjNRzK4A/ULYqilWOfUGyRPeUbLS8MrTLamAA3w4oOzpVEgK9/1CNe9Bzc0OGU2NlpODx6SVSbQ5nGT4AsxRKhzWBIEfg3UatWMEJm2WvTvFkRNvLJLPKvKly/FUTwpy3WKwJvxh0l/NkBKC66e76MYWtXZdl2Cdz7+V0XDwoFLcDEO8Uba9fRELT6FE+xo8x7c2g3G4/6F+RrOXsN01mfu2frwG5ScpYdfjooaMKMRwaiJ1I6+U8jXkjrkF9Abr4sN84d3q+NrBMezJ0PJUVxkqpkVg91felEzcMCRzvQdKlDraeZTs7BzF7BM47T04MaD6TkUGl8QVrA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sbwXZnlIfndWEeIExIsIO0sZdLKz4w6zLfhQwTnB3PE=;
- b=2GmHq/3ILe+AKoEDEu+qmJj+cqJSJwpEtO0v+IAIQagungz4za3zzHcvnO21FLn/ZNg/socGK0xgtaxfCabrdwia5fZgJfb0aiJgmcQN10OltmJ80MFJK7Js7SRhDXxf+LW7IbIdyY88X9awV9Jg2bdu0C6FPRWld82t5Wromg4=
-Received: from DS7PR06CA0001.namprd06.prod.outlook.com (2603:10b6:8:2a::12) by
- SA1PR12MB6972.namprd12.prod.outlook.com (2603:10b6:806:24f::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Wed, 29 Mar
- 2023 20:09:52 +0000
+ bh=ngGAYtZ1K54nAu7Hnh501T7S5wHaEkxrc2n5eBEBKDQ=;
+ b=N8su13lzAszVrXI4//T1LWvgepspplOPEQ7+YRDHhigofTXSXMxjLPkDThVF0KCg5H1oqni80T/tSD73AAgu1zi9JzgrwRKES3zOdrFOn/bTWhp5z90eDjCK/rB7MsA9z4Lw1BK99qjtOxSeW1sC+Hu+iGWMn4n3E1pLM4v/7S0=
+Received: from DS7PR06CA0018.namprd06.prod.outlook.com (2603:10b6:8:2a::9) by
+ SN7PR12MB6912.namprd12.prod.outlook.com (2603:10b6:806:26d::5) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6222.30; Wed, 29 Mar 2023 20:09:53 +0000
 Received: from DM6NAM11FT029.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:2a:cafe::d7) by DS7PR06CA0001.outlook.office365.com
- (2603:10b6:8:2a::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.20 via Frontend
+ (2603:10b6:8:2a:cafe::9b) by DS7PR06CA0018.outlook.office365.com
+ (2603:10b6:8:2a::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.21 via Frontend
  Transport; Wed, 29 Mar 2023 20:09:52 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -54,9 +54,10 @@ Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  2023 15:09:51 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 02/12] drm/amdkfd: EOP Removal - Handle size 0 correctly
-Date: Wed, 29 Mar 2023 16:09:20 -0400
-Message-ID: <20230329200930.1982035-2-alexander.deucher@amd.com>
+Subject: [PATCH 03/12] drm/amdgpu: add indirect r/w interface for smn address
+ greater than 32bits
+Date: Wed, 29 Mar 2023 16:09:21 -0400
+Message-ID: <20230329200930.1982035-3-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230329200930.1982035-1-alexander.deucher@amd.com>
 References: <20230329200930.1982035-1-alexander.deucher@amd.com>
@@ -68,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT029:EE_|SA1PR12MB6972:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7fad5aa8-7db7-4e7e-99c8-08db30918eab
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT029:EE_|SN7PR12MB6912:EE_
+X-MS-Office365-Filtering-Correlation-Id: be4d1937-4d45-40f2-5a67-08db30918eee
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WZ1wC4QDYPWlGVLsmqqGMqoaB+XZmnwqkw04OSYM7EARbINTI2glfhcf+GWis/K5Gy1lIOHmM5Waiq0f8PDnAfHPkJFVyN0+9yVQiTw8WOXT92SZVPMgBHPmTY559yjbq9zJoH3dhRhLD8f6n1sbfqCjnAay65Hygva2FYombs+SSRRkPfPAOsp4Zf16sC43NL4C0PzfSNHEonUIxQa1AWBoJpTiTbnL4Wqr+fEH4/mczioDlJzdw0rrKHXX5T0FBfueVj3RTnwKkhSddHk+yvrGnnKFgb8OMzk/4xmlpuVD+wrGGWZeHue+Y2dl+YNHC5HG64+7h4nwGpMgmfmNIXeT3jzOKX8/CzKYFm6TDIH4Ey9CNldk+xf2GqXOJFKsjIvRNYY3wlJqIGXPn5ZY8Gn3EijyEazOkXVjFBhU56mwpfXNBhKmmPuSHSmdJgYLN4uozsRymnLreJcocCY02vcKTCAaQ4y5oUI6J/H1vP58TQbgjZosd5h5pS3h/OZhmGLj8zAFm3waESn55KwwZ1FzDsHZkXV+Sz6Weruz5n3u+RTE9HVxBStMqy5YSbBT5iN9L3BEUdUiHK3N5g1mpxUt6+JO/F+xsswmffvNr/+GW8j0GRgRVu5D9c4G4LxFqc/9f1gQALjl+BmdbDaLzSpdVl4Mpe/FxfL+XSAjrao0Bg1Jr7HBwWb8H81y1PmR4iHQsbEbFqa4QDa6lZd5mB1q7miJSJF8P5QG03su1jI=
+X-Microsoft-Antispam-Message-Info: QRyNBvvUwc7IKQfrAtbHMVifN3fiBziSlV2WSXF5EGnn8QU9FoBRgvga5SsaPpzmUQxaj+/eHhsh9saJEDILHOOE+Ga4lmdVOd9OsiVtH4W6qJq1omOkvO8BTRCihDFliNV84KbGdH+cmdyxm4p8CYT6aN8An+Qx6Yd6e1F8DiBWO8bh0xRcvkn8wOQHhIfzJbMCyIDD2x9HI6y/pZXSMADwjGEcVXMESuW2UgnCCxjqzcGOnu7+NvPTmuj9h3bMk/Hw/QTV2uLuHviALv4Gs33/Z9NJAlgXwDV8dLs2uqiN/+dYEzL8mpr03MooUFl2A8fSkb+hPx02l/PVOa+sDoTjt8paeZxsNnARerkp8b4HVUTPWWHeZ0OwYJG/T+CxbNpM3qwQ6aT5O58Rgr9nggdsnQlKXeGe4YeAd5I/ZgJwiFLtlFPQhMMVxWot0uhOUHCW4PTSDEe6xFQogXI53BrBLRn2ONbtZqQmZ7h0S13ABVs/ivdezUR4Sed097db3H9GScmfWrbaOXpz5wyoK5WagKt0pCXhJsqpHYsVnN3S8tCJkaKtk6ICseC0XVxE5LVpmU59wFwilIbRu+U3XCZlcIP7FEIZMxBmUkJHBM0+NYakG4eE3knQlwhoWWW4qiMzXreumzzJ+icgIF19vmPeaAy1N75E4J6RDfB/RmAOSoeN1aqupQ3vHrLXEWT5sCMyLA8R5ECQ3+1Kal4NVUEhAOaJ+Fon70RRSVVmVsw=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(136003)(39860400002)(346002)(376002)(451199021)(36840700001)(40470700004)(46966006)(40460700003)(7696005)(4326008)(70586007)(8676002)(6916009)(70206006)(41300700001)(356005)(81166007)(36756003)(2906002)(36860700001)(5660300002)(86362001)(8936002)(478600001)(40480700001)(82310400005)(82740400003)(316002)(1076003)(26005)(6666004)(16526019)(54906003)(186003)(2616005)(83380400001)(47076005)(426003)(336012)(36900700001);
+ SFS:(13230028)(4636009)(396003)(346002)(39860400002)(376002)(136003)(451199021)(36840700001)(40470700004)(46966006)(82310400005)(426003)(36756003)(336012)(86362001)(16526019)(81166007)(186003)(2616005)(83380400001)(26005)(1076003)(5660300002)(356005)(8936002)(82740400003)(6666004)(41300700001)(36860700001)(70586007)(40480700001)(4326008)(7696005)(6916009)(8676002)(2906002)(47076005)(40460700003)(54906003)(316002)(70206006)(478600001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Mar 2023 20:09:52.4277 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7fad5aa8-7db7-4e7e-99c8-08db30918eab
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Mar 2023 20:09:52.8652 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: be4d1937-4d45-40f2-5a67-08db30918eee
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT029.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6972
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6912
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,50 +100,263 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- David Belanger <david.belanger@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Le Ma <le.ma@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>, Lijo Lazar <lijo.lazar@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: David Belanger <david.belanger@amd.com>
+From: Le Ma <le.ma@amd.com>
 
-On GC 9.4.3, we are removing the EOP buffer.
-If we specify 0 for the size, CP_HQD_EOP_CONTROL ends up with
-incorrect value as order_size_2 calculations does not handle 0.
+On multiple AIDs platform, bit[34:32] in SMD address is leveraged to access
+nonAID0 register smn address and new PCI_INDEX_HI register is introduced
+to access the higher bits.
 
-Fix it by using zero for the MQD entry for EOP size 0.
+v2: rebase on latest register accessors (Alex)
 
-v2: Reworked code with a conditional assignment and fixed style issues.
-
-Signed-off-by: David Belanger <david.belanger@amd.com>
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+Signed-off-by: Le Ma <le.ma@amd.com>
+Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
+Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h        | 11 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 98 ++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.h   |  1 +
+ drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c     |  6 ++
+ drivers/gpu/drm/amd/amdgpu/soc15.c         |  2 +
+ 5 files changed, 118 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
-index 09083e905fee..2085054be3be 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
-@@ -256,9 +256,14 @@ static void update_mqd(struct mqd_manager *mm, void *mqd,
- 	 * Limit is 0xFF EOP entries (= 0x7F8 dwords). CP will not submit
- 	 * more than (EOP entry count - 1) so a queue size of 0x800 dwords
- 	 * is safe, giving a maximum field value of 0xA.
-+	 *
-+	 * Also, do calculation only if EOP is used (size > 0), otherwise
-+	 * the order_base_2 calculation provides incorrect result.
-+	 *
- 	 */
--	m->cp_hqd_eop_control = min(0xA,
--		order_base_2(q->eop_ring_buffer_size / 4) - 1);
-+	m->cp_hqd_eop_control = q->eop_ring_buffer_size ?
-+		min(0xA, order_base_2(q->eop_ring_buffer_size / 4) - 1) : 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index ca9c4d31e352..5ad7ac75cc0f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -629,6 +629,9 @@ void amdgpu_cgs_destroy_device(struct cgs_device *cgs_device);
+ typedef uint32_t (*amdgpu_rreg_t)(struct amdgpu_device*, uint32_t);
+ typedef void (*amdgpu_wreg_t)(struct amdgpu_device*, uint32_t, uint32_t);
+ 
++typedef uint32_t (*amdgpu_rreg_ext_t)(struct amdgpu_device*, uint64_t);
++typedef void (*amdgpu_wreg_ext_t)(struct amdgpu_device*, uint64_t, uint32_t);
 +
- 	m->cp_hqd_eop_base_addr_lo =
- 			lower_32_bits(q->eop_ring_buffer_address >> 8);
- 	m->cp_hqd_eop_base_addr_hi =
+ typedef uint64_t (*amdgpu_rreg64_t)(struct amdgpu_device*, uint32_t);
+ typedef void (*amdgpu_wreg64_t)(struct amdgpu_device*, uint32_t, uint64_t);
+ 
+@@ -819,6 +822,8 @@ struct amdgpu_device {
+ 	amdgpu_wreg_t			pcie_wreg;
+ 	amdgpu_rreg_t			pciep_rreg;
+ 	amdgpu_wreg_t			pciep_wreg;
++	amdgpu_rreg_ext_t		pcie_rreg_ext;
++	amdgpu_wreg_ext_t		pcie_wreg_ext;
+ 	amdgpu_rreg64_t			pcie_rreg64;
+ 	amdgpu_wreg64_t			pcie_wreg64;
+ 	/* protects concurrent UVD register access */
+@@ -1109,9 +1114,13 @@ uint32_t amdgpu_device_wait_on_rreg(struct amdgpu_device *adev,
+ 			    uint32_t expected_value, uint32_t mask);
+ uint32_t amdgpu_device_rreg(struct amdgpu_device *adev,
+ 			    uint32_t reg, uint32_t acc_flags);
++u32 amdgpu_device_indirect_rreg_ext(struct amdgpu_device *adev,
++				    u64 reg_addr);
+ void amdgpu_device_wreg(struct amdgpu_device *adev,
+ 			uint32_t reg, uint32_t v,
+ 			uint32_t acc_flags);
++void amdgpu_device_indirect_wreg_ext(struct amdgpu_device *adev,
++				     u64 reg_addr, u32 reg_data);
+ void amdgpu_mm_wreg_mmio_rlc(struct amdgpu_device *adev,
+ 			     uint32_t reg, uint32_t v);
+ void amdgpu_mm_wreg8(struct amdgpu_device *adev, uint32_t offset, uint8_t value);
+@@ -1163,6 +1172,8 @@ int emu_soc_asic_init(struct amdgpu_device *adev);
+ #define WREG32_PCIE(reg, v) adev->pcie_wreg(adev, (reg), (v))
+ #define RREG32_PCIE_PORT(reg) adev->pciep_rreg(adev, (reg))
+ #define WREG32_PCIE_PORT(reg, v) adev->pciep_wreg(adev, (reg), (v))
++#define RREG32_PCIE_EXT(reg) adev->pcie_rreg_ext(adev, (reg))
++#define WREG32_PCIE_EXT(reg, v) adev->pcie_wreg_ext(adev, (reg), (v))
+ #define RREG64_PCIE(reg) adev->pcie_rreg64(adev, (reg))
+ #define WREG64_PCIE(reg, v) adev->pcie_wreg64(adev, (reg), (v))
+ #define RREG32_SMC(reg) adev->smc_rreg(adev, (reg))
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 518e89a7d9ae..c0ab1a57dcbc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -706,6 +706,48 @@ u32 amdgpu_device_indirect_rreg(struct amdgpu_device *adev,
+ 	return r;
+ }
+ 
++u32 amdgpu_device_indirect_rreg_ext(struct amdgpu_device *adev,
++				    u64 reg_addr)
++{
++	unsigned long flags, pcie_index, pcie_index_hi, pcie_data;
++	u32 r;
++	void __iomem *pcie_index_offset;
++	void __iomem *pcie_index_hi_offset;
++	void __iomem *pcie_data_offset;
++
++	pcie_index = adev->nbio.funcs->get_pcie_index_offset(adev);
++	pcie_data = adev->nbio.funcs->get_pcie_data_offset(adev);
++	if (adev->nbio.funcs->get_pcie_index_hi_offset)
++		pcie_index_hi = adev->nbio.funcs->get_pcie_index_hi_offset(adev);
++	else
++		pcie_index_hi = 0;
++
++	spin_lock_irqsave(&adev->pcie_idx_lock, flags);
++	pcie_index_offset = (void __iomem *)adev->rmmio + pcie_index * 4;
++	pcie_data_offset = (void __iomem *)adev->rmmio + pcie_data * 4;
++	if (pcie_index_hi != 0)
++		pcie_index_hi_offset = (void __iomem *)adev->rmmio +
++				pcie_index_hi * 4;
++
++	writel(reg_addr, pcie_index_offset);
++	readl(pcie_index_offset);
++	if (pcie_index_hi != 0) {
++		writel((reg_addr >> 32) & 0xff, pcie_index_hi_offset);
++		readl(pcie_index_hi_offset);
++	}
++	r = readl(pcie_data_offset);
++
++	/* clear the high bits */
++	if (pcie_index_hi != 0) {
++		writel(0, pcie_index_hi_offset);
++		readl(pcie_index_hi_offset);
++	}
++
++	spin_unlock_irqrestore(&adev->pcie_idx_lock, flags);
++
++	return r;
++}
++
+ /**
+  * amdgpu_device_indirect_rreg64 - read a 64bits indirect register
+  *
+@@ -773,6 +815,46 @@ void amdgpu_device_indirect_wreg(struct amdgpu_device *adev,
+ 	spin_unlock_irqrestore(&adev->pcie_idx_lock, flags);
+ }
+ 
++void amdgpu_device_indirect_wreg_ext(struct amdgpu_device *adev,
++				     u64 reg_addr, u32 reg_data)
++{
++	unsigned long flags, pcie_index, pcie_index_hi, pcie_data;
++	void __iomem *pcie_index_offset;
++	void __iomem *pcie_index_hi_offset;
++	void __iomem *pcie_data_offset;
++
++	pcie_index = adev->nbio.funcs->get_pcie_index_offset(adev);
++	pcie_data = adev->nbio.funcs->get_pcie_data_offset(adev);
++	if (adev->nbio.funcs->get_pcie_index_hi_offset)
++		pcie_index_hi = adev->nbio.funcs->get_pcie_index_hi_offset(adev);
++	else
++		pcie_index_hi = 0;
++
++	spin_lock_irqsave(&adev->pcie_idx_lock, flags);
++	pcie_index_offset = (void __iomem *)adev->rmmio + pcie_index * 4;
++	pcie_data_offset = (void __iomem *)adev->rmmio + pcie_data * 4;
++	if (pcie_index_hi != 0)
++		pcie_index_hi_offset = (void __iomem *)adev->rmmio +
++				pcie_index_hi * 4;
++
++	writel(reg_addr, pcie_index_offset);
++	readl(pcie_index_offset);
++	if (pcie_index_hi != 0) {
++		writel((reg_addr >> 32) & 0xff, pcie_index_hi_offset);
++		readl(pcie_index_hi_offset);
++	}
++	writel(reg_data, pcie_data_offset);
++	readl(pcie_data_offset);
++
++	/* clear the high bits */
++	if (pcie_index_hi != 0) {
++		writel(0, pcie_index_hi_offset);
++		readl(pcie_index_hi_offset);
++	}
++
++	spin_unlock_irqrestore(&adev->pcie_idx_lock, flags);
++}
++
+ /**
+  * amdgpu_device_indirect_wreg64 - write a 64bits indirect register address
+  *
+@@ -839,6 +921,13 @@ static uint32_t amdgpu_invalid_rreg(struct amdgpu_device *adev, uint32_t reg)
+ 	return 0;
+ }
+ 
++static uint32_t amdgpu_invalid_rreg_ext(struct amdgpu_device *adev, uint64_t reg)
++{
++	DRM_ERROR("Invalid callback to read register 0x%llX\n", reg);
++	BUG();
++	return 0;
++}
++
+ /**
+  * amdgpu_invalid_wreg - dummy reg write function
+  *
+@@ -856,6 +945,13 @@ static void amdgpu_invalid_wreg(struct amdgpu_device *adev, uint32_t reg, uint32
+ 	BUG();
+ }
+ 
++static void amdgpu_invalid_wreg_ext(struct amdgpu_device *adev, uint64_t reg, uint32_t v)
++{
++	DRM_ERROR("Invalid callback to write register 0x%llX with 0x%08X\n",
++		  reg, v);
++	BUG();
++}
++
+ /**
+  * amdgpu_invalid_rreg64 - dummy 64 bit reg read function
+  *
+@@ -3607,6 +3703,8 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+ 	adev->smc_wreg = &amdgpu_invalid_wreg;
+ 	adev->pcie_rreg = &amdgpu_invalid_rreg;
+ 	adev->pcie_wreg = &amdgpu_invalid_wreg;
++	adev->pcie_rreg_ext = &amdgpu_invalid_rreg_ext;
++	adev->pcie_wreg_ext = &amdgpu_invalid_wreg_ext;
+ 	adev->pciep_rreg = &amdgpu_invalid_rreg;
+ 	adev->pciep_wreg = &amdgpu_invalid_wreg;
+ 	adev->pcie_rreg64 = &amdgpu_invalid_rreg64;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.h
+index 6a636c34b717..8fa3a1f3b181 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.h
+@@ -61,6 +61,7 @@ struct amdgpu_nbio_funcs {
+ 	u32 (*get_hdp_flush_done_offset)(struct amdgpu_device *adev);
+ 	u32 (*get_pcie_index_offset)(struct amdgpu_device *adev);
+ 	u32 (*get_pcie_data_offset)(struct amdgpu_device *adev);
++	u32 (*get_pcie_index_hi_offset)(struct amdgpu_device *adev);
+ 	u32 (*get_pcie_port_index_offset)(struct amdgpu_device *adev);
+ 	u32 (*get_pcie_port_data_offset)(struct amdgpu_device *adev);
+ 	u32 (*get_rev_id)(struct amdgpu_device *adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c b/drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c
+index 40e694932a20..cd576b767912 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c
++++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c
+@@ -319,6 +319,11 @@ static u32 nbio_v7_9_get_pcie_data_offset(struct amdgpu_device *adev)
+ 	return SOC15_REG_OFFSET(NBIO, 0, regBIF_BX0_PCIE_DATA2);
+ }
+ 
++static u32 nbio_v7_9_get_pcie_index_hi_offset(struct amdgpu_device *adev)
++{
++	return SOC15_REG_OFFSET(NBIO, 0, regBIF_BX0_PCIE_INDEX2_HI);
++}
++
+ const struct nbio_hdp_flush_reg nbio_v7_9_hdp_flush_reg = {
+ 	.ref_and_mask_cp0 = BIF_BX_PF0_GPU_HDP_FLUSH_DONE__CP0_MASK,
+ 	.ref_and_mask_cp1 = BIF_BX_PF0_GPU_HDP_FLUSH_DONE__CP1_MASK,
+@@ -382,6 +387,7 @@ const struct amdgpu_nbio_funcs nbio_v7_9_funcs = {
+ 	.get_hdp_flush_done_offset = nbio_v7_9_get_hdp_flush_done_offset,
+ 	.get_pcie_index_offset = nbio_v7_9_get_pcie_index_offset,
+ 	.get_pcie_data_offset = nbio_v7_9_get_pcie_data_offset,
++	.get_pcie_index_hi_offset = nbio_v7_9_get_pcie_index_hi_offset,
+ 	.get_rev_id = nbio_v7_9_get_rev_id,
+ 	.mc_access_enable = nbio_v7_9_mc_access_enable,
+ 	.get_memsize = nbio_v7_9_get_memsize,
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
+index 81c2150eb374..af47fafd2e77 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc15.c
++++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
+@@ -874,6 +874,8 @@ static int soc15_common_early_init(void *handle)
+ 	adev->smc_wreg = NULL;
+ 	adev->pcie_rreg = &amdgpu_device_indirect_rreg;
+ 	adev->pcie_wreg = &amdgpu_device_indirect_wreg;
++	adev->pcie_rreg_ext = &amdgpu_device_indirect_rreg_ext;
++	adev->pcie_wreg_ext = &amdgpu_device_indirect_wreg_ext;
+ 	adev->pcie_rreg64 = &amdgpu_device_indirect_rreg64;
+ 	adev->pcie_wreg64 = &amdgpu_device_indirect_wreg64;
+ 	adev->uvd_ctx_rreg = &soc15_uvd_ctx_rreg;
 -- 
 2.39.2
 
