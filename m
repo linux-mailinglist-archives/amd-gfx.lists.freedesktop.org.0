@@ -1,41 +1,41 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C70326CF459
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Mar 2023 22:18:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F90B6CF45B
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Mar 2023 22:18:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 623C610EC4A;
-	Wed, 29 Mar 2023 20:18:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EB2E10EBE2;
+	Wed, 29 Mar 2023 20:18:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBAF310EBE2
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2087.outbound.protection.outlook.com [40.107.243.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B988010E3BB
  for <amd-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 20:18:03 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=W7oPalLl95t6P+cO5xkQsGMzM7mb3iPm4yNzsc4TKEliSBsNuRqHzTBiQGKQXsGwyZn184gFTlc5DsjQSsqjZZYHuehIgbazXlGNN/XJHadXwP1APDqm3Fx0I/QN9BFNe8bSUm0S6s2eNDXWA6CUjNGxkWsnRZtG9/a0GdCFvCOLD75NaFvyxUfe1+nyW8RTH7ss9pdmVY9LqbFR0ZGpqEwq5ViNM69CBMSOkjVCPTEJmGXiiMwDPIdUVuaJBw503/CN3h56SZOU9sI3BlsO+a/qY9j5LwYPDoqg52Za+8InIDm2tMS76ZG5X3k+EmK1zAbgzdog6ZhR10uuBpBIDg==
+ b=kljz6yYMktBFoSxuKO2e1XV5IZB0/u0ir5zK43ZaY+jX+s0nPvFbSpXPn58bQiXiBgglrVpJ1McToezMgwHTmmgvdZCK6LmzYSt6xflvQQIV0BDhlK1PNt2JBwuS2Z7a4j/rxnnAcY7t2gUrJN5UEZJmbUMzSHDmkTg6b7OXJ1ZrjPI8BUJ/7yfBVuE7qUNYy3vk9SIIrXtpHVrcSkAiMby8RQLjpPlrwWcZ6sQcLCzY1B8J46QozSmtIzFlcljJl6SuyeFXCnIs/5/ONvXcv8SHrA8qIksO34O05RVclJzev1ktnBYjnqydu5dnLhTVplgkcVUHjw8BCx2HS+YDFQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MWxDi1YxWUZjAzjtqOMxS0KysddrYwBasLNpyLK/7UQ=;
- b=hm7AHtyGuFnjziEHK/qoi44fVZsbHPSgNifrfp3MtOHcULiJ+7XKUeqmIQFkz7J5v7YWlBPO9STi8kp0qXjGVc5ouPSBZ4GC/Yd4kcQfuoFu3raADN25MsMQJkX2AIG/vasKWD786MHIpbvpsbEZyaaKtw4UWnk21H7035yNYBTgFpWDZ8zQf8s9Mx8P4C9ozAqpdPytC2tjx2T6f+LOKefQYiZuzNzkEaCm7gbjJM3dtFcE6xZewwjDuKdVK4g2QKmS85uihUEXrLDmgBo4GUVlDamlL0bLQ0wtK43lzaqkSV1G67opVgCgBMfgc3Pl/wRZUNpmRUXh98AAof0Xhw==
+ bh=pSzWP52QPacRJdz0RCY+UL8j+VfQZg8Qe5B2+7H7EGo=;
+ b=FFmhRkJjeNnAKd1Np9uSJu08EWbQauZTWR035P/cL0YlMAp8M6SbohHVc26BrfKbKrKb5rc7h1Odb1XwaivqFhc70Ae1HyGZGXupf4ZSWRuH74MX6A6miBSH+NgcaSGcrqXu0Z+RVe64whoejXharioDHWOEpqvYTmrwc0g/JHOUJUQ3y/v4LpLoUcBnvs+aT+poeH1sXCEFBvpeSLJ/VvaY9BeK7dbaeR8h9eP3tpIGmj8H3djK+jMSH8o7sI4RjLuxU4OWiS2DQHxsruJlezREx0XUlP4zwHehaTRLzUcFFHOwKQ/4SVlYy6hxsPw5oUdEUGge0zv4kZpNCBLPEA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MWxDi1YxWUZjAzjtqOMxS0KysddrYwBasLNpyLK/7UQ=;
- b=ifu+ZCrdkulOCsjfy6PzOaVWvO+/A9Q5gt4Ny1U6LMqaYD3YwA8ZBizFnoJjpzCRonyHyhs37ehhQ8kLIg1zkVIsGsdRIC9af9UWbNFmjfPS9oZ0VOwncozRCkw4F4rW7ty7gCdZ/pRhWFMxfX5GqIlRaWFVsz9i4qR2MjqsgTQ=
-Received: from BL0PR1501CA0015.namprd15.prod.outlook.com
- (2603:10b6:207:17::28) by CH2PR12MB4859.namprd12.prod.outlook.com
- (2603:10b6:610:62::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Wed, 29 Mar
+ bh=pSzWP52QPacRJdz0RCY+UL8j+VfQZg8Qe5B2+7H7EGo=;
+ b=s68j0589Es0ui+IVntXlaDAs0BV42OLPXKgI4nxhiVWTdWEmBt8VLvh/lyLa1UlAvqdodBJIFXUpkFfwmjECK3XXW4UcC4SHBYcc3+bpxmH9T5bjwbiCiMJ4I2ZviJp7RLvW84CdEtk2G/VybI5peXClUE/soqCv4UuKY/lmp28=
+Received: from BL0PR1501CA0027.namprd15.prod.outlook.com
+ (2603:10b6:207:17::40) by DS7PR12MB8274.namprd12.prod.outlook.com
+ (2603:10b6:8:da::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.28; Wed, 29 Mar
  2023 20:18:01 +0000
 Received: from BL02EPF000100D3.namprd05.prod.outlook.com
- (2603:10b6:207:17:cafe::24) by BL0PR1501CA0015.outlook.office365.com
- (2603:10b6:207:17::28) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:207:17:cafe::57) by BL0PR1501CA0027.outlook.office365.com
+ (2603:10b6:207:17::40) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.20 via Frontend
  Transport; Wed, 29 Mar 2023 20:18:01 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -54,9 +54,9 @@ Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  2023 15:18:00 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 4/5] drm/amdgpu: Use SDMA instance table for aqua vanjaram
-Date: Wed, 29 Mar 2023 16:17:43 -0400
-Message-ID: <20230329201744.1982926-4-alexander.deucher@amd.com>
+Subject: [PATCH 5/5] drm/amdgpu: switch to aqua_vanjaram_doorbell_index_init
+Date: Wed, 29 Mar 2023 16:17:44 -0400
+Message-ID: <20230329201744.1982926-5-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230329201744.1982926-1-alexander.deucher@amd.com>
 References: <20230329201744.1982926-1-alexander.deucher@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF000100D3:EE_|CH2PR12MB4859:EE_
-X-MS-Office365-Filtering-Correlation-Id: 43bbb66f-4bf5-45d8-aceb-08db3092b206
+X-MS-TrafficTypeDiagnostic: BL02EPF000100D3:EE_|DS7PR12MB8274:EE_
+X-MS-Office365-Filtering-Correlation-Id: b415ce08-235b-495b-0cb1-08db3092b247
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WwE+EXVET8tnu1ybHcHeDSbujYNzc7JJDSXJhQtksmZGmVH7w5Bd1MvVO7slEMY97MQ4kWgLhqAp/VXJiUS7qeMinykvycDLEakumGmQ1zj/ckFLSFlUzXJbmuUyrGEdUHV/pTNthbB5jOQNaUacGRwkW9JtBQkSPg5bRaH/YyeTC0cO+44M1y6Jzq35IyNwo3pkcafmj1sgIVPP3i+SnshJEfuOnBiFYrQUQ9f1+f/764Hzf8WwCkaA6OJx0ivcTMq3XtiFiaJCLSvBuyRn9Gvv/LjAwaFr6lzCH4tYiOxSeeIo2jzvC5Wea709zFPlGteHZWgnbKODoHGnchneVO9BpkUIHwtudAzi/Xm2Ny+xfJQE/hS+CSMhTh5e2Ca7tkj3JrqhMUXtnyU1738dCKsyJYJUtCDwbW9bO3AaDQ2oJu7NZZ9BYTWLiYc84JwK87IdvHjAfQXaM7zHNHZEWMSnWdlWAlfJ7dBejZKUVkZsRI4ax8pU/cYEvgjcKjXTty4UheReQH6k9NEtn+81a7bWyqRIjdfEUG0Cx9ESiwDbpNQlc4VPWHP/fOlZZmcYmZsurAV4iIjRSOn7sGZAL3sx+97mN0Ozrm7cg5b7LtWc+ob8/Wwln46YxiZ8z/+HtcXfP8sOiejJixXzek57gvyPiipTwxqJ+5njyigksVVeZDgauWYZVqy4RJWlhoptCLL+/oi4rKJHHHb107caJwdziZw5cIKbrBiexrx1AnI=
+X-Microsoft-Antispam-Message-Info: +WamLC2Y1TRtaNVq4ysLdhPetMJ1hOMBXDjOcul5ieo7eYj8s95obQTL0yVTMhTCBdHcTgXtKhOnklmp+xoQF5VmD5ySf2vuDIhm7P4OpfAdv9vju8qKDCyW5ShAVRlO/Yk9fu6sYIEdQ3go+lwkhaIfiUqAk/S5HguFJjBzMwLC813j9a2l8qMWZDoXJfhiOXPltyC01XhU5Y4IQkD5fIWtcrv5guRTgxfB7E6qPu59HtdFWnt4nW6xTbRvKqX7ui3f8+k6L96ASbyE0EdnC907NFNNDGmEryNZ3nhmCM9x0oLrEa34zIWiIA0iJEsRk3gSFhm0OIodm/KFRFP3iYVUV9TM8DCDVJdLoIBMUIjHE7G/gNSruBHievNA3p80Ov8HYWVSc8pQr9tFDpidBz0Ma/rtCsapg6140kgNIpJM4WllDPrLUCzG10Xu0/IDmqKmEAVQsw7ajf0U7rLj0ovjQRv7jDFxAHw6adgNNu9nB/IunDh1UnOgFcBAR9GEg21FtdeUD3lu52XgQzwacPMZ9O6aPGIyaqEDtMTQl7kmfyWwehQaMDXLGz2eZ4lhFtDmwvj178zztndVAjkO52eXV0CXbPoU45ZDD6ZXbPChhn9ypKL1BqPkgMgyPSiVDgCvN7NSt4JAViDsxhusKCXmT6hGw9ZCUtr2PnSvzhi78kcqSSzZU32tf+EBPkyc2OD9X/Y4otchNAZNHKftfn9+KV/Qujs9+kkv6V2YuZg=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(346002)(39860400002)(136003)(376002)(396003)(451199021)(36840700001)(46966006)(40470700004)(1076003)(26005)(6666004)(83380400001)(81166007)(86362001)(8936002)(356005)(186003)(2616005)(16526019)(336012)(426003)(47076005)(7696005)(2906002)(82310400005)(40460700003)(5660300002)(82740400003)(478600001)(40480700001)(4326008)(70206006)(70586007)(316002)(36756003)(8676002)(41300700001)(54906003)(6916009)(36860700001)(36900700001);
+ SFS:(13230028)(4636009)(346002)(39860400002)(396003)(376002)(136003)(451199021)(40470700004)(46966006)(36840700001)(8936002)(47076005)(2906002)(336012)(83380400001)(426003)(2616005)(41300700001)(86362001)(36860700001)(36756003)(40460700003)(82740400003)(5660300002)(81166007)(356005)(40480700001)(478600001)(7696005)(8676002)(54906003)(6916009)(70206006)(70586007)(4326008)(16526019)(6666004)(186003)(82310400005)(1076003)(26005)(316002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Mar 2023 20:18:01.2728 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 43bbb66f-4bf5-45d8-aceb-08db3092b206
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Mar 2023 20:18:01.6947 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b415ce08-235b-495b-0cb1-08db3092b247
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL02EPF000100D3.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4859
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8274
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,65 +99,75 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Le Ma <Le.Ma@amd.com>,
- Lijo Lazar <lijo.lazar@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Le Ma <le.ma@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Lijo Lazar <lijo.lazar@amd.com>
+From: Le Ma <le.ma@amd.com>
 
-For aqua vanjaram, add mapping for logical to physical
-instances.
+New doorbell index assignment is used by aqua_vanjaram.
 
-v2:
-	Register accesses on bare metal should be based on physical
-instance. Use GET_INST() to get physical instance.
-
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
-Reviewed-by: Le Ma <Le.Ma@amd.com>
+Signed-off-by: Le Ma <le.ma@amd.com>
+Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/aqua_vanjaram_reg_init.c | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/soc15.c | 24 +++++++++++++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/soc15.h |  1 +
+ 2 files changed, 24 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram_reg_init.c b/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram_reg_init.c
-index 5a1511a22367..12379c374457 100644
---- a/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram_reg_init.c
-+++ b/drivers/gpu/drm/amd/amdgpu/aqua_vanjaram_reg_init.c
-@@ -59,6 +59,7 @@ static int8_t aqua_vanjaram_logical_to_dev_inst(struct amdgpu_device *adev,
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
+index af47fafd2e77..6800a85c5966 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc15.c
++++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
+@@ -861,6 +861,28 @@ static const struct amdgpu_asic_funcs vega20_asic_funcs =
+ 	.query_video_codecs = &soc15_query_video_codecs,
+ };
  
- 	switch (block) {
- 	case GC_HWIP:
-+	case SDMA0_HWIP:
- 		dev_inst = adev->ip_map.dev_inst[block][inst];
- 		break;
- 	default:
-@@ -73,7 +74,7 @@ static int8_t aqua_vanjaram_logical_to_dev_inst(struct amdgpu_device *adev,
- 
- void aqua_vanjaram_ip_map_init(struct amdgpu_device *adev)
- {
--	int xcc_mask;
-+	int xcc_mask, sdma_mask;
- 	int l, i;
- 
- 	/* Map GC instances */
-@@ -87,5 +88,15 @@ void aqua_vanjaram_ip_map_init(struct amdgpu_device *adev)
- 	for (; l < HWIP_MAX_INSTANCE; l++)
- 		adev->ip_map.dev_inst[GC_HWIP][l] = -1;
- 
-+	l = 0;
-+	sdma_mask = adev->sdma.sdma_mask;
-+	while (sdma_mask) {
-+		i = ffs(sdma_mask) - 1;
-+		adev->ip_map.dev_inst[SDMA0_HWIP][l++] = i;
-+		sdma_mask &= ~(1 << i);
-+	}
-+	for (; l < HWIP_MAX_INSTANCE; l++)
-+		adev->ip_map.dev_inst[SDMA0_HWIP][l] = -1;
++static const struct amdgpu_asic_funcs aqua_vanjaram_asic_funcs =
++{
++	.read_disabled_bios = &soc15_read_disabled_bios,
++	.read_bios_from_rom = &amdgpu_soc15_read_bios_from_rom,
++	.read_register = &soc15_read_register,
++	.reset = &soc15_asic_reset,
++	.reset_method = &soc15_asic_reset_method,
++	.set_vga_state = &soc15_vga_set_state,
++	.get_xclk = &soc15_get_xclk,
++	.set_uvd_clocks = &soc15_set_uvd_clocks,
++	.set_vce_clocks = &soc15_set_vce_clocks,
++	.get_config_memsize = &soc15_get_config_memsize,
++	.need_full_reset = &soc15_need_full_reset,
++	.init_doorbell_index = &aqua_vanjaram_doorbell_index_init,
++	.get_pcie_usage = &vega20_get_pcie_usage,
++	.need_reset_on_init = &soc15_need_reset_on_init,
++	.get_pcie_replay_count = &soc15_get_pcie_replay_count,
++	.supports_baco = &soc15_supports_baco,
++	.pre_asic_init = &soc15_pre_asic_init,
++	.query_video_codecs = &soc15_query_video_codecs,
++};
 +
- 	adev->ip_map.logical_to_dev_inst = aqua_vanjaram_logical_to_dev_inst;
- }
+ static int soc15_common_early_init(void *handle)
+ {
+ #define MMIO_REG_HOLE_OFFSET (0x80000 - PAGE_SIZE)
+@@ -1104,7 +1126,7 @@ static int soc15_common_early_init(void *handle)
+ 		adev->external_rev_id = adev->rev_id + 0x3c;
+ 		break;
+ 	case IP_VERSION(9, 4, 3):
+-		adev->asic_funcs = &vega20_asic_funcs;
++		adev->asic_funcs = &aqua_vanjaram_asic_funcs;
+ 		adev->cg_flags =
+ 			AMD_CG_SUPPORT_VCN_MGCG |
+ 			AMD_CG_SUPPORT_JPEG_MGCG;
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.h b/drivers/gpu/drm/amd/amdgpu/soc15.h
+index d8a2a6c2c6e3..9cc2dda087c4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc15.h
++++ b/drivers/gpu/drm/amd/amdgpu/soc15.h
+@@ -115,4 +115,5 @@ void aqua_vanjaram_ip_map_init(struct amdgpu_device *adev);
+ 
+ void vega10_doorbell_index_init(struct amdgpu_device *adev);
+ void vega20_doorbell_index_init(struct amdgpu_device *adev);
++void aqua_vanjaram_doorbell_index_init(struct amdgpu_device *adev);
+ #endif
 -- 
 2.39.2
 
