@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A82996CF442
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Mar 2023 22:15:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0BC86CF43C
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Mar 2023 22:14:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7FD410EC45;
-	Wed, 29 Mar 2023 20:14:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3879D10EC40;
+	Wed, 29 Mar 2023 20:14:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA5B710EC3F
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2046.outbound.protection.outlook.com [40.107.223.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7819510EC39
  for <amd-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 20:14:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fAXJl0PnsvahFj/F9+5l1qLEAUrLE+9UlsF47IVyVBUzEAb2RyiRnnubaPaMXCWriLxjMchi+aHeretFaPy+elCiKu6iAHPTpsfkF/cQI26xC22M1zoIy3uUXO+HBkrFdGMY2Ch/MP5qujWtu1ODQCR/uH9Pfak+U7EBAM41nvrsU1ET4WWqemZcgzRlg9a4HSTFIJWRO7WCAqXeyLrbYwdU3WPvVGbDsFn10U38/WVYjZZU1eMjsk0WKddfsGKyk53goWYTYkYkc7EzvlDz0s2Ywldin/0Z2mF/ibXuWpPjeAwJNo1n6NOOcx4L0taQM4U3NKMlNF1ZclE/AqCaLg==
+ b=oDgkCAXmwiB49devyu1IPVVQlXh+b98uDIfNXDArsvnzH0VplQwvrcoxP4rtVeFG2DpU+MhsXCQNi/POGiJmUuWf1nGDAbCXHzqU5qb7uxDj5Py4GQS0jplVbOG8nyXV123WZRpxj8n1T3k6deDjrfyj1qigjzqFJDLSh81x0rNjiFJ7m97cXu/lgbHnhDzm8zsxH3UeOCmDYT5qdVPCXq/QaqIWvu3ArlWh4gM07YoI5U/dzeB913NUiX7AJ6fBqtepEuqsGMTGfOl08mkD8BAOnk8mY5t89yk4hpJogere0qqLoJrPqWOBcQFRXZhttMWCwzsSZWLBdfE1R5PWaw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vp/vlVlQsQKk8za8HD2j0T/2Cak/zwBlh94K2atiwa4=;
- b=cDR+h6BW9yw6eOPJ5mTdZ76XxBFlvjFsEghSi5PoSb1PpdnoLR7UhCKd8UCLNGqsaNwqektkrvmVKcDzFMFlxsNDA3GcwHW/vCVoNrG0zgRXT+MMIlvhBdIIGvf+HYDACM1HM0eR++d9mBrb73R/TmitGUD/36eBzYlyrVs0Qo1JDF7qbnI4asrRlEAL6duL0BBS/gfMddpWMMxaDskUZ2a/j2aeaBHAVwDU/Il2S3fy6Wgr6PCg2TF8g1LblLz24RdBX6inkdxIPdHFbz/+xa1I5FT7iTYmA1lQY51TrRUwwd3L/0/hQT8YM96UU4fXu9L6IfN2VPvsbkP2vHZtCg==
+ bh=ntzQSS+bdaxsVWvrWzUfzXvJw+uYWscZp13dnTZroYU=;
+ b=PN/acCUIlvz7kTm8dfKlqHLhDp3WYljGH4TpH2I+4TN8eXz/MugcxTCRzj8sruigalBlmpZCajXMklnuGQrPH6sPXqyze3QZyf3SPoo4HF52WRfMC0adyAL43dkW4efnWdyL/YbGMNZIw2tLPreSharh/ZLb2OROA7A9d+VYbHMprMloILXNnpjop4ewVVjZcysV2to+J51Eqy1nATv2MDtKWM6O3KTVRh+b+oYqcBvZpQLR0VcLz2gW79f/Pg9KGwq1G5Rcn5vhwjB+Z6nnwL1aMcFGi9XRyspobGDpwcDU6Y1GdXz5/GUeHGKxTNx39D7pg23DiwgOTbHJsoPzHw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vp/vlVlQsQKk8za8HD2j0T/2Cak/zwBlh94K2atiwa4=;
- b=NhhTzn/FOZTOTwTMT/mv3jQynhFhtHAnQQbmg+48530C/0v8hBi/aOYcgZTOF7+ER183Oflyn3mhhmP+beMFFJYsvd9TKJUrFhiGVTX68knVnOt/Ruo+6csNQtzmS83VDS/W6L8RT34TV35gMxdE4qGQ1toKpkg/nmr1BDhep+g=
-Received: from MW2PR2101CA0014.namprd21.prod.outlook.com (2603:10b6:302:1::27)
- by MW3PR12MB4587.namprd12.prod.outlook.com (2603:10b6:303:5d::17)
+ bh=ntzQSS+bdaxsVWvrWzUfzXvJw+uYWscZp13dnTZroYU=;
+ b=5VHHwkHCLHFfkMR7COzW4PXLR+xYr1AacW1vNKUlrPWtHrKSpt4bZWd+XAdl40T1ay53y96gOPw9Vkx3wiGBTmEu3PO3uyD4bnGcxX8Cfqj0VCnK2OQCQlbL2SbbTPmd7sZ5G3PBAlWcp8/SEAOAK6kK2dfAcJMtP4cXjz5GW7E=
+Received: from MW2PR2101CA0025.namprd21.prod.outlook.com (2603:10b6:302:1::38)
+ by CH0PR12MB5236.namprd12.prod.outlook.com (2603:10b6:610:d3::22)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Wed, 29 Mar
- 2023 20:14:48 +0000
+ 2023 20:14:49 +0000
 Received: from CO1NAM11FT050.eop-nam11.prod.protection.outlook.com
- (2603:10b6:302:1:cafe::7d) by MW2PR2101CA0014.outlook.office365.com
- (2603:10b6:302:1::27) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:302:1:cafe::e4) by MW2PR2101CA0025.outlook.office365.com
+ (2603:10b6:302:1::38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.16 via Frontend
- Transport; Wed, 29 Mar 2023 20:14:48 +0000
+ Transport; Wed, 29 Mar 2023 20:14:49 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CO1NAM11FT050.mail.protection.outlook.com (10.13.174.79) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6254.20 via Frontend Transport; Wed, 29 Mar 2023 20:14:48 +0000
+ 15.20.6254.20 via Frontend Transport; Wed, 29 Mar 2023 20:14:49 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 29 Mar
- 2023 15:14:46 -0500
+ 2023 15:14:47 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 07/14] drm/amdgpu: adjust s2a entry register for sdma doorbell
- trans decoding
-Date: Wed, 29 Mar 2023 16:14:19 -0400
-Message-ID: <20230329201426.1982669-7-alexander.deucher@amd.com>
+Subject: [PATCH 08/14] drm/amdgpu: drop redundant csb init for gfx943
+Date: Wed, 29 Mar 2023 16:14:20 -0400
+Message-ID: <20230329201426.1982669-8-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230329201426.1982669-1-alexander.deucher@amd.com>
 References: <20230329201426.1982669-1-alexander.deucher@amd.com>
@@ -69,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT050:EE_|MW3PR12MB4587:EE_
-X-MS-Office365-Filtering-Correlation-Id: 51a55f58-bb6d-4d0a-98c9-08db30923f3b
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT050:EE_|CH0PR12MB5236:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3c4b98c6-cfb7-4f12-bba2-08db30923f80
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TaUG6BmG3WZfrFKWTEheHdBo3ZKsauEox8WRLVc9+wgebJ+uGMBc8OeY/ZyoM8X/WJr3ovhKRqVt4N59muJlgcLM8n0Y4pR3/LO1QVObOw40IrwR+LFmkt/RxOzzkz1JxzNp1zSVF+4MnRSF2uwLYygCUv6ywsXqh/q66r3RtTB0alxd/FMASdwiOZoSZPl4ShYnJPl7Qp7VAhH8ki6WAch1YS3qBvQBGpCXoLBSI0GrrLYOqpY+X1qsEngiaTLrn/MVVAIFKJiBsA8ZHA/YoiPKPdC07FzjFC3622x1ZXNi/nbAlqyEb/RDqM8PiyBwRPzLPPoCtMUV6NdQsuNQ2QG9kw7rgoyoEZNAdnbmfF9b1J3cxK/mHCzIoPo6oPDl2DHRPL7OrtAvWs2rtsdB35P7u0vpx44iz5GOwPVEYYbc5gCLkUWIMlt79Jm7WBHRfy6ejeuixPvqTQNGE4kVEr52BWhjzFxNe5m5VeNPxdv0jWqx6i+blzwXmgttTJV9/f7yHeeWBHBd+53kStVNLTSkEpx1Rj8HTIyMixidMh883ArkLYPFe2hP05WpitoVCLXWI/4wa//yGBAiKrH+HnB7xq9bMPSuMpoSmLifpYJX/s+eLBDSrpFg/2tzswnF6wuOLzpr36z6E9ApcHgEPxXaj/030N2lYlfIFVkizutDXgnNvXg+QPwZRER6oKyH9qJaU/ejQP83tiWi+cTdDUO86aeapWuCVQM/LTzg6fHe8jGbYdz88gIhHAWO4nAnOW+sgrTxYh+8t8zzMBDBNQ==
+X-Microsoft-Antispam-Message-Info: 22INSmrx69PN0eZM4RFQOI3NIFgBhrLOBHH70bbkAeOmLFAc6F44GkbtWehG6XHhJ+IL6qLVruk+7jIY0qWq1Vag5dkL2yUX3br88+s0BHh0gd2rIxpWDXTQtWfRzszJTERuIbvsyDobabwLzDAZl2K16LEJoHN0C75z3teUtuoiAypJQMC7FuVAWV7Y5hCFcYmTWN6pnIH0/UiAUX+FWmTEPZOYAfAlG2WcEc2d7RZqsssV+dfBlT5fTG+fPaapOxypdAFgJQyczZHiXnbM18iU//HFZw38YPAGAiWyUwmLtw57+yluI6yWcR7uCgz8xWfCfWbxQEgvbZQHkDnHR7cJM9pAdPhRTxXFZOm5xbVZHvO/pKTXn29mYDxFQKOegKGNtmMV1MCPDa2O13au0QrSzLBv40cL5y0cNHU9IYta06gZpIUMkMl3Csjbx0TLyQOh1q/7Tw4U5aBKtUdCcK3J2p70F7QjUkngb8L4q05gYo9UbCBs0ihQ2H7xZg3+ALja/4fK6o2yEEkLoh/cqTuet8LznMEVqjq5kUToU0ndm7Tx/Z2M8G1xdx1SdN2+y10JcXMmElZqVqz0sfjWiTxrcyDAF4Klvc5NYULFiGpzwVVU/J9X4b5i+JkPbbXxsi3z6n5pi547G6f8GCKF9mwPecgnZ8UzukRB6mGdz4kzWzVkQ5s4H2po2OYosc56K4wOdUCeL/KteWKloWac/LyBHa4QKPI4/TmtDTqV1hU=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(376002)(136003)(346002)(39860400002)(396003)(451199021)(40470700004)(36840700001)(46966006)(478600001)(83380400001)(2906002)(36860700001)(1076003)(7696005)(336012)(426003)(2616005)(356005)(5660300002)(54906003)(8936002)(81166007)(316002)(40460700003)(82740400003)(6666004)(86362001)(186003)(82310400005)(16526019)(26005)(40480700001)(70586007)(47076005)(41300700001)(70206006)(4326008)(6916009)(8676002)(36756003)(36900700001)(309714004);
+ SFS:(13230028)(4636009)(396003)(39860400002)(346002)(376002)(136003)(451199021)(40470700004)(46966006)(36840700001)(6666004)(7696005)(26005)(1076003)(478600001)(6916009)(316002)(54906003)(47076005)(16526019)(36860700001)(186003)(426003)(70206006)(70586007)(336012)(8676002)(83380400001)(2616005)(4326008)(41300700001)(356005)(5660300002)(2906002)(82740400003)(40460700003)(81166007)(8936002)(40480700001)(86362001)(82310400005)(36756003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Mar 2023 20:14:48.5879 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 51a55f58-bb6d-4d0a-98c9-08db30923f3b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Mar 2023 20:14:49.0254 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3c4b98c6-cfb7-4f12-bba2-08db30923f80
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT050.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4587
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5236
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,67 +106,149 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Le Ma <le.ma@amd.com>
 
-Use s2a entry 5/6 registers to decode sdma doorbell trans on different AIDs,
-which aligns the entry table in SHUB spec, and leave entry 4 dedicated for VCN
-doorbell to avoid conflict.
+It's not required for compute pipeline and will cause soft lockup on emulation
+due to long-time writing.
 
 Signed-off-by: Le Ma <le.ma@amd.com>
 Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c | 32 +++++++-------------------
- 1 file changed, 8 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 99 -------------------------
+ 1 file changed, 99 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c b/drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c
-index 08819e4edd90..172f7f6807fa 100644
---- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c
-+++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c
-@@ -151,18 +151,10 @@ static void nbio_v7_9_sdma_doorbell_range(struct amdgpu_device *adev, int instan
- 					S2A_DOORBELL_ENTRY_1_CTRL,
- 					S2A_DOORBELL_PORT1_AWADDR_31_28_VALUE,
- 					0x8);
--		if (aid_id != 0)
--			WREG32_PCIE_EXT((SOC15_REG_OFFSET(NBIO, 0,
--				regS2A_DOORBELL_ENTRY_3_CTRL)
--				+ S2A_DOORBELL_REG_LSD_OFFSET) * 4
--				+ AMDGPU_SMN_TARGET_AID(aid_id)
--				+ AMDGPU_SMN_CROSS_AID * !!aid_id,
--				doorbell_ctrl);
--		else
--			WREG32(SOC15_REG_OFFSET(NBIO, 0,
--				regS2A_DOORBELL_ENTRY_5_CTRL)
--				+ S2A_DOORBELL_REG_LSD_OFFSET,
--				doorbell_ctrl);
-+		WREG32_PCIE_EXT(SOC15_REG_OFFSET(NBIO, 0, regS2A_DOORBELL_ENTRY_5_CTRL) * 4
-+			+ AMDGPU_SMN_TARGET_AID(aid_id)
-+			+ AMDGPU_SMN_CROSS_AID * !!aid_id,
-+			doorbell_ctrl);
- 		break;
- 	case 3:
- 		WREG32(SOC15_REG_OFFSET(NBIO, 0, regDOORBELL0_CTRL_ENTRY_4) +
-@@ -178,18 +170,10 @@ static void nbio_v7_9_sdma_doorbell_range(struct amdgpu_device *adev, int instan
- 					S2A_DOORBELL_ENTRY_1_CTRL,
- 					S2A_DOORBELL_PORT1_AWADDR_31_28_VALUE,
- 					0x9);
--		if (aid_id != 0)
--			WREG32_PCIE_EXT((SOC15_REG_OFFSET(NBIO, 0,
--				regS2A_DOORBELL_ENTRY_4_CTRL)
--				+ S2A_DOORBELL_REG_LSD_OFFSET) * 4
--				+ AMDGPU_SMN_TARGET_AID(aid_id)
--				+ AMDGPU_SMN_CROSS_AID * !!aid_id,
--				doorbell_ctrl);
--		else
--			WREG32(SOC15_REG_OFFSET(NBIO, 0,
--				regS2A_DOORBELL_ENTRY_6_CTRL)
--				+ S2A_DOORBELL_REG_LSD_OFFSET,
--				doorbell_ctrl);
-+		WREG32_PCIE_EXT(SOC15_REG_OFFSET(NBIO, 0, regS2A_DOORBELL_ENTRY_6_CTRL) * 4
-+			+ AMDGPU_SMN_TARGET_AID(aid_id)
-+			+ AMDGPU_SMN_CROSS_AID * !!aid_id,
-+			doorbell_ctrl);
- 		break;
- 	default:
- 		break;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+index 2766e6ab5b1b..a2534ffc677e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+@@ -434,75 +434,6 @@ static int gfx_v9_4_3_init_microcode(struct amdgpu_device *adev)
+ 	return r;
+ }
+ 
+-static u32 gfx_v9_4_3_get_csb_size(struct amdgpu_device *adev)
+-{
+-	u32 count = 0;
+-	const struct cs_section_def *sect = NULL;
+-	const struct cs_extent_def *ext = NULL;
+-
+-	/* begin clear state */
+-	count += 2;
+-	/* context control state */
+-	count += 3;
+-
+-	for (sect = gfx9_cs_data; sect->section != NULL; ++sect) {
+-		for (ext = sect->section; ext->extent != NULL; ++ext) {
+-			if (sect->id == SECT_CONTEXT)
+-				count += 2 + ext->reg_count;
+-			else
+-				return 0;
+-		}
+-	}
+-
+-	/* end clear state */
+-	count += 2;
+-	/* clear state */
+-	count += 2;
+-
+-	return count;
+-}
+-
+-static void gfx_v9_4_3_get_csb_buffer(struct amdgpu_device *adev,
+-				    volatile u32 *buffer)
+-{
+-	u32 count = 0, i;
+-	const struct cs_section_def *sect = NULL;
+-	const struct cs_extent_def *ext = NULL;
+-
+-	if (adev->gfx.rlc.cs_data == NULL)
+-		return;
+-	if (buffer == NULL)
+-		return;
+-
+-	buffer[count++] = cpu_to_le32(PACKET3(PACKET3_PREAMBLE_CNTL, 0));
+-	buffer[count++] = cpu_to_le32(PACKET3_PREAMBLE_BEGIN_CLEAR_STATE);
+-
+-	buffer[count++] = cpu_to_le32(PACKET3(PACKET3_CONTEXT_CONTROL, 1));
+-	buffer[count++] = cpu_to_le32(0x80000000);
+-	buffer[count++] = cpu_to_le32(0x80000000);
+-
+-	for (sect = adev->gfx.rlc.cs_data; sect->section != NULL; ++sect) {
+-		for (ext = sect->section; ext->extent != NULL; ++ext) {
+-			if (sect->id == SECT_CONTEXT) {
+-				buffer[count++] =
+-					cpu_to_le32(PACKET3(PACKET3_SET_CONTEXT_REG, ext->reg_count));
+-				buffer[count++] = cpu_to_le32(ext->reg_index -
+-						PACKET3_SET_CONTEXT_REG_START);
+-				for (i = 0; i < ext->reg_count; i++)
+-					buffer[count++] = cpu_to_le32(ext->extent[i]);
+-			} else {
+-				return;
+-			}
+-		}
+-	}
+-
+-	buffer[count++] = cpu_to_le32(PACKET3(PACKET3_PREAMBLE_CNTL, 0));
+-	buffer[count++] = cpu_to_le32(PACKET3_PREAMBLE_END_CLEAR_STATE);
+-
+-	buffer[count++] = cpu_to_le32(PACKET3(PACKET3_CLEAR_STATE, 0));
+-	buffer[count++] = cpu_to_le32(0);
+-}
+-
+ static void gfx_v9_4_3_mec_fini(struct amdgpu_device *adev)
+ {
+ 	amdgpu_bo_free_kernel(&adev->gfx.mec.hpd_eop_obj, NULL, NULL);
+@@ -1117,22 +1048,8 @@ static void gfx_v9_4_3_enable_save_restore_machine(struct amdgpu_device *adev,
+ 	WREG32_FIELD15_PREREG(GC, GET_INST(GC, xcc_id), RLC_SRM_CNTL, SRM_ENABLE, 1);
+ }
+ 
+-static void gfx_v9_4_3_init_csb(struct amdgpu_device *adev, int xcc_id)
+-{
+-	adev->gfx.rlc.funcs->get_csb_buffer(adev, adev->gfx.rlc.cs_ptr);
+-	/* csib */
+-	WREG32_RLC(SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_CSIB_ADDR_HI),
+-			adev->gfx.rlc.clear_state_gpu_addr >> 32);
+-	WREG32_RLC(SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_CSIB_ADDR_LO),
+-			adev->gfx.rlc.clear_state_gpu_addr & 0xfffffffc);
+-	WREG32_RLC(SOC15_REG_OFFSET(GC, GET_INST(GC, xcc_id), regRLC_CSIB_LENGTH),
+-			adev->gfx.rlc.clear_state_size);
+-}
+-
+ static void gfx_v9_4_3_init_pg(struct amdgpu_device *adev, int xcc_id)
+ {
+-	gfx_v9_4_3_init_csb(adev, xcc_id);
+-
+ 	/*
+ 	 * Rlc save restore list is workable since v2_1.
+ 	 * And it's needed by gfxoff feature.
+@@ -1224,20 +1141,6 @@ static void gfx_v9_4_3_unset_safe_mode(struct amdgpu_device *adev, int xcc_id)
+ 
+ static int gfx_v9_4_3_rlc_init(struct amdgpu_device *adev)
+ {
+-	const struct cs_section_def *cs_data;
+-	int r;
+-
+-	adev->gfx.rlc.cs_data = gfx9_cs_data;
+-
+-	cs_data = adev->gfx.rlc.cs_data;
+-
+-	if (cs_data) {
+-		/* init clear state block */
+-		r = amdgpu_gfx_rlc_init_csb(adev);
+-		if (r)
+-			return r;
+-	}
+-
+ 	/* init spm vmid with 0xf */
+ 	if (adev->gfx.rlc.funcs->update_spm_vmid)
+ 		adev->gfx.rlc.funcs->update_spm_vmid(adev, 0xf);
+@@ -2412,8 +2315,6 @@ static const struct amdgpu_rlc_funcs gfx_v9_4_3_rlc_funcs = {
+ 	.set_safe_mode = gfx_v9_4_3_set_safe_mode,
+ 	.unset_safe_mode = gfx_v9_4_3_unset_safe_mode,
+ 	.init = gfx_v9_4_3_rlc_init,
+-	.get_csb_size = gfx_v9_4_3_get_csb_size,
+-	.get_csb_buffer = gfx_v9_4_3_get_csb_buffer,
+ 	.resume = gfx_v9_4_3_rlc_resume,
+ 	.stop = gfx_v9_4_3_rlc_stop,
+ 	.reset = gfx_v9_4_3_rlc_reset,
 -- 
 2.39.2
 
