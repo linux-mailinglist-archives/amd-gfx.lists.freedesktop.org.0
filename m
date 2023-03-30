@@ -1,42 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC9036D0F16
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Mar 2023 21:43:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A981C6D0F19
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Mar 2023 21:43:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF96310EFF8;
-	Thu, 30 Mar 2023 19:43:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2E7610EFFE;
+	Thu, 30 Mar 2023 19:43:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2058.outbound.protection.outlook.com [40.107.237.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D745910E2D7
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on20619.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7eab::619])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E754C10EFED
  for <amd-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 19:42:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aF6hwZ0dPPjDUBAI0Ft7+jmby/nHdhYOGWQoPFqsKCu5CQxlL/BOfgXygT2b1mHC+3tpCkKUgWi2OhuHARFcHC4eJmmGxRKdcI5ezlnFtWfV4YcV9EiEM3CfEX/wPlExp7yOO58qVan/ss8Y7UUY2mUVXACFttkcMuD5vw45Luc+dLMsYBAwnM91dVfqL2375239tgDod9VqLEw2KkeyCEnjjon0Q+PAociednfMGvWT18N5NKBVoHRWSoQ0b9QLRJj52dHmRuqbFWbbNDRSq9JRxdM3jTueYnZrwzV3cjbRAU02DyRMKQi5UTir7vjdWSeMVo1pdkP0r7dOdZpNAA==
+ b=YM3eHLlqstTiwzGNddcWw2EhgQwl5A8T5bgVyNy2M6UTTQJefogQIilovT+T2Np3tR8rvPdQbhkG7J/DYUORDbagDCiNaiyUup0cEH4XS5e/Q/3vzMAdltQRclgekA9nTiMUsAee6sQQBbCNfolkBRiXy+YHEg1bMn0iTlbefvgSL/X2A6zRCiV4JWqGFbtyWs3OP8N4qNOTKUldhI/JFNr4YeOyqsiBEru5kj8HAIEkG+S3SwYKGTiTCfbdUt4cMFuj676L1F3m+GJZXsqjJOxGp/yxTbYl+lfi5RqGkwUJ9+3lg2m5EZaYBxE1OoB1J/ZyJtuGvGHwwOE0QIvIXA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fS//3KgB1SCBk2IcVuGkzLnWJvchDifWzTsQ8twDr8g=;
- b=UBpJp8Laup9jiXxrwLccK4r/rPgLeyqMxD7zIbYsGKw3WA7zyfmeY3wvpfW+WfdqTLEgWYpEhBv7XJ4Rz31ay2s5TW7lT7fs93SWTdZhPJLMHlkOqhbybZuBrypCmVcnIsXgmEGjBnvIEP9bw7atp8tXYZ7YDNezpcFw0toiRXL13R+v0tGAbUMQtk277Dl9FfHS5qO2s2jHCjzIQvZ5vHFrnfMOrRP5haFVbkPPQ+d8h/3udPuEWJO607jVaYpqEsfyWNu/gDrJFTCGRNSgANOdE3byPXjYxkuFuCfg320rkItRCmDFn3fUMgGcVv5M0lGQa7LZQmy6J9j6zlKbKw==
+ bh=gBE+zMlzRaMv5kC+dB4bEIp5QuN+xZpQB9W3GDV6X28=;
+ b=IwJj8hICRqcgFaAWDOQiQrquqGhz8xgGHvrRcBn3hTwp5mS/CfHg4WIPUDl/W1Lfxk/yS4kDYWgJ0PXvFsFoQ8YDhp1tpsM9x4gIi3JNDjbE6VTQWwnhPYzYdqebfDHgtYUutKNFX+RbbHQl+TMAqDSwhSvog+HTjwph1PubY+8fe/8zhfDuyDADlQgeV3/CJ3IwWAn4BuCyuUqxRQjR+uD6MD4v1SrgenJtN5AVVHQvBSzL/drOzcCpuIctyApDqPsVwWAa1cOjrB/g4RKUd36G1I/LQaNgGx6aTEjZVzwgkdaL3CRykomsAL4Fhwa9qs3/Ha7eHl1FtFCE/hvCmg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fS//3KgB1SCBk2IcVuGkzLnWJvchDifWzTsQ8twDr8g=;
- b=hfiGfqeU9MKS3/B10/dx1XalVoAaSybAC0ph4UiQrebShTmgB2dnG8FhoDAkymRF6Y7aK3YWb953enZNCIZi+D8WU5JPQ5MAPfILUqjFyEzMrkrTL8CBBbaKKdqMCa6huWuDRh7dVz16JtjL6H0NKwGJp0vdMYdNleX+SgvGd8I=
-Received: from DM6PR03CA0079.namprd03.prod.outlook.com (2603:10b6:5:333::12)
- by SA1PR12MB8161.namprd12.prod.outlook.com (2603:10b6:806:330::7) with
+ bh=gBE+zMlzRaMv5kC+dB4bEIp5QuN+xZpQB9W3GDV6X28=;
+ b=HKhiuIhFrib8wxKhhUTKfUWw13ERfFEz/NL+LTqRjtYEBRNyiTg2D2q2xnByMqwqS8OrT5RJbd9VTLjx4V7KEMs8F2M+crtqza/pR1VIQQfybv16SRKy/f0HgH42cvsd+3il+TE/JsiGpctsy9K1VWy3l+YiC+KYAuSG75ftF6U=
+Received: from DM6PR03CA0085.namprd03.prod.outlook.com (2603:10b6:5:333::18)
+ by PH7PR12MB7986.namprd12.prod.outlook.com (2603:10b6:510:27d::17) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.22; Thu, 30 Mar
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Thu, 30 Mar
  2023 19:42:57 +0000
 Received: from DS1PEPF0000E63C.namprd02.prod.outlook.com
- (2603:10b6:5:333:cafe::f4) by DM6PR03CA0079.outlook.office365.com
- (2603:10b6:5:333::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.20 via Frontend
+ (2603:10b6:5:333:cafe::71) by DM6PR03CA0085.outlook.office365.com
+ (2603:10b6:5:333::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.22 via Frontend
  Transport; Thu, 30 Mar 2023 19:42:57 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -54,9 +55,9 @@ Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  2023 14:42:56 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 18/23] drm/amdgpu: Add FGCG logic for GFX v9.4.3
-Date: Thu, 30 Mar 2023 15:42:29 -0400
-Message-ID: <20230330194234.1135527-18-alexander.deucher@amd.com>
+Subject: [PATCH 19/23] drm/amdgpu: Allocate GART table in RAM for AMD APU
+Date: Thu, 30 Mar 2023 15:42:30 -0400
+Message-ID: <20230330194234.1135527-19-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230330194234.1135527-1-alexander.deucher@amd.com>
 References: <20230330194234.1135527-1-alexander.deucher@amd.com>
@@ -68,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF0000E63C:EE_|SA1PR12MB8161:EE_
-X-MS-Office365-Filtering-Correlation-Id: bd2d5868-01e7-4159-2189-08db3156f664
+X-MS-TrafficTypeDiagnostic: DS1PEPF0000E63C:EE_|PH7PR12MB7986:EE_
+X-MS-Office365-Filtering-Correlation-Id: 45f07b96-181f-406e-45c4-08db3156f6a9
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: fTgpIav62rLtn6mP28PPLqyU/7aRK6JjyMSHlONQUt3jxlcrmwEUDJdEif6Dn04lIIyqpjYcW6qHde4Gz0ihS0SbAShIPwiLkRZlaMgEgwbViT4DYw+ltOYBnIADs5RbmXHus7c9nYc5T/rwTaeFCNhH6poEFYIRXtv8wTcP3qpCNSv+oulOt/YDFL/XvvSyWvU7Fj8RRKTjGFfcGR7ZyE7uCc++Spptu82/vQTtc4qU5ZVwso46MHVAlI3a4SgFZdX7GuHr3EdNytyDsEua+GZVJOQHFcahqWnBf6NTkjf2PqrHl6S3UJb1OT5MkVdghZEhtq7sqfgAwvb5NhHNizg5zmFJda5s/QfozJaJIpNYUwyeDUea0mFkGybflo/emWTRN/udBFej83NtiVl4MXzyBB1wzOblob9XM9WepBjcwesxywVhf1I22uRDF+/9TlDnuIDLmJGVkNiQUXvteQjEttTGSvhYBW4igTnAq4ylhkyU6ywBrA9JSE0wUuoVGm9K+McMmSHdbrKpcRCnxQaJ5fDtQdjGQjNC00DqJWKBmoVB8hxG4pnfwnCcqKXvnAHIieQNmMSZVmOja3RccKFO98UmlVuTfGmxtRg0zXbV6bJysiYXQmLqBl26GU1BFVwHBo3Odl7TKxvm+KdYknN+oOqFfjKp+EgDR4CDwkAMjR7JXSTJWNofth4AH6ORwsc3v2Hz3zzirIuwOKN1FMKWzkjChmA0yxaYswUSNP4=
+X-Microsoft-Antispam-Message-Info: mgJI5jNPiTV9ldusPrS2MoJHf9beqy+jGnVJkcBIOuY7g72pfr9KW7+nz+CTKIDZe9d/p3xHhm+WqGFGTfaih99K/26AJf0kERmgBEmj7azEBHlGYaAY17Xd3Cid8XIJMbG15nRYeXC9s9FMbiYEPfaslz/HE82Rhfdh4hy9iHv/xwcO5h1kCF6W4zIWsd3X8m9gb3gGB3arGgonbSCxxouETGoeu4AjyRRSVbixYBrWJVFbU5sDFLG/iAogoQaXczN/Bvn43kAXsBF43suH8LUH6yEsRldtF+Q+iXWmqQoinlOun60jpRz/KZrwdbIa6ACwkMj+9V85feiy+2UHoYQO16gPartH0zxXCp0i4tdy6KMkzb9jLizV/nL0SzET8l9JctcU/Sr9aIVKcxyJ3nh4anWDz7FXlqa5p10mvrdagiC0HACTLm3RmNW3BuAF4EUhaECGXVw0BGDB+FqVl7cwTV9g/1EGrKeagtHUVHPBYm/3vJIKXb/j4Vc/qKZsI+snrORNBY8fdgHnM60zr/Ww9IMqyAVGAoer8Q2DY3kZz/nRY66f4rEgstmXmV+wTkI9we5DOI84lI8y+fwnYE0AnJ0+6rOQuHRG/QlvKjWRv98lwll5ENNPI/zHTXiXVU2Qq9EqLjJLuyK2455Ur2A2wRYU/uM3pKEa91LvLYIimrZw8P3I9/pxSc3SzYc65aAKqQkRl97dzLkP73LE53GxWthAxTmDtNpZgO7k0f8=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(376002)(136003)(39860400002)(346002)(396003)(451199021)(36840700001)(40470700004)(46966006)(426003)(336012)(6666004)(4326008)(6916009)(356005)(8676002)(41300700001)(82740400003)(1076003)(82310400005)(26005)(40480700001)(2616005)(47076005)(86362001)(186003)(83380400001)(16526019)(7696005)(478600001)(36860700001)(36756003)(316002)(54906003)(40460700003)(81166007)(8936002)(2906002)(70586007)(70206006)(5660300002)(36900700001);
+ SFS:(13230028)(4636009)(376002)(39860400002)(136003)(396003)(346002)(451199021)(46966006)(36840700001)(40470700004)(82740400003)(2906002)(81166007)(4326008)(356005)(86362001)(40480700001)(36756003)(82310400005)(40460700003)(41300700001)(8936002)(5660300002)(6916009)(316002)(478600001)(54906003)(6666004)(7696005)(1076003)(26005)(70586007)(8676002)(186003)(83380400001)(2616005)(426003)(70206006)(336012)(16526019)(47076005)(36860700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2023 19:42:57.2825 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd2d5868-01e7-4159-2189-08db3156f664
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2023 19:42:57.7512 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 45f07b96-181f-406e-45c4-08db3156f6a9
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0000E63C.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8161
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7986
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,146 +100,238 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>,
+ Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Lijo Lazar <lijo.lazar@amd.com>
+From: Felix Kuehling <Felix.Kuehling@amd.com>
 
-Add logic for fine grain clock gating logic for GFX v9.4.3. The feature
-will be controlled using CG flags. Also, make a change so that RLC safe
-mode entry/exit is done only once during CG update sequence.
+[NOT FOR UPSTREAM]
+Christian prefers to use another TTM based version for upstream so this
+should be used on the NPI branch till the said patch lands on the
+upstream list.
 
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+Some AMD APUs may not have a dedicated VRAM. On such platforms the GART
+table should be allocated on the system memory. When real vram size is
+zero, place the GART table in system memory and create an SG BO to make
+it GPU accessible.
+
+Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+(rajneesh: removed set_memory_wc workaround)
+Signed-off-by: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
+Signed-off-by: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
+Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 71 ++++++++++++++++++++++---
- 1 file changed, 65 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c | 136 +++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gart.h |   2 +
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c    |  23 +++-
+ 3 files changed, 155 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-index f899f3f1f51d..f6fb0b01c086 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-@@ -2178,14 +2178,64 @@ static int gfx_v9_4_3_late_init(void *handle)
- 	return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
+index 6b12f4a75fc3..aebc163ade69 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
+@@ -102,6 +102,142 @@ void amdgpu_gart_dummy_page_fini(struct amdgpu_device *adev)
+ 	adev->dummy_page_addr = 0;
  }
  
-+static void gfx_v9_4_3_xcc_update_sram_fgcg(struct amdgpu_device *adev,
-+					    bool enable, int xcc_id)
++/**
++ * amdgpu_gart_table_ram_alloc - allocate system ram for gart page table
++ *
++ * @adev: amdgpu_device pointer
++ *
++ * Allocate system memory for GART page table for ASICs that don't have
++ * dedicated VRAM.
++ * Returns 0 for success, error for failure.
++ */
++int amdgpu_gart_table_ram_alloc(struct amdgpu_device *adev)
 +{
-+	uint32_t def, data;
++	unsigned int order = get_order(adev->gart.table_size);
++	gfp_t gfp_flags = GFP_KERNEL | __GFP_ZERO;
++	struct amdgpu_bo *bo = NULL;
++	struct sg_table *sg = NULL;
++	struct amdgpu_bo_param bp;
++	dma_addr_t dma_addr;
++	struct page *p;
++	int ret;
 +
-+	if (!(adev->cg_flags & AMD_CG_SUPPORT_GFX_FGCG))
-+		return;
++	if (adev->gart.bo != NULL)
++		return 0;
 +
-+	def = data = RREG32_SOC15(GC, GET_INST(GC, xcc_id),
-+				  regRLC_CGTT_MGCG_OVERRIDE);
++	p = alloc_pages(gfp_flags, order);
++	if (!p)
++		return -ENOMEM;
 +
-+	if (enable)
-+		data &= ~RLC_CGTT_MGCG_OVERRIDE__GFXIP_FGCG_OVERRIDE_MASK;
-+	else
-+		data |= RLC_CGTT_MGCG_OVERRIDE__GFXIP_FGCG_OVERRIDE_MASK;
++	/* If the hardware does not support UTCL2 snooping of the CPU caches
++	 * then set_memory_wc() could be used as a workaround to mark the pages
++	 * as write combine memory.
++	 */
++	dma_addr = dma_map_page(&adev->pdev->dev, p, 0, adev->gart.table_size,
++				DMA_BIDIRECTIONAL);
++	if (dma_mapping_error(&adev->pdev->dev, dma_addr)) {
++		dev_err(&adev->pdev->dev, "Failed to DMA MAP the GART BO page\n");
++		__free_pages(p, order);
++		p = NULL;
++		return -EFAULT;
++	}
 +
-+	if (def != data)
-+		WREG32_SOC15(GC, GET_INST(GC, xcc_id),
-+			     regRLC_CGTT_MGCG_OVERRIDE, data);
++	dev_info(adev->dev, "%s dma_addr:%llx\n", __func__, dma_addr);
++	/* Create SG table */
++	sg = kmalloc(sizeof(*sg), GFP_KERNEL);
++	if (!sg) {
++		ret = -ENOMEM;
++		goto error;
++	}
++	ret = sg_alloc_table(sg, 1, GFP_KERNEL);
++	if (ret)
++		goto error;
 +
-+	def = data = RREG32_SOC15(GC, GET_INST(GC, xcc_id), regRLC_CLK_CNTL);
++	sg_dma_address(sg->sgl) = dma_addr;
++	sg->sgl->length = adev->gart.table_size;
++#ifdef CONFIG_NEED_SG_DMA_LENGTH
++	sg->sgl->dma_length = adev->gart.table_size;
++#endif
++	/* Create SG BO */
++	memset(&bp, 0, sizeof(bp));
++	bp.size = adev->gart.table_size;
++	bp.byte_align = PAGE_SIZE;
++	bp.domain = AMDGPU_GEM_DOMAIN_CPU;
++	bp.type = ttm_bo_type_sg;
++	bp.resv = NULL;
++	bp.bo_ptr_size = sizeof(struct amdgpu_bo);
++	bp.flags = 0;
++	ret = amdgpu_bo_create(adev, &bp, &bo);
++	if (ret)
++		goto error;
 +
-+	if (enable)
-+		data &= ~RLC_CLK_CNTL__RLC_SRAM_CLK_GATER_OVERRIDE_MASK;
-+	else
-+		data |= RLC_CLK_CNTL__RLC_SRAM_CLK_GATER_OVERRIDE_MASK;
++	bo->tbo.sg = sg;
++	bo->tbo.ttm->sg = sg;
++	bo->allowed_domains = AMDGPU_GEM_DOMAIN_GTT;
++	bo->preferred_domains = AMDGPU_GEM_DOMAIN_GTT;
 +
-+	if (def != data)
-+		WREG32_SOC15(GC, GET_INST(GC, xcc_id), regRLC_CLK_CNTL, data);
++	ret = amdgpu_bo_reserve(bo, true);
++	if (ret) {
++		dev_err(adev->dev, "(%d) failed to reserve bo for GART system bo\n", ret);
++		goto error;
++	}
++
++	ret = amdgpu_bo_pin(bo, AMDGPU_GEM_DOMAIN_GTT);
++	WARN(ret, "Pinning the GART table failed");
++	if (ret)
++		goto error_resv;
++
++	adev->gart.bo = bo;
++	adev->gart.ptr = page_to_virt(p);
++	/* Make GART table accessible in VMID0 */
++	ret = amdgpu_ttm_alloc_gart(&adev->gart.bo->tbo);
++	if (ret)
++		amdgpu_gart_table_ram_free(adev);
++	amdgpu_bo_unreserve(bo);
++
++	return 0;
++
++error_resv:
++	amdgpu_bo_unreserve(bo);
++error:
++	amdgpu_bo_unref(&bo);
++	if (sg) {
++		sg_free_table(sg);
++		kfree(sg);
++	}
++	__free_pages(p, order);
++	return ret;
 +}
 +
-+static void gfx_v9_4_3_xcc_update_repeater_fgcg(struct amdgpu_device *adev,
-+						bool enable, int xcc_id)
++/**
++ * amdgpu_gart_table_ram_free - free gart page table system ram
++ *
++ * @adev: amdgpu_device pointer
++ *
++ * Free the system memory used for the GART page tableon ASICs that don't
++ * have dedicated VRAM.
++ */
++void amdgpu_gart_table_ram_free(struct amdgpu_device *adev)
 +{
-+	uint32_t def, data;
++	unsigned int order = get_order(adev->gart.table_size);
++	struct sg_table *sg = adev->gart.bo->tbo.sg;
++	struct page *p;
++	int ret;
 +
-+	if (!(adev->cg_flags & AMD_CG_SUPPORT_REPEATER_FGCG))
-+		return;
++	ret = amdgpu_bo_reserve(adev->gart.bo, false);
++	if (!ret) {
++		amdgpu_bo_unpin(adev->gart.bo);
++		amdgpu_bo_unreserve(adev->gart.bo);
++	}
++	amdgpu_bo_unref(&adev->gart.bo);
++	sg_free_table(sg);
++	kfree(sg);
++	p = virt_to_page(adev->gart.ptr);
++	__free_pages(p, order);
 +
-+	def = data = RREG32_SOC15(GC, GET_INST(GC, xcc_id),
-+				  regRLC_CGTT_MGCG_OVERRIDE);
-+
-+	if (enable)
-+		data &= ~RLC_CGTT_MGCG_OVERRIDE__GFXIP_REP_FGCG_OVERRIDE_MASK;
-+	else
-+		data |= RLC_CGTT_MGCG_OVERRIDE__GFXIP_REP_FGCG_OVERRIDE_MASK;
-+
-+	if (def != data)
-+		WREG32_SOC15(GC, GET_INST(GC, xcc_id),
-+			     regRLC_CGTT_MGCG_OVERRIDE, data);
++	adev->gart.ptr = NULL;
 +}
 +
- static void
- gfx_v9_4_3_xcc_update_medium_grain_clock_gating(struct amdgpu_device *adev,
- 						bool enable, int xcc_id)
- {
- 	uint32_t data, def;
+ /**
+  * amdgpu_gart_table_vram_alloc - allocate vram for gart page table
+  *
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.h
+index 8fea3e04e411..8283d682f543 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.h
+@@ -51,6 +51,8 @@ struct amdgpu_gart {
+ 	uint64_t			gart_pte_flags;
+ };
  
--	amdgpu_gfx_rlc_enter_safe_mode(adev, xcc_id);
--
- 	/* It is disabled by HW by default */
- 	if (enable && (adev->cg_flags & AMD_CG_SUPPORT_GFX_MGCG)) {
- 		/* 1 - RLC_CGTT_MGCG_OVERRIDE */
-@@ -2245,7 +2295,6 @@ gfx_v9_4_3_xcc_update_medium_grain_clock_gating(struct amdgpu_device *adev,
- 		}
++int amdgpu_gart_table_ram_alloc(struct amdgpu_device *adev);
++void amdgpu_gart_table_ram_free(struct amdgpu_device *adev);
+ int amdgpu_gart_table_vram_alloc(struct amdgpu_device *adev);
+ void amdgpu_gart_table_vram_free(struct amdgpu_device *adev);
+ int amdgpu_gart_table_vram_pin(struct amdgpu_device *adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+index c42d6e4e28bb..53bd7506ff22 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+@@ -1670,12 +1670,18 @@ static int gmc_v9_0_gart_init(struct amdgpu_device *adev)
+ 	adev->gart.gart_pte_flags = AMDGPU_PTE_MTYPE_VG10(MTYPE_UC) |
+ 				 AMDGPU_PTE_EXECUTABLE;
+ 
+-	r = amdgpu_gart_table_vram_alloc(adev);
+-	if (r)
+-		return r;
++	if (!adev->gmc.real_vram_size) {
++		dev_info(adev->dev, "Put GART in system memory for APU\n");
++		r = amdgpu_gart_table_ram_alloc(adev);
++		if (r)
++			dev_err(adev->dev, "Failed to allocate GART in system memory\n");
++	} else {
++		r = amdgpu_gart_table_vram_alloc(adev);
++		if (r)
++			return r;
+ 
+-	if (adev->gmc.xgmi.connected_to_cpu) {
+-		r = amdgpu_gmc_pdb0_alloc(adev);
++		if (adev->gmc.xgmi.connected_to_cpu)
++			r = amdgpu_gmc_pdb0_alloc(adev);
  	}
  
--	amdgpu_gfx_rlc_exit_safe_mode(adev, xcc_id);
- }
- 
- static void
-@@ -2254,8 +2303,6 @@ gfx_v9_4_3_xcc_update_coarse_grain_clock_gating(struct amdgpu_device *adev,
- {
- 	uint32_t def, data;
- 
--	amdgpu_gfx_rlc_enter_safe_mode(adev, xcc_id);
--
- 	if (enable && (adev->cg_flags & AMD_CG_SUPPORT_GFX_CGCG)) {
- 		def = data = RREG32_SOC15(GC, GET_INST(GC, xcc_id), regRLC_CGTT_MGCG_OVERRIDE);
- 		/* unset CGCG override */
-@@ -2298,13 +2345,18 @@ gfx_v9_4_3_xcc_update_coarse_grain_clock_gating(struct amdgpu_device *adev,
- 			WREG32_SOC15(GC, GET_INST(GC, xcc_id), regRLC_CGCG_CGLS_CTRL, data);
- 	}
- 
--	amdgpu_gfx_rlc_exit_safe_mode(adev, xcc_id);
- }
- 
- static int gfx_v9_4_3_xcc_update_gfx_clock_gating(struct amdgpu_device *adev,
- 						  bool enable, int xcc_id)
- {
-+	amdgpu_gfx_rlc_enter_safe_mode(adev, xcc_id);
-+
- 	if (enable) {
-+		/* FGCG */
-+		gfx_v9_4_3_xcc_update_sram_fgcg(adev, enable, xcc_id);
-+		gfx_v9_4_3_xcc_update_repeater_fgcg(adev, enable, xcc_id);
-+
- 		/* CGCG/CGLS should be enabled after MGCG/MGLS
- 		 * ===  MGCG + MGLS ===
- 		 */
-@@ -2322,7 +2374,14 @@ static int gfx_v9_4_3_xcc_update_gfx_clock_gating(struct amdgpu_device *adev,
- 		/* ===  MGCG + MGLS === */
- 		gfx_v9_4_3_xcc_update_medium_grain_clock_gating(adev, enable,
- 								xcc_id);
-+
-+		/* FGCG */
-+		gfx_v9_4_3_xcc_update_sram_fgcg(adev, enable, xcc_id);
-+		gfx_v9_4_3_xcc_update_repeater_fgcg(adev, enable, xcc_id);
- 	}
-+
-+	amdgpu_gfx_rlc_exit_safe_mode(adev, xcc_id);
-+
- 	return 0;
- }
+ 	return r;
+@@ -1884,7 +1890,12 @@ static int gmc_v9_0_sw_fini(void *handle)
+ 	amdgpu_gmc_ras_fini(adev);
+ 	amdgpu_gem_force_release(adev);
+ 	amdgpu_vm_manager_fini(adev);
+-	amdgpu_gart_table_vram_free(adev);
++	if (!adev->gmc.real_vram_size) {
++		dev_info(adev->dev, "Put GART in system memory for APU free\n");
++		amdgpu_gart_table_ram_free(adev);
++	} else {
++		amdgpu_gart_table_vram_free(adev);
++	}
+ 	amdgpu_bo_free_kernel(&adev->gmc.pdb0_bo, NULL, &adev->gmc.ptr_pdb0);
+ 	amdgpu_bo_fini(adev);
  
 -- 
 2.39.2
