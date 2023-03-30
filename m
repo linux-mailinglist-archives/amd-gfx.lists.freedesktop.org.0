@@ -1,41 +1,42 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE69D6D0F10
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Mar 2023 21:43:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84A666D0F0C
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Mar 2023 21:43:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9ECC10EFF3;
-	Thu, 30 Mar 2023 19:43:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F41310EFED;
+	Thu, 30 Mar 2023 19:43:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2068.outbound.protection.outlook.com [40.107.101.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD6AD10EFED
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 19:42:57 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2049.outbound.protection.outlook.com [40.107.223.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBE1010EFED
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 19:42:58 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BmjAhE+S5aHI9pHGNvg+Xid5oZ6buzFSyQBipjFRUIcn/FAuyyq42W9otBJM1MxQ+BvseP53uz143cfb0EjWmlfuItonPoHTyYvrX9J31Bpf0EgPhBs4uawUNvbSphmFGIJ5SjWTy7j75Xp7Bf3tsg0XL+i52z2tQB2zrYwEkk9YeVaXyfmsWhKTMjw5gUOqD2UuTpd9TjH0GmRKLj3wFTPNAwjkQwVuptYjL+VuzmLKoAZsCgKOE9e7N42OOdZy0lHUojqP8c2EJGyIPzEERKXhh8eSA5gNyWW9h3NY38keHXN5+VZmp0+aEHSPsoSSiyz5SGWLnjuS7E0Wfhmfug==
+ b=ZONIGsMWz4OLL5sUjUwB5iZqPVBqpPmyWzJlaFZ3JuAaxdIE/vwI4iLrgIFeUU/AU1CyzroYOjlXO+L2BuVJn3u0WkDN96ZFhtLERpanUi9Pn4F12L7U0hiq8r/TVplSgZ85pNocqgK0iFiYIyv74WpgAB7PvUzemR68t8/BK64D2AkRei/gOerlGwCVmQo1Z2Edxk3MR2iZFy1fs0dhdZGNjv7bsBerpzGUFwhWNMxKos+9Skz1DYcvQ3+SJQCbe/gNOQ3NOKzmp+rxvz25/g0xj/uFUZzYEJeMefHgW548jaNfaypZyDNzCCEK39/h3YUOfzPTbwlb5dQAH7jK4g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=egOZ1toJtzgjYVQt5GInLaAqD+TwcjWoCfK5h3UKF98=;
- b=WB7Wg7vL03Vp1IaqNC4GySDkWAsJZL3GPkr4vcsufPmmbIxbNDXcg7xejpqAfWgNz1pPwz1/A5ZjEYaiNzUg8JuCR1X40+2cpeUVUgAmXilcxFS9w596QnIUnkj8qtfZ7pfZYDbD7lZuRsR28s0RitvMj1munNPAMeuvPGnOPqssRj6ac5kb0kPfvslvCotj2nwNbexdeK0PGBC+JmeNpLBwNBynE8w7oc3dL/ygPfkidxpGdW2WQLPuzlZ4x8M8xRO7boBxSAFYh0YNr1EAEeLzbrw9cZV8Ico8NAMSQR08c8E8//Uls96IBXvfrwSxUCjTY8DJr+wBRSXu6H/DrA==
+ bh=Yjl+MbkG0E0K2KT9wnKhGvCP4mosT7jWj+oe1FGpQDU=;
+ b=EMMNJT913pF7+f8zBMizXnPwBK69jzLr61CSrxN/i6DnOv8SAd1eGFy0VisRxLutIy62O6XDa24p2Ru/DbP7v0qTf2YRNFjGGInmVavWfnXVZVv52MCgzrfpunRMf00i8KPsANy/NJBwm7Mwz340SErj7iLYwr62LImLXGM/tJuLIxCdJnhYzDXLfT9kZG67htC6GUH1Pd8ZQfYhw986b3er2ALCGwfgboA+u5hND16C2zRhTfpSJ5iOCMp0ve+r8hxFRPUgtitIDs+0BOD0fl3KDUK0QU1f4MIUgz8/NXKcPMpQhkvCb/PZ5LnUfoZd5J7xPz4lgt7XpfCImbmKNw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=egOZ1toJtzgjYVQt5GInLaAqD+TwcjWoCfK5h3UKF98=;
- b=o2TfoeAxeNIyThstXp9g4SLiOwJVG2De0JJOmQIF/uiJYTniuu1+q9UluusfjnhMuN/rizyf212LDO+WOfcftTpNxuQuf0jUoRjg4o5pYZ2RguHn51kenTx6FCS9DkZkYWl2lbSR16KqKSu3dWokF7iidPFn6rrcaelZjWBYaxs=
-Received: from DM6PR03CA0079.namprd03.prod.outlook.com (2603:10b6:5:333::12)
- by DM4PR12MB6135.namprd12.prod.outlook.com (2603:10b6:8:ac::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6178.41; Thu, 30 Mar 2023 19:42:56 +0000
+ bh=Yjl+MbkG0E0K2KT9wnKhGvCP4mosT7jWj+oe1FGpQDU=;
+ b=d+/S8eFRBChLjRgtzh/d52IXpxhGF/qTEugCB3YA65Eakwn7w1fpsnr5p9b8Y+yvQUGavry+5fzvewwyvDGxJ5slBWA9KQTTe/6FLbRlQDMY2z0KPrPlLfpH9cvFOF8LGdLuk+Nlmz9qEnYS//pq2NwBCth1CD9LEIhwCVeXxCI=
+Received: from DM6PR03CA0096.namprd03.prod.outlook.com (2603:10b6:5:333::29)
+ by SN7PR12MB6861.namprd12.prod.outlook.com (2603:10b6:806:266::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.28; Thu, 30 Mar
+ 2023 19:42:57 +0000
 Received: from DS1PEPF0000E63C.namprd02.prod.outlook.com
- (2603:10b6:5:333:cafe::f4) by DM6PR03CA0079.outlook.office365.com
- (2603:10b6:5:333::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.20 via Frontend
+ (2603:10b6:5:333:cafe::11) by DM6PR03CA0096.outlook.office365.com
+ (2603:10b6:5:333::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.22 via Frontend
  Transport; Thu, 30 Mar 2023 19:42:56 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -53,9 +54,9 @@ Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  2023 14:42:55 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 16/23] amd/amdgpu: Set MTYPE_UC for access over PCIe
-Date: Thu, 30 Mar 2023 15:42:27 -0400
-Message-ID: <20230330194234.1135527-16-alexander.deucher@amd.com>
+Subject: [PATCH 17/23] drm/amdgpu: Make UTCL2 snoop CPU caches
+Date: Thu, 30 Mar 2023 15:42:28 -0400
+Message-ID: <20230330194234.1135527-17-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230330194234.1135527-1-alexander.deucher@amd.com>
 References: <20230330194234.1135527-1-alexander.deucher@amd.com>
@@ -67,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF0000E63C:EE_|DM4PR12MB6135:EE_
-X-MS-Office365-Filtering-Correlation-Id: a861b7c9-94ab-4803-3b87-08db3156f5dc
+X-MS-TrafficTypeDiagnostic: DS1PEPF0000E63C:EE_|SN7PR12MB6861:EE_
+X-MS-Office365-Filtering-Correlation-Id: fae6c9e2-84dc-44f4-af38-08db3156f610
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cwlJSVdwMMyCEg+PdTyk6j/S/pnc/JkLiTJxGGpgr/KRiHE6vNTorTmTdIyukneoK7f3Ap0nBqUapnmwcM6Lep65X9HF/dQ32zepIWfjZhekGt3rYKf07z3bIyqfUFrtOFWWo9PXBBRwC1aBtj8XkOP+N4dM8b+Ez2TAAR3jdtXI4dyDEnGj1OnbYqd+voPtNeOUBdwkOTHEajjpQRcisciVpb1HKpH0JosgWLVzpVwKBS622+2JL2MjkJRslY4YG5alIp4KmIoc4n0++lvLkM7bKg6j55B1GeZgjeRgRtU1Jp33ytvAHfRhIQK/Ae0zrPjwnSKvQDGp7OMmVIRjOD4mMuU0tSSEww157A2riojpRKFFw2tQc0RbIrwyBw4x0Lstx6PCeHmc3Z8/YnrNAmLXInO0MwzkZFTya+1RgzotWS56oewKHcs8SlMT2/lpC/ozu6G0yyScnFDVZPaUXJybr1bcS3G1bc7nvMUwtnwsMg1h/V812fAfLAYh0XMaU6Ny4TNyKebTtaB7j9xbqh/ms2k8mT+F4AI22Xvbb/DndNwwMXhb8IM6pkVip741zeJ3txYPmk/y+qfDyn9jCEdEAUK0Iz6/B7EOf7cCnBkYuDYw7nurJQz+sIs++7uqlhZqamGD/aR17ZhuADstKeVEXiNo6W142BV9oUe8wJUl3YCZFk7OF2IPtFmsUgve9NnNZZIg5ftI+5AkBnljUeV1gldERfqfH6xE3/xb50U=
+X-Microsoft-Antispam-Message-Info: qvILEgpzran/autUMcjTs0U2HmWTCQP9Nvthp6JuHYwhqu9bLQMSbnWO7W5G++WK3WdOqmxiROLAbmqhnVWp54NCcjclJiDXjV+XiEgEOSTQ3Llu3TNdpTV/k5FrGrJETSHVFm+Yk8KouW3JxBwVdDBH6BJYGoq8X/VLQySEYG+RLQe8zuK+4etkMt9hQV9dFYGD2kPRa4hQDdNek2OU/uScMAFozWQsoP4XpW09+Yt8t5ouM33Lttap6SXPOHWRA3plHIfLpdJ+JM4YSoVMvrwzWSCtxRdTVWooJlXXmnxS6Sn+Fliwk5dClWuTbJd8yrdjcDlKUXoC9Sr6r1A3HTtQrv0G8nQLeQBolTGqGPT7CCY9t0VGM/LjK66cKNmGGJQu+7rhJRZFcilQNB+Srk6VMBagKgS4SbWIyWGeLjr3EDMYm61Ox0ik0Cq4ePvSDSl0otgMDVB88tt2L858ZsDHIL2NlF/TQL2SLwpgZ+R0BADAXKHlZEWeWYyJVw7Vb4+VIuDNHOQV6OiU6lsu2mj/oIvgc54sDomdBLd4RG3mcOS7haVw1PJbF6hvLRDIC6e04OraERyZ2H0csvfNP9Grd5IHjp+O/tpbkCxuBicVhLht33cV6cfjhBZNR2LM7wtMB+A7Q8PejefiWxJKE3V0c6zVTshHVP6PmOAu3+dNqKyU1VrNQ9sFF5NPKiH7wci0vdDQkJ+0EyC+7lIp5/GNmSYlmgxkfJHVJk1+NhU=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(376002)(396003)(39860400002)(136003)(346002)(451199021)(40470700004)(36840700001)(46966006)(186003)(26005)(16526019)(7696005)(41300700001)(1076003)(70206006)(70586007)(54906003)(316002)(4326008)(8676002)(6916009)(478600001)(2616005)(6666004)(336012)(8936002)(82740400003)(426003)(5660300002)(47076005)(83380400001)(2906002)(40460700003)(86362001)(82310400005)(36860700001)(81166007)(356005)(40480700001)(36756003)(36900700001);
+ SFS:(13230028)(4636009)(376002)(136003)(396003)(346002)(39860400002)(451199021)(40470700004)(46966006)(36840700001)(47076005)(6916009)(2906002)(336012)(2616005)(83380400001)(426003)(54906003)(70586007)(4326008)(70206006)(8676002)(478600001)(16526019)(26005)(1076003)(316002)(82310400005)(6666004)(186003)(7696005)(36756003)(86362001)(36860700001)(40460700003)(40480700001)(5660300002)(356005)(81166007)(82740400003)(41300700001)(8936002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2023 19:42:56.4075 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a861b7c9-94ab-4803-3b87-08db3156f5dc
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2023 19:42:56.7512 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fae6c9e2-84dc-44f4-af38-08db3156f610
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0000E63C.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6135
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6861
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,71 +99,55 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Amber Lin <Amber.Lin@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+Cc: Alex Deucher <alexander.deucher@amd.com>,
  Felix Kuehling <Felix.Kuehling@amd.com>,
  Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Amber Lin <Amber.Lin@amd.com>
+From: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
 
-For GFX v9_4_3, set MTYPE_UC for memory access over PCIe.
-
-v4 - add missing indentation pointed out by Felix and add his
-reviewed-by tag.
-v3 - add missing logic for the svm path.
-v2 - add amdgpu_xgmi_same_hive to separate access over xgmi from pcie
+On AMD APP APUs, to make UTCL2 snoop CPU caches, its not sufficient to
+rely on xgmi connected flag so add the logic to use is_app_apu to
+program the PDE_REQUEST_PHYSICAL bit correctly for gfxhub and mmhub
+both.
 
 Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
-Signed-off-by: Amber Lin <Amber.Lin@amd.com>
 Signed-off-by: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 29 ++++++++++++++++++++--------
- 1 file changed, 21 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c | 3 ++-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c  | 3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index 8bd9d88655b8..efd2bffbb892 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -1192,16 +1192,29 @@ svm_range_get_pte_flags(struct kfd_node *node,
- 		//e.g. NPS4. Current approch is only applicable without memory
- 		//partitions.
- 		snoop = true;
--		if (uncached)
-+		if (uncached) {
- 			mapping_flags |= AMDGPU_VM_MTYPE_UC;
--		/* local HBM region close to partition*/
--		else if (bo_node == node)
--			mapping_flags |= AMDGPU_VM_MTYPE_RW;
--		/* local HBM region far from partition or remote XGMI GPU or
--		 * system memory
--		 */
--		else
-+		} else if (domain == SVM_RANGE_VRAM_DOMAIN) {
-+			/* local HBM region close to partition with a workaround
-+			 * for Endpoint systems.
-+			 */
-+			if (bo_node == node)
-+				mapping_flags |=
-+					(node->adev->flags & AMD_IS_APU) ?
-+					AMDGPU_VM_MTYPE_RW : AMDGPU_VM_MTYPE_NC;
-+			/* local HBM region far from partition or remote XGMI GPU */
-+			else if (svm_nodes_in_same_hive(bo_node, node))
-+				mapping_flags |= AMDGPU_VM_MTYPE_NC;
-+			/* PCIe P2P */
-+			else
-+				mapping_flags |= AMDGPU_VM_MTYPE_UC;
-+		/* system memory accessed by the APU */
-+		} else if (node->adev->flags & AMD_IS_APU) {
- 			mapping_flags |= AMDGPU_VM_MTYPE_NC;
-+		/* system memory accessed by the dGPU */
-+		} else {
-+			mapping_flags |= AMDGPU_VM_MTYPE_UC;
-+		}
- 		break;
- 	default:
- 		mapping_flags |= coherent ?
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c
+index 8ba59ffe0e9f..8901e73fd700 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c
+@@ -252,7 +252,8 @@ static void gfxhub_v1_2_xcc_init_cache_regs(struct amdgpu_device *adev,
+ 		WREG32_SOC15_RLC(GC, GET_INST(GC, i), regVM_L2_CNTL3, tmp);
+ 
+ 		tmp = regVM_L2_CNTL4_DEFAULT;
+-		if (adev->gmc.xgmi.connected_to_cpu) {
++		/* For AMD APP APUs setup WC memory */
++		if (adev->gmc.xgmi.connected_to_cpu || adev->gmc.is_app_apu) {
+ 			tmp = REG_SET_FIELD(tmp, VM_L2_CNTL4, VMC_TAP_PDE_REQUEST_PHYSICAL, 1);
+ 			tmp = REG_SET_FIELD(tmp, VM_L2_CNTL4, VMC_TAP_PTE_REQUEST_PHYSICAL, 1);
+ 		} else {
+diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c
+index a530e2a3cc28..a8faf66b6878 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c
++++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c
+@@ -257,7 +257,8 @@ static void mmhub_v1_8_init_cache_regs(struct amdgpu_device *adev)
+ 		WREG32_SOC15(MMHUB, i, regVM_L2_CNTL3, tmp);
+ 
+ 		tmp = regVM_L2_CNTL4_DEFAULT;
+-		if (adev->gmc.xgmi.connected_to_cpu) {
++		/* For AMD APP APUs setup WC memory */
++		if (adev->gmc.xgmi.connected_to_cpu || adev->gmc.is_app_apu) {
+ 			tmp = REG_SET_FIELD(tmp, VM_L2_CNTL4,
+ 					    VMC_TAP_PDE_REQUEST_PHYSICAL, 1);
+ 			tmp = REG_SET_FIELD(tmp, VM_L2_CNTL4,
 -- 
 2.39.2
 
