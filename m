@@ -2,42 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7578A6D0EE0
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Mar 2023 21:32:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7973D6D0EDD
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Mar 2023 21:32:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE7C610EFDE;
-	Thu, 30 Mar 2023 19:32:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24E0710EFE2;
+	Thu, 30 Mar 2023 19:32:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2040.outbound.protection.outlook.com [40.107.94.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1B7310EFB3
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2061e.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe5a::61e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABE4310E54A
  for <amd-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 19:32:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bhUb4Udobxm+eUYv1brV/czMphFy3ebfJjFBYuW4Oju0D1dNcFZjKfFvvwFnVrzjZMOJM7SsDWaheKAxCja1RBxMrSgRnvYoXXaztQDCTydSVLOVc9a0L4/r9OswZdidt+XNLecbfKURbu9qYAXMvSfMkQAzlAMlVELyIKtwVJ2JKDWbyVkXBAW8gCPbxmE3IqN7b5SA5dyf1KZIb42Hie4abHfKCMWFo7o1uYAvUNYY/guDE0mHUEJ6si9hnGBzEZF9Ygi6CtAzIEbYLIyq2sWSOd2kLb8iYn93N2uWcXrtlGQczs9HBlUKN2IZDThhm+8fhKyq4tH1pFu3HHvmpQ==
+ b=csnsTmiUvzy8olpfSNqeH8I6NYFd6TByNyu33b39IbaUu/T8v+e0vXhzsI0nCqwNRMmh4lgSc64m/EyRiRmhymMayu5o1lg7Q2uT+tyCmuyh1U4/wDc2qjpOxeR2p/O/XoUWiUVeGRVWJcg06iB1+MqvsIuESsJAelLs8KRAGPVzD8Imd8mg4E5QehE4L1YmzJe+XVAWLqWEcimoj9awQSWyYFQvW9Yypb9ZryOs6xteEePNuA2Sv/FKb1Ls9lUlMCBFYStc5mHEn3FDbiTtQiQE4v7UIDVSMhgZ5Ar15fyNIZlC7+A8KDuEQt78LLAB8gai0LvxgtjyzNduUSWvPQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kDD2Rq9Yc5gb76M9RajbRJstYE3GIX/0vc8so5IOVEI=;
- b=Ys8W1VvF0F7M/nafzH/hd79B4qOmK5W8v7LYzJD3YQR1ry4fxWq9tmRAsIzWfxj2gvfK2k5fGvQiqZnz2Pgu8dLkKd3mtk4Cnb2vWFu6rcJ9kq+AMjuE2SHrUJqoBdCq0tW03CAfMXtIVqBh9zznmkAOTyh8PRAKqGvAO63y3cWEf3os8ucfoBMJTwaFF+2yY0xQTy44SQ6epnfCJcbrfkDSXRiyhM4N9WO9RXPfCnAt2ERVD9UhgtgX0dV70dHpSYkD6mN+/L76yUMe4dgjhNwSIKDud4HYOYjEAETQDWI3h0BhPZ71ki06LeV6BLmmO0dMX2fwYkH0N5c45E1tog==
+ bh=f6R3IhHcxrTMz0wEwyf94ZSQFtp+yYxgG53ZJ7dBIr8=;
+ b=izOV07iPNyupXghKvcSO0bkNp/4uWztEoSb7LF/k6nhhObnUOAbABXBQU1xxrPDQtbrPWBWNdB9BMds1UiDAUAc7kQYHx7TPqeUj7Ic7+lAj/DNfH8fLhJYWpi+DjoUKE12YdfR8QXTFDBgD+mjBxe/8iHCz+09ywojIZKpgI+S6fmmuW9qbDBVtoN38yWBwkbcSi0MdbUSEAkyXLNNNCPbU0ktR+lwAprxK2HmgKaCGJNQ/nCJXKhmYDG2RdGKZEYR/zJntS3IusPnswuZFcauoSdG/9pWU6cz7hbJ4mion2qpDTH+oTi6kPf3qtXvXnBpv2KORKCWgUC5N0tITZg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kDD2Rq9Yc5gb76M9RajbRJstYE3GIX/0vc8so5IOVEI=;
- b=wX+Y3X2HtIQRLXbS9zd9ZfhN6oqqUlGun9QecdMo8ad14y9XV+gwtLolXuGbPmnyxeTuYMNiJm0aFuKEjpaxvD3rEPxZFUOSr6P84dAbdoWVagyMblQH6Slo3BujchzS7BN4W5kwPjyhZ01ME/Kfuo2Vx7t6Gm+VKeNOIPEie2g=
-Received: from BN9PR03CA0087.namprd03.prod.outlook.com (2603:10b6:408:fc::32)
- by PH7PR12MB6858.namprd12.prod.outlook.com (2603:10b6:510:1b4::20)
+ bh=f6R3IhHcxrTMz0wEwyf94ZSQFtp+yYxgG53ZJ7dBIr8=;
+ b=kEyGZwA1MuorP9deJVTmCjC0RQ+hNSnaKPOZD1YU9HoJjuX9ob864dgCUiZBxsOojYXpbRfsfVs8WeJiyMM9ukyQJFwdwl3QoP9FXI+33qEGkCjkHCqZOSUvtwOYdoMGAob+9QXTaWrVEVejqu6kXf48PNxCQHyMXZbPehhwK98=
+Received: from BN9PR03CA0086.namprd03.prod.outlook.com (2603:10b6:408:fc::31)
+ by IA1PR12MB6579.namprd12.prod.outlook.com (2603:10b6:208:3a1::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.21; Thu, 30 Mar
- 2023 19:32:21 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.37; Thu, 30 Mar
+ 2023 19:32:22 +0000
 Received: from BN8NAM11FT078.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:fc:cafe::87) by BN9PR03CA0087.outlook.office365.com
- (2603:10b6:408:fc::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.20 via Frontend
- Transport; Thu, 30 Mar 2023 19:32:21 +0000
+ (2603:10b6:408:fc:cafe::45) by BN9PR03CA0086.outlook.office365.com
+ (2603:10b6:408:fc::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.22 via Frontend
+ Transport; Thu, 30 Mar 2023 19:32:22 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +48,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN8NAM11FT078.mail.protection.outlook.com (10.13.176.251) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6254.22 via Frontend Transport; Thu, 30 Mar 2023 19:32:21 +0000
+ 15.20.6254.22 via Frontend Transport; Thu, 30 Mar 2023 19:32:22 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 30 Mar
- 2023 14:32:19 -0500
+ 2023 14:32:20 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 02/10] drm/amdgpu: Add sdma instance specific functions
-Date: Thu, 30 Mar 2023 15:31:50 -0400
-Message-ID: <20230330193158.1134802-2-alexander.deucher@amd.com>
+Subject: [PATCH 03/10] drm/amdgpu: Add initial version of XCP routines
+Date: Thu, 30 Mar 2023 15:31:51 -0400
+Message-ID: <20230330193158.1134802-3-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230330193158.1134802-1-alexander.deucher@amd.com>
 References: <20230330193158.1134802-1-alexander.deucher@amd.com>
@@ -68,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT078:EE_|PH7PR12MB6858:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0f3d6457-a566-4438-c4f8-08db31557b7c
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT078:EE_|IA1PR12MB6579:EE_
+X-MS-Office365-Filtering-Correlation-Id: 90f2fd32-eee1-4fd4-ac78-08db31557bc6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: A5pF3nCTydd1HeA3lNPbisjfOBPZIlL/pI6+XRy4GZW+5DJ6EjV3/7TemsiTL0DnJdPWVYAXPJiwQoT7mGuKEYrvLqTobuKS1/VuMoP3wld7YdOTS/HCnJZ6uIGF3vmKe9zBMAxxZPY10zmx0iysjfEl+lLCEvDjf9U+EVuKuz9h9jX7nt9661tx298LgBoMLqpMZqV0yQUDX7s7Zee8tH+9NqEVLV14q/mZSB+uOKOLyllKRF4AZVMZ1pVsmzH+hO8BmIBODSLCWiNf4KZW+VqPi0l6F9foSICrdfZn0Oru5UTqrsB1HOG5xWnw+Q2br2dMlBqKW/OUXFtEeZNEebJUvAn4nxJmny4KFX8FxMA3h8a6hXcSV6g5Puuz4y66lzHSiNzZ66waNO2BNm6gAJ/jNcCKqbcc3EKlKnNxQ67nQePVUjUJcojLRisBagxozHcLzcpgjg/mH+23pE+/eY0IcSpqK7tf1/J+q1b3E1BwltHNwyZzL+vPo+oOYmYYZlQqxJBAmMHgQXh5fl4gwtggJEbH4tXF0+ahs/OV8JM9kGKvOQdCQUpTOBthGNG8lVlj1zkCYaC1Qs/BZAvsUtCLXcwqruO1hXSOchdpXcFdBVkFIcmTqkr1QVY/ybi2+bepOc6ICq3swtpA8TfAtxeQLdpab7oIwzSTMyoWSmeOGDIbCwEmbrAyUQ2/uGTypj0vxTJiBG0isPtmQyelPqZimyMsEGeZQ7HxW4ujbM/WPo22GoID8PmgK9ckMXg4Wy7XFcLDU4fMP4unxycaSg==
+X-Microsoft-Antispam-Message-Info: xe93YTTipoOD4vm4Q7Z/sA8J8RRPm1N4ZOWGrLs2Y7FajXDxoO2tPz1MoMMs6AJL1HdNmDGviB4wImSC9hjkEGh3hgxF5PGE3o3p9lxUGJd0BqVP8bWTs9KKtY3Op4zk7vfdeAKCuLnBLKsUHGBprlbGoDo74mfva3u7kGYDl0PVyzdgjtzznm/36Yq7dy/LNR788h3kGO/itUOGaH8S/pplWYH5+ML9D3nC6PDsUgIS+yj6P00BAW5eOn0R/ChKvc4U6ttIJCRUbUsIu1jtReVY+4wg33TQVuNwWfRUl4t9Opi3laDIRwHkN69FQ6xQC6vytUvJgvMPjUrqtnAddWZsdvN+Kaou6RQ1vICtl+oGFzRqYgArKVq9yqeYdKRn8UNkCiGn5sZVr/t2zpA/58qTQad+R1jQvrDqZvP7z2No7tVGthlh+3tw+mpG5IDrCVyW/NP3L0YKNqk9KHsZH2G2MLkuc/hxWuvFsLP4nGMa2nzHxQ6rSXz+dymj5QojyciSa5Sy6bXRs3vOXy1gbaooLmlaFRxfEJdyCCWyU8wJAGuxzCkDAib3eQv3HpEGc2NnxDvtvjtdFRsANnwPmGhYGjCChTvfqgfbnxK2AFQXBmDzvSap8izhmNxGCa7dLWfvM9qCPhU+mFpqBDG/IhTtG8f9tWAFvZKlnyHQWYVZ1/mQT14P7QoyNYUk15lq0ayX4huTKTThMx5kZ+GDJxsxZkCQvvObobMVP6tI0Uc=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(376002)(346002)(396003)(39860400002)(136003)(451199021)(40470700004)(46966006)(36840700001)(70586007)(6916009)(70206006)(4326008)(41300700001)(8676002)(8936002)(82740400003)(81166007)(2906002)(40460700003)(40480700001)(356005)(30864003)(5660300002)(186003)(16526019)(6666004)(1076003)(26005)(2616005)(82310400005)(336012)(36756003)(83380400001)(47076005)(426003)(86362001)(54906003)(316002)(7696005)(36860700001)(478600001)(21314003)(36900700001);
+ SFS:(13230028)(4636009)(136003)(376002)(396003)(39860400002)(346002)(451199021)(46966006)(36840700001)(40470700004)(66899021)(47076005)(81166007)(356005)(8936002)(6916009)(5660300002)(82310400005)(30864003)(40460700003)(4326008)(86362001)(82740400003)(70206006)(70586007)(8676002)(36756003)(40480700001)(41300700001)(83380400001)(186003)(1076003)(2616005)(336012)(426003)(36860700001)(54906003)(2906002)(6666004)(478600001)(7696005)(26005)(316002)(16526019)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2023 19:32:21.6344 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0f3d6457-a566-4438-c4f8-08db31557b7c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2023 19:32:22.1187 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90f2fd32-eee1-4fd4-ac78-08db31557bc6
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT078.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6858
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6579
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,392 +107,449 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Lijo Lazar <lijo.lazar@amd.com>
 
-SDMA 4.4.2 supports multiple instances. Add functions to support
-handling of each SDMA instance separately.
+Within a device, an accelerator core partition can be constituted with
+different IP instances. These partitions are spatial in nature. Number
+of partitions which can exist at the same time depends on the 'partition
+mode'. Add a manager entity which is responsible for switching between
+different partition modes and maintaining partitions. It is also
+responsible for suspend/resume of different partitions.
 
 Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
 Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c | 162 +++++++++++++----------
- 1 file changed, 91 insertions(+), 71 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/Makefile      |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h      |   2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h  |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.h |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c  | 244 +++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h  | 107 ++++++++++
+ 6 files changed, 356 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-index 016813b295ac..6a971e15b4b0 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
-@@ -94,7 +94,8 @@ static int sdma_v4_4_2_irq_id_to_seq(unsigned client_id)
- 	}
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile b/drivers/gpu/drm/amd/amdgpu/Makefile
+index 8418a90df493..74a9aa6fe18c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/Makefile
++++ b/drivers/gpu/drm/amd/amdgpu/Makefile
+@@ -60,7 +60,7 @@ amdgpu-y += amdgpu_device.o amdgpu_kms.o \
+ 	amdgpu_umc.o smu_v11_0_i2c.o amdgpu_fru_eeprom.o amdgpu_rap.o \
+ 	amdgpu_fw_attestation.o amdgpu_securedisplay.o \
+ 	amdgpu_eeprom.o amdgpu_mca.o amdgpu_psp_ta.o amdgpu_lsdma.o \
+-	amdgpu_ring_mux.o
++	amdgpu_ring_mux.o amdgpu_xcp.o
  
--static void sdma_v4_4_2_init_golden_registers(struct amdgpu_device *adev)
-+static void sdma_v4_4_2_inst_init_golden_registers(struct amdgpu_device *adev,
-+						   uint32_t inst_mask)
- {
- 	u32 val;
- 	int i;
-@@ -418,13 +419,14 @@ static void sdma_v4_4_2_ring_emit_fence(struct amdgpu_ring *ring, u64 addr, u64
-  *
-  * Stop the gfx async dma ring buffers.
-  */
--static void sdma_v4_4_2_gfx_stop(struct amdgpu_device *adev)
-+static void sdma_v4_4_2_inst_gfx_stop(struct amdgpu_device *adev,
-+				      uint32_t inst_mask)
- {
- 	struct amdgpu_ring *sdma[AMDGPU_MAX_SDMA_INSTANCES];
- 	u32 rb_cntl, ib_cntl;
- 	int i, unset = 0;
+ amdgpu-$(CONFIG_PROC_FS) += amdgpu_fdinfo.o
  
--	for (i = 0; i < adev->sdma.num_instances; i++) {
-+	for_each_inst(i, inst_mask) {
- 		sdma[i] = &adev->sdma.instance[i].ring;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index 4a9817d2acaa..96269bc41107 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -286,6 +286,7 @@ extern uint amdgpu_user_partt_mode;
+ #define AMDGPU_SMARTSHIFT_MAX_BIAS (100)
+ #define AMDGPU_SMARTSHIFT_MIN_BIAS (-100)
  
- 		if ((adev->mman.buffer_funcs_ring == sdma[i]) && unset != 1) {
-@@ -448,7 +450,8 @@ static void sdma_v4_4_2_gfx_stop(struct amdgpu_device *adev)
-  *
-  * Stop the compute async dma queues.
-  */
--static void sdma_v4_4_2_rlc_stop(struct amdgpu_device *adev)
-+static void sdma_v4_4_2_inst_rlc_stop(struct amdgpu_device *adev,
-+				      uint32_t inst_mask)
- {
- 	/* XXX todo */
- }
-@@ -460,14 +463,15 @@ static void sdma_v4_4_2_rlc_stop(struct amdgpu_device *adev)
-  *
-  * Stop the page async dma ring buffers.
-  */
--static void sdma_v4_4_2_page_stop(struct amdgpu_device *adev)
-+static void sdma_v4_4_2_inst_page_stop(struct amdgpu_device *adev,
-+				       uint32_t inst_mask)
- {
- 	struct amdgpu_ring *sdma[AMDGPU_MAX_SDMA_INSTANCES];
- 	u32 rb_cntl, ib_cntl;
- 	int i;
- 	bool unset = false;
++struct amdgpu_xcp_mgr;
+ struct amdgpu_device;
+ struct amdgpu_irq_src;
+ struct amdgpu_fpriv;
+@@ -786,6 +787,7 @@ struct amdgpu_device {
+ 	struct amdgpu_acp		acp;
+ #endif
+ 	struct amdgpu_hive_info *hive;
++	struct amdgpu_xcp_mgr *xcp_mgr;
+ 	/* ASIC */
+ 	enum amd_asic_type		asic_type;
+ 	uint32_t			family;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+index e48be6031c44..77e3c86b7623 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+@@ -61,7 +61,7 @@ enum amdgpu_gfx_partition {
+ 	AMDGPU_TPX_PARTITION_MODE = 2,
+ 	AMDGPU_QPX_PARTITION_MODE = 3,
+ 	AMDGPU_CPX_PARTITION_MODE = 4,
+-	AMDGPU_UNKNOWN_COMPUTE_PARTITION_MODE,
++	AMDGPU_UNKNOWN_COMPUTE_PARTITION_MODE = -1,
+ };
  
--	for (i = 0; i < adev->sdma.num_instances; i++) {
-+	for_each_inst(i, inst_mask) {
- 		sdma[i] = &adev->sdma.instance[i].page;
- 
- 		if ((adev->mman.buffer_funcs_ring == sdma[i]) &&
-@@ -495,7 +499,8 @@ static void sdma_v4_4_2_page_stop(struct amdgpu_device *adev)
-  *
-  * Halt or unhalt the async dma engines context switch.
-  */
--static void sdma_v4_4_2_ctx_switch_enable(struct amdgpu_device *adev, bool enable)
-+static void sdma_v4_4_2_inst_ctx_switch_enable(struct amdgpu_device *adev,
-+					       bool enable, uint32_t inst_mask)
- {
- 	u32 f32_cntl, phase_quantum = 0;
- 	int i;
-@@ -524,7 +529,7 @@ static void sdma_v4_4_2_ctx_switch_enable(struct amdgpu_device *adev, bool enabl
- 			unit  << SDMA_PHASE0_QUANTUM__UNIT__SHIFT;
- 	}
- 
--	for (i = 0; i < adev->sdma.num_instances; i++) {
-+	for_each_inst(i, inst_mask) {
- 		f32_cntl = RREG32_SDMA(i, regSDMA_CNTL);
- 		f32_cntl = REG_SET_FIELD(f32_cntl, SDMA_CNTL,
- 				AUTO_CTXSW_ENABLE, enable ? 1 : 0);
-@@ -538,7 +543,6 @@ static void sdma_v4_4_2_ctx_switch_enable(struct amdgpu_device *adev, bool enabl
- 		/* Extend page fault timeout to avoid interrupt storm */
- 		WREG32_SDMA(i, regSDMA_UTCL1_TIMEOUT, 0x00800080);
- 	}
--
- }
- 
- /**
-@@ -546,22 +550,24 @@ static void sdma_v4_4_2_ctx_switch_enable(struct amdgpu_device *adev, bool enabl
-  *
-  * @adev: amdgpu_device pointer
-  * @enable: enable/disable the DMA MEs.
-+ * @inst_mask: mask of dma engine instances to be enabled
-  *
-  * Halt or unhalt the async dma engines.
-  */
--static void sdma_v4_4_2_enable(struct amdgpu_device *adev, bool enable)
-+static void sdma_v4_4_2_inst_enable(struct amdgpu_device *adev, bool enable,
-+				    uint32_t inst_mask)
- {
- 	u32 f32_cntl;
- 	int i;
- 
- 	if (!enable) {
--		sdma_v4_4_2_gfx_stop(adev);
--		sdma_v4_4_2_rlc_stop(adev);
-+		sdma_v4_4_2_inst_gfx_stop(adev, inst_mask);
-+		sdma_v4_4_2_inst_rlc_stop(adev, inst_mask);
- 		if (adev->sdma.has_page_queue)
--			sdma_v4_4_2_page_stop(adev);
-+			sdma_v4_4_2_inst_page_stop(adev, inst_mask);
- 	}
- 
--	for (i = 0; i < adev->sdma.num_instances; i++) {
-+	for_each_inst(i, inst_mask) {
- 		f32_cntl = RREG32_SDMA(i, regSDMA_F32_CNTL);
- 		f32_cntl = REG_SET_FIELD(f32_cntl, SDMA_F32_CNTL, HALT, enable ? 0 : 1);
- 		WREG32_SDMA(i, regSDMA_F32_CNTL, f32_cntl);
-@@ -780,7 +786,8 @@ static void sdma_v4_4_2_init_pg(struct amdgpu_device *adev)
-  * Set up the compute DMA queues and enable them.
-  * Returns 0 for success, error for failure.
-  */
--static int sdma_v4_4_2_rlc_resume(struct amdgpu_device *adev)
-+static int sdma_v4_4_2_inst_rlc_resume(struct amdgpu_device *adev,
-+				       uint32_t inst_mask)
- {
- 	sdma_v4_4_2_init_pg(adev);
- 
-@@ -795,7 +802,8 @@ static int sdma_v4_4_2_rlc_resume(struct amdgpu_device *adev)
-  * Loads the sDMA0/1 ucode.
-  * Returns 0 for success, -EINVAL if the ucode is not available.
-  */
--static int sdma_v4_4_2_load_microcode(struct amdgpu_device *adev)
-+static int sdma_v4_4_2_inst_load_microcode(struct amdgpu_device *adev,
-+					   uint32_t inst_mask)
- {
- 	const struct sdma_firmware_header_v1_0 *hdr;
- 	const __le32 *fw_data;
-@@ -803,9 +811,9 @@ static int sdma_v4_4_2_load_microcode(struct amdgpu_device *adev)
- 	int i, j;
- 
- 	/* halt the MEs */
--	sdma_v4_4_2_enable(adev, false);
-+	sdma_v4_4_2_inst_enable(adev, false, inst_mask);
- 
--	for (i = 0; i < adev->sdma.num_instances; i++) {
-+	for_each_inst(i, inst_mask) {
- 		if (!adev->sdma.instance[i].fw)
- 			return -EINVAL;
- 
-@@ -831,38 +839,41 @@ static int sdma_v4_4_2_load_microcode(struct amdgpu_device *adev)
- }
- 
- /**
-- * sdma_v4_4_2_start - setup and start the async dma engines
-+ * sdma_v4_4_2_inst_start - setup and start the async dma engines
-  *
-  * @adev: amdgpu_device pointer
-  *
-  * Set up the DMA engines and enable them.
-  * Returns 0 for success, error for failure.
-  */
--static int sdma_v4_4_2_start(struct amdgpu_device *adev)
-+static int sdma_v4_4_2_inst_start(struct amdgpu_device *adev,
-+				  uint32_t inst_mask)
- {
- 	struct amdgpu_ring *ring;
-+	uint32_t tmp_mask;
- 	int i, r = 0;
- 
- 	if (amdgpu_sriov_vf(adev)) {
--		sdma_v4_4_2_ctx_switch_enable(adev, false);
--		sdma_v4_4_2_enable(adev, false);
-+		sdma_v4_4_2_inst_ctx_switch_enable(adev, false, inst_mask);
-+		sdma_v4_4_2_inst_enable(adev, false, inst_mask);
- 	} else {
- 		/* bypass sdma microcode loading on Gopher */
- 		if (adev->firmware.load_type != AMDGPU_FW_LOAD_PSP &&
--		    !(adev->pdev->device == 0x49) && !(adev->pdev->device == 0x50)) {
--			r = sdma_v4_4_2_load_microcode(adev);
-+		    adev->sdma.instance[0].fw) {
-+			r = sdma_v4_4_2_inst_load_microcode(adev, inst_mask);
- 			if (r)
- 				return r;
- 		}
- 
- 		/* unhalt the MEs */
--		sdma_v4_4_2_enable(adev, true);
-+		sdma_v4_4_2_inst_enable(adev, true, inst_mask);
- 		/* enable sdma ring preemption */
--		sdma_v4_4_2_ctx_switch_enable(adev, true);
-+		sdma_v4_4_2_inst_ctx_switch_enable(adev, true, inst_mask);
- 	}
- 
- 	/* start the gfx rings and rlc compute queues */
--	for (i = 0; i < adev->sdma.num_instances; i++) {
-+	tmp_mask = inst_mask;
-+	for_each_inst(i, tmp_mask) {
- 		uint32_t temp;
- 
- 		WREG32_SDMA(i, regSDMA_SEM_WAIT_FAIL_TIMER_CNTL, 0);
-@@ -889,15 +900,16 @@ static int sdma_v4_4_2_start(struct amdgpu_device *adev)
- 	}
- 
- 	if (amdgpu_sriov_vf(adev)) {
--		sdma_v4_4_2_ctx_switch_enable(adev, true);
--		sdma_v4_4_2_enable(adev, true);
-+		sdma_v4_4_2_inst_ctx_switch_enable(adev, true, inst_mask);
-+		sdma_v4_4_2_inst_enable(adev, true, inst_mask);
- 	} else {
--		r = sdma_v4_4_2_rlc_resume(adev);
-+		r = sdma_v4_4_2_inst_rlc_resume(adev, inst_mask);
- 		if (r)
- 			return r;
- 	}
- 
--	for (i = 0; i < adev->sdma.num_instances; i++) {
-+	tmp_mask = inst_mask;
-+	for_each_inst(i, tmp_mask) {
- 		ring = &adev->sdma.instance[i].ring;
- 
- 		r = amdgpu_ring_test_helper(ring);
-@@ -1383,14 +1395,17 @@ static int sdma_v4_4_2_hw_init(void *handle)
- {
- 	int r;
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
-+	uint32_t inst_mask;
- 
-+	/* TODO: Check if this is needed */
- 	if (adev->flags & AMD_IS_APU)
- 		amdgpu_dpm_set_powergating_by_smu(adev, AMD_IP_BLOCK_TYPE_SDMA, false);
- 
-+	inst_mask = GENMASK(adev->sdma.num_instances - 1, 0);
- 	if (!amdgpu_sriov_vf(adev))
--		sdma_v4_4_2_init_golden_registers(adev);
-+		sdma_v4_4_2_inst_init_golden_registers(adev, inst_mask);
- 
--	r = sdma_v4_4_2_start(adev);
-+	r = sdma_v4_4_2_inst_start(adev, inst_mask);
- 
- 	return r;
- }
-@@ -1398,22 +1413,27 @@ static int sdma_v4_4_2_hw_init(void *handle)
- static int sdma_v4_4_2_hw_fini(void *handle)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
-+	uint32_t inst_mask;
- 	int i;
- 
- 	if (amdgpu_sriov_vf(adev))
- 		return 0;
- 
-+	inst_mask = GENMASK(adev->sdma.num_instances - 1, 0);
- 	for (i = 0; i < adev->sdma.num_instances; i++) {
- 		amdgpu_irq_put(adev, &adev->sdma.ecc_irq,
- 			       AMDGPU_SDMA_IRQ_INSTANCE0 + i);
- 	}
- 
--	sdma_v4_4_2_ctx_switch_enable(adev, false);
--	sdma_v4_4_2_enable(adev, false);
-+	sdma_v4_4_2_inst_ctx_switch_enable(adev, false, inst_mask);
-+	sdma_v4_4_2_inst_enable(adev, false, inst_mask);
- 
- 	return 0;
- }
- 
-+static int sdma_v4_4_2_set_clockgating_state(void *handle,
-+					     enum amd_clockgating_state state);
+ #define NUM_XCC(x) hweight16(x)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.h
+index 639b86c4d664..eb25ac98903f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.h
+@@ -96,7 +96,7 @@ struct amdgpu_nbio_funcs {
+ 	void (*apply_l1_link_width_reconfig_wa)(struct amdgpu_device *adev);
+ 	void (*clear_doorbell_interrupt)(struct amdgpu_device *adev);
+ 	u32 (*get_rom_offset)(struct amdgpu_device *adev);
+-	u32 (*get_compute_partition_mode)(struct amdgpu_device *adev);
++	int (*get_compute_partition_mode)(struct amdgpu_device *adev);
+ 	u32 (*get_memory_partition_mode)(struct amdgpu_device *adev);
+ 	void (*set_compute_partition_mode)(struct amdgpu_device *adev,
+ 					   enum amdgpu_gfx_partition mode);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
+new file mode 100644
+index 000000000000..f59bc450cabe
+--- /dev/null
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
+@@ -0,0 +1,244 @@
++/*
++ * Copyright 2022 Advanced Micro Devices, Inc.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ *
++ */
++#include "amdgpu.h"
++#include "amdgpu_xcp.h"
 +
- static int sdma_v4_4_2_suspend(void *handle)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
-@@ -1650,15 +1670,39 @@ static int sdma_v4_4_2_process_srbm_write_irq(struct amdgpu_device *adev,
- 	return 0;
- }
- 
--static void sdma_v4_4_2_update_medium_grain_clock_gating(
--		struct amdgpu_device *adev,
--		bool enable)
-+static void sdma_v4_4_2_inst_update_medium_grain_light_sleep(
-+	struct amdgpu_device *adev, bool enable, uint32_t inst_mask)
++static int __amdgpu_xcp_run(struct amdgpu_xcp_mgr *xcp_mgr,
++			    struct amdgpu_xcp_ip *xcp_ip, int xcp_state)
 +{
-+	uint32_t data, def;
-+	int i;
++	int (*run_func)(void *handle, uint32_t inst_mask);
++	int ret = 0;
 +
-+	if (enable && (adev->cg_flags & AMD_CG_SUPPORT_SDMA_LS)) {
-+		for_each_inst(i, inst_mask) {
-+			/* 1-not override: enable sdma mem light sleep */
-+			def = data = RREG32_SDMA(i, regSDMA_POWER_CNTL);
-+			data |= SDMA_POWER_CNTL__MEM_POWER_OVERRIDE_MASK;
-+			if (def != data)
-+				WREG32_SDMA(i, regSDMA_POWER_CNTL, data);
-+		}
-+	} else {
-+		for_each_inst(i, inst_mask) {
-+			/* 0-override:disable sdma mem light sleep */
-+			def = data = RREG32_SDMA(i, regSDMA_POWER_CNTL);
-+			data &= ~SDMA_POWER_CNTL__MEM_POWER_OVERRIDE_MASK;
-+			if (def != data)
-+				WREG32_SDMA(i, regSDMA_POWER_CNTL, data);
-+		}
++	if (!xcp_ip || !xcp_ip->valid || !xcp_ip->ip_funcs)
++		return 0;
++
++	run_func = NULL;
++
++	switch (xcp_state) {
++	case AMDGPU_XCP_PREPARE_SUSPEND:
++		run_func = xcp_ip->ip_funcs->prepare_suspend;
++		break;
++	case AMDGPU_XCP_SUSPEND:
++		run_func = xcp_ip->ip_funcs->suspend;
++		break;
++	case AMDGPU_XCP_PREPARE_RESUME:
++		run_func = xcp_ip->ip_funcs->prepare_resume;
++		break;
++	case AMDGPU_XCP_RESUME:
++		run_func = xcp_ip->ip_funcs->resume;
++		break;
 +	}
++
++	if (run_func)
++		ret = run_func(xcp_mgr->adev, xcp_ip->inst_mask);
++
++	return ret;
 +}
 +
-+static void sdma_v4_4_2_inst_update_medium_grain_clock_gating(
-+	struct amdgpu_device *adev, bool enable, uint32_t inst_mask)
- {
- 	uint32_t data, def;
- 	int i;
- 
- 	if (enable && (adev->cg_flags & AMD_CG_SUPPORT_SDMA_MGCG)) {
--		for (i = 0; i < adev->sdma.num_instances; i++) {
-+		for_each_inst(i, inst_mask) {
- 			def = data = RREG32_SDMA(i, regSDMA_CLK_CTRL);
- 			data &= ~(SDMA_CLK_CTRL__SOFT_OVERRIDE7_MASK |
- 				  SDMA_CLK_CTRL__SOFT_OVERRIDE6_MASK |
-@@ -1672,7 +1716,7 @@ static void sdma_v4_4_2_update_medium_grain_clock_gating(
- 				WREG32_SDMA(i, regSDMA_CLK_CTRL, data);
- 		}
- 	} else {
--		for (i = 0; i < adev->sdma.num_instances; i++) {
-+		for_each_inst(i, inst_mask) {
- 			def = data = RREG32_SDMA(i, regSDMA_CLK_CTRL);
- 			data |= (SDMA_CLK_CTRL__SOFT_OVERRIDE7_MASK |
- 				 SDMA_CLK_CTRL__SOFT_OVERRIDE6_MASK |
-@@ -1688,45 +1732,21 @@ static void sdma_v4_4_2_update_medium_grain_clock_gating(
- 	}
- }
- 
--
--static void sdma_v4_4_2_update_medium_grain_light_sleep(
--		struct amdgpu_device *adev,
--		bool enable)
--{
--	uint32_t data, def;
--	int i;
--
--	if (enable && (adev->cg_flags & AMD_CG_SUPPORT_SDMA_LS)) {
--		for (i = 0; i < adev->sdma.num_instances; i++) {
--			/* 1-not override: enable sdma mem light sleep */
--			def = data = RREG32_SDMA(0, regSDMA_POWER_CNTL);
--			data |= SDMA_POWER_CNTL__MEM_POWER_OVERRIDE_MASK;
--			if (def != data)
--				WREG32_SDMA(0, regSDMA_POWER_CNTL, data);
--		}
--	} else {
--		for (i = 0; i < adev->sdma.num_instances; i++) {
--		/* 0-override:disable sdma mem light sleep */
--			def = data = RREG32_SDMA(0, regSDMA_POWER_CNTL);
--			data &= ~SDMA_POWER_CNTL__MEM_POWER_OVERRIDE_MASK;
--			if (def != data)
--				WREG32_SDMA(0, regSDMA_POWER_CNTL, data);
--		}
--	}
--}
--
- static int sdma_v4_4_2_set_clockgating_state(void *handle,
- 					  enum amd_clockgating_state state)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
-+	uint32_t inst_mask;
- 
- 	if (amdgpu_sriov_vf(adev))
- 		return 0;
- 
--	sdma_v4_4_2_update_medium_grain_clock_gating(adev,
--			state == AMD_CG_STATE_GATE);
--	sdma_v4_4_2_update_medium_grain_light_sleep(adev,
--			state == AMD_CG_STATE_GATE);
-+	inst_mask = GENMASK(adev->sdma.num_instances - 1, 0);
++static int amdgpu_xcp_run_transition(struct amdgpu_xcp_mgr *xcp_mgr, int xcp_id,
++				     int state)
++{
++	struct amdgpu_xcp_ip *xcp_ip;
++	struct amdgpu_xcp *xcp;
++	int i, ret;
 +
-+	sdma_v4_4_2_inst_update_medium_grain_clock_gating(
-+		adev, state == AMD_CG_STATE_GATE, inst_mask);
-+	sdma_v4_4_2_inst_update_medium_grain_light_sleep(
-+		adev, state == AMD_CG_STATE_GATE, inst_mask);
- 	return 0;
- }
- 
++	if (xcp_id > MAX_XCP || !xcp_mgr->xcp[xcp_id].valid)
++		return -EINVAL;
++
++	xcp = &xcp_mgr->xcp[xcp_id];
++	for (i = 0; i < AMDGPU_XCP_MAX_BLOCKS; ++i) {
++		xcp_ip = &xcp->ip[i];
++		ret = __amdgpu_xcp_run(xcp_mgr, xcp_ip, state);
++		if (ret)
++			break;
++	}
++
++	return ret;
++}
++
++int amdgpu_xcp_prepare_suspend(struct amdgpu_xcp_mgr *xcp_mgr, int xcp_id)
++{
++	return amdgpu_xcp_run_transition(xcp_mgr, xcp_id,
++					 AMDGPU_XCP_PREPARE_SUSPEND);
++}
++
++int amdgpu_xcp_suspend(struct amdgpu_xcp_mgr *xcp_mgr, int xcp_id)
++{
++	return amdgpu_xcp_run_transition(xcp_mgr, xcp_id, AMDGPU_XCP_SUSPEND);
++}
++
++int amdgpu_xcp_prepare_resume(struct amdgpu_xcp_mgr *xcp_mgr, int xcp_id)
++{
++	return amdgpu_xcp_run_transition(xcp_mgr, xcp_id,
++					 AMDGPU_XCP_PREPARE_RESUME);
++}
++
++int amdgpu_xcp_resume(struct amdgpu_xcp_mgr *xcp_mgr, int xcp_id)
++{
++	return amdgpu_xcp_run_transition(xcp_mgr, xcp_id, AMDGPU_XCP_RESUME);
++}
++
++static void __amdgpu_xcp_add_block(struct amdgpu_xcp_mgr *xcp_mgr, int xcp_id,
++				   struct amdgpu_xcp_ip *ip)
++{
++	struct amdgpu_xcp *xcp;
++
++	if (!ip)
++		return;
++
++	xcp = &xcp_mgr->xcp[xcp_id];
++	xcp->ip[ip->ip_id] = *ip;
++	xcp->ip[ip->ip_id].valid = true;
++
++	xcp->valid = true;
++}
++
++static int __amdgpu_xcp_init(struct amdgpu_xcp_mgr *xcp_mgr, int num_xcps)
++{
++	struct amdgpu_xcp_ip ip;
++	int i, j, ret;
++
++	for (i = 0; i < MAX_XCP; ++i)
++		xcp_mgr->xcp[i].valid = false;
++
++	for (i = 0; i < num_xcps; ++i) {
++		for (j = AMDGPU_XCP_GFXHUB; j < AMDGPU_XCP_MAX_BLOCKS; ++j) {
++			ret = xcp_mgr->funcs->get_ip_details(xcp_mgr, i, j,
++							     &ip);
++			if (ret)
++				continue;
++
++			__amdgpu_xcp_add_block(xcp_mgr, i, &ip);
++		}
++	}
++
++	xcp_mgr->num_xcps = num_xcps;
++
++	return 0;
++}
++
++int amdgpu_xcp_switch_partition_mode(struct amdgpu_xcp_mgr *xcp_mgr, int mode)
++{
++	int ret, num_xcps = 0;
++
++	if (!xcp_mgr || mode == AMDGPU_XCP_MODE_NONE)
++		return -EINVAL;
++
++	if (xcp_mgr->mode == mode)
++		return 0;
++
++	if (!xcp_mgr->funcs || !xcp_mgr->funcs->switch_partition_mode)
++		return 0;
++
++	mutex_lock(&xcp_mgr->xcp_lock);
++
++	ret = xcp_mgr->funcs->switch_partition_mode(xcp_mgr, mode, &num_xcps);
++
++	if (ret)
++		goto out;
++
++	if (!num_xcps || num_xcps > MAX_XCP) {
++		ret = -EINVAL;
++		goto out;
++	}
++
++	xcp_mgr->mode = mode;
++	__amdgpu_xcp_init(xcp_mgr, num_xcps);
++out:
++	mutex_unlock(&xcp_mgr->xcp_lock);
++
++	return ret;
++}
++
++int amdgpu_xcp_query_partition_mode(struct amdgpu_xcp_mgr *xcp_mgr)
++{
++	int mode;
++
++	if (xcp_mgr->mode == AMDGPU_XCP_MODE_NONE)
++		return xcp_mgr->mode;
++
++	if (!xcp_mgr->funcs || !xcp_mgr->funcs->query_partition_mode)
++		return xcp_mgr->mode;
++
++	mutex_lock(&xcp_mgr->xcp_lock);
++	mode = xcp_mgr->funcs->query_partition_mode(xcp_mgr);
++	if (mode != xcp_mgr->mode)
++		dev_WARN(
++			xcp_mgr->adev->dev,
++			"Cached partition mode %d not matching with device mode %d",
++			xcp_mgr->mode, mode);
++
++	mutex_unlock(&xcp_mgr->xcp_lock);
++
++	return mode;
++}
++
++int amdgpu_xcp_mgr_init(struct amdgpu_device *adev, int init_mode,
++			int init_num_xcps,
++			struct amdgpu_xcp_mgr_funcs *xcp_funcs)
++{
++	struct amdgpu_xcp_mgr *xcp_mgr;
++
++	if (!xcp_funcs || !xcp_funcs->switch_partition_mode ||
++	    !xcp_funcs->get_ip_details)
++		return -EINVAL;
++
++	xcp_mgr = kzalloc(sizeof(*xcp_mgr), GFP_KERNEL);
++
++	if (!xcp_mgr)
++		return -ENOMEM;
++
++	xcp_mgr->adev = adev;
++	xcp_mgr->funcs = xcp_funcs;
++	xcp_mgr->mode = init_mode;
++	mutex_init(&xcp_mgr->xcp_lock);
++
++	if (init_mode != AMDGPU_XCP_MODE_NONE)
++		__amdgpu_xcp_init(xcp_mgr, init_num_xcps);
++
++	adev->xcp_mgr = xcp_mgr;
++
++	return 0;
++}
++
++int amdgpu_xcp_get_partition(struct amdgpu_xcp_mgr *xcp_mgr,
++			     enum AMDGPU_XCP_IP_BLOCK ip, int instance)
++{
++	struct amdgpu_xcp *xcp;
++	int i, id_mask = 0;
++
++	if (ip >= AMDGPU_XCP_MAX_BLOCKS)
++		return -EINVAL;
++
++	for (i = 0; i < xcp_mgr->num_xcps; ++i) {
++		xcp = &xcp_mgr->xcp[i];
++		if ((xcp->valid) && (xcp->ip[ip].valid) &&
++		    (xcp->ip[ip].inst_mask & BIT(instance)))
++			id_mask |= BIT(i);
++	}
++
++	if (!id_mask)
++		id_mask = -ENXIO;
++
++	return id_mask;
++}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h
+new file mode 100644
+index 000000000000..f0b973c6092f
+--- /dev/null
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.h
+@@ -0,0 +1,107 @@
++/*
++ * Copyright 2022 Advanced Micro Devices, Inc.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ *
++ */
++
++#ifndef AMDGPU_XCP_H
++#define AMDGPU_XCP_H
++
++#include <linux/xarray.h>
++
++#define MAX_XCP 8
++
++#define AMDGPU_XCP_MODE_NONE -1
++
++enum AMDGPU_XCP_IP_BLOCK {
++	AMDGPU_XCP_GFXHUB,
++	AMDGPU_XCP_GFX,
++	AMDGPU_XCP_SDMA,
++	AMDGPU_XCP_VCN,
++	AMDGPU_XCP_MAX_BLOCKS
++};
++
++enum AMDGPU_XCP_STATE {
++	AMDGPU_XCP_PREPARE_SUSPEND,
++	AMDGPU_XCP_SUSPEND,
++	AMDGPU_XCP_PREPARE_RESUME,
++	AMDGPU_XCP_RESUME,
++};
++
++struct amdgpu_xcp_ip_funcs {
++	int (*prepare_suspend)(void *handle, uint32_t inst_mask);
++	int (*suspend)(void *handle, uint32_t inst_mask);
++	int (*prepare_resume)(void *handle, uint32_t inst_mask);
++	int (*resume)(void *handle, uint32_t inst_mask);
++};
++
++struct amdgpu_xcp_ip {
++	struct amdgpu_xcp_ip_funcs *ip_funcs;
++	uint32_t inst_mask;
++
++	enum AMDGPU_XCP_IP_BLOCK ip_id;
++	bool valid;
++};
++
++struct amdgpu_xcp {
++	struct amdgpu_xcp_ip ip[AMDGPU_XCP_MAX_BLOCKS];
++
++	uint8_t id;
++	uint8_t mem_node;
++	bool valid;
++};
++
++struct amdgpu_xcp_mgr {
++	struct amdgpu_device *adev;
++	struct mutex xcp_lock;
++	struct amdgpu_xcp_mgr_funcs *funcs;
++
++	struct amdgpu_xcp xcp[MAX_XCP];
++	uint8_t num_xcps;
++	int8_t mode;
++};
++
++struct amdgpu_xcp_mgr_funcs {
++	int (*switch_partition_mode)(struct amdgpu_xcp_mgr *xcp_mgr, int mode,
++				     int *num_xcps);
++	int (*query_partition_mode)(struct amdgpu_xcp_mgr *xcp_mgr);
++	int (*get_ip_details)(struct amdgpu_xcp_mgr *xcp_mgr, int xcp_id,
++			      enum AMDGPU_XCP_IP_BLOCK ip_id,
++			      struct amdgpu_xcp_ip *ip);
++
++	int (*prepare_suspend)(struct amdgpu_xcp_mgr *xcp_mgr, int xcp_id);
++	int (*suspend)(struct amdgpu_xcp_mgr *xcp_mgr, int xcp_id);
++	int (*prepare_resume)(struct amdgpu_xcp_mgr *xcp_mgr, int xcp_id);
++	int (*resume)(struct amdgpu_xcp_mgr *xcp_mgr, int xcp_id);
++};
++
++int amdgpu_xcp_prepare_suspend(struct amdgpu_xcp_mgr *xcp_mgr, int xcp_id);
++int amdgpu_xcp_suspend(struct amdgpu_xcp_mgr *xcp_mgr, int xcp_id);
++int amdgpu_xcp_prepare_resume(struct amdgpu_xcp_mgr *xcp_mgr, int xcp_id);
++int amdgpu_xcp_resume(struct amdgpu_xcp_mgr *xcp_mgr, int xcp_id);
++
++int amdgpu_xcp_mgr_init(struct amdgpu_device *adev, int init_mode,
++			int init_xcps, struct amdgpu_xcp_mgr_funcs *xcp_funcs);
++int amdgpu_xcp_query_partition_mode(struct amdgpu_xcp_mgr *xcp_mgr);
++int amdgpu_xcp_switch_partition_mode(struct amdgpu_xcp_mgr *xcp_mgr, int mode);
++int amdgpu_xcp_get_partition(struct amdgpu_xcp_mgr *xcp_mgr,
++			     enum AMDGPU_XCP_IP_BLOCK ip, int instance);
++
++#endif
 -- 
 2.39.2
 
