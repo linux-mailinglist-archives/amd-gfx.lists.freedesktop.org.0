@@ -1,97 +1,74 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC86F6CF981
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Mar 2023 05:16:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8374A6CFDA8
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Mar 2023 10:03:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D59E10E0D6;
-	Thu, 30 Mar 2023 03:16:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BE9210ED23;
+	Thu, 30 Mar 2023 08:03:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1413A10E0D6
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 03:16:20 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QUdkvXVhhN9GE6lxX7G3WubLGO/fg80ziFac0RrqFMzd6exlPA5RZuO9La35vsCLkRFSaVv2TmWiPROnMnrxPA1NYJUJwVMZNdCkvvWlL2RMfoI/mpTumrR9W+lmekUWyMm+xxnXYmwYYs4xFfwfGE5m+PJP9OVwUxXdIAfjKCwQ5LrlBooHhTCr2QciU77aga+reRXgU9xadyAcIqcby1oFwVi3s6CgJRb87WSzD4ijnAGdxFw4+CSfnATBbA7ijjfhXL3bwDfKOdN7CHJ/BpgWkzvi6f9NP37Ah7j1xPPOJC7KW7mWEQgwUZT4jm4HFABRwerp5kKZSHQs6av6Fw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Xhqv31iAakt7XSws+PhPnoVj5L6DbIZmzXTRTXLdcuE=;
- b=OLqmKiJNmPlRyk9+rX05drt6b2EuIHKK5lzJ/UI7u2ZPVBv3liYSP8BW5VUHRLj5jx0hlL7XyPUJe8PVlTGM96Y0lvCNoD3aD6ymuSeHVuY4539IX78k9gaiw8HrvxrVWTet2q+zYymZu/1rjAFU0jGe2EF9K9+eBwOPz3aCErlg65RsbzKUePSGeyNijZKxp3dXvxIliLhk0od0NFWo7hJ80YLXrHj+JzxtFSbRN5BuHWD2TcQmsWyeI/EG00AXFs3EwXEq2zloHTXlWjBHllzkTRCH1ALUqO+yTx2JUmnioUMHNPz17eJphHYwcn0wqMhw0lzx7I4m9AIyZG9xPg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Xhqv31iAakt7XSws+PhPnoVj5L6DbIZmzXTRTXLdcuE=;
- b=edwjvZA+qHLo1MyNBU3VQpaDZ0ChrvxthZNgdabPAuQ0/SSbUKYJQWYifPuWLrihPanXWJE6NCEAhh1MsMeBgSFgzRj1CqObN8D6PPtlOqai5/gn0ljS1DOeMnWaCJ2yQ/GCtqBjcnpgGRCQibmkQOq2acWIzrJOaWNxHvOlPVo=
-Received: from MW4PR03CA0159.namprd03.prod.outlook.com (2603:10b6:303:8d::14)
- by DS7PR12MB6190.namprd12.prod.outlook.com (2603:10b6:8:99::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.30; Thu, 30 Mar
- 2023 03:16:17 +0000
-Received: from CO1NAM11FT090.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8d:cafe::7d) by MW4PR03CA0159.outlook.office365.com
- (2603:10b6:303:8d::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.22 via Frontend
- Transport; Thu, 30 Mar 2023 03:16:16 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT090.mail.protection.outlook.com (10.13.175.152) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6222.21 via Frontend Transport; Thu, 30 Mar 2023 03:16:16 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 29 Mar
- 2023 22:16:15 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 29 Mar
- 2023 20:15:55 -0700
-Received: from amd-SYS-7048GR-TR.amd.com (10.180.168.240) by
- SATLEXMB03.amd.com (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34
- via Frontend Transport; Wed, 29 Mar 2023 22:15:52 -0500
-From: Tong Liu01 <Tong.Liu01@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 3/3] drm/amdgpu: enable sysfs node vclk1 and dclk1 for NV3X
-Date: Thu, 30 Mar 2023 11:15:13 +0800
-Message-ID: <20230330031513.6547-3-Tong.Liu01@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230330031513.6547-1-Tong.Liu01@amd.com>
-References: <20230330031513.6547-1-Tong.Liu01@amd.com>
+Received: from smtp-relay-internal-1.canonical.com
+ (smtp-relay-internal-1.canonical.com [185.125.188.123])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA79A10ECBD
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 03:36:33 +0000 (UTC)
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com
+ [209.85.216.72])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 53FC23F235
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 03:36:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+ s=20210705; t=1680147390;
+ bh=WVv3t+Pvx7XOKT30ywqnnbhHTlBPQeWR9Rwxzm5MrhU=;
+ h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+ To:Cc:Content-Type;
+ b=WMg0xioAA20OBa6QjziKxn78H/GLCsj+Axsu5X44d9c646/icWWQByNG+fM1mol6b
+ y/DQyHbe4bZgdMSSW01/sXw/LHo1N4oacDGOnMosytnBj06yWiUUaLjpdDayTdsizU
+ /Zy3AFGMvd/NPaJzozmjFiEZjYP+VSWBe+USpXVHGMqi3PWvS9MFrckFxdSYGZLU/e
+ 2VYYTwiOROAQhaWQ5y23aoR12ChDfaInzw7isOe6JR0oDSuz1Ka2Zz86kdUHbei+UW
+ zAMwYZ1OJYdPTSZwdpSV3eTyytDJ492wSVz2AjSNVVjnKIiHFZmrfDw299Gu83Z76W
+ yF++Z2hw+s03w==
+Received: by mail-pj1-f72.google.com with SMTP id
+ j7-20020a17090aeb0700b0023d19dfe884so4824881pjz.4
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Mar 2023 20:36:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680147389;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=WVv3t+Pvx7XOKT30ywqnnbhHTlBPQeWR9Rwxzm5MrhU=;
+ b=W1DSSaS49yDkgcR8yjhbPZUGYBVjXJ6QuUpmH3vZf0j4Oq+v2hLeyYFT1ZF2X4CZGt
+ jVjai2iP/xi5RQ2moLFN0ehouKC0ewnyiSpSlap/gzwPwRHxZUZbNub51VPvh5R8LEik
+ 0b+tCGaxQp9VZj+33rhx/nHQHYo/zuM+LaBbJHIASZ63eoYJNMxJ5epNPpoViPGGez1V
+ pnWo/S+xdwNCUQ/H4IJ99VNt1+1bCO+nq7HbXv03iOLlDrfLEZlX2MWm0cpk65Z5AmwU
+ x7y+2fbHidy0aNuMZb7Fcycrgt6961dLsBNFzhWGxPJsVyJb0L7ZX2Et8aagvt2nxcr3
+ 3euA==
+X-Gm-Message-State: AAQBX9eGNZ8ujWZLNRZ3vXCxQA5cSq55OMC+o0+c9fI+xNLO21JlwjJa
+ 2OIg+7u/Xj+vrnVGQIUFcdQFRRL0/M1YabvJ4y3x5qtvUjAkz1s2Upj6xdI84AB5rNLJKbff88t
+ 66PypslZqTyZd2RgHV2W0djNkI9rHTmRuLLIwmzts3/+UcZEzLdgQL9t0U3M=
+X-Received: by 2002:a65:520a:0:b0:513:a748:c7d5 with SMTP id
+ o10-20020a65520a000000b00513a748c7d5mr36838pgp.3.1680147388558; 
+ Wed, 29 Mar 2023 20:36:28 -0700 (PDT)
+X-Google-Smtp-Source: AKy350a7qcCrhgzUIomVjQN3NEsrGYThLydsbmh01I40JAf6r1o0KpqQ5jtvkohqYXO0KmVyfFwrKfX/56O0UesHOG8=
+X-Received: by 2002:a65:520a:0:b0:513:a748:c7d5 with SMTP id
+ o10-20020a65520a000000b00513a748c7d5mr36812pgp.3.1680147388176; Wed, 29 Mar
+ 2023 20:36:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT090:EE_|DS7PR12MB6190:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1132cc05-75bb-4b00-3df3-08db30cd2003
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RRfsyMEijeADC3/k6uVD8I1RFd59OQcYE3GkHhTbtCvN0Vw19B8ggzVs+rEY3LUWamd9RV67kQxH6bpMJjlh3Y0zKMy1lVGU+vdiB0DU4lQLX20tuhB6q5d7CPw+WcWEJdyoPDNWOTt5bZQnfAW7vZv7D3Be8+dh8H0Qo8X2hoc822Z7M9XrkUcTTDSQXGoXqIFw1SUPlQiyjvKAZZDujS9nURtg3OUvRRj7gbFqOzgUE62xCOq9/GJup3IevIa/p/Ppks47VyEs8i8/IbFHtPtYPuFU7BEifWkVmVFHbhLVM3nUiFUij6VpsoVqSX13cenBf1dsDVoUiLDg15Gta2FF6NTaeom6eBOuFLN6oWczvOexE7VCzYSyV5pO15M10geRud4QMyWXQN1l+EnHL1WnhzPYfJ8rA6Y8/gAcKaTHZAkFotfoJFcx7CrgeqzFD+lrEQx1Ma9eWs/wU4i30pdNZaBTH21deA700DHwFq4kcZflXbzzg3VvIsYOsc/3BY5GGDqjbYaTE77Jl4FXbY45hLUbG2XXNChBNjbB6MePmVLHPYJIQY6+EMn3sh5sNC3MoEB2TDyicXN89Px5uvFI4SpRcS6kItAUicWu3oCmpLqoEVBZVF6yorn2C8S+vNpEPmFA5ARB+Pm9Or9Mcj6YxGVAqxLR7o9qItYqXyBiqy5RKlz+DGzgwDVuJiIGpVp1a+QoJqFi0l/82SRgDtJDexwjRh5CcuCV2WBLM2s+Hg8Fuat5EsJE+tX2rlcn
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(376002)(39860400002)(136003)(346002)(451199021)(46966006)(40470700004)(36840700001)(316002)(40460700003)(36860700001)(478600001)(54906003)(82310400005)(81166007)(82740400003)(36756003)(356005)(86362001)(5660300002)(8936002)(70586007)(4326008)(70206006)(8676002)(2906002)(6916009)(40480700001)(426003)(41300700001)(1076003)(186003)(6666004)(26005)(336012)(83380400001)(2616005)(47076005)(7696005)(32563001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2023 03:16:16.5163 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1132cc05-75bb-4b00-3df3-08db30cd2003
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT090.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6190
+References: <20230329095933.1203559-1-kai.heng.feng@canonical.com>
+ <76853776-ddfd-2fbc-a209-ca4f77faa481@amd.com>
+In-Reply-To: <76853776-ddfd-2fbc-a209-ca4f77faa481@amd.com>
+From: Kai-Heng Feng <kai.heng.feng@canonical.com>
+Date: Thu, 30 Mar 2023 11:36:15 +0800
+Message-ID: <CAAd53p7sgowhaFS1b7MM0F0kf14sWf6jbF9T__=4BAMM8bnz3A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] drm/amdgpu: Reset GPU on S0ix when device supports
+ BOCO
+To: Mario Limonciello <mario.limonciello@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Thu, 30 Mar 2023 08:03:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,48 +80,182 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jack Xiao <Jack.Xiao@amd.com>, Feifei Xu <Feifei.Xu@amd.com>,
- horace.chen@amd.com, Kevin Wang <Kevin1.Wang@amd.com>,
- Tong Liu01 <Tong.Liu01@amd.com>, Tuikov Luben <Luben.Tuikov@amd.com>,
- Deucher Alexander <Alexander.Deucher@amd.com>, Evan Quan <Evan.Quan@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Monk
- Liu <Monk.Liu@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Jingyu Wang <jingyuwang_vip@163.com>, Xinhui.Pan@amd.com,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ dri-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Michel_D=C3=A4nzer?= <mdaenzer@redhat.com>,
+ YiPeng Chai <YiPeng.Chai@amd.com>, David Airlie <airlied@gmail.com>,
+ Guchun Chen <guchun.chen@amd.com>,
+ "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+ amd-gfx@lists.freedesktop.org, Jiansong Chen <Jiansong.Chen@amd.com>,
+ Kenneth Feng <kenneth.feng@amd.com>, Tim Huang <tim.huang@amd.com>,
+ Bokun Zhang <Bokun.Zhang@amd.com>, Hans de Goede <hdegoede@redhat.com>,
+ Maxime Ripard <maxime@cerno.tech>, Evan Quan <evan.quan@amd.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+ alexander.deucher@amd.com, christian.koenig@amd.com,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Enable node pp_dpm_vclk1 and pp_dpm_dclk1 for gc11.0.2 and gc11.0.3
+On Wed, Mar 29, 2023 at 9:23=E2=80=AFPM Mario Limonciello
+<mario.limonciello@amd.com> wrote:
+>
+>
+> On 3/29/23 04:59, Kai-Heng Feng wrote:
+> > When the power is lost due to ACPI power resources being turned off, th=
+e
+> > driver should reset the GPU so it can work anew.
+> >
+> > First, _PR3 support of the hierarchy needs to be found correctly. Since
+> > the GPU on some discrete GFX cards is behind a PCIe switch, checking th=
+e
+> > _PR3 on downstream port alone is not enough, as the _PR3 can associate
+> > to the root port above the PCIe switch.
+>
+> I think this should be split into two commits:
+>
+> * One of them to look at _PR3 further up in hierarchy to fix indication
+> for BOCO support.
 
-Signed-off-by: Tong Liu01 <Tong.Liu01@amd.com>
----
- drivers/gpu/drm/amd/pm/amdgpu_pm.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+Yes, this part can be split up.
 
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-index d8b9c6136fc0..e011041e3ec6 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-@@ -2125,7 +2125,9 @@ static int default_attr_update(struct amdgpu_device *adev, struct amdgpu_device_
- 			*states = ATTR_STATE_UNSUPPORTED;
- 	} else if (DEVICE_ATTR_IS(pp_dpm_vclk1)) {
- 		if (!((gc_ver == IP_VERSION(10, 3, 1) ||
--			   gc_ver == IP_VERSION(10, 3, 0)) && adev->vcn.num_vcn_inst >= 2))
-+			   gc_ver == IP_VERSION(10, 3, 0) ||
-+			   gc_ver == IP_VERSION(11, 0, 2) ||
-+			   gc_ver == IP_VERSION(11, 0, 3)) && adev->vcn.num_vcn_inst >= 2))
- 			*states = ATTR_STATE_UNSUPPORTED;
- 	} else if (DEVICE_ATTR_IS(pp_dpm_dclk)) {
- 		if (!(gc_ver == IP_VERSION(10, 3, 1) ||
-@@ -2137,7 +2139,9 @@ static int default_attr_update(struct amdgpu_device *adev, struct amdgpu_device_
- 			*states = ATTR_STATE_UNSUPPORTED;
- 	} else if (DEVICE_ATTR_IS(pp_dpm_dclk1)) {
- 		if (!((gc_ver == IP_VERSION(10, 3, 1) ||
--			   gc_ver == IP_VERSION(10, 3, 0)) && adev->vcn.num_vcn_inst >= 2))
-+			   gc_ver == IP_VERSION(10, 3, 0) ||
-+			   gc_ver == IP_VERSION(11, 0, 2) ||
-+			   gc_ver == IP_VERSION(11, 0, 3)) && adev->vcn.num_vcn_inst >= 2))
- 			*states = ATTR_STATE_UNSUPPORTED;
- 	} else if (DEVICE_ATTR_IS(pp_power_profile_mode)) {
- 		if (amdgpu_dpm_get_power_profile_mode(adev, NULL) == -EOPNOTSUPP)
--- 
-2.34.1
+>
+> * One to adjust policy for whether to reset
 
+IIUC, the GPU only needs to be reset when the power status isn't certain?
+
+Assuming power resources in _PR3 are really disabled, GPU is already
+reset by itself. That means reset shouldn't be necessary for D3cold,
+am I understanding it correctly?
+
+However, this is a desktop plugged with GFX card that has external
+power, does that assumption still stand? Perform resetting on D3cold
+can cover this scenario.
+
+>
+>
+> > Once the _PR3 is found and BOCO support is correctly marked, use that
+> > information to inform the GPU should be reset. This solves an issue tha=
+t
+> > system freeze on a Intel ADL desktop that uses S0ix for sleep and D3col=
+d
+> > is supported for the GFX slot.
+>
+> I'm worried this is still papering over an underlying issue with L0s
+> handling on ALD + Navi1x/Navi2x.
+
+Is it possible to get the ASIC's ASPM parameter under Windows? Knowing
+the difference can be useful.
+
+>
+> Also, what about runtime suspend?  If you unplug the monitor from this
+> dGPU and interact with it over SSH it should go into runtime suspend.
+>
+> Is it working properly for that case now?
+
+Thanks for the tip. Runtime resume doesn't work at all:
+[ 1087.601631] pcieport 0000:00:01.0: power state changed by ACPI to D0
+[ 1087.613820] pcieport 0000:00:01.0: restoring config space at offset
+0x2c (was 0x43, writing 0x43)
+[ 1087.613835] pcieport 0000:00:01.0: restoring config space at offset
+0x28 (was 0x41, writing 0x41)
+[ 1087.613841] pcieport 0000:00:01.0: restoring config space at offset
+0x24 (was 0xfff10001, writing 0xfff10001)
+[ 1087.613978] pcieport 0000:00:01.0: PME# disabled
+[ 1087.613984] pcieport 0000:00:01.0: waiting 100 ms for downstream
+link, after activation
+[ 1089.330956] pcieport 0000:01:00.0: not ready 1023ms after resume; giving=
+ up
+[ 1089.373036] pcieport 0000:01:00.0: Unable to change power state
+from D3cold to D0, device inaccessible
+
+After a short while the whole system froze.
+
+So the upstream port of GFX's PCIe switch cannot be powered on again.
+
+Kai-Heng
+
+>
+> >
+> > Fixes: 0064b0ce85bb ("drm/amd/pm: enable ASPM by default")
+> > Link: https://gitlab.freedesktop.org/drm/amd/-/issues/1885
+> > Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2458
+> > Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
+> > ---
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c   |  3 +++
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  7 ++++++-
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 12 +++++-------
+> >   3 files changed, 14 insertions(+), 8 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_acpi.c
+> > index 60b1857f469e..407456ac0e84 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+> > @@ -987,6 +987,9 @@ bool amdgpu_acpi_should_gpu_reset(struct amdgpu_dev=
+ice *adev)
+> >       if (amdgpu_sriov_vf(adev))
+> >               return false;
+> >
+> > +     if (amdgpu_device_supports_boco(adev_to_drm(adev)))
+> > +             return true;
+> > +
+> >   #if IS_ENABLED(CONFIG_SUSPEND)
+> >       return pm_suspend_target_state !=3D PM_SUSPEND_TO_IDLE;
+> >   #else
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/d=
+rm/amd/amdgpu/amdgpu_device.c
+> > index f5658359ff5c..d56b7a2bafa6 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > @@ -2181,7 +2181,12 @@ static int amdgpu_device_ip_early_init(struct am=
+dgpu_device *adev)
+> >
+> >       if (!(adev->flags & AMD_IS_APU)) {
+> >               parent =3D pci_upstream_bridge(adev->pdev);
+> > -             adev->has_pr3 =3D parent ? pci_pr3_present(parent) : fals=
+e;
+> > +             do {
+> > +                     if (pci_pr3_present(parent)) {
+> > +                             adev->has_pr3 =3D true;
+> > +                             break;
+> > +                     }
+> > +             } while ((parent =3D pci_upstream_bridge(parent)));
+> >       }
+> >
+> >       amdgpu_amdkfd_device_probe(adev);
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/=
+amd/amdgpu/amdgpu_drv.c
+> > index ba5def374368..5d81fcac4b0a 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> > @@ -2415,10 +2415,11 @@ static int amdgpu_pmops_suspend(struct device *=
+dev)
+> >       struct drm_device *drm_dev =3D dev_get_drvdata(dev);
+> >       struct amdgpu_device *adev =3D drm_to_adev(drm_dev);
+> >
+> > -     if (amdgpu_acpi_is_s0ix_active(adev))
+> > -             adev->in_s0ix =3D true;
+> > -     else if (amdgpu_acpi_is_s3_active(adev))
+> > +     if (amdgpu_acpi_is_s3_active(adev) ||
+> > +         amdgpu_device_supports_boco(drm_dev))
+> >               adev->in_s3 =3D true;
+> > +     else if (amdgpu_acpi_is_s0ix_active(adev))
+> > +             adev->in_s0ix =3D true;
+> >       if (!adev->in_s0ix && !adev->in_s3)
+> >               return 0;
+> >       return amdgpu_device_suspend(drm_dev, true);
+> > @@ -2449,10 +2450,7 @@ static int amdgpu_pmops_resume(struct device *de=
+v)
+> >               adev->no_hw_access =3D true;
+> >
+> >       r =3D amdgpu_device_resume(drm_dev, true);
+> > -     if (amdgpu_acpi_is_s0ix_active(adev))
+> > -             adev->in_s0ix =3D false;
+> > -     else
+> > -             adev->in_s3 =3D false;
+> > +     adev->in_s0ix =3D adev->in_s3 =3D false;
+> >       return r;
+> >   }
+> >
