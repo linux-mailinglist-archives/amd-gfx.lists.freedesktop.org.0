@@ -1,44 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26EFC6D0EC0
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Mar 2023 21:27:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B916E6D0EDB
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Mar 2023 21:32:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 881D210EFC8;
-	Thu, 30 Mar 2023 19:27:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B1F910E54A;
+	Thu, 30 Mar 2023 19:32:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2061c.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e8c::61c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDAB410E3BD
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 19:27:18 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2060.outbound.protection.outlook.com [40.107.237.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5771810E54A
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 19:32:23 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=n5bU3VdJ6pomzSeEPFZCzi7zPO7eEFE7RYeV5KOiaL/tOrsPg7Ya/uV1vMA+2xCOVdeCkW9op3hJ99Ag9JZAJopY+4dAkcEWJgtCR28kUAnlIObKEISB0By5y6aI92eG7C6XUbF3Cj08rq84TYa6qgJoLBpEeIpEfAqSB8p7pDGOc+r6QN1PHPIxdmPbuVfP3hraIwtZjCFHD+BpkBulmnuz2ynwUwpFNB342ODq79JZvapbfbkyJ0AHLWOF1hFAeMrjyCldDQ5K74rCeg9LzLr+iG6IwqI4r+GKrL5NS6o3j8XqmVRtdRxWFm3ePxAoaY0s1Gshpl26v1u9KM+Peg==
+ b=V/qL8zauqrhBuDXW+QBShLVfzvYA9onYGGVNFVpcLLv9PM6g3vYA0i8EfaCa4jP6gGMH6/+kJdDiKJlLm6HnXLfHx0oTEtujXoQ+i260urguA+kYJwQaS2gK0v7wm25jfuE+Fvnytk3tIJ3y6sURvxK+Lko2zkMlZmyQpt8fL0OLgB8b9M5geupWTYDbrFGDoM+C0bLcO8fsBV3NIIunJA+HRcKaK9QS2kjSYKzNWr7W4Q1k9s7lMKXLyejosU5TarX/PPhU6KpP+Jr5IOKAMk9WCL51NC2upD/w7Af5fqH2tzSaAxEq4C/etlyJ+mZfx/f0NIkbNLVcI38a+GLZ1A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EdKb/IbUWKejhzIZZnWw38N9VxBlTy18M25O0OuSh9o=;
- b=cb5GHdTqDD6cKmoVvsfVLq01visq2v6a9ytb/O9pIMmuT5pl14o/BSNQeaV2AS7xhqBjKdA7TYTRcHB+E90wWEMecBbw5FUOr9zgGvqkLBQlVa+WTLA0DFTbvatI6wia4Ah2ARmlqqlhl42NIfJRweW8KHw2O4BxY+h/lxr+Ch30xqvpgVD1spPZ3euOMdIS3svhpSGL5zywkZ7X0f8log9YQpAw5Xpt+e+rmOh/WHpmYD0cy2EErkj+N5nQUOj1je+42e01YHyvbUAnr/TtGYz0Qe1v2wCXfmqqtJyyBCoZnMAcbG/MKfWi67j+PyW0Mx8E/uPTvbzKmkBEREyJGA==
+ bh=0tJ0k9xmej4wLZn2O43KLEUJDfHEA6nHhkvcOQrwwBU=;
+ b=HEdMMR8o4VopBBqhhOlaS3mx49veh0EtIvuV5Cdzekew7mMv+4NGMj85gbql+u++Ol/McnPqPt/bgUiWihreFnyvhLrn2OmuC53qa3DqAeD8jlj0iZy2V/MecJKWFbg3J8yyzojesO+j/fa8pBuugXjoH+FklEhId2/ziAxpd+TCg4bhTI+HmNLE844pZVhU7H4xfxGT/C6CcqztW61k7Jw8mbGmtw1JcYTEYaTZAAGCJxwUVhJ0WkoFySoQWeED2e8XEFfNfj48dcnopVrGMIAIxjF67VI45jiFthlric7micQAoYqwB+Qx0no39hQ0Ch7dL0P+xGiD5ezt9n+htA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EdKb/IbUWKejhzIZZnWw38N9VxBlTy18M25O0OuSh9o=;
- b=a4Q+3lguB8UjZrKaupZXP8Ta3V9/zCl1wLqyBkn9HfRZtenCKgJym99oxAjXKN43lWjXLlue9h2jkY2sFJmly3ynz/DZheyxFUli5TN5TOPkv+GzI6dTpHSC+/4yAWNyU2wFuU/VREyX6hTkyS2iFZov9UY5y2FnR3ZPm8tWuLs=
-Received: from BN8PR12CA0012.namprd12.prod.outlook.com (2603:10b6:408:60::25)
- by CH0PR12MB8506.namprd12.prod.outlook.com (2603:10b6:610:18a::6)
+ bh=0tJ0k9xmej4wLZn2O43KLEUJDfHEA6nHhkvcOQrwwBU=;
+ b=vbyqINrHKD05oO5qvNJcQjDXw1UwyVtKJ8cjMDqkziWTIDC7iaLo3GTnncpCpAtHdCcVs4QAPuSZ7ppHMzPG9Lf/MaeM+fVQAv0vk1SLVKNFPxHYwecgVHUQOlSTSJi9Jp2n76fScOPL+Rg30T2Mbk5QoysdyLq2Vjj62yuUdB8=
+Received: from BN9PR03CA0086.namprd03.prod.outlook.com (2603:10b6:408:fc::31)
+ by SA1PR12MB7038.namprd12.prod.outlook.com (2603:10b6:806:24d::10)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.35; Thu, 30 Mar
- 2023 19:27:15 +0000
-Received: from BN8NAM11FT043.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:60:cafe::c1) by BN8PR12CA0012.outlook.office365.com
- (2603:10b6:408:60::25) with Microsoft SMTP Server (version=TLS1_2,
+ 2023 19:32:20 +0000
+Received: from BN8NAM11FT078.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:fc:cafe::ab) by BN9PR03CA0086.outlook.office365.com
+ (2603:10b6:408:fc::31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.22 via Frontend
- Transport; Thu, 30 Mar 2023 19:27:15 +0000
+ Transport; Thu, 30 Mar 2023 19:32:20 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -46,21 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT043.mail.protection.outlook.com (10.13.177.218) with Microsoft SMTP
+ BN8NAM11FT078.mail.protection.outlook.com (10.13.176.251) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6254.21 via Frontend Transport; Thu, 30 Mar 2023 19:27:15 +0000
+ 15.20.6254.22 via Frontend Transport; Thu, 30 Mar 2023 19:32:20 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 30 Mar
- 2023 14:27:14 -0500
+ 2023 14:32:19 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 9/9] drm/amdgpu: Rename xcc specific functions
-Date: Thu, 30 Mar 2023 15:26:57 -0400
-Message-ID: <20230330192657.1134433-9-alexander.deucher@amd.com>
+Subject: [PATCH 01/10] drm/amdgpu: Add xcc specific functions for gfxhub
+Date: Thu, 30 Mar 2023 15:31:49 -0400
+Message-ID: <20230330193158.1134802-1-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230330192657.1134433-1-alexander.deucher@amd.com>
-References: <20230330192657.1134433-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -69,26 +66,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT043:EE_|CH0PR12MB8506:EE_
-X-MS-Office365-Filtering-Correlation-Id: cefce650-1f26-447b-132a-08db3154c4ec
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT078:EE_|SA1PR12MB7038:EE_
+X-MS-Office365-Filtering-Correlation-Id: aafbc7d2-09b3-4ebc-d2f3-08db31557aa3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: al5qZruUWIRNt7CmjICttGtILCYoUwRQZna8vARMDxj441S9hA5yMhzO86MnjBMAw2Y7DBDFSt0oxqQwWUO4nRuVR2KB4ufGvVNWAprLjtKuHfdS+Mo6tjnVlgO9j0L8fQ5yuOYQdM2KHNl4ighfPI7diqJn4hBxYXnerHxKZ3xu+lpJTZXKN9FeLyOl4USvBATPkm25CTsSe2+rQ1BFpUKL8EFEbPJAGReGOohwld9nFCmcvUie9x9hHbO39PnOJYO2TQTOSCWgozlGcp2rLyhWIr9EoK72ZjvLSF/a+8876rEs9fZ5A4EbMDZRFB59hKkyGpOOlyowP2r3gVsX9VoCf4QhWufPbziRcJE+9J248dwvmiQFVTrZJQfV55Abnay2kQypue2Ai5SHt+OjDNlMCNa4Oh1g25FotM9GgRTdd+AJcQ0I34GbnjgrS6DmwGfU5EbsAkvvLBMsHmUndkQUkOGOyvArX9BvIDmA0oMk+oDeSlw3KCBxiWSU86vwwIjOpeOuIUjv0heREvGqBWTxL/hJoeQpkDZQOCDEIDil8IADx12i2M15LjXhDxR4cvD+23yOkako2vuxZkWHqq+7avJAwcr8ywHEohfCtVjPpu0Pflc+H3IB5fyvT7G/+m/J/mIpmf92XVkfV9mOPSNxYkvunD4k+un+V/lKb9ChoKeOgpoIM06YaWHQ3r5mNYSEXSKTC+8cxA5u0Znc5Iuk0KZW30GBSoUh/2DVFUM=
+X-Microsoft-Antispam-Message-Info: N4KGxu9KLNlDkhgKUiNjWFX6lmf46mX6HkqjOj+nGTPxM6KNuDGJ6jG+g6arFvLF3vQo88L1TTnAB59Y+GB6agMrjiZ5QG2X9ZCoKBFBBsBr3rB3nqItXHNm5qohvX3SluYwUpbt9jl7OHXRcrxNE88u6tbL/FN3Rw/C4b+Iq5/vXtGVhd/B3NGJv/l3+q6krtY3G8ywH0gjLgUzz5pNHubGFzy4BYRM9tlnSx9CrBH/Pg0L5y1sI4dzmFEpzXbwUwc68MPSZ2stA4VAr6gRsYtYmBeSjRGdubLj4LCh+YX7UagtwQR8y07VNNJlmiXtArDpgPP0z9jnUXqwm6EZAvKuQb+NGvtD8WG7LJ2pojbfidMmekXfhAhuSIFG2ll9olatL0UBHmp1hGn1w4bIJ2FrYrIQs1Hs+0kab864tyMhaWffh7jJlHG2hdpBInIZxKe3dxXI+bkmrnmwpTxATcJ+rNKoNsw1sMma48cOYcArF9Gy4c1ia1PVKrytaKwYFcFAkRvTuEdF3QOiSYY1PX/AwHnbdsKIGEDnYNOU748pZTuygQiOTbB/jVAYNEECdLY6okfzpdPZEDOX/3UAhCahKsIrpfPKNEm/4LbWtYqVOyp62VnK/5hpt282xDUyQnGZs3WwyAT0fWMbD7s9q11YcA1kjUoVAYjG+w4XSgRAmnl33n3TYF1RDumqjRNemKM7M5M3lClNnndOgy1myxliy5Hh3FxyknY3JS9ROx4=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(39860400002)(346002)(376002)(136003)(451199021)(46966006)(36840700001)(40470700004)(30864003)(83380400001)(2616005)(426003)(336012)(26005)(1076003)(40480700001)(81166007)(186003)(47076005)(16526019)(82310400005)(86362001)(356005)(82740400003)(8676002)(36756003)(478600001)(36860700001)(8936002)(6666004)(4326008)(7696005)(54906003)(5660300002)(70206006)(41300700001)(70586007)(40460700003)(6916009)(316002)(2906002)(36900700001);
+ SFS:(13230028)(4636009)(136003)(376002)(346002)(396003)(39860400002)(451199021)(46966006)(36840700001)(40470700004)(2906002)(6916009)(478600001)(2616005)(83380400001)(426003)(30864003)(336012)(40460700003)(8936002)(5660300002)(6666004)(54906003)(41300700001)(36756003)(70206006)(8676002)(4326008)(316002)(86362001)(70586007)(7696005)(81166007)(82310400005)(1076003)(356005)(40480700001)(47076005)(26005)(186003)(82740400003)(36860700001)(16526019)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2023 19:27:15.3564 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cefce650-1f26-447b-132a-08db3154c4ec
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2023 19:32:20.2282 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: aafbc7d2-09b3-4ebc-d2f3-08db31557aa3
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT043.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT078.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB8506
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7038
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,612 +104,401 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Lijo Lazar <lijo.lazar@amd.com>
 
-Add 'xcc' prefix to xcc specific functions to distinguish from IP block
-functions.
+GFXHUB 1.2 supports multiple XCC instances. Add XCC specific functions
+to handle XCC instances separately.
 
 Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
 Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 205 +++++++++++++-----------
- 1 file changed, 113 insertions(+), 92 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h      |   4 +
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c | 202 ++++++++++++++---------
+ 2 files changed, 128 insertions(+), 78 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-index 4450377adfa4..a54411ddc17c 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-@@ -511,11 +511,8 @@ static int gfx_v9_4_3_mec_init(struct amdgpu_device *adev)
- 	return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index 0d5a327b0d2f..4a9817d2acaa 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -1284,6 +1284,10 @@ int emu_soc_asic_init(struct amdgpu_device *adev);
+ 
+ #define amdgpu_inc_vram_lost(adev) atomic_inc(&((adev)->vram_lost_counter));
+ 
++#define for_each_inst(i, inst_mask)                                            \
++	for (i = ffs(inst_mask) - 1; inst_mask;                                \
++	     inst_mask &= ~(1U << i), i = ffs(inst_mask) - 1)
++
+ #define MIN(X, Y) ((X) < (Y) ? (X) : (Y))
+ 
+ /* Common functions */
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c
+index c26ac0662c7e..b9316bfb7263 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c
+@@ -38,15 +38,15 @@ static u64 gfxhub_v1_2_get_mc_fb_offset(struct amdgpu_device *adev)
+ 	return (u64)RREG32_SOC15(GC, GET_INST(GC, 0), regMC_VM_FB_OFFSET) << 24;
  }
  
--static void gfx_v9_4_3_select_se_sh(struct amdgpu_device *adev,
--				    u32 se_num,
--				    u32 sh_num,
--				    u32 instance,
--				    int xcc_id)
-+static void gfx_v9_4_3_xcc_select_se_sh(struct amdgpu_device *adev, u32 se_num,
-+					u32 sh_num, u32 instance, int xcc_id)
+-static void gfxhub_v1_2_setup_vm_pt_regs(struct amdgpu_device *adev,
+-					 uint32_t vmid,
+-					 uint64_t page_table_base)
++static void gfxhub_v1_2_xcc_setup_vm_pt_regs(struct amdgpu_device *adev,
++					     uint32_t vmid,
++					     uint64_t page_table_base,
++					     uint32_t xcc_mask)
  {
- 	u32 data;
+ 	struct amdgpu_vmhub *hub;
+-	int i, num_xcc;
++	int i;
  
-@@ -683,7 +680,7 @@ static int gfx_v9_4_3_switch_compute_partition(struct amdgpu_device *adev,
- 
- static const struct amdgpu_gfx_funcs gfx_v9_4_3_gfx_funcs = {
-         .get_gpu_clock_counter = &gfx_v9_4_3_get_gpu_clock_counter,
--        .select_se_sh = &gfx_v9_4_3_select_se_sh,
-+	.select_se_sh = &gfx_v9_4_3_xcc_select_se_sh,
-         .read_wave_data = &gfx_v9_4_3_read_wave_data,
-         .read_wave_sgprs = &gfx_v9_4_3_read_wave_sgprs,
-         .read_wave_vgprs = &gfx_v9_4_3_read_wave_vgprs,
-@@ -906,7 +903,8 @@ static int gfx_v9_4_3_sw_fini(void *handle)
- }
- 
- #define DEFAULT_SH_MEM_BASES	(0x6000)
--static void gfx_v9_4_3_init_compute_vmid(struct amdgpu_device *adev, int xcc_id)
-+static void gfx_v9_4_3_xcc_init_compute_vmid(struct amdgpu_device *adev,
-+					     int xcc_id)
- {
- 	int i;
- 	uint32_t sh_mem_config;
-@@ -944,7 +942,7 @@ static void gfx_v9_4_3_init_compute_vmid(struct amdgpu_device *adev, int xcc_id)
+-	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
+-	for (i = 0; i < num_xcc; i++) {
++	for_each_inst(i, xcc_mask) {
+ 		hub = &adev->vmhub[AMDGPU_GFXHUB(i)];
+ 		WREG32_SOC15_OFFSET(GC, GET_INST(GC, i),
+ 				    regVM_CONTEXT0_PAGE_TABLE_BASE_ADDR_LO32,
+@@ -57,27 +57,36 @@ static void gfxhub_v1_2_setup_vm_pt_regs(struct amdgpu_device *adev,
+ 				    regVM_CONTEXT0_PAGE_TABLE_BASE_ADDR_HI32,
+ 				    hub->ctx_addr_distance * vmid,
+ 				    upper_32_bits(page_table_base));
+-
  	}
  }
  
--static void gfx_v9_4_3_init_gds_vmid(struct amdgpu_device *adev, int xcc_id)
-+static void gfx_v9_4_3_xcc_init_gds_vmid(struct amdgpu_device *adev, int xcc_id)
+-static void gfxhub_v1_2_init_gart_aperture_regs(struct amdgpu_device *adev)
++static void gfxhub_v1_2_setup_vm_pt_regs(struct amdgpu_device *adev,
++					 uint32_t vmid,
++					 uint64_t page_table_base)
++{
++	uint32_t xcc_mask;
++
++	xcc_mask = GENMASK(NUM_XCC(adev->gfx.xcc_mask) - 1, 0);
++	gfxhub_v1_2_xcc_setup_vm_pt_regs(adev, vmid, page_table_base, xcc_mask);
++}
++
++static void gfxhub_v1_2_xcc_init_gart_aperture_regs(struct amdgpu_device *adev,
++						    uint32_t xcc_mask)
  {
- 	int vmid;
+ 	uint64_t pt_base;
+-	int i, num_xcc;
++	int i;
  
-@@ -1005,25 +1003,26 @@ static void gfx_v9_4_3_constants_init(struct amdgpu_device *adev)
- 	mutex_unlock(&adev->srbm_mutex);
+ 	if (adev->gmc.pdb0_bo)
+ 		pt_base = amdgpu_gmc_pd_addr(adev->gmc.pdb0_bo);
+ 	else
+ 		pt_base = amdgpu_gmc_pd_addr(adev->gart.bo);
  
- 	for (i = 0; i < num_xcc; i++) {
--		gfx_v9_4_3_init_compute_vmid(adev, i);
--		gfx_v9_4_3_init_gds_vmid(adev, i);
-+		gfx_v9_4_3_xcc_init_compute_vmid(adev, i);
-+		gfx_v9_4_3_xcc_init_gds_vmid(adev, i);
- 	}
- }
+-	gfxhub_v1_2_setup_vm_pt_regs(adev, 0, pt_base);
++	gfxhub_v1_2_xcc_setup_vm_pt_regs(adev, 0, pt_base, xcc_mask);
  
--static void gfx_v9_4_3_enable_save_restore_machine(struct amdgpu_device *adev,
--						   int xcc_id)
-+static void
-+gfx_v9_4_3_xcc_enable_save_restore_machine(struct amdgpu_device *adev,
-+					   int xcc_id)
- {
- 	WREG32_FIELD15_PREREG(GC, GET_INST(GC, xcc_id), RLC_SRM_CNTL, SRM_ENABLE, 1);
- }
- 
--static void gfx_v9_4_3_init_pg(struct amdgpu_device *adev, int xcc_id)
-+static void gfx_v9_4_3_xcc_init_pg(struct amdgpu_device *adev, int xcc_id)
- {
- 	/*
- 	 * Rlc save restore list is workable since v2_1.
- 	 * And it's needed by gfxoff feature.
+ 	/* If use GART for FB translation, vmid0 page table covers both
+ 	 * vram and system memory (gart)
  	 */
- 	if (adev->gfx.rlc.is_rlc_v2_1)
--		gfx_v9_4_3_enable_save_restore_machine(adev, xcc_id);
-+		gfx_v9_4_3_xcc_enable_save_restore_machine(adev, xcc_id);
- 
- 	if (adev->pg_flags & (AMD_PG_SUPPORT_GFX_PG |
- 			      AMD_PG_SUPPORT_GFX_SMG |
-@@ -1036,7 +1035,7 @@ static void gfx_v9_4_3_init_pg(struct amdgpu_device *adev, int xcc_id)
+-	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
+-	for (i = 0; i < num_xcc; i++) {
++	for_each_inst(i, xcc_mask) {
+ 		if (adev->gmc.pdb0_bo) {
+ 			WREG32_SOC15(GC, GET_INST(GC, i),
+ 				     regVM_CONTEXT0_PAGE_TABLE_START_ADDR_LO32,
+@@ -110,14 +119,15 @@ static void gfxhub_v1_2_init_gart_aperture_regs(struct amdgpu_device *adev)
  	}
  }
  
--void gfx_v9_4_3_disable_gpa_mode(struct amdgpu_device *adev, int xcc_id)
-+void gfx_v9_4_3_xcc_disable_gpa_mode(struct amdgpu_device *adev, int xcc_id)
+-static void gfxhub_v1_2_init_system_aperture_regs(struct amdgpu_device *adev)
++static void
++gfxhub_v1_2_xcc_init_system_aperture_regs(struct amdgpu_device *adev,
++					  uint32_t xcc_mask)
  {
- 	uint32_t data;
+ 	uint64_t value;
+ 	uint32_t tmp;
+-	int i, num_xcc;
++	int i;
  
-@@ -1045,7 +1044,8 @@ void gfx_v9_4_3_disable_gpa_mode(struct amdgpu_device *adev, int xcc_id)
- 	WREG32_SOC15(GC, GET_INST(GC, xcc_id), regCPC_PSP_DEBUG, data);
- }
- 
--static void gfx_v9_4_3_program_xcc_id(struct amdgpu_device *adev, int xcc_id)
-+static void gfx_v9_4_3_xcc_program_xcc_id(struct amdgpu_device *adev,
-+					  int xcc_id)
- {
- 	uint32_t tmp = 0;
- 	int num_xcc;
-@@ -1079,7 +1079,7 @@ static bool gfx_v9_4_3_is_rlc_enabled(struct amdgpu_device *adev)
- 	return true;
- }
- 
--static void gfx_v9_4_3_set_safe_mode(struct amdgpu_device *adev, int xcc_id)
-+static void gfx_v9_4_3_xcc_set_safe_mode(struct amdgpu_device *adev, int xcc_id)
- {
- 	uint32_t data;
- 	unsigned i;
-@@ -1096,7 +1096,8 @@ static void gfx_v9_4_3_set_safe_mode(struct amdgpu_device *adev, int xcc_id)
+-	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
+-	for (i = 0; i < num_xcc; i++) {
++	for_each_inst(i, xcc_mask) {
+ 		/* Program the AGP BAR */
+ 		WREG32_SOC15_RLC(GC, GET_INST(GC, i), regMC_VM_AGP_BASE, 0);
+ 		WREG32_SOC15_RLC(GC, GET_INST(GC, i), regMC_VM_AGP_BOT, adev->gmc.agp_start >> 24);
+@@ -178,13 +188,13 @@ static void gfxhub_v1_2_init_system_aperture_regs(struct amdgpu_device *adev)
  	}
  }
  
--static void gfx_v9_4_3_unset_safe_mode(struct amdgpu_device *adev, int xcc_id)
-+static void gfx_v9_4_3_xcc_unset_safe_mode(struct amdgpu_device *adev,
-+					   int xcc_id)
- {
- 	uint32_t data;
- 
-@@ -1113,8 +1114,8 @@ static int gfx_v9_4_3_rlc_init(struct amdgpu_device *adev)
- 	return 0;
- }
- 
--static void gfx_v9_4_3_wait_for_rlc_serdes(struct amdgpu_device *adev,
--					   int xcc_id)
-+static void gfx_v9_4_3_xcc_wait_for_rlc_serdes(struct amdgpu_device *adev,
-+					       int xcc_id)
- {
- 	u32 i, j, k;
- 	u32 mask;
-@@ -1122,16 +1123,17 @@ static void gfx_v9_4_3_wait_for_rlc_serdes(struct amdgpu_device *adev,
- 	mutex_lock(&adev->grbm_idx_mutex);
- 	for (i = 0; i < adev->gfx.config.max_shader_engines; i++) {
- 		for (j = 0; j < adev->gfx.config.max_sh_per_se; j++) {
--			gfx_v9_4_3_select_se_sh(adev, i, j, 0xffffffff, xcc_id);
-+			gfx_v9_4_3_xcc_select_se_sh(adev, i, j, 0xffffffff,
-+						    xcc_id);
- 			for (k = 0; k < adev->usec_timeout; k++) {
- 				if (RREG32_SOC15(GC, GET_INST(GC, 0), regRLC_SERDES_CU_MASTER_BUSY) == 0)
- 					break;
- 				udelay(1);
- 			}
- 			if (k == adev->usec_timeout) {
--				gfx_v9_4_3_select_se_sh(adev, 0xffffffff,
--							0xffffffff, 0xffffffff,
--							xcc_id);
-+				gfx_v9_4_3_xcc_select_se_sh(adev, 0xffffffff,
-+							    0xffffffff,
-+							    0xffffffff, xcc_id);
- 				mutex_unlock(&adev->grbm_idx_mutex);
- 				DRM_INFO("Timeout wait for RLC serdes %u,%u\n",
- 					 i, j);
-@@ -1139,7 +1141,8 @@ static void gfx_v9_4_3_wait_for_rlc_serdes(struct amdgpu_device *adev,
- 			}
- 		}
- 	}
--	gfx_v9_4_3_select_se_sh(adev, 0xffffffff, 0xffffffff, 0xffffffff, xcc_id);
-+	gfx_v9_4_3_xcc_select_se_sh(adev, 0xffffffff, 0xffffffff, 0xffffffff,
-+				    xcc_id);
- 	mutex_unlock(&adev->grbm_idx_mutex);
- 
- 	mask = RLC_SERDES_NONCU_MASTER_BUSY__SE_MASTER_BUSY_MASK |
-@@ -1153,8 +1156,8 @@ static void gfx_v9_4_3_wait_for_rlc_serdes(struct amdgpu_device *adev,
- 	}
- }
- 
--static void gfx_v9_4_3_enable_gui_idle_interrupt(struct amdgpu_device *adev,
--						 bool enable, int xcc_id)
-+static void gfx_v9_4_3_xcc_enable_gui_idle_interrupt(struct amdgpu_device *adev,
-+						     bool enable, int xcc_id)
- {
- 	u32 tmp;
- 
-@@ -1176,8 +1179,8 @@ static void gfx_v9_4_3_rlc_stop(struct amdgpu_device *adev)
- 	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
- 	for (i = 0; i < num_xcc; i++) {
- 		WREG32_FIELD15_PREREG(GC, GET_INST(GC, i), RLC_CNTL, RLC_ENABLE_F32, 0);
--		gfx_v9_4_3_enable_gui_idle_interrupt(adev, false, i);
--		gfx_v9_4_3_wait_for_rlc_serdes(adev, i);
-+		gfx_v9_4_3_xcc_enable_gui_idle_interrupt(adev, false, i);
-+		gfx_v9_4_3_xcc_wait_for_rlc_serdes(adev, i);
- 	}
- }
- 
-@@ -1208,7 +1211,7 @@ static void gfx_v9_4_3_rlc_start(struct amdgpu_device *adev)
- 
- 		/* carrizo do enable cp interrupt after cp inited */
- 		if (!(adev->flags & AMD_IS_APU)) {
--			gfx_v9_4_3_enable_gui_idle_interrupt(adev, true, i);
-+			gfx_v9_4_3_xcc_enable_gui_idle_interrupt(adev, true, i);
- 			udelay(50);
- 		}
- 
-@@ -1231,7 +1234,8 @@ static void gfx_v9_4_3_rlc_start(struct amdgpu_device *adev)
- 	}
- }
- 
--static int gfx_v9_4_3_rlc_load_microcode(struct amdgpu_device *adev, int xcc_id)
-+static int gfx_v9_4_3_xcc_rlc_load_microcode(struct amdgpu_device *adev,
-+					     int xcc_id)
- {
- 	const struct rlc_firmware_header_v2_0 *hdr;
- 	const __le32 *fw_data;
-@@ -1272,11 +1276,11 @@ static int gfx_v9_4_3_rlc_resume(struct amdgpu_device *adev)
- 		/* disable CG */
- 		WREG32_SOC15(GC, GET_INST(GC, i), regRLC_CGCG_CGLS_CTRL, 0);
- 
--		gfx_v9_4_3_init_pg(adev, i);
-+		gfx_v9_4_3_xcc_init_pg(adev, i);
- 
- 		if (adev->firmware.load_type != AMDGPU_FW_LOAD_PSP) {
- 			/* legacy rlc firmware loading */
--			r = gfx_v9_4_3_rlc_load_microcode(adev, i);
-+			r = gfx_v9_4_3_xcc_rlc_load_microcode(adev, i);
- 			if (r)
- 				return r;
- 		}
-@@ -1346,8 +1350,8 @@ static bool gfx_v9_4_3_is_rlcg_access_range(struct amdgpu_device *adev, u32 offs
- 					ARRAY_SIZE(rlcg_access_gc_9_4_3));
- }
- 
--static void gfx_v9_4_3_cp_compute_enable(struct amdgpu_device *adev,
--					 bool enable, int xcc_id)
-+static void gfx_v9_4_3_xcc_cp_compute_enable(struct amdgpu_device *adev,
-+					     bool enable, int xcc_id)
- {
- 	if (enable) {
- 		WREG32_SOC15_RLC(GC, GET_INST(GC, xcc_id), regCP_MEC_CNTL, 0);
-@@ -1359,8 +1363,8 @@ static void gfx_v9_4_3_cp_compute_enable(struct amdgpu_device *adev,
- 	udelay(50);
- }
- 
--static int gfx_v9_4_3_cp_compute_load_microcode(struct amdgpu_device *adev,
--						int xcc_id)
-+static int gfx_v9_4_3_xcc_cp_compute_load_microcode(struct amdgpu_device *adev,
-+						    int xcc_id)
- {
- 	const struct gfx_firmware_header_v1_0 *mec_hdr;
- 	const __le32 *fw_data;
-@@ -1372,7 +1376,7 @@ static int gfx_v9_4_3_cp_compute_load_microcode(struct amdgpu_device *adev,
- 	if (!adev->gfx.mec_fw)
- 		return -EINVAL;
- 
--	gfx_v9_4_3_cp_compute_enable(adev, false, xcc_id);
-+	gfx_v9_4_3_xcc_cp_compute_enable(adev, false, xcc_id);
- 
- 	mec_hdr = (const struct gfx_firmware_header_v1_0 *)adev->gfx.mec_fw->data;
- 	amdgpu_ucode_print_gfx_hdr(&mec_hdr->header);
-@@ -1408,7 +1412,7 @@ static int gfx_v9_4_3_cp_compute_load_microcode(struct amdgpu_device *adev,
- }
- 
- /* KIQ functions */
--static void gfx_v9_4_3_kiq_setting(struct amdgpu_ring *ring, int xcc_id)
-+static void gfx_v9_4_3_xcc_kiq_setting(struct amdgpu_ring *ring, int xcc_id)
+-static void gfxhub_v1_2_init_tlb_regs(struct amdgpu_device *adev)
++static void gfxhub_v1_2_xcc_init_tlb_regs(struct amdgpu_device *adev,
++					  uint32_t xcc_mask)
  {
  	uint32_t tmp;
- 	struct amdgpu_device *adev = ring->adev;
-@@ -1563,7 +1567,8 @@ static int gfx_v9_4_3_mqd_init(struct amdgpu_ring *ring)
- 	return 0;
- }
+-	int i, num_xcc;
++	int i;
  
--static int gfx_v9_4_3_kiq_init_register(struct amdgpu_ring *ring, int xcc_id)
-+static int gfx_v9_4_3_xcc_kiq_init_register(struct amdgpu_ring *ring,
-+					    int xcc_id)
- {
- 	struct amdgpu_device *adev = ring->adev;
- 	struct v9_mqd *mqd = ring->mqd_ptr;
-@@ -1668,7 +1673,8 @@ static int gfx_v9_4_3_kiq_init_register(struct amdgpu_ring *ring, int xcc_id)
- 	return 0;
- }
+-	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
+-	for (i = 0; i < num_xcc; i++) {
++	for_each_inst(i, xcc_mask) {
+ 		/* Setup TLB control */
+ 		tmp = RREG32_SOC15(GC, GET_INST(GC, i), regMC_VM_MX_L1_TLB_CNTL);
  
--static int gfx_v9_4_3_kiq_fini_register(struct amdgpu_ring *ring, int xcc_id)
-+static int gfx_v9_4_3_xcc_kiq_fini_register(struct amdgpu_ring *ring,
-+					    int xcc_id)
- {
- 	struct amdgpu_device *adev = ring->adev;
- 	int j;
-@@ -1707,13 +1713,13 @@ static int gfx_v9_4_3_kiq_fini_register(struct amdgpu_ring *ring, int xcc_id)
- 	return 0;
- }
- 
--static int gfx_v9_4_3_kiq_init_queue(struct amdgpu_ring *ring, int xcc_id)
-+static int gfx_v9_4_3_xcc_kiq_init_queue(struct amdgpu_ring *ring, int xcc_id)
- {
- 	struct amdgpu_device *adev = ring->adev;
- 	struct v9_mqd *mqd = ring->mqd_ptr;
- 	struct v9_mqd *tmp_mqd;
- 
--	gfx_v9_4_3_kiq_setting(ring, xcc_id);
-+	gfx_v9_4_3_xcc_kiq_setting(ring, xcc_id);
- 
- 	/* GPU could be in bad state during probe, driver trigger the reset
- 	 * after load the SMU, in this case , the mqd is not be initialized.
-@@ -1731,7 +1737,7 @@ static int gfx_v9_4_3_kiq_init_queue(struct amdgpu_ring *ring, int xcc_id)
- 		amdgpu_ring_clear_ring(ring);
- 		mutex_lock(&adev->srbm_mutex);
- 		soc15_grbm_select(adev, ring->me, ring->pipe, ring->queue, 0, GET_INST(GC, xcc_id));
--		gfx_v9_4_3_kiq_init_register(ring, xcc_id);
-+		gfx_v9_4_3_xcc_kiq_init_register(ring, xcc_id);
- 		soc15_grbm_select(adev, 0, 0, 0, 0, GET_INST(GC, xcc_id));
- 		mutex_unlock(&adev->srbm_mutex);
- 	} else {
-@@ -1741,7 +1747,7 @@ static int gfx_v9_4_3_kiq_init_queue(struct amdgpu_ring *ring, int xcc_id)
- 		mutex_lock(&adev->srbm_mutex);
- 		soc15_grbm_select(adev, ring->me, ring->pipe, ring->queue, 0, GET_INST(GC, xcc_id));
- 		gfx_v9_4_3_mqd_init(ring);
--		gfx_v9_4_3_kiq_init_register(ring, xcc_id);
-+		gfx_v9_4_3_xcc_kiq_init_register(ring, xcc_id);
- 		soc15_grbm_select(adev, 0, 0, 0, 0, GET_INST(GC, xcc_id));
- 		mutex_unlock(&adev->srbm_mutex);
- 
-@@ -1752,7 +1758,7 @@ static int gfx_v9_4_3_kiq_init_queue(struct amdgpu_ring *ring, int xcc_id)
- 	return 0;
- }
- 
--static int gfx_v9_4_3_kcq_init_queue(struct amdgpu_ring *ring, int xcc_id)
-+static int gfx_v9_4_3_xcc_kcq_init_queue(struct amdgpu_ring *ring, int xcc_id)
- {
- 	struct amdgpu_device *adev = ring->adev;
- 	struct v9_mqd *mqd = ring->mqd_ptr;
-@@ -1793,7 +1799,7 @@ static int gfx_v9_4_3_kcq_init_queue(struct amdgpu_ring *ring, int xcc_id)
- 	return 0;
- }
- 
--static int gfx_v9_4_3_kiq_resume(struct amdgpu_device *adev, int xcc_id)
-+static int gfx_v9_4_3_xcc_kiq_resume(struct amdgpu_device *adev, int xcc_id)
- {
- 	struct amdgpu_ring *ring;
- 	int r;
-@@ -1808,7 +1814,7 @@ static int gfx_v9_4_3_kiq_resume(struct amdgpu_device *adev, int xcc_id)
- 	if (unlikely(r != 0))
- 		return r;
- 
--	gfx_v9_4_3_kiq_init_queue(ring, xcc_id);
-+	gfx_v9_4_3_xcc_kiq_init_queue(ring, xcc_id);
- 	amdgpu_bo_kunmap(ring->mqd_obj);
- 	ring->mqd_ptr = NULL;
- 	amdgpu_bo_unreserve(ring->mqd_obj);
-@@ -1816,12 +1822,12 @@ static int gfx_v9_4_3_kiq_resume(struct amdgpu_device *adev, int xcc_id)
- 	return 0;
- }
- 
--static int gfx_v9_4_3_kcq_resume(struct amdgpu_device *adev, int xcc_id)
-+static int gfx_v9_4_3_xcc_kcq_resume(struct amdgpu_device *adev, int xcc_id)
- {
- 	struct amdgpu_ring *ring = NULL;
- 	int r = 0, i;
- 
--	gfx_v9_4_3_cp_compute_enable(adev, true, xcc_id);
-+	gfx_v9_4_3_xcc_cp_compute_enable(adev, true, xcc_id);
- 
- 	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
- 		ring = &adev->gfx.compute_ring[i + xcc_id * adev->gfx.num_compute_rings];
-@@ -1831,7 +1837,7 @@ static int gfx_v9_4_3_kcq_resume(struct amdgpu_device *adev, int xcc_id)
- 			goto done;
- 		r = amdgpu_bo_kmap(ring->mqd_obj, (void **)&ring->mqd_ptr);
- 		if (!r) {
--			r = gfx_v9_4_3_kcq_init_queue(ring, xcc_id);
-+			r = gfx_v9_4_3_xcc_kcq_init_queue(ring, xcc_id);
- 			amdgpu_bo_kunmap(ring->mqd_obj);
- 			ring->mqd_ptr = NULL;
- 		}
-@@ -1852,12 +1858,12 @@ static int gfx_v9_4_3_cp_resume(struct amdgpu_device *adev)
- 
- 	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
- 	for (i = 0; i < num_xcc; i++) {
--		gfx_v9_4_3_enable_gui_idle_interrupt(adev, false, i);
-+		gfx_v9_4_3_xcc_enable_gui_idle_interrupt(adev, false, i);
- 
- 		if (adev->firmware.load_type != AMDGPU_FW_LOAD_PSP) {
--			gfx_v9_4_3_disable_gpa_mode(adev, i);
-+			gfx_v9_4_3_xcc_disable_gpa_mode(adev, i);
- 
--			r = gfx_v9_4_3_cp_compute_load_microcode(adev, i);
-+			r = gfx_v9_4_3_xcc_cp_compute_load_microcode(adev, i);
- 			if (r)
- 				return r;
- 		}
-@@ -1868,13 +1874,13 @@ static int gfx_v9_4_3_cp_resume(struct amdgpu_device *adev)
- 				adev, amdgpu_user_partt_mode);
- 
- 		/* set the virtual and physical id based on partition_mode */
--		gfx_v9_4_3_program_xcc_id(adev, i);
-+		gfx_v9_4_3_xcc_program_xcc_id(adev, i);
- 
--		r = gfx_v9_4_3_kiq_resume(adev, i);
-+		r = gfx_v9_4_3_xcc_kiq_resume(adev, i);
- 		if (r)
- 			return r;
- 
--		r = gfx_v9_4_3_kcq_resume(adev, i);
-+		r = gfx_v9_4_3_xcc_kcq_resume(adev, i);
- 		if (r)
- 			return r;
- 
-@@ -1885,16 +1891,16 @@ static int gfx_v9_4_3_cp_resume(struct amdgpu_device *adev)
- 				return r;
- 		}
- 
--		gfx_v9_4_3_enable_gui_idle_interrupt(adev, true, i);
-+		gfx_v9_4_3_xcc_enable_gui_idle_interrupt(adev, true, i);
+@@ -204,13 +214,13 @@ static void gfxhub_v1_2_init_tlb_regs(struct amdgpu_device *adev)
  	}
- 
- 	return 0;
  }
  
--static void gfx_v9_4_3_cp_enable(struct amdgpu_device *adev, bool enable,
--				int xcc_id)
-+static void gfx_v9_4_3_xcc_cp_enable(struct amdgpu_device *adev, bool enable,
-+				     int xcc_id)
+-static void gfxhub_v1_2_init_cache_regs(struct amdgpu_device *adev)
++static void gfxhub_v1_2_xcc_init_cache_regs(struct amdgpu_device *adev,
++					    uint32_t xcc_mask)
  {
--	gfx_v9_4_3_cp_compute_enable(adev, enable, xcc_id);
-+	gfx_v9_4_3_xcc_cp_compute_enable(adev, enable, xcc_id);
- }
+ 	uint32_t tmp;
+-	int i, num_xcc;
++	int i;
  
- static int gfx_v9_4_3_hw_init(void *handle)
-@@ -1938,12 +1944,13 @@ static int gfx_v9_4_3_hw_fini(void *handle)
- 			soc15_grbm_select(adev, adev->gfx.kiq[i].ring.me,
- 					adev->gfx.kiq[i].ring.pipe,
- 					adev->gfx.kiq[i].ring.queue, 0, GET_INST(GC, i));
--			gfx_v9_4_3_kiq_fini_register(&adev->gfx.kiq[i].ring, i);
-+			gfx_v9_4_3_xcc_kiq_fini_register(&adev->gfx.kiq[i].ring,
-+							 i);
- 			soc15_grbm_select(adev, 0, 0, 0, 0, GET_INST(GC, i));
- 			mutex_unlock(&adev->srbm_mutex);
- 		}
- 
--		gfx_v9_4_3_cp_enable(adev, false, i);
-+		gfx_v9_4_3_xcc_cp_enable(adev, false, i);
+-	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
+-	for (i = 0; i < num_xcc; i++) {
++	for_each_inst(i, xcc_mask) {
+ 		/* Setup L2 cache */
+ 		tmp = RREG32_SOC15(GC, GET_INST(GC, i), regVM_L2_CNTL);
+ 		tmp = REG_SET_FIELD(tmp, VM_L2_CNTL, ENABLE_L2_CACHE, 1);
+@@ -252,13 +262,13 @@ static void gfxhub_v1_2_init_cache_regs(struct amdgpu_device *adev)
  	}
- 
- 	/* Skip suspend with A+A reset */
-@@ -2030,7 +2037,7 @@ static int gfx_v9_4_3_soft_reset(void *handle)
- 		adev->gfx.rlc.funcs->stop(adev);
- 
- 		/* Disable MEC parsing/prefetching */
--		gfx_v9_4_3_cp_compute_enable(adev, false, 0);
-+		gfx_v9_4_3_xcc_cp_compute_enable(adev, false, 0);
- 
- 		if (grbm_soft_reset) {
- 			tmp = RREG32_SOC15(GC, GET_INST(GC, 0), regGRBM_SOFT_RESET);
-@@ -2117,8 +2124,9 @@ static int gfx_v9_4_3_late_init(void *handle)
- 	return 0;
  }
  
--static void gfx_v9_4_3_update_medium_grain_clock_gating(struct amdgpu_device *adev,
--						      bool enable, int xcc_id)
+-static void gfxhub_v1_2_enable_system_domain(struct amdgpu_device *adev)
++static void gfxhub_v1_2_xcc_enable_system_domain(struct amdgpu_device *adev,
++						 uint32_t xcc_mask)
+ {
+ 	uint32_t tmp;
+-	int i, num_xcc;
++	int i;
+ 
+-	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
+-	for (i = 0; i < num_xcc; i++) {
++	for_each_inst(i, xcc_mask) {
+ 		tmp = RREG32_SOC15(GC, GET_INST(GC, i), regVM_CONTEXT0_CNTL);
+ 		tmp = REG_SET_FIELD(tmp, VM_CONTEXT0_CNTL, ENABLE_CONTEXT, 1);
+ 		tmp = REG_SET_FIELD(tmp, VM_CONTEXT0_CNTL, PAGE_TABLE_DEPTH,
+@@ -271,12 +281,13 @@ static void gfxhub_v1_2_enable_system_domain(struct amdgpu_device *adev)
+ 	}
+ }
+ 
+-static void gfxhub_v1_2_disable_identity_aperture(struct amdgpu_device *adev)
 +static void
-+gfx_v9_4_3_xcc_update_medium_grain_clock_gating(struct amdgpu_device *adev,
-+						bool enable, int xcc_id)
++gfxhub_v1_2_xcc_disable_identity_aperture(struct amdgpu_device *adev,
++					  uint32_t xcc_mask)
  {
- 	uint32_t data, def;
+-	int i, num_xcc;
++	int i;
  
-@@ -2186,8 +2194,9 @@ static void gfx_v9_4_3_update_medium_grain_clock_gating(struct amdgpu_device *ad
- 	amdgpu_gfx_rlc_exit_safe_mode(adev, xcc_id);
- }
- 
--static void gfx_v9_4_3_update_coarse_grain_clock_gating(struct amdgpu_device *adev,
--						      bool enable, int xcc_id)
-+static void
-+gfx_v9_4_3_xcc_update_coarse_grain_clock_gating(struct amdgpu_device *adev,
-+						bool enable, int xcc_id)
- {
- 	uint32_t def, data;
- 
-@@ -2238,31 +2247,35 @@ static void gfx_v9_4_3_update_coarse_grain_clock_gating(struct amdgpu_device *ad
- 	amdgpu_gfx_rlc_exit_safe_mode(adev, xcc_id);
- }
- 
--static int gfx_v9_4_3_update_gfx_clock_gating(struct amdgpu_device *adev,
--					    bool enable, int xcc_id)
-+static int gfx_v9_4_3_xcc_update_gfx_clock_gating(struct amdgpu_device *adev,
-+						  bool enable, int xcc_id)
- {
- 	if (enable) {
- 		/* CGCG/CGLS should be enabled after MGCG/MGLS
- 		 * ===  MGCG + MGLS ===
- 		 */
--		gfx_v9_4_3_update_medium_grain_clock_gating(adev, enable, xcc_id);
-+		gfx_v9_4_3_xcc_update_medium_grain_clock_gating(adev, enable,
-+								xcc_id);
- 		/* ===  CGCG + CGLS === */
--		gfx_v9_4_3_update_coarse_grain_clock_gating(adev, enable, xcc_id);
-+		gfx_v9_4_3_xcc_update_coarse_grain_clock_gating(adev, enable,
-+								xcc_id);
- 	} else {
- 		/* CGCG/CGLS should be disabled before MGCG/MGLS
- 		 * ===  CGCG + CGLS ===
- 		 */
--		gfx_v9_4_3_update_coarse_grain_clock_gating(adev, enable, xcc_id);
-+		gfx_v9_4_3_xcc_update_coarse_grain_clock_gating(adev, enable,
-+								xcc_id);
- 		/* ===  MGCG + MGLS === */
--		gfx_v9_4_3_update_medium_grain_clock_gating(adev, enable, xcc_id);
-+		gfx_v9_4_3_xcc_update_medium_grain_clock_gating(adev, enable,
-+								xcc_id);
+-	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
+-	for (i = 0; i < num_xcc; i++) {
++	for_each_inst(i, xcc_mask) {
+ 		WREG32_SOC15(GC, GET_INST(GC, i),
+ 			     regVM_L2_CONTEXT1_IDENTITY_APERTURE_LOW_ADDR_LO32,
+ 			     0XFFFFFFFF);
+@@ -298,12 +309,13 @@ static void gfxhub_v1_2_disable_identity_aperture(struct amdgpu_device *adev)
  	}
+ }
+ 
+-static void gfxhub_v1_2_setup_vmid_config(struct amdgpu_device *adev)
++static void gfxhub_v1_2_xcc_setup_vmid_config(struct amdgpu_device *adev,
++					      uint32_t xcc_mask)
+ {
+ 	struct amdgpu_vmhub *hub;
+ 	unsigned num_level, block_size;
+ 	uint32_t tmp;
+-	int i, j, num_xcc;
++	int i, j;
+ 
+ 	num_level = adev->vm_manager.num_level;
+ 	block_size = adev->vm_manager.block_size;
+@@ -312,8 +324,7 @@ static void gfxhub_v1_2_setup_vmid_config(struct amdgpu_device *adev)
+ 	else
+ 		block_size -= 9;
+ 
+-	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
+-	for (j = 0; j < num_xcc; j++) {
++	for_each_inst(j, xcc_mask) {
+ 		hub = &adev->vmhub[AMDGPU_GFXHUB(j)];
+ 		for (i = 0; i <= 14; i++) {
+ 			tmp = RREG32_SOC15_OFFSET(GC, GET_INST(GC, j), regVM_CONTEXT1_CNTL, i);
+@@ -368,13 +379,13 @@ static void gfxhub_v1_2_setup_vmid_config(struct amdgpu_device *adev)
+ 	}
+ }
+ 
+-static void gfxhub_v1_2_program_invalidation(struct amdgpu_device *adev)
++static void gfxhub_v1_2_xcc_program_invalidation(struct amdgpu_device *adev,
++						 uint32_t xcc_mask)
+ {
+ 	struct amdgpu_vmhub *hub;
+-	unsigned i, j, num_xcc;
++	unsigned int i, j;
+ 
+-	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
+-	for (j = 0; j < num_xcc; j++) {
++	for_each_inst(j, xcc_mask) {
+ 		hub = &adev->vmhub[AMDGPU_GFXHUB(j)];
+ 
+ 		for (i = 0 ; i < 18; ++i) {
+@@ -386,18 +397,21 @@ static void gfxhub_v1_2_program_invalidation(struct amdgpu_device *adev)
+ 	}
+ }
+ 
+-static int gfxhub_v1_2_gart_enable(struct amdgpu_device *adev)
++static int gfxhub_v1_2_xcc_gart_enable(struct amdgpu_device *adev,
++				       uint32_t xcc_mask)
+ {
+-	int i, num_xcc;
+-
+-	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
+-	for (i = 0; i < num_xcc; i++) {
+-		if (amdgpu_sriov_vf(adev)) {
+-		/*
+-		 * MC_VM_FB_LOCATION_BASE/TOP is NULL for VF, becuase they are
+-		 * VF copy registers so vbios post doesn't program them, for
+-		 * SRIOV driver need to program them
+-		 */
++	uint32_t tmp_mask;
++	int i;
++
++	tmp_mask = xcc_mask;
++	/*
++	 * MC_VM_FB_LOCATION_BASE/TOP is NULL for VF, because they are
++	 * VF copy registers so vbios post doesn't program them, for
++	 * SRIOV driver need to program them
++	 */
++	if (amdgpu_sriov_vf(adev)) {
++		for_each_inst(i, tmp_mask) {
++			i = ffs(tmp_mask) - 1;
+ 			WREG32_SOC15_RLC(GC, GET_INST(GC, i), regMC_VM_FB_LOCATION_BASE,
+ 				     adev->gmc.vram_start >> 24);
+ 			WREG32_SOC15_RLC(GC, GET_INST(GC, i), regMC_VM_FB_LOCATION_TOP,
+@@ -406,29 +420,37 @@ static int gfxhub_v1_2_gart_enable(struct amdgpu_device *adev)
+ 	}
+ 
+ 	/* GART Enable. */
+-	gfxhub_v1_2_init_gart_aperture_regs(adev);
+-	gfxhub_v1_2_init_system_aperture_regs(adev);
+-	gfxhub_v1_2_init_tlb_regs(adev);
++	gfxhub_v1_2_xcc_init_gart_aperture_regs(adev, xcc_mask);
++	gfxhub_v1_2_xcc_init_system_aperture_regs(adev, xcc_mask);
++	gfxhub_v1_2_xcc_init_tlb_regs(adev, xcc_mask);
+ 	if (!amdgpu_sriov_vf(adev))
+-		gfxhub_v1_2_init_cache_regs(adev);
++		gfxhub_v1_2_xcc_init_cache_regs(adev, xcc_mask);
+ 
+-	gfxhub_v1_2_enable_system_domain(adev);
++	gfxhub_v1_2_xcc_enable_system_domain(adev, xcc_mask);
+ 	if (!amdgpu_sriov_vf(adev))
+-		gfxhub_v1_2_disable_identity_aperture(adev);
+-	gfxhub_v1_2_setup_vmid_config(adev);
+-	gfxhub_v1_2_program_invalidation(adev);
++		gfxhub_v1_2_xcc_disable_identity_aperture(adev, xcc_mask);
++	gfxhub_v1_2_xcc_setup_vmid_config(adev, xcc_mask);
++	gfxhub_v1_2_xcc_program_invalidation(adev, xcc_mask);
+ 
  	return 0;
  }
  
- static const struct amdgpu_rlc_funcs gfx_v9_4_3_rlc_funcs = {
- 	.is_rlc_enabled = gfx_v9_4_3_is_rlc_enabled,
--	.set_safe_mode = gfx_v9_4_3_set_safe_mode,
--	.unset_safe_mode = gfx_v9_4_3_unset_safe_mode,
-+	.set_safe_mode = gfx_v9_4_3_xcc_set_safe_mode,
-+	.unset_safe_mode = gfx_v9_4_3_xcc_unset_safe_mode,
- 	.init = gfx_v9_4_3_rlc_init,
- 	.resume = gfx_v9_4_3_rlc_resume,
- 	.stop = gfx_v9_4_3_rlc_stop,
-@@ -2291,8 +2304,8 @@ static int gfx_v9_4_3_set_clockgating_state(void *handle,
- 	switch (adev->ip_versions[GC_HWIP][0]) {
- 	case IP_VERSION(9, 4, 3):
- 		for (i = 0; i < num_xcc; i++)
--			gfx_v9_4_3_update_gfx_clock_gating(adev,
--						state == AMD_CG_STATE_GATE, i);
-+			gfx_v9_4_3_xcc_update_gfx_clock_gating(
-+				adev, state == AMD_CG_STATE_GATE, i);
- 		break;
- 	default:
- 		break;
-@@ -2559,10 +2572,9 @@ static void gfx_v9_4_3_ring_emit_reg_write_reg_wait(struct amdgpu_ring *ring,
- 						   ref, mask);
+-static void gfxhub_v1_2_gart_disable(struct amdgpu_device *adev)
++static int gfxhub_v1_2_gart_enable(struct amdgpu_device *adev)
++{
++	uint32_t xcc_mask;
++
++	xcc_mask = GENMASK(NUM_XCC(adev->gfx.xcc_mask) - 1, 0);
++	return gfxhub_v1_2_xcc_gart_enable(adev, xcc_mask);
++}
++
++static void gfxhub_v1_2_xcc_gart_disable(struct amdgpu_device *adev,
++					 uint32_t xcc_mask)
+ {
+ 	struct amdgpu_vmhub *hub;
+ 	u32 tmp;
+-	u32 i, j, num_xcc;
++	u32 i, j;
+ 
+-	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
+-	for (j = 0; j < num_xcc; j++) {
++	for_each_inst(j, xcc_mask) {
+ 		hub = &adev->vmhub[AMDGPU_GFXHUB(j)];
+ 		/* Disable all tables */
+ 		for (i = 0; i < 16; i++)
+@@ -452,20 +474,22 @@ static void gfxhub_v1_2_gart_disable(struct amdgpu_device *adev)
+ 	}
  }
  
--static void gfx_v9_4_3_set_compute_eop_interrupt_state(struct amdgpu_device *adev,
--						       int me, int pipe,
--						       enum amdgpu_interrupt_state state,
--						       int xcc_id)
-+static void gfx_v9_4_3_xcc_set_compute_eop_interrupt_state(
-+	struct amdgpu_device *adev, int me, int pipe,
-+	enum amdgpu_interrupt_state state, int xcc_id)
+-/**
+- * gfxhub_v1_2_set_fault_enable_default - update GART/VM fault handling
+- *
+- * @adev: amdgpu_device pointer
+- * @value: true redirects VM faults to the default page
+- */
+-static void gfxhub_v1_2_set_fault_enable_default(struct amdgpu_device *adev,
+-						 bool value)
++static void gfxhub_v1_2_gart_disable(struct amdgpu_device *adev)
++{
++	uint32_t xcc_mask;
++
++	xcc_mask = GENMASK(NUM_XCC(adev->gfx.xcc_mask) - 1, 0);
++	gfxhub_v1_2_xcc_gart_disable(adev, xcc_mask);
++}
++
++static void gfxhub_v1_2_xcc_set_fault_enable_default(struct amdgpu_device *adev,
++						     bool value,
++						     uint32_t xcc_mask)
  {
- 	u32 mec_int_cntl, mec_int_cntl_reg;
+ 	u32 tmp;
+-	int i, num_xcc;
++	int i;
  
-@@ -2670,28 +2682,36 @@ static int gfx_v9_4_3_set_eop_interrupt_state(struct amdgpu_device *adev,
- 	for (i = 0; i < num_xcc; i++) {
- 		switch (type) {
- 		case AMDGPU_CP_IRQ_COMPUTE_MEC1_PIPE0_EOP:
--			gfx_v9_4_3_set_compute_eop_interrupt_state(adev, 1, 0, state, i);
-+			gfx_v9_4_3_xcc_set_compute_eop_interrupt_state(
-+				adev, 1, 0, state, i);
- 			break;
- 		case AMDGPU_CP_IRQ_COMPUTE_MEC1_PIPE1_EOP:
--			gfx_v9_4_3_set_compute_eop_interrupt_state(adev, 1, 1, state, i);
-+			gfx_v9_4_3_xcc_set_compute_eop_interrupt_state(
-+				adev, 1, 1, state, i);
- 			break;
- 		case AMDGPU_CP_IRQ_COMPUTE_MEC1_PIPE2_EOP:
--			gfx_v9_4_3_set_compute_eop_interrupt_state(adev, 1, 2, state, i);
-+			gfx_v9_4_3_xcc_set_compute_eop_interrupt_state(
-+				adev, 1, 2, state, i);
- 			break;
- 		case AMDGPU_CP_IRQ_COMPUTE_MEC1_PIPE3_EOP:
--			gfx_v9_4_3_set_compute_eop_interrupt_state(adev, 1, 3, state, i);
-+			gfx_v9_4_3_xcc_set_compute_eop_interrupt_state(
-+				adev, 1, 3, state, i);
- 			break;
- 		case AMDGPU_CP_IRQ_COMPUTE_MEC2_PIPE0_EOP:
--			gfx_v9_4_3_set_compute_eop_interrupt_state(adev, 2, 0, state, i);
-+			gfx_v9_4_3_xcc_set_compute_eop_interrupt_state(
-+				adev, 2, 0, state, i);
- 			break;
- 		case AMDGPU_CP_IRQ_COMPUTE_MEC2_PIPE1_EOP:
--			gfx_v9_4_3_set_compute_eop_interrupt_state(adev, 2, 1, state, i);
-+			gfx_v9_4_3_xcc_set_compute_eop_interrupt_state(
-+				adev, 2, 1, state, i);
- 			break;
- 		case AMDGPU_CP_IRQ_COMPUTE_MEC2_PIPE2_EOP:
--			gfx_v9_4_3_set_compute_eop_interrupt_state(adev, 2, 2, state, i);
-+			gfx_v9_4_3_xcc_set_compute_eop_interrupt_state(
-+				adev, 2, 2, state, i);
- 			break;
- 		case AMDGPU_CP_IRQ_COMPUTE_MEC2_PIPE3_EOP:
--			gfx_v9_4_3_set_compute_eop_interrupt_state(adev, 2, 3, state, i);
-+			gfx_v9_4_3_xcc_set_compute_eop_interrupt_state(
-+				adev, 2, 3, state, i);
- 			break;
- 		default:
- 			break;
-@@ -3096,7 +3116,7 @@ static int gfx_v9_4_3_get_cu_info(struct amdgpu_device *adev,
- 			mask = 1;
- 			ao_bitmap = 0;
- 			counter = 0;
--			gfx_v9_4_3_select_se_sh(adev, i, j, 0xffffffff, 0);
-+			gfx_v9_4_3_xcc_select_se_sh(adev, i, j, 0xffffffff, 0);
- 			gfx_v9_4_3_set_user_cu_inactive_bitmap(
- 				adev, disable_masks[i * adev->gfx.config.max_sh_per_se + j]);
- 			bitmap = gfx_v9_4_3_get_cu_active_bitmap(adev);
-@@ -3129,7 +3149,8 @@ static int gfx_v9_4_3_get_cu_info(struct amdgpu_device *adev,
- 			cu_info->ao_cu_bitmap[i % 4][j + i / 4] = ao_bitmap;
- 		}
+-	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
+-	for (i = 0; i < num_xcc; i++) {
++	for_each_inst(i, xcc_mask) {
+ 		tmp = RREG32_SOC15(GC, GET_INST(GC, i), regVM_L2_PROTECTION_FAULT_CNTL);
+ 		tmp = REG_SET_FIELD(tmp, VM_L2_PROTECTION_FAULT_CNTL,
+ 				RANGE_PROTECTION_FAULT_ENABLE_DEFAULT, value);
+@@ -501,13 +525,27 @@ static void gfxhub_v1_2_set_fault_enable_default(struct amdgpu_device *adev,
  	}
--	gfx_v9_4_3_select_se_sh(adev, 0xffffffff, 0xffffffff, 0xffffffff, 0);
-+	gfx_v9_4_3_xcc_select_se_sh(adev, 0xffffffff, 0xffffffff, 0xffffffff,
-+				    0);
- 	mutex_unlock(&adev->grbm_idx_mutex);
+ }
  
- 	cu_info->number = active_cu_number;
+-static void gfxhub_v1_2_init(struct amdgpu_device *adev)
++/**
++ * gfxhub_v1_2_set_fault_enable_default - update GART/VM fault handling
++ *
++ * @adev: amdgpu_device pointer
++ * @value: true redirects VM faults to the default page
++ */
++static void gfxhub_v1_2_set_fault_enable_default(struct amdgpu_device *adev,
++						 bool value)
++{
++	uint32_t xcc_mask;
++
++	xcc_mask = GENMASK(NUM_XCC(adev->gfx.xcc_mask) - 1, 0);
++	gfxhub_v1_2_xcc_set_fault_enable_default(adev, value, xcc_mask);
++}
++
++static void gfxhub_v1_2_xcc_init(struct amdgpu_device *adev, uint32_t xcc_mask)
+ {
+ 	struct amdgpu_vmhub *hub;
+-	int i, num_xcc;
++	int i;
+ 
+-	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
+-	for (i = 0; i < num_xcc; i++) {
++	for_each_inst(i, xcc_mask) {
+ 		hub = &adev->vmhub[AMDGPU_GFXHUB(i)];
+ 
+ 		hub->ctx0_ptb_addr_lo32 =
+@@ -543,6 +581,14 @@ static void gfxhub_v1_2_init(struct amdgpu_device *adev)
+ 	}
+ }
+ 
++static void gfxhub_v1_2_init(struct amdgpu_device *adev)
++{
++	uint32_t xcc_mask;
++
++	xcc_mask = GENMASK(NUM_XCC(adev->gfx.xcc_mask) - 1, 0);
++	gfxhub_v1_2_xcc_init(adev, xcc_mask);
++}
++
+ static int gfxhub_v1_2_get_xgmi_info(struct amdgpu_device *adev)
+ {
+ 	u32 max_num_physical_nodes;
 -- 
 2.39.2
 
