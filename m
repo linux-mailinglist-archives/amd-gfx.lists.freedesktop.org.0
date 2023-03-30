@@ -2,60 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7AA06D10D4
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Mar 2023 23:25:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BC8A6D18B2
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 Mar 2023 09:36:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74F7E10F036;
-	Thu, 30 Mar 2023 21:25:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D74A10F10F;
+	Fri, 31 Mar 2023 07:36:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com
- [IPv6:2607:f8b0:4864:20::22a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1336B88CE4
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 21:25:54 +0000 (UTC)
-Received: by mail-oi1-x22a.google.com with SMTP id w133so15290838oib.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 14:25:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1680211553;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=T7nPE0s6LU+OSIidrfEvkxXwHQhsqxUAN7U9sE4hZiA=;
- b=bUTh2h+O5X2HGhogI4HNEt9mpJenCHu9e6LYVKZ20h8q3sqs9UnU9TLzPSU1cUrfY1
- qHPIEJmBk3UpF7HiLUKQbx7DqeChPqRB0fTRj4BNMYeB3Fe0ME+INQXa4K0YFQMAgx48
- LLZrjycRBi40BXMvcsey9xBI0tn1w5+KxnU/Csdjg4jDz6dKrLJzYpRzN4OcXNK0UGzI
- SsenjIdc7EmYW14wUUHHCz+SjWXUaOQmSYcmiIR7u4mpLGYm5RqtMeSLSkvF92eMFHZs
- 4fH61Hnh693cZhNsTRi+u7tKcjTgd22nerelsT+nWodAR5zcXViNiYsjWEHK8qALpUvE
- 2aSg==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40A0510E00E
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 23:43:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1680219789;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=sxdUBC3+7/+FoRE3AV8lIbZMqGBJVuxDsooJhZM+Js0=;
+ b=d67SPFPVM7ZtAUKXhW4+8eMD2E/ndwCzQ7bgU/pm8Qi+3odrJ+NjcIK0w5s+ik+O+EyvWL
+ GMD6ihhNQV3FtwXue2LfOLZ3uz71B58mgXIS2ZfuAKG91zS91dkWKWMKFYrQLfh29vPJZl
+ f4vTjhPO7hrXNmV7VtbtMjIOaosy78c=
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
+ [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-570-w0CMWEyiMG26bu7xHr9jYQ-1; Thu, 30 Mar 2023 19:43:08 -0400
+X-MC-Unique: w0CMWEyiMG26bu7xHr9jYQ-1
+Received: by mail-qv1-f70.google.com with SMTP id
+ pe26-20020a056214495a00b005df3eac4c0bso5933714qvb.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 16:43:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680211553;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=T7nPE0s6LU+OSIidrfEvkxXwHQhsqxUAN7U9sE4hZiA=;
- b=YBJW2jc6+MLjBWsZEjOuTY2oqAtaya0D7/6BfZmTdPA8J3Arf2DDzrMrxOkyMlpeNT
- tOupGIoy9KnB4uiPPkCkdfrBVurJbePhZh6ZAVUJonHw3/C+xERcU02YF4j4yBNIYbxt
- /cLaf8z7aZASH8AuuWLGGjnYemet01o5MY6Ck9ZzxGJFKccvDYr5OqMRPquqesDyzKAv
- 6+z0J4IlqExOET/QJzItX+k3tjoqVI0JfagqhibjRDUxSFxZJtx/loBRtUloLWWDeCVP
- rk9X1LCDlqh1jSTs9mIIl5Fh1LqVGKFe1JvSapXq8HSBO705i0MURSF+6pxNG1QHNR/W
- tgFg==
-X-Gm-Message-State: AO0yUKWGF2jtfkg5JU1LNVanBv0/XLubjVcnkdr/Bu/0waVOBFet3JC+
- iRlCzdDvmPC+UzaksCXhRDZ/v0jPzjIRdVUJt70X8WPk
-X-Google-Smtp-Source: AK7set/pWqA6JsGeAWMk35yX0odkN4xJ/5+/HYo5svKZsgOiM/L62AXsULR8pg37GmbPqcJknTl8tIZ0PMfjeiqfFFI=
-X-Received: by 2002:a05:6808:b22:b0:387:e26:4b6f with SMTP id
- t2-20020a0568080b2200b003870e264b6fmr6380665oij.3.1680211553330; Thu, 30 Mar
- 2023 14:25:53 -0700 (PDT)
+ d=1e100.net; s=20210112; t=1680219787;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=sxdUBC3+7/+FoRE3AV8lIbZMqGBJVuxDsooJhZM+Js0=;
+ b=zHcUJk2z99mD9sIStPmhY72zHe8IRXAF87eV9lXa5rzBWVPDsIdMq3OFQuOjzSPAAC
+ rqFGObsP/VvJfZb1iMqH6AvuVWY8QjkM9yamzE3DoT728y/NYKrbSpWbo2g2CMGkW1uX
+ NJUB4nAWIhB70Do1JDV06Hr8xOstnBF1QvRsFfEbCCUtt0dbmQC/IULa8oVchnFrJLNh
+ 99vSNeLP874uTI4NIUZuz/cBBIPUa9iCsydk+6a7BkEZzWM3pC8NGkiaay++PCm8U0Pm
+ 3nxIzCi81BjKrjNfhexniuqaMfOhI/2mJQ1J0zy+IePd8qxosh5DPNK22knAhUImCRF2
+ 1Syw==
+X-Gm-Message-State: AO0yUKXkkEz+lC9zf01KHgvRNPm7stprIb7nEyD0n1YXE6k81sV1zoaV
+ +D/xRDofCXgBX8hREKHpCq8UleWhuZtCgwpwgE7F0RUQwoQY2zDZa/bYbmeLiAqDaPHyI3/tWCm
+ 93MUdEoKrzUJ04mBsFJ/YIodRDQ==
+X-Received: by 2002:a05:622a:1a98:b0:3d8:9b45:d362 with SMTP id
+ s24-20020a05622a1a9800b003d89b45d362mr38620998qtc.28.1680219787542; 
+ Thu, 30 Mar 2023 16:43:07 -0700 (PDT)
+X-Google-Smtp-Source: AK7set8e+7pjqcJzugW+87SA4B2ztfpVpwfdIdmQmFB4Xnk8pbSHqG3Dep8cVHiY/IIHhrhVsGayJA==
+X-Received: by 2002:a05:622a:1a98:b0:3d8:9b45:d362 with SMTP id
+ s24-20020a05622a1a9800b003d89b45d362mr38620961qtc.28.1680219787200; 
+ Thu, 30 Mar 2023 16:43:07 -0700 (PDT)
+Received: from dell-per740-01.7a2m.lab.eng.bos.redhat.com
+ (nat-pool-bos-t.redhat.com. [66.187.233.206])
+ by smtp.gmail.com with ESMTPSA id
+ q19-20020ac87353000000b003e387a2fbdfsm235015qtp.0.2023.03.30.16.43.05
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 30 Mar 2023 16:43:06 -0700 (PDT)
+From: Tom Rix <trix@redhat.com>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch, nathan@kernel.org,
+ ndesaulniers@google.com, HaoPing.Liu@amd.com, aric.cyr@amd.com,
+ chiahsuan.chung@amd.com, felipe.clark@amd.com, Angus.Wang@amd.com,
+ hanghong.ma@amd.com, lv.ruyi@zte.com.cn, Dillon.Varone@amd.com
+Subject: [PATCH] drm/amd/display: remove unused average_render_time_in_us and
+ i variables
+Date: Thu, 30 Mar 2023 19:43:03 -0400
+Message-Id: <20230330234303.1845377-1-trix@redhat.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20230329160445.1300-1-shashank.sharma@amd.com>
- <20230329160445.1300-7-shashank.sharma@amd.com>
-In-Reply-To: <20230329160445.1300-7-shashank.sharma@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 30 Mar 2023 17:25:42 -0400
-Message-ID: <CADnq5_ONXNsjsAbXYB=aWEw0mm4MRw2UVPmCoS6xAEAw3Dqwhw@mail.gmail.com>
-Subject: Re: [PATCH v3 6/9] drm/amdgpu: add new parameters in v11_struct
-To: Shashank Sharma <shashank.sharma@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"; x-default=true
+X-Mailman-Approved-At: Fri, 31 Mar 2023 07:36:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,121 +87,63 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Felix Kuehling <felix.kuehling@amd.com>, Arvind Yadav <arvind.yadav@amd.com>,
- Christian Koenig <christian.koenig@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Tom Rix <trix@redhat.com>, llvm@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 29, 2023 at 12:05=E2=80=AFPM Shashank Sharma
-<shashank.sharma@amd.com> wrote:
->
-> From: Arvind Yadav <arvind.yadav@amd.com>
->
-> This patch:
-> - adds some new parameters defined for the gfx usermode queues
->   use cases in the v11_mqd_struct.
-> - sets those parametes with the respective allocated gpu context
->   space addresses.
->
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Christian Koenig <christian.koenig@amd.com>
-> Cc: Shashank Sharma <shashank.sharma@amd.com>
-> Signed-off-by: Arvind Yadav <arvind.yadav@amd.com>
-> ---
->  .../drm/amd/amdgpu/amdgpu_userqueue_gfx_v11.c | 21 ++++++++++++++++++-
->  drivers/gpu/drm/amd/include/v11_structs.h     | 16 +++++++-------
->  2 files changed, 28 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue_gfx_v11.c b/driv=
-ers/gpu/drm/amd/amdgpu/amdgpu_userqueue_gfx_v11.c
-> index 52de96727f98..39e90ea32fcb 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue_gfx_v11.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue_gfx_v11.c
-> @@ -22,6 +22,7 @@
->   */
->  #include "amdgpu.h"
->  #include "amdgpu_userqueue.h"
-> +#include "v11_structs.h"
->
->  #define AMDGPU_USERQ_PROC_CTX_SZ PAGE_SIZE
->  #define AMDGPU_USERQ_GANG_CTX_SZ PAGE_SIZE
-> @@ -68,6 +69,22 @@ static void amdgpu_userq_gfx_v11_destroy_ctx_space(str=
-uct amdgpu_userq_mgr *uq_m
->                            &ctx->cpu_ptr);
->  }
->
-> +static void
-> +amdgpu_userq_set_ctx_space(struct amdgpu_userq_mgr *uq_mgr,
-> +                           struct amdgpu_usermode_queue *queue)
-> +{
-> +    struct v11_gfx_mqd *mqd =3D queue->mqd.cpu_ptr;
-> +
-> +    mqd->shadow_base_lo =3D queue->shadow_ctx_gpu_addr & 0xfffffffc;
-> +    mqd->shadow_base_hi =3D upper_32_bits(queue->shadow_ctx_gpu_addr);
-> +
-> +    mqd->gds_bkup_base_lo =3D queue->gds_ctx_gpu_addr & 0xfffffffc;
-> +    mqd->gds_bkup_base_hi =3D upper_32_bits(queue->gds_ctx_gpu_addr);
-> +
-> +    mqd->fw_work_area_base_lo =3D queue->fw_ctx_gpu_addr & 0xfffffffc;
-> +    mqd->fw_work_area_base_lo =3D upper_32_bits(queue->fw_ctx_gpu_addr);
-> +}
-> +
->  static int
->  amdgpu_userq_gfx_v11_mqd_create(struct amdgpu_userq_mgr *uq_mgr, struct =
-amdgpu_usermode_queue *queue)
->  {
-> @@ -104,12 +121,14 @@ amdgpu_userq_gfx_v11_mqd_create(struct amdgpu_userq=
-_mgr *uq_mgr, struct amdgpu_u
->      queue->userq_prop.use_doorbell =3D true;
->      queue->userq_prop.mqd_gpu_addr =3D mqd->gpu_addr;
->      r =3D gfx_v11_mqd->init_mqd(adev, (void *)mqd->cpu_ptr, &queue->user=
-q_prop);
-> -    amdgpu_bo_unreserve(mqd->obj);
->      if (r) {
-> +        amdgpu_bo_unreserve(mqd->obj);
->          DRM_ERROR("Failed to init MQD for queue\n");
->          goto free_ctx;
->      }
->
-> +    amdgpu_userq_set_ctx_space(uq_mgr, queue);
-> +    amdgpu_bo_unreserve(mqd->obj);
->      DRM_DEBUG_DRIVER("MQD for queue %d created\n", queue->queue_id);
->      return 0;
->
-> diff --git a/drivers/gpu/drm/amd/include/v11_structs.h b/drivers/gpu/drm/=
-amd/include/v11_structs.h
-> index b8ff7456ae0b..f8008270f813 100644
-> --- a/drivers/gpu/drm/amd/include/v11_structs.h
-> +++ b/drivers/gpu/drm/amd/include/v11_structs.h
-> @@ -25,14 +25,14 @@
->  #define V11_STRUCTS_H_
->
->  struct v11_gfx_mqd {
-> -       uint32_t reserved_0; // offset: 0  (0x0)
-> -       uint32_t reserved_1; // offset: 1  (0x1)
-> -       uint32_t reserved_2; // offset: 2  (0x2)
-> -       uint32_t reserved_3; // offset: 3  (0x3)
-> -       uint32_t reserved_4; // offset: 4  (0x4)
-> -       uint32_t reserved_5; // offset: 5  (0x5)
-> -       uint32_t reserved_6; // offset: 6  (0x6)
-> -       uint32_t reserved_7; // offset: 7  (0x7)
-> +       uint32_t shadow_base_lo; // offset: 0  (0x0)
-> +       uint32_t shadow_base_hi; // offset: 1  (0x1)
-> +       uint32_t gds_bkup_base_lo; // offset: 2  (0x2)
-> +       uint32_t gds_bkup_base_hi; // offset: 3  (0x3)
-> +       uint32_t fw_work_area_base_lo; // offset: 4  (0x4)
-> +       uint32_t fw_work_area_base_hi; // offset: 5  (0x5)
-> +       uint32_t shadow_initialized; // offset: 6  (0x6)
-> +       uint32_t ib_vmid; // offset: 7  (0x7)
->         uint32_t reserved_8; // offset: 8  (0x8)
->         uint32_t reserved_9; // offset: 9  (0x9)
->         uint32_t reserved_10; // offset: 10  (0xA)
+clang with W=1 reports
+drivers/gpu/drm/amd/amdgpu/../display/modules/freesync/freesync.c:1132:15: error: variable
+  'average_render_time_in_us' set but not used [-Werror,-Wunused-but-set-variable]
+        unsigned int average_render_time_in_us = 0;
+                     ^
+This variable is not used so remove it, which caused i to be unused so remove that as well.
 
-We should split this hunk out as a separate patch and upstream it now.
+Signed-off-by: Tom Rix <trix@redhat.com>
+---
+ .../drm/amd/display/modules/freesync/freesync.c    | 14 --------------
+ 1 file changed, 14 deletions(-)
 
-Alex
+diff --git a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
+index 315da61ee897..5c41a4751db4 100644
+--- a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
++++ b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
+@@ -1129,7 +1129,6 @@ void mod_freesync_handle_preflip(struct mod_freesync *mod_freesync,
+ {
+ 	struct core_freesync *core_freesync = NULL;
+ 	unsigned int last_render_time_in_us = 0;
+-	unsigned int average_render_time_in_us = 0;
+ 
+ 	if (mod_freesync == NULL)
+ 		return;
+@@ -1138,7 +1137,6 @@ void mod_freesync_handle_preflip(struct mod_freesync *mod_freesync,
+ 
+ 	if (in_out_vrr->supported &&
+ 			in_out_vrr->state == VRR_STATE_ACTIVE_VARIABLE) {
+-		unsigned int i = 0;
+ 		unsigned int oldest_index = plane->time.index + 1;
+ 
+ 		if (oldest_index >= DC_PLANE_UPDATE_TIMES_MAX)
+@@ -1147,18 +1145,6 @@ void mod_freesync_handle_preflip(struct mod_freesync *mod_freesync,
+ 		last_render_time_in_us = curr_time_stamp_in_us -
+ 				plane->time.prev_update_time_in_us;
+ 
+-		/* Sum off all entries except oldest one */
+-		for (i = 0; i < DC_PLANE_UPDATE_TIMES_MAX; i++) {
+-			average_render_time_in_us +=
+-					plane->time.time_elapsed_in_us[i];
+-		}
+-		average_render_time_in_us -=
+-				plane->time.time_elapsed_in_us[oldest_index];
+-
+-		/* Add render time for current flip */
+-		average_render_time_in_us += last_render_time_in_us;
+-		average_render_time_in_us /= DC_PLANE_UPDATE_TIMES_MAX;
+-
+ 		if (in_out_vrr->btr.btr_enabled) {
+ 			apply_below_the_range(core_freesync,
+ 					stream,
+-- 
+2.27.0
 
-> --
-> 2.40.0
->
