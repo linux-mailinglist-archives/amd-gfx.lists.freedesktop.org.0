@@ -2,80 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BC8A6D18B2
-	for <lists+amd-gfx@lfdr.de>; Fri, 31 Mar 2023 09:36:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D97046D13DC
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 Mar 2023 02:09:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D74A10F10F;
-	Fri, 31 Mar 2023 07:36:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4749210E30E;
+	Fri, 31 Mar 2023 00:09:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40A0510E00E
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 23:43:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1680219789;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=sxdUBC3+7/+FoRE3AV8lIbZMqGBJVuxDsooJhZM+Js0=;
- b=d67SPFPVM7ZtAUKXhW4+8eMD2E/ndwCzQ7bgU/pm8Qi+3odrJ+NjcIK0w5s+ik+O+EyvWL
- GMD6ihhNQV3FtwXue2LfOLZ3uz71B58mgXIS2ZfuAKG91zS91dkWKWMKFYrQLfh29vPJZl
- f4vTjhPO7hrXNmV7VtbtMjIOaosy78c=
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
- [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-570-w0CMWEyiMG26bu7xHr9jYQ-1; Thu, 30 Mar 2023 19:43:08 -0400
-X-MC-Unique: w0CMWEyiMG26bu7xHr9jYQ-1
-Received: by mail-qv1-f70.google.com with SMTP id
- pe26-20020a056214495a00b005df3eac4c0bso5933714qvb.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 16:43:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680219787;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=sxdUBC3+7/+FoRE3AV8lIbZMqGBJVuxDsooJhZM+Js0=;
- b=zHcUJk2z99mD9sIStPmhY72zHe8IRXAF87eV9lXa5rzBWVPDsIdMq3OFQuOjzSPAAC
- rqFGObsP/VvJfZb1iMqH6AvuVWY8QjkM9yamzE3DoT728y/NYKrbSpWbo2g2CMGkW1uX
- NJUB4nAWIhB70Do1JDV06Hr8xOstnBF1QvRsFfEbCCUtt0dbmQC/IULa8oVchnFrJLNh
- 99vSNeLP874uTI4NIUZuz/cBBIPUa9iCsydk+6a7BkEZzWM3pC8NGkiaay++PCm8U0Pm
- 3nxIzCi81BjKrjNfhexniuqaMfOhI/2mJQ1J0zy+IePd8qxosh5DPNK22knAhUImCRF2
- 1Syw==
-X-Gm-Message-State: AO0yUKXkkEz+lC9zf01KHgvRNPm7stprIb7nEyD0n1YXE6k81sV1zoaV
- +D/xRDofCXgBX8hREKHpCq8UleWhuZtCgwpwgE7F0RUQwoQY2zDZa/bYbmeLiAqDaPHyI3/tWCm
- 93MUdEoKrzUJ04mBsFJ/YIodRDQ==
-X-Received: by 2002:a05:622a:1a98:b0:3d8:9b45:d362 with SMTP id
- s24-20020a05622a1a9800b003d89b45d362mr38620998qtc.28.1680219787542; 
- Thu, 30 Mar 2023 16:43:07 -0700 (PDT)
-X-Google-Smtp-Source: AK7set8e+7pjqcJzugW+87SA4B2ztfpVpwfdIdmQmFB4Xnk8pbSHqG3Dep8cVHiY/IIHhrhVsGayJA==
-X-Received: by 2002:a05:622a:1a98:b0:3d8:9b45:d362 with SMTP id
- s24-20020a05622a1a9800b003d89b45d362mr38620961qtc.28.1680219787200; 
- Thu, 30 Mar 2023 16:43:07 -0700 (PDT)
-Received: from dell-per740-01.7a2m.lab.eng.bos.redhat.com
- (nat-pool-bos-t.redhat.com. [66.187.233.206])
- by smtp.gmail.com with ESMTPSA id
- q19-20020ac87353000000b003e387a2fbdfsm235015qtp.0.2023.03.30.16.43.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 30 Mar 2023 16:43:06 -0700 (PDT)
-From: Tom Rix <trix@redhat.com>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch, nathan@kernel.org,
- ndesaulniers@google.com, HaoPing.Liu@amd.com, aric.cyr@amd.com,
- chiahsuan.chung@amd.com, felipe.clark@amd.com, Angus.Wang@amd.com,
- hanghong.ma@amd.com, lv.ruyi@zte.com.cn, Dillon.Varone@amd.com
-Subject: [PATCH] drm/amd/display: remove unused average_render_time_in_us and
- i variables
-Date: Thu, 30 Mar 2023 19:43:03 -0400
-Message-Id: <20230330234303.1845377-1-trix@redhat.com>
-X-Mailer: git-send-email 2.27.0
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC61210E30E;
+ Fri, 31 Mar 2023 00:09:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680221359; x=1711757359;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=y1UGoh+X/Y6FFXF7tNti3+usX6qoDVhQef5Jl5rCiWg=;
+ b=IaLi7MPWzRNon4RgS9Mi8/VsvmO2J9+YEFk6iA/JbPzifCgVoSWeic6D
+ wENYAMj8URQHJdNX84KcSHETWTZACycgzCDgKwcXDv99cAHgd7NVhdwNo
+ z2e8+Pypeh8ZHG22pWfFpUu0adhULdi2UKCJTmmGGnLyc+576esCiUwa5
+ wPXhwlNGRXm6r2KTXZ7LGszIFmQLodsvOm19LR94k3c9JnJL3R7OmpStQ
+ WIbddxElPAN7hiWYolR1svVwvvrNgS9eeUVTwxCrzBncOSf8vB6n7ZpD0
+ TPVDSeRlAKAQ+ROEXE8/waDOLyghtxb0wlq6ig3VeIxj1V06iW0lHV2WC g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="369102854"
+X-IronPort-AV: E=Sophos;i="5.98,306,1673942400"; d="scan'208";a="369102854"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2023 17:09:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="687448080"
+X-IronPort-AV: E=Sophos;i="5.98,306,1673942400"; d="scan'208";a="687448080"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+ by fmsmga007.fm.intel.com with ESMTP; 30 Mar 2023 17:09:17 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1pi2KS-000LKq-0n;
+ Fri, 31 Mar 2023 00:09:16 +0000
+Date: Fri, 31 Mar 2023 08:08:46 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jonathan Kim <jonathan.kim@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 27/34] drm/amdkfd: add debug set and clear address watch
+ points operation
+Message-ID: <202303310739.oWaXssZp-lkp@intel.com>
+References: <20230327184339.125016-27-jonathan.kim@amd.com>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"; x-default=true
-X-Mailman-Approved-At: Fri, 31 Mar 2023 07:36:28 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230327184339.125016-27-jonathan.kim@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,63 +60,77 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tom Rix <trix@redhat.com>, llvm@lists.linux.dev,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Cc: Felix.Kuehling@amd.com, llvm@lists.linux.dev, Jonathan.kim@amd.com,
+ oe-kbuild-all@lists.linux.dev
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-clang with W=1 reports
-drivers/gpu/drm/amd/amdgpu/../display/modules/freesync/freesync.c:1132:15: error: variable
-  'average_render_time_in_us' set but not used [-Werror,-Wunused-but-set-variable]
-        unsigned int average_render_time_in_us = 0;
-                     ^
-This variable is not used so remove it, which caused i to be unused so remove that as well.
+Hi Jonathan,
 
-Signed-off-by: Tom Rix <trix@redhat.com>
----
- .../drm/amd/display/modules/freesync/freesync.c    | 14 --------------
- 1 file changed, 14 deletions(-)
+Thank you for the patch! Perhaps something to improve:
 
-diff --git a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
-index 315da61ee897..5c41a4751db4 100644
---- a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
-+++ b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
-@@ -1129,7 +1129,6 @@ void mod_freesync_handle_preflip(struct mod_freesync *mod_freesync,
- {
- 	struct core_freesync *core_freesync = NULL;
- 	unsigned int last_render_time_in_us = 0;
--	unsigned int average_render_time_in_us = 0;
- 
- 	if (mod_freesync == NULL)
- 		return;
-@@ -1138,7 +1137,6 @@ void mod_freesync_handle_preflip(struct mod_freesync *mod_freesync,
- 
- 	if (in_out_vrr->supported &&
- 			in_out_vrr->state == VRR_STATE_ACTIVE_VARIABLE) {
--		unsigned int i = 0;
- 		unsigned int oldest_index = plane->time.index + 1;
- 
- 		if (oldest_index >= DC_PLANE_UPDATE_TIMES_MAX)
-@@ -1147,18 +1145,6 @@ void mod_freesync_handle_preflip(struct mod_freesync *mod_freesync,
- 		last_render_time_in_us = curr_time_stamp_in_us -
- 				plane->time.prev_update_time_in_us;
- 
--		/* Sum off all entries except oldest one */
--		for (i = 0; i < DC_PLANE_UPDATE_TIMES_MAX; i++) {
--			average_render_time_in_us +=
--					plane->time.time_elapsed_in_us[i];
--		}
--		average_render_time_in_us -=
--				plane->time.time_elapsed_in_us[oldest_index];
--
--		/* Add render time for current flip */
--		average_render_time_in_us += last_render_time_in_us;
--		average_render_time_in_us /= DC_PLANE_UPDATE_TIMES_MAX;
--
- 		if (in_out_vrr->btr.btr_enabled) {
- 			apply_below_the_range(core_freesync,
- 					stream,
+[auto build test WARNING on drm/drm-next]
+[also build test WARNING on drm-exynos/exynos-drm-next drm-intel/for-linux-next drm-tip/drm-tip next-20230330]
+[cannot apply to drm-misc/drm-misc-next drm-intel/for-linux-next-fixes linus/master v6.3-rc4]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Jonathan-Kim/drm-amdkfd-display-debug-capabilities/20230328-024632
+base:   git://anongit.freedesktop.org/drm/drm drm-next
+patch link:    https://lore.kernel.org/r/20230327184339.125016-27-jonathan.kim%40amd.com
+patch subject: [PATCH 27/34] drm/amdkfd: add debug set and clear address watch points operation
+config: arm64-randconfig-r014-20230329 (https://download.01.org/0day-ci/archive/20230331/202303310739.oWaXssZp-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 67409911353323ca5edf2049ef0df54132fa1ca7)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm64 cross compiling tool for clang build
+        # apt-get install binutils-aarch64-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/8c5e1781294f7e41d41632cb46e533c598933cd8
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Jonathan-Kim/drm-amdkfd-display-debug-capabilities/20230328-024632
+        git checkout 8c5e1781294f7e41d41632cb46e533c598933cd8
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/gpu/drm/amd/amdgpu/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303310739.oWaXssZp-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_aldebaran.c:164:10: warning: no previous prototype for function 'kgd_gfx_aldebaran_clear_address_watch' [-Wmissing-prototypes]
+   uint32_t kgd_gfx_aldebaran_clear_address_watch(struct amdgpu_device *adev,
+            ^
+   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_aldebaran.c:164:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   uint32_t kgd_gfx_aldebaran_clear_address_watch(struct amdgpu_device *adev,
+   ^
+   static 
+   1 warning generated.
+--
+>> drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v11.c:781:10: warning: no previous prototype for function 'kgd_gfx_v11_clear_address_watch' [-Wmissing-prototypes]
+   uint32_t kgd_gfx_v11_clear_address_watch(struct amdgpu_device *adev,
+            ^
+   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v11.c:781:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   uint32_t kgd_gfx_v11_clear_address_watch(struct amdgpu_device *adev,
+   ^
+   static 
+   1 warning generated.
+
+
+vim +/kgd_gfx_aldebaran_clear_address_watch +164 drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_aldebaran.c
+
+   163	
+ > 164	uint32_t kgd_gfx_aldebaran_clear_address_watch(struct amdgpu_device *adev,
+   165						uint32_t watch_id)
+   166	{
+   167		return 0;
+   168	}
+   169	
+
 -- 
-2.27.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
