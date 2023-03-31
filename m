@@ -1,71 +1,70 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5C346D178D
-	for <lists+amd-gfx@lfdr.de>; Fri, 31 Mar 2023 08:39:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8AF86D17CE
+	for <lists+amd-gfx@lfdr.de>; Fri, 31 Mar 2023 08:51:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C03410F0F7;
-	Fri, 31 Mar 2023 06:39:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26B7010F103;
+	Fri, 31 Mar 2023 06:51:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
- [IPv6:2a00:1450:4864:20::52a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B90510F0F7
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 Mar 2023 06:39:24 +0000 (UTC)
-Received: by mail-ed1-x52a.google.com with SMTP id ew6so85659767edb.7
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 23:39:24 -0700 (PDT)
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com
+ [IPv6:2a00:1450:4864:20::535])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73D9010F103
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 Mar 2023 06:51:36 +0000 (UTC)
+Received: by mail-ed1-x535.google.com with SMTP id ek18so85841787edb.6
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Mar 2023 23:51:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1680244762;
+ d=gmail.com; s=20210112; t=1680245495;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=l7is+T05lwqpsZesXTKNlIfJyUXb7KBMVsJ3ThsSqQs=;
- b=aKuL+G+OdtpeNOWEZgcwM1S17VSqV34Azs4re5yXYXc2D+N6wzY6r7ojM0lpvJROW6
- 4pGIQur6HSXPqSGvCYkZlmU/n2ury3pVGJVi+6kz0yErb1YwxYaOGQutj9FGTZt3pToR
- Qu8xqiKd2HpfGGfTqXLyZZe/qlXbkjnHf+r5KwPJrbrodljl9Y8vcSFWhJRjlzCMb3w5
- 0kw/5JwwZ8mQzEKAbamKQHmS6a9UyM4flp6CtC9sdxNfgWWT4aPCGHPaWJcCGZrThnGn
- 6wCgAdbCvjZay5Mon3E/vbdOYZGObJmh9EVKaMEc2e6lv6M6bbEtKOOqQqkbdGs0kRCy
- IKiw==
+ bh=ePYowlHVMs9KaXacjyUGkDd+cSmqfZioihB/zFAzqNU=;
+ b=ab3tnGocBc6TJFZFfzg5XSk1xofOhzVE63bvQ/f8umYE78I+qEWur/VW6SZ0tT7HOE
+ 7/6HGl0+ZHElMoxuX3OAObTB7fYo20Scp6J3sUrgxnG2peG1KIde4HdMiJaougX7Q8nb
+ aJ+aO93fP8JHTLDQTCgo9Ee5cZaOvuWJlizlKMxOFu8kEM/oQQQJxsK5SJZJ9frHXW4M
+ ZPP6HE3rQ2bDINpTDMOyjxBk+f5pV6FCtt+SUFi/Drhkfd11iFHEmHjbUzu5QocP1hWr
+ +o34RQH+u951KYXFP1N1MbTrdNK6kjzDhaS9sddSsDgPPYZxGAe1ykicIeeMkoHxxlCB
+ 2xWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680244762;
+ d=1e100.net; s=20210112; t=1680245495;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=l7is+T05lwqpsZesXTKNlIfJyUXb7KBMVsJ3ThsSqQs=;
- b=3cARidFHLEtGvpoQubJeAKw6PTDAogFTbD2OGkWGawWr6MDOdiQNUkg5Yr9cpaLwYZ
- GKLRsdtxNs4S1tn4wEJ0R4MyBI9OOFJaOY3Zom1qUWigSiRn9PMNvPCOxZ5vJ42cC4lb
- Q0OKA1QWMrHKrJ0m/hq9I7/KqmekAdRBsiHEx/11QzYB4OWhQE+RPcLjCdIfZB9PsLcp
- o1HkqYoZQ77b/VBDJwnhBWCR75R9HEMneusL7NPTsFMi3i7T2zvFSRVWCvpBrXZPM/NM
- 7iXlW32CHuhKKjJkPZz79Z5z+X902/26gSJNip0nLiCcjCNrfdQLxni/sx7fwT+GH86O
- GRew==
-X-Gm-Message-State: AAQBX9cun+j0rCsLyh4Hc6F/dM/cmsQ8LOhGxtb64c170EmtQTEr9/YJ
- dR55c+ovQkKw6QRWcd08Bcrl3W4857h12g==
-X-Google-Smtp-Source: AKy350atWCnAwlGkXj7/QkZqUtcC5+4X0348hL1CsTPMXxDEQYsTW/Zey1yhgXUXwtvendku3N9+jA==
-X-Received: by 2002:a17:906:31cb:b0:92c:a80e:225f with SMTP id
- f11-20020a17090631cb00b0092ca80e225fmr29178305ejf.52.1680244762665; 
- Thu, 30 Mar 2023 23:39:22 -0700 (PDT)
+ bh=ePYowlHVMs9KaXacjyUGkDd+cSmqfZioihB/zFAzqNU=;
+ b=RC3HgL6JOK1Ev0EMsD98cG2VlOpdqGXPUAE8N7Me7SL5u9mm26BfecgfnSbkG72g1p
+ pldrsvB8EwizaK5jsMVmgq8z4MKOKSS57JekO1tthe+QKmCOAoViMU3DCO2foScYesEx
+ yndgBuqT6ZE+HbavpHSaUkAv0Qctjblmvl8N9LG1OTORuAlWyWsZS2wLfOvBOJOYWmTB
+ T4JEgNxNWf0qfyxiAftCCNsIkH2WubXU5fyg4OUiCSyx/+dQIIoPKQyJ3axhKPXXL2xD
+ zK18uxAhM2hVB+mY5Zj+aDBmedsrDw2ZLrCTLakB9SU3KD2ZEIRSCUd26rTkw6z+R+3P
+ rvLA==
+X-Gm-Message-State: AAQBX9dtmUgYcPeUYcZWmHJ1VJxy7pk0X4OThqzl9eUvn2wCP7ux5ZP4
+ z87lnAU6R6K7/9a0QeeclRM=
+X-Google-Smtp-Source: AKy350YEWOkUuQr/s6j0p0Ct+wA4UHBldulHJav5uOVQbO7ImE2+RRUa/IaBMEGecT+NsLR3WEScPw==
+X-Received: by 2002:a17:906:da88:b0:945:c4cf:34b7 with SMTP id
+ xh8-20020a170906da8800b00945c4cf34b7mr17468275ejb.68.1680245494812; 
+ Thu, 30 Mar 2023 23:51:34 -0700 (PDT)
 Received: from [192.168.178.21] (p4fc2092b.dip0.t-ipconnect.de. [79.194.9.43])
  by smtp.gmail.com with ESMTPSA id
- y18-20020a170906525200b0093f322187f0sm622686ejm.189.2023.03.30.23.39.21
+ cw1-20020a170906c78100b0093de5b42856sm635101ejb.119.2023.03.30.23.51.33
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 30 Mar 2023 23:39:22 -0700 (PDT)
-Message-ID: <f5874f59-c388-9c51-5996-bdb9d168e791@gmail.com>
-Date: Fri, 31 Mar 2023 08:39:20 +0200
+ Thu, 30 Mar 2023 23:51:34 -0700 (PDT)
+Message-ID: <623b6bbc-61be-2368-9071-ed907dc2f316@gmail.com>
+Date: Fri, 31 Mar 2023 08:51:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
 Subject: Re: [PATCH] drm/amdgpu: Fix desktop freezed after gpu-reset
 Content-Language: en-US
-To: Luben Tuikov <luben.tuikov@amd.com>,
- "Liu, HaoPing (Alan)" <HaoPing.Liu@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+To: Alex Deucher <alexdeucher@gmail.com>
 References: <20230327152028.2939908-1-HaoPing.Liu@amd.com>
- <aff27f2a-a878-be69-fb06-74f2063997f9@amd.com>
- <SN1PR12MB2445C6C12FC1824D4A14124DF58E9@SN1PR12MB2445.namprd12.prod.outlook.com>
- <ed7db628-3749-d109-73b3-aac9f04baf62@amd.com>
+ <76206089-39dd-c009-f0a3-415f3c02406a@gmail.com>
+ <SN1PR12MB24455388D199AD581AC2FA5CF58E9@SN1PR12MB2445.namprd12.prod.outlook.com>
+ <842f5527-6992-f579-8749-c49d4f9f6e28@gmail.com>
+ <CADnq5_OJ7_a750rrsncs4HyPK3K8zkE5nYG+oPMcqJQEfAK2aw@mail.gmail.com>
 From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <ed7db628-3749-d109-73b3-aac9f04baf62@amd.com>
+In-Reply-To: <CADnq5_OJ7_a750rrsncs4HyPK3K8zkE5nYG+oPMcqJQEfAK2aw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -79,67 +78,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Lakha, Bhawanpreet" <Bhawanpreet.Lakha@amd.com>
+Cc: "Liu, HaoPing \(Alan\)" <HaoPing.Liu@amd.com>, "Lakha,
+ Bhawanpreet" <Bhawanpreet.Lakha@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Luben,
-
-sorry, looks like I haven't seen your reply in my inbox at the time I've 
-wrote my reply.
-
-That seems to happen quite often with freedesktop.org list recently and 
-I'm wondering if there's something wrong with my setup or the list server.
-
-Christian.
-
-Am 30.03.23 um 14:27 schrieb Luben Tuikov:
-> Hi Alan,
->
-> I'll comment in the other thread, as it seems Christian commented directly to your
-> patch the day after my comment, rather than following up with my email sent the previous
-> day and we now have two divergent threads where you post two identical comments, and it shouldn't
-> be like that--we should have one thread only.
->
-> Regards,
-> Luben
->
-> On 2023-03-30 04:59, Liu, HaoPing (Alan) wrote:
+Am 30.03.23 um 15:10 schrieb Alex Deucher:
+> On Thu, Mar 30, 2023 at 6:48 AM Christian König
+> <ckoenig.leichtzumerken@gmail.com> wrote:
+>> Am 30.03.23 um 11:15 schrieb Liu, HaoPing (Alan):
+>>
 >> [AMD Official Use Only - General]
 >>
 >>
->> Hi, Luben
 >>
->>   
+>> Hi Christian,
+>>
+>>
 >>
 >> Thanks for the review. Please see inline.
 >>
->>   
+>>
 >>
 >> Best Regards,
 >>
 >> Alan
 >>
->>   
+>>
 >>
 >> -----Original Message-----
->> From: Tuikov, Luben <Luben.Tuikov@amd.com>
->> Sent: Tuesday, March 28, 2023 3:00 AM
+>> From: Christian König <ckoenig.leichtzumerken@gmail.com>
+>> Sent: Tuesday, March 28, 2023 7:16 PM
 >> To: Liu, HaoPing (Alan) <HaoPing.Liu@amd.com>; amd-gfx@lists.freedesktop.org
 >> Cc: Lakha, Bhawanpreet <Bhawanpreet.Lakha@amd.com>
 >> Subject: Re: [PATCH] drm/amdgpu: Fix desktop freezed after gpu-reset
 >>
->>   
 >>
->> Hi,
 >>
->>   
->>
->> That's a good fix. Some questions and comments below:
->>
->>   
->>
->> On 2023-03-27 11:20, Alan Liu wrote:
+>> Am 27.03.23 um 17:20 schrieb Alan Liu:
 >>
 >>> [Why]
 >>> After gpu-reset, sometimes the driver would fail to enable vblank irq,
@@ -151,19 +128,47 @@ Am 30.03.23 um 14:27 schrieb Luben Tuikov:
 >>> dm_vblank_get/put() and another is amdgpu_irq_get/put(). Each API has
 >>> its own refcount and flag to store the state of vblank irq, and they
 >>> are not synchronized.
->>   
 >>
->> Is it possible to reconcile controlling VBlank IRQ to a single refcount?
 >>
->>   
+>> This is the source of the problem and you should address this instead.
 >>
->> In struct drm_vblank_crtc, we have “enabled” and “refcount” to store vblank irq state, and in struct amdgpu_irq_src we have “enabled_types” as the refcount for each irq in dm layer.
+>> The change you suggested below would break in some use cases.
 >>
->> To reconcile vblank irq to a single refcount, my idea is to remove enabled and refcount from struct drm_vblank_crtc, and add a callback function like vblank_irq_enabled() to drm_crtc_funcs.
 >>
->> Drm layer can use this function to check the state or refcount of vblank irq from dm layer. But it may be dangerous because it is a change to drm layer. Do you have any comments?
 >>
->>   
+>> In struct drm_vblank_crtc we have a vblank irq refcount controlled by drm layer, and in struct amdgpu_irq_src we have enabled_types as refcount for each irq controlled by the dm.
+>>
+>> I think the best solution will be to get rid of the refcount in drm and only maintain the dm one, and add a crtc function for the drm layer to get the refcount/state of vblank.
+>>
+>> But this may be dangerous since it’s a change in drm layer. Do you have any comments?
+>>
+>>
+>> You don't necessarily need to remove it completely, what you can do as well is properly chaining of them.
+>>
+>> E.g. when the DRM counter goes from 0->1 or 1->0 it calls some function to enable/disable the hw irq. In this situation you call amdgpu_irq_get()/amdgpu_irq_put() as appropriate.
+>>
+>> The the code in this patch already looks like it goes into the right direction regarding that. It just seems to be that you have some race issues when you need to add checks that the IRQ counter doesn't goes below 0.
+>>
+> I think the problem is that atomic in general is not GPU reset
+> compatible.  GPU resets sort of happen outside of the standard atomic
+> flow.  So the DRM level interrupts will keep their original state, but
+> internally, the driver has to deal with the fact that we need to
+> re-enable interrupts as part of the reset sequence.
+
+If I'm not completely mistaken we already do update all the interrupt 
+state after a GPU reset.
+
+I think what could potentially happen here is that we try to update the 
+state while *inside* the GPU reset.
+
+This basically means we just need to grab the appropriate locks.
+
+Christian.
+
+>
+> Alex
+>
+>
 >>
 >>> In drm we use the first API to control vblank irq but in
 >>> amdgpu_irq_gpu_reset_resume_helper() we use the second set of API.
@@ -183,27 +188,50 @@ Am 30.03.23 um 14:27 schrieb Luben Tuikov:
 >>> synchronized. Also add a check to prevent refcount from being less
 >>> then
 >>> 0 in amdgpu_irq_put().
->>> Signed-off-by: Alan Liu <HaoPing.Liu@amd.com <mailto:HaoPing.Liu@amd.com>>
+>>> Signed-off-by: Alan Liu <HaoPing.Liu@amd.com>
 >>> ---
->>>    drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c            |  3 +++
->>>    .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c | 14
->>> ++++++++++----
->>>    2 files changed, 13 insertions(+), 4 deletions(-)
+>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c            |  3 +++
+>>>    .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c | 14 ++++++++++----
+>>>    2 files changed, 13 insertions(+), 4 deletions(-)
 >>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
 >>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
 >>> index a6aef488a822..1b66003657e2 100644
 >>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
 >>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
 >>> @@ -597,6 +597,9 @@ int amdgpu_irq_put(struct amdgpu_device *adev, struct amdgpu_irq_src *src,
->>>              if (!src->enabled_types || !src->funcs->set)
->>>                             return -EINVAL;
->>>   
->>> +         if (!amdgpu_irq_enabled(adev, src, type))
->>> +                       return 0;
+>>>             if (!src->enabled_types || !src->funcs->set)
+>>>                            return -EINVAL;
+>>> +         if (!amdgpu_irq_enabled(adev, src, type))
+>>> +                       return 0;
 >>> +
->>>              if (atomic_dec_and_test(&src->enabled_types[type]))
->>>                             return amdgpu_irq_update(adev, src, type);
->>>   
+>>
+>>
+>> That is racy and won't work. The intention of amdgpu_irq_update() is to always update the irq state, no matter what the status is.
+>>
+>>
+>>
+>> This is a change to amdgpu_irq_put() to prevent the refcount from being cut to less than 0. Does it break the intention of amdgpu_irq_update()?
+>>
+>>
+>> Yes, exactly that. The reference count can *never* be below 0 or you have a bug in the caller.
+>>
+>> What you could do is to add a WARN_ON(!amdgpu_irq_enabled(adev, src, type)), but just ignoring the call is an absolute no-go.
+>>
+>> Regards,
+>> Christian.
+>>
+>> PS: Please don't use HTML formating when discussing on public mailing lists.
+>>
+>>
+>>
+>> Regards,
+>>
+>> Christian.
+>>
+>>
+>>
+>>>             if (atomic_dec_and_test(&src->enabled_types[type]))
+>>>                            return amdgpu_irq_update(adev, src, type);
 >>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
 >>> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
 >>> index dc4f37240beb..e04f846b0b19 100644
@@ -211,53 +239,32 @@ Am 30.03.23 um 14:27 schrieb Luben Tuikov:
 >>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
 >>> @@ -146,7 +146,7 @@ static void vblank_control_worker(struct
 >>> work_struct *work)
->>>   
->>>   static inline int dm_set_vblank(struct drm_crtc *crtc, bool enable)
->>> {
->>> -          enum dc_irq_source irq_source;
->>> +         int irq_type;
->>>              struct amdgpu_crtc *acrtc = to_amdgpu_crtc(crtc);
->>>              struct amdgpu_device *adev = drm_to_adev(crtc->dev);
->>>              struct dm_crtc_state *acrtc_state = to_dm_crtc_state(crtc->state);
+>>>    static inline int dm_set_vblank(struct drm_crtc *crtc, bool enable)
+>>>    {
+>>> -          enum dc_irq_source irq_source;
+>>> +         int irq_type;
+>>>             struct amdgpu_crtc *acrtc = to_amdgpu_crtc(crtc);
+>>>             struct amdgpu_device *adev = drm_to_adev(crtc->dev);
+>>>             struct dm_crtc_state *acrtc_state = to_dm_crtc_state(crtc->state);
 >>> @@ -169,10 +169,16 @@ static inline int dm_set_vblank(struct drm_crtc *crtc, bool enable)
->>>              if (rc)
->>>                             return rc;
->>>   
->>> -          irq_source = IRQ_TYPE_VBLANK + acrtc->otg_inst;
->>> +         irq_type = amdgpu_display_crtc_idx_to_irq_type(adev,
+>>>             if (rc)
+>>>                            return rc;
+>>> -          irq_source = IRQ_TYPE_VBLANK + acrtc->otg_inst;
+>>> +         irq_type = amdgpu_display_crtc_idx_to_irq_type(adev,
 >>> +acrtc->crtc_id);
 >>> +
->>> +         if (enable)
->>> +                       rc = amdgpu_irq_get(adev, &adev->crtc_irq, irq_type);
+>>> +         if (enable)
+>>> +                       rc = amdgpu_irq_get(adev, &adev->crtc_irq, irq_type);
 >>> +
->>> +         else
->>   
+>>> +         else
+>>> +                       rc = amdgpu_irq_put(adev, &adev->crtc_irq, irq_type);
+>>> -          if (!dc_interrupt_set(adev->dm.dc, irq_source, enable))
+>>> -                        return -EBUSY;
+>>> +         if (rc)
+>>> +                       return rc;
+>>>    skip:
+>>>             if (amdgpu_in_reset(adev))
 >>
->> There's an unnecessary empty line before the "else". It's a good idea to run patches through scripts/checkpatch.pl.
 >>
->>   
->>
->> Thanks, will use the tool next time.
->>
->>   
->>
->>> +                       rc = amdgpu_irq_put(adev, &adev->crtc_irq, irq_type);
->>>   
->>> -          if (!dc_interrupt_set(adev->dm.dc, irq_source, enable))
->>> -                        return -EBUSY;
->>> +         if (rc)
->>> +                       return rc;
->>>   
->>>    skip:
->>>              if (amdgpu_in_reset(adev))
->>   
->>
->> --
->>
->> Regards,
->>
->> Luben
->>
->>   
 >>
 
