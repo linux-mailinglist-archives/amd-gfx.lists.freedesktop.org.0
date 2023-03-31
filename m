@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87D216D2B77
-	for <lists+amd-gfx@lfdr.de>; Sat,  1 Apr 2023 00:45:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B51A26D2B71
+	for <lists+amd-gfx@lfdr.de>; Sat,  1 Apr 2023 00:44:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D3BA10F341;
-	Fri, 31 Mar 2023 22:44:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7777210F339;
+	Fri, 31 Mar 2023 22:44:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2087.outbound.protection.outlook.com [40.107.92.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0509610F33B
- for <amd-gfx@lists.freedesktop.org>; Fri, 31 Mar 2023 22:44:46 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2082.outbound.protection.outlook.com [40.107.244.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 878A110F33C
+ for <amd-gfx@lists.freedesktop.org>; Fri, 31 Mar 2023 22:44:47 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KAl368JyLVWvnBpToR4In0dRrIt2rD3DV8XiDyV2a6fOyBhp1Ysue4bkMFCd9y1EnV7N2DwqdMO67T7bhudD7wfa6fWmvhnZmfQhDQ3gf1wNBXKY90AcAKAoJrnQCh0385O/KOPLOQ8/s6RVVe9tbq9Fn82dcUAJQifxXJlcLPhq0TH1gcul7L97P2ikIp5lFQaV72OGid6Na9m3Oym27T0jpUYjc/tbGHZRHeuXCc6e7DkaAZN2xm66WwXt3Fy8WHh/yK1MJ/VK/eRKZtM/fynr1N4BsuVjQe6uSAvwt4McVrEDvs/xWBpmqTVCz39jrgD+bWoAsm8pHdBsG0Qdcw==
+ b=dkFHJ2rPElO9WT0azqXVdfFKFRDAWYW4Xo7aPFVIB0d0hlAoVWy3BaY8CZ84Li5DHgHbEMxfEBbING5rxeQ9P1L6R2f3G/Dr68GOHC6BJltFMCHJnTEbyDC5USkKeMz8Df+U6CCQRv7r54lSqa0JN4APiQsUdt1enSR2VMYIHX4TUEQ5VEvZKnqOxFpV4y+x0x69yDH/0zEUeQr9/1kuDwXXfxQ0KpjbN/CWEc7hi0ek2NW/4XR/B2D9Cb9lIH5IOg7HpCea2GlgzZYD3Y40FMkgWNLdOSSlMvZtDJNJuro5vWXRq8vuDPt3LE+hXEA3XTboE98/uP9r167zo7jRRg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uiegSWucDqBqRO1Zc6w5PSiaXHTU3aQUsNqNZbIGPfo=;
- b=RXgD0gEBYVxxyYeRKUn+1y80uo2bVKwaHTNFkrxP1UmxImNJaDNPb15SJfttzUyOHpASMCQFtHkiz11wGGoJfaZYFchmo06p5dEMB8JJ4ti03VJDIhfGphlLALnoskX0U9aS14xxcTzl4jSwirla1xUY1mbCeTNXlcVQX+rBeO75lskDivSXcC/31vX1xWJgknSULVAXEdvL3FJ7XnaGLCSsr4GcLLJNY8fHylfN2L0h7r7Kr/pAt1Uc6Gy7ylfIyWvuffuYCgxEKwwaoxduSYXQdy0uYHg/TLOuKsN7QiYtWpBClRnYPPt52vJrr6vUuWAi46+by6fWWO6M+Z7MrQ==
+ bh=Vumvc3sergrEGqRTAEGE3PMRD+lZKvoIb8wVSmWc1uU=;
+ b=HzmU8MRlU5S5/R8USiQRmMLdIfyi+iQSIybC4q3ieR14kUNAKTrqE7YdkU+8t+FU3tYSB32UWxMLNlNHHoDpI5rJVivTZtBFLgSBwLJSwhips8UZ+u3lCucy0QVUKxxG6XrYppZwqPj07KQKmrkqj5XWQbMuf2Ew+59/0NpEW8SK5J809WGuWA6cRMkdyBI8Q99ooOVo2+JzZyBgmr0K4eNAmaniN38+zUGYAspgpVGv1MqzCf7rkmKXTtCGwilCXYeVn0QWKWdotDvRSeKNjoSVdreJzjHclfWhGa2tBz1AjQsgD82vNJdxndZNXVGpeT3I4lWlX34Dz3E3STb+BQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uiegSWucDqBqRO1Zc6w5PSiaXHTU3aQUsNqNZbIGPfo=;
- b=DVkP6jTLx/DoJgF8+KM7wYEfLfwzZMwtExpc6MFxhL8nRVN+6iKQUuo9+wB13h9seZbNXBOSEzxtDDeLS1LUgCf+gf5pxX7ptboVtLNMYuaQc5wrfNPJtcl8tmnbSm+U6t7/4MdeamPNF6EAnDg0qnySEK+S9xRPYATiFUaUoFs=
-Received: from MW4PR04CA0385.namprd04.prod.outlook.com (2603:10b6:303:81::30)
- by LV2PR12MB5725.namprd12.prod.outlook.com (2603:10b6:408:14c::12)
+ bh=Vumvc3sergrEGqRTAEGE3PMRD+lZKvoIb8wVSmWc1uU=;
+ b=VWHvuNu2NWoyqV9qmdDwjnkDNMuHKlNj8BarYbes22Xg0eacaEZfPlihXr4ThyoJYHjRj5UqmxqREV40BwlzX3fejACstQxDVEOMpPmHtI+Sy/RnH0ffYhMpvRr5aoYzo3O1R0E5c19AXXq7BydfsAHq1m7oqfPNNs/OFWV1peQ=
+Received: from MW4PR04CA0390.namprd04.prod.outlook.com (2603:10b6:303:81::35)
+ by SJ0PR12MB5612.namprd12.prod.outlook.com (2603:10b6:a03:427::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.37; Fri, 31 Mar
- 2023 22:44:43 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.23; Fri, 31 Mar
+ 2023 22:44:42 +0000
 Received: from CO1NAM11FT094.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:81:cafe::8a) by MW4PR04CA0385.outlook.office365.com
- (2603:10b6:303:81::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.22 via Frontend
- Transport; Fri, 31 Mar 2023 22:44:43 +0000
+ (2603:10b6:303:81:cafe::2e) by MW4PR04CA0390.outlook.office365.com
+ (2603:10b6:303:81::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.20 via Frontend
+ Transport; Fri, 31 Mar 2023 22:44:42 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -54,9 +54,9 @@ Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  2023 17:44:40 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 03/11] drm/amdgpu: Add sdma v4_4_2 ras registers
-Date: Fri, 31 Mar 2023 18:44:17 -0400
-Message-ID: <20230331224425.8755-3-alexander.deucher@amd.com>
+Subject: [PATCH 04/11] drm/amdgpu: Add query_ras_error_count for sdma v4_4_2
+Date: Fri, 31 Mar 2023 18:44:18 -0400
+Message-ID: <20230331224425.8755-4-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230331224425.8755-1-alexander.deucher@amd.com>
 References: <20230331224425.8755-1-alexander.deucher@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT094:EE_|LV2PR12MB5725:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5c3c013d-d036-4293-2ca6-08db3239851a
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT094:EE_|SJ0PR12MB5612:EE_
+X-MS-Office365-Filtering-Correlation-Id: 98181068-650a-4110-6e9c-08db323984b8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +7gy46fvvgL2vo41e30NeJYGHWSQgqjIxEBaViMX7NiagQRN67gva/OqYOqqKw4smm+mg2mJ6rtkho5suMLbJsIPdOkaistDt33l+tWhZNzYujlEI+gM0RGneXNzh+a+vlkNr5FNs05eKS3AtDTbxfv3hc384w3huztHNGVS9sX+0gZkmystM8Hyog9fSrPrOTISkn4ii+YVa7bMZerQn3ILzbU0DRzMkajaQGItzcmTtuNO+qQhhhv92O5EipLhj/9+tPUx17WDqkZUPwwfiNLvKaSbJg0YZmXkEaLuIu7WK32K09UGL4ukIHQcBNzCMIQ3rfwFl9daI29UEH0jqpPBeqyUe3qJGh5PXFn7xZXmudD9K4EMjOIRHJ3t+XHPhCNR/HE+UOz3SyBij+Z6sAP1rFaKJ3YKIcUgL3vp/zjmo6lx3NSH3s/y11BAwUKJmHVFcfwaHqH3FKDFmqQ3EtIzrtQtZ57kPohs+nObPb2CflqKkij5B1iuPFVu/PKTOCfsze3YWeWoF8vwyzvUc5aRRBylD7Wgx1/EiugE5UiwVn0y0EPfTM7Yxpu/stQF6VhL8o+4VTbkquDUE0F4sZVMd3eEgD9skBvg/4ZKg1/yyEMPb2dr07roQJq+VFjGbzyrYd2kAsbF31w6cUte2wtodFunefF0kq9zC5WCy9jM3A1yJIuqWZIcPRMH9oaQc701f8A2UmPHZ69L8zy5ztI3WqjAj5oN7O/BOnMHyLI=
+X-Microsoft-Antispam-Message-Info: gGTr9Ch2NcFiPwuNFTGHCK7rV+omIH6WN95hB9WKSxWeoTl7fbu2Dm9zGsUfxGtt9sele5YTtPF39wuFdMSl0ZGRjiYqqdZ/eLVBcgeTZR4iOD1UnGIZVemPZcdvQ/A9X7Le9M2xw7j/OqVELRkNQhUS8GsVXRIP90eRESci7e6yHx6S0d5a8eDPlIamxmDSpU3o07N4c6peBA+Bi/17LkXMTMskwlcDtO8IBtcTRYq8TCpN3ejXcpa6Bf/jl0afvbh1NczM5thRgbo8HeAsSEvXWAQBh/3DFXI9cPPOxDABqrZu51fOckSNgsCV/sYnbd9pPvjQNlklotny1ZOMNERyEQzHS5WF6lcmPx/g+XXv1mBLNfmFM4TW5X0G2+1908x5zF24i3j1MskWgF2Ntv9ZViW890RQyeKz4pwmWPfnR+gw0dk3gs1Z658plhgdtPZMcD86RoSlzVuF9WrAmsNXrmZNiulFBpoO/t342TNQs3ls1jjaN+KG5JYzPLWj20Oa8RMK/Ir3+RulRbhCBqsQ10bqW/nFKA2LTsZ23OlI7ZTn3ieyoKq7O0siN3X4aJ45yxjg3IB1gJfeVp/DJB6uHbWPc6sH2CzbARlrKH7ZVxyWb/7vI8EYc68gNuZ/M6zbNcKvgfkp+AdF27hh4MSjsRN5WTc+l6KeLu9Spt/CKfY2WdQPjEtsNUPZH4x8QjafHqT3SqtYUl3s/UM/PaTmUeNmkeSI8wbGI+I0Mms=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(346002)(136003)(39860400002)(376002)(451199021)(46966006)(36840700001)(40470700004)(47076005)(82740400003)(40460700003)(36756003)(82310400005)(6916009)(356005)(81166007)(8936002)(4326008)(5660300002)(70206006)(8676002)(70586007)(40480700001)(2906002)(86362001)(41300700001)(36860700001)(1076003)(426003)(336012)(2616005)(478600001)(6666004)(7696005)(54906003)(26005)(16526019)(316002)(186003)(36900700001);
+ SFS:(13230028)(4636009)(136003)(39860400002)(376002)(396003)(346002)(451199021)(40470700004)(46966006)(36840700001)(40480700001)(186003)(82310400005)(6666004)(16526019)(1076003)(8936002)(36860700001)(5660300002)(86362001)(478600001)(54906003)(41300700001)(316002)(2616005)(40460700003)(47076005)(70206006)(70586007)(26005)(83380400001)(336012)(426003)(81166007)(82740400003)(36756003)(2906002)(4326008)(356005)(7696005)(8676002)(6916009)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2023 22:44:42.9104 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c3c013d-d036-4293-2ca6-08db3239851a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2023 22:44:42.2698 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 98181068-650a-4110-6e9c-08db323984b8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT094.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5725
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5612
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,68 +106,129 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Hawking Zhang <Hawking.Zhang@amd.com>
 
-SDMA_UE_ERR_STATUS_HI|LO are introduced in v4_4_2
-to replace SDMA_EDC_COUNTER/COUNTER2 registers to
-log SDMA RAS errors
+Add query_ras_error_count callback for sdma
+v4_4_2. It will be used to query and log sdma
+uncorrectable error count and memory block.
 
 Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Reviewed-by: Tao Zhou <tao.zhou1@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- .../include/asic_reg/sdma/sdma_4_4_2_offset.h |  4 ++++
- .../asic_reg/sdma/sdma_4_4_2_sh_mask.h        | 24 +++++++++++++++++++
- 2 files changed, 28 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h | 28 +++++++++++
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c | 64 ++++++++++++++++++++++++
+ 2 files changed, 92 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/sdma/sdma_4_4_2_offset.h b/drivers/gpu/drm/amd/include/asic_reg/sdma/sdma_4_4_2_offset.h
-index 31bef0776ded..ead81aeffd67 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/sdma/sdma_4_4_2_offset.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/sdma/sdma_4_4_2_offset.h
-@@ -211,6 +211,10 @@
- #define regSDMA_RAS_STATUS_BASE_IDX                                                                     0
- #define regSDMA_CLK_STATUS                                                                              0x0068
- #define regSDMA_CLK_STATUS_BASE_IDX                                                                     0
-+#define regSDMA_UE_ERR_STATUS_LO                                                                        0x0069
-+#define regSDMA_UE_ERR_STATUS_LO_BASE_IDX                                                               0
-+#define regSDMA_UE_ERR_STATUS_HI                                                                        0x006a
-+#define regSDMA_UE_ERR_STATUS_HI_BASE_IDX                                                               0
- #define regSDMA_POWER_CNTL                                                                              0x006b
- #define regSDMA_POWER_CNTL_BASE_IDX                                                                     0
- #define regSDMA_CLK_CTRL                                                                                0x006c
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/sdma/sdma_4_4_2_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/sdma/sdma_4_4_2_sh_mask.h
-index e46cb3339355..290953bdf1d6 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/sdma/sdma_4_4_2_sh_mask.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/sdma/sdma_4_4_2_sh_mask.h
-@@ -1171,6 +1171,30 @@
- #define SDMA_CLK_STATUS__F32_CLK_MASK                                                                         0x00000008L
- #define SDMA_CLK_STATUS__CE_CLK_MASK                                                                          0x00000010L
- #define SDMA_CLK_STATUS__PERF_CLK_MASK                                                                        0x00000020L
-+//SDMA_UE_ERR_STATUS_LO
-+#define SDMA_UE_ERR_STATUS_LO__ERR_STATUS_VALID_FLAG__SHIFT                                                   0x0
-+#define SDMA_UE_ERR_STATUS_LO__ADDRESS_VALID_FLAG__SHIFT                                                      0x1
-+#define SDMA_UE_ERR_STATUS_LO__ADDRESS__SHIFT                                                                 0x2
-+#define SDMA_UE_ERR_STATUS_LO__MEMORY_ID__SHIFT                                                               0x18
-+#define SDMA_UE_ERR_STATUS_LO__ERR_STATUS_VALID_FLAG_MASK                                                     0x00000001L
-+#define SDMA_UE_ERR_STATUS_LO__ADDRESS_VALID_FLAG_MASK                                                        0x00000002L
-+#define SDMA_UE_ERR_STATUS_LO__ADDRESS_MASK                                                                   0x00FFFFFCL
-+#define SDMA_UE_ERR_STATUS_LO__MEMORY_ID_MASK                                                                 0xFF000000L
-+//SDMA_UE_ERR_STATUS_HI
-+#define SDMA_UE_ERR_STATUS_HI__ECC__SHIFT                                                                     0x0
-+#define SDMA_UE_ERR_STATUS_HI__PARITY__SHIFT                                                                  0x1
-+#define SDMA_UE_ERR_STATUS_HI__ERR_INFO_VALID_FLAG__SHIFT                                                     0x2
-+#define SDMA_UE_ERR_STATUS_HI__ERR_INFO__SHIFT                                                                0x3
-+#define SDMA_UE_ERR_STATUS_HI__UE_CNT__SHIFT                                                                  0x17
-+#define SDMA_UE_ERR_STATUS_HI__FED_CNT__SHIFT                                                                 0x1a
-+#define SDMA_UE_ERR_STATUS_HI__RESERVED__SHIFT                                                                0x1d
-+#define SDMA_UE_ERR_STATUS_HI__ECC_MASK                                                                       0x00000001L
-+#define SDMA_UE_ERR_STATUS_HI__PARITY_MASK                                                                    0x00000002L
-+#define SDMA_UE_ERR_STATUS_HI__ERR_INFO_VALID_FLAG_MASK                                                       0x00000004L
-+#define SDMA_UE_ERR_STATUS_HI__ERR_INFO_MASK                                                                  0x007FFFF8L
-+#define SDMA_UE_ERR_STATUS_HI__UE_CNT_MASK                                                                    0x03800000L
-+#define SDMA_UE_ERR_STATUS_HI__FED_CNT_MASK                                                                   0x1C000000L
-+#define SDMA_UE_ERR_STATUS_HI__RESERVED_MASK                                                                  0xE0000000L
- //SDMA_POWER_CNTL
- #define SDMA_POWER_CNTL__PG_CNTL_ENABLE__SHIFT                                                                0x0
- #define SDMA_POWER_CNTL__EXT_PG_POWER_ON_REQ__SHIFT                                                           0x1
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
+index 62afb282a3ff..513ac22120c1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
+@@ -62,6 +62,34 @@ struct amdgpu_sdma_instance {
+ 	uint32_t		aid_id;
+ };
+ 
++enum amdgpu_sdma_ras_memory_id {
++	AMDGPU_SDMA_MBANK_DATA_BUF0 = 1,
++	AMDGPU_SDMA_MBANK_DATA_BUF1 = 2,
++	AMDGPU_SDMA_MBANK_DATA_BUF2 = 3,
++	AMDGPU_SDMA_MBANK_DATA_BUF3 = 4,
++	AMDGPU_SDMA_MBANK_DATA_BUF4 = 5,
++	AMDGPU_SDMA_MBANK_DATA_BUF5 = 6,
++	AMDGPU_SDMA_MBANK_DATA_BUF6 = 7,
++	AMDGPU_SDMA_MBANK_DATA_BUF7 = 8,
++	AMDGPU_SDMA_MBANK_DATA_BUF8 = 9,
++	AMDGPU_SDMA_MBANK_DATA_BUF9 = 10,
++	AMDGPU_SDMA_MBANK_DATA_BUF10 = 11,
++	AMDGPU_SDMA_MBANK_DATA_BUF11 = 12,
++	AMDGPU_SDMA_MBANK_DATA_BUF12 = 13,
++	AMDGPU_SDMA_MBANK_DATA_BUF13 = 14,
++	AMDGPU_SDMA_MBANK_DATA_BUF14 = 15,
++	AMDGPU_SDMA_MBANK_DATA_BUF15 = 16,
++	AMDGPU_SDMA_UCODE_BUF = 17,
++	AMDGPU_SDMA_RB_CMD_BUF = 18,
++	AMDGPU_SDMA_IB_CMD_BUF = 19,
++	AMDGPU_SDMA_UTCL1_RD_FIFO = 20,
++	AMDGPU_SDMA_UTCL1_RDBST_FIFO = 21,
++	AMDGPU_SDMA_UTCL1_WR_FIFO = 22,
++	AMDGPU_SDMA_DATA_LUT_FIFO = 23,
++	AMDGPU_SDMA_SPLIT_DAT_BUF = 24,
++	AMDGPU_SDMA_MEMORY_BLOCK_LAST,
++};
++
+ struct amdgpu_sdma_ras {
+ 	struct amdgpu_ras_block_object ras_block;
+ };
+diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
+index dca0beec0252..925ca6218a5e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
++++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
+@@ -2071,3 +2071,67 @@ struct amdgpu_xcp_ip_funcs sdma_v4_4_2_xcp_funcs = {
+ 	.suspend = &sdma_v4_4_2_xcp_suspend,
+ 	.resume = &sdma_v4_4_2_xcp_resume
+ };
++
++static const struct amdgpu_ras_err_status_reg_entry sdma_v4_2_2_ue_reg_list[] = {
++	{AMDGPU_RAS_REG_ENTRY(SDMA0, 0, regSDMA_UE_ERR_STATUS_LO, regSDMA_UE_ERR_STATUS_HI),
++	1, (AMDGPU_RAS_ERR_INFO_VALID | AMDGPU_RAS_ERR_STATUS_VALID), "SDMA"},
++};
++
++static const struct amdgpu_ras_memory_id_entry sdma_v4_4_2_ras_memory_list[] = {
++	{AMDGPU_SDMA_MBANK_DATA_BUF0, "SDMA_MBANK_DATA_BUF0"},
++	{AMDGPU_SDMA_MBANK_DATA_BUF1, "SDMA_MBANK_DATA_BUF1"},
++	{AMDGPU_SDMA_MBANK_DATA_BUF2, "SDMA_MBANK_DATA_BUF2"},
++	{AMDGPU_SDMA_MBANK_DATA_BUF3, "SDMA_MBANK_DATA_BUF3"},
++	{AMDGPU_SDMA_MBANK_DATA_BUF4, "SDMA_MBANK_DATA_BUF4"},
++	{AMDGPU_SDMA_MBANK_DATA_BUF5, "SDMA_MBANK_DATA_BUF5"},
++	{AMDGPU_SDMA_MBANK_DATA_BUF6, "SDMA_MBANK_DATA_BUF6"},
++	{AMDGPU_SDMA_MBANK_DATA_BUF7, "SDMA_MBANK_DATA_BUF7"},
++	{AMDGPU_SDMA_MBANK_DATA_BUF8, "SDMA_MBANK_DATA_BUF8"},
++	{AMDGPU_SDMA_MBANK_DATA_BUF9, "SDMA_MBANK_DATA_BUF9"},
++	{AMDGPU_SDMA_MBANK_DATA_BUF10, "SDMA_MBANK_DATA_BUF10"},
++	{AMDGPU_SDMA_MBANK_DATA_BUF11, "SDMA_MBANK_DATA_BUF11"},
++	{AMDGPU_SDMA_MBANK_DATA_BUF12, "SDMA_MBANK_DATA_BUF12"},
++	{AMDGPU_SDMA_MBANK_DATA_BUF13, "SDMA_MBANK_DATA_BUF13"},
++	{AMDGPU_SDMA_MBANK_DATA_BUF14, "SDMA_MBANK_DATA_BUF14"},
++	{AMDGPU_SDMA_MBANK_DATA_BUF15, "SDMA_MBANK_DATA_BUF15"},
++	{AMDGPU_SDMA_UCODE_BUF, "SDMA_UCODE_BUF"},
++	{AMDGPU_SDMA_RB_CMD_BUF, "SDMA_RB_CMD_BUF"},
++	{AMDGPU_SDMA_IB_CMD_BUF, "SDMA_IB_CMD_BUF"},
++	{AMDGPU_SDMA_UTCL1_RD_FIFO, "SDMA_UTCL1_RD_FIFO"},
++	{AMDGPU_SDMA_UTCL1_RDBST_FIFO, "SDMA_UTCL1_RDBST_FIFO"},
++	{AMDGPU_SDMA_UTCL1_WR_FIFO, "SDMA_UTCL1_WR_FIFO"},
++	{AMDGPU_SDMA_DATA_LUT_FIFO, "SDMA_DATA_LUT_FIFO"},
++	{AMDGPU_SDMA_SPLIT_DAT_BUF, "SDMA_SPLIT_DAT_BUF"},
++};
++
++static void sdma_v4_4_2_inst_query_ras_error_count(struct amdgpu_device *adev,
++						   uint32_t sdma_inst,
++						   void *ras_err_status)
++{
++	struct ras_err_data *err_data = (struct ras_err_data *)ras_err_status;
++
++	/* sdma v4_4_2 doesn't support query ce counts */
++	amdgpu_ras_inst_query_ras_error_count(adev,
++					sdma_v4_2_2_ue_reg_list,
++					ARRAY_SIZE(sdma_v4_2_2_ue_reg_list),
++					sdma_v4_4_2_ras_memory_list,
++					ARRAY_SIZE(sdma_v4_4_2_ras_memory_list),
++					sdma_inst,
++					AMDGPU_RAS_ERROR__MULTI_UNCORRECTABLE,
++					&err_data->ue_count);
++}
++
++static void sdma_v4_4_2_query_ras_error_count(struct amdgpu_device *adev,
++					      void *ras_err_status)
++{
++	uint32_t inst_mask;
++	int i = 0;
++
++	inst_mask = GENMASK(adev->sdma.num_instances - 1, 0);
++	if (amdgpu_ras_is_supported(adev, AMDGPU_RAS_BLOCK__SDMA)) {
++		for_each_inst(i, inst_mask)
++			sdma_v4_4_2_inst_query_ras_error_count(adev, i, ras_err_status);
++	} else {
++		dev_warn(adev->dev, "SDMA RAS is not supported\n");
++	}
++}
 -- 
 2.39.2
 
