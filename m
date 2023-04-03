@@ -2,91 +2,38 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE6746D4FCA
-	for <lists+amd-gfx@lfdr.de>; Mon,  3 Apr 2023 20:00:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B5176D59AE
+	for <lists+amd-gfx@lfdr.de>; Tue,  4 Apr 2023 09:31:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53B5B10E038;
-	Mon,  3 Apr 2023 18:00:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE95110E5F2;
+	Tue,  4 Apr 2023 07:31:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on20611.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe5b::611])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2923010E0BF
- for <amd-gfx@lists.freedesktop.org>; Mon,  3 Apr 2023 18:00:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Nf9NqGo6WCFMcntnAHHSAfDxm+2XSMWJpGMNlnL2bkvsiwp2TtxmCIPypIISnCsKbJAWssPeO0vp9smKVoBa01rshTAOpfdHeqQFKQuNmrKVQ30g8miRHfx+CM2X1hmJrqkMt3Utcaa4fzMAdVdZjiVILER0L9nCFXueykCPqK4p9BcMIbdgGpYsZ1hEY/OJBJ6lFtb2w/JKf6GoEBFFaz/bhPh8sYYgKCI46EIneqyIJ+vyKogXn4tFkGxSptUX/cHb51Q5wGoySz4rQE+cdGojwlz9cvoscupDAmqwxxjcTJrzyYK1e12KS0ldx4LUDqhgS+5xuSu3rxd0dZvEhw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dtiMRMtZhELG4cWU4GgyN/IQegD4k4wBL7SkFGCsu6M=;
- b=GXRRBxiF8p0PE3t3BIpHwjCG7ZD+86qDyBFIEe+rU41S3THtiAs4WG2sy0QoDaBI8vlgDD/cWHPOMks1EkqPk5MywbsNUTel+tBsl/dOOilxBVCsufnwDwEu1jjj+9gk4IAZeDpBCosR9Dw4IFzmztLruQyeRmRgHhL3JYWDzq/MgZlRQpLPpkUQNno51fS9dVSbq/OhR9nWXOE+TwxeSAXLPHehS8mQWIGTfBMfEOeNIT+B6Mwi0EdQiJ+KFGioov1Otqy6CycejxpG/FrM7CtYajL6fDq9Tql9CHBgli9AkpdrxaZNNMW/Mkn0fDQJCulQ3W5hst7pWbzE2DcMLg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dtiMRMtZhELG4cWU4GgyN/IQegD4k4wBL7SkFGCsu6M=;
- b=z19ov0Z329VZ64fJbY+gzEtxESe9idAlCLlvSsM1vvEinCzhr6scHfDRuov5oghRDB9nXcBtLZsN9hcKxfwzX1ELUGT6+mRNDXb8MekB1ut7zryZ7eQ1quDbxpl/IlXzZN1aaAPDVzvY/Dj4wkLZCzaClplvT/EuqvH7jo6l9y0=
-Received: from CY5PR22CA0008.namprd22.prod.outlook.com (2603:10b6:930:16::31)
- by CY8PR12MB7242.namprd12.prod.outlook.com (2603:10b6:930:59::22)
+X-Greylist: delayed 326 seconds by postgrey-1.36 at gabe;
+ Mon, 03 Apr 2023 18:34:03 UTC
+Received: from exchange.fintech.ru (exchange.fintech.ru [195.54.195.159])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4C8110E0F5;
+ Mon,  3 Apr 2023 18:34:03 +0000 (UTC)
+Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
+ (195.54.195.169) with Microsoft SMTP Server (TLS) id 14.3.498.0; Mon, 3 Apr
+ 2023 21:28:28 +0300
+Received: from localhost (10.0.253.157) by Ex16-01.fintech.ru (10.0.10.18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.29; Mon, 3 Apr
- 2023 18:00:05 +0000
-Received: from CY4PEPF0000C96B.namprd02.prod.outlook.com
- (2603:10b6:930:16:cafe::25) by CY5PR22CA0008.outlook.office365.com
- (2603:10b6:930:16::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.22 via Frontend
- Transport; Mon, 3 Apr 2023 18:00:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000C96B.mail.protection.outlook.com (10.167.241.75) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6178.30 via Frontend Transport; Mon, 3 Apr 2023 18:00:05 +0000
-Received: from eric-hp-elitebook-845-g7.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Mon, 3 Apr 2023 13:00:02 -0500
-From: Eric Huang <jinhuieric.huang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdkfd: Fix dmabuf's redundant eviction when unmapping
-Date: Mon, 3 Apr 2023 13:59:49 -0400
-Message-ID: <20230403175949.131530-1-jinhuieric.huang@amd.com>
-X-Mailer: git-send-email 2.34.1
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Mon, 3 Apr 2023
+ 21:28:28 +0300
+From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+To: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH] radeon: avoid double free in ci_dpm_init()
+Date: Mon, 3 Apr 2023 11:28:08 -0700
+Message-ID: <20230403182808.8699-1-n.zhandarovich@fintech.ru>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000C96B:EE_|CY8PR12MB7242:EE_
-X-MS-Office365-Filtering-Correlation-Id: 00039fdf-e3a3-4ccc-2f90-08db346d416c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lHN8Jv2VQ8bewaFIft3tzhNtRbi/mdHsK+PSNzPvWotmKiht/iS7Xx6VMYNhR7fZNTnRYLKXuaFPr/HRf8NQ+hRLMyqpB8giOGzT6JYJPMN3EO8x9paAnMy9WgxFgonjIPKMCcqDtyrYEyeV2LYL9nIOZgBnXvkAnKtWWCy3hY2cpXtfdqQmhqapgzibsZx6TB3dMVnlxVOiAay0b+zw+eSPIxBVV5BBRyU3ga79P3RFKB4b/thdmloouTKVKUAS2pU0l+yDWdN4uq+YchOoVo3VTbv3fJLnZ2d30hC4s7c3ygFf8doomvCjSSlUiWqrjKW9WtlSyoVlT0V6p1rfb+cP6GkwSx8XW56afcHS/OR9tIIpOJv0qKmmYhUVA80DI9bUqKGZTTFN6Ttm82whrioZQc8MURqx86lK1oBdy1DyNi+IJKd12cGv0i6MYTydTfvEJBPjz9TlUuv/P5Ca9r8qmTUqqT3Qo/jP/SkWar1m6bDt2DFBUyFVjNa4aIpmv75jsMl88Ng7FQY9UqT6T+bUH+NXbOFQurrE3W6LnkRQKkO+3w+lojlY+UJ2/tXPe19hE3ejwpP9kw79v33f9g/1ocgQtglG9JxD/tNTlUutFTYIp4FzSQxxlqCAemViiWe0IVyuoiOyLXTmjHBfyiiJDLO03fHWI+keoWjnmsw+LhdRfhUxeSiIaKi/pqvIrSXnwACfDwflY/JvxbG9nCUgS2qOHGldRyN+v4tAVEs=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(136003)(39860400002)(346002)(396003)(376002)(451199021)(36840700001)(40470700004)(46966006)(5660300002)(6666004)(7696005)(40460700003)(70586007)(6916009)(8676002)(4326008)(70206006)(316002)(36756003)(2906002)(82740400003)(81166007)(82310400005)(356005)(41300700001)(86362001)(8936002)(478600001)(36860700001)(40480700001)(47076005)(1076003)(426003)(336012)(26005)(16526019)(186003)(2616005)(83380400001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2023 18:00:05.5808 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 00039fdf-e3a3-4ccc-2f90-08db346d416c
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000C96B.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7242
+X-Originating-IP: [10.0.253.157]
+X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
+ (10.0.10.18)
+X-Mailman-Approved-At: Tue, 04 Apr 2023 07:31:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,33 +45,84 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eric Huang <jinhuieric.huang@amd.com>
+Cc: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ lvc-project@linuxtesting.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-dmabuf is allocated/mapped as GTT domain, when dma-unmapping dmabuf
-changing placement to CPU will trigger memory eviction after calling
-ttm_bo_validate, and the eviction will cause performance drop.
-Keeping the correct domain will solve the issue.
+There are several calls to ci_dpm_fini() in ci_dpm_init() when there
+occur errors in functions like r600_parse_extended_power_table().
+This is harmful as it can lead to double free situations: for
+instance, r600_parse_extended_power_table() will call for
+r600_free_extended_power_table() as will ci_dpm_fini(), both
+of which will try to free resources.
+Other drivers do not call *_dpm_fini functions from their
+respective *_dpm_init calls - neither should cpm_dpm_init().
 
-Signed-off-by: Eric Huang <jinhuieric.huang@amd.com>
+Fix this by removing extra calls to ci_dpm_fini().
+
+Found by Linux Verification Center (linuxtesting.org) with static
+analysis tool SVACE.
+
+Fixes: cc8dbbb4f62a ("drm/radeon: add dpm support for CI dGPUs (v2)")
+Cc: stable@vger.kernel.org
+Co-developed-by: Natalia Petrova <n.petrova@fintech.ru>
+Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/radeon/ci_dpm.c | 20 +++++---------------
+ 1 file changed, 5 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-index a3b09edfd1bf..17b708acb447 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-@@ -642,7 +642,7 @@ kfd_mem_dmaunmap_dmabuf(struct kfd_mem_attachment *attachment)
- 	struct ttm_operation_ctx ctx = {.interruptible = true};
- 	struct amdgpu_bo *bo = attachment->bo_va->base.bo;
+diff --git a/drivers/gpu/drm/radeon/ci_dpm.c b/drivers/gpu/drm/radeon/ci_dpm.c
+index 8ef25ab305ae..7b77d4c93f1d 100644
+--- a/drivers/gpu/drm/radeon/ci_dpm.c
++++ b/drivers/gpu/drm/radeon/ci_dpm.c
+@@ -5677,28 +5677,20 @@ int ci_dpm_init(struct radeon_device *rdev)
+ 	pi->pcie_lane_powersaving.min = 16;
  
--	amdgpu_bo_placement_from_domain(bo, AMDGPU_GEM_DOMAIN_CPU);
-+	amdgpu_bo_placement_from_domain(bo, AMDGPU_GEM_DOMAIN_GTT);
- 	ttm_bo_validate(&bo->tbo, &bo->placement, &ctx);
- }
+ 	ret = ci_get_vbios_boot_values(rdev, &pi->vbios_boot_state);
+-	if (ret) {
+-		ci_dpm_fini(rdev);
++	if (ret)
+ 		return ret;
+-	}
  
--- 
-2.34.1
-
+ 	ret = r600_get_platform_caps(rdev);
+-	if (ret) {
+-		ci_dpm_fini(rdev);
++	if (ret)
+ 		return ret;
+-	}
+ 
+ 	ret = r600_parse_extended_power_table(rdev);
+-	if (ret) {
+-		ci_dpm_fini(rdev);
++	if (ret)
+ 		return ret;
+-	}
+ 
+ 	ret = ci_parse_power_table(rdev);
+-	if (ret) {
+-		ci_dpm_fini(rdev);
++	if (ret)
+ 		return ret;
+-	}
+ 
+ 	pi->dll_default_on = false;
+ 	pi->sram_end = SMC_RAM_END;
+@@ -5749,10 +5741,8 @@ int ci_dpm_init(struct radeon_device *rdev)
+ 		kcalloc(4,
+ 			sizeof(struct radeon_clock_voltage_dependency_entry),
+ 			GFP_KERNEL);
+-	if (!rdev->pm.dpm.dyn_state.vddc_dependency_on_dispclk.entries) {
+-		ci_dpm_fini(rdev);
++	if (!rdev->pm.dpm.dyn_state.vddc_dependency_on_dispclk.entries)
+ 		return -ENOMEM;
+-	}
+ 	rdev->pm.dpm.dyn_state.vddc_dependency_on_dispclk.count = 4;
+ 	rdev->pm.dpm.dyn_state.vddc_dependency_on_dispclk.entries[0].clk = 0;
+ 	rdev->pm.dpm.dyn_state.vddc_dependency_on_dispclk.entries[0].v = 0;
