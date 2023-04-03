@@ -2,38 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B5176D59AE
-	for <lists+amd-gfx@lfdr.de>; Tue,  4 Apr 2023 09:31:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D3D56D5174
+	for <lists+amd-gfx@lfdr.de>; Mon,  3 Apr 2023 21:41:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE95110E5F2;
-	Tue,  4 Apr 2023 07:31:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FFAE10E177;
+	Mon,  3 Apr 2023 19:41:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 326 seconds by postgrey-1.36 at gabe;
- Mon, 03 Apr 2023 18:34:03 UTC
-Received: from exchange.fintech.ru (exchange.fintech.ru [195.54.195.159])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4C8110E0F5;
- Mon,  3 Apr 2023 18:34:03 +0000 (UTC)
-Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
- (195.54.195.169) with Microsoft SMTP Server (TLS) id 14.3.498.0; Mon, 3 Apr
- 2023 21:28:28 +0300
-Received: from localhost (10.0.253.157) by Ex16-01.fintech.ru (10.0.10.18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Mon, 3 Apr 2023
- 21:28:28 +0300
-From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
-To: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH] radeon: avoid double free in ci_dpm_init()
-Date: Mon, 3 Apr 2023 11:28:08 -0700
-Message-ID: <20230403182808.8699-1-n.zhandarovich@fintech.ru>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
+ [IPv6:2a00:1450:4864:20::330])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 998FB10E176
+ for <amd-gfx@lists.freedesktop.org>; Mon,  3 Apr 2023 19:41:15 +0000 (UTC)
+Received: by mail-wm1-x330.google.com with SMTP id
+ bg16-20020a05600c3c9000b003eb34e21bdfso20550191wmb.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 03 Apr 2023 12:41:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=froggi.es; s=google; t=1680550874;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=orMdBEc3/RmwPvEOZPHju61Hcg5STsDr6ot7AN4t8dw=;
+ b=Cs+8iiOkPMVQqjr1dTG42pLCMG/idCBMT+RzTM+FSwtEYqlYmaY1btysclzLkFZccI
+ OpgkgUsUkT/sQOPVP36lZbqiyyFXhBeYn8NjeqlKa93SDLFh2xOUaRMSpDZXReyG7pBb
+ 01q6WwofKPyJy28k6p/Gg4p4Y2jQzndp/HICiTetGhkrH2GTatcVNynOTpLefu8P1AlX
+ /UvbxeqU3q0FUcFXAkjpj+hwFgWsr5RKjtOmMBgcDZDdHt/QsGThDUFdb1DbmkaEKkAB
+ TT5UWZbvZZRU+Qw/JXfGrImsV+bPJofZx5DwssLDXWt0Nst7ZSyoFbYWgf4F8AB7G56W
+ D3DA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680550874;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=orMdBEc3/RmwPvEOZPHju61Hcg5STsDr6ot7AN4t8dw=;
+ b=cupcWzjAnFOC6We5W/HaqqH+qwL+fBdVIzyO9skzvE8ZB/135axQHKd/m6WDrptMVE
+ k+N1nnOO5StGZK0RCnv1TW3/ZU67ck8wPIGe0FzCxQYGpHzTBsFxMLDfFbmML51NpX/G
+ PtrhbxTA7jyGVVexXTObETr8CehzFH1zEKvPMFHZ3NSFvFzGbUNZConF2fkUfsDkNA2M
+ kq2SrnUD9q20WNytYRkn2iFgBvaP7VZrhoihqHjNDmQkGU2JrcKZycHDSiI9/h8F7LBe
+ EoBobuuZyr+1xPVLl49PsnC5nhlMhklSm12ft122wuSMH+BLfGUL5kvGn4uyY2ZaGtjf
+ 3Tbw==
+X-Gm-Message-State: AAQBX9c5lGbhTwO+jNiZw/TDftUWfSIdGVcEvpF2056AJ9H3zZ80ahsd
+ 8bVHpFDKTHUwIPEnfxoJibUVfQ==
+X-Google-Smtp-Source: AKy350YMooipic8wGoMCR1fAHCdpyNNsyJhW0YLp85S1PDNq3G3+uBw99GFalgjrELqeQk4R5BNueA==
+X-Received: by 2002:a05:600c:2255:b0:3ed:711c:e8fe with SMTP id
+ a21-20020a05600c225500b003ed711ce8femr466489wmm.2.1680550873854; 
+ Mon, 03 Apr 2023 12:41:13 -0700 (PDT)
+Received: from localhost.localdomain
+ (darl-09-b2-v4wan-165404-cust288.vm5.cable.virginm.net. [86.17.61.33])
+ by smtp.gmail.com with ESMTPSA id
+ u17-20020a7bcb11000000b003ef5db16176sm13036342wmj.32.2023.04.03.12.41.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 03 Apr 2023 12:41:13 -0700 (PDT)
+From: Joshua Ashton <joshua@froggi.es>
+To: dri-devel@lists.freedesktop.org,
+	amd-gfx@lists.freedesktop.org
+Subject: [RFC PATCH 0/4] uapi, drm: Add and implement RLIMIT_GPUPRIO
+Date: Mon,  3 Apr 2023 20:40:54 +0100
+Message-Id: <20230403194058.25958-1-joshua@froggi.es>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.0.253.157]
-X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
- (10.0.10.18)
-X-Mailman-Approved-At: Tue, 04 Apr 2023 07:31:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,84 +71,64 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- lvc-project@linuxtesting.org
+Cc: Joshua Ashton <joshua@froggi.es>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-There are several calls to ci_dpm_fini() in ci_dpm_init() when there
-occur errors in functions like r600_parse_extended_power_table().
-This is harmful as it can lead to double free situations: for
-instance, r600_parse_extended_power_table() will call for
-r600_free_extended_power_table() as will ci_dpm_fini(), both
-of which will try to free resources.
-Other drivers do not call *_dpm_fini functions from their
-respective *_dpm_init calls - neither should cpm_dpm_init().
+Hello all!
 
-Fix this by removing extra calls to ci_dpm_fini().
+I would like to propose a new API for allowing processes to control
+the priority of GPU queues similar to RLIMIT_NICE/RLIMIT_RTPRIO.
 
-Found by Linux Verification Center (linuxtesting.org) with static
-analysis tool SVACE.
+The main reason for this is for compositors such as Gamescope and
+SteamVR vrcompositor to be able to create realtime async compute
+queues on AMD without the need of CAP_SYS_NICE.
 
-Fixes: cc8dbbb4f62a ("drm/radeon: add dpm support for CI dGPUs (v2)")
-Cc: stable@vger.kernel.org
-Co-developed-by: Natalia Petrova <n.petrova@fintech.ru>
-Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+The current situation is bad for a few reasons, one being that in order
+to setcap the executable, typically one must run as root which involves
+a pretty high privelage escalation in order to achieve one
+small feat, a realtime async compute queue queue for VR or a compositor.
+The executable cannot be setcap'ed inside a
+container nor can the setcap'ed executable be run in a container with
+NO_NEW_PRIVS.
 
----
- drivers/gpu/drm/radeon/ci_dpm.c | 20 +++++---------------
- 1 file changed, 5 insertions(+), 15 deletions(-)
+I go into more detail in the description in
+`uapi: Add RLIMIT_GPUPRIO`.
 
-diff --git a/drivers/gpu/drm/radeon/ci_dpm.c b/drivers/gpu/drm/radeon/ci_dpm.c
-index 8ef25ab305ae..7b77d4c93f1d 100644
---- a/drivers/gpu/drm/radeon/ci_dpm.c
-+++ b/drivers/gpu/drm/radeon/ci_dpm.c
-@@ -5677,28 +5677,20 @@ int ci_dpm_init(struct radeon_device *rdev)
- 	pi->pcie_lane_powersaving.min = 16;
- 
- 	ret = ci_get_vbios_boot_values(rdev, &pi->vbios_boot_state);
--	if (ret) {
--		ci_dpm_fini(rdev);
-+	if (ret)
- 		return ret;
--	}
- 
- 	ret = r600_get_platform_caps(rdev);
--	if (ret) {
--		ci_dpm_fini(rdev);
-+	if (ret)
- 		return ret;
--	}
- 
- 	ret = r600_parse_extended_power_table(rdev);
--	if (ret) {
--		ci_dpm_fini(rdev);
-+	if (ret)
- 		return ret;
--	}
- 
- 	ret = ci_parse_power_table(rdev);
--	if (ret) {
--		ci_dpm_fini(rdev);
-+	if (ret)
- 		return ret;
--	}
- 
- 	pi->dll_default_on = false;
- 	pi->sram_end = SMC_RAM_END;
-@@ -5749,10 +5741,8 @@ int ci_dpm_init(struct radeon_device *rdev)
- 		kcalloc(4,
- 			sizeof(struct radeon_clock_voltage_dependency_entry),
- 			GFP_KERNEL);
--	if (!rdev->pm.dpm.dyn_state.vddc_dependency_on_dispclk.entries) {
--		ci_dpm_fini(rdev);
-+	if (!rdev->pm.dpm.dyn_state.vddc_dependency_on_dispclk.entries)
- 		return -ENOMEM;
--	}
- 	rdev->pm.dpm.dyn_state.vddc_dependency_on_dispclk.count = 4;
- 	rdev->pm.dpm.dyn_state.vddc_dependency_on_dispclk.entries[0].clk = 0;
- 	rdev->pm.dpm.dyn_state.vddc_dependency_on_dispclk.entries[0].v = 0;
+My initial proposal here is to add a new RLIMIT, `RLIMIT_GPUPRIO`,
+which seems to make most initial sense to me to solve the problem.
+
+I am definitely not set that this is the best formulation however
+or if this should be linked to DRM (in terms of it's scheduler
+priority enum/definitions) in any way and and would really like other
+people's opinions across the stack on this.
+
+Once initial concern is that potentially this RLIMIT could out-live
+the lifespan of DRM. It sounds crazy saying it right now, something
+that definitely popped into my mind when touching `resource.h`. :-)
+
+Anyway, please let me know what you think!
+Definitely open to any feedback and advice you may have. :D
+
+Thanks!
+ - Joshie
+
+Joshua Ashton (4):
+  drm/scheduler: Add DRM_SCHED_PRIORITY_VERY_HIGH
+  drm/scheduler: Split out drm_sched_priority to own file
+  uapi: Add RLIMIT_GPUPRIO
+  drm/amd/amdgpu: Check RLIMIT_GPUPRIO in priority permissions
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 13 ++++++--
+ drivers/gpu/drm/msm/msm_gpu.h           |  2 +-
+ fs/proc/base.c                          |  1 +
+ include/asm-generic/resource.h          |  3 +-
+ include/drm/drm_sched_priority.h        | 41 +++++++++++++++++++++++++
+ include/drm/gpu_scheduler.h             | 14 +--------
+ include/uapi/asm-generic/resource.h     |  3 +-
+ 7 files changed, 58 insertions(+), 19 deletions(-)
+ create mode 100644 include/drm/drm_sched_priority.h
+
+-- 
+2.40.0
+
