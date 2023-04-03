@@ -2,62 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D3D56D5174
-	for <lists+amd-gfx@lfdr.de>; Mon,  3 Apr 2023 21:41:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C6196D5178
+	for <lists+amd-gfx@lfdr.de>; Mon,  3 Apr 2023 21:41:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FFAE10E177;
-	Mon,  3 Apr 2023 19:41:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58D4510E176;
+	Mon,  3 Apr 2023 19:41:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
- [IPv6:2a00:1450:4864:20::330])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 998FB10E176
- for <amd-gfx@lists.freedesktop.org>; Mon,  3 Apr 2023 19:41:15 +0000 (UTC)
-Received: by mail-wm1-x330.google.com with SMTP id
- bg16-20020a05600c3c9000b003eb34e21bdfso20550191wmb.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 03 Apr 2023 12:41:15 -0700 (PDT)
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
+ [IPv6:2a00:1450:4864:20::32e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0C9E10E185
+ for <amd-gfx@lists.freedesktop.org>; Mon,  3 Apr 2023 19:41:16 +0000 (UTC)
+Received: by mail-wm1-x32e.google.com with SMTP id
+ v20-20020a05600c471400b003ed8826253aso56983wmo.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 03 Apr 2023 12:41:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=froggi.es; s=google; t=1680550874;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=orMdBEc3/RmwPvEOZPHju61Hcg5STsDr6ot7AN4t8dw=;
- b=Cs+8iiOkPMVQqjr1dTG42pLCMG/idCBMT+RzTM+FSwtEYqlYmaY1btysclzLkFZccI
- OpgkgUsUkT/sQOPVP36lZbqiyyFXhBeYn8NjeqlKa93SDLFh2xOUaRMSpDZXReyG7pBb
- 01q6WwofKPyJy28k6p/Gg4p4Y2jQzndp/HICiTetGhkrH2GTatcVNynOTpLefu8P1AlX
- /UvbxeqU3q0FUcFXAkjpj+hwFgWsr5RKjtOmMBgcDZDdHt/QsGThDUFdb1DbmkaEKkAB
- TT5UWZbvZZRU+Qw/JXfGrImsV+bPJofZx5DwssLDXWt0Nst7ZSyoFbYWgf4F8AB7G56W
- D3DA==
+ d=froggi.es; s=google; t=1680550875;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=PFmiqpkCTFnjtf4my3WK3tS/w7ej04x/lzeSFwb3rYY=;
+ b=YqN1soupUIAmrp0wYyCdXGtkFaPd2VA3aa61JIlPlNUHbqDhXCn7/qmBf7b7+opIEk
+ +Fnq3D7BP5l3LBPYU7junoPZ/HyjKcxicHcJ8ypefIMdhiow66RuMP+Waq6MneOrho/C
+ t9C+Vw6OeAWhjKfcsaW/0Yqe4U0lh4IgRFRaA88R3wLHGGi9aH9TYl9Yqnyt6++RdYrC
+ 72stou26QuIyZ7qwRzradlWGiQnRO0I6pPPiKmDZ8DutPSI4CF/KDcQEtCxhiPWFN1jo
+ n3NqqVOIxQ8RjaV/J0ZAleVDZnL+UW0oGqki4Pf5IvTmZh+FwHpDK2o46Rymsz9gI9O1
+ eEEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680550874;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=orMdBEc3/RmwPvEOZPHju61Hcg5STsDr6ot7AN4t8dw=;
- b=cupcWzjAnFOC6We5W/HaqqH+qwL+fBdVIzyO9skzvE8ZB/135axQHKd/m6WDrptMVE
- k+N1nnOO5StGZK0RCnv1TW3/ZU67ck8wPIGe0FzCxQYGpHzTBsFxMLDfFbmML51NpX/G
- PtrhbxTA7jyGVVexXTObETr8CehzFH1zEKvPMFHZ3NSFvFzGbUNZConF2fkUfsDkNA2M
- kq2SrnUD9q20WNytYRkn2iFgBvaP7VZrhoihqHjNDmQkGU2JrcKZycHDSiI9/h8F7LBe
- EoBobuuZyr+1xPVLl49PsnC5nhlMhklSm12ft122wuSMH+BLfGUL5kvGn4uyY2ZaGtjf
- 3Tbw==
-X-Gm-Message-State: AAQBX9c5lGbhTwO+jNiZw/TDftUWfSIdGVcEvpF2056AJ9H3zZ80ahsd
- 8bVHpFDKTHUwIPEnfxoJibUVfQ==
-X-Google-Smtp-Source: AKy350YMooipic8wGoMCR1fAHCdpyNNsyJhW0YLp85S1PDNq3G3+uBw99GFalgjrELqeQk4R5BNueA==
-X-Received: by 2002:a05:600c:2255:b0:3ed:711c:e8fe with SMTP id
- a21-20020a05600c225500b003ed711ce8femr466489wmm.2.1680550873854; 
- Mon, 03 Apr 2023 12:41:13 -0700 (PDT)
+ d=1e100.net; s=20210112; t=1680550875;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=PFmiqpkCTFnjtf4my3WK3tS/w7ej04x/lzeSFwb3rYY=;
+ b=t5cGN9X2jy9aztCOyp7JDh06swq2tUTbTq5CHOHrwIbhJ2WUaMbJuXamuEgTifxdPg
+ i9thiuigVigH2R8Wy1EECEUZ2h1f3c/h0ZF34oOj0lEqr9qMM242PY691uELnXLoi7/P
+ +GUf2eVUqukkSgbZ2PuZyZnbjdbJ2IUAO8FRHVvb0KpcYDNYyOLl0PE9Dy2fJUJJYSYb
+ 9/0nnMRVslB+zqLMFS/aHGWHyztUGc5UP3jkrFHhe5kmfitA0mjk+bWfmrgMPQJeetYG
+ eJe5CzAb03cEDlYwSGfVL+ANlPeDQSE1IUM7BDBKqTFQVTS9ydfi6ZDoS1BbzrUELVLG
+ PwyQ==
+X-Gm-Message-State: AAQBX9dZZg7yR1u5ap1kLQxSzNKQixG5suM0b/sv9Wl6OLXvXZF7sZd6
+ nRh0Xa8P8aCh4J5Yuqe1hkQ4ug==
+X-Google-Smtp-Source: AKy350Yh5yTxinihKbIM/Y9VPkw8VbxSG/Vln+iAV1Ckvhwi3vj/k7P3pOEQHDVlZsqUxvhLHD9fsg==
+X-Received: by 2002:a7b:c4d3:0:b0:3ed:b590:96e6 with SMTP id
+ g19-20020a7bc4d3000000b003edb59096e6mr417958wmk.4.1680550874973; 
+ Mon, 03 Apr 2023 12:41:14 -0700 (PDT)
 Received: from localhost.localdomain
  (darl-09-b2-v4wan-165404-cust288.vm5.cable.virginm.net. [86.17.61.33])
  by smtp.gmail.com with ESMTPSA id
  u17-20020a7bcb11000000b003ef5db16176sm13036342wmj.32.2023.04.03.12.41.13
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 03 Apr 2023 12:41:13 -0700 (PDT)
+ Mon, 03 Apr 2023 12:41:14 -0700 (PDT)
 From: Joshua Ashton <joshua@froggi.es>
 To: dri-devel@lists.freedesktop.org,
 	amd-gfx@lists.freedesktop.org
-Subject: [RFC PATCH 0/4] uapi, drm: Add and implement RLIMIT_GPUPRIO
-Date: Mon,  3 Apr 2023 20:40:54 +0100
-Message-Id: <20230403194058.25958-1-joshua@froggi.es>
+Subject: [RFC PATCH 1/4] drm/scheduler: Add DRM_SCHED_PRIORITY_VERY_HIGH
+Date: Mon,  3 Apr 2023 20:40:55 +0100
+Message-Id: <20230403194058.25958-2-joshua@froggi.es>
 X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230403194058.25958-1-joshua@froggi.es>
+References: <20230403194058.25958-1-joshua@froggi.es>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -75,60 +78,54 @@ Cc: Joshua Ashton <joshua@froggi.es>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello all!
+This allows AMDGPU scheduler priority above normal to be expressed
+using the DRM_SCHED_PRIORITY enum.
 
-I would like to propose a new API for allowing processes to control
-the priority of GPU queues similar to RLIMIT_NICE/RLIMIT_RTPRIO.
+Signed-off-by: Joshua Ashton <joshua@froggi.es>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 2 +-
+ drivers/gpu/drm/msm/msm_gpu.h           | 2 +-
+ include/drm/gpu_scheduler.h             | 1 +
+ 3 files changed, 3 insertions(+), 2 deletions(-)
 
-The main reason for this is for compositors such as Gamescope and
-SteamVR vrcompositor to be able to create realtime async compute
-queues on AMD without the need of CAP_SYS_NICE.
-
-The current situation is bad for a few reasons, one being that in order
-to setcap the executable, typically one must run as root which involves
-a pretty high privelage escalation in order to achieve one
-small feat, a realtime async compute queue queue for VR or a compositor.
-The executable cannot be setcap'ed inside a
-container nor can the setcap'ed executable be run in a container with
-NO_NEW_PRIVS.
-
-I go into more detail in the description in
-`uapi: Add RLIMIT_GPUPRIO`.
-
-My initial proposal here is to add a new RLIMIT, `RLIMIT_GPUPRIO`,
-which seems to make most initial sense to me to solve the problem.
-
-I am definitely not set that this is the best formulation however
-or if this should be linked to DRM (in terms of it's scheduler
-priority enum/definitions) in any way and and would really like other
-people's opinions across the stack on this.
-
-Once initial concern is that potentially this RLIMIT could out-live
-the lifespan of DRM. It sounds crazy saying it right now, something
-that definitely popped into my mind when touching `resource.h`. :-)
-
-Anyway, please let me know what you think!
-Definitely open to any feedback and advice you may have. :D
-
-Thanks!
- - Joshie
-
-Joshua Ashton (4):
-  drm/scheduler: Add DRM_SCHED_PRIORITY_VERY_HIGH
-  drm/scheduler: Split out drm_sched_priority to own file
-  uapi: Add RLIMIT_GPUPRIO
-  drm/amd/amdgpu: Check RLIMIT_GPUPRIO in priority permissions
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 13 ++++++--
- drivers/gpu/drm/msm/msm_gpu.h           |  2 +-
- fs/proc/base.c                          |  1 +
- include/asm-generic/resource.h          |  3 +-
- include/drm/drm_sched_priority.h        | 41 +++++++++++++++++++++++++
- include/drm/gpu_scheduler.h             | 14 +--------
- include/uapi/asm-generic/resource.h     |  3 +-
- 7 files changed, 58 insertions(+), 19 deletions(-)
- create mode 100644 include/drm/drm_sched_priority.h
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+index d2139ac12159..8ec255091c4a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+@@ -79,7 +79,7 @@ amdgpu_ctx_to_drm_sched_prio(int32_t ctx_prio)
+ 		return DRM_SCHED_PRIORITY_HIGH;
+ 
+ 	case AMDGPU_CTX_PRIORITY_VERY_HIGH:
+-		return DRM_SCHED_PRIORITY_HIGH;
++		return DRM_SCHED_PRIORITY_VERY_HIGH;
+ 
+ 	/* This should not happen as we sanitized userspace provided priority
+ 	 * already, WARN if this happens.
+diff --git a/drivers/gpu/drm/msm/msm_gpu.h b/drivers/gpu/drm/msm/msm_gpu.h
+index fc1c0d8611a8..e3495712b236 100644
+--- a/drivers/gpu/drm/msm/msm_gpu.h
++++ b/drivers/gpu/drm/msm/msm_gpu.h
+@@ -336,7 +336,7 @@ struct msm_gpu_perfcntr {
+  * DRM_SCHED_PRIORITY_KERNEL priority level is treated specially in some
+  * cases, so we don't use it (no need for kernel generated jobs).
+  */
+-#define NR_SCHED_PRIORITIES (1 + DRM_SCHED_PRIORITY_HIGH - DRM_SCHED_PRIORITY_MIN)
++#define NR_SCHED_PRIORITIES (1 + DRM_SCHED_PRIORITY_VERY_HIGH - DRM_SCHED_PRIORITY_MIN)
+ 
+ /**
+  * struct msm_file_private - per-drm_file context
+diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
+index 9935d1e2ff69..a62071660602 100644
+--- a/include/drm/gpu_scheduler.h
++++ b/include/drm/gpu_scheduler.h
+@@ -55,6 +55,7 @@ enum drm_sched_priority {
+ 	DRM_SCHED_PRIORITY_MIN,
+ 	DRM_SCHED_PRIORITY_NORMAL,
+ 	DRM_SCHED_PRIORITY_HIGH,
++	DRM_SCHED_PRIORITY_VERY_HIGH,
+ 	DRM_SCHED_PRIORITY_KERNEL,
+ 
+ 	DRM_SCHED_PRIORITY_COUNT,
 -- 
 2.40.0
 
