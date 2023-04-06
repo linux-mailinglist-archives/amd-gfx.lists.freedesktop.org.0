@@ -1,110 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60D196D8CC6
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Apr 2023 03:33:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC96C6D911D
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Apr 2023 10:04:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 823AE10E0DB;
-	Thu,  6 Apr 2023 01:33:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EC7210EB04;
+	Thu,  6 Apr 2023 08:04:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on20614.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e88::614])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD39C10E0DB
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Apr 2023 01:33:43 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hRC8kQomcAPi1m/fo9S/jWNm8n4IYlFjQHhPPHk+Cu4Jw1qGILviG8X9ogdKMm2Z9CekGowZsmtqVueNrNayqrPUsi028H7GqylbLDv7tPXEZkv+HwqareWQbubQ3C8m1U68suqE2Ak6JNe0HQ/MCsEEVTlV+sSTqA8zA4tqubYLE91FuBxsFw2iGOVLiylK3XTdzOkeL7hCcVfr0iCqdR9LjkVyTYa7y5G5SD/Az9zDmSXZB382W8AZ69d34oRfW0xJmfaa1ajz3Rq+w6eN+WcMNtU122eXmlrpHCi510Thz50SaGekoDzAxeHEJ164IRFWzkwhGKRaXuktwZWhmA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LiCg1TEW62R/cFU8kUhrU1Ii+qbLXA6cRWKdNQeC648=;
- b=LAIrCioQn1TCYPSp6tZZTwghYBJE0AWJAnexLnklAAtodf1NGePQjFN53e6548x0N2WEBXobYtrj2R3PCmXew7JaRfMPB5bL5TD3npfrXbNoznQqvI0GQITIfdRhD1oz1S6CMFUaCCIkLNMl5eUByUdDBzNajH/697hEPG00tk5TIoYgloDUQNIztrzdYV22Zmy8eVw8EPES61O1qDnWK5BQ1RE7YhoGxpaYRSuh4tDNcUZsmVlAJLRpliuAtVd3zw9Uu+75uvDnZoWHE1c7T8FCXp+NgSJizAed8oFiJZl7HAGypkkQyxkKqpejzZmNohAvmcOE9/M9/Ee2fe4OUA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LiCg1TEW62R/cFU8kUhrU1Ii+qbLXA6cRWKdNQeC648=;
- b=fVttRt6vRNKmPygz4wETYNyFLwHJEu2ezcHl6OtGIzYhO4Oaeeot+Wun6crYjWsm+rIvHPeqyqBTYYyvl0vPpG3IRW9gotj9wHKnRPlrXcFEjH5Doy0bAmK2EcRN4iNYYQeUDEWAT/DTr8cgC4AtS4Q4msihtsxX+QynDQ+Jwd0=
-Received: from DM5PR12MB2469.namprd12.prod.outlook.com (2603:10b6:4:af::38) by
- SA3PR12MB7832.namprd12.prod.outlook.com (2603:10b6:806:31f::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.35; Thu, 6 Apr
- 2023 01:33:39 +0000
-Received: from DM5PR12MB2469.namprd12.prod.outlook.com
- ([fe80::dd8d:b994:aaaa:c8a1]) by DM5PR12MB2469.namprd12.prod.outlook.com
- ([fe80::dd8d:b994:aaaa:c8a1%7]) with mapi id 15.20.6254.035; Thu, 6 Apr 2023
- 01:33:39 +0000
-From: "Chen, Guchun" <Guchun.Chen@amd.com>
-To: "Lazar, Lijo" <Lijo.Lazar@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amdgpu: Fix warnings
-Thread-Topic: [PATCH] drm/amdgpu: Fix warnings
-Thread-Index: AQHZZ6NyAoGIK9wXnkGknGgbKvhmr68dgDRA
-Date: Thu, 6 Apr 2023 01:33:39 +0000
-Message-ID: <DM5PR12MB2469C4097EC87663CC07011DF1919@DM5PR12MB2469.namprd12.prod.outlook.com>
-References: <20230405094540.2935900-1-lijo.lazar@amd.com>
-In-Reply-To: <20230405094540.2935900-1-lijo.lazar@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM5PR12MB2469:EE_|SA3PR12MB7832:EE_
-x-ms-office365-filtering-correlation-id: 40fef6e8-f4b8-4a7e-b7a6-08db363ef30d
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: aG0Qt+3JNhHZmiztnVZjslz1ki2qEm0f8rMwdT65WCL5+BBHYY8NEbWBM1+3L3KKxHg98RBEzLa1/2ypD+h/YwF0CP/cNiKKbCUpN5MAXrCGLRumyJ17Kc2dxYzP6uuQtGajB9KcB0qCGIi3zdCTZ/iiavqs1W4yX+BItnHpSTP3ph7bRykOjV3txSTyJy1FbS1e4AsasvGoeZU9myI6wU50hzLn7SZ2TkHRQ61UeFL5Kv1umrIyTa4OZFjVaifImNJYQdD+dnjCPEy5lSf+sChKxOgNeene0Wakws92ra9mA5NhICloFGf5AD6tua23NG/JJuL+geL2NXMgwM7W/RFTcwVQxqxyP5pj2D0HG5DbrgnEopfdR4+gsHu5RcBuN4kHtJaSj9yP1tzgSioXF9DiaBjhO/4fOwqVCWWUuhdde9Siyeq0srwX4oguatRbXMHL8yaBbsIjXVsg59p3XsKMnP1BKKsfdkBfHilkLijzSrHDggZyRwSzL000vLfgtjn3EizgZuF5z1etR9rhpYfd39OIOCi0fwnSF2Ed6OxoRjhLZXuQ6dumfFGo/TJqsw5n0/NJgUhPVu0I16SN3jxmeNO0MZBiZitiwZVgnd0=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR12MB2469.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(366004)(346002)(376002)(136003)(39860400002)(451199021)(41300700001)(33656002)(186003)(86362001)(9686003)(53546011)(6506007)(55016003)(26005)(5660300002)(110136005)(54906003)(8936002)(316002)(478600001)(52536014)(66446008)(66476007)(4326008)(64756008)(8676002)(76116006)(66946007)(66556008)(71200400001)(7696005)(38100700002)(122000001)(2906002)(83380400001)(966005)(38070700005);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?GTJ19KJF/dfS1so2bRDRSmT+z8cbGbMDbW0mcuSTroBShWmzQyNaSm6jqamf?=
- =?us-ascii?Q?FxzFzEQmI4xG2xVSizROrCOlXo8r2L/pJ0UDfezPrE8awG4V8oLLn7m85aVc?=
- =?us-ascii?Q?iZay1xY2g11w0Cp2GdnMKZ7mPc7FCEsBdonUT7Mjl0RTrtWNL/PVaNa9ub6r?=
- =?us-ascii?Q?evW4Ro6k5T3u4MbfsIDkdKst9XJyPQ8j1fY47DIL6WQnnGyFkmIYQFrKwli7?=
- =?us-ascii?Q?+bqysVhZRxab/ILgd1pd9xXCcAYAvkWU26jPUO3jQSJDZTf4T+JxJvG8lEdq?=
- =?us-ascii?Q?REt87oCoIpSsb+dUWHwH1gF2fUtkTMVzjAdcE+Q0g9VPHgMUxma8LjcC2prx?=
- =?us-ascii?Q?EjJ/Sld3yTWp8/K+QmofzmjxWzeD7G9ygm7Qk8IOXXW5hXqBY2XU0bxaqF0a?=
- =?us-ascii?Q?ez1vtWEuwDx46MDDCqv0UnJIt+Cfz4NCwtRLixS76aRdDhb/imEsZxqb2P/a?=
- =?us-ascii?Q?xeMF0zw9eqkA8gOqFikLmyOBYz04PIjzW88Kxu1XPFQTgaRNCRU1IK5Ad5cB?=
- =?us-ascii?Q?EqHIEk+ATKBSA5KwJT+snTirLAUcp/OwkeVK8B0VckoOR+LsjEJbYCwmoQq7?=
- =?us-ascii?Q?TbIPpJAwydufq42Gb5qbV1F05h7sKiaRIBtIfHlY+fIo/fTZEp2vXY/LK41k?=
- =?us-ascii?Q?RgGa0ZX54tg5fDEDELExkJLkmYdI39NGkm66Zs+vqmMK01c8tYhRd+c1R1RT?=
- =?us-ascii?Q?tqVlTZD3WeBdbd/3UQM7gj5A0l8tF7S1OJw+OHYOdRWi17LvsAi+6dorXdyR?=
- =?us-ascii?Q?kx0uPgZseRACMcfOFhr9fA/DRPROsfsShY2sI4jqTmlRY8edxVki0XiYta6u?=
- =?us-ascii?Q?gLC6WLSB+U2ULl7ma8KoNXxTBepOBy7X7IryflI42Ntp17hhjTv7bJaxH87b?=
- =?us-ascii?Q?fHRlIg27wpkB5JhBu0yxDhLwVwJ/XcB6NiAgpvcL4XwWdIWc59i8EQjzfRb9?=
- =?us-ascii?Q?lVMZf46gBp4CVmNbLZxdj/8KjNovx63fXoDv7M1A56wzirOhSd+J7pdxLY+p?=
- =?us-ascii?Q?DwM5n3Uvdaoc054skg9IAUbK8G3mRr8q2ZGa+k5Zb+MMqozgZgYI+s+P3H8N?=
- =?us-ascii?Q?fCWVpJ3N4B584Cbm2ef5aVdj0yEZx4WSxZRPnAYRLJ/pSnxGjpMF1uISXBsc?=
- =?us-ascii?Q?vPrE+amXaUTYuy2mhAVhbfmVKpknDGcbfjpVr0Qot6eCxJUH30vDuAzeHO//?=
- =?us-ascii?Q?70s4gPI6iqu1zONOM+mmcc5GW6ju+wF6sMDLVDycUp1IVJsSxCLko7J3qy+Y?=
- =?us-ascii?Q?TweQRpYZyW6ubOxcl7Zv6+yxmVQGRepmRsNhPRMC4N3ZZr3CIjbgGOwER+qT?=
- =?us-ascii?Q?l7aWHpmN1ZSUZweMvIu+XOQuVCkC98uAzM/WuqZTFcdPTAv3jQ3BLKsyv4VF?=
- =?us-ascii?Q?vcWZi8mC84QuDb/sGuA/3q3gfN/xEAZZs4h+Nje0f4eO8hRSXYHtJivnt8dm?=
- =?us-ascii?Q?H5WsMG1JkdZVLbjH1/6TofeXUJ829kjZ5CQ5bO5f/YgrUgXgopzUDigUFEAU?=
- =?us-ascii?Q?KnCcWKxyDPuAddvsfEOK2+PT4aztqF/c/toh2Y0SsIUuPdWw6HytrYASMUcv?=
- =?us-ascii?Q?AxHjbdM2JJtkuA7zGA0=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com
+ [IPv6:2607:f8b0:4864:20::829])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E53E10EAEA
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Apr 2023 06:25:01 +0000 (UTC)
+Received: by mail-qt1-x829.google.com with SMTP id h3so10441753qtu.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 23:25:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1680762300;
+ h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=LrETg5K1WxrjG92hDMvBvAcI0yVnKFBZ3mX9X7d+ci4=;
+ b=QFyBcAS11O8A2DVvrGeXadYzl5ZMEviq0EamRBG4lWeevXM/Ndhcyj5IvDfZbOwJ7S
+ iBzQOUj/i0aUf7ubMb26m3GyvDw4caR2wushhZz20B3ss8lHw8l2+HA8S0ptIpCAYEDN
+ /990uZiKl0D6RhyituBJTfW+bzqjVkR4lbPs25nVjvi0dMsZ0wk+ZaHc+QVVb5tAel67
+ 5a7bEd6hRULGELFzn6EpSktrI260nHvRjzun/0CVdQ0Di5tmKvQ9KgeKC/yQeMnul4zX
+ FDniSNgRV1rg2JEexjwuW9m9fyE0LgvLR1tXbN9aT/JJeBlGJ4ows9LyT6Xp1GsEw468
+ uXYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680762300;
+ h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=LrETg5K1WxrjG92hDMvBvAcI0yVnKFBZ3mX9X7d+ci4=;
+ b=G5IqXho7wm9IyvaJ+Ny7IOFBY8jQ3WM0qmxaNarnutWhgoaMeI55rIAG8LMjRov7gV
+ itWBfosQu9w5rJitgMAkMQ7YFCLHxOmsM+Hf+DPi0j0koIBePSsgwxfgsOHque3IR3Oe
+ WyCB/w7AaIrgbjz2FB03X4L+FBMmHnUgJpAzi6L5VOSqzy3hib0OfPbUntUmEIIYoiJc
+ 3r+y301Eq3vRck4MLQKD2rGD8VgLRO8JB3uemum/5M4fD4ybKpwfJ/f6NLL3DUMSDH8K
+ zGwbQjsR05Tc5uvmdBWiaJ6USKQEb7wTtm4575oMJ0DcXE0kUp0iqH3nVatKlYPY9l4x
+ LjGw==
+X-Gm-Message-State: AAQBX9eoUTSg12JD3Lw6GIMRxTFN11POttGkd8Y8aUOGZLxYBes/zE8q
+ NrfKM/pIx4GR63wn4HdiDStcGZn9FsS2e3n35ZDQksltisE=
+X-Google-Smtp-Source: AKy350Y++iPbM0ghSygi/TB+JUTcOMxk2eQJELQT0aYFbyrsxBO8tIJWZP+AQKGi/2smkYkvaUhY5YPbjGl7UJKNy/Q=
+X-Received: by 2002:a05:622a:1c8:b0:3d9:650a:7a9f with SMTP id
+ t8-20020a05622a01c800b003d9650a7a9fmr2158444qtw.3.1680762300043; Wed, 05 Apr
+ 2023 23:25:00 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB2469.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40fef6e8-f4b8-4a7e-b7a6-08db363ef30d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Apr 2023 01:33:39.6262 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 5auhyXMHl8RS5Pe9TosjrcY0LlkmUXPNB9QUGEcZGMgn/ImBITbBW8rAwwOItEWH4YAjyam8am/50FGDJH1AsQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7832
+From: __- -__ <isapgswell@gmail.com>
+Date: Thu, 6 Apr 2023 03:24:44 -0300
+Message-ID: <CAN9WMdMkC+DTKE=SC2HX7yP3dh0Hoy-i55UtNv1wtkHMcv8d4w@mail.gmail.com>
+Subject: [INNOVATION] AMD nvme (pcie 4.0)
+To: amd-gfx@lists.freedesktop.org
+Content-Type: multipart/alternative; boundary="000000000000d893ca05f8a4f7cc"
+X-Mailman-Approved-At: Thu, 06 Apr 2023 08:04:50 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,59 +62,104 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- kernel test robot <lkp@intel.com>, "Zhang, Hawking" <Hawking.Zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Guchun Chen <guchun.chen@amd.com>
+--000000000000d893ca05f8a4f7cc
+Content-Type: text/plain; charset="UTF-8"
 
-> -----Original Message-----
-> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Lijo
-> Lazar
-> Sent: Wednesday, April 5, 2023 5:46 PM
-> To: amd-gfx@lists.freedesktop.org
-> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; kernel test robot
-> <lkp@intel.com>; Zhang, Hawking <Hawking.Zhang@amd.com>
-> Subject: [PATCH] drm/amdgpu: Fix warnings
->=20
-> Fix below warning due to incompatible types in conditional operator
->=20
-> ../pm/swsmu/smu13/smu_v13_0_6_ppt.c:315:17: sparse: sparse:
-> incompatible types in conditional expression (different base types):
->=20
-> Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
-> Reported-by: kernel test robot <lkp@intel.com>
-> Link: https://lore.kernel.org/oe-kbuild-all/202303082135.NjdX1Bij-
-> lkp@intel.com/
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> index bbac4239ceb3..376d14de7602 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> @@ -1241,7 +1241,7 @@ int emu_soc_asic_init(struct amdgpu_device
-> *adev);
->  	((adev)->asic_funcs->flush_hdp ? (adev)->asic_funcs-
-> >flush_hdp((adev), (r)) : (adev)->hdp.funcs->flush_hdp((adev), (r)))  #de=
-fine
-> amdgpu_asic_invalidate_hdp(adev, r) \
->  	((adev)->asic_funcs->invalidate_hdp ? (adev)->asic_funcs-
-> >invalidate_hdp((adev), (r)) : \
-> -	 ((adev)->hdp.funcs->invalidate_hdp ? (adev)->hdp.funcs-
-> >invalidate_hdp((adev), (r)) : 0))
-> +	 ((adev)->hdp.funcs->invalidate_hdp ?
-> +(adev)->hdp.funcs->invalidate_hdp((adev), (r)) : (void)0))
->  #define amdgpu_asic_need_full_reset(adev) (adev)->asic_funcs-
-> >need_full_reset((adev))
->  #define amdgpu_asic_init_doorbell_index(adev) (adev)->asic_funcs-
-> >init_doorbell_index((adev))
->  #define amdgpu_asic_get_pcie_usage(adev, cnt0, cnt1) ((adev)->asic_funcs=
--
-> >get_pcie_usage((adev), (cnt0), (cnt1)))
-> --
-> 2.25.1
+Hi,
 
+I have read on the internet that asrock launched a nvme pcie gpu.
+
+On Linux distros we dont have support to graphics 3D and stream processors
+(opencl) simultaneously like windows 10/11.
+
+My notebook have two nvme slots.
+
+So, why not a amd's dedicated nvme vram (video ram) devices?
+
+It would represent a high improvement to VR (virtual reality), AR
+(augmented reality), deep learning, machine learning, IA (artificial
+inteligence [constraints]), stereo 3D, real time and more realistic gaming
+8k/16k/+k, etc
+
+With this we can even implement tickless gpu/graphics/apis/drivers/kernel.
+
+Valve's source 2 engine now have this feature (tickless [sub-ticks]).
+That's wonderfull!
+
+What about tickless X11(xorg)/Wayland and all Linux graphics stack. No more
+render delays nor input lag ;)
+
+A amd's dedicated nvme ( pcie 4.0 x8 or x16 ) nvram :D
+
+APU + dGPU with an optional dedicated nvme (nvram) for both (opencl rules)
+
+What about opencl thundercache, turbo opencl or opencl boost? Why not all
+of this mixed stages on-demand?
+
+We dont have yet a known way to "overclock" opencl by gpu exclusively.
+Maybe AMD software's can do the job. Less or no race condition anymore.
+
+Intel has dedicated desktop gpus, its oficial, but i dont know intel's
+roadmap for mobile. AMD has the oportunity to make notebooks powerful like
+workstations and desktops.
+
+Dont forget this "new" device run coldest as possible. Heat sink, thermal
+pads, etc.
+
+Valve's steam deck have made progress about that.
+
+Apple has a macbook air with no active cooler system.
+
+Think about it ...
+
+Thank you!
+
+Luiz
+
+--000000000000d893ca05f8a4f7cc
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div dir=3D"auto"><br></div><div dir=3D"auto">I have re=
+ad on the internet that asrock launched a nvme pcie gpu.</div><div dir=3D"a=
+uto"><br></div><div dir=3D"auto">On Linux distros we dont have support to g=
+raphics 3D and stream processors (opencl) simultaneously like windows 10/11=
+.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">My notebook have=
+ two nvme slots.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">S=
+o, why not a amd&#39;s dedicated nvme vram (video ram) devices?</div><div d=
+ir=3D"auto"><br></div><div dir=3D"auto">It
+ would represent a high improvement to VR (virtual reality), AR=20
+(augmented reality), deep learning, machine learning, IA (artificial=20
+inteligence [constraints]), stereo 3D, real time and=20
+more realistic gaming 8k/16k/+k, etc</div><div dir=3D"auto"><br></div><div =
+dir=3D"auto">With this we can even implement tickless gpu/graphics/apis/dri=
+vers/kernel.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Valve&#39;s=
+ source 2 engine now have this feature (tickless [sub-ticks]). That&#39;s w=
+onderfull!</div><div dir=3D"auto"><br></div><div dir=3D"auto">What about ti=
+ckless X11(xorg)/Wayland and all Linux graphics stack. No more render delay=
+s nor input lag ;)</div><div dir=3D"auto"><br></div><div dir=3D"auto">A amd=
+&#39;s dedicated nvme ( pcie 4.0 x8 or x16 ) nvram :D</div><div dir=3D"auto=
+"><br></div><div>APU + dGPU with an optional dedicated nvme (nvram) for bot=
+h (opencl rules)<br></div><div dir=3D"auto"><br></div><div dir=3D"auto">Wha=
+t about opencl thundercache, turbo opencl or opencl boost? Why not all of t=
+his mixed stages on-demand?</div><div dir=3D"auto"><br></div><div dir=3D"au=
+to">We dont have yet a known way to &quot;overclock&quot; opencl by gpu exc=
+lusively. Maybe AMD software&#39;s can do the job. Less or no race conditio=
+n anymore.<br></div><div dir=3D"auto"><br></div><div dir=3D"auto">Intel
+ has dedicated desktop gpus, its oficial, but i dont know intel&#39;s=20
+roadmap for mobile. AMD has the oportunity to make notebooks powerful=20
+like workstations and desktops.</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">Dont forget this &quot;new&quot; device run coldest as possible. =
+Heat sink, thermal pads, etc.</div><div dir=3D"auto"><br></div><div dir=3D"=
+auto">Valve&#39;s steam deck have made progress about that.</div><div dir=
+=3D"auto"><br></div><div>Apple has a macbook air with no active cooler syst=
+em.<br></div><div dir=3D"auto"><br></div><div dir=3D"auto">Think about it .=
+..</div><div dir=3D"auto"><br></div><div dir=3D"auto">Thank you!</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto">Luiz</div><div class=3D"gmail-yj6q=
+o"></div><div dir=3D"auto" class=3D"gmail-adL"><br></div><div dir=3D"auto" =
+class=3D"gmail-adL"><br><br></div></div>
+
+--000000000000d893ca05f8a4f7cc--
