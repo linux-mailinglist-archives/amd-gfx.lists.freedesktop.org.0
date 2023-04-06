@@ -1,56 +1,61 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC96C6D911D
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Apr 2023 10:04:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73ADC6D908E
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Apr 2023 09:37:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EC7210EB04;
-	Thu,  6 Apr 2023 08:04:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BC5B10EAF9;
+	Thu,  6 Apr 2023 07:37:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com
- [IPv6:2607:f8b0:4864:20::829])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E53E10EAEA
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Apr 2023 06:25:01 +0000 (UTC)
-Received: by mail-qt1-x829.google.com with SMTP id h3so10441753qtu.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 05 Apr 2023 23:25:01 -0700 (PDT)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com
+ [IPv6:2a00:1450:4864:20::630])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94A4810EAFB
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Apr 2023 07:37:01 +0000 (UTC)
+Received: by mail-ej1-x630.google.com with SMTP id
+ a640c23a62f3a-935558f9f01so82453866b.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 06 Apr 2023 00:37:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1680762300;
- h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=LrETg5K1WxrjG92hDMvBvAcI0yVnKFBZ3mX9X7d+ci4=;
- b=QFyBcAS11O8A2DVvrGeXadYzl5ZMEviq0EamRBG4lWeevXM/Ndhcyj5IvDfZbOwJ7S
- iBzQOUj/i0aUf7ubMb26m3GyvDw4caR2wushhZz20B3ss8lHw8l2+HA8S0ptIpCAYEDN
- /990uZiKl0D6RhyituBJTfW+bzqjVkR4lbPs25nVjvi0dMsZ0wk+ZaHc+QVVb5tAel67
- 5a7bEd6hRULGELFzn6EpSktrI260nHvRjzun/0CVdQ0Di5tmKvQ9KgeKC/yQeMnul4zX
- FDniSNgRV1rg2JEexjwuW9m9fyE0LgvLR1tXbN9aT/JJeBlGJ4ows9LyT6Xp1GsEw468
- uXYQ==
+ d=gmail.com; s=20210112; t=1680766619;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=gbsDqbSBHQwXTlRUAiPKDxp0WVbtKCmJGITby+obRwc=;
+ b=T5F+oPR/8Te/q6DB43f2csrYX+28CfiWFPP8ZD1Az328X0K2y492+LCEvkRlmxp0nH
+ 5Z2+G/rGDrsv26vfWbZuVwmaMFxeAzLEmILyGwlc3aVxOr1SQTqLvFNKb6KKrF/Xh3et
+ iE8ZxYFkKT3RdiLG/NBb6tU9DtA6yUHvcDHjGvUm7SJSRc5LBT90au38fdkjArhCqrsK
+ jcGUQBpE9Df/evEUA2P2XRDWc5bFoMEnqQfynKXdZAQ3guuLKQY+/8AE0rJ1NNQYTmnV
+ 0zWgVKz5pEYBkB1LYE2egyFir91ALRnNWgYKKCzWlu0mBtXjI2MEjhsdmgkAdzUrjxEa
+ oJ3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680762300;
- h=to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=LrETg5K1WxrjG92hDMvBvAcI0yVnKFBZ3mX9X7d+ci4=;
- b=G5IqXho7wm9IyvaJ+Ny7IOFBY8jQ3WM0qmxaNarnutWhgoaMeI55rIAG8LMjRov7gV
- itWBfosQu9w5rJitgMAkMQ7YFCLHxOmsM+Hf+DPi0j0koIBePSsgwxfgsOHque3IR3Oe
- WyCB/w7AaIrgbjz2FB03X4L+FBMmHnUgJpAzi6L5VOSqzy3hib0OfPbUntUmEIIYoiJc
- 3r+y301Eq3vRck4MLQKD2rGD8VgLRO8JB3uemum/5M4fD4ybKpwfJ/f6NLL3DUMSDH8K
- zGwbQjsR05Tc5uvmdBWiaJ6USKQEb7wTtm4575oMJ0DcXE0kUp0iqH3nVatKlYPY9l4x
- LjGw==
-X-Gm-Message-State: AAQBX9eoUTSg12JD3Lw6GIMRxTFN11POttGkd8Y8aUOGZLxYBes/zE8q
- NrfKM/pIx4GR63wn4HdiDStcGZn9FsS2e3n35ZDQksltisE=
-X-Google-Smtp-Source: AKy350Y++iPbM0ghSygi/TB+JUTcOMxk2eQJELQT0aYFbyrsxBO8tIJWZP+AQKGi/2smkYkvaUhY5YPbjGl7UJKNy/Q=
-X-Received: by 2002:a05:622a:1c8:b0:3d9:650a:7a9f with SMTP id
- t8-20020a05622a01c800b003d9650a7a9fmr2158444qtw.3.1680762300043; Wed, 05 Apr
- 2023 23:25:00 -0700 (PDT)
+ d=1e100.net; s=20210112; t=1680766619;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=gbsDqbSBHQwXTlRUAiPKDxp0WVbtKCmJGITby+obRwc=;
+ b=2UMsrLQpa/RkclcPy7h0x5viUXg0E9D9IF5Tc6XU9mpiLPSRrK7qSvDfGNAz5XwS+T
+ 5KyWYn3gDbWVSeUvT0HKUCBZBiyMIKk2m2t9UN4RjlEw624m3Yu4lrGHHgEzaxnckhTx
+ 2UZ31ugWC5X911M/v8+DTOFroiGGACrFj30x+zBy5IxpDCshmyHRcHnuCgOlr8vDbI1n
+ W8ASfG+aYA7bdJa6hVUuInAcUbDIw4FAFSt2YK/RqSJ9XwGrMAck4RcQVktcyfRfdZdT
+ 92Lcfbq9FTIKvFnR/7ugXjboL8cN/MlsfqPeK5L2GCLeh3W2zULKaTHHjU2Y7pczqy7V
+ Rnpw==
+X-Gm-Message-State: AAQBX9fdkY04G6vzTyIc1FxF8otxC8pfDx8mJW8PBvmEAlB/jEjMXHKD
+ HYMWDfWXrN3tuj1xyYdyTGiAnZ7olrOv7hz5dEpmcUFg
+X-Google-Smtp-Source: AKy350Z6DnplH1dB8wFu4RmR05L5lWe6PwlmX8IRlPGk5Ze8zCqjQ2KKdtOS9rncnZmQlkoZ52/s8rZu6zsK5GfBzDU=
+X-Received: by 2002:a50:9f2d:0:b0:501:c965:33bd with SMTP id
+ b42-20020a509f2d000000b00501c96533bdmr2561828edf.6.1680766619426; Thu, 06 Apr
+ 2023 00:36:59 -0700 (PDT)
 MIME-Version: 1.0
-From: __- -__ <isapgswell@gmail.com>
-Date: Thu, 6 Apr 2023 03:24:44 -0300
-Message-ID: <CAN9WMdMkC+DTKE=SC2HX7yP3dh0Hoy-i55UtNv1wtkHMcv8d4w@mail.gmail.com>
-Subject: [INNOVATION] AMD nvme (pcie 4.0)
-To: amd-gfx@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="000000000000d893ca05f8a4f7cc"
-X-Mailman-Approved-At: Thu, 06 Apr 2023 08:04:50 +0000
+References: <20230330191750.1134210-1-alexander.deucher@amd.com>
+ <20230330191750.1134210-4-alexander.deucher@amd.com>
+In-Reply-To: <20230330191750.1134210-4-alexander.deucher@amd.com>
+From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
+Date: Thu, 6 Apr 2023 03:36:22 -0400
+Message-ID: <CAAxE2A7nvmXdUaXESi4g6HVBFxk+dooz7tZYQfjGE8O2fKFi-w@mail.gmail.com>
+Subject: Re: [PATCH 03/13] drm/amdgpu/UAPI: add new CS chunk for GFX shadow
+ buffers
+To: Alex Deucher <alexander.deucher@amd.com>
+Content-Type: multipart/alternative; boundary="0000000000004d24a905f8a5f943"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,104 +67,134 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---000000000000d893ca05f8a4f7cc
+--0000000000004d24a905f8a5f943
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+gds_va is unnecessary.
 
-I have read on the internet that asrock launched a nvme pcie gpu.
+Marek
 
-On Linux distros we dont have support to graphics 3D and stream processors
-(opencl) simultaneously like windows 10/11.
+On Thu, Mar 30, 2023 at 3:18=E2=80=AFPM Alex Deucher <alexander.deucher@amd=
+.com>
+wrote:
 
-My notebook have two nvme slots.
+> For GFX11, the UMD needs to allocate some shadow buffers
+> to be used for preemption.  The UMD allocates the buffers
+> and passes the GPU virtual address to the kernel since the
+> kernel will program the packet that specified these
+> addresses as part of its IB submission frame.
+>
+> v2: UMD passes shadow init to tell kernel when to initialize
+>     the shadow
+>
+> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>  include/uapi/drm/amdgpu_drm.h | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+>
+> diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.=
+h
+> index b6eb90df5d05..3d9474af6566 100644
+> --- a/include/uapi/drm/amdgpu_drm.h
+> +++ b/include/uapi/drm/amdgpu_drm.h
+> @@ -592,6 +592,7 @@ struct drm_amdgpu_gem_va {
+>  #define AMDGPU_CHUNK_ID_SCHEDULED_DEPENDENCIES 0x07
+>  #define AMDGPU_CHUNK_ID_SYNCOBJ_TIMELINE_WAIT    0x08
+>  #define AMDGPU_CHUNK_ID_SYNCOBJ_TIMELINE_SIGNAL  0x09
+> +#define AMDGPU_CHUNK_ID_CP_GFX_SHADOW   0x0a
+>
+>  struct drm_amdgpu_cs_chunk {
+>         __u32           chunk_id;
+> @@ -708,6 +709,15 @@ struct drm_amdgpu_cs_chunk_data {
+>         };
+>  };
+>
+> +#define AMDGPU_CS_CHUNK_CP_GFX_SHADOW_FLAGS_INIT_SHADOW         0x1
+> +
+> +struct drm_amdgpu_cs_chunk_cp_gfx_shadow {
+> +       __u64 shadow_va;
+> +       __u64 csa_va;
+> +       __u64 gds_va;
+> +       __u64 flags;
+> +};
+> +
+>  /*
+>   *  Query h/w info: Flag that this is integrated (a.h.a. fusion) GPU
+>   *
+> --
+> 2.39.2
+>
+>
 
-So, why not a amd's dedicated nvme vram (video ram) devices?
-
-It would represent a high improvement to VR (virtual reality), AR
-(augmented reality), deep learning, machine learning, IA (artificial
-inteligence [constraints]), stereo 3D, real time and more realistic gaming
-8k/16k/+k, etc
-
-With this we can even implement tickless gpu/graphics/apis/drivers/kernel.
-
-Valve's source 2 engine now have this feature (tickless [sub-ticks]).
-That's wonderfull!
-
-What about tickless X11(xorg)/Wayland and all Linux graphics stack. No more
-render delays nor input lag ;)
-
-A amd's dedicated nvme ( pcie 4.0 x8 or x16 ) nvram :D
-
-APU + dGPU with an optional dedicated nvme (nvram) for both (opencl rules)
-
-What about opencl thundercache, turbo opencl or opencl boost? Why not all
-of this mixed stages on-demand?
-
-We dont have yet a known way to "overclock" opencl by gpu exclusively.
-Maybe AMD software's can do the job. Less or no race condition anymore.
-
-Intel has dedicated desktop gpus, its oficial, but i dont know intel's
-roadmap for mobile. AMD has the oportunity to make notebooks powerful like
-workstations and desktops.
-
-Dont forget this "new" device run coldest as possible. Heat sink, thermal
-pads, etc.
-
-Valve's steam deck have made progress about that.
-
-Apple has a macbook air with no active cooler system.
-
-Think about it ...
-
-Thank you!
-
-Luiz
-
---000000000000d893ca05f8a4f7cc
+--0000000000004d24a905f8a5f943
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div dir=3D"auto"><br></div><div dir=3D"auto">I have re=
-ad on the internet that asrock launched a nvme pcie gpu.</div><div dir=3D"a=
-uto"><br></div><div dir=3D"auto">On Linux distros we dont have support to g=
-raphics 3D and stream processors (opencl) simultaneously like windows 10/11=
-.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">My notebook have=
- two nvme slots.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">S=
-o, why not a amd&#39;s dedicated nvme vram (video ram) devices?</div><div d=
-ir=3D"auto"><br></div><div dir=3D"auto">It
- would represent a high improvement to VR (virtual reality), AR=20
-(augmented reality), deep learning, machine learning, IA (artificial=20
-inteligence [constraints]), stereo 3D, real time and=20
-more realistic gaming 8k/16k/+k, etc</div><div dir=3D"auto"><br></div><div =
-dir=3D"auto">With this we can even implement tickless gpu/graphics/apis/dri=
-vers/kernel.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Valve&#39;s=
- source 2 engine now have this feature (tickless [sub-ticks]). That&#39;s w=
-onderfull!</div><div dir=3D"auto"><br></div><div dir=3D"auto">What about ti=
-ckless X11(xorg)/Wayland and all Linux graphics stack. No more render delay=
-s nor input lag ;)</div><div dir=3D"auto"><br></div><div dir=3D"auto">A amd=
-&#39;s dedicated nvme ( pcie 4.0 x8 or x16 ) nvram :D</div><div dir=3D"auto=
-"><br></div><div>APU + dGPU with an optional dedicated nvme (nvram) for bot=
-h (opencl rules)<br></div><div dir=3D"auto"><br></div><div dir=3D"auto">Wha=
-t about opencl thundercache, turbo opencl or opencl boost? Why not all of t=
-his mixed stages on-demand?</div><div dir=3D"auto"><br></div><div dir=3D"au=
-to">We dont have yet a known way to &quot;overclock&quot; opencl by gpu exc=
-lusively. Maybe AMD software&#39;s can do the job. Less or no race conditio=
-n anymore.<br></div><div dir=3D"auto"><br></div><div dir=3D"auto">Intel
- has dedicated desktop gpus, its oficial, but i dont know intel&#39;s=20
-roadmap for mobile. AMD has the oportunity to make notebooks powerful=20
-like workstations and desktops.</div><div dir=3D"auto"><br></div><div dir=
-=3D"auto">Dont forget this &quot;new&quot; device run coldest as possible. =
-Heat sink, thermal pads, etc.</div><div dir=3D"auto"><br></div><div dir=3D"=
-auto">Valve&#39;s steam deck have made progress about that.</div><div dir=
-=3D"auto"><br></div><div>Apple has a macbook air with no active cooler syst=
-em.<br></div><div dir=3D"auto"><br></div><div dir=3D"auto">Think about it .=
-..</div><div dir=3D"auto"><br></div><div dir=3D"auto">Thank you!</div><div =
-dir=3D"auto"><br></div><div dir=3D"auto">Luiz</div><div class=3D"gmail-yj6q=
-o"></div><div dir=3D"auto" class=3D"gmail-adL"><br></div><div dir=3D"auto" =
-class=3D"gmail-adL"><br><br></div></div>
+<div dir=3D"ltr"><div>gds_va is unnecessary.</div><div><br></div><div>Marek=
+<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
+ail_attr">On Thu, Mar 30, 2023 at 3:18=E2=80=AFPM Alex Deucher &lt;<a href=
+=3D"mailto:alexander.deucher@amd.com">alexander.deucher@amd.com</a>&gt; wro=
+te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">For GFX11, t=
+he UMD needs to allocate some shadow buffers<br>
+to be used for preemption.=C2=A0 The UMD allocates the buffers<br>
+and passes the GPU virtual address to the kernel since the<br>
+kernel will program the packet that specified these<br>
+addresses as part of its IB submission frame.<br>
+<br>
+v2: UMD passes shadow init to tell kernel when to initialize<br>
+=C2=A0 =C2=A0 the shadow<br>
+<br>
+Reviewed-by: Christian K=C3=B6nig &lt;<a href=3D"mailto:christian.koenig@am=
+d.com" target=3D"_blank">christian.koenig@amd.com</a>&gt;<br>
+Signed-off-by: Alex Deucher &lt;<a href=3D"mailto:alexander.deucher@amd.com=
+" target=3D"_blank">alexander.deucher@amd.com</a>&gt;<br>
+---<br>
+=C2=A0include/uapi/drm/amdgpu_drm.h | 10 ++++++++++<br>
+=C2=A01 file changed, 10 insertions(+)<br>
+<br>
+diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h<=
+br>
+index b6eb90df5d05..3d9474af6566 100644<br>
+--- a/include/uapi/drm/amdgpu_drm.h<br>
++++ b/include/uapi/drm/amdgpu_drm.h<br>
+@@ -592,6 +592,7 @@ struct drm_amdgpu_gem_va {<br>
+=C2=A0#define AMDGPU_CHUNK_ID_SCHEDULED_DEPENDENCIES 0x07<br>
+=C2=A0#define AMDGPU_CHUNK_ID_SYNCOBJ_TIMELINE_WAIT=C2=A0 =C2=A0 0x08<br>
+=C2=A0#define AMDGPU_CHUNK_ID_SYNCOBJ_TIMELINE_SIGNAL=C2=A0 0x09<br>
++#define AMDGPU_CHUNK_ID_CP_GFX_SHADOW=C2=A0 =C2=A00x0a<br>
+<br>
+=C2=A0struct drm_amdgpu_cs_chunk {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 __u32=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0c=
+hunk_id;<br>
+@@ -708,6 +709,15 @@ struct drm_amdgpu_cs_chunk_data {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 };<br>
+=C2=A0};<br>
+<br>
++#define AMDGPU_CS_CHUNK_CP_GFX_SHADOW_FLAGS_INIT_SHADOW=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A00x1<br>
++<br>
++struct drm_amdgpu_cs_chunk_cp_gfx_shadow {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 shadow_va;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 csa_va;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 gds_va;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 flags;<br>
++};<br>
++<br>
+=C2=A0/*<br>
+=C2=A0 *=C2=A0 Query h/w info: Flag that this is integrated (a.h.a. fusion)=
+ GPU<br>
+=C2=A0 *<br>
+-- <br>
+2.39.2<br>
+<br>
+</blockquote></div>
 
---000000000000d893ca05f8a4f7cc--
+--0000000000004d24a905f8a5f943--
