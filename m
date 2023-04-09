@@ -1,80 +1,63 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 926236DC42B
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 Apr 2023 10:05:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1D3E6DC070
+	for <lists+amd-gfx@lfdr.de>; Sun,  9 Apr 2023 16:47:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B76B10E230;
-	Mon, 10 Apr 2023 08:05:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF4B910E140;
+	Sun,  9 Apr 2023 14:46:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A49810E0D2
- for <amd-gfx@lists.freedesktop.org>; Sat,  8 Apr 2023 13:43:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1680961437;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=cWTGZwUDsK+ArhfUvsnQDdChpakeTyXMHjj4Kv1VcJU=;
- b=KieWFbmq1WnBk97p4I8uENpESW6+/s8uiTVC42y5gP72em1Vn7xFpV6eg5aMaSOKX0liEo
- i9EEIPkb/gWHyyC7RUfWZM7iCJxPwT38ErDCEQzzXmn1raOr/3ajLdAwrhVdx6i+ijkd6q
- y7wYwoSDXp5ajwqIVAcnVBVsq44n2RE=
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
- [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-296-kcE3p8CIPRC6Di1NGJs7sg-1; Sat, 08 Apr 2023 09:43:54 -0400
-X-MC-Unique: kcE3p8CIPRC6Di1NGJs7sg-1
-Received: by mail-qv1-f69.google.com with SMTP id
- o14-20020a0cc38e000000b005e62747d93aso3413314qvi.11
- for <amd-gfx@lists.freedesktop.org>; Sat, 08 Apr 2023 06:43:54 -0700 (PDT)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com
+ [IPv6:2a00:1450:4864:20::62a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D5FA10E140
+ for <amd-gfx@lists.freedesktop.org>; Sun,  9 Apr 2023 14:46:55 +0000 (UTC)
+Received: by mail-ej1-x62a.google.com with SMTP id
+ a640c23a62f3a-94706a972f3so45718666b.0
+ for <amd-gfx@lists.freedesktop.org>; Sun, 09 Apr 2023 07:46:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=basnieuwenhuizen.nl; s=google; t=1681051609; x=1683643609;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=oLmzVq0hxpZo50dklapmsCpWXglsYbkSNUJFkSRsb9s=;
+ b=J5ozYpbWYRhytESbBGfF7C6PIBL4XNPPlifYH1bgFhMcjuWUAc+XznOsfPioO3QeBl
+ 58ZtZlcQsTCV1yAY3uSbigidE9zqvsg+v306e6b4wacJ9DiGUAYfuYYPWe8vPbT0nlR/
+ l8P8BN7WiIudTGPTli1V+TBdzXdfaRHxPfyrklqp/hEAKuE2HETbJdxhXZLf1k0urWnU
+ IZcU1+g/dq8xFlr85CgXegNBSj6eSV0Yx6vhK5fpFHK+CPB43WrpHWOzKBY3ALVn9CWa
+ P1JwxeyDgXsHYrMVvoY9WcvfdV9BkMdk3i1/djjBE2W0lyuxTCt4QKlwA84Vp87sLSOM
+ bbOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680961433;
+ d=1e100.net; s=20210112; t=1681051609; x=1683643609;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=cWTGZwUDsK+ArhfUvsnQDdChpakeTyXMHjj4Kv1VcJU=;
- b=gyZCZX40xa3g3bu1o7tT4SPbsy655oUOkEArnPvLzmUqCMU/1c9M5tPpEicvutWSKI
- sKtjJfJDPxRDceWaPZuIcqBs1dNeOdGa3n6dRbAGrbYxN1oit8B41IaDOu3WbOIVrTMY
- 8zM15JVBc7EdSG+L6gfOet5CyWFJFHnSi37XtUC6sC0xc0nhW0FGp5WxkP34EiHT/ltE
- /KrjrnIn98Ebi/lvgTSpk7LqMMX0EBpl3UQyxW455Q9xubuPzpoPYe6hBuiW+1XfW5qN
- 8gcjNCKlCoNYy8TiQtKucheN0W+StNmQWCojCv8kn/Df1F5XKoGH5BUqQO6d4W89I0gA
- Cq8A==
-X-Gm-Message-State: AAQBX9dpExsRFxxwyfSe7GdIOU0FtgpHXSN/ppttitx3kgVQqJyvSnZJ
- K81Hy1ONp+a1csk6j1f0HbJfyGHyJ+Tx1KX4/QEOuHt/HlcRdKRWeqYApUGi+bejk9IOtcI3lT6
- 0BnSJIjAnAny+Z07BMxFyjuZzMA==
-X-Received: by 2002:a05:622a:1ba4:b0:3e6:6d82:3fd8 with SMTP id
- bp36-20020a05622a1ba400b003e66d823fd8mr3795517qtb.17.1680961433686; 
- Sat, 08 Apr 2023 06:43:53 -0700 (PDT)
-X-Google-Smtp-Source: AKy350YDlN+3ZRDKytX5Na9sWA4wfmdLE+QkD9JBOEgqvZpj+T/K9mAWJXM0MJJelMtg0nudO6TROA==
-X-Received: by 2002:a05:622a:1ba4:b0:3e6:6d82:3fd8 with SMTP id
- bp36-20020a05622a1ba400b003e66d823fd8mr3795488qtb.17.1680961433420; 
- Sat, 08 Apr 2023 06:43:53 -0700 (PDT)
-Received: from dell-per740-01.7a2m.lab.eng.bos.redhat.com
- (nat-pool-bos-t.redhat.com. [66.187.233.206])
+ bh=oLmzVq0hxpZo50dklapmsCpWXglsYbkSNUJFkSRsb9s=;
+ b=DZtNduqGJ3sZI8Ne5TIcYW7h1TxJvQ9Lz29ucf1Vd/jMr8ja/Eqh7lXx4A48Nj3cQW
+ qskd6BwZHrSlOp1pz29iNtUeRByLRqb3EEE6Hi6uLqkJSzyn9CNdD+5TbsbbztUV5jyy
+ oAjrE9KK5bMlMBqeZVDmdzRRyK3amGAn7F2+yOPE8nGd3fV4g3Z5Xo6+iAvPo8oDpY98
+ Kaz780sQp8kXGLWtmCv/IuFweGE+DRG+xFPjMfZcydZsJWMCUZcRsLFgNtcjMdRyf0bY
+ HpKiWOe/Xo8SyL1q8rouBTfjei7Tc1TxMdFtuxqImtUH+N/LfVVzAlIbHd39hzEbiMkH
+ su7g==
+X-Gm-Message-State: AAQBX9c3aQYzDyfPibn9HvDHZbtRRKMTCVmqHsjwCVAtrwcvcNDx6f8U
+ lns1X2HylDKH8eZIxodbLTzYbkDNP/+KnYs1yufumw==
+X-Google-Smtp-Source: AKy350bl6C/FVhEhpM4F0TpucjoV8ehXC8p42PaObXMxfd2MOzzkPTYXwzcICqcb1ZoSGHmAiMEnfQ==
+X-Received: by 2002:a17:906:73ca:b0:93b:dddf:4be2 with SMTP id
+ n10-20020a17090673ca00b0093bdddf4be2mr4370529ejl.3.1681051609676; 
+ Sun, 09 Apr 2023 07:46:49 -0700 (PDT)
+Received: from bas-workstation.. ([2a02:aa12:a782:cc00::ab])
  by smtp.gmail.com with ESMTPSA id
- h22-20020ac85056000000b003e302c1f498sm1833122qtm.37.2023.04.08.06.43.52
+ xj5-20020a170906db0500b00924d38bbdc0sm4155587ejb.105.2023.04.09.07.46.47
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 08 Apr 2023 06:43:53 -0700 (PDT)
-From: Tom Rix <trix@redhat.com>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch, Pavle.Kotarac@amd.com, Jun.Lei@amd.com,
- nicholas.kazlauskas@amd.com, Charlene.Liu@amd.com,
- aurabindo.pillai@amd.com, Dmytro.Laktyushkin@amd.com
-Subject: [PATCH] drm/amd/display: set variables dml*_funcs
- storage-class-specifier to static
-Date: Sat,  8 Apr 2023 09:43:48 -0400
-Message-Id: <20230408134348.2703105-1-trix@redhat.com>
-X-Mailer: git-send-email 2.27.0
+ Sun, 09 Apr 2023 07:46:48 -0700 (PDT)
+From: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/3] drm/amdgpu: Reject submissions with too many IBs.
+Date: Sun,  9 Apr 2023 16:44:43 +0200
+Message-Id: <20230409144445.374816-1-bas@basnieuwenhuizen.nl>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"; x-default=true
-X-Mailman-Approved-At: Mon, 10 Apr 2023 08:05:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,103 +69,70 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tom Rix <trix@redhat.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: alexander.deucher@amd.com, Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
+ christian.koenig@amd.com, maraeo@gmail.com, timur.kristof@gmail.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-smatch reports
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:44:24: warning: symbol
-  'dml20_funcs' was not declared. Should it be static?
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:51:24: warning: symbol
-  'dml20v2_funcs' was not declared. Should it be static?
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:58:24: warning: symbol
-  'dml21_funcs' was not declared. Should it be static?
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:65:24: warning: symbol
-  'dml30_funcs' was not declared. Should it be static?
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:72:24: warning: symbol
-  'dml31_funcs' was not declared. Should it be static?
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:79:24: warning: symbol
-  'dml314_funcs' was not declared. Should it be static?
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:86:24: warning: symbol
-  'dml32_funcs' was not declared. Should it be static?
+Instead of failing somewhere in the scheduler after the
+ioctl has already succeeded.
 
-These variables are only used in one file so should be static.
-Cleanup whitespace, use tabs consistently for indents.
-
-Signed-off-by: Tom Rix <trix@redhat.com>
+Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2498
+Signed-off-by: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
 ---
- .../drm/amd/display/dc/dml/display_mode_lib.c | 24 +++++++++----------
- 1 file changed, 12 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c  | 9 +++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 5 +++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h | 1 +
+ 3 files changed, 15 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_lib.c b/drivers/gpu/drm/amd/display/dc/dml/display_mode_lib.c
-index 4125d3d111d1..bdf3ac6cadd5 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_lib.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_lib.c
-@@ -41,51 +41,51 @@
- #include "dcn32/display_rq_dlg_calc_32.h"
- #include "dml_logger.h"
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+index 995ee9ff65c9..8db6618b9049 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+@@ -113,6 +113,15 @@ int amdgpu_job_alloc(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+ 	if (!entity)
+ 		return 0;
  
--const struct dml_funcs dml20_funcs = {
-+static const struct dml_funcs dml20_funcs = {
- 	.validate = dml20_ModeSupportAndSystemConfigurationFull,
- 	.recalculate = dml20_recalculate,
- 	.rq_dlg_get_dlg_reg = dml20_rq_dlg_get_dlg_reg,
- 	.rq_dlg_get_rq_reg = dml20_rq_dlg_get_rq_reg
- };
++	if (entity->rq && entity->rq->sched) {
++		struct amdgpu_ring *ring = to_amdgpu_ring(entity->rq->sched);
++
++		if (num_ibs > ring->max_ibs) {
++			DRM_DEBUG("Rejected a submission with too many IBs");
++			return -EINVAL;
++		}
++	}
++
+ 	return drm_sched_job_init(&(*job)->base, entity, owner);
+ }
  
--const struct dml_funcs dml20v2_funcs = {
-+static const struct dml_funcs dml20v2_funcs = {
- 	.validate = dml20v2_ModeSupportAndSystemConfigurationFull,
- 	.recalculate = dml20v2_recalculate,
- 	.rq_dlg_get_dlg_reg = dml20v2_rq_dlg_get_dlg_reg,
- 	.rq_dlg_get_rq_reg = dml20v2_rq_dlg_get_rq_reg
- };
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+index dc474b809604..933cb95a0e30 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+@@ -324,6 +324,11 @@ int amdgpu_ring_init(struct amdgpu_device *adev, struct amdgpu_ring *ring,
+ 	ring->max_dw = max_dw;
+ 	ring->hw_prio = hw_prio;
  
--const struct dml_funcs dml21_funcs = {
--        .validate = dml21_ModeSupportAndSystemConfigurationFull,
--        .recalculate = dml21_recalculate,
--        .rq_dlg_get_dlg_reg = dml21_rq_dlg_get_dlg_reg,
--        .rq_dlg_get_rq_reg = dml21_rq_dlg_get_rq_reg
-+static const struct dml_funcs dml21_funcs = {
-+	.validate = dml21_ModeSupportAndSystemConfigurationFull,
-+	.recalculate = dml21_recalculate,
-+	.rq_dlg_get_dlg_reg = dml21_rq_dlg_get_dlg_reg,
-+	.rq_dlg_get_rq_reg = dml21_rq_dlg_get_rq_reg
- };
- 
--const struct dml_funcs dml30_funcs = {
-+static const struct dml_funcs dml30_funcs = {
- 	.validate = dml30_ModeSupportAndSystemConfigurationFull,
- 	.recalculate = dml30_recalculate,
- 	.rq_dlg_get_dlg_reg = dml30_rq_dlg_get_dlg_reg,
- 	.rq_dlg_get_rq_reg = dml30_rq_dlg_get_rq_reg
- };
- 
--const struct dml_funcs dml31_funcs = {
-+static const struct dml_funcs dml31_funcs = {
- 	.validate = dml31_ModeSupportAndSystemConfigurationFull,
- 	.recalculate = dml31_recalculate,
- 	.rq_dlg_get_dlg_reg = dml31_rq_dlg_get_dlg_reg,
- 	.rq_dlg_get_rq_reg = dml31_rq_dlg_get_rq_reg
- };
- 
--const struct dml_funcs dml314_funcs = {
-+static const struct dml_funcs dml314_funcs = {
- 	.validate = dml314_ModeSupportAndSystemConfigurationFull,
- 	.recalculate = dml314_recalculate,
- 	.rq_dlg_get_dlg_reg = dml314_rq_dlg_get_dlg_reg,
- 	.rq_dlg_get_rq_reg = dml314_rq_dlg_get_rq_reg
- };
- 
--const struct dml_funcs dml32_funcs = {
-+static const struct dml_funcs dml32_funcs = {
- 	.validate = dml32_ModeSupportAndSystemConfigurationFull,
--    .recalculate = dml32_recalculate,
-+	.recalculate = dml32_recalculate,
- 	.rq_dlg_get_dlg_reg_v2 = dml32_rq_dlg_get_dlg_reg,
- 	.rq_dlg_get_rq_reg_v2 = dml32_rq_dlg_get_rq_reg
- };
++	if (ring->funcs->emit_ib_size) {
++		ring->max_ibs =
++			(max_dw - ring->funcs->emit_frame_size) / ring->funcs->emit_ib_size;
++	}
++
+ 	if (!ring->no_scheduler) {
+ 		hw_ip = ring->funcs->type;
+ 		num_sched = &adev->gpu_sched[hw_ip][hw_prio].num_scheds;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+index 3989e755a5b4..7a295d80728b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+@@ -245,6 +245,7 @@ struct amdgpu_ring {
+ 	unsigned		ring_size;
+ 	unsigned		max_dw;
+ 	int			count_dw;
++	unsigned		max_ibs;
+ 	uint64_t		gpu_addr;
+ 	uint64_t		ptr_mask;
+ 	uint32_t		buf_mask;
 -- 
-2.27.0
+2.40.0
 
