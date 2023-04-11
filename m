@@ -2,127 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EB996DD863
-	for <lists+amd-gfx@lfdr.de>; Tue, 11 Apr 2023 12:55:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83E8D6DDCAC
+	for <lists+amd-gfx@lfdr.de>; Tue, 11 Apr 2023 15:49:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F61F10E0E7;
-	Tue, 11 Apr 2023 10:55:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11F6C10E54B;
+	Tue, 11 Apr 2023 13:49:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2049.outbound.protection.outlook.com [40.107.94.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA57C10E0E7
- for <amd-gfx@lists.freedesktop.org>; Tue, 11 Apr 2023 10:55:29 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VPVjuy0yxZ/qk1P27M66keWjrTlGT9as9t7noZyK//QcgmnrTAznAiAxWD5Q5S5HJ2LrDzTbfZAJlcYCxcsrfGwTaHOqzqJ3sJTxKWq/xvBZRG8307oCQGRtenMKnRbulfiwXdsrZWpGqdZG8TQflDHexKJ6+uF1/fWmL7HaEUaAwK1IXBiMtUU+/PqiTTnVldRVA16/57TOkPTuIXxzs+ZNGdcJw749jhrbGBs0YcZ3OfYzxyfpc9G/jldyuMN7hu/cflHyNvFw9dzWP6GFNWHgfuLxjkvlGRozkW+MKyH3pF4LxblbqQ9nkGJ1Bf7vAgA3Wiv0FA2lTKBbhyBc7w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lshcNrklhcLlreijJQ0iouyyr26hyhcJL2erEiVRxhY=;
- b=IEhKn3IrdrQ2CJlkRTIZqsO4pPWYxQ7a9UNz4+uhiJjMyiKiBN1GXuI2L+5LEcmZXwVsCakkpGiLKChbtaDZxwE/9dkD6HZPhNUYldpUl7qBklcIBGTUnYYwZ2RSR7pESOdXnQEb3XEiLQ2yL/BhjeB0IudH3mxUscDRtQPpRcSvc8+2TAq/NeXVfHqpMQFaiMOHOhANJYG8K2R9yWq8Pvzcf7bdbr9nBdDGri22IIwzWuihsLIm1fn9gaNDTSiZiQf0QpsZoMRQaKJysjBzBmaY7Pk5mAMeIBi2Z09jdAsldJ2d0hlZwxNjSVFvlH6FRlqu0koKZ3DSil8Ue5Pv6A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lshcNrklhcLlreijJQ0iouyyr26hyhcJL2erEiVRxhY=;
- b=dReqjKQzBbOaPX4LdLsaQlRvvno1o2QrZRau5wFrHjgyZFn3OP407sG6z44nUmmFSp3WTuIJddMH9GKhBxLg0tgAbw/YPJ0qL1KmSN14bwVXEvevaYsi7ltRCYAQNYmSx2ff6CswtqUMWpD9SQz+ZnB6scvAl/F/616BK7R6jCY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MW4PR12MB5667.namprd12.prod.outlook.com (2603:10b6:303:18a::10)
- by CY5PR12MB6645.namprd12.prod.outlook.com (2603:10b6:930:42::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.36; Tue, 11 Apr
- 2023 10:55:25 +0000
-Received: from MW4PR12MB5667.namprd12.prod.outlook.com
- ([fe80::755d:fed:c4a:bf05]) by MW4PR12MB5667.namprd12.prod.outlook.com
- ([fe80::755d:fed:c4a:bf05%4]) with mapi id 15.20.6277.036; Tue, 11 Apr 2023
- 10:55:25 +0000
-Message-ID: <98fd63e9-6359-f76e-c65b-0a121ff327e0@amd.com>
-Date: Tue, 11 Apr 2023 12:55:16 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v3 0/9] AMDGPU Usermode queues
-Content-Language: en-US
-To: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
-References: <20230329160445.1300-1-shashank.sharma@amd.com>
- <CAP+8YyFgbru=1HkLo1Kfm1jKPrk5sXenUmmkzzysWbSh05q2tg@mail.gmail.com>
- <MW4PR12MB5667D4837CFDEE7230F5423DF2959@MW4PR12MB5667.namprd12.prod.outlook.com>
- <CAP+8YyGthhzm6291=jiydsNgK3suGdi4cMM7GMhTW_j3mdgCgQ@mail.gmail.com>
- <MW4PR12MB5667EC2D2E57FDDE93EE546FF2959@MW4PR12MB5667.namprd12.prod.outlook.com>
- <CAP+8YyH9GsyiUPvyeHfgG=TOOywxA42vubsYPWB9mPiexHBG_A@mail.gmail.com>
- <07322367-bbf1-cf82-0a21-15d453fe4dae@amd.com>
- <CAP+8YyEDW7JNQ1C9j0NZqXuLAnXPduSAye7esSOOwPpLNT9yYA@mail.gmail.com>
- <bc5752cd-fe72-a72d-4f35-92bcfdbe289c@amd.com>
- <e144baff-847b-9c59-6792-ff3c6167d19d@amd.com>
- <63178153-bd90-8b82-6fa7-241ec5b3d242@amd.com>
- <CAP+8YyF_oPCbCK2xBEU+=vXKtfTFUZvcQoX_P8fHnS+wcBJhoA@mail.gmail.com>
-From: Shashank Sharma <shashank.sharma@amd.com>
-In-Reply-To: <CAP+8YyF_oPCbCK2xBEU+=vXKtfTFUZvcQoX_P8fHnS+wcBJhoA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR3P281CA0055.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:4b::18) To MW4PR12MB5667.namprd12.prod.outlook.com
- (2603:10b6:303:18a::10)
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com
+ [IPv6:2607:f8b0:4864:20::62d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 963F810E080
+ for <amd-gfx@lists.freedesktop.org>; Tue, 11 Apr 2023 11:07:07 +0000 (UTC)
+Received: by mail-pl1-x62d.google.com with SMTP id e13so7159076plc.12
+ for <amd-gfx@lists.freedesktop.org>; Tue, 11 Apr 2023 04:07:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1681211227; x=1683803227;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=ooG8ko8G3RhdS0daM88J3WJWMd0lNdkSQ08bShZlpRM=;
+ b=DAy9jsiRzKw/iYM4OiMTk8o/BiyOQbJc/LSw0wU13j7IQ8VGzbJ40u2W1G9ihXtklw
+ MNunLuRhZS3F2uQ4SuCo64iglw0Y0Yc6Yb05uHwf1FcPcwf+4oeCaK/Tl9NKVslgN/Od
+ xlh+CV0hs0fTasui5nbgye+1mOyhFAI6DtupaRj4a9dDCDq3qNnwfP9L4h6XUryzccUe
+ NxXpSzLoxzg6VXJzfvwDnrZRNrohwcfD5feLlHkPfRFLVqHNz3DsnSqZvgWr1Z4GZMYg
+ EE84QIcvKN2aO28bQge9rz852RTA+6UV5ofvEvSB4X/R/41FlH3OAITceg6jej6xBYT/
+ kg/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1681211227; x=1683803227;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ooG8ko8G3RhdS0daM88J3WJWMd0lNdkSQ08bShZlpRM=;
+ b=mBzZA8Mo2T0gsYPWZfbXzjhNOWKCdktFQdpOMw40OSd134qqteyYwnLAFSCdrCeDm+
+ w6XREoJN+YzM+HFs6nmDFEZPlzLo3267aFTJN/YouZ91cGeLoPEC8mIWvZnKTPPFmPA3
+ OfRWGcI5FuwfI5zy5Ntu7TKXjq5cqr7zA3IYEmmFvi7UTCn7CxOpsH2fE0VbCmZY/jx2
+ aSCyf/USEbKDZMckESpR8caXkDP40+w95RgJQ1Z6aLcZleNqVwsaBgoj+txKCLgu5eM3
+ XzcJ7iNjc9xOmWlYKERz+LZmyyB29rDxR3MVAqgG45P+hHDunFDvgs/QZDltVUtV8jaK
+ RPUQ==
+X-Gm-Message-State: AAQBX9dG0JKwZf3nsCBJWmxney0ytDjdvdor0XNhzPoHNUiVPgrknxWi
+ anwrPvigJ1ij5d5wO4DqIjbIthM4zgrGNJmKiR4=
+X-Google-Smtp-Source: AKy350azIib8NGtW4LEUfYrcmdHXXjLI3+rIsQ/ydsx9RDV7KjsnEvHzHzJ63Mk40Ghi/M98ZfGqqi870mOGKiX5VKs=
+X-Received: by 2002:a17:90a:5c86:b0:246:9231:f0fd with SMTP id
+ r6-20020a17090a5c8600b002469231f0fdmr2172829pji.8.1681211226508; Tue, 11 Apr
+ 2023 04:07:06 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW4PR12MB5667:EE_|CY5PR12MB6645:EE_
-X-MS-Office365-Filtering-Correlation-Id: 42332b52-f0d3-46be-bf86-08db3a7b413b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lo5gOcOhA2Ty9zzHMnAjWc6fscT5LsJn26CBBV7FKHD1X+4adrpB7GsjhAwaiRVnZqC3MIXCp8USzDLyUbgPKIUzkE9dJbzNTb31IH3tHiT8gkAmxSyq6X1Z8XzCwFP6GVtXKu6MJrOjj0FnF/iOtpl9ZZwx8YaPRZXDf+GJ4oPr2LdEgwsOHo0ZQobQWmHFCkVwa8HXFZauAM+IcPj5oZjBWkIyI6C4jkjTZiotFJa8s42/q1ip191QnlPUJATqB7H2W+Q3tdaRRNp3FEHs1sgnxrrDijgVT6ZUduHlBsgL/9ro7BaS4IJP29a8+WTW5lMH9Ga2b0jTRPsMH0LbH215KRWUdNKLEffbnoFlkfSqEhTFVIuubF8uanVIGIupOIkN4+mNLZYQHk7hn2P4yOwHiHceS5vt+Eg/e2qqzyVVFIln1BBoG9xi9H4+dDjTJt96kQdBkdWdPdmCuTQjDGX6oIymtIyosiuRDcSUjt/HotshWURyF1g9PWfVnrRnycGL5DMrQO6YNW82pA2OVOU9HdVlbu7muUhnoFPuyFUQwe5H+o+nVt/PPuDiAuXf1EAisiVX7wLh9VO/k3ZR2ekAcihY5AIPqLkmdobslsOyZZ3qw5bC6Un2QSxpRvy1o6g1IrG7FV/0XjSlOtYnrg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW4PR12MB5667.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(39860400002)(396003)(346002)(366004)(376002)(136003)(451199021)(6666004)(478600001)(6512007)(6506007)(316002)(26005)(186003)(53546011)(54906003)(6486002)(966005)(2906002)(44832011)(30864003)(5660300002)(66476007)(66946007)(66556008)(41300700001)(8676002)(4326008)(8936002)(6916009)(38100700002)(66574015)(86362001)(31696002)(36756003)(83380400001)(2616005)(31686004)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cXQwbVRlY205REVKUHJVYS92RlZrbytESUxzenBOUWZHN0FQdm5FK3FCOWE4?=
- =?utf-8?B?UmVNSmd5NTVLWXZqaG9hc25wZTRnbitCa2Q0RWhKZ2FxL3VMSmJuWjErcmtx?=
- =?utf-8?B?b2xZdVJzWGRhZmE1blkyVUZmaFFiMHlvd0pXNEZyYnd6NExhdExUMFVSRExS?=
- =?utf-8?B?enZJeTFCcE1lWjV0NnVqYTNtVEczZVZBbm9PTnUwUERvTUhiQWZhNzhNV1ZQ?=
- =?utf-8?B?VUEyOW1NTXVGVnFzMXZpUTB3RWtQSVpNQk12dFZSUHRVcmZXSWxGMWJrR0t4?=
- =?utf-8?B?ZjljNzU2SjRPTERWdUhhVFplcHMyS092VUdjTTNqYjlkSFJ0bXJGUjcyL1Nu?=
- =?utf-8?B?Nm1WaFJiMXl0eVFRa3V5U2RZQ3NISFlrY3hBR010L3BMSGpPMnNKK2UvK0Iz?=
- =?utf-8?B?K3gxMytwZ21SZmU1am9QbGpKRmR5WVl4SFI0VzE0WG83VHQ2S0pIb0JRQmxJ?=
- =?utf-8?B?Z0hZbGtlbzV0eGF4NUV6UHQxOEg1eDRsZkQwT0gwS212aWtsc2tBU0N2aGF1?=
- =?utf-8?B?am5TNzh1UnR5L0srdXFDU0RLV1Q3NngvSDhJcnN0UHpoamJaTTFYZ2lEWjVL?=
- =?utf-8?B?eE9hQWVTOHdHb29qSmxJaUUxTGpZNnh2SmZDd2dxRERMOHlVSi93OFFXS21F?=
- =?utf-8?B?SHNocDVjQ1drVlhpYlU3QXlYZ21Kd1dVZ2ZQQUFUUURIdG15cy8rMmVQMlV0?=
- =?utf-8?B?NmNpUFJXRitrT3JITUwwTlFvcDJvOVRqd3dGbkptOW4xUTNDSVpOaitZVzhw?=
- =?utf-8?B?YXplbTFPYjVsaERpb2xMOVByRGdGTC9zMU1nUDRRR2hsSWVubmNRRU01dzl4?=
- =?utf-8?B?MWNyekMyVUF2c0dMcDlkRnptNFF1WDNEMEQxK1NvWUgyRE5pY1JwWG4xSjBZ?=
- =?utf-8?B?YzN6SnhwZ21taDJ1S2pWcnVwenJ5NGZ3dSthRk1hK1hObWR3TmdtMVY2QzhR?=
- =?utf-8?B?Y3N5eG16ZnVTaWVBcDloOGRjMEc3bEEvSjhneDI5dGxlRVpZOXhsOTB6bnov?=
- =?utf-8?B?ditOSCtIWDREMk9YbUNqQWVMeUtmYk5oSjdBN0dmM2dMSm1MWGJYZjl2WDc0?=
- =?utf-8?B?WC9jdVJaU0R4Z2lvK2NVTlMydlQxRkdscjByU0FkUG02RVFTRUxPUlMvMmJF?=
- =?utf-8?B?eUVXdmhVNkl1L0l2bWxrZy9wZUtUVTQrb3FzbWFzVUFXaXpsT1JjSEhkUnY0?=
- =?utf-8?B?L0dya1FodHlBYnI0UEJyaHphbm1YaGdRMitEdkorSEZlNnJrY21ZSEZ0VlFK?=
- =?utf-8?B?aXB3cVFTaWFZZ0NEMmgwYlRncS9YeWt5cTlQb0RKY1JRMWVrYS8vRUhCdUVw?=
- =?utf-8?B?c2Y5NTRUZE1GM2tMOEtqOStYWHFwckVCdVpWenNVcWc2N2FMUkhwdGRGbjNu?=
- =?utf-8?B?NnJKNkxKZ3ZLSTRMeVdsS3g4SFJsUE9kTTFxYnQzb2g3c25hSmNHZWNKdVVt?=
- =?utf-8?B?SlBnVXA0M25BYmZaeFVHdVMzeTAzUDRsTzBEVWlSaFk1aFhLcGYvbHN1cGJu?=
- =?utf-8?B?R1FJbEtYSm9tVktBbE9DMy9wQzNwNHRGOHdBcUVNZXc0U3QrTEpxaFZMTVF5?=
- =?utf-8?B?bFBGWnEwbmErYTBwUjdUVkhodDBBblZaRkR3eSsrelFnSVV3Z3B2c0wrNldt?=
- =?utf-8?B?ZzlPWVNRbU81d3lJcVpIZittNGFYL1NmN3F3Y0FFd3pqKzFGWnZyYzNXRGVm?=
- =?utf-8?B?a0ZaTlNWZmduRk9XQXFFZVo4alpaWWdoL1c5TDVaM1N0eW1va3Q1aW8zQ3Q1?=
- =?utf-8?B?OEluZUN1WEpVaHoyVkVKeEk5TEt2TmpBazNydFpHcFlwRUFNTXd3Y0tscjBT?=
- =?utf-8?B?dkFkNEFDQXdrTWh6dzdtZUhKTHBTN0psUHRrcjBzYzJLWmszdGRSMkFsMDM5?=
- =?utf-8?B?VE1OeHk4ZVJzaEJSQk1FQ0R6N2w2Q3dTaG1KbUM1cmpKMnFnaFJRemp1Q0hm?=
- =?utf-8?B?Vmc3TVBISEhYWmdzWCtrYTJHRkQvaDd6OTNtL29vWEs3eEdrNkE2eHpja2JS?=
- =?utf-8?B?SXY4V09hYWN0MHZKeVhqMnJCV0c1WkNJRk5XL1BJZzEwVmFjVUYxS2p6cEpx?=
- =?utf-8?B?WkZ3Y1o2N2NXR1l2NndEaHdkU1RaNEFNZWcvY3FBVFNMNU80ZlpRNzVQUExR?=
- =?utf-8?Q?519rmK8sPOr39W8n1s9jqE3fR?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 42332b52-f0d3-46be-bf86-08db3a7b413b
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR12MB5667.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Apr 2023 10:55:25.5830 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: StXBHXOlBQajHVoy5egcOXYwLhOHN8Xy/8MpIx1/xyRnCx8LFD/a7swVrKehLRCFAlT5j0NURrYRXYc9wLNiUg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6645
+References: <20230409185956.725016-1-bas@basnieuwenhuizen.nl>
+ <20230409185956.725016-3-bas@basnieuwenhuizen.nl>
+ <698f4bbc-6253-2b61-ba82-68f6e7164ef6@amd.com>
+ <CAP+8YyHKxEPYqr2NwnGZ3vEf_+7NeFH7FPXCvSwdzOLrUGgdDw@mail.gmail.com>
+ <CAFF-SiXXvAHYGet9MQ1-UXvpX-O4ncDPRdKuOppyFsw8ESeXdw@mail.gmail.com>
+ <7804aefb-bc7d-78ae-92b6-f361df2d8da2@amd.com>
+In-Reply-To: <7804aefb-bc7d-78ae-92b6-f361df2d8da2@amd.com>
+From: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>
+Date: Tue, 11 Apr 2023 13:06:51 +0200
+Message-ID: <CAFF-SiXc3-D5CZG+H7hbHnFm8wrFe++QnUgAMW=7agNbnp87Gw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] drm/amdgpu: Add support for querying the max ibs
+ in a submission. (v2)
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: multipart/alternative; boundary="000000000000f2d3ce05f90d7d90"
+X-Mailman-Approved-At: Tue, 11 Apr 2023 13:49:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,276 +71,850 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Kuehling,
- Felix" <Felix.Kuehling@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>, "Yadav,
- Arvind" <Arvind.Yadav@amd.com>
+Cc: "Pelloux-prayer, Pierre-eric" <Pierre-eric.Pelloux-prayer@amd.com>,
+ =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>, "Deucher,
+ Alexander" <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+--000000000000f2d3ce05f90d7d90
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/04/2023 12:00, Bas Nieuwenhuizen wrote:
-> On Tue, Apr 11, 2023 at 11:48 AM Shashank Sharma
-> <shashank.sharma@amd.com> wrote:
->>
->> On 11/04/2023 11:37, Christian König wrote:
->>> Am 10.04.23 um 16:26 schrieb Shashank Sharma:
->>>> On 10/04/2023 16:04, Bas Nieuwenhuizen wrote:
->>>>> On Mon, Apr 10, 2023 at 4:01 PM Shashank Sharma
->>>>> <shashank.sharma@amd.com> wrote:
->>>>>> On 10/04/2023 15:46, Bas Nieuwenhuizen wrote:
->>>>>>> On Mon, Apr 10, 2023 at 3:40 PM Sharma, Shashank
->>>>>>> <Shashank.Sharma@amd.com> wrote:
->>>>>>>> [AMD Official Use Only - General]
->>>>>>>>
->>>>>>>> Hello Bas,
->>>>>>>>
->>>>>>>> This is not the correct interpretation of the code, the
->>>>>>>> USERQ_IOCTL has both the OPs (create and destroy), but th euser
->>>>>>>> has to exclusively call  it.
->>>>>>>>
->>>>>>>> Please see the sample test program in the existing libDRM series
->>>>>>>> (userq_test.c, it specifically calls amdgpu_free_userq, which
->>>>>>>> does the destroy_OP
->>>>>>>>
->>>>>>>> for the IOCTL.
->>>>>>> In the presence of crashes the kernel should always be able to clean
->>>>>>> this up no? Otherwise there is a resource leak?
->>>>>> The crash handling is the same as any of the existing GPU resource
->>>>>> which
->>>>>> are allocated and freed with IOCTL_OPs.
->>>>> Most of those are handled in the when the DRM fd gets closed (i.e.
->>>>> when the process exits):
->>>>>
->>>>> - buffers through drm_gem_release()
->>>>> - mappings in amdgpu_vm_fini
->>>>> - contexts in amdgpu_ctx_mgr_fini
->>>>>
->>>>> etc.
->>>>>
->>>>> Why would we do things differently for userspace queues? It doesn't
->>>>> look complicated looking at the above patch (which does seem to work).
->>>> As the code is in initial stage, I have not given much thoughts about
->>>> handling resource leak due to app crash, but this seems like a good
->>>> suggestion.
->>>>
->>>> I am taking a note and will try to accommodate this in an upcoming
->>>> version of the series.
->>> Bas is right, the application doesn't necessary needs to clean up on
->>> exit (but it's still good custody to do so).
->>>
->>> See amdgpu_driver_postclose_kms() for how we cleanup (for example) the
->>> ctx manager by calling amdgpu_ctx_mgr_fini() or the BO lists.
->>>
->> Thanks for the pointers Christian,
->>
->> I also feel like that its good to have this cleanup for those apps which
->> did not clean-up themselves (due to crash or coding error).
-> I think the patch I linked earlier does exactly this: keep the IOCTL,
-> but on fini goes through the list and destroys the queue:
-> https://github.com/BNieuwenhuizen/linux/commit/e90c8d1185da7353c12837973ceddf55ccc85d29
+Christian K=C3=B6nig <christian.koenig@amd.com> ezt =C3=ADrta (id=C5=91pont=
+: 2023. =C3=A1pr.
+11., Ke 11:23):
 
-Yep, just needs additional check to free only when its not already 
-freed, like doble free check. Will try to reuse most of it.
+> Am 11.04.23 um 11:06 schrieb Timur Krist=C3=B3f:
+>
+>
+>
+> Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl> ezt =C3=ADrta (id=C5=91pont: =
+2023. =C3=A1pr.
+> 11., Ke 10:25):
+>
+>> On Tue, Apr 11, 2023 at 10:10=E2=80=AFAM Christian K=C3=B6nig
+>> <christian.koenig@amd.com> wrote:
+>> >
+>> > Am 09.04.23 um 20:59 schrieb Bas Nieuwenhuizen:
+>> > > We need to introduce a new version of the info struct because
+>> > > libdrm_amdgpu forgot any versioning info in amdgpu_query_hw_ip_info
+>> > > so the mesa<->libdrm_amdgpu interface can't handle increasing the
+>> > > size.
+>> > >
+>> > > This info would be used by radv to figure out when we need to
+>> > > split a submission into multiple submissions. radv currently has
+>> > > a limit of 192 which seems to work for most gfx submissions, but
+>> > > is way too high for e.g. compute or sdma.
+>> >
+>> > Why do you need so many IBs in the first place?
+>> >
+>> > You can use sub-IBs since R600 and newer hw even supports a JUMP comma=
+nd
+>> > to chain IBs together IIRC.
+>>
+>> Couple of reasons:
+>>
+>> 1) We can't reliably use sub-IBs (both because on GFX6-7 there are
+>> indirect draw commands that cannot be used in sub-IBs and because the
+>> Vulkan API exposes sub-IBs, so we can have the primary IBs be sub-IBs
+>> already)
+>>
+>
+> Furthermore, only the GFX queue supports the "IB2" packet that is used to
+> implement sub-IBs.
+>
+> (The same packet hangs the compute queue and is documented as not working
+> in the PAL source code. Other queues don't seem to have a packet for this
+> purpose.)
+>
+> 2) We believed GFX6 may not support chaining. (Then again, it turns
+>> out the GFX7+ packet may just work on GFX6?
+>> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/22406)
+>>
+>
+> I was actually quite surprised when I found this out. Mesa developers see=
+m
+> to have believed that this is not possible on GFX6. I'd love to get some
+> more context on this, did it always work or was it added in a FW update?
+>
+> 3) Chaining doesn't work if the IB may be in flight multiple times in
+>> a different sequence.
+>>
+>
+> Additionally, chaining also doesn't work on any queue other than GFX and
+> compute. As far as we know, SDMA and the various encoder/decoder queues
+> don't have a packet for chaining.
+>
+> Christian, please let us know if we are wrong about this.
+>
+>
+> I'm not an expert for this either. Marek and Pierre-eric know more about
+> that stuff than me. On the other hand I could ping the firmware people as
+> well if our UMD guys can't answer that.
+>
 
-- Shashank
+Thanks, I'm looking forward to hearing more about it.
 
->> So something like,
+
+> It's just that last time we discussed this internally somebody from the
+> PAL team commented that this isn't an issue any more because we don't nee=
+d
+> that many IBs any more.
+>
+
+It is true that the typical game would only submit a few IBs: either 2 (1
+preamble + 1 IB that has all the command buffers chained) or 8 for gang
+submit (4 preambles, 1 ACE IB, 1 GFX IB, 2 postambles), but we would like
+to ensure that the less common use cases that can't use chaining work well
+too.
+
+We also have an increased interest in using the other HW queues in RADV
+these days: video encode/decode queues for the Vulkan Video API, and of
+course SDMA which we are considering for transfer queues in the future.
+
+
+> libdrm defined that you shouldn't use more than 4 IBs in a CS, on the
+> other hand we dropped checking that long ago and exposing the numbers of
+> IBs the UMD can use is just good design.
+>
+
+Yes, I agree.
+
+Can we remove that old (and confusing) define from libdrm? Or does anyone
+still depend on that?
+
+
+> Bas what do you think of adding an AMDGPU_INFO_MAX_IBS query instead of
+> extending the drm_amdgpu_info_hw_ip structure?
+>
+> Background is that the drm_amdgpu_info_hw_ip structure is actually not
+> meant to be used for sw parameters (which the maximum number of IBs is) a=
+nd
+> we wouldn't need to dance around issues with query size parameters becaus=
+e
+> that function takes the size as parameter.
+>
+
+Sounds good to me but I'll defer to Bas's judgement on this.
+
+
+
+
+> Regards,
+> Christian.
+>
+>
+>
+> Best regards,
+> Timur
+>
+>
+>
+>
+>> We try to chain when we can but (2) and (3) are cases where we
+>> fallback to submitting multiple IBs.
 >>
->> on close_fd,
+>> >
+>> > For the kernel UAPI you only need separate IBs if you have separate
+>> > properties on them, E.g. preamble or submitting to a different engine.
+>> >
+>> > Everything else just needs additional CPU overhead in the IOCTL.
+>> >
+>> > Regards,
+>> > Christian.
+>> >
+>> > >
+>> > > Because the kernel handling is just fine we can just use the v2
+>> > > everywhere and have the return_size do the versioning for us,
+>> > > with userspace interpreting 0 as unknown.
+>> > >
+>> > > Userspace implementation:
+>> > > https://gitlab.freedesktop.org/bnieuwenhuizen/drm/-/tree/ib-rejectio=
+n
+>> > >
+>> https://gitlab.freedesktop.org/bnieuwenhuizen/mesa/-/tree/ib-rejection
+>> > >
+>> > > v2: Use base member in the new struct.
+>> > >
+>> > > Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2498
+>> > > Signed-off-by: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+>> > > Cc: David Airlie <airlied@gmail.com>
+>> > > ---
+>> > >   drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 31
+>> ++++++++++++++-----------
+>> > >   include/uapi/drm/amdgpu_drm.h           | 14 +++++++++++
+>> > >   2 files changed, 31 insertions(+), 14 deletions(-)
+>> > >
+>> > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+>> > > index 89689b940493..5b575e1aef1a 100644
+>> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+>> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+>> > > @@ -360,7 +360,7 @@ static int amdgpu_firmware_info(struct
+>> drm_amdgpu_info_firmware *fw_info,
+>> > >
+>> > >   static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
+>> > >                            struct drm_amdgpu_info *info,
+>> > > -                          struct drm_amdgpu_info_hw_ip *result)
+>> > > +                          struct drm_amdgpu_info_hw_ip2 *result)
+>> > >   {
+>> > >       uint32_t ib_start_alignment =3D 0;
+>> > >       uint32_t ib_size_alignment =3D 0;
+>> > > @@ -431,6 +431,7 @@ static int amdgpu_hw_ip_info(struct amdgpu_devic=
+e
+>> *adev,
+>> > >               return -EINVAL;
+>> > >       }
+>> > >
+>> > > +     result->max_ibs =3D UINT_MAX;
+>> > >       for (i =3D 0; i < adev->num_rings; ++i) {
+>> > >               /* Note that this uses that ring types alias the
+>> equivalent
+>> > >                * HW IP exposes to userspace.
+>> > > @@ -438,6 +439,8 @@ static int amdgpu_hw_ip_info(struct amdgpu_devic=
+e
+>> *adev,
+>> > >               if (adev->rings[i]->funcs->type =3D=3D
+>> info->query_hw_ip.type &&
+>> > >                   adev->rings[i]->sched.ready) {
+>> > >                       ++num_rings;
+>> > > +                     result->max_ibs =3D min(result->max_ibs,
+>> > > +                                           adev->rings[i]->max_ibs)=
+;
+>> > >               }
+>> > >       }
+>> > >
+>> > > @@ -452,36 +455,36 @@ static int amdgpu_hw_ip_info(struct
+>> amdgpu_device *adev,
+>> > >       num_rings =3D min(amdgpu_ctx_num_entities[info->query_hw_ip.ty=
+pe],
+>> > >                       num_rings);
+>> > >
+>> > > -     result->hw_ip_version_major =3D adev->ip_blocks[i].version->ma=
+jor;
+>> > > -     result->hw_ip_version_minor =3D adev->ip_blocks[i].version->mi=
+nor;
+>> > > +     result->base.hw_ip_version_major =3D
+>> adev->ip_blocks[i].version->major;
+>> > > +     result->base.hw_ip_version_minor =3D
+>> adev->ip_blocks[i].version->minor;
+>> > >
+>> > >       if (adev->asic_type >=3D CHIP_VEGA10) {
+>> > >               switch (type) {
+>> > >               case AMD_IP_BLOCK_TYPE_GFX:
+>> > > -                     result->ip_discovery_version =3D
+>> adev->ip_versions[GC_HWIP][0];
+>> > > +                     result->base.ip_discovery_version =3D
+>> adev->ip_versions[GC_HWIP][0];
+>> > >                       break;
+>> > >               case AMD_IP_BLOCK_TYPE_SDMA:
+>> > > -                     result->ip_discovery_version =3D
+>> adev->ip_versions[SDMA0_HWIP][0];
+>> > > +                     result->base.ip_discovery_version =3D
+>> adev->ip_versions[SDMA0_HWIP][0];
+>> > >                       break;
+>> > >               case AMD_IP_BLOCK_TYPE_UVD:
+>> > >               case AMD_IP_BLOCK_TYPE_VCN:
+>> > >               case AMD_IP_BLOCK_TYPE_JPEG:
+>> > > -                     result->ip_discovery_version =3D
+>> adev->ip_versions[UVD_HWIP][0];
+>> > > +                     result->base.ip_discovery_version =3D
+>> adev->ip_versions[UVD_HWIP][0];
+>> > >                       break;
+>> > >               case AMD_IP_BLOCK_TYPE_VCE:
+>> > > -                     result->ip_discovery_version =3D
+>> adev->ip_versions[VCE_HWIP][0];
+>> > > +                     result->base.ip_discovery_version =3D
+>> adev->ip_versions[VCE_HWIP][0];
+>> > >                       break;
+>> > >               default:
+>> > > -                     result->ip_discovery_version =3D 0;
+>> > > +                     result->base.ip_discovery_version =3D 0;
+>> > >                       break;
+>> > >               }
+>> > >       } else {
+>> > > -             result->ip_discovery_version =3D 0;
+>> > > +             result->base.ip_discovery_version =3D 0;
+>> > >       }
+>> > > -     result->capabilities_flags =3D 0;
+>> > > -     result->available_rings =3D (1 << num_rings) - 1;
+>> > > -     result->ib_start_alignment =3D ib_start_alignment;
+>> > > -     result->ib_size_alignment =3D ib_size_alignment;
+>> > > +     result->base.capabilities_flags =3D 0;
+>> > > +     result->base.available_rings =3D (1 << num_rings) - 1;
+>> > > +     result->base.ib_start_alignment =3D ib_start_alignment;
+>> > > +     result->base.ib_size_alignment =3D ib_size_alignment;
+>> > >       return 0;
+>> > >   }
+>> > >
+>> > > @@ -536,7 +539,7 @@ int amdgpu_info_ioctl(struct drm_device *dev,
+>> void *data, struct drm_file *filp)
+>> > >               }
+>> > >               return copy_to_user(out, &ui32, min(size, 4u)) ?
+>> -EFAULT : 0;
+>> > >       case AMDGPU_INFO_HW_IP_INFO: {
+>> > > -             struct drm_amdgpu_info_hw_ip ip =3D {};
+>> > > +             struct drm_amdgpu_info_hw_ip2 ip =3D {};
+>> > >               int ret;
+>> > >
+>> > >               ret =3D amdgpu_hw_ip_info(adev, info, &ip);
+>> > > diff --git a/include/uapi/drm/amdgpu_drm.h
+>> b/include/uapi/drm/amdgpu_drm.h
+>> > > index b6eb90df5d05..6b9e35b6f747 100644
+>> > > --- a/include/uapi/drm/amdgpu_drm.h
+>> > > +++ b/include/uapi/drm/amdgpu_drm.h
+>> > > @@ -1128,6 +1128,9 @@ struct drm_amdgpu_info_device {
+>> > >       __u32 enabled_rb_pipes_mask_hi;
+>> > >   };
+>> > >
+>> > > +/* The size of this struct cannot be increased for compatibility
+>> reasons, use
+>> > > + * struct drm_amdgpu_info_hw_ip2 instead.
+>> > > + */
+>> > >   struct drm_amdgpu_info_hw_ip {
+>> > >       /** Version of h/w IP */
+>> > >       __u32  hw_ip_version_major;
+>> > > @@ -1144,6 +1147,17 @@ struct drm_amdgpu_info_hw_ip {
+>> > >       __u32  ip_discovery_version;
+>> > >   };
+>> > >
+>> > > +struct drm_amdgpu_info_hw_ip2 {
+>> > > +     /** Previous version of the struct */
+>> > > +     struct drm_amdgpu_info_hw_ip  base;
+>> > > +     /** The maximum number of IBs one can submit in a single
+>> submission
+>> > > +      * ioctl. (When using gang submit: this is per IP type)
+>> > > +      */
+>> > > +     __u32  max_ibs;
+>> > > +     /** padding to 64bit for arch differences */
+>> > > +     __u32  pad;
+>> > > +};
+>> > > +
+>> > >   struct drm_amdgpu_info_num_handles {
+>> > >       /** Max handles as supported by firmware for UVD */
+>> > >       __u32  uvd_max_handles;
+>> >
 >>
->> for_idr_each {
->>
->>      get_queue()
->>
->>      if (queue)
->>
->>          free_queue
->>
->> }
->>
->> But we will also keep the queue_free_OP as well, so that if an app
->> allocate multiple queues, and wants to free some in between, it can do it.
->>
->> - Shashank
->>
->>> Regards,
->>> Christian.
->>>
->>>> - Shashank
->>>>
->>>>>> To be honest a crash handling can be very elaborated and complex one,
->>>>>> and hence only can be done at the driver unload IMO, which doesn't
->>>>>> help
->>>>>> at that stage,
->>>>>>
->>>>>> coz anyways driver will re-allocate the resources on next load.
->>>>>>
->>>>>> - Shashank
->>>>>>
->>>>>>>> - Shashank
->>>>>>>>
->>>>>>>> -----Original Message-----
->>>>>>>> From: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
->>>>>>>> Sent: 10 April 2023 11:26
->>>>>>>> To: Sharma, Shashank <Shashank.Sharma@amd.com>
->>>>>>>> Cc: amd-gfx@lists.freedesktop.org; Deucher, Alexander
->>>>>>>> <Alexander.Deucher@amd.com>; Kuehling, Felix
->>>>>>>> <Felix.Kuehling@amd.com>; Koenig, Christian
->>>>>>>> <Christian.Koenig@amd.com>; Yadav, Arvind <Arvind.Yadav@amd.com>
->>>>>>>> Subject: Re: [PATCH v3 0/9] AMDGPU Usermode queues
->>>>>>>>
->>>>>>>> Hi Shashank,
->>>>>>>>
->>>>>>>> I think I found the issue: I wasn't destroying the user queue in
->>>>>>>> my program and the kernel doesn't clean up any remaining user
->>>>>>>> queues in the postclose hook. I think we need something like
->>>>>>>> https://github.com/BNieuwenhuizen/linux/commit/e90c8d1185da7353c12837973ceddf55ccc85d29
->>>>>>>>
->>>>>>>> ?
->>>>>>>>
->>>>>>>> While running things multiple times now works, I still have
->>>>>>>> problems doing multiple submissions from the same queue. Looking
->>>>>>>> forward to the updated test/sample
->>>>>>>>
->>>>>>>> Thanks,
->>>>>>>> Bas
->>>>>>>>
->>>>>>>> On Mon, Apr 10, 2023 at 9:32 AM Sharma, Shashank
->>>>>>>> <Shashank.Sharma@amd.com> wrote:
->>>>>>>>> [AMD Official Use Only - General]
->>>>>>>>>
->>>>>>>>> Hello Bas,
->>>>>>>>> Thanks for trying this out.
->>>>>>>>>
->>>>>>>>> This could be due to the doorbell as you mentioned, Usermode
->>>>>>>>> queue uses doorbell manager internally.
->>>>>>>>> This week, we are planning to publis the latest libDRM sample
->>>>>>>>> code which uses a doorbell object (instead of the doorbell hack
->>>>>>>>> IOCTL), adapting to that should fix your problem in my opinion.
->>>>>>>>> We have tested this full stack (libDRM test + Usermode queue +
->>>>>>>>> doorbell manager) for 500+ consecutive runs, and it worked well
->>>>>>>>> for us.
->>>>>>>>>
->>>>>>>>> You can use this integrated kernel stack (1+2) from my gitlab to
->>>>>>>>> build
->>>>>>>>> your kernel:
->>>>>>>>> https://gitlab.freedesktop.org/contactshashanksharma/userq-amdgpu/-/tr
->>>>>>>>>
->>>>>>>>> ee/integrated-db-and-uq-v3 Please stay tuned for updated libDRM
->>>>>>>>> changes with doorbell objects.
->>>>>>>>>
->>>>>>>>> Regards
->>>>>>>>> Shashank
->>>>>>>>> -----Original Message-----
->>>>>>>>> From: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
->>>>>>>>> Sent: 10 April 2023 02:37
->>>>>>>>> To: Sharma, Shashank <Shashank.Sharma@amd.com>
->>>>>>>>> Cc: amd-gfx@lists.freedesktop.org; Deucher, Alexander
->>>>>>>>> <Alexander.Deucher@amd.com>; Kuehling, Felix
->>>>>>>>> <Felix.Kuehling@amd.com>;
->>>>>>>>> Koenig, Christian <Christian.Koenig@amd.com>
->>>>>>>>> Subject: Re: [PATCH v3 0/9] AMDGPU Usermode queues
->>>>>>>>>
->>>>>>>>> Hi Shashank,
->>>>>>>>>
->>>>>>>>> I tried writing a program to experiment with usermode queues and
->>>>>>>>> I found some weird behavior: The first run of the program works
->>>>>>>>> as expected, while subsequent runs don't seem to do anything
->>>>>>>>> (and I allocate everything in GTT, so it should be zero
->>>>>>>>> initialized consistently). Is this a known issue?
->>>>>>>>>
->>>>>>>>> The linked libdrm code for the uapi still does a doorbell ioctl
->>>>>>>>> so it could very well be that I do the doorbell wrong
->>>>>>>>> (especially since the ioctl implementation was never shared
->>>>>>>>> AFAICT?), but it seems like the kernel submissions (i.e. write
->>>>>>>>> wptr in dwords to the wptr va and to the doorbell). Is it
->>>>>>>>> possible to update the test in libdrm?
->>>>>>>>>
->>>>>>>>> Code: https://gitlab.freedesktop.org/bnieuwenhuizen/usermode-queue
->>>>>>>>>
->>>>>>>>> Thanks,
->>>>>>>>> Bas
->>>>>>>>>
->>>>>>>>> On Wed, Mar 29, 2023 at 6:05 PM Shashank Sharma
->>>>>>>>> <shashank.sharma@amd.com> wrote:
->>>>>>>>>> This patch series introduces AMDGPU usermode queues for gfx
->>>>>>>>>> workloads.
->>>>>>>>>> Usermode queues is a method of GPU workload submission into the
->>>>>>>>>> graphics hardware without any interaction with kernel/DRM
->>>>>>>>>> schedulers.
->>>>>>>>>> In this method, a userspace graphics application can create its
->>>>>>>>>> own
->>>>>>>>>> workqueue and submit it directly in the GPU HW.
->>>>>>>>>>
->>>>>>>>>> The general idea of how this is supposed to work:
->>>>>>>>>> - The application creates the following GPU objetcs:
->>>>>>>>>>      - A queue object to hold the workload packets.
->>>>>>>>>>      - A read pointer object.
->>>>>>>>>>      - A write pointer object.
->>>>>>>>>>      - A doorbell page.
->>>>>>>>>> - The application picks a 32-bit offset in the doorbell page
->>>>>>>>>> for this queue.
->>>>>>>>>> - The application uses the usermode_queue_create IOCTL
->>>>>>>>>> introduced in
->>>>>>>>>>      this patch, by passing the the GPU addresses of these
->>>>>>>>>> objects (read
->>>>>>>>>>      ptr, write ptr, queue base address and 32-bit doorbell
->>>>>>>>>> offset from
->>>>>>>>>>      the doorbell page)
->>>>>>>>>> - The kernel creates the queue and maps it in the HW.
->>>>>>>>>> - The application can start submitting the data in the queue as
->>>>>>>>>> soon as
->>>>>>>>>>      the kernel IOCTL returns.
->>>>>>>>>> - After filling the workload data in the queue, the app must
->>>>>>>>>> write the
->>>>>>>>>>      number of dwords added in the queue into the doorbell
->>>>>>>>>> offset, and the
->>>>>>>>>>      GPU will start fetching the data.
->>>>>>>>>>
->>>>>>>>>> libDRM changes for this series and a sample DRM test program
->>>>>>>>>> can be
->>>>>>>>>> found in the MESA merge request here:
->>>>>>>>>> https://gitlab.freedesktop.org/mesa/drm/-/merge_requests/287
->>>>>>>>>>
->>>>>>>>>> This patch series depends on the doorbell-manager changes,
->>>>>>>>>> which are
->>>>>>>>>> being reviewed here:
->>>>>>>>>> https://patchwork.freedesktop.org/series/115802/
->>>>>>>>>>
->>>>>>>>>> Alex Deucher (1):
->>>>>>>>>>      drm/amdgpu: UAPI for user queue management
->>>>>>>>>>
->>>>>>>>>> Arvind Yadav (2):
->>>>>>>>>>      drm/amdgpu: add new parameters in v11_struct
->>>>>>>>>>      drm/amdgpu: map wptr BO into GART
->>>>>>>>>>
->>>>>>>>>> Shashank Sharma (6):
->>>>>>>>>>      drm/amdgpu: add usermode queue base code
->>>>>>>>>>      drm/amdgpu: add new IOCTL for usermode queue
->>>>>>>>>>      drm/amdgpu: create GFX-gen11 MQD for userqueue
->>>>>>>>>>      drm/amdgpu: create context space for usermode queue
->>>>>>>>>>      drm/amdgpu: map usermode queue into MES
->>>>>>>>>>      drm/amdgpu: generate doorbell index for userqueue
->>>>>>>>>>
->>>>>>>>>>     drivers/gpu/drm/amd/amdgpu/Makefile           | 3 +
->>>>>>>>>>     drivers/gpu/drm/amd/amdgpu/amdgpu.h           | 10 +-
->>>>>>>>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       | 2 +
->>>>>>>>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c       | 6 +
->>>>>>>>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c | 298
->>>>>>>>>> ++++++++++++++++++ .../drm/amd/amdgpu/amdgpu_userqueue_gfx_v11.c |
->>>>>>>>>> ++++++++++++++++++ 230 ++++++++++++++
->>>>>>>>>>     .../gpu/drm/amd/include/amdgpu_userqueue.h    | 66 ++++
->>>>>>>>>>     drivers/gpu/drm/amd/include/v11_structs.h     | 16 +-
->>>>>>>>>>     include/uapi/drm/amdgpu_drm.h                 | 55 ++++
->>>>>>>>>>     9 files changed, 677 insertions(+), 9 deletions(-) create mode
->>>>>>>>>> 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue.c
->>>>>>>>>>     create mode 100644
->>>>>>>>>> drivers/gpu/drm/amd/amdgpu/amdgpu_userqueue_gfx_v11.c
->>>>>>>>>>     create mode 100644
->>>>>>>>>> drivers/gpu/drm/amd/include/amdgpu_userqueue.h
->>>>>>>>>>
->>>>>>>>>> --
->>>>>>>>>> 2.40.0
->>>>>>>>>>
+>
+>
+
+--000000000000f2d3ce05f90d7d90
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><div><br><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
+class=3D"gmail_attr">Christian K=C3=B6nig &lt;<a href=3D"mailto:christian.k=
+oenig@amd.com">christian.koenig@amd.com</a>&gt; ezt =C3=ADrta (id=C5=91pont=
+: 2023. =C3=A1pr. 11., Ke 11:23):<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+
+ =20
+  <div>
+    Am 11.04.23 um 11:06 schrieb Timur Krist=C3=B3f:<br>
+    <blockquote type=3D"cite">
+     =20
+      <div dir=3D"auto">
+        <div><br>
+          <br>
+          <div class=3D"gmail_quote">
+            <div dir=3D"ltr" class=3D"gmail_attr">Bas Nieuwenhuizen &lt;<a =
+href=3D"mailto:bas@basnieuwenhuizen.nl" target=3D"_blank" rel=3D"noreferrer=
+">bas@basnieuwenhuizen.nl</a>&gt;
+              ezt =C3=ADrta (id=C5=91pont: 2023. =C3=A1pr. 11., Ke 10:25):<=
+br>
+            </div>
+            <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex">On Tue,
+              Apr 11, 2023 at 10:10=E2=80=AFAM Christian K=C3=B6nig<br>
+              &lt;<a href=3D"mailto:christian.koenig@amd.com" rel=3D"norefe=
+rrer noreferrer" target=3D"_blank">christian.koenig@amd.com</a>&gt;
+              wrote:<br>
+              &gt;<br>
+              &gt; Am 09.04.23 um 20:59 schrieb Bas Nieuwenhuizen:<br>
+              &gt; &gt; We need to introduce a new version of the info
+              struct because<br>
+              &gt; &gt; libdrm_amdgpu forgot any versioning info in
+              amdgpu_query_hw_ip_info<br>
+              &gt; &gt; so the mesa&lt;-&gt;libdrm_amdgpu interface
+              can&#39;t handle increasing the<br>
+              &gt; &gt; size.<br>
+              &gt; &gt;<br>
+              &gt; &gt; This info would be used by radv to figure out
+              when we need to<br>
+              &gt; &gt; split a submission into multiple submissions.
+              radv currently has<br>
+              &gt; &gt; a limit of 192 which seems to work for most gfx
+              submissions, but<br>
+              &gt; &gt; is way too high for e.g. compute or sdma.<br>
+              &gt;<br>
+              &gt; Why do you need so many IBs in the first place?<br>
+              &gt;<br>
+              &gt; You can use sub-IBs since R600 and newer hw even
+              supports a JUMP command<br>
+              &gt; to chain IBs together IIRC.<br>
+              <br>
+              Couple of reasons:<br>
+              <br>
+              1) We can&#39;t reliably use sub-IBs (both because on GFX6-7
+              there are<br>
+              indirect draw commands that cannot be used in sub-IBs and
+              because the<br>
+              Vulkan API exposes sub-IBs, so we can have the primary IBs
+              be sub-IBs<br>
+              already)<br>
+            </blockquote>
+          </div>
+        </div>
+        <div dir=3D"auto"><br>
+        </div>
+        <div dir=3D"auto">Furthermore, only the GFX queue supports the
+          &quot;IB2&quot; packet that is used to implement sub-IBs.</div>
+        <div dir=3D"auto"><br>
+        </div>
+        <div dir=3D"auto">(The same packet hangs the compute queue and is
+          documented as not working in the PAL source code. Other queues
+          don&#39;t seem to have a packet for this purpose.)</div>
+        <div dir=3D"auto"><br>
+        </div>
+        <div dir=3D"auto">
+          <div class=3D"gmail_quote">
+            <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex">2) We
+              believed GFX6 may not support chaining. (Then again, it
+              turns<br>
+              out the GFX7+ packet may just work on GFX6?<br>
+              <a href=3D"https://gitlab.freedesktop.org/mesa/mesa/-/merge_r=
+equests/22406" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">h=
+ttps://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/22406</a>)<br>
+            </blockquote>
+          </div>
+        </div>
+        <div dir=3D"auto"><br>
+        </div>
+        <div dir=3D"auto">I was actually quite surprised when I found this
+          out. Mesa developers seem to have believed that this is not
+          possible on GFX6. I&#39;d love to get some more context on this,
+          did it always work or was it added in a FW update?</div>
+        <div dir=3D"auto"><br>
+        </div>
+        <div dir=3D"auto">
+          <div class=3D"gmail_quote">
+            <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex">3)
+              Chaining doesn&#39;t work if the IB may be in flight multiple
+              times in<br>
+              a different sequence.<br>
+            </blockquote>
+          </div>
+        </div>
+        <div dir=3D"auto"><br>
+        </div>
+        <div dir=3D"auto">Additionally, chaining also doesn&#39;t work on a=
+ny
+          queue other than GFX and compute. As far as we know, SDMA and
+          the various encoder/decoder queues don&#39;t have a packet for
+          chaining.</div>
+        <div dir=3D"auto"><br>
+        </div>
+        <div dir=3D"auto">Christian, please let us know if we are wrong
+          about this.</div>
+      </div>
+    </blockquote>
+    <br>
+    I&#39;m not an expert for this either. Marek and Pierre-eric know more
+    about that stuff than me. On the other hand I could ping the
+    firmware people as well if our UMD guys can&#39;t answer that.<br></div=
+></blockquote></div></div><div dir=3D"auto"><br></div><div dir=3D"auto">Tha=
+nks, I&#39;m looking forward to hearing more about it.</div><div dir=3D"aut=
+o"><br></div><div dir=3D"auto"><div class=3D"gmail_quote"><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex"><div>
+    <br>
+    It&#39;s just that last time we discussed this internally somebody from
+    the PAL team commented that this isn&#39;t an issue any more because we
+    don&#39;t need that many IBs any more.<br></div></blockquote></div></di=
+v><div dir=3D"auto"><br></div><div dir=3D"auto">It is true that the typical=
+ game would only submit a few IBs: either 2 (1 preamble + 1 IB that has all=
+ the command buffers chained) or 8 for gang submit (4 preambles, 1 ACE IB, =
+1 GFX IB, 2 postambles), but we would like to ensure that the less common u=
+se cases that can&#39;t use chaining work well too.</div><div dir=3D"auto">=
+<br></div><div dir=3D"auto">We also have an increased interest in using the=
+ other HW queues in RADV these days: video encode/decode queues for the Vul=
+kan Video API, and of course SDMA which we are considering for transfer que=
+ues in the future.</div><div dir=3D"auto"><br></div><div dir=3D"auto"><div =
+class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
+ 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>
+    <br>
+    libdrm defined that you shouldn&#39;t use more than 4 IBs in a CS, on
+    the other hand we dropped checking that long ago and exposing the
+    numbers of IBs the UMD can use is just good design.<br></div></blockquo=
+te></div></div><div dir=3D"auto"><br></div><div dir=3D"auto">Yes, I agree.<=
+/div><div dir=3D"auto"><br></div><div dir=3D"auto">Can we remove that old (=
+and confusing) define from libdrm? Or does anyone still depend on that?</di=
+v><div dir=3D"auto"><br></div><div dir=3D"auto"><div class=3D"gmail_quote">=
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div>
+    <br>
+    Bas what do you think of adding an AMDGPU_INFO_MAX_IBS query instead
+    of extending the drm_amdgpu_info_hw_ip structure?<br>
+    <br>
+    Background is that the drm_amdgpu_info_hw_ip structure is actually
+    not meant to be used for sw parameters (which the maximum number of
+    IBs is) and we wouldn&#39;t need to dance around issues with query size
+    parameters because that function takes the size as parameter.<br></div>=
+</blockquote></div></div><div dir=3D"auto"><br></div><div dir=3D"auto">Soun=
+ds good to me but I&#39;ll defer to Bas&#39;s judgement on this.</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></=
+div><div dir=3D"auto"><div class=3D"gmail_quote"><blockquote class=3D"gmail=
+_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:=
+1ex"><div>
+    <br>
+    Regards,<br>
+    Christian.<br>
+    <br>
+    <blockquote type=3D"cite">
+      <div dir=3D"auto">
+        <div dir=3D"auto"><br>
+        </div>
+        <div dir=3D"auto"><br>
+        </div>
+        <div dir=3D"auto">Best regards,</div>
+        <div dir=3D"auto">Timur</div>
+        <div dir=3D"auto"><br>
+        </div>
+        <div dir=3D"auto"><br>
+        </div>
+        <div dir=3D"auto"><br>
+        </div>
+        <div dir=3D"auto">
+          <div class=3D"gmail_quote">
+            <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex">
+              <br>
+              We try to chain when we can but (2) and (3) are cases
+              where we<br>
+              fallback to submitting multiple IBs.<br>
+              <br>
+              &gt;<br>
+              &gt; For the kernel UAPI you only need separate IBs if you
+              have separate<br>
+              &gt; properties on them, E.g. preamble or submitting to a
+              different engine.<br>
+              &gt;<br>
+              &gt; Everything else just needs additional CPU overhead in
+              the IOCTL.<br>
+              &gt;<br>
+              &gt; Regards,<br>
+              &gt; Christian.<br>
+              &gt;<br>
+              &gt; &gt;<br>
+              &gt; &gt; Because the kernel handling is just fine we can
+              just use the v2<br>
+              &gt; &gt; everywhere and have the return_size do the
+              versioning for us,<br>
+              &gt; &gt; with userspace interpreting 0 as unknown.<br>
+              &gt; &gt;<br>
+              &gt; &gt; Userspace implementation:<br>
+              &gt; &gt; <a href=3D"https://gitlab.freedesktop.org/bnieuwenh=
+uizen/drm/-/tree/ib-rejection" rel=3D"noreferrer noreferrer noreferrer" tar=
+get=3D"_blank">https://gitlab.freedesktop.org/bnieuwenhuizen/drm/-/tree/ib-=
+rejection</a><br>
+              &gt; &gt; <a href=3D"https://gitlab.freedesktop.org/bnieuwenh=
+uizen/mesa/-/tree/ib-rejection" rel=3D"noreferrer noreferrer noreferrer" ta=
+rget=3D"_blank">https://gitlab.freedesktop.org/bnieuwenhuizen/mesa/-/tree/i=
+b-rejection</a><br>
+              &gt; &gt;<br>
+              &gt; &gt; v2: Use base member in the new struct.<br>
+              &gt; &gt;<br>
+              &gt; &gt; Link: <a href=3D"https://gitlab.freedesktop.org/drm=
+/amd/-/issues/2498" rel=3D"noreferrer noreferrer noreferrer" target=3D"_bla=
+nk">https://gitlab.freedesktop.org/drm/amd/-/issues/2498</a><br>
+              &gt; &gt; Signed-off-by: Bas Nieuwenhuizen &lt;<a href=3D"mai=
+lto:bas@basnieuwenhuizen.nl" rel=3D"noreferrer noreferrer" target=3D"_blank=
+">bas@basnieuwenhuizen.nl</a>&gt;<br>
+              &gt; &gt; Cc: David Airlie &lt;<a href=3D"mailto:airlied@gmai=
+l.com" rel=3D"noreferrer noreferrer" target=3D"_blank">airlied@gmail.com</a=
+>&gt;<br>
+              &gt; &gt; ---<br>
+              &gt; &gt;=C2=A0 =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c=
+ | 31
+              ++++++++++++++-----------<br>
+              &gt; &gt;=C2=A0 =C2=A0include/uapi/drm/amdgpu_drm.h=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 14
+              +++++++++++<br>
+              &gt; &gt;=C2=A0 =C2=A02 files changed, 31 insertions(+), 14
+              deletions(-)<br>
+              &gt; &gt;<br>
+              &gt; &gt; diff --git
+              a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+              b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c<br>
+              &gt; &gt; index 89689b940493..5b575e1aef1a 100644<br>
+              &gt; &gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c<br>
+              &gt; &gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c<br>
+              &gt; &gt; @@ -360,7 +360,7 @@ static int
+              amdgpu_firmware_info(struct drm_amdgpu_info_firmware
+              *fw_info,<br>
+              &gt; &gt;<br>
+              &gt; &gt;=C2=A0 =C2=A0static int amdgpu_hw_ip_info(struct
+              amdgpu_device *adev,<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 struct
+              drm_amdgpu_info *info,<br>
+              &gt; &gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 struct
+              drm_amdgpu_info_hw_ip *result)<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 struct
+              drm_amdgpu_info_hw_ip2 *result)<br>
+              &gt; &gt;=C2=A0 =C2=A0{<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t ib_start_alignme=
+nt =3D 0;<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0uint32_t ib_size_alignmen=
+t =3D 0;<br>
+              &gt; &gt; @@ -431,6 +431,7 @@ static int
+              amdgpu_hw_ip_info(struct amdgpu_device *adev,<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0return -EINVAL;<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+              &gt; &gt;<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0result-&gt;max_ibs =3D UINT_MA=
+X;<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0for (i =3D 0; i &lt; adev=
+-&gt;num_rings;
+              ++i) {<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0/* Note that this uses that ring
+              types alias the equivalent<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 * HW IP exposes to userspace.<br>
+              &gt; &gt; @@ -438,6 +439,8 @@ static int
+              amdgpu_hw_ip_info(struct amdgpu_device *adev,<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0if
+              (adev-&gt;rings[i]-&gt;funcs-&gt;type =3D=3D
+              info-&gt;query_hw_ip.type &amp;&amp;<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0
+              =C2=A0adev-&gt;rings[i]-&gt;sched.ready) {<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0++num_rings;<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0result-&gt;max_ibs =3D
+              min(result-&gt;max_ibs,<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0
+              =C2=A0adev-&gt;rings[i]-&gt;max_ibs);<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0}<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+              &gt; &gt;<br>
+              &gt; &gt; @@ -452,36 +455,36 @@ static int
+              amdgpu_hw_ip_info(struct amdgpu_device *adev,<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0num_rings =3D
+              min(amdgpu_ctx_num_entities[info-&gt;query_hw_ip.type],<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0num_rings);<br>
+              &gt; &gt;<br>
+              &gt; &gt; -=C2=A0 =C2=A0 =C2=A0result-&gt;hw_ip_version_major=
+ =3D
+              adev-&gt;ip_blocks[i].version-&gt;major;<br>
+              &gt; &gt; -=C2=A0 =C2=A0 =C2=A0result-&gt;hw_ip_version_minor=
+ =3D
+              adev-&gt;ip_blocks[i].version-&gt;minor;<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0result-&gt;base.hw_ip_version_=
+major =3D
+              adev-&gt;ip_blocks[i].version-&gt;major;<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0result-&gt;base.hw_ip_version_=
+minor =3D
+              adev-&gt;ip_blocks[i].version-&gt;minor;<br>
+              &gt; &gt;<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (adev-&gt;asic_type &g=
+t;=3D CHIP_VEGA10)
+              {<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0switch (type) {<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0case AMD_IP_BLOCK_TYPE_GFX:<br>
+              &gt; &gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0
+              =C2=A0result-&gt;ip_discovery_version =3D
+              adev-&gt;ip_versions[GC_HWIP][0];<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0
+              =C2=A0result-&gt;base.ip_discovery_version =3D
+              adev-&gt;ip_versions[GC_HWIP][0];<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0case AMD_IP_BLOCK_TYPE_SDMA:<br>
+              &gt; &gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0
+              =C2=A0result-&gt;ip_discovery_version =3D
+              adev-&gt;ip_versions[SDMA0_HWIP][0];<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0
+              =C2=A0result-&gt;base.ip_discovery_version =3D
+              adev-&gt;ip_versions[SDMA0_HWIP][0];<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0case AMD_IP_BLOCK_TYPE_UVD:<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0case AMD_IP_BLOCK_TYPE_VCN:<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0case AMD_IP_BLOCK_TYPE_JPEG:<br>
+              &gt; &gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0
+              =C2=A0result-&gt;ip_discovery_version =3D
+              adev-&gt;ip_versions[UVD_HWIP][0];<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0
+              =C2=A0result-&gt;base.ip_discovery_version =3D
+              adev-&gt;ip_versions[UVD_HWIP][0];<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0case AMD_IP_BLOCK_TYPE_VCE:<br>
+              &gt; &gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0
+              =C2=A0result-&gt;ip_discovery_version =3D
+              adev-&gt;ip_versions[VCE_HWIP][0];<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0
+              =C2=A0result-&gt;base.ip_discovery_version =3D
+              adev-&gt;ip_versions[VCE_HWIP][0];<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0default:<br>
+              &gt; &gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0
+              =C2=A0result-&gt;ip_discovery_version =3D 0;<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0
+              =C2=A0result-&gt;base.ip_discovery_version =3D 0;<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0}<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0} else {<br>
+              &gt; &gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0re=
+sult-&gt;ip_discovery_version =3D
+              0;<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+              =C2=A0result-&gt;base.ip_discovery_version =3D 0;<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+              &gt; &gt; -=C2=A0 =C2=A0 =C2=A0result-&gt;capabilities_flags =
+=3D 0;<br>
+              &gt; &gt; -=C2=A0 =C2=A0 =C2=A0result-&gt;available_rings =3D=
+ (1 &lt;&lt;
+              num_rings) - 1;<br>
+              &gt; &gt; -=C2=A0 =C2=A0 =C2=A0result-&gt;ib_start_alignment =
+=3D
+              ib_start_alignment;<br>
+              &gt; &gt; -=C2=A0 =C2=A0 =C2=A0result-&gt;ib_size_alignment =
+=3D
+              ib_size_alignment;<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0result-&gt;base.capabilities_f=
+lags =3D 0;<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0result-&gt;base.available_ring=
+s =3D (1
+              &lt;&lt; num_rings) - 1;<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0result-&gt;base.ib_start_align=
+ment =3D
+              ib_start_alignment;<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0result-&gt;base.ib_size_alignm=
+ent =3D
+              ib_size_alignment;<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;<br>
+              &gt; &gt;=C2=A0 =C2=A0}<br>
+              &gt; &gt;<br>
+              &gt; &gt; @@ -536,7 +539,7 @@ int amdgpu_info_ioctl(struct
+              drm_device *dev, void *data, struct drm_file *filp)<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0}<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0return copy_to_user(out,
+              &amp;ui32, min(size, 4u)) ? -EFAULT : 0;<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0case AMDGPU_INFO_HW_IP_IN=
+FO: {<br>
+              &gt; &gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0st=
+ruct drm_amdgpu_info_hw_ip ip =3D
+              {};<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0st=
+ruct drm_amdgpu_info_hw_ip2 ip =3D
+              {};<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0int ret;<br>
+              &gt; &gt;<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0ret =3D amdgpu_hw_ip_info(adev,
+              info, &amp;ip);<br>
+              &gt; &gt; diff --git a/include/uapi/drm/amdgpu_drm.h
+              b/include/uapi/drm/amdgpu_drm.h<br>
+              &gt; &gt; index b6eb90df5d05..6b9e35b6f747 100644<br>
+              &gt; &gt; --- a/include/uapi/drm/amdgpu_drm.h<br>
+              &gt; &gt; +++ b/include/uapi/drm/amdgpu_drm.h<br>
+              &gt; &gt; @@ -1128,6 +1128,9 @@ struct
+              drm_amdgpu_info_device {<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 enabled_rb_pipes_ma=
+sk_hi;<br>
+              &gt; &gt;=C2=A0 =C2=A0};<br>
+              &gt; &gt;<br>
+              &gt; &gt; +/* The size of this struct cannot be increased
+              for compatibility reasons, use<br>
+              &gt; &gt; + * struct drm_amdgpu_info_hw_ip2 instead.<br>
+              &gt; &gt; + */<br>
+              &gt; &gt;=C2=A0 =C2=A0struct drm_amdgpu_info_hw_ip {<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0/** Version of h/w IP */<=
+br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32=C2=A0 hw_ip_version=
+_major;<br>
+              &gt; &gt; @@ -1144,6 +1147,17 @@ struct
+              drm_amdgpu_info_hw_ip {<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32=C2=A0 ip_discovery_=
+version;<br>
+              &gt; &gt;=C2=A0 =C2=A0};<br>
+              &gt; &gt;<br>
+              &gt; &gt; +struct drm_amdgpu_info_hw_ip2 {<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0/** Previous version of the st=
+ruct */<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0struct drm_amdgpu_info_hw_ip=
+=C2=A0 base;<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0/** The maximum number of IBs =
+one can
+              submit in a single submission<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 * ioctl. (When using gang sub=
+mit: this is
+              per IP type)<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 */<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0__u32=C2=A0 max_ibs;<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0/** padding to 64bit for arch =
+differences
+              */<br>
+              &gt; &gt; +=C2=A0 =C2=A0 =C2=A0__u32=C2=A0 pad;<br>
+              &gt; &gt; +};<br>
+              &gt; &gt; +<br>
+              &gt; &gt;=C2=A0 =C2=A0struct drm_amdgpu_info_num_handles {<br=
+>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0/** Max handles as suppor=
+ted by firmware
+              for UVD */<br>
+              &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32=C2=A0 uvd_max_handl=
+es;<br>
+              &gt;<br>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+  </div>
+
+</blockquote></div></div></div>
+
+--000000000000f2d3ce05f90d7d90--
