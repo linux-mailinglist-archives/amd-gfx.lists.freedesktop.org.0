@@ -1,73 +1,119 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6589C6E12E1
-	for <lists+amd-gfx@lfdr.de>; Thu, 13 Apr 2023 18:56:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BCA46E13B3
+	for <lists+amd-gfx@lfdr.de>; Thu, 13 Apr 2023 19:46:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8D5010EB9C;
-	Thu, 13 Apr 2023 16:56:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5803710E008;
+	Thu, 13 Apr 2023 17:46:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com
- [IPv6:2001:4860:4864:20::31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88D8B10EB9C
- for <amd-gfx@lists.freedesktop.org>; Thu, 13 Apr 2023 16:56:24 +0000 (UTC)
-Received: by mail-oa1-x31.google.com with SMTP id
- 586e51a60fabf-1842e8a8825so18626759fac.13
- for <amd-gfx@lists.freedesktop.org>; Thu, 13 Apr 2023 09:56:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1681404983; x=1683996983;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=CTNmYKxt6xCcB4BspOEw2trEd2i86h/Urb1q3tEdlfQ=;
- b=GjA4MlDv8EfTZctRazBTk1Jdb2OFPBO2nHHcbJDJNkbZGSGyIvGolm5VxPiznOaHZj
- F/ASTKLJMnsyYhDoEqWbF1C2J1SorwIDKowOtxiR/xUDzPwTVSHvZneqG5QgDGDp25Fl
- 20lY4JjJKYk1bSLChTCY1GYfXOewXkVeLBjDopITyiATAwBJ/rzxGF2pV8Jsiy67uf/X
- ywzK3ADd4Ykt2DGB7BmkwwVFauSuHxaPaqYVvouEkXoylYlCgGz5gtTZSCcjpvTQOAcD
- P6sYX/Sg19/kjuBeFoqLpojMPd6TsDmKU2aMZXDxUSfw6AUZr9pxQgsEnRuhajzcXyQe
- Qufg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1681404983; x=1683996983;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=CTNmYKxt6xCcB4BspOEw2trEd2i86h/Urb1q3tEdlfQ=;
- b=cXYpawA1bMiNXbCDQdcTyw7adDthQKOlokfXGihUImyrvWhLO+Cu9bAG6ermMnstm0
- N9GQ2l76iBxxSn3zAs8cv+dgFmubpcLFi0cDIlWwf3Zi3ynA/hKA+Llrvr3xRvv6LxUA
- cWp23jzRX/L0nKqYFo/aH9zgyJP2kDKXgVIfXrLAS5M3GvVIGQTpzrIXkkCzg5jWE4OY
- 5HPkYZvT3+QDmyhSEhDpT2Q5X3Ro5FqR5D57C9eD4ox5sx8cipgImyKBhqvw3UdHaxJ0
- T8H+su8pKR1q4qmOBG4M0D81z/pwHZYY4lcZPpdUuOIwh5TKBvbE7ZcsTSQ1LEVWX9gK
- sjVA==
-X-Gm-Message-State: AAQBX9d43Me3S7GOAvaUjU+FFivVuLFshdY+3y4rKo1ukyFVGk9FsoUv
- wx5iI7MOMC1hFUw2PXSL5LuiU/k9KRJup3yQGN7xXYsd
-X-Google-Smtp-Source: AKy350adxY3y6+4uw4lsgXbS0jw6fqhv4fXeVc82SIY9NbYu+rQes9Sml/kpMfHLEWVBJJxiOfVoTrjmTgCmXI7ce1U=
-X-Received: by 2002:a05:6870:1391:b0:177:a0de:992 with SMTP id
- 17-20020a056870139100b00177a0de0992mr1484785oas.3.1681404983404; Thu, 13 Apr
- 2023 09:56:23 -0700 (PDT)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2046.outbound.protection.outlook.com [40.107.244.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4944410E008
+ for <amd-gfx@lists.freedesktop.org>; Thu, 13 Apr 2023 17:46:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Sm89JLOsU65DRjURCkBRBLBYhwMg0xXtSWeMoNfouDAsKspKPsGdO58l4iw5Mv6GP3iL64hBQ++x31Uqh5nbZtNp4CbiP6ej84RGlp3DKBFlGSOuipmIYDXA4/+XC7JKWVc//go50A6jgli5+HfYF/XHCAnfGDT4Ky2BbmFmNlcy2yf2GA2Mux0pamLNImV00Wy+69aCMI3g+lf+Bzr7QI710kpvFafrunI6TD1chmaTSmgCDkfzCiAunX0QBMvS5f2diDiCZXjPXhGeH2PZd9fjNpppqNyNa8DOKbIGfHkYHSCj3Ui26Vumui766YMibTAxI5L+mGrtvoKAYK38ow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uDQY2hLPOHS7s6MxhdiZzcCpgAon+aHFqrQfI+GzvwA=;
+ b=f/W3V/Ee2jWg8F49ef05kLvW/TD0+0VlEk8xL4N8vOkiIVi/NUQ7sSQxhui2245h2ZvIKvtml3X12qo3AYG8RpNTXzqeihFf/UP7kGnZv7uQzGO+J5kRyGN4xQSOZbOHz9V79LAYRlNkC5btmTYBy3twj+F9Z3WdmGxoSusL+ZkaT4q6tEr9idORPUAEdhQpq1WPir/h46OUTCIkMY5Qm7S0jteQOlFQRvEegv++pCl7NHo/8qG8Oz597y67niSh9VsSqgER0DDBZjg+Psh63NkewhTFqpPA0adjwwntpRI0c3NMi/EeK0rHhXVhEW8VjIK+4rEwkdB8Q3P82dRnJQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uDQY2hLPOHS7s6MxhdiZzcCpgAon+aHFqrQfI+GzvwA=;
+ b=XBdByaR90egM9ZCOYyC+9vBiIciPnyKeHyIeZBBc6teiALh1/KTx7OTGzS7/EfByEU/+f2H3LWExZf5Or/BmVNgcnurz1RR6mKPuoOcZ0kTyvzqNnBV3qayov/h0k45T2VHdvTnYQTu+iGm3C6cB5iuAtPUKfS8DZus/HOCEaVk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from CH0PR12MB5284.namprd12.prod.outlook.com (2603:10b6:610:d7::13)
+ by DM4PR12MB5745.namprd12.prod.outlook.com (2603:10b6:8:5c::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6298.30; Thu, 13 Apr 2023 17:46:25 +0000
+Received: from CH0PR12MB5284.namprd12.prod.outlook.com
+ ([fe80::3e54:627b:ceee:ed2b]) by CH0PR12MB5284.namprd12.prod.outlook.com
+ ([fe80::3e54:627b:ceee:ed2b%4]) with mapi id 15.20.6298.030; Thu, 13 Apr 2023
+ 17:46:25 +0000
+Message-ID: <1d378200-98e9-033b-8ee7-f371848c170f@amd.com>
+Date: Thu, 13 Apr 2023 13:46:23 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH] drm/amd/display: Improvise error handling for DP sink
+ power states
+Content-Language: en-US
+To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ Fangzhi Zuo <Jerry.Zuo@amd.com>
+References: <20230413161704.2262865-1-srinivasan.shanmugam@amd.com>
+From: Aurabindo Pillai <aurabindo.pillai@amd.com>
+In-Reply-To: <20230413161704.2262865-1-srinivasan.shanmugam@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: YQZPR01CA0116.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:83::9) To CH0PR12MB5284.namprd12.prod.outlook.com
+ (2603:10b6:610:d7::13)
 MIME-Version: 1.0
-References: <20230330191750.1134210-1-alexander.deucher@amd.com>
- <20230330191750.1134210-4-alexander.deucher@amd.com>
- <CAAxE2A7nvmXdUaXESi4g6HVBFxk+dooz7tZYQfjGE8O2fKFi-w@mail.gmail.com>
- <8a98b160-5276-54f5-d166-e12a572892e9@amd.com>
- <CAAxE2A4LzFudfzTNRr290ORZvcF6-xzKiyNM6LZ3uiZDPerf5Q@mail.gmail.com>
- <b1485943-5f0a-1a7e-f0a4-b35771b48a23@gmail.com>
- <CAAxE2A6m346bTD7G=wMa=8OcRmk6OHui9N=Z9B5xHCS4VxxYwQ@mail.gmail.com>
- <2897fa79-f0ef-1ddb-dc38-05ef429fe0d9@gmail.com>
- <CAAxE2A5mf8J_1JJvgPgx-G07zcc3vcHOD6jWUXL8Mhx3g-Zufw@mail.gmail.com>
- <0e2e1902-54e8-0626-c7ca-3f818f8792fb@gmail.com>
- <CADnq5_MrY3QtU_--B=OYD+_+nx6jNyzJfOxBzfoPrmeLJC6h3Q@mail.gmail.com>
- <8b2df4e1-ad00-a834-3382-d25f1c667978@gmail.com>
-In-Reply-To: <8b2df4e1-ad00-a834-3382-d25f1c667978@gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 13 Apr 2023 12:56:11 -0400
-Message-ID: <CADnq5_PLfseKjhYZe54poe+hE4-cL+Fgqc=sZ=QabN1Xqud0Lg@mail.gmail.com>
-Subject: Re: [PATCH 03/13] drm/amdgpu/UAPI: add new CS chunk for GFX shadow
- buffers
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH0PR12MB5284:EE_|DM4PR12MB5745:EE_
+X-MS-Office365-Filtering-Correlation-Id: 840a1fb7-59b9-4dce-20f6-08db3c470058
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 6LovvIMFT8F2ZQDi/ghNxE44ON/J84wF//HBhPopjdo4JbzCReO1XJBz2ebKGf9L2GK5b86oOgC6s0vzK7ETWuN7tcsAoeaqS/LhlsZdXUgKBoBL6ZHrXPhL/SZ/a8xVDNRaBnWenDMPAjSJBFZsWBWNNKKZQh3pJbf5F5ia7VzLLM0L+mtZU0qMmxbswku7xX9AWp1JJz0/2wEoSD0hqebwBfM8yE6XnIcYkehFh/3yisPJjmUWbso5CYjvB0358z0K4mUdEbx6s7Bw+0PXVoEHBy57pSEsF5w3fv/jMPUeft+AtmIrTAavFa2gllYQEvB31npB/nV5FEPM20CB7sdJHkqFof5Qt5kCjHz2NZl2BDKsa1iQxaemNom8dFcfKsHpvKM7UlZ3HBDKg5vZzmVCenWvofQXE+xfDMp/PKxwk/DPb8g9GH0EugIuW0Oq7s+xlBHRyA0sbnuFKEXPJMw9Aj0yWRERSGW5zAWrbfgE8mJAPectdNUaIZhZTp9n9iQvRbPEF3UfHHuy7sBbUFfMOQ+Fygx6nRsgJOtYCSSfOsqCA6jR8lEHHVuwTqrOCI3/HBJCFK4uTA51OY1F14m4VuIhbK1jLyqdu8fzKyNARAh5ojxZZSF3dideKXmEpeEcUJqs/x+jILhvsMbmLw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR12MB5284.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(346002)(39860400002)(376002)(396003)(136003)(366004)(451199021)(6512007)(6506007)(26005)(186003)(53546011)(6636002)(478600001)(110136005)(2906002)(8676002)(8936002)(41300700001)(2616005)(5660300002)(44832011)(4326008)(38100700002)(316002)(66946007)(66556008)(66476007)(86362001)(31696002)(6486002)(31686004)(36756003)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cTdEa1lJTDhxRFcrZno1amVEZERnYUR1S0gzZlhvckFQNjhYNjF2U2Q3bWNY?=
+ =?utf-8?B?VUIyZlZ3MVhJdUxwZHFuTGtTTkxTNkd2c3Y0YU1HYUQ3OHZ6S1hLNGh4ejlz?=
+ =?utf-8?B?T1prRkV3MkViUHdyc0R3WUFnRCt1ZVFBU1NVZm40QjhHV2dSMjQ3SWxhTTJM?=
+ =?utf-8?B?dHE2VVUxTlAwdnVjUVpXS1JzY0tEa2x5K3RBalM1QVArTnJaOGV6Qmh1ODQw?=
+ =?utf-8?B?Zy9EWmo2ZUtyVnliTDN5Z2U1MlhFYjhwbGdSL2xYd1loUnQ1ZTQycG9vREls?=
+ =?utf-8?B?U2xyUW5WM2t0blhZZXYxYWpScjZSTzYwd1dVSzUzNG50THVENXhHU2pUQXRi?=
+ =?utf-8?B?TUxsd3FaeGF1L1ljTlIrOUhtMlZrUzhqbm1PS0ZnZndNTmxYaWhDRlRTUWlF?=
+ =?utf-8?B?akc3RnVCNExvTmxHSmFmdm8vK2E3aXJMTTRLTEUrUkkzeU0reE1NQjZ4cERU?=
+ =?utf-8?B?WWJpRWhkR1ZudHJyWXpjZklBNEVlTUlNY0E4a1I4V1ZGMkFLVHE3S0dWMWg5?=
+ =?utf-8?B?K0dYWTF1SHB1VmMyVTZEMVI1SjhrTG51NEF6VXl3Q0E2MFg5TU9LYTAvN1dR?=
+ =?utf-8?B?dlVuaEdSOXRHWEt6bURxdnNPVnpqbDhteGx5K2YyaGRjNjRVcTcrRkdsVU8y?=
+ =?utf-8?B?L0x4MHdOUmUrNkEwZWRlNUdHRC8wNUJFNnF5K3lVaW9tV2VGNmFsK3pQT0Rl?=
+ =?utf-8?B?SkdXamEwZXVJV284MlZGLzJMVnUyWWh2NCtjRUdwRG9ubEtVNFJPZmdjMkZF?=
+ =?utf-8?B?MllUd0VXTmJYM1JFZEJ4T3d0elJ2WTFHaFRBcDQ0THpaUkEwMTNHaWNPWkxj?=
+ =?utf-8?B?QmlzaEpKbHVWeU5WVkNKYllmYU8wRHlYVG5HalpHV0J4bGxWbmRra3FMNHJp?=
+ =?utf-8?B?TThtK2M0T2FpVjhPWjk0MVYydU13bDFJMWc5blg0akhsRFU4c1pPK2hvUG5x?=
+ =?utf-8?B?aDg0ZnJ0TkJOalJ1YnpvRnBybS9nMEp6U3grM0NqQm81RkNPSFFZNklkVDlr?=
+ =?utf-8?B?eXozOC8xQjRmWi8vR0RYUWJxUE1HRjcxL2dod3ppeUJMUnI1RXJIOHdJK2Nm?=
+ =?utf-8?B?bVdxZlhOTnU3MXBDTWxIU3Y4N2VEUENnY000T3J5UkhTRmFXK1pNWE1GVFlP?=
+ =?utf-8?B?SVUwVjluWlBmZmp2dTNhUkVSNll0TmhVdFI5ZUtXNncxcGJJeUFVN3prRW11?=
+ =?utf-8?B?T0lKWDd1TldoSVVySzMvdmZoVklHQkVmSGdwcHBDd2lsN2ZpQVBUMURGZ1hY?=
+ =?utf-8?B?WjYrRDE5bEdSMjhnWU5LWHZ5aW5mWkQzSWZZekhWL1pLTDUxNG1tN3lKVWpM?=
+ =?utf-8?B?MjhqVnVxR0FuM0o3QmJTWGxRUFVMUHdQWEVudjFuYlY0Wi9JOXRzUlByWGVk?=
+ =?utf-8?B?R0pqOCtjMTM1Rys1SU5tUXVrZ01sQjNPa3BxTS9vR0Iwc1VOTm40VEVtVmRG?=
+ =?utf-8?B?ZHNtQ0Z2SThRRlU5Z3k4dlpJRGhkaCtqWmpacXVzZzY0NDBrTVpSZEFVamdZ?=
+ =?utf-8?B?WUdNQ2NxT2MwWVNkWG0wNHhoRXl6V1cxeU41N0FKZy9OZHZMQUhjaThxQ21k?=
+ =?utf-8?B?ajhBdGVPcXh1aGNjK2ZjNzBmbHMvc0lsU2RnY0xQT1kvaVp4OUl4WktRalpE?=
+ =?utf-8?B?dmFRMEJsU2RzL1YvVCt6VUJ2alRUZTZnNVhYSGdFdjJsTzJkZjBuN1N4Q2p6?=
+ =?utf-8?B?bEpnakI4Mm1XMlJFN1NNMXVZUVZ5Zm1TRFpCa2d5Q3djcWFSamFDVENaZmQr?=
+ =?utf-8?B?Q3ZNQVh2cnJXV0pEamxURkgwbG16ekRFS1NER0JLS3ByQmtzNnBiakx4eTU2?=
+ =?utf-8?B?dE16MzdCRFRhWWZHWHROSFAyd3R6RnJkcHpqb1I0SlNrSmpranJZNTl1VUta?=
+ =?utf-8?B?TWxpWjJ2K0hZc2gzSFd3Q2V3UDJ1ckdjT01qUUtZZ0dtMXRpUW9zU09xTVlG?=
+ =?utf-8?B?OEFtaGVaYnVEcnlRakxWTGVqZUlvOUdRZmlsckU1OVkyRVh5R2xBcGVXRURz?=
+ =?utf-8?B?eWd2NDJMYXdPT3B4Zm02bFAvM0dnenpMN2J2RDVlaUF2Y0tOWDlEWWRVQlJF?=
+ =?utf-8?B?ZTNLZlR0QVhjUFhsWm14aTVnZVVzZTViMHFOdmZ5WXZoWXBiUlZ3WkN0R3hZ?=
+ =?utf-8?Q?POEfNAHX5omYBTSAqlr7WprUk?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 840a1fb7-59b9-4dce-20f6-08db3c470058
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR12MB5284.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Apr 2023 17:46:25.1687 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NDY0doamVY0uU2oOg1BIPyWL9EQVtr+F4Wt5W4aTZfU14mKEhDqSp/IFe83BNxQSciF9Q+dYUZdCHczd/K27HQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5745
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,149 +125,37 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
- =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 13, 2023 at 11:54=E2=80=AFAM Christian K=C3=B6nig
-<ckoenig.leichtzumerken@gmail.com> wrote:
->
-> Am 13.04.23 um 14:26 schrieb Alex Deucher:
-> > On Thu, Apr 13, 2023 at 7:32=E2=80=AFAM Christian K=C3=B6nig
-> > <ckoenig.leichtzumerken@gmail.com> wrote:
-> >> Ok, then we have a problem.
-> >>
-> >> Alex what do you think?
-> > If you program it to 0, FW skips the GDS backup I think so UMD's can
-> > decide whether they want to use it or not, depending on whether they
-> > use GDS.
->
-> Yeah, but when Mesa isn't using it we have a hard way justifying to
-> upstream that because it isn't tested at all.
 
-Well, the interface would still get used, it's just that mesa would
-likely only ever pass 0 for the virtual address.  It's just a
-passthrough to the packet.  If we discover we need it at some point,
-it would be nice to not have to add a new interface to add it.
 
-Alex
+On 4/13/23 12:17, Srinivasan Shanmugam wrote:
+> Log if we fail to setup sink power states.
+> 
+> Cc: Fangzhi Zuo <Jerry.Zuo@amd.com>
+> Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
+> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+> ---
+>   .../gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c | 3 +++
+>   1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
+> index c840ef17802e..adf6a67e0e5d 100644
+> --- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
+> +++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
+> @@ -1043,6 +1043,9 @@ static enum dc_status wake_up_aux_channel(struct dc_link *link)
+>   				DP_SET_POWER,
+>   				&dpcd_power_state,
+>   				sizeof(dpcd_power_state));
+> +		if (status < 0)
+> +			DC_LOG_HW_LINK_TRAINING("%s: Failed to power up sink: %s\n", __func__,
+> +						dpcd_power_state == DP_SET_POWER_D0 ? "D0" : "D3");
 
->
-> Christian.
->
-> >
-> > Alex
-> >
-> >
-> >> Christian.
-> >>
-> >> Am 13.04.23 um 11:21 schrieb Marek Ol=C5=A1=C3=A1k:
-> >>
-> >> That's not why it was removed. It was removed because userspace doesn'=
-t use GDS memory and gds_va is always going to be 0.
-> >>
-> >> Firmware shouldn't use it because using it would increase preemption l=
-atency.
-> >>
-> >> Marek
-> >>
-> >> On Sun, Apr 9, 2023, 11:21 Christian K=C3=B6nig <ckoenig.leichtzumerke=
-n@gmail.com> wrote:
-> >>> We removed the GDS information because they were unnecessary. The GDS=
- size was already part of the device info before we added the shadow info.
-> >>>
-> >>> But as far as I know the firmware needs valid VAs for all three buffe=
-rs or won't work correctly.
-> >>>
-> >>> Christian.
-> >>>
-> >>> Am 06.04.23 um 17:01 schrieb Marek Ol=C5=A1=C3=A1k:
-> >>>
-> >>> There is no GDS shadowing info in the device info uapi, so userspace =
-can't create any GDS buffer and thus can't have any GDS va. It's a uapi iss=
-ue, not what firmware wants to do.
-> >>>
-> >>> Marek
-> >>>
-> >>> On Thu, Apr 6, 2023 at 6:31=E2=80=AFAM Christian K=C3=B6nig <ckoenig.=
-leichtzumerken@gmail.com> wrote:
-> >>>> That's what I thought as well, but Mitch/Hans insisted on that.
-> >>>>
-> >>>> We should probably double check internally.
-> >>>>
-> >>>> Christian.
-> >>>>
-> >>>> Am 06.04.23 um 11:43 schrieb Marek Ol=C5=A1=C3=A1k:
-> >>>>
-> >>>> GDS memory isn't used on gfx11. Only GDS OA is used.
-> >>>>
-> >>>> Marek
-> >>>>
-> >>>> On Thu, Apr 6, 2023 at 5:09=E2=80=AFAM Christian K=C3=B6nig <christi=
-an.koenig@amd.com> wrote:
-> >>>>> Why that?
-> >>>>>
-> >>>>> This is the save buffer for GDS, not the old style GDS BOs.
-> >>>>>
-> >>>>> Christian.
-> >>>>>
-> >>>>> Am 06.04.23 um 09:36 schrieb Marek Ol=C5=A1=C3=A1k:
-> >>>>>
-> >>>>> gds_va is unnecessary.
-> >>>>>
-> >>>>> Marek
-> >>>>>
-> >>>>> On Thu, Mar 30, 2023 at 3:18=E2=80=AFPM Alex Deucher <alexander.deu=
-cher@amd.com> wrote:
-> >>>>>> For GFX11, the UMD needs to allocate some shadow buffers
-> >>>>>> to be used for preemption.  The UMD allocates the buffers
-> >>>>>> and passes the GPU virtual address to the kernel since the
-> >>>>>> kernel will program the packet that specified these
-> >>>>>> addresses as part of its IB submission frame.
-> >>>>>>
-> >>>>>> v2: UMD passes shadow init to tell kernel when to initialize
-> >>>>>>      the shadow
-> >>>>>>
-> >>>>>> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> >>>>>> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> >>>>>> ---
-> >>>>>>   include/uapi/drm/amdgpu_drm.h | 10 ++++++++++
-> >>>>>>   1 file changed, 10 insertions(+)
-> >>>>>>
-> >>>>>> diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdg=
-pu_drm.h
-> >>>>>> index b6eb90df5d05..3d9474af6566 100644
-> >>>>>> --- a/include/uapi/drm/amdgpu_drm.h
-> >>>>>> +++ b/include/uapi/drm/amdgpu_drm.h
-> >>>>>> @@ -592,6 +592,7 @@ struct drm_amdgpu_gem_va {
-> >>>>>>   #define AMDGPU_CHUNK_ID_SCHEDULED_DEPENDENCIES 0x07
-> >>>>>>   #define AMDGPU_CHUNK_ID_SYNCOBJ_TIMELINE_WAIT    0x08
-> >>>>>>   #define AMDGPU_CHUNK_ID_SYNCOBJ_TIMELINE_SIGNAL  0x09
-> >>>>>> +#define AMDGPU_CHUNK_ID_CP_GFX_SHADOW   0x0a
-> >>>>>>
-> >>>>>>   struct drm_amdgpu_cs_chunk {
-> >>>>>>          __u32           chunk_id;
-> >>>>>> @@ -708,6 +709,15 @@ struct drm_amdgpu_cs_chunk_data {
-> >>>>>>          };
-> >>>>>>   };
-> >>>>>>
-> >>>>>> +#define AMDGPU_CS_CHUNK_CP_GFX_SHADOW_FLAGS_INIT_SHADOW         0=
-x1
-> >>>>>> +
-> >>>>>> +struct drm_amdgpu_cs_chunk_cp_gfx_shadow {
-> >>>>>> +       __u64 shadow_va;
-> >>>>>> +       __u64 csa_va;
-> >>>>>> +       __u64 gds_va;
-> >>>>>> +       __u64 flags;
-> >>>>>> +};
-> >>>>>> +
-> >>>>>>   /*
-> >>>>>>    *  Query h/w info: Flag that this is integrated (a.h.a. fusion)=
- GPU
-> >>>>>>    *
-> >>>>>> --
-> >>>>>> 2.39.2
-> >>>>>>
->
+Isnt this more of a DC_LOG_DC ? Link training related code was moved to 
+a separate file.
+
+>   		return DC_ERROR_UNEXPECTED;
+>   	}
+>   
