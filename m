@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77F326E2793
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Apr 2023 17:54:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C921A6E2797
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Apr 2023 17:54:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0BC510EDD2;
-	Fri, 14 Apr 2023 15:54:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2372810EDD6;
+	Fri, 14 Apr 2023 15:54:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2073.outbound.protection.outlook.com [40.107.220.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEB4110EDD0
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 Apr 2023 15:54:27 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2075.outbound.protection.outlook.com [40.107.93.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FE0A10EDD2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Apr 2023 15:54:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hDo1QVZ18IHYGggh7axOUu1iySgHWAj24UaYCU3oDQYwWc7gUw1+8nmXs6EDbbvHsKHaQVE2WoCUbJGt/GZ73aN8cfTpWoLyG3pUhll3aUOgDOmNFoKoOUdxmXtgC3bMIMqhCBchkrZMY4hwQ7h/AI+eE9k1/a4oDqgJLm8O/1fz6XzNeni/oC9oC9QUUGf5NuLrzp6oc3VSQzIl2H0wswBuM6sRIqg7qceBpDAX38/DiW714PuWl1ntKbM74yGVF2xCHHeJqi2b/CtGFn+wC89zviQW5wlqma5vaPFGFmLh2Xt6Lgkw3YHBpj2OjnTeQoiKtPK+HPBS2zL9uAo1YA==
+ b=fyVXHZW9RwGEnC1Ky4btXfWRdAPAofa5oEjH1pw8KVLoCftZLsL0UVhx23yrJ68qb6t4paMWN3NpKvL3T8BxiJg/Qe3yaVXGCOUzqOeC422TykZCzVhF/ViXJ+Ve6ko4CLwi1E6rSusDGSRyDWhPZh/3PlINBAnkcIVadwmDx0Pb+kWl753ZxuwlcwuSoFnNj1LlX5YQ4K5RY0az6JVGliJhFoSH2cSqo5vZ1kP7ra0VRfInFAOT/uEOq2MuXM0aKvT8aFv61i6p6aJIaQk5ZXfpEV8VVC7+VL23CPwvv/eMb/mIgWRWzQALJRZyz0QyoXJZrKaj62T4nKxV+4iXVA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hZflXKhFCBoCKgq6GzHBrI0dhMdeqIDu/d2AFd+a8KE=;
- b=Gba//w2U8gQM9MY3UvmjM1BHPsTy6YCqvyPtFzWKagpcj3N6e86cWqiPE/rskt4vSozOXJcUAM1sgBbVXrxfEPThgbCpkDgev7z2Mgk8lclt9CIcRgSOhp2pzdZNbVF9d+4DQUJHKLY4amwGN38CfQPso4ngg45yQqZIO9/4Pz6KkZFcO+ZDDz4ZV+yEJHYETeEAKu8VqS6KZR2AJkGQzSfzw8zbPnUYirfY8+fs8X+hIiUAaSbXrbrjhSpddsRH+Dy9qcv723AXkhpEbTx8vrtosS2JTdQNVuB4D4whrMiz8VQED8mMj5quPmsfa0R53vXTtiRTqbBNX4bVxU7BAQ==
+ bh=iF2PSD++zZ5oOXmIvIz31uEbUzQPNPcuWF/GDI3ihGI=;
+ b=cfcVLhCphk1t86vVPCPY0HxZmyUdxM6I2tHH33y/p3GJihvoLD0DWJdzExbiIXLDcBaqHHbkeCcC/B0uhhbViQsHxYvkaipWlyfSxbRE2J6Mu/skJOacpqWlEGBgqweHBNg5iTfV7Yb4ai853iPHUoP6+SnV+adySaq0/8uxTiJBZcw5Dfu0TiRN5MCssYWbsqgKb5rXD45NMyMLTNnV4BZKRGFr5ia5XlFDZ9l+LhwOOcsXKsR77zRo7L2FOCZfaXY0t8JO8phfbuvCeAfXaMu6sw1ig0cQIt6/iqO6+0Jhw0mOpIu3khK993YajbegI/YuMfbuqhiBdeTEVomiew==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hZflXKhFCBoCKgq6GzHBrI0dhMdeqIDu/d2AFd+a8KE=;
- b=f5BwWJcr6hUvA3bFu+aJs7MeKd5QTUDCD17FEVTGNgWycC8J+eQSsWTt1wPQ3awcsGN6D4TIvhliu9ITnkw8+H1JmaVsudQMewVMnfg1HIxDkc6ruy9hUAaZF7NQFT6SCbKCNpEPVgxAvLz4pdPggSWu8t7IhCMxwkqZOXEJXuM=
-Received: from BN0PR03CA0013.namprd03.prod.outlook.com (2603:10b6:408:e6::18)
- by SJ1PR12MB6050.namprd12.prod.outlook.com (2603:10b6:a03:48b::17)
+ bh=iF2PSD++zZ5oOXmIvIz31uEbUzQPNPcuWF/GDI3ihGI=;
+ b=v+FPuXyPFJ+LBlaEFsPL4oVBZscpK7vhHp8TkHESBfDinN97oJ39zEn4Z7laxOaIQzpr1lFNt6r28zrAYD0mcdzGzIVQsuDDHd+0RF5iAMBiK/rl406ENfga5Bn6g5thLOUV0Ns0wjDyqBrmU4Q7OIQ/K40hC3QiKbSgdks7Kn0=
+Received: from BN0PR04CA0016.namprd04.prod.outlook.com (2603:10b6:408:ee::21)
+ by BL1PR12MB5175.namprd12.prod.outlook.com (2603:10b6:208:318::8)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.30; Fri, 14 Apr
- 2023 15:54:24 +0000
-Received: from BN8NAM11FT062.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:e6:cafe::6b) by BN0PR03CA0013.outlook.office365.com
- (2603:10b6:408:e6::18) with Microsoft SMTP Server (version=TLS1_2,
+ 2023 15:54:26 +0000
+Received: from BN8NAM11FT090.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:ee:cafe::bd) by BN0PR04CA0016.outlook.office365.com
+ (2603:10b6:408:ee::21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.36 via Frontend
- Transport; Fri, 14 Apr 2023 15:54:24 +0000
+ Transport; Fri, 14 Apr 2023 15:54:26 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,18 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT062.mail.protection.outlook.com (10.13.177.34) with Microsoft SMTP
+ BN8NAM11FT090.mail.protection.outlook.com (10.13.177.105) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6298.36 via Frontend Transport; Fri, 14 Apr 2023 15:54:24 +0000
+ 15.20.6298.33 via Frontend Transport; Fri, 14 Apr 2023 15:54:25 +0000
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 14 Apr
- 2023 10:54:22 -0500
+ 2023 10:54:24 -0500
 From: Qingqing Zhuo <Qingqing.Zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 25/66] drm/amd/display: Adding support for VESA SCR
-Date: Fri, 14 Apr 2023 11:52:49 -0400
-Message-ID: <20230414155330.5215-26-Qingqing.Zhuo@amd.com>
+Subject: [PATCH 26/66] drm/amd/display: DSC policy override when ODM combine
+ is forced
+Date: Fri, 14 Apr 2023 11:52:50 -0400
+Message-ID: <20230414155330.5215-27-Qingqing.Zhuo@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230414155330.5215-1-Qingqing.Zhuo@amd.com>
 References: <20230414155330.5215-1-Qingqing.Zhuo@amd.com>
@@ -68,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT062:EE_|SJ1PR12MB6050:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3a25eec2-aa62-4548-5a08-08db3d008513
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT090:EE_|BL1PR12MB5175:EE_
+X-MS-Office365-Filtering-Correlation-Id: d41b040b-b4d0-4c22-5424-08db3d0085fa
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LSm1wLaVsVJOfA8LTI5Hz34WUwews/mEV2OGv8gq4T2QelfkBqxRl6gODDCUsMAvYeHbbmaFaGZ/AAnVQwP6/rfGR5+/3wFvdmBcCsIJJrSsfWUtN61oa7fxIROSQ2a8McyIUK6oCPBSHgbJfRVh5djujQq52SNG0CuXQJBoyh9+HmpzxK56e+rS2UXTTb3ZkTxJqtIx116X8gYo9Qun4+L0JTBSA2QmJydEMSZ32IoyET62X+sBY5bOZ9W2i7ioSKDGR6/QovosY6BAQ/Rb2y8VENERsen/gZF16soCKDKPCoy0tEHMbDjwoe9FHlDtXb9hzXjbQBVWD4Rjw58UhA5eo3ae2ZCKgdCj19c860CgTLwZLc05lglZRHHgFo+InTxZbhofuAHWRfG5rVw7COz4JeYeV4u1iCmA7j61wsLh8VEprqEEW3lWY4hBte/f3fuSdhPTRQQQy8mG6dJBgjdeGmpCN+WUnCbM35Ooj+ndgCOYvhwaEYQ7baVjxKoqByYpQROeIpycjlVKxYQkksTint7X3GwxCkQ3DDV/IHtw7nlCvDezPaKbihSkzuk5Cx5wmPwNZyDt2DAogwqDpQmcIWr5fR6VbIuGlY4Xa+5QDRPSSihaGq9o/n3Jnck5etNs3MkBFXLHqJdOedHR8yRoyNGCzpNFyeU0fEgCma7bNTncm8umtWWu3HBJ3ryh/q3ZM2u5Qt5AccWzT7aTXql6Gi9A2vZ9gID5r5rmFhc=
+X-Microsoft-Antispam-Message-Info: 1eG0RtqK2N/ZMP6fQ0F9/rQGTCYbTzHe1Gc58pRiVZzYIvJWYwCs08QN8ozM8uJNMyn7MJH66HR6mLNPX7YvbODClr4YrUdeZPnDFHiwcorkLmU03W0z74F8Dm5Cw1HeqoErYu6NNubDvwv7PcM3fNjcaWeKFM6jcrA3o/TV9jFBZn1Ktb0KAzAarsMFFkRL0KW3HJwE9T+22vzIPQcSghS7gkykL9b5LR0T4w/hXuDMz3MoDkIwNAuHA5Dx15ve3vu4IqJJXnlmIreTlemHPrxXJ0QwnQ4O2VeIS7jMPsXcZ9cNfHwB0NDJ/62IXfu/TJOlnTy9Q3e+rcx5FCKMjsMsZHtR/LHlPnDD0AFMf24ZCdCbagFRyAyjtuUO7ldr+2lpryUXp94gimQPjrm0tblGzLQpW9D7WpdlZET4cI+l6++ySMidalCzvqaAl9VKdCIyILgRaqL9aHvQ/NoIOESOm8MosurjfjMqaYfspM/5UQt5voRW5Lm9GkCdDa1/fPCN9U2OMHJl+nKcnUhLRc73pl9iRDobJADOCxGfp3R/Og1N7z4kj1UnrzhFUi7FiVvu3WAqmYxPuQaYocK8eIya+ry1EAbulKzKcszSikWBP4/T2eXXcH47VxOaqr0Rd7vwhnJPjzGqI9s85PZEwFyzDZttQ36GeFJg0vfkNNJXCbjV+05Z98ybCb3duhr9l0uk+S16h8nHYIKyCVJhCo7CgnUnywW5ipWKltv7z3A=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(39860400002)(396003)(346002)(376002)(136003)(451199021)(46966006)(36840700001)(40470700004)(426003)(47076005)(83380400001)(2616005)(36860700001)(82310400005)(336012)(26005)(186003)(1076003)(36756003)(5660300002)(86362001)(16526019)(316002)(6666004)(478600001)(54906003)(4326008)(70206006)(6916009)(70586007)(81166007)(41300700001)(82740400003)(356005)(8676002)(8936002)(40460700003)(40480700001)(2906002)(36900700001);
+ SFS:(13230028)(4636009)(39860400002)(346002)(376002)(136003)(396003)(451199021)(36840700001)(46966006)(40470700004)(86362001)(8936002)(36860700001)(40460700003)(2906002)(5660300002)(36756003)(316002)(81166007)(8676002)(40480700001)(6916009)(356005)(82310400005)(41300700001)(4326008)(82740400003)(83380400001)(336012)(426003)(70586007)(47076005)(2616005)(70206006)(54906003)(1076003)(26005)(186003)(478600001)(16526019)(6666004)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2023 15:54:24.4520 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3a25eec2-aa62-4548-5a08-08db3d008513
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2023 15:54:25.9345 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d41b040b-b4d0-4c22-5424-08db3d0085fa
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT062.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT090.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6050
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5175
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,158 +100,83 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Anthony Koo <Anthony.Koo@amd.com>,
- Iswara Nagulendran <Iswara.Nagulendran@amd.com>, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
- wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
+Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
+ Nasir Osman <nasir.osman@amd.com>, Bhawanpreet.Lakha@amd.com,
+ Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>, agustin.gutierrez@amd.com,
  pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Iswara Nagulendran <Iswara.Nagulendran@amd.com>
+From: Nasir Osman <nasir.osman@amd.com>
 
-[HOW&WHY]
-Write DPCD 721 bit 7 to high, and
-the appropriate luminance level
-to DPCD 734-736 if bit 4 from DPCD register
-734 is high, indicating that the panel
-luminance control is enabled from the panel side.
+[why]
+When we force ODM combine with DSC, we lose several
+8 bit and 10 bit modes in validation and thus
+not able to use HDR. This is due to the number of
+horizontal slices used in DSC not properly being
+accounted for currently when 2:1 ODM Combine is forced.
 
-Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
+[how]
+Enforce at least two horizontal slices are used for DSC when
+ODM combine is forced.
+
+Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
-Signed-off-by: Iswara Nagulendran <Iswara.Nagulendran@amd.com>
+Signed-off-by: Nasir Osman <nasir.osman@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc_dp_types.h  |  7 +++++
- .../dc/link/protocols/link_dp_capability.c    |  9 +++++-
- .../link/protocols/link_edp_panel_control.c   | 29 ++++++++++++++++---
- include/drm/display/drm_dp.h                  |  3 ++
- 4 files changed, 43 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc_dsc.h     |  1 +
+ drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c | 10 +++++++++-
+ 2 files changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_dp_types.h b/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
-index 49aab1924665..4a7f6497dc5a 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
-@@ -566,6 +566,12 @@ struct dpcd_amd_device_id {
- 	uint8_t dal_version_byte2;
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_dsc.h b/drivers/gpu/drm/amd/display/dc/dc_dsc.h
+index 0e92a322c2ed..9491b76d61f5 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_dsc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_dsc.h
+@@ -58,6 +58,7 @@ struct dc_dsc_config_options {
+ 	uint32_t dsc_min_slice_height_override;
+ 	uint32_t max_target_bpp_limit_override_x16;
+ 	uint32_t slice_height_granularity;
++	uint32_t dsc_force_odm_hslice_override;
  };
  
-+struct target_luminance_value {
-+	uint8_t byte0;
-+	uint8_t byte1;
-+	uint8_t byte2;
-+};
-+
- struct dpcd_source_backlight_set {
- 	struct  {
- 		uint8_t byte0;
-@@ -1225,6 +1231,7 @@ struct dpcd_caps {
- 	union dp_main_line_channel_coding_cap channel_coding_cap;
- 	union dp_sink_video_fallback_formats fallback_formats;
- 	union dp_fec_capability1 fec_cap1;
-+	bool panel_luminance_control;
- 	union dp_cable_id cable_id;
- 	uint8_t edp_rev;
- 	union edp_alpm_caps alpm_caps;
-diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
-index eeaceed61bc4..50327a559a47 100644
---- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
-@@ -1449,7 +1449,8 @@ bool read_is_mst_supported(struct dc_link *link)
-  */
- static bool dpcd_read_sink_ext_caps(struct dc_link *link)
- {
--	uint8_t dpcd_data;
-+	uint8_t dpcd_data = 0;
-+	uint8_t edp_general_cap2 = 0;
+ bool dc_dsc_parse_dsc_dpcd(const struct dc *dc,
+diff --git a/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c b/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
+index 2bdc47615543..b9a05bb025db 100644
+--- a/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
++++ b/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
+@@ -700,7 +700,7 @@ static int inc_num_slices(union dsc_enc_slice_caps slice_caps, int num_slices)
+ 		}
+ 	}
  
- 	if (!link)
- 		return false;
-@@ -1458,6 +1459,12 @@ static bool dpcd_read_sink_ext_caps(struct dc_link *link)
- 		return false;
+-	if (new_num_slices == num_slices) // No biger number of slices found
++	if (new_num_slices == num_slices) // No bigger number of slices found
+ 		new_num_slices++;
  
- 	link->dpcd_sink_ext_caps.raw = dpcd_data;
-+
-+	if (core_link_read_dpcd(link, DP_EDP_GENERAL_CAP_2, &edp_general_cap2, 1) != DC_OK)
-+		return false;
-+
-+	link->dpcd_caps.panel_luminance_control = (edp_general_cap2 & DP_EDP_PANEL_LUMINANCE_CONTROL_CAPABLE) != 0;
-+
- 	return true;
- }
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c
-index d895046787bc..5ab2de12ccf8 100644
---- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_edp_panel_control.c
-@@ -164,14 +164,35 @@ bool edp_set_backlight_level_nits(struct dc_link *link,
- 	*(uint16_t *)&dpcd_backlight_set.backlight_transition_time_ms = (uint16_t)transition_time_in_ms;
- 
- 
--	if (core_link_write_dpcd(link, DP_SOURCE_BACKLIGHT_LEVEL,
-+	if (!link->dpcd_caps.panel_luminance_control) {
-+		if (core_link_write_dpcd(link, DP_SOURCE_BACKLIGHT_LEVEL,
- 			(uint8_t *)(&dpcd_backlight_set),
- 			sizeof(dpcd_backlight_set)) != DC_OK)
--		return false;
-+			return false;
- 
--	if (core_link_write_dpcd(link, DP_SOURCE_BACKLIGHT_CONTROL,
-+		if (core_link_write_dpcd(link, DP_SOURCE_BACKLIGHT_CONTROL,
- 			&backlight_control, 1) != DC_OK)
--		return false;
-+			return false;
-+	} else {
-+		const uint8_t backlight_enable = DP_EDP_PANEL_LUMINANCE_CONTROL_ENABLE;
-+		struct target_luminance_value *target_luminance = NULL;
-+
-+		//if target luminance value is greater than 24 bits, clip the value to 24 bits
-+		if (backlight_millinits > 0xFFFFFF)
-+			backlight_millinits = 0xFFFFFF;
-+
-+		target_luminance = (struct target_luminance_value *)&backlight_millinits;
-+
-+		if (core_link_write_dpcd(link, DP_EDP_BACKLIGHT_MODE_SET_REGISTER,
-+			&backlight_enable,
-+			sizeof(backlight_enable)) != DC_OK)
-+			return false;
-+
-+		if (core_link_write_dpcd(link, DP_EDP_PANEL_TARGET_LUMINANCE_VALUE,
-+			(uint8_t *)(target_luminance),
-+			sizeof(struct target_luminance_value)) != DC_OK)
-+			return false;
+ 	return new_num_slices;
+@@ -952,6 +952,13 @@ static bool setup_dsc_config(
+ 		else
+ 			is_dsc_possible = false;
+ 	}
++	// When we force 2:1 ODM, we can't have 1 slice to divide amongst 2 separate DSC instances
++	// need to enforce at minimum 2 horizontal slices
++	if (options->dsc_force_odm_hslice_override) {
++		num_slices_h = fit_num_slices_up(dsc_common_caps.slice_caps, 2);
++		if (num_slices_h == 0)
++			is_dsc_possible = false;
 +	}
  
- 	return true;
+ 	if (!is_dsc_possible)
+ 		goto done;
+@@ -1163,6 +1170,7 @@ void dc_dsc_policy_set_disable_dsc_stream_overhead(bool disable)
+ void dc_dsc_get_default_config_option(const struct dc *dc, struct dc_dsc_config_options *options)
+ {
+ 	options->dsc_min_slice_height_override = dc->debug.dsc_min_slice_height_override;
++	options->dsc_force_odm_hslice_override = dc->debug.force_odm_combine;
+ 	options->max_target_bpp_limit_override_x16 = 0;
+ 	options->slice_height_granularity = 1;
  }
-diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-index ed10e6b6f99d..f1be179c5f1f 100644
---- a/include/drm/display/drm_dp.h
-+++ b/include/drm/display/drm_dp.h
-@@ -973,6 +973,7 @@
- 
- #define DP_EDP_GENERAL_CAP_2		    0x703
- # define DP_EDP_OVERDRIVE_ENGINE_ENABLED		(1 << 0)
-+# define DP_EDP_PANEL_LUMINANCE_CONTROL_CAPABLE (1 << 4)
- 
- #define DP_EDP_GENERAL_CAP_3		    0x704    /* eDP 1.4 */
- # define DP_EDP_X_REGION_CAP_MASK			(0xf << 0)
-@@ -998,6 +999,7 @@
- # define DP_EDP_DYNAMIC_BACKLIGHT_ENABLE		(1 << 4)
- # define DP_EDP_REGIONAL_BACKLIGHT_ENABLE		(1 << 5)
- # define DP_EDP_UPDATE_REGION_BRIGHTNESS		(1 << 6) /* eDP 1.4 */
-+# define DP_EDP_PANEL_LUMINANCE_CONTROL_ENABLE  (1 << 7)
- 
- #define DP_EDP_BACKLIGHT_BRIGHTNESS_MSB     0x722
- #define DP_EDP_BACKLIGHT_BRIGHTNESS_LSB     0x723
-@@ -1022,6 +1024,7 @@
- 
- #define DP_EDP_DBC_MINIMUM_BRIGHTNESS_SET   0x732
- #define DP_EDP_DBC_MAXIMUM_BRIGHTNESS_SET   0x733
-+#define DP_EDP_PANEL_TARGET_LUMINANCE_VALUE 0x734
- 
- #define DP_EDP_REGIONAL_BACKLIGHT_BASE      0x740    /* eDP 1.4 */
- #define DP_EDP_REGIONAL_BACKLIGHT_0	    0x741    /* eDP 1.4 */
 -- 
 2.34.1
 
