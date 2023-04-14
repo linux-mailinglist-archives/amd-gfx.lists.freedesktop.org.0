@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C921A6E2797
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Apr 2023 17:54:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC1D26E2795
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Apr 2023 17:54:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2372810EDD6;
-	Fri, 14 Apr 2023 15:54:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01C1410EDD3;
+	Fri, 14 Apr 2023 15:54:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2075.outbound.protection.outlook.com [40.107.93.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FE0A10EDD2
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 Apr 2023 15:54:30 +0000 (UTC)
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2044.outbound.protection.outlook.com [40.107.100.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F51C10EDD2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Apr 2023 15:54:31 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fyVXHZW9RwGEnC1Ky4btXfWRdAPAofa5oEjH1pw8KVLoCftZLsL0UVhx23yrJ68qb6t4paMWN3NpKvL3T8BxiJg/Qe3yaVXGCOUzqOeC422TykZCzVhF/ViXJ+Ve6ko4CLwi1E6rSusDGSRyDWhPZh/3PlINBAnkcIVadwmDx0Pb+kWl753ZxuwlcwuSoFnNj1LlX5YQ4K5RY0az6JVGliJhFoSH2cSqo5vZ1kP7ra0VRfInFAOT/uEOq2MuXM0aKvT8aFv61i6p6aJIaQk5ZXfpEV8VVC7+VL23CPwvv/eMb/mIgWRWzQALJRZyz0QyoXJZrKaj62T4nKxV+4iXVA==
+ b=R0K5eZfXRNxds5KzNV2HC+SJSD6PDvmUjFvQBAcGTDiGAylH+pdQ17B9K/EGE0fTm2cIdMA0gK/PHGciLKOPFOVtVjcyeBOjh74dLKl8XWrloMGlUoajaE9GpUaedpBcshpr9PmzgqoVTyArLcgXD7Lq7pdO2ubJoaKRODLsCH83U4PbTZ5wa6bQC8Vc7lm/PwevzyVPasHmKoYTczcAGGHk1wFACfQUszzTFiStkG3Oh3LGEew/5ZDGhasxLJI7JN1oZ2ugJ4rVyEY0HpyflxyQ+pspf7gfDinwIFv3yhhEpJRJEmxZZ4oSqygsqHdtFJ7n/QtLr4FwZcaB0MJmBw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iF2PSD++zZ5oOXmIvIz31uEbUzQPNPcuWF/GDI3ihGI=;
- b=cfcVLhCphk1t86vVPCPY0HxZmyUdxM6I2tHH33y/p3GJihvoLD0DWJdzExbiIXLDcBaqHHbkeCcC/B0uhhbViQsHxYvkaipWlyfSxbRE2J6Mu/skJOacpqWlEGBgqweHBNg5iTfV7Yb4ai853iPHUoP6+SnV+adySaq0/8uxTiJBZcw5Dfu0TiRN5MCssYWbsqgKb5rXD45NMyMLTNnV4BZKRGFr5ia5XlFDZ9l+LhwOOcsXKsR77zRo7L2FOCZfaXY0t8JO8phfbuvCeAfXaMu6sw1ig0cQIt6/iqO6+0Jhw0mOpIu3khK993YajbegI/YuMfbuqhiBdeTEVomiew==
+ bh=HhFK3S12H0+fZLUM1nwaDFpdi6mx5JCeYVYvCnitHXI=;
+ b=FjH1ogDWJum/WHZs38jJFVFObMTE3kk1VOcoB/q3YpLpPcJ/TqPVmRtpmHF1OHB636l5QLbXXHLvOSomzqsZUN6jtQrOXS3pqoq41i2yvjjWV2ha77qdtFy84+fGDZCgeAKJrJBE+sdTOykYBEVp9BpoajWqjivCIej6vwir+j8qlkOfBjiNwe7iS48unRknqUP6QGxgTNu3f58taYNmqhpCaWKcIhiNmzUtl42N9WnES1E1QBPTOQxui1RFkB47b4+SPB6CakPiG3C5y2Q7K+6zOExR8Ld4ToLDB2OEM5xBvbtMLys7P3ybFviUUj/RggAYf8cLdDqrUy6Ath1Edw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iF2PSD++zZ5oOXmIvIz31uEbUzQPNPcuWF/GDI3ihGI=;
- b=v+FPuXyPFJ+LBlaEFsPL4oVBZscpK7vhHp8TkHESBfDinN97oJ39zEn4Z7laxOaIQzpr1lFNt6r28zrAYD0mcdzGzIVQsuDDHd+0RF5iAMBiK/rl406ENfga5Bn6g5thLOUV0Ns0wjDyqBrmU4Q7OIQ/K40hC3QiKbSgdks7Kn0=
-Received: from BN0PR04CA0016.namprd04.prod.outlook.com (2603:10b6:408:ee::21)
- by BL1PR12MB5175.namprd12.prod.outlook.com (2603:10b6:208:318::8)
+ bh=HhFK3S12H0+fZLUM1nwaDFpdi6mx5JCeYVYvCnitHXI=;
+ b=Wy7bVwzdV0icYUzTG54m8UTdr8nM8Kkjxuci3A4TYiNntvfPuo6WtIzKO6/JWGBqVr+5xrFhNnxB6TORiPjtOXCOWpameWTnVgqXJQPQmF/G3MVhlTgbqKnkD0ywhSZQrmSrk99ZCNoD9TyivGjHTtQy30GaJ4HJgymm3n4TBGo=
+Received: from BN9PR03CA0322.namprd03.prod.outlook.com (2603:10b6:408:112::27)
+ by BL1PR12MB5876.namprd12.prod.outlook.com (2603:10b6:208:398::19)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.30; Fri, 14 Apr
- 2023 15:54:26 +0000
-Received: from BN8NAM11FT090.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:ee:cafe::bd) by BN0PR04CA0016.outlook.office365.com
- (2603:10b6:408:ee::21) with Microsoft SMTP Server (version=TLS1_2,
+ 2023 15:54:27 +0000
+Received: from BN8NAM11FT057.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:112:cafe::b5) by BN9PR03CA0322.outlook.office365.com
+ (2603:10b6:408:112::27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.36 via Frontend
- Transport; Fri, 14 Apr 2023 15:54:26 +0000
+ Transport; Fri, 14 Apr 2023 15:54:27 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,19 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT090.mail.protection.outlook.com (10.13.177.105) with Microsoft SMTP
+ BN8NAM11FT057.mail.protection.outlook.com (10.13.177.49) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6298.33 via Frontend Transport; Fri, 14 Apr 2023 15:54:25 +0000
+ 15.20.6298.36 via Frontend Transport; Fri, 14 Apr 2023 15:54:27 +0000
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 14 Apr
- 2023 10:54:24 -0500
+ 2023 10:54:25 -0500
 From: Qingqing Zhuo <Qingqing.Zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 26/66] drm/amd/display: DSC policy override when ODM combine
- is forced
-Date: Fri, 14 Apr 2023 11:52:50 -0400
-Message-ID: <20230414155330.5215-27-Qingqing.Zhuo@amd.com>
+Subject: [PATCH 27/66] drm/amd/display: Correct output color space during HW
+ reinitialize
+Date: Fri, 14 Apr 2023 11:52:51 -0400
+Message-ID: <20230414155330.5215-28-Qingqing.Zhuo@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230414155330.5215-1-Qingqing.Zhuo@amd.com>
 References: <20230414155330.5215-1-Qingqing.Zhuo@amd.com>
@@ -69,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT090:EE_|BL1PR12MB5175:EE_
-X-MS-Office365-Filtering-Correlation-Id: d41b040b-b4d0-4c22-5424-08db3d0085fa
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT057:EE_|BL1PR12MB5876:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6b5d62bd-5fa8-427d-1532-08db3d0086e0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 1eG0RtqK2N/ZMP6fQ0F9/rQGTCYbTzHe1Gc58pRiVZzYIvJWYwCs08QN8ozM8uJNMyn7MJH66HR6mLNPX7YvbODClr4YrUdeZPnDFHiwcorkLmU03W0z74F8Dm5Cw1HeqoErYu6NNubDvwv7PcM3fNjcaWeKFM6jcrA3o/TV9jFBZn1Ktb0KAzAarsMFFkRL0KW3HJwE9T+22vzIPQcSghS7gkykL9b5LR0T4w/hXuDMz3MoDkIwNAuHA5Dx15ve3vu4IqJJXnlmIreTlemHPrxXJ0QwnQ4O2VeIS7jMPsXcZ9cNfHwB0NDJ/62IXfu/TJOlnTy9Q3e+rcx5FCKMjsMsZHtR/LHlPnDD0AFMf24ZCdCbagFRyAyjtuUO7ldr+2lpryUXp94gimQPjrm0tblGzLQpW9D7WpdlZET4cI+l6++ySMidalCzvqaAl9VKdCIyILgRaqL9aHvQ/NoIOESOm8MosurjfjMqaYfspM/5UQt5voRW5Lm9GkCdDa1/fPCN9U2OMHJl+nKcnUhLRc73pl9iRDobJADOCxGfp3R/Og1N7z4kj1UnrzhFUi7FiVvu3WAqmYxPuQaYocK8eIya+ry1EAbulKzKcszSikWBP4/T2eXXcH47VxOaqr0Rd7vwhnJPjzGqI9s85PZEwFyzDZttQ36GeFJg0vfkNNJXCbjV+05Z98ybCb3duhr9l0uk+S16h8nHYIKyCVJhCo7CgnUnywW5ipWKltv7z3A=
+X-Microsoft-Antispam-Message-Info: nS9klHiwKrpMRePmn6s0+imZUnveLonao6nDDYQyWoze0M0WmGbJsXnwRS4XL6ylZYsponyfe0cV1H6G4UGDtm4jsbYVyY0VOGOY8FCNge7B6oUovMR5FMkmaxiwvF/lhnwQMr/opOFWn94MtD5GhWpZ8ZJubm2uziZiz0BizsTpniGZOwJyVkjEyR4xpDHhXmuGlY0NxszYqUX91uDKuwniUrylgpN7tW3aE3OozGUv0epEw3EO3eYmCaL4Wf40PEBlMEDt9LY4yTtvhADv5QH9cyD3OM2M1WTot5l6VBXskrxthrLazkgO2rIxZYLKtvf9N34fdIk9FuuSu7FCBIEvCqRsQEbJOqCApHzLxuLVpFWPO7NQew1JGbwM1wDxU5KlYuv9SYsXLs1REinjLTk6rE83S35VU2vSGasaJlhj1EGNry0HOC/w6mdsOxWcG4AScA3jtrIO6TZbdTSMA8312ZgqwtxaNR6T6PqcjkT6WdjoLkemWRjRt0vcG+irz62cPk3h4cVoHJug5A0D6C6sxeSR/Tq9Qyi4uI7tKtMNbuMT9znLF4p2wKQwaQm+aPwnAIxYfS0eIo1KlaXiRd/m3HWIZGLHqiwSvtmM4Yob3Wf9HYe38ZoLRMEIBQ5aiDr/R05ozatr+UIJtYY0k4VikbXUoqI3+Di+0C3JHXX7/iN7QULHuWFBkEgIFLAANkLCXrJwTrGrCKFGjFP6gMxED7hCCmcpWuTwntU2u08=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(39860400002)(346002)(376002)(136003)(396003)(451199021)(36840700001)(46966006)(40470700004)(86362001)(8936002)(36860700001)(40460700003)(2906002)(5660300002)(36756003)(316002)(81166007)(8676002)(40480700001)(6916009)(356005)(82310400005)(41300700001)(4326008)(82740400003)(83380400001)(336012)(426003)(70586007)(47076005)(2616005)(70206006)(54906003)(1076003)(26005)(186003)(478600001)(16526019)(6666004)(36900700001);
+ SFS:(13230028)(4636009)(346002)(376002)(396003)(39860400002)(136003)(451199021)(40470700004)(36840700001)(46966006)(336012)(426003)(1076003)(26005)(70586007)(70206006)(36756003)(40480700001)(2906002)(6666004)(83380400001)(82310400005)(47076005)(2616005)(186003)(16526019)(36860700001)(4326008)(6916009)(82740400003)(40460700003)(54906003)(86362001)(5660300002)(8676002)(8936002)(81166007)(316002)(356005)(478600001)(41300700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2023 15:54:25.9345 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d41b040b-b4d0-4c22-5424-08db3d0085fa
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2023 15:54:27.4715 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b5d62bd-5fa8-427d-1532-08db3d0086e0
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT090.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT057.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5175
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5876
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,81 +102,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
  qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
- Nasir Osman <nasir.osman@amd.com>, Bhawanpreet.Lakha@amd.com,
+ Michael Mityushkin <michael.mityushkin@amd.com>, solomon.chiu@amd.com,
+ Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
  Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>, agustin.gutierrez@amd.com,
  pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Nasir Osman <nasir.osman@amd.com>
+From: Michael Mityushkin <michael.mityushkin@amd.com>
 
-[why]
-When we force ODM combine with DSC, we lose several
-8 bit and 10 bit modes in validation and thus
-not able to use HDR. This is due to the number of
-horizontal slices used in DSC not properly being
-accounted for currently when 2:1 ODM Combine is forced.
+[Why]
+Doing core_link_disable_stream or set_dpms_off when reinitializing
+hardware causes issue to repro with external display connected. This is
+unnecessary, blanking pixel data should be sufficient.
 
-[how]
-Enforce at least two horizontal slices are used for DSC when
-ODM combine is forced.
+[How]
+Call disable_pixel_data while reinitializing hardware instead of
+core_link_disable_stream or set_dpms_off.
 
 Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
-Signed-off-by: Nasir Osman <nasir.osman@amd.com>
+Signed-off-by: Michael Mityushkin <michael.mityushkin@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc_dsc.h     |  1 +
- drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c | 10 +++++++++-
- 2 files changed, 10 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c  | 4 ++++
+ drivers/gpu/drm/amd/display/dc/dcn31/dcn31_init.c   | 1 +
+ drivers/gpu/drm/amd/display/dc/dcn314/dcn314_init.c | 1 +
+ 3 files changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_dsc.h b/drivers/gpu/drm/amd/display/dc/dc_dsc.h
-index 0e92a322c2ed..9491b76d61f5 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_dsc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_dsc.h
-@@ -58,6 +58,7 @@ struct dc_dsc_config_options {
- 	uint32_t dsc_min_slice_height_override;
- 	uint32_t max_target_bpp_limit_override_x16;
- 	uint32_t slice_height_granularity;
-+	uint32_t dsc_force_odm_hslice_override;
- };
- 
- bool dc_dsc_parse_dsc_dpcd(const struct dc *dc,
-diff --git a/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c b/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
-index 2bdc47615543..b9a05bb025db 100644
---- a/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
-+++ b/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
-@@ -700,7 +700,7 @@ static int inc_num_slices(union dsc_enc_slice_caps slice_caps, int num_slices)
- 		}
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+index 422fbf79da64..5800acf6aae1 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+@@ -313,6 +313,10 @@ void dcn20_init_blank(
  	}
+ 	opp = dc->res_pool->opps[opp_id_src0];
  
--	if (new_num_slices == num_slices) // No biger number of slices found
-+	if (new_num_slices == num_slices) // No bigger number of slices found
- 		new_num_slices++;
++	/* don't override the blank pattern if already enabled with the correct one. */
++	if (opp->funcs->dpg_is_blanked && opp->funcs->dpg_is_blanked(opp))
++		return;
++
+ 	if (num_opps == 2) {
+ 		otg_active_width = otg_active_width / 2;
  
- 	return new_num_slices;
-@@ -952,6 +952,13 @@ static bool setup_dsc_config(
- 		else
- 			is_dsc_possible = false;
- 	}
-+	// When we force 2:1 ODM, we can't have 1 slice to divide amongst 2 separate DSC instances
-+	// need to enforce at minimum 2 horizontal slices
-+	if (options->dsc_force_odm_hslice_override) {
-+		num_slices_h = fit_num_slices_up(dsc_common_caps.slice_caps, 2);
-+		if (num_slices_h == 0)
-+			is_dsc_possible = false;
-+	}
- 
- 	if (!is_dsc_possible)
- 		goto done;
-@@ -1163,6 +1170,7 @@ void dc_dsc_policy_set_disable_dsc_stream_overhead(bool disable)
- void dc_dsc_get_default_config_option(const struct dc *dc, struct dc_dsc_config_options *options)
- {
- 	options->dsc_min_slice_height_override = dc->debug.dsc_min_slice_height_override;
-+	options->dsc_force_odm_hslice_override = dc->debug.force_odm_combine;
- 	options->max_target_bpp_limit_override_x16 = 0;
- 	options->slice_height_granularity = 1;
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_init.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_init.c
+index 3a32810bbe38..8598ea233ef3 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_init.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_init.c
+@@ -58,6 +58,7 @@ static const struct hw_sequencer_funcs dcn31_funcs = {
+ 	.enable_audio_stream = dce110_enable_audio_stream,
+ 	.disable_audio_stream = dce110_disable_audio_stream,
+ 	.disable_plane = dcn20_disable_plane,
++	.disable_pixel_data = dcn20_disable_pixel_data,
+ 	.pipe_control_lock = dcn20_pipe_control_lock,
+ 	.interdependent_update_lock = dcn10_lock_all_pipes,
+ 	.cursor_lock = dcn10_cursor_lock,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_init.c b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_init.c
+index 5267e901a35c..ce53339b2e10 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_init.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_init.c
+@@ -60,6 +60,7 @@ static const struct hw_sequencer_funcs dcn314_funcs = {
+ 	.enable_audio_stream = dce110_enable_audio_stream,
+ 	.disable_audio_stream = dce110_disable_audio_stream,
+ 	.disable_plane = dcn20_disable_plane,
++	.disable_pixel_data = dcn20_disable_pixel_data,
+ 	.pipe_control_lock = dcn20_pipe_control_lock,
+ 	.interdependent_update_lock = dcn10_lock_all_pipes,
+ 	.cursor_lock = dcn10_cursor_lock,
 -- 
 2.34.1
 
