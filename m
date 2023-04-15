@@ -1,80 +1,93 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F6E36E40F0
-	for <lists+amd-gfx@lfdr.de>; Mon, 17 Apr 2023 09:30:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E44456E3225
+	for <lists+amd-gfx@lfdr.de>; Sat, 15 Apr 2023 17:44:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AECB710E3A1;
-	Mon, 17 Apr 2023 07:30:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 644F110E093;
+	Sat, 15 Apr 2023 15:44:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BAF710E09F
- for <amd-gfx@lists.freedesktop.org>; Sat, 15 Apr 2023 15:17:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1681571859;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=Q5M14rzEqBNgFK8HU9Akt9HYXKL8QNDYAZuFGTil5ww=;
- b=cJkdgMlrfRl54/qq6ey9rBTd+u/JIuTtphnNAgIzop+E6lu9zvBV3nHC+BqB417yjf+M/f
- G8km2Lsl3GpF7GC+7bUFaY6eihTDdfLjbcDfKSv9xHgOvljK0xeZDDFa4hrumPvSXMv7kd
- Q3VOWEteRtYCXk/EM3gi7r5ImFW9QxA=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-644-qd32bT7oNzKOiiaOuyh-_Q-1; Sat, 15 Apr 2023 11:17:32 -0400
-X-MC-Unique: qd32bT7oNzKOiiaOuyh-_Q-1
-Received: by mail-wr1-f70.google.com with SMTP id
- ffacd0b85a97d-2f5382db4d1so122286f8f.0
- for <amd-gfx@lists.freedesktop.org>; Sat, 15 Apr 2023 08:17:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1681571851; x=1684163851;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=Q5M14rzEqBNgFK8HU9Akt9HYXKL8QNDYAZuFGTil5ww=;
- b=Slt9+Ss0nf91j0KU+oeUGBudSu8FDkeBQH4dAkSLJVXLPaJABTiwYl+FzsG86I5G23
- /HINgKT+cCpb8T85E6nRaK/75Snuu6Pjf3qEhSd04NJC+vo4QwoFhntj5cNqgzkn3Nd+
- AYLfRnmAN6xkPiu2P5/qwKBKgSzXJzz2o2Niwd9kTY8X3Yy0mvvaj/NdjvVUclOcbwG+
- qPUVDA78nHaFc6Qk2DrkVW4I8yv3wurScj9sar5iUg2LxuLOjmmCmq0E8fuzAq5+bsQK
- 8iiTq/EMXjdLrKVx84Z3FX9tb/Ih7CJru1UKoHIPesbg3lr2pwMCbFm5n8cW0fNf8odZ
- o4hg==
-X-Gm-Message-State: AAQBX9eE3rIwsQfsEX9wXODrq6QDU+QcIUVQzcy36Gs4OVTts+V2yB14
- OF5b8RpfeSOcMMkma+8QA7gibxNIHxQcymMKKK8LORb/IIEJbXfzvLfcbuZtOuaJSVA0lZEC/hp
- vHZ4+7ITSeGFiMZQy45NXJdDKhg==
-X-Received: by 2002:a5d:5248:0:b0:2f9:a75:b854 with SMTP id
- k8-20020a5d5248000000b002f90a75b854mr479319wrc.59.1681571851276; 
- Sat, 15 Apr 2023 08:17:31 -0700 (PDT)
-X-Google-Smtp-Source: AKy350ZiVk0AFMX3CN+Ea1tpGa+ZETudf89c2CORBo70Q1fyjzBSsB+LBm6h3/+QEZQTcBxaKCvJSg==
-X-Received: by 2002:a5d:5248:0:b0:2f9:a75:b854 with SMTP id
- k8-20020a5d5248000000b002f90a75b854mr479290wrc.59.1681571850835; 
- Sat, 15 Apr 2023 08:17:30 -0700 (PDT)
-Received: from dell-per740-01.7a2m.lab.eng.bos.redhat.com
- (nat-pool-bos-t.redhat.com. [66.187.233.206])
- by smtp.gmail.com with ESMTPSA id
- m13-20020adffe4d000000b002efb139ce72sm5953488wrs.36.2023.04.15.08.17.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 15 Apr 2023 08:17:30 -0700 (PDT)
-From: Tom Rix <trix@redhat.com>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch, nicholas.kazlauskas@amd.com,
- Syed.Hassan@amd.com, jdhillon@amd.com, alex.hung@amd.com,
- michael.strauss@amd.com, aurabindo.pillai@amd.com
-Subject: [PATCH] drm/amd/display: set variable dccg314_init
- storage-class-specifier to static
-Date: Sat, 15 Apr 2023 11:17:22 -0400
-Message-Id: <20230415151722.3188010-1-trix@redhat.com>
-X-Mailer: git-send-email 2.27.0
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2063.outbound.protection.outlook.com [40.107.220.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A41610E093
+ for <amd-gfx@lists.freedesktop.org>; Sat, 15 Apr 2023 15:44:03 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kXmblWkDHn1t8cEKwwNMSFYqIFwPlbjXh8JmoeH/UUwqYNJes/TermqfcbW7A6iN7ceveXFdprGsKIwSlP4cVyP1CeMxQ2L7zipU7L1PK1GezWhK3B8uvCxVpGLF13FEbQYVqnYAUUZEoveM/s38cNnxOBPN4jnKEv/nFnIQnS15uBsaCJrv8S5a0jrtiraluzESC8Ha2EOesYWSKXvFwp6PQIYXtSOXInhIXwN9Mt+KIZiDnN99lNYbGWrb+z5tHNfzstX5Xa4Fe8jPUcVqpX+2DgiGKpFcM1azfyGpdc/zDuCC+cbja4052ID0qotwVry2Mfc35Ag+oYwgOItQBQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=s8W9p54val8WDE/iaaPjYnOYfIrrtDENjO6DtWNZPnI=;
+ b=cWMqeSEAj6QgNr7soF2W0shvLe4C9FszIriwP58Hf8Tlk/TJV361p1KByYkHGrzCT29Wdi9S0u7hQfnaU1K04KF7SNlpU8zyyl5POP4Ui4l694HlXSAodO02gotCo6WLGloWbp+dm5P3htG6qqDvpsTnvnygE29q6n5/sGTT8pRLsZiprcnLE1qEwaxU9Ytfst74JMYiMcJi8G+Ri2/oQ7isRzekipTqq/zSLH596EPtxFyCd1i8e1soIywdCJwQA4VpsZ7vtMkaCUbuayX4CgdPS414WV7hYVPF6JvQiFkds/m8AHP329NmcnD9M0i0JJQhAvXmLTG1TxlES9FJhA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=s8W9p54val8WDE/iaaPjYnOYfIrrtDENjO6DtWNZPnI=;
+ b=oXE3fTQzp87oYGc/Vp1oh+k+6q7ziSFfzj/kIbtDhcAVuL9iZQUbEjZMOPTqG+9gkxOx4fTp0RXcjKNoq8b4XVqE4c2egAGXsii/kgaqiAJ0QZ6+N/zYD+jE5o2HKhaRDyjROqZjdINlXFUnjORW0rEpXvGAMqE/uPfMwvTmn40=
+Received: from DS7PR05CA0037.namprd05.prod.outlook.com (2603:10b6:8:2f::24) by
+ BY5PR12MB4212.namprd12.prod.outlook.com (2603:10b6:a03:202::8) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6298.30; Sat, 15 Apr 2023 15:44:00 +0000
+Received: from DM6NAM11FT112.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:8:2f:cafe::8f) by DS7PR05CA0037.outlook.office365.com
+ (2603:10b6:8:2f::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6319.17 via Frontend
+ Transport; Sat, 15 Apr 2023 15:44:00 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT112.mail.protection.outlook.com (10.13.173.77) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6319.17 via Frontend Transport; Sat, 15 Apr 2023 15:43:59 +0000
+Received: from TRX40-1.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Sat, 15 Apr
+ 2023 10:43:58 -0500
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+To: Fangzhi Zuo <Jerry.Zuo@amd.com>, Aurabindo Pillai
+ <aurabindo.pillai@amd.com>
+Subject: [PATCH] drm/amd/display: Check & log if receiver supports MST,
+ DSC & FEC.
+Date: Sat, 15 Apr 2023 21:12:03 +0530
+Message-ID: <20230415154203.3299642-1-srinivasan.shanmugam@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"; x-default=true
-X-Mailman-Approved-At: Mon, 17 Apr 2023 07:30:15 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT112:EE_|BY5PR12MB4212:EE_
+X-MS-Office365-Filtering-Correlation-Id: 54562a75-1e80-4855-68fc-08db3dc83b41
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 5TC+XMzVPsMYSrIjqKliDEVsIgdqn+Ip6NedJ6eVDGaJt7TMCc6y6MVYVjdwLp36Y3chI2yNAOBknYPZ5WcD1BwopAF2DT0brb1fGi/mDDQJeaZJ/yfU/uRV6O1p5sDkpKvjTWj1BPhckQEhTkovW16RU7Tfz+YeqVr5uit97loCsPQiLdgxOGGPzDvcUuo3tvrB1qoI4wKQpuNR8aC1RGyVsKRmJh6pmWSLSTOHhPY6pDNkZ4KMs9lKPpQv0nw5SueR60yTIBTMNGUmkrcxQXHGebafvn5zho2HS1KT0OvdWwRvZtuZVaSS4BLEyWMKubUIjbYuWyrFela5AUw4yIA3Ak2UgY1Rpu20qAJbhGAcg6wFbkHYx97yAw71OyB9RC9bPcpmfbhy/lF4y0eje63sxfb27+EEpPbEKX+TB4lAaU5N3+ETt54C3w1xzTX43RgnhBaclI6/kQH0WyGjmaswS3bflX5b6TPkcMRtvk9sDVNlEfFKiA0FjRJ4a3pYbeL4XoVe1oBzzY67O37AD1yhxWwtQ8pIK3doiswaJfjiewjZCJrzWjDr+4E6QNcCb/hXLOyab4JyQzf52SAj+X8xoO5Dpk6/V2f8J1cyUiI2RIsdi/IccNmD7TKJqVZ6Zwwyoky+m1vW/MSVgnC+Zpou5LYI7gHjwS2dbIbrDIqMnEVpTi/dE36PQLkewYyceuQEf7Q+3DY2XA48Y4UrioLCgIVL3mGOIlinHiP7l80=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230028)(4636009)(346002)(396003)(376002)(136003)(39850400004)(451199021)(36840700001)(46966006)(40470700004)(2906002)(8936002)(478600001)(8676002)(70206006)(5660300002)(44832011)(70586007)(41300700001)(40460700003)(316002)(40480700001)(82740400003)(426003)(36756003)(6636002)(336012)(54906003)(4326008)(110136005)(82310400005)(86362001)(186003)(7696005)(26005)(1076003)(81166007)(6666004)(16526019)(2616005)(36860700001)(356005)(47076005)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Apr 2023 15:43:59.9171 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 54562a75-1e80-4855-68fc-08db3dc83b41
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT112.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4212
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,35 +99,55 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tom Rix <trix@redhat.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-smatch reports
-drivers/gpu/drm/amd/amdgpu/../display/dc/dcn314/dcn314_dccg.c:277:6: warning: symbol
-  'dccg314_init' was not declared. Should it be static?
+After reading from receiver via DPCD, check & log if it supports MST,
+DSC & FEC
 
-This variable is only used in one file so should be static.
-
-Signed-off-by: Tom Rix <trix@redhat.com>
+Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Cc: Fangzhi Zuo <Jerry.Zuo@amd.com>
+Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn314/dcn314_dccg.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../amd/display/dc/link/protocols/link_dp_capability.c   | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_dccg.c b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_dccg.c
-index 6f879265ad9c..de7bfba2c179 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_dccg.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_dccg.c
-@@ -274,7 +274,7 @@ static void dccg314_set_dpstreamclk(
- 	}
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
+index ba98013fecd0..922c2802765c 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
++++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
+@@ -1554,6 +1554,8 @@ static bool retrieve_link_cap(struct dc_link *link)
+ 	int i;
+ 	struct dp_sink_hw_fw_revision dp_hw_fw_revision;
+ 	const uint32_t post_oui_delay = 30; // 30ms
++	bool is_fec_supported = false;
++	bool is_dsc_supported = false;
  
--void dccg314_init(struct dccg *dccg)
-+static void dccg314_init(struct dccg *dccg)
- {
- 	int otg_inst;
+ 	memset(dpcd_data, '\0', sizeof(dpcd_data));
+ 	memset(&down_strm_port_count,
+@@ -1696,6 +1698,7 @@ static bool retrieve_link_cap(struct dc_link *link)
  
+ 	/* TODO - decouple raw mst capability from policy decision */
+ 	link->dpcd_caps.is_mst_capable = read_is_mst_supported(link);
++	DC_LOG_DC("MST_Support: %s\n", str_yes_no(link->dpcd_caps.is_mst_capable));
+ 
+ 	get_active_converter_info(ds_port.byte, link);
+ 
+@@ -1803,6 +1806,12 @@ static bool retrieve_link_cap(struct dc_link *link)
+ 				DP_DSC_SUPPORT,
+ 				link->dpcd_caps.dsc_caps.dsc_basic_caps.raw,
+ 				sizeof(link->dpcd_caps.dsc_caps.dsc_basic_caps.raw));
++		if (status == DC_OK) {
++			is_fec_supported = link->dpcd_caps.fec_cap.raw & 0x1;
++			is_dsc_supported = link->dpcd_caps.dsc_caps.dsc_basic_caps.raw[0] & 0x1;
++			DC_LOG_DC("FEC_Sink_Support: %s\n", str_yes_no(is_fec_supported));
++			DC_LOG_DC("DSC_Sink_Support: %s\n", str_yes_no(is_dsc_supported));
++		}
+ 		if (link->dpcd_caps.dongle_type != DISPLAY_DONGLE_NONE) {
+ 			status = core_link_read_dpcd(
+ 					link,
 -- 
-2.27.0
+2.25.1
 
