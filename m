@@ -1,66 +1,65 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D4C46E40EF
-	for <lists+amd-gfx@lfdr.de>; Mon, 17 Apr 2023 09:30:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF30F6E40F4
+	for <lists+amd-gfx@lfdr.de>; Mon, 17 Apr 2023 09:30:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8588510E286;
-	Mon, 17 Apr 2023 07:30:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF5B910E3AA;
+	Mon, 17 Apr 2023 07:30:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com
- [IPv6:2a00:1450:4864:20::436])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31BE810E077;
- Sat, 15 Apr 2023 09:07:25 +0000 (UTC)
-Received: by mail-wr1-x436.google.com with SMTP id
- ffacd0b85a97d-2f62b1385e3so165368f8f.2; 
- Sat, 15 Apr 2023 02:07:25 -0700 (PDT)
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com
+ [IPv6:2a00:1450:4864:20::32c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BD1310E034;
+ Sat, 15 Apr 2023 12:09:26 +0000 (UTC)
+Received: by mail-wm1-x32c.google.com with SMTP id q5so11555197wmo.4;
+ Sat, 15 Apr 2023 05:09:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1681549641; x=1684141641;
+ d=gmail.com; s=20221208; t=1681560561; x=1684152561;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
  bh=7bl5SFQ2vJygxB6ULQ7owEqW0w5QgVbsAK3PYNhUFh4=;
- b=Jkb/RwuyQAbnlJlQn7Ok9K6ysDcucnhfzgw7G5w8aSSVNjDR+WBPABDauc9LFLFBJo
- zPGBJmaRq2et6/2hkuaVgdxHUT0/BJh4kgXgG33RNm0+V01GgqIiAQPxnnQqkRm7+U91
- bqupoltukCsAJWxubjliYzRLKMFcneSZVHXpiqukgjB1AZ8HNc7/DDbrCX2h3m+VebEh
- 0VOtNMcN/tqU9WccT6t3PBFNxDtN3tUp4Urwsl6gYKm9p9Sioi1jr9hOVNcWlWsd1nIJ
- Tfvcsd2vY2G0chLsgUjMxS3X4BDFKfEP/lO7IIXE/1sUPFhokQozktJLbZf74pr4l6ge
- +csA==
+ b=X3wx/SDN/wkZLlSRmWoO4XjoTTfufgaCgXTVI/8MBUXN3C5Kkoa6Jp85DZjC2wf04W
+ 5zmYu8D4+7x1XhIYxdSsCRIERvV0lFjGdN788237PxGzXXvNaYNGL4VtPXGRM957hh24
+ /Zmj3BNC7AwR1Eo8sblwN4P+Ze+O+oJrN1YeKxDSi7T796tpi4rBrqVu4ygIiSQ6V1ea
+ ntVuCJrPlMT0HzUauagKqw9sDcbJtmWoQD15O9UkaxHT6OvpdgMQmDMpIuRW3RLHxvLm
+ OFPvi6W6+FXczHkXNWBfzsZPOro21B2OrSa4OuRcmpQCbBgbpZ+S3Ye6U/TxjSSDu57M
+ mx2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1681549641; x=1684141641;
+ d=1e100.net; s=20221208; t=1681560561; x=1684152561;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
  bh=7bl5SFQ2vJygxB6ULQ7owEqW0w5QgVbsAK3PYNhUFh4=;
- b=judVzDdpK3HmLaBMA2SLWTQDk/stVhWF00QVrOc/Cqq7JS7W05quCY7zQF/eYFuZUP
- BtZo7PaDXUtYNXVhcqEf/QtxJVgy1ZeZI3zUC+lCnc3C5zjZWoTAbxijg6VSg272eQVa
- LucZv6bA+PJICMlcEZXKdp2l3mLbevZw7noUSOJ58msmCFw/NXpGBq+2lUPL+8aJy8N1
- mMLf1jQLMvcmmwTGcukYaixb/yRq8mL8IaPeSXzasiZhqM5geg+odSTwRexWjou0Je7G
- yYDjLb0MhD431E7iacEvlc4piicB++qs5/HV+PFvEXz3tOCJEjOG0s4NSVLlhYCFe8oH
- koiw==
-X-Gm-Message-State: AAQBX9cFOLLojZMd36GTbRBEDHfqUtMHCrjNl/PSM2K5tY8jT5g2KNAy
- z6SYzyd7weA2MIV29gx3su0=
-X-Google-Smtp-Source: AKy350bDsIOq+QVjyFcYtYVEwre4OPfcaLXNH7NtBAuDI7FhBws+yyvSTWBB4OPxXclOClKuPL/nAQ==
-X-Received: by 2002:a05:6000:189:b0:2f6:b273:ee26 with SMTP id
- p9-20020a056000018900b002f6b273ee26mr1034441wrx.14.1681549641195; 
- Sat, 15 Apr 2023 02:07:21 -0700 (PDT)
+ b=R3zYBO9SMtDLoHkHLKSZNo2PlC+uSj1KE0li5hOlI7lxX+olP1WwlgrCh56EDaukz9
+ ibA7ixntymTzPNOg7kbNKtAI+QyXc83hpuIUnwPgUvbOYcd2rc0c1gPsjz3G/j+10Y+9
+ 4lkdN1WQTsCW9F9OF6+/UsC1SIbnwrh5gzdhXg7mxNeDKYHiG23Oop5OJXNZr2mKE1ul
+ s/P2cOGiiz031O10/PYWsTfROFgSyluRyhnpIs79U+HXsdlpP5CM+9zfRKcGOJ+lkHss
+ IqcSAFIjbmIaGx4eZNIzumXARf4jyFhe2EqYivrrk2g7kV4jwYXLJGQLLyxK7mtSt3Hf
+ ea3w==
+X-Gm-Message-State: AAQBX9fgiAkL+l7RCpz3wfE+fUGiPgInWMIjrECL6AnG2Sy7ya7Nwe03
+ zXbZLgpRn+GU1dwV4Wtud9s=
+X-Google-Smtp-Source: AKy350Yysqw/G21F2cEQ1bzpOiU/6gRNUP/bJK1jn3guibsBFaVe0RGWhuMX5MIUHG1wPs+pj7mvig==
+X-Received: by 2002:a05:600c:204c:b0:3f0:aeac:2f9c with SMTP id
+ p12-20020a05600c204c00b003f0aeac2f9cmr4917397wmg.7.1681560561281; 
+ Sat, 15 Apr 2023 05:09:21 -0700 (PDT)
 Received: from lucifer.home ([2a00:23c5:dc8c:8701:1663:9a35:5a7b:1d76])
  by smtp.googlemail.com with ESMTPSA id
- u8-20020a5d6ac8000000b002eaac3a9beesm5359059wrw.8.2023.04.15.02.07.19
+ 15-20020a05600c230f00b003f16fdc6233sm134903wmo.47.2023.04.15.05.09.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 15 Apr 2023 02:07:20 -0700 (PDT)
+ Sat, 15 Apr 2023 05:09:20 -0700 (PDT)
 From: Lorenzo Stoakes <lstoakes@gmail.com>
 To: linux-mm@kvack.org, linux-kernel@vger.kernel.org,
  Andrew Morton <akpm@linux-foundation.org>
-Subject: [PATCH v2 1/7] mm/gup: remove unused vmas parameter from
+Subject: [PATCH v3 1/7] mm/gup: remove unused vmas parameter from
  get_user_pages()
-Date: Sat, 15 Apr 2023 10:07:09 +0100
-Message-Id: <56b3f7360ac4ba3af3f75903a873f1e48df652e0.1681547405.git.lstoakes@gmail.com>
+Date: Sat, 15 Apr 2023 13:09:18 +0100
+Message-Id: <28967f170eceeebf2591a5e4370d0642e0516f9b.1681558407.git.lstoakes@gmail.com>
 X-Mailer: git-send-email 2.40.0
-In-Reply-To: <cover.1681547405.git.lstoakes@gmail.com>
-References: <cover.1681547405.git.lstoakes@gmail.com>
+In-Reply-To: <cover.1681558407.git.lstoakes@gmail.com>
+References: <cover.1681558407.git.lstoakes@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 17 Apr 2023 07:30:15 +0000
