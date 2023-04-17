@@ -2,69 +2,118 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D3DF6E4ED4
-	for <lists+amd-gfx@lfdr.de>; Mon, 17 Apr 2023 19:09:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96E936E4EEA
+	for <lists+amd-gfx@lfdr.de>; Mon, 17 Apr 2023 19:15:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C45110E54C;
-	Mon, 17 Apr 2023 17:08:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1388510E529;
+	Mon, 17 Apr 2023 17:14:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x54a.google.com (mail-ed1-x54a.google.com
- [IPv6:2a00:1450:4864:20::54a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 144EB10E45C
- for <amd-gfx@lists.freedesktop.org>; Mon, 17 Apr 2023 17:08:49 +0000 (UTC)
-Received: by mail-ed1-x54a.google.com with SMTP id
- 4fb4d7f45d1cf-506b21104faso291802a12.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 17 Apr 2023 10:08:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20221208; t=1681751328; x=1684343328;
- h=to:from:subject:date:message-id:auto-submitted:sender:reply-to
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=UagcbmNehbLGNwI4rEx05g/GfJjtksHSZcBMCAtOwWU=;
- b=g1j9lf27e69Ks8H+wtKoBVZB+XoGyFlPgYZxB8E/gQTmz1Hn0ZlegAjyhoZ7qef/6g
- cWTzExjtnXso+1GKfSlEWLr9+8vvoYPAtZ9Tz7mvPkVVovperIAHbf3W7ABVKX7szxwr
- Rh2fiTIwgLarnYn0OBFR92036q2ls7hu/QT0VKUJugBPHNdLyKjHELZt/xkfzp2hlsBw
- q+mamfzSaTv/KTr29nhGAxxFADi6+5H97a2+TBcwU9MMv0survK/4OjjYrK/fzV9wfMP
- 4huetbdr198u0dDSe8b/bbdOa+uC219ZKuIwemfdHtTjcmMsZyP1Nrx/LWRYb/qfOdZK
- mcQA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1681751328; x=1684343328;
- h=to:from:subject:date:message-id:auto-submitted:sender:reply-to
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=UagcbmNehbLGNwI4rEx05g/GfJjtksHSZcBMCAtOwWU=;
- b=lRP3SdXib72+VPLVYugT4M/JBWXlYFlwVc6lXytoK0eIU6fxdJ0YA40H3KCyhwWPeG
- P0xC9UybsEAznaT1AScZWyLE7MBnCVsbK/aJy6WateW7GZDkYmuqPzxwVcjvViFmEBHh
- 8FuiuGvtnSy1/bZJhxY5a3CknO58yKW/OxvPgp2jJX4bwBnk6LLIfwkV0aKBiT4j0CNw
- Tq2vTk9Bz4oj5BuAGKEg0xYUtG4X3Dq8XdgW8ROWt+bhbIocuZQmm7IzvQmsZskcS/Q7
- HqUkLV9VZHBeI/FqMqYnjPqhC5omaPbm14gvH5jVPfpY+t97xAUA52eWfWD11+uh8Dxv
- f5VQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1681751328; x=1684343328;
- h=to:from:subject:date:message-id:auto-submitted:sender:reply-to
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=UagcbmNehbLGNwI4rEx05g/GfJjtksHSZcBMCAtOwWU=;
- b=FofENc3Z+BuODoA/yBF5Z308wbFWKbXFwg9/LJCFAy9BNIHVbOSPS4pd34/9F9m6r9
- QzkaK1MXzD9SH1+QuIC8euUebva9Q01DtlDJsy3kUe955U82ifNXU3LVBRqIi8cEiByb
- TkgCeXCw8rabgxHdCJj3emS6tQPcC7MkcZ1eADe16m3oEHJGJPIFAnkx+wD6qi3ql0PJ
- 5sWjK+AzM9JAsVmLZGTZqeIl4ZFBZYX+GIM/otXvz6PujqwMSPSNy6gbIAusmsmdrh2t
- FQM5W4SMvGCutMJylEPtevVu9QOhTvBH3IACsFeVaMgNL16u1NSvXDI8PfPzmEqYyW4u
- tNWQ==
-X-Gm-Message-State: AAQBX9cpK2t5R6VxLdhNmaZmz84b4PxhszAa0PTylbAUfcYUBSwEzGjE
- b3ElPRkTWy4MoJAprxNG+E6BB3eGsiQpMJMjI26831k=
-X-Google-Smtp-Source: AKy350bCtcIvBCUB7hjdJTBta4t5KjXWSsBFaHAme6EvOxKQ28ZPEVCj9V2h+PBuNJhaATz98Z4bDjmzorSOAXTW2Ho/
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2063.outbound.protection.outlook.com [40.107.100.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12C8010E529
+ for <amd-gfx@lists.freedesktop.org>; Mon, 17 Apr 2023 17:14:56 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hX9HGuGN8EeemeVxS51uOquEMfzXRcWcnM4fldH5ovwe69PqcfVe9yAEdcaACjhPudUk9YvRNspN9fir6JZSgoShmlb3DNEGZVl9P8e9PepJ4BTeGbPE7sFmdqhF0V6Z6hRzxXCq3HXF7y8pkib5uBdjBg5EsTPmj5ZZRZ2+CMb10jRsFmDvhFVUhLPIQEi+wBuJokVFNrZCpVJDWvb0uOfMWrkQdZRFS/4P52fy/Nh9UBjOZOnQ6XKBqpf3SYgrT/WzPdsEHQDjw30DBgc7yUhnGDds49prCsRzeyyyfQ3+dWa9w3gA4SRLxtVn19z4219nqe6KidzeuXNnmOSoIw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TfubXil4PhStJZxAb7G/7sEgxExiyORBhI1MtlAzG1I=;
+ b=YKVbRkX7BQtAzA9HVh1m3uqKc1Ef1KKmgIFL0S0U9zvOV6D0G2xlBmjVB2GXuiDCVcZGrsiD7sZS5QbgFROM8gmuj0jYbfWolSCOPDIgGRPMRO0Q7x25mCSCs2c9fVJPrJ+meqeTrU8X6hzzrkvJwEHY/Nox8V37JvOKlHBumdOOIFucB3laoYgIFtmT3nZ7Ped/Hr56lrgVS7E6VkshdXhvlNlHRfvcMrmauVVLSq0xoDyEiXEv3yab9FDD8haxAO3D65gpI7IvOLwBr0o/dHmQOsB+T3/caVdE6Lha0DpbCJXYHTAQKjzgmDz1jyoVRy5ZXkce4Ruki9JU1e1S4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TfubXil4PhStJZxAb7G/7sEgxExiyORBhI1MtlAzG1I=;
+ b=EbNcPiNrnHfxe+xryefN4a6MyPQopgM5yklYAJrJv3tDEHeA2z4HAcBZyepxm4tdFVDxz6EwoJ4EAzZRdEm2256TgfrmNTy2dj2wGzAPy0gZUys1NWwsFtEsL61dSDTxpkuVFDfQXBXg9zuodaus43pNb6LsuES8yF/U2n+P3f0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from CH0PR12MB5284.namprd12.prod.outlook.com (2603:10b6:610:d7::13)
+ by PH7PR12MB6834.namprd12.prod.outlook.com (2603:10b6:510:1b4::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.33; Mon, 17 Apr
+ 2023 17:14:51 +0000
+Received: from CH0PR12MB5284.namprd12.prod.outlook.com
+ ([fe80::3e54:627b:ceee:ed2b]) by CH0PR12MB5284.namprd12.prod.outlook.com
+ ([fe80::3e54:627b:ceee:ed2b%4]) with mapi id 15.20.6298.045; Mon, 17 Apr 2023
+ 17:14:51 +0000
+Message-ID: <3ec3a183-979e-5fa1-7431-4edba05ff8f1@amd.com>
+Date: Mon, 17 Apr 2023 13:14:49 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH] drm/amd/display: Unconditionally print when DP sink power
+ state fails
+Content-Language: en-US
+To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ Fangzhi Zuo <Jerry.Zuo@amd.com>
+References: <20230417170844.3836427-1-srinivasan.shanmugam@amd.com>
+From: Aurabindo Pillai <aurabindo.pillai@amd.com>
+In-Reply-To: <20230417170844.3836427-1-srinivasan.shanmugam@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: YT4PR01CA0381.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:fd::14) To CH0PR12MB5284.namprd12.prod.outlook.com
+ (2603:10b6:610:d7::13)
 MIME-Version: 1.0
-X-Received: by 2002:a50:9e09:0:b0:506:6baa:2d07 with SMTP id
- z9-20020a509e09000000b005066baa2d07mr7663338ede.6.1681751328191; Mon, 17 Apr
- 2023 10:08:48 -0700 (PDT)
-Auto-Submitted: auto-generated
-Message-ID: <calendar-f11430b2-3be1-421b-89db-ae8d14dddc7d@google.com>
-Date: Mon, 17 Apr 2023 17:08:48 +0000
-Subject: Canceled event: XDC 2023 A Corunha Spain @ Tue Oct 17 - Thu Oct 19,
- 2023 (amd-gfx@lists.freedesktop.org)
-From: mario.kleiner.de@gmail.com
-To: amd-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="000000000000847f5e05f98b3e62"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH0PR12MB5284:EE_|PH7PR12MB6834:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7d357af8-3320-4549-71ae-08db3f67417f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: kXkx1qqQpu22NnuGh8ty/qP+W9wSLOXkpeLBgflGziEkGFIKFk9EPj3gYnLdOiPhJquJh0ox783rhP3aTgFh5EyFgFEqxsOITmonBclTKMATSrNSgkcCgL/ydNCkQUsKGyzz110ThoL0zd0JFbzRrohnJru7exVPgreULTUsTYM7nGBGvvJb7buS3TVnsiXHOW+J6OmR62GtrjjsWFccCWG7cMu/g+9O7YVx6OsmQ5MO+e8yrMq6t/D/vlmrAvdKSX/7awK/Bq+ZcAwacHtpCGGh5zqJQPz2eYG62K/5qgPZ9r/FIx/v+VQffSCvG1Y9HVM53uH81eIiffzEwLQobjJE3gatmmDbpAGhh6xPWJAW68pvgmvOy+RuZ1A+MaYBK63CxvQmS8tumT7DsbynyMkqtzPbYJkLtyJ8p1TSATBGqIm9OGTS5BhQ0QbSMNQ4ZzAf5Df7LxypuTFvlaMzVwueCfnS+TJKQBO0ylr7XTxB0azDy/fDdlaYDs1pXSKZTLRpZOOW/Rw7tbEcdSRxrTmcoUwyUVVOe2xD3eeINFEanyJBR0P3OlziazBZjXnXqxuKjA+Du1unEhcLmgjudUXRvbtL2D5nDV2UTrfzZAbQ27nGxYuLH3yIPOjO9AUqBKW5wgCNGfepXHVr1K8mgg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR12MB5284.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(366004)(346002)(39860400002)(136003)(396003)(376002)(451199021)(53546011)(36756003)(66556008)(66476007)(4326008)(316002)(66946007)(6636002)(110136005)(6486002)(478600001)(8936002)(5660300002)(41300700001)(8676002)(86362001)(44832011)(2906002)(6506007)(186003)(26005)(6512007)(38100700002)(83380400001)(2616005)(31696002)(31686004)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MlFOWXROdWpuSS94NWtXYUIxVGM5aklwc0NLZVhsd2o0cDFjQi96UnJxZXEz?=
+ =?utf-8?B?OXRla1AzOW1EUk4vOVlteFlmaisxNEZNdU94TnA1c2xoSXNyUTdjcG5CZE04?=
+ =?utf-8?B?SzZsd0xwTENWUHM5SklsRWVJSzlNWDcwdlBwR2Z3N2M2WTVUZEw5NExxbitD?=
+ =?utf-8?B?YXhuZG9EZ1JpaVhFUFFUWVU1WmdOTlhJSklGbjN0L05KY2xaOWl6Y3JCaDQ4?=
+ =?utf-8?B?eFhQcmhmRkhYWHZINGM4QlYxSEY4V3NzejRRb1ljQmFHRmlPU1NiWFZjN29i?=
+ =?utf-8?B?bCtqQlhTSVZGOGVDM2czeXQvUzZnR1oyN0lRdmNOZmp4T0pDZ05EKzNhNm9a?=
+ =?utf-8?B?NVNObDg5dk8zdVU4bTRzenFaK3dJNTN3VGJxQlRZVVVUamlZV2NBOGg4aExE?=
+ =?utf-8?B?b1lDVk9LbkZHT0xOclV1L1Ezc1MvTHU1cXIxOTRRMXpRREtzV0JTbWdCQy8x?=
+ =?utf-8?B?SkJhSVpxOEtBcWRrRHhjbVpBci9nOTVZSTF0amMwc09QbkFDOGNVOTk5Zjcw?=
+ =?utf-8?B?MjAwRmZGaXVaY0xraFdFQ2NJSG5ZbTY3S3RmdithV080TWp6OSs2NGRHdjhI?=
+ =?utf-8?B?Wm5TYURoQU9xcTk5blUvS25Dd2x2NkpvM05yQjJPbllmTk1FdUEvcllMS3Y5?=
+ =?utf-8?B?eHg1dVRvYjRVdGFWWDhwWWNwamJmWVhnSHFvbW1RV2E2Q1pBVzY2Y3drUWJu?=
+ =?utf-8?B?U1pJc1JQa1RoUEF5MjZ0N0ZUbllpZmE2cFFRRUxaOEpoVzhWeUE3bTc5dWdv?=
+ =?utf-8?B?MVFoN1ZpZDBRYjBwMXF0cVBSTUZNTUt0b2orQ2djM3pnaHVOSWgycXo5d3U2?=
+ =?utf-8?B?RW4zNVpYQXpiS2cwKzNlNDdwSnJrLzUvOTdBQnlIa2lUVWR6OUxndGRTRFFq?=
+ =?utf-8?B?VUl6WTk5aGMvSkNLM3J6RHd1eE1reU1CQWx0b0FaWEJ6N09hYVQ1cHJFUWh3?=
+ =?utf-8?B?SVJiNnRhRURYZFhPOVdyajRpUVRIMjcwb3psS1UrclRHZENsem5pT0JBK2ZJ?=
+ =?utf-8?B?cDl5Sjk1aHVHaWdKUFZYVnV4dXdaWjk0UjJVbVIwOGZiQkhBN3hldElLN1ln?=
+ =?utf-8?B?dkJLWFA5OFFGaWdnNkRWZG9QSG1mVncrSjFtUThTdzB5d2ZJVWFjaGwvNW9H?=
+ =?utf-8?B?VHl0RE9iQjYrdkpFZHE0QUpXMTZrWnJkV0p0OXdlMW5YMXFxV3FhNGZKQUlF?=
+ =?utf-8?B?T2Vpcy9BaW9MYjNHalpUVkhiV0dyRkZkMk56dmk1dm5STnlEeU1MVDloTFA2?=
+ =?utf-8?B?aXhKem1kQWlUYndad1dtVVFOYXdEUFpSbW1yVEowbzA0cVdqTlJpSnhlY2xR?=
+ =?utf-8?B?OHBBVjZNdk1OZG5ER205YzhmbnZucG9pWGYzbXVNOXRqVHNhalFNaUNMMDkz?=
+ =?utf-8?B?Tkk3NGMrbVFyZTluVkRxSTNscm44OWxXNW9OKzNnZ1NCaFZOd3Zmb1RTSE5k?=
+ =?utf-8?B?dExZemdaZTFYKzlZeDRFemRDc0FpbGNBcHdaRU90SGViSDBONFJ6WWdIQVlp?=
+ =?utf-8?B?c25MSHNXWUQ3eW1pSnI5TGkwZ2pBaC9rZmYrY1RvTk1VZ0JrSmpHRDZoMnZC?=
+ =?utf-8?B?b2Z5Tlh6d1ErN1hXM3AySlhqem00Y3ozQ0hBNzdxanNkaXdaQ1VhcXVBdCtv?=
+ =?utf-8?B?VjZ0TWVDdTk5MjJXU3I5NjNITVNLbG83ckdWRVVHSHRFdU9Bc1ZqUmFwS3NH?=
+ =?utf-8?B?bzF3Sld2WUJtNUtrOEZ6bXBFcEM3VUJjV1FydGdBRnlobnlpc2ttT2JReU1O?=
+ =?utf-8?B?SG9rQ1IxcGdXcjN3MlN4YUtYc1NKSUlQd1BjYUxxL202dStzZTNrb09MSkx6?=
+ =?utf-8?B?N3dYcEdVZFJaelp5MFA3YTUzVTViZGFZWXU0MXpGTER6cGNFK3RyUmQ0QTZS?=
+ =?utf-8?B?N3Q3am95N1psMzZQbDFvZ2xETjUxazVIeFdIOHRoby9jSnZwejN0Uk9EVjBu?=
+ =?utf-8?B?a0lZM1FjNUt1RG45RnY3TjZQcTlMVjdqWWlEeW1mdlJybXpYYURpSnBSWnk0?=
+ =?utf-8?B?QXhFUC9SUkRNaVQza1hwSkx5ZS9WQmprODdzMUxKVDE4Q0t1cXZRZXNUenZa?=
+ =?utf-8?B?LytoYm5hYkQvTUUyZmVtM1d3M3p4QVRTc3VLL1NiTUdaZ3dOTDB3d1hCQjFo?=
+ =?utf-8?Q?MeXMUhq/Y2/FbNvKvHZX1n6gF?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7d357af8-3320-4549-71ae-08db3f67417f
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR12MB5284.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2023 17:14:51.8062 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 86nS5yA19ARmiZRr1tAFzXOfvp7jZaOTUzvEew00klX7eDp375dcK+JNomF3kQclkyewmYS56MDD9xvXXX37dQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6834
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,889 +125,47 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: mario.kleiner.de@gmail.com
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---000000000000847f5e05f98b3e62
-Content-Type: multipart/alternative; boundary="000000000000847f5c05f98b3e60"
 
---000000000000847f5c05f98b3e60
-Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
-Content-Transfer-Encoding: base64
 
-VGhpcyBldmVudCBoYXMgYmVlbiBjYW5jZWxlZC4NCg0KWERDIDIwMjMgQSBDb3J1bmhhIFNwYWlu
-DQpUdWVzZGF5IE9jdCAxNyDigJMgVGh1cnNkYXkgT2N0IDE5LCAyMDIzDQoNCkpvaW4gd2l0aCBH
-b29nbGUgTWVldA0KaHR0cHM6Ly9tZWV0Lmdvb2dsZS5jb20vYXpuLXV3ZnAtcGd3P2hzPTIyNA0K
-DQoNCg0KDQpIZWxsbyENCg0KUmVnaXN0cmF0aW9uICYgQ2FsbCBmb3IgUHJvcG9zYWxzIGFyZSBu
-b3cgb3BlbiBmb3IgWERDIDIwMjMsIHdoaWNoIHdpbGwNCnRha2UgcGxhY2Ugb24gT2N0b2JlciAx
-Ny0xOSwgMjAyMy4NCg0KaHR0cHM6Ly94ZGMyMDIzLngub3JnDQoNCkFzIHVzdWFsLCB0aGUgY29u
-ZmVyZW5jZSBpcyBmcmVlIG9mIGNoYXJnZSBhbmQgb3BlbiB0byB0aGUgZ2VuZXJhbA0KcHVibGlj
-LiBJZiB5b3UgcGxhbiBvbiBhdHRlbmRpbmcsIHBsZWFzZSBtYWtlIHN1cmUgdG8gcmVnaXN0ZXIg
-YXMgZWFybHkNCmFzIHBvc3NpYmxlIQ0KDQpJbiBvcmRlciB0byByZWdpc3RlciBhcyBhdHRlbmRl
-ZSwgeW91IHdpbGwgdGhlcmVmb3JlIG5lZWQgdG8gcmVnaXN0ZXINCnZpYSB0aGUgWERDIHdlYnNp
-dGUuDQoNCmh0dHBzOi8vaW5kaWNvLmZyZWVkZXNrdG9wLm9yZy9ldmVudC80L3JlZ2lzdHJhdGlv
-bnMvDQoNCkluIGFkZGl0aW9uIHRvIHJlZ2lzdHJhdGlvbiwgdGhlIENmUCBpcyBub3cgb3BlbiBm
-b3IgdGFsa3MsIHdvcmtzaG9wcw0KYW5kIGRlbW9zIGF0IFhEQyAyMDIzLiBXaGlsZSAuLi4NCg0K
-T3JnYW5pemVyDQptYXJpby5rbGVpbmVyLmRlQGdtYWlsLmNvbQ0KbWFyaW8ua2xlaW5lci5kZUBn
-bWFpbC5jb20NCg0KR3Vlc3RzDQptYXJpby5rbGVpbmVyLmRlQGdtYWlsLmNvbSAtIG9yZ2FuaXpl
-cg0KZXRuYXZpdkBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCnhvcmctZGV2ZWxAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnDQphbWQtZ2Z4IGxpc3QNCmludGVsLWdmeA0KTm91dmVhdSBEZXYNCmJvYXJkQGZv
-dW5kYXRpb24ueC5vcmcNCmxpYnJlLXNvYy1kZXZAbGlzdHMubGlicmUtc29jLm9yZw0KTUwgbWVz
-YS1kZXYNCm1lbWJlcnNAeC5vcmcNCmZyZWVkcmVub0BsaXN0cy5mcmVlZGVza3RvcC5vcmcNCmRy
-b2lkYml0dGluQGdtYWlsLmNvbQ0Kd2F5bGFuZC1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcN
-CmRyaS1kZXZlbA0Kc2lnbGVzaWFzQGlnYWxpYS5jb20NCmV2ZW50c0BsaXN0cy54Lm9yZw0KQmli
-YnkgSHNpZWggKOisnea/n+mBoCkNCkdhcmcsIFJvaGFuDQoNCg0Kfn4vL35+DQpJbnZpdGF0aW9u
-IGZyb20gR29vZ2xlIENhbGVuZGFyOiBodHRwczovL2NhbGVuZGFyLmdvb2dsZS5jb20vY2FsZW5k
-YXIvDQoNCllvdSBhcmUgcmVjZWl2aW5nIHRoaXMgZW1haWwgYmVjYXVzZSB5b3UgYXJlIGFuIGF0
-dGVuZGVlIG9uIHRoZSBldmVudC4gVG8gIA0Kc3RvcCByZWNlaXZpbmcgZnV0dXJlIHVwZGF0ZXMg
-Zm9yIHRoaXMgZXZlbnQsIGRlY2xpbmUgdGhpcyBldmVudC4NCg0KRm9yd2FyZGluZyB0aGlzIGlu
-dml0YXRpb24gY291bGQgYWxsb3cgYW55IHJlY2lwaWVudCB0byBzZW5kIGEgcmVzcG9uc2UgdG8g
-IA0KdGhlIG9yZ2FuaXplciwgYmUgYWRkZWQgdG8gdGhlIGd1ZXN0IGxpc3QsIGludml0ZSBvdGhl
-cnMgcmVnYXJkbGVzcyBvZiAgDQp0aGVpciBvd24gaW52aXRhdGlvbiBzdGF0dXMsIG9yIG1vZGlm
-eSB5b3VyIFJTVlAuDQoNCkxlYXJuIG1vcmUgaHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vY2Fs
-ZW5kYXIvYW5zd2VyLzM3MTM1I2ZvcndhcmRpbmcNCg==
---000000000000847f5c05f98b3e60
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On 4/17/23 13:08, Srinivasan Shanmugam wrote:
+> The previous 'commit 9360c01646d4e ("drm/amd/display: Add logging when
+> setting DP sink power state fails")', it is better to unconditionally
+> print "failed to power up sink", because we are returning
+> DC_ERROR_UNEXPECTED.
+> 
+> Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
+> Cc: Fangzhi Zuo <Jerry.Zuo@amd.com>
+> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+> ---
+>   .../drm/amd/display/dc/link/protocols/link_dp_capability.c    | 4 +---
+>   1 file changed, 1 insertion(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
+> index 59adc61156cb..2914fca7dab3 100644
+> --- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
+> +++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
+> @@ -1043,9 +1043,7 @@ static enum dc_status wake_up_aux_channel(struct dc_link *link)
+>   				DP_SET_POWER,
+>   				&dpcd_power_state,
+>   				sizeof(dpcd_power_state));
+> -		if (status < 0)
+> -			DC_LOG_DC("%s: Failed to power up sink: %s\n", __func__,
+> -				  dpcd_power_state == DP_SET_POWER_D0 ? "D0" : "D3");
+> +		DC_LOG_DC("%s: Failed to power up sink\n", __func__);
+>   		return DC_ERROR_UNEXPECTED;
+>   	}
+>   
 
-<!doctype html><html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:=
-schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:offi=
-ce"><head><title></title><!--[if !mso]><meta http-equiv=3D"X-UA-Compatible"=
- content=3D"IE=3Dedge"><![endif]--><meta http-equiv=3D"Content-Type" conten=
-t=3D"text/html; charset=3DUTF-8"><meta name=3D"viewport" content=3D"width=
-=3Ddevice-width,initial-scale=3D1"><meta name=3D"color-scheme" content=3D"l=
-ight dark"><meta name=3D"supported-color-schemes" content=3D"light dark">
-    <style>
-      body, html {
-        font-family: Roboto, Helvetica, Arial, sans-serif;
-      }
 
-      body {
-        margin: 0;
-        padding: 0;
-        -webkit-font-smoothing: antialiased;
-        -webkit-text-size-adjust: 100%;
-        -ms-text-size-adjust: 100%;
-      }
+With the following tag added to the commit message:
 
-      #outlook a {
-        padding: 0;
-      }
+Fixes: 9360c01646d4e ("drm/amd/display: Add logging when setting DP sink 
+power state fails")
 
-      .ReadMsgBody {
-        width: 100%;
-      }
+The patch is:
 
-      .ExternalClass {
-        width: 100%;
-      }
-
-      .ExternalClass * {
-        line-height: 100%;
-      }
-
-      table,
-      td {
-        mso-table-lspace: 0pt;
-        mso-table-rspace: 0pt;
-      }
-
-      img {
-        border: 0;
-        height: auto;
-        line-height: 100%;
-        outline: none;
-        text-decoration: none;
-        -ms-interpolation-mode: bicubic;
-      }
-
-      p {
-        display: block;
-        margin: 13px 0;
-      }
-    </style>
-    <!--[if !mso]><!-->
-    <style>
-      @media only screen and (max-width:580px) {
-        @-ms-viewport {
-          width: 320px;
-        }
-
-        @viewport {
-          width: 320px;
-        }
-      }
-    </style>
-    <!--<![endif]-->
-    <!--[if mso]>
-          <xml>
-          <o:OfficeDocumentSettings>
-            <o:AllowPNG/>
-            <o:PixelsPerInch>96</o:PixelsPerInch>
-          </o:OfficeDocumentSettings>
-          </xml>
-          <![endif]-->
-    <!--[if lte mso 11]>
-          <style>
-            .outlook-group-fix { width:100% !important; }
-          </style>
-    <![endif]-->
-
-    <!--[if !mso]><!-- -->
-  <style>body, html {font-family:Roboto,Helvetica,Arial,sans-serif;}@font-f=
-ace {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  src: url(//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxP.ttf) forma=
-t('truetype');
-}
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  src: url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fBBc9.ttf) f=
-ormat('truetype');
-}
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  src: url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmWUlfBBc9.ttf) f=
-ormat('truetype');
-}
-@font-face {
-  font-family: 'Material Icons Extended';
-  font-style: normal;
-  font-weight: 400;
-  src: url(//fonts.gstatic.com/s/materialiconsextended/v149/kJEjBvgX7BgnkSr=
-UwT8UnLVc38YydejYY-oE_LvM.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Google Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: url(//fonts.gstatic.com/s/googlematerialicons/v130/Gw6kwdfw6UnXLJCcm=
-afZyFRXb3BL9rvi0QZG3g.otf) format('opentype');
-}
-
-.google-material-icons {
-  font-family: 'Google Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-}
-@font-face {
-  font-family: 'Google Material Icons Filled';
-  font-style: normal;
-  font-weight: 400;
-  src: url(//fonts.gstatic.com/s/googlematerialiconsfilled/v96/WWXFlimHYg6H=
-KI3TavMkbKdhBmDvgach8TVpeGsuueSZJH4.otf) format('opentype');
-}
-
-.google-material-icons-filled {
-  font-family: 'Google Material Icons Filled';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-}
-@font-face {
-  font-family: 'Google Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: url(//fonts.gstatic.com/s/googlesans/v14/4UaGrENHsxJlGDuGo1OIlL3Owps=
-.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Google Sans';
-  font-style: normal;
-  font-weight: 500;
-  src: url(//fonts.gstatic.com/s/googlesans/v14/4UabrENHsxJlGDuGo1OIlLU94Yt=
-zCwM.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Google Sans';
-  font-style: normal;
-  font-weight: 700;
-  src: url(//fonts.gstatic.com/s/googlesans/v14/4UabrENHsxJlGDuGo1OIlLV154t=
-zCwM.ttf) format('truetype');
-}
-</style><!--<![endif]-->
-      <style>
-        .body-container {
-          padding-left: 16px;
-          padding-right: 16px;
-        }
-      </style>
- =20
-      <style>
-        u+.body .body-container,
-        body[data-outlook-cycle] .body-container,
-        #MessageViewBody .body-container {
-          padding-left: 0;
-          padding-right: 0;
-        }
-      </style>
- =20
-    <style>
-      @media only screen and (min-width:580px) {
-        .column-per-37 {
-          width: 37% !important;
-          max-width: 37%;
-        }
-
-        .column-per-63 {
-          width: 63% !important;
-          max-width: 63%;
-        }
-      }
-    </style>
- =20
-    <style>
-      .appointment-buttons th {
-        display: block;
-        clear: both;
-        float: left;
-        margin-top: 12px;
-      }
-
-      .appointment-buttons th a {
-        float: left;
-      }
-
-      #MessageViewBody .appointment-buttons th {
-       margin-top: 24px;
-      }
-    </style>
- =20
-    <style>
-      @media only screen and (max-width:580px) {
-        table.full-width-mobile {
-          width: 100% !important;
-        }
-
-        td.full-width-mobile {
-          width: auto !important;
-        }
-      }
-    </style>
-    <style>
-      .main-container-inner,
-      .info-bar-inner {
-        padding: 12px 16px !important;
-      }
-
-      .main-column-table-ltr {
-        padding-right: 0 !important;
-      }
-
-      .main-column-table-rtl {
-        padding-left: 0 !important;
-      }
-
-      @media only screen and (min-width:580px) {
-        .main-container-inner {
-          padding: 24px 32px !important;
-        }
-
-        .info-bar-inner {
-          padding: 12px 32px !important;
-        }
-
-        .main-column-table-ltr {
-          padding-right: 32px !important;
-        }
-
-        .main-column-table-rtl {
-          padding-left: 32px !important;
-        }
-
-        .appointment-buttons th {
-          display: table-cell;
-          clear: none;
-        }
-      }
-
-      .primary-text {
-        color: #3c4043 !important;
-      }
-
-      .secondary-text,
-      .phone-number a {
-        color: #70757a !important;
-      }
-
-      .accent-text {
-        color: #1a73e8 !important;
-      }
-
-      .accent-text-dark {
-        color: #185abc !important;
-      }
-
-      .grey-button-text,
-      .attachment-chip a {
-        color: #5f6368 !important;
-      }
-
-      .primary-button {
-        background-color: #1a73e8 !important;
-      }
-
-      .primary-button-text {
-        color: #fff !important;
-      }
-
-      .underline-on-hover:hover {
-        text-decoration: underline !important;
-      }
-
-      .grey-infobar-text {
-        color: #202124 !important;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        .primary-text:not([class^=3D"x_"]) {
-          color: #e8eaed !important;
-        }
-
-        .secondary-text:not([class^=3D"x_"]),
-        .phone-number:not([class^=3D"x_"]) a {
-          color: #9aa0a6 !important;
-        }
-
-        .grey-button-text:not([class^=3D"x_"]),
-        .attachment-chip:not([class^=3D"x_"]) a {
-          color: #bdc1c6 !important;
-        }
-
-        .accent-text:not([class^=3D"x_"]),
-        .hairline-button-text:not([class^=3D"x_"]) {
-          color: #8ab4f8 !important;
-        }
-
-        .primary-button:not([class^=3D"x_"]) {
-          background-color: #8ab4f8 !important;
-        }
-
-        .primary-button-text:not([class^=3D"x_"]) {
-          color: #202124 !important;
-        }
-      }
-    </style>
-    <style>
-      @media (prefers-color-scheme: dark) {
-        .cse-banner:not([class^=3D"x_"]) {
-          background-color: #3c4043 !important; /* Google Grey 800 */
-        }
-
-        .encryption-icon:not([class^=3D"x_"]) {
-          /* WARNING: This causes the whole style tag to get stripped in Gm=
-ail. */
-          background-image: url('https://fonts.gstatic.com/s/i/googlemateri=
-aliconsfilled/encrypted/v3/gm_grey200-24dp/2x/gm_filled_encrypted_gm_grey20=
-0_24dp.png') !important;
-        }
-      }
-    </style>
-    <!--[if !mso]><!-->
-    <style>
-      .prevent-link a {
-        color: inherit !important;
-        text-decoration: none !important;
-        font-size: inherit !important;
-        font-family: inherit !important;
-        font-weight: inherit !important;
-        line-height: inherit !important;
-      }
-    </style>
-    <!--<![endif]-->
-
-    <!--[if mso | IE]>
-      <style>
-        .main-container-inner {
-          padding: 24px 32px !important;
-        }
-
-        .info-bar-inner {
-          padding: 12px 32px !important;
-        }
-
-        .cse-banner .encryption-icon {
-          /* We use the IE workaround instead. */
-          background-image: none !important;
-        }
-
-        .cse-banner .encryption-icon .ms-fallback {
-          display: block !important;
-        }
-
-        /* NB: Some MS clients ignore dark-scheme styling and apply their o=
-wn, so there's nothing we can do to help there. */
-        @media (prefers-color-scheme: dark) {
-          .cse-banner:not([class^=3D"x_"]) .encryption-icon .ms-fallback {
-            display: none !important;
-          }
-
-          .cse-banner:not([class^=3D"x_"]) .encryption-icon .ms-fallback-da=
-rk {
-            display: block !important;
-          }
-        }
-      </style>
-    <![endif]-->
-  </head><body class=3D"body"><span itemscope itemtype=3D"http://schema.org=
-/InformAction"><span itemprop=3D"object" itemscope itemtype=3D"http://schem=
-a.org/Event"><meta itemprop=3D"eventStatus" content=3D"http://schema.org/Ev=
-entCancelled"/><span itemprop=3D"publisher" itemscope itemtype=3D"http://sc=
-hema.org/Organization"><meta itemprop=3D"name" content=3D"Google Calendar"/=
-></span><meta itemprop=3D"eventId/googleCalendar" content=3D"65qeuuc9e0gll2=
-5tq5r7e617p8"/><span style=3D"display: none; font-size: 1px; color: #fff; l=
-ine-height: 1px; height: 0; max-height: 0; width: 0; max-width: 0; opacity:=
- 0; overflow: hidden;" itemprop=3D"name">XDC 2023 A Corunha Spain</span><sp=
-an aria-hidden=3D"true"><time itemprop=3D"startDate" datetime=3D"20231017">=
-</time><time itemprop=3D"endDate" datetime=3D"20231020"></time></span><tabl=
-e border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" al=
-ign=3D"center" style=3D"width:100%;" class=3D"body-container"><tbody><tr><t=
-d style=3D"" class=3D"" align=3D"left"><!--[if mso | IE]><table border=3D"0=
-" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"><tr><td height=
-=3D"16" style=3D"height:16px;"><![endif]--><div style=3D"height:16px;" aria=
--hidden=3D"true"> &nbsp; </div><!--[if mso | IE]></td></tr></table><![endif=
-]--><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"present=
-ation" align=3D"center" style=3D"width:100%;" class=3D""><tbody><tr><td sty=
-le=3D"background-color: #fce8e6;color: #2d0c0c;padding: 12px 32px; border-r=
-adius: 8px;font-family: Roboto, sans-serif;font-size: 14px; line-height: 20=
-px;text-align: left;" class=3D"info-bar-inner"><span style=3D"font-weight: =
-700;">This event has been canceled.</span></td></tr></tbody></table><!--[if=
- mso | IE]><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"=
-presentation"><tr><td height=3D"12" style=3D"height:12px;"><![endif]--><div=
- style=3D"height:12px;" aria-hidden=3D"true"> &nbsp; </div><!--[if mso | IE=
-]></td></tr></table><![endif]--><table border=3D"0" cellpadding=3D"0" cells=
-pacing=3D"0" role=3D"presentation" align=3D"center" style=3D"width:100%;" c=
-lass=3D""><tbody><tr><td style=3D"border: solid 1px #dadce0; border-radius:=
- 8px; direction: rtl; font-size: 0; padding: 24px 32px; text-align: left; v=
-ertical-align: top;" class=3D"main-container-inner"><!--[if mso | IE]><tabl=
-e border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"><t=
-r><![endif]--><!--[if mso | IE]><td class=3D"" style=3D"vertical-align:top;=
-width:37%;" ><![endif]--><div class=3D"column-per-37 outlook-group-fix" sty=
-le=3D"font-size: 13px; text-align: left; direction: ltr; display: inline-bl=
-ock; vertical-align: top; width: 100%;overflow: hidden; word-wrap: break-wo=
-rd;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presen=
-tation" width=3D"100%"><tbody><tr><td style=3D"vertical-align:top;padding:0=
-;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presenta=
-tion" width=3D"100%"><tr><td style=3D"font-size: 0; padding: 0; text-align:=
- left; word-break: break-word;;padding-bottom:28px;"><a href=3D"https://mee=
-t.google.com/azn-uwfp-pgw?hs=3D224" class=3D"primary-button-text" style=3D"=
-display: inline-block;font-family: &#39;Google Sans&#39;, Roboto, sans-seri=
-f;font-size: 14px; letter-spacing: 0.25px; line-height: 20px; mso-line-heig=
-ht-rule: exactly; text-decoration: none; text-transform: none; word-wrap: b=
-reak-word; white-space: nowrap;color: #fff;font-weight: 700;white-space: no=
-rmal;" target=3D"_blank"><table border=3D"0" cellpadding=3D"0" cellspacing=
-=3D"0" role=3D"presentation" style=3D"display: inline-block"><tr><td align=
-=3D"center" role=3D"presentation" valign=3D"middle" style=3D"background-col=
-or: #1a73e8; cursor: auto; padding: 10px 25px; border: none; border-radius:=
- 4px; margin: 0;" class=3D"primary-button"><!--[if mso]><a href=3D"https://=
-meet.google.com/azn-uwfp-pgw?hs=3D224" class=3D"primary-button-text" target=
-=3D"_blank"><![endif]--><span class=3D"primary-button-text" style=3D"font-f=
-amily: &#39;Google Sans&#39;, Roboto, sans-serif;font-size: 14px; letter-sp=
-acing: 0.25px; line-height: 20px; mso-line-height-rule: exactly; text-decor=
-ation: none; text-transform: none; word-wrap: break-word; white-space: nowr=
-ap;color: #fff;font-weight: 700;white-space: normal;">Join with Google Meet=
-</span><!--[if mso]></a><![endif]--></td></tr></table></a></td></tr><tr><td=
- style=3D"font-size: 0; padding: 0; text-align: left; word-break: break-wor=
-d;;padding-bottom:24px;"><div style=3D"font-family: Roboto, sans-serif;font=
--size: 14px; line-height: 20px; mso-line-height-rule: exactly; text-align: =
-left;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"pres=
-entation" style=3D"padding-bottom: 4px;"><tr><td><h2 class=3D"primary-text"=
- style=3D"font-size: 14px;color: #3c4043; text-decoration: none;font-weight=
-: 700;-webkit-font-smoothing: antialiased;margin: 0; padding: 0;">Meeting l=
-ink</h2></td></tr></table><!-- Use grey text for the Meet link--><div><a st=
-yle=3D"display: inline-block;;color: #70757a; text-decoration: none;" class=
-=3D"secondary-text underline-on-hover" href=3D"https://meet.google.com/azn-=
-uwfp-pgw?hs=3D224">meet.google.com/azn-uwfp-pgw</a></div></div></td></tr></=
-table></td></tr></tbody></table></div><!--[if mso | IE]></td><![endif]--><!=
---[if mso | IE]><td class=3D"" style=3D"vertical-align:top;width:63%;paddin=
-g-right:32px;" ><![endif]--><div class=3D"column-per-63 outlook-group-fix" =
-style=3D"font-size: 13px; text-align: left; direction: ltr; display: inline=
--block; vertical-align: top; width: 100%;overflow: hidden; word-wrap: break=
--word;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"pre=
-sentation" width=3D"100%" class=3D"main-column-table-ltr" style=3D"padding-=
-right: 32px; padding-left: 0;;table-layout: fixed;"><tbody><tr><td class=3D=
-"main-column-td" style=3D"padding:0; vertical-align:top;"><table border=3D"=
-0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"=
- style=3D"table-layout: fixed;"><tr><td style=3D"font-size: 0; padding: 0; =
-text-align: left; word-break: break-word;;padding-bottom:24px;"><div style=
-=3D"font-family: Roboto, sans-serif;font-style: normal; font-weight: 400; f=
-ont-size: 14px; line-height: 20px; letter-spacing: 0.2px;color: #3c4043; te=
-xt-decoration: none;" class=3D"primary-text" role=3D"presentation"><span>He=
-llo!<br> <br>Registration &amp; Call for Proposals are now open for XDC 202=
-3, which will<br>take place on October 17-19, 2023.<p><a href=3D"https://ww=
-w.google.com/url?q=3Dhttps%3A%2F%2Fxdc2023.x.org&amp;sa=3DD&amp;ust=3D16821=
-83280000000&amp;usg=3DAOvVaw3rtcZVo_O4CWdsfiMe_KRY" target=3D"_blank">https=
-://xdc2023.x.org</a><br> <br>As usual, the conference is free of charge and=
- open to the general<br>public. If you plan on attending, please make sure =
-to register as early<br>as possible!<br> <br>In order to register as attend=
-ee, you will therefore need to register<br>via the XDC website.<br> <br><a =
-href=3D"https://www.google.com/url?q=3Dhttps%3A%2F%2Findico.freedesktop.org=
-%2Fevent%2F4%2Fregistrations%2F&amp;sa=3DD&amp;ust=3D1682183280000000&amp;u=
-sg=3DAOvVaw1OnC_fEsqrHhOfYN5hnH87" target=3D"_blank">https://indico.freedes=
-ktop.org/event/4/registrations/</a><br> <br>In addition to registration, th=
-e CfP is now open for talks, workshops<br>and demos at XDC 2023. While ...<=
-/p></span><meta itemprop=3D"description" content=3D"Hello!
-=20
-Registration &amp; Call for Proposals are now open for XDC 2023, which will
-take place on October 17-19, 2023.
-
-https://xdc2023.x.org
-=20
-As usual, the conference is free of charge and open to the general
-public. If you plan on attending, please make sure to register as early
-as possible!
-=20
-In order to register as attendee, you will therefore need to register
-via the XDC website.
-=20
-https://indico.freedesktop.org/event/4/registrations/
-=20
-In addition to registration, the CfP is now open for talks, workshops
-and demos at XDC 2023. While ..."/></div></td></tr><tr><td style=3D"font-si=
-ze: 0; padding: 0; text-align: left; word-break: break-word;;padding-bottom=
-:24px;"><div style=3D"font-family: Roboto, sans-serif;font-style: normal; f=
-ont-weight: 400; font-size: 14px; line-height: 20px; letter-spacing: 0.2px;=
-color: #3c4043; text-decoration: none;" class=3D"primary-text" role=3D"pres=
-entation"><span aria-hidden=3D"true"><time itemprop=3D"startDate" datetime=
-=3D"20231017"></time><time itemprop=3D"endDate" datetime=3D"20231020"></tim=
-e></span><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"pr=
-esentation" style=3D"padding-bottom: 4px;"><tr><td><h2 class=3D"primary-tex=
-t" style=3D"font-size: 14px;color: #3c4043; text-decoration: none;font-weig=
-ht: 700;-webkit-font-smoothing: antialiased;margin: 0; padding: 0;">When</h=
-2></td></tr></table><span>Tuesday Oct 17 =E2=80=93 Thursday Oct 19, 2023</s=
-pan></div></td></tr><tr><td style=3D"font-size: 0; padding: 0; text-align: =
-left; word-break: break-word;;padding-bottom:24px;"><div style=3D"font-fami=
-ly: Roboto, sans-serif;font-style: normal; font-weight: 400; font-size: 14p=
-x; line-height: 20px; letter-spacing: 0.2px;color: #3c4043; text-decoration=
-: none;" class=3D"primary-text" role=3D"presentation"><table border=3D"0" c=
-ellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"padding-b=
-ottom: 4px;"><tr><td><h2 class=3D"primary-text" style=3D"font-size: 14px;co=
-lor: #3c4043; text-decoration: none;font-weight: 700;-webkit-font-smoothing=
-: antialiased;margin: 0; padding: 0;">Guests</h2></td></tr></table><div sty=
-le=3D"padding-bottom: 4px; text-align: left;;color: #3c4042;"><div><span it=
-emprop=3D"attendee" itemscope itemtype=3D"http://schema.org/Person"><span i=
-temprop=3D"name" class=3D"notranslate"><a class=3D"primary-text underline-o=
-n-hover" style=3D"display: inline-block;;color: #3c4043; text-decoration: n=
-one;" href=3D"mailto:mario.kleiner.de@gmail.com">mario.kleiner.de@gmail.com=
-</a></span><meta itemprop=3D"email" content=3D"mario.kleiner.de@gmail.com"/=
-></span><span itemprop=3D"organizer" itemscope itemtype=3D"http://schema.or=
-g/Person"><meta itemprop=3D"name" content=3D"mario.kleiner.de@gmail.com"/><=
-meta itemprop=3D"email" content=3D"mario.kleiner.de@gmail.com"/></span><spa=
-n class=3D"secondary-text" style=3D"color: #70757a; text-decoration: none;"=
-> - organizer</span></div><div><span itemprop=3D"attendee" itemscope itemty=
-pe=3D"http://schema.org/Person"><span itemprop=3D"name" class=3D"notranslat=
-e"><a class=3D"primary-text underline-on-hover" style=3D"display: inline-bl=
-ock;;color: #3c4043; text-decoration: none;" href=3D"mailto:etnaviv@lists.f=
-reedesktop.org">etnaviv@lists.freedesktop.org</a></span><meta itemprop=3D"e=
-mail" content=3D"etnaviv@lists.freedesktop.org"/></span><span class=3D"seco=
-ndary-text" style=3D"color: #70757a; text-decoration: none;"></span></div><=
-div><span itemprop=3D"attendee" itemscope itemtype=3D"http://schema.org/Per=
-son"><span itemprop=3D"name" class=3D"notranslate"><a class=3D"primary-text=
- underline-on-hover" style=3D"display: inline-block;;color: #3c4043; text-d=
-ecoration: none;" href=3D"mailto:xorg-devel@lists.freedesktop.org">xorg-dev=
-el@lists.freedesktop.org</a></span><meta itemprop=3D"email" content=3D"xorg=
--devel@lists.freedesktop.org"/></span><span class=3D"secondary-text" style=
-=3D"color: #70757a; text-decoration: none;"></span></div><div><span itempro=
-p=3D"attendee" itemscope itemtype=3D"http://schema.org/Person"><span itempr=
-op=3D"name" class=3D"notranslate"><a class=3D"primary-text underline-on-hov=
-er" style=3D"display: inline-block;;color: #3c4043; text-decoration: none;"=
- href=3D"mailto:amd-gfx@lists.freedesktop.org">amd-gfx list</a></span><meta=
- itemprop=3D"email" content=3D"amd-gfx@lists.freedesktop.org"/></span><span=
- class=3D"secondary-text" style=3D"color: #70757a; text-decoration: none;">=
-</span></div><div><span itemprop=3D"attendee" itemscope itemtype=3D"http://=
-schema.org/Person"><span itemprop=3D"name" class=3D"notranslate"><a class=
-=3D"primary-text underline-on-hover" style=3D"display: inline-block;;color:=
- #3c4043; text-decoration: none;" href=3D"mailto:intel-gfx@lists.freedeskto=
-p.org">intel-gfx</a></span><meta itemprop=3D"email" content=3D"intel-gfx@li=
-sts.freedesktop.org"/></span><span class=3D"secondary-text" style=3D"color:=
- #70757a; text-decoration: none;"></span></div><div><span itemprop=3D"atten=
-dee" itemscope itemtype=3D"http://schema.org/Person"><span itemprop=3D"name=
-" class=3D"notranslate"><a class=3D"primary-text underline-on-hover" style=
-=3D"display: inline-block;;color: #3c4043; text-decoration: none;" href=3D"=
-mailto:nouveau@lists.freedesktop.org">Nouveau Dev</a></span><meta itemprop=
-=3D"email" content=3D"nouveau@lists.freedesktop.org"/></span><span class=3D=
-"secondary-text" style=3D"color: #70757a; text-decoration: none;"></span></=
-div><div><span itemprop=3D"attendee" itemscope itemtype=3D"http://schema.or=
-g/Person"><span itemprop=3D"name" class=3D"notranslate"><a class=3D"primary=
--text underline-on-hover" style=3D"display: inline-block;;color: #3c4043; t=
-ext-decoration: none;" href=3D"mailto:board@foundation.x.org">board@foundat=
-ion.x.org</a></span><meta itemprop=3D"email" content=3D"board@foundation.x.=
-org"/></span><span class=3D"secondary-text" style=3D"color: #70757a; text-d=
-ecoration: none;"></span></div><div><span itemprop=3D"attendee" itemscope i=
-temtype=3D"http://schema.org/Person"><span itemprop=3D"name" class=3D"notra=
-nslate"><a class=3D"primary-text underline-on-hover" style=3D"display: inli=
-ne-block;;color: #3c4043; text-decoration: none;" href=3D"mailto:libre-soc-=
-dev@lists.libre-soc.org">libre-soc-dev@lists.libre-soc.org</a></span><meta =
-itemprop=3D"email" content=3D"libre-soc-dev@lists.libre-soc.org"/></span><s=
-pan class=3D"secondary-text" style=3D"color: #70757a; text-decoration: none=
-;"></span></div><div><span itemprop=3D"attendee" itemscope itemtype=3D"http=
-://schema.org/Person"><span itemprop=3D"name" class=3D"notranslate"><a clas=
-s=3D"primary-text underline-on-hover" style=3D"display: inline-block;;color=
-: #3c4043; text-decoration: none;" href=3D"mailto:mesa-dev@lists.freedeskto=
-p.org">ML mesa-dev</a></span><meta itemprop=3D"email" content=3D"mesa-dev@l=
-ists.freedesktop.org"/></span><span class=3D"secondary-text" style=3D"color=
-: #70757a; text-decoration: none;"></span></div><div><span itemprop=3D"atte=
-ndee" itemscope itemtype=3D"http://schema.org/Person"><span itemprop=3D"nam=
-e" class=3D"notranslate"><a class=3D"primary-text underline-on-hover" style=
-=3D"display: inline-block;;color: #3c4043; text-decoration: none;" href=3D"=
-mailto:members@x.org">members@x.org</a></span><meta itemprop=3D"email" cont=
-ent=3D"members@x.org"/></span><span class=3D"secondary-text" style=3D"color=
-: #70757a; text-decoration: none;"></span></div><div><span itemprop=3D"atte=
-ndee" itemscope itemtype=3D"http://schema.org/Person"><span itemprop=3D"nam=
-e" class=3D"notranslate"><a class=3D"primary-text underline-on-hover" style=
-=3D"display: inline-block;;color: #3c4043; text-decoration: none;" href=3D"=
-mailto:freedreno@lists.freedesktop.org">freedreno@lists.freedesktop.org</a>=
-</span><meta itemprop=3D"email" content=3D"freedreno@lists.freedesktop.org"=
-/></span><span class=3D"secondary-text" style=3D"color: #70757a; text-decor=
-ation: none;"></span></div><div><span itemprop=3D"attendee" itemscope itemt=
-ype=3D"http://schema.org/Person"><span itemprop=3D"name" class=3D"notransla=
-te"><a class=3D"primary-text underline-on-hover" style=3D"display: inline-b=
-lock;;color: #3c4043; text-decoration: none;" href=3D"mailto:droidbittin@gm=
-ail.com">droidbittin@gmail.com</a></span><meta itemprop=3D"email" content=
-=3D"droidbittin@gmail.com"/></span><span class=3D"secondary-text" style=3D"=
-color: #70757a; text-decoration: none;"></span></div><div><span itemprop=3D=
-"attendee" itemscope itemtype=3D"http://schema.org/Person"><span itemprop=
-=3D"name" class=3D"notranslate"><a class=3D"primary-text underline-on-hover=
-" style=3D"display: inline-block;;color: #3c4043; text-decoration: none;" h=
-ref=3D"mailto:wayland-devel@lists.freedesktop.org">wayland-devel@lists.free=
-desktop.org</a></span><meta itemprop=3D"email" content=3D"wayland-devel@lis=
-ts.freedesktop.org"/></span><span class=3D"secondary-text" style=3D"color: =
-#70757a; text-decoration: none;"></span></div><div><span itemprop=3D"attend=
-ee" itemscope itemtype=3D"http://schema.org/Person"><span itemprop=3D"name"=
- class=3D"notranslate"><a class=3D"primary-text underline-on-hover" style=
-=3D"display: inline-block;;color: #3c4043; text-decoration: none;" href=3D"=
-mailto:dri-devel@lists.freedesktop.org">dri-devel</a></span><meta itemprop=
-=3D"email" content=3D"dri-devel@lists.freedesktop.org"/></span><span class=
-=3D"secondary-text" style=3D"color: #70757a; text-decoration: none;"></span=
-></div><div><span itemprop=3D"attendee" itemscope itemtype=3D"http://schema=
-.org/Person"><span itemprop=3D"name" class=3D"notranslate"><a class=3D"prim=
-ary-text underline-on-hover" style=3D"display: inline-block;;color: #3c4043=
-; text-decoration: none;" href=3D"mailto:siglesias@igalia.com">siglesias@ig=
-alia.com</a></span><meta itemprop=3D"email" content=3D"siglesias@igalia.com=
-"/></span><span class=3D"secondary-text" style=3D"color: #70757a; text-deco=
-ration: none;"></span></div><div><span itemprop=3D"attendee" itemscope item=
-type=3D"http://schema.org/Person"><span itemprop=3D"name" class=3D"notransl=
-ate"><a class=3D"primary-text underline-on-hover" style=3D"display: inline-=
-block;;color: #3c4043; text-decoration: none;" href=3D"mailto:events@lists.=
-x.org">events@lists.x.org</a></span><meta itemprop=3D"email" content=3D"eve=
-nts@lists.x.org"/></span><span class=3D"secondary-text" style=3D"color: #70=
-757a; text-decoration: none;"></span></div><div><span itemprop=3D"attendee"=
- itemscope itemtype=3D"http://schema.org/Person"><span itemprop=3D"name" cl=
-ass=3D"notranslate"><a class=3D"primary-text underline-on-hover" style=3D"d=
-isplay: inline-block;;color: #3c4043; text-decoration: none;" href=3D"mailt=
-o:bibby.hsieh@mediatek.com">Bibby Hsieh (=E8=AC=9D=E6=BF=9F=E9=81=A0)</a></=
-span><meta itemprop=3D"email" content=3D"bibby.hsieh@mediatek.com"/></span>=
-<span class=3D"secondary-text" style=3D"color: #70757a; text-decoration: no=
-ne;"></span></div><div><span itemprop=3D"attendee" itemscope itemtype=3D"ht=
-tp://schema.org/Person"><span itemprop=3D"name" class=3D"notranslate"><a cl=
-ass=3D"primary-text underline-on-hover" style=3D"display: inline-block;;col=
-or: #3c4043; text-decoration: none;" href=3D"mailto:rohan.garg@intel.com">G=
-arg, Rohan</a></span><meta itemprop=3D"email" content=3D"rohan.garg@intel.c=
-om"/></span><span class=3D"secondary-text" style=3D"color: #70757a; text-de=
-coration: none;"></span></div></div></div></td></tr></table></td></tr></tbo=
-dy></table></div><!--[if mso | IE]></td><![endif]--><!--[if mso | IE]></tr>=
-</table><![endif]--></td></tr></tbody></table><table border=3D"0" cellpaddi=
-ng=3D"0" cellspacing=3D"0" role=3D"presentation" align=3D"center" style=3D"=
-width:100%;" class=3D""><tbody><tr><td style=3D"font-size: 0; padding: 0; t=
-ext-align: left; word-break: break-word;;padding:4px 12px;" class=3D"" alig=
-n=3D"left"><div class=3D"secondary-text" style=3D"color: #70757a; text-deco=
-ration: none;font-family: Roboto, sans-serif;font-size: 12px; line-height: =
-16px; mso-line-height-rule: exactly; text-align: left;"><p>Invitation from =
-<a href=3D"https://calendar.google.com/calendar/" class=3D"accent-text unde=
-rline-on-hover" style=3D"font-family: Roboto, sans-serif;font-size: 12px; l=
-ine-height: 16px; mso-line-height-rule: exactly;;color: #1a73e8; text-decor=
-ation: none;" target=3D"_blank">Google Calendar</a></p><p>You are receiving=
- this email because you are an attendee on the event. To stop receiving fut=
-ure updates for this event, decline this event.</p><p>Forwarding this invit=
-ation could allow any recipient to send a response to the organizer, be add=
-ed to the guest list, invite others regardless of their own invitation stat=
-us, or modify your RSVP. <a class=3D"accent-text underline-on-hover" style=
-=3D"font-family: Roboto, sans-serif;font-size: 12px; line-height: 16px; mso=
--line-height-rule: exactly;;color: #1a73e8; text-decoration: none;" href=3D=
-"https://support.google.com/calendar/answer/37135#forwarding">Learn more</a=
-></p></div></td></tr></tbody></table></td></tr></tbody></table></span></spa=
-n></body></html>
---000000000000847f5c05f98b3e60
-Content-Type: text/calendar; charset="UTF-8"; method=CANCEL
-Content-Transfer-Encoding: 7bit
-
-BEGIN:VCALENDAR
-PRODID:-//Google Inc//Google Calendar 70.9054//EN
-VERSION:2.0
-CALSCALE:GREGORIAN
-METHOD:CANCEL
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20231017
-DTEND;VALUE=DATE:20231020
-DTSTAMP:20230417T170848Z
-ORGANIZER;CN=mario.kleiner.de@gmail.com:mailto:mario.kleiner.de@gmail.com
-UID:65qeuuc9e0gll25tq5r7e617p8@google.com
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=et
- naviv@lists.freedesktop.org;X-NUM-GUESTS=0:mailto:etnaviv@lists.freedesktop
- .org
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=xo
- rg-devel@lists.freedesktop.org;X-NUM-GUESTS=0:mailto:xorg-devel@lists.freed
- esktop.org
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=am
- d-gfx list;X-NUM-GUESTS=0:mailto:amd-gfx@lists.freedesktop.org
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=in
- tel-gfx;X-NUM-GUESTS=0:mailto:intel-gfx@lists.freedesktop.org
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=No
- uveau Dev;X-NUM-GUESTS=0:mailto:nouveau@lists.freedesktop.org
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=mario.
- kleiner.de@gmail.com;X-NUM-GUESTS=0:mailto:mario.kleiner.de@gmail.com
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=bo
- ard@foundation.x.org;X-NUM-GUESTS=0:mailto:board@foundation.x.org
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=li
- bre-soc-dev@lists.libre-soc.org;X-NUM-GUESTS=0:mailto:libre-soc-dev@lists.l
- ibre-soc.org
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ML
-  mesa-dev;X-NUM-GUESTS=0:mailto:mesa-dev@lists.freedesktop.org
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=me
- mbers@x.org;X-NUM-GUESTS=0:mailto:members@x.org
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=fr
- eedreno@lists.freedesktop.org;X-NUM-GUESTS=0:mailto:freedreno@lists.freedes
- ktop.org
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=dr
- oidbittin@gmail.com;X-NUM-GUESTS=0:mailto:droidbittin@gmail.com
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=wa
- yland-devel@lists.freedesktop.org;X-NUM-GUESTS=0:mailto:wayland-devel@lists
- .freedesktop.org
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=dr
- i-devel;X-NUM-GUESTS=0:mailto:dri-devel@lists.freedesktop.org
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=si
- glesias@igalia.com;X-NUM-GUESTS=0:mailto:siglesias@igalia.com
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ev
- ents@lists.x.org;X-NUM-GUESTS=0:mailto:events@lists.x.org
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;X-NUM
- -GUESTS=0:mailto:bibby.hsieh@mediatek.com
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN="G
- arg, Rohan";X-NUM-GUESTS=0:mailto:rohan.garg@intel.com
-X-GOOGLE-CONFERENCE:https://meet.google.com/azn-uwfp-pgw
-CREATED:20230417T170310Z
-DESCRIPTION:Hello!\n \nRegistration & Call for Proposals are now open for X
- DC 2023\, which will\ntake place on October 17-19\, 2023.\n\nhttps://xdc202
- 3.x.org\n \nAs usual\, the conference is free of charge and open to the gen
- eral\npublic. If you plan on attending\, please make sure to register as ea
- rly\nas possible!\n \nIn order to register as attendee\, you will therefore
-  need to register\nvia the XDC website.\n \nhttps://indico.freedesktop.org/
- event/4/registrations/\n \nIn addition to registration\, the CfP is now ope
- n for talks\, workshops\nand demos at XDC 2023. While ...\n\n-::~:~::~:~:~:
- ~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-\n
- Join with Google Meet: https://meet.google.com/azn-uwfp-pgw\n\nLearn more a
- bout Meet at: https://support.google.com/a/users/answer/9282720\n\nPlease d
- o not edit this section.\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
- :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
-LAST-MODIFIED:20230417T170847Z
-LOCATION:
-SEQUENCE:1
-STATUS:CANCELLED
-SUMMARY:XDC 2023 A Corunha Spain
-TRANSP:TRANSPARENT
-END:VEVENT
-END:VCALENDAR
-
---000000000000847f5c05f98b3e60--
-
---000000000000847f5e05f98b3e62
-Content-Type: application/ics; name="invite.ics"
-Content-Disposition: attachment; filename="invite.ics"
-Content-Transfer-Encoding: base64
-
-QkVHSU46VkNBTEVOREFSDQpQUk9ESUQ6LS8vR29vZ2xlIEluYy8vR29vZ2xlIENhbGVuZGFyIDcw
-LjkwNTQvL0VODQpWRVJTSU9OOjIuMA0KQ0FMU0NBTEU6R1JFR09SSUFODQpNRVRIT0Q6Q0FOQ0VM
-DQpCRUdJTjpWRVZFTlQNCkRUU1RBUlQ7VkFMVUU9REFURToyMDIzMTAxNw0KRFRFTkQ7VkFMVUU9
-REFURToyMDIzMTAyMA0KRFRTVEFNUDoyMDIzMDQxN1QxNzA4NDhaDQpPUkdBTklaRVI7Q049bWFy
-aW8ua2xlaW5lci5kZUBnbWFpbC5jb206bWFpbHRvOm1hcmlvLmtsZWluZXIuZGVAZ21haWwuY29t
-DQpVSUQ6NjVxZXV1YzllMGdsbDI1dHE1cjdlNjE3cDhAZ29vZ2xlLmNvbQ0KQVRURU5ERUU7Q1VU
-WVBFPUlORElWSURVQUw7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9O
-O0NOPWV0DQogbmF2aXZAbGlzdHMuZnJlZWRlc2t0b3Aub3JnO1gtTlVNLUdVRVNUUz0wOm1haWx0
-bzpldG5hdml2QGxpc3RzLmZyZWVkZXNrdG9wDQogLm9yZw0KQVRURU5ERUU7Q1VUWVBFPUlORElW
-SURVQUw7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO0NOPXhvDQog
-cmctZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnO1gtTlVNLUdVRVNUUz0wOm1haWx0bzp4b3Jn
-LWRldmVsQGxpc3RzLmZyZWVkDQogZXNrdG9wLm9yZw0KQVRURU5ERUU7Q1VUWVBFPUlORElWSURV
-QUw7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO0NOPWFtDQogZC1n
-ZnggbGlzdDtYLU5VTS1HVUVTVFM9MDptYWlsdG86YW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcNCkFUVEVOREVFO0NVVFlQRT1JTkRJVklEVUFMO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRT
-VEFUPU5FRURTLUFDVElPTjtDTj1pbg0KIHRlbC1nZng7WC1OVU0tR1VFU1RTPTA6bWFpbHRvOmlu
-dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCkFUVEVOREVFO0NVVFlQRT1JTkRJVklEVUFM
-O1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtDTj1Obw0KIHV2ZWF1
-IERldjtYLU5VTS1HVUVTVFM9MDptYWlsdG86bm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcN
-CkFUVEVOREVFO0NVVFlQRT1JTkRJVklEVUFMO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFU
-PUFDQ0VQVEVEO0NOPW1hcmlvLg0KIGtsZWluZXIuZGVAZ21haWwuY29tO1gtTlVNLUdVRVNUUz0w
-Om1haWx0bzptYXJpby5rbGVpbmVyLmRlQGdtYWlsLmNvbQ0KQVRURU5ERUU7Q1VUWVBFPUlORElW
-SURVQUw7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO0NOPWJvDQog
-YXJkQGZvdW5kYXRpb24ueC5vcmc7WC1OVU0tR1VFU1RTPTA6bWFpbHRvOmJvYXJkQGZvdW5kYXRp
-b24ueC5vcmcNCkFUVEVOREVFO0NVVFlQRT1JTkRJVklEVUFMO1JPTEU9UkVRLVBBUlRJQ0lQQU5U
-O1BBUlRTVEFUPU5FRURTLUFDVElPTjtDTj1saQ0KIGJyZS1zb2MtZGV2QGxpc3RzLmxpYnJlLXNv
-Yy5vcmc7WC1OVU0tR1VFU1RTPTA6bWFpbHRvOmxpYnJlLXNvYy1kZXZAbGlzdHMubA0KIGlicmUt
-c29jLm9yZw0KQVRURU5ERUU7Q1VUWVBFPUlORElWSURVQUw7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7
-UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO0NOPU1MDQogIG1lc2EtZGV2O1gtTlVNLUdVRVNUUz0wOm1h
-aWx0bzptZXNhLWRldkBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCkFUVEVOREVFO0NVVFlQRT1JTkRJ
-VklEVUFMO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtDTj1tZQ0K
-IG1iZXJzQHgub3JnO1gtTlVNLUdVRVNUUz0wOm1haWx0bzptZW1iZXJzQHgub3JnDQpBVFRFTkRF
-RTtDVVRZUEU9SU5ESVZJRFVBTDtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1B
-Q1RJT047Q049ZnINCiBlZWRyZW5vQGxpc3RzLmZyZWVkZXNrdG9wLm9yZztYLU5VTS1HVUVTVFM9
-MDptYWlsdG86ZnJlZWRyZW5vQGxpc3RzLmZyZWVkZXMNCiBrdG9wLm9yZw0KQVRURU5ERUU7Q1VU
-WVBFPUlORElWSURVQUw7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9O
-O0NOPWRyDQogb2lkYml0dGluQGdtYWlsLmNvbTtYLU5VTS1HVUVTVFM9MDptYWlsdG86ZHJvaWRi
-aXR0aW5AZ21haWwuY29tDQpBVFRFTkRFRTtDVVRZUEU9SU5ESVZJRFVBTDtST0xFPVJFUS1QQVJU
-SUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047Q049d2ENCiB5bGFuZC1kZXZlbEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmc7WC1OVU0tR1VFU1RTPTA6bWFpbHRvOndheWxhbmQtZGV2ZWxAbGlzdHMN
-CiAuZnJlZWRlc2t0b3Aub3JnDQpBVFRFTkRFRTtDVVRZUEU9SU5ESVZJRFVBTDtST0xFPVJFUS1Q
-QVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047Q049ZHINCiBpLWRldmVsO1gtTlVNLUdV
-RVNUUz0wOm1haWx0bzpkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQpBVFRFTkRFRTtD
-VVRZUEU9SU5ESVZJRFVBTDtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJ
-T047Q049c2kNCiBnbGVzaWFzQGlnYWxpYS5jb207WC1OVU0tR1VFU1RTPTA6bWFpbHRvOnNpZ2xl
-c2lhc0BpZ2FsaWEuY29tDQpBVFRFTkRFRTtDVVRZUEU9SU5ESVZJRFVBTDtST0xFPVJFUS1QQVJU
-SUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047Q049ZXYNCiBlbnRzQGxpc3RzLngub3JnO1gt
-TlVNLUdVRVNUUz0wOm1haWx0bzpldmVudHNAbGlzdHMueC5vcmcNCkFUVEVOREVFO0NVVFlQRT1J
-TkRJVklEVUFMO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtYLU5V
-TQ0KIC1HVUVTVFM9MDptYWlsdG86YmliYnkuaHNpZWhAbWVkaWF0ZWsuY29tDQpBVFRFTkRFRTtD
-VVRZUEU9SU5ESVZJRFVBTDtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJ
-T047Q049IkcNCiBhcmcsIFJvaGFuIjtYLU5VTS1HVUVTVFM9MDptYWlsdG86cm9oYW4uZ2FyZ0Bp
-bnRlbC5jb20NClgtR09PR0xFLUNPTkZFUkVOQ0U6aHR0cHM6Ly9tZWV0Lmdvb2dsZS5jb20vYXpu
-LXV3ZnAtcGd3DQpDUkVBVEVEOjIwMjMwNDE3VDE3MDMxMFoNCkRFU0NSSVBUSU9OOkhlbGxvIVxu
-IFxuUmVnaXN0cmF0aW9uICYgQ2FsbCBmb3IgUHJvcG9zYWxzIGFyZSBub3cgb3BlbiBmb3IgWA0K
-IERDIDIwMjNcLCB3aGljaCB3aWxsXG50YWtlIHBsYWNlIG9uIE9jdG9iZXIgMTctMTlcLCAyMDIz
-LlxuXG5odHRwczovL3hkYzIwMg0KIDMueC5vcmdcbiBcbkFzIHVzdWFsXCwgdGhlIGNvbmZlcmVu
-Y2UgaXMgZnJlZSBvZiBjaGFyZ2UgYW5kIG9wZW4gdG8gdGhlIGdlbg0KIGVyYWxcbnB1YmxpYy4g
-SWYgeW91IHBsYW4gb24gYXR0ZW5kaW5nXCwgcGxlYXNlIG1ha2Ugc3VyZSB0byByZWdpc3RlciBh
-cyBlYQ0KIHJseVxuYXMgcG9zc2libGUhXG4gXG5JbiBvcmRlciB0byByZWdpc3RlciBhcyBhdHRl
-bmRlZVwsIHlvdSB3aWxsIHRoZXJlZm9yZQ0KICBuZWVkIHRvIHJlZ2lzdGVyXG52aWEgdGhlIFhE
-QyB3ZWJzaXRlLlxuIFxuaHR0cHM6Ly9pbmRpY28uZnJlZWRlc2t0b3Aub3JnLw0KIGV2ZW50LzQv
-cmVnaXN0cmF0aW9ucy9cbiBcbkluIGFkZGl0aW9uIHRvIHJlZ2lzdHJhdGlvblwsIHRoZSBDZlAg
-aXMgbm93IG9wZQ0KIG4gZm9yIHRhbGtzXCwgd29ya3Nob3BzXG5hbmQgZGVtb3MgYXQgWERDIDIw
-MjMuIFdoaWxlIC4uLlxuXG4tOjp+On46On46fjp+Og0KIH46fjp+On46fjp+On46fjp+On46fjp+
-On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+Ojp+On46Oi1cbg0KIEpv
-aW4gd2l0aCBHb29nbGUgTWVldDogaHR0cHM6Ly9tZWV0Lmdvb2dsZS5jb20vYXpuLXV3ZnAtcGd3
-XG5cbkxlYXJuIG1vcmUgYQ0KIGJvdXQgTWVldCBhdDogaHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5j
-b20vYS91c2Vycy9hbnN3ZXIvOTI4MjcyMFxuXG5QbGVhc2UgZA0KIG8gbm90IGVkaXQgdGhpcyBz
-ZWN0aW9uLlxuLTo6fjp+Ojp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46
-fg0KIDp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjo6fjp+OjotDQpMQVNULU1PRElGSUVE
-OjIwMjMwNDE3VDE3MDg0N1oNCkxPQ0FUSU9OOg0KU0VRVUVOQ0U6MQ0KU1RBVFVTOkNBTkNFTExF
-RA0KU1VNTUFSWTpYREMgMjAyMyBBIENvcnVuaGEgU3BhaW4NClRSQU5TUDpUUkFOU1BBUkVOVA0K
-RU5EOlZFVkVOVA0KRU5EOlZDQUxFTkRBUg0K
---000000000000847f5e05f98b3e62--
+Reviewed-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
