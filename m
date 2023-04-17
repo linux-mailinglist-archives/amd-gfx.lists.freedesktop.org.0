@@ -2,52 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 474C96E7AA3
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 Apr 2023 15:25:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50BDD6E50CD
+	for <lists+amd-gfx@lfdr.de>; Mon, 17 Apr 2023 21:26:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9215510E9A2;
-	Wed, 19 Apr 2023 13:25:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D42CF10E149;
+	Mon, 17 Apr 2023 19:26:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 403 seconds by postgrey-1.36 at gabe;
- Tue, 18 Apr 2023 21:38:19 UTC
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org
- [IPv6:2001:67c:2050:0:465::101])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A10B10E2FC;
- Tue, 18 Apr 2023 21:38:18 +0000 (UTC)
-Received: from smtp102.mailbox.org (unknown [10.196.197.102])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4Q1HDH079Cz9t4K;
- Tue, 18 Apr 2023 23:31:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1681853487;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=KC9FUxhkYIrJcl9CTNIj/+D5n5jqJvE6Q6ukjUkKjgU=;
- b=iOhsPXPQBr3wHW9fEQnn1H5Xxrcndhu5PSan/o9ZRycMM4Pi+GvYMnmTNWAQLJDaCePnPl
- xk+S7Sd0u1bL5nZdJy0Oip9iNqo4aARvkS6y4jN1qn+q2fCPFi61VwvK3zG91FijKdA22h
- p7oon1un7Lgvm+DmIPno1GvR6hW2bcOpQx1KxYamqSvADPrcsxNDkSASG4ApgTSZJiZYfQ
- V08WjFMwTKAUBx/em1qvSkGDJ+FyjzUa1Fq6xrPlO+STrAYJmpTOXlTGuRIokJd4ix07/s
- fSZoQhrwFwrqQ5zQN5Z/YdcG9HuRXojtoCu0x6dzNZJNWibv1Gdx66nU8nl5fw==
-Date: Mon, 17 Apr 2023 20:48:09 +0200
-From: Harald Koenig <harald@mailbox.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: 2023 X.Org Foundation Membership deadline for voting in the
- election
-Message-ID: <ZD2UabVlQOBVaVRO@hl.fritz.box>
-References: <ef4e39301a769ef83668074c341274e30db57f95.camel@igalia.com>
- <2b861d289edaab1c53c031f72de192fcddf85b13.camel@igalia.com>
- <20230417124502.GB19964@pendragon.ideasonboard.com>
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com
+ [IPv6:2607:f8b0:4864:20::22b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA96210E149;
+ Mon, 17 Apr 2023 19:26:21 +0000 (UTC)
+Received: by mail-oi1-x22b.google.com with SMTP id bb20so12560294oib.12;
+ Mon, 17 Apr 2023 12:26:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1681759581; x=1684351581;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=JgR9yWNpXpcXRujoJTOWZN4Ac0PmAsb3IYAK2OBiNYA=;
+ b=A8POwEXBtxt+z9gTMk5vE9Iw0O2L50tlrIpIBNPihPRGY7iBhlfQHgpQV6cMdIguFV
+ Zc7g/Mr6qy2w/TL+uwD/XDpQIRYhH/ZwzlmUvA+j3NNU8FdP4OWsfnhrwwrL2pykM1bV
+ qEkfNp/kQFga0y8gsJYNwNPF5gOJRRBDyCQLoK9+GJLxNd8YZOVCUMBLxXMyYZjP63XF
+ /7n09KvbS0laZg1caprKHGE6Mm2+/UgcR4wfeTHxPXGqi0BAHGl64bQKA7VFgpIAYYa7
+ sBR5CsJrsBSSTKsK7OtL04IfWLFtkNo53bRHTAotAV7mhQtYwR9SOj+KjFuJum5Pha8g
+ jW3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1681759581; x=1684351581;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=JgR9yWNpXpcXRujoJTOWZN4Ac0PmAsb3IYAK2OBiNYA=;
+ b=CzJLf1ZztKIFTHIqNhU3x9phIzOyKYB54+0Qvs+PRaujP90wr1lPWUmVuqxORuQb1j
+ r+da9tHZksT7+T5HtNKrw+mSecqViqg1yTujy8GtEggaRhUgEdoAgDHicUSWpivOw2aS
+ ePoLO1t3OQjJ/x4aY9k7uhyKvzKo98owVESF3Aztfn9XtqP6wM9+il71LXx+bVod6W8V
+ GkKprC/lDRuLQFagvWF3KjpkEq/qCIgsbGfi2eEyv9ghozsFuvE6r2/ci55urqQ2MV6B
+ 4+1SViJnCnfp0SNXyi8bpPVj97yxVyM3CD4X272qqJwKoO3Suh8UFykHG1rfi3LTuCSS
+ XZHA==
+X-Gm-Message-State: AAQBX9cMZxto9nu0j70qC8GhGPrz5oODE9bFCMV3QeHGx+dibheJ4LoK
+ S1+qu70MjPLTI5uwPJWsx9aMrfzwRNa2qITTk8M=
+X-Google-Smtp-Source: AKy350Z22GK6kLG6tHEeqc6xa37gCtz2jfI4yCVpFEw8uzuKlFwUL0hIMP6R+pDki+ZmMO2BdQwHr9XWxrdFNQRgufI=
+X-Received: by 2002:aca:f0c2:0:b0:38d:c10a:e7b6 with SMTP id
+ o185-20020acaf0c2000000b0038dc10ae7b6mr13624oih.3.1681759579651; Mon, 17 Apr
+ 2023 12:26:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230417124502.GB19964@pendragon.ideasonboard.com>
-X-MBO-RS-META: 7gitco355spy61a3k3zmf6tukn6cq3nt
-X-MBO-RS-ID: c488dba0842a997c9ba
-X-Mailman-Approved-At: Wed, 19 Apr 2023 13:25:18 +0000
+References: <20230417174237.52638-1-colin.i.king@gmail.com>
+In-Reply-To: <20230417174237.52638-1-colin.i.king@gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 17 Apr 2023 15:26:08 -0400
+Message-ID: <CADnq5_MCRciy+zvVmJ0_HeAsYV-g9cMjNoyezhtZP77erFrGsw@mail.gmail.com>
+Subject: Re: [PATCH][next] drm/amd/pm: Fix spelling mistake "aquire" ->
+ "acquire"
+To: Colin Ian King <colin.i.king@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,59 +67,48 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: xorg-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, wayland-devel@lists.freedesktop.org,
- board <board@foundation.x.org>, members@x.org, amd-gfx@lists.freedesktop.org,
- mesa-dev@lists.freedesktop.org, events@lists.x.org,
- Ricardo Garcia <rgarcia@igalia.com>, freedreno@lists.freedesktop.org,
- libre-soc-dev@lists.libre-soc.org
+Cc: Xinhui.Pan@amd.com, kernel-janitors@vger.kernel.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>, Evan Quan <evan.quan@amd.com>,
+ David Airlie <airlied@gmail.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Apr 17, Laurent Pinchart wrote:
+Applied.  Thanks!
 
-> I don't know if I'm the only one affected by this issue, but I've just
-> received today two months of e-mails from x.org, including all the
-> reminders aboud membership renewal and election nomination period. This
-> isn't the first time this happens, and the last time I was told there
-> was no automated process to quick the mail queues when errors happen,
-> making mails pile up forever on x.org's side until someone handles it
-> manually. This is something you really want to automate, or at least
-> monitored.
+Alex
 
-same here for me: looking into the mail header,
-both mails were stuck on server "gabe.freedesktop.org" 
-
-	Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	        by gabe.freedesktop.org (Postfix) with ESMTP id BD01310E459;
-	        Mon, 17 Apr 2023 11:42:45 +0000 (UTC)
-	X-Original-To: events@lists.x.org
-	Delivered-To: events@lists.x.org
-	Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
-	 by gabe.freedesktop.org (Postfix) with ESMTPS id 6C54510E162;
-	 Wed, 15 Feb 2023 15:58:10 +0000 (UTC)
-
-and	
-
-	Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	        by gabe.freedesktop.org (Postfix) with ESMTP id 6735010E46D;
-	        Mon, 17 Apr 2023 11:42:45 +0000 (UTC)
-	X-Original-To: events@lists.x.org
-	Delivered-To: events@lists.x.org
-	Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
-	 by gabe.freedesktop.org (Postfix) with ESMTPS id 98DB48953E;
-	 Mon, 13 Mar 2023 15:23:02 +0000 (UTC)
-
-
-
-Harald
--- 
-"I hope to die                                      ___       _____
-before I *have* to use Microsoft Word.",           0--,|    /OOOOOOO\
-Donald E. Knuth, 02-Oct-2001 in Tuebingen.        <_/  /  /OOOOOOOOOOO\
-                                                    \  \/OOOOOOOOOOOOOOO\
-                                                      \ OOOOOOOOOOOOOOOOO|//
-                                                       \/\/\/\/\/\/\/\/\/
-Harald Koenig                                           //  /     \\  \
-harald.koenig@mailbox.org                              ^^^^^       ^^^^^
+On Mon, Apr 17, 2023 at 1:42=E2=80=AFPM Colin Ian King <colin.i.king@gmail.=
+com> wrote:
+>
+> There is a spelling mistake in the smu_i2c_bus_access prototype. Fix it.
+>
+> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+> ---
+>  drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h b/drivers/gpu/d=
+rm/amd/pm/powerplay/inc/hwmgr.h
+> index 5ce433e2c16a..f1580a26a850 100644
+> --- a/drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h
+> +++ b/drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h
+> @@ -359,7 +359,7 @@ struct pp_hwmgr_func {
+>         int (*set_ppfeature_status)(struct pp_hwmgr *hwmgr, uint64_t ppfe=
+ature_masks);
+>         int (*set_mp1_state)(struct pp_hwmgr *hwmgr, enum pp_mp1_state mp=
+1_state);
+>         int (*asic_reset)(struct pp_hwmgr *hwmgr, enum SMU_ASIC_RESET_MOD=
+E mode);
+> -       int (*smu_i2c_bus_access)(struct pp_hwmgr *hwmgr, bool aquire);
+> +       int (*smu_i2c_bus_access)(struct pp_hwmgr *hwmgr, bool acquire);
+>         int (*set_df_cstate)(struct pp_hwmgr *hwmgr, enum pp_df_cstate st=
+ate);
+>         int (*set_xgmi_pstate)(struct pp_hwmgr *hwmgr, uint32_t pstate);
+>         int (*disable_power_features_for_compute_performance)(struct pp_h=
+wmgr *hwmgr,
+> --
+> 2.30.2
+>
