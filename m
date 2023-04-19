@@ -2,91 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C736A6E796E
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 Apr 2023 14:13:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 001E76E7AA6
+	for <lists+amd-gfx@lfdr.de>; Wed, 19 Apr 2023 15:25:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25AD410E182;
-	Wed, 19 Apr 2023 12:13:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3ED9C10E9A7;
+	Wed, 19 Apr 2023 13:25:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam02on2058.outbound.protection.outlook.com [40.107.96.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E67410E182
- for <amd-gfx@lists.freedesktop.org>; Wed, 19 Apr 2023 12:13:16 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Z8rgPQcSITjcRy/oWh3ZSQ1thcTIk4DlBuKeUYaKui5MT8YRAPk+0HKzHvUfV9YIQAiZxIbgaRMRDfAM58fYAJTwvhqZCF6VlcuI/h9zc8YoXL68L89LsGeTklouS5jZBoS+w6hD5m53jrNIMN/VvMsDj5PplWCHFKCYyOtWIP4PJyokfstRxs33nc9Prv5wBlUMOw9ui+zkUUz/04kcGbGoP8Ao2R+nt5d4vxXlV5pJ2ZFceuu6HZgpxZkcZ9MuqVF68FBJrZNWiMynK3cgUTJHEJ3K2uhJMs2xCEe0qHSpeocMIn6AKwscFLm26vUgVfk8a5vPcH0+UBq78k9z4w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7cZ9zI7Mljsn8JuCQYo3aKl8cXWINhsqWGpCvZcXu90=;
- b=hy1sgXdLoJ3B3dVYCiHAI0dPT2U5g4PY0uIUexxpWhqhsMHobRvWFA0o0DkwNp0LLaYjHYC9hHJY25U30ahOr6/0Q9nTyZD21vPGTiZHSxYngXhMJTyrBFl9iaxxsHE0MXsus6FPkXdEkzEAnI7lA8f78+BUg1mc9WQJH5bpGiVPo0fTNTE2vmxh2fNey3U2JRiiJEKjmuab0F1Gqw47sPVy8I2F+o2r4pM7j4vwP57+U6+o1J5xmwcujEFg9sz6rMvcVdf6iQsbQpIvVSjRriFu8jP0OY4sUROMRabb7wjr3WQ3zCrNQUUckI8wT322U+N0aKBdrnwjj9o70JOdEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7cZ9zI7Mljsn8JuCQYo3aKl8cXWINhsqWGpCvZcXu90=;
- b=OgsL3zxDv7CmPeAaZMj6ZqsgrEtdr3sf67J+aBN9Gz6n4jIdkqRR8iEQFf5fWiFQjeNrxH5O1KozFXvvugJmSGFon0xMpkdR8Mhp95ySUrRlHMsSMM/oPEsWFJS1a9p8D8h91dQFymrOT2hwftLs6x/hZWnZaXHedmqWklQMebI=
-Received: from MW4PR04CA0172.namprd04.prod.outlook.com (2603:10b6:303:85::27)
- by DS0PR12MB8562.namprd12.prod.outlook.com (2603:10b6:8:164::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.45; Wed, 19 Apr
- 2023 12:13:14 +0000
-Received: from CO1NAM11FT072.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:85:cafe::e) by MW4PR04CA0172.outlook.office365.com
- (2603:10b6:303:85::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6319.22 via Frontend
- Transport; Wed, 19 Apr 2023 12:13:13 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT072.mail.protection.outlook.com (10.13.174.106) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6319.22 via Frontend Transport; Wed, 19 Apr 2023 12:13:13 +0000
-Received: from TRX40-1.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 19 Apr
- 2023 07:13:11 -0500
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-To: Aurabindo Pillai <aurabindo.pillai@amd.com>, Jerry Zuo
- <jerry.zuo@amd.com>, Yongqiang Sun <yongqiang.sun@amd.com>
-Subject: [PATCH] drm/amd/display: Remove unused variables in dcn21_hwseq.c
-Date: Wed, 19 Apr 2023 17:42:52 +0530
-Message-ID: <20230419121252.187132-1-srinivasan.shanmugam@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com
+ [IPv6:2607:f8b0:4864:20::1032])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE2D010E1C7;
+ Wed, 19 Apr 2023 12:22:23 +0000 (UTC)
+Received: by mail-pj1-x1032.google.com with SMTP id
+ k65-20020a17090a3ec700b00247131783f7so731837pjc.0; 
+ Wed, 19 Apr 2023 05:22:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1681906943; x=1684498943;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=Cvi/8BFVMUmJHt4WjuHDaXoszJBRcvvbnSWyynNb4dw=;
+ b=M3A9a6WtOWXdYHHcfybW8ymSEnpEjD5R0HfAB1fZbrJ4eb18z3BbaIQkiZch+E3XFN
+ gtImBttegWoB8LCoLFNJDhiiSl267YU1V1Nsc33I4Y18p03z0gGfjf/VdKUhfjZcBXD5
+ aq+woQSFxs2Vu2JdQq610eO1TMJ0DviQoiqjfPoAGc/JAkBZ7fiCJzgpbt/FhH5BE7Zm
+ 0vjqLsxUHKPd4lYUtp5GXOSKExiXmujz3dv9bAp68j4aoXlww1GZg/PJ3faT06bwcuTO
+ 4QQaNsK1vvXfQuNxUKLhbD5rkeXzfHeIk527XpKrudr38a8q5hrfpyRQWEWtLb0bfx1u
+ 1w9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1681906943; x=1684498943;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Cvi/8BFVMUmJHt4WjuHDaXoszJBRcvvbnSWyynNb4dw=;
+ b=DP9GlRM4glcHNmS+7MFxq/pz8G4CEQC7sK6+9GHFbtMEP+Nk/QHTn6EawELr/sZbDd
+ h9ELl3xtZajIwzQlONTH+Dw+rqfmuEe4pPdrrPkZzv5khLAiyn1pPRntziWQrDdnxXwC
+ WUoLKZt8N+S0FiEQKVVZ2nAXJzbaAOXpsvTnx3x1wQAOO9RrIVhYEbeTTbMffYJ8TwAw
+ sHOkRE/8ka/MrNjyawcaLPcmWnY7gaDAhWkWT8HrpkYpvPwAd1h0+UJvmqhTHCiOk8Ks
+ vRgOnCamTih7xj/nX//sfw31PNck6hE4W432VhWu0MdrXIwblB/eaeICLymg9KFEWjDF
+ F/XQ==
+X-Gm-Message-State: AAQBX9fKEtNMhlr1oC29BqiXpc3HU9xZfTF7bHrYj6VkqGyu1NVS+yKW
+ Lw7wsg2T9TSjb6Bfk7BP+nU=
+X-Google-Smtp-Source: AKy350YunIiQ3rSxoOx6P/gwromJ6KqxNFKy+BHVTeuXJi6xVHlbz9D1gBHrAJqbGAdA5qNa2rmVAg==
+X-Received: by 2002:a05:6a20:3d1a:b0:ee:7694:f069 with SMTP id
+ y26-20020a056a203d1a00b000ee7694f069mr3643470pzi.41.1681906942789; 
+ Wed, 19 Apr 2023 05:22:22 -0700 (PDT)
+Received: from hackyzh-virtual-machine.localdomain ([112.64.53.154])
+ by smtp.gmail.com with ESMTPSA id
+ ft2-20020a17090b0f8200b002471f34d5ddsm1279106pjb.55.2023.04.19.05.22.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 19 Apr 2023 05:22:22 -0700 (PDT)
+From: hackyzh002 <hackyzh002@gmail.com>
+To: alexander.deucher@amd.com
+Subject: [PATCH V3 1/2] drm/radeon: Fix integer overflow in
+ radeon_cs_parser_init
+Date: Wed, 19 Apr 2023 20:20:58 +0800
+Message-Id: <20230419122058.3420-1-hackyzh002@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT072:EE_|DS0PR12MB8562:EE_
-X-MS-Office365-Filtering-Correlation-Id: d2996930-2247-4689-aba8-08db40cf731a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: l8TbpjAN9FUa+9TlyJy8LGxl7/VuLONL7rRN4Vp9a2lJcMrmALSSQqeG46G6KvEuPPGYtYxVkf90iouHhZAXMG2IUBoFgRyDZeONM5RFeUyhgxM3Sf3j5nPPIqWlZ0vYkRHAuxGrBN+abnb8HTZtukAs4j61PVn7odLsRxMxquq36giYHD00rpBHtOQpHEgD2f1f73EA3Zv1uEVwXALOr6bA+dvU/zZZlXi+JfGoMp5uNN7ELxv0H3tHi1PTgZjVyQypqQO5CSJhipG39/nSGe3UesqzGvQ51pk2BG+4C7lnFUieKFU8PNXAqF9u65FUAyhLiJOAwNbxaF6HU26GKU1Qt2Tov4BaHU9GpsN/+6Up5WtlDCJZ22WtEOM+/VQoX72WgSYzE5jyLiQ5+RPGoCUTqLO0QSamiT8N7124eSv6oKZo9suf3N8TEbleAP5WOZ1IX/MzTQq9DoeNYEQN/BWu4Tqv1a8oSWCoL4NjGINlPJPUvZCXNUd1/7TK5NsMKD2mNjmv7qLLzhQINSDz8e17YXkizLz1KYShEGXh2Kk0vtZIRJLhH3aYEBW6+XSJwCYQQIUg3juXwfn3aajsNKWJPV2hqrD2Ys41AN8xNH3TCF0jtgUbk7h10d7/e33mTZYu+6KkWpjulpQxeE2zM43Bd9O9exw9r3IcNf90cOZ6uV9EWe77ByaK+Ev/AwWtLY0YMquH4DMDcUq5VcismLZS+QyUSa7LfFO+8xGtP3U=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(376002)(39860400002)(396003)(136003)(346002)(451199021)(46966006)(36840700001)(40470700004)(478600001)(6666004)(8936002)(8676002)(316002)(82740400003)(41300700001)(6636002)(4326008)(70586007)(70206006)(40480700001)(81166007)(54906003)(110136005)(356005)(186003)(40460700003)(2906002)(16526019)(36756003)(1076003)(26005)(83380400001)(426003)(86362001)(336012)(47076005)(82310400005)(2616005)(5660300002)(36860700001)(7696005)(44832011)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Apr 2023 12:13:13.5186 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d2996930-2247-4689-aba8-08db40cf731a
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT072.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8562
+X-Mailman-Approved-At: Wed, 19 Apr 2023 13:25:18 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,43 +71,37 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- amd-gfx@lists.freedesktop.org
+Cc: Xinhui.Pan@amd.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, sumit.semwal@linaro.org,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, hackyzh002 <hackyzh002@gmail.com>, airlied@gmail.com,
+ christian.koenig@amd.com, linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fix the below compiler warning:
+The type of size is unsigned, if size is 0x40000000, there will be an
+integer overflow, size will be zero after size *= sizeof(uint32_t),
+will cause uninitialized memory to be referenced later
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_hwseq.c:229:11: warning: unused variable ‘otg_inst’ [-Wunused-variable]
-  229 |  uint32_t otg_inst = pipe_ctx->stream_res.tg->inst;
-      |           ^~~~~~~~
-drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_hwseq.c:226:20: warning: unused variable ‘cmd’ [-Wunused-variable]
-  226 |  union dmub_rb_cmd cmd;
-      |                    ^~~
-
-Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Cc: Jerry Zuo <jerry.zuo@amd.com>
-Cc: Yongqiang Sun <yongqiang.sun@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+Signed-off-by: hackyzh002 <hackyzh002@gmail.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hwseq.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/radeon/radeon_cs.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hwseq.c
-index 55a464a39529..43463d08f21b 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hwseq.c
-@@ -223,10 +223,8 @@ bool dcn21_set_backlight_level(struct pipe_ctx *pipe_ctx,
- 		uint32_t backlight_pwm_u16_16,
- 		uint32_t frame_ramp)
+diff --git a/drivers/gpu/drm/radeon/radeon_cs.c b/drivers/gpu/drm/radeon/radeon_cs.c
+index 46a27ebf4..a6700d727 100644
+--- a/drivers/gpu/drm/radeon/radeon_cs.c
++++ b/drivers/gpu/drm/radeon/radeon_cs.c
+@@ -270,7 +270,8 @@ int radeon_cs_parser_init(struct radeon_cs_parser *p, void *data)
  {
--	union dmub_rb_cmd cmd;
- 	struct dc_context *dc = pipe_ctx->stream->ctx;
- 	struct abm *abm = pipe_ctx->stream_res.abm;
--	uint32_t otg_inst = pipe_ctx->stream_res.tg->inst;
- 	struct panel_cntl *panel_cntl = pipe_ctx->stream->link->panel_cntl;
+ 	struct drm_radeon_cs *cs = data;
+ 	uint64_t *chunk_array_ptr;
+-	unsigned size, i;
++	u64 size;
++	unsigned i;
+ 	u32 ring = RADEON_CS_RING_GFX;
+ 	s32 priority = 0;
  
- 	if (dc->dc->res_pool->dmcu) {
 -- 
-2.25.1
+2.34.1
 
