@@ -1,64 +1,68 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D7F96E7AA7
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 Apr 2023 15:25:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 134526E7395
+	for <lists+amd-gfx@lfdr.de>; Wed, 19 Apr 2023 09:00:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E7AD10E9A8;
-	Wed, 19 Apr 2023 13:25:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78B8E10E1FE;
+	Wed, 19 Apr 2023 07:00:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com
- [IPv6:2607:f8b0:4864:20::631])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47B0210E08A;
- Wed, 19 Apr 2023 04:52:17 +0000 (UTC)
-Received: by mail-pl1-x631.google.com with SMTP id
- d9443c01a7336-1a682eee3baso17167585ad.0; 
- Tue, 18 Apr 2023 21:52:17 -0700 (PDT)
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com
+ [IPv6:2607:f8b0:4864:20::82f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C23B310E176;
+ Wed, 19 Apr 2023 07:00:30 +0000 (UTC)
+Received: by mail-qt1-x82f.google.com with SMTP id
+ d75a77b69052e-3ef27f314b5so4743601cf.1; 
+ Wed, 19 Apr 2023 00:00:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1681879936; x=1684471936;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=Ek00L1cc21EOyKRafT/BGo0L28SeYIDeaJNfXSoDXCk=;
- b=d+4BWM18QNx9T8dgCdsk3UsYNuvnf21SDCQFyquG/W2sADMBujm+iIWajisCKuKoxG
- R1VSJCKr1sX5EaaIxiWJ9XO0RVuA33BMi4vOnetn4QAV09WkxRK8PCOkuIi6ItRXhGKh
- q8A6NjgJujvmHHhkGqmnks1KiR23uvckaBpED9UuP27afZdSTNWqqCnJyt02KL3MDhJ7
- v909j7ReBDq8PNdCrjoqk7IwZdirR07mN/VwA4lJsdBY6K6u3pjpZIdiKGC0536W6i7q
- pzXBMTKpacWNp/o5Nj4/aCBbCz6k8k/EhmtDUpnzDe3V4oiVzNUPB2OYLhCtphGf28uy
- 9AGA==
+ d=gmail.com; s=20221208; t=1681887628; x=1684479628;
+ h=content-transfer-encoding:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=+FpYtyHU8PJs307uUjU40oyjopOkGxr76O4zQ0gpxIY=;
+ b=WS0+2OnpQJgoj4qOvAh7DxGIwzl/PRw7tPUEs0hzD99f7Fj7O97Dm1b2KAVecn4SoR
+ IG/Mee81r+lXszFcJLsNrEh3/pMRueKdoh080sgm/xFk8xTeu4XvOSm1NSMpLCejsJ4D
+ uw9FMxXNqiUO5KzU44/gsV3FhgRkVeJh85MR/JXdFHjj7Ltn5eu0JT9yLWfVdkTE9pGz
+ gKcSs+zn2jBzUDPtJ/4Yi6kIwiykeoa3Xa0Iffqq/KFDgwKJeTLOUfopLByR65yl4YS+
+ bK6aZpUDWvDbpOs63nxXEd/NFr5DcaKlynCbSwVya9y/LdTZ/Q6lG+81zOeztEmVP1S7
+ ApkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1681879936; x=1684471936;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=Ek00L1cc21EOyKRafT/BGo0L28SeYIDeaJNfXSoDXCk=;
- b=jNroC2ETeu1eNDlogqwXe9cavjOQ/VnZU0TRXAZ2wsVM8gSsK3Gb/L/GpnXYHCxA98
- 9zBZrDnkLJIEUt/dJQbAi76enpT4nNVrOZKqy6Fy+yw2c9NYLVqVtReyjRlXHy4AJ331
- c9jM/u+7YQCnYGu7N9PObuYDCvQxC8Ul4Dm6owD22e6DIBFKfLuhN/394OviHBe4WSTv
- 752dAUh4GxnPo2MvFz3Z6W104UIMsU2OnuGLAQ3zQVOkcIH5sk9AnGWUfOMI+gpspCXJ
- J0qb3bAUArKlH3azMZkXf0jRRuI5u/2VsccUsakwOR6EAL3Q4G90YUycriKIKENdr5RQ
- Zz8w==
-X-Gm-Message-State: AAQBX9fZh4yfM0ko9VyA83C3mBHgey4i5cx1SLSMymMOGRY/0Z7bseSI
- jKFRlLyjzWYP6dEa56qL6J/2T1wjkD2e5FQjh+o=
-X-Google-Smtp-Source: AKy350aYkXkO5nxw+E17pu3EKWjttrdTBgY/iJvBuAu1+xFva4iSl0hDCqJM6NsevZ9568vkBqdsJg==
-X-Received: by 2002:a17:902:8503:b0:19e:500b:517a with SMTP id
- bj3-20020a170902850300b0019e500b517amr3719378plb.69.1681879936118; 
- Tue, 18 Apr 2023 21:52:16 -0700 (PDT)
-Received: from hackyzh-virtual-machine.localdomain ([58.34.53.146])
- by smtp.gmail.com with ESMTPSA id
- ix9-20020a170902f80900b001a64dbfc5d7sm10433184plb.145.2023.04.18.21.52.12
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 18 Apr 2023 21:52:15 -0700 (PDT)
-From: hackyzh002 <hackyzh002@gmail.com>
-To: alexander.deucher@amd.com
-Subject: [PATCH 2/2] drm/amdgpu: Fix integer overflow in amdgpu_cs_pass1
-Date: Wed, 19 Apr 2023 12:51:57 +0800
-Message-Id: <20230419045157.69829-1-hackyzh002@gmail.com>
-X-Mailer: git-send-email 2.34.1
+ d=1e100.net; s=20221208; t=1681887628; x=1684479628;
+ h=content-transfer-encoding:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=+FpYtyHU8PJs307uUjU40oyjopOkGxr76O4zQ0gpxIY=;
+ b=ddPypcVCD0FWl812KVmmm+glpgJhoeGTgYnsXBByU3iRxvdinRJ6LYPl8y6bSFibvP
+ 2MEmerkplFQzd5YfhBGgR4XXZgHzJ7cqcQnZIH2nb5zxmmdGCYkabJ0Gdl4TtF52FKt/
+ JvVTseevDMWOqW9X8jKYAnRUETOyRRBOUlNVFaSk/EfB4Y+f6OBVhMRKPa1YgpO+C5Ki
+ Me/fnBhgLGKPzYddsMKnUQEKn9pCr6agUy4dHkzrJ/3sC1MKwe23dRVbr9Duznzc0FT4
+ wTY59YU0iFHr9YK5qV8V/8W1YU2lJKU8CS9QosO9lA3ReCx9JwVGF6EynKOz7o/vJyWz
+ EP8A==
+X-Gm-Message-State: AAQBX9duIhue7w2zqTE+3eFmS+KNJXqx9tsjKxBDq9jIpSxFZPA6SUeY
+ k4S/LQTGpMOBMJS8TqyBl8hbZLn/RpP29qvTgWo=
+X-Google-Smtp-Source: AKy350aUz2W0/K/smKaFigfFEMbNyowxs+jU7zgLJv01FW5RFfxk78FbmM8mq6Lbwt81NFq7sdeXATcSe8OLxepAm4M=
+X-Received: by 2002:a05:6214:5185:b0:532:141d:3750 with SMTP id
+ kl5-20020a056214518500b00532141d3750mr25292442qvb.2.1681887628425; Wed, 19
+ Apr 2023 00:00:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 19 Apr 2023 13:25:18 +0000
+References: <CABXGCsPZxgpFzAVN=eFXu0WV+Jk0vB4rv4p+Jt31C841LcqV=A@mail.gmail.com>
+ <CABXGCsO0sST8+MvQs=T1JP49ogRsaHPT9gMQZGJ3dY7v3m0H8g@mail.gmail.com>
+In-Reply-To: <CABXGCsO0sST8+MvQs=T1JP49ogRsaHPT9gMQZGJ3dY7v3m0H8g@mail.gmail.com>
+From: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+Date: Wed, 19 Apr 2023 12:00:17 +0500
+Message-ID: <CABXGCsOTEpJG_0NWdGXRvcXQ4iTav6AUJm-U4SQb-vVzjoL6rA@mail.gmail.com>
+Subject: Re: BUG: KASAN: null-ptr-deref in drm_sched_job_cleanup+0x96/0x290
+ [gpu_sched]
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>, 
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, 
+ Linux List Kernel Mailing <linux-kernel@vger.kernel.org>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <Christian.Koenig@amd.com>, 
+ Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,45 +74,101 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Xinhui.Pan@amd.com, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, sumit.semwal@linaro.org,
- linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- daniel@ffwll.ch, hackyzh002 <hackyzh002@gmail.com>, airlied@gmail.com,
- christian.koenig@amd.com, linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The type of size is unsigned int, if size is 0x40000000, there will
-be an integer overflow, size will be zero after size *= sizeof(uint32_t),
-will cause uninitialized memory to be referenced later.
+Christian?
 
-Signed-off-by: hackyzh002 <hackyzh002@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+=E2=9D=AF /usr/src/kernels/6.3.0-0.rc7.56.fc39.x86_64/scripts/faddr2line
+/lib/debug/lib/modules/6.3.0-0.rc7.56.fc39.x86_64/kernel/drivers/gpu/drm/sc=
+heduler/gpu-sched.ko.debug
+drm_sched_job_cleanup+0x9a
+drm_sched_job_cleanup+0x9a/0x130:
+drm_sched_job_cleanup at
+/usr/src/debug/kernel-6.3-rc7/linux-6.3.0-0.rc7.56.fc39.x86_64/drivers/gpu/=
+drm/scheduler/sched_main.c:808
+(discriminator 3)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index 08eced097..c17b3af85 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -192,7 +192,7 @@ static int amdgpu_cs_pass1(struct amdgpu_cs_parser *p,
- 	uint64_t *chunk_array_user;
- 	uint64_t *chunk_array;
- 	uint32_t uf_offset = 0;
--	unsigned int size;
-+	uint64_t int size;
- 	int ret;
- 	int i;
- 
-@@ -235,7 +235,7 @@ static int amdgpu_cs_pass1(struct amdgpu_cs_parser *p,
- 		size = p->chunks[i].length_dw;
- 		cdata = u64_to_user_ptr(user_chunk.chunk_data);
- 
--		p->chunks[i].kdata = kvmalloc_array(size, sizeof(uint32_t),
-+		p->chunks[i].kdata = kvcalloc(size, sizeof(uint32_t),
- 						    GFP_KERNEL);
- 		if (p->chunks[i].kdata == NULL) {
- 			ret = -ENOMEM;
--- 
-2.34.1
+=E2=9D=AF cat -s -n /usr/src/debug/kernel-6.3-rc7/linux-6.3.0-0.rc7.56.fc39=
+.x86_64/drivers/gpu/drm/scheduler/sched_main.c
+| head -818 | tail -20
+   799 /* drm_sched_job_arm() has been called */
+   800 dma_fence_put(&job->s_fence->finished);
+   801 } else {
+   802 /* aborted job before committing to run it */
+   803 drm_sched_fence_free(job->s_fence);
+   804 }
+   805
+   806 job->s_fence =3D NULL;
+   807
+   808 xa_for_each(&job->dependencies, index, fence) {
+   809 dma_fence_put(fence);
+   810 }
+   811 xa_destroy(&job->dependencies);
+   812
+   813 }
+   814 EXPORT_SYMBOL(drm_sched_job_cleanup);
+   815
+   816 /**
+   817 * drm_sched_ready - is the scheduler ready
+   818 *
 
+> git blame drivers/gpu/drm/scheduler/sched_main.c -L 800,819
+dbe48d030b285 drivers/gpu/drm/scheduler/sched_main.c        (Daniel
+Vetter   2021-08-17 10:49:16 +0200 800)
+dma_fence_put(&job->s_fence->finished);
+dbe48d030b285 drivers/gpu/drm/scheduler/sched_main.c        (Daniel
+Vetter   2021-08-17 10:49:16 +0200 801)     } else {
+dbe48d030b285 drivers/gpu/drm/scheduler/sched_main.c        (Daniel
+Vetter   2021-08-17 10:49:16 +0200 802)             /* aborted job
+before committing to run it */
+d4c16733e7960 drivers/gpu/drm/scheduler/sched_main.c        (Boris
+Brezillon 2021-09-03 14:05:54 +0200 803)
+drm_sched_fence_free(job->s_fence);
+dbe48d030b285 drivers/gpu/drm/scheduler/sched_main.c        (Daniel
+Vetter   2021-08-17 10:49:16 +0200 804)     }
+dbe48d030b285 drivers/gpu/drm/scheduler/sched_main.c        (Daniel
+Vetter   2021-08-17 10:49:16 +0200 805)
+26efecf955889 drivers/gpu/drm/scheduler/sched_main.c        (Sharat
+Masetty  2018-10-29 15:02:28 +0530 806)     job->s_fence =3D NULL;
+ebd5f74255b9f drivers/gpu/drm/scheduler/sched_main.c        (Daniel
+Vetter   2021-08-05 12:46:49 +0200 807)
+ebd5f74255b9f drivers/gpu/drm/scheduler/sched_main.c        (Daniel
+Vetter   2021-08-05 12:46:49 +0200 808)
+xa_for_each(&job->dependencies, index, fence) {
+ebd5f74255b9f drivers/gpu/drm/scheduler/sched_main.c        (Daniel
+Vetter   2021-08-05 12:46:49 +0200 809)
+dma_fence_put(fence);
+ebd5f74255b9f drivers/gpu/drm/scheduler/sched_main.c        (Daniel
+Vetter   2021-08-05 12:46:49 +0200 810)     }
+ebd5f74255b9f drivers/gpu/drm/scheduler/sched_main.c        (Daniel
+Vetter   2021-08-05 12:46:49 +0200 811)
+xa_destroy(&job->dependencies);
+ebd5f74255b9f drivers/gpu/drm/scheduler/sched_main.c        (Daniel
+Vetter   2021-08-05 12:46:49 +0200 812)
+26efecf955889 drivers/gpu/drm/scheduler/sched_main.c        (Sharat
+Masetty  2018-10-29 15:02:28 +0530 813) }
+26efecf955889 drivers/gpu/drm/scheduler/sched_main.c        (Sharat
+Masetty  2018-10-29 15:02:28 +0530 814)
+EXPORT_SYMBOL(drm_sched_job_cleanup);
+26efecf955889 drivers/gpu/drm/scheduler/sched_main.c        (Sharat
+Masetty  2018-10-29 15:02:28 +0530 815)
+e688b728228b9 drivers/gpu/drm/amd/scheduler/gpu_scheduler.c (Christian
+K=C3=B6nig 2015-08-20 17:01:01 +0200 816) /**
+2d33948e4e00b drivers/gpu/drm/scheduler/gpu_scheduler.c     (Nayan
+Deshmukh  2018-05-29 11:23:07 +0530 817)  * drm_sched_ready - is the
+scheduler ready
+2d33948e4e00b drivers/gpu/drm/scheduler/gpu_scheduler.c     (Nayan
+Deshmukh  2018-05-29 11:23:07 +0530 818)  *
+2d33948e4e00b drivers/gpu/drm/scheduler/gpu_scheduler.c     (Nayan
+Deshmukh  2018-05-29 11:23:07 +0530 819)  * @sched: scheduler instance
+
+Daniel, because Christian, looks a little busy. Can you help? The git
+blame says that you are the author of code which KASAN mentions in its
+report.
+The issue is reproducible on all available AMD hardware: 6800M, 6900XT, 790=
+0XTX.
+
+--=20
+Best Regards,
+Mike Gavrilov.
