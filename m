@@ -1,60 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 498FD6E7AA4
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 Apr 2023 15:25:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D7F96E7AA7
+	for <lists+amd-gfx@lfdr.de>; Wed, 19 Apr 2023 15:25:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C375610E9A4;
-	Wed, 19 Apr 2023 13:25:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E7AD10E9A8;
+	Wed, 19 Apr 2023 13:25:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com
- [IPv6:2607:f8b0:4864:20::1032])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34CBD10E074;
- Wed, 19 Apr 2023 04:24:37 +0000 (UTC)
-Received: by mail-pj1-x1032.google.com with SMTP id
- 98e67ed59e1d1-2472a3bfd23so1642106a91.3; 
- Tue, 18 Apr 2023 21:24:37 -0700 (PDT)
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com
+ [IPv6:2607:f8b0:4864:20::631])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47B0210E08A;
+ Wed, 19 Apr 2023 04:52:17 +0000 (UTC)
+Received: by mail-pl1-x631.google.com with SMTP id
+ d9443c01a7336-1a682eee3baso17167585ad.0; 
+ Tue, 18 Apr 2023 21:52:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1681878276; x=1684470276;
+ d=gmail.com; s=20221208; t=1681879936; x=1684471936;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=ZRDCjTOkWMGElxrmUMljuv7R6aYKvTg/GiQ2WWUQLjA=;
- b=P5QTikUGscbdQb7TFjUgKjgzxn/e9+eeyH2qxNQSgYuuAoEj9snd9v+RzKmYKdaFYB
- Z/F/DpJQo7e8vEFO5QQAdNK5pRF0eVSc2Z3LToHwQitYaPnV9WaYhsT+3QPwbYhyhWOo
- LLd698154Ty28I+Z3s6QzAars6oTGXtMF7Mwz23ALjlPE+FLwQNJQD57d2bRIjRKQo5K
- /eSJRxR5Num3TxuE6t60Tjk67JJ/vq5KGCBAlfuitq8wGNFR2BDk07PJ23mAZyYwBO0C
- /IzcPoTQ+SQ5jhA4iU8jpMFsg82p0U9KavFJC2lv3+aIkursUeNhKZ+71h5Piq67P6Qi
- 338g==
+ bh=Ek00L1cc21EOyKRafT/BGo0L28SeYIDeaJNfXSoDXCk=;
+ b=d+4BWM18QNx9T8dgCdsk3UsYNuvnf21SDCQFyquG/W2sADMBujm+iIWajisCKuKoxG
+ R1VSJCKr1sX5EaaIxiWJ9XO0RVuA33BMi4vOnetn4QAV09WkxRK8PCOkuIi6ItRXhGKh
+ q8A6NjgJujvmHHhkGqmnks1KiR23uvckaBpED9UuP27afZdSTNWqqCnJyt02KL3MDhJ7
+ v909j7ReBDq8PNdCrjoqk7IwZdirR07mN/VwA4lJsdBY6K6u3pjpZIdiKGC0536W6i7q
+ pzXBMTKpacWNp/o5Nj4/aCBbCz6k8k/EhmtDUpnzDe3V4oiVzNUPB2OYLhCtphGf28uy
+ 9AGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1681878276; x=1684470276;
+ d=1e100.net; s=20221208; t=1681879936; x=1684471936;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=ZRDCjTOkWMGElxrmUMljuv7R6aYKvTg/GiQ2WWUQLjA=;
- b=N4DjlJAKPjx8dxjrFctCUGI3/v8eaoV6mJBe3liJB/Jt1BKjdqM1ksxtuMbJnJLDS6
- HZRLQglOV+duusqIlm3zR7dja7G8MFvSbBEZUTUle0AdmiEKy/cYu/lY0CQJsmqzABPB
- KU5b9EW0KlpYdXJIXhUUfjRirgAa9cwa8u55epjETXHEJODtwmgE4g0wXiAETo9jA/b5
- pDoRl7E4IdD/ao29hM3YDBXCyhfvqwA9pElJFunjvnZEWGrWPB+2J1IAMe4jhQ10l33c
- 28AM8q7v7AWQzDo2Ign1txXNeQXDpv0JN9kFHjpbDkYAOusg0AiKdCC2+O5HFZnPA8Ow
- LZeQ==
-X-Gm-Message-State: AAQBX9fV130v4Z6Ku9FtXddA/UwVFBZRVE3Keh0DHpbzoToiy5V1h3ow
- eAkQJVieX8GKA1HVELJ05JU2vd3VZ2MvQAJ4DBs=
-X-Google-Smtp-Source: AKy350afI02Fa3Acq0DNx6nJUWrX6aI7RY4q/vg2eOyv/5uPkMM5pF1SRDx4yrymqaBjzv9oWxjrTg==
-X-Received: by 2002:a17:90a:fe8c:b0:246:f73c:3aba with SMTP id
- co12-20020a17090afe8c00b00246f73c3abamr1522019pjb.39.1681878276254; 
- Tue, 18 Apr 2023 21:24:36 -0700 (PDT)
+ bh=Ek00L1cc21EOyKRafT/BGo0L28SeYIDeaJNfXSoDXCk=;
+ b=jNroC2ETeu1eNDlogqwXe9cavjOQ/VnZU0TRXAZ2wsVM8gSsK3Gb/L/GpnXYHCxA98
+ 9zBZrDnkLJIEUt/dJQbAi76enpT4nNVrOZKqy6Fy+yw2c9NYLVqVtReyjRlXHy4AJ331
+ c9jM/u+7YQCnYGu7N9PObuYDCvQxC8Ul4Dm6owD22e6DIBFKfLuhN/394OviHBe4WSTv
+ 752dAUh4GxnPo2MvFz3Z6W104UIMsU2OnuGLAQ3zQVOkcIH5sk9AnGWUfOMI+gpspCXJ
+ J0qb3bAUArKlH3azMZkXf0jRRuI5u/2VsccUsakwOR6EAL3Q4G90YUycriKIKENdr5RQ
+ Zz8w==
+X-Gm-Message-State: AAQBX9fZh4yfM0ko9VyA83C3mBHgey4i5cx1SLSMymMOGRY/0Z7bseSI
+ jKFRlLyjzWYP6dEa56qL6J/2T1wjkD2e5FQjh+o=
+X-Google-Smtp-Source: AKy350aYkXkO5nxw+E17pu3EKWjttrdTBgY/iJvBuAu1+xFva4iSl0hDCqJM6NsevZ9568vkBqdsJg==
+X-Received: by 2002:a17:902:8503:b0:19e:500b:517a with SMTP id
+ bj3-20020a170902850300b0019e500b517amr3719378plb.69.1681879936118; 
+ Tue, 18 Apr 2023 21:52:16 -0700 (PDT)
 Received: from hackyzh-virtual-machine.localdomain ([58.34.53.146])
  by smtp.gmail.com with ESMTPSA id
- v8-20020a17090a088800b0024779068491sm380205pjc.26.2023.04.18.21.24.33
+ ix9-20020a170902f80900b001a64dbfc5d7sm10433184plb.145.2023.04.18.21.52.12
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 18 Apr 2023 21:24:35 -0700 (PDT)
+ Tue, 18 Apr 2023 21:52:15 -0700 (PDT)
 From: hackyzh002 <hackyzh002@gmail.com>
 To: alexander.deucher@amd.com
-Subject: [PATCH 1/2] drm/radeon: Fix integer overflow in radeon_cs_parser_init
-Date: Wed, 19 Apr 2023 12:24:07 +0800
-Message-Id: <20230419042407.69001-1-hackyzh002@gmail.com>
+Subject: [PATCH 2/2] drm/amdgpu: Fix integer overflow in amdgpu_cs_pass1
+Date: Wed, 19 Apr 2023 12:51:57 +0800
+Message-Id: <20230419045157.69829-1-hackyzh002@gmail.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -78,37 +78,37 @@ Cc: Xinhui.Pan@amd.com, linux-kernel@vger.kernel.org,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The type of size is unsigned, if size is 0x40000000, there will be an
-integer overflow, size will be zero after size *= sizeof(uint32_t),
-will cause uninitialized memory to be referenced later
+The type of size is unsigned int, if size is 0x40000000, there will
+be an integer overflow, size will be zero after size *= sizeof(uint32_t),
+will cause uninitialized memory to be referenced later.
 
 Signed-off-by: hackyzh002 <hackyzh002@gmail.com>
 ---
- drivers/gpu/drm/radeon/radeon_cs.c | 4 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/radeon/radeon_cs.c b/drivers/gpu/drm/radeon/radeon_cs.c
-index 46a27ebf4..472c29050 100644
---- a/drivers/gpu/drm/radeon/radeon_cs.c
-+++ b/drivers/gpu/drm/radeon/radeon_cs.c
-@@ -270,7 +270,7 @@ int radeon_cs_parser_init(struct radeon_cs_parser *p, void *data)
- {
- 	struct drm_radeon_cs *cs = data;
- 	uint64_t *chunk_array_ptr;
--	unsigned size, i;
-+	u64 size, i;
- 	u32 ring = RADEON_CS_RING_GFX;
- 	s32 priority = 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+index 08eced097..c17b3af85 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+@@ -192,7 +192,7 @@ static int amdgpu_cs_pass1(struct amdgpu_cs_parser *p,
+ 	uint64_t *chunk_array_user;
+ 	uint64_t *chunk_array;
+ 	uint32_t uf_offset = 0;
+-	unsigned int size;
++	uint64_t int size;
+ 	int ret;
+ 	int i;
  
-@@ -347,7 +347,7 @@ int radeon_cs_parser_init(struct radeon_cs_parser *p, void *data)
- 				continue;
- 		}
+@@ -235,7 +235,7 @@ static int amdgpu_cs_pass1(struct amdgpu_cs_parser *p,
+ 		size = p->chunks[i].length_dw;
+ 		cdata = u64_to_user_ptr(user_chunk.chunk_data);
  
--		p->chunks[i].kdata = kvmalloc_array(size, sizeof(uint32_t), GFP_KERNEL);
-+		p->chunks[i].kdata = kvcalloc(size, sizeof(uint32_t), GFP_KERNEL);
- 		size *= sizeof(uint32_t);
+-		p->chunks[i].kdata = kvmalloc_array(size, sizeof(uint32_t),
++		p->chunks[i].kdata = kvcalloc(size, sizeof(uint32_t),
+ 						    GFP_KERNEL);
  		if (p->chunks[i].kdata == NULL) {
- 			return -ENOMEM;
+ 			ret = -ENOMEM;
 -- 
 2.34.1
 
