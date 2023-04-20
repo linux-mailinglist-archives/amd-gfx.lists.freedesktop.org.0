@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99DE96EA02A
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Apr 2023 01:50:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F1AD6EA02C
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Apr 2023 01:50:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3C8810ED46;
-	Thu, 20 Apr 2023 23:50:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA10410ED50;
+	Thu, 20 Apr 2023 23:50:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
  (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C72510ED4B
- for <amd-gfx@lists.freedesktop.org>; Thu, 20 Apr 2023 23:50:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E914A10ED50
+ for <amd-gfx@lists.freedesktop.org>; Thu, 20 Apr 2023 23:50:23 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VvRBO3vO2kP156q10Hijve5GA2KFe8GcBNdmGB63BdGtIuOSx2CURwwp/i+XjsalepO1YMyxdM7euFx88BofBqrjA38fmbtlweHwuqhV4hH/o4n8p7aps5gAsvhXvZHb2FehwJgkJWxsByZSnG82q35WVsBfHzt6omN6CgxDL8jgPth48bMVtBlpkwIv5pbSESgfM70rkHaL9PPwbbvi/whVeSnMju0DOtOCl9t3fe2icLzEw4rrHDntOz6W5RAkFKJqCYpRfQ260s8XvO53IWmyiNjt149ovH1lZp5UKbBZptfM/6pbj/mtTnY+V3mytivmLskpEBkMBDJq2prmVg==
+ b=P9h+9zQHeVnG+PyQG3DI7pkuhVDQvq3m8Q2zmxoXjdyVjUfrJlx0nC/flLmuTBjCAy8eXqMwtVRKdJSGMQlCfZek01zCvrbcWvxZZd61/acwVflUfQwiY7DP1bjU9xsv+xdSAv6b0jF8oZznInmQrBu+t7l3p1Gciv+B8+iv4CE7QkbxUKfkT0tbMgCyg45fS03LFO4mlMDPOUwPWAAwnjSyIupc9RgXD0TiLtBuNM6T9DbbP0rVKQJxbuLVdrFAfqJbR6ayKsD2HlF5JALe0soAawzN5EJMU45M5RZwzZpa25HPjSBaIwd0N1AdvAbZ+ljbYGNGkoBbKSlNeEYlRg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ldt+f/2Y2lGH9mBgx5YWIL2scYklP8IIdHnLh2GJuUE=;
- b=EVv9YnByfyG1tU7BYSxBORAnKcIrXQLVBuUeuogRFrVyhoFXcG02eqeO/ZDtavJneMi3QEId6+zEIjBFAqivDlx/k7xDMIsfKkf8vPJV3c43RACvJiA/+AlPEERKYuJtT6Ug0HtHpPw77Qn8qUSnVOU8/n47+ba4JN1e8TRB3e0etZclIxv7Rk103DuTBAsosdo9KS5yLRm+q5XOncrcR1AH26uZbKpKV//xnfgHgRaHUFUlVYBPRIXk0Ox3znIi48qcZ5D9yrTQobfIakXmiYjAYxHzONq17v03LnS5NHeyP1Kr0yJIb5WR4vZdH48PQ6jDUey9xMI2bI7gK/noCA==
+ bh=pNSWUkeU3eVePCWVClCJJQ9aLfEUZBtKNqpmSHl0m14=;
+ b=S0v6UJUy9TCSKwQJN3RFvltey6jiVO385upV1PA+Kie0t+j4j5CQ+r7dn6Qs5gpO2UHZtAtrSai/Oh6dRiatB3KDIr18coOhhlcHwGjMD+wLL+VQF62IHk9/3N9dfrV43iF1p2qmBWUNrCwfP56RMlivjUojYkSapxWBJnhat+lUvXFgdfsNDu9sFRHfluZNklnYKNiAbxOeCd25yu/1IdrSz/ZKY6KPRM1aHjmn9XgKPLVrRAPrjfCD52tyjH6rPlEq5QO3Ox5IqSyx+gQldMR792JaWjo88t8AJ30rIj0JL+aEfGQGdwUDGO/nQE3ZjGyg+GIeTJJ+1GeU1IYMYw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ldt+f/2Y2lGH9mBgx5YWIL2scYklP8IIdHnLh2GJuUE=;
- b=syAjxBTZEGVuzziJjZqmlWIosj9BQ2odVNWGGLGYwmdup+N7g+FlA0w28k63RZq6tLq2qiSLzigw4RWjpCOe7n3h3nDaAsDnzjXiKPaRZCq7G1hRfYERLUVJREVWLL/et+PZICpEHXl/8qTAHhMPROTC/qx5KXC+9PGySW8rQe8=
-Received: from DS7PR03CA0346.namprd03.prod.outlook.com (2603:10b6:8:55::9) by
- CY8PR12MB8194.namprd12.prod.outlook.com (2603:10b6:930:76::5) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6319.22; Thu, 20 Apr 2023 23:50:18 +0000
-Received: from DM6NAM11FT077.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:55:cafe::e) by DS7PR03CA0346.outlook.office365.com
- (2603:10b6:8:55::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6319.25 via Frontend
- Transport; Thu, 20 Apr 2023 23:50:18 +0000
+ bh=pNSWUkeU3eVePCWVClCJJQ9aLfEUZBtKNqpmSHl0m14=;
+ b=eRBJpMWrwxhgxMkcv0DIXIsyV9FpQJsn1TOXd2qkzeBZg5UtvBziFfbxXkMNAHoOjhA/40CYrjYUmr/yIioKwx3ViTl6CRCRd2vcUEOnYWgkWjkWGAnMr0pnFtQqmJ4i4oJNvEllq9p63lwOqHm5sMV0hx6bi4i7fvZZirJlaE4=
+Received: from DS7PR03CA0210.namprd03.prod.outlook.com (2603:10b6:5:3b6::35)
+ by CY8PR12MB7415.namprd12.prod.outlook.com (2603:10b6:930:5d::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.36; Thu, 20 Apr
+ 2023 23:50:20 +0000
+Received: from DM6NAM11FT037.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:3b6:cafe::66) by DS7PR03CA0210.outlook.office365.com
+ (2603:10b6:5:3b6::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6319.26 via Frontend
+ Transport; Thu, 20 Apr 2023 23:50:20 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,18 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT077.mail.protection.outlook.com (10.13.173.147) with Microsoft SMTP
+ DM6NAM11FT037.mail.protection.outlook.com (10.13.172.122) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6319.27 via Frontend Transport; Thu, 20 Apr 2023 23:50:18 +0000
+ 15.20.6319.26 via Frontend Transport; Thu, 20 Apr 2023 23:50:20 +0000
 Received: from smtp.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 20 Apr
- 2023 18:50:16 -0500
+ 2023 18:50:17 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 06/21] drm/amd/display: Update FW feature caps struct
-Date: Thu, 20 Apr 2023 17:49:36 -0600
-Message-ID: <20230420234951.1772270-7-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 07/21] drm/amd/display: Restore rptr/wptr for DMCUB as
+ workaround
+Date: Thu, 20 Apr 2023 17:49:37 -0600
+Message-ID: <20230420234951.1772270-8-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230420234951.1772270-1-Rodrigo.Siqueira@amd.com>
 References: <20230420234951.1772270-1-Rodrigo.Siqueira@amd.com>
@@ -68,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT077:EE_|CY8PR12MB8194:EE_
-X-MS-Office365-Filtering-Correlation-Id: d6dad99a-033c-4944-b9f9-08db41f9feec
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT037:EE_|CY8PR12MB7415:EE_
+X-MS-Office365-Filtering-Correlation-Id: e0527620-c478-45c0-fab9-08db41fa0010
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4zYM3suk9jPYA+/1N8CRtyno/KqoVyF4YiCGXXjZVskHnXVC/4DAHNGRCUQu/mPGRy4CY3pMj69knBh55KwF7lu9Zb4l/yCrlcAHM0QJR/GyKWiwvabWhFQHc3IL17WD/8lHMLbwaTAPn8URP6ZY/ARrfMFEidpVijJUDyn8m5bmbAwHmsa+55p3MMv2PjA1kszj3uD2sv01h0oCWkO114+Hy9yiMgy8LxyCZDLl/6/sEfxXQZbhvqgYBGmUngVoIwl9GDfYBxqRixK3myWwYV68fa5FcZXDM3GwkCURtmRm63x9AK6QmjJDzcSm397H4oko4rJ65rNNXI0czsQX6CooFgC20FbfOY4hBFFqtDwtsMqJmzkCv+L2DmbdEnfpV2YrvHNzszTHj5m97c0RiW8bUlOiy5Lkv6Vz8I8/dH7aY0ssfw2IqAP1jnerD7lwQUIGv5vkEzmWY640JqZRbMwO9LqbCr7R+OhOX0mdHF9/GF8uA9szZkN6ZmbJaOwHyp0WR+QF8K5O59BZaN+rG92+Q3GrO/h04ioDpPyECGIaYXXYS5IQMHjrIiONBDpkegnOGVU2gG8X4AmyApkfqBQ5r9F1mJjfKugTFLCJHkXvIUPiM7dNvZuc9tk/8gspBjSiIS3+jnb66Z4zImPpWUrnHI8wb3CRE8HSZjW37ZqDm4QYruz6Rken88GFwAQ8/j0i/zTJwJlke+7HVeO357qD3i63bu8XCki9MkQzhDg=
+X-Microsoft-Antispam-Message-Info: CINW6P/f1g1O9RLqomChPbG5nJ60HEXO++nrYJft4E5pcO9cQVEoXUrGU9XJHA9K6yBSBSgVdSnBvFEy/D7ZgDMdsGzyYhrMCIGhtKEi7JEwiRI5QN4LZ/55+TXQety88iPHJGYLPf1w0t9oE1HaIpdHYSNqTL4SDIqRaI/tQYOzkZzYe9lx8TyR9Wu86XPur9ADndQZ2O3R/91+2w1kGHnxtghAjX3+dD6DKjFBtumWeAB5uFxwKWa4Ak7UjS+Bmd/GfW5UC22tVcUkyKAVTAg061M45j/fspkXLAffNPXtHI8FkUEeJ+zi3tKlYuz6W8jjYZp97+lvPJM5CkeaFYetyXZdOGIIMVp/vwZZ5CPOKFRl2ZhY/T8ProFp2CVIVs6wg/OqrxAji7fV3m8V37dc9e+m7ngARkIDvhWIjUVDp9pwK1HBahaRWjphWSP8X8nJGFP4+rGFpJZ1ukJMESevpnUPznmY7qyQm8+8UhNQ8tGNujY1X8BMQPQ2qQSS3V0W3T8CKLy1EZNVoQ5bB60M3E7SeHGRHxVH8CfJHwNbsNTeGsBuLVWsvqnFSlvUBcba7Jghhzhb/jUzbC20kcOUdN0UdrzdhpwV0DZz0HQu9jzbWBnldvidE/bNAYApBFnQcTuxk+LbuDnJKyGAXN7g58so7ezGKOwu7YTWLuv7fZTDnfsBB7I1Pw6RkSsYR/8p3qlQc2YNPI6FpyrAPDJJYDkFkmtlUPYK8cJDsB4=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(136003)(39860400002)(376002)(346002)(396003)(451199021)(40470700004)(46966006)(36840700001)(4326008)(316002)(6916009)(54906003)(70206006)(70586007)(40460700003)(16526019)(1076003)(26005)(47076005)(36860700001)(2616005)(336012)(426003)(186003)(83380400001)(40480700001)(41300700001)(8676002)(5660300002)(82310400005)(8936002)(478600001)(6666004)(36756003)(82740400003)(86362001)(81166007)(4744005)(2906002)(356005)(36900700001);
+ SFS:(13230028)(4636009)(39860400002)(376002)(346002)(396003)(136003)(451199021)(46966006)(40470700004)(36840700001)(478600001)(356005)(36756003)(336012)(83380400001)(81166007)(47076005)(40480700001)(82740400003)(26005)(426003)(86362001)(2616005)(316002)(2906002)(36860700001)(16526019)(186003)(5660300002)(1076003)(6666004)(4326008)(70206006)(8936002)(40460700003)(8676002)(41300700001)(6916009)(82310400005)(54906003)(70586007)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Apr 2023 23:50:18.2021 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d6dad99a-033c-4944-b9f9-08db41f9feec
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Apr 2023 23:50:20.1018 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e0527620-c478-45c0-fab9-08db41fa0010
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT077.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT037.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB8194
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7415
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,41 +100,205 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Sung Lee <Sung.Lee@amd.com>, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, "JinZe.Xu" <JinZe.Xu@amd.com>, Rodrigo.Siqueira@amd.com,
  roman.li@amd.com, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
- Alvin Lee <Alvin.Lee2@amd.com>, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+ wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
+ Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>, agustin.gutierrez@amd.com,
+ pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alvin Lee <Alvin.Lee2@amd.com>
+From: "JinZe.Xu" <JinZe.Xu@amd.com>
 
-Reorder FW feature caps struct variable order to ensure backwards
-compatability is maintained for older FW
+[Why]
+States may be desync after resume.
 
-Reviewed-by: Sung Lee <Sung.Lee@amd.com>
+[How]
+Sync sw state with hw state.
+
+Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Signed-off-by: Alvin Lee <Alvin.Lee2@amd.com>
+Signed-off-by: JinZe.Xu <JinZe.Xu@amd.com>
 ---
- drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dmub/dmub_srv.h     | 14 ++++++++++++++
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn20.c   |  5 +++++
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn20.h   |  2 ++
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn31.c   |  5 +++++
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn31.h   |  2 ++
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn32.c   |  5 +++++
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn32.h   |  2 ++
+ drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c | 17 +++++++++++++++++
+ 8 files changed, 52 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-index dcec8955bde4..09d4d0d9b92c 100644
---- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-+++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-@@ -257,8 +257,9 @@ struct dmub_feature_caps {
- 	 */
- 	uint8_t psr;
- 	uint8_t fw_assisted_mclk_switch;
-+	uint8_t reserved[4];
- 	uint8_t subvp_psr_support;
--	uint8_t reserved[5];
-+	uint8_t gecc_enable;
- };
+diff --git a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+index 719bf9bb168a..d35432c21856 100644
+--- a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
++++ b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+@@ -340,6 +340,8 @@ struct dmub_srv_hw_funcs {
+ 	void (*setup_mailbox)(struct dmub_srv *dmub,
+ 			      const struct dmub_region *inbox1);
  
- struct dmub_visual_confirm_color {
++	uint32_t (*get_inbox1_wptr)(struct dmub_srv *dmub);
++
+ 	uint32_t (*get_inbox1_rptr)(struct dmub_srv *dmub);
+ 
+ 	void (*set_inbox1_wptr)(struct dmub_srv *dmub, uint32_t wptr_offset);
+@@ -600,6 +602,18 @@ enum dmub_status dmub_srv_hw_init(struct dmub_srv *dmub,
+  */
+ enum dmub_status dmub_srv_hw_reset(struct dmub_srv *dmub);
+ 
++/**
++ * dmub_srv_sync_inbox1() - sync sw state with hw state
++ * @dmub: the dmub service
++ *
++ * Sync sw state with hw state when resume from S0i3
++ *
++ * Return:
++ *   DMUB_STATUS_OK - success
++ *   DMUB_STATUS_INVALID - unspecified error
++ */
++enum dmub_status dmub_srv_sync_inbox1(struct dmub_srv *dmub);
++
+ /**
+  * dmub_srv_cmd_queue() - queues a command to the DMUB
+  * @dmub: the dmub service
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c
+index a6540e27044d..98dad0d47e72 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c
+@@ -282,6 +282,11 @@ void dmub_dcn20_setup_mailbox(struct dmub_srv *dmub,
+ 	REG_WRITE(DMCUB_INBOX1_SIZE, inbox1->top - inbox1->base);
+ }
+ 
++uint32_t dmub_dcn20_get_inbox1_wptr(struct dmub_srv *dmub)
++{
++	return REG_READ(DMCUB_INBOX1_WPTR);
++}
++
+ uint32_t dmub_dcn20_get_inbox1_rptr(struct dmub_srv *dmub)
+ {
+ 	return REG_READ(DMCUB_INBOX1_RPTR);
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h
+index c2e5831ac52c..1df128e57ed3 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h
+@@ -202,6 +202,8 @@ void dmub_dcn20_setup_windows(struct dmub_srv *dmub,
+ void dmub_dcn20_setup_mailbox(struct dmub_srv *dmub,
+ 			      const struct dmub_region *inbox1);
+ 
++uint32_t dmub_dcn20_get_inbox1_wptr(struct dmub_srv *dmub);
++
+ uint32_t dmub_dcn20_get_inbox1_rptr(struct dmub_srv *dmub);
+ 
+ void dmub_dcn20_set_inbox1_wptr(struct dmub_srv *dmub, uint32_t wptr_offset);
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c
+index c90b9ee42e12..ebf7aeec4029 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c
+@@ -242,6 +242,11 @@ void dmub_dcn31_setup_mailbox(struct dmub_srv *dmub,
+ 	REG_WRITE(DMCUB_INBOX1_SIZE, inbox1->top - inbox1->base);
+ }
+ 
++uint32_t dmub_dcn31_get_inbox1_wptr(struct dmub_srv *dmub)
++{
++	return REG_READ(DMCUB_INBOX1_WPTR);
++}
++
+ uint32_t dmub_dcn31_get_inbox1_rptr(struct dmub_srv *dmub)
+ {
+ 	return REG_READ(DMCUB_INBOX1_RPTR);
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.h b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.h
+index f6db6f89d45d..7d5c10ee539b 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.h
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.h
+@@ -204,6 +204,8 @@ void dmub_dcn31_setup_windows(struct dmub_srv *dmub,
+ void dmub_dcn31_setup_mailbox(struct dmub_srv *dmub,
+ 			      const struct dmub_region *inbox1);
+ 
++uint32_t dmub_dcn31_get_inbox1_wptr(struct dmub_srv *dmub);
++
+ uint32_t dmub_dcn31_get_inbox1_rptr(struct dmub_srv *dmub);
+ 
+ void dmub_dcn31_set_inbox1_wptr(struct dmub_srv *dmub, uint32_t wptr_offset);
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn32.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn32.c
+index a7d5607459ed..21dd6cbdb106 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn32.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn32.c
+@@ -266,6 +266,11 @@ void dmub_dcn32_setup_mailbox(struct dmub_srv *dmub,
+ 	REG_WRITE(DMCUB_INBOX1_SIZE, inbox1->top - inbox1->base);
+ }
+ 
++uint32_t dmub_dcn32_get_inbox1_wptr(struct dmub_srv *dmub)
++{
++	return REG_READ(DMCUB_INBOX1_WPTR);
++}
++
+ uint32_t dmub_dcn32_get_inbox1_rptr(struct dmub_srv *dmub)
+ {
+ 	return REG_READ(DMCUB_INBOX1_RPTR);
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn32.h b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn32.h
+index 7d1a6eb4d665..f15336b6e22b 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn32.h
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn32.h
+@@ -206,6 +206,8 @@ void dmub_dcn32_setup_windows(struct dmub_srv *dmub,
+ void dmub_dcn32_setup_mailbox(struct dmub_srv *dmub,
+ 			      const struct dmub_region *inbox1);
+ 
++uint32_t dmub_dcn32_get_inbox1_wptr(struct dmub_srv *dmub);
++
+ uint32_t dmub_dcn32_get_inbox1_rptr(struct dmub_srv *dmub);
+ 
+ void dmub_dcn32_set_inbox1_wptr(struct dmub_srv *dmub, uint32_t wptr_offset);
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+index 67c53f7e589c..ea3bed70a229 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+@@ -166,6 +166,7 @@ static bool dmub_srv_hw_setup(struct dmub_srv *dmub, enum dmub_asic asic)
+ 		funcs->backdoor_load = dmub_dcn20_backdoor_load;
+ 		funcs->setup_windows = dmub_dcn20_setup_windows;
+ 		funcs->setup_mailbox = dmub_dcn20_setup_mailbox;
++		funcs->get_inbox1_wptr = dmub_dcn20_get_inbox1_wptr;
+ 		funcs->get_inbox1_rptr = dmub_dcn20_get_inbox1_rptr;
+ 		funcs->set_inbox1_wptr = dmub_dcn20_set_inbox1_wptr;
+ 		funcs->is_supported = dmub_dcn20_is_supported;
+@@ -235,6 +236,7 @@ static bool dmub_srv_hw_setup(struct dmub_srv *dmub, enum dmub_asic asic)
+ 		funcs->backdoor_load = dmub_dcn31_backdoor_load;
+ 		funcs->setup_windows = dmub_dcn31_setup_windows;
+ 		funcs->setup_mailbox = dmub_dcn31_setup_mailbox;
++		funcs->get_inbox1_wptr = dmub_dcn31_get_inbox1_wptr;
+ 		funcs->get_inbox1_rptr = dmub_dcn31_get_inbox1_rptr;
+ 		funcs->set_inbox1_wptr = dmub_dcn31_set_inbox1_wptr;
+ 		funcs->setup_out_mailbox = dmub_dcn31_setup_out_mailbox;
+@@ -273,6 +275,7 @@ static bool dmub_srv_hw_setup(struct dmub_srv *dmub, enum dmub_asic asic)
+ 		funcs->backdoor_load_zfb_mode = dmub_dcn32_backdoor_load_zfb_mode;
+ 		funcs->setup_windows = dmub_dcn32_setup_windows;
+ 		funcs->setup_mailbox = dmub_dcn32_setup_mailbox;
++		funcs->get_inbox1_wptr = dmub_dcn32_get_inbox1_wptr;
+ 		funcs->get_inbox1_rptr = dmub_dcn32_get_inbox1_rptr;
+ 		funcs->set_inbox1_wptr = dmub_dcn32_set_inbox1_wptr;
+ 		funcs->setup_out_mailbox = dmub_dcn32_setup_out_mailbox;
+@@ -642,6 +645,20 @@ enum dmub_status dmub_srv_hw_init(struct dmub_srv *dmub,
+ 	return DMUB_STATUS_OK;
+ }
+ 
++enum dmub_status dmub_srv_sync_inbox1(struct dmub_srv *dmub)
++{
++	if (!dmub->sw_init)
++		return DMUB_STATUS_INVALID;
++
++	if (dmub->hw_funcs.get_inbox1_rptr && dmub->hw_funcs.get_inbox1_wptr) {
++		dmub->inbox1_rb.rptr = dmub->hw_funcs.get_inbox1_rptr(dmub);
++		dmub->inbox1_rb.wrpt = dmub->hw_funcs.get_inbox1_wptr(dmub);
++		dmub->inbox1_last_wptr = dmub->inbox1_rb.wrpt;
++	}
++
++	return DMUB_STATUS_OK;
++}
++
+ enum dmub_status dmub_srv_hw_reset(struct dmub_srv *dmub)
+ {
+ 	if (!dmub->sw_init)
 -- 
 2.39.2
 
