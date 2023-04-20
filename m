@@ -2,61 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB45A6E9381
-	for <lists+amd-gfx@lfdr.de>; Thu, 20 Apr 2023 13:58:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F2E46E937F
+	for <lists+amd-gfx@lfdr.de>; Thu, 20 Apr 2023 13:58:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F50310EC15;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F0BE10EBFC;
 	Thu, 20 Apr 2023 11:58:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
- [IPv6:2a00:1450:4864:20::631])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DA7D10E28A
- for <amd-gfx@lists.freedesktop.org>; Thu, 20 Apr 2023 11:58:00 +0000 (UTC)
-Received: by mail-ej1-x631.google.com with SMTP id z6so5788607ejc.5
- for <amd-gfx@lists.freedesktop.org>; Thu, 20 Apr 2023 04:58:00 -0700 (PDT)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com
+ [IPv6:2a00:1450:4864:20::633])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7372010E28A
+ for <amd-gfx@lists.freedesktop.org>; Thu, 20 Apr 2023 11:58:01 +0000 (UTC)
+Received: by mail-ej1-x633.google.com with SMTP id sz19so5856369ejc.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 20 Apr 2023 04:58:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1681991878; x=1684583878;
+ d=gmail.com; s=20221208; t=1681991879; x=1684583879;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=L7Ig8Kl4jd4BfcepntbJnzwhVu/D+8mkocz2CrOFf60=;
- b=hdOuYHTPCoC+zucScPeYcPAa5D4aiciFAhWC5ET9ZYXM9wHmEJY5RmOi2O2xTuq7xl
- lfRwp9EnRi/T41N1OdI0e4ZYb7Ux5fa4/kQp9gJWpEAv958OResVn/gJOGQCVQvA1Dz8
- T30cN8OqHEar/cCkEaY5ot2eGqq8pvQ4eeS+1nyfD2JlVhoED1dLmcz6zPhGJ5vYyHIv
- aXmokwYO/yWk3oyBh3SXCom9sBfmWd6eNHLbtUsYYHsJ48LkKKfmvP2lsO4s4yij4x4f
- Pgie5sSsFcILY4cKECed8xG8Nzo6wI8FHcLT1paZOZY9ASGLL9oTS/aHE1ljxtYJiv8t
- FmLw==
+ bh=LPWF50phvovWb6tYxEH8mMltpUSXFpLVUZZtI4Y7SjQ=;
+ b=mimpfzQY9svs4sU+lAwtk1fUE7/Z0Xe0PqE+WBVuaBnpgYs2kZbyC2JmAqunKhN218
+ jWcC2d1WLuxJaKvipMeNR35ugj3eXqyYlQesLOCEaFd4xFpiXaTCdQtwOANzGG+jLES2
+ rmBe4YxJ4sR7GO48hEQmYkNrHh16qACWq0kJrfiBLWPvUBwGD/zlkr0vsONhLs4MzVV5
+ Q+oGfjB+/I9dBhpdFShK3F6sYNMVB9F635X3qH/A6lIpsjeYZ2+YSY0KRVuwfBy0Nf+A
+ 5vjKkRwMSZbKsWK4Q75X3k7ZQQrD5NYpTsikEA4Bg5sm5KC0izXdevJZf+mjhtswB0mY
+ 2kRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1681991878; x=1684583878;
+ d=1e100.net; s=20221208; t=1681991879; x=1684583879;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=L7Ig8Kl4jd4BfcepntbJnzwhVu/D+8mkocz2CrOFf60=;
- b=FTwJCERsvI1evBBoq2SASaVlq22HnlakxZsV1DJS2VNJNJ6cEHfV3EV1gAzSPL/PlH
- joMvkbNtdoXdj6WUtBBA0+PVXys9AkMQS0+ZxgQlKfbIwzf8oIeI6JFKfHqlgT40ibfN
- vQ27Rc/iPV5dY5rT1xU7vAGfi9sJ4C+MNZ4P3kB72HEqBVFd6rW5TJmkbls30iU0CvDq
- 2QrW6egfDaboJIXFb0uQgUVnRecSj7dIMDQ/+tLrXLDTFtJebdQl2w4hAblKqxM3gPZd
- DplzykyB2W0SlLV7hbkRdFx8Kjboi+Yc5Tph8UHIQWY/fITZWDDQ65Rxq5P6UzDD/e/G
- 5ZTA==
-X-Gm-Message-State: AAQBX9euGGIRe75vtP+5P6ZsCh6cxNyaJ3g2EqikouNnEDCOl+EYg1hH
- d1pjGsS4kojEIATU7thA1JQgXtdw3XQSUA==
-X-Google-Smtp-Source: AKy350bJuLpux33ATj/1/sQ2BuxzkB5i90To4UomiLBaqAGxm5NZJymufhbf2wyAEmj+M1vISzDdBQ==
-X-Received: by 2002:a17:906:9153:b0:951:f54c:208c with SMTP id
- y19-20020a170906915300b00951f54c208cmr1506995ejw.41.1681991878455; 
- Thu, 20 Apr 2023 04:57:58 -0700 (PDT)
+ bh=LPWF50phvovWb6tYxEH8mMltpUSXFpLVUZZtI4Y7SjQ=;
+ b=Ut8NO+TkoQp7KkyOp2hEiTzrLrZ2OnbdCEWz44+Biwe8UlU8oe6keYFmi2JJoKF9JF
+ ccG/qSDIKxPcjwyjHmLbW2wTtFZdBA2Cylzeq3cHrTkk2lf6F9n6Y9MuhykU5UcwcGu9
+ rmU/LZhv88L53mx2yTdYzKi5Vl7EqxbRCvvHfa7If16ygzkeyr1PiQSTKr7kh+H/0KUL
+ FUNRxRl8KTycvLmky+cWlSiKV5Q23lRPKpjeM6cKT3XhQ/qGnzDKnS1cLy8VFcHXqfEl
+ RK6NvV6F1KYoHhsxiqbtF9sJWF9Hi7YH4lZW4COoBmdu9DwYr0FIxFH29ldQ4o4FKW4y
+ EPNQ==
+X-Gm-Message-State: AAQBX9cKgra2moEdpQ8ehu35nrtVaP26/R369UsFjfkrbpHcjUf+Cw5/
+ v6rWS0GA0bEB13WwFPRLUAtL3JkNVbCsTg==
+X-Google-Smtp-Source: AKy350YtzGRDTrzzBBy6apdmk32bYVAYELHBAnSL+HI9yvSo5Eplf+RoFsArlRUzuggcmFk6HpnuJQ==
+X-Received: by 2002:a17:906:17ce:b0:94f:1:8468 with SMTP id
+ u14-20020a17090617ce00b0094f00018468mr1286765eje.17.1681991879335; 
+ Thu, 20 Apr 2023 04:57:59 -0700 (PDT)
 Received: from able.fritz.box (p4fc2092b.dip0.t-ipconnect.de. [79.194.9.43])
  by smtp.gmail.com with ESMTPSA id
- l20-20020a170906645400b0095342bfb701sm689385ejn.16.2023.04.20.04.57.57
+ l20-20020a170906645400b0095342bfb701sm689385ejn.16.2023.04.20.04.57.58
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Thu, 20 Apr 2023 04:57:58 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 5/8] drm/amdgpu: mark soft recovered fences with -ENODATA
-Date: Thu, 20 Apr 2023 13:57:49 +0200
-Message-Id: <20230420115752.31470-5-christian.koenig@amd.com>
+Subject: [PATCH 6/8] drm/amdgpu: abort submissions during prepare on error
+Date: Thu, 20 Apr 2023 13:57:50 +0200
+Message-Id: <20230420115752.31470-6-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230420115752.31470-1-christian.koenig@amd.com>
 References: <20230420115752.31470-1-christian.koenig@amd.com>
@@ -78,38 +78,46 @@ Cc: luben.tuikov@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Set the fence error code before trying to soft-recover it.
-
-It gets overwritten when a hard recovery is required.
+Forward errors from previous submissions to this one.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-index d3ad29d932b8..083b1020b421 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-@@ -432,11 +432,18 @@ void amdgpu_ring_emit_reg_write_reg_wait_helper(struct amdgpu_ring *ring,
- bool amdgpu_ring_soft_recovery(struct amdgpu_ring *ring, unsigned int vmid,
- 			       struct dma_fence *fence)
- {
-+	unsigned long flags;
-+
- 	ktime_t deadline = ktime_add_us(ktime_get(), 10000);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+index 0a950c1c8782..5462f0406b02 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+@@ -256,16 +256,27 @@ amdgpu_job_prepare_job(struct drm_sched_job *sched_job,
+ 	struct dma_fence *fence = NULL;
+ 	int r;
  
- 	if (amdgpu_sriov_vf(ring->adev) || !ring->funcs->soft_recovery || !fence)
- 		return false;
- 
-+	spin_lock_irqsave(fence->lock, flags);
-+	if (!dma_fence_is_signaled_locked(fence))
-+		dma_fence_set_error(fence, -ENODATA);
-+	spin_unlock_irqrestore(fence->lock, flags);
++	/* Ignore soft recovered fences here */
++	r = drm_sched_entity_error(s_entity);
++	if (r && r != -ENODATA)
++		goto error;
 +
- 	atomic_inc(&ring->adev->gpu_reset_counter);
- 	while (!dma_fence_is_signaled(fence) &&
- 	       ktime_to_ns(ktime_sub(deadline, ktime_get())) > 0)
+ 	if (job->gang_submit)
+ 		fence = amdgpu_device_switch_gang(ring->adev, job->gang_submit);
+ 
+ 	while (!fence && job->vm && !job->vmid) {
+ 		r = amdgpu_vmid_grab(job->vm, ring, job, &fence);
+-		if (r)
++		if (r) {
+ 			DRM_ERROR("Error getting VM ID (%d)\n", r);
++			goto error;
++		}
+ 	}
+ 
+ 	return fence;
++
++error:
++	dma_fence_set_error(&job->base.s_fence->finished, r);
++	return NULL;
+ }
+ 
+ static struct dma_fence *amdgpu_job_run(struct drm_sched_job *sched_job)
 -- 
 2.34.1
 
