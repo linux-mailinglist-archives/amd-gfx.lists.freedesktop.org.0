@@ -1,125 +1,78 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 257E06E96E5
-	for <lists+amd-gfx@lfdr.de>; Thu, 20 Apr 2023 16:20:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C2DA6E9715
+	for <lists+amd-gfx@lfdr.de>; Thu, 20 Apr 2023 16:29:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A38EF10E0A7;
-	Thu, 20 Apr 2023 14:20:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F29C910EC6B;
+	Thu, 20 Apr 2023 14:29:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2061c.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7eab::61c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A29610EC58;
- Thu, 20 Apr 2023 14:20:04 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=h9pLZJ2feACLpRxePkFqE3oX7yJQYbOiNQ1kaAncwKdBpHqjHKaoY7r38iqGPkWEWD8bMjsb7/DIfDXLW8NHSjHbFmThCXx8Z+QxMnOXJYgmzxhgRw2mKdCoeBgZuEYCo64UlY0Rywvp4mkuUGVWtpU5EEBzX0wAt7jtqOHwXwtc00Xtfalokt7tPkTpPMEchrA8Ef8esW5ErplXV9bbdKdcj4R5XV6P8lhPDEjs3FhbER3MQNgTHsZZ6bb/oLPXkzZXMSqkNfABWgzKYyGqXRHks0Z0+72a2OottEhGPkdtyBD/SyZt1zUfKBv1XU2DJnJPUOd8mraEJ4WUc00e/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WhBLsnPYeYdDvfz/a48CTZ7McFUXi57eObJKWuf695I=;
- b=T2aXf+0abjHiRfIPPKMxNgrc5dpuIpZePFWprCk4TFNA8Ff09l//wEVGbGv23yUcGr5bpHPn756xKSrAKxScqApIuaAOVy9SsRt1bM0RsLoqiRYfv+YoDb+JvfUfCBQfSo2Y6n3lXDUV+QdvLpPabUHI8SFqC5/fZK4nkWg0ewOyNNq8lujzuij1+ATPC2Nf3QBWQ8UAJNAMp2nRyc3QQyYUQVE9Ekk5kSABiOoiW3bh+qh//Jqc/wYfyf8rcJgBqq1jW0WwvVrJyCRxVgwOV0yap118QSo5QNjCoMKrsnKrlsCtqPKQjwAtDrKhTApHqd3wYcX3PHDiazaEcJscmw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WhBLsnPYeYdDvfz/a48CTZ7McFUXi57eObJKWuf695I=;
- b=lfLmn/Gr+8xxts+TA4Di2B5RFqzsAgqMWvlwd+rys3MkHo2wDauhpOetpSgd1B2bMjTIdQHt8K0F9APIwHjfQHZp0SoJolII+xmP/Hm5TdG0HZG3opwelQRvj3NHsXcTzytQP1aFcUPPmI7ZJi5UjhdMgBCmFKEQ1edsuUMyfDw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB6280.namprd12.prod.outlook.com (2603:10b6:8:a2::11) by
- CH2PR12MB4248.namprd12.prod.outlook.com (2603:10b6:610:7a::23) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6319.22; Thu, 20 Apr 2023 14:20:02 +0000
-Received: from DM4PR12MB6280.namprd12.prod.outlook.com
- ([fe80::fe53:2742:10f9:b8f1]) by DM4PR12MB6280.namprd12.prod.outlook.com
- ([fe80::fe53:2742:10f9:b8f1%9]) with mapi id 15.20.6319.022; Thu, 20 Apr 2023
- 14:20:02 +0000
-Message-ID: <de66ba4f-52b3-6507-3194-60b894d840c4@amd.com>
-Date: Thu, 20 Apr 2023 10:21:27 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH 3/3] drm/amd/display: remove unused variables in
- dcn21_set_backlight_level
-Content-Language: en-US
-To: Arnd Bergmann <arnd@kernel.org>, Harry Wentland <harry.wentland@amd.com>, 
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Leon Huang <Leon.Huang1@amd.com>
-References: <20230420084711.3063453-1-arnd@kernel.org>
- <20230420084711.3063453-3-arnd@kernel.org>
-From: Hamza Mahfooz <hamza.mahfooz@amd.com>
-In-Reply-To: <20230420084711.3063453-3-arnd@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YT3PR01CA0145.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:83::14) To DM4PR12MB6280.namprd12.prod.outlook.com
- (2603:10b6:8:a2::11)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4551110EC68
+ for <amd-gfx@lists.freedesktop.org>; Thu, 20 Apr 2023 14:29:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1682000970;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=6BdrM5PAXOTQN54lsRvoJTmZEachvXpdp/asoBdEKLk=;
+ b=aT8EZ86DUPAHN92fEAy6StOJsD1rcXTLvQr91jFB+EAptiLU6l5S08U0ftPfADA2emX4q3
+ ovi9BtjmlLtpwc9ldxM6IxzFWc1sadE7bVJX3CvyzhOWyXRqbFzEmNwGpowV/9Crpqj7+a
+ FodbhqWR2JlhuzYJ+zAp2R/JYbvkLrw=
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
+ [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-570-yL32NlUUPJygqp6B3AAhPg-1; Thu, 20 Apr 2023 10:29:29 -0400
+X-MC-Unique: yL32NlUUPJygqp6B3AAhPg-1
+Received: by mail-qv1-f70.google.com with SMTP id
+ 6a1803df08f44-5efc80e8485so10642426d6.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 20 Apr 2023 07:29:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1682000969; x=1684592969;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=6BdrM5PAXOTQN54lsRvoJTmZEachvXpdp/asoBdEKLk=;
+ b=Ooj6gyU+nfigMoHb+YILoU0VY3kzvrk49G5/tYscRjLoIWKyemzZ2xzX3c3KoCkRMM
+ lVaIsQYG+wmePsq5/80NmkVhFA1f2InnzMYsbyIuqS615VKcaxaFLOP5Kkj+wlsyJB1t
+ FUOFBnfAe+0n2/Id5/XTT5amPmvs9TqZXwGVFItss7xEJIV5FoHrjeLRewKBOXMC7SAC
+ p/ZlJnwMAzRpki7XgxE6G1a0AN+eDERpLy/SL9YNNt/cOm3M94pVbwiKvAcXZaTYHeTB
+ nOEVvMMAuJ7n1RU6nylnvSN3ySJ81p4XOkbOPnkxEyE+CZhrH8si9/9Tz2KG5KGkpWL8
+ /j2Q==
+X-Gm-Message-State: AAQBX9f+nhPF+gEjLFm1xOOfHvo3Qa1Nq0WN5Idut6kZnc0rd9ngVv0w
+ ydqDt2be0NLVF+WKhuXFhU1fWDtA9gfphSS0h2cDcDid6oXZMgrcruJ7taO+JkvIongkg/Vztlc
+ 2Zf2rZ9Ey/CZfAK6pd6njfOj+uQ==
+X-Received: by 2002:a05:6214:301e:b0:56e:b557:2d4e with SMTP id
+ ke30-20020a056214301e00b0056eb5572d4emr2242319qvb.6.1682000968837; 
+ Thu, 20 Apr 2023 07:29:28 -0700 (PDT)
+X-Google-Smtp-Source: AKy350bh4jP9BRcxAXAQBGpztEZgR2c1DlH5MA0cabHVDBgEfStN28QcPkDWcM8pWXDcVwsX39FA5w==
+X-Received: by 2002:a05:6214:301e:b0:56e:b557:2d4e with SMTP id
+ ke30-20020a056214301e00b0056eb5572d4emr2242276qvb.6.1682000968521; 
+ Thu, 20 Apr 2023 07:29:28 -0700 (PDT)
+Received: from dell-per740-01.7a2m.lab.eng.bos.redhat.com
+ (nat-pool-bos-t.redhat.com. [66.187.233.206])
+ by smtp.gmail.com with ESMTPSA id
+ b27-20020a0cb3db000000b005e750d07153sm420904qvf.135.2023.04.20.07.29.27
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 20 Apr 2023 07:29:28 -0700 (PDT)
+From: Tom Rix <trix@redhat.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch, Hawking.Zhang@amd.com, le.ma@amd.com,
+ Jack.Xiao@amd.com, YiPeng.Chai@amd.com, Lang.Yu@amd.com, Likun.Gao@amd.com,
+ Arunpravin.PaneerSelvam@amd.com, andrealmeid@igalia.com
+Subject: [PATCH] drm/amdgpu: remove unused variable j
+Date: Thu, 20 Apr 2023 10:29:25 -0400
+Message-Id: <20230420142925.3890505-1-trix@redhat.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB6280:EE_|CH2PR12MB4248:EE_
-X-MS-Office365-Filtering-Correlation-Id: 33b4382f-9bc7-478b-c828-08db41aa5497
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OVjmaGllzboWl1Udy6OM2EK0Gl518BQ9k/IqyrVpO4/CrbPVYEsJmpaj1pZAZFRnTnB3BYCHcltc5nnHRKf/TBEyElx7WMSQVcD1gxNcZr5ZSdGzRFsa15wShWBnsdTfzl+BIzZV/OmAf3XaFQNFY3j12GiUHEGCAh/AwJA5nyhutitDeooAzPl65kuB9l7lOwmQulQ5bK+SngoThvRyXn50TE7S+0AzXE/XORmngbAAdSNhp3tcdivOuZMRzz3BFde5xEOBAcJIeG4KJEJmVdtcBcngIM7TKYNfP8xzLY2lvjvcZ354HWUeX3wjXDhn6SeuB37PUA+Wry4UZzu5qnjOJDr+Uritv9vbqjlpQWJ7qoNeNVqekName+xJTE+X5oMHgfN81o+E7Ffx971QPCzsl9Efk8Ikcm0jNfRpWvpX1x0V8g+hcQK4+jkkeTQF5IZiE2bGlbG7ELAQP8mr+Oe+k246AX7nTFUwcBB4pv0gBMadestoPrCu6Rt3RsYwDowN3qZt7XXC65/eoliiNufZLJSVpfZZQtD6SMVlc5oszA26O8jQKcv8oN/Gy5gC+Q6BXoUg+hwpfcprYdcsALvI7q+iT9ENipAtfoi2OFMQ0TPxwZSisD8Ihg7A7vQyaVstvd1Xxq3FQuwiJ8tUNQ66Ia+/mNUPye5jBeiXRco=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB6280.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(39860400002)(366004)(396003)(346002)(136003)(376002)(451199021)(8676002)(41300700001)(8936002)(2906002)(44832011)(5660300002)(83380400001)(921005)(54906003)(86362001)(36756003)(110136005)(478600001)(6512007)(2616005)(26005)(6506007)(53546011)(6486002)(38100700002)(186003)(6666004)(31686004)(31696002)(316002)(4326008)(6636002)(66946007)(66556008)(66476007)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UkhFdXZ0SE1pb0NqN2RwVHRxSXVLWERpTzlVTVFGZElXc2I2S25aTkM1VGxy?=
- =?utf-8?B?K0F1cmNzQkloejRSd2RPRThoSzNZUkUvR1luQTdMMmhRTW50dUVOUHVzZW9F?=
- =?utf-8?B?eTNERTlrVDdTWDBBS1luNjZ2OW5Cd3IxcFh5ZEpHWmFWQmpldXE3d2c3cXYx?=
- =?utf-8?B?N2NHRzdYamxjUFpBOTUxZVU4SHVLaG05SDVHOUVpUVF4SllLcU54aDVCa0c0?=
- =?utf-8?B?eHp3V2hSQngxTDZSeDArU1RoQ3BxYlRXWFZNWENCYnR1RFZDM0VHT0N5ak9E?=
- =?utf-8?B?L0w4czlEanhmcUJDcUFqaWN6UDVwQ2ozUGpiZUN3Tm5WZTFURUtON2RYa3R5?=
- =?utf-8?B?YWQ2V1ZGMFViajZxVDdHK1hUdkdSYXI1eTlweTN4S2kvKzlqVmxmc0xXKzFn?=
- =?utf-8?B?Zkw0MnFzN0I2NVhWLzNrZnZnWVQrZnhNN2ZLTFdMN3hwWnYrZkg5NEdiSk1a?=
- =?utf-8?B?dHRXeWNxclJjSTRpelJ1TXZTWlhvZERyZG5NMHZxMTduRnNYS3NTTzlLYklB?=
- =?utf-8?B?R1V5byt0K2FXNzB4ZmhIbDdMa0JyMDg3VmY4RDVoS0FhN0FRR1ZTVDVvUFcx?=
- =?utf-8?B?K2t1TDN5a1E5TDRJb1UwKzBLSW5mZ3o0MVBaMXJkVDlmYnp6bExzeFU0cjlT?=
- =?utf-8?B?YjZDNEl3ejRWNW1Ha1NMNnNkSDVJd0RGWlU0R0Vmb0lyS09QS3JYTXFSeVdK?=
- =?utf-8?B?c0RGQkpqN1Q5d1prYUZuaytGVlJ2YUhUcTIwWnlBZ0QzTUI0aG1QNHZKN1Fs?=
- =?utf-8?B?RGdYVmVsYnpYR3dnSWtnaGRKQ01zU2wxREN1bmZsZ0ZTbmxKaGhoMnc4bllx?=
- =?utf-8?B?bCsvU2ZFU3JVTml5M2lzSlZlZmVnVUt1SGMrSGdqdXN2Z1VmRmsydWVJN3ZE?=
- =?utf-8?B?U0pWSW1UazBCOWN5b0R1N0NKWjlXMlFNZW1QelFlZWFWa2xQaEtIR1BSK3kw?=
- =?utf-8?B?MVUxVGwvdTRLRkF1ZS9tbkpobUNucVl0djVCTnZRQ3dPb2xaTzZ0cndsakJQ?=
- =?utf-8?B?WndEK0tUVWdUQ2pQV2Z3bUM0N1RZako5Lysza3dEUXR4amFGdFUrbWVDaEVL?=
- =?utf-8?B?dEpGcFB4OHpzODlBSkphM2huUmVvT3RCclNReGJzaWtYUFcrSVY1T0JzbUMx?=
- =?utf-8?B?eE4wSjMwU0JYdjFBM0RVSWlQNFdISVhyMEpGM0dhVnFCRU9iK1BVYnIvOW9D?=
- =?utf-8?B?S3J0NG5vT0JhZ2lMRERYZG1idktaOWJsWFoyb2lLWkFYeHF2NjllYnJENFpX?=
- =?utf-8?B?MlpXVHlZT0RjZitHSXh5c0YrWHhvUGhrYXRvZisyTEdYVEVYd29kY21jb2wv?=
- =?utf-8?B?Ylk4dGIyMXZwOTZHZDZJSDZsUTZmbEFWQy9ZNUxqUGV0VG03U1VGOUhSQnpx?=
- =?utf-8?B?NUNta292UHh0UWtJSSt1OWk2RWhuQWIwZ09MeWN1SFBHUWdZS3g3V2hXeDRS?=
- =?utf-8?B?ZlNGM2ZSZHhRSUZJRFRTS1ZNZjJUdGpSQ1hmYUlTeXJaanBzR1Jaa2xBMXRO?=
- =?utf-8?B?dHhIWlpqYmpxcHR3MW0xSUlnN3RIK21SQnRTWVlIUEJKYU9PV3c3ZUUyK3Az?=
- =?utf-8?B?SUM0cVhLOFhrMXFndDVYOWdaZzMrdktBcWZKSm5Sazd2amNEcXg5YmJXU1pW?=
- =?utf-8?B?Z0Q0TWNYTmZhcGlobUd0blRJWndqdGRxaVp4Q0NOT1NDbDVCcGFJU1hHLzNT?=
- =?utf-8?B?TWUrWkkzaGZSOVZpajE0THJ5M0pkUmcrNGl6SEF3eUpoandEN0Job0NwSTFz?=
- =?utf-8?B?c0RGZzNMUndTNStRRXVSc1VucU9kS0FtRHQ3KzA4OGhnR2tMdkdueS8wU1Q3?=
- =?utf-8?B?RGR2SXk3VEhZU3NLL2VwRW1YaUdBTVBwWUJrNmlCZG9wdDZnb3JUWXRseDBy?=
- =?utf-8?B?eDBwTk0vVDZxSVg5ekhabkJIV1loZmVQRkE1YWxaa284Z0JWYnBOb0NWUE81?=
- =?utf-8?B?cFEzNU4zN29GVjNKOWpmOCtWVTM5YTZWTnRQdTZaL0NVRndPcFRva0xvb2VD?=
- =?utf-8?B?WklJNnlSZzk5RUdkek9odk5NcnVtSnRlem1DVlVNdGRUMGs3NWRZeXZpZ29B?=
- =?utf-8?B?Q29yK0twZmQ5dWt1K3crclpZazBMSUhqWmRXcktFT1JST2JKdVo3MXgybDBM?=
- =?utf-8?Q?I3AtjuzV+eglHxhYR4GlFqYTo?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 33b4382f-9bc7-478b-c828-08db41aa5497
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6280.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Apr 2023 14:20:02.4170 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hI50g4sxhjlXs2PmmXR8hHEyTbUQPOIOpu/ArMhUZvSKM3yV8oMLQ26zW/7gcorilMsAiRnWawByZBwUdWQxKg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4248
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 20 Apr 2023 14:29:49 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,48 +84,101 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arnd Bergmann <arnd@arndb.de>, Qingqing Zhuo <qingqing.zhuo@amd.com>,
- Wenjing Liu <wenjing.liu@amd.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Cc: Tom Rix <trix@redhat.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+gcc with W=1 reports
+drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c: In function
+  ‘amdgpu_gfx_mqd_sw_fini’:
+drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c:451:16: error: variable
+  ‘j’ set but not used [-Werror=unused-but-set-variable]
+  451 |         int i, j;
+      |                ^
+drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c: In function
+  ‘amdgpu_gfx_disable_kcq’:
+drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c:486:13: error: variable
+  ‘j’ set but not used [-Werror=unused-but-set-variable]
+  486 |         int j;
+      |             ^
+drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c: In function
+  ‘amdgpu_gfx_enable_kcq’:
+drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c:529:19: error: variable
+  ‘j’ set but not used [-Werror=unused-but-set-variable]
+  529 |         int r, i, j;
+      |                   ^
 
-On 4/20/23 04:47, Arnd Bergmann wrote:
-> From: Arnd Bergmann <arnd@arndb.de>
-> 
-> The only references to these variables were removed, so they now cause
-> warnings and have to be removed as well:
-> 
-> drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_hwseq.c:226:20: error: unused variable 'cmd' [-Werror,-Wunused-variable]
-> drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_hwseq.c:229:11: error: unused variable 'otg_inst' [-Werror,-Wunused-variable]
-> 
-> Fixes: 6f0ef80a00ad ("drm/amd/display: Fix ABM pipe/backlight issues when change backlight")
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+These variables are not used, so remove them.
 
-This has already been fixed, as of commit 1adb4dd5bd4b
-("drm/amd/display: Remove unused variables in dcn21_hwseq.c") in
-amd-staging-drm-next.
+Signed-off-by: Tom Rix <trix@redhat.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 14 ++++----------
+ 1 file changed, 4 insertions(+), 10 deletions(-)
 
-> ---
->   drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hwseq.c | 2 --
->   1 file changed, 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hwseq.c
-> index 55a464a39529..43463d08f21b 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hwseq.c
-> +++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hwseq.c
-> @@ -223,10 +223,8 @@ bool dcn21_set_backlight_level(struct pipe_ctx *pipe_ctx,
->   		uint32_t backlight_pwm_u16_16,
->   		uint32_t frame_ramp)
->   {
-> -	union dmub_rb_cmd cmd;
->   	struct dc_context *dc = pipe_ctx->stream->ctx;
->   	struct abm *abm = pipe_ctx->stream_res.abm;
-> -	uint32_t otg_inst = pipe_ctx->stream_res.tg->inst;
->   	struct panel_cntl *panel_cntl = pipe_ctx->stream->link->panel_cntl;
->   
->   	if (dc->dc->res_pool->dmcu) {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+index 7f5c60381103..ac6fd8620279 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+@@ -448,7 +448,7 @@ int amdgpu_gfx_mqd_sw_init(struct amdgpu_device *adev,
+ void amdgpu_gfx_mqd_sw_fini(struct amdgpu_device *adev, int xcc_id)
+ {
+ 	struct amdgpu_ring *ring = NULL;
+-	int i, j;
++	int i;
+ 	struct amdgpu_kiq *kiq = &adev->gfx.kiq[xcc_id];
+ 
+ 	if (adev->asic_type >= CHIP_NAVI10 && amdgpu_async_gfx_ring) {
+@@ -462,7 +462,6 @@ void amdgpu_gfx_mqd_sw_fini(struct amdgpu_device *adev, int xcc_id)
+ 	}
+ 
+ 	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
+-		j = i + xcc_id * adev->gfx.num_compute_rings;
+ 		ring = &adev->gfx.compute_ring[i];
+ 		kfree(adev->gfx.mec.mqd_backup[i]);
+ 		amdgpu_bo_free_kernel(&ring->mqd_obj,
+@@ -483,7 +482,6 @@ int amdgpu_gfx_disable_kcq(struct amdgpu_device *adev, int xcc_id)
+ 	struct amdgpu_kiq *kiq = &adev->gfx.kiq[xcc_id];
+ 	struct amdgpu_ring *kiq_ring = &kiq->ring;
+ 	int i, r = 0;
+-	int j;
+ 
+ 	if (!kiq->pmf || !kiq->pmf->kiq_unmap_queues)
+ 		return -EINVAL;
+@@ -495,11 +493,9 @@ int amdgpu_gfx_disable_kcq(struct amdgpu_device *adev, int xcc_id)
+ 		return -ENOMEM;
+ 	}
+ 
+-	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
+-		j = i + xcc_id * adev->gfx.num_compute_rings;
++	for (i = 0; i < adev->gfx.num_compute_rings; i++)
+ 		kiq->pmf->kiq_unmap_queues(kiq_ring, &adev->gfx.compute_ring[i],
+ 					   RESET_QUEUES, 0, 0);
+-	}
+ 
+ 	if (adev->gfx.kiq[0].ring.sched.ready && !adev->job_hang)
+ 		r = amdgpu_ring_test_helper(kiq_ring);
+@@ -526,7 +522,7 @@ int amdgpu_gfx_enable_kcq(struct amdgpu_device *adev, int xcc_id)
+ 	struct amdgpu_kiq *kiq = &adev->gfx.kiq[xcc_id];
+ 	struct amdgpu_ring *kiq_ring = &kiq->ring;
+ 	uint64_t queue_mask = 0;
+-	int r, i, j;
++	int r, i;
+ 
+ 	if (!kiq->pmf || !kiq->pmf->kiq_map_queues || !kiq->pmf->kiq_set_resources)
+ 		return -EINVAL;
+@@ -562,10 +558,8 @@ int amdgpu_gfx_enable_kcq(struct amdgpu_device *adev, int xcc_id)
+ 		queue_mask = ~0ULL;
+ 
+ 	kiq->pmf->kiq_set_resources(kiq_ring, queue_mask);
+-	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
+-		j = i + xcc_id * adev->gfx.num_compute_rings;
++	for (i = 0; i < adev->gfx.num_compute_rings; i++)
+ 		kiq->pmf->kiq_map_queues(kiq_ring, &adev->gfx.compute_ring[i]);
+-	}
+ 
+ 	r = amdgpu_ring_test_helper(kiq_ring);
+ 	spin_unlock(&kiq->ring_lock);
 -- 
-Hamza
+2.27.0
 
