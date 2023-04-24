@@ -1,51 +1,48 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17F0B6ECC6A
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Apr 2023 14:55:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABDC56ECDE0
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Apr 2023 15:27:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A44CE10E4E9;
-	Mon, 24 Apr 2023 12:55:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91DD910E4FC;
+	Mon, 24 Apr 2023 13:27:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (mail.ozlabs.org
- [IPv6:2404:9400:2221:ea00::3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6954810E120
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Apr 2023 11:51:45 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4Q4k4Q2cmLz4x84;
- Mon, 24 Apr 2023 21:51:34 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
- s=201909; t=1682337094;
- bh=KBQL8ssMthEHvYa5VPiSMs/LCpDXnzoIeuAfczo++Wk=;
- h=From:To:Subject:In-Reply-To:References:Date:From;
- b=VoP7HDp8HB4SCi0gEWSiahq1b/7MV/1HwUEH+OlIrekgbc1ZRlfgkHoW+nu+3GVG9
- 1KfeE8n463Mq+HObgJARtJqK+UBKVsOGHyDb8NyR3RBmJs1Cc2LPfooEFn0Ipz3abA
- BejkuFWPr0ZAuTAPBHvGogrlfJhjLqgB1oidF7yxdWKDi7eOVqZ4vK3U7Kj/bw7kAf
- oCgmFBBm4mHeKxDJ7I7p5RR/n7ztqSMsCKdt+1wVp/gWRmoQVqE7DxWV0FjQyUseC3
- kn++9p4u+OcyN0Rju+tuqiRzWt9toKQvbypI8TcMP4Ljzqn8twPgJuSBp0NUocYO9A
- 4rAY1Bk/OMeaQ==
-From: Michael Ellerman <mpe@ellerman.id.au>
-To: Lukas Bulwahn <lukas.bulwahn@gmail.com>, Harry Wentland
- <harry.wentland@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, kernel-janitors
- <kernel-janitors@vger.kernel.org>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Mark Brown <broonie@kernel.org>, Nathan
- Chancellor <nathan@kernel.org>, Linus Torvalds
- <torvalds@linux-foundation.org>
-Subject: Re: In-flight collision: DRM_AMD_DC_DCN renaming
-In-Reply-To: <CAKXUXMziSWC9oGVQxCPs6U5GsnuA2KbKsobj1Feo_eNUn3e4dg@mail.gmail.com>
-References: <CAKXUXMziSWC9oGVQxCPs6U5GsnuA2KbKsobj1Feo_eNUn3e4dg@mail.gmail.com>
-Date: Mon, 24 Apr 2023 21:51:30 +1000
-Message-ID: <87ildlzef1.fsf@mail.concordia>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A43FA10E4F0;
+ Mon, 24 Apr 2023 13:27:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=VJ6aqpWgPeGvM1GhnkNKoblslgPvV3JKY89c5BlTEXc=; b=JcP5wLNowUmLPotHeHcX+J9h86
+ P80OboDWmzKLDUl079c4UbBnq6vWQAr4ObuR7aJTmtvccUuNBYMsdnxs0sKFCvE/PwznNz2GpLRH7
+ p97HeEVbVvZmoTHqs3C3KH9xwTZUQpXHP4JWM9ARwTtgarqGpKeoR36v0V5yC3R/uYdvXUm7W4xUC
+ SsneYGeoe6vVjHa6LM5mM8r2/NnW7a7OUfcqtBVWOHT27FpyDbkRvadM8RJomRY1Og0R7V6tBZdf6
+ xwucKUMfkGr/kPcq0hsRe2aC5tOSmB3l09GoduUBJd87iobzYzhtcxrc2erJs8XDcGxTX2nbtFG8D
+ fK3zo3nA==;
+Received: from [152.249.146.45] (helo=[192.168.1.111])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1pqwDw-00AtVt-PD; Mon, 24 Apr 2023 15:27:20 +0200
+Message-ID: <717b333b-7af6-063e-d50d-bb2b3bbcecb4@igalia.com>
+Date: Mon, 24 Apr 2023 10:26:33 -0300
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Mailman-Approved-At: Mon, 24 Apr 2023 12:55:37 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH] drm/amdgpu: Mark contexts guilty for any reset type
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+References: <20230424014324.218531-1-andrealmeid@igalia.com>
+ <d7264c5a-29b4-0fb3-153b-673a8a73d635@amd.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Andr=c3=a9_Almeida?= <andrealmeid@igalia.com>
+In-Reply-To: <d7264c5a-29b4-0fb3-153b-673a8a73d635@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,67 +54,57 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: pierre-eric.pelloux-prayer@amd.com,
+ =?UTF-8?B?J01hcmVrIE9sxaHDoWsn?= <maraeo@gmail.com>,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, "Tuikov,
+ Luben" <Luben.Tuikov@amd.com>, dri-devel@lists.freedesktop.org,
+ kernel-dev@igalia.com, alexander.deucher@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Lukas,
+Hi Christian, thank you for your comments.
 
-Lukas Bulwahn <lukas.bulwahn@gmail.com> writes:
-> Dear Michael, dear Harry, dear Alex,
->
-> The commit 4652ae7a51b7 ("drm/amd/display: Rename DCN config to FP")
-> renames config DRM_AMD_DC_DCN to config DRM_AMD_DC_FP. The concurrent
-> commit 78f0929884d4 ("powerpc/64: Always build with 128-bit long
-> double") overrides the renaming change for the select in config
-> DRM_AMD_DC, and this leads to selecting the non-existent
-> DRM_AMD_DC_DCN.
+Em 24/04/2023 04:03, Christian König escreveu:
+> Am 24.04.23 um 03:43 schrieb André Almeida:
+>> When a DRM job timeout, the GPU is probably hang and amdgpu have some
+>> ways to deal with that, ranging from soft recoveries to full device
+>> reset. Anyway, when userspace ask the kernel the state of the context
+>> (via AMDGPU_CTX_OP_QUERY_STATE), the kernel reports that the device was
+>> reset, regardless if a full reset happened or not.
+>>
+>> However, amdgpu only marks a context guilty in the ASIC reset path. This
+>> makes the userspace report incomplete, given that on soft recovery path
+>> the guilty context is not told that it's the guilty one.
+>>
+>> Fix this by marking the context guilty for every type of reset when a
+>> job timeouts.
+> 
+> The guilty handling is pretty much broken by design and only works 
+> because we go through multiple hops of validating the entity after the 
+> job has already been pushed to the hw.
 
-The powerpc commit doesn't override the name change, in the powerpc tree
-where it's applied the name change hasn't happened yet, see the diff:
+I see, thanks.
 
-diff --git a/drivers/gpu/drm/amd/display/Kconfig b/drivers/gpu/drm/amd/display/Kconfig
-index 0c9bd0a53e60..e36261d546af 100644
---- a/drivers/gpu/drm/amd/display/Kconfig
-+++ b/drivers/gpu/drm/amd/display/Kconfig
-@@ -8,7 +8,7 @@ config DRM_AMD_DC
- 	depends on BROKEN || !CC_IS_CLANG || X86_64 || SPARC64 || ARM64
- 	select SND_HDA_COMPONENT if SND_HDA_CORE
- 	# !CC_IS_CLANG: https://github.com/ClangBuiltLinux/linux/issues/1752
--	select DRM_AMD_DC_DCN if (X86 || PPC_LONG_DOUBLE_128 || (ARM64 && KERNEL_MODE_NEON && !CC_IS_CLANG))
-+	select DRM_AMD_DC_DCN if (X86 || (PPC64 && ALTIVEC) || (ARM64 && KERNEL_MODE_NEON && !CC_IS_CLANG))
- 	help
- 	  Choose this option if you want to use the new display engine
- 	  support for AMDGPU. This adds required support for Vega and
+> 
+> I think we should probably just remove that completely and use an 
+> approach where we check the in flight submissions in the query state 
+> IOCTL.
 
+Like the DRM_IOCTL_I915_GET_RESET_STATS approach?
 
-The problem is that the resolution of the merge conflict in linux-next
-is incorrect, it takes the powerpc change without taking into account
-the rename from the amdgpu commit.
+ > See my other patch on the mailing list regarding that.
 
-The correct resolution is:
+Which one, the "[PATCH 1/8] drm/scheduler: properly forward fence 
+errors" series?
 
-diff --cc drivers/gpu/drm/amd/display/Kconfig
-index e36261d546af,06b438217c61..000000000000
---- a/drivers/gpu/drm/amd/display/Kconfig
-+++ b/drivers/gpu/drm/amd/display/Kconfig
-@@@ -8,7 -8,7 +8,7 @@@ config DRM_AMD_D
-        depends on BROKEN || !CC_IS_CLANG || X86_64 || SPARC64 || ARM64
-        select SND_HDA_COMPONENT if SND_HDA_CORE
-        # !CC_IS_CLANG: https://github.com/ClangBuiltLinux/linux/issues/1752
--       select DRM_AMD_DC_DCN if (X86 || (PPC64 && ALTIVEC) || (ARM64 && KERNEL_MODE_NEON && !CC_IS_CLANG))
- -      select DRM_AMD_DC_FP if (X86 || PPC64 || (ARM64 && KERNEL_MODE_NEON && !CC_IS_CLANG))
-++      select DRM_AMD_DC_FP if (X86 || (PPC64 && ALTIVEC) || (ARM64 && KERNEL_MODE_NEON && !CC_IS_CLANG))
-        help
-          Choose this option if you want to use the new display engine
-          support for AMDGPU. This adds required support for Vega and
+> 
+> Additional to that I currently didn't considered soft-recovered 
+> submissions as fatal and continue accepting submissions from that 
+> context, but already wanted to talk with Marek about that behavior.
+> 
 
+Interesting. I will try to test and validate this approach to see if the 
+contexts keep working as expected on soft-resets.
 
-(Note that 4652ae7a51b7 incorrectly changed PPC_LONG_DOUBLE_128 to plain
- PPC64, which is why PPC_LONG_DOUBLE_128 doesn't appear in the diff above.)
-
-Possibly the merge resoulution can be fixed in linux-next.
-
-And ultimately the fix is for Linus to do the proper merge resolution
-when he eventually merges the two trees.
-
-cheers
+> Regards,
+> Christian.
