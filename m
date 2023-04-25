@@ -2,120 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B67A46EE288
-	for <lists+amd-gfx@lfdr.de>; Tue, 25 Apr 2023 15:13:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A6926EE2BE
+	for <lists+amd-gfx@lfdr.de>; Tue, 25 Apr 2023 15:20:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38E5110E28A;
-	Tue, 25 Apr 2023 13:13:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B649110E291;
+	Tue, 25 Apr 2023 13:20:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2056.outbound.protection.outlook.com [40.107.94.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29A1810E291
- for <amd-gfx@lists.freedesktop.org>; Tue, 25 Apr 2023 13:13:25 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PFY9Sr51qRELjElpoadKAe6o5azR5EcRP+DP7bwlEkQv+1A3P1zboi6gnCk04SJtKa9XydtGl/WH9jmCpSfYXTowIem6leb2q0hq/QW8Gm7qapAqFiJgi3ShQerLrw0B2ozudk95xOsJ49xvgydp1ltnsB7EOX1cpTdpJqvqSp/+RmfhTxQnoc8Y+5LNHLES3Yfrc9bVC4G8CXU66lQk6U2zcYBJ6VEAwgOr2DEbzremn8N8I32Jf1S1SunzeRLzI3gYYpmqJxcZ2mywRhOdqhvwLi8TRl+0OV95cIojmzGZ13Z97x2AQ6g8/ocJLXPlPN/C612LzYrnommKfoMIHg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T5m2Znf/tjt5yeeDlVqLeNdl6+mqbMnIHh9oeSOunBw=;
- b=bgJ8fWnBo22TpwK2j2GjoLVj8AAaR+3s0k4LRaJvq0HAnmOJJp1N1k6WwIj/c+n4VtZbbmpb0W3VwD40Jl6rN+QaA7mdGwq1HWSil1oXP3qvZCEAcj7xSvYneqJKMH5kSmdPGnMQMZVGT5ZhDpf7+f0J9CqPFPlY/0yGLWwY2PofodZsgnyE3IJvXDE4JbH/d+o/ePXmEf8JhmLIfVlMDQsw+0JUHYv4B57KlovEDuOY9wjZ1reV5r2IdVy6OPTWTLAiRe5etDr7xdK4V5PVggKPkvON4AL+oosgck72O6vQ0Dc4U5Da3+Lb2L26/7reFIr7Hfizk4oqEHoxNCJ0bA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=T5m2Znf/tjt5yeeDlVqLeNdl6+mqbMnIHh9oeSOunBw=;
- b=d7YmNqXkfPK3nHGTeJS5ResBbRCKlVRWte8fVuaat6sFhqWDAB7oJaLCJGICFUpc9Z7540ov0jgSaLfq5UE1xwnZqjLH0Da1ORVXwMLaV7Mz93EnTfje70q1AbKxH379bv7xiS2ubVYdEaSl+JxeQoIXCfENOqqVNvPCrjDfcqM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MW4PR12MB5667.namprd12.prod.outlook.com (2603:10b6:303:18a::10)
- by CO6PR12MB5412.namprd12.prod.outlook.com (2603:10b6:5:35e::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6319.34; Tue, 25 Apr
- 2023 13:13:23 +0000
-Received: from MW4PR12MB5667.namprd12.prod.outlook.com
- ([fe80::755d:fed:c4a:bf05]) by MW4PR12MB5667.namprd12.prod.outlook.com
- ([fe80::755d:fed:c4a:bf05%6]) with mapi id 15.20.6340.020; Tue, 25 Apr 2023
- 13:13:23 +0000
-Message-ID: <fd787de4-7faf-0cac-6910-f12adb2e3ed4@amd.com>
-Date: Tue, 25 Apr 2023 15:13:16 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v4 05/10] drm/amdgpu: create context space for usermode
- queue
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org
-References: <20230424173836.1441-1-shashank.sharma@amd.com>
- <20230424173836.1441-6-shashank.sharma@amd.com>
- <28c8fae1-0cd7-2b7c-35ae-520633ce874e@amd.com>
-From: Shashank Sharma <shashank.sharma@amd.com>
-In-Reply-To: <28c8fae1-0cd7-2b7c-35ae-520633ce874e@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR2P281CA0158.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:99::11) To MW4PR12MB5667.namprd12.prod.outlook.com
- (2603:10b6:303:18a::10)
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com
+ [IPv6:2607:f8b0:4864:20::732])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C21410E291;
+ Tue, 25 Apr 2023 13:20:05 +0000 (UTC)
+Received: by mail-qk1-x732.google.com with SMTP id
+ af79cd13be357-74e07d97aeaso55951685a.1; 
+ Tue, 25 Apr 2023 06:20:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1682428804; x=1685020804;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=dPg6SfS4S5qIc0SsszzUxTwFyGlk4cEDc8p3l837TIE=;
+ b=eQ+e6K2lkYZ0Fjk6NVtmRuX3UFIkYNbg6i1iepkXkt0TZdh3pQcEBAD1IMUX5dqk9B
+ Nb2s1G7G/AlOS7QkhIiSvRocQP7nAETk00MmDoNBFNtL1wyzQy8KuY4hi+j19Eldlk1X
+ s3FBCrKo2Usp+nhxgWn1SgZvqdRkvIm2Q9KIF9db1EWePUsD/ejb3T64Hr0NeM5AEnVE
+ vHa4EXTCITlQhg0BcI1+gdOHHj2y85Eo/zoLMsMCZnktDpAo1Jynl77OFUzDGzw4WRiQ
+ GhoLjmeIyNf8h0kNFLKMJr3wKVtSfv6B2F9Fd/J+TP+qVp9f1qu0XpaUUckRtOQegyIh
+ Uqnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1682428804; x=1685020804;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=dPg6SfS4S5qIc0SsszzUxTwFyGlk4cEDc8p3l837TIE=;
+ b=jLmuO1zSyn3ZPm8kdCFLJCl1VUv11rhD2L3unWZOekjs4wybaLw0V8F6CLywAcd7S+
+ 3IYzhBHrnHUqSKuUJzefy3uuPWO5Tv4O/PEvuK/uZbP4Dda34OxDt6v8oFTbv7sJiiHR
+ RDVzE46KtvzVg8A0Np+PhooLcrK6AMY78TUSrE0iWQ7TS4yH30uG1uUXnnQ2kAoR+i8w
+ Qg0GXvvnw7EJVWGWF1Lxw7bgQmHtBNhotpfp1dq3h7IBHUcJ2zMd4g/w/k2eBls0DKmI
+ wuzdZe43bwExyuIuWe9Ko9bCXa1dP234kt3Jvj1ZU0liJbIyrZX/cXVqesV3XVwqU35K
+ atQQ==
+X-Gm-Message-State: AAQBX9dXmin2kCa8e4g3LWgM8L3C/CGigRlrvQ5eP2VGS6sgIo4VBwYI
+ kngHiblEC2pE7CVXmd6n8ORnE7Sk48Gcam02FGU=
+X-Google-Smtp-Source: AKy350a/7JZDIj4H/GrXMI7M22X1M/RjssfVeGvA8EtJ684C37HhZs13O2yIZt3QZKKbwpPgZCSqGXXFxG7cmTNtcEM=
+X-Received: by 2002:a05:6214:4104:b0:5ef:5132:7af9 with SMTP id
+ kc4-20020a056214410400b005ef51327af9mr25507916qvb.3.1682428803987; Tue, 25
+ Apr 2023 06:20:03 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW4PR12MB5667:EE_|CO6PR12MB5412:EE_
-X-MS-Office365-Filtering-Correlation-Id: 691e51ea-271a-4ba4-83bb-08db458ed8c3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: KMarScc8r7+8lNeDpjKLt0e2pLMDLNpdz8oE1IA3OHFrH4hXBPAVTQ0zxlDikem+43X+d+ktdkRz2HW4Ph4wu60JkoOxsVBCq2SFjkY5l+xJ/br+uF3DKc6nRqFFgoyJtG+iQ+WD1/qttO1av7avcRYUwcjUn/Ec838sXFkjLNe14pDpE9pWHVevDS1UakLaS19eSgmzqpO1pY9Z9U/1JrTpP+om5YiZByCdYYohiZGAG8MDCWxvx25OFkviTyb6hejyvbRz6FP7NnalDuK2mfO5Uc14UYDX6g1OtCejEDoHQgQHT66e3pA9D91suI+O1lNEPBm4PSYheVlQb/fA/0Mlgd4utlT/v9WcMqLIsrpLj0PBWYYzsOH9NFoSgNCG6oKSiUf8IXUzKhGJD02C5AbFo6/08gZPoWmRNvSUZskYEiEPdad7EFTTFi9QmIUOs1RVPZOP7St6frK784/2Lh32+YzDsHHkt+bxxExzFdvotCrbHAP3vz2lgCqh2z3IDI7AXTRSWErB+nESt63oRbvvBTx1SyccKIpexZeCBHlGK03Pi7AvQtwYujOo3aK8wa25hh+CdcR1n3lwPMy9Hz+rE1EYJ1PetxOf74/meEppW8EihqGQ0uC8oAgYDm2R/PgAYPnNoc9Mzm1UtWcvRA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW4PR12MB5667.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(366004)(376002)(39860400002)(136003)(396003)(346002)(451199021)(6666004)(478600001)(83380400001)(2616005)(36756003)(26005)(6506007)(6512007)(186003)(53546011)(38100700002)(31696002)(6486002)(41300700001)(316002)(66556008)(66946007)(66476007)(4326008)(31686004)(2906002)(44832011)(8676002)(8936002)(5660300002)(86362001)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MWpZMm0zVStjNW5CSDFzakE2SVE5aUpzWEJrK3R5MFNuNkFzMlNEM091eTN1?=
- =?utf-8?B?V1pUSzZoMEp1WGFnQytkbEVMQ2hJU2VUZ0xHL1BvNmYzRzM0djZ5U3ppdmdF?=
- =?utf-8?B?U0IrQnFPRHhoanBvRnQxSXA1cFRTM2FzVkpDcGJaY01DYUxDc3hCVnNESi91?=
- =?utf-8?B?VVU3c2pmTlF1eDVvdTJ3UjBGb3FKeCt5SGxhTXc1Q3E0cVpEdmo5SThvRDBL?=
- =?utf-8?B?YXcvWWFmVHFlQmJheFdhd0dWdXFOZDVlVktweTVleWdmaXQyZXlXWS9ZWisv?=
- =?utf-8?B?UDVIbVFrZXVCTVBXL0QrZWVVNDZwNGtlSmJ4MDhXWngvWTJ1VmNpWUVIaEpk?=
- =?utf-8?B?dU9NKzdvTUp3NDZpNW5Rc3V4dzd4MCt2R1dBVzYrYUR6THBTVDArcFR0Y2tV?=
- =?utf-8?B?cmoxbzF6SjMxS25RSVUvT2FocFF2T2tpN09oN3ZDbG4yTVU2VkZaRFhYbXMx?=
- =?utf-8?B?TkxqR1Q3Q3VHQjRGalU3VXExaU4xWW9QR2R3bXN1T1duOTh5L1NiOTZLQURo?=
- =?utf-8?B?NVBNalk5YWM0RDcyOWFFVWUzMHh2bmVrN1hEVmtOTmhCR1R3WDVMUVVwTDRm?=
- =?utf-8?B?Zml4VXpRRzc4bHlPZEZubTlKbkNCR2FBdm5MeUkwWG9PRlBMMjFEcFRZTTBl?=
- =?utf-8?B?RUN0bU5ZWFg0NEIycllYV2hSYk11d1N5Wm9IdjdySFI2aFBpUU84QkNDVC9w?=
- =?utf-8?B?WCtoMVNMSnlTRDNBQlpibFZHTVVIcmFKYW0rSjZLNXN5a2FIejliSE1MdmNI?=
- =?utf-8?B?TXM4d1h5cG10N3oxRGZ0U0hWSzU3ZTM4UWxIbDBlQXlOY1J5ckFVdEdWdExG?=
- =?utf-8?B?UWUrZmxWOTVyODJCUDYrdGxIUlVpRFNIN1VYRmw0M2NxQW1tZndRQkc3OVZI?=
- =?utf-8?B?Z1doSkYxSmc0QlpxTmN5Q0RYMy9WWFVDNDVHcjg3TnROcDkwYTY1QjMwMXI2?=
- =?utf-8?B?Mm81cjZQc1NPb01BWG9wK1BUaDRybWU1VEd4VWVVOGtRcWN3TVFNazJRdDY0?=
- =?utf-8?B?OUd6ZHdCODcyZlNRTEluSTZ6RHZ2Y0NDTHVRL1BtRDRXbkVmUHU5SnpNL2Jx?=
- =?utf-8?B?VUtQeHYreHFUYUJGR3VSdTJ2T1JLbERWMUVmSUJlMERJZGZ2S1Y1OHJrYUkr?=
- =?utf-8?B?SkRnRzA2Snk2ZmlVVWJwTUtxV0RHZU5sUE1pMzUxbTdCL2xaVmpyTDkrcmp4?=
- =?utf-8?B?MngzTTZLUTZQT3dsdjNYaTE1aEdrbkJnY1cyY0NUUi9rVGcrbXFqQW5VOEpD?=
- =?utf-8?B?c0dhWGIzdHplak9lYkpua0dER3Z5a2lLOGtvbXg5TzNBUWlDTnRiR0E2K1A2?=
- =?utf-8?B?QVZ6aWlRVUFLbkg2YW1SSjJwV0EwMFZJOUJCN1VSSWJWb3RjSEhhdGxOcmE0?=
- =?utf-8?B?dDNSN2JuT1dlZEVNNXBSUjZCaFgxaDdKMUszMWtOeVdZbWltWUxCQmlraTRt?=
- =?utf-8?B?UnY3VldzMTkrOFRKbmlnV3BRY01nOUp3ekVxWGpLakd1SVJ4OWZBS09kaVl1?=
- =?utf-8?B?Q2ZJUmtsZkh1aXJXWE9ObzZDY3ZYYjRnd0NrTmxjOVVLWXRZcGo3RDlBMGMz?=
- =?utf-8?B?STNndCtwMm8wVlJlY05FTmtYUDVrV0wzN0o4VHcwdks0enVlblFrWWFaamRX?=
- =?utf-8?B?QWhjNEJ6WUtOYXhUdHp6TTlKc21RMkZHZWRRSGRaSVIzMVNmSklDMXgycmRN?=
- =?utf-8?B?NGZtSVlYVXhyaTdzbFp5N0Z4ekhhWXIyek9KR0RRMnlvdFI3eGc5Q3hhV21r?=
- =?utf-8?B?THdvTFVSTXd5VmJ4OU12MEhxdk1lUE5Vb1h0Z0kwajY5QWZVa3pyenFIU2o3?=
- =?utf-8?B?Q2xCVGNwUHZpbkVYa0J3UFk3SHNsNWNsZndLMVlGMllkYUxNYURROHRDcnVh?=
- =?utf-8?B?Q2VMVmFGWThrY29rZlQvRXJxcGlWZERDakgxZEtjQ3JJeUdua21LOHkweHhx?=
- =?utf-8?B?enFRcWsrWDcxVmFZcTN4NzRSOHNSektUVUx6M1Nidi9PQzIwTVh1M2lSMDZT?=
- =?utf-8?B?OGF5Q05sbkF0blBjS2JUcldCUHQ0R0J4M2RlOTRKb2hOb0pyd1ozTnV3T3hG?=
- =?utf-8?B?MG5EMks1SitERzRKQitDUUs0TnpWcktOdllxa3RFZnBIVG9tVzZ5YTNIT01w?=
- =?utf-8?Q?8X09zxNHqmj5URqd2VMqCJpLX?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 691e51ea-271a-4ba4-83bb-08db458ed8c3
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR12MB5667.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2023 13:13:23.0095 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: A7Loda8GzcHsPxLPCSCAc3ZJkFL1uEHuCoTNOw1I+VyKPYDMib1Ap371lHLzukpIGrnNrIAudrSM1gXcYpo0LA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5412
+References: <CABXGCsPZxgpFzAVN=eFXu0WV+Jk0vB4rv4p+Jt31C841LcqV=A@mail.gmail.com>
+ <CABXGCsO0sST8+MvQs=T1JP49ogRsaHPT9gMQZGJ3dY7v3m0H8g@mail.gmail.com>
+ <CABXGCsOTEpJG_0NWdGXRvcXQ4iTav6AUJm-U4SQb-vVzjoL6rA@mail.gmail.com>
+ <10b2570f-a297-d236-fa7b-2e001a4dff12@gmail.com>
+ <CABXGCsPcPY8dqZm0aF4c1p0ZvMYHy+NksMrZi9xK0=WdE5_osA@mail.gmail.com>
+ <d96519fb-9e12-5a81-a60b-384dcb286f28@gmail.com>
+ <CABXGCsP2JQMtNjBROSLs2y612iLZuCyoe-uD6OScAWbKHBWsCA@mail.gmail.com>
+ <b6ab0086-7d52-2a41-2f76-44694faed317@amd.com>
+ <CABXGCsP+LSPE9fH4TW781w67ju=HrNMe9s0kigqBarketr_Qog@mail.gmail.com>
+In-Reply-To: <CABXGCsP+LSPE9fH4TW781w67ju=HrNMe9s0kigqBarketr_Qog@mail.gmail.com>
+From: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+Date: Tue, 25 Apr 2023 18:19:53 +0500
+Message-ID: <CABXGCsNSqJVv4Cerc3_P_59ioUZU2M7Z_TMp2yZKqe3si0QqyA@mail.gmail.com>
+Subject: Re: BUG: KASAN: null-ptr-deref in drm_sched_job_cleanup+0x96/0x290
+ [gpu_sched]
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,179 +76,187 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- pierre-eric.pelloux-prayer@amd.com, contactshashanksharma@gmail.com,
- arvind.yadav@amd.com
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Linux List Kernel Mailing <linux-kernel@vger.kernel.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Apr 20, 2023 at 3:32=E2=80=AFPM Mikhail Gavrilov
+<mikhail.v.gavrilov@gmail.com> wrote:
+>
+> Important don't give up.
+> https://youtu.be/25zhHBGIHJ8 [40 min]
+> https://youtu.be/utnDR26eYBY [50 min]
+> https://youtu.be/DJQ_tiimW6g [12 min]
+> https://youtu.be/Y6AH1oJKivA [6 min]
+> Yes the issue is everything reproducible, but time to time it not
+> happens at first attempt.
+> I also uploaded other videos which proves that the issue definitely
+> exists if someone will launch those games in turn.
+> Reproducibility is only a matter of time.
+>
+> Anyway I didn't want you to spend so much time trying to reproduce it.
+> This monkey business fits me more than you.
+> It would be better if I could collect more useful info.
 
-On 25/04/2023 14:30, Christian König wrote:
-> Am 24.04.23 um 19:38 schrieb Shashank Sharma:
->> The FW expects us to allocate at least one page as context
->> space to process gang, process, GDS and FW  related work.
->> This patch creates a joint object for the same, and calculates
->> GPU space offsets for each of these spaces.
->>
->> V1: Addressed review comments on RFC patch:
->>      Alex: Make this function IP specific
->>
->> V2: Addressed review comments from Christian
->>      - Allocate only one object for total FW space, and calculate
->>        offsets for each of these objects.
->>
->> V3: Integration with doorbell manager
->> V4: Review comments:
->>      - Remove shadow from FW space list from cover letter (Alex)
->>      - Alignment of macro (Luben)
->>
->> Cc: Alex Deucher <alexander.deucher@amd.com>
->> Cc: Christian Koenig <christian.koenig@amd.com>
->> Signed-off-by: Shashank Sharma <shashank.sharma@amd.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c        | 57 ++++++++++++++++++-
->>   .../gpu/drm/amd/include/amdgpu_userqueue.h    |  6 ++
->>   2 files changed, 61 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c 
->> b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
->> index 9f7b14966ac8..f6b33faea86f 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
->> @@ -53,6 +53,11 @@
->>   #define GFX11_NUM_GFX_RINGS        1
->>   #define GFX11_MEC_HPD_SIZE    2048
->>   +#define AMDGPU_USERQ_PROC_CTX_SZ   PAGE_SIZE
->> +#define AMDGPU_USERQ_GANG_CTX_SZ   PAGE_SIZE
->> +#define AMDGPU_USERQ_FW_CTX_SZ     PAGE_SIZE
->> +#define AMDGPU_USERQ_GDS_CTX_SZ    PAGE_SIZE
->> +
->>   #define RLCG_UCODE_LOADING_START_ADDRESS    0x00002000L
->>   #define RLC_PG_DELAY_3_DEFAULT_GC_11_0_1    0x1388
->>   @@ -6406,6 +6411,44 @@ const struct amdgpu_ip_block_version 
->> gfx_v11_0_ip_block =
->>       .funcs = &gfx_v11_0_ip_funcs,
->>   };
->>   +static int gfx_v11_userq_create_ctx_space(struct amdgpu_userq_mgr 
->> *uq_mgr,
->> +                      struct amdgpu_usermode_queue *queue)
->> +{
->> +    struct amdgpu_device *adev = uq_mgr->adev;
->> +    struct amdgpu_userq_ctx_space *ctx = &queue->fw_space;
->> +    int r, size;
->> +
->> +    /*
->> +     * The FW expects at least one page space allocated for
->> +     * process ctx, gang ctx, gds ctx, fw ctx each.
->> +     */
->> +    size = AMDGPU_USERQ_PROC_CTX_SZ + AMDGPU_USERQ_FW_CTX_SZ +
->> +           AMDGPU_USERQ_GANG_CTX_SZ + AMDGPU_USERQ_GDS_CTX_SZ;
->> +    r = amdgpu_bo_create_kernel(adev, size, PAGE_SIZE,
->> +                    AMDGPU_GEM_DOMAIN_GTT,
->> +                    &ctx->obj,
->> +                    &ctx->gpu_addr,
->> +                    &ctx->cpu_ptr);
->
-> Wasn't this stuff provided by userspace now?
->
-The last I checked, only the shadow buffer was coming from userspace, 
-and we were thinking about other stuff. I might not be well updated if 
-there any recent development here with the short term solution.
+Christian,
+Did you manage to reproduce the problem?
 
-- Shashank
+At the weekend I faced with slab-use-after-free in amdgpu_vm_handle_moved.
+I didn't play in the games at this time.
+The Xwayland process was affected so it leads to desktop hang.
 
-> Christian.
->
->> +    if (r) {
->> +        DRM_ERROR("Failed to allocate ctx space bo for userqueue, 
->> err:%d\n", r);
->> +        return r;
->> +    }
->> +
->> +    queue->proc_ctx_gpu_addr = ctx->gpu_addr;
->> +    queue->gang_ctx_gpu_addr = queue->proc_ctx_gpu_addr + 
->> AMDGPU_USERQ_PROC_CTX_SZ;
->> +    queue->fw_ctx_gpu_addr = queue->gang_ctx_gpu_addr + 
->> AMDGPU_USERQ_GANG_CTX_SZ;
->> +    queue->gds_ctx_gpu_addr = queue->fw_ctx_gpu_addr + 
->> AMDGPU_USERQ_FW_CTX_SZ;
->> +    return 0;
->> +}
->> +
->> +static void gfx_v11_userq_destroy_ctx_space(struct amdgpu_userq_mgr 
->> *uq_mgr,
->> +                        struct amdgpu_usermode_queue *queue)
->> +{
->> +    struct amdgpu_userq_ctx_space *ctx = &queue->fw_space;
->> +
->> +    amdgpu_bo_free_kernel(&ctx->obj, &ctx->gpu_addr, &ctx->cpu_ptr);
->> +}
->> +
->>   static int
->>   gfx_v11_userq_mqd_create(struct amdgpu_userq_mgr *uq_mgr, struct 
->> amdgpu_usermode_queue *queue)
->>   {
->> @@ -6426,10 +6469,16 @@ gfx_v11_userq_mqd_create(struct 
->> amdgpu_userq_mgr *uq_mgr, struct amdgpu_usermode
->>       }
->>         memset(mqd->cpu_ptr, 0, size);
->> +    r = gfx_v11_userq_create_ctx_space(uq_mgr, queue);
->> +    if (r) {
->> +        DRM_ERROR("Failed to create CTX space for userqueue (%d)\n", 
->> r);
->> +        goto free_mqd;
->> +    }
->> +
->>       r = amdgpu_bo_reserve(mqd->obj, false);
->>       if (unlikely(r != 0)) {
->>           DRM_ERROR("Failed to reserve mqd for userqueue (%d)", r);
->> -        goto free_mqd;
->> +        goto free_ctx;
->>       }
->>         queue->userq_prop.use_doorbell = true;
->> @@ -6438,12 +6487,15 @@ gfx_v11_userq_mqd_create(struct 
->> amdgpu_userq_mgr *uq_mgr, struct amdgpu_usermode
->>       amdgpu_bo_unreserve(mqd->obj);
->>       if (r) {
->>           DRM_ERROR("Failed to init MQD for queue\n");
->> -        goto free_mqd;
->> +        goto free_ctx;
->>       }
->>         DRM_DEBUG_DRIVER("MQD for queue %d created\n", queue->queue_id);
->>       return 0;
->>   +free_ctx:
->> +    gfx_v11_userq_destroy_ctx_space(uq_mgr, queue);
->> +
->>   free_mqd:
->>       amdgpu_bo_free_kernel(&mqd->obj, &mqd->gpu_addr, &mqd->cpu_ptr);
->>       return r;
->> @@ -6454,6 +6506,7 @@ gfx_v11_userq_mqd_destroy(struct 
->> amdgpu_userq_mgr *uq_mgr, struct amdgpu_usermod
->>   {
->>       struct amdgpu_userq_ctx_space *mqd = &queue->mqd;
->>   +    gfx_v11_userq_destroy_ctx_space(uq_mgr, queue);
->>       amdgpu_bo_free_kernel(&mqd->obj, &mqd->gpu_addr, &mqd->cpu_ptr);
->>   }
->>   diff --git a/drivers/gpu/drm/amd/include/amdgpu_userqueue.h 
->> b/drivers/gpu/drm/amd/include/amdgpu_userqueue.h
->> index e7da27918bd2..11e8ad649f6e 100644
->> --- a/drivers/gpu/drm/amd/include/amdgpu_userqueue.h
->> +++ b/drivers/gpu/drm/amd/include/amdgpu_userqueue.h
->> @@ -38,11 +38,17 @@ struct amdgpu_usermode_queue {
->>       int            queue_id;
->>       int            queue_type;
->>       uint64_t        doorbell_handle;
->> +    uint64_t        proc_ctx_gpu_addr;
->> +    uint64_t        gang_ctx_gpu_addr;
->> +    uint64_t        gds_ctx_gpu_addr;
->> +    uint64_t        fw_ctx_gpu_addr;
->> +    uint64_t        shadow_ctx_gpu_addr;
->>       uint64_t        flags;
->>       struct amdgpu_mqd_prop    userq_prop;
->>       struct amdgpu_userq_mgr *userq_mgr;
->>       struct amdgpu_vm    *vm;
->>       struct amdgpu_userq_ctx_space mqd;
->> +    struct amdgpu_userq_ctx_space fw_space;
->>   };
->>     struct amdgpu_userq_funcs {
->
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+BUG: KASAN: slab-use-after-free in amdgpu_vm_handle_moved+0x286/0x2d0 [amdg=
+pu]
+Read of size 8 at addr ffff888295c66190 by task Xwayland:cs0/173185
+
+CPU: 21 PID: 173185 Comm: Xwayland:cs0 Tainted: G        W    L
+-------  ---  6.3.0-0.rc7.20230420gitcb0856346a60.59.fc39.x86_64+debug
+#1
+Hardware name: System manufacturer System Product Name/ROG STRIX
+X570-I GAMING, BIOS 4601 02/02/2023
+Call Trace:
+ <TASK>
+ dump_stack_lvl+0x76/0xd0
+ print_report+0xcf/0x670
+ ? amdgpu_vm_handle_moved+0x286/0x2d0 [amdgpu]
+ ? amdgpu_vm_handle_moved+0x286/0x2d0 [amdgpu]
+ kasan_report+0xa8/0xe0
+ ? amdgpu_vm_handle_moved+0x286/0x2d0 [amdgpu]
+ amdgpu_vm_handle_moved+0x286/0x2d0 [amdgpu]
+ amdgpu_cs_ioctl+0x2b7e/0x5630 [amdgpu]
+ ? __pfx___lock_acquire+0x10/0x10
+ ? __pfx_amdgpu_cs_ioctl+0x10/0x10 [amdgpu]
+ ? mark_lock+0x101/0x16e0
+ ? __lock_acquire+0xe54/0x59f0
+ ? __pfx_lock_release+0x10/0x10
+ ? __pfx_amdgpu_cs_ioctl+0x10/0x10 [amdgpu]
+ drm_ioctl_kernel+0x1fc/0x3d0
+ ? __pfx_drm_ioctl_kernel+0x10/0x10
+ drm_ioctl+0x4c5/0xaa0
+ ? __pfx_amdgpu_cs_ioctl+0x10/0x10 [amdgpu]
+ ? __pfx_drm_ioctl+0x10/0x10
+ ? _raw_spin_unlock_irqrestore+0x66/0x80
+ ? lockdep_hardirqs_on+0x81/0x110
+ ? _raw_spin_unlock_irqrestore+0x4f/0x80
+ amdgpu_drm_ioctl+0xd2/0x1b0 [amdgpu]
+ __x64_sys_ioctl+0x131/0x1a0
+ do_syscall_64+0x60/0x90
+ ? do_syscall_64+0x6c/0x90
+ ? lockdep_hardirqs_on+0x81/0x110
+ ? do_syscall_64+0x6c/0x90
+ ? lockdep_hardirqs_on+0x81/0x110
+ ? do_syscall_64+0x6c/0x90
+ ? lockdep_hardirqs_on+0x81/0x110
+ ? do_syscall_64+0x6c/0x90
+ ? lockdep_hardirqs_on+0x81/0x110
+ entry_SYSCALL_64_after_hwframe+0x72/0xdc
+RIP: 0033:0x7ffb71b0892d
+Code: 04 25 28 00 00 00 48 89 45 c8 31 c0 48 8d 45 10 c7 45 b0 10 00
+00 00 48 89 45 b8 48 8d 45 d0 48 89 45 c0 b8 10 00 00 00 0f 05 <89> c2
+3d 00 f0 ff ff 77 1a 48 8b 45 c8 64 48 2b 04 25 28 00 00 00
+RSP: 002b:00007ffb677fe840 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007ffb677fe9f8 RCX: 00007ffb71b0892d
+RDX: 00007ffb677fe900 RSI: 00000000c0186444 RDI: 000000000000000d
+RBP: 00007ffb677fe890 R08: 00007ffb677fea50 R09: 00007ffb677fe8e0
+R10: 0000556c4611bec0 R11: 0000000000000246 R12: 00007ffb677fe900
+R13: 00000000c0186444 R14: 000000000000000d R15: 00007ffb677fe9f8
+ </TASK>
+
+Allocated by task 173181:
+ kasan_save_stack+0x33/0x60
+ kasan_set_track+0x25/0x30
+ __kasan_kmalloc+0x8f/0xa0
+ __kmalloc_node+0x65/0x160
+ amdgpu_bo_create+0x31e/0xfb0 [amdgpu]
+ amdgpu_bo_create_user+0xca/0x160 [amdgpu]
+ amdgpu_gem_create_ioctl+0x398/0x980 [amdgpu]
+ drm_ioctl_kernel+0x1fc/0x3d0
+ drm_ioctl+0x4c5/0xaa0
+ amdgpu_drm_ioctl+0xd2/0x1b0 [amdgpu]
+ __x64_sys_ioctl+0x131/0x1a0
+ do_syscall_64+0x60/0x90
+ entry_SYSCALL_64_after_hwframe+0x72/0xdc
+
+Freed by task 173185:
+ kasan_save_stack+0x33/0x60
+ kasan_set_track+0x25/0x30
+ kasan_save_free_info+0x2e/0x50
+ __kasan_slab_free+0x10b/0x1a0
+ slab_free_freelist_hook+0x11e/0x1d0
+ __kmem_cache_free+0xc0/0x2e0
+ ttm_bo_release+0x667/0x9e0 [ttm]
+ amdgpu_bo_unref+0x35/0x70 [amdgpu]
+ amdgpu_gem_object_free+0x73/0xb0 [amdgpu]
+ drm_gem_handle_delete+0xe3/0x150
+ drm_ioctl_kernel+0x1fc/0x3d0
+ drm_ioctl+0x4c5/0xaa0
+ amdgpu_drm_ioctl+0xd2/0x1b0 [amdgpu]
+ __x64_sys_ioctl+0x131/0x1a0
+ do_syscall_64+0x60/0x90
+ entry_SYSCALL_64_after_hwframe+0x72/0xdc
+
+Last potentially related work creation:
+ kasan_save_stack+0x33/0x60
+ __kasan_record_aux_stack+0x97/0xb0
+ __call_rcu_common.constprop.0+0xf8/0x1af0
+ drm_sched_fence_release_scheduled+0xb8/0xe0 [gpu_sched]
+ dma_resv_reserve_fences+0x4dc/0x7f0
+ ttm_eu_reserve_buffers+0x3f6/0x1190 [ttm]
+ amdgpu_cs_ioctl+0x204d/0x5630 [amdgpu]
+ drm_ioctl_kernel+0x1fc/0x3d0
+ drm_ioctl+0x4c5/0xaa0
+ amdgpu_drm_ioctl+0xd2/0x1b0 [amdgpu]
+ __x64_sys_ioctl+0x131/0x1a0
+ do_syscall_64+0x60/0x90
+ entry_SYSCALL_64_after_hwframe+0x72/0xdc
+
+Second to last potentially related work creation:
+ kasan_save_stack+0x33/0x60
+ __kasan_record_aux_stack+0x97/0xb0
+ __call_rcu_common.constprop.0+0xf8/0x1af0
+ drm_sched_fence_release_scheduled+0xb8/0xe0 [gpu_sched]
+ amdgpu_ctx_add_fence+0x2b1/0x390 [amdgpu]
+ amdgpu_cs_ioctl+0x44d0/0x5630 [amdgpu]
+ drm_ioctl_kernel+0x1fc/0x3d0
+ drm_ioctl+0x4c5/0xaa0
+ amdgpu_drm_ioctl+0xd2/0x1b0 [amdgpu]
+ __x64_sys_ioctl+0x131/0x1a0
+ do_syscall_64+0x60/0x90
+ entry_SYSCALL_64_after_hwframe+0x72/0xdc
+
+The buggy address belongs to the object at ffff888295c66000
+ which belongs to the cache kmalloc-1k of size 1024
+The buggy address is located 400 bytes inside of
+ freed 1024-byte region [ffff888295c66000, ffff888295c66400)
+
+The buggy address belongs to the physical page:
+page:00000000125ffbe3 refcount:1 mapcount:0 mapping:0000000000000000
+index:0x0 pfn:0x295c60
+head:00000000125ffbe3 order:3 entire_mapcount:0 nr_pages_mapped:0 pincount:=
+0
+anon flags: 0x17ffffc0010200(slab|head|node=3D0|zone=3D2|lastcpupid=3D0x1ff=
+fff)
+raw: 0017ffffc0010200 ffff88810004cdc0 0000000000000000 dead000000000001
+raw: 0000000000000000 0000000000100010 00000001ffffffff 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff888295c66080: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff888295c66100: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+>ffff888295c66180: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+                         ^
+ ffff888295c66200: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff888295c66280: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+--=20
+Best Regards,
+Mike Gavrilov.
