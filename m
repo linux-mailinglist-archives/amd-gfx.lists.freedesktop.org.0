@@ -1,126 +1,68 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E9C46EF5F7
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Apr 2023 16:04:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BBE06EF7FE
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Apr 2023 17:52:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D75010E5FB;
-	Wed, 26 Apr 2023 14:04:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0D3210E03E;
+	Wed, 26 Apr 2023 15:52:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2068.outbound.protection.outlook.com [40.107.94.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F23FB10E9AF
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Apr 2023 14:04:04 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oIWs3nz3qWkIbYHKS73rzBZVuGqU0YOnXO+nNuqtZaw0R3S86OtPGUG335dKcY/bRXRgDVtcgmXxreyOYS6SbszEYmEbGsIxIuP5R7Q6NMmssRsor25hFygSDRu25YA+FoPN19ad9TjtNUan8FkVubUYtpCDy6+ML5xIRFjFV8qT0DrrV43B0lJogf3MC1GkGMzGXGWpevgqAHeo+FZzoVzfFAaouZfsSRCtUqxaZl9To2sL+y4xAgX28GYeeFFWp8J2BqcVgYSQIfQvzpS+7SeD7CNXQTO5xRjIJYXe/g0u0Lduj7YfV5Kz6qAjfW/+GQ2mQpHOzjBq9DhA3wO2VA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gzkBbwqmEzAPCCbp25ZZLiVNuxsszyadbA1e0bqAxsw=;
- b=n7S6P6CeNPp8tcSBcvH4UZDEir/cbt3gi2kdl3tSWNc+Aeg5iwy/2LMGWq2X01xfssp/osEnVGr8Of+kpK5kNjJX3la2fbpFBLfYcBLHprpEvT8CRYoxZjep/yQ2/9dvOBYyGqL75v+G1LBjxhPni4oVwPEumm6VssyGfDJmgGsgvYwDYoJZhVE6RHwcIr+XiEXzcBWLpD/fpBty1ghK7q0s98PlSx5+A4I0cLmICCT2JdT1jCmpewq+Oc6txsgnNdtMz3D89NsuOZBuyDTQdy2Trc7CGKC/9RxqhqP9ECXVmubArIfeDOYSLTt44H63RbreyAWb9x6ckknwML9LzA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gzkBbwqmEzAPCCbp25ZZLiVNuxsszyadbA1e0bqAxsw=;
- b=5mHOfAWXbgwZ/hOHADRMKED5sHmEh5MjYxmI/RSfybXXNtSoFHeaDI49Z5/o/gHxfOwUcS+S07n1aDAXHwiXzGxsRmoxn56aKjVBC1pFU7wb4AUR+LPp12W91lKoXYxt3bmcg+o8JSTxBLEogi1cdgmZbsBAtbV7M6JxQelRlRw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by DS0PR12MB8318.namprd12.prod.outlook.com (2603:10b6:8:f6::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.20; Wed, 26 Apr
- 2023 14:04:01 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::d2f8:7388:39c1:bbed]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::d2f8:7388:39c1:bbed%3]) with mapi id 15.20.6319.034; Wed, 26 Apr 2023
- 14:04:01 +0000
-Message-ID: <8b8d22bd-0eff-2f81-9267-07c4c4d058d1@amd.com>
-Date: Wed, 26 Apr 2023 16:03:56 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] drm/amdgpu: Ignore KFD eviction fences invalidating
- preemptible DMABuf imports
-Content-Language: en-US
-To: Eric Huang <jinhuieric.huang@amd.com>,
- Felix Kuehling <felix.kuehling@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- amd-gfx@lists.freedesktop.org
-References: <20230412222511.236384-1-jinhuieric.huang@amd.com>
- <ce2de03d-27c5-a7ad-1a76-814cbd92f15e@amd.com>
- <6d32ae76-08fa-64a4-6726-2d55e8c9fc08@gmail.com>
- <7df3dfd1-d89c-1f24-c3b9-789e1bedf138@amd.com>
- <73c8c82e-907a-1666-b05b-4ba257363a01@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <73c8c82e-907a-1666-b05b-4ba257363a01@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR0P281CA0187.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:ab::17) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com
+ [IPv6:2a00:1450:4864:20::534])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 915AE10E03E;
+ Wed, 26 Apr 2023 15:52:54 +0000 (UTC)
+Received: by mail-ed1-x534.google.com with SMTP id
+ 4fb4d7f45d1cf-5058181d58dso12916025a12.1; 
+ Wed, 26 Apr 2023 08:52:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1682524371; x=1685116371;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=gABdNoBQv2Hrc1pUZTmiVw5F9jBmJV1MMoJgLWi/XZA=;
+ b=GqsNl5Twk/99N1s48fkiGv2laOc2hw2OWz2AdePEXbFh8BghOXtEO9aT6XwldkomAE
+ llfdRnXwqDzmegbNe9QG70eIWBaMYBKxZ/gSL1YSmqfURVaaumMmkMsMLZSVuSpgpKuQ
+ u/IwW3MVAuPv63GeeFBrV9hqqvcqDNa1ScZWaqmmP6wFjzwH1CnTPZC5oIzbYxYdj4mz
+ 3DIz/BcoCcu5uXPpDX5R1ZIrd4eyL/ntHdeHFdE+wqY6V36EWg2fhi6KoYc3P6e1zgJJ
+ smXicZMYa5Uep76U3jjw94S1nynsnggq55sFYtFAzEXq5G8AScwLo5RrkzXG5efDx9hB
+ 1izQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1682524371; x=1685116371;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=gABdNoBQv2Hrc1pUZTmiVw5F9jBmJV1MMoJgLWi/XZA=;
+ b=baH+gWN/vcchl52/u8dTiFo8vv6f7/DXC4I0qDDX7q+jeFRiIrvHFPZi54NhRPFwhu
+ zrbyojARwNPjQtwqxFwYPVErJmX7NKM1bwLsnLb9rhSJvCU5NK/1wqJ9srN+a4Wy/aZ+
+ aAFeR2Ok5S+UBvx5q1eluViWwGFXtqfWvqXtZuO/pKEZjwaxxcgHi/wZcu0OFlrKeE83
+ yaIEfzG+G6kVIcz2liEE2DA8LnILqVNhz8ERsR5Dz1caanyyjRIjoKBi/jdVIWwA0059
+ tyPNnGtCGiABS7ckhG5/xkelF+6oD7yvhObFijo0UfgjApQR5UCHkYYLS4yIVKXauK3c
+ iyhg==
+X-Gm-Message-State: AAQBX9d/y5jj55O+aVsg5ndKRWQ+wi+VhWp9AOjXloMeffw+oGh2iaeq
+ jrVV1MADgGxNH+ze0xcdg9N0AhsiFpfW42n5pEY=
+X-Google-Smtp-Source: AKy350YNu6z5amjFs04tWArL/aDQfFIztO3kMVSpoqMhuDZzh04ku7pYeBLdDFxcLPkMMGbLXBw886R27Gu2mpP5X7I=
+X-Received: by 2002:a05:6402:890:b0:502:70e9:2c14 with SMTP id
+ e16-20020a056402089000b0050270e92c14mr18673423edy.29.1682524370564; Wed, 26
+ Apr 2023 08:52:50 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|DS0PR12MB8318:EE_
-X-MS-Office365-Filtering-Correlation-Id: 86f49256-e4fa-4f40-b481-08db465f1558
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: JOUQuwGDOq2unGSUUrsWjK4X2wpBfFSG5mRDg2TZmmcudqnUjMU26RgmPGgpHlJHv0gdbu7akdZ1tf+GtHiVLNpR2b5UrTDmhKxtNUJjLs/LcJsbgFIDa0Z9oQPb7IGol6SmUA364TqAez3XzF3VUT4TId/ezW/lvM05AmLsMHcbIMBFpPfhbWrv2AWE1PgBjrBdRmA2KIitw/hhm2N2vsXsJLJm/2D+QMMymyPoys0ziWJrOcKqdupsQOCOftUWXP0rc/ED99FJxSXy+Q/zeVrASkDquqkUk2OiHvK5j1qBb+4ydew5hr5msTDkuG40UvNeBOAVeUjW8h/vB8E2DEUxlut2CD8b0s4RXGdixi2kZfodPREOXo1Sgefh/retmtmmaIRQ06HKmIYoqJaRElShCkJgiNc/pk2t9fSJFNF69vzVFTqvBlanLGQekomGIliEndfsISLq53vkufo9Fa9kEOBR0jCCEAYRSC5wu8RbiOl8kYt/6OTe6bmHoht1O57zszQavt2B8/B13Gi5F6NEtCE90Dlk5euDi481f3c/V1GTv8PvK4LS9pIkUG/4tING4f7AGC2SnAEDqzIS2YnQNgEsoaLHVfBiyDecdhadlgBqhwP3HllxrGt3VsmKDQ85+gf2mTuJnXVYl1l44w==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(376002)(366004)(136003)(346002)(39860400002)(396003)(451199021)(66574015)(66556008)(186003)(86362001)(83380400001)(6506007)(6512007)(31696002)(53546011)(36756003)(2616005)(38100700002)(8936002)(316002)(41300700001)(8676002)(5660300002)(6666004)(6486002)(66476007)(66946007)(110136005)(478600001)(31686004)(2906002)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RlREaG9KdzMyN2RKTGV3Q2R5a21TRStlU0VkcFVwc041cHRqcDJURTFvL0R4?=
- =?utf-8?B?SE02VXlSQ2VibnB5Z2tRSkVXL2hTNUhqVnRVd1hYbjgrY1dYUzE4Y2R6WU13?=
- =?utf-8?B?WFZ3SC8zZXN1K21XNmVmTUc0MGNFN3lLeFF6cFJCUnNmRXlMOGk5RE5XQ2dr?=
- =?utf-8?B?QnR6RHAyZFhtSzRZOHZHZ3dDaDlub0NCeFVoalczTG51UU0yRGovSmFWRnM5?=
- =?utf-8?B?Z3VmOWJPeFNJanpzM0FpUGxWRVE3eXF2SnlNNm5XS2xTRUk3WDNOTXVDSk1u?=
- =?utf-8?B?Z28yZXJDVW1nUmh4bXI4QnN0bUcxWEVtWVRrckFpN1Bvcks5QVlobTIxOFBO?=
- =?utf-8?B?Ti9zNC9YSmtWMnJ3SWViajVFdm9zZTVDY0NrWXE0SEI1RG5wbGJiSU43Z1hK?=
- =?utf-8?B?YVdMQkpMcUF2NXRQdEkxR21HVE5yV2RXNERxVnZGV1pZZkkwbzJFWFliOUxR?=
- =?utf-8?B?RXFBa0VWT0d5ZHhrc3JVY3RNaWtaeFZUSHFNUFJTeWl3dEMrZEZReVpFV3Zl?=
- =?utf-8?B?ZW16cDVENExJNk9jU1VDc1NuK2U4c21odWpqRGthQnlVL1NWN1h3ZjJuT25M?=
- =?utf-8?B?VDJwNWswN3B5SlpWRmFDL0F6NEhpTWdXd2tVMFFrZ2VaYWNsTWpFSGJxN0Nq?=
- =?utf-8?B?K2EzVUt6MkNlTlVFVW9qZFJFb21XbnUxOUFEdnEyVW9XY0QwQTVaNnJtSUhD?=
- =?utf-8?B?OW5MaHhVRmNXekVpUEFKdjFMNW9tWHpLc0NPTTBhL3BPUWIxN3cvN2ZiNVBH?=
- =?utf-8?B?eVc1T2ltNFIyMmJJYkxaK0dManBkQVNWZkcyaHZHRm5QaVhwKzBOYm01V2lq?=
- =?utf-8?B?MFJ3VndZZ0dSWm5RQ0ZtZWV4Y29xVDRpK2FkYlZaU092aXltSExrRVJ2TWtO?=
- =?utf-8?B?REJ4NlJkR2pXSXFMblVHTHE2dTh6Y2N5bENyc0NnMGtkT0lWN3p6M2hUVjJZ?=
- =?utf-8?B?YkU3WUN2N2lacFdFV1NpejlSa29oTks4T0xZTFdFM0dXeGdpUHhQY0l0QXRl?=
- =?utf-8?B?QTRwcXg5MStKTy9pSVpudzZKbmdtSFgyaDI3cVN0SkxpZ09TRWhPNnJweTlB?=
- =?utf-8?B?cTJqMUZNNHBucnZhaXM5ZFkwZ0JWRGphNk45bDl2NXJKSnAvUjNGdUM4cVpS?=
- =?utf-8?B?ajZaY2Ewa1BSQ01pVFQ2TnF3RldiWXBqU3hadXNZVU1zK1FCTkFDZkJiRzBD?=
- =?utf-8?B?MXpQWUpTaUxBWXZUOWVLTzhUNFBIV1p6V1NnVVBNalBLRTRmaUVsc2pUS3FB?=
- =?utf-8?B?eWxTRzBWc25uc3VWYzRBbFRLcnlpOUg4VVh6RTNLVG5PVnkyaktPaGJzelBs?=
- =?utf-8?B?OVB6Y3Z0Q0xpZlh4ajNwUjFZYXUrVjhkK29IWE9RNTlXMFlLQng2b2dwbUhN?=
- =?utf-8?B?WEQ4dHBXUDhjMWNvMm5KMmVWZ0k5TjdmYTVDVDRRMk5VeUNqV1ljQ1VpNEIy?=
- =?utf-8?B?b01vKzJ0NENPWTUyYTE2OE9xcytoSmwyNFJOdlV5MVVLNnF5NExOZDRXQ28r?=
- =?utf-8?B?RXQyeE1DdmNNa0RpdzFVNHVpR3JCTHVDSnNMcGhRVjhjNVJUNEtvRXI2eEpQ?=
- =?utf-8?B?dno4bDRMK0YxUUY0MzR1d2I2TER1NGREa0ZiR3ByVEtmUzg1RGVVMFYrUWlL?=
- =?utf-8?B?SGhVdVpQL0dKRnVpWmpiUjVQTHpON1hJcWxOVE8yQTk2MTBqMEhQZVA0ZzFR?=
- =?utf-8?B?NkV6M2Q1UVFHMDU3R2dQaWh6U3lPbVJqSDJuV3dTSmNxck5EcXVxMzJRTGRL?=
- =?utf-8?B?RStqSlVjcW9hTnNvYUJUNUhxMm5ZcEZuQnZJQWlobHVDMDJ5S0JkUGVhNUg4?=
- =?utf-8?B?a0YvVEZ5RHNjb2g0TERFUmVmc05xWlQyUlhtQUx3ejFsNmFOc0ZrZ1M4bjNp?=
- =?utf-8?B?MUpwbk12MWlhODV4b1hHYWtHeWlFZzJHSGV3dlJFeEMxRTNnY2N6OWxmb2pl?=
- =?utf-8?B?L3ErYURwK1E3djFzV3d3MUtKSklQTDNGV0tRZDlpemhiK0UwZlg1Z3lQcy9i?=
- =?utf-8?B?cDNJK2dUMDh4MGdLT2VCaS9NV3ZKMm1jdFFYNFF6SzhSQm15a0xOZkw5Sm11?=
- =?utf-8?B?dzJmSTByZG1Yd0M2V0FUMnRtZ3I4ZFcwUUN0OVA3MlZPQVpVTDhoSUdrVUF1?=
- =?utf-8?B?OVMxOE9ydXVCRXVwY0xGL0dTUkc4eklCN2pMcFJibDQ5blozSUIzT01FeTRt?=
- =?utf-8?Q?EzcXi3c9QRafCL1WSjKS+ixMg/gHrzZmuAp3Dtyvxabe?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 86f49256-e4fa-4f40-b481-08db465f1558
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2023 14:04:00.9764 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tcLvf+QDOhjWkhazV3ukEVqheUmtqRj76hLRZDJGwciQnXtSoU0oLP81oASe4bop
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8318
+References: <20230424014324.218531-1-andrealmeid@igalia.com>
+ <d7264c5a-29b4-0fb3-153b-673a8a73d635@amd.com>
+ <CAAxE2A6Soq28ACV-m1OzG8CA-_VWp+N2wapsABzm2Nda=Qe+yA@mail.gmail.com>
+ <784561bb-0937-befc-3774-892d6f6a4318@mailbox.org>
+ <CAAxE2A6iuuVA7zjHM8YcTGMpEWuYV=hGRR1YW6W-qXHwAg9w7w@mail.gmail.com>
+ <19406ec5-79d6-e9e6-fbdd-eb2f4a872fc4@amd.com>
+ <5262c73e-e77c-91f7-e49e-a9c3571e2cc9@mailbox.org>
+ <f5bf590a-5d3f-03f2-531c-057cf8760000@amd.com>
+ <CAAxE2A4capwpc40F49cgZBC9jJisODqNjTe0cM_pS7si5EkW3g@mail.gmail.com>
+ <9087ef09-e617-dcf3-343e-162f79dc3e51@mailbox.org>
+In-Reply-To: <9087ef09-e617-dcf3-343e-162f79dc3e51@mailbox.org>
+From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
+Date: Wed, 26 Apr 2023 11:52:14 -0400
+Message-ID: <CAAxE2A7tvs6f_vywBx9J64ZR03_XBVDiYE1OETa-UG7TxNmEiA@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Mark contexts guilty for any reset type
+To: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Content-Type: multipart/alternative; boundary="0000000000006efcb805fa3f3b4a"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,108 +74,136 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, "Tuikov,
+ Luben" <Luben.Tuikov@amd.com>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>, kernel-dev@igalia.com,
+ "Deucher, Alexander" <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 25.04.23 um 16:11 schrieb Eric Huang:
-> Hi Christian,
+--0000000000006efcb805fa3f3b4a
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Perhaps I should clarify this. There are GL and Vulkan features that if any
+app uses them and its shaders are killed, the next IB will hang. One of
+them is Draw Indirect - if a shader is killed before storing the vertex
+count and instance count in memory, the next draw will hang with a high
+probability. No such app can be allowed to continue executing after a reset=
+.
+
+Marek
+
+On Wed, Apr 26, 2023 at 5:51=E2=80=AFAM Michel D=C3=A4nzer <michel.daenzer@=
+mailbox.org>
+wrote:
+
+> On 4/25/23 21:11, Marek Ol=C5=A1=C3=A1k wrote:
+> > The last 3 comments in this thread contain arguments that are false and
+> were specifically pointed out as false 6 comments ago: Soft resets are ju=
+st
+> as fatal as hard resets. There is nothing better about soft resets. If th=
+e
+> VRAM is lost completely, that's a different story, and if the hard reset =
+is
+> 100% unreliable, that's also a different story, but other than those two
+> outliers, there is no difference between the two from the user point view=
+.
+> Both can repeatedly hang if you don't prevent the app that caused the han=
+g
+> from using the GPU even if the app is not robust. The robustness context
+> type doesn't matter here. By definition, no guilty app can continue after=
+ a
+> reset, and no innocent apps affected by a reset can continue either becau=
+se
+> those can now hang too. That's how destructive all resets are. Personal
+> anecdotes that the soft reset is better are just that, anecdotes.
 >
-> What do you think about Felix's explanation?
-
-That's unfortunately not something we can do here.
-
+> You're trying to frame the situation as black or white, but reality is
+> shades of grey.
 >
-> Regards,
-> Eric
 >
-> On 2023-04-13 09:28, Felix Kuehling wrote:
->> Am 2023-04-13 um 07:35 schrieb Christian König:
->>> Am 13.04.23 um 03:01 schrieb Felix Kuehling:
->>>> Am 2023-04-12 um 18:25 schrieb Eric Huang:
->>>>> It is to avoid redundant eviction for KFD's DMAbuf import
->>>>> bo when dmaunmapping DMAbuf. The DMAbuf import bo has
->>>>> been set as AMDGPU_PL_PREEMPT in KFD when mapping.
->>>>>
->>>>> Signed-off-by: Eric Huang <jinhuieric.huang@amd.com>
->>>>
->>>> Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
->>>>
->>>> I'd like to get an Acked-by from Christian as well before 
->>>> submitting this.
->>>
->>> I have to admit that I only partially followed the internal 
->>> discussion, but in general you need a *really* good explanation for 
->>> this.
->>>
->>> E.g. add code comment and explain in the commit message extensively 
->>> why this is needed and why there are no alternatives.
->>
->> OK. I'll give it a shot:
->>
->>    This code path is used among other things when invalidating DMABuf
->>    imports. These imports share a reservation object with the exported
->>    BO. Waiting on all the fences in this reservation will trigger KFD
->>    eviction fences unnecessarily, for example when a DMABuf import for
->>    a DMA mapping on a secondary GPU is being unmapped explicitly. Only
->>    moving the original exported BO requires stopping KFD user mode
->>    queues. If the invalidation is triggered through a move notifier
->>    from the exported BO, then moving the original BO already triggered
->>    the eviction fence and we don't need to wait for it again on the 
->> import.
->>
->>    We can identify DMABuf imports in KFD for secondary GPU DMA mappings
->>    by the mem_type AMDGPU_PL_PREEMPT. In this case, use a wait
->>    operation that ignores KFD eviction fences.
->>
->> How does this sound?
-
-To be honest like quite a bad idea. Why in the world are imported BOs 
-moved from GTT to SYSTEM in the first place?
-
-The only reason for this I can think of is that the DMA mappings become 
-invalid for some reasons and in this case waiting for the KFD fence is 
-actually the absolutely right thing to do.
-
-Regards,
-Christian.
-
->>
->> Regards,
->>   Felix
->>
->>
->>>
->>> Regards,
->>> Christian.
->>>
->>>>
->>>> Thanks,
->>>>   Felix
->>>>
->>>>
->>>>> ---
->>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 7 ++++++-
->>>>>   1 file changed, 6 insertions(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c 
->>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->>>>> index 2430f3e9f3a7..64795fe9eecb 100644
->>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->>>>> @@ -526,7 +526,12 @@ static int amdgpu_bo_move(struct 
->>>>> ttm_buffer_object *bo, bool evict,
->>>>>       if ((old_mem->mem_type == TTM_PL_TT ||
->>>>>            old_mem->mem_type == AMDGPU_PL_PREEMPT) &&
->>>>>           new_mem->mem_type == TTM_PL_SYSTEM) {
->>>>> -        r = ttm_bo_wait_ctx(bo, ctx);
->>>>> +        if (old_mem->mem_type == AMDGPU_PL_PREEMPT)
->>>>> +            r = amdgpu_bo_sync_wait(abo,
->>>>> +                        AMDGPU_FENCE_OWNER_KFD,
->>>>> +                        ctx->interruptible);
->>>>> +        else
->>>>> +            r = ttm_bo_wait_ctx(bo, ctx);
->>>>>           if (r)
->>>>>               return r;
->>>
+> There's a similar situation with kernel Oopsen: In principle it's not saf=
+e
+> to continue executing the kernel after it hits an Oops, since it might be
+> in an inconsistent state, which could result in any kind of misbehaviour.
+> Still, the default behaviour is to continue executing, and in most cases =
+it
+> turns out fine. Users which cannot accept the residual risk can choose to
+> make the kernel panic when it hits an Oops (either via CONFIG_PANIC_ON_OO=
+PS
+> at build time, or via oops=3Dpanic on the kernel command line). A kernel
+> panic means that the machine basically freezes from a user PoV, which wou=
+ld
+> be worse as the default behaviour for most users (because it would e.g.
+> incur a higher risk of losing filesystem data).
+>
+>
+> --
+> Earthling Michel D=C3=A4nzer            |                  https://redhat=
+.com
+> Libre software enthusiast          |         Mesa and Xwayland developer
+>
 >
 
+--0000000000006efcb805fa3f3b4a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Perhaps I should clarify this. There are GL and Vulka=
+n features that if any app uses them and its shaders are killed, the next I=
+B will hang. One of them is Draw Indirect - if a shader is killed before st=
+oring the vertex count and instance count in memory, the next draw will han=
+g with a high probability. No such app can be allowed to continue executing=
+ after a reset.</div><div><br></div><div>Marek</div></div><br><div class=3D=
+"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Apr 26, 2023 at=
+ 5:51=E2=80=AFAM Michel D=C3=A4nzer &lt;<a href=3D"mailto:michel.daenzer@ma=
+ilbox.org">michel.daenzer@mailbox.org</a>&gt; wrote:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex">On 4/25/23 21:11, Marek Ol=C5=A1=C3=A1=
+k wrote:<br>
+&gt; The last 3 comments in this thread contain arguments that are false an=
+d were specifically pointed out as false 6 comments ago: Soft resets are ju=
+st as fatal as hard resets. There is nothing better about soft resets. If t=
+he VRAM is lost completely, that&#39;s a different story, and if the hard r=
+eset is 100% unreliable, that&#39;s also a different story, but other than =
+those two outliers, there is no difference between the two from the user po=
+int view. Both can repeatedly hang if you don&#39;t prevent the app that ca=
+used the hang from using the GPU even if the app is not robust. The robustn=
+ess context type doesn&#39;t matter here. By definition, no guilty app can =
+continue after a reset, and no innocent apps affected by a reset can contin=
+ue either because those can now hang too. That&#39;s how destructive all re=
+sets are. Personal anecdotes that the soft reset is better are just that, a=
+necdotes.<br>
+<br>
+You&#39;re trying to frame the situation as black or white, but reality is =
+shades of grey.<br>
+<br>
+<br>
+There&#39;s a similar situation with kernel Oopsen: In principle it&#39;s n=
+ot safe to continue executing the kernel after it hits an Oops, since it mi=
+ght be in an inconsistent state, which could result in any kind of misbehav=
+iour. Still, the default behaviour is to continue executing, and in most ca=
+ses it turns out fine. Users which cannot accept the residual risk can choo=
+se to make the kernel panic when it hits an Oops (either via CONFIG_PANIC_O=
+N_OOPS at build time, or via oops=3Dpanic on the kernel command line). A ke=
+rnel panic means that the machine basically freezes from a user PoV, which =
+would be worse as the default behaviour for most users (because it would e.=
+g. incur a higher risk of losing filesystem data).<br>
+<br>
+<br>
+-- <br>
+Earthling Michel D=C3=A4nzer=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"http=
+s://redhat.com" rel=3D"noreferrer" target=3D"_blank">https://redhat.com</a>=
+<br>
+Libre software enthusiast=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0Mesa and Xwayland developer<br>
+<br>
+</blockquote></div>
+
+--0000000000006efcb805fa3f3b4a--
