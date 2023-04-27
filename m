@@ -2,90 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7651F6F0183
-	for <lists+amd-gfx@lfdr.de>; Thu, 27 Apr 2023 09:17:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DFD76F01EB
+	for <lists+amd-gfx@lfdr.de>; Thu, 27 Apr 2023 09:39:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3F9910EAB9;
-	Thu, 27 Apr 2023 07:17:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E18810EAC9;
+	Thu, 27 Apr 2023 07:39:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2072.outbound.protection.outlook.com [40.107.102.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49E2810EABB
- for <amd-gfx@lists.freedesktop.org>; Thu, 27 Apr 2023 07:17:12 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PZ6yjEr/qEvXKTan40uIndqoNo2+LHzqWwD3ZjLp+Vwdfv/dMkM0T1c/US7qqGgOWW7EX9H54kw8+fFeA+2aA8r2MvugCxG8PO0Xh4SGFyrl6/7eUZNjSDb/NUlKghcPHscgHiE2riMjFe9UDFPhiViyqo+9P0elJvrACeL2oS3I2VPeP1AOwIuvEssdyHDu2HP+TVPuT6GLh5F6zYg8i+nAWEyz67qwmUbi2h8MSaMAwK38zh0YHclu1yesb6HRbsnn0yMqE+OQMZ0zuAXUBrAmPYVL6+e/MIJ7kl+1Xsi3M2wsbAFnrCMJJ92NHbWD2z9bOrndSUkGco4eWu03Iw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZGTq34fK8wZ1MjnE+sz3aWikWHuhJthLZTSn0cnKfAc=;
- b=S52+J0LCW/1Trm+WtK1rbSZWu2TLGtnWIWVHmbNKYVSLxLEcn4l+nkVZvrqKtm0CDJiBUPHZ63ggsQK/MpIOfID6zI9QN2iqPYTjIVIU8i8x973B2U/nmEyvksg1X4HJtPpY9JgPG5EX3+UrgkkH8jRNTb3VMLtqt7ZVN42I4jRuX4wttJzBqnS0Dj2ecchZtWShvyHQ26+DzeA5L9W2jy7vf8+/ud3jdg0IrtQV8aa4feCArtAbJ8Olpc9ONA4mB4BLa7dGdWzjwFuPwldWkNPQTOQK5J6uQs8HC85tMobQeRLtUFD8t5u81iHV2vjTvlwVKWJ7PqMLa4jii5mpQA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZGTq34fK8wZ1MjnE+sz3aWikWHuhJthLZTSn0cnKfAc=;
- b=TXFiStabmhQU+Yw+JkftOZoKi/ZpeNcAjiITUNZMzGwqRJm5o/B5VadEL5nxHWW+qzlmWvazRQCfQqH4Vl8Slin4shLREyqplTQXXdvCrRDz1X1ZmaIe0QEE9hdU8QkflKMeY4//dpXb1OtNbT46i5Qdgn/FG9/UpCq3xyuPL0c=
-Received: from MW4PR03CA0235.namprd03.prod.outlook.com (2603:10b6:303:b9::30)
- by DS0PR12MB7969.namprd12.prod.outlook.com (2603:10b6:8:146::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.21; Thu, 27 Apr
- 2023 07:17:08 +0000
-Received: from CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:b9:cafe::4a) by MW4PR03CA0235.outlook.office365.com
- (2603:10b6:303:b9::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.22 via Frontend
- Transport; Thu, 27 Apr 2023 07:17:07 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT037.mail.protection.outlook.com (10.13.174.91) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6340.22 via Frontend Transport; Thu, 27 Apr 2023 07:17:06 +0000
-Received: from jenkins-vm2.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 27 Apr
- 2023 02:17:02 -0500
-From: Xiaomeng Hou <Xiaomeng.Hou@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: remove pasid_src field from IV entry
-Date: Thu, 27 Apr 2023 15:16:34 +0800
-Message-ID: <20230427071634.1484586-1-Xiaomeng.Hou@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com
+ [IPv6:2a00:1450:4864:20::62e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8B6F10E158;
+ Thu, 27 Apr 2023 07:24:59 +0000 (UTC)
+Received: by mail-ej1-x62e.google.com with SMTP id
+ a640c23a62f3a-95f4c5cb755so288817966b.0; 
+ Thu, 27 Apr 2023 00:24:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1682580296; x=1685172296;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=n0x8yz/BH7Sp+Esx42OKv6E3BY74SAY231PEuV+HVic=;
+ b=qgDEtLJoLUTp1mVpKJti0vgMciCsmbV9quipZsc1mmin8erWwYVALwvZuvna6cuqI/
+ //NuiCub7siQYE4rQIDTMU+ODGSCUQNiqWTsDazHqwglwnBzNkFK1rzL8MayzaI/sBmt
+ GS0HS9AZPT3XXwPZ1XBBIL1eDf+ZAm1/+ncpTSrh4YQLHa7qDZDJ85jkFDxloSXGF36t
+ pLSZOk02UZ6SyvzfZRR6++apQn1eNSu4ciICWCEqxN3wmCO0WjEZ0SboQwBgoqCFXh+6
+ V0mncZGSAy1OMRtce1v6dXhiOleUJGDQWGH92hZa/uDStDq2lZasPJEvYJ3kyrv4qDLV
+ +dvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1682580296; x=1685172296;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=n0x8yz/BH7Sp+Esx42OKv6E3BY74SAY231PEuV+HVic=;
+ b=DpTMOqWs8Yt2vnq8MDGd4d6us6WXed2CNL7qN/0r4D+Ub3a2m+2sFOwAi9Nu8IH/1x
+ swXspxWUDDFALYpXfTvEYbwVViBsNfqrd/9LAKHfe3ewT9tmBwZjcRCbVduuWBu1r9KV
+ 6bBvPQZRMsTzCzd+m+YHJGXlMSyhmJHUlgKTxKCVN5nyHFkIYtGODEuOcauGWMM2GQi/
+ z6MUdk15NQ7Bw8hkAeQGvOXY3LTsKb6w1JChiKN2YQrLZ1kxedOiAex7MA/HGwQLP95I
+ VCv1PhnjFVR0gzPmGwuektUhk6DQJ9RC0idIwCC+PHM0KShum0MQqA0z6QioZ6xUsvDA
+ +vTg==
+X-Gm-Message-State: AC+VfDym9NOfmCFTRPztnvNbCRbdC8STjhlGhtgkBhlCIo0s/TFGQnQS
+ ufMw8V5W6GOMAFLUvT21BgAucLwb8mCRePUZbdQ=
+X-Google-Smtp-Source: ACHHUZ6MtYHlNvjJ9sRe22WzKbPWWOFUTw9vlD6bgF2wcZyljqJ1jfJlm8cKhraM2loDqlpT0O8sLNYfzHIj8twFO3I=
+X-Received: by 2002:a17:906:6a28:b0:93e:8791:7d8e with SMTP id
+ qw40-20020a1709066a2800b0093e87917d8emr810871ejc.2.1682580296267; Thu, 27 Apr
+ 2023 00:24:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT037:EE_|DS0PR12MB7969:EE_
-X-MS-Office365-Filtering-Correlation-Id: d73fffb5-5bdf-4dda-e74b-08db46ef68bf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: BYTkXKIq/GJ+0eSgNKRaIbE2DcW+NHz0gPgl7YJoUIWIydS4EZOle7VzcRq02dubw0MX1buJPdVAZf7sxJB1GYFFbySBvzkQ82Yw85SaZS7/NboUNDvox6jGiWgClUXw5HDMh9V7Bcudl2RhvdV34QwefxZZ597tYlWawn1sGSfAIxdecoZcoWL1dYo/Iu5bPO/695FMGMT+3eFE3sVLjCkGE6twpEojWIbQRNM+El2T1Svv+2kGjssOfdgp36bMhQCZZwpfAH6hpjI4tAdMVE+ZZEYMNnYvgT7XvTSNGsfNYs/dmJ/2oyTidlTLZQX7dT6GB1kmBDzp8zEtzKp0tNJVVrdZyqJ7aky2voQso4BI4Xy9RuRlE5sLRR/Wv+tCpkZzAe5QL2T+KhayeY0Jhlv9aGygjY7P9I827IeVv/M4HeMoxWVoPPMxpm2Dv4RIO7Y596iLDyXoWhAOG+fxHMtbv8zmjTkFwdbKC4eQFA4V1MMJwRwNzM9/+HLDDoqLxLFvxW5ocnp4vmBk5l9dVaPuCA3SWUhXOeed2Q94pypxS2ZMAnwQfeRNqPv+dRr4QpW9MdOmXqpZCxX79WEbrE4e02b9A5ip7Ueagic8dLHuhqtPbBgC5qmHLqCLTvItIxX0Lq/95YPrDEiaSYf5+kiC3tQMMEC/MF+/PW2w/jggyBp6PQDUzTL5nY850W8sCX07YzOJHuPE6WQgbcWZ/QF1wP2zhyY//OQ2wPVQA7c=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(346002)(136003)(376002)(39860400002)(451199021)(46966006)(36840700001)(40470700004)(41300700001)(47076005)(82310400005)(86362001)(36756003)(2906002)(40480700001)(6666004)(7696005)(36860700001)(16526019)(2616005)(336012)(426003)(186003)(83380400001)(26005)(1076003)(70206006)(70586007)(478600001)(4326008)(316002)(40460700003)(81166007)(82740400003)(5660300002)(6916009)(356005)(54906003)(8676002)(8936002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2023 07:17:06.9561 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d73fffb5-5bdf-4dda-e74b-08db46ef68bf
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7969
+References: <20230419122058.3420-1-hackyzh002@gmail.com>
+ <62ae58cb-9fec-37ca-fd40-12bf0c1c5ba3@amd.com>
+ <CADnq5_MTgMtHM87YQJcZLcENevcHOuQihoTz-xRetypJ6BQSXQ@mail.gmail.com>
+In-Reply-To: <CADnq5_MTgMtHM87YQJcZLcENevcHOuQihoTz-xRetypJ6BQSXQ@mail.gmail.com>
+From: whitehat002 whitehat002 <hackyzh002@gmail.com>
+Date: Thu, 27 Apr 2023 15:24:44 +0800
+Message-ID: <CAF6NKdY49N09+ubFrOfbr9Pj+6EK5U4G0_nmR-d6Sz1keZ_5Jg@mail.gmail.com>
+Subject: Re: [PATCH V3 1/2] drm/radeon: Fix integer overflow in
+ radeon_cs_parser_init
+To: Alex Deucher <alexdeucher@gmail.com>
+Content-Type: multipart/alternative; boundary="000000000000dd835705fa4c4077"
+X-Mailman-Approved-At: Thu, 27 Apr 2023 07:39:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,44 +69,119 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, ruili.ji@amd.com,
- Xiaomeng Hou <Xiaomeng.Hou@amd.com>, Christian.Koenig@amd.com
+Cc: Xinhui.Pan@amd.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, sumit.semwal@linaro.org,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ alexander.deucher@amd.com,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-PASID_SRC is not actually present in the Interrupt Packet, the field is
-taken as reserved bits now. So remove it from IV entry to avoid misuse.
+--000000000000dd835705fa4c4077
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Xiaomeng Hou <Xiaomeng.Hou@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ih.c  | 1 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_irq.h | 1 -
- 2 files changed, 2 deletions(-)
+Hello,
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ih.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ih.c
-index d58353c89e59..fceb3b384955 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ih.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ih.c
-@@ -271,7 +271,6 @@ void amdgpu_ih_decode_iv_helper(struct amdgpu_device *adev,
- 	entry->timestamp_src = dw[2] >> 31;
- 	entry->pasid = dw[3] & 0xffff;
- 	entry->node_id = (dw[3] >> 16) & 0xff;
--	entry->pasid_src = dw[3] >> 31;
- 	entry->src_data[0] = dw[4];
- 	entry->src_data[1] = dw[5];
- 	entry->src_data[2] = dw[6];
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.h
-index 7a8e686bdd41..1c747ac4129a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.h
-@@ -54,7 +54,6 @@ struct amdgpu_iv_entry {
- 	unsigned timestamp_src;
- 	unsigned pasid;
- 	unsigned node_id;
--	unsigned pasid_src;
- 	unsigned src_data[AMDGPU_IRQ_SRC_DATA_MAX_SIZE_DW];
- 	const uint32_t *iv_entry;
- };
--- 
-2.25.1
+What is the current status of this patch, has it been applied?
 
+Alex Deucher <alexdeucher@gmail.com> =E4=BA=8E2023=E5=B9=B44=E6=9C=8819=E6=
+=97=A5=E5=91=A8=E4=B8=89 21:49=E5=86=99=E9=81=93=EF=BC=9A
+
+> Applied.  Thanks!
+>
+> Alex
+>
+> On Wed, Apr 19, 2023 at 8:24=E2=80=AFAM Christian K=C3=B6nig
+> <christian.koenig@amd.com> wrote:
+> >
+> > Am 19.04.23 um 14:20 schrieb hackyzh002:
+> > > The type of size is unsigned, if size is 0x40000000, there will be an
+> > > integer overflow, size will be zero after size *=3D sizeof(uint32_t),
+> > > will cause uninitialized memory to be referenced later
+> > >
+> > > Signed-off-by: hackyzh002 <hackyzh002@gmail.com>
+> >
+> > Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com> for the se=
+ries.
+> >
+> > > ---
+> > >   drivers/gpu/drm/radeon/radeon_cs.c | 3 ++-
+> > >   1 file changed, 2 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/radeon/radeon_cs.c
+> b/drivers/gpu/drm/radeon/radeon_cs.c
+> > > index 46a27ebf4..a6700d727 100644
+> > > --- a/drivers/gpu/drm/radeon/radeon_cs.c
+> > > +++ b/drivers/gpu/drm/radeon/radeon_cs.c
+> > > @@ -270,7 +270,8 @@ int radeon_cs_parser_init(struct radeon_cs_parser
+> *p, void *data)
+> > >   {
+> > >       struct drm_radeon_cs *cs =3D data;
+> > >       uint64_t *chunk_array_ptr;
+> > > -     unsigned size, i;
+> > > +     u64 size;
+> > > +     unsigned i;
+> > >       u32 ring =3D RADEON_CS_RING_GFX;
+> > >       s32 priority =3D 0;
+> > >
+> >
+>
+
+--000000000000dd835705fa4c4077
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello,<div><br>What is the current status of this patch, h=
+as it been applied?<br></div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">Alex Deucher &lt;<a href=3D"mailto:alexdeuche=
+r@gmail.com">alexdeucher@gmail.com</a>&gt; =E4=BA=8E2023=E5=B9=B44=E6=9C=88=
+19=E6=97=A5=E5=91=A8=E4=B8=89 21:49=E5=86=99=E9=81=93=EF=BC=9A<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t:1px solid rgb(204,204,204);padding-left:1ex">Applied.=C2=A0 Thanks!<br>
+<br>
+Alex<br>
+<br>
+On Wed, Apr 19, 2023 at 8:24=E2=80=AFAM Christian K=C3=B6nig<br>
+&lt;<a href=3D"mailto:christian.koenig@amd.com" target=3D"_blank">christian=
+.koenig@amd.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Am 19.04.23 um 14:20 schrieb hackyzh002:<br>
+&gt; &gt; The type of size is unsigned, if size is 0x40000000, there will b=
+e an<br>
+&gt; &gt; integer overflow, size will be zero after size *=3D sizeof(uint32=
+_t),<br>
+&gt; &gt; will cause uninitialized memory to be referenced later<br>
+&gt; &gt;<br>
+&gt; &gt; Signed-off-by: hackyzh002 &lt;<a href=3D"mailto:hackyzh002@gmail.=
+com" target=3D"_blank">hackyzh002@gmail.com</a>&gt;<br>
+&gt;<br>
+&gt; Reviewed-by: Christian K=C3=B6nig &lt;<a href=3D"mailto:christian.koen=
+ig@amd.com" target=3D"_blank">christian.koenig@amd.com</a>&gt; for the seri=
+es.<br>
+&gt;<br>
+&gt; &gt; ---<br>
+&gt; &gt;=C2=A0 =C2=A0drivers/gpu/drm/radeon/radeon_cs.c | 3 ++-<br>
+&gt; &gt;=C2=A0 =C2=A01 file changed, 2 insertions(+), 1 deletion(-)<br>
+&gt; &gt;<br>
+&gt; &gt; diff --git a/drivers/gpu/drm/radeon/radeon_cs.c b/drivers/gpu/drm=
+/radeon/radeon_cs.c<br>
+&gt; &gt; index 46a27ebf4..a6700d727 100644<br>
+&gt; &gt; --- a/drivers/gpu/drm/radeon/radeon_cs.c<br>
+&gt; &gt; +++ b/drivers/gpu/drm/radeon/radeon_cs.c<br>
+&gt; &gt; @@ -270,7 +270,8 @@ int radeon_cs_parser_init(struct radeon_cs_pa=
+rser *p, void *data)<br>
+&gt; &gt;=C2=A0 =C2=A0{<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0struct drm_radeon_cs *cs =3D data;<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0uint64_t *chunk_array_ptr;<br>
+&gt; &gt; -=C2=A0 =C2=A0 =C2=A0unsigned size, i;<br>
+&gt; &gt; +=C2=A0 =C2=A0 =C2=A0u64 size;<br>
+&gt; &gt; +=C2=A0 =C2=A0 =C2=A0unsigned i;<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0u32 ring =3D RADEON_CS_RING_GFX;<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0s32 priority =3D 0;<br>
+&gt; &gt;<br>
+&gt;<br>
+</blockquote></div>
+
+--000000000000dd835705fa4c4077--
