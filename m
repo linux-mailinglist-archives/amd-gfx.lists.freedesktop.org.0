@@ -2,34 +2,34 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42D516F00C5
-	for <lists+amd-gfx@lfdr.de>; Thu, 27 Apr 2023 08:28:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E2986F00C3
+	for <lists+amd-gfx@lfdr.de>; Thu, 27 Apr 2023 08:27:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A38910EA7B;
-	Thu, 27 Apr 2023 06:27:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67C6C10EA9F;
+	Thu, 27 Apr 2023 06:27:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2054.outbound.protection.outlook.com [40.107.220.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 648A510EA7B
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2062.outbound.protection.outlook.com [40.107.100.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE2E010EA96
  for <amd-gfx@lists.freedesktop.org>; Thu, 27 Apr 2023 06:27:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=g8LsQyOWbuf4e3cAObfAKGQot/o6MNgprEs4Lu/5wcg3HBMEBZhDFU8er9yFmXlsieYAUWMmUJpG3IQRdCijHTPxjUrZmBHHCDpXiflX4f8ZohxNSa9CuTaH5C9PmlL0XU2VjmxI3vM1WUP7byoG/+V8vyifrBRSmjau4VZHYDYFlMykXeh8n6Vo8XOkWsuKQ6ve3gdPkoY5lZT0rbb4M+xbhxTzt8QdgbtlFk2krjt1JSwpB12/AS4IW9RIIq1ay+yGgcJijhgNBsUqxLPp95RcJigGDKeDAgRUzeh4vNweMXoaVh3d3pMtgMJHC8/WkUl/2FeE2GldZXR8F2bmew==
+ b=aF0AG7QQ89pfUCm57bF3sAVQeIOkZb/inLMc8e/81sdyhNtjX8KV12LmKcFcpRRgDBJsawEukLmSoZ6SxrWpHmC1vLDJgZ4P0iA33qgbCDamM7JrUywbgxkcd2DFz6q6Smzjg3C7PK1CH0DEprp8hoLjrSoaBcn5hoV83m7x03hPLhH/gd2T81AU1AUJp4/s0OcDH/eGMAqHIDNajlBBEQoVhhvs+fR9RchJ3HBQqzcUsP254+CFxiLkDxNdO5M+FnOj8Fgxmf7rVSp6u6xj/1MgnPqs4MdJoWjp1t0ISNulyDmfBLaJHmQcMe3i62k6EFiptKxXPoLSHU8xegLGwQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NfkuAeQrgdqmgtC/3mR3BNi4MGlLrh8s2f1+aKiGP1Q=;
- b=lloOh+1lO6qzNsMGPJczelP/y4A0eyLMAbz2zUQMzGalYem5OBAhO1ZfhQuFvXNDDQA5DW1esZUN2N5eNEHjqVVoYIP7s0QLFJxVoSHVGnSb3GCbCIdjuMQ1GIFbfj0n+ejuvgZm5JzzaJ0fh3O7IZ1B+YZLPLsFXlvClWUUav2K01tQDeK3OXcVZqLBncIt+8vbULWAHxr88pNAbg/CaG9h8zfIX5aCF+HXnDLGOholGL6ec9qwh1AVjWZ6e32rN4YVyAyc8BFl6wYNkHjr5BMZ722L/1mUH/1AnbKcbNkjqROotAFwLpvzN5FtnUHXAQI61jnKWNJ8+04sq8IqIQ==
+ bh=/hWBIzUxBB01wQia/ymUZkej2XMAkI+3fqmrrCTGu+4=;
+ b=TR1dsk58OSeEGJmCZRyvQWn85Ns2TnCEEP9GbYc/YbD3841AZDQrSgbUUNDBbh1G/dxfBV/b3+54yPQdrbKmhP1hH140P/qHFRpqLgN0D2cPWzFsRRLduGrrFrTSkUPirnuUBC6IDo2uQZY68SjyGN2ovBgyLvvcqM5UxbXLe9v238RyEB89KGLF/NhVbUOiFXElqdn2dbac/oe0fp7mrVuPp87g+5trZz0W4q74ns9i8K+QOnyhkj5SHSIA11ojNKkHSuTCi8d644zR4765pVvZLBaY8YLBkmBRrT/LTyKmGMRKvXshsI/+hG06QctgEC1+44XQ6fW9hzlcs16vGw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NfkuAeQrgdqmgtC/3mR3BNi4MGlLrh8s2f1+aKiGP1Q=;
- b=pYd2EfPXxFeGlqOnLUw/gOOCluxTi2zjOYrZ0VLKJEkuy/+q397YVVlKskMwSlaJ/0G0lLjjsLLKJiXvPm5sDXrfUk8zVlO1syNbXfaNQwqv17qzuKAdi4JFU7+AvWkx8SwAOUdSu7DkBN0Pmjxf5bx3rfC3Duo9GDFyQJzm3Wc=
+ bh=/hWBIzUxBB01wQia/ymUZkej2XMAkI+3fqmrrCTGu+4=;
+ b=tDfhAEfOoEZLjRZbVFmHM7pjtWn0gd7yRnIP5OETAXFxOU1qWZ1H3PhhPXpv1RVsN+9BVhKcJe0js09Eto2kLf2VS8Xju1LpeGDedr2EQl2/L/F5YzQi5apTOro03ncMFb+JEuWtHnDYD39PabHQShBiSNSbUHCKOb4KsJ4HDB8=
 Received: from BN9PR03CA0763.namprd03.prod.outlook.com (2603:10b6:408:13a::18)
- by BL1PR12MB5334.namprd12.prod.outlook.com (2603:10b6:208:31d::17)
+ by LV2PR12MB5823.namprd12.prod.outlook.com (2603:10b6:408:178::9)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.21; Thu, 27 Apr
  2023 06:27:51 +0000
@@ -54,10 +54,10 @@ Received: from DESKTOP-U2004.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  2023 01:27:49 -0500
 From: Darren Powell <darren.powell@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 2/8] amdgpu/pm: Optimize emit_clock_levels for arcturus - part
- 1
-Date: Thu, 27 Apr 2023 02:27:12 -0400
-Message-ID: <20230427062718.1172269-3-darren.powell@amd.com>
+Subject: [PATCH 3/8] amdgpu/pm: Optimize emit_clock_levels for arcturus - part
+ 2
+Date: Thu, 27 Apr 2023 02:27:13 -0400
+Message-ID: <20230427062718.1172269-4-darren.powell@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230427062718.1172269-1-darren.powell@amd.com>
 References: <20230427062718.1172269-1-darren.powell@amd.com>
@@ -69,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT025:EE_|BL1PR12MB5334:EE_
-X-MS-Office365-Filtering-Correlation-Id: c806035b-f63c-44bb-d5ee-08db46e8872d
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT025:EE_|LV2PR12MB5823:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2e7166bd-8137-40d4-362b-08db46e8874f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: pSLnRYZiGEL0HrcivrBgtD790norkch+ErllKLU71URX7jhNq4PXSvdXQNRArCxPWJiucnDvveBtAwZrjVZkdxqvlTdQmhcYzvq2ufYB2AoIE3g/JT8Qhl79dLP+dL43bks6z1PcnDrLc8+jKoz64cOvaQuUKa5ha1wfCo0g4n2+H+wbil+TkTBVxhrt+apD9y51yqzdz7K6xhIyeeQE8b82l99PZ7nKs1JhWIpqvgXVuEXQYNBeymBHOT8gYVTLkv5HOh3OPP1numuZjNcYUleup8UnTKI8bbRUu5BN5juh3seYEs4Cu+XrUB8L2/QNQV5jvxvYa8uc5wjRYXDJ1ReSj0EBNh+DCaUANQdylYlKZE8tEjGGji+440P225nkTXpVNDXxgU29MzIlE7e5Cof6PwrggxUTW3Le0EUPa4kggZUun6I35zhEimIsTLtkP/PRg3e7PUbicuRUTh7c6vZKXDt/MrLAZf5qQRYs9juBsQyW/9TftUd+mBT5SRkrNYO9KQLkqKZ3j9gUYIYzqSrcTGvFY4T7e9gpCU3ui0ITFli8XDb7aIPYt2vU8gKJWsE7u65bxhcj0qYM03FXYDCB4hIbjEUwV8YfaOSbxKCC36OPplgb8MFMfYTthKe9Ec57D8JNw4MIjC7yspkgzatNerEj9oKZecMvzvANj0OGuGJhJQrmMHjFQM/EUxVvgEsOYsRMV//R2qJ0Rh22O0OJGeF+ZOekh7eRrgssFL8=
+X-Microsoft-Antispam-Message-Info: lX6MbRIZVWIbXqhC/onllQlcJOLouosUL1KjDnhpt/Lu74ixtNp+YHuwJL5V50rFATBXyUQZgetHv5HDLjgcc5B3UB6VTsLJPjSWN45L2o3wmH0/eH4vhbg87J+nZGwQCSVJSqjwcBtfzerXUtE2HaTKXZbofSaRHd0Zuc/F8Z4YepLLN38uLAD8vZDRP1Lm1AiisfETKiwnZrvYiLGUi+deihAVmrF6URmjvmJHQZVAYmKotlplfLwZ8BRn8Wizy468rPdwnBwVJTYeEhl+rhvgT1UODxOh8RCXCOFFCUxqGLdOYEoEZY2AIuyoZOTv88aofm6FB3c8vkI9W47mqfCbKJiOJo9Nr3EyX8SCu8D9dY9Fw240aTF4L6ahzv7QDZ5Uiav+aOrdOfiIsueEOLCjT15krCXj+SSx3eZwVZfk2al2JXcs2ecHsxTBKBfA/02SHdnb+bhbfpDys55+cx4zhM3sg2G0Kk/GNx8xKvn0tw/xgyk+0fgILy8RrqxLOGk1fzWfXwcag1JDMFZFb97PZ6lV+OVRN1Tn3UwrGTPMhh8VRjn+O/SgNxBg/U01tPteS8e38WUGmvPqNboDILZNFt2s7s5/Kocx6a1D9PYnHtkvw5SwDHB77P3Umk3dDnYYoQzpaNSKCqbXpxxlAq3AvT+IfOaJFfh+oDbuKXxFgLekD57PT9b+El/ff3HRpf+kU+7/0VHDfcKK+FACn2w61+SoKgmx2Ys91hlWqI4=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(136003)(396003)(376002)(346002)(39860400002)(451199021)(40470700004)(36840700001)(46966006)(316002)(4326008)(6916009)(40460700003)(70586007)(70206006)(54906003)(7696005)(6666004)(82310400005)(40480700001)(86362001)(36756003)(478600001)(16526019)(186003)(1076003)(26005)(36860700001)(5660300002)(2616005)(81166007)(41300700001)(356005)(426003)(336012)(44832011)(2906002)(47076005)(83380400001)(82740400003)(8936002)(8676002)(36900700001);
+ SFS:(13230028)(4636009)(136003)(396003)(376002)(346002)(39860400002)(451199021)(46966006)(36840700001)(40470700004)(86362001)(6916009)(316002)(4326008)(8936002)(8676002)(26005)(41300700001)(40480700001)(16526019)(1076003)(186003)(40460700003)(7696005)(6666004)(83380400001)(44832011)(47076005)(36860700001)(54906003)(478600001)(356005)(82740400003)(82310400005)(2906002)(36756003)(81166007)(70206006)(70586007)(5660300002)(2616005)(336012)(426003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2023 06:27:51.6873 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c806035b-f63c-44bb-d5ee-08db46e8872d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2023 06:27:51.9060 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2e7166bd-8137-40d4-362b-08db46e8874f
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT025.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5334
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5823
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,251 +106,134 @@ Cc: lijo.lazar@amd.com, ray.huang@amd.com,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
- Use variables to remove the multiple nested ternary expressions and
+ Use variables to remove ternary expression in print statement and
  improve readability. This will help to optimize the code duplication
  in the switch statement
  Also Changed:
-  Modify function arcturus_get_clk_table to void function as it
-    always returns 0
-  Use const string "attempt_string" to cut down on repetition
+  replaced single_dpm_table->count as iterator in for loops with safer
+    clocks_num_levels value
+  replaced dpm_table.value usage with local var clocks_mhz
 
 Signed-off-by: Darren Powell <darren.powell@amd.com>
 ---
- .../gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c | 126 ++++++++----------
- 1 file changed, 57 insertions(+), 69 deletions(-)
+ .../gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c | 45 +++++++++----------
+ 1 file changed, 22 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
-index 0136e136e807..23e768aad6f9 100644
+index 23e768aad6f9..aea78f9dbae2 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
-@@ -569,9 +569,9 @@ static int arcturus_populate_umd_state_clk(struct smu_context *smu)
- 	return 0;
- }
+@@ -794,11 +794,11 @@ static int arcturus_emit_clk_levels(struct smu_context *smu,
+ 		for (i = 0; i < clocks.num_levels; i++) {
+ 			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
+ 			freq_match = arcturus_freqs_in_same_level(clock_mhz, cur_value);
++			freq_match |= (clocks.num_levels == 1);
  
--static int arcturus_get_clk_table(struct smu_context *smu,
--			struct pp_clock_levels_with_latency *clocks,
--			struct smu_11_0_dpm_table *dpm_table)
-+static void arcturus_get_clk_table(struct smu_context *smu,
-+				   struct pp_clock_levels_with_latency *clocks,
-+				   struct smu_11_0_dpm_table *dpm_table)
- {
- 	uint32_t i;
- 
-@@ -584,8 +584,6 @@ static int arcturus_get_clk_table(struct smu_context *smu,
- 			dpm_table->dpm_levels[i].value * 1000;
- 		clocks->data[i].latency_in_us = 0;
- 	}
--
--	return 0;
- }
- 
- static int arcturus_freqs_in_same_level(int32_t frequency1,
-@@ -767,7 +765,9 @@ static int arcturus_emit_clk_levels(struct smu_context *smu,
- 	struct smu_11_0_dpm_context *dpm_context = NULL;
- 	uint32_t gen_speed, lane_width;
- 	uint32_t i, cur_value = 0;
--
-+	bool freq_match;
-+	unsigned int clock_mhz;
-+	static const char attempt_string[] = "Attempt to get current";
- 
- 	if (amdgpu_ras_intr_triggered()) {
- 		*offset += sysfs_emit_at(buf, *offset, "unavailable\n");
-@@ -780,143 +780,131 @@ static int arcturus_emit_clk_levels(struct smu_context *smu,
- 	case SMU_SCLK:
- 		ret = arcturus_get_current_clk_freq_by_table(smu, SMU_GFXCLK, &cur_value);
- 		if (ret) {
--			dev_err(smu->adev->dev, "Attempt to get current gfx clk Failed!");
-+			dev_err(smu->adev->dev, "%s gfx clk Failed!", attempt_string);
- 			return ret;
+-			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n", i,
+-					clock_mhz,
+-					(clocks.num_levels == 1) ? "*" :
+-						(freq_match ? "*" : ""));
++			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
++						 i, clock_mhz,
++						 freq_match ? "*" : "");
  		}
- 
- 		single_dpm_table = &(dpm_context->dpm_tables.gfx_table);
--		ret = arcturus_get_clk_table(smu, &clocks, single_dpm_table);
--		if (ret) {
--			dev_err(smu->adev->dev, "Attempt to get gfx clk levels Failed!");
--			return ret;
--		}
-+		arcturus_get_clk_table(smu, &clocks, single_dpm_table);
- 
- 		/*
- 		 * For DPM disabled case, there will be only one clock level.
- 		 * And it's safe to assume that is always the current clock.
- 		 */
--		for (i = 0; i < clocks.num_levels; i++)
-+		for (i = 0; i < clocks.num_levels; i++) {
-+			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
-+			freq_match = arcturus_freqs_in_same_level(clock_mhz, cur_value);
-+
- 			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n", i,
--					clocks.data[i].clocks_in_khz / 1000,
-+					clock_mhz,
- 					(clocks.num_levels == 1) ? "*" :
--					(arcturus_freqs_in_same_level(
--					clocks.data[i].clocks_in_khz / 1000,
--					cur_value) ? "*" : ""));
-+						(freq_match ? "*" : ""));
-+		}
  		break;
  
- 	case SMU_MCLK:
- 		ret = arcturus_get_current_clk_freq_by_table(smu, SMU_UCLK, &cur_value);
- 		if (ret) {
--			dev_err(smu->adev->dev, "Attempt to get current mclk Failed!");
-+			dev_err(smu->adev->dev, "%s mclk Failed!", attempt_string);
- 			return ret;
- 		}
+@@ -815,11 +815,11 @@ static int arcturus_emit_clk_levels(struct smu_context *smu,
+ 		for (i = 0; i < clocks.num_levels; i++) {
+ 			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
+ 			freq_match = arcturus_freqs_in_same_level(clock_mhz, cur_value);
++			freq_match |= (clocks.num_levels == 1);
  
- 		single_dpm_table = &(dpm_context->dpm_tables.uclk_table);
--		ret = arcturus_get_clk_table(smu, &clocks, single_dpm_table);
--		if (ret) {
--			dev_err(smu->adev->dev, "Attempt to get memory clk levels Failed!");
--			return ret;
--		}
-+		arcturus_get_clk_table(smu, &clocks, single_dpm_table);
-+
-+		for (i = 0; i < clocks.num_levels; i++) {
-+			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
-+			freq_match = arcturus_freqs_in_same_level(clock_mhz, cur_value);
- 
--		for (i = 0; i < clocks.num_levels; i++)
  			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
--				i, clocks.data[i].clocks_in_khz / 1000,
-+				i, clock_mhz,
- 				(clocks.num_levels == 1) ? "*" :
--				(arcturus_freqs_in_same_level(
--				clocks.data[i].clocks_in_khz / 1000,
--				cur_value) ? "*" : ""));
-+					(freq_match ? "*" : ""));
-+		}
+-				i, clock_mhz,
+-				(clocks.num_levels == 1) ? "*" :
+-					(freq_match ? "*" : ""));
++						 i, clock_mhz,
++						 freq_match ? "*" : "");
+ 		}
  		break;
  
- 	case SMU_SOCCLK:
- 		ret = arcturus_get_current_clk_freq_by_table(smu, SMU_SOCCLK, &cur_value);
- 		if (ret) {
--			dev_err(smu->adev->dev, "Attempt to get current socclk Failed!");
-+			dev_err(smu->adev->dev, "%s socclk Failed!", attempt_string);
- 			return ret;
- 		}
+@@ -836,11 +836,11 @@ static int arcturus_emit_clk_levels(struct smu_context *smu,
+ 		for (i = 0; i < clocks.num_levels; i++) {
+ 			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
+ 			freq_match = arcturus_freqs_in_same_level(clock_mhz, cur_value);
++			freq_match |= (clocks.num_levels == 1);
  
- 		single_dpm_table = &(dpm_context->dpm_tables.soc_table);
--		ret = arcturus_get_clk_table(smu, &clocks, single_dpm_table);
--		if (ret) {
--			dev_err(smu->adev->dev, "Attempt to get socclk levels Failed!");
--			return ret;
--		}
-+		arcturus_get_clk_table(smu, &clocks, single_dpm_table);
-+
-+		for (i = 0; i < clocks.num_levels; i++) {
-+			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
-+			freq_match = arcturus_freqs_in_same_level(clock_mhz, cur_value);
- 
--		for (i = 0; i < clocks.num_levels; i++)
  			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
--				i, clocks.data[i].clocks_in_khz / 1000,
-+				i, clock_mhz,
- 				(clocks.num_levels == 1) ? "*" :
--				(arcturus_freqs_in_same_level(
--				clocks.data[i].clocks_in_khz / 1000,
--				cur_value) ? "*" : ""));
-+					(freq_match ? "*" : ""));
-+		}
+-				i, clock_mhz,
+-				(clocks.num_levels == 1) ? "*" :
+-					(freq_match ? "*" : ""));
++						 i, clock_mhz,
++						 freq_match ? "*" : "");
+ 		}
  		break;
  
- 	case SMU_FCLK:
- 		ret = arcturus_get_current_clk_freq_by_table(smu, SMU_FCLK, &cur_value);
- 		if (ret) {
--			dev_err(smu->adev->dev, "Attempt to get current fclk Failed!");
-+			dev_err(smu->adev->dev, "%s fclk Failed!", attempt_string);
- 			return ret;
- 		}
- 
+@@ -854,14 +854,14 @@ static int arcturus_emit_clk_levels(struct smu_context *smu,
  		single_dpm_table = &(dpm_context->dpm_tables.fclk_table);
--		ret = arcturus_get_clk_table(smu, &clocks, single_dpm_table);
--		if (ret) {
--			dev_err(smu->adev->dev, "Attempt to get fclk levels Failed!");
--			return ret;
--		}
-+		arcturus_get_clk_table(smu, &clocks, single_dpm_table);
-+
-+		for (i = 0; i < single_dpm_table->count; i++) {
-+			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
-+			freq_match = arcturus_freqs_in_same_level(clock_mhz, cur_value);
+ 		arcturus_get_clk_table(smu, &clocks, single_dpm_table);
  
--		for (i = 0; i < single_dpm_table->count; i++)
+-		for (i = 0; i < single_dpm_table->count; i++) {
++		for (i = 0; i < clocks.num_levels; i++) {
+ 			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
+ 			freq_match = arcturus_freqs_in_same_level(clock_mhz, cur_value);
++			freq_match |= (clocks.num_levels == 1);
+ 
  			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
- 				i, single_dpm_table->dpm_levels[i].value,
- 				(clocks.num_levels == 1) ? "*" :
--				(arcturus_freqs_in_same_level(
--				clocks.data[i].clocks_in_khz / 1000,
--				cur_value) ? "*" : ""));
-+					(freq_match ? "*" : ""));
-+		}
+-				i, single_dpm_table->dpm_levels[i].value,
+-				(clocks.num_levels == 1) ? "*" :
+-					(freq_match ? "*" : ""));
++						 i, clock_mhz,
++						 freq_match ? "*" : "");
+ 		}
  		break;
  
- 	case SMU_VCLK:
- 		ret = arcturus_get_current_clk_freq_by_table(smu, SMU_VCLK, &cur_value);
- 		if (ret) {
--			dev_err(smu->adev->dev, "Attempt to get current vclk Failed!");
-+			dev_err(smu->adev->dev, "%s vclk Failed!", attempt_string);
- 			return ret;
- 		}
- 
+@@ -875,14 +875,14 @@ static int arcturus_emit_clk_levels(struct smu_context *smu,
  		single_dpm_table = &(dpm_context->dpm_tables.vclk_table);
--		ret = arcturus_get_clk_table(smu, &clocks, single_dpm_table);
--		if (ret) {
--			dev_err(smu->adev->dev, "Attempt to get vclk levels Failed!");
--			return ret;
--		}
-+		arcturus_get_clk_table(smu, &clocks, single_dpm_table);
-+
-+		for (i = 0; i < single_dpm_table->count; i++) {
-+			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
-+			freq_match = arcturus_freqs_in_same_level(clock_mhz, cur_value);
+ 		arcturus_get_clk_table(smu, &clocks, single_dpm_table);
  
--		for (i = 0; i < single_dpm_table->count; i++)
+-		for (i = 0; i < single_dpm_table->count; i++) {
++		for (i = 0; i < clocks.num_levels; i++) {
+ 			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
+ 			freq_match = arcturus_freqs_in_same_level(clock_mhz, cur_value);
++			freq_match |= (clocks.num_levels == 1);
+ 
  			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
- 				i, single_dpm_table->dpm_levels[i].value,
- 				(clocks.num_levels == 1) ? "*" :
--				(arcturus_freqs_in_same_level(
--				clocks.data[i].clocks_in_khz / 1000,
--				cur_value) ? "*" : ""));
-+					(freq_match ? "*" : ""));
-+		}
- 		break;
- 
- 	case SMU_DCLK:
- 		ret = arcturus_get_current_clk_freq_by_table(smu, SMU_DCLK, &cur_value);
- 		if (ret) {
--			dev_err(smu->adev->dev, "Attempt to get current dclk Failed!");
-+			dev_err(smu->adev->dev, "%s dclk Failed!", attempt_string);
- 			return ret;
+-				i, single_dpm_table->dpm_levels[i].value,
+-				(clocks.num_levels == 1) ? "*" :
+-					(freq_match ? "*" : ""));
++						 i, clock_mhz,
++						 freq_match ? "*" : "");
  		}
- 
- 		single_dpm_table = &(dpm_context->dpm_tables.dclk_table);
--		ret = arcturus_get_clk_table(smu, &clocks, single_dpm_table);
--		if (ret) {
--			dev_err(smu->adev->dev, "Attempt to get dclk levels Failed!");
--			return ret;
--		}
-+		arcturus_get_clk_table(smu, &clocks, single_dpm_table);
-+
-+		for (i = 0; i < single_dpm_table->count; i++) {
-+			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
-+			freq_match = arcturus_freqs_in_same_level(clock_mhz, cur_value);
- 
--		for (i = 0; i < single_dpm_table->count; i++)
- 			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
- 				i, single_dpm_table->dpm_levels[i].value,
- 				(clocks.num_levels == 1) ? "*" :
--				(arcturus_freqs_in_same_level(
--				clocks.data[i].clocks_in_khz / 1000,
--				cur_value) ? "*" : ""));
-+					(freq_match ? "*" : ""));
-+		}
  		break;
  
- 	case SMU_PCIE:
+@@ -896,14 +896,14 @@ static int arcturus_emit_clk_levels(struct smu_context *smu,
+ 		single_dpm_table = &(dpm_context->dpm_tables.dclk_table);
+ 		arcturus_get_clk_table(smu, &clocks, single_dpm_table);
+ 
+-		for (i = 0; i < single_dpm_table->count; i++) {
++		for (i = 0; i < clocks.num_levels; i++) {
+ 			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
+ 			freq_match = arcturus_freqs_in_same_level(clock_mhz, cur_value);
++			freq_match |= (clocks.num_levels == 1);
+ 
+ 			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
+-				i, single_dpm_table->dpm_levels[i].value,
+-				(clocks.num_levels == 1) ? "*" :
+-					(freq_match ? "*" : ""));
++						 i, clock_mhz,
++						 freq_match ? "*" : "");
+ 		}
+ 		break;
+ 
+@@ -926,7 +926,6 @@ static int arcturus_emit_clk_levels(struct smu_context *smu,
+ 
+ 	default:
+ 		return -EINVAL;
+-		break;
+ 	}
+ 
+ 	return 0;
 -- 
 2.34.1
 
