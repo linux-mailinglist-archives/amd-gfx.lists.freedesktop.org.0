@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A68B96F00C8
-	for <lists+amd-gfx@lfdr.de>; Thu, 27 Apr 2023 08:28:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 537D96F00CB
+	for <lists+amd-gfx@lfdr.de>; Thu, 27 Apr 2023 08:28:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA62F10EAA2;
-	Thu, 27 Apr 2023 06:28:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6F2B10EA96;
+	Thu, 27 Apr 2023 06:28:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam02on2080.outbound.protection.outlook.com [40.107.212.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7978510EAA0
- for <amd-gfx@lists.freedesktop.org>; Thu, 27 Apr 2023 06:27:56 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEF0D10EAA0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 27 Apr 2023 06:27:58 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JjyHrIqnnmOktbFcDwojAIWIMXMmSnSVSG+IWRnTgbpcC2uBXyWzQ8c6OKRgEXQ+Q0Il2Rh/OlkaAgVLoHuk1Q6jDnCVRG+OgdHwNTvN+LX/2k2TtafB/TFlMepXombA/eJsi//U+Ycsfv7B4PRDrJ2l5Kx6D648c4TufqxE327/BI7Ijwdk5/KeErmIwBn6M5DFxszMLN05jSAB2RikOx+IYhKtwobFF9qH/nc3MT3pySzNKMHUgCbwLZNcLZJaAUsrrlHNreMo6ebBrKerYM65KNpQoWF9LWYRwDl5/TGd6NADyN2f0tMarwIsmMhZ2/U9NuqIU6Ha6dLvVNy0ug==
+ b=fpZrXVe2rMOy0/PIOxcVAGJty6192LWwjsmjMvKUO/SkRWYW0slzbIUtrV+zVY9aEZKn24k5bEcTRtY+lkBokggAa1m9lpGbL7CVH3xI6WE/zEjuxCYtVGggRavx8RmfDzjBw0dAyjQu9p4FRlss8EgUxIYySWLxcJmC33R45jJHWc5Oo8z0mK2ciJQHmU3CCg3YRaba79+52wjwhpoH3QgPQJn72IwQ9xv0DiwLrELzMetFSgeGYKMOaCRX42lkJRYufIOeVP/G6keUtl5c39BFyWphJmUDKIdQbbcS5BWEBSHRHeZFIZ7JOgf2mY/DV3++8FKvwTKBGNupue5QjA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZyYiSjxMcmfCwZ0SE3OheZFNeEnrclas12fkyifSTEw=;
- b=oUynPCsNgONq2EkbPgIEprXsDcGRYZbG+ulJ6KG7fr5ixeCXQJ0ZsmjQhcP8a9JITDpkDfgK7Yh7jMU0D40M3h/jw+vHg5s9n8OgMRZbGsE+1QgKf0FeID5Xe+b9V+yn6PM0s6wWrTSB6c5xgvTZpOTVTOf94Ag8t+Aduen03atQ+5b6yZDlBBKjkw3rey92/KaCY8e0mlozZfd5Yf1QE0qigDChT8yaNsC+9ey6v3A9t9T2+SxvAE/ApOMf7cgqKANiIaIp1RzV2ltmF3LX1YkR5bGCsw8GVe0GlzmQwsE0RO2sRCGaWX4KRlqdtXPgg4G7kRqi7gzYd6lkji90WQ==
+ bh=nCnBmXRuEBlB4PH3Lxs/Mdjkto4LA1HR7XCTJvB/9Yc=;
+ b=QSm/jHveejPgJVKPzcwSr6LAdXjtOu+Id+f/qHswAFfH9Jg3E00a/REAGT5XduSaCiCknhYc3L9aRUcmKo/yiov76zAXVkwkbmW8iqzlOIYeP6gDSU0WueYveI8XppDYgSQp0eE13z/tsMRU50lT3vsDBMvxomoQzwVxI36MN6kgm6de9ECO67L6B8EIiLOV4SKL3vQJcaZJhsyeNAbAP62R35sMFCwF9nVZ/XfWNYnqWxcWEFSbK6qrmlaX8wplX95Kh98iqV2s03Zfnb7vHCCHaB/7qG+DnYAvTV67hCzEFNm8TW/4pritju95rcHeMzcqd2S7P4g8rvTWFu5BKA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZyYiSjxMcmfCwZ0SE3OheZFNeEnrclas12fkyifSTEw=;
- b=aQu47DZyyV3sMn59L8MaKOhi456xVkf6Jsrn8uPeBRImzJlHjPqSzGJ+Cws+Wn+0UJbDFeBxF6Tc5qV9TIdA0s3qfeg4+anYCzt66kTlQL/6gcdp+FJi19VyaQJmy3hh10dV37y49DXk4jA3Nza3EXKLw51zkekk1rfjT8cpb1c=
-Received: from BN9PR03CA0760.namprd03.prod.outlook.com (2603:10b6:408:13a::15)
- by SA1PR12MB6970.namprd12.prod.outlook.com (2603:10b6:806:24d::5)
+ bh=nCnBmXRuEBlB4PH3Lxs/Mdjkto4LA1HR7XCTJvB/9Yc=;
+ b=DSttxBwkZsYlZ/jjgbFm3+rHBIb5jIAWQDDXU1xoAveUSVqajPZeJTYQhgrSMbU16WSf/uZLJmqpADJK4iTNShurpfjsGZNACLhNFc3uB4i4lr24ZgEG4frxswIQ4mZfBW1fuDgTaNPnwb005L8wLoQc9p4aLxC83xaLiJ4i2M0=
+Received: from BN9PR03CA0880.namprd03.prod.outlook.com (2603:10b6:408:13c::15)
+ by SJ0PR12MB5421.namprd12.prod.outlook.com (2603:10b6:a03:3bb::21)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6319.33; Thu, 27 Apr
- 2023 06:27:54 +0000
-Received: from BN8NAM11FT025.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:13a::4) by BN9PR03CA0760.outlook.office365.com
- (2603:10b6:408:13a::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.22 via Frontend
- Transport; Thu, 27 Apr 2023 06:27:53 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.21; Thu, 27 Apr
+ 2023 06:27:56 +0000
+Received: from BN8NAM11FT004.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:13c:cafe::1c) by BN9PR03CA0880.outlook.office365.com
+ (2603:10b6:408:13c::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.21 via Frontend
+ Transport; Thu, 27 Apr 2023 06:27:55 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,19 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT025.mail.protection.outlook.com (10.13.177.136) with Microsoft SMTP
+ BN8NAM11FT004.mail.protection.outlook.com (10.13.176.164) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6340.22 via Frontend Transport; Thu, 27 Apr 2023 06:27:53 +0000
+ 15.20.6340.22 via Frontend Transport; Thu, 27 Apr 2023 06:27:55 +0000
 Received: from DESKTOP-U2004.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 27 Apr
  2023 01:27:52 -0500
 From: Darren Powell <darren.powell@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 7/8] amdgpu/pm: Optimize emit_clock_levels for aldebaran -
- part 2
-Date: Thu, 27 Apr 2023 02:27:17 -0400
-Message-ID: <20230427062718.1172269-8-darren.powell@amd.com>
+Subject: [PATCH 8/8] amdgpu/pm: Optimize emit_clock_levels for aldebaran -
+ part 3
+Date: Thu, 27 Apr 2023 02:27:18 -0400
+Message-ID: <20230427062718.1172269-9-darren.powell@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230427062718.1172269-1-darren.powell@amd.com>
 References: <20230427062718.1172269-1-darren.powell@amd.com>
@@ -69,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT025:EE_|SA1PR12MB6970:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9de14d5d-1b8d-471f-d3e3-08db46e88876
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT004:EE_|SJ0PR12MB5421:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2f8ac55b-6ed3-4e2d-2fee-08db46e88996
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QpZR6R1pksUCtEQ9l7mr/DApcaAw39/BOrwdSd34zJpFGKE9ZBFeWK4+OeANffPTXB74eMpd9XX/TUtVVW501vdsJonNFLOyZR0Pu49YpYmiT/ikB5hC+RGcl9Vmg2kDEkPnoVx0I9xVmqIC+fNBADwRyotBvvVrFTkCevkXVa/0ahlS7lVOS2Sce15yxxbHY56PbegmBnp7v9WzlD3QGWh3pGVD5F/d7O6t33f4yQUY7x94rh+KOFfzE2DhHp43+/FH3RQt3ntjReosxizNGQV0YxqajbxiG9uCJ+Rjt0cMP7cZwS0R4EjbrfA4X93QOCPvXSoS4oyUw/829BoVvb5Bi4OlmceIAiV1lUFjHOS1k+nbhW7pnOzvh1g+X8GUPgmwI2SLWMx/IMHwonjoPINOrqgJZ5+TLCmi/kRAZOW+XH+13DS9qITsRJbNjFCmqOkLvG9VwWyN7fqsNkfgi8WL87ieet1BAA349jX5cr9muw85hapl9yuTnmp2UFycHy2F27IWTVZ56REDxWRYi5qS3oaQq5RdYszEoWX/8pufd+9lNz56J3pd4ktPKnCoRTpHQziCo+CBKanLlnbBbyqGvhBOR3eLeCGuAP1yG93sUijrEtA0x5nCn/GVaSLF5u7yKBpFOd8unySi/u8eB/9Wq0+UrQRT7N1pA33jRGFkhYl3zNL1mqotjR6JxBw7JKmqCAijTahFGVU93qkPmnYdamcFJZlnkELaDylHRb8=
+X-Microsoft-Antispam-Message-Info: yUgTfeL0isfrbic0zeRENOuDF6YpYNKd6x51WDojDRNbpkNhkGVIZ4784Z7RBPeHIvr5AGo2epSyi/uv3ZcweuZnjjxrhhFyEYKOXiwgbEeFjPlPHdECHUAWn9Y4Rb4Yi3V1MxxpLGt2Pw+70uDEh7WQQ8TOU5iHob+3jHruAmZSQCas375DWtZYBbH/AkpjAAknGlUiCXSFBZt7Cd+JXGxIp7TLUx/rQrxWvkH7oWWxaJ4kvdmGK8kQ0AJPZQFfkR0vwdXav3jPTQ9m1IkqZoZLWtugWEhzBgGSbEjIyLQCmVRugdQBN5DmmG4pnfQZvuicS14SzIurfUL5fJE3FgW+AEIN68AoYE+ju3uBLhDJ4bLVzK96p3mKk69k9I33agv0wPfH/ULkh6wrVGmSbhZQ2SOFFNmnCCkChlFHiXL+HGF32WzQxGYHvZVoHUVPNytwgCU0+5p3ImS0FG7gIDX+MgQqY7MolaNggHrZrp/8hPJ303l10fov3Z17j4kLfOasStAkFCnxzWAXbigEldqYPs/PNgp/m8ad75PaoUtDgVkqWh8nLgx9LM2dNt3NkIbcx3oOlSo6gV4wLY4nPkrfPSci/6hsl9AMrOgD6HKnMhLaDBe48hZV89NXa4FnkY+FVwY72G5cnq/TjGVn5cLHiKpmXrPg/TY74zN7/HCAWGyHz06W2oHAWLn5lW94E7Ht9pqns1pDOyyNTlKw5tHg3Y5iNSPMCQGWezkjY3Q=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(376002)(346002)(136003)(39860400002)(451199021)(36840700001)(46966006)(40470700004)(4326008)(6916009)(316002)(16526019)(2906002)(8676002)(186003)(70586007)(36756003)(44832011)(41300700001)(40480700001)(70206006)(478600001)(5660300002)(86362001)(40460700003)(8936002)(6666004)(54906003)(2616005)(82740400003)(356005)(36860700001)(26005)(1076003)(426003)(81166007)(336012)(83380400001)(47076005)(82310400005)(7696005)(36900700001);
+ SFS:(13230028)(4636009)(136003)(39860400002)(376002)(346002)(396003)(451199021)(36840700001)(46966006)(40470700004)(316002)(4326008)(40460700003)(6916009)(70586007)(70206006)(54906003)(7696005)(82310400005)(6666004)(86362001)(36756003)(40480700001)(478600001)(186003)(16526019)(26005)(1076003)(41300700001)(81166007)(2616005)(356005)(36860700001)(2906002)(47076005)(5660300002)(426003)(44832011)(336012)(8936002)(8676002)(83380400001)(82740400003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2023 06:27:53.8434 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9de14d5d-1b8d-471f-d3e3-08db46e88876
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2023 06:27:55.7266 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2f8ac55b-6ed3-4e2d-2fee-08db46e88996
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT025.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT004.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6970
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5421
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,113 +106,153 @@ Cc: lijo.lazar@amd.com, ray.huang@amd.com,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
- Use variables to remove ternary expression in print statement
- and improve readability. This will help to optimize the code
- duplication in the switch statement
- Also Changed:
-  replaced single_dpm_table->count as iterator in for loops
-    with safer clocks_num_levels value
-  replaced dpm_table.value usage with local var clocks_mhz
+   split switch statement into two and consolidate the common
+   code for printing most of the types of clock speeds
 
 Signed-off-by: Darren Powell <darren.powell@amd.com>
 ---
- .../drm/amd/pm/swsmu/smu13/aldebaran_ppt.c    | 27 +++++++++----------
- 1 file changed, 13 insertions(+), 14 deletions(-)
+ .../drm/amd/pm/swsmu/smu13/aldebaran_ppt.c    | 82 ++++++-------------
+ 1 file changed, 27 insertions(+), 55 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
-index 75833bc3d4c4..b315353adfdf 100644
+index b315353adfdf..9d37800bfae9 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
-@@ -792,12 +792,11 @@ static int aldebaran_emit_clk_levels(struct smu_context *smu,
- 		for (i = 0; i < display_levels; i++) {
- 			clock_mhz = freq_values[i];
- 			freq_match = aldebaran_freqs_in_same_level(clock_mhz, cur_value);
-+			freq_match |= (display_levels == 1);
+@@ -788,17 +788,6 @@ static int aldebaran_emit_clk_levels(struct smu_context *smu,
+ 			freq_values[2] = max_clk;
+ 			freq_values[1] = cur_value;
+ 		}
+-
+-		for (i = 0; i < display_levels; i++) {
+-			clock_mhz = freq_values[i];
+-			freq_match = aldebaran_freqs_in_same_level(clock_mhz, cur_value);
+-			freq_match |= (display_levels == 1);
+-
+-			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n", i,
+-				clock_mhz,
+-				(freq_match) ? "*" : "");
+-		}
+-
+ 		break;
  
- 			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n", i,
- 				clock_mhz,
--				(display_levels == 1) ?
--					"*" :
+ 	case SMU_OD_MCLK:
+@@ -813,16 +802,6 @@ static int aldebaran_emit_clk_levels(struct smu_context *smu,
+ 
+ 		single_dpm_table = &(dpm_context->dpm_tables.uclk_table);
+ 		aldebaran_get_clk_table(smu, &clocks, single_dpm_table);
+-
+-		for (i = 0; i < clocks.num_levels; i++) {
+-			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
+-			freq_match = aldebaran_freqs_in_same_level(clock_mhz, cur_value);
+-			freq_match |= (clocks.num_levels == 1);
+-
+-			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
+-					i, clock_mhz,
 -					(freq_match) ? "*" : "");
-+				(freq_match) ? "*" : "");
- 		}
- 
+-		}
  		break;
-@@ -818,10 +817,10 @@ static int aldebaran_emit_clk_levels(struct smu_context *smu,
- 		for (i = 0; i < clocks.num_levels; i++) {
- 			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
- 			freq_match = aldebaran_freqs_in_same_level(clock_mhz, cur_value);
-+			freq_match |= (clocks.num_levels == 1);
  
- 			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
- 					i, clock_mhz,
--					(clocks.num_levels == 1) ? "*" :
- 					(freq_match) ? "*" : "");
- 		}
- 		break;
-@@ -839,10 +838,10 @@ static int aldebaran_emit_clk_levels(struct smu_context *smu,
- 		for (i = 0; i < clocks.num_levels; i++) {
- 			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
- 			freq_match = aldebaran_freqs_in_same_level(clock_mhz, cur_value);
-+			freq_match |= (clocks.num_levels == 1);
+ 	case SMU_SOCCLK:
+@@ -834,16 +813,6 @@ static int aldebaran_emit_clk_levels(struct smu_context *smu,
  
- 			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
- 					i, clock_mhz,
--					(clocks.num_levels == 1) ? "*" :
- 					(freq_match) ? "*" : "");
- 		}
+ 		single_dpm_table = &(dpm_context->dpm_tables.soc_table);
+ 		aldebaran_get_clk_table(smu, &clocks, single_dpm_table);
+-
+-		for (i = 0; i < clocks.num_levels; i++) {
+-			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
+-			freq_match = aldebaran_freqs_in_same_level(clock_mhz, cur_value);
+-			freq_match |= (clocks.num_levels == 1);
+-
+-			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
+-					i, clock_mhz,
+-					(freq_match) ? "*" : "");
+-		}
  		break;
-@@ -857,13 +856,13 @@ static int aldebaran_emit_clk_levels(struct smu_context *smu,
+ 
+ 	case SMU_FCLK:
+@@ -855,16 +824,6 @@ static int aldebaran_emit_clk_levels(struct smu_context *smu,
+ 
  		single_dpm_table = &(dpm_context->dpm_tables.fclk_table);
  		aldebaran_get_clk_table(smu, &clocks, single_dpm_table);
- 
--		for (i = 0; i < single_dpm_table->count; i++) {
-+		for (i = 0; i < clocks.num_levels; i++) {
- 			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
- 			freq_match = aldebaran_freqs_in_same_level(clock_mhz, cur_value);
-+			freq_match |= (clocks.num_levels == 1);
- 
- 			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
--					i, single_dpm_table->dpm_levels[i].value,
--					(clocks.num_levels == 1) ? "*" :
-+					i, clock_mhz,
- 					(freq_match) ? "*" : "");
- 		}
+-
+-		for (i = 0; i < clocks.num_levels; i++) {
+-			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
+-			freq_match = aldebaran_freqs_in_same_level(clock_mhz, cur_value);
+-			freq_match |= (clocks.num_levels == 1);
+-
+-			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
+-					i, clock_mhz,
+-					(freq_match) ? "*" : "");
+-		}
  		break;
-@@ -878,13 +877,13 @@ static int aldebaran_emit_clk_levels(struct smu_context *smu,
+ 
+ 	case SMU_VCLK:
+@@ -876,16 +835,6 @@ static int aldebaran_emit_clk_levels(struct smu_context *smu,
+ 
  		single_dpm_table = &(dpm_context->dpm_tables.vclk_table);
  		aldebaran_get_clk_table(smu, &clocks, single_dpm_table);
- 
--		for (i = 0; i < single_dpm_table->count; i++) {
-+		for (i = 0; i < clocks.num_levels; i++) {
- 			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
- 			freq_match = aldebaran_freqs_in_same_level(clock_mhz, cur_value);
-+			freq_match |= (clocks.num_levels == 1);
- 
- 			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
--					i, single_dpm_table->dpm_levels[i].value,
--					(clocks.num_levels == 1) ? "*" :
-+					i, clock_mhz,
- 					(freq_match) ? "*" : "");
- 		}
+-
+-		for (i = 0; i < clocks.num_levels; i++) {
+-			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
+-			freq_match = aldebaran_freqs_in_same_level(clock_mhz, cur_value);
+-			freq_match |= (clocks.num_levels == 1);
+-
+-			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
+-					i, clock_mhz,
+-					(freq_match) ? "*" : "");
+-		}
  		break;
-@@ -899,13 +898,13 @@ static int aldebaran_emit_clk_levels(struct smu_context *smu,
+ 
+ 	case SMU_DCLK:
+@@ -897,21 +846,44 @@ static int aldebaran_emit_clk_levels(struct smu_context *smu,
+ 
  		single_dpm_table = &(dpm_context->dpm_tables.dclk_table);
  		aldebaran_get_clk_table(smu, &clocks, single_dpm_table);
++		break;
++
++	default:
++		return -EINVAL;
++	}
  
--		for (i = 0; i < single_dpm_table->count; i++) {
-+		for (i = 0; i < clocks.num_levels; i++) {
++	switch (type) {
++	case SMU_OD_SCLK:
++	case SMU_SCLK:
++		for (i = 0; i < display_levels; i++) {
++			clock_mhz = freq_values[i];
++			freq_match = aldebaran_freqs_in_same_level(clock_mhz, cur_value);
++			freq_match |= (display_levels == 1);
++
++			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n", i,
++				clock_mhz,
++				(freq_match) ? "*" : "");
++		}
++		break;
++
++	case SMU_OD_MCLK:
++	case SMU_MCLK:
++	case SMU_SOCCLK:
++	case SMU_FCLK:
++	case SMU_VCLK:
++	case SMU_DCLK:
+ 		for (i = 0; i < clocks.num_levels; i++) {
  			clock_mhz = clocks.data[i].clocks_in_khz / 1000;
  			freq_match = aldebaran_freqs_in_same_level(clock_mhz, cur_value);
-+			freq_match |= (clocks.num_levels == 1);
+ 			freq_match |= (clocks.num_levels == 1);
  
  			*offset += sysfs_emit_at(buf, *offset, "%d: %uMhz %s\n",
--					i, single_dpm_table->dpm_levels[i].value,
--					(clocks.num_levels == 1) ? "*" :
-+					i, clock_mhz,
- 					(freq_match) ? "*" : "");
+-					i, clock_mhz,
+-					(freq_match) ? "*" : "");
++				i, clock_mhz,
++				(freq_match) ? "*" : "");
  		}
  		break;
+-
+ 	default:
+ 		return -EINVAL;
+-		break;
+ 	}
+ 
+ 	return 0;
 -- 
 2.34.1
 
