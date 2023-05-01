@@ -2,41 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40A3A6F2F1C
-	for <lists+amd-gfx@lfdr.de>; Mon,  1 May 2023 09:22:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEEC56F2C07
+	for <lists+amd-gfx@lfdr.de>; Mon,  1 May 2023 04:56:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA10210E301;
-	Mon,  1 May 2023 07:21:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB98510E132;
+	Mon,  1 May 2023 02:56:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 485 seconds by postgrey-1.36 at gabe;
- Sun, 30 Apr 2023 11:53:08 UTC
-Received: from dijkstra.felixrichter.tech (dijkstra.felixrichter.tech
- [37.120.184.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDEFA10E031;
- Sun, 30 Apr 2023 11:53:08 +0000 (UTC)
-Received: from [10.130.10.1] (unknown [10.130.10.1])
- by dijkstra.felixrichter.tech (Postfix) with ESMTPSA id 479831A0238;
- Sun, 30 Apr 2023 13:45:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=felixrichter.tech;
- s=20210926; t=1682855129;
- bh=TkUHDf61Y7Il4LJxKW/DqEJAutZiMUDcL/FOAPUx7JY=;
- h=Date:From:To:Subject;
- b=jCuu3gLe2qZA5yiw0cfkq7ZqhW84LRGTDqsKwQB08Toqg5VWvHv7aQ3Qkhw9HPnQe
- obiEM/FlWKW0ESMXLmGm7FjYMSEAmKIVLivJfaGUz/g4V8ZoJD5tBlsQmNJsUt7Zs9
- bvdqhz+7JKf0h0t2ukPj8VaSN3XgA0Zrr/iZ7KIk=
-Content-Type: multipart/alternative;
- boundary="------------mzOa0IKJVGwWas0mM00hNw4L"
-Message-ID: <46a7eb80-5f09-4f6a-4fd3-9550dafd497c@felixrichter.tech>
-Date: Sun, 30 Apr 2023 13:44:59 +0200
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 339E310E132;
+ Mon,  1 May 2023 02:56:44 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id F0AC3615AE;
+ Mon,  1 May 2023 02:56:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D503C433EF;
+ Mon,  1 May 2023 02:56:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1682909802;
+ bh=eDQoBVYoSsBP6p23VcpY+zOVKBPTRBSYB4h1WLwasnQ=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=WSjhzxYCgpQbPNA47XE/j3QSLyqiDDFVFcQXU9VtwTIulBvSmX2CPOARetgrzgijF
+ a0gxaPbWWLBBfGX9WZEey/cna/FgUWag8GECDbm8gBWVBJxBN7KIO263XLpPdayBBN
+ cqtE8LY4RzjUbU4rE7womO5IZFtihcaeoEjMR1Hnq8hRYVzITMfC85SMT7T0tok++7
+ NebUXsewlYvlYcDvRcmHb0zdF4awVHSsdut5XR0vucH01keEcmDHnj9NkkvzV6HWJw
+ riZsl0Ba6GLqPOJMu5/UeT4eu/+QgcvaherG1LDJpznZQT78Q1WHc2n4ZCK+AU41kr
+ odTldUsj5iw5A==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.3 02/44] drm/amd/display: populate subvp cmd info
+ only for the top pipe
+Date: Sun, 30 Apr 2023 22:55:50 -0400
+Message-Id: <20230501025632.3253067-2-sashal@kernel.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230501025632.3253067-1-sashal@kernel.org>
+References: <20230501025632.3253067-1-sashal@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Content-Language: en-US
-From: Felix Richter <judge@felixrichter.tech>
-To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: PROBLEM: AMD Ryzen 9 7950X iGPU - Blinking Issue
-X-Mailman-Approved-At: Mon, 01 May 2023 07:21:57 +0000
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,57 +54,54 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org,
+ sunpeng.li@amd.com, airlied@gmail.com, Qingqing Zhuo <qingqing.zhuo@amd.com>,
+ Xinhui.Pan@amd.com, Rodrigo.Siqueira@amd.com, amd-gfx@lists.freedesktop.org,
+ Max.Tseng@amd.com, Ayush Gupta <ayush.gupta@amd.com>,
+ Daniel Wheeler <daniel.wheeler@amd.com>, Alvin Lee <Alvin.Lee2@amd.com>,
+ daniel@ffwll.ch, Alex Deucher <alexander.deucher@amd.com>, Jun.Lei@amd.com,
+ harry.wentland@amd.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------mzOa0IKJVGwWas0mM00hNw4L
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Ayush Gupta <ayush.gupta@amd.com>
 
-Hi,
+[ Upstream commit 9bb10b7aaec3b6278f9cc410c17dcaa129bbbbf0 ]
 
-I am running into an issue with the integrated GPU of the Ryzen 9 7950X. It seems to be a regression from kernel version 6.1 to 6.2.
-The bug materializes in from of my monitor blinking, meaning it turns full white shortly. This happens very often so that the system becomes unpleasant to use.
+[Why]
+System restart observed while changing the display resolution
+to 8k with extended mode. Sytem restart was caused by a page fault.
 
-I am running the Archlinux Kernel:
-The Issue happens on the bleeding edge kernel: 6.2.13
-Switching back to the LTS kernel resolves the issue: 6.1.26
+[How]
+When the driver populates subvp info it did it for both the pipes using
+vblank which caused an outof bounds array access causing the page fault.
+added checks to allow the top pipe only to fix this issue.
 
-I have two monitors attached to the system. One 42 inch 4k Display and a 24 inch 1080p Display and am running sway as my desktop.
+Co-authored-by: Ayush Gupta <ayush.gupta@amd.com>
+Reviewed-by: Alvin Lee <Alvin.Lee2@amd.com>
+Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
+Signed-off-by: Ayush Gupta <ayush.gupta@amd.com>
+Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Let me know if there is more information I could provide to help narrow down the issue.
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
+index c2092775ca88f..7f27e29fae116 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
++++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
+@@ -750,7 +750,8 @@ void dc_dmub_setup_subvp_dmub_command(struct dc *dc,
+ 					!pipe->top_pipe && !pipe->prev_odm_pipe &&
+ 					pipe->stream->mall_stream_config.type == SUBVP_MAIN) {
+ 				populate_subvp_cmd_pipe_info(dc, context, &cmd, pipe, cmd_pipe_index++);
+-			} else if (pipe->plane_state && pipe->stream->mall_stream_config.type == SUBVP_NONE) {
++			} else if (pipe->plane_state && pipe->stream->mall_stream_config.type == SUBVP_NONE &&
++				    !pipe->top_pipe && !pipe->prev_odm_pipe) {
+ 				// Don't need to check for ActiveDRAMClockChangeMargin < 0, not valid in cases where
+ 				// we run through DML without calculating "natural" P-state support
+ 				populate_subvp_cmd_vblank_pipe_info(dc, context, &cmd, pipe, cmd_pipe_index++);
+-- 
+2.39.2
 
-Kind regards,
-Felix Richter
-
---------------mzOa0IKJVGwWas0mM00hNw4L
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <pre>Hi,
-
-I am running into an issue with the integrated GPU of the Ryzen 9 7950X. It seems to be a regression from kernel version 6.1 to 6.2. 
-The bug materializes in from of my monitor blinking, meaning it turns full white shortly. This happens very often so that the system becomes unpleasant to use.
-
-I am running the Archlinux Kernel:
-The Issue happens on the bleeding edge kernel: 6.2.13
-Switching back to the LTS kernel resolves the issue: 6.1.26
-
-I have two monitors attached to the system. One 42 inch 4k Display and a 24 inch 1080p Display and am running sway as my desktop.
-
-Let me know if there is more information I could provide to help narrow down the issue.
-
-Kind regards,
-Felix Richter
-</pre>
-  </body>
-</html>
-
---------------mzOa0IKJVGwWas0mM00hNw4L--
