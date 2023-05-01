@@ -2,46 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13A6B6F2D04
-	for <lists+amd-gfx@lfdr.de>; Mon,  1 May 2023 05:06:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AC0B6F3184
+	for <lists+amd-gfx@lfdr.de>; Mon,  1 May 2023 15:27:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FD7E10E2D3;
-	Mon,  1 May 2023 03:06:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9F4F10E2BA;
+	Mon,  1 May 2023 13:27:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 095C210E2D0;
- Mon,  1 May 2023 03:06:37 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 6EFB3617E1;
- Mon,  1 May 2023 03:06:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 431B3C433EF;
- Mon,  1 May 2023 03:06:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1682910396;
- bh=YPvELhmPw/DxVGQuv/5qTcS6D7urEQkVjvxtiTCqZok=;
- h=From:To:Cc:Subject:Date:From;
- b=h/VC0GoShzE0wWzDeQbMGYTeNknMh2rR402Tf600flUy7Y0QtFBgKFGpCgEQN2MQv
- 1HrMfbe6h/LOPNl02g5cLr+TJ2RT3pfj0P+iF2ypIffLtkTYskIrwwWWE1i4MVIggc
- XuJCA4c91U/ErK+5W11EMfPi1hXSziw+geWUald6yPpFjJy2vHwSf0zlJyh+t7L7UL
- yl+SCYffLLfJCaf+5adOnowaghAEMsNqdaxokHHCVSamjV72TxbqHebnSBy2qAPc0I
- vmaCip+Y5XVhzUtXXeQrfRmbxPfZ8nP7gIZjnI/e6h/EYkhbFLyU67t7TV9YPuMEA5
- 2HL/UPmmwhjsA==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 1/9] drm/amd/display: Use DC_LOG_DC in the
- trasform pixel function
-Date: Sun, 30 Apr 2023 23:06:23 -0400
-Message-Id: <20230501030633.3255202-1-sashal@kernel.org>
-X-Mailer: git-send-email 2.39.2
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com
+ [IPv6:2607:f8b0:4864:20::329])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 198B910E0B7;
+ Mon,  1 May 2023 13:27:16 +0000 (UTC)
+Received: by mail-ot1-x329.google.com with SMTP id
+ 46e09a7af769-6a604259983so1860844a34.2; 
+ Mon, 01 May 2023 06:27:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1682947635; x=1685539635;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=+SRkX38MRdzPiGInLxtyxcayxdTazEZbBoK0zR3RRn8=;
+ b=d/2ynuGkGU0+C8CoYYk+HLNdwCZM1mCTw2354Pp2LJVewmfHA1JIkSMcZhO6iAPhiX
+ M79WLERTM6QYJITZnEb1wLLhN+f8hWQ3fNy6vEgFYoGYtVbRJ7oRiQtjhUnm3jWXUa0A
+ ZvZ7rjqoBaozBj9xnIb3Kw5q+aIP+XBnx6oxp9NNb0igDCA3Z8aI/JXy/0vSKoL/dRfF
+ Km0VYNONe4tsVW156iS62AxCTfwKiCfnG+01hFdztRz21to8Bp02lWJr4Sr0xPb6rZs0
+ VyzE4ORsWo1XW/mcdNoE0PaCABl06uopst7zFwuZtebr+ourOyC7kULgMRTIKt7zUv0A
+ dpfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1682947635; x=1685539635;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=+SRkX38MRdzPiGInLxtyxcayxdTazEZbBoK0zR3RRn8=;
+ b=gTcLS3XTdTDgtUFjgczZCj9b8yd9dhOEodu3DVv4XP9z/bsvQpsMRN1rDYqh3UmAB0
+ eMLeyA1E+sJ/1fdh1p/v/vZX3qgqD7b4TEebFHJZRbf/YzHPwP4pbDQ7e6hAfdqdQDCb
+ OnkWKn+ZB97F6DKMmFvkGNSQRGpajDrThH7OY7ZFNadc0Dvzi8oDFlp9MhiMVAy/yyzE
+ IvZXj3m+wqkki2lmdrzFGuz00VtzcZBeDJA3ULvI891MFxRb3rGJgeStg7r+FI7s+fhM
+ lULa6YxBQbngnT9p32EK7Ak7rxwnG8wDpawuJ3Yz+gdiQDBPmjtF3P58k3av+WxmQabg
+ +LaQ==
+X-Gm-Message-State: AC+VfDxnTuTCT7VsyBI1Bh7x/jUwYJpi6fq/pXfYS8FVfC59n//Tlj5U
+ 5t8IXatoqc2/tMVH+Tq0gl3C21U/ABgG/jQVnyV0qUovVJA=
+X-Google-Smtp-Source: ACHHUZ7IYC33M8jWWK0vSNPN30ZMiS9tuI3x0R8GFOmhLxkNfEvKAs1v+MipIrUvkxeBh2eP9tcmmFtSgHEPzsBV9KE=
+X-Received: by 2002:a54:4482:0:b0:38e:eaf:cf1f with SMTP id
+ v2-20020a544482000000b0038e0eafcf1fmr6077521oiv.44.1682947635160; Mon, 01 May
+ 2023 06:27:15 -0700 (PDT)
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+References: <46a7eb80-5f09-4f6a-4fd3-9550dafd497c@felixrichter.tech>
+In-Reply-To: <46a7eb80-5f09-4f6a-4fd3-9550dafd497c@felixrichter.tech>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 1 May 2023 09:27:03 -0400
+Message-ID: <CADnq5_Nuu7hAFR6A8SqaENA_CUV_F3J1qgCwE=Yn_1rY-n5GLg@mail.gmail.com>
+Subject: Re: PROBLEM: AMD Ryzen 9 7950X iGPU - Blinking Issue
+To: Felix Richter <judge@felixrichter.tech>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,116 +67,36 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, sunpeng.li@amd.com, airlied@gmail.com,
- Qingqing Zhuo <qingqing.zhuo@amd.com>, Xinhui.Pan@amd.com,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
- Daniel Wheeler <daniel.wheeler@amd.com>, dri-devel@lists.freedesktop.org,
- daniel@ffwll.ch, Alex Deucher <alexander.deucher@amd.com>,
- harry.wentland@amd.com, christian.koenig@amd.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+On Mon, May 1, 2023 at 3:20=E2=80=AFAM Felix Richter <judge@felixrichter.te=
+ch> wrote:
+>
+> Hi,
+>
+> I am running into an issue with the integrated GPU of the Ryzen 9 7950X. =
+It seems to be a regression from kernel version 6.1 to 6.2.
+> The bug materializes in from of my monitor blinking, meaning it turns ful=
+l white shortly. This happens very often so that the system becomes unpleas=
+ant to use.
+>
+> I am running the Archlinux Kernel:
+> The Issue happens on the bleeding edge kernel: 6.2.13
+> Switching back to the LTS kernel resolves the issue: 6.1.26
+>
+> I have two monitors attached to the system. One 42 inch 4k Display and a =
+24 inch 1080p Display and am running sway as my desktop.
+>
+> Let me know if there is more information I could provide to help narrow d=
+own the issue.
 
-[ Upstream commit 7222f5841ff49709ca666b05ff336776e0664a20 ]
+It's related to scatter/gather display.  As a workaround, you can
+disable scatter/gather display by setting amd.sg_display=3D0 on the
+kernel command line in grub.  It's fixed properly in:
+https://gitlab.freedesktop.org/agd5f/linux/-/commit/08da182175db4c7f8085035=
+4849d95f2670e8cd9
+Which should land in Linus' tree this week.
 
-[Why & How]
-DC now uses a new commit sequence which is more robust since it
-addresses cases where we need to reorganize pipes based on planes and
-other parameters. As a result, this new commit sequence reset the DC
-state by cleaning plane states and re-creating them accordingly with the
-need. For this reason, the dce_transform_set_pixel_storage_depth can be
-invoked after a plane state is destroyed and before its re-creation. In
-this situation and on DCE devices, DC will hit a condition that will
-trigger a dmesg log that looks like this:
-
-Console: switching to colour frame buffer device 240x67
-------------[ cut here ]------------
-[..]
-Hardware name: System manufacturer System Product Name/PRIME X370-PRO, BIOS 5603 07/28/2020
-RIP: 0010:dce_transform_set_pixel_storage_depth+0x3f8/0x480 [amdgpu]
-[..]
-RSP: 0018:ffffc9000202b850 EFLAGS: 00010293
-RAX: ffffffffa081d100 RBX: ffff888110790000 RCX: 000000000000000c
-RDX: ffff888100bedbf8 RSI: 0000000000001a50 RDI: ffff88810463c900
-RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000007
-R10: 0000000000000001 R11: 0000000000000f00 R12: ffff88810f500010
-R13: ffff888100bedbf8 R14: ffff88810f515688 R15: 0000000000000000
-FS:  00007ff0159249c0(0000) GS:ffff88840e940000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 00007ff01528e550 CR3: 0000000002a10000 CR4: 00000000003506e0
-Call Trace:
- <TASK>
- ? dm_write_reg_func+0x21/0x80 [amdgpu 340dadd3f7c8cf4be11cf0bdc850245e99abe0e8]
- dc_stream_set_dither_option+0xfb/0x130 [amdgpu 340dadd3f7c8cf4be11cf0bdc850245e99abe0e8]
- amdgpu_dm_crtc_configure_crc_source+0x10b/0x190 [amdgpu 340dadd3f7c8cf4be11cf0bdc850245e99abe0e8]
- amdgpu_dm_atomic_commit_tail+0x20a8/0x2a90 [amdgpu 340dadd3f7c8cf4be11cf0bdc850245e99abe0e8]
- ? free_unref_page_commit+0x98/0x170
- ? free_unref_page+0xcc/0x150
- commit_tail+0x94/0x120
- drm_atomic_helper_commit+0x10f/0x140
- drm_atomic_commit+0x94/0xc0
- ? drm_plane_get_damage_clips.cold+0x1c/0x1c
- drm_client_modeset_commit_atomic+0x203/0x250
- drm_client_modeset_commit_locked+0x56/0x150
- drm_client_modeset_commit+0x21/0x40
- drm_fb_helper_lastclose+0x42/0x70
- amdgpu_driver_lastclose_kms+0xa/0x10 [amdgpu 340dadd3f7c8cf4be11cf0bdc850245e99abe0e8]
- drm_release+0xda/0x110
- __fput+0x89/0x240
- task_work_run+0x5c/0x90
- do_exit+0x333/0xae0
- do_group_exit+0x2d/0x90
- __x64_sys_exit_group+0x14/0x20
- do_syscall_64+0x5b/0x80
- ? exit_to_user_mode_prepare+0x1e/0x140
- entry_SYSCALL_64_after_hwframe+0x44/0xae
-RIP: 0033:0x7ff016ceaca1
-Code: Unable to access opcode bytes at RIP 0x7ff016ceac77.
-RSP: 002b:00007ffe7a2357e8 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
-RAX: ffffffffffffffda RBX: 00007ff016e15a00 RCX: 00007ff016ceaca1
-RDX: 000000000000003c RSI: 00000000000000e7 RDI: 0000000000000000
-RBP: 0000000000000000 R08: ffffffffffffff78 R09: 0000000000000000
-R10: 0000000000000000 R11: 0000000000000246 R12: 00007ff016e15a00
-R13: 0000000000000000 R14: 00007ff016e1aee8 R15: 00007ff016e1af00
- </TASK>
-
-Since this issue only happens in a transition state on DC, this commit
-replace BREAK_TO_DEBUGGER with DC_LOG_DC.
-
-Reviewed-by: Harry Wentland <Harry.Wentland@amd.com>
-Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
-Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/gpu/drm/amd/display/dc/dce/dce_transform.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_transform.c b/drivers/gpu/drm/amd/display/dc/dce/dce_transform.c
-index 6fd57cfb112f5..96fdc18ecb3bf 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_transform.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_transform.c
-@@ -778,7 +778,7 @@ static void dce_transform_set_pixel_storage_depth(
- 		color_depth = COLOR_DEPTH_101010;
- 		pixel_depth = 0;
- 		expan_mode  = 1;
--		BREAK_TO_DEBUGGER();
-+		DC_LOG_DC("The pixel depth %d is not valid, set COLOR_DEPTH_101010 instead.", depth);
- 		break;
- 	}
- 
-@@ -792,8 +792,7 @@ static void dce_transform_set_pixel_storage_depth(
- 	if (!(xfm_dce->lb_pixel_depth_supported & depth)) {
- 		/*we should use unsupported capabilities
- 		 *  unless it is required by w/a*/
--		DC_LOG_WARNING("%s: Capability not supported",
--			__func__);
-+		DC_LOG_DC("%s: Capability not supported", __func__);
- 	}
- }
- 
--- 
-2.39.2
-
+Alex
