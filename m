@@ -2,120 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A86236F3EAA
-	for <lists+amd-gfx@lfdr.de>; Tue,  2 May 2023 09:59:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8133D6F4462
+	for <lists+amd-gfx@lfdr.de>; Tue,  2 May 2023 15:00:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 253F810E4AA;
-	Tue,  2 May 2023 07:59:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07E2310E0C1;
+	Tue,  2 May 2023 13:00:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam02on2059.outbound.protection.outlook.com [40.107.95.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 421A310E4AA;
- Tue,  2 May 2023 07:59:31 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XrZrdLA/HIhTXCtAgYk/LYWaQ4mwGrMhxn9J8LTPu31XAoBdi/ipTzi/Wc05rr01N3eoHBW0c/j0v6uA83dmhq3vZhjoLDtwJlWVAriRwvBMTy+oYtdfXJMAYhEq/9aU9T/RNyhQqNnhWPPLVYzqcHTYBpPiXbjzyaxtJpSOXv+julrXPsW7BogR+2fxHESd2VvCPcvy2OSviRzK7EWuDtG0PyjMREhOSoNPxxycyq8unPng1iTDkZb5poKzbsIIue9oYdCeksp6bPU6hjk22z0Ub3z3mecKndoDSJm5ithYqF/X+GX7uP8XEs4frWePR4lm8qFTYVVn+EWMbmyscw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=o3cpuYoCCiIXrZau5V/0X+Z59lTwq8Yh1qhGncfOYWA=;
- b=DmTNraXjd4iOV/aIUihzIJvKorXmg6OYc9vA2i4XZpM+3WWKB3NZBjf9m+JsRRLTp0rZBnWkI5pK3XAMKY1Z8ADqCADT0SeUE98IMq3Y2crPPuHNnBYfsJHJNQKDGmWLps2nNKSqltfL0TOiGIisb/5BJjTe7wspmykQLG89sSJ3sPW5vqAdBrOn0tdWkqkWf7Vt0++ixS15GiFs9eYHbbnzp3KgsyVhc9aM667b7zT2/di+caIaachSh8NtLFvEr1DIH9zCqYwHObYldfBuGcCdJ4sm5d7fkT17oEESg12svxrTy7hnF/QKlC22Zp+cPTo03abtg61kib8TNHT+HQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=o3cpuYoCCiIXrZau5V/0X+Z59lTwq8Yh1qhGncfOYWA=;
- b=VUJgBU/tofAG3fnY951y9pXEwtFRNs06LeMGHwZu6B+M36h/CfTipVzBxpQS3rlHwIhyK86LRMX2J+rWZSDCok3gL+c/CnM121iejiyF69ID0x9CcQOIk5b360PB2p70JSIAAt3dUZcaBthEtKIvWAbM4OHfcRjh2Apma3FyM3Q=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by SA1PR12MB6996.namprd12.prod.outlook.com (2603:10b6:806:24f::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6319.34; Tue, 2 May
- 2023 07:59:28 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::d2f8:7388:39c1:bbed]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::d2f8:7388:39c1:bbed%3]) with mapi id 15.20.6340.031; Tue, 2 May 2023
- 07:59:28 +0000
-Message-ID: <cb3d2590-a1f8-fe7e-0bba-638ee80719af@amd.com>
-Date: Tue, 2 May 2023 09:59:22 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [RFC PATCH 0/1] Add AMDGPU_INFO_GUILTY_APP ioctl
-Content-Language: en-US
-To: =?UTF-8?Q?Andr=c3=a9_Almeida?= <andrealmeid@igalia.com>,
- Alex Deucher <alexdeucher@gmail.com>
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com
+ [IPv6:2607:f8b0:4864:20::52b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5483110E325;
+ Tue,  2 May 2023 09:12:50 +0000 (UTC)
+Received: by mail-pg1-x52b.google.com with SMTP id
+ 41be03b00d2f7-5286311be47so2351759a12.1; 
+ Tue, 02 May 2023 02:12:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1683018769; x=1685610769;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=H3w7c4El8iCPq2ddF0Pau+ST5kcfCowvjLufx9X5W50=;
+ b=TKrzdYnQNAObiX+Pz4pLPp5BneFr6PE+YnRk8zFIJ6+DTdh1gmQ508Y24dMofh9KWO
+ cTquDSLIqzKJwXMDdLa3+EQbzeAlbf1SqdJ8YqcD/guYENqKgd5+Q2MYlDSHCkXCwvDj
+ 1XKeQvyJfBTmlDfX9OBaF4p8lg3RV4+2OT2uKHQac9lA1Gt4oIJrPGQjiEwDVGYdo282
+ P2f1xTJGZgLDN2RY21XPkXlTk14TJvMniywgU3Y7+BdoT8pYuOs7Urey8vn2AUW/7/bZ
+ cfM1PB0QRc/hNSPIBw+6XO2xz4C5YuoWLXVG0cy85A4d69/4MzdmAF+w6OrYwfl7F+sd
+ 2Wag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1683018769; x=1685610769;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=H3w7c4El8iCPq2ddF0Pau+ST5kcfCowvjLufx9X5W50=;
+ b=HwIGr8wfVgZDiPwcN6oqR1UuGauI+d5ICSt7d3EAtG4vGHjSszoNBW09CdA/AUGzmo
+ sA23n1vEDt3K9Of3jkVkrlaaJxDF+18xJ/t41Go+X7SKCdn0hpNX16ssdJ+SVtnMPa6Z
+ 68aXwaT0aoxS8RgRfCritJECvNJDn2pxZuowDiU33TXZEqglJQNdZ/g81w9p8i9O/q5A
+ ZGhOPULyOSg5sTTkHTIBm8kgnTlRMDLJy8bFvk3FSQJFe4YVDwR/rZj3mCDanDtzI5BG
+ IL3nhXQJ4VM8bxTC7H0+PVEGck7LXfutfiGQzeoYvwN9+BquJ8HWz0eXkCODJfhhYCwc
+ b9hQ==
+X-Gm-Message-State: AC+VfDyy1h57TIK6TlaJZZzLs4Oetvg7RaYwYeULZnVRPt2AkFWNKjBH
+ Tey70J7XMWd/yPh4l/klRnYPq9Ii3W0FOb7moE0=
+X-Google-Smtp-Source: ACHHUZ6kB2OXmbUTvVn+r9UQjZoQ3gaziRJCiUImRSwNpOPHMIs1GCxlL5dzFPmgsN8rhjABr9Kv/s/z0hd6krxWp6o=
+X-Received: by 2002:a17:90a:2b8b:b0:24e:26f4:4b22 with SMTP id
+ u11-20020a17090a2b8b00b0024e26f44b22mr1628442pjd.16.1683018768876; Tue, 02
+ May 2023 02:12:48 -0700 (PDT)
+MIME-Version: 1.0
 References: <20230501185747.33519-1-andrealmeid@igalia.com>
  <CADnq5_NXj4W44F_etRQ7HWdVTnf5zARCM3Y_o3EiwWiHj8QMpA@mail.gmail.com>
  <6ab2ff76-4518-6fac-071e-5d0d5adc4fcd@igalia.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <6ab2ff76-4518-6fac-071e-5d0d5adc4fcd@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR2P281CA0037.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:92::6) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|SA1PR12MB6996:EE_
-X-MS-Office365-Filtering-Correlation-Id: 92128c1e-f100-4379-0cb7-08db4ae32794
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3WLhOgrQ76JJQWA11GsB/y+qH0P5PU8IlBym1nakcpSqg00A0iuiLse12kCNzl4vWl/7Q4u50wHS395rb2t+D3xh9RXsGrOWT0YOTX5fxpMhflTGoSF2vrs81JCvFekOBtGHWAUOlx/P8007+2N1fJ+5aBKzIWp45dwkiCPqtPQUxH8bt/+KYTFjbqxZj9zxtZq80RJcy05KresY+lc7nCkH9zIsIuohxtMMINBVWi7hCjxnvykgibx4qDsb+USal3AjwthqmpbzoA2iE1pIVagW+Mnz/A8Aylc0+oX7cG21FecaVWZe3Nd5EAqV2bktGsLmcF5mftRXK9Epii1ZORyfWY+2zhxJGVAYvK76NAt+Lu/te/05FdITnmGJhI1KweJLi81OckEMhcJMxT150fxMMefCZk3BiDVQoj/p++iixqFkOjD1i1+WALTSN7g7eSI7zH9NuCePKpO5UKct/Xa+2q8UhbDYlgIMg6zXV+o6LH032ASqGicKZ+Hn7+YuarkIncSKwAVIp9jtWV0Mf3pi2jPAQsXn+gS8kQ4kXQhmq3QDd9Sqstwu8CTNsmW7pZQNdICnE7XTxsRYieNl+Alx0N+OlXkwqG1GMZDWpJOvFDuSXCntoRo6TzXSXLu/Vmt5TX82jFOCq8PLk91Eww==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(366004)(39860400002)(136003)(346002)(376002)(396003)(451199021)(316002)(110136005)(8676002)(8936002)(66476007)(66946007)(6486002)(41300700001)(7416002)(478600001)(54906003)(66556008)(6666004)(5660300002)(6512007)(4326008)(31686004)(6506007)(2906002)(53546011)(83380400001)(2616005)(186003)(31696002)(86362001)(38100700002)(36756003)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K05VMXpQMEQ1eHo1V1VkeGRXUXdtQkE3SzZCWnFQa01aU1pPeUVTN2RWVnBV?=
- =?utf-8?B?VDNDMXlIa09IM21jRWUxbk1zSVEzWDV6UnJEejA0MDJWOC9kajFpQmYxV3Zj?=
- =?utf-8?B?dUdURjRPeW9xUW83VmsvZjBuUkNEM0pPV2xvTWNjblZQeFpDMnp5UEk1TStQ?=
- =?utf-8?B?WmdDMXkwT2MwempEd0RuRm1Gb2lPaDNVZGFTMi9CeUgxL0dIK0djWmw5anNN?=
- =?utf-8?B?ZUtiUkQ0cWpabFN2M3pEcEpnOUQvMHA1UUV5d3ZTTXRPaUJ2Vjk0cVZkdS85?=
- =?utf-8?B?d3lTeFRuMFAxMFJCY0pSa3hRNkMzU0FXYlIxR3ZZd1BuSkdPeGxjYytkRWhH?=
- =?utf-8?B?ZnVObWdVNXVjVk9XZnJWK2hpQjZTSWRoRDRWdDBTaHloODJIaEthZEgveE1M?=
- =?utf-8?B?S1BHTFViT1cza3J0dWlPd2hFSEVZNWNwWDlXWU9kVEdhTXM0SU9PYnJwNXhm?=
- =?utf-8?B?VDFLVTN3ZktlTjVBSE8ycDBYMWVjc01QUk83KzBWT0xPL2RONEc5MEg3RmIv?=
- =?utf-8?B?UG9DQUl3emVmV2tKV0NLUnFkRWg2TVJvWmhrRW80N25Wc1lJZ3VJYXZNN1RK?=
- =?utf-8?B?d1ozQ2luU3JNbVE0VU5OTlVZMldCS1JCQjE4cDY5SkdlZWE0Q2M4SnZlblhK?=
- =?utf-8?B?SVdWajFmdmVEeVpoSEVSTjJtc2QyTnJnV1NpOEJ5VGZadml0KzY3YkNOaU1k?=
- =?utf-8?B?RFRCbjBuQ2dMOENIVzJVVkdsVi8vWGFueVUxUzFIejVTVGNGTndnTlRGUTlI?=
- =?utf-8?B?YkRxSTJIQU5aWFVGM3BUUHIzMEVLbDRZU2lrbnRGUWJ6STd6VGV4Y1dQSUxR?=
- =?utf-8?B?Mk9EcSs4ME9BLzA0V0x1dUJYNjV5RW9nTll4ZTNTdUhSUDVuTkVlRHpveWJl?=
- =?utf-8?B?MHFNTVp6R1lYRXZray8yUStIaThjbWtrNVZjM0kyNWE0SFVKc09PMG50OGVv?=
- =?utf-8?B?WFBraUg3b3AwSFVHMSs4K3d1bHlObENqNEVMRnhZMmp3Q0ZHR1ZkeCt6azFS?=
- =?utf-8?B?RlA1UjZSeXlGUDJrcWpkTndUM0krd3JsalNBN05zNStVRFRjbVdGRWRsV3pv?=
- =?utf-8?B?djZxcUtCSnhuL1ZBUVdSUjJZU3dqWDZuZjV5OVFzMzBQaUhRMHYzc2t2Z242?=
- =?utf-8?B?RDBFMmpnNUZVejFnVy8rbnp3TW5PbHo5b3B6MEZiQVBsWmI5K2t1RXU2SDBY?=
- =?utf-8?B?YnRMU05jTW9JOCt2R3l0a200cDJHZUxTaXFaRS9KejRQdlN1cXZjRnVTWjk1?=
- =?utf-8?B?a1ZZczh6dnhqeUJGdkJUVzUvU2JhWHpZc0pZSmVIUFFibGYyTEVrcGpWRHFp?=
- =?utf-8?B?czA1QUIxSUdwVVo3M3ZaTnVPSERGK2Rab0lvMWxOQzRCdUVESHQyeXBEcXhr?=
- =?utf-8?B?VHMxZ3h1WU1ES2dMVjRoZWExZDExSk9nTjFwSU9CVGFiMTBxNVNzQ2J5L0I2?=
- =?utf-8?B?eUJsejUzMlZyQ1dXZnpyaHg4OERoTXNHdTl4Zmt2cURGVXF6VmFqOWNWR2xq?=
- =?utf-8?B?bVdJU0syczJhMmRCK2dSeUU3K1pjMnlKVXJFRHpXd0YwSTBxbHBsVGxWRGpB?=
- =?utf-8?B?R1QyMk1Vd3AxUkZ1ZXVrVWhsUm1RYXhveHdWTXBWYVhsY0pjb2hOUkpIaVRi?=
- =?utf-8?B?M3Z4Rk84NDBhU0ZoNG9mNTN2L1paUWpQb0tzeE0xRnRybW1YTHRudDk2QzNJ?=
- =?utf-8?B?VS9tOEU3YU9QWkJrVWwySTc2aDBRdmpmMktGY0ltblh0aGk1M1ZUMW1yNjhD?=
- =?utf-8?B?T2RCQnJKeHBaRldWNTlqdTNrUzNKK21tQnVIc3JtWlVyamh2RDlIR3E5bmEy?=
- =?utf-8?B?cUtvUFBKb2VQMWxwSDY1OTUycVhpcGo1TTZCZlZXM2djQ2hJdnBTcXdVWlRv?=
- =?utf-8?B?V0VySmhrRUVoaHl3VmtWTnhEVDZDYnFkN2QycVVFV0dYSlBLYTFzTHVicnQ1?=
- =?utf-8?B?VFloaFdRSXFES0xZbVFqL2kyeThZWmxMcE9jWUQzVFhEYnEzaEtiRU10THZu?=
- =?utf-8?B?RHRQUmUyTitXUFhhejFlZllwMXlISU44STlrOUkxb25vYlBSWSsvbW96MFAy?=
- =?utf-8?B?TUFhSEVCNC9OUktnQUFqeE1MaGhic3MrZDRXbUhla0MwWEpoRm1oT08ra2Yw?=
- =?utf-8?B?V0tHS3JmSTNuaU1RS3JxT2RGRmlocittL0JXRUNMeVJuZmZhZjdWbitFYmFy?=
- =?utf-8?Q?5r7JY0ZPNxF4d6whkUZMKiLYhzxFI2AcCG8aWkq1Z0NS?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 92128c1e-f100-4379-0cb7-08db4ae32794
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 May 2023 07:59:28.8005 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: k67V9uGptGv9kBp2BDdPHP6undj1gO0e4lKQqR3D6MPpv61ZfC+GJCEpkk7a46/A
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6996
+ <cb3d2590-a1f8-fe7e-0bba-638ee80719af@amd.com>
+In-Reply-To: <cb3d2590-a1f8-fe7e-0bba-638ee80719af@amd.com>
+From: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>
+Date: Tue, 2 May 2023 11:12:36 +0200
+Message-ID: <CAFF-SiV0=WNmRW-D9uYUuj68Zq0APxtGLya9KR6FfZ7v0Zf2RQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 0/1] Add AMDGPU_INFO_GUILTY_APP ioctl
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: multipart/alternative; boundary="000000000000de8b9e05fab2578d"
+X-Mailman-Approved-At: Tue, 02 May 2023 13:00:14 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,56 +69,227 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: pierre-eric.pelloux-prayer@amd.com,
+Cc: "Pelloux-Prayer, Pierre-Eric" <pierre-eric.pelloux-prayer@amd.com>,
  Samuel Pitoiset <samuel.pitoiset@gmail.com>,
+ =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>,
  =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>,
- =?UTF-8?Q?Timur_Krist=c3=b3f?= <timur.kristof@gmail.com>,
  michel.daenzer@mailbox.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- kernel-dev@igalia.com, Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
- alexander.deucher@amd.com
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, "Deucher,
+ Alexander" <alexander.deucher@amd.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>, kernel-dev@igalia.com,
+ Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
+ Alex Deucher <alexdeucher@gmail.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 02.05.23 um 03:26 schrieb André Almeida:
-> Em 01/05/2023 16:24, Alex Deucher escreveu:
->> On Mon, May 1, 2023 at 2:58 PM André Almeida <andrealmeid@igalia.com> 
->> wrote:
->>>
->>> I know that devcoredump is also used for this kind of information, 
->>> but I believe
->>> that using an IOCTL is better for interfacing Mesa + Linux rather 
->>> than parsing
->>> a file that its contents are subjected to be changed.
->>
->> Can you elaborate a bit on that?  Isn't the whole point of devcoredump
->> to store this sort of information?
->>
+--000000000000de8b9e05fab2578d
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Christian,
+
+Christian K=C3=B6nig <christian.koenig@amd.com> ezt =C3=ADrta (id=C5=91pont=
+: 2023. m=C3=A1j.
+2., Ke 9:59):
+
+> Am 02.05.23 um 03:26 schrieb Andr=C3=A9 Almeida:
+> > Em 01/05/2023 16:24, Alex Deucher escreveu:
+> >> On Mon, May 1, 2023 at 2:58=E2=80=AFPM Andr=C3=A9 Almeida <andrealmeid=
+@igalia.com>
+> >> wrote:
+> >>>
+> >>> I know that devcoredump is also used for this kind of information,
+> >>> but I believe
+> >>> that using an IOCTL is better for interfacing Mesa + Linux rather
+> >>> than parsing
+> >>> a file that its contents are subjected to be changed.
+> >>
+> >> Can you elaborate a bit on that?  Isn't the whole point of devcoredump
+> >> to store this sort of information?
+> >>
+> >
+> > I think that devcoredump is something that you could use to submit to
+> > a bug report as it is, and then people can read/parse as they want,
+> > not as an interface to be read by Mesa... I'm not sure that it's
+> > something that I would call an API. But I might be wrong, if you know
+> > something that uses that as an API please share.
+> >
+> > Anyway, relying on that for Mesa would mean that we would need to
+> > ensure stability for the file content and format, making it less
+> > flexible to modify in the future and probe to bugs, while the IOCTL is
+> > well defined and extensible. Maybe the dump from Mesa + devcoredump
+> > could be complementary information to a bug report.
 >
-> I think that devcoredump is something that you could use to submit to 
-> a bug report as it is, and then people can read/parse as they want, 
-> not as an interface to be read by Mesa... I'm not sure that it's 
-> something that I would call an API. But I might be wrong, if you know 
-> something that uses that as an API please share.
+> Neither using an IOCTL nor devcoredump is a good approach for this since
+> the values read from the hw register are completely unreliable. They
+> could not be available because of GFXOFF or they could be overwritten or
+> not even updated by the CP in the first place because of a hang etc....
 >
-> Anyway, relying on that for Mesa would mean that we would need to 
-> ensure stability for the file content and format, making it less 
-> flexible to modify in the future and probe to bugs, while the IOCTL is 
-> well defined and extensible. Maybe the dump from Mesa + devcoredump 
-> could be complementary information to a bug report.
+> If you want to track progress inside an IB what you do instead is to
+> insert intermediate fence write commands into the IB. E.g. something
+> like write value X to location Y when this executes.
+>
+> This way you can not only track how far the IB processed, but also in
+> which stages of processing we where when the hang occurred. E.g. End of
+> Pipe, End of Shaders, specific shader stages etc...
+>
 
-Neither using an IOCTL nor devcoredump is a good approach for this since 
-the values read from the hw register are completely unreliable. They 
-could not be available because of GFXOFF or they could be overwritten or 
-not even updated by the CP in the first place because of a hang etc....
+Currently our biggest challenge in the userspace driver is debugging
+"random" GPU hangs. We have many dozens of bug reports from users which are
+like: "play the game for X hours and it will eventually hang the GPU". With
+the currently available tools, it is impossible for us to tackle these
+issues. Andr=C3=A9's proposal would be a step in improving this situation.
 
-If you want to track progress inside an IB what you do instead is to 
-insert intermediate fence write commands into the IB. E.g. something 
-like write value X to location Y when this executes.
+We already do something like what you suggest, but there are multiple
+problems with that approach:
 
-This way you can not only track how far the IB processed, but also in 
-which stages of processing we where when the hang occurred. E.g. End of 
-Pipe, End of Shaders, specific shader stages etc...
+1. we can only submit 1 command buffer at a time because we won't know
+which IB hanged
+2. we can't use chaining because we don't know where in the IB it hanged
+3. it needs userspace to insert (a lot of) extra commands such as extra
+synchronization and memory writes
+4. It doesn't work when GPU recovery is enabled because the information is
+already gone when we detect the hang
 
-Regards,
-Christian.
+Consequences:
+
+A. It has a huge perf impact, so we can't enable it always
+B. Thanks to the extra synchronization, some issues can't be reproduced
+when this kind of debugging is enabled
+C. We have to ask users to disable GPU recovery to collect logs for us
+
+In my opinion, the correct solution to those problems would be if the
+kernel could give userspace the necessary information about a GPU hang
+before a GPU reset. To avoid the massive peformance cost, it would be best
+if we could know which IB hung and what were the commands being executed
+when it hung (perhaps pointers to the VA of the commands), along with which
+shaders were in flight (perhaps pointers to the VA of the shader binaries).
+
+If such an interface could be created, that would mean we could easily
+query this information and create useful logs of GPU hangs without much
+userspace overhead and without requiring the user to disable GPU resets etc=
+.
+
+If it's not possible to do this, we'd appreciate some suggestions on how to
+properly solve this without the massive performance cost and without
+requiring the user to disable GPU recovery.
+
+Side note, it is also extremely difficult to even determine whether the
+problem is in userspace or the kernel. While kernel developers usually
+dismiss all GPU hangs as userspace problems, we've seen many issues where
+the problem was in the kernel (eg. bugs where wrong voltages were set,
+etc.) - any idea for tackling those kind of issues is also welcome.
+
+Thanks & best regards,
+Timur
+
+>
+
+--000000000000de8b9e05fab2578d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><div>Hi Christian,<br><br><div class=3D"gmail_quote"><div=
+ dir=3D"ltr" class=3D"gmail_attr">Christian K=C3=B6nig &lt;<a href=3D"mailt=
+o:christian.koenig@amd.com">christian.koenig@amd.com</a>&gt; ezt =C3=ADrta =
+(id=C5=91pont: 2023. m=C3=A1j. 2., Ke 9:59):<br></div><blockquote class=3D"=
+gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-=
+left:1ex">Am 02.05.23 um 03:26 schrieb Andr=C3=A9 Almeida:<br>
+&gt; Em 01/05/2023 16:24, Alex Deucher escreveu:<br>
+&gt;&gt; On Mon, May 1, 2023 at 2:58=E2=80=AFPM Andr=C3=A9 Almeida &lt;<a h=
+ref=3D"mailto:andrealmeid@igalia.com" target=3D"_blank" rel=3D"noreferrer">=
+andrealmeid@igalia.com</a>&gt; <br>
+&gt;&gt; wrote:<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; I know that devcoredump is also used for this kind of informat=
+ion, <br>
+&gt;&gt;&gt; but I believe<br>
+&gt;&gt;&gt; that using an IOCTL is better for interfacing Mesa + Linux rat=
+her <br>
+&gt;&gt;&gt; than parsing<br>
+&gt;&gt;&gt; a file that its contents are subjected to be changed.<br>
+&gt;&gt;<br>
+&gt;&gt; Can you elaborate a bit on that?=C2=A0 Isn&#39;t the whole point o=
+f devcoredump<br>
+&gt;&gt; to store this sort of information?<br>
+&gt;&gt;<br>
+&gt;<br>
+&gt; I think that devcoredump is something that you could use to submit to =
+<br>
+&gt; a bug report as it is, and then people can read/parse as they want, <b=
+r>
+&gt; not as an interface to be read by Mesa... I&#39;m not sure that it&#39=
+;s <br>
+&gt; something that I would call an API. But I might be wrong, if you know =
+<br>
+&gt; something that uses that as an API please share.<br>
+&gt;<br>
+&gt; Anyway, relying on that for Mesa would mean that we would need to <br>
+&gt; ensure stability for the file content and format, making it less <br>
+&gt; flexible to modify in the future and probe to bugs, while the IOCTL is=
+ <br>
+&gt; well defined and extensible. Maybe the dump from Mesa + devcoredump <b=
+r>
+&gt; could be complementary information to a bug report.<br>
+<br>
+Neither using an IOCTL nor devcoredump is a good approach for this since <b=
+r>
+the values read from the hw register are completely unreliable. They <br>
+could not be available because of GFXOFF or they could be overwritten or <b=
+r>
+not even updated by the CP in the first place because of a hang etc....<br>
+<br>
+If you want to track progress inside an IB what you do instead is to <br>
+insert intermediate fence write commands into the IB. E.g. something <br>
+like write value X to location Y when this executes.<br>
+<br>
+This way you can not only track how far the IB processed, but also in <br>
+which stages of processing we where when the hang occurred. E.g. End of <br=
+>
+Pipe, End of Shaders, specific shader stages etc...<br></blockquote></div><=
+/div><div dir=3D"auto"><br></div><div dir=3D"auto">Currently our biggest ch=
+allenge in the userspace driver is debugging &quot;random&quot; GPU hangs. =
+We have many dozens of bug reports from users which are like: &quot;play th=
+e game for X hours and it will eventually hang the GPU&quot;. With the curr=
+ently available tools, it is impossible for us to tackle these issues. Andr=
+=C3=A9&#39;s proposal would be a step in improving this situation.</div><di=
+v dir=3D"auto"><br></div><div dir=3D"auto">We already do something like wha=
+t you suggest, but there are multiple problems with that approach:</div><di=
+v dir=3D"auto"><br></div><div dir=3D"auto">1. we can only submit 1 command =
+buffer at a time because we won&#39;t know which IB hanged</div><div dir=3D=
+"auto">2. we can&#39;t use chaining because we don&#39;t know where in the =
+IB it hanged</div><div dir=3D"auto">3. it needs userspace to insert (a lot =
+of) extra commands such as extra synchronization and memory writes</div><di=
+v dir=3D"auto">4. It doesn&#39;t work when GPU recovery is enabled because =
+the information is already gone when we detect the hang<br></div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">Consequences:</div><div dir=3D"auto">=
+<br></div><div dir=3D"auto">A. It has a huge perf impact, so we can&#39;t e=
+nable it always</div><div dir=3D"auto">B. Thanks to the extra synchronizati=
+on, some issues can&#39;t be reproduced when this kind of debugging is enab=
+led</div><div dir=3D"auto">C. We have to ask users to disable GPU recovery =
+to collect logs for us</div><div dir=3D"auto"><br></div><div dir=3D"auto">I=
+n my opinion, the correct solution to those problems would be if the kernel=
+ could give userspace the necessary information about a GPU hang before a G=
+PU reset. To avoid the massive peformance cost, it would be best if we coul=
+d know which IB hung and what were the commands being executed when it hung=
+ (perhaps pointers to the VA of the commands), along with which shaders wer=
+e in flight (perhaps pointers to the VA of the shader binaries).</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto">If such an interface could be crea=
+ted, that would mean we could easily query this information and create usef=
+ul logs of GPU hangs without much userspace overhead and without requiring =
+the user to disable GPU resets etc.</div><div dir=3D"auto"><br></div><div d=
+ir=3D"auto">If it&#39;s not possible to do this, we&#39;d appreciate some s=
+uggestions on how to properly solve this without the massive performance co=
+st and without requiring the user to disable GPU recovery.</div><div dir=3D=
+"auto"><br></div><div dir=3D"auto">Side note, it is also extremely difficul=
+t to even determine whether the problem is in userspace or the kernel. Whil=
+e kernel developers usually dismiss all GPU hangs as userspace problems, we=
+&#39;ve seen many issues where the problem was in the kernel (eg. bugs wher=
+e wrong voltages were set, etc.) - any idea for tackling those kind of issu=
+es is also welcome.<br></div><div dir=3D"auto"><br></div><div dir=3D"auto">=
+Thanks &amp; best regards,</div><div dir=3D"auto">Timur</div><div dir=3D"au=
+to"><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+</blockquote></div></div></div>
+
+--000000000000de8b9e05fab2578d--
