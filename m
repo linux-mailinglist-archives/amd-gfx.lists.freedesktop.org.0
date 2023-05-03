@@ -2,91 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 818856F5406
-	for <lists+amd-gfx@lfdr.de>; Wed,  3 May 2023 11:10:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDB876F589F
+	for <lists+amd-gfx@lfdr.de>; Wed,  3 May 2023 15:10:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F09C10E229;
-	Wed,  3 May 2023 09:10:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48AF510E2BC;
+	Wed,  3 May 2023 13:10:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam02on2088.outbound.protection.outlook.com [40.107.95.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9445010E229
- for <amd-gfx@lists.freedesktop.org>; Wed,  3 May 2023 09:10:22 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fg/kh+Ky2lfQw8+fhNQHiG4tz7KhiGSjmskkEDdxt4vjUqEiDF5I1mJR3+HXTNDKGZITxD7DFebadnyFmjzzOlv3+poUC1ABlefZ+QFy7Yjxr6JaB9vG953xmie9RLMQEcRDYCEY3cIT3ct5C0uYZEK2/Hbrjop+ee3yFisQQkDHVD8QrUi6bH1Y7fim4xv4+1o+fUiVbY2BC3yRzkVajvUgvHtxf3Nsd4bNoQIA7j9jPv0NXSCk2OgcYH10cfyt0j9z4k1g0qzGev/6EepZ9M8KCOiSUHKKWeoi8ZLNvpfFkgZjfeyGTbtYalFb+/sqddTQvm3Q6+G0Qz+jN+mlDg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/d6ldhffE+vi9xqKbNhHxIHTa/hQzH/NAv/Gd/0aSTU=;
- b=aGPP7WZqoX4PeLN2y6LdWs+O/6t7O8FVoTQOPsCOKTVVDpoSFbDPSpnq9UwkNMLhkxsWNbgrE52t3SgIIsQHcPFizJiqo4HuvWzuZZo0+ntYxuC9WsJOGY8wfDOvkPA3B9halJIATcuFrAF0x/BmLcxBlM3FltDjEdkiURm5/jEbdsUEDEDzRZJNrloGGAVodhVc1CNIdJLjYo/kHLhgkPE5trQLArKaqL7NVKzO6YLTvi4h41pd9QupX6p9wYyKoS6j6+PCvVKL/9XeLX80paLVieEQmeoZYw9fRl6THpT1fu0vvoEybKPH/WDd0JEyvKUZxdejiiuoI3PnQaKphg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/d6ldhffE+vi9xqKbNhHxIHTa/hQzH/NAv/Gd/0aSTU=;
- b=J0K+D/8K0S+9PuXa+Zf/IDCzO77zDm7Tu6Wz4OL9TXT8Fu30aipW1YZ4VBkKHC94pTnyw2aYIrMlkY690EkvIxa8z3XPMXzkaeeAJUqL+vKbQHIUt/fh7MBjdahFHZjMOJMPOKI0F3GR1ViMzrDyCWdHPx+RefFNGjwvB2OQFmM=
-Received: from MW2PR2101CA0004.namprd21.prod.outlook.com (2603:10b6:302:1::17)
- by LV2PR12MB5750.namprd12.prod.outlook.com (2603:10b6:408:17e::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.20; Wed, 3 May
- 2023 09:10:20 +0000
-Received: from CO1NAM11FT039.eop-nam11.prod.protection.outlook.com
- (2603:10b6:302:1:cafe::c6) by MW2PR2101CA0004.outlook.office365.com
- (2603:10b6:302:1::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.8 via Frontend
- Transport; Wed, 3 May 2023 09:10:20 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT039.mail.protection.outlook.com (10.13.174.110) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6363.20 via Frontend Transport; Wed, 3 May 2023 09:10:19 +0000
-Received: from TRX40-1.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 3 May
- 2023 04:09:52 -0500
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
- Deucher" <alexander.deucher@amd.com>
-Subject: [PATCH] drm/amd/amdgpu: Remove unnecessary OOM messages
-Date: Wed, 3 May 2023 14:39:37 +0530
-Message-ID: <20230503090937.1489457-1-srinivasan.shanmugam@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E49B10E211;
+ Wed,  3 May 2023 09:11:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1683105101; x=1714641101;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=yZdDxF7eM2/0DaJdrpLaz+vSoS07hfHOMx2AFF1OeTM=;
+ b=ZlxfqmhP0GtMqNps8JIe86VXSChnecBASJBRT3GqdYvqhyt3l9UZIEaT
+ 7CeKI7BYZn8r3xQpZuQaJEJuvN7Myj2J96SjWcXjinpwBz5uqeDHgvOpP
+ wxV9Up3o9bH3sxZnpQpVoi4hQqQ+vlCU5PJ+pT0Mc+VxbnkSlj5o4l6GX
+ cBhNDdHc7ROhG5eoeMs99EIZKXV4VuWgQxYg7wBBX9FpQH4m88roiPFdv
+ HDDElvg3hIKx7XofGIgotHHnJiDsjkJiiE/2jHhq++wQY7kUAetfj55D/
+ UlcTcEWTFrYzOz7NJgd8pQEz72A5+TZAJ3n5QwYbuXkqpKRflSHz4F4Yr Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="337745867"
+X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="337745867"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 02:11:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="674010950"
+X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="674010950"
+Received: from skallurr-mobl1.ger.corp.intel.com (HELO [10.249.254.212])
+ ([10.249.254.212])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 02:11:35 -0700
+Message-ID: <888841c4-7bd4-8174-7786-033715c995c6@linux.intel.com>
+Date: Wed, 3 May 2023 11:11:32 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT039:EE_|LV2PR12MB5750:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9a106b5a-7a69-410a-18ef-08db4bb6382b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LmvuLEOF/YkV7bngKzqtgPXjEXHHh6XQQbYozK66IsW+1IQIz64ONxVScvgUvHlmw0dFIUFopgwCRP+UhHEZPQhRVlmfUK12gcAoCbQQiWe4q97FuP2U0iuPkAvvyfyYJk5SZ8zodAI5yvSzYGC2iB9mitk3Z6B7tsMs/TX5eyc5hfy+c74q22whUwK7cVMWW0k50/dMIxt6aJleF/tKVIFQnDIaDD7dKftgcNu1CQhYAf/t0XJJH6tqHAOJ9WC7kVsmOmjjs7CEmTn5e9Q3hJzwjswHfVa84VeeQFNwm1LenQQ4Wo2RP4rw2dz6dNTc5H641tlVov0eneCDo/3VWYv+Vf3kQrK60F247CNZubSCBdDjTLZYEKsxGk1YjUcXdgltpiuBEaUT3X1W7jeZEJGLV30Y+udfFa7eJEx4msVTgWNIoUmSJVu7DNt5606K9eAQUYPmnYsjbkd8HZBChBcZZmFI+wlMrGitFvDZxBOGK2IxFrqF1Xzhcc5jlAaOPnLqC1lqrOIRbUQD5kTyE7LwEin6r5Yr6zPo8RiF1Jkx5dOeXmyI/qL5LiHDGgwDQYYVoSWwg8op0Re+FjKQ6A2umAbt92iaCazaAXBf62RdXj5iReUlCmnjn2FVc78THVK6lfjgQOW9TNShxo3soAcVSeyqPiv1IslykSoJuyLjT0CiWg3K7S5uU75Jh/ctWyfMmCOVWTTWG7/gqbk86C+QhvCHHxOEGIrX05iqR5o=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(376002)(346002)(39860400002)(136003)(451199021)(46966006)(36840700001)(40470700004)(70206006)(4744005)(2906002)(15650500001)(70586007)(2616005)(86362001)(336012)(426003)(82310400005)(44832011)(5660300002)(8676002)(8936002)(40460700003)(36756003)(41300700001)(6636002)(40480700001)(4326008)(54906003)(110136005)(478600001)(316002)(6666004)(7696005)(36860700001)(82740400003)(186003)(16526019)(356005)(81166007)(26005)(1076003)(83380400001)(47076005)(66574015)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 May 2023 09:10:19.9818 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9a106b5a-7a69-410a-18ef-08db4bb6382b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT039.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5750
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [Intel-xe] [RFC PATCH 3/4] drm/ttm: Handle -EAGAIN in
+ ttm_resource_alloc as -ENOSPC.
+Content-Language: en-US
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, cgroups@vger.kernel.org,
+ intel-xe@lists.freedesktop.org
+References: <20230503083500.645848-1-maarten.lankhorst@linux.intel.com>
+ <20230503083500.645848-4-maarten.lankhorst@linux.intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20230503083500.645848-4-maarten.lankhorst@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Wed, 03 May 2023 13:10:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,38 +65,59 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- amd-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel@ffwll.ch>, Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
+ Zefan Li <lizefan.x@bytedance.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Johannes Weiner <hannes@cmpxchg.org>, Tejun Heo <tj@kernel.org>,
+ David Airlie <airlied@gmail.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The following checkpatch warning is removed.
+Hi, Maarten
 
-WARNING: Possible unnecessary 'out of memory' message
+On 5/3/23 10:34, Maarten Lankhorst wrote:
+> This allows the drm cgroup controller to return no space is available..
+>
+> XXX: This is a hopeless simplification that changes behavior, and
+> returns -ENOSPC even if we could evict ourselves from the current
+> cgroup.
+>
+> Ideally, the eviction code becomes cgroup aware, and will force eviction
+> from the current cgroup or its parents.
+>
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+Thinking of the shrinker analogy, do non-cgroup aware shrinkers just 
+shrink blindly or do they reject shrinking like this patch when a cgroup 
+limit is reached?
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-index b582b83c4984..2e0f82f7b2c0 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-@@ -318,10 +318,8 @@ static bool amdgpu_atrm_get_bios(struct amdgpu_device *adev)
- 	pci_dev_put(pdev);
- 
- 	adev->bios = kmalloc(size, GFP_KERNEL);
--	if (!adev->bios) {
--		dev_err(adev->dev, "Unable to allocate bios\n");
-+	if (!adev->bios)
- 		return false;
--	}
- 
- 	for (i = 0; i < size / ATRM_BIOS_PAGE; i++) {
- 		ret = amdgpu_atrm_call(atrm_handle,
--- 
-2.25.1
+/Thomas
 
+
+> ---
+>   drivers/gpu/drm/ttm/ttm_bo.c | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+> index bd5dae4d1624..e057d5d8f09a 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> @@ -731,6 +731,8 @@ static int ttm_bo_mem_force_space(struct ttm_buffer_object *bo,
+>   		ret = ttm_resource_alloc(bo, place, mem);
+>   		if (likely(!ret))
+>   			break;
+> +		if (ret == -EAGAIN)
+> +			return -ENOSPC;
+>   		if (unlikely(ret != -ENOSPC))
+>   			return ret;
+>   		ret = ttm_mem_evict_first(bdev, man, place, ctx,
+> @@ -783,7 +785,7 @@ int ttm_bo_mem_space(struct ttm_buffer_object *bo,
+>   
+>   		type_found = true;
+>   		ret = ttm_resource_alloc(bo, place, mem);
+> -		if (ret == -ENOSPC)
+> +		if (ret == -ENOSPC || ret == -EAGAIN)
+>   			continue;
+>   		if (unlikely(ret))
+>   			goto error;
