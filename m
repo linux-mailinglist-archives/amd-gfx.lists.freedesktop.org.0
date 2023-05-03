@@ -1,63 +1,73 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FBDF6F5B25
-	for <lists+amd-gfx@lfdr.de>; Wed,  3 May 2023 17:29:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64E896F5AE5
+	for <lists+amd-gfx@lfdr.de>; Wed,  3 May 2023 17:22:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3756A10E134;
-	Wed,  3 May 2023 15:29:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED7DC10E302;
+	Wed,  3 May 2023 15:22:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD4A410E2F0
- for <amd-gfx@lists.freedesktop.org>; Wed,  3 May 2023 15:09:43 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id
- ffacd0b85a97d-3063208beedso3023344f8f.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 03 May 2023 08:09:43 -0700 (PDT)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
+ [IPv6:2a00:1450:4864:20::52b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEED410E2FC
+ for <amd-gfx@lists.freedesktop.org>; Wed,  3 May 2023 15:20:18 +0000 (UTC)
+Received: by mail-ed1-x52b.google.com with SMTP id
+ 4fb4d7f45d1cf-50b8d2eed3dso7342317a12.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 03 May 2023 08:20:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1683126582; x=1685718582;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ d=gmail.com; s=20221208; t=1683127217; x=1685719217;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=lHn2q/LoLyqphWxooc9AtkUCXjbjiXmoO7+MLExrCDY=;
- b=mw6w9ImEn7ZTvxm+NpxjKfmIQCh2uH2sftTF71syVQ0PfSUhCyehC4HCVEJlSHMNc4
- djmwOVpXSHX5AxK4i0IaLrfzIxSsHgD+tUHrpMqpzz2GdiFNR71VHI1msZeahtxePojv
- fpKX2q6grqG2ilzrNnu1z1GkZMzVWN0y8+Aluig6/5cPW4iocaavD0CditZhhKvj2Ppc
- cWbBvd3hhL7JErTmLAmlOa+/HPq32qUWxGai8ILTrZ2h/3DjC3qb+himjYevcUBG9e82
- gdy/opjeNZ5ih2w/LnD7J9udlH8vlWCh+aFUnVPToo7wP2TB1xkYd+x2u+F2wjC84oV2
- rzxQ==
+ bh=nU8TQz/UfmJsSqUVR7CrvJogTlCBUwk/yrx/4Z08it4=;
+ b=ETuaXl8GykeAj7hZ7M/LwbykGRjqjN20Y99Cksu0EThzzp6wSPnmq7Zc3+5LiQO5P5
+ /0JFPls3oj5+hkLPtA+GIf5anJzYjuLL+OBomlehmcwyTh8lUeWf22l1rPvDQIgzLHvU
+ ItWrMP7LS79A1yFgLRGg/FwzwUnlIijY2KT9OwOaqdAv7K3pTF8GR/lQoFhyybjsBdwo
+ rNtpOjmMU4JBsNmEwXT0/9MDtaYAmk+ryw7urYENa2bJo5O6arliG41AXuyu0RgD7jjg
+ oRwj6dKf0UnEwyvThCZnh6CquSlmY6p+2Q7VsIH7h9NQ5DiDovnkC3Pe8NRv9F16/qlF
+ hGhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1683126582; x=1685718582;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ d=1e100.net; s=20221208; t=1683127217; x=1685719217;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=lHn2q/LoLyqphWxooc9AtkUCXjbjiXmoO7+MLExrCDY=;
- b=jDe3EaA752+Rj72L8AjH24OLpegkRIQcFSdr2Jc+9Xlx2oN8XdK2WfbGxUde3d4gUY
- ad0oaCv87poOxP+5qwavV4OpnDwWehLFNF8kWgMcw5CF/WOCUy/nzGjzUomaixqld6l3
- lMxEmd1rULwelNE57wrEOhr8H+RL/M2Y7wwaENmkchhXnRGDbXU+V6BVQefeSbEPtZnc
- KK3O6qxScXpw7y2mgg4kHK3pdWtqd2+BekjopGIXk2B+ry1m/oZZTqLqHKh/tYBejhn2
- brKyO4QjgBKmTJrlBYtPGO34NJA4GRYdx/GxYEwPUE4FL9mMHM1QOve5IEPwEfWehogU
- NIfg==
-X-Gm-Message-State: AC+VfDzl146fWdRfLjQbsrQRkxXU+FP05XgF07srRwtsV0l0rJWCcj6G
- rKwadff4qOtYjVU7Gk/MpB83Zg==
-X-Google-Smtp-Source: ACHHUZ7ta6829UORYzvq44Fqpb5GVNr04656qcKelYhqGaHHB1HPOWYiohvxlAg+tnS8YZhx2nMsuQ==
-X-Received: by 2002:a5d:5942:0:b0:304:8147:f0ba with SMTP id
- e2-20020a5d5942000000b003048147f0bamr343888wri.3.1683126581860; 
- Wed, 03 May 2023 08:09:41 -0700 (PDT)
-Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
- q7-20020a1cf307000000b003f18b52c73asm2139024wmq.24.2023.05.03.08.09.39
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 03 May 2023 08:09:40 -0700 (PDT)
-Date: Wed, 3 May 2023 18:09:35 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Le Ma <le.ma@amd.com>
-Subject: [PATCH] drm/amdgpu: unlock on error in gfx_v9_4_3_kiq_resume()
-Message-ID: <cb48ef1c-5f1a-449f-a9f6-909042661ce6@kili.mountain>
+ bh=nU8TQz/UfmJsSqUVR7CrvJogTlCBUwk/yrx/4Z08it4=;
+ b=PUaCiYXIUn9l8v07k8i+s2UfrMA+kSI0CILnsn3B14z1HJWmEWn42cTDv4HIVD2ta7
+ lb86OaRXttwR0aG+wTSEEL6yf3olPOnwlzz1Qdjmt4rZdaW6m8ZF5xcP0jToG9G4rsWO
+ p1MuncszjvXeWmW9/azAZk/PRalB61IZmLiGGRcZ9nh2yc18pSdoIR73/Zp6Tkgt+YMh
+ /G2ctirvThtyqNAXSQXm4EUMHPTHLzIg8613tLtqYOn7cxVNAk6M8fr0da0aae94vyfq
+ CWkD5Ty/5s1OU/51IDtvayZRRfN9s6Wr8Ha01kRAh8jGPNvoVuG9xxN7ZprXbL864Cj+
+ rUXg==
+X-Gm-Message-State: AC+VfDw9OLvgXNP40lwj3oCcr91m6pCWEzHEgaPoKRWOI4tz3oQ1lsAY
+ VwBpNnNKyeI0595Zz5VApqc=
+X-Google-Smtp-Source: ACHHUZ54/IQlS2rgfBKWvuQUyiLwnaesMZrmfuF5zNKoM2qw7GgrzgeUL+pb08oSz+Se+5dGqwZjOA==
+X-Received: by 2002:a05:6402:47:b0:509:c10d:b53d with SMTP id
+ f7-20020a056402004700b00509c10db53dmr11212497edu.23.1683127216769; 
+ Wed, 03 May 2023 08:20:16 -0700 (PDT)
+Received: from ?IPV6:2a02:908:1256:79a0:130a:3ed0:3dbc:854b?
+ ([2a02:908:1256:79a0:130a:3ed0:3dbc:854b])
+ by smtp.gmail.com with ESMTPSA id
+ z22-20020aa7c656000000b004fc01b0aa55sm818162edr.4.2023.05.03.08.20.16
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 03 May 2023 08:20:16 -0700 (PDT)
+Message-ID: <7a3221a9-242a-7a83-f380-c1d0bd8d8c9f@gmail.com>
+Date: Wed, 3 May 2023 17:20:15 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
-X-Mailman-Approved-At: Wed, 03 May 2023 15:29:35 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 2/2] drm/amdgpu: drop unused function
+Content-Language: en-US
+To: Alex Deucher <alexdeucher@gmail.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+References: <20230427183429.599578-1-alexander.deucher@amd.com>
+ <20230427183429.599578-2-alexander.deucher@amd.com>
+ <CADnq5_MAiEcCAE79NoeC5FU9eh+kgYBjD0azagRyaDvuXSEGcA@mail.gmail.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <CADnq5_MAiEcCAE79NoeC5FU9eh+kgYBjD0azagRyaDvuXSEGcA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,44 +79,104 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>, kernel-janitors@vger.kernel.org,
- Morris Zhang <Shiwu.Zhang@amd.com>, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Smatch complains that we need to drop this lock before returning.
+Reviewed-by: Christian König <christian.koenig@amd.com> for this one.
 
-    drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c:1838 gfx_v9_4_3_kiq_resume()
-    warn: inconsistent returns 'ring->mqd_obj->tbo.base.resv'.
+Can't say much about the first one. That was just the hack because some 
+bit in the IP version was re-used on SRIOV, wasn't it?
 
-Fixes: 86301129698b ("drm/amdgpu: split gc v9_4_3 functionality from gc v9_0")
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
-The Fixes tag is weird, but I think it's correct?
+Christian.
 
- drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-index 56a415e151d4..552729a514d3 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-@@ -1827,8 +1827,10 @@ static int gfx_v9_4_3_kiq_resume(struct amdgpu_device *adev, int xcc_id)
- 		return r;
- 
- 	r = amdgpu_bo_kmap(ring->mqd_obj, (void **)&ring->mqd_ptr);
--	if (unlikely(r != 0))
-+	if (unlikely(r != 0)) {
-+		amdgpu_bo_unreserve(ring->mqd_obj);
- 		return r;
-+	}
- 
- 	gfx_v9_4_3_kiq_init_queue(ring, xcc_id);
- 	amdgpu_bo_kunmap(ring->mqd_obj);
--- 
-2.39.2
+Am 03.05.23 um 17:02 schrieb Alex Deucher:
+> Ping?
+>
+> On Thu, Apr 27, 2023 at 2:34 PM Alex Deucher <alexander.deucher@amd.com> wrote:
+>> amdgpu_discovery_get_ip_version() has not been used since
+>> commit c40bdfb2ffa4 ("drm/amdgpu: fix incorrect VCN revision in SRIOV")
+>> so drop it.
+>>
+>> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 48 -------------------
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h |  2 -
+>>   2 files changed, 50 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+>> index 76ceca05452e..b58d94dc1924 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+>> @@ -1208,54 +1208,6 @@ static int amdgpu_discovery_reg_base_init(struct amdgpu_device *adev)
+>>          return 0;
+>>   }
+>>
+>> -int amdgpu_discovery_get_ip_version(struct amdgpu_device *adev, int hw_id, int number_instance,
+>> -                                   int *major, int *minor, int *revision)
+>> -{
+>> -       struct binary_header *bhdr;
+>> -       struct ip_discovery_header *ihdr;
+>> -       struct die_header *dhdr;
+>> -       struct ip *ip;
+>> -       uint16_t die_offset;
+>> -       uint16_t ip_offset;
+>> -       uint16_t num_dies;
+>> -       uint16_t num_ips;
+>> -       int i, j;
+>> -
+>> -       if (!adev->mman.discovery_bin) {
+>> -               DRM_ERROR("ip discovery uninitialized\n");
+>> -               return -EINVAL;
+>> -       }
+>> -
+>> -       bhdr = (struct binary_header *)adev->mman.discovery_bin;
+>> -       ihdr = (struct ip_discovery_header *)(adev->mman.discovery_bin +
+>> -                       le16_to_cpu(bhdr->table_list[IP_DISCOVERY].offset));
+>> -       num_dies = le16_to_cpu(ihdr->num_dies);
+>> -
+>> -       for (i = 0; i < num_dies; i++) {
+>> -               die_offset = le16_to_cpu(ihdr->die_info[i].die_offset);
+>> -               dhdr = (struct die_header *)(adev->mman.discovery_bin + die_offset);
+>> -               num_ips = le16_to_cpu(dhdr->num_ips);
+>> -               ip_offset = die_offset + sizeof(*dhdr);
+>> -
+>> -               for (j = 0; j < num_ips; j++) {
+>> -                       ip = (struct ip *)(adev->mman.discovery_bin + ip_offset);
+>> -
+>> -                       if ((le16_to_cpu(ip->hw_id) == hw_id) && (ip->number_instance == number_instance)) {
+>> -                               if (major)
+>> -                                       *major = ip->major;
+>> -                               if (minor)
+>> -                                       *minor = ip->minor;
+>> -                               if (revision)
+>> -                                       *revision = ip->revision;
+>> -                               return 0;
+>> -                       }
+>> -                       ip_offset += struct_size(ip, base_address, ip->num_base_address);
+>> -               }
+>> -       }
+>> -
+>> -       return -EINVAL;
+>> -}
+>> -
+>>   static void amdgpu_discovery_harvest_ip(struct amdgpu_device *adev)
+>>   {
+>>          int vcn_harvest_count = 0;
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h
+>> index 8563dd4a7dc2..63ec6924b907 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h
+>> @@ -28,8 +28,6 @@
+>>   #define DISCOVERY_TMR_OFFSET    (64 << 10)
+>>
+>>   void amdgpu_discovery_fini(struct amdgpu_device *adev);
+>> -int amdgpu_discovery_get_ip_version(struct amdgpu_device *adev, int hw_id, int number_instance,
+>> -                                    int *major, int *minor, int *revision);
+>>   int amdgpu_discovery_set_ip_blocks(struct amdgpu_device *adev);
+>>
+>>   #endif /* __AMDGPU_DISCOVERY__ */
+>> --
+>> 2.40.0
+>>
 
