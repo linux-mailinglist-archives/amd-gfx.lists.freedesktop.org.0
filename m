@@ -2,92 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A810C6F7C6A
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 May 2023 07:29:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EC246F7DB4
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 May 2023 09:22:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1440910E56C;
-	Fri,  5 May 2023 05:29:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6D6D10E57D;
+	Fri,  5 May 2023 07:22:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2050.outbound.protection.outlook.com [40.107.223.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4917510E56B
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 May 2023 05:29:45 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OB4bqxtcHrDv5xWKJgtFlpA/w9riiFem3tfl7saQL3B4Aa2CT7Q3yTBx0XI+T/RDHhD5w9e6AFzrtHuvkt33g/8r/6hlKyP5hJPFtoCg0ZIxTFSMdxOpWVDdugB7XEf4+/vpajj0TW7jhm1wk6KVoN/Nagp8+pGVwO/i0llzkyDVbsjFb67sHPokYaRaPtUu+NohVzFSiBmvj5L9uy4UyCODuyK0pin7zx7WsHkAfKuHuDgbhdxFXMinjkmmmAeaZ2CE+v4xomnbHGafNrcXyn235AUpQWseCE07u5KZqMwri8v7lEh7+BRx3IqWVdZa3KHzhvcbwcdWu3bVvNtBJw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zqu396cuLCUIief4P0SOm3k3pZFQzQpPHNA58K62oB8=;
- b=XYuyLyMROPE9NyNawSIgQIdtwCOpU17KIjvpyKhZY9vQS4Dshvc4Sa8RYjj3OXPmKgrht+llKNOTXukXQUoS40hlWWD4XChMNZWkPm9iXiJEYjpZx29VswLu92fF1G9O2evbsHhN7+W7b6PHRojhN51j4XuF6r3IdBKN/1s87z0riFn+meNSYCa9COUVMwQdJpvbBHmwZ5MJz5vwrKmFMbAPb12psKo0CF/l83ZkWtBMcMteiD90z1UaWhb7h4vFn0oiHyJ2wLVbwqWa844+e6ICYTQnV8yCZRq68fNTKB0n0MnYkvEBzrS2GkXvKZBBWbGbmDamwzxWa9SYnRUsQg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zqu396cuLCUIief4P0SOm3k3pZFQzQpPHNA58K62oB8=;
- b=2wVFB1BDZ+SUe8CrPPjI019YB+XBvjxZcRkGUqMsLWweim+X2PK0s7owqfERphPjc/ZmP5PGaEyoena2CWCOeSMLYDgFMXGfFyPzZpidauYWHv24R9YNcuE9wNog5OMGb0itpwhuwGwRSbNE4TGh94ZRLveO/nsLABdpfoGgGU8=
-Received: from DS7PR06CA0041.namprd06.prod.outlook.com (2603:10b6:8:54::10) by
- IA1PR12MB7639.namprd12.prod.outlook.com (2603:10b6:208:425::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6363.22; Fri, 5 May 2023 05:29:42 +0000
-Received: from DM6NAM11FT085.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:54:cafe::ab) by DS7PR06CA0041.outlook.office365.com
- (2603:10b6:8:54::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.27 via Frontend
- Transport; Fri, 5 May 2023 05:29:42 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT085.mail.protection.outlook.com (10.13.172.236) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6363.27 via Frontend Transport; Fri, 5 May 2023 05:29:41 +0000
-Received: from yifan.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 5 May
- 2023 00:29:39 -0500
-From: Yifan Zhang <yifan1.zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 4/4] drm/amdgpu: print vmhub id when no VM inv eng found
-Date: Fri, 5 May 2023 13:28:46 +0800
-Message-ID: <20230505052846.1489935-4-yifan1.zhang@amd.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20230505052846.1489935-1-yifan1.zhang@amd.com>
-References: <20230505052846.1489935-1-yifan1.zhang@amd.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7512410E560;
+ Fri,  5 May 2023 04:45:44 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id CFEC16127C;
+ Fri,  5 May 2023 04:45:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4396C433EF;
+ Fri,  5 May 2023 04:45:40 +0000 (UTC)
+From: Huacai Chen <chenhuacai@loongson.cn>
+To: Alex Deucher <alexander.deucher@amd.com>,
+	=?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+	Pan@freedesktop.org, Xinhui <Xinhui.Pan@amd.com>,
+	David Airlie <airlied@linux.ie>
+Subject: [PATCH] drm/amdgpu/display: Enable DC_FP for LoongArch
+Date: Fri,  5 May 2023 12:44:55 +0800
+Message-Id: <20230505044455.3184791-1-chenhuacai@loongson.cn>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT085:EE_|IA1PR12MB7639:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7a1fe8fd-0e85-4639-231b-08db4d29ba63
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: iU5AF5nugRw3+HWryK8XQeJQT/zUIbRAPZupQ9kheHi4d59lJhSdeAr6GBQLrzFAtXmzvHSMbQ0LpixEzyAJMTxiY0weV0zBV80JGpXMrBhaN77LfUO6yUqWrZEQAHNupgkOGRz8UwfUg+keT0GCC7R1ls1ukcls0ALhycqxQKjBQdhLCRgacRou6H6I6OF7f43WYIOT5LYgpQs2t2kAN6j3NkrAdQ1DDhFX0BEwiWLBKxVArz5cl+uLC4kSIXD5hPekuhcZPXSA0CC2qrG0n6UC+6SgMgxwFAGS/+q6M3C8mWkLGZ8USkG10pB5Ru2MgfUf3CjW/2AwJ+Hmoa5vDtnijtVVGKVo7IKbk0t01iM92zPySyrQsApTln543gWp1LgsRtcfXVq+w+rp2Ifmckbn7+4IA6r6rPnoR1p+aZa/Kn4BxvgFzVK8MiSmzFKe6eeYJBnztGe72gMEIAG+L515ufXQtKjh8B9qtxz1KSdSMrmqH8ZxGVrGTVcwasj5+qNu79zM4HGvJl6TpnROii7kXfyiJ9z8y8Er0KcuG3nj0CFfQ4blMfBUTY5Pg93Zmnxu6wmC2DXSIlJwlfd4Fu6FH6UIE4EHXQpo9p9+poQhBYZkukiz5PdZaBVUtF4av66DbSNEUxBDL5KAlLw8zBnXwQPwmfHbDkq3fKhvR8udkcyTlwHm40RQe0NDVazzmNebKgnO7jPZ01W+9GnIKZk+YSA45xm9blGOycJuLOA=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(376002)(136003)(396003)(346002)(39860400002)(451199021)(36840700001)(46966006)(40470700004)(2906002)(8936002)(4744005)(6916009)(70206006)(4326008)(8676002)(316002)(70586007)(54906003)(41300700001)(478600001)(6666004)(7696005)(83380400001)(5660300002)(336012)(26005)(1076003)(40460700003)(82740400003)(47076005)(426003)(186003)(36860700001)(40480700001)(2616005)(36756003)(86362001)(16526019)(82310400005)(356005)(81166007)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2023 05:29:41.8176 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7a1fe8fd-0e85-4639-231b-08db4d29ba63
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT085.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7639
+X-Mailman-Approved-At: Fri, 05 May 2023 07:22:34 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,33 +42,83 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Yifan Zhang <yifan1.zhang@amd.com>, Lijo.Lazar@amd.com, le.ma@amd.com,
- Alexander.Deucher@amd.com, christian.koenig@amd.com, Hawking.Zhang@amd.com
+Cc: dri-devel@lists.freedesktop.org, loongson-kernel@lists.loongnix.cn,
+ amd-gfx@lists.freedesktop.org, WANG Xuerui <kernel@xen0n.name>,
+ Xuefeng Li <lixuefeng@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-to facilitate debugging.
+Now LoongArch provides kernel_fpu_begin() and kernel_fpu_end() so we can
+enable DC_FP for DCN devices.
 
-Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+Signed-off-by: WANG Xuerui <kernel@xen0n.name>
+Signed-off-by: Huacai Chen <chenhuacai@loongson.cn>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/Kconfig            | 2 +-
+ drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c | 6 ++++--
+ drivers/gpu/drm/amd/display/dc/dml/Makefile    | 5 +++++
+ 3 files changed, 10 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-index a4ba2c50a5c3..abdc2923cb62 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-@@ -561,8 +561,8 @@ int amdgpu_gmc_allocate_vm_inv_eng(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/amd/display/Kconfig b/drivers/gpu/drm/amd/display/Kconfig
+index 2d8e55e29637..49df073962d5 100644
+--- a/drivers/gpu/drm/amd/display/Kconfig
++++ b/drivers/gpu/drm/amd/display/Kconfig
+@@ -8,7 +8,7 @@ config DRM_AMD_DC
+ 	depends on BROKEN || !CC_IS_CLANG || X86_64 || SPARC64 || ARM64
+ 	select SND_HDA_COMPONENT if SND_HDA_CORE
+ 	# !CC_IS_CLANG: https://github.com/ClangBuiltLinux/linux/issues/1752
+-	select DRM_AMD_DC_FP if (X86 || (PPC64 && ALTIVEC) || (ARM64 && KERNEL_MODE_NEON && !CC_IS_CLANG))
++	select DRM_AMD_DC_FP if (X86 || LOONGARCH || (PPC64 && ALTIVEC) || (ARM64 && KERNEL_MODE_NEON && !CC_IS_CLANG))
+ 	help
+ 	  Choose this option if you want to use the new display engine
+ 	  support for AMDGPU. This adds required support for Vega and
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c b/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
+index 1743ca0a3641..86f4c0e04654 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
+@@ -33,6 +33,8 @@
+ #include <asm/cputable.h>
+ #elif defined(CONFIG_ARM64)
+ #include <asm/neon.h>
++#elif defined(CONFIG_LOONGARCH)
++#include <asm/fpu.h>
+ #endif
  
- 		inv_eng = ffs(vm_inv_engs[vmhub]);
- 		if (!inv_eng) {
--			dev_err(adev->dev, "no VM inv eng for ring %s\n",
--				ring->name);
-+			dev_err(adev->dev, "no VM inv eng for ring %s on hub %d\n",
-+				ring->name, ring->vm_hub);
- 			return -EINVAL;
- 		}
+ /**
+@@ -88,7 +90,7 @@ void dc_fpu_begin(const char *function_name, const int line)
+ 	*pcpu += 1;
  
+ 	if (*pcpu == 1) {
+-#if defined(CONFIG_X86)
++#if defined(CONFIG_X86) || defined(CONFIG_LOONGARCH)
+ 		kernel_fpu_begin();
+ #elif defined(CONFIG_PPC64)
+ 		if (cpu_has_feature(CPU_FTR_VSX_COMP)) {
+@@ -127,7 +129,7 @@ void dc_fpu_end(const char *function_name, const int line)
+ 	pcpu = get_cpu_ptr(&fpu_recursion_depth);
+ 	*pcpu -= 1;
+ 	if (*pcpu <= 0) {
+-#if defined(CONFIG_X86)
++#if defined(CONFIG_X86) || defined(CONFIG_LOONGARCH)
+ 		kernel_fpu_end();
+ #elif defined(CONFIG_PPC64)
+ 		if (cpu_has_feature(CPU_FTR_VSX_COMP)) {
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/Makefile b/drivers/gpu/drm/amd/display/dc/dml/Makefile
+index 01db035589c5..542962a93e8f 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/dml/Makefile
+@@ -38,6 +38,11 @@ ifdef CONFIG_ARM64
+ dml_rcflags := -mgeneral-regs-only
+ endif
+ 
++ifdef CONFIG_LOONGARCH
++dml_ccflags := -mabi=lp64s -mfpu=64
++dml_rcflags := -msoft-float
++endif
++
+ ifdef CONFIG_CC_IS_GCC
+ ifneq ($(call gcc-min-version, 70100),y)
+ IS_OLD_GCC = 1
 -- 
-2.37.3
+2.39.1
 
