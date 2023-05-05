@@ -1,71 +1,36 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7931C6F814C
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 May 2023 13:13:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DD486F83B3
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 May 2023 15:17:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1262110E5C6;
-	Fri,  5 May 2023 11:13:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 525AB10E5F8;
+	Fri,  5 May 2023 13:17:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com
- [IPv6:2a00:1450:4864:20::531])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23FE610E5C6
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 May 2023 11:13:44 +0000 (UTC)
-Received: by mail-ed1-x531.google.com with SMTP id
- 4fb4d7f45d1cf-50bd875398dso2457707a12.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 05 May 2023 04:13:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1683285222; x=1685877222;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=T6aEBCYPpwT1hbvJQduFLplN9h0dX+3JJtvJLI3vE50=;
- b=ehufIdEqw9QY4Kfaj45snhMKicCBQ+FdGh/unZocDdAZ+nWjy2cVHkhkjraEnFsCU5
- AbVWJMIsqT6Jbb9CbJO7frSoQ8fOl3EXRh9F3g/M4KnZAIDfa7o/JlSD2KWyGPnu58vu
- 220YVq010POpe65UHyeo3P9oK2JQ4fowtWu6AkKEJhuW5CAmRpEN2z0eB84VAerkeJ4T
- ZlkahiMS4+LGwV2SeFlulSsQFqQaxzp5S+5kSl2FGnbvK1tRxY0FGFNgI+Q01sSWRjDu
- e69+/Wd686+dbhoPRY7RxYg8DvXBaoi6L5ENhrI1+1xmvdVzj+sDcm2N46ATRR4AZhQT
- AhKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1683285222; x=1685877222;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=T6aEBCYPpwT1hbvJQduFLplN9h0dX+3JJtvJLI3vE50=;
- b=W0biNr+GqcspvYyZmkqZSCIuKq1CyWGWY8E5r6HQQ/7omITjW4AEHGBh+zG/JjQFBN
- YS+bAIKNMXAKC0M6eEpUIojGWhVBQt9yiAzQlsYzJpXtV9qXyDSkmgO2PZkndDlVWOeL
- xfzNIRDWV6T6LdgmPIdeTXrIPQDzLKVs5DvqTAa7fCLn+ZPgRjWj92uopTjaUZPNFSyU
- dgz2h7QZH+0V+zmRF3yC3e+6sESTQfbf/xYdd/Qee9cYp0KI7DeMMrlWhQC2xNeOFt4B
- CyTLZsOENQq8A1023WtVeBrYi1wXHSxH6hR76VWLpVbVcs/g6MD9bvzW8Pzc+Kp+UWGT
- tghQ==
-X-Gm-Message-State: AC+VfDybU8eGsz11k0SEJuONHO5/GvAj1XjmhfmKiOz/AVTlX3NlINnA
- pYqd2U7iSykF/6JzvBTMGlk=
-X-Google-Smtp-Source: ACHHUZ4uyiH7BFKl8k6jSVPQeanQS1VA9/ofGHRjNHLPJcM+2RAsUmd+qoJAaFRiritfUkNWpzluxw==
-X-Received: by 2002:a17:906:fe4e:b0:94a:44ef:853d with SMTP id
- wz14-20020a170906fe4e00b0094a44ef853dmr739850ejb.68.1683285221818; 
- Fri, 05 May 2023 04:13:41 -0700 (PDT)
-Received: from ?IPV6:2a02:908:1256:79a0:e2f8:820b:7a40:97ca?
- ([2a02:908:1256:79a0:e2f8:820b:7a40:97ca])
- by smtp.gmail.com with ESMTPSA id
- h13-20020a1709070b0d00b0094efdfe60dcsm780541ejl.206.2023.05.05.04.13.40
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 05 May 2023 04:13:41 -0700 (PDT)
-Message-ID: <412dddbe-67a1-48c4-1eb5-9cb7d672d79e@gmail.com>
-Date: Fri, 5 May 2023 13:13:40 +0200
+X-Greylist: delayed 305 seconds by postgrey-1.36 at gabe;
+ Fri, 05 May 2023 07:42:53 UTC
+Received: from out30-132.freemail.mail.aliyun.com
+ (out30-132.freemail.mail.aliyun.com [115.124.30.132])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F309310E58E;
+ Fri,  5 May 2023 07:42:53 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R621e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018046049;
+ MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=10; SR=0;
+ TI=SMTPD_---0VhoHy3m_1683272257; 
+Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0VhoHy3m_1683272257) by smtp.aliyun-inc.com;
+ Fri, 05 May 2023 15:37:43 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: alexander.deucher@amd.com
+Subject: [PATCH] drm/amdgpu: remove unneeded semicolon
+Date: Fri,  5 May 2023 15:37:31 +0800
+Message-Id: <20230505073731.5348-1-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 2.20.1.7.g153144c
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] drm/amdgpu: avoid null dereference of fence when using
- cpu to update page tables
-Content-Language: en-US
-To: Lang Yu <Lang.Yu@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20230505091020.1383923-1-Lang.Yu@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20230505091020.1383923-1-Lang.Yu@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 05 May 2023 13:17:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,41 +42,37 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jack Xiao <Jack.Xiao@amd.com>, Christian Koenig <christian.koenig@amd.com>
+Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, Xinhui.Pan@amd.com,
+ Abaci Robot <abaci@linux.alibaba.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, airlied@gmail.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 05.05.23 um 11:10 schrieb Lang Yu:
-> Using cpu to update page tables is sychronous, no need to wait fence
-> and it is NULL in such a case.
+No functional modification involved.
 
-Good catch, be we usually install the stub into fence pointers when they 
-are unused. See dma_fence_get_stub().
+./drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c:146:2-3: Unneeded semicolon.
 
-Christian.
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=4871
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+---
+ drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
->
-> Signed-off-by: Lang Yu <Lang.Yu@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c | 7 +++++--
->   1 file changed, 5 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-> index f0f00466b59f..197981c4ac7d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-> @@ -1043,8 +1043,11 @@ int amdgpu_mes_add_ring(struct amdgpu_device *adev, int gang_id,
->   
->   	amdgpu_mes_ring_to_queue_props(adev, ring, &qprops);
->   
-> -	dma_fence_wait(gang->process->vm->last_update, false);
-> -	dma_fence_wait(ctx_data->meta_data_va->last_pt_update, false);
-> +	if (gang->process->vm->last_update)
-> +		dma_fence_wait(gang->process->vm->last_update, false);
-> +	if (ctx_data->meta_data_va->last_pt_update)
-> +		dma_fence_wait(ctx_data->meta_data_va->last_pt_update, false);
-> +
->   	amdgpu_mes_unlock(&adev->mes);
->   
->   	r = amdgpu_mes_add_hw_queue(adev, gang_id, &qprops, &queue_id);
+diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c b/drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c
+index 24d12075ca3a..a331a59c49e3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c
++++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_9.c
+@@ -143,7 +143,7 @@ static void nbio_v7_9_sdma_doorbell_range(struct amdgpu_device *adev, int instan
+ 		break;
+ 	default:
+ 		break;
+-	};
++	}
+ 
+ 	return;
+ }
+-- 
+2.20.1.7.g153144c
 
