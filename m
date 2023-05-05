@@ -1,92 +1,72 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35CDF6F7D09
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 May 2023 08:39:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0760D6F7E69
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 May 2023 10:11:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C07A210E575;
-	Fri,  5 May 2023 06:39:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2F8310E598;
+	Fri,  5 May 2023 08:11:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2060e.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e88::60e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E2DE10E575
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 May 2023 06:39:54 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JNt/WxN2qMgMQhpHbG62rXYSTPGScjiDTuTADJ5bKfxU4lYDJMSf9PSYxGD6HsHp2clZr/1rYnJdfjsB++lWvtoKvCWEb+X9/1S1jkaNhHVBzY4u7Ia3wKN8OfQ8u6qsccj3q9eF/XDZDG3QcYcMiX+7RBFR6vnJYOqUr5LIj/2BVVQ9BMw8q7u1TpSBWnR7/KmOj/U7yNBQAEcBDPcYWHpTrClfA1xrQal8GV3+/uCSTqUmOqBBRB4DhVtnV7PpaROv2ZhzfyVHCpJfMuylCts85MH7+BK3GHhRzat1f2tPNPxi/jiSg6cK6Dv8i9VN70yYr1x0vs0/443ieJkRtQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7W8NORF6+xrbpjO/DLAtMjVjEx5J92Fjkb6p8UJ/YQo=;
- b=HhZ8av/Kp1bo5LIaY/XQwyHtKbVTngkZ73y7DLpvmprugNQo61/l0oyrvzNrEtYk6M5VJrkI7b5tJ1M7DCO7Lc1EwYdSNAzTwJINgVlGMmhwG86oik856sd6M/lcyi7BRvat+62pgjq6rNsW4qIu4BA/tzLPjd6rcgFTU4GAGv6ES2Nopqf8OoWBeUv83RjHctniC1RWlzDHwzdJZ4IdOfoM9DjNPksxz11IW67mqS8T8Yw4zWlZy/L4/8rS9PQ/e9+efTnx8gQ5CqPPhP15cuV4gFW+0/Kr0279O7ru8Y7+MaM7u0eexZJJ3l6RdVza3arzTK75EJH7mZqbft1Xag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7W8NORF6+xrbpjO/DLAtMjVjEx5J92Fjkb6p8UJ/YQo=;
- b=awDlg82bBLOutQu6Krf+x7laSJTHkiplWaonWzyO5QAEBEz/Z9EuTy8xUmDNZJscRMioTlI/V9xqWFbyyo29Z2PHb9PouZMl4tm1k7OkijblSpQ22d4OXc8zSJA3JNEVN76ydhU0QiklOrJICjL1R7+SD+adiLpfngCjJs45AqQ=
-Received: from BN8PR16CA0030.namprd16.prod.outlook.com (2603:10b6:408:4c::43)
- by MW6PR12MB8705.namprd12.prod.outlook.com (2603:10b6:303:24c::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.22; Fri, 5 May
- 2023 06:39:50 +0000
-Received: from BN8NAM11FT056.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:4c:cafe::81) by BN8PR16CA0030.outlook.office365.com
- (2603:10b6:408:4c::43) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.27 via Frontend
- Transport; Fri, 5 May 2023 06:39:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BN8NAM11FT056.mail.protection.outlook.com (10.13.177.26) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6363.27 via Frontend Transport; Fri, 5 May 2023 06:39:50 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 5 May
- 2023 01:39:50 -0500
-Received: from yubiwang-dev-linux.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.34
- via Frontend Transport; Fri, 5 May 2023 01:39:47 -0500
-From: YuBiao Wang <YuBiao.Wang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: set default num_kcq to 2 under sriov
-Date: Fri, 5 May 2023 14:39:39 +0800
-Message-ID: <20230505063939.2485298-1-YuBiao.Wang@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com
+ [IPv6:2a00:1450:4864:20::630])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CA7810E598
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 May 2023 08:11:00 +0000 (UTC)
+Received: by mail-ej1-x630.google.com with SMTP id
+ a640c23a62f3a-956ff2399c9so255554366b.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 05 May 2023 01:11:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1683274259; x=1685866259;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=gnxp5iBU/3iR+6ORSZ9KVphOqADi4ujwfzj0fyUI8gY=;
+ b=U9fvUxO/me2fcxAE4IYqVQlgZNIYfIcXtJ26wq6MG514VlKj5GoG8ntC1ccLjkVGaR
+ aUb82gB84+WT/pdKR2t5eflugmcf4yK0eosVafRvJLSzd/VPE7szSpHfTdFJOorqwqI+
+ DKSiqf+xz57/wLrnONPgl06liFkg0DTrdTVJM6YiSF7s97IDL+xpBwNfyDjecO21cQWo
+ fmXsBzywXAbr04a0z2jnD1fltWC+poKPld8/+KEuafOr9iKY+XMwtRj7ZD/PBrRqzWLo
+ IA8MppipILjGgXSUkhcHvNUTyUHGdmTBmpi++gGBkGH3J43tHGMITvNJddVDceohUM/S
+ FCHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1683274259; x=1685866259;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=gnxp5iBU/3iR+6ORSZ9KVphOqADi4ujwfzj0fyUI8gY=;
+ b=G9l2k/WbIlMzsj32eNOtG5CmjYkA4ZoT7667lkBZk8rkqxb/SmecHY/vMXSZEbf6Zc
+ /YHrAQHEuU2EWE++jddI0IPyzCl1UmXxgxkdO9a9rD8Kdy6AOE/v2trRNEBuDhfMv4Va
+ JWXMN9Ze06B+qI70GkUUK2S37BqaZDZvR2VPg0M2h1x1r+tfF7ED5e74dlURotby8yWq
+ mVEnHn6wo9N6WQ7o+2GrjtqPUYC2q5lHla9NnA/EZ8MzBwtvwHzqrHYIi4rwMeACxvoZ
+ Jc0OfM1Nfth+116AaEVgCcQHs5lPdjHgxpEBIPNNEmOd5fHqA4vG3OTaGRTjohdbsrbY
+ X4AA==
+X-Gm-Message-State: AC+VfDw77Gv9nYxd3br2Xoos0v+MwQ9AWR8sj3XQ5TGmiSaphVNt+f4K
+ uTT7yqxSvoUSZS6eI4MsacM=
+X-Google-Smtp-Source: ACHHUZ7VZBZAqud53Ltb/jHhtpg20cFvYPYhPVhaM/Nm7QEfvA+W587pWzM48thei6cBdm2mMfqABQ==
+X-Received: by 2002:a17:907:2ce3:b0:94f:2d38:896b with SMTP id
+ hz3-20020a1709072ce300b0094f2d38896bmr412935ejc.53.1683274258579; 
+ Fri, 05 May 2023 01:10:58 -0700 (PDT)
+Received: from ?IPV6:2a02:908:1256:79a0:e2f8:820b:7a40:97ca?
+ ([2a02:908:1256:79a0:e2f8:820b:7a40:97ca])
+ by smtp.gmail.com with ESMTPSA id
+ og6-20020a1709071dc600b00965e839f56bsm303745ejc.182.2023.05.05.01.10.57
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 05 May 2023 01:10:57 -0700 (PDT)
+Message-ID: <8f895857-9597-6cdf-5c4a-2fb4abd252c3@gmail.com>
+Date: Fri, 5 May 2023 10:10:56 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT056:EE_|MW6PR12MB8705:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8a74095a-7791-4336-e1a3-08db4d3386ea
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lZ/pohnJMOspRUzgXkVpcUE8A/LPtoDqn8UUt0irNOfCkRxyPZDrIs9XA8VnKSmfhPc/F2VQgWfVhNmdowupCE6kJSwfSyUokmzW/51pv28eF2SH5j7vk/k20MBdwyB7GbetYaP9Faa1tbqjR10vhhfPLQp68aWS5WlAzsY+32GS/W78tQSTZfZHNoqujtiWR+T7u63nMT9jDdJ0E3WhWMW4nMVv1EGVYfbxLXmooTCe7KjPPtD4T8x6zZrK+8BO21VedzaNhURVqGVtfMDuH3p7hSWkIECfCKUl3ZReLeCMr9Wq/a4laQFeOn4pDJDnGjKMbKa1SfC313UeIzoz+faax+bFfi9yfqjjzFC/WGu1m+ElWB7UpFuQcD86DcvArQAslsU+3gGwD7RbiEeb5LDBjhauzFzJaH1PNjEpNSlSC1I+6YRmfh0wj0wBSZ0AN/KTHyucGMy1T0ALhblxqFHzD8hGTpZahgwzHH7yRasGbe7+D/vgg7beF3KVFVHMlNeuxcyAk8LJrP7iPCTscnXIy9sm3uzBQyWV+vuBwWIw5uAFUR0OmwRDVrynZpPJ0fIS7uQdNDSGZqsdncV6V3JTtL++oqcDnbcQsb9MKR30pMLKEpvW/Efrt6UHd7x3uoa9azsjaQBLGMeJVTxzCplA6pZbMqnbGhaAbHh1yvXon2TuPjjvugGTD794D42uJWi1vk6rZRK66KnRXCltJQ15ds64YLKBOZ+vtgZQlNs=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(376002)(136003)(39860400002)(346002)(451199021)(40470700004)(46966006)(36840700001)(356005)(82310400005)(8936002)(36756003)(40480700001)(426003)(336012)(1076003)(26005)(8676002)(2616005)(316002)(5660300002)(54906003)(4326008)(478600001)(70206006)(6666004)(6916009)(70586007)(41300700001)(82740400003)(7696005)(86362001)(81166007)(36860700001)(186003)(47076005)(4744005)(2906002)(40460700003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2023 06:39:50.4799 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8a74095a-7791-4336-e1a3-08db4d3386ea
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT056.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB8705
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 2/2] drm/amdgpu: adjust vmhub flush tlb iteration to fit
+ the new GFXHUB/MMHUB layout
+Content-Language: en-US
+To: Yifan Zhang <yifan1.zhang@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20230504155023.1415369-1-yifan1.zhang@amd.com>
+ <20230504155023.1415369-2-yifan1.zhang@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20230504155023.1415369-2-yifan1.zhang@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,38 +78,106 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: YuBiao Wang <YuBiao.Wang@amd.com>,
- Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>, Feifei Xu <Feifei.Xu@amd.com>,
- horace.chen@amd.com, Tuikov Luben <Luben.Tuikov@amd.com>,
- Deucher Alexander <Alexander.Deucher@amd.com>, Evan Quan <Evan.Quan@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Monk Liu <Monk.Liu@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Alexander.Deucher@amd.com, le.ma@amd.com, christian.koenig@amd.com,
+ Hawking.Zhang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The number of kernel queues has impact on the latency under sriov
-usecase. So to reduce the latency we set the default num_kcq = 2 under
-sriov if not set manually.
 
-Signed-off-by: YuBiao Wang <YuBiao.Wang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c | 3 +++
- 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-index 1311e42ab8e9..d0ad7cb0fa05 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-@@ -68,6 +68,9 @@ void amdgpu_virt_init_setting(struct amdgpu_device *adev)
- 	/* enable mcbp for sriov */
- 	amdgpu_mcbp = 1;
- 
-+	/* Reduce kcq number to 2 to reduce latency */
-+	if (amdgpu_num_kcq == -1)
-+		amdgpu_num_kcq = 2;
- }
- 
- void amdgpu_virt_kiq_reg_write_reg_wait(struct amdgpu_device *adev,
--- 
-2.25.1
+Am 04.05.23 um 17:50 schrieb Yifan Zhang:
+> tlb flush has to be changed for the new mmhub layout
+>
+> Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c | 16 ++++++++++++----
+>   drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c   | 10 +++++++---
+>   2 files changed, 19 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
+> index 01cb89ffbd56..2383db399c95 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
+> @@ -160,6 +160,7 @@ void amdgpu_gart_unbind(struct amdgpu_device *adev, uint64_t offset,
+>   	/* Starting from VEGA10, system bit must be 0 to mean invalid. */
+>   	uint64_t flags = 0;
+>   	int idx;
+> +	struct amdgpu_vmhub *hub;
+
+Please always define variables as local as possible. E.g. in this case 
+not in the function but rather in the loop.
+
+Apart from that it's good practice to keep defines like i, r, idx etc.. 
+last. Some upstream maintainer even enforce reverse xmas tree ordering.
+
+Regards,
+Christian.
+
+
+>   
+>   	if (!adev->gart.ptr)
+>   		return;
+> @@ -182,8 +183,11 @@ void amdgpu_gart_unbind(struct amdgpu_device *adev, uint64_t offset,
+>   	}
+>   	mb();
+>   	amdgpu_device_flush_hdp(adev, NULL);
+> -	for (i = 0; i < adev->num_vmhubs; i++)
+> -		amdgpu_gmc_flush_gpu_tlb(adev, 0, i, 0);
+> +	for (i = 0; i < AMDGPU_MAX_VMHUBS; i++) {
+> +		hub = &adev->vmhub[i];
+> +		if (hub->vmhub_funcs)
+> +			amdgpu_gmc_flush_gpu_tlb(adev, 0, i, 0);
+> +	}
+>   
+>   	drm_dev_exit(idx);
+>   }
+> @@ -258,14 +262,18 @@ void amdgpu_gart_bind(struct amdgpu_device *adev, uint64_t offset,
+>   void amdgpu_gart_invalidate_tlb(struct amdgpu_device *adev)
+>   {
+>   	int i;
+> +	struct amdgpu_vmhub *hub;
+>   
+>   	if (!adev->gart.ptr)
+>   		return;
+>   
+>   	mb();
+>   	amdgpu_device_flush_hdp(adev, NULL);
+> -	for (i = 0; i < adev->num_vmhubs; i++)
+> -		amdgpu_gmc_flush_gpu_tlb(adev, 0, i, 0);
+> +	for (i = 0; i < AMDGPU_MAX_VMHUBS; i++) {
+> +		hub = &adev->vmhub[i];
+> +		if (hub->vmhub_funcs)
+> +			amdgpu_gmc_flush_gpu_tlb(adev, 0, i, 0);
+> +	}
+>   }
+>   
+>   /**
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+> index 90cf79f8ddde..3ee7f5e067fb 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+> @@ -331,6 +331,7 @@ static int gmc_v11_0_flush_gpu_tlb_pasid(struct amdgpu_device *adev,
+>   	bool ret;
+>   	struct amdgpu_ring *ring = &adev->gfx.kiq[0].ring;
+>   	struct amdgpu_kiq *kiq = &adev->gfx.kiq[0];
+> +	struct amdgpu_vmhub *hub;
+>   
+>   	if (amdgpu_emu_mode == 0 && ring->sched.ready) {
+>   		spin_lock(&adev->gfx.kiq[0].ring_lock);
+> @@ -362,9 +363,12 @@ static int gmc_v11_0_flush_gpu_tlb_pasid(struct amdgpu_device *adev,
+>   				&queried_pasid);
+>   		if (ret	&& queried_pasid == pasid) {
+>   			if (all_hub) {
+> -				for (i = 0; i < adev->num_vmhubs; i++)
+> -					gmc_v11_0_flush_gpu_tlb(adev, vmid,
+> -							i, flush_type);
+> +				for (i = 0; i < AMDGPU_MAX_VMHUBS; i++) {
+> +					hub = &adev->vmhub[i];
+> +					if (hub->vmhub_funcs)
+> +						gmc_v11_0_flush_gpu_tlb(adev, vmid,
+> +								i, flush_type);
+> +				}
+>   			} else {
+>   				gmc_v11_0_flush_gpu_tlb(adev, vmid,
+>   						AMDGPU_GFXHUB(0), flush_type);
 
