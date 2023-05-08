@@ -1,41 +1,41 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 249E26FB112
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 May 2023 15:14:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E85ED6FB106
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 May 2023 15:14:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0539510E2A1;
-	Mon,  8 May 2023 13:14:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 314CF10E293;
+	Mon,  8 May 2023 13:14:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from dfw.source.kernel.org (dfw.source.kernel.org
  [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC3F610E21F;
- Mon,  8 May 2023 11:04:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F35C10E230;
+ Mon,  8 May 2023 11:34:29 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id DBB1462A9B;
- Mon,  8 May 2023 11:04:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95EA6C433D2;
- Mon,  8 May 2023 11:04:09 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 0BDE1632A4;
+ Mon,  8 May 2023 11:34:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCEC9C4339E;
+ Mon,  8 May 2023 11:34:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1683543850;
+ s=korg; t=1683545668;
  bh=U3AASTqeuFKaMjf51fir0o9dcPQyM3LFthotgOzvu8Y=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=ozEJUJrp+6y2w8/8ON9al7hwpnvPukEwpMlaB7p2H4dT6AfewETt65p4RinId8CCU
- eQDnSPI1X3mTDnzni+nvLKsg2l2cqs16Cw0lH7wiwhkS3Qs9G4wEPUqPUjhIh0DA9a
- Lb+AEbjO6pZjZHmLoW3lwT5jPzMogGYVRm70j+Ng=
+ b=DhRk6G+iMuWY0VKHW/AMJSzcI5/ZSXkheLWhue/ZLYfwvuT6GTylhfQl8id9b12V1
+ i0VQ9Esgv/4IL7WtUqziB9ZoA7Xn8cgEDRX6V7PazuVCIye+a0aaNBWxYXp0sCWfEM
+ GWAKEu0gyN1iBxnsLIobxDOjgNMwQ24BRn7ARM4M=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: stable@vger.kernel.org
-Subject: [PATCH 6.3 222/694] drm/amd/display/dc/dce60/Makefile: Fix previous
+Subject: [PATCH 5.15 114/371] drm/amd/display/dc/dce60/Makefile: Fix previous
  attempt to silence known override-init warnings
-Date: Mon,  8 May 2023 11:40:57 +0200
-Message-Id: <20230508094439.566331883@linuxfoundation.org>
+Date: Mon,  8 May 2023 11:45:15 +0200
+Message-Id: <20230508094816.555754628@linuxfoundation.org>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230508094432.603705160@linuxfoundation.org>
-References: <20230508094432.603705160@linuxfoundation.org>
+In-Reply-To: <20230508094811.912279944@linuxfoundation.org>
+References: <20230508094811.912279944@linuxfoundation.org>
 User-Agent: quilt/0.67
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
