@@ -1,48 +1,123 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A7096FB60F
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 May 2023 19:42:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E5116FB980
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 May 2023 23:24:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD67D10E2E9;
-	Mon,  8 May 2023 17:42:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D943410E15F;
+	Mon,  8 May 2023 21:24:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACF3B10E0FC;
- Mon,  8 May 2023 17:42:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683567761; x=1715103761;
- h=date:from:to:cc:subject:message-id;
- bh=QzdlXeXG2PkEMSx0QmeEs0hg6hbVV4dFWxpgxeJRpyE=;
- b=UGs5qI9TRM4iE498MDCkcSuZ7AH48Fu+XnxpaOfKT/yG5weN+HS2tzYl
- n87r7NL57ZygXoUAW4gn046LOFZw5ZbfMzQlLHsgw9YLk34lgYVw+wG/+
- 8OnOGSpoG9CJGeT6TAGQfc+SXu+gqqZLuP6dc/y17y09U6Qkz5yZuIHcH
- kDowSzbbCmH0+HHYWgg2XplvDkn+NEVkNvtZ2x49lG6T2wd8xPWowQvmx
- edETwcakZYS6T+E1rpD2kBrXLIvqS8MBMURDpUgw9Uoc0U5Q0mewtr2Lp
- cDEyz86y1mt8r/EXl0ZX8Zo/o+AVwqBbs0ajrwqKSHfB8llHTsfRTQtRO g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="330072668"
-X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="330072668"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2023 10:42:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="692676913"
-X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="692676913"
-Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
- by orsmga007.jf.intel.com with ESMTP; 08 May 2023 10:42:38 -0700
-Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pw4sf-0001Lt-2k;
- Mon, 08 May 2023 17:42:37 +0000
-Date: Tue, 09 May 2023 01:42:06 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Subject: [linux-next:master] BUILD SUCCESS WITH WARNING
- 52025ebbb518a2d876b8aba191b348ffb1cf368b
-Message-ID: <20230508174206.ZBMZq%lkp@intel.com>
-User-Agent: s-nail v14.9.24
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2080.outbound.protection.outlook.com [40.107.237.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7FA710E16A;
+ Mon,  8 May 2023 21:24:20 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IM87viDLbOwiAZ6DxKlr/6M35tl+m0Bd0Bpm3SkB+pGJKPD+w/XQ8g/IndVlcjN4KSXkGiSvY/Sxy61XCeV6wYdgwgeYZ4SSkfUxGFqq2KMK5Oc30J/T2YAyQ1KjU0BzDyVwB6YwVqktrpnI7rMwfIW9oHb+8V0kk9WoBFEf4Tl+lWWkbbhXiQu4QQIscjbDGmmva4jPQnVPrrG+htIj36jb1HupWZ4yLd4msaYxBS/o7IjsXDA0VOod+esXVqWbRFIz0z6+OtyVYXNdOuEjGi7L1P8q2ld6BEcmh1/ZtYa12c21zjAbTGtiOGCpHVOT23iTrSz4QvPUKPPEMquMqQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=F9xeMqx2NQ4hWnAbaasGSNiWpolUS9sv30tfuvcF2Bo=;
+ b=ghO0Q/BY7/TAwMwrMjsC1QKzI5MfFlfoNE/hIZqhZzBPXtctoURGDZAp/d3hX2CETdBSWgXCBILBAUzrCXHbdOHkBW4sK5kZEeEF/fRgNnyzCUJBrRI77zSCmyS9MSuaXb3NdPFpmfwwuW00aoPorGY3+RV4ky+jYOd9Pc+0VrTzgEdqPEWWaudvT7nI89n9p8AdlF+tsDzW20T5jaMXyx+f1bfRSNaotAFXQArpK9STNRJbkORXvVrmyVUPmWW8tsadWLmpm4PttQQ4sovOiuQ0FHheHazQKz6l0yKwjbJLftbUmHbKkXW8suuJQIe9+dGfNAaG2HjjJvH7bLzR8g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=F9xeMqx2NQ4hWnAbaasGSNiWpolUS9sv30tfuvcF2Bo=;
+ b=h9hJc7o9Gvr9j20ZVOXSg0WyTE6Hyi1h7jPvW9Dax1pW3eVTBC6b4wBypR2bHH8r+McLo3IOvyTLt9MRWC7/CzCiKvh3+zhLmCt/L9tZUhzVnA+9SMSNPxN/iTV0cm/T3cJjmvPRV2l8Iw0AqbVg2W5ipgeOZ8a/p3xPgepTTQI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
+ by PH8PR12MB6676.namprd12.prod.outlook.com (2603:10b6:510:1c3::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.31; Mon, 8 May
+ 2023 21:24:17 +0000
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::dd26:a6b5:1d41:ac27]) by CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::dd26:a6b5:1d41:ac27%6]) with mapi id 15.20.6363.032; Mon, 8 May 2023
+ 21:24:17 +0000
+Message-ID: <ba9b8a67-37a7-d924-d673-f716b3192bb8@amd.com>
+Date: Mon, 8 May 2023 17:24:09 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+From: Harry Wentland <harry.wentland@amd.com>
+Subject: Re: [RFC PATCH 00/40] drm/amd/display: add AMD driver-specific
+ properties for color mgmt
+To: Melissa Wen <mwen@igalia.com>, amd-gfx@lists.freedesktop.org,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, sunpeng.li@amd.com,
+ Alex Deucher <alexander.deucher@amd.com>, dri-devel@lists.freedesktop.org,
+ airlied@gmail.com, christian.koenig@amd.com, daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ Xinhui.Pan@amd.com
+References: <20230423141051.702990-1-mwen@igalia.com>
+Content-Language: en-US
+In-Reply-To: <20230423141051.702990-1-mwen@igalia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: YQBPR0101CA0043.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c00:1::20) To CO6PR12MB5427.namprd12.prod.outlook.com
+ (2603:10b6:5:358::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5427:EE_|PH8PR12MB6676:EE_
+X-MS-Office365-Filtering-Correlation-Id: c46a657b-34e7-42c1-543e-08db500a9426
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: /9vfQM+APE0K2BGpj6qLo5tycXn7AOTTNs2sllEswVwlpXO2bjsRWLaJaRxNjRcNehvV3WnVAexZu7OMpBIvmXgDL75NfZF/y3IRwEXDATOGFoiZPveh2o7fIGBafVaNvi8hkcMUPwh3bCCeSCSOM8CTtJvkdhFcLvUPsrPcCRstC0atsZHmXi9tG/4pwkin7mcQQvGtqs7du92w7fQJtC7i1IAxu+jCrp/VJrvrcPcURz8meDN8OtEva9PStagoL36+Dd4JWEeqqIALisfN70Sqoh3oQZCrJOGsKEPLi1yX9IP5Aqm97DAMwefhSQGi8u61c4hNlqhZAxF6lTuLvnO35gzNIuAZ1D8BoDHdmsFrPuv5YhHlALHzyQl2XixCbokbSLaGmNxOJqmWJVrXW2pYllPyiU+JbWZyLykaqnYsanwDQTpvk3X89P+WwBEaGWGN4sR2p/+NCA4Nz73XdDK2DxoXGVWNj+52+Af2668A8UHZrbXmd9OSdKhKPCi7mANRJHgkUO/c9IQm28k24r4BdVsslDEQpQHKOPU/9HlMRkDrF6+cAVeaJ5mcR+oYFtH0tvwlUUfX9+8qYTpD9SA+BoEEJKO4J00NvXs0G1Of+38Bm9w8iTdpXpYYQ2DIDKH+uaLG7oqnGoY7D8g5+B719oH+fjIYHsZc8Mb3cTJ5D0EulKmaoKGdKqTAGxXl
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(39860400002)(136003)(366004)(376002)(346002)(396003)(451199021)(966005)(83380400001)(110136005)(6666004)(478600001)(54906003)(6486002)(2616005)(6506007)(26005)(53546011)(186003)(6512007)(2906002)(44832011)(7416002)(38100700002)(36756003)(66556008)(66946007)(66476007)(6636002)(4326008)(921005)(41300700001)(8676002)(5660300002)(316002)(31696002)(86362001)(8936002)(31686004)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bGdrNU5YSkI5Q3AxMWVJb21CMlRkMnVKMEFlc1F6dVNpWHRXVEVyOGQyRHhU?=
+ =?utf-8?B?eHI4N2x0MS85blV0SVBPMUdHUzAzUUl3U3RRNnJMZHd3Z2JrTTFISmF1OHV0?=
+ =?utf-8?B?NWM4eUE4bmFScEtMQURsWjRMQlhuZGpPUXZmRUhWVDgxM05sSGIyZHcyZXVu?=
+ =?utf-8?B?MUFnYUx2L0ZrVnVQZ2Q0RFpBNEhtc1pLQXVZdU5QdEVaR2FmM2ViQ1dqS0d3?=
+ =?utf-8?B?WjNUOG9RZUhoOWd0ejd1ZmFhNDJsZVV0cFhudTdwM3R4MHA3OXo5c3ZlR1pZ?=
+ =?utf-8?B?WU5nRThsTm9mYkVOOFR2b1ZyVjhFenoyYWlFYndFcTZ0UXlpL2JkVXczNXhQ?=
+ =?utf-8?B?Ni9JWTBXVWpOamFjUDBkaE5lbTUydUMrd3BwQlZrUnRhSzBLVXU0eC9TSERi?=
+ =?utf-8?B?OUQ1aThRUElBR2ZiMGRPOU5vcklTK0dvc2pSdld0bDZ0RDkwMWluSTI1bmtR?=
+ =?utf-8?B?QjVuV2JuNTdmTXMxczVhYWlPZHpBeDR5SDA0Mk5POElONk0rbkI1ald2S25C?=
+ =?utf-8?B?UlhTa0hja3kwaTRDZ054aEZmS3Q2NUhydmJlZEJscjhNTW5PaUxxL01IOS8v?=
+ =?utf-8?B?eC9mZEhDcGVUUmJGYWNCaFd3Z3orNWluS0FKWklmb01qNTBaY0pOUWhxNlQw?=
+ =?utf-8?B?SjNDSmxNeU5vN1N0OEpPbHc5UnpVOWRzMTR0RU5QUnZWTVFKdmtSK05UOHlO?=
+ =?utf-8?B?ZmVpZzJFNWpieHVyZ0E2Ym1oNktPeFVlcjFvQ3VOSWxscWRYRHhXOElia3pO?=
+ =?utf-8?B?aW9xMzErVm1BaytZSWt1TE5aU2ExdW5VNU5TTXRDT3h2NW1xOEsySmtpcmdN?=
+ =?utf-8?B?c2VZR2hvNHhwMXVjZjA3WWNUcHRLRThiUWpELytzcFNZblFZczNsU0RTb2V6?=
+ =?utf-8?B?ZGNTN2xRQmJmZlpXaTRlemNmb1BqbXJ0c1Y1Vm5ib3VVWFpwS2NnNFdpMGpU?=
+ =?utf-8?B?V25qVXY1N04rR2szaUNqUTlmcHhSSmhsNVU3MDIraEdETEtyNkhuaVdWRDJC?=
+ =?utf-8?B?ZEJTdmh2NVA1R2d6a1ZzUy9oNUM1Yi9lL3pLdnhhMVl0SjMxREZNaGhRczR5?=
+ =?utf-8?B?eE1Lc214bENaKzZJaGVpZzdhK1ZBVis1Yjgxb2EwTnpHR2NWWDFsMWc1dDVX?=
+ =?utf-8?B?cVFnVTdkRWZGUTJvcXNkRXFyZktMUHdOQW9vSkJzWmxKL3ZnZ3FjdnVhN3NV?=
+ =?utf-8?B?K0dFdDVrbERwV0MxRGxZbkJVelRJekdrSHFkODZXbjVJTFY1MUgzeGxvc0ti?=
+ =?utf-8?B?dkZseVNobnREaURIOTFJZ0o4S3hDS1lLR1dVVm4vQzNqbXgySFlDNmZxMy9w?=
+ =?utf-8?B?SGt6WExlRXVQZzFzdmYzWkpuY2svN295VGlNcElaVmNkM2xFUTNvWnRhNWkx?=
+ =?utf-8?B?c09EQWZ1SHN6aWRhdk1BVU9YU211RytwaVA2K0d0NVIwVVN4SkNMb2duYWNG?=
+ =?utf-8?B?akh5RHE2cjF6blBnaHdSUktXMXJDTFY2ZmRmUDUwdkthQ083dTRVVGdraFd2?=
+ =?utf-8?B?c0R1akVsSlgycE9hRGI2eHQrQWc2ZnZTZGY2S2Z6SUs5clo0T0MvQ2JYSU5m?=
+ =?utf-8?B?UGI0Szh2bjJpcGVjWnVtbGFqNmVZWlV6dzQxTlY4T0IzVFp4TVJHS0VVaDVp?=
+ =?utf-8?B?RXBZMWNEcHRxSEdnSzNEL0pVOFE1cGZUUTRhT25Ia2J5bEtJcFlaMHo1bkVT?=
+ =?utf-8?B?eUZpSGZQUXdnVXB4L1czZU15UUszRXJMcXdRNENmeDZndWFsc215SUZvZnVT?=
+ =?utf-8?B?NisycTBWejg5ZXgrVnhqSlBBWldKeGlwZFJhd3R1b2lmSWpQQllmNWdxUDJr?=
+ =?utf-8?B?NGNlSTc4QlBOU2NSdVdWUHhJSXRNRVR3aktsR0FvTEptRDRBcldCd29ud2w5?=
+ =?utf-8?B?cHhhL0JJNFRTVGVBUHZ0ZGlCME9HVG8xU2RZd2MrdFNxU0NubFovbUU1MVo0?=
+ =?utf-8?B?NmYxN1BVZHhMTUcvckwvNkVGckVZSml1dlMrUzZzZHpoSytIOERqSndRRjM0?=
+ =?utf-8?B?WmFQa3hCV3RzZXZXOGwzQ2VPRERrQkExbEJhdEFQS2JObER6SGNJQmRaZmpO?=
+ =?utf-8?B?TWZ6VEFZV2hpSGJJV2NCSXhydjU3c3d6SFJBbUp3M3MrU2VkNHJPUzdBRlIv?=
+ =?utf-8?Q?EgnKUSImIGxETVhDAEaoOhLV2?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c46a657b-34e7-42c1-543e-08db500a9426
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2023 21:24:17.0310 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iYv1LKNWte8ilF2AcoPD6ALogmvy2rWNvpGhtaw5MeMZbnEciSF0FejuiokN9HdLoZ+yGn/jvQ8ROoVPt/9pkQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6676
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,287 +129,215 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-xfs@vger.kernel.org,
- Linux Memory Management List <linux-mm@kvack.org>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-pm@vger.kernel.org
+Cc: Sebastian Wick <sebastian.wick@redhat.com>,
+ Shashank Sharma <Shashank.Sharma@amd.com>, Alex Hung <alex.hung@amd.com>,
+ Xaver Hugl <xaver.hugl@gmail.com>, linux-kernel@vger.kernel.org,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ Joshua Ashton <joshua@froggi.es>, sungjoon.kim@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-branch HEAD: 52025ebbb518a2d876b8aba191b348ffb1cf368b  Add linux-next specific files for 20230508
 
-Warning reports:
 
-https://lore.kernel.org/oe-kbuild-all/202304230014.YbScpx20-lkp@intel.com
+On 4/23/23 10:10, Melissa Wen wrote:
+> Hi all,
+> 
+> Joshua Ashton and I (with the great collaboration of Harry Wentland -
+> thanks) have been working on KMS color pipeline enhancement for Steam
+> Deck/SteamOS by exposing the large set of color caps available in AMD
+> display HW.
+> 
 
-Warning: (recently discovered and may have been fixed)
+Thank you for your work on this.
 
-drivers/accel/habanalabs/gaudi/gaudi.c:117:19: warning: unused variable 'gaudi_irq_name' [-Wunused-const-variable]
-drivers/base/regmap/regcache-maple.c:113:23: warning: 'lower_index' is used uninitialized [-Wuninitialized]
-drivers/base/regmap/regcache-maple.c:113:36: warning: 'lower_last' is used uninitialized [-Wuninitialized]
-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:6395:21: warning: variable 'count' set but not used [-Wunused-but-set-variable]
-drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c:499:13: warning: variable 'j' set but not used [-Wunused-but-set-variable]
-drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c:48:38: warning: unused variable 'golden_settings_gc_9_4_3' [-Wunused-const-variable]
+> This patchset results from this full-stack work, including pre-blending
+> and post-blending new color properties. The first two patches fix
+> quantization issues on shaper LUT programming. Just after, we have one
+> patch that adds a config option to restrict AMD colo feature usage. The
+> following 13 patches implement AMD driver-private color properties
+> (pending detachment of property counter and plane color_mgmt_changed
+> from DRM). Finally, the last 24 patches rework the AMD display manager
+> and color management to support the properties exposed.
+> 
+> In short, for pre-blending, we added the following:
+> - plane degamma LUT and predefined transfer function;
+> - plane HDR multiplier
+> - plane shaper LUT/transfer function;
+> - plane 3D LUT; and finally,
+> - plane blend LUT/transfer function, just before blending.
+> 
+> After blending, we already have DRM CRTC degamma/gamma LUTs and CTM,
+> therefore, we extend CRTC color pipeline with the following:
+> - CRTC shaper LUT/transfer function;
+> - CRTC 3D LUT; and
+> - CRTC gamma transfer function.
+> 
+> You can already find the AMD color capabilities and color management
+> pipeline documented here:
+> https://dri.freedesktop.org/docs/drm/gpu/amdgpu/display/display-manager.html#color-management-properties
+> 
+> In previous iterations, we tried to provide a generic solution for
+> post-blending shaper and 3D LUT [1][2][3], and also Alex Hung worked on
+> a pre-blending 3D LUT solution[4] extending plane color mgmt proposal
+> from Uma Shankar [5]. However, we identified during our work [6] that
+> AMD provides many other valuable capabilities that we don't find in
+> other vendors, so we started to work on AMD driver-private color
+> properties that better describe its color pipeline, enabling us to
+> expose full AMD color capabilities on Deck HW.
+> 
+> Our primary purpose is to avoid usage limitations of color calibration
+> features provided by HW just because we don't have an interface for
+> that. At the same time, a generic solution doesn't fit well since some
+> of these capabilities seem AMD HW specific, such as hardcoded
+> curve/predefined transfer function and shaper 1D LUTs sandwiching 3D
+> LUT.
+> 
+> So far, we keep these properties' usage under an AMD display config
+> option (STEAM_DECK). However, we are fine with having them fully
+> available to other DCN HW generations. In the current proposal, we are
+> already checking ASICs before exposing a color feature. We can work on
+> 3D LUT resource acquisition details to fit them to DCN 3+ families that
+> support them. Indeed, before moving to these config boundaries, we
+> started working on an open solution for any AMD HW [7].
+> 
 
-Unverified Warning (likely false positive, please contact us if interested):
+The problem with a CONFIG_XYZ option is that it becomes uAPI and can't be
+removed. I feel we have a good proposal going for the generic solution.
+Would it work for you if we don't make this a CONFIG_ option? What I mean
+is using
 
-drivers/cpufreq/pcc-cpufreq.c: linux/platform_device.h is included more than once.
-drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c:495:2-8: preceding lock on line 491
-fs/xfs/scrub/fscounters.c:459 xchk_fscounters() warn: ignoring unreachable code.
+#define AMD_PRIVATE_COLOR
 
-Warning ids grouped by kconfigs:
+around the interface bits, which are only compiled when building with
+-DAMD_PRIVATE_COLOR
 
-gcc_recent_errors
-|-- alpha-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- alpha-randconfig-c042-20230507
-|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:preceding-lock-on-line
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- alpha-randconfig-c043-20230507
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- arc-allyesconfig
-|   |-- drivers-base-regmap-regcache-maple.c:warning:lower_index-is-used-uninitialized
-|   |-- drivers-base-regmap-regcache-maple.c:warning:lower_last-is-used-uninitialized
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- arm-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- arm-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- arm-randconfig-c033-20230507
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- arm-randconfig-c041-20230507
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- arm-randconfig-r024-20230507
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- arm-randconfig-r025-20230507
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- arm64-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- arm64-randconfig-m041-20230507
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- csky-buildonly-randconfig-r001-20230508
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- i386-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- ia64-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- ia64-randconfig-m031-20230507
-|   `-- fs-xfs-scrub-fscounters.c-xchk_fscounters()-warn:ignoring-unreachable-code.
-|-- ia64-randconfig-r003-20230508
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- ia64-randconfig-r012-20230507
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- loongarch-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- loongarch-defconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- loongarch-randconfig-r023-20230507
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- mips-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- mips-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- openrisc-randconfig-r005-20230507
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- parisc-buildonly-randconfig-r004-20230507
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- powerpc-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- riscv-allmodconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- riscv-randconfig-r042-20230508
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- s390-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- s390-randconfig-r044-20230508
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- s390-randconfig-s051-20230507
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- sparc-allyesconfig
-|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-|   `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-|-- x86_64-allnoconfig
-|   `-- drivers-cpufreq-pcc-cpufreq.c:linux-platform_device.h-is-included-more-than-once.
-`-- x86_64-allyesconfig
-    |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:warning:variable-count-set-but-not-used
-    `-- drivers-gpu-drm-amd-amdgpu-amdgpu_gfx.c:warning:variable-j-set-but-not-used
-clang_recent_errors
-|-- arm-randconfig-r046-20230508
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:unused-variable-golden_settings_gc_9_4_3
-|-- powerpc-allyesconfig
-|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:unused-variable-golden_settings_gc_9_4_3
-`-- x86_64-randconfig-a006-20230508
-    `-- drivers-accel-habanalabs-gaudi-gaudi.c:warning:unused-variable-gaudi_irq_name
+That way we have the option to rip the driver-private stuff out later
+while still allowing for experimentation now.
 
-elapsed time: 720m
+Or, alternatively, we can merge everything but the stuff currently
+guarded by CONFIG_STEAM_DECK, so that custom kernels can enable this
+functionality by simply merging one patch that includes all the
+CONFIG_STEAM_DECK stuff.
 
-configs tested: 141
-configs skipped: 7
+This will allow us to merge the vast majority of the code without
+having to maintain it in downstream repo.
 
-tested configs:
-alpha                            allyesconfig   gcc  
-alpha                               defconfig   gcc  
-alpha                randconfig-r032-20230507   gcc  
-arc                              allyesconfig   gcc  
-arc          buildonly-randconfig-r004-20230508   gcc  
-arc                                 defconfig   gcc  
-arc                  randconfig-r043-20230507   gcc  
-arc                  randconfig-r043-20230508   gcc  
-arm                              allmodconfig   gcc  
-arm                              allyesconfig   gcc  
-arm                                 defconfig   gcc  
-arm                       imx_v4_v5_defconfig   clang
-arm                      integrator_defconfig   gcc  
-arm                  randconfig-r004-20230508   gcc  
-arm                  randconfig-r024-20230507   gcc  
-arm                  randconfig-r025-20230507   gcc  
-arm                  randconfig-r046-20230507   gcc  
-arm                  randconfig-r046-20230508   clang
-arm                         s3c6400_defconfig   gcc  
-arm64                            allyesconfig   gcc  
-arm64        buildonly-randconfig-r002-20230508   clang
-arm64                               defconfig   gcc  
-arm64                randconfig-r031-20230507   gcc  
-csky         buildonly-randconfig-r001-20230508   gcc  
-csky                                defconfig   gcc  
-csky                 randconfig-r021-20230507   gcc  
-hexagon      buildonly-randconfig-r006-20230508   clang
-hexagon              randconfig-r024-20230508   clang
-hexagon              randconfig-r034-20230507   clang
-hexagon              randconfig-r041-20230507   clang
-hexagon              randconfig-r041-20230508   clang
-hexagon              randconfig-r045-20230507   clang
-hexagon              randconfig-r045-20230508   clang
-i386                             allyesconfig   gcc  
-i386         buildonly-randconfig-r005-20230508   clang
-i386                              debian-10.3   gcc  
-i386                                defconfig   gcc  
-i386                          randconfig-a001   gcc  
-i386                          randconfig-a002   clang
-i386                          randconfig-a003   gcc  
-i386                          randconfig-a004   clang
-i386                          randconfig-a005   gcc  
-i386                          randconfig-a006   clang
-i386                 randconfig-a011-20230508   gcc  
-i386                 randconfig-a012-20230508   gcc  
-i386                 randconfig-a013-20230508   gcc  
-i386                 randconfig-a014-20230508   gcc  
-i386                 randconfig-a015-20230508   gcc  
-i386                 randconfig-a016-20230508   gcc  
-i386                 randconfig-r002-20230508   clang
-ia64                             allmodconfig   gcc  
-ia64         buildonly-randconfig-r003-20230507   gcc  
-ia64                                defconfig   gcc  
-ia64                 randconfig-r003-20230508   gcc  
-ia64                 randconfig-r012-20230507   gcc  
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch                           defconfig   gcc  
-loongarch            randconfig-r016-20230507   gcc  
-loongarch            randconfig-r023-20230507   gcc  
-m68k                             allmodconfig   gcc  
-m68k         buildonly-randconfig-r006-20230507   gcc  
-m68k                                defconfig   gcc  
-m68k                 randconfig-r013-20230507   gcc  
-mips                             allmodconfig   gcc  
-mips                             allyesconfig   gcc  
-mips                         db1xxx_defconfig   gcc  
-mips                    maltaup_xpa_defconfig   gcc  
-mips                 randconfig-r001-20230507   clang
-mips                 randconfig-r002-20230507   clang
-mips                 randconfig-r003-20230507   clang
-mips                 randconfig-r006-20230508   gcc  
-mips                 randconfig-r015-20230507   gcc  
-nios2                               defconfig   gcc  
-nios2                randconfig-r004-20230507   gcc  
-nios2                randconfig-r006-20230507   gcc  
-nios2                randconfig-r023-20230508   gcc  
-nios2                randconfig-r033-20230507   gcc  
-nios2                randconfig-r036-20230507   gcc  
-openrisc     buildonly-randconfig-r002-20230507   gcc  
-openrisc             randconfig-r005-20230507   gcc  
-parisc       buildonly-randconfig-r004-20230507   gcc  
-parisc       buildonly-randconfig-r005-20230507   gcc  
-parisc                              defconfig   gcc  
-parisc               randconfig-r014-20230507   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc                          allyesconfig   clang
-powerpc                     ksi8560_defconfig   clang
-powerpc                       maple_defconfig   gcc  
-powerpc                       ppc64_defconfig   gcc  
-powerpc              randconfig-r005-20230508   clang
-powerpc                    socrates_defconfig   clang
-powerpc                     tqm8560_defconfig   clang
-riscv                            allmodconfig   gcc  
-riscv                             allnoconfig   gcc  
-riscv                               defconfig   gcc  
-riscv                randconfig-r026-20230508   gcc  
-riscv                randconfig-r042-20230507   clang
-riscv                randconfig-r042-20230508   gcc  
-riscv                          rv32_defconfig   gcc  
-s390                             allmodconfig   gcc  
-s390                             allyesconfig   gcc  
-s390                                defconfig   gcc  
-s390                 randconfig-r044-20230507   clang
-s390                 randconfig-r044-20230508   gcc  
-sh                               allmodconfig   gcc  
-sh                         apsh4a3a_defconfig   gcc  
-sh                   randconfig-r022-20230508   gcc  
-sh                   randconfig-r025-20230508   gcc  
-sh                   randconfig-r026-20230507   gcc  
-sh                           se7712_defconfig   gcc  
-sh                           se7780_defconfig   gcc  
-sh                        sh7763rdp_defconfig   gcc  
-sh                             shx3_defconfig   gcc  
-sparc                            allyesconfig   gcc  
-sparc                               defconfig   gcc  
-sparc                randconfig-r035-20230507   gcc  
-sparc64              randconfig-r021-20230508   gcc  
-um                             i386_defconfig   gcc  
-um                           x86_64_defconfig   gcc  
-x86_64                            allnoconfig   gcc  
-x86_64                           allyesconfig   gcc  
-x86_64       buildonly-randconfig-r003-20230508   clang
-x86_64                              defconfig   gcc  
-x86_64                                  kexec   gcc  
-x86_64               randconfig-a001-20230508   clang
-x86_64               randconfig-a002-20230508   clang
-x86_64               randconfig-a003-20230508   clang
-x86_64               randconfig-a004-20230508   clang
-x86_64               randconfig-a005-20230508   clang
-x86_64               randconfig-a006-20230508   clang
-x86_64               randconfig-a011-20230508   gcc  
-x86_64               randconfig-a012-20230508   gcc  
-x86_64               randconfig-a013-20230508   gcc  
-x86_64               randconfig-a014-20230508   gcc  
-x86_64               randconfig-a015-20230508   gcc  
-x86_64               randconfig-a016-20230508   gcc  
-x86_64                        randconfig-k001   clang
-x86_64                               rhel-8.3   gcc  
+> The userspace case here is Gamescope which is the compositor for
+> SteamOS. It's already using all of this functionality (although with a
+> VALVE1_ prefix instead of AMD) to implement its color management
+> pipeline right now:
+> https://github.com/ValveSoftware/gamescope
+> 
+> We are planning on shipping our color management support with gamut
+> mapping, HDR, SDR on HDR, HDR on SDR, and much more in Steam OS 3.5. A
+> brief overview of our color pipeline can be found here:
+> https://github.com/ValveSoftware/gamescope/blob/master/src/docs/Steam%20Deck%20Display%20Pipeline.png
+> 
+> We have also had some other userspace interests from Xaver Hugl (KDE) in
+> experimenting with these properties for their HDR/color bring-up before
+> a generic interface is settled on also.
+> 
+> It still needs AMD-specific IGT tests; we are working on documentation
+> and adding plane CTM support too. 
+> 
+> We decided first to share our work to collect thoughts and open for
+> discussion, even with missing refinements, since driver-private
+> properties are not the usual DMR/KMS color management approach.
+> 
+> Please, let us know your thoughts.
+> 
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+As discussed at the hackfest I think it's a good idea to have something
+that's easy to enable for the purposes of experimentation (and to
+help downstream users that help us figure out how this all fits
+together, i.e. SteamOS).
+
+Harry
+
+> Best Regards,
+> 
+> Signed-off-by: Joshua Ashton <joshua@froggi.es>
+> Signed-off-by: Melissa Wen<mwen@igalia.com>
+> 
+> [1] https://lore.kernel.org/dri-devel/20220619223104.667413-1-mwen@igalia.com/
+> [2] https://lore.kernel.org/amd-gfx/20220906164628.2361811-1-mwen@igalia.com/
+> [3] https://lore.kernel.org/dri-devel/20230109143846.1966301-1-mwen@igalia.com/
+> [4] https://lore.kernel.org/dri-devel/20221004211451.1475215-1-alex.hung@amd.com/
+> [5] https://lore.kernel.org/dri-devel/20210906213904.27918-1-uma.shankar@intel.com/
+> [6] https://gitlab.freedesktop.org/mwen/linux-amd/-/commits/amd-color-mgmt
+> [7] https://gitlab.freedesktop.org/mwen/linux-amd/-/commits/amd-private-color-mgmt
+> 
+> Harry Wentland (2):
+>   drm/amd/display: fix segment distribution for linear LUTs
+>   drm/amd/display: fix the delta clamping for shaper LUT
+> 
+> Joshua Ashton (15):
+>   drm/amd/display: add CRTC gamma TF to driver-private props
+>   drm/amd/display: add plane degamma LUT driver-private props
+>   drm/amd/display: add plane degamma TF driver-private property
+>   drm/amd/display: add plane HDR multiplier driver-private property
+>   drm/amd/display: add plane blend LUT and TF driver-private properties
+>   drm/amd/display: copy 3D LUT settings from crtc state to stream_update
+>   drm/amd/display: dynamically acquire 3DLUT resources for color changes
+>   drm/amd/display: add CRTC regamma TF support
+>   drm/amd/display: set sdr_ref_white_level to 80 for out_transfer_func
+>   drm/amd/display: add support for plane degamma TF and LUT properties
+>   drm/amd/display: add dc_fixpt_from_s3132 helper
+>   drm/adm/display: add HDR multiplier support
+>   drm/amd/display: handle empty LUTs in __set_input_tf
+>   drm/amd/display: add DRM plane blend LUT and TF support
+>   drm/amd/display: allow newer DC hardware to use degamma ROM for PQ/HLG
+> 
+> Melissa Wen (23):
+>   drm/amd/display: introduce Steam Deck color features to AMD display
+>     driver
+>   drm/drm_mode_object: increase max objects to accommodate new color
+>     props
+>   drm/amd/display: add shaper LUT driver-private props
+>   drm/amd/display: add 3D LUT driver-private props
+>   drm/drm_plane: track color mgmt changes per plane
+>   drm/amd/display: move replace blob func to dm plane
+>   drm/amd/display: add plane 3D LUT driver-private properties
+>   drm/amd/display: add plane shaper LUT driver-private properties
+>   drm/amd/display: add plane shaper TF driver-private property
+>   drm/amd/display: add comments to describe DM crtc color mgmt behavior
+>   drm/amd/display: encapsulate atomic regamma operation
+>   drm/amd/display: update lut3d and shaper lut to stream
+>   drm/amd/display: allow BYPASS 3D LUT but keep shaper LUT settings
+>   drm/amd/display: handle MPC 3D LUT resources for a given context
+>   drm/amd/display: add CRTC 3D LUT support to amd color pipeline
+>   drm/amd/display: decouple steps to reuse in CRTC shaper LUT support
+>   drm/amd/display: add CRTC shaper LUT support to amd color pipeline
+>   drm/amd/display: add CRTC shaper TF support
+>   drm/amd/display: mark plane as needing reset if plane color mgmt
+>     changes
+>   drm/amd/display: decouple steps for mapping CRTC degamma to DC plane
+>   drm/amd/display: reject atomic commit if setting both plane and CRTC
+>     degamma
+>   drm/amd/display: add plane shaper/3D LUT and shaper TF support
+>   drm/amd/display: copy dc_plane color settings to surface_updates
+> 
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   | 153 +++++
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h      |  92 +++
+>  drivers/gpu/drm/amd/display/Kconfig           |   6 +
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  31 +-
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h | 120 +++-
+>  .../amd/display/amdgpu_dm/amdgpu_dm_color.c   | 613 ++++++++++++++++--
+>  .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    | 124 +++-
+>  .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   | 238 +++++++
+>  .../amd/display/amdgpu_dm/amdgpu_dm_plane.h   |   7 +
+>  drivers/gpu/drm/amd/display/dc/core/dc.c      |  49 +-
+>  drivers/gpu/drm/amd/display/dc/dc.h           |   8 +
+>  .../amd/display/dc/dcn10/dcn10_cm_common.c    | 109 +++-
+>  .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    |   5 +-
+>  .../drm/amd/display/dc/dcn30/dcn30_hwseq.c    |   9 +-
+>  .../amd/display/dc/dcn301/dcn301_resource.c   |  26 +-
+>  .../gpu/drm/amd/display/include/fixed31_32.h  |  12 +
+>  drivers/gpu/drm/drm_atomic.c                  |   1 +
+>  drivers/gpu/drm/drm_atomic_state_helper.c     |   1 +
+>  include/drm/drm_mode_object.h                 |   2 +-
+>  include/drm/drm_plane.h                       |   7 +
+>  20 files changed, 1509 insertions(+), 104 deletions(-)
+> 
+
+
