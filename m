@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78E856FD29A
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 May 2023 00:21:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF76F6FD297
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 May 2023 00:21:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 301D210E42F;
-	Tue,  9 May 2023 22:21:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4902910E42C;
+	Tue,  9 May 2023 22:21:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2064.outbound.protection.outlook.com [40.107.220.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 857F710E42C
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 May 2023 22:21:43 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCE2310E42D
+ for <amd-gfx@lists.freedesktop.org>; Tue,  9 May 2023 22:21:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DT8pRiphw0nATrzYsKmtXd51iiliPXmeMUJUtftctH2kynAUCjhbZb7G3yF+RqkAFxqfDsqk0MbIpFm0JOY8ckxsrA1k8Pioa6MXNF+UmZlu8r4pWLgnmlqnxIHDZLb3EBQyGNo4KeO93ZsIe6R0eUvSdj20XO9/7YmyxtS/Rj4BDIVKOJhXQfVn1XoS8DCtkOHqTgb2sWXuodzzUDATPvr6NbxC1yb3xfqG2rd7hGPG9nPE+wY78ZygHDpgVTZRjrQn4SRfCMAj4rKNdGPtPxrSHLlecS/2FPfQJsE5CIk7ITQNJiyhb55NeFQDux7tuGgADpSV0M6mCbuQ+scIwg==
+ b=WZ3DQCpNsyyPG4WNgUxYFnYP20k5VALtR9NVA461dhT5rYGpKe4zLb0l9zLh6G/Ub8fhLPfTTQUHYqS7QbFTBYsCMFRtF4COaJVcB4EOpBRyVri0nbg1khxnnCW54FhVa+uA19kHfsI7v/3hlr4vUnFiAHDG+EWzU8X0Hv3CaAavf0BSQ36vBzd2P+a66swH9/6WTzhtVaedbpMvBwzsQAhVNuLBXdE3QSZ88KFV6V4ENagN/dsx72tGW7aIeww/OuZ4yn40kBtQSR3PGik+TGCcxfxQ5zPKAmO6vFgznuGyjDdKanRYDZxo0blBfyWWSsGMOToeP670OQurZnJaYA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=D0uhymh5cCG1d9KHJ/rvJevbJp7kyLQw9XCYGFHfGqM=;
- b=LgImKMmedDsSTV+vhvX6lrlpoO0vdHkJ2LVk+lJNwFfFxnod7bEmjsZHiFzSUQlvXA9JxH1zLKyOBAkGuXrBFmURs7aW9InIQe320io1ys60koiFdCZjmaZ9vMSv4IolbCoT3juQ1Pdxc1Bg9LvKRNhWZzTMuePtwydRnSQx+L5G+/eGfVUyBB4rZRHqxsQX8EqAw6rW7bS4Hzyd8ttOzkGBS1zl2mIAgU20O1cOhrQrJm4abM4pTAJO15CuiFZmYneiQDnG2yDYXk/7cMWAascxUxRzmKAe6HkaPlIlf4RqNB6JBn65TbXJznOZWSqVGl7CpHGYCj4F56SzA5GfMQ==
+ bh=ZxUVv5DgcLlDR1yLyU3lU7LNAZ7EUcfy6BScg+wyvZc=;
+ b=kjfbBqLwombw9MU6oVD5fhNsS2QZv9fN+cLqqaUCTzKG45b5OkwbHBvfemzwF9kVWCiW2/r+9fQOQQPrZ5ELFGzw1irJzoQ5R/Ym0tWg0yBJZjdHtKsOOrDALDxM4+5SKqwp0LbITq/YFPvCP3d+t8w67vsRs8UFaSVDEGpYZ34Ebh3U08YmZsVF1lSP/iqlWMDqH3+Zu+7KEeLPnTWyWGGGgPbyqDJmVGRvqa4YwprwY2KetdA/Vl4320py+hY+mXqidc6umXpj2/qca7J/0TVx8debSF55od2aYkzB6/QcLr9BqPwSJnfrbKMEheaOar6jg7yrn+hKhEmrICT1Iw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D0uhymh5cCG1d9KHJ/rvJevbJp7kyLQw9XCYGFHfGqM=;
- b=JXCFVslOZyVgtNQkjy5BwZbqBbzsCRPM110gW4gUzGrRURycMnCWi8BiK0Etfnhf8oRBVRKvwv4z/TCE/cO3XZAj8/7WyiP3BpbGa2g/3uYXw4XGWiKOeP6OcKkQkmt69e85OxER5q6NxR8ysgWlrGMmEI3bPpb9XDK6QF6EE3s=
-Received: from BN9PR03CA0955.namprd03.prod.outlook.com (2603:10b6:408:108::30)
- by IA0PR12MB7508.namprd12.prod.outlook.com (2603:10b6:208:440::7)
+ bh=ZxUVv5DgcLlDR1yLyU3lU7LNAZ7EUcfy6BScg+wyvZc=;
+ b=AhB0Bc5T45xpjoRLMHeGz4zLsptTQFiUXW0F1LxCylOJbjjswYVpSwL6MwAWG8qWJoNI5OpnP0q/ugDd/+PrT9KLuwA+BF8g3rgd47VFnyhaxZ5MA5YgbM7cY8WNW2UWb3OoHEwe+J9xzQnMl7LvqtQZOH1C41o9ySon4BrKEOA=
+Received: from BN9PR03CA0945.namprd03.prod.outlook.com (2603:10b6:408:108::20)
+ by SJ0PR12MB5664.namprd12.prod.outlook.com (2603:10b6:a03:42b::18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.33; Tue, 9 May
- 2023 22:21:39 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.32; Tue, 9 May
+ 2023 22:21:40 +0000
 Received: from BN8NAM11FT075.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:108:cafe::b1) by BN9PR03CA0955.outlook.office365.com
- (2603:10b6:408:108::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.33 via Frontend
- Transport; Tue, 9 May 2023 22:21:39 +0000
+ (2603:10b6:408:108:cafe::f0) by BN9PR03CA0945.outlook.office365.com
+ (2603:10b6:408:108::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.34 via Frontend
+ Transport; Tue, 9 May 2023 22:21:40 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -51,13 +51,15 @@ Received: from SATLEXMB04.amd.com (165.204.84.17) by
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 9 May
- 2023 17:21:38 -0500
+ 2023 17:21:39 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 1/9] drm/amdgpu: Add vcn/jpeg ras err status registers
-Date: Tue, 9 May 2023 18:21:18 -0400
-Message-ID: <20230509222126.477847-1-alexander.deucher@amd.com>
+Subject: [PATCH 2/9] drm/amdgpu: Add query_ras_error_count for vcn v4_0_3
+Date: Tue, 9 May 2023 18:21:19 -0400
+Message-ID: <20230509222126.477847-2-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230509222126.477847-1-alexander.deucher@amd.com>
+References: <20230509222126.477847-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -66,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT075:EE_|IA0PR12MB7508:EE_
-X-MS-Office365-Filtering-Correlation-Id: c9a6990a-3893-43e8-fdf7-08db50dbc2a5
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT075:EE_|SJ0PR12MB5664:EE_
+X-MS-Office365-Filtering-Correlation-Id: f8db9459-c49c-42aa-fa30-08db50dbc2e3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: n3rG3+joZy3wjMvcNP3j8ClFgxi/lWV0cE/ph8IDGmxjYqOZGqlkvbwybNxa9C/DwRr/B3kK56BH/4SCLRSsD7vRE/K91fzTNjvbJogvejFQ3v5lPse5iWTlH9NpX2l+tBsTqkSpjaGXl606q5g/zCvkJ7Ftg/WRpnRjRzLLvcof8zv4eD8vEPHm7JRGbEyJ6646lHoOgjwTtKKK3WTrzO6N1m0DsFPK6UbkCbh0nz+lgPfcHYx2N1PgQUZlPfrRS88dWoQpss1er//6gl4GZjadyTVbhAVTlk6QNQkr5FutZficklBQurYXuKcIb9zBSaDKF4l4kEi61D+UA9NuCQZjlkM9GzlLoEmHFCh42U6X9qK4xJDA50oM9kEXTA6NEupICF550Y74wlt1hGQbXnZUQx8+sDFUxDvoNkU7dS9nurrSh49NoSn70THsq2hefS+iW2dz8t4zXbVN+/hnna76Vwp4z8a8Mg/Scdk3MgRGJBX09HydwTlUWfpaBf6wYxXUnGwmYm5eLpneNMvM5b07MxOzdhIu0yF1fFszgAEuO7gfg1mzEulfI1GTiq/S8vMjnmL/DXmsENj7MxBRIcwmR+8yToO2Wl1bSrEJ7KnlSJ2tkzL+Ytc+hOHhc5G1pvagPgeilTymCn118+PGiSjGFmlbjhUY1LqMrNqlnOmSbdLa7hP/PbP2scpd3qPELqz/RwCJzHDbGETFG8f/6IvXuOpuvbZgURntRwFoFDo=
+X-Microsoft-Antispam-Message-Info: F5tOfBbbSrdZWucWPw1xqAIRJ/tS7+MpOptj2Fqv06aJvOD/IbSQo681RvUAr/ZApeJDntWi64OL9aE1emwGbRtiCEJS+j9FeUS6m9VrONIPpvFpsQQLsCnnHh7nc4hPWkUVD6ulcWy+YVZbSzRpkE3Xr+oGa27U4VPD59r5EBGoaD+Xue62511a/9lsLyUHYYMMhptcakyN0qLrIU+lLIWGn/34gk3clKmrJ5pcFPyWEoF6cs016eqDPogfStt3HJHevrsmyqZ1R2QJGOs9SNNj+vRYk+xfzcGE0REnLw9vPX41KcT8zc+/wDC1v11i+LmLIGTlN+IbvuYGeOyKg/qS9Bkh9K2YUI25PwO9CiP5IIs2YmyOYMa1OsQJ8VldV2BFakQfSW90LVgrsSB11hnZx/fJx1ktbD224Km21k++NpIg72F5dy6BIHL+U5+2usr6x8mB9nHJi/qoZUxH7YgggcnZHBGFl0TSdGFS7R01E960FfReJvSqRsddDvqhZcGBGsCwK4y2/AONiocl5fRFUeMmImzaSw2dT1ZKck9XR/An5v8ZmPBYIQWrIO3Z5EF8qDt42tLJ+QuqMXqYAIcWqzp602QPTfpfG6zvStYlVoEzDzfX5FPBY2WOlLp7Mku9ZHwV86K8SyDiSaSikg/oKIpdvbeJYbp0+0unVY/0l5fiBuaxoMsKQRkYsXYll6PXci9juqCyWWz6gu463LSSUOjV3zKFwtIA1o52Zz4=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(376002)(136003)(39860400002)(396003)(346002)(451199021)(46966006)(36840700001)(40470700004)(356005)(81166007)(26005)(1076003)(82740400003)(7696005)(6666004)(2616005)(426003)(83380400001)(186003)(16526019)(36756003)(36860700001)(2906002)(30864003)(40460700003)(70206006)(86362001)(70586007)(19627235002)(40480700001)(5660300002)(54906003)(41300700001)(478600001)(8936002)(8676002)(4326008)(336012)(316002)(6916009)(82310400005)(47076005)(36900700001)(579004)(559001);
+ SFS:(13230028)(4636009)(376002)(136003)(346002)(39860400002)(396003)(451199021)(36840700001)(46966006)(40470700004)(316002)(54906003)(478600001)(41300700001)(8676002)(8936002)(16526019)(6666004)(2906002)(70206006)(5660300002)(6916009)(70586007)(4326008)(47076005)(1076003)(26005)(40480700001)(356005)(186003)(7696005)(40460700003)(82740400003)(83380400001)(36756003)(2616005)(426003)(336012)(36860700001)(82310400005)(86362001)(81166007)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2023 22:21:39.5525 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c9a6990a-3893-43e8-fdf7-08db50dbc2a5
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2023 22:21:39.9900 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f8db9459-c49c-42aa-fa30-08db50dbc2e3
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT075.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7508
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5664
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,612 +106,60 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Hawking Zhang <Hawking.Zhang@amd.com>
 
-Add new ras error status registers introduced in
-vcn v4_0_3 to log vcn and jpeg ras error.
+Add query_ras_error_count callback for vcn v4_0_3.
+It will be used to query and log vcn error count.
 
 Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Reviewed-by: Tao Zhou <tao.zhou1@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- .../include/asic_reg/vcn/vcn_4_0_3_offset.h   |  78 +++
- .../include/asic_reg/vcn/vcn_4_0_3_sh_mask.h  | 495 ++++++++++++++++++
- 2 files changed, 573 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c | 36 +++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/vcn/vcn_4_0_3_offset.h b/drivers/gpu/drm/amd/include/asic_reg/vcn/vcn_4_0_3_offset.h
-index facad93cd06f..e9742d10de1c 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/vcn/vcn_4_0_3_offset.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/vcn/vcn_4_0_3_offset.h
-@@ -1500,6 +1500,84 @@
- #define regVCN_RAS_CNTL_MMSCH                                                                           0x0914
- #define regVCN_RAS_CNTL_MMSCH_BASE_IDX                                                                  1
- 
-+// addressBlock: aid_uvd0_vcn_edcc_dec
-+// base address: 0x21d20
-+#define regVCN_UE_ERR_STATUS_LO_VIDD                                                                    0x094c
-+#define regVCN_UE_ERR_STATUS_LO_VIDD_BASE_IDX                                                           1
-+#define regVCN_UE_ERR_STATUS_HI_VIDD                                                                    0x094d
-+#define regVCN_UE_ERR_STATUS_HI_VIDD_BASE_IDX                                                           1
-+#define regVCN_UE_ERR_STATUS_LO_VIDV                                                                    0x094e
-+#define regVCN_UE_ERR_STATUS_LO_VIDV_BASE_IDX                                                           1
-+#define regVCN_UE_ERR_STATUS_HI_VIDV                                                                    0x094f
-+#define regVCN_UE_ERR_STATUS_HI_VIDV_BASE_IDX                                                           1
-+#define regVCN_CE_ERR_STATUS_LO_MMSCHD                                                                  0x0950
-+#define regVCN_CE_ERR_STATUS_LO_MMSCHD_BASE_IDX                                                         1
-+#define regVCN_CE_ERR_STATUS_HI_MMSCHD                                                                  0x0951
-+#define regVCN_CE_ERR_STATUS_HI_MMSCHD_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_LO_JPEG0S                                                                  0x0952
-+#define regVCN_UE_ERR_STATUS_LO_JPEG0S_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_HI_JPEG0S                                                                  0x0953
-+#define regVCN_UE_ERR_STATUS_HI_JPEG0S_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_LO_JPEG0D                                                                  0x0954
-+#define regVCN_UE_ERR_STATUS_LO_JPEG0D_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_HI_JPEG0D                                                                  0x0955
-+#define regVCN_UE_ERR_STATUS_HI_JPEG0D_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_LO_JPEG1S                                                                  0x0956
-+#define regVCN_UE_ERR_STATUS_LO_JPEG1S_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_HI_JPEG1S                                                                  0x0957
-+#define regVCN_UE_ERR_STATUS_HI_JPEG1S_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_LO_JPEG1D                                                                  0x0958
-+#define regVCN_UE_ERR_STATUS_LO_JPEG1D_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_HI_JPEG1D                                                                  0x0959
-+#define regVCN_UE_ERR_STATUS_HI_JPEG1D_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_LO_JPEG2S                                                                  0x095a
-+#define regVCN_UE_ERR_STATUS_LO_JPEG2S_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_HI_JPEG2S                                                                  0x095b
-+#define regVCN_UE_ERR_STATUS_HI_JPEG2S_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_LO_JPEG2D                                                                  0x095c
-+#define regVCN_UE_ERR_STATUS_LO_JPEG2D_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_HI_JPEG2D                                                                  0x095d
-+#define regVCN_UE_ERR_STATUS_HI_JPEG2D_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_LO_JPEG3S                                                                  0x095e
-+#define regVCN_UE_ERR_STATUS_LO_JPEG3S_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_HI_JPEG3S                                                                  0x095f
-+#define regVCN_UE_ERR_STATUS_HI_JPEG3S_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_LO_JPEG3D                                                                  0x0960
-+#define regVCN_UE_ERR_STATUS_LO_JPEG3D_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_HI_JPEG3D                                                                  0x0961
-+#define regVCN_UE_ERR_STATUS_HI_JPEG3D_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_LO_JPEG4S                                                                  0x0962
-+#define regVCN_UE_ERR_STATUS_LO_JPEG4S_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_HI_JPEG4S                                                                  0x0963
-+#define regVCN_UE_ERR_STATUS_HI_JPEG4S_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_LO_JPEG4D                                                                  0x0964
-+#define regVCN_UE_ERR_STATUS_LO_JPEG4D_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_HI_JPEG4D                                                                  0x0965
-+#define regVCN_UE_ERR_STATUS_HI_JPEG4D_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_LO_JPEG5S                                                                  0x0966
-+#define regVCN_UE_ERR_STATUS_LO_JPEG5S_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_HI_JPEG5S                                                                  0x0967
-+#define regVCN_UE_ERR_STATUS_HI_JPEG5S_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_LO_JPEG5D                                                                  0x0968
-+#define regVCN_UE_ERR_STATUS_LO_JPEG5D_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_HI_JPEG5D                                                                  0x0969
-+#define regVCN_UE_ERR_STATUS_HI_JPEG5D_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_LO_JPEG6S                                                                  0x096a
-+#define regVCN_UE_ERR_STATUS_LO_JPEG6S_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_HI_JPEG6S                                                                  0x096b
-+#define regVCN_UE_ERR_STATUS_HI_JPEG6S_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_LO_JPEG6D                                                                  0x096c
-+#define regVCN_UE_ERR_STATUS_LO_JPEG6D_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_HI_JPEG6D                                                                  0x096d
-+#define regVCN_UE_ERR_STATUS_HI_JPEG6D_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_LO_JPEG7S                                                                  0x096e
-+#define regVCN_UE_ERR_STATUS_LO_JPEG7S_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_HI_JPEG7S                                                                  0x096f
-+#define regVCN_UE_ERR_STATUS_HI_JPEG7S_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_LO_JPEG7D                                                                  0x0970
-+#define regVCN_UE_ERR_STATUS_LO_JPEG7D_BASE_IDX                                                         1
-+#define regVCN_UE_ERR_STATUS_HI_JPEG7D                                                                  0x0971
-+#define regVCN_UE_ERR_STATUS_HI_JPEG7D_BASE_IDX                                                         1
- 
- // addressBlock: aid_uvd0_uvd_jrbc1_uvd_jrbc_dec
- // base address: 0x1e000
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/vcn/vcn_4_0_3_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/vcn/vcn_4_0_3_sh_mask.h
-index be643ea0e569..5bd8111bf04a 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/vcn/vcn_4_0_3_sh_mask.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/vcn/vcn_4_0_3_sh_mask.h
-@@ -5312,6 +5312,501 @@
- #define UVD_JPEG_DEC_SOFT_RST__SOFT_RESET_MASK                                                                0x00000001L
- #define UVD_JPEG_DEC_SOFT_RST__RESET_STATUS_MASK                                                              0x00010000L
- 
-+// addressBlock: aid_uvd0_vcn_edcc_dec
-+//VCN_UE_ERR_STATUS_LO_VIDD
-+#define VCN_UE_ERR_STATUS_LO_VIDD__Err_Status_Valid_Flag__SHIFT                                               0x0
-+#define VCN_UE_ERR_STATUS_LO_VIDD__Address_Valid_Flag__SHIFT                                                  0x1
-+#define VCN_UE_ERR_STATUS_LO_VIDD__Address__SHIFT                                                             0x2
-+#define VCN_UE_ERR_STATUS_LO_VIDD__Memory_id__SHIFT                                                           0x18
-+#define VCN_UE_ERR_STATUS_LO_VIDD__Err_Status_Valid_Flag_MASK                                                 0x00000001L
-+#define VCN_UE_ERR_STATUS_LO_VIDD__Address_Valid_Flag_MASK                                                    0x00000002L
-+#define VCN_UE_ERR_STATUS_LO_VIDD__Address_MASK                                                               0x00FFFFFCL
-+#define VCN_UE_ERR_STATUS_LO_VIDD__Memory_id_MASK                                                             0xFF000000L
-+//VCN_UE_ERR_STATUS_HI_VIDD
-+#define VCN_UE_ERR_STATUS_HI_VIDD__ECC__SHIFT                                                                 0x0
-+#define VCN_UE_ERR_STATUS_HI_VIDD__Parity__SHIFT                                                              0x1
-+#define VCN_UE_ERR_STATUS_HI_VIDD__Err_Info_Valid_Flag__SHIFT                                                 0x2
-+#define VCN_UE_ERR_STATUS_HI_VIDD__Err_Info__SHIFT                                                            0x3
-+#define VCN_UE_ERR_STATUS_HI_VIDD__UE_Cnt__SHIFT                                                              0x17
-+#define VCN_UE_ERR_STATUS_HI_VIDD__FED_Cnt__SHIFT                                                             0x1a
-+#define VCN_UE_ERR_STATUS_HI_VIDD__RESERVED__SHIFT                                                            0x1d
-+#define VCN_UE_ERR_STATUS_HI_VIDD__Err_clr__SHIFT                                                             0x1f
-+#define VCN_UE_ERR_STATUS_HI_VIDD__ECC_MASK                                                                   0x00000001L
-+#define VCN_UE_ERR_STATUS_HI_VIDD__Parity_MASK                                                                0x00000002L
-+#define VCN_UE_ERR_STATUS_HI_VIDD__Err_Info_Valid_Flag_MASK                                                   0x00000004L
-+#define VCN_UE_ERR_STATUS_HI_VIDD__Err_Info_MASK                                                              0x007FFFF8L
-+#define VCN_UE_ERR_STATUS_HI_VIDD__UE_Cnt_MASK                                                                0x03800000L
-+#define VCN_UE_ERR_STATUS_HI_VIDD__FED_Cnt_MASK                                                               0x1C000000L
-+#define VCN_UE_ERR_STATUS_HI_VIDD__RESERVED_MASK                                                              0x60000000L
-+#define VCN_UE_ERR_STATUS_HI_VIDD__Err_clr_MASK                                                               0x80000000L
-+//VCN_UE_ERR_STATUS_LO_VIDV
-+#define VCN_UE_ERR_STATUS_LO_VIDV__Err_Status_Valid_Flag__SHIFT                                               0x0
-+#define VCN_UE_ERR_STATUS_LO_VIDV__Address_Valid_Flag__SHIFT                                                  0x1
-+#define VCN_UE_ERR_STATUS_LO_VIDV__Address__SHIFT                                                             0x2
-+#define VCN_UE_ERR_STATUS_LO_VIDV__Memory_id__SHIFT                                                           0x18
-+#define VCN_UE_ERR_STATUS_LO_VIDV__Err_Status_Valid_Flag_MASK                                                 0x00000001L
-+#define VCN_UE_ERR_STATUS_LO_VIDV__Address_Valid_Flag_MASK                                                    0x00000002L
-+#define VCN_UE_ERR_STATUS_LO_VIDV__Address_MASK                                                               0x00FFFFFCL
-+#define VCN_UE_ERR_STATUS_LO_VIDV__Memory_id_MASK                                                             0xFF000000L
-+//VCN_UE_ERR_STATUS_HI_VIDV
-+#define VCN_UE_ERR_STATUS_HI_VIDV__ECC__SHIFT                                                                 0x0
-+#define VCN_UE_ERR_STATUS_HI_VIDV__Parity__SHIFT                                                              0x1
-+#define VCN_UE_ERR_STATUS_HI_VIDV__Err_Info_Valid_Flag__SHIFT                                                 0x2
-+#define VCN_UE_ERR_STATUS_HI_VIDV__Err_Info__SHIFT                                                            0x3
-+#define VCN_UE_ERR_STATUS_HI_VIDV__UE_Cnt__SHIFT                                                              0x17
-+#define VCN_UE_ERR_STATUS_HI_VIDV__FED_Cnt__SHIFT                                                             0x1a
-+#define VCN_UE_ERR_STATUS_HI_VIDV__RESERVED__SHIFT                                                            0x1d
-+#define VCN_UE_ERR_STATUS_HI_VIDV__Err_clr__SHIFT                                                             0x1f
-+#define VCN_UE_ERR_STATUS_HI_VIDV__ECC_MASK                                                                   0x00000001L
-+#define VCN_UE_ERR_STATUS_HI_VIDV__Parity_MASK                                                                0x00000002L
-+#define VCN_UE_ERR_STATUS_HI_VIDV__Err_Info_Valid_Flag_MASK                                                   0x00000004L
-+#define VCN_UE_ERR_STATUS_HI_VIDV__Err_Info_MASK                                                              0x007FFFF8L
-+#define VCN_UE_ERR_STATUS_HI_VIDV__UE_Cnt_MASK                                                                0x03800000L
-+#define VCN_UE_ERR_STATUS_HI_VIDV__FED_Cnt_MASK                                                               0x1C000000L
-+#define VCN_UE_ERR_STATUS_HI_VIDV__RESERVED_MASK                                                              0x60000000L
-+#define VCN_UE_ERR_STATUS_HI_VIDV__Err_clr_MASK                                                               0x80000000L
-+//VCN_CE_ERR_STATUS_LO_MMSCHD
-+#define VCN_CE_ERR_STATUS_LO_MMSCHD__Err_Status_Valid_Flag__SHIFT                                             0x0
-+#define VCN_CE_ERR_STATUS_LO_MMSCHD__Address_Valid_Flag__SHIFT                                                0x1
-+#define VCN_CE_ERR_STATUS_LO_MMSCHD__Address__SHIFT                                                           0x2
-+#define VCN_CE_ERR_STATUS_LO_MMSCHD__Memory_id__SHIFT                                                         0x18
-+#define VCN_CE_ERR_STATUS_LO_MMSCHD__Err_Status_Valid_Flag_MASK                                               0x00000001L
-+#define VCN_CE_ERR_STATUS_LO_MMSCHD__Address_Valid_Flag_MASK                                                  0x00000002L
-+#define VCN_CE_ERR_STATUS_LO_MMSCHD__Address_MASK                                                             0x00FFFFFCL
-+#define VCN_CE_ERR_STATUS_LO_MMSCHD__Memory_id_MASK                                                           0xFF000000L
-+//VCN_CE_ERR_STATUS_HI_MMSCHD
-+#define VCN_CE_ERR_STATUS_HI_MMSCHD__ECC__SHIFT                                                               0x0
-+#define VCN_CE_ERR_STATUS_HI_MMSCHD__Other__SHIFT                                                             0x1
-+#define VCN_CE_ERR_STATUS_HI_MMSCHD__Err_Info_Valid_Flag__SHIFT                                               0x2
-+#define VCN_CE_ERR_STATUS_HI_MMSCHD__Err_Info__SHIFT                                                          0x3
-+#define VCN_CE_ERR_STATUS_HI_MMSCHD__CE_Cnt__SHIFT                                                            0x17
-+#define VCN_CE_ERR_STATUS_HI_MMSCHD__Poison__SHIFT                                                            0x1c
-+#define VCN_CE_ERR_STATUS_HI_MMSCHD__RESERVED__SHIFT                                                          0x1d
-+#define VCN_CE_ERR_STATUS_HI_MMSCHD__Err_clr__SHIFT                                                           0x1f
-+#define VCN_CE_ERR_STATUS_HI_MMSCHD__ECC_MASK                                                                 0x00000001L
-+#define VCN_CE_ERR_STATUS_HI_MMSCHD__Other_MASK                                                               0x00000002L
-+#define VCN_CE_ERR_STATUS_HI_MMSCHD__Err_Info_Valid_Flag_MASK                                                 0x00000004L
-+#define VCN_CE_ERR_STATUS_HI_MMSCHD__Err_Info_MASK                                                            0x007FFFF8L
-+#define VCN_CE_ERR_STATUS_HI_MMSCHD__CE_Cnt_MASK                                                              0x03800000L
-+#define VCN_CE_ERR_STATUS_HI_MMSCHD__Poison_MASK                                                              0x10000000L
-+#define VCN_CE_ERR_STATUS_HI_MMSCHD__RESERVED_MASK                                                            0x60000000L
-+#define VCN_CE_ERR_STATUS_HI_MMSCHD__Err_clr_MASK                                                             0x80000000L
-+//VCN_UE_ERR_STATUS_LO_JPEG0S
-+#define VCN_UE_ERR_STATUS_LO_JPEG0S__Err_Status_Valid_Flag__SHIFT                                             0x0
-+#define VCN_UE_ERR_STATUS_LO_JPEG0S__Address_Valid_Flag__SHIFT                                                0x1
-+#define VCN_UE_ERR_STATUS_LO_JPEG0S__Address__SHIFT                                                           0x2
-+#define VCN_UE_ERR_STATUS_LO_JPEG0S__Memory_id__SHIFT                                                         0x18
-+#define VCN_UE_ERR_STATUS_LO_JPEG0S__Err_Status_Valid_Flag_MASK                                               0x00000001L
-+#define VCN_UE_ERR_STATUS_LO_JPEG0S__Address_Valid_Flag_MASK                                                  0x00000002L
-+#define VCN_UE_ERR_STATUS_LO_JPEG0S__Address_MASK                                                             0x00FFFFFCL
-+#define VCN_UE_ERR_STATUS_LO_JPEG0S__Memory_id_MASK                                                           0xFF000000L
-+//VCN_UE_ERR_STATUS_HI_JPEG0S
-+#define VCN_UE_ERR_STATUS_HI_JPEG0S__ECC__SHIFT                                                               0x0
-+#define VCN_UE_ERR_STATUS_HI_JPEG0S__Parity__SHIFT                                                            0x1
-+#define VCN_UE_ERR_STATUS_HI_JPEG0S__Err_Info_Valid_Flag__SHIFT                                               0x2
-+#define VCN_UE_ERR_STATUS_HI_JPEG0S__Err_Info__SHIFT                                                          0x3
-+#define VCN_UE_ERR_STATUS_HI_JPEG0S__UE_Cnt__SHIFT                                                            0x17
-+#define VCN_UE_ERR_STATUS_HI_JPEG0S__FED_Cnt__SHIFT                                                           0x1a
-+#define VCN_UE_ERR_STATUS_HI_JPEG0S__RESERVED__SHIFT                                                          0x1d
-+#define VCN_UE_ERR_STATUS_HI_JPEG0S__Err_clr__SHIFT                                                           0x1f
-+#define VCN_UE_ERR_STATUS_HI_JPEG0S__ECC_MASK                                                                 0x00000001L
-+#define VCN_UE_ERR_STATUS_HI_JPEG0S__Parity_MASK                                                              0x00000002L
-+#define VCN_UE_ERR_STATUS_HI_JPEG0S__Err_Info_Valid_Flag_MASK                                                 0x00000004L
-+#define VCN_UE_ERR_STATUS_HI_JPEG0S__Err_Info_MASK                                                            0x007FFFF8L
-+#define VCN_UE_ERR_STATUS_HI_JPEG0S__UE_Cnt_MASK                                                              0x03800000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG0S__FED_Cnt_MASK                                                             0x1C000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG0S__RESERVED_MASK                                                            0x60000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG0S__Err_clr_MASK                                                             0x80000000L
-+//VCN_UE_ERR_STATUS_LO_JPEG0D
-+#define VCN_UE_ERR_STATUS_LO_JPEG0D__Err_Status_Valid_Flag__SHIFT                                             0x0
-+#define VCN_UE_ERR_STATUS_LO_JPEG0D__Address_Valid_Flag__SHIFT                                                0x1
-+#define VCN_UE_ERR_STATUS_LO_JPEG0D__Address__SHIFT                                                           0x2
-+#define VCN_UE_ERR_STATUS_LO_JPEG0D__Memory_id__SHIFT                                                         0x18
-+#define VCN_UE_ERR_STATUS_LO_JPEG0D__Err_Status_Valid_Flag_MASK                                               0x00000001L
-+#define VCN_UE_ERR_STATUS_LO_JPEG0D__Address_Valid_Flag_MASK                                                  0x00000002L
-+#define VCN_UE_ERR_STATUS_LO_JPEG0D__Address_MASK                                                             0x00FFFFFCL
-+#define VCN_UE_ERR_STATUS_LO_JPEG0D__Memory_id_MASK                                                           0xFF000000L
-+//VCN_UE_ERR_STATUS_HI_JPEG0D
-+#define VCN_UE_ERR_STATUS_HI_JPEG0D__ECC__SHIFT                                                               0x0
-+#define VCN_UE_ERR_STATUS_HI_JPEG0D__Parity__SHIFT                                                            0x1
-+#define VCN_UE_ERR_STATUS_HI_JPEG0D__Err_Info_Valid_Flag__SHIFT                                               0x2
-+#define VCN_UE_ERR_STATUS_HI_JPEG0D__Err_Info__SHIFT                                                          0x3
-+#define VCN_UE_ERR_STATUS_HI_JPEG0D__UE_Cnt__SHIFT                                                            0x17
-+#define VCN_UE_ERR_STATUS_HI_JPEG0D__FED_Cnt__SHIFT                                                           0x1a
-+#define VCN_UE_ERR_STATUS_HI_JPEG0D__RESERVED__SHIFT                                                          0x1d
-+#define VCN_UE_ERR_STATUS_HI_JPEG0D__Err_clr__SHIFT                                                           0x1f
-+#define VCN_UE_ERR_STATUS_HI_JPEG0D__ECC_MASK                                                                 0x00000001L
-+#define VCN_UE_ERR_STATUS_HI_JPEG0D__Parity_MASK                                                              0x00000002L
-+#define VCN_UE_ERR_STATUS_HI_JPEG0D__Err_Info_Valid_Flag_MASK                                                 0x00000004L
-+#define VCN_UE_ERR_STATUS_HI_JPEG0D__Err_Info_MASK                                                            0x007FFFF8L
-+#define VCN_UE_ERR_STATUS_HI_JPEG0D__UE_Cnt_MASK                                                              0x03800000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG0D__FED_Cnt_MASK                                                             0x1C000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG0D__RESERVED_MASK                                                            0x60000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG0D__Err_clr_MASK                                                             0x80000000L
-+//VCN_UE_ERR_STATUS_LO_JPEG1S
-+#define VCN_UE_ERR_STATUS_LO_JPEG1S__Err_Status_Valid_Flag__SHIFT                                             0x0
-+#define VCN_UE_ERR_STATUS_LO_JPEG1S__Address_Valid_Flag__SHIFT                                                0x1
-+#define VCN_UE_ERR_STATUS_LO_JPEG1S__Address__SHIFT                                                           0x2
-+#define VCN_UE_ERR_STATUS_LO_JPEG1S__Memory_id__SHIFT                                                         0x18
-+#define VCN_UE_ERR_STATUS_LO_JPEG1S__Err_Status_Valid_Flag_MASK                                               0x00000001L
-+#define VCN_UE_ERR_STATUS_LO_JPEG1S__Address_Valid_Flag_MASK                                                  0x00000002L
-+#define VCN_UE_ERR_STATUS_LO_JPEG1S__Address_MASK                                                             0x00FFFFFCL
-+#define VCN_UE_ERR_STATUS_LO_JPEG1S__Memory_id_MASK                                                           0xFF000000L
-+//VCN_UE_ERR_STATUS_HI_JPEG1S
-+#define VCN_UE_ERR_STATUS_HI_JPEG1S__ECC__SHIFT                                                               0x0
-+#define VCN_UE_ERR_STATUS_HI_JPEG1S__Parity__SHIFT                                                            0x1
-+#define VCN_UE_ERR_STATUS_HI_JPEG1S__Err_Info_Valid_Flag__SHIFT                                               0x2
-+#define VCN_UE_ERR_STATUS_HI_JPEG1S__Err_Info__SHIFT                                                          0x3
-+#define VCN_UE_ERR_STATUS_HI_JPEG1S__UE_Cnt__SHIFT                                                            0x17
-+#define VCN_UE_ERR_STATUS_HI_JPEG1S__FED_Cnt__SHIFT                                                           0x1a
-+#define VCN_UE_ERR_STATUS_HI_JPEG1S__RESERVED__SHIFT                                                          0x1d
-+#define VCN_UE_ERR_STATUS_HI_JPEG1S__Err_clr__SHIFT                                                           0x1f
-+#define VCN_UE_ERR_STATUS_HI_JPEG1S__ECC_MASK                                                                 0x00000001L
-+#define VCN_UE_ERR_STATUS_HI_JPEG1S__Parity_MASK                                                              0x00000002L
-+#define VCN_UE_ERR_STATUS_HI_JPEG1S__Err_Info_Valid_Flag_MASK                                                 0x00000004L
-+#define VCN_UE_ERR_STATUS_HI_JPEG1S__Err_Info_MASK                                                            0x007FFFF8L
-+#define VCN_UE_ERR_STATUS_HI_JPEG1S__UE_Cnt_MASK                                                              0x03800000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG1S__FED_Cnt_MASK                                                             0x1C000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG1S__RESERVED_MASK                                                            0x60000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG1S__Err_clr_MASK                                                             0x80000000L
-+//VCN_UE_ERR_STATUS_LO_JPEG1D
-+#define VCN_UE_ERR_STATUS_LO_JPEG1D__Err_Status_Valid_Flag__SHIFT                                             0x0
-+#define VCN_UE_ERR_STATUS_LO_JPEG1D__Address_Valid_Flag__SHIFT                                                0x1
-+#define VCN_UE_ERR_STATUS_LO_JPEG1D__Address__SHIFT                                                           0x2
-+#define VCN_UE_ERR_STATUS_LO_JPEG1D__Memory_id__SHIFT                                                         0x18
-+#define VCN_UE_ERR_STATUS_LO_JPEG1D__Err_Status_Valid_Flag_MASK                                               0x00000001L
-+#define VCN_UE_ERR_STATUS_LO_JPEG1D__Address_Valid_Flag_MASK                                                  0x00000002L
-+#define VCN_UE_ERR_STATUS_LO_JPEG1D__Address_MASK                                                             0x00FFFFFCL
-+#define VCN_UE_ERR_STATUS_LO_JPEG1D__Memory_id_MASK                                                           0xFF000000L
-+//VCN_UE_ERR_STATUS_HI_JPEG1D
-+#define VCN_UE_ERR_STATUS_HI_JPEG1D__ECC__SHIFT                                                               0x0
-+#define VCN_UE_ERR_STATUS_HI_JPEG1D__Parity__SHIFT                                                            0x1
-+#define VCN_UE_ERR_STATUS_HI_JPEG1D__Err_Info_Valid_Flag__SHIFT                                               0x2
-+#define VCN_UE_ERR_STATUS_HI_JPEG1D__Err_Info__SHIFT                                                          0x3
-+#define VCN_UE_ERR_STATUS_HI_JPEG1D__UE_Cnt__SHIFT                                                            0x17
-+#define VCN_UE_ERR_STATUS_HI_JPEG1D__FED_Cnt__SHIFT                                                           0x1a
-+#define VCN_UE_ERR_STATUS_HI_JPEG1D__RESERVED__SHIFT                                                          0x1d
-+#define VCN_UE_ERR_STATUS_HI_JPEG1D__Err_clr__SHIFT                                                           0x1f
-+#define VCN_UE_ERR_STATUS_HI_JPEG1D__ECC_MASK                                                                 0x00000001L
-+#define VCN_UE_ERR_STATUS_HI_JPEG1D__Parity_MASK                                                              0x00000002L
-+#define VCN_UE_ERR_STATUS_HI_JPEG1D__Err_Info_Valid_Flag_MASK                                                 0x00000004L
-+#define VCN_UE_ERR_STATUS_HI_JPEG1D__Err_Info_MASK                                                            0x007FFFF8L
-+#define VCN_UE_ERR_STATUS_HI_JPEG1D__UE_Cnt_MASK                                                              0x03800000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG1D__FED_Cnt_MASK                                                             0x1C000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG1D__RESERVED_MASK                                                            0x60000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG1D__Err_clr_MASK                                                             0x80000000L
-+//VCN_UE_ERR_STATUS_LO_JPEG2S
-+#define VCN_UE_ERR_STATUS_LO_JPEG2S__Err_Status_Valid_Flag__SHIFT                                             0x0
-+#define VCN_UE_ERR_STATUS_LO_JPEG2S__Address_Valid_Flag__SHIFT                                                0x1
-+#define VCN_UE_ERR_STATUS_LO_JPEG2S__Address__SHIFT                                                           0x2
-+#define VCN_UE_ERR_STATUS_LO_JPEG2S__Memory_id__SHIFT                                                         0x18
-+#define VCN_UE_ERR_STATUS_LO_JPEG2S__Err_Status_Valid_Flag_MASK                                               0x00000001L
-+#define VCN_UE_ERR_STATUS_LO_JPEG2S__Address_Valid_Flag_MASK                                                  0x00000002L
-+#define VCN_UE_ERR_STATUS_LO_JPEG2S__Address_MASK                                                             0x00FFFFFCL
-+#define VCN_UE_ERR_STATUS_LO_JPEG2S__Memory_id_MASK                                                           0xFF000000L
-+//VCN_UE_ERR_STATUS_HI_JPEG2S
-+#define VCN_UE_ERR_STATUS_HI_JPEG2S__ECC__SHIFT                                                               0x0
-+#define VCN_UE_ERR_STATUS_HI_JPEG2S__Parity__SHIFT                                                            0x1
-+#define VCN_UE_ERR_STATUS_HI_JPEG2S__Err_Info_Valid_Flag__SHIFT                                               0x2
-+#define VCN_UE_ERR_STATUS_HI_JPEG2S__Err_Info__SHIFT                                                          0x3
-+#define VCN_UE_ERR_STATUS_HI_JPEG2S__UE_Cnt__SHIFT                                                            0x17
-+#define VCN_UE_ERR_STATUS_HI_JPEG2S__FED_Cnt__SHIFT                                                           0x1a
-+#define VCN_UE_ERR_STATUS_HI_JPEG2S__RESERVED__SHIFT                                                          0x1d
-+#define VCN_UE_ERR_STATUS_HI_JPEG2S__Err_clr__SHIFT                                                           0x1f
-+#define VCN_UE_ERR_STATUS_HI_JPEG2S__ECC_MASK                                                                 0x00000001L
-+#define VCN_UE_ERR_STATUS_HI_JPEG2S__Parity_MASK                                                              0x00000002L
-+#define VCN_UE_ERR_STATUS_HI_JPEG2S__Err_Info_Valid_Flag_MASK                                                 0x00000004L
-+#define VCN_UE_ERR_STATUS_HI_JPEG2S__Err_Info_MASK                                                            0x007FFFF8L
-+#define VCN_UE_ERR_STATUS_HI_JPEG2S__UE_Cnt_MASK                                                              0x03800000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG2S__FED_Cnt_MASK                                                             0x1C000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG2S__RESERVED_MASK                                                            0x60000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG2S__Err_clr_MASK                                                             0x80000000L
-+//VCN_UE_ERR_STATUS_LO_JPEG2D
-+#define VCN_UE_ERR_STATUS_LO_JPEG2D__Err_Status_Valid_Flag__SHIFT                                             0x0
-+#define VCN_UE_ERR_STATUS_LO_JPEG2D__Address_Valid_Flag__SHIFT                                                0x1
-+#define VCN_UE_ERR_STATUS_LO_JPEG2D__Address__SHIFT                                                           0x2
-+#define VCN_UE_ERR_STATUS_LO_JPEG2D__Memory_id__SHIFT                                                         0x18
-+#define VCN_UE_ERR_STATUS_LO_JPEG2D__Err_Status_Valid_Flag_MASK                                               0x00000001L
-+#define VCN_UE_ERR_STATUS_LO_JPEG2D__Address_Valid_Flag_MASK                                                  0x00000002L
-+#define VCN_UE_ERR_STATUS_LO_JPEG2D__Address_MASK                                                             0x00FFFFFCL
-+#define VCN_UE_ERR_STATUS_LO_JPEG2D__Memory_id_MASK                                                           0xFF000000L
-+//VCN_UE_ERR_STATUS_HI_JPEG2D
-+#define VCN_UE_ERR_STATUS_HI_JPEG2D__ECC__SHIFT                                                               0x0
-+#define VCN_UE_ERR_STATUS_HI_JPEG2D__Parity__SHIFT                                                            0x1
-+#define VCN_UE_ERR_STATUS_HI_JPEG2D__Err_Info_Valid_Flag__SHIFT                                               0x2
-+#define VCN_UE_ERR_STATUS_HI_JPEG2D__Err_Info__SHIFT                                                          0x3
-+#define VCN_UE_ERR_STATUS_HI_JPEG2D__UE_Cnt__SHIFT                                                            0x17
-+#define VCN_UE_ERR_STATUS_HI_JPEG2D__FED_Cnt__SHIFT                                                           0x1a
-+#define VCN_UE_ERR_STATUS_HI_JPEG2D__RESERVED__SHIFT                                                          0x1d
-+#define VCN_UE_ERR_STATUS_HI_JPEG2D__Err_clr__SHIFT                                                           0x1f
-+#define VCN_UE_ERR_STATUS_HI_JPEG2D__ECC_MASK                                                                 0x00000001L
-+#define VCN_UE_ERR_STATUS_HI_JPEG2D__Parity_MASK                                                              0x00000002L
-+#define VCN_UE_ERR_STATUS_HI_JPEG2D__Err_Info_Valid_Flag_MASK                                                 0x00000004L
-+#define VCN_UE_ERR_STATUS_HI_JPEG2D__Err_Info_MASK                                                            0x007FFFF8L
-+#define VCN_UE_ERR_STATUS_HI_JPEG2D__UE_Cnt_MASK                                                              0x03800000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG2D__FED_Cnt_MASK                                                             0x1C000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG2D__RESERVED_MASK                                                            0x60000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG2D__Err_clr_MASK                                                             0x80000000L
-+//VCN_UE_ERR_STATUS_LO_JPEG3S
-+#define VCN_UE_ERR_STATUS_LO_JPEG3S__Err_Status_Valid_Flag__SHIFT                                             0x0
-+#define VCN_UE_ERR_STATUS_LO_JPEG3S__Address_Valid_Flag__SHIFT                                                0x1
-+#define VCN_UE_ERR_STATUS_LO_JPEG3S__Address__SHIFT                                                           0x2
-+#define VCN_UE_ERR_STATUS_LO_JPEG3S__Memory_id__SHIFT                                                         0x18
-+#define VCN_UE_ERR_STATUS_LO_JPEG3S__Err_Status_Valid_Flag_MASK                                               0x00000001L
-+#define VCN_UE_ERR_STATUS_LO_JPEG3S__Address_Valid_Flag_MASK                                                  0x00000002L
-+#define VCN_UE_ERR_STATUS_LO_JPEG3S__Address_MASK                                                             0x00FFFFFCL
-+#define VCN_UE_ERR_STATUS_LO_JPEG3S__Memory_id_MASK                                                           0xFF000000L
-+//VCN_UE_ERR_STATUS_HI_JPEG3S
-+#define VCN_UE_ERR_STATUS_HI_JPEG3S__ECC__SHIFT                                                               0x0
-+#define VCN_UE_ERR_STATUS_HI_JPEG3S__Parity__SHIFT                                                            0x1
-+#define VCN_UE_ERR_STATUS_HI_JPEG3S__Err_Info_Valid_Flag__SHIFT                                               0x2
-+#define VCN_UE_ERR_STATUS_HI_JPEG3S__Err_Info__SHIFT                                                          0x3
-+#define VCN_UE_ERR_STATUS_HI_JPEG3S__UE_Cnt__SHIFT                                                            0x17
-+#define VCN_UE_ERR_STATUS_HI_JPEG3S__FED_Cnt__SHIFT                                                           0x1a
-+#define VCN_UE_ERR_STATUS_HI_JPEG3S__RESERVED__SHIFT                                                          0x1d
-+#define VCN_UE_ERR_STATUS_HI_JPEG3S__Err_clr__SHIFT                                                           0x1f
-+#define VCN_UE_ERR_STATUS_HI_JPEG3S__ECC_MASK                                                                 0x00000001L
-+#define VCN_UE_ERR_STATUS_HI_JPEG3S__Parity_MASK                                                              0x00000002L
-+#define VCN_UE_ERR_STATUS_HI_JPEG3S__Err_Info_Valid_Flag_MASK                                                 0x00000004L
-+#define VCN_UE_ERR_STATUS_HI_JPEG3S__Err_Info_MASK                                                            0x007FFFF8L
-+#define VCN_UE_ERR_STATUS_HI_JPEG3S__UE_Cnt_MASK                                                              0x03800000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG3S__FED_Cnt_MASK                                                             0x1C000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG3S__RESERVED_MASK                                                            0x60000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG3S__Err_clr_MASK                                                             0x80000000L
-+//VCN_UE_ERR_STATUS_LO_JPEG3D
-+#define VCN_UE_ERR_STATUS_LO_JPEG3D__Err_Status_Valid_Flag__SHIFT                                             0x0
-+#define VCN_UE_ERR_STATUS_LO_JPEG3D__Address_Valid_Flag__SHIFT                                                0x1
-+#define VCN_UE_ERR_STATUS_LO_JPEG3D__Address__SHIFT                                                           0x2
-+#define VCN_UE_ERR_STATUS_LO_JPEG3D__Memory_id__SHIFT                                                         0x18
-+#define VCN_UE_ERR_STATUS_LO_JPEG3D__Err_Status_Valid_Flag_MASK                                               0x00000001L
-+#define VCN_UE_ERR_STATUS_LO_JPEG3D__Address_Valid_Flag_MASK                                                  0x00000002L
-+#define VCN_UE_ERR_STATUS_LO_JPEG3D__Address_MASK                                                             0x00FFFFFCL
-+#define VCN_UE_ERR_STATUS_LO_JPEG3D__Memory_id_MASK                                                           0xFF000000L
-+//VCN_UE_ERR_STATUS_HI_JPEG3D
-+#define VCN_UE_ERR_STATUS_HI_JPEG3D__ECC__SHIFT                                                               0x0
-+#define VCN_UE_ERR_STATUS_HI_JPEG3D__Parity__SHIFT                                                            0x1
-+#define VCN_UE_ERR_STATUS_HI_JPEG3D__Err_Info_Valid_Flag__SHIFT                                               0x2
-+#define VCN_UE_ERR_STATUS_HI_JPEG3D__Err_Info__SHIFT                                                          0x3
-+#define VCN_UE_ERR_STATUS_HI_JPEG3D__UE_Cnt__SHIFT                                                            0x17
-+#define VCN_UE_ERR_STATUS_HI_JPEG3D__FED_Cnt__SHIFT                                                           0x1a
-+#define VCN_UE_ERR_STATUS_HI_JPEG3D__RESERVED__SHIFT                                                          0x1d
-+#define VCN_UE_ERR_STATUS_HI_JPEG3D__Err_clr__SHIFT                                                           0x1f
-+#define VCN_UE_ERR_STATUS_HI_JPEG3D__ECC_MASK                                                                 0x00000001L
-+#define VCN_UE_ERR_STATUS_HI_JPEG3D__Parity_MASK                                                              0x00000002L
-+#define VCN_UE_ERR_STATUS_HI_JPEG3D__Err_Info_Valid_Flag_MASK                                                 0x00000004L
-+#define VCN_UE_ERR_STATUS_HI_JPEG3D__Err_Info_MASK                                                            0x007FFFF8L
-+#define VCN_UE_ERR_STATUS_HI_JPEG3D__UE_Cnt_MASK                                                              0x03800000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG3D__FED_Cnt_MASK                                                             0x1C000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG3D__RESERVED_MASK                                                            0x60000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG3D__Err_clr_MASK                                                             0x80000000L
-+//VCN_UE_ERR_STATUS_LO_JPEG4S
-+#define VCN_UE_ERR_STATUS_LO_JPEG4S__Err_Status_Valid_Flag__SHIFT                                             0x0
-+#define VCN_UE_ERR_STATUS_LO_JPEG4S__Address_Valid_Flag__SHIFT                                                0x1
-+#define VCN_UE_ERR_STATUS_LO_JPEG4S__Address__SHIFT                                                           0x2
-+#define VCN_UE_ERR_STATUS_LO_JPEG4S__Memory_id__SHIFT                                                         0x18
-+#define VCN_UE_ERR_STATUS_LO_JPEG4S__Err_Status_Valid_Flag_MASK                                               0x00000001L
-+#define VCN_UE_ERR_STATUS_LO_JPEG4S__Address_Valid_Flag_MASK                                                  0x00000002L
-+#define VCN_UE_ERR_STATUS_LO_JPEG4S__Address_MASK                                                             0x00FFFFFCL
-+#define VCN_UE_ERR_STATUS_LO_JPEG4S__Memory_id_MASK                                                           0xFF000000L
-+//VCN_UE_ERR_STATUS_HI_JPEG4S
-+#define VCN_UE_ERR_STATUS_HI_JPEG4S__ECC__SHIFT                                                               0x0
-+#define VCN_UE_ERR_STATUS_HI_JPEG4S__Parity__SHIFT                                                            0x1
-+#define VCN_UE_ERR_STATUS_HI_JPEG4S__Err_Info_Valid_Flag__SHIFT                                               0x2
-+#define VCN_UE_ERR_STATUS_HI_JPEG4S__Err_Info__SHIFT                                                          0x3
-+#define VCN_UE_ERR_STATUS_HI_JPEG4S__UE_Cnt__SHIFT                                                            0x17
-+#define VCN_UE_ERR_STATUS_HI_JPEG4S__FED_Cnt__SHIFT                                                           0x1a
-+#define VCN_UE_ERR_STATUS_HI_JPEG4S__RESERVED__SHIFT                                                          0x1d
-+#define VCN_UE_ERR_STATUS_HI_JPEG4S__Err_clr__SHIFT                                                           0x1f
-+#define VCN_UE_ERR_STATUS_HI_JPEG4S__ECC_MASK                                                                 0x00000001L
-+#define VCN_UE_ERR_STATUS_HI_JPEG4S__Parity_MASK                                                              0x00000002L
-+#define VCN_UE_ERR_STATUS_HI_JPEG4S__Err_Info_Valid_Flag_MASK                                                 0x00000004L
-+#define VCN_UE_ERR_STATUS_HI_JPEG4S__Err_Info_MASK                                                            0x007FFFF8L
-+#define VCN_UE_ERR_STATUS_HI_JPEG4S__UE_Cnt_MASK                                                              0x03800000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG4S__FED_Cnt_MASK                                                             0x1C000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG4S__RESERVED_MASK                                                            0x60000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG4S__Err_clr_MASK                                                             0x80000000L
-+//VCN_UE_ERR_STATUS_LO_JPEG4D
-+#define VCN_UE_ERR_STATUS_LO_JPEG4D__Err_Status_Valid_Flag__SHIFT                                             0x0
-+#define VCN_UE_ERR_STATUS_LO_JPEG4D__Address_Valid_Flag__SHIFT                                                0x1
-+#define VCN_UE_ERR_STATUS_LO_JPEG4D__Address__SHIFT                                                           0x2
-+#define VCN_UE_ERR_STATUS_LO_JPEG4D__Memory_id__SHIFT                                                         0x18
-+#define VCN_UE_ERR_STATUS_LO_JPEG4D__Err_Status_Valid_Flag_MASK                                               0x00000001L
-+#define VCN_UE_ERR_STATUS_LO_JPEG4D__Address_Valid_Flag_MASK                                                  0x00000002L
-+#define VCN_UE_ERR_STATUS_LO_JPEG4D__Address_MASK                                                             0x00FFFFFCL
-+#define VCN_UE_ERR_STATUS_LO_JPEG4D__Memory_id_MASK                                                           0xFF000000L
-+//VCN_UE_ERR_STATUS_HI_JPEG4D
-+#define VCN_UE_ERR_STATUS_HI_JPEG4D__ECC__SHIFT                                                               0x0
-+#define VCN_UE_ERR_STATUS_HI_JPEG4D__Parity__SHIFT                                                            0x1
-+#define VCN_UE_ERR_STATUS_HI_JPEG4D__Err_Info_Valid_Flag__SHIFT                                               0x2
-+#define VCN_UE_ERR_STATUS_HI_JPEG4D__Err_Info__SHIFT                                                          0x3
-+#define VCN_UE_ERR_STATUS_HI_JPEG4D__UE_Cnt__SHIFT                                                            0x17
-+#define VCN_UE_ERR_STATUS_HI_JPEG4D__FED_Cnt__SHIFT                                                           0x1a
-+#define VCN_UE_ERR_STATUS_HI_JPEG4D__RESERVED__SHIFT                                                          0x1d
-+#define VCN_UE_ERR_STATUS_HI_JPEG4D__Err_clr__SHIFT                                                           0x1f
-+#define VCN_UE_ERR_STATUS_HI_JPEG4D__ECC_MASK                                                                 0x00000001L
-+#define VCN_UE_ERR_STATUS_HI_JPEG4D__Parity_MASK                                                              0x00000002L
-+#define VCN_UE_ERR_STATUS_HI_JPEG4D__Err_Info_Valid_Flag_MASK                                                 0x00000004L
-+#define VCN_UE_ERR_STATUS_HI_JPEG4D__Err_Info_MASK                                                            0x007FFFF8L
-+#define VCN_UE_ERR_STATUS_HI_JPEG4D__UE_Cnt_MASK                                                              0x03800000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG4D__FED_Cnt_MASK                                                             0x1C000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG4D__RESERVED_MASK                                                            0x60000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG4D__Err_clr_MASK                                                             0x80000000L
-+//VCN_UE_ERR_STATUS_LO_JPEG5S
-+#define VCN_UE_ERR_STATUS_LO_JPEG5S__Err_Status_Valid_Flag__SHIFT                                             0x0
-+#define VCN_UE_ERR_STATUS_LO_JPEG5S__Address_Valid_Flag__SHIFT                                                0x1
-+#define VCN_UE_ERR_STATUS_LO_JPEG5S__Address__SHIFT                                                           0x2
-+#define VCN_UE_ERR_STATUS_LO_JPEG5S__Memory_id__SHIFT                                                         0x18
-+#define VCN_UE_ERR_STATUS_LO_JPEG5S__Err_Status_Valid_Flag_MASK                                               0x00000001L
-+#define VCN_UE_ERR_STATUS_LO_JPEG5S__Address_Valid_Flag_MASK                                                  0x00000002L
-+#define VCN_UE_ERR_STATUS_LO_JPEG5S__Address_MASK                                                             0x00FFFFFCL
-+#define VCN_UE_ERR_STATUS_LO_JPEG5S__Memory_id_MASK                                                           0xFF000000L
-+//VCN_UE_ERR_STATUS_HI_JPEG5S
-+#define VCN_UE_ERR_STATUS_HI_JPEG5S__ECC__SHIFT                                                               0x0
-+#define VCN_UE_ERR_STATUS_HI_JPEG5S__Parity__SHIFT                                                            0x1
-+#define VCN_UE_ERR_STATUS_HI_JPEG5S__Err_Info_Valid_Flag__SHIFT                                               0x2
-+#define VCN_UE_ERR_STATUS_HI_JPEG5S__Err_Info__SHIFT                                                          0x3
-+#define VCN_UE_ERR_STATUS_HI_JPEG5S__UE_Cnt__SHIFT                                                            0x17
-+#define VCN_UE_ERR_STATUS_HI_JPEG5S__FED_Cnt__SHIFT                                                           0x1a
-+#define VCN_UE_ERR_STATUS_HI_JPEG5S__RESERVED__SHIFT                                                          0x1d
-+#define VCN_UE_ERR_STATUS_HI_JPEG5S__Err_clr__SHIFT                                                           0x1f
-+#define VCN_UE_ERR_STATUS_HI_JPEG5S__ECC_MASK                                                                 0x00000001L
-+#define VCN_UE_ERR_STATUS_HI_JPEG5S__Parity_MASK                                                              0x00000002L
-+#define VCN_UE_ERR_STATUS_HI_JPEG5S__Err_Info_Valid_Flag_MASK                                                 0x00000004L
-+#define VCN_UE_ERR_STATUS_HI_JPEG5S__Err_Info_MASK                                                            0x007FFFF8L
-+#define VCN_UE_ERR_STATUS_HI_JPEG5S__UE_Cnt_MASK                                                              0x03800000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG5S__FED_Cnt_MASK                                                             0x1C000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG5S__RESERVED_MASK                                                            0x60000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG5S__Err_clr_MASK                                                             0x80000000L
-+//VCN_UE_ERR_STATUS_LO_JPEG5D
-+#define VCN_UE_ERR_STATUS_LO_JPEG5D__Err_Status_Valid_Flag__SHIFT                                             0x0
-+#define VCN_UE_ERR_STATUS_LO_JPEG5D__Address_Valid_Flag__SHIFT                                                0x1
-+#define VCN_UE_ERR_STATUS_LO_JPEG5D__Address__SHIFT                                                           0x2
-+#define VCN_UE_ERR_STATUS_LO_JPEG5D__Memory_id__SHIFT                                                         0x18
-+#define VCN_UE_ERR_STATUS_LO_JPEG5D__Err_Status_Valid_Flag_MASK                                               0x00000001L
-+#define VCN_UE_ERR_STATUS_LO_JPEG5D__Address_Valid_Flag_MASK                                                  0x00000002L
-+#define VCN_UE_ERR_STATUS_LO_JPEG5D__Address_MASK                                                             0x00FFFFFCL
-+#define VCN_UE_ERR_STATUS_LO_JPEG5D__Memory_id_MASK                                                           0xFF000000L
-+//VCN_UE_ERR_STATUS_HI_JPEG5D
-+#define VCN_UE_ERR_STATUS_HI_JPEG5D__ECC__SHIFT                                                               0x0
-+#define VCN_UE_ERR_STATUS_HI_JPEG5D__Parity__SHIFT                                                            0x1
-+#define VCN_UE_ERR_STATUS_HI_JPEG5D__Err_Info_Valid_Flag__SHIFT                                               0x2
-+#define VCN_UE_ERR_STATUS_HI_JPEG5D__Err_Info__SHIFT                                                          0x3
-+#define VCN_UE_ERR_STATUS_HI_JPEG5D__UE_Cnt__SHIFT                                                            0x17
-+#define VCN_UE_ERR_STATUS_HI_JPEG5D__FED_Cnt__SHIFT                                                           0x1a
-+#define VCN_UE_ERR_STATUS_HI_JPEG5D__RESERVED__SHIFT                                                          0x1d
-+#define VCN_UE_ERR_STATUS_HI_JPEG5D__Err_clr__SHIFT                                                           0x1f
-+#define VCN_UE_ERR_STATUS_HI_JPEG5D__ECC_MASK                                                                 0x00000001L
-+#define VCN_UE_ERR_STATUS_HI_JPEG5D__Parity_MASK                                                              0x00000002L
-+#define VCN_UE_ERR_STATUS_HI_JPEG5D__Err_Info_Valid_Flag_MASK                                                 0x00000004L
-+#define VCN_UE_ERR_STATUS_HI_JPEG5D__Err_Info_MASK                                                            0x007FFFF8L
-+#define VCN_UE_ERR_STATUS_HI_JPEG5D__UE_Cnt_MASK                                                              0x03800000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG5D__FED_Cnt_MASK                                                             0x1C000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG5D__RESERVED_MASK                                                            0x60000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG5D__Err_clr_MASK                                                             0x80000000L
-+//VCN_UE_ERR_STATUS_LO_JPEG6S
-+#define VCN_UE_ERR_STATUS_LO_JPEG6S__Err_Status_Valid_Flag__SHIFT                                             0x0
-+#define VCN_UE_ERR_STATUS_LO_JPEG6S__Address_Valid_Flag__SHIFT                                                0x1
-+#define VCN_UE_ERR_STATUS_LO_JPEG6S__Address__SHIFT                                                           0x2
-+#define VCN_UE_ERR_STATUS_LO_JPEG6S__Memory_id__SHIFT                                                         0x18
-+#define VCN_UE_ERR_STATUS_LO_JPEG6S__Err_Status_Valid_Flag_MASK                                               0x00000001L
-+#define VCN_UE_ERR_STATUS_LO_JPEG6S__Address_Valid_Flag_MASK                                                  0x00000002L
-+#define VCN_UE_ERR_STATUS_LO_JPEG6S__Address_MASK                                                             0x00FFFFFCL
-+#define VCN_UE_ERR_STATUS_LO_JPEG6S__Memory_id_MASK                                                           0xFF000000L
-+//VCN_UE_ERR_STATUS_HI_JPEG6S
-+#define VCN_UE_ERR_STATUS_HI_JPEG6S__ECC__SHIFT                                                               0x0
-+#define VCN_UE_ERR_STATUS_HI_JPEG6S__Parity__SHIFT                                                            0x1
-+#define VCN_UE_ERR_STATUS_HI_JPEG6S__Err_Info_Valid_Flag__SHIFT                                               0x2
-+#define VCN_UE_ERR_STATUS_HI_JPEG6S__Err_Info__SHIFT                                                          0x3
-+#define VCN_UE_ERR_STATUS_HI_JPEG6S__UE_Cnt__SHIFT                                                            0x17
-+#define VCN_UE_ERR_STATUS_HI_JPEG6S__FED_Cnt__SHIFT                                                           0x1a
-+#define VCN_UE_ERR_STATUS_HI_JPEG6S__RESERVED__SHIFT                                                          0x1d
-+#define VCN_UE_ERR_STATUS_HI_JPEG6S__Err_clr__SHIFT                                                           0x1f
-+#define VCN_UE_ERR_STATUS_HI_JPEG6S__ECC_MASK                                                                 0x00000001L
-+#define VCN_UE_ERR_STATUS_HI_JPEG6S__Parity_MASK                                                              0x00000002L
-+#define VCN_UE_ERR_STATUS_HI_JPEG6S__Err_Info_Valid_Flag_MASK                                                 0x00000004L
-+#define VCN_UE_ERR_STATUS_HI_JPEG6S__Err_Info_MASK                                                            0x007FFFF8L
-+#define VCN_UE_ERR_STATUS_HI_JPEG6S__UE_Cnt_MASK                                                              0x03800000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG6S__FED_Cnt_MASK                                                             0x1C000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG6S__RESERVED_MASK                                                            0x60000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG6S__Err_clr_MASK                                                             0x80000000L
-+//VCN_UE_ERR_STATUS_LO_JPEG6D
-+#define VCN_UE_ERR_STATUS_LO_JPEG6D__Err_Status_Valid_Flag__SHIFT                                             0x0
-+#define VCN_UE_ERR_STATUS_LO_JPEG6D__Address_Valid_Flag__SHIFT                                                0x1
-+#define VCN_UE_ERR_STATUS_LO_JPEG6D__Address__SHIFT                                                           0x2
-+#define VCN_UE_ERR_STATUS_LO_JPEG6D__Memory_id__SHIFT                                                         0x18
-+#define VCN_UE_ERR_STATUS_LO_JPEG6D__Err_Status_Valid_Flag_MASK                                               0x00000001L
-+#define VCN_UE_ERR_STATUS_LO_JPEG6D__Address_Valid_Flag_MASK                                                  0x00000002L
-+#define VCN_UE_ERR_STATUS_LO_JPEG6D__Address_MASK                                                             0x00FFFFFCL
-+#define VCN_UE_ERR_STATUS_LO_JPEG6D__Memory_id_MASK                                                           0xFF000000L
-+//VCN_UE_ERR_STATUS_HI_JPEG6D
-+#define VCN_UE_ERR_STATUS_HI_JPEG6D__ECC__SHIFT                                                               0x0
-+#define VCN_UE_ERR_STATUS_HI_JPEG6D__Parity__SHIFT                                                            0x1
-+#define VCN_UE_ERR_STATUS_HI_JPEG6D__Err_Info_Valid_Flag__SHIFT                                               0x2
-+#define VCN_UE_ERR_STATUS_HI_JPEG6D__Err_Info__SHIFT                                                          0x3
-+#define VCN_UE_ERR_STATUS_HI_JPEG6D__UE_Cnt__SHIFT                                                            0x17
-+#define VCN_UE_ERR_STATUS_HI_JPEG6D__FED_Cnt__SHIFT                                                           0x1a
-+#define VCN_UE_ERR_STATUS_HI_JPEG6D__RESERVED__SHIFT                                                          0x1d
-+#define VCN_UE_ERR_STATUS_HI_JPEG6D__Err_clr__SHIFT                                                           0x1f
-+#define VCN_UE_ERR_STATUS_HI_JPEG6D__ECC_MASK                                                                 0x00000001L
-+#define VCN_UE_ERR_STATUS_HI_JPEG6D__Parity_MASK                                                              0x00000002L
-+#define VCN_UE_ERR_STATUS_HI_JPEG6D__Err_Info_Valid_Flag_MASK                                                 0x00000004L
-+#define VCN_UE_ERR_STATUS_HI_JPEG6D__Err_Info_MASK                                                            0x007FFFF8L
-+#define VCN_UE_ERR_STATUS_HI_JPEG6D__UE_Cnt_MASK                                                              0x03800000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG6D__FED_Cnt_MASK                                                             0x1C000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG6D__RESERVED_MASK                                                            0x60000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG6D__Err_clr_MASK                                                             0x80000000L
-+//VCN_UE_ERR_STATUS_LO_JPEG7S
-+#define VCN_UE_ERR_STATUS_LO_JPEG7S__Err_Status_Valid_Flag__SHIFT                                             0x0
-+#define VCN_UE_ERR_STATUS_LO_JPEG7S__Address_Valid_Flag__SHIFT                                                0x1
-+#define VCN_UE_ERR_STATUS_LO_JPEG7S__Address__SHIFT                                                           0x2
-+#define VCN_UE_ERR_STATUS_LO_JPEG7S__Memory_id__SHIFT                                                         0x18
-+#define VCN_UE_ERR_STATUS_LO_JPEG7S__Err_Status_Valid_Flag_MASK                                               0x00000001L
-+#define VCN_UE_ERR_STATUS_LO_JPEG7S__Address_Valid_Flag_MASK                                                  0x00000002L
-+#define VCN_UE_ERR_STATUS_LO_JPEG7S__Address_MASK                                                             0x00FFFFFCL
-+#define VCN_UE_ERR_STATUS_LO_JPEG7S__Memory_id_MASK                                                           0xFF000000L
-+//VCN_UE_ERR_STATUS_HI_JPEG7S
-+#define VCN_UE_ERR_STATUS_HI_JPEG7S__ECC__SHIFT                                                               0x0
-+#define VCN_UE_ERR_STATUS_HI_JPEG7S__Parity__SHIFT                                                            0x1
-+#define VCN_UE_ERR_STATUS_HI_JPEG7S__Err_Info_Valid_Flag__SHIFT                                               0x2
-+#define VCN_UE_ERR_STATUS_HI_JPEG7S__Err_Info__SHIFT                                                          0x3
-+#define VCN_UE_ERR_STATUS_HI_JPEG7S__UE_Cnt__SHIFT                                                            0x17
-+#define VCN_UE_ERR_STATUS_HI_JPEG7S__FED_Cnt__SHIFT                                                           0x1a
-+#define VCN_UE_ERR_STATUS_HI_JPEG7S__RESERVED__SHIFT                                                          0x1d
-+#define VCN_UE_ERR_STATUS_HI_JPEG7S__Err_clr__SHIFT                                                           0x1f
-+#define VCN_UE_ERR_STATUS_HI_JPEG7S__ECC_MASK                                                                 0x00000001L
-+#define VCN_UE_ERR_STATUS_HI_JPEG7S__Parity_MASK                                                              0x00000002L
-+#define VCN_UE_ERR_STATUS_HI_JPEG7S__Err_Info_Valid_Flag_MASK                                                 0x00000004L
-+#define VCN_UE_ERR_STATUS_HI_JPEG7S__Err_Info_MASK                                                            0x007FFFF8L
-+#define VCN_UE_ERR_STATUS_HI_JPEG7S__UE_Cnt_MASK                                                              0x03800000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG7S__FED_Cnt_MASK                                                             0x1C000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG7S__RESERVED_MASK                                                            0x60000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG7S__Err_clr_MASK                                                             0x80000000L
-+//VCN_UE_ERR_STATUS_LO_JPEG7D
-+#define VCN_UE_ERR_STATUS_LO_JPEG7D__Err_Status_Valid_Flag__SHIFT                                             0x0
-+#define VCN_UE_ERR_STATUS_LO_JPEG7D__Address_Valid_Flag__SHIFT                                                0x1
-+#define VCN_UE_ERR_STATUS_LO_JPEG7D__Address__SHIFT                                                           0x2
-+#define VCN_UE_ERR_STATUS_LO_JPEG7D__Memory_id__SHIFT                                                         0x18
-+#define VCN_UE_ERR_STATUS_LO_JPEG7D__Err_Status_Valid_Flag_MASK                                               0x00000001L
-+#define VCN_UE_ERR_STATUS_LO_JPEG7D__Address_Valid_Flag_MASK                                                  0x00000002L
-+#define VCN_UE_ERR_STATUS_LO_JPEG7D__Address_MASK                                                             0x00FFFFFCL
-+#define VCN_UE_ERR_STATUS_LO_JPEG7D__Memory_id_MASK                                                           0xFF000000L
-+//VCN_UE_ERR_STATUS_HI_JPEG7D
-+#define VCN_UE_ERR_STATUS_HI_JPEG7D__ECC__SHIFT                                                               0x0
-+#define VCN_UE_ERR_STATUS_HI_JPEG7D__Parity__SHIFT                                                            0x1
-+#define VCN_UE_ERR_STATUS_HI_JPEG7D__Err_Info_Valid_Flag__SHIFT                                               0x2
-+#define VCN_UE_ERR_STATUS_HI_JPEG7D__Err_Info__SHIFT                                                          0x3
-+#define VCN_UE_ERR_STATUS_HI_JPEG7D__UE_Cnt__SHIFT                                                            0x17
-+#define VCN_UE_ERR_STATUS_HI_JPEG7D__FED_Cnt__SHIFT                                                           0x1a
-+#define VCN_UE_ERR_STATUS_HI_JPEG7D__RESERVED__SHIFT                                                          0x1d
-+#define VCN_UE_ERR_STATUS_HI_JPEG7D__Err_clr__SHIFT                                                           0x1f
-+#define VCN_UE_ERR_STATUS_HI_JPEG7D__ECC_MASK                                                                 0x00000001L
-+#define VCN_UE_ERR_STATUS_HI_JPEG7D__Parity_MASK                                                              0x00000002L
-+#define VCN_UE_ERR_STATUS_HI_JPEG7D__Err_Info_Valid_Flag_MASK                                                 0x00000004L
-+#define VCN_UE_ERR_STATUS_HI_JPEG7D__Err_Info_MASK                                                            0x007FFFF8L
-+#define VCN_UE_ERR_STATUS_HI_JPEG7D__UE_Cnt_MASK                                                              0x03800000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG7D__FED_Cnt_MASK                                                             0x1C000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG7D__RESERVED_MASK                                                            0x60000000L
-+#define VCN_UE_ERR_STATUS_HI_JPEG7D__Err_clr_MASK                                                             0x80000000L
- 
- // addressBlock: aid_uvd0_uvd_jrbc0_uvd_jrbc_dec
- //UVD_JRBC0_UVD_JRBC_RB_WPTR
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
+index 9d0c3dc76547..e5037d6f884b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
+@@ -1430,3 +1430,39 @@ const struct amdgpu_ip_block_version vcn_v4_0_3_ip_block = {
+ 	.rev = 3,
+ 	.funcs = &vcn_v4_0_3_ip_funcs,
+ };
++
++static const struct amdgpu_ras_err_status_reg_entry vcn_v4_0_3_ue_reg_list[] = {
++	{AMDGPU_RAS_REG_ENTRY(VCN, 0, regVCN_UE_ERR_STATUS_LO_VIDD, regVCN_UE_ERR_STATUS_HI_VIDD),
++	1, (AMDGPU_RAS_ERR_INFO_VALID | AMDGPU_RAS_ERR_STATUS_VALID), "VIDD"},
++	{AMDGPU_RAS_REG_ENTRY(VCN, 0, regVCN_UE_ERR_STATUS_LO_VIDV, regVCN_UE_ERR_STATUS_HI_VIDV),
++	1, (AMDGPU_RAS_ERR_INFO_VALID | AMDGPU_RAS_ERR_STATUS_VALID), "VIDV"},
++};
++
++static void vcn_v4_0_3_inst_query_ras_error_count(struct amdgpu_device *adev,
++						  uint32_t vcn_inst,
++						  void *ras_err_status)
++{
++	struct ras_err_data *err_data = (struct ras_err_data *)ras_err_status;
++
++	/* vcn v4_0_3 only support query uncorrectable errors */
++	amdgpu_ras_inst_query_ras_error_count(adev,
++			vcn_v4_0_3_ue_reg_list,
++			ARRAY_SIZE(vcn_v4_0_3_ue_reg_list),
++			NULL, 0, GET_INST(VCN, vcn_inst),
++			AMDGPU_RAS_ERROR__MULTI_UNCORRECTABLE,
++			&err_data->ue_count);
++}
++
++static void vcn_v4_0_3_query_ras_error_count(struct amdgpu_device *adev,
++					     void *ras_err_status)
++{
++	uint32_t i;
++
++	if (!amdgpu_ras_is_supported(adev, AMDGPU_RAS_BLOCK__VCN)) {
++		dev_warn(adev->dev, "VCN RAS is not supported\n");
++		return;
++	}
++
++	for (i = 0; i < adev->vcn.num_vcn_inst; i++)
++		vcn_v4_0_3_inst_query_ras_error_count(adev, i, ras_err_status);
++}
 -- 
 2.40.1
 
