@@ -1,42 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF15D6FD29E
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 May 2023 00:21:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A76626FD29B
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 May 2023 00:21:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E73610E437;
-	Tue,  9 May 2023 22:21:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 342B910E431;
+	Tue,  9 May 2023 22:21:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2046.outbound.protection.outlook.com [40.107.223.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61EE110E42E
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 May 2023 22:21:45 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1nam02on2062b.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7ea9::62b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B881C10E430
+ for <amd-gfx@lists.freedesktop.org>; Tue,  9 May 2023 22:21:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UrIHxyIY6ec3EHbHqH19BN6PiGKbgB3yLASUHtil8KaH4q+gm3iX2Y8ndjv3LRpZVsOP/MqydwGoc4UKf+YmhFkjUrqxJ0P++ps14gNIaIwur6rixU5nQmjAbSFhjIanaTMqW/zmS+bDMQZVrTLYypbabzMCkNTpgKGzx5a40IgTuHqKJ7TVOmuXQKZRQlLrIjFqL33Eh4xDq9IyL9dY0l0h7dJ34aJP8x5UtLml3ow4vzskZwP+5O9wVeNpX2N2Gs1BXpe3SXPYdrbgDUWbk9I5lwZi61iP18aJkxkNoSs89jIZnIwhDqCKwfiTrKeI17tI1KJrgKLBU+9NjK5t3A==
+ b=aTNvdAMDEfJwdMW1nRu6e9wQ3ahtV5umj2MlguJZV3wjHO3gXyayeFjebBOYRhgofsxjh4kMzFtZ6xk9d4mWxi0A67k64vjuzhIxpL25CyqHbDT6MXGFMnBoeIZhthR0qcBB58ZXqT97MmefgkMs18XNJw9DBVMob3BbhPoSUgDlDhultxa13B1vELdvi7yET1vfXy587eb439W41PKotR+IbqrGfKdh88G4T8dhtkApBo/K0sUIv7U79oHTs39b/38yvkCMY0gY25fuvXk473sy3mcP+B6Ql18WXHXhfPJ/O0uvvwKD5uTm8uKhE8XdcAE3jtuhChQ68lxNIaWQpg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=irYJzEC4gmqMrlPSkOhdqhueLDF0PdyCrScBsUIJRio=;
- b=kNT1mNMgmeL3rsgNbOx5JN+ukDiIlvNDUkVYFH95Frjx5VZDy7rabb5hjT8vzolu/9bKxzV7NukE2nMzEsGL+zZFklAEWU16QTH+Gx2wu9q3YqJpQrkf2WvrkKQnuwu2uBbZdtNJO2E1n9s6mU/WxrL0IWfyPUNU9DeNePaVC/7B7WHbzsiEUa4LeiRrUTbIbfKZ276+kvXNthAc+6Y6cY3prBPEPtvsCzwdGQsHwMFWadteo6keroCqqmHlXegTUgxhwhltC/cUEaGk1LOAxdJSA24OhhJb7YYCdIv1G1A+GP7msL6hWw5Gc09EUg8UApzgu0S22QH0gE47tTf53A==
+ bh=YPw/DcLHptp92hSDj4YvgN1CQAwOM7SiHG8Btib9fV8=;
+ b=hPNh6aQO++smKe2MwQp6UkM+aL0xpwZkftKRGyCK8sMscMKQx+JUeh+3G7I5UXs6qQTih0M33YcRTTJ+nUPhqdO3eWII8AP0TSG0wJCWCcxJnS5nifYj58ysXzeVsjwxPhxHY3+qppSU0sYOIgqIlf0kqcCcikmQ1SoAHRf5Pp6gxizJu+5W0ky38m9mMQqBCTHnfOPBrVcaPLWdygKrw9LZpvWWkEyLb+Fv4xpichQCJS+pdxXItvHbZHTQiZRHr6+o1aSOzdKTKeLdcMpiT8c+X203VD4yamrRrWSlQmcAO00EzfufHNYlkVd+zSlPpCe+Ndayu0l12Obal/ImvA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=irYJzEC4gmqMrlPSkOhdqhueLDF0PdyCrScBsUIJRio=;
- b=PSyIIx6dpLFHyu5a7FI5cwt/f5tAEhzqZ1Z39UzfRoESH9bE261bQwMmD7Lgb+fugSV27vjRf6inhDyArj5atfr23jyqsBzAP7tpfl48gSDxiVDn9pJHsy/B8Ud7sFgIAOV185Lxgo8wIXxeRDwMeicKVUDFJabM+T1TC5x+amo=
-Received: from BN8PR15CA0026.namprd15.prod.outlook.com (2603:10b6:408:c0::39)
- by IA1PR12MB8520.namprd12.prod.outlook.com (2603:10b6:208:44d::5)
+ bh=YPw/DcLHptp92hSDj4YvgN1CQAwOM7SiHG8Btib9fV8=;
+ b=mvRDTqnEJpZ1dm0FFvGrzC6pDUg3OOEusmrpimrJDcwVeV3hqlc9olsv1mdyjG4WCZZWcNk/EWwg5W7XXYUa9zPDqDtMrbtq5WDvb3oWlo3VQEXa2P4MacIHvuHFTgAn78jprcDF2VWXCwxPxc2jecM3bu2WuPZI4F6/Gqi9VbI=
+Received: from BN8PR15CA0027.namprd15.prod.outlook.com (2603:10b6:408:c0::40)
+ by SN7PR12MB8148.namprd12.prod.outlook.com (2603:10b6:806:351::17)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.32; Tue, 9 May
- 2023 22:21:43 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.18; Tue, 9 May
+ 2023 22:21:44 +0000
 Received: from BN8NAM11FT114.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:c0:cafe::70) by BN8PR15CA0026.outlook.office365.com
- (2603:10b6:408:c0::39) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.18 via Frontend
+ (2603:10b6:408:c0:cafe::d3) by BN8PR15CA0027.outlook.office365.com
+ (2603:10b6:408:c0::40) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.33 via Frontend
  Transport; Tue, 9 May 2023 22:21:43 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -51,12 +52,12 @@ Received: from SATLEXMB04.amd.com (165.204.84.17) by
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 9 May
- 2023 17:21:41 -0500
+ 2023 17:21:42 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 6/9] drm/amdgpu: Add query_ras_error_count for jpeg v4_0_3
-Date: Tue, 9 May 2023 18:21:23 -0400
-Message-ID: <20230509222126.477847-6-alexander.deucher@amd.com>
+Subject: [PATCH 7/9] drm/amdgpu: Add reset_ras_error_count for jpeg v4_0_3
+Date: Tue, 9 May 2023 18:21:24 -0400
+Message-ID: <20230509222126.477847-7-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230509222126.477847-1-alexander.deucher@amd.com>
 References: <20230509222126.477847-1-alexander.deucher@amd.com>
@@ -68,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT114:EE_|IA1PR12MB8520:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0e95df74-890b-4fa2-6e13-08db50dbc4b3
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT114:EE_|SN7PR12MB8148:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2ead4d34-cb66-4c57-a150-08db50dbc52a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7QAHMSmPvvdd8sQ57O+6zYzw1Z9J5zqgm/1DSz9GlXk87Nx1pVj4zhZyjrL+S/rJszS5WHXCuBwpOm3HfMZmkVU58wZKi+Lja7InBYYrR+lov/lg1Tpo/tHh51JgLRMYPl25JrKN7Il6ypsI4yVWn9gjUtRMzXUaWxWYdrgdW10GEQWaoNyVyuNUnuz5W9Iqo6M8KjLqga+PsKH+Ftc8z4F2P8K/VgxQWHoOQ1ZLOBdC03/8II/fbbsVmyNcl0R+h4WgA2NUGCOKCz9bPRPRtduqFKw5QGCxI3SgezeS3258VMcyU3UnYTowAI9P78CaFbcK52P+BbZyfYUUzWJvvx7UC/hF6iF8v/PTK1FiU9p4Uu4eg+KqwrRHKbfVwpLZK1vr5JAHkr2x1wCBC47wvB+ltZZ64b7SGg9v0v1xv/C+f/eAFnfxRvgynhW817+yLp5IMalE9qZtrRr73+4tByzOQq2atlAeqXb+k6EoFmK4zDsFvTU+r78rX9OKhDWrZASWroUkkri4Bu8WQB6NCcl9NW+WgI7fHTWjdeF0h3T11kli9OZHlYu1bh+59LaiuUuiPvaW1j+R5mNyeAHbA7QwLceJYTEefLieIw+J0rNdWCc30w0FyIBslsCK7xpDvCTVITUZTjErGZgjA39ccmT9DrwHT/3RmpsRJ1QgvIMCZQOOYqGp6hHN+nqxr0ge32TiXZ7SUBd0ZlG92M1SdUweB/kRXgVedZOsY1NkPl0=
+X-Microsoft-Antispam-Message-Info: Zy8M7lzi4qJbb2Apo/2SzLgNwrUrRU2MFM7WdMzTtFKTtj1hnhhfJqknB2NuJGGNmC1HqwQ7ML4KDU3J404U23LXvCpPRUA70qo00RnrnN7DADPoB8ZAPeJ7hgkX9WPAy8qyItErIdm8VjZSeV0h/SBS1mKSvkmSiZAIk2zzM6XVr4CYylIRW3cbgp0cPsMLiegxu5vvY72JFMmA+/ww4bi+IAzZvKU4Kb022ZGb7gHVj32gSPo5/iGRdDrTNkcv2Nu9e+VMOTkgRYHsf9HUdWAW9JajWR8iarMdQ7SswoINX7d6l+7td2X6nlfXOZIqI+p94hjP2PHF4zJOIHIzOiDy5TK6Z/Pep4DjSqyv0fVakkOoO5uzz0AyLttB1HrGQWWrWcqnG8XWRXVhf1Msa891H2T+cu2K9FBVgAO0Scky+NZ5sE4Z/eNR0XVI7LtwW+dbrAb2m4xh+ZaMvezJWu7o1l7/ebMg1etGksDJQ1TyTGjET3cn8PqRLn2DyTSgiYEfg7EktrhwK+BuLU635R02a4gD2yUFC+8WuBYFavRB9/nXb6mmCUVnTpBOaZA2yrwhQcbQmaExk1i67sD3GYi46FQdgDlvaEM2pcWwmBxmRzlgEZBIitZZLRIIdLha2H4ZCdvTsNC17+G070B5CFUWSb12y6jk+Ku/icqYA1/YnMszCPkBzqBkEUXrlTU/2FpYACex5vAQtk+dpnYElqybdWbOzV+sxL6cy0eq64jwjsZLYgyO6Xa4yK7k5WYq9kuGLhFOUcHzLPMGboNh8A==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(39860400002)(376002)(136003)(346002)(396003)(451199021)(36840700001)(46966006)(40470700004)(86362001)(36756003)(6666004)(316002)(54906003)(4326008)(6916009)(478600001)(70586007)(7696005)(70206006)(82310400005)(5660300002)(8676002)(40480700001)(8936002)(41300700001)(2906002)(82740400003)(81166007)(356005)(16526019)(186003)(1076003)(26005)(36860700001)(83380400001)(336012)(47076005)(426003)(2616005)(40460700003)(36900700001);
+ SFS:(13230028)(4636009)(39860400002)(136003)(346002)(396003)(376002)(451199021)(46966006)(36840700001)(40470700004)(2616005)(2906002)(40460700003)(186003)(16526019)(36756003)(478600001)(7696005)(6666004)(40480700001)(26005)(41300700001)(1076003)(83380400001)(356005)(316002)(82740400003)(81166007)(54906003)(47076005)(4326008)(6916009)(70586007)(70206006)(8676002)(8936002)(82310400005)(86362001)(5660300002)(36860700001)(336012)(426003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2023 22:21:43.0741 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0e95df74-890b-4fa2-6e13-08db50dbc4b3
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2023 22:21:43.8709 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ead4d34-cb66-4c57-a150-08db50dbc52a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT114.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8520
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8148
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,77 +107,35 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Hawking Zhang <Hawking.Zhang@amd.com>
 
-Add query_ras_error_count callback for jpeg v4_0_3.
-It will be used to query and log jpeg error count.
+Add reset_ras_error_count callback for jpeg v4_0_3.
+It will be used to reset jpeg ras error count.
 
 Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Reviewed-by: Tao Zhou <tao.zhou1@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c | 64 ++++++++++++++++++++++++
- 1 file changed, 64 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
-index ea9cb098a144..5dedba91fa32 100644
+index 5dedba91fa32..21226d6d26f8 100644
 --- a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
 +++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
-@@ -960,3 +960,67 @@ const struct amdgpu_ip_block_version jpeg_v4_0_3_ip_block = {
- 	.rev = 3,
- 	.funcs = &jpeg_v4_0_3_ip_funcs,
- };
+@@ -1024,3 +1024,25 @@ static void jpeg_v4_0_3_query_ras_error_count(struct amdgpu_device *adev,
+ 	for (i = 0; i < adev->jpeg.num_jpeg_inst; i++)
+ 		jpeg_v4_0_3_inst_query_ras_error_count(adev, i, ras_err_status);
+ }
 +
-+static const struct amdgpu_ras_err_status_reg_entry jpeg_v4_0_3_ue_reg_list[] = {
-+	{AMDGPU_RAS_REG_ENTRY(JPEG, 0, regVCN_UE_ERR_STATUS_LO_JPEG0S, regVCN_UE_ERR_STATUS_HI_JPEG0S),
-+	1, (AMDGPU_RAS_ERR_INFO_VALID | AMDGPU_RAS_ERR_STATUS_VALID), "JPEG0S"},
-+	{AMDGPU_RAS_REG_ENTRY(JPEG, 0, regVCN_UE_ERR_STATUS_LO_JPEG0D, regVCN_UE_ERR_STATUS_HI_JPEG0D),
-+	1, (AMDGPU_RAS_ERR_INFO_VALID | AMDGPU_RAS_ERR_STATUS_VALID), "JPEG0D"},
-+	{AMDGPU_RAS_REG_ENTRY(JPEG, 0, regVCN_UE_ERR_STATUS_LO_JPEG1S, regVCN_UE_ERR_STATUS_HI_JPEG1S),
-+	1, (AMDGPU_RAS_ERR_INFO_VALID | AMDGPU_RAS_ERR_STATUS_VALID), "JPEG1S"},
-+	{AMDGPU_RAS_REG_ENTRY(JPEG, 0, regVCN_UE_ERR_STATUS_LO_JPEG1D, regVCN_UE_ERR_STATUS_HI_JPEG1D),
-+	1, (AMDGPU_RAS_ERR_INFO_VALID | AMDGPU_RAS_ERR_STATUS_VALID), "JPEG1D"},
-+	{AMDGPU_RAS_REG_ENTRY(JPEG, 0, regVCN_UE_ERR_STATUS_LO_JPEG2S, regVCN_UE_ERR_STATUS_HI_JPEG2S),
-+	1, (AMDGPU_RAS_ERR_INFO_VALID | AMDGPU_RAS_ERR_STATUS_VALID), "JPEG2S"},
-+	{AMDGPU_RAS_REG_ENTRY(JPEG, 0, regVCN_UE_ERR_STATUS_LO_JPEG2D, regVCN_UE_ERR_STATUS_HI_JPEG2D),
-+	1, (AMDGPU_RAS_ERR_INFO_VALID | AMDGPU_RAS_ERR_STATUS_VALID), "JPEG2D"},
-+	{AMDGPU_RAS_REG_ENTRY(JPEG, 0, regVCN_UE_ERR_STATUS_LO_JPEG3S, regVCN_UE_ERR_STATUS_HI_JPEG3S),
-+	1, (AMDGPU_RAS_ERR_INFO_VALID | AMDGPU_RAS_ERR_STATUS_VALID), "JPEG3S"},
-+	{AMDGPU_RAS_REG_ENTRY(JPEG, 0, regVCN_UE_ERR_STATUS_LO_JPEG3D, regVCN_UE_ERR_STATUS_HI_JPEG3D),
-+	1, (AMDGPU_RAS_ERR_INFO_VALID | AMDGPU_RAS_ERR_STATUS_VALID), "JPEG3D"},
-+	{AMDGPU_RAS_REG_ENTRY(JPEG, 0, regVCN_UE_ERR_STATUS_LO_JPEG4S, regVCN_UE_ERR_STATUS_HI_JPEG4S),
-+	1, (AMDGPU_RAS_ERR_INFO_VALID | AMDGPU_RAS_ERR_STATUS_VALID), "JPEG4S"},
-+	{AMDGPU_RAS_REG_ENTRY(JPEG, 0, regVCN_UE_ERR_STATUS_LO_JPEG4D, regVCN_UE_ERR_STATUS_HI_JPEG4D),
-+	1, (AMDGPU_RAS_ERR_INFO_VALID | AMDGPU_RAS_ERR_STATUS_VALID), "JPEG4D"},
-+	{AMDGPU_RAS_REG_ENTRY(JPEG, 0, regVCN_UE_ERR_STATUS_LO_JPEG5S, regVCN_UE_ERR_STATUS_HI_JPEG5S),
-+	1, (AMDGPU_RAS_ERR_INFO_VALID | AMDGPU_RAS_ERR_STATUS_VALID), "JPEG5S"},
-+	{AMDGPU_RAS_REG_ENTRY(JPEG, 0, regVCN_UE_ERR_STATUS_LO_JPEG5D, regVCN_UE_ERR_STATUS_HI_JPEG5D),
-+	1, (AMDGPU_RAS_ERR_INFO_VALID | AMDGPU_RAS_ERR_STATUS_VALID), "JPEG5D"},
-+	{AMDGPU_RAS_REG_ENTRY(JPEG, 0, regVCN_UE_ERR_STATUS_LO_JPEG6S, regVCN_UE_ERR_STATUS_HI_JPEG6S),
-+	1, (AMDGPU_RAS_ERR_INFO_VALID | AMDGPU_RAS_ERR_STATUS_VALID), "JPEG6S"},
-+	{AMDGPU_RAS_REG_ENTRY(JPEG, 0, regVCN_UE_ERR_STATUS_LO_JPEG6D, regVCN_UE_ERR_STATUS_HI_JPEG6D),
-+	1, (AMDGPU_RAS_ERR_INFO_VALID | AMDGPU_RAS_ERR_STATUS_VALID), "JPEG6D"},
-+	{AMDGPU_RAS_REG_ENTRY(JPEG, 0, regVCN_UE_ERR_STATUS_LO_JPEG7S, regVCN_UE_ERR_STATUS_HI_JPEG7S),
-+	1, (AMDGPU_RAS_ERR_INFO_VALID | AMDGPU_RAS_ERR_STATUS_VALID), "JPEG7S"},
-+	{AMDGPU_RAS_REG_ENTRY(JPEG, 0, regVCN_UE_ERR_STATUS_LO_JPEG7D, regVCN_UE_ERR_STATUS_HI_JPEG7D),
-+	1, (AMDGPU_RAS_ERR_INFO_VALID | AMDGPU_RAS_ERR_STATUS_VALID), "JPEG7D"},
-+};
-+
-+static void jpeg_v4_0_3_inst_query_ras_error_count(struct amdgpu_device *adev,
-+						   uint32_t jpeg_inst,
-+						   void *ras_err_status)
++static void jpeg_v4_0_3_inst_reset_ras_error_count(struct amdgpu_device *adev,
++						   uint32_t jpeg_inst)
 +{
-+	struct ras_err_data *err_data = (struct ras_err_data *)ras_err_status;
-+
-+	/* jpeg v4_0_3 only support uncorrectable errors */
-+	amdgpu_ras_inst_query_ras_error_count(adev,
++	amdgpu_ras_inst_reset_ras_error_count(adev,
 +			jpeg_v4_0_3_ue_reg_list,
 +			ARRAY_SIZE(jpeg_v4_0_3_ue_reg_list),
-+			NULL, 0, GET_INST(VCN, jpeg_inst),
-+			AMDGPU_RAS_ERROR__MULTI_UNCORRECTABLE,
-+			&err_data->ue_count);
++			GET_INST(VCN, jpeg_inst));
 +}
 +
-+static void jpeg_v4_0_3_query_ras_error_count(struct amdgpu_device *adev,
-+					      void *ras_err_status)
++static void jpeg_v4_0_3_reset_ras_error_count(struct amdgpu_device *adev)
 +{
 +	uint32_t i;
 +
@@ -186,7 +145,7 @@ index ea9cb098a144..5dedba91fa32 100644
 +	}
 +
 +	for (i = 0; i < adev->jpeg.num_jpeg_inst; i++)
-+		jpeg_v4_0_3_inst_query_ras_error_count(adev, i, ras_err_status);
++		jpeg_v4_0_3_inst_reset_ras_error_count(adev, i);
 +}
 -- 
 2.40.1
