@@ -2,43 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A76626FD29B
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 May 2023 00:21:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 747236FD29F
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 May 2023 00:21:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 342B910E431;
-	Tue,  9 May 2023 22:21:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F5B010E438;
+	Tue,  9 May 2023 22:21:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam02on2062b.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7ea9::62b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B881C10E430
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 May 2023 22:21:46 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2062.outbound.protection.outlook.com [40.107.223.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D5E110E431
+ for <amd-gfx@lists.freedesktop.org>; Tue,  9 May 2023 22:21:47 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aTNvdAMDEfJwdMW1nRu6e9wQ3ahtV5umj2MlguJZV3wjHO3gXyayeFjebBOYRhgofsxjh4kMzFtZ6xk9d4mWxi0A67k64vjuzhIxpL25CyqHbDT6MXGFMnBoeIZhthR0qcBB58ZXqT97MmefgkMs18XNJw9DBVMob3BbhPoSUgDlDhultxa13B1vELdvi7yET1vfXy587eb439W41PKotR+IbqrGfKdh88G4T8dhtkApBo/K0sUIv7U79oHTs39b/38yvkCMY0gY25fuvXk473sy3mcP+B6Ql18WXHXhfPJ/O0uvvwKD5uTm8uKhE8XdcAE3jtuhChQ68lxNIaWQpg==
+ b=Gniprr0AcoRXS+vb/Oepc6gVpYXythbZkuSuRt1ba38rvBJYzqixWSzhBiZq8WTQhmv3Myv9GG8NKZPpYm5fR9Vxf7VH5SkxDl+0/VfoOyOqgO6fk4e4MMHe5G5GBtW+2hYk1VcXo89L1O4EiiyVFL4qholMMsUbMr7PUhzdmMrFiR/Ad3YeBz8maM9qygN8pC/gYrt3KfiYqyHtfX3OGvKLyfRknk6I6kYSmoK8OrpseLx5/i8xi1ngMpp/fcuKRUXH93Tozexnv4BCaTDd8zSgiyrrjfDizZ/Jmscs0sDfCYWixwsaIBSiqpphgeMswxawUB4/krmPNIIt9Y4pdA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YPw/DcLHptp92hSDj4YvgN1CQAwOM7SiHG8Btib9fV8=;
- b=hPNh6aQO++smKe2MwQp6UkM+aL0xpwZkftKRGyCK8sMscMKQx+JUeh+3G7I5UXs6qQTih0M33YcRTTJ+nUPhqdO3eWII8AP0TSG0wJCWCcxJnS5nifYj58ysXzeVsjwxPhxHY3+qppSU0sYOIgqIlf0kqcCcikmQ1SoAHRf5Pp6gxizJu+5W0ky38m9mMQqBCTHnfOPBrVcaPLWdygKrw9LZpvWWkEyLb+Fv4xpichQCJS+pdxXItvHbZHTQiZRHr6+o1aSOzdKTKeLdcMpiT8c+X203VD4yamrRrWSlQmcAO00EzfufHNYlkVd+zSlPpCe+Ndayu0l12Obal/ImvA==
+ bh=o7kmAFc6rTA779+vkt4V6tDdlk/SwhY5cAPk8MTKxes=;
+ b=dlQykunm31j/5Vzlg0wMutfZFckkCq9DXgm7Q4FrwzLyPLxZlbxkHv6ChN49jGIylFM/TITeOpI8/8qV1MYkJrbIr/pdJgAF+H2r3QYxplqMlWpH7zypdjSb/+mkZJWNE16KSjsc5iYRi49EueDzT1E6U7GQsL45yDn9stXGbKxF9ZFgQm5JOUcDzmlVpQ8fBshlYJsy0SWcvCJBTZZsqOcq5QbgeZGnSjEnnrwubzlN/4uOAiCxV3cjgCT7UeM0VlTrSmxXZqUjNo1BFFW5AgtPqoeINUf0B8CXXGvNg45GzDr91ECyFL/HleoD4KWQhR6MLQKYfLzxpRnzqPX6ig==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YPw/DcLHptp92hSDj4YvgN1CQAwOM7SiHG8Btib9fV8=;
- b=mvRDTqnEJpZ1dm0FFvGrzC6pDUg3OOEusmrpimrJDcwVeV3hqlc9olsv1mdyjG4WCZZWcNk/EWwg5W7XXYUa9zPDqDtMrbtq5WDvb3oWlo3VQEXa2P4MacIHvuHFTgAn78jprcDF2VWXCwxPxc2jecM3bu2WuPZI4F6/Gqi9VbI=
-Received: from BN8PR15CA0027.namprd15.prod.outlook.com (2603:10b6:408:c0::40)
- by SN7PR12MB8148.namprd12.prod.outlook.com (2603:10b6:806:351::17)
+ bh=o7kmAFc6rTA779+vkt4V6tDdlk/SwhY5cAPk8MTKxes=;
+ b=2Y2+TcgU7bKLwsgf9YyeQfEe3OpGYoIh1xEOozV2y0JcxFdBRmxQit+6nFtYZNb0rVJSBKuTDdZDZTyimyHE+rx2ROF7j1NT1VyPg+TXN5OzDb1+lJpizFY59rBXJWUiLNBQfiKWZ8o3xbw8zXFsdiwXHdx3cXYis8uUE6QZwco=
+Received: from BN8PR15CA0010.namprd15.prod.outlook.com (2603:10b6:408:c0::23)
+ by SA3PR12MB8764.namprd12.prod.outlook.com (2603:10b6:806:31f::16)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.18; Tue, 9 May
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.32; Tue, 9 May
  2023 22:21:44 +0000
 Received: from BN8NAM11FT114.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:c0:cafe::d3) by BN8PR15CA0027.outlook.office365.com
- (2603:10b6:408:c0::40) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.33 via Frontend
- Transport; Tue, 9 May 2023 22:21:43 +0000
+ (2603:10b6:408:c0:cafe::fd) by BN8PR15CA0010.outlook.office365.com
+ (2603:10b6:408:c0::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.18 via Frontend
+ Transport; Tue, 9 May 2023 22:21:44 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -48,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN8NAM11FT114.mail.protection.outlook.com (10.13.177.46) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6387.18 via Frontend Transport; Tue, 9 May 2023 22:21:43 +0000
+ 15.20.6387.18 via Frontend Transport; Tue, 9 May 2023 22:21:44 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 9 May
  2023 17:21:42 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 7/9] drm/amdgpu: Add reset_ras_error_count for jpeg v4_0_3
-Date: Tue, 9 May 2023 18:21:24 -0400
-Message-ID: <20230509222126.477847-7-alexander.deucher@amd.com>
+Subject: [PATCH 8/9] drm/amdgpu: Initialize jpeg v4_0_3 ras function
+Date: Tue, 9 May 2023 18:21:25 -0400
+Message-ID: <20230509222126.477847-8-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230509222126.477847-1-alexander.deucher@amd.com>
 References: <20230509222126.477847-1-alexander.deucher@amd.com>
@@ -69,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT114:EE_|SN7PR12MB8148:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2ead4d34-cb66-4c57-a150-08db50dbc52a
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT114:EE_|SA3PR12MB8764:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8c2f07ae-95e8-46e2-4da5-08db50dbc579
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Zy8M7lzi4qJbb2Apo/2SzLgNwrUrRU2MFM7WdMzTtFKTtj1hnhhfJqknB2NuJGGNmC1HqwQ7ML4KDU3J404U23LXvCpPRUA70qo00RnrnN7DADPoB8ZAPeJ7hgkX9WPAy8qyItErIdm8VjZSeV0h/SBS1mKSvkmSiZAIk2zzM6XVr4CYylIRW3cbgp0cPsMLiegxu5vvY72JFMmA+/ww4bi+IAzZvKU4Kb022ZGb7gHVj32gSPo5/iGRdDrTNkcv2Nu9e+VMOTkgRYHsf9HUdWAW9JajWR8iarMdQ7SswoINX7d6l+7td2X6nlfXOZIqI+p94hjP2PHF4zJOIHIzOiDy5TK6Z/Pep4DjSqyv0fVakkOoO5uzz0AyLttB1HrGQWWrWcqnG8XWRXVhf1Msa891H2T+cu2K9FBVgAO0Scky+NZ5sE4Z/eNR0XVI7LtwW+dbrAb2m4xh+ZaMvezJWu7o1l7/ebMg1etGksDJQ1TyTGjET3cn8PqRLn2DyTSgiYEfg7EktrhwK+BuLU635R02a4gD2yUFC+8WuBYFavRB9/nXb6mmCUVnTpBOaZA2yrwhQcbQmaExk1i67sD3GYi46FQdgDlvaEM2pcWwmBxmRzlgEZBIitZZLRIIdLha2H4ZCdvTsNC17+G070B5CFUWSb12y6jk+Ku/icqYA1/YnMszCPkBzqBkEUXrlTU/2FpYACex5vAQtk+dpnYElqybdWbOzV+sxL6cy0eq64jwjsZLYgyO6Xa4yK7k5WYq9kuGLhFOUcHzLPMGboNh8A==
+X-Microsoft-Antispam-Message-Info: NFxk4/ulm8mYSD0ssS3v8jM15/FOlrRmnyG0f+aqGII6W9OXoHzV5kqbgD7TnsRJbrLWjvbjmonDpdt1lWpE8grvXcr4iKdJ1Vd6TWRzxZSXGejm5okK5RfW+PzZw2E2naSk7HSoKQlEiK3j57feyOhQCX+5PKwDVVZ/E3rAubtc/YieLt9gxP42/yJ/jJSww5IVvhu0dzeL3XUTVcplEBWejjIqJkCdgYrsERCodBLtilMvEvkzDny4Y+dWcX/mEHzOMQ055Vp1WVS1XrYOxxeRIMeqw/EFe+bZg/xeUhiYjwR2pmogk/4UfAewD5acRg9EGkDlKya6WMl1ajGpFy01zpeu8iUADS7cutAWZmzbTwSEytlMP7InPGqARaoifMTKDk2n2ZHmTPA735xJEVrr+7eqTqBcWhOH4q5qSvZjzS58LBf+rVI6xnjPzmZHKmwOyHe8a7DyE7Eh7vxxjxGYiaSoCRSDQRsfyHKCWZzRl2JXpI7KirmXKRoPAqmsKdJZgr6rUIvJ4kfBm3jF72XodMEGdOXKnfuMOx97H7XqkUEw/sbg9e3I09n8HeQJ0L02o/BPbZlrJVH0dsF1zVG0P/ePtMdtzoxd6ZSa3ay3LLuD6ASf6kEK3Fq9SloCmlatIrdYBIxg+ejoMUmN9fqjGYtVPFRbdgkiAMQnBJOxH9M2k4Rtf9Iw5kTRXdyiEAzu4ABXVuPgNBbEOqgmR7BSHK5TiSicOi1CRuAqF38=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(39860400002)(136003)(346002)(396003)(376002)(451199021)(46966006)(36840700001)(40470700004)(2616005)(2906002)(40460700003)(186003)(16526019)(36756003)(478600001)(7696005)(6666004)(40480700001)(26005)(41300700001)(1076003)(83380400001)(356005)(316002)(82740400003)(81166007)(54906003)(47076005)(4326008)(6916009)(70586007)(70206006)(8676002)(8936002)(82310400005)(86362001)(5660300002)(36860700001)(336012)(426003)(36900700001);
+ SFS:(13230028)(4636009)(376002)(39860400002)(136003)(346002)(396003)(451199021)(46966006)(36840700001)(40470700004)(7696005)(54906003)(6666004)(40460700003)(83380400001)(426003)(36756003)(82740400003)(356005)(81166007)(336012)(47076005)(36860700001)(2616005)(16526019)(70206006)(8936002)(8676002)(478600001)(41300700001)(186003)(40480700001)(6916009)(316002)(86362001)(26005)(1076003)(82310400005)(2906002)(4326008)(5660300002)(70586007)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2023 22:21:43.8709 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2ead4d34-cb66-4c57-a150-08db50dbc52a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2023 22:21:44.3709 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8c2f07ae-95e8-46e2-4da5-08db50dbc579
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT114.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8148
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB8764
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,45 +106,69 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Hawking Zhang <Hawking.Zhang@amd.com>
 
-Add reset_ras_error_count callback for jpeg v4_0_3.
-It will be used to reset jpeg ras error count.
+Initialize jpeg v4_0_3 ras function.
 
 Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Reviewed-by: Tao Zhou <tao.zhou1@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c | 26 ++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
-index 5dedba91fa32..21226d6d26f8 100644
+index 21226d6d26f8..ede15a3a4701 100644
 --- a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
 +++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0_3.c
-@@ -1024,3 +1024,25 @@ static void jpeg_v4_0_3_query_ras_error_count(struct amdgpu_device *adev,
- 	for (i = 0; i < adev->jpeg.num_jpeg_inst; i++)
- 		jpeg_v4_0_3_inst_query_ras_error_count(adev, i, ras_err_status);
+@@ -40,6 +40,7 @@ static void jpeg_v4_0_3_set_dec_ring_funcs(struct amdgpu_device *adev);
+ static void jpeg_v4_0_3_set_irq_funcs(struct amdgpu_device *adev);
+ static int jpeg_v4_0_3_set_powergating_state(void *handle,
+ 				enum amd_powergating_state state);
++static void jpeg_v4_0_3_set_ras_funcs(struct amdgpu_device *adev);
+ 
+ static int amdgpu_ih_srcid_jpeg[] = {
+ 	VCN_4_0__SRCID__JPEG_DECODE,
+@@ -67,6 +68,7 @@ static int jpeg_v4_0_3_early_init(void *handle)
+ 
+ 	jpeg_v4_0_3_set_dec_ring_funcs(adev);
+ 	jpeg_v4_0_3_set_irq_funcs(adev);
++	jpeg_v4_0_3_set_ras_funcs(adev);
+ 
+ 	return 0;
  }
-+
-+static void jpeg_v4_0_3_inst_reset_ras_error_count(struct amdgpu_device *adev,
-+						   uint32_t jpeg_inst)
-+{
-+	amdgpu_ras_inst_reset_ras_error_count(adev,
-+			jpeg_v4_0_3_ue_reg_list,
-+			ARRAY_SIZE(jpeg_v4_0_3_ue_reg_list),
-+			GET_INST(VCN, jpeg_inst));
-+}
-+
-+static void jpeg_v4_0_3_reset_ras_error_count(struct amdgpu_device *adev)
-+{
-+	uint32_t i;
-+
-+	if (!amdgpu_ras_is_supported(adev, AMDGPU_RAS_BLOCK__JPEG)) {
-+		dev_warn(adev->dev, "JPEG RAS is not supported\n");
-+		return;
+@@ -126,6 +128,14 @@ static int jpeg_v4_0_3_sw_init(void *handle)
+ 		}
+ 	}
+ 
++	if (amdgpu_ras_is_supported(adev, AMDGPU_RAS_BLOCK__JPEG)) {
++		r = amdgpu_jpeg_ras_sw_init(adev);
++		if (r) {
++			dev_err(adev->dev, "Failed to initialize jpeg ras block!\n");
++			return r;
++		}
 +	}
 +
-+	for (i = 0; i < adev->jpeg.num_jpeg_inst; i++)
-+		jpeg_v4_0_3_inst_reset_ras_error_count(adev, i);
+ 	return 0;
+ }
+ 
+@@ -1046,3 +1056,19 @@ static void jpeg_v4_0_3_reset_ras_error_count(struct amdgpu_device *adev)
+ 	for (i = 0; i < adev->jpeg.num_jpeg_inst; i++)
+ 		jpeg_v4_0_3_inst_reset_ras_error_count(adev, i);
+ }
++
++static const struct amdgpu_ras_block_hw_ops jpeg_v4_0_3_ras_hw_ops = {
++	.query_ras_error_count = jpeg_v4_0_3_query_ras_error_count,
++	.reset_ras_error_count = jpeg_v4_0_3_reset_ras_error_count,
++};
++
++static struct amdgpu_jpeg_ras jpeg_v4_0_3_ras = {
++	.ras_block = {
++		.hw_ops = &jpeg_v4_0_3_ras_hw_ops,
++	},
++};
++
++static void jpeg_v4_0_3_set_ras_funcs(struct amdgpu_device *adev)
++{
++	adev->jpeg.ras = &jpeg_v4_0_3_ras;
 +}
 -- 
 2.40.1
