@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 232506FD29D
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 May 2023 00:21:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 071606FD2A0
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 May 2023 00:22:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6C0D10E433;
-	Tue,  9 May 2023 22:21:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9AE910E430;
+	Tue,  9 May 2023 22:22:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2086.outbound.protection.outlook.com [40.107.243.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A28010E430
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 May 2023 22:21:47 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2087.outbound.protection.outlook.com [40.107.92.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 485F510E430
+ for <amd-gfx@lists.freedesktop.org>; Tue,  9 May 2023 22:22:53 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XiGrBMXVFUhDMH63cBeN+xdHDBhv2e2MBHaesdTBWwVK1xdUhjjwGkxV7cv5zsybQKG51DOkA8OpebcEytYq3p0US2SM7XvYbqpnKwduNb6CNSNKVwnHVwekXrCUJnv9SCWv7sMIsuoj0E9bL7GVNV+37TvJg7qxxPRb+7k1NnXuze5QOkcbw5vVLNdQ7mgupQ2E13soNKdFKB72ivoJocST6tuf/A2vmn1VT6gXpGpDU7LDrbyD/eFGEFHCjKE7sMejZCx/firNpgZ92Ik1GsC1UUN07ggNi6b896pTDcZuZnQPLZIMBGIgcn0evS+2BlMc3dLlI4W809STsiKaIw==
+ b=QR7VPrqkefHnHlHRAd3zLRoc8VANTgll3hqFyPkOLm5DSAVBzfko+sQ1lokRoOmHpx3tIaaEy78lykNQrTjYZGyXo6de92tBXNoeaqpTXbZbxyxN2uP7+1ZUuXjFUn6FLTa6TfoY5+VCrBwOy8QJa42FO+3Z4hCglJKPJmOOp5mRBVMnMpZ/Vqh/94aI9jL9g+3krjOvTHMsv+M1MdSmcQPOvzGdLKUuAUvtpeYFUm1jYHdI+RW+6UwUYJzXosS93z8/mIlda2vuJ4TqPwZ95vdkgDlymsr4leFK6G2E1J/VLvyiA3Qe1EWV4SY2Glqb36z3QhlLzOP02Kv2M9K2Iw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VMEL+CcILPTa7sEUOnGb5jih0M/gSb5qQvPUjW+MdG4=;
- b=nEHdXWxMfdZ97IavwO5h87WOn8a5gbi6HsdyYRGWvAZO4N9y5g+9zEm77/pAmTRe9//VKoFDk2q1i3OAPGkg0hVBJnil0Nk6qp9JwGxGj+Pj3m05txFnSv/vah8LC8gpDkUukwq9x/IndfNFqbgO2YTBwcwwL0TIv/bNBhC8PGEoq7wZy6PhOUgrUdXT46ivbMx6R7C942vmBHFMTbAxcDmWWPNOvESSX9CXpOwZqvLFEr5tgT1eDFf2SvvjELEzcwDMyoFarLePSwYSV1RjW58ivztfHL1IaIEqWZzUMNCq1c21913KPa7+Lhz+sN8E5zO4sHaBHZVi1h7kOawB/w==
+ bh=W1HeBvaDKLmhB1tXiGXxiEWkjpImzAgcUuPnxYLLXes=;
+ b=QpdAl5jM76+/dwj3CGrTtzH57VkUgfSX8I80PTHZtHK4dpi/V29EckIhS5qXRB9d8NANDilNjtEoHO3Anz/piH05GzvwSl2oEFbN7YLPcZLPr7s0eGJub3VY8gXKIMdv4ottFp4cVyCUwcqgfR5okIXxqZDkNEDKYUvNoBEkOP+3nbkIK/tgWoRGcAxxTAwkJkmHhMYAi+NO43p8AJnxsXXYvxuFY7aYn3HeN3ZyRXFt51lNP8Wb31gp0vWUEuybAKAtk4nQGRIlFBUKJPkCG6LDi1+rCPFYnOfdOpJx493CYEQRAv5eeNd1i4c/LGimwU1o6ezownAzXUBu+ey8qA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VMEL+CcILPTa7sEUOnGb5jih0M/gSb5qQvPUjW+MdG4=;
- b=mz0dtudYbjoAzv80LAN9D+xAQshJSirIOXR+zH05izen8l+F8o28knTAuSspeA9LcgIQM/CbMH4KhWR/c/AEdG/NyTFLNyPvwkj+Vv1zPx1gUCwz3TzxGLU5vnEF6QhsBEutQjexLDldQLEw7GDQHcsihFYiBN/7lHAHK89b52E=
-Received: from BN8PR15CA0015.namprd15.prod.outlook.com (2603:10b6:408:c0::28)
- by IA1PR12MB7686.namprd12.prod.outlook.com (2603:10b6:208:422::10)
+ bh=W1HeBvaDKLmhB1tXiGXxiEWkjpImzAgcUuPnxYLLXes=;
+ b=tbXhegBcsNKChSohxaBmAK9b8bYuQYAu9jVoOzmflMXVxUFgvpB/I1MlI+9C0KBqJxf1gEHiom2o8MCrZRtf5d4zTIaFaiysZhIw02Kr3wYl2e258AxlbU/Un5aYSbixgE0zC5JJKd9sxPScFEJ7bcJoxc3B4tVaXldAVc3gzmc=
+Received: from BN0PR04CA0081.namprd04.prod.outlook.com (2603:10b6:408:ea::26)
+ by BL1PR12MB5288.namprd12.prod.outlook.com (2603:10b6:208:314::23)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.32; Tue, 9 May
- 2023 22:21:45 +0000
-Received: from BN8NAM11FT114.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:c0:cafe::ac) by BN8PR15CA0015.outlook.office365.com
- (2603:10b6:408:c0::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.18; Tue, 9 May
+ 2023 22:22:51 +0000
+Received: from BN8NAM11FT013.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:ea:cafe::c4) by BN0PR04CA0081.outlook.office365.com
+ (2603:10b6:408:ea::26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.33 via Frontend
- Transport; Tue, 9 May 2023 22:21:45 +0000
+ Transport; Tue, 9 May 2023 22:22:51 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,21 +45,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT114.mail.protection.outlook.com (10.13.177.46) with Microsoft SMTP
+ BN8NAM11FT013.mail.protection.outlook.com (10.13.176.182) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6387.18 via Frontend Transport; Tue, 9 May 2023 22:21:44 +0000
+ 15.20.6387.18 via Frontend Transport; Tue, 9 May 2023 22:22:51 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 9 May
- 2023 17:21:43 -0500
+ 2023 17:22:49 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 9/9] drm/amdgpu: Adjust the sequence to query ras error info
-Date: Tue, 9 May 2023 18:21:26 -0400
-Message-ID: <20230509222126.477847-9-alexander.deucher@amd.com>
+Subject: [PATCH 1/6] drm/amdkfd: Increase queue number per process to 255 on
+ GFX9.4.3
+Date: Tue, 9 May 2023 18:22:32 -0400
+Message-ID: <20230509222237.478097-1-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230509222126.477847-1-alexander.deucher@amd.com>
-References: <20230509222126.477847-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -68,26 +67,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT114:EE_|IA1PR12MB7686:EE_
-X-MS-Office365-Filtering-Correlation-Id: f2a2df1b-6497-446d-4750-08db50dbc5d6
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT013:EE_|BL1PR12MB5288:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9636cd8b-44cc-4334-d560-08db50dbed31
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5wEbXP3EjCC2cPciURFItLYvdLhaR/6CXf9bK3acdclf3z/YWeZnbeVK17ILOaN5qir1CaGUPyEcVB2s/czjpXNjaFtJKHUFJYJ3sxpOYVjkf1V8iu/QHA+Dldum01o7IZIKgQPnYutAZbrTkenUyu+Y3S3lsdQvtmY9MJJbPvzUqNbFVgAvTQgSV6fJ8srMva0uy6WB3cvEIZX4KoNiUb+qrlNlxV0kRJEpDGFDMXQPIbkI3CsQ0as/+M5D+hPnxePw8srZY8fOxKBSBhoRvoYXCyj+bhUFVQi2OOYI8TU2AieaYjL7FgXQLs4k+7pGhJT1egCGwWo1bY4RzPCaHHIjIT55+z/FK9Gc6/Sseje2UVvosMpy2F6eh/slErbSMSLBCKVou8VHyrJyJZaK6E45ijRtd/0foUl5//JuJ+9UfD/Ij83CRCVLOWyFhWshxIMejWiwpACVLXfQKYrMDgr+98SgIA48EjyEM7W5eOfAg6RxGDmgpJUjr0hdrOCf3KeFlawvmTD1P1Ll1T/ldb2F2POYyMhHvsLsWWgK6JDOWrWLtDYI8kXR4c8BXeo/FQuZEEK7Kk83DWQymGLbJcjzEuNQa143xV+64ox4Bua78H3FHce+BlKWkNuch9Ixc7tFtzCLSuOJ7C+AxZYn5JjoqQ17lQ3FXJmdie3QcCKMAcMV0OlpHINP2TdRWo4gVzQahTyA4BxHGNofRg33UeAS3pyJOQxZQ/fsLywoiMU=
+X-Microsoft-Antispam-Message-Info: 3AUl+i9rkBJDR0TeBWkw0IzecDtDE+5bIMWKhVt2DqdU9GhdQ88qxO0O9JMi27vnQgPgSPc1xDwQfKqZOhnOtRqDDAHe9w2rZoEE4d28zY9nc/8wGZ4V3eIRP5C1R1bU8EQxY3JTF+drbh+Vfo3E0DOKnO48yeM7ogx6T8y5+5vLZSO4xw96/nmdGwUDz2ZSdY2AAoRz+jjvdvlLhQ7SajFWjuOXlyMmmytV8KY1IEz/DkCEl1ycWsn7qzxGfTbmctIGdVp4Hc+uogQWKRhWqjEBleGJqvZmBzkXDrlwxWuHM+bXZ5mET0bfEwFDUl0FBpNlxrMpH7P4ToEH36vkBGK8wzNBqTw98bgx9ZsEZL4Ksg4G0quxM7bQIwYH+WnxKNy49iNr+P1LQFe8hXsc065UU8U9sfNHTLX3ucxZLoPIuacWYO8XquG0gih2bzeR9UG3R7rgoGwZvE8m+XLUsIAjZGC+nFHuLUc5Vl4JLaw/zRkMwWGkGsHqfhuJNz+zpdJs5BxDD7qGvlD5mqvLQefu5Q88LtiN2lMNW/oZ3vQTsYRaMvtMRPhsJGibNyYJF2nxUZ2mKeVtuSQzA9L5uglKBWf2XxmtdU7IT0Pz2MwLZlK1Jvwbc6u8HlpGIKF1tE/nGbYTYh45EomZEml2FPszcjlfynkB1z0fziPK0/DxFYPXpwv59HczT534FuuoDCCqfRA4IZguyl6Y5oBnvv1px/qgR0hu+APD6iDN4JMJTXB+6peLrAQbzA2BJoe6ydivmWdaPOVrzy/TT9zZJg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(346002)(396003)(39860400002)(136003)(376002)(451199021)(46966006)(36840700001)(40470700004)(336012)(426003)(40460700003)(16526019)(2616005)(186003)(2906002)(47076005)(83380400001)(36860700001)(36756003)(82310400005)(86362001)(356005)(81166007)(40480700001)(82740400003)(7696005)(8676002)(41300700001)(316002)(8936002)(6666004)(5660300002)(54906003)(70206006)(4326008)(70586007)(6916009)(478600001)(1076003)(26005)(36900700001);
+ SFS:(13230028)(4636009)(136003)(376002)(39860400002)(396003)(346002)(451199021)(40470700004)(46966006)(36840700001)(40460700003)(6916009)(4326008)(70206006)(70586007)(478600001)(54906003)(5660300002)(2906002)(8676002)(8936002)(316002)(336012)(426003)(86362001)(41300700001)(40480700001)(7696005)(356005)(82740400003)(16526019)(26005)(1076003)(36756003)(82310400005)(186003)(36860700001)(81166007)(83380400001)(47076005)(2616005)(6666004)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2023 22:21:44.9802 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f2a2df1b-6497-446d-4750-08db50dbc5d6
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 May 2023 22:22:51.0114 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9636cd8b-44cc-4334-d560-08db50dbed31
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT114.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT013.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7686
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5288
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,63 +98,42 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Tao Zhou <tao.zhou1@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Mukul Joshi <mukul.joshi@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Hawking Zhang <Hawking.Zhang@amd.com>
+From: Mukul Joshi <mukul.joshi@amd.com>
 
-It turns out STATUS_VALID_FLAG needs to be checked
-ahead of any other fields. ADDRESS_VALID_FLAG and
-ERR_INFO_VALID_FLAG only manages ADDRESS and ERR_INFO
-field respectively. driver should continue poll
-ERR CNT field even ERR_INFO_VALD_FLAG is not set.
+Increase the maximum number of queues that can be created per process
+to 255 on GFX 9.4.3. There is no HWS limitation restricting the number
+queues that can be created.
 
-Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
-Reviewed-by: Tao Zhou <tao.zhou1@amd.com>
+Signed-off-by: Mukul Joshi <mukul.joshi@amd.com>
+Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index 5ae89602a116..64f80e8cbd63 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -3164,7 +3164,8 @@ bool amdgpu_ras_inst_get_err_cnt_field(struct amdgpu_device *adev,
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
+index a3c23d07c7df..b100933340d2 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
+@@ -242,6 +242,13 @@ int pqm_create_queue(struct process_queue_manager *pqm,
+ 	enum kfd_queue_type type = properties->type;
+ 	unsigned int max_queues = 127; /* HWS limit */
  
- 	if ((reg_entry->flags & AMDGPU_RAS_ERR_INFO_VALID) &&
- 	    !REG_GET_FIELD(err_status_hi_data, ERR_STATUS_HI, ERR_INFO_VALID_FLAG))
--		return false;
-+		/* keep the check here in case we need to refer to the result later */
-+		dev_dbg(adev->dev, "Invalid err_info field\n");
- 
- 	/* read err count */
- 	*err_cnt = REG_GET_FIELD(err_status_hi_data, ERR_STATUS, ERR_CNT);
-@@ -3187,17 +3188,17 @@ void amdgpu_ras_inst_query_ras_error_count(struct amdgpu_device *adev,
- 	uint32_t i, j;
- 
- 	for (i = 0; i < reg_list_size; i++) {
-+		/* query memory_id from err_status_lo */
-+		if (!amdgpu_ras_inst_get_memory_id_field(adev, &reg_list[i],
-+							 instance, &memory_id))
-+			continue;
++	/*
++	 * On GFX 9.4.3, increase the number of queues that
++	 * can be created to 255. No HWS limit on GFX 9.4.3.
++	 */
++	if (KFD_GC_VERSION(dev) == IP_VERSION(9, 4, 3))
++		max_queues = 255;
 +
- 		/* query err_cnt from err_status_hi */
- 		if (!amdgpu_ras_inst_get_err_cnt_field(adev, &reg_list[i],
- 						       instance, &err_cnt) ||
- 		    !err_cnt)
- 			continue;
+ 	q = NULL;
+ 	kq = NULL;
  
--		/* query memory_id from err_status_lo */
--		if (!amdgpu_ras_inst_get_memory_id_field(adev, &reg_list[i],
--							 instance, &memory_id))
--			continue;
--
- 		*err_count += err_cnt;
- 
- 		/* log the errors */
 -- 
 2.40.1
 
