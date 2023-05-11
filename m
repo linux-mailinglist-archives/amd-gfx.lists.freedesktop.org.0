@@ -1,91 +1,44 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72F2B7001B5
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 May 2023 09:49:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85F19700323
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 May 2023 10:59:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 047CC10E4BF;
-	Fri, 12 May 2023 07:49:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10F6010E116;
+	Fri, 12 May 2023 08:59:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2087.outbound.protection.outlook.com [40.107.243.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C144A10E4BF
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 May 2023 07:49:38 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JLm/CBqkcYP6F9THAcDgbMm8tb1wlQWmW4Rxpp9AZIBSkrxlMqUBECfrT2jOUhxOoI9mySLSHUG0QzmlmRXHPt8RCGsp2g5/SLaNW9V61boPJ7F0afN7d4yq/BXTuQIZ9/7goQieB1lH0HXqWjLfbBW2iT4xZCDOqXh74nc0KodN3UWMxRrAuowExQ/EB4DN8EXCWdQ+WHWHU88MVinrXM41OWAxq+ttjQ80OsiGXcApHCzu+Gw75bcNRJi/pE0uidYc0ymP7NEd95abwlsMjxUHdJ6hbpflEmQxBmNcWQk+u1QwsZKE1C8nAr3Ck7DaS/u1h1I65YYVC3c/X7zX3g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Y7Qg5jtIJwsnSKkd9kKv5Hy5jkoqYhNLMsFyPTgKs08=;
- b=mT3tL2pw2RtGUGHW18M9agCF3h7F5YKVjmOjW2b3QpLV+VICzMaPDimKxWAKGm5g87iHl/hND9ifC9KyuLVILrvSz8MDOef9U1sHI31uSDiu3XcIoaIfSDEz9ZRi5Se2fKspaNoAGZmmhxbVKQM3KHYL5dhOKqPbg6q4iwf2TVpEBt9G+aidm+kUZ6OTfsU0cDerYWeBqmVgj1MPLfGL1mWdgAe+cCSKawx4DaabIMmMiquql2gqs1OYcY6vuXR3bzm1H2FIJSewAUd81AjVrcTEme0xkwgKjCKuJ7SMrmahhbsYMaxSlL7ks5bZwsAPvp+WNH1p1nSyXH3Gqtllag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y7Qg5jtIJwsnSKkd9kKv5Hy5jkoqYhNLMsFyPTgKs08=;
- b=pEzbI5raODmtKbTVUZONg8emBuuBj8PBiCJYTCxEUI4xV4ojMc1hLMV0ksVKbYfSXUpVXh+i+OTIbU7azBMy9Zz6Bs3ZdjC2zTUleYx0wlSvP0VwRPFFgBzUdq/3nYQsMxZwUk+2dV/ttt25Q+hiV06WZBa6D43ApVwFeEzJCLM=
-Received: from DS7PR05CA0069.namprd05.prod.outlook.com (2603:10b6:8:57::21) by
- DS0PR12MB7679.namprd12.prod.outlook.com (2603:10b6:8:134::5) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6387.20; Fri, 12 May 2023 07:49:36 +0000
-Received: from DM6NAM11FT113.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:57:cafe::e) by DS7PR05CA0069.outlook.office365.com
- (2603:10b6:8:57::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.10 via Frontend
- Transport; Fri, 12 May 2023 07:49:36 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT113.mail.protection.outlook.com (10.13.173.5) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6387.23 via Frontend Transport; Fri, 12 May 2023 07:49:36 +0000
-Received: from thomas-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 12 May
- 2023 02:49:33 -0500
-From: YiPeng Chai <YiPeng.Chai@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] amd/amdgpu: perform soft reset for sdma fed error
-Date: Fri, 12 May 2023 15:47:50 +0800
-Message-ID: <20230512074750.1890604-1-YiPeng.Chai@amd.com>
-X-Mailer: git-send-email 2.34.1
+X-Greylist: delayed 507 seconds by postgrey-1.36 at gabe;
+ Fri, 12 May 2023 08:59:09 UTC
+Received: from mail.linuxsystems.it (mail.linuxsystems.it [79.7.78.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3034610E116
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 May 2023 08:59:09 +0000 (UTC)
+Received: by mail.linuxsystems.it (Postfix, from userid 33)
+ id 8FE56215913; Thu, 11 May 2023 19:25:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxsystems.it;
+ s=linuxsystems.it; t=1683825926;
+ bh=yhp7v3luRGJ6mq7f7i4QZFLveEgF64yIuE8ANbdh7GA=;
+ h=To:Subject:Date:From:Cc:In-Reply-To:References:From;
+ b=l1b8aQpTATQR13/g/283QB5g1vVSF33CfqUnpPF7R0RUk2S+daOGymYtQIpZjIh1u
+ 06SQLvNI2ryQZzryPHkJm2WDq6ccI50rSgLnWQWuxz339kF+r8ty1Z9w/m97zX6SXM
+ UFYKxruaQcQvqqcNG2kKtcaod6rVcMDLGEsqhMOA=
+To: Bagas Sanjaya <bagasdotme@gmail.com>
+Subject: Re: Fwd: Linux 6.3.1 + AMD RX 570 on ppc64le 4K: Kernel attempted to
+ read user page (1128) - exploit attempt? (uid: 0)
+X-PHP-Originating-Script: 0:rcube.php
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT113:EE_|DS0PR12MB7679:EE_
-X-MS-Office365-Filtering-Correlation-Id: e43fa102-8336-4c89-16bd-08db52bd6e9a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QUH0mfsBAFHkBFZatptiIyBbgV+0hEBf+iHc+CD9i3L13/6B/yAlbFZxQUgeHiA+gXWdyridiVGDjPVV0sTpra+8yFAKYVsGKQlNIGWrsaGWN4/lrqdIowm13+L068fQ+/wLUmRnEW711g3s++lwUfhqTtadZ2XzMhWGXK4jHBCVPDMv0H9/B/7Jgqz+6JcxCMYJQ2VWuup6DfhBg2+8z449H0ObeuQVPCWCOn0GLjIqOi/5nfL1znUUxE6UdLVhE4ED1/OWBQOrvYGOWeEd8SWn7Zx4DmRwm1p/On0QyF3daXQC3Wz/O6hb8v3yRl3seeXFCJlIlNMaSkaw9aI3GOXMvZboDQcMY2x33LHBUKpfqBkC58l7Vvc1T0iPfg0nd3r5ZqmzTBqliXCqWHeLhtOghbvZ+xrSr/Raw7yv19u1B7BJFNVb+Xkcw7Cb7jG4ZuYgVNkUiJID9Mz1NW1f1DjqUmfDvyJwlun1ycbRUBQxz6uHfbIDUcpgyGpC5FiMHX9QVRUPwT60K7FErsXdl/NF5ml3i2XpnSfqPGQ56dSJ5tFosy7s7p+eLbhyr1tUEKTKLuY3Cn7fOr3fNre1MH5zyza2yPqm+ECcY/mf6ItMhwzTk28lHtIA5Z3C3fLiMHea70AZYIYB9DVZ9yI6kUutDP9S+cXENFt1TyWyLBR9AThd+qdYpJCJnPOVqfDYuMnDzCYebpRtV2R1dxo9a7KaDtFoMmzgc3cvNo+Zc2fhpeyu7cHUp1R0lFL3zjJJdbBLxHQ8d9csECMtsVkE1Q==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(346002)(39860400002)(376002)(396003)(136003)(451199021)(40470700004)(36840700001)(46966006)(2906002)(356005)(86362001)(82740400003)(26005)(186003)(36756003)(478600001)(40460700003)(40480700001)(16526019)(5660300002)(36860700001)(6666004)(7696005)(1076003)(81166007)(82310400005)(4326008)(426003)(6916009)(2616005)(47076005)(336012)(316002)(41300700001)(8676002)(8936002)(70206006)(54906003)(83380400001)(70586007)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2023 07:49:36.0164 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e43fa102-8336-4c89-16bd-08db52bd6e9a
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT113.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7679
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date: Thu, 11 May 2023 19:25:26 +0200
+From: =?UTF-8?Q?Niccol=C3=B2_Belli?= <darkbasic@linuxsystems.it>
+In-Reply-To: <3e5548e4-5a3e-9346-ec58-3617e1947186@gmail.com>
+References: <588c1a66-9976-c96f-dcdd-beec8b7410f0@gmail.com>
+ <3e5548e4-5a3e-9346-ec58-3617e1947186@gmail.com>
+Message-ID: <a50537d1f1af34104793218acb954a61@linuxsystems.it>
+X-Sender: darkbasic@linuxsystems.it
+User-Agent: Roundcube Webmail/1.1.5
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,61 +50,31 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tao.Zhou1@amd.com, YiPeng Chai <YiPeng.Chai@amd.com>, Stanley.Yang@amd.com,
- yipechai@amd.com, Candice.Li@amd.com, Hawking.Zhang@amd.com
+Cc: Linux Regressions <regressions@lists.linux.dev>,
+ Michael Ellerman <mpe@ellerman.id.au>, Qingqing Zhuo <qingqing.zhuo@amd.com>,
+ Daniel Wheeler <daniel.wheeler@amd.com>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Fangzhi Zuo <Jerry.Zuo@amd.com>, Hersen Wu <hersenxs.wu@amd.com>,
+ Linux AMDGPU <amd-gfx@lists.freedesktop.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Linux for PowerPC <linuxppc-dev@lists.ozlabs.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When testing sdma ib ring fails to detect sdma
-hang for sdma fed error, force to perform soft
-reset.
+Il 2023-05-12 10:32 Bagas Sanjaya ha scritto:
+> #regzbot introduced: f4f3b7dedbe849
+> #regzbot link: https://gitlab.freedesktop.org/drm/amd/-/issues/2553
 
-Signed-off-by: YiPeng Chai <YiPeng.Chai@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+It doesn't look like the aforementioned patch made its way into 6.3 yet:
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
-index 3d9a80511a45..1d463e1fd3ae 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
-@@ -53,6 +53,12 @@ MODULE_FIRMWARE("amdgpu/sdma_6_0_3.bin");
- #define SDMA0_HYP_DEC_REG_START 0x5880
- #define SDMA0_HYP_DEC_REG_END 0x589a
- #define SDMA1_HYP_DEC_REG_OFFSET 0x20
-+#define regRLC_RLCS_FED_STATUS_0                     0x4eff
-+#define regRLC_RLCS_FED_STATUS_0_BASE_IDX            1
-+#define RLC_RLCS_FED_STATUS_0__SDMA0_FED_ERR_MASK    0x00000040L
-+#define RLC_RLCS_FED_STATUS_0__SDMA1_FED_ERR_MASK    0x00000080L
-+#define RLC_RLCS_FED_STATUS_0__SDMA0_FED_ERR__SHIFT  0x6
-+#define RLC_RLCS_FED_STATUS_0__SDMA1_FED_ERR__SHIFT  0x7
- 
- static void sdma_v6_0_set_ring_funcs(struct amdgpu_device *adev);
- static void sdma_v6_0_set_buffer_funcs(struct amdgpu_device *adev);
-@@ -760,6 +766,7 @@ static bool sdma_v6_0_check_soft_reset(void *handle)
- 	struct amdgpu_ring *ring;
- 	int i, r;
- 	long tmo = msecs_to_jiffies(1000);
-+	uint32_t rlc_status0 = 0;
- 
- 	for (i = 0; i < adev->sdma.num_instances; i++) {
- 		ring = &adev->sdma.instance[i].ring;
-@@ -768,6 +775,15 @@ static bool sdma_v6_0_check_soft_reset(void *handle)
- 			return true;
- 	}
- 
-+	/* Soft reset should be performed for sdma fed error to
-+	 * recover sdma engine, so when testing sdma ib ring fails
-+	 * to detect sdma hang, force to perform soft reset.
-+	 */
-+	rlc_status0 = RREG32_SOC15(GC, 0, regRLC_RLCS_FED_STATUS_0);
-+	if (REG_GET_FIELD(rlc_status0, RLC_RLCS_FED_STATUS_0, SDMA0_FED_ERR) ||
-+	    REG_GET_FIELD(rlc_status0, RLC_RLCS_FED_STATUS_0, SDMA1_FED_ERR))
-+		return true;
-+
- 	return false;
- }
- 
--- 
-2.34.1
-
+niko@talos2 ~/devel/linux-stable $ git branch
+* linux-6.3.y
+   master
+niko@talos2 ~/devel/linux-stable $ git show f4f3b7dedbe8 | patch -p1
+patching file 
+drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+Hunk #1 succeeded at 227 (offset 15 lines).
+Hunk #2 succeeded at 269 with fuzz 2 (offset 19 lines).
+patching file 
+drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.h
+Hunk #1 succeeded at 49 with fuzz 2 (offset 15 lines).
