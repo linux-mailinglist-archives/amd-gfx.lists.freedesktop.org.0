@@ -1,59 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED7CA7008CD
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 May 2023 15:13:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C8E8700906
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 May 2023 15:20:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 644D210E6A9;
-	Fri, 12 May 2023 13:13:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A409710E6B2;
+	Fri, 12 May 2023 13:20:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com
- [IPv6:2001:4860:4864:20::32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07A2010E6A9
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 May 2023 13:13:14 +0000 (UTC)
-Received: by mail-oa1-x32.google.com with SMTP id
- 586e51a60fabf-18f4a6d2822so57340266fac.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 May 2023 06:13:14 -0700 (PDT)
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com
+ [IPv6:2607:f8b0:4864:20::231])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77B6310E6B2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 May 2023 13:20:23 +0000 (UTC)
+Received: by mail-oi1-x231.google.com with SMTP id
+ 5614622812f47-38bed577755so3403985b6e.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 May 2023 06:20:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1683897193; x=1686489193;
+ d=gmail.com; s=20221208; t=1683897622; x=1686489622;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=CngAmmFuRqIswlP+CfD/veCE+5BJl/MKvsCecVSZMnQ=;
- b=WXmA5DI7O+5sY9N1cqvEy96CcmdacZK9X7zZihv6GhgGcLVU0JoLdvBlXqn3Y8dT5k
- g2hzj6I0nrCrMgg+SE4FQTPN6jWF3j7gk+JEK5QxO+UUQycdt3AQVBBymYTdfCvt+8Q0
- +9Wz8IH8a+kPJc/aKYay50vLqSzZYuHlvufqEBLgjWO2O9zDmV01pVgJjeglnA0gEaB8
- gzL+qA8MuzJ9iw+a4aICc9B7dPSV/F1ZnSjzA75PsZzUD7xK3jklc5I1+PJnnuvliLhs
- 2ZqwaTdCX0rR7CECTX/OZCXVMBFU/8ZphFHPeht8E220Bob3f9wFlngTrpFwf/gM7vY5
- hmuA==
+ bh=6uDu9yaNjeK/D0ZQhRfgM1lDhChoWiW8HtuODBwA3OY=;
+ b=rkPne4CZY1NOxCV7UxzR2HbP7cjVRk2CSQAfjBowkBMLB2upzPgwHSunuGDkBGPUss
+ Qjc4IeRFC9pmlWG74JW9DRutk6XsZw01litVSitG6aCcUqV2gmPlrF0Rn2zGG9156HjL
+ Lvhp2EPrJ9Ao6wSeQ/W7BrygeD6bRnpMO/qd6hO9pzeGC4eLORH6sDcoN+GaZ27Jrb5l
+ VyswMimFMKL+rg5pUegH7vi/YHlLVWzuo/X9Rzf8z8p8F4moIo/pVYTKtmd9sXZt4a3Z
+ H/f2Zg0DaEcFaE7tYDRqDr865/n/PkWe1TO5ixi0/0Ymo2DS86KRM5e2tdTzyFZN3K2Z
+ CR+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1683897193; x=1686489193;
+ d=1e100.net; s=20221208; t=1683897622; x=1686489622;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=CngAmmFuRqIswlP+CfD/veCE+5BJl/MKvsCecVSZMnQ=;
- b=jyv390k+RZrmU0vW62wNagTmII8uQQnECZ9B9bxiP+oX0dtZ/eP9UVnyEkr2a+TuTG
- 80KCnnZBL7x+7OPrTNM7DmzXTe7EDTgoR3dFvu+/Ti2CGCWSwMuNyd81v/9ufPJb0eMr
- YUeSLV71oKcEASkdhNsh/hyuwplnpSA4ME+1Gs6SWMthjVAMr53qcfG+m8zORqy6idqE
- mmFtMe2iKsIZQ0KkAfArw1PWDcsLp/QSdReA2eUxN4quBVPJkze2mxXrFYWMkvj3bWwi
- LcABboJDR519ENXyH62ZsmQKccLs5MDCA2SJ40XLjII+ZvelRLyJ4xq7M45x+pYYpdJj
- 5pZw==
-X-Gm-Message-State: AC+VfDzDhfcT2qAqN/mfbGEzscZTWNEugI/Lme5evTTnaaaSmueX28uy
- fmicWwSWn4N+DY7HkqVKUBIuAI3hBGv9TohIUsMMHnGG
-X-Google-Smtp-Source: ACHHUZ6wEzEoDk24x+Dz9K9LTog4VZTwghCdh604I3V/BWzi4CX6EBqR7c8yDztTdI+MEefKYolU8Ind7nXvtdl3sYY=
-X-Received: by 2002:aca:b98a:0:b0:394:3d94:b165 with SMTP id
- j132-20020acab98a000000b003943d94b165mr3981512oif.19.1683897191726; Fri, 12
- May 2023 06:13:11 -0700 (PDT)
+ bh=6uDu9yaNjeK/D0ZQhRfgM1lDhChoWiW8HtuODBwA3OY=;
+ b=Ne25j9nLEwPIh+Xiv+/PCqKnilU0LhnL6UZ6B5yVYm2OMSyM0yO6rrzxaJYPwI4y61
+ dZowhGwkJ3wnw1bSYp3CgE9AsCy3SdPSZEfnxvNrMug3W572Kf98FfGYm1k3Z8kg0WSk
+ CPzFEh/UyypFVfaQTPpBLGj0n7aiY9EtIx99qCESnND7BTh7F/jJuixs/ZOObjZTUunI
+ Jda3+N3M1cWbWv74mqwDq9RXDhxiTvAVHeYh/oVa+o+5/dOW0/9uvjpkAPEiDaQYxKhF
+ //oZZNa1DLHTCyzHwww/CgV8Emh172PmUjDmVX9rukz6Kv/ICiqzdVusYXjV5UjheQCp
+ i09A==
+X-Gm-Message-State: AC+VfDz5TsNQjk5b/YbG68AWK/9zulb5SXH2IcpRt5U1Ol5oH37u5AjB
+ ZUeTnl2xiN5dW4msriCqsylaYUJmSwSG2QVOhHBXEy3P
+X-Google-Smtp-Source: ACHHUZ6qbHSQI9vSawLH1gW/PLKUGMyZqBISyfIba/E5ahrSIgJvuDxXMj0eljMNaqo2kF+O+qm87Ith5gpZXWmepfw=
+X-Received: by 2002:aca:2808:0:b0:392:18e1:7c65 with SMTP id
+ 8-20020aca2808000000b0039218e17c65mr5707827oix.17.1683897621937; Fri, 12 May
+ 2023 06:20:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230512081547.1006052-1-Jack.Xiao@amd.com>
-In-Reply-To: <20230512081547.1006052-1-Jack.Xiao@amd.com>
+References: <DM4PR12MB5152E2B7372CFB31CAA0F546E3759@DM4PR12MB5152.namprd12.prod.outlook.com>
+In-Reply-To: <DM4PR12MB5152E2B7372CFB31CAA0F546E3759@DM4PR12MB5152.namprd12.prod.outlook.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 12 May 2023 09:13:00 -0400
-Message-ID: <CADnq5_PGQG4vu+DBUmMZwK=A-v1AgTemy1Z15=GSqep5_ymvgA@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: fix S3 issue if MQD in VRAM
-To: Jack Xiao <Jack.Xiao@amd.com>
+Date: Fri, 12 May 2023 09:20:10 -0400
+Message-ID: <CADnq5_Ms90FrkmLT=_boDybxoNwq2DDJtQ8JKYNOVoM84oUkvg@mail.gmail.com>
+Subject: Re: drm/amdgpu: Differentiate between Raven2 and Raven/Picasso
+ according to revision id.
+To: "Zhang, Jesse(Jie)" <Jesse.Zhang@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -67,108 +68,157 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, amd-gfx@lists.freedesktop.org
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Wang,
+ Chester" <shansheng.wang@amd.com>, "Quan, Evan" <Evan.Quan@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 12, 2023 at 4:16=E2=80=AFAM Jack Xiao <Jack.Xiao@amd.com> wrote=
-:
->
-> Make the preemption optimization effect only for SRIOV,
-> for it caused failure to resume from S3.
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-Can you elaborate?  We ultimately want MQDs in VRAM for performance
-reasons even for bare metal.
-
-Alex
-
+On Thu, May 11, 2023 at 9:20=E2=80=AFPM Zhang, Jesse(Jie) <Jesse.Zhang@amd.=
+com> wrote:
 >
-> Signed-off-by: Jack Xiao <Jack.Xiao@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 3 ++-
->  drivers/gpu/drm/amd/amdgpu/mes_v10_1.c  | 7 +++++--
->  drivers/gpu/drm/amd/amdgpu/mes_v11_0.c  | 7 +++++--
->  3 files changed, 12 insertions(+), 5 deletions(-)
+> [AMD Official Use Only - General]
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_gfx.c
-> index a22d88a4178a..1b795b7bbf38 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> @@ -385,7 +385,8 @@ int amdgpu_gfx_mqd_sw_init(struct amdgpu_device *adev=
-,
->         u32 domain =3D AMDGPU_GEM_DOMAIN_GTT;
 >
->         /* Only enable on gfx10 and 11 for now to avoid changing behavior=
- on older chips */
-> -       if (adev->ip_versions[GC_HWIP][0] >=3D IP_VERSION(10, 0, 0))
-> +       if (adev->ip_versions[GC_HWIP][0] >=3D IP_VERSION(10, 0, 0) &&
-> +           amdgpu_sriov_vf(adev))
->                 domain |=3D AMDGPU_GEM_DOMAIN_VRAM;
+> drm/amdgpu: Differentiate between Raven2 and Raven/Picasso according to r=
+evision id.
 >
->         /* create MQD for KIQ */
-> diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c b/drivers/gpu/drm/amd=
-/amdgpu/mes_v10_1.c
-> index 4560476c7c31..5c3d3f6c7ebd 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
-> @@ -889,6 +889,7 @@ static int mes_v10_1_mqd_sw_init(struct amdgpu_device=
- *adev,
->  {
->         int r, mqd_size =3D sizeof(struct v10_compute_mqd);
->         struct amdgpu_ring *ring;
-> +       u32 domain =3D AMDGPU_GEM_DOMAIN_GTT;
 >
->         if (pipe =3D=3D AMDGPU_MES_KIQ_PIPE)
->                 ring =3D &adev->gfx.kiq[0].ring;
-> @@ -900,9 +901,11 @@ static int mes_v10_1_mqd_sw_init(struct amdgpu_devic=
-e *adev,
->         if (ring->mqd_obj)
->                 return 0;
 >
-> +       if (amdgpu_sriov_vf(adev))
-> +               domain |=3D AMDGPU_GEM_DOMAIN_VRAM;
-> +
->         r =3D amdgpu_bo_create_kernel(adev, mqd_size, PAGE_SIZE,
-> -                                   AMDGPU_GEM_DOMAIN_VRAM |
-> -                                   AMDGPU_GEM_DOMAIN_GTT, &ring->mqd_obj=
-,
-> +                                   domain, &ring->mqd_obj,
->                                     &ring->mqd_gpu_addr, &ring->mqd_ptr);
->         if (r) {
->                 dev_warn(adev->dev, "failed to create ring mqd bo (%d)", =
-r);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c b/drivers/gpu/drm/amd=
-/amdgpu/mes_v11_0.c
-> index 3adb450eec07..79a4d2bfd94a 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-> @@ -987,6 +987,7 @@ static int mes_v11_0_mqd_sw_init(struct amdgpu_device=
- *adev,
->  {
->         int r, mqd_size =3D sizeof(struct v11_compute_mqd);
->         struct amdgpu_ring *ring;
-> +       u32 domain =3D AMDGPU_GEM_DOMAIN_GTT;
+>     Due to the raven2 and raven/picasso maybe have the same GC_HWIP versi=
+on.
 >
->         if (pipe =3D=3D AMDGPU_MES_KIQ_PIPE)
->                 ring =3D &adev->gfx.kiq[0].ring;
-> @@ -998,9 +999,11 @@ static int mes_v11_0_mqd_sw_init(struct amdgpu_devic=
-e *adev,
->         if (ring->mqd_obj)
->                 return 0;
+>     So differentiate them by revision id.
 >
-> +       if (amdgpu_sriov_vf(adev))
-> +               domain |=3D AMDGPU_GEM_DOMAIN_VRAM;
-> +
->         r =3D amdgpu_bo_create_kernel(adev, mqd_size, PAGE_SIZE,
-> -                                   AMDGPU_GEM_DOMAIN_VRAM |
-> -                                   AMDGPU_GEM_DOMAIN_GTT, &ring->mqd_obj=
-,
-> +                                   domain, &ring->mqd_obj,
->                                     &ring->mqd_gpu_addr, &ring->mqd_ptr);
->         if (r) {
->                 dev_warn(adev->dev, "failed to create ring mqd bo (%d)", =
-r);
-> --
-> 2.37.3
+>
+>
+>     Signed-off-by: shanshengwang <shansheng.wang@amd.com>
+>
+>     Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
+>
+>
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/=
+amdgpu/gfx_v9_0.c
+>
+> index e093e83ae739..1f4edfb96636 100644
+>
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+>
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+>
+> @@ -4000,30 +4000,27 @@ static uint64_t gfx_v9_0_get_gpu_clock_counter(st=
+ruct amdgpu_device *adev)
+>
+>                 clock =3D clock_lo | (clock_hi << 32ULL);
+>
+>                 break;
+>
+>         case IP_VERSION(9, 1, 0):
+>
+> +       case IP_VERSION(9, 2, 2):
+>
+>                 preempt_disable();
+>
+> -               clock_hi =3D RREG32_SOC15_NO_KIQ(PWR, 0, mmGOLDEN_TSC_COU=
+NT_UPPER_Raven);
+>
+> -               clock_lo =3D RREG32_SOC15_NO_KIQ(PWR, 0, mmGOLDEN_TSC_COU=
+NT_LOWER_Raven);
+>
+> -               hi_check =3D RREG32_SOC15_NO_KIQ(PWR, 0, mmGOLDEN_TSC_COU=
+NT_UPPER_Raven);
+>
+> -               /* The PWR TSC clock frequency is 100MHz, which sets 32-b=
+it carry over
+>
+> -                * roughly every 42 seconds.
+>
+> -                */
+>
+> -               if (hi_check !=3D clock_hi) {
+>
+> +               if (adev->rev_id >=3D 0x8)
+>
+> +               {
+>
+> +                       clock_hi =3D RREG32_SOC15_NO_KIQ(PWR, 0, mmGOLDEN=
+_TSC_COUNT_UPPER_Raven2);
+>
+> +                       clock_lo =3D RREG32_SOC15_NO_KIQ(PWR, 0, mmGOLDEN=
+_TSC_COUNT_LOWER_Raven2);
+>
+> +                       hi_check =3D RREG32_SOC15_NO_KIQ(PWR, 0, mmGOLDEN=
+_TSC_COUNT_UPPER_Raven2);
+>
+> +               }else{
+>
+> +                       clock_hi =3D RREG32_SOC15_NO_KIQ(PWR, 0, mmGOLDEN=
+_TSC_COUNT_UPPER_Raven);
+>
+>                         clock_lo =3D RREG32_SOC15_NO_KIQ(PWR, 0, mmGOLDEN=
+_TSC_COUNT_LOWER_Raven);
+>
+> -                       clock_hi =3D hi_check;
+>
+> +                       hi_check =3D RREG32_SOC15_NO_KIQ(PWR, 0, mmGOLDEN=
+_TSC_COUNT_UPPER_Raven);
+>
+>                 }
+>
+> -               preempt_enable();
+>
+> -               clock =3D clock_lo | (clock_hi << 32ULL);
+>
+> -               break;
+>
+> -       case IP_VERSION(9, 2, 2):
+>
+> -               preempt_disable();
+>
+> -               clock_hi =3D RREG32_SOC15_NO_KIQ(PWR, 0, mmGOLDEN_TSC_COU=
+NT_UPPER_Raven2);
+>
+> -               clock_lo =3D RREG32_SOC15_NO_KIQ(PWR, 0, mmGOLDEN_TSC_COU=
+NT_LOWER_Raven2);
+>
+> -               hi_check =3D RREG32_SOC15_NO_KIQ(PWR, 0, mmGOLDEN_TSC_COU=
+NT_UPPER_Raven2);
+>
+>                 /* The PWR TSC clock frequency is 100MHz, which sets 32-b=
+it carry over
+>
+> -                * roughly every 42 seconds.
+>
+> -                */
+>
+> +               * roughly every 42 seconds.
+>
+> +               */
+>
+>                 if (hi_check !=3D clock_hi) {
+>
+> -                       clock_lo =3D RREG32_SOC15_NO_KIQ(PWR, 0, mmGOLDEN=
+_TSC_COUNT_LOWER_Raven2);
+>
+> +                       if (adev->rev_id >=3D 0x8) {
+>
+> +                               clock_lo =3D RREG32_SOC15_NO_KIQ(PWR, 0, =
+mmGOLDEN_TSC_COUNT_LOWER_Raven2);
+>
+> +                       }else{
+>
+> +                               clock_lo =3D RREG32_SOC15_NO_KIQ(PWR, 0, =
+mmGOLDEN_TSC_COUNT_LOWER_Raven);
+>
+> +                       }
+>
+>                         clock_hi =3D hi_check;
+>
+>                 }
+>
+>                 preempt_enable();
+>
 >
