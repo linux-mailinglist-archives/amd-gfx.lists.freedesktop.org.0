@@ -2,63 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73207700936
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 May 2023 15:30:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A46D070095C
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 May 2023 15:42:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CB4A10E08B;
-	Fri, 12 May 2023 13:30:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0FE110E6BB;
+	Fri, 12 May 2023 13:42:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com
- [IPv6:2607:f8b0:4864:20::22c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB6C210E08B
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 May 2023 13:30:01 +0000 (UTC)
-Received: by mail-oi1-x22c.google.com with SMTP id
- 5614622812f47-3944816b579so1266251b6e.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 May 2023 06:30:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1683898200; x=1686490200;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=3JDutltqqHj0Zlip2v5fYn0KmBU4H4kDrxmxIBeyVuY=;
- b=N6pGoZZQy3VC9dPlM+IpCkeONAsP7rPT8XJ+f7OPs8G11qWJiWfhlkg+dEcrGXTs9e
- YiwA2t5zyes/7h/sOaeT8SFAdk6+H0dDJOCTdQHS996e6bfnWrML8tJDbCSDV2KYSoLR
- ehO8AoKIJE9k3ktXO7W1IfUIkwW9gLWCQ12y3MhfmROakqoaEAg7uk0iIvR30EidFHC2
- QTXEW9TeXjusFP4TQyeoXMtSsSs6LG2SDO1kVyZA3NouqzT2rodPFiwbXTq0iD/SZeKI
- kuPLKjzNGDOuSWqFaIbCBWo38zY5RzykwTZMDih1OyLRLHMyiqs36w1Mn8yd9xxO88ev
- 0ALw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1683898200; x=1686490200;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=3JDutltqqHj0Zlip2v5fYn0KmBU4H4kDrxmxIBeyVuY=;
- b=da/hm0ofA4OF6B2LcWuPzs7l0dtg4fheAHtbrXqjddGI2WjlA/YDbJboozTDVKnb50
- H066n8m9phIpGcyV1u0h3pTMMhTNiSgtQejv7irpMJJ9JaudxGjGVfiAiA5JrpiDtqjd
- MYAYfkuXCAN97hElk5mkxDf3zymLGgqlxio6WmvUgb3h5IgmDuaRlxkNbEBGJbV5/ys6
- +y2YymQ9ZEXwwZ6d+05rglW6otfnKT+Q9gq7RVSCGjJ3CyoQn+X3dHgFRgv7Fgh4IxT1
- mKj1SWa+aq2HTz55VXykC4FrcRqxli5IauboMb96zhx9hhhxxTBMK1FK5xvG7cCwiBZn
- U06Q==
-X-Gm-Message-State: AC+VfDzk8rk/L9CeTFSuFw+uEsMlCDZXym5CYuf1QUKiIn+hUWhlnswj
- DnXDm+n+MadHox3GsS8vkfddFPO7KWpw1W+/gfumO62n
-X-Google-Smtp-Source: ACHHUZ7f02yLJi7zI+v2ldByqo/0MceJ0yI/7YiZp8nHZ/1dCH37FF2lk1Ah0ZHP8wCmQktsXec9mI0uR+4jw4OuR3Y=
-X-Received: by 2002:a05:6808:10b:b0:387:2f12:e71a with SMTP id
- b11-20020a056808010b00b003872f12e71amr6491831oie.34.1683898200568; Fri, 12
- May 2023 06:30:00 -0700 (PDT)
+X-Greylist: delayed 11485 seconds by postgrey-1.36 at gabe;
+ Fri, 12 May 2023 13:42:29 UTC
+Received: from mailrelay4-1.pub.mailoutpod2-cph3.one.com
+ (mailrelay4-1.pub.mailoutpod2-cph3.one.com [46.30.211.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8167610E6BA
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 May 2023 13:42:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ravnborg.org; s=rsa1;
+ h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+ from:date:from;
+ bh=k5+VvPJZto/QysP3qavd+SjTUa8fNKadbzfeW9t/AI0=;
+ b=TJqvyu4TL26/tkosYpSp/vgIA/FnUtfVPwRhGnhgjW6DjR2EqDxNEOmvAvwBfZKcH2qhe5ZzWbxoN
+ vl9N5BPEmc1pURxGI8+aZmV6f9C6ritn1M5jcZIj3pPJZuA3S1AOkIjS1yiXPeErwagvShrsEZyqUb
+ ny0rhwnS6Qnjv9CnpD9VVj+pZOwxypUYCAQPFM1bjrRboPXFg8JlD5LBV5U7YmMft9VzdrWrfEhc4M
+ 9pSWZFnApjyq/TOjS7C3GyUSHyzFO+dlUbpJhwVr2Wtr+RX9P9M4MHLSuUsUtJYPmtxSnZpjYozxcA
+ YLVGdYT1rabB1SNFSz74tNDY3uxstiQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+ d=ravnborg.org; s=ed1;
+ h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+ from:date:from;
+ bh=k5+VvPJZto/QysP3qavd+SjTUa8fNKadbzfeW9t/AI0=;
+ b=LY1+43GjLg7g0v31ddFfMmDZLCnJlWOY0tSmLnD9XCftTZs66g2Q4BG7BWVYXydEmwapLLs/UDcdB
+ BIAoQtOAQ==
+X-HalOne-ID: ad59f563-f0ca-11ed-a5b2-592bb1efe9dc
+Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
+ by mailrelay4 (Halon) with ESMTPSA
+ id ad59f563-f0ca-11ed-a5b2-592bb1efe9dc;
+ Fri, 12 May 2023 13:41:21 +0000 (UTC)
+Date: Fri, 12 May 2023 15:41:20 +0200
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [PATCH 00/11] drm/fbdev: Remove DRM's helpers for fbdev I/O
+Message-ID: <20230512134120.GA1395037@ravnborg.org>
+References: <20230512084152.31233-1-tzimmermann@suse.de>
+ <20230512102954.GA1373384@ravnborg.org>
+ <4cc261d7-ddcd-e1a2-1067-7b8c44e7769d@suse.de>
 MIME-Version: 1.0
-References: <20230509164947.455753-1-bas@basnieuwenhuizen.nl>
- <20230509164947.455753-2-bas@basnieuwenhuizen.nl>
- <0c6d481c-02ba-cf89-3333-4517255b8042@igalia.com>
-In-Reply-To: <0c6d481c-02ba-cf89-3333-4517255b8042@igalia.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 12 May 2023 09:29:49 -0400
-Message-ID: <CADnq5_PffhjvYv4yLPQtN2gggJ4pbTcnqy=qPBkPKfjATnFx0A@mail.gmail.com>
-Subject: Re: [PATCH 2/2] drm/amdgpu/gfx11: Adjust gfxoff before powergating on
- gfx11 as well
-To: "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4cc261d7-ddcd-e1a2-1067-7b8c44e7769d@suse.de>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,36 +59,58 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+Cc: freedreno@lists.freedesktop.org, linux-samsung-soc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, maarten.lankhorst@linux.intel.com,
+ javierm@redhat.com, mripard@kernel.org, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, linux-tegra@vger.kernel.org, airlied@gmail.com,
+ linux-arm-kernel@lists.infradead.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 9, 2023 at 1:04=E2=80=AFPM Guilherme G. Piccoli <gpiccoli@igali=
-a.com> wrote:
->
-> On 09/05/2023 13:49, Bas Nieuwenhuizen wrote:
-> > From: "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-> >
-> > (Bas: speculative change to mirror gfx10/gfx9)
-> >
-> > Signed-off-by: Guilherme G. Piccoli <gpiccoli@igalia.com>
-> > Cc: Alex Deucher <alexander.deucher@amd.com>
-> > ---
->
-> Thanks a lot for both patches Bas! This second one, despite I've
-> attached it on gitlab, you should also Sign-off since you're the one
-> sending it to the ML (I guess heh)
->
-> BTW, I couldn't test this one since I don't have GFX11 HW, so appreciate
-> if anyone from AMD (or any community member) could give it a try...
+Hi Thomas,
+> > 
+> > Nice cleanup.
+> > 
+> >  From one of the patches:
+> > 
+> > > +config DRM_ARMADA_FBDEV_EMULATION
+> > > +     bool
+> > > +     depends on DRM_ARMADA
+> > > +     select FB_CFB_COPYAREA
+> > > +     select FB_CFB_FILLRECT
+> > > +     select FB_CFB_IMAGEBLIT
+> > 
+> > This seems like a hard to maintain way to select a few helper functions.
+> > Today we have LD_DEAD_CODE_DATA_ELIMINATION for the configs that care
+> > about size - and that should work here as well.
+> 
+> I wasn't too happy about this solution either as it is quite verbose. But I
+> don't want to rely on the linker either. It certainly cannot remove exported
+> symbols.
+I forgot about exported symbols - that makes the idea futile.
 
-We've tested this on gfx11 and applied the patches.  Thanks!
+> 
+> But the pattern is very common among the fbdev drivers. We could introduce
+> common Kconfig options in fbdev and selcet those instead. Like this:
+> 
+> const FB_IO_HELPERS
+> 	bool
+> 	depends on FB
+> 	select FB_CFB_COPYAREA
+> 	select FB_CFB_FILLRECT
+> 	select FB_CFB_IMAGEBLIT
+> 
+> const FB_SYS_HELPERS
+> 	bool
+> 	depends on FB
+> 	select FB_SYS_COPYAREA
+> 	select FB_SYS_FILLRECT
+> 	select FB_SYS_FOPS
+> 	select FB_SYS_IMAGEBLIT
+> 
+> Apart from DRM, most of the fbdev drivers could use these as well.
+That's a much nicer way to express it - and with this we do not introduce
+the IMO confusing CFB (Color Frame Buffer) abbreviation in every driver.
 
-Alex
-
->
-> Cheers,
->
->
-> Guilherme
+	Sam
