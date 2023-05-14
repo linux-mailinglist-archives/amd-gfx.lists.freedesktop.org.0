@@ -2,97 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69F597021B1
-	for <lists+amd-gfx@lfdr.de>; Mon, 15 May 2023 04:28:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D31987025FD
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 May 2023 09:22:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDF3010E054;
-	Mon, 15 May 2023 02:28:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BEBC10E160;
+	Mon, 15 May 2023 07:22:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2068.outbound.protection.outlook.com [40.107.220.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C2FE10E054
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 May 2023 02:28:26 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=N+ZF58I0AUHm6f0MBpmbzeGRij2H84yCz4SounNW2SPVIxRdKOAU5F6XICCTy+D1pzE8rLGpQpO+a67DXeJyWj0eC0scIlN1RIA90NNltMFjvbAc4LNquUMOHWVqg+AZ7KATL0EHvhG4T0ctCu2JBMPQ65fyaHexXnnjzzcMhb6WObqfDmbaDqHlx+KrPj838EFK7CXcEcySgFVYhp0EwJtz0G3W2Taku43g1nhZ4EC2pWeMmvJs0qGa2mUyux4TFvosIrnKu/sSq2ZS+if9yQp552fEAgq8NwYz0qmOHnwOu5IcZfS1plWM85lpYeGeQRzxfTVGVFJ58aTjsowlaQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ULmPUFqAady7QjKp2eJTxoUcgASycdDesxqYKqvFt+s=;
- b=S11C2WlthcCA97ft4dmvdEpxHvusfoUrcxxNb7+afgF+yMQyuVIGwUgQLx+pDfO5XdAMCI9zh61/pSxHrpa0yMpGK1nWK018TmDBi+Z6LnNEhgelmr2cCobwxN8GoULpf4MOelZrF8PhaqyMuQBAaqOLBTZmwuFYtUuDKVmm29to0pd1STu3Ma6I6SPXtv4wL7cqUt0WugcSiG+UvGZFuQ6H8LgY99JboA9yaWPxc0vOTrX97tMFDqU6CQ2+8OYK89KbV6WsQVOuaS+gaKcC2dJqWV2xoeTkpyaZ3Opu89uyxLwDn4+bIL8/tuk91U49DYMQw6VOjPLiPkVA4Fwfrw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ULmPUFqAady7QjKp2eJTxoUcgASycdDesxqYKqvFt+s=;
- b=o86dE4PA6dg3Ccp8qs3vN1jgaD2dLsa6p8mqQrhWfBYDIjoFMwSQMG7nxwN8CPFNvzszijE/fdRgHBIMB6OeVmuod+zcG2AS7XNk45aM9bz14aukpgU/mxgnhr1bHl8z7rwt2dUTCcokC5Uz/82hZ6pwFGySH0uLwHoFCFqFwo0=
-Received: from BN9PR03CA0582.namprd03.prod.outlook.com (2603:10b6:408:10d::17)
- by MW4PR12MB7437.namprd12.prod.outlook.com (2603:10b6:303:21a::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.30; Mon, 15 May
- 2023 02:28:22 +0000
-Received: from BN8NAM11FT040.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:10d:cafe::96) by BN9PR03CA0582.outlook.office365.com
- (2603:10b6:408:10d::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.30 via Frontend
- Transport; Mon, 15 May 2023 02:28:22 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT040.mail.protection.outlook.com (10.13.177.166) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6411.14 via Frontend Transport; Mon, 15 May 2023 02:28:21 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Sun, 14 May
- 2023 21:28:20 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Sun, 14 May
- 2023 21:28:20 -0500
-Received: from hongkzha-test-pc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.34 via
- Frontend Transport; Sun, 14 May 2023 21:28:12 -0500
-From: Horatio Zhang <Hongkun.Zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2 2/2] drm/amdgpu: separate ras irq from jpeg instance irq
- for UVD_POISON
-Date: Sun, 14 May 2023 22:28:03 -0400
-Message-ID: <20230515022803.9482-2-Hongkun.Zhang@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230515022803.9482-1-Hongkun.Zhang@amd.com>
-References: <20230515022803.9482-1-Hongkun.Zhang@amd.com>
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com
+ [IPv6:2a00:1450:4864:20::436])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF79710E0DC;
+ Sun, 14 May 2023 21:26:51 +0000 (UTC)
+Received: by mail-wr1-x436.google.com with SMTP id
+ ffacd0b85a97d-3063433fa66so7720673f8f.3; 
+ Sun, 14 May 2023 14:26:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1684099608; x=1686691608;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=zDRI/SmuJW1MOkHOGv6LoDkcQTN7wDGl7tj3wYSbUK8=;
+ b=sdn5c8JjWfT/id4kBAa2qLnZNzDuFeXXKXgxcLiuPLppaNWdJBOvyxDpS0VFlVludQ
+ uptDi3JKAyFFeJieI45zFd+JYNbT056xyHCT29j/0yOTbU+LcrSMFcc9pRsij0+QeE6L
+ AG2IhZ2UxfA+1xGP8Ce1JqANQZaqVHtk2a8Q0qhbWzxGMtp32DM/XDvP+qb/pthLkgtH
+ B8cdnnioE9cewziKOptRqqjbwbfq9jPJgEsg1XQi50vJEh1hcTypP3mTST/EhQ9nQv7v
+ u8GXlWjDSXOyPjxevErNsh3kIk0VPGA+zC1ai88lFF+/URQmt3mnoKxdV8Cbu7m958DV
+ SNug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1684099608; x=1686691608;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=zDRI/SmuJW1MOkHOGv6LoDkcQTN7wDGl7tj3wYSbUK8=;
+ b=AK1vTrKezFzpGyZoLWly7hFgX0B5/NhIcNOrBx0Jygm2nwvRRLOtoiEXf4mqgK6X8/
+ qbzjVn4B7y7R1IOh1lUoFSOBc506VA/Fsa9pLoHICaAOSzQzqOaGWmBlKCMwTxrRllUJ
+ Aba2Ka8phY9Y6pgR127J6XQgugUtk008Rf/kptmfvKEwsf/4X7d3kvlMJbjGUEXUfuHa
+ HkZVRkwi+mo/60fbQlPyZseH8JKMIxSi+4fnYUkLvC1jmkiDEewncTB5Gcpo/gn7G6sn
+ 2U4vTHQpCSOBc4wWHLBIwKXc+jJGvGegzF00gKVxKjWGPTDO+HuuSYF1y5g0s+GX21dg
+ uxUw==
+X-Gm-Message-State: AC+VfDwldrIzVvyFWjBr5W9pJGnS98UisPy4HITrE2xDGZO0CdN5Rsoc
+ TfPDqefdFiyuYDQSAaa0/x0=
+X-Google-Smtp-Source: ACHHUZ7sG7Qk0+WYMTV6b4v9dHtB0zmY4Zy9Nl7tvG7pDojdVP+7xDTkXtnFXvGR7e5uzEeCeZ2TfA==
+X-Received: by 2002:adf:f491:0:b0:306:31b7:abe4 with SMTP id
+ l17-20020adff491000000b0030631b7abe4mr26212161wro.14.1684099607746; 
+ Sun, 14 May 2023 14:26:47 -0700 (PDT)
+Received: from lucifer.home ([2a00:23c5:dc8c:8701:1663:9a35:5a7b:1d76])
+ by smtp.googlemail.com with ESMTPSA id
+ o1-20020a5d6701000000b003063a1cdaf2sm30433846wru.48.2023.05.14.14.26.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 14 May 2023 14:26:46 -0700 (PDT)
+From: Lorenzo Stoakes <lstoakes@gmail.com>
+To: linux-mm@kvack.org, linux-kernel@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>
+Subject: [PATCH v5 1/6] mm/gup: remove unused vmas parameter from
+ get_user_pages()
+Date: Sun, 14 May 2023 22:26:41 +0100
+Message-Id: <b61d5999a4fc6d50b7e073cc3c3efa8fe79bbd94.1684097002.git.lstoakes@gmail.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <cover.1684097001.git.lstoakes@gmail.com>
+References: <cover.1684097001.git.lstoakes@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT040:EE_|MW4PR12MB7437:EE_
-X-MS-Office365-Filtering-Correlation-Id: f689bc98-277b-4892-9a8c-08db54ec0d86
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: mERu8Yhcn5AncmOG1UsxDOY+YnM/jpzuDhWXE3rEHUc5F7y1dfU+udI5DjD90yonxha+80tzCqZqlZcbB+XR/XHACEjbOtKPAKj2CcpxI/MIglvhTQ6SE4I/CqExspWcWObolwskwHVe/8niZA9DavRcxijDmC5AVVpo+71ghXGeKxJZWheiS5RlVss8Kwp3Ye2qCA7t1Ykn1YNNdz21dJjwFzdtGfH2ih88ZmIscXa1GSGlUkaLwPTCaOWdIjAIR9vjBSuEPAWIdT7lpK778qByg72c7lkF6AZsQj2T3FkjBJizUFTx+Zk277dWPDfjvdFlZtXQqJixQNZeruC0VLYbGOE1P3z8KHjfvChxCOqx9i1uDYOjzTajkwseqslEzvXXK5bIKJnQqF0v4Kxvj2WHkMuIFKZ+iSymTRUIUBkYP19QxQY+JAvtxxEgbg0mZ4TqoAZrIRhSWXwknlLmI9h97uOuxKQwneHfm1rKiZTkGOt0mY7ZfdKSMN7ZdjBvcQDDWMbjjz+l5lomYmWeT/D7T2/f+TbQWhjIju8nON8KIKr77y3R98OKtbhZTh5xm7+kt13yUcCsUSZ0b5APK7ul+xUrgu0uxR+EwzCVAflQxlBsPzfJ96riiWkdWflYmMdDF7SGIWo6MIcW+yYwLqrjog7YWEwBTvL2ZHTyfyIn87QGtbmN4bR+POAsDS49Ot2ibHsnTugvhKYZ8ry1N1n9bKeNa1cZlnPRaTO9Obvc7oBwn9/fEX1QD5JYJHtYYWNLorcMu0PObg5xAKasLA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(136003)(39860400002)(376002)(396003)(346002)(451199021)(40470700004)(36840700001)(46966006)(54906003)(478600001)(6916009)(4326008)(70206006)(70586007)(6666004)(7696005)(316002)(82310400005)(40480700001)(2906002)(8936002)(8676002)(41300700001)(5660300002)(26005)(1076003)(82740400003)(81166007)(356005)(86362001)(36756003)(426003)(336012)(2616005)(83380400001)(40460700003)(186003)(47076005)(36860700001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2023 02:28:21.8684 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f689bc98-277b-4892-9a8c-08db54ec0d86
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT040.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7437
+X-Mailman-Approved-At: Mon, 15 May 2023 07:22:43 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,273 +76,177 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: HaoPing.Liu@amd.com, bob.zhou@amd.com,
- Horatio Zhang <Hongkun.Zhang@amd.com>, feifei.xu@amd.com, tao.zhou1@amd.com,
- Sonny.Jiang@amd.com, Mario.Limonciello@amd.com, Leo.Liu@amd.com,
- Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: kvm@vger.kernel.org, David Hildenbrand <david@redhat.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ "H . Peter Anvin" <hpa@zytor.com>, David Airlie <airlied@gmail.com>,
+ x86@kernel.org, Matthew Wilcox <willy@infradead.org>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Ingo Molnar <mingo@redhat.com>,
+ Jason Gunthorpe <jgg@nvidia.com>, Arnd Bergmann <arnd@arndb.de>,
+ John Hubbard <jhubbard@nvidia.com>, Borislav Petkov <bp@alien8.de>,
+ Thomas Gleixner <tglx@linutronix.de>, linux-sgx@vger.kernel.org,
+ Jens Axboe <axboe@kernel.dk>, Dimitri Sivanich <dimitri.sivanich@hpe.com>,
+ Lorenzo Stoakes <lstoakes@gmail.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Xinhui Pan <Xinhui.Pan@amd.com>, Christian Konig <christian.koenig@amd.com>,
+ Jarkko Sakkinen <jarkko@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+ Paolo Bonzini <pbonzini@redhat.com>, Pavel Begunkov <asml.silence@gmail.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Separate RAS poison consumption handling from the instance irq, and
-register dedicated ras_poison_irq src and funcs for UVD_POISON. Fix
-the amdgpu_irq_put call trace in vcn_v4_0_hw_fini.
+No invocation of get_user_pages() use the vmas parameter, so remove it.
 
-[   50.497562] RIP: 0010:amdgpu_irq_put+0xa4/0xc0 [amdgpu]
-[   50.497619] RSP: 0018:ffffaa2400fcfcb0 EFLAGS: 00010246
-[   50.497620] RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
-[   50.497621] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
-[   50.497621] RBP: ffffaa2400fcfcd0 R08: 0000000000000000 R09: 0000000000000000
-[   50.497622] R10: 0000000000000000 R11: 0000000000000000 R12: ffff99b2105242d8
-[   50.497622] R13: 0000000000000000 R14: ffff99b210500000 R15: ffff99b210500000
-[   50.497623] FS:  0000000000000000(0000) GS:ffff99b518480000(0000) knlGS:0000000000000000
-[   50.497623] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[   50.497624] CR2: 00007f9d32aa91e8 CR3: 00000001ba210000 CR4: 0000000000750ee0
-[   50.497624] PKRU: 55555554
-[   50.497625] Call Trace:
-[   50.497625]  <TASK>
-[   50.497627]  jpeg_v4_0_hw_fini+0x43/0xc0 [amdgpu]
-[   50.497693]  jpeg_v4_0_suspend+0x13/0x30 [amdgpu]
-[   50.497751]  amdgpu_device_ip_suspend_phase2+0x240/0x470 [amdgpu]
-[   50.497802]  amdgpu_device_ip_suspend+0x41/0x80 [amdgpu]
-[   50.497854]  amdgpu_device_pre_asic_reset+0xd9/0x4a0 [amdgpu]
-[   50.497905]  amdgpu_device_gpu_recover.cold+0x548/0xcf1 [amdgpu]
-[   50.498005]  amdgpu_debugfs_reset_work+0x4c/0x80 [amdgpu]
-[   50.498060]  process_one_work+0x21f/0x400
-[   50.498063]  worker_thread+0x200/0x3f0
-[   50.498064]  ? process_one_work+0x400/0x400
-[   50.498065]  kthread+0xee/0x120
-[   50.498067]  ? kthread_complete_and_exit+0x20/0x20
-[   50.498068]  ret_from_fork+0x22/0x30
+The GUP API is confusing and caveated. Recent changes have done much to
+improve that, however there is more we can do. Exporting vmas is a prime
+target as the caller has to be extremely careful to preclude their use
+after the mmap_lock has expired or otherwise be left with dangling
+pointers.
 
+Removing the vmas parameter focuses the GUP functions upon their primary
+purpose - pinning (and outputting) pages as well as performing the actions
+implied by the input flags.
 
-Suggested-by: Hawking Zhang <Hawking.Zhang@amd.com>
-Signed-off-by: Horatio Zhang <Hongkun.Zhang@amd.com>
+This is part of a patch series aiming to remove the vmas parameter
+altogether.
+
+Suggested-by: Matthew Wilcox (Oracle) <willy@infradead.org>
+Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Acked-by: David Hildenbrand <david@redhat.com>
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+Acked-by: Christian König <christian.koenig@amd.com> (for radeon parts)
+Acked-by: Jarkko Sakkinen <jarkko@kernel.org>
+Signed-off-by: Lorenzo Stoakes <lstoakes@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c | 27 +++++++++++++++++++++++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.h |  3 +++
- drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c   | 27 ++++++++++++++++++------
- drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c   | 27 ++++++++++++++++++------
- 4 files changed, 70 insertions(+), 14 deletions(-)
+ arch/x86/kernel/cpu/sgx/ioctl.c     | 2 +-
+ drivers/gpu/drm/radeon/radeon_ttm.c | 2 +-
+ drivers/misc/sgi-gru/grufault.c     | 2 +-
+ include/linux/mm.h                  | 3 +--
+ mm/gup.c                            | 9 +++------
+ mm/gup_test.c                       | 5 ++---
+ virt/kvm/kvm_main.c                 | 2 +-
+ 7 files changed, 10 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
-index b07c000fc8ba..f27078fc67c2 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.c
-@@ -241,6 +241,31 @@ int amdgpu_jpeg_process_poison_irq(struct amdgpu_device *adev,
- 	return 0;
- }
+diff --git a/arch/x86/kernel/cpu/sgx/ioctl.c b/arch/x86/kernel/cpu/sgx/ioctl.c
+index 21ca0a831b70..5d390df21440 100644
+--- a/arch/x86/kernel/cpu/sgx/ioctl.c
++++ b/arch/x86/kernel/cpu/sgx/ioctl.c
+@@ -214,7 +214,7 @@ static int __sgx_encl_add_page(struct sgx_encl *encl,
+ 	if (!(vma->vm_flags & VM_MAYEXEC))
+ 		return -EACCES;
  
-+int amdgpu_jpeg_ras_late_init(struct amdgpu_device *adev, struct ras_common_if *ras_block)
-+{
-+	int r, i;
-+
-+	r = amdgpu_ras_block_late_init(adev, ras_block);
-+	if (r)
-+		return r;
-+
-+	if (amdgpu_ras_is_supported(adev, ras_block->block)) {
-+		for (i = 0; i < adev->jpeg.num_jpeg_inst; ++i) {
-+			if (adev->jpeg.harvest_config & (1 << i))
-+				continue;
-+
-+			r = amdgpu_irq_get(adev, &adev->jpeg.inst[i].ras_poison_irq, 0);
-+			if (r)
-+				goto late_fini;
-+		}
-+	}
-+	return 0;
-+
-+late_fini:
-+	amdgpu_ras_block_late_fini(adev, ras_block);
-+	return r;
-+}
-+
- int amdgpu_jpeg_ras_sw_init(struct amdgpu_device *adev)
+-	ret = get_user_pages(src, 1, 0, &src_page, NULL);
++	ret = get_user_pages(src, 1, 0, &src_page);
+ 	if (ret < 1)
+ 		return -EFAULT;
+ 
+diff --git a/drivers/gpu/drm/radeon/radeon_ttm.c b/drivers/gpu/drm/radeon/radeon_ttm.c
+index 2220cdf6a3f6..3a9db030f98f 100644
+--- a/drivers/gpu/drm/radeon/radeon_ttm.c
++++ b/drivers/gpu/drm/radeon/radeon_ttm.c
+@@ -359,7 +359,7 @@ static int radeon_ttm_tt_pin_userptr(struct ttm_device *bdev, struct ttm_tt *ttm
+ 		struct page **pages = ttm->pages + pinned;
+ 
+ 		r = get_user_pages(userptr, num_pages, write ? FOLL_WRITE : 0,
+-				   pages, NULL);
++				   pages);
+ 		if (r < 0)
+ 			goto release_pages;
+ 
+diff --git a/drivers/misc/sgi-gru/grufault.c b/drivers/misc/sgi-gru/grufault.c
+index b836936e9747..378cf02a2aa1 100644
+--- a/drivers/misc/sgi-gru/grufault.c
++++ b/drivers/misc/sgi-gru/grufault.c
+@@ -185,7 +185,7 @@ static int non_atomic_pte_lookup(struct vm_area_struct *vma,
+ #else
+ 	*pageshift = PAGE_SHIFT;
+ #endif
+-	if (get_user_pages(vaddr, 1, write ? FOLL_WRITE : 0, &page, NULL) <= 0)
++	if (get_user_pages(vaddr, 1, write ? FOLL_WRITE : 0, &page) <= 0)
+ 		return -EFAULT;
+ 	*paddr = page_to_phys(page);
+ 	put_page(page);
+diff --git a/include/linux/mm.h b/include/linux/mm.h
+index db3f66ed2f32..2c1a92bf5626 100644
+--- a/include/linux/mm.h
++++ b/include/linux/mm.h
+@@ -2382,8 +2382,7 @@ long pin_user_pages_remote(struct mm_struct *mm,
+ 			   unsigned int gup_flags, struct page **pages,
+ 			   struct vm_area_struct **vmas, int *locked);
+ long get_user_pages(unsigned long start, unsigned long nr_pages,
+-			    unsigned int gup_flags, struct page **pages,
+-			    struct vm_area_struct **vmas);
++		    unsigned int gup_flags, struct page **pages);
+ long pin_user_pages(unsigned long start, unsigned long nr_pages,
+ 		    unsigned int gup_flags, struct page **pages,
+ 		    struct vm_area_struct **vmas);
+diff --git a/mm/gup.c b/mm/gup.c
+index 90d9b65ff35c..b8189396f435 100644
+--- a/mm/gup.c
++++ b/mm/gup.c
+@@ -2294,8 +2294,6 @@ long get_user_pages_remote(struct mm_struct *mm,
+  * @pages:      array that receives pointers to the pages pinned.
+  *              Should be at least nr_pages long. Or NULL, if caller
+  *              only intends to ensure the pages are faulted in.
+- * @vmas:       array of pointers to vmas corresponding to each page.
+- *              Or NULL if the caller does not require them.
+  *
+  * This is the same as get_user_pages_remote(), just with a less-flexible
+  * calling convention where we assume that the mm being operated on belongs to
+@@ -2303,16 +2301,15 @@ long get_user_pages_remote(struct mm_struct *mm,
+  * obviously don't pass FOLL_REMOTE in here.
+  */
+ long get_user_pages(unsigned long start, unsigned long nr_pages,
+-		unsigned int gup_flags, struct page **pages,
+-		struct vm_area_struct **vmas)
++		    unsigned int gup_flags, struct page **pages)
  {
- 	int err;
-@@ -262,7 +287,7 @@ int amdgpu_jpeg_ras_sw_init(struct amdgpu_device *adev)
- 	adev->jpeg.ras_if = &ras->ras_block.ras_comm;
+ 	int locked = 1;
  
- 	if (!ras->ras_block.ras_late_init)
--		ras->ras_block.ras_late_init = amdgpu_ras_block_late_init;
-+		ras->ras_block.ras_late_init = amdgpu_jpeg_ras_late_init;
+-	if (!is_valid_gup_args(pages, vmas, NULL, &gup_flags, FOLL_TOUCH))
++	if (!is_valid_gup_args(pages, NULL, NULL, &gup_flags, FOLL_TOUCH))
+ 		return -EINVAL;
  
- 	return 0;
+ 	return __get_user_pages_locked(current->mm, start, nr_pages, pages,
+-				       vmas, &locked, gup_flags);
++				       NULL, &locked, gup_flags);
  }
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.h
-index 0ca76f0f23e9..172296e9f40c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.h
-@@ -38,6 +38,7 @@ struct amdgpu_jpeg_reg{
- struct amdgpu_jpeg_inst {
- 	struct amdgpu_ring ring_dec;
- 	struct amdgpu_irq_src irq;
-+	struct amdgpu_irq_src ras_poison_irq;
- 	struct amdgpu_jpeg_reg external;
- };
+ EXPORT_SYMBOL(get_user_pages);
  
-@@ -72,6 +73,8 @@ int amdgpu_jpeg_dec_ring_test_ib(struct amdgpu_ring *ring, long timeout);
- int amdgpu_jpeg_process_poison_irq(struct amdgpu_device *adev,
- 				struct amdgpu_irq_src *source,
- 				struct amdgpu_iv_entry *entry);
-+int amdgpu_jpeg_ras_late_init(struct amdgpu_device *adev,
-+				struct ras_common_if *ras_block);
- int amdgpu_jpeg_ras_sw_init(struct amdgpu_device *adev);
- 
- #endif /*__AMDGPU_JPEG_H__*/
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c
-index b040f51d9aa9..5ee7bc6a9360 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c
-@@ -102,13 +102,13 @@ static int jpeg_v2_5_sw_init(void *handle)
- 
- 		/* JPEG DJPEG POISON EVENT */
- 		r = amdgpu_irq_add_id(adev, amdgpu_ih_clientid_jpeg[i],
--			VCN_2_6__SRCID_DJPEG0_POISON, &adev->jpeg.inst[i].irq);
-+			VCN_2_6__SRCID_DJPEG0_POISON, &adev->jpeg.inst[i].ras_poison_irq);
- 		if (r)
- 			return r;
- 
- 		/* JPEG EJPEG POISON EVENT */
- 		r = amdgpu_irq_add_id(adev, amdgpu_ih_clientid_jpeg[i],
--			VCN_2_6__SRCID_EJPEG0_POISON, &adev->jpeg.inst[i].irq);
-+			VCN_2_6__SRCID_EJPEG0_POISON, &adev->jpeg.inst[i].ras_poison_irq);
- 		if (r)
- 			return r;
- 	}
-@@ -221,6 +221,9 @@ static int jpeg_v2_5_hw_fini(void *handle)
- 		if (adev->jpeg.cur_state != AMD_PG_STATE_GATE &&
- 		      RREG32_SOC15(JPEG, i, mmUVD_JRBC_STATUS))
- 			jpeg_v2_5_set_powergating_state(adev, AMD_PG_STATE_GATE);
-+
-+		if (amdgpu_ras_is_supported(adev, AMDGPU_RAS_BLOCK__JPEG))
-+			amdgpu_irq_put(adev, &adev->jpeg.inst[i].ras_poison_irq, 0);
- 	}
- 
- 	return 0;
-@@ -569,6 +572,14 @@ static int jpeg_v2_5_set_interrupt_state(struct amdgpu_device *adev,
- 	return 0;
- }
- 
-+static int jpeg_v2_6_set_ras_interrupt_state(struct amdgpu_device *adev,
-+					struct amdgpu_irq_src *source,
-+					unsigned int type,
-+					enum amdgpu_interrupt_state state)
-+{
-+	return 0;
-+}
-+
- static int jpeg_v2_5_process_interrupt(struct amdgpu_device *adev,
- 				      struct amdgpu_irq_src *source,
- 				      struct amdgpu_iv_entry *entry)
-@@ -593,10 +604,6 @@ static int jpeg_v2_5_process_interrupt(struct amdgpu_device *adev,
- 	case VCN_2_0__SRCID__JPEG_DECODE:
- 		amdgpu_fence_process(&adev->jpeg.inst[ip_instance].ring_dec);
- 		break;
--	case VCN_2_6__SRCID_DJPEG0_POISON:
--	case VCN_2_6__SRCID_EJPEG0_POISON:
--		amdgpu_jpeg_process_poison_irq(adev, source, entry);
--		break;
- 	default:
- 		DRM_ERROR("Unhandled interrupt: %d %d\n",
- 			  entry->src_id, entry->src_data[0]);
-@@ -725,6 +732,11 @@ static const struct amdgpu_irq_src_funcs jpeg_v2_5_irq_funcs = {
- 	.process = jpeg_v2_5_process_interrupt,
- };
- 
-+static const struct amdgpu_irq_src_funcs jpeg_v2_6_ras_irq_funcs = {
-+	.set = jpeg_v2_6_set_ras_interrupt_state,
-+	.process = amdgpu_jpeg_process_poison_irq,
-+};
-+
- static void jpeg_v2_5_set_irq_funcs(struct amdgpu_device *adev)
+diff --git a/mm/gup_test.c b/mm/gup_test.c
+index 8ae7307a1bb6..9ba8ea23f84e 100644
+--- a/mm/gup_test.c
++++ b/mm/gup_test.c
+@@ -139,8 +139,7 @@ static int __gup_test_ioctl(unsigned int cmd,
+ 						 pages + i);
+ 			break;
+ 		case GUP_BASIC_TEST:
+-			nr = get_user_pages(addr, nr, gup->gup_flags, pages + i,
+-					    NULL);
++			nr = get_user_pages(addr, nr, gup->gup_flags, pages + i);
+ 			break;
+ 		case PIN_FAST_BENCHMARK:
+ 			nr = pin_user_pages_fast(addr, nr, gup->gup_flags,
+@@ -161,7 +160,7 @@ static int __gup_test_ioctl(unsigned int cmd,
+ 						    pages + i, NULL);
+ 			else
+ 				nr = get_user_pages(addr, nr, gup->gup_flags,
+-						    pages + i, NULL);
++						    pages + i);
+ 			break;
+ 		default:
+ 			ret = -EINVAL;
+diff --git a/virt/kvm/kvm_main.c b/virt/kvm/kvm_main.c
+index cb5c13eee193..eaa5bb8dbadc 100644
+--- a/virt/kvm/kvm_main.c
++++ b/virt/kvm/kvm_main.c
+@@ -2477,7 +2477,7 @@ static inline int check_user_page_hwpoison(unsigned long addr)
  {
- 	int i;
-@@ -735,6 +747,9 @@ static void jpeg_v2_5_set_irq_funcs(struct amdgpu_device *adev)
+ 	int rc, flags = FOLL_HWPOISON | FOLL_WRITE;
  
- 		adev->jpeg.inst[i].irq.num_types = 1;
- 		adev->jpeg.inst[i].irq.funcs = &jpeg_v2_5_irq_funcs;
-+
-+		adev->jpeg.inst[i].ras_poison_irq.num_types = 1;
-+		adev->jpeg.inst[i].ras_poison_irq.funcs = &jpeg_v2_6_ras_irq_funcs;
- 	}
+-	rc = get_user_pages(addr, 1, flags, NULL, NULL);
++	rc = get_user_pages(addr, 1, flags, NULL);
+ 	return rc == -EHWPOISON;
  }
  
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c
-index 77e1e64aa1d1..60b9362fcebc 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.c
-@@ -87,13 +87,13 @@ static int jpeg_v4_0_sw_init(void *handle)
- 
- 	/* JPEG DJPEG POISON EVENT */
- 	r = amdgpu_irq_add_id(adev, SOC15_IH_CLIENTID_VCN,
--			VCN_4_0__SRCID_DJPEG0_POISON, &adev->jpeg.inst->irq);
-+			VCN_4_0__SRCID_DJPEG0_POISON, &adev->jpeg.inst->ras_poison_irq);
- 	if (r)
- 		return r;
- 
- 	/* JPEG EJPEG POISON EVENT */
- 	r = amdgpu_irq_add_id(adev, SOC15_IH_CLIENTID_VCN,
--			VCN_4_0__SRCID_EJPEG0_POISON, &adev->jpeg.inst->irq);
-+			VCN_4_0__SRCID_EJPEG0_POISON, &adev->jpeg.inst->ras_poison_irq);
- 	if (r)
- 		return r;
- 
-@@ -202,7 +202,8 @@ static int jpeg_v4_0_hw_fini(void *handle)
- 			RREG32_SOC15(JPEG, 0, regUVD_JRBC_STATUS))
- 			jpeg_v4_0_set_powergating_state(adev, AMD_PG_STATE_GATE);
- 	}
--	amdgpu_irq_put(adev, &adev->jpeg.inst->irq, 0);
-+	if (amdgpu_ras_is_supported(adev, AMDGPU_RAS_BLOCK__JPEG))
-+		amdgpu_irq_put(adev, &adev->jpeg.inst->ras_poison_irq, 0);
- 
- 	return 0;
- }
-@@ -670,6 +671,14 @@ static int jpeg_v4_0_set_interrupt_state(struct amdgpu_device *adev,
- 	return 0;
- }
- 
-+static int jpeg_v4_0_set_ras_interrupt_state(struct amdgpu_device *adev,
-+					struct amdgpu_irq_src *source,
-+					unsigned int type,
-+					enum amdgpu_interrupt_state state)
-+{
-+	return 0;
-+}
-+
- static int jpeg_v4_0_process_interrupt(struct amdgpu_device *adev,
- 				      struct amdgpu_irq_src *source,
- 				      struct amdgpu_iv_entry *entry)
-@@ -680,10 +689,6 @@ static int jpeg_v4_0_process_interrupt(struct amdgpu_device *adev,
- 	case VCN_4_0__SRCID__JPEG_DECODE:
- 		amdgpu_fence_process(&adev->jpeg.inst->ring_dec);
- 		break;
--	case VCN_4_0__SRCID_DJPEG0_POISON:
--	case VCN_4_0__SRCID_EJPEG0_POISON:
--		amdgpu_jpeg_process_poison_irq(adev, source, entry);
--		break;
- 	default:
- 		DRM_DEV_ERROR(adev->dev, "Unhandled interrupt: %d %d\n",
- 			  entry->src_id, entry->src_data[0]);
-@@ -753,10 +758,18 @@ static const struct amdgpu_irq_src_funcs jpeg_v4_0_irq_funcs = {
- 	.process = jpeg_v4_0_process_interrupt,
- };
- 
-+static const struct amdgpu_irq_src_funcs jpeg_v4_0_ras_irq_funcs = {
-+	.set = jpeg_v4_0_set_ras_interrupt_state,
-+	.process = amdgpu_jpeg_process_poison_irq,
-+};
-+
- static void jpeg_v4_0_set_irq_funcs(struct amdgpu_device *adev)
- {
- 	adev->jpeg.inst->irq.num_types = 1;
- 	adev->jpeg.inst->irq.funcs = &jpeg_v4_0_irq_funcs;
-+
-+	adev->jpeg.inst->ras_poison_irq.num_types = 1;
-+	adev->jpeg.inst->ras_poison_irq.funcs = &jpeg_v4_0_ras_irq_funcs;
- }
- 
- const struct amdgpu_ip_block_version jpeg_v4_0_ip_block = {
 -- 
-2.34.1
+2.40.1
 
