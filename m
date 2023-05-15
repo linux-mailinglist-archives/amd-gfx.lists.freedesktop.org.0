@@ -1,35 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63C6F7025FB
-	for <lists+amd-gfx@lfdr.de>; Mon, 15 May 2023 09:22:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3174A70243E
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 May 2023 08:14:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADB7910E15A;
-	Mon, 15 May 2023 07:22:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE26010E0A3;
+	Mon, 15 May 2023 06:14:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 485 seconds by postgrey-1.36 at gabe;
- Mon, 15 May 2023 01:42:43 UTC
-Received: from mail.nfschina.com (unknown [42.101.60.195])
- by gabe.freedesktop.org (Postfix) with SMTP id 576AC10E037;
- Mon, 15 May 2023 01:42:42 +0000 (UTC)
-Received: from localhost.localdomain (unknown [180.167.10.98])
- by mail.nfschina.com (Maildata Gateway V2.8.8) with ESMTPA id 5E51618011A402; 
- Mon, 15 May 2023 09:34:32 +0800 (CST)
-X-MD-Sfrom: suhui@nfschina.com
-X-MD-SrcIP: 180.167.10.98
-From: Su Hui <suhui@nfschina.com>
-To: Alex Deucher <alexander.deucher@amd.com>, christian.koenig@amd.com,
- Xinhui.Pan@amd.com, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>
-Subject: [PATCH] drm/amdgpu: remove unnecessary (void*) conversions
-Date: Mon, 15 May 2023 09:34:28 +0800
-Message-Id: <20230515013428.38798-1-suhui@nfschina.com>
-X-Mailer: git-send-email 2.30.2
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam04on2045.outbound.protection.outlook.com [40.107.101.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 030C210E0A3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 May 2023 06:14:35 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Yvb+ZEyO/fKe8qhQCxyw9TTpkMyRad/Ae8jeE4BtAj9LLKjf5ai1K4jXDftAnik8bW4W5B0nULqVU3F4Wr2ljB4qlQGqJp6sDPASifBesZIE73+PhsqxDKD5xvFxth+yYqKmkg8N0GH9xJQxZVlkW/XmNQXuJofNviNSFTRVkP8vuRHi8jk6dNf8ZAhmu2VxIUbCPmU5nqy3CiBxeIG9ISNOwmD9dax1pkMQqbd7Ggn4to+6Oes3q6Ho5GRio5UusjehItmTaOTgM83siy8mYDJtRmbGhoYEgtf4YNp2Ipq+q8i8eMReeaXIRolG0UXaLsKqTL27YVWkS33QKfJa6g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=M1kehrrS2HiLx4QdOi5Mw28z+Pg/akcUow2Mv1bjop0=;
+ b=lPGIde9s0qphXcGIKZ2VluZXS62JXm9UaP6OYmXBx5aEA424vsMIW+OIIiuoj3RVswFkm9F/8+NqS6ZdKIlpl1WMJs2c0FVBXDBOFN67grttMnzU2Wq1yrhUOPDgR0xKIhGs5nlc/+dryw0IGXFJj8kS/SgcJmZcOc3IxEejt4QDkv7JahUp9w7LKsqDDFkoF1Fko3ItSlBMJbYqDQV3ia2WKn3c3z52yvE7gsASB6Nl/WK7gIfSk9Bs9nNLR0y8/vv9zGI/SLccW2KUKKKE8wXf51dGS2thLOCyJCR5E4jBEOzB/GmcaNGl3iTuvrRt8l1wLzmsBri761bHjWMjPg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=M1kehrrS2HiLx4QdOi5Mw28z+Pg/akcUow2Mv1bjop0=;
+ b=MPrsaDh2TZ8G58XmdRzgYVVkxBihAwzyNMlz5/e0RZmjCyaKaKzUIclHDwP9zV+9avG8WACFgogKFQrNbHAmKPMfVZEVL7AzBp+5eJY79BsAd+D8Ud2goa8r5z1Ou2Xh2OuabOWoBGcZt07OTHTMOztCHaQELJw5uVqgwX4YjUg=
+Received: from MW4PR04CA0201.namprd04.prod.outlook.com (2603:10b6:303:86::26)
+ by MW3PR12MB4572.namprd12.prod.outlook.com (2603:10b6:303:5e::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.29; Mon, 15 May
+ 2023 06:14:33 +0000
+Received: from CO1NAM11FT020.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:86:cafe::89) by MW4PR04CA0201.outlook.office365.com
+ (2603:10b6:303:86::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.30 via Frontend
+ Transport; Mon, 15 May 2023 06:14:33 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT020.mail.protection.outlook.com (10.13.174.149) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6411.14 via Frontend Transport; Mon, 15 May 2023 06:14:33 +0000
+Received: from majun-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 15 May
+ 2023 01:14:00 -0500
+From: Ma Jun <Jun.Ma2@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu: Fix the EPERM error when get user pages
+Date: Mon, 15 May 2023 14:13:42 +0800
+Message-ID: <20230515061342.3328610-1-Jun.Ma2@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 15 May 2023 07:22:43 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT020:EE_|MW3PR12MB4572:EE_
+X-MS-Office365-Filtering-Correlation-Id: 271ccac4-6364-439c-59cb-08db550ba6ec
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: gnsccLMxFn1vC+yqLCNk2XrmCBfKGr7sKG5m/WxdSMxhYMNK/lFsogH5pp11O1XgwwPj8UawuY7pQgE9AMjdTkCVtiCsCBXMne+LYTLUFnV3V7hZCoia7wAgGZKkJ/Bml77QLXz6IGSKEZ9p8B13P+QajOPiwbF6IJS/O0zXy0MnbLVlvw8ODoepYTK0qKiU5S6aUfAC5AV2N4iuf3c42dlHw5aUrf/aFDC0xyahARN7N1b98Cpaxw2gQjm4Ly/6gzwW/k+CIIzUJjF31iBJknk0h4iJN7NP1x8+uVEsgXSrEJcotzt9vHcUx2RIsgUFHHW/BXfVvtXhL0WFGfYuL+wW4lkTAJVhJimmhDDQTR84uv0SimUZTYwtbzfYZN4CD/V7zon/0mjQlddqouT7HWuF4pPifahfaXQb62L4ZwMbLvXzkTja1nHSw8UGl4I+EQAiE1RqyGb4WfQo+Rcvwd2iGGsi8mzvZQ0T/R1y2T8wmokqMEEPrIoF+cYAt1zH1SL8SJrwFwXmUisztuTrWbakUPuk3RNjs1JmcKctIos/PJB7sRO3fLI67OmZwO//WO481vH26++HcQaNV/oozK4YQ9XEOIgQCgQE2vmhGxhuqWdOZtX3u6/LcBT56rJCMZZsC6HBowS7oxXajoFGRbLsqZqUz6lNvWHNPJB11utCzMa2OGKz7Dl2WhKel/WGWHKxwx9NHUaxq5Yo7aXibb1zLly5x0iM4IMvi6kokf/NM24//Lv6Ksgr2B93JDTST60GeIKoxjSO7DWIQRiqpw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230028)(4636009)(376002)(39860400002)(346002)(396003)(136003)(451199021)(40470700004)(46966006)(36840700001)(6916009)(4326008)(70206006)(478600001)(70586007)(54906003)(186003)(16526019)(83380400001)(40460700003)(426003)(336012)(2616005)(36860700001)(47076005)(36756003)(82310400005)(8936002)(8676002)(40480700001)(2906002)(6666004)(7696005)(316002)(356005)(81166007)(86362001)(5660300002)(41300700001)(26005)(1076003)(82740400003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2023 06:14:33.5159 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 271ccac4-6364-439c-59cb-08db550ba6ec
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT020.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4572
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,111 +97,47 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Su Hui <suhui@nfschina.com>, kernel-janitors@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Cc: alex.sierra@amd.com, Ma Jun <Jun.Ma2@amd.com>, felix.kuehling@amd.com,
+ christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-No need cast (void*) to (struct amdgpu_device *).
+Check and pass the readonly flags when set amdgpu_ttm_tt flags
 
-Signed-off-by: Su Hui <suhui@nfschina.com>
+for readonly ptr pages. Otherwise, there is EPERM error returned
+
+during the KFDExceptionTest.PermissionFaultUserPointer test on
+
+ploaris10.
+
+Signed-off-by: Ma Jun <Jun.Ma2@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 4 ++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c   | 2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c     | 2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c      | 2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c     | 2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c     | 2 +-
- 6 files changed, 7 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-index f60753f97ac5..c837e0bf2cfc 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-@@ -1470,7 +1470,7 @@ int amdgpu_debugfs_regs_init(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+index d426333e865a..85d1087439c0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+@@ -1036,10 +1036,17 @@ static int init_user_pages(struct kgd_mem *mem, uint64_t user_addr,
+ 	struct ttm_operation_ctx ctx = { true, false };
+ 	struct hmm_range *range;
+ 	int ret = 0;
++	uint32_t tt_flags = 0;
  
- static int amdgpu_debugfs_test_ib_show(struct seq_file *m, void *unused)
- {
--	struct amdgpu_device *adev = (struct amdgpu_device *)m->private;
-+	struct amdgpu_device *adev = m->private;
- 	struct drm_device *dev = adev_to_drm(adev);
- 	int r = 0, i;
+ 	mutex_lock(&process_info->lock);
  
-@@ -1581,7 +1581,7 @@ static int amdgpu_debugfs_benchmark(void *data, u64 val)
- 
- static int amdgpu_debugfs_vm_info_show(struct seq_file *m, void *unused)
- {
--	struct amdgpu_device *adev = (struct amdgpu_device *)m->private;
-+	struct amdgpu_device *adev = m->private;
- 	struct drm_device *dev = adev_to_drm(adev);
- 	struct drm_file *file;
- 	int r;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-index f52d0ba91a77..f0615a43b3cc 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-@@ -835,7 +835,7 @@ static const struct dma_fence_ops amdgpu_job_fence_ops = {
- #if defined(CONFIG_DEBUG_FS)
- static int amdgpu_debugfs_fence_info_show(struct seq_file *m, void *unused)
- {
--	struct amdgpu_device *adev = (struct amdgpu_device *)m->private;
-+	struct amdgpu_device *adev = m->private;
- 	int i;
- 
- 	for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-index 863cb668e000..28f79cf8c3fb 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-@@ -948,7 +948,7 @@ int amdgpu_mode_dumb_create(struct drm_file *file_priv,
- #if defined(CONFIG_DEBUG_FS)
- static int amdgpu_debugfs_gem_info_show(struct seq_file *m, void *unused)
- {
--	struct amdgpu_device *adev = (struct amdgpu_device *)m->private;
-+	struct amdgpu_device *adev = m->private;
- 	struct drm_device *dev = adev_to_drm(adev);
- 	struct drm_file *file;
- 	int r;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
-index 4ff348e10e4d..49a4238a120e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
-@@ -436,7 +436,7 @@ int amdgpu_ib_ring_tests(struct amdgpu_device *adev)
- 
- static int amdgpu_debugfs_sa_info_show(struct seq_file *m, void *unused)
- {
--	struct amdgpu_device *adev = (struct amdgpu_device *)m->private;
-+	struct amdgpu_device *adev = m->private;
- 
- 	seq_printf(m, "--------------------- DELAYED --------------------- \n");
- 	amdgpu_sa_bo_dump_debug_info(&adev->ib_pools[AMDGPU_IB_POOL_DELAYED],
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-index 0efb38539d70..9f9274249b57 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-@@ -1441,7 +1441,7 @@ void amdgpu_disable_vblank_kms(struct drm_crtc *crtc)
- 
- static int amdgpu_debugfs_firmware_info_show(struct seq_file *m, void *unused)
- {
--	struct amdgpu_device *adev = (struct amdgpu_device *)m->private;
-+	struct amdgpu_device *adev = m->private;
- 	struct drm_amdgpu_info_firmware fw_info;
- 	struct drm_amdgpu_query_fw query_fw;
- 	struct atom_context *ctx = adev->mode_info.atom_context;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index 2cd081cbf706..21f340ed4cca 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -2164,7 +2164,7 @@ int amdgpu_ttm_evict_resources(struct amdgpu_device *adev, int mem_type)
- 
- static int amdgpu_ttm_page_pool_show(struct seq_file *m, void *unused)
- {
--	struct amdgpu_device *adev = (struct amdgpu_device *)m->private;
-+	struct amdgpu_device *adev = m->private;
- 
- 	return ttm_pool_debugfs(&adev->mman.bdev.pool, m);
- }
+-	ret = amdgpu_ttm_tt_set_userptr(&bo->tbo, user_addr, 0);
++	if(!(mem->alloc_flags & KFD_IOC_ALLOC_MEM_FLAGS_WRITABLE))
++		tt_flags |= AMDGPU_GEM_USERPTR_READONLY;
++	else
++		tt_flags = 0;
++
++
++	ret = amdgpu_ttm_tt_set_userptr(&bo->tbo, user_addr, tt_flags);
+ 	if (ret) {
+ 		pr_err("%s: Failed to set userptr: %d\n", __func__, ret);
+ 		goto out;
 -- 
-2.30.2
+2.34.1
 
