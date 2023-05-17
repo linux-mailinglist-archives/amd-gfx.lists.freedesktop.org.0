@@ -2,93 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E3637066F7
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 May 2023 13:41:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F1337067B1
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 May 2023 14:12:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29D9010E403;
-	Wed, 17 May 2023 11:41:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 171DA10E40B;
+	Wed, 17 May 2023 12:11:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on20614.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e88::614])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FB3910E403
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 May 2023 11:41:25 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SNbw5F5q57CAqtru/Cue9UjsptFklq5u49MD6Y4iPvoiILNLfnowb0IEnljoJQajjFdg+3r35kgS27jDsFiUP3L2ZWfNoA3xes3cELB1PyXGbj/TfDZKv9TSKXYvIS1VT06migonnU/B5lHfRv4QYX+SFjBbn6wpojWOVdSTy3NBw4VeZx7/u0fBqQhpTwswH4w+5zgzkAjEYLlF0NFr1EDEy5O4LhJqbsAgirIC0G0WMPpMJL18/IUA+PVfSJtql9NpGoxZ4lDu1CA2HJvgB28zu43HB+ncIqkhml1ExcOaJuq02IwhYEVaDYIFfGVLRVJdZ53IYCTXCD43oiyq7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LAx7L/Ka11TAHd7kfC87UqlL9exw3/yBSeWRaWVCPfE=;
- b=SkxBuIHNW1B3XF7umrq2P2ag9uCq+cw2s6PXRWVdr+gNu85qMt1mrpOtuMxfcUzV0GivRAVBP1VmvnYH1RAL+ta5FLC1dwfuGnZ02RFWvIg9M5oiRIPljYTGgGS7X1MOEy3VbVtb9kZ1aXTTRFGsCU5AWqcjS+Z9L3t5Zx37RMBnXYO77lfmFoPrxIRePnmzi+3oTRnDzR9l6XvyjF1MNXtsEqulFJdQZIyrC+zKyQRethsflUsjCxckUvzdPAeLDd7OSP5Ts0rBbZsdRhkBl3noVQ32ufFIGHaEw8UwmC3S+e/jX6yl7TQX+m2wH8nd7C4zLID1MLmvptcIBwNUOQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LAx7L/Ka11TAHd7kfC87UqlL9exw3/yBSeWRaWVCPfE=;
- b=FKXQCRfB840mxsAW2QkAv+eHOUd0t/hnxkUNKFxUQZaO14OGbP3dlZ8I+CvTMzzQ46KIO9m/nBvy0TxzLuF0u3WW5JVAMcOwKqRZmleXos7SjJ4SeytTmyP8lavphVq2C3xIh7Kga40UyOB5Ii+hVq3yKDcSRMVQC6YlZ95A09o=
-Received: from DM6PR05CA0056.namprd05.prod.outlook.com (2603:10b6:5:335::25)
- by DM4PR12MB6064.namprd12.prod.outlook.com (2603:10b6:8:af::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.33; Wed, 17 May
- 2023 11:41:23 +0000
-Received: from DM6NAM11FT101.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:335:cafe::99) by DM6PR05CA0056.outlook.office365.com
- (2603:10b6:5:335::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.14 via Frontend
- Transport; Wed, 17 May 2023 11:41:23 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT101.mail.protection.outlook.com (10.13.172.208) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6411.17 via Frontend Transport; Wed, 17 May 2023 11:41:21 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 17 May
- 2023 06:41:21 -0500
-Received: from tom-HP.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Wed, 17 May 2023 06:41:16 -0500
-From: Tom Chung <chiahsuan.chung@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 18/18] drm/amd/display: 3.2.237
-Date: Wed, 17 May 2023 19:37:23 +0800
-Message-ID: <20230517113723.1757259-19-chiahsuan.chung@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230517113723.1757259-1-chiahsuan.chung@amd.com>
-References: <20230517113723.1757259-1-chiahsuan.chung@amd.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC7C010E3E3;
+ Wed, 17 May 2023 10:53:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1684320801; x=1715856801;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=tCBTG6EshP8yDnY64rQPzjgjv41iMK/kEF3IhZM1+uU=;
+ b=CquO31RidDLaWlFo1nEsVFJzOIvDpuKsNQsn/vXXP20qJoMqCrYaoBSl
+ CrtC/OV/pJcq2CRPDK5QQX2qXRqUNtPn/LuH9vixl4Vm4npG645EHFlre
+ U4eOZhdo6j2wkl+CQukGucjSY4DDskMeJ6Iz8ERFjoewL563XiY9sRnDS
+ 3+sqOCHwuPIRr9mlU1d3acXnmXIi4qHuWLWm94lGLImF3dNLK3rE4eWj5
+ jiD3rxdmMNyD+ql7nLD9NS05CxPJH9MKYHjfqNCpopU4VAeWQzuChBlQ2
+ pufC3Xq2KyX5FyjzFzXBcFNc1EwjzmZqhHjpG8RZeQTopNWt0J8fhRNmk g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="438071667"
+X-IronPort-AV: E=Sophos;i="5.99,281,1677571200"; d="scan'208";a="438071667"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2023 03:53:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="734650965"
+X-IronPort-AV: E=Sophos;i="5.99,281,1677571200"; d="scan'208";a="734650965"
+Received: from lnstern-mobl1.amr.corp.intel.com (HELO
+ ijarvine-MOBL2.ger.corp.intel.com) ([10.251.221.185])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2023 03:53:13 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Rob Herring <robh@kernel.org>,
+ =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+ Emmanuel Grumbach <emmanuel.grumbach@intel.com>,
+ "Rafael J . Wysocki" <rafael@kernel.org>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Lukas Wunner <lukas@wunner.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jammy Zhou <Jammy.Zhou@amd.com>,
+ Ken Wang <Qingqing.Wang@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 4/9] drm/amdgpu: Use RMW accessors for changing LNKCTL
+Date: Wed, 17 May 2023 13:52:30 +0300
+Message-Id: <20230517105235.29176-5-ilpo.jarvinen@linux.intel.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20230517105235.29176-1-ilpo.jarvinen@linux.intel.com>
+References: <20230517105235.29176-1-ilpo.jarvinen@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT101:EE_|DM4PR12MB6064:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8b8d45dc-03e6-4e01-e64c-08db56cba320
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: q5iP88DfcIPbr9JG6QI02hDJglu8WQQZodYRzjNTVow18HqoUYOeZLGSN3Hnx7GgVKylpU93DDTu7lqYxp5a2c1bzIdHcR+JzEBNER/vkI+5b5HMAh9GWGrF7NnhHQf7JVT8wAB21GwMAIyeOXYBv+70krJdhq1y1k+lfd6lsouDSWVXg/MJBMNeWkIswyEpg/q09VZugMiWSwnvWEVKmFlFGQvAAEGP5J5vDVxHfp3+3A8QmC7xVGHxIWQUTmgQVY5oTgK7jAGt0MOcxGLhn4BbJbLoAFKR21CKYD0h+gOqgswjpPFjZriFlSykD/lCKFfqE/eVWUfYh6//ZfqdwRjzEJW3Qmc55N3jSdR2gRdx2lp34f+/XTeKv56qOyQoeUV5LFr16Y80FkzxDH4GNWm6PxXg4KStnDUZgYdyMo2LWEON5JouhQJTXTf2M2H1GJUUt8OmkPo9U2F0i5au7DdEsLVsxEXG4ZZQLOerVALzwxmlxXsqVQlJEV5EPoh8V1z7+GgzIZXbXAhZTrVc6PaUKlTyp+LRAzn0cZsndCJGgwJnVgTxA6n41KGZDS0XCTjnfDgeh8ooYsXIR/PsmgAZt1k0OVGqDIarEFVbVhra0eL4850hZQ5ONxI95pv2MyXVvyIHv0h9KZtdHRwkoOOe8R1Pqza69FFhA9XuYOBagcV46u/u+3pNMgULJgFXIhw2gKdFZMD3nUuFsZosReV+trSFBl/Dy1rc4NgZIvIq8RpMuOhtie+OkgmsX5t0aYxB3kIQjGlTaLV480LmeQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(136003)(376002)(39860400002)(396003)(346002)(451199021)(46966006)(36840700001)(40470700004)(36756003)(86362001)(47076005)(54906003)(7696005)(316002)(70206006)(6916009)(478600001)(70586007)(4326008)(40480700001)(82310400005)(8676002)(5660300002)(8936002)(2906002)(6666004)(82740400003)(81166007)(356005)(336012)(26005)(36860700001)(186003)(426003)(1076003)(83380400001)(41300700001)(2616005)(40460700003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 May 2023 11:41:21.7468 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b8d45dc-03e6-4e01-e64c-08db56cba320
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT101.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6064
+X-Mailman-Approved-At: Wed, 17 May 2023 12:11:57 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,49 +71,138 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Aric Cyr <aric.cyr@amd.com>,
- Tom Chung <chiahsuan.chung@amd.com>, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
- wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
- pavle.kotarac@amd.com
+Cc: Dean Luick <dean.luick@cornelisnetworks.com>,
+ =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, stable@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <aric.cyr@amd.com>
+Don't assume that only the driver would be accessing LNKCTL. ASPM
+policy changes can trigger write to LNKCTL outside of driver's control.
+And in the case of upstream bridge, the driver does not even own the
+device it's changing the registers for.
 
-This version brings along following fixes:
-- Improve the message printed
-- Disable dcn315 pixel rate crb when scaling
-- Update SR watermarks for DCN314
-- Fix dcn315 pixel rate crb scaling check
-- Reset CRTC State Before Restore from S2idle
-- Have Payload Properly Created After Resume
-- Trigger DIO FIFO resync on commit streams
-- Revert vblank change that causes null pointer crash
-- Fix possible underflow for displays with large vblank
-- Apply 60us prefetch for DCFCLK <= 300Mhz
-- Update correct DCN314 register header
+Use RMW capability accessors which do proper locking to avoid losing
+concurrent updates to the register value.
 
-Acked-by: Tom Chung <chiahsuan.chung@amd.com>
-Signed-off-by: Aric Cyr <aric.cyr@amd.com>
+Fixes: a2e73f56fa62 ("drm/amdgpu: Add support for CIK parts")
+Fixes: 62a37553414a ("drm/amdgpu: add si implementation v10")
+Suggested-by: Lukas Wunner <lukas@wunner.de>
+Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+Cc: stable@vger.kernel.org
 ---
- drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/cik.c | 36 +++++++++-----------------------
+ drivers/gpu/drm/amd/amdgpu/si.c  | 36 +++++++++-----------------------
+ 2 files changed, 20 insertions(+), 52 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 7fc087f85d39..7fd9f5a9e191 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -45,7 +45,7 @@ struct aux_payload;
- struct set_config_cmd_payload;
- struct dmub_notification;
+diff --git a/drivers/gpu/drm/amd/amdgpu/cik.c b/drivers/gpu/drm/amd/amdgpu/cik.c
+index de6d10390ab2..9be6da37032a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/cik.c
++++ b/drivers/gpu/drm/amd/amdgpu/cik.c
+@@ -1574,17 +1574,8 @@ static void cik_pcie_gen3_enable(struct amdgpu_device *adev)
+ 			u16 bridge_cfg2, gpu_cfg2;
+ 			u32 max_lw, current_lw, tmp;
  
--#define DC_VER "3.2.236"
-+#define DC_VER "3.2.237"
+-			pcie_capability_read_word(root, PCI_EXP_LNKCTL,
+-						  &bridge_cfg);
+-			pcie_capability_read_word(adev->pdev, PCI_EXP_LNKCTL,
+-						  &gpu_cfg);
+-
+-			tmp16 = bridge_cfg | PCI_EXP_LNKCTL_HAWD;
+-			pcie_capability_write_word(root, PCI_EXP_LNKCTL, tmp16);
+-
+-			tmp16 = gpu_cfg | PCI_EXP_LNKCTL_HAWD;
+-			pcie_capability_write_word(adev->pdev, PCI_EXP_LNKCTL,
+-						   tmp16);
++			pcie_capability_set_word(root, PCI_EXP_LNKCTL, PCI_EXP_LNKCTL_HAWD);
++			pcie_capability_set_word(adev->pdev, PCI_EXP_LNKCTL, PCI_EXP_LNKCTL_HAWD);
  
- #define MAX_SURFACES 3
- #define MAX_PLANES 6
+ 			tmp = RREG32_PCIE(ixPCIE_LC_STATUS1);
+ 			max_lw = (tmp & PCIE_LC_STATUS1__LC_DETECTED_LINK_WIDTH_MASK) >>
+@@ -1637,21 +1628,14 @@ static void cik_pcie_gen3_enable(struct amdgpu_device *adev)
+ 				msleep(100);
+ 
+ 				/* linkctl */
+-				pcie_capability_read_word(root, PCI_EXP_LNKCTL,
+-							  &tmp16);
+-				tmp16 &= ~PCI_EXP_LNKCTL_HAWD;
+-				tmp16 |= (bridge_cfg & PCI_EXP_LNKCTL_HAWD);
+-				pcie_capability_write_word(root, PCI_EXP_LNKCTL,
+-							   tmp16);
+-
+-				pcie_capability_read_word(adev->pdev,
+-							  PCI_EXP_LNKCTL,
+-							  &tmp16);
+-				tmp16 &= ~PCI_EXP_LNKCTL_HAWD;
+-				tmp16 |= (gpu_cfg & PCI_EXP_LNKCTL_HAWD);
+-				pcie_capability_write_word(adev->pdev,
+-							   PCI_EXP_LNKCTL,
+-							   tmp16);
++				pcie_capability_clear_and_set_word(root, PCI_EXP_LNKCTL,
++								   PCI_EXP_LNKCTL_HAWD,
++								   bridge_cfg &
++								   PCI_EXP_LNKCTL_HAWD);
++				pcie_capability_clear_and_set_word(adev->pdev, PCI_EXP_LNKCTL,
++								   PCI_EXP_LNKCTL_HAWD,
++								   gpu_cfg &
++								   PCI_EXP_LNKCTL_HAWD);
+ 
+ 				/* linkctl2 */
+ 				pcie_capability_read_word(root, PCI_EXP_LNKCTL2,
+diff --git a/drivers/gpu/drm/amd/amdgpu/si.c b/drivers/gpu/drm/amd/amdgpu/si.c
+index 7f99e130acd0..fd34c2100bd9 100644
+--- a/drivers/gpu/drm/amd/amdgpu/si.c
++++ b/drivers/gpu/drm/amd/amdgpu/si.c
+@@ -2276,17 +2276,8 @@ static void si_pcie_gen3_enable(struct amdgpu_device *adev)
+ 			u16 bridge_cfg2, gpu_cfg2;
+ 			u32 max_lw, current_lw, tmp;
+ 
+-			pcie_capability_read_word(root, PCI_EXP_LNKCTL,
+-						  &bridge_cfg);
+-			pcie_capability_read_word(adev->pdev, PCI_EXP_LNKCTL,
+-						  &gpu_cfg);
+-
+-			tmp16 = bridge_cfg | PCI_EXP_LNKCTL_HAWD;
+-			pcie_capability_write_word(root, PCI_EXP_LNKCTL, tmp16);
+-
+-			tmp16 = gpu_cfg | PCI_EXP_LNKCTL_HAWD;
+-			pcie_capability_write_word(adev->pdev, PCI_EXP_LNKCTL,
+-						   tmp16);
++			pcie_capability_set_word(root, PCI_EXP_LNKCTL, PCI_EXP_LNKCTL_HAWD);
++			pcie_capability_set_word(adev->pdev, PCI_EXP_LNKCTL, PCI_EXP_LNKCTL_HAWD);
+ 
+ 			tmp = RREG32_PCIE(PCIE_LC_STATUS1);
+ 			max_lw = (tmp & LC_DETECTED_LINK_WIDTH_MASK) >> LC_DETECTED_LINK_WIDTH_SHIFT;
+@@ -2331,21 +2322,14 @@ static void si_pcie_gen3_enable(struct amdgpu_device *adev)
+ 
+ 				mdelay(100);
+ 
+-				pcie_capability_read_word(root, PCI_EXP_LNKCTL,
+-							  &tmp16);
+-				tmp16 &= ~PCI_EXP_LNKCTL_HAWD;
+-				tmp16 |= (bridge_cfg & PCI_EXP_LNKCTL_HAWD);
+-				pcie_capability_write_word(root, PCI_EXP_LNKCTL,
+-							   tmp16);
+-
+-				pcie_capability_read_word(adev->pdev,
+-							  PCI_EXP_LNKCTL,
+-							  &tmp16);
+-				tmp16 &= ~PCI_EXP_LNKCTL_HAWD;
+-				tmp16 |= (gpu_cfg & PCI_EXP_LNKCTL_HAWD);
+-				pcie_capability_write_word(adev->pdev,
+-							   PCI_EXP_LNKCTL,
+-							   tmp16);
++				pcie_capability_clear_and_set_word(root, PCI_EXP_LNKCTL,
++								   PCI_EXP_LNKCTL_HAWD,
++								   bridge_cfg &
++								   PCI_EXP_LNKCTL_HAWD);
++				pcie_capability_clear_and_set_word(adev->pdev, PCI_EXP_LNKCTL,
++								   PCI_EXP_LNKCTL_HAWD,
++								   gpu_cfg &
++								   PCI_EXP_LNKCTL_HAWD);
+ 
+ 				pcie_capability_read_word(root, PCI_EXP_LNKCTL2,
+ 							  &tmp16);
 -- 
-2.25.1
+2.30.2
 
