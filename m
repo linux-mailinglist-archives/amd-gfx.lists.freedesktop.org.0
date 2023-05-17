@@ -1,59 +1,65 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F4907067AD
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 May 2023 14:11:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC901706802
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 May 2023 14:24:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB51510E111;
-	Wed, 17 May 2023 12:11:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 805A110E135;
+	Wed, 17 May 2023 12:24:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com
- [IPv6:2607:f8b0:4864:20::c29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3039F10E111
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 May 2023 12:11:33 +0000 (UTC)
-Received: by mail-oo1-xc29.google.com with SMTP id
- 006d021491bc7-54fd1a3b821so267559eaf.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 May 2023 05:11:33 -0700 (PDT)
+Received: from mail-oo1-xc2e.google.com (mail-oo1-xc2e.google.com
+ [IPv6:2607:f8b0:4864:20::c2e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F110310E135
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 May 2023 12:24:28 +0000 (UTC)
+Received: by mail-oo1-xc2e.google.com with SMTP id
+ 006d021491bc7-552b65f527dso334443eaf.3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 May 2023 05:24:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1684325492; x=1686917492;
+ d=gmail.com; s=20221208; t=1684326267; x=1686918267;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=k3om6D2OXy6Z6SX/URbUSi4bXcsxpe+m243Rq1Fgqz8=;
- b=mEoLSx8JLFA+U/60wlEyf+k386iUQY4FlyX1gLOLGpT6nVIgkUJOSvdpZPQRFUhh6w
- Wbp/XAS/b48oUaE/wjHN2BuWoC4pGQZKPyS1jtqCRb/j38FelzIo86Fld6Rfp4Rj/wOq
- Kb/XAS4emYenwoQsAp9926mFImS4VXVjI0Q1vRn1dEjCFiEplRUkfR6AHuKr9pRXkwO1
- lPKK5ulT9sU1KENnK0HT3p4m6Dz4wJmebBDb3Xpi+FqKyYFffZlRkATcjR6LrIf/2xdu
- KQqaFPocLEuW+v4+Lac7XE7RkQGekCa9dscblI35XVHoF6YjTMp6KyEZDY5MZpmWk4uH
- lT5Q==
+ bh=vBsmQ3PKaQa8WpXcsh4hYcW8zy1CuUBpLxYXMdrkgj4=;
+ b=LaMcsVHWtOT8lQU64Z+1wIy6bW58sV9gyhhjGnR7PKTSqAP7r7X/o+a0ZrphunKzCs
+ rUqTh7juE5KIybsXqlB7BnZAFEQk1/zzb7zyr8pRYWJ2Wbbrw6Xifo1N9cVrAfbbEXyu
+ lnfWKAKATqsJdLunv/bt4wL2tLtOH6BuBo+aja0gpkNURqkLd6jpiW2Rt7TDG2I776RR
+ itUwFEEGPaa/JaBqO77PLKb2X9AwaTROf1OQu6IkCx98La74NBc9wMTLr9WmRkt+VlSK
+ t6cP6Io0LwGRk0btneEYbtTmKpKoMS0NP5tAEVRW0f7XzSGNial0LcfoKGZBp6OPn9fE
+ Mp4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684325492; x=1686917492;
+ d=1e100.net; s=20221208; t=1684326267; x=1686918267;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=k3om6D2OXy6Z6SX/URbUSi4bXcsxpe+m243Rq1Fgqz8=;
- b=D2XAUopFnhB1aQBASp0b9K3RvdZ+WwRC8fkcoYJDay8ZAx9SyQmmSaEjxPuSoVUa8S
- Pvw9hQ4FUA6geQNq2hpyejWP+OJccHDgD84ncTWb8H2HU9FUfwG8wNhSyXXmNW1wtc95
- Mv/96AERRK2wrJh46qTBVmvL90nzutT5Md5ta/TsnXq6lutfMsia2k7m7wADfK/VJsx4
- pUzvvibJx4JQPzONFTiRWd73YEmlJxTgBohKn+pWLVj1BHIXGzl7fofZFvEEZftII8Sp
- vBJGRfyWQ1e1RAvrIevdEVS+H1xFtOOcI4VCrXvdwU+MawuEn5kB6q4piRS/aiFpdZpn
- Sf4Q==
-X-Gm-Message-State: AC+VfDwU/LuPRBzgJ59Rt8r5cBxOwKnjgk68LINMjlS0jBPrcAXt5SWK
- unhoh3ne59GChlNZbaf6uUQVhdsy/xB9Z75NSes=
-X-Google-Smtp-Source: ACHHUZ73j5CUj8WWy4mecKST3t7Tb8JL9ywtwuJzzp1x8uuah92uydOKVgNK4M7KaS9wG5ELlNOV621UX23lfIWi37o=
-X-Received: by 2002:a05:6808:4f:b0:389:7c1e:3b83 with SMTP id
- v15-20020a056808004f00b003897c1e3b83mr14417028oic.32.1684325491882; Wed, 17
- May 2023 05:11:31 -0700 (PDT)
+ bh=vBsmQ3PKaQa8WpXcsh4hYcW8zy1CuUBpLxYXMdrkgj4=;
+ b=Cn53U+rNEVCLK54wW8tQ0WcAlIQferQ7pzVbpU4GScGTO4dBCKW4lPBB3ZwcYEB/vo
+ BWoAKWBkaGTpOewIVGCBN3kLA8ByKGEVlKxYQheI6JrGh7sWsbQX9ni9Agqj43DesKwh
+ JrZTM3RdIRt/Dw0D2+W3Tkj94ITgFB5jwVJpQR4F2ikSpvfr3iHYeNp5Kf+31Xwhi9oa
+ JsgDh/L/UvXjEayGiTrFM36ylWKn06tF9PwWfxE/qDoKBFfZ8Pl5jc4MdofnpaBNgHVo
+ yQ3eQJCe//x7V08SNZ6C8z8whFbUOCKKX0BuadK9jZEw5lfocpk6OeMld4Vc0LGxgLid
+ Pwqg==
+X-Gm-Message-State: AC+VfDxxYYEsrNPP8+rZSEqnNCL9iTZvTW5rhifY/nZ/9pzoQ8yY00h2
+ PQ/WFIm9tptmme3qNJatq1bMc9y/NN6moRmJ/8NOPZVVkxE=
+X-Google-Smtp-Source: ACHHUZ7gkqFN4dGC+uk1j753eAmCWs5Dc0mzTWMcajo1NuzwolPIPCfwRC/8UnIx6ZPR7ZhbSLzkQuAheaaIlpFl9EQ=
+X-Received: by 2002:a05:6808:1289:b0:395:f6da:1b5a with SMTP id
+ a9-20020a056808128900b00395f6da1b5amr7012333oiw.39.1684326267683; Wed, 17 May
+ 2023 05:24:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230517094442.1395378-1-Jack.Xiao@amd.com>
-In-Reply-To: <20230517094442.1395378-1-Jack.Xiao@amd.com>
+References: <20230516175214.3491-1-mario.limonciello@amd.com>
+ <20230516175214.3491-4-mario.limonciello@amd.com>
+ <CADnq5_OH5vRico9MuegyEAM2SfQchdiXVgCSRLdf6jYmhTYO+A@mail.gmail.com>
+ <fb607620-cbf4-e6fe-be24-aad12f530f66@amd.com>
+ <CADnq5_N0Z=HzGZA_wXaDrXjYRMOSneOkmbcRnvguOUdLjAinKQ@mail.gmail.com>
+ <207c617e-79b4-b5fe-c565-a9cd733b1bbf@amd.com>
+In-Reply-To: <207c617e-79b4-b5fe-c565-a9cd733b1bbf@amd.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 17 May 2023 08:11:20 -0400
-Message-ID: <CADnq5_PPijdHQGpXeSOjXeUW-HFbQ1GuUPYC9dnCNTPMOuJVZw@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: fix S3 issue if MQD in VRAM
-To: Jack Xiao <Jack.Xiao@amd.com>
+Date: Wed, 17 May 2023 08:24:16 -0400
+Message-ID: <CADnq5_Pr5VNKKcg1avhn1PYCfcWE-tNF33rv5ozAdzMDrRmtgg@mail.gmail.com>
+Subject: Re: [PATCH 3/3] drm/amd: Add safety check to make sure RLC is only
+ turned off while in GFXOFF
+To: "Limonciello, Mario" <mlimonci@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -67,101 +73,86 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, amd-gfx@lists.freedesktop.org
+Cc: Tim Huang <tim.huang@amd.com>, richard.gong@amd.com, Juan.Martinez@amd.com,
+ amd-gfx@lists.freedesktop.org, Mario Limonciello <mario.limonciello@amd.com>,
+ anson.tsao@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Thanks for fixing this up.
+On Tue, May 16, 2023 at 10:23=E2=80=AFPM Limonciello, Mario <mlimonci@amd.c=
+om> wrote:
+>
+>
+> On 5/16/2023 4:57 PM, Alex Deucher wrote:
+> > On Tue, May 16, 2023 at 5:50=E2=80=AFPM Limonciello, Mario <mlimonci@am=
+d.com> wrote:
+> >>
+> >> On 5/16/2023 4:39 PM, Alex Deucher wrote:
+> >>> On Tue, May 16, 2023 at 2:15=E2=80=AFPM Mario Limonciello
+> >>> <mario.limonciello@amd.com> wrote:
+> >>>> On GFX11 if RLC is stopped when not in GFXOFF the system will hang.
+> >>>> Prevent this case from ever happening.
+> >>>>
+> >>>> Tested-by: Juan Martinez <Juan.Martinez@amd.com>
+> >>>> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+> >>>> ---
+> >>>>    drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c | 4 ++++
+> >>>>    1 file changed, 4 insertions(+)
+> >>>>
+> >>>> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/dr=
+m/amd/amdgpu/gfx_v11_0.c
+> >>>> index dcbdb2641086..f1f879d9ed8d 100644
+> >>>> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+> >>>> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+> >>>> @@ -1766,6 +1766,10 @@ static void gfx_v11_0_rlc_stop(struct amdgpu_=
+device *adev)
+> >>>>    {
+> >>>>           u32 tmp =3D RREG32_SOC15(GC, 0, regRLC_CNTL);
+> >>>>
+> >>>> +       if (!adev->gfx.gfx_off_state) {
+> >>>> +               dev_err(adev->dev, "GFX is not in GFXOFF\n");
+> >>>> +               return;
+> >>>> +       }
+> >>> This should move up before the RREG above?  Also, I think it would be
+> >>> cleaner to just not mess with the RLC in S0i3.  Can we just return
+> >>> early in smu_disable_dpms() for the APU case?  All of the DPM feature=
+s
+> >>> are controlled by the SMU so that function is mostly a nop of APUs
+> >>> anyway.
+> >>>
+> >>> Alex
+> >> That was what the original attempt did when we first identified this i=
+ssue.
+> >> Unfortunately though just skipping RLC (without patches 1 and 2) means
+> >> that GFXOFF still either doesn't get toggled at suspend entry or isn't=
+ fully
+> >>
+> >> off at suspend entry.
+> >>
+> >> This leads to the graphics core behaving erratically upon resume.
+> >>
+> >> So if you're OK with patches 1 and 2, I'll adjust patch 3 to also skip
+> >> RLC for
+> >> APU.
+> > Sure.
+> OK, let me double check RLC skip and I'll send out a v2.
+> > I wonder if we need something similar as patch 2 for other APUs?
+> I expect patch 1 "alone" to help Renoir and Cezanne hitting a similar
+> circumstance.
+> For Rembrandt and Mendocino, they don't have IMU, so what would you poll?
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+For older chips, mmPWR_MISC_CNTL_STATUS (smu10), mmSMUIO_GFX_MISC_CNTL
+(smu12).  See smu_v12_0_gfx_off_control() and smu10_disable_gfx_off().
+It looks like smu_v13_0_gfx_off_control() doesn't wait for gfxoff like
+the other functions.
 
-On Wed, May 17, 2023 at 5:45=E2=80=AFAM Jack Xiao <Jack.Xiao@amd.com> wrote=
-:
+Alex
+
+> >
+> > Thinking out loud here, I wonder if we shouldn't just return early in
+> > the top level suspend/resume functions for S0i3.
 >
-> 1. Need flush HDP for MQD putting in vram
-> 2. Zero out mes MQD
->
-> Signed-off-by: Jack Xiao <Jack.Xiao@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 4 ++++
->  drivers/gpu/drm/amd/amdgpu/mes_v10_1.c  | 3 +++
->  drivers/gpu/drm/amd/amdgpu/mes_v11_0.c  | 3 +++
->  3 files changed, 10 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_gfx.c
-> index 8883d5ee13cb..f2d0b1d55d77 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> @@ -593,6 +593,8 @@ int amdgpu_gfx_enable_kcq(struct amdgpu_device *adev,=
- int xcc_id)
->
->         DRM_INFO("kiq ring mec %d pipe %d q %d\n", kiq_ring->me, kiq_ring=
-->pipe,
->                                                         kiq_ring->queue);
-> +       amdgpu_device_flush_hdp(adev, NULL);
-> +
->         spin_lock(&kiq->ring_lock);
->         r =3D amdgpu_ring_alloc(kiq_ring, kiq->pmf->map_queues_size *
->                                         adev->gfx.num_compute_rings +
-> @@ -630,6 +632,8 @@ int amdgpu_gfx_enable_kgq(struct amdgpu_device *adev,=
- int xcc_id)
->         if (!kiq->pmf || !kiq->pmf->kiq_map_queues)
->                 return -EINVAL;
->
-> +       amdgpu_device_flush_hdp(adev, NULL);
-> +
->         spin_lock(&kiq->ring_lock);
->         /* No need to map kcq on the slave */
->         if (amdgpu_gfx_is_master_xcc(adev, xcc_id)) {
-> diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c b/drivers/gpu/drm/amd=
-/amdgpu/mes_v10_1.c
-> index f1a6abdad21b..88262f10ef7c 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
-> @@ -632,6 +632,8 @@ static int mes_v10_1_mqd_init(struct amdgpu_ring *rin=
-g)
->         uint64_t hqd_gpu_addr, wb_gpu_addr, eop_base_addr;
->         uint32_t tmp;
->
-> +       memset(mqd, 0, sizeof(*mqd));
-> +
->         mqd->header =3D 0xC0310800;
->         mqd->compute_pipelinestat_enable =3D 0x00000001;
->         mqd->compute_static_thread_mgmt_se0 =3D 0xffffffff;
-> @@ -728,6 +730,7 @@ static int mes_v10_1_mqd_init(struct amdgpu_ring *rin=
-g)
->         /* offset: 184 - this is used for CP_HQD_GFX_CONTROL */
->         mqd->cp_hqd_suspend_cntl_stack_offset =3D tmp;
->
-> +       amdgpu_device_flush_hdp(ring->adev, NULL);
->         return 0;
->  }
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c b/drivers/gpu/drm/amd=
-/amdgpu/mes_v11_0.c
-> index 9791f3581786..9a48328c6572 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-> @@ -704,6 +704,8 @@ static int mes_v11_0_mqd_init(struct amdgpu_ring *rin=
-g)
->         uint64_t hqd_gpu_addr, wb_gpu_addr, eop_base_addr;
->         uint32_t tmp;
->
-> +       memset(mqd, 0, sizeof(*mqd));
-> +
->         mqd->header =3D 0xC0310800;
->         mqd->compute_pipelinestat_enable =3D 0x00000001;
->         mqd->compute_static_thread_mgmt_se0 =3D 0xffffffff;
-> @@ -797,6 +799,7 @@ static int mes_v11_0_mqd_init(struct amdgpu_ring *rin=
-g)
->         mqd->cp_hqd_iq_timer =3D regCP_HQD_IQ_TIMER_DEFAULT;
->         mqd->cp_hqd_quantum =3D regCP_HQD_QUANTUM_DEFAULT;
->
-> +       amdgpu_device_flush_hdp(ring->adev, NULL);
->         return 0;
->  }
->
-> --
-> 2.37.3
+> I think this can make sense for GFX10 and GFX11 maybe, but as it's alread=
+y
+> bifurcated I think it's probably better to do case by case basis.
 >
