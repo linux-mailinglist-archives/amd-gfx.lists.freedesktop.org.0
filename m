@@ -2,43 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EDDF706DBB
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 May 2023 18:13:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE461706DBD
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 May 2023 18:14:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71CD310E19E;
-	Wed, 17 May 2023 16:13:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25BCF10E44E;
+	Wed, 17 May 2023 16:14:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2062e.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e8a::62e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38A0210E44E
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 May 2023 16:13:51 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on20623.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7eaa::623])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34AA910E44D
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 May 2023 16:14:27 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Rrm6+BrG0TlFHnwufpeZ/CM+U6t6Grt4dZw9RdFbNrNbnjg1mdzBiEDBfuH+PkjsMsv4TTUmXtD8K8s1AlYW2w6RBdohVbPJSTvPHQ7PtlYTnnGzpKKIWh1SR0aReL2SmEJg3j97NOTCnS7fDwaIbNimWIyq2GHHdq2TqTaCr7koP5WdFKAMgKp8uFhFWoG4sz1hucvk48t2igDd37WLJUhCW+SIvqd4sXir2+bDTaX7vF1G22F93LRi7EKRuP1/o6OhzYVpkIvtBLKyjaWgsrMiAaTFrwONt9uPB/RdbjkCff4IIzkO7XJaGOz41p5PDyRvvi+A0QN12IcY3Rt+lA==
+ b=HCDTE7Z0pNNg4Bsf57SRh7ARHg905QqFOyJW07rw5xdXjaNMauEe0M8dChumiGKgx1W4Yz1MbEQ4df0+Tb8TP6RY4QwF8aAkfpAgh6PV9qKX9tU5Mu/UJjAVEtQ88Uy0EPpa1hteM2AqMsvi0wL58R5Bfyqi6efEvTLvXFv54jdyivLP1zkEocVg3ljJxJlqWyJnXP/PuFCrJQdw/Qoi9EZEhMCS7bxImC0iTy7a+aBYlhT8LExzYAlLIW78XTqyr/dSnQX/+i2me2Z7NR3dnfjtWhOevg9nxjicROopeyzCcoEcQRbsDBI/QkRZLpOsZFHYeQCGh6S9T2/03nKOsA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bSfq1NI1nI//XXjaSv8W5xJ9Rd9okz8ZFQcFJHglIh8=;
- b=N5zCapDpG3QgeWmzBp+cLfnVACTik64ijm2jh4jGZZU7xqYImj+9rUM4pvf6lquWYIiKqM/Ro6oCvGEbJrkI+XzRpp2Scm4z++hIP2oAVZhSHN5GX3xtEhZ2rmzC04+e4Zki7Lxr8RtfNyOyNYGQf443/P8nvGHMIHk89t1a435iNqtGCT+sJOil8QcAWNUF0z+gavX4yXBhtUkzWU4Q+HCq02JohzPudztirZrFmjl91XuYzKwo9yaTtDHt9o7FjBrijI12d5dA171SvUtocslusItqm0biIWsEaH56fU0T+NSW9dL29Dbh7Iimm/x7PZx0+Ft4woWRHA0Ya+yVZg==
+ bh=cBRwZ7qOvGFswWanK0IhW1bch0/6nknAxLH0bMlKt3A=;
+ b=Ls/eTplNkfCFicm6gRJSPzX+U3x6t1i57cbGKSHX5xb3Hywi7+t81n1ZH/j5bTNXmizBNa8fzoFo6CKBS6rIe76tjU2h5sfCPXiKNnOoGxTcTsNE5Sc8yFd4TlBu8dnJA1dVh7cv4cJXYGraPX9LMl5n/b2A+M2u++1Hci0ED39uyKtflpCuZoKt20X7rXxQCYYYzfmeRbidY/GgJVUlxTbI2P/X9LCGnM39V9Xl6R1+H4XCwegCYsxVlK/NPCSkoXyYklt3hG/67FoOPgBL3s5NW+b2xEPF6tPzqU77wgeo+DsM5xzS8PZxoR3xMjjQiKBJm6eLUbMhZE9UhUuJag==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bSfq1NI1nI//XXjaSv8W5xJ9Rd9okz8ZFQcFJHglIh8=;
- b=BOj/3hWr54F5X+fzRDthQmOAPTdLK/QNwL8b5mMosttYgaWrhmYbxY7zxp32aLhHDgYGtPSxKhDDcewY3I+KcL9YPetJ/fMVHoVnY3ch4onCSuYjC1S0a0uEhEhotI5FXOllKkqBIDPwLqND6/Lo8UUFpbFIxdQfff/ZmYoS32Q=
-Received: from MW2PR16CA0043.namprd16.prod.outlook.com (2603:10b6:907:1::20)
- by CH2PR12MB4070.namprd12.prod.outlook.com (2603:10b6:610:ae::22) with
+ bh=cBRwZ7qOvGFswWanK0IhW1bch0/6nknAxLH0bMlKt3A=;
+ b=aPrw1PJ2bp/jVZsOJz6nfOTyfXo/CWqEzNh8IQlRAQkQ/jYRcx2N4LUx/s5a66LP2z9PsWqUWofnlVMPeQEsqZoZqlS4BpsDiZ2XJ3UlG2HQZUIlp6QgiG+BbnUCS31Oo3ShwXLbXOHPe9GFBPEisiU/IAJ2CwWS7/m5qLlDz+s=
+Received: from MW2PR16CA0069.namprd16.prod.outlook.com (2603:10b6:907:1::46)
+ by BL1PR12MB5352.namprd12.prod.outlook.com (2603:10b6:208:314::10) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.33; Wed, 17 May
- 2023 16:13:47 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.17; Wed, 17 May
+ 2023 16:14:25 +0000
 Received: from CO1NAM11FT065.eop-nam11.prod.protection.outlook.com
- (2603:10b6:907:1:cafe::f1) by MW2PR16CA0043.outlook.office365.com
- (2603:10b6:907:1::20) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:907:1:cafe::5d) by MW2PR16CA0069.outlook.office365.com
+ (2603:10b6:907:1::46) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.17 via Frontend
- Transport; Wed, 17 May 2023 16:13:47 +0000
+ Transport; Wed, 17 May 2023 16:14:24 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -52,12 +52,12 @@ Received: from SATLEXMB04.amd.com (165.204.84.17) by
 Received: from SITE-L-T34-2.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 17 May
- 2023 11:13:44 -0500
+ 2023 11:13:45 -0500
 From: Mario Limonciello <mario.limonciello@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v3 2/4] drm/amd: Validate gfxoff state for smu10
-Date: Wed, 17 May 2023 01:08:18 -0500
-Message-ID: <20230517060820.5499-3-mario.limonciello@amd.com>
+Subject: [PATCH v3 3/4] drm/amd: Validate gfxoff state for smu12
+Date: Wed, 17 May 2023 01:08:19 -0500
+Message-ID: <20230517060820.5499-4-mario.limonciello@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230517060820.5499-1-mario.limonciello@amd.com>
 References: <20230517060820.5499-1-mario.limonciello@amd.com>
@@ -69,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT065:EE_|CH2PR12MB4070:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4ee04fe8-ae08-4bef-bc02-08db56f1b1e6
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT065:EE_|BL1PR12MB5352:EE_
+X-MS-Office365-Filtering-Correlation-Id: 85824507-212f-4d77-5525-08db56f1c7dc
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: mKeO5qGIXJffmxV4ETz7DJ1xyVX+AWTvR49/Ra1RCYaTNtQpKT/WAA3UYi/RWOCax4EeYTfeZq0HjHqYr5MpXD4l+WEPSoWOefg14HPB6dJGu0FJViCKflcV1FvNI1C5rHyStUKzP48yeI60/YXk0A8JaZ0i9ihh8y1BFYWSQqyWucQNOHCaODvhWXJBLVGStIZf9r1Z98rFodeQODlPEpZK8J25vYDPq1e+p2gn4EqoUWgrRxWPkJlkUfiDbskcqTcCPL0NfPfcTqGcZSDDLZUE/1pGZl8I+jDsBuPGciPu3Hn9ZeTYVTWTHpzRD0LK9hDQQAwunRhQ/j1dltgpd18WRJzEl0I8yFhwAzig3rkTIRQXSl+skwmxfk5f8eBTlCDDIbpAiBiZsxoaX1ri3Y5pIA38pEQyC7DvYb6u1oEJXRTRN6vbQXqClsuYWV/B7YmrIdiRw/M7KTvklrntpTOjnkG8HDWPnbGJ4Gi4dspCcWf4Ddoh0zozC8N56xpi8pGh0ryAdDndg2hlNks5gzAvwEpWD7RFYvpt19agGYkJglAncCIrAgsAK3BL4yFen8z/5dppTvwDUIwwd3qEc8jIbEiNBUCPdNEQfMQmpOgDmBUs2F1EXO05YSKIMzw0YC1glu2AYR7qSdM+VGFj+TovetipJp4jI+cQ+90gh7NaxkQexYgYEt7iKefM7w6zJ40hCRG1OHE5tm3ebJSr8lgoJm+wwFwg0EY6jdmD1ujw+UjWA83kO6JT7lgnQZfWY7WAhzSC5bB3zYsHYJiUkA==
+X-Microsoft-Antispam-Message-Info: 5UVwKipRFT9xhSaDwZ7UaOFKCo14qhvs+fUt92mcAOeja1hgF/rafdDlsSthgmkAiL3HbOZzkn2IftJUyk0brhqTbB4lBR7HuWkO6eRoXTO8UXWxuUDXsJmD/cK9IktP0vlzPXEFcTq3oYJK5Od0nud6F87LhGn7vcNFMAa3/+Q1eSwDV2sqz3rTpyFNgGiat4FzBxsAGqzQojj7B3idwtty6KFmXkoVrznrf4HcSH37ZLMG9TodlGfDJXUJmh9VYK/y2zg7vj1WVIL5UPOICRhwo3sc43DU/fS/QbgdlvSrLkBuBm9uWXDz3XnukbB7RGVHDnOt9YRkimDrL326W8OpD4xNxOLjP0+CIuNjN4uvXptm0gWk0IOz10zpTBzB4DAr7acsv9ylbwJ4E8qDMUcDbs0KZSzEPiW2su9PsDpYiDZXKSdHM9hq3M9JY5wUJQsLR2nnAx8CM4qIqm8EssuaoEF1IZbeOpKW2/wphC7MF2qdE2A1GPMadM4rLZwEabNU3R8RV+mwBTAlrwjYt2rQEkOk7ahRIb0FvMqvYGH6IHYM85l6uO8ipz6qcGdynJ7U1Pv9o81Va+CPk1OASQUh/MWlMX+VLpqWdMOs9i8MrsHfyHy0S/fBp/aZhJUKeI3P7nlJNmPF8xEP4GsyunOXqF6mcRZY4M88IOoWCytbecRx10gU+eQxGgO4+0JkbnGSukBEnOcPX+tGqQ84B0ZipqP8YeRTwbiWE8xXSkgWoQIsDMY1awCHOR9wzWF6u1Nkb0dMWUgb7Iyoyyx1LA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(39860400002)(346002)(136003)(396003)(376002)(451199021)(36840700001)(40470700004)(46966006)(40460700003)(6916009)(4326008)(70206006)(316002)(478600001)(54906003)(36756003)(86362001)(47076005)(83380400001)(16526019)(1076003)(426003)(2616005)(36860700001)(26005)(186003)(70586007)(7696005)(336012)(41300700001)(15650500001)(44832011)(5660300002)(8676002)(2906002)(8936002)(6666004)(82310400005)(40480700001)(356005)(81166007)(82740400003)(36900700001);
+ SFS:(13230028)(4636009)(136003)(346002)(396003)(376002)(39860400002)(451199021)(46966006)(36840700001)(40470700004)(83380400001)(36860700001)(47076005)(426003)(336012)(7696005)(54906003)(478600001)(2616005)(6666004)(26005)(186003)(1076003)(16526019)(44832011)(15650500001)(8936002)(5660300002)(8676002)(36756003)(40460700003)(41300700001)(356005)(82740400003)(6916009)(81166007)(4326008)(40480700001)(82310400005)(70206006)(70586007)(2906002)(86362001)(316002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 May 2023 16:13:47.3290 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4ee04fe8-ae08-4bef-bc02-08db56f1b1e6
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 May 2023 16:13:47.9227 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85824507-212f-4d77-5525-08db56f1c7dc
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT065.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4070
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5352
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,89 +110,55 @@ to ensure it reaches desired target state.
 
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- .../drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c  | 57 +++++++++----------
- 1 file changed, 28 insertions(+), 29 deletions(-)
+ .../gpu/drm/amd/pm/swsmu/smu12/smu_v12_0.c    | 26 +++++++++++--------
+ 1 file changed, 15 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c
-index 86d6e88c7386..bd5bf9182e06 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c
-@@ -345,36 +345,11 @@ static bool smu10_is_gfx_on(struct pp_hwmgr *hwmgr)
- 	return false;
- }
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu12/smu_v12_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu12/smu_v12_0.c
+index c788aa7a99a9..869237cd0c2c 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu12/smu_v12_0.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu12/smu_v12_0.c
+@@ -157,26 +157,30 @@ uint32_t smu_v12_0_get_gfxoff_status(struct smu_context *smu)
  
--static int smu10_disable_gfx_off(struct pp_hwmgr *hwmgr)
--{
--	struct amdgpu_device *adev = hwmgr->adev;
--
--	if (adev->pm.pp_feature & PP_GFXOFF_MASK) {
--		smum_send_msg_to_smc(hwmgr, PPSMC_MSG_DisableGfxOff, NULL);
--
--		/* confirm gfx is back to "on" state */
--		while (!smu10_is_gfx_on(hwmgr))
--			msleep(1);
--	}
--
--	return 0;
--}
--
- static int smu10_disable_dpm_tasks(struct pp_hwmgr *hwmgr)
+ int smu_v12_0_gfx_off_control(struct smu_context *smu, bool enable)
  {
- 	return 0;
- }
+-	int ret = 0, timeout = 500;
++	int ret, timeout = 500;
++	int target;
  
--static int smu10_enable_gfx_off(struct pp_hwmgr *hwmgr)
--{
--	struct amdgpu_device *adev = hwmgr->adev;
+ 	if (enable) {
+ 		ret = smu_cmn_send_smc_msg(smu, SMU_MSG_AllowGfxOff, NULL);
 -
--	if (adev->pm.pp_feature & PP_GFXOFF_MASK)
--		smum_send_msg_to_smc(hwmgr, PPSMC_MSG_EnableGfxOff, NULL);
--
--	return 0;
--}
--
- static void smu10_populate_umdpstate_clocks(struct pp_hwmgr *hwmgr)
- {
- 	hwmgr->pstate_sclk = SMU10_UMD_PSTATE_GFXCLK;
-@@ -416,10 +391,34 @@ static int smu10_enable_dpm_tasks(struct pp_hwmgr *hwmgr)
- 
- static int smu10_gfx_off_control(struct pp_hwmgr *hwmgr, bool enable)
- {
--	if (enable)
--		return smu10_enable_gfx_off(hwmgr);
--	else
--		return smu10_disable_gfx_off(hwmgr);
-+	struct amdgpu_device *adev = hwmgr->adev;
-+	int r, timeout = 500;
-+	bool target;
-+
-+	if (!(adev->pm.pp_feature & PP_GFXOFF_MASK))
-+		return 0;
-+
-+	if (enable) {
-+		r = smum_send_msg_to_smc(hwmgr, PPSMC_MSG_EnableGfxOff, NULL);
-+		target = false;
-+	} else {
-+		r = smum_send_msg_to_smc(hwmgr, PPSMC_MSG_DisableGfxOff, NULL);
-+		target = true;
++		target = 0;
+ 	} else {
+ 		ret = smu_cmn_send_smc_msg(smu, SMU_MSG_DisallowGfxOff, NULL);
++		target = 2;
 +	}
-+	if (r)
-+		return r;
-+
++	if (ret)
++		return ret;
+ 
+-		/* confirm gfx is back to "on" state, timeout is 0.5 second */
+-		while (!(smu_v12_0_get_gfxoff_status(smu) == 2)) {
+-			msleep(1);
+-			timeout--;
+-			if (timeout == 0) {
+-				DRM_ERROR("disable gfxoff timeout and failed!\n");
+-				break;
+-			}
 +	/* confirm gfx is back to intended state, timeout is 0.5 second */
-+	while (smu10_is_gfx_on(hwmgr) != target) {
++	while ((smu_v12_0_get_gfxoff_status(smu) != target)) {
 +		msleep(1);
 +		timeout--;
 +		if (timeout == 0) {
 +			DRM_ERROR("%s gfxoff timeout and failed!\n", enable ? "enable" : "disable");
 +			return -ETIMEDOUT;
-+		}
-+	}
-+
+ 		}
+ 	}
+ 
+-	return ret;
 +	return 0;
  }
  
- static int smu10_apply_state_adjust_rules(struct pp_hwmgr *hwmgr,
+ int smu_v12_0_fini_smc_tables(struct smu_context *smu)
 -- 
 2.34.1
 
