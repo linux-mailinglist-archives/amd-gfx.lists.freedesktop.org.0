@@ -1,91 +1,38 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98C7F70996A
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 May 2023 16:20:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50E05709B87
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 May 2023 17:46:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 297C110E102;
-	Fri, 19 May 2023 14:20:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5259910E108;
+	Fri, 19 May 2023 15:46:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2086.outbound.protection.outlook.com [40.107.244.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C7B010E102
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 May 2023 14:20:21 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HH78RoDt/5GCuU8DxBrfe4roFqgfuSkmPMJ4Tf3FqVIIaBhFEAxz/zjvgkpqxMzkAvtx3ZdVUyLDE91t2SfD34Mxz5Fczpy60coiU/wGD5T3BvpHjaClONgvQbaa1WM7b1oc/Zn/0Ywlr4CCluqazZ04BppyJVh1/Tbd4ykHrfXB8YrIBFWTaFjlonYDnaZoL4KPRgKJrYaKyIsYNGuSy2eLOJDqv9s6aL26gY22CofGfJfKkfow0fnh8Nu2wrtmDWvyL7gcyCtT5gwQD3pSukPK1g00zINuCEtd9+wer7C0b1QTUyXbzUca+460LcYPe3a1NlcYz77HcA8txMtUuQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=opgo9FqBEqDh355RzOSKjUCHTRo3PBFxq3v1g+RZxnA=;
- b=kTHC+OUmUbg2oLUrgyzW2/mhP4n2z4bfLbd0r1T5n3+ax18BgmJyRRhUf35reTS/p4yEcSkEZ6rdVv5wkkyJSH7aOVSrIWzaAHlrh3hunFA7e/kBo3S57zSP8G1drqCkHaXR1U5KRyuL5iMlLHKPurw82N/n9WX3MI1/IRnZ9z+a5zRM36SSZqX4+h9yXMHQz3x4J74VPiNIuKZp16GI05cidFI1+WVI+pOx/8VHPO1vciiBzAN0opjvRjNnngRIsMfbE7FfSW3y8fbeI+9U1aRZsV6daC5kR34BuQUB07w4btjt6cf9S+XuM2ZXo4qCRJmMubO48IgMukllFP2EaA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=opgo9FqBEqDh355RzOSKjUCHTRo3PBFxq3v1g+RZxnA=;
- b=ybftSVZqa6BNmbU28ah/nHA4ggMRNXA/6V6UwW63z8+JI3lheZZgd42GFWq8SIG4we1tHTpb0pynAiJf1AI/aGPPMgPU+TpowryNctQmHY94AbsjYQ3Dc0v40L+FaLYPL7XFRmBzqxKxNrNctaNIPIymFct7p38aHTA76r3Itpo=
-Received: from MW3PR05CA0007.namprd05.prod.outlook.com (2603:10b6:303:2b::12)
- by SA1PR12MB7174.namprd12.prod.outlook.com (2603:10b6:806:2b1::22)
+Received: from exchange.fintech.ru (e10edge.fintech.ru [195.54.195.159])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6C5A10E4CC;
+ Fri, 19 May 2023 15:33:42 +0000 (UTC)
+Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
+ (195.54.195.169) with Microsoft SMTP Server (TLS) id 14.3.498.0; Fri, 19 May
+ 2023 18:33:34 +0300
+Received: from localhost (10.0.253.138) by Ex16-01.fintech.ru (10.0.10.18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.21; Fri, 19 May
- 2023 14:20:19 +0000
-Received: from CO1NAM11FT066.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:2b:cafe::de) by MW3PR05CA0007.outlook.office365.com
- (2603:10b6:303:2b::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.6 via Frontend
- Transport; Fri, 19 May 2023 14:20:18 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT066.mail.protection.outlook.com (10.13.175.18) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6411.21 via Frontend Transport; Fri, 19 May 2023 14:20:18 +0000
-Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 19 May
- 2023 09:20:17 -0500
-From: Philip Yang <Philip.Yang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdkfd: Align partition memory size to page size
-Date: Fri, 19 May 2023 10:19:14 -0400
-Message-ID: <20230519141914.21508-1-Philip.Yang@amd.com>
-X-Mailer: git-send-email 2.35.1
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 19 May
+ 2023 18:33:34 +0300
+From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Subject: [PATCH] drm/radeon: fix possible division-by-zero errors
+Date: Fri, 19 May 2023 08:33:27 -0700
+Message-ID: <20230519153327.231806-1-n.zhandarovich@fintech.ru>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT066:EE_|SA1PR12MB7174:EE_
-X-MS-Office365-Filtering-Correlation-Id: 542006d8-4ffc-49ba-0269-08db58742c72
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: KVe4YKbdR+6bGWaLvlkUp3UORNJdPSW9oNRVdcUqRloiDsZPd8wkXcel96hK6qayyp6Y/7uC7h7FcVjRAJSJUVav7yi6A5tH0YT1fC8gxKvnubcvX8On97avPFdcwFTMoVLJb5iytSY9jpKII0vK4mw9aVvxq+WxGcseIsXbrTP03H95QGGh47vOdm+TUOJ9JROhCzcY+Y/ffz8PqZNEtMyD7o4lN4pnlS9fD9W/q8pEjNAwDzLIVJ5XYSiL7yQXDVE4lHM1d3iGcm0Kf4TzRLxYaTi+q+lHNvdC7VmZTs4jzFCiBYiO6L7F0Kp24CEwUvVY7XsfPwqygVLUyGc8WMn7g+UvfAZzqD8x9A6BREkMnL7k61yjXvI0OK0qgNDBLwEs8WulTkLdwdf26dRuA5P74o4yFR6RGP7vv2C9u5St+PVcr112MrQzREkXQ/ZTTYeUxj+ZkCPJMN9uHwN9gOrtlUFWQOtpSZhJN6txcAvVumffoFc8hI7W2Etagf0czVP0nM9GnFqHUOM1YNZQzLM1axkvaIptpPTP5aqIX1WZ2ZdE8eERh6JrLn0THp9SgdGZtX2PY2ITtCR9y61x0oRjRPO+dsskWG3ZjglWsVrNXXTKQbTkQXNvLOGvNlir7jNTCGHueTZNIfaG3WojIWWcMSO9P1DCGEoZdPRZ93QImI0SYYJanux8VAvmLPcPgI5Bl/4PdwZcekki+sDg81d9IFimDByohOXCTJpx3Tp41xbUDK/9Kj+JUS4TCD8yUDpeDkOHsqCeRjYMzuRdkA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(39860400002)(376002)(136003)(396003)(346002)(451199021)(36840700001)(40470700004)(46966006)(40460700003)(6916009)(70586007)(70206006)(478600001)(4326008)(54906003)(316002)(86362001)(36756003)(83380400001)(47076005)(26005)(426003)(336012)(2616005)(16526019)(36860700001)(1076003)(186003)(5660300002)(8936002)(8676002)(2906002)(7696005)(40480700001)(6666004)(82310400005)(41300700001)(81166007)(356005)(82740400003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 May 2023 14:20:18.6614 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 542006d8-4ffc-49ba-0269-08db58742c72
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT066.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7174
+X-Originating-IP: [10.0.253.138]
+X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
+ (10.0.10.18)
+X-Mailman-Approved-At: Fri, 19 May 2023 15:46:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,37 +44,94 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Philip Yang <Philip.Yang@amd.com>, Felix.Kuehling@amd.com
+Cc: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ lvc-project@linuxtesting.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The compute partition memory size calculated from KFD_XCP_MEMORY_SIZE
-may not align to page size if xcp_mgr->num_xcp_per_mem_partition is 6.
+Function rv740_get_decoded_reference_divider() may return 0 due to
+unpredictable reference divider value calculated in
+radeon_atom_get_clock_dividers(). This will lead to
+division-by-zero error once that value is used as a divider
+in calculating 'clk_s'.
+While unlikely, this issue should nonetheless be prevented so add a
+sanity check for such cases by testing 'decoded_ref' value against 0.
 
-Change the KFD_XCP_MEMORY_SIZE macro to return page align size, so KFD
-node memory size reported in sysfs is page align size, to avoid
-application VRAM allocation failure because application may use the size
-directly and Thunk requires the memory allocation size is page size
-align.
+Found by Linux Verification Center (linuxtesting.org) with static
+analysis tool SVACE.
 
-Signed-off-by: Philip Yang <Philip.Yang@amd.com>
+Fixes: 66229b200598 ("drm/radeon/kms: add dpm support for rv7xx (v4)")
+Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/radeon/cypress_dpm.c | 7 +++++--
+ drivers/gpu/drm/radeon/ni_dpm.c      | 7 +++++--
+ drivers/gpu/drm/radeon/rv740_dpm.c   | 7 +++++--
+ 3 files changed, 15 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-index 5de92c9ab18f..66f80b9ab0c5 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-@@ -804,7 +804,7 @@ u64 amdgpu_amdkfd_xcp_memory_size(struct amdgpu_device *adev, int xcp_id)
- 	if (adev->gmc.num_mem_partitions && xcp_id >= 0 && mem_id >= 0) {
- 		tmp = adev->gmc.mem_partitions[mem_id].size;
- 		do_div(tmp, adev->xcp_mgr->num_xcp_per_mem_partition);
--		return tmp;
-+		return ALIGN_DOWN(tmp, PAGE_SIZE);
- 	} else {
- 		return adev->gmc.real_vram_size;
- 	}
+diff --git a/drivers/gpu/drm/radeon/cypress_dpm.c b/drivers/gpu/drm/radeon/cypress_dpm.c
+index fdddbbaecbb7..3678b7e384e1 100644
+--- a/drivers/gpu/drm/radeon/cypress_dpm.c
++++ b/drivers/gpu/drm/radeon/cypress_dpm.c
+@@ -555,10 +555,13 @@ static int cypress_populate_mclk_value(struct radeon_device *rdev,
+ 
+ 		if (radeon_atombios_get_asic_ss_info(rdev, &ss,
+ 						     ASIC_INTERNAL_MEMORY_SS, vco_freq)) {
++			u32 clk_s, clk_v;
+ 			u32 reference_clock = rdev->clock.mpll.reference_freq;
+ 			u32 decoded_ref = rv740_get_decoded_reference_divider(dividers.ref_div);
+-			u32 clk_s = reference_clock * 5 / (decoded_ref * ss.rate);
+-			u32 clk_v = ss.percentage *
++			if (!decoded_ref)
++				return -EINVAL;
++			clk_s = reference_clock * 5 / (decoded_ref * ss.rate);
++			clk_v = ss.percentage *
+ 				(0x4000 * dividers.whole_fb_div + 0x800 * dividers.frac_fb_div) / (clk_s * 625);
+ 
+ 			mpll_ss1 &= ~CLKV_MASK;
+diff --git a/drivers/gpu/drm/radeon/ni_dpm.c b/drivers/gpu/drm/radeon/ni_dpm.c
+index 672d2239293e..9ce3e5635efc 100644
+--- a/drivers/gpu/drm/radeon/ni_dpm.c
++++ b/drivers/gpu/drm/radeon/ni_dpm.c
+@@ -2239,10 +2239,13 @@ static int ni_populate_mclk_value(struct radeon_device *rdev,
+ 
+ 		if (radeon_atombios_get_asic_ss_info(rdev, &ss,
+ 						     ASIC_INTERNAL_MEMORY_SS, vco_freq)) {
++			u32 clk_s, clk_v;
+ 			u32 reference_clock = rdev->clock.mpll.reference_freq;
+ 			u32 decoded_ref = rv740_get_decoded_reference_divider(dividers.ref_div);
+-			u32 clk_s = reference_clock * 5 / (decoded_ref * ss.rate);
+-			u32 clk_v = ss.percentage *
++			if (!decoded_ref)
++				return -EINVAL;
++			clk_s = reference_clock * 5 / (decoded_ref * ss.rate);
++			clk_v = ss.percentage *
+ 				(0x4000 * dividers.whole_fb_div + 0x800 * dividers.frac_fb_div) / (clk_s * 625);
+ 
+ 			mpll_ss1 &= ~CLKV_MASK;
+diff --git a/drivers/gpu/drm/radeon/rv740_dpm.c b/drivers/gpu/drm/radeon/rv740_dpm.c
+index d57a3e1df8d6..ca76efa0f59d 100644
+--- a/drivers/gpu/drm/radeon/rv740_dpm.c
++++ b/drivers/gpu/drm/radeon/rv740_dpm.c
+@@ -247,10 +247,13 @@ int rv740_populate_mclk_value(struct radeon_device *rdev,
+ 
+ 		if (radeon_atombios_get_asic_ss_info(rdev, &ss,
+ 						     ASIC_INTERNAL_MEMORY_SS, vco_freq)) {
++			u32 clk_s, clk_v;
+ 			u32 reference_clock = rdev->clock.mpll.reference_freq;
+ 			u32 decoded_ref = rv740_get_decoded_reference_divider(dividers.ref_div);
+-			u32 clk_s = reference_clock * 5 / (decoded_ref * ss.rate);
+-			u32 clk_v = 0x40000 * ss.percentage *
++			if (!decoded_ref)
++				return -EINVAL;
++			clk_s = reference_clock * 5 / (decoded_ref * ss.rate);
++			clk_v = 0x40000 * ss.percentage *
+ 				(dividers.whole_fb_div + (dividers.frac_fb_div / 8)) / (clk_s * 10000);
+ 
+ 			mpll_ss1 &= ~CLKV_MASK;
 -- 
-2.35.1
+2.25.1
 
