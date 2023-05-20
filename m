@@ -1,64 +1,80 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 525B470B65B
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 May 2023 09:20:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3663170B65D
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 May 2023 09:20:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A43E10E250;
-	Mon, 22 May 2023 07:20:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EAD010E258;
+	Mon, 22 May 2023 07:20:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com
- [IPv6:2607:f8b0:4864:20::230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6398B10E16E
- for <amd-gfx@lists.freedesktop.org>; Sat, 20 May 2023 13:41:50 +0000 (UTC)
-Received: by mail-oi1-x230.google.com with SMTP id
- 5614622812f47-38c35975545so3190871b6e.1
- for <amd-gfx@lists.freedesktop.org>; Sat, 20 May 2023 06:41:50 -0700 (PDT)
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com
+ [IPv6:2607:f8b0:4864:20::1036])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B52110E16E;
+ Sat, 20 May 2023 13:51:05 +0000 (UTC)
+Received: by mail-pj1-x1036.google.com with SMTP id
+ 98e67ed59e1d1-2533d74895bso3330694a91.0; 
+ Sat, 20 May 2023 06:51:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1684590108; x=1687182108;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=QDjL71PEC6Tb+XtxTyBLheXSk1UAk9Ru/+e5aEBaUME=;
- b=jBrxFKg2cKrHx/DouwqP32x7wpJiJU9aigiEjHeTTqgp4UPiC/eAtJQllwFa5z6uC0
- EdjiNsZrLqCKLeLd4alN4n/NLZGYw04QrKgaJNvV9YsCuRVGTJP3TAm4U1j3ZnvZDDKJ
- zgL3SDSrjnD2/Il3oDnStv492zzBKHglXwWVi1SZmH2fjgaF3GA6ukEUn0Cv+k4rSQd3
- 5DCqAj4syCcuaWfcQiihHBj58RFQh0DP7hwq77I9Gq1SRur5azsA+d0whoZyjwdBb6cu
- VpRf+ctb2iHGWjTeCBeOLGfIZO6AdPqo1UDARxVfqmCkDemdBfC8AY8UOX26hgDWK+O0
- lzzw==
+ d=gmail.com; s=20221208; t=1684590664; x=1687182664;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=v1DjKkNqJxAe4f+qRtBPeAc8nITQor5FKijXM6qfCso=;
+ b=NzJBUaOZA5G1WnPV+WkVooIG9lLQAVrTDQ16cKheCsE9jy1VAvjCpC0Ba3XyIfi5nJ
+ 9LWlk3IfKgjqEO4ErgqOTA7eUeTruF13mNro9mGxjz6BpwJuTy4KingJNL3PAERWhjPJ
+ Lp69ICG7lxaJHwR5gShqUY3CusIgX8JXm7z94Y7R/qzg71wOZS8xOxMRBgB5+xY6hsSu
+ S0+uAvAlOgIj8mdKIg2mijFPg8rNL8YGSPFia0FMvZgaKYyS2tFtaFbghIPu5iPjCoo0
+ SqCtsiNMKPJ136R/5CZ72mmPxUDpG8zgYSevDFpqxFBSbHNuHF5lm1KvNEmmygCOfQyN
+ guJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684590108; x=1687182108;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=QDjL71PEC6Tb+XtxTyBLheXSk1UAk9Ru/+e5aEBaUME=;
- b=kW96UZSS7AubqCrFAgUOVN2Ic4GeRd3EScjXhJKsg5VtQ1BShSbuHNXW/WMTKu9D/f
- 66p6csJ0e5NPr3uttM/Q4F01RHnsygKTLTwByX77P2IlmkTECACOR70aD9pIauHc2SGA
- EZF3JrpodWDT4I4x26kMsShqsVmCBWI7919a02Phttl/jDjPgvk7Hm2qFcMr7RJ9T3Bc
- wX7lJc78ufrQUvZBX/LTuMIAf4qsCew4+ZA8D7cCjZ6F0SCw3Z+BwYvN7rrRcrAP33rY
- NM8/uF7+r838mQPIT/nJGO2p99eeRaMdSGTfKjDo9ORHzn6OdQ7ZLGPLKALkjG2oS9E0
- bJWQ==
-X-Gm-Message-State: AC+VfDy4nTwi07bRYfGScKfoEODbmhxCG5MQB+I5+dcnpHPDuXBCEhuD
- lljrwJBk5hGTNNWa6muNT97tt384Z90Lmw==
-X-Google-Smtp-Source: ACHHUZ71lN59Rpri09NQzDWxkLeu7s2m0KjQiJj18LqcT4nmmGRHukcZ+05VT7dEqLOuuPTXANe5hg==
-X-Received: by 2002:a05:6808:8dc:b0:38e:c2a4:3530 with SMTP id
- k28-20020a05680808dc00b0038ec2a43530mr2704094oij.9.1684590108154; 
- Sat, 20 May 2023 06:41:48 -0700 (PDT)
-Received: from toolbox.spo.virtua.com.br
- ([2804:14c:1af:8457:4af4:4759:2c9e:18c9])
+ d=1e100.net; s=20221208; t=1684590664; x=1687182664;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=v1DjKkNqJxAe4f+qRtBPeAc8nITQor5FKijXM6qfCso=;
+ b=TchRhxTl5qCqYf9rE2jxYksYqCQou/0vXQ2oWmep9s1Q5sy5gTryQoF5QySI/Dt44T
+ 8CcoZHaORH7eyQREA6k15tn14NpWVdSe2UIdm8ekhIwLyZYXOmBayheNnUV8Vf2D8Yqq
+ XeeKcd4ZCZ1L/u6He9/9mAmHwURGFWxUurgyQSe/AUuitMKK37APQNR93NL2QiR62Ht8
+ ISnMh25LLjNxz4BivUgYJei5UAZr1WfbdTLM9PjoSFX0J7ECCLGMESUy54IHH5Kevc2R
+ vDvadF9XcxGqpzRB8s+Jt+VHyjjqYmCY7BMLClUSGWAdUbKAchpbcY9diZsa7oo+pn2C
+ NQQw==
+X-Gm-Message-State: AC+VfDwdhurjrsO0iTCC/P3IcLIU29nRSLE/MWJFnaOF46zNYIAEEHAV
+ MwKbAkzi1tG2Id1VdTZQT1qRQo7RM2U=
+X-Google-Smtp-Source: ACHHUZ6GaD8+abD+X/MQmS2hqD4IMHqYPqXScSS516EF/bZdrcHeYGnN0LSVRqnmFGvDnJ/0sqS3Uw==
+X-Received: by 2002:a17:90b:400a:b0:253:8e47:40b8 with SMTP id
+ ie10-20020a17090b400a00b002538e4740b8mr4286223pjb.1.1684590664240; 
+ Sat, 20 May 2023 06:51:04 -0700 (PDT)
+Received: from debian.me (subs09a-223-255-225-69.three.co.id. [223.255.225.69])
  by smtp.gmail.com with ESMTPSA id
- c14-20020a544e8e000000b0038cabdbe3a7sm617356oiy.3.2023.05.20.06.41.46
+ i7-20020a17090aee8700b0023a84911df2sm1283255pjz.7.2023.05.20.06.51.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 20 May 2023 06:41:47 -0700 (PDT)
-From: Jonatas Esteves <jntesteves@gmail.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amd/pm: Fix output of pp_od_clk_voltage
-Date: Sat, 20 May 2023 10:39:52 -0300
-Message-Id: <20230520133951.172823-1-jntesteves@gmail.com>
-X-Mailer: git-send-email 2.40.1
+ Sat, 20 May 2023 06:51:03 -0700 (PDT)
+Received: by debian.me (Postfix, from userid 1000)
+ id 21CFB105634; Sat, 20 May 2023 20:50:52 +0700 (WIB)
+Date: Sat, 20 May 2023 20:50:52 +0700
+From: Bagas Sanjaya <bagasdotme@gmail.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Hawking Zhang <Hawking.Zhang@amd.com>, Le Ma <le.ma@amd.com>,
+ Tao Zhou <tao.zhou1@amd.com>, YiPeng Chai <YiPeng.Chai@amd.com>,
+ "Jiadong.Zhu" <Jiadong.Zhu@amd.com>,
+ Yang Wang <KevinYang.Wang@amd.com>, Candice Li <candice.li@amd.com>,
+ Xiaojian Du <Xiaojian.Du@amd.com>, Likun Gao <Likun.Gao@amd.com>,
+ Linux AMDGPU <amd-gfx@lists.freedesktop.org>,
+ Linux DRI Development <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Regressions <regressions@lists.linux.dev>
+Subject: Re: Fwd: Kernel 5.11 crashes when it boots, it produces black screen.
+Message-ID: <ZGjQPFvnAvN6MJnc@debian.me>
+References: <c2168e4f-4d47-0d5d-a1b7-d237f0760df8@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="BrcuXWEws5Ub7YHG"
+Content-Disposition: inline
+In-Reply-To: <c2168e4f-4d47-0d5d-a1b7-d237f0760df8@gmail.com>
 X-Mailman-Approved-At: Mon, 22 May 2023 07:20:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,47 +87,44 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jonatas Esteves <jntesteves@gmail.com>
+Cc: "Azamat S. Kalimoulline" <turtle@bazon.ru>,
+ max <kernel-ODwfxu5zp4@maxxor.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Printing the other clock types should not be conditioned on being able
-to print OD_SCLK. Some GPUs currently have limited capability of only
-printing a subset of these.
 
-Since this condition was introduced in v5.18-rc1, reading from
-`pp_od_clk_voltage` has been returning empty on the Asus ROG Strix G15
-(2021).
+--BrcuXWEws5Ub7YHG
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Fixes: 79c65f3fcbb1 ("drm/amd/pm: do not expose power implementation details to amdgpu_pm.c")
-Signed-off-by: Jonatas Esteves <jntesteves@gmail.com>
----
- drivers/gpu/drm/amd/pm/amdgpu_pm.c | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
+On Wed, May 10, 2023 at 03:26:56PM +0700, Bagas Sanjaya wrote:
+> Anyway, let me add this regression to regzbot:
+>=20
+> #regzbot introduced: v5.10..v5.11 https://bugzilla.kernel.org/show_bug.cg=
+i?id=3D212579
+> #regzbot title: Booting kernel on AMD Ryzen 5 PRO stucks in loading initrd
 
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-index 58c2246918fd..f4f40459f22b 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-@@ -871,13 +871,11 @@ static ssize_t amdgpu_get_pp_od_clk_voltage(struct device *dev,
- 	}
- 	if (ret == -ENOENT) {
- 		size = amdgpu_dpm_print_clock_levels(adev, OD_SCLK, buf);
--		if (size > 0) {
--			size += amdgpu_dpm_print_clock_levels(adev, OD_MCLK, buf + size);
--			size += amdgpu_dpm_print_clock_levels(adev, OD_VDDC_CURVE, buf + size);
--			size += amdgpu_dpm_print_clock_levels(adev, OD_VDDGFX_OFFSET, buf + size);
--			size += amdgpu_dpm_print_clock_levels(adev, OD_RANGE, buf + size);
--			size += amdgpu_dpm_print_clock_levels(adev, OD_CCLK, buf + size);
--		}
-+		size += amdgpu_dpm_print_clock_levels(adev, OD_MCLK, buf + size);
-+		size += amdgpu_dpm_print_clock_levels(adev, OD_VDDC_CURVE, buf + size);
-+		size += amdgpu_dpm_print_clock_levels(adev, OD_VDDGFX_OFFSET, buf + size);
-+		size += amdgpu_dpm_print_clock_levels(adev, OD_RANGE, buf + size);
-+		size += amdgpu_dpm_print_clock_levels(adev, OD_CCLK, buf + size);
- 	}
- 
- 	if (size == 0)
--- 
-2.40.1
+Resolving...
 
+#regzbot resolve: reporter found a workaround to the presumably firmware bug
+
+See [1] for the precise workaround.
+
+[1]: https://bugzilla.kernel.org/show_bug.cgi?id=3D216340#c53
+
+--=20
+An old man doll... just what I always wanted! - Clara
+
+--BrcuXWEws5Ub7YHG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZGjQNQAKCRD2uYlJVVFO
+ow8xAP95LId80yotLjJuCqAvScT3zVqlzU3jw0za7laxNjvTOAD+IoX87VSLE1u5
+TGII8nt/cEhCPC6HB1p6JcsDu48a3Ag=
+=cXnc
+-----END PGP SIGNATURE-----
+
+--BrcuXWEws5Ub7YHG--
