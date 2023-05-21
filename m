@@ -2,79 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3663170B65D
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 May 2023 09:20:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75A3D70B659
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 May 2023 09:20:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EAD010E258;
-	Mon, 22 May 2023 07:20:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A21C610E254;
+	Mon, 22 May 2023 07:20:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com
- [IPv6:2607:f8b0:4864:20::1036])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B52110E16E;
- Sat, 20 May 2023 13:51:05 +0000 (UTC)
-Received: by mail-pj1-x1036.google.com with SMTP id
- 98e67ed59e1d1-2533d74895bso3330694a91.0; 
- Sat, 20 May 2023 06:51:05 -0700 (PDT)
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com
+ [IPv6:2a00:1450:4864:20::132])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7939810E083
+ for <amd-gfx@lists.freedesktop.org>; Sun, 21 May 2023 00:03:14 +0000 (UTC)
+Received: by mail-lf1-x132.google.com with SMTP id
+ 2adb3069b0e04-4f3a611b3ddso2714017e87.0
+ for <amd-gfx@lists.freedesktop.org>; Sat, 20 May 2023 17:03:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1684590664; x=1687182664;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=v1DjKkNqJxAe4f+qRtBPeAc8nITQor5FKijXM6qfCso=;
- b=NzJBUaOZA5G1WnPV+WkVooIG9lLQAVrTDQ16cKheCsE9jy1VAvjCpC0Ba3XyIfi5nJ
- 9LWlk3IfKgjqEO4ErgqOTA7eUeTruF13mNro9mGxjz6BpwJuTy4KingJNL3PAERWhjPJ
- Lp69ICG7lxaJHwR5gShqUY3CusIgX8JXm7z94Y7R/qzg71wOZS8xOxMRBgB5+xY6hsSu
- S0+uAvAlOgIj8mdKIg2mijFPg8rNL8YGSPFia0FMvZgaKYyS2tFtaFbghIPu5iPjCoo0
- SqCtsiNMKPJ136R/5CZ72mmPxUDpG8zgYSevDFpqxFBSbHNuHF5lm1KvNEmmygCOfQyN
- guJg==
+ d=linaro.org; s=google; t=1684627392; x=1687219392;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=hzuHTgVFvJOcibg5XLms2snXPUj1XRLOS2dGHZrGZ9w=;
+ b=de+9pEzv+V+RtnsauZw1xJ6xg3xowMNpYhR2hrMHrnN5DwuHS53a/6mYf3PqexfLDE
+ RmrA2Q1Evv0OP57PG0lL7CptzD1/v+W6Ui+nhQg3eOzfYJi3E1B+Nl/i0L1ES4GWMT8f
+ hKQ6Gny7a2IG1sUuaXzRAkjqj425vczlNPoNuYao4FDu0bDB6aHhHifRiA+cbZ6Dp5dL
+ RxXrYhFBElafPjSMSfWd3B42NflJBjfdFsI70JRdiGFsK5LLXgQuRfj6NtUmJvfqTAZk
+ 8ZlXl8RV+FdQ5aW0+FzdsRL+MjC9E0sLOjKiSK+uc9xK5OjdQfAumgrB4VV3YZxgt4cK
+ AIqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684590664; x=1687182664;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=v1DjKkNqJxAe4f+qRtBPeAc8nITQor5FKijXM6qfCso=;
- b=TchRhxTl5qCqYf9rE2jxYksYqCQou/0vXQ2oWmep9s1Q5sy5gTryQoF5QySI/Dt44T
- 8CcoZHaORH7eyQREA6k15tn14NpWVdSe2UIdm8ekhIwLyZYXOmBayheNnUV8Vf2D8Yqq
- XeeKcd4ZCZ1L/u6He9/9mAmHwURGFWxUurgyQSe/AUuitMKK37APQNR93NL2QiR62Ht8
- ISnMh25LLjNxz4BivUgYJei5UAZr1WfbdTLM9PjoSFX0J7ECCLGMESUy54IHH5Kevc2R
- vDvadF9XcxGqpzRB8s+Jt+VHyjjqYmCY7BMLClUSGWAdUbKAchpbcY9diZsa7oo+pn2C
- NQQw==
-X-Gm-Message-State: AC+VfDwdhurjrsO0iTCC/P3IcLIU29nRSLE/MWJFnaOF46zNYIAEEHAV
- MwKbAkzi1tG2Id1VdTZQT1qRQo7RM2U=
-X-Google-Smtp-Source: ACHHUZ6GaD8+abD+X/MQmS2hqD4IMHqYPqXScSS516EF/bZdrcHeYGnN0LSVRqnmFGvDnJ/0sqS3Uw==
-X-Received: by 2002:a17:90b:400a:b0:253:8e47:40b8 with SMTP id
- ie10-20020a17090b400a00b002538e4740b8mr4286223pjb.1.1684590664240; 
- Sat, 20 May 2023 06:51:04 -0700 (PDT)
-Received: from debian.me (subs09a-223-255-225-69.three.co.id. [223.255.225.69])
+ d=1e100.net; s=20221208; t=1684627392; x=1687219392;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=hzuHTgVFvJOcibg5XLms2snXPUj1XRLOS2dGHZrGZ9w=;
+ b=egQdjOMs/h8aVi8KIoJvILXTf1meFtYIT+hbnSZfuZm56hdJ0qRVQx711rsoSdMJZs
+ d9aJ08ohW9bi3GlAIuUXPI2EIXPF1X7x3+KJ2fQwoXGnzBv+6WtO682Bdk7TtdyBfRAQ
+ YiLciReEAC1B9IDzXi/C8uei1XG72s10hu8tt7JgJ9AvTw+Ik+C2wh9hrbNIPDP1lXuo
+ huStZO7LW6+VaOVYpUnHJehgZgDg+b62CcHLjKBwsziR2Ej7Ns6/9PmqfpxRoXzhYsYY
+ UMHkCyXkJSVG5vW5mqPdkWiYrLwnBLtNGruRmv4gkiRjKUdjqSsSzhIfhOoJVmp6hOZX
+ J6vA==
+X-Gm-Message-State: AC+VfDxfPVl8JhpjbYqVegB43/JoAguFwHasB3sjCM726k9g0T1/sH5f
+ GLKyW+xO9iGyJB3LOGqoHwjoSw==
+X-Google-Smtp-Source: ACHHUZ4inqGzFl0yu2BA3Hvm7A2976kcqcOuiyRPVgeqFJjRLVRuHQcUW5BDIw84DZ989za7vayVVQ==
+X-Received: by 2002:ac2:4c49:0:b0:4f0:74:61a0 with SMTP id
+ o9-20020ac24c49000000b004f0007461a0mr2566610lfk.0.1684627392247; 
+ Sat, 20 May 2023 17:03:12 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5?
+ (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
  by smtp.gmail.com with ESMTPSA id
- i7-20020a17090aee8700b0023a84911df2sm1283255pjz.7.2023.05.20.06.51.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 20 May 2023 06:51:03 -0700 (PDT)
-Received: by debian.me (Postfix, from userid 1000)
- id 21CFB105634; Sat, 20 May 2023 20:50:52 +0700 (WIB)
-Date: Sat, 20 May 2023 20:50:52 +0700
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Hawking Zhang <Hawking.Zhang@amd.com>, Le Ma <le.ma@amd.com>,
- Tao Zhou <tao.zhou1@amd.com>, YiPeng Chai <YiPeng.Chai@amd.com>,
- "Jiadong.Zhu" <Jiadong.Zhu@amd.com>,
- Yang Wang <KevinYang.Wang@amd.com>, Candice Li <candice.li@amd.com>,
- Xiaojian Du <Xiaojian.Du@amd.com>, Likun Gao <Likun.Gao@amd.com>,
- Linux AMDGPU <amd-gfx@lists.freedesktop.org>,
- Linux DRI Development <dri-devel@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Regressions <regressions@lists.linux.dev>
-Subject: Re: Fwd: Kernel 5.11 crashes when it boots, it produces black screen.
-Message-ID: <ZGjQPFvnAvN6MJnc@debian.me>
-References: <c2168e4f-4d47-0d5d-a1b7-d237f0760df8@gmail.com>
+ c28-20020ac2531c000000b004f38411f148sm418378lfh.84.2023.05.20.17.03.11
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sat, 20 May 2023 17:03:11 -0700 (PDT)
+Message-ID: <da1f7aa1-f560-31f4-6114-e400f35d325b@linaro.org>
+Date: Sun, 21 May 2023 03:03:10 +0300
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="BrcuXWEws5Ub7YHG"
-Content-Disposition: inline
-In-Reply-To: <c2168e4f-4d47-0d5d-a1b7-d237f0760df8@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v4 0/9] drm: fdinfo memory stats
+Content-Language: en-GB
+To: Rob Clark <robdclark@gmail.com>, dri-devel@lists.freedesktop.org
+References: <20230515143023.801167-1-robdclark@gmail.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230515143023.801167-1-robdclark@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 22 May 2023 07:20:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,44 +77,90 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Azamat S. Kalimoulline" <turtle@bazon.ru>,
- max <kernel-ODwfxu5zp4@maxxor.org>
+Cc: "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+ Akhil P Oommen <quic_akhilpo@quicinc.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ open list <linux-kernel@vger.kernel.org>,
+ =?UTF-8?Q?Michel_D=c3=a4nzer?= <mdaenzer@redhat.com>,
+ YiPeng Chai <YiPeng.Chai@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Rob Clark <robdclark@chromium.org>, Guchun Chen <guchun.chen@amd.com>,
+ Shashank Sharma <shashank.sharma@amd.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ Chia-I Wu <olvaffe@gmail.com>,
+ Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ "open list:DRM DRIVER FOR MSM ADRENO GPU" <linux-arm-msm@vger.kernel.org>,
+ Sean Paul <sean@poorly.run>, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Elliot Berman <quic_eberman@quicinc.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>, Jim Cromie <jim.cromie@gmail.com>,
+ Maximilian Luz <luzmaximilian@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>, Peter Maucher <bellosilicio@gmail.com>,
+ Emil Velikov <emil.l.velikov@gmail.com>,
+ Christopher Healy <healych@amazon.com>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ freedreno@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On 15/05/2023 17:30, Rob Clark wrote:
+> From: Rob Clark <robdclark@chromium.org>
+> 
+> Similar motivation to other similar recent attempt[1].  But with an
+> attempt to have some shared code for this.  As well as documentation.
+> 
+> It is probably a bit UMA-centric, I guess devices with VRAM might want
+> some placement stats as well.  But this seems like a reasonable start.
+> 
+> Basic gputop support: https://patchwork.freedesktop.org/series/116236/
+> And already nvtop support: https://github.com/Syllo/nvtop/pull/204
+> 
+> I've combined the separate series to add comm/cmdline override onto
+> the end of this, simply out of convenience (they would otherwise
+> conflict in a bunch of places).
+> 
+> v2: Extend things to allow for multiple regions other than just system
+>      "memory", make drm_show_memory_stats() a helper so that, drivers
+>      can use it or not based on their needs (but in either case, re-
+>      use drm_print_memory_stats()
+> v3: Docs fixes
+> v4: use u64 for drm_memory_stats, small docs update and collected
+>      Tvrtko's a-b
+> 
+> [1] https://patchwork.freedesktop.org/series/112397/
+> 
+> Rob Clark (9):
+>    drm/docs: Fix usage stats typos
+>    drm: Add common fdinfo helper
+>    drm/msm: Switch to fdinfo helper
+>    drm/amdgpu: Switch to fdinfo helper
+>    drm: Add fdinfo memory stats
+>    drm/msm: Add memory stats to fdinfo
+>    drm/doc: Relax fdinfo string constraints
+>    drm/fdinfo: Add comm/cmdline override fields
+>    drm/msm: Wire up comm/cmdline override for fdinfo
+> 
+>   Documentation/gpu/drm-usage-stats.rst      | 101 ++++++++++----
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |   3 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c |  16 +--
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.h |   2 +-
+>   drivers/gpu/drm/drm_file.c                 | 147 +++++++++++++++++++++
+>   drivers/gpu/drm/msm/adreno/adreno_gpu.c    |  24 +++-
+>   drivers/gpu/drm/msm/msm_drv.c              |  15 ++-
+>   drivers/gpu/drm/msm/msm_gem.c              |  15 +++
+>   drivers/gpu/drm/msm/msm_gpu.c              |   2 -
+>   drivers/gpu/drm/msm/msm_gpu.h              |  10 ++
+>   include/drm/drm_drv.h                      |   7 +
+>   include/drm/drm_file.h                     |  51 +++++++
+>   include/drm/drm_gem.h                      |  32 +++++
+>   13 files changed, 378 insertions(+), 47 deletions(-)
 
---BrcuXWEws5Ub7YHG
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+What is the expected merge plan for this series? msm-next? drm-misc?
 
-On Wed, May 10, 2023 at 03:26:56PM +0700, Bagas Sanjaya wrote:
-> Anyway, let me add this regression to regzbot:
->=20
-> #regzbot introduced: v5.10..v5.11 https://bugzilla.kernel.org/show_bug.cg=
-i?id=3D212579
-> #regzbot title: Booting kernel on AMD Ryzen 5 PRO stucks in loading initrd
 
-Resolving...
 
-#regzbot resolve: reporter found a workaround to the presumably firmware bug
+-- 
+With best wishes
+Dmitry
 
-See [1] for the precise workaround.
-
-[1]: https://bugzilla.kernel.org/show_bug.cgi?id=3D216340#c53
-
---=20
-An old man doll... just what I always wanted! - Clara
-
---BrcuXWEws5Ub7YHG
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZGjQNQAKCRD2uYlJVVFO
-ow8xAP95LId80yotLjJuCqAvScT3zVqlzU3jw0za7laxNjvTOAD+IoX87VSLE1u5
-TGII8nt/cEhCPC6HB1p6JcsDu48a3Ag=
-=cXnc
------END PGP SIGNATURE-----
-
---BrcuXWEws5Ub7YHG--
