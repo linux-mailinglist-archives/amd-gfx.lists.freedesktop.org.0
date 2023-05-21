@@ -1,62 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C06C770B65A
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 May 2023 09:20:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8811370B65C
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 May 2023 09:20:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EAE910E255;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 697AB10E257;
 	Mon, 22 May 2023 07:20:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com
- [IPv6:2607:f8b0:4864:20::b31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9258D10E1AE
- for <amd-gfx@lists.freedesktop.org>; Sun, 21 May 2023 04:15:41 +0000 (UTC)
-Received: by mail-yb1-xb31.google.com with SMTP id
- 3f1490d57ef6-ba6d024a196so4137312276.2
- for <amd-gfx@lists.freedesktop.org>; Sat, 20 May 2023 21:15:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1684642540; x=1687234540;
- h=content-transfer-encoding:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=cuy/ECGdaUtkYxS8w6j0LN3puMU4yYm7CZzTCAk5FCI=;
- b=Gfk9NN3FyHKdTuW0sqwk/nGRiV8kSdICC2zCzqI8ZBKixyFcYpXPZt+tlijrSB8jsj
- 35nU3m3b2OukhOJZZk6BD+tb1yo+t+s87ImZi2EEaHlmYkx+hx6trFYGDohXTwaOpmfw
- n95AsOuqBNTGWK3YgFIYu3VZiAsMLpkvxfp4V9lGoN1huhDpP2+49dhwcOH/AXGk/4WL
- k1jugUMj1fuOi51Om+Bwrkv86kH6wnkluase6gEpEdDWti9Hg7/uD3DlXn1TepH4m84G
- LKaNb4EJTK1XJ8/m4HZpr6xr7BtR0ngAN4htmLxlZN9q3OjYjS7FBF5M5ZyHDsx1fp7g
- b+4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684642540; x=1687234540;
- h=content-transfer-encoding:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=cuy/ECGdaUtkYxS8w6j0LN3puMU4yYm7CZzTCAk5FCI=;
- b=KF4WH1QTzhOnMKdHBtAa1W5RyHckp/WMpboZDeK6cBYX4dFABC7arkwQjza6nQ2AQR
- F3D1+FO4IAPjHyKp4vdDqA7Pll2suvX9smShvCG/+qBieNVMf5VOW5hUuU+6uhb1FUxr
- WjggxOqiJRnrgZ7BvEN+qxAE2DG7EzhaD+cfYXB+gGQ/+t8Spv0TWBm3ETDcDkOBTlu1
- PCbOYfyGW/vw94KaH+Zr7okCMG7LjpT2LdR5h2hOxxjEexOskW7eJRJDbWv0+2oaO986
- vSpvAWwrvSD/V3Db4f11VJK0CHy2budIFj2x2ti/fds87xmO3E3RYAWbHNPbJYdeX6mH
- H1xQ==
-X-Gm-Message-State: AC+VfDxmiz5n6VxQkOkixV+8WP19CIhfsSp5eyMn9+2sP5+NLif6Edho
- hxjAsL0D/NqXz41sz5WYi/aBH5+2tOR/BJqNanZ6PXrfbAA=
-X-Google-Smtp-Source: ACHHUZ49QV/dAShKP/clk/nlxbFf6wHL8wEfxazjVx9pm41Y+U5gj2IQqcCl6KxlaBZf4JNsFlPOXk9pQ56EpmrnnFw=
-X-Received: by 2002:a0d:d890:0:b0:561:4bcc:464f with SMTP id
- a138-20020a0dd890000000b005614bcc464fmr7590775ywe.36.1684642539769; Sat, 20
- May 2023 21:15:39 -0700 (PDT)
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
+ [80.237.130.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C499410E1C6
+ for <amd-gfx@lists.freedesktop.org>; Sun, 21 May 2023 11:21:20 +0000 (UTC)
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+ by wp530.webpack.hosteurope.de running ExIM with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ id 1q0h7l-0004k3-6q; Sun, 21 May 2023 13:21:17 +0200
+Message-ID: <99b996f5-b25c-3d4a-5e2f-2d7cc20bfa31@leemhuis.info>
+Date: Sun, 21 May 2023 13:21:16 +0200
 MIME-Version: 1.0
-References: <CAHPMNWdWaYyQs1u=r7wt=DudxoogCOe3GL2J1UC-Gcdroa=MaA@mail.gmail.com>
-In-Reply-To: <CAHPMNWdWaYyQs1u=r7wt=DudxoogCOe3GL2J1UC-Gcdroa=MaA@mail.gmail.com>
-From: Neil Sikka <neilsikka@gmail.com>
-Date: Sun, 21 May 2023 00:15:28 -0400
-Message-ID: <CAHPMNWeoNACjDh8AYWDvchXc8t9wHh3Gu+qriaWs0b9tHbxn1A@mail.gmail.com>
-Subject: Re: Radeon Driver Crash
-To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com, 
- christian.koenig@amd.com, Xinhui.Pan@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: Fwd: Linux 6.3.1 + AMD RX 570 on ppc64le 4K: Kernel attempted to
+ read user page (1128) - exploit attempt? (uid: 0)
+Content-Language: en-US, de-DE
+To: Bagas Sanjaya <bagasdotme@gmail.com>,
+ Linux Regressions <regressions@lists.linux.dev>,
+ Linux for PowerPC <linuxppc-dev@lists.ozlabs.org>,
+ Linux AMDGPU <amd-gfx@lists.freedesktop.org>
+References: <588c1a66-9976-c96f-dcdd-beec8b7410f0@gmail.com>
+From: "Linux regression tracking #update (Thorsten Leemhuis)"
+ <regressions@leemhuis.info>
+In-Reply-To: <588c1a66-9976-c96f-dcdd-beec8b7410f0@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1684668080;
+ e4c6d47b; 
+X-HE-SMSGID: 1q0h7l-0004k3-6q
 X-Mailman-Approved-At: Mon, 22 May 2023 07:20:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,35 +50,29 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-I also crossposted here upon request:
-https://gitlab.freedesktop.org/drm/amd/-/issues/2571
+/me removes a few people from CC, as this thread already annoyed a few
+people
 
-On Fri, May 19, 2023 at 6:36=E2=80=AFPM Neil Sikka <neilsikka@gmail.com> wr=
-ote:
->
-> Hello, I just filed a bug for the Radeon driver crashing:
-> https://bugzilla.kernel.org/show_bug.cgi?id=3D217464
->
-> It looks similar to this bug
-> (https://bugzilla.kernel.org/show_bug.cgi?id=3D198669) because they are
-> both locking up the GPU and the page fault address is at the same page
-> offset of 0xffc, which might mean its the same structure member that
-> is being dereferenced (or an underflow), and the call stack is
-> similar.
->
-> Please let me know if you need any more information.
->
-> Thanks!
->
-> --
-> My Blog: http://www.neilscomputerblog.blogspot.com/
-> Twitter: @neilsikka
+On 11.05.23 10:06, Bagas Sanjaya wrote:
+> 
+> I notice a regression report on bugzilla ([1]). As many developers
+> don't keep an eye on it, I decide to forward it by email.
+> [...] 
+> #regzbot introduced: v6.2..v6.3 https://bugzilla.kernel.org/show_bug.cgi?id=217427
+> #regzbot title: No video output from AMD RX 570 and kernel exploit attempt on ppc64le
 
+per https://gitlab.freedesktop.org/drm/amd/-/issues/2553#note_1911308
 
+#regzbot fix: 3cf7cd3f770a0b89dc
+#regzbot ignore-activity
 
---=20
-My Blog: http://www.neilscomputerblog.blogspot.com/
-Twitter: @neilsikka
+Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+--
+Everything you wanna know about Linux kernel regression tracking:
+https://linux-regtracking.leemhuis.info/about/#tldr
+That page also explains what to do if mails like this annoy you.
+
