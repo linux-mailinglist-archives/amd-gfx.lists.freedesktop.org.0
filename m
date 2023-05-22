@@ -2,36 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C59F570BF32
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 May 2023 15:08:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF49070BF81
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 May 2023 15:19:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A02410E324;
-	Mon, 22 May 2023 13:08:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E29B10E323;
+	Mon, 22 May 2023 13:19:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ms7.webland.ch (ms7.webland.ch [92.43.217.107])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 846B910E327
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 May 2023 13:08:27 +0000 (UTC)
-Received: from kaveri ([213.144.156.170])
- by ms7.webland.ch (12.3.0 build 2 x64) with ASMTP (SSL) id
- 01202305221508248273; Mon, 22 May 2023 15:08:24 +0200
-Received: from daenzer by kaveri with local (Exim 4.96)
- (envelope-from <michel@daenzer.net>) id 1q15Gx-003E7I-0b;
- Mon, 22 May 2023 15:08:23 +0200
-From: =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel@daenzer.net>
-To: Alex Deucher <alexander.deucher@amd.com>,
- Aurabindo Pillai <Aurabindo.Pillai@amd.com>
-Subject: [PATCH 2/2] Revert "drm/amd/display: Do not set drr on pipe commit"
-Date: Mon, 22 May 2023 15:08:23 +0200
-Message-Id: <20230522130823.769236-2-michel@daenzer.net>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230522130823.769236-1-michel@daenzer.net>
-References: <20230522130823.769236-1-michel@daenzer.net>
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com
+ [IPv6:2607:f8b0:4864:20::22e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADFCF10E323
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 May 2023 13:19:49 +0000 (UTC)
+Received: by mail-oi1-x22e.google.com with SMTP id
+ 5614622812f47-39425ea8e1fso3533055b6e.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 May 2023 06:19:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1684761588; x=1687353588;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=thgDHNu8+4WuhkY6TOsL/EZEd6PKH1S4EVrTVc6lhRY=;
+ b=r5Ckk8GU9s5jOCU/UDcwspI1bMM3yMTckfNhJj/YZBcl7XWWoEG7wcJ8X9ZwEGC0pd
+ ZJhzSOMqK4fajXg8FceMdwnmyeCHJHJnc+er5hntxr28W0D8Os/rUMCbWDPXGCf/ggrS
+ Ge5JLLjMbiC35PzE07EqpWSvzGzUrAv6wEWrvC8JP5cLcqfl+puHnO85/yGZvGV43vhY
+ y6ZNHcNiQs63G1v45eRF2lN0HobMD2Wc952yyMCz5K+0uyqiXT/G9cNufUTX8sjZGDWo
+ ogaZasPTfGlmwW7p8iDsaoxTFBafj4A/czJPkkXdnkMsosyoPRWPVijLLmQ0Y6cEX/Xk
+ 4ExA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1684761588; x=1687353588;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=thgDHNu8+4WuhkY6TOsL/EZEd6PKH1S4EVrTVc6lhRY=;
+ b=NL00Z30MvtPLNCKRowqTmthIb+W9J5LuVRue/SyMWQRN0b2bONewaXxVFl+7pz+egB
+ xTI86YbOONsmhgZaNuR6IGcNIKpfAU+PnKy2bvl4iCi7pAM00p93yePxc4CI0s/fxj9J
+ RheSus7QJP8OTqb8/YOEUmomutmx6gkQOmrWcCw4Ztyq6YoIVo0/1KLkIIaSoX6gzQJs
+ C+H45wgR/slZuvJpmAjY/iwkJhlB7yDoBMoWtqDChwMfbvKb6KUmGuB3cvjRYzMXChEM
+ aRRg+v65xTsTYRhy6nEJi7TrKNmF0ik9i2V2uFK7hQu/0bvpqrni399jonqZmHyGOIii
+ dVzA==
+X-Gm-Message-State: AC+VfDzycDBdZPPYOCymL6PDQ0GA+LDuN+nYA5AwbPe030zVqh/Wmz+v
+ t+shy201c5Dvr6T6E0Jcl3Q3BHs2QugyMMS25k4=
+X-Google-Smtp-Source: ACHHUZ4YJB3CrATVswK5KI5v8LAEA/lgDMRwEo1kVeE0/KItYAqAYF211WCRLwNNMAPknhdOAT1cCqkf9jQUCxVNgBk=
+X-Received: by 2002:aca:f03:0:b0:38e:7168:697f with SMTP id
+ 3-20020aca0f03000000b0038e7168697fmr4729088oip.20.1684761588165; Mon, 22 May
+ 2023 06:19:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-CTCH: RefID="str=0001.0A782F24.646B6948.002F,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0";
- Spam="Unknown"; VOD="Unknown"
+References: <20230522100832.1968912-1-Tim.Huang@amd.com>
+ <20230522100832.1968912-4-Tim.Huang@amd.com>
+In-Reply-To: <20230522100832.1968912-4-Tim.Huang@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 22 May 2023 09:19:36 -0400
+Message-ID: <CADnq5_MY2DRypj5X6EnmaGpgZsWPoh44nTpgwORJvCuNX-O99Q@mail.gmail.com>
+Subject: Re: [PATCH 4/4] amd/pm/swsmu: reverse mclk and fclk clocks levels for
+ vangogh
+To: Tim Huang <Tim.Huang@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,107 +69,93 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Wesley Chalmers <Wesley.Chalmers@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Qingqing Zhuo <Qingqing.Zhuo@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
- Harry Wentland <harry.wentland@amd.com>
+Cc: Alexander.Deucher@amd.com, Yifan1.zhang@amd.com,
+ amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Michel Dänzer <mdaenzer@redhat.com>
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
-This reverts commit 474f01015ffdb74e01c2eb3584a2822c64e7b2be.
+Does Renoir need a similar fix?
 
-Caused a regression:
+Alex
 
-Samsung Odyssey Neo G9, running at 5120x1440@240/VRR, connected to Navi
-21 via DisplayPort, blanks and the GPU hangs while starting the Steam
-game Assetto Corsa Competizione (via Proton 7.0).
-
-Example dmesg excerpt:
-
- amdgpu 0000:0c:00.0: [drm] ERROR [CRTC:82:crtc-0] flip_done timed out
- NMI watchdog: Watchdog detected hard LOCKUP on cpu 6
- [...]
- RIP: 0010:amdgpu_device_rreg.part.0+0x2f/0xf0 [amdgpu]
- Code: 41 54 44 8d 24 b5 00 00 00 00 55 89 f5 53 48 89 fb 4c 3b a7 60 0b 00 00 73 6a 83 e2 02 74 29 4c 03 a3 68 0b 00 00 45 8b 24 24 <48> 8b 43 08 0f b7 70 3e 66 90 44 89 e0 5b 5d 41 5c 31 d2 31 c9 31
- RSP: 0000:ffffb39a119dfb88 EFLAGS: 00000086
- RAX: ffffffffc0eb96a0 RBX: ffff9e7963dc0000 RCX: 0000000000007fff
- RDX: 0000000000000000 RSI: 0000000000004ff6 RDI: ffff9e7963dc0000
- RBP: 0000000000004ff6 R08: ffffb39a119dfc40 R09: 0000000000000010
- R10: ffffb39a119dfc40 R11: ffffb39a119dfc44 R12: 00000000000e05ae
- R13: 0000000000000000 R14: ffff9e7963dc0010 R15: 0000000000000000
- FS:  000000001012f6c0(0000) GS:ffff9e805eb80000(0000) knlGS:000000007fd40000
- CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
- CR2: 00000000461ca000 CR3: 00000002a8a20000 CR4: 0000000000350ee0
- Call Trace:
-  <TASK>
-  dm_read_reg_func+0x37/0xc0 [amdgpu]
-  generic_reg_get2+0x22/0x60 [amdgpu]
-  optc1_get_crtc_scanoutpos+0x6a/0xc0 [amdgpu]
-  dc_stream_get_scanoutpos+0x74/0x90 [amdgpu]
-  dm_crtc_get_scanoutpos+0x82/0xf0 [amdgpu]
-  amdgpu_display_get_crtc_scanoutpos+0x91/0x190 [amdgpu]
-  ? dm_read_reg_func+0x37/0xc0 [amdgpu]
-  amdgpu_get_vblank_counter_kms+0xb4/0x1a0 [amdgpu]
-  dm_pflip_high_irq+0x213/0x2f0 [amdgpu]
-  amdgpu_dm_irq_handler+0x8a/0x200 [amdgpu]
-  amdgpu_irq_dispatch+0xd4/0x220 [amdgpu]
-  amdgpu_ih_process+0x7f/0x110 [amdgpu]
-  amdgpu_irq_handler+0x1f/0x70 [amdgpu]
-  __handle_irq_event_percpu+0x46/0x1b0
-  handle_irq_event+0x34/0x80
-  handle_edge_irq+0x9f/0x240
-  __common_interrupt+0x66/0x110
-  common_interrupt+0x5c/0xd0
-  asm_common_interrupt+0x22/0x40
-
-Signed-off-by: Michel Dänzer <mdaenzer@redhat.com>
----
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c | 6 ------
- drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c | 7 -------
- 2 files changed, 13 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-index 6ce10fd4bb1a..5403e9399a46 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-@@ -2113,12 +2113,6 @@ void dcn20_optimize_bandwidth(
- 	if (hubbub->funcs->program_compbuf_size)
- 		hubbub->funcs->program_compbuf_size(hubbub, context->bw_ctx.bw.dcn.compbuf_size_kb, true);
- 
--	if (context->bw_ctx.bw.dcn.clk.fw_based_mclk_switching) {
--		dc_dmub_srv_p_state_delegate(dc,
--			true, context);
--		context->bw_ctx.bw.dcn.clk.p_state_change_support = true;
--	}
--
- 	dc->clk_mgr->funcs->update_clocks(
- 			dc->clk_mgr,
- 			context,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-index 0411867654dd..0e071fbc9154 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-@@ -985,18 +985,11 @@ void dcn30_set_disp_pattern_generator(const struct dc *dc,
- void dcn30_prepare_bandwidth(struct dc *dc,
-  	struct dc_state *context)
- {
--	if (context->bw_ctx.bw.dcn.clk.fw_based_mclk_switching) {
--		dc->optimized_required = true;
--		context->bw_ctx.bw.dcn.clk.p_state_change_support = false;
--	}
--
- 	if (dc->clk_mgr->dc_mode_softmax_enabled)
- 		if (dc->clk_mgr->clks.dramclk_khz <= dc->clk_mgr->bw_params->dc_mode_softmax_memclk * 1000 &&
- 				context->bw_ctx.bw.dcn.clk.dramclk_khz > dc->clk_mgr->bw_params->dc_mode_softmax_memclk * 1000)
- 			dc->clk_mgr->funcs->set_max_memclk(dc->clk_mgr, dc->clk_mgr->bw_params->clk_table.entries[dc->clk_mgr->bw_params->clk_table.num_entries - 1].memclk_mhz);
- 
- 	dcn20_prepare_bandwidth(dc, context);
--
--	dc_dmub_srv_p_state_delegate(dc, false, context);
- }
- 
--- 
-2.40.1
-
+On Mon, May 22, 2023 at 6:10=E2=80=AFAM Tim Huang <Tim.Huang@amd.com> wrote=
+:
+>
+> This patch reverses the DPM clocks levels output of pp_dpm_mclk
+> and pp_dpm_fclk.
+>
+> On dGPUs and older APUs we expose the levels from lowest clocks
+> to highest clocks. But for some APUs, the clocks levels that from
+> the DFPstateTable are given the reversed orders by PMFW. Like the
+> memory DPM clocks that are exposed by pp_dpm_mclk.
+>
+> It's not intuitive that they are reversed on these APUs. All tools
+> and software that talks to the driver then has to know different ways
+> to interpret the data depending on the asic.
+>
+> So we need to reverse them to expose the clocks levels from the
+> driver consistently.
+>
+> Signed-off-by: Tim Huang <Tim.Huang@amd.com>
+> ---
+>  drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c b/drivers/g=
+pu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
+> index 7433dcaa16e0..067b4e0b026c 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
+> @@ -582,7 +582,7 @@ static int vangogh_print_legacy_clk_levels(struct smu=
+_context *smu,
+>         DpmClocks_t *clk_table =3D smu->smu_table.clocks_table;
+>         SmuMetrics_legacy_t metrics;
+>         struct smu_dpm_context *smu_dpm_ctx =3D &(smu->smu_dpm);
+> -       int i, size =3D 0, ret =3D 0;
+> +       int i, idx, size =3D 0, ret =3D 0;
+>         uint32_t cur_value =3D 0, value =3D 0, count =3D 0;
+>         bool cur_value_match_level =3D false;
+>
+> @@ -656,7 +656,8 @@ static int vangogh_print_legacy_clk_levels(struct smu=
+_context *smu,
+>         case SMU_MCLK:
+>         case SMU_FCLK:
+>                 for (i =3D 0; i < count; i++) {
+> -                       ret =3D vangogh_get_dpm_clk_limited(smu, clk_type=
+, i, &value);
+> +                       idx =3D (clk_type =3D=3D SMU_FCLK || clk_type =3D=
+=3D SMU_MCLK) ? (count - i - 1) : i;
+> +                       ret =3D vangogh_get_dpm_clk_limited(smu, clk_type=
+, idx, &value);
+>                         if (ret)
+>                                 return ret;
+>                         if (!value)
+> @@ -683,7 +684,7 @@ static int vangogh_print_clk_levels(struct smu_contex=
+t *smu,
+>         DpmClocks_t *clk_table =3D smu->smu_table.clocks_table;
+>         SmuMetrics_t metrics;
+>         struct smu_dpm_context *smu_dpm_ctx =3D &(smu->smu_dpm);
+> -       int i, size =3D 0, ret =3D 0;
+> +       int i, idx, size =3D 0, ret =3D 0;
+>         uint32_t cur_value =3D 0, value =3D 0, count =3D 0;
+>         bool cur_value_match_level =3D false;
+>         uint32_t min, max;
+> @@ -765,7 +766,8 @@ static int vangogh_print_clk_levels(struct smu_contex=
+t *smu,
+>         case SMU_MCLK:
+>         case SMU_FCLK:
+>                 for (i =3D 0; i < count; i++) {
+> -                       ret =3D vangogh_get_dpm_clk_limited(smu, clk_type=
+, i, &value);
+> +                       idx =3D (clk_type =3D=3D SMU_FCLK || clk_type =3D=
+=3D SMU_MCLK) ? (count - i - 1) : i;
+> +                       ret =3D vangogh_get_dpm_clk_limited(smu, clk_type=
+, idx, &value);
+>                         if (ret)
+>                                 return ret;
+>                         if (!value)
+> --
+> 2.34.1
+>
