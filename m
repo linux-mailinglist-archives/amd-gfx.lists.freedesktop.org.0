@@ -1,49 +1,80 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67A9370BC4E
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 May 2023 13:51:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6456070BF23
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 May 2023 15:06:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBA5810E2EC;
-	Mon, 22 May 2023 11:51:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CCCE10E31E;
+	Mon, 22 May 2023 13:06:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5E5910E2EC;
- Mon, 22 May 2023 11:51:28 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 2050962177;
- Mon, 22 May 2023 11:51:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3408BC4339C;
- Mon, 22 May 2023 11:51:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1684756287;
- bh=wsmVaRXDTHdYbuzmc+ErLrw25ByhRTk9OeHIp7wng8k=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=VTNepLXJ+mYAtmR4o5JKpUOvPO1eRVNdd7Bhp2iGfAJip1Q/5PSMSIx0CI+vW2Fp6
- Vq/NmHzdGFrnK14KS8GQJrTGU+eG4+EdqOoELESOGtqfl+UPv5KMXTgjdxQ/iZkS5g
- E8ey02Rhx6A+T41wu2pPHqoRyIMJnbfEt7hfLkwEGfubolT3Wvjgk1cKzLQQjpWfyK
- Lu2KuvvISEEHKmhr2QpSpVcxQw12jCW5bmFlYtdp6bGb1SoKjW3SiD/Jfny61b9n5Z
- SpVkb8W7HZi266CLcAGhRx8GH1P9hlVZxTsYxOSTFnvzof4aoe9KXj8mjTtXppwN9v
- xac9IM03fxpYQ==
-From: Arnd Bergmann <arnd@kernel.org>
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
+ [205.220.165.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5327610E25B;
+ Mon, 22 May 2023 07:30:29 +0000 (UTC)
+Received: from pps.filterd (m0246627.ppops.net [127.0.0.1])
+ by mx0b-00069f02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
+ 34M00ooI011286; Mon, 22 May 2023 07:30:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding;
+ s=corp-2023-03-30; bh=A5ZncwB04NjzcMemMMWye/LhgkT9LJyEStC1Nr1FzwI=;
+ b=ceRFdvS6XD5HqLo3PdevQNl4QthpRYj6UIaBLjGU3PhxQqXGh2hOIzYSPOY8VdgtQGb4
+ ipGli3qfNhAviNlAWCNrhED4qFtu0OoIs3H6S6sZzlen1ke2MdSiZJNJz9XWKGWfrrLo
+ TZH3C5+AkB5hFU3K6WvdkyxrlwUsYBcHQnZtRFf1ehveAkccWWjz45nTMuZC/wqnyK9a
+ zc4hVsKRPj2sYGUSBsCjAGjUFu7d04GLS5ZgSGMBX3Qpzvfoo5yW+uNEWGL86zBNLbRH
+ u/ndrNQHVieq/VEkYlvNGFULnm36k0g/MVZ7OB0WPG/M96NZsCZNByuVWrIPLPQVUuPG UA== 
+Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com
+ (iadpaimrmta01.appoci.oracle.com [130.35.100.223])
+ by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3qpp3mj1u3-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 22 May 2023 07:30:24 +0000
+Received: from pps.filterd
+ (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+ by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (8.17.1.19/8.17.1.19)
+ with ESMTP id 34M6M7oP023566; Mon, 22 May 2023 07:30:22 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+ by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id
+ 3qqk8skeds-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 22 May 2023 07:30:22 +0000
+Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com
+ (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+ by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 34M7OKLu026055;
+ Mon, 22 May 2023 07:30:22 GMT
+Received: from ca-dev112.us.oracle.com (ca-dev112.us.oracle.com
+ [10.129.136.47])
+ by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTP id
+ 3qqk8skeat-1; Mon, 22 May 2023 07:30:21 +0000
+From: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Lijo Lazar <lijo.lazar@amd.com>,
- Le Ma <le.ma@amd.com>
-Subject: [PATCH 5/5] drm/amdgpu: fix acpi build warnings
-Date: Mon, 22 May 2023 13:50:32 +0200
-Message-Id: <20230522115047.1169839-5-arnd@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230522115047.1169839-1-arnd@kernel.org>
-References: <20230522115047.1169839-1-arnd@kernel.org>
+ Daniel Vetter <daniel@ffwll.ch>, Felix Kuehling <Felix.Kuehling@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>, Le Ma <le.ma@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, Mukul Joshi <mukul.joshi@amd.com>,
+ Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>,
+ Graham Sider <Graham.Sider@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH next] drm/amdgpu: Fix unsigned comparison with zero in
+ gmc_v9_0_process_interrupt()
+Date: Mon, 22 May 2023 00:30:15 -0700
+Message-Id: <20230522073017.1782984-1-harshit.m.mogalapalli@oracle.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-22_04,2023-05-17_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
+ phishscore=0 mlxscore=0
+ mlxlogscore=999 bulkscore=0 malwarescore=0 suspectscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2304280000
+ definitions=main-2305220063
+X-Proofpoint-ORIG-GUID: xoDToq4BCRbl3iSJI_dyjEWrldxaTQAv
+X-Proofpoint-GUID: xoDToq4BCRbl3iSJI_dyjEWrldxaTQAv
+X-Mailman-Approved-At: Mon, 22 May 2023 13:06:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,70 +86,41 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tim Huang <tim.huang@amd.com>, Jingyu Wang <jingyuwang_vip@163.com>,
- Arnd Bergmann <arnd@arndb.de>, Bokun Zhang <Bokun.Zhang@amd.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
- Mario Limonciello <mario.limonciello@amd.com>
+Cc: dan.carpenter@linaro.org, kernel-janitors@vger.kernel.org,
+ error27@gmail.com, harshit.m.mogalapalli@oracle.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Arnd Bergmann <arnd@arndb.de>
+Smatch warns:
+	drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c:579:
+	unsigned 'xcc_id' is never less than zero.
 
-Two newly introduced functions are in the global namespace but have no prototypes
-or callers outside of amdgpu_acpi.c, another function is static but only has
-a caller inside of an #ifdef:
+gfx_v9_4_3_ih_to_xcc_inst() returns negative numbers as well.
+Fix this by changing type of xcc_id to int.
 
-drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c:902:13: error: no previous prototype for 'amdgpu_acpi_get_node_id' [-Werror=missing-prototypes]
-drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c:928:30: error: no previous prototype for 'amdgpu_acpi_get_dev' [-Werror=missing-prototypes]
-drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c:860:33: error: 'amdgpu_acpi_get_numa_info' defined but not used [-Werror=unused-function]
-
-Avoid the warnings by marking all of them static and ensuring that the compiler is
-able to see the callsites.
-
-Fixes: c34db97b8217 ("drm/amdgpu: Add API to get numa information of XCC")
-Fixes: 1f6f659d06e1 ("drm/amdgpu: Store additional numa node information")
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Fixes: faf96b9b602d ("drm/amdgpu: correct the vmhub index when page fault occurs")
+Signed-off-by: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
+This is from static analysis, only compile tested.
+---
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-index 873532c4adbe..1dbcd0e62478 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-@@ -899,13 +899,15 @@ static struct amdgpu_numa_info *amdgpu_acpi_get_numa_info(uint32_t pxm)
-  *
-  * Returns ACPI STATUS OK with Node ID on success or the corresponding failure reason
-  */
--acpi_status amdgpu_acpi_get_node_id(acpi_handle handle,
-+static acpi_status amdgpu_acpi_get_node_id(acpi_handle handle,
- 				    struct amdgpu_numa_info **numa_info)
- {
--#ifdef CONFIG_ACPI_NUMA
- 	u64 pxm;
- 	acpi_status status;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+index f70e666cecf2..1e8b2aaa48c1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+@@ -557,8 +557,8 @@ static int gmc_v9_0_process_interrupt(struct amdgpu_device *adev,
+ 	const char *hub_name;
+ 	u64 addr;
+ 	uint32_t cam_index = 0;
+-	int ret;
+-	uint32_t node_id, xcc_id = 0;
++	int ret, xcc_id = 0;
++	uint32_t node_id;
  
-+	if (!IS_ENABLED(CONFIG_ACPI_NUMA))
-+		return_ACPI_STATUS(AE_NOT_EXIST);
-+
- 	if (!numa_info)
- 		return_ACPI_STATUS(AE_ERROR);
- 
-@@ -920,12 +922,9 @@ acpi_status amdgpu_acpi_get_node_id(acpi_handle handle,
- 		return_ACPI_STATUS(AE_ERROR);
- 
- 	return_ACPI_STATUS(AE_OK);
--#else
--	return_ACPI_STATUS(AE_NOT_EXIST);
--#endif
- }
- 
--struct amdgpu_acpi_dev_info *amdgpu_acpi_get_dev(u16 bdf)
-+static struct amdgpu_acpi_dev_info *amdgpu_acpi_get_dev(u16 bdf)
- {
- 	struct amdgpu_acpi_dev_info *acpi_dev;
+ 	node_id = entry->node_id;
  
 -- 
-2.39.2
+2.38.1
 
