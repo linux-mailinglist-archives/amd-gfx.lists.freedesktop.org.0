@@ -2,120 +2,118 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7108870B606
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 May 2023 09:11:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFC4070B819
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 May 2023 10:54:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9E7A10E24C;
-	Mon, 22 May 2023 07:11:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AAEE10E1AF;
+	Mon, 22 May 2023 08:54:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2060.outbound.protection.outlook.com [40.107.237.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99BD610E24A;
- Mon, 22 May 2023 07:11:48 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2077.outbound.protection.outlook.com [40.107.223.77])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EA4C10E1AF
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 May 2023 08:54:17 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b0n9ZqNTW/HtRy5qMVQirhO9+Pxa2YpHe/vLOS+bh3szyf3XhK/V5+fP1I8tPTEWwLylg/giTqywxzprr/ENWfbtZrSDPwAu3+tGlKYS/Kwnr3ANJr0HJLs0xQcnNxdj5js/7sq42kPSSmndD2n844qzPUwFXOqdGJbG8bGo+d5PNVtUB+VS2diYSf6K1+n84JFey5XP1mM5DRCA+Bii+/wchME7Yd5g7Xw0nDvXVYq8skH8efDLf8PFBX0wMyxy4EAwxB8MqFQrQFHjBjbvqUsv42paaftMpv32MWbnCTWodGKqd3QWY3YupsobvuttP111Yk3cSir7t3X27wh68Q==
+ b=G2o0mg9Uj68nSpzpSQxbsIUDlciJP27DVd8FJMb1pTVywyWnzaY5alsWi6bfHCXVzsNN2RVDv3kW9L9vibEP8WLNChqYvYTveGCwJCRPjv2f2X27luLAramqbUuMW0xcuN6zNoQGNelgYJ54+7F6yG6ieP1PJtz9j61lWhU8IIaM0Gr23bwMh9jC3Z6tKwylI29OZRJk3k+ruy0BHGtQFpJi0fSBT92uLXZTJPrVOCCj4EZdwk4QIaztqdjwCwcVTkT5Ynt/0LqJLtpHB3xT/58TsVdvVI8OHjU1eD+ze3Ye+Pmg44ymtxzvcMWPi6i3+bEQKPCIiJs19Ho7O/oevA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JuRcMbXGLvSWQShZdM+YsFT7Hpo6RfZ/Q31WQSiCvAc=;
- b=Y0qlvriHMqNOosrjMRdn0RMYBO1VqIcCkpeWtR6fAD45WIenZcoielzx5gaX2F4SCJLI0Oi8nnJfWutcumwSXMMTyJYZGaqpHjFOcU++75g46qN0w5ttKy3E4GZcX40rB6ifFVodmfRpyKFxWn4pItJZbro/Vn0KPNQcNCiweuJJR9fPS8Ji83IIoQLxHs3LsOZNv7qrPXpb1pCGTTYjB+ygkGaCN7Q7VhO6gJKajZejnjV53cBP/ZtyeZzjoCfsU852c563pAFGYMlgbE3XunZOXSs2wYrlq5WZ/Dic+mn5+F9WXmMt5fCUxtLmxKj2q0njI1kBM2LjwLPlVpxKqg==
+ bh=CuxXueFtUycEbMRXqziGFEh7eKR5hB0PSjYxME/ENVc=;
+ b=K2FYGNG+iQhf7DPqLEjGkblf30sebuAlG+NbCrs58tcMV0jZN2bNgjdoBumgMIkgWJMLe0+nay3c7XhCHaW9L3pMLUU1nCBQj/xbbaDWiD+O4IHKD1w/3GwPbUx9/Fd95fm6pbinw6L05KqfnnsGoXvACgDsnxkrtJGb5ZVwLYPZ2eSYgQf5Ixo6FMtWxv75g/78T4aSuPWShu5XaByvg04htFSGE3qiGrj1WugWVD2WwXvKSr+I8stoYog+AEk5mMRUOtvqNJQDJu02ocJuBmlzmynJCgvNJlWwhRN0xaRV1oY4FQlgF6lh5UVBuE5RWR8o/Fm+cUDTV7RY0OWTSA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JuRcMbXGLvSWQShZdM+YsFT7Hpo6RfZ/Q31WQSiCvAc=;
- b=IvguX4FmgpH+s7U7ncMA9xDMtUakfPGlhBIolGgf2eLxpZZRYcDe+kp8ZMG0cNyO3e9TFs6hN3vVbi9tYfwlYeobMW8T90EPhGCJQvVF8YiFksVRK469AkNi8fJxsZBkNVfCZe2RFU0XVZOUbSzZC6gx4itWTySbAtWD6goUR9c=
-Received: from CO6PR12MB5489.namprd12.prod.outlook.com (2603:10b6:303:139::18)
- by SN7PR12MB7788.namprd12.prod.outlook.com (2603:10b6:806:345::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.25; Mon, 22 May
- 2023 07:11:45 +0000
-Received: from CO6PR12MB5489.namprd12.prod.outlook.com
- ([fe80::4758:8922:780a:4d4b]) by CO6PR12MB5489.namprd12.prod.outlook.com
- ([fe80::4758:8922:780a:4d4b%6]) with mapi id 15.20.6411.028; Mon, 22 May 2023
- 07:11:45 +0000
-From: "Lin, Wayne" <Wayne.Lin@amd.com>
-To: Jani Nikula <jani.nikula@intel.com>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH v2] drm/dp_mst: Clear MSG_RDY flag before sending new
- message
-Thread-Topic: [PATCH v2] drm/dp_mst: Clear MSG_RDY flag before sending new
- message
-Thread-Index: AQHZeNn8+E0QEEuY3UCLaVyy+/niaq9c0kAAgAkv4uA=
-Date: Mon, 22 May 2023 07:11:44 +0000
-Message-ID: <CO6PR12MB54898B16634A0F4E9BECE643FC439@CO6PR12MB5489.namprd12.prod.outlook.com>
-References: <20230427072850.100887-1-Wayne.Lin@amd.com>
- <87zg64h8ep.fsf@intel.com>
-In-Reply-To: <87zg64h8ep.fsf@intel.com>
-Accept-Language: en-US, zh-TW
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ActionId=1d086bf5-ed63-4455-9ab9-a78d6b29b1d8;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ContentBits=0;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Enabled=true;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Method=Privileged;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Name=Public-AIP
- 2.0;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SetDate=2023-05-22T06:52:31Z;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
+ bh=CuxXueFtUycEbMRXqziGFEh7eKR5hB0PSjYxME/ENVc=;
+ b=hNorstXpcw0qIQ/kIuXDK/deAbfCidLuFttuNx6tnYxdrjY44gzRTJd3tPWRYJ+uVDvwtZbqSpEsZsWqjnjHqfzG9IX/mBv3HFPmAhGMCTyH3/AduZj/x2a4xr18nWgM22szvxKOyIQdhyP4w/x72L/5tyqRwnkU2u/yqKbKJ2w=
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CO6PR12MB5489:EE_|SN7PR12MB7788:EE_
-x-ms-office365-filtering-correlation-id: 616f13e6-f236-43e6-89af-08db5a93ccda
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: zKVrkCZoqZaNF+zfN5elstPbmUevAa8AW6sFvBqy1OPcexyDaRtdARMmcP3nFrdAPTp/jMmKU8SEJkOznRU8LJa5qm4eqmOM2u3ANJaQoBFrc0ouSrkRo5W4YKn9sOFs+ldyS2QJsIj6gbOTZa9PRtJoKsGT8Pkj6y0GjFsegnNBndQqCL7gk191bg1RFGFVk37z6QL0OBniiG4+gdAZo2cmjvwRb18HVz6TA4W51Rs+6ALZOlEk8NhE0YtoFpIWt1ROKqvxYq69GPPbK2V4hEIGhibXJAOTdFQZ4GbD8xfZ4+Db5clP7rq5ztnCc31uGo5ROtrmK84TbHJEIvBFNCOnp4ymld/wfCR6kio+bkFbbNTvGIQ5cNLpkv2ypEDbU5ajW0F7fxXAecqc+Ya9SWqNXDJjOjqwr82PS3MNQoM/jFqWwxna3rPU4VuIiOG9nY6HlPzIA85CxbsZKRD9Tfbei23PhN8H2S/vlap1TJJO4Bzf3WmyESEpIbSJ7qPwARXVO827hZcxz5JVOGKRd/jpR7leaATSkogQj66g756fR/3YCYOwOyi077JKtMEzyZgiRfm2sXluM5h4utpJv2QihtazJmW2izeXtYwkEColuut03AKk37MG3YfB9tYr
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO6PR12MB5489.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(136003)(366004)(39860400002)(376002)(346002)(451199021)(38070700005)(86362001)(33656002)(55016003)(2906002)(30864003)(186003)(55236004)(53546011)(15650500001)(83380400001)(76116006)(71200400001)(316002)(66946007)(66446008)(66556008)(64756008)(66476007)(110136005)(4326008)(54906003)(5660300002)(7696005)(478600001)(52536014)(6506007)(41300700001)(26005)(8676002)(8936002)(9686003)(38100700002)(122000001);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?m6D+N4QiHh97X7r6eIkfPssMoNPPwySUylwk2XvsUDd0kTrBSQyNFh2K99UJ?=
- =?us-ascii?Q?iBfKlpKTawzYpdS/Rut6RU1J3jFIoiurDjJfZjGsIMOBwckGmGdt47nvkJcU?=
- =?us-ascii?Q?s1bVFWZRhVfphC4lzyrcsM+QZ8wtvLIRP0nCzFuszbIJbjwkK/i1lMKhysJF?=
- =?us-ascii?Q?ahgr+yMMdRERZWqenNjjiL1/zg6waQvEGnL/inxiHu59+hnoaiENbJ3stGD3?=
- =?us-ascii?Q?f6NTXjDixQhrCu5N8ksk+IYVWGL4E6bn8BAfRFRZt1f53q9RHcPrqiVsr4kQ?=
- =?us-ascii?Q?wkoumtsv5Z3/0L21RPcZJdm5hdx80TKOF9NtswCTVVhRjjYplZzk/3SdHu/j?=
- =?us-ascii?Q?ggy7RY1lqMP6Ck4BFdZ1WHhNBCIQLZ+no0GyxIpDZvrsdFLoEJvVrWJbaZeo?=
- =?us-ascii?Q?3JPDEsQl6trjSiJUc7JPlJfWaH9s79NzFQ1sppK/GifyMkvovOp+dgUYMuOB?=
- =?us-ascii?Q?RU/Kouap9dAtneiOTY/h8spxyM+//CjqI1lG91s1/aF8V/s4LAtSl7bOWXNU?=
- =?us-ascii?Q?hYThmwxSLO+Jgxi9mKHSOIHLziH6Lvf+/LCd/xEcRepRkavfy7mD8zBBK120?=
- =?us-ascii?Q?EeHtuIT5io6TMaEh0HbDujFShHlKt1YrEhARTpa/GDc9Q83iflyA7zWFLQbE?=
- =?us-ascii?Q?RGiw6kqSDtW2Ql/S8Ko1uMib8Gbmk3DpzT6/I1UNe+6cCxWrFApXf4MByDHE?=
- =?us-ascii?Q?la05GMcb3wM8Wyhz1Vx+J3snlm+nKGXPh94UKDzbezpYQdRi5L4oumDkuEQH?=
- =?us-ascii?Q?K5xSOjF2A0HuLCI3Iwmw8Sc8B9PF27RjMalErMVXNlx9m1mv00Sv3GyKX5GA?=
- =?us-ascii?Q?tkzy6QPuA5Dhq/Skm7y5Lj2gXC+Hy/y0NfchQ4jlMy9PoFvnMIP91dQ46KUd?=
- =?us-ascii?Q?FrNPuNsL4XpnR5WtQEHZvgq4KFymmPX8WjRdWWFiIaP3wPM11E8nWiUjB/3/?=
- =?us-ascii?Q?1ZShSg234PKRoBZou7waac5tr6RELv/jMA3jqHIUZNbYXS/rL2s9N1RelAdX?=
- =?us-ascii?Q?MfPuukwOz9iNltVc8b07NJIlIW+yKCe0IThebCfynToOxhrKeLjQKfyUIQDn?=
- =?us-ascii?Q?p4urvlpgyHqMKojkdGOr7qdIlu0GcGOd2vjDRQRvSsD8iD7JC5yKdAXb78d/?=
- =?us-ascii?Q?wuEJbYz09cp+bymCeocRgF556Dcjt5fltAeZ67yDj2n+OSKXxEmO3V6DbMLW?=
- =?us-ascii?Q?0u2tON/h9J/KeZ6sjV9ILQoiUWKfqPQe90hJTAWA62GBS8sz/8rciMlvw3Vm?=
- =?us-ascii?Q?Dxxgfjsj37qEtkqfuoqdHzbWaCg2/ZG7MQ60KTxA5FPysg3KpN1yzrXieLpP?=
- =?us-ascii?Q?Ycg6keENfN9mPsb0SCtj+Q/5mlVDESkoL4TAMgpdjAe6Qy2CAyusTQ4JaeZU?=
- =?us-ascii?Q?2TQmKcD+3N7rK2GAJmNyRyPrhzaofcc3RHtRZiH8nsP4ULv3GsxaYIyFKrNn?=
- =?us-ascii?Q?s3TKcMdm6porGdAWeiO4OLGwS1+9NEKLzI1/jUVO/td5yCL1I2mqf5HThFRu?=
- =?us-ascii?Q?M+cYQDMROXbwy5o0g7fP6ac8/kq5cLQKnkWLVv3kXwi1+UCllezod4rkVXH9?=
- =?us-ascii?Q?D3Jj+SyW4fzqkM30VP0=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from MW4PR12MB5667.namprd12.prod.outlook.com (2603:10b6:303:18a::10)
+ by DM6PR12MB4156.namprd12.prod.outlook.com (2603:10b6:5:218::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.28; Mon, 22 May
+ 2023 08:54:14 +0000
+Received: from MW4PR12MB5667.namprd12.prod.outlook.com
+ ([fe80::755d:fed:c4a:bf05]) by MW4PR12MB5667.namprd12.prod.outlook.com
+ ([fe80::755d:fed:c4a:bf05%7]) with mapi id 15.20.6411.028; Mon, 22 May 2023
+ 08:54:14 +0000
+Message-ID: <a03e4c68-1847-9df6-5b92-7edee19e841e@amd.com>
+Date: Mon, 22 May 2023 10:54:03 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v4 01/10] drm/amdgpu: UAPI for user queue management
+To: Alex Deucher <alexdeucher@gmail.com>
+References: <20230424173836.1441-1-shashank.sharma@amd.com>
+ <20230424173836.1441-2-shashank.sharma@amd.com>
+ <CADnq5_OxREJKeLwMiu_kkA4HjBBcyW_D6vOzeo=vUsMWM3ocLA@mail.gmail.com>
+Content-Language: en-US
+From: Shashank Sharma <shashank.sharma@amd.com>
+In-Reply-To: <CADnq5_OxREJKeLwMiu_kkA4HjBBcyW_D6vOzeo=vUsMWM3ocLA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BE0P281CA0001.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:b10:a::11) To MW4PR12MB5667.namprd12.prod.outlook.com
+ (2603:10b6:303:18a::10)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MW4PR12MB5667:EE_|DM6PR12MB4156:EE_
+X-MS-Office365-Filtering-Correlation-Id: 94e3f523-5aa3-4db5-6720-08db5aa21e37
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 0RIJ0da0TImlcw0LBcXKTPA+JakAom36Ft66I5l12xo043pZZhNnk2dAy7TkCtrYXZ4w/LAUrSBcRn7k+HiawWwMjzBKaGoAFIRR1JZh7PtBQXXIXvvySeKFeQSmDFjBhmjA+vQPqlRTk4HZpFnCwsGNV8vZ8A5n2F6h3dZ+DOMmKzZgVwZkQyun4W5lRVXxeqB6dFOYBet1bazNd85vwZ+mkY3hRMEQGbMywThR9upEQVo49WMkzTunTCtN15IxzKrBnMHctU86QFe0SHc5UzvRmJG64c1mnl00PlekyqLVuVmCiz/KIh3DashqC7RYC/aGGIi6nTp7fH0Uh5RCQ3eO9UMqSREXSzJPsKuYoQWL0D+B7/F6mRY1oYXmDuXusQWk45/Wd0KuHgHLnRJ7nSsbtd49MHdncNhHxnkfo6+l8jC8pZRVIfb+kkOv1ASaYmGb2sq6UzwP6qa9KPQg0TWCqlPu898RsRakob2InzIz70cFxHynszycaV5C8Pzd4OAxi5HTyrP4hm5xe6+yNob5YzjWczU2h75zEHTIdke/u98BiCeptcoXq4nKYiWU4wxdzp/OzeqYaj6YjpBfo8La7ueU9NJujTHVe4GqxSC3pph3l6QftJ36ZXWeLIsdYD/a9+vxiQLk3yXi5PU97w==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MW4PR12MB5667.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(366004)(396003)(39860400002)(136003)(346002)(376002)(451199021)(8676002)(8936002)(5660300002)(44832011)(66574015)(83380400001)(186003)(26005)(53546011)(6512007)(6506007)(2616005)(31696002)(86362001)(38100700002)(41300700001)(6666004)(6486002)(66476007)(66556008)(66946007)(316002)(6916009)(4326008)(36756003)(478600001)(54906003)(2906002)(31686004)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UW5wRi9iZjNpM2lDWnREK1pkbEtUOSt0dTJnL05DWkJDY3VnMXFoNUtvZ0tU?=
+ =?utf-8?B?cEZmY254WFExeG1SbTJGclp2M1FGRE5nNGovNGFyWmk5V1hPTzlWdjN0WVRp?=
+ =?utf-8?B?NjQ1eUxnaWx6dThsU1hyUk5XMjRaZllSODFwRTFheWs2VHN4Q3U3cmZiUXp0?=
+ =?utf-8?B?RG0xNHJPWmxBeUo3Z1N6RlgyVlB1T29IRGNOY2QzTGZxVjNHSUhjYWdTVTRt?=
+ =?utf-8?B?VzBMOTh2dDhnT08veWNVSXBYN0hXVS93eTFTaUpMRytjTGRkTEhPZXQzL1JG?=
+ =?utf-8?B?QnpsUE1jTmYzNGp0bEhOTW81TksxZmxSTWh4bHpqbERoWHZhYXdtZXd3WVV3?=
+ =?utf-8?B?cHZhUlRBM3B0OTErV2lkcm8xbjBqUU1jZC9XWlpwSkpBYm1EWkZoL2daYmJa?=
+ =?utf-8?B?bmVCQ3ZsMi9uU0pLOFduK3cvUThZelVLOGJMdHlFaUd3V0d5dGY5L29QT0tV?=
+ =?utf-8?B?UElGc2VTWG4zbjk5bFJFU05qaVV3Tk81M2dDLzcvTXNnOVlmcC9SYU9waVdF?=
+ =?utf-8?B?YTBtMGdRNVUvRlhhUDBBWkhLaStpQklRZFI1TkR0V25nVDJwUHNKeVh6UGx1?=
+ =?utf-8?B?NEZtSWJiczRsWEI2ZWNpT1JjemV0bHpucXhtVlhjdllaN0ZGM3dtNktTYmJV?=
+ =?utf-8?B?RUlDcHl5cWdFODBwYlIwR1ZrR2ZETTAwajBoNU9KSzU0dC9VU2ozNDMyNUpk?=
+ =?utf-8?B?UFZOVE10YkdtMHpBd2F3ajlxd0NORXYrdGhmY2xremkrWnp3WmdIeHRtN0lO?=
+ =?utf-8?B?dDhpSUR6Y2VSZlJxcm9pQ20wcEZzbXh5eGRTZEdjWGNad1VnN2cwUzlBUDA0?=
+ =?utf-8?B?ckEwQkgzU2Q0RTUwQmdXRjRFRnM4NHN5WWVGcXphbVowcGtLR0UySWptbEI1?=
+ =?utf-8?B?cjFNOGdUUE8wTDdMNkR1MmlSTWg2RDVPeXJ0OFFqMjI0STFyRVhhQ1E1blhU?=
+ =?utf-8?B?WUhwdFVlMWFQM3h3NlNzNVFERjhOM1FIU0RqUG1wWE55ZkNKRU1Nb3M0TFZD?=
+ =?utf-8?B?YzJtWDl1TGMwVkRVSjRqbnIrb3RBd3ZYZGl3QVM4WjlpRHBjam5mN000cjI5?=
+ =?utf-8?B?NlFWcXJKazFvTE8rTlZ5R2drZGpYV2NyMmozUFJFdnlWN3VFclhGcGtMOGVs?=
+ =?utf-8?B?NU81NUVsMTFJZ0tXdE45UE0wTkV0cUFOUlRIckc1bThxcS9KUkZIQ1JYN1Jq?=
+ =?utf-8?B?ekRFSEtRRUgxODF0ajJyQ1ZXb1NxZGJaWnErOXRmLytMaFVTTG94dmR5ZEJP?=
+ =?utf-8?B?eHl6QVR6SVJ5d1ZubDJHSHpLTnpNNUc0WXlmWDd0TjdMTjhFM2JVa0h6NjVJ?=
+ =?utf-8?B?d3VnbDlHQzQzWlRBZEFnWEx2SzFyL1JOa2U5MkowSzNKdDM0MHh1SW1UN09h?=
+ =?utf-8?B?L2IvZVR6UlBJamRWZW9OdHZjRFlEbUtHL0xkQW56c2NlL0VtL0lQcHplaG9U?=
+ =?utf-8?B?TlBxWEJlOG15cWcrSmxqbXNicGhrWmNGc0VraWFCV2hqTHRnNks0R2d6eFV1?=
+ =?utf-8?B?S0g4cmxJaFQ2SXlrQndFckZoaDlGcGdOODR6YldRSzB3cXBYRWJCRnZLMUtV?=
+ =?utf-8?B?a3R1SzR6Y2trWlFSVGptM0YyOGJaSkJsdCt4WFZYR1RrbXBLMXA2blVkYkIy?=
+ =?utf-8?B?Y09XQy83eVN6ckNJVDZBcDRFUjlsazVUTTZndmJvK2w4UmZTU1ZMKy9ZdFRI?=
+ =?utf-8?B?UnJsaUNISGtlaGxUc05xYXdaT2tyR1R4TnF0enVUZVZPcExDaUdZMWZIT0RE?=
+ =?utf-8?B?c0tNWVNkOHpzUk1heXg1cTBJK3g4M0gzQjBZbTBkcjlHOVFxalh3L2VlNHBp?=
+ =?utf-8?B?RkxWWDdLV2FtdERMSGVySnhodWZTZjlTeG9QSC9Fb0p3T01ZQnBNaUs4blcy?=
+ =?utf-8?B?QjFLUHJPTmUxT0JNVUs2TDNWVk1lYmRVVG5Ibjhwc3g5UTc2RnhWYWxSOVRa?=
+ =?utf-8?B?TjM4VXFpMlQ0NVZ2SHpDWTNuRWVxYjlDRzRmekNPdyt6TzRXeG8zb0tNNGJp?=
+ =?utf-8?B?MW01MGRvNlNORHNmaWxOU0cySEtoZTJ4eUxTN29sQWVSLzNqejh4UVowYVRo?=
+ =?utf-8?B?TUY1WHRKUzMvT2hEOXFVSlcvM0U4T01pYWtKamZodGlyamRHTGJCRkNMTzU3?=
+ =?utf-8?Q?cvyQRQapOqgfF4+vhJFoubFWw?=
 X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 94e3f523-5aa3-4db5-6720-08db5aa21e37
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR12MB5667.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5489.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 616f13e6-f236-43e6-89af-08db5a93ccda
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 May 2023 07:11:44.6013 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: nD989BroE6GHu60FUrUsSQPu+fgFmPl/5fO+UuDh1qJyGRfPWkXSr45S4N0qhJWnEe8G9RwQEE+am6Gr4PFBcw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7788
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2023 08:54:14.4607 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ap2h2Bu6BpZULdyk4/hE50oEPnMGkLHOA9KGtU4BifV2WMKynhH9VFYJ9oZhYarltEt1nz9wutLcUyj1Y7WAFg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4156
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,317 +125,186 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "imre.deak@intel.com" <imre.deak@intel.com>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>, "Zuo,
- Jerry" <Jerry.Zuo@amd.com>, "Wentland, Harry" <Harry.Wentland@amd.com>,
- "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Cc: pierre-eric.pelloux-prayer@amd.com, arvind.yadav@amd.com,
+ amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ contactshashanksharma@gmail.com, Christian Koenig <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Public]
+Hey Alex,
 
-Hi Jani,
-Thanks for your time!
-Comments inline.
+Thanks for the review comments, please find mine inline.
 
-> -----Original Message-----
-> From: Jani Nikula <jani.nikula@intel.com>
-> Sent: Tuesday, May 16, 2023 6:34 PM
-> To: Lin, Wayne <Wayne.Lin@amd.com>; dri-devel@lists.freedesktop.org;
-> amd-gfx@lists.freedesktop.org
-> Cc: lyude@redhat.com; ville.syrjala@linux.intel.com; imre.deak@intel.com;
-> Wentland, Harry <Harry.Wentland@amd.com>; Zuo, Jerry
-> <Jerry.Zuo@amd.com>; Lin, Wayne <Wayne.Lin@amd.com>;
-> stable@vger.kernel.org
-> Subject: Re: [PATCH v2] drm/dp_mst: Clear MSG_RDY flag before sending new
-> message
+- Shashank
+
+On 19/05/2023 23:03, Alex Deucher wrote:
+> On Mon, Apr 24, 2023 at 1:39 PM Shashank Sharma <shashank.sharma@amd.com> wrote:
+>> From: Alex Deucher <alexander.deucher@amd.com>
+>>
+>> This patch intorduces new UAPI/IOCTL for usermode graphics
+>> queue. The userspace app will fill this structure and request
+>> the graphics driver to add a graphics work queue for it. The
+>> output of this UAPI is a queue id.
+>>
+>> This UAPI maps the queue into GPU, so the graphics app can start
+>> submitting work to the queue as soon as the call returns.
+>>
+>> V2: Addressed review comments from Alex and Christian
+>>      - Make the doorbell offset's comment clearer
+>>      - Change the output parameter name to queue_id
+>>
+>> V3: Integration with doorbell manager
+>>
+>> V4:
+>>      - Updated the UAPI doc (Pierre-Eric)
+>>      - Created a Union for engine specific MQDs (Alex)
+>>      - Added Christian's R-B
+>>
+>> Cc: Alex Deucher <alexander.deucher@amd.com>
+>> Cc: Christian Koenig <christian.koenig@amd.com>
+>> Reviewed-by: Christian König <christian.koenig@amd.com>
+>> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+>> Signed-off-by: Shashank Sharma <shashank.sharma@amd.com>
+>> ---
+>>   include/uapi/drm/amdgpu_drm.h | 95 +++++++++++++++++++++++++++++++++++
+>>   1 file changed, 95 insertions(+)
+>>
+>> diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
+>> index 4038abe8505a..083a1df8e8ef 100644
+>> --- a/include/uapi/drm/amdgpu_drm.h
+>> +++ b/include/uapi/drm/amdgpu_drm.h
+>> @@ -54,6 +54,7 @@ extern "C" {
+>>   #define DRM_AMDGPU_VM                  0x13
+>>   #define DRM_AMDGPU_FENCE_TO_HANDLE     0x14
+>>   #define DRM_AMDGPU_SCHED               0x15
+>> +#define DRM_AMDGPU_USERQ               0x16
+>>
+>>   #define DRM_IOCTL_AMDGPU_GEM_CREATE    DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_CREATE, union drm_amdgpu_gem_create)
+>>   #define DRM_IOCTL_AMDGPU_GEM_MMAP      DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_MMAP, union drm_amdgpu_gem_mmap)
+>> @@ -71,6 +72,7 @@ extern "C" {
+>>   #define DRM_IOCTL_AMDGPU_VM            DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_VM, union drm_amdgpu_vm)
+>>   #define DRM_IOCTL_AMDGPU_FENCE_TO_HANDLE DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_FENCE_TO_HANDLE, union drm_amdgpu_fence_to_handle)
+>>   #define DRM_IOCTL_AMDGPU_SCHED         DRM_IOW(DRM_COMMAND_BASE + DRM_AMDGPU_SCHED, union drm_amdgpu_sched)
+>> +#define DRM_IOCTL_AMDGPU_USERQ         DRM_IOW(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ, union drm_amdgpu_userq)
+>>
+>>   /**
+>>    * DOC: memory domains
+>> @@ -302,6 +304,99 @@ union drm_amdgpu_ctx {
+>>          union drm_amdgpu_ctx_out out;
+>>   };
+>>
+>> +/* user queue IOCTL */
+>> +#define AMDGPU_USERQ_OP_CREATE 1
+>> +#define AMDGPU_USERQ_OP_FREE   2
+>> +
+>> +#define AMDGPU_USERQ_MQD_FLAGS_SECURE  (1 << 0)
+>> +#define AMDGPU_USERQ_MQD_FLAGS_AQL     (1 << 1)
+>> +
+>> +/*
+>> + * MQD (memory queue descriptor) is a set of parameters which allow
+>> + * the GPU to uniquely define and identify a usermode queue.
+>> + */
+>> +struct drm_amdgpu_userq_mqd_gfx {
+>> +       /**
+>> +        * @flags: flags to indicate special function for queue like secure
+>> +        * buffer (TMZ). Unused for now.
+>> +        */
+>> +       __u32   flags;
+>> +       /**
+>> +        * @doorbell_handle: the handle of doorbell GEM object
+>> +        * associated to this client.
+>> +        */
+>> +       __u32   doorbell_handle;
+>> +       /**
+>> +        * @doorbell_offset: 32-bit offset of the doorbell in the doorbell bo.
+>> +        * Kernel will generate absolute doorbell offset using doorbell_handle
+>> +        * and doorbell_offset in the doorbell bo.
+>> +        */
+>> +       __u32   doorbell_offset;
+>> +       /**
+>> +        * @queue_va: Virtual address of the GPU memory which holds the queue
+>> +        * object. The queue holds the workload packets.
+>> +        */
+>> +       __u64   queue_va;
+>> +       /**
+>> +        * @queue_size: Size of the queue in bytes, this needs to be 256-byte
+>> +        * aligned.
+>> +        */
+>> +       __u64   queue_size;
+>> +       /**
+>> +        * @rptr_va : Virtual address of the GPU memory which holds the ring RPTR.
+>> +        * This object must be at least 8 byte in size and aligned to 8-byte offset.
+>> +        */
+>> +       __u64   rptr_va;
+>> +       /**
+>> +        * @wptr_va : Virtual address of the GPU memory which holds the ring WPTR.
+>> +        * This object must be at least 8 byte in size and aligned to 8-byte offset.
+>> +        *
+>> +        * Queue, RPTR and WPTR can come from the same object, as long as the size
+>> +        * and alignment related requirements are met.
+>> +        */
+>> +       __u64   wptr_va;
+>> +       /**
+>> +        * @shadow_va: Virtual address of the GPU memory to hold the shadow buffer.
+>> +        * This must be a from a separate GPU object, and must be at least 4-page
+>> +        * sized.
+>> +        */
+>> +       __u64   shadow_va;
+> You were planning to add the other pointers here as well for gds and csa right?
+That was decided in this patch set only, from a different review 
+comment, so we are yet to work on it :)
 >
-> On Thu, 27 Apr 2023, Wayne Lin <Wayne.Lin@amd.com> wrote:
-> > [Why]
-> > The sequence for collecting down_reply from source perspective should
-> > be:
-> >
-> > Request_n->repeat (get partial reply of Request_n->clear message ready
-> > flag to ack DPRX that the message is received) till all partial
-> > replies for Request_n are received->new Request_n+1.
-> >
-> > Now there is chance that drm_dp_mst_hpd_irq() will fire new down
-> > request in the tx queue when the down reply is incomplete. Source is
-> > restricted to generate interveleaved message transactions so we should
-> > avoid it.
-> >
-> > Also, while assembling partial reply packets, reading out DPCD
-> > DOWN_REP Sideband MSG buffer + clearing DOWN_REP_MSG_RDY flag
-> should
-> > be wrapped up as a complete operation for reading out a reply packet.
-> > Kicking off a new request before clearing DOWN_REP_MSG_RDY flag might
-> > be risky. e.g. If the reply of the new request has overwritten the
-> > DPRX DOWN_REP Sideband MSG buffer before source writing one to clear
-> > DOWN_REP_MSG_RDY flag, source then unintentionally flushes the reply
-> > for the new request. Should handle the up request in the same way.
-> >
-> > [How]
-> > Separete drm_dp_mst_hpd_irq() into 2 steps. After acking the MST IRQ
-> > event, driver calls drm_dp_mst_hpd_irq_step2() and might trigger
-> > drm_dp_mst_kick_tx() only when there is no on going message transaction=
-.
-> >
-> > Changes since v1:
-> > * Reworked on review comments received
-> > -> Adjust the fix to let driver explicitly kick off new down request
-> > when mst irq event is handled and acked
-> > -> Adjust the commit message
-> >
-> > Signed-off-by: Wayne Lin <Wayne.Lin@amd.com>
-> > Cc: stable@vger.kernel.org
-> > ---
-> >  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  8 ++---
-> > drivers/gpu/drm/display/drm_dp_mst_topology.c | 35
-> ++++++++++++++++---
-> >  drivers/gpu/drm/i915/display/intel_dp.c       |  5 ++-
-> >  drivers/gpu/drm/nouveau/dispnv50/disp.c       |  5 ++-
-> >  include/drm/display/drm_dp_mst_helper.h       |  4 +--
-> >  5 files changed, 45 insertions(+), 12 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > index 1ad67c2a697e..48bdcb2ee9b1 100644
-> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > @@ -3259,10 +3259,9 @@ static void
-> dm_handle_mst_sideband_msg(struct amdgpu_dm_connector *aconnector)
-> >             DRM_DEBUG_DRIVER("ESI %02x %02x %02x\n", esi[0],
-> esi[1], esi[2]);
-> >             /* handle HPD short pulse irq */
-> >             if (aconnector->mst_mgr.mst_state)
-> > -                   drm_dp_mst_hpd_irq(
-> > -                           &aconnector->mst_mgr,
-> > -                           esi,
-> > -                           &new_irq_handled);
-> > +                   drm_dp_mst_hpd_irq_step1(&aconnector->mst_mgr,
-> > +                                            esi,
-> > +                                            &new_irq_handled);
-> >
-> >             if (new_irq_handled) {
-> >                     /* ACK at DPCD to notify down stream */ @@ -
-> 3281,6 +3280,7 @@
-> > static void dm_handle_mst_sideband_msg(struct amdgpu_dm_connector
-> *aconnector)
-> >                                     break;
-> >                     }
-> >
-> > +                   drm_dp_mst_hpd_irq_step2(&aconnector-
-> >mst_mgr);
-> >                     /* check if there is new irq to be handled */
-> >                     dret =3D drm_dp_dpcd_read(
-> >                             &aconnector->dm_dp_aux.aux,
-> > diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> > b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> > index 70df29fe92db..2e0a38a6509c 100644
-> > --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> > +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> > @@ -4045,7 +4045,7 @@ static int drm_dp_mst_handle_up_req(struct
-> > drm_dp_mst_topology_mgr *mgr)  }
-> >
-> >  /**
-> > - * drm_dp_mst_hpd_irq() - MST hotplug IRQ notify
-> > + * drm_dp_mst_hpd_irq_step1() - MST hotplug IRQ notify
-> >   * @mgr: manager to notify irq for.
-> >   * @esi: 4 bytes from SINK_COUNT_ESI
-> >   * @handled: whether the hpd interrupt was consumed or not @@ -4055,7
-> > +4055,7 @@ static int drm_dp_mst_handle_up_req(struct
-> drm_dp_mst_topology_mgr *mgr)
-> >   * topology manager will process the sideband messages received as a r=
-esult
-> >   * of this.
-> >   */
-> > -int drm_dp_mst_hpd_irq(struct drm_dp_mst_topology_mgr *mgr, u8 *esi,
-> > bool *handled)
-> > +int drm_dp_mst_hpd_irq_step1(struct drm_dp_mst_topology_mgr *mgr,
-> u8
-> > +*esi, bool *handled)
+>> +};
+>> +
+>> + /*
+>> +  * MQD can be different for different GPU IP/engine. This union will
+>> +  * contain structures of MQDs corresponding to different engines.
+>> +  */
+>> +union drm_amdgpu_userq_mqd {
+>> +       struct drm_amdgpu_userq_mqd_gfx gfx;
+>> +};
+>> +
+>> +struct drm_amdgpu_userq_in {
+>> +       /** AMDGPU_USERQ_OP_* */
+>> +       __u32   op;
+>> +       /** Flags */
+>> +       __u32   flags;
+>> +       /** Queue handle for USERQ_OP_FREE */
+>> +       __u32   queue_id;
+>> +       /** the target GPU engine to execute workload (AMDGPU_HW_IP_*) */
+>> +       __u32   ip_type;
+>> +
+>> +       /** Queue descriptor for USERQ_OP_CREATE */
+>> +       union drm_amdgpu_userq_mqd mqd;
+> Just thinking out loud here, I wonder if we should make this a
+> pointer/size element so that we could make this variable sized in case
+> some future MQD ends up being bigger.  I guess we could always add a
+> AMDGPU_USERQ_OP_CREATE2 if we ever need to expand it.
+
+I think it is a good idea and sounds scalable as well. Then we might not 
+even need a union, we can just define MQD size and a ptr.
+
+- Shashank
+
+> Alex
 >
-> If you're changing the signature of the function, I'd make esi "const u8 =
-*esi",
-> and add a separate "u8 *ack" that you have to provide, where this functio=
-n
-> would |=3D the flags to ack. It would be useful at least in i915.
-
-Will adjust. Thanks.
-
->
-> As to naming, _step1 and _step2 are pretty vague.
-
-Was trying to align the naming method we used for payload allocation/de-all=
-ocation.
-Anyway, I'll adjust the naming here.
-
->
-> >  {
-> >     int ret =3D 0;
-> >     int sc;
-> > @@ -4077,11 +4077,38 @@ int drm_dp_mst_hpd_irq(struct
-> drm_dp_mst_topology_mgr *mgr, u8 *esi, bool *handl
-> >             *handled =3D true;
-> >     }
-> >
-> > -   drm_dp_mst_kick_tx(mgr);
-> >     return ret;
-> >  }
-> > -EXPORT_SYMBOL(drm_dp_mst_hpd_irq);
-> > +EXPORT_SYMBOL(drm_dp_mst_hpd_irq_step1);
-> > +
-> > +/**
-> > + * drm_dp_mst_hpd_irq_step2() - MST hotplug IRQ 2nd part handling
-> > + * @mgr: manager to notify irq for.
-> > + *
-> > + * This should be called from the driver when mst irq event is
-> > +handled
-> > + * and acked. Note that new down request should only be sent when
-> > + * previous message transaction is done. Source is not supposed to
-> > +generate
-> > + * interleaved message transactions.
-> > + */
-> > +void drm_dp_mst_hpd_irq_step2(struct drm_dp_mst_topology_mgr
-> *mgr)
->
-> _done, _finish, _complete?
-
-Will use "complete". Thanks.
-
->
-> > +{
-> > +   struct drm_dp_sideband_msg_tx *txmsg;
-> > +   bool skip =3D false;
-> >
-> > +   mutex_lock(&mgr->qlock);
-> > +   txmsg =3D list_first_entry_or_null(&mgr->tx_msg_downq,
-> > +                                    struct drm_dp_sideband_msg_tx,
-> next);
-> > +   /* If last transaction is not completed yet*/
-> > +   if (!txmsg ||
-> > +       txmsg->state =3D=3D DRM_DP_SIDEBAND_TX_START_SEND ||
-> > +       txmsg->state =3D=3D DRM_DP_SIDEBAND_TX_SENT)
-> > +           skip =3D true;
-> > +   mutex_unlock(&mgr->qlock);
-> > +
-> > +   if (!skip)
->
-> Please avoid negatives like this. You could have bool kick =3D true inste=
-ad.
-
-Thanks. Will modify it.
-
->
-> > +           drm_dp_mst_kick_tx(mgr);
-> > +}
-> > +EXPORT_SYMBOL(drm_dp_mst_hpd_irq_step2);
-> >  /**
-> >   * drm_dp_mst_detect_port() - get connection status for an MST port
-> >   * @connector: DRM connector for this port diff --git
-> > a/drivers/gpu/drm/i915/display/intel_dp.c
-> > b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 75070eb07d4b..9a9a5aec9534 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -3803,7 +3803,7 @@ intel_dp_mst_hpd_irq(struct intel_dp *intel_dp,
-> > u8 *esi, u8 *ack)  {
-> >     bool handled =3D false;
-> >
-> > -   drm_dp_mst_hpd_irq(&intel_dp->mst_mgr, esi, &handled);
-> > +   drm_dp_mst_hpd_irq_step1(&intel_dp->mst_mgr, esi, &handled);
-> >     if (handled)
-> >             ack[1] |=3D esi[1] & (DP_DOWN_REP_MSG_RDY |
-> DP_UP_REQ_MSG_RDY);
-> >
-> > @@ -3880,6 +3880,9 @@ intel_dp_check_mst_status(struct intel_dp
-> > *intel_dp)
-> >
-> >             if (!intel_dp_ack_sink_irq_esi(intel_dp, ack))
-> >                     drm_dbg_kms(&i915->drm, "Failed to ack ESI\n");
-> > +
-> > +           if (ack[1] & (DP_DOWN_REP_MSG_RDY |
-> DP_UP_REQ_MSG_RDY))
-> > +                   drm_dp_mst_hpd_irq_step2(&intel_dp->mst_mgr);
->
-> I'm getting confused about the division of responsibilities between the t=
-wo
-> functions to be called, and the caller. Why does i915 do things different=
-ly from
-> nouveau and amd wrt this?
-
-The main idea is trying to ack the irq before sending a new request. We use=
-d to
-send a new request before acking the irq event which will cause message int=
-erleaving
-and that's not recommended by DP spec.
-
-amd and nouveau only handle mst up/down message irq events while calling
-drm_dp_mst_hpd_irq() but i915 also tries to handle content protection irq w=
-hile
-handling mst events. That's why it's a bit different between amd/nouveau an=
-d i915.
-
->
-> >     }
-> >
-> >     return link_ok;
-> > diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> > b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> > index ed9d374147b8..00c36fcc8afd 100644
-> > --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> > +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> > @@ -1332,12 +1332,15 @@ nv50_mstm_service(struct nouveau_drm
-> *drm,
-> >                     break;
-> >             }
-> >
-> > -           drm_dp_mst_hpd_irq(&mstm->mgr, esi, &handled);
-> > +           drm_dp_mst_hpd_irq_step1(&mstm->mgr, esi, &handled);
-> >             if (!handled)
-> >                     break;
-> >
-> >             rc =3D drm_dp_dpcd_write(aux, DP_SINK_COUNT_ESI + 1,
-> &esi[1],
-> >                                    3);
-> > +
-> > +           drm_dp_mst_hpd_irq_step2(&mstm->mgr);
-> > +
->
-> Don't you think the return value should be checked first?
-
-Sorry I missed it. Will adjust. Thanks!
-
->
-> >             if (rc !=3D 3) {
-> >                     ret =3D false;
-> >                     break;
-> > diff --git a/include/drm/display/drm_dp_mst_helper.h
-> > b/include/drm/display/drm_dp_mst_helper.h
-> > index 32c764fb9cb5..6c08ba765d5a 100644
-> > --- a/include/drm/display/drm_dp_mst_helper.h
-> > +++ b/include/drm/display/drm_dp_mst_helper.h
-> > @@ -815,8 +815,8 @@ void drm_dp_mst_topology_mgr_destroy(struct
-> > drm_dp_mst_topology_mgr *mgr);  bool drm_dp_read_mst_cap(struct
-> > drm_dp_aux *aux, const u8 dpcd[DP_RECEIVER_CAP_SIZE]);  int
-> > drm_dp_mst_topology_mgr_set_mst(struct drm_dp_mst_topology_mgr
-> *mgr,
-> > bool mst_state);
-> >
-> > -int drm_dp_mst_hpd_irq(struct drm_dp_mst_topology_mgr *mgr, u8 *esi,
-> > bool *handled);
-> > -
-> > +int drm_dp_mst_hpd_irq_step1(struct drm_dp_mst_topology_mgr *mgr,
-> u8
-> > +*esi, bool *handled); void drm_dp_mst_hpd_irq_step2(struct
-> > +drm_dp_mst_topology_mgr *mgr);
-> >
-> >  int
-> >  drm_dp_mst_detect_port(struct drm_connector *connector,
->
-> --
-> Jani Nikula, Intel Open Source Graphics Center
-
---
-Regards,
-Wayne Lin
+>> +};
+>> +
+>> +struct drm_amdgpu_userq_out {
+>> +       /** Queue handle */
+>> +       __u32   queue_id;
+>> +       /** Flags */
+>> +       __u32   flags;
+>> +};
+>> +
+>> +union drm_amdgpu_userq {
+>> +       struct drm_amdgpu_userq_in in;
+>> +       struct drm_amdgpu_userq_out out;
+>> +};
+>> +
+>>   /* vm ioctl */
+>>   #define AMDGPU_VM_OP_RESERVE_VMID      1
+>>   #define AMDGPU_VM_OP_UNRESERVE_VMID    2
+>> --
+>> 2.40.0
+>>
