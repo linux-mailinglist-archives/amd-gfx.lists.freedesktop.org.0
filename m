@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25F7470B9A7
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 May 2023 12:10:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9649070B9A4
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 May 2023 12:10:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64F2A10E2A0;
-	Mon, 22 May 2023 10:10:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEA6410E29B;
+	Mon, 22 May 2023 10:10:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2072.outbound.protection.outlook.com [40.107.93.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA14010E29B
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 May 2023 10:10:20 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2065.outbound.protection.outlook.com [40.107.244.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 829F210E29B
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 May 2023 10:10:21 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ImNzJ+ouWe4kFpxwlyzT/xf1t6zoLeCq2buD6Ijj7Nm+d+tnLTTQXXf6ysPd2dQwwvr+iyUElxMsYeAweMVeQMVuAY66CcIDUUBohSFagJ3tKrNLfUkmhHj2xpRSPpb5giMnHCjW9KAkcEm2nfIYocjDx77wYcqIRWvd2Zu5sZXL7rlGLXQM+SNT77dP+k/3jJE9mrRtFtd6Aelu7IgTHIkmK3u7Qi+p3A0ea1DJrfITRIzZEyre0RAFBp/0ityUCQcz3jjfKsz2xgxsuedtOqF6nGgRmv55Rz5R5WMXRVaIwkuwA6QyJMfAkNvuBLGR9HZueAU3FUrqoujWAPAH0Q==
+ b=H+9Eby3EQpEw0TlKVcZh/XRUGT9PL9H51Y2jww7aa36uZZgkwRisOh+PTRDGeuQX8S/j9nvKQ436xlIcrueAx6E3E4jlSIUPa+EQA8wWh0Qrv07EUVjTTsMbfL42G+dNIS9QLcFTk4cx5FP8QdJpQCdkw/I2bUGEBy4Y0gW8VZZFKHuoE/LvGz+A7fgguKDJoqi68W5tlEMRLQ/Vm9AJka0pFU2HA+SrqDgzIDLDTVPmN4jUNcpxWFVeZzqGkZwU5HEdcxS+LOSjqHxcwIMB78UxgskYscranBlAfXUzLB2woxNZetQcHpyQYTHfCAjEQK1N28RFV86GWb1YJ1cBlA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xlS9h14OUx6rXahM7aMnQtRdz2oH7Xi83mL0cuH/jBU=;
- b=QsLViwh4jYNqcwDAB8bn5b7jYn1UtfOXA+zuVNd+4mYUOqXF9jvBHcc2oo0dUKlc8RCY2SoMxxhELwdsmaNkaj9hGpizAj3dfW+WE6HCmznKJXDj1MxzVax80qypXlVx32KXGhKq+Be/LcmGU3A8pQ2mY62RT0v0tSfe8DAXQ+UZ5x0NHcrs4Ra/Wpvso1tbNqJAtC9S0PgKlUolzeMj64VCBH+rkC2JC324+4RnLdJfuVATTuEoM3svPC8qLVbrYp45RSwC6uzkwp64a2kVgZaY0apluc3m6HQYeE8VULMzhclIhdkfyYZTw3wsoOZsRaYu2pOBM1pbfM8J9o0KYw==
+ bh=vD46MR9e52B8hHO/fdAWp/HUfOoJ1bIjE5Ac/DcEvNc=;
+ b=baWqO/p2xD572NnNubzx5Jp3K1Kal+6rpH8+BSQglHuamAaBqpgFhobpNGia1J2H3hZPrFahlMYcGdPVCVtNDs1oobSNWaJCTLofADP7sNVGIyjMYHiUmNEGIvJrAZrULlqa8yPvD4WS2gy8eSFVQ5kVi5r3dv4CvrnfEmYa06cHe3g/UegyZ9rKRNdm0cjikC+PfYaw7KkxoMrogXXrerTgZyak9c+0BUQgTmSOtcpkO0fr3JDuALUUlV1Z8DqW5zSGGcYgenTrx2KbzCermjTIM/GqeOFWl0E3LgWWWmcdrbB7llTT0Q5iMcEaXCIRGsmxXSMJONo7VYZJCoEMUA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xlS9h14OUx6rXahM7aMnQtRdz2oH7Xi83mL0cuH/jBU=;
- b=3ws1jiZFpCOostixYzdIIUFT9BHuAahjj55IIbawpe+YvRSmE3xdxZ68FZDF64wxYJVa/MWh2+9jSoIhRxVLOu1IP6tmNx+MOOwrg0vyFC/5SXkndTte37yPmZ4uoPWY92pgbT8aSGNl7qdn0tgawDIk7qCKGNng7poEIMPZ+LI=
-Received: from DS7PR03CA0267.namprd03.prod.outlook.com (2603:10b6:5:3b3::32)
- by SA0PR12MB4462.namprd12.prod.outlook.com (2603:10b6:806:95::22) with
+ bh=vD46MR9e52B8hHO/fdAWp/HUfOoJ1bIjE5Ac/DcEvNc=;
+ b=CvWHPoTBk/yHNE6EKFg8R9JB0pZu1JpRl9SPpXRJjUl4fVbe0+bMnOC7x/MxcYGP2xCL8yCXNsRlcNwWmhd1kWC/464mKdQxyvZMs1A6IoLG1Yr+FPn9RQpav3GFyFdtz+7+XEALz3lLbsqDoUIbHifFPYb0rAAYN0fPW/LZHpI=
+Received: from DS7PR03CA0251.namprd03.prod.outlook.com (2603:10b6:5:3b3::16)
+ by MW4PR12MB7310.namprd12.prod.outlook.com (2603:10b6:303:22c::15) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.28; Mon, 22 May
- 2023 10:10:17 +0000
+ 2023 10:10:19 +0000
 Received: from DS1PEPF0000E640.namprd02.prod.outlook.com
- (2603:10b6:5:3b3:cafe::7d) by DS7PR03CA0267.outlook.office365.com
- (2603:10b6:5:3b3::32) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:5:3b3:cafe::32) by DS7PR03CA0251.outlook.office365.com
+ (2603:10b6:5:3b3::16) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.28 via Frontend
- Transport; Mon, 22 May 2023 10:10:17 +0000
+ Transport; Mon, 22 May 2023 10:10:19 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DS1PEPF0000E640.mail.protection.outlook.com (10.167.17.202) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6433.7 via Frontend Transport; Mon, 22 May 2023 10:10:17 +0000
+ 15.20.6433.7 via Frontend Transport; Mon, 22 May 2023 10:10:19 +0000
 Received: from ldev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 22 May
- 2023 05:10:15 -0500
+ 2023 05:10:17 -0500
 From: Tim Huang <Tim.Huang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 3/4] amd/pm/swsmu: reverse mclk and fclk clocks levels for
- yellow carp
-Date: Mon, 22 May 2023 18:08:31 +0800
-Message-ID: <20230522100832.1968912-3-Tim.Huang@amd.com>
+Subject: [PATCH 4/4] amd/pm/swsmu: reverse mclk and fclk clocks levels for
+ vangogh
+Date: Mon, 22 May 2023 18:08:32 +0800
+Message-ID: <20230522100832.1968912-4-Tim.Huang@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230522100832.1968912-1-Tim.Huang@amd.com>
 References: <20230522100832.1968912-1-Tim.Huang@amd.com>
@@ -69,26 +69,26 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF0000E640:EE_|SA0PR12MB4462:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3b366504-2753-41ec-954b-08db5aacbe41
+X-MS-TrafficTypeDiagnostic: DS1PEPF0000E640:EE_|MW4PR12MB7310:EE_
+X-MS-Office365-Filtering-Correlation-Id: d1980411-22d2-4d88-b106-08db5aacbf40
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: A/mvPSi0aJ7dizmUxpSDSValoGLIkZD6qofQqRP4CMCLDpZWvwaLXyF+O8WIo1IwkGUAZp8EccrSBNf2H+5Nh2j1IB27kERcDcFOjjEJTweZdAu0RXUOupzf4DbFy50smRkqg0YfbybPh07kehOk+NLCk0P/7c5lFtYsDjTxsdIHhek22NuT9Y6+1pLxLHXoMRPSecUHvr73r4JRNnzuTMqD5LQWwOwVw0r86vPmDdN1M7zRvYP5QJcsrVj3K6FEv1xD4SwRN9JY4MgQ550+3OxQW11aU6C1x7xP9rtczy89HtdK/0LwtY9sj/Wzh77xIN42uSPi5WdCZMaIPhgcBxkntRI4j3avHVJMRP3SgkZQ1oNOoni7XRqVB6mzAZdbZB3CKuV4xq+wAxTzN4d7ofHbWLHJgMvg2PcE8utj629+NforTmYeE3Z0NTw2hQpWfWfq41pQTNTkcGjmx1+4bm0zxhfWr4SAppodBz58TN4lM5YF+OLqCSs4GgMk6DyJZY6kzV82enTdK1nzXiY0fiClITqjsUNfe2Duh/QU12RtnoeJwSu3rI60V+nzAyYYbBrQ9dPTiVhNyVYfCkPNaoqaHnK108d9G4dlksdjsOKfveSiYlsj3cdQvT9rQyTLMnYctslSjFygIOcL4Hp+v0sLXXhcqIJKptHM3yKhVPOR+x3Pbm/7KcyjEqcp5YyhW9XGM3RBNG3oti2VwuzkCNCCpoFaO/wcbXmpOincsiyNlnCspWqtXkpQqTF/68RluplJR0rHl2GbjzHtYER+nA==
+X-Microsoft-Antispam-Message-Info: 7q3Qzo9AfS9uksBtHv4wxFnIJ6twxY1Pabf7bJJ66Q35x/udZIignOTz18D/GdQx92g+rtcJ3iDU73wgeE+pjZ2Ub/2DAWgI1OH6AFhqXz1EREy+dFxSDV8SSG6S2q9m4uRJmg+gk0H2RvYtuDwpN8St8soKbpD2FF203YfVeSfALcp1rAsCGhvo0XA48QlbSb+FdC3/DEztj4M2UR29zkWpy77FWXHSR7zWI4r/GuEzGtFo1/tYmZfNwHiTiiWXFn6FWqSBi1rtm1RJ4fpjWg544+YbNfZwIhwUY1soLm2N+1S0zXx/8nLYUp/tj66H+8FPJkvdAidjAHRTAaIHRCoLRYq8EYzIUnk95V+Fzl63S0nS3kqi1/qyxm3dnzLATGgPBF/2bNDqqTdFQ7+zn7tPQe54Q2v1+nP+DZGJDf2voHtaRLyfi83GuAK+zNaw3nVlm8ZQm19yO/w1a1EdKRvChmkh0MUqw38BbKQ9UF2pia4D0rit0vcn19bhJlQiAudMEDvLh36sR6I/Dc16fVn8RoQI4LHGTsmwLEe+TX/oSbMeM/TqUpq8nEq5hedRQTlAA7r9TI8XCnftrA2o56HEIPcaiubhqGfJEwVaRKROSZV/wy44Wim9FnCLnjoNnn+RpFrNMg4m3keKlS/qbbXQOaYeMI4aehcOne0YMQfjy0fHwn7XoGJYQChrye9B4vCssO6jAJX5qARjWgRdfCBW5fQj2n55pk6/VzzAZnvDSgIiTW79+N42EANG0cvI2Uww/RRWiFed6R26vdcmsA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(39860400002)(376002)(136003)(346002)(451199021)(46966006)(36840700001)(40470700004)(81166007)(356005)(82740400003)(40480700001)(40460700003)(86362001)(82310400005)(36756003)(426003)(16526019)(1076003)(8676002)(8936002)(336012)(47076005)(2616005)(2906002)(186003)(54906003)(478600001)(316002)(4326008)(6916009)(26005)(41300700001)(5660300002)(6666004)(7696005)(70206006)(70586007)(83380400001)(36860700001)(36900700001);
+ SFS:(13230028)(4636009)(396003)(346002)(376002)(136003)(39860400002)(451199021)(46966006)(40470700004)(36840700001)(8676002)(8936002)(5660300002)(36860700001)(82310400005)(47076005)(83380400001)(16526019)(186003)(26005)(1076003)(86362001)(2616005)(81166007)(356005)(82740400003)(426003)(336012)(40460700003)(41300700001)(6666004)(7696005)(40480700001)(70206006)(70586007)(316002)(6916009)(4326008)(36756003)(478600001)(54906003)(2906002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2023 10:10:17.5119 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3b366504-2753-41ec-954b-08db5aacbe41
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2023 10:10:19.1838 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d1980411-22d2-4d88-b106-08db5aacbf40
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0000E640.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4462
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7310
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,32 +122,51 @@ driver consistently.
 
 Signed-off-by: Tim Huang <Tim.Huang@amd.com>
 ---
- drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
-index ac5fcca0e47f..a92da336ecec 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
-@@ -1000,7 +1000,7 @@ static int yellow_carp_set_soft_freq_limited_range(struct smu_context *smu,
- static int yellow_carp_print_clk_levels(struct smu_context *smu,
- 				enum smu_clk_type clk_type, char *buf)
- {
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
+index 7433dcaa16e0..067b4e0b026c 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
+@@ -582,7 +582,7 @@ static int vangogh_print_legacy_clk_levels(struct smu_context *smu,
+ 	DpmClocks_t *clk_table = smu->smu_table.clocks_table;
+ 	SmuMetrics_legacy_t metrics;
+ 	struct smu_dpm_context *smu_dpm_ctx = &(smu->smu_dpm);
 -	int i, size = 0, ret = 0;
 +	int i, idx, size = 0, ret = 0;
  	uint32_t cur_value = 0, value = 0, count = 0;
- 	uint32_t min, max;
+ 	bool cur_value_match_level = false;
  
-@@ -1033,7 +1033,8 @@ static int yellow_carp_print_clk_levels(struct smu_context *smu,
- 			goto print_clk_out;
- 
+@@ -656,7 +656,8 @@ static int vangogh_print_legacy_clk_levels(struct smu_context *smu,
+ 	case SMU_MCLK:
+ 	case SMU_FCLK:
  		for (i = 0; i < count; i++) {
--			ret = yellow_carp_get_dpm_freq_by_index(smu, clk_type, i, &value);
+-			ret = vangogh_get_dpm_clk_limited(smu, clk_type, i, &value);
 +			idx = (clk_type == SMU_FCLK || clk_type == SMU_MCLK) ? (count - i - 1) : i;
-+			ret = yellow_carp_get_dpm_freq_by_index(smu, clk_type, idx, &value);
++			ret = vangogh_get_dpm_clk_limited(smu, clk_type, idx, &value);
  			if (ret)
- 				goto print_clk_out;
- 
+ 				return ret;
+ 			if (!value)
+@@ -683,7 +684,7 @@ static int vangogh_print_clk_levels(struct smu_context *smu,
+ 	DpmClocks_t *clk_table = smu->smu_table.clocks_table;
+ 	SmuMetrics_t metrics;
+ 	struct smu_dpm_context *smu_dpm_ctx = &(smu->smu_dpm);
+-	int i, size = 0, ret = 0;
++	int i, idx, size = 0, ret = 0;
+ 	uint32_t cur_value = 0, value = 0, count = 0;
+ 	bool cur_value_match_level = false;
+ 	uint32_t min, max;
+@@ -765,7 +766,8 @@ static int vangogh_print_clk_levels(struct smu_context *smu,
+ 	case SMU_MCLK:
+ 	case SMU_FCLK:
+ 		for (i = 0; i < count; i++) {
+-			ret = vangogh_get_dpm_clk_limited(smu, clk_type, i, &value);
++			idx = (clk_type == SMU_FCLK || clk_type == SMU_MCLK) ? (count - i - 1) : i;
++			ret = vangogh_get_dpm_clk_limited(smu, clk_type, idx, &value);
+ 			if (ret)
+ 				return ret;
+ 			if (!value)
 -- 
 2.34.1
 
