@@ -1,79 +1,69 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6456070BF23
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 May 2023 15:06:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 738BD70BF1F
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 May 2023 15:06:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CCCE10E31E;
-	Mon, 22 May 2023 13:06:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E1C010E316;
+	Mon, 22 May 2023 13:06:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
- [205.220.165.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5327610E25B;
- Mon, 22 May 2023 07:30:29 +0000 (UTC)
-Received: from pps.filterd (m0246627.ppops.net [127.0.0.1])
- by mx0b-00069f02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
- 34M00ooI011286; Mon, 22 May 2023 07:30:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding;
- s=corp-2023-03-30; bh=A5ZncwB04NjzcMemMMWye/LhgkT9LJyEStC1Nr1FzwI=;
- b=ceRFdvS6XD5HqLo3PdevQNl4QthpRYj6UIaBLjGU3PhxQqXGh2hOIzYSPOY8VdgtQGb4
- ipGli3qfNhAviNlAWCNrhED4qFtu0OoIs3H6S6sZzlen1ke2MdSiZJNJz9XWKGWfrrLo
- TZH3C5+AkB5hFU3K6WvdkyxrlwUsYBcHQnZtRFf1ehveAkccWWjz45nTMuZC/wqnyK9a
- zc4hVsKRPj2sYGUSBsCjAGjUFu7d04GLS5ZgSGMBX3Qpzvfoo5yW+uNEWGL86zBNLbRH
- u/ndrNQHVieq/VEkYlvNGFULnm36k0g/MVZ7OB0WPG/M96NZsCZNByuVWrIPLPQVUuPG UA== 
-Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com
- (iadpaimrmta01.appoci.oracle.com [130.35.100.223])
- by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3qpp3mj1u3-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Mon, 22 May 2023 07:30:24 +0000
-Received: from pps.filterd
- (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
- by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (8.17.1.19/8.17.1.19)
- with ESMTP id 34M6M7oP023566; Mon, 22 May 2023 07:30:22 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
- by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id
- 3qqk8skeds-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Mon, 22 May 2023 07:30:22 +0000
-Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com
- (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
- by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 34M7OKLu026055;
- Mon, 22 May 2023 07:30:22 GMT
-Received: from ca-dev112.us.oracle.com (ca-dev112.us.oracle.com
- [10.129.136.47])
- by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTP id
- 3qqk8skeat-1; Mon, 22 May 2023 07:30:21 +0000
-From: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
+ [IPv6:2a00:1450:4864:20::42a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B78710E281;
+ Mon, 22 May 2023 09:02:55 +0000 (UTC)
+Received: by mail-wr1-x42a.google.com with SMTP id
+ ffacd0b85a97d-307a8386946so3665350f8f.2; 
+ Mon, 22 May 2023 02:02:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1684746174; x=1687338174;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=GTDKY6/9ENFcphD0A+7aTVSdeQLL9fouAnjj5/0OnPQ=;
+ b=MYUZN/wCmh9X1fSvCh9oPN4J7b/z7BMV8a8MHZAR4o5JE9ezVNXoveoammn0QIjS6k
+ 5X+Kh2/p3CdPl0EwhHai2i6+utokA0V/Whm621SQ8Okns8SAA+fOxk/Z06hRC/39zcYY
+ RUxQHYc9Fy3/Wrrosptw78yruNxeHZyTwcMSOJF4Nb6yYJHfbf+uOIE0WSLTgO9wSBuz
+ BE/JfU1GbKvhwWKgnPfeR2inHkmfcty1jNGyL/Kka4imbo8ujxJVd6r9Pnft8hEVMK00
+ BDLe4FKE7aGTMVsZVGPpKtyjJO24qbjoOdQlakX9xbVzkjU+9hLHo1NxO9ainsOdcplo
+ wLiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1684746174; x=1687338174;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=GTDKY6/9ENFcphD0A+7aTVSdeQLL9fouAnjj5/0OnPQ=;
+ b=AM+l4j4H87ub5xC6Ul69vd6ZLSKupcTqrp6lCdKa8ob4HnhsJR7BAaljx+ti8j29fh
+ RGX9KkTs+mWYnvZ+vgabA0tb9b3dDPRC9TjMDo8RDvGH/vfBGv8rN82J0Rry2T9Y7KWp
+ 4Jm0Zyvg43yEQ56A47iyv9+0LUowQEDd9gPv2IhZGzfRFmSo34J2q/uqsE6S+I06vv5N
+ bfXy9bx6iosQ1Z3FKxdW7hj8Kzhau16Aj4kQAwCinhT+X/czq6rX/nQgEC99TXYzPh1L
+ 923S22VEjvlNPPH9iVgQsNeeRh5ZFMDP68MwZi2vEzrPqe7mXQhzrIuqoYRQ0DKBgC/0
+ wa6A==
+X-Gm-Message-State: AC+VfDywqvElzAmG1Jh3oGOtgjgxEPHc/aVAgyC5ClO8fou4SJMtz5Wu
+ BPlsjBpXrYgEupYLEbRXbZw=
+X-Google-Smtp-Source: ACHHUZ5gZYD/yXE4cCwhckJvb9r3xORQCbJOvZ38Bpu5Pe5i5C13W84yXqg9CPy7CUhXhpAZPYjFwg==
+X-Received: by 2002:a5d:4e84:0:b0:309:3ce9:d7a7 with SMTP id
+ e4-20020a5d4e84000000b003093ce9d7a7mr6564810wru.28.1684746173824; 
+ Mon, 22 May 2023 02:02:53 -0700 (PDT)
+Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
+ [80.193.200.194]) by smtp.gmail.com with ESMTPSA id
+ z10-20020a05600c220a00b003f50e29bce3sm7547427wml.48.2023.05.22.02.02.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 22 May 2023 02:02:53 -0700 (PDT)
+From: Colin Ian King <colin.i.king@gmail.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Felix Kuehling <Felix.Kuehling@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>, Le Ma <le.ma@amd.com>,
- Lijo Lazar <lijo.lazar@amd.com>, Mukul Joshi <mukul.joshi@amd.com>,
- Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>,
- Graham Sider <Graham.Sider@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH next] drm/amdgpu: Fix unsigned comparison with zero in
- gmc_v9_0_process_interrupt()
-Date: Mon, 22 May 2023 00:30:15 -0700
-Message-Id: <20230522073017.1782984-1-harshit.m.mogalapalli@oracle.com>
-X-Mailer: git-send-email 2.40.0
+ Xinhui.Pan@amd.com, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH][next] drm/amdgpu: Fix a couple of spelling mistakes in info
+ and debug messages
+Date: Mon, 22 May 2023 10:02:52 +0100
+Message-Id: <20230522090252.913910-1-colin.i.king@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-22_04,2023-05-17_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
- phishscore=0 mlxscore=0
- mlxlogscore=999 bulkscore=0 malwarescore=0 suspectscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2304280000
- definitions=main-2305220063
-X-Proofpoint-ORIG-GUID: xoDToq4BCRbl3iSJI_dyjEWrldxaTQAv
-X-Proofpoint-GUID: xoDToq4BCRbl3iSJI_dyjEWrldxaTQAv
 X-Mailman-Approved-At: Mon, 22 May 2023 13:06:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,41 +76,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dan.carpenter@linaro.org, kernel-janitors@vger.kernel.org,
- error27@gmail.com, harshit.m.mogalapalli@oracle.com
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Smatch warns:
-	drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c:579:
-	unsigned 'xcc_id' is never less than zero.
+There are a couple of spelling mistakes, one in a dev_info message
+and the other in a dev_debug message. Fix them.
 
-gfx_v9_4_3_ih_to_xcc_inst() returns negative numbers as well.
-Fix this by changing type of xcc_id to int.
-
-Fixes: faf96b9b602d ("drm/amdgpu: correct the vmhub index when page fault occurs")
-Signed-off-by: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
+Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
 ---
-This is from static analysis, only compile tested.
----
- drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-index f70e666cecf2..1e8b2aaa48c1 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-@@ -557,8 +557,8 @@ static int gmc_v9_0_process_interrupt(struct amdgpu_device *adev,
- 	const char *hub_name;
- 	u64 addr;
- 	uint32_t cam_index = 0;
--	int ret;
--	uint32_t node_id, xcc_id = 0;
-+	int ret, xcc_id = 0;
-+	uint32_t node_id;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+index 59b8b26e2caf..789cc16e1be7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -1007,7 +1007,7 @@ int psp_spatial_partition(struct psp_context *psp, int mode)
+ 	cmd->cmd_id = GFX_CMD_ID_SRIOV_SPATIAL_PART;
+ 	cmd->cmd.cmd_spatial_part.mode = mode;
  
- 	node_id = entry->node_id;
+-	dev_info(psp->adev->dev, "Requesting %d paritions through PSP", mode);
++	dev_info(psp->adev->dev, "Requesting %d partitions through PSP", mode);
+ 	ret = psp_cmd_submit_buf(psp, NULL, cmd, psp->fence_buf_mc_addr);
  
+ 	release_psp_cmd_buf(psp);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
+index daeb6bcc9245..e9586a0dc335 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
+@@ -359,7 +359,7 @@ int amdgpu_xcp_open_device(struct amdgpu_device *adev,
+ 						file_priv->minor->index, i);
+ 				return -ENOENT;
+ 			}
+-			dev_dbg(adev->dev, "renderD%d partition %d openned!",
++			dev_dbg(adev->dev, "renderD%d partition %d opened!",
+ 					file_priv->minor->index, i);
+ 			fpriv->xcp_id = i;
+ 			break;
 -- 
-2.38.1
+2.30.2
 
