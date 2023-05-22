@@ -1,70 +1,58 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 738BD70BF1F
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 May 2023 15:06:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAB9370BD8F
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 May 2023 14:22:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E1C010E316;
-	Mon, 22 May 2023 13:06:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70F4A10E314;
+	Mon, 22 May 2023 12:21:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
- [IPv6:2a00:1450:4864:20::42a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B78710E281;
- Mon, 22 May 2023 09:02:55 +0000 (UTC)
-Received: by mail-wr1-x42a.google.com with SMTP id
- ffacd0b85a97d-307a8386946so3665350f8f.2; 
- Mon, 22 May 2023 02:02:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1684746174; x=1687338174;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=GTDKY6/9ENFcphD0A+7aTVSdeQLL9fouAnjj5/0OnPQ=;
- b=MYUZN/wCmh9X1fSvCh9oPN4J7b/z7BMV8a8MHZAR4o5JE9ezVNXoveoammn0QIjS6k
- 5X+Kh2/p3CdPl0EwhHai2i6+utokA0V/Whm621SQ8Okns8SAA+fOxk/Z06hRC/39zcYY
- RUxQHYc9Fy3/Wrrosptw78yruNxeHZyTwcMSOJF4Nb6yYJHfbf+uOIE0WSLTgO9wSBuz
- BE/JfU1GbKvhwWKgnPfeR2inHkmfcty1jNGyL/Kka4imbo8ujxJVd6r9Pnft8hEVMK00
- BDLe4FKE7aGTMVsZVGPpKtyjJO24qbjoOdQlakX9xbVzkjU+9hLHo1NxO9ainsOdcplo
- wLiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684746174; x=1687338174;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=GTDKY6/9ENFcphD0A+7aTVSdeQLL9fouAnjj5/0OnPQ=;
- b=AM+l4j4H87ub5xC6Ul69vd6ZLSKupcTqrp6lCdKa8ob4HnhsJR7BAaljx+ti8j29fh
- RGX9KkTs+mWYnvZ+vgabA0tb9b3dDPRC9TjMDo8RDvGH/vfBGv8rN82J0Rry2T9Y7KWp
- 4Jm0Zyvg43yEQ56A47iyv9+0LUowQEDd9gPv2IhZGzfRFmSo34J2q/uqsE6S+I06vv5N
- bfXy9bx6iosQ1Z3FKxdW7hj8Kzhau16Aj4kQAwCinhT+X/czq6rX/nQgEC99TXYzPh1L
- 923S22VEjvlNPPH9iVgQsNeeRh5ZFMDP68MwZi2vEzrPqe7mXQhzrIuqoYRQ0DKBgC/0
- wa6A==
-X-Gm-Message-State: AC+VfDywqvElzAmG1Jh3oGOtgjgxEPHc/aVAgyC5ClO8fou4SJMtz5Wu
- BPlsjBpXrYgEupYLEbRXbZw=
-X-Google-Smtp-Source: ACHHUZ5gZYD/yXE4cCwhckJvb9r3xORQCbJOvZ38Bpu5Pe5i5C13W84yXqg9CPy7CUhXhpAZPYjFwg==
-X-Received: by 2002:a5d:4e84:0:b0:309:3ce9:d7a7 with SMTP id
- e4-20020a5d4e84000000b003093ce9d7a7mr6564810wru.28.1684746173824; 
- Mon, 22 May 2023 02:02:53 -0700 (PDT)
-Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
- [80.193.200.194]) by smtp.gmail.com with ESMTPSA id
- z10-20020a05600c220a00b003f50e29bce3sm7547427wml.48.2023.05.22.02.02.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 22 May 2023 02:02:53 -0700 (PDT)
-From: Colin Ian King <colin.i.king@gmail.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui.Pan@amd.com, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH][next] drm/amdgpu: Fix a couple of spelling mistakes in info
- and debug messages
-Date: Mon, 22 May 2023 10:02:52 +0100
-Message-Id: <20230522090252.913910-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.30.2
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E5BF10E2FA;
+ Mon, 22 May 2023 12:21:44 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 5A67C21BDE;
+ Mon, 22 May 2023 12:21:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1684758102; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=zaTjRgfMLlRIsB0CCzFeZYVFV+JrVqY7WkSEoCzv47o=;
+ b=UHpUG3/eGABMoqviRaxJUYzWa0yHnAv0swjZHZxZPazgM5QFzYUSd9H/jRcErRWNCV9nbx
+ LfAnYKqCYZRDwjFLmKCVCVoq8hcV1iuFfgaR9+uPeM3Yx5Qt8hZdDGVGQGefzSU7oblNKg
+ /lm+3RtzhMpuijNw+UmsgNN9bIbfgtE=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1684758102;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=zaTjRgfMLlRIsB0CCzFeZYVFV+JrVqY7WkSEoCzv47o=;
+ b=SmfA33Jlmp+bZsRAaD3iVkitSXNUN5GAVClcBNU2YpzMJ7OhT42v4j2cAB5oWCh2EHIiMZ
+ BIBS+pESsUoWZKDQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 0D81E13776;
+ Mon, 22 May 2023 12:21:42 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id sYdZAlZea2RYVAAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Mon, 22 May 2023 12:21:42 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: daniel@ffwll.ch, airlied@gmail.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, javierm@redhat.com, sam@ravnborg.org
+Subject: [PATCH v3 00/12] drm/fbdev: Remove DRM's helpers for fbdev I/O
+Date: Mon, 22 May 2023 14:21:28 +0200
+Message-Id: <20230522122140.30131-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 22 May 2023 13:06:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,45 +64,90 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ linux-tegra@vger.kernel.org, freedreno@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-There are a couple of spelling mistakes, one in a dev_info message
-and the other in a dev_debug message. Fix them.
+DRM provides a number of wrappers around fbdev cfb_() sys_(), fb_io_()
+and fb_sys_() helpers. The DRM functions don't provide any additional
+functionality for most DRM drivers. So remove them and call the fbdev
+I/O helpers directly.
 
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+The DRM fbdev I/O wrappers were originally added because <linux/fb.h>
+does not protect its content with CONFIG_FB. DRM fbdev emulation did
+not build if the config option had been disabled. This has been
+fixed. For fbdev-generic and i915, the wrappers added support for damage
+handling. But this is better handled within the two callers, as each
+is special in its damage handling.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-index 59b8b26e2caf..789cc16e1be7 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-@@ -1007,7 +1007,7 @@ int psp_spatial_partition(struct psp_context *psp, int mode)
- 	cmd->cmd_id = GFX_CMD_ID_SRIOV_SPATIAL_PART;
- 	cmd->cmd.cmd_spatial_part.mode = mode;
- 
--	dev_info(psp->adev->dev, "Requesting %d paritions through PSP", mode);
-+	dev_info(psp->adev->dev, "Requesting %d partitions through PSP", mode);
- 	ret = psp_cmd_submit_buf(psp, NULL, cmd, psp->fence_buf_mc_addr);
- 
- 	release_psp_cmd_buf(psp);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
-index daeb6bcc9245..e9586a0dc335 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
-@@ -359,7 +359,7 @@ int amdgpu_xcp_open_device(struct amdgpu_device *adev,
- 						file_priv->minor->index, i);
- 				return -ENOENT;
- 			}
--			dev_dbg(adev->dev, "renderD%d partition %d openned!",
-+			dev_dbg(adev->dev, "renderD%d partition %d opened!",
- 					file_priv->minor->index, i);
- 			fpriv->xcp_id = i;
- 			break;
+Patch 1 adds several internal Kconfig otpions that DRM drivers (and
+possibly other fbdev code) will use to select the correct set of I/O
+helpers.
+
+Patches 2 to 9 replace the DRM wrappers in a number of fbdev emulations.
+Patch 10 exports two helpers for damage handling. Patches 11 and 12
+update fbdev-generic and i915 with the help of the exported functions.
+The patches also remove DRM's fbdev I/O helpers, which are now unused.
+
+DRM's fbdev helpers had to select fbdev I/O helpers for I/O and for
+system memory. Each fbdev emulation now selects the correct helpers
+for itself. Depending on the selected DRM drivers, kernel builds will
+now only contain the necessary fbdev I/O helpers and might be slightly
+smaller in size.
+
+v3:
+	* fix Kconfig options (Jingfeng)
+	* minimize changes to exynos (Sam)
+v2:
+	* simplify Kconfig handling (Sam)
+
+Thomas Zimmermann (12):
+  fbdev: Add Kconfig options to select different fb_ops helpers
+  drm/armada: Use regular fbdev I/O helpers
+  drm/exynos: Use regular fbdev I/O helpers
+  drm/gma500: Use regular fbdev I/O helpers
+  drm/radeon: Use regular fbdev I/O helpers
+  drm/fbdev-dma: Use regular fbdev I/O helpers
+  drm/msm: Use regular fbdev I/O helpers
+  drm/omapdrm: Use regular fbdev I/O helpers
+  drm/tegra: Use regular fbdev I/O helpers
+  drm/fb-helper: Export helpers for marking damage areas
+  drm/fbdev-generic: Implement dedicated fbdev I/O helpers
+  drm/i915: Implement dedicated fbdev I/O helpers
+
+ drivers/gpu/drm/Kconfig                    |  10 +-
+ drivers/gpu/drm/armada/Kconfig             |   1 +
+ drivers/gpu/drm/armada/armada_fbdev.c      |   9 +-
+ drivers/gpu/drm/drm_fb_helper.c            | 233 ++-------------------
+ drivers/gpu/drm/drm_fbdev_dma.c            |  12 +-
+ drivers/gpu/drm/drm_fbdev_generic.c        |  47 ++++-
+ drivers/gpu/drm/exynos/Kconfig             |   1 +
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.c  |  10 +-
+ drivers/gpu/drm/gma500/Kconfig             |   1 +
+ drivers/gpu/drm/gma500/fbdev.c             |   9 +-
+ drivers/gpu/drm/i915/Kconfig               |   1 +
+ drivers/gpu/drm/i915/display/intel_fbdev.c |  51 ++++-
+ drivers/gpu/drm/msm/Kconfig                |   1 +
+ drivers/gpu/drm/msm/msm_fbdev.c            |  12 +-
+ drivers/gpu/drm/omapdrm/Kconfig            |   1 +
+ drivers/gpu/drm/omapdrm/omap_fbdev.c       |  12 +-
+ drivers/gpu/drm/radeon/Kconfig             |   1 +
+ drivers/gpu/drm/radeon/radeon_fbdev.c      |   9 +-
+ drivers/gpu/drm/tegra/Kconfig              |   1 +
+ drivers/gpu/drm/tegra/fbdev.c              |  11 +-
+ drivers/video/fbdev/Kconfig                |  21 ++
+ include/drm/drm_fb_helper.h                |  84 +-------
+ 22 files changed, 183 insertions(+), 355 deletions(-)
+
+
+base-commit: f533234d40e8f5b8599bd5bc97fa8e30384aec03
+prerequisite-patch-id: 0aa359f6144c4015c140c8a6750be19099c676fb
+prerequisite-patch-id: c67e5d886a47b7d0266d81100837557fda34cb24
+prerequisite-patch-id: cbc453ee02fae02af22fbfdce56ab732c7a88c36
 -- 
-2.30.2
+2.40.1
 
