@@ -1,79 +1,36 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8952170BF20
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 May 2023 15:06:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F44870BF33
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 May 2023 15:08:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE04310E317;
-	Mon, 22 May 2023 13:06:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9284289048;
+	Mon, 22 May 2023 13:08:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D77AD10E310
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 May 2023 13:01:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1684760463;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=5GS5iE0UNqVQ8KlXVjYhcfn3nzlvTGZU1mxp4La9+mc=;
- b=M21I7rp5InP2WlTtikqk9ghByu5/sIftBvgJUc0rvxeZcIhDSxPhEKGZZlCiV82d/SiT/d
- K21Mi+wFC9kDL73ZKKbZyBeYbhNq0TwyU3BZlLG3zgPWrqoe9o3peJFuLs7iwkAz6d/jRF
- muhhwc+a9KV6wTFnZ9LbHtafmydZTjI=
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-124-exPtdbO5MYSYSFQMNhdzTg-1; Mon, 22 May 2023 09:01:02 -0400
-X-MC-Unique: exPtdbO5MYSYSFQMNhdzTg-1
-Received: by mail-qv1-f71.google.com with SMTP id
- 6a1803df08f44-62387e4de2bso82919346d6.2
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 May 2023 06:01:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684760461; x=1687352461;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=5GS5iE0UNqVQ8KlXVjYhcfn3nzlvTGZU1mxp4La9+mc=;
- b=U6xsozf1St8qJvbBgKjzm9aDQULHt35hRqTZmQtexVbE9G9r/dYIAOriY09uwiuF40
- 5TUNbK3Yy4zh4shc+rHLd/e/CyruJzJcNVfHcFxGzSKVk/a0Mqq/pDF2c9Mi+p0IRYgi
- rJymXElsWPTwacfDPrAl9ro2o2i5Q3A7hA9TLu/pvj9pcLTPXxticCyf2B8TIYHeJcPO
- yaKoZNFcOlogRn/DxZW6EKn5/gCwXvgOuEyqNaJ0nsz7A5y4iNju9jlnzI+cVGIeIDWe
- F5nYKbsChGkK8semawoyXLi9t72g1aPrH27bRl7EmKjh0JtRQA8jcBP5g6jT1cxT2Ar1
- SRdg==
-X-Gm-Message-State: AC+VfDzLoGJjXe/OZYuA6ZSotIZpAsKaIzaKl3bmPPansowhQ/PBhaH3
- ZHBO4/ABu9mmM6p6XKYKakwWOk9ZdYoZAZ6bxhtXJ9EvCNR4ymznwHZyQAzAu6WrwkERMqYlAyy
- N32OT/t4O0manHDt3PGHN5iQhiA==
-X-Received: by 2002:a05:6214:d4b:b0:616:5c8b:582 with SMTP id
- 11-20020a0562140d4b00b006165c8b0582mr21098478qvr.37.1684760460922; 
- Mon, 22 May 2023 06:01:00 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ63Whwh0WVrdsRNMd+E6lr3sa4LBlkXrJV87h21RAe+9pE/lhzvsvDrelDpNH940vcQ+EvwJw==
-X-Received: by 2002:a05:6214:d4b:b0:616:5c8b:582 with SMTP id
- 11-20020a0562140d4b00b006165c8b0582mr21098447qvr.37.1684760460644; 
- Mon, 22 May 2023 06:01:00 -0700 (PDT)
-Received: from dell-per740-01.7a2m.lab.eng.bos.redhat.com
- (nat-pool-bos-t.redhat.com. [66.187.233.206])
- by smtp.gmail.com with ESMTPSA id
- u13-20020ae9c00d000000b0075783f6c2b4sm1678924qkk.128.2023.05.22.06.00.59
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 22 May 2023 06:01:00 -0700 (PDT)
-From: Tom Rix <trix@redhat.com>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch, Hawking.Zhang@amd.com,
- tao.zhou1@amd.com, le.ma@amd.com, Felix.Kuehling@amd.com,
- lijo.lazar@amd.com, Amber.Lin@amd.com
-Subject: [PATCH] drm/amdgpu: remove unused variable
- mmhub_v1_8_mmea_cgtt_clk_cntl_reg
-Date: Mon, 22 May 2023 09:00:57 -0400
-Message-Id: <20230522130057.1066607-1-trix@redhat.com>
-X-Mailer: git-send-email 2.27.0
+Received: from ms7.webland.ch (ms7.webland.ch [92.43.217.107])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B888110E322
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 May 2023 13:08:29 +0000 (UTC)
+Received: from kaveri ([213.144.156.170])
+ by ms7.webland.ch (12.3.0 build 2 x64) with ASMTP (SSL) id
+ 01202305221508248275; Mon, 22 May 2023 15:08:24 +0200
+Received: from daenzer by kaveri with local (Exim 4.96)
+ (envelope-from <michel@daenzer.net>) id 1q15Gx-003E7F-0O;
+ Mon, 22 May 2023 15:08:23 +0200
+From: =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel@daenzer.net>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ Aurabindo Pillai <Aurabindo.Pillai@amd.com>
+Subject: [PATCH 1/2] Revert "drm/amd/display: Block optimize on consecutive
+ FAMS enables"
+Date: Mon, 22 May 2023 15:08:22 +0200
+Message-Id: <20230522130823.769236-1-michel@daenzer.net>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 22 May 2023 13:06:46 +0000
+X-CTCH: RefID="str=0001.0A782F15.646B6948.0028,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0";
+ Spam="Unknown"; VOD="Unknown"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,43 +42,80 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tom Rix <trix@redhat.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Wesley Chalmers <Wesley.Chalmers@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Qingqing Zhuo <Qingqing.Zhuo@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-gcc with W=1 reports
-drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c:760:23: error:
-  ‘mmhub_v1_8_mmea_cgtt_clk_cntl_reg’ defined but not used [-Werror=unused-const-variable=]
-  760 | static const uint32_t mmhub_v1_8_mmea_cgtt_clk_cntl_reg[] = {
-      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+From: Michel Dänzer <mdaenzer@redhat.com>
 
-This variable is not used so remove it.
+This reverts commit ce560ac40272a5c8b5b68a9d63a75edd9e66aed2.
 
-Signed-off-by: Tom Rix <trix@redhat.com>
+It depends on its parent commit, which we want to revert.
+
+Signed-off-by: Michel Dänzer <mdaenzer@redhat.com>
 ---
- drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c | 8 --------
- 1 file changed, 8 deletions(-)
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    |  3 ---
+ .../drm/amd/display/dc/dcn30/dcn30_hwseq.c    | 22 +++----------------
+ 2 files changed, 3 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c
-index 3648994724c2..00e7e5db7c28 100644
---- a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c
-@@ -757,14 +757,6 @@ static void mmhub_v1_8_query_ras_error_status(struct amdgpu_device *adev)
- 		mmhub_v1_8_inst_query_ras_err_status(adev, i);
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+index 422fbf79da64..6ce10fd4bb1a 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+@@ -2117,9 +2117,6 @@ void dcn20_optimize_bandwidth(
+ 		dc_dmub_srv_p_state_delegate(dc,
+ 			true, context);
+ 		context->bw_ctx.bw.dcn.clk.p_state_change_support = true;
+-		dc->clk_mgr->clks.fw_based_mclk_switching = true;
+-	} else {
+-		dc->clk_mgr->clks.fw_based_mclk_switching = false;
+ 	}
+ 
+ 	dc->clk_mgr->funcs->update_clocks(
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
+index 8263a07f265f..0411867654dd 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
+@@ -983,13 +983,9 @@ void dcn30_set_disp_pattern_generator(const struct dc *dc,
  }
  
--static const uint32_t mmhub_v1_8_mmea_cgtt_clk_cntl_reg[] = {
--	regMMEA0_CGTT_CLK_CTRL,
--	regMMEA1_CGTT_CLK_CTRL,
--	regMMEA2_CGTT_CLK_CTRL,
--	regMMEA3_CGTT_CLK_CTRL,
--	regMMEA4_CGTT_CLK_CTRL,
--};
--
- static void mmhub_v1_8_inst_reset_ras_err_status(struct amdgpu_device *adev,
- 						 uint32_t mmhub_inst)
+ void dcn30_prepare_bandwidth(struct dc *dc,
+-	struct dc_state *context)
++ 	struct dc_state *context)
  {
+-	bool p_state_change_support = context->bw_ctx.bw.dcn.clk.p_state_change_support;
+-	/* Any transition into an FPO config should disable MCLK switching first to avoid
+-	 * driver and FW P-State synchronization issues.
+-	 */
+-	if (context->bw_ctx.bw.dcn.clk.fw_based_mclk_switching || dc->clk_mgr->clks.fw_based_mclk_switching) {
++	if (context->bw_ctx.bw.dcn.clk.fw_based_mclk_switching) {
+ 		dc->optimized_required = true;
+ 		context->bw_ctx.bw.dcn.clk.p_state_change_support = false;
+ 	}
+@@ -1000,19 +996,7 @@ void dcn30_prepare_bandwidth(struct dc *dc,
+ 			dc->clk_mgr->funcs->set_max_memclk(dc->clk_mgr, dc->clk_mgr->bw_params->clk_table.entries[dc->clk_mgr->bw_params->clk_table.num_entries - 1].memclk_mhz);
+ 
+ 	dcn20_prepare_bandwidth(dc, context);
+-	/*
+-	 * enabled -> enabled: do not disable
+-	 * enabled -> disabled: disable
+-	 * disabled -> enabled: don't care
+-	 * disabled -> disabled: don't care
+-	 */
+-	if (!context->bw_ctx.bw.dcn.clk.fw_based_mclk_switching)
+-		dc_dmub_srv_p_state_delegate(dc, false, context);
+ 
+-	if (context->bw_ctx.bw.dcn.clk.fw_based_mclk_switching || dc->clk_mgr->clks.fw_based_mclk_switching) {
+-		/* After disabling P-State, restore the original value to ensure we get the correct P-State
+-		 * on the next optimize. */
+-		context->bw_ctx.bw.dcn.clk.p_state_change_support = p_state_change_support;
+-	}
++	dc_dmub_srv_p_state_delegate(dc, false, context);
+ }
+ 
 -- 
-2.27.0
+2.40.1
 
