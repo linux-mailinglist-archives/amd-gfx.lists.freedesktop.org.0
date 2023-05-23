@@ -2,32 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15DD070D8E5
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 May 2023 11:25:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE90770D8E7
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 May 2023 11:25:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C68110E414;
-	Tue, 23 May 2023 09:25:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6108E10E415;
+	Tue, 23 May 2023 09:25:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-112.freemail.mail.aliyun.com
- (out30-112.freemail.mail.aliyun.com [115.124.30.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E835C10E09E;
- Tue, 23 May 2023 03:32:16 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R921e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018046056;
- MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=9; SR=0;
- TI=SMTPD_---0VjIH3CS_1684812723; 
-Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
- fp:SMTPD_---0VjIH3CS_1684812723) by smtp.aliyun-inc.com;
- Tue, 23 May 2023 11:32:11 +0800
-From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
-To: christian.koenig@amd.com
-Subject: [PATCH] drm/amdgpu/vcn: Modify mismatched function name
-Date: Tue, 23 May 2023 11:32:02 +0800
-Message-Id: <20230523033202.109828-1-jiapeng.chong@linux.alibaba.com>
-X-Mailer: git-send-email 2.20.1.7.g153144c
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:3::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6FBF10E3D4
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 May 2023 06:37:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=gDUysVOVsaPyDTtVUoUqBYPUK0ngxjXHLWGMN3f8LyM=; b=QgrDA6u1rZ2kjiqWSMp4YbdVpj
+ MpQQDF+cfg7KqyZ9UzFSPXIy3mvdkvGifqxVUelJnF4KwqqrExYj+ZUHtCy6/W22Er5drPNyhHOzH
+ KtX0etTH7nf9KpQT6GRhuT/Lq7AUu5cdpezTVkYhQbfvrEG59bINTLE3OVVmqG1DlPepiwKonGpLL
+ 1Cv0Vyy42SXPaMGFLoPR8SF9GiQuhlZfbN2NbE+QfWmdYmTpFTBejV3d/OtYZdZ4tPDRkQwBRd1Hb
+ oacVKKQ1h7FJV5Azmo0y3vCFrZNcml/9V+3ihXYoCZuMMpVWBWlYzsiFdyO8F7PeY4sOIKktC/GH+
+ aIYcQFlw==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.96 #2 (Red Hat
+ Linux)) id 1q1Ldq-0095i5-05; Tue, 23 May 2023 06:37:06 +0000
+Date: Mon, 22 May 2023 23:37:06 -0700
+From: Christoph Hellwig <hch@infradead.org>
+To: Shiwu Zhang <shiwu.zhang@amd.com>
+Subject: Re: [PATCH] drm/amdgpu: add the accelerator pcie class
+Message-ID: <ZGxfEklioAu6orvo@infradead.org>
+References: <20230523040232.21756-1-shiwu.zhang@amd.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230523040232.21756-1-shiwu.zhang@amd.com>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ bombadil.infradead.org. See http://www.infradead.org/rpr.html
 X-Mailman-Approved-At: Tue, 23 May 2023 09:25:02 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -40,47 +49,18 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, Xinhui.Pan@amd.com,
- Abaci Robot <abaci@linux.alibaba.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- daniel@ffwll.ch, airlied@gmail.com
+Cc: bhelgaas@google.com, linux-pci@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-No functional modification involved.
+On Tue, May 23, 2023 at 12:02:32PM +0800, Shiwu Zhang wrote:
+> +	{ PCI_DEVICE(0x1002, PCI_ANY_ID),
+> +	  .class = PCI_CLASS_ACCELERATOR_PROCESSING << 8,
+> +	  .class_mask = 0xffffff,
+> +	  .driver_data = CHIP_IP_DISCOVERY },
 
-drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c:374: warning: expecting prototype for vcn_v4_0_mc_resume_dpg_mode(). Prototype was for vcn_v4_0_3_mc_resume_dpg_mode() instead.
-drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c:631: warning: expecting prototype for vcn_v4_0_enable_clock_gating(). Prototype was for vcn_v4_0_3_enable_clock_gating() instead.
-
-Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-Link: https://bugzilla.openanolis.cn/show_bug.cgi?id=5284
-Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
----
- drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-index 339842382a1e..5d67b8b8a3d6 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-@@ -362,7 +362,7 @@ static void vcn_v4_0_3_mc_resume(struct amdgpu_device *adev, int inst_idx)
- }
- 
- /**
-- * vcn_v4_0_mc_resume_dpg_mode - memory controller programming for dpg mode
-+ * vcn_v4_0_3_mc_resume_dpg_mode - memory controller programming for dpg mode
-  *
-  * @adev: amdgpu_device pointer
-  * @inst_idx: instance number index
-@@ -620,7 +620,7 @@ static void vcn_v4_0_3_disable_clock_gating_dpg_mode(struct amdgpu_device *adev,
- }
- 
- /**
-- * vcn_v4_0_enable_clock_gating - enable VCN clock gating
-+ * vcn_v4_0_3_enable_clock_gating - enable VCN clock gating
-  *
-  * @adev: amdgpu_device pointer
-  * @inst_idx: instance number
--- 
-2.20.1.7.g153144c
+Probing for every single device of a given class for a single vendor
+to a driver is just fundamentaly wrong.  Please list the actual IDs
+that the driver can handle.
 
