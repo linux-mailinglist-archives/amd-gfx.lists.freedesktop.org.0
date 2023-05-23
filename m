@@ -2,48 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14BEA70E8ED
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 May 2023 00:16:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C971170E906
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 May 2023 00:21:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B1C710E532;
-	Tue, 23 May 2023 22:16:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65E3E10E535;
+	Tue, 23 May 2023 22:21:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E187610E4FE;
- Tue, 23 May 2023 22:16:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=Kg8o3n1Ivn4wLajrNZLigYd2IY82VNZtW40nr3NAhgc=; b=WgTWoIjA7qkyNA84LkosHydU5c
- BdmSBVmTPEKpUFWupQA0CncpbFfpPuI+a9HD6E+nA5QRVYxURv0DM4O/DmK6mE7IRHnDffB83tgPO
- QPCuDXERKFzHkiuDwgegOHjtq/Spdn98Tpe7J0lmb6qpFG60fRWjHOR3TazXDWZL+qJ72zy3832oS
- 4QeiNXiu4ztVM16iQnr4VbzPrn1tHyVz6s+hTc/P5aVDu/9Rn1fDBkPINwcRWq66nYBUFDkN/BLo/
- iCjjeO65cDU/6SFGkj55vlvuNnv8lzmTzcCbE/MexOgypKCZotv6tUrSJiP+4yTGfV1gtHUBM1WVo
- 5yfOrpNg==;
-Received: from [38.44.72.37] (helo=killbill.home)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1q1aIk-00HEOv-Nx; Wed, 24 May 2023 00:16:18 +0200
-From: Melissa Wen <mwen@igalia.com>
-To: amd-gfx@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, sunpeng.li@amd.com,
- Alex Deucher <alexander.deucher@amd.com>, dri-devel@lists.freedesktop.org,
- christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
- daniel@ffwll.ch
-Subject: [PATCH 36/36] drm/amd/display: allow newer DC hardware to use degamma
- ROM for PQ/HLG
-Date: Tue, 23 May 2023 21:15:20 -0100
-Message-Id: <20230523221520.3115570-37-mwen@igalia.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230523221520.3115570-1-mwen@igalia.com>
+Received: from mail-4327.protonmail.ch (mail-4327.protonmail.ch [185.70.43.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9381210E535
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 May 2023 22:21:28 +0000 (UTC)
+Date: Tue, 23 May 2023 22:21:02 +0000
+Authentication-Results: mail-4321.protonmail.ch;
+ dkim=pass (2048-bit key) header.d=emersion.fr header.i=@emersion.fr
+ header.b="Q1e7QkDV"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
+ s=protonmail; t=1684880464; x=1685139664;
+ bh=zRwWsMDd5Kf2yQpedEA3Ka2dLpgNvYvwuOL0uYq4mxY=;
+ h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+ Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+ Message-ID:BIMI-Selector;
+ b=Q1e7QkDV5Zacu07sYQ6VrJy6cddZnmEZQWUwJlA0IkQ2Dp+cc63CuXDJKddL4dmzg
+ FRTg0R/s5sPxJYRKUgVSG7MEcskIAhZEj3e/jMGLeNN2fPmAepkvu8EQY4Y2l4vvUj
+ ywSQ0w3psCVuNM1w1mlS95faA50I6N8DTnS3JesReu3qKKHRRPB1bxKj65iTAi2aoG
+ KTXSUckbouWzTtewuw4YlKHYLb5DX+4CUN33vafnrFiP6LptMufPOIvPgq4vdPQ7gp
+ kcrxOaz8lyC+kn41DXaJ2XRK68+YUr1AdDfjS6oQ8e5KrJT+oLh6r+KSWOWjDtVeQx
+ hyCkUxZ+59GwQ==
+To: Melissa Wen <mwen@igalia.com>
+From: Simon Ser <contact@emersion.fr>
+Subject: Re: [PATCH 01/36] drm/drm_mode_object: increase max objects to
+ accommodate new color props
+Message-ID: <V7P7Qs7O1XEpNUGXDkkpL6rV2Y2jJ60PhjEL7-qetMKUv6YF2C1leKhKS5zAj1qG8tkBcTqoHFhN_gW1SWaI9FwsQn1uzuvyZcreV6MwGPY=@emersion.fr>
+In-Reply-To: <20230523221520.3115570-2-mwen@igalia.com>
 References: <20230523221520.3115570-1-mwen@igalia.com>
+ <20230523221520.3115570-2-mwen@igalia.com>
+Feedback-ID: 1358184:user:proton
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,169 +51,18 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sebastian Wick <sebastian.wick@redhat.com>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Shashank Sharma <Shashank.Sharma@amd.com>, Alex Hung <alex.hung@amd.com>,
- Simon Ser <contact@emersion.fr>, Xaver Hugl <xaver.hugl@gmail.com>,
- kernel-dev@igalia.com, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+Cc: mripard@kernel.org, kernel-dev@igalia.com,
+ Sebastian Wick <sebastian.wick@redhat.com>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>, daniel@ffwll.ch,
+ Shashank Sharma <Shashank.Sharma@amd.com>, sunpeng.li@amd.com,
+ maarten.lankhorst@linux.intel.com, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Xaver Hugl <xaver.hugl@gmail.com>, dri-devel@lists.freedesktop.org,
+ Alex Hung <alex.hung@amd.com>, amd-gfx@lists.freedesktop.org,
+ tzimmermann@suse.de, Alex Deucher <alexander.deucher@amd.com>,
+ airlied@gmail.com, Harry Wentland <harry.wentland@amd.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
  Joshua Ashton <joshua@froggi.es>, sungjoon.kim@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Joshua Ashton <joshua@froggi.es>
-
-Need to funnel the color caps through to these functions so it can check
-that the hardware is capable.
-
-Signed-off-by: Joshua Ashton <joshua@froggi.es>
-Signed-off-by: Melissa Wen <mwen@igalia.com>
----
- .../amd/display/amdgpu_dm/amdgpu_dm_color.c   | 35 ++++++++++++-------
- 1 file changed, 23 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-index 4a2b66568451..714f07bb9c9c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-@@ -338,6 +338,7 @@ static int amdgpu_dm_set_atomic_regamma(struct dc_stream_state *stream,
- /**
-  * __set_input_tf - calculates the input transfer function based on expected
-  * input space.
-+ * @caps: dc color capabilities
-  * @func: transfer function
-  * @lut: lookup table that defines the color space
-  * @lut_size: size of respective lut.
-@@ -345,7 +346,7 @@ static int amdgpu_dm_set_atomic_regamma(struct dc_stream_state *stream,
-  * Returns:
-  * 0 in case of success. -ENOMEM if fails.
-  */
--static int __set_input_tf(struct dc_transfer_func *func,
-+static int __set_input_tf(struct dc_color_caps *caps, struct dc_transfer_func *func,
- 			  const struct drm_color_lut *lut, uint32_t lut_size)
- {
- 	struct dc_gamma *gamma = NULL;
-@@ -362,7 +363,7 @@ static int __set_input_tf(struct dc_transfer_func *func,
- 		__drm_lut_to_dc_gamma(lut, gamma, false);
- 	}
- 
--	res = mod_color_calculate_degamma_params(NULL, func, gamma, gamma != NULL);
-+	res = mod_color_calculate_degamma_params(caps, func, gamma, gamma != NULL);
- 
- 	if (gamma)
- 		dc_gamma_release(&gamma);
-@@ -511,7 +512,7 @@ static int amdgpu_dm_atomic_blend_lut(const struct drm_color_lut *blend_lut,
- 		func_blend->tf = tf;
- 		func_blend->sdr_ref_white_level = SDR_WHITE_LEVEL_INIT_VALUE;
- 
--		ret = __set_input_tf(func_blend, blend_lut, blend_size);
-+		ret = __set_input_tf(NULL, func_blend, blend_lut, blend_size);
- 	} else {
- 		func_blend->type = TF_TYPE_BYPASS;
- 		func_blend->tf = TRANSFER_FUNCTION_LINEAR;
-@@ -818,7 +819,8 @@ int amdgpu_dm_update_crtc_color_mgmt(struct dm_crtc_state *crtc,
- 
- static int
- map_crtc_degamma_to_dc_plane(struct dm_crtc_state *crtc,
--			     struct dc_plane_state *dc_plane_state)
-+			     struct dc_plane_state *dc_plane_state,
-+			     struct dc_color_caps *caps)
- {
- 	const struct drm_color_lut *degamma_lut;
- 	enum dc_transfer_func_predefined tf = TRANSFER_FUNCTION_SRGB;
-@@ -873,7 +875,7 @@ map_crtc_degamma_to_dc_plane(struct dm_crtc_state *crtc,
- 			dc_plane_state->in_transfer_func->tf =
- 				TRANSFER_FUNCTION_LINEAR;
- 
--		r = __set_input_tf(dc_plane_state->in_transfer_func,
-+		r = __set_input_tf(caps, dc_plane_state->in_transfer_func,
- 				   degamma_lut, degamma_size);
- 		if (r)
- 			return r;
-@@ -886,7 +888,7 @@ map_crtc_degamma_to_dc_plane(struct dm_crtc_state *crtc,
- 		dc_plane_state->in_transfer_func->tf = tf;
- 
- 		if (tf != TRANSFER_FUNCTION_SRGB &&
--		    !mod_color_calculate_degamma_params(NULL,
-+		    !mod_color_calculate_degamma_params(caps,
- 							dc_plane_state->in_transfer_func,
- 							NULL, false))
- 			return -ENOMEM;
-@@ -897,7 +899,8 @@ map_crtc_degamma_to_dc_plane(struct dm_crtc_state *crtc,
- 
- static int
- __set_dm_plane_degamma(struct drm_plane_state *plane_state,
--		       struct dc_plane_state *dc_plane_state)
-+		       struct dc_plane_state *dc_plane_state,
-+		       struct dc_color_caps *color_caps)
- {
- 	struct dm_plane_state *dm_plane_state = to_dm_plane_state(plane_state);
- 	const struct drm_color_lut *degamma_lut;
-@@ -906,6 +909,9 @@ __set_dm_plane_degamma(struct drm_plane_state *plane_state,
- 	bool has_degamma_lut;
- 	int ret;
- 
-+	if (dc_plane_state->ctx && dc_plane_state->ctx->dc)
-+		color_caps = &dc_plane_state->ctx->dc->caps.color;
-+
- 	degamma_lut = __extract_blob_lut(dm_plane_state->degamma_lut,
- 					 &degamma_size);
- 
-@@ -928,7 +934,7 @@ __set_dm_plane_degamma(struct drm_plane_state *plane_state,
- 		dc_plane_state->in_transfer_func->type =
- 			TF_TYPE_DISTRIBUTED_POINTS;
- 
--		ret = __set_input_tf(dc_plane_state->in_transfer_func,
-+		ret = __set_input_tf(color_caps, dc_plane_state->in_transfer_func,
- 				     degamma_lut, degamma_size);
- 		if (ret)
- 			return ret;
-@@ -945,7 +951,8 @@ __set_dm_plane_degamma(struct drm_plane_state *plane_state,
- 
- static int
- amdgpu_dm_plane_set_color_properties(struct drm_plane_state *plane_state,
--				     struct dc_plane_state *dc_plane_state)
-+				     struct dc_plane_state *dc_plane_state,
-+				     struct dc_color_caps *color_caps)
- {
- 	struct dm_plane_state *dm_plane_state = to_dm_plane_state(plane_state);
- 	enum drm_transfer_function shaper_tf = DRM_TRANSFER_FUNCTION_DEFAULT;
-@@ -1013,9 +1020,13 @@ int amdgpu_dm_update_plane_color_mgmt(struct dm_crtc_state *crtc,
- 				      struct drm_plane_state *plane_state,
- 				      struct dc_plane_state *dc_plane_state)
- {
-+	struct dc_color_caps *color_caps = NULL;
- 	bool has_crtc_cm_degamma;
- 	int ret;
- 
-+	if (dc_plane_state->ctx && dc_plane_state->ctx->dc)
-+		color_caps = &dc_plane_state->ctx->dc->caps.color;
-+
- 	/* Initially, we can just bypass the DGM block. */
- 	dc_plane_state->in_transfer_func->type = TF_TYPE_BYPASS;
- 	dc_plane_state->in_transfer_func->tf = TRANSFER_FUNCTION_LINEAR;
-@@ -1023,7 +1034,7 @@ int amdgpu_dm_update_plane_color_mgmt(struct dm_crtc_state *crtc,
- 	/* After, we start to update values according to color props */
- 	has_crtc_cm_degamma = (crtc->cm_has_degamma || crtc->cm_is_degamma_srgb);
- 
--	ret = __set_dm_plane_degamma(plane_state, dc_plane_state);
-+	ret = __set_dm_plane_degamma(plane_state, dc_plane_state, color_caps);
- 	if (ret == -ENOMEM)
- 		return ret;
- 
-@@ -1049,11 +1060,11 @@ int amdgpu_dm_update_plane_color_mgmt(struct dm_crtc_state *crtc,
- 		 * linearize (implicit degamma) from sRGB/BT709 according to
- 		 * the input space.
- 		 */
--		ret = map_crtc_degamma_to_dc_plane(crtc, dc_plane_state);
-+		ret = map_crtc_degamma_to_dc_plane(crtc, dc_plane_state, color_caps);
- 		if (ret)
- 			return ret;
- 	}
- 
- 	return amdgpu_dm_plane_set_color_properties(plane_state,
--						    dc_plane_state);
-+						    dc_plane_state, color_caps);
- }
--- 
-2.39.2
-
+Reviewed-by: Simon Ser <contact@emersion.fr>
