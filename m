@@ -2,63 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E50AB70E94C
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 May 2023 00:53:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6A0470F353
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 May 2023 11:46:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DE9510E54D;
-	Tue, 23 May 2023 22:53:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE5BF10E632;
+	Wed, 24 May 2023 09:46:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com
- [IPv6:2607:f8b0:4864:20::42b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EB0110E54D;
- Tue, 23 May 2023 22:53:49 +0000 (UTC)
-Received: by mail-pf1-x42b.google.com with SMTP id
- d2e1a72fcca58-64d722dac08so69372b3a.1; 
- Tue, 23 May 2023 15:53:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1684882428; x=1687474428;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=dzyaEdd/JqPFdlbr4P5lD8SJNFEFOGGYtrKk5EhfcwE=;
- b=cJ9/TcBhxIj9lFFCTweyLaXwUwkDLt4FKgqqFc6IOluWlbYQkLefOCulf0oAMe6LnY
- nIE/jFemSdWsEOihT8TAkYFRcDAA5Z0vjIW0OrZ/lL/YUraMlprdLjoyVFDyxUHA3VmJ
- zFiMFbIOQoiHxy1zrNa5npE/6/2z0vAAHZ5TY4D1qEKrJwOTXswOhZMaOiPDgWOmamG2
- 9iZHbcjLwWPtb/2/XR9otOys1/M3+rBhO/wGSpl6mFFY2h7eo5aHJk1hNdh8eOW2j67D
- 5uxpKnicGNoLOGqgC32O0oYVBs+Kzn7EeT1Np51YR/liWQKN2nQDUoYD+iUQ42OIFZTT
- /DLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684882428; x=1687474428;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=dzyaEdd/JqPFdlbr4P5lD8SJNFEFOGGYtrKk5EhfcwE=;
- b=WxgN7M4/vsfpR92BLSRRWysEQ0vGX8F0s9nm0wweADBTp3H545P4IegGD7s9Q2eCC4
- V7AMXvu77FZpjRgH1k2smqhaZX8qPwkyHQZ/3HoUBer9VebPu/SO0usR113xxVNobI1K
- d4XOmyfoqQXYorOzr1AcRw4oT+77qSsx///IVMBvktF80l6tDHKSarDGKNlcSUw0psZK
- EpepJzcj4nlY4DdZRH719QkQ33mEKAGNckcz6kRhxdG4lVU1n34ehmiGn2jdI8UbUD5X
- l95swrdzqkZ1Tko5QxkLFrbx6hLnioXpiT5iiJ9Zxe1k0uGkM97RoyGEfCcGd2+IeaO2
- QCzA==
-X-Gm-Message-State: AC+VfDwBCQxH+X6LwzgUxQ6igFaSXp8btVb/A3B/bzJSKUx0lQWugLNN
- p+SP4GBnevGkY2c+XN65yGxBU3yMM6EuxA==
-X-Google-Smtp-Source: ACHHUZ728+Nnl4PPO5tB1/wctSVh7SxxOLII12WRy5EBIrkEoseUDiTO3WoKmZyv4E/fCCAY5BBz1Q==
-X-Received: by 2002:a05:6a20:3d95:b0:105:66d3:854d with SMTP id
- s21-20020a056a203d9500b0010566d3854dmr13269686pzi.6.1684882427464; 
- Tue, 23 May 2023 15:53:47 -0700 (PDT)
-Received: from olv-ct-22.c.googlers.com.com
- (217.108.125.34.bc.googleusercontent.com. [34.125.108.217])
- by smtp.gmail.com with ESMTPSA id
- 23-20020aa79157000000b0064d681c753csm1670525pfi.40.2023.05.23.15.53.46
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 23 May 2023 15:53:47 -0700 (PDT)
-From: Chia-I Wu <olvaffe@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH v2] amdgpu: validate drm_amdgpu_gem_va addrs
-Date: Tue, 23 May 2023 15:53:23 -0700
-Message-ID: <20230523225336.2642008-1-olvaffe@gmail.com>
-X-Mailer: git-send-email 2.40.1.698.g37aff9b760-goog
+Received: from sonic304-25.consmr.mail.gq1.yahoo.com
+ (sonic304-25.consmr.mail.gq1.yahoo.com [98.137.68.206])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0EED10E557
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 May 2023 23:23:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1684884233; bh=Jx7So8nbrA+NGRWbD/9JPkNHTmfY6L1rcTJmWjOWwv0=;
+ h=From:To:Cc:Subject:Date:References:From:Subject:Reply-To;
+ b=T2ahkWENlK8XmaQa0fkqQuMXT+VdqWM5KNZnQH+5xPbuTtKqp7CICeimtKIkwuMiLth347EFPPs6rzuXqFUJMvQ0KIxx3PzmdPQ9KgyuZ1GidyHXKmVo7NzRtLTjw/omXqYR/+e57Blnkhv4KwvpQkh1RKzKisLAH3407pzsGxapTxN+178AeG+ia0hHccGeW9UoVUf6DqEJt3/JS2r+96GzR/dhpBEbCS3cdLfsJlCQ0CvibgGCSlyz6Ee/Ld5kna/ZuHxBoyXArmXTIShwDdUe43M3uqR/5ZNfDnfKFi27bKY8xPXXGT0noEEKvr9Ua5cpHuy08MX/PILLfzsxJw==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1684884233; bh=c1QiC0WQyrDke3FL5hR5H/ExWXpKf2x+1L9Lm7ZtWoQ=;
+ h=X-Sonic-MF:From:To:Subject:Date:From:Subject;
+ b=hLoeSWc/fJ/jcnKGqX3NvHASNYpUHNuAOseJtn403GRRKkTi800850lFYMyhYMLhjKKPe538qpkEMsfawszyTbo6sEhTdPSFIiF8iLr0E3LWHJJZ1W0V60/Y45P2Y5VEKDFT+oSVP6ohLLdTCOSy7aOCTuaK6x9Vs+tbTiQtWf6W2U3Uhf1BRU9yGwtzbOXXvKwf2joHRfcMvk2qcxOEkbyfgl633d6JtUe3MOeZ32pZ6V+1qFS0Pxb2a03OD+9JVPUGsKVvLwQxeOEJqcOUU657Z86MzbA3mK5w//cIhOu7Hg5vxGBWsPCZkmhUb/GfOQ4xdh1cwyp2HAprPTBfJA==
+X-YMail-OSG: lq2GUMoVM1mVbNRf3gRpKd4G7XxpPhAJ0UgnE7GSyrDErZgJa0KwR7NHs85NkXB
+ qXuPuaxXPjSeRlb7s1wOjinOgOCD4AxSTJejtE_xExU_rswz3weZsWcXjEklQNxioe0UwgZ97GYj
+ mys2DYt7AZ__U0.oMGWgNHKpZEwt2FG9joBe2dJPBd.5wcVuekWInDUjefCZNegcfF8M_BjfzFVq
+ J0.1IVsQxHl9RUi14PebtFYaLXkRKLMS0vXOJ6H3M1fxH7F.RriZmmxSZxFYWq_eC0eiCKlDlqJF
+ UV5R37qYX_nWa1QQprjqj_X52mEW_2JqIGasHanigtzX28NrlHChzSIJfe.S_xpNy9lY5vCgZKO7
+ iNkwl7hZuSqTm7hTPA4bntyGSNVGi1psVDFQrkW3w8Qf0AOoFCwyx1dwptTv3uHMou.NzK.8_mwC
+ n222CAWUh9tMM3vaKSJJl85sdqFQaBX0CBrnIdSNMhpfBUIvSB.blnDXQI39yeGuzVy3hPUH9AtX
+ jCjHBJdNIt82.QCOR3t1e7Iv4yf287YUIL7oUQOQs5HfAd19.45ZCv0tvu6q3_eaO_u5tII2G1vc
+ Je8dQ_yuiY2fy3NCzm64rHCoQmUyqYzWz1.ihsewaLWnt69POzjKS5CrtBSbMh_XhT24_.1SICG2
+ 7A9BeXbmhdH0TWTreP6DmiDzS.5EwP1SD11daSAn5NZZ5XuhdJCMAA1YpTC38cmw0WPZ__OTqGmH
+ OZONDHFcUVrlzEDNZQklIy1ddn8huie.v7Q19KYynkBePBM7wirjhB2mY4odT.S8y3jGerEAl1EB
+ .m2iF7frdJqyaaRVmPvu37oAl2Y.6vQpg0OuYOdcgoiXsGBkK1FOQUU__8G9zEFBYWvURKWcPr0S
+ OLs1hOqgQP9qUhuZxIEY.eALTxLqGun3MxfuhFzg21.WRqK.6eaMSIzZWwEyCk2lnJHkx.O84B7P
+ AOl4AkUEnqCML6o5CvvoncbujVG7Gw2NXGLg08XILDOn2JT.6iULQaq6TDeIUKy2qp.k.wAUhKvT
+ V8OE3USUQlXSqlCIxyQexJdkXV9KS0_2I_EO2POLn6fd9h_SJc5FqEMCEdQOTlwh.vgt_WNgHNa.
+ 8_NJw8SFzsPCff_uqwm.wx17ZD0tog8NvrNq0.c2KIgVAtclenSV8qZ4zYaauNCWw91cyFZwgb9k
+ hluu99hyaGe2eKWPrDrnxECjVEOVV1_4VBX4uhuzyc.oCzeoSRr2pgOH1kiFuqxUpjEaptrEehy7
+ N6SZRGDxKmWBZnTSbEV5wcvgcafwZMQQjAq1ySIiNQboR_9.BriVolJwq4JuWzABWxl7G6PLiGeO
+ KExHRDlKV7eyrrUI4cCdkdrwXLyQnHWhck33GB5upVzDGqr7TWPXioQCbp_AQ93mH88X5rrnFj66
+ XruGp6PZFaTojgieKJiAaHkBjYBeuz4.QVOb5_sP4bsahW3POFxFkavtPvA.pZYaWRAyssJm3uGj
+ BiRc.V.pyLp2ZDnt1uRm973drtxBey3p1z2Rr.4QlvSd7qgwXIg07mZiqjX5NmBvUl5joMJxF4AU
+ OqMfXwqUryRs_dpLIJZ0ybRd7rCQ29P7KQRcvBcG9q6ywbUI0hfIqvmpV7bef11mxM1NaNqAmd2n
+ IRrX0fOnnWqQW7znDE1bK6YSjnokxuiJEyW2FCiVmVFm0BfBVkH.liB77wr9ODWapg3vMVerXnr5
+ 74RCnVZZJjNRUEIOD0NxVeKF2sprlqC0B2RGgW6vJBqp1th.AwjlwLJq21r5tLGcSEAjUVFX73QR
+ KFbRm77WYP4XDzeAjuZs9hCuC.66NaRcU9.56VF8XuXxlbMaFUlzJrhEaIIUUL8c9O_HupihhYFW
+ _Jt4ClCcix2lY.GKXGU5KwpoYxxzAOow47H5PbnqX7KJ7hJLgfkE7wRKQpbzGiwP2_5ClpJ.avXM
+ dxTS4MpZWAESVzzMWB6JA1GsoysXsf3HcfRv_YTN5UHVAdpeEiBNQHsRSXYGguD7L5mjMpX675RG
+ s5samRtu75O0q9q.SX60TC9L13rCCJYWfd41pfs7esXO6eWY.Qm4NDaoVyabr84IIsw0EkH5gSzS
+ Y3QrSa.AQCKol1B83lzWIzcdh__ja3KG8EqAuUz0G4upHa1Y7wPOkMDY5NpYtLYfvtI5RhF6hW2j
+ nAo9AbcRb6HaGngKPdTYwwwmdsPKQkvGNdq0JOc3KUFpnhdcdvIegeL3__YG3Kxz3c6SRaxh64sN
+ 2_qMa_NRQzFdsPomAqPkneO4G.IoXhPRbKbXRQ.QVIUFy4VxTSIxBtQ5PgFf5fHvpIzR13Haz
+X-Sonic-MF: <astrajoan@yahoo.com>
+X-Sonic-ID: 1bbb1ce7-9557-46b8-a022-f435a37c3c48
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic304.consmr.mail.gq1.yahoo.com with HTTP; Tue, 23 May 2023 23:23:53 +0000
+Received: by hermes--production-bf1-54475bbfff-xmg9w (Yahoo Inc. Hermes SMTP
+ Server) with ESMTPA ID d157402ea91e225da98a9424db96668e; 
+ Tue, 23 May 2023 23:23:50 +0000 (UTC)
+From: Ziqi Zhao <astrajoan@yahoo.com>
+To: skhan@linuxfoundation.org
+Subject: [Linux-kernel-mentorship] [PATCH] drm/amdgpu: remove excess parameter
+ description in amdgpu_device.c
+Date: Tue, 23 May 2023 23:23:31 +0000
+Message-Id: <20230523232331.363182-1-astrajoan@yahoo.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+References: <20230523232331.363182-1-astrajoan.ref@yahoo.com>
+X-Mailman-Approved-At: Wed, 24 May 2023 09:46:48 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,86 +81,54 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Philip Yang <Philip.Yang@amd.com>, Kefeng Wang <wangkefeng.wang@huawei.com>,
- Jammy Zhou <Jammy.Zhou@amd.com>, Mukul Joshi <mukul.joshi@amd.com>,
- Suren Baghdasaryan <surenb@google.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+Cc: andrey.grodzovsky@amd.com, lijo.lazar@amd.com,
+ Amaranath.Somalapuram@amd.com, Ziqi Zhao <astrajoan@yahoo.com>,
+ dri-devel@lists.freedesktop.org, Xinhui.Pan@amd.com,
  linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- =?UTF-8?q?Marek=20Ol=C5=A1=C3=A1k?= <marek.olsak@amd.com>,
- Luben Tuikov <luben.tuikov@amd.com>, Yang Li <yang.lee@linux.alibaba.com>,
- Danijel Slivka <danijel.slivka@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>, David Airlie <airlied@gmail.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+ sumit.semwal@linaro.org, linaro-mm-sig@lists.linaro.org, YiPeng.Chai@amd.com,
+ mario.limonciello@amd.com, daniel@ffwll.ch, Bokun.Zhang@amd.com,
+ alexander.deucher@amd.com, linux-media@vger.kernel.org, airlied@gmail.com,
+ christian.koenig@amd.com, Hawking.Zhang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Validate drm_amdgpu_gem_va addrs in amdgpu_gem_va_ioctl.
-amdgpu_vm_bo_replace_map no longer needs to validate (and its
-validations were insufficient either).  amdgpu_vm_bo_map has internal
-users and its validations are kept.
+This patch is part of the Linux Kernel Bug Fixing Summer screening
+tasks. By removing the extra description, several documentation
+compilation warnings such as the following have been fixed:
 
-This is motivated by OOB access in amdgpu_vm_update_range when
-offset_in_bo+map_size overflows.
+> ./drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:758: warning: Excess function parameter 'pcie_index' description in 'amdgpu_device_indirect_wreg'
 
-Userspace (radeonsi and radv) seems fine as well.
+Note: I assume the description can be safely removed based on this
+earlier patch:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/patch?id=65ba96e91b689c23d6fa99c11cfd65965dcddc47
 
-v2: keep the validations in amdgpu_vm_bo_map
-
-Fixes: 9f7eb5367d00 ("drm/amdgpu: actually use the VM map parameters")
-Signed-off-by: Chia-I Wu <olvaffe@gmail.com>
+Signed-off-by: Ziqi Zhao <astrajoan@yahoo.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 15 +++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c  |  8 +-------
- 2 files changed, 16 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-index d8e683688daab..36d5adfdf0f69 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-@@ -681,6 +681,21 @@ int amdgpu_gem_va_ioctl(struct drm_device *dev, void *data,
- 	uint64_t vm_size;
- 	int r = 0;
- 
-+	if (args->va_address & ~PAGE_MASK || args->offset_in_bo & ~PAGE_MASK ||
-+	    args->map_size & ~PAGE_MASK) {
-+		dev_dbg(dev->dev, "unaligned va_address 0x%LX, offset_in_bo 0x%LX, or map_size 0x%LX\n",
-+			args->va_address, args->offset_in_bo, args->map_size);
-+		return -EINVAL;
-+	}
-+
-+	if (args->map_size == 0 ||
-+	    args->va_address + args->map_size < args->va_address ||
-+	    args->offset_in_bo + args->map_size < args->offset_in_bo) {
-+		dev_dbg(dev->dev, "invalid map_size 0x%LX (va_address 0x%LX, offset_in_bo 0x%LX)\n",
-+			args->map_size, args->va_address, args->offset_in_bo);
-+		return -EINVAL;
-+	}
-+
- 	if (args->va_address < AMDGPU_VA_RESERVED_SIZE) {
- 		dev_dbg(dev->dev,
- 			"va_address 0x%LX is in reserved area 0x%LX\n",
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index b9441ab457ea7..6307baaa136cf 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -1501,15 +1501,9 @@ int amdgpu_vm_bo_replace_map(struct amdgpu_device *adev,
- 	uint64_t eaddr;
- 	int r;
- 
--	/* validate the parameters */
--	if (saddr & ~PAGE_MASK || offset & ~PAGE_MASK ||
--	    size == 0 || size & ~PAGE_MASK)
--		return -EINVAL;
--
- 	/* make sure object fit at this offset */
- 	eaddr = saddr + size - 1;
--	if (saddr >= eaddr ||
--	    (bo && offset + size > amdgpu_bo_size(bo)) ||
-+	if ((bo && offset + size > amdgpu_bo_size(bo)) ||
- 	    (eaddr >= adev->vm_manager.max_pfn << AMDGPU_GPU_PAGE_SHIFT))
- 		return -EINVAL;
- 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 5c7d40873ee2..58d8f60c6a3a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -747,8 +747,6 @@ u64 amdgpu_device_indirect_rreg64(struct amdgpu_device *adev,
+  * amdgpu_device_indirect_wreg - write an indirect register address
+  *
+  * @adev: amdgpu_device pointer
+- * @pcie_index: mmio register offset
+- * @pcie_data: mmio register offset
+  * @reg_addr: indirect register offset
+  * @reg_data: indirect register data
+  *
+@@ -778,8 +776,6 @@ void amdgpu_device_indirect_wreg(struct amdgpu_device *adev,
+  * amdgpu_device_indirect_wreg64 - write a 64bits indirect register address
+  *
+  * @adev: amdgpu_device pointer
+- * @pcie_index: mmio register offset
+- * @pcie_data: mmio register offset
+  * @reg_addr: indirect register offset
+  * @reg_data: indirect register data
+  *
 -- 
-2.40.1.698.g37aff9b760-goog
+2.34.1
 
