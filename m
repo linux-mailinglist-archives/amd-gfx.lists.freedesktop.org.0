@@ -2,93 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDD8D70F29F
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 May 2023 11:23:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C930970F66B
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 May 2023 14:29:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FAC110E58F;
-	Wed, 24 May 2023 09:23:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 486F710E5D5;
+	Wed, 24 May 2023 12:29:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2068.outbound.protection.outlook.com [40.107.237.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 701CB10E58F
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 May 2023 09:23:46 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IDQB6K3WbPJkX5qY723CCmMdpvhJQMvTbZpYnGR4JD4J0gJGu3GJvxNyy1V2lk8gdyMCUPNvzVTksxAUnF47WYcRaW7DsznldbYgK/4cC/Ds+h7u3wRushbEEdnB+H/BbiRRb7skktVKChzb06X+pY6DpI9w+IumnzOCNGHPRw/Tm+DLQfT5tA2IdvlUvToZHbv5EFpk4RIiYfkllIEZNdfbg7mcBQGIJvHhcXmNaGfcY7tFogLWkrSYfZ7rtE+yKMXdrhW0Z0V+/tdt6aGAhTSEI2nwPCwZBID/nvmkpTmO2fG7z+qxjaqOf0rQbJa4RIsa03QSFlb8Vy+fwI5LBw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=N1xOoXIoz4JNeUf/0/mgdJVNHMloRpdiS+bGV6pQIcM=;
- b=jnZrHvoj4oITudMra73MtlQoSxHcsYz0/3SX7aFfVKNjYSHm723z2ObnkTHm9T2AoyqA60JkyPDF+ZSfDWZBhixd8MeU+OA4zc0ZKFpGLFjth3bYgCldTvSXRBn34HqSbdmkEXJbL6HAVGBIVaEl6iXSmZ0iw5GN+NSqVXtBWZ2HE/4tuRBN2MZvILSklUacHELd5TA8/Nx30uLtBqN3ti/2toV6rqzp3iloKfgimRkVZFnsHZtmYtznrbOgZmHrb2437xATw0o6vLVUWHvmKHUsBEu0iAgHGQAGeTMZWcuJvSj6Nj7Y/CKTn4RnLFFz0H41v+VnbvCARbf92MK9ng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=N1xOoXIoz4JNeUf/0/mgdJVNHMloRpdiS+bGV6pQIcM=;
- b=US2D3OnReCCJhuXyo6n0rrLIrTI7ALKgjHSRrT/Dq56JUmr+zntfHV8k3jPTQ/k3Vq09BvUdUYoBj9ncZ+Y9S1ce67/MVDQz2n393Z49irAwR6F/iqGCMVxBE9FSbC2VkCu9kGZHz7f4X9Mgiahu8Kac/2z9GnuRemohCmHBSrQ=
-Received: from MW3PR06CA0007.namprd06.prod.outlook.com (2603:10b6:303:2a::12)
- by LV2PR12MB5847.namprd12.prod.outlook.com (2603:10b6:408:174::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.28; Wed, 24 May
- 2023 09:23:43 +0000
-Received: from CO1NAM11FT033.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:2a:cafe::ac) by MW3PR06CA0007.outlook.office365.com
- (2603:10b6:303:2a::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.15 via Frontend
- Transport; Wed, 24 May 2023 09:23:43 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT033.mail.protection.outlook.com (10.13.174.247) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6411.30 via Frontend Transport; Wed, 24 May 2023 09:23:42 +0000
-Received: from guchchen-System-Product-Name.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Wed, 24 May 2023 04:23:39 -0500
-From: Guchun Chen <guchun.chen@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <alexander.deucher@amd.com>,
- <hawking.zhang@amd.com>, <lijo.lazar@amd.com>, <Philip.Yang@amd.com>,
- <Felix.Kuehling@amd.com>
-Subject: [PATCH] drm/amdgpu: add a flag to indicate if a VM is attached to
- fpriv
-Date: Wed, 24 May 2023 17:23:26 +0800
-Message-ID: <20230524092326.1941139-1-guchun.chen@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com
+ [IPv6:2001:4860:4864:20::2f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5360510E5D5
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 May 2023 12:29:43 +0000 (UTC)
+Received: by mail-oa1-x2f.google.com with SMTP id
+ 586e51a60fabf-18b1c643219so87562fac.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 May 2023 05:29:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1684931382; x=1687523382;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=EAhlt+4UW2iuyXc8zpPrzAT0KdR1itBidSLb08DB5G0=;
+ b=BcLUeD0y5PFwG6xE2clQtl15yC6TJQ8dpXTgcnqdqYjyG/qfQXmYFvGfqWzRNtXigG
+ X/UqU65aQm24B4qm4p+kJRh/YHpEX5r/RE6G2AdNRZb6oEEg/KYJv1rUtI8naLflL1Ak
+ RPLvHrM5qjEWfS7QTU8+SVRSrabqW1YS9fGaDbTt/CVrpSYnZSNLToTbaUtS1Ae3D+SR
+ NEWJRzXbUWV5m0wbcUMHKv4rXyj6sbGjr5WXerW/RuHXLza3zPbvckEcNhKFQXhJR+c6
+ 4S1Le4dZsqRHKNQw6FWsPZ6lIVYKVoxPc9Eh0FQ2qAKbIJgYKbydXbQzqzuec7goTls2
+ k6jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1684931382; x=1687523382;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=EAhlt+4UW2iuyXc8zpPrzAT0KdR1itBidSLb08DB5G0=;
+ b=GyN3DHlSDqZ1aBhYneTBclg/rGNLyq/4PK0Io1lSAMHzD7X6Q9O3lzD2plKslM6AQt
+ BBp/95nkSysVAghi+s4+IgxgtkXIHHkKVNgMhs6EgRzZFlmpBgV5dUz2KbRqy/kJ9jZU
+ Yeu0CCVQmJEPubOvN6dh9aQlYUeY+WiVKE9PxEMdB0JI3TXrPnj69koRN5LsdlTU/B2A
+ MkDM0RhRRMtbQkamj6BFflM0r0iQY70Q+rbjSL5vwAA392q86VBCJ3/jdlV4T5MrvsU1
+ 6AI8uOdeTpfcrxyI5JXbz26a+sVXgslxVK4dZ3eVcOORoLkV88Kx6vCXNxwrEeS6LhGL
+ DWfw==
+X-Gm-Message-State: AC+VfDwUXMVIH7M7aKOv/THmD57USxDOhez1Efk7DXSCoFiFmKc2iZHG
+ hVlDlrGaOmTfenWaLnMpzRbpsOW2+qTz/yYrra4=
+X-Google-Smtp-Source: ACHHUZ7bphmm9EYpi14qwPL7y73KN3+cJxoBLr3DJ0wQ1NX4pmjJHNN+PjFKzorK7vmy38i6s0pflpmGShVvsRY43f0=
+X-Received: by 2002:a05:6870:a405:b0:19e:a0df:414a with SMTP id
+ m5-20020a056870a40500b0019ea0df414amr2134106oal.25.1684931381909; Wed, 24 May
+ 2023 05:29:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT033:EE_|LV2PR12MB5847:EE_
-X-MS-Office365-Filtering-Correlation-Id: 194a9e35-aa60-43e3-9587-08db5c389147
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vQQ3wzzawNwp+gai4BC6yuHgAGfvSP4XRDtORTfHrqMCibvUfPCR1/kfHSZS2AA10K5DO29mgXpnR7oUi8vTPRPBmRPwEvx4etUYXLSLbcq12vkY55GFhAkxihlSxtQ5peWkRpC6a2DCdVCUc3DwTEwvQRimhqTBkp4ao9uEvYQTidkEaAIOMVkWwa1OiLUq56ZPdQclkD0t+b5xXer8s+rMbGZAQcBABu79ZIxSwnV4EwyRLq2YuQErTtn/fjL7hi2qDTrWsseBe4YK204sAbgU8dAmD7skn4b4av0z7Tq5u2bdFFx1EVgkKmK9nXRha+OQrxX/U3TARtQ2KprkbRMGenW8S4XlIZxNO1r99fYCJhEqeUIpIjQTW2wGrbdBSAacHi56FKSgpXFsfzyMUnK+4nNWSFf2WiQ8r/pDppkGnRHvCaK2vLG7/BSjHwlHZPUjj4fuZtV+LvADX7H7aRFqWtGC4QY6bohGYswMkUYkBv/5YABRCkKT0mf4azsOzoLo0QyNyB59w3gkQOMygsO2P7wzZppqGjkwaU3RNkPcWZ2Ngtxd7QJ00yviszYH4qygX33dF/EWiIcDWG/4dlGTImAuLmZ/bsSqCK8UV3H1xx/fBqZQ8CB73tVdh6l7RJA52hKb3zPky8i2Q+MhlXWLXJyg/DNc3MlgGIJRmrm1L8eTo5KEc3gMpOpawohSSHZfcLCL5avC8fZJiC+7IymcFBlD9aywmJsJ5zPTkKwXaqTh49JZjb9lGJ9eO/c6bbt3H3aUIkg8ivBwX6BnE3tXCipJPdqKKqE6SPqZSrM=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(39860400002)(396003)(376002)(136003)(346002)(451199021)(40470700004)(46966006)(36840700001)(36860700001)(83380400001)(47076005)(426003)(336012)(2616005)(44832011)(8676002)(5660300002)(41300700001)(8936002)(81166007)(40460700003)(356005)(2906002)(36756003)(40480700001)(478600001)(82310400005)(86362001)(110136005)(82740400003)(26005)(1076003)(186003)(16526019)(7696005)(70206006)(316002)(6666004)(6636002)(70586007)(4326008)(2101003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 May 2023 09:23:42.6962 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 194a9e35-aa60-43e3-9587-08db5c389147
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT033.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5847
+References: <20230524090001.3276718-1-jiadong.zhu@amd.com>
+In-Reply-To: <20230524090001.3276718-1-jiadong.zhu@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 24 May 2023 08:29:30 -0400
+Message-ID: <CADnq5_NzJ7XuOms1ppQpei-UpRwGFuA8ehSGs9P8TR2+GuNX_Q@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Program gds backup address as zero if no gds
+ allocated
+To: jiadong.zhu@amd.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,165 +68,85 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Guchun Chen <guchun.chen@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Recent code stores xcp_id to amdgpu bo for accounting memory
-usage or find correct KFD node, and this xcp_id is from file
-private data after opening device. However, not all VMs are
-attached to this fpriv structure like the case in amdgpu_mes_self_test.
-So add a flag to differentiate the cases. Otherwise, KASAN will
-complain out of bound access.
+On Wed, May 24, 2023 at 5:00=E2=80=AFAM <jiadong.zhu@amd.com> wrote:
+>
+> From: Jiadong Zhu <Jiadong.Zhu@amd.com>
+>
+> It is firmware requirement to set gds_backup_addrlo and gds_backup_addrhi
+> of DE meta both zero if no gds partition is allocated for the frame.
 
-[   77.292314] BUG: KASAN: slab-out-of-bounds in amdgpu_vm_pt_create+0x17e/0x4b0 [amdgpu]
-[   77.293845] Read of size 4 at addr ffff888102c48a48 by task modprobe/1069
-[   77.294146] Call Trace:
-[   77.294178]  <TASK>
-[   77.294208]  dump_stack_lvl+0x49/0x63
-[   77.294260]  print_report+0x16f/0x4a6
-[   77.294307]  ? amdgpu_vm_pt_create+0x17e/0x4b0 [amdgpu]
-[   77.295979]  ? kasan_complete_mode_report_info+0x3c/0x200
-[   77.296057]  ? amdgpu_vm_pt_create+0x17e/0x4b0 [amdgpu]
-[   77.297556]  kasan_report+0xb4/0x130
-[   77.297609]  ? amdgpu_vm_pt_create+0x17e/0x4b0 [amdgpu]
-[   77.299202]  __asan_load4+0x6f/0x90
-[   77.299272]  amdgpu_vm_pt_create+0x17e/0x4b0 [amdgpu]
-[   77.300796]  ? amdgpu_init+0x6e/0x1000 [amdgpu]
-[   77.302222]  ? amdgpu_vm_pt_clear+0x750/0x750 [amdgpu]
-[   77.303721]  ? preempt_count_sub+0x18/0xc0
-[   77.303786]  amdgpu_vm_init+0x39e/0x870 [amdgpu]
-[   77.305186]  ? amdgpu_vm_wait_idle+0x90/0x90 [amdgpu]
-[   77.306683]  ? kasan_set_track+0x25/0x30
-[   77.306737]  ? kasan_save_alloc_info+0x1b/0x30
-[   77.306795]  ? __kasan_kmalloc+0x87/0xa0
-[   77.306852]  amdgpu_mes_self_test+0x169/0x620 [amdgpu]
+Presumably other gfx versions require something similar?
 
-Fixes: ffc6deb773f7("drm/amdkfd: Store xcp partition id to amdgpu bo")
-Signed-off-by: Guchun Chen <guchun.chen@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c   |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c   |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c    |  5 ++++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h    |  5 ++++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c | 12 +++++++++---
- 5 files changed, 19 insertions(+), 7 deletions(-)
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-index 41d047e5de69..79b80f9233db 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-@@ -1229,7 +1229,7 @@ int amdgpu_driver_open_kms(struct drm_device *dev, struct drm_file *file_priv)
- 		pasid = 0;
- 	}
- 
--	r = amdgpu_vm_init(adev, &fpriv->vm);
-+	r = amdgpu_vm_init(adev, &fpriv->vm, true);
- 	if (r)
- 		goto error_pasid;
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-index 49bb6c03d606..3be5219edf88 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-@@ -1345,7 +1345,7 @@ int amdgpu_mes_self_test(struct amdgpu_device *adev)
- 		goto error_pasid;
- 	}
- 
--	r = amdgpu_vm_init(adev, vm);
-+	r = amdgpu_vm_init(adev, vm, false);
- 	if (r) {
- 		DRM_ERROR("failed to initialize vm\n");
- 		goto error_pasid;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index 37b9d8a8dbec..47ffaa1526a0 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -2099,13 +2099,15 @@ long amdgpu_vm_wait_idle(struct amdgpu_vm *vm, long timeout)
-  *
-  * @adev: amdgpu_device pointer
-  * @vm: requested vm
-+ * @vm_attach_to_fpriv: flag to tell if vm is attached to file private data
-  *
-  * Init @vm fields.
-  *
-  * Returns:
-  * 0 for success, error for failure.
-  */
--int amdgpu_vm_init(struct amdgpu_device *adev, struct amdgpu_vm *vm)
-+int amdgpu_vm_init(struct amdgpu_device *adev, struct amdgpu_vm *vm,
-+		   bool vm_attach_to_fpriv)
- {
- 	struct amdgpu_bo *root_bo;
- 	struct amdgpu_bo_vm *root;
-@@ -2131,6 +2133,7 @@ int amdgpu_vm_init(struct amdgpu_device *adev, struct amdgpu_vm *vm)
- 
- 	vm->pte_support_ats = false;
- 	vm->is_compute_context = false;
-+	vm->vm_attach_to_fpriv = vm_attach_to_fpriv;
- 
- 	vm->use_cpu_for_update = !!(adev->vm_manager.vm_update_mode &
- 				    AMDGPU_VM_USE_CPU_FOR_GFX);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-index d551fca1780e..62ed14b1fc16 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-@@ -333,6 +333,9 @@ struct amdgpu_vm {
- 	/* Flag to indicate if VM is used for compute */
- 	bool			is_compute_context;
- 
-+	/* Flag to tell if VM is attached to file private data */
-+	bool vm_attach_to_fpriv;
-+
- 	/* Memory partition number, -1 means any partition */
- 	int8_t			mem_id;
- };
-@@ -392,7 +395,7 @@ int amdgpu_vm_set_pasid(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 			u32 pasid);
- 
- long amdgpu_vm_wait_idle(struct amdgpu_vm *vm, long timeout);
--int amdgpu_vm_init(struct amdgpu_device *adev, struct amdgpu_vm *vm);
-+int amdgpu_vm_init(struct amdgpu_device *adev, struct amdgpu_vm *vm, bool vm_attach_to_fpriv);
- int amdgpu_vm_make_compute(struct amdgpu_device *adev, struct amdgpu_vm *vm);
- void amdgpu_vm_release_compute(struct amdgpu_device *adev, struct amdgpu_vm *vm);
- void amdgpu_vm_fini(struct amdgpu_device *adev, struct amdgpu_vm *vm);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-index cc3b1b596e56..16b3350aa896 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-@@ -502,7 +502,7 @@ int amdgpu_vm_pt_clear(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- int amdgpu_vm_pt_create(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 			int level, bool immediate, struct amdgpu_bo_vm **vmbo)
- {
--	struct amdgpu_fpriv *fpriv = container_of(vm, struct amdgpu_fpriv, vm);
-+	struct amdgpu_fpriv *fpriv;
- 	struct amdgpu_bo_param bp;
- 	struct amdgpu_bo *bo;
- 	struct dma_resv *resv;
-@@ -535,7 +535,10 @@ int amdgpu_vm_pt_create(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 
- 	bp.type = ttm_bo_type_kernel;
- 	bp.no_wait_gpu = immediate;
--	bp.xcp_id_plus1 = fpriv->xcp_id == ~0 ? 0 : fpriv->xcp_id + 1;
-+	if (vm->vm_attach_to_fpriv) {
-+		fpriv = container_of(vm, struct amdgpu_fpriv, vm);
-+		bp.xcp_id_plus1 = fpriv->xcp_id == ~0 ? 0 : fpriv->xcp_id + 1;
-+	}
- 
- 	if (vm->root.bo)
- 		bp.resv = vm->root.bo->tbo.base.resv;
-@@ -561,7 +564,10 @@ int amdgpu_vm_pt_create(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 	bp.type = ttm_bo_type_kernel;
- 	bp.resv = bo->tbo.base.resv;
- 	bp.bo_ptr_size = sizeof(struct amdgpu_bo);
--	bp.xcp_id_plus1 = fpriv->xcp_id == ~0 ? 0 : fpriv->xcp_id + 1;
-+	if (vm->vm_attach_to_fpriv) {
-+		fpriv = container_of(vm, struct amdgpu_fpriv, vm);
-+		bp.xcp_id_plus1 = fpriv->xcp_id == ~0 ? 0 : fpriv->xcp_id + 1;
-+	}
- 
- 	r = amdgpu_bo_create(adev, &bp, &(*vmbo)->shadow);
- 
--- 
-2.25.1
-
+>
+> Signed-off-by: Jiadong Zhu <Jiadong.Zhu@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 13 ++++++++-----
+>  1 file changed, 8 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/=
+amdgpu/gfx_v9_0.c
+> index cbdd9918b3e7..cbcf6126cce5 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> @@ -765,7 +765,7 @@ static void gfx_v9_0_set_rlc_funcs(struct amdgpu_devi=
+ce *adev);
+>  static int gfx_v9_0_get_cu_info(struct amdgpu_device *adev,
+>                                 struct amdgpu_cu_info *cu_info);
+>  static uint64_t gfx_v9_0_get_gpu_clock_counter(struct amdgpu_device *ade=
+v);
+> -static void gfx_v9_0_ring_emit_de_meta(struct amdgpu_ring *ring, bool re=
+sume);
+> +static void gfx_v9_0_ring_emit_de_meta(struct amdgpu_ring *ring, bool re=
+sume, bool usegds);
+>  static u64 gfx_v9_0_ring_get_rptr_compute(struct amdgpu_ring *ring);
+>  static void gfx_v9_0_query_ras_error_count(struct amdgpu_device *adev,
+>                                           void *ras_error_status);
+> @@ -5160,7 +5160,8 @@ static void gfx_v9_0_ring_emit_ib_gfx(struct amdgpu=
+_ring *ring,
+>                         gfx_v9_0_ring_emit_de_meta(ring,
+>                                                    (!amdgpu_sriov_vf(ring=
+->adev) &&
+>                                                    flags & AMDGPU_IB_PREE=
+MPTED) ?
+> -                                                  true : false);
+> +                                                  true : false,
+> +                                                  job->gds_size > 0 && j=
+ob->gds_base !=3D 0);
+>         }
+>
+>         amdgpu_ring_write(ring, header);
+> @@ -5435,7 +5436,7 @@ static int gfx_v9_0_ring_preempt_ib(struct amdgpu_r=
+ing *ring)
+>         return r;
+>  }
+>
+> -static void gfx_v9_0_ring_emit_de_meta(struct amdgpu_ring *ring, bool re=
+sume)
+> +static void gfx_v9_0_ring_emit_de_meta(struct amdgpu_ring *ring, bool re=
+sume, bool usegds)
+>  {
+>         struct amdgpu_device *adev =3D ring->adev;
+>         struct v9_de_ib_state de_payload =3D {0};
+> @@ -5466,8 +5467,10 @@ static void gfx_v9_0_ring_emit_de_meta(struct amdg=
+pu_ring *ring, bool resume)
+>                                  PAGE_SIZE);
+>         }
+>
+> -       de_payload.gds_backup_addrlo =3D lower_32_bits(gds_addr);
+> -       de_payload.gds_backup_addrhi =3D upper_32_bits(gds_addr);
+> +       if (usegds) {
+> +               de_payload.gds_backup_addrlo =3D lower_32_bits(gds_addr);
+> +               de_payload.gds_backup_addrhi =3D upper_32_bits(gds_addr);
+> +       }
+>
+>         cnt =3D (sizeof(de_payload) >> 2) + 4 - 2;
+>         amdgpu_ring_write(ring, PACKET3(PACKET3_WRITE_DATA, cnt));
+> --
+> 2.25.1
+>
