@@ -1,59 +1,93 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D17570FB2E
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 May 2023 18:00:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8F3970F9F8
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 May 2023 17:22:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E633010E692;
-	Wed, 24 May 2023 16:00:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF4D310E148;
+	Wed, 24 May 2023 15:22:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com
- [IPv6:2607:f8b0:4864:20::432])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B0D510E690
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 May 2023 16:00:49 +0000 (UTC)
-Received: by mail-pf1-x432.google.com with SMTP id
- d2e1a72fcca58-64d2da69fdfso1229479b3a.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 May 2023 09:00:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1684944049; x=1687536049;
- h=cc:to:subject:date:from:message-id:from:to:cc:subject:date
- :message-id:reply-to;
- bh=GviRYCsAJgxSrmumt4169PkmX4dPudDea6W8dmD723U=;
- b=lpE8Kx4NUAq8Z9W9TSg2HEpcIs0CNnBBuhj82IUGaSXzOQmD8n80CkywNebvpNMc2X
- Rb14/wmXm8zd56O4v2Vpiylv0VDtEjGKp1h0xy3yZ4YDh1XY03wJ0hRwNdk2bbIHvkVU
- ilVFM9rgJLJUCYR5E2DP2uocNo9+Z06v6QO9GLosZ4VpJdANLy+3IQvuDznyB1I4Q5kC
- MYFy5SF31lAo5bapTh48hpL2Slka9NC+Y5keFv1AxN4YRu8IPlR3bj8eDT1Nz9CqJzl2
- fJdrjkU/QoDg2Y45LflQuzEn+z2W2GpkwKnmDkv6fbzmoIA/zI9YPofRLLgwrG7NZAkv
- v/BA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684944049; x=1687536049;
- h=cc:to:subject:date:from:message-id:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=GviRYCsAJgxSrmumt4169PkmX4dPudDea6W8dmD723U=;
- b=jSHQBWaViNqThi1+qFwomXYTiU9VTWB+zithV6G95BnfX7FsChLW42T7yq6i4lYonJ
- SwUypPHERghqaxPLGM9WDJVNg4N0luZl8kJpcPnmO2WoNl5OUpvw7qfPX7Cu5aPSzbh7
- XXXhRrDjkHWqF32tHPDvAWMeOcjRaaBaH7irj9HvPzgpWlIt64lhfD3pIJ6LW6E7cu0v
- ujEsNCsOPhT7SaC2kOU+yooQyLt6QOF+ec2T0yNlIQc3Q8pM5Fgi6d2W09x9Bhcx8oai
- h1iZcS19LutbJphylgL4kcnZZI/dZq5FPzYXajmccXzWTULucYLjxAjR4EwtDZp9iTEO
- nl/Q==
-X-Gm-Message-State: AC+VfDxyQhUiqD5Vz/6UW25gpaMaagdqogz6JKMb8xee5K7Gnnjb2eQP
- 0STxfUkkVmaRLSkAk9wxYpU=
-X-Google-Smtp-Source: ACHHUZ4lnR4XYjBOhX7mkfdZdj/PZKimmis7fXlEE+5xO78yRUFwYIOCqistwMyKGJKtcO/B7YuAgA==
-X-Received: by 2002:a05:6a00:2da8:b0:64f:5406:d59e with SMTP id
- fb40-20020a056a002da800b0064f5406d59emr3587677pfb.17.1684944049083; 
- Wed, 24 May 2023 09:00:49 -0700 (PDT)
-Received: from localhost ([123.56.124.140]) by smtp.gmail.com with ESMTPSA id
- j4-20020aa79284000000b0064d1349dc31sm7531651pfa.199.2023.05.24.09.00.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 24 May 2023 09:00:48 -0700 (PDT)
-Message-ID: <646e34b0.a70a0220.b7bdd.d5a7@mx.google.com>
-From: ghostfly233 <ghostfly23333@gmail.com>
-Date: Wed, 24 May 2023 23:02:15 +0800
-Subject: [PATCH v2] drm/amdgpu: Enable VM_CONTEXT1_CNTL after page table addr
- is set.
-To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2053.outbound.protection.outlook.com [40.107.220.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D4C910E148
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 May 2023 15:22:22 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=P9sb+G4j4Dza7TmbZxDVh/8riJlI4cZV5TXAV6LFUSPRwuJsKED1YxMhSJJJXjMPNKbnKrv08P6Vv7jXdQbH1XrglcgNm9WwvjXMhALoqyxsSgJCPtjNPMyP373xamMEwB0lO7Ctwx1w9WAxJS6huiM48k8qFbzvXqraL9YRsz2IHQCIzZ9byMsYMBqwEkGjAYjUcWxA7uCNYkd9O6c+8qxi4x11CTTpegS9/piIS2sn5Wz+abh+kklr1ED4S+H2wIXXDv0gw2o83/loZzOqnbvpdRb+S4M0gPiTY9r1OQfAOsLeoFBElNFSc5Ol9oARhVsSgecuO/ca1eb5LPK3wA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cwInVZq8uMchMFUyGjBt3xwnXZSBruVWQtqQJWaOne0=;
+ b=ZUCme0ovwdBoElFj4rfya1xqQ3YmeOMVeqRiRGuU3r/QtoM0CNzlq9h82rx1PjJB2xTelut+lnDP8/0cDsJ9ucqnd9AVuUeOOK6FCs+UnsgttKGT3WjjJc211CpgqrFVFF63KBIqMZqvuwxZl32a0IKbVfljbSND0MXa09NHiTlC+80Xffv8F7KEBFMV9/tS00NvW0zHg5P2F+nc1osoC4YN87q6+BP4z76Y/qhZgOp5GmhULAHf1P6gElPG6xzzDhYDb4xLnqbrPcWp6pu1LEKAowiHDevT9oyU6pp5UHmnz0QewKcZwhpsGuM0KFvaUQ+NyC3L5W8RYkoNDRA2nw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cwInVZq8uMchMFUyGjBt3xwnXZSBruVWQtqQJWaOne0=;
+ b=R61KgFkPrfTrqUIb6iAlFZ8/3EnvavdIlGKp3zfWSZcVvm/Ew9LsxUV7vX4fRQ5tEaTSWuz3VIQ0FMv0Tm1qOEnE3nBxQ8Xe7jBFqtX74vyCmWi2bq/FfPblLHi0T1fAREymyt5VMsp/4NNFEHu/GaerOgM+l+eXDZ6j+nlkLl8=
+Received: from CYXPR02CA0026.namprd02.prod.outlook.com (2603:10b6:930:cc::9)
+ by MW4PR12MB7143.namprd12.prod.outlook.com (2603:10b6:303:222::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.15; Wed, 24 May
+ 2023 15:22:20 +0000
+Received: from CY4PEPF0000C96D.namprd02.prod.outlook.com
+ (2603:10b6:930:cc:cafe::bc) by CYXPR02CA0026.outlook.office365.com
+ (2603:10b6:930:cc::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.14 via Frontend
+ Transport; Wed, 24 May 2023 15:22:19 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CY4PEPF0000C96D.mail.protection.outlook.com (10.167.242.5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6433.8 via Frontend Transport; Wed, 24 May 2023 15:22:19 +0000
+Received: from TRX40-1.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 24 May
+ 2023 10:22:12 -0500
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
+ Deucher" <alexander.deucher@amd.com>
+Subject: [PATCH] drm/amdgpu: Fix defined but not used gfx9_cs_data in
+ gfx_v9_4_3.c
+Date: Wed, 24 May 2023 20:51:38 +0530
+Message-ID: <20230524152138.3631037-1-srinivasan.shanmugam@amd.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000C96D:EE_|MW4PR12MB7143:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4fb1076f-5d40-4a89-d626-08db5c6aaa6c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: jugkzGr3muTSp09vvYxJYAEgJ7SMLASberRgkSL+niaNIAFz4xpYg/Kz+EIN96x6Fecwmux4eQYdQQEkbOkQ3Vnaq4r3DLxg5FOFKhfjXSoyozTHHiS77KIr2Tu7JoUIuESj2BaLCN2FaxfZrj1+x0ZLjWuYycnrFiM/BG9ScDfRZC6G7go2ubFfRtMiEH9llP3sMWnUPCSE7Z3nTsybLo4XrCLD2Foidk/3lT9Y8vOLhXfhw3TFYkkN8V+jHSMsUS8DYqScCsQLCYyglXW6rk4/VO3XtEdWYl0/k7l5hhAzdjsUB5RMFVWDO5XC5p6EHPkBE1WYdILZSTeHzInPW8M9K9VvkWKuF4ZzKZ+ACVXgBRTCttHNnRjVVZ2kMzZ/pS7VEhENrk/7ncsx3VHDPhG+UVPcgyCmIREcCM0h5Kf9b9ii4ZToS4M0iq3QNc3Emw2O/cVNc0pUxCWM3mR+BoW9/oWIj890sSHrcBFtGUQZd8qO8zUPoCBv1FV91WPaUl6wk2VlrFjOdm7QvrpKLDeZ9E1+5iLit4BM6vOKXZcyQx+1c3jNt/a1XhRMm6Sc5z5cavygLFo/gmIwb+L20czZhF4I2zlmutNaTlvt0nPKujdUXsdCrKegjjTtM+Pe6oyvMTlsfjKqBF1V41ce3aXo3A1zrfkGxaB3xVGFQ2K5EzUOGBaBQMwYWnBK+EzYfwNZ6SwPOONw6jkvUEqed+QxQGtGLhi/htVf2M5lpCy8qLgnwOV0VgXG3WjI5+bREU8nhxap7US5lYgF7o25uQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230028)(4636009)(396003)(346002)(376002)(39860400002)(136003)(451199021)(40470700004)(36840700001)(46966006)(110136005)(54906003)(81166007)(82740400003)(70586007)(70206006)(82310400005)(478600001)(86362001)(6636002)(4326008)(316002)(36860700001)(6666004)(336012)(7696005)(47076005)(66574015)(83380400001)(41300700001)(426003)(356005)(2616005)(36756003)(16526019)(186003)(44832011)(2906002)(4744005)(40460700003)(26005)(1076003)(5660300002)(40480700001)(8936002)(8676002)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 May 2023 15:22:19.7199 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4fb1076f-5d40-4a89-d626-08db5c6aaa6c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000C96D.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7143
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,385 +99,39 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ghostfly23333@gmail.com, daniel@ffwll.ch, airlied@gmail.com,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org
+Cc: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-In setup_vmid_config functions of all mmhubs, the CONTEXT1_CNTL reg is
-enabled before related CONTEXT1_PAGE_TABLE_START_ADDR and
-CONTEXT1_PAGE_TABLE_END_ADDR regs are written, which may cause
-undefined behavior.
+gcc with W=1
+In file included from drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c:33:
+drivers/gpu/drm/amd/amdgpu/clearstate_gfx9.h:939:36: warning: ‘gfx9_cs_data’ defined but not used [-Wunused-const-variable=]
+  939 | static const struct cs_section_def gfx9_cs_data[] = {
+      |
 
-This patch enable CONTEXT1_CNTL after page table addresses are set,
-so that it can ensure no undefined behavior will happen.
+gfx9_cs_data is not used in gfx_v9_4_3.c, hence remove its
+include in gfx_v9_4_3.c
 
-Signed-off-by: Zibin Liu <ghostfly23333@gmail.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c   | 5 ++++-
- drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c   | 5 ++++-
- drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c   | 5 ++++-
- drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c   | 5 ++++-
- drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.c   | 5 ++++-
- drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0_3.c | 5 ++++-
- drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c    | 5 ++++-
- drivers/gpu/drm/amd/amdgpu/mmhub_v1_7.c    | 5 ++++-
- drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c    | 5 ++++-
- drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c    | 5 ++++-
- drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c    | 5 ++++-
- drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.c    | 5 ++++-
- drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_1.c  | 5 ++++-
- drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_2.c  | 5 ++++-
- drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c    | 7 ++++++-
- 15 files changed, 62 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c
-index ab2325f6c7ac..8ff4f70c97a6 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c
-@@ -261,7 +261,7 @@ static void gfxhub_v1_0_setup_vmid_config(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+index ed41a7862d9f..bdaea50cafe7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+@@ -29,7 +29,6 @@
+ #include "soc15_common.h"
+ #include "vega10_enum.h"
  
- 	for (i = 0; i <= 14; i++) {
- 		tmp = RREG32_SOC15_OFFSET(GC, 0, mmVM_CONTEXT1_CNTL, i);
--		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL, ENABLE_CONTEXT, 0);
- 		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL, PAGE_TABLE_DEPTH,
- 				    num_level);
- 		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL,
-@@ -302,6 +302,9 @@ static void gfxhub_v1_0_setup_vmid_config(struct amdgpu_device *adev)
- 		WREG32_SOC15_OFFSET(GC, 0, mmVM_CONTEXT1_PAGE_TABLE_END_ADDR_HI32,
- 				    i * hub->ctx_addr_distance,
- 				    upper_32_bits(adev->vm_manager.max_pfn - 1));
-+		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		WREG32_SOC15_OFFSET(GC, 0, mmVM_CONTEXT1_CNTL,
-+				    i * hub->ctx_distance, tmp);
- 	}
- }
+-#include "clearstate_gfx9.h"
+ #include "v9_structs.h"
  
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c
-index c59c6c85fbff..1c501066926b 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c
-@@ -266,7 +266,7 @@ static void gfxhub_v1_2_setup_vmid_config(struct amdgpu_device *adev)
- 
- 	for (i = 0; i <= 14; i++) {
- 		tmp = RREG32_SOC15_OFFSET(GC, 0, regVM_CONTEXT1_CNTL, i);
--		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL, ENABLE_CONTEXT, 0);
- 		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL, PAGE_TABLE_DEPTH,
- 				    num_level);
- 		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL,
-@@ -311,6 +311,9 @@ static void gfxhub_v1_2_setup_vmid_config(struct amdgpu_device *adev)
- 				    regVM_CONTEXT1_PAGE_TABLE_END_ADDR_HI32,
- 				    i * hub->ctx_addr_distance,
- 				    upper_32_bits(adev->vm_manager.max_pfn - 1));
-+		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		WREG32_SOC15_OFFSET(GC, 0, regVM_CONTEXT1_CNTL,
-+				    i * hub->ctx_distance, tmp);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c
-index 9b3a02527318..ef660f3bca7b 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c
-@@ -288,7 +288,7 @@ static void gfxhub_v2_0_setup_vmid_config(struct amdgpu_device *adev)
- 
- 	for (i = 0; i <= 14; i++) {
- 		tmp = RREG32_SOC15_OFFSET(GC, 0, mmGCVM_CONTEXT1_CNTL, i);
--		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 0);
- 		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL, PAGE_TABLE_DEPTH,
- 				    adev->vm_manager.num_level);
- 		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL,
-@@ -324,6 +324,9 @@ static void gfxhub_v2_0_setup_vmid_config(struct amdgpu_device *adev)
- 		WREG32_SOC15_OFFSET(GC, 0, mmGCVM_CONTEXT1_PAGE_TABLE_END_ADDR_HI32,
- 				    i * hub->ctx_addr_distance,
- 				    upper_32_bits(adev->vm_manager.max_pfn - 1));
-+		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		WREG32_SOC15_OFFSET(GC, 0, mmGCVM_CONTEXT1_CNTL,
-+				    i * hub->ctx_distance, tmp);
- 	}
- 
- 	hub->vm_cntx_cntl = tmp;
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c
-index 4aacbbec31e2..791afc8e9e85 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c
-@@ -297,7 +297,7 @@ static void gfxhub_v2_1_setup_vmid_config(struct amdgpu_device *adev)
- 
- 	for (i = 0; i <= 14; i++) {
- 		tmp = RREG32_SOC15_OFFSET(GC, 0, mmGCVM_CONTEXT1_CNTL, i);
--		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 0);
- 		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL, PAGE_TABLE_DEPTH,
- 				    adev->vm_manager.num_level);
- 		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL,
-@@ -333,6 +333,9 @@ static void gfxhub_v2_1_setup_vmid_config(struct amdgpu_device *adev)
- 		WREG32_SOC15_OFFSET(GC, 0, mmGCVM_CONTEXT1_PAGE_TABLE_END_ADDR_HI32,
- 				    i * hub->ctx_addr_distance,
- 				    upper_32_bits(adev->vm_manager.max_pfn - 1));
-+		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		WREG32_SOC15_OFFSET(GC, 0, mmGCVM_CONTEXT1_CNTL,
-+				    i * hub->ctx_distance, tmp);
- 	}
- 
- 	hub->vm_cntx_cntl = tmp;
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.c
-index 13712640fa46..75d000884d4a 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.c
-@@ -296,7 +296,7 @@ static void gfxhub_v3_0_setup_vmid_config(struct amdgpu_device *adev)
- 
- 	for (i = 0; i <= 14; i++) {
- 		tmp = RREG32_SOC15_OFFSET(GC, 0, regGCVM_CONTEXT1_CNTL, i);
--		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 0);
- 		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL, PAGE_TABLE_DEPTH,
- 				    adev->vm_manager.num_level);
- 		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL,
-@@ -332,6 +332,9 @@ static void gfxhub_v3_0_setup_vmid_config(struct amdgpu_device *adev)
- 		WREG32_SOC15_OFFSET(GC, 0, regGCVM_CONTEXT1_PAGE_TABLE_END_ADDR_HI32,
- 				    i * hub->ctx_addr_distance,
- 				    upper_32_bits(adev->vm_manager.max_pfn - 1));
-+		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		WREG32_SOC15_OFFSET(GC, 0, regGCVM_CONTEXT1_CNTL,
-+				    i * hub->ctx_distance, tmp);
- 	}
- 
- 	hub->vm_cntx_cntl = tmp;
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0_3.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0_3.c
-index 6e0bd628c889..31d73e0b5fc9 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0_3.c
-@@ -301,7 +301,7 @@ static void gfxhub_v3_0_3_setup_vmid_config(struct amdgpu_device *adev)
- 
- 	for (i = 0; i <= 14; i++) {
- 		tmp = RREG32_SOC15_OFFSET(GC, 0, regGCVM_CONTEXT1_CNTL, i);
--		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 0);
- 		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL, PAGE_TABLE_DEPTH,
- 				    adev->vm_manager.num_level);
- 		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL,
-@@ -337,6 +337,9 @@ static void gfxhub_v3_0_3_setup_vmid_config(struct amdgpu_device *adev)
- 		WREG32_SOC15_OFFSET(GC, 0, regGCVM_CONTEXT1_PAGE_TABLE_END_ADDR_HI32,
- 				    i * hub->ctx_addr_distance,
- 				    upper_32_bits(adev->vm_manager.max_pfn - 1));
-+		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		WREG32_SOC15_OFFSET(GC, 0, regGCVM_CONTEXT1_CNTL,
-+				    i * hub->ctx_distance, tmp);
- 	}
- 
- 	hub->vm_cntx_cntl = tmp;
-diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c
-index 15e7cbeae75b..8f18d1480104 100644
---- a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c
-@@ -243,7 +243,7 @@ static void mmhub_v1_0_setup_vmid_config(struct amdgpu_device *adev)
- 
- 	for (i = 0; i <= 14; i++) {
- 		tmp = RREG32_SOC15_OFFSET(MMHUB, 0, mmVM_CONTEXT1_CNTL, i);
--		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL, ENABLE_CONTEXT, 0);
- 		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL, PAGE_TABLE_DEPTH,
- 				    num_level);
- 		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL,
-@@ -280,6 +280,9 @@ static void mmhub_v1_0_setup_vmid_config(struct amdgpu_device *adev)
- 		WREG32_SOC15_OFFSET(MMHUB, 0, mmVM_CONTEXT1_PAGE_TABLE_END_ADDR_HI32,
- 				    i * hub->ctx_addr_distance,
- 				    upper_32_bits(adev->vm_manager.max_pfn - 1));
-+		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		WREG32_SOC15_OFFSET(MMHUB, 0, mmVM_CONTEXT1_CNTL,
-+				    i * hub->ctx_distance, tmp);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_7.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_7.c
-index 73afbf2facc9..25ef04683f36 100644
---- a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_7.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_7.c
-@@ -275,7 +275,7 @@ static void mmhub_v1_7_setup_vmid_config(struct amdgpu_device *adev)
- 
- 	for (i = 0; i <= 14; i++) {
- 		tmp = RREG32_SOC15_OFFSET(MMHUB, 0, regVM_CONTEXT1_CNTL, i);
--		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL, ENABLE_CONTEXT, 0);
- 		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL, PAGE_TABLE_DEPTH,
- 				    num_level);
- 		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL,
-@@ -314,6 +314,9 @@ static void mmhub_v1_7_setup_vmid_config(struct amdgpu_device *adev)
- 		WREG32_SOC15_OFFSET(MMHUB, 0, regVM_CONTEXT1_PAGE_TABLE_END_ADDR_HI32,
- 				    i * hub->ctx_addr_distance,
- 				    upper_32_bits(adev->vm_manager.max_pfn - 1));
-+		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		WREG32_SOC15_OFFSET(MMHUB, 0, regVM_CONTEXT1_CNTL,
-+				    i * hub->ctx_distance, tmp);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c
-index 342d1702104c..36ed09b60a08 100644
---- a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.c
-@@ -267,7 +267,7 @@ static void mmhub_v1_8_setup_vmid_config(struct amdgpu_device *adev)
- 
- 	for (i = 0; i <= 14; i++) {
- 		tmp = RREG32_SOC15_OFFSET(MMHUB, 0, regVM_CONTEXT1_CNTL, i);
--		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL, ENABLE_CONTEXT, 0);
- 		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL, PAGE_TABLE_DEPTH,
- 				    num_level);
- 		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL,
-@@ -306,6 +306,9 @@ static void mmhub_v1_8_setup_vmid_config(struct amdgpu_device *adev)
- 		WREG32_SOC15_OFFSET(MMHUB, 0, regVM_CONTEXT1_PAGE_TABLE_END_ADDR_HI32,
- 				    i * hub->ctx_addr_distance,
- 				    upper_32_bits(adev->vm_manager.max_pfn - 1));
-+		tmp = REG_SET_FIELD(tmp, VM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		WREG32_SOC15_OFFSET(MMHUB, 0, regVM_CONTEXT1_CNTL,
-+				    i * hub->ctx_distance, tmp);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
-index 278e32db878d..272eb35c36e0 100644
---- a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
-@@ -368,7 +368,7 @@ static void mmhub_v2_0_setup_vmid_config(struct amdgpu_device *adev)
- 
- 	for (i = 0; i <= 14; i++) {
- 		tmp = RREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT1_CNTL, i);
--		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 0);
- 		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL, PAGE_TABLE_DEPTH,
- 				    adev->vm_manager.num_level);
- 		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL,
-@@ -405,6 +405,9 @@ static void mmhub_v2_0_setup_vmid_config(struct amdgpu_device *adev)
- 		WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_CONTEXT1_PAGE_TABLE_END_ADDR_HI32,
- 				    i * hub->ctx_addr_distance,
- 				    upper_32_bits(adev->vm_manager.max_pfn - 1));
-+		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_CONTEXT1_CNTL,
-+				    i * hub->ctx_distance, tmp);
- 	}
- 
- 	hub->vm_cntx_cntl = tmp;
-diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c
-index fcf2813e70db..e1ec0c8aafed 100644
---- a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c
-@@ -286,7 +286,7 @@ static void mmhub_v2_3_setup_vmid_config(struct amdgpu_device *adev)
- 
- 	for (i = 0; i <= 14; i++) {
- 		tmp = RREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT1_CNTL, i);
--		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 0);
- 		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL, PAGE_TABLE_DEPTH,
- 				    adev->vm_manager.num_level);
- 		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL,
-@@ -323,6 +323,9 @@ static void mmhub_v2_3_setup_vmid_config(struct amdgpu_device *adev)
- 		WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT1_PAGE_TABLE_END_ADDR_HI32,
- 				    i * hub->ctx_addr_distance,
- 				    upper_32_bits(adev->vm_manager.max_pfn - 1));
-+		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT1_CNTL,
-+				    i * hub->ctx_distance, tmp);
- 	}
- 
- 	hub->vm_cntx_cntl = tmp;
-diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.c
-index 17a792616979..b883b6b8d50d 100644
---- a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.c
-@@ -325,7 +325,7 @@ static void mmhub_v3_0_setup_vmid_config(struct amdgpu_device *adev)
- 
- 	for (i = 0; i <= 14; i++) {
- 		tmp = RREG32_SOC15_OFFSET(MMHUB, 0, regMMVM_CONTEXT1_CNTL, i);
--		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 0);
- 		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL, PAGE_TABLE_DEPTH,
- 				    adev->vm_manager.num_level);
- 		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL,
-@@ -362,6 +362,9 @@ static void mmhub_v3_0_setup_vmid_config(struct amdgpu_device *adev)
- 		WREG32_SOC15_OFFSET(MMHUB, 0, regMMVM_CONTEXT1_PAGE_TABLE_END_ADDR_HI32,
- 				    i * hub->ctx_addr_distance,
- 				    upper_32_bits(adev->vm_manager.max_pfn - 1));
-+		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		WREG32_SOC15_OFFSET(MMHUB, 0, regMMVM_CONTEXT1_CNTL,
-+				    i * hub->ctx_distance, tmp);
- 	}
- 
- 	hub->vm_cntx_cntl = tmp;
-diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_1.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_1.c
-index 26509b6b8c24..c34815a14802 100644
---- a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_1.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_1.c
-@@ -312,7 +312,7 @@ static void mmhub_v3_0_1_setup_vmid_config(struct amdgpu_device *adev)
- 
- 	for (i = 0; i <= 14; i++) {
- 		tmp = RREG32_SOC15_OFFSET(MMHUB, 0, regMMVM_CONTEXT1_CNTL, i);
--		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 0);
- 		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL, PAGE_TABLE_DEPTH,
- 				    adev->vm_manager.num_level);
- 		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL,
-@@ -349,6 +349,9 @@ static void mmhub_v3_0_1_setup_vmid_config(struct amdgpu_device *adev)
- 		WREG32_SOC15_OFFSET(MMHUB, 0, regMMVM_CONTEXT1_PAGE_TABLE_END_ADDR_HI32,
- 				    i * hub->ctx_addr_distance,
- 				    upper_32_bits(adev->vm_manager.max_pfn - 1));
-+		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		WREG32_SOC15_OFFSET(MMHUB, 0, regMMVM_CONTEXT1_CNTL,
-+				    i * hub->ctx_distance, tmp);
- 	}
- 
- 	hub->vm_cntx_cntl = tmp;
-diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_2.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_2.c
-index 26abbc6a47ab..ce3b2f1d9f8e 100644
---- a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_2.c
-@@ -317,7 +317,7 @@ static void mmhub_v3_0_2_setup_vmid_config(struct amdgpu_device *adev)
- 
- 	for (i = 0; i <= 14; i++) {
- 		tmp = RREG32_SOC15_OFFSET(MMHUB, 0, regMMVM_CONTEXT1_CNTL, i);
--		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 0);
- 		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL, PAGE_TABLE_DEPTH,
- 				    adev->vm_manager.num_level);
- 		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL,
-@@ -354,6 +354,9 @@ static void mmhub_v3_0_2_setup_vmid_config(struct amdgpu_device *adev)
- 		WREG32_SOC15_OFFSET(MMHUB, 0, regMMVM_CONTEXT1_PAGE_TABLE_END_ADDR_HI32,
- 				    i * hub->ctx_addr_distance,
- 				    upper_32_bits(adev->vm_manager.max_pfn - 1));
-+		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL, ENABLE_CONTEXT, 1);
-+		WREG32_SOC15_OFFSET(MMHUB, 0, regMMVM_CONTEXT1_CNTL,
-+				    i * hub->ctx_distance, tmp);
- 	}
- 
- 	hub->vm_cntx_cntl = tmp;
-diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
-index 72083e96222f..80e29291e6e2 100644
---- a/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
-@@ -310,7 +310,7 @@ static void mmhub_v9_4_setup_vmid_config(struct amdgpu_device *adev, int hubid)
- 		tmp = RREG32_SOC15_OFFSET(MMHUB, 0, mmVML2VC0_VM_CONTEXT1_CNTL,
- 				hubid * MMHUB_INSTANCE_REGISTER_OFFSET + i);
- 		tmp = REG_SET_FIELD(tmp, VML2VC0_VM_CONTEXT1_CNTL,
--				    ENABLE_CONTEXT, 1);
-+				    ENABLE_CONTEXT, 0);
- 		tmp = REG_SET_FIELD(tmp, VML2VC0_VM_CONTEXT1_CNTL,
- 				    PAGE_TABLE_DEPTH,
- 				    num_level);
-@@ -357,6 +357,11 @@ static void mmhub_v9_4_setup_vmid_config(struct amdgpu_device *adev, int hubid)
- 				hubid * MMHUB_INSTANCE_REGISTER_OFFSET +
- 				i * hub->ctx_addr_distance,
- 				upper_32_bits(adev->vm_manager.max_pfn - 1));
-+		tmp = REG_SET_FIELD(tmp, VML2VC0_VM_CONTEXT1_CNTL,
-+				    ENABLE_CONTEXT, 1);
-+		WREG32_SOC15_OFFSET(MMHUB, 0, mmVML2VC0_VM_CONTEXT1_CNTL,
-+				    hubid * MMHUB_INSTANCE_REGISTER_OFFSET +
-+				    i * hub->ctx_distance, tmp);
- 	}
- }
- 
+ #include "ivsrcid/gfx/irqsrcs_gfx_9_0.h"
 -- 
-2.34.1
+2.25.1
 
