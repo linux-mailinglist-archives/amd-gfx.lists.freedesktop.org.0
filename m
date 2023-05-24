@@ -1,48 +1,48 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20D7970F34F
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 May 2023 11:46:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06D9270F355
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 May 2023 11:46:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 762E210E5F4;
-	Wed, 24 May 2023 09:46:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CA6410E639;
+	Wed, 24 May 2023 09:46:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 303 seconds by postgrey-1.36 at gabe;
- Wed, 24 May 2023 01:15:38 UTC
 Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9659510E562
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 May 2023 01:15:37 +0000 (UTC)
-X-UUID: 42865e7f142a40779ecd2f5dc098071f-20230524
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FAA210E562
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 May 2023 01:15:40 +0000 (UTC)
+X-UUID: 6a67f47f561b4074ae2ff3f65c70bfc6-20230524
 X-CID-O-RULE: Release_Ham
 X-CID-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.22, REQID:802614f6-8286-4692-86b8-8c6d4b4ce47c, IP:5,
+X-CID-O-INFO: VERSION:1.1.22, REQID:6a8bc471-7e9d-4170-bdbe-3f1046c0daca, IP:5,
  U
  RL:0,TC:0,Content:0,EDM:0,RT:0,SF:-15,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
  N:release,TS:-10
-X-CID-INFO: VERSION:1.1.22, REQID:802614f6-8286-4692-86b8-8c6d4b4ce47c, IP:5,
+X-CID-INFO: VERSION:1.1.22, REQID:6a8bc471-7e9d-4170-bdbe-3f1046c0daca, IP:5,
  URL
  :0,TC:0,Content:0,EDM:0,RT:0,SF:-15,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
  release,TS:-10
-X-CID-META: VersionHash:120426c, CLOUDID:d799d0c1-e32c-4c97-918d-fbb3fc224d4e,
+X-CID-META: VersionHash:120426c, CLOUDID:814b243c-de1e-4348-bc35-c96f92f1dcbb,
  B
- ulkID:2305240910296516PF9R,BulkQuantity:0,Recheck:0,SF:24|17|19|44|102,TC:
+ ulkID:230524091029R3A5ZFFD,BulkQuantity:0,Recheck:0,SF:24|17|19|44|102,TC:
  nil,Content:0,EDM:-3,IP:-2,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OS
  I:0,OSA:0,AV:0
 X-CID-BVR: 0,NGT
 X-CID-BAS: 0,NGT,0,_
-X-UUID: 42865e7f142a40779ecd2f5dc098071f-20230524
+X-UUID: 6a67f47f561b4074ae2ff3f65c70bfc6-20230524
 X-User: lizhenneng@kylinos.cn
 Received: from localhost.localdomain [(116.128.244.169)] by mailgw
  (envelope-from <lizhenneng@kylinos.cn>) (Generic MTA)
- with ESMTP id 1727280270; Wed, 24 May 2023 09:10:28 +0800
+ with ESMTP id 2132031019; Wed, 24 May 2023 09:10:28 +0800
 From: Zhenneng Li <lizhenneng@kylinos.cn>
 To: Chen Guchun <Guchun.Chen@amd.com>
-Subject: [PATCH v2] drm/amdgpu: resove reboot exception for si oland
-Date: Wed, 24 May 2023 09:09:50 +0800
-Message-Id: <20230524010951.236634-1-lizhenneng@kylinos.cn>
+Subject: [PATCH v3] drm/amdgpu: resove reboot exception for si oland
+Date: Wed, 24 May 2023 09:09:51 +0800
+Message-Id: <20230524010951.236634-2-lizhenneng@kylinos.cn>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230524010951.236634-1-lizhenneng@kylinos.cn>
+References: <20230524010951.236634-1-lizhenneng@kylinos.cn>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 24 May 2023 09:46:48 +0000
@@ -72,7 +72,6 @@ The error message are as follows:
 [    1.716547][ 3] [  T273] [drm:amdgpu_device_ip_late_init [amdgpu]] *ERROR* late_init of IP block <si_dpm> failed -22
 [    1.727064][ 3] [  T273] amdgpu 0000:02:00.0: amdgpu_device_ip_late_init failed
 [    1.734367][ 3] [  T273] amdgpu 0000:02:00.0: Fatal error during GPU init
-
 ---
  drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c | 12 ------------
  1 file changed, 12 deletions(-)
