@@ -2,73 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6A0470F353
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 May 2023 11:46:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20D7970F34F
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 May 2023 11:46:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE5BF10E632;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 762E210E5F4;
 	Wed, 24 May 2023 09:46:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sonic304-25.consmr.mail.gq1.yahoo.com
- (sonic304-25.consmr.mail.gq1.yahoo.com [98.137.68.206])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0EED10E557
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 May 2023 23:23:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1684884233; bh=Jx7So8nbrA+NGRWbD/9JPkNHTmfY6L1rcTJmWjOWwv0=;
- h=From:To:Cc:Subject:Date:References:From:Subject:Reply-To;
- b=T2ahkWENlK8XmaQa0fkqQuMXT+VdqWM5KNZnQH+5xPbuTtKqp7CICeimtKIkwuMiLth347EFPPs6rzuXqFUJMvQ0KIxx3PzmdPQ9KgyuZ1GidyHXKmVo7NzRtLTjw/omXqYR/+e57Blnkhv4KwvpQkh1RKzKisLAH3407pzsGxapTxN+178AeG+ia0hHccGeW9UoVUf6DqEJt3/JS2r+96GzR/dhpBEbCS3cdLfsJlCQ0CvibgGCSlyz6Ee/Ld5kna/ZuHxBoyXArmXTIShwDdUe43M3uqR/5ZNfDnfKFi27bKY8xPXXGT0noEEKvr9Ua5cpHuy08MX/PILLfzsxJw==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1684884233; bh=c1QiC0WQyrDke3FL5hR5H/ExWXpKf2x+1L9Lm7ZtWoQ=;
- h=X-Sonic-MF:From:To:Subject:Date:From:Subject;
- b=hLoeSWc/fJ/jcnKGqX3NvHASNYpUHNuAOseJtn403GRRKkTi800850lFYMyhYMLhjKKPe538qpkEMsfawszyTbo6sEhTdPSFIiF8iLr0E3LWHJJZ1W0V60/Y45P2Y5VEKDFT+oSVP6ohLLdTCOSy7aOCTuaK6x9Vs+tbTiQtWf6W2U3Uhf1BRU9yGwtzbOXXvKwf2joHRfcMvk2qcxOEkbyfgl633d6JtUe3MOeZ32pZ6V+1qFS0Pxb2a03OD+9JVPUGsKVvLwQxeOEJqcOUU657Z86MzbA3mK5w//cIhOu7Hg5vxGBWsPCZkmhUb/GfOQ4xdh1cwyp2HAprPTBfJA==
-X-YMail-OSG: lq2GUMoVM1mVbNRf3gRpKd4G7XxpPhAJ0UgnE7GSyrDErZgJa0KwR7NHs85NkXB
- qXuPuaxXPjSeRlb7s1wOjinOgOCD4AxSTJejtE_xExU_rswz3weZsWcXjEklQNxioe0UwgZ97GYj
- mys2DYt7AZ__U0.oMGWgNHKpZEwt2FG9joBe2dJPBd.5wcVuekWInDUjefCZNegcfF8M_BjfzFVq
- J0.1IVsQxHl9RUi14PebtFYaLXkRKLMS0vXOJ6H3M1fxH7F.RriZmmxSZxFYWq_eC0eiCKlDlqJF
- UV5R37qYX_nWa1QQprjqj_X52mEW_2JqIGasHanigtzX28NrlHChzSIJfe.S_xpNy9lY5vCgZKO7
- iNkwl7hZuSqTm7hTPA4bntyGSNVGi1psVDFQrkW3w8Qf0AOoFCwyx1dwptTv3uHMou.NzK.8_mwC
- n222CAWUh9tMM3vaKSJJl85sdqFQaBX0CBrnIdSNMhpfBUIvSB.blnDXQI39yeGuzVy3hPUH9AtX
- jCjHBJdNIt82.QCOR3t1e7Iv4yf287YUIL7oUQOQs5HfAd19.45ZCv0tvu6q3_eaO_u5tII2G1vc
- Je8dQ_yuiY2fy3NCzm64rHCoQmUyqYzWz1.ihsewaLWnt69POzjKS5CrtBSbMh_XhT24_.1SICG2
- 7A9BeXbmhdH0TWTreP6DmiDzS.5EwP1SD11daSAn5NZZ5XuhdJCMAA1YpTC38cmw0WPZ__OTqGmH
- OZONDHFcUVrlzEDNZQklIy1ddn8huie.v7Q19KYynkBePBM7wirjhB2mY4odT.S8y3jGerEAl1EB
- .m2iF7frdJqyaaRVmPvu37oAl2Y.6vQpg0OuYOdcgoiXsGBkK1FOQUU__8G9zEFBYWvURKWcPr0S
- OLs1hOqgQP9qUhuZxIEY.eALTxLqGun3MxfuhFzg21.WRqK.6eaMSIzZWwEyCk2lnJHkx.O84B7P
- AOl4AkUEnqCML6o5CvvoncbujVG7Gw2NXGLg08XILDOn2JT.6iULQaq6TDeIUKy2qp.k.wAUhKvT
- V8OE3USUQlXSqlCIxyQexJdkXV9KS0_2I_EO2POLn6fd9h_SJc5FqEMCEdQOTlwh.vgt_WNgHNa.
- 8_NJw8SFzsPCff_uqwm.wx17ZD0tog8NvrNq0.c2KIgVAtclenSV8qZ4zYaauNCWw91cyFZwgb9k
- hluu99hyaGe2eKWPrDrnxECjVEOVV1_4VBX4uhuzyc.oCzeoSRr2pgOH1kiFuqxUpjEaptrEehy7
- N6SZRGDxKmWBZnTSbEV5wcvgcafwZMQQjAq1ySIiNQboR_9.BriVolJwq4JuWzABWxl7G6PLiGeO
- KExHRDlKV7eyrrUI4cCdkdrwXLyQnHWhck33GB5upVzDGqr7TWPXioQCbp_AQ93mH88X5rrnFj66
- XruGp6PZFaTojgieKJiAaHkBjYBeuz4.QVOb5_sP4bsahW3POFxFkavtPvA.pZYaWRAyssJm3uGj
- BiRc.V.pyLp2ZDnt1uRm973drtxBey3p1z2Rr.4QlvSd7qgwXIg07mZiqjX5NmBvUl5joMJxF4AU
- OqMfXwqUryRs_dpLIJZ0ybRd7rCQ29P7KQRcvBcG9q6ywbUI0hfIqvmpV7bef11mxM1NaNqAmd2n
- IRrX0fOnnWqQW7znDE1bK6YSjnokxuiJEyW2FCiVmVFm0BfBVkH.liB77wr9ODWapg3vMVerXnr5
- 74RCnVZZJjNRUEIOD0NxVeKF2sprlqC0B2RGgW6vJBqp1th.AwjlwLJq21r5tLGcSEAjUVFX73QR
- KFbRm77WYP4XDzeAjuZs9hCuC.66NaRcU9.56VF8XuXxlbMaFUlzJrhEaIIUUL8c9O_HupihhYFW
- _Jt4ClCcix2lY.GKXGU5KwpoYxxzAOow47H5PbnqX7KJ7hJLgfkE7wRKQpbzGiwP2_5ClpJ.avXM
- dxTS4MpZWAESVzzMWB6JA1GsoysXsf3HcfRv_YTN5UHVAdpeEiBNQHsRSXYGguD7L5mjMpX675RG
- s5samRtu75O0q9q.SX60TC9L13rCCJYWfd41pfs7esXO6eWY.Qm4NDaoVyabr84IIsw0EkH5gSzS
- Y3QrSa.AQCKol1B83lzWIzcdh__ja3KG8EqAuUz0G4upHa1Y7wPOkMDY5NpYtLYfvtI5RhF6hW2j
- nAo9AbcRb6HaGngKPdTYwwwmdsPKQkvGNdq0JOc3KUFpnhdcdvIegeL3__YG3Kxz3c6SRaxh64sN
- 2_qMa_NRQzFdsPomAqPkneO4G.IoXhPRbKbXRQ.QVIUFy4VxTSIxBtQ5PgFf5fHvpIzR13Haz
-X-Sonic-MF: <astrajoan@yahoo.com>
-X-Sonic-ID: 1bbb1ce7-9557-46b8-a022-f435a37c3c48
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic304.consmr.mail.gq1.yahoo.com with HTTP; Tue, 23 May 2023 23:23:53 +0000
-Received: by hermes--production-bf1-54475bbfff-xmg9w (Yahoo Inc. Hermes SMTP
- Server) with ESMTPA ID d157402ea91e225da98a9424db96668e; 
- Tue, 23 May 2023 23:23:50 +0000 (UTC)
-From: Ziqi Zhao <astrajoan@yahoo.com>
-To: skhan@linuxfoundation.org
-Subject: [Linux-kernel-mentorship] [PATCH] drm/amdgpu: remove excess parameter
- description in amdgpu_device.c
-Date: Tue, 23 May 2023 23:23:31 +0000
-Message-Id: <20230523232331.363182-1-astrajoan@yahoo.com>
-X-Mailer: git-send-email 2.34.1
+X-Greylist: delayed 303 seconds by postgrey-1.36 at gabe;
+ Wed, 24 May 2023 01:15:38 UTC
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9659510E562
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 May 2023 01:15:37 +0000 (UTC)
+X-UUID: 42865e7f142a40779ecd2f5dc098071f-20230524
+X-CID-O-RULE: Release_Ham
+X-CID-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.22, REQID:802614f6-8286-4692-86b8-8c6d4b4ce47c, IP:5,
+ U
+ RL:0,TC:0,Content:0,EDM:0,RT:0,SF:-15,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+ N:release,TS:-10
+X-CID-INFO: VERSION:1.1.22, REQID:802614f6-8286-4692-86b8-8c6d4b4ce47c, IP:5,
+ URL
+ :0,TC:0,Content:0,EDM:0,RT:0,SF:-15,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+ release,TS:-10
+X-CID-META: VersionHash:120426c, CLOUDID:d799d0c1-e32c-4c97-918d-fbb3fc224d4e,
+ B
+ ulkID:2305240910296516PF9R,BulkQuantity:0,Recheck:0,SF:24|17|19|44|102,TC:
+ nil,Content:0,EDM:-3,IP:-2,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OS
+ I:0,OSA:0,AV:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-UUID: 42865e7f142a40779ecd2f5dc098071f-20230524
+X-User: lizhenneng@kylinos.cn
+Received: from localhost.localdomain [(116.128.244.169)] by mailgw
+ (envelope-from <lizhenneng@kylinos.cn>) (Generic MTA)
+ with ESMTP id 1727280270; Wed, 24 May 2023 09:10:28 +0800
+From: Zhenneng Li <lizhenneng@kylinos.cn>
+To: Chen Guchun <Guchun.Chen@amd.com>
+Subject: [PATCH v2] drm/amdgpu: resove reboot exception for si oland
+Date: Wed, 24 May 2023 09:09:50 +0800
+Message-Id: <20230524010951.236634-1-lizhenneng@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-References: <20230523232331.363182-1-astrajoan.ref@yahoo.com>
 X-Mailman-Approved-At: Wed, 24 May 2023 09:46:48 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -81,54 +57,52 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: andrey.grodzovsky@amd.com, lijo.lazar@amd.com,
- Amaranath.Somalapuram@amd.com, Ziqi Zhao <astrajoan@yahoo.com>,
- dri-devel@lists.freedesktop.org, Xinhui.Pan@amd.com,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- sumit.semwal@linaro.org, linaro-mm-sig@lists.linaro.org, YiPeng.Chai@amd.com,
- mario.limonciello@amd.com, daniel@ffwll.ch, Bokun.Zhang@amd.com,
- alexander.deucher@amd.com, linux-media@vger.kernel.org, airlied@gmail.com,
- christian.koenig@amd.com, Hawking.Zhang@amd.com
+Cc: David Airlie <airlied@linux.ie>, Pan Xinhui <Xinhui.Pan@amd.com>,
+ Zhenneng Li <lizhenneng@kylinos.cn>, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patch is part of the Linux Kernel Bug Fixing Summer screening
-tasks. By removing the extra description, several documentation
-compilation warnings such as the following have been fixed:
+During reboot test on arm64 platform, it may failure
+on boot.
 
-> ./drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:758: warning: Excess function parameter 'pcie_index' description in 'amdgpu_device_indirect_wreg'
+The error message are as follows:
+[    1.706570][ 3] [  T273] [drm:si_thermal_enable_alert [amdgpu]] *ERROR* Could not enable thermal interrupts.
+[    1.716547][ 3] [  T273] [drm:amdgpu_device_ip_late_init [amdgpu]] *ERROR* late_init of IP block <si_dpm> failed -22
+[    1.727064][ 3] [  T273] amdgpu 0000:02:00.0: amdgpu_device_ip_late_init failed
+[    1.734367][ 3] [  T273] amdgpu 0000:02:00.0: Fatal error during GPU init
 
-Note: I assume the description can be safely removed based on this
-earlier patch:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/patch?id=65ba96e91b689c23d6fa99c11cfd65965dcddc47
-
-Signed-off-by: Ziqi Zhao <astrajoan@yahoo.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 4 ----
- 1 file changed, 4 deletions(-)
+ drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c | 12 ------------
+ 1 file changed, 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 5c7d40873ee2..58d8f60c6a3a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -747,8 +747,6 @@ u64 amdgpu_device_indirect_rreg64(struct amdgpu_device *adev,
-  * amdgpu_device_indirect_wreg - write an indirect register address
-  *
-  * @adev: amdgpu_device pointer
-- * @pcie_index: mmio register offset
-- * @pcie_data: mmio register offset
-  * @reg_addr: indirect register offset
-  * @reg_data: indirect register data
-  *
-@@ -778,8 +776,6 @@ void amdgpu_device_indirect_wreg(struct amdgpu_device *adev,
-  * amdgpu_device_indirect_wreg64 - write a 64bits indirect register address
-  *
-  * @adev: amdgpu_device pointer
-- * @pcie_index: mmio register offset
-- * @pcie_data: mmio register offset
-  * @reg_addr: indirect register offset
-  * @reg_data: indirect register data
-  *
+diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+index d6d9e3b1b2c0..ca9bce895dbe 100644
+--- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
++++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+@@ -7626,18 +7626,6 @@ static int si_dpm_process_interrupt(struct amdgpu_device *adev,
+ 
+ static int si_dpm_late_init(void *handle)
+ {
+-	int ret;
+-	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+-
+-	if (!adev->pm.dpm_enabled)
+-		return 0;
+-
+-	ret = si_set_temperature_range(adev);
+-	if (ret)
+-		return ret;
+-#if 0 //TODO ?
+-	si_dpm_powergate_uvd(adev, true);
+-#endif
+ 	return 0;
+ }
+ 
 -- 
-2.34.1
+2.25.1
 
+
+No virus found
+		Checked by Hillstone Network AntiVirus
