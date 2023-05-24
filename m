@@ -1,30 +1,30 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E28170F35F
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 May 2023 11:47:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06DCF70F352
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 May 2023 11:46:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0C1D10E662;
-	Wed, 24 May 2023 09:46:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3711010E633;
+	Wed, 24 May 2023 09:46:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-133.freemail.mail.aliyun.com
- (out30-133.freemail.mail.aliyun.com [115.124.30.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67A8C10E578
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 May 2023 04:05:17 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R151e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018045168;
+Received: from out30-131.freemail.mail.aliyun.com
+ (out30-131.freemail.mail.aliyun.com [115.124.30.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 868AE10E574
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 May 2023 04:05:20 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R161e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018046050;
  MF=yang.lee@linux.alibaba.com; NM=1; PH=DS; RN=12; SR=0;
- TI=SMTPD_---0VjMWCGq_1684900807; 
+ TI=SMTPD_---0VjMa8J0_1684900809; 
 Received: from localhost(mailfrom:yang.lee@linux.alibaba.com
- fp:SMTPD_---0VjMWCGq_1684900807) by smtp.aliyun-inc.com;
- Wed, 24 May 2023 12:00:08 +0800
+ fp:SMTPD_---0VjMa8J0_1684900809) by smtp.aliyun-inc.com;
+ Wed, 24 May 2023 12:00:09 +0800
 From: Yang Li <yang.lee@linux.alibaba.com>
 To: alexander.deucher@amd.com
-Subject: [PATCH -next 07/13] drm/amd/display: remove unused definition
-Date: Wed, 24 May 2023 11:59:46 +0800
-Message-Id: <20230524035952.123590-7-yang.lee@linux.alibaba.com>
+Subject: [PATCH -next 08/13] drm/amd/display: remove unused definition
+Date: Wed, 24 May 2023 11:59:47 +0800
+Message-Id: <20230524035952.123590-8-yang.lee@linux.alibaba.com>
 X-Mailer: git-send-email 2.20.1.7.g153144c
 In-Reply-To: <20230524035952.123590-1-yang.lee@linux.alibaba.com>
 References: <20230524035952.123590-1-yang.lee@linux.alibaba.com>
@@ -51,23 +51,23 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Eliminate the following warnings:
-drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:957:43: warning: unused variable 'res_create_maximus_funcs'
-drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.c:101:38: warning: unused variable 'debug_defaults_diags'
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn303/dcn303_resource.c:884:43: warning: unused variable 'res_create_maximus_funcs'
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn303/dcn303_resource.c:84:38: warning: unused variable 'debug_defaults_diags'
 
 Reported-by: Abaci Robot <abaci@linux.alibaba.com>
 Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=5296
 Fixes: 00df97e1df57 ("drm/amd/display: Clean FPGA code in dc")
 Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
 ---
- .../amd/display/dc/dcn302/dcn302_resource.c   | 25 -------------------
- 1 file changed, 25 deletions(-)
+ .../amd/display/dc/dcn303/dcn303_resource.c   | 24 -------------------
+ 1 file changed, 24 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-index efd98d64588d..93f42132c900 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-@@ -98,24 +98,6 @@ static const struct dc_debug_options debug_defaults_drv = {
- 		.exit_idle_opt_for_cursor_updates = true
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c
+index fcd126602178..f35514188a5c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c
+@@ -81,23 +81,6 @@ static const struct dc_debug_options debug_defaults_drv = {
+ 		.disable_idle_power_optimizations = false,
  };
  
 -static const struct dc_debug_options debug_defaults_diags = {
@@ -85,21 +85,20 @@ index efd98d64588d..93f42132c900 100644
 -		.dwb_fi_phase = -1, // -1 = disable
 -		.dmub_command_table = true,
 -		.enable_tri_buf = true,
--		.use_max_lb = true
 -};
 -
  static const struct dc_panel_config panel_config_defaults = {
  		.psr = {
  			.disable_psr = false,
-@@ -954,13 +936,6 @@ static const struct resource_create_funcs res_create_funcs = {
- 		.create_hwseq = dcn302_hwseq_create,
+@@ -881,13 +864,6 @@ static const struct resource_create_funcs res_create_funcs = {
+ 		.create_hwseq = dcn303_hwseq_create,
  };
  
 -static const struct resource_create_funcs res_create_maximus_funcs = {
 -		.read_dce_straps = NULL,
 -		.create_audio = NULL,
 -		.create_stream_encoder = NULL,
--		.create_hwseq = dcn302_hwseq_create,
+-		.create_hwseq = dcn303_hwseq_create,
 -};
 -
  static bool is_soc_bounding_box_valid(struct dc *dc)
