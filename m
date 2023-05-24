@@ -2,61 +2,116 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E10C70F350
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 May 2023 11:46:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD77C70EF80
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 May 2023 09:35:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B319710E608;
-	Wed, 24 May 2023 09:46:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D472010E580;
+	Wed, 24 May 2023 07:35:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
- [IPv6:2a00:1450:4864:20::433])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF25410E06C
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 May 2023 06:38:00 +0000 (UTC)
-Received: by mail-wr1-x433.google.com with SMTP id
- ffacd0b85a97d-3090d3e9c92so351620f8f.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 May 2023 23:38:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1684910278; x=1687502278;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=GNqPpLwpUNEQmXIbMXpony0Q3J1hvpdlnn2gNOvSEkU=;
- b=eBV9CCWeXbqTkBiRKcW0YE6OHVd5JP0ZkvkC1PQLb2KXPOl0/aY4SR/e+QYbwt8LuW
- 44CZ/tnqKnoSXxBczdJidumR8kA0hXBQKOZPuagjMz9/sgHWtDxotP/Na9NJUz0hlDLn
- 3UC3Rj6m1IXVYifh96isRzU7e8Hyoid4L/orSVphSkBdUcvY+Vmyjjtc7eVxAlCRrUNu
- cafgBSQ6YCkQr3RkVxezBb7ucgMf4Ppj/Vuw4VsURwc9ZFybe4ewhgZU7M7OfQqMGe7A
- U7JCi8M7khnpKGqiylBXozPzb5McOH0oZ9I4fCQOosD3pGbT9sTOGei/u4TAHGrnjNm7
- 89kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684910278; x=1687502278;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=GNqPpLwpUNEQmXIbMXpony0Q3J1hvpdlnn2gNOvSEkU=;
- b=jjviiaEoSDwdsSk/Ci3toIKb1OKcdtKvjb4Q5mvW0lkmmyKgwfPEh3u6RG7xbGQaSp
- kEDcAC3OmD3bcRxNrhLk3xa+drIRCmWeMg5BS/tkNBolE4BVz4K3BIzqsCbAeanobS/H
- wiZTjSu0Ib1Z0Z1X2mqTZeFAW56/A/dYgSE6wwoRLMt4jCER1MCJtdZGlY8q08xbdCku
- 42D+9j9fRFbKLhZVBEbgjlNEgbLC38VN2P+BUad1GY9R1gbmbPzNOtgfSiyAkHLiS0Nx
- anA1bjJNCZTTMAyPm+HIy5n0mxUTQeZETmvhrbHbXwsED4rhL84bANP53TnrQlfpVhTr
- RqCg==
-X-Gm-Message-State: AC+VfDxRunBcCgA51m+HT0nPBwk2mfUerzxyHpLvtiaHZ6kWXSge4P4H
- yMvVhrSju+Y9DG/+R5kgxbkXbA==
-X-Google-Smtp-Source: ACHHUZ6cNQjohZAljeAoPsHQQKUlKP7lpzOc88Wni8LvXQLBz9/k3UkOVzlzgW8gQdSBxbaB8WTWOg==
-X-Received: by 2002:adf:f3cd:0:b0:307:a4ee:4a25 with SMTP id
- g13-20020adff3cd000000b00307a4ee4a25mr11438658wrp.28.1684910277820; 
- Tue, 23 May 2023 23:37:57 -0700 (PDT)
-Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
- m13-20020adfe94d000000b002fda1b12a0bsm13521807wrn.2.2023.05.23.23.37.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 23 May 2023 23:37:56 -0700 (PDT)
-Date: Wed, 24 May 2023 09:37:53 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: qingqing.zhuo@amd.com
-Subject: [bug report] drm/amd/display: Clean FPGA code in dc
-Message-ID: <37aa75c2-ebd3-47b3-b1c7-9fc88d68a035@kili.mountain>
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2064.outbound.protection.outlook.com [40.107.237.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0ADD10E580
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 May 2023 07:35:40 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ntY/L0pzgDjSiVtbp1ozbLcmQt84vllClwGj9j5FRSd6zNNWbxs/Jc/N+5b4q3I+kyjA0ZOlpwSXz1UM8VNVKp5tbsivWZI8LAfnsWA84+a0zdEIzKUrQmFuze+t6yM/DYXmBwxX5xuCkSOFj8xaYH6I98A066wjg0oAXhYP0pdJBNP0uNPuHTmlbcxigaqzNQfoUx8morW1lxquf4kxlyzzfiMI04DsQT98MfCCa7qqPwVstUJ2hDGPZm3J/H5UycNUIwesuKfsSu0Sfy4nutdSR9EjmBbRCE/l0n2HJltC/fRqtL8nikV9TaA9XRf/of/4WTXbv/A42css7oglVw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mB4Hfx7qdO5SEFC+WXzSu3hSt3NGUISIyHcyU9ejaEc=;
+ b=GPXFF8AeMA3YrFidoTqEpPraMJyFHzgZxh4ftL3c6+YQBpb3jXDvVwbmaV8SoqpvxluYQnm/KoTNuLfYR1mydpm0pcs6UlmLFCEjqBmAD32DGV2QEaV4lMjrMBeS9S5Kw48Kz9mhzRrVrqCHUpC4CzhFsDnPMzS6HX/ycfEIClURlUTNzvHdAghANH+czhreiDz3cOWcgAXIfTp8jjhGSEAIZiQoCEDPRguPRXq1gVJ526QMp/Nz7TpEvR2zC8tebrWTz1u+caZ6kI2yIrSNFNGI/jjXMisEiBdSx2CWAMC+pT7s6dg8V3fIodwmhoVCWVoMNWIER2caDg6QCwWrXg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mB4Hfx7qdO5SEFC+WXzSu3hSt3NGUISIyHcyU9ejaEc=;
+ b=2kP4xS26ocr4CnE/P/X2jAQh/VyRQnnX6iAZ4Wo696WNUMcC8MdAf+66bbuTPqosJ1BSs6vKiJtCfHhAainNQVYqVD6eQ8+m05YMJD4xxM2xp/S1Se8iWsvDY5ksoJ/U2YfkIA9tng2kcxPB65PbgYUApNLEcXFQsGxaGf6ycx0=
+Received: from DM5PR12MB2469.namprd12.prod.outlook.com (2603:10b6:4:af::38) by
+ CH0PR12MB5170.namprd12.prod.outlook.com (2603:10b6:610:b9::8) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6433.15; Wed, 24 May 2023 07:35:35 +0000
+Received: from DM5PR12MB2469.namprd12.prod.outlook.com
+ ([fe80::33d9:b6ae:36f1:e374]) by DM5PR12MB2469.namprd12.prod.outlook.com
+ ([fe80::33d9:b6ae:36f1:e374%3]) with mapi id 15.20.6433.015; Wed, 24 May 2023
+ 07:35:35 +0000
+From: "Chen, Guchun" <Guchun.Chen@amd.com>
+To: Zhenneng Li <lizhenneng@kylinos.cn>
+Subject: RE: [PATCH v4] drm/amdgpu: resove reboot exception for si oland
+Thread-Topic: [PATCH v4] drm/amdgpu: resove reboot exception for si oland
+Thread-Index: AQHZjgUJ2ACcfzJy7kC35X40xk3Gua9pCF0Q
+Date: Wed, 24 May 2023 07:35:34 +0000
+Message-ID: <DM5PR12MB2469C1A31CBF52EDDE01BED3F1419@DM5PR12MB2469.namprd12.prod.outlook.com>
+References: <20230524055959.327329-1-lizhenneng@kylinos.cn>
+ <20230524055959.327329-2-lizhenneng@kylinos.cn>
+In-Reply-To: <20230524055959.327329-2-lizhenneng@kylinos.cn>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ActionId=7be903e6-59cc-444b-b775-d97f849227ad;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ContentBits=0;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Enabled=true;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Method=Privileged;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Name=Public-AIP
+ 2.0;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SetDate=2023-05-24T07:35:14Z;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM5PR12MB2469:EE_|CH0PR12MB5170:EE_
+x-ms-office365-filtering-correlation-id: 75ab8d7d-7c02-4807-db00-08db5c297620
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: UoyuzvsbGjUA0+1GK5Xab/dRAZish72F5Lti8jaWz8MMQS844L7gz08IXewU8vwdNo36IHe1MZYebw8Vcvln+/qtOwTKWnKy2q+jnZooEPpR7uQ5LEipiBHFcEsxU4QtluCFByLTL9eesbc8Pdy+VIZlcOIUnP92NMq8t3PMwiulE2+JhKlADxYLW4M8b881i1wG01n+iiQnq1ibaVgqzbLlCXc8rzLdGcXQcPqWiVW3iLI/JKrtj5rFJjpSQbDgp7/tUSQw4U6ghexsL68Vrm4UaXSzFNFAbFBthTe5qgIRZ0HzUIT8VAc7qffZXCbIoQseULRLVBaUFBHL6p/Nd0CXExq2uPLo2c5QjQU2fjXm/IRYjRgCfTTIpFeULrdAR6mPmfK41rVk9Bc/shzG+M8MkBhfh1YzVkPkUkFCtQu9qiPWreHiIBdHIhYYqqVfIR2jx1l8BJNPqS7ZPVBytdlFdbpwrPi0tJaAJ3Rdtx+ktuvTRPAsmSCU/wT87ZqgDKFLKF+MlappDVIgKjJFi0MzCtWicPq233AKmXHgPS9MCwnpGT0MP5GExRyqgo2vDWXnZqQxrnLbnFYBhNGcVIDsZe2gITbz0xfeY3ekPjQ=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM5PR12MB2469.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(39860400002)(136003)(396003)(376002)(366004)(346002)(451199021)(478600001)(7696005)(71200400001)(54906003)(53546011)(26005)(9686003)(6506007)(66476007)(186003)(66946007)(76116006)(64756008)(66446008)(66556008)(6916009)(4326008)(33656002)(5660300002)(52536014)(41300700001)(38070700005)(86362001)(55016003)(38100700002)(2906002)(8676002)(8936002)(316002)(66574015)(122000001)(83380400001);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?hhYBTDykHFYFtIJ9gwJdWbnfNUJaBUc+EhoiTl2c0fGbZpaDllXrkRHPVkA5?=
+ =?us-ascii?Q?gYe/lVutEapW58CNSdVFBOrB8K+8KKFXPtR41+RmtbE/0pMTilD3q3IwVUlp?=
+ =?us-ascii?Q?wdk93GQtQXGAsChees4E5IcKA7PND/nfgifIeG5n04bLCHOGOL5+E7z1eQwU?=
+ =?us-ascii?Q?35gB2IXzVOVeGuqyMevYwM5urcCUbIKqFmPfkeU3LzrfkC4qJsliLcMRQSUM?=
+ =?us-ascii?Q?OE2Do/e4sNXop6p2sXXU3t3LkkP/VB+j3Z8PKPeGKbGtgHudajC8ve1Bfnj5?=
+ =?us-ascii?Q?c1arZ97GvVw2vrDEet/kGJk+Ss/wTsSvju8xCiuSQHS/uFGrZ1d7zmHk2max?=
+ =?us-ascii?Q?1Rea0OIVig4zKogwXTzE7zeHGVTeX8zQjJjrNISmr0r39kMah3h7u5VtF9V2?=
+ =?us-ascii?Q?ayDjw+78WsqKpfhcWTIiq97jUmxWaUcNuYJAYGfSVa2hpLEhawQj+QTP6z57?=
+ =?us-ascii?Q?UgOQWf3hUp7Ig828aqlKrAblTng/IGVI5pz4bIcqi0sJQe9lpq5ObzpTjT28?=
+ =?us-ascii?Q?mYt/5jEhR9RJyN6e41QFH0BpidsuHVWT7n+bzpNIEgterTWjZK9Cy2WgMBnF?=
+ =?us-ascii?Q?6U96BNJQURvrKbVmpAtk2pMjj32zFADoUoS6bf4tvAqFVh+Cp49SCxn8IwUk?=
+ =?us-ascii?Q?OX/YLKQERrocUEy2orSIVs85mXUEvnzOQjEmpYAl5675WeluecWbJ25eYftE?=
+ =?us-ascii?Q?5HPPVZ0NpkLJHaZCJ0eDjBGDADAFKB9q8Ljg/9ORQG+4j4o9VO+ecY6ks1Li?=
+ =?us-ascii?Q?QXe4EZJyGpgcRGifr0IKCpIEb0bOV+RV4kOEG/79hO+SmM4dqOcMTdwn4LIP?=
+ =?us-ascii?Q?S/Vi73a/s0CXggttvr63rz1ajhNSgA0NRY2ik+pmA7oJhoKlIciGxPCp1waw?=
+ =?us-ascii?Q?t7dVTIK4NqyrTE/fTeYAzxojrnNjojNTp7tBUy6+kpa2kts6oKSHkLS5oel5?=
+ =?us-ascii?Q?xdpdsUcAVdnuHYkLdRVYpb1l1TnmjTHT7vJj7Kek9EZYkq9YRWZqRou34Ik8?=
+ =?us-ascii?Q?eG75Xm+xoeeLQILxcQ4tKjSRQcPAdEBBwoa8pjte3S2pPIFDUL1MznBcW8n7?=
+ =?us-ascii?Q?RA8khx/xD34iBs2BycKNPVs7MotW7nzlkfAPr5ZT4+CIlvw3L2UVKFBiKivX?=
+ =?us-ascii?Q?C/SRixZ5w/13pXQSANHDTYW6hRU2xQ016dsRhr53pG62rBLhNf6/sJh6gTmd?=
+ =?us-ascii?Q?RPFs3e1Das9Si+dDLlHqkNAr7TbcvA1p6+nHy6lWZjJ8HrNG/cai++kQRvDn?=
+ =?us-ascii?Q?Q4StNJshiFEydX8lDyis1K/D/d0fG5C8a+AEQpfos5EAC/59Vdc+xWWZ3H4D?=
+ =?us-ascii?Q?j7nvHEqa5A9bLbZWn0CV12I+JzF5yaubMOdgAd4PCP73ueD/v5yOj4uKrsmH?=
+ =?us-ascii?Q?/8p1qF6vI42WIy833aPxF4uIWK+DtQ2xst9HwrgE8q6xNttSDPsG9d8kt6gp?=
+ =?us-ascii?Q?DQFRmR6xaHGmTqrRT59udoEkc8JFeyeUK/Qi4cIXyNmK5EECO9ywmoyL9Ozi?=
+ =?us-ascii?Q?vty7G9dfhUOV20RvdznOTP+RIATPX2b9TUkoYwPQcdl4rZ87pCxg/osO3j3E?=
+ =?us-ascii?Q?56vuGCNEmzP0f/iZNUE=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailman-Approved-At: Wed, 24 May 2023 09:46:48 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB2469.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 75ab8d7d-7c02-4807-db00-08db5c297620
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 May 2023 07:35:34.7947 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: HBHnqo70KR52DzvG7XRlR3COL7mfEyf/rI4+1NYgkjSpksvm1CFkbhp9wf8zmpSiEmloT1z9kV/xaNo51lE4ZQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5170
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,131 +123,78 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello Qingqing Zhuo,
+[Public]
 
-The patch 00df97e1df57: "drm/amd/display: Clean FPGA code in dc" from
-Mar 16, 2023, leads to the following Smatch static checker warning:
+Applied by modifying the subject a bit to " drm/amd/pm: resolve reboot exce=
+ption for si oland". Thanks.
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn21/rn_clk_mgr.c:775 rn_clk_mgr_construct()
-warn: variable dereferenced before check 'ctx->dc_bios->integrated_info' (see line 743)
+Regards,
+Guchun
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn301/vg_clk_mgr.c:731
-vg_clk_mgr_construct() warn: variable dereferenced before check 'ctx->dc_bios->integrated_info' (see line 717)
-
-drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn314/dcn314_clk_mgr.c:834
-dcn314_clk_mgr_construct() warn: variable dereferenced before check 'ctx->dc_bios->integrated_info' (see line 773)
-
-drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c:782
-dcn31_clk_mgr_construct() warn: variable dereferenced before check 'ctx->dc_bios->integrated_info' (see line 721)
-
-Also some indenting stuff:
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn314/dcn314_fpu.c:269 dcn314_update_bw_bounding_box_fpu()
-warn: inconsistent indenting
-
-drivers/gpu/drm/amd/amdgpu/../display/dc/link/link_dpms.c:2377 link_set_dpms_on()
-warn: inconsistent indenting
-
-drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-    698 void rn_clk_mgr_construct(
-    699                 struct dc_context *ctx,
-    700                 struct clk_mgr_internal *clk_mgr,
-    701                 struct pp_smu_funcs *pp_smu,
-    702                 struct dccg *dccg)
-    703 {
-    704         struct dc_debug_options *debug = &ctx->dc->debug;
-    705         struct dpm_clocks clock_table = { 0 };
-    706         enum pp_smu_status status = 0;
-    707         int is_green_sardine = 0;
-    708         struct clk_log_info log_info = {0};
-    709 
-    710 #if defined(CONFIG_DRM_AMD_DC_FP)
-    711         is_green_sardine = ASICREV_IS_GREEN_SARDINE(ctx->asic_id.hw_internal_rev);
-    712 #endif
-    713 
-    714         clk_mgr->base.ctx = ctx;
-    715         clk_mgr->base.funcs = &dcn21_funcs;
-    716 
-    717         clk_mgr->pp_smu = pp_smu;
-    718 
-    719         clk_mgr->dccg = dccg;
-    720         clk_mgr->dfs_bypass_disp_clk = 0;
-    721 
-    722         clk_mgr->dprefclk_ss_percentage = 0;
-    723         clk_mgr->dprefclk_ss_divider = 1000;
-    724         clk_mgr->ss_on_dprefclk = false;
-    725         clk_mgr->dfs_ref_freq_khz = 48000;
-    726 
-    727         clk_mgr->smu_ver = rn_vbios_smu_get_smu_version(clk_mgr);
-    728 
-    729         clk_mgr->periodic_retraining_disabled = rn_vbios_smu_is_periodic_retraining_disabled(clk_mgr);
-    730 
-    731         /* SMU Version 55.51.0 and up no longer have an issue
-    732          * that needs to limit minimum dispclk */
-    733         if (clk_mgr->smu_ver >= SMU_VER_55_51_0)
-    734                 debug->min_disp_clk_khz = 0;
-    735 
-    736         /* TODO: Check we get what we expect during bringup */
-    737         clk_mgr->base.dentist_vco_freq_khz = get_vco_frequency_from_reg(clk_mgr);
-    738 
-    739         /* in case we don't get a value from the register, use default */
-    740         if (clk_mgr->base.dentist_vco_freq_khz == 0)
-    741                 clk_mgr->base.dentist_vco_freq_khz = 3600000;
-    742 
-    743         if (ctx->dc_bios->integrated_info->memory_type == LpDdr4MemType) {
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This dereference was in an if statement before so Smatch didn't
-trigger a warning.
-
-    744                 if (clk_mgr->periodic_retraining_disabled) {
-    745                         rn_bw_params.wm_table = lpddr4_wm_table_with_disabled_ppt;
-    746                 } else {
-    747                         if (is_green_sardine)
-    748                                 rn_bw_params.wm_table = lpddr4_wm_table_gs;
-    749                         else
-    750                                 rn_bw_params.wm_table = lpddr4_wm_table_rn;
-    751                 }
-    752         } else {
-    753                 if (is_green_sardine)
-    754                         rn_bw_params.wm_table = ddr4_wm_table_gs;
-    755                 else {
-    756                         if (ctx->dc->config.is_single_rank_dimm)
-    757                                 rn_bw_params.wm_table = ddr4_1R_wm_table_rn;
-    758                         else
-    759                                 rn_bw_params.wm_table = ddr4_wm_table_rn;
-    760                 }
-    761         }
-    762         /* Saved clocks configured at boot for debug purposes */
-    763         rn_dump_clk_registers(&clk_mgr->base.boot_snapshot, &clk_mgr->base, &log_info);
-    764 
-    765         clk_mgr->base.dprefclk_khz = 600000;
-    766         dce_clock_read_ss_info(clk_mgr);
-    767 
-    768 
-    769         clk_mgr->base.bw_params = &rn_bw_params;
-    770 
-    771         if (pp_smu && pp_smu->rn_funcs.get_dpm_clock_table) {
-    772                 status = pp_smu->rn_funcs.get_dpm_clock_table(&pp_smu->rn_funcs.pp_smu, &clock_table);
-    773 
-    774                 if (status == PP_SMU_RESULT_OK &&
---> 775                     ctx->dc_bios && ctx->dc_bios->integrated_info) {
-                            ^^^^^^^^^^^^
-Checking for NULL after a dereference doesn't work.
-
-    776                         rn_clk_mgr_helper_populate_bw_params (clk_mgr->base.bw_params, &clock_table, ctx->dc_bios->integrated_info);
-    777                         /* treat memory config as single channel if memory is asymmetrics. */
-    778                         if (ctx->dc->config.is_asymmetric_memory)
-    779                                 clk_mgr->base.bw_params->num_channels = 1;
-    780                 }
-    781         }
-    782 
-    783         /* enable powerfeatures when displaycount goes to 0 */
-    784         if (clk_mgr->smu_ver >= 0x00371500)
-    785                 rn_vbios_smu_enable_48mhz_tmdp_refclk_pwrdwn(clk_mgr, !debug->disable_48mhz_pwrdwn);
-    786 }
-
-regards,
-dan carpenter
+> -----Original Message-----
+> From: Zhenneng Li <lizhenneng@kylinos.cn>
+> Sent: Wednesday, May 24, 2023 2:00 PM
+> To: Chen, Guchun <Guchun.Chen@amd.com>
+> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian
+> <Christian.Koenig@amd.com>; Pan, Xinhui <Xinhui.Pan@amd.com>; David
+> Airlie <airlied@linux.ie>; Daniel Vetter <daniel@ffwll.ch>; amd-
+> gfx@lists.freedesktop.org; Zhenneng Li <lizhenneng@kylinos.cn>
+> Subject: [PATCH v4] drm/amdgpu: resove reboot exception for si oland
+>
+> During reboot test on arm64 platform, it may failure on boot.
+>
+> The error message are as follows:
+> [    1.706570][ 3] [  T273] [drm:si_thermal_enable_alert [amdgpu]] *ERROR=
+*
+> Could not enable thermal interrupts.
+> [    1.716547][ 3] [  T273] [drm:amdgpu_device_ip_late_init [amdgpu]]
+> *ERROR* late_init of IP block <si_dpm> failed -22
+> [    1.727064][ 3] [  T273] amdgpu 0000:02:00.0: amdgpu_device_ip_late_in=
+it
+> failed
+> [    1.734367][ 3] [  T273] amdgpu 0000:02:00.0: Fatal error during GPU i=
+nit
+>
+> Signed-off-by: Zhenneng Li <lizhenneng@kylinos.cn>
+> ---
+>  drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c | 12 ------------
+>  1 file changed, 12 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+> b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+> index d6d9e3b1b2c0..ca9bce895dbe 100644
+> --- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+> +++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+> @@ -7626,18 +7626,6 @@ static int si_dpm_process_interrupt(struct
+> amdgpu_device *adev,
+>
+>  static int si_dpm_late_init(void *handle)  {
+> -     int ret;
+> -     struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
+> -
+> -     if (!adev->pm.dpm_enabled)
+> -             return 0;
+> -
+> -     ret =3D si_set_temperature_range(adev);
+> -     if (ret)
+> -             return ret;
+> -#if 0 //TODO ?
+> -     si_dpm_powergate_uvd(adev, true);
+> -#endif
+>       return 0;
+>  }
+>
+> --
+> 2.25.1
+>
+>
+> No virus found
+>               Checked by Hillstone Network AntiVirus
