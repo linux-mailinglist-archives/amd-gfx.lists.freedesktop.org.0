@@ -1,92 +1,45 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 588D97117E7
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 May 2023 22:12:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D2227117EB
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 May 2023 22:14:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3943810E752;
-	Thu, 25 May 2023 20:12:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97AF110E755;
+	Thu, 25 May 2023 20:14:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on20622.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e8c::622])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54B1910E752
- for <amd-gfx@lists.freedesktop.org>; Thu, 25 May 2023 20:12:54 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SwgJNDend43dra63MFTluO3hjmLh0R5s7VBeYmrC1n2DaCvyct3Lzxt9z8oFv+5m7IfSBBt909jtUajkUNmXTLgQSk4M50YJ9yrWgBZoG1e3uW77WMFuVucnien0Tvn44s2dqpcMkXVc09x3+7JZTF2fFI5UgbegMefkCWvQi0eZPZAZ6AZNXG79CPyF8eGe7BezlLbT4V541sbsBICfvTN38k7SdjblWmcKM/HBjGNCguDDMd0WRh0lkzb7hs54fEIBnXL/rQK45QxV0IXEvNok+UtSnXOfLhkdgDmyfEWDkuhTX6QVDEGK3Tnk8axiX4nKQ1mnCD+A59bXhaTRfQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4yZ9q/jyJXabHUTJsT9uQmIqWrARwkSWzhCdtugx2O8=;
- b=R8Sq+kNinv3+GvJz1YhBcS6tCBFRWnNhPGhh9Bod9KNCWPk09wqjQhB0gCgLjCBg8pGPEcZjbaio1gxFpEfeEzfWNS4rm/XZ05YR4fB2y/2JMlhOXtZEHIbo0j1Ra1ouMxVT8mNsCDGgRoXUV4/Pz2KaTzUssHe3pUaBCGjeDJsItrvRvJxt6WcLWVt6lKr5szj69RHzlEtk8dCRx0uI04OoQ/r39hVGuHJoI/alE4x1QCe53nUq229szbpfSieUaxjrtlNKz23ZYAd0JWfoF7mTMkWMbvGzTc94TjwIRgpmN66uTYXNBGbvm6LtYzbhTQDVNxpJLfJdbom19uBrNw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4yZ9q/jyJXabHUTJsT9uQmIqWrARwkSWzhCdtugx2O8=;
- b=Tt3KzNtrQKnOmBShkymT0weFGF0QXvzSIIo3Lx/m+ZR899Y5hIKxvbvcrT4VrGCp/7DoL4gX6brb6gel1y9AhaKv2KZvMsayxMHcwbwbZ9iP7CpE3QAtsgX/apAgBEo7fUs2rkeaSy42Eglp77JxS5AU8dHdJ7ps3ETBodhrJe4=
-Received: from DS7P222CA0015.NAMP222.PROD.OUTLOOK.COM (2603:10b6:8:2e::27) by
- PH7PR12MB8107.namprd12.prod.outlook.com (2603:10b6:510:2bb::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.15; Thu, 25 May
- 2023 20:12:52 +0000
-Received: from DM6NAM11FT023.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:2e:cafe::f3) by DS7P222CA0015.outlook.office365.com
- (2603:10b6:8:2e::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.16 via Frontend
- Transport; Thu, 25 May 2023 20:12:52 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT023.mail.protection.outlook.com (10.13.173.96) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6433.16 via Frontend Transport; Thu, 25 May 2023 20:12:51 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Thu, 25 May
- 2023 15:12:50 -0500
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdkfd: fix gfx_target_version for certain 11.0.3 devices
-Date: Thu, 25 May 2023 16:12:34 -0400
-Message-ID: <20230525201234.1138937-1-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.40.1
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BDAF10E755;
+ Thu, 25 May 2023 20:14:43 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id AA19B6435F;
+ Thu, 25 May 2023 20:14:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6894CC433D2;
+ Thu, 25 May 2023 20:14:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1685045682;
+ bh=c9RYj0+T+0idw1Qy78csQBqrvbedfd4wjKYCGYBBYrg=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=q1esTd0qvQJc7TabmbiYhEBwa0xNKAeKW7a84pfVHnWhu/iA29rxP1T9hxs59SbsX
+ eUk+QNURpIP86mhVgJ4oEo0KOALxuVfwQjbVXuzv0VEILEnClglckuNPQlH4U89aQr
+ KNRuq/zeefVuy3pkin9GdjC4JvGbRuPulhBLk+u25Xzfr7xveS4YsIgknyTVIHJjew
+ EYr3l206f7r3O/V+3LaWNHJQfIX6j7CiMn4L3D/nrGJ3UDeWG9Qzw38YxudMhoF90W
+ EMOPCgOC+stBd2u4eMe4LVwNqTNF6uH+2IuI2Lk1sZwoCsZ8aySOoW2/sOLKv0rK0z
+ J+4mVPPhfua3A==
+Date: Thu, 25 May 2023 13:14:39 -0700
+From: Nathan Chancellor <nathan@kernel.org>
+To: Tom Rix <trix@redhat.com>
+Subject: Re: [PATCH] drm/amdkfd: remove unused function
+ get_reserved_sdma_queues_bitmap
+Message-ID: <20230525201439.GA2741545@dev-arch.thelio-3990X>
+References: <20230525200759.3214525-1-trix@redhat.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT023:EE_|PH7PR12MB8107:EE_
-X-MS-Office365-Filtering-Correlation-Id: 83904dd6-f682-47a5-be99-08db5d5c6b06
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: AkFjbUZuDxKr9yosn6TeBg+0bXO8QW7iH1F/affvIzHCwy5meONc1eHBVgYSVY8I32NI/yDP5mH1DnkNwCvnkbJyJPQ0tGXpwMfTxukPUgP70Wc0fjbm6RSHqKE/ecw1bNNclcF2IIGmleF58ERfia1lCfAybUmuf6ijpX1bg+WO63YlhkZyRNgmfjFs2Tt/xUbojZXLVYrglhVG6asHHF5UAhN3K7Np3A32xEwDlnEIFhBDs7fL6PIMgdPaKvbey2h8gEVLlPBs11aq433HTHVzfaZz7IGSw72E8jT90+6lTcmsjnmNX2ZuH8QtPLKcXhgI/6MQj2aF61AxcGtl7OoGz/WvTUXmCLZH8bQ3H6gEWTdJWkkeh3JrlioTPJ6aXI+2opUHZle4gSU5c84tzunnRssr1O4fWWEwYnLjth8TMp4AKBLZ1eW7hmgbSD6Ar+baSX8QPq9/K/ziTTH1SriBr7aA5Lus0PKVAiiShvL7frjGDzZYHVR/o+gGJ2AcZ5yW+crqWSumNgvjxJRFNyvit4HVvN9+Scy8HAc6T9KvIQ/fcZuMxxqxvcBr9s7NmYFkXEZ7TM547vw2S6MU6qrRU+GSJfJvsDY6VZDb0hiI+EoFu4fezwHjmPPq/2m3pLKbeY+qTdj8ZUoDAF2freAFfNvv3mw4p2JPWYHe6PeRnknSylJTjlnKUsD+9c1CRNjXZrYVwEtOanXdpb5P6XoxAuDr7wCqvuAxlC3JJPenrk08OugZHffo27BYljqJnGlqFTXfhtWkxcHUTDTHNQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(136003)(39860400002)(396003)(346002)(376002)(451199021)(40470700004)(46966006)(36840700001)(6666004)(4326008)(1076003)(26005)(70206006)(6916009)(316002)(70586007)(41300700001)(478600001)(7696005)(8676002)(5660300002)(40460700003)(8936002)(356005)(2616005)(86362001)(83380400001)(2906002)(36756003)(336012)(426003)(40480700001)(82740400003)(81166007)(82310400005)(186003)(16526019)(36860700001)(47076005)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2023 20:12:51.6254 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 83904dd6-f682-47a5-be99-08db5d5c6b06
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT023.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8107
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230525200759.3214525-1-trix@redhat.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,41 +51,58 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: llvm@lists.linux.dev, Felix.Kuehling@amd.com, Xinhui.Pan@amd.com,
+ ndesaulniers@google.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, alexander.deucher@amd.com, airlied@gmail.com,
+ christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Certain boards with GC IP 11.0.3 need slightly different handling
-in the shader compiler due to board specific bounding box
-optimizations.
+On Thu, May 25, 2023 at 04:07:59PM -0400, Tom Rix wrote:
+> clang with W=1 reports
+> drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_device_queue_manager.c:122:24: error:
+>   unused function 'get_reserved_sdma_queues_bitmap' [-Werror,-Wunused-function]
+> static inline uint64_t get_reserved_sdma_queues_bitmap(struct device_queue_manager *dqm)
+>                        ^
+> This function is not used so remove it.
+> 
+> Signed-off-by: Tom Rix <trix@redhat.com>
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_device.c | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+Caused by commit 09a95a85cf3e ("drm/amdkfd: Update SDMA queue management
+for GFX9.4.3") it seems.
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-index 862a50f7b490..ebc3c3f965f9 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-@@ -411,8 +411,15 @@ struct kfd_dev *kgd2kfd_probe(struct amdgpu_device *adev, bool vf)
- 			f2g = &gfx_v11_kfd2kgd;
- 			break;
- 		case IP_VERSION(11, 0, 3):
--			/* Note: Compiler version is 11.0.1 while HW version is 11.0.3 */
--			gfx_target_version = 110001;
-+			if ((adev->pdev->device == 0x7460 &&
-+			     adev->pdev->revision == 0x00) ||
-+			    (adev->pdev->device == 0x7461 &&
-+			     adev->pdev->revision == 0x00))
-+				/* Note: Compiler version is 11.0.5 while HW version is 11.0.3 */
-+				gfx_target_version = 110005;
-+			else
-+				/* Note: Compiler version is 11.0.1 while HW version is 11.0.3 */
-+				gfx_target_version = 110001;
- 			f2g = &gfx_v11_kfd2kgd;
- 			break;
- 		default:
--- 
-2.40.1
+You can actually go a step farther and remove the
+reserved_sdma_queues_bitmap member from 'struct kfd_device_info' because
+it is now only assigned, never read.
 
+$ git grep reserved_sdma_queues_bitmap next-20230525
+next:20230525:drivers/gpu/drm/amd/amdkfd/kfd_device.c:        kfd->device_info.reserved_sdma_queues_bitmap = 0xFULL;
+next:20230525:drivers/gpu/drm/amd/amdkfd/kfd_device.c:        kfd->device_info.reserved_sdma_queues_bitmap = 0x3ULL;
+next:20230525:drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c:static inline uint64_t get_reserved_sdma_queues_bitmap(struct device_queue_manager *dqm)
+next:20230525:drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c:    return dqm->dev->kfd->device_info.reserved_sdma_queues_bitmap;
+next:20230525:drivers/gpu/drm/amd/amdkfd/kfd_priv.h:    uint64_t reserved_sdma_queues_bitmap;
+
+> ---
+>  drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 5 -----
+>  1 file changed, 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+> index 493b4b66f180..2fbd0a96424f 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+> @@ -119,11 +119,6 @@ unsigned int get_num_xgmi_sdma_queues(struct device_queue_manager *dqm)
+>  		dqm->dev->kfd->device_info.num_sdma_queues_per_engine;
+>  }
+>  
+> -static inline uint64_t get_reserved_sdma_queues_bitmap(struct device_queue_manager *dqm)
+> -{
+> -	return dqm->dev->kfd->device_info.reserved_sdma_queues_bitmap;
+> -}
+> -
+>  static void init_sdma_bitmaps(struct device_queue_manager *dqm)
+>  {
+>  	bitmap_zero(dqm->sdma_bitmap, KFD_MAX_SDMA_QUEUES);
+> -- 
+> 2.27.0
+> 
