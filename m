@@ -2,119 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FE20716635
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 May 2023 17:08:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26EA1716688
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 May 2023 17:12:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2526890FE;
-	Tue, 30 May 2023 15:08:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 227C210E3C8;
+	Tue, 30 May 2023 15:12:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2073.outbound.protection.outlook.com [40.107.92.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B9DD10E3A4
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 May 2023 15:08:25 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DQHnHGOvybImX9KaWfosfY0CzUNUXvejh45T89kdvZiSZmNFH/f5raq+l8QOBDVmc9vh8bmlriOkYfcYxVbt2+2a7MAeuBiSPMEoHA5+AxEjmRRXhggFgi6pYSzNwdk4mJihB2x4m3uDowIWQ7Z34raNEOuLpi7HpOfDlB8lnIVto2Ik7G6EsiqQhPh8sG0ZONh9zPkKYPon8I1CNxWC1PIXrgx0Mjso6fixFJX7CWSXWyyh3tynZ8M9ischUGx9LSFt/Zbc9FQ28zHhGw12O2cFLi+vT4B3nc7Fvbfto4vQh7aWDnNH9N66WnwfXK1j5ZZDcHlo6nGlDqqXOT1ojA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2+ejXVvCH+X3FFE05ahN1PzwzFqOocTR7/rVvFvrf7w=;
- b=hpcHc++45gcQYYt3362FLVCHjkMMuZrGAq7E7mTY4rRMmhJS7/F636AL0ttEVfR95p1BLQN4dgyO3c3CU/Zvco0C2kqrKNZ7WP+WpV16yGRpL73kfdkt0Jnd+FrOJcEaaQZA6LqWFTFJEVzqhKZGqRfuADwG+v9nlBskBHWwfjiImgxl+sq6877+ACFr8AHlPVauXH2HfqNu9o1k+das0Yh+ekNoOepNmn9epgmYwIIC3kAm4RUR2UuBiFLzLbVFpAxg40F6UG68pxRMDLH8fye5eNZQEGQBuzqBrYXGDfeguyjgg265MyW9+QuwwXbKI+GRRv4Ib49c+FJurSV/MA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2+ejXVvCH+X3FFE05ahN1PzwzFqOocTR7/rVvFvrf7w=;
- b=ogsaWRV1bz8tmuxRVFLzOB9NLfckSTVHd5nhZSX8g51MJ9ACEW++II+1vKt1ymcFVue/HOhUKnzJwCt44F6L0EFq3Jr/5MS0xRr81XiajkGesi6ml6OGAIHEe9Gb6KWTmzY/ZLR7VlPG9nf1WKYibN7WByOAhup4JsBtMAdCezg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
- by CH3PR12MB8728.namprd12.prod.outlook.com (2603:10b6:610:171::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.23; Tue, 30 May
- 2023 15:08:21 +0000
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::943e:32fb:5204:a343]) by BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::943e:32fb:5204:a343%3]) with mapi id 15.20.6433.022; Tue, 30 May 2023
- 15:08:21 +0000
-Message-ID: <fe5c55a5-a800-86d5-990a-619879b63510@amd.com>
-Date: Tue, 30 May 2023 11:08:19 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH] drm/amdgpu: Fix up missing kdoc parameter 'inst' in
- get_wave_count() & kgd_gfx_v9_get_cu_occupancy()
-To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-References: <20230530124817.2753759-1-srinivasan.shanmugam@amd.com>
-Content-Language: en-US
-From: Felix Kuehling <felix.kuehling@amd.com>
-In-Reply-To: <20230530124817.2753759-1-srinivasan.shanmugam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YT4PR01CA0103.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:d7::28) To BN9PR12MB5115.namprd12.prod.outlook.com
- (2603:10b6:408:118::14)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1941A10E171;
+ Tue, 30 May 2023 15:12:31 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 764BA21AA0;
+ Tue, 30 May 2023 15:12:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1685459550; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=Sloq51UytBb6CoBGzyUpJa6nxpBr3NQT3p2clfT3Lwk=;
+ b=Qqp8zsLzbv5cgltnCO0w6qYwK8L91DIcGHfxSYgtXaQau+EX1FKSE7OjId53opqc5yKK+F
+ C9/cDVbiHg74bEySyRO++xcOIu2I4hPCDBFKVRaYxQ0kSGNHEaGvW64IfxPqjAeWj5HznY
+ CmYeL7t1VZyL4DpPMe7sUQclx5FX8xw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1685459550;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=Sloq51UytBb6CoBGzyUpJa6nxpBr3NQT3p2clfT3Lwk=;
+ b=EUsPTUp6w/fDVUT5BdvzdhYmJ/iDigyeUy0ZLHHiKxPeGkePQeOVBLsfNS9e7q11eLY6P/
+ ifJaXCoYakyu89Aw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 2957013478;
+ Tue, 30 May 2023 15:12:30 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id IPwgCV4SdmRjAQAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Tue, 30 May 2023 15:12:30 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: daniel@ffwll.ch, airlied@gmail.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, javierm@redhat.com, sam@ravnborg.org,
+ suijingfeng@loongson.cn
+Subject: [PATCH v5 00/13] drm/fbdev: Remove DRM's helpers for fbdev I/O
+Date: Tue, 30 May 2023 17:12:15 +0200
+Message-Id: <20230530151228.22979-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|CH3PR12MB8728:EE_
-X-MS-Office365-Filtering-Correlation-Id: b5aec506-ff06-4a98-5247-08db611fb530
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: nXaOlOUX3jFH61NvgN1/+mKHv6Yrjypp6XrFRszmtV7i8pXLWq9kEvlhygSVR72ihvdXTlljN0gA5THZEWlNwmL7LPc+r0h9RhUphwan2/F3ck+xc6FWQS78QopxNV3/84rV5wP23t09sN8XsAQXgg9N+TD81AZyjXF1oP0DDcIs8nDOrc8OCLzS78DeoGxQY4q48TUDQRSuHkml/8yX2GhNTbOLOIOvBgWwAmVRqM7gz+6U6Mna3Xslg6om/BVrqk+SN7Zp8a9WwREGpBhMevVQl17tnUYEM8j9TL7RKDsbW6DwS+HRBcBf37LTWXZckJ9NYvjhZyss9h82Tn+RyapywzApLcuXs8MOumGVExLd98vt7M/gw0CL+u+Qbn2E6zpe9wZweKOrKo1t+u2DIyznmFg1VGgTHAIBj/W1yE/b2bXhq3hMcYfqmpZUI6A0STt/Sazqu2VyR7osJNCKoDaw/18C9MpRkBHj9FooIELkmiHNuyHxVbuTm/qUmMWgLn2EVlJ0Zzw9cYSmyMOEAVDm0kSWNageW+onw1mGXg+vP6yj49ccoxmB19xZ+FtXBVHlAkJndB+XilgkoN76ae4iMZcxgWUDGFnvRw4zX81jGxTEmwawUA3cW1zgMfLJ/0+YEbwkvPP3vfyKqekzqQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(366004)(136003)(376002)(346002)(39860400002)(396003)(451199021)(478600001)(110136005)(8676002)(8936002)(44832011)(5660300002)(36756003)(31696002)(2906002)(86362001)(66476007)(4326008)(6636002)(66556008)(66946007)(316002)(38100700002)(41300700001)(2616005)(186003)(6506007)(26005)(6512007)(6486002)(66574015)(83380400001)(31686004)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UnVTcTdpNExsMTlMYVltK1Mvai9RUlhwTDJhbVhCdFlqVjlZWFVzMTFSd05T?=
- =?utf-8?B?MTVReFM5RDM2bGxDZnBHY1pSTVNkNjMzalROSzcyTzB0QmhScDZ6Si9kRlht?=
- =?utf-8?B?bkQ1d3JDM2d4WC9DZERUZDJTWU1PUTdRV1FmQkRidUNEbGQxS1E4TFlHWm0w?=
- =?utf-8?B?WDRYWVVPY2dNN25pc01qbWJVVnRmMjZ3VTAwTndDYk9NNjB0NEswWE1OMFlm?=
- =?utf-8?B?ZEZwZzBDR0ZCcEtHYktvR0FnM0piSmJlNFJZL1crbzF0a3JONjdYdGJyUm9F?=
- =?utf-8?B?U3J6M0RzQy9wWVZGZXFUNTVhWWk2ZWtrQjREaVhZdkFya01pUzRxY1BkdlFF?=
- =?utf-8?B?U21haGdadjMxQ3Z2eEI1NFU4M3ZMQ2o4Y1hmVHRPT3ZrZDlhaU41QmZFUXB3?=
- =?utf-8?B?Lzd2WnJKV1p2dm9PN01tY0EzaVowMEwrQW1DNlBLbXdGNVRvQnRERDhaaWdn?=
- =?utf-8?B?SnJHQW1HQ0hrTDc4V2M4bUV3Z1BGUXVIMW9xSVVwWUFpT0xETnNaV0hGWGFs?=
- =?utf-8?B?c2lKNGdSZVJYU24waWZGWlJGVnJPQmgvQ3E1T2ZSOERtMzJiM1RWcTBqSTBX?=
- =?utf-8?B?OFlzL20wUkxXMnQvSUl0R2ZwdkNzYXhHQTZ4TStwZjh4TGl4Z3kwSWFmaTdq?=
- =?utf-8?B?L3JwWUMydEo1eVRVeTNLTGpLZmpJMFVaeG43WUVCOXFUanE2alB3Q2QxZ3dC?=
- =?utf-8?B?aGl0bmhnZklFSWVyZ1JReExGMDIxWHJYc3hVTHZiczljWHdPN2ZsT1ZBRCtP?=
- =?utf-8?B?OGMzV2UrT2t1djFzOGxKRXpDcDlqbVh1YkI3RG5YZTVzMTFQeVVJNm5UQWhO?=
- =?utf-8?B?alNZVzVIM3NJWjVwcW5LYW1BMFViYU1GYVllaW9ndzNZV0gvRlBmVDQ3WTZ3?=
- =?utf-8?B?ekF2ak1hK3pNMkFqWXlFajEwRmp6TEpDZnJtSy9KbmNJM0o0dFk1b2kveVlI?=
- =?utf-8?B?REZ5ZlJBZSsyMVVib3NqK256SGVnbXhtU2tFSk5kdWNhblJOOGpKT0JScWNl?=
- =?utf-8?B?ZmRtajRkV3h1NzB4anJMdHlieWtmbmlmaGw1QlUrc2FKR3RmTHFwaHdRTFNN?=
- =?utf-8?B?ditlbm1PaVl2ZkVEdWJrdnpYU2d0RldHU0J2UmhPTmFsR1BZUkg3WERscU8v?=
- =?utf-8?B?SXI4bU02RlpoMFgvdkMwU2tRckhEZFY3NmREbmgrRDd5NFU3NjBWUjY5YkFs?=
- =?utf-8?B?VUIzR29MUHJZSUpHbVk2MU1vL0JhZ2VXVlR2aHZyNksvMGxIZ010VVFuWUtI?=
- =?utf-8?B?Z0I4a1Q3Q2h0bVRNQzhzODZkTFJEbUxFYmE3S2kwRGdCRzRqVVQ0OWJNdy8v?=
- =?utf-8?B?cWR6Z1pVeE1ibWN6WmsyMlh4ZjRJZS9oZUpvYlVRU3Q2NlBTS1dxRWkxZTJM?=
- =?utf-8?B?UFhmVml4T1puWTZZSG1WL2N0MzUrcWlFS3dRQlBRSkhGSFhxWXJYRndQdXoz?=
- =?utf-8?B?bTRCWnRFTmdCSUpUVERCTDUybFcvRE5sNXNZcVpTQXFaV1F0WjZqbGVaV0hm?=
- =?utf-8?B?Q3pIcFFaV001Z2l2TFhCK3dOS0RBUWhBd0VyN3JzWWRVMTdXN0E2R1ZpM2lU?=
- =?utf-8?B?UjVnaU1NK2NxdjNIdkxXYUZIb2I3UEhxcWlXZXdGYlVPTnFiNDB3bGg0c0k0?=
- =?utf-8?B?dDFsWlFCR1dQTGtJYjcvazNMNTlMN2d5MXdabGFyemdpL2krSGVSNCsrWGNO?=
- =?utf-8?B?aGxOT0pvUUNINlorWVl1UzV4TmJvTCt4ZWdqUHQ1alhBK0dyaTJ0U1FnSVJo?=
- =?utf-8?B?UXFuU1FnRzZhWVlKT05DMlBPb1I5bWJlZ1dHcDd6NjdDT01yNkpVNmlVWVMz?=
- =?utf-8?B?Tys5VjllYzliU2NoN1VJdStUL1p1OHlFZUVFd1NkT1dINGExVDNwQXVPT0c1?=
- =?utf-8?B?VTFwbi9kbFhYNFBhZEpwQUFCYngyUEdJYUxBZXhrSi8zbG1Md2g3aGQ2bVJp?=
- =?utf-8?B?Z0ZSOXFwZUdtQ0gxVHJKWHNBWXk4dnQySzRIZXdmbU9DeHM0SXk2UU9tM09B?=
- =?utf-8?B?V3FsblRURzd6b2lPNlhTTEk4SG5scDIrRGhVbXF3UVpPMXNwMlZQcnBKaWJx?=
- =?utf-8?B?RCtWOUwxTXNXTUVKMGFwOE1rcGx0TTA4ZHFpalk1QkpVT1ZZbEtRbEJ1M3Vk?=
- =?utf-8?Q?foTLVggLxOXIbqxAHl6cFq8CQ?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b5aec506-ff06-4a98-5247-08db611fb530
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2023 15:08:21.6172 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MKV4RfzDrE6blgMfxH9v+Bd+j1G5II46Z3qnchXMe62e7QM6mNp5cpqn+2TlIqtUJcpX+iQFqLJLojPuhn3szw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8728
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,53 +65,101 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
+Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ linux-tegra@vger.kernel.org, freedreno@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 2023-05-30 um 08:48 schrieb Srinivasan Shanmugam:
-> Fix these warnings by adding 'inst' arguments to kdocs.
->
-> gcc with W=1
-> drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c:692: warning: Function parameter or member 'inst' not described in 'get_wave_count'
-> drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c:763: warning: Function parameter or member 'inst' not described in 'kgd_gfx_v9_get_cu_occupancy'
->
-> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+DRM provides a number of wrappers around fbdev cfb_() sys_(), fb_io_()
+and fb_sys_() helpers. The DRM functions don't provide any additional
+functionality for most DRM drivers. So remove them and call the fbdev
+I/O helpers directly.
 
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+The DRM fbdev I/O wrappers were originally added because <linux/fb.h>
+does not protect its content with CONFIG_FB. DRM fbdev emulation did
+not build if the config option had been disabled. This has been
+fixed. For fbdev-generic and i915, the wrappers added support for damage
+handling. But this is better handled within the two callers, as each
+is special in its damage handling.
+
+Patch 1 adds several internal Kconfig options that DRM drivers (and
+possibly other fbdev code) will use to select the correct set of I/O
+helpers. Patch 2 adds initializers for struct fb_ops and generator
+macros for the callback functions. These macros will simplify drivers.
+This patchset applies the new options and macros to DRM fbdev emulation,
+but regular fbdev drivers can use them as well.
+
+Patches 3 to 9 replace the DRM wrappers in a number of fbdev emulations.
+Patch 10 exports two helpers for damage handling. Patches 11 to 13
+update msm, fbdev-generic and i915 with the help of the exported functions.
+The patches also remove DRM's fbdev I/O helpers, which are now unused.
+
+DRM's fbdev helpers had to select fbdev I/O helpers for I/O and for
+system memory. Each fbdev emulation now selects the correct helpers
+for itself. Depending on the selected DRM drivers, kernel builds will
+now only contain the necessary fbdev I/O helpers and might be slightly
+smaller in size.
+
+v5:
+	* fix whitespace errors (Jingfeng)
+	* move msm patch to later position make it build
+v4:
+	* use initializer and generator macros for struct fb_ops
+	* partially support damage handling in msm (Dmitri)
+v3:
+	* fix Kconfig options (Jingfeng)
+	* minimize changes to exynos (Sam)
+v2:
+	* simplify Kconfig handling (Sam)
+
+Thomas Zimmermann (13):
+  fbdev: Add Kconfig options to select different fb_ops helpers
+  fbdev: Add initializer macros for struct fb_ops
+  drm/armada: Use regular fbdev I/O helpers
+  drm/exynos: Use regular fbdev I/O helpers
+  drm/gma500: Use regular fbdev I/O helpers
+  drm/radeon: Use regular fbdev I/O helpers
+  drm/fbdev-dma: Use regular fbdev I/O helpers
+  drm/omapdrm: Use regular fbdev I/O helpers
+  drm/tegra: Use regular fbdev I/O helpers
+  drm/fb-helper: Export helpers for marking damage areas
+  drm/msm: Use regular fbdev I/O helpers
+  drm/fbdev-generic: Implement dedicated fbdev I/O helpers
+  drm/i915: Implement dedicated fbdev I/O helpers
+
+ drivers/gpu/drm/Kconfig                    |  10 +-
+ drivers/gpu/drm/armada/Kconfig             |   1 +
+ drivers/gpu/drm/armada/armada_fbdev.c      |   7 +-
+ drivers/gpu/drm/drm_fb_helper.c            | 236 ++-------------------
+ drivers/gpu/drm/drm_fbdev_dma.c            |  11 +-
+ drivers/gpu/drm/drm_fbdev_generic.c        |  11 +-
+ drivers/gpu/drm/exynos/Kconfig             |   1 +
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.c  |   9 +-
+ drivers/gpu/drm/gma500/Kconfig             |   1 +
+ drivers/gpu/drm/gma500/fbdev.c             |   8 +-
+ drivers/gpu/drm/i915/Kconfig               |   1 +
+ drivers/gpu/drm/i915/display/intel_fbdev.c |  14 +-
+ drivers/gpu/drm/msm/Kconfig                |   1 +
+ drivers/gpu/drm/msm/msm_fbdev.c            |  17 +-
+ drivers/gpu/drm/omapdrm/Kconfig            |   1 +
+ drivers/gpu/drm/omapdrm/omap_fbdev.c       |  11 +-
+ drivers/gpu/drm/radeon/Kconfig             |   1 +
+ drivers/gpu/drm/radeon/radeon_fbdev.c      |   9 +-
+ drivers/gpu/drm/tegra/Kconfig              |   1 +
+ drivers/gpu/drm/tegra/fbdev.c              |   8 +-
+ drivers/video/fbdev/Kconfig                |  21 ++
+ include/drm/drm_fb_helper.h                |  83 +-------
+ include/linux/fb.h                         | 112 ++++++++++
+ 23 files changed, 212 insertions(+), 363 deletions(-)
 
 
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c | 8 +++++---
->   1 file changed, 5 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
-> index 9fa9aab22fe9..34bf030f3137 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
-> @@ -685,7 +685,8 @@ static void unlock_spi_csq_mutexes(struct amdgpu_device *adev)
->    * @queue_idx: Index of queue in the queue-map bit-field
->    * @wave_cnt: Output parameter updated with number of waves in flight
->    * @vmid: Output parameter updated with VMID of queue whose wave count
-> - * is being collected
-> + *        is being collected
-> + * @inst: xcc's instance number on a multi-XCC setup
->    */
->   static void get_wave_count(struct amdgpu_device *adev, int queue_idx,
->   		int *wave_cnt, int *vmid, uint32_t inst)
-> @@ -721,9 +722,10 @@ static void get_wave_count(struct amdgpu_device *adev, int queue_idx,
->    * @adev: Handle of device from which to get number of waves in flight
->    * @pasid: Identifies the process for which this query call is invoked
->    * @pasid_wave_cnt: Output parameter updated with number of waves in flight that
-> - * belong to process with given pasid
-> + *                  belong to process with given pasid
->    * @max_waves_per_cu: Output parameter updated with maximum number of waves
-> - * possible per Compute Unit
-> + *                    possible per Compute Unit
-> + * @inst: xcc's instance number on a multi-XCC setup
->    *
->    * Note: It's possible that the device has too many queues (oversubscription)
->    * in which case a VMID could be remapped to a different PASID. This could lead
+base-commit: cf59b48ea3c0c0075d7c4e8538177d38999da7b0
+prerequisite-patch-id: 0aa359f6144c4015c140c8a6750be19099c676fb
+prerequisite-patch-id: c67e5d886a47b7d0266d81100837557fda34cb24
+prerequisite-patch-id: cbc453ee02fae02af22fbfdce56ab732c7a88c36
+-- 
+2.40.1
+
