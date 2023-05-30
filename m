@@ -2,94 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2D687170C0
-	for <lists+amd-gfx@lfdr.de>; Wed, 31 May 2023 00:34:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE93E716FCD
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 May 2023 23:34:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB03910E433;
-	Tue, 30 May 2023 22:34:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46C5910E072;
+	Tue, 30 May 2023 21:34:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on20600.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7eae::600])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3206C10E432
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 May 2023 22:34:52 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iPkC/yDL6kp19D/CqPLzfXgyBVAL4rdqQQ8Oke5NeBJAMp6RZKkNttfiQHVlAChpZ3w8V0N2/XoVCwQsAPRVuelb4wi+o/TibXDxrSXuwwaldqO5cxaqR8Jpyd5NQBInAuLGXW6RZ6rD9XyIO+KKb4KuEgDz60mK217djN404iWELjONmfMW2Fv8lqPp5RIUxYt3ppUpIcG46XVtchh+fwzFv920zDPTDKWxOorOkbcUYlwFSKuvqW4VQY3b01CWD83WnxyLxchgVNML6ZrN3Zjq8xvDHU0/u3ZxSvmomm/PKTlB+nILBJmyGvVhc3FWtmgDI91pPVLN9BAuqnTQYQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GcaQjxrz6OvCxBTMZ0pSVNaxDbVc3fRPI7tD0alY4rk=;
- b=lHPILrcmH/DSJmfB3DtRU+EdJtGtsD4T9AwDu4wJMd+8qK1iR3R0zjdd6jecjq3WjvJioeZhdDdStadOlLmfiBJ0Qobirrz0iMGYWdmWQC/mduzHpH/h+7Bp4iJhSv1CK99hTQk2KfxElEEVxZ3rRLSNTHa+XkXNcbI0WpYQIPDXHzXgWiMeOnq5YuM6lgTaFW+xI5t19nk4hSslG9hhleS+WjP58cBJ0tLxts7u/usM/urkoWfpoRlaVJlO7vQRWjmbWl+HRMmroZKzwCFbbAFGJFjpWI6oI3R0//TsaWPFA97BtcWhcelCqyUCePvrMWq+OFbuhpUAG4K3hrOH6Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GcaQjxrz6OvCxBTMZ0pSVNaxDbVc3fRPI7tD0alY4rk=;
- b=25/m5WcRFBH9Q+9lYbZjFQKqQJkmzNJ6sBcSMdeM8ngiCZKBSB1PHGkXvYGa8MYtcJZmqk5/KgGzduaAfo4fivAle9JwiWrrnn/8GPMAW5C9nXjvprDYzx2gHjpiP3IY7vpLgplm+J11f/KtOLBJn3KchAHNKt065i23zyHtjRY=
-Received: from BN0PR04CA0033.namprd04.prod.outlook.com (2603:10b6:408:e8::8)
- by DS0PR12MB7557.namprd12.prod.outlook.com (2603:10b6:8:130::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.22; Tue, 30 May
- 2023 22:34:48 +0000
-Received: from BN8NAM11FT004.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:e8:cafe::30) by BN0PR04CA0033.outlook.office365.com
- (2603:10b6:408:e8::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.22 via Frontend
- Transport; Tue, 30 May 2023 22:34:48 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT004.mail.protection.outlook.com (10.13.176.164) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6455.22 via Frontend Transport; Tue, 30 May 2023 22:34:48 +0000
-Received: from SITE-L-T34-2.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 30 May
- 2023 17:34:47 -0500
-From: Mario Limonciello <mario.limonciello@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2 2/2] drm/amd: Make lack of `ACPI_FADT_LOW_POWER_S0` or
- `CONFIG_AMD_PMC` louder during suspend path
-Date: Tue, 30 May 2023 15:48:48 -0500
-Message-ID: <20230530204848.231842-2-mario.limonciello@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230530204848.231842-1-mario.limonciello@amd.com>
-References: <20230530204848.231842-1-mario.limonciello@amd.com>
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com
+ [IPv6:2607:f8b0:4864:20::32a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DF6A10E072
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 May 2023 21:34:26 +0000 (UTC)
+Received: by mail-ot1-x32a.google.com with SMTP id
+ 46e09a7af769-6af7e368bb7so2070687a34.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 May 2023 14:34:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1685482465; x=1688074465;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Yqa22p9hy5Zf3W/z5LP8/ro9Fau9K60eNyXyaaw8M/U=;
+ b=mBH8xr/P1oWYTu2rbfNz8imf0XTsPn/77jQPPafiNzEKqayUqUXsngS8eC28splbHX
+ 1fjXHDtiLgn8uCTJ2He7rU3m3kdicPsNLLYiJySY2b2ra3m8i+mRoztzpIHTwZURpvkm
+ QSqVYakjOImKkFEiYpxln3R+CfRwg+zVwejPGVLPEjo5OSTokhg0aENSKORaQA3Xeh69
+ rUVoUlgglEP5mdactlTiNjDrJRI/iHT9fBfPHp2osF8Z3kMkZ1JJcVYF0A3UbiNCD82Y
+ D0uTeR4akumJPk0WVji3ATTLjdtNoK6gAOgwY1LD0cjqdoqrLQYGWkIH5uAnhUKJt8kc
+ AxIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1685482465; x=1688074465;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=Yqa22p9hy5Zf3W/z5LP8/ro9Fau9K60eNyXyaaw8M/U=;
+ b=CKkd7Aa7hVo2j+WRTLI8ggC58bwHX71uLbD4xWMCBuEUPLz2k1Qa7y61ZBo4YDq/P1
+ waYbxh1+RB96IBYH2vzW2/snk1sSDwM6V5MIYxdKwxcX48wV57LTPASxJtt+b1DuYJFF
+ /plY2BaJkY1r2PvVJ8VPLOR4GMwXRYso92VNgk9dVG7UlfRqvKxNyvZZdampDJjfZXFw
+ BMn1zXu0YdUwtqq7gKBwWqO36QKS1xTZz9L2FxuZzZMoXKL4zaB5hkoG5NOY3JL6d5E7
+ ieC6EcHckjhXMyu9o3uk1JSxkTY2A/NlslePN6kp0kiT+vrNSQA6NQOYt7HGP51zMgQ0
+ 5gXQ==
+X-Gm-Message-State: AC+VfDyaBUzdqK5eKM0co7806tAuMUWdDhK+GJMdlbujvdoxCG7WdZie
+ bROWmB2s0+MeWr2vHDvxMGsD0WhqUnUQeCq8Fms=
+X-Google-Smtp-Source: ACHHUZ7/zeTKMguL7qVHTDs+5nKTRjOxT2RNF4EiWaBHW8xcJx08z1yj/g/a9bbR7NrzjCvtFlC75sFbVHMLSvZQ+rQ=
+X-Received: by 2002:a9d:7416:0:b0:6af:7d99:1640 with SMTP id
+ n22-20020a9d7416000000b006af7d991640mr290899otk.22.1685482464885; Tue, 30 May
+ 2023 14:34:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT004:EE_|DS0PR12MB7557:EE_
-X-MS-Office365-Filtering-Correlation-Id: a515c869-e4bd-40fd-1597-08db615e135b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8pwMtKHDlhsDvqG1oVhZqIf6SaHaFM0bZMAK5SP7WdMnfNOmfRvpvwdEv7/R1clQf5nIZ21HLbByu4VJhkRni6NkuwETcXl4ViOPuA+Cja9rRGHql8W9dogYfZ0y1zPqZ1naRi+3uy9EZ6DtbYkiNCj/KVl/QnZJqL2stv+J+pxnihM3z0fuKYUNRnABN2gnI1AYEPAjkLCXKzsMvIIreqaasyBGW7JuU48A5BJ8+3su4xook6nIRVYeBWiM+jW3gsBhpQiRvf2SuL4JWLDMKfXkAKJ1SkdNXqKlqzvy38uOFi+bd6740QOhxPeIC0eyTFgF7oqQL7jUXxDhbYZJhEu1md09bJLiWVhSjSR1HSvTYUmT0CjUoLQg8ryYTVVz/XuIPSPzaIZqHdbHWj+W1kUyC4wjcTqT/GM7oKg7svjmwsudo7QZia4yOaF4xefcUaPT8iIZtlITTGEbiswicNUnWtjhWbgfC1IERgMheAjVaa2HT0ZxFu2hyLy/JDJzEpqp8jACdROinEq85E7qKeRdf8ldThoV/rbmTEXD2XBxBnwSiSNkRU7APZ7Nlf27c4jXGGpFrAokFA2cpO2y3EG12w+aa/vfTyfot9oRB1is/a1L/2kaqB8WAy1Bkp+hSggTKxI/rxK4zGIztELvBDmyypUYwHeT0L9U7aOkiWs3bIUJ2nNiAMsF8Id71wgZH3Nb9VKj0rhsgGa9/t38A2fM+qKfOV3sP369Anfd0USx+kjsE1ue9M0nxudoUvpATApR/VspMFRS97wcH0X4aPoYtBhFBl1/0FhDFFm1L6k=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(136003)(396003)(39860400002)(346002)(376002)(451199021)(46966006)(36840700001)(40470700004)(316002)(356005)(44832011)(81166007)(83380400001)(70206006)(70586007)(36860700001)(2906002)(966005)(26005)(1076003)(6916009)(4326008)(15650500001)(82740400003)(86362001)(426003)(336012)(47076005)(2616005)(478600001)(5660300002)(40460700003)(186003)(16526019)(41300700001)(7696005)(40480700001)(36756003)(8676002)(8936002)(82310400005)(81973001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2023 22:34:48.2144 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a515c869-e4bd-40fd-1597-08db615e135b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT004.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7557
+References: <20230530175301.231070-1-mario.limonciello@amd.com>
+ <CADnq5_M8XdDsyn0q-mM4CfFoMHH6g54VP_SG4cNztEYAwwB_hg@mail.gmail.com>
+ <MN0PR12MB610183E9EC20D68FE3670D24E24B9@MN0PR12MB6101.namprd12.prod.outlook.com>
+In-Reply-To: <MN0PR12MB610183E9EC20D68FE3670D24E24B9@MN0PR12MB6101.namprd12.prod.outlook.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 30 May 2023 17:34:13 -0400
+Message-ID: <CADnq5_Oke4oTrHK2+=dNpY-9p1TArRO6CVWQVvKocwHP-JS+2Q@mail.gmail.com>
+Subject: Re: [PATCH 1/2] drm/amd: Disallow s0ix without BIOS support again
+To: "Limonciello, Mario" <Mario.Limonciello@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,43 +69,139 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mario Limonciello <mario.limonciello@amd.com>
+Cc: =?UTF-8?Q?Rafael_=C3=81vila_de_Esp=C3=ADndola?= <rafael@espindo.la>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Users have reported that s2idle wasn't working on OEM Phoenix systems,
-but it was root caused to be because `CONFIG_AMD_PMC` wasn't set in
-the distribution kernel config.
+On Tue, May 30, 2023 at 2:19=E2=80=AFPM Limonciello, Mario
+<Mario.Limonciello@amd.com> wrote:
+>
+> [AMD Official Use Only - General]
+>
+> > -----Original Message-----
+> > From: Alex Deucher <alexdeucher@gmail.com>
+> > Sent: Tuesday, May 30, 2023 1:16 PM
+> > To: Limonciello, Mario <Mario.Limonciello@amd.com>
+> > Cc: amd-gfx@lists.freedesktop.org; Rafael =C3=81vila de Esp=C3=ADndola
+> > <rafael@espindo.la>
+> > Subject: Re: [PATCH 1/2] drm/amd: Disallow s0ix without BIOS support ag=
+ain
+> >
+> > On Tue, May 30, 2023 at 1:53=E2=80=AFPM Mario Limonciello
+> > <mario.limonciello@amd.com> wrote:
+> > >
+> > > commit cf488dcd0ab7 ("drm/amd: Allow s0ix without BIOS support")
+> > showed
+> > > improvements to power consumption over suspend when s0ix wasn't
+> > enabled in
+> > > BIOS and the system didn't support S3.
+> > >
+> > > This patch however was misguided because the reason the system didn't
+> > > support S3 was because SMT was disabled in OEM BIOS setup.
+> > > This prevented the BIOS from allowing S3.
+> > >
+> > > Also allowing GPUs to use the s2idle path actually causes problems if
+> > > they're invoked on systems that may not support s2idle in the platfor=
+m
+> > > firmware. `systemd` has a tendency to try to use `s2idle` if `deep` f=
+ails
+> > > for any reason, which could lead to unexpected flows.
+> > >
+> > > To make this the behavior discoverable and expected, revert commit
+> > > cf488dcd0ab7 ("drm/amd: Allow s0ix without BIOS support") and offer
+> > > a message if SMT appears to be disabled.
+> > >
+> > > Cc: Rafael =C3=81vila de Esp=C3=ADndola <rafael@espindo.la>
+> > > Link:
+> > https://github.com/torvalds/linux/blob/v6.1/drivers/gpu/drm/amd/amdgpu
+> > /amdgpu_acpi.c#L1060
+> > > Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/2599
+> > > Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+> > > ---
+> > >  drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c | 16 ++++++++++++++--
+> > >  1 file changed, 14 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+> > > index 3a6b2e2089f6..a3523d03d769 100644
+> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+> > > @@ -28,6 +28,7 @@
+> > >  #include <linux/xarray.h>
+> > >  #include <linux/power_supply.h>
+> > >  #include <linux/pm_runtime.h>
+> > > +#include <linux/sched/smt.h>
+> > >  #include <linux/suspend.h>
+> > >  #include <acpi/video.h>
+> > >  #include <acpi/actbl.h>
+> > > @@ -1473,6 +1474,13 @@ void amdgpu_acpi_release(void)
+> > >   */
+> > >  bool amdgpu_acpi_is_s3_active(struct amdgpu_device *adev)
+> > >  {
+> > > +#ifdef CONFIG_X86
+> > > +       if (!sched_smt_active()) {
+> > > +               dev_warn_once(adev->dev,
+> > > +                             "SMT is disabled by the BIOS.\n"
+> > > +                             "To use suspend-to-ram enable SMT in BI=
+OS setup.\n");
+> > > +       }
+> > > +#endif
+> >
+> > Will this generate a spurious warning on platforms that are natively no=
+n-SMT?
+>
+> Yeah; it could.  I'm not sure how we can reliably detect this.  I thought=
+ about looking for
+> the 'ht' flag, but that probably wouldn't work for this case.
+>
+> Are there AMD Zen CPUs or APUs that are non-SMT?  Could gate the sched_sm=
+t_active()
+> check to only run when it's an AMD x86 Zen SoC.
 
-To make this more apparent, raise the messaging to err instead of warn.
+Some of the more budget conscient Athlon parts don't have SMT IIRC.
 
-Link: https://bugzilla.kernel.org/show_bug.cgi?id=217497
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Alex
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-index e1b01554e323..fd6e83795873 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-@@ -1093,14 +1093,14 @@ bool amdgpu_acpi_is_s0ix_active(struct amdgpu_device *adev)
- 	 * in that case.
- 	 */
- 	if (!(acpi_gbl_FADT.flags & ACPI_FADT_LOW_POWER_S0)) {
--		dev_warn_once(adev->dev,
-+		dev_err_once(adev->dev,
- 			      "Power consumption will be higher as BIOS has not been configured for suspend-to-idle.\n"
- 			      "To use suspend-to-idle change the sleep mode in BIOS setup.\n");
- 		return false;
- 	}
- 
- #if !IS_ENABLED(CONFIG_AMD_PMC)
--	dev_warn_once(adev->dev,
-+	dev_err_once(adev->dev,
- 		      "Power consumption will be higher as the kernel has not been compiled with CONFIG_AMD_PMC.\n");
- 	return false;
- #else
--- 
-2.34.1
 
+>
+> >
+> > Alex
+> >
+> > >         return !(adev->flags & AMD_IS_APU) ||
+> > >                 (pm_suspend_target_state =3D=3D PM_SUSPEND_MEM);
+> > >  }
+> > > @@ -1499,16 +1507,20 @@ bool amdgpu_acpi_is_s0ix_active(struct
+> > amdgpu_device *adev)
+> > >          * S0ix even though the system is suspending to idle, so retu=
+rn false
+> > >          * in that case.
+> > >          */
+> > > -       if (!(acpi_gbl_FADT.flags & ACPI_FADT_LOW_POWER_S0))
+> > > +       if (!(acpi_gbl_FADT.flags & ACPI_FADT_LOW_POWER_S0)) {
+> > >                 dev_warn_once(adev->dev,
+> > >                               "Power consumption will be higher as BI=
+OS has not been
+> > configured for suspend-to-idle.\n"
+> > >                               "To use suspend-to-idle change the slee=
+p mode in BIOS
+> > setup.\n");
+> > > +               return false;
+> > > +       }
+> > >
+> > >  #if !IS_ENABLED(CONFIG_AMD_PMC)
+> > >         dev_warn_once(adev->dev,
+> > >                       "Power consumption will be higher as the kernel=
+ has not been
+> > compiled with CONFIG_AMD_PMC.\n");
+> > > -#endif /* CONFIG_AMD_PMC */
+> > > +       return false;
+> > > +#else
+> > >         return true;
+> > > +#endif /* CONFIG_AMD_PMC */
+> > >  }
+> > >
+> > >  #endif /* CONFIG_SUSPEND */
+> > > --
+> > > 2.34.1
+> > >
