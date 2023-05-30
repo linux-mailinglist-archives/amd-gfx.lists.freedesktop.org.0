@@ -1,95 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42488715AB7
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 May 2023 11:52:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F21C716296
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 May 2023 15:50:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A42A710E37A;
-	Tue, 30 May 2023 09:52:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E4F910E395;
+	Tue, 30 May 2023 13:50:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2077.outbound.protection.outlook.com [40.107.220.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F44910E141
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 May 2023 09:52:25 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PTm97K1el5o9KHnd2Bng9kuwlZlVF54NsV0sfbN+uFSzexlLb7oLzDnYIAG+Jmp1aUr4RQZrQs9jP1OMSYAuBIyrHi6pNdz4SVPFpMyEgNLF3xposfyl5vVLM/wAXGbe5J00USx7QBho6erl4sy0lIsS0YRD6946SZ/Nv+D1gaQqP9t+Vv2hCHcEqmYKuq9jprillmiI4HtWE2vPckHHqlF5XZ7vGeuMmrNbNpZQaotC6rbrl2cd82G0UaAU91JWgQ0UWNIsCxJb7pfd5AHs7lnPsyC/IdUaqs6AcFQ56kNmh3HyWCZIjKmS8D18Ot//9wtV6zGxElGuKi4QCLzH5w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=43u3c+CoF72bue9mzmXNPlDX0FbPm6W3O4rHXUh13hI=;
- b=f1+B+4ZiXXfLBlsTU2fRYz4NzelKTob5PkC4JnnG54Du5kU+SPVk6X8eb0GvlkQNNoq/d/SksC87VpW7AsWNZlS0oOAWV9o4IicaiWv2idUAkgmPQv13OHe2ZDdq4CIcW4D0lL+h0snua0+0k0TXA5Uoh6E/XUypMRJU9tOfCZEfvrOk4uAVk9cHByVrdVs1ATo0N5mDW4AqvTN1bkJYaTLjAxmCW4QLQUSB6VCKZuDMNBJ063uwlv1gLsfEAO6ZEB5XPHkxD0SC6stXVV2ftDYcIulZR1nL6uVs5cf7Eem8N0FYUXjiCTqYsZU+QLJuTldRLWErwOKkxwhefZ7Qvw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=43u3c+CoF72bue9mzmXNPlDX0FbPm6W3O4rHXUh13hI=;
- b=qd+Es2A8u43ciKhSaeaYByhGjqoJl7qt8cjTQIZPI4wezrYYczb7zuGXiiMbmoyJv99E63KG8GNo15Y1K7tLadmmhrz3ZX67nQyeMm6NbYG867FnN1ZczGrz792olHYItCtJ8K2HdMaFFLAzG/48i76tmp2LLh+Zkfrfo2FBUkk=
-Received: from SJ0PR03CA0127.namprd03.prod.outlook.com (2603:10b6:a03:33c::12)
- by IA0PR12MB8280.namprd12.prod.outlook.com (2603:10b6:208:3df::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.23; Tue, 30 May
- 2023 09:52:23 +0000
-Received: from CO1NAM11FT067.eop-nam11.prod.protection.outlook.com
- (2603:10b6:a03:33c:cafe::c9) by SJ0PR03CA0127.outlook.office365.com
- (2603:10b6:a03:33c::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.22 via Frontend
- Transport; Tue, 30 May 2023 09:52:22 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT067.mail.protection.outlook.com (10.13.174.212) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6455.22 via Frontend Transport; Tue, 30 May 2023 09:52:22 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 30 May
- 2023 04:52:21 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 30 May
- 2023 02:52:21 -0700
-Received: from dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Tue, 30 May 2023 04:52:19 -0500
-From: Bob Zhou <bob.zhou@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <james.zhu@amd.com>
-Subject: [PATCH] drm/amdxcp: fix Makefile to build amdxcp module
-Date: Tue, 30 May 2023 17:52:18 +0800
-Message-ID: <20230530095218.418845-1-bob.zhou@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com
+ [IPv6:2a00:1450:4864:20::32d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D1E410E13C
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 May 2023 11:22:56 +0000 (UTC)
+Received: by mail-wm1-x32d.google.com with SMTP id
+ 5b1f17b1804b1-3f6e68cc738so29887215e9.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 May 2023 04:22:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1685445774; x=1688037774;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=97Z4eV9V3DldLgqN5w3lvvZak1iMnPtv9R7TQuTgF3g=;
+ b=qTy8dyzuRWF/mj9Ze94/9J/+0Z2sGQBaJAgnWhmqj/4ynHpL3gZ6e+pQep6J5Yu+JJ
+ +joQ6U+9S5qyMAU4uLLFXLFhzkWhj2F2L4VqyZZgoOp2Gp559XK6bwPBJcVUDozDooHD
+ vVePYHYY47MYkTBOwwPFSix8x5zJuUfS6aMjHv6XGS7tmC2jrA7WJCl9XxDBYXZu9fxZ
+ X8kfOb4AbDoaz7wXBq4mXSFurH/+VkJD8a14exMGg3FyJYEAQsT8VfP2JqAWg8VeaF8L
+ 5w7xfqw9PMZdM2yqHWvZ/LCCYuNp98b9xyPxHPhnGlh+Nzxiss5PQyWTaNn3isCjSCW7
+ v73Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1685445774; x=1688037774;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=97Z4eV9V3DldLgqN5w3lvvZak1iMnPtv9R7TQuTgF3g=;
+ b=BiXgO69geM/ceKaEtyIG4UFTQPYqaH9RogGHk6+Tp7TVbURz/+UB+AM0piICn81Kjk
+ NdbeoEMucI6PyMs4h7d+AyDyToQXO38lGBCmPQqL3het46F9JTOLsTuGVd/d+EqPQ5Wd
+ 7rZbZspUcAtUH/BnglOkUPECFFbzFSpQKlXE5OaBamDm+gi0Pc9+5Czz87yycjMRYsGy
+ bMBuVoExIxsfTy1QKzhV6urFkAwbcBBi29FrQEARnLP1fZMjMQuGzR2K2AkXh01kq18g
+ vsQBXm1B8LqkHgKBqs9/Tk+BbqiqfmY1f0PtFaK1guJKVbZQxQUQv723FK0vOj/zUtmx
+ N7JQ==
+X-Gm-Message-State: AC+VfDxelLZNO2ZUkq4QDYVgi+ZetlE61WzZt11RtitxLrBVdmSluQa/
+ N0VMGG2KcX0TY66+4d5lacs/MQ==
+X-Google-Smtp-Source: ACHHUZ4kU14nz6zYAt//WST+vJZjHT1A0ZslMCXW2yWFwv1A1FzuUkpwCt4nzo8X4FLfv/F4WQ33Hw==
+X-Received: by 2002:a05:600c:250:b0:3f6:3bb:5135 with SMTP id
+ 16-20020a05600c025000b003f603bb5135mr1416524wmj.14.1685445774105; 
+ Tue, 30 May 2023 04:22:54 -0700 (PDT)
+Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
+ f13-20020a7bcd0d000000b003f60d0eef36sm20788514wmj.48.2023.05.30.04.22.51
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 30 May 2023 04:22:52 -0700 (PDT)
+Date: Tue, 30 May 2023 14:22:49 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: chris@chris-wilson.co.uk
+Subject: [bug report] drm: Track drm_mm allocators and show leaks on shutdown
+Message-ID: <d870b9c1-fb95-41fd-820f-68f78ca39148@kili.mountain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT067:EE_|IA0PR12MB8280:EE_
-X-MS-Office365-Filtering-Correlation-Id: 75d49156-44d5-42a8-a002-08db60f390ed
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DaCMFD87KCKd7VHHxbSArvSF7svVo9+6wffU9D1PvfB3ZdX7zLRO1qjm7Whb+y0DbgnrlUVQFPBfugB5FdzWtwkDoXErBEY72uzuWlvvCxshNsy1iJz9D7uRFLS4NRtXnkHScivm0kPytXAgU0mpOfap4q56RErh0oYaUTiLP7LoXLlaSACAXDlRGbtl8Lvz4pvcc0VKIGOZmOxbkqyOiB60yCzLminizSUfkrAevu1ZOGmJVT1IioBRq49fAa8xpm0XRfiEYFvI/dx6gwFdk1I++TfQ9mSsrDpTw+XaEuNwYzZQDdFINBA+Z1uPO2wlHhcjNB2my7spUBvn3EBoKT+Et3eDErwt0iPOTy8MYtOK+uR1VQt7nN4ZTwV9+QOMFIYdErXq89jj2Omz5jt8bYUxmZgPIEnd1LFtzmLwyIBXEFc3twv0jWbpom/XPuWoVxuguZTFTGJxWPFdMmQ9t9xy8RTVdi2mi1FPlo6iUK2S0ZEuGYJYUIotTzJuu8Jmuzgd3hVQyviZj64+MN955KEObyj8L1hYv5krngLstqCzkidm3Q7klfc3WHev4OxSQivsFV1z7ORZIHHJ2Ov3aZ5UA2NfapiWic2nf/ceCbTjDiT9rrL/NNItyHlTP6BfFJ0nZ1/c8C6ym43bb7JjvCxSH1g164W33oXHNrhp86xbhpBRNWIHHEl6FdSjzmY02wTx1wTWAVQovpz7epQj5dNDKbcD/cUxxgw94GpDI4z4RGFjo4h9u49Q6wqXnm6Ypxy/NZOu65PAdq3MvWWAhA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(346002)(39860400002)(396003)(376002)(136003)(451199021)(36840700001)(40470700004)(46966006)(316002)(41300700001)(81166007)(82740400003)(356005)(6636002)(4326008)(86362001)(4744005)(2906002)(82310400005)(8676002)(8936002)(7696005)(70586007)(70206006)(2616005)(110136005)(36756003)(54906003)(44832011)(1076003)(26005)(83380400001)(478600001)(66899021)(426003)(336012)(47076005)(40480700001)(5660300002)(186003)(36860700001)(40460700003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2023 09:52:22.6462 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 75d49156-44d5-42a8-a002-08db60f390ed
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT067.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8280
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Tue, 30 May 2023 13:50:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,33 +68,40 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: guchun.chen@amd.com, asher.song@amd.com, Bob Zhou <bob.zhou@amd.com>,
- jun.ma2@amd.com, yuliang.shi@amd.com, flora.cui@amd.com
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-After drm conduct amdgpu Makefile, amdgpu.ko has been created
-and "amdgpu-y +=" in amdxcp Makefile isn't used.
-So modify amdgpu-y to amdxcp-y and build amdxcp module.
+Hello Chris Wilson,
 
-Signed-off-by: Bob Zhou <bob.zhou@amd.com>
----
- drivers/gpu/drm/amd/amdxcp/Makefile | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+The patch 5705670d0463: "drm: Track drm_mm allocators and show leaks
+on shutdown" from Oct 31, 2016, leads to the following Smatch static
+checker warning:
 
-diff --git a/drivers/gpu/drm/amd/amdxcp/Makefile b/drivers/gpu/drm/amd/amdxcp/Makefile
-index 5e1bd70748d4..870501a4bb8c 100644
---- a/drivers/gpu/drm/amd/amdxcp/Makefile
-+++ b/drivers/gpu/drm/amd/amdxcp/Makefile
-@@ -20,6 +20,6 @@
- # OTHER DEALINGS IN THE SOFTWARE.
- #
- 
--amdgpu-y := amdgpu_xcp_drv.o
-+amdxcp-y := amdgpu_xcp_drv.o
- 
--obj-$(CONFIG_DRM_AMDGPU) += amdgpu_xcp_drv.o
-+obj-$(CONFIG_DRM_AMDGPU) += amdxcp.o
--- 
-2.34.1
+	drivers/gpu/drm/drm_mm.c:1001 drm_mm_takedown()
+	warn: sleeping in atomic context
 
+drivers/gpu/drm/drm_mm.c
+    991  * drm_mm_takedown - clean up a drm_mm allocator
+    992  * @mm: drm_mm allocator to clean up
+    993  *
+    994  * Note that it is a bug to call this function on an allocator which is not
+    995  * clean.
+    996  */
+    997 void drm_mm_takedown(struct drm_mm *mm)
+    998 {
+    999         if (WARN(!drm_mm_clean(mm),
+    1000                  "Memory manager not clean during takedown.\n"))
+--> 1001                 show_leaks(mm);
+                         ^^^^^^^^^^^^^^^
+The show_leaks() function does a GFP_KERNEL allocation but a couple
+of the callers for drm_mm_takedown() are holding spinlocks so it's a
+sleeping in atomic bug.
+
+The problematic callers are ttm_range_man_fini_nocheck() and
+amdgpu_gtt_mgr_fini().
+
+    1002 }
+
+regards,
+dan carpenter
