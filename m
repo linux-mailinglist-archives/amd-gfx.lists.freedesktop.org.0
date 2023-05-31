@@ -2,37 +2,93 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 511C7718684
-	for <lists+amd-gfx@lfdr.de>; Wed, 31 May 2023 17:38:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 597297188BD
+	for <lists+amd-gfx@lfdr.de>; Wed, 31 May 2023 19:46:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B674810E1B9;
-	Wed, 31 May 2023 15:38:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF54110E4FE;
+	Wed, 31 May 2023 17:46:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ms7.webland.ch (ms7.webland.ch [92.43.217.107])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35DB610E4FC
- for <amd-gfx@lists.freedesktop.org>; Wed, 31 May 2023 15:38:04 +0000 (UTC)
-Received: from [192.168.1.137] ([213.144.156.170])
- by ms7.webland.ch (12.3.0 build 2 x64) with ASMTP (SSL) id
- 01202305311738001552; Wed, 31 May 2023 17:38:00 +0200
-Message-ID: <9482eaae-2631-ccc9-6359-7de08cdceda3@daenzer.net>
-Date: Wed, 31 May 2023 17:37:59 +0200
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam04on2081.outbound.protection.outlook.com [40.107.101.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 694F810E4FE
+ for <amd-gfx@lists.freedesktop.org>; Wed, 31 May 2023 17:46:50 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AsAXkdLtjpqNL4YKc7oyhTcuYyLk4NoXjo7iMOjbC0LYffdbHrfOSI5QzovVEwpQFqZ0mv/K6v7w4QBbcYq9SfWg5Kz/EXwYZrVbj5XgBHRa5sa7wWb3xKe8FyZS3hCyJTp9V9Rf8HfihD8X6hFl41rx2y3vFdvWleBonMyrByDOXCWyKppbuYb8L/a9Xy6bx5GngyuCLg5UtGjMAVnz52GYDEisdJzpGL39+fx9Yj4NUT/4PBNsHy0vCGsoKI+ilBQNby379RxvIxtBp5ue48pg82gAO0aq3DNaj+vQAtiZX2JmGqbAkb0KRi5uh8KcTz4enEUvLWk/GVxmUM4/Mw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=K8v4K8xY0CtXy5/ry4ZQ0yhWSKyP6mEu7Plk2xauehQ=;
+ b=A5wPZ6VJnAOcK8e8g5i6eA6z/69OeLMXbwZ7RLafo/0qxxGOrh9tJvznTirFpjZVdbwE8eFqArEKQW94TTwB02Nkegiu1npMl7ihpQ645Ne+T7PlP0s6sf+mT2p/Ta9EofFSV6znW3WbndCMCCu7EukBXTOVpYI6zkpWqq80TBtw5gsH4fkxftx0Ms9cO0Acqo4eGDfcBDMFPXqDuktV3fQLcfW0ybyqDwkRyv+9R8JrCGSSIqHnIlP8bjW53OtZ/IxIbgJNgjr+LN1s0WReknhuqnGAtzFhsafqrFXiD65liUSU0LYlxz5HLqXcNmFeECdnpR/2+UMaflfWjaySZw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=K8v4K8xY0CtXy5/ry4ZQ0yhWSKyP6mEu7Plk2xauehQ=;
+ b=GHYoc0O87EaPthuIiWfBKl+wKUfrvTHMue383GzRzRcC/sSCWbR81M+1fBKoBrZhAEvkxBt3L3BznovfRY45CsOCXatqrg6Kb1RsPNsva5Nb47lY7MJpbiMbuL2PjnHw5yD4/CHhiwMCCVxeMsA6OykfG42RydP4r0vAyLoFATo=
+Received: from MN2PR11CA0026.namprd11.prod.outlook.com (2603:10b6:208:23b::31)
+ by SA0PR12MB7461.namprd12.prod.outlook.com (2603:10b6:806:24b::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.24; Wed, 31 May
+ 2023 17:46:47 +0000
+Received: from BL02EPF000145B8.namprd05.prod.outlook.com
+ (2603:10b6:208:23b:cafe::3f) by MN2PR11CA0026.outlook.office365.com
+ (2603:10b6:208:23b::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.22 via Frontend
+ Transport; Wed, 31 May 2023 17:46:47 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL02EPF000145B8.mail.protection.outlook.com (10.167.241.208) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6455.18 via Frontend Transport; Wed, 31 May 2023 17:46:46 +0000
+Received: from TRX40-1.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 31 May
+ 2023 12:46:41 -0500
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+To: Aurabindo Pillai <aurabindo.pillai@amd.com>, Hamza Mahfooz
+ <hamza.mahfooz@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, "Harry
+ Wentland" <harry.wentland@amd.com>, Roman Li <Roman.Li@amd.com>
+Subject: [PATCH v2] drm/amd/display: Drop unused DCN_BASE variable in
+ dcn314_resource.c
+Date: Wed, 31 May 2023 23:16:24 +0530
+Message-ID: <20230531174624.3526968-1-srinivasan.shanmugam@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-CA
-To: Alex Deucher <alexdeucher@gmail.com>
-References: <DM4PR12MB515262B810158F1D3C6E8324E39B9@DM4PR12MB5152.namprd12.prod.outlook.com>
- <70baf20a-dd86-af46-5d4d-d807d537ef68@daenzer.net>
- <CADnq5_OXU6AC7JZm8bfM=eQuDEbMgnk3YmFCh2Gn1cEspfh_Lg@mail.gmail.com>
-From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
-Subject: Re: [PATCH] drm/amdgpu/gfx9: switch to golden tsc registers for
- raven/raven2
-In-Reply-To: <CADnq5_OXU6AC7JZm8bfM=eQuDEbMgnk3YmFCh2Gn1cEspfh_Lg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-CTCH: RefID="str=0001.0A782F22.647769D9.0001,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0";
- Spam="Unknown"; VOD="Unknown"
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF000145B8:EE_|SA0PR12MB7461:EE_
+X-MS-Office365-Filtering-Correlation-Id: dc15f3f4-f09d-4481-3e33-08db61ff014e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zohobSgGwK1dAn1SWN/GTCqFngCqOF6IhaM/iZykB3+x3dG7jK0rVOxNPdpO38A5KmGejw48gJEoW7HAmMpVnDEFoqHzGgWsxF5K7XU9fwkvXZTDwv3OsV1ig3thSJpB2QNhLfhtKoPN5Jv7LxHpEBSAPVYq0reiIUnMKRZRo0sosjru3c7V8ENAa6PuLWtwT7rkLtZJGwioVLXsLqsOqe9Gjcj/KRAa36+Hg6IZxPvN+gjh8Lc5Etd+bBudX/QbqVDec9PDQqGQxhwOLlfO8bph7ELPAIHDrwIolhOYM5dFSf2jffv4X2aKGy8Pze5OKC20dF9Rj4J2zuHg6KVjCjfRwb3TEJXWqjhb/2iI2oM23UoCqQJJi+tAqji/tHmlZQmOodw/rJhG64WobSYrJc6U26qCi1eZXoEOTVJxq54MJsbF8pUey673ys/VsxaNXc1SnBH9ZkLTNAgJI50K5g9oNNpf9WSl9eTflYDDJG5J14ZDsdNxkAcPEYQ57zREPmMtB05GP+8NGhXCyLHr1PtZJdSJ9rZh7rNRYM6I2+pIjn244B7HyecQiv+XUKFanC0QZU9rcTnYuvrjiFGoHYpsEEZ2Ni45cZWqqtW4CX6whFYpLSZYfHlpeS7VAl4ioUAlWshVwQEu8CIYPtJroNpfL8m55NhLLELBEsADnvSTJ9rObvwRSdNNefbp+Llx817dIVM7YD4b+bvGXigl/zjB7DWYJRr/zTqzBbx3Vw/O/Uho89r7sJQm9mnWFoCpiSywsDLcUMKbRB7sgMi2jQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230028)(4636009)(376002)(346002)(39860400002)(396003)(136003)(451199021)(40470700004)(46966006)(36840700001)(40460700003)(7696005)(6666004)(426003)(83380400001)(36756003)(336012)(36860700001)(47076005)(2616005)(82310400005)(86362001)(356005)(82740400003)(1076003)(81166007)(40480700001)(26005)(16526019)(186003)(2906002)(6636002)(70206006)(4326008)(70586007)(110136005)(54906003)(5660300002)(8676002)(8936002)(44832011)(41300700001)(478600001)(316002)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2023 17:46:46.9048 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc15f3f4-f09d-4481-3e33-08db61ff014e
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF000145B8.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB7461
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,45 +100,60 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Zhang,
- Yifan" <Yifan1.Zhang@amd.com>, "Zhang, Jesse\(Jie\)" <Jesse.Zhang@amd.com>,
- "Quan, Evan" <Evan.Quan@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Cc: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 5/31/23 16:01, Alex Deucher wrote:
-> On Mon, May 29, 2023 at 5:45 AM Michel Dänzer <michel@daenzer.net> wrote:
->>
->> On 4/12/23 03:23, Zhang, Jesse(Jie) wrote:
->>>
->>>   Due to raven/raven2 maybe enable  sclk slow down,
->>>     they cannot get clock count by the RLC at the auto level of dpm performance.
->>>     So switch to golden tsc register.
->>
->> At least on this ThinkPad E595 with Picasso, the issue with this change (and the corresponding fbc24293ca16 "drm/amdgpu: change the reference clock for raven/raven2" & 9d2d1827af29 "drm/amdgpu: Differentiate between Raven2 and Raven/Picasso according to revision id") is that the GPU timestamps reported via the AMDGPU_INFO ioctl are no longer consistent with those reported via asynchronous GPU queries (e.g. via glQuery with GL_TIMESTAMP). The latter are still affected by clock changes, and even when the clock doesn't stop altogether, they still tick at 25 MHz, so the two kinds of GPU timestamps keep diverging further.
-> 
-> fbc24293ca16 "drm/amdgpu: change the reference clock for raven/raven2"
-> would also affect that.  Were you seeing the same results with that
-> patch as well?
+Fixes the following W=1 kernel build warning:
 
-Yes. That one is problematic because user space uses the reference clock for converting the results of asynchronous GPU queries from clock ticks to seconds. Since that clock still ticks at 25 MHz, the computed values in seconds are incorrect and keep diverging further from the corresponding values from the AMDGPU_INFO ioctl.
+drivers/gpu/drm/amd/amdgpu/../display/dc/dcn314/dcn314_resource.c:128:29: warning: ‘DCN_BASE’ defined but not used [-Wunused-const-variable=]
+  128 | static const struct IP_BASE DCN_BASE = { { { { 0x00000012, 0x000000C0, 0x000034C0, 0x00009000, 0x02403C00, 0, 0, 0 } },
+      |                             ^~~~~~~~
 
+Suggested-by: Roman Li <Roman.Li@amd.com>
+Cc: Hamza Mahfooz <hamza.mahfooz@amd.com>
+Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+---
 
->> This makes it impossible to determine the wall clock time at which a certain GPU job finished. GNOME's mutter uses this for adaptive frame scheduling.
->>
->> You can see the issue with the piglit test arb_timer_query-timestamp-get or with the Vulkan CTS tests dEQP-VK.pipeline.monolithic.timestamp.calibrated.*. (Note that some of these tests could already fail before with GFXOFF enabled, the symptoms are slightly different though)
->>
->>
->> An ideal long-term solution for this might be to modify the GPU microcode to use the golden registers for asynchronous timestamp queries as well.
+v2:
+ - Remove even unused IP_BASE_INSTANCE and IP_BASE struct definitions
+   altogether (Roman)
 
-Any thoughts on whether or not this might be feasible?
+ .../drm/amd/display/dc/dcn314/dcn314_resource.c | 17 -----------------
+ 1 file changed, 17 deletions(-)
 
-
->> In the meantime though, these changes need to be reverted for 6.4, at least for Picasso.
-
-
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
+index 3592efcc7fae..837884c4f03a 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
+@@ -117,23 +117,6 @@
+ #define regBIF_BX2_BIOS_SCRATCH_6			0x003e
+ #define regBIF_BX2_BIOS_SCRATCH_6_BASE_IDX		1
+ 
+-struct IP_BASE_INSTANCE {
+-	unsigned int segment[MAX_SEGMENT];
+-};
+-
+-struct IP_BASE {
+-	struct IP_BASE_INSTANCE instance[MAX_INSTANCE];
+-};
+-
+-static const struct IP_BASE DCN_BASE = { { { { 0x00000012, 0x000000C0, 0x000034C0, 0x00009000, 0x02403C00, 0, 0, 0 } },
+-					{ { 0, 0, 0, 0, 0, 0, 0, 0 } },
+-					{ { 0, 0, 0, 0, 0, 0, 0, 0 } },
+-					{ { 0, 0, 0, 0, 0, 0, 0, 0 } },
+-					{ { 0, 0, 0, 0, 0, 0, 0, 0 } },
+-					{ { 0, 0, 0, 0, 0, 0, 0, 0 } },
+-					{ { 0, 0, 0, 0, 0, 0, 0, 0 } } } };
+-
+-
+ #define DC_LOGGER_INIT(logger)
+ 
+ enum dcn31_clk_src_array_id {
 -- 
-Earthling Michel Dänzer            |                  https://redhat.com
-Libre software enthusiast          |         Mesa and Xwayland developer
+2.25.1
 
