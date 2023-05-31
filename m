@@ -1,94 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 597297188BD
-	for <lists+amd-gfx@lfdr.de>; Wed, 31 May 2023 19:46:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AEB6718910
+	for <lists+amd-gfx@lfdr.de>; Wed, 31 May 2023 20:10:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF54110E4FE;
-	Wed, 31 May 2023 17:46:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70FB610E1D7;
+	Wed, 31 May 2023 18:10:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2081.outbound.protection.outlook.com [40.107.101.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 694F810E4FE
- for <amd-gfx@lists.freedesktop.org>; Wed, 31 May 2023 17:46:50 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AsAXkdLtjpqNL4YKc7oyhTcuYyLk4NoXjo7iMOjbC0LYffdbHrfOSI5QzovVEwpQFqZ0mv/K6v7w4QBbcYq9SfWg5Kz/EXwYZrVbj5XgBHRa5sa7wWb3xKe8FyZS3hCyJTp9V9Rf8HfihD8X6hFl41rx2y3vFdvWleBonMyrByDOXCWyKppbuYb8L/a9Xy6bx5GngyuCLg5UtGjMAVnz52GYDEisdJzpGL39+fx9Yj4NUT/4PBNsHy0vCGsoKI+ilBQNby379RxvIxtBp5ue48pg82gAO0aq3DNaj+vQAtiZX2JmGqbAkb0KRi5uh8KcTz4enEUvLWk/GVxmUM4/Mw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=K8v4K8xY0CtXy5/ry4ZQ0yhWSKyP6mEu7Plk2xauehQ=;
- b=A5wPZ6VJnAOcK8e8g5i6eA6z/69OeLMXbwZ7RLafo/0qxxGOrh9tJvznTirFpjZVdbwE8eFqArEKQW94TTwB02Nkegiu1npMl7ihpQ645Ne+T7PlP0s6sf+mT2p/Ta9EofFSV6znW3WbndCMCCu7EukBXTOVpYI6zkpWqq80TBtw5gsH4fkxftx0Ms9cO0Acqo4eGDfcBDMFPXqDuktV3fQLcfW0ybyqDwkRyv+9R8JrCGSSIqHnIlP8bjW53OtZ/IxIbgJNgjr+LN1s0WReknhuqnGAtzFhsafqrFXiD65liUSU0LYlxz5HLqXcNmFeECdnpR/2+UMaflfWjaySZw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=K8v4K8xY0CtXy5/ry4ZQ0yhWSKyP6mEu7Plk2xauehQ=;
- b=GHYoc0O87EaPthuIiWfBKl+wKUfrvTHMue383GzRzRcC/sSCWbR81M+1fBKoBrZhAEvkxBt3L3BznovfRY45CsOCXatqrg6Kb1RsPNsva5Nb47lY7MJpbiMbuL2PjnHw5yD4/CHhiwMCCVxeMsA6OykfG42RydP4r0vAyLoFATo=
-Received: from MN2PR11CA0026.namprd11.prod.outlook.com (2603:10b6:208:23b::31)
- by SA0PR12MB7461.namprd12.prod.outlook.com (2603:10b6:806:24b::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.24; Wed, 31 May
- 2023 17:46:47 +0000
-Received: from BL02EPF000145B8.namprd05.prod.outlook.com
- (2603:10b6:208:23b:cafe::3f) by MN2PR11CA0026.outlook.office365.com
- (2603:10b6:208:23b::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.22 via Frontend
- Transport; Wed, 31 May 2023 17:46:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL02EPF000145B8.mail.protection.outlook.com (10.167.241.208) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6455.18 via Frontend Transport; Wed, 31 May 2023 17:46:46 +0000
-Received: from TRX40-1.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 31 May
- 2023 12:46:41 -0500
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-To: Aurabindo Pillai <aurabindo.pillai@amd.com>, Hamza Mahfooz
- <hamza.mahfooz@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, "Harry
- Wentland" <harry.wentland@amd.com>, Roman Li <Roman.Li@amd.com>
-Subject: [PATCH v2] drm/amd/display: Drop unused DCN_BASE variable in
- dcn314_resource.c
-Date: Wed, 31 May 2023 23:16:24 +0530
-Message-ID: <20230531174624.3526968-1-srinivasan.shanmugam@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com
+ [IPv6:2607:f8b0:4864:20::335])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27E4F10E1DA
+ for <amd-gfx@lists.freedesktop.org>; Wed, 31 May 2023 18:10:24 +0000 (UTC)
+Received: by mail-ot1-x335.google.com with SMTP id
+ 46e09a7af769-6af896f0908so43653a34.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 31 May 2023 11:10:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1685556623; x=1688148623;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=OvB/EIw8hyUB1DhdZetQIGB8Tr9NMWgLR5++PEOYxL0=;
+ b=K/rC6g5IcwGwohe3/dnEslr3qkKgrt/sg4XZ+WnmVfkEGgJEZ/rxybqUFe4HklrQlH
+ IA+ead1Nsz0C6gU2bxZLgNPYPjyXmIOzm2RybNrQGNt+VpoZRoywVVyoCuS3sI3RloH1
+ QazrayVB3nvHpAmY7LO/j/59mXdPX+ti9ag77TOivZqYiJfFJMHvOPCDje7CwNMo+s+3
+ CzgYhLTrPkWTn83XN3jM/3a1iAAv7629CIBhQL53XlncLn86k7JS1VXg5OWfQ5Nff5p0
+ wN0RZvFUF/SV8LRhJdgV9JIJYASrsRLDPUafGgwIZ2fMblvhJgqzN7Qb/e8K0kICvW66
+ KEBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1685556623; x=1688148623;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=OvB/EIw8hyUB1DhdZetQIGB8Tr9NMWgLR5++PEOYxL0=;
+ b=RDh9qMMdn9PiGkDiv7OUXcVTK8VCZKCIA9HQyvqxTgNDyBevC36JrCjF8DuO+QiM3F
+ Csd3mz7G5O9g07y50eovDQn2p9I+cDavYPc6fI4S327u7GIie5V7O8x8tq5h5m4iEd3x
+ UG1DmPgOGlUJkuUPZr4lR+w4oxFtulpqKXNy5IgwjeWWZ4eg82twVYVXE9OrzO4m/IBj
+ U6ULpDDz2vKmvrgcHhN8WbC7w3bNKmwlxTRB5rZqc+gVYGwwlBb0R3Ex++9ko7judE5K
+ lHSI3RvGAFh1Fz9yeYaIe+CaWsEQVZ4pm/c77IyCT8dMs8yQX/hixjeLgflJUEaqAxlA
+ KD1g==
+X-Gm-Message-State: AC+VfDy/5UVsl/XBGVAC2InYnwjL7ya0eFQEOv1TTZ2gE/0grp7Wdv3H
+ g9TvPmt5afGyQ4TlGKlYzFNOzki44byEvTw8GXo=
+X-Google-Smtp-Source: ACHHUZ65sjy7iS+qdHuo9Yvf8C25qGJW5QBGnHj6lswI1wDRlRRNeWqe2SwFo71DXHFFxCxUNWMq48X7NXkXrJCcFd4=
+X-Received: by 2002:a4a:41c5:0:b0:555:33cd:cd76 with SMTP id
+ x188-20020a4a41c5000000b0055533cdcd76mr2889453ooa.2.1685556622899; Wed, 31
+ May 2023 11:10:22 -0700 (PDT)
 MIME-Version: 1.0
+References: <20230530184846.3108466-1-srinivasan.shanmugam@amd.com>
+In-Reply-To: <20230530184846.3108466-1-srinivasan.shanmugam@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 31 May 2023 14:10:10 -0400
+Message-ID: <CADnq5_OUr9eJEDJOepzggsjk1A_PVX1mwOOBPyQ5=9fE6+P+wg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Fix up kdoc 'ring' parameter in
+ sdma_v6_0_ring_pad_ib
+To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF000145B8:EE_|SA0PR12MB7461:EE_
-X-MS-Office365-Filtering-Correlation-Id: dc15f3f4-f09d-4481-3e33-08db61ff014e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zohobSgGwK1dAn1SWN/GTCqFngCqOF6IhaM/iZykB3+x3dG7jK0rVOxNPdpO38A5KmGejw48gJEoW7HAmMpVnDEFoqHzGgWsxF5K7XU9fwkvXZTDwv3OsV1ig3thSJpB2QNhLfhtKoPN5Jv7LxHpEBSAPVYq0reiIUnMKRZRo0sosjru3c7V8ENAa6PuLWtwT7rkLtZJGwioVLXsLqsOqe9Gjcj/KRAa36+Hg6IZxPvN+gjh8Lc5Etd+bBudX/QbqVDec9PDQqGQxhwOLlfO8bph7ELPAIHDrwIolhOYM5dFSf2jffv4X2aKGy8Pze5OKC20dF9Rj4J2zuHg6KVjCjfRwb3TEJXWqjhb/2iI2oM23UoCqQJJi+tAqji/tHmlZQmOodw/rJhG64WobSYrJc6U26qCi1eZXoEOTVJxq54MJsbF8pUey673ys/VsxaNXc1SnBH9ZkLTNAgJI50K5g9oNNpf9WSl9eTflYDDJG5J14ZDsdNxkAcPEYQ57zREPmMtB05GP+8NGhXCyLHr1PtZJdSJ9rZh7rNRYM6I2+pIjn244B7HyecQiv+XUKFanC0QZU9rcTnYuvrjiFGoHYpsEEZ2Ni45cZWqqtW4CX6whFYpLSZYfHlpeS7VAl4ioUAlWshVwQEu8CIYPtJroNpfL8m55NhLLELBEsADnvSTJ9rObvwRSdNNefbp+Llx817dIVM7YD4b+bvGXigl/zjB7DWYJRr/zTqzBbx3Vw/O/Uho89r7sJQm9mnWFoCpiSywsDLcUMKbRB7sgMi2jQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(376002)(346002)(39860400002)(396003)(136003)(451199021)(40470700004)(46966006)(36840700001)(40460700003)(7696005)(6666004)(426003)(83380400001)(36756003)(336012)(36860700001)(47076005)(2616005)(82310400005)(86362001)(356005)(82740400003)(1076003)(81166007)(40480700001)(26005)(16526019)(186003)(2906002)(6636002)(70206006)(4326008)(70586007)(110136005)(54906003)(5660300002)(8676002)(8936002)(44832011)(41300700001)(478600001)(316002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2023 17:46:46.9048 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc15f3f4-f09d-4481-3e33-08db61ff014e
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF000145B8.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB7461
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,60 +68,46 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Felix Kuehling <felix.kuehling@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
  amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fixes the following W=1 kernel build warning:
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/dcn314/dcn314_resource.c:128:29: warning: ‘DCN_BASE’ defined but not used [-Wunused-const-variable=]
-  128 | static const struct IP_BASE DCN_BASE = { { { { 0x00000012, 0x000000C0, 0x000034C0, 0x00009000, 0x02403C00, 0, 0, 0 } },
-      |                             ^~~~~~~~
-
-Suggested-by: Roman Li <Roman.Li@amd.com>
-Cc: Hamza Mahfooz <hamza.mahfooz@amd.com>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Cc: Harry Wentland <harry.wentland@amd.com>
-Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
----
-
-v2:
- - Remove even unused IP_BASE_INSTANCE and IP_BASE struct definitions
-   altogether (Roman)
-
- .../drm/amd/display/dc/dcn314/dcn314_resource.c | 17 -----------------
- 1 file changed, 17 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
-index 3592efcc7fae..837884c4f03a 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn314/dcn314_resource.c
-@@ -117,23 +117,6 @@
- #define regBIF_BX2_BIOS_SCRATCH_6			0x003e
- #define regBIF_BX2_BIOS_SCRATCH_6_BASE_IDX		1
- 
--struct IP_BASE_INSTANCE {
--	unsigned int segment[MAX_SEGMENT];
--};
--
--struct IP_BASE {
--	struct IP_BASE_INSTANCE instance[MAX_INSTANCE];
--};
--
--static const struct IP_BASE DCN_BASE = { { { { 0x00000012, 0x000000C0, 0x000034C0, 0x00009000, 0x02403C00, 0, 0, 0 } },
--					{ { 0, 0, 0, 0, 0, 0, 0, 0 } },
--					{ { 0, 0, 0, 0, 0, 0, 0, 0 } },
--					{ { 0, 0, 0, 0, 0, 0, 0, 0 } },
--					{ { 0, 0, 0, 0, 0, 0, 0, 0 } },
--					{ { 0, 0, 0, 0, 0, 0, 0, 0 } },
--					{ { 0, 0, 0, 0, 0, 0, 0, 0 } } } };
--
--
- #define DC_LOGGER_INIT(logger)
- 
- enum dcn31_clk_src_array_id {
--- 
-2.25.1
-
+On Tue, May 30, 2023 at 2:49=E2=80=AFPM Srinivasan Shanmugam
+<srinivasan.shanmugam@amd.com> wrote:
+>
+> Fix this warning by adding 'ring' arguments to kdoc.
+>
+> gcc with W=3D1
+> drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c:1128: warning: Function parameter =
+or member 'ring' not described in 'sdma_v6_0_ring_pad_ib'
+>
+> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c b/drivers/gpu/drm/amd=
+/amdgpu/sdma_v6_0.c
+> index 967849c59ebe..3b03dda854fd 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
+> @@ -1121,6 +1121,7 @@ static void sdma_v6_0_vm_set_pte_pde(struct amdgpu_=
+ib *ib,
+>  /**
+>   * sdma_v6_0_ring_pad_ib - pad the IB
+>   * @ib: indirect buffer to fill with padding
+> + * @ring: amdgpu ring pointer
+>   *
+>   * Pad the IB with NOPs to a boundary multiple of 8.
+>   */
+> --
+> 2.25.1
+>
