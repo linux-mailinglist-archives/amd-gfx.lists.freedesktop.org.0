@@ -1,92 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 073E171FE5E
-	for <lists+amd-gfx@lfdr.de>; Fri,  2 Jun 2023 11:54:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19BE67202A8
+	for <lists+amd-gfx@lfdr.de>; Fri,  2 Jun 2023 15:09:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A83A10E00B;
-	Fri,  2 Jun 2023 09:54:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3AB310E051;
+	Fri,  2 Jun 2023 13:09:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2063.outbound.protection.outlook.com [40.107.93.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0695B10E00B
- for <amd-gfx@lists.freedesktop.org>; Fri,  2 Jun 2023 09:54:06 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VKOcFqLuOJSdtTBdoE3RkocIBN/If1NoDhshY6i2+QnwDssipTSfJerRxKJCvCw6y/KROgY/ib2qUSjW0mpQllvVLmGHuEIQ0iF9aCqftlL+eK4Icy3tuwOeuZ3R4Aw4MOnLBziub29cBRz8WjgRWVUtkK2k82LJL5Q0ii6J1jYC5YSb4Q4Jvoylk9jS+4PCqeVQ4NJW1s4L8JNIdtqjgpLzr8G6zBXnEde61WCez/3z0Hkecv5f4fh8K5/C+NB6Nq264ZI9IUJfpmAdyeRMAct/QJxYsyme0UvlxZtRA678h+n113XvLVXK2rB+4iXLdmLzsV0ymnmwffq/PfvM9w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=X+i62Sual4+lwrFoTQxCjmiwCeZNRvmNjTR1MuIhXLM=;
- b=M9vqzlxdcZLp/l68a4XGuzm93a8oahMehY4oAvA9lw6KwtVeghRStYjN/E6ao26LGHYC2Gmq5dldTEz86ae7wb7r/fiOrVuDPM8yBGmFd/3CSYPQAJs8akH41NchSRuC5f5q5x3u7eXO2RxPuoQpKfzaMVmOInXxaDbMr6WMNibsLKGRndgheAe8LWDNwKQqwJbf+7hklA2Q9Zjfw/6cFGvy/auhcQroDZVO75WHnc/oyBx8X3wSAvIJa0qUZJ0R5YO2YYNEccR5+H9MOTFkHDXB+kiuSEP/8G4qbSLbSUqtG6C127TMmi6Zi7mPyy0aMG2Z+ZkEx4Gy+MeZ+h0YNw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=X+i62Sual4+lwrFoTQxCjmiwCeZNRvmNjTR1MuIhXLM=;
- b=K+7FabEKbMImTH2Nc0cLAemkoZAqNzhuAOPT87e/KcTN96tcrMfZ+sE2kgBXKJvYG3hKhUa7uX8p2xAqmiQ/3rZOFR9gHq/1/KKO9+jJlYLugUsfo0jtVRc7fm3+cU7lYRv0Qu4NxitELrqKR2UVVTtHDdfvvFVHrrfUExu8c2w=
-Received: from DS7PR05CA0098.namprd05.prod.outlook.com (2603:10b6:8:56::8) by
- DM4PR12MB5867.namprd12.prod.outlook.com (2603:10b6:8:66::18) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6455.23; Fri, 2 Jun 2023 09:54:04 +0000
-Received: from DM6NAM11FT095.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:56:cafe::66) by DS7PR05CA0098.outlook.office365.com
- (2603:10b6:8:56::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.11 via Frontend
- Transport; Fri, 2 Jun 2023 09:54:04 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT095.mail.protection.outlook.com (10.13.172.180) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6455.24 via Frontend Transport; Fri, 2 Jun 2023 09:54:04 +0000
-Received: from TRX40-1.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 2 Jun
- 2023 04:54:00 -0500
-From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-To: Aurabindo Pillai <aurabindo.pillai@amd.com>, Rodrigo Siqueira
- <Rodrigo.Siqueira@amd.com>, Harry Wentland <harry.wentland@amd.com>
-Subject: [PATCH] drm/amd/display: Fix dc/dcn20/dcn20_optc.c kdoc
-Date: Fri, 2 Jun 2023 15:23:46 +0530
-Message-ID: <20230602095346.1603786-1-srinivasan.shanmugam@amd.com>
+X-Greylist: delayed 1195 seconds by postgrey-1.36 at gabe;
+ Fri, 02 Jun 2023 10:29:24 UTC
+Received: from dggsgout11.his.huawei.com (unknown [45.249.212.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B8BD10E644;
+ Fri,  2 Jun 2023 10:29:24 +0000 (UTC)
+Received: from mail02.huawei.com (unknown [172.30.67.143])
+ by dggsgout11.his.huawei.com (SkyGuard) with ESMTP id 4QXdyV3qcDz4f3k5v;
+ Fri,  2 Jun 2023 18:09:22 +0800 (CST)
+Received: from ubuntu20.huawei.com (unknown [10.67.174.33])
+ by APP1 (Coremail) with SMTP id cCh0CgCH8iy2v3lkYWubKA--.54066S2;
+ Fri, 02 Jun 2023 18:09:23 +0800 (CST)
+From: "GONG, Ruiqi" <gongruiqi@huaweicloud.com>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Pan Xinhui <Xinhui.Pan@amd.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+Subject: [PATCH] drm/amd/display: fix compilation error due to shifting
+ negative value
+Date: Fri,  2 Jun 2023 18:12:33 +0800
+Message-Id: <20230602101233.1255276-1-gongruiqi@huaweicloud.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT095:EE_|DM4PR12MB5867:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6cd18803-97f6-45da-a32e-08db634f4ce4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cBL8BJN3nqi+5kQ+zpr80gj4CP1dgJZ93bcJWiI9LNbFJmh3UnnZFXiyF0GRv0+whpIy1sDXdkapwhk03SBtjFIYue7GdcSORlkf77uwRntWRzQ9lt5ldZloDQRp6zBiXYFFxVdPq3jlJ6Mef61rSHk1MzJCkmBrVljjumQhdMzeqeUxIAx5WMYlrKV1nIEpF7O9Y7G5cyAYhyvTnD7xYq0ay3M+PzrK3BXfG0pInAfkKIsuCqZAPUh7o8pvYAmkaPUHLu7J6gy/jq4PiwBkCThZD+T0qO1GhTSF7VahsYH9V2pl1ig/i/CzFOrABgVkoyOrwH0aoHmT+aKkDTlw6BCK/klH/l1P/neHQ/s9rFE5R/XXZtjolJBewBfNF+h0MkfKGZ5eanPw4/J1VHdB5gPJGcON8PC7APABnnfqRrF2SojDqk+n0niI1gtbMDLuZ5cCUAiPhfJkVEuImkpDAFV1fU2VR3lRF0CiIeu71vTQ7z/nxTLxhulpjtpIwbUT3NIVcz4sPqF50XTjCAroRe5eWmNryhnRoY4QEzMX3FFa+5bZje4mVa4ZGD0hyr6f+u4dTggrqseUfzA4R/PNXGlGPx90Nbb0OxZI/lWbbwO/Poafwflvw4+6OutGFK+jLcTX/SvzZx9+7bywUFbK105Zz0kbeHMmOGOLl4eKjEgPE2k5Te8RJfaBnXULhUzyyDUtkX+o4FusoyBzfufdKB5cCwwVS5eLGUhhFvx6GtkyVA1e8SlkM4IzJXiyGev4FrxYk0XV0G/KAZxZ3Qr9WA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(39860400002)(376002)(136003)(346002)(451199021)(36840700001)(40470700004)(46966006)(81166007)(82740400003)(36756003)(356005)(86362001)(82310400005)(40460700003)(41300700001)(8936002)(26005)(5660300002)(1076003)(44832011)(40480700001)(186003)(426003)(16526019)(336012)(2616005)(83380400001)(47076005)(316002)(478600001)(70586007)(110136005)(2906002)(7696005)(70206006)(6666004)(54906003)(8676002)(36860700001)(4326008)(6636002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2023 09:54:04.5894 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6cd18803-97f6-45da-a32e-08db634f4ce4
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT095.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5867
+X-CM-TRANSID: cCh0CgCH8iy2v3lkYWubKA--.54066S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Aw15JF1fXFyxZw47ZrW5KFg_yoW8Gr1rpF
+ sxJry8WF1UuF4IyFyxCa9ru3W3Jas5XFWqyrZrW3sIk3W7tF15W39xKr1Dtryj9FWjywsx
+ tFZ2gr47JwnrAw7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUUkFb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k2
+ 6cxKx2IYs7xG6r1S6rWUM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4
+ vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7Cj
+ xVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I
+ 0E14v26rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40E
+ x7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x
+ 0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l42xK82IY
+ c2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s
+ 026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF
+ 0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0x
+ vE42xK8VAvwI8IcIk0rVWrZr1j6s0DMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2
+ jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07UWE__UUUUU=
+X-CM-SenderInfo: pjrqw2pxltxq5kxd4v5lfo033gof0z/
+X-CFilter-Loop: Reflected
+X-Mailman-Approved-At: Fri, 02 Jun 2023 13:09:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,70 +63,40 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- amd-gfx@lists.freedesktop.org
+Cc: Xiu Jianfeng <xiujianfeng@huawei.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Wang Weiyang <wangweiyang2@huawei.com>,
+ amd-gfx@lists.freedesktop.org, gongruiqi1@huawei.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fix all kdoc warnings in dc/dcn20/dcn20_optc.c:
+Currently compiling linux-next with allmodconfig triggers the following
+error:
 
-display/dc/dcn20/dcn20_optc.c:41: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
- * Enable CRTC
-display/dc/dcn20/dcn20_optc.c:76: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
- *For the below, I'm not sure how your GSL parameters are stored in your
-  env,
-display/dc/dcn20/dcn20_optc.c:85: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
- * There are (MAX_OPTC+1)/2 gsl groups available for use.
+./drivers/gpu/drm/amd/amdgpu/../display/include/fixed31_32.h: In function ‘dc_fixpt_truncate’:
+./drivers/gpu/drm/amd/amdgpu/../display/include/fixed31_32.h:528:22: error: left shift of negative value [-Werror=shift-negative-value]
+  528 |  arg.value &= (~0LL) << (FIXED31_32_BITS_PER_FRACTIONAL_PART - frac_bits);
+      |                      ^~
 
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Cc: Harry Wentland <harry.wentland@amd.com>
-Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+Use `unsigned long long` instead.
+
+Signed-off-by: GONG, Ruiqi <gongruiqi@huaweicloud.com>
 ---
- .../gpu/drm/amd/display/dc/dcn20/dcn20_optc.c   | 17 ++++++++++++-----
- 1 file changed, 12 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/display/include/fixed31_32.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.c
-index e0edc163d767..d6f095b4555d 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.c
-@@ -38,8 +38,12 @@
- 	optc1->tg_shift->field_name, optc1->tg_mask->field_name
+diff --git a/drivers/gpu/drm/amd/display/include/fixed31_32.h b/drivers/gpu/drm/amd/display/include/fixed31_32.h
+index ece97ae0e826..d4cf7ead1d87 100644
+--- a/drivers/gpu/drm/amd/display/include/fixed31_32.h
++++ b/drivers/gpu/drm/amd/display/include/fixed31_32.h
+@@ -525,7 +525,7 @@ static inline struct fixed31_32 dc_fixpt_truncate(struct fixed31_32 arg, unsigne
  
- /**
-- * Enable CRTC
-- * Enable CRTC - call ASIC Control Object to enable Timing generator.
-+ * optc2_enable_crtc() - Enable CRTC - call ASIC Control Object to enable Timing generator.
-+ *
-+ * @optc: timing_generator instance.
-+ *
-+ * Return: If CRTC is enabled, return true.
-+ *
-  */
- bool optc2_enable_crtc(struct timing_generator *optc)
- {
-@@ -73,15 +77,18 @@ bool optc2_enable_crtc(struct timing_generator *optc)
- }
- 
- /**
-- *For the below, I'm not sure how your GSL parameters are stored in your env,
-- * so I will assume a gsl_params struct for now
-+ * optc2_set_gsl() - Assign OTG to GSL groups,
-+ *                   set one of the OTGs to be master & rest are slaves
-+ *
-+ * @optc: timing_generator instance.
-+ * @params: pointer to gsl_params
-  */
- void optc2_set_gsl(struct timing_generator *optc,
- 		   const struct gsl_params *params)
- {
- 	struct optc *optc1 = DCN10TG_FROM_TG(optc);
- 
--/**
-+/*
-  * There are (MAX_OPTC+1)/2 gsl groups available for use.
-  * In each group (assign an OTG to a group by setting OTG_GSLX_EN = 1,
-  * set one of the OTGs to be the master (OTG_GSL_MASTER_EN = 1) and the rest are slaves.
+ 	if (negative)
+ 		arg.value = -arg.value;
+-	arg.value &= (~0LL) << (FIXED31_32_BITS_PER_FRACTIONAL_PART - frac_bits);
++	arg.value &= (~0ULL) << (FIXED31_32_BITS_PER_FRACTIONAL_PART - frac_bits);
+ 	if (negative)
+ 		arg.value = -arg.value;
+ 	return arg;
 -- 
 2.25.1
 
