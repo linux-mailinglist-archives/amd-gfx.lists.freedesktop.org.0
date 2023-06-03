@@ -2,91 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1AA6720DE7
-	for <lists+amd-gfx@lfdr.de>; Sat,  3 Jun 2023 07:11:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57E83722880
+	for <lists+amd-gfx@lfdr.de>; Mon,  5 Jun 2023 16:13:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BBE010E027;
-	Sat,  3 Jun 2023 05:11:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6929410E2A8;
+	Mon,  5 Jun 2023 14:13:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2078.outbound.protection.outlook.com [40.107.243.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D4F610E027
- for <amd-gfx@lists.freedesktop.org>; Sat,  3 Jun 2023 05:11:04 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iUef3pdh5Q71y6xGgo0A5PegLmwtK4c0/TcNizrHQHepgPgtBEZIQBWhOuqoeDfU9/tDMH3e2V48kGs1iWG7m+y+0QaikECYEVZfG5o7AC8CwlT7fFUE89Dy440sCZT18XtocVnbdn8N5rmAW2bRAkQl5nJ4afPLtujx2OipvbA23FXFyoIYQxXcQE9zZY6M3WDdM0P5bVBTLYvLHP40LdpSRV9WnaaPf3dPVfpuGMSGjPM8u/Ka2XUp3Sh7s05KKu0B7BQZNeoVfKJc6Qhj5t3gjF64/DSTDjlmWBlH5m/yKXVTWP07rkb+3MbGpP2tun9Dfk8ON4+gHR/E00ZJDg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Gj8PDB0MXdVU8B7EomCT5xNoS6vor/ckosV27dWjON4=;
- b=A39tK25wikiRkdPdZkORpBeiS0/sXjHrkp3QDpTuebdr6OPee13hEQda0bGOXIXajR/Kfpy3TCEAZhXnywG9UwDjq0n8gpaEDyXm7UwqSayl8yGY8d70vDS9K6iSHsGJmBrLykj5iZj2GyqxAnZ5qaCBG0KC63IUwaQfU5QkQ2Hc48spnOwtY59hfinKtX3Hz91tR6IpNQNsT0Q/glPjnQRb2GzXcwVQxPJcLhlw45sB6xwo0zl2Oij6uM/tghRv6nFQFIdSavsE1UnJQtlf9AcAuLwMk4psRGTNf1EbKMC6lLTAmoIYwO4uLoNqQuMeRIu8o+HcWSOK9jLsKAxswA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Gj8PDB0MXdVU8B7EomCT5xNoS6vor/ckosV27dWjON4=;
- b=nylzMTBtr7phzEjhlFKjyFN0YUNAHo/kA3mQnT0fOjOEOQ4H+atGSdydS538+Vi0vKFBZnToMAGAA8nUkhC5p/DThtoEbOiQOg8fsOpF7fBFAb+DfZWuStM25b4f7NvupbdmFl9IiSLyD8frsjCrLB/OEKdyYZ7CWJH6RBSo0yM=
-Received: from DS7PR03CA0246.namprd03.prod.outlook.com (2603:10b6:5:3b3::11)
- by MN2PR12MB4205.namprd12.prod.outlook.com (2603:10b6:208:198::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.28; Sat, 3 Jun
- 2023 05:11:01 +0000
-Received: from DM6NAM11FT106.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:3b3:cafe::97) by DS7PR03CA0246.outlook.office365.com
- (2603:10b6:5:3b3::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.28 via Frontend
- Transport; Sat, 3 Jun 2023 05:11:00 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT106.mail.protection.outlook.com (10.13.172.229) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6455.28 via Frontend Transport; Sat, 3 Jun 2023 05:10:59 +0000
-Received: from fedora.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Sat, 3 Jun
- 2023 00:10:58 -0500
-From: Luben Tuikov <luben.tuikov@amd.com>
-To: AMD Graphics <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: Report ras_num_recs in debugfs
-Date: Sat, 3 Jun 2023 01:10:43 -0400
-Message-ID: <20230603051043.211548-1-luben.tuikov@amd.com>
-X-Mailer: git-send-email 2.41.0
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com
+ [IPv6:2607:f8b0:4864:20::432])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D436110E214;
+ Sat,  3 Jun 2023 07:43:53 +0000 (UTC)
+Received: by mail-pf1-x432.google.com with SMTP id
+ d2e1a72fcca58-64d3bc0dce9so354809b3a.0; 
+ Sat, 03 Jun 2023 00:43:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1685778233; x=1688370233;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=AWur87b6+FWCBKqxfBacalad+HJLdADtjiXHWwWG+kk=;
+ b=HdR32jWEiMDgRFNHZ4AmO+HfNOYRhIeMt1Z5uNTHesSQqHDELs6TlofSvDyhAYT35y
+ JtaJAitoMYef8byzb4Q/v3Q1X37KaWjsPrprQlD57U3+I6XKSx204zCQ1EOG7U21K4fq
+ fXT6MUWv5fX/6d68aknWQA62HaAXaJ7DT2OMuNznhhusSLzEaG5OodKAGVCBaeTD9In5
+ UhGE6Caok7XVhyUI2FU8bRU0U+QCu7mWwwuYcu4PH+H+U4yRVxt3yqk20JfkptJRMas7
+ 0UZzD5imjL3NijdOtD+bWCh0OhMtk0o+uTjgUT+aeEfbUcXYkTQbxshWNa3CPUXt94Qk
+ PETw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1685778233; x=1688370233;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=AWur87b6+FWCBKqxfBacalad+HJLdADtjiXHWwWG+kk=;
+ b=LvHdLBSFZwVvIUDwLru0ajoyBxDcxbdED91iGcK4v97YBUZEPmAlbE8B1KyK/3l6g/
+ tHUh3ggNWTGdOEgja4Mrra1r1jTAIjRm6mfhdbsIvQM/MJymD3m6w/3YrF8xEkwZsgCH
+ /hf0leFOQOIM0fGrgU3/EykROLnNxG+8IAexKLjt9C5s0TR7gqipJAouYVyd6Al3OB4H
+ B3zJifkT9Qqobiqfo4kpiICCpJjveTX/LJUE3+FNKynp6trveqeICPPdZacPtkBbYPxl
+ hAUcokIfnk319CM8dc44+1R9nnDQgDmXtIqHINzf4hHPA8sHvqftEnvtTgFvlAAoegtg
+ Ii5A==
+X-Gm-Message-State: AC+VfDywvTGSshEsOdVhIG28GNBi5n4f7i6rmccdysf4khOaxNfNoQ9W
+ Lgjr6IDVgw6WqaioTBV+ZSg=
+X-Google-Smtp-Source: ACHHUZ7Sb3282pwyR3Z2zP7ICZ4Es7PNecGCmDTkrXI02OgZnCeM/hb458Wo12XIa+dX4RK3fGmPTQ==
+X-Received: by 2002:a17:902:ecc5:b0:1ae:1364:6086 with SMTP id
+ a5-20020a170902ecc500b001ae13646086mr12068845plh.2.1685778232982; 
+ Sat, 03 Jun 2023 00:43:52 -0700 (PDT)
+Received: from ubuntu.localdomain ([183.208.21.185])
+ by smtp.gmail.com with ESMTPSA id
+ 12-20020a170902c10c00b001afd275e186sm2525846pli.286.2023.06.03.00.43.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 03 Jun 2023 00:43:52 -0700 (PDT)
+From: Min Li <lm0963hack@gmail.com>
+To: alexander.deucher@amd.com
+Subject: [PATCH v2] drm/radeon: fix race condition UAF in
+ radeon_gem_set_domain_ioctl
+Date: Sat,  3 Jun 2023 15:43:45 +0800
+Message-Id: <20230603074345.17907-1-lm0963hack@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-check-string-leak: v1.1
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT106:EE_|MN2PR12MB4205:EE_
-X-MS-Office365-Filtering-Correlation-Id: bdeebde9-d1a8-4c50-f22a-08db63f0eb94
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: G5DWP6eCRHfwI+227XWi00OAQuGRrU4cLWHQRy0xceNlEq7AG5PXLJm3cTa4/EZIx82IWgTJcfgHSItob6tFXogxJWde2+ICtv6Tw7sm5fZuo/V61P1OHrER99U1T1Gx7vaGgFGmPXrrVsLJnfb3ZeElFffzTrz4W5FeWcQyYObc841MsQHu+GASM6MmNaOqwXJjzdiunKagMdh5RjtUP69YQB4Kx2XO5itGSj2h/vFbxdUXDtmckoBBE+6suPcwSl3zDCGT6lP8gwRkpVjVLLWlnIAGnib4b+napc/9fi8lUyO0pJoyVd5/qhwWgKJP6oPkyNKfqvSyWHsO4bnMt9Qymw72in4c5yAEZVyfqKxrGH4Aa4aUmEDReWNXCm7Ug/ZB2H0NxA44f7h6nIQWLGLdBz5Xuz2Kj8YHFZiC5kEAuiTiiqc2LRnaAUfpv+6qJ9To+GeO6DSOpkGQcXoPLpNaXdG0ObFg0M+YowYdB53DPA/GuuwUPhD1zXJ7IQS9IprppWWFZwAMQC7yackWbRyYus5oPIs0Q6e0Lm1WMRGAH3M7kywF5Rww8NC3U75WqkTZ97gkenC8TxsSw2KNfdcqU4CWP8Fbjc4KHEj2tUNqY4Re4LiyCjmAlmU9xS4ChXxH+H1dMCrQJE3+ltnyJ2U2pm0yFumDrlGb6LuKDrrslbIqJOCYnW1Am07EJ89dxRXlPuForOsXARMzaNvYeqyhcq1HBo0FfLuxaLdL2+KV9XplBmBkNS3SHK3C8XTjPvbzoKx4XDkzpqIhlX6Z/g==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:ErrorRetry; CAT:NONE;
- SFS:(13230028)(4636009)(346002)(396003)(39860400002)(136003)(376002)(451199021)(40470700004)(46966006)(36840700001)(47076005)(1076003)(26005)(2616005)(41300700001)(7696005)(6666004)(186003)(16526019)(36860700001)(426003)(336012)(40460700003)(478600001)(54906003)(4326008)(6916009)(82310400005)(40480700001)(356005)(70206006)(82740400003)(70586007)(316002)(81166007)(8936002)(5660300002)(8676002)(44832011)(2906002)(86362001)(36756003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2023 05:10:59.8140 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bdeebde9-d1a8-4c50-f22a-08db63f0eb94
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT106.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4205
+X-Mailman-Approved-At: Mon, 05 Jun 2023 14:13:35 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,58 +71,53 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tao Zhou <tao.zhou1@amd.com>, Luben Tuikov <luben.tuikov@amd.com>,
- Stanley Yang <Stanley.Yang@amd.com>, Alex Deucher <Alexander.Deucher@amd.com>,
- John Clements <john.clements@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Xinhui.Pan@amd.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, sumit.semwal@linaro.org,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, airlied@gmail.com, christian.koenig@amd.com,
+ linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Report the number of records stored in the RAS EEPROM table in debugfs.
+Userspace can race to free the gobj(robj converted from), robj should not
+be accessed again after drm_gem_object_put, otherwith it will result in
+use-after-free.
 
-This can be used by user-space to calculate the capacity of the RAS EEPROM
-table since "bad_page_cnt_threshold" is also reported in the same place in
-debugfs.
-
-See commit reference 7fb6407145479d (drm/amdgpu: Add bad_page_cnt_threshold to
-debugfs, 2021-04-13).
-
-ras_num_recs can already be inferred by dumping the RAS EEPROM table, also in
-the same debugfs location, see commit reference c65b0805e77919 (drm/amdgpu:
-RAS EEPROM table is now in debugfs, 2021-04-08). This commit makes it an
-integer value easily shown in a single file.
-
-Cc: Alex Deucher <Alexander.Deucher@amd.com>
-Cc: Hawking Zhang <Hawking.Zhang@amd.com>
-Cc: Tao Zhou <tao.zhou1@amd.com>
-Cc: Stanley Yang <Stanley.Yang@amd.com>
-Cc: John Clements <john.clements@amd.com>
-Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
+Signed-off-by: Min Li <lm0963hack@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 2 ++
- 1 file changed, 2 insertions(+)
+Changes in v2:
+- Remove unused robj, avoid compile complain
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index f2da69adcd9d48..68163890f9632d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -1487,6 +1487,7 @@ static int amdgpu_ras_sysfs_remove_all(struct amdgpu_device *adev)
- static struct dentry *amdgpu_ras_debugfs_create_ctrl_node(struct amdgpu_device *adev)
- {
- 	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
-+	struct amdgpu_ras_eeprom_control *eeprom = &con->eeprom_control;
- 	struct drm_minor  *minor = adev_to_drm(adev)->primary;
- 	struct dentry     *dir;
+ drivers/gpu/drm/radeon/radeon_gem.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeon/radeon_gem.c
+index bdc5af23f005..d3f5ddbc1704 100644
+--- a/drivers/gpu/drm/radeon/radeon_gem.c
++++ b/drivers/gpu/drm/radeon/radeon_gem.c
+@@ -459,7 +459,6 @@ int radeon_gem_set_domain_ioctl(struct drm_device *dev, void *data,
+ 	struct radeon_device *rdev = dev->dev_private;
+ 	struct drm_radeon_gem_set_domain *args = data;
+ 	struct drm_gem_object *gobj;
+-	struct radeon_bo *robj;
+ 	int r;
  
-@@ -1497,6 +1498,7 @@ static struct dentry *amdgpu_ras_debugfs_create_ctrl_node(struct amdgpu_device *
- 			    &amdgpu_ras_debugfs_eeprom_ops);
- 	debugfs_create_u32("bad_page_cnt_threshold", 0444, dir,
- 			   &con->bad_page_cnt_threshold);
-+	debugfs_create_u32("ras_num_recs", 0444, dir, &eeprom->ras_num_recs);
- 	debugfs_create_x32("ras_hw_enabled", 0444, dir, &adev->ras_hw_enabled);
- 	debugfs_create_x32("ras_enabled", 0444, dir, &adev->ras_enabled);
- 	debugfs_create_file("ras_eeprom_size", S_IRUGO, dir, adev,
-
-base-commit: e82c20a87511115677528a5e01e58b7763a42edf
+ 	/* for now if someone requests domain CPU -
+@@ -472,13 +471,12 @@ int radeon_gem_set_domain_ioctl(struct drm_device *dev, void *data,
+ 		up_read(&rdev->exclusive_lock);
+ 		return -ENOENT;
+ 	}
+-	robj = gem_to_radeon_bo(gobj);
+ 
+ 	r = radeon_gem_set_domain(gobj, args->read_domains, args->write_domain);
+ 
+ 	drm_gem_object_put(gobj);
+ 	up_read(&rdev->exclusive_lock);
+-	r = radeon_gem_handle_lockup(robj->rdev, r);
++	r = radeon_gem_handle_lockup(rdev, r);
+ 	return r;
+ }
+ 
 -- 
-2.41.0
+2.34.1
 
