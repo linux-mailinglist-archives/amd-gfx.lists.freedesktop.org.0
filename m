@@ -1,36 +1,67 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 245AF722190
-	for <lists+amd-gfx@lfdr.de>; Mon,  5 Jun 2023 10:57:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D78387221C2
+	for <lists+amd-gfx@lfdr.de>; Mon,  5 Jun 2023 11:11:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34D4610E1A5;
-	Mon,  5 Jun 2023 08:57:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4BF010E248;
+	Mon,  5 Jun 2023 09:11:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from ms7.webland.ch (ms7.webland.ch [92.43.217.107])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 250D010E1A5
- for <amd-gfx@lists.freedesktop.org>; Mon,  5 Jun 2023 08:57:48 +0000 (UTC)
-Received: from [192.168.1.137] ([213.144.156.170])
- by ms7.webland.ch (12.3.0 build 2 x64) with ASMTP (SSL) id
- 01202306051057438085; Mon, 05 Jun 2023 10:57:43 +0200
-Message-ID: <85ae153f-357b-53b9-e987-c6aafa425299@daenzer.net>
-Date: Mon, 5 Jun 2023 10:57:41 +0200
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com
+ [IPv6:2a00:1450:4864:20::633])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90E6410E248
+ for <amd-gfx@lists.freedesktop.org>; Mon,  5 Jun 2023 09:11:26 +0000 (UTC)
+Received: by mail-ej1-x633.google.com with SMTP id
+ a640c23a62f3a-9745d99cfccso567406266b.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 05 Jun 2023 02:11:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1685956284; x=1688548284;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=XckwVVk7cUBN/anX4oxrufuUSrCpGL64BI886zWXU+0=;
+ b=PdPXcQB4x2o2dI1vbdqcMNn7KEndUe1/NAr2IvB9ii6THWe1G/6yJfs7H0AggFF5Ch
+ oVajMRtmTMTEk356zmxupeYkaI2pXu0IwNZYfTTCqaa4m2L0p6bNto4FFj/Z+cceMNwi
+ XKS2xPyvi3cyR1l6VoE5UBPGTd96KXZ1byFfKWqfOattBinZYoez8v6lvdjRGksXf9c3
+ ay9A613+Sb1lnQEGNBHyaXAvhygz8UQ2uyj3Q8ffzgL/hPARMnLgtNbtBvkguDAp4dF+
+ QFuSmiBQIZOgsaH0wCPzNcoW6bFre1ish+oPgf/q57q/NBjK+vGmpB4JVnuDjPF29564
+ Wh/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1685956284; x=1688548284;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=XckwVVk7cUBN/anX4oxrufuUSrCpGL64BI886zWXU+0=;
+ b=CcMxbJmqJBgqjREUToJQQQOqJGR2xBlhBlg6vy8L89FO6zVAzSDAK764R5mJUbWC0Q
+ MFv3vF8New5QJ8tgJR2UmHs1Ks+yEFqgeCUVQ4Z/R71POlFHKMEZZajcADK7ygMFSZN0
+ p2foeYOJNgo6Zni2sCSwiVm2eUYeSYVQoWCdpx2Q6PiJlAH0z8GgRF1iV1rT3qdmxmTA
+ MGj6FDaYmCQcQLInml4LLY+1Qm6TR4c3uAcjOWKuWgv0n8Uf8kNnL+V72dHShZXwS0SD
+ ADiXybJ27GMCmYhotrJ2V3Iat+rQmlp0y+3VlQUFaNrthyIGPzP+q/pb93ZduqYe+Yk2
+ KYjA==
+X-Gm-Message-State: AC+VfDw87WuF/UiRR5qUQ3WzUbavwnor0U4R9lZ4Xz7bPbyhayJMwU4D
+ V4f5vRCpeVUPtkrmpaDHgHSn+mD71/c=
+X-Google-Smtp-Source: ACHHUZ46z5I8W0YjF7H4gcCaKgdWDv25BYF1qmDXBOAddeyTTe8LFwiqKOHV7rsjSmiJSQcJA5aZ5w==
+X-Received: by 2002:a17:907:9405:b0:973:8198:bbfb with SMTP id
+ dk5-20020a170907940500b009738198bbfbmr6221357ejc.31.1685956283800; 
+ Mon, 05 Jun 2023 02:11:23 -0700 (PDT)
+Received: from able.fritz.box ([2a00:e180:156f:3500:5740:cdd2:425c:f4f3])
+ by smtp.gmail.com with ESMTPSA id
+ w17-20020a1709060a1100b009655eb8be26sm4043134ejf.73.2023.06.05.02.11.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 05 Jun 2023 02:11:23 -0700 (PDT)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: amd-gfx@lists.freedesktop.org, mikhail.v.gavrilov@gmail.com,
+ Guchun.Chen@amd.com
+Subject: [PATCH 1/2] drm/amdgpu: make sure BOs are locked in
+ amdgpu_vm_get_memory
+Date: Mon,  5 Jun 2023 11:11:21 +0200
+Message-Id: <20230605091122.3363-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 1/3] Revert "drm/amdgpu: change the reference clock for
- raven/raven2"
-Content-Language: en-CA
-To: Alex Deucher <alexander.deucher@amd.com>
-References: <20230602184312.752618-1-alexander.deucher@amd.com>
-From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
-In-Reply-To: <20230602184312.752618-1-alexander.deucher@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CTCH: RefID="str=0001.0A782F1E.647DA387.001E,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0";
- Spam="Unknown"; VOD="Unknown"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,29 +73,103 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jesse.Zhang@amd.com, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 6/2/23 20:43, Alex Deucher wrote:
-> This reverts commit fbc24293ca16b3b9ef891fe32ccd04735a6f8dc1.
-> 
-> This results in inconsistent timing reported via asynchronous
-> GPU queries.
-> 
-> Link: https://lists.freedesktop.org/archives/amd-gfx/2023-May/093731.html
-> Cc: Jesse.Zhang@amd.com
-> Cc: michel@daenzer.net
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+We need to grab the lock of the BO or otherwise can run into a crash
+when we try to inspect the current location.
 
-The series is
+Signed-off-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 69 +++++++++++++++-----------
+ 1 file changed, 39 insertions(+), 30 deletions(-)
 
-Reviewed-by: Michel Dänzer <mdaenzer@redhat.com>
-
-Thanks!
-
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+index 3c0310576b3b..2c8cafec48a4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -920,42 +920,51 @@ int amdgpu_vm_update_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+ 	return r;
+ }
+ 
++static void amdgpu_vm_bo_get_memory(struct amdgpu_bo_va *bo_va,
++				    struct amdgpu_mem_stats *stats)
++{
++	struct amdgpu_vm *vm = bo_va->base.vm;
++	struct amdgpu_bo *bo = bo_va->base.bo;
++
++	if (!bo)
++		return;
++
++	/*
++	 * For now ignore BOs which are currently locked and potentially
++	 * changing their location.
++	 */
++	if (bo->tbo.base.resv != vm->root.bo->tbo.base.resv &&
++	    !dma_resv_trylock(bo->tbo.base.resv))
++		return;
++
++	amdgpu_bo_get_memory(bo, stats);
++	if (bo->tbo.base.resv != vm->root.bo->tbo.base.resv)
++	    dma_resv_unlock(bo->tbo.base.resv);
++}
++
+ void amdgpu_vm_get_memory(struct amdgpu_vm *vm,
+ 			  struct amdgpu_mem_stats *stats)
+ {
+ 	struct amdgpu_bo_va *bo_va, *tmp;
+ 
+ 	spin_lock(&vm->status_lock);
+-	list_for_each_entry_safe(bo_va, tmp, &vm->idle, base.vm_status) {
+-		if (!bo_va->base.bo)
+-			continue;
+-		amdgpu_bo_get_memory(bo_va->base.bo, stats);
+-	}
+-	list_for_each_entry_safe(bo_va, tmp, &vm->evicted, base.vm_status) {
+-		if (!bo_va->base.bo)
+-			continue;
+-		amdgpu_bo_get_memory(bo_va->base.bo, stats);
+-	}
+-	list_for_each_entry_safe(bo_va, tmp, &vm->relocated, base.vm_status) {
+-		if (!bo_va->base.bo)
+-			continue;
+-		amdgpu_bo_get_memory(bo_va->base.bo, stats);
+-	}
+-	list_for_each_entry_safe(bo_va, tmp, &vm->moved, base.vm_status) {
+-		if (!bo_va->base.bo)
+-			continue;
+-		amdgpu_bo_get_memory(bo_va->base.bo, stats);
+-	}
+-	list_for_each_entry_safe(bo_va, tmp, &vm->invalidated, base.vm_status) {
+-		if (!bo_va->base.bo)
+-			continue;
+-		amdgpu_bo_get_memory(bo_va->base.bo, stats);
+-	}
+-	list_for_each_entry_safe(bo_va, tmp, &vm->done, base.vm_status) {
+-		if (!bo_va->base.bo)
+-			continue;
+-		amdgpu_bo_get_memory(bo_va->base.bo, stats);
+-	}
++	list_for_each_entry_safe(bo_va, tmp, &vm->idle, base.vm_status)
++		amdgpu_vm_bo_get_memory(bo_va, stats);
++
++	list_for_each_entry_safe(bo_va, tmp, &vm->evicted, base.vm_status)
++		amdgpu_vm_bo_get_memory(bo_va, stats);
++
++	list_for_each_entry_safe(bo_va, tmp, &vm->relocated, base.vm_status)
++		amdgpu_vm_bo_get_memory(bo_va, stats);
++
++	list_for_each_entry_safe(bo_va, tmp, &vm->moved, base.vm_status)
++		amdgpu_vm_bo_get_memory(bo_va, stats);
++
++	list_for_each_entry_safe(bo_va, tmp, &vm->invalidated, base.vm_status)
++		amdgpu_vm_bo_get_memory(bo_va, stats);
++
++	list_for_each_entry_safe(bo_va, tmp, &vm->done, base.vm_status)
++		amdgpu_vm_bo_get_memory(bo_va, stats);
+ 	spin_unlock(&vm->status_lock);
+ }
+ 
 -- 
-Earthling Michel Dänzer            |                  https://redhat.com
-Libre software enthusiast          |         Mesa and Xwayland developer
+2.34.1
 
