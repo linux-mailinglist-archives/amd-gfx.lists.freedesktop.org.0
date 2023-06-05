@@ -2,46 +2,93 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E04E3722407
-	for <lists+amd-gfx@lfdr.de>; Mon,  5 Jun 2023 12:58:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED88C7225A6
+	for <lists+amd-gfx@lfdr.de>; Mon,  5 Jun 2023 14:28:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC2D910E288;
-	Mon,  5 Jun 2023 10:58:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8723710E291;
+	Mon,  5 Jun 2023 12:27:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C49B10E288;
- Mon,  5 Jun 2023 10:58:42 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 588FD6135D;
- Mon,  5 Jun 2023 10:58:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E8AAC433EF;
- Mon,  5 Jun 2023 10:58:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1685962720;
- bh=zFZh3DbitN9/k0ynfjMxiJVKXQDruFuT+gVPq2YmqCo=;
- h=From:To:Cc:Subject:Date:From;
- b=rBrmPNUsgjY6al0qoJqoSXyT5aYOhiIKrmiF/ZdmjXFxlThaQMW7jlGR9p1jzPNQc
- IpMDKNokZ4FTmzs4tvOl+sb/RxGbQCXpx7nMXMXI4N9xPZRtzW/zNYMlC+abLbnSnS
- eMwz2g1ZKQ2JxWuIGKGhjNEtqUwj+x7pwlTHsmM+srlIG/j5yWcEQk3qSL39F+I3XL
- RklCd6dmIlnbLCD98jmsSMASvZX+QzU9u42KgyLZfnP1tClmLBqjux4OcTTXjLZlV0
- aoaW5QYhEg28wGfb/GUYKYQzEzbMQmy+ukoGcUW1OeEiC8CRNuWwClPV/go/0IUHHi
- t6UzQ30QEb6CQ==
-From: Arnd Bergmann <arnd@kernel.org>
-To: Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Jonathan Kim <jonathan.kim@amd.com>
-Subject: [PATCH] drm/amdkfd: mark som eclear_address_watch() callback static
-Date: Mon,  5 Jun 2023 12:58:28 +0200
-Message-Id: <20230605105834.702945-1-arnd@kernel.org>
-X-Mailer: git-send-email 2.39.2
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2087.outbound.protection.outlook.com [40.107.223.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3D7610E1BF
+ for <amd-gfx@lists.freedesktop.org>; Mon,  5 Jun 2023 12:27:54 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=P7m9z9FAxDsQO61dQ+JFgNl9Wjks/TUryNdns3SP/iDEogAlQ8CI6APDzqRv+MkItGM1xaTyxYueJAIS9YGfC5HiJl0XCNa0HfbjXtrpgL4VfUmPGtqG1Oeunarp1eLUmDt0+FPkhoYhbKLH9bW3mi4q2JzUyQMtBSQEoFmF6fGKu1z65lTSRzVrEj2iUip1X8p0qlcJA1xFR/0euX/o+IzRg8aID4tGUzqrp1sK6YNuoe6yHyXJvVcvwfevatzmL4iO8s5NWYWdWqGCdprL3O5KUzqvgi/eTs7nh38LGftcB6nyikwIkYsGdtlYewmFugXXv0rqYoC9uj5IBYX0YA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=I89gqijYP2NJJ4kraHIRD2Fo1/kPPk3K6CIM/85oyhk=;
+ b=igf52lj3luIKiHdvTu0hfMuFO425ZbgbGjzyXANlrYy4gn8UjExN8rxe9QGbOA4cM2Y/X0xf5XCxfspjRjq2xSrMe9UFNJ+k6mK+jHrG8PH23AqmPtxvAxIkvEUek/00BDWdFyj97BtnHX9AYxfioFwZL8snlsBMPIt+xsir3LzVsLeF7SIK9bzeawnKlFQaYfi1PrKHraEmBM3X+K3I+159fl+2NFoPiECfd96z1sOeWhKU72kOlemH7Tcfg8iqd/kj/0VPxPRYNJqAH3MAoc9P6zWs7pFsEfUAg3EIDXyN3SvgvjG0zAZ7yzKiIwELdfBsK6KSoe2gZ1va13KiYA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=I89gqijYP2NJJ4kraHIRD2Fo1/kPPk3K6CIM/85oyhk=;
+ b=rYFD6vcDFL7vShIxdUiWAxMfCkX6iVlbyAnbRLoUum70AzPIXWkUtL2f6NN7RnZDDlSDGJPA8iXkFQEjhX2zM2b0CHdizvsie8ogs+N6DsDEp67Vq28U1Uk/HSMa6C9ViLtbHAnE6xDWagbCj4udMmwyAw+jBrcAdiRrxUMq7bQ=
+Received: from MW4PR04CA0180.namprd04.prod.outlook.com (2603:10b6:303:85::35)
+ by SJ0PR12MB6901.namprd12.prod.outlook.com (2603:10b6:a03:47e::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.32; Mon, 5 Jun
+ 2023 12:27:50 +0000
+Received: from CO1NAM11FT004.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:85:cafe::d1) by MW4PR04CA0180.outlook.office365.com
+ (2603:10b6:303:85::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33 via Frontend
+ Transport; Mon, 5 Jun 2023 12:27:50 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT004.mail.protection.outlook.com (10.13.175.89) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6455.33 via Frontend Transport; Mon, 5 Jun 2023 12:27:49 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 5 Jun
+ 2023 07:27:48 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
+ (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 5 Jun
+ 2023 05:27:48 -0700
+Received: from stanley-test.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Mon, 5 Jun 2023 07:27:47 -0500
+From: Stanley.Yang <Stanley.Yang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH Review V2 1/3] drm/amdgpu: pass xcc mask to ras ta
+Date: Mon, 5 Jun 2023 20:27:42 +0800
+Message-ID: <20230605122744.3484-1-Stanley.Yang@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT004:EE_|SJ0PR12MB6901:EE_
+X-MS-Office365-Filtering-Correlation-Id: ca565551-a48e-4c92-0e7d-08db65c0465b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ejb2/C6zCjd8Pyih3hO80XEUzdfJCfgmHCc85f+mnYMJcaTk4rWz3OmdF2LD0xg+FRskYs6UhtmZfF4+ZUr1tDB5oHEfK3h58oCJFEsvTqWhYdbhvcGiL42LOyDF0P/XC6SLh7wDe/H48qn72iuFMvG1QV4Pc9FdAvQ4cuSLEKYBYmFTIMrNAImlvzpsJfaGcYFw4eZKhJDmjcvuBUmzsT1VCBjTlbSfz8WI33sV+Nf1PAvv8dj2UFUWxZNiX4j4BfvHL2ym5Yb2pILYpiEoB1dIVtOEuUGJSnQcljMCRyCgQSnncotGl8d63fhoW47k9BuaU+BvgYJFXolCY5JRhSo1W9+y6A8jrwH560+W/kzonePdlujduVwYkogH5uGZMqavobsahOlp1SVRLufAYrf0DC/MUZRN6hoDeVWeD7lFGnFZ+cdOFK1FJHJi7Hut7Trg9oa/Y4EHMcYHTPBBY7H8ExUykANRqy7qC0EwyH8g4LdbL1peJONfqyBB47hgrCZdVYTAJwevEdFDswKUn6dOL1Fio59bTP+51PsanmtN2gQkjf25S3aDlNZdCGFTG5NJubNDJ+bbHvjoitgj3LMeBhB3HNVXN6nKh1AA4NrnBLGI4qhdVtJbFPjjNXKTm7cjMQ5d6w4oznXyTMG3vaOfUtjXcpbOQj40mCzjPT14TtmXS7IOaQp6+giQUnDxu3Lgnc1fpaCvw3D1k5VTSyg6QK+RuGa3N9y9p+vP2YEeITIxqPXMWq1KCWi28IDKQyfgSg0s1O1kMuC7zFkIVg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230028)(4636009)(376002)(396003)(136003)(346002)(39860400002)(451199021)(36840700001)(46966006)(40470700004)(47076005)(83380400001)(336012)(426003)(82740400003)(40480700001)(478600001)(8676002)(8936002)(41300700001)(316002)(40460700003)(70586007)(70206006)(356005)(81166007)(5660300002)(6916009)(86362001)(4326008)(36756003)(6666004)(7696005)(2906002)(82310400005)(36860700001)(26005)(186003)(1076003)(2616005)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2023 12:27:49.0149 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ca565551-a48e-4c92-0e7d-08db65c0465b
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT004.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6901
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,59 +100,52 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mukul Joshi <mukul.joshi@amd.com>, Arnd Bergmann <arnd@arndb.de>,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Le Ma <le.ma@amd.com>, Ramesh Errabolu <Ramesh.Errabolu@amd.com>,
- dri-devel@lists.freedesktop.org, Yifan Zha <Yifan.Zha@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: "Stanley.Yang" <Stanley.Yang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Arnd Bergmann <arnd@arndb.de>
+pass xcc mask to ras ta, ras ta will compare
+the mask with the one from chiplet topology.
 
-Some of the newly introduced clear_address_watch callback handlers have
-no prototype because they are only used in one file, which causes a W=1
-warning:
+Changed from V1:
+	Remove IP version checking.
+	Set ras_cmd->ras_init_message.init_flags.xcc_mask
+	directly due to xcc_mask is common structres to
+	all the devices.
 
-drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_aldebaran.c:164:10: error: no previous prototype for 'kgd_gfx_aldebaran_clear_address_watch' [-Werror=missing-prototypes]
-drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v11.c:782:10: error: no previous prototype for 'kgd_gfx_v11_clear_address_watch' [-Werror=missing-prototypes]
-
-Mark these ones static. If another user comes up in the future, that
-can be reverted along with adding the prototype.
-
-Fixes: cfd9715f741a1 ("drm/amdkfd: add debug set and clear address watch points operation")
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Stanley.Yang <Stanley.Yang@amd.com>
+Reviewed-by: Tao Zhou <tao.zhou1@amd.com>
+Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_aldebaran.c | 2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v11.c   | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 2 ++
+ drivers/gpu/drm/amd/amdgpu/ta_ras_if.h  | 1 +
+ 2 files changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_aldebaran.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_aldebaran.c
-index efd6a72aab4eb..bdda8744398fe 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_aldebaran.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_aldebaran.c
-@@ -161,7 +161,7 @@ static uint32_t kgd_gfx_aldebaran_set_address_watch(
- 	return watch_address_cntl;
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+index 2175bfc89e7d..2ad3b93bf530 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -1662,6 +1662,8 @@ int psp_ras_initialize(struct psp_context *psp)
+ 		ras_cmd->ras_in_message.init_flags.poison_mode_en = 1;
+ 	if (!adev->gmc.xgmi.connected_to_cpu)
+ 		ras_cmd->ras_in_message.init_flags.dgpu_mode = 1;
++	ras_cmd->ras_in_message.init_flags.xcc_mask =
++		adev->gfx.xcc_mask;
  
--uint32_t kgd_gfx_aldebaran_clear_address_watch(struct amdgpu_device *adev,
-+static uint32_t kgd_gfx_aldebaran_clear_address_watch(struct amdgpu_device *adev,
- 					uint32_t watch_id)
- {
- 	return 0;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v11.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v11.c
-index 52efa690a3c21..131859ce3e7e9 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v11.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v11.c
-@@ -779,7 +779,7 @@ static uint32_t kgd_gfx_v11_set_address_watch(struct amdgpu_device *adev,
- 	return watch_address_cntl;
- }
+ 	ret = psp_ta_load(psp, &psp->ras_context.context);
  
--uint32_t kgd_gfx_v11_clear_address_watch(struct amdgpu_device *adev,
-+static uint32_t kgd_gfx_v11_clear_address_watch(struct amdgpu_device *adev,
- 					uint32_t watch_id)
- {
- 	return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/ta_ras_if.h b/drivers/gpu/drm/amd/amdgpu/ta_ras_if.h
+index 30d0482ac466..be2984ac00a5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/ta_ras_if.h
++++ b/drivers/gpu/drm/amd/amdgpu/ta_ras_if.h
+@@ -129,6 +129,7 @@ struct ta_ras_trigger_error_input {
+ struct ta_ras_init_flags {
+ 	uint8_t poison_mode_en;
+ 	uint8_t dgpu_mode;
++	uint16_t xcc_mask;
+ };
+ 
+ struct ta_ras_output_flags {
 -- 
-2.39.2
+2.17.1
 
