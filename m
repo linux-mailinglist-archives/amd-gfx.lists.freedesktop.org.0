@@ -2,68 +2,37 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 875077221C1
-	for <lists+amd-gfx@lfdr.de>; Mon,  5 Jun 2023 11:11:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CE6A72287C
+	for <lists+amd-gfx@lfdr.de>; Mon,  5 Jun 2023 16:13:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B746410E1B7;
-	Mon,  5 Jun 2023 09:11:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B76810E2A5;
+	Mon,  5 Jun 2023 14:13:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com
- [IPv6:2a00:1450:4864:20::636])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCED710E1B5
- for <amd-gfx@lists.freedesktop.org>; Mon,  5 Jun 2023 09:11:26 +0000 (UTC)
-Received: by mail-ej1-x636.google.com with SMTP id
- a640c23a62f3a-9768fd99c0cso497205166b.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 05 Jun 2023 02:11:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1685956285; x=1688548285;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=pL9j+CA9IBShTXKF1f9QsvbzTSBIudC9K5zY5oh+mZI=;
- b=sC47liUQedhuD6GSLY7/ZjTOyj9VB0LeGDSciS7b0TfeXjFsV9wo5sCop0QiFR72kz
- BwCLrTp7XR51RLnUl6YimtEZIWDNPnxkB+bwjXTnrKj4ea1Mu5quFWDFb/oWoMQh0mc1
- xqcWfinSyUYqM//yoHFU/cSs4/0A5KVSCncNgMV29tWwQvg4FbLq6peHeq/ETRQeFpcb
- C63xoKRd1iDuSewC4VkJLJyDlt6jlnTZXAZEeD64GhInz9e4a2QOIVcZNPtoDXnC7vBv
- k2SKjI/7lB00leOaUzfFO77abMYO4GYHkX8qc7vTNq9/6K9s/Xb+VoBQYQ3RQ4tMzlvv
- IYow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1685956285; x=1688548285;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=pL9j+CA9IBShTXKF1f9QsvbzTSBIudC9K5zY5oh+mZI=;
- b=b2uKrYsKwxs47allEJEqdVBThWR95kYnEHXv2mk0DwMqzwcD/FvJruoLLdiCW8dgrQ
- NUXTs8EVC/9TiL1X4uWlLBFhT/dDtOgNnoegbd8tuBtvdH73tgrhogY9JdNnNteAK4KY
- fNsDeXzkovQ5tuoUTFZdKJrYzPeGPQp25Mvkto0rV6LXuUGReo8E165AVns06RZz1iKk
- K9gRvBUucp/MRqNOT0OLhYQ1FhJoz3qBCLpiteP3VrVgRFX3XidkZsAqK1Rx7ER9QE3t
- rgLELKVRE8OQoMvl9QDOB/v0A9vWROyMOkFpNjW42y35pWwl4VXa1hg/9J/vRGgLly9d
- 4rSw==
-X-Gm-Message-State: AC+VfDyqCURRsQQyeR4ZVAxtLW6NUPXOPx1jQ2uaME6bHSz6NExEWi1L
- EL+tFlb0wYSeUSBH/J3dqIIdWYeNAc8=
-X-Google-Smtp-Source: ACHHUZ6asq6LcGx/UuvhvuTiHug6JwmeX6uJxhBipRgfsfnfEAze/xEPKLL+hnIQuB8876oNz8o9Fg==
-X-Received: by 2002:a17:907:7b88:b0:973:8edc:5a57 with SMTP id
- ne8-20020a1709077b8800b009738edc5a57mr5885846ejc.4.1685956284542; 
- Mon, 05 Jun 2023 02:11:24 -0700 (PDT)
-Received: from able.fritz.box ([2a00:e180:156f:3500:5740:cdd2:425c:f4f3])
- by smtp.gmail.com with ESMTPSA id
- w17-20020a1709060a1100b009655eb8be26sm4043134ejf.73.2023.06.05.02.11.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 05 Jun 2023 02:11:24 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: amd-gfx@lists.freedesktop.org, mikhail.v.gavrilov@gmail.com,
- Guchun.Chen@amd.com
-Subject: [PATCH 2/2] drm/amdgpu: make sure that BOs have a backing store
-Date: Mon,  5 Jun 2023 11:11:22 +0200
-Message-Id: <20230605091122.3363-2-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230605091122.3363-1-christian.koenig@amd.com>
-References: <20230605091122.3363-1-christian.koenig@amd.com>
+X-Greylist: delayed 302 seconds by postgrey-1.36 at gabe;
+ Mon, 05 Jun 2023 10:28:29 UTC
+Received: from laurent.telenet-ops.be (laurent.telenet-ops.be
+ [IPv6:2a02:1800:110:4::f00:19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E05C10E1CA
+ for <amd-gfx@lists.freedesktop.org>; Mon,  5 Jun 2023 10:28:29 +0000 (UTC)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed30:f07e:6d89:4e02:be9])
+ by laurent.telenet-ops.be with bizsmtp
+ id 5NPP2A00940Pbp601NPPs3; Mon, 05 Jun 2023 12:23:24 +0200
+Received: from geert (helo=localhost)
+ by ramsan.of.borg with local-esmtp (Exim 4.95)
+ (envelope-from <geert@linux-m68k.org>) id 1q67Mx-00BeIq-Qr;
+ Mon, 05 Jun 2023 12:23:23 +0200
+Date: Mon, 5 Jun 2023 12:23:23 +0200 (CEST)
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+To: linux-kernel@vger.kernel.org
+Subject: Re: Build regressions/improvements in v6.4-rc5
+In-Reply-To: <20230605101536.1864030-1-geert@linux-m68k.org>
+Message-ID: <ef69a925-966e-7c8c-394-5a1d17f87036@linux-m68k.org>
+References: <CAHk-=wifuPqAFXQQTTLkp_+FMzxGFHpSG-hEtZazG-46s=noAw@mail.gmail.com>
+ <20230605101536.1864030-1-geert@linux-m68k.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII; format=flowed
+X-Mailman-Approved-At: Mon, 05 Jun 2023 14:13:35 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,35 +44,26 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-It's perfectly possible that the BO is about to be destroyed and doesn't
-have a backing store associated with it.
+On Mon, 5 Jun 2023, Geert Uytterhoeven wrote:
+> JFYI, when comparing v6.4-rc5[1] to v6.4-rc4[3], the summaries are:
+>  - build errors: +2/-4
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+arm64-gcc5/arm64-allmodconfig (seen before)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index 2bd1a54ee866..249385985a4f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -1268,8 +1268,12 @@ void amdgpu_bo_move_notify(struct ttm_buffer_object *bo,
- void amdgpu_bo_get_memory(struct amdgpu_bo *bo,
- 			  struct amdgpu_mem_stats *stats)
- {
--	unsigned int domain;
- 	uint64_t size = amdgpu_bo_size(bo);
-+	unsigned int domain;
-+
-+	/* Abort if the BO doesn't currently have a backing store */
-+	if (!bo->tbo.resource)
-+		return;
- 
- 	domain = amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type);
- 	switch (domain) {
--- 
-2.34.1
+> [1] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/9561de3a55bed6bdd44a12820ba81ec416e705a7/ (151 out of 152 configs)
+> [3] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/7877cb91f1081754a1487c144d85dc0d2e2e7fc4/ (151 out of 152 configs)
 
+Gr{oetje,eeting}s,
+
+ 						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+ 							    -- Linus Torvalds
