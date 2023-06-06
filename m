@@ -2,61 +2,94 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9280A724251
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jun 2023 14:38:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 331527243F8
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jun 2023 15:12:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C35310E246;
-	Tue,  6 Jun 2023 12:38:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50D1E10E338;
+	Tue,  6 Jun 2023 13:12:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com
- [IPv6:2607:f8b0:4864:20::829])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAAEC10E246
- for <amd-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 12:38:17 +0000 (UTC)
-Received: by mail-qt1-x829.google.com with SMTP id
- d75a77b69052e-3f812691b52so6675531cf.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 06 Jun 2023 05:38:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1686055096; x=1688647096;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=vhd8VWqt4ozQLDu9T328utc1qu/cmrxBuXUkVH+OC3Q=;
- b=bY3lzK9pRZ5fzLbzYMlqxUsYT8xwTN0ELQufN3m8NPJFs1cY8zteB0DI7wGaMd0mFm
- 95ztLfw1u0ZvW9w4AVG5p4bVrbaXxhcY2EwyUYC/m4E9i4rDIZPGzD18hFlRg0OczT/W
- ZtVBGg7EDh2YojG/ehtTrIv5eLySCgQLy3zuMWE8TWlcQgvaajPZiW9kfKwSs6/QHbvi
- sDvS3BVdF4nC0udx4uxLHdRz7SfH5qJuh2cOvu8jsoyFeL79Ao7w6+wSvz1bexJmKxRP
- gvRxzXXFT1GW99sz77bGolrVaPJ9nJPyFGZKCkmfO3riDNoZ1l74rICIGjVweDV37Okh
- nkXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1686055096; x=1688647096;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=vhd8VWqt4ozQLDu9T328utc1qu/cmrxBuXUkVH+OC3Q=;
- b=luQN+GbT2Ho4i6qdSt20a1EoforOOkXsPbpfMsHuGflfvbvRlN7DxhpSjzg6PKVF3z
- 8Ik9efq/WdIoofXnnmtczFHIXdQ/f5r/5Zm37E0/OxygqpcJafR2SbGNLrxm1ai64CmV
- nbj1NVwudAtmqoIIDf2oERUeqDLgZy9kA9gOl+Uj3Q3TihGljIlSMGdOoFyfe8o/XfAL
- 9al8g+ZKRqKLiu+FWH9kkMKe+NOS+05O67+A1coOLnXN9wbcwtvwHMX+RNU2DCTOW5iW
- nYqOuwTPy0ZLW4RIK1QfLG91PCUMAlrfvGnK9ifExkduv/dIP+qAlXYjMCT4T1TmQZcU
- Ogew==
-X-Gm-Message-State: AC+VfDxNJeE/d76MgaPma37EAiRgAf1vAehW6gRGonmqd9hj9PIbcIuX
- gUKa/UL5imKwM7QgTPXTroo8e7+guG1Zhnrv9i4=
-X-Google-Smtp-Source: ACHHUZ5GwR8AQvuEN2rpIKKlX3fJvdn31fvWA138R3mLyUiT+pirfKiqNev7W5b3BqM79Pl2XsRgEqFJKipnfAcBols=
-X-Received: by 2002:a05:622a:1a94:b0:3f8:46d:dacc with SMTP id
- s20-20020a05622a1a9400b003f8046ddaccmr2122066qtc.2.1686055095889; Tue, 06 Jun
- 2023 05:38:15 -0700 (PDT)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2044.outbound.protection.outlook.com [40.107.93.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 342DC10E348
+ for <amd-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 13:11:59 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Tf9W5o8ciT79J2J1SwHdj/SkA4v/8AJnwgscz3v1+uRWvwA/z2xlJGTLE1UQ1FZ4Td5CXKUWmrjWs1g66f6Ln0Csq/A3Qc1ibZuGUH1oaoQjxZovGzDEMEteRbPM+LpJ8/V0OAD12F0rA3uKzc1YM2CCU6go9QSHGAgun13Cu7QT10bIlXtZD4D9PT0YbpEFVvAzcJO6V7IX2TRrjRo31AvbnqHWvLGqim66Ni+M92XMwlq9h63gKXDdFnsimp+IsaFk3g7Wj18KxwynYJK19vXySlUETas2MdodFUUfST0d/W+wpkMHdlvivsC+zUpNTvL72wJQ4tYsmRTo7PZ0VA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AYgtFzvRuBJmdOMJrto03l6NBj0qBqyS9feVMeIU/bc=;
+ b=ZyTrZJMaF/LlKxCN8KlsIxQq+khmZa4166+63HOKWR5we6tgUxCXloP08FRj0fZROYm0hCSX9xeiyA0Dax3gunsFOag8Nn523bIyWUUcRRkUr/b67q92ED2y7r5/nyD5LqEThVyBDdWK+0CXcCjUNv1Wwn7OCSx8K9lRu52q2cmdvM2GUfF2Qm82nSd1NHxf7CT+tfyCDgznnYwApI0JK7hkcLQ51DZosryxSolgJT9Wo/FtpEIF8YS4abkOCcDuQAzXe0hpDMDMOtAlNtmt6KGDdD7GlrIr3VEKqX8fOxNy+3Q3TRwpURuA4L2fn/Hst5t68JMTVhPjHaZ8C3A4jg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=amdcloud.onmicrosoft.com
+ smtp.mailfrom=amd.com; dmarc=pass (p=quarantine sp=quarantine pct=100)
+ action=none header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AYgtFzvRuBJmdOMJrto03l6NBj0qBqyS9feVMeIU/bc=;
+ b=vUYYVDlAVG4bOjgcj7RMAcnVQ1I4xMkJ77suzsuaMa834oqdLyWcj+D25wD5W/PFK19amomdbX0ISn8KF1aQc4CYDlGQGQdbpymr2cCPDua3NqNxuyoOa+Kr3E/zKdOAMafPpht+uqpJrsJTLgHhS4bA9gET9npeuSaIDWoyk3s=
+Received: from MW4PR03CA0238.namprd03.prod.outlook.com (2603:10b6:303:b9::33)
+ by BL1PR12MB5239.namprd12.prod.outlook.com (2603:10b6:208:315::24)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33; Tue, 6 Jun
+ 2023 13:11:56 +0000
+Received: from CO1PEPF000044F4.namprd05.prod.outlook.com
+ (2603:10b6:303:b9:cafe::97) by MW4PR03CA0238.outlook.office365.com
+ (2603:10b6:303:b9::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33 via Frontend
+ Transport; Tue, 6 Jun 2023 13:11:56 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1PEPF000044F4.mail.protection.outlook.com (10.167.241.74) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6477.13 via Frontend Transport; Tue, 6 Jun 2023 13:11:55 +0000
+Received: from TRX40-1.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 6 Jun
+ 2023 08:11:52 -0500
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+To: Alex Deucher <alexander.deucher@amd.com>, Aurabindo Pillai
+ <aurabindo.pillai@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Stylon Wang <stylon.wang@amd.com>, Alvin Lee <alvin.lee2@amd.com>, Jun Lei
+ <jun.lei@amd.com>
+Subject: [PATCH v2] drm/amd/display: Fix guarding of 'if
+ (dc->debug.visual_confirm)'
+Date: Tue, 6 Jun 2023 18:41:38 +0530
+Message-ID: <20230606131138.2709041-1-srinivasan.shanmugam@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20230605091122.3363-1-christian.koenig@amd.com>
- <20230605091122.3363-2-christian.koenig@amd.com>
-In-Reply-To: <20230605091122.3363-2-christian.koenig@amd.com>
-From: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
-Date: Tue, 6 Jun 2023 17:38:05 +0500
-Message-ID: <CABXGCsObR5Ng2fqR2u4t2SOOWHmTzZS9bOjF-BBjKKDJtOTP7g@mail.gmail.com>
-Subject: Re: [PATCH 2/2] drm/amdgpu: make sure that BOs have a backing store
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000044F4:EE_|BL1PR12MB5239:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1f24705a-4c98-4e16-18b9-08db668f9a78
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: b5LkDs1unt0MT40IxKHHBr5BgPrJvYH/6hvJDFrhE6kwdW++Bj4yxbYQRrBAZqUMXS3CGD68VDdZP9/JUrRVryd3V7f3ti903rpj0QU9jAeOvDSal7jMUER1yq8gksvkyu9733cLrugISEaqZc2V7WIGQrQg67AXmvQjQmmC16oJYRUUj2ril9+W1rlHHLwPoBfBBmJIoj09dVo9/DZ/Qb7660sCm0lgAOogvU/31yCx9GC+7oPzK54Pe2Bq7ddkpzESySgeg5lDXJkNSSSXCAHRFIjl4fevCLkPyZKATPvx9mOQD+XN/LFuX5Ts6G0AQ0r9ZWR+w+WckWzh4g0MQu66j9n/Jh8AKPkuOW+9PtmFnpGkuDkWe7bwjWFrThu6qd6p+urg4tKSi48Txd+9Wj/sPz9BwPmWpcLXVDRERYm+Tu0XGvFdOyj3YqbQwI7KswLUUJbBMbEMzh73dz9YEiIKiXJNDoBZNRcOI3SPqbR/WVO0r5wyXfD6EjeyiFUcbdlv5bGzxWZga3GQm/Nha1uH8aQpVhxgqtoDLsP00ZFBA7xSitG8IZli6Qvb92XDA2YFBCB85TQ+9byLr8qKNKoEWOyEeC87qcpM0flYhqY5hh5wiTpALuA9CvGTVzVUSJn211gkGPPwqjKFcAOhnVwM5CthY4zjvfALIJ4vKqGk+GC9IHerjMOU68dSLD4A/+KKZnLUthwzRY5CSgw09WopOY3VUhL7XFIZKms8cctQlFQ43/O/IOf6Am0qF93TupzQpxXJ7NWxZbVOObkUBw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230028)(4636009)(396003)(346002)(39860400002)(376002)(136003)(451199021)(36840700001)(40470700004)(46966006)(26005)(110136005)(70206006)(1076003)(7696005)(82740400003)(356005)(4326008)(81166007)(70586007)(6636002)(82310400005)(36860700001)(47076005)(336012)(83380400001)(478600001)(2616005)(426003)(6666004)(36756003)(44832011)(2906002)(40460700003)(41300700001)(316002)(8676002)(54906003)(40480700001)(16526019)(8936002)(186003)(5660300002)(86362001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2023 13:11:55.9569 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1f24705a-4c98-4e16-18b9-08db668f9a78
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044F4.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5239
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,22 +101,101 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Guchun.Chen@amd.com, amd-gfx@lists.freedesktop.org
+Cc: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 5, 2023 at 2:11=E2=80=AFPM Christian K=C3=B6nig
-<ckoenig.leichtzumerken@gmail.com> wrote:
->
-> It's perfectly possible that the BO is about to be destroyed and doesn't
-> have a backing store associated with it.
->
+Presumably the author intended to guard the for loop with
+condition 'dc->res_pool->pipe_count' under 'if (dc->debug.visual_confirm)'
+so that's what I'm changing the code to. Hopefully to do the right thing.
 
-Thanks Christian. I appreciate your brilliant work.
-"KASAN: null-ptr-deref in range
-[0x0000000000000010-0x0000000000000017]" finally fixed.
-Tested-by: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+Fixes the below compilation error:
 
---=20
-Best Regards,
-Mike Gavrilov.
+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc.c:3546:3: error: misleading indentation; statement is not part of the previous 'if' [-Werror,-Wmisleading-indentation]
+                for (i = 0; i < surface_count; i++) {
+                ^
+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc.c:3538:2: note: previous statement is here
+        if (dc->debug.visual_confirm)
+        ^
+
+'Fixes: 25e1a6115fc2e ("drm/amd/display: Refactor fast update to use new
+HWSS build sequence")'
+Suggested-by: Alvin Lee <alvin.lee2@amd.com>
+Cc: Stylon Wang <stylon.wang@amd.com>
+Cc: Alvin Lee <alvin.lee2@amd.com>
+Cc: Jun Lei <jun.lei@amd.com>
+Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+---
+v2:
+ - Guard only 'dc->res_pool->pipe_count' under 'if
+   (dc->debug.visual_confirm)' (Alvin)
+ - Fix indentation issues for forloop with 
+   condition 'surface_count'
+
+ drivers/gpu/drm/amd/display/dc/core/dc.c | 37 +++++++++++++-----------
+ 1 file changed, 20 insertions(+), 17 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index 5e18fc0c79d6..51fbf04a9901 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -3534,32 +3534,35 @@ static void commit_planes_for_stream_fast(struct dc *dc,
+ 		}
+ 	}
+ 
+-	if (dc->debug.visual_confirm)
++	if (dc->debug.visual_confirm) {
+ 		for (i = 0; i < dc->res_pool->pipe_count; i++) {
+ 			struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
+ 
+ 			if (pipe->stream && pipe->plane_state)
+ 				dc_update_viusal_confirm_color(dc, context, pipe);
+ 		}
++	}
+ 
+-		for (i = 0; i < surface_count; i++) {
+-			struct dc_plane_state *plane_state = srf_updates[i].surface;
+-			/*set logical flag for lock/unlock use*/
+-			for (j = 0; j < dc->res_pool->pipe_count; j++) {
+-				struct pipe_ctx *pipe_ctx = &context->res_ctx.pipe_ctx[j];
+-				if (!pipe_ctx->plane_state)
+-					continue;
+-				if (should_update_pipe_for_plane(context, pipe_ctx, plane_state))
+-					continue;
+-				pipe_ctx->plane_state->triplebuffer_flips = false;
+-				if (update_type == UPDATE_TYPE_FAST &&
+-					dc->hwss.program_triplebuffer != NULL &&
+-					!pipe_ctx->plane_state->flip_immediate && dc->debug.enable_tri_buf) {
+-						/*triple buffer for VUpdate  only*/
+-						pipe_ctx->plane_state->triplebuffer_flips = true;
+-				}
++	for (i = 0; i < surface_count; i++) {
++		struct dc_plane_state *plane_state = srf_updates[i].surface;
++		/*set logical flag for lock/unlock use*/
++		for (j = 0; j < dc->res_pool->pipe_count; j++) {
++			struct pipe_ctx *pipe_ctx = &context->res_ctx.pipe_ctx[j];
++
++			if (!pipe_ctx->plane_state)
++				continue;
++			if (should_update_pipe_for_plane(context, pipe_ctx, plane_state))
++				continue;
++			pipe_ctx->plane_state->triplebuffer_flips = false;
++			if (update_type == UPDATE_TYPE_FAST &&
++			    dc->hwss.program_triplebuffer &&
++			    !pipe_ctx->plane_state->flip_immediate && dc->debug.enable_tri_buf) {
++				/*triple buffer for VUpdate  only*/
++				pipe_ctx->plane_state->triplebuffer_flips = true;
+ 			}
+ 		}
++	}
++
+ 	build_dmub_cmd_list(dc,
+ 			srf_updates,
+ 			surface_count,
+-- 
+2.25.1
+
