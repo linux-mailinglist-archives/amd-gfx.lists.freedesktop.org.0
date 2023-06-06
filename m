@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F485723CED
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jun 2023 11:17:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2983723CF2
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jun 2023 11:18:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1861E10E30E;
-	Tue,  6 Jun 2023 09:17:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 132A310E308;
+	Tue,  6 Jun 2023 09:18:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2050.outbound.protection.outlook.com [40.107.237.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9538510E30E
- for <amd-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 09:17:56 +0000 (UTC)
+Received: from outbound.mail.protection.outlook.com
+ (mail-bn1nam02on2051.outbound.protection.outlook.com [40.107.212.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52E7510E318
+ for <amd-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 09:17:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SeJWjjWa07GhALxQrWhe1/oliPCAjBTph6m1i7FAXP2YACzSQLZeCnRsU3MHhddpaYzU8Zuqpmi8DVFeA/DStCSryvKQPZwNF286rnaqbx8mEv5s75zPHuXyVT/uH2ktjxqHYu+urGHkkkWYBYl/44zcTAkzt68dHo2YsX0JhY7Ye0odHgu7oafcvvFnKMOUD+KD12hAxdDU4QGK6r2tWDstLReUgAqWIIQSJLotXHhE5seUAS1Yk4lfvQd402ixynMx9eRmsgYShBgFp+HEOrd8Oct3Do5X+eweexyPSYpG5DT4pG3LqRmvAfAUgBqsAa0RKqGkPGOds4teHAkkgA==
+ b=O+EiFgBj16Bz30tSZxHTdn91VlizodkfoLGJFhZfqwMqRV7yvHQ+owX1QDXBZ7dbB5PZDeNYOUDKzcMDaaSSTos1mwkf99RRMrSkZSxUSovHsRPSHR28cea38S8stYBYeLZZ0DsAh7YW4DujGzIyKkqeruY+ekF21pq3+ZbMG9a/7Bu6G/pfDVd5FON272Pl3N6Z+NsGkQFjRgd8vgYoeq3/lyJwnU5IOtFCbm+VsmxRXJvimAHDPlkbFCIWabMdUoafNZ2cyDj4Xqn7HybxQrXtGvaDVqVdwXbuKzNpvXG7oi8K/Du/eXuDDn16hRse5AyFTcPz/cYbWZxX6Q+7Kw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MO9A/2aDJUaec2BV4aSpVYwvvW1wFfgyb31fkBIbR44=;
- b=KlcH+ZQAN80h0GfAAMVpSCtCjN92ZenlXGI0DlAYQU7dR1ytFpizHgdP47E6cKYSdU7NHf5up462pGA6nr8gGCS+nHP9ggJ0dvNkMav4prQ3+eZC4yTiEdJpG+iyChWbrh6CcBPq20OKe0ekqW2oZztFbPGW2ZpwrVSGT6pLnt5cTSSJMEE6WZ8ejIUSOGaDBwl2vADu4AkqqOe17gjpxkmCQZhjEkvX7CUztu23cOJFqIO6gnLUoh7vuX9DUfw06eH9jsY41xdAlSVWpd93iD69lHs2G38+RzmvCOh/clGfQKt8q+tBtaxyT/u7SNN29a81Y45iJPSIQKvrCZKdcQ==
+ bh=OCaFs9gClYdfxakEnEkQBpxSYMUf4pxJ1JegmJFdr9I=;
+ b=kQSyw9zsjJDR3Z0ztXkVwE3xfElFy40jUKcgz19AIEolwSyHvbs0EI0mxwpRepwx8kzHfv1vi594AUjCAxNJYo1TCsjUicPiJdBquLVAvqc9TkSq2/v1huFIGMJ7ENuFXCrWbL20ZiGHHGQqRAk5bTxHHh5+1G8+G+FEJ8qbSqx+So4Ztg1z2ASqLBH7yrUOIvXWbWUj4NLFPCvl4KDzr6azRn6hBqvThDHJFrmNe+CrjG5SEKOzJ8G9D9lxaxcAMIDXRQPkx35BxDoIES8jOebVOyjMH7sGWcU0T0LQWuZFmdWHMxOe+CsSs8URIdNSrwJIIlgST28H+t2/LJY1gg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MO9A/2aDJUaec2BV4aSpVYwvvW1wFfgyb31fkBIbR44=;
- b=fXkfrJFVFP+UrxtTH3pIkq5iJz+qIiJG2BQvdqaLm5sl1A3rfhkxYlcBN7zwzkQ5YY3wY6IkCJU2qgpPWFibcM5sqnZRETh+cenFKHhdy0tERLUSYir9SnpEiuisArOS1JPnsxY87BlwKpsPpOBNH1arrdEdliZKTFdwPW7rJ0I=
-Received: from MW4P221CA0026.NAMP221.PROD.OUTLOOK.COM (2603:10b6:303:8b::31)
- by DM4PR12MB8524.namprd12.prod.outlook.com (2603:10b6:8:18d::15) with
+ bh=OCaFs9gClYdfxakEnEkQBpxSYMUf4pxJ1JegmJFdr9I=;
+ b=PM6noKjJh2m59VmPEHukBr87rcOP+UWc0J7xdDvHhrP/mwlnL4rNCITB3PnyfoKW4BSvuTxvPwDC5aB5NW58ubA+0ouIgoPS2+zmKNaPoIBExn9GoiR21E102UNoKLT8mQ+vMNQvWCexyeq/ixEHrA664pPejIOwZ+3H3sAXGHM=
+Received: from MW4P221CA0011.NAMP221.PROD.OUTLOOK.COM (2603:10b6:303:8b::16)
+ by MW3PR12MB4587.namprd12.prod.outlook.com (2603:10b6:303:5d::17) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.32; Tue, 6 Jun
- 2023 09:17:54 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33; Tue, 6 Jun
+ 2023 09:17:55 +0000
 Received: from CO1NAM11FT091.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8b:cafe::2d) by MW4P221CA0026.outlook.office365.com
- (2603:10b6:303:8b::31) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:303:8b:cafe::93) by MW4P221CA0011.outlook.office365.com
+ (2603:10b6:303:8b::16) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33 via Frontend
- Transport; Tue, 6 Jun 2023 09:17:53 +0000
+ Transport; Tue, 6 Jun 2023 09:17:55 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CO1NAM11FT091.mail.protection.outlook.com (10.13.175.146) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6455.33 via Frontend Transport; Tue, 6 Jun 2023 09:17:53 +0000
+ 15.20.6455.33 via Frontend Transport; Tue, 6 Jun 2023 09:17:55 +0000
 Received: from kullatnunu.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 6 Jun
- 2023 04:17:52 -0500
+ 2023 04:17:53 -0500
 From: =?UTF-8?q?Nicolai=20H=C3=A4hnle?= <nicolai.haehnle@amd.com>
 To: <amd-gfx@lists.freedesktop.org>, Tom St Denis <tom.stdenis@amd.com>
-Subject: [PATCH umr 09/17] gfx11: ignore wave status fields that were removed
-Date: Tue, 6 Jun 2023 11:17:17 +0200
-Message-ID: <20230606091725.20080-10-nicolai.haehnle@amd.com>
+Subject: [PATCH umr 10/17] gui/info_panel: correctly identify the GFX11 family
+Date: Tue, 6 Jun 2023 11:17:18 +0200
+Message-ID: <20230606091725.20080-11-nicolai.haehnle@amd.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230606091725.20080-1-nicolai.haehnle@amd.com>
 References: <20230606091725.20080-1-nicolai.haehnle@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT091:EE_|DM4PR12MB8524:EE_
-X-MS-Office365-Filtering-Correlation-Id: 77e7ba15-0d7a-4923-34ab-08db666ee88c
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT091:EE_|MW3PR12MB4587:EE_
+X-MS-Office365-Filtering-Correlation-Id: c1e4b3d8-c8f0-4b86-d031-08db666ee9d2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: a8fmvWbYbw4Twd0PDCEeSQwnyemWTjB6RIsrJ3PfDEieWu2f/ts7zO8ylopFMDFFnXKBIwQXdzBCHdH23K9/J1kntUHSNRF/5Mpnolz2sry3uBUeiTVFow5YfyFS8L/uch+a9PSpZcrvBDu1iP7AtZstOk7huJR3qi4NQzFOyDkfak4IGYwRfBup05SyYId7JxZ+SPfGToeNXjmyNF+kK/xL01SwGMjwIrteK73r7nowkJ/4zDUTukLUxHiDrWaMrxeeb5MvO0TgmdRoagr5q+nHC/W1Jl/yLqIaxcLAusQeduSHxY5yzSFi56bJWNEKQTCjrFBTGl1FX2uACNiy8lmhlxYipbUeqcip5i8cgF8qVmedi7kPRAdwJWcMhlYkj9b1Sl/F25PqJ2M7zH3pQIT1T++p90hoCneFxt3DpaPFt3xqqkfQ0H4nf1AsABJQoiYP3f62loqxzfMSC7aMKNnXIn/40iAgZZ+/AVVbYheWiOBT4jJd2jEiW5vn0HoQ4NnLtbmTW1wuLQPoQwdSQlRvXoe6ZdGa4YPbK4HInh68FzbH/D5coo7AaDmOz3thXkkC5ku4XMOJRK2fQev1sSffl8x+CuYjNfVtBNvlaV6f/B4z2s6wZCNRHbvfl8weOgh8tOm8xK9bNm+jdDDtIc+t4bVrzCsTV6WYD5TMGpncchRQghuk4YE2cvku9vDBRHAfUtBnFGM/o/AOmfzcpeTWnU4sE/o7igzrD2YVh1QfvlZWJCQkyEokZ0t+V5YeeQhX/CkbLZQp7aywDHIFdQ==
+X-Microsoft-Antispam-Message-Info: 23Hg99mtLC6gux8usOtHqL2Ew15i1hKxjaqh//nAeYLZQeaPEF5ykOI6gmSmASZvLvmN3nPon6+vbhfZU+CbmDaRFRPkOa18yJrtQV1GCreXaDTdNK4Y+rVheEnR4Ll+dd9InnAnBiOadu/Yocg8yPeZ+8UNV3Gj8BDnhtOH6XSaBjp8aCEJJoGlTmyW7Fc3A7BFv39I65/FZbGWt66G29Bm0eoegfmKzCYsEahIIYsHgyTp4k04QLPU0xl4C/uiJicWoOSbazLjgY4r8KjWnDOhZ+EaOWZY+63aU62AhBnUaEewgEHz+Q9oTINR4+YQq4Nw5/tb8e1xEbQdHGLC6zIRW+GVlndokD2DsKCE6++antkRX+5sXz8Y+zmuXoarJpyrM5jrnYe7wtOA8K+MKa925jK5nuFWekVebuDVFhZWlJ+H3gpcthyWah+QUv+K485Q65OPy2LgcLmVHqROZIsA2evEkZuM4DTHZkIsYH4/rV2YD9KjgpdLtmfAQlW1r2cTVL3Jgong2zMu/Qgf234kokOrBjqP0oyLOJH+cCe7Mj2JIuT/wcSDVqJBSIaQa3mXP1PkTfuHY7OrC9u6ATjSVaaCBf/u8JbrbFAwCXCcg3S8C7Wk5bYDthtU04xI3LaebQEJMbZ3lnCJ2lEa2FPSOpshgAx3MAt8h5onr530pnMI7EMfEkhayiiR403yTiaKAk4puI/Av+2IwXEiPyejOnqyqwkl8ztD9CPH+4XxHYO2kz3oN0CTUAUvQHvTeP3J0/v9teHgkN/59st2SA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(376002)(346002)(136003)(39860400002)(451199021)(36840700001)(46966006)(40470700004)(82310400005)(66574015)(47076005)(83380400001)(336012)(426003)(478600001)(82740400003)(110136005)(40480700001)(8676002)(8936002)(316002)(81166007)(4326008)(70586007)(356005)(70206006)(5660300002)(40460700003)(6636002)(41300700001)(86362001)(36756003)(6666004)(7696005)(2906002)(36860700001)(16526019)(186003)(1076003)(26005)(2616005)(36900700001);
+ SFS:(13230028)(4636009)(376002)(39860400002)(396003)(346002)(136003)(451199021)(40470700004)(36840700001)(46966006)(478600001)(2906002)(40460700003)(36756003)(7696005)(66574015)(6666004)(36860700001)(2616005)(336012)(426003)(47076005)(82310400005)(83380400001)(26005)(1076003)(16526019)(86362001)(81166007)(356005)(82740400003)(186003)(40480700001)(6636002)(70206006)(4326008)(5660300002)(8936002)(8676002)(70586007)(110136005)(41300700001)(316002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2023 09:17:53.5589 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 77e7ba15-0d7a-4923-34ab-08db666ee88c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2023 09:17:55.6837 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1e4b3d8-c8f0-4b86-d031-08db666ee9d2
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT091.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB8524
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4587
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,104 +105,36 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Signed-off-by: Nicolai Hähnle <nicolai.haehnle@amd.com>
 ---
- src/lib/scan_waves.c | 26 +++++++++++++-------------
- 1 file changed, 13 insertions(+), 13 deletions(-)
+ src/app/gui/info_panel.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/src/lib/scan_waves.c b/src/lib/scan_waves.c
-index 37ebcff..ca1d9fb 100644
---- a/src/lib/scan_waves.c
-+++ b/src/lib/scan_waves.c
-@@ -451,77 +451,77 @@ static int umr_parse_wave_data_gfx_10_11(struct umr_asic *asic, struct umr_wave_
- 		ws->hw_id2.vm_id        = umr_bitslice_reg(asic, reg, "VM_ID", value);
- 		ws->hw_id2.compat_level = umr_bitslice_reg_quiet(asic, reg, "COMPAT_LEVEL", value); // not on 10.3
+diff --git a/src/app/gui/info_panel.cpp b/src/app/gui/info_panel.cpp
+index d9c3421..bca7137 100644
+--- a/src/app/gui/info_panel.cpp
++++ b/src/app/gui/info_panel.cpp
+@@ -25,21 +25,21 @@
+ #include "panels.h"
  
- 	if (asic->family < FAMILY_GFX11)
- 		ws->wave_inst_dw0 = buf[x++];
+ class InfoPanel : public Panel {
+ public:
+ 	InfoPanel(struct umr_asic *asic) : Panel(asic) { }
  
- 	ws->gpr_alloc.value = value = buf[x++];
- 		reg = umr_find_reg_data_by_ip_by_instance(asic, "gfx", asic->options.vm_partition, "ixSQ_WAVE_GPR_ALLOC");
- 		ws->gpr_alloc.vgpr_base = umr_bitslice_reg(asic, reg, "VGPR_BASE", value);
- 		ws->gpr_alloc.vgpr_size = umr_bitslice_reg(asic, reg, "VGPR_SIZE", value);
--		ws->gpr_alloc.sgpr_base = umr_bitslice_reg(asic, reg, "SGPR_BASE", value);
--		ws->gpr_alloc.sgpr_size = umr_bitslice_reg(asic, reg, "SGPR_SIZE", value);
+ 	void process_server_message(JSON_Object *response, void *raw_data, unsigned raw_data_size) {	}
  
- 	ws->lds_alloc.value = value = buf[x++];
- 		reg = umr_find_reg_data_by_ip_by_instance(asic, "gfx", asic->options.vm_partition, "ixSQ_WAVE_LDS_ALLOC");
- 		ws->lds_alloc.lds_base = umr_bitslice_reg(asic, reg, "LDS_BASE", value);
- 		ws->lds_alloc.lds_size = umr_bitslice_reg(asic, reg, "LDS_SIZE", value);
- 		ws->lds_alloc.vgpr_shared_size = umr_bitslice_reg(asic, reg, "VGPR_SHARED_SIZE", value);
+ 	bool display(float dt, const ImVec2& avail, bool can_send_request) {
+ 		static const char *families[] = {
+-			"SI", "CIK", "VI", "AI", "NV", "NPI", "CFG",
++			"SI", "CIK", "VI", "AI", "NV", "GFX11", "NPI", "CFG",
+ 		};
  
- 	ws->trapsts.value = value = buf[x++];
- 		reg = umr_find_reg_data_by_ip_by_instance(asic, "gfx", asic->options.vm_partition, "ixSQ_WAVE_TRAPSTS");
- 		ws->trapsts.excp          = umr_bitslice_reg(asic, reg, "EXCP", value) |
- 								    (umr_bitslice_reg(asic, reg, "EXCP_HI", value) << 9);
- 		ws->trapsts.savectx       = umr_bitslice_reg(asic, reg, "SAVECTX", value);
- 		ws->trapsts.illegal_inst  = umr_bitslice_reg(asic, reg, "ILLEGAL_INST", value);
- 		ws->trapsts.excp_hi       = umr_bitslice_reg(asic, reg, "EXCP_HI", value);
- 		ws->trapsts.buffer_oob    = umr_bitslice_reg(asic, reg, "BUFFER_OOB", value);
--		ws->trapsts.excp_cycle    = umr_bitslice_reg(asic, reg, "EXCP_CYCLE", value);
-+		ws->trapsts.excp_cycle    = umr_bitslice_reg_quiet(asic, reg, "EXCP_CYCLE", value);
- 		ws->trapsts.excp_group_mask = umr_bitslice_reg_quiet(asic, reg, "EXCP_GROUP_MASK", value);
--		ws->trapsts.excp_wave64hi = umr_bitslice_reg(asic, reg, "EXCP_WAVE64HI", value);
-+		ws->trapsts.excp_wave64hi = umr_bitslice_reg_quiet(asic, reg, "EXCP_WAVE64HI", value);
- 		ws->trapsts.xnack_error   = umr_bitslice_reg_quiet(asic, reg, "XNACK_ERROR", value);
- 		ws->trapsts.utc_error     = umr_bitslice_reg_quiet(asic, reg, "UTC_ERROR", value);
--		ws->trapsts.dp_rate       = umr_bitslice_reg(asic, reg, "DP_RATE", value);
-+		ws->trapsts.dp_rate       = umr_bitslice_reg_quiet(asic, reg, "DP_RATE", value);
- 
- 	ws->ib_sts.value = value = buf[x++];
- 		reg = umr_find_reg_data_by_ip_by_instance(asic, "gfx", asic->options.vm_partition, "ixSQ_WAVE_IB_STS");
--		ws->ib_sts.vm_cnt   = umr_bitslice_reg(asic, reg, "VM_CNT", value) |
--							  (umr_bitslice_reg(asic, reg, "VM_CNT_HI", value) << 4);
-+		ws->ib_sts.vm_cnt   = umr_bitslice_reg(asic, reg, "VM_CNT", value);
-+		if (asic->family == FAMILY_NV)
-+			ws->ib_sts.vm_cnt |= (umr_bitslice_reg(asic, reg, "VM_CNT_HI", value) << 4);
- 		ws->ib_sts.exp_cnt  = umr_bitslice_reg(asic, reg, "EXP_CNT", value);
--		ws->ib_sts.lgkm_cnt = umr_bitslice_reg(asic, reg, "LGKM_CNT", value) |
--							  (umr_bitslice_reg(asic, reg, "LGKM_CNT_BIT4", value) << 4) |
--							  (umr_bitslice_reg(asic, reg, "LGKM_CNT_BIT5", value) << 5);
--		ws->ib_sts.valu_cnt = umr_bitslice_reg(asic, reg, "VALU_CNT", value);
-+		ws->ib_sts.lgkm_cnt = umr_bitslice_reg(asic, reg, "LGKM_CNT", value);
-+		if (asic->family == FAMILY_NV)
-+			ws->ib_sts.lgkm_cnt |= (umr_bitslice_reg(asic, reg, "LGKM_CNT_BIT4", value) << 4) |
-+								   (umr_bitslice_reg(asic, reg, "LGKM_CNT_BIT5", value) << 5);
-+		ws->ib_sts.valu_cnt = umr_bitslice_reg_quiet(asic, reg, "VALU_CNT", value);
- 		ws->ib_sts.replay_w64h = umr_bitslice_reg_quiet(asic, reg, "REPLAY_W64H", value);
- 		ws->ib_sts.vs_cnt   = umr_bitslice_reg(asic, reg, "VS_CNT", value);
- 
- 	ws->ib_sts2.value = value = buf[x++];
- 		reg = umr_find_reg_data_by_ip_by_instance(asic, "gfx", asic->options.vm_partition, "ixSQ_WAVE_IB_STS2");
- 		ws->ib_sts2.inst_prefetch     = umr_bitslice_reg(asic, reg, "INST_PREFETCH", value);
--		ws->ib_sts2.resource_override = umr_bitslice_reg(asic, reg, "RESOURCE_OVERRIDE", value);
-+		ws->ib_sts2.resource_override = umr_bitslice_reg_quiet(asic, reg, "RESOURCE_OVERRIDE", value);
- 		ws->ib_sts2.mem_order         = umr_bitslice_reg(asic, reg, "MEM_ORDER", value);
- 		ws->ib_sts2.fwd_progress      = umr_bitslice_reg(asic, reg, "FWD_PROGRESS", value);
- 		ws->ib_sts2.wave64            = umr_bitslice_reg(asic, reg, "WAVE64", value);
- 		ws->ib_sts2.wave64hi          = umr_bitslice_reg_quiet(asic, reg, "WAVE64HI", value);
- 		ws->ib_sts2.subv_loop         = umr_bitslice_reg_quiet(asic, reg, "SUBV_LOOP", value);
- 
- 	ws->ib_dbg1 = buf[x++];
- 	ws->m0 = buf[x++];
- 
- 	ws->mode.value = value = buf[x++];
- 		reg = umr_find_reg_data_by_ip_by_instance(asic, "gfx", asic->options.vm_partition, "ixSQ_WAVE_MODE");
- 		ws->mode.fp_round = umr_bitslice_reg(asic, reg, "FP_ROUND", value);
- 		ws->mode.fp_denorm = umr_bitslice_reg(asic, reg, "FP_DENORM", value);
- 		ws->mode.dx10_clamp = umr_bitslice_reg(asic, reg, "DX10_CLAMP", value);
- 		ws->mode.ieee = umr_bitslice_reg(asic, reg, "IEEE", value);
- 		ws->mode.lod_clamped = umr_bitslice_reg(asic, reg, "LOD_CLAMPED", value);
--		ws->mode.debug_en = umr_bitslice_reg(asic, reg, "DEBUG_EN", value);
-+		ws->mode.debug_en = umr_bitslice_reg_quiet(asic, reg, "DEBUG_EN", value);
- 		ws->mode.excp_en = umr_bitslice_reg(asic, reg, "EXCP_EN", value);
- 		ws->mode.fp16_ovfl = umr_bitslice_reg(asic, reg, "FP16_OVFL", value);
- 		ws->mode.disable_perf = umr_bitslice_reg(asic, reg, "DISABLE_PERF", value);
- 	return 0;
- }
- 
- int umr_parse_wave_data_gfx(struct umr_asic *asic, struct umr_wave_status *ws, const uint32_t *buf)
- {
- 	if (asic->family < FAMILY_AI)
- 		return umr_parse_wave_data_gfx_8(asic, ws, buf);
+ 		ImGui::BeginChild("Info", ImVec2(avail.x / 2, 0), false, ImGuiWindowFlags_NoTitleBar);
+ 		ImGui::BeginTable("Info", 2, ImGuiTableFlags_Borders);
+ 		ImGui::TableNextRow();
+ 		ImGui::TableSetColumnIndex(0); ImGui::Text("ASIC name");
+ 		ImGui::TableSetColumnIndex(1); ImGui::Text("#b58900%s", asic->asicname);
+ 		ImGui::TableNextRow();
+ 		ImGui::TableSetColumnIndex(0); ImGui::Text("Instance");
+ 		ImGui::TableSetColumnIndex(1); ImGui::Text("#b58900%d", asic->instance);
 -- 
 2.40.0
 
