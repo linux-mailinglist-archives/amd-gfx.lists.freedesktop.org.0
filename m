@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF3C9723CEB
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jun 2023 11:17:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FFDE723CF0
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jun 2023 11:18:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B9B110E2F0;
-	Tue,  6 Jun 2023 09:17:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0423810E318;
+	Tue,  6 Jun 2023 09:18:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2050.outbound.protection.outlook.com [40.107.244.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E21D110E30C
- for <amd-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 09:17:53 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2080.outbound.protection.outlook.com [40.107.243.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AADA10E30E
+ for <amd-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 09:17:56 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gxdaK8BlbAmx2ovVnDqlCz2BPVXoJkXtF5DZPtP8+lxpER5EuboziuRUbKB10dJxSBYvtrk03G8cCIi4NUckLL+6JSzHCE9adiBpnSahGyOcd5dCX6KNGL0ptqtgJ+UfdSyhNZwMQvV+5h/lDnGHrgX8rY9ntENoBtxD4Z/kyq7+R0Jx/uisK74Z7dLjC37v74k+jAQgx0d6unFKBhWNcDcuiqt+EGq7dbgyj2PKirHBoFd1bqEYwgLArXx5FL2PaSOz+QRHkWhH2WNfuDcOB19nVlwaUKlV7Y3W+hAcJ/cRIL1CVXOhS4vFT/QyC8yilUiG5cWtKiaZdIscBLGs8A==
+ b=AzhCiWqukVAP+33Q5guFGSQXhpls3PACBDFfJxDL8GAdMWrGL3UXsY9611wOEkSEw2leHEWD9caevzwtpQOFKFc0CGSELBDGgmUBV0MSW9nLEerQ3c/fAsczh1GSZ/iD9+YQ7CTe0K5nXmbPiHxwySQI5/9wPQ1wvs8tmvvFQGX0JmbTJKmuhtvFcoFncjpAb1Z1PUo2KpBf0XUXE+nCtLnnTXdWhBhAPq15rNHgxOfuDYHsV2TwP6fAtESwYG35WE8BbS9p179T2bF2z40VN9Foh5/o43Fh/knFHk0Jqjw9kjgoFVSB1fvIYojk2A5TlS+dNdb4JrWJ3PQ7Xp7ghg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XO8+qONjvFlPnm753zpPdq0lRXxEUk3r8A6aFb7KMas=;
- b=TKHAmYpkTRRc5niFi2ga7aA79NPdfDrhop8WMN4LMF79Pmv5a12FWyFwiwRvR0rjHvQ0aEoiRfGAqpJedPHzlVw10SVtNy5ctfya7vppGXjdO1fHtoN4zXa90NP+zACOcehp+Adiok4+yb7JUCWy6P7WjOXI03rX0HRjxayIplKH3JeTGTE6DLzd3pajgL1OnjxZSikV7ooP2Gks3zXdu7hXV/lWI3O2CXHT0+nXXfIFAxZ13pEPtIpWPqfKlSfC9AHgNX+Qo31VDInJ8lIavpFoE/ldl87DE01qL4GjsgibzYjVWfbjbkOCegGQWq82+2+MAwhynPsF179u8XcF8A==
+ bh=sZ0I934wqBy3quAF1k2+eP5t+w68UWjJcMMC2wzeNRs=;
+ b=cWtVdAdN+we4uVdo+5IQCSLzqylfZ7PY4q5lCSMpHMkSwprAavxV4NB6YFvdUbrsYU3J5GKHPVk730NW9w44jW3gq/gnswDswGUhInHJRTIF7GTpLBPFCOWcH0diAcfH8suoJ9Qq/1xjGG5jRIMElM4pm3OFn5YHza6G0u0Z/tZ3Kp8ou9wusmt81xRUyqN3k5Xr6UBbPNNWm5DiuCDE/zWj9MoyEkGdyqkMkPxcqpRj5eit+hh1eMQo+OZaGL7d1Wjr9dNFx+0ck8ozPC+JZSb1TCGWzAaotQEOo5KnK09Bhs3hiaVhLlxGowVH11PP4OysBI80sGQ0ycG24ZZFXg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XO8+qONjvFlPnm753zpPdq0lRXxEUk3r8A6aFb7KMas=;
- b=sAWP8JLkjJ0oYLZc1stin4VDDR2btlRV8j76KwZg/Mv5shA3n78/zoO8bywyUdJ/yQHjEVwYrK9Igpu6MSCkBiOc1x/OIrdMFUNMBchKi3io5xp05tAAa/hbdsG9zRQIhbzQEKjhRXe1y+iykT97qxLN9Ylw2eG4zQQ97ifNjtc=
-Received: from MW4P221CA0019.NAMP221.PROD.OUTLOOK.COM (2603:10b6:303:8b::24)
- by IA1PR12MB6092.namprd12.prod.outlook.com (2603:10b6:208:3ec::13) with
+ bh=sZ0I934wqBy3quAF1k2+eP5t+w68UWjJcMMC2wzeNRs=;
+ b=ckkAcaOiyH/tZ5Spd1Qfcyv5diSVlPiAD3pg6M4h10WgY4CXn7bW7Ia6LPZWo2Wn3srpyPu20JZUdDxJ+OfXSNd9Hf63mwLX1xMr8DUY6vrFhnNp38Z2CN6A4cI85bQNMemu61YEqyr3xLZ2cASiURGLtXAKo0MGqTnvJwNLOgg=
+Received: from MW4P221CA0012.NAMP221.PROD.OUTLOOK.COM (2603:10b6:303:8b::17)
+ by BL0PR12MB4963.namprd12.prod.outlook.com (2603:10b6:208:17d::15) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.32; Tue, 6 Jun
- 2023 09:17:52 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33; Tue, 6 Jun
+ 2023 09:17:53 +0000
 Received: from CO1NAM11FT091.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8b:cafe::29) by MW4P221CA0019.outlook.office365.com
- (2603:10b6:303:8b::24) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:303:8b:cafe::5a) by MW4P221CA0012.outlook.office365.com
+ (2603:10b6:303:8b::17) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33 via Frontend
- Transport; Tue, 6 Jun 2023 09:17:51 +0000
+ Transport; Tue, 6 Jun 2023 09:17:53 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CO1NAM11FT091.mail.protection.outlook.com (10.13.175.146) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6455.33 via Frontend Transport; Tue, 6 Jun 2023 09:17:51 +0000
+ 15.20.6455.33 via Frontend Transport; Tue, 6 Jun 2023 09:17:52 +0000
 Received: from kullatnunu.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 6 Jun
- 2023 04:17:50 -0500
+ 2023 04:17:51 -0500
 From: =?UTF-8?q?Nicolai=20H=C3=A4hnle?= <nicolai.haehnle@amd.com>
 To: <amd-gfx@lists.freedesktop.org>, Tom St Denis <tom.stdenis@amd.com>
-Subject: [PATCH umr 07/17] gfx11: enable wave scanning
-Date: Tue, 6 Jun 2023 11:17:15 +0200
-Message-ID: <20230606091725.20080-8-nicolai.haehnle@amd.com>
+Subject: [PATCH umr 08/17] gfx11: wave limit is 16
+Date: Tue, 6 Jun 2023 11:17:16 +0200
+Message-ID: <20230606091725.20080-9-nicolai.haehnle@amd.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230606091725.20080-1-nicolai.haehnle@amd.com>
 References: <20230606091725.20080-1-nicolai.haehnle@amd.com>
@@ -68,26 +68,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT091:EE_|IA1PR12MB6092:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5cdd20e9-3b36-49a9-be01-08db666ee76b
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT091:EE_|BL0PR12MB4963:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7693fda3-c7c6-4d3b-9d26-08db666ee831
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: C+Io955tPWAYHCLSqRkvj8j/9pA/l5LpFq2/c+SA/knCznTLhdMpOGxzSEMhckq3nFsKwKJmNlTGq9lh++BN+gSRsMlbee0tHYFpiqc/aJz85HHXiW5Xq8Epz6d3svlnNvVjLaOiRHgBLahAZdbbFakQit9jtWDMVAWAUhUSRFIKdHquyizZm8bFTdgna7Nej/zwSg/cOwIgI2ID9l2WSesm6ixPoNxaQhqNXscEM1+AMDEnCQidGFLSs7uja+bkKqjDR4u+3u0SJ3Ac4luR1xUpoMEX5YxpgbyAA/7awSfr2368Ef3G17z12h3Df/AwIHc4w8HWcPCNXN8zCixL70+7vWWdEO0rjm3QbmGUFaWXL8D1Dq0QG00ZYbd3LYXoIa4vO6XTERncQX5BucUpZuoGw8jXs5ZfnJy1YcrAyzevl0Hcf8K3IZLAV86ygfHN+eE03o468cf7dlvCFm5/UeJBYbUJXchte5CYvJ2xzDQtzvSpI8Pxi5y13s4L6Un2lSAhzgQXNntQg5Es5bxGxQb37Re5duDXI4Ow0ukGIbps7uZHH+u092vA9qUoymYC8t5IE/XnxnSI3PRLGszJl8vItaFF5ptroJ0szeY3kFNrbQHHSORVgVpDJvnapyJm/GUAJfU9adpRwWW++ZHqdSJZzuRlJ/KGOlg6A69GnK3LIiOmC2+YLiwy0IZeUG0WUqWAlztGeyaZQroVTG+AgliBfvrkw4oIa+ZT1gcPcw1zpZYdGMaalTUTpyEIUGqWNlmAy2mIpFExxTrFnydhyw==
+X-Microsoft-Antispam-Message-Info: aAp8DasnrnVPYKEYJn4EQXpkPkIqLgMUbD2bqmaZJvMoHJR+CJgz36lhFwq/kIZ/AZiv1/3OgYRhvCNBBIUM4fU7kRQi0Hq0f6s7ON0uiH0sbm9FTD5sNFi5IMYWEWYPvz7kRNGUlpzOJ5GKkDlg6wSvCoYcZE8w1phul37cL3+jqyiNQR5+V8Wr4ah+/A433VgH7nIBpRfLxvjPqUQrQMkC7x3bWr5yEHBdSd76uzam4zYAa7ocAxkkPmnavtwLHIgZBI42853SaV/n35o5gfJWHWC7LxN4HjTfqOn0KLrVHwuKGo6E+S3Y2tL2Amcw9ycVslDvGhQW1QfxKtGy10nhKVuyS9GutgwhoQ7bgmA9tRxH2YYF0BQ7AFQSGa5xshPmMiOQQLkL6/QMhfGMbXi+mAQHdB6t6mja+e4BoeAHwsHxaprWAnrVfMPLRS956feags8fhTaoJDPWANrpqDAFCotQcNaquImuBwt+7ejv2kuKQqQi/a3IM9YU6SCTTAQvnaW0n9LvBC8QbSaaRVwbujoGfMM3UZxitoLCCeFTE5kf98d+92mvmtC5JB0KcuKAXKA+UZLaS8O4FBmRazMQ5ATuHgAzRugi+EFrz4whlwyLn07Cp6mcHpd30K6Wh4HY+i4FWPwLu6YIEoKzsVHFnLAeoBQf3tl8EQpTDw52t1Wig5HPI6uMb1x0cm5Yiz7NMLJxwEBBTCvdaGNCXLdXxL7CNUaHUY8ro0vrcVJ9ThDdJ4rx1FNo0al7lHuATGs3KJDvNMRwqyI/mkBz7A==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(376002)(39860400002)(136003)(346002)(451199021)(40470700004)(46966006)(36840700001)(1076003)(2616005)(41300700001)(36860700001)(6666004)(426003)(336012)(7696005)(47076005)(26005)(186003)(16526019)(83380400001)(40460700003)(478600001)(40480700001)(110136005)(4744005)(81166007)(6636002)(82310400005)(356005)(70586007)(82740400003)(70206006)(316002)(4326008)(5660300002)(8676002)(8936002)(2906002)(86362001)(36756003)(36900700001);
+ SFS:(13230028)(4636009)(39860400002)(136003)(346002)(376002)(396003)(451199021)(40470700004)(36840700001)(46966006)(7696005)(82310400005)(40460700003)(6666004)(16526019)(26005)(40480700001)(83380400001)(47076005)(66574015)(426003)(336012)(36860700001)(1076003)(36756003)(2616005)(86362001)(186003)(81166007)(82740400003)(356005)(110136005)(5660300002)(316002)(478600001)(41300700001)(8936002)(8676002)(70206006)(4326008)(6636002)(70586007)(2906002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2023 09:17:51.6684 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5cdd20e9-3b36-49a9-be01-08db666ee76b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2023 09:17:52.9652 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7693fda3-c7c6-4d3b-9d26-08db666ee831
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT091.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6092
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4963
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,29 +105,41 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Signed-off-by: Nicolai Hähnle <nicolai.haehnle@amd.com>
 ---
- src/lib/lowlevel/linux/read_gprwave.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ src/lib/scan_waves.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/src/lib/lowlevel/linux/read_gprwave.c b/src/lib/lowlevel/linux/read_gprwave.c
-index 6d68b7e..d357896 100644
---- a/src/lib/lowlevel/linux/read_gprwave.c
-+++ b/src/lib/lowlevel/linux/read_gprwave.c
-@@ -425,14 +425,12 @@ int umr_get_wave_status(struct umr_asic *asic, unsigned se, unsigned sh, unsigne
- 		}
- 		fprintf(asic->options.test_log_fd, "}\n");
- 	}
- 
- 
- 	return umr_parse_wave_data_gfx(asic, ws, buf);
- }
- 
- int umr_get_wave_sq_info(struct umr_asic *asic, unsigned se, unsigned sh, unsigned cu, struct umr_wave_status *ws)
+diff --git a/src/lib/scan_waves.c b/src/lib/scan_waves.c
+index 3279cc2..37ebcff 100644
+--- a/src/lib/scan_waves.c
++++ b/src/lib/scan_waves.c
+@@ -593,21 +593,26 @@ static int umr_scan_wave_slot(struct umr_asic *asic, uint32_t se, uint32_t sh, u
+  * \param pppwd points to the pointer-to-pointer-to the last element of a linked
+  *              list of wave data structures, with the last element yet to be filled in.
+  *              The pointer-to-pointer-to is updated by this function.
+  */
+ static int umr_scan_wave_simd(struct umr_asic *asic, uint32_t se, uint32_t sh, uint32_t cu, uint32_t simd,
+ 			       struct umr_wave_data ***pppwd)
  {
--	if (asic->family <= FAMILY_NV)
--		return umr_get_wave_sq_info_vi(asic, se, sh, cu, ws);
--	return -1;
-+	return umr_get_wave_sq_info_vi(asic, se, sh, cu, ws);
- }
+ 	uint32_t wave, wave_limit;
+ 	int r;
+ 
+-	wave_limit = asic->family <= FAMILY_AI ? 10 : 20;
++	if (asic->family <= FAMILY_AI)
++		wave_limit = 10;
++	else if (asic->family == FAMILY_NV)
++		wave_limit = 20;
++	else
++		wave_limit = 16;
+ 
+ 	for (wave = 0; wave < wave_limit; wave++) {
+ 		struct umr_wave_data *pwd = **pppwd;
+ 		if ((r = umr_scan_wave_slot(asic, se, sh, cu, simd, wave, pwd)) == 1) {
+ 			pwd->next = calloc(1, sizeof(*pwd));
+ 			if (!pwd->next) {
+ 				asic->err_msg("[ERROR]: Out of memory\n");
+ 				return -1;
+ 			}
+ 			*pppwd = &pwd->next;
 -- 
 2.40.0
 
