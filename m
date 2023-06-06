@@ -1,62 +1,92 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96D1E72439E
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jun 2023 15:05:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D7B8723CE8
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jun 2023 11:17:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B816510E107;
-	Tue,  6 Jun 2023 13:05:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 860E010E30A;
+	Tue,  6 Jun 2023 09:17:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com
- [IPv6:2a00:1450:4864:20::32f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D109E10E306
- for <amd-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 08:34:12 +0000 (UTC)
-Received: by mail-wm1-x32f.google.com with SMTP id
- 5b1f17b1804b1-3f6042d610fso57576205e9.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 06 Jun 2023 01:34:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1686040451; x=1688632451;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=2izjzTKrsvyjgmHREHIuV3DhydL97IdDiRxRMnOeXt8=;
- b=OErqnzweEJnhsaaPFaP7VZfLkSbPfX5qAZa28ojnzyelYj5YhqnntN6oV1OS9dkSaN
- G0ei+K2YXyGAGBrgE9XvDk+RPWt/BgtmQtOyyswysU7r/Q9EEFswS5CrABv/6nobBw9g
- yDqfNxCkaNFY/LaJp9W00iklyVLBn2l3MZyJLQCKONlBxICL8oqJ6P6cevqL0n564ZJj
- Tqi0d/FVYsPMXgJs+84uh4raeWnTP251t5LRhfviIOKkZna8VpZK7QqCdIwV97v9qXsJ
- 2Po1FKgZaF0rKNixgfymwyvLILi/1/VepJMHiV7kBAFe1oqwLyTyrJClXOoRcZiqDz1u
- kw6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1686040451; x=1688632451;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=2izjzTKrsvyjgmHREHIuV3DhydL97IdDiRxRMnOeXt8=;
- b=J7u86wil7+W+es+L2k1yCXG7HlJEjKYmpe5ilRBy2yVayEI6PvnKzDJhhZYvj81snX
- uqwvIdyuFPix5afCwR+eU/U4j06ta9DFlIknGQ2n8bYWqZ8B2hAhAyPijVd+uzx+ZAx7
- ObUv0SJXh0EjtEKjw9kMrSqDbizVgc6L7VUpCh3yslxPDksNml4qeYrDKTGvEBPp6X2y
- 5QnxUSi8ljAx8J7f5eIfbdG8CIREcoJpl/USttaTIuJPbOR0MBsDtGhpHgWevXvzcLDR
- 0BxmrkGG5liKC0P3833eFzLS/thHhITri3xT5paQ0UzyjhnrlesqiddfxIeAA9XzCSzK
- jm8A==
-X-Gm-Message-State: AC+VfDwQm6XAEdL0tt/TzNbrGNeQvVWAJisO4/iBqESqhEX4zUwbfLPG
- pMy+EHHtVdJbj2l5GttUkj5DHA==
-X-Google-Smtp-Source: ACHHUZ6SaR69anAz6NDuX/nLXmGxPow6vG6jR9hOpA0mGvflQ36v0mirre/H1zIBhvPfirSph2+hMA==
-X-Received: by 2002:adf:df91:0:b0:309:51ec:b6e2 with SMTP id
- z17-20020adfdf91000000b0030951ecb6e2mr1281097wrl.21.1686040450791; 
- Tue, 06 Jun 2023 01:34:10 -0700 (PDT)
-Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
- s2-20020a5d5102000000b0030ab5ebefa8sm11910258wrt.46.2023.06.06.01.34.08
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 06 Jun 2023 01:34:09 -0700 (PDT)
-Date: Tue, 6 Jun 2023 11:34:05 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Jonathan Kim <jonathan.kim@amd.com>
-Subject: [PATCH] drm/amdkfd: potential error pointer dereference in ioctl
-Message-ID: <ZH7vfZnpMMsGKEOq@moroto>
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1nam02on2069.outbound.protection.outlook.com [40.107.96.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B59710E30A
+ for <amd-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 09:17:50 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iQ3wK7EqTJqdFUQMYkPCfnMIvt98mfg0jq8RG4PhW/HJIGLEEwIYqTWovwkqjpMTZ/xLvyf00wxNLGjIFJZ1njBP5hj8RWRCh56kFuP02Ud7E7kqO4gfIqwSoneTor9k5aoP3KJtNOeepRMv4YrT/P+InaWR8/uUK6vedWL9TL69MmJmEvBoVQD1CMGclTSneuubJpM4vLxV0b1hgz19iISRqa/9nJkCsMv6ybE6mVl0gdOfCh1F+vzLtgyxYSgtQQrxkO+mcXDplk3HYSQNUO24a9/0dmzB4gRAnOKd4ZiYeFYJvsabniaKc0zqXZtDVgw/SEZ0g8B7FB38nLy3lg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JIqI4kzrUA8MVj/rb6bqkNWwbkKFuocmTEWQ5SXZcAE=;
+ b=bKjgaZIPf91Sz1+n/sbn9p7nppWCb6K0G4NlGis10JmCglEW/4yk6tdyRpAQkXafQxWpOIBj93BzBApr3a7Rbz8YfqQfZmDl+l94rJcVBL0FCNXDu+uo4n0QUGfnIMxF6USEqBJpGuuBEkT7nENcSftvhmvDj0IfRPwDF4xaFaxbFsGt/FZdTpLcjHdrG3hW8Ib1purrnRxEq7TqHyobV3NV9b3hF+mCct0y4xP6MYSqMsCbbS5HJWdjnvoTIf2CJ4zKoXtEVs6kW8jbYcwByOOwL0TtwYPPe0P2IiIiDq4Xuq3RzYAeBo8V97eqzrJa5kCoNEso/lrnMf9pUTQ6yA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JIqI4kzrUA8MVj/rb6bqkNWwbkKFuocmTEWQ5SXZcAE=;
+ b=atabyUSjGr1HvRHATh4kyxutCHRlR3YQohsW6ztZZFeLyCdfQLdeOsFo32IBhFJ2tRj0/QgWi2vYi5p8dKZ4piZo8ykqQmbf8mXUx0SyUhmeLf/gtVaiyvgab0HjzHbiDmb5+fkbjz/2w0zwb+qvFcRToPWel3Cg7fjP0Hz+zYU=
+Received: from MW4P221CA0011.NAMP221.PROD.OUTLOOK.COM (2603:10b6:303:8b::16)
+ by MN2PR12MB4175.namprd12.prod.outlook.com (2603:10b6:208:1d3::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.32; Tue, 6 Jun
+ 2023 09:17:48 +0000
+Received: from CO1NAM11FT091.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:8b:cafe::93) by MW4P221CA0011.outlook.office365.com
+ (2603:10b6:303:8b::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33 via Frontend
+ Transport; Tue, 6 Jun 2023 09:17:47 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT091.mail.protection.outlook.com (10.13.175.146) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6455.33 via Frontend Transport; Tue, 6 Jun 2023 09:17:47 +0000
+Received: from kullatnunu.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 6 Jun
+ 2023 04:17:43 -0500
+From: =?UTF-8?q?Nicolai=20H=C3=A4hnle?= <nicolai.haehnle@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, Tom St Denis <tom.stdenis@amd.com>
+Subject: [PATCH umr 00/17] Various fixes and features for shader debugging on
+ gfx11
+Date: Tue, 6 Jun 2023 11:17:08 +0200
+Message-ID: <20230606091725.20080-1-nicolai.haehnle@amd.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailman-Approved-At: Tue, 06 Jun 2023 13:05:31 +0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT091:EE_|MN2PR12MB4175:EE_
+X-MS-Office365-Filtering-Correlation-Id: 32274837-3428-4e8d-798c-08db666ee51c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Bw/t+fFIfQ5aHhLAUtb6IGTQOXAhhO6OqSRhYkdOekaxlYgwYOZikRKcXdMpXwZwb3EFXyL6iSyWkAdWIWMWpLiO2lj4Ric7wqy6MNSQTbvQ7H1YwRV1q5DD3gbN4gOsDeJTgwm9dmtnZ3oZtJPdamih5z3ooE1HTrqCcsqor3E4EXEq59IsSZB9M83JPk6TBbxFdEkFw3cGR8ww/yScjuOjizNg6kqGZ2BXX1ehJjhAmOecuk+La57K+YoUBH/hMjzFEiqLaw/91tl1uZbPY2MzmgD+LWCd6zmo1f/V+JSYgFJXk1BRhIlTMti7wlXJURej4h0lbbjyMqUivSUr2TkWAEdEIJ5fA6FYaa6vDqtrs6v047FjC9TtgUdk7KXTomw3ZBqmB8FGdgijHSiZtFsMY7IXvp7ZW4swoseHswOddcgjeD1YjwV76rp5FOnpFsqXHvl7tyEPrFCvXHyckdtrTkbVH22RwUGLasep7hFI0nrlV5hEwu+OZu3A61W2KMDxN88J5qwFGE/o85d2P1vVsjA8T+4c95UnzVOuNDLyHLcmi0NilSrGzTRdprQiNCoIAeLgTTeYYKc9J90SStZnYyFiYnXnhxotbl4I0M9fQyJH3vixtGr4lHHna+hal9TIgV2BO+W7WIh79cvfsn1LLIZKG54fQND9c9xglvGE24ZxC4rTPMF3yJULVCLpAmYxYR5MB1NzpLzt8Ub/u8ENbSCfEDQrmn+Kf8m+kxJXY3ugmo+7vpUTCz5z2zQ7UFEu9GnhlgHYWxbhSd6tIg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230028)(4636009)(346002)(136003)(39860400002)(396003)(376002)(451199021)(36840700001)(46966006)(40470700004)(1076003)(16526019)(186003)(26005)(2616005)(426003)(336012)(47076005)(36756003)(6666004)(4744005)(36860700001)(82310400005)(7696005)(2906002)(8676002)(8936002)(40480700001)(110136005)(82740400003)(478600001)(40460700003)(5660300002)(86362001)(6636002)(41300700001)(316002)(70586007)(356005)(81166007)(70206006)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2023 09:17:47.6685 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 32274837-3428-4e8d-798c-08db666ee51c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT091.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4175
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,43 +98,22 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Felix Kuehling <Felix.Kuehling@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- kernel-janitors@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The "target" either comes from kfd_create_process() which returns error
-pointers on error or kfd_lookup_process_by_pid() which returns NULL on
-error.  So we need to check for both types of errors.
+Hi,
 
-Fixes: a42e42c4e3b1 ("drm/amdkfd: prepare per-process debug enable and disable")
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
-I'm not sure how to compile this code or why I'm seeing this warning
-again after two years...  Very strange.
+This series does a bunch of things that I found necessary and useful for
+shader debugging on gfx11:
 
- drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+* Fix a bunch of trivial gfx11/Navi3-specific issues like misidentifying the
+  ASIC family
+* Enable wave scanning on gfx11 and fix some related issues
+* Cleanup a bunch of things around the "waves" panel in the GUI, e.g. fix
+  the behavior of the waves tree view when waves disappear
+* Add the ability to single-step a chosen wave
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-index fc385000c007..6a27b000a246 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-@@ -2920,9 +2920,9 @@ static int kfd_ioctl_set_debug_trap(struct file *filep, struct kfd_process *p, v
- 		target = kfd_lookup_process_by_pid(pid);
- 	}
- 
--	if (!target) {
-+	if (IS_ERR_OR_NULL(target)) {
- 		pr_debug("Cannot find process PID %i to debug\n", args->pid);
--		r = -ESRCH;
-+		r = target ? PTR_ERR(target) : -ESRCH;
- 		goto out;
- 	}
- 
--- 
-2.39.2
+Thanks,
+Nicolai
+
 
