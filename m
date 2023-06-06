@@ -1,77 +1,92 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 167347248D2
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jun 2023 18:19:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4103724904
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jun 2023 18:24:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D21B10E23D;
-	Tue,  6 Jun 2023 16:19:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AAA910E382;
+	Tue,  6 Jun 2023 16:24:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
- [IPv6:2a00:1450:4864:20::334])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86FE510E23C
- for <amd-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 16:19:02 +0000 (UTC)
-Received: by mail-wm1-x334.google.com with SMTP id
- 5b1f17b1804b1-3f7378a75c0so24505835e9.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 06 Jun 2023 09:19:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=froggi.es; s=google; t=1686068340; x=1688660340;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=IkSNSReEmc4q/h1uq611jHp4rTVNREpV79bP22NkqVQ=;
- b=RHce7qgt0YWlrLaSYzWK1HIJO0baElK01A4+YwvDEpBWyUXlWrK+dmyOOyKnCPsxUN
- XajEhpQWdnbV/p1dq//e5yyfUYqY7fR+AEQ2AWL5MUVPgYgcicMbD06HZ2GV7DW2MiQS
- 889yFfXYx3UrrJLLwaZtZzHTQGPt9SLtKeBqeCM6iW7mPU/LYJAowQrlcKjINqOj+D4z
- mdXEVuPY+OiARvTdb6gOLUBV8ZJkG+WI1OdlxpJ0kobfJbnZCae6RyZcfdXyhn1UiYiQ
- p96l1ynEgoI5j0PME2IUDNzI62QZftgV3KulhLjVKySBK2eTzoMBuNXuXa3qOdu7hVGl
- TjNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1686068340; x=1688660340;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=IkSNSReEmc4q/h1uq611jHp4rTVNREpV79bP22NkqVQ=;
- b=jzB2zwp8NHOKNvCMU7PZddWm5i2jzdGCTuARpHpGDSTtG7gNXuqe1CQ0CgRLeFhd/x
- dqK4h92NBUKn/OJ7F2h3a8D0riO5CbR9SxcESAprbT70CAcP8AhmgFkcj5HZTivMbWAV
- Xz+3zt9whixq/sztalqEhab7o44SwBPuME234oCZMEmP5TwkVGEcobCfsAI5QSKB4AFI
- hroe4XQtQjOHI4JcI3MuwryShF81jKwbM3GxYZP2dlIE6hXAE9yHy4yRfH0Cv/kmYvuu
- GX5U1JLZDPLI0MlfWSgpeXxkxARsQjWFyY1EIKWH2T9le1kAFbxlx+60I7O4Jn/lOw67
- ijPw==
-X-Gm-Message-State: AC+VfDw+Ee7EmZA8RCZ093LHKgmYv6i9SVCW7D0qYmSIJpbhZZHn8sxo
- OyTCbh4WQpb5Yg1z451+WVPZhA==
-X-Google-Smtp-Source: ACHHUZ4EzEUSEqPRGVHTBw4mvVuxYxDiCQQt4rvQEBrEV8tYIiZwkZYjoFo6xzLelrUsXxarsJcvsg==
-X-Received: by 2002:a05:600c:21d7:b0:3f6:426:eae with SMTP id
- x23-20020a05600c21d700b003f604260eaemr2378118wmj.15.1686068340342; 
- Tue, 06 Jun 2023 09:19:00 -0700 (PDT)
-Received: from [192.168.0.89]
- (darl-09-b2-v4wan-165404-cust288.vm5.cable.virginm.net. [86.17.61.33])
- by smtp.gmail.com with ESMTPSA id
- 8-20020a05600c230800b003f6cf9afc25sm18297060wmo.40.2023.06.06.09.18.59
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 06 Jun 2023 09:19:00 -0700 (PDT)
-Message-ID: <47442442-794b-09da-4c70-1393344ce837@froggi.es>
-Date: Tue, 6 Jun 2023 17:18:58 +0100
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam04on20625.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e8b::625])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FCDC10E382
+ for <amd-gfx@lists.freedesktop.org>; Tue,  6 Jun 2023 16:24:34 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=biPJDD4dqFbcFSQ/QXz05A1KEGmACW8A7lG0y4QZoMunlFU4bniTocZBvaUrFv07TfAyarNJqATkkK2vObrppFU9RpgOEPmg8C0uLBesdHAmHAVZGmIi+QvzOx14ADhqSHxe4kOAT3Dt01sDoR+hG5mgsuFQ8XgVobJm4b9QGsQ8mxGuEzAbDaEPgZOUdzOAtr5OqIS2+iqzEd1x+iI05ceI5/IbRBcUq00TmktJENwM+M2jsGm8DLHr4N7WSkHHat8ClYYfzKIQ94+XOlaJtDubiV2p9XiK4vr178H8nLN5aPaB3+hiqEUWNOD5oZ0jrI9wwy3Rq3wMCqrC132EGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BlX1ynL5D7rqPWLI8JL55JV9/RI3DxlADvpojke2r1s=;
+ b=XrO75MljmXhB4asXuhjScvAsyIedXmRWsdtIt2mvkYmdHB/P5WbWarOuV7F4P/42QQlrFPI7gHmP1BJvcn3Rc75Rv/MQ3rL8wYsQvJQQDkSXK84Z8TGmnlCzk8L2SQzC+vypHIjqmDOhkGO+nH+uMhJhSEvYmS+B+QjJqcharrqhiU1+kX2/sxXQQ29/5vJFZi+e/bjwMQAPXxauKvKXW+yvbFCiMTA3eOncGMPtKUagF2XCG7bCf4eb31UdFjzqFkQKZfKxNGr6E2IkVg4veyWp7Qy7hBUqmxC8DmaDXG5vWqlnfe47LxJnlUCEJy5S+2GezmrmipQPuU6SQYXbeg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BlX1ynL5D7rqPWLI8JL55JV9/RI3DxlADvpojke2r1s=;
+ b=NXBr4G7tElViD9MvFNj6TGFLMgFm6YAW2RVMeSWItg1z4c/aM/eU9jAiaMQefiZVRPPDQCQ71VK6uXgMrnpHH058QzxXvI4paFcVZQgOjt1FCJXAc++UNULpO618Fwug9cUqg6HnsQ5K5vvvEgJTiaaiOpWD0YtrsN85QuG5HHc=
+Received: from BYAPR07CA0053.namprd07.prod.outlook.com (2603:10b6:a03:60::30)
+ by LV2PR12MB5965.namprd12.prod.outlook.com (2603:10b6:408:172::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.32; Tue, 6 Jun
+ 2023 16:24:31 +0000
+Received: from DM6NAM11FT048.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:a03:60:cafe::d4) by BYAPR07CA0053.outlook.office365.com
+ (2603:10b6:a03:60::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.19 via Frontend
+ Transport; Tue, 6 Jun 2023 16:24:30 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT048.mail.protection.outlook.com (10.13.173.114) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6455.33 via Frontend Transport; Tue, 6 Jun 2023 16:24:30 +0000
+Received: from work-495456.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 6 Jun
+ 2023 11:24:29 -0500
+From: James Zhu <James.Zhu@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH v2 0/3] drm/amdkfd: new event wait support
+Date: Tue, 6 Jun 2023 12:24:15 -0400
+Message-ID: <20230606162418.1862540-1-James.Zhu@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 06/36] drm/amd/display: add CRTC driver-specific property
- for gamma TF
-To: Harry Wentland <harry.wentland@amd.com>, Melissa Wen <mwen@igalia.com>,
- amd-gfx@lists.freedesktop.org, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- sunpeng.li@amd.com, Alex Deucher <alexander.deucher@amd.com>,
- dri-devel@lists.freedesktop.org, christian.koenig@amd.com,
- Xinhui.Pan@amd.com, airlied@gmail.com, daniel@ffwll.ch
-References: <20230523221520.3115570-1-mwen@igalia.com>
- <20230523221520.3115570-7-mwen@igalia.com>
- <5ea0146c-19a2-58d9-4cc9-29af6d433915@amd.com>
-Content-Language: en-US
-From: Joshua Ashton <joshua@froggi.es>
-In-Reply-To: <5ea0146c-19a2-58d9-4cc9-29af6d433915@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT048:EE_|LV2PR12MB5965:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0d5c18ca-673f-4def-b568-08db66aa8199
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: JkNcCK+sV00TNyp/kpjsLliegi1Yv4f/lim4lRx6QR/Wk8YYT/4YzUcguFwTd/u5PKNq4vMxnu4blZO/X1lHm5M+O+1qTMBSPWSjddl8yJSKNLhlUwaErVAyqreE3Bp2e+/tRi8xRboxSbatdscAfbKhCPP7B+PY11icgCeUbMyf9O9Hp7iQhnGJlm7v7JdNROM7Isn4n8CyNw1kYV///BX2lC8Ez6HrEtSy97dHBCX1RmGHN70qp+Rjs5UkIL8qYF31/EeQbro2ZmDUJqnXhwv18ZXYHLJwePAJsEskb3iNvVnU3i7FXHqvWcOh+gida0wJ+RyouXBW0UPp+sSwR0LBKPe9CsTW4DCkXDCSM+yUBlQdfPVX/xs68yy1il8qeVf1GMcmL0Qm0YEteIyPP4uK+3wpZEckV7Puj+Vvd1I0gn+NPpEh5TLaEkYnNGEfd3G81zsxAxJNH2QMtQFxVMDvZ4WttHyPH2t2kBUFfgNJxRvlzGv7/ESpLMf/SCPXMBPEQPRRdhPFRT+MDtq8uTW1wCfArNfvz7K9euI/bAayXwIFZokd3LGf6tE64AIhQ9jb6WORAPsAgNgmLyycsibI7vowdC/SYJ036xA222h8by2xfe5Vod/apbShRUhSnh+rx84hNL1Djo+GHD71Xb6OMl/mQvLO9B9Hmvs56KVGOURlfkLbgHmB3TfPnR7CJbg/sAw58CIHofg3Yw5EuIEi22EyGJ/Is2uPV/hYJFbFcF6m04TfqwXNjeifimuDhyZOvi15jfQnP0hFYx5n793+oZZHi4Plhw40WWEVB9M=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230028)(4636009)(136003)(376002)(39860400002)(346002)(396003)(451199021)(36840700001)(46966006)(40470700004)(70206006)(70586007)(2906002)(478600001)(4326008)(316002)(8936002)(6916009)(8676002)(41300700001)(54906003)(6666004)(5660300002)(7696005)(1076003)(40460700003)(26005)(82310400005)(966005)(16526019)(356005)(82740400003)(186003)(2616005)(40480700001)(336012)(426003)(83380400001)(47076005)(36860700001)(81166007)(36756003)(86362001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2023 16:24:30.7083 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0d5c18ca-673f-4def-b568-08db66aa8199
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT048.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5965
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,318 +98,41 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sebastian Wick <sebastian.wick@redhat.com>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Shashank Sharma <Shashank.Sharma@amd.com>, Alex Hung <alex.hung@amd.com>,
- Simon Ser <contact@emersion.fr>, Xaver Hugl <xaver.hugl@gmail.com>,
- kernel-dev@igalia.com, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
- sungjoon.kim@amd.com
+Cc: Felix.kuehling@amd.com, jamesz@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+In kernel amdgpu driver, kfd_wait_on_events is used to support user space signal event wait
+function. For multiple threads waiting on same event scenery, race condition could occur
+since some threads after checking signal condition, before calling kfd_wait_on_events, the 
+event interrupt could be fired and wake up other thread which are sleeping on this event.
+Then those threads could fall into sleep without waking up again. Adding event age tracking
+in both kernel and user mode, will help avoiding this race condition.
 
+The changes for The user space ROCT-Thunk-Interface/ROCR-Runtime are listed below for
+review togehter with kernel mode changes.
 
-On 6/1/23 20:17, Harry Wentland wrote:
-> 
-> 
-> On 5/23/23 18:14, Melissa Wen wrote:
->> Hook up driver-specific atomic operations for managing AMD color
->> properties and create AMD driver-specific color management properties
->> and attach them according to HW capabilities defined by `struct
->> dc_color_caps`. Add enumerated transfer function property to DRM CRTC
->> gamma to convert to wire encoding with or without a user gamma LUT.
->> Enumerated TFs are not supported yet by the DRM color pipeline,
->> therefore, create a DRM enum list with the predefined TFs supported by
->> the AMD display driver.
->>
->> Co-developed-by: Joshua Ashton <joshua@froggi.es>
->> Signed-off-by: Joshua Ashton <joshua@froggi.es>
->> Signed-off-by: Melissa Wen <mwen@igalia.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   | 36 ++++++++++
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h      |  8 +++
->>   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h | 22 ++++++
->>   .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    | 72 ++++++++++++++++++-
->>   4 files changed, 137 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
->> index 389396eac222..88af075e6c18 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
->> @@ -1247,6 +1247,38 @@ amdgpu_display_user_framebuffer_create(struct drm_device *dev,
->>   	return &amdgpu_fb->base;
->>   }
->>   
->> +static const struct drm_prop_enum_list drm_transfer_function_enum_list[] = {
->> +	{ DRM_TRANSFER_FUNCTION_DEFAULT, "Default" },
->> +	{ DRM_TRANSFER_FUNCTION_SRGB, "sRGB" },
->> +	{ DRM_TRANSFER_FUNCTION_BT709, "BT.709" },
->> +	{ DRM_TRANSFER_FUNCTION_PQ, "PQ (Perceptual Quantizer)" },
->> +	{ DRM_TRANSFER_FUNCTION_LINEAR, "Linear" },
->> +	{ DRM_TRANSFER_FUNCTION_UNITY, "Unity" },
->> +	{ DRM_TRANSFER_FUNCTION_HLG, "HLG (Hybrid Log Gamma)" },
->> +	{ DRM_TRANSFER_FUNCTION_GAMMA22, "Gamma 2.2" },
->> +	{ DRM_TRANSFER_FUNCTION_GAMMA24, "Gamma 2.4" },
->> +	{ DRM_TRANSFER_FUNCTION_GAMMA26, "Gamma 2.6" },
->> +};
-> 
-> Let's not use the DRM_/drm_ prefix here. It might clash later when
-> we introduce DRM_ core interfaces for enumerated transfer functions.
-> 
-> We'll want to specify whether something is an EOTF or an inverse EOTF,
-> or possibly an OETF. Of course that wouldn't apply to "Linear" or
-> "Unity" (I'm assuming the two are the same?).
-> 
-> EOTF = electro-optical transfer function
-> This is the transfer function to go from the encoded value to an
-> optical (linear) value.
-> 
-> Inverse EOTF = simply the inverse of the EOTF
-> This is usually intended to go from an optical/linear space (which
-> might have been used for blending) back to the encoded values.
-> 
-> OETF = opto-electronic transfer function
-> This is usually used for converting optical signals into encoded
-> values. Usually that's done on the camera side but I think HLG might
-> define the OETF instead of the EOTF. A bit fuzzy on that. If you're
-> unclear about HLG I recommend we don't include it yet.
-> 
-> It would also be good to document a bit more what each of the TFs
-> mean, but I'm fine if that comes later with a "driver-agnostic"
-> API. The key thing to clarify is whether we have an EOTF or inv_EOTF,
-> i.e. whether we use the TF to go from encoded to optical or vice
-> versa.
+ROCT-Thunk-Interface:
+https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/commit/efdbf6cfbc026bd68ac3c35d00dacf84370eb81e
+https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/commit/1820ae0a2db85b6f584611dc0cde1a00e7c22915
 
-Whether we use the inverse or not is just determined per-block though.
+ROCR-Runtime:
+https://github.com/RadeonOpenCompute/ROCR-Runtime/compare/master...zhums:ROCR-Runtime:new_event_wait_review
+https://github.com/RadeonOpenCompute/ROCR-Runtime/commit/e1f5bdb88eb882ac798aeca2c00ea3fbb2dba459
+https://github.com/RadeonOpenCompute/ROCR-Runtime/commit/7d26afd14107b5c2a754c1a3f415d89f3aabb503
 
-I think we should definitely document it per-block very explicitly 
-(whether it is EOTF or inv EOTF) but I don't think we need to touch the 
-enums here.
+-v2: remove unnecessay link
 
-- Joshie 🐸✨
+James Zhu (3):
+  drm/amdkfd: add event age tracking
+  drm/amdkfd: add event_age tracking when receiving interrupt
+  drm/amdkfd: don't sleep when event age unmatch
 
-> 
-> I know DC is sloppy and doesn't define those but it will still use
-> them as either EOTF or inv_EOTF, based on which block they're being
-> programmed, if I'm not mistaken.
-> 
->> +
->> +#ifdef AMD_PRIVATE_COLOR
->> +static int
->> +amdgpu_display_create_color_properties(struct amdgpu_device *adev)
->> +{
->> +	struct drm_property *prop;
->> +
->> +	prop = drm_property_create_enum(adev_to_drm(adev),
->> +					DRM_MODE_PROP_ENUM,
->> +					"AMD_REGAMMA_TF",
->> +					drm_transfer_function_enum_list,
->> +					ARRAY_SIZE(drm_transfer_function_enum_list));
->> +	if (!prop)
->> +		return -ENOMEM;
->> +	adev->mode_info.regamma_tf_property = prop;
->> +
->> +	return 0;
->> +}
->> +#endif
->> +
-> 
-> It'd be nice if we have this function and the above enum_list
-> in amdgpu_dm, possibly in amdgpu_dm_color.c. You could call it
-> directly after the amdgpu_display_modeset_create_prop() call in
-> amdgpu_dm_mode_config_init().
-> 
->>   const struct drm_mode_config_funcs amdgpu_mode_funcs = {
->>   	.fb_create = amdgpu_display_user_framebuffer_create,
->>   };
->> @@ -1323,6 +1355,10 @@ int amdgpu_display_modeset_create_props(struct amdgpu_device *adev)
->>   			return -ENOMEM;
->>   	}
->>   
->> +#ifdef AMD_PRIVATE_COLOR
->> +	if (amdgpu_display_create_color_properties(adev))
->> +		return -ENOMEM;
->> +#endif
->>   	return 0;
->>   }
->>   
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
->> index b8633df418d4..881446c51b36 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
->> @@ -344,6 +344,14 @@ struct amdgpu_mode_info {
->>   	int			disp_priority;
->>   	const struct amdgpu_display_funcs *funcs;
->>   	const enum drm_plane_type *plane_type;
->> +
->> +	/* Driver-private color mgmt props */
->> +
->> +	/* @regamma_tf_property: Transfer function for CRTC regamma
->> +	 * (post-blending). Possible values are defined by `enum
->> +	 * drm_transfer_function`.
->> +	 */
->> +	struct drm_property *regamma_tf_property;
->>   };
->>   
->>   #define AMDGPU_MAX_BL_LEVEL 0xFF
->> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
->> index 2e2413fd73a4..ad5ee28b83dc 100644
->> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
->> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
->> @@ -699,6 +699,20 @@ static inline void amdgpu_dm_set_mst_status(uint8_t *status,
->>   
->>   extern const struct amdgpu_ip_block_version dm_ip_block;
->>   
->> +enum drm_transfer_function {
->> +	DRM_TRANSFER_FUNCTION_DEFAULT,
->> +	DRM_TRANSFER_FUNCTION_SRGB,
->> +	DRM_TRANSFER_FUNCTION_BT709,
->> +	DRM_TRANSFER_FUNCTION_PQ,
->> +	DRM_TRANSFER_FUNCTION_LINEAR,
->> +	DRM_TRANSFER_FUNCTION_UNITY,
->> +	DRM_TRANSFER_FUNCTION_HLG,
->> +	DRM_TRANSFER_FUNCTION_GAMMA22,
->> +	DRM_TRANSFER_FUNCTION_GAMMA24,
->> +	DRM_TRANSFER_FUNCTION_GAMMA26,
->> +	DRM_TRANSFER_FUNCTION_MAX,
->> +};
->> +
->>   struct dm_plane_state {
->>   	struct drm_plane_state base;
->>   	struct dc_plane_state *dc_state;
->> @@ -726,6 +740,14 @@ struct dm_crtc_state {
->>   	struct dc_info_packet vrr_infopacket;
->>   
->>   	int abm_level;
->> +
->> +        /**
->> +	 * @regamma_tf:
->> +	 *
->> +	 * Pre-defined transfer function for converting internal FB -> wire
->> +	 * encoding.
->> +	 */
->> +	enum drm_transfer_function regamma_tf;
-> 
-> Again, let's avoid a drm_ prefix. Maybe name all this amdgpu_ instead.
-> 
->>   };
->>   
->>   #define to_dm_crtc_state(x) container_of(x, struct dm_crtc_state, base)
->> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
->> index e3762e806617..1eb279d341c5 100644
->> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
->> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
->> @@ -229,7 +229,6 @@ static void dm_crtc_destroy_state(struct drm_crtc *crtc,
->>   	if (cur->stream)
->>   		dc_stream_release(cur->stream);
->>   
->> -
-> 
-> nit: stray newline
-> 
-> Harry
-> 
->>   	__drm_atomic_helper_crtc_destroy_state(state);
->>   
->>   
->> @@ -263,6 +262,7 @@ static struct drm_crtc_state *dm_crtc_duplicate_state(struct drm_crtc *crtc)
->>   	state->freesync_config = cur->freesync_config;
->>   	state->cm_has_degamma = cur->cm_has_degamma;
->>   	state->cm_is_degamma_srgb = cur->cm_is_degamma_srgb;
->> +	state->regamma_tf = cur->regamma_tf;
->>   	state->crc_skip_count = cur->crc_skip_count;
->>   	state->mpo_requested = cur->mpo_requested;
->>   	/* TODO Duplicate dc_stream after objects are stream object is flattened */
->> @@ -299,6 +299,69 @@ static int amdgpu_dm_crtc_late_register(struct drm_crtc *crtc)
->>   }
->>   #endif
->>   
->> +#ifdef AMD_PRIVATE_COLOR
->> +/**
->> + * drm_crtc_additional_color_mgmt - enable additional color properties
->> + * @crtc: DRM CRTC
->> + *
->> + * This function lets the driver enable the 3D LUT color correction property
->> + * on a CRTC. This includes shaper LUT, 3D LUT and regamma TF. The shaper
->> + * LUT and 3D LUT property is only attached if its size is not 0.
->> + */
->> +static void
->> +dm_crtc_additional_color_mgmt(struct drm_crtc *crtc)
->> +{
->> +	struct amdgpu_device *adev = drm_to_adev(crtc->dev);
->> +
->> +	if(adev->dm.dc->caps.color.mpc.ogam_ram)
->> +		drm_object_attach_property(&crtc->base,
->> +					   adev->mode_info.regamma_tf_property,
->> +					   DRM_TRANSFER_FUNCTION_DEFAULT);
->> +}
->> +
->> +static int
->> +amdgpu_dm_atomic_crtc_set_property(struct drm_crtc *crtc,
->> +				   struct drm_crtc_state *state,
->> +				   struct drm_property *property,
->> +				   uint64_t val)
->> +{
->> +	struct amdgpu_device *adev = drm_to_adev(crtc->dev);
->> +	struct dm_crtc_state *acrtc_state = to_dm_crtc_state(state);
->> +
->> +	if (property == adev->mode_info.regamma_tf_property) {
->> +		if (acrtc_state->regamma_tf != val) {
->> +			acrtc_state->regamma_tf = val;
->> +			acrtc_state->base.color_mgmt_changed |= 1;
->> +		}
->> +	} else {
->> +		drm_dbg_atomic(crtc->dev,
->> +			       "[CRTC:%d:%s] unknown property [PROP:%d:%s]]\n",
->> +			       crtc->base.id, crtc->name,
->> +			       property->base.id, property->name);
->> +		return -EINVAL;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int
->> +amdgpu_dm_atomic_crtc_get_property(struct drm_crtc *crtc,
->> +				   const struct drm_crtc_state *state,
->> +				   struct drm_property *property,
->> +				   uint64_t *val)
->> +{
->> +	struct amdgpu_device *adev = drm_to_adev(crtc->dev);
->> +	struct dm_crtc_state *acrtc_state = to_dm_crtc_state(state);
->> +
->> +	if (property == adev->mode_info.regamma_tf_property)
->> +		*val = acrtc_state->regamma_tf;
->> +	else
->> +		return -EINVAL;
->> +
->> +	return 0;
->> +}
->> +#endif
->> +
->>   /* Implemented only the options currently available for the driver */
->>   static const struct drm_crtc_funcs amdgpu_dm_crtc_funcs = {
->>   	.reset = dm_crtc_reset_state,
->> @@ -317,6 +380,10 @@ static const struct drm_crtc_funcs amdgpu_dm_crtc_funcs = {
->>   #if defined(CONFIG_DEBUG_FS)
->>   	.late_register = amdgpu_dm_crtc_late_register,
->>   #endif
->> +#ifdef AMD_PRIVATE_COLOR
->> +	.atomic_set_property = amdgpu_dm_atomic_crtc_set_property,
->> +	.atomic_get_property = amdgpu_dm_atomic_crtc_get_property,
->> +#endif
->>   };
->>   
->>   static void dm_crtc_helper_disable(struct drm_crtc *crtc)
->> @@ -480,6 +547,9 @@ int amdgpu_dm_crtc_init(struct amdgpu_display_manager *dm,
->>   
->>   	drm_mode_crtc_set_gamma_size(&acrtc->base, MAX_COLOR_LEGACY_LUT_ENTRIES);
->>   
->> +#ifdef AMD_PRIVATE_COLOR
->> +	dm_crtc_additional_color_mgmt(&acrtc->base);
->> +#endif
->>   	return 0;
->>   
->>   fail:
-> 
+ drivers/gpu/drm/amd/amdkfd/kfd_events.c | 21 +++++++++++++++++++++
+ drivers/gpu/drm/amd/amdkfd/kfd_events.h |  1 +
+ include/uapi/linux/kfd_ioctl.h          | 13 +++++++++++--
+ 3 files changed, 33 insertions(+), 2 deletions(-)
+
+-- 
+2.34.1
 
