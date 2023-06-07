@@ -1,93 +1,98 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 394297254A3
-	for <lists+amd-gfx@lfdr.de>; Wed,  7 Jun 2023 08:48:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 713267254A5
+	for <lists+amd-gfx@lfdr.de>; Wed,  7 Jun 2023 08:48:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36DBB10E43B;
-	Wed,  7 Jun 2023 06:48:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA5DB10E43E;
+	Wed,  7 Jun 2023 06:48:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2077.outbound.protection.outlook.com [40.107.223.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA49D10E43B
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 Jun 2023 06:48:30 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6CB410E43D
+ for <amd-gfx@lists.freedesktop.org>; Wed,  7 Jun 2023 06:48:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YexXILMXyYqJLoqBgmYbzNEHZ6OPgRx4FQd04qJZCU+PG1vbCw/csMJmE1pnQu85F7/Ulz003838eQQ1a3DanDEN0S5xLY2eDFBKdCWF5TJjhayNpjXjsOUPZ8WBx5ZFBYPJNnAn+o2iJjRo6CdT5ibKz6Nr//r8Kz7EmHSgEBZjzy8cdHC8B4jb2J6YHVE7lA1liUZ3VoFY55kM+rhHjXORhFl1COSSvvTCWDqLimHOIFgU9vCnAFHfL9dkdRpOl7Y1mCSwQ7xytRxcGElXZT6qyz240X8vw1uWySZbipYds/SA70jKSigNk+OpIEMT92NKej3oSU4zUmQ5HmWs9g==
+ b=CdU4irZAOXvL5W3YaQqI0xg8PNTjEBtfJ4trO3M8+hNN6eJDFS3NYuCorp6LcXCQf5fXpX7B82uUSpq2PQNiIA6EHgLt8cC7WvQygKAJivVFrwxRdmorc2i2TokekJzr78zWu6Z+LJV0+p2d6+skOTs90LvenGlmhnZE4P84l5HGMg68mQwtRWi+73S3Ter+6ifOGgPj1MP+FClisHkW29Dh5Lvgn2uNfBSSZrLc+fzxKm1jd9xeaEXF/dOYf7F1kN7Ij2L/MyxS3OSx5FWbfgTde4sqiUaS2NjZXvnlcAs63f2m1j1mh7kMSO4oEu7W3cr4sC/vGRArM6MFyoQNVA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ETJ84dv3Vl1sLubdlQEwaEg2KS6Jat+J/mrZGAdgQJg=;
- b=PAFm5EYb/zynPFQpk8CfHsHSIJynvi0CaXvtGlJykCn7C2Pj9uoB/4AEiVX4bNWK3ROifBTZ0YvMju3ugSLRG/G4vyFlgnY9Ndv4L/iyv5bkigYPcWGXD4n6we96Wu+3nErIPj3ZS/tQpk0t0UWB0lALk1sZfqGWFCnzYFRW+TpZAArnZBVv1KzBajx6g1WuJ7ENjO0yMSRLeIJhhlO6Iqh1YqhWchSulptwcHWUP+1DHIu9U4eXq0Gv2IeDXKO+Qdgoc67tBmDzN5+Os25FC66Uvlgf7GDN58Jck6vTAdn4rLRK8Ny9ul3tfirY8TGziw3NYbLECWXbGLKKmB2VBw==
+ bh=hBgk/lu4s6MaX6Ztkv7iYJiXVQFb19937p60a97hru0=;
+ b=ZefIX0zrOv0ZZOuyKB592sKrUBOo4ezl0JokbW83qInGdhC9jO6Woua33R0vDUDXih+0QYsjz1lG3GA+ZWRBsVDaKZqot4U14m9oJeID0iJrgCLFuJdaRH0TUz2FjFufFaI9AzAPW/iftGUsDGFcrRfclO8oDNB8pJuCD/UcjyqMQArunv6jb8sxjKUOuk9h81zw1xhvvb61Eydr4UYboI939izrij1gBs9BPYjdy7aMLTEhiRBBdF+pa/4BW18VRYe6JR1e3lI5YRL2ZZjFuZCC+bBeJJIhYfgX8G3+RTpeXNFkZqxZcYD4p0ODhCUz01alY9wYgjN3OY4nSFnUjw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ETJ84dv3Vl1sLubdlQEwaEg2KS6Jat+J/mrZGAdgQJg=;
- b=YC6ojFgbhNn8HKV+ADo7kHVqaU7YkbgW+sssH6n3kYW1OfShS2qQztAymjcjE83Btxsi/8ACmyPERtjR9T5p7kXRYkOUjQxQAg4KdOkUEKOKg7In9Dwyi4Qe153d/Ivsyw0IS6wcPkD7eO1zNGLBEAa6XewdqwG/xONflVE/N8M=
-Received: from BN0PR03CA0024.namprd03.prod.outlook.com (2603:10b6:408:e6::29)
- by SA3PR12MB7831.namprd12.prod.outlook.com (2603:10b6:806:311::14)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=hBgk/lu4s6MaX6Ztkv7iYJiXVQFb19937p60a97hru0=;
+ b=bWrHLEBnzjjxzEb3FUBuVkRqXwQrtNF+1SGNgC1XDzSqZLaUuJfuMCQo4ml0sDFCIO0l2MmOhMa1qrTyG58PxkqJU2vN7cVdKLSSctUL7mE+yFsOeq5Te5qGwpeRW6pvpzXXUk9uZ6aBthcjUWs40TVBipoE7Nje6qRhhDx2TWs=
+Received: from DM6PR11CA0060.namprd11.prod.outlook.com (2603:10b6:5:14c::37)
+ by BY5PR12MB4179.namprd12.prod.outlook.com (2603:10b6:a03:211::8) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33; Wed, 7 Jun
- 2023 06:48:28 +0000
-Received: from BN8NAM11FT024.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:e6:cafe::64) by BN0PR03CA0024.outlook.office365.com
- (2603:10b6:408:e6::29) with Microsoft SMTP Server (version=TLS1_2,
+ 2023 06:48:30 +0000
+Received: from CY4PEPF0000EDD5.namprd03.prod.outlook.com
+ (2603:10b6:5:14c:cafe::a7) by DM6PR11CA0060.outlook.office365.com
+ (2603:10b6:5:14c::37) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33 via Frontend
- Transport; Wed, 7 Jun 2023 06:48:28 +0000
+ Transport; Wed, 7 Jun 2023 06:48:30 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT024.mail.protection.outlook.com (10.13.177.38) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6477.24 via Frontend Transport; Wed, 7 Jun 2023 06:48:27 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CY4PEPF0000EDD5.mail.protection.outlook.com (10.167.241.209) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6477.22 via Frontend Transport; Wed, 7 Jun 2023 06:48:29 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 7 Jun
- 2023 01:48:27 -0500
+ 2023 01:48:29 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 7 Jun
+ 2023 01:48:29 -0500
 Received: from stanley-test.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Wed, 7 Jun 2023 01:48:25 -0500
+ Transport; Wed, 7 Jun 2023 01:48:27 -0500
 From: Stanley.Yang <Stanley.Yang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>, <Hawking.Zhang@amd.com>,
  <Tao.Zhou1@amd.com>, <YiPeng.Chai@amd.com>, <Candice.Li@amd.com>
-Subject: [PATCH Review 3/6] drm/amdgpu: Support setting EEPROM table version
-Date: Wed, 7 Jun 2023 14:48:11 +0800
-Message-ID: <20230607064814.27226-3-Stanley.Yang@amd.com>
+Subject: [PATCH Review 4/6] drm/amdgpu: Add support EEPROM table v2.1
+Date: Wed, 7 Jun 2023 14:48:12 +0800
+Message-ID: <20230607064814.27226-4-Stanley.Yang@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20230607064814.27226-1-Stanley.Yang@amd.com>
 References: <20230607064814.27226-1-Stanley.Yang@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT024:EE_|SA3PR12MB7831:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1ca91c74-0867-4ac6-65d2-08db672332f6
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD5:EE_|BY5PR12MB4179:EE_
+X-MS-Office365-Filtering-Correlation-Id: 49512d43-ea4f-41d0-6530-08db6723342a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LG801z1V8F5o6xJ8ryAW1Tj4ofPTmd+ShDrAoVjUHMJ9fpSkPEBxqiAgPjaePqIN3AOxt9Q/jEByVG2kNyGQo8V0jSgCHop8JYKBfzXntHJvr8D1VRcfLU+yyNHabAzWWzv/IeFEpmz6/rvDcsoGCf/VVaIG94OutDa6mgl/9k2zgIUf2TjnEMzPMNfBAdYLjR6cIdBJOOsuUNAmANj9bIcWyFA09822Y+gAFrF3gdylEpteB17jssZTJDPBOY9la+GMwXZWbpmpqbABeRYDTMETj5zRH2m5tlubPiMXSiI7ha40PRFbYLyEm2ovUWDfUzCuJmcrJrss9j8pf7qF8rwTcnvYK4ZqTfHpd6mHYgcLyGBj8w55oPtpvWbJwc9pVEeurhhrEo0JaoZUEh9iGCur/vIWhqkEcwaWmxn3fUfh8hdsKPH5SHujkbG2zSqvUdeE63o14XfobN01kFSOq8sIR8ZLMSwMejAIIVMuxYEvWiX/eh/DBoIM2ZYBx3mS30pKVbxYGPWbs/fsGY4qCM/G0fpOUpWAPIxFZYv21yOlSwFH4m0dWIfHMt0+LufjrA2pluBtWvY7FQamsOhjBCNCBbVIdRhiuvbppONbfRuCuhFb88DmlJlFl2qBfjuB7go7baamdf/uUs6O+oK+a+zby6St+83uOk0JIofydaiPpunVdl+kHPxOdWwPoDVPRoz9kh5BRDSx0Y45HxQGAjaooajFupLtQz8SUqAXiLw3uwMdeSAsFRHi2tp6Hh2dY1QzNrZLqUdIPHALXu/sQQ==
+X-Microsoft-Antispam-Message-Info: k2guoM5VyTbxVtlDuy+1IiT+FcKMz4JIjDPgWLWbm4Qtfs40EvbmywL5+T3l9HSZcddNJJW+OLWTWfSfuazvgMf09c52pHEqIgvexAvlBnsWw8bIgNCOwbHkVzdTLf+86ASejABBQC66V2RqoL8FMtADNEdHR9t8+gydvJ8HOFypdF5bxm3JwrRU9WN7AudkLAQ53lTPT7hTjYe/EO7Y1q0JTTvtxUjmL7kK098fB+t/huvOjacXLDor5cyxLhcVFz8pj6ZGo6x9RmmLIxdvOEI8FJFxPmKLFiDNXN+YvRpm9d1C3GrAtIDT9UetiW3CxHtIw0afBctKCqVY6Dq6hKAOrB7YbdDbSaFJd6qpf/W3A9yEHDyoZ0HQk9Wp5pSwo4RH7aSw6YAwLpmR9PKse1kwM3ABz6gzDe44IyOSnPCRch3eTVE7ckljPMPYrmWnu+wsGD0tVuVKeudnWXKQe+0tCcqXj3Gm/xLRmDUPO/uIPOidDJa/j1ghlLpkq3c2dEX70jBTOingzfVbqLyALwXxb2gRR17GsFX8WP9rmeAbEPz92qB+bXBBfvGeDGtDzpCf9wygCUJ1K+qREiRFbkwoZvCGpBvhxNOlGNJ2VmTWnQjby6DkUYIUXf1oDNEoMXmFy78Y5gpaRObbCJ7IBnwXqzF14t4sH4gEOowvXfvSgb2e3EuCrzG7K31Fs35QlEaITVRYOig2OHWcINWc0u+ajhBvgs3NEAHBLhNsk9ZtH586UUQfF0DVE65D3f8nHEM/b9Pt4SecZXdT6/Tn9A==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(39860400002)(136003)(346002)(376002)(396003)(451199021)(46966006)(40470700004)(36840700001)(83380400001)(40460700003)(47076005)(336012)(426003)(2906002)(2616005)(36756003)(86362001)(82310400005)(356005)(81166007)(82740400003)(36860700001)(40480700001)(41300700001)(316002)(6666004)(5660300002)(8936002)(8676002)(7696005)(110136005)(478600001)(70586007)(70206006)(6636002)(4326008)(26005)(1076003)(186003)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230028)(4636009)(346002)(136003)(376002)(39860400002)(396003)(451199021)(46966006)(40470700004)(36840700001)(26005)(1076003)(186003)(2616005)(426003)(336012)(83380400001)(47076005)(36756003)(2906002)(82310400005)(30864003)(7696005)(36860700001)(8936002)(8676002)(6666004)(40480700001)(478600001)(86362001)(5660300002)(82740400003)(6636002)(40460700003)(70586007)(41300700001)(70206006)(356005)(81166007)(316002)(110136005)(4326008)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2023 06:48:27.9113 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1ca91c74-0867-4ac6-65d2-08db672332f6
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2023 06:48:29.8829 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 49512d43-ea4f-41d0-6530-08db6723342a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT024.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EDD5.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7831
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4179
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,50 +108,372 @@ Cc: "Stanley.Yang" <Stanley.Yang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add setting EEPROM table version interface for umcv8.10,
-Add EEPROM table v2.1 to UMC v8.10.
+Add ras info to EEPROM table, app can analyse device ECC
+status without GPU driver through EEPROM table ras info.
 
 Signed-off-by: Stanley.Yang <Stanley.Yang@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h | 2 ++
- drivers/gpu/drm/amd/amdgpu/umc_v8_10.c  | 6 ++++++
- 2 files changed, 8 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c       |   2 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c    | 204 ++++++++++++++++--
+ .../gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h    |  12 +-
+ 3 files changed, 203 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h
-index 86133f77a9a4..43321f57f557 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h
-@@ -59,6 +59,8 @@ struct amdgpu_umc_ras {
- 				      void *ras_error_status);
- 	void (*ecc_info_query_ras_error_address)(struct amdgpu_device *adev,
- 					void *ras_error_status);
-+	/* support different eeprom table version for different asic */
-+	void (*set_eeprom_table_version)(struct amdgpu_ras_eeprom_table_header *hdr);
- };
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+index cc0b6115e530..617a05d80b79 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+@@ -2314,7 +2314,7 @@ int amdgpu_ras_recovery_init(struct amdgpu_device *adev)
+ 	atomic_set(&con->in_recovery, 0);
+ 	con->eeprom_control.bad_channel_bitmap = 0;
  
- struct amdgpu_umc_funcs {
-diff --git a/drivers/gpu/drm/amd/amdgpu/umc_v8_10.c b/drivers/gpu/drm/amd/amdgpu/umc_v8_10.c
-index d51ae0bc36f7..46bfdee79bfd 100644
---- a/drivers/gpu/drm/amd/amdgpu/umc_v8_10.c
-+++ b/drivers/gpu/drm/amd/amdgpu/umc_v8_10.c
-@@ -444,6 +444,11 @@ static void umc_v8_10_ecc_info_query_ras_error_address(struct amdgpu_device *ade
- 		umc_v8_10_ecc_info_query_error_address, ras_error_status);
+-	max_eeprom_records_count = amdgpu_ras_eeprom_max_record_count();
++	max_eeprom_records_count = amdgpu_ras_eeprom_max_record_count(&con->eeprom_control);
+ 	amdgpu_ras_validate_threshold(adev, max_eeprom_records_count);
+ 
+ 	/* Todo: During test the SMU might fail to read the eeprom through I2C
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+index e835f68d1ebb..7f134c3b0b14 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+@@ -72,6 +72,20 @@
+ /* Bad GPU tag ‘BADG’ */
+ #define RAS_TABLE_HDR_BAD       0x42414447
+ 
++/**
++ * EEPROM Table structure v1
++ * ---------------------------------
++ * |                               |
++ * |     EEPROM TABLE HEADER       |
++ * |      ( size 20 Bytes )        |
++ * |                               |
++ * ---------------------------------
++ * |                               |
++ * |    BAD PAGE RECORD AREA       |
++ * |                               |
++ * ---------------------------------
++ */
++
+ /* Assume 2-Mbit size EEPROM and take up the whole space. */
+ #define RAS_TBL_SIZE_BYTES      (256 * 1024)
+ #define RAS_TABLE_START         0
+@@ -80,6 +94,26 @@
+ #define RAS_MAX_RECORD_COUNT    ((RAS_TBL_SIZE_BYTES - RAS_TABLE_HEADER_SIZE) \
+ 				 / RAS_TABLE_RECORD_SIZE)
+ 
++/**
++ * EEPROM Table structrue v2.1
++ * ---------------------------------
++ * |                               |
++ * |     EEPROM TABLE HEADER       |
++ * |      ( size 20 Bytes )        |
++ * |                               |
++ * ---------------------------------
++ * |                               |
++ * |     EEPROM TABLE RAS INFO     |
++ * | (available info size 4 Bytes) |
++ * |  ( reserved size 252 Bytes )  |
++ * |                               |
++ * ---------------------------------
++ * |                               |
++ * |     BAD PAGE RECORD AREA      |
++ * |                               |
++ * ---------------------------------
++ */
++
+ /* EEPROM Table V2_1 */
+ #define RAS_TABLE_V2_1_INFO_SIZE       256
+ #define RAS_TABLE_V2_1_INFO_START      RAS_TABLE_HEADER_SIZE
+@@ -242,6 +276,69 @@ static int __write_table_header(struct amdgpu_ras_eeprom_control *control)
+ 	return res;
  }
  
-+static void umc_v8_10_set_eeprom_table_version(struct amdgpu_ras_eeprom_table_header *hdr)
++static void
++__encode_table_ras_info_to_buf(struct amdgpu_ras_eeprom_table_ras_info *rai,
++			       unsigned char *buf)
 +{
-+	hdr->version = RAS_TABLE_VER_V2_1;
++	u32 *pp = (uint32_t *)buf;
++	u32 tmp;
++
++	tmp = ((uint32_t)(rai->rma_status) & 0xFF) |
++	      (((uint32_t)(rai->health_percent) << 8) & 0xFF00) |
++	      (((uint32_t)(rai->ecc_page_threshold) << 16) & 0xFFFF0000);
++	pp[0] = cpu_to_le32(tmp);
 +}
 +
- const struct amdgpu_ras_block_hw_ops umc_v8_10_ras_hw_ops = {
- 	.query_ras_error_count = umc_v8_10_query_ras_error_count,
- 	.query_ras_error_address = umc_v8_10_query_ras_error_address,
-@@ -457,4 +462,5 @@ struct amdgpu_umc_ras umc_v8_10_ras = {
- 	.query_ras_poison_mode = umc_v8_10_query_ras_poison_mode,
- 	.ecc_info_query_ras_error_count = umc_v8_10_ecc_info_query_ras_error_count,
- 	.ecc_info_query_ras_error_address = umc_v8_10_ecc_info_query_ras_error_address,
-+	.set_eeprom_table_version = umc_v8_10_set_eeprom_table_version,
- };
++static void
++__decode_table_ras_info_from_buf(struct amdgpu_ras_eeprom_table_ras_info *rai,
++				 unsigned char *buf)
++{
++	u32 *pp = (uint32_t *)buf;
++	u32 tmp;
++
++	tmp = le32_to_cpu(pp[0]);
++	rai->rma_status = tmp & 0xFF;
++	rai->health_percent = (tmp >> 8) & 0xFF;
++	rai->ecc_page_threshold = (tmp >> 16) & 0xFFFF;
++}
++
++static int __write_table_ras_info(struct amdgpu_ras_eeprom_control *control)
++{
++	struct amdgpu_device *adev = to_amdgpu_device(control);
++	u8 *buf;
++	int res;
++
++	buf = kzalloc(RAS_TABLE_V2_1_INFO_SIZE, GFP_KERNEL);
++	if (!buf) {
++		DRM_ERROR("Failed to alloc buf to write table ras info\n");
++		return -ENOMEM;
++	}
++
++	__encode_table_ras_info_to_buf(&control->tbl_rai, buf);
++
++	/* i2c may be unstable in gpu reset */
++	down_read(&adev->reset_domain->sem);
++	res = amdgpu_eeprom_write(adev->pm.ras_eeprom_i2c_bus,
++				  control->i2c_address +
++				  control->ras_info_offset,
++				  buf, RAS_TABLE_V2_1_INFO_SIZE);
++	up_read(&adev->reset_domain->sem);
++
++	if (res < 0) {
++		DRM_ERROR("Failed to write EEPROM table ras info:%d", res);
++	} else if (res < RAS_TABLE_V2_1_INFO_SIZE) {
++		DRM_ERROR("Short write:%d out of %d\n",
++			  res, RAS_TABLE_V2_1_INFO_SIZE);
++		res = -EIO;
++	} else {
++		res = 0;
++	}
++
++	kfree(buf);
++
++	return res;
++}
++
+ static u8 __calc_hdr_byte_sum(const struct amdgpu_ras_eeprom_control *control)
+ {
+ 	int ii;
+@@ -301,14 +398,27 @@ int amdgpu_ras_eeprom_reset_table(struct amdgpu_ras_eeprom_control *control)
+ 	mutex_lock(&control->ras_tbl_mutex);
+ 
+ 	hdr->header = RAS_TABLE_HDR_VAL;
+-	hdr->version = RAS_TABLE_VER_V1;
+-	hdr->first_rec_offset = RAS_RECORD_START;
+-	hdr->tbl_size = RAS_TABLE_HEADER_SIZE;
++	if (adev->umc.ras &&
++	    adev->umc.ras->set_eeprom_table_version)
++		adev->umc.ras->set_eeprom_table_version(hdr);
++	else
++		hdr->version = RAS_TABLE_VER_V1;
++
++	if (hdr->version == RAS_TABLE_VER_V2_1) {
++		hdr->first_rec_offset = RAS_RECORD_START_V2_1;
++		hdr->tbl_size = RAS_TABLE_HEADER_SIZE +
++				RAS_TABLE_V2_1_INFO_SIZE;
++	} else {
++		hdr->first_rec_offset = RAS_RECORD_START;
++		hdr->tbl_size = RAS_TABLE_HEADER_SIZE;
++	}
+ 
+ 	csum = __calc_hdr_byte_sum(control);
+ 	csum = -csum;
+ 	hdr->checksum = csum;
+ 	res = __write_table_header(control);
++	if (!res && hdr->version > RAS_TABLE_VER_V1)
++		res = __write_table_ras_info(control);
+ 
+ 	control->ras_num_recs = 0;
+ 	control->ras_fri = 0;
+@@ -587,9 +697,13 @@ amdgpu_ras_eeprom_update_header(struct amdgpu_ras_eeprom_control *control)
+ 		control->tbl_hdr.header = RAS_TABLE_HDR_BAD;
+ 	}
+ 
+-	control->tbl_hdr.version = RAS_TABLE_VER_V1;
+-	control->tbl_hdr.first_rec_offset = RAS_INDEX_TO_OFFSET(control, control->ras_fri);
+-	control->tbl_hdr.tbl_size = RAS_TABLE_HEADER_SIZE + control->ras_num_recs * RAS_TABLE_RECORD_SIZE;
++	if (control->tbl_hdr.version == RAS_TABLE_VER_V2_1)
++		control->tbl_hdr.tbl_size = RAS_TABLE_HEADER_SIZE +
++					    RAS_TABLE_V2_1_INFO_SIZE +
++					    control->ras_num_recs * RAS_TABLE_RECORD_SIZE;
++	else
++		control->tbl_hdr.tbl_size = RAS_TABLE_HEADER_SIZE +
++					    control->ras_num_recs * RAS_TABLE_RECORD_SIZE;
+ 	control->tbl_hdr.checksum = 0;
+ 
+ 	buf_size = control->ras_num_recs * RAS_TABLE_RECORD_SIZE;
+@@ -629,6 +743,8 @@ amdgpu_ras_eeprom_update_header(struct amdgpu_ras_eeprom_control *control)
+ 	csum = -csum;
+ 	control->tbl_hdr.checksum = csum;
+ 	res = __write_table_header(control);
++	if (!res && control->tbl_hdr.version > RAS_TABLE_VER_V1)
++		res = __write_table_ras_info(control);
+ Out:
+ 	kfree(buf);
+ 	return res;
+@@ -819,9 +935,12 @@ int amdgpu_ras_eeprom_read(struct amdgpu_ras_eeprom_control *control,
+ 	return res;
+ }
+ 
+-uint32_t amdgpu_ras_eeprom_max_record_count(void)
++uint32_t amdgpu_ras_eeprom_max_record_count(struct amdgpu_ras_eeprom_control *control)
+ {
+-	return RAS_MAX_RECORD_COUNT;
++	if (control->tbl_hdr.version == RAS_TABLE_VER_V2_1)
++		return RAS_MAX_RECORD_COUNT_V2_1;
++	else
++		return RAS_MAX_RECORD_COUNT;
+ }
+ 
+ static ssize_t
+@@ -1063,8 +1182,14 @@ static int __verify_ras_table_checksum(struct amdgpu_ras_eeprom_control *control
+ 	int buf_size, res;
+ 	u8  csum, *buf, *pp;
+ 
+-	buf_size = RAS_TABLE_HEADER_SIZE +
+-		control->ras_num_recs * RAS_TABLE_RECORD_SIZE;
++	if (control->tbl_hdr.version == RAS_TABLE_VER_V2_1)
++		buf_size = RAS_TABLE_HEADER_SIZE +
++			   RAS_TABLE_V2_1_INFO_SIZE +
++			   control->ras_num_recs * RAS_TABLE_RECORD_SIZE;
++	else
++		buf_size = RAS_TABLE_HEADER_SIZE +
++			   control->ras_num_recs * RAS_TABLE_RECORD_SIZE;
++
+ 	buf = kzalloc(buf_size, GFP_KERNEL);
+ 	if (!buf) {
+ 		DRM_ERROR("Out of memory checking RAS table checksum.\n");
+@@ -1092,6 +1217,39 @@ static int __verify_ras_table_checksum(struct amdgpu_ras_eeprom_control *control
+ 	return res < 0 ? res : csum;
+ }
+ 
++static int __read_table_ras_info(struct amdgpu_ras_eeprom_control *control)
++{
++	struct amdgpu_ras_eeprom_table_ras_info *rai = &control->tbl_rai;
++	struct amdgpu_device *adev = to_amdgpu_device(control);
++	unsigned char *buf;
++	int res;
++
++	buf = kzalloc(RAS_TABLE_V2_1_INFO_SIZE, GFP_KERNEL);
++	if (!buf) {
++		DRM_ERROR("Failed to alloc buf to read EEPROM table ras info\n");
++		return -ENOMEM;
++	}
++
++	/**
++	 * EEPROM table V2_1 supports ras info,
++	 * read EEPROM table ras info
++	 */
++	res = amdgpu_eeprom_read(adev->pm.ras_eeprom_i2c_bus,
++				 control->i2c_address + control->ras_info_offset,
++				 buf, RAS_TABLE_V2_1_INFO_SIZE);
++	if (res < RAS_TABLE_V2_1_INFO_SIZE) {
++		DRM_ERROR("Failed to read EEPROM table ras info, res:%d", res);
++		res = res >= 0 ? -EIO : res;
++		goto Out;
++	}
++
++	__decode_table_ras_info_from_buf(rai, buf);
++
++Out:
++	kfree(buf);
++	return res == RAS_TABLE_V2_1_INFO_SIZE ? 0 : res;
++}
++
+ int amdgpu_ras_eeprom_init(struct amdgpu_ras_eeprom_control *control,
+ 			   bool *exceed_err_limit)
+ {
+@@ -1114,8 +1272,7 @@ int amdgpu_ras_eeprom_init(struct amdgpu_ras_eeprom_control *control,
+ 		return -EINVAL;
+ 
+ 	control->ras_header_offset = RAS_HDR_START;
+-	control->ras_record_offset = RAS_RECORD_START;
+-	control->ras_max_record_count  = RAS_MAX_RECORD_COUNT;
++	control->ras_info_offset = RAS_TABLE_V2_1_INFO_START;
+ 	mutex_init(&control->ras_tbl_mutex);
+ 
+ 	/* Read the table header from EEPROM address */
+@@ -1129,12 +1286,27 @@ int amdgpu_ras_eeprom_init(struct amdgpu_ras_eeprom_control *control,
+ 
+ 	__decode_table_header_from_buf(hdr, buf);
+ 
+-	control->ras_num_recs = RAS_NUM_RECS(hdr);
++	if (hdr->version == RAS_TABLE_VER_V2_1) {
++		control->ras_num_recs = RAS_NUM_RECS_V2_1(hdr);
++		control->ras_record_offset = RAS_RECORD_START_V2_1;
++		control->ras_max_record_count = RAS_MAX_RECORD_COUNT_V2_1;
++	} else {
++		control->ras_num_recs = RAS_NUM_RECS(hdr);
++		control->ras_record_offset = RAS_RECORD_START;
++		control->ras_max_record_count = RAS_MAX_RECORD_COUNT;
++	}
+ 	control->ras_fri = RAS_OFFSET_TO_INDEX(control, hdr->first_rec_offset);
+ 
+ 	if (hdr->header == RAS_TABLE_HDR_VAL) {
+ 		DRM_DEBUG_DRIVER("Found existing EEPROM table with %d records",
+ 				 control->ras_num_recs);
++
++		if (hdr->version == RAS_TABLE_VER_V2_1) {
++			res = __read_table_ras_info(control);
++			if (res)
++				return res;
++		}
++
+ 		res = __verify_ras_table_checksum(control);
+ 		if (res)
+ 			DRM_ERROR("RAS table incorrect checksum or error:%d\n",
+@@ -1148,6 +1320,12 @@ int amdgpu_ras_eeprom_init(struct amdgpu_ras_eeprom_control *control,
+ 					ras->bad_page_cnt_threshold);
+ 	} else if (hdr->header == RAS_TABLE_HDR_BAD &&
+ 		   amdgpu_bad_page_threshold != 0) {
++		if (hdr->version == RAS_TABLE_VER_V2_1) {
++			res = __read_table_ras_info(control);
++			if (res)
++				return res;
++		}
++
+ 		res = __verify_ras_table_checksum(control);
+ 		if (res)
+ 			DRM_ERROR("RAS Table incorrect checksum or error:%d\n",
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
+index 069249249c76..3c5575c19bf8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
+@@ -46,9 +46,18 @@ struct amdgpu_ras_eeprom_table_header {
+ 	uint32_t checksum;
+ } __packed;
+ 
++struct amdgpu_ras_eeprom_table_ras_info {
++	u8  rma_status;
++	u8  health_percent;
++	u16 ecc_page_threshold;
++	u32 padding[64 - 1];
++} __packed;
++
+ struct amdgpu_ras_eeprom_control {
+ 	struct amdgpu_ras_eeprom_table_header tbl_hdr;
+ 
++	struct amdgpu_ras_eeprom_table_ras_info tbl_rai;
++
+ 	/* Base I2C EEPPROM 19-bit memory address,
+ 	 * where the table is located. For more information,
+ 	 * see top of amdgpu_eeprom.c.
+@@ -61,6 +70,7 @@ struct amdgpu_ras_eeprom_control {
+ 	 * right after the header.
+ 	 */
+ 	u32 ras_header_offset;
++	u32 ras_info_offset;
+ 	u32 ras_record_offset;
+ 
+ 	/* Number of records in the table.
+@@ -127,7 +137,7 @@ int amdgpu_ras_eeprom_read(struct amdgpu_ras_eeprom_control *control,
+ int amdgpu_ras_eeprom_append(struct amdgpu_ras_eeprom_control *control,
+ 			     struct eeprom_table_record *records, const u32 num);
+ 
+-uint32_t amdgpu_ras_eeprom_max_record_count(void);
++uint32_t amdgpu_ras_eeprom_max_record_count(struct amdgpu_ras_eeprom_control *control);
+ 
+ void amdgpu_ras_debugfs_set_ret_size(struct amdgpu_ras_eeprom_control *control);
+ 
 -- 
 2.17.1
 
