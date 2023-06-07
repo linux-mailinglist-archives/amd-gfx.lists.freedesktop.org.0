@@ -1,42 +1,37 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F455725AD9
-	for <lists+amd-gfx@lfdr.de>; Wed,  7 Jun 2023 11:42:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 851F5725B04
+	for <lists+amd-gfx@lfdr.de>; Wed,  7 Jun 2023 11:46:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F6A910E4A3;
-	Wed,  7 Jun 2023 09:42:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A56A610E4AE;
+	Wed,  7 Jun 2023 09:46:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-41103.protonmail.ch (mail-41103.protonmail.ch
- [185.70.41.103])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A72910E4A3
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 Jun 2023 09:42:18 +0000 (UTC)
-Date: Wed, 07 Jun 2023 09:42:09 +0000
-Authentication-Results: mail-41103.protonmail.ch;
- dkim=pass (2048-bit key) header.d=emersion.fr header.i=@emersion.fr
- header.b="n9FCFcjD"
+Received: from mail-4317.proton.ch (mail-4317.proton.ch [185.70.43.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5918210E4A7;
+ Wed,  7 Jun 2023 09:46:38 +0000 (UTC)
+Date: Wed, 07 Jun 2023 09:46:24 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail; t=1686130930; x=1686390130;
- bh=x67qiGvM7KF/tVDJArPKY6A/o4dTYbNV/diGB4MoJZc=;
+ s=protonmail; t=1686131196; x=1686390396;
+ bh=cJbxiYRG4+GDcR8+bOjwETCgvvOXEPXxSJzUF6F0cAY=;
  h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
  Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
  Message-ID:BIMI-Selector;
- b=n9FCFcjDZ7g+9sUCei3+ZvtWnyt067z3yEXebQyeXqzSWd9hQn6oUMYEHceS93AK0
- 1ew03GwyLTCSHBxDcRnOEY+1Xo89r5QSuv0Kvkk/tQlnV88B6WISxlnMNN+kLBIQqk
- GSd/gSVac8Js+4VQ8MAq+02UgUZnAqSU2A4jruYcBj8oe9M/gVe7u2M/etoViDVWc7
- XEmCV+1xRuNsbVkCEVERbwSaVPnoYJP05u6rWsLkCDrYhhQOEM5MakmPSeSemA7Yw/
- ZtDd9xWYvp8IqCD7tv1zPLY71mqUjg75yWk2a8jbUNh7sgAKeJ+fto8p1grEDrvZaj
- qWcRsESgK2BqQ==
+ b=ZNd+UkS+c647LbF7iWHUUUgB5TnstAL29F0rlapzMyMnpVntgTYW3vdPKi1xDU+gh
+ 2ZddtVx+tDbLuR+pzqALzWR5hD2G62AGg15g41Kh/Cwo0t2F2WxBthN2O9zPmSjKon
+ Xq+zhr6+2Pt6K+T8EC9m4lRn0rNu/H2NazMlvYPs6U/KbCLcLEJDTiF0DBDQz8Tzlt
+ uW8pWgg+GWlpLGFVEl2bCC3iakRKF06lwRiaFw21+Quy+eq91t3yuvgCqjxizxgM9w
+ 4J4TTFA/K7er+O7wOUa09kSRWNZFWVn4mRMfXZZ51oYTtbADFGBYOPYi/vu2xNMx+3
+ NCxNKAAbDBJoA==
 To: Harry Wentland <harry.wentland@amd.com>
 From: Simon Ser <contact@emersion.fr>
-Subject: Re: [PATCH v5 06/13] drm/connector: Allow drivers to pass list of
- supported colorspaces
-Message-ID: <TKjxspHl8aKZqasklhnRL_RQzlhqrRD35JBIOw2HEBPECtg6OrM4wY6-wF1GStScWVtiur3N76vNTgr2cr1hWgxkVIW_o-WIpiIWN9IvH1s=@emersion.fr>
-In-Reply-To: <20230606202607.122914-7-harry.wentland@amd.com>
+Subject: Re: [PATCH v5 04/13] drm/connector: Use common colorspace_names array
+Message-ID: <FZ35H51NfkJ9AW7308J3UnZV4tkbehUMp-hAeohZT0-sfWYnsNEHFSa3VHD07WcisBW3-6yhcbCG-D_qfOCi1VKQGGFj5T0ed4Mjhm0kkvQ=@emersion.fr>
+In-Reply-To: <20230606202607.122914-5-harry.wentland@amd.com>
 References: <20230606202607.122914-1-harry.wentland@amd.com>
- <20230606202607.122914-7-harry.wentland@amd.com>
+ <20230606202607.122914-5-harry.wentland@amd.com>
 Feedback-ID: 1358184:user:proton
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
@@ -62,19 +57,18 @@ Cc: Jani Nikula <jani.nikula@linux.intel.com>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tuesday, June 6th, 2023 at 22:26, Harry Wentland <harry.wentland@amd.com=
+On Tuesday, June 6th, 2023 at 22:25, Harry Wentland <harry.wentland@amd.com=
 > wrote:
 
-> -int drm_mode_create_hdmi_colorspace_property(struct drm_connector *conne=
-ctor)
-> +int drm_mode_create_hdmi_colorspace_property(struct drm_connector *conne=
-ctor,
-> +=09=09=09=09=09     u32 supported_colorspaces)
->  {
-> -=09return drm_mode_create_colorspace_property(connector, hdmi_colorspace=
-s);
-> +=09u32 colorspaces =3D supported_colorspaces & hdmi_colorspaces;
+> +=09=09if (supported_colorspaces !=3D 0 && (colorspaces & BIT(i)) =3D=3D =
+0)
 
-This creates a potentially weird situation where the driver passes a
-non-0 supported_colorspaces, but the intersection with hdmi_colorspaces
-ends up being empty, and all colorspaces end up being advertised.
+This patch actually also introduces a change in behavior: passing no
+colorspace will make the function advertise all colorspaces. I have a
+hard time understanding how this can be useful: we want to either
+advertise all DP colorspaces, or all HDMI colorspaces, but not both?
+
+One way to fix this would be to handle the "zero means everything"
+behavior in the specific DP/HDMI callers. But I wonder, is it really
+worth the magic if we can expose a simple const variable with all
+DP/HDMI colorspaces?
