@@ -2,58 +2,116 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 286997299A7
-	for <lists+amd-gfx@lfdr.de>; Fri,  9 Jun 2023 14:22:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD43A729BA8
+	for <lists+amd-gfx@lfdr.de>; Fri,  9 Jun 2023 15:33:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2435610E25B;
-	Fri,  9 Jun 2023 12:22:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4715110E009;
+	Fri,  9 Jun 2023 13:33:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8437B10E25B;
- Fri,  9 Jun 2023 12:22:22 +0000 (UTC)
-Received: from loongson.cn (unknown [10.20.42.43])
- by gateway (Coremail) with SMTP id _____8Bxa+p8GYNk_xUBAA--.3213S3;
- Fri, 09 Jun 2023 20:22:20 +0800 (CST)
-Received: from [10.20.42.43] (unknown [10.20.42.43])
- by localhost.localdomain (Coremail) with SMTP id
- AQAAf8CxReR6GYNkDyELAA--.33801S3; 
- Fri, 09 Jun 2023 20:22:18 +0800 (CST)
-Message-ID: <8e7fe36d-0d0d-bab4-9ace-a738d7a48111@loongson.cn>
-Date: Fri, 9 Jun 2023 20:22:18 +0800
-MIME-Version: 1.0
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2083.outbound.protection.outlook.com [40.107.237.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6B3F10E009
+ for <amd-gfx@lists.freedesktop.org>; Fri,  9 Jun 2023 13:33:00 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lI/it600ACvd6cck8RNUKZNWnJwt0ZdHiIF6AVn+nQsJatIJ7ToF+gIjZ67Vh00oqdk42D9tq5ZQ9CHyj1oZqwvgRn+5un/koTGf1xL8SBKHnnUm0GMDYXOfEDz7GLE6fW870NLLw7KU8qG0Igca1pbscWwVL6iGQiOkYw1I98r+pD89klJfMZg7YckxJSdwzaWTIdZ36rlLZBy2biGliTUSClbbqqSiI1r6A32jGqK4aVtGTYSYNxHkC8QpNpiEJ8BT6zf1Iq2GvPQ+GiTIZ/8ZAESXga+KbZ3EYXWbYG7j0DR6c12VHYyZNJmg8tDGSXGhrnn2/8oP1AfE17X0Ng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EeKJv1iDJhXQIvWB9kCvgZ9L+bxugBFYII/SUYVnv04=;
+ b=JADTOlIF7OVFpjvGaNQW7YGnWsjej2Fnaxi3OL6kp0rXmSwa0zcH4MxZx+NodCiwk2MaBcmR3/gi4/831LT927TA7Vd9NVgGCKpcWX6lBe4RqJ4Jkz8VkoMuJnteGMVL+s4svFc5czMeWr49JOnTKPXRZwUcMn82wzScbMMqy/z8Mh0Q3dC1Tss/np+xkQDCa2xsmOWbZ5QC+VPsfDttHbHRyZLNkV7mFksxv/swYwVgnhzFlIIX0dbkd20rkn9/EZfu36tt2HJ+R8ZnEVImhTMstosQL2G0B6BjeItRRivldif5HALFDGwlbcEvVXnn/3uiuXGjwNJ+dhKW3r6Y3g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EeKJv1iDJhXQIvWB9kCvgZ9L+bxugBFYII/SUYVnv04=;
+ b=dwOMCdLlaHgAVAbGpYtu/7S6g7jhMgwdH/2YCrF6u0hbiLpgeelvOPDb/pbl4JOsaeIwUZ8/lfL5btXEXwjxASsvGZb1AntuUnxbA/2dBda36hKKX67nAqnRLF769lO/m+TwjYFDhgZ3OlfoMYHv05hfgH6WcySER46e7Hrhw5g=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM4PR12MB5149.namprd12.prod.outlook.com (2603:10b6:5:390::14)
+ by SJ2PR12MB8737.namprd12.prod.outlook.com (2603:10b6:a03:545::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.32; Fri, 9 Jun
+ 2023 13:32:57 +0000
+Received: from DM4PR12MB5149.namprd12.prod.outlook.com
+ ([fe80::4469:e2f0:3628:49f6]) by DM4PR12MB5149.namprd12.prod.outlook.com
+ ([fe80::4469:e2f0:3628:49f6%4]) with mapi id 15.20.6477.016; Fri, 9 Jun 2023
+ 13:32:57 +0000
+Message-ID: <3633a37c-f9d5-c797-72a5-7ab584277ab3@amd.com>
+Date: Fri, 9 Jun 2023 09:32:54 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [Intel-gfx] [PATCH v3 3/4] PCI/VGA: only deal with VGA class
- devices
-To: Bjorn Helgaas <helgaas@kernel.org>, Sui Jingfeng <15330273260@189.cn>
-References: <20230608191221.GA1209912@bhelgaas>
-Content-Language: en-US
-From: Sui Jingfeng <suijingfeng@loongson.cn>
-Organization: Loongson
-In-Reply-To: <20230608191221.GA1209912@bhelgaas>
+Subject: Re: [RFC] drm/amdgpu: flush gpu tlb using sdma ring
+Content-Language: en-CA
+To: Shashank Sharma <shashank.sharma@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20230609100257.900-1-shashank.sharma@amd.com>
+From: Philip Yang <yangp@amd.com>
+In-Reply-To: <20230609100257.900-1-shashank.sharma@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxReR6GYNkDyELAA--.33801S3
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/
-X-Coremail-Antispam: 1Uk129KBj93XoWxtFyUWw4rAr48JFykGFykZwc_yoW7ZF4Dpa
- yrGayfKrWkWF17Cryav3WUZFy5u39Yya4fKr4Ykw1YkanxCryFqFyrKrW5A3W7JrZrGF10
- vFWUt3W7Wa1qqagCm3ZEXasCq-sJn29KB7ZKAUJUUUU3529EdanIXcx71UUUUU7KY7ZEXa
- sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
- 0xBIdaVrnRJUUUPlb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
- IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
- e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
- 0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
- xVWxJr0_GcWln4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
- xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r12
- 6r1DMcIj6I8E87Iv67AKxVW8Jr0_Cr1UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwI
- xGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAK
- I48JMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E5I8CrV
- AFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWrXVW8Jr1l
- IxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxV
- AFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4U
- JVWxJr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIdaVFxhVjvjDU0xZFpf9x07
- jhl19UUUUU=
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: YQZPR01CA0106.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:83::18) To DM4PR12MB5149.namprd12.prod.outlook.com
+ (2603:10b6:5:390::14)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5149:EE_|SJ2PR12MB8737:EE_
+X-MS-Office365-Filtering-Correlation-Id: 78b763dd-ef47-41f7-4b5e-08db68ee097d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: xifUx5aHtNqzMkYIwmYSad20KdkC4WeB5ElBk+WzRbGqnRTyHMaze4ptNFl9RRVyU1Bb1yCHuH7U0NLgceaGlVOYx/aM2Oo+ZZsWWzsCtK2InXxEcX2cgvaPtlILX5vaTrrwHm2t+YfRvN/Qjhyvb1eBW0b+jKCmEL2NtVFzSf1f4OPHK5zptCAid37oX8EkoyBquCZmsMA2YjiAHiGg14UEYiwHvcRf6jyeAFdZttWrF5gBkQHnbxhvnirlYlLQ1Lo/Mavq3GChzjz0X+2he4TJe7s5r4H7xyQD33gdzd7t9IKyOwP/wtjDtTDG3PH1oJGl6LMmNDdz5+5SUOiviT3dhY10au+eCBd1yOxmayUmogf4PcFI8hu8C7ZRteV6WNDAz755M6GVMfuIE9ABDfuh34J21up7Yp5RKSOGp/cZ83TQCdN8mLZJcwoJTEsFXzQxw0QDN75V73vr3xLho9Quj+VHbukQLP0iQrRRAzhT044D0E9zD94rPph/ivYa5vO3aZ+n7Tqo/YkjGFB8m/QV1kKmD4bnR+qekNLFgdv2goyQBdknP0fHBOwLGe8oQFrwlaNB7spIm0SoaVQTk9yGgoEJ5EMWDIciSS0M7n3gMdSFZ6JKLfVRqNnrp/38hB5JVf1FBk0T2EQkWe3U1g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5149.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(366004)(346002)(376002)(136003)(39860400002)(396003)(451199021)(2616005)(478600001)(6666004)(66946007)(38100700002)(316002)(41300700001)(4326008)(8676002)(66556008)(8936002)(66476007)(6486002)(83380400001)(186003)(6506007)(53546011)(6512007)(26005)(5660300002)(2906002)(31696002)(36756003)(31686004)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eEZYdm12NVZrZU1kMG5DbzA3Zyt5V0dvMXJHTFlQZGhuZ2RCZHJCczhtellu?=
+ =?utf-8?B?bHRnTVIwY2lXQW9jd0wwZTdlcDFLRWlUcFRqS0JQbStMbWNuZTVKZzdLQkR3?=
+ =?utf-8?B?OXZSMjFhc1RPZlhRR2JwNnNTMEpRQlEzc1F0Q2FEbUhneHdKK1I2WlVIQzFV?=
+ =?utf-8?B?TkliTGcydTV5MTVvTnNPYVFJNVk0dFRvNlk3NGYvOGFrSkZsa1FQU2ppN2JL?=
+ =?utf-8?B?U1Z4SGFvWDRzM1RQRzFXbEdja0xKc21RenRKQndxT2t2OWVuSHFqMVYrZzNa?=
+ =?utf-8?B?R2EzSWxTMXh0S1Jmdm1pWDhtYkZZUVdHcmdmZ2dTOWNwL0JmMGxxUVh3TGFz?=
+ =?utf-8?B?UkZmbG9NbStTRTUzOHRGcy9IcitRSHNPY2o2TVFOeUJHRGdudWUzZUVtNnVm?=
+ =?utf-8?B?QURzcnNEWFVqYUhHeHY5dXpRVkJBZk1pSUFWa0xtL1JkUHMzQnI2aFQrc2Uv?=
+ =?utf-8?B?SU9WN0tCYmhUNThQYWdWckN3WmdBcVVmdG51WktxSGJ5NjdiUzRuY2lJWGNI?=
+ =?utf-8?B?a0p2VVBWUlNmb055QkRIaHZWaVJldEM3cHQzdVZuOWZzVjhiTnN5NW96dXp4?=
+ =?utf-8?B?SGVZMUVPKzg3NUVuSHd2YXVYMXc5VDg2bXhyRlR3b1JmS3JCTjVSMmJaWDJO?=
+ =?utf-8?B?VmQ1ek5uVTNUamV1SU5QbHpJa2lrVU1nVXJaNExPekpydkVJMDJja1lGSnNi?=
+ =?utf-8?B?eXRXR2tOOG83cnVkS1ltMitCMDRSd0ZTb3FPTjdHQ0p4bkpEQjVIWjlhWjNJ?=
+ =?utf-8?B?bWlzSnFFdVNUMk5MZ2hYMUg1b3hxbzBkV1BhUjNvb1hiS3UyVmZYa3B1R2Q0?=
+ =?utf-8?B?TFA0MktIazJySkVtNSsraWw4ZW9FSHlVV2RWVUpWei9HS1dxWEs2NCt5TWps?=
+ =?utf-8?B?VmNkUVIxQVViWEpURFM0UkdVTmNMTXBXZS9FTUxldTlvMkVxWXh0dVpobThV?=
+ =?utf-8?B?S0ZvZGRMQXJnZlpkZGVYUTJqTC9IN2VXN3RWNHZ6eVRqUmhtcnhxRk0rQTgv?=
+ =?utf-8?B?TmxIRnc5azBRQ1FaOVR0NjFrVVdMZkdLa21ZTlZtOFlqOXowc3FVdkNxWUcz?=
+ =?utf-8?B?S3dWbTR3TTc2alpsMmRQNHNoa29scExWUUgzbWxXUWdERGJRR01PT0JXdU41?=
+ =?utf-8?B?QnI5dnFMRVRHM25aWHhIM1hsRVFoMGFnYTVnUEhnTTJpc0ozaVFkNUxodlJw?=
+ =?utf-8?B?NE1aRVhreUlzQ1l6VlNEOE8xc3JISFQzQzI3NGtJM3lWZ1RlZjJVZ0ZrM0Nr?=
+ =?utf-8?B?cFdEUDhxdDdRZXRYVUY3T3libmZUZVVRRURIUjdjTm85ZFF6TkFmcjExVzhE?=
+ =?utf-8?B?aGVNcFZ2RTlxK0pVUk9WRGgxYS9ET1RzanA1NGZIcjQ1d3F0UEVXclVta3h2?=
+ =?utf-8?B?dlpva0V2ZzNyRXVaMVF1cHNkcGtPc1hRcDFoSFRwbXFURDQ0cmg0d0ZweEVH?=
+ =?utf-8?B?WXMvRUdFeEZoQ29vY1pNenRNZEliQWl5TmNhUk9CaWVMOVpKazdTS0pENDJY?=
+ =?utf-8?B?MUppcjhwUTVTR2hnMDhVd0JOdUg0VGpicGo0M3RQZThDZFNRUzAxNENLVXVT?=
+ =?utf-8?B?VnA2VDZsNFV4NDFZZ0U5WTFEczl3c0dCWndpK0UzM0NraUpHN0ozcGVvdUJ0?=
+ =?utf-8?B?TFgwSWtVeXl2dWU3dEFXaDRsRHJsRUVwWVFETVVyTXNhWG9TZnV5MFZJV3E1?=
+ =?utf-8?B?cDdISGU3ckQrWFhkMk56Y2h2bTE5cU4xUWVDbGdGNUF1QVdYRXRCVlhSME5j?=
+ =?utf-8?B?WU5WRSttVXh2Z21RL2NYbFkrZTRyVkFIQ1FXUklPR2RDQ01LdUViaXAyUmpp?=
+ =?utf-8?B?WFI4SGU5ck9yN2MvMzVidFk2SDY3OHU2N08wOFY5cVgrb05hY21VZFN2UExY?=
+ =?utf-8?B?TFZTbEhBU0ZxWWVtMng5Z3g4ZDhLUjlHVEYvTVdhcU1oeDNTbUJ2YTdoekZG?=
+ =?utf-8?B?ZDRzYVFUMUhUVnBXNTg1M1FpVHM3Q3pybkVFSE04aWFwaTJuMEpLZE9xdmV6?=
+ =?utf-8?B?VmQvYVVFR0NTdmxtTkZtOE1kWGcrM01QRml1ZTFBZVJWUUFEdzA4dktrdnQw?=
+ =?utf-8?B?OUtDQVpzbE13YjUxNjAxT2h1dkcwbzVrU2JPOU53R25zUzgxVExET0lpWjg5?=
+ =?utf-8?Q?OBUc=3D?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 78b763dd-ef47-41f7-4b5e-08db68ee097d
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5149.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2023 13:32:57.5147 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vlCR166R33J+44mHb2bh+QgO6Uw0yjm+Jl2L5RLms8UW3NagbHU/h/5G4exbkvae
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8737
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,222 +123,161 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- Karol Herbst <kherbst@redhat.com>, nouveau@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, YiPeng Chai <YiPeng.Chai@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- David Airlie <airlied@gmail.com>,
- Ville Syrjala <ville.syrjala@linux.intel.com>, Yi Liu <yi.l.liu@intel.com>,
- kvm@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Jason Gunthorpe <jgg@ziepe.ca>, Ben Skeggs <bskeggs@redhat.com>,
- linux-pci@vger.kernel.org, Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- Kevin Tian <kevin.tian@intel.com>, Lijo Lazar <lijo.lazar@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>, Bokun Zhang <Bokun.Zhang@amd.com>,
- intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, loongson-kernel@lists.loongnix.cn,
- Alex Williamson <alex.williamson@redhat.com>,
- Abhishek Sahu <abhsahu@nvidia.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Yishai Hadas <yishaih@nvidia.com>, Li Yi <liyi@loongson.cn>,
- Pan Xinhui <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- Thomas Zimmermann <tzimmermann@suse.de>, Cornelia Huck <cohuck@redhat.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian Konig <christian.koenig@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: felix.kuehling@amd.com, Amaranath.Somalapuram@amd.com,
+ Christian Koenig <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
 
-On 2023/6/9 03:12, Bjorn Helgaas wrote:
-> Start with verb and capitalize to match ("Deal only with ...")
+On 2023-06-09 06:02, Shashank Sharma wrote:
+> This RFC patch moves the code to flush TLB using SDMA ring to
+> a different place like a separate function. The idea is that
+> KFD/KGD code should be able to flush GPU TLB using SDMA if they
+> want to.
 >
-> On Thu, Jun 08, 2023 at 07:43:21PM +0800, Sui Jingfeng wrote:
->> From: Sui Jingfeng <suijingfeng@loongson.cn>
->>
->> vgaarb only deal with the VGA devcie(pdev->class == 0x0300), so replace the
->> pci_get_subsys() function with pci_get_class(). Filter the non pci display
->> device out. There no need to process the non display PCI device.
-> s/non pci/non-PCI/
-> s/non display/non-display/
+> Cc: Christian Koenig <christian.koenig@amd.com>
+> Signed-off-by: Shashank Sharma <shashank.sharma@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c | 41 ++++++++++++++++++++++++
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h |  1 +
+>   drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c   | 36 +++++----------------
+>   3 files changed, 50 insertions(+), 28 deletions(-)
 >
-> This is fine, and I'll merge this, but someday I would like to get rid
-> of the bus_register_notifier() and call vga_arbiter_add_pci_device()
-> and vga_arbiter_del_pci_device() directly from the PCI core.
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
+> index 231ca06bc9c7..20a5dad32bfc 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c
+> @@ -30,6 +30,47 @@
+>   /* SDMA CSA reside in the 3rd page of CSA */
+>   #define AMDGPU_CSA_SDMA_OFFSET (4096 * 2)
+>   
+> +/**
+> + * amdgpu_sdma_flush_tlb - flush gpu TLB using SDMA ring
+> + *
+> + * @adev: amdgpu device pointer
+> + *
+> + * return: returns dma fence which must be put by caller
+> + *
+> + * The SDMA on Navi has a bug which can theoretically result in memory
+> + * corruption if an invalidation happens at the same time as an VA
+> + * translation. Avoid this by doing the invalidation from the SDMA
+> + * itself.
+> + */
+> +struct dma_fence *amdgpu_sdma_flush_tlb(struct amdgpu_device *adev)
+> +{
+> +	int r;
+> +	struct dma_fence *fence;
+> +	struct amdgpu_job *job;
+> +	struct amdgpu_ring *ring = adev->mman.buffer_funcs_ring;
+> +
+> +	mutex_lock(&adev->mman.gtt_window_lock);
 
-Nice idea!
+gtt_window_lock is for GART copy buffer/window sharing, here we use copy 
+ring but don't use copy buffer, and ring ib sa and job submit has 
+spinlock, so I think gtt_window_lock is not needed.
 
+gtt_window_lock should be removed from gmc_v10_0_flush_gpu_tlb too.
 
-But I'm wondering there are traps in this.
+Regards,
 
-The pci_notifier in vgaarb.c is still need on Mips platform.
+Philip
 
-Because of loading order problems.
-
-On MIPS system, PCI devices are enumerated by pcibios_init(),
-
-which runs after vga_arb_device_init(). This is true until now.
-
-When vga_arb_device_init() function get called, it will capture nothing.
-
-On that time, the system have no PCI device enumerated.
-
-Because of this, there are various problems in the past.
-
-This is the reason we still need the notifier,
-
-we need a way to capture the PCI display device after vgaarb already 
-loaded(finished).
-
-
-On complex case, there are ASpeed BMC, loongson integrated display 
-controller,
-
-and radeon discrete video card co-exist on Loongson 3B4000 server.
-
-I have fixed various bug at our downstream(linux-4.19) environment.
-
-
-I have fixed a bug on downstream involved with aspeed bmc, by workaround[1].
-
-Chen Huacai grabbing my patch[1] and rewrite it, submit together with 
-him-self's.
-
-Its fine,  but those patch still look paleness in the front of Loongson 
-integrated display controller.
-
-Loongson integrated display controller don't has a dedicated VRAM bar.
-
-vga_is_firmware_default() will lose its effectiveness then.
-
-This is the reason we reveal our patch(0004 in this series) to face 
-upstream.
-
-Its not only for loongson integrated display controller through.
-
-Its not uncommon that ARM servers have A aspeed BMC and discrete amdgpu 
-or old radeon card.
-
-Let the device drivers gave us a hint probably can help to resolve 
-multi-video card co-exist
-
-problem.
-
-Consider that sometime user want to use integrate gpu, sometime user 
-want to use discrete gpu.
-
-Also, during driver developing(or debugging),
-
-driver writer may want override the default boot device.
-
-
-vgaarb probable shouldn't make the decision
-
-without giving the device driver a chance to override.
-
-
-Beside,  vga_is_firmware_default() only apply for PCI display device.
-
-On ARM64 system, there are a lot of platform device.
-
-If we move this function back to the device driver,
-
-it probably applicable for a platform display controller + one/two PCI 
-display devices case.
-
-
-We find a method at downstream during we get efifb works LoongArch platform.
-
-We can utilize the screen_info, screen_info say where's the firmware 
-framebuffer is located at.
-
-Drivers for specific hardware platform perhaps know more clearly than 
-vgaarb.
-
-if it is the default boot device.
-
-
-[1] 
-https://lore.kernel.org/all/20210514080025.1828197-6-chenhuacai@loongson.cn/
-
-> Or if you wanted to do that now, that would be even better :)
->
-> Bjorn
->
->> Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
->> ---
->>   drivers/pci/vgaarb.c | 22 ++++++++++++----------
->>   1 file changed, 12 insertions(+), 10 deletions(-)
->>
->> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
->> index 7f0347f4f6fd..b0bf4952a95d 100644
->> --- a/drivers/pci/vgaarb.c
->> +++ b/drivers/pci/vgaarb.c
->> @@ -756,10 +756,6 @@ static bool vga_arbiter_add_pci_device(struct pci_dev *pdev)
->>   	struct pci_dev *bridge;
->>   	u16 cmd;
->>   
->> -	/* Only deal with VGA class devices */
->> -	if ((pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
->> -		return false;
->> -
->>   	/* Allocate structure */
->>   	vgadev = kzalloc(sizeof(struct vga_device), GFP_KERNEL);
->>   	if (vgadev == NULL) {
->> @@ -1499,7 +1495,9 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
->>   	struct pci_dev *pdev = to_pci_dev(dev);
->>   	bool notify = false;
->>   
->> -	vgaarb_dbg(dev, "%s\n", __func__);
->> +	/* Only deal with VGA class devices */
->> +	if ((pdev->class >> 8) != PCI_CLASS_DISPLAY_VGA)
->> +		return 0;
->>   
->>   	/* For now we're only intereted in devices added and removed. I didn't
->>   	 * test this thing here, so someone needs to double check for the
->> @@ -1509,6 +1507,8 @@ static int pci_notify(struct notifier_block *nb, unsigned long action,
->>   	else if (action == BUS_NOTIFY_DEL_DEVICE)
->>   		notify = vga_arbiter_del_pci_device(pdev);
->>   
->> +	vgaarb_dbg(dev, "%s: action = %lu\n", __func__, action);
->> +
->>   	if (notify)
->>   		vga_arbiter_notify_clients();
->>   	return 0;
->> @@ -1533,8 +1533,8 @@ static struct miscdevice vga_arb_device = {
->>   
->>   static int __init vga_arb_device_init(void)
->>   {
->> +	struct pci_dev *pdev = NULL;
->>   	int rc;
->> -	struct pci_dev *pdev;
->>   
->>   	rc = misc_register(&vga_arb_device);
->>   	if (rc < 0)
->> @@ -1545,11 +1545,13 @@ static int __init vga_arb_device_init(void)
->>   	/* We add all PCI devices satisfying VGA class in the arbiter by
->>   	 * default
->>   	 */
->> -	pdev = NULL;
->> -	while ((pdev =
->> -		pci_get_subsys(PCI_ANY_ID, PCI_ANY_ID, PCI_ANY_ID,
->> -			       PCI_ANY_ID, pdev)) != NULL)
->> +	while (1) {
->> +		pdev = pci_get_class(PCI_CLASS_DISPLAY_VGA << 8, pdev);
->> +		if (!pdev)
->> +			break;
->> +
->>   		vga_arbiter_add_pci_device(pdev);
->> +	};
->>   
->>   	pr_info("loaded\n");
->>   	return rc;
->> -- 
->> 2.25.1
->>
--- 
-Jingfeng
-
+> +	r = amdgpu_job_alloc_with_ib(ring->adev, &adev->mman.entity,
+> +				     AMDGPU_FENCE_OWNER_UNDEFINED,
+> +				     16 * 4, AMDGPU_IB_POOL_IMMEDIATE,
+> +				     &job);
+> +	if (r)
+> +		goto error_alloc;
+> +
+> +	job->vm_pd_addr = amdgpu_gmc_pd_addr(adev->gart.bo);
+> +	job->vm_needs_flush = true;
+> +	job->ibs->ptr[job->ibs->length_dw++] = ring->funcs->nop;
+> +	amdgpu_ring_pad_ib(ring, &job->ibs[0]);
+> +	fence = amdgpu_job_submit(job);
+> +
+> +	mutex_unlock(&adev->mman.gtt_window_lock);
+> +	return fence;
+> +
+> +error_alloc:
+> +	mutex_unlock(&adev->mman.gtt_window_lock);
+> +	return NULL;
+> +}
+> +
+>   /*
+>    * GPU SDMA IP block helpers function.
+>    */
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
+> index fc8528812598..c895948f6e82 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h
+> @@ -130,5 +130,6 @@ void amdgpu_sdma_destroy_inst_ctx(struct amdgpu_device *adev,
+>           bool duplicate);
+>   void amdgpu_sdma_unset_buffer_funcs_helper(struct amdgpu_device *adev);
+>   int amdgpu_sdma_ras_sw_init(struct amdgpu_device *adev);
+> +struct dma_fence *amdgpu_sdma_flush_tlb(struct amdgpu_device *adev);
+>   
+>   #endif
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+> index ab2556ca984e..0bfaee00a838 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+> @@ -52,6 +52,7 @@
+>   #include "athub_v2_1.h"
+>   
+>   #include "amdgpu_reset.h"
+> +#include "amdgpu_sdma.h"
+>   
+>   #if 0
+>   static const struct soc15_reg_golden golden_settings_navi10_hdp[] =
+> @@ -333,9 +334,6 @@ static void gmc_v10_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
+>   {
+>   	struct amdgpu_ring *ring = adev->mman.buffer_funcs_ring;
+>   	struct dma_fence *fence;
+> -	struct amdgpu_job *job;
+> -
+> -	int r;
+>   
+>   	/* flush hdp cache */
+>   	adev->hdp.funcs->flush_hdp(adev, NULL);
+> @@ -378,34 +376,16 @@ static void gmc_v10_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
+>   		return;
+>   	}
+>   
+> -	/* The SDMA on Navi has a bug which can theoretically result in memory
+> -	 * corruption if an invalidation happens at the same time as an VA
+> -	 * translation. Avoid this by doing the invalidation from the SDMA
+> -	 * itself.
+> -	 */
+> -	r = amdgpu_job_alloc_with_ib(ring->adev, &adev->mman.entity,
+> -				     AMDGPU_FENCE_OWNER_UNDEFINED,
+> -				     16 * 4, AMDGPU_IB_POOL_IMMEDIATE,
+> -				     &job);
+> -	if (r)
+> -		goto error_alloc;
+> -
+> -	job->vm_pd_addr = amdgpu_gmc_pd_addr(adev->gart.bo);
+> -	job->vm_needs_flush = true;
+> -	job->ibs->ptr[job->ibs->length_dw++] = ring->funcs->nop;
+> -	amdgpu_ring_pad_ib(ring, &job->ibs[0]);
+> -	fence = amdgpu_job_submit(job);
+> -
+>   	mutex_unlock(&adev->mman.gtt_window_lock);
+>   
+> -	dma_fence_wait(fence, false);
+> -	dma_fence_put(fence);
+> -
+> -	return;
+> +	fence = amdgpu_sdma_flush_tlb(adev);
+> +	if (fence) {
+> +		dma_fence_wait(fence, false);
+> +		dma_fence_put(fence);
+> +		return;
+> +	}
+>   
+> -error_alloc:
+> -	mutex_unlock(&adev->mman.gtt_window_lock);
+> -	DRM_ERROR("Error flushing GPU TLB using the SDMA (%d)!\n", r);
+> +	DRM_ERROR("Error flushing GPU TLB using the SDMA !\n");
+>   }
+>   
+>   /**
