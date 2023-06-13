@@ -1,43 +1,44 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F16D772E6AE
-	for <lists+amd-gfx@lfdr.de>; Tue, 13 Jun 2023 17:07:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2432872E772
+	for <lists+amd-gfx@lfdr.de>; Tue, 13 Jun 2023 17:39:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3883A10E39D;
-	Tue, 13 Jun 2023 15:07:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C0D910E021;
+	Tue, 13 Jun 2023 15:39:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam02on2074.outbound.protection.outlook.com [40.107.96.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59E2D10E3B2
- for <amd-gfx@lists.freedesktop.org>; Tue, 13 Jun 2023 15:07:50 +0000 (UTC)
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2062c.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e8d::62c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54B0810E021
+ for <amd-gfx@lists.freedesktop.org>; Tue, 13 Jun 2023 15:39:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=d6ty4SGINefunn14JzH2dNY6bFXYcXfjCRsHRRwQGztktssqZ0mAoDzUYSHYtJ97PXLoBeu5SCr5MjJjyoemoPQoaoL5CtoCVeFy+mCHd8cXpZUvmjPI6vVHULCnW9zPPR4Ok2XfLRbKnDepi40R4858EnWAMMkdMn8rTeJKa8xhh0VB3d/0xgzoh+6KFMS4Ze+ak3K/fNjryuidW6bqFUabkSyZ9U8QgyUgZboOhLGLBJb9vShFEJadtpy4dnUz79hHerhUfwJCFGYw+eCWJ+/czI8CgnCbjzgXD8/uTPZFipzfhnqqsiWwi3hvjOz6yigqaDyXxPyIshX251DQHA==
+ b=fn6gg4I2RZduttUPxDZJVU+GjrnbsWUdQVSKqUXWc2JzGBbFAp4+WZg8DwqrYZ7T0aDjYSQHGxmM1IEM0XOKSALufAHCMWgmwrOTKzLlKFKYlaUnE15liWfw3pZe0xSaV06ys0T8OIb4kj6WJgrrHVeaLmh6YTBi+VciNFCRb29qGhyW/lisNc4/9dnQwes8vaaR4iqWcBE95LpmzJr8j59r6Hll0pamPzaMa0GR8ZPEISUGu05PlyZUl5h31RIH5+CHryJLDU4phay90rQVAVnZ1dAc6dg93vJp53EI97SPoZXTkXelM3OdHY8kFB78R4NhafYBE23bDtIV1c1MzQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Y/1KrZ3VOZ+LbzCiN2Kx//vDVIzibCTHAz17m9eZopk=;
- b=IsQ0HRZqVmwCLmcEIe0opO1FCKGkWSsIvMZtizGFKKDERTQhGZyLsdImDQpzZc2qC9LJ4HnSdiWRpoWwJ3vBoNYid6tdOKVg7aqaldhLuHR3tiJ9GVlOlJ98RfWidXwRoTucHTgKbbmYhAywt0wBp65I0WRJlaaV6MTg4cafmR0hQnNATIONEwDOWSwSWK4deevwxlzz6U0U+0IH3Qq0kTBjRkIkQ1EJzbG83Tl6DHakiyM8UDKaU55uQxbcElmt7geO/BoyCE1zCZuQHiH8mGWHaU0tFfZIAuejV05B4SBbEP+49YLUcA9ZpJrfpdzKxLHWxHHBGlZGjdgcbsORoA==
+ bh=ItsIZ4Bx89lcOeCPsRNGPCTzyGRzHj9YZTK5q20s4S4=;
+ b=j//TLWEOSgHozzxpWFnpiO0JR64UTJQz32LGEsZdY3aYK7Ne48GO2DY8V6XmK8Ea7UlqjSD9OhP7+Z8M0xCde9Ae0OfoC7G2O9450+1px9Xyz3N8AKVwX1ddYu2GfqHEgxT4m6nwvMaweLDNYeY2ku/XfsW1sEyIcxW6VgH8axwqZSjbRChK7YiGElHUWk1VDLVHJCOBmYgk/d87/xbnlzSsqHpVUS4zD5NIaq1Q7MfdVWNqp1R6vs4oJYrJlk2OcreWgLXsXtuVcdv8HJNJRGxjczh1hmraS763LCnJVMZ1SSt/XaSs6bXrNYoteVqVJ7h9yCSe/N4IdTfSaNUiog==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y/1KrZ3VOZ+LbzCiN2Kx//vDVIzibCTHAz17m9eZopk=;
- b=fFkB4I7mv+2JMryDb/d49Zodup5n5CiCqMDfy+gjRic/W6t/JeSiRaQUJOb3X6xo2GWleZFgHbn+HlCgxMlSVusqcL1nkInwSrnN6/eI6SkRY9BHh/Zh0KhVPhMZnVBLbnpXsQgCkExmhwIZhUgYA5UEXRXdbkIkP0u4uW/Eohg=
-Received: from BN8PR15CA0014.namprd15.prod.outlook.com (2603:10b6:408:c0::27)
- by PH8PR12MB6964.namprd12.prod.outlook.com (2603:10b6:510:1bf::13)
+ bh=ItsIZ4Bx89lcOeCPsRNGPCTzyGRzHj9YZTK5q20s4S4=;
+ b=uNUh/mYMEwzTGJBS5C2HMNS4zQs4MPlSn49wc1ep1BqnAwIfgJdQFaHgYNefDboyZsRP29tOdw/8X3bv1DFnOM1oDwcyuypbKC7uj/nCj2TIRikhnUIBT0tb+KkRJFO5FlJBfFXJhKkFglV+v4eOlHOmI6RLWHIkW/4FtnliFko=
+Received: from CY5PR15CA0228.namprd15.prod.outlook.com (2603:10b6:930:88::27)
+ by SN7PR12MB7132.namprd12.prod.outlook.com (2603:10b6:806:2a4::17)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33; Tue, 13 Jun
- 2023 15:07:47 +0000
-Received: from BN8NAM11FT083.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:c0:cafe::d9) by BN8PR15CA0014.outlook.office365.com
- (2603:10b6:408:c0::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.36; Tue, 13 Jun
+ 2023 15:39:41 +0000
+Received: from CY4PEPF0000E9D5.namprd05.prod.outlook.com
+ (2603:10b6:930:88:cafe::74) by CY5PR15CA0228.outlook.office365.com
+ (2603:10b6:930:88::27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.35 via Frontend
- Transport; Tue, 13 Jun 2023 15:07:47 +0000
+ Transport; Tue, 13 Jun 2023 15:39:41 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,22 +46,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT083.mail.protection.outlook.com (10.13.177.75) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6500.23 via Frontend Transport; Tue, 13 Jun 2023 15:07:47 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ CY4PEPF0000E9D5.mail.protection.outlook.com (10.167.241.76) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6500.23 via Frontend Transport; Tue, 13 Jun 2023 15:39:41 +0000
+Received: from mukjoshi-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Tue, 13 Jun
- 2023 10:07:41 -0500
-From: Alex Deucher <alexander.deucher@amd.com>
+ 2023 10:39:34 -0500
+From: Mukul Joshi <mukul.joshi@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 3/3] drm/amdgpu: add new INFO ioctl query for the last GPU
- page fault
-Date: Tue, 13 Jun 2023 11:07:12 -0400
-Message-ID: <20230613150712.1703987-4-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230613150712.1703987-1-alexander.deucher@amd.com>
-References: <20230613150712.1703987-1-alexander.deucher@amd.com>
+Subject: [PATCHv3] drm/amdgpu: Update invalid PTE flag setting
+Date: Tue, 13 Jun 2023 11:38:58 -0400
+Message-ID: <20230613153858.909129-1-mukul.joshi@amd.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -69,26 +67,26 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT083:EE_|PH8PR12MB6964:EE_
-X-MS-Office365-Filtering-Correlation-Id: 27eaa7f6-4442-4f02-be0a-08db6c1ff29c
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D5:EE_|SN7PR12MB7132:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8334251e-86c0-404d-725f-08db6c246772
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: PHVHvp+7n4vIYzStpn31/4gHR8NzV+UbrOSyfz5zBhobp5pFsZCTqITovd3iXxGQMd95Thw3Cl92hA8ZrCucxVw2cUYn/cMNu6oASdBOJiECWBKTM6gCiqOmhyy8lD6wWLvZwCXSBE8HEenY687Jk0+Slhdb5cewhQZ+22lV6B5IX6ZIzjnKP24D80rIh74XGVy7DfWBuGv9r3LJLuk5yUWhn1E25JeF19bs6E76QBIHVVEfcVp6flUoFKRSCC8tD6AmtkRFXaAkxtIG76/d58NCL5UPhAHdE//Pr4gaAueEFedCOKyQeURxgQ8IFttuAB0Zgx6mU2XKUERP1JKUALPgAJ0QwsdtJFLZeS9A+i4A6oix5+DpiajsJy9CcXP7oy4hroR++iS5oBVh/NQYStr4Xj5JJDJoa1qVozEy8jM+qtPk2Yj6ryRcAYhjXc5dxoQGQbkjAUGN3nxqdr5Yzg00nxC62OdcR3idpvxlXRYtiok5AlzSpwFqLXPRFX/EZkQkkLantHvG7SlTdoDG/YwT9EmB9dR7RjjZNKTvHPF14nyhzOsoN07qQ86A16tt8K0yYaZlM6e4kXbbTWq8SFz5NeMnsrlddmhvZ0fQ3tL9xqg2vPXYXcTfScHD2aTZsiXDW9RkCbbS7FOvy64CsjTLj2xbGVWQyvGKv52ArjTRaau8Y/eTdmWHXn39Jb3IvuQry6K0/SAS1BPN93vKmxqQG8PD0fgLtepIpi5iUgw=
+X-Microsoft-Antispam-Message-Info: m4lOKq3/6cRP6ff9e3vJmL/KEhnLx+WGsemFcxpDKl5M/LtrZ4ZV8I1N9oAMgUlFzoZKix51p97g5a4ivWiCMMQj27U3lVow2r4Arodaazi1oLWg+5KqujCxfqdskAf27Q03qg/NasLuAULrhtgdhA1zORvHJXdvXP4kdVzTu8QmUpTzpKktc7EPsgaLlqF9QI24oboGvdFU7sUOBbRiOkrS0XI8o0uw3+/8yGYD7rHONPx9RrolpcTiGM9ZoKQ/jKscqDMJQebZ+4M9AZlutx6ijrG8lroXEtJrud6II9YFw+FOFoFNQ+C5iqX8N0Y2vKAtJOnBAWb47WrpK7dFOmWqCSRuMjehll0NqcNfoWnuQ8VwzQk/N+SZJzqDr8lV2Cr9Rgq4hUwBmSXYhvtT/wGH5KDgZ5g00aEfcjU+2tlK+oJSnFsrZKyJgfE2eLcFwI6/V0c2OYlAPo1F8MRFOjIKTn+JKFMGzKdU7BKMm+x2df3xVjyKonrlexw+ep6FoOkXY8AI1qx5Nvd5vsLpr4EVG22MoRzx/86kknbWBdlO4XmBlPAxEAz++M3/aTnPfu8IeBW2gwF1m6vm7jNM4b+MwtyLoPItUpe0ipUZ1yg75H/f/sNytJsZFIJ2KDTmD5aQlKXY9li5sC8Lvt8AtZNtIpm2i6M0qVrZq552tt7Vkw57iK5mAuIqop5QYmdlx/ctAZQzEDe8Gs0BwVUm8bwO7y/nm/8je0ArtDSmFBPhO06mHTKRa+N3dulr7Bgc
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(39860400002)(136003)(396003)(376002)(346002)(451199021)(40470700004)(36840700001)(46966006)(336012)(426003)(2616005)(47076005)(83380400001)(36860700001)(356005)(82740400003)(40480700001)(82310400005)(86362001)(81166007)(36756003)(40460700003)(478600001)(54906003)(6666004)(7696005)(966005)(4326008)(8936002)(8676002)(2906002)(316002)(5660300002)(70586007)(70206006)(6916009)(186003)(16526019)(41300700001)(1076003)(26005)(36900700001);
+ SFS:(13230028)(4636009)(376002)(39860400002)(396003)(136003)(346002)(451199021)(40470700004)(46966006)(36840700001)(1076003)(16526019)(26005)(186003)(2616005)(44832011)(54906003)(426003)(336012)(47076005)(6916009)(83380400001)(6666004)(36756003)(2906002)(82310400005)(7696005)(15650500001)(36860700001)(8676002)(82740400003)(8936002)(40480700001)(478600001)(5660300002)(4326008)(86362001)(316002)(40460700003)(356005)(41300700001)(70206006)(70586007)(81166007)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jun 2023 15:07:47.2889 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 27eaa7f6-4442-4f02-be0a-08db6c1ff29c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jun 2023 15:39:41.2295 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8334251e-86c0-404d-725f-08db6c246772
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT083.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9D5.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6964
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7132
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,158 +98,103 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Guchun Chen <guchun.chen@amd.com>,
- samuel.pitoiset@gmail.com
+Cc: Mukul Joshi <mukul.joshi@amd.com>, Felix.Kuehling@amd.com,
+ christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add a interface to query the last GPU page fault for the process.
-Useful for debugging context lost errors.
+Update the invalid PTE flag setting with TF enabled.
+This is to ensure, in addition to transitioning the
+retry fault to a no-retry fault, it also causes the
+wavefront to enter the trap handler. With the current
+setting, the fault only transitions to a no-retry fault.
+Additionally, have 2 sets of invalid PTE settings, one for
+TF enabled, the other for TF disabled. The setting with
+TF disabled, doesn't work with TF enabled.
 
-v2: split vmhub representation between kernel and userspace
-
-Mesa MR: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/23238
-libdrm MR: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/23238
-
-Cc: samuel.pitoiset@gmail.com
-Acked-by: Guchun Chen <guchun.chen@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Mukul Joshi <mukul.joshi@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |  3 ++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 16 ++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c  | 16 +++++++++++++++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h  | 13 ++++++++++---
- include/uapi/drm/amdgpu_drm.h           | 16 ++++++++++++++++
- 5 files changed, 59 insertions(+), 5 deletions(-)
+v1->v2:
+- Update handling according to Christian's feedback.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 999d008b6b48..6b053bab799c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -113,9 +113,10 @@
-  *            gl1c_cache_size, gl2c_cache_size, mall_size, enabled_rb_pipes_mask_hi
-  *   3.53.0 - Support for GFX11 CP GFX shadowing
-  *   3.54.0 - Add AMDGPU_CTX_QUERY2_FLAGS_RESET_IN_PROGRESS support
-+ * - 3.55.0 - Add AMDGPU_INFO_GPUVM_FAULT query
-  */
- #define KMS_DRIVER_MAJOR	3
--#define KMS_DRIVER_MINOR	54
-+#define KMS_DRIVER_MINOR	55
- #define KMS_DRIVER_PATCHLEVEL	0
- 
- unsigned int amdgpu_vram_limit = UINT_MAX;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-index e3531aa3c8bd..2289f8eb3d1d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-@@ -1163,6 +1163,22 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
- 		return copy_to_user(out, max_ibs,
- 				    min((size_t)size, sizeof(max_ibs))) ? -EFAULT : 0;
- 	}
-+	case AMDGPU_INFO_GPUVM_FAULT: {
-+		struct amdgpu_fpriv *fpriv = filp->driver_priv;
-+		struct amdgpu_vm *vm = &fpriv->vm;
-+		struct drm_amdgpu_info_gpuvm_fault gpuvm_fault;
-+
-+		if (!vm)
-+			return -EINVAL;
-+
-+		memset(&gpuvm_fault, 0, sizeof(gpuvm_fault));
-+		gpuvm_fault.addr = vm->fault_info.addr;
-+		gpuvm_fault.status = vm->fault_info.status;
-+		gpuvm_fault.vmhub = vm->fault_info.vmhub;
-+
-+		return copy_to_user(out, &gpuvm_fault,
-+				    min((size_t)size, sizeof(gpuvm_fault))) ? -EFAULT : 0;
-+	}
- 	default:
- 		DRM_DEBUG_KMS("Invalid request %d\n", info->query);
- 		return -EINVAL;
+v2->v3:
+- Remove ASIC specific callback (Felix).
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c    |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h    |  6 ++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c | 21 +++++++++++++++++++++
+ 3 files changed, 28 insertions(+), 1 deletion(-)
+
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index 5423f66a9ed8..2c1106855492 100644
+index 1cb14ea18cd9..ff9db7e5c086 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -2666,7 +2666,21 @@ void amdgpu_vm_update_fault_cache(struct amdgpu_device *adev,
- 	if (vm) {
- 		vm->fault_info.addr = addr;
- 		vm->fault_info.status = status;
--		vm->fault_info.vmhub = vmhub;
-+		if (AMDGPU_IS_GFXHUB(vmhub)) {
-+			vm->fault_info.vmhub = AMDGPU_VMHUB_TYPE_GFX;
-+			vm->fault_info.vmhub |=
-+				(vmhub - AMDGPU_GFXHUB_START) << AMDGPU_VMHUB_IDX_SHIFT;
-+		} else if (AMDGPU_IS_MMHUB0(vmhub)) {
-+			vm->fault_info.vmhub = AMDGPU_VMHUB_TYPE_MM0;
-+			vm->fault_info.vmhub |=
-+				(vmhub - AMDGPU_MMHUB0_START) << AMDGPU_VMHUB_IDX_SHIFT;
-+		} else if (AMDGPU_IS_MMHUB1(vmhub)) {
-+			vm->fault_info.vmhub = AMDGPU_VMHUB_TYPE_MM1;
-+			vm->fault_info.vmhub |=
-+				(vmhub - AMDGPU_MMHUB1_START) << AMDGPU_VMHUB_IDX_SHIFT;
-+		} else {
-+			WARN_ONCE(1, "Invalid vmhub %u\n", vmhub);
-+		}
- 	}
- 	xa_unlock_irqrestore(&adev->vm_manager.pasids, flags);
- }
+@@ -2583,7 +2583,7 @@ bool amdgpu_vm_handle_fault(struct amdgpu_device *adev, u32 pasid,
+ 		/* Intentionally setting invalid PTE flag
+ 		 * combination to force a no-retry-fault
+ 		 */
+-		flags = AMDGPU_PTE_SNOOPED | AMDGPU_PTE_PRT;
++		flags = AMDGPU_VM_NORETRY_FLAGS;
+ 		value = 0;
+ 	} else if (amdgpu_vm_fault_stop == AMDGPU_VM_FAULT_STOP_NEVER) {
+ 		/* Redirect the access to the dummy page */
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-index fb66a413110c..1a34fea9acb9 100644
+index 9c85d494f2a2..b81fcb962d8f 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-@@ -116,9 +116,16 @@ struct amdgpu_mem_stats;
-  * layout: max 8 GFXHUB + 4 MMHUB0 + 1 MMHUB1
-  */
- #define AMDGPU_MAX_VMHUBS			13
--#define AMDGPU_GFXHUB(x)			(x)
--#define AMDGPU_MMHUB0(x)			(8 + x)
--#define AMDGPU_MMHUB1(x)			(8 + 4 + x)
-+#define AMDGPU_GFXHUB_START			0
-+#define AMDGPU_MMHUB0_START			8
-+#define AMDGPU_MMHUB1_START			12
-+#define AMDGPU_GFXHUB(x)			(AMDGPU_GFXHUB_START + (x))
-+#define AMDGPU_MMHUB0(x)			(AMDGPU_MMHUB0_START + (x))
-+#define AMDGPU_MMHUB1(x)			(AMDGPU_MMHUB1_START + (x))
-+
-+#define AMDGPU_IS_GFXHUB(x) ((x) >= AMDGPU_GFXHUB_START && (x) < AMDGPU_MMHUB0_START)
-+#define AMDGPU_IS_MMHUB0(x) ((x) >= AMDGPU_MMHUB0_START && (x) < AMDGPU_MMHUB1_START)
-+#define AMDGPU_IS_MMHUB1(x) ((x) >= AMDGPU_MMHUB1_START && (x) < AMDGPU_MAX_VMHUBS)
+@@ -84,7 +84,13 @@ struct amdgpu_mem_stats;
+ /* PDE Block Fragment Size for VEGA10 */
+ #define AMDGPU_PDE_BFS(a)	((uint64_t)a << 59)
  
- /* Reserve 2MB at top/bottom of address space for kernel use */
- #define AMDGPU_VA_RESERVED_SIZE			(2ULL << 20)
-diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
-index 79b14828d542..bbe3ae6dc546 100644
---- a/include/uapi/drm/amdgpu_drm.h
-+++ b/include/uapi/drm/amdgpu_drm.h
-@@ -890,6 +890,8 @@ struct drm_amdgpu_cs_chunk_cp_gfx_shadow {
- 	#define AMDGPU_INFO_VIDEO_CAPS_ENCODE		1
- /* Query the max number of IBs per gang per submission */
- #define AMDGPU_INFO_MAX_IBS			0x22
-+/* query last page fault info */
-+#define AMDGPU_INFO_GPUVM_FAULT			0x23
++/* Flag combination to set no-retry with TF disabled */
++#define AMDGPU_VM_NORETRY_FLAGS	(AMDGPU_PTE_EXECUTABLE | AMDGPU_PDE_PTE | \
++				AMDGPU_PTE_TF)
  
- #define AMDGPU_INFO_MMR_SE_INDEX_SHIFT	0
- #define AMDGPU_INFO_MMR_SE_INDEX_MASK	0xff
-@@ -1215,6 +1217,20 @@ struct drm_amdgpu_info_video_caps {
- 	struct drm_amdgpu_info_video_codec_info codec_info[AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_COUNT];
- };
++/* Flag combination to set no-retry with TF enabled */
++#define AMDGPU_VM_NORETRY_FLAGS_TF (AMDGPU_PTE_VALID | AMDGPU_PTE_SYSTEM | \
++				   AMDGPU_PTE_PRT)
+ /* For GFX9 */
+ #define AMDGPU_PTE_MTYPE_VG10(a)	((uint64_t)(a) << 57)
+ #define AMDGPU_PTE_MTYPE_VG10_MASK	AMDGPU_PTE_MTYPE_VG10(3ULL)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
+index dea1a64be44d..45b26cad59cd 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
+@@ -778,6 +778,24 @@ int amdgpu_vm_pde_update(struct amdgpu_vm_update_params *params,
+ 					1, 0, flags);
+ }
  
-+#define AMDGPU_VMHUB_TYPE_MASK			0xff
-+#define AMDGPU_VMHUB_TYPE_SHIFT			0
-+#define AMDGPU_VMHUB_TYPE_GFX			0
-+#define AMDGPU_VMHUB_TYPE_MM0			1
-+#define AMDGPU_VMHUB_TYPE_MM1			2
-+#define AMDGPU_VMHUB_IDX_MASK			0xff00
-+#define AMDGPU_VMHUB_IDX_SHIFT			8
-+
-+struct drm_amdgpu_info_gpuvm_fault {
-+	__u64 addr;
-+	__u32 status;
-+	__u32 vmhub;
-+};
++/**
++ * amdgpu_vm_pte_update_noretry_flags - Update PTE no-retry flags
++ *
++ * @adev - amdgpu_device pointer
++ * @flags: pointer to PTE flags
++ *
++ * Update PTE no-retry flags when TF is enabled.
++ */
++static void amdgpu_vm_pte_update_noretry_flags(struct amdgpu_device *adev,
++						uint64_t *flags)
++{
++	/* Update no retry flags when TF is enabled */
++	if ((*flags & AMDGPU_VM_NORETRY_FLAGS) == AMDGPU_VM_NORETRY_FLAGS) {
++		*flags &= ~AMDGPU_VM_NORETRY_FLAGS;
++		*flags |= AMDGPU_VM_NORETRY_FLAGS_TF;
++	}
++}
 +
  /*
-  * Supported GPU families
-  */
+  * amdgpu_vm_pte_update_flags - figure out flags for PTE updates
+  *
+@@ -804,6 +822,9 @@ static void amdgpu_vm_pte_update_flags(struct amdgpu_vm_update_params *params,
+ 		flags |= AMDGPU_PTE_EXECUTABLE;
+ 	}
+ 
++	if (adev->gmc.translate_further && level == AMDGPU_VM_PTB)
++		amdgpu_vm_pte_update_noretry_flags(adev, &flags);
++
+ 	/* APUs mapping system memory may need different MTYPEs on different
+ 	 * NUMA nodes. Only do this for contiguous ranges that can be assumed
+ 	 * to be on the same NUMA node.
 -- 
-2.40.1
+2.35.1
 
