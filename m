@@ -1,33 +1,54 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C60672F602
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 Jun 2023 09:21:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEC7672F601
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 Jun 2023 09:21:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FEFC10E40A;
-	Wed, 14 Jun 2023 07:21:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43B5510E409;
+	Wed, 14 Jun 2023 07:20:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-124.freemail.mail.aliyun.com
- (out30-124.freemail.mail.aliyun.com [115.124.30.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59D0B10E098;
- Wed, 14 Jun 2023 02:04:45 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R151e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018045170;
- MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=11; SR=0;
- TI=SMTPD_---0Vl4KJRo_1686708273; 
-Received: from localhost(mailfrom:jiapeng.chong@linux.alibaba.com
- fp:SMTPD_---0Vl4KJRo_1686708273) by smtp.aliyun-inc.com;
- Wed, 14 Jun 2023 10:04:40 +0800
-From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
-To: Felix.Kuehling@amd.com
-Subject: [PATCH] drm/amdkfd: Switch over to memdup_user()
-Date: Wed, 14 Jun 2023 10:04:32 +0800
-Message-Id: <20230614020432.44044-1-jiapeng.chong@linux.alibaba.com>
-X-Mailer: git-send-email 2.20.1.7.g153144c
+Received: from mail.208.org (unknown [183.242.55.162])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01E4010E3FC
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 Jun 2023 02:27:41 +0000 (UTC)
+Received: from mail.208.org (email.208.org [127.0.0.1])
+ by mail.208.org (Postfix) with ESMTP id 4QgpyP3vmFzBJL9v
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 Jun 2023 10:19:09 +0800 (CST)
+Authentication-Results: mail.208.org (amavisd-new); dkim=pass
+ reason="pass (just generated, assumed good)" header.d=208.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=208.org; h=
+ content-transfer-encoding:content-type:message-id:user-agent
+ :references:in-reply-to:subject:to:from:date:mime-version; s=
+ dkim; t=1686709149; x=1689301150; bh=+bZIMx7NjUairCzhV4yQ6x1V7oV
+ wZZngMN1eFmk00jI=; b=EKUbHYNPDGx3udiEz3qTS3JOB9WSB/x8unwPK3kCOav
+ /AKVmW4bqqZ09iI0P51CYUTF+MGSEVaQZnnJeUyk8wsOV5mEnqNARDShWEQJylEc
+ rzYhZnTAvL2myUBJINnIxKaQRguw8guQQ1wr//RC0PEIh73mhPDUVBD4Joowzt2H
+ cPJsUftYu0aAUchVmDwbIu8PTs5N79NTLGMDw71vvGctb7dx+vi3ErOwkyFYQ1BR
+ l5m348D7X8kuWP9PWGYwfy8BJe1Hn/pm7I/LAV4uTjhFHHD+nB5b4ezj3MHcZwcI
+ PEpnux4nxBLsB6FUAwqd/jVEwN/vJvdX1aBlXJ80Nbg==
+X-Virus-Scanned: amavisd-new at mail.208.org
+Received: from mail.208.org ([127.0.0.1])
+ by mail.208.org (mail.208.org [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id cr-MM3gCN8JL for <amd-gfx@lists.freedesktop.org>;
+ Wed, 14 Jun 2023 10:19:09 +0800 (CST)
+Received: from localhost (email.208.org [127.0.0.1])
+ by mail.208.org (Postfix) with ESMTPSA id 4QgpyP0gFczBJL9m;
+ Wed, 14 Jun 2023 10:19:09 +0800 (CST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Date: Wed, 14 Jun 2023 10:19:08 +0800
+From: baomingtong001@208suo.com
+To: evan.quan@amd.com, alexander.deucher@amd.com, christian.koenig@amd.com,
+ airlied@gmail.com
+Subject: [PATCH] drm/amd/pm: remove unneeded variable
+In-Reply-To: <20230614021546.39168-1-luojianhong@cdjrlc.com>
+References: <20230614021546.39168-1-luojianhong@cdjrlc.com>
+User-Agent: Roundcube Webmail
+Message-ID: <bfca99db848b8d29d0399566e579bc21@208suo.com>
+X-Sender: baomingtong001@208suo.com
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Wed, 14 Jun 2023 07:20:55 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -40,46 +61,67 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, Xinhui.Pan@amd.com,
- Abaci Robot <abaci@linux.alibaba.com>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- daniel@ffwll.ch, alexander.deucher@amd.com, airlied@gmail.com,
- christian.koenig@amd.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Use memdup_user() rather than duplicating its implementation. This is a
-little bit restricted to reduce false positives.
+fix the following coccicheck warning:
 
-./drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c:2813:13-20: WARNING opportunity for memdup_user.
+drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c:1657:14-18: Unneeded 
+variable: "size".
 
-Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=5523
-Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+Signed-off-by: Mingtong Bao <baomingtong001@208suo.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+  drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c | 10 +++++-----
+  1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index d6b15493fffd..637962d4083c 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -2810,12 +2810,9 @@ static uint32_t *get_queue_ids(uint32_t num_queues, uint32_t *usr_queue_id_array
- 	if (!usr_queue_id_array)
- 		return NULL;
- 
--	queue_ids = kzalloc(array_size, GFP_KERNEL);
--	if (!queue_ids)
--		return ERR_PTR(-ENOMEM);
--
--	if (copy_from_user(queue_ids, usr_queue_id_array, array_size))
--		return ERR_PTR(-EFAULT);
-+	queue_ids = memdup_user(usr_queue_id_array, array_size);
-+	if (IS_ERR(queue_ids))
-+		return PTR_ERR(queue_ids);
- 
- 	return queue_ids;
- }
--- 
-2.20.1.7.g153144c
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c 
+b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
+index 275f708db636..c94d825a871b 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
+@@ -1654,7 +1654,7 @@ static int navi10_force_clk_levels(struct 
+smu_context *smu,
+                     enum smu_clk_type clk_type, uint32_t mask)
+  {
 
+-    int ret = 0, size = 0;
++    int ret = 0;
+      uint32_t soft_min_level = 0, soft_max_level = 0, min_freq = 0, 
+max_freq = 0;
+
+      soft_min_level = mask ? (ffs(mask) - 1) : 0;
+@@ -1675,15 +1675,15 @@ static int navi10_force_clk_levels(struct 
+smu_context *smu,
+
+          ret = smu_v11_0_get_dpm_freq_by_index(smu, clk_type, 
+soft_min_level, &min_freq);
+          if (ret)
+-            return size;
++            return 0;
+
+          ret = smu_v11_0_get_dpm_freq_by_index(smu, clk_type, 
+soft_max_level, &max_freq);
+          if (ret)
+-            return size;
++            return 0;
+
+          ret = smu_v11_0_set_soft_freq_limited_range(smu, clk_type, 
+min_freq, max_freq);
+          if (ret)
+-            return size;
++            return 0;
+          break;
+      case SMU_DCEFCLK:
+          dev_info(smu->adev->dev,"Setting DCEFCLK min/max dpm level is 
+not supported!\n");
+@@ -1693,7 +1693,7 @@ static int navi10_force_clk_levels(struct 
+smu_context *smu,
+          break;
+      }
+
+-    return size;
++    return 0;
+  }
+
+  static int navi10_populate_umd_state_clk(struct smu_context *smu)
