@@ -1,70 +1,70 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DFDE732102
-	for <lists+amd-gfx@lfdr.de>; Thu, 15 Jun 2023 22:40:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A715732105
+	for <lists+amd-gfx@lfdr.de>; Thu, 15 Jun 2023 22:40:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D1CC10E541;
-	Thu, 15 Jun 2023 20:39:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96A7F10E546;
+	Thu, 15 Jun 2023 20:40:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2078.outbound.protection.outlook.com [40.107.237.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 877D110E19C
- for <amd-gfx@lists.freedesktop.org>; Thu, 15 Jun 2023 20:39:57 +0000 (UTC)
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam04on2071.outbound.protection.outlook.com [40.107.102.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DF4810E547
+ for <amd-gfx@lists.freedesktop.org>; Thu, 15 Jun 2023 20:40:00 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IKJzTd0y4VhInSZ5KrGuAVe8xHuUCxs6QA1Ubmtj0kJM+A/eEpCZSt4oM7C0AV5JYzGprhFVce5cJJQLnCrVnUuuGLpELPmTW2VcY8O3vaGSaGvpU+1hOg+9wZsxBmRGfeVBNbAlTnbAZzZGhqCC+FGwpdzHu4yNXkDAQTwtoceYy+lgWn38KtO6BKZ+Vb1oUMKc1eHMVHXQoyyAqhSWVVg9yJF9nbJu9C6XGa7Fz8OvfIH+h18Bym+JsdJle45lPzSrssNHHvH6OVyowvj5Lgtsz24XKHP4pkvV6UyK8cnlWzG7d1K2VHyjKAwYP3TgB3PyL/7px/w77awNnC1S/A==
+ b=JtPIC0I67cgCYYH4Sjt+zCbuCF5PNbrAVSUaa1gI1HtxnF26ZZfOYCKmocaaNMH4rR7nx5Lz60ieJdYVvC+OTJW2mt+X2vrQTjH4UAEc6of7NTYDBjO9BsBgWAzc6srt67TEU8ef7du2IP0Qp3prSyCyvezkh3n6k+TTbxCdM3aKMW7kqaCyzqxTbH+ORvxgHfxAPsJgUcG4n9i7jqGIb/KMeXv3E+kw2mIKPnMIxsUhCNf/aqa43gyXWtHDx5XQhHwfmlSPjox9YCYJv5E5D6pN7RxlZn/GAwMdx1YK/+1Jv5gmsGs4E9Trv3PHiLFsUoRfhuVmLh1jCWDJLG1eNQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CS8Lx6X2lPJJnEzJroQ6gMAjhSXVEkRPQoS8zowepLI=;
- b=P7CYSn9sdUBd3PN3BhVT85DJtDm/sUv8bn4Hk/AGNruly85Tyv9a83o0sYUqbjShD63RJ2+umDPC2EkPh/+7VV37ovKipVVr+SQ9xa3ZVJWXc4u4UZMXd9pBJnTSm93nlFXZhwpOxcXsvLp+QlWS2yIHg3LnybuszuQlVQzuwkogea5waNmafJW69/JXw8nznIJkkbvKlhopHCBFeBkUm8M7KZeCYA6HZ817xaSXCkwQehbg4RjX10fZXl2UvKsNiDXRsVVIrR4ENRmtkSUmU6RPVY9wVuJJOJP2eJ2Yj/spxSutKCQapLa/yWhxoZG4gjZuad4Eq+aYHnduT55D/w==
+ bh=s7uxLKPlQdkQTDrW5jJEGPjkZkWeLenT9GKc1Uc7ws4=;
+ b=f08UG5w7qitAILnsSRVv0afKGVcSkwWyM4JM8yi1WKIbJAqQjFlH/Z/rwjVVaAMzvX1ZeRes58/woYtVqCa+4WA3lv7HVS15Glz6K04V5sfxfuNMtnP2Bmy2ygIWcfi8+1NPaVLg4mzIGk0pe4/hZBg20Iwgcl8m6hSZeoUt7dWhp4tmL9i0yh0d6zbxzTEvDGhM7jxcIAPskKbQ16EeOs9lcru1k5XHnIKa5vLm8xMsfLrMIvP9FJRgP820v4cxpcfW53xzW+OqGfwmBNpiBWahullOUoPjAqFtw8hKw44D1i0TYt7XIjf9sW4sNRCW0FA82ij46MUGsC/YOZJQZg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CS8Lx6X2lPJJnEzJroQ6gMAjhSXVEkRPQoS8zowepLI=;
- b=n6fzltwAgIZ5rl41T54ZZijEtuS4IAWYmsoW0+bTWiVMVNVABLpgjgctmw1id8Wf0i3bR8H/rnbpp7HrePriDVPQVrLZAgJNboNQX/UJfSZM4QV5OZg11zOisoOc1LomnZqYKc2Bt/Mea4pGheUpIgAUVzz8tDFj3NouxBY3pm8=
-Received: from CY5PR22CA0041.namprd22.prod.outlook.com (2603:10b6:930:1d::32)
- by SJ0PR12MB5609.namprd12.prod.outlook.com (2603:10b6:a03:42c::12)
+ bh=s7uxLKPlQdkQTDrW5jJEGPjkZkWeLenT9GKc1Uc7ws4=;
+ b=liYD1vR2XUNoxls0JpxYYkyTVg6DVNuxwsOfTYbExsaEdu/lwNqxeDLFR3SvFwpqE08hTKNSHjQ84EJLoM4o3wgw880Gs1oqGtoYfUETlVxgHGVIRC+XQeMa44OuNWLAxP4lRR6z8zhbbc8NbTiQ7FuWqcr1UAP68PsC53oEO74=
+Received: from BY5PR17CA0067.namprd17.prod.outlook.com (2603:10b6:a03:167::44)
+ by PH8PR12MB8606.namprd12.prod.outlook.com (2603:10b6:510:1ce::10)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.44; Thu, 15 Jun
- 2023 20:39:54 +0000
-Received: from CY4PEPF0000EDD1.namprd03.prod.outlook.com
- (2603:10b6:930:1d:cafe::8f) by CY5PR22CA0041.outlook.office365.com
- (2603:10b6:930:1d::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.27 via Frontend
- Transport; Thu, 15 Jun 2023 20:39:54 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.37; Thu, 15 Jun
+ 2023 20:39:56 +0000
+Received: from DM6NAM11FT015.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:a03:167:cafe::44) by BY5PR17CA0067.outlook.office365.com
+ (2603:10b6:a03:167::44) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.37 via Frontend
+ Transport; Thu, 15 Jun 2023 20:39:55 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CY4PEPF0000EDD1.mail.protection.outlook.com (10.167.241.205) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6500.27 via Frontend Transport; Thu, 15 Jun 2023 20:39:54 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT015.mail.protection.outlook.com (10.13.172.133) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6500.29 via Frontend Transport; Thu, 15 Jun 2023 20:39:55 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Thu, 15 Jun
  2023 15:39:53 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Thu, 15 Jun
- 2023 13:39:53 -0700
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Thu, 15 Jun
+ 2023 15:39:53 -0500
 Received: from blakha.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.23 via Frontend
- Transport; Thu, 15 Jun 2023 15:39:52 -0500
+ Transport; Thu, 15 Jun 2023 15:39:53 -0500
 From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 To: <amd-gfx@lists.freedesktop.org>, <harry.wentland@amd.com>,
  <alexander.deucher@amd.com>
-Subject: [PATCH 4/6] drm/amd/display: Read replay data from sink
-Date: Thu, 15 Jun 2023 16:39:28 -0400
-Message-ID: <20230615203930.1715722-5-Bhawanpreet.Lakha@amd.com>
+Subject: [PATCH 5/6] drm/amd/display: Enable Replay for static screen use cases
+Date: Thu, 15 Jun 2023 16:39:29 -0400
+Message-ID: <20230615203930.1715722-6-Bhawanpreet.Lakha@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230615203930.1715722-1-Bhawanpreet.Lakha@amd.com>
 References: <20230615203930.1715722-1-Bhawanpreet.Lakha@amd.com>
@@ -73,26 +73,26 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD1:EE_|SJ0PR12MB5609:EE_
-X-MS-Office365-Filtering-Correlation-Id: 992952e5-938b-4ead-8a3c-08db6de0acf7
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT015:EE_|PH8PR12MB8606:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7f3db599-11a2-4d73-8dfc-08db6de0adb8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: JmtZo/qLE26QK5qLPNCQBoVB/f+qzbQkz/vYaOrwNgSosyqcsIDirkjdMttiL+IWHrsxctIbkHnyvjGpGeHJapnC2D4sRrIBM6WQarH3psSBmAuMx9E6DFZDgspQKuJcemREAZac+fd8ioFYxecuO243AtQ7/IalwSodoOR7dX3ppnvB74HwNA59BhIGvwwx/FQ67LR8IxCC3Xvj+tISExwRqtmcxIzezADDy/7ZGpcSVGoW4/5dQMMgz1lgLd1SFoQQcGQcie9eXTBICnwBUixqfqArMt3hlCNaHBuSQM5fXvmoRVmwFZoSQuHlA8MTI/r3jU5krvL4A8izmHNrxWml0hziVVHNjs5aKU8YHfRTWV5hD1SpBl5ZcTVUKQDp0MySBVzeZt8T7zRdjhk2lCr+T8HUvI6q2s2+9OBy8D6NxWMOyGPLQ9zP8eQLBKDthVVWRaUK3J4dQiKE/NcAwM9CYJuI24qZq8sXBSY+Ce7rKEHX6xsSFYTcKQMj8nzgFvWXPdQIbT+EuuB0gIj1OvFiVNrdwtnwE/0YkbzZA8H3SxIqYnT7LG14McI6qDWk8tbl8A3gxeWzHn1qjeUbKnB9UE5D6K+xgEzgLbtPiBFqxXfDQ33YiiJDoJvBKZOJwXB3QSFXENlZt4EwWUSdQQkT+QMmo3KN2oBSfmVlzPlZiMWnPA4dSNaVHg3O8ax976I7GeYl2JN41zpgWFAKepX3xQyJBpDR/ihClM/mhqcjTs7m6Yp32u/OmMB2eaNFRan34T5xfIhYWm16+dNR9g==
+X-Microsoft-Antispam-Message-Info: 8+2VRzKprVWIx5aNOYP36ck2WspFivZ6hwOncYDutlsZXBI+culakwRAFNo+v4i05Dj//FL19vAgAe3+rjTSXZhNrw5f0/uUBzuSLjQym/uuWk2LCZeDuOHWR+Ah8WmWC8c3im5lIC0qb3pLCcn1AAA+fgwlszqlJOgcxds8cBq4aGRLKk2VSn9/Jdx3QqpxZAZOLLN4pSPV380+weAucJHRNPZ3iwngHAyI9o/hmMDWf405PlbQag7ooK7/ucALdx+Olrp8TvsA0+ODHOEb2DZBji6m+RkUMyJnTuiMLWKcqFj9GICyNonjzuLEvvWWGNuE4SrAdvO4LBvslvtj5gYr5fAY6iEj3WWDKi3dHVvLelzgEAFzHoJ+4DvzeggbK5NPCammThx3qe4v+EGTV0okAb5il6hARJv/DKWgxU6oW9PPEkTcGaf9svjvWsf4n6cv64U1DoU2tDJb8Qo3xtU1FBHn5GeyWVl1POvadlLphdp+bcTw51y9IjsMysZxs1pJl84ZpfHCZHibZe7E9PRha0cyk2AA5avDzLvjGKD5Me6WZKtIAgbO3pLXcnR5XwLpn/nhthHIOnQI78nuswU3Dxcvlw+8pPWM9hp4NL9fRzgn/MINrs4kZbdB+hG+41r7ahFaF1TuNp5ow0FIUBEigU0L7dRxxtwRhPMto+N+L/DUCD+ngmtcPuLSo50kJTppio3FcXIeJ2MjbTPKJrxOIvfOvfn4iRj3qeTTsX8rpv3PEkhDpDBTlXrnBkIpHdkHc4GzbUnX+itThliECA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(136003)(376002)(396003)(346002)(39860400002)(451199021)(40470700004)(46966006)(36840700001)(40460700003)(26005)(1076003)(186003)(7696005)(36860700001)(5660300002)(2616005)(8936002)(83380400001)(426003)(336012)(47076005)(41300700001)(4326008)(6636002)(316002)(8676002)(2906002)(478600001)(6666004)(70206006)(70586007)(110136005)(36756003)(40480700001)(86362001)(356005)(81166007)(82740400003)(82310400005)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230028)(4636009)(346002)(39860400002)(136003)(376002)(396003)(451199021)(40470700004)(36840700001)(46966006)(40480700001)(40460700003)(110136005)(82740400003)(81166007)(478600001)(356005)(316002)(8676002)(41300700001)(8936002)(6636002)(70206006)(2616005)(4326008)(70586007)(336012)(426003)(83380400001)(36860700001)(186003)(6666004)(47076005)(7696005)(26005)(5660300002)(1076003)(82310400005)(86362001)(2906002)(36756003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2023 20:39:54.3969 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 992952e5-938b-4ead-8a3c-08db6de0acf7
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2023 20:39:55.6931 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7f3db599-11a2-4d73-8dfc-08db6de0adb8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EDD1.namprd03.prod.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT015.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5609
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB8606
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,50 +108,112 @@ Cc: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Read DP_SINK_PR_PIXEL_DEVIATION_PER_LINE  and
-DP_SINK_PR_MAX_NUMBER_OF_DEVIATION_LINE
+- Setup replay config on device init.
+- Enable replay if feature is enabled and psr is not going to be enabled
+- Add debug masks to enable replay on supported ASICs
 
 Signed-off-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 ---
- .../amd/display/dc/link/protocols/link_dp_capability.c | 10 ++++++++++
- drivers/gpu/drm/amd/display/include/dpcd_defs.h        |  4 +++-
- 2 files changed, 13 insertions(+), 1 deletion(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 19 +++++++++++++++++++
+ .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    |  4 ++++
+ drivers/gpu/drm/amd/include/amd_shared.h      |  2 ++
+ 3 files changed, 25 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
-index 3a5e80b57711..5eec5d9bfd68 100644
---- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
-@@ -2008,6 +2008,16 @@ void detect_edp_sink_caps(struct dc_link *link)
- 		core_link_read_dpcd(link, DP_RECEIVER_ALPM_CAP,
- 			&link->dpcd_caps.alpm_caps.raw,
- 			sizeof(link->dpcd_caps.alpm_caps.raw));
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 2446529c329a..a6551c049cc1 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -65,6 +65,7 @@
+ #include "amdgpu_dm_debugfs.h"
+ #endif
+ #include "amdgpu_dm_psr.h"
++#include "amdgpu_dm_replay.h"
+ 
+ #include "ivsrcid/ivsrcid_vislands30.h"
+ 
+@@ -4315,6 +4316,7 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
+ 	enum dc_connection_type new_connection_type = dc_connection_none;
+ 	const struct dc_plane_cap *plane;
+ 	bool psr_feature_enabled = false;
++	bool replay_feature_enabled = false;
+ 	int max_overlay = dm->dc->caps.max_slave_planes;
+ 
+ 	dm->display_indexes_num = dm->dc->caps.max_streams;
+@@ -4424,6 +4426,20 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
+ 		}
+ 	}
+ 
++	if (!(amdgpu_dc_debug_mask & DC_DISABLE_REPLAY)) {
++		switch (adev->ip_versions[DCE_HWIP][0]) {
++		case IP_VERSION(3, 1, 4):
++		case IP_VERSION(3, 1, 5):
++		case IP_VERSION(3, 1, 6):
++		case IP_VERSION(3, 2, 0):
++		case IP_VERSION(3, 2, 1):
++			replay_feature_enabled = true;
++			break;
++		default:
++			replay_feature_enabled = amdgpu_dc_feature_mask & DC_REPLAY_MASK;
++			break;
++		}
++	}
+ 	/* loops over all connectors on the board */
+ 	for (i = 0; i < link_cnt; i++) {
+ 		struct dc_link *link = NULL;
+@@ -4480,6 +4496,9 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
+ 				 */
+ 				if (link->psr_settings.psr_feature_enabled)
+ 					adev_to_drm(adev)->vblank_disable_immediate = false;
 +
-+	/*
-+	 * Read REPLAY info
-+	 */
-+	core_link_read_dpcd(link, DP_SINK_PR_PIXEL_DEVIATION_PER_LINE,
-+			&link->dpcd_caps.pr_info.pixel_deviation_per_line,
-+			sizeof(link->dpcd_caps.pr_info.pixel_deviation_per_line));
-+	core_link_read_dpcd(link, DP_SINK_PR_MAX_NUMBER_OF_DEVIATION_LINE,
-+			&link->dpcd_caps.pr_info.max_deviation_line,
-+			sizeof(link->dpcd_caps.pr_info.max_deviation_line));
- }
++				if (replay_feature_enabled)
++					amdgpu_dm_setup_replay(link, aconnector);
+ 			}
+ 		}
+ 		amdgpu_set_panel_orientation(&aconnector->base);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
+index 440fc0869a34..44323cef5dfd 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
+@@ -29,6 +29,7 @@
+ #include "dc.h"
+ #include "amdgpu.h"
+ #include "amdgpu_dm_psr.h"
++#include "amdgpu_dm_replay.h"
+ #include "amdgpu_dm_crtc.h"
+ #include "amdgpu_dm_plane.h"
+ #include "amdgpu_dm_trace.h"
+@@ -132,8 +133,11 @@ static void vblank_control_worker(struct work_struct *work)
+ #ifdef CONFIG_DRM_AMD_SECURE_DISPLAY
+ 			   !amdgpu_dm_crc_window_is_activated(&vblank_work->acrtc->base) &&
+ #endif
++			   vblank_work->stream->link->panel_config.psr.disallow_replay &&
+ 			   vblank_work->acrtc->dm_irq_params.allow_psr_entry) {
+ 			amdgpu_dm_psr_enable(vblank_work->stream);
++		} else if (vblank_work->stream->link->replay_settings.replay_feature_enabled) {
++			amdgpu_dm_replay_enable(vblank_work->stream, false);
+ 		}
+ 	}
  
- bool dp_get_max_link_enc_cap(const struct dc_link *link, struct dc_link_settings *max_link_enc_cap)
-diff --git a/drivers/gpu/drm/amd/display/include/dpcd_defs.h b/drivers/gpu/drm/amd/display/include/dpcd_defs.h
-index c062a44db078..5b70145abf12 100644
---- a/drivers/gpu/drm/amd/display/include/dpcd_defs.h
-+++ b/drivers/gpu/drm/amd/display/include/dpcd_defs.h
-@@ -172,6 +172,8 @@ enum dpcd_psr_sink_states {
- #define DP_SOURCE_BACKLIGHT_CURRENT_PEAK    0x326
- #define DP_SOURCE_BACKLIGHT_CONTROL	    0x32E
- #define DP_SOURCE_BACKLIGHT_ENABLE	    0x32F
--#define DP_SOURCE_MINIMUM_HBLANK_SUPPORTED	0x340
-+#define DP_SOURCE_MINIMUM_HBLANK_SUPPORTED     0x340
-+#define DP_SINK_PR_PIXEL_DEVIATION_PER_LINE     0x379
-+#define DP_SINK_PR_MAX_NUMBER_OF_DEVIATION_LINE 0x37A
+diff --git a/drivers/gpu/drm/amd/include/amd_shared.h b/drivers/gpu/drm/amd/include/amd_shared.h
+index f175e65b853a..c6d4cca646c2 100644
+--- a/drivers/gpu/drm/amd/include/amd_shared.h
++++ b/drivers/gpu/drm/amd/include/amd_shared.h
+@@ -240,6 +240,7 @@ enum DC_FEATURE_MASK {
+ 	DC_DISABLE_LTTPR_DP2_0 = (1 << 6), //0x40, disabled by default
+ 	DC_PSR_ALLOW_SMU_OPT = (1 << 7), //0x80, disabled by default
+ 	DC_PSR_ALLOW_MULTI_DISP_OPT = (1 << 8), //0x100, disabled by default
++	DC_REPLAY_MASK = (1 << 9), //0x200, disabled by default for dcn < 3.1.4
+ };
  
- #endif /* __DAL_DPCD_DEFS_H__ */
+ enum DC_DEBUG_MASK {
+@@ -250,6 +251,7 @@ enum DC_DEBUG_MASK {
+ 	DC_DISABLE_PSR = 0x10,
+ 	DC_FORCE_SUBVP_MCLK_SWITCH = 0x20,
+ 	DC_DISABLE_MPO = 0x40,
++	DC_DISABLE_REPLAY = 0x50,
+ };
+ 
+ enum amd_dpm_forced_level;
 -- 
 2.25.1
 
