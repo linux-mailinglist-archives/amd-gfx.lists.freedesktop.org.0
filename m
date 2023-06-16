@@ -1,61 +1,68 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 628E77331AC
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 Jun 2023 14:56:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 224DD733258
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 Jun 2023 15:38:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE89910E1A2;
-	Fri, 16 Jun 2023 12:56:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9930010E61F;
+	Fri, 16 Jun 2023 13:38:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oo1-xc31.google.com (mail-oo1-xc31.google.com
- [IPv6:2607:f8b0:4864:20::c31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAB7610E1A2
- for <amd-gfx@lists.freedesktop.org>; Fri, 16 Jun 2023 12:56:03 +0000 (UTC)
-Received: by mail-oo1-xc31.google.com with SMTP id
- 006d021491bc7-558cb7f201cso446799eaf.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 16 Jun 2023 05:56:03 -0700 (PDT)
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com
+ [IPv6:2a00:1450:4864:20::32d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8BC810E61F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 16 Jun 2023 13:38:38 +0000 (UTC)
+Received: by mail-wm1-x32d.google.com with SMTP id
+ 5b1f17b1804b1-3f8c9cb3144so5632335e9.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 16 Jun 2023 06:38:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1686920163; x=1689512163;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
+ d=gmail.com; s=20221208; t=1686922717; x=1689514717;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=u0xclVm067Rq3S60q+K861ACS344r6ZbmNw4YwSXMzc=;
- b=jGKb8X23WfytRrCyvbi4oyUqahWmkjkfsGMDf1Kc2Voa3scr5P0gdMWE/c//Ke8PKV
- bTm5s1LfESxU8RMtONtiTOQIc0B5GLs23AIFpc9/6OuotHAZtC3X5wk7+OolCywsHA5Z
- vRPBWll5a0+CnKDuXLvBF3P75yu4vzVNliY77Xey5aabCVBKWC+2N+yqyI/GuriTLBnn
- 4QuB6z98kaBpQ6Rw6k5PqT5IZTcYzAXkCaLzkZTMKts7vgaBTZRQL0fnyFMQd4da4Jrx
- MjO/3UxFt/jvBISMD5HsltBcrquwndCfdJb4V2pc3m6mK2JkxwBkCarEtzciYCZGTWDB
- tR1w==
+ bh=dIWau0mr01tGhOtBWnFul5XGT0nsGLJvIp6JVr2giD8=;
+ b=AXOy33pWhLcZVbrME/WeWSiKlXCw4bWZAUZ+9xJmiKedgQg4Mb/ba6BHEsO+AqLhqD
+ 3DktOiLhA/5KJJPPAo/CTj803YB0qPrt7on+J0VgukQlDZ0lXrxRSYiULhwW/7mC2S0h
+ UiLS/VYaxEWR4bN7D+UnyavtxY3XKOa534u6aOoamuaU3Sno2Zm3oe7AQmrfT8r0mUI1
+ 56jalrXovUqOe61TPAW4NCTvGGidZQUJujnXurMeSSBkAFCgyjCjQ7DCeYQvWwDppU+7
+ EMGlX372fVzjnaFGbxAOQO2UET10W4n4zjVLJI5itli45WYmpqunEg/WEI400ofckGIH
+ MWkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1686920163; x=1689512163;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20221208; t=1686922717; x=1689514717;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=u0xclVm067Rq3S60q+K861ACS344r6ZbmNw4YwSXMzc=;
- b=WpyaiS6iIdKUXspKxdzJPEFUoHqGHeIAo5BugfODQTrWdwmlb+WZCRLtou56mtlCrB
- +NFt+meUvgBoG7YE5c+EXj9D+YK5kGHTGYyuPj/QuoCeoo9tZp6Ay4IjazlbkrNPkqw9
- cmPjo3CMrXZnz4R5Sop3xgrTZE4ittFyARoDVrPvioH5BG/6zFMa4L00T2bhdCwZSi5n
- t88V/T71qu983oWv/3jlCIvQyGZT1TkZZ1xreBNKBNZXWHQPuXdfEQwBz42uTqifSFf8
- v1cue+xoDbZcZ/uozeu6xX0Pf8qrph3rAjBGd1YmT1RY/cFjeVflupr93iqVIfROqUlC
- 1C8g==
-X-Gm-Message-State: AC+VfDwNbcl1Q39p2Nh27ccBxOQXG2PBxKrHdc3ODhl5+gehrd7HP5qL
- 7FCdVKW1sBnQ4pA6buIFpXPO0Qnc8nYscSJrcJQ=
-X-Google-Smtp-Source: ACHHUZ4Pw/8tdYfPYpiFhqOpUiubnOCRa1wVBLfxUBzgavPeFJS3kBzvfyzOFy6btUDrw1A0f32xS+kVKJhq3/vmR24=
-X-Received: by 2002:a4a:a849:0:b0:55e:14a2:e99f with SMTP id
- p9-20020a4aa849000000b0055e14a2e99fmr373626oom.9.1686920162740; Fri, 16 Jun
- 2023 05:56:02 -0700 (PDT)
+ bh=dIWau0mr01tGhOtBWnFul5XGT0nsGLJvIp6JVr2giD8=;
+ b=h9ofOCLqWNMlEQ+7bTfRGhdArYNAK6jpKz6W1/K35kYjzQ+//mWcYExObUuVZEfZUR
+ Y8DEKWZ+k7Hhvag5jTJEYPeKrtBBeoav+4kOVxY1cnDwKF5Sw/PFGJOl14lRjzlrh2oU
+ XGZv0pCjcUfegyITdpK1Fz8EUctApZREsQ46lzeBJx+KjXTTAIUBgxzL/JrUVQv6Rtx1
+ OZgh1JH/cIJUNmPY5iokn0ArUWxtIFu/RwGzmvrMBiF48IpEU46CMO8Dt0YdUHmuHeai
+ Ps/L+LJnBw1lACO7fDiiYcAKvoQzaFLa6+FSjkSTzEndi0VFnACNhg9H1E5TnpIE40QP
+ IDcQ==
+X-Gm-Message-State: AC+VfDwzdyGdpfesqb3/TtHViVvMcdWW54/lqD1WRcxv+T2c0ym0UJAE
+ rZ7fxXaNfofdKRQMyFRwGsIIt8zy9KM=
+X-Google-Smtp-Source: ACHHUZ4urvk3PUHTi1O9x9HYfKDtMqx3CABSzVCjLIvAOfH190ozDhtQ/sR0I9n8h64E7+5Db8iRTQ==
+X-Received: by 2002:a7b:cb4e:0:b0:3f7:f884:7be3 with SMTP id
+ v14-20020a7bcb4e000000b003f7f8847be3mr1768922wmj.4.1686922716514; 
+ Fri, 16 Jun 2023 06:38:36 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e0a:1d:6120:b96b:62f7:161e:e519])
+ by smtp.gmail.com with ESMTPSA id
+ t24-20020a7bc3d8000000b003f60a9ccd34sm2206271wmj.37.2023.06.16.06.38.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 16 Jun 2023 06:38:36 -0700 (PDT)
+From: Samuel Pitoiset <samuel.pitoiset@gmail.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH v2] drm/amdgpu: fix clearing mappings for BOs that are always
+ valid in VM
+Date: Fri, 16 Jun 2023 15:14:07 +0200
+Message-ID: <20230616131407.170149-1-samuel.pitoiset@gmail.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230616062708.15913-1-samuel.pitoiset@gmail.com>
+References: <20230616062708.15913-1-samuel.pitoiset@gmail.com>
 MIME-Version: 1.0
-References: <20230616050725.1464277-1-jiadong.zhu@amd.com>
-In-Reply-To: <20230616050725.1464277-1-jiadong.zhu@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 16 Jun 2023 08:55:51 -0400
-Message-ID: <CADnq5_N5uRd=R_JoTM0trLgF6UZd_Qq-7HvPqTmOKaPpDoj19A@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: enable mcbp by default on gfx9 chips
-To: jiadong.zhu@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,42 +74,61 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
+Cc: stable@vger.kernel.org, Samuel Pitoiset <samuel.pitoiset@gmail.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 16, 2023 at 1:07=E2=80=AFAM <jiadong.zhu@amd.com> wrote:
->
-> From: Jiadong Zhu <Jiadong.Zhu@amd.com>
->
-> Gfx9 is using software rings which would trigger mcbp in some cases.
-> Thus the parameter amdgpu_mcbp shall be enabled by default.
->
-> Signed-off-by: Jiadong Zhu <Jiadong.Zhu@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/=
-amdgpu/gfx_v9_0.c
-> index 65577eca58f1..1b3cfda946f9 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> @@ -4527,6 +4527,7 @@ static int gfx_v9_0_early_init(void *handle)
->         adev->gfx.xcc_mask =3D 1;
->         adev->gfx.num_compute_rings =3D min(amdgpu_gfx_get_num_kcq(adev),
->                                           AMDGPU_MAX_COMPUTE_RINGS);
-> +       amdgpu_mcbp =3D 1;
+Per VM BOs must be marked as moved or otherwise their ranges are not
+updated on use which might be necessary when the replace operation
+splits mappings.
 
-This will enable it for all chips since it's a global.  You'll need to
-store the state in adev->gfx or something like that and enable it on a
-per chip basis, or just make it the default everywhere.
+This fixes random GPU hangs when replacing sparse mappings from the
+userspace, while OP_MAP/OP_UNMAP works fine because always valid BOs
+are correctly handled there.
 
-Alex
+Cc: stable@vger.kernel.org
+Signed-off-by: Samuel Pitoiset <samuel.pitoiset@gmail.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
->         gfx_v9_0_set_kiq_pm4_funcs(adev);
->         gfx_v9_0_set_ring_funcs(adev);
->         gfx_v9_0_set_irq_funcs(adev);
-> --
-> 2.25.1
->
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+index 143d11afe0e5..eff73c428b12 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -1771,18 +1771,30 @@ int amdgpu_vm_bo_clear_mappings(struct amdgpu_device *adev,
+ 
+ 	/* Insert partial mapping before the range */
+ 	if (!list_empty(&before->list)) {
++		struct amdgpu_bo *bo = before->bo_va->base.bo;
++
+ 		amdgpu_vm_it_insert(before, &vm->va);
+ 		if (before->flags & AMDGPU_PTE_PRT)
+ 			amdgpu_vm_prt_get(adev);
++
++		if (bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv &&
++		    !before->bo_va->base.moved)
++			amdgpu_vm_bo_moved(&before->bo_va->base);
+ 	} else {
+ 		kfree(before);
+ 	}
+ 
+ 	/* Insert partial mapping after the range */
+ 	if (!list_empty(&after->list)) {
++		struct amdgpu_bo *bo = after->bo_va->base.bo;
++
+ 		amdgpu_vm_it_insert(after, &vm->va);
+ 		if (after->flags & AMDGPU_PTE_PRT)
+ 			amdgpu_vm_prt_get(adev);
++
++		if (bo && bo->tbo.base.resv == vm->root.bo->tbo.base.resv &&
++		    !after->bo_va->base.moved)
++			amdgpu_vm_bo_moved(&after->bo_va->base);
+ 	} else {
+ 		kfree(after);
+ 	}
+-- 
+2.41.0
+
