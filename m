@@ -2,51 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A88CA732E09
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 Jun 2023 12:29:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41F0773319D
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 Jun 2023 14:51:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 881D610E601;
-	Fri, 16 Jun 2023 10:29:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FBEA10E618;
+	Fri, 16 Jun 2023 12:51:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 123FB10E5FF;
- Fri, 16 Jun 2023 10:29:01 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+X-Greylist: delayed 526 seconds by postgrey-1.36 at gabe;
+ Fri, 16 Jun 2023 12:20:07 UTC
+Received: from smtp-relay-internal-1.canonical.com
+ (smtp-relay-internal-1.canonical.com [185.125.188.123])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D40910E0EB
+ for <amd-gfx@lists.freedesktop.org>; Fri, 16 Jun 2023 12:20:07 +0000 (UTC)
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 7F95C6374C;
- Fri, 16 Jun 2023 10:29:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D0DFC433C0;
- Fri, 16 Jun 2023 10:28:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1686911339;
- bh=jFp0Hq2POJGsZrpeXaqiQ8IhrQ8rVyOi86cT82XbsEQ=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=E6c/ulQlX4yt3zwCrsz5nPxY0lgM9da0xqm8Ow/ejULZ4FwERufrKHESFXWcgTmyr
- 7m0hiSWT+7GpnlA6tb2GYVS5o6A+7qFxXjc8zh1Fc6xQiyWKPWsQL2ALK36UR6A7d8
- jpGRbbLPpWa4XvxS2uCNfAauYrG3POhYQ6DPfGHAWwzvCyBWkxzuj/Fj1KHuV2BCnf
- 6FRL0kS3Ky/zZR9xEv2pc69IVBm3QzpjkgOztyU+9EOJXcjQ5cq3pbfL4yjIeSVRuC
- sfRCeBc+bACQo2Bxx1Jwno8vTt3T+XeEA6RNUYGXgXGb9EJk1kMWMU4OPHexuBRENn
- Dju/cWGgNhzRg==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 4/5] drm/radeon: fix race condition UAF in
- radeon_gem_set_domain_ioctl
-Date: Fri, 16 Jun 2023 06:28:50 -0400
-Message-Id: <20230616102852.674366-4-sashal@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230616102852.674366-1-sashal@kernel.org>
-References: <20230616102852.674366-1-sashal@kernel.org>
+ by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 4CCE63F16F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 16 Jun 2023 12:11:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+ s=20210705; t=1686917480;
+ bh=ygm1JpcHC+yM6gwUZ9anDyDYQkSa5UJcZ+p9QEN6GhU=;
+ h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+ b=m80NhPyjDUPqJGH+dmcSS1hWLH3FcicKhUkPYlM1C1vnspQ+/LWrwQGr7PqsgRyx6
+ svaXwURgeBgJhSIPbb4czOv33q0jtzO7m6VTzr5UPjl+WagKysQuUNN065BgqvFK7y
+ BM3k1h6wOljAc1DJRHf8+Nu0odTWOhyR6DfdsF7ZwNqdvFhNyyLCIqMphQu3Q0fSC4
+ eZoOfWo0zxlHqSdus5vCFCA3m3lCH6daJw6I2aWbgKmC8NP+Pi5yaTd9J4MBDqhziX
+ 8oZS2R0xxl/60DnHcmwjDhn0j60iZSQvHFFPKjUrE9eSN5ffc2fgRYxLMgF9hhBjTy
+ Zr10Sq3xDbekQ==
+Received: by mail-wr1-f72.google.com with SMTP id
+ ffacd0b85a97d-30fc67636a2so212268f8f.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 16 Jun 2023 05:11:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1686917480; x=1689509480;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ygm1JpcHC+yM6gwUZ9anDyDYQkSa5UJcZ+p9QEN6GhU=;
+ b=ey1jW75mHIMMCMm3s4eu0JJnuX0acR7qTXlwNiJ7VV0xdODE6rKPC9dK5/0aq5LsUR
+ 5B9LfFuB2sWW1p7IOZ6MBKGaqe988IDP/DDeqwd7qxstSj3kmayckzMu6SzXJhN/PxdO
+ 5AhBsxO3i16/jwk5tZL1HylknTMit/3TYIc987mhUupJgcb5OLIBzJQxchEphc14AEMT
+ O9ErOf3DG9V8q/mlPi9+yl55/mEB0ULJyTQqD49d4HOvaMviMWmrWbWK1uB5wptOa6Qo
+ dn/5J1iltq35/muGq4ZxJBhQBQoh8cpOrVlchZuxdXEqnsp2cakwv9MRFMghmAgVv6cz
+ GyTQ==
+X-Gm-Message-State: AC+VfDwkz9GO5qvluGEQ7OqvC/aaAkxuAVTW5pujTXctcW0g1S0d9kKC
+ LWiHsELtFgfPo1ES5xK4iPrS0JJvdvZ1vhTckpNooKPlaz40FKjlCLSM2bGEqG6USusBvJVM2ay
+ obBX0yzATcNiwRFgh5eQBTvICwJcnBROh6WtQAD9zmHM=
+X-Received: by 2002:adf:fd82:0:b0:30e:19a8:4b15 with SMTP id
+ d2-20020adffd82000000b0030e19a84b15mr1232214wrr.30.1686917480060; 
+ Fri, 16 Jun 2023 05:11:20 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ7+RJMFh0mO2k3qKah4mRBirj+tBn8JQcdEo6xSgXQRBq85MahquhXfYVqxTBHqLgbleXfsHQ==
+X-Received: by 2002:adf:fd82:0:b0:30e:19a8:4b15 with SMTP id
+ d2-20020adffd82000000b0030e19a84b15mr1232197wrr.30.1686917479747; 
+ Fri, 16 Jun 2023 05:11:19 -0700 (PDT)
+Received: from localhost ([194.191.244.86]) by smtp.gmail.com with ESMTPSA id
+ s2-20020adfecc2000000b0030aed4223e0sm23325047wro.105.2023.06.16.05.11.19
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 16 Jun 2023 05:11:19 -0700 (PDT)
+From: Juerg Haefliger <juerg.haefliger@canonical.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH] drm/amdgpu: Add missing MODULE_FIRMWARE macro
+Date: Fri, 16 Jun 2023 14:11:16 +0200
+Message-Id: <20230616121116.1031336-1-juerg.haefliger@canonical.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 4.14.318
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 16 Jun 2023 12:51:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,57 +83,31 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, Min Li <lm0963hack@gmail.com>,
- Xinhui.Pan@amd.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
- Alex Deucher <alexander.deucher@amd.com>, airlied@gmail.com,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Bokun.Zhang@amd.com, lijo.lazar@amd.com, linux-kernel@vger.kernel.org,
+ YiPeng.Chai@amd.com, Juerg Haefliger <juerg.haefliger@canonical.com>,
+ mario.limonciello@amd.com, Likun.Gao@amd.com, Hawking.Zhang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Min Li <lm0963hack@gmail.com>
+Add the missing MODULE_FIRMWARE macro for "amdgpu/fiji_smc.bin".
 
-[ Upstream commit 982b173a6c6d9472730c3116051977e05d17c8c5 ]
-
-Userspace can race to free the gobj(robj converted from), robj should not
-be accessed again after drm_gem_object_put, otherwith it will result in
-use-after-free.
-
-Reviewed-by: Christian König <christian.koenig@amd.com>
-Signed-off-by: Min Li <lm0963hack@gmail.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Juerg Haefliger <juerg.haefliger@canonical.com>
 ---
- drivers/gpu/drm/radeon/radeon_gem.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeon/radeon_gem.c
-index ac467b80edc7c..59ad0a4e2fd53 100644
---- a/drivers/gpu/drm/radeon/radeon_gem.c
-+++ b/drivers/gpu/drm/radeon/radeon_gem.c
-@@ -376,7 +376,6 @@ int radeon_gem_set_domain_ioctl(struct drm_device *dev, void *data,
- 	struct radeon_device *rdev = dev->dev_private;
- 	struct drm_radeon_gem_set_domain *args = data;
- 	struct drm_gem_object *gobj;
--	struct radeon_bo *robj;
- 	int r;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 5c7d40873ee2..1f83a939d641 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -92,6 +92,7 @@ MODULE_FIRMWARE("amdgpu/picasso_gpu_info.bin");
+ MODULE_FIRMWARE("amdgpu/raven2_gpu_info.bin");
+ MODULE_FIRMWARE("amdgpu/arcturus_gpu_info.bin");
+ MODULE_FIRMWARE("amdgpu/navi12_gpu_info.bin");
++MODULE_FIRMWARE("amdgpu/fiji_smc.bin");
  
- 	/* for now if someone requests domain CPU -
-@@ -389,13 +388,12 @@ int radeon_gem_set_domain_ioctl(struct drm_device *dev, void *data,
- 		up_read(&rdev->exclusive_lock);
- 		return -ENOENT;
- 	}
--	robj = gem_to_radeon_bo(gobj);
- 
- 	r = radeon_gem_set_domain(gobj, args->read_domains, args->write_domain);
- 
- 	drm_gem_object_put_unlocked(gobj);
- 	up_read(&rdev->exclusive_lock);
--	r = radeon_gem_handle_lockup(robj->rdev, r);
-+	r = radeon_gem_handle_lockup(rdev, r);
- 	return r;
- }
- 
+ #define AMDGPU_RESUME_MS		2000
+ #define AMDGPU_MAX_RETRY_LIMIT		2
 -- 
-2.39.2
+2.37.2
 
