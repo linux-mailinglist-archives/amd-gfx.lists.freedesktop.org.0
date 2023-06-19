@@ -2,75 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C246B736291
-	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jun 2023 06:14:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E2AF736410
+	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jun 2023 09:10:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 266AF10E259;
-	Tue, 20 Jun 2023 04:14:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 990A410E271;
+	Tue, 20 Jun 2023 07:09:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com
- [IPv6:2607:f8b0:4864:20::d36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8B9810E258;
- Tue, 20 Jun 2023 04:14:26 +0000 (UTC)
-Received: by mail-io1-xd36.google.com with SMTP id
- ca18e2360f4ac-77e3c55843cso22853939f.0; 
- Mon, 19 Jun 2023 21:14:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1687234465; x=1689826465;
- h=content-transfer-encoding:in-reply-to:content-language:references
- :to:subject:from:user-agent:mime-version:date:message-id:from:to:cc
- :subject:date:message-id:reply-to;
- bh=HfXcA5JdNA0yf+U+AJ2SuyKVr9rRyTUAx98Z0AaLNjU=;
- b=nCDvG5c6cXOqyczo3SPAlLoIYL3tinmRwA7LG1Sh2BeV10m0RceQxHtBmzDN5itEyg
- WdlBkyD57wkjgU577v+JxRgihq6/g8/IECAgMO8OIlwe5tO8Y8rLmSlSetePJayCXYo2
- ebHLcIDQaV6+YS6hKNMY2+RBjQbOsdsdJVHRzVz6YAfBAbPzP9a7ZDAnZTfYHaRbPwzC
- 4a+LQiVzkY+sZLqT5kTZAqOBh+mgVqKlH/4fSRPWUIpVIyvlZsVpNOyMyZclRi0BXZWu
- LM0rjyTIWUds3EkqN41d2X2uY3DhCkBY3O3V4H4dlXyutG1ztMMDXRBXCKSeHxl73q8r
- J4gA==
+Received: from smtp-relay-internal-0.canonical.com
+ (smtp-relay-internal-0.canonical.com [185.125.188.122])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 707B910E207
+ for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jun 2023 14:42:27 +0000 (UTC)
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
+ [209.85.218.72])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 733243F72F
+ for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jun 2023 14:42:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+ s=20210705; t=1687185743;
+ bh=oVzx6NYhYUEvG3AH2qaIIGghMLVni7wi0TtZ3p4soSE=;
+ h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+ MIME-Version:Content-Type;
+ b=Ae/+RKrmncU9myeHSwFon3FOjr/GFaTPOC1mTLEZfr0DLSXYCwLpmzUeUW+5JM1/P
+ 67ECXxdxZZaYDiYzGqMygpX6ic7JYE8e0fIPWEsnBs8Id2KEMdis1qOL4/EGhem7fE
+ rnsWq9imjssAlh9U3+cQLoE2iR7shVlCraWRO8ZG+ylnM9kSn8cbEhRHI99yjKXH3q
+ NQBwpzpnMRqxn1wVnCY09+T452b2X2JosqqAKadiEUH/wYqhRKjNraM1JBYjTw9I2n
+ aBo6nIdvSvw2SE0xNFsShuc3dtAO6WLjBkWykE1lVCPwSMxy3ChBCVjc0GPwrSlLbI
+ X9NOhGRzHe6jA==
+Received: by mail-ej1-f72.google.com with SMTP id
+ a640c23a62f3a-98864f473c7so98523166b.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jun 2023 07:42:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1687234465; x=1689826465;
- h=content-transfer-encoding:in-reply-to:content-language:references
- :to:subject:from:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=HfXcA5JdNA0yf+U+AJ2SuyKVr9rRyTUAx98Z0AaLNjU=;
- b=S7WX4tigEoPTsK6yP3hSPvOzyD8ZbE9WjAuDh1kHSDSxOzo1OglrclfRPKISiIA523
- etzzS+11E+9KzR0W5U74mugykX34L7Ir+aaWZiGm2BfP3jgGflaxFmhHMW9Yjz4S0yYy
- RhH5oMON7JKq/JbEEwC1/mDlqeCqLkXQziQ2WaAh/1sxrIRa0EgjugGdwHjXXzU0CLJ5
- MB8SJqBx+C4qHSh1w+hEHMNQarqYckOIRrHBeQIGqt8gjdr3KRfl2C+RAtNCO5eexAx6
- ggyyg2fqKh77tvJ8glZGy9Pa3HFS5p0KtJ9Mi4GmtCrhTz7e+8qoGb3s53DcGOGzNYgy
- PJBg==
-X-Gm-Message-State: AC+VfDxBe4fgGpQ6gaKmcdQZAmhMjuEOepap6kGeNf2kzX1w1P2KXcyZ
- ASami6G6Y8wfJqNhOo0RfQ8=
-X-Google-Smtp-Source: ACHHUZ6F2FXg8uHYdsZkLFEFMNP7a1KIe0AMPEYR5KKoRUALJJ8c0cL/kyR+1tAgGrT+v0QoVyQYHg==
-X-Received: by 2002:a05:6e02:c72:b0:340:ba06:b16a with SMTP id
- f18-20020a056e020c7200b00340ba06b16amr7876800ilj.3.1687234465308; 
- Mon, 19 Jun 2023 21:14:25 -0700 (PDT)
-Received: from [10.104.2.174] (zz20184013906F627101.userreverse.dion.ne.jp.
- [111.98.113.1]) by smtp.gmail.com with ESMTPSA id
- l186-20020a6391c3000000b0052c9d1533b6sm432097pge.56.2023.06.19.21.14.22
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 19 Jun 2023 21:14:24 -0700 (PDT)
-Message-ID: <7446c685-474d-c69a-2224-e73146987365@gmail.com>
-Date: Tue, 20 Jun 2023 13:14:21 +0900
+ d=1e100.net; s=20221208; t=1687185742; x=1689777742;
+ h=mime-version:organization:references:in-reply-to:message-id:subject
+ :cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=oVzx6NYhYUEvG3AH2qaIIGghMLVni7wi0TtZ3p4soSE=;
+ b=DQvjQ0yXSB/vCik8l1Ps+PRs9IHiAA6eMYbxthz+1/WJFm0VN2u/oKYeKZ91W4TNgF
+ oh7NSBJcLsO7NZ3TrWufOW8aGxMDt1Oe+T6KJl9i0nBCzI2rU/Kbrkol5NL5IRiU4WzX
+ RR9AnCR0BIEV2Z33/NRgk8k2AWnyaZ+gvEu0UWvp/oJps8l68/uGzQ74Mo7hzmRASeud
+ a4IoD5OWXp1L1iF31SL9YnxBW03f+ybTPaGCxq/VZsQXM9qukx191AjZ8YtOFxdto4av
+ FMMKybxGu+k/18hbCWy7YxMxPjHyrYd6OM/8FEtmwvRdm6le6bMzw8DJQUN8m2k3Ee30
+ qJ1A==
+X-Gm-Message-State: AC+VfDyuXd7bQBbJKR4F8eeHIXZtM7tfAVjZw9GFjz78NK16X9cRoSgN
+ N1buC0p5HdKOg/At/0n0JH5AzoT7RdLSAf1KCDHYUfDFBnU0MVYxEljnmTwj9EdU7nlHQxBLRz/
+ vI6VxnU2ACVLmNS/Pabt1SrbvyXXTgBqqAk68pLFi5pRr/V/fePgttA==
+X-Received: by 2002:a17:906:4fc5:b0:974:20bd:6e15 with SMTP id
+ i5-20020a1709064fc500b0097420bd6e15mr7712248ejw.4.1687185742796; 
+ Mon, 19 Jun 2023 07:42:22 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ5uRvfrz4OGRcv0QxkR+P4tDg9wB7UCd8/6nh/dPpJc1WEhB3DIXye/HmnDc/eWXtbGoz8M8Q==
+X-Received: by 2002:a17:906:4fc5:b0:974:20bd:6e15 with SMTP id
+ i5-20020a1709064fc500b0097420bd6e15mr7712224ejw.4.1687185742517; 
+ Mon, 19 Jun 2023 07:42:22 -0700 (PDT)
+Received: from gollum ([194.191.244.86]) by smtp.gmail.com with ESMTPSA id
+ bn14-20020a170906c0ce00b0095807ab4b57sm15016341ejb.178.2023.06.19.07.42.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 19 Jun 2023 07:42:21 -0700 (PDT)
+Date: Mon, 19 Jun 2023 16:42:19 +0200
+From: Juerg Haefliger <juerg.haefliger@canonical.com>
+To: Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Add missing MODULE_FIRMWARE macro
+Message-ID: <20230619164219.4ae6a818@gollum>
+In-Reply-To: <CADnq5_Nnr=BO2y3O3_x+sX-93CtY7g52m9DHva7WWqeeO5xqMA@mail.gmail.com>
+References: <20230616121116.1031336-1-juerg.haefliger@canonical.com>
+ <CADnq5_Nnr=BO2y3O3_x+sX-93CtY7g52m9DHva7WWqeeO5xqMA@mail.gmail.com>
+Organization: Canonical Ltd
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-From: Tatsuyuki Ishi <ishitatsuyuki@gmail.com>
-Subject: Re: [PATCH 06/13] drm/amdgpu: use the new drm_exec object for CS v2
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- francois.dugast@intel.com, felix.kuehling@amd.com,
- arunpravin.paneerselvam@amd.com, thomas_os@shipmail.org, dakr@redhat.com,
- luben.tuikov@amd.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, matthew.brost@intel.com,
- boris.brezillon@collabora.com
-References: <20230504115159.2245-1-christian.koenig@amd.com>
- <20230504115159.2245-7-christian.koenig@amd.com>
- <e163fa54-b016-1879-d1c0-840a4d3885b1@gmail.com>
-Content-Language: en-US
-In-Reply-To: <e163fa54-b016-1879-d1c0-840a4d3885b1@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="Sig_/VSLr7Uc977O.nGCK=PDUW7X";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Mailman-Approved-At: Tue, 20 Jun 2023 07:09:56 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,64 +85,79 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: lijo.lazar@amd.com, Bokun.Zhang@amd.com, Xinhui.Pan@amd.com,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ YiPeng.Chai@amd.com, dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
+ alexander.deucher@amd.com, Likun.Gao@amd.com, Hawking.Zhang@amd.com,
+ airlied@gmail.com, christian.koenig@amd.com, mario.limonciello@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 6/20/23 13:07, Tatsuyuki Ishi wrote:
->> @@ -1296,9 +1271,8 @@ static int amdgpu_cs_submit(struct 
->> amdgpu_cs_parser *p,
->>        */
->>       r = 0;
->>       amdgpu_bo_list_for_each_userptr_entry(e, p->bo_list) {
->> -        struct amdgpu_bo *bo = ttm_to_amdgpu_bo(e->tv.bo);
->> -
->> -        r |= !amdgpu_ttm_tt_get_user_pages_done(bo->tbo.ttm, e->range);
->> +        r |= !amdgpu_ttm_tt_get_user_pages_done(e->bo->tbo.ttm,
->> +                            e->range);
->>           e->range = NULL;
-> 
-> e->range = NULL; needs to be removed, or it's causing *massive* memory 
-> leaks.
+--Sig_/VSLr7Uc977O.nGCK=PDUW7X
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Actually, I quoted the wrong hunk, the correct one is below.
+On Fri, 16 Jun 2023 08:53:20 -0400
+Alex Deucher <alexdeucher@gmail.com> wrote:
 
-> @@ -928,18 +874,56 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
->  		e->user_invalidated = userpage_invalidated;
->  	}
->  
-> -	r = ttm_eu_reserve_buffers(&p->ticket, &p->validated, true,
-> -				   &duplicates);
-> -	if (unlikely(r != 0)) {
-> -		if (r != -ERESTARTSYS)
-> -			DRM_ERROR("ttm_eu_reserve_buffers failed.\n");
-> -		goto out_free_user_pages;
-> +	drm_exec_while_not_all_locked(&p->exec) {
-> +		r = amdgpu_vm_lock_pd(&fpriv->vm, &p->exec);
-> +		drm_exec_continue_on_contention(&p->exec);
-> +		if (unlikely(r))
-> +			goto out_free_user_pages;
-> +
-> +		amdgpu_bo_list_for_each_entry(e, p->bo_list) {
-> +			r = drm_exec_prepare_obj(&p->exec, &e->bo->tbo.base, 2);
-> +			drm_exec_break_on_contention(&p->exec);
-> +			if (unlikely(r))
-> +				goto out_free_user_pages;
-> +
-> +			e->bo_va = amdgpu_vm_bo_find(vm, e->bo);
-> +			e->range = NULL;
+> On Fri, Jun 16, 2023 at 8:11=E2=80=AFAM Juerg Haefliger
+> <juerg.haefliger@canonical.com> wrote:
+> >
+> > Add the missing MODULE_FIRMWARE macro for "amdgpu/fiji_smc.bin".
+> >
+> > Signed-off-by: Juerg Haefliger <juerg.haefliger@canonical.com>
+> > ---
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/d=
+rm/amd/amdgpu/amdgpu_device.c
+> > index 5c7d40873ee2..1f83a939d641 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > @@ -92,6 +92,7 @@ MODULE_FIRMWARE("amdgpu/picasso_gpu_info.bin");
+> >  MODULE_FIRMWARE("amdgpu/raven2_gpu_info.bin");
+> >  MODULE_FIRMWARE("amdgpu/arcturus_gpu_info.bin");
+> >  MODULE_FIRMWARE("amdgpu/navi12_gpu_info.bin");
+> > +MODULE_FIRMWARE("amdgpu/fiji_smc.bin"); =20
+>=20
+> This is already specified in smumgr.c.
 
-This causes the leak.
+It sure is. Sorry for the noise :-(
 
-> +		}
-> +		drm_exec_continue_on_contention(&p->exec);
-> +
-> +		if (p->uf_bo) {
-> +			r = drm_exec_prepare_obj(&p->exec, &p->uf_bo->tbo.base,
-> +						 2);
-> +			drm_exec_continue_on_contention(&p->exec);
-> +			if (unlikely(r))
-> +				goto out_free_user_pages;
-> +		}
->  	}
+Thanks for looking at it.
+..Juerg
 
-Tatsuyuki
+=20
+> Alex
+>=20
+> >
+> >  #define AMDGPU_RESUME_MS               2000
+> >  #define AMDGPU_MAX_RETRY_LIMIT         2
+> > --
+> > 2.37.2
+> > =20
+
+
+--Sig_/VSLr7Uc977O.nGCK=PDUW7X
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEhZfU96IuprviLdeLD9OLCQumQrcFAmSQaUsACgkQD9OLCQum
+QreYUhAAnmXAhO0Tsu0xyykMZZdNzq88fuPv5q6L9CFkZYzPfZouX8irTOMyGuES
+vbrn1ZzVf66SzygqILzCkA2nH8sLgGJSF5S7t8yhtjrWsgLBXre88Exe/3RKyl9g
+W/zKNzlOlINUo3fm7bfvM+pZl/OKxVtfq2IbgaD/rk5LyFbl17Z1ETTA2TBY9P0m
+U4dpQ0KySNknwxEe6l8n3S9oJJzuaw5z0rgd5opwtv5RKFXZQUcQ4i8FcSfNCb89
+ciY/SdcRlybfyQ9tlfToOkSLnOkzMlMcmGX9LtiBvZTx6dvKfqd7xqy8p/+8tFTE
+sn1icmhV5zvLEyWs8eI51DwwpmK5BlAHbfDsjOfgOjc8r+OsarW5IpF2G8eP93oR
+tryuZx+kD1OcBd9jUiEyuJGC4mcYHNndwPniCjxP3OcKWhJsia2V8axHYZ//ddf7
+NfWFg6jE+M4j7Nl0C2XWq8KO83ejkSR7N+siPs6pPKUdHTKacJaeO/5ZBm7y0rRx
+3C4b335jx/uY74nBrW9WtJr+bOZz2YPTM4GOl6rOqsjy3LmzYt6kpFDYeTUYWoKW
+4uj3jRf0257eeaXjCL2kdNS4paQT0Ipil3kaSG1Ea32OyW8+ipqmg7nwuVkEifOx
+q4NmF4Rkmx1Q2enwGXRwP+PaXa4a4qe2OuSyzKEYG8IUyxITxFU=
+=i1ZT
+-----END PGP SIGNATURE-----
+
+--Sig_/VSLr7Uc977O.nGCK=PDUW7X--
