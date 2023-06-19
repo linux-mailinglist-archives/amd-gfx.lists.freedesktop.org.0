@@ -2,96 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72389734D85
-	for <lists+amd-gfx@lfdr.de>; Mon, 19 Jun 2023 10:23:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45857734F1B
+	for <lists+amd-gfx@lfdr.de>; Mon, 19 Jun 2023 11:06:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D981F10E1AF;
-	Mon, 19 Jun 2023 08:23:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49C5F10E1C9;
+	Mon, 19 Jun 2023 09:06:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2054.outbound.protection.outlook.com [40.107.223.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B525310E1AF
- for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jun 2023 08:23:43 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=a0eHB6rdDHsH0ZyBPyOEOqdAAj6RjzzzvtJTBcon8wISnnq5ITDHIGRIxWe4JrQvj4Pw27Ij8jt0KHUhmhTflIYTt6iLEB7FqOl1W3woiku+gmgvtCW6vQ/FHMiRyGzQ7HcXirXKm40JPA96kHLCIM3Rfsv5YlzMCdkqHOyoqj59KI2Hksdk1uwIdcH7lnIBtvUl9cGsbAGS+yKLjPzcu4jjBPiTgenkyjP/zt/G4C0aeH8Wfv9gbAzdAq5Ifpc9XajsoBa11MAdZlXYjDgyj60IBjDR/51iD4p8yKWnhWo9+SEGlrS57Ekf32XIBLFq2JwkrUOMC19UeNEZJyWwqQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6KEE0X03yoBu94uSUIJJ3b6y28rRwgF2NLeCmRv59lY=;
- b=bGZfdbQIMnd/89IMZFlgHNk1YsqdxhH0Zu7Jl1QdLsv05S7jO5z8XTzpk/GSiLsiJimq8RPQqCVanvq2imt7nl44ZnA3WvcGGliHf0E7qm1dQaiVaWa+UaWx123Lj60w4Dyo3N3tFvlhtG11k3/wAFrm0U9+r85o3hqsRMwBUHy4JgcnmcZVxYEgmevC4F8OC0XOAyJIHibfaB+koSNGwtW+PvtzsHp2kiJ0f/tgce/VQPob+/hd6friumEDBHBM4RJopBwFC3fRIofd482YpvD7CRHglFzEVixB0Wq2WUSqxa/J0DCK5QDv+tjs7jIXswVeIx+p3KxnGbNJGoJA3Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6KEE0X03yoBu94uSUIJJ3b6y28rRwgF2NLeCmRv59lY=;
- b=b2TdCxy0LA1k/owrVYDQvdBOq9iZdRHt1LJYmccOigGs7Wk9jpHS2848JBnr5L3RlURiMSeSPghF62frPH88dhODO5WmZ0ymc9IOQJkfCsdjWKiUaVPxgXZu528C0VBm2jFGT/ZvGhxz7MQOR8i84Ug/ChnwZEmEHWmkcpaVuQ0=
-Received: from MW4PR03CA0116.namprd03.prod.outlook.com (2603:10b6:303:b7::31)
- by CO6PR12MB5460.namprd12.prod.outlook.com (2603:10b6:5:357::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.36; Mon, 19 Jun
- 2023 08:23:41 +0000
-Received: from CO1NAM11FT108.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:b7:cafe::aa) by MW4PR03CA0116.outlook.office365.com
- (2603:10b6:303:b7::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.37 via Frontend
- Transport; Mon, 19 Jun 2023 08:23:41 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT108.mail.protection.outlook.com (10.13.175.226) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6500.37 via Frontend Transport; Mon, 19 Jun 2023 08:23:40 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Mon, 19 Jun
- 2023 03:23:40 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Mon, 19 Jun
- 2023 03:23:39 -0500
-Received: from stanley-test.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.23 via Frontend
- Transport; Mon, 19 Jun 2023 03:23:38 -0500
-From: Stanley.Yang <Stanley.Yang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <Hawking.Zhang@amd.com>,
- <Tao.Zhou1@amd.com>, <YiPeng.Chai@amd.com>
-Subject: [PATCH Review 1/1] drm/amdgpu: Remove redundant poison consumption
- handler function
-Date: Mon, 19 Jun 2023 16:23:36 +0800
-Message-ID: <20230619082336.171658-1-Stanley.Yang@amd.com>
-X-Mailer: git-send-email 2.25.1
+X-Greylist: delayed 424 seconds by postgrey-1.36 at gabe;
+ Mon, 19 Jun 2023 09:06:26 UTC
+Received: from pio-pvt-msa1.bahnhof.se (pio-pvt-msa1.bahnhof.se [79.136.2.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84D0010E1C6;
+ Mon, 19 Jun 2023 09:06:26 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 81EA13FF65;
+ Mon, 19 Jun 2023 10:59:19 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.2
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.2 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.091,
+ T_SCC_BODY_TEXT_LINE=-0.01, URIBL_BLOCKED=0.001]
+ autolearn=ham autolearn_force=no
+Authentication-Results: pio-pvt-msa1.bahnhof.se (amavisd-new);
+ dkim=pass (1024-bit key) header.d=shipmail.org
+Received: from pio-pvt-msa1.bahnhof.se ([127.0.0.1])
+ by localhost (pio-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id EVQnvMH8K2OO; Mon, 19 Jun 2023 10:59:18 +0200 (CEST)
+Received: by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id 5A63E3FF5D;
+ Mon, 19 Jun 2023 10:59:17 +0200 (CEST)
+Received: from [192.168.0.209] (h-155-4-205-35.A357.priv.bahnhof.se
+ [155.4.205.35])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id E23033631FE;
+ Mon, 19 Jun 2023 10:59:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1687165157; bh=95vrAOU5n/pq5luiZ2XpTUPNMXuA7Hx5M7h/RuGLXOs=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=JRL5LM1v4yv+bUC8pC6d8F4qLpvhLxOI9Nj4r4D5xHtptM2E3Yxiup3L6Kjmct4LL
+ pEWrqS4X8PD7YgG8U7NU/Rdw8JMWWhkmatedkkjhFplCqm5EgkE17CSTwOxWxJIvw9
+ ErTqwN/ZLjxRDK1PpCMy7WI2xpZqXlaDLR99BUGk=
+Message-ID: <5058c4dd-da1b-9495-5ced-c4d5a5749194@shipmail.org>
+Date: Mon, 19 Jun 2023 10:59:16 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.1
+Subject: Re: [PATCH 01/13] drm: execution context for GEM buffers v4
+Content-Language: en-US
+To: Boris Brezillon <boris.brezillon@collabora.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+References: <20230504115159.2245-1-christian.koenig@amd.com>
+ <20230504115159.2245-2-christian.koenig@amd.com>
+ <20230614142339.04df5111@collabora.com>
+ <299e0ff6-bd0a-fa8d-acda-8b3ce22d6ab6@amd.com>
+ <20230614150252.6ceb42fd@collabora.com>
+ <20230617135434.7dd3a25d@collabora.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+In-Reply-To: <20230617135434.7dd3a25d@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT108:EE_|CO6PR12MB5460:EE_
-X-MS-Office365-Filtering-Correlation-Id: 83dac0af-66e3-4e23-921e-08db709e7d38
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: kqg3AsD24OBLZepa1jOn969T2BFnQiuVzVbX56gACH2tGE6zbtFrz+MnyCYF0B0Du2hnWLyFuRMo6kUXdsvxQbDO6g0L5Apr16MWq+74IzIxrudLagmhCPSvUBlq4qQld6am5uuDB+QcVe5GJYMGzA2tJFy4CPIHmUI5uEEQASE+yicwyy9cfA6cJbKJzEW9yR5PZihvRHZR62/zIqdt78f0gOmMg89p971y+BOF0tgjL0UYuUM4o5wUH4XEob3U6CYynE6QCWGTrlyFpNXSaXQEkdQ9G6mhUy79Ve9xhn6ztSUc+gGk2bqScGwmEqWSUvrjYaLTlIyJSxXY/hjWArYNToeBW7mLKTqvtmcuhmtQCTv4FY2wVitRc4HV1NqyakpvmxDnkn9PgIp0Plrp+v9cOjbPuu1OD1OTjyPoXy5hMTwPKz9vnUgjsWWMaPKFKbYWDKJ75ppvqXaA/1V6pp3kBSLG2NBsmT9TrzOF55rX5pkju02v5DL0HGoY1Tve2R8f7wdMcY0OlxWTA73Aac2fPw1bVwK8tJq/DniXYtrTVcr1YXgDc9WDFys4bCxdhLVDce6VmmLNifRN9RleuoKwbEaffuQjSaezXjND89z9OXMsSte0PQ8bSPk3OFYfeVVq1HvzFjUQfJCYx7zFY8gx5VlSTKrYQiKiLZUO1dEAhH8gUVb7LD+sLdd8BB6srnX1kCbEbxfWmJ+v0qn7hr+QKcU13mhayE1SlIiyAI2UCK8DSTCV5iaBqEiuTe74ShrBFo3TUaHfORVy/cyQSw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(39860400002)(376002)(136003)(396003)(346002)(451199021)(46966006)(36840700001)(40470700004)(82310400005)(336012)(426003)(83380400001)(47076005)(86362001)(8936002)(41300700001)(8676002)(5660300002)(70206006)(70586007)(316002)(2616005)(36860700001)(82740400003)(81166007)(356005)(26005)(1076003)(40460700003)(40480700001)(186003)(6636002)(478600001)(7696005)(110136005)(4326008)(2906002)(36756003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2023 08:23:40.9341 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 83dac0af-66e3-4e23-921e-08db709e7d38
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT108.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5460
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,133 +73,678 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Stanley.Yang" <Stanley.Yang@amd.com>
+Cc: Matthew Brost <matthew.brost@intel.com>, arunpravin.paneerselvam@amd.com,
+ felix.kuehling@amd.com, francois.dugast@intel.com,
+ amd-gfx@lists.freedesktop.org, luben.tuikov@amd.com, dakr@redhat.com,
+ dri-devel@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The function callback handle_poison_consumption and callback
-function poison_consumption_handler are almost same to handle
-poison consumption, remove poison_consumption_handler.
 
-Signed-off-by: Stanley.Yang <Stanley.Yang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c  |  9 ---------
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h  |  4 ----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c  |  6 ++----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h  |  3 ++-
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0_3.c | 12 +++++++++---
- 5 files changed, 13 insertions(+), 21 deletions(-)
+On 6/17/23 13:54, Boris Brezillon wrote:
+> +Matthew who's been using drm_exec in Xe if I'm correct.
+>
+> Hello Christian,
+>
+> On Wed, 14 Jun 2023 15:02:52 +0200
+> Boris Brezillon <boris.brezillon@collabora.com> wrote:
+>
+>> On Wed, 14 Jun 2023 14:30:53 +0200
+>> Christian König <christian.koenig@amd.com> wrote:
+>>
+>>> Am 14.06.23 um 14:23 schrieb Boris Brezillon:
+>>>> Hi Christian,
+>>>>
+>>>> On Thu,  4 May 2023 13:51:47 +0200
+>>>> "Christian König" <ckoenig.leichtzumerken@gmail.com> wrote:
+>>>>     
+>>>>> This adds the infrastructure for an execution context for GEM buffers
+>>>>> which is similar to the existing TTMs execbuf util and intended to replace
+>>>>> it in the long term.
+>>>>>
+>>>>> The basic functionality is that we abstracts the necessary loop to lock
+>>>>> many different GEM buffers with automated deadlock and duplicate handling.
+>>>> As many other drivers do already, we are considering using drm_exec()
+>>>> for our resv locking in the PowerVR driver, so we might have more
+>>>> questions/comments in the coming days/weeks, but I already have a
+>>>> couple right now (see below).
+>>>>     
+>>>>> v3: drop duplicate tracking, radeon is really the only one needing that
+>>>> I think we'd actually be interested in duplicate tracking. Is there any
+>>>> way we can make it an optional feature through some extra helpers/flags?
+>>>> Doesn't have to be done in this patch series, I'm just wondering if this
+>>>> is something we can share as well.
+>>> You can still capture the -EALREADY error and act appropriately in your
+>>> driver.
+>>>
+>>> For radeon it just means ignoring the error code and going ahead, but
+>>> that behavior doesn't seem to be desired in most cases.
+>>>
+>>> Initially I though we need to separately track how many and how often
+>>> BOs are duplicated, but there is simply no use for this.
+>>>    
+>>>> [...]
+>>>>     
+>>>>> +/**
+>>>>> + * DOC: Overview
+>>>>> + *
+>>>>> + * This component mainly abstracts the retry loop necessary for locking
+>>>>> + * multiple GEM objects while preparing hardware operations (e.g. command
+>>>>> + * submissions, page table updates etc..).
+>>>>> + *
+>>>>> + * If a contention is detected while locking a GEM object the cleanup procedure
+>>>>> + * unlocks all previously locked GEM objects and locks the contended one first
+>>>>> + * before locking any further objects.
+>>>>> + *
+>>>>> + * After an object is locked fences slots can optionally be reserved on the
+>>>>> + * dma_resv object inside the GEM object.
+>>>>> + *
+>>>>> + * A typical usage pattern should look like this::
+>>>>> + *
+>>>>> + *	struct drm_gem_object *obj;
+>>>>> + *	struct drm_exec exec;
+>>>>> + *	unsigned long index;
+>>>>> + *	int ret;
+>>>>> + *
+>>>>> + *	drm_exec_init(&exec, true);
+>>>>> + *	drm_exec_while_not_all_locked(&exec) {
+>>>>> + *		ret = drm_exec_prepare_obj(&exec, boA, 1);
+>>>>> + *		drm_exec_continue_on_contention(&exec);
+>>>>> + *		if (ret)
+>>>>> + *			goto error;
+>>>>> + *
+>>>> Have you considered defining a drm_exec_try_prepare_obj_or_retry()
+>>>> combining drm_exec_prepare_obj() and drm_exec_continue_on_contention()?
+>>>>
+>>>> #define drm_exec_try_prepare_obj_or_retry(exec, obj, num_fences) \
+>>>>           ({ \
+>>>>                   int __ret = drm_exec_prepare_obj(exec, bo, num_fences); \
+>>>>                   if (unlikely(drm_exec_is_contended(exec))) \
+>>>>                           continue; \
+>>>>                   __ret; \
+>>>>           })
+>>>>
+>>>> This way the following pattern
+>>>>
+>>>> 		ret = drm_exec_prepare_obj(&exec, boA, 1);
+>>>> 		drm_exec_continue_on_contention(&exec);
+>>>> 		if (ret)
+>>>> 			goto error;
+>>>>
+>>>> can be turned into something more conventional:
+>>>>
+>>>> 		ret = drm_exec_try_prepare_obj_or_retry(&exec, boA, 1);
+>>>> 		if (ret)
+>>>> 			goto error;
+>>> Yeah, I was considering that as well. But then abandoned it as to
+>>> complicated.
+>>>
+>>> I really need to find some time to work on that anyway.
+> I've been playing with drm_exec for a couple weeks now, and I wanted
+> to share something I hacked to try and make the API simpler and
+> more robust against misuse (see the below diff, which is a slightly
+> adjusted version of your work).
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-index a33d4bc34cee..c15dbdb2e0f9 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-@@ -840,15 +840,6 @@ int amdgpu_gfx_ras_sw_init(struct amdgpu_device *adev)
- 	return 0;
- }
- 
--int amdgpu_gfx_poison_consumption_handler(struct amdgpu_device *adev,
--						struct amdgpu_iv_entry *entry)
--{
--	if (adev->gfx.ras && adev->gfx.ras->poison_consumption_handler)
--		return adev->gfx.ras->poison_consumption_handler(adev, entry);
--
--	return 0;
--}
--
- int amdgpu_gfx_process_ras_data_cb(struct amdgpu_device *adev,
- 		void *err_data,
- 		struct amdgpu_iv_entry *entry)
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-index d0c3f2955821..95b80bc8cdb9 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-@@ -273,8 +273,6 @@ struct amdgpu_gfx_ras {
- 	int (*rlc_gc_fed_irq)(struct amdgpu_device *adev,
- 				struct amdgpu_irq_src *source,
- 				struct amdgpu_iv_entry *entry);
--	int (*poison_consumption_handler)(struct amdgpu_device *adev,
--						struct amdgpu_iv_entry *entry);
- };
- 
- struct amdgpu_gfx_shadow_info {
-@@ -538,8 +536,6 @@ int amdgpu_gfx_get_num_kcq(struct amdgpu_device *adev);
- void amdgpu_gfx_cp_init_microcode(struct amdgpu_device *adev, uint32_t ucode_id);
- 
- int amdgpu_gfx_ras_sw_init(struct amdgpu_device *adev);
--int amdgpu_gfx_poison_consumption_handler(struct amdgpu_device *adev,
--						struct amdgpu_iv_entry *entry);
- 
- bool amdgpu_gfx_is_master_xcc(struct amdgpu_device *adev, int xcc_id);
- int amdgpu_gfx_sysfs_init(struct amdgpu_device *adev);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index 5b6525d8dace..7be289473034 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -1694,15 +1694,13 @@ static void amdgpu_ras_interrupt_poison_consumption_handler(struct ras_manager *
- 	amdgpu_umc_poison_handler(adev, false);
- 
- 	if (block_obj->hw_ops && block_obj->hw_ops->handle_poison_consumption)
--		poison_stat = block_obj->hw_ops->handle_poison_consumption(adev);
-+		poison_stat = block_obj->hw_ops->handle_poison_consumption(adev, entry);
- 
- 	/* gpu reset is fallback for failed and default cases */
--	if (poison_stat) {
-+	if (poison_stat != true) {
- 		dev_info(adev->dev, "GPU reset for %s RAS poison consumption is issued!\n",
- 				block_obj->ras_comm.name);
- 		amdgpu_ras_reset_gpu(adev);
--	} else {
--		amdgpu_gfx_poison_consumption_handler(adev, entry);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-index 46bf1889a9d7..03f3b3774b85 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-@@ -564,7 +564,8 @@ struct amdgpu_ras_block_hw_ops {
- 	void (*reset_ras_error_count)(struct amdgpu_device *adev);
- 	void (*reset_ras_error_status)(struct amdgpu_device *adev);
- 	bool (*query_poison_status)(struct amdgpu_device *adev);
--	bool (*handle_poison_consumption)(struct amdgpu_device *adev);
-+	bool (*handle_poison_consumption)(struct amdgpu_device *adev,
-+			struct amdgpu_iv_entry *entry);
- };
- 
- /* work flow
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0_3.c
-index 26d6286d86c9..5b7eac547a05 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0_3.c
-@@ -78,7 +78,7 @@ static int gfx_v11_0_3_rlc_gc_fed_irq(struct amdgpu_device *adev,
- 	return 0;
- }
- 
--static int gfx_v11_0_3_poison_consumption_handler(struct amdgpu_device *adev,
-+static bool gfx_v11_0_3_handle_poison_consumption(struct amdgpu_device *adev,
- 					struct amdgpu_iv_entry *entry)
- {
- 	/* Workaround: when vmid and pasid are both zero, trigger gpu reset in KGD. */
-@@ -99,10 +99,16 @@ static int gfx_v11_0_3_poison_consumption_handler(struct amdgpu_device *adev,
- 		amdgpu_ras_reset_gpu(adev);
- 	}
- 
--	return 0;
-+	return true;
- }
- 
-+struct amdgpu_ras_block_hw_ops gfx_v11_0_3_ras_ops = {
-+	.handle_poison_consumption = gfx_v11_0_3_handle_poison_consumption,
-+};
-+
- struct amdgpu_gfx_ras gfx_v11_0_3_ras = {
-+	.ras_block = {
-+		.hw_ops = &gfx_v11_0_3_ras_ops,
-+	},
- 	.rlc_gc_fed_irq = gfx_v11_0_3_rlc_gc_fed_irq,
--	.poison_consumption_handler = gfx_v11_0_3_poison_consumption_handler,
- };
--- 
-2.25.1
+It would be good if we could have someone taking charge of this series 
+and address all review comments, I see some of my comments getting lost, 
+we have multiple submitters and I can't find a dri-devel patchwork entry 
+for this. Anyway some comments below.
 
+>
+> In this version, the user is no longer in control of the retry
+> loop. Instead, it provides an expression (a call to a
+> sub-function) to be re-evaluated each time a contention is
+> detected. IMHO, this makes the 'prepare-objs' functions easier to
+> apprehend, and avoids any mistake like calling
+> drm_exec_continue_on_contention() in an inner loop, or breaking
+> out of the drm_exec_while_all_locked() loop unintentionally.
+
+In i915 we've had a very similar helper to this, and while I agree this 
+newer version would probably help make code cleaner, but OTOH there also 
+are some places where the short drm_exec_while_all_locked() -likeblock 
+don't really motivate a separate function. Porting i915 to the current 
+version will take some work, For  the xe driver both versions would work 
+fine.
+
+Some additional review comments not related to the interface change below:
+
+>
+> It also makes the internal management a bit simpler, since we
+> no longer call drm_exec_cleanup() on the first attempt, and can
+> thus get rid of the DRM_EXEC_DUMMY trick.
+>
+> In the below diff, I also re-introduced native support for
+> duplicates as an opt-in, so we don't have to do things like:
+>
+> 	ret = drm_exec_prepare_obj(exec, obj, num_fences);
+> 	if (ret == -EALREADY)
+> 		ret = dma_resv_reserve_fences(obj->resv, num_fences);
+> 	if (ret)
+> 		return ret;
+>
+> and can just do:
+>
+> 	ret = drm_exec_prepare_obj(exec, obj, num_fences);
+> 	if (ret)
+> 		return;
+>
+> Of course drivers can open-code a wrapper doing the same thing, but
+> given at least pvr and radeon need this, it'd be nice if the core
+> could support it natively.
+>
+> That's mostly it. Just wanted to share what I had in case you're
+> interested. If not, that's fine too.
+>
+> Regards,
+>
+> Boris
+> ---
+>   Documentation/gpu/drm-mm.rst |  12 ++
+>   drivers/gpu/drm/Kconfig      |   6 +
+>   drivers/gpu/drm/Makefile     |   2 +
+>   drivers/gpu/drm/drm_exec.c   | 274 +++++++++++++++++++++++++++++++++++
+>   include/drm/drm_exec.h       | 130 +++++++++++++++++
+>   5 files changed, 424 insertions(+)
+>   create mode 100644 drivers/gpu/drm/drm_exec.c
+>   create mode 100644 include/drm/drm_exec.h
+>
+> diff --git a/Documentation/gpu/drm-mm.rst b/Documentation/gpu/drm-mm.rst
+> index fe40ee686f6e..c9f120cfe730 100644
+> --- a/Documentation/gpu/drm-mm.rst
+> +++ b/Documentation/gpu/drm-mm.rst
+> @@ -524,6 +524,18 @@ DRM Sync Objects
+>   .. kernel-doc:: drivers/gpu/drm/drm_syncobj.c
+>      :export:
+>   
+> +DRM Execution context
+> +=====================
+> +
+> +.. kernel-doc:: drivers/gpu/drm/drm_exec.c
+> +   :doc: Overview
+> +
+> +.. kernel-doc:: include/drm/drm_exec.h
+> +   :internal:
+> +
+> +.. kernel-doc:: drivers/gpu/drm/drm_exec.c
+> +   :export:
+> +
+>   GPU Scheduler
+>   =============
+>   
+> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> index 76991720637c..01a38fcdb1c4 100644
+> --- a/drivers/gpu/drm/Kconfig
+> +++ b/drivers/gpu/drm/Kconfig
+> @@ -194,6 +194,12 @@ config DRM_TTM
+>   	  GPU memory types. Will be enabled automatically if a device driver
+>   	  uses it.
+>   
+> +config DRM_EXEC
+> +	tristate
+> +	depends on DRM
+> +	help
+> +	  Execution context for command submissions
+> +
+>   config DRM_BUDDY
+>   	tristate
+>   	depends on DRM
+> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> index 1873f64db171..18a02eaf2d49 100644
+> --- a/drivers/gpu/drm/Makefile
+> +++ b/drivers/gpu/drm/Makefile
+> @@ -79,6 +79,8 @@ obj-$(CONFIG_DRM_PANEL_ORIENTATION_QUIRKS) += drm_panel_orientation_quirks.o
+>   #
+>   # Memory-management helpers
+>   #
+> +#
+> +obj-$(CONFIG_DRM_EXEC) += drm_exec.o
+>   
+>   obj-$(CONFIG_DRM_BUDDY) += drm_buddy.o
+>   
+> diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
+> new file mode 100644
+> index 000000000000..e0ad1a3e1610
+> --- /dev/null
+> +++ b/drivers/gpu/drm/drm_exec.c
+> @@ -0,0 +1,274 @@
+> +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
+> +
+> +#include <drm/drm_exec.h>
+> +#include <drm/drm_gem.h>
+> +#include <linux/dma-resv.h>
+> +
+> +/**
+> + * DOC: Overview
+> + *
+> + * This component mainly abstracts the retry loop necessary for locking
+> + * multiple GEM objects while preparing hardware operations (e.g. command
+> + * submissions, page table updates etc..).
+> + *
+> + * If a contention is detected while locking a GEM object the cleanup procedure
+> + * unlocks all previously locked GEM objects and locks the contended one first
+> + * before locking any further objects.
+> + *
+> + * After an object is locked fences slots can optionally be reserved on the
+> + * dma_resv object inside the GEM object.
+> + *
+> + * A typical usage pattern should look like this::
+> + *
+> + * int prepare_objs_func(struct drm_exec *exec, ...)
+> + * {
+> + *	struct drm_gem_object *boA, *boB;
+> + * 	int ret;
+> + *
+> + *	<retrieve boA and boB here>
+> + *
+> + *	ret = drm_exec_prepare_obj(&exec, boA, 1);
+> + *	if (ret)
+> + *		return ret;
+> + *
+> + *	ret = drm_exec_prepare_obj(&exec, boB, 1);
+> + *	if (ret)
+> + *		return ret;
+> + *
+> + * 	return 0;
+> + * }
+> + *
+> + * int some_func()
+> + * {
+> + *	struct drm_exec exec;
+> + *	unsigned long index;
+> + *	int ret;
+> + *
+> + *	drm_exec_init(&exec, true);
+> + *	ret = drm_exec_until_all_locked(&exec, prepare_objs_func(&exec, ...));
+> + *	if (ret)
+> + *		goto error;
+> + *
+> + *	drm_exec_for_each_locked_object(&exec, index, obj) {
+> + *		dma_resv_add_fence(obj->resv, fence, DMA_RESV_USAGE_READ);
+> + *		...
+> + *	}
+> + *	drm_exec_fini(&exec);
+> + *
+> + * See struct dma_exec for more details.
+> + */
+> +
+> +/* Unlock all objects and drop references */
+> +static void drm_exec_unlock_all(struct drm_exec *exec)
+> +{
+> +	struct drm_gem_object *obj;
+> +	unsigned long index;
+> +
+> +	drm_exec_for_each_locked_object(exec, index, obj) {
+> +		dma_resv_unlock(obj->resv);
+> +		drm_gem_object_put(obj);
+> +	}
+> +
+> +	drm_gem_object_put(exec->prelocked);
+> +	exec->prelocked = NULL;
+> +}
+> +
+> +/**
+> + * drm_exec_init - initialize a drm_exec object
+> + * @exec: the drm_exec object to initialize
+> + * @interruptible: if locks should be acquired interruptible
+> + *
+> + * Initialize the object and make sure that we can track locked objects.
+> + */
+> +void drm_exec_init(struct drm_exec *exec, u32 flags)
+> +{
+> +	exec->flags = flags;
+> +	exec->objects = kmalloc(PAGE_SIZE, GFP_KERNEL);
+> +
+> +	/* If allocation here fails, just delay that till the first use */
+> +	exec->max_objects = exec->objects ? PAGE_SIZE / sizeof(void *) : 0;
+> +	exec->num_objects = 0;
+> +	exec->contended = NULL;
+> +	exec->prelocked = NULL;
+> +	ww_acquire_init(&exec->ticket, &reservation_ww_class);
+> +}
+> +EXPORT_SYMBOL(drm_exec_init);
+> +
+> +/**
+> + * drm_exec_fini - finalize a drm_exec object
+> + * @exec: the drm_exec object to finalize
+> + *
+> + * Unlock all locked objects, drop the references to objects and free all memory
+> + * used for tracking the state.
+> + */
+> +void drm_exec_fini(struct drm_exec *exec)
+> +{
+> +	drm_exec_unlock_all(exec);
+> +	kvfree(exec->objects);
+> +	if (exec->contended)
+> +		drm_gem_object_put(exec->contended);
+> +	ww_acquire_fini(&exec->ticket);
+> +}
+> +EXPORT_SYMBOL(drm_exec_fini);
+> +
+> +/**
+> + * drm_exec_reset - reset a drm_exec object after a contention
+> + * @exec: the drm_exec object to reset
+> + *
+> + * Unlock all locked objects and resets the number of objects locked.
+> + */
+> +void drm_exec_reset(struct drm_exec *exec)
+> +{
+> +	WARN_ON(!exec->contended);
+> +	drm_exec_unlock_all(exec);
+> +	exec->num_objects = 0;
+> +}
+> +EXPORT_SYMBOL(drm_exec_reset);
+> +
+> +/* Track the locked object in the array */
+> +static int drm_exec_obj_locked(struct drm_exec *exec,
+> +			       struct drm_gem_object *obj)
+> +{
+> +	if (unlikely(exec->num_objects == exec->max_objects)) {
+> +		size_t size = exec->max_objects * sizeof(void *);
+> +		void *tmp;
+> +
+> +		tmp = kvrealloc(exec->objects, size, size + PAGE_SIZE,
+> +				GFP_KERNEL);
+> +		if (!tmp)
+> +			return -ENOMEM;
+
+Sometimes you need to just temporarily lock an object and then unlock it 
+again if it goes out of scope before reaching the end of 
+_until_all_locked(). In that case you might need to remove a lock from 
+the array. I *think* for all use-cases in i915 it would suffice to take 
+a snapshot of num_objects, and unlock everything above that, having 
+exec->objects behave like a stack, but was ever a list considered 
+instead of a realloced array?
+
+> +
+> +		exec->objects = tmp;
+> +		exec->max_objects += PAGE_SIZE / sizeof(void *);
+> +	}
+> +	drm_gem_object_get(obj);
+> +	exec->objects[exec->num_objects++] = obj;
+> +
+> +	return 0;
+> +}
+> +
+> +/* Make sure the contended object is locked first */
+> +static int drm_exec_lock_contended(struct drm_exec *exec)
+> +{
+> +	struct drm_gem_object *obj = exec->contended;
+> +	int ret;
+> +
+> +	if (likely(!obj))
+> +		return 0;
+> +
+> +	if (exec->flags & DRM_EXEC_FLAG_INTERRUPTIBLE) {
+> +		ret = dma_resv_lock_slow_interruptible(obj->resv,
+> +						       &exec->ticket);
+> +		if (unlikely(ret))
+> +			goto error_dropref;
+> +	} else {
+> +		dma_resv_lock_slow(obj->resv, &exec->ticket);
+> +	}
+> +
+
+Sometimes you want to just drop the contended lock after the above 
+relaxation. (Eviction would be one example), and not add as prelocked, 
+if the contended object goes out of scope. Eviction would in some 
+situations be one such example, -EDEADLOCK leading to an error path 
+where the object should otherwise be freed is another. Perhaps we could 
+add an argument to prepare_obj() as to whether the object should be 
+immediately put after relaxation.
+
+> +	ret = drm_exec_obj_locked(exec, obj);
+> +	if (unlikely(ret)) {
+> +		dma_resv_unlock(obj->resv);
+> +		goto error_dropref;
+> +	}
+> +
+> +	swap(exec->prelocked, obj);
+> +
+> +error_dropref:
+> +	/* Always cleanup the contention so that error handling can kick in */
+> +	drm_gem_object_put(obj);
+> +	exec->contended = NULL;
+> +	return ret;
+> +}
+> +
+> +/**
+> + * drm_exec_prepare_obj - prepare a GEM object for use
+> + * @exec: the drm_exec object with the state
+> + * @obj: the GEM object to prepare
+> + * @num_fences: how many fences to reserve
+> + *
+> + * Prepare a GEM object for use by locking it and reserving fence slots. All
+> + * successfully locked objects are put into the locked container.
+> + *
+> + * Returns: -EDEADLK if a contention is detected, -EALREADY when object is
+> + * already locked, -ENOMEM when memory allocation failed and zero for success.
+> + */
+> +int drm_exec_prepare_obj(struct drm_exec *exec, struct drm_gem_object *obj,
+> +			 unsigned int num_fences)
+> +{
+> +	int ret;
+> +
+> +	ret = drm_exec_lock_contended(exec);
+> +	if (unlikely(ret))
+> +		return ret;
+> +
+> +	if (exec->prelocked == obj) {
+> +		drm_gem_object_put(exec->prelocked);
+> +		exec->prelocked = NULL;
+> +
+> +		return dma_resv_reserve_fences(obj->resv, num_fences);
+> +	}
+> +
+> +	if (exec->flags & DRM_EXEC_FLAG_INTERRUPTIBLE)
+> +		ret = dma_resv_lock_interruptible(obj->resv, &exec->ticket);
+> +	else
+> +		ret = dma_resv_lock(obj->resv, &exec->ticket);
+> +
+> +	if (unlikely(ret == -EDEADLK)) {
+> +		drm_gem_object_get(obj);
+> +		exec->contended = obj;
+> +		return -EDEADLK;
+> +	}
+> +
+> +	if (unlikely(ret == -EALREADY &&
+> +	    (exec->flags & DRM_EXEC_FLAG_ALLOW_DUPLICATES)))
+> +		goto reserve_fences;
+> +
+> +	if (unlikely(ret))
+> +		return ret;
+> +
+> +	ret = drm_exec_obj_locked(exec, obj);
+> +	if (ret)
+> +		goto error_unlock;
+> +
+> +reserve_fences:
+> +	/* Keep locked when reserving fences fails */
+> +	return dma_resv_reserve_fences(obj->resv, num_fences);
+
+Ugh, what is the use-case for keeping things locked here? How would a 
+caller tell the difference between an error where everything is locked 
+and nothing is locked? IMO, we should unlock on error here. If there 
+indeed is a use-case we should add a separate function for reserving 
+fences for all locked objects, rather than returning sometimes locked on 
+error sometime not.
+
+Thanks,
+
+Thomas
+
+
+> +
+> +error_unlock:
+> +	dma_resv_unlock(obj->resv);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(drm_exec_prepare_obj);
+> +
+> +/**
+> + * drm_exec_prepare_array - helper to prepare an array of objects
+> + * @exec: the drm_exec object with the state
+> + * @objects: array of GEM object to prepare
+> + * @num_objects: number of GEM objects in the array
+> + * @num_fences: number of fences to reserve on each GEM object
+> + *
+> + * Prepares all GEM objects in an array, handles contention but aports on first
+> + * error otherwise. Reserves @num_fences on each GEM object after locking it.
+> + *
+> + * Returns: -EALREADY when object is already locked, -ENOMEM when memory
+> + * allocation failed and zero for success.
+> + */
+> +int drm_exec_prepare_array(struct drm_exec *exec,
+> +			   struct drm_gem_object **objects,
+> +			   unsigned int num_objects,
+> +			   unsigned int num_fences)
+> +{
+> +	int ret;
+> +
+> +	for (unsigned int i = 0; i < num_objects; ++i) {
+> +		ret = drm_exec_prepare_obj(exec, objects[i], num_fences);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_exec_prepare_array);
+> +
+> +MODULE_DESCRIPTION("DRM execution context");
+> +MODULE_LICENSE("Dual MIT/GPL");
+> diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
+> new file mode 100644
+> index 000000000000..b1a5da0509c1
+> --- /dev/null
+> +++ b/include/drm/drm_exec.h
+> @@ -0,0 +1,130 @@
+> +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
+> +
+> +#ifndef __DRM_EXEC_H__
+> +#define __DRM_EXEC_H__
+> +
+> +#include <linux/ww_mutex.h>
+> +
+> +struct drm_gem_object;
+> +
+> +/**
+> + * enum drm_exec_flags - Execution context flags
+> + */
+> +enum drm_exec_flags {
+> +	/**
+> +	 * DRM_EXEC_FLAG_INTERRUPTIBLE: Set to true to use interruptible locking
+> +	 * functions.
+> +	 */
+> +	DRM_EXEC_FLAG_INTERRUPTIBLE = BIT(0),
+> +
+> +	/**
+> +	 * DRM_EXEC_FLAG_ALLOW_DUPLICATES: Set to true to allow EALREADY errors.
+> +	 */
+> +	DRM_EXEC_FLAG_ALLOW_DUPLICATES = BIT(1),
+> +};
+> +
+> +/**
+> + * struct drm_exec - Execution context
+> + */
+> +struct drm_exec {
+> +	/**
+> +	 * @flags: Combinations of DRM_EXEC_FLAG_* flags.
+> +	 */
+> +	u32 flags;
+> +
+> +	/**
+> +	 * @ticket: WW ticket used for acquiring locks
+> +	 */
+> +	struct ww_acquire_ctx	ticket;
+> +
+> +	/**
+> +	 * @num_objects: number of objects locked
+> +	 */
+> +	unsigned int		num_objects;
+> +
+> +	/**
+> +	 * @max_objects: maximum objects in array
+> +	 */
+> +	unsigned int		max_objects;
+> +
+> +	/**
+> +	 * @objects: array of the locked objects
+> +	 */
+> +	struct drm_gem_object	**objects;
+> +
+> +	/**
+> +	 * @contended: contended GEM object we backed off for
+> +	 */
+> +	struct drm_gem_object	*contended;
+> +
+> +	/**
+> +	 * @prelocked: already locked GEM object due to contention
+> +	 */
+> +	struct drm_gem_object *prelocked;
+> +};
+> +
+> +/**
+> + * drm_exec_for_each_locked_object - iterate over all the locked objects
+> + * @exec: drm_exec object
+> + * @index: unsigned long index for the iteration
+> + * @obj: the current GEM object
+> + *
+> + * Iterate over all the locked GEM objects inside the drm_exec object.
+> + */
+> +#define drm_exec_for_each_locked_object(exec, index, obj)	\
+> +	for (index = 0, obj = (exec)->objects[0];		\
+> +	     index < (exec)->num_objects;			\
+> +	     ++index, obj = (exec)->objects[index])
+> +
+> +/**
+> + * drm_exec_until_all_locked - retry objects preparation until all objects
+> + * are locked
+> + * @exec: drm_exec object
+> + * @expr: expression to be evaluated on each attempt
+> + *
+> + * This helper tries to prepare objects and if a deadlock is detected,
+> + * rollbacks and retries.
+> + *
+> + * @expr is typically a function that tries to prepare objects using
+> + * drm_exec_prepare_obj().
+> + *
+> + * If we take drm_exec_prepare_array() as an example, you should do:
+> + *
+> + *	ret = drm_exec_until_all_locked(exec,
+> + *					drm_exec_prepare_array(exec,
+> + *							       objs,
+> + *							       num_objs,
+> + *							       num_fences));
+> + *	if (ret)
+> + *		goto error_path;
+> + *
+> + *	...
+> + *
+> + * Returns: 0 on success, a negative error code on failure.
+> + */
+> +#define drm_exec_until_all_locked(exec, expr)		\
+> +	({						\
+> +		__label__ retry;			\
+> +		int __ret;				\
+> +retry:							\
+> +		__ret = expr;				\
+> +		if ((exec)->contended) {		\
+> +			WARN_ON(__ret != -EDEADLK);	\
+> +			drm_exec_reset(exec);		\
+> +			goto retry;			\
+> +		}					\
+> +		ww_acquire_done(&(exec)->ticket);	\
+> +		__ret;					\
+> +	})
+> +
+> +void drm_exec_init(struct drm_exec *exec, u32 flags);
+> +void drm_exec_fini(struct drm_exec *exec);
+> +void drm_exec_reset(struct drm_exec *exec);
+> +int drm_exec_prepare_obj(struct drm_exec *exec, struct drm_gem_object *obj,
+> +			 unsigned int num_fences);
+> +int drm_exec_prepare_array(struct drm_exec *exec,
+> +			   struct drm_gem_object **objects,
+> +			   unsigned int num_objects,
+> +			   unsigned int num_fences);
+> +
+> +#endif
