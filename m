@@ -2,77 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E2AF736410
-	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jun 2023 09:10:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 347E673640E
+	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jun 2023 09:09:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 990A410E271;
-	Tue, 20 Jun 2023 07:09:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE2AF10E26B;
+	Tue, 20 Jun 2023 07:09:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-relay-internal-0.canonical.com
- (smtp-relay-internal-0.canonical.com [185.125.188.122])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 707B910E207
- for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jun 2023 14:42:27 +0000 (UTC)
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
- [209.85.218.72])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 733243F72F
- for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jun 2023 14:42:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
- s=20210705; t=1687185743;
- bh=oVzx6NYhYUEvG3AH2qaIIGghMLVni7wi0TtZ3p4soSE=;
- h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
- MIME-Version:Content-Type;
- b=Ae/+RKrmncU9myeHSwFon3FOjr/GFaTPOC1mTLEZfr0DLSXYCwLpmzUeUW+5JM1/P
- 67ECXxdxZZaYDiYzGqMygpX6ic7JYE8e0fIPWEsnBs8Id2KEMdis1qOL4/EGhem7fE
- rnsWq9imjssAlh9U3+cQLoE2iR7shVlCraWRO8ZG+ylnM9kSn8cbEhRHI99yjKXH3q
- NQBwpzpnMRqxn1wVnCY09+T452b2X2JosqqAKadiEUH/wYqhRKjNraM1JBYjTw9I2n
- aBo6nIdvSvw2SE0xNFsShuc3dtAO6WLjBkWykE1lVCPwSMxy3ChBCVjc0GPwrSlLbI
- X9NOhGRzHe6jA==
-Received: by mail-ej1-f72.google.com with SMTP id
- a640c23a62f3a-98864f473c7so98523166b.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jun 2023 07:42:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1687185742; x=1689777742;
- h=mime-version:organization:references:in-reply-to:message-id:subject
- :cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=oVzx6NYhYUEvG3AH2qaIIGghMLVni7wi0TtZ3p4soSE=;
- b=DQvjQ0yXSB/vCik8l1Ps+PRs9IHiAA6eMYbxthz+1/WJFm0VN2u/oKYeKZ91W4TNgF
- oh7NSBJcLsO7NZ3TrWufOW8aGxMDt1Oe+T6KJl9i0nBCzI2rU/Kbrkol5NL5IRiU4WzX
- RR9AnCR0BIEV2Z33/NRgk8k2AWnyaZ+gvEu0UWvp/oJps8l68/uGzQ74Mo7hzmRASeud
- a4IoD5OWXp1L1iF31SL9YnxBW03f+ybTPaGCxq/VZsQXM9qukx191AjZ8YtOFxdto4av
- FMMKybxGu+k/18hbCWy7YxMxPjHyrYd6OM/8FEtmwvRdm6le6bMzw8DJQUN8m2k3Ee30
- qJ1A==
-X-Gm-Message-State: AC+VfDyuXd7bQBbJKR4F8eeHIXZtM7tfAVjZw9GFjz78NK16X9cRoSgN
- N1buC0p5HdKOg/At/0n0JH5AzoT7RdLSAf1KCDHYUfDFBnU0MVYxEljnmTwj9EdU7nlHQxBLRz/
- vI6VxnU2ACVLmNS/Pabt1SrbvyXXTgBqqAk68pLFi5pRr/V/fePgttA==
-X-Received: by 2002:a17:906:4fc5:b0:974:20bd:6e15 with SMTP id
- i5-20020a1709064fc500b0097420bd6e15mr7712248ejw.4.1687185742796; 
- Mon, 19 Jun 2023 07:42:22 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ5uRvfrz4OGRcv0QxkR+P4tDg9wB7UCd8/6nh/dPpJc1WEhB3DIXye/HmnDc/eWXtbGoz8M8Q==
-X-Received: by 2002:a17:906:4fc5:b0:974:20bd:6e15 with SMTP id
- i5-20020a1709064fc500b0097420bd6e15mr7712224ejw.4.1687185742517; 
- Mon, 19 Jun 2023 07:42:22 -0700 (PDT)
-Received: from gollum ([194.191.244.86]) by smtp.gmail.com with ESMTPSA id
- bn14-20020a170906c0ce00b0095807ab4b57sm15016341ejb.178.2023.06.19.07.42.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 19 Jun 2023 07:42:21 -0700 (PDT)
-Date: Mon, 19 Jun 2023 16:42:19 +0200
-From: Juerg Haefliger <juerg.haefliger@canonical.com>
-To: Alex Deucher <alexdeucher@gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Add missing MODULE_FIRMWARE macro
-Message-ID: <20230619164219.4ae6a818@gollum>
-In-Reply-To: <CADnq5_Nnr=BO2y3O3_x+sX-93CtY7g52m9DHva7WWqeeO5xqMA@mail.gmail.com>
-References: <20230616121116.1031336-1-juerg.haefliger@canonical.com>
- <CADnq5_Nnr=BO2y3O3_x+sX-93CtY7g52m9DHva7WWqeeO5xqMA@mail.gmail.com>
-Organization: Canonical Ltd
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+Received: from smtp.kvr.at (smtp.kvr.at [83.65.151.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA0C810E06B
+ for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jun 2023 14:48:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org; 
+ s=20200417.ckk.user;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=IlrSmA/LOGBJmXy5aVzLSVP8j6MkTyK3zdgaviVwT2w=; b=Kjs6lexnFXtTGFPg33Ni8yQ9D+
+ EM7KQGj9W96XYxSN7HYvKHPPBP5W5FpTXh9I01qev29b2E7VrH+C5U8Lzt7kBFQWRMqxo+igqLXkE
+ /m1BNFObqKuEPRQWeCqPgKIiPSIttoE4Y6cJiIWZEKGHJXGFgiM/+oHCAmpNfGdvdodOBiXIhnbgw
+ 6hvNgEYXWABrlCtyF0XkTC3ieAB3gU9WzaiI3CilGFkS6sPzqOJHxT9X/K6JFoYJZE5/yt1MXbGsM
+ Gvq+AHVbLtbzDgO+662Q5u/a33tAUXptZGOta8ETg/xVZJNptXPAiAw/tUd+esWpIYfotJBdlejsW
+ IYz74xxRstAk8r+NE9dtEfuNTn9YuEkdbnbLvbDLnekXWxe5ZstbEFsDW9dtUop7N07dCb4XVyNRP
+ mjcBcPspfn+1B6t/GFg9BZ+ZSDqIesE6aXjq3Km89qp2avLkZNLyiCGEjwOmhjMXFgNirE0Rmvgft
+ ekyadW6s77If6B/XYiD8GeQ6wSYg/i2l0G+LzkcHo3EV+TXde9zV8yBP8BZv/pItf51wInjHdTQH+
+ 5f4jZzHj9msPrWamHLfYOCOa2J5lsRF7HHv1ngrryzRSK2I8qPfv3JqA5OuXwofv2bBjn+nWeXWF+
+ lubwgJM7q4upRUh3zLJ7jldcCK1u9Djo62T1BwJuo=;
+Received: from [192.168.0.7] (port=53252)
+ by smtp.kvr.at with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ (Exim 4.96) (envelope-from <ckk@debian.org>) id 1qBGBZ-001uXk-2X;
+ Mon, 19 Jun 2023 16:48:53 +0200
+Message-ID: <ae413961-7de2-b5a4-3ecd-ab29a158ee26@debian.org>
+Date: Mon, 19 Jun 2023 16:48:53 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/VSLr7Uc977O.nGCK=PDUW7X";
- protocol="application/pgp-signature"; micalg=pgp-sha512
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: Warning appeared after c8b5a95 ("drm/amdgpu: Fix desktop freezed
+ after gpu-reset")
+To: Alex Deucher <alexdeucher@gmail.com>
+References: <113ba574-90b4-1a7f-5982-d9de8d12c24b@debian.org>
+ <CADnq5_P6h1YQBO3TRWoEPBAzfSzJOCgUyY2xw2WWPmnW48Sq7A@mail.gmail.com>
+Content-Language: en-US
+From: Christian Kastner <ckk@debian.org>
+In-Reply-To: <CADnq5_P6h1YQBO3TRWoEPBAzfSzJOCgUyY2xw2WWPmnW48Sq7A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 20 Jun 2023 07:09:56 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -85,79 +60,22 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lijo.lazar@amd.com, Bokun.Zhang@amd.com, Xinhui.Pan@amd.com,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- YiPeng.Chai@amd.com, dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
- alexander.deucher@amd.com, Likun.Gao@amd.com, Hawking.Zhang@amd.com,
- airlied@gmail.com, christian.koenig@amd.com, mario.limonciello@amd.com
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---Sig_/VSLr7Uc977O.nGCK=PDUW7X
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+On 2023-06-19 16:05, Alex Deucher wrote:
+> On Mon, Jun 19, 2023 at 9:05 AM Christian Kastner <ckk@debian.org> wrote:
+>> On a Debian 12 ("bookworm") system, I observed a new warning when I
+>> upgraded from kernel 6.1.25 to 6.1.27. This is on a system with an RX
+>> 6800 XT GPU and 3500X processor.
+> 
+> The warnings are harmless, but they have been fixed[1] and the fixes
+> are making their way back to stable kernels.
+> 
+> [1] - https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=08c677cb0b436a96a836792bb35a8ec5de4999c2
 
-On Fri, 16 Jun 2023 08:53:20 -0400
-Alex Deucher <alexdeucher@gmail.com> wrote:
+That was quick. Thank you for pointing out the resolution.
 
-> On Fri, Jun 16, 2023 at 8:11=E2=80=AFAM Juerg Haefliger
-> <juerg.haefliger@canonical.com> wrote:
-> >
-> > Add the missing MODULE_FIRMWARE macro for "amdgpu/fiji_smc.bin".
-> >
-> > Signed-off-by: Juerg Haefliger <juerg.haefliger@canonical.com>
-> > ---
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/d=
-rm/amd/amdgpu/amdgpu_device.c
-> > index 5c7d40873ee2..1f83a939d641 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> > @@ -92,6 +92,7 @@ MODULE_FIRMWARE("amdgpu/picasso_gpu_info.bin");
-> >  MODULE_FIRMWARE("amdgpu/raven2_gpu_info.bin");
-> >  MODULE_FIRMWARE("amdgpu/arcturus_gpu_info.bin");
-> >  MODULE_FIRMWARE("amdgpu/navi12_gpu_info.bin");
-> > +MODULE_FIRMWARE("amdgpu/fiji_smc.bin"); =20
->=20
-> This is already specified in smumgr.c.
-
-It sure is. Sorry for the noise :-(
-
-Thanks for looking at it.
-..Juerg
-
-=20
-> Alex
->=20
-> >
-> >  #define AMDGPU_RESUME_MS               2000
-> >  #define AMDGPU_MAX_RETRY_LIMIT         2
-> > --
-> > 2.37.2
-> > =20
-
-
---Sig_/VSLr7Uc977O.nGCK=PDUW7X
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEhZfU96IuprviLdeLD9OLCQumQrcFAmSQaUsACgkQD9OLCQum
-QreYUhAAnmXAhO0Tsu0xyykMZZdNzq88fuPv5q6L9CFkZYzPfZouX8irTOMyGuES
-vbrn1ZzVf66SzygqILzCkA2nH8sLgGJSF5S7t8yhtjrWsgLBXre88Exe/3RKyl9g
-W/zKNzlOlINUo3fm7bfvM+pZl/OKxVtfq2IbgaD/rk5LyFbl17Z1ETTA2TBY9P0m
-U4dpQ0KySNknwxEe6l8n3S9oJJzuaw5z0rgd5opwtv5RKFXZQUcQ4i8FcSfNCb89
-ciY/SdcRlybfyQ9tlfToOkSLnOkzMlMcmGX9LtiBvZTx6dvKfqd7xqy8p/+8tFTE
-sn1icmhV5zvLEyWs8eI51DwwpmK5BlAHbfDsjOfgOjc8r+OsarW5IpF2G8eP93oR
-tryuZx+kD1OcBd9jUiEyuJGC4mcYHNndwPniCjxP3OcKWhJsia2V8axHYZ//ddf7
-NfWFg6jE+M4j7Nl0C2XWq8KO83ejkSR7N+siPs6pPKUdHTKacJaeO/5ZBm7y0rRx
-3C4b335jx/uY74nBrW9WtJr+bOZz2YPTM4GOl6rOqsjy3LmzYt6kpFDYeTUYWoKW
-4uj3jRf0257eeaXjCL2kdNS4paQT0Ipil3kaSG1Ea32OyW8+ipqmg7nwuVkEifOx
-q4NmF4Rkmx1Q2enwGXRwP+PaXa4a4qe2OuSyzKEYG8IUyxITxFU=
-=i1ZT
------END PGP SIGNATURE-----
-
---Sig_/VSLr7Uc977O.nGCK=PDUW7X--
+Best,
+Christian
