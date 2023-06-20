@@ -2,29 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 491947389C6
-	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jun 2023 17:39:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB8EB7389C2
+	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jun 2023 17:39:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D23A310E4C8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C9C310E4C3;
 	Wed, 21 Jun 2023 15:38:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.nfschina.com (unknown [42.101.60.195])
- by gabe.freedesktop.org (Postfix) with SMTP id 6BB2210E15E;
- Tue, 20 Jun 2023 08:55:56 +0000 (UTC)
-Received: from localhost.localdomain (unknown [180.167.10.98])
- by mail.nfschina.com (Maildata Gateway V2.8.8) with ESMTPA id 09F1760C12808;
- Tue, 20 Jun 2023 16:55:44 +0800 (CST)
-X-MD-Sfrom: suhui@nfschina.com
-X-MD-SrcIP: 180.167.10.98
-From: Su Hui <suhui@nfschina.com>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch
-Subject: [PATCH] =?UTF-8?q?drm/amd/amdgpu:=20Use=20=E2=80=9C=5F=5Fpacked?=
- =?UTF-8?q?=E2=80=9C=20instead=20of=20"pragma=20pack()"?=
-Date: Tue, 20 Jun 2023 16:55:43 +0800
-Message-Id: <20230620085543.576733-1-suhui@nfschina.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7170E10E2E1;
+ Tue, 20 Jun 2023 13:47:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687268837; x=1718804837;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=tCBTG6EshP8yDnY64rQPzjgjv41iMK/kEF3IhZM1+uU=;
+ b=ZNzlr91+dq5gDLDaErCqBvXB7AR6YfXM2s0pMaYcyBLYH1XQ4QvUUpUV
+ yqCzv+Bt+HfA9v5cfZrq/drqyuuM378qlEURdrUKJumAHqqjoIS7MvHZY
+ v2AmjARlQ2Wx72ELBkAoMzWwf6aqA/zWYLgmM8qjc1rOKl8chnNbOIzJY
+ gBTVn1Ws8hvMhDJgwyKBzdbt2sr+Oiqa+MFkJ/Vphbmmn9NQq+IGJCs5z
+ sH+wcNQBY+THRns//Lb8GcM9od36x3Hr+sk5PCokW6FoPMoxkBeoD6KAj
+ DNvywmncn6o8hLpeYkB/F6V1no60l6KjidoqRyuv9pbz7QikEA6ri/lm7 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="362401444"
+X-IronPort-AV: E=Sophos;i="6.00,257,1681196400"; d="scan'208";a="362401444"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2023 06:47:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="827006800"
+X-IronPort-AV: E=Sophos;i="6.00,257,1681196400"; d="scan'208";a="827006800"
+Received: from eshaanan-mobl.ger.corp.intel.com (HELO
+ ijarvine-mobl2.ger.corp.intel.com) ([10.252.61.137])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2023 06:47:09 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Rob Herring <robh@kernel.org>,
+ =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+ Emmanuel Grumbach <emmanuel.grumbach@intel.com>,
+ "Rafael J . Wysocki" <rafael@kernel.org>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Lukas Wunner <lukas@wunner.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jammy Zhou <Jammy.Zhou@amd.com>,
+ Ken Wang <Qingqing.Wang@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 05/10] drm/amdgpu: Use RMW accessors for changing LNKCTL
+Date: Tue, 20 Jun 2023 16:46:19 +0300
+Message-Id: <20230620134624.99688-6-ilpo.jarvinen@linux.intel.com>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20230620134624.99688-1-ilpo.jarvinen@linux.intel.com>
+References: <20230620134624.99688-1-ilpo.jarvinen@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -40,67 +71,138 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Su Hui <suhui@nfschina.com>, Jane.Jian@amd.com, David.Francis@amd.com,
- kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- Likun.Gao@amd.com, dan.carpenter@linaro.org
+Cc: Dean Luick <dean.luick@cornelisnetworks.com>,
+ =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, stable@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-use "__packed" is clearer amd better than “pragma pack()”.
+Don't assume that only the driver would be accessing LNKCTL. ASPM
+policy changes can trigger write to LNKCTL outside of driver's control.
+And in the case of upstream bridge, the driver does not even own the
+device it's changing the registers for.
 
-Signed-off-by: Su Hui <suhui@nfschina.com>
+Use RMW capability accessors which do proper locking to avoid losing
+concurrent updates to the register value.
+
+Fixes: a2e73f56fa62 ("drm/amdgpu: Add support for CIK parts")
+Fixes: 62a37553414a ("drm/amdgpu: add si implementation v10")
+Suggested-by: Lukas Wunner <lukas@wunner.de>
+Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+Cc: stable@vger.kernel.org
 ---
-As Dan Carpenter mentioned:
-'"Mark the associated types properly packed individually, rather than
-use the disgusting "pragma pack()" that should never be used."
-https://lore.kernel.org/linux-sparse/CAHk-=wi7jGZ+bVbt-UfXOkpEQdHzF3Z2HBjkGdjh8q4dvPPGWQ@mail.gmail.com/'
-use "__packed" is better.
-the previous wrong patch's address:
-https://lore.kernel.org/kernel-janitors/c12c4031-52fb-25a2-b411-e668eb9baaa2@tom.com/T/#t
- drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/cik.c | 36 +++++++++-----------------------
+ drivers/gpu/drm/amd/amdgpu/si.c  | 36 +++++++++-----------------------
+ 2 files changed, 20 insertions(+), 52 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h b/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
-index 24d42d24e6a0..025adc950026 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
-@@ -83,8 +83,6 @@ enum amd_sriov_ucode_engine_id {
- 	AMD_SRIOV_UCODE_ID__MAX
- };
+diff --git a/drivers/gpu/drm/amd/amdgpu/cik.c b/drivers/gpu/drm/amd/amdgpu/cik.c
+index de6d10390ab2..9be6da37032a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/cik.c
++++ b/drivers/gpu/drm/amd/amdgpu/cik.c
+@@ -1574,17 +1574,8 @@ static void cik_pcie_gen3_enable(struct amdgpu_device *adev)
+ 			u16 bridge_cfg2, gpu_cfg2;
+ 			u32 max_lw, current_lw, tmp;
  
--#pragma pack(push, 1) // PF2VF / VF2PF data areas are byte packed
+-			pcie_capability_read_word(root, PCI_EXP_LNKCTL,
+-						  &bridge_cfg);
+-			pcie_capability_read_word(adev->pdev, PCI_EXP_LNKCTL,
+-						  &gpu_cfg);
 -
- union amd_sriov_msg_feature_flags {
- 	struct {
- 		uint32_t error_log_collect : 1;
-@@ -210,7 +208,7 @@ struct amd_sriov_msg_pf2vf_info {
- 	uint32_t pcie_atomic_ops_support_flags;
- 	/* reserved */
- 	uint32_t reserved[256 - AMD_SRIOV_MSG_PF2VF_INFO_FILLED_SIZE];
--};
-+} __packed;
- 
- struct amd_sriov_msg_vf2pf_info_header {
- 	/* the total structure size in byte */
-@@ -263,7 +261,7 @@ struct amd_sriov_msg_vf2pf_info {
- 	struct {
- 		uint8_t id;
- 		uint32_t version;
--	} ucode_info[AMD_SRIOV_MSG_RESERVE_UCODE];
-+	} __packed ucode_info[AMD_SRIOV_MSG_RESERVE_UCODE];
- 	uint64_t dummy_page_addr;
- 
- 	/* reserved */
-@@ -301,8 +299,6 @@ enum amd_sriov_gpu_init_data_version {
- 	GPU_INIT_DATA_READY_V1 = 1,
- };
- 
--#pragma pack(pop) // Restore previous packing option
+-			tmp16 = bridge_cfg | PCI_EXP_LNKCTL_HAWD;
+-			pcie_capability_write_word(root, PCI_EXP_LNKCTL, tmp16);
 -
- /* checksum function between host and guest */
- unsigned int amd_sriov_msg_checksum(void *obj, unsigned long obj_size, unsigned int key,
- 				    unsigned int checksum);
+-			tmp16 = gpu_cfg | PCI_EXP_LNKCTL_HAWD;
+-			pcie_capability_write_word(adev->pdev, PCI_EXP_LNKCTL,
+-						   tmp16);
++			pcie_capability_set_word(root, PCI_EXP_LNKCTL, PCI_EXP_LNKCTL_HAWD);
++			pcie_capability_set_word(adev->pdev, PCI_EXP_LNKCTL, PCI_EXP_LNKCTL_HAWD);
+ 
+ 			tmp = RREG32_PCIE(ixPCIE_LC_STATUS1);
+ 			max_lw = (tmp & PCIE_LC_STATUS1__LC_DETECTED_LINK_WIDTH_MASK) >>
+@@ -1637,21 +1628,14 @@ static void cik_pcie_gen3_enable(struct amdgpu_device *adev)
+ 				msleep(100);
+ 
+ 				/* linkctl */
+-				pcie_capability_read_word(root, PCI_EXP_LNKCTL,
+-							  &tmp16);
+-				tmp16 &= ~PCI_EXP_LNKCTL_HAWD;
+-				tmp16 |= (bridge_cfg & PCI_EXP_LNKCTL_HAWD);
+-				pcie_capability_write_word(root, PCI_EXP_LNKCTL,
+-							   tmp16);
+-
+-				pcie_capability_read_word(adev->pdev,
+-							  PCI_EXP_LNKCTL,
+-							  &tmp16);
+-				tmp16 &= ~PCI_EXP_LNKCTL_HAWD;
+-				tmp16 |= (gpu_cfg & PCI_EXP_LNKCTL_HAWD);
+-				pcie_capability_write_word(adev->pdev,
+-							   PCI_EXP_LNKCTL,
+-							   tmp16);
++				pcie_capability_clear_and_set_word(root, PCI_EXP_LNKCTL,
++								   PCI_EXP_LNKCTL_HAWD,
++								   bridge_cfg &
++								   PCI_EXP_LNKCTL_HAWD);
++				pcie_capability_clear_and_set_word(adev->pdev, PCI_EXP_LNKCTL,
++								   PCI_EXP_LNKCTL_HAWD,
++								   gpu_cfg &
++								   PCI_EXP_LNKCTL_HAWD);
+ 
+ 				/* linkctl2 */
+ 				pcie_capability_read_word(root, PCI_EXP_LNKCTL2,
+diff --git a/drivers/gpu/drm/amd/amdgpu/si.c b/drivers/gpu/drm/amd/amdgpu/si.c
+index 7f99e130acd0..fd34c2100bd9 100644
+--- a/drivers/gpu/drm/amd/amdgpu/si.c
++++ b/drivers/gpu/drm/amd/amdgpu/si.c
+@@ -2276,17 +2276,8 @@ static void si_pcie_gen3_enable(struct amdgpu_device *adev)
+ 			u16 bridge_cfg2, gpu_cfg2;
+ 			u32 max_lw, current_lw, tmp;
+ 
+-			pcie_capability_read_word(root, PCI_EXP_LNKCTL,
+-						  &bridge_cfg);
+-			pcie_capability_read_word(adev->pdev, PCI_EXP_LNKCTL,
+-						  &gpu_cfg);
+-
+-			tmp16 = bridge_cfg | PCI_EXP_LNKCTL_HAWD;
+-			pcie_capability_write_word(root, PCI_EXP_LNKCTL, tmp16);
+-
+-			tmp16 = gpu_cfg | PCI_EXP_LNKCTL_HAWD;
+-			pcie_capability_write_word(adev->pdev, PCI_EXP_LNKCTL,
+-						   tmp16);
++			pcie_capability_set_word(root, PCI_EXP_LNKCTL, PCI_EXP_LNKCTL_HAWD);
++			pcie_capability_set_word(adev->pdev, PCI_EXP_LNKCTL, PCI_EXP_LNKCTL_HAWD);
+ 
+ 			tmp = RREG32_PCIE(PCIE_LC_STATUS1);
+ 			max_lw = (tmp & LC_DETECTED_LINK_WIDTH_MASK) >> LC_DETECTED_LINK_WIDTH_SHIFT;
+@@ -2331,21 +2322,14 @@ static void si_pcie_gen3_enable(struct amdgpu_device *adev)
+ 
+ 				mdelay(100);
+ 
+-				pcie_capability_read_word(root, PCI_EXP_LNKCTL,
+-							  &tmp16);
+-				tmp16 &= ~PCI_EXP_LNKCTL_HAWD;
+-				tmp16 |= (bridge_cfg & PCI_EXP_LNKCTL_HAWD);
+-				pcie_capability_write_word(root, PCI_EXP_LNKCTL,
+-							   tmp16);
+-
+-				pcie_capability_read_word(adev->pdev,
+-							  PCI_EXP_LNKCTL,
+-							  &tmp16);
+-				tmp16 &= ~PCI_EXP_LNKCTL_HAWD;
+-				tmp16 |= (gpu_cfg & PCI_EXP_LNKCTL_HAWD);
+-				pcie_capability_write_word(adev->pdev,
+-							   PCI_EXP_LNKCTL,
+-							   tmp16);
++				pcie_capability_clear_and_set_word(root, PCI_EXP_LNKCTL,
++								   PCI_EXP_LNKCTL_HAWD,
++								   bridge_cfg &
++								   PCI_EXP_LNKCTL_HAWD);
++				pcie_capability_clear_and_set_word(adev->pdev, PCI_EXP_LNKCTL,
++								   PCI_EXP_LNKCTL_HAWD,
++								   gpu_cfg &
++								   PCI_EXP_LNKCTL_HAWD);
+ 
+ 				pcie_capability_read_word(root, PCI_EXP_LNKCTL2,
+ 							  &tmp16);
 -- 
 2.30.2
 
