@@ -2,62 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55A277389C1
-	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jun 2023 17:39:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D11F07389BA
+	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jun 2023 17:38:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB3EB10E4C5;
-	Wed, 21 Jun 2023 15:38:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3EF110E4BB;
+	Wed, 21 Jun 2023 15:38:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84AB410E2E1;
- Tue, 20 Jun 2023 13:47:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687268841; x=1718804841;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0Dt11mJGY3uST81NgKzX3Wy33nGbeSvB9w1sz8eDsQc=;
- b=HyGk0HvyIrtzcQ+uy+H+Nvp+y7X9xZb75i5iTUvozBq4d62c1t9n0J3m
- AZuB1zCM1Cqi20r1d/iP1u3H4eTVg8cHwKnaRzLXklcMfwmv755Abq82Q
- 5DCRKKMlhAXCDRCZRX69KboVVvNoCuoBBRI0AbBRNjOkTS/cCvPDFvV31
- nHBXDXmmixVgvlb0OZx3JKj4mPGmqC9BYOryTgDvrqYP8HZGHcKv/23R0
- 68bs5IXFiPHnjAtc+hbRPOiVVksamy5ocl6gI9ZNSdknu0o51FvdxlrsA
- nHEMkSz3iMAAMCIfV6Omg5LYAicYTX5oHvxSqQiJBBhjT7RGWGNh8LMhP A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="362401473"
-X-IronPort-AV: E=Sophos;i="6.00,257,1681196400"; d="scan'208";a="362401473"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2023 06:47:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="827006836"
-X-IronPort-AV: E=Sophos;i="6.00,257,1681196400"; d="scan'208";a="827006836"
-Received: from eshaanan-mobl.ger.corp.intel.com (HELO
- ijarvine-mobl2.ger.corp.intel.com) ([10.252.61.137])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2023 06:47:16 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Rob Herring <robh@kernel.org>,
- =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
- Emmanuel Grumbach <emmanuel.grumbach@intel.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>,
- Heiner Kallweit <hkallweit1@gmail.com>, Lukas Wunner <lukas@wunner.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 06/10] drm/radeon: Use RMW accessors for changing LNKCTL
-Date: Tue, 20 Jun 2023 16:46:20 +0300
-Message-Id: <20230620134624.99688-7-ilpo.jarvinen@linux.intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230620134624.99688-1-ilpo.jarvinen@linux.intel.com>
-References: <20230620134624.99688-1-ilpo.jarvinen@linux.intel.com>
+X-Greylist: delayed 1316 seconds by postgrey-1.36 at gabe;
+ Tue, 20 Jun 2023 22:17:46 UTC
+Received: from maynard.decadent.org.uk (maynard.decadent.org.uk
+ [95.217.213.242])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9474C10E19C
+ for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jun 2023 22:17:46 +0000 (UTC)
+Received: from [213.219.167.32] (helo=deadeye)
+ by maynard with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+ (Exim 4.92) (envelope-from <ben@decadent.org.uk>)
+ id 1qBjKD-0006Bd-GM; Tue, 20 Jun 2023 23:55:45 +0200
+Received: from ben by deadeye with local (Exim 4.96)
+ (envelope-from <ben@decadent.org.uk>) id 1qBjKD-00BBOs-03;
+ Tue, 20 Jun 2023 23:55:45 +0200
+Message-ID: <2e6faab830d01849a8eec6871d66787db455864e.camel@decadent.org.uk>
+Subject: Re: Possible missing firmware
+ /lib/firmware/amdgpu/sienna_cichlid_mes.bin navi10_mes.bin for module amdgpu
+From: Ben Hutchings <ben@decadent.org.uk>
+To: amd-gfx@lists.freedesktop.org
+Date: Tue, 20 Jun 2023 23:55:37 +0200
+References: <168258140711.32181.12062781302326675605.reportbug@atzlinux-arm64>
+In-Reply-To: <168258140711.32181.12062781302326675605.reportbug@atzlinux-arm64>
+Content-Type: multipart/signed; micalg="pgp-sha512";
+ protocol="application/pgp-signature"; boundary="=-CpMhR66BW1jvhP/b8PUy"
+User-Agent: Evolution 3.48.2-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 213.219.167.32
+X-SA-Exim-Mail-From: ben@decadent.org.uk
+X-SA-Exim-Scanned: No (on maynard); SAEximRunCond expanded to false
 X-Mailman-Approved-At: Wed, 21 Jun 2023 15:38:42 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,139 +49,74 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dean Luick <dean.luick@cornelisnetworks.com>,
- =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, stable@vger.kernel.org
+Cc: 1034903@bugs.debian.org,
+ xiao sheng =?UTF-8?Q?wen=28=E8=82=96=E7=9B=9B=E6=96=87=EF=BC=89?=
+ <atzlinux@sina.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Don't assume that only the driver would be accessing LNKCTL. ASPM
-policy changes can trigger write to LNKCTL outside of driver's control.
-And in the case of upstream bridge, the driver does not even own the
-device it's changing the registers for.
 
-Use RMW capability accessors which do proper locking to avoid losing
-concurrent updates to the register value.
+--=-CpMhR66BW1jvhP/b8PUy
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Fixes: 8a7cd27679d0 ("drm/radeon/cik: add support for pcie gen1/2/3 switching")
-Fixes: b9d305dfb66c ("drm/radeon: implement pcie gen2/3 support for SI")
-Suggested-by: Lukas Wunner <lukas@wunner.de>
-Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-Cc: stable@vger.kernel.org
----
- drivers/gpu/drm/radeon/cik.c | 36 ++++++++++-------------------------
- drivers/gpu/drm/radeon/si.c  | 37 ++++++++++--------------------------
- 2 files changed, 20 insertions(+), 53 deletions(-)
+On Thu, 27 Apr 2023 15:43:28 +0800 xiao sheng wen(=E8=82=96=E7=9B=9B=E6=96=
+=87=EF=BC=89
+<atzlinux@sina.com> wrote:
+> Package: firmware-amd-graphics
+> Version: 20230310-1~exp1
+> Severity: normal
+> X-Debbugs-Cc: atzlinux@sina.com
+>=20
+> Hi,
+>=20
+>=C2=A0 When I upgrade to kernel 5.10.0-22-arm64, there are following error
+>=C2=A0 infos:
+>=20
+> W: Possible missing firmware /lib/firmware/amdgpu/sienna_cichlid_mes.bin =
+for module amdgpu
+> W: Possible missing firmware /lib/firmware/amdgpu/navi10_mes.bin for modu=
+le amdgpu
+[...]
 
-diff --git a/drivers/gpu/drm/radeon/cik.c b/drivers/gpu/drm/radeon/cik.c
-index 5819737c21c6..a6f3c811ceb8 100644
---- a/drivers/gpu/drm/radeon/cik.c
-+++ b/drivers/gpu/drm/radeon/cik.c
-@@ -9534,17 +9534,8 @@ static void cik_pcie_gen3_enable(struct radeon_device *rdev)
- 			u16 bridge_cfg2, gpu_cfg2;
- 			u32 max_lw, current_lw, tmp;
- 
--			pcie_capability_read_word(root, PCI_EXP_LNKCTL,
--						  &bridge_cfg);
--			pcie_capability_read_word(rdev->pdev, PCI_EXP_LNKCTL,
--						  &gpu_cfg);
--
--			tmp16 = bridge_cfg | PCI_EXP_LNKCTL_HAWD;
--			pcie_capability_write_word(root, PCI_EXP_LNKCTL, tmp16);
--
--			tmp16 = gpu_cfg | PCI_EXP_LNKCTL_HAWD;
--			pcie_capability_write_word(rdev->pdev, PCI_EXP_LNKCTL,
--						   tmp16);
-+			pcie_capability_set_word(root, PCI_EXP_LNKCTL, PCI_EXP_LNKCTL_HAWD);
-+			pcie_capability_set_word(rdev->pdev, PCI_EXP_LNKCTL, PCI_EXP_LNKCTL_HAWD);
- 
- 			tmp = RREG32_PCIE_PORT(PCIE_LC_STATUS1);
- 			max_lw = (tmp & LC_DETECTED_LINK_WIDTH_MASK) >> LC_DETECTED_LINK_WIDTH_SHIFT;
-@@ -9591,21 +9582,14 @@ static void cik_pcie_gen3_enable(struct radeon_device *rdev)
- 				msleep(100);
- 
- 				/* linkctl */
--				pcie_capability_read_word(root, PCI_EXP_LNKCTL,
--							  &tmp16);
--				tmp16 &= ~PCI_EXP_LNKCTL_HAWD;
--				tmp16 |= (bridge_cfg & PCI_EXP_LNKCTL_HAWD);
--				pcie_capability_write_word(root, PCI_EXP_LNKCTL,
--							   tmp16);
--
--				pcie_capability_read_word(rdev->pdev,
--							  PCI_EXP_LNKCTL,
--							  &tmp16);
--				tmp16 &= ~PCI_EXP_LNKCTL_HAWD;
--				tmp16 |= (gpu_cfg & PCI_EXP_LNKCTL_HAWD);
--				pcie_capability_write_word(rdev->pdev,
--							   PCI_EXP_LNKCTL,
--							   tmp16);
-+				pcie_capability_clear_and_set_word(root, PCI_EXP_LNKCTL,
-+								   PCI_EXP_LNKCTL_HAWD,
-+								   bridge_cfg &
-+								   PCI_EXP_LNKCTL_HAWD);
-+				pcie_capability_clear_and_set_word(rdev->pdev, PCI_EXP_LNKCTL,
-+								   PCI_EXP_LNKCTL_HAWD,
-+								   gpu_cfg &
-+								   PCI_EXP_LNKCTL_HAWD);
- 
- 				/* linkctl2 */
- 				pcie_capability_read_word(root, PCI_EXP_LNKCTL2,
-diff --git a/drivers/gpu/drm/radeon/si.c b/drivers/gpu/drm/radeon/si.c
-index 8d5e4b25609d..a91012447b56 100644
---- a/drivers/gpu/drm/radeon/si.c
-+++ b/drivers/gpu/drm/radeon/si.c
-@@ -7131,17 +7131,8 @@ static void si_pcie_gen3_enable(struct radeon_device *rdev)
- 			u16 bridge_cfg2, gpu_cfg2;
- 			u32 max_lw, current_lw, tmp;
- 
--			pcie_capability_read_word(root, PCI_EXP_LNKCTL,
--						  &bridge_cfg);
--			pcie_capability_read_word(rdev->pdev, PCI_EXP_LNKCTL,
--						  &gpu_cfg);
--
--			tmp16 = bridge_cfg | PCI_EXP_LNKCTL_HAWD;
--			pcie_capability_write_word(root, PCI_EXP_LNKCTL, tmp16);
--
--			tmp16 = gpu_cfg | PCI_EXP_LNKCTL_HAWD;
--			pcie_capability_write_word(rdev->pdev, PCI_EXP_LNKCTL,
--						   tmp16);
-+			pcie_capability_set_word(root, PCI_EXP_LNKCTL, PCI_EXP_LNKCTL_HAWD);
-+			pcie_capability_set_word(rdev->pdev, PCI_EXP_LNKCTL, PCI_EXP_LNKCTL_HAWD);
- 
- 			tmp = RREG32_PCIE(PCIE_LC_STATUS1);
- 			max_lw = (tmp & LC_DETECTED_LINK_WIDTH_MASK) >> LC_DETECTED_LINK_WIDTH_SHIFT;
-@@ -7188,22 +7179,14 @@ static void si_pcie_gen3_enable(struct radeon_device *rdev)
- 				msleep(100);
- 
- 				/* linkctl */
--				pcie_capability_read_word(root, PCI_EXP_LNKCTL,
--							  &tmp16);
--				tmp16 &= ~PCI_EXP_LNKCTL_HAWD;
--				tmp16 |= (bridge_cfg & PCI_EXP_LNKCTL_HAWD);
--				pcie_capability_write_word(root,
--							   PCI_EXP_LNKCTL,
--							   tmp16);
--
--				pcie_capability_read_word(rdev->pdev,
--							  PCI_EXP_LNKCTL,
--							  &tmp16);
--				tmp16 &= ~PCI_EXP_LNKCTL_HAWD;
--				tmp16 |= (gpu_cfg & PCI_EXP_LNKCTL_HAWD);
--				pcie_capability_write_word(rdev->pdev,
--							   PCI_EXP_LNKCTL,
--							   tmp16);
-+				pcie_capability_clear_and_set_word(root, PCI_EXP_LNKCTL,
-+								   PCI_EXP_LNKCTL_HAWD,
-+								   bridge_cfg &
-+								   PCI_EXP_LNKCTL_HAWD);
-+				pcie_capability_clear_and_set_word(rdev->pdev, PCI_EXP_LNKCTL,
-+								   PCI_EXP_LNKCTL_HAWD,
-+								   gpu_cfg &
-+								   PCI_EXP_LNKCTL_HAWD);
- 
- 				/* linkctl2 */
- 				pcie_capability_read_word(root, PCI_EXP_LNKCTL2,
--- 
-2.30.2
+I see that the amdgpu driver has had references to these files for
+several years, but they've never been added to linux-firmware.git.
+More recently amdgpu added:
 
+MODULE_FIRMWARE("amdgpu/gc_11_0_3_mes.bin");
+MODULE_FIRMWARE("amdgpu/gc_11_0_3_mes_2.bin");
+MODULE_FIRMWARE("amdgpu/gc_11_0_3_mes1.bin");
+
+and these are also missing from linux-firmware.git.
+
+Is this firmware intended to be available to the public?
+
+Ben.
+
+--=20
+Ben Hutchings
+compatible: Gracefully accepts erroneous data from any source
+
+
+--=-CpMhR66BW1jvhP/b8PUy
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEErCspvTSmr92z9o8157/I7JWGEQkFAmSSIFoACgkQ57/I7JWG
+EQkYzg/6AxdDEJUyLct4JRfBmMjJH5ItKcwwOkCXdfnOe8/481WSwXaZ8gE+P+8u
+hFePtUPTALCK0YGi1eSEwbh5YPl3DEC2S+FtorIeXUFQlUrQjP1lnXFZ7YcQrnCi
+PfxIunxQMF1xZgvGzs89WpbUHvJKKhlocUdsQiqgSFQ7lst94pAAcNkx1jFD+4CQ
+4kdzfDwpxdDGLSYbz3Dj/CYeumLSD9xYXoVjrmrrblkjYQfbd7Z3rdG5tLtkIKXI
+POL2cR6+fyWyz3wAa1BZSms1haYhSQIuT1NI3ARAhDMAfi/9vl5kOAgQVYvPPYZP
+kjtUqk7mNDRUjndS7tc7t+IfRs4kD5x//EO0okp0VKet1Gy1jKI2TpeH/o20eDzG
+T8RKt3xGXAf/ttE+sXUR/j6ucGxuHidW00yFRra+t05PN5k/FkdDhJRPKuHoJ56m
+Lv+LA10wnxvRJvdeVdrE3kDw5/b6quNJ1kF7Jt8R/lCfmaMvXSsvoqDUEQ6YYy4D
+o1kLvZ3fWQ67gSBGFW5Vk9RMHGSm8OCDOF3aMJV5c5Z15tICDAZgX8cvIYD1ciaa
+WO1lkJTjxIRIafWE+Zg2X7O7ok//2rBl4fxOEfi7lBDdwqJNNoYG7EVq/z4+ZI/6
+qgOc0zsOBbKAj2UlChMf7qFmccu+uD8B47nOBt5pmaL4tka8mVc=
+=B9TS
+-----END PGP SIGNATURE-----
+
+--=-CpMhR66BW1jvhP/b8PUy--
