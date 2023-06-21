@@ -2,38 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D861F7389BB
-	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jun 2023 17:38:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D60F87389C7
+	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jun 2023 17:39:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12CE810E4BC;
-	Wed, 21 Jun 2023 15:38:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D44510E4CB;
+	Wed, 21 Jun 2023 15:38:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7485010E40F;
- Wed, 21 Jun 2023 08:11:02 +0000 (UTC)
-Received: from uno.lan (unknown [IPv6:2001:b07:5d2e:52c9:1cf0:b3bc:c785:4625])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id B61FE2C96;
- Wed, 21 Jun 2023 10:10:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1687335026;
- bh=Nz5xxiQsV7L8tjRBWm4HkFoJy2viyWnaSexoVo6LVwE=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=qEy/Jrd+AP3vUp/wSwq9Zb5ZDKTXSGg51A8nUv24Lwogw+ZcXK41ZGglw0/Q4t0aE
- 7aXEvjXlWPC879/ne7Qd/fvqKoxtXjCndntS/+lxpK1X6glJq/Bwtk3+uwJEYeMTm+
- sNgcXFaXtomYjMZ+rsYPNMwIM7ODEQOFa4dZYjV0=
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Subject: [RFC 9/9] drm: rcar-du: crtc: Enable 3D LUT
-Date: Wed, 21 Jun 2023 10:10:31 +0200
-Message-Id: <20230621081031.7876-10-jacopo.mondi@ideasonboard.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230621081031.7876-1-jacopo.mondi@ideasonboard.com>
-References: <20230621081031.7876-1-jacopo.mondi@ideasonboard.com>
+Received: from sipsolutions.net (s3.sipsolutions.net
+ [IPv6:2a01:4f8:191:4433::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D64A310E439;
+ Wed, 21 Jun 2023 10:23:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
+ Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+ Resent-Cc:Resent-Message-ID; bh=E5J3XlE1FsUIlBpFkRpwctJVhjB2FlOiEwVbSdNHhcE=; 
+ t=1687342990; x=1688552590; b=fwZAzcF+UlIhVUrY3lP5AzfjB25U5O6sp/nmT71ZWMkuv28
+ 7yswjLQZ0nCvuFVWV35HK5GzxpOcCzvkiTfgw93axqgaYKgzyYe0EOPiL0HyKXq7mlnJiD1TCbXDN
+ Pnyu8K16p6LOhZVq5wfEuMMJRUbIU+xdgQgEfAItdm5hOi8YOOZM3I9Nlc/M7MsMZQYFs/lk05Cpr
+ hVhBKUE462lSTo3Tn8hoiMjBSm2rydC+656SxlphXsDdvegBofxbUB23OkIdUuAFHY/uzmYmERA55
+ RSydKXbByZf5lUD2ptvJUVQ7UVIBCOz0EUoVgvMWHObHK3s/VkXudHfKK0rRSYng==;
+Received: by sipsolutions.net with esmtpsa
+ (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+ (Exim 4.96) (envelope-from <johannes@sipsolutions.net>)
+ id 1qBuym-00DagI-0V; Wed, 21 Jun 2023 12:22:24 +0200
+Message-ID: <3eb2c16cb0692c8d6b03bd57cb049b1fb3457e92.camel@sipsolutions.net>
+Subject: Re: [PATCH V4 3/8] wifi: mac80211: Add support for ACPI WBRF
+From: Johannes Berg <johannes@sipsolutions.net>
+To: Evan Quan <evan.quan@amd.com>, rafael@kernel.org, lenb@kernel.org, 
+ alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com, 
+ airlied@gmail.com, daniel@ffwll.ch, davem@davemloft.net,
+ edumazet@google.com,  kuba@kernel.org, pabeni@redhat.com,
+ mario.limonciello@amd.com, mdaenzer@redhat.com, 
+ maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
+ hdegoede@redhat.com,  jingyuwang_vip@163.com, lijo.lazar@amd.com,
+ jim.cromie@gmail.com,  bellosilicio@gmail.com, andrealmeid@igalia.com,
+ trix@redhat.com, jsg@jsg.id.au,  arnd@arndb.de
+Date: Wed, 21 Jun 2023 12:22:21 +0200
+In-Reply-To: <20230621054603.1262299-4-evan.quan@amd.com>
+References: <20230621054603.1262299-1-evan.quan@amd.com>
+ <20230621054603.1262299-4-evan.quan@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.3 (3.48.3-1.fc38) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-malware-bazaar: not-scanned
 X-Mailman-Approved-At: Wed, 21 Jun 2023 15:38:42 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -46,113 +60,94 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Victoria Brekenfeld <victoria@system76.com>,
- DRI Development <dri-devel@lists.freedesktop.org>, mdaenzer@redhat.com,
- airlied@gmail.com, aleixpol@kde.org, Rodrigo.Siqueira@amd.com,
- amd-gfx@lists.freedesktop.org,
- wayland-devel <wayland-devel@lists.freedesktop.org>,
- =?UTF-8?q?Jonas=20=C3=85dahl?= <jadahl@redhat.com>,
- Uma Shankar <uma.shankar@intel.com>, harry.wentland@amd.com,
- tzimmermann@suse.de, sunpeng.li@amd.com, maarten.lankhorst@linux.intel.com,
- Sebastian Wick <sebastian.wick@redhat.com>, mripard@kernel.org,
- Melissa Wen <mwen@igalia.com>, Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
- Pekka Paalanen <pekka.paalanen@collabora.com>, Simon Ser <contact@emersion.fr>,
- Xinhui.Pan@amd.com, xaver.hugl@gmail.com, linux-renesas-soc@vger.kernel.org,
- daniel@ffwll.ch, alexander.deucher@amd.com, christian.koenig@amd.com,
- Joshua Ashton <joshua@froggi.es>
+Cc: netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-acpi@vger.kernel.org, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Enable the 3D LUT in rcar_du_crtc by first creating a property for
-the supported 3d lut modes and by calling the drm_crtc_enable_lut3d()
-helper.
+On Wed, 2023-06-21 at 13:45 +0800, Evan Quan wrote:
+> To support AMD's WBRF interference mitigation mechanism, Wifi adapters
+> utilized in the system must register the frequencies in use(or unregister
+> those frequencies no longer used) via the dedicated APCI calls. So that,
+> other drivers responding to the frequencies can take proper actions to
+> mitigate possible interference.
+>=20
+> To make WBRF feature functional, the kernel needs to be configured with
+> CONFIG_ACPI_WBRF and the platform is equipped with WBRF support(from
+> BIOS and drivers).
+>=20
+> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+> Co-developed-by: Evan Quan <evan.quan@amd.com>
+> Signed-off-by: Evan Quan <evan.quan@amd.com>
 
-Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
----
- drivers/gpu/drm/rcar-du/rcar_cmm.h     | 14 ++++++++++++++
- drivers/gpu/drm/rcar-du/rcar_du_crtc.c | 23 +++++++++++++++++++++--
- 2 files changed, 35 insertions(+), 2 deletions(-)
+I was going to say this looks good ... but still have a few nits, sorry.
 
-diff --git a/drivers/gpu/drm/rcar-du/rcar_cmm.h b/drivers/gpu/drm/rcar-du/rcar_cmm.h
-index 277b9e4d9cc4..eed9e480a96f 100644
---- a/drivers/gpu/drm/rcar-du/rcar_cmm.h
-+++ b/drivers/gpu/drm/rcar-du/rcar_cmm.h
-@@ -8,6 +8,8 @@
- #ifndef __RCAR_CMM_H__
- #define __RCAR_CMM_H__
- 
-+#include <drm/drm_fourcc.h>
-+
- #define CM2_LUT_SIZE		256
- #define CM2_CLU_SIZE		(17 * 17 * 17)
- 
-@@ -43,6 +45,16 @@ void rcar_cmm_disable(struct platform_device *pdev);
- 
- int rcar_cmm_setup(struct platform_device *pdev,
- 		   const struct rcar_cmm_config *config);
-+
-+static const struct drm_mode_lut3d_mode rcar_cmm_3dlut_modes[] = {
-+	{
-+		.lut_size = 17,
-+		.lut_stride = {17, 17, 17},
-+		.bit_depth = 8,
-+		.color_format = DRM_FORMAT_XRGB16161616,
-+		.flags = 0,
-+	},
-+};
- #else
- static inline int rcar_cmm_init(struct platform_device *pdev)
- {
-@@ -63,6 +75,8 @@ static inline int rcar_cmm_setup(struct platform_device *pdev,
- {
- 	return 0;
- }
-+
-+static const struct drm_mode_lut3d_mode rcar_cmm_3dlut_modes[] = { };
- #endif /* IS_ENABLED(CONFIG_DRM_RCAR_CMM) */
- 
- #endif /* __RCAR_CMM_H__ */
-diff --git a/drivers/gpu/drm/rcar-du/rcar_du_crtc.c b/drivers/gpu/drm/rcar-du/rcar_du_crtc.c
-index 895a23161f7b..126083d226d2 100644
---- a/drivers/gpu/drm/rcar-du/rcar_du_crtc.c
-+++ b/drivers/gpu/drm/rcar-du/rcar_du_crtc.c
-@@ -571,6 +571,24 @@ static void rcar_du_cmm_setup(struct rcar_du_crtc *rcrtc,
- 	rcar_cmm_setup(rcrtc->cmm, &cmm_config);
- }
- 
-+static int rcar_du_cmm_enable_color_mgmt(struct rcar_du_crtc *rcrtc)
-+{
-+	struct drm_crtc *crtc = &rcrtc->crtc;
-+	int ret;
-+
-+	drm_mode_crtc_set_gamma_size(crtc, CM2_LUT_SIZE);
-+	drm_crtc_enable_color_mgmt(crtc, 0, false, CM2_LUT_SIZE);
-+
-+	ret = drm_crtc_create_lut3d_mode_property(crtc, rcar_cmm_3dlut_modes,
-+						  ARRAY_SIZE(rcar_cmm_3dlut_modes));
-+	if (ret)
-+		return ret;
-+
-+	drm_crtc_enable_lut3d(crtc, 0);
-+
-+	return 0;
-+}
-+
- /* -----------------------------------------------------------------------------
-  * Start/Stop and Suspend/Resume
-  */
-@@ -1355,8 +1373,9 @@ int rcar_du_crtc_create(struct rcar_du_group *rgrp, unsigned int swindex,
- 		rcrtc->cmm = rcdu->cmms[swindex];
- 		rgrp->cmms_mask |= BIT(hwindex % 2);
- 
--		drm_mode_crtc_set_gamma_size(crtc, CM2_LUT_SIZE);
--		drm_crtc_enable_color_mgmt(crtc, 0, false, CM2_LUT_SIZE);
-+		ret = rcar_du_cmm_enable_color_mgmt(rcrtc);
-+		if (ret)
-+			return ret;
- 	}
- 
- 	drm_crtc_helper_add(crtc, &crtc_helper_funcs);
--- 
-2.40.1
+But then the next question anyway is how we merge this? The wifi parts
+sort of depend on the first patch, although technically I guess I could
+merge them since it's all hidden behind the CONFIG_ symbol, assuming you
+get that in via some other tree it can combine upstream.
 
+I'd also say you can merge those parts elsewhere but I'm planning to
+also land some locking rework that I've been working on, so it will
+probably conflict somewhere.
+
+> +++ b/net/mac80211/chan.c
+> @@ -506,11 +506,16 @@ static void _ieee80211_change_chanctx(struct ieee80=
+211_local *local,
+> =20
+>  	WARN_ON(!cfg80211_chandef_compatible(&ctx->conf.def, chandef));
+> =20
+> +	ieee80211_remove_wbrf(local, &ctx->conf.def);
+> +
+>  	ctx->conf.def =3D *chandef;
+> =20
+>  	/* check if min chanctx also changed */
+>  	changed =3D IEEE80211_CHANCTX_CHANGE_WIDTH |
+>  		  _ieee80211_recalc_chanctx_min_def(local, ctx, rsvd_for);
+> +
+> +	ieee80211_add_wbrf(local, &ctx->conf.def);
+
+You ignore the return value here.
+
+
+> @@ -668,6 +673,10 @@ static int ieee80211_add_chanctx(struct ieee80211_lo=
+cal *local,
+>  	lockdep_assert_held(&local->mtx);
+>  	lockdep_assert_held(&local->chanctx_mtx);
+> =20
+> +	err =3D ieee80211_add_wbrf(local, &ctx->conf.def);
+> +	if (err)
+> +		return err;
+
+But not here.
+
+In the code, there are basically two error paths:
+
+> +int ieee80211_add_wbrf(struct ieee80211_local *local,
+> +		       struct cfg80211_chan_def *chandef)
+> +{
+> +	struct device *dev =3D local->hw.wiphy->dev.parent;
+> +	struct wbrf_ranges_in ranges_in =3D {0};
+> +	int ret;
+> +
+> +	if (!local->wbrf_supported)
+> +		return 0;
+> +
+> +	ret =3D wbrf_get_ranges_from_chandef(chandef, &ranges_in);
+> +	if (ret)
+> +		return ret;
+
+This really won't fail, just if the bandwidth calculation was bad, but
+that's an internal error that WARNs anyway and we can ignore it.
+
+> +	return wbrf_add_exclusion(ACPI_COMPANION(dev), &ranges_in);
+
+This I find a bit confusing, why do we even propagate the error? If the
+platform has some issue with it, should we really fail the connection?
+
+
+I think it seems better to me to just make this void, and have it be
+only a notification interface?
+
+johannes
