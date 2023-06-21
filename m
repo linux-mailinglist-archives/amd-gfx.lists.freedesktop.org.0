@@ -1,35 +1,34 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF06573B193
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jun 2023 09:29:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A77D73B196
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jun 2023 09:29:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A78110E616;
-	Fri, 23 Jun 2023 07:29:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF16510E61E;
+	Fri, 23 Jun 2023 07:29:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2340A10E33D;
- Wed, 21 Jun 2023 17:26:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9047710E111;
+ Wed, 21 Jun 2023 18:30:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
- s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
- Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
- Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
- Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
- In-Reply-To:References; bh=NF4zBEcDJi5tK0sppmgQglo0yCtgkMekDJXsqP9rEWE=; b=Bj
- wtzUPDYzEuK/cPE63zmLaBg+84ZmbmNgB6BNQFl+zDi7yR3PBotkqT5cO0Rw4Zs01JumJhGvsda8M
- hfsFwp2aUhIyOyM/tKJcRB1AH20PAn3ZFxI0O58LMFr0UKnetCw5PNAO7I7RWUWS48DtfqURQaQji
- ngzUFUlEIePNV/o=;
+ s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+ Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+ bh=wbqS0dqLdsnGgfOnL91hu55tI6N00q9JeL9Dt8+bbtk=; b=y9Y5o9ZOPVdyNd0f/8z8mo1CWF
+ XkhXM+i69HTv3SFPqxk6v7EmMBdE5flxZ9WQanyW/HrM7W28qVJ66H0vtH7C9pz49swW5KNMWcCL+
+ 3Zwgc4Ge14YT7QZNlatyjc9AHoer54a6qwK7h7cC0GTMQO2OPRl1KgAcCIRDo5mjB+uc=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
  (envelope-from <andrew@lunn.ch>)
- id 1qC1ar-00HAax-FK; Wed, 21 Jun 2023 19:26:09 +0200
-Date: Wed, 21 Jun 2023 19:26:09 +0200
+ id 1qC2az-00HB0y-DN; Wed, 21 Jun 2023 20:30:21 +0200
+Date: Wed, 21 Jun 2023 20:30:21 +0200
 From: Andrew Lunn <andrew@lunn.ch>
 To: "Limonciello, Mario" <mario.limonciello@amd.com>
 Subject: Re: [PATCH V4 1/8] drivers/acpi: Add support for Wifi band RF
  mitigations
-Message-ID: <9159c3a5-390f-4403-854d-9b5e87b58d8c@lunn.ch>
+Message-ID: <8d3340de-34f6-47ad-8024-f6f5ecd9c4bb@lunn.ch>
 References: <20230621054603.1262299-1-evan.quan@amd.com>
  <20230621054603.1262299-2-evan.quan@amd.com>
  <3a7c8ffa-de43-4795-ae76-5cd9b00c52b5@lunn.ch>
@@ -37,11 +36,12 @@ References: <20230621054603.1262299-1-evan.quan@amd.com>
  <b1abec47-04df-4481-d680-43c5ff3cbb48@amd.com>
  <36902dda-9e51-41b3-b5fc-c641edf6f1fb@lunn.ch>
  <33d80292-e639-91d0-4d0f-3ed973f89e14@amd.com>
+ <9159c3a5-390f-4403-854d-9b5e87b58d8c@lunn.ch>
+ <a80c215a-c1d9-4c76-d4a8-9b5fd320a2b1@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <33d80292-e639-91d0-4d0f-3ed973f89e14@amd.com>
+In-Reply-To: <a80c215a-c1d9-4c76-d4a8-9b5fd320a2b1@amd.com>
 X-Mailman-Approved-At: Fri, 23 Jun 2023 07:28:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,59 +68,14 @@ Cc: jingyuwang_vip@163.com, bellosilicio@gmail.com, rafael@kernel.org,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-> I think what you're asking for is another layer of indirection
-> like CONFIG_WBRF in addition to CONFIG_ACPI_WBRF.
-> 
-> Producers would call functions like wbrf_supported_producer()
-> where the source file is not guarded behind CONFIG_ACPI_WBRF,
-> but instead by CONFIG_WBRF and locally use CONFIG_ACPI_WBRF within
-> it.  So a producer could look like this:
-> 
-> bool wbrf_supported_producer(struct device *dev)
-> {
-> #ifdef CONFIG_ACPI_WBRF
->     struct acpi_device *adev = ACPI_COMPANION(dev);
-> 
->     if (adev)
->         return check_acpi_wbrf(adev->handle,
->                        WBRF_REVISION,
->                        1ULL << WBRF_RECORD);
-> #endif
->     return -ENODEV;
-> 
-> }
-> EXPORT_SYMBOL_GPL(wbrf_supported_producer);
-> 
-> And then adding/removing could look something like this
-> 
-> int wbrf_add_exclusion(struct device *dev,
->                struct wbrf_ranges_in *in)
-> {
-> #ifdef CONFIG_ACPI_WBRF
->     struct acpi_device *adev = ACPI_COMPANION(dev);
-> 
->     if (adev)
->         return wbrf_record(adev, WBRF_RECORD_ADD, in);
-> #endif
->     return -ENODEV;
-> }
-> EXPORT_SYMBOL_GPL(wbrf_add_exclusion);
-> 
-> int wbrf_remove_exclusion(struct device *dev,
->                struct wbrf_ranges_in *in)
-> {
-> #ifdef CONFIG_ACPI_WBRF
->     struct acpi_device *adev = ACPI_COMPANION(dev);
-> 
->     if (adev)
->         return wbrf_record(adev, WBRF_RECORD_REMOVE, in);
-> #endif
->     return -ENODEV;
-> }
-> EXPORT_SYMBOL_GPL(wbrf_remove_exclusion);
+> And consumer would need to call it, but only if CONFIG_WBRF_ACPI isn't set.
 
-Yes, this looks a lot better.
+Why? How is ACPI special that it does not need notifiers?
 
-But what about notifications?
+> I don't see why it couldn't be a DT/ACPI hybrid solution for ARM64.
 
-    Andrew
+As said somewhere else, nobody does hybrid. In fact, turn it
+around. Why not implement all this in DT, and make X86 hybrid? That
+will make arm, powerpc, risc-v and mips much simpler :-)
+
+	Andrew
