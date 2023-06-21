@@ -2,53 +2,39 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D60F87389C7
-	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jun 2023 17:39:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD0FB7389B8
+	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jun 2023 17:38:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D44510E4CB;
-	Wed, 21 Jun 2023 15:38:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74CED10E4B8;
+	Wed, 21 Jun 2023 15:38:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sipsolutions.net (s3.sipsolutions.net
- [IPv6:2a01:4f8:191:4433::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D64A310E439;
- Wed, 21 Jun 2023 10:23:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
- Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
- Resent-Cc:Resent-Message-ID; bh=E5J3XlE1FsUIlBpFkRpwctJVhjB2FlOiEwVbSdNHhcE=; 
- t=1687342990; x=1688552590; b=fwZAzcF+UlIhVUrY3lP5AzfjB25U5O6sp/nmT71ZWMkuv28
- 7yswjLQZ0nCvuFVWV35HK5GzxpOcCzvkiTfgw93axqgaYKgzyYe0EOPiL0HyKXq7mlnJiD1TCbXDN
- Pnyu8K16p6LOhZVq5wfEuMMJRUbIU+xdgQgEfAItdm5hOi8YOOZM3I9Nlc/M7MsMZQYFs/lk05Cpr
- hVhBKUE462lSTo3Tn8hoiMjBSm2rydC+656SxlphXsDdvegBofxbUB23OkIdUuAFHY/uzmYmERA55
- RSydKXbByZf5lUD2ptvJUVQ7UVIBCOz0EUoVgvMWHObHK3s/VkXudHfKK0rRSYng==;
-Received: by sipsolutions.net with esmtpsa
- (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
- (Exim 4.96) (envelope-from <johannes@sipsolutions.net>)
- id 1qBuym-00DagI-0V; Wed, 21 Jun 2023 12:22:24 +0200
-Message-ID: <3eb2c16cb0692c8d6b03bd57cb049b1fb3457e92.camel@sipsolutions.net>
-Subject: Re: [PATCH V4 3/8] wifi: mac80211: Add support for ACPI WBRF
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Evan Quan <evan.quan@amd.com>, rafael@kernel.org, lenb@kernel.org, 
- alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com, 
- airlied@gmail.com, daniel@ffwll.ch, davem@davemloft.net,
- edumazet@google.com,  kuba@kernel.org, pabeni@redhat.com,
- mario.limonciello@amd.com, mdaenzer@redhat.com, 
- maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
- hdegoede@redhat.com,  jingyuwang_vip@163.com, lijo.lazar@amd.com,
- jim.cromie@gmail.com,  bellosilicio@gmail.com, andrealmeid@igalia.com,
- trix@redhat.com, jsg@jsg.id.au,  arnd@arndb.de
-Date: Wed, 21 Jun 2023 12:22:21 +0200
-In-Reply-To: <20230621054603.1262299-4-evan.quan@amd.com>
-References: <20230621054603.1262299-1-evan.quan@amd.com>
- <20230621054603.1262299-4-evan.quan@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.3 (3.48.3-1.fc38) 
+X-Greylist: delayed 373 seconds by postgrey-1.36 at gabe;
+ Wed, 21 Jun 2023 12:04:48 UTC
+Received: from tretyak2.mcst.ru (tretyak2.mcst.ru [212.5.119.215])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09A7610E468;
+ Wed, 21 Jun 2023 12:04:47 +0000 (UTC)
+Received: from tretyak2.mcst.ru (localhost [127.0.0.1])
+ by tretyak2.mcst.ru (Postfix) with ESMTP id DE46410239C;
+ Wed, 21 Jun 2023 14:58:29 +0300 (MSK)
+Received: from frog.lab.sun.mcst.ru (frog.lab.sun.mcst.ru [176.16.4.50])
+ by tretyak2.mcst.ru (Postfix) with ESMTP id D7DFF102390;
+ Wed, 21 Jun 2023 14:57:44 +0300 (MSK)
+Received: from artemiev-i.lab.sun.mcst.ru (avior-1 [192.168.53.223])
+ by frog.lab.sun.mcst.ru (8.13.4/8.12.11) with ESMTP id 35LBvhXh010817;
+ Wed, 21 Jun 2023 14:57:44 +0300
+From: Igor Artemiev <Igor.A.Artemiev@mcst.ru>
+To: Alex Deucher <alexander.deucher@amd.com>
+Subject: [lvc-project] [PATCH] drm/radeon: remove useless conditions
+Date: Wed, 21 Jun 2023 14:56:17 +0300
+Message-Id: <20230621115617.2126804-1-Igor.A.Artemiev@mcst.ru>
+X-Mailer: git-send-email 2.39.0.152.ga5737674b6
 MIME-Version: 1.0
-X-malware-bazaar: not-scanned
-X-Mailman-Approved-At: Wed, 21 Jun 2023 15:38:42 +0000
+Content-Transfer-Encoding: 8bit
+X-Anti-Virus: Kaspersky Anti-Virus for Linux Mail Server 5.6.39/RELEASE,
+ bases: 20111107 #2745587, check: 20230621 notchecked
+X-AV-Checked: ClamAV using ClamSMTP
+X-Mailman-Approved-At: Wed, 21 Jun 2023 15:38:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,94 +46,128 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-acpi@vger.kernel.org, amd-gfx@lists.freedesktop.org
+Cc: lvc-project@linuxtesting.org, Igor Artemiev <Igor.A.Artemiev@mcst.ru>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2023-06-21 at 13:45 +0800, Evan Quan wrote:
-> To support AMD's WBRF interference mitigation mechanism, Wifi adapters
-> utilized in the system must register the frequencies in use(or unregister
-> those frequencies no longer used) via the dedicated APCI calls. So that,
-> other drivers responding to the frequencies can take proper actions to
-> mitigate possible interference.
->=20
-> To make WBRF feature functional, the kernel needs to be configured with
-> CONFIG_ACPI_WBRF and the platform is equipped with WBRF support(from
-> BIOS and drivers).
->=20
-> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> Co-developed-by: Evan Quan <evan.quan@amd.com>
-> Signed-off-by: Evan Quan <evan.quan@amd.com>
+Comparisons of 'table' and 'vddc_sclk_table' with NULL are useless
+since 'table' and 'vddc_sclk_table' are initialized by an addresses
+and cannot be NULL.
 
-I was going to say this looks good ... but still have a few nits, sorry.
+Found by Linux Verification Center (linuxtesting.org) with SVACE.
 
-But then the next question anyway is how we merge this? The wifi parts
-sort of depend on the first patch, although technically I guess I could
-merge them since it's all hidden behind the CONFIG_ symbol, assuming you
-get that in via some other tree it can combine upstream.
+Signed-off-by: Igor Artemiev <Igor.A.Artemiev@mcst.ru>
+---
+ drivers/gpu/drm/radeon/kv_dpm.c | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
 
-I'd also say you can merge those parts elsewhere but I'm planning to
-also land some locking rework that I've been working on, so it will
-probably conflict somewhere.
+diff --git a/drivers/gpu/drm/radeon/kv_dpm.c b/drivers/gpu/drm/radeon/kv_dpm.c
+index f7735da07feb..17d312ceb6ec 100644
+--- a/drivers/gpu/drm/radeon/kv_dpm.c
++++ b/drivers/gpu/drm/radeon/kv_dpm.c
+@@ -399,7 +399,7 @@ static u32 kv_convert_vid2_to_vid7(struct radeon_device *rdev,
+ 		&rdev->pm.dpm.dyn_state.vddc_dependency_on_sclk;
+ 	u32 i;
+ 
+-	if (vddc_sclk_table && vddc_sclk_table->count) {
++	if (vddc_sclk_table->count) {
+ 		if (vid_2bit < vddc_sclk_table->count)
+ 			return vddc_sclk_table->entries[vid_2bit].v;
+ 		else
+@@ -421,7 +421,7 @@ static u32 kv_convert_vid7_to_vid2(struct radeon_device *rdev,
+ 		&rdev->pm.dpm.dyn_state.vddc_dependency_on_sclk;
+ 	u32 i;
+ 
+-	if (vddc_sclk_table && vddc_sclk_table->count) {
++	if (vddc_sclk_table->count) {
+ 		for (i = 0; i < vddc_sclk_table->count; i++) {
+ 			if (vddc_sclk_table->entries[i].v == vid_7bit)
+ 				return i;
+@@ -561,7 +561,7 @@ static int kv_program_bootup_state(struct radeon_device *rdev)
+ 	struct radeon_clock_voltage_dependency_table *table =
+ 		&rdev->pm.dpm.dyn_state.vddc_dependency_on_sclk;
+ 
+-	if (table && table->count) {
++	if (table->count) {
+ 		for (i = pi->graphics_dpm_level_count - 1; i > 0; i--) {
+ 			if (table->entries[i].clk == pi->boot_pl.sclk)
+ 				break;
+@@ -666,7 +666,7 @@ static int kv_populate_uvd_table(struct radeon_device *rdev)
+ 	int ret;
+ 	u32 i;
+ 
+-	if (table == NULL || table->count == 0)
++	if (table->count == 0)
+ 		return 0;
+ 
+ 	pi->uvd_level_count = 0;
+@@ -737,7 +737,7 @@ static int kv_populate_vce_table(struct radeon_device *rdev)
+ 		&rdev->pm.dpm.dyn_state.vce_clock_voltage_dependency_table;
+ 	struct atom_clock_dividers dividers;
+ 
+-	if (table == NULL || table->count == 0)
++	if (table->count == 0)
+ 		return 0;
+ 
+ 	pi->vce_level_count = 0;
+@@ -800,7 +800,7 @@ static int kv_populate_samu_table(struct radeon_device *rdev)
+ 	int ret;
+ 	u32 i;
+ 
+-	if (table == NULL || table->count == 0)
++	if (table->count == 0)
+ 		return 0;
+ 
+ 	pi->samu_level_count = 0;
+@@ -866,7 +866,7 @@ static int kv_populate_acp_table(struct radeon_device *rdev)
+ 	int ret;
+ 	u32 i;
+ 
+-	if (table == NULL || table->count == 0)
++	if (table->count == 0)
+ 		return 0;
+ 
+ 	pi->acp_level_count = 0;
+@@ -922,7 +922,7 @@ static void kv_calculate_dfs_bypass_settings(struct radeon_device *rdev)
+ 	struct radeon_clock_voltage_dependency_table *table =
+ 		&rdev->pm.dpm.dyn_state.vddc_dependency_on_sclk;
+ 
+-	if (table && table->count) {
++	if (table->count) {
+ 		for (i = 0; i < pi->graphics_dpm_level_count; i++) {
+ 			if (pi->caps_enable_dfs_bypass) {
+ 				if (kv_get_clock_difference(table->entries[i].clk, 40000) < 200)
+@@ -1532,7 +1532,7 @@ static void kv_set_valid_clock_range(struct radeon_device *rdev,
+ 	struct radeon_clock_voltage_dependency_table *table =
+ 		&rdev->pm.dpm.dyn_state.vddc_dependency_on_sclk;
+ 
+-	if (table && table->count) {
++	if (table->count) {
+ 		for (i = 0; i < pi->graphics_dpm_level_count; i++) {
+ 			if ((table->entries[i].clk >= new_ps->levels[0].sclk) ||
+ 			    (i == (pi->graphics_dpm_level_count - 1))) {
+@@ -1905,7 +1905,7 @@ static int kv_get_high_voltage_limit(struct radeon_device *rdev, int *limit)
+ 		&rdev->pm.dpm.dyn_state.vddc_dependency_on_sclk;
+ 	int i;
+ 
+-	if (table && table->count) {
++	if (table->count) {
+ 		for (i = table->count - 1; i >= 0; i--) {
+ 			if (pi->high_voltage_t &&
+ 			    (kv_convert_8bit_index_to_voltage(rdev, table->entries[i].v) <=
+@@ -2149,7 +2149,7 @@ static void kv_init_graphics_levels(struct radeon_device *rdev)
+ 	struct radeon_clock_voltage_dependency_table *table =
+ 		&rdev->pm.dpm.dyn_state.vddc_dependency_on_sclk;
+ 
+-	if (table && table->count) {
++	if (table->count) {
+ 		u32 vid_2bit;
+ 
+ 		pi->graphics_dpm_level_count = 0;
+-- 
+2.30.2
 
-> +++ b/net/mac80211/chan.c
-> @@ -506,11 +506,16 @@ static void _ieee80211_change_chanctx(struct ieee80=
-211_local *local,
-> =20
->  	WARN_ON(!cfg80211_chandef_compatible(&ctx->conf.def, chandef));
-> =20
-> +	ieee80211_remove_wbrf(local, &ctx->conf.def);
-> +
->  	ctx->conf.def =3D *chandef;
-> =20
->  	/* check if min chanctx also changed */
->  	changed =3D IEEE80211_CHANCTX_CHANGE_WIDTH |
->  		  _ieee80211_recalc_chanctx_min_def(local, ctx, rsvd_for);
-> +
-> +	ieee80211_add_wbrf(local, &ctx->conf.def);
-
-You ignore the return value here.
-
-
-> @@ -668,6 +673,10 @@ static int ieee80211_add_chanctx(struct ieee80211_lo=
-cal *local,
->  	lockdep_assert_held(&local->mtx);
->  	lockdep_assert_held(&local->chanctx_mtx);
-> =20
-> +	err =3D ieee80211_add_wbrf(local, &ctx->conf.def);
-> +	if (err)
-> +		return err;
-
-But not here.
-
-In the code, there are basically two error paths:
-
-> +int ieee80211_add_wbrf(struct ieee80211_local *local,
-> +		       struct cfg80211_chan_def *chandef)
-> +{
-> +	struct device *dev =3D local->hw.wiphy->dev.parent;
-> +	struct wbrf_ranges_in ranges_in =3D {0};
-> +	int ret;
-> +
-> +	if (!local->wbrf_supported)
-> +		return 0;
-> +
-> +	ret =3D wbrf_get_ranges_from_chandef(chandef, &ranges_in);
-> +	if (ret)
-> +		return ret;
-
-This really won't fail, just if the bandwidth calculation was bad, but
-that's an internal error that WARNs anyway and we can ignore it.
-
-> +	return wbrf_add_exclusion(ACPI_COMPANION(dev), &ranges_in);
-
-This I find a bit confusing, why do we even propagate the error? If the
-platform has some issue with it, should we really fail the connection?
-
-
-I think it seems better to me to just make this void, and have it be
-only a notification interface?
-
-johannes
