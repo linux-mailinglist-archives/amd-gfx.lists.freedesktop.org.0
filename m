@@ -1,49 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89F2073B19C
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jun 2023 09:29:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E2C473B199
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jun 2023 09:29:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D15C410E640;
-	Fri, 23 Jun 2023 07:29:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6FB610E62B;
+	Fri, 23 Jun 2023 07:29:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sipsolutions.net (s3.sipsolutions.net
- [IPv6:2a01:4f8:191:4433::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AAC110E31C;
- Wed, 21 Jun 2023 16:38:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
- Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
- Resent-Cc:Resent-Message-ID; bh=OdFzun0L0/e6r02A+DrKv3kwszx3coOMwNXnVWRuYqM=; 
- t=1687365483; x=1688575083; b=CiZlMYI5eodDhOCG8uQfP+FzDma6nTHFGTs0na7tZp0TFqi
- ONYi1bECR0aFttbp7BmzYpYMYYBSpeYp0WF+A22BanUWS+x9Sb6YRjJfgXBv2w4YZD822cj7hcQUL
- ECy3DN4kpRyMGP14HqT66lA4JEdzd2rGWVA9sktV3iBAoNslklxuQChMlbtGlENcxxu1lpXmP0Hk4
- BhwCACzCBPrv2HaXyv1OkXotnp+NYE3iWM0bjwcPnMbQIe10blYe+VG0PQ4yyTxwiFrzDl4FZaJFe
- XLuz9xyxmb1k5bm7t1sKuENe2F8AkvCELVg9GHaKpGqYnRSsicpESeRtRHgmkbbg==;
-Received: by sipsolutions.net with esmtpsa
- (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
- (Exim 4.96) (envelope-from <johannes@sipsolutions.net>)
- id 1qC0pt-00Dltw-2s; Wed, 21 Jun 2023 18:37:38 +0200
-Message-ID: <aca10d753183508672739e8b6668d41ce2cdaf80.camel@sipsolutions.net>
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0AEE10E337;
+ Wed, 21 Jun 2023 16:52:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+ s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+ Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+ bh=6WA3GXEESmxypvEyfFrL5uv4yC5/yc2PeWiHyP0/kFg=; b=jAR7VSWfsOiZvPQRWvfZ2NZjiN
+ u8ceeRk9ZsuwLMn8AlYC16evp29iYpzUudOF2rR7oo3CoOh8zWOqvZG3DjtQNIYhFAW1zHzuRA64i
+ gX6Kh0SKw1KNU3J/dr5DyzRnlVR4WWysO8U1/IS/P5ISI66I9bNN7tjCYnXCBsRK926o=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+ (envelope-from <andrew@lunn.ch>)
+ id 1qC148-00HAOG-F0; Wed, 21 Jun 2023 18:52:20 +0200
+Date: Wed, 21 Jun 2023 18:52:20 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Limonciello, Mario" <mario.limonciello@amd.com>
 Subject: Re: [PATCH V4 1/8] drivers/acpi: Add support for Wifi band RF
  mitigations
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Andrew Lunn <andrew@lunn.ch>
-Date: Wed, 21 Jun 2023 18:37:36 +0200
-In-Reply-To: <d2dba04d-36bf-4d07-bf2b-dd06671c45c6@lunn.ch>
+Message-ID: <36902dda-9e51-41b3-b5fc-c641edf6f1fb@lunn.ch>
 References: <20230621054603.1262299-1-evan.quan@amd.com>
  <20230621054603.1262299-2-evan.quan@amd.com>
  <3a7c8ffa-de43-4795-ae76-5cd9b00c52b5@lunn.ch>
  <216f3c5aa1299100a0009ddf4e95b019855a32be.camel@sipsolutions.net>
- <d2dba04d-36bf-4d07-bf2b-dd06671c45c6@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.3 (3.48.3-1.fc38) 
+ <b1abec47-04df-4481-d680-43c5ff3cbb48@amd.com>
 MIME-Version: 1.0
-X-malware-bazaar: not-scanned
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b1abec47-04df-4481-d680-43c5ff3cbb48@amd.com>
 X-Mailman-Approved-At: Fri, 23 Jun 2023 07:28:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,78 +52,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: jingyuwang_vip@163.com, bellosilicio@gmail.com, rafael@kernel.org,
  trix@redhat.com, lijo.lazar@amd.com, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, mdaenzer@redhat.com, mario.limonciello@amd.com,
- airlied@gmail.com, amd-gfx@lists.freedesktop.org, linux-acpi@vger.kernel.org,
- kuba@kernel.org, pabeni@redhat.com, lenb@kernel.org, andrealmeid@igalia.com,
- daniel@ffwll.ch, arnd@arndb.de, maarten.lankhorst@linux.intel.com,
- hdegoede@redhat.com, jsg@jsg.id.au, Evan Quan <evan.quan@amd.com>,
- jim.cromie@gmail.com, netdev@vger.kernel.org, Xinhui.Pan@amd.com,
- linux-wireless@vger.kernel.org, edumazet@google.com, christian.koenig@amd.com,
- tzimmermann@suse.de, alexander.deucher@amd.com, davem@davemloft.net
+ linux-kernel@vger.kernel.org, mdaenzer@redhat.com, airlied@gmail.com,
+ amd-gfx@lists.freedesktop.org, linux-acpi@vger.kernel.org, kuba@kernel.org,
+ pabeni@redhat.com, lenb@kernel.org, andrealmeid@igalia.com, daniel@ffwll.ch,
+ arnd@arndb.de, maarten.lankhorst@linux.intel.com, hdegoede@redhat.com,
+ jsg@jsg.id.au, Evan Quan <evan.quan@amd.com>, jim.cromie@gmail.com,
+ netdev@vger.kernel.org, Xinhui.Pan@amd.com, linux-wireless@vger.kernel.org,
+ edumazet@google.com, christian.koenig@amd.com, tzimmermann@suse.de,
+ alexander.deucher@amd.com, Johannes Berg <johannes@sipsolutions.net>,
+ davem@davemloft.net
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2023-06-21 at 18:14 +0200, Andrew Lunn wrote:
+On Wed, Jun 21, 2023 at 11:15:00AM -0500, Limonciello, Mario wrote:
+> 
+> On 6/21/2023 10:39 AM, Johannes Berg wrote:
+> > On Wed, 2023-06-21 at 17:36 +0200, Andrew Lunn wrote:
+> > > On Wed, Jun 21, 2023 at 01:45:56PM +0800, Evan Quan wrote:
+> > > > From: Mario Limonciello <mario.limonciello@amd.com>
+> > > > 
+> > > > Due to electrical and mechanical constraints in certain platform designs
+> > > > there may be likely interference of relatively high-powered harmonics of
+> > > > the (G-)DDR memory clocks with local radio module frequency bands used
+> > > > by Wifi 6/6e/7.
+> > > > 
+> > > > To mitigate this, AMD has introduced an ACPI based mechanism that
+> > > > devices can use to notify active use of particular frequencies so
+> > > > that devices can make relative internal adjustments as necessary
+> > > > to avoid this resonance.
 > > > Do only ACPI based systems have:
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0interference of relatively high-powered harmonics o=
-f the (G-)DDR
-> > > =C2=A0=C2=A0=C2=A0memory clocks with local radio module frequency ban=
-ds used by
-> > > =C2=A0=C2=A0=C2=A0Wifi 6/6e/7."
-> > >=20
+> > > 
+> > >     interference of relatively high-powered harmonics of the (G-)DDR
+> > >     memory clocks with local radio module frequency bands used by
+> > >     Wifi 6/6e/7."
+> > > 
 > > > Could Device Tree based systems not experience this problem?
-> >=20
 > > They could, of course, but they'd need some other driver to change
 > > _something_ in the system? I don't even know what this is doing
-> > precisely under the hood in the ACPI BIOS
->=20
-> If you don't know what it is actually doing, it suggests the API is
-> not very well defined.
+> > precisely under the hood in the ACPI BIOS, perhaps it adjusts the DDR
+> > memory clock frequency in response to WiFi using a frequency that will
+> > cause interference with harmonics.
+> 
+> The way that WBRF has been architected, it's intended to be able
+> to scale to any type of device pair that has harmonic issues.
 
-I wouldn't say that. At the level it's defined now, the API is very
-clear: the wifi subsystem tells the other side what channels it's
-operating on right now.
+So you set out to make something generic...
 
-> Is there even enough details that ARM64 ACPI
-> BIOS could implement this?=20
+> In the first use (Wifi 6e + specific AMD dGPUs) that matches this
+> series BIOS has the following purposes:
+> 
+> 1) The existence of _DSM indicates that the system may not have
+> adequate shielding and should be using these mitigations.
+> 
+> 2) Notification mechanism of frequency use.
+> 
+> For the first problematic devices we *could* have done notifications
+> entirely in native Linux kernel code with notifier chains.
+> However that still means you need a hint from the platform that the
+> functionality is needed like a _DSD bit.
+> 
+> It's also done this way so that AML could do some of the notifications
+> directly to applicable devices in the future without needing "consumer"
+> driver participation.
 
-This, in itself? No. You'd have to know about the physical
-characteristics of the system, what is actually causing interference and
-at what frequencies and of course what you can actually do to mitigate
-(such as adjusting clock frequencies.)
+And then tie is very closely to ACPI.
 
-But as an API? I'd think yes, since WiFi can't really move off a
-frequency, other than disconnect, anyway.
+Now, you are AMD, i get that ACPI is what you have. But i think as
+kernel Maintainers, we need to consider that ACPI is not the only
+thing used. Do we want the APIs to be agnostic? I think APIs used by
+drivers should be agnostic.
 
-
-> > > > +bool wbrf_supported_producer(struct acpi_device *adev);
-> > > > +int wbrf_add_exclusion(struct acpi_device *adev,
-> > > > +		       struct wbrf_ranges_in *in);
-> > > > +int wbrf_remove_exclusion(struct acpi_device *adev,
-> > > > +			  struct wbrf_ranges_in *in);
-> > >=20
-> > > Could struct device be used here, to make the API agnostic to where
-> > > the information is coming from? That would then allow somebody in the
-> > > future to implement a device tree based information provider.
-> >=20
-> > That does make sense, and it wouldn't even be that much harder if we
-> > assume in a given platform there's only one provider
->=20
-> That seems like a very reasonable assumption. It is theoretically
-> possible to build an ACPI + DT hybrid, but i've never seen it actually
-> done.
-
-OK.
-
-> If an ARM64 ACPI BIOS could implement this, then i would guess the low
-> level bits would be solved, i guess jumping into the EL1
-> firmware. Putting DT on top instead should not be too hard.
-
-Right.
-
-
-Maybe then this really shouldn't be called "wbrf", but maybe naming
-doesn't matter that much :)
-
-johannes
+      Andrew
