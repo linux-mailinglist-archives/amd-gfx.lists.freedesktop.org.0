@@ -1,48 +1,42 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF50B73B195
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jun 2023 09:29:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CE2F73B198
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jun 2023 09:29:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84B6710E620;
-	Fri, 23 Jun 2023 07:29:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73F2C10E625;
+	Fri, 23 Jun 2023 07:29:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sipsolutions.net (s3.sipsolutions.net
- [IPv6:2a01:4f8:191:4433::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7680A10E498;
- Wed, 21 Jun 2023 14:25:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
- Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
- Resent-Cc:Resent-Message-ID; bh=y8KezyLc/DUW29gVzDAPim1rZ/zbq0krh1pHlYpx9Jc=; 
- t=1687357522; x=1688567122; b=EhrdKum2HyOUfkWnDEKePBZ9zQB+RHIhNjCJcyj5oaYPU19
- khn6xt+qwrBAzilaQ0ZZ5aZ3TS+IByPzdyP6BOtapZpwNGE8u9GU1ssAnB6rued3TZVIlymchsxVJ
- culkl6J1yA6u4cBHOgAWgX5lPbyYP9IOKF+YeBkTcbwsnCI4fH2SoGdI9C3WlM81XmbgaJ1DK4+f7
- vxuI7s0KH0wjhaRhEPiW4ru9hjuei88HGDFUeXDKep0Bt7npw34tlBJezc9wmHpfhaLepvG2f9DKi
- 8ISdA6l4tQJLiTP9nlbHRQJvOpoZT0QNSlqehD5/gqg6L7Nsj+3GFTnreWTTc7hQ==;
-Received: by sipsolutions.net with esmtpsa
- (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
- (Exim 4.96) (envelope-from <johannes@sipsolutions.net>)
- id 1qByln-00Dhei-0G; Wed, 21 Jun 2023 16:25:15 +0200
-Message-ID: <9214266bf969207df60fdbde0157a0a5982bd2e0.camel@sipsolutions.net>
-Subject: Re: [PATCH V4 3/8] wifi: mac80211: Add support for ACPI WBRF
-From: Johannes Berg <johannes@sipsolutions.net>
-To: "Limonciello, Mario" <mario.limonciello@amd.com>, Evan Quan
- <evan.quan@amd.com>, "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Wed, 21 Jun 2023 16:25:13 +0200
-In-Reply-To: <9fdcd5a6-5315-b4d8-1662-30bfc6cb67d8@amd.com>
+X-Greylist: delayed 1824 seconds by postgrey-1.36 at gabe;
+ Wed, 21 Jun 2023 16:07:26 UTC
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0270C10E102;
+ Wed, 21 Jun 2023 16:07:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+ s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+ Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+ bh=UNTcJ7CGT1Lez3ibsb1q0hENK9CgDCucVIYKxGl3TOA=; b=kX5Xr6VI87reS7/GA49etmzzJa
+ 8UkZZawMQsboaJaBH0eNpIzk1bR3EcbBbU0KF6jAsbQhofPO8pHw+ovgkoxLGGJjfHxE1vVFC+buE
+ dyHRIxHy1ZMVaryyek2UvdEHqUuLiwmWXnN8UhABnjwmxx9ilAZZaPSduE0A55vaKMZ8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+ (envelope-from <andrew@lunn.ch>)
+ id 1qBzsX-00H9mp-GK; Wed, 21 Jun 2023 17:36:17 +0200
+Date: Wed, 21 Jun 2023 17:36:17 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Evan Quan <evan.quan@amd.com>
+Subject: Re: [PATCH V4 1/8] drivers/acpi: Add support for Wifi band RF
+ mitigations
+Message-ID: <3a7c8ffa-de43-4795-ae76-5cd9b00c52b5@lunn.ch>
 References: <20230621054603.1262299-1-evan.quan@amd.com>
- <20230621054603.1262299-4-evan.quan@amd.com>
- <3eb2c16cb0692c8d6b03bd57cb049b1fb3457e92.camel@sipsolutions.net>
- <9fdcd5a6-5315-b4d8-1662-30bfc6cb67d8@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.3 (3.48.3-1.fc38) 
+ <20230621054603.1262299-2-evan.quan@amd.com>
 MIME-Version: 1.0
-X-malware-bazaar: not-scanned
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230621054603.1262299-2-evan.quan@amd.com>
 X-Mailman-Approved-At: Fri, 23 Jun 2023 07:28:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -55,54 +49,56 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jingyuwang_vip@163.com, bellosilicio@gmail.com, trix@redhat.com,
- lijo.lazar@amd.com, dri-devel@lists.freedesktop.org, edumazet@google.com,
+Cc: jingyuwang_vip@163.com, bellosilicio@gmail.com, rafael@kernel.org,
+ trix@redhat.com, lijo.lazar@amd.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, mdaenzer@redhat.com, mario.limonciello@amd.com,
  airlied@gmail.com, amd-gfx@lists.freedesktop.org, linux-acpi@vger.kernel.org,
- mdaenzer@redhat.com, kuba@kernel.org, pabeni@redhat.com, lenb@kernel.org,
- andrealmeid@igalia.com, daniel@ffwll.ch, arnd@arndb.de,
- maarten.lankhorst@linux.intel.com, hdegoede@redhat.com, jsg@jsg.id.au,
- jim.cromie@gmail.com, netdev@vger.kernel.org, Xinhui.Pan@amd.com,
- linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
- christian.koenig@amd.com, tzimmermann@suse.de, alexander.deucher@amd.com,
- davem@davemloft.net
+ kuba@kernel.org, pabeni@redhat.com, lenb@kernel.org, andrealmeid@igalia.com,
+ daniel@ffwll.ch, arnd@arndb.de, maarten.lankhorst@linux.intel.com,
+ hdegoede@redhat.com, jsg@jsg.id.au, jim.cromie@gmail.com,
+ netdev@vger.kernel.org, Xinhui.Pan@amd.com, linux-wireless@vger.kernel.org,
+ edumazet@google.com, christian.koenig@amd.com, tzimmermann@suse.de,
+ alexander.deucher@amd.com, johannes@sipsolutions.net, davem@davemloft.net
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2023-06-21 at 09:12 -0500, Limonciello, Mario wrote:
-> >=20
-> > But then the next question anyway is how we merge this? The wifi parts
-> > sort of depend on the first patch, although technically I guess I could
-> > merge them since it's all hidden behind the CONFIG_ symbol, assuming yo=
-u
-> > get that in via some other tree it can combine upstream.
-> >=20
-> > I'd also say you can merge those parts elsewhere but I'm planning to
-> > also land some locking rework that I've been working on, so it will
-> > probably conflict somewhere.
-> Since it's all gated by CONFIG_ACPI_WBRF for each subsystem that it touch=
-es,
-> my take is that we should merge like this:
->=20
-> 1) Get A-b/R-b on patch 1 (ACPI patch) from Rafael.
-> 2) Merge mac80211 bits through WLAN trees
-> 3) Merge AMDGPU bits *and* ACPI bits through amd-staging-drm-next=20
-> followed by drm tree
->=20
-> Since WLAN and AMDGPU bits are using the exported ACPI functions from
-> patch 1, we need to make sure that it is accepted and won't change
-> interface before merging other bits.
+On Wed, Jun 21, 2023 at 01:45:56PM +0800, Evan Quan wrote:
+> From: Mario Limonciello <mario.limonciello@amd.com>
+> 
+> Due to electrical and mechanical constraints in certain platform designs
+> there may be likely interference of relatively high-powered harmonics of
+> the (G-)DDR memory clocks with local radio module frequency bands used
+> by Wifi 6/6e/7.
+> 
+> To mitigate this, AMD has introduced an ACPI based mechanism that
+> devices can use to notify active use of particular frequencies so
+> that devices can make relative internal adjustments as necessary
+> to avoid this resonance.
 
-Right.
+Do only ACPI based systems have:
 
-> Everything can come together in the upstream tree and the bots
-> will be able to test linux-next as well this way.
+   interference of relatively high-powered harmonics of the (G-)DDR
+   memory clocks with local radio module frequency bands used by
+   Wifi 6/6e/7."
 
-Yeah, that's what I thought.
+Could Device Tree based systems not experience this problem?
 
-Sounds good to me!
+> +/**
+> + * APIs needed by drivers/subsystems for contributing frequencies:
+> + * During probe, check `wbrf_supported_producer` to see if WBRF is supported.
+> + * If adding frequencies, then call `wbrf_add_exclusion` with the
+> + * start and end points specified for the frequency ranges added.
+> + * If removing frequencies, then call `wbrf_remove_exclusion` with
+> + * start and end points specified for the frequency ranges added.
+> + */
+> +bool wbrf_supported_producer(struct acpi_device *adev);
+> +int wbrf_add_exclusion(struct acpi_device *adev,
+> +		       struct wbrf_ranges_in *in);
+> +int wbrf_remove_exclusion(struct acpi_device *adev,
+> +			  struct wbrf_ranges_in *in);
 
-Oh, also, since it's pretty late in the cycle I'm assuming for now that
-you're not aiming this for 6.5 anymore. If you still are, it all would
-probably need to happen very quickly.
+Could struct device be used here, to make the API agnostic to where
+the information is coming from? That would then allow somebody in the
+future to implement a device tree based information provider.
 
-johannes
+       Andrew
