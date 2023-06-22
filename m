@@ -2,41 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2FC373B19D
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jun 2023 09:29:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4796873B192
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Jun 2023 09:29:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE8E610E626;
-	Fri, 23 Jun 2023 07:29:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1654910E604;
+	Fri, 23 Jun 2023 07:29:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 570 seconds by postgrey-1.36 at gabe;
- Thu, 22 Jun 2023 00:56:17 UTC
-Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3546410E04C
- for <amd-gfx@lists.freedesktop.org>; Thu, 22 Jun 2023 00:56:17 +0000 (UTC)
-Received: from submission (posteo.de [185.67.36.169]) 
- by mout02.posteo.de (Postfix) with ESMTPS id 59D26240101
- for <amd-gfx@lists.freedesktop.org>; Thu, 22 Jun 2023 02:46:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
- t=1687394804; bh=VKO5kAlvwT2Tg2zsi0T5+7i3uYFbcdeRVjfmpdaksA0=;
- h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:
- Content-Transfer-Encoding:From;
- b=a/oEtG0KJ+MdDAU6YvpoP+NjHlFRoZMzls3XOuzZJ+XQ1E/UujAIOUkEiwxLBgUxi
- yuBZMD8dHkENO03ShRf+cCrvF3nyBp9cDORJF29oCaGsFqFXgc8/n4gJi4SD4jhdvI
- ckcitvlwfasYJuKUDn713StJ2qZ10FvM6MuetM8W+4tsEqq301jMozkfY2ZDuEFm9J
- bZyc9NpkiUZy8Ecv5ouiy4uSQSOeoR/jIgRI0fEyjHWlvqe4jYY0gekq6O4foXc8GZ
- 6s1KdL4I6ii5aqN34wazqSbDSZSOC1IXijjZGr/Y2kTy/tZHWKZtHACAPswz1MD3kt
- Z6vdyjBOxlBbw==
-Received: from customer (localhost [127.0.0.1])
- by submission (posteo.de) with ESMTPSA id 4QmhX10KDVz9rxL;
- Thu, 22 Jun 2023 02:46:40 +0200 (CEST)
-From: Yueh-Shun Li <shamrocklee@posteo.net>
-To: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH] drm/amd/display: fix comment typo
-Date: Thu, 22 Jun 2023 00:42:27 +0000
-Message-Id: <20230622004226.7177-1-shamrocklee@posteo.net>
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A924610E13B;
+ Thu, 22 Jun 2023 01:56:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+ s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+ Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+ bh=jud17jsE6/Ga7sy3GJjdnGlQV0t2HqzZZz3k4YHmE2g=; b=ayqSlR67thHwZ0kw7SsHI3F6g7
+ EcxdtI+VOuNJ0gTuuJdzuu+TpJgXdYK7F5emB9hEEHX6C/vRoAAYwx+HCRSpRyCSg0XNczaXUsqvw
+ 599/kdU8oZtE9n1qgXxmG8P60EugjCXR48EDDHODdOzcl3S5HhJkjJnwq13+lR9n2S08=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+ (envelope-from <andrew@lunn.ch>)
+ id 1qC9Xh-00HDK4-HB; Thu, 22 Jun 2023 03:55:25 +0200
+Date: Thu, 22 Jun 2023 03:55:25 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Johannes Berg <johannes@sipsolutions.net>
+Subject: Re: [PATCH V4 1/8] drivers/acpi: Add support for Wifi band RF
+ mitigations
+Message-ID: <ef7dc1ab-c6d0-4761-8d0a-8949bfd3da80@lunn.ch>
+References: <216f3c5aa1299100a0009ddf4e95b019855a32be.camel@sipsolutions.net>
+ <b1abec47-04df-4481-d680-43c5ff3cbb48@amd.com>
+ <36902dda-9e51-41b3-b5fc-c641edf6f1fb@lunn.ch>
+ <33d80292-e639-91d0-4d0f-3ed973f89e14@amd.com>
+ <9159c3a5-390f-4403-854d-9b5e87b58d8c@lunn.ch>
+ <a80c215a-c1d9-4c76-d4a8-9b5fd320a2b1@amd.com>
+ <8d3340de-34f6-47ad-8024-f6f5ecd9c4bb@lunn.ch>
+ <07ad6860-8ffb-cc6c-a8e5-e8dc4db4e87a@amd.com>
+ <08dd8d17-6825-4e53-8441-85c709326f48@lunn.ch>
+ <3e337dc0482e16e2aaa4090b613dc8dea7803fa8.camel@sipsolutions.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3e337dc0482e16e2aaa4090b613dc8dea7803fa8.camel@sipsolutions.net>
 X-Mailman-Approved-At: Fri, 23 Jun 2023 07:28:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -49,33 +55,59 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Yueh-Shun Li <shamrocklee@posteo.net>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: jingyuwang_vip@163.com, bellosilicio@gmail.com, rafael@kernel.org,
+ trix@redhat.com, lijo.lazar@amd.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, mdaenzer@redhat.com, "Limonciello,
+ Mario" <mario.limonciello@amd.com>, airlied@gmail.com,
+ amd-gfx@lists.freedesktop.org, linux-acpi@vger.kernel.org, kuba@kernel.org,
+ pabeni@redhat.com, lenb@kernel.org, andrealmeid@igalia.com, daniel@ffwll.ch,
+ arnd@arndb.de, maarten.lankhorst@linux.intel.com, hdegoede@redhat.com,
+ jsg@jsg.id.au, Evan Quan <evan.quan@amd.com>, jim.cromie@gmail.com,
+ netdev@vger.kernel.org, Xinhui.Pan@amd.com, linux-wireless@vger.kernel.org,
+ edumazet@google.com, christian.koenig@amd.com, tzimmermann@suse.de,
+ alexander.deucher@amd.com, davem@davemloft.net
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Spell "transmission" properly.
+> Honestly I'm not sure though we need this complexity right now? I mean,
+> it'd be really easy to replace the calls in mac80211 with some other
+> more generalised calls in the future?
+> 
+> You need some really deep platform/hardware level knowledge and
+> involvement to do this, so I don't think it's something that someone
+> will come up with very easily for a DT-based platform...
 
-Found by searching for keyword "tranm".
+What is this API about?
 
-Signed-off-by: Yueh-Shun Li <shamrocklee@posteo.net>
----
- .../gpu/drm/amd/display/dc/dcn31/dcn31_hpo_dp_stream_encoder.c  | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+It is a struct device says, i'm badly designed and make a mess of the
+following frequency bands. Optionally, if you ask me nicely, i might
+be able to tweak what i'm doing to avoid interfering with you.
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hpo_dp_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hpo_dp_stream_encoder.c
-index 0278bae50a9d..45143459eedd 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hpo_dp_stream_encoder.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hpo_dp_stream_encoder.c
-@@ -154,7 +154,7 @@ static void dcn31_hpo_dp_stream_enc_dp_blank(
- 			VID_STREAM_STATUS, 0,
- 			10, 5000);
- 
--	/* Disable SDP tranmission */
-+	/* Disable SDP transmission */
- 	REG_UPDATE(DP_SYM32_ENC_SDP_CONTROL,
- 			SDP_STREAM_ENABLE, 0);
- 
--- 
-2.38.1
+And it is about a struct device say, i'm using this particular
+frequency. If you can reduce the noise you make, i would be thankful.
 
+The one generating the noise could be anything. The PWM driving my
+laptop display back light?, What is being interfered with?  The 3.5mm
+audio jack?
+
+How much deep system knowledge is needed to call pwm_set_state() to
+move the base frequency up above 20Khz so only my dog will hear it?
+But at the cost of a loss of efficiency and my battery going flatter
+faster?
+
+Is the DDR memory really the only badly designed component, when you
+think of the range of systems Linux is used on from PHC to tiny
+embedded systems?
+
+Ideally we want any sort of receiver with a low noise amplifier to
+just unconditionally use this API to let rest of the system know about
+it. And ideally we want anything which is a source of noise to declare
+itself. What happens after that should be up to the struct device
+causing the interference.
+
+Mario did say:
+
+  The way that WBRF has been architected, it's intended to be able to
+  scale to any type of device pair that has harmonic issues.
+
+Andrew
