@@ -2,109 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8D01743D67
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Jun 2023 16:25:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EA80743D6A
+	for <lists+amd-gfx@lfdr.de>; Fri, 30 Jun 2023 16:25:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9932310E48B;
-	Fri, 30 Jun 2023 14:25:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12ACB10E490;
+	Fri, 30 Jun 2023 14:25:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2100.outbound.protection.outlook.com [40.107.236.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D9BE10E1B6;
- Fri, 30 Jun 2023 13:38:54 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aY1apBV+G0D43GIy2sjF22lqXwW8YBZ2ibqLCvw3PrAz5VYYtNxyFcP5nI988uVwKgDeVKgo7ligZY89kCnZvCGVuNh+/wLEq53aNFXrUi8O6cYoSiQ4MRNz1Uh3fi9GDDqRInORf+zl1vSJ/+XlHgMS7bv5RxSM/lgyZe09dTkJ8ASPGzeAJHGjxZ3tQK6FjnC8qLLcDi4LBhKMaxWEPZ2mCFNKnf66rOhMx0wemOdokx10trVvYzFZoiaRLe5uCOMzI3ayAeZ8/Qe8vy6Ds9bRx4r6baM4h+wYVmgJ7sJAU9TvrlHh3r1fz8MYwxE+/i3Sba4Oo/TxH55E/dcFRg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OXikBvj/pVJ0VPbfZan3q79e4S6bCEu3UnCdyCmCUU0=;
- b=g9ly4iherxhhJJ8+K1BiB+n5WK9ZkYdPjpXx50xa2Ly6muwAGC7Qqo6+910+EGzlgHhG8v2ML1ywO6Xt/uDOB/5FRTbvgN2Sa4n+MGYEZnllUfN5xzAgCjQ1HRUzjg4qXjEbGbZqCQ1qXa1zCMtCbj1i9P/LC+zZqG2jjNb5ISfgfQNkn7qn1xrXTsHiFCCxmtdjOP54StQZ3vKXgEqdmcWORA9WhmllSsBJ4/+LdkD+vuO7K0o9yJlkNdT6tnPhwDFe4H3qPCmYJpP8Q3J/TMNyO+K7qxh7Oefu/3uCzPYNfw1FnLG9fLWXL/mvsqK5FtCnVDUFh7bWnrGqWwD3Ww==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
- dkim=pass header.d=corigine.com; arc=none
+Received: from mail-ua1-x930.google.com (mail-ua1-x930.google.com
+ [IPv6:2607:f8b0:4864:20::930])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39A8610E166
+ for <amd-gfx@lists.freedesktop.org>; Fri, 30 Jun 2023 14:05:28 +0000 (UTC)
+Received: by mail-ua1-x930.google.com with SMTP id
+ a1e0cc1a2514c-7870821d9a1so1328700241.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 30 Jun 2023 07:05:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OXikBvj/pVJ0VPbfZan3q79e4S6bCEu3UnCdyCmCUU0=;
- b=Vsb1S/giWb2A4EMBzhGhhHfaUUoaprXIuYJ1jbHxaLo9ZDihpIpNXnc7j95HtccCFxEc2vnu+nenFcb8Ux+nPpWUTaozvcxAXRZNFIl3NIw+V+jD6C3NGS4CV05KQPqVI0pEmQpl4j6f94z0sIRSzT5CSvH+B0y+TrvBeKBDgB0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=corigine.com;
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
- by DS7PR13MB4639.namprd13.prod.outlook.com (2603:10b6:5:3ac::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.24; Fri, 30 Jun
- 2023 13:38:51 +0000
-Received: from PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::eb8f:e482:76e0:fe6e]) by PH0PR13MB4842.namprd13.prod.outlook.com
- ([fe80::eb8f:e482:76e0:fe6e%5]) with mapi id 15.20.6544.019; Fri, 30 Jun 2023
- 13:38:51 +0000
-Date: Fri, 30 Jun 2023 15:38:42 +0200
-From: Simon Horman <simon.horman@corigine.com>
-To: Evan Quan <evan.quan@amd.com>
-Subject: Re: [PATCH V5 1/9] drivers core: Add support for Wifi band RF
- mitigations
-Message-ID: <ZJ7a4pvrjJbU2qjJ@corigine.com>
-References: <20230630103240.1557100-1-evan.quan@amd.com>
- <20230630103240.1557100-2-evan.quan@amd.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230630103240.1557100-2-evan.quan@amd.com>
-X-ClientProxiedBy: AM0PR03CA0038.eurprd03.prod.outlook.com (2603:10a6:208::15)
- To PH0PR13MB4842.namprd13.prod.outlook.com
- (2603:10b6:510:78::6)
+ d=gmail.com; s=20221208; t=1688133926; x=1690725926;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=S9fi82xI1XYGrAsReOfC7FEPGq3a43VtcEZV/xNSFt0=;
+ b=NBbic8Pk5ScDrhIlHEwXqiB3dHcNE9wS9kF0b56zeI60TM394eq/ulwdbUWJkXXdBI
+ g477ToFTphguxbovGvHP78niclxnGqzRBWrSlO+IrHLYR4Q6J05yAT/ePVCl3sYWu3Ec
+ dRVAdV4K9PB02xIyc6+i8282iSN8+kwBXGN6AbN+MD86pT9FbZy+TJUs1fbN3m4DNJ0+
+ CGTZO9lNz55gaGaIvfjED2v4Q3kqFnDOOjT9WUFjThW0seQcULt/iltC1YIGupqC+zf5
+ pNXRy9Md8Q+CBAvLCJOTmYSafA9fl3uRhZxtjxiEuvPRSptH1k/S44nHzyhYazNpxmYF
+ vloQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1688133926; x=1690725926;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=S9fi82xI1XYGrAsReOfC7FEPGq3a43VtcEZV/xNSFt0=;
+ b=TQEPFbnNZ6m67OlUqwXJB9Axep6O3HhHrwfkeuhSC/6+DXBNV34gLhZ1yxX3rKBPki
+ 0P/FwzerlEUi0XQzPvqeOPRy0FeSLv3i414LfVoa/IZCw8jVdS2uMKAaxoZ6mKnaFAeW
+ E04FVYY7AB6RURZcll9MH5WBxrEWFBMhQ+4id2kZe85MPpVWcmNH2aagOcctSj+sCalG
+ dlO6/fHdKjSqe3E9RGFoTGp0N26682AVamCkt09Ux4t0flNjQrB6B3CrxYiszYtKsPuw
+ sK9kS6fBnO6xyR1wqlupjEblzIi4bqSZGUbFMXxCvbXx6AalWSAhXpMLaHDPmKqKTU0b
+ MZEg==
+X-Gm-Message-State: AC+VfDxBmHFmGcgU9ChCBmr1Dnv/230jB511LrhgsnIlU8ZdCXu1uS9H
+ B4Onh2a9Tgzi71+zCR8+jtR+KlchIU6Qnx0ERiw=
+X-Google-Smtp-Source: ACHHUZ5tl/keabcFjuGs/VZW+3y4vZt2PmzYDkbYmlcz2hB52Am0GSPVLxMg+PMIpUtDmuji/sZosWIt/Gmr1SEuOnU=
+X-Received: by 2002:a05:6102:f09:b0:43f:5fcc:7eee with SMTP id
+ v9-20020a0561020f0900b0043f5fcc7eeemr3444539vss.8.1688133926164; Fri, 30 Jun
+ 2023 07:05:26 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|DS7PR13MB4639:EE_
-X-MS-Office365-Filtering-Correlation-Id: a63e7b10-28fc-42db-d9f0-08db796f5741
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: mvWGI+hI6dv2MwuxbwmJTh5rckYyi7b8ss1PY75TzpZDD8nYecX+kpi4pFo4+1PCiOHpWm8eK2BgpNLKiTabUNTt/VNrwnvMNqJQyHhIYVIKx1lCcIZ5G4dOASouLviY6VNH9dE3vSWo++95sF5+lAVCn52QuNpP62IfEgrfrnnn/CFJoZOxA9YndOfrLeQMG+UKZtwkkCNLwJPZ0+b/J1twRqTCzed0Xh9PdpYUi3LMCzXavAghVzVcEZiJsXlQqvPRUMtbSpTp/c3MdcOT0ZL5xL3wdAHxoWQCw5maTR2+bsNwZJSdML/bcNhBbCURNSpaIO9nHxm/Gm1LeI1rQreXdsWuodYBYl3p+DhfcVXPtlE7WSDHjKo8BDWInbN3ttY6FpVYn2LFqZ09bgmXYhctAccNEqpA2L841iCcD2xbKOa1R5K/abV9wYLKn/tKdXMbI5OFHb2+ovB3b3UyVCMCJEZgxOSFx8gxOvXqUpPKzvJ71n9RhcI/PyUUl9F+EVRZBedotXIDrE/52SYDIlTgoU0RxlwOGy/PgLGpcluIr0EtcM2B7x9KYEgBwVk4kEN5owP1taIEGiD5JhTg/4EZtijZUTIwalo7bYdMsIU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH0PR13MB4842.namprd13.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(366004)(136003)(396003)(376002)(39840400004)(346002)(451199021)(6512007)(8936002)(66556008)(4326008)(66476007)(66946007)(7406005)(44832011)(7416002)(86362001)(6916009)(41300700001)(8676002)(316002)(5660300002)(38100700002)(6506007)(36756003)(6486002)(2906002)(6666004)(186003)(2616005)(478600001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?KnrmHxlx4dCgeCyYHl8E+eA/BEZbR+Hhkl+hZtpEIm8Y/DJCHcdfGxC6gv1y?=
- =?us-ascii?Q?MmQoR/2flrHU9rTywuKelboj6Q09aJW1PIM07WR3QY5mZhgDtyQQINuXkpjJ?=
- =?us-ascii?Q?KyHz6E+hqGzEq4kgyhURaGbi5yXlPek4xwxk9URf245hWIBak8AByH6+m753?=
- =?us-ascii?Q?D1Luc2AmlNtEe1rPtsQoyNz/LsNH1o19DLK3Ak4RKgkuxoCMolGPX7ncrWsi?=
- =?us-ascii?Q?EJiQJWCZ8N8U6MsGvsYhW/zFdodlhfsfGOBZmnb5a+cX0Rt/79Ek8+geoaEg?=
- =?us-ascii?Q?nAJh/OMIy3z7oTVPuOvCVHcNIt6jnL1bpneYJWbg2nsKzHIo4J8u7Sm8Oj6g?=
- =?us-ascii?Q?PnqufVRf8inTzV0G8s7Ewp3wsjkXShqzutbmBBEKfglcMauZ3W9BUXlbKObF?=
- =?us-ascii?Q?L3uz8NnnkYUKBvx2MiiKIlg2YxzFTw5DFHxi/JHjkUKW3C3uj1vFh9Ev0cVC?=
- =?us-ascii?Q?g7Xf4tEHBoZz7iRiHHXIjQElj4rWRuLDknhv2oN+74/132XuzGkipds5fPgl?=
- =?us-ascii?Q?QfmpBT6fLNnr7W8ECAs8K5bjTUKn8+UrxRzIDaMZfE71KHsEpuPzUoIgaCxq?=
- =?us-ascii?Q?hHMppPX5VGkQ88mZKMfPXwT+iFaRxKuCNy+4gtn5SRAQmHUCz/G45sVL5lc7?=
- =?us-ascii?Q?l24d3IarAnkEFfLw9x7wehDQDwjrq/cm7M2oX3UMjBIxovpWYHyrcAJ6bJey?=
- =?us-ascii?Q?b1VcApBjn3vM+/9YJg9HhHpttADraGTaIe4svPx/T3mK5Fbpoz6Qo60ue4BD?=
- =?us-ascii?Q?ArFn8bjI9966cdUD8xBn5SdEDkVCAwPJOmxqjH5BdVk4TD89HCM+JaDKDDFn?=
- =?us-ascii?Q?Q0NIKdJ+qZsJnpSBXAxly25CBPtFSzSw36YM9I5MA044mPxLHqCRifIdQWZa?=
- =?us-ascii?Q?TEnwAJ5iX07PnpF7jsb5I19FVB/wB3WzFtHF+HTpWzfgyoP6TApMAQspPzAk?=
- =?us-ascii?Q?zWvd5FB1fXkIe5qa8vrj9ARQ5N9jM+vFnCwNHsCAPXSCqnpQzXa4Y5L5/pqC?=
- =?us-ascii?Q?k+S95BSNA1iBqq+xHr9A4cBqRSG7BNWSAHYIRNw5COxcFiVbW8wLjIVm4uQS?=
- =?us-ascii?Q?eVd72DtLegOMriJ9jFu6nY82Gy98cuF6p4Mc/TlKx0dxaicar4t8QczAPb2N?=
- =?us-ascii?Q?WC8Cy33TaHZF7fS8CT6mNlLOTnuspUBShndUx7nyKVN8sM8pbC+Lu+0BIGYP?=
- =?us-ascii?Q?KX5yUDkF55HpYaemdKifzamMc2ekiUveEyNuU8LVXylBc+H9HHDHZLQdv2v6?=
- =?us-ascii?Q?rHodEqZPaj+D/2fnjsrKbJ8IzMmeVTobgTgIEN5lyAFXsfLwPbKNG2G45abO?=
- =?us-ascii?Q?dYno+EbNWHqHPcYTJ5hgKMEtusoZfHVc0EdrC9SSzXNL2tU81Sb5q9Y45Aw4?=
- =?us-ascii?Q?g6g7i16KJO6M0HVEbgWCzpKJ1ng4aq4B358EPEk50RvZTqLonwdzF4RTRlFc?=
- =?us-ascii?Q?6VQQIZEU/v3j8LTL/nUGsQXtswR6UtzTGmNy3UVFyXRyViVosZTMWRCo8Xhb?=
- =?us-ascii?Q?NjWOyHOstOtkFiAtV3E9p8sfgBPYQfhlXR0FoYX6mUBn1+x6+qt0L1oe/63b?=
- =?us-ascii?Q?uFbyJ4VT5vcKujAx49Kcoqk2w27r2QlHc2EK6XkKKsDjbGm0l2HhtVBqElKT?=
- =?us-ascii?Q?Vmw6aEmJKPwSaMPtUqxGRWSFQquzGunPwoAng9qcssMk91YNnGigAKhe20RU?=
- =?us-ascii?Q?sMK+XQ=3D=3D?=
-X-OriginatorOrg: corigine.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a63e7b10-28fc-42db-d9f0-08db796f5741
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2023 13:38:51.6898 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: W4fwxOj0siDetAKKt4ESAAs6FMsXGp7CjadoZqwAjPfgowBLmluHcMzpCUG42paoxm+tK40EUt/8I7zy3oxePxQtzDUdCJDSU0stlbSE7vw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR13MB4639
+References: <20230526011846.3331119-1-jiadong.zhu@amd.com>
+ <DS7PR12MB63333AA94098FF3191BCE8FFF44B9@DS7PR12MB6333.namprd12.prod.outlook.com>
+ <ZJ7Z2RIj0ckGKRiq@fedora>
+In-Reply-To: <ZJ7Z2RIj0ckGKRiq@fedora>
+From: Hyeonggon Yoo <42.hyeyoo@gmail.com>
+Date: Fri, 30 Jun 2023 23:05:14 +0900
+Message-ID: <CAB=+i9SC_eErQXqHBiiuztqvB2i9X2RarAD4DVVdXcHD9t3WpQ@mail.gmail.com>
+Subject: Re: [BUG REPORT][PATCH 1/2] drm/amdgpu: Modify indirect buffer
+ packages for resubmission
+To: "Zhu, Jiadong" <Jiadong.Zhu@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Fri, 30 Jun 2023 14:25:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -117,71 +71,232 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jingyuwang_vip@163.com, bellosilicio@gmail.com, rafael@kernel.org,
- trix@redhat.com, Lijo.Lazar@amd.com, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, mdaenzer@redhat.com, Mario.Limonciello@amd.com,
- airlied@gmail.com, amd-gfx@lists.freedesktop.org, linux-acpi@vger.kernel.org,
- kuba@kernel.org, pabeni@redhat.com, lenb@kernel.org, andrealmeid@igalia.com,
- daniel@ffwll.ch, arnd@arndb.de, maarten.lankhorst@linux.intel.com,
- hdegoede@redhat.com, jsg@jsg.id.au, jim.cromie@gmail.com,
- netdev@vger.kernel.org, Xinhui.Pan@amd.com, linux-wireless@vger.kernel.org,
- edumazet@google.com, Christian.Koenig@amd.com, tzimmermann@suse.de,
- Alexander.Deucher@amd.com, johannes@sipsolutions.net, davem@davemloft.net
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 30, 2023 at 06:32:32PM +0800, Evan Quan wrote:
+On Fri, Jun 30, 2023 at 10:34=E2=80=AFPM Hyeonggon Yoo <42.hyeyoo@gmail.com=
+> wrote:
+>
+> On Tue, May 30, 2023 at 06:23:53AM +0000, Zhu, Jiadong wrote:
+> > -----Original Message-----
+> > From: Zhu, Jiadong <Jiadong.Zhu@amd.com>
+> > Sent: Friday, May 26, 2023 9:19 AM
+> > To: amd-gfx@lists.freedesktop.org
+> > Cc: Zhu, Jiadong <Jiadong.Zhu@amd.com>
+> > Subject: [PATCH 1/2] drm/amdgpu: Modify indirect buffer packages for re=
+submission
+> >
+> > From: Jiadong Zhu <Jiadong.Zhu@amd.com>
+> >
+> > When the preempted IB frame resubmitted to cp, we need to modify the fr=
+ame data including:
+> > 1. set PRE_RESUME 1 in CONTEXT_CONTROL.
+> > 2. use meta data(DE and CE) read from CSA in WRITE_DATA.
+> >
+> > Add functions to save the location the first time IBs emitted and callb=
+ack to patch the package when resubmission happens.
+> >
+> > Signed-off-by: Jiadong Zhu <Jiadong.Zhu@amd.com>
+> > ---
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c     | 18 ++++++
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h     |  9 +++
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.c | 60 ++++++++++++++++++++=
+  drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.h | 15 +++++
+> >  4 files changed, 102 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_ring.c
+>
+> <...snip...>
+>
+> > +void amdgpu_ring_mux_ib_mark_offset(struct amdgpu_ring_mux *mux,
+> > +                                   struct amdgpu_ring *ring, u64 offse=
+t,
+> > +                                   enum amdgpu_ring_mux_offset_type ty=
+pe) {
+> > +       struct amdgpu_mux_entry *e;
+> > +       struct amdgpu_mux_chunk *chunk;
+> > +
+> > +       e =3D amdgpu_ring_mux_sw_entry(mux, ring);
+> > +       if (!e) {
+> > +               DRM_ERROR("cannot find entry!\n");
+> > +               return;
+> > +       }
+> > +
+> > +       chunk =3D list_last_entry(&e->list, struct amdgpu_mux_chunk, en=
+try);
+> > +       if (!chunk) {
+> > +               DRM_ERROR("cannot find chunk!\n");
+> > +               return;
+> > +       }
+> > +
+> > +       switch (type) {
+> > +       case AMDGPU_MUX_OFFSET_TYPE_CONTROL:
+> > +               chunk->cntl_offset =3D offset;
+> > +               break;
+>
+> Hello folks,
 
-...
+(+Cc'ing Alex Deucher)
 
-> diff --git a/include/linux/wbrf.h b/include/linux/wbrf.h
-> new file mode 100644
-> index 000000000000..3ca95786cef5
-> --- /dev/null
-> +++ b/include/linux/wbrf.h
-> @@ -0,0 +1,65 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Wifi Band Exclusion Interface
-> + * Copyright (C) 2023 Advanced Micro Devices
-> + */
-> +
-> +#ifndef _LINUX_WBRF_H
-> +#define _LINUX_WBRF_H
-> +
-> +#include <linux/device.h>
-> +
-> +/* Maximum number of wbrf ranges */
-> +#define MAX_NUM_OF_WBRF_RANGES		11
-> +
-> +struct exclusion_range {
-> +	/* start and end point of the frequency range in Hz */
-> +	uint64_t	start;
-> +	uint64_t	end;
-> +};
-> +
-> +struct exclusion_range_pool {
-> +	struct exclusion_range	band_list[MAX_NUM_OF_WBRF_RANGES];
-> +	uint64_t		ref_counter[MAX_NUM_OF_WBRF_RANGES];
-> +};
-> +
-> +struct wbrf_ranges_in {
-> +	/* valid entry: `start` and `end` filled with non-zero values */
-> +	struct exclusion_range	band_list[MAX_NUM_OF_WBRF_RANGES];
-> +};
-> +
-> +struct wbrf_ranges_out {
-> +	uint32_t		num_of_ranges;
-> +	struct exclusion_range	band_list[MAX_NUM_OF_WBRF_RANGES];
-> +} __packed;
-> +
-> +enum wbrf_notifier_actions {
-> +	WBRF_CHANGED,
-> +};
+> While booting my laptop I just observed a slab out of bounds error from K=
+ASAN on this line.
 
-Hi Evan,
+sorry for confusion, the offending function is not the function above
+(amdgpu_ring_mux_ib_mark_offset) but amdgpu_sw_ring_ib_mark_offset()
 
-checkpatch suggests that u64 and u32 might be more appropriate types here,
-as they are Kernel types, whereas the ones use are user-space types.
+This was tested on top of commit e55e5df193d247a38a
+(" csky: fix up lock_mm_and_find_vma() conversion")
+so you can check the line numbers on top of the commit :)
 
-...
+let me know if you need more information.
+thanks!
+
+> This splat disappears after reverting this whole series.
+> config file is attached.
+>
+> Thanks!
+>
+> [   18.223441] =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> [   18.223444] BUG: KASAN: slab-out-of-bounds in amdgpu_sw_ring_ib_mark_o=
+ffset (drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.c:503 drivers/gpu/drm/amd=
+/amdgpu/amdgpu_ring_mux.c:428) amdgpu
+> [   18.224601] Write of size 8 at addr ffff8881208eb898 by task kworker/8=
+:1/104
+>
+> [   18.224611] Hardware name: LENOVO 21DL/LNVNB161216, BIOS JPCN20WW(V1.0=
+6) 09/20/2022
+> [   18.224614] Workqueue: events amdgpu_device_delayed_init_work_handler =
+[amdgpu]
+> [   18.225558] Call Trace:
+> [   18.225561]  <TASK>
+> [   18.225563] dump_stack_lvl (lib/dump_stack.c:108)
+> [   18.225572] print_report (mm/kasan/report.c:365 (discriminator 1) mm/k=
+asan/report.c:475 (discriminator 1))
+> [   18.225579] ? __virt_addr_valid (./include/linux/mmzone.h:1908 (discri=
+minator 1) ./include/linux/mmzone.h:2004 (discriminator 1) arch/x86/mm/phys=
+addr.c:65 (discriminator 1))
+> [   18.225585] ? amdgpu_sw_ring_ib_mark_offset (drivers/gpu/drm/amd/amdgp=
+u/amdgpu_ring_mux.c:503 drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.c:428) a=
+mdgpu
+> [   18.226530] kasan_report (mm/kasan/report.c:590)
+> [   18.226535] ? amdgpu_sw_ring_ib_mark_offset (drivers/gpu/drm/amd/amdgp=
+u/amdgpu_ring_mux.c:503 drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.c:428) a=
+mdgpu
+> [   18.227478] amdgpu_sw_ring_ib_mark_offset (drivers/gpu/drm/amd/amdgpu/=
+amdgpu_ring_mux.c:503 drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.c:428) amd=
+gpu
+> [   18.228426] gfx_v9_0_ring_emit_ib_gfx (drivers/gpu/drm/amd/amdgpu/amdg=
+pu_ring.h:373 drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c:5169) amdgpu
+> [   18.229397] amdgpu_ib_schedule (drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c=
+:252 (discriminator 1)) amdgpu
+> [   18.230342] gfx_v9_0_ring_test_ib (drivers/gpu/drm/amd/amdgpu/gfx_v9_0=
+.c:1052) amdgpu
+> [   18.231295] ? __pfx_gfx_v9_0_ring_test_ib (drivers/gpu/drm/amd/amdgpu/=
+gfx_v9_0.c:1023) amdgpu
+> [   18.232251] ? lock_acquire (kernel/locking/lockdep.c:467 (discriminato=
+r 4) kernel/locking/lockdep.c:5763 (discriminator 4) kernel/locking/lockdep=
+.c:5726 (discriminator 4))
+> [   18.232259] ? __pfx_lock_acquire (kernel/locking/lockdep.c:5729)
+> [   18.232263] ? __pfx_lock_release (kernel/locking/lockdep.c:5769)
+> [   18.232267] amdgpu_ib_ring_tests (drivers/gpu/drm/amd/amdgpu/amdgpu_ib=
+.c:436 (discriminator 1)) amdgpu
+> [   18.233219] ? __pfx_gfx_v9_0_ring_test_ib (drivers/gpu/drm/amd/amdgpu/=
+gfx_v9_0.c:1023) amdgpu
+> [   18.234180] amdgpu_device_delayed_init_work_handler (drivers/gpu/drm/a=
+md/amdgpu/amdgpu_device.c:3061) amdgpu
+> [   18.235110] process_one_work (kernel/workqueue.c:2602)
+> [   18.235119] ? __pfx_process_one_work (kernel/workqueue.c:2491)
+> [   18.235123] ? lock_acquired (kernel/locking/lockdep.c:6009 kernel/lock=
+ing/lockdep.c:6042)
+> [   18.235130] worker_thread (./include/linux/list.h:292 (discriminator 2=
+) kernel/workqueue.c:2749 (discriminator 2))
+> [   18.235136] ? __pfx_worker_thread (kernel/workqueue.c:2691)
+> [   18.235140] kthread (kernel/kthread.c:389)
+> [   18.235144] ? __pfx_kthread (kernel/kthread.c:342)
+> [   18.235148] ret_from_fork (arch/x86/entry/entry_64.S:314)
+> [   18.235155]  </TASK>
+>
+> [   18.235158] Allocated by task 456:
+> [   18.235160] kasan_save_stack (mm/kasan/common.c:46)
+> [   18.235163] kasan_set_track (mm/kasan/common.c:52 (discriminator 1))
+> [   18.235166] __kasan_kmalloc (mm/kasan/common.c:374 mm/kasan/common.c:3=
+83)
+> [   18.235168] __kmalloc (mm/slab_common.c:986 mm/slab_common.c:998)
+> [   18.235172] amdgpu_ring_mux_init (drivers/gpu/drm/amd/amdgpu/amdgpu_ri=
+ng_mux.c:155 (discriminator 1)) amdgpu
+> [   18.236112] gfx_v9_0_sw_init (drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c:21=
+28) amdgpu
+> [   18.237083] amdgpu_device_init (drivers/gpu/drm/amd/amdgpu/amdgpu_devi=
+ce.c:2516 drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:3993) amdgpu
+> [   18.238021] amdgpu_driver_load_kms (drivers/gpu/drm/amd/amdgpu/amdgpu_=
+kms.c:146) amdgpu
+> [   18.238948] amdgpu_pci_probe (drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c:=
+2188) amdgpu
+> [   18.239904] local_pci_probe (drivers/pci/pci-driver.c:325)
+> [   18.239911] pci_device_probe (drivers/pci/pci-driver.c:392 (discrimina=
+tor 1) drivers/pci/pci-driver.c:417 (discriminator 1) drivers/pci/pci-drive=
+r.c:460 (discriminator 1))
+> [   18.239915] really_probe (drivers/base/dd.c:579 drivers/base/dd.c:658)
+> [   18.239920] __driver_probe_device (drivers/base/dd.c:798)
+> [   18.239923] driver_probe_device (drivers/base/dd.c:828)
+> [   18.239926] __driver_attach (drivers/base/dd.c:1215)
+> [   18.239928] bus_for_each_dev (drivers/base/bus.c:368)
+> [   18.239931] bus_add_driver (drivers/base/bus.c:674)
+> [   18.239934] driver_register (drivers/base/driver.c:246)
+> [   18.239938] do_one_initcall (init/main.c:1232)
+> [   18.239942] do_init_module (kernel/module/main.c:2522)
+> [   18.239947] load_module (kernel/module/main.c:2973)
+> [   18.239950] init_module_from_file (kernel/module/main.c:3149)
+> [   18.239953] __x64_sys_finit_module (./include/linux/file.h:44 kernel/m=
+odule/main.c:3172 kernel/module/main.c:3154 kernel/module/main.c:3154)
+> [   18.239956] do_syscall_64 (arch/x86/entry/common.c:50 (discriminator 1=
+) arch/x86/entry/common.c:80 (discriminator 1))
+> [   18.239960] entry_SYSCALL_64_after_hwframe (arch/x86/entry/entry_64.S:=
+120)
+>
+> [   18.239967] The buggy address belongs to the object at ffff8881208eb80=
+0
+> which belongs to the cache kmalloc-128 of size 128
+> [   18.239969] The buggy address is located 24 bytes to the right of
+> allocated 128-byte region [ffff8881208eb800, ffff8881208eb880)
+>
+> [   18.239973] The buggy address belongs to the physical page:
+> [   18.239975] page:000000008ed9aff4 refcount:1 mapcount:0 mapping:000000=
+0000000000 index:0x0 pfn:0x1208ea
+> [   18.239979] head:000000008ed9aff4 order:1 entire_mapcount:0 nr_pages_m=
+apped:0 pincount:0
+> [   18.239981] flags: 0x17ffffc0010200(slab|head|node=3D0|zone=3D2|lastcp=
+upid=3D0x1fffff)
+> [   18.239986] page_type: 0xffffffff()
+> [   18.239990] raw: 0017ffffc0010200 ffff8881000428c0 dead000000000122 00=
+00000000000000
+> [   18.239992] raw: 0000000000000000 0000000080200020 00000001ffffffff 00=
+00000000000000
+> [   18.239994] page dumped because: kasan: bad access detected
+>
+> [   18.239997] Memory state around the buggy address:
+> [   18.239999]  ffff8881208eb780: fc fc fc fc fc fc fc fc fc fc fc fc fc =
+fc fc fc
+> [   18.240001]  ffff8881208eb800: 00 00 00 00 00 00 00 00 00 00 00 00 00 =
+00 00 00
+> [   18.240003] >ffff8881208eb880: fc fc fc fc fc fc fc fc fc fc fc fc fc =
+fc fc fc
+> [   18.240005]                             ^
+> [   18.240007]  ffff8881208eb900: 00 00 00 00 00 00 00 00 00 00 00 00 00 =
+00 00 fc
+> [   18.240009]  ffff8881208eb980: fc fc fc fc fc fc fc fc fc fc fc fc fc =
+fc fc fc
+> [   18.240010] =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>
+>
+> --
+> Hyeonggon Yoo
+>
+> Undergraduate | Chungnam National University
