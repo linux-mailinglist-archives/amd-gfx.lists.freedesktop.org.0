@@ -2,47 +2,40 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1A627452F5
-	for <lists+amd-gfx@lfdr.de>; Mon,  3 Jul 2023 00:30:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91B2874565A
+	for <lists+amd-gfx@lfdr.de>; Mon,  3 Jul 2023 09:47:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F92510E011;
-	Sun,  2 Jul 2023 22:30:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8425110E1BD;
+	Mon,  3 Jul 2023 07:47:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49A8510E02C;
- Sun,  2 Jul 2023 22:30:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=h63n3TGFz//UZsyuKJqTNmhbmzkY3RFuUbFl5dnSDO4=; b=oIvZ9HmNAc52cl+P5YD2iA1kDo
- ZqFgIeKxO62GQYCTsJIvci99rwDXWEYFAmuqTZp7ekewoGc5uvQ71xDOUHupaiZwCSJG0FOJNt0DX
- a+2m2gxTF2KwOFufD0zMKuh1vgy65xkObesL/yW2PHtc42kZE9nI9LBATRTPjgKSxn29FXAOwdA/B
- +5QySboEnkUrHtv1Cea/kKfCo/5eDRAgehreNqJoGzIWZr7d/8HbxQK/CMhPkdBizESjJrbe0LarJ
- rmo68F+TIBpHUFx86GMGVJYmg1W23I6N4R1XslPS0WSlDhBigyaDAzJ+01d81V63s3xfnA5pn8F2O
- 5Yc+j6aQ==;
-Received: from [187.74.70.209] (helo=[192.168.1.111])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1qG5Zx-007IRG-UZ; Mon, 03 Jul 2023 00:30:02 +0200
-Message-ID: <75cdded3-4ae3-43dd-4a0c-ad77a5b793e7@igalia.com>
-Date: Sun, 2 Jul 2023 19:29:57 -0300
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5E4710E500;
+ Sat,  1 Jul 2023 00:20:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+ s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+ Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+ bh=RSoC/5hYUUQ3sGJr52lBB+aV7IzoV8b72rkry2pxCQg=; b=yAyplwTga+cJQhNVxS4WCa0avC
+ XATcUdMc7wgQTO46g7k9dcH2lTxfJGRCofunObU6mN+84w113eNMP2VoKVQEFW1R1wTRQT0i64hLW
+ KT9C9WzHFOqZAlNELVDobW+4G2P/rybEr2j3erhGyjDcrRq59amX2UprnR8BcrFLmzDQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+ (envelope-from <andrew@lunn.ch>)
+ id 1qFOKp-000LM8-66; Sat, 01 Jul 2023 02:19:31 +0200
+Date: Sat, 1 Jul 2023 02:19:31 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Evan Quan <evan.quan@amd.com>
+Subject: Re: [PATCH V5 1/9] drivers core: Add support for Wifi band RF
+ mitigations
+Message-ID: <7e7db6eb-4f46-407a-8d1f-16688554ad80@lunn.ch>
+References: <20230630103240.1557100-1-evan.quan@amd.com>
+ <20230630103240.1557100-2-evan.quan@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH] Revert "drm/amd/display: Program OTG vtotal min/max
- selectors unconditionally for DCN1+"
-To: "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-References: <20230702164407.6547-1-gpiccoli@igalia.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Andr=c3=a9_Almeida?= <andrealmeid@igalia.com>
-In-Reply-To: <20230702164407.6547-1-gpiccoli@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230630103240.1557100-2-evan.quan@amd.com>
+X-Mailman-Approved-At: Mon, 03 Jul 2023 07:47:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,34 +47,62 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Xinhui.Pan@amd.com, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- dri-devel@lists.freedesktop.org, Melissa Wen <mwen@igalia.com>,
- cristian.ciocaltea@collabora.com, Aurabindo Pillai <aurabindo.pillai@amd.com>,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
- alexander.deucher@amd.com, christian.koenig@amd.com
+Cc: jingyuwang_vip@163.com, bellosilicio@gmail.com, rafael@kernel.org,
+ trix@redhat.com, Lijo.Lazar@amd.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, mdaenzer@redhat.com, Mario.Limonciello@amd.com,
+ airlied@gmail.com, amd-gfx@lists.freedesktop.org, linux-acpi@vger.kernel.org,
+ kuba@kernel.org, pabeni@redhat.com, lenb@kernel.org, andrealmeid@igalia.com,
+ daniel@ffwll.ch, arnd@arndb.de, maarten.lankhorst@linux.intel.com,
+ hdegoede@redhat.com, jsg@jsg.id.au, jim.cromie@gmail.com,
+ netdev@vger.kernel.org, Xinhui.Pan@amd.com, linux-wireless@vger.kernel.org,
+ edumazet@google.com, Christian.Koenig@amd.com, tzimmermann@suse.de,
+ Alexander.Deucher@amd.com, johannes@sipsolutions.net, davem@davemloft.net
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Guilherme,
+> Drivers/subsystems contributing frequencies:
+> 
+> 1) During probe, check `wbrf_supported_producer` to see if WBRF supported
+>    for the device.
 
-Em 02/07/2023 13:44, Guilherme G. Piccoli escreveu:
-> This reverts commit 06c3a652a787efc960af7c8816036d25c4227c6c.
-> 
-> After this commit, the Steam Deck cannot boot with graphics anymore;
-> the following message is observed on dmesg:
-> 
-> "[drm] ERROR [CRTC:67:crtc-0] flip_done timed out"
-> 
-> No other error is observed, it just stays like that. After bisecting
-> amd-staging-drm-next, we narrowed it down to this commit. Seems it
-> makes sense to revert it to have the tree bootable until a proper
-> solution is worked.
+What is the purpose of this stage? Why would it not be supported for
+this device?
 
-Thank you for your patch, I confirm the exactly same behavior on my 
-Steam Deck.
+> +#ifdef CONFIG_WBRF
+> +bool wbrf_supported_producer(struct device *dev);
+> +int wbrf_add_exclusion(struct device *adev,
+> +		       struct wbrf_ranges_in *in);
+> +int wbrf_remove_exclusion(struct device *dev,
+> +			  struct wbrf_ranges_in *in);
+> +int wbrf_retrieve_exclusions(struct device *dev,
+> +			     struct wbrf_ranges_out *out);
+> +bool wbrf_supported_consumer(struct device *dev);
+> +
+> +int wbrf_register_notifier(struct notifier_block *nb);
+> +int wbrf_unregister_notifier(struct notifier_block *nb);
+> +#else
+> +static inline bool wbrf_supported_producer(struct device *dev) { return false; }
+> +static inline int wbrf_add_exclusion(struct device *adev,
+> +				     struct wbrf_ranges_in *in) { return -ENODEV; }
+> +static inline int wbrf_remove_exclusion(struct device *dev,
+> +					struct wbrf_ranges_in *in) { return -ENODEV; }
 
-> 
-> Signed-off-by: Guilherme G. Piccoli <gpiccoli@igalia.com>
-> 
+The normal aim of stubs is that so long as it is not expected to be
+fatal if the functionality is missing, the caller should not care if
+it is missing. So i would expect these to return 0, indicating
+everything worked as expected.
 
-Reviewed-by: André Almeida <andrealmeid@igalia.com>
+> +static inline int wbrf_retrieve_exclusions(struct device *dev,
+> +					   struct wbrf_ranges_out *out) { return -ENODEV; }
+
+This is more complex. Ideally you want to return an empty set, so
+there is nothing to do. So i think the stub probably wants to do a
+memset and then return 0.
+
+> +static inline bool wbrf_supported_consumer(struct device *dev) { return false; }
+> +static inline int wbrf_register_notifier(struct notifier_block *nb) { return -ENODEV; }
+> +static inline int wbrf_unregister_notifier(struct notifier_block *nb) { return -ENODEV; }
+
+And these can just return 0.
+
+    Andrew
