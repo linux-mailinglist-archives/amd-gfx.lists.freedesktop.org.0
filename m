@@ -2,46 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AEEB745656
-	for <lists+amd-gfx@lfdr.de>; Mon,  3 Jul 2023 09:47:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8933B7455C5
+	for <lists+amd-gfx@lfdr.de>; Mon,  3 Jul 2023 09:12:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9109510E1AE;
-	Mon,  3 Jul 2023 07:47:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D57A10E18C;
+	Mon,  3 Jul 2023 07:12:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out-15.mta0.migadu.com (out-15.mta0.migadu.com
- [IPv6:2001:41d0:1004:224b::f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AC2710E171;
- Sun,  2 Jul 2023 18:28:39 +0000 (UTC)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1688322516;
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org
+ [IPv6:2001:67c:2050:0:465::101])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABA5D10E0A6;
+ Mon,  3 Jul 2023 07:12:40 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4QvcZ868zmz9sTc;
+ Mon,  3 Jul 2023 09:12:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1688368352;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=JD+BSfEOubeM4NaunZhKuggns+1jx3KG/ygiczCTpQY=;
- b=hsPJDuYj9iRgllcgTdnKnVeIWHI4dbFO6cetTcGBRitOohcizdBhNOgpXttZSEDOrRYB5m
- YFJNaZLsmoLXvdcfKsN/KjXlvPsWffQ20eToqWq6ZBWru43mzpRqHFZmlFwwfPaOHCHF4R
- FpaJ05EzBAAFuai3Fohx7nkMzTFuZlM=
-From: Sui Jingfeng <sui.jingfeng@linux.dev>
-To: Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maxime Ripard <mripard@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>, Lyude Paul <lyude@redhat.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Mario Limonciello <mario.limonciello@amd.com>
-Subject: [PATCH v2 6/6] drm/ast: Register as a vga client to vgaarb by calling
- vga_client_register()
-Date: Mon,  3 Jul 2023 02:27:44 +0800
-Message-Id: <20230702182744.755467-7-sui.jingfeng@linux.dev>
-In-Reply-To: <20230702182744.755467-1-sui.jingfeng@linux.dev>
-References: <20230702182744.755467-1-sui.jingfeng@linux.dev>
+ bh=JDNJNCwhoG+0ydNvsWCgQAPOCFx9yNIpNg5RG4lrTFc=;
+ b=uWzB5PEqTbeBjl2FMU9jiApj7p/ZTTvmBwYysJPhNe3nP2k+MMFSaV8oYukXBCgb+SXuMl
+ 8+zLLt+byMxA4coMGnS66mLAvQC4Kf3JKGaUx/NHSMudjil7YmYLGyL4oZgVZBOkZakg8E
+ ed1lZuSHky7P7pZBJmsgbNGKgI20ap2wGJNReVVtijfHSz68ljAMpY+YuzCiAeB6Qihx3M
+ GgLhSrjYOeDYy+RH3CTd5udiosINbE3uGCJnRG7ilRZ1VQAibodlkoRxzQw/EkX5vFn6EL
+ QpEtZmsPjumFqMty4ZT1IUeEmchWHxj03wd5ad+nCbEH6ax3ux7TuBEGlIx4TQ==
+Message-ID: <7c1e6df5-1ad4-be3c-b95d-92dc62a8c537@mailbox.org>
+Date: Mon, 3 Jul 2023 09:12:29 +0200
 MIME-Version: 1.0
+Subject: Re: [PATCH v5 1/1] drm/doc: Document DRM device reset expectations
+Content-Language: de-CH-frami, en-CA
+To: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
+References: <20230627132323.115440-1-andrealmeid@igalia.com>
+ <CA+hFU4z1pc=KUVVqyqfXEceUqMXQgh-qUnuB=1nkPELghvQO7w@mail.gmail.com>
+ <CADnq5_MNVdtdcWKSz6dgmsjg+kEu8p5FVE+fkw_5BaXeG3QGow@mail.gmail.com>
+ <afab1f5a-e581-3416-e2c2-238ea120655b@mailbox.org>
+ <CAAxE2A5C96k5ua+r938VA_+w7gHHNTdF3n8LwDb98W0Bf9wCVA@mail.gmail.com>
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel.daenzer@mailbox.org>
+In-Reply-To: <CAAxE2A5C96k5ua+r938VA_+w7gHHNTdF3n8LwDb98W0Bf9wCVA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Mailman-Approved-At: Mon, 03 Jul 2023 07:47:15 +0000
+X-MBO-RS-ID: d01efb6d83f21620a65
+X-MBO-RS-META: 5z8b3itq5tq11yiwuxjwbw1bdzf74g3m
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,83 +59,66 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Sui Jingfeng <suijingfeng@loongson.cn>,
- kvm@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Jocelyn Falempe <jfalempe@redhat.com>,
- dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org
+Cc: pierre-eric.pelloux-prayer@amd.com,
+ Sebastian Wick <sebastian.wick@redhat.com>,
+ =?UTF-8?Q?Andr=c3=a9_Almeida?= <andrealmeid@igalia.com>,
+ =?UTF-8?Q?Timur_Krist=c3=b3f?= <timur.kristof@gmail.com>,
+ Randy Dunlap <rdunlap@infradead.org>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, Pekka Paalanen <ppaalanen@gmail.com>,
+ Samuel Pitoiset <samuel.pitoiset@gmail.com>, dri-devel@lists.freedesktop.org,
+ kernel-dev@igalia.com, alexander.deucher@amd.com,
+ Pekka Paalanen <pekka.paalanen@collabora.com>, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Sui Jingfeng <suijingfeng@loongson.cn>
+On 6/30/23 22:32, Marek Olšák wrote:
+> On Fri, Jun 30, 2023 at 11:11 AM Michel Dänzer <michel.daenzer@mailbox.org <mailto:michel.daenzer@mailbox.org>> wrote:
+>> On 6/30/23 16:59, Alex Deucher wrote:
+>>> On Fri, Jun 30, 2023 at 10:49 AM Sebastian Wick
+>>> <sebastian.wick@redhat.com <mailto:sebastian.wick@redhat.com>> wrote:
+>>>> On Tue, Jun 27, 2023 at 3:23 PM André Almeida <andrealmeid@igalia.com <mailto:andrealmeid@igalia.com>> wrote:
+>>>>>
+>>>>> +Robustness
+>>>>> +----------
+>>>>> +
+>>>>> +The only way to try to keep an application working after a reset is if it
+>>>>> +complies with the robustness aspects of the graphical API that it is using.
+>>>>> +
+>>>>> +Graphical APIs provide ways to applications to deal with device resets. However,
+>>>>> +there is no guarantee that the app will use such features correctly, and the
+>>>>> +UMD can implement policies to close the app if it is a repeating offender,
+>>>>> +likely in a broken loop. This is done to ensure that it does not keep blocking
+>>>>> +the user interface from being correctly displayed. This should be done even if
+>>>>> +the app is correct but happens to trigger some bug in the hardware/driver.
+>>>>
+>>>> I still don't think it's good to let the kernel arbitrarily kill
+>>>> processes that it thinks are not well-behaved based on some heuristics
+>>>> and policy.
+>>>>
+>>>> Can't this be outsourced to user space? Expose the information about
+>>>> processes causing a device and let e.g. systemd deal with coming up
+>>>> with a policy and with killing stuff.
+>>>
+>>> I don't think it's the kernel doing the killing, it would be the UMD.
+>>> E.g., if the app is guilty and doesn't support robustness the UMD can
+>>> just call exit().
+>>
+>> It would be safer to just ignore API calls[0], similarly to what is done until the application destroys the context with robustness. Calling exit() likely results in losing any unsaved work, whereas at least some applications might otherwise allow saving the work by other means.
+> 
+> That's a terrible idea. Ignoring API calls would be identical to a freeze. You might as well disable GPU recovery because the result would be the same.
 
-Becasuse the VGA Display Controller in the ASpeed BMC chip is also a PCIe
-device, the Software Programming guide of AST2400 say that it is Fully
-IBM VGA compliant, thus, it should also particiate in the arbitration.
+No GPU recovery would affect everything using the GPU, whereas this affects only non-robust applications.
 
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Jocelyn Falempe <jfalempe@redhat.com>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
----
- drivers/gpu/drm/ast/ast_drv.c | 29 +++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
 
-diff --git a/drivers/gpu/drm/ast/ast_drv.c b/drivers/gpu/drm/ast/ast_drv.c
-index e1224ef4ad83..5ce681142679 100644
---- a/drivers/gpu/drm/ast/ast_drv.c
-+++ b/drivers/gpu/drm/ast/ast_drv.c
-@@ -28,6 +28,7 @@
- 
- #include <linux/module.h>
- #include <linux/pci.h>
-+#include <linux/vgaarb.h>
- 
- #include <drm/drm_aperture.h>
- #include <drm/drm_atomic_helper.h>
-@@ -89,6 +90,32 @@ static const struct pci_device_id ast_pciidlist[] = {
- 
- MODULE_DEVICE_TABLE(pci, ast_pciidlist);
- 
-+static bool ast_is_boot_device(struct pci_dev *pdev)
-+{
-+	struct drm_device *drm = pci_get_drvdata(pdev);
-+	struct ast_device *ast = to_ast_device(drm);
-+
-+	return drm_aperture_contain_firmware_fb(ast->vram_base, ast->vram_size);
-+}
-+
-+static unsigned int ast_vga_set_decode(struct pci_dev *pdev, bool state)
-+{
-+	struct drm_device *drm = pci_get_drvdata(pdev);
-+	struct ast_device *ast = to_ast_device(drm);
-+
-+	if (state) {
-+		/* Enable standard VGA decode and Enable normal VGA decode */
-+		ast_set_index_reg(ast, AST_IO_CRTC_PORT, 0xa1, 0x04);
-+
-+		return VGA_RSRC_LEGACY_IO | VGA_RSRC_LEGACY_MEM |
-+		       VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
-+	}
-+
-+	ast_set_index_reg(ast, AST_IO_CRTC_PORT, 0xa1, 0x07);
-+
-+	return VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
-+}
-+
- static int ast_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- {
- 	struct ast_device *ast;
-@@ -112,6 +139,8 @@ static int ast_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	if (ret)
- 		return ret;
- 
-+	vga_client_register(pdev, ast_vga_set_decode, ast_is_boot_device);
-+
- 	drm_fbdev_generic_setup(dev, 32);
- 
- 	return 0;
+> - non-robust contexts: call exit(1) immediately, which is the best way to recover
+
+That's not the UMD's call to make.
+
+
+>>     [0] Possibly accompanied by a one-time message to stderr along the lines of "GPU reset detected but robustness not enabled in context, ignoring OpenGL API calls".
+
+
 -- 
-2.25.1
+Earthling Michel Dänzer            |                  https://redhat.com
+Libre software enthusiast          |         Mesa and Xwayland developer
 
