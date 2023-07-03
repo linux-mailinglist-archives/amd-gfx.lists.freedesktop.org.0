@@ -1,118 +1,66 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92FEF74682D
-	for <lists+amd-gfx@lfdr.de>; Tue,  4 Jul 2023 06:00:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69989746AC8
+	for <lists+amd-gfx@lfdr.de>; Tue,  4 Jul 2023 09:37:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2063810E286;
-	Tue,  4 Jul 2023 04:00:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E89D310E2A0;
+	Tue,  4 Jul 2023 07:37:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2047.outbound.protection.outlook.com [40.107.243.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84ABB10E286
- for <amd-gfx@lists.freedesktop.org>; Tue,  4 Jul 2023 04:00:49 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eXdr84MUZ0pZiyKFkfM8Jj5lzFnpiHLaxELJDTItnnk7278GX0x3abuQmvamGs0Hqh70P1WVzUOgShOKnCPfQVDjM/N9Qcd68ojkgDpR+xZQ1kN37/lw4EMIJ4edtoZkSZUxsU/RyQuc3Z3WuxW8h8bQi9FaOfyisVGjvwybdXNbNwYMnCxzCTcBUKfYhiUTVv4hA0GKt1Le7nSHGbr0ZHF1asmt/QBvnX134royZjNcxXLU63cPwGMf3MhmCcx901rImRYUmwlbN8mGqg9N/imI6AfLr6xwjstHi8ZOM3fRICZsj+ZmwhkF+Xm40XvOlYcFZv0pbo8DmXgEAc8bWg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=R43yAivTVsIuTW6HMyKAbpb07rbB6fT0GSQ/OiMGEcY=;
- b=hTYcM0+QCZ6M4RK0DldvCNOgwpeIhaLIC7DluxTO7KByI214HgcqKrdhS5pPh5xXpLKKi+gSsawaPj+fIJJpZfqTPDl7T4Yn7kl18eiyEyXnuZKwY2bRikv4sobsXSnjDNOm9LP6ISuD80wMxDKESx7AM7+/XU/zuTu7W2RvVqd9XSS+A2KI8TaOwRMkicfQvtjTbU0G5xIMQEQ6UXZszd/p1kvv7p2E+/Osv+dmn887jfq7KhFdSmXHybNNfrbCjJEl4x6PDBDAJbGjTz4HKxmb/umcFyojQEins5vh7p77RM6pzN//jGKXOYxdD6wVYhWYMKmW5PatF3J2VgvJjg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=R43yAivTVsIuTW6HMyKAbpb07rbB6fT0GSQ/OiMGEcY=;
- b=BGTGLift1uJRlcEdnf1K1WBerzrYPAsl/ARdaXnfu8iShkXO367uADChxCzIhJlFXpdiTgHqZJZiV7V/zVMDnCEnQFsy0lq+8j7tc2bPjgSn4o+tV5E+WXf+I36muRwY+5f6zJlYrOE03SUAC6jITn6qsf3QXThwovsZnARzNLY=
-Received: from PH7PR12MB8796.namprd12.prod.outlook.com (2603:10b6:510:272::22)
- by BY5PR12MB4066.namprd12.prod.outlook.com (2603:10b6:a03:207::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6544.24; Tue, 4 Jul
- 2023 04:00:41 +0000
-Received: from PH7PR12MB8796.namprd12.prod.outlook.com
- ([fe80::b918:c914:98d9:2975]) by PH7PR12MB8796.namprd12.prod.outlook.com
- ([fe80::b918:c914:98d9:2975%5]) with mapi id 15.20.6544.024; Tue, 4 Jul 2023
- 04:00:41 +0000
-From: "Zhou1, Tao" <Tao.Zhou1@amd.com>
-To: "Zhang, Hawking" <Hawking.Zhang@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "Yang, Stanley" <Stanley.Yang@amd.com>,
- "Chai, Thomas" <YiPeng.Chai@amd.com>, "Li, Candice" <Candice.Li@amd.com>
-Subject: RE: [PATCH 3/3] drm/amdgpu: Issue ras enable_feature for gfx ip only
-Thread-Topic: [PATCH 3/3] drm/amdgpu: Issue ras enable_feature for gfx ip only
-Thread-Index: AQHZrYw2a+LI0PbH3UiWhZreeKMlzq+o/P9g
-Date: Tue, 4 Jul 2023 04:00:41 +0000
-Message-ID: <PH7PR12MB87966F1F652A083B7E0299C0B02EA@PH7PR12MB8796.namprd12.prod.outlook.com>
-References: <20230703085531.11563-1-Hawking.Zhang@amd.com>
- <20230703085531.11563-3-Hawking.Zhang@amd.com>
-In-Reply-To: <20230703085531.11563-3-Hawking.Zhang@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=1dfffd8b-9372-4e57-bcb0-1593c1b6a99f;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=0;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2023-07-04T04:00:18Z;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR12MB8796:EE_|BY5PR12MB4066:EE_
-x-ms-office365-filtering-correlation-id: 5647aca3-9753-4fd4-6400-08db7c433beb
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 2PPmPsGYtvegjo9w86A6+tDtNII+PgaZEFwXbhxFZE7qQVILJsuLjqKVHyv0eaAEkTevY33tegV3lQ/IM1Jp4I814JWgG2c4JdqYcz6bBnHFC42N52Dl4GZjP3x7vZOfHBiJE1u1NqPdYJsW1Oq5mDwsHpQh/TIiz8dYW00Y6nZe7A6k7od3tfLt88T2eG2f5FkmGRXTdO/7ogvd2M3lppOjnV9oqGovaI9IlP8NQ4qCIl/q1kUz8SF2rcybKhRzjQC/dG34OtXlSmp0AtFIspKpg6MmwfyxArYiMKv8aXWmqO5+oXraZiNuYFjwL2+yStQVY2qy+cXCy6kPI5dcLEz+ZoV7F8AEegDswvlw/bmp8+C7fH8y3jvlhGbXT9nuROChGsxlg6CJXdMnlnqpq5rTr7EkREL153VM5xYeEkLXYCet+80oo5tuWL/4Q21TjRrndesvxhIQ2Wn1SZg9MaPum/8gME0HXzK65XVyBG86m66iaPDXLpjQrTcmsXVmw9Ild/yO/LWIH9HBQdBpV76bmjefxqvimOtnxidj79NR1nYTBtiK+eSv6uBXDZ+gGdAliiMlHTQrc1hHcSRwwRCbqTtmBDMxRUGh1x+xBR0Dvd4uVLNIwHGJWyivjaQZ
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB8796.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(346002)(39860400002)(376002)(396003)(136003)(366004)(451199021)(26005)(478600001)(6506007)(9686003)(71200400001)(86362001)(186003)(38100700002)(66446008)(6636002)(66946007)(66556008)(64756008)(66476007)(83380400001)(110136005)(53546011)(7696005)(76116006)(316002)(122000001)(5660300002)(8676002)(8936002)(52536014)(38070700005)(41300700001)(2906002)(55016003)(33656002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?jeB1YJ0o3Uftiv/3pkvPfR1RN2Puc3tTJ05kkdlmVb+ZAKs2xdxrHgXYCCdX?=
- =?us-ascii?Q?mD+0hagu9noTBNHdErdyYHJvL0fQIbHlJaZ7ilDaUldQT/Yiu84fIeh/GBpZ?=
- =?us-ascii?Q?/n/1f3aMwLJatUCWRL8IGeEre1aPUV8ecqQM3v75V80k3l/S8lkQJivvO5/d?=
- =?us-ascii?Q?vpfxt4wjAvo+IiB9NEBU++1TDDLOLRgUmTQlXvhqV+UPgFczwnu4F6936tb7?=
- =?us-ascii?Q?DvUX1bg95K4DF325dX5PRVY37lE2LK/A7GXXC8vVuccfyncj+gpYg4opluL2?=
- =?us-ascii?Q?rv7VEmMbCg4damN0scGSuh3uRqle9odqJuQIKEO9NIXQxPGm8Ycm5QHRt217?=
- =?us-ascii?Q?jVdDKhV6aAKa18KaOFLhfQ5PEYojzny+Xjkpl8xTONBvATT5lr8QQC45Ror5?=
- =?us-ascii?Q?VTVE4+3LZe3YavcCcy2bKi4T+LvCD1ykOHLjO8F9e+Qx410281a6VBv2OCm/?=
- =?us-ascii?Q?1WcaPMFS/BhhOBBUoDTOXDMjzVnQFG6L5Qb0CegufMdUHL/x8eBNhRNBdwF4?=
- =?us-ascii?Q?IX7tMKXcCzR3t4Kb1vHrHxu70X2h0Sn1+H9UJs5SQSh3Rrse890YL9fysu+S?=
- =?us-ascii?Q?d/FlOhQOhCTnuEgsX1ZzqZ2byq3Z3FXPl4S4PDD9566jY/cIPd2qEdS+Un9/?=
- =?us-ascii?Q?vvnJgIUVyu0x40JYb6ykkAFGUas12nPGYV69zrl+9OP3bWvC8qz+kQ7uB40J?=
- =?us-ascii?Q?zC8/5DIob7STkYZsVQ44n8SECAD2AXYFjFwUo0AxeqA9Vxo2M4TphQtZQSBi?=
- =?us-ascii?Q?R22UUs057d2kG+GdhveR6lG97bFPawkNjANEPqhA37zqoUPExK0obYosrKis?=
- =?us-ascii?Q?/0/tRzK+iN5zHJPNpFeBLwiSFSJkHdyJfiwZ+IMIcm1LkfJ6fYODRGxQ1/8b?=
- =?us-ascii?Q?DMAWzxGPVGSIMB1epZD4caofaipTtYEl3KICjgx+JfiWRwny+dI6yXz5I9im?=
- =?us-ascii?Q?nf8YRmT/sXhH0ZJ3RQKLAbVNodK2DDdYHUTH9UbJGK5a9x/0qAUrmT94QYJm?=
- =?us-ascii?Q?pa9HEOZOvl095yPRkO2H7ELgBLMkKRnLJ81C/2eTrX0YKXDcworhVBPAKCCH?=
- =?us-ascii?Q?dEfnjLmIi+anTWpKKI+SwILotIqHuvQR9RfNRi3tn2WHfFSHKbygy/Wvrpbk?=
- =?us-ascii?Q?Y5oEalNFgpw4e7oKnvlhRltuI7xPnjGQYlpqWzWDBLfJSUHkde6r9ZyZXa1U?=
- =?us-ascii?Q?5dAhARGsmNYQoBn+mzAY/EaduFUpFC4QIELxgvv8s8sFNlxUjdLcl/wAcOr2?=
- =?us-ascii?Q?AYNSUivAV5IItenxCjqLjoSCQdTj1yqV19f6+IGUsZ4vrQ/LTxDzbt5uJLYv?=
- =?us-ascii?Q?6XeqdFeWsjwqzEwOLZFi+Q3507VvrZDnhhczI6cJsmUOJEZDiaqnsFCn5/7v?=
- =?us-ascii?Q?L2Aaef47BVgn9bUVCEZizN433vvf3hTOd2GbST+69CYeh+Y8gXu9y0dNSDxx?=
- =?us-ascii?Q?zrturCrZARsQOMQyvwFX0MX9r9scoseGDOK3SskVFogemcSp/B0vzfXBozPq?=
- =?us-ascii?Q?RVopZ8ZAQX5JlEfRDe/CKWb3N0wVQAYLN6iCeI3du9Qg810qvwVLED/fWQe1?=
- =?us-ascii?Q?mWfDNrF/OeY9KHjqpdo=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com
+ [IPv6:2a00:1450:4864:20::129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0F9610E05D;
+ Mon,  3 Jul 2023 15:01:52 +0000 (UTC)
+Received: by mail-lf1-x129.google.com with SMTP id
+ 2adb3069b0e04-4f004cc54f4so6859770e87.3; 
+ Mon, 03 Jul 2023 08:01:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1688396509; x=1690988509;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=4ACAehRo9Teq7otTL7t1DkhIRrNmVdicT9iRzjgjAX4=;
+ b=QY3WsCZGQOiafSVgFytHNVwB+PNMpe4yuH/ejzZdUhvt3pV6/5gfBrvHh5Uf+MrXLr
+ LGp0o4oh3Y6gcImedl6Bpr+A4WNjPq5z4EgXDOyNtjfiYKZlTQ6JpqlRkqd5QPbErWDq
+ fkcot1hoh9WTuaAlTGEMdgycbmc2C1OVtSvDRNFC+55PoMXFpm1Rwe1KCRaw5Fnr154Z
+ lYDXQnL5HmIsTcwpDW6zlSWsM6KGy4JucuxUtcwpvYDUg1yCXQ/IncW4qZQsxPs92RL3
+ eLN3efPGi8DOaNn8ZtGVR2KuI7OuMIVo9C3rh0vBOHkNcy5mBN0eDEaK6MKYqY3Pfveh
+ hzSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1688396509; x=1690988509;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=4ACAehRo9Teq7otTL7t1DkhIRrNmVdicT9iRzjgjAX4=;
+ b=X+iSq1SKTExJdlfY5HHBsfvppvWO/W1sW649V8qopCGzYeVnPx/DHWWhhcS3396v/b
+ I6AlhPgzNTo+b1hti9Bu6fxTFoqJQHMXAtOcIbe8dXLlbOK4pyxQ4zumfKicYCfbAP6V
+ 6YsLj3wRAmqPSH+wLkO0Ff8EMSkFZSCeNC7az6CcHo+JdWUBXvA+sAnttUvO5DhUeV4Y
+ KR5LB59b8h93l9RAkVneSvmQTnUTk4n2v5WWo+77tWo9x74MZy43W4EYgK0Isp4iDH++
+ NB3IAfaN+PNsEQ2l9kG7V+oF9Mrh2PhYuqNZiFTmaUDR+S+vLeKn09Bx+CHW3NsKIy+7
+ gZUg==
+X-Gm-Message-State: ABy/qLZSWCtbp0vJQUwBdKqGZbBaRSpfmuvQdhs+sM6RrgYMPf5IFCUv
+ +ZYGKSwoeamnWRuMSApg16DnNpWIc/Fi2A==
+X-Google-Smtp-Source: APBJJlEy07zEOHrJaTz7psAlLEzG3iQ1RXU/ezZ16Gu7PUkEO1A6MG/Olvbvbk+csfjrYJudmx71uw==
+X-Received: by 2002:a05:6512:3da5:b0:4f8:6e6e:3f42 with SMTP id
+ k37-20020a0565123da500b004f86e6e3f42mr11621655lfv.14.1688396508639; 
+ Mon, 03 Jul 2023 08:01:48 -0700 (PDT)
+Received: from localhost.localdomain ([46.248.82.114])
+ by smtp.gmail.com with ESMTPSA id
+ q7-20020aa7d447000000b005183ce42da9sm10477109edr.18.2023.07.03.08.01.47
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 03 Jul 2023 08:01:48 -0700 (PDT)
+From: Uros Bizjak <ubizjak@gmail.com>
+To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/amdgpu: Use local64_try_cmpxchg in amdgpu_perf_read
+Date: Mon,  3 Jul 2023 17:00:59 +0200
+Message-ID: <20230703150135.5784-1-ubizjak@gmail.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB8796.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5647aca3-9753-4fd4-6400-08db7c433beb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jul 2023 04:00:41.2946 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 1o0s6a1mWOWSLD1QPrq1gVTBbHG38kAJeJhUp+JRRdcPYE4v/2l9PxGOVxVOSF+v
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4066
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 04 Jul 2023 07:37:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,98 +72,57 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>, Uros Bizjak <ubizjak@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ David Airlie <airlied@gmail.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - General]
+Use local64_try_cmpxchg instead of local64_cmpxchg (*ptr, old, new) == old
+in amdgpu_perf_read.  x86 CMPXCHG instruction returns success in ZF flag,
+so this change saves a compare after cmpxchg (and related move instruction
+in front of cmpxchg).
 
-The series is:
+Also, try_cmpxchg implicitly assigns old *ptr value to "old" when cmpxchg
+fails. There is no need to re-read the value in the loop.
 
-Reviewed-by: Tao Zhou <tao.zhou1@amd.com>
+No functional change intended.
 
-> -----Original Message-----
-> From: Zhang, Hawking <Hawking.Zhang@amd.com>
-> Sent: Monday, July 3, 2023 4:56 PM
-> To: amd-gfx@lists.freedesktop.org; Zhou1, Tao <Tao.Zhou1@amd.com>; Yang,
-> Stanley <Stanley.Yang@amd.com>; Chai, Thomas <YiPeng.Chai@amd.com>; Li,
-> Candice <Candice.Li@amd.com>
-> Cc: Zhang, Hawking <Hawking.Zhang@amd.com>
-> Subject: [PATCH 3/3] drm/amdgpu: Issue ras enable_feature for gfx ip only
->
-> For non-GFX IP blocks, set up ras obj if ras feature is allowed. For GFX =
-IP blocks,
-> force issue ras enable_feature command to firmware and only set up ras ob=
-j if ras
-> feature is allowed
->
-> Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 30 +++++++++----------------
->  1 file changed, 10 insertions(+), 20 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-> index 8524365761b6..2e9154bbec64 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-> @@ -761,16 +761,6 @@ static int __amdgpu_ras_feature_enable(struct
-> amdgpu_device *adev,
->       return 0;
->  }
->
-> -static int amdgpu_ras_check_feature_allowed(struct amdgpu_device *adev,
-> -             struct ras_common_if *head)
-> -{
-> -     if (amdgpu_ras_is_feature_allowed(adev, head) ||
-> -             amdgpu_ras_is_poison_mode_supported(adev))
-> -             return 1;
-> -     else
-> -             return 0;
-> -}
-> -
->  /* wrapper of psp_ras_enable_features */  int
-> amdgpu_ras_feature_enable(struct amdgpu_device *adev,
->               struct ras_common_if *head, bool enable) @@ -782,7 +772,16
-> @@ int amdgpu_ras_feature_enable(struct amdgpu_device *adev,
->       if (!con)
->               return -EINVAL;
->
-> -     if (head->block =3D=3D AMDGPU_RAS_BLOCK__GFX) {
-> +     /* Do not enable ras feature if it is not allowed */
-> +     if (enable &&
-> +         head->block !=3D AMDGPU_RAS_BLOCK__GFX &&
-> +         !amdgpu_ras_is_feature_allowed(adev, head))
-> +             goto out;
-> +
-> +     /* Only enable gfx ras feature from host side */
-> +     if (head->block =3D=3D AMDGPU_RAS_BLOCK__GFX &&
-> +         !amdgpu_sriov_vf(adev) &&
-> +         !amdgpu_ras_intr_triggered()) {
->               info =3D kzalloc(sizeof(union ta_ras_cmd_input), GFP_KERNEL=
-);
->               if (!info)
->                       return -ENOMEM;
-> @@ -798,16 +797,7 @@ int amdgpu_ras_feature_enable(struct amdgpu_device
-> *adev,
->                               .error_type =3D amdgpu_ras_error_to_ta(head=
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: "Christian König" <christian.koenig@amd.com>
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Signed-off-by: Uros Bizjak <ubizjak@gmail.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c
+index 71ee361d0972..6e91ea1de5aa 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c
+@@ -276,9 +276,8 @@ static void amdgpu_perf_read(struct perf_event *event)
+ 	    (!pe->adev->df.funcs->pmc_get_count))
+ 		return;
+ 
++	prev = local64_read(&hwc->prev_count);
+ 	do {
+-		prev = local64_read(&hwc->prev_count);
 -
-> >type),
->                       };
->               }
-> -     }
->
-> -     /* Do not enable if it is not allowed. */
-> -     if (enable && !amdgpu_ras_check_feature_allowed(adev, head))
-> -             goto out;
-> -
-> -     /* Only enable ras feature operation handle on host side */
-> -     if (head->block =3D=3D AMDGPU_RAS_BLOCK__GFX &&
-> -             !amdgpu_sriov_vf(adev) &&
-> -             !amdgpu_ras_intr_triggered()) {
->               ret =3D psp_ras_enable_features(&adev->psp, info, enable);
->               if (ret) {
->                       dev_err(adev->dev, "ras %s %s failed poison:%d
-> ret:%d\n",
-> --
-> 2.17.1
+ 		switch (hwc->config_base) {
+ 		case AMDGPU_PMU_EVENT_CONFIG_TYPE_DF:
+ 		case AMDGPU_PMU_EVENT_CONFIG_TYPE_XGMI:
+@@ -289,7 +288,7 @@ static void amdgpu_perf_read(struct perf_event *event)
+ 			count = 0;
+ 			break;
+ 		}
+-	} while (local64_cmpxchg(&hwc->prev_count, prev, count) != prev);
++	} while (!local64_try_cmpxchg(&hwc->prev_count, &prev, count));
+ 
+ 	local64_add(count - prev, &event->count);
+ }
+-- 
+2.41.0
 
