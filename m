@@ -2,50 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27AD974840A
-	for <lists+amd-gfx@lfdr.de>; Wed,  5 Jul 2023 14:18:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66E1F748406
+	for <lists+amd-gfx@lfdr.de>; Wed,  5 Jul 2023 14:18:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DD8910E35C;
-	Wed,  5 Jul 2023 12:18:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA04110E353;
+	Wed,  5 Jul 2023 12:18:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com
  [66.111.4.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F19910E1A8;
- Tue,  4 Jul 2023 14:31:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E523310E2CD;
+ Tue,  4 Jul 2023 15:25:11 +0000 (UTC)
 Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
- by mailout.nyi.internal (Postfix) with ESMTP id 358AC5C022A;
- Tue,  4 Jul 2023 10:31:47 -0400 (EDT)
+ by mailout.nyi.internal (Postfix) with ESMTP id 0CD3B5C0249;
+ Tue,  4 Jul 2023 11:25:11 -0400 (EDT)
 Received: from imap51 ([10.202.2.101])
- by compute6.internal (MEProxy); Tue, 04 Jul 2023 10:31:47 -0400
+ by compute6.internal (MEProxy); Tue, 04 Jul 2023 11:25:11 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
  :cc:content-transfer-encoding:content-type:content-type:date
  :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
  :references:reply-to:sender:subject:subject:to:to; s=fm2; t=
- 1688481107; x=1688567507; bh=aqNsrJHVCnGS5M3xoGiJRBSxbIqtfC2tngp
- dKmlsVZU=; b=RI/bfPN9cjPntRtrW/Dbhv9tP8VrrltI/MZdGagrm86vvoc0yef
- NROG9VgHWAWe8NcWA0/rNzns3UCg72E4fB1KVUpbDy5OXb8AEMYx2rTC59zR2ERz
- A+uaYnleg/oE9VVFjEBaX2szm5bvkYdnYZTQPYbhEi8f/E4IVGN75SBz82tAQkSs
- 7pisihqSoBEZsKqTVHzm3yXOrIDLpYElPq1outbbZ8JpbBMggoYg3nsA/aN0GEWB
- CR4qj9XPh6CbKSz3o9bg8YFBrZay3g871CZV8ZO0IRqtq3imdDxjLmtZgII+MxMi
- LaMa/jHTqZYh4cvXDdghsGnkFZtA6mppE9w==
+ 1688484311; x=1688570711; bh=FXe15dxw2eFgPSPM36BqwI66nkQYl/9quUw
+ AMMjIMFE=; b=JvFLQMO5JNMwLSZ/OQFor6bgUfFIJX9OqLmR8ixESZDtO77uACV
+ oOerV31F+dAq7gzTumYj1kctdHh5EAkN5+g0T9BSUXQt7g3/eQ97jwONwtcOq0ex
+ fQbEcjXwLvyS6oD/yZ6gSIqEJT3nOA6eFx+B7ThNgORgQ2VyJU1RtF8+M7xRUrXQ
+ K5W/s/KV8CD4BYEIID/j5ZXrvy28TAksnIU0TBeQ4uiYKeGEbv/DnHcddmF+oOo9
+ LwtX/PDSL83az+09o3c57dNul83+nDBezRS0/HMsaHAwJcP4tOQIeWkKf4/xwm3t
+ kaMbmXeu4init/ytdnmt7RPj+qZ4Rfsrppg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:cc:content-transfer-encoding
  :content-type:content-type:date:date:feedback-id:feedback-id
  :from:from:in-reply-to:in-reply-to:message-id:mime-version
  :references:reply-to:sender:subject:subject:to:to:x-me-proxy
  :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
- 1688481107; x=1688567507; bh=aqNsrJHVCnGS5M3xoGiJRBSxbIqtfC2tngp
- dKmlsVZU=; b=BhdV1iWlRIff/+xmjml84Pc86sgHA5/c+T5LXLSssMgArI8+Icn
- 0Ae0+dk9C0Va5vfQ5+jOVeHh0qOmIVcJl6DWBRWNbBgSyTlMrPV578a6YSNnRaOl
- 72B+E3R+icS3raoq2yuuuwoYLf2Tu3/Vs2qU92ta7WZVt8Gb1t+GAqYf/PYoypfG
- Vx7VKIc91RCJsFJcRcptvsPSSOQ9+xIU4qRAm7fd0gtUVv3Iwc5f0zExjrlh2ulx
- J2DHGmtxjDRub9f5FyrNK8RLfcsKflgDFEtnMvfJ+JmRdcTVHKj3rYIBjbK0cT7D
- DDTHF7eDTuYmg4d6I180VCWH2hjlj7ShjpA==
-X-ME-Sender: <xms:Ui2kZK_1c2_n9pzTTo159TkOPurTHtgChsVx8aJD-eEg3BtGspCgrg>
- <xme:Ui2kZKvxZCobXlWGuYVd7UgFUlXL_GBLc1roQekMrWi3IfSEXkDgWFaaFu0ep4ebO
- LFW8HKexD0VI6mLNaI>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedrudeggdejjecutefuodetggdotefrodftvf
+ 1688484311; x=1688570711; bh=FXe15dxw2eFgPSPM36BqwI66nkQYl/9quUw
+ AMMjIMFE=; b=Czaof1ivS+YXaRXgZUUOXVXVw0pvLLS7gie8KOAZGkreqkin56f
+ IhV0gueOTbxKn8BJGhjzndv0Ou7Tc2poh7PlXltQfDJ95sfaOVb3NsMaH/8zCUtI
+ ErdQbV7/cOmJuBTzEcTLt1DQD7W/PI18Lxh61fbIEumLhO/nbfJcDMZpZn0YGvzw
+ oMbZ1amym4RgQ4NPpzyqsvt7CR4oOZ01tEWhFVRz9bk+iQY1mGPLMc4xo5/4sQxa
+ e3JPIv3TJeJyO2IqiiRpDlGcok9mdZ4UwnykbSCsANLXFC4qKR5A3audgoM1fHp+
+ m4ML/ID2e/T2it5ylh4lFY83h7jciYvaejQ==
+X-ME-Sender: <xms:1jmkZIXzLiWbNhi7lNE_bt6_4633lOU6FyPcIY54IFXtTk-oHGTINg>
+ <xme:1jmkZMlJWSDP7T4jFWjJEtJce53kWajG2SJbKpT2X3sFWtvKuuxY5cCjliH5DSpqc
+ b9nr0vqW2tWgz2RMj4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedrudeggdekjecutefuodetggdotefrodftvf
  curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
  uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
  fjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedftehr
@@ -53,23 +53,25 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedrudeggdejjecutefuodetggdote
  htvghrnhepgeefjeehvdelvdffieejieejiedvvdfhleeivdelveehjeelteegudektdfg
  jeevnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
  hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:Ui2kZADgHsmy1cqQ5nP4hf74j7eG8GWrvM_I7laOXOVNWJReo1WaAg>
- <xmx:Ui2kZCfMSCTn1lTPz5DwFSqwDoZMEmV_luDH77WrUdru9YiEs0faKg>
- <xmx:Ui2kZPO6oRx3VYRPIOhgxIcC-HZjzfMMUYvU_XAZjdbP0mgaSIrbZw>
- <xmx:Uy2kZGnyBsK_4CgKkxnKRlzGWU-sEmSj3XnCwzNaJqWE-0mi7fXQUg>
+X-ME-Proxy: <xmx:1jmkZMZY-0gUqmNAwQWxCJaaKujGupPxcKARgQtZj2gkK7hEjXwl4g>
+ <xmx:1jmkZHUcMrSC3vG_7ulWPPMhpTQsr2XjE_W1P2ThcBWBfBXdfIJVGw>
+ <xmx:1jmkZCkAB62nYF3d4dz6rmsIQli_ObkTEgCpUDro_x7_d3iRMlsniQ>
+ <xmx:1zmkZH9mHebHs5kceqG08Jt-G5MHETQ31zyBH8LisgUO3n1XlyryRw>
 Feedback-ID: i56a14606:Fastmail
 Received: by mailuser.nyi.internal (Postfix, from userid 501)
- id 525ACB60089; Tue,  4 Jul 2023 10:31:46 -0400 (EDT)
+ id C33BCB60089; Tue,  4 Jul 2023 11:25:10 -0400 (EDT)
 X-Mailer: MessagingEngine.com Webmail Interface
 User-Agent: Cyrus-JMAP/3.9.0-alpha0-527-gee7b8d90aa-fm-20230629.001-gee7b8d90
 Mime-Version: 1.0
-Message-Id: <9b03246d-b46e-4b91-968a-e9ffc2fc26db@app.fastmail.com>
-In-Reply-To: <f1b190cb-3af7-178b-baeb-b59363868779@amd.com>
+Message-Id: <2dff4d81-9b45-4d69-9e30-972f2c9318d9@app.fastmail.com>
+In-Reply-To: <7b55040f-f2d2-372e-cf8a-5ac4a456fdb1@amd.com>
 References: <20230703123557.3355657-1-arnd@kernel.org>
  <f4bc3739-3ff1-6fa7-5d7d-890f451315bf@amd.com>
  <788147c6-defd-496a-8174-1571b73d1a71@app.fastmail.com>
  <f1b190cb-3af7-178b-baeb-b59363868779@amd.com>
-Date: Tue, 04 Jul 2023 16:31:25 +0200
+ <9b03246d-b46e-4b91-968a-e9ffc2fc26db@app.fastmail.com>
+ <7b55040f-f2d2-372e-cf8a-5ac4a456fdb1@amd.com>
+Date: Tue, 04 Jul 2023 17:24:49 +0200
 From: "Arnd Bergmann" <arnd@arndb.de>
 To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
  "Arnd Bergmann" <arnd@kernel.org>,
@@ -103,58 +105,48 @@ Cc: amd-gfx@lists.freedesktop.org,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 4, 2023, at 14:33, Christian K=C3=B6nig wrote:
-> Am 04.07.23 um 14:24 schrieb Arnd Bergmann:
->> On Tue, Jul 4, 2023, at 08:54, Christian K=C3=B6nig wrote:
->>> Am 03.07.23 um 14:35 schrieb Arnd Bergmann:
->> Not sure I understand the specific requirement. Do you mean the entire
->> amdgpu driver requires 64-bit BAR addressing, or just the bits that
->> resize the BARs?
+On Tue, Jul 4, 2023, at 16:51, Christian K=C3=B6nig wrote:
+> Am 04.07.23 um 16:31 schrieb Arnd Bergmann:
+>> On Tue, Jul 4, 2023, at 14:33, Christian K=C3=B6nig wrote:
+>>>
+>>> Modern AMD GPUs have 16GiB of local memory (VRAM), making those
+>>> accessible to a CPU which can only handle 32bit addresses by resizing
+>>> the BAR is impossible to begin with.
+>>>
+>>> But going a step further even without resizing it is pretty hard to =
+get
+>>> that hardware working on such an architecture.
+>> I'd still like to understand this part better, as we have a lot of
+>> arm64 chips with somewhat flawed PCIe implementations, often with
+>> a tiny 64-bit memory space, but otherwise probably capable of
+>> using a GPU.
 >
-> Well a bit of both.
+> Yeah, those are unfortunately very well known to us :(
 >
-> Modern AMD GPUs have 16GiB of local memory (VRAM), making those=20
-> accessible to a CPU which can only handle 32bit addresses by resizing=20
-> the BAR is impossible to begin with.
->
-> But going a step further even without resizing it is pretty hard to ge=
-t=20
-> that hardware working on such an architecture.
-
-I'd still like to understand this part better, as we have a lot of
-arm64 chips with somewhat flawed PCIe implementations, often with
-a tiny 64-bit memory space, but otherwise probably capable of
-using a GPU.
-
-What exactly do you expect to happen here?
-
-a) Use only part of the VRAM but otherwise work as expected
-b) Access all of the VRAM, but at a performance cost for
-   bank switching?
-c) Require kernel changes to make a) or b) work, otherwise
-   fail to load
-d) have no chance of working even with driver changes
-
->>> It might be cleaner to just not build the whole driver on such syste=
-ms
->>> or at least leave out this function.
->> How about this version? This also addresses the build failure, but
->> I don't know if this makes any sense:
+>> What exactly do you expect to happen here?
 >>
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> @@ -1325,6 +1325,9 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_d=
-evice *adev)
->>          u16 cmd;
->>          int r;
->>  =20
->> +       if (!IS_ENABLED(CONFIG_PHYS_ADDR_T_64BIT))
->> +               return 0;
->> +
+>> a) Use only part of the VRAM but otherwise work as expected
+>> b) Access all of the VRAM, but at a performance cost for
+>>     bank switching?
 >
-> Yes, if that suppresses the warning as well then that makes perfect=20
-> sense to me.
+> We have tons of x86 systems where we can't resize the BAR (because of=20
+> lack of BIOS setup of the root PCIe windows). So bank switching is sti=
+ll=20
+> perfectly supported.
 
-Ok, I'll send that as a v2 then.
+Ok, good.
 
-    Arnd
+> After investigating (which sometimes even includes involving engineers=20
+> from ARM) we usually find that those boards doesn't even remotely comp=
+ly=20
+> to the PCIe specification, both regarding power as well as functional=20
+> things like DMA coherency.
+
+Makes sense, the power usage is clearly going to make this
+impossible on a lot of boards. I would have expected noncoherent
+DMA to be a solvable problem, since that generally works with
+all drivers that use the dma-mapping interfaces correctly,
+but I understand that drivers/gpu/* often does its own thing
+here, which may make that harder.
+
+     Arnd
