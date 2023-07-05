@@ -2,37 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9A5674884D
-	for <lists+amd-gfx@lfdr.de>; Wed,  5 Jul 2023 17:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08B5C74888A
+	for <lists+amd-gfx@lfdr.de>; Wed,  5 Jul 2023 17:54:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD8B010E16E;
-	Wed,  5 Jul 2023 15:48:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA6D710E39C;
+	Wed,  5 Jul 2023 15:54:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from laurent.telenet-ops.be (laurent.telenet-ops.be
- [IPv6:2a02:1800:110:4::f00:19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A74510E388
- for <amd-gfx@lists.freedesktop.org>; Wed,  5 Jul 2023 15:17:42 +0000 (UTC)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:5979:7b6f:39a:b9cb])
- by laurent.telenet-ops.be with bizsmtp
- id HTHf2A00345Xpxs01THfTt; Wed, 05 Jul 2023 17:17:39 +0200
-Received: from rox.of.borg ([192.168.97.57] helo=rox)
- by ramsan.of.borg with esmtp (Exim 4.95)
- (envelope-from <geert@linux-m68k.org>) id 1qH4G7-000ceC-Aj;
- Wed, 05 Jul 2023 17:17:38 +0200
-Received: from geert by rox with local (Exim 4.95)
- (envelope-from <geert@linux-m68k.org>) id 1qH4GA-00AwT1-SK;
- Wed, 05 Jul 2023 17:17:38 +0200
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Subject: [PATCH libdrm] amdgpu: Use %ll to format 64-bit integers
-Date: Wed,  5 Jul 2023 17:17:35 +0200
-Message-Id: <e77836236dfb6724aa95a8c2305a2d63762367be.1688570228.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
+ [IPv6:2a00:1450:4864:20::330])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60E1E10E17A;
+ Wed,  5 Jul 2023 15:54:35 +0000 (UTC)
+Received: by mail-wm1-x330.google.com with SMTP id
+ 5b1f17b1804b1-3fb4146e8ceso83431965e9.0; 
+ Wed, 05 Jul 2023 08:54:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1688572473; x=1691164473;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=6CZyzkzUMz1fXOQ881Ov7Y8cjX9OK+wAcM/N2Fl/7tk=;
+ b=kpM+idAhMrvaBCu3Jtyd7+ErrWLoeJDtMOQaFwhQp23JjMJSxNpiF1Lbk3Jc8/DtTW
+ O59rBXU+xgMzhOLHzH+i0EDlbz+zcEhI5mOAZxNq2en000xXCuE2yf9FHZtanNCKmja1
+ TOwJftcnxSCl446i40J3UYq369wwjI1xX2uzErTlNzA8fV4DHRr2HHPoyU1UiTjz4545
+ 8EiwXG0XfUersmCjwJVPo8zr/L9gW3Y4yzphuldGbLw3PWc6FGrUSdH77t0PrziVNkla
+ YaoXri8GlT17+Ql6BNF9VUritkFICJUFa5yZpj0ZanK40JTZQPRvIDt+xe+OgRGsetZi
+ 7FMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1688572473; x=1691164473;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=6CZyzkzUMz1fXOQ881Ov7Y8cjX9OK+wAcM/N2Fl/7tk=;
+ b=YgUjNfj4QKxtJkQ7hIQY7ASq11IW7CyM18DJEmer4srPxcVnqjxRE0p6Uu70JvF8wK
+ sO+BIdfAw2ZA+H6DpBhOkWkASQJMAxKpi9vVugAanqnFsAnBiF5EDvsBVpAQm2y5hVbw
+ Wmo5nrfjUudlftn3n4Yorb/X/8DKB9fm/btQM+9r3JORVr5rcgk5qbd0usz6jjHVnWr7
+ uSKvUKO9laimU0u4NJEiWrweWJ/gmehaGfJiTLY2QG9cE17lh1R6egwjB327i3acEoOR
+ BlLZNpA4dh2fMd+TM0p2wIcQJ4GkYJvW7x562jvTRSfWOYllwbbnNl5zkT23IAaLQFAl
+ h4QA==
+X-Gm-Message-State: AC+VfDwY63qL6mUSDKOy/U9guO3B1lsbWSwcnKrd/07WHjAyVn+a9jQC
+ zXCu5VapU70L5l4JVQIXZy91WAMlPRq3MDfh/v4=
+X-Google-Smtp-Source: ACHHUZ51AikI0ltda0xwrPKgoViozpgiEIbk+gOp/vo8TXgdd+WFbbHp/gUy/0NYhbIg0aXGMaMdMNMvUMACRwo68Mc=
+X-Received: by 2002:a05:600c:24d:b0:3f7:f884:7be3 with SMTP id
+ 13-20020a05600c024d00b003f7f8847be3mr13750491wmj.4.1688572472427; Wed, 05 Jul
+ 2023 08:54:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 05 Jul 2023 15:48:12 +0000
+References: <20230627132323.115440-1-andrealmeid@igalia.com>
+ <CA+hFU4z1pc=KUVVqyqfXEceUqMXQgh-qUnuB=1nkPELghvQO7w@mail.gmail.com>
+ <CADnq5_MNVdtdcWKSz6dgmsjg+kEu8p5FVE+fkw_5BaXeG3QGow@mail.gmail.com>
+ <afab1f5a-e581-3416-e2c2-238ea120655b@mailbox.org>
+ <CAAxE2A5C96k5ua+r938VA_+w7gHHNTdF3n8LwDb98W0Bf9wCVA@mail.gmail.com>
+ <7c1e6df5-1ad4-be3c-b95d-92dc62a8c537@mailbox.org>
+ <CAAxE2A7RGDY4eRC85CsqfszNzyKvMU2MX1wa+3HZ1hgNeAw3cQ@mail.gmail.com>
+ <cb0b6b51-3a94-481b-26a1-89ff398d7835@mailbox.org>
+ <CAAxE2A7tNCWkL_M2YcE=RN+nqqcokgBR4hcD2sR3fGAY2t4uLg@mail.gmail.com>
+ <2f993fe4-8e95-4a67-c2f1-6adc2c431834@mailbox.org>
+In-Reply-To: <2f993fe4-8e95-4a67-c2f1-6adc2c431834@mailbox.org>
+From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
+Date: Wed, 5 Jul 2023 11:53:56 -0400
+Message-ID: <CAAxE2A7s2ANMGkFizMJda4nzQO1Wi+oxkST0xZ2KgBM6wYXA5w@mail.gmail.com>
+Subject: Re: [PATCH v5 1/1] drm/doc: Document DRM device reset expectations
+To: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,110 +76,146 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ Sebastian Wick <sebastian.wick@redhat.com>,
+ =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>,
+ =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ Randy Dunlap <rdunlap@infradead.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Pekka Paalanen <ppaalanen@gmail.com>,
+ Samuel Pitoiset <samuel.pitoiset@gmail.com>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>, kernel-dev@igalia.com,
+ "Deucher, Alexander" <alexander.deucher@amd.com>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 32-bit:
+On Wed, Jul 5, 2023 at 3:32=E2=80=AFAM Michel D=C3=A4nzer <michel.daenzer@m=
+ailbox.org> wrote:
+>
+> On 7/5/23 08:30, Marek Ol=C5=A1=C3=A1k wrote:
+> > On Tue, Jul 4, 2023, 03:55 Michel D=C3=A4nzer <michel.daenzer@mailbox.o=
+rg> wrote:
+> >     On 7/4/23 04:34, Marek Ol=C5=A1=C3=A1k wrote:
+> >     > On Mon, Jul 3, 2023, 03:12 Michel D=C3=A4nzer <michel.daenzer@mai=
+lbox.org > wrote:
+> >     >     On 6/30/23 22:32, Marek Ol=C5=A1=C3=A1k wrote:
+> >     >     > On Fri, Jun 30, 2023 at 11:11=E2=80=AFAM Michel D=C3=A4nzer=
+ <michel.daenzer@mailbox.org> wrote:
+> >     >     >> On 6/30/23 16:59, Alex Deucher wrote:
+> >     >     >>> On Fri, Jun 30, 2023 at 10:49=E2=80=AFAM Sebastian Wick
+> >     >     >>> <sebastian.wick@redhat.com <mailto:sebastian.wick@redhat.=
+com> wrote:
+> >     >     >>>> On Tue, Jun 27, 2023 at 3:23=E2=80=AFPM Andr=C3=A9 Almei=
+da <andrealmeid@igalia.com> wrote:
+> >     >     >>>>>
+> >     >     >>>>> +Robustness
+> >     >     >>>>> +----------
+> >     >     >>>>> +
+> >     >     >>>>> +The only way to try to keep an application working aft=
+er a reset is if it
+> >     >     >>>>> +complies with the robustness aspects of the graphical =
+API that it is using.
+> >     >     >>>>> +
+> >     >     >>>>> +Graphical APIs provide ways to applications to deal wi=
+th device resets. However,
+> >     >     >>>>> +there is no guarantee that the app will use such featu=
+res correctly, and the
+> >     >     >>>>> +UMD can implement policies to close the app if it is a=
+ repeating offender,
+> >     >     >>>>> +likely in a broken loop. This is done to ensure that i=
+t does not keep blocking
+> >     >     >>>>> +the user interface from being correctly displayed. Thi=
+s should be done even if
+> >     >     >>>>> +the app is correct but happens to trigger some bug in =
+the hardware/driver.
+> >     >     >>>>
+> >     >     >>>> I still don't think it's good to let the kernel arbitrar=
+ily kill
+> >     >     >>>> processes that it thinks are not well-behaved based on s=
+ome heuristics
+> >     >     >>>> and policy.
+> >     >     >>>>
+> >     >     >>>> Can't this be outsourced to user space? Expose the infor=
+mation about
+> >     >     >>>> processes causing a device and let e.g. systemd deal wit=
+h coming up
+> >     >     >>>> with a policy and with killing stuff.
+> >     >     >>>
+> >     >     >>> I don't think it's the kernel doing the killing, it would=
+ be the UMD.
+> >     >     >>> E.g., if the app is guilty and doesn't support robustness=
+ the UMD can
+> >     >     >>> just call exit().
+> >     >     >>
+> >     >     >> It would be safer to just ignore API calls[0], similarly t=
+o what is done until the application destroys the context with robustness. =
+Calling exit() likely results in losing any unsaved work, whereas at least =
+some applications might otherwise allow saving the work by other means.
+> >     >     >
+> >     >     > That's a terrible idea. Ignoring API calls would be identic=
+al to a freeze. You might as well disable GPU recovery because the result w=
+ould be the same.
+> >     >
+> >     >     No GPU recovery would affect everything using the GPU, wherea=
+s this affects only non-robust applications.
+> >     >
+> >     > which is currently the majority.
+> >
+> >     Not sure where you're going with this. Applications need to use rob=
+ustness to be able to recover from a GPU hang, and the GPU needs to be rese=
+t for that. So disabling GPU reset is not the same as what we're discussing=
+ here.
+> >
+> >
+> >     >     > - non-robust contexts: call exit(1) immediately, which is t=
+he best way to recover
+> >     >
+> >     >     That's not the UMD's call to make.
+> >     >
+> >     > That's absolutely the UMD's call to make because that's mandated =
+by the hw and API design
+> >
+> >     Can you point us to a spec which mandates that the process must be =
+killed in this case?
+> >
+> >
+> >     > and only driver devs know this, which this thread is a proof of. =
+The default behavior is to skip all command submission if a non-robust cont=
+ext is lost, which looks like a freeze. That's required to prevent infinite=
+ hangs from the same context and can be caused by the side effects of the G=
+PU reset itself, not by the cause of the previous hang. The only way out of=
+ that is killing the process.
+> >
+> >     The UMD killing the process is not the only way out of that, and do=
+ing so is overreach on its part. The UMD is but one out of many components =
+in a process, not the main one or a special one. It doesn't get to decide w=
+hen the process must die, certainly not under circumstances where it must b=
+e able to continue while ignoring API calls (that's required for robustness=
+).
+> >
+> >
+> > You're mixing things up. Robust apps don't any special action from a UM=
+D. Only non-robust apps need to be killed for proper recovery with the only=
+ other alternative being not updating the window/screen,
+>
+> I'm saying they don't "need" to be killed, since the UMD must be able to =
+keep going while ignoring API calls (or it couldn't support robustness). It=
+'s a choice, one which is not for the UMD to make.
+>
+>
+> > Also it's already used and required by our customers on Android because=
+ killing a process returns the user to the desktop screen and can generate =
+a crash dump instead of keeping the app output frozen, and they agree that =
+this is the best user experience given the circumstances.
+>
+> Then some appropriate Android component needs to make that call. The UMD =
+is not it.
 
-    ../tests/amdgpu/amdgpu_stress.c: In function ‘alloc_bo’:
-    ../tests/amdgpu/amdgpu_stress.c:178:49: warning: format ‘%lx’ expects argument of type ‘long unsigned int’, but argument 4 has type ‘uint64_t’ {aka ‘long long unsigned int’} [-Wformat=]
-      fprintf(stdout, "Allocated BO number %u at 0x%lx, domain 0x%x, size %lu\n",
-                                                   ~~^
-                                                   %llx
-       num_buffers++, addr, domain, size);
-                      ~~~~
-    ../tests/amdgpu/amdgpu_stress.c:178:72: warning: format ‘%lu’ expects argument of type ‘long unsigned int’, but argument 6 has type ‘uint64_t’ {aka ‘long long unsigned int’} [-Wformat=]
-      fprintf(stdout, "Allocated BO number %u at 0x%lx, domain 0x%x, size %lu\n",
-                                                                          ~~^
-                                                                          %llu
-       num_buffers++, addr, domain, size);
-                                    ~~~~
-    ../tests/amdgpu/amdgpu_stress.c: In function ‘submit_ib’:
-    ../tests/amdgpu/amdgpu_stress.c:276:54: warning: format ‘%lx’ expects argument of type ‘long unsigned int’, but argument 5 has type ‘uint64_t’ {aka ‘long long unsigned int’} [-Wformat=]
-      fprintf(stdout, "Submitted %u IBs to copy from %u(%lx) to %u(%lx) %lu bytes took %lu usec\n",
-                                                        ~~^
-                                                        %llx
-       count, from, virtual[from], to, virtual[to], copied, delta / 1000);
-                    ~~~~~~~~~~~~~
-    ../tests/amdgpu/amdgpu_stress.c:276:65: warning: format ‘%lx’ expects argument of type ‘long unsigned int’, but argument 7 has type ‘uint64_t’ {aka ‘long long unsigned int’} [-Wformat=]
-      fprintf(stdout, "Submitted %u IBs to copy from %u(%lx) to %u(%lx) %lu bytes took %lu usec\n",
-                                                                   ~~^
-                                                                   %llx
-       count, from, virtual[from], to, virtual[to], copied, delta / 1000);
-                                       ~~~~~~~~~~~
-    ../tests/amdgpu/amdgpu_stress.c:276:70: warning: format ‘%lu’ expects argument of type ‘long unsigned int’, but argument 8 has type ‘uint64_t’ {aka ‘long long unsigned int’} [-Wformat=]
-      fprintf(stdout, "Submitted %u IBs to copy from %u(%lx) to %u(%lx) %lu bytes took %lu usec\n",
-                                                                        ~~^
-                                                                        %llu
-       count, from, virtual[from], to, virtual[to], copied, delta / 1000);
-                                                    ~~~~~~
-    ../tests/amdgpu/amdgpu_stress.c:276:85: warning: format ‘%lu’ expects argument of type ‘long unsigned int’, but argument 9 has type ‘uint64_t’ {aka ‘long long unsigned int’} [-Wformat=]
-      fprintf(stdout, "Submitted %u IBs to copy from %u(%lx) to %u(%lx) %lu bytes took %lu usec\n",
-                                                                                       ~~^
-                                                                                       %llu
-       count, from, virtual[from], to, virtual[to], copied, delta / 1000);
-                                                            ~~~~~~~~~~~~
-    ../tests/amdgpu/amdgpu_stress.c: In function ‘parse_size’:
-    ../tests/amdgpu/amdgpu_stress.c:296:24: warning: format ‘%li’ expects argument of type ‘long int *’, but argument 3 has type ‘uint64_t *’ {aka ‘long long unsigned int *’} [-Wformat=]
-      if (sscanf(optarg, "%li%1[kmgKMG]", &size, ext) < 1) {
-                          ~~^             ~~~~~
-                          %lli
-    ../tests/amdgpu/amdgpu_stress.c: In function ‘main’:
-    ../tests/amdgpu/amdgpu_stress.c:378:45: warning: format ‘%lu’ expects argument of type ‘long unsigned int’, but argument 3 has type ‘uint64_t’ {aka ‘long long unsigned int’} [-Wformat=]
-         fprintf(stderr, "Buffer size to small %lu\n", size);
-                                               ~~^     ~~~~
-                                               %llu
+We can change it once Android and Linux have a better way to handle
+non-robust apps. Until then, generating a core dump after a GPU crash
+produces the best outcome for users and developers.
 
-Fix this by using the proper "%ll" format specifier prefix.
-
-Fixes: d77ccdf3ba6f5a39 ("amdgpu: add amdgpu_stress utility v2")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- tests/amdgpu/amdgpu_stress.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/tests/amdgpu/amdgpu_stress.c b/tests/amdgpu/amdgpu_stress.c
-index 5c5c88c5be985eb6..7182f9005703f1a4 100644
---- a/tests/amdgpu/amdgpu_stress.c
-+++ b/tests/amdgpu/amdgpu_stress.c
-@@ -175,7 +175,7 @@ int alloc_bo(uint32_t domain, uint64_t size)
- 
- 	resources[num_buffers] = bo;
- 	virtual[num_buffers] = addr;
--	fprintf(stdout, "Allocated BO number %u at 0x%lx, domain 0x%x, size %lu\n",
-+	fprintf(stdout, "Allocated BO number %u at 0x%llx, domain 0x%x, size %llu\n",
- 		num_buffers++, addr, domain, size);
- 	return 0;
- }
-@@ -273,7 +273,7 @@ int submit_ib(uint32_t from, uint32_t to, uint64_t size, uint32_t count)
- 	delta = stop.tv_nsec + stop.tv_sec * 1000000000UL;
- 	delta -= start.tv_nsec + start.tv_sec * 1000000000UL;
- 
--	fprintf(stdout, "Submitted %u IBs to copy from %u(%lx) to %u(%lx) %lu bytes took %lu usec\n",
-+	fprintf(stdout, "Submitted %u IBs to copy from %u(%llx) to %u(%llx) %llu bytes took %llu usec\n",
- 		count, from, virtual[from], to, virtual[to], copied, delta / 1000);
- 	return 0;
- }
-@@ -293,7 +293,7 @@ uint64_t parse_size(void)
- 	char ext[2];
- 
- 	ext[0] = 0;
--	if (sscanf(optarg, "%li%1[kmgKMG]", &size, ext) < 1) {
-+	if (sscanf(optarg, "%lli%1[kmgKMG]", &size, ext) < 1) {
- 		fprintf(stderr, "Can't parse size arg: %s\n", optarg);
- 		exit(EXIT_FAILURE);
- 	}
-@@ -375,7 +375,7 @@ int main(int argc, char **argv)
- 			next_arg(argc, argv, "Missing buffer size");
- 			size = parse_size();
- 			if (size < getpagesize()) {
--				fprintf(stderr, "Buffer size to small %lu\n", size);
-+				fprintf(stderr, "Buffer size to small %llu\n", size);
- 				exit(EXIT_FAILURE);
- 			}
- 			r = alloc_bo(domain, size);
--- 
-2.34.1
-
+Marek
