@@ -1,87 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66E1F748406
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ED13748405
 	for <lists+amd-gfx@lfdr.de>; Wed,  5 Jul 2023 14:18:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA04110E353;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 786A310E2BF;
 	Wed,  5 Jul 2023 12:18:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com
- [66.111.4.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E523310E2CD;
- Tue,  4 Jul 2023 15:25:11 +0000 (UTC)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
- by mailout.nyi.internal (Postfix) with ESMTP id 0CD3B5C0249;
- Tue,  4 Jul 2023 11:25:11 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
- by compute6.internal (MEProxy); Tue, 04 Jul 2023 11:25:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:sender:subject:subject:to:to; s=fm2; t=
- 1688484311; x=1688570711; bh=FXe15dxw2eFgPSPM36BqwI66nkQYl/9quUw
- AMMjIMFE=; b=JvFLQMO5JNMwLSZ/OQFor6bgUfFIJX9OqLmR8ixESZDtO77uACV
- oOerV31F+dAq7gzTumYj1kctdHh5EAkN5+g0T9BSUXQt7g3/eQ97jwONwtcOq0ex
- fQbEcjXwLvyS6oD/yZ6gSIqEJT3nOA6eFx+B7ThNgORgQ2VyJU1RtF8+M7xRUrXQ
- K5W/s/KV8CD4BYEIID/j5ZXrvy28TAksnIU0TBeQ4uiYKeGEbv/DnHcddmF+oOo9
- LwtX/PDSL83az+09o3c57dNul83+nDBezRS0/HMsaHAwJcP4tOQIeWkKf4/xwm3t
- kaMbmXeu4init/ytdnmt7RPj+qZ4Rfsrppg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:sender:subject:subject:to:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
- 1688484311; x=1688570711; bh=FXe15dxw2eFgPSPM36BqwI66nkQYl/9quUw
- AMMjIMFE=; b=Czaof1ivS+YXaRXgZUUOXVXVw0pvLLS7gie8KOAZGkreqkin56f
- IhV0gueOTbxKn8BJGhjzndv0Ou7Tc2poh7PlXltQfDJ95sfaOVb3NsMaH/8zCUtI
- ErdQbV7/cOmJuBTzEcTLt1DQD7W/PI18Lxh61fbIEumLhO/nbfJcDMZpZn0YGvzw
- oMbZ1amym4RgQ4NPpzyqsvt7CR4oOZ01tEWhFVRz9bk+iQY1mGPLMc4xo5/4sQxa
- e3JPIv3TJeJyO2IqiiRpDlGcok9mdZ4UwnykbSCsANLXFC4qKR5A3audgoM1fHp+
- m4ML/ID2e/T2it5ylh4lFY83h7jciYvaejQ==
-X-ME-Sender: <xms:1jmkZIXzLiWbNhi7lNE_bt6_4633lOU6FyPcIY54IFXtTk-oHGTINg>
- <xme:1jmkZMlJWSDP7T4jFWjJEtJce53kWajG2SJbKpT2X3sFWtvKuuxY5cCjliH5DSpqc
- b9nr0vqW2tWgz2RMj4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedrudeggdekjecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedftehr
- nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
- htvghrnhepgeefjeehvdelvdffieejieejiedvvdfhleeivdelveehjeelteegudektdfg
- jeevnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
- hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:1jmkZMZY-0gUqmNAwQWxCJaaKujGupPxcKARgQtZj2gkK7hEjXwl4g>
- <xmx:1jmkZHUcMrSC3vG_7ulWPPMhpTQsr2XjE_W1P2ThcBWBfBXdfIJVGw>
- <xmx:1jmkZCkAB62nYF3d4dz6rmsIQli_ObkTEgCpUDro_x7_d3iRMlsniQ>
- <xmx:1zmkZH9mHebHs5kceqG08Jt-G5MHETQ31zyBH8LisgUO3n1XlyryRw>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
- id C33BCB60089; Tue,  4 Jul 2023 11:25:10 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-527-gee7b8d90aa-fm-20230629.001-gee7b8d90
-Mime-Version: 1.0
-Message-Id: <2dff4d81-9b45-4d69-9e30-972f2c9318d9@app.fastmail.com>
-In-Reply-To: <7b55040f-f2d2-372e-cf8a-5ac4a456fdb1@amd.com>
-References: <20230703123557.3355657-1-arnd@kernel.org>
- <f4bc3739-3ff1-6fa7-5d7d-890f451315bf@amd.com>
- <788147c6-defd-496a-8174-1571b73d1a71@app.fastmail.com>
- <f1b190cb-3af7-178b-baeb-b59363868779@amd.com>
- <9b03246d-b46e-4b91-968a-e9ffc2fc26db@app.fastmail.com>
- <7b55040f-f2d2-372e-cf8a-5ac4a456fdb1@amd.com>
-Date: Tue, 04 Jul 2023 17:24:49 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "Arnd Bergmann" <arnd@kernel.org>,
- "Alex Deucher" <alexander.deucher@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, "Dave Airlie" <airlied@gmail.com>,
- "Daniel Vetter" <daniel@ffwll.ch>
-Subject: Re: [PATCH] drm/amdgpu: avoid integer overflow warning in
- amdgpu_device_resize_fb_bar()
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com
+ [IPv6:2607:f8b0:4864:20::b2c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 432C610E134;
+ Wed,  5 Jul 2023 02:42:57 +0000 (UTC)
+Received: by mail-yb1-xb2c.google.com with SMTP id
+ 3f1490d57ef6-c17534f4c63so7093227276.0; 
+ Tue, 04 Jul 2023 19:42:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1688524975; x=1691116975;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=VHY1Zlzp65TvZiR0boe033bDVC9iew9qAHr8hQ5HK44=;
+ b=F2Imx01R9giMZddzkh9uY1nNb0+Iuc4PkiDccdGrPfyLUl7NVGC8lgFKB/+tfss3cC
+ hj16bHA7rNQDVS+JXJR0ogmbBovo39BVgjTlVJHERcysGqhHnaGme3x9FF7CRC8BsM0W
+ urY5SuS7GrtXSTvV7u0Y8WbM8no91vJtMBkd2GA7lHXsZEC5tcLu/M8xYyycxx1dfIQI
+ hVUf8jwxS6V8Vq63huiftkAy9VqIVAz5KGojBHASQwjS2DipyZEufGk1v8Zlx0A1dTjS
+ coU1x9d1Hip4kCZ2xN4pFWBbyqdCwYYgOpJ20FVqVxvC2zT47RRdnOiVTja31dMkvucG
+ ryhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1688524975; x=1691116975;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=VHY1Zlzp65TvZiR0boe033bDVC9iew9qAHr8hQ5HK44=;
+ b=Wuuczk/gv6AeGGRABzYrOKY/cUPtSLzp9MGK6A8I04WlZIPMZPrKOWqR4Oe8XsTEbG
+ 58XQCW9lz0OSLpGxfE4Ff/ClswsP6ScmI74bwekVt1qgKc0EugNZ+38iqoacDJkNmVww
+ VTCNBHJtM+znlA4L9HT+KE2aSOAAFb7EdzHFwMlf31j2wRJwpX+w5i2Y+9MjxwHVLMy2
+ QGi02EWUgwzNUbptnXb0kQbdtGaNGPocCxRXRwME02BLyB4CTUPPD0QQKvpURkFuW5Pu
+ 53ZQ5L4BDLuYPLkNC9sEkOzLaD/sx9uv1yEifBYf58+AQgx9VuYGS9sFjlDcqwvtXPVA
+ 81+A==
+X-Gm-Message-State: ABy/qLbTmmmwaVxMTjse3zccd8/gW72ia9AeLsleq/0iKIXczG3bWSLF
+ 1bNT+VxtuWBjDvujKr/LqCR/4r/G5EwKQkln8/I=
+X-Google-Smtp-Source: APBJJlGI035ANDpYcO9uphsvVgfUxzA6K5kAZKgF2yLnxC++mnV0T1omNsS+ILv5TNYf804MrYBTtJKbCtneNIysylQ=
+X-Received: by 2002:a25:ac96:0:b0:c12:e809:69e7 with SMTP id
+ x22-20020a25ac96000000b00c12e80969e7mr12557646ybi.65.1688524975402; Tue, 04
+ Jul 2023 19:42:55 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230701020917.143394-1-andrealmeid@igalia.com>
+ <20230701020917.143394-7-andrealmeid@igalia.com>
+ <20230703113836.60869599@eldfell>
+ <5bc889d4-bccc-9d6d-fe35-da3e9627eaa0@igalia.com>
+In-Reply-To: <5bc889d4-bccc-9d6d-fe35-da3e9627eaa0@igalia.com>
+From: James Braden olin <bradenolinjames@gmail.com>
+Date: Tue, 4 Jul 2023 21:42:43 -0500
+Message-ID: <CABCz0QONtWj7DHp6bdvQm=05XC=bvnUq3a9Wkee6n_mu9CJ73Q@mail.gmail.com>
+Subject: Re: [PATCH v4 6/6] drm/doc: Define KMS atomic state set
+To: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+Content-Type: multipart/alternative; boundary="0000000000005a744405ffb45bd7"
 X-Mailman-Approved-At: Wed, 05 Jul 2023 12:18:24 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -94,59 +69,103 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org,
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Bokun Zhang <Bokun.Zhang@amd.com>, dri-devel@lists.freedesktop.org,
- Lijo Lazar <lijo.lazar@amd.com>, linux-kernel@vger.kernel.org,
- Shiwu Zhang <shiwu.zhang@amd.com>, Le Ma <le.ma@amd.com>,
- YiPeng Chai <YiPeng.Chai@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: pierre-eric.pelloux-prayer@amd.com, kernel-dev@igalia.com,
+ =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>,
+ =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
+ Dave Airlie <airlied@gmail.com>, Italo Nicola <italonicola@collabora.com>,
+ Randy Dunlap <rdunlap@infradead.org>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, wayland-devel@lists.freedesktop.org,
+ Pekka Paalanen <ppaalanen@gmail.com>, Rob Clark <robdclark@gmail.com>,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ alexander.deucher@amd.com, joshua@froggi.es,
+ Daniel Stone <daniel@fooishbar.org>, hwentlan@amd.com,
+ christian.koenig@amd.com, ville.syrjala@linux.intel.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 4, 2023, at 16:51, Christian K=C3=B6nig wrote:
-> Am 04.07.23 um 16:31 schrieb Arnd Bergmann:
->> On Tue, Jul 4, 2023, at 14:33, Christian K=C3=B6nig wrote:
->>>
->>> Modern AMD GPUs have 16GiB of local memory (VRAM), making those
->>> accessible to a CPU which can only handle 32bit addresses by resizing
->>> the BAR is impossible to begin with.
->>>
->>> But going a step further even without resizing it is pretty hard to =
-get
->>> that hardware working on such an architecture.
->> I'd still like to understand this part better, as we have a lot of
->> arm64 chips with somewhat flawed PCIe implementations, often with
->> a tiny 64-bit memory space, but otherwise probably capable of
->> using a GPU.
+--0000000000005a744405ffb45bd7
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Simulator cannot be changed
+
+To join the meeting on Google Meet, click this link:
+https://meet.google.com/ccm-jjwz-ehk
+
+Or open Meet and enter this code: ccm-jjwz-ehk
+
+On Mon, Jul 3, 2023, 11:33 AM Andr=C3=A9 Almeida <andrealmeid@igalia.com> w=
+rote:
+
 >
-> Yeah, those are unfortunately very well known to us :(
 >
->> What exactly do you expect to happen here?
->>
->> a) Use only part of the VRAM but otherwise work as expected
->> b) Access all of the VRAM, but at a performance cost for
->>     bank switching?
+> Em 03/07/2023 05:38, Pekka Paalanen escreveu:
+> > On Fri, 30 Jun 2023 23:09:17 -0300
+> > Andr=C3=A9 Almeida <andrealmeid@igalia.com> wrote:
+> >
+> >> Specify how the atomic state is maintained between userspace and
+> >> kernel, plus the special case for async flips.
+> >>
+> >> Signed-off-by: Andr=C3=A9 Almeida <andrealmeid@igalia.com>
 >
-> We have tons of x86 systems where we can't resize the BAR (because of=20
-> lack of BIOS setup of the root PCIe windows). So bank switching is sti=
-ll=20
-> perfectly supported.
+> [...]
+>
+> >
+> > If you want to take these and need my Sob, that would be
+> > Signed-off-by: Pekka Paalanen <pekka.paalanen@collabora.com>
+> >
+> >
+>
+> Thank you very much! Your version is way better than mine, I'll use it
+> in my next version.
+>
+> > Thanks,
+> > pq
+>
 
-Ok, good.
+--0000000000005a744405ffb45bd7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> After investigating (which sometimes even includes involving engineers=20
-> from ARM) we usually find that those boards doesn't even remotely comp=
-ly=20
-> to the PCIe specification, both regarding power as well as functional=20
-> things like DMA coherency.
+<div dir=3D"auto">Simulator cannot be changed=C2=A0<br><br><div data-smartm=
+ail=3D"gmail_signature">To join the meeting on Google Meet, click this link=
+: <br><a href=3D"https://meet.google.com/ccm-jjwz-ehk">https://meet.google.=
+com/ccm-jjwz-ehk</a> <br> <br>Or open Meet and enter this code: ccm-jjwz-eh=
+k</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Mon, Jul 3, 2023, 11:33 AM Andr=C3=A9 Almeida &lt;<a href=3D"mail=
+to:andrealmeid@igalia.com">andrealmeid@igalia.com</a>&gt; wrote:<br></div><=
+blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px=
+ #ccc solid;padding-left:1ex"><br>
+<br>
+Em 03/07/2023 05:38, Pekka Paalanen escreveu:<br>
+&gt; On Fri, 30 Jun 2023 23:09:17 -0300<br>
+&gt; Andr=C3=A9 Almeida &lt;<a href=3D"mailto:andrealmeid@igalia.com" targe=
+t=3D"_blank" rel=3D"noreferrer">andrealmeid@igalia.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt;&gt; Specify how the atomic state is maintained between userspace and<b=
+r>
+&gt;&gt; kernel, plus the special case for async flips.<br>
+&gt;&gt;<br>
+&gt;&gt; Signed-off-by: Andr=C3=A9 Almeida &lt;<a href=3D"mailto:andrealmei=
+d@igalia.com" target=3D"_blank" rel=3D"noreferrer">andrealmeid@igalia.com</=
+a>&gt;<br>
+<br>
+[...]<br>
+<br>
+&gt; <br>
+&gt; If you want to take these and need my Sob, that would be<br>
+&gt; Signed-off-by: Pekka Paalanen &lt;<a href=3D"mailto:pekka.paalanen@col=
+labora.com" target=3D"_blank" rel=3D"noreferrer">pekka.paalanen@collabora.c=
+om</a>&gt;<br>
+&gt; <br>
+&gt; <br>
+<br>
+Thank you very much! Your version is way better than mine, I&#39;ll use it =
+<br>
+in my next version.<br>
+<br>
+&gt; Thanks,<br>
+&gt; pq<br>
+</blockquote></div>
 
-Makes sense, the power usage is clearly going to make this
-impossible on a lot of boards. I would have expected noncoherent
-DMA to be a solvable problem, since that generally works with
-all drivers that use the dma-mapping interfaces correctly,
-but I understand that drivers/gpu/* often does its own thing
-here, which may make that harder.
-
-     Arnd
+--0000000000005a744405ffb45bd7--
