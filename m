@@ -2,61 +2,37 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76A07749E56
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jul 2023 15:58:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B41B5749E94
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jul 2023 16:06:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A54510E0C3;
-	Thu,  6 Jul 2023 13:58:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF67510E04B;
+	Thu,  6 Jul 2023 14:06:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com
- [IPv6:2607:f8b0:4864:20::233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7B1410E096;
- Thu,  6 Jul 2023 13:58:38 +0000 (UTC)
-Received: by mail-oi1-x233.google.com with SMTP id
- 5614622812f47-3a1d9b64837so763290b6e.0; 
- Thu, 06 Jul 2023 06:58:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1688651917; x=1691243917;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=5Hp8tU9cWu6R6f3sn+8A1XNNoAmV3ki5dbuL76Q7q/g=;
- b=jW8fZyoU3DO00/VknLBRC1h6kBMu8XI1LsUcKUKbG7uS5K1zHOZBpp0CDxgpvDTFKw
- +5FkbPG7Q9BwXmE1ZYHxTwB7BM4JadMfceYFtCn07I0gnGEOHbDw3Y4g3euxTJn17A6G
- NmkXaQsNHQ20wcd9dWE9ayH70yxcuwfl3TonKln0gWcCqgO3A7voL187FesbmfRYIg1b
- WIQvbCmy5b2Lo2HrqAjcbhWboCl225wSoQ+oL8U5+yMAKgb5dagv5oGgo7zCR0T9aWKy
- jRrdwXUITSOIUq9BgJvgnuKEX8bW1agbSp6/6Og0vPnJD79JI5iigu9n5yVyvcg3sRv9
- BPOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1688651917; x=1691243917;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=5Hp8tU9cWu6R6f3sn+8A1XNNoAmV3ki5dbuL76Q7q/g=;
- b=LHRY/IaF91TnGmjnygHSK3XkGNKMSgkDPRz2ne/E3s7i+ZukFg0lfSgDjJTJJG5zjT
- B4WNmctKpP2LVhQsLvEYOi63yydPBRl6buf5Q3lmVfioHLYHxhl+pN2WsC3PAP49cPru
- rHMKtrGOkWjgNNz7rCSNCX4Kg3r51OH7rwcg2fcqdqQpyq4R58hPFiQTKt4KsTDLs7ah
- f4SkPXwnV9tp1IGEXgnk7gyGArT2zh0bFp/Gyx9rBVQxjlL+DOHYEUItIDAT5PRHGU8/
- RVNJfSZNk7uNutHgvi/qWng953JE8n0/lGQcEfQHDvrX+fW3TIvJzMCeffGMXuuCAv7R
- 7BFA==
-X-Gm-Message-State: ABy/qLZuV6WnN5/+VXReiD+RY4jZJM5lQr9WDPisIEnGrz5B9n64E0P6
- N/ed/WbefL6jsLJDNu7v2L9AEdkyo5Dx4xpNJig=
-X-Google-Smtp-Source: APBJJlHwWrHIAzdFBa636bFDMNRZF9RFGE1HyH/tDHgJxsmdjuaeJ2kJEJRRwYbbDY70pb0vxaKHA7rj0kFXbVJUIRU=
-X-Received: by 2002:a05:6808:1d6:b0:3a0:4dc3:25ff with SMTP id
- x22-20020a05680801d600b003a04dc325ffmr2199089oic.7.1688651917567; Thu, 06 Jul
- 2023 06:58:37 -0700 (PDT)
+Received: from andre.telenet-ops.be (andre.telenet-ops.be
+ [IPv6:2a02:1800:120:4::f00:15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E45810E47F
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jul 2023 08:36:53 +0000 (UTC)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:5979:7b6f:39a:b9cb])
+ by andre.telenet-ops.be with bizsmtp
+ id Hkcp2A00745Xpxs01kcpyU; Thu, 06 Jul 2023 10:36:49 +0200
+Received: from rox.of.borg ([192.168.97.57])
+ by ramsan.of.borg with esmtp (Exim 4.95)
+ (envelope-from <geert@linux-m68k.org>) id 1qHKTk-000fHu-R2;
+ Thu, 06 Jul 2023 10:36:49 +0200
+Received: from geert by rox.of.borg with local (Exim 4.95)
+ (envelope-from <geert@linux-m68k.org>) id 1qHKTp-00Ea8A-5m;
+ Thu, 06 Jul 2023 10:36:49 +0200
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Subject: [PATCH libdrm v2] amdgpu: Use PRI?64 to format uint64_t
+Date: Thu,  6 Jul 2023 10:36:47 +0200
+Message-Id: <8ffa3be3dc7b27345dde3bb32498c4cd3af050fa.1688632590.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20230706021102.2066-1-yangrong@vivo.com>
-In-Reply-To: <20230706021102.2066-1-yangrong@vivo.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 6 Jul 2023 09:58:26 -0400
-Message-ID: <CADnq5_MSkJf=-QMPYNQp03=6mbb+OEHnPFW0=WKiS0VMc6ricQ@mail.gmail.com>
-Subject: Re: [PATCH] Fix max/min warnings in virtio_net, amd/display,
- and io_uring
-To: Yang Rong <yangrong@vivo.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 06 Jul 2023 14:06:34 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,160 +44,124 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Max Tseng <Max.Tseng@amd.com>, "Michael S. Tsirkin" <mst@redhat.com>,
- Jason Wang <jasowang@redhat.com>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- "open list:VIRTIO CORE AND NET DRIVERS"
- <virtualization@lists.linux-foundation.org>,
- Eric Dumazet <edumazet@google.com>, Jun Lei <Jun.Lei@amd.com>,
- Josip Pavic <Josip.Pavic@amd.com>, Xuan Zhuo <xuanzhuo@linux.alibaba.com>,
- David Airlie <airlied@gmail.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- "open list:AMD DISPLAY CORE" <amd-gfx@lists.freedesktop.org>,
- "open list:IO_URING" <io-uring@vger.kernel.org>,
- Alvin Lee <Alvin.Lee2@amd.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Harry Wentland <harry.wentland@amd.com>,
- opensource.kernel@vivo.com, Leo Li <sunpeng.li@amd.com>,
- Cruise Hung <cruise.hung@amd.com>, Jens Axboe <axboe@kernel.dk>,
- "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
- Qingqing Zhuo <qingqing.zhuo@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- open list <linux-kernel@vger.kernel.org>, luhongfei@vivo.com,
- "David S. Miller" <davem@davemloft.net>, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Pavel Begunkov <asml.silence@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 6, 2023 at 3:37=E2=80=AFAM Yang Rong <yangrong@vivo.com> wrote:
->
-> The files drivers/net/virtio_net.c, drivers/gpu/drm/amd/display/dc/dc_dmu=
-b_srv.c, and io_uring/io_uring.c were modified to fix warnings.
-> Specifically, the opportunities for max() and min() were utilized to addr=
-ess the warnings.
+On 32-bit:
 
-Please split this into 3 patches, one for each component.
+    ../tests/amdgpu/amdgpu_stress.c: In function ‘alloc_bo’:
+    ../tests/amdgpu/amdgpu_stress.c:178:49: warning: format ‘%lx’ expects argument of type ‘long unsigned int’, but argument 4 has type ‘uint64_t’ {aka ‘long long unsigned int’} [-Wformat=]
+      fprintf(stdout, "Allocated BO number %u at 0x%lx, domain 0x%x, size %lu\n",
+                                                   ~~^
+                                                   %llx
+       num_buffers++, addr, domain, size);
+                      ~~~~
+    ../tests/amdgpu/amdgpu_stress.c:178:72: warning: format ‘%lu’ expects argument of type ‘long unsigned int’, but argument 6 has type ‘uint64_t’ {aka ‘long long unsigned int’} [-Wformat=]
+      fprintf(stdout, "Allocated BO number %u at 0x%lx, domain 0x%x, size %lu\n",
+                                                                          ~~^
+                                                                          %llu
+       num_buffers++, addr, domain, size);
+                                    ~~~~
+    ../tests/amdgpu/amdgpu_stress.c: In function ‘submit_ib’:
+    ../tests/amdgpu/amdgpu_stress.c:276:54: warning: format ‘%lx’ expects argument of type ‘long unsigned int’, but argument 5 has type ‘uint64_t’ {aka ‘long long unsigned int’} [-Wformat=]
+      fprintf(stdout, "Submitted %u IBs to copy from %u(%lx) to %u(%lx) %lu bytes took %lu usec\n",
+                                                        ~~^
+                                                        %llx
+       count, from, virtual[from], to, virtual[to], copied, delta / 1000);
+                    ~~~~~~~~~~~~~
+    ../tests/amdgpu/amdgpu_stress.c:276:65: warning: format ‘%lx’ expects argument of type ‘long unsigned int’, but argument 7 has type ‘uint64_t’ {aka ‘long long unsigned int’} [-Wformat=]
+      fprintf(stdout, "Submitted %u IBs to copy from %u(%lx) to %u(%lx) %lu bytes took %lu usec\n",
+                                                                   ~~^
+                                                                   %llx
+       count, from, virtual[from], to, virtual[to], copied, delta / 1000);
+                                       ~~~~~~~~~~~
+    ../tests/amdgpu/amdgpu_stress.c:276:70: warning: format ‘%lu’ expects argument of type ‘long unsigned int’, but argument 8 has type ‘uint64_t’ {aka ‘long long unsigned int’} [-Wformat=]
+      fprintf(stdout, "Submitted %u IBs to copy from %u(%lx) to %u(%lx) %lu bytes took %lu usec\n",
+                                                                        ~~^
+                                                                        %llu
+       count, from, virtual[from], to, virtual[to], copied, delta / 1000);
+                                                    ~~~~~~
+    ../tests/amdgpu/amdgpu_stress.c:276:85: warning: format ‘%lu’ expects argument of type ‘long unsigned int’, but argument 9 has type ‘uint64_t’ {aka ‘long long unsigned int’} [-Wformat=]
+      fprintf(stdout, "Submitted %u IBs to copy from %u(%lx) to %u(%lx) %lu bytes took %lu usec\n",
+                                                                                       ~~^
+                                                                                       %llu
+       count, from, virtual[from], to, virtual[to], copied, delta / 1000);
+                                                            ~~~~~~~~~~~~
+    ../tests/amdgpu/amdgpu_stress.c: In function ‘parse_size’:
+    ../tests/amdgpu/amdgpu_stress.c:296:24: warning: format ‘%li’ expects argument of type ‘long int *’, but argument 3 has type ‘uint64_t *’ {aka ‘long long unsigned int *’} [-Wformat=]
+      if (sscanf(optarg, "%li%1[kmgKMG]", &size, ext) < 1) {
+                          ~~^             ~~~~~
+                          %lli
+    ../tests/amdgpu/amdgpu_stress.c: In function ‘main’:
+    ../tests/amdgpu/amdgpu_stress.c:378:45: warning: format ‘%lu’ expects argument of type ‘long unsigned int’, but argument 3 has type ‘uint64_t’ {aka ‘long long unsigned int’} [-Wformat=]
+         fprintf(stderr, "Buffer size to small %lu\n", size);
+                                               ~~^     ~~~~
+                                               %llu
 
-Alex
+Fix this by using the proper "PRI?64" format specifiers.
 
->
-> Signed-off-by: Yang Rong <yangrong@vivo.com>
-> ---
->  drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c | 6 +++---
->  drivers/net/virtio_net.c                     | 3 ++-
->  io_uring/io_uring.c                          | 3 ++-
->  3 files changed, 7 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c b/drivers/gpu/d=
-rm/amd/display/dc/dc_dmub_srv.c
-> index c753c6f30dd7..df79aea49a3c 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-> +++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-> @@ -22,7 +22,7 @@
->   * Authors: AMD
->   *
->   */
-> -
-> +#include <linux/minmax.h>
->  #include "dc.h"
->  #include "dc_dmub_srv.h"
->  #include "../dmub/dmub_srv.h"
-> @@ -481,7 +481,7 @@ static void populate_subvp_cmd_drr_info(struct dc *dc=
-,
->         max_drr_vblank_us =3D div64_u64((subvp_active_us - prefetch_us -
->                         dc->caps.subvp_fw_processing_delay_us - drr_activ=
-e_us), 2) + drr_active_us;
->         max_drr_mallregion_us =3D subvp_active_us - prefetch_us - mall_re=
-gion_us - dc->caps.subvp_fw_processing_delay_us;
-> -       max_drr_supported_us =3D max_drr_vblank_us > max_drr_mallregion_u=
-s ? max_drr_vblank_us : max_drr_mallregion_us;
-> +       max_drr_supported_us =3D max(max_drr_vblank_us, max_drr_mallregio=
-n_us);
->         max_vtotal_supported =3D div64_u64(((uint64_t)drr_timing->pix_clk=
-_100hz * 100 * max_drr_supported_us),
->                         (((uint64_t)drr_timing->h_total * 1000000)));
->
-> @@ -771,7 +771,7 @@ void dc_dmub_setup_subvp_dmub_command(struct dc *dc,
->                 wm_val_refclk =3D context->bw_ctx.bw.dcn.watermarks.a.cst=
-ate_pstate.pstate_change_ns *
->                                 (dc->res_pool->ref_clocks.dchub_ref_clock=
-_inKhz / 1000) / 1000;
->
-> -               cmd.fw_assisted_mclk_switch_v2.config_data.watermark_a_ca=
-che =3D wm_val_refclk < 0xFFFF ? wm_val_refclk : 0xFFFF;
-> +               cmd.fw_assisted_mclk_switch_v2.config_data.watermark_a_ca=
-che =3D min(wm_val_refclk, 0xFFFF);
->         }
->
->         dm_execute_dmub_cmd(dc->ctx, &cmd, DM_DMUB_WAIT_TYPE_WAIT);
-> diff --git a/drivers/net/virtio_net.c b/drivers/net/virtio_net.c
-> index 9b3721424e71..5bb7da885f00 100644
-> --- a/drivers/net/virtio_net.c
-> +++ b/drivers/net/virtio_net.c
-> @@ -22,6 +22,7 @@
->  #include <net/route.h>
->  #include <net/xdp.h>
->  #include <net/net_failover.h>
-> +#include <linux/minmax.h>
->
->  static int napi_weight =3D NAPI_POLL_WEIGHT;
->  module_param(napi_weight, int, 0444);
-> @@ -1291,7 +1292,7 @@ static struct sk_buff *build_skb_from_xdp_buff(stru=
-ct net_device *dev,
->         __skb_put(skb, data_len);
->
->         metasize =3D xdp->data - xdp->data_meta;
-> -       metasize =3D metasize > 0 ? metasize : 0;
-> +       metasize =3D max(metasize, 0);
->         if (metasize)
->                 skb_metadata_set(skb, metasize);
->
-> diff --git a/io_uring/io_uring.c b/io_uring/io_uring.c
-> index e8096d502a7c..875ca657227d 100644
-> --- a/io_uring/io_uring.c
-> +++ b/io_uring/io_uring.c
-> @@ -47,6 +47,7 @@
->  #include <linux/refcount.h>
->  #include <linux/uio.h>
->  #include <linux/bits.h>
-> +#include <linux/minmax.h>
->
->  #include <linux/sched/signal.h>
->  #include <linux/fs.h>
-> @@ -2660,7 +2661,7 @@ static void *__io_uaddr_map(struct page ***pages, u=
-nsigned short *npages,
->                                         page_array);
->         if (ret !=3D nr_pages) {
->  err:
-> -               io_pages_free(&page_array, ret > 0 ? ret : 0);
-> +               io_pages_free(&page_array, max(ret, 0));
->                 return ret < 0 ? ERR_PTR(ret) : ERR_PTR(-EFAULT);
->         }
->         /*
-> --
-> 2.35.3
->
->
-> ________________________________
-> =E6=9C=AC=E9=82=AE=E4=BB=B6=E5=8F=8A=E5=85=B6=E9=99=84=E4=BB=B6=E5=86=85=
-=E5=AE=B9=E5=8F=AF=E8=83=BD=E5=90=AB=E6=9C=89=E6=9C=BA=E5=AF=86=E5=92=8C/=
-=E6=88=96=E9=9A=90=E7=A7=81=E4=BF=A1=E6=81=AF=EF=BC=8C=E4=BB=85=E4=BE=9B=E6=
-=8C=87=E5=AE=9A=E4=B8=AA=E4=BA=BA=E6=88=96=E6=9C=BA=E6=9E=84=E4=BD=BF=E7=94=
-=A8=E3=80=82=E8=8B=A5=E6=82=A8=E9=9D=9E=E5=8F=91=E4=BB=B6=E4=BA=BA=E6=8C=87=
-=E5=AE=9A=E6=94=B6=E4=BB=B6=E4=BA=BA=E6=88=96=E5=85=B6=E4=BB=A3=E7=90=86=E4=
-=BA=BA=EF=BC=8C=E8=AF=B7=E5=8B=BF=E4=BD=BF=E7=94=A8=E3=80=81=E4=BC=A0=E6=92=
-=AD=E3=80=81=E5=A4=8D=E5=88=B6=E6=88=96=E5=AD=98=E5=82=A8=E6=AD=A4=E9=82=AE=
-=E4=BB=B6=E4=B9=8B=E4=BB=BB=E4=BD=95=E5=86=85=E5=AE=B9=E6=88=96=E5=85=B6=E9=
-=99=84=E4=BB=B6=E3=80=82=E5=A6=82=E6=82=A8=E8=AF=AF=E6=94=B6=E6=9C=AC=E9=82=
-=AE=E4=BB=B6=EF=BC=8C=E8=AF=B7=E5=8D=B3=E4=BB=A5=E5=9B=9E=E5=A4=8D=E6=88=96=
-=E7=94=B5=E8=AF=9D=E6=96=B9=E5=BC=8F=E9=80=9A=E7=9F=A5=E5=8F=91=E4=BB=B6=E4=
-=BA=BA=EF=BC=8C=E5=B9=B6=E5=B0=86=E5=8E=9F=E5=A7=8B=E9=82=AE=E4=BB=B6=E3=80=
-=81=E9=99=84=E4=BB=B6=E5=8F=8A=E5=85=B6=E6=89=80=E6=9C=89=E5=A4=8D=E6=9C=AC=
-=E5=88=A0=E9=99=A4=E3=80=82=E8=B0=A2=E8=B0=A2=E3=80=82
-> The contents of this message and any attachments may contain confidential=
- and/or privileged information and are intended exclusively for the address=
-ee(s). If you are not the intended recipient of this message or their agent=
-, please note that any use, dissemination, copying, or storage of this mess=
-age or its attachments is not allowed. If you receive this message in error=
-, please notify the sender by reply the message or phone and delete this me=
-ssage, any attachments and any copies immediately.
-> Thank you
+Fixes: d77ccdf3ba6f5a39 ("amdgpu: add amdgpu_stress utility v2")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+On Linux/amd64, the format strings in the resulting binary are
+unchanged.
+
+v2:
+  - Use PRI?64 to unbreak 64-bit build.
+---
+ tests/amdgpu/amdgpu_stress.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/tests/amdgpu/amdgpu_stress.c b/tests/amdgpu/amdgpu_stress.c
+index 5c5c88c5be985eb6..f919351e1f17d70b 100644
+--- a/tests/amdgpu/amdgpu_stress.c
++++ b/tests/amdgpu/amdgpu_stress.c
+@@ -30,6 +30,7 @@
+ #include <errno.h>
+ #include <unistd.h>
+ #include <stdlib.h>
++#include <inttypes.h>
+ 
+ #include "drm.h"
+ #include "xf86drmMode.h"
+@@ -175,7 +176,7 @@ int alloc_bo(uint32_t domain, uint64_t size)
+ 
+ 	resources[num_buffers] = bo;
+ 	virtual[num_buffers] = addr;
+-	fprintf(stdout, "Allocated BO number %u at 0x%lx, domain 0x%x, size %lu\n",
++	fprintf(stdout, "Allocated BO number %u at 0x%" PRIx64 ", domain 0x%x, size %" PRIu64 "\n",
+ 		num_buffers++, addr, domain, size);
+ 	return 0;
+ }
+@@ -273,7 +274,7 @@ int submit_ib(uint32_t from, uint32_t to, uint64_t size, uint32_t count)
+ 	delta = stop.tv_nsec + stop.tv_sec * 1000000000UL;
+ 	delta -= start.tv_nsec + start.tv_sec * 1000000000UL;
+ 
+-	fprintf(stdout, "Submitted %u IBs to copy from %u(%lx) to %u(%lx) %lu bytes took %lu usec\n",
++	fprintf(stdout, "Submitted %u IBs to copy from %u(%" PRIx64 ") to %u(%" PRIx64 ") %" PRIu64 " bytes took %" PRIu64 " usec\n",
+ 		count, from, virtual[from], to, virtual[to], copied, delta / 1000);
+ 	return 0;
+ }
+@@ -293,7 +294,7 @@ uint64_t parse_size(void)
+ 	char ext[2];
+ 
+ 	ext[0] = 0;
+-	if (sscanf(optarg, "%li%1[kmgKMG]", &size, ext) < 1) {
++	if (sscanf(optarg, "%" PRIi64 "%1[kmgKMG]", &size, ext) < 1) {
+ 		fprintf(stderr, "Can't parse size arg: %s\n", optarg);
+ 		exit(EXIT_FAILURE);
+ 	}
+@@ -375,7 +376,7 @@ int main(int argc, char **argv)
+ 			next_arg(argc, argv, "Missing buffer size");
+ 			size = parse_size();
+ 			if (size < getpagesize()) {
+-				fprintf(stderr, "Buffer size to small %lu\n", size);
++				fprintf(stderr, "Buffer size to small %" PRIu64 "\n", size);
+ 				exit(EXIT_FAILURE);
+ 			}
+ 			r = alloc_bo(domain, size);
+-- 
+2.34.1
+
