@@ -2,75 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 251A4749E95
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jul 2023 16:06:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 315DA749E93
+	for <lists+amd-gfx@lfdr.de>; Thu,  6 Jul 2023 16:06:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2380710E404;
-	Thu,  6 Jul 2023 14:06:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A663010E0A2;
+	Thu,  6 Jul 2023 14:06:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C75010E403
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jul 2023 14:02:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1688652143;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=0GE7k8I9982HVE9TTWbDiwrZOKfvdOMPK3S9DyegjXE=;
- b=bHuAjGdMeb5UM7luqOYiBeR/SBM0Uv+jAqXatTXJi/062i/HA8yoilJE8rurBOGAcNj6PJ
- 6QkXfiyWmZ8I1+XwOC/2hHjGv2710/4PkQjn1WHxlCz9xzt178m6/jQdOQJkITqOcseSee
- rOrFxSlRIx5fxO95bWgnL4effoiLkVs=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-179-j2jn559mPj-HKLiI7yRfSQ-1; Thu, 06 Jul 2023 10:02:21 -0400
-X-MC-Unique: j2jn559mPj-HKLiI7yRfSQ-1
-Received: by mail-wr1-f70.google.com with SMTP id
- ffacd0b85a97d-3141a98a29aso417737f8f.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 06 Jul 2023 07:02:21 -0700 (PDT)
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com
+ [IPv6:2607:f8b0:4864:20::42d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0C8210E405
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jul 2023 14:03:55 +0000 (UTC)
+Received: by mail-pf1-x42d.google.com with SMTP id
+ d2e1a72fcca58-656bc570a05so152185b3a.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 06 Jul 2023 07:03:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=kernel-dk.20221208.gappssmtp.com; s=20221208; t=1688652235; x=1691244235;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=WhSDI9mp0MYKeqY0tJX7SergTVTmGv0F/ckbyNmGNLQ=;
+ b=FMqh2CmzOm6XDjJjezWBlN875lQ5T+a7DnklQNymtU9D+p4Vamdg/lVJcXx5LK9wQB
+ KMF3m7xyChwczs3gSrW0hfYLg6AHUOPg2tw1QHIcglCDiKzSYTOIQrtnMYep6XtsjIep
+ DxJJ6tEz23KWKTCsBzXv4e2DMZK0tudoGmt64Vn23mE4w14gdIX8FajdCS/c+EBdj4BM
+ OLhNcMy3ZYtdTw3gnyRZjxn7tMXpguxXzPohD9RzlAV02/2dZlziCIX9IP1zVTQgKS/1
+ HI6e6TX7bpBdHRlpwO53EfTwR3UPufykmkpeAJRybBh5mzEiKnBBl2q/GqPD8Ytlw/Gs
+ lsQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1688652140; x=1691244140;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
+ d=1e100.net; s=20221208; t=1688652235; x=1691244235;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=0GE7k8I9982HVE9TTWbDiwrZOKfvdOMPK3S9DyegjXE=;
- b=MC65W4Y/EM0ExlYyvdUxGQ6HxXndVfGY7Qtn65wxgwcMz1dpDtwwFMHyJe70EskEzD
- tYKkhu8JAguMK8eyzCqVyMfR2X3UUycaMvh/fwf4SES4ZCVojOwLhwXdw8TrWvd73RZY
- XUtYFXs2UgM7pDVlxH+TzQzAu4YnKx07JXagLqsvqYTWdyMDIgBs/EuvNWuSvy3ANNhC
- PFs1CuIzoapG3xzNpoIyfXZSApWDRW3rH85GLIJ4onHodMizSi/RaH/85dhJTiPW/c6N
- 7HhGc8r3T7aYQh6MXGWlgPjc1rnppfCOwrGZcD1sA1DZNF83u945p51MooZpGwjpQo+I
- cVNQ==
-X-Gm-Message-State: ABy/qLaA48M3YMyFlaR1/pUH8jLJeyKI/4Vb5lAK7tnvRZUXAFoDynoY
- BZycMYDKfwV4GZmYhz+V3UkaYP/TcNiaJE2vIc/PAx9sQiHpTDjnHTU2U4fFz2EoMc+iZRC0Tip
- 39ua3FzzbCatT0pyL0LWlD2qBEw==
-X-Received: by 2002:a5d:4e12:0:b0:313:e2c8:bed1 with SMTP id
- p18-20020a5d4e12000000b00313e2c8bed1mr2235658wrt.34.1688652140610; 
- Thu, 06 Jul 2023 07:02:20 -0700 (PDT)
-X-Google-Smtp-Source: APBJJlHcrZAK048UNMfdOsb+IYlPvPsKZoDto6N+0HK8CkttE8tg+x61xjZ/Drujf9ZKOumGT2ngEg==
-X-Received: by 2002:a5d:4e12:0:b0:313:e2c8:bed1 with SMTP id
- p18-20020a5d4e12000000b00313e2c8bed1mr2235624wrt.34.1688652140228; 
- Thu, 06 Jul 2023 07:02:20 -0700 (PDT)
-Received: from redhat.com ([2.52.13.33]) by smtp.gmail.com with ESMTPSA id
- o2-20020a5d4742000000b0031434936f0dsm1960350wrs.68.2023.07.06.07.02.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 06 Jul 2023 07:02:19 -0700 (PDT)
-Date: Thu, 6 Jul 2023 10:02:13 -0400
-From: "Michael S. Tsirkin" <mst@redhat.com>
-To: Yang Rong <yangrong@vivo.com>
+ bh=WhSDI9mp0MYKeqY0tJX7SergTVTmGv0F/ckbyNmGNLQ=;
+ b=dKJaTAmBeXFQOp3lQn8shqG+KzIyBoLe7bTixrHkgn3irTPorfagb9V45MyhpDK1He
+ OYrDAyZrm9BmVNZxUXLk8zhedejvSGzO6CMtbiKarmcMKplHYecVypUb1yDDkOdUP4z9
+ 7n6D1x4lh1x0sutuWb/T2QThBvK6+ITHG32T7McFiG4GSKEySJquLwiGhQ/60xiLjf5+
+ JKtxUG7LVFOoW/OamzbftIFKi9OtzquVfpgfUCmvS1ZAwS9TA17Z1eA61RMjMB/y/dPe
+ rm1Mm6pvsGL/pzPsEpOCL4VnlJKg4kclkkJ/rFE/BOQWxHdwiKz4Kbo0v+f+CvH4WeFe
+ jWWg==
+X-Gm-Message-State: ABy/qLaVh79u+ZsUw5ON1CV4ZfHAHA/9ovxJa89kxieHtK5E951qPk8Q
+ /F2Gh8yBTNFmO+VJWd3O5d1qzw==
+X-Google-Smtp-Source: APBJJlHWx70FxXddJLp/svv44qJ/lHFgMni3NpkbFoqzcjvrqGi64yR8YRM3ydyDuI4xKaOrlEAb7Q==
+X-Received: by 2002:a05:6a20:7495:b0:12d:2abe:549a with SMTP id
+ p21-20020a056a20749500b0012d2abe549amr2182854pzd.6.1688652234613; 
+ Thu, 06 Jul 2023 07:03:54 -0700 (PDT)
+Received: from [192.168.1.136] ([198.8.77.157])
+ by smtp.gmail.com with ESMTPSA id
+ z21-20020aa791d5000000b0063b898b3502sm1322987pfa.153.2023.07.06.07.03.51
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 06 Jul 2023 07:03:53 -0700 (PDT)
+Message-ID: <ec9b55b5-c64c-3ea4-9f39-128cd2e0a8ac@kernel.dk>
+Date: Thu, 6 Jul 2023 08:03:51 -0600
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
 Subject: Re: [PATCH] Fix max/min warnings in virtio_net, amd/display, and
  io_uring
-Message-ID: <20230706100133-mutt-send-email-mst@kernel.org>
+Content-Language: en-US
+To: Alex Deucher <alexdeucher@gmail.com>, Yang Rong <yangrong@vivo.com>
 References: <20230706021102.2066-1-yangrong@vivo.com>
-MIME-Version: 1.0
-In-Reply-To: <20230706021102.2066-1-yangrong@vivo.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+ <CADnq5_MSkJf=-QMPYNQp03=6mbb+OEHnPFW0=WKiS0VMc6ricQ@mail.gmail.com>
+From: Jens Axboe <axboe@kernel.dk>
+In-Reply-To: <CADnq5_MSkJf=-QMPYNQp03=6mbb+OEHnPFW0=WKiS0VMc6ricQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Thu, 06 Jul 2023 14:06:34 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -83,8 +78,7 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Max Tseng <Max.Tseng@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+Cc: Max Tseng <Max.Tseng@amd.com>, "Michael S. Tsirkin" <mst@redhat.com>,
  Jason Wang <jasowang@redhat.com>,
  "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
  "open list:VIRTIO CORE AND NET DRIVERS"
@@ -97,110 +91,27 @@ Cc: Max Tseng <Max.Tseng@amd.com>,
  Alvin Lee <Alvin.Lee2@amd.com>, Jakub Kicinski <kuba@kernel.org>,
  Paolo Abeni <pabeni@redhat.com>, Harry Wentland <harry.wentland@amd.com>,
  opensource.kernel@vivo.com, Leo Li <sunpeng.li@amd.com>,
- Cruise Hung <cruise.hung@amd.com>, Jens Axboe <axboe@kernel.dk>,
+ Cruise Hung <cruise.hung@amd.com>,
  "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
  Qingqing Zhuo <qingqing.zhuo@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
  open list <linux-kernel@vger.kernel.org>, luhongfei@vivo.com,
  "David S. Miller" <davem@davemloft.net>, Daniel Vetter <daniel@ffwll.ch>,
  Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
  Pavel Begunkov <asml.silence@gmail.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 06, 2023 at 10:06:16AM +0800, Yang Rong wrote:
-> The files drivers/net/virtio_net.c, drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c, and io_uring/io_uring.c were modified to fix warnings.
+On 7/6/23 7:58?AM, Alex Deucher wrote:
+> On Thu, Jul 6, 2023 at 3:37?AM Yang Rong <yangrong@vivo.com> wrote:
+>>
+>> The files drivers/net/virtio_net.c, drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c, and io_uring/io_uring.c were modified to fix warnings.
+>> Specifically, the opportunities for max() and min() were utilized to address the warnings.
+> 
+> Please split this into 3 patches, one for each component.
 
-what warnings? the point of the warning is to analyze it not "fix" it
-blindly.
+Don't bother with the io_uring one, code is far more readable as-is.
 
-> Specifically, the opportunities for max() and min() were utilized to address the warnings.
-> 
-> Signed-off-by: Yang Rong <yangrong@vivo.com>
-> ---
->  drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c | 6 +++---
->  drivers/net/virtio_net.c                     | 3 ++-
->  io_uring/io_uring.c                          | 3 ++-
->  3 files changed, 7 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-> index c753c6f30dd7..df79aea49a3c 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-> +++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-> @@ -22,7 +22,7 @@
->   * Authors: AMD
->   *
->   */
-> -
-> +#include <linux/minmax.h>
->  #include "dc.h"
->  #include "dc_dmub_srv.h"
->  #include "../dmub/dmub_srv.h"
-> @@ -481,7 +481,7 @@ static void populate_subvp_cmd_drr_info(struct dc *dc,
->         max_drr_vblank_us = div64_u64((subvp_active_us - prefetch_us -
->                         dc->caps.subvp_fw_processing_delay_us - drr_active_us), 2) + drr_active_us;
->         max_drr_mallregion_us = subvp_active_us - prefetch_us - mall_region_us - dc->caps.subvp_fw_processing_delay_us;
-> -       max_drr_supported_us = max_drr_vblank_us > max_drr_mallregion_us ? max_drr_vblank_us : max_drr_mallregion_us;
-> +       max_drr_supported_us = max(max_drr_vblank_us, max_drr_mallregion_us);
->         max_vtotal_supported = div64_u64(((uint64_t)drr_timing->pix_clk_100hz * 100 * max_drr_supported_us),
->                         (((uint64_t)drr_timing->h_total * 1000000)));
-> 
-> @@ -771,7 +771,7 @@ void dc_dmub_setup_subvp_dmub_command(struct dc *dc,
->                 wm_val_refclk = context->bw_ctx.bw.dcn.watermarks.a.cstate_pstate.pstate_change_ns *
->                                 (dc->res_pool->ref_clocks.dchub_ref_clock_inKhz / 1000) / 1000;
-> 
-> -               cmd.fw_assisted_mclk_switch_v2.config_data.watermark_a_cache = wm_val_refclk < 0xFFFF ? wm_val_refclk : 0xFFFF;
-> +               cmd.fw_assisted_mclk_switch_v2.config_data.watermark_a_cache = min(wm_val_refclk, 0xFFFF);
->         }
-> 
->         dm_execute_dmub_cmd(dc->ctx, &cmd, DM_DMUB_WAIT_TYPE_WAIT);
-> diff --git a/drivers/net/virtio_net.c b/drivers/net/virtio_net.c
-> index 9b3721424e71..5bb7da885f00 100644
-> --- a/drivers/net/virtio_net.c
-> +++ b/drivers/net/virtio_net.c
-> @@ -22,6 +22,7 @@
->  #include <net/route.h>
->  #include <net/xdp.h>
->  #include <net/net_failover.h>
-> +#include <linux/minmax.h>
-> 
->  static int napi_weight = NAPI_POLL_WEIGHT;
->  module_param(napi_weight, int, 0444);
-> @@ -1291,7 +1292,7 @@ static struct sk_buff *build_skb_from_xdp_buff(struct net_device *dev,
->         __skb_put(skb, data_len);
-> 
->         metasize = xdp->data - xdp->data_meta;
-> -       metasize = metasize > 0 ? metasize : 0;
-> +       metasize = max(metasize, 0);
->         if (metasize)
->                 skb_metadata_set(skb, metasize);
-> 
-> diff --git a/io_uring/io_uring.c b/io_uring/io_uring.c
-> index e8096d502a7c..875ca657227d 100644
-> --- a/io_uring/io_uring.c
-> +++ b/io_uring/io_uring.c
-> @@ -47,6 +47,7 @@
->  #include <linux/refcount.h>
->  #include <linux/uio.h>
->  #include <linux/bits.h>
-> +#include <linux/minmax.h>
-> 
->  #include <linux/sched/signal.h>
->  #include <linux/fs.h>
-> @@ -2660,7 +2661,7 @@ static void *__io_uaddr_map(struct page ***pages, unsigned short *npages,
->                                         page_array);
->         if (ret != nr_pages) {
->  err:
-> -               io_pages_free(&page_array, ret > 0 ? ret : 0);
-> +               io_pages_free(&page_array, max(ret, 0));
->                 return ret < 0 ? ERR_PTR(ret) : ERR_PTR(-EFAULT);
->         }
->         /*
-> --
-> 2.35.3
-> 
-> 
-> ________________________________
-> 本邮件及其附件内容可能含有机密和/或隐私信息，仅供指定个人或机构使用。若您非发件人指定收件人或其代理人，请勿使用、传播、复制或存储此邮件之任何内容或其附件。如您误收本邮件，请即以回复或电话方式通知发件人，并将原始邮件、附件及其所有复本删除。谢谢。
-> The contents of this message and any attachments may contain confidential and/or privileged information and are intended exclusively for the addressee(s). If you are not the intended recipient of this message or their agent, please note that any use, dissemination, copying, or storage of this message or its attachments is not allowed. If you receive this message in error, please notify the sender by reply the message or phone and delete this message, any attachments and any copies immediately.
-> Thank you
+-- 
+Jens Axboe
 
