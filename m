@@ -2,93 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF18B74B5FA
-	for <lists+amd-gfx@lfdr.de>; Fri,  7 Jul 2023 19:47:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8287574B67D
+	for <lists+amd-gfx@lfdr.de>; Fri,  7 Jul 2023 20:40:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A6E810E5CF;
-	Fri,  7 Jul 2023 17:47:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 816D810E5D3;
+	Fri,  7 Jul 2023 18:40:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2067.outbound.protection.outlook.com [40.107.92.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAF6810E5CF
- for <amd-gfx@lists.freedesktop.org>; Fri,  7 Jul 2023 17:47:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YEBr58vbG7KU/hKzzWyNxzwaIhh7zMMGWhjPbpwNZi2y4yZeqOtxbv0IQDRaYHj5THyO0J7vfagWRyVc/B3CMDY04XlrvJHnU/Y5vqlo1yahNmf76FK08xsfn1qatZVzmUsX9AAyFPt4mPKgv72dW/l8w7GyhxkXUqSkHSzVYiGXk3yUNd7LXMN0CZKa+KajnPaFdcF1J5Mw7wCvPqUnIbe2mBjRbF7yrtlv4SgTHD0ra9CzGoUm/ohbxNcMsvCwBTELoxCUhkotbAeG+66wPM0OCg+d9jFPjd3hJ+nzt8dUwmawP7FtxALTxQYzkYdpJQphG5AfVgGcGUKYhmU+ew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3pBNat+0zlhUKw/QxAvP87mq56G5XKLwP5cOrCqOgm4=;
- b=M1eJdVbkQcpy+9/BxJQOYedi9pKoUjxuPb4SqdV6dl5fHcmXo5QjZm5dVK67zeuNhq0e9Tk32Fs1G4kJJGivdGgFfey7mAjbnPgHseiZnT8cd4cilSyPrWEdaPRWtvfq1yjCm2Cmjd7vsF1z1FJwV8MAP4K5wI89vgfMxQuSFu+LFQAG1BzV/MmbG/YktXZ0uWAglidyu1PzAIrz50C/jC4eISmJqrrlAkjyeJlPdkb4IwRJ9JSjvuH7GDR0BZ/V4E/7SfcQdcEGsqa0Ze9WkcbQ7hFnQ59LHSukV5y7XQx6xJoxZeye+zmzGbOuPOY9dMro2B6visctTWzfJr1cSA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3pBNat+0zlhUKw/QxAvP87mq56G5XKLwP5cOrCqOgm4=;
- b=fIjvKQXGqKeJjKI4QOECKadxPZsiYWj97lYioLGKNwmuiCSmhap8cPCtJdeQsniY7R3hdEMV/IBB0Y5rB4p8aMZI5M2TiGXeTzs1pvaux/0VwNAYlF56KkZ/Pm3tFVHs7b0OWV4TMsjjFPhWNRw7QPQriFFJ+XZkUG95ADwGEjk=
-Received: from MW2PR16CA0017.namprd16.prod.outlook.com (2603:10b6:907::30) by
- MN2PR12MB4517.namprd12.prod.outlook.com (2603:10b6:208:267::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.25; Fri, 7 Jul
- 2023 17:47:11 +0000
-Received: from CO1NAM11FT050.eop-nam11.prod.protection.outlook.com
- (2603:10b6:907:0:cafe::22) by MW2PR16CA0017.outlook.office365.com
- (2603:10b6:907::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.25 via Frontend
- Transport; Fri, 7 Jul 2023 17:47:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT050.mail.protection.outlook.com (10.13.174.79) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6521.45 via Frontend Transport; Fri, 7 Jul 2023 17:47:10 +0000
-Received: from eric-hp-elitebook-845-g7.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Fri, 7 Jul 2023 12:47:07 -0500
-From: Eric Huang <jinhuieric.huang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 4/4] drm/amdkfd: add multi-process debugging support for GC
- v9.4.3
-Date: Fri, 7 Jul 2023 13:46:48 -0400
-Message-ID: <20230707174648.146441-5-jinhuieric.huang@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230707174648.146441-1-jinhuieric.huang@amd.com>
-References: <20230707174648.146441-1-jinhuieric.huang@amd.com>
+Received: from mail-oo1-xc35.google.com (mail-oo1-xc35.google.com
+ [IPv6:2607:f8b0:4864:20::c35])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4B7910E5D1;
+ Fri,  7 Jul 2023 18:40:49 +0000 (UTC)
+Received: by mail-oo1-xc35.google.com with SMTP id
+ 006d021491bc7-56598263d1dso1605914eaf.0; 
+ Fri, 07 Jul 2023 11:40:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1688755248; x=1691347248;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=m4khBbbMzZOqVO6sgwUxA/mR93/pguaqzC86olg1A9Q=;
+ b=IvQs+5Bd72VtYmZOzs/keL4rEe6Y8ERi9NcvH2dfxSHBEMFJJ6pesO1qYZq+WULb0m
+ oFOmtgCN/xYyC5sMwYMccXqQB4os0XJ6F89YGhE0eTXcEAu/9VkCcAR+/1bgwD4HXDFu
+ bBl/BhlBskGskIaCo8xb5oMpTjG0/CxuiN12IvRNlqcwF6NOiFduaCNxiY049aekB+WS
+ a54E4faLUUVXMETTTcDzjETJPFQAfqUCb3KMPe6X/8yaLGTkNwoy8De8Pawf3lbOnoDp
+ z+Td1wmDer6ni86YAw0IRlvdF6MjPuex4CW7+872FFhhpgnxfvpT625MrwgsFhWg2nJz
+ 518g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1688755248; x=1691347248;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=m4khBbbMzZOqVO6sgwUxA/mR93/pguaqzC86olg1A9Q=;
+ b=jsuBhtlUNnC1g9Hr+u7b/KRy3jzUd/gVqTXxqSnyWo2hXC73EZQbYU2rUlyWitb59a
+ b0VpU9+POFKEJiPalS1QzewKVhi7q9r3qfI5L/kcPSSPloPh4sFK1yQLuGz5hj94x9j6
+ UFkQRqlmE3Q/7jLzKm57C/Y9URl8c+LtK9Gp5Yc/DfdvL20G9UkZJipq98cahWubVxCX
+ aLPpzsCm7NJItt6M7v2jZowrahC8fsmsc8uhiEcFlcEq/PVEKypvzcAOyuw0/LLxN/JE
+ 8XXNQE3cQn0xU+nX5MuxbssaAonKpKqiSN0L/6ygqEMki5HrvJQPqH0oIAfWelDPSWY9
+ v7HA==
+X-Gm-Message-State: ABy/qLbvULf478y9MPKcmj/SBBIETim7URKuAmhJTeRnj3Xx4GXKdvUW
+ Zcz6/rXsinblEbGN1Bq/3avykAnk0VTgPugNeCA=
+X-Google-Smtp-Source: APBJJlEuci3uJQdI2So5qxh1kJtVbYtHUhBLmgc2t5ZV0Tj7CtsJuQGY5emu9lGlC2mgfen19d52vWR1A1pTHvNJGvg=
+X-Received: by 2002:a4a:641:0:b0:558:b482:c3b3 with SMTP id
+ 62-20020a4a0641000000b00558b482c3b3mr3874548ooj.1.1688755248313; Fri, 07 Jul
+ 2023 11:40:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT050:EE_|MN2PR12MB4517:EE_
-X-MS-Office365-Filtering-Correlation-Id: 85189d80-c552-48ce-bf1b-08db7f1230fe
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5eLQxnYMVYSX725plHhi0hFiqg19zGpub/36ooI9eQ5VaTq2HJ54E5/MJ0NXiohJViBThpY3+J66lxejX2Oo23TnhfP2zs4Y4BFs2e20AuVKUp395O6ZdlPwRjkY3vCIradA1wEM21z/mJf/Nn5H3KrVTcIoB3t75t4mhiB0supOENbvMgkhfHG4zUABHqpL/bu/lO7p+oK0gX311FdHbfd1zQO5vVoLx0tKRVKqRI+0J8d3ncqcYr12jJewnPPRb66SV86tQx0+d+QLYLqEGls250NklG+mxUc9Muiu3pdjD8o0hEKPQ1ex74CbA7as7dZQ5KOumZixn4+yn048vhyMTwocE9rQW0Zb6v83+7K4Tf5GSzvc+QsE0EP/0DuR4EycUll2Xcf+ym73s5sxQIRuCOJjmkcg7T2/B281QVWGr1A1YeDHDvjYzmo8t9jyVVOfCeC+xMDvtWOq64kkde5j1GvHlNPLGbQ5zkma8DRZ12onCM52CVJ1LOoP5q1MYgHP8SrO9PurY2Uu8rGYa4ua2ID+otsUx2tRKM1e/6T8wk0iQiehcKeYcQs/T3fK86DcTGEo4VYZvykQRbbEF5PZiaVtyJTmdnFEuxgX0d7514DvT7iZvmgE/zKhL1QfeYlWtR0IqsVJigPRCHoC1XftCmRWf3lTAGLa9vmqYHaGpgpEqacx0CwpWNXcNn5UBsVKN0a9lf2yVjqcDMtXr0yJkzpYacWZ6dLkUKPGjSo6JDQsHto/mdjvV75b2uWy+cXk19AFKaUm1/mKgHmfmw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(376002)(136003)(39860400002)(346002)(451199021)(46966006)(40470700004)(36840700001)(7696005)(6666004)(478600001)(70586007)(54906003)(1076003)(26005)(186003)(16526019)(70206006)(336012)(2906002)(82310400005)(41300700001)(316002)(4326008)(6916009)(5660300002)(8676002)(8936002)(81166007)(356005)(82740400003)(36756003)(47076005)(36860700001)(2616005)(83380400001)(426003)(40460700003)(40480700001)(86362001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2023 17:47:10.9635 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 85189d80-c552-48ce-bf1b-08db7f1230fe
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT050.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4517
+References: <20230707111157.209432-1-arnd@kernel.org>
+ <f32098e2-d680-d02e-8181-cad76daf2416@amd.com>
+In-Reply-To: <f32098e2-d680-d02e-8181-cad76daf2416@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 7 Jul 2023 14:40:37 -0400
+Message-ID: <CADnq5_M5KE_woBVfsmVhQPzc4YJon_5mKKuQ72mCnKqU-SdumQ@mail.gmail.com>
+Subject: Re: [PATCH] [v2] drm/amdgpu: avoid integer overflow warning in
+ amdgpu_device_resize_fb_bar()
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,43 +69,74 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eric Huang <jinhuieric.huang@amd.com>, Felix
- Kuehling <felix.kuehling@amd.com>, Jonathan Kim <jonathan.kim@amd.com>
+Cc: Arnd Bergmann <arnd@kernel.org>, Lijo Lazar <lijo.lazar@amd.com>,
+ Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ Arnd Bergmann <arnd@arndb.de>, Bokun Zhang <Bokun.Zhang@amd.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, Shiwu Zhang <shiwu.zhang@amd.com>,
+ Le Ma <le.ma@amd.com>, YiPeng Chai <YiPeng.Chai@amd.com>,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>, David Airlie <airlied@gmail.com>,
+ Mario Limonciello <mario.limonciello@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jonathan Kim <jonathan.kim@amd.com>
+Applied.  thanks!
 
-Similar to GC v9.4.2, GC v9.4.3 should use the 5-Dword extended
-MAP_PROCESS packet to support multi-process debugging.  Update the
-mutli-process debug support list so that the KFD updates the runlist
-on debug mode setting and that it allocates enough GTT memory during
-KFD device initialization.
-
-Signed-off-by: Jonathan Kim <jonathan.kim@amd.com>
-Reviewed-by: Felix Kuehling <felix.kuehling@amd.com>
-Signed-off-by: Eric Huang <jinhuieric.huang@amd.com>
-Reviewed-by: Jonathan Kim <jonathan.kim@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_debug.h | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_debug.h b/drivers/gpu/drm/amd/amdkfd/kfd_debug.h
-index a289e59ceb79..a0afc6a7b6c4 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_debug.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_debug.h
-@@ -76,8 +76,9 @@ int kfd_dbg_send_exception_to_runtime(struct kfd_process *p,
- 
- static inline bool kfd_dbg_is_per_vmid_supported(struct kfd_node *dev)
- {
--	return KFD_GC_VERSION(dev) == IP_VERSION(9, 4, 2) ||
--	       KFD_GC_VERSION(dev) >= IP_VERSION(11, 0, 0);
-+	return (KFD_GC_VERSION(dev) == IP_VERSION(9, 4, 2) ||
-+	        KFD_GC_VERSION(dev) == IP_VERSION(9, 4, 3) ||
-+	        KFD_GC_VERSION(dev) >= IP_VERSION(11, 0, 0));
- }
- 
- void debug_event_write_work_handler(struct work_struct *work);
--- 
-2.34.1
-
+On Fri, Jul 7, 2023 at 7:47=E2=80=AFAM Christian K=C3=B6nig <christian.koen=
+ig@amd.com> wrote:
+>
+> Am 07.07.23 um 13:11 schrieb Arnd Bergmann:
+> > From: Arnd Bergmann <arnd@arndb.de>
+> >
+> > On 32-bit architectures comparing a resource against a value larger tha=
+n
+> > U32_MAX can cause a warning:
+> >
+> > drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1344:18: error: result of co=
+mparison of constant 4294967296 with expression of type 'resource_size_t' (=
+aka 'unsigned int') is always false [-Werror,-Wtautological-constant-out-of=
+-range-compare]
+> >                      res->start > 0x100000000ull)
+> >                      ~~~~~~~~~~ ^ ~~~~~~~~~~~~~~
+> >
+> > As gcc does not warn about this in dead code, add an IS_ENABLED() check=
+ at
+> > the start of the function. This will always return success but not actu=
+ally resize
+> > the BAR on 32-bit architectures without high memory, which is exactly w=
+hat
+> > we want here, as the driver can fall back to bank switching the VRAM
+> > access.
+> >
+> > Fixes: 31b8adab3247e ("drm/amdgpu: require a root bus window above 4GB =
+for BAR resize")
+> > Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+>
+> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+>
+> > ---
+> > v2: return early instead of shutting up the warning with a cast and
+> > running into a failure
+> > ---
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 3 +++
+> >   1 file changed, 3 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/d=
+rm/amd/amdgpu/amdgpu_device.c
+> > index 7f069e1731fee..fcf5f07c47751 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > @@ -1325,6 +1325,9 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_dev=
+ice *adev)
+> >       u16 cmd;
+> >       int r;
+> >
+> > +     if (!IS_ENABLED(CONFIG_PHYS_ADDR_T_64BIT))
+> > +             return 0;
+> > +
+> >       /* Bypass for VF */
+> >       if (amdgpu_sriov_vf(adev))
+> >               return 0;
+>
