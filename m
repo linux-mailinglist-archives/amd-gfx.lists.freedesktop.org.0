@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBDC874BAF6
-	for <lists+amd-gfx@lfdr.de>; Sat,  8 Jul 2023 03:14:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C363D74BB5E
+	for <lists+amd-gfx@lfdr.de>; Sat,  8 Jul 2023 04:26:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2FA510E055;
-	Sat,  8 Jul 2023 01:14:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20FE610E053;
+	Sat,  8 Jul 2023 02:26:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2087.outbound.protection.outlook.com [40.107.93.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9126B10E023;
- Sat,  8 Jul 2023 01:14:13 +0000 (UTC)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam02on2074.outbound.protection.outlook.com [40.107.95.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A60A010E053
+ for <amd-gfx@lists.freedesktop.org>; Sat,  8 Jul 2023 02:26:36 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HPnxdjDYV7GWdLFBKAjvgzFu8v8QgaiFzyCnkVeI6QV81+JiGf4YKG0SmJJY7+v1nFAvqeVuW+Lwp+56dragdjvwyl/Kz3EskTIRBepKxSEmwd8H0o3ADc0hYnBA2svMXNvdp1rJFt5lZI88cFCd6euNyZ85oNvJ4UQxAhSCYUx917eAVHBcqAvoYE+5I6lUVUMo6dkP2xzaKOLPGw1b0gTdOVmfJImXt3afk+6Jw5y9u+apZ8ZCQzXM6OBupxdMo181JnIPXEDaOhqYqkkONPZP7M5r2J1or5CSzvv2GqQ5Ep6EutAdrjNfbHpBdn++TvsfCu+kvDgyXOjxuYgY3g==
+ b=dLM7U4n4/5poMBGVNLJdYomgYv3kE8oevDP8P0j+VEEc7fg+FEWoKo+8g7ImKnLEoA7ZW74eg98y87d0clb6QDQsy6M8dB7uf59TVWcQ1+zi74USw+LWbd9MUJnNHoc90oOpfTB8L9sYzRqQjDJj5nO86STUuORjY4Vgbr2JhRaeCrolsaTpNAMKsTm+K5gRK0FuTQsipRsTQyBl6YRmhyeTS9kkQvgb77yvcnm7bDESt8C2WVBxz6cb8D7SqS3UCEWS6QRJ2wtaZ05P/tglFTLugUvaLUpDluukmSlPdUpihG0kter4HI7E0K7nlE5kq2/lhh9geHcu4774YcPETQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fpQeih26Wz2un1957Euk0SftecHZ2izGVaWRNzlAjBM=;
- b=Y3P0vW0Q+mVbhbKyKARj6f+JbNbATyl5DlIdKih2wmAj70xt/D6UcrmtY/Ssl/phaORIbyroxXcWrjt3LtuoPZhyQsKIJUszFIGlYRqI0amo4I+REaWi9NHrFMtSUd3FNrWFfVvKFoLjYBib14lf8TC+oG0QT8flnywP/lACTiTBkJsmBXygVVtH6gfJsCJ0+AMmIDWcW2HWnyznjADlMIbvca+RGzj5NRgdPTXpW8hr+DFgBNMbKIhiOvajyBtAvBDOcqsbP60VUmAo90j5kwYyZGC1gAmngwCovw1z5FzHlt0y4JeoDzaSkcoblyyv+R8qYpS6OYhRimLRwpXLoA==
+ bh=jvaV6HZrkKRcpoHIH4xJI+orj/kM4RvCKJl5YZJTrR0=;
+ b=ZQhYTzzv+84HaBKDJM+d9RCN3BOEEhukS9Iul2RnFF6GQpFeztPCyDwVoaAv5MOlmzFHzjne5MBvixB3kkP3MUnL93B2jIhsVEKnuk0v0jblATTmUU9yiX2DC0sMiu1X5A8MoboX2BrVL90h55JudxvD8+W7euDMltKCzlSVlEMcA3MrMRcD6+Dn2XJpzgdoqBC4/SIXyDvWsziJN0DUaXexGZQHGw0QvU3qcmoxvvyea4VVZy0aN7u8xHdgs/JuhVLzRIq5kUOHjLBCSOTrZtfm995r876ohkF8owTUIMPwGHktpgT1K4Kxjr/KnQmVJrf/FoYc5yPBFzkekYweDg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fpQeih26Wz2un1957Euk0SftecHZ2izGVaWRNzlAjBM=;
- b=1udxRiOpiVpPlHMg1tnwFvYpQw5F85ErvthmXRRoPwmia9mf8T2lZx90gGozhjZP4kGhCyzgEjuUaA52arMhaZJ2v2CFgVheGfbNSucST/Iu4cjcxj23dk1glXqu/vw4FzHHvArddZPANtCQyBuGADNKMLAuEuEn43fLrLoCe8k=
-Received: from DM6PR14CA0068.namprd14.prod.outlook.com (2603:10b6:5:18f::45)
- by SA1PR12MB7038.namprd12.prod.outlook.com (2603:10b6:806:24d::10) with
+ bh=jvaV6HZrkKRcpoHIH4xJI+orj/kM4RvCKJl5YZJTrR0=;
+ b=UWPgXs+qOerHojfET/GfCk5OaspG6Cp94hCzgy7R9I6wHNK7JbYyibQqFxAz2CRy2DXPgR0p2CO7jDuhtguf8ypjyrfcXTJUeQbad9M2uTOiIc7OJVdp1EvUAwHdiyeb8XcJDSrPvtL09c4486Swub3hgp4iegOCzaRNQ/Com5o=
+Received: from BN9PR03CA0347.namprd03.prod.outlook.com (2603:10b6:408:f6::22)
+ by DM6PR12MB4895.namprd12.prod.outlook.com (2603:10b6:5:1bc::22) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.26; Sat, 8 Jul
- 2023 01:14:09 +0000
-Received: from DM6NAM11FT090.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:18f:cafe::d6) by DM6PR14CA0068.outlook.office365.com
- (2603:10b6:5:18f::45) with Microsoft SMTP Server (version=TLS1_2,
+ 2023 02:26:32 +0000
+Received: from BN8NAM11FT014.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:f6:cafe::cb) by BN9PR03CA0347.outlook.office365.com
+ (2603:10b6:408:f6::22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.25 via Frontend
- Transport; Sat, 8 Jul 2023 01:14:09 +0000
+ Transport; Sat, 8 Jul 2023 02:26:32 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,47 +45,47 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT090.mail.protection.outlook.com (10.13.172.184) with Microsoft SMTP
+ BN8NAM11FT014.mail.protection.outlook.com (10.13.177.142) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6521.45 via Frontend Transport; Sat, 8 Jul 2023 01:14:08 +0000
-Received: from rajneesh-desk.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ 15.20.6521.45 via Frontend Transport; Sat, 8 Jul 2023 02:26:32 +0000
+Received: from SITE-L-T34-2.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Fri, 7 Jul
- 2023 20:14:08 -0500
-From: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
+ 2023 21:26:31 -0500
+From: Mario Limonciello <mario.limonciello@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [Patch v2] drm/ttm: Use init_on_free to delay release TTM BOs
-Date: Fri, 7 Jul 2023 21:13:55 -0400
-Message-ID: <20230708011355.853-1-rajneesh.bhardwaj@amd.com>
-X-Mailer: git-send-email 2.17.1
+Subject: [PATCH 0/4] Extend amdgpu_device_pcie_dynamic_switching_supported()
+Date: Fri, 7 Jul 2023 21:26:07 -0500
+Message-ID: <20230708022611.50512-1-mario.limonciello@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
 X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT090:EE_|SA1PR12MB7038:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5b6f2d51-4349-4ead-35df-08db7f50a1bc
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT014:EE_|DM6PR12MB4895:EE_
+X-MS-Office365-Filtering-Correlation-Id: f906fd5d-fbf4-4e12-065e-08db7f5abe87
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0g77yM+kcBxkij4FcMb2DyVGNIgakNMsvWwWwDrhOOGMJLioBriQDmpqyIbNKwPTS7UIX/WmvCSZg25L7kNHKi42OeeAE5IkTakkGDuQD9XXRnoFChqAJ4uTY5192/gdURt48L2TZ1GuuEAs1flV/CSCDVd6wCqeXQOHhV0Mp8Xe/DWH+XDUfSCsq07vD7ekO8T4W4RGdrC1RXx4gwu9GDT6R7e95Bzmfvq3lw9lxowb4VjK6M6Wvpzb2/YGNh2NMI2ULELXnyuTnSejGeSBOzHTIV5LP5J61qUX3KKUBu60qoLrtiLFS0uL+gDzvLoNi2X7aGT35YpJ1hf116ZKj+qWhc2MCxhAqOzYgs5uVc5f5TWR08A8vIBnyrZkase33U9nuA8j8uG94wi7ls4JbOxqeaw6EAc0+IHf9GuPYQGBba51WWLddJo+DTiihmYCULoEAdEVpIMtukymBt08sHLlIlsNAm1yAnBpBNPdWtTDTOt4wjiLXd/+a2a/Io5uD1S5CdTJqtrgiiBCtwavqaZUwBThp93kwF8c0CqkrwwHDvEGFHpt82U1g3xzASs0AdOY56/hMHczyYApdH308AIwWk5XNIrAevms+1N7Mmw+Dv8iJqNKg5PRgCOL+DpY3kM8HLQVq+A5ztTDmXNkudG4oDyqbZV5yq50Jok4CKBV0Ni6Ilia3HLLwAYlSziFYfkcRLJdt36GxXKLCL5ezttdQgDAkWmYRoJZSKTHcWMWvHWFa/pBznn4+lzid6n0QGitVZO1TZOiaKpu+7fyUw==
+X-Microsoft-Antispam-Message-Info: W4NQqTb7nxXBW2eLqXAnRSzaFPb6VgP3DK0pFw3HtDPvkVYgERXlnxfgPVurSJl7kjarGF+dI4SzXnzExYtKbhivbxl0kzMmrzQYfb1jtz4FK75vjAy4nnwvtDMwruICxCNdhiE6nQURi4cVy+MhKE/jT4xxWy/SQsP5I28uyJgrCIq0ifJlKUHEXFmfYuLEM/b+c1g//KYEqpOiLhYsKU7HpbYO0ZB/GTVMrleqo8iQKYHh+MtZnlJkWv2vPZMt+P2bMkFGE0bm3WwCIJOGbS97ZDytsyb+ngPDMEQnlY4p+7hBSgUf5qdgETWTBd/AVaFv2mwMrHmf9oLQc7SOL24ahyvYIzUEiDrIwOJYZu2wcoALjVTU93uKX4tAX7JLA6tRIGQ8dSGUX6Qz7d2R4IaqydZQ1amO2j0vi8sA2qlrG86hg4H2FeYQMXr0HQyqa+ibtyriGW1uDkObsZIw0B57Efo26mfnoHvkgeNCPO+U56QKdeKDMJMPHGMGN9O7tdquT26OHol9bdrdVMV5UW0yIne+BB/wcZZSNNYhVwkL6Bn5SeYfWtdK5NbZ8nk5ih1HLhMY83PkAOTU1AHSj3kPcS6PiIi2yGUPi322BVz3oihLcyspp6BKIdu2PQ0PDL2uJHClFtI+HOhpem4puNa2/lTMnQSwlpXkOH5pBZpFSw9SjwDRthu9TuDysjUsUwJtQ/qdu/RGyzugeXjekqp3WUL1aCLQl9vMpQ6DhV/9ZTFBbsT6JM63Q+3Dvh7+Rg9ev/eRoLFaLXcTF4A7Mw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(39860400002)(136003)(346002)(376002)(396003)(451199021)(40470700004)(46966006)(36840700001)(478600001)(7696005)(6666004)(450100002)(54906003)(1076003)(26005)(16526019)(40460700003)(186003)(70586007)(2906002)(82310400005)(70206006)(41300700001)(4326008)(316002)(5660300002)(44832011)(8936002)(8676002)(6916009)(81166007)(356005)(82740400003)(86362001)(36756003)(36860700001)(47076005)(2616005)(83380400001)(336012)(426003)(40480700001)(36900700001);
+ SFS:(13230028)(4636009)(396003)(39860400002)(376002)(136003)(346002)(451199021)(36840700001)(40470700004)(46966006)(356005)(81166007)(6666004)(82740400003)(7696005)(1076003)(26005)(40480700001)(83380400001)(47076005)(426003)(336012)(36860700001)(2616005)(186003)(16526019)(36756003)(40460700003)(2906002)(316002)(4326008)(41300700001)(70586007)(70206006)(6916009)(44832011)(86362001)(5660300002)(8936002)(8676002)(54906003)(478600001)(82310400005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2023 01:14:08.9697 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5b6f2d51-4349-4ead-35df-08db7f50a1bc
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2023 02:26:32.2892 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f906fd5d-fbf4-4e12-065e-08db7f5abe87
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT090.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT014.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7038
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4895
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,38 +97,52 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: felix.kuehling@amd.com, Christian.Koenig@amd.com,
- dri-devel@lists.freedesktop.org, Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
+Cc: Evan Quan <evan.quan@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Delay release TTM BOs when the kernel default setting is init_on_free.
-This offloads the overhead of clearing the system memory to the work
-item and potentially a different CPU. This could be very beneficial when
-the application does a lot of malloc/free style allocations of system
-memory.
+amdgpu_device_pcie_dynamic_switching_supported() currently only covers
+SMU13. It sets up the pcietables so that effectively DPM can't change
+speed or lane width dynamically on problematic hosts.
 
-Reviewed-by: Christian König <christian.koenig@amd.com>.
-Signed-off-by: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
----
-Changes in v2:
-- Updated commit message as per Christian's feedback
+Earlier quirks to SMU11 did a similar solution by looking at specific
+PCI IDs typically paired with problematic products.
 
- drivers/gpu/drm/ttm/ttm_bo.c | 1 +
- 1 file changed, 1 insertion(+)
+Even earlier dGPUS used in Intel Alder Lake and Rocket lake adopted
+similar solutions that would turn off DPM.
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index 326a3d13a829..bd2e7e4f497a 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -347,6 +347,7 @@ static void ttm_bo_release(struct kref *kref)
- 
- 		if (!dma_resv_test_signaled(bo->base.resv,
- 					    DMA_RESV_USAGE_BOOKKEEP) ||
-+		    (want_init_on_free() && (bo->ttm != NULL)) ||
- 		    !dma_resv_trylock(bo->base.resv)) {
- 			/* The BO is not idle, resurrect it for delayed destroy */
- 			ttm_bo_flush_all_fences(bo);
+These all come down to the same fundmental problem; Intel hosts can't
+handle these features. There is nothing to stop someone from taking a
+Navi14 and putting it into Sapphire Rapids system and hitting the
+same problem that was observed when it was placed into an Alder
+Lake-S system.
+
+Because of this; drop all the specific Intel model + AMD dGPU matching
+across the driver and instead match ALL Intel hosts to do these
+quirks of setting PCIe override parameters or turning off DPM.
+
+If a new Intel host does work well with dynamic speed switching we
+can later adjust amdgpu_device_pcie_dynamic_switching_supported() to
+have a switch/case where we allow list those hosts, or enumerate all
+the broken ones and disallow list them.
+
+Mario Limonciello (4):
+  drm/amd: Move helper for dynamic speed switch check out of smu13
+  drm/amd: Align SMU11 SMU_MSG_OverridePcieParameters implementation
+    with SMU13
+  drm/amd: Use amdgpu_device_pcie_dynamic_switching_supported() for SMU7
+  drm/amd: Drop amdgpu_device_aspm_support_quirk()
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    | 30 ++++---
+ drivers/gpu/drm/amd/amdgpu/nv.c               |  5 +-
+ drivers/gpu/drm/amd/amdgpu/vi.c               |  5 +-
+ .../drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c   | 14 +--
+ .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   | 89 ++++---------------
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c    | 21 +----
+ 7 files changed, 49 insertions(+), 117 deletions(-)
+
 -- 
-2.17.1
+2.34.1
 
