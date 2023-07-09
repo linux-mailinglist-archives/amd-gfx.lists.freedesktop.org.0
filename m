@@ -2,61 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A261774C05D
-	for <lists+amd-gfx@lfdr.de>; Sun,  9 Jul 2023 04:07:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B44274C05B
+	for <lists+amd-gfx@lfdr.de>; Sun,  9 Jul 2023 04:07:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC15510E0FA;
-	Sun,  9 Jul 2023 02:07:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E6FD10E013;
+	Sun,  9 Jul 2023 02:07:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
- [IPv6:2a00:1450:4864:20::42a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B25810E0FA
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
+ [IPv6:2a00:1450:4864:20::431])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6245110E0F3
  for <amd-gfx@lists.freedesktop.org>; Sun,  9 Jul 2023 02:07:06 +0000 (UTC)
-Received: by mail-wr1-x42a.google.com with SMTP id
- ffacd0b85a97d-3143798f542so3489377f8f.2
+Received: by mail-wr1-x431.google.com with SMTP id
+ ffacd0b85a97d-31441dfbf97so3779159f8f.1
  for <amd-gfx@lists.freedesktop.org>; Sat, 08 Jul 2023 19:07:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=froggi.es; s=google; t=1688868423; x=1691460423;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=60o/nWori7rZGRVwTOHCQXMbpCTqRc2BUXr5Z8sBOTc=;
- b=LzO/Wsh+YaIqvU7HVengG6HdPn2I1RaW9XvpLX6+g5HN79WoAy+rAOkv3eyfjTqlZY
- QvEG/AHaYpbyQZlFirXj5azUtldi979nk69O1uW9YI7Ae4+h6GFbCc5KY7hdULjnx4/6
- mRbvpBqEIR6ygcd3Aovq7GO5KP1SqyZX+kW6hH3J2YdRZ92SmDL4AoMI6kod9DtpKm69
- dnp8IugiWg3BUWj72z0Qh6mx957kG3x/fuOSYp+AI47Ogub5U6LnBP7k3WStZPzndjc3
- sHOluFCbjiFZXZ5Eyg6JEbG2p3gHUc+e2b6W0iwsetbI+CykIDR0MPGRR6E44sdyh5uq
- SjlQ==
+ bh=elIzkIq9z0toasqrV8sZECLMmemJKxK8hU1qJY1jjJk=;
+ b=iL9z+J/NqExmNh2dQ+MT/Hzh/Gpi38XO3f6z9AL3ficXuyz0nqoNs7auNF86mG6uri
+ rsAhTsz/DAYLujASf5yLmRHvroeNE1cnO2wlAzm+gxg8/itbKmj7MvatqPuOA0/Z30/W
+ r7Xdm9DCVdrvsunwpKxSmBuYHUEIKeOYSevPcudWXIoEVeI0Yr75twfD8UItUlH6vGf2
+ OeirbEtPj19Z62rlgceMKHVIWVHSMF2zEWOUUuquvcuER1PSvxbkSn67nQeiBcjx6QHs
+ Vp5Yw9Kc7H2PVMzpQ2Am3cFXz9SyCDkPaX4m1yohGvtXIZ4o4MtNgRUf3HfEgJKeKuyC
+ 9vtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20221208; t=1688868423; x=1691460423;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=60o/nWori7rZGRVwTOHCQXMbpCTqRc2BUXr5Z8sBOTc=;
- b=IXG46lUL8dtHWD/9Cak31N4uLT9V/bg2Q7EpjicK4JNXbXsLTNBO6lMzsMTdHJ/hW2
- 9akKmxyHEgYsYu9hN7zGv1mEJkexlu9CV97rglLQZ2K7Vg4uhMAaeDHYUrRZZ8EwgB1m
- +vLxhbp01AceXVNSyhJfvIPh156tYu50OIXZfl64VYlODdAxxUticLg5e8b+VZn4eooF
- Yj8sSz27d9/1lxoNz3yIV1TWDcDFx5FKzH12zAMiE4qWVmSO5D1liDfhCdtXwgKmR7BB
- JCPBws80HfsCkrDVc9w4rjYKx/FGPkdyM2dYFPw8xnjKE7FU7QttcegeYlb9c1/Uf7P7
- hgig==
-X-Gm-Message-State: ABy/qLbNEYmcto3MwD09+TqJPn1xJsy4lEPchD6NmGez1+QzcatM0HD9
- px3hp7SEJTTZeLEm8kOgdIpefJS+/yN/Pk4aMUM=
-X-Google-Smtp-Source: APBJJlFItGZoDptTDM9mBVIT+hvAkoHqN567vsDODHYDuDy1Uf1FKTNllHBD5806kvg9U5fWDNDtIQ==
-X-Received: by 2002:a5d:504d:0:b0:314:1582:6eb4 with SMTP id
- h13-20020a5d504d000000b0031415826eb4mr6465868wrt.46.1688868422993; 
- Sat, 08 Jul 2023 19:07:02 -0700 (PDT)
+ bh=elIzkIq9z0toasqrV8sZECLMmemJKxK8hU1qJY1jjJk=;
+ b=Pt8Ve19SdTrycAtqIh5cy6+4QBffUtJl30mQ1UmKLRToRi1DJeDXjpFF9DzCL/CR1/
+ bLTdwvbDb0R794eHoupIwZ1wfRduDkK9W0RQxYwH7llDE9cXWjqahUh3f9CCeNW9Jbuk
+ 81lo38+/KLR7ei4YxmzjxpRq77MLFhhIOQVjFM98p7fgfA7bTVL7uwZYADB8FSmDU1fM
+ KHFw7uUE3OZPy/CI0eY9ETVwsC5kV+67AccxesB9ZQG6GZ0oQ19DULCM1fyNnVt5lY9N
+ TJZFFRE1pJPV2C3VR2ALuLo8KvATLG9c3gi/rex6HxUD68mPn64ccweG7TyUu42DXCyv
+ JceQ==
+X-Gm-Message-State: ABy/qLbbS0JXd/2F60qReVWjwvxLDX5SeJ8Plo/j+LJqec+Qem4k2DwU
+ 79B4FErYgdl1xUY06wKGgJQ5NWhygwNtRLRV6i0=
+X-Google-Smtp-Source: APBJJlFXgd8y/CmUTfyIdVUcaC+ydyDPnXv6N4EBnZF29PTeFvPQXWQsHvgkdVTcpe+MfRt2/SwmIQ==
+X-Received: by 2002:a5d:540c:0:b0:315:8f4f:81b8 with SMTP id
+ g12-20020a5d540c000000b003158f4f81b8mr1333841wrv.50.1688868423567; 
+ Sat, 08 Jul 2023 19:07:03 -0700 (PDT)
 Received: from localhost.localdomain
  (darl-09-b2-v4wan-165404-cust288.vm5.cable.virginm.net. [86.17.61.33])
  by smtp.gmail.com with ESMTPSA id
- e16-20020a5d4e90000000b0031424f4ef1dsm8120934wru.19.2023.07.08.19.07.02
+ e16-20020a5d4e90000000b0031424f4ef1dsm8120934wru.19.2023.07.08.19.07.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 08 Jul 2023 19:07:02 -0700 (PDT)
+ Sat, 08 Jul 2023 19:07:03 -0700 (PDT)
 From: Joshua Ashton <joshua@froggi.es>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/3] drm/amd/display: Enable 3 plane for DCN 3.01
-Date: Sun,  9 Jul 2023 03:06:57 +0100
-Message-ID: <20230709020700.3116749-2-joshua@froggi.es>
+Subject: [PATCH 3/3] drm/amd/display: Implement zpos property
+Date: Sun,  9 Jul 2023 03:06:58 +0100
+Message-ID: <20230709020700.3116749-3-joshua@froggi.es>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230709020700.3116749-1-joshua@froggi.es>
 References: <20230709020700.3116749-1-joshua@froggi.es>
@@ -78,8 +78,13 @@ Cc: Melissa Wen <mwen@igalia.com>, Simon Ser <contact@emersion.fr>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Steam Deck/Gamescope wants to take advantage of more planes which is
-possible on VanGogh but was not previously exposed.
+Despite certain GPUs supporting multiple overlay planes already in
+AMDGPU, the driver did not expose the zpos property which is required
+for userspace to take advantage of multiple overlay planes in any
+meaningful way.
+
+The driver was already hooked up to normalized_zpos, but was just
+missing the exposure of it.
 
 Signed-off-by: Joshua Ashton <joshua@froggi.es>
 
@@ -87,26 +92,29 @@ Cc: Harry Wentland <harry.wentland@amd.com>
 Cc: Melissa Wen <mwen@igalia.com>
 Cc: Simon Ser <contact@emersion.fr>
 ---
- drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c b/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-index 3485fbb1093e..94eefebd4607 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-@@ -1425,9 +1425,9 @@ static bool dcn301_resource_construct(
- 	dc->caps.max_cursor_size = 256;
- 	dc->caps.min_horizontal_blanking_period = 80;
- 	dc->caps.dmdata_alloc_size = 2048;
--	dc->caps.max_slave_planes = 1;
--	dc->caps.max_slave_yuv_planes = 1;
--	dc->caps.max_slave_rgb_planes = 1;
-+	dc->caps.max_slave_planes = 2;
-+	dc->caps.max_slave_yuv_planes = 2;
-+	dc->caps.max_slave_rgb_planes = 2;
- 	dc->caps.is_apu = true;
- 	dc->caps.post_blend_color_processing = true;
- 	dc->caps.force_dp_tps4_for_cp2520 = true;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+index 8eeca160d434..2198df96ed6f 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+@@ -1468,6 +1468,15 @@ int amdgpu_dm_plane_init(struct amdgpu_display_manager *dm,
+ 		drm_plane_create_blend_mode_property(plane, blend_caps);
+ 	}
+ 
++	if (plane->type == DRM_PLANE_TYPE_PRIMARY) {
++		drm_plane_create_zpos_immutable_property(plane, 0);
++	} else if (plane->type == DRM_PLANE_TYPE_OVERLAY) {
++		unsigned int zpos = 1 + drm_plane_index(plane);
++		drm_plane_create_zpos_property(plane, zpos, 1, 254);
++	} else if (plane->type == DRM_PLANE_TYPE_CURSOR) {
++		drm_plane_create_zpos_immutable_property(plane, 255);
++	}
++
+ 	if (plane->type == DRM_PLANE_TYPE_PRIMARY &&
+ 	    plane_cap &&
+ 	    (plane_cap->pixel_format_support.nv12 ||
 -- 
 2.41.0
 
