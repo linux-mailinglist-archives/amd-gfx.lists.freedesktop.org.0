@@ -1,91 +1,65 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42BFB74BE86
-	for <lists+amd-gfx@lfdr.de>; Sat,  8 Jul 2023 18:58:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C415D74C05C
+	for <lists+amd-gfx@lfdr.de>; Sun,  9 Jul 2023 04:07:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E13B10E06A;
-	Sat,  8 Jul 2023 16:58:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C83B710E0F3;
+	Sun,  9 Jul 2023 02:07:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2052.outbound.protection.outlook.com [40.107.102.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B43110E06A
- for <amd-gfx@lists.freedesktop.org>; Sat,  8 Jul 2023 16:58:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YcnJ+3x4mNsuKyACTnFJo7nJ1Wt3eZpP6vyBllfh0/0RFBDpE6pZ3r0KOdjwufDBIbSsXGnMz0v6EEGIEiGkt2+02wNqCV38hCKNST3suQXNuYh/X28hrbNxi3Z8efAgwudRLfrSomOFbYYu6xtEBLhS7bcFcUtqjnsPHjfsYs49zY0vUimwjXJ8Fm2vW1tMTfuxtF5DS82o1Ed5AqTiKmGB6Jhx8CsOEkAEEDZcCfAXvJqedqTBGkYgNwZSTwqM7L5NwfXnqfwXEkZ2sdM2eHCUIOvs4Vq/yomjBiBpooI+F9aAaMtJksibvqTi4oI/7C5eBvSNghn2Tb0TriFVVQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S7gzp9MVKToBXbLu4CE21AI32GsEt4zYhsGhTdFv/s4=;
- b=Q6MQWkAX2XR/zjwTOIbGC8BYvvOyB9+ONvLBkOalbnB8DzSxlqP3UJRYb4NxrnbziFn2x5MtzKjU6B/ebZametz7MoO8ZCaQaAfrdtkqDnMYnB1nT4yCgXIw/hyMooPBGZfG2eNR3OU8U5sJlyVwmL7M5OfkrZ2Z+7cjGDbuIb9tZMYEadSQ959shsvzrbddpfMJDqntM7cMnwjG52XZU0jQ8NgKYQlOW1JqRZxTn/3nXPcxCImlkg4qBqF1rZgGyEdsTQG7KaP72jPQ2HtmsmXRwtpg1FOP1+uNEoIi4Gj8C4SB39hNXs5LmwWDoqWdXKW5eUd71nbid613Mir/Cg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S7gzp9MVKToBXbLu4CE21AI32GsEt4zYhsGhTdFv/s4=;
- b=dIVgosDF+Z7PhOduIkyE8uz++RmwOQYY4XO6Jl2k057zTFAJpoWs30/8sCwTNWeVqMAAKf1V84aXMje1fFZLIBU5pXclgMNRhR+hau5L9/OYLnUoSNclc6Ja8VrtjEiHnaGIQac67q2HWPFKwfpOHa1cJAATNyZ5lUsHYR04pP0=
-Received: from BN9PR03CA0226.namprd03.prod.outlook.com (2603:10b6:408:f8::21)
- by PH0PR12MB8823.namprd12.prod.outlook.com (2603:10b6:510:28e::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.26; Sat, 8 Jul
- 2023 16:58:02 +0000
-Received: from BN8NAM11FT016.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:f8:cafe::1e) by BN9PR03CA0226.outlook.office365.com
- (2603:10b6:408:f8::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.26 via Frontend
- Transport; Sat, 8 Jul 2023 16:58:02 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT016.mail.protection.outlook.com (10.13.176.97) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6521.45 via Frontend Transport; Sat, 8 Jul 2023 16:58:02 +0000
-Received: from alex-MS-7B09.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Sat, 8 Jul
- 2023 11:58:01 -0500
-From: Alex Sierra <alex.sierra@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <Felix.Kuehling@amd.com>
-Subject: [PATCH] drm/amdkfd: avoid svm dump when dynamic debug disabled
-Date: Sat, 8 Jul 2023 11:57:48 -0500
-Message-ID: <20230708165748.31355-1-alex.sierra@amd.com>
-X-Mailer: git-send-email 2.32.0
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com
+ [IPv6:2a00:1450:4864:20::42c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60DBA10E013
+ for <amd-gfx@lists.freedesktop.org>; Sun,  9 Jul 2023 02:07:06 +0000 (UTC)
+Received: by mail-wr1-x42c.google.com with SMTP id
+ ffacd0b85a97d-314313f127fso3405030f8f.1
+ for <amd-gfx@lists.freedesktop.org>; Sat, 08 Jul 2023 19:07:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=froggi.es; s=google; t=1688868422; x=1691460422;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=PmLULFc4vI9tFO31l5iijgGXYExeOMtPEfF9vpSnUC8=;
+ b=KXLYRtQGDeuxlvjT4mPYkGlnHiqjDKCMi70nVXUeIAuSc8JFv+cMClGPxne+ak20YX
+ qB52xCeC4DFHgbQnn0kylpDoIPYb7g4WfSxVN+lphBrpa3SNTcLb0wDExR5tPUabOcEV
+ HLqEcn5vFQJpV4cQ4HZ6JfqRvVlpIJcAGwewqmFRMw+rwU2OSwZ/9boUuiMgnh7RC0bG
+ EHzvu/VZa1Kzd219ITLZBaxS+n4Iiic/6SN7TuIewatLPE+ovKe/mVtLBJ6liAsfdXSO
+ mKYTkaqJbbYOkviWV6armdF69nrmmsCy8wszKg/jsGwao7rJ1+Z3xz1WjIRQ7eSv93ob
+ xWiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1688868422; x=1691460422;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=PmLULFc4vI9tFO31l5iijgGXYExeOMtPEfF9vpSnUC8=;
+ b=kVubjLAF0YItgQ1T5vTpsXZdEWRxh6WZLSzhU4prugOnAAfKJRaU54eyRzpU2RkiGC
+ e/mkGZCCrBY5e4uiUdAcS/DnvQeazwnHMToSGOAqh1baFx5AeH0oS38MkV/8LB/M/ZQ/
+ x/8PQUFrXj7/r/Ahs8mpogrFqhTl9qSdCpABSJrBOfXTpzrwkavNlv8aejWRetSAz1gn
+ FrxDxqxUdzn/FQ7tkRD8ApW0C4R2A3a+Jf6oc73M6GFunt0oyfkur2f9zrEQpFtRVkoq
+ OLA++sreYi7ZWju7BZKUiTwRI2h8EL2NHoS7vftRa/KktV4A/EKJj8CsMCucj6X+yxAT
+ ydTA==
+X-Gm-Message-State: ABy/qLYFhb7PFJ7wFHewSlL1RchEOe9+jMRoc00DAUM6F3L4ZtK78Zt5
+ 1g9xKbGeUSONQz6Koa3QJ8p5IbhtSBWJ5ijBbSs=
+X-Google-Smtp-Source: APBJJlFIQMOkUvjDCVSInmaEEQRECmqiT0Sb3pc+oFEkbI4W6NK+I+iEavs1XXiIPuVEBZHQIwLCgw==
+X-Received: by 2002:a5d:4891:0:b0:314:c14:64d2 with SMTP id
+ g17-20020a5d4891000000b003140c1464d2mr6138308wrq.42.1688868422345; 
+ Sat, 08 Jul 2023 19:07:02 -0700 (PDT)
+Received: from localhost.localdomain
+ (darl-09-b2-v4wan-165404-cust288.vm5.cable.virginm.net. [86.17.61.33])
+ by smtp.gmail.com with ESMTPSA id
+ e16-20020a5d4e90000000b0031424f4ef1dsm8120934wru.19.2023.07.08.19.07.01
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 08 Jul 2023 19:07:02 -0700 (PDT)
+From: Joshua Ashton <joshua@froggi.es>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/3] drm/amd/display: Expose more formats for overlay planes
+ on DCN
+Date: Sun,  9 Jul 2023 03:06:56 +0100
+Message-ID: <20230709020700.3116749-1-joshua@froggi.es>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT016:EE_|PH0PR12MB8823:EE_
-X-MS-Office365-Filtering-Correlation-Id: ba28c2c6-c20b-416b-0cfe-08db7fd47df9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UGMR64KXbBT6w8V8tsrFRhpSHgmqzxhb238HAmWQVHvlbIyOm4sP4ZbfXnfJ8Pn7xboXrcKcpzkCWGnRhsd933LM+ga29FF0DWOQDbv9w3XvU0VNQy69TIWjCNxXgXAnIoCN3hg2bFY2CYJwRaQl2M1N7pf0th+qHRXD9QI9CZkQ476Qv86ngZV+HxNtnBAIhfpjSAeFgAUMeAb7ZRUQ+zxfiLkzulVvePf3k7rdzzGpVNh/tjtivlpYiB95LOn1Aw+PHomx6N0aYC1mmBF0OX+AneRxuXFijY8LaERMoHnGSKWYScDO/GYu6Q2tq8Awy1GB89YjWqThFEhPaP2IURTnxtREaEdzLFJNHeeFd1ASmDscsPOD74lPuZiHBHFMSOZLPIWF5U8Z/FrKVsTrZ02BC5+K4xBtHyxn2Mvjnlxup4uGgT3hheXWnwtdTY0X5wpSMA0Ich6UqA6SXBrKv4CwwKzVh8Y+iyYRZoH2dpAIiEuNfTfie4mpBJaTT2kMn5yKz3aXzSey7c2bCrz8rwDsjGDgKSXBh9gtm5pi+hCKW5xX0rNHcScaSdCvWRNOC4nNkJn3SmIk+RfBMVH7Kwo6hwuIvglzbmKxUo714kbUZ5VNhwSy059dRohIumBWfiDsQO/UqSbwVyPpo1OQXmtSu0Go0U1+f5U4JWL/pL7Y6ZAVFNgTD4xqCnkuU3pzrKXS4rHP1Q9d9WDFdj4hD4dIHXa7nrb4Ub5/ubezeijvM3+W0GS6Vqd8NsOQlFNoBJUaNRLaV1AzxdUiP++L3g==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(136003)(396003)(346002)(376002)(39860400002)(451199021)(40470700004)(36840700001)(46966006)(86362001)(82310400005)(40460700003)(40480700001)(36756003)(6666004)(7696005)(478600001)(54906003)(70206006)(70586007)(110136005)(356005)(81166007)(82740400003)(36860700001)(26005)(1076003)(336012)(186003)(16526019)(44832011)(5660300002)(316002)(2906002)(6636002)(8676002)(8936002)(83380400001)(426003)(2616005)(47076005)(4326008)(41300700001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2023 16:58:02.6012 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ba28c2c6-c20b-416b-0cfe-08db7fd47df9
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT016.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8823
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,52 +71,98 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Sierra <alex.sierra@amd.com>, Philip.Yang@amd.com,
- jakub.kurzak@amd.com
+Cc: Melissa Wen <mwen@igalia.com>, Simon Ser <contact@emersion.fr>,
+ Harry Wentland <harry.wentland@amd.com>, Joshua Ashton <joshua@froggi.es>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-svm_range_debug_dump should not be called at all when dynamic debug
-is disabled to avoid iterating over SVM lists. This could drop
-performance, specially with big number of SVM ranges.
+DCN planes are universal and therefore overlay planes can use the same
+formats as primary planes, unlike DCE.
 
-Signed-off-by: Alex Sierra <alex.sierra@amd.com>
-Signed-off-by: Philip Yang <Philip.Yang@amd.com>
+Gamescope/Steam Deck would like to take advantage of this functionality
+for partial composition which in some cases in our pipeline, can contain
+negative values in some instances.
+
+Signed-off-by: Joshua Ashton <joshua@froggi.es>
+
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Melissa Wen <mwen@igalia.com>
+Cc: Simon Ser <contact@emersion.fr>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   | 41 +++++++++++--------
+ 1 file changed, 25 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index 479c4f66afa7..4fb427fc5942 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -821,7 +821,7 @@ svm_range_is_same_attrs(struct kfd_process *p, struct svm_range *prange,
-  *
-  * Context: The caller must hold svms->lock
-  */
--static void svm_range_debug_dump(struct svm_range_list *svms)
-+static int svm_range_debug_dump(struct svm_range_list *svms)
- {
- 	struct interval_tree_node *node;
- 	struct svm_range *prange;
-@@ -847,6 +847,8 @@ static void svm_range_debug_dump(struct svm_range_list *svms)
- 			 prange->actual_loc);
- 		node = interval_tree_iter_next(node, 0, ~0ULL);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+index de1c7026ffcd..8eeca160d434 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+@@ -113,6 +113,11 @@ void amdgpu_dm_plane_fill_blending_from_plane_state(const struct drm_plane_state
+ 			DRM_FORMAT_ARGB8888,
+ 			DRM_FORMAT_RGBA8888,
+ 			DRM_FORMAT_ABGR8888,
++			DRM_FORMAT_ARGB2101010,
++			DRM_FORMAT_ABGR2101010,
++			DRM_FORMAT_ARGB16161616,
++			DRM_FORMAT_ABGR16161616,
++			DRM_FORMAT_ARGB16161616F,
+ 		};
+ 		uint32_t format = plane_state->fb->format->format;
+ 		unsigned int i;
+@@ -698,8 +703,8 @@ static int get_plane_formats(const struct drm_plane *plane,
+ 	 * caps list.
+ 	 */
+ 
+-	switch (plane->type) {
+-	case DRM_PLANE_TYPE_PRIMARY:
++	if (plane->type == DRM_PLANE_TYPE_PRIMARY ||
++		(plane_cap && plane_cap->type == DC_PLANE_TYPE_DCN_UNIVERSAL && plane->type != DRM_PLANE_TYPE_CURSOR)) {
+ 		for (i = 0; i < ARRAY_SIZE(rgb_formats); ++i) {
+ 			if (num_formats >= max_formats)
+ 				break;
+@@ -717,25 +722,29 @@ static int get_plane_formats(const struct drm_plane *plane,
+ 			formats[num_formats++] = DRM_FORMAT_XBGR16161616F;
+ 			formats[num_formats++] = DRM_FORMAT_ABGR16161616F;
+ 		}
+-		break;
++	} else {
++		switch (plane->type) {
++		case DRM_PLANE_TYPE_OVERLAY:
++			for (i = 0; i < ARRAY_SIZE(overlay_formats); ++i) {
++				if (num_formats >= max_formats)
++					break;
+ 
+-	case DRM_PLANE_TYPE_OVERLAY:
+-		for (i = 0; i < ARRAY_SIZE(overlay_formats); ++i) {
+-			if (num_formats >= max_formats)
+-				break;
++				formats[num_formats++] = overlay_formats[i];
++			}
++			break;
+ 
+-			formats[num_formats++] = overlay_formats[i];
+-		}
+-		break;
++		case DRM_PLANE_TYPE_CURSOR:
++			for (i = 0; i < ARRAY_SIZE(cursor_formats); ++i) {
++				if (num_formats >= max_formats)
++					break;
+ 
+-	case DRM_PLANE_TYPE_CURSOR:
+-		for (i = 0; i < ARRAY_SIZE(cursor_formats); ++i) {
+-			if (num_formats >= max_formats)
+-				break;
++				formats[num_formats++] = cursor_formats[i];
++			}
++			break;
+ 
+-			formats[num_formats++] = cursor_formats[i];
++		default:
++			break;
+ 		}
+-		break;
  	}
-+
-+	return 0;
- }
  
- static int
-@@ -3563,7 +3565,7 @@ svm_range_set_attr(struct kfd_process *p, struct mm_struct *mm,
- 			break;
- 	}
- 
--	svm_range_debug_dump(svms);
-+	pr_debug("%d", svm_range_debug_dump(svms));
- 
- 	mutex_unlock(&svms->lock);
- 	mmap_read_unlock(mm);
+ 	return num_formats;
 -- 
-2.32.0
+2.41.0
 
