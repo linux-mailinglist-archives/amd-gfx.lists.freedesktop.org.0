@@ -1,117 +1,95 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F2EB74CE76
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 Jul 2023 09:31:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C500474CD31
+	for <lists+amd-gfx@lfdr.de>; Mon, 10 Jul 2023 08:38:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B84FC10E1F6;
-	Mon, 10 Jul 2023 07:31:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E81F10E1A9;
+	Mon, 10 Jul 2023 06:38:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from APC01-PSA-obe.outbound.protection.outlook.com
- (mail-psaapc01on2101.outbound.protection.outlook.com [40.107.255.101])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 744CC10E029;
- Mon, 10 Jul 2023 01:37:01 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on20607.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7eab::607])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C28C710E1A9
+ for <amd-gfx@lists.freedesktop.org>; Mon, 10 Jul 2023 06:38:40 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=a77q/XIZamn6dYy2tUR/qEkSmfenufEsK6q8a5WWHgE2EM0IdePp2qyhZGVi/pBQcKF5+9KLwWrPHce8jJQ8w1E3ItiX1ghcA1OBVUJuaX3fksMcJTzCEa5q0IfaJ9GGb9Wf5sH03dQR5YYNKiAbVHylwFrxsPO7arKvmZQOIpEZSP/oQvXko3z0FIT5Ph2PR7bqUHYWSxGaHn8hA5q78diR2v6/peTL6f02BBUej+xXuwMPu+F9J1MrAybqXKRaVqa+LfZkLDAHbeLgMMMZbse5Hh8sIHn5DNpd9I8RCZdj59/MgS+h2IZOqKWcRjVtvtwhVBwH4IW2KMoOVCqYOA==
+ b=GhfEfLHPC6cN1vBO0WC0pXUDfRea2sX9nfJ292JTdxpoSeCI/ehzcx1SOrAIpHqnafkhArHcYMd9qc3AKAD0n5u0zhwP2GamTLye/Q4H2pLG75gb2xlOL818RYHZGaGZ/IjJTUiVw0CQQAFVSbijfRth2EjJx1ZhcDaiqKlIApXjrQqt0ttPpDX9sO2IRDWLZZdn4xZJu/2aew2e0DWvDKXt5m33USBOPPYpae8aDTc4gW+85dy/GnOOXWkgZdJdkSw6ItQ/9XC/j393ceSZeAmf1Msv4FWIh1rEcymHQ1X6OH03Ros1OWI/TMstwfjKv7D4dUNLt9jPWcHjAwZHjg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=s/4XjqYRBHrnoQpucyfnNDxpI96ToYO9oO+4EPxzLVs=;
- b=FlD5kVu7x9p2lPt2MGmadhBCzRVjnhJjUgaIIBUk9KtPfThknWXD6L79D44BAylWkpP28w7ey0p+aBHBZgkdxTZYBkKyH1yXM2xZfcZKqjyN8NkpxuVT7d1TzuSaMqbuRXlZNxEFV9t0CIUWl/vXwregtgpiQhyTG6GPJFRfs8ljlF7Rk1YUgpoZvw/BaJXqWbqk7w+dTfbtc6ywDBpPQvUQuKOFmHxOOW8AnUuBrSec+kDSUqxiMdRjKSVwTtUVoI2d4OFRNDX5m/0OhrnW8M75O74xAXBBg1CUBR38Vr8DGfAU8WTU8aoBeN+7kxXfd3KLns3enT8BQCjOkZynGA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
- dkim=pass header.d=vivo.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo.com; s=selector2; 
+ bh=XtQ4XJlvVaQS3fFVF1U9pjZfL4OZFttDqZTzTqO6nRA=;
+ b=gd9LR8u54iKm+4MMsx2d7inhxPn2arWoskYeZqZeFz+nlXfIKHdMjwrO8G/4zP1ledGRmD1uPlBflADlVQR0mnGpqwmAaa+MjPtDwJywucBj8knjxWtujF4iGZ5XfHY1Q+KnqgFuJOWkKMnSnuWp82QxBwQ2VV7S36KeYYENvJas6f8kYzbqR2vknoimUGBswJ5ktDtB78CKMw8HVTAUfN6zh44gYGZoL5Zq2COOsHlzO8lvsb9tXg7votJeggd4H6A4eT7N5hT2Yu9JYawwUaAn41TQ2nC+cmue/KlPsqUV+cGUOyAP0YIbH0wVVaIYRXLRXt9bTwY2X/Qy4b/Ifw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=s/4XjqYRBHrnoQpucyfnNDxpI96ToYO9oO+4EPxzLVs=;
- b=BOX2ZJGidTQUmjtItSaGmZixrVs9vb1V+WNHzjlRd/wfmkhJ1J2132+YD+ACAKgZmHNCol7wrYl7zTN+gyi4jQIyHTH7bkPDb/6wanN9Li0o6HidjKYyQecawE3T2d7XVNj/vYR+Wa6LEj881IayHCwp+z0FW4N3bnX8RVKlRUwGr8MV/pOHwy2AbYU95/9Vh4ea6xnIAn6DxfzwxCne2ELn5SySLULt9XhhA7RGrZFwkzseYmfFIlXhbKAl1zvNISOxSk9cvjGv8VARLZVXqztIWX0kmyg56Q/AYBlTMEAyH5zZv0BkZNxFqdRKIo+t3+NEVu9TJbF3pJ0jyjr5mQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=vivo.com;
-Received: from SEYPR06MB6615.apcprd06.prod.outlook.com (2603:1096:101:172::11)
- by SEYPR06MB5694.apcprd06.prod.outlook.com (2603:1096:101:bd::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.30; Mon, 10 Jul
- 2023 01:36:54 +0000
-Received: from SEYPR06MB6615.apcprd06.prod.outlook.com
- ([fe80::c817:d237:dc0d:576]) by SEYPR06MB6615.apcprd06.prod.outlook.com
- ([fe80::c817:d237:dc0d:576%4]) with mapi id 15.20.6565.028; Mon, 10 Jul 2023
- 01:36:54 +0000
-From: Yang Rong <yangrong@vivo.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Alvin Lee <Alvin.Lee2@amd.com>,
- Jun Lei <Jun.Lei@amd.com>, Qingqing Zhuo <qingqing.zhuo@amd.com>,
- Josip Pavic <Josip.Pavic@amd.com>, Max Tseng <Max.Tseng@amd.com>,
- Cruise Hung <cruise.hung@amd.com>, Eric Yang <Eric.Yang2@amd.com>,
- amd-gfx@lists.freedesktop.org (open list:AMD DISPLAY CORE),
- dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
- linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] dc_dmub_srv: Use max()/min() function for better coding
- conventions
-Date: Mon, 10 Jul 2023 09:30:20 +0800
-Message-ID: <20230710013518.2151-1-yangrong@vivo.com>
-X-Mailer: git-send-email 2.41.0.windows.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR02CA0121.apcprd02.prod.outlook.com
- (2603:1096:4:188::21) To SEYPR06MB6615.apcprd06.prod.outlook.com
- (2603:1096:101:172::11)
+ bh=XtQ4XJlvVaQS3fFVF1U9pjZfL4OZFttDqZTzTqO6nRA=;
+ b=LZHEVAJnPpvVVl9zYihbbfuhAwiAskkW21VN6PqW2eq50VtxyY0QpyRXPo6RfKFznP00vC5BfQueszcUGR2v62i64ebV2dg3iLx+SmObE4kQN4BhSiAQpnhZc+RjnILpa+IKkxh+8yU/4bLF/D4DIbXW6KFbeGNHuziLSpYXgPs=
+Received: from BN9PR03CA0903.namprd03.prod.outlook.com (2603:10b6:408:107::8)
+ by MN2PR12MB4375.namprd12.prod.outlook.com (2603:10b6:208:24f::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.31; Mon, 10 Jul
+ 2023 06:38:31 +0000
+Received: from BN8NAM11FT008.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:107:cafe::6c) by BN9PR03CA0903.outlook.office365.com
+ (2603:10b6:408:107::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.30 via Frontend
+ Transport; Mon, 10 Jul 2023 06:38:31 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT008.mail.protection.outlook.com (10.13.177.95) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6588.18 via Frontend Transport; Mon, 10 Jul 2023 06:38:31 +0000
+Received: from guchchen-System-Product-Name.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Mon, 10 Jul 2023 01:38:28 -0500
+From: Guchun Chen <guchun.chen@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <alexander.deucher@amd.com>,
+ <hawking.zhang@amd.com>, <christian.koenig@amd.com>,
+ <dusica.milinkovic@amd.com>, <nikola.prica@amd.com>, <flora.cui@amd.com>
+Subject: [PATCH v2] drm/amdgpu/vkms: relax timer deactivation by
+ hrtimer_try_to_cancel
+Date: Mon, 10 Jul 2023 14:38:08 +0800
+Message-ID: <20230710063808.1684914-1-guchun.chen@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SEYPR06MB6615:EE_|SEYPR06MB5694:EE_
-X-MS-Office365-Filtering-Correlation-Id: b0a330eb-a805-4344-a20d-08db80e62415
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT008:EE_|MN2PR12MB4375:EE_
+X-MS-Office365-Filtering-Correlation-Id: c84af51e-c900-4aea-67d7-08db81104708
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2ty4HuP9w2jvLT97FeRqXW8iP967OsRpRf8UNyFMGDdJIuQBfy/PA89hRr5inPzyPuCdYaNoVyVPLfvcFKZb6AuCQGoJucLzTn7WLp0dYP+rcoCDhIm4TzqjvzYb1TtxUQaXzCzfXCLHn0pEyodcFdaWOkW9XRONhKYvUJTaidRJwgKqPgOUobZIKg5EVpBgx1Zb45uB/Htj0kBszi6FDD1/yUF/ulQFfohYq6OkAEX4xL6id9XRELeNZ409vw6jnwBWsjMGmKYIchdl8APSVHurt67RZwXTXvGjtD22+6o+vndSS5PP5YqLPotqr72Ik0F1IPKYzCWNGVYClYIoXbsBRsvuIVNLaLK1FJlVEd5cdPRprHlxIn8fubnQxAVxfYNa4GvhUdZlmsUU+L0ZXG1IDaQcoSYLTArpBSblvDkBbWKbtZB/YWmMFxpQ+PaMiDTTwOOGIvCMKdg8qlutqsC2fymwgEIdw/D7r9xIjFcr5g7eNqy2BLBu7IFWQnIsZhqPQfAEJ3bFyRPrfYyfq4HVqM1dV6jLh9s9MY2soKDxf7QUh3lyGHP5rTY7DeDRYRPqSIKoHlDE0MDezuHZAZ7poZP1vi21qY7xSSkWJj0GJGrap8IQIYcixDf/GY0phvKgaTU4apDbqP0B7Ys+Zw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SEYPR06MB6615.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(39850400004)(366004)(396003)(376002)(346002)(136003)(451199021)(186003)(26005)(1076003)(6506007)(2616005)(6512007)(107886003)(83380400001)(41300700001)(4326008)(2906002)(66556008)(316002)(7416002)(5660300002)(8676002)(8936002)(66476007)(66946007)(478600001)(6486002)(52116002)(6666004)(110136005)(36756003)(921005)(86362001)(38100700002)(38350700002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?19J47kTBiOo3hEpYytbMGGnuyk4lcoJt5Rk8FOubxt2J1VJJkSpjQk3mn42d?=
- =?us-ascii?Q?WITagMXADPxvKh8M0uU32D8FkFOPR3p7CB/aY5RicW2fcDkemICmgslRoK9G?=
- =?us-ascii?Q?by8pk1A3NajnKPmmxepezy6AcBOdNb/c9Ukqr8lyICtX63kkpLu2OH4gt9pP?=
- =?us-ascii?Q?LBBjTpaudGgy/bP4QWg5tfrIkGI0jKOxhlwnpIsydfiIm9AyqSWIOTGpAmHZ?=
- =?us-ascii?Q?MkrvCfhzrLe7Ovaj6k5eHQZ3S7nO84sQy9Hxki5Ff4IRyzk4fpfWRGMwddJv?=
- =?us-ascii?Q?toX/6pSeoi+BM8mAp5rxIGKS8U657CGMN7X/gqt75+wKbdoxSXy65B9CCsp2?=
- =?us-ascii?Q?h3+33R4HZOq+ljSuKBXvzrGLaklrEkMV9F4XaM2O296ANEs4xYD5Wvw6NW19?=
- =?us-ascii?Q?dUq3iaaX+TgGw6ju/MW0vqanjE+OqYIwRHs+CJb00x7ub3qCpE6Tlc7KcN15?=
- =?us-ascii?Q?BjIrkGs7F6IFZ4KSJ5jpLK6OcRmngWKfqEQZiBSHZQVyj27eCU77NTw6AjtQ?=
- =?us-ascii?Q?Yfn6ewBWmQ790sqFIR9oJaiM57cc9l0ZslAafzT6dkmXHC7XmzfHg2Piidnb?=
- =?us-ascii?Q?xHM7m0/7MYJ8EQFFEaOJFbF0FEZ3AsMrZRhGlmaKke5KopRUnS6SwX77NlsB?=
- =?us-ascii?Q?3f6a1DtYzOMO3LXQ0ICik3Ip6MV1qZUYUu1P4+bvPm9qLYD0VcYT+/Y3aRy0?=
- =?us-ascii?Q?P+AA86inbS5uTOFAN1F2ulr9nk/W8z92kZbnVpEshIlc7yr68RwiXy0l0YWj?=
- =?us-ascii?Q?rWcf6x1Fbc/U2zMm5lLcYnlv7Xxe4ISgKEFxhT/Nig7K9euB+Adc2L9iwFzz?=
- =?us-ascii?Q?TsWxu0XFQ/DezlDlai3v8nhY7iVTINX3j3zzns4+vmkL9hmq5ctrVh7TgkL7?=
- =?us-ascii?Q?ky/spZsDGrp1sTN5ZshhS1BhfDAMAE0qSSDDndEdi9jEtmcKcDA7LOWOemlk?=
- =?us-ascii?Q?HHnmqcjf5ApJBF462lN3/h2DTrm4gaxfLlNgWBpOdEu45kyZJyxp2d/8jMAt?=
- =?us-ascii?Q?eWCWf95nz9a2PgnleVUYvpHoCHA0oCHvuiZAI3cUaJMaw+vG3FLzlWmkkQWk?=
- =?us-ascii?Q?iIrvv05L3a66snqSP1kdMK/M83xkPWNP+aSUVG1xpiG9QuTRybHoKDgWNWxc?=
- =?us-ascii?Q?s8mGBcBVW4IqVzrtn4mwTbRAhgmpBU6pcDJITu7NKUMvtQHzLBtJYNvKBABc?=
- =?us-ascii?Q?mYGGgaEkd4N14YVlT3NB0iFUiBhoyBipGYsHjTvQSQS1lgrZBl3sIo+DESPq?=
- =?us-ascii?Q?e8lAE7U4ua7d3ZUIYBZu9wCLSuWVYbMqfwzXYy0DjL9EBOaIwA2YtKrhz3OW?=
- =?us-ascii?Q?4ZZRobXyFCMD/9usz80eqAseLRrOtNo4qEaDxTrerW/2bKMdmRaydgacvxtg?=
- =?us-ascii?Q?uzkhk2R9OlkXl6sy/97WnPrqgJW0QsWTAA9VL5aKfxZicfr7V3MKUpKwsPlZ?=
- =?us-ascii?Q?SQL5YhHIUv/zvXivdxZva+BeST1rLksTvuTbd11eXsubYeMX4mA1Jma/Cr//?=
- =?us-ascii?Q?K5PEmn4JDUzw1RJtfrxUD0Fyv6S9IkCrzdAEOYlug4Kpg2dNoYaLliFOi1LK?=
- =?us-ascii?Q?YYfVQKHosHtW1G++FMn/1Pzppw4TvLNF4cI0o3ga?=
-X-OriginatorOrg: vivo.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b0a330eb-a805-4344-a20d-08db80e62415
-X-MS-Exchange-CrossTenant-AuthSource: SEYPR06MB6615.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2023 01:36:54.1125 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /b4g/urkUU5GNceuHeitPifKH5e0XucqxyvmL6rXuwoU0ob7Q40UZo/njl6rbIk5uUKegexb6ap80TcQWGj27g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB5694
-X-Mailman-Approved-At: Mon, 10 Jul 2023 07:31:26 +0000
+X-Microsoft-Antispam-Message-Info: 4Kd+sJzbW88I/kF9mxhglpnR5VozB5wvL0VqKSUoQVn3fvXWiqtnpyTUyBOQ1RPItgalpjG37D93Gt14YwTPgPJnohrPjtheeLBa4dxnDdpiM1aLmVyaCCO0vE8xXtCtU5Y3onnxifZoyzHPgzmsVq+jME/ncJiQOlIIBW2hYbJP1X4Eesq2mDXjiGTVat5FLR8Xyv4+nZq51vWPRz30+D3B//c80FMF5M+HteFXBqvoMVArk4XadgDNuE4+QVCI7LNcICMRpOEIn5wntLmQhyh81JacV7XKJnLr4LmU7Gt1cYeCHsuWGwl1TM3ncOdFhWrYtbURIbITk+G/hIRxNzc83NlWfHwah6FWcI0vlAbSNqWTzC3TEyFlcoH/VUStH8yKn6SxlHdd26OsKfqXBp8Zo7XMFpekOK6RYd3G5bqZYXn+TTsdUO7Pwb93xrQh97n6OauVe0CTcyGeu6POG+wOkmhNqBbfpXwCNfoTnSqUfMjUvQ20luJwMOXlkbYFIwdJoCt/jmA7cJKOkbpZiYZDawJKECAVbpVKWiMPq1GQ1U3EfupI9QM9EMI8/aPiQ4fL6m/Ki0hjeTCgs2Bed3AVSuZTInNCFEg32dH2MMYG99jGIH8tBL+bLwYrCwTPxQXbU8GIdWYq1TaouSvyulUUfJcLq5nxcFMrkEtmQNagFldTr5gaFxT+A8Okl5ZKzNsKjSvZ+zu6W9qIlnd0gboHzjWCxVwtxXsdw+hm5G9Abxi9HaIZzDG4Ozt9GAP5av0X47oU/ABlipeneJx74Njt0zFqsQsBFFpMqqINg0M=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230028)(4636009)(396003)(136003)(39860400002)(376002)(346002)(451199021)(40470700004)(36840700001)(46966006)(7696005)(478600001)(6666004)(110136005)(54906003)(36860700001)(47076005)(66574015)(426003)(2616005)(83380400001)(36756003)(40460700003)(86362001)(40480700001)(2906002)(70206006)(82310400005)(186003)(70586007)(1076003)(26005)(16526019)(336012)(81166007)(356005)(82740400003)(6636002)(4326008)(41300700001)(316002)(8936002)(8676002)(5660300002)(44832011)(2101003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2023 06:38:31.3781 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c84af51e-c900-4aea-67d7-08db81104708
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT008.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4375
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,51 +101,111 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: opensource.kernel@vivo.com, luhongfei@vivo.com,
- Yang Rong <yangrong@vivo.com>
+Cc: stable@vger.kernel.org, Guchun Chen <guchun.chen@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-It is advisable to utilize the max() function in the dc_dmub_srv.c file, 
-as it conforms better to programming conventions.
+In below thousands of screen rotation loop tests with virtual display
+enabled, a CPU hard lockup issue may happen, leading system to unresponsive
+and crash.
 
-Signed-off-by: Yang Rong <yangrong@vivo.com>
+do {
+	xrandr --output Virtual --rotate inverted
+	xrandr --output Virtual --rotate right
+	xrandr --output Virtual --rotate left
+	xrandr --output Virtual --rotate normal
+} while (1);
+
+NMI watchdog: Watchdog detected hard LOCKUP on cpu 1
+
+? hrtimer_run_softirq+0x140/0x140
+? store_vblank+0xe0/0xe0 [drm]
+hrtimer_cancel+0x15/0x30
+amdgpu_vkms_disable_vblank+0x15/0x30 [amdgpu]
+drm_vblank_disable_and_save+0x185/0x1f0 [drm]
+drm_crtc_vblank_off+0x159/0x4c0 [drm]
+? record_print_text.cold+0x11/0x11
+? wait_for_completion_timeout+0x232/0x280
+? drm_crtc_wait_one_vblank+0x40/0x40 [drm]
+? bit_wait_io_timeout+0xe0/0xe0
+? wait_for_completion_interruptible+0x1d7/0x320
+? mutex_unlock+0x81/0xd0
+amdgpu_vkms_crtc_atomic_disable
+
+It's caused by a stuck in lock dependency in such scenario on different
+CPUs.
+
+CPU1                                             CPU2
+drm_crtc_vblank_off                              hrtimer_interrupt
+    grab event_lock (irq disabled)                   __hrtimer_run_queues
+        grab vbl_lock/vblank_time_block                  amdgpu_vkms_vblank_simulate
+            amdgpu_vkms_disable_vblank                       drm_handle_vblank
+                hrtimer_cancel                                       grab dev->event_lock
+
+So CPU1 stucks in hrtimer_cancel as timer callback is running endless on
+current clock base, as that timer queue on CPU2 has no chance to finish it
+because of failing to hold the lock. So NMI watchdog will throw the errors
+after its threshold, and all later CPUs are impacted/blocked.
+
+So use hrtimer_try_to_cancel to fix this, as disable_vblank callback
+does not need to wait the handler to finish. And also it's not necessary
+to check the return value of hrtimer_try_to_cancel, because even if it's
+-1 which means current timer callback is running, it will be reprogrammed
+in hrtimer_start with calling enable_vblank to make it works.
+
+v2: only re-arm timer when vblank is enabled (Christian) and add a Fixes
+tag as well
+
+Fixes: 84ec374bd580("drm/amdgpu: create amdgpu_vkms (v4)")
+Cc: stable@vger.kernel.org
+Suggested-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Guchun Chen <guchun.chen@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
- mode change 100644 => 100755 drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-index c753c6f30dd7..df79aea49a3c
---- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-+++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
-@@ -22,7 +22,7 @@
-  * Authors: AMD
-  *
-  */
--
-+#include <linux/minmax.h>
- #include "dc.h"
- #include "dc_dmub_srv.h"
- #include "../dmub/dmub_srv.h"
-@@ -481,7 +481,7 @@ static void populate_subvp_cmd_drr_info(struct dc *dc,
- 	max_drr_vblank_us = div64_u64((subvp_active_us - prefetch_us -
- 			dc->caps.subvp_fw_processing_delay_us - drr_active_us), 2) + drr_active_us;
- 	max_drr_mallregion_us = subvp_active_us - prefetch_us - mall_region_us - dc->caps.subvp_fw_processing_delay_us;
--	max_drr_supported_us = max_drr_vblank_us > max_drr_mallregion_us ? max_drr_vblank_us : max_drr_mallregion_us;
-+	max_drr_supported_us = max(max_drr_vblank_us, max_drr_mallregion_us);
- 	max_vtotal_supported = div64_u64(((uint64_t)drr_timing->pix_clk_100hz * 100 * max_drr_supported_us),
- 			(((uint64_t)drr_timing->h_total * 1000000)));
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
+index 53ff91fc6cf6..44d704306f44 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
+@@ -46,7 +46,10 @@ static enum hrtimer_restart amdgpu_vkms_vblank_simulate(struct hrtimer *timer)
+ 	struct amdgpu_crtc *amdgpu_crtc = container_of(timer, struct amdgpu_crtc, vblank_timer);
+ 	struct drm_crtc *crtc = &amdgpu_crtc->base;
+ 	struct amdgpu_vkms_output *output = drm_crtc_to_amdgpu_vkms_output(crtc);
++	struct drm_vblank_crtc *vblank;
++	struct drm_device *dev;
+ 	u64 ret_overrun;
++	unsigned int pipe;
+ 	bool ret;
  
-@@ -771,7 +771,7 @@ void dc_dmub_setup_subvp_dmub_command(struct dc *dc,
- 		wm_val_refclk = context->bw_ctx.bw.dcn.watermarks.a.cstate_pstate.pstate_change_ns *
- 				(dc->res_pool->ref_clocks.dchub_ref_clock_inKhz / 1000) / 1000;
+ 	ret_overrun = hrtimer_forward_now(&amdgpu_crtc->vblank_timer,
+@@ -54,9 +57,15 @@ static enum hrtimer_restart amdgpu_vkms_vblank_simulate(struct hrtimer *timer)
+ 	if (ret_overrun != 1)
+ 		DRM_WARN("%s: vblank timer overrun\n", __func__);
  
--		cmd.fw_assisted_mclk_switch_v2.config_data.watermark_a_cache = wm_val_refclk < 0xFFFF ? wm_val_refclk : 0xFFFF;
-+		cmd.fw_assisted_mclk_switch_v2.config_data.watermark_a_cache = min(wm_val_refclk, 0xFFFF);
- 	}
++	dev = crtc->dev;
++	pipe = drm_crtc_index(crtc);
++	vblank = &dev->vblank[pipe];
+ 	ret = drm_crtc_handle_vblank(crtc);
+-	if (!ret)
+-		DRM_ERROR("amdgpu_vkms failure on handling vblank");
++	if (!ret && !READ_ONCE(vblank->enabled)) {
++		/* Don't queue timer again when vblank is disabled. */
++		DRM_WARN("amdgpu_vkms failure on handling vblank\n");
++		return HRTIMER_NORESTART;
++	}
  
- 	dm_execute_dmub_cmd(dc->ctx, &cmd, DM_DMUB_WAIT_TYPE_WAIT);
+ 	return HRTIMER_RESTART;
+ }
+@@ -81,7 +90,7 @@ static void amdgpu_vkms_disable_vblank(struct drm_crtc *crtc)
+ {
+ 	struct amdgpu_crtc *amdgpu_crtc = to_amdgpu_crtc(crtc);
+ 
+-	hrtimer_cancel(&amdgpu_crtc->vblank_timer);
++	hrtimer_try_to_cancel(&amdgpu_crtc->vblank_timer);
+ }
+ 
+ static bool amdgpu_vkms_get_vblank_timestamp(struct drm_crtc *crtc,
 -- 
-2.35.3
+2.25.1
 
