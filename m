@@ -1,119 +1,117 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4693E74CB12
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 Jul 2023 06:13:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F2EB74CE76
+	for <lists+amd-gfx@lfdr.de>; Mon, 10 Jul 2023 09:31:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9F1A10E15F;
-	Mon, 10 Jul 2023 04:12:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B84FC10E1F6;
+	Mon, 10 Jul 2023 07:31:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on20624.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7eab::624])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F18310E15F
- for <amd-gfx@lists.freedesktop.org>; Mon, 10 Jul 2023 04:12:56 +0000 (UTC)
+Received: from APC01-PSA-obe.outbound.protection.outlook.com
+ (mail-psaapc01on2101.outbound.protection.outlook.com [40.107.255.101])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 744CC10E029;
+ Mon, 10 Jul 2023 01:37:01 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=L3WfBpaaytTkEWTbAGn+xGMLMlya0q6NwsmJuGeuPzgfHWnn8vRYOAoAxhgxsTtHZK9gvs/Hc0HsMSpgnLpmjVeI9o9otgvQhXgp9S6AwlVSgcmz1M50Q30xekx4+IeOJ37UK9zww6eFhheQSiAR4WmIWq71hnHzX0iiJUXsATkcIYvySeCl4JDlgONgMREX3ucIXbUfIS/FwbBY/hUG12okH/OJAN2ufuF2L+KCBSv4Xq4T0Q/6DqWb3OK6056DIEBD2j0H9B722D+yMv/bplZ3ixS2fkxyAWmz+g05ZhOqxl03E0Et277Pfb5xHgVvawJIFvqT/hh3umvDGaZHVg==
+ b=a77q/XIZamn6dYy2tUR/qEkSmfenufEsK6q8a5WWHgE2EM0IdePp2qyhZGVi/pBQcKF5+9KLwWrPHce8jJQ8w1E3ItiX1ghcA1OBVUJuaX3fksMcJTzCEa5q0IfaJ9GGb9Wf5sH03dQR5YYNKiAbVHylwFrxsPO7arKvmZQOIpEZSP/oQvXko3z0FIT5Ph2PR7bqUHYWSxGaHn8hA5q78diR2v6/peTL6f02BBUej+xXuwMPu+F9J1MrAybqXKRaVqa+LfZkLDAHbeLgMMMZbse5Hh8sIHn5DNpd9I8RCZdj59/MgS+h2IZOqKWcRjVtvtwhVBwH4IW2KMoOVCqYOA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WfEDkdTtuJANU1q2SDBN9WjRoMfFm1dXgVgE4Z/pSBw=;
- b=XXCYcaByzk1WWEi/GxM0CgHDTwG7TQoE0lAvj/bC+nWGso8foDw6BF/0iwfdenu1/QyDmBbfOgtQ5EsPOoqxDF4s+/t/myCKwhzkH+i2/3xDT/7Ua90wJBX/9UNsN6RGi56lIcWKQw3xu6n47Uv1zH9Sv0kQ4JT8RQFyO/y+pt6epcZv2MHsb4p8NEm7uwmSKMvlaRKhD0acZe5AmH2ZV/dbsXviaoZ8MbDEyM9Q/aT2OSM1+kEAJmfuGZQNpNcwfx8W/L24bAdsS+t+a9tZo6ldR7K0aGdqlM62plLYnrovcWzLws8Shcrz3IMoJZgeVCB82s/Axh/AdU/FDj+aww==
+ bh=s/4XjqYRBHrnoQpucyfnNDxpI96ToYO9oO+4EPxzLVs=;
+ b=FlD5kVu7x9p2lPt2MGmadhBCzRVjnhJjUgaIIBUk9KtPfThknWXD6L79D44BAylWkpP28w7ey0p+aBHBZgkdxTZYBkKyH1yXM2xZfcZKqjyN8NkpxuVT7d1TzuSaMqbuRXlZNxEFV9t0CIUWl/vXwregtgpiQhyTG6GPJFRfs8ljlF7Rk1YUgpoZvw/BaJXqWbqk7w+dTfbtc6ywDBpPQvUQuKOFmHxOOW8AnUuBrSec+kDSUqxiMdRjKSVwTtUVoI2d4OFRNDX5m/0OhrnW8M75O74xAXBBg1CUBR38Vr8DGfAU8WTU8aoBeN+7kxXfd3KLns3enT8BQCjOkZynGA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
+ dkim=pass header.d=vivo.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo.com; s=selector2; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WfEDkdTtuJANU1q2SDBN9WjRoMfFm1dXgVgE4Z/pSBw=;
- b=iMEYeLTPbEgF46J6irw0X8807CfbjbimPI2qtwWJTzzZoQP28V71drXngveh8efHfM04dr8xGCXOmJ9GAXBkaYZHqDiDwhSlyDLxL52h25Vk54NQJVT8cugRHDHMoHu2wNo4vi629MKkEOGI3/6gPBXzKNhuztOZJo5qu62S1Lc=
+ bh=s/4XjqYRBHrnoQpucyfnNDxpI96ToYO9oO+4EPxzLVs=;
+ b=BOX2ZJGidTQUmjtItSaGmZixrVs9vb1V+WNHzjlRd/wfmkhJ1J2132+YD+ACAKgZmHNCol7wrYl7zTN+gyi4jQIyHTH7bkPDb/6wanN9Li0o6HidjKYyQecawE3T2d7XVNj/vYR+Wa6LEj881IayHCwp+z0FW4N3bnX8RVKlRUwGr8MV/pOHwy2AbYU95/9Vh4ea6xnIAn6DxfzwxCne2ELn5SySLULt9XhhA7RGrZFwkzseYmfFIlXhbKAl1zvNISOxSk9cvjGv8VARLZVXqztIWX0kmyg56Q/AYBlTMEAyH5zZv0BkZNxFqdRKIo+t3+NEVu9TJbF3pJ0jyjr5mQ==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BYAPR12MB4614.namprd12.prod.outlook.com (2603:10b6:a03:a6::22)
- by CY8PR12MB7337.namprd12.prod.outlook.com (2603:10b6:930:53::9) with
+ header.d=none;dmarc=none action=none header.from=vivo.com;
+Received: from SEYPR06MB6615.apcprd06.prod.outlook.com (2603:1096:101:172::11)
+ by SEYPR06MB5694.apcprd06.prod.outlook.com (2603:1096:101:bd::7) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.30; Mon, 10 Jul
- 2023 04:12:53 +0000
-Received: from BYAPR12MB4614.namprd12.prod.outlook.com
- ([fe80::1940:93e1:ec7b:f723]) by BYAPR12MB4614.namprd12.prod.outlook.com
- ([fe80::1940:93e1:ec7b:f723%5]) with mapi id 15.20.6565.028; Mon, 10 Jul 2023
- 04:12:53 +0000
-Message-ID: <18ab439b-b3e9-fc1e-3447-f2331f423168@amd.com>
-Date: Mon, 10 Jul 2023 09:42:44 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH 2/2] drm/amdgpu: use psp_execute_load_ip_fw instead
-Content-Language: en-US
-To: Lang Yu <Lang.Yu@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20230710031004.1106582-1-Lang.Yu@amd.com>
- <20230710031004.1106582-2-Lang.Yu@amd.com>
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <20230710031004.1106582-2-Lang.Yu@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN2PR01CA0140.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:6::25) To BYAPR12MB4614.namprd12.prod.outlook.com
- (2603:10b6:a03:a6::22)
+ 2023 01:36:54 +0000
+Received: from SEYPR06MB6615.apcprd06.prod.outlook.com
+ ([fe80::c817:d237:dc0d:576]) by SEYPR06MB6615.apcprd06.prod.outlook.com
+ ([fe80::c817:d237:dc0d:576%4]) with mapi id 15.20.6565.028; Mon, 10 Jul 2023
+ 01:36:54 +0000
+From: Yang Rong <yangrong@vivo.com>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Alvin Lee <Alvin.Lee2@amd.com>,
+ Jun Lei <Jun.Lei@amd.com>, Qingqing Zhuo <qingqing.zhuo@amd.com>,
+ Josip Pavic <Josip.Pavic@amd.com>, Max Tseng <Max.Tseng@amd.com>,
+ Cruise Hung <cruise.hung@amd.com>, Eric Yang <Eric.Yang2@amd.com>,
+ amd-gfx@lists.freedesktop.org (open list:AMD DISPLAY CORE),
+ dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
+ linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH] dc_dmub_srv: Use max()/min() function for better coding
+ conventions
+Date: Mon, 10 Jul 2023 09:30:20 +0800
+Message-ID: <20230710013518.2151-1-yangrong@vivo.com>
+X-Mailer: git-send-email 2.41.0.windows.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR02CA0121.apcprd02.prod.outlook.com
+ (2603:1096:4:188::21) To SEYPR06MB6615.apcprd06.prod.outlook.com
+ (2603:1096:101:172::11)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR12MB4614:EE_|CY8PR12MB7337:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6d3872c5-a482-4511-aa5f-08db80fbee02
+X-MS-TrafficTypeDiagnostic: SEYPR06MB6615:EE_|SEYPR06MB5694:EE_
+X-MS-Office365-Filtering-Correlation-Id: b0a330eb-a805-4344-a20d-08db80e62415
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: rx1kX/D1rkGAnwgAX4UQBSHDwWoozn5OK553X9Dqzda4ubGFT3+E0LiZqidd3KZTs/CsWYmydmMRyrMth9lZjxX8l2FXcoyDeGGXGPGfebnw4A0oMWwU8LOwsfdWTz7Td9RlZMka7sEqq8vu0ax+I6aZ3V0Plm+dN9MHnZvLSqPikpc9J2CwALPWh0dmwfrOZ4llJpjBTc/RSIKTSrpUXnBc+7PqidEuWqEvq80GrxvowBzzRLyRY4Pmjr8cSorvmnMNbg+YmzvBM/ggrBnRHDsuDHtoO7BGfdOgmLCdD2XYVQBN2X/g80y7RIRcvclOL4Y/n2pfx3JsRLpdfuKOGb3swfdA+5IV4KZDM72UBQFpa7klb1azcAfaVPTp86Uyg5h/LjIx4X6cv+EP2OljTCCX6ufW8efEXuHRCx3QvGRbYP8oYVK6u3PGMsMloms35MI7YGFnJMLLN6njqKMbbBJ1RhZ74eWYUYN8FcF7g7KXSXzGyP8VdCEVahbQZcZkeBYdk2oQcWCfSm00EBw6oXMFjKWzh5yyqXi6NLK6JsFn53+8jfKNmu+N/joU3qzQHpF/ODpXEjtvtQUjIANKyskBOa+YfYxUcWHb4RFxMcuBMHq8q+HahNYOwtx16quFURByUnXDmn/68s2Bj8/yjA==
+X-Microsoft-Antispam-Message-Info: 2ty4HuP9w2jvLT97FeRqXW8iP967OsRpRf8UNyFMGDdJIuQBfy/PA89hRr5inPzyPuCdYaNoVyVPLfvcFKZb6AuCQGoJucLzTn7WLp0dYP+rcoCDhIm4TzqjvzYb1TtxUQaXzCzfXCLHn0pEyodcFdaWOkW9XRONhKYvUJTaidRJwgKqPgOUobZIKg5EVpBgx1Zb45uB/Htj0kBszi6FDD1/yUF/ulQFfohYq6OkAEX4xL6id9XRELeNZ409vw6jnwBWsjMGmKYIchdl8APSVHurt67RZwXTXvGjtD22+6o+vndSS5PP5YqLPotqr72Ik0F1IPKYzCWNGVYClYIoXbsBRsvuIVNLaLK1FJlVEd5cdPRprHlxIn8fubnQxAVxfYNa4GvhUdZlmsUU+L0ZXG1IDaQcoSYLTArpBSblvDkBbWKbtZB/YWmMFxpQ+PaMiDTTwOOGIvCMKdg8qlutqsC2fymwgEIdw/D7r9xIjFcr5g7eNqy2BLBu7IFWQnIsZhqPQfAEJ3bFyRPrfYyfq4HVqM1dV6jLh9s9MY2soKDxf7QUh3lyGHP5rTY7DeDRYRPqSIKoHlDE0MDezuHZAZ7poZP1vi21qY7xSSkWJj0GJGrap8IQIYcixDf/GY0phvKgaTU4apDbqP0B7Ys+Zw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR12MB4614.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(136003)(346002)(376002)(39860400002)(366004)(451199021)(86362001)(38100700002)(31696002)(31686004)(36756003)(6666004)(6486002)(54906003)(6506007)(53546011)(26005)(186003)(6512007)(2616005)(5660300002)(316002)(2906002)(66556008)(478600001)(66946007)(8676002)(8936002)(83380400001)(4326008)(66476007)(41300700001)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:SEYPR06MB6615.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(39850400004)(366004)(396003)(376002)(346002)(136003)(451199021)(186003)(26005)(1076003)(6506007)(2616005)(6512007)(107886003)(83380400001)(41300700001)(4326008)(2906002)(66556008)(316002)(7416002)(5660300002)(8676002)(8936002)(66476007)(66946007)(478600001)(6486002)(52116002)(6666004)(110136005)(36756003)(921005)(86362001)(38100700002)(38350700002);
+ DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eVVhMEtwbnl6TTR5QzhGOVBIbDZ1RGVwZzlDWjRIaHRFd0ordFNTRGZSYnZN?=
- =?utf-8?B?K3dpRjJmOTgrRTAxczE0cHdEMlhyTW54bHRRVDNVZElBY3lEWlpBdUcyUGdK?=
- =?utf-8?B?bWo1WnRRczVyN0p0SlBqWlNJb3REQ2p1R2R5VFh2TGR3NkpNY01XRUh2ZjQz?=
- =?utf-8?B?TXgrR3hLeTR2cG5UVlExY2UybjNNSXduNkhmZHNjaE84enUzSU5qZW54S25B?=
- =?utf-8?B?dlV1dkR6QlhpQU1SWDltVmVFb01obU9PVUdJV1hGK1dMdmJJSm9ySG45ekJt?=
- =?utf-8?B?c1VwU2Q5THFkSlNrYWxTWS9uczYyYnM4YWE5ampOTzRkSlpaeHlyUFdza1B1?=
- =?utf-8?B?T3N6am9oWTZaYnRKdEF4TGxzektWZXVacDR6VmJoNEREa3VOckFSWXdzWTBp?=
- =?utf-8?B?dmdBamVCMzdKbi90Y0dBOHY1TW5uREZRWDNmZGZ0K1hGRDlSRjdQQTRjSTRW?=
- =?utf-8?B?R083K0VSY3k2NnUrZTZ0MVl6ZXdWWGZnQUlDUlpxUUZuTzl0ekFVa3hIamY4?=
- =?utf-8?B?SE9NZGpOQ3N2aGkrYVhRNXM3c2JLUlBCaWFRMVArR0RQV3AvZzBZNnA0Ulg3?=
- =?utf-8?B?QXl5VkdaM3NXMUR1NHdSaDdCWWdmQ0hheGQ4eU5RUnNxekdiV00weDJGOFFw?=
- =?utf-8?B?NDk4ampKL2R4NkEyczZuOHJYQzJhdmVKaGhjdk1rY0swUit4WUs1VmFrS3NS?=
- =?utf-8?B?NWd6V3dkY0l4aGtqbzRTUjZzZWo1aXRLSVQvQlpnTW9jMDIzQ1lIcjhHb2ZI?=
- =?utf-8?B?TmlvS29HVit5ek5NeEN3RkRWWUtWTWZweStnRjdybiszZzcrM2FyTGJuRTEz?=
- =?utf-8?B?K1c0ZmN1OU1qYVRwWTRYakpiWnlXUHNqNHREYitrWldUYVZRTHh3QzBWVzdO?=
- =?utf-8?B?WGtVMndrQnk5WXpZSDF3SG9QREhkVFVuSlRxRlZ3TWZCTzRZL2FtVW9vbEI3?=
- =?utf-8?B?UHp2aHkva2pUemRHOG1OWWlrOVZvcGdCWWlwdmkxcFdiOHpqVm83Qy9mZGdu?=
- =?utf-8?B?cHI5SHFITCtrSUdaQUxvWFMzTEVHS3ZWWGtXVldJOEZsbFJKYk1ucmRZYlFI?=
- =?utf-8?B?SGZVRkJ2OXhYR290bUNQQzhTcVBmc0VLcEE4TnFiL2l5MXNkZjRLRDhoZisr?=
- =?utf-8?B?YklHTHl5MkVjd2JHRGQ5cy9GRUNzRVVxaEM3T2NFZ2lXZGREMzVEMlFjZVhS?=
- =?utf-8?B?aU9sdm96U2ROczNNK3YxZ0xZa3A2WFcxQno2bmVjeW5wdVAvRGt3bXFKZ0E1?=
- =?utf-8?B?Qm9PcFNYZVoyZmg1VUcwZGl2V09UekU2c21scGVuQTFETVRPUzcxU1dzSEZO?=
- =?utf-8?B?cUEvV3hLUnovcVNVUmpMK004N3F1Qnhma2Q4aG50ZjlZY1J0ZWpyNUIrN2Fm?=
- =?utf-8?B?ckpWa01lUGtkTnB0OGo5M0hNNnpvMnRubXlHclpvbTQwdlpNaWJnSy9VV0tr?=
- =?utf-8?B?Nk9FR3kyYzVIa3JmTUhZQ0wyRllONHA1MVowbmFsVG9BT1dhcG9xbE5DamtZ?=
- =?utf-8?B?T3hzN0E5MlRKZ09wYndVdDVGWEhqczZucDRHbWd1enkxL2NZVk51VzFBYUY1?=
- =?utf-8?B?YnFyL285c1kvRFZyZER6QkJ0LzRBZmdIMWlpM2RYU25KY1VRM2xvZGlzbXRY?=
- =?utf-8?B?WFE1UjFPN3Y4OFhlZFo2Z0Z6aE15TE9GTmd3NGtnak5aN2hpdm1GdzB6UkJ6?=
- =?utf-8?B?ZnFqdFVPbDlQMEtKejJ6UzdBOUNnZXRVWmJ0TDBtcExLc2FHdGhhQmRyKzZQ?=
- =?utf-8?B?VTk3cDlqM1IrMWxVR2VlVXl4QnpyQ1czYTRGcGFvclcya1AyU3BYR2ZGc3hj?=
- =?utf-8?B?TnVROXhJZlNSUGpIYlFiYTkweEFGd3Fncm12YUhxTzdHNHgzTEtqbDBYakx4?=
- =?utf-8?B?QmVjRjBnVjlXYU9LMlNIR3UwdG5sRWcva3Q4MHl2c0NmN1c1elAwS3JsS0tB?=
- =?utf-8?B?NkloeUMvVjdIalVFOExwUTBwMG95RHFhNExZZ3dGaThZUy9JT3JjdWF4ci9m?=
- =?utf-8?B?NmZYQXNyR0lYenF2TEgyMGhxRk43Mk1CY2xuTHFYUE5EZzI1WkV2WjArdzRJ?=
- =?utf-8?B?MVc1TFg0aVVLRmNXeXlabldFdzVLYnJvanVvL04zNlNaRjBpQkUvcmlaaG5v?=
- =?utf-8?Q?qs5IFjRuJ/Y8PxO32s5cmcKxD?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6d3872c5-a482-4511-aa5f-08db80fbee02
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4614.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?19J47kTBiOo3hEpYytbMGGnuyk4lcoJt5Rk8FOubxt2J1VJJkSpjQk3mn42d?=
+ =?us-ascii?Q?WITagMXADPxvKh8M0uU32D8FkFOPR3p7CB/aY5RicW2fcDkemICmgslRoK9G?=
+ =?us-ascii?Q?by8pk1A3NajnKPmmxepezy6AcBOdNb/c9Ukqr8lyICtX63kkpLu2OH4gt9pP?=
+ =?us-ascii?Q?LBBjTpaudGgy/bP4QWg5tfrIkGI0jKOxhlwnpIsydfiIm9AyqSWIOTGpAmHZ?=
+ =?us-ascii?Q?MkrvCfhzrLe7Ovaj6k5eHQZ3S7nO84sQy9Hxki5Ff4IRyzk4fpfWRGMwddJv?=
+ =?us-ascii?Q?toX/6pSeoi+BM8mAp5rxIGKS8U657CGMN7X/gqt75+wKbdoxSXy65B9CCsp2?=
+ =?us-ascii?Q?h3+33R4HZOq+ljSuKBXvzrGLaklrEkMV9F4XaM2O296ANEs4xYD5Wvw6NW19?=
+ =?us-ascii?Q?dUq3iaaX+TgGw6ju/MW0vqanjE+OqYIwRHs+CJb00x7ub3qCpE6Tlc7KcN15?=
+ =?us-ascii?Q?BjIrkGs7F6IFZ4KSJ5jpLK6OcRmngWKfqEQZiBSHZQVyj27eCU77NTw6AjtQ?=
+ =?us-ascii?Q?Yfn6ewBWmQ790sqFIR9oJaiM57cc9l0ZslAafzT6dkmXHC7XmzfHg2Piidnb?=
+ =?us-ascii?Q?xHM7m0/7MYJ8EQFFEaOJFbF0FEZ3AsMrZRhGlmaKke5KopRUnS6SwX77NlsB?=
+ =?us-ascii?Q?3f6a1DtYzOMO3LXQ0ICik3Ip6MV1qZUYUu1P4+bvPm9qLYD0VcYT+/Y3aRy0?=
+ =?us-ascii?Q?P+AA86inbS5uTOFAN1F2ulr9nk/W8z92kZbnVpEshIlc7yr68RwiXy0l0YWj?=
+ =?us-ascii?Q?rWcf6x1Fbc/U2zMm5lLcYnlv7Xxe4ISgKEFxhT/Nig7K9euB+Adc2L9iwFzz?=
+ =?us-ascii?Q?TsWxu0XFQ/DezlDlai3v8nhY7iVTINX3j3zzns4+vmkL9hmq5ctrVh7TgkL7?=
+ =?us-ascii?Q?ky/spZsDGrp1sTN5ZshhS1BhfDAMAE0qSSDDndEdi9jEtmcKcDA7LOWOemlk?=
+ =?us-ascii?Q?HHnmqcjf5ApJBF462lN3/h2DTrm4gaxfLlNgWBpOdEu45kyZJyxp2d/8jMAt?=
+ =?us-ascii?Q?eWCWf95nz9a2PgnleVUYvpHoCHA0oCHvuiZAI3cUaJMaw+vG3FLzlWmkkQWk?=
+ =?us-ascii?Q?iIrvv05L3a66snqSP1kdMK/M83xkPWNP+aSUVG1xpiG9QuTRybHoKDgWNWxc?=
+ =?us-ascii?Q?s8mGBcBVW4IqVzrtn4mwTbRAhgmpBU6pcDJITu7NKUMvtQHzLBtJYNvKBABc?=
+ =?us-ascii?Q?mYGGgaEkd4N14YVlT3NB0iFUiBhoyBipGYsHjTvQSQS1lgrZBl3sIo+DESPq?=
+ =?us-ascii?Q?e8lAE7U4ua7d3ZUIYBZu9wCLSuWVYbMqfwzXYy0DjL9EBOaIwA2YtKrhz3OW?=
+ =?us-ascii?Q?4ZZRobXyFCMD/9usz80eqAseLRrOtNo4qEaDxTrerW/2bKMdmRaydgacvxtg?=
+ =?us-ascii?Q?uzkhk2R9OlkXl6sy/97WnPrqgJW0QsWTAA9VL5aKfxZicfr7V3MKUpKwsPlZ?=
+ =?us-ascii?Q?SQL5YhHIUv/zvXivdxZva+BeST1rLksTvuTbd11eXsubYeMX4mA1Jma/Cr//?=
+ =?us-ascii?Q?K5PEmn4JDUzw1RJtfrxUD0Fyv6S9IkCrzdAEOYlug4Kpg2dNoYaLliFOi1LK?=
+ =?us-ascii?Q?YYfVQKHosHtW1G++FMn/1Pzppw4TvLNF4cI0o3ga?=
+X-OriginatorOrg: vivo.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b0a330eb-a805-4344-a20d-08db80e62415
+X-MS-Exchange-CrossTenant-AuthSource: SEYPR06MB6615.apcprd06.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2023 04:12:52.6184 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2023 01:36:54.1125 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oTfPIP5ha2ayVD1gXamcgM9qz6Y0OX8y6Ewh5+QxQWoLbemGJU9Ijv+kOICM5U0r
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7337
+X-MS-Exchange-CrossTenant-UserPrincipalName: /b4g/urkUU5GNceuHeitPifKH5e0XucqxyvmL6rXuwoU0ob7Q40UZo/njl6rbIk5uUKegexb6ap80TcQWGj27g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB5694
+X-Mailman-Approved-At: Mon, 10 Jul 2023 07:31:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,181 +123,51 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Veerabadhran Gopalakrishnan <Veerabadhran.Gopalakrishnan@amd.com>,
- Leo Liu <leo.liu@amd.com>
+Cc: opensource.kernel@vivo.com, luhongfei@vivo.com,
+ Yang Rong <yangrong@vivo.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+It is advisable to utilize the max() function in the dc_dmub_srv.c file, 
+as it conforms better to programming conventions.
 
+Signed-off-by: Yang Rong <yangrong@vivo.com>
+---
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+ mode change 100644 => 100755 drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
 
-On 7/10/2023 8:40 AM, Lang Yu wrote:
-> Replace the old ones with psp_execute_load_ip_fw.
-> 
-> Suggested-by: Lijo Lazar <lijo.lazar@amd.com>
-> Signed-off-by: Lang Yu <Lang.Yu@amd.com>
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
+index c753c6f30dd7..df79aea49a3c
+--- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
++++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
+@@ -22,7 +22,7 @@
+  * Authors: AMD
+  *
+  */
+-
++#include <linux/minmax.h>
+ #include "dc.h"
+ #include "dc_dmub_srv.h"
+ #include "../dmub/dmub_srv.h"
+@@ -481,7 +481,7 @@ static void populate_subvp_cmd_drr_info(struct dc *dc,
+ 	max_drr_vblank_us = div64_u64((subvp_active_us - prefetch_us -
+ 			dc->caps.subvp_fw_processing_delay_us - drr_active_us), 2) + drr_active_us;
+ 	max_drr_mallregion_us = subvp_active_us - prefetch_us - mall_region_us - dc->caps.subvp_fw_processing_delay_us;
+-	max_drr_supported_us = max_drr_vblank_us > max_drr_mallregion_us ? max_drr_vblank_us : max_drr_mallregion_us;
++	max_drr_supported_us = max(max_drr_vblank_us, max_drr_mallregion_us);
+ 	max_vtotal_supported = div64_u64(((uint64_t)drr_timing->pix_clk_100hz * 100 * max_drr_supported_us),
+ 			(((uint64_t)drr_timing->h_total * 1000000)));
+ 
+@@ -771,7 +771,7 @@ void dc_dmub_setup_subvp_dmub_command(struct dc *dc,
+ 		wm_val_refclk = context->bw_ctx.bw.dcn.watermarks.a.cstate_pstate.pstate_change_ns *
+ 				(dc->res_pool->ref_clocks.dchub_ref_clock_inKhz / 1000) / 1000;
+ 
+-		cmd.fw_assisted_mclk_switch_v2.config_data.watermark_a_cache = wm_val_refclk < 0xFFFF ? wm_val_refclk : 0xFFFF;
++		cmd.fw_assisted_mclk_switch_v2.config_data.watermark_a_cache = min(wm_val_refclk, 0xFFFF);
+ 	}
+ 
+ 	dm_execute_dmub_cmd(dc->ctx, &cmd, DM_DMUB_WAIT_TYPE_WAIT);
+-- 
+2.35.3
 
-Series is -
-	Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
-
-Thanks,
-Lijo
-
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 13 -------------
->   drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h |  2 --
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c | 15 +++++++++++++++
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h |  3 +++
->   drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c   |  4 +---
->   drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c   |  4 +---
->   drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c   |  4 +---
->   drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c   |  4 +---
->   drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c |  4 +---
->   9 files changed, 23 insertions(+), 30 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-> index a1a4408e524d..1b4d5f04d968 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-> @@ -2920,19 +2920,6 @@ int psp_rlc_autoload_start(struct psp_context *psp)
->   	return ret;
->   }
->   
-> -int psp_update_vcn_sram(struct amdgpu_device *adev, int inst_idx,
-> -			uint64_t cmd_gpu_addr, int cmd_size)
-> -{
-> -	struct amdgpu_firmware_info ucode = {0};
-> -
-> -	ucode.ucode_id = inst_idx ? AMDGPU_UCODE_ID_VCN1_RAM :
-> -		AMDGPU_UCODE_ID_VCN0_RAM;
-> -	ucode.mc_addr = cmd_gpu_addr;
-> -	ucode.ucode_size = cmd_size;
-> -
-> -	return psp_execute_ip_fw_load(&adev->psp, &ucode);
-> -}
-> -
->   int psp_ring_cmd_submit(struct psp_context *psp,
->   			uint64_t cmd_buf_mc_addr,
->   			uint64_t fence_mc_addr,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-> index efb3972bfebd..c3203de4a007 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-> @@ -466,8 +466,6 @@ int psp_execute_ip_fw_load(struct psp_context *psp,
->   			   struct amdgpu_firmware_info *ucode);
->   
->   int psp_gpu_reset(struct amdgpu_device *adev);
-> -int psp_update_vcn_sram(struct amdgpu_device *adev, int inst_idx,
-> -			uint64_t cmd_gpu_addr, int cmd_size);
->   
->   int psp_ta_init_shared_buf(struct psp_context *psp,
->   				  struct ta_mem_context *mem_ctx);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-> index d37ebd4402ef..4e1256af80b6 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-> @@ -1257,3 +1257,18 @@ int amdgpu_vcn_ras_sw_init(struct amdgpu_device *adev)
->   
->   	return 0;
->   }
-> +
-> +int amdgpu_vcn_psp_update_sram(struct amdgpu_device *adev, int inst_idx,
-> +			       enum AMDGPU_UCODE_ID ucode_id)
-> +{
-> +	struct amdgpu_firmware_info ucode = {
-> +		.ucode_id = (ucode_id ? ucode_id :
-> +			    (inst_idx ? AMDGPU_UCODE_ID_VCN1_RAM :
-> +					AMDGPU_UCODE_ID_VCN0_RAM)),
-> +		.mc_addr = adev->vcn.inst[inst_idx].dpg_sram_gpu_addr,
-> +		.ucode_size = ((uintptr_t)adev->vcn.inst[inst_idx].dpg_sram_curr_addr -
-> +			      (uintptr_t)adev->vcn.inst[inst_idx].dpg_sram_cpu_addr),
-> +	};
-> +
-> +	return psp_execute_ip_fw_load(&adev->psp, &ucode);
-> +}
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
-> index 92d5534df5f4..1f1d7dc94f90 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
-> @@ -414,4 +414,7 @@ int amdgpu_vcn_ras_late_init(struct amdgpu_device *adev,
->   			struct ras_common_if *ras_block);
->   int amdgpu_vcn_ras_sw_init(struct amdgpu_device *adev);
->   
-> +int amdgpu_vcn_psp_update_sram(struct amdgpu_device *adev, int inst_idx,
-> +			       enum AMDGPU_UCODE_ID ucode_id);
-> +
->   #endif
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
-> index c975aed2f6c7..18794394c5a0 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
-> @@ -881,9 +881,7 @@ static int vcn_v2_0_start_dpg_mode(struct amdgpu_device *adev, bool indirect)
->   		UVD_MASTINT_EN__VCPU_EN_MASK, 0, indirect);
->   
->   	if (indirect)
-> -		psp_update_vcn_sram(adev, 0, adev->vcn.inst->dpg_sram_gpu_addr,
-> -				    (uint32_t)((uintptr_t)adev->vcn.inst->dpg_sram_curr_addr -
-> -					       (uintptr_t)adev->vcn.inst->dpg_sram_cpu_addr));
-> +		amdgpu_vcn_psp_update_sram(adev, 0, 0);
->   
->   	/* force RBC into idle state */
->   	rb_bufsz = order_base_2(ring->ring_size);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-> index bb1875f926f1..6fbea38f4d3e 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-> @@ -912,9 +912,7 @@ static int vcn_v2_5_start_dpg_mode(struct amdgpu_device *adev, int inst_idx, boo
->   		UVD_MASTINT_EN__VCPU_EN_MASK, 0, indirect);
->   
->   	if (indirect)
-> -		psp_update_vcn_sram(adev, inst_idx, adev->vcn.inst[inst_idx].dpg_sram_gpu_addr,
-> -				    (uint32_t)((uintptr_t)adev->vcn.inst[inst_idx].dpg_sram_curr_addr -
-> -					       (uintptr_t)adev->vcn.inst[inst_idx].dpg_sram_cpu_addr));
-> +		amdgpu_vcn_psp_update_sram(adev, inst_idx, 0);
->   
->   	ring = &adev->vcn.inst[inst_idx].ring_dec;
->   	/* force RBC into idle state */
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-> index c8f63b3c6f69..b76ba21b5a89 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-> @@ -1037,9 +1037,7 @@ static int vcn_v3_0_start_dpg_mode(struct amdgpu_device *adev, int inst_idx, boo
->   		VCN, inst_idx, mmUVD_VCPU_CNTL), tmp, 0, indirect);
->   
->   	if (indirect)
-> -		psp_update_vcn_sram(adev, inst_idx, adev->vcn.inst[inst_idx].dpg_sram_gpu_addr,
-> -			(uint32_t)((uintptr_t)adev->vcn.inst[inst_idx].dpg_sram_curr_addr -
-> -				(uintptr_t)adev->vcn.inst[inst_idx].dpg_sram_cpu_addr));
-> +		amdgpu_vcn_psp_update_sram(adev, inst_idx, 0);
->   
->   	ring = &adev->vcn.inst[inst_idx].ring_dec;
->   	/* force RBC into idle state */
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-> index d96ff4acae35..e8c02ae10163 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-> @@ -993,9 +993,7 @@ static int vcn_v4_0_start_dpg_mode(struct amdgpu_device *adev, int inst_idx, boo
->   
->   
->   	if (indirect)
-> -		psp_update_vcn_sram(adev, inst_idx, adev->vcn.inst[inst_idx].dpg_sram_gpu_addr,
-> -			(uint32_t)((uintptr_t)adev->vcn.inst[inst_idx].dpg_sram_curr_addr -
-> -				(uintptr_t)adev->vcn.inst[inst_idx].dpg_sram_cpu_addr));
-> +		amdgpu_vcn_psp_update_sram(adev, inst_idx, 0);
->   
->   	ring = &adev->vcn.inst[inst_idx].ring_enc[0];
->   
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-> index 5d67b8b8a3d6..550ac040b4be 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-> @@ -778,9 +778,7 @@ static int vcn_v4_0_3_start_dpg_mode(struct amdgpu_device *adev, int inst_idx, b
->   		UVD_MASTINT_EN__VCPU_EN_MASK, 0, indirect);
->   
->   	if (indirect)
-> -		psp_update_vcn_sram(adev, 0, adev->vcn.inst[inst_idx].dpg_sram_gpu_addr,
-> -			(uint32_t)((uintptr_t)adev->vcn.inst[inst_idx].dpg_sram_curr_addr -
-> -				(uintptr_t)adev->vcn.inst[inst_idx].dpg_sram_cpu_addr));
-> +		amdgpu_vcn_psp_update_sram(adev, inst_idx, AMDGPU_UCODE_ID_VCN0_RAM);
->   
->   	ring = &adev->vcn.inst[inst_idx].ring_enc[0];
->   
