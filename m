@@ -1,41 +1,61 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC11074F67D
-	for <lists+amd-gfx@lfdr.de>; Tue, 11 Jul 2023 19:06:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6839774F698
+	for <lists+amd-gfx@lfdr.de>; Tue, 11 Jul 2023 19:09:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7265110E417;
-	Tue, 11 Jul 2023 17:05:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C68910E40C;
+	Tue, 11 Jul 2023 17:09:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out-56.mta1.migadu.com (out-56.mta1.migadu.com [95.215.58.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99D0610E3FD
- for <amd-gfx@lists.freedesktop.org>; Tue, 11 Jul 2023 16:53:31 +0000 (UTC)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1689093837;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=JsW608w9Icre+eeXWiPepSjKi7cGG5If1vSETO465rs=;
- b=QF9u5YarQ3XzlTFgOQ75cikl4e7GNbilk51J/EF5FT5P17CXSbsJhIZPn2v2xfDNiD3iPg
- OL2K7w14/U1uqKbPrZ+SREEjfjWxoRcLu+YoI4CCjBNUfs96b9Eb/rlpz4+aGHn7BvrvUg
- A5l4s7aCH2f1LJn0RlazEQQwuZEJWso=
-From: Sui Jingfeng <sui.jingfeng@linux.dev>
-To: David Airlie <airlied@gmail.com>
-Subject: [PATCH v3 9/9] drm/loongson: Add an implement for the is_primary_gpu
- function callback
-Date: Wed, 12 Jul 2023 00:43:10 +0800
-Message-Id: <20230711164310.791756-10-sui.jingfeng@linux.dev>
-In-Reply-To: <20230711164310.791756-1-sui.jingfeng@linux.dev>
-References: <20230711164310.791756-1-sui.jingfeng@linux.dev>
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com
+ [IPv6:2607:f8b0:4864:20::231])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8496610E40C;
+ Tue, 11 Jul 2023 17:09:25 +0000 (UTC)
+Received: by mail-oi1-x231.google.com with SMTP id
+ 5614622812f47-3a337ddff16so4560820b6e.0; 
+ Tue, 11 Jul 2023 10:09:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1689095364; x=1691687364;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=hV73qAM5jf9inKvx6csq0KqHjwvvDMcIY0RseRx4sHw=;
+ b=KsnguWp1cL02BOOOoJ1TaTf8Y0SafDGcsBF5GfTf6pumKDoV9KOB0sXU2v+Bhhh5BH
+ WJHTTADm9CJU58zMfwF3UemrqZc5RZatpYy6a6SdG5IKkQHyL/z5ggzAQQx4/6njGDo/
+ XqghiRvyFULKM2LCrRfrpLv3a/TJ/SbevxzYfup+8Px4XYB7l489NuGj9HKdUqUlMS+E
+ 5NzB8eF7AbmPKWdqzS3KL/DlySqUzi7jkR8+ZgK8XttrYJ12nJxBjTxnMF6xLaX2AXqq
+ ZgFlciYcpFEt3gju1mEhxoIrZx7Lyol5bWJV2+2tyBq4/dJhB0q4hSU+yVl1oAsfmOAs
+ 7a0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1689095364; x=1691687364;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=hV73qAM5jf9inKvx6csq0KqHjwvvDMcIY0RseRx4sHw=;
+ b=VUdTgk4QHhzL6ho3nE+5WXcx5ZuIWUjM8bMOfoBoKErCowm6Fifn8k/vtGrMnrMkiN
+ oJSL3TKx7IxD1J20WJDfJONRTrhmKBv20CbXsaO40djhTpXKm3CMR2Fiiv2fZFvMYecC
+ cDm0vT/d8VzzTQ6EUqWwstfkLlC+s0qUPuaF+6ORc2eMWx6/w/5Kx03toZW70FYx92oI
+ o4rRAAk6g5IC4aTlIu/7MxunbUpS+tekE/8bzXOsdzaPRYQMiDg3xblDbwYrjfuwrsPD
+ 2bd9qx4O5ZVCDq3wdzRYuEPv7ojvsmGCH8zvD1dNKWuKj8r1YutiT608GA73mIb7tTL9
+ hgLA==
+X-Gm-Message-State: ABy/qLZOKyYRDEpiX4KCOzwaXn6YQmk0KsZyTOxaB7cB2e0XeFFvDK1x
+ vIER+Ps5CK5UnQ0FPEP2g4mZfabpKw7x2FIKlGs=
+X-Google-Smtp-Source: APBJJlFcGmgXTywqVKLKdpeTp/QyH1M6Jm5sM4BnLQk42aLUECLGYLnq5nAd87yE/9rrzgT2kkOqb0gmmexb9nhmbyo=
+X-Received: by 2002:a54:4d9a:0:b0:3a4:12ba:fde4 with SMTP id
+ y26-20020a544d9a000000b003a412bafde4mr2718510oix.33.1689095364314; Tue, 11
+ Jul 2023 10:09:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Mailman-Approved-At: Tue, 11 Jul 2023 17:05:41 +0000
+References: <20230711133122.3710-1-christian.koenig@amd.com>
+In-Reply-To: <20230711133122.3710-1-christian.koenig@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 11 Jul 2023 13:09:13 -0400
+Message-ID: <CADnq5_Mr-Fnt7H=SDxYSFcLSYxSyWeCK8At7QDtJh3CJLA09cA@mail.gmail.com>
+Subject: Re: drm_exec context for amdgpu
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,48 +67,19 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Sui Jingfeng <suijingfeng@loongson.cn>,
- kvm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Sui Jingfeng <suijingfeng@loongson.cn>
+On Tue, Jul 11, 2023 at 9:31=E2=80=AFAM Christian K=C3=B6nig
+<ckoenig.leichtzumerken@gmail.com> wrote:
+>
+> Hi Alex,
+>
+> so apart from some RADV semaphore issue which seems to be unrelated to
+> this changes our CI systems are happy with the changes.
+>
+> Can I get some ack to push them through drm-misc-next?
 
-Signed-off-by: Sui Jingfeng <suijingfeng@loongson.cn>
----
- drivers/gpu/drm/loongson/lsdc_drv.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/loongson/lsdc_drv.c b/drivers/gpu/drm/loongson/lsdc_drv.c
-index d10a28c2c494..92ef07d6a534 100644
---- a/drivers/gpu/drm/loongson/lsdc_drv.c
-+++ b/drivers/gpu/drm/loongson/lsdc_drv.c
-@@ -257,6 +257,14 @@ static unsigned int lsdc_vga_set_decode(struct pci_dev *pdev, bool state)
- 	return VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
- }
- 
-+static bool lsdc_is_primary_gpu(struct pci_dev *pdev)
-+{
-+	struct drm_device *ddev = pci_get_drvdata(pdev);
-+	struct lsdc_device *ldev = to_lsdc(ddev);
-+
-+	return drm_aperture_contain_firmware_fb(ldev->vram_base, ldev->vram_size);
-+}
-+
- static int lsdc_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- {
- 	const struct lsdc_desc *descp;
-@@ -289,7 +297,7 @@ static int lsdc_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 
- 	pci_set_drvdata(pdev, ddev);
- 
--	vga_client_register(pdev, lsdc_vga_set_decode, NULL);
-+	vga_client_register(pdev, lsdc_vga_set_decode, lsdc_is_primary_gpu);
- 
- 	drm_kms_helper_poll_init(ddev);
- 
--- 
-2.25.1
-
+For the series:
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
