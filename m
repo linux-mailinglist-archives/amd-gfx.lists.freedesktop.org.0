@@ -1,74 +1,92 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 066477510E5
-	for <lists+amd-gfx@lfdr.de>; Wed, 12 Jul 2023 21:04:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2079D7510A8
+	for <lists+amd-gfx@lfdr.de>; Wed, 12 Jul 2023 20:40:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7969910E5CC;
-	Wed, 12 Jul 2023 19:03:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DC7E10E5C9;
+	Wed, 12 Jul 2023 18:40:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com
- [IPv6:2607:f8b0:4864:20::433])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C7F089048
- for <amd-gfx@lists.freedesktop.org>; Wed, 12 Jul 2023 18:56:02 +0000 (UTC)
-Received: by mail-pf1-x433.google.com with SMTP id
- d2e1a72fcca58-6687096c6ddso4455110b3a.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 12 Jul 2023 11:56:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1689188161; x=1691780161;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=rTThceHWQZD4Ac2XfATsHd8gywiOPtbGgdMtmxYrl6g=;
- b=mAvzK1GiGBSN7wuSjG4gSl/sRXH7Vpsstyyr4MlF98kf0vSx11xRS7BmtlodiT4EaT
- S+mPbD73xNF4koSWREvGCAbbxbnQUVGClsW/SetbRcR5efSa8TJanylR5cR8k/Dt6ssn
- vFr6VMMtf4WD57Cj9ZT7EhH14J6aSRlXenIfk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1689188161; x=1691780161;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=rTThceHWQZD4Ac2XfATsHd8gywiOPtbGgdMtmxYrl6g=;
- b=CUznqtUgtbM+kPzAbugFxzF6tAnbC1sMjPVi0xVfa2ojLT8JYo6kYwch+t+w4yACVT
- xkMRPai4SF4NmhHD943sNuTzP87DgZ9xDCM2DLkCkZ408nUim7wpOZUX7K1OeAdA3rT6
- h0cj/7dGELIwAv0inYZmWKfeHZEP1V6BBG1b+H6xvDjp+PgUKY/2h3ZnRgvSjH63XqUS
- czKkhlhiRoPNSzBPyIFdFZMK9qQcdTR/n1lKSV9/vWOooSWx6mleppnh2WoNCvHCJfjT
- fs7yPfKXjrBvup2ejUsvLu1a+OeZRPZy9tCTBL8MEnCACEOZGkFQ/zuW1VpNuKXz1l20
- 6lZw==
-X-Gm-Message-State: ABy/qLaO0tRRd3oACyCno5L8z5egM+pY4s39VbGO4bhWb+Nf4AYFyqYJ
- Q0eqV0sP2nJxQPRWi6OHGLgueL53LaAQYrwGt0Do0B4Z
-X-Google-Smtp-Source: APBJJlFljm8DeG0IOhtvuY/NnTuYDtusZod3td9xHPaI8rbtkv0IzBQWyT8T9j7JVybz5MqDXnxy6A==
-X-Received: by 2002:a05:6a00:21d6:b0:668:7090:bf18 with SMTP id
- t22-20020a056a0021d600b006687090bf18mr16953906pfj.34.1689188160856; 
- Wed, 12 Jul 2023 11:56:00 -0700 (PDT)
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com.
- [209.85.210.173]) by smtp.gmail.com with ESMTPSA id
- c7-20020aa78807000000b006815fbe3240sm4093524pfo.11.2023.07.12.11.56.00
- for <amd-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 12 Jul 2023 11:56:00 -0700 (PDT)
-Received: by mail-pf1-f173.google.com with SMTP id
- d2e1a72fcca58-6687096c6ddso4455090b3a.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 12 Jul 2023 11:56:00 -0700 (PDT)
-X-Received: by 2002:a25:50c9:0:b0:c6d:e3e3:5592 with SMTP id
- e192-20020a2550c9000000b00c6de3e35592mr13511834ybb.54.1689186698646; Wed, 12
- Jul 2023 11:31:38 -0700 (PDT)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2083.outbound.protection.outlook.com [40.107.220.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A972810E5C8;
+ Wed, 12 Jul 2023 18:40:29 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=E7fRVZUjOy2qes8Rq2WICRfCkj6HLjP7rbKcouKN46BmkVScT+fZA2giUuUwJr48T8ttHNN5UoCqLr9pslkwNEKbaTSPSzPiqa8QFHxxRXux61jnWy/WjX6IyU7JSetoAJUqcS88/AGlu5OQWrMgOUMDiWstKXmz5LHv6Q6Vngp/gLJWcTAjdh/JirOKnitxwon6mnvx0kQzKqK3CTyrLw3+Qv4Uz/uYI/R5mshdZEUzkPAYMVc5Lehhc73Ux7EchVw+5WpAEUJe6XY7a2aa05bk36YLfP4o4d1gfYa/hQjD6MwanFVrr/M4VKCDEakdCp1uAQdHjM1UNsvfH5B5ZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=99nQ4xZszaLbzvvZ9NxF6n43VdXLsp7Lu5Xduh8jhOw=;
+ b=bcc3bzVymbOBCO+xmuiK1iMdeMijsXeb4Fh3XVuwLBj2wn/oS8GP7cbTUHckC3RsYEGV+AIIXwJbwVUnKXBqv3gFne2BA/jqT4AWaoC+nt60TpMSiNWeR3OlImSXblrAn9OGGkrFe71kLTrogEMRq5u6XdEJG5gtGkR6kO8Kye9JXv5z4ygnrDESjTVrsNlfl7jm35pTOKMsQvQT1ZYNY8HMusqlPW4oyr4rXOVX1iQaMPESgE6A6GWJbETZZtAGJcm5JZyIvH/RQGo4dXDRt2gc3RfMYYg8IO4iKuQ9WjXNBHHVIkpauz986hJ6ndel3PRzgZyEXYnTQQZFXLibyw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=99nQ4xZszaLbzvvZ9NxF6n43VdXLsp7Lu5Xduh8jhOw=;
+ b=gW99uZKMem1tlxo9Buh3cavOgUQjqtEatgXo8moxlNTX/nCAIudymH/uu8KVq1HRVpgFUbbe3Cy5ge+ewb4g3s3EekvqMBsiHj4fSsuJK1xWklS9z/ffqnvSBVZiUC/+UaLbBifg5eQJ4vXV0KSfofM+GekUbbCFO1cKANsaNN8=
+Received: from MW3PR05CA0002.namprd05.prod.outlook.com (2603:10b6:303:2b::7)
+ by DM6PR12MB4877.namprd12.prod.outlook.com (2603:10b6:5:1bb::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.22; Wed, 12 Jul
+ 2023 18:40:24 +0000
+Received: from CO1NAM11FT067.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:2b:cafe::d) by MW3PR05CA0002.outlook.office365.com
+ (2603:10b6:303:2b::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.20 via Frontend
+ Transport; Wed, 12 Jul 2023 18:40:23 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT067.mail.protection.outlook.com (10.13.174.212) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6588.22 via Frontend Transport; Wed, 12 Jul 2023 18:40:23 +0000
+Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Wed, 12 Jul
+ 2023 13:40:22 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <airlied@gmail.com>, <daniel.vetter@ffwll.ch>
+Subject: [pull] amdgpu drm-fixes-6.5
+Date: Wed, 12 Jul 2023 14:40:09 -0400
+Message-ID: <20230712184009.7740-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-References: <20230712094702.1770121-1-u.kleine-koenig@pengutronix.de>
- <87fs5tgpvv.fsf@intel.com>
-In-Reply-To: <87fs5tgpvv.fsf@intel.com>
-From: Sean Paul <seanpaul@chromium.org>
-Date: Wed, 12 Jul 2023 14:31:02 -0400
-X-Gmail-Original-Message-ID: <CAOw6vbLO_UaXDbTCtAQJgthXOUMPqEV+c2MQhP-1DuK44OhGxw@mail.gmail.com>
-Message-ID: <CAOw6vbLO_UaXDbTCtAQJgthXOUMPqEV+c2MQhP-1DuK44OhGxw@mail.gmail.com>
-Subject: Re: [Freedreno] [PATCH RFC v1 00/52] drm/crtc: Rename struct
- drm_crtc::dev to drm_dev
-To: Jani Nikula <jani.nikula@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Wed, 12 Jul 2023 19:03:57 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT067:EE_|DM6PR12MB4877:EE_
+X-MS-Office365-Filtering-Correlation-Id: cd8f7b2d-1968-4cb1-e5a2-08db83077404
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: gbQMhd99OTFwxv21344zPfKF/YTGg3NWt5GIsRMl9/NnYtbDegyZDLbIBcMAGYe3GS9cqA7rLqZslXiUd4BxuCndJhxAhAmL3Onvk4bQW/qh0MouFS6p9HUffsrZztKIC0GTa2wYpXXRnn9lMJ/+krqHnRVRys3FhVuRyMi/h4nyLfaOhnRetakrH/wetK/vOIXJBuge+UKuIZwAJ5SiL2DHjW45uFQtcT+U5AgpSFrBL5YHmPq1+tzdMWhQ48DHZe3Nxr/TgSX3BaPnTeUL46yqDjuRkKPTcIlI2lm7fFt7SRfD6uqcDZw6ggB/1TfZizygUULaG+Q2xHqXq/PJ44xbDB3Cw49l4ZFskTu4TkjbhWxsNsSpUOcNBEzmgw+FGQm4iPoo4/2f7rOaazhFdFE2xHkxYURvLH42tzO5VPUUvvVUYpz/loNgdfr60x9ZcioFXHgP8OhRKLAXdpLVlh4KmppQrrJRRK+CZUf+64PH5T8JP4hwcVEJUSpRKXI2VDL7TRvGuVVD4hQKrAmg4d8wijvxgXf5KDtosY91DJnmxFuS/j5EP4r42fARHMSrJmg0sn9nxLhz/AlVZ/y8cw0KGgIkCGU+IHkZ3VHR2sFmc2sFRjX2aN7Qju+i8PVjCfrl57+uiLypilfuABwl7lm/i22BXFIwzPcYHvnB5sAUti/lsyCvvs/KY3KXeejOiRrdT+VaWWnybMnO86vSBJ3PnC9085Y8KBoOj37ZGow+Vs0eFNkb3bZLsbdQH0t3
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230028)(4636009)(346002)(136003)(396003)(376002)(39860400002)(451199021)(40470700004)(36840700001)(46966006)(41300700001)(82740400003)(316002)(40460700003)(966005)(5660300002)(26005)(36756003)(1076003)(8936002)(8676002)(83380400001)(82310400005)(426003)(47076005)(36860700001)(86362001)(81166007)(16526019)(2906002)(2616005)(186003)(336012)(356005)(40480700001)(110136005)(6666004)(478600001)(70586007)(70206006)(7696005)(4326008)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2023 18:40:23.6138 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cd8f7b2d-1968-4cb1-e5a2-08db83077404
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT067.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4877
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,220 +98,59 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Marian Cichy <m.cichy@pengutronix.de>, Xinliang Liu <xinliang.liu@linaro.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
- Alexey Kodanev <aleksei.kodanev@bell-sw.com>, dri-devel@lists.freedesktop.org,
- Vandita Kulkarni <vandita.kulkarni@intel.com>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Arun R Murthy <arun.r.murthy@intel.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Liu Shixin <liushixin2@huawei.com>, linux-samsung-soc@vger.kernel.org,
- Samuel Holland <samuel@sholland.org>, Matt Roper <matthew.d.roper@intel.com>,
- Wenjing Liu <wenjing.liu@amd.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
- Danilo Krummrich <dakr@redhat.com>, NXP Linux Team <linux-imx@nxp.com>,
- =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- spice-devel@lists.freedesktop.org,
- Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- linux-sunxi@lists.linux.dev, Stylon Wang <stylon.wang@amd.com>,
- Tim Huang <Tim.Huang@amd.com>, Suraj Kandpal <suraj.kandpal@intel.com>,
- =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>,
- Andi Shyti <andi.shyti@linux.intel.com>, Yifan Zhang <yifan1.zhang@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Inki Dae <inki.dae@samsung.com>,
- Hersen Wu <hersenxs.wu@amd.com>, Jessica Zhang <quic_jesszhan@quicinc.com>,
- Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
- Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
- =?UTF-8?Q?=C5=81ukasz_Bartosik?= <lb@semihalf.com>,
- Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
- Andrew Jeffery <andrew@aj.id.au>, Seung-Woo Kim <sw0312.kim@samsung.com>,
- Manasi Navare <manasi.d.navare@intel.com>,
- =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>, kernel@pengutronix.de,
- Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
- Claudiu Beznea <claudiu.beznea@microchip.com>, Zack Rusin <zackr@vmware.com>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-aspeed@lists.ozlabs.org, nouveau@lists.freedesktop.org,
- Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
- Edmund Dea <edmund.j.dea@intel.com>,
- =?UTF-8?Q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>,
- virtualization@lists.linux-foundation.org,
- Thierry Reding <thierry.reding@gmail.com>,
- Yongqin Liu <yongqin.liu@linaro.org>,
- Mario Limonciello <mario.limonciello@amd.com>, Fei Yang <fei.yang@intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- David Lechner <david@lechnology.com>,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- "Jiri Slaby \(SUSE\)" <jirislaby@kernel.org>,
- David Francis <David.Francis@amd.com>, Aaron Liu <aaron.liu@amd.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Vinod Polimera <quic_vpolimer@quicinc.com>, linux-rockchip@lists.infradead.org,
- Fangzhi Zuo <jerry.zuo@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
- VMware Graphics Reviewers <linux-graphics-maintainer@vmware.com>,
- Ben Skeggs <bskeggs@redhat.com>,
- =?UTF-8?Q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>,
- Dave Airlie <airlied@redhat.com>, linux-mips@vger.kernel.org,
- Graham Sider <Graham.Sider@amd.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-arm-msm@vger.kernel.org, Animesh Manna <animesh.manna@intel.com>,
- linux-renesas-soc@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, linux-amlogic@lists.infradead.org,
- Evan Quan <evan.quan@amd.com>, Michal Simek <michal.simek@amd.com>,
- linux-arm-kernel@lists.infradead.org, Sean Paul <sean@poorly.run>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kai Vehmanen <kai.vehmanen@linux.intel.com>,
- Boris Brezillon <bbrezillon@kernel.org>, Chunyan Zhang <zhang.lyra@gmail.com>,
- Qingqing Zhuo <qingqing.zhuo@amd.com>, Sandy Huang <hjc@rock-chips.com>,
- Swati Sharma <swati2.sharma@intel.com>, John Stultz <jstultz@google.com>,
- Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Drew Davenport <ddavenport@chromium.org>, Kevin Hilman <khilman@baylibre.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>,
- Haneen Mohammed <hamohammed.sa@gmail.com>,
- Anusha Srivatsa <anusha.srivatsa@intel.com>, Dan Carpenter <error27@gmail.com>,
- Karol Herbst <kherbst@redhat.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- linux-hyperv@vger.kernel.org, Stefan Agner <stefan@agner.ch>,
- Melissa Wen <melissa.srw@gmail.com>,
- =?UTF-8?B?TWHDrXJhIENhbmFs?= <mairacanal@riseup.net>,
- Luca Coelho <luciano.coelho@intel.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Likun Gao <Likun.Gao@amd.com>,
- Sam Ravnborg <sam@ravnborg.org>, Alain Volmat <alain.volmat@foss.st.com>,
- Xinwei Kong <kong.kongxinwei@hisilicon.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Deepak Rawat <drawat.floss@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- Joel Stanley <joel@jms.id.au>, xurui <xurui@kylinos.cn>,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Harry Wentland <harry.wentland@amd.com>,
- Sumit Semwal <sumit.semwal@linaro.org>, Alan Liu <haoping.liu@amd.com>,
- Philip Yang <Philip.Yang@amd.com>, intel-gfx@lists.freedesktop.org,
- Alison Wang <alison.wang@nxp.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Mikko Perttunen <mperttunen@nvidia.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>,
- Tomi Valkeinen <tomba@kernel.org>, Deepak R Varma <drv@mailo.com>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, Biju Das <biju.das.jz@bp.renesas.com>,
- Chia-I Wu <olvaffe@gmail.com>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Tian Tao <tiantao6@hisilicon.com>, Shawn Guo <shawnguo@kernel.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Khaled Almahallawy <khaled.almahallawy@intel.com>,
- linux-stm32@st-md-mailman.stormreply.com, Emma Anholt <emma@anholt.net>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, Imre Deak <imre.deak@intel.com>,
- Liviu Dudau <liviu.dudau@arm.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>, Roman Li <roman.li@amd.com>,
- Paul Cercueil <paul@crapouillou.net>, Rob Clark <robdclark@gmail.com>,
- Hamza Mahfooz <hamza.mahfooz@amd.com>, David Airlie <airlied@gmail.com>,
- Marek Vasut <marex@denx.de>, Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
- xen-devel@lists.xenproject.org, Guchun Chen <guchun.chen@amd.com>,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Russell King <linux@armlinux.org.uk>, Uma Shankar <uma.shankar@intel.com>,
- Mika Kahola <mika.kahola@intel.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Jiasheng Jiang <jiasheng@iscas.ac.cn>,
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Vinod Govindapillai <vinod.govindapillai@intel.com>,
- linux-tegra@vger.kernel.org,
- =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <marek.olsak@amd.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- =?UTF-8?Q?Joaqu=C3=ADn_Ignacio_Aramend=C3=ADa?= <samsagax@gmail.com>,
- Melissa Wen <mwen@igalia.com>, Hans de Goede <hdegoede@redhat.com>,
- linux-mediatek@lists.infradead.org, Fabio Estevam <festevam@gmail.com>,
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- David Tadokoro <davidbtadokoro@usp.br>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Orson Zhai <orsonzhai@gmail.com>, amd-gfx@lists.freedesktop.org,
- Jyri Sarha <jyri.sarha@iki.fi>, Yannick Fertre <yannick.fertre@foss.st.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Philippe Cornu <philippe.cornu@foss.st.com>, Daniel Vetter <daniel@ffwll.ch>,
- Wayne Lin <Wayne.Lin@amd.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Nirmoy Das <nirmoy.das@intel.com>, Lang Yu <Lang.Yu@amd.com>,
- Lucas Stach <l.stach@pengutronix.de>
+Cc: Alex Deucher <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 12, 2023 at 10:52=E2=80=AFAM Jani Nikula <jani.nikula@intel.com=
-> wrote:
->
-> On Wed, 12 Jul 2023, Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.d=
-e> wrote:
-> > Hello,
-> >
-> > while I debugged an issue in the imx-lcdc driver I was constantly
-> > irritated about struct drm_device pointer variables being named "dev"
-> > because with that name I usually expect a struct device pointer.
-> >
-> > I think there is a big benefit when these are all renamed to "drm_dev".
-> > I have no strong preference here though, so "drmdev" or "drm" are fine
-> > for me, too. Let the bikesheding begin!
-> >
-> > Some statistics:
-> >
-> > $ git grep -ohE 'struct drm_device *\* *[^ (),;]*' v6.5-rc1 | sort | un=
-iq -c | sort -n
-> >       1 struct drm_device *adev_to_drm
-> >       1 struct drm_device *drm_
-> >       1 struct drm_device          *drm_dev
-> >       1 struct drm_device        *drm_dev
-> >       1 struct drm_device *pdev
-> >       1 struct drm_device *rdev
-> >       1 struct drm_device *vdev
-> >       2 struct drm_device *dcss_drv_dev_to_drm
-> >       2 struct drm_device **ddev
-> >       2 struct drm_device *drm_dev_alloc
-> >       2 struct drm_device *mock
-> >       2 struct drm_device *p_ddev
-> >       5 struct drm_device *device
-> >       9 struct drm_device * dev
-> >      25 struct drm_device *d
-> >      95 struct drm_device *
-> >     216 struct drm_device *ddev
-> >     234 struct drm_device *drm_dev
-> >     611 struct drm_device *drm
-> >    4190 struct drm_device *dev
-> >
-> > This series starts with renaming struct drm_crtc::dev to drm_dev. If
-> > it's not only me and others like the result of this effort it should be
-> > followed up by adapting the other structs and the individual usages in
-> > the different drivers.
->
-> I think this is an unnecessary change. In drm, a dev is usually a drm
-> device, i.e. struct drm_device *. As shown by the numbers above.
->
+Hi Dave, Daniel,
 
-I'd really prefer this patch (series or single) is not accepted. This
-will cause problems for everyone cherry-picking patches to a
-downstream kernel (LTS or distro tree). I usually wouldn't expect
-sympathy here, but the questionable benefit does not outweigh the cost
-IM[biased]O.
+Fixes for 6.5.
 
-Sean
+The following changes since commit 6725f33228077902ddac2a05e0ab361dee36e4ba:
 
-> If folks insist on following through with this anyway, I'm firmly in the
-> camp the name should be "drm" and nothing else.
->
->
-> BR,
-> Jani.
->
->
-> --
-> Jani Nikula, Intel Open Source Graphics Center
+  Merge tag 'drm-misc-next-fixes-2023-07-06' of git://anongit.freedesktop.org/drm/drm-misc into drm-next (2023-07-07 11:05:16 +1000)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/agd5f/linux.git tags/amd-drm-fixes-6.5-2023-07-12
+
+for you to fetch changes up to e701156ccc6c7a5f104a968dda74cd6434178712:
+
+  drm/amd: Align SMU11 SMU_MSG_OverridePcieParameters implementation with SMU13 (2023-07-12 12:21:23 -0400)
+
+----------------------------------------------------------------
+amd-drm-fixes-6.5-2023-07-12:
+
+amdgpu:
+- SMU i2c locking fix
+- Fix a possible deadlock in process restoration for ROCm apps
+- Disable PCIe lane/speed switching on Intel platforms (the platforms don't support it)
+
+----------------------------------------------------------------
+Evan Quan (1):
+      drm/amd/pm: share the code around SMU13 pcie parameters update
+
+Mario Limonciello (3):
+      drm/amd/pm: conditionally disable pcie lane/speed switching for SMU13
+      drm/amd: Move helper for dynamic speed switch check out of smu13
+      drm/amd: Align SMU11 SMU_MSG_OverridePcieParameters implementation with SMU13
+
+Yang Wang (1):
+      drm/amd/pm: fix smu i2c data read risk
+
+gaba (1):
+      drm/amdgpu: avoid restore process run into dead loop.
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h                |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c   |  3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c         | 19 +++++
+ drivers/gpu/drm/amd/pm/swsmu/inc/smu_v13_0.h       |  4 +
+ drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c  |  2 +-
+ drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c    |  2 +-
+ .../drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c    | 91 +++++-----------------
+ drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c |  2 +-
+ drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c     | 48 ++++++++++++
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_0_ppt.c   | 35 +--------
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c   |  2 +-
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_7_ppt.c   | 33 +-------
+ 12 files changed, 101 insertions(+), 141 deletions(-)
