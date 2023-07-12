@@ -1,125 +1,117 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA1D7750A61
-	for <lists+amd-gfx@lfdr.de>; Wed, 12 Jul 2023 16:01:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0C27750A30
+	for <lists+amd-gfx@lfdr.de>; Wed, 12 Jul 2023 15:58:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31C4710E544;
-	Wed, 12 Jul 2023 14:01:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0848010E53D;
+	Wed, 12 Jul 2023 13:58:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2040.outbound.protection.outlook.com [40.107.220.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B6B210E534;
- Wed, 12 Jul 2023 13:54:15 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D667C10E53B;
+ Wed, 12 Jul 2023 13:57:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lg/wJHH/ZFJfBXf0dR+HzSa8gUzcCNvgEVvSP267D7MPQK3c5Exm7efzcpBuo/uHQ9WOvoGqGIVxG40Rc82ll6k2VkBtY1yuAaYceR/K//D14Gm0caoArWB3nfjKis14Vskkl0gSEIzUbyz8mqAk0gEsHi+duohyuMOg2sGtjJab7KWtg4+aigLjIevXMT9EMyH4/8k/rcdxC8VEE1KEbQateFBjVetDl1pvJneGzw3czwTtBQciw04ZgfocQhHIfF9cClYcvKS59o75Obf7g7CcFeutjC4KZIDbPZC2MrPgdhHt9VK7C82QtwlM63cm1vipNSn0EqwbJk05JoZkOg==
+ b=UnnLHHxJWG4iR8AwPFd+c8u2Y1r1tBybjB38kcZkoqk1FnGojZO0P1fKvTjLmM+wwV0wzvtyga8PgLi3tqpj6pNpScYbUTFQj6k8K5AKbqgfoc8nrwdHVyh3Xg/ozLj4QE86L3RA9AtOCGTD9U1GUXGoeN1nG7O1pblFvhUnuIywBjMHEiTwHjDq7llzqGB0kAQ2bsJOQXEVE+ngjOY5IWf7bQhCia4komep1w4iC7kD990ZwCh1L9i1z13fEGeQYqyRqWm+nQ7knRtSfGkToLQcFF48/R/HUa5VD+HG6rb/AIQVLFM6/JoE0ICVIXBeYBGNnHl6VRhxvgXsjwvXYA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XgHMqA6NR6xwi31+5UQb02kpONt6s3GFuikZRULOVgI=;
- b=XcpEFbGo4dujwilE05EBLxUAB4zsdSGoZgIAg7JhFWRakc8T6Z5SxWzlFR5OPi0yEBzVwcBJVx21N6zDlJrw88liyEa3Qb3q1tRUxUvgCgu23cpv2gVXUPTy5SdiEVvy/MP/iWQAFMSC9E1HkUKoUWYyz4UCwrODoIGzQR7Stf1uViO9Mo0aFUcTck0fYCVUyXWgjyrJscV3vgmjbnlWa3cUf2F+tLcmQYpMJH+oddSKYKdJNiM/NmBHSoYjjUCDePj/XpsawdOanzetUfInWzoimAoLBVt45F9UDG0yd1mG3gf7G8OwxPWh/RL7pIZwKiGJvxdfLrhBI+roBotxUA==
+ bh=0SSnz+eiX43dWtfyKoUrrtdD18jDSD/HHVMMDiBrWAQ=;
+ b=glKfmG9j2LLeLMgpWxtqwkkHNiHEqhAsql/Ycj8jnWKjWO75DnZ7L3s1y9dg57zwhb02jx/vVorq1O87O5MfWvkpKCxXKJDGjxN0Vd08elngYB1VxO1xTqLG5qqHAyaYRdVswx54A/CN8HR4DbnyXD5QZs8KTMbVvQvd93P4b8i+WcI/S86SP9Ky/TelkFjq99SELUjQ9wtHQsAMomTR5ucdoTUEJTnPx0sD3D1YPh7gzxWtOk+o5sJ28tO6CH7s8GyzMyaL7rZJpkULD/PdLr/aaBBkzNch+30f7MuDHwHgqgIdzB4P00O3rL5v6BczPJ7vmrJmNl6h0EW3U0+Mxw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XgHMqA6NR6xwi31+5UQb02kpONt6s3GFuikZRULOVgI=;
- b=VsTwGxlovAH+46yi04iJt6VNhWVApnJMd0mPZ5sw1AqorHxPRvBJGBkrD52FaJ9tbEji7+v0jusEoLcCNJqN5huTd57Zq9u6F31SQth6QTv2sU53YqkDgGQDd2Lj2tG/LZx4c+pqyQW2Di8ZFFsObxdpo62OpsNeTEiAtUV1kqo=
+ bh=0SSnz+eiX43dWtfyKoUrrtdD18jDSD/HHVMMDiBrWAQ=;
+ b=IcvdtDa6urXiamTHzWhHUuJvceZ8noATThjhChTsPXRTXwDDVzMgLoD+8IoV6JVSj8EI+1Hgyj/vcr/XIzLo3RJKyjfyr6sabsZR36c/vXNUNh3J2tmBNJhbiCoUdIZR21G0/AAWz4rrFokGzYtbtPzFmBf28KVdSWlxdTCAqWo=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by SN7PR12MB8004.namprd12.prod.outlook.com (2603:10b6:806:341::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.30; Wed, 12 Jul
- 2023 13:54:11 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::669f:5dca:d38a:9921]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::669f:5dca:d38a:9921%4]) with mapi id 15.20.6588.017; Wed, 12 Jul 2023
- 13:54:11 +0000
-Message-ID: <603f0b69-71d3-ad8f-4b5e-53b63a6fd521@amd.com>
-Date: Wed, 12 Jul 2023 15:53:41 +0200
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
+ by DS0PR12MB8247.namprd12.prod.outlook.com (2603:10b6:8:f5::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.32; Wed, 12 Jul
+ 2023 13:57:56 +0000
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::4666:2db3:db1e:810c]) by CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::4666:2db3:db1e:810c%7]) with mapi id 15.20.6565.026; Wed, 12 Jul 2023
+ 13:57:56 +0000
+Message-ID: <acee82a2-d5f9-9bf1-5138-44db14c079d1@amd.com>
+Date: Wed, 12 Jul 2023 09:57:51 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-Subject: Re: [PATCH RFC v1 00/52] drm/crtc: Rename struct drm_crtc::dev to
- drm_dev
+Subject: Re: [PATCH] drm/amd/display: dc.h: eliminate kernel-doc warnings
 Content-Language: en-US
-To: =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
- Maxime Ripard <mripard@kernel.org>
-References: <20230712094702.1770121-1-u.kleine-koenig@pengutronix.de>
- <94eb6e4d-9384-152f-351b-ebb217411da9@amd.com>
- <20230712110253.paoyrmcbvlhpfxbf@pengutronix.de>
- <o3dc4q27ap6rajsvpfwfvs3z3afekkwbhnclvswkaietciy2kc@unjf67gz5tur>
- <20230712133803.rf26cbg5wz7wsmgl@pengutronix.de>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20230712133803.rf26cbg5wz7wsmgl@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Randy Dunlap <rdunlap@infradead.org>, linux-kernel@vger.kernel.org
+References: <20230712022339.17902-1-rdunlap@infradead.org>
+From: Harry Wentland <harry.wentland@amd.com>
+In-Reply-To: <20230712022339.17902-1-rdunlap@infradead.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR3P281CA0182.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a4::17) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+X-ClientProxiedBy: YQXPR0101CA0040.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c00:14::17) To CO6PR12MB5427.namprd12.prod.outlook.com
+ (2603:10b6:5:358::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|SN7PR12MB8004:EE_
-X-MS-Office365-Filtering-Correlation-Id: 671d3312-9a10-4462-11d9-08db82df77d0
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5427:EE_|DS0PR12MB8247:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4bff9f85-ffcf-4df7-dd5f-08db82dffe8b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Q+CjsHYjoEoIKYhGUtD4L6IdokqTfF3/rDoqE4aTyfCbPLgsxxuVuGUsuYCA35P4DktoBo4NaYU33T1d8TbAYeptCtWe1B55Dc7oLzVxiycliZfDBnEm8XarwPg0ryzzSJwJvhapixHLvylLlitF0v/N12hzY0tfsoDFfKqumWSnLuk5x9Kn4zL6bJWU91FmrGKdnYdHX5drfEhP8xT5CwqxgEcEcA6YmR3c+YE5hsNLi/9CstC4LyCaAp5+lOrfLNlEjbdWekywxde7dpFY5E5s2/endwHQUHrz1bB9ykbxzYdRfCd0i9JW7/R6RC1xHH6+RRBRUIVRg1hDT66tr9wgyeCj9kKh/5b2fvBgeIJAefMeQ4DQGX2ABfSJY1ODzvBXYMRjaaJvv2MH5lBW1Wdn+4LhArrIoqD0ox+pZbg4DAYjKVelomflcL76YONd3m/Nm+A7Hl4KYkmN3O9uoF8v3kUa4pH8JvdeVkcLPt6rn2HtEznZol9p06p+UQwoRqyFsHPi7xBhaQmHP/1s/M/8/S29cNU3SALPZIHU7nlxbjBCA4vScSL+4SOd+JOPhDgQZTqOQ2+2X3KoAk0XpNvhaWjTc9kOmWYNTsNJP8BQ2Q3Gk9OICAtK/ERCMFrWI2Rxa4J2jJ36saRcsxOVNQ==
+X-Microsoft-Antispam-Message-Info: 4qDtz6eBmIbdKqdr0nDFcLgEAY/4rhqAKIXtENr7Z0aKloex76YwvnQ+P/5B8h28gU+XoT5Qnkyn0EizWQMWcy1W8CfhsauKZtlWoh10BZ9QixbMJkAb2sGiMzRsAeZn3nnkBfHVhDrl/K3yok/1a1K1iq7BcS4yhTQEvdhaZhZaZ9v7IiN03s/gJQi6B1VNGqp62oZlaCfpP8Y++Xx52DU6zmvsj4LLTBah0DcupYvrV3ADzs6Km5wC57Bxuj/gkcICKqA5gFCv6Wsd8wu7MHr959qif5r/qHtRKGLsn3Cu4WkVkjDpgNOgua3rBrtdlxT+jlPkeYMMMpxNT1w73ERwWJDFW7gE46ePdMwDJty+U6cUcUzZnC+N4lUi4LG25DA8/oEYsSxvIiZ3RY1Pf1TdZAmcmmTVCj4jhY4gG+g/pCTv2Z1JE7xyw8J22nIAUlHhR78+d5y4IV+IqhBFxPTl0eaJL8mFYE3fzJ2fz+NFQ5q+1WS5uEZmkwMRn6udYTs5CanOgp3J4Daxu32dVL9GvoOHg7crV5YsjzLRxPKr9aBbwuu6BPLl7gaSVUkygKuKPswH4UvO59ZPP/O+FS4xwKiqn4TNoF9T2eG8ptTgFF9v8ht07RMajaFLzsXrhxVP0urWnE+o8zS1VfBXQzf6hhSy7ho2QZCqvw3PSajP4wVqS3gnKNUQg8oIJW+W
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(376002)(346002)(366004)(396003)(39860400002)(136003)(451199021)(8676002)(8936002)(7336002)(83380400001)(2906002)(66574015)(2616005)(36756003)(38100700002)(31696002)(86362001)(7406005)(7416002)(7366002)(7276002)(5660300002)(6506007)(186003)(31686004)(6666004)(66556008)(66476007)(4326008)(6486002)(110136005)(54906003)(66946007)(41300700001)(6512007)(316002)(478600001)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(396003)(366004)(376002)(136003)(39860400002)(346002)(451199021)(6486002)(6666004)(478600001)(54906003)(5660300002)(8676002)(36756003)(2906002)(86362001)(8936002)(44832011)(4326008)(316002)(66946007)(66556008)(38100700002)(66476007)(41300700001)(6506007)(26005)(53546011)(31696002)(66574015)(31686004)(83380400001)(186003)(2616005)(6512007)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cWZnOXNSRjdOTkRMN2twRmhhNlZKUU04WHhCY2Z0bUFVMmd0ZzMzZldoayts?=
- =?utf-8?B?elhFTXRKeWVNRUpHQ01yaTVaa1Ztakt4R216MWlHODdMUmhQYjdhMWRWUk9K?=
- =?utf-8?B?OFRpNCtPWlhuR003dy83ZXZySTlIcExnU1c0aHFEaWlya2hyRDliSjlkYlg1?=
- =?utf-8?B?bDNlV3I3b3VsWXN6VStIZDhhd1hzcW5OblM5Z0ZwWmp2b0FTMTVpdE5zTC9J?=
- =?utf-8?B?SGFRSm5PVmVhSjJSWnd6V2dYcE9RenYzbEg0UEpZTGRvbFQzUVFWQUZERjRu?=
- =?utf-8?B?bE5ncmc4N0xPZkZEbURQTjIwYlpYSFNzUC91TUxYZVZ2bHgvQmNNak5aNHp2?=
- =?utf-8?B?SG5kdnIvdmliUitLc2lYbnVpdjJOOHJLYkhMK3doOFdIZGtlckJSRmt1WHZ5?=
- =?utf-8?B?VTM4QldNT0JwV29jQXF4SzVaMzhpRmhCcmlJOVJTVFp0VzE0RGtUYmIrb3dJ?=
- =?utf-8?B?MnQvb0tRaFpVWlBjVE5OdE9heDVyYjNkUExTN3BxaWNCOE1WVTFoQkh6R3V6?=
- =?utf-8?B?eHhYS0FMVURYRFp0VXA5ZFBUNmV2QU5tMzVxK2FERFc5aFFObEkzKyt6ekpX?=
- =?utf-8?B?YlM4VElnWStHaVNhY2dsdWdDSGh4TkNEZnpveVk1c3I4RCtIOHJJTTNIbTF2?=
- =?utf-8?B?U3NtaTF5OWZ6Z0FpSFRLcHdBVFlpcEpoTVU1TjJnZ1J4YW9qVmlUSHViNlVL?=
- =?utf-8?B?emNONXFSYzhSM04xc0xkNmFidGw3cWNrbEs1OHVOTENPamFlRzB5SzVWNFlN?=
- =?utf-8?B?T0tIQWc0T0JNT2VxR25wKzFjSE00NVg3cWxMNGxtOC9ubHRlOTN1QXllQkhZ?=
- =?utf-8?B?a2RJVjF1RjhleWdlMzZkcDVMTForNU13UllNVUdBYldTYXJnTXdEVjBIZlVZ?=
- =?utf-8?B?R1lNOUM4VGhGV2NYMDExWU1tNG1VTUlEMzQrQjI3S0JvTjQ3aStLdlUrU2xn?=
- =?utf-8?B?MkdRdFR0eXl3VEtWL2p2WWRNb1pIMFNERHVxdm1tSHVyRkN6elVOcjBDVUw0?=
- =?utf-8?B?cGRVdlpCdVJFb1dHYk03VlVUZzl3NE8vVlN6bksrZGd3SEx0d1QwNmVKeVBT?=
- =?utf-8?B?ZHVkWXRCMjIvem9VOTl1ZnJQVEVCbUtuWElLY0ZTRWxnM3VPVFh6V1MvZnJO?=
- =?utf-8?B?ZG9zQ3VaQnFLUjZ1OXdGNEFMS1JWOS9BSTRYQkxPMHVxckYzaGFxcmtlcXgz?=
- =?utf-8?B?VXhrcE9CT2twUXYwQVYxSHk4UEJsdlVwMnF0YmxkUmh6cUMrdlI3SE9GUDVU?=
- =?utf-8?B?MzVxUUpHQXNOL1Z1REY2dTc0cEQwUGlHZVdqUmlzbHd6Nk1jdExTMjZDMXlQ?=
- =?utf-8?B?elJxMDZOWEhibURhenV4RHNwdUdXWDhxNXMwcVVucHBGOUI0WndLeXRmLzVz?=
- =?utf-8?B?UUxGUVhLaHEwK1NOd0pHYk9Lb2dnSGhqNU9LN3NWTlhxKzBXd3UxOUlWaEtI?=
- =?utf-8?B?UmIxeHUzOXdvNmtOM0hXbVJIYW5tWUFGMi94ck5Yb0VHUitCeFc1SlphVXJZ?=
- =?utf-8?B?cm1xaW1nL1NjQmdLQUd3dXUyQ2wyblJZMWZ0RGxGSXN3T296N1Y3dDk4dUhN?=
- =?utf-8?B?TVpGYWllcmdvYXFhUVdlanB1V3F5RzM2Zm9RSjZpNk5wSWZpWmhiYzNSVS9r?=
- =?utf-8?B?SDY5U1BHQlVrWTgvd1M1Y0tCUkFMK0RHNnBxUjQ5ZnQ5dU8yKzdvSC9JWXRP?=
- =?utf-8?B?V0pLTytkVTlEUkNWOTgyZ3QyL1BnOEpwNzB0YjMvUEVzazhiY2owVGg2RWdq?=
- =?utf-8?B?Mmh4R2JINXdPK3B0QnVxQjNJaTBTeUtzSE5oYlNtQjBvMnZCb2hleEc4RkJm?=
- =?utf-8?B?Q3lzZ3J6MjU4a1pLaDFnalFBT0FvTFZtYkZHckExSFRtU3NHbHY1Sjd0NFB3?=
- =?utf-8?B?WDg2MU1PaC93VE9vYVFZdmZ4dmh1R0RzYlRtcmdTUTh1MjZoR2NVUVErZVRy?=
- =?utf-8?B?aCtjeWp2dk1IWWg2anFrZDQ2WWMzSGtWY0xBT3FPZXJBMXY0U2xGNkY0eFZ3?=
- =?utf-8?B?QnpHWjJ2WXBGdjBBRTUvcXVkeC8yYkdXSWRJMDZIOUNSOHdsR2JhYWVNMkU5?=
- =?utf-8?B?T1FQQk9YVVFTL2RLcllWZXhWdGt0YWxxc2JJYVpwYlRRc3AxZGpLYTdLaXU4?=
- =?utf-8?B?K0hSNmJqS3BVUG04aWhWdlBvM2lBSTZQZU9kaDBwT2tJRkozSjdRZVNZSmkr?=
- =?utf-8?Q?wZiHYk+qO2DJStqXYi3DikavUdxGeplCKcXkmFW5lXc7?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c0RMek5PZUtUaDVnbXA5MkJHaHRxeHBnK3FLa0JFQUtlbG04WWRJbWNEU0ZW?=
+ =?utf-8?B?Z01ucklwVTBSTDEzM1lZTWhXSlZhQkxrd201M0FncW4vVWc0K2w1N3pJUHVj?=
+ =?utf-8?B?cHRyS2Z0TmpxanZoOFBzdjZvNHVpZEJCbnpDTWN5OEtqb2U0MHZ1NFQwaGpY?=
+ =?utf-8?B?dUw4c1dZRWl4N0Q1RzhkMC9acE9ac05aZDljZ0ZXU3FHb1BDWWdNRkllWTdE?=
+ =?utf-8?B?aHI0eW1tYldRNDlkaXRyNDg3SU5Hc3czaUFSU2dINFZXUG1YNk4zNVNyOXdE?=
+ =?utf-8?B?WWtlbUhYV0djWGFoYjZsZmZDOWRGbjNiRUV2VVdWYzBJN1lGRDc3aGlxQTN2?=
+ =?utf-8?B?dDNldW80aGZTWUVHWHZoTDFTbkJrVjRoWDdMNm12WGNOQ0hxSWUwTXRXeGMv?=
+ =?utf-8?B?YTlRdWZrSHk0ZExmSlBjRWNzUzBiK1k2SEEyN056T3MrRExFdGsyZHM1SzJX?=
+ =?utf-8?B?MUdrdEpiYnIyY2VCR2ltSHJoMXRib0NwQlRlNTJocm9idVNjWXRtWFFvRW56?=
+ =?utf-8?B?anhGekQ0dnByZitRL2lid1ViQXNOR3ptb25UMURTMVFGOUdtY2k0MmV5QlpV?=
+ =?utf-8?B?ZUxTUHhmSnZ2bUtFaDFpVkRkTjJwQlRlellmbVMrTndxZWJja25GWjlhMTNM?=
+ =?utf-8?B?angraUtsTVo2MmRldVVkTktQenZzcU51T2Fmd2VPaEw0eDNacjVWV1g3akk0?=
+ =?utf-8?B?a29pdjhlSEgvYlJjai9lSUh1VDUyMnBBdkpySHVPeWlPUWdtb0l4ek1YT0xk?=
+ =?utf-8?B?bWV0YUdveExjUDdMZFNHVEJFZ3R4TVdqTHdrUE4vaWVpNEdmZVNIKzY0aGhG?=
+ =?utf-8?B?OWVpQ2ZiVnZORGZwRit1aUJNanpDMkhEMjJUcHdzd3JJbmR2TzVKbng2YVlX?=
+ =?utf-8?B?ZUJWUmpWaU1WLzJMWmhuemtvU2FtbEwwc0ljb3dwRUN6aERXWTkwRTdoalRk?=
+ =?utf-8?B?Y3lqUkQ5R3BmYk1CY1lOeldKSnNrckxoek15QnNKa0hDcmM0My9xU3BnY2NX?=
+ =?utf-8?B?TjRpZEU5OFVoN0VIWEh4S2U3RnlpZ0RyR2xHV1JSVURKYVlWamVERE9YamtI?=
+ =?utf-8?B?WEFQVHlPUDZBMmZma2lRZktrSWE2cVF1ZklLM1YreHgwNlpERFV2dUtzSnll?=
+ =?utf-8?B?S0tldGRLczlUMXJCQTZuSHloNS9qWEJrdGdkT0JGQXErZFl5V0JNWUdPWkJ2?=
+ =?utf-8?B?a1QvMHZ0cEsrNTY4LzA3S0dieTJOblY0cUM2dUdzVUsrVEFHeHI4TzNMT2t4?=
+ =?utf-8?B?SGxFeUs4SWFvdnkxY2MwY1VPc3BSOWxmNDh3QmxIQ0ZvV2ppNXJFV0IwemlD?=
+ =?utf-8?B?c1pYZHIrNlNLTFIzeGlwS0FIVGEzTENlRW5rK04wOXdHNTdIZXM3NmpzWlhD?=
+ =?utf-8?B?dWwrb3c5N0h1a0UrYkpUNkpSSmhXZDk2T3dMWUk4ajBNekk2SXQvaTgyaFdD?=
+ =?utf-8?B?aGwzdURiTEpCWnRtMEhzdEQyQithYmtKaGlRMWVLaGpQT2ZVelVYb21aTnE1?=
+ =?utf-8?B?QitKTkNNMHhlY2pNQ1BJOVhqUU4yTWZGSXJkTE1FYjkvUVVZL0t2K2Z0Mk9T?=
+ =?utf-8?B?VU5EZFV6d3BEZ1RuZERSNXQ5UGNMcWp1ZEhTMFVWMWxZNHg5cW5qV1pWRFp5?=
+ =?utf-8?B?YVhVbjhyOHh3VkdkUkVtMURQajZybTRnREJFeDk5U1YvVjBpNWUzOTFPYXg2?=
+ =?utf-8?B?OFU1aGlib0hPbXkzMTJ6ZVU2ajFLTURkYktrc01WVEFEakdCcXpsSWZlc01k?=
+ =?utf-8?B?amtoUHliU0xORVc1UW5UTnJlWVBpTGV5bnpGR3BsWG5ld3Q5Wm54U2Z1R0d3?=
+ =?utf-8?B?M3NnQ3dtOVJCRXM0bVZQNkdmdE1ndktVMUZ2RmFDOWw4NWdTNjBhRjhzNWxC?=
+ =?utf-8?B?ME5JRjA2cGZTQnBmODlIb1huNXhsMGRMVXBaRnJwNG1ZazFYeFEwSUx1VHdi?=
+ =?utf-8?B?bmdYWFJIL1lGcUdYTWQxbzgxb0lvYXZyejArMWtXYjc0QXVEK21zMHNKaWk0?=
+ =?utf-8?B?RksvSFlmSXNwbk5SbXppQ0JUQnRua29nZFRrTVhtY2xRbkNXdDlxYlRLaGZq?=
+ =?utf-8?B?dEpkQTZJUlRVcWdadUk2enFsZkZBbTBiT3RiZjJjN0QwbFprZGI5TVJ0Y3ZI?=
+ =?utf-8?Q?tgDa+oyf3FNhKw82Js5Uw3wpU?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 671d3312-9a10-4462-11d9-08db82df77d0
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4bff9f85-ffcf-4df7-dd5f-08db82dffe8b
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2023 13:54:10.5983 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2023 13:57:56.5332 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ISzr+3rCUPYNUMLw1tOBcCfws4G9gt0O8QB3ANwU8gXg/6JBx2yCDaCKDG7kwoD8
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8004
-X-Mailman-Approved-At: Wed, 12 Jul 2023 14:01:49 +0000
+X-MS-Exchange-CrossTenant-UserPrincipalName: d12Ht8RZlb9DV+SvBU1SsN20Z/PXqO0Rn2TkkzK99FwKhYYyXVF96k9Hb9tHfQ7CQfkf6Cs3BomYWwbmkxfD+g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8247
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,219 +123,79 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Xinliang Liu <xinliang.liu@linaro.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alexey Kodanev <aleksei.kodanev@bell-sw.com>, dri-devel@lists.freedesktop.org,
- Vandita Kulkarni <vandita.kulkarni@intel.com>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Arun R Murthy <arun.r.murthy@intel.com>, Jerome Brunet <jbrunet@baylibre.com>,
- linux-samsung-soc@vger.kernel.org, Samuel Holland <samuel@sholland.org>,
- Matt Roper <matthew.d.roper@intel.com>, Wenjing Liu <wenjing.liu@amd.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
- Danilo Krummrich <dakr@redhat.com>, NXP Linux Team <linux-imx@nxp.com>,
- spice-devel@lists.freedesktop.org,
- Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, linux-sunxi@lists.linux.dev,
- Matthias Brugger <matthias.bgg@gmail.com>, Stylon Wang <stylon.wang@amd.com>,
- Tim Huang <Tim.Huang@amd.com>, Suraj Kandpal <suraj.kandpal@intel.com>,
- =?UTF-8?Q?Andr=c3=a9_Almeida?= <andrealmeid@igalia.com>,
- Mika Kahola <mika.kahola@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Jani Nikula <jani.nikula@intel.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Inki Dae <inki.dae@samsung.com>,
- Hersen Wu <hersenxs.wu@amd.com>, Dave Airlie <airlied@redhat.com>,
- Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
- Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
- =?UTF-8?Q?=c5=81ukasz_Bartosik?= <lb@semihalf.com>,
- Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
- Andrew Jeffery <andrew@aj.id.au>, Seung-Woo Kim <sw0312.kim@samsung.com>,
- =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>, kernel@pengutronix.de,
- Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
- Claudiu Beznea <claudiu.beznea@microchip.com>, Zack Rusin <zackr@vmware.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-aspeed@lists.ozlabs.org, nouveau@lists.freedesktop.org,
- Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
- =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
- virtualization@lists.linux-foundation.org,
- Thierry Reding <thierry.reding@gmail.com>,
- Yongqin Liu <yongqin.liu@linaro.org>,
- Mario Limonciello <mario.limonciello@amd.com>, Fei Yang <fei.yang@intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>, David Francis <David.Francis@amd.com>,
- Vinod Govindapillai <vinod.govindapillai@intel.com>,
- Aaron Liu <aaron.liu@amd.com>, Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Vinod Polimera <quic_vpolimer@quicinc.com>, linux-rockchip@lists.infradead.org,
- Fangzhi Zuo <jerry.zuo@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
- VMware Graphics Reviewers <linux-graphics-maintainer@vmware.com>,
- Ben Skeggs <bskeggs@redhat.com>,
- =?UTF-8?Q?Jouni_H=c3=b6gander?= <jouni.hogander@intel.com>,
- Jessica Zhang <quic_jesszhan@quicinc.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-arm-msm@vger.kernel.org, Animesh Manna <animesh.manna@intel.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- Tian Tao <tiantao6@hisilicon.com>, Biju Das <biju.das.jz@bp.renesas.com>,
- linux-amlogic@lists.infradead.org, Evan Quan <evan.quan@amd.com>,
- Michal Simek <michal.simek@amd.com>, linux-arm-kernel@lists.infradead.org,
- Sean Paul <sean@poorly.run>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kai Vehmanen <kai.vehmanen@linux.intel.com>,
- Boris Brezillon <bbrezillon@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Qingqing Zhuo <qingqing.zhuo@amd.com>, Sandy Huang <hjc@rock-chips.com>,
- Swati Sharma <swati2.sharma@intel.com>, linux-renesas-soc@vger.kernel.org,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Kevin Hilman <khilman@baylibre.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
- Haneen Mohammed <hamohammed.sa@gmail.com>,
- Paul Cercueil <paul@crapouillou.net>,
- Anusha Srivatsa <anusha.srivatsa@intel.com>, Dan Carpenter <error27@gmail.com>,
- Karol Herbst <kherbst@redhat.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- linux-hyperv@vger.kernel.org, Stefan Agner <stefan@agner.ch>,
- Melissa Wen <melissa.srw@gmail.com>,
- =?UTF-8?Q?Ma=c3=adra_Canal?= <mairacanal@riseup.net>,
- Luca Coelho <luciano.coelho@intel.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Likun Gao <Likun.Gao@amd.com>,
- "Jiri Slaby \(SUSE\)" <jirislaby@kernel.org>, Emma Anholt <emma@anholt.net>,
- Alain Volmat <alain.volmat@foss.st.com>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Deepak Rawat <drawat.floss@gmail.com>,
- Xinwei Kong <kong.kongxinwei@hisilicon.com>, Joel Stanley <joel@jms.id.au>,
- Orson Zhai <orsonzhai@gmail.com>, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Harry Wentland <harry.wentland@amd.com>, Chia-I Wu <olvaffe@gmail.com>,
- Alan Liu <haoping.liu@amd.com>, Philip Yang <Philip.Yang@amd.com>,
- intel-gfx@lists.freedesktop.org, Alison Wang <alison.wang@nxp.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
- Daniel Vetter <daniel@ffwll.ch>, Mikko Perttunen <mperttunen@nvidia.com>,
- Yifan Zhang <yifan1.zhang@amd.com>,
- Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>,
- Tomi Valkeinen <tomba@kernel.org>, Deepak R Varma <drv@mailo.com>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, Julia Lawall <Julia.Lawall@inria.fr>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- John Stultz <jstultz@google.com>, Roman Li <roman.li@amd.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Khaled Almahallawy <khaled.almahallawy@intel.com>,
- linux-stm32@st-md-mailman.stormreply.com, Sam Ravnborg <sam@ravnborg.org>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, Imre Deak <imre.deak@intel.com>,
- Liviu Dudau <liviu.dudau@arm.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Liu Shixin <liushixin2@huawei.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Hamza Mahfooz <hamza.mahfooz@amd.com>, David Airlie <airlied@gmail.com>,
- Marek Vasut <marex@denx.de>, Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
- Lang Yu <Lang.Yu@amd.com>, xen-devel@lists.xenproject.org,
- Guchun Chen <guchun.chen@amd.com>,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Russell King <linux@armlinux.org.uk>, Leo Li <sunpeng.li@amd.com>,
- Uma Shankar <uma.shankar@intel.com>, Andi Shyti <andi.shyti@linux.intel.com>,
- Jiasheng Jiang <jiasheng@iscas.ac.cn>,
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- David Lechner <david@lechnology.com>,
- Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
- =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <marek.olsak@amd.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- =?UTF-8?Q?Joaqu=c3=adn_Ignacio_Aramend=c3=ada?= <samsagax@gmail.com>,
- Melissa Wen <mwen@igalia.com>, Hans de Goede <hdegoede@redhat.com>,
- linux-mediatek@lists.infradead.org, Fabio Estevam <festevam@gmail.com>,
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, linux-tegra@vger.kernel.org,
- David Tadokoro <davidbtadokoro@usp.br>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Yannick Fertre <yannick.fertre@foss.st.com>, linux-mips@vger.kernel.org,
- Rob Clark <robdclark@gmail.com>, Philippe Cornu <philippe.cornu@foss.st.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Wayne Lin <Wayne.Lin@amd.com>,
- Drew Davenport <ddavenport@chromium.org>, Nirmoy Das <nirmoy.das@intel.com>,
- Jyri Sarha <jyri.sarha@iki.fi>, Lucas Stach <l.stach@pengutronix.de>
+Cc: Leo Li <sunpeng.li@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, dri-devel@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 12.07.23 um 15:38 schrieb Uwe Kleine-König:
-> Hello Maxime,
->
-> On Wed, Jul 12, 2023 at 02:52:38PM +0200, Maxime Ripard wrote:
->> On Wed, Jul 12, 2023 at 01:02:53PM +0200, Uwe Kleine-König wrote:
->>>> Background is that this makes merge conflicts easier to handle and detect.
->>> Really?
->> FWIW, I agree with Christian here.
->>
->>> Each file (apart from include/drm/drm_crtc.h) is only touched once. So
->>> unless I'm missing something you don't get less or easier conflicts by
->>> doing it all in a single patch. But you gain the freedom to drop a
->>> patch for one driver without having to drop the rest with it.
->> Not really, because the last patch removed the union anyway. So you have
->> to revert both the last patch, plus that driver one. And then you need
->> to add a TODO to remove that union eventually.
-> Yes, with a single patch you have only one revert (but 194 files changed,
-> 1264 insertions(+), 1296 deletions(-)) instead of two (one of them: 1
-> file changed, 9 insertions(+), 1 deletion(-); the other maybe a bit
-> bigger). (And maybe you get away with just reverting the last patch.)
->
-> With a single patch the TODO after a revert is "redo it all again (and
-> prepare for a different set of conflicts)" while with the split series
-> it's only "fix that one driver that was forgotten/borked" + reapply that
-> 10 line patch.
+On 2023-07-11 22:23, Randy Dunlap wrote:
+> Quash 175 kernel-doc warnings in dc.h by unmarking 2 struct
+> comments as containing kernel-doc notation and by spelling one
+> struct field correctly in a kernel-doc comment.
+> 
+> Fixes: 1682bd1a6b5f ("drm/amd/display: Expand kernel doc for DC")
+> Fixes: ea76895ffab1 ("drm/amd/display: Document pipe split policy")
+> Fixes: f6ae69f49fcf ("drm/amd/display: Include surface of unaffected streams")
+> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+> Cc: Harry Wentland <harry.wentland@amd.com>
+> Cc: Leo Li <sunpeng.li@amd.com>
+> Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+> Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: amd-gfx@lists.freedesktop.org
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+> Cc: dri-devel@lists.freedesktop.org
 
-Yeah, but for a maintainer the size of the patches doesn't matter. 
-That's only interesting if you need to manually review the patch, which 
-you hopefully doesn't do in case of something auto-generated.
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
 
-In other words if the patch is auto-generated re-applying it completely 
-is less work than fixing things up individually.
+Harry
 
->   As the one who gets that TODO, I prefer the latter.
-
-Yeah, but your personal preferences are not a technical relevant 
-argument to a maintainer.
-
-At the end of the day Dave or Daniel need to decide, because they need 
-to live with it.
-
-Regards,
-Christian.
-
->
-> So in sum: If your metric is "small count of reverted commits", you're
-> right. If however your metric is: Better get 95% of this series' change
-> in than maybe 0%, the split series is the way to do it.
->
-> With me having spend ~3h on this series' changes, it's maybe
-> understandable that I did it the way I did.
->
-> FTR: This series was created on top of v6.5-rc1. If you apply it to
-> drm-misc-next you get a (trivial) conflict in patch #2. If I consider to
-> be the responsible maintainer who applies this series, I like being able
-> to just do git am --skip then.
->
-> FTR#2: In drm-misc-next is a new driver
-> (drivers/gpu/drm/loongson/lsdc_crtc.c) so skipping the last patch for
-> now might indeed be a good idea.
->
->>> So I still like the split version better, but I'm open to a more
->>> verbose reasoning from your side.
->> You're doing only one thing here, really: you change the name of a
->> structure field. If it was shared between multiple maintainers, then
->> sure, splitting that up is easier for everyone, but this will go through
->> drm-misc, so I can't see the benefit it brings.
-> I see your argument, but I think mine weights more.
->
-> Best regards
-> Uwe
->
+> ---
+>  drivers/gpu/drm/amd/display/dc/dc.h |    8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff -- a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+> --- a/drivers/gpu/drm/amd/display/dc/dc.h
+> +++ b/drivers/gpu/drm/amd/display/dc/dc.h
+> @@ -506,7 +506,7 @@ enum dcn_zstate_support_state {
+>  	DCN_ZSTATE_SUPPORT_DISALLOW,
+>  };
+>  
+> -/**
+> +/*
+>   * struct dc_clocks - DC pipe clocks
+>   *
+>   * For any clocks that may differ per pipe only the max is stored in this
+> @@ -728,7 +728,7 @@ struct resource_pool;
+>  struct dce_hwseq;
+>  struct link_service;
+>  
+> -/**
+> +/*
+>   * struct dc_debug_options - DC debug struct
+>   *
+>   * This struct provides a simple mechanism for developers to change some
+> @@ -756,7 +756,7 @@ struct dc_debug_options {
+>  	bool use_max_lb;
+>  	enum dcc_option disable_dcc;
+>  
+> -	/**
+> +	/*
+>  	 * @pipe_split_policy: Define which pipe split policy is used by the
+>  	 * display core.
+>  	 */
+> @@ -1334,7 +1334,7 @@ struct dc_validation_set {
+>  	struct dc_stream_state *stream;
+>  
+>  	/**
+> -	 * @plane_state: Surface state
+> +	 * @plane_states: Surface state
+>  	 */
+>  	struct dc_plane_state *plane_states[MAX_SURFACES];
+>  
 
