@@ -2,42 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0FED750774
-	for <lists+amd-gfx@lfdr.de>; Wed, 12 Jul 2023 14:04:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FEE775077D
+	for <lists+amd-gfx@lfdr.de>; Wed, 12 Jul 2023 14:05:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D97F10E4E8;
-	Wed, 12 Jul 2023 12:04:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9250310E50E;
+	Wed, 12 Jul 2023 12:04:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 031BC10E0CA
- for <amd-gfx@lists.freedesktop.org>; Wed, 12 Jul 2023 08:31:58 +0000 (UTC)
-Received: from localhost.localdomain (unknown
- [IPv6:2a0c:5a83:9102:2a00:4fba:f865:7723:12b6])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: rcn)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id 71F4B6606F62;
- Wed, 12 Jul 2023 09:31:56 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1689150716;
- bh=w8dG4/d9Voy998I9Q/zGS29Dk0j8gptoUYrIF4ruqmk=;
- h=From:To:Cc:Subject:Date:From;
- b=elX287UmMenXTl44/Ltl/EjHIC4j2KB439LX5HmUxO+ffJD4LOxqeKFeiL5qnZUGA
- 0FUhs85S1vDhmj5JwlxcDH1H1Zf8wuu/A1EnShTSH/rDIjTkSQyrTjZdIZwNJ97FRe
- mCFT2aaO4RsQ8zeJ1rjEJTCe5B/UWzOgZVgCxXJbZsetLMaG3eTiAjfpgaexH9hcHa
- zE8nzzRdvI2xihfhlwhUyVHaY7M5MzQr4VqtvWp1NKMdIUMxSigc4YrVBGKftU+kTx
- oLQmC/VuxYwp5rvTnaQexE8fV3wdlvmVILwlHkl1yWvKsx6Ju9vCshrJk9R04Fiyid
- lXJBAFbmWIE1Q==
-From: =?UTF-8?q?Ricardo=20Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>
-To: alexander.deucher@amd.com
-Subject: [PATCH] drm/amdgpu: replace 1-element arrays with flexible arrays
-Date: Wed, 12 Jul 2023 10:31:37 +0200
-Message-Id: <20230712083137.1080883-1-ricardo.canuelo@collabora.com>
-X-Mailer: git-send-email 2.25.1
+X-Greylist: delayed 381 seconds by postgrey-1.36 at gabe;
+ Wed, 12 Jul 2023 09:50:11 UTC
+Received: from hygieia.sysophe.eu (hygieia.sysophe.eu [138.201.91.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3A3410E4BA;
+ Wed, 12 Jul 2023 09:50:11 +0000 (UTC)
+Received: from hemera.lan.sysophe.eu (unknown
+ [IPv6:2001:a18:2c5:a501:fa75:a4ff:fe28:fe3a])
+ by smtp.sysophe.eu (Postfix) with ESMTPSA id 1A675260A610;
+ Wed, 12 Jul 2023 11:43:42 +0200 (CEST)
+Date: Wed, 12 Jul 2023 11:43:35 +0200
+From: Bruno =?UTF-8?B?UHLDqW1vbnQ=?= <bonbons@linux-vserver.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [PATCH 10/17] hid/picolcd: Remove flag FBINFO_FLAG_DEFAULT from
+ fbdev driver
+Message-ID: <20230712114335.42644eab@hemera.lan.sysophe.eu>
+In-Reply-To: <20230710130113.14563-11-tzimmermann@suse.de>
+References: <20230710130113.14563-1-tzimmermann@suse.de>
+ <20230710130113.14563-11-tzimmermann@suse.de>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Wed, 12 Jul 2023 12:04:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -50,176 +43,52 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel@collabora.com, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org
+Cc: linux-fbdev@vger.kernel.org, Jiri Kosina <jikos@kernel.org>,
+ kvm@vger.kernel.org, linux-hyperv@vger.kernel.org, linux-sh@vger.kernel.org,
+ deller@gmx.de, linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, javierm@redhat.com,
+ Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+ dri-devel@lists.freedesktop.org, linux-input@vger.kernel.org,
+ linux-nvidia@lists.surfsouth.com, linux-omap@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-geode@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-UBSAN complains about out-of-bounds array indexes on all 1-element
-arrays defined on this driver:
+On Mon, 10 Jul 2023 14:50:14 +0200 Thomas Zimmermann wrote:
+> The flag FBINFO_FLAG_DEFAULT is 0 and has no effect, as struct
+> fbinfo.flags has been allocated to zero by framebuffer_alloc(). So do
+> not set it.
+>=20
+> Flags should signal differences from the default values. After cleaning
+> up all occurences of FBINFO_FLAG_DEFAULT, the token can be removed.
+>=20
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: "Bruno Pr=C3=A9mont" <bonbons@linux-vserver.org>
+> Cc: Jiri Kosina <jikos@kernel.org>
+> Cc: Benjamin Tissoires <benjamin.tissoires@redhat.com>
 
-UBSAN: array-index-out-of-bounds in /home/rcn/work/repos/kernelci/kernelci-core/linux_kernel_mainline/drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/processpptables.c:1249:61
+Acked-by: Bruno Pr=C3=A9mont <bonbons@linux-vserver.org>
 
-Substitute them with proper flexible arrays.
+Cheers,
+Bruno
 
-Tested on an Acer R721T (grunt) Chromebook.
 
-Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
----
- drivers/gpu/drm/amd/include/pptable.h | 36 +++++++++++++++------------
- 1 file changed, 20 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/include/pptable.h b/drivers/gpu/drm/amd/include/pptable.h
-index 0b6a057e0a4c..a65e2807dc06 100644
---- a/drivers/gpu/drm/amd/include/pptable.h
-+++ b/drivers/gpu/drm/amd/include/pptable.h
-@@ -473,14 +473,14 @@ typedef struct _ATOM_PPLIB_STATE_V2
-       /**
-       * Driver will read the first ucNumDPMLevels in this array
-       */
--      UCHAR clockInfoIndex[1];
-+      __DECLARE_FLEX_ARRAY(UCHAR, clockInfoIndex);
- } ATOM_PPLIB_STATE_V2;
- 
- typedef struct _StateArray{
-     //how many states we have 
-     UCHAR ucNumEntries;
-     
--    ATOM_PPLIB_STATE_V2 states[1];
-+    __DECLARE_FLEX_ARRAY(ATOM_PPLIB_STATE_V2, states);
- }StateArray;
- 
- 
-@@ -491,7 +491,7 @@ typedef struct _ClockInfoArray{
-     //sizeof(ATOM_PPLIB_CLOCK_INFO)
-     UCHAR ucEntrySize;
-     
--    UCHAR clockInfo[1];
-+    __DECLARE_FLEX_ARRAY(UCHAR, clockInfo);
- }ClockInfoArray;
- 
- typedef struct _NonClockInfoArray{
-@@ -501,7 +501,7 @@ typedef struct _NonClockInfoArray{
-     //sizeof(ATOM_PPLIB_NONCLOCK_INFO)
-     UCHAR ucEntrySize;
-     
--    ATOM_PPLIB_NONCLOCK_INFO nonClockInfo[1];
-+    __DECLARE_FLEX_ARRAY(ATOM_PPLIB_NONCLOCK_INFO, nonClockInfo);
- }NonClockInfoArray;
- 
- typedef struct _ATOM_PPLIB_Clock_Voltage_Dependency_Record
-@@ -514,7 +514,8 @@ typedef struct _ATOM_PPLIB_Clock_Voltage_Dependency_Record
- typedef struct _ATOM_PPLIB_Clock_Voltage_Dependency_Table
- {
-     UCHAR ucNumEntries;                                                // Number of entries.
--    ATOM_PPLIB_Clock_Voltage_Dependency_Record entries[1];             // Dynamically allocate entries.
-+    /* Dynamically allocate entries. */
-+    __DECLARE_FLEX_ARRAY(ATOM_PPLIB_Clock_Voltage_Dependency_Record, entries);
- }ATOM_PPLIB_Clock_Voltage_Dependency_Table;
- 
- typedef struct _ATOM_PPLIB_Clock_Voltage_Limit_Record
-@@ -530,7 +531,8 @@ typedef struct _ATOM_PPLIB_Clock_Voltage_Limit_Record
- typedef struct _ATOM_PPLIB_Clock_Voltage_Limit_Table
- {
-     UCHAR ucNumEntries;                                                // Number of entries.
--    ATOM_PPLIB_Clock_Voltage_Limit_Record entries[1];                  // Dynamically allocate entries.
-+    /* Dynamically allocate entries. */
-+    __DECLARE_FLEX_ARRAY(ATOM_PPLIB_Clock_Voltage_Limit_Record, entries);
- }ATOM_PPLIB_Clock_Voltage_Limit_Table;
- 
- union _ATOM_PPLIB_CAC_Leakage_Record
-@@ -554,7 +556,8 @@ typedef union _ATOM_PPLIB_CAC_Leakage_Record ATOM_PPLIB_CAC_Leakage_Record;
- typedef struct _ATOM_PPLIB_CAC_Leakage_Table
- {
-     UCHAR ucNumEntries;                                                 // Number of entries.
--    ATOM_PPLIB_CAC_Leakage_Record entries[1];                           // Dynamically allocate entries.
-+    /* Dynamically allocate entries. */
-+    __DECLARE_FLEX_ARRAY(ATOM_PPLIB_CAC_Leakage_Record, entries);
- }ATOM_PPLIB_CAC_Leakage_Table;
- 
- typedef struct _ATOM_PPLIB_PhaseSheddingLimits_Record
-@@ -569,7 +572,8 @@ typedef struct _ATOM_PPLIB_PhaseSheddingLimits_Record
- typedef struct _ATOM_PPLIB_PhaseSheddingLimits_Table
- {
-     UCHAR ucNumEntries;                                                 // Number of entries.
--    ATOM_PPLIB_PhaseSheddingLimits_Record entries[1];                   // Dynamically allocate entries.
-+    /* Dynamically allocate entries. */
-+    __DECLARE_FLEX_ARRAY(ATOM_PPLIB_PhaseSheddingLimits_Record, entries);
- }ATOM_PPLIB_PhaseSheddingLimits_Table;
- 
- typedef struct _VCEClockInfo{
-@@ -581,7 +585,7 @@ typedef struct _VCEClockInfo{
- 
- typedef struct _VCEClockInfoArray{
-     UCHAR ucNumEntries;
--    VCEClockInfo entries[1];
-+    __DECLARE_FLEX_ARRAY(VCEClockInfo, entries);
- }VCEClockInfoArray;
- 
- typedef struct _ATOM_PPLIB_VCE_Clock_Voltage_Limit_Record
-@@ -593,7 +597,7 @@ typedef struct _ATOM_PPLIB_VCE_Clock_Voltage_Limit_Record
- typedef struct _ATOM_PPLIB_VCE_Clock_Voltage_Limit_Table
- {
-     UCHAR numEntries;
--    ATOM_PPLIB_VCE_Clock_Voltage_Limit_Record entries[1];
-+    __DECLARE_FLEX_ARRAY(ATOM_PPLIB_VCE_Clock_Voltage_Limit_Record, entries);
- }ATOM_PPLIB_VCE_Clock_Voltage_Limit_Table;
- 
- typedef struct _ATOM_PPLIB_VCE_State_Record
-@@ -605,7 +609,7 @@ typedef struct _ATOM_PPLIB_VCE_State_Record
- typedef struct _ATOM_PPLIB_VCE_State_Table
- {
-     UCHAR numEntries;
--    ATOM_PPLIB_VCE_State_Record entries[1];
-+    __DECLARE_FLEX_ARRAY(ATOM_PPLIB_VCE_State_Record, entries);
- }ATOM_PPLIB_VCE_State_Table;
- 
- 
-@@ -627,7 +631,7 @@ typedef struct _UVDClockInfo{
- 
- typedef struct _UVDClockInfoArray{
-     UCHAR ucNumEntries;
--    UVDClockInfo entries[1];
-+    __DECLARE_FLEX_ARRAY(UVDClockInfo, entries);
- }UVDClockInfoArray;
- 
- typedef struct _ATOM_PPLIB_UVD_Clock_Voltage_Limit_Record
-@@ -639,7 +643,7 @@ typedef struct _ATOM_PPLIB_UVD_Clock_Voltage_Limit_Record
- typedef struct _ATOM_PPLIB_UVD_Clock_Voltage_Limit_Table
- {
-     UCHAR numEntries;
--    ATOM_PPLIB_UVD_Clock_Voltage_Limit_Record entries[1];
-+    __DECLARE_FLEX_ARRAY(ATOM_PPLIB_UVD_Clock_Voltage_Limit_Record, entries);
- }ATOM_PPLIB_UVD_Clock_Voltage_Limit_Table;
- 
- typedef struct _ATOM_PPLIB_UVD_Table
-@@ -658,7 +662,7 @@ typedef struct _ATOM_PPLIB_SAMClk_Voltage_Limit_Record
- 
- typedef struct _ATOM_PPLIB_SAMClk_Voltage_Limit_Table{
-     UCHAR numEntries;
--    ATOM_PPLIB_SAMClk_Voltage_Limit_Record entries[1];
-+    __DECLARE_FLEX_ARRAY(ATOM_PPLIB_SAMClk_Voltage_Limit_Record, entries);
- }ATOM_PPLIB_SAMClk_Voltage_Limit_Table;
- 
- typedef struct _ATOM_PPLIB_SAMU_Table
-@@ -676,7 +680,7 @@ typedef struct _ATOM_PPLIB_ACPClk_Voltage_Limit_Record
- 
- typedef struct _ATOM_PPLIB_ACPClk_Voltage_Limit_Table{
-     UCHAR numEntries;
--    ATOM_PPLIB_ACPClk_Voltage_Limit_Record entries[1];
-+    __DECLARE_FLEX_ARRAY(ATOM_PPLIB_ACPClk_Voltage_Limit_Record, entries);
- }ATOM_PPLIB_ACPClk_Voltage_Limit_Table;
- 
- typedef struct _ATOM_PPLIB_ACP_Table
-@@ -745,7 +749,7 @@ typedef struct ATOM_PPLIB_VQ_Budgeting_Record{
- typedef struct ATOM_PPLIB_VQ_Budgeting_Table {
-     UCHAR revid;
-     UCHAR numEntries;
--    ATOM_PPLIB_VQ_Budgeting_Record         entries[1];
-+    __DECLARE_FLEX_ARRAY(ATOM_PPLIB_VQ_Budgeting_Record, entries);
- } ATOM_PPLIB_VQ_Budgeting_Table;
- 
- #pragma pack()
--- 
-2.25.1
+> ---
+>  drivers/hid/hid-picolcd_fb.c | 1 -
+>  1 file changed, 1 deletion(-)
+>=20
+> diff --git a/drivers/hid/hid-picolcd_fb.c b/drivers/hid/hid-picolcd_fb.c
+> index dabcd054dad9..d726aaafb146 100644
+> --- a/drivers/hid/hid-picolcd_fb.c
+> +++ b/drivers/hid/hid-picolcd_fb.c
+> @@ -527,7 +527,6 @@ int picolcd_init_framebuffer(struct picolcd_data *dat=
+a)
+>  	info->var =3D picolcdfb_var;
+>  	info->fix =3D picolcdfb_fix;
+>  	info->fix.smem_len   =3D PICOLCDFB_SIZE*8;
+> -	info->flags =3D FBINFO_FLAG_DEFAULT;
+> =20
+>  	fbdata =3D info->par;
+>  	spin_lock_init(&fbdata->lock);
 
