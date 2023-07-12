@@ -2,49 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74BD7750C04
-	for <lists+amd-gfx@lfdr.de>; Wed, 12 Jul 2023 17:14:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35FB8750D22
+	for <lists+amd-gfx@lfdr.de>; Wed, 12 Jul 2023 17:53:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E124110E563;
-	Wed, 12 Jul 2023 15:14:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BABBC10E03E;
+	Wed, 12 Jul 2023 15:53:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:3::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6EDE810E563
- for <amd-gfx@lists.freedesktop.org>; Wed, 12 Jul 2023 15:13:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Sender:Reply-To:Content-ID:Content-Description;
- bh=dt3ufAmJ+ePJErmbxpJx+WOygjnIlgRi3ewG/emEZGo=; b=N9k71caQOrNVb8aO1wXhpn6mLA
- mR2QR40QC2vOu9QScndM5A65KeWxE75pU3USrk8UR9gmWauxpOA6dtOvuZgLFlWPAvxGPwM5DsM8W
- SY3+4kFRjaCY+kChusQ3zKZzDcLzL/wyDoUDuRJA8YMKK7hUOggkqs2qQJoY8ElkiZBqRLnei8wor
- VaMI0KUXwaZ712MelwVRrwlkyfJDyOHuxn1nTREC3LZY+RFKLsiWCWntyXnun3zlyzC2OtX1D/MuJ
- YAEyZYA3+WLHWX9aCIKP2GWhBe7+oFy13u4RYiVJoMhSE233fwVFge5pJt0o69UB4SNZ2NsyO+Bte
- IrkaaoGg==;
-Received: from [2601:1c2:980:9ec0::2764]
- by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
- id 1qJbWc-000Iww-38; Wed, 12 Jul 2023 15:13:07 +0000
-Message-ID: <64bd287c-31c5-7ff4-e525-1e2dc212c9e3@infradead.org>
-Date: Wed, 12 Jul 2023 08:13:06 -0700
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04AF410E593;
+ Wed, 12 Jul 2023 15:51:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=/LA9COlIU72wXOo48I7k1NI7ZbF0OR3REqVWyrDeAeo=; b=b8IbGxSWJ84XVFQ/0aBKKq9ztQ
+ Z6VZU6wa0Eqc7+bc/T4iEcgWvgD7L0etQhVY8CDBpoBHELwzuX4d4H/dc/iRitoIwnVP/H4uWhz20
+ HnnHfrYg+DKUcAdXNGHBiQ92x7IRW6guSL5hKUxtDBNu8m9wQijtjZ9TsONech1sfb/ulFaZXzq79
+ zVr+zVglocJRU8sKlgYTVMPquiJ2vK9RTsqjBrgjfisZo4bJY35xsbtUeKlR0cwR0XoO1xr4K9GFu
+ hBFvVUFZWEYgxl9o2Qmz8PAEn2FV5aediAUTO1YsaNpMaq3AxZ797AJcBu9zSpc3arIO23gLxrYsV
+ uR1dwsaw==;
+Received: from 201-27-237-219.dsl.telesp.net.br ([201.27.237.219]
+ helo=[192.168.1.60]) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1qJc7G-00DBW5-EG; Wed, 12 Jul 2023 17:50:59 +0200
+Message-ID: <ed9963a1-b065-e1bf-60a4-d3dd4e57313b@igalia.com>
+Date: Wed, 12 Jul 2023 12:50:48 -0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH] drm/amdgpu: Rename to amdgpu_vm_tlb_seq_struct
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] Revert "drm/amd/display: Program OTG vtotal min/max
+ selectors unconditionally for DCN1+"
+To: "Pillai, Aurabindo" <Aurabindo.Pillai@amd.com>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>
+References: <20230702164407.6547-1-gpiccoli@igalia.com>
+ <54092b91-a9c6-7276-1633-13b83a92524d@amd.com>
+ <3e4892a5-f8a8-805b-aaf9-c9aec64d9607@igalia.com>
+ <CH0PR12MB52846616C04D37205DD1B70C8B36A@CH0PR12MB5284.namprd12.prod.outlook.com>
 Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Luben Tuikov <luben.tuikov@amd.com>,
- AMD Graphics <amd-gfx@lists.freedesktop.org>
-References: <20230712065821.260061-1-luben.tuikov@amd.com>
- <1dc3a6fb-3973-e6a7-519a-440fcfa5ee9f@amd.com>
- <b3964f68-4655-faac-e0ce-64f597ad1837@amd.com>
- <4748ea86-aeee-fdf8-71da-caf9161ce16e@amd.com>
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <4748ea86-aeee-fdf8-71da-caf9161ce16e@amd.com>
+From: "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+In-Reply-To: <CH0PR12MB52846616C04D37205DD1B70C8B36A@CH0PR12MB5284.namprd12.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 12 Jul 2023 15:14:09 +0000
+X-Mailman-Approved-At: Wed, 12 Jul 2023 15:53:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,97 +59,46 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <Alexander.Deucher@amd.com>
+Cc: =?UTF-8?Q?Andr=c3=a9_Almeida?= <andrealmeid@igalia.com>, "Patel,
+ Swapnil" <Swapnil.Patel@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ "Siqueira, Rodrigo" <Rodrigo.Siqueira@amd.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Melissa Wen <mwen@igalia.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "kernel-dev@igalia.com" <kernel-dev@igalia.com>,
+ "cristian.ciocaltea@collabora.com" <cristian.ciocaltea@collabora.com>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 7/12/23 01:34, Christian König wrote:
-> Am 12.07.23 um 10:03 schrieb Luben Tuikov:
->> On 2023-07-12 03:57, Christian König wrote:
->>> Am 12.07.23 um 08:58 schrieb Luben Tuikov:
->>>> Rename struct amdgpu_vm_tlb_seq_cb {...} to struct amdgpu_vm_tlb_seq_struct
->>>> {...}, so as to not conflict with documentation processing tools. Of course, C
->>>> has no problem with this.
->>> Hui? What exactly is duplicated here? Is the structure defined in
->>> different files with a different meaning?
->> The same name is used for the function and for the structure.
+On 12/07/2023 11:47, Pillai, Aurabindo wrote:
+> Hi Guilherme,
 > 
-> Ah, yeah that wasn't obvious.
+> Sorry there was one more patch which I missed to attach. Please add this
+> 3^rd  patch and retry.
 > 
-> In this case the patch is Reviewed-by: Christian König <christian.koenig@amd.com>
-
-
-Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
-
-Thanks.
-
-> 
-> Thanks,
-> Christian.
-> 
->>
->> struct amdgpu_vm_tlb_seq_cb {...}
->>
->> and
->>
->> static void amdgpu_vm_tlb_seq_cb(struct dma_fence *fence,
->>                  struct dma_fence_cb *cb)
->>
->> C has no problem with this, but document processing tools do,
->> and in general it doesn't seem like a good practice to have
->> the same name for both.
->>
->> Regards,
->> Luben
->>
->>> Christian.
->>>
->>>> Cc: Randy Dunlap <rdunlap@infradead.org>
->>>> Cc: Alex Deucher <Alexander.Deucher@amd.com>
->>>> Cc: Christian König <christian.koenig@amd.com>
->>>> Link: https://lore.kernel.org/r/b5ebc891-ee63-1638-0377-7b512d34b823@infradead.org
->>>> Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
->>>> ---
->>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 8 ++++----
->>>>    1 file changed, 4 insertions(+), 4 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
->>>> index 92a84e7b0db85b..32adc31c093d84 100644
->>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
->>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
->>>> @@ -111,9 +111,9 @@ struct amdgpu_prt_cb {
->>>>    };
->>>>       /**
->>>> - * struct amdgpu_vm_tlb_seq_cb - Helper to increment the TLB flush sequence
->>>> + * struct amdgpu_vm_tlb_seq_struct - Helper to increment the TLB flush sequence
->>>>     */
->>>> -struct amdgpu_vm_tlb_seq_cb {
->>>> +struct amdgpu_vm_tlb_seq_struct {
->>>>        /**
->>>>         * @vm: pointer to the amdgpu_vm structure to set the fence sequence on
->>>>         */
->>>> @@ -833,7 +833,7 @@ int amdgpu_vm_update_pdes(struct amdgpu_device *adev,
->>>>    static void amdgpu_vm_tlb_seq_cb(struct dma_fence *fence,
->>>>                     struct dma_fence_cb *cb)
->>>>    {
->>>> -    struct amdgpu_vm_tlb_seq_cb *tlb_cb;
->>>> +    struct amdgpu_vm_tlb_seq_struct *tlb_cb;
->>>>           tlb_cb = container_of(cb, typeof(*tlb_cb), cb);
->>>>        atomic64_inc(&tlb_cb->vm->tlb_seq);
->>>> @@ -871,7 +871,7 @@ int amdgpu_vm_update_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
->>>>                   struct dma_fence **fence)
->>>>    {
->>>>        struct amdgpu_vm_update_params params;
->>>> -    struct amdgpu_vm_tlb_seq_cb *tlb_cb;
->>>> +    struct amdgpu_vm_tlb_seq_struct *tlb_cb;
->>>>        struct amdgpu_res_cursor cursor;
->>>>        enum amdgpu_sync_mode sync_mode;
->>>>        int r, idx;
->>>>
->>>> base-commit: 50db2d96b49b7d6cdb12e71e4204cf7180d3bab5
+> Reverting that patch would cause high power consumption on Navi2x GPU
+> also cause hangs on certain multi monitor configurations. With these 3
+> patches, you're getting the same effect as reverting the aforementioned
+> patches, but it makes the reverted sequence available only for Steam
+> deck hardware.
 > 
 
--- 
-~Randy
+Thanks a lot for your detailed explanation, and the 3rd patch! Indeed,
+amdgpu works fine on Deck with that - great =)
+
+Feel free to add my:
+Tested-by: Guilherme G. Piccoli <gpiccoli@igalia.com> #Steam Deck
+
+Oh, a fixes tag would also makes sense, I guess.
+BTW, if possible to submit the 3 patches in a proper series to get it
+merged on 6.5-rc cycle (the sooner the better), I'd really appreciate!
+
+Cheers,
+
+
+Guilherme
+
+
+
+
