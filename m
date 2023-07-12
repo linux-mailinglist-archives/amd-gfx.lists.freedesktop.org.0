@@ -2,92 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3167574FFCD
-	for <lists+amd-gfx@lfdr.de>; Wed, 12 Jul 2023 08:58:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9100275002F
+	for <lists+amd-gfx@lfdr.de>; Wed, 12 Jul 2023 09:38:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9875D10E49C;
-	Wed, 12 Jul 2023 06:58:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4C8B10E4A2;
+	Wed, 12 Jul 2023 07:38:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on20606.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e88::606])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 835EE10E49B
- for <amd-gfx@lists.freedesktop.org>; Wed, 12 Jul 2023 06:58:46 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J6KYAodQRPTjR3FUrCCO7Y1k0L4FWF5ePm3HPyMbJE3K4KkwyITAVuEYARtiWM/snZP6jCkmW39wu0fYcIc+J6GJla1swQJ6geoZIvu89IlfuxVuXLERlx6i6WBP6MgLVQ34OEQT3eeX/0qBNmSC5bgcOb1jvh29yppfa/PmWDwss26tpTr3FZXhAkJHEjcOJZQYzTIzOeVoGXz6IIc4KgQChxwDgcpa3Mne96QNu8Kt9yqUZcdgHOaN9eP4eWk/HvQ0g5QNBi+EmF8fiAG3bGA1b0rJQIVGrYEnvgagkYVFcG6TTz7gxVVyQmKRxKsN+QYBJa5dqftCidUYS9E38Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ww1PkQGa5nQPNULNc1XzMFwIxHNQcDWVbo9OWKcourM=;
- b=EwTIgMqwLG5RTs6toP4UOFO+V4ARqM8Hjpkj3ZBNRt8OvQ8qOD1Q+KJ9unx/5No+MrQcn14V+ZKxm31KigWhs/WQxUNpiykLmVPEwFq0B27EjQQtdz2J9Q/RY8+HL6oZSwoRyvqh//r2yxQiGlgzScqfyHp26dEIqF3DqniaG1T1Iy0vfm7jaLi/4vg0dhNR+5gN6PGJHdyWzfbRBTyYwjtpCXHcsv/AH6Ws6cz+w6MaE885HofUtSsSb6ZD4RQMsOOzKBwfHwA5GrW9MrfEkAy0bT3zhdmyW+BqTBOMxmeEbYGVJ4AlZCXCcjENSK0mpW/IBqsn0SE3E/2nxE8MkQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ww1PkQGa5nQPNULNc1XzMFwIxHNQcDWVbo9OWKcourM=;
- b=iNWUwJAyZn2YLFESdCP0aJcAVX4WGb3C6HIkdTskvz2zcX3v3JJXr7cCQ9yfQ6KC/RnGR+NzjAh6MdtYaO/gJGcwK/3z9p6y6mGwlvTYvHvN/w2hXltlM+nat5ZUP0d8Ct5+wYHl7cumuBbg2dbcq37nf8Lh2/IqS+qOKMHS6qE=
-Received: from BN9PR03CA0646.namprd03.prod.outlook.com (2603:10b6:408:13b::21)
- by DM6PR12MB4563.namprd12.prod.outlook.com (2603:10b6:5:28e::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.31; Wed, 12 Jul
- 2023 06:58:42 +0000
-Received: from BN8NAM11FT004.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:13b:cafe::75) by BN9PR03CA0646.outlook.office365.com
- (2603:10b6:408:13b::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.22 via Frontend
- Transport; Wed, 12 Jul 2023 06:58:41 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT004.mail.protection.outlook.com (10.13.176.164) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6588.22 via Frontend Transport; Wed, 12 Jul 2023 06:58:41 +0000
-Received: from fedora.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Wed, 12 Jul
- 2023 01:58:34 -0500
-From: Luben Tuikov <luben.tuikov@amd.com>
-To: AMD Graphics <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: Rename to amdgpu_vm_tlb_seq_struct
-Date: Wed, 12 Jul 2023 02:58:21 -0400
-Message-ID: <20230712065821.260061-1-luben.tuikov@amd.com>
-X-Mailer: git-send-email 2.41.0
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org
+ [IPv6:2001:67c:2050:0:465::201])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E116B10E4A2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 12 Jul 2023 07:38:27 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4R18jq2jYFz9spR;
+ Wed, 12 Jul 2023 09:38:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1689147503;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=4gnX3MY5n7IqrPQmLZHVpzDm3rD17nTcEur8VsWSZ+c=;
+ b=E5MgKvilhHiIM+6gWVW8DkfqX3466IKiCrlvzxYV3vqgAM6r1ToZC2273e/MKFygmL1m9N
+ CfhNrRwSSrmII4vWZbtRZi6bpJUVGlFX+IdA/0pZXJ0djWGofkrkaCBQhV6PgGO/jWFJ1s
+ FtVfs06/T2gopCp5jRdrK+AmxSuQCu1RW6V3wzxnTlB2ubTM+wAiys2gOuub2nefXydEvT
+ 41wIYr/FndQF+Vd2wAnyphud+V7H6dLUdHuZQEcrsJ8xVTS4gJdqIzgF5bwVy5EJsCsf0Q
+ oVpUz6/bFODu6bgX38Qu86D7UptNUjjX6REG0tMkpNT/15zsj3qSMFAj5u/EtA==
+Message-ID: <81821e44-9c4a-855d-83e7-42d2999b7078@mailbox.org>
+Date: Wed, 12 Jul 2023 09:38:22 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-X-check-string-leak: v1.1
+Subject: Re: [PATCH] drm/amd/display: Use root connector's colorspace property
+ for MST
+Content-Language: en-CA
+To: Harry Wentland <harry.wentland@amd.com>
+References: <20230711195021.171964-1-harry.wentland@amd.com>
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel.daenzer@mailbox.org>
+In-Reply-To: <20230711195021.171964-1-harry.wentland@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT004:EE_|DM6PR12MB4563:EE_
-X-MS-Office365-Filtering-Correlation-Id: 887ad050-bdbf-46d7-4919-08db82a56d56
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: EAIGwtvtAP+xTgLI9LjhA1y6N6vV6pAkU2mSIXM4wssRqeFSmDMym7C65Szw8Vc5CgfEy5mWkxF0Y/P/CU1/wTB+f3PDWiGegKVoTWLsIQ7c4lOyInH5DB0HcWEOJVTEn7ZNVLAs4jfIWOvw28+erG7cVPWnpYmx0JN/6ABChatugAGjZWieYXmRrdztGK41bcAepCjyfJYfNAaygYXBPxjdJK0/0Q2O6d4Dq62LJM31pOJ13zorH3Ngdiw10i2H0xGIBnqJ/xrm+E5DxMd1ukw5jbCufXHVduRb5rj8WvZ5UkItcNU7eYyQs/NH1H+7rR8ECoD0FuVkC2mP2kbTKW51eswOjj60GAyR7GmN1zZJHx4TCvXOkTbx/scNATBRXnvyV4ZdDgPckvf2yOlIRpnx/qpcPb1sezYy/iX3Zw+eCYbuZGGaIfGCc5QeFMBy+0vWetl6h2nWqADJWpSbBkmQY2BmB5MIcITwdi1nXxiX0GkE6fPDT0837w0BEo6N/kqf+nVlnc/vskH+sUgsu620z+6fqHydR3FNzcxMSrcRbVYUwBPB5lnvf4gcp5zRlImE5ZJ4OQmjjMWs7R6nqfnsb2C68laaJD0JYYjGaufYTV3skaM+BwHnBhXI/VCyUO1kkjhDmVeov5pV7TqZaDUjtcD5L+XIJpnD82aju/lxbEByS2WJyJdKBw4K+/iYfZiobS5UlBohkJoiDpmhXk0Hx76zjEt7M0E5T4oTadppt+ji8BAN+mj3j+dRak/NngAlkEsU7470uR0Bh64Wag==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(346002)(136003)(39860400002)(396003)(376002)(451199021)(46966006)(36840700001)(40470700004)(54906003)(7696005)(40480700001)(966005)(86362001)(6666004)(36756003)(336012)(186003)(1076003)(478600001)(26005)(2906002)(40460700003)(82310400005)(82740400003)(41300700001)(36860700001)(83380400001)(356005)(81166007)(316002)(8676002)(16526019)(8936002)(5660300002)(44832011)(70586007)(70206006)(426003)(47076005)(2616005)(66574015)(6916009)(4326008)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2023 06:58:41.8174 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 887ad050-bdbf-46d7-4919-08db82a56d56
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT004.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4563
+X-MBO-RS-META: jkfg4ijqjpijhjdjfuhh4fp1pqw3res8
+X-MBO-RS-ID: fe0c1431a15cad9f26d
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,61 +56,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <Alexander.Deucher@amd.com>,
- Luben Tuikov <luben.tuikov@amd.com>, Randy Dunlap <rdunlap@infradead.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Rename struct amdgpu_vm_tlb_seq_cb {...} to struct amdgpu_vm_tlb_seq_struct
-{...}, so as to not conflict with documentation processing tools. Of course, C
-has no problem with this.
+On 7/11/23 21:50, Harry Wentland wrote:
+> After driver init we shouldn't create new properties. Doing so
+> will lead to a warning storm from __drm_mode_object_add.
+> 
+> We don't really need to create the property for MST connectors.
+> Re-using the mst_root connector's property is fine.
+> 
+> Signed-off-by: Harry Wentland <harry.wentland@amd.com>
+> ---
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index 5722b14a6bec..ba493d325dcb 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -7359,8 +7359,13 @@ void amdgpu_dm_connector_init_helper(struct amdgpu_display_manager *dm,
+>  			drm_connector_attach_colorspace_property(&aconnector->base);
+>  	} else if (connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
+>  		   connector_type == DRM_MODE_CONNECTOR_eDP) {
+> -		if (!drm_mode_create_dp_colorspace_property(&aconnector->base, supported_colorspaces))
+> -			drm_connector_attach_colorspace_property(&aconnector->base);
+> +		if (!aconnector->mst_root)
+> +			if (!drm_mode_create_dp_colorspace_property(&aconnector->base, supported_colorspaces))
+> +				drm_connector_attach_colorspace_property(&aconnector->base);
+> +		else /* use root connector's property */
+> +			if (aconnector->mst_root->base.colorspace_property)
+> +				drm_connector_attach_colorspace_property(&aconnector->mst_root->base);
+> +
 
-Cc: Randy Dunlap <rdunlap@infradead.org>
-Cc: Alex Deucher <Alexander.Deucher@amd.com>
-Cc: Christian König <christian.koenig@amd.com>
-Link: https://lore.kernel.org/r/b5ebc891-ee63-1638-0377-7b512d34b823@infradead.org
-Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+../drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c: In function ‘amdgpu_dm_connector_init_helper’:
+../drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:7361:20: warning: suggest explicit braces to avoid ambiguous ‘else’ [-Wdangling-else]
+ 7361 |                 if (!aconnector->mst_root)
+      |                    ^
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index 92a84e7b0db85b..32adc31c093d84 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -111,9 +111,9 @@ struct amdgpu_prt_cb {
- };
- 
- /**
-- * struct amdgpu_vm_tlb_seq_cb - Helper to increment the TLB flush sequence
-+ * struct amdgpu_vm_tlb_seq_struct - Helper to increment the TLB flush sequence
-  */
--struct amdgpu_vm_tlb_seq_cb {
-+struct amdgpu_vm_tlb_seq_struct {
- 	/**
- 	 * @vm: pointer to the amdgpu_vm structure to set the fence sequence on
- 	 */
-@@ -833,7 +833,7 @@ int amdgpu_vm_update_pdes(struct amdgpu_device *adev,
- static void amdgpu_vm_tlb_seq_cb(struct dma_fence *fence,
- 				 struct dma_fence_cb *cb)
- {
--	struct amdgpu_vm_tlb_seq_cb *tlb_cb;
-+	struct amdgpu_vm_tlb_seq_struct *tlb_cb;
- 
- 	tlb_cb = container_of(cb, typeof(*tlb_cb), cb);
- 	atomic64_inc(&tlb_cb->vm->tlb_seq);
-@@ -871,7 +871,7 @@ int amdgpu_vm_update_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 			   struct dma_fence **fence)
- {
- 	struct amdgpu_vm_update_params params;
--	struct amdgpu_vm_tlb_seq_cb *tlb_cb;
-+	struct amdgpu_vm_tlb_seq_struct *tlb_cb;
- 	struct amdgpu_res_cursor cursor;
- 	enum amdgpu_sync_mode sync_mode;
- 	int r, idx;
+I think coding style asks for curly braces around both cases as well.
 
-base-commit: 50db2d96b49b7d6cdb12e71e4204cf7180d3bab5
+
 -- 
-2.41.0
+Earthling Michel Dänzer            |                  https://redhat.com
+Libre software enthusiast          |         Mesa and Xwayland developer
 
