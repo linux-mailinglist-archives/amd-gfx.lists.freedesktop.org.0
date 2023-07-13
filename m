@@ -2,117 +2,119 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38C2E752A1E
-	for <lists+amd-gfx@lfdr.de>; Thu, 13 Jul 2023 20:03:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88844752AB1
+	for <lists+amd-gfx@lfdr.de>; Thu, 13 Jul 2023 21:04:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BE8410E084;
-	Thu, 13 Jul 2023 18:03:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8112F10E76C;
+	Thu, 13 Jul 2023 19:04:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2063.outbound.protection.outlook.com [40.107.237.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD46510E084
- for <amd-gfx@lists.freedesktop.org>; Thu, 13 Jul 2023 18:03:38 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2048.outbound.protection.outlook.com [40.107.92.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DA2910E76C
+ for <amd-gfx@lists.freedesktop.org>; Thu, 13 Jul 2023 19:04:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VGzc6nv5c2wU9GiRKNO3+RBxpiaNsci9CNiEEejyX/5aMQti7zdZOyG8bAk8YTBpBryOyTPa/hNO6gPK8RFem1iBD9jx4Hz7Y89/Gz1au8wqv2+E+DHZ9/K437dhWEJmYJ3tmGqZG2qpc//gdjCLC7AZZ3Hq4Dp8yklNp2fEWDGq7lKO8/YagPJGNFFiQPNtr8H2QNYrEEnc7F+eCiK7cubgJPKFyWGdRm0JvSAvi3bKKOpk8ODnVIboCyxoahzJsRZ2bdi2B5plZYFl3tVbaR7OyBn94EcSpBKilpJiCsbHSB14RPvFydm/n8MVWjQTiY7ae5sqJ0KBcn2Wl05RWA==
+ b=Bnn2afXwbwcG6dqZbLcUYZeum07vxlTP5wizYaYPTqZ+zgdR95u0g+Zzzp2drabXGafzJCy/yJlGKd0uvsYcTQTdnZYNOK32slE4HP+9Wgf05D586Yh/1fTL2a+D/gOoBJXhNmzFprGYcS5XIlEUjtO6J4L5S875zgHQb1XpwZtmA+PSnKh7nkQouydU+6dZt4Ct2n8jKKy0Or5cBkxGOA79oHkxf/ROIv4mcf4RVI9fV3adx1EdmIJAXNJ1/5gbKEeWfAKkpvQ1N37uDs5STh+mO7dsmeRj5ky1Cy+3dDhXM0HITIJ2rcsFiMYVzHuVqdsXc1H/R2G/cVHQVCv9TA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=x2GtUn8fS71qeR7mRzxjsR4klJy2YkCfAygM+ZDpMw4=;
- b=Mz9EWH+1KVELgq5diMwZQzWSLCdxfitwVbyOYtYYuHZlFvxgJZtbLvc+qISf++pwNkrFGf5MsvDGcPVttr77tsA2KuzB+160/B0OSJhakhxcBZGIlii4lubWb2dt7uMljqTY4qlaqfo8/z+Jrtwojl71uNxHf6QEUWoaNW9g1U+v15b3CB+hNI4cg+9k2B/3FRqpCsKl/BvNOFodzOMX3jR0iTIW3Rvfs37tUYBYYt32Kn48QvKILHzF7VmYj8xlCIwUgx+gpH06WbpPrfufeGFTjkceJ+r/yvT0zUTUZwFyNqUOlCe0E0SmnVNqHh33m1v5EsDbACIWKANNB+Ad+w==
+ bh=0b4Hx1BSkGDZEegTCH3iHxcCP93ihVU4fmOeSz0764c=;
+ b=N+PsI7qsT5keCU+uWsyDEikcj2I20yHhNOr3sKH0QJD2HHvn/+hnvmxoH0OjKGZ37tIQuCNb5+zwNwwhjAJ7Yfg4uFhxvsamoTH1u+fJxTAZmvwOqOEf4svtNNCkPKPDMlOXgzMe0vOojmv3dd4tf50pdrvHpHgby5xq3Mu+pRmyd+Ea8KKbulDkC7nd3tcL2iOa+beSEfmawU8tZkl9SOyKYT7gG07kAfHQMh2aK81ow3vWR1bJvpTfLRiIqSgKSEKZj3tfrZCvU0J7sXzMHy/oGtM6rflq6i4/bNoiqnGNcH5QLtDLqpfyXzsrsnbjMsCIytqnu3W7Nns2qH0thg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=x2GtUn8fS71qeR7mRzxjsR4klJy2YkCfAygM+ZDpMw4=;
- b=Agerkd/drwuU5ICRx9k9Iy6aN7DPgb++GzNJTNct8/jHUw3WbiIdzmi9gvNs/LjpBFE9xv32cDTKranJQqNyCSnUxTrppQ+rHozBhd4/5n3pCNEuIQFGbIkL6F9zCv6889fT8SHDXwODYOb5FpZ8HD48nip+lQMd0rJ2nZZ0na8=
+ bh=0b4Hx1BSkGDZEegTCH3iHxcCP93ihVU4fmOeSz0764c=;
+ b=3hZxbuiRcQHvcQl51VVMdyzmIS6Jcm/hsHBXt0jTqIQh6069ZIEb/QKNxeX3cgmHxTxvUiFRYSvbwoYZwGb7QnHs+1yDl1cBnfjJMNKS0/cqFsC+P4mxfcswvmpY/jpZnc/nLyzEA/1sXikdt/rKiWVAv5fgyf6464y3XPGIAI0=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB6280.namprd12.prod.outlook.com (2603:10b6:8:a2::11) by
- DS0PR12MB8072.namprd12.prod.outlook.com (2603:10b6:8:dd::11) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6565.32; Thu, 13 Jul 2023 18:03:36 +0000
-Received: from DM4PR12MB6280.namprd12.prod.outlook.com
- ([fe80::68b9:3f7d:ca38:31ba]) by DM4PR12MB6280.namprd12.prod.outlook.com
- ([fe80::68b9:3f7d:ca38:31ba%7]) with mapi id 15.20.6588.017; Thu, 13 Jul 2023
- 18:03:36 +0000
-Message-ID: <32bef6cd-7085-f6b5-ae4b-951c9de51504@amd.com>
-Date: Thu, 13 Jul 2023 14:03:33 -0400
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
+ by CY8PR12MB7364.namprd12.prod.outlook.com (2603:10b6:930:50::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.20; Thu, 13 Jul
+ 2023 19:04:28 +0000
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::2dc3:c1:e72d:55bc]) by BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::2dc3:c1:e72d:55bc%7]) with mapi id 15.20.6588.024; Thu, 13 Jul 2023
+ 19:04:28 +0000
+Message-ID: <b02ffe70-f640-d77c-f90e-b28111f3824b@amd.com>
+Date: Thu, 13 Jul 2023 15:04:26 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 1/3] drm/amd/display: Expose more formats for overlay
- planes on DCN
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 08/12] drm/amdgpu: use doorbell manager for kfd kernel
+ doorbells
 Content-Language: en-US
-To: Joshua Ashton <joshua@froggi.es>, amd-gfx@lists.freedesktop.org
-References: <20230709020700.3116749-1-joshua@froggi.es>
-From: Hamza Mahfooz <hamza.mahfooz@amd.com>
-In-Reply-To: <20230709020700.3116749-1-joshua@froggi.es>
+To: Shashank Sharma <shashank.sharma@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20230620171608.2131-1-shashank.sharma@amd.com>
+ <20230620171608.2131-9-shashank.sharma@amd.com>
+From: Felix Kuehling <felix.kuehling@amd.com>
+Organization: AMD Inc.
+In-Reply-To: <20230620171608.2131-9-shashank.sharma@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YQBPR01CA0004.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c01::12)
- To DM4PR12MB6280.namprd12.prod.outlook.com
- (2603:10b6:8:a2::11)
+X-ClientProxiedBy: YT3PR01CA0034.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:82::12) To BN9PR12MB5115.namprd12.prod.outlook.com
+ (2603:10b6:408:118::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB6280:EE_|DS0PR12MB8072:EE_
-X-MS-Office365-Filtering-Correlation-Id: 97a6139c-b7b7-4b5b-854a-08db83cb7a8c
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|CY8PR12MB7364:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3c83ee2b-79a3-4c1a-3deb-08db83d3fb6d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: sA8jld0IGYOrOc5sdH07MEmjmAZ2Eft5iI+ekI+GNuo1/c0O2qp10SESq9yDXujJalEpZKLfkbKks3OlKutl2AcKymHF/50s5FCp+/elkuO0LqWflPAw4xW95nL7ZfSo2WSODRHA3V5EabQkFgegFqJrOgDlARPlOARupav6FfM83EpkT80X3ffJ9XEkn0KvW6QNIWDanjAWIM2LiZ6c4VNBMfZ7MakOmr8HTh+4z/5COtdeuRRY2j0mdO/rK/TYXx5QTkJYrXeDDFxbRXqm8eP3nKp8wAFw0IUSFt50gmRRWPPbRYEtSX+DuSHRHRfmcTJDTI3ist5Z4tUmvjXuXOi3JvQoLLyTfDllfuUBLmTTOhUdFB2hExNoTL6Y9UWsDAf+W9XwYUFH2gdFMRb7dbS/OLB92YcruZH28+aFQ4ajeEMm9OKi0FS5MWLi9qVeZ+t/0SOG62AS0mHOozdX6d40aKj3byr2lM2PPyR6uB6lGeHLanxtp6VWQW4Fzy04yQ43KgEUQS3iTbRQlUH27Zo3DtMDQcXkJ5ARk/GmiokBLQNGNzTcfKzcuIzpRbzh+PuMuoarlmhQG52MzMl3YqsdPiTbwBxUOxzjsUUUwThXZFcvGU99iaBmo1aJQJ8wuBJzI+7a17iLMKsCa1mCAA==
+X-Microsoft-Antispam-Message-Info: dmdT6gklsmjh8bG5XhlL0REk0jT5i5HGbNhoVW03DlgGhPNUv7CgIj/iWFJ/fnehjekJ88QD9XLwPNzLk2HPCy5XoToC9P+0fPbw+ykatzw4GnnFueFeDPLU/aGcEVOY8n2InmDIBVBiNq15JcGcN2EhjmKy0twolKY0T1SwZb3MRnRYfDMmb6LPFrgepwyhKzrZcCKSUAyRjFX5efZt9uCvCUqUHmZgUWESro/V6jDlZ/cwR2CqWbrsejAxfPSk5AKCiH5erFOLAREUi+0h0vHqekj2U7bGioIT8rVHAai6cm2fPLDcG6I88QxxDxg0L82cHLGM4rlY+4mi6If7jboWaPIMO4NbmN2TUP7TARa3Z29lX/zEThGkmZS16K+zKtDY8RqBSKc4+UldpnIE96M9oLyqQUiULSXs52AjBHtQ3egbwf8b6sqI+oiVNNIwF34UzGNnuun3v3f9gBL0fUA7fjdh79QnPW6qrltDDWm0Oyxplnr3jI5aYabcHKvzZsrGCxKddeuiIAKrtz7tbTwwuYoo1gic1fzdCdNv5xvAprFSGOIEhElOY9e2A3UJgFfwkP4YZFpx2H38xM5gd7qivbeKWVTZwBtOT4TNxFOtzYqHx5vF3FFWLB4JnTejrNaY9QQgqz8OnRJvci6HNg==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB6280.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(376002)(346002)(136003)(366004)(396003)(39860400002)(451199021)(41300700001)(44832011)(31686004)(2906002)(66946007)(66556008)(66476007)(4326008)(5660300002)(478600001)(316002)(86362001)(31696002)(6486002)(8936002)(38100700002)(6666004)(8676002)(6512007)(36756003)(26005)(83380400001)(6506007)(53546011)(186003)(54906003)(2616005)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(376002)(366004)(136003)(396003)(39860400002)(346002)(451199021)(54906003)(36916002)(6486002)(478600001)(26005)(53546011)(186003)(6506007)(6512007)(2906002)(66946007)(41300700001)(66476007)(316002)(44832011)(4326008)(8936002)(5660300002)(66556008)(8676002)(38100700002)(36756003)(31696002)(2616005)(83380400001)(86362001)(31686004)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OVZiUnBoS0ZFOXVtaTJnYmFXUG5lanRrLzhKVXNCMnU0WTEyanhUQlFXMmxP?=
- =?utf-8?B?RkV4Q2hKUGtJeFFQeUNsUnI4VnNxQUNiN2lkL1MzMGdYbUNTZWtIYWl1T2FX?=
- =?utf-8?B?RitHYUE4dVBxS1l4VmhGYVFVbFZhN0dQT1B0QjZ2Z2xLSzFLeVpKQUZZcEQr?=
- =?utf-8?B?Vm9SOHJESEdwQzhnbHFoTktvNGswV0ZGQ3F1a3VWaWt2Myt0L0FXaUducUlh?=
- =?utf-8?B?NjlhUjZocmtDUTAvVUpNWWxyb2l3THgxcmhXN0ljVTdIakZkT2gzaUFlL1Vu?=
- =?utf-8?B?VWw5clFSRzN3VGFvbnBCdjZZc09VMkNRSFA3RGFqdHJkcTFwYmUxa0EyTGg3?=
- =?utf-8?B?QmlIK2h4MWs5WVBad2FSMUxxcnd3RzJHY2IzanhERzZSdTBZZUxKMlhPVy9r?=
- =?utf-8?B?MXMrTngrcDRzQ3VFQlIxK1J3OVhyQVpoOE1YeVc3QTdFZ0NieEh4bTZnYmda?=
- =?utf-8?B?TmdpTzBJb0xOTnBDVTZqdHd2ZytNUDlYUWlUc1BoODBhVHFkZzZibHlDam9R?=
- =?utf-8?B?Wlg5RURMVEkvamlMeDN4VWpFU0pYNlhFNHkzc0lOcklXVGJKVDYxL29vRnA0?=
- =?utf-8?B?RWlCTm5TS010elBkbDlWQWNTT1NoRDRjYkljL3dXaXZLT0JQdGZXc0VYbGg1?=
- =?utf-8?B?d3BhN3BJc2xOclVZRlZRUjEzczhXUkxFejlCMzhPYUFncWR1TzR0QnFsQVpS?=
- =?utf-8?B?N25rbkd0MzZTV3RJOXl0cDlHT1pDUnNMQ0o3eXF5QzlhWE12Q001TWtad2dw?=
- =?utf-8?B?Y2RxNGJuWUdPV2l5SDZFdk1ScmdwK3FGYm14aWxHSUJKZ29nK29la3hiS090?=
- =?utf-8?B?cHZESjNzWGs0MTZKNmtjR3NtVGlRWU91emQ2MlBMYkFML0EvVUhoSGNIYlJ2?=
- =?utf-8?B?RTIwVUdXU1h5Tk5uTkwxNVVaZ01ib0lyUGtHMUFJdHBtdHN3RTY2Z21wMTNO?=
- =?utf-8?B?K2VHOERvbmdockY3UWNxVEFJSnl3VVdITTRDNUY1TDJscnFVTDg0R2ZJcFhp?=
- =?utf-8?B?ZGJpY2J6MWx4YThyTWgxcEZPQXpNOURIbXkyd1RlNjZpaHBZQ0JBZzI3OU5n?=
- =?utf-8?B?REVJdXp5TlJRSGsxaElGUmp0Z2pwZjVtbnEvZ2VZa0xTRG5sWWdYMFZOaDJR?=
- =?utf-8?B?L3JSN3NQMFR6c09mL0Z2bi9ySDgvb3c0SmZSWkxUWUZnTDdCaWtIQUJpUlhO?=
- =?utf-8?B?YzlVblE0Q0NzOHlYd0k4UUtJNXZmZWYrU3FJNmF4MWZsNnVNL3dXSEt1TlRN?=
- =?utf-8?B?bTBPVFlXaHhGQVhtYm1tb0JiZWQ0eWp5a0RqQ082eWhoNCtDdG5Xc0dMdnNC?=
- =?utf-8?B?R1BCTm9MQ21uNGFzbDlsdXdWVjQ1V2kwdTA4dkZKVXI1elV6VE9QSGVwaVVW?=
- =?utf-8?B?MGlHU2RrMTJRQS8zeWhBd292ZXBlWHM3WWdhNThxWXQ4bHJ4c0dPbWJaNGs3?=
- =?utf-8?B?OUlKZEU2dy81aVozQTNNR1l2RTFXS1FNeDJtb0ZUL2pVWnVhM3hNZ2RIVEpD?=
- =?utf-8?B?dEtuWDJicjJVS01aZTd1RUViNmlIUEE2S1lxRFpUSlBwODBLcE1iWmE5ejd3?=
- =?utf-8?B?SWZ0TE5Ga2I2UTFhOXZuZ1ZBSHhtVENDYUFzNWh4azBWYTc2L25yeU9BdmVG?=
- =?utf-8?B?SU5IVXYwQ3pYVzVkb3YxNndSSkFWVEEva2dhRXFHZTFaSVBuNnNPeEZiOUZW?=
- =?utf-8?B?bC9NY1lyVjBwYTVzUlpiUEZKVWxTTHRaWnFRUnY3UzY5ZEhuSUlBV1p6WjVB?=
- =?utf-8?B?TlFuVEhxNnp0cE8xNWttN01odlMwLzlEbmdGaFpoNmpONTNmUGZoaUVMVVNm?=
- =?utf-8?B?ZkVLOXlmUG1zUkFobFo0STRMVnp5SmRTaGU4T2wxNUc1eVNTR3ppUUx3QllQ?=
- =?utf-8?B?bkpOc0JxNVZTUUVRM0xlYjBYYW8xN3FwSGNxUkpDU2F3WTFWbUtIZmJEMDA4?=
- =?utf-8?B?VC9NSkxIaUtrY013cE5FNjFXNVdRdS9vL3FFMmdSTDc4a01xU2NsSWJvNU1o?=
- =?utf-8?B?WlREUVUvVTROdXgxcXR0aUlJU0RvQ1BGSSttc1VVTW1NUEFZSWR5R1FERUFZ?=
- =?utf-8?B?VE5YZyt6cjdPVG5YWnA1SkZjVndvRW4zNEJtZk5ibGYvcGFyQmUxV3JYOHB2?=
- =?utf-8?Q?eOonPyiSkhyJbOFCh171ybmFO?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S1hUeXk3NzBmZTVmMXFDNW03alAydWkvT3BLQzF3ZS9HWjhDaEFPOUtKeExI?=
+ =?utf-8?B?QTdwd0pOVEhUZFg4NnJqanY0ZjZMTnp5VjFsS1FyYnJCUnpSd3BwR0hwYThC?=
+ =?utf-8?B?Y3VDeVpRNFR1TFRCMGRneHZGUnJGMmhwL1FFZ3UvcFBBNzdrZnVaaU5SaVdo?=
+ =?utf-8?B?VFlDdENpc29HNlh4alR1WkU2OVJWRWxodHBOUHJ0VU45NHJCbmZTd0tCS3ZB?=
+ =?utf-8?B?ZjFoS2drcFoyWjZYSFM4OVMyeElYeUUrUDU4YVV0cE5qTENRb3REK1p6cTVp?=
+ =?utf-8?B?NzNKQ053TW9XL0tNc2FBanE2RTJZVDFYS0IxRERENlM5bXdOUkNLdzliQmNJ?=
+ =?utf-8?B?WSszZ2k5cDduZy9ZVkEwVjVuSjhYbkhqM3o3UjB4TEI4eTNmeDVoK0RpQmJp?=
+ =?utf-8?B?dW0ydjVqYktSRWdOdHFrUm85bzRjMkJmbU9CYkxQbVNRQ3Y5anZ5OHFLemxh?=
+ =?utf-8?B?NGRzTXowbVUxSjlHQ0dnSGthYXNJU1ZmaW1Bb1BDN1hBQmtBNVQxRlBSL0Ez?=
+ =?utf-8?B?SXltS2gzeG5hOEVUQVFTdHlvYU0xS2xMOHZIR3VNWTEwME1EOEpKVVJMYVUy?=
+ =?utf-8?B?dzVCb2EreG1rMlRzUnZSVkdhdzZpcm15MVA2SWY3VUxNT3JnQXhqZWtxNWJm?=
+ =?utf-8?B?WmJRTEtaR0VLTzB2T1g1WUhCdXJ5WTI3VFYrMUFWdUU0RDRVaFZnd1J3Smtz?=
+ =?utf-8?B?K2EwazFNSDV4cDRJL0puSnAvb0tvamFlSERhR01oOW9JQ0ZxcmMreHBRcEIz?=
+ =?utf-8?B?RllXSVRkUlZhTlYvV2h4djYyejVob21PbUdGOWVLaWdQRnNtMUlLY3lBSkZy?=
+ =?utf-8?B?TFZ6NFBuRWVWQWZLOE5QcjRLVERGVEpPRjZVaS9MUG5nMUdXaFE4NUFZN2ky?=
+ =?utf-8?B?WTRrNG9DL0F4VUU1ZjA5WjRXWjhoRTRZV2RBbXdwNWRyNTB6WlBJbHAwb29H?=
+ =?utf-8?B?S2VKWEUrb2UyYlRTd1ZuMHJiUWJwbEQ4ME9RRU82eCtLREx6bFZQTFQ0NERI?=
+ =?utf-8?B?MUpFVGhZS3REWStCM21rZjFka3l4c2NTNjl0YnFjazJtUnE0L2hFS0ZEcWJI?=
+ =?utf-8?B?allyRmZQUEYyOWRTOEJaRFJPSDc3QTVhY3N5M2tzYng5bTNQODljeVV5L2lk?=
+ =?utf-8?B?bHEwMVN4U2RYTmxPUjNITTBiOHpKM2w2YStVaFhyYjdsL3J2blBpeGQ0ZE9C?=
+ =?utf-8?B?NkFrMWxvTnFvZXFNV0NQSVljWDVWRjRGUnJsZUo2SjlGWmpQbnlkUGlTVHpp?=
+ =?utf-8?B?VGdMV3ZhNk0yMm16WXpTVktudTBEb2c2SE9TTCtTMmViUUZyM0UzdThQYW9E?=
+ =?utf-8?B?TmZIb2lFSFR5V3czWXNGalp3a0RFZkE4bUI0d1p5anJNWVZHZlFtWTlFSk41?=
+ =?utf-8?B?WU9BVDFnR293VjVvaTJETjNTeXFsdjR2TVYySnJnaStqbHFQWG8vYlloYXVK?=
+ =?utf-8?B?V1dzL3lrWkxPcTg0R3lxK0RmcFpZWjJNbWZJazh6ZmE4ZDJ0Wm9MUmtNWEdC?=
+ =?utf-8?B?alE5MTNxL0NRTjhnY3NsTEYzdkpsQ3RNb0I3aG1rek0yMGxDZUpmbVhXNDV3?=
+ =?utf-8?B?OXVhNElyUUdMSkhmS2hIMjRRNlhEc0I4UktlbXhCd08zcjlkSTBobXFxM3FF?=
+ =?utf-8?B?NXBQTEUxOERaNXcrWDA2ZTZjVVFRUVp3TC9jb0tweGVOZUFrVGtBUzA0SzA5?=
+ =?utf-8?B?Y1cyK3JTRzBrNEh2VTdEdUdtS2xmUG9ML3lPWkhsWUNHa3FUTjBUeFczN0l4?=
+ =?utf-8?B?NVhIVkw1bFhHMGRpdGxMemw4bzBhMjgvWWNJaThsMVEvTklQYzhQZWdEQk1K?=
+ =?utf-8?B?MlNuTFVPU2RXRmN0aVFDRVRCMkxVWWhhZGZSWmRmamdNUlBSU2traFZvVWw3?=
+ =?utf-8?B?ZzR0SnNXYVBoK053VUdqbUlNRVZ1NHVKdFluSFhSbW9zZXVMeDN5UTg3WEtt?=
+ =?utf-8?B?d0tjejVmQTZza0w5SEYxbUJZU1lPU1VON3hXNWd1UUkzc05pckN5U0RRQ0pX?=
+ =?utf-8?B?bnpYd3kyU09lL2RhM00xeEsvbGc2ZmdSL2w0VGxSM1lNSTBRUzhkV2dkUEx0?=
+ =?utf-8?B?c1V0bHhKeitDSkt0bk0wcFFhc3J4NWRGeGo5TmprMktoUllWV2l4RkVveTRV?=
+ =?utf-8?Q?kxvkJBvndvvDOkufSALn13k5w?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 97a6139c-b7b7-4b5b-854a-08db83cb7a8c
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6280.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3c83ee2b-79a3-4c1a-3deb-08db83d3fb6d
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2023 18:03:36.2669 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2023 19:04:28.3943 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mwwtHc8RJg5bCcrsmSlf4Nq6XXxHkVUJQUQSwocnnz4iGngRe3/IrOl/bZdDQx3UA7c4F0n9jzzk1hLKF21nTg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8072
+X-MS-Exchange-CrossTenant-UserPrincipalName: gWdWcNnogdOH4wE47fStp9D/dp9xqvTKG9JNPx6FdrGvVmb3LhcWFyVyuZWbh5tGHIrHPxujDvnZJ3iQmp1q/g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7364
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,102 +126,219 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Melissa Wen <mwen@igalia.com>, Simon Ser <contact@emersion.fr>,
- Harry Wentland <harry.wentland@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Christian Koenig <christian.koenig@amd.com>, arvind.yadav@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 7/8/23 22:06, Joshua Ashton wrote:
-> DCN planes are universal and therefore overlay planes can use the same
-> formats as primary planes, unlike DCE.
-> 
-> Gamescope/Steam Deck would like to take advantage of this functionality
-> for partial composition which in some cases in our pipeline, can contain
-> negative values in some instances.
-> 
-> Signed-off-by: Joshua Ashton <joshua@froggi.es>
-> 
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Melissa Wen <mwen@igalia.com>
-> Cc: Simon Ser <contact@emersion.fr>
+On 2023-06-20 13:16, Shashank Sharma wrote:
+> This patch:
+> - adds a doorbell bo in kfd device structure.
+> - creates doorbell page for kfd kernel usages.
+> - updates the get_kernel_doorbell and free_kernel_doorbell functions
+>    accordingly
+>
+> V2: Do not use wrapper API, use direct amdgpu_create_kernel(Alex)
+> V3:
+>   - Move single variable declaration below (Christian)
+>   - Add a to-do item to reuse the KGD kernel level doorbells for
+>     KFD for non-MES cases, instead of reserving one page (Felix)
+>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: Christian Koenig <christian.koenig@amd.com>
+> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
+> Signed-off-by: Shashank Sharma <shashank.sharma@amd.com>
 
-I have applied the series, thanks!
+Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+
 
 > ---
->   .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   | 41 +++++++++++--------
->   1 file changed, 25 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-> index de1c7026ffcd..8eeca160d434 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-> @@ -113,6 +113,11 @@ void amdgpu_dm_plane_fill_blending_from_plane_state(const struct drm_plane_state
->   			DRM_FORMAT_ARGB8888,
->   			DRM_FORMAT_RGBA8888,
->   			DRM_FORMAT_ABGR8888,
-> +			DRM_FORMAT_ARGB2101010,
-> +			DRM_FORMAT_ABGR2101010,
-> +			DRM_FORMAT_ARGB16161616,
-> +			DRM_FORMAT_ABGR16161616,
-> +			DRM_FORMAT_ARGB16161616F,
->   		};
->   		uint32_t format = plane_state->fb->format->format;
->   		unsigned int i;
-> @@ -698,8 +703,8 @@ static int get_plane_formats(const struct drm_plane *plane,
->   	 * caps list.
+>   drivers/gpu/drm/amd/amdkfd/kfd_device.c   |   2 -
+>   drivers/gpu/drm/amd/amdkfd/kfd_doorbell.c | 109 +++++++---------------
+>   drivers/gpu/drm/amd/amdkfd/kfd_priv.h     |   6 ++
+>   3 files changed, 39 insertions(+), 78 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+> index 00f528eb9812..36fbe9c840ee 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+> @@ -437,8 +437,6 @@ struct kfd_dev *kgd2kfd_probe(struct amdgpu_device *adev, bool vf)
+>   	atomic_set(&kfd->compute_profile, 0);
+>   
+>   	mutex_init(&kfd->doorbell_mutex);
+> -	memset(&kfd->doorbell_available_index, 0,
+> -		sizeof(kfd->doorbell_available_index));
+>   
+>   	atomic_set(&kfd->sram_ecc_flag, 0);
+>   
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_doorbell.c b/drivers/gpu/drm/amd/amdkfd/kfd_doorbell.c
+> index 38c9e1ca6691..f7d45057ed32 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_doorbell.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_doorbell.c
+> @@ -61,81 +61,46 @@ size_t kfd_doorbell_process_slice(struct kfd_dev *kfd)
+>   /* Doorbell calculations for device init. */
+>   int kfd_doorbell_init(struct kfd_dev *kfd)
+>   {
+> -	size_t doorbell_start_offset;
+> -	size_t doorbell_aperture_size;
+> -	size_t doorbell_process_limit;
+> +	int size = PAGE_SIZE;
+> +	int r;
+>   
+>   	/*
+> -	 * With MES enabled, just set the doorbell base as it is needed
+> -	 * to calculate doorbell physical address.
+> -	 */
+> -	if (kfd->shared_resources.enable_mes) {
+> -		kfd->doorbell_base =
+> -			kfd->shared_resources.doorbell_physical_address;
+> -		return 0;
+> -	}
+> -
+> -	/*
+> -	 * We start with calculations in bytes because the input data might
+> -	 * only be byte-aligned.
+> -	 * Only after we have done the rounding can we assume any alignment.
+> +	 * Todo: KFD kernel level operations need only one doorbell for
+> +	 * ring test/HWS. So instead of reserving a whole page here for
+> +	 * kernel, reserve and consume a doorbell from existing KGD kernel
+> +	 * doorbell page.
 >   	 */
 >   
-> -	switch (plane->type) {
-> -	case DRM_PLANE_TYPE_PRIMARY:
-> +	if (plane->type == DRM_PLANE_TYPE_PRIMARY ||
-> +		(plane_cap && plane_cap->type == DC_PLANE_TYPE_DCN_UNIVERSAL && plane->type != DRM_PLANE_TYPE_CURSOR)) {
->   		for (i = 0; i < ARRAY_SIZE(rgb_formats); ++i) {
->   			if (num_formats >= max_formats)
->   				break;
-> @@ -717,25 +722,29 @@ static int get_plane_formats(const struct drm_plane *plane,
->   			formats[num_formats++] = DRM_FORMAT_XBGR16161616F;
->   			formats[num_formats++] = DRM_FORMAT_ABGR16161616F;
->   		}
-> -		break;
-> +	} else {
-> +		switch (plane->type) {
-> +		case DRM_PLANE_TYPE_OVERLAY:
-> +			for (i = 0; i < ARRAY_SIZE(overlay_formats); ++i) {
-> +				if (num_formats >= max_formats)
-> +					break;
+> -	doorbell_start_offset =
+> -			roundup(kfd->shared_resources.doorbell_start_offset,
+> -					kfd_doorbell_process_slice(kfd));
+> -
+> -	doorbell_aperture_size =
+> -			rounddown(kfd->shared_resources.doorbell_aperture_size,
+> -					kfd_doorbell_process_slice(kfd));
+> -
+> -	if (doorbell_aperture_size > doorbell_start_offset)
+> -		doorbell_process_limit =
+> -			(doorbell_aperture_size - doorbell_start_offset) /
+> -						kfd_doorbell_process_slice(kfd);
+> -	else
+> -		return -ENOSPC;
+> -
+> -	if (!kfd->max_doorbell_slices ||
+> -	    doorbell_process_limit < kfd->max_doorbell_slices)
+> -		kfd->max_doorbell_slices = doorbell_process_limit;
+> -
+> -	kfd->doorbell_base = kfd->shared_resources.doorbell_physical_address +
+> -				doorbell_start_offset;
+> -
+> -	kfd->doorbell_base_dw_offset = doorbell_start_offset / sizeof(u32);
+> -
+> -	kfd->doorbell_kernel_ptr = ioremap(kfd->doorbell_base,
+> -					   kfd_doorbell_process_slice(kfd));
+> -
+> -	if (!kfd->doorbell_kernel_ptr)
+> +	/* Bitmap to dynamically allocate doorbells from kernel page */
+> +	kfd->doorbell_bitmap = bitmap_zalloc(size / sizeof(u32), GFP_KERNEL);
+> +	if (!kfd->doorbell_bitmap) {
+> +		DRM_ERROR("Failed to allocate kernel doorbell bitmap\n");
+>   		return -ENOMEM;
+> +	}
 >   
-> -	case DRM_PLANE_TYPE_OVERLAY:
-> -		for (i = 0; i < ARRAY_SIZE(overlay_formats); ++i) {
-> -			if (num_formats >= max_formats)
-> -				break;
-> +				formats[num_formats++] = overlay_formats[i];
-> +			}
-> +			break;
+> -	pr_debug("Doorbell initialization:\n");
+> -	pr_debug("doorbell base           == 0x%08lX\n",
+> -			(uintptr_t)kfd->doorbell_base);
+> -
+> -	pr_debug("doorbell_base_dw_offset      == 0x%08lX\n",
+> -			kfd->doorbell_base_dw_offset);
+> -
+> -	pr_debug("doorbell_process_limit  == 0x%08lX\n",
+> -			doorbell_process_limit);
+> -
+> -	pr_debug("doorbell_kernel_offset  == 0x%08lX\n",
+> -			(uintptr_t)kfd->doorbell_base);
+> -
+> -	pr_debug("doorbell aperture size  == 0x%08lX\n",
+> -			kfd->shared_resources.doorbell_aperture_size);
+> -
+> -	pr_debug("doorbell kernel address == %p\n", kfd->doorbell_kernel_ptr);
+> +	/* Alloc a doorbell page for KFD kernel usages */
+> +	r = amdgpu_bo_create_kernel(kfd->adev,
+> +				    size,
+> +				    PAGE_SIZE,
+> +				    AMDGPU_GEM_DOMAIN_DOORBELL,
+> +				    &kfd->doorbells,
+> +				    NULL,
+> +				    (void **)&kfd->doorbell_kernel_ptr);
+> +	if (r) {
+> +		pr_err("failed to allocate kernel doorbells\n");
+> +		bitmap_free(kfd->doorbell_bitmap);
+> +		return r;
+> +	}
 >   
-> -			formats[num_formats++] = overlay_formats[i];
-> -		}
-> -		break;
-> +		case DRM_PLANE_TYPE_CURSOR:
-> +			for (i = 0; i < ARRAY_SIZE(cursor_formats); ++i) {
-> +				if (num_formats >= max_formats)
-> +					break;
+> +	pr_debug("Doorbell kernel address == %p\n", kfd->doorbell_kernel_ptr);
+>   	return 0;
+>   }
 >   
-> -	case DRM_PLANE_TYPE_CURSOR:
-> -		for (i = 0; i < ARRAY_SIZE(cursor_formats); ++i) {
-> -			if (num_formats >= max_formats)
-> -				break;
-> +				formats[num_formats++] = cursor_formats[i];
-> +			}
-> +			break;
+>   void kfd_doorbell_fini(struct kfd_dev *kfd)
+>   {
+> -	if (kfd->doorbell_kernel_ptr)
+> -		iounmap(kfd->doorbell_kernel_ptr);
+> +	bitmap_free(kfd->doorbell_bitmap);
+> +	amdgpu_bo_free_kernel(&kfd->doorbells, NULL,
+> +			     (void **)&kfd->doorbell_kernel_ptr);
+>   }
 >   
-> -			formats[num_formats++] = cursor_formats[i];
-> +		default:
-> +			break;
->   		}
-> -		break;
->   	}
+>   int kfd_doorbell_mmap(struct kfd_dev *dev, struct kfd_process *process,
+> @@ -188,22 +153,15 @@ void __iomem *kfd_get_kernel_doorbell(struct kfd_dev *kfd,
+>   	u32 inx;
 >   
->   	return num_formats;
--- 
-Hamza
-
+>   	mutex_lock(&kfd->doorbell_mutex);
+> -	inx = find_first_zero_bit(kfd->doorbell_available_index,
+> -					KFD_MAX_NUM_OF_QUEUES_PER_PROCESS);
+> +	inx = find_first_zero_bit(kfd->doorbell_bitmap, PAGE_SIZE / sizeof(u32));
+>   
+> -	__set_bit(inx, kfd->doorbell_available_index);
+> +	__set_bit(inx, kfd->doorbell_bitmap);
+>   	mutex_unlock(&kfd->doorbell_mutex);
+>   
+>   	if (inx >= KFD_MAX_NUM_OF_QUEUES_PER_PROCESS)
+>   		return NULL;
+>   
+> -	inx *= kfd->device_info.doorbell_size / sizeof(u32);
+> -
+> -	/*
+> -	 * Calculating the kernel doorbell offset using the first
+> -	 * doorbell page.
+> -	 */
+> -	*doorbell_off = kfd->doorbell_base_dw_offset + inx;
+> +	*doorbell_off = amdgpu_doorbell_index_on_bar(kfd->adev, kfd->doorbells, inx);
+>   
+>   	pr_debug("Get kernel queue doorbell\n"
+>   			"     doorbell offset   == 0x%08X\n"
+> @@ -217,11 +175,10 @@ void kfd_release_kernel_doorbell(struct kfd_dev *kfd, u32 __iomem *db_addr)
+>   {
+>   	unsigned int inx;
+>   
+> -	inx = (unsigned int)(db_addr - kfd->doorbell_kernel_ptr)
+> -		* sizeof(u32) / kfd->device_info.doorbell_size;
+> +	inx = (unsigned int)(db_addr - kfd->doorbell_kernel_ptr);
+>   
+>   	mutex_lock(&kfd->doorbell_mutex);
+> -	__clear_bit(inx, kfd->doorbell_available_index);
+> +	__clear_bit(inx, kfd->doorbell_bitmap);
+>   	mutex_unlock(&kfd->doorbell_mutex);
+>   }
+>   
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+> index 94a438956868..42c215782d72 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+> @@ -349,6 +349,12 @@ struct kfd_dev {
+>   
+>   	/* HMM page migration MEMORY_DEVICE_PRIVATE mapping */
+>   	struct dev_pagemap pgmap;
+> +
+> +	/* Kernel doorbells for KFD device */
+> +	struct amdgpu_bo *doorbells;
+> +
+> +	/* bitmap for dynamic doorbell allocation from this object */
+> +	unsigned long *doorbell_bitmap;
+>   };
+>   
+>   enum kfd_mempool {
