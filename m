@@ -1,50 +1,48 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFE49753A95
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Jul 2023 14:18:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C2B3753B83
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Jul 2023 15:08:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C671C10E885;
-	Fri, 14 Jul 2023 12:18:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A22F10E19D;
+	Fri, 14 Jul 2023 13:08:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AE9E10E87B;
- Fri, 14 Jul 2023 12:18:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=50OTjCdoe04eHZJMPt74za6C1P/cUdEzGRPeJlapH2Q=; b=MxX8/RLrkeair/1GtCYaQNguEu
- b1cjVO2v6bXacIX4QeE29DSl4kT5+V1LNYpETw3XujL7MzBtKeyxyocpfIrlBQf97IRJrJbCoxZP1
- eEe2nydPZFoA4OioPQOxOypfJPqTXPShLskR1OQurWfbeLfF1DMrlRg/Xm20U3pSmu1ncicVcihMj
- i3qwH5rNHg9Z/gZeMfL8U58/NM9qi/EgJpqj3hCQo09Ajere9NPbWw788uFWktRynSuCtPezp4KhO
- KAnllc7hfz2YeD3VcuFDXrWTPdz/zWZpqaHwKvl1jp7FQcFAB8Mcp1i96R/dlNOv+O3UYhQA6DmEa
- RuqEUjAQ==;
-Received: from [187.74.70.209] (helo=[192.168.1.111])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1qKHkq-00EVJh-PB; Fri, 14 Jul 2023 14:18:37 +0200
-Message-ID: <e4a29b97-2f82-f776-3898-98b0813fcaf0@igalia.com>
-Date: Fri, 14 Jul 2023 09:18:30 -0300
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6684E10E87B
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Jul 2023 12:20:44 +0000 (UTC)
+Received: from localhost (unknown
+ [IPv6:2a0c:5a83:9100:a000:f3b4:c45b:fd64:e7b9])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested) (Authenticated sender: rcn)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 7574E6605954;
+ Fri, 14 Jul 2023 13:20:41 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1689337241;
+ bh=/QK1CvoIj4sPYbE24wl2osdOcD4Lks2qAy78j0SBdy4=;
+ h=From:To:Cc:Subject:References:In-reply-to:Date:From;
+ b=KI+v8ICaXYe0qBHunUu7ifXsoZFh1r1SckVzT9hMQMwjecy5kF+NRZAAbS9gav9y/
+ SCbi8kn9r/2R+/4Nc1wjt6JANiMyAPLZgZy7XOu20jzoCeZ8wl59PvmfU6YevsO3SX
+ ofYQUvoaGD68Qz1iUEkO1pUHV3petdAOlvQKBcVR5vLwDYTwwewTAmEdH7YjUdmIHd
+ ZYoG/MHdayycywJpSlPyA74BCC17CNdrcYHjd+jRMiSOy2By4PizahiOktBb9xo/k2
+ xIWtuP1b2++ufZgcQnS5yOHfFvKwQvRMnCnhCpFl8Fxkro45hbT7oFk3MI/g2DbHha
+ 1pkEmWD0Xss8g==
+From: Ricardo =?utf-8?Q?Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>
+To: Paulo Miguel Almeida <paulo.miguel.almeida.rodenas@gmail.com>,
+ Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: replace 1-element arrays with flexible arrays
+References: <20230712083137.1080883-1-ricardo.canuelo@collabora.com>
+ <CADnq5_OUS=JDfCdrCsuzTB0xD5yeX7piEDEqkRO-ffPTFVYs3g@mail.gmail.com>
+ <ZLEmDBfklhfGCLGa@mail.google.com>
+In-reply-to: <ZLEmDBfklhfGCLGa@mail.google.com>
+Date: Fri, 14 Jul 2023 14:20:38 +0200
+Message-ID: <87ilamit0p.fsf@rcn-XPS-13-9305.i-did-not-set--mail-host-address--so-tickle-me>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 4/6] drm/amdgpu: Limit info in coredump for kernel
- threads
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-References: <20230713213242.680944-1-andrealmeid@igalia.com>
- <20230713213242.680944-5-andrealmeid@igalia.com>
- <72a40172-86a8-64c0-0c06-cbc670503370@gmail.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Andr=c3=a9_Almeida?= <andrealmeid@igalia.com>
-In-Reply-To: <72a40172-86a8-64c0-0c06-cbc670503370@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Mailman-Approved-At: Fri, 14 Jul 2023 13:08:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,59 +54,24 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: pierre-eric.pelloux-prayer@amd.com,
- Samuel Pitoiset <samuel.pitoiset@gmail.com>,
- =?UTF-8?B?J01hcmVrIE9sxaHDoWsn?= <maraeo@gmail.com>,
- =?UTF-8?Q?Timur_Krist=c3=b3f?= <timur.kristof@gmail.com>,
- michel.daenzer@mailbox.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- kernel-dev@igalia.com, Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
- alexander.deucher@amd.com, christian.koenig@amd.com
+Cc: "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org, alexander.deucher@amd.com,
+ kernel@collabora.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Em 14/07/2023 04:52, Christian König escreveu:
-> 
-> 
-> Am 13.07.23 um 23:32 schrieb André Almeida:
->> If a kernel thread caused the reset, the information available to be
->> logged will be limited, so return early in the dump function.
-> 
-> Why? The register values and vram lost state should still be valid.
-> 
+Hi Paulo,
 
-Fair enough, I was thinking about the new added information, such as 
-ring and job, that won't be around for this type of thread. I'll drop 
-this patch for the next version.
+> I didn't review all struct changes but I reckon that you got the train
+> of thought to be followed by now. Please count on me for reviewing those
+> changes :-)
 
-> Christian.
-> 
->>
->> Signed-off-by: André Almeida <andrealmeid@igalia.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 6 +++++-
->>   1 file changed, 5 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c 
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> index e80670420586..07546781b8b8 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> @@ -4988,10 +4988,14 @@ static ssize_t amdgpu_devcoredump_read(char 
->> *buffer, loff_t offset,
->>       drm_printf(&p, "kernel: " UTS_RELEASE "\n");
->>       drm_printf(&p, "module: " KBUILD_MODNAME "\n");
->>       drm_printf(&p, "time: %lld.%09ld\n", 
->> coredump->reset_time.tv_sec, coredump->reset_time.tv_nsec);
->> -    if (coredump->reset_task_info.pid)
->> +    if (coredump->reset_task_info.pid) {
->>           drm_printf(&p, "process_name: %s PID: %d\n",
->>                  coredump->reset_task_info.process_name,
->>                  coredump->reset_task_info.pid);
->> +    } else {
->> +        drm_printf(&p, "GPU reset caused by a kernel thread\n");
->> +        return count - iter.remain;
->> +    }
->>       if (coredump->reset_vram_lost)
->>           drm_printf(&p, "VRAM is lost due to GPU reset!\n");
-> 
+Thanks for reviewing the patch. It turned out that making these changes
+properly isn't so trivial as I thought and I'll need to spend more time
+working on it. Unfortunately I can't right now and I'll be away next
+week. Since this isn't really urgent I guess I can keep working on it
+after I come back. I'll take your suggestions into consideration for v2.
+
+Cheers,
+Ricardo
