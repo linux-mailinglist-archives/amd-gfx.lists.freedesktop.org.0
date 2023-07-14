@@ -1,54 +1,122 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93C3F7532E6
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Jul 2023 09:16:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6946753266
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Jul 2023 08:59:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C41B110E7EF;
-	Fri, 14 Jul 2023 07:16:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50F4D10E7CE;
+	Fri, 14 Jul 2023 06:59:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.208.org (unknown [183.242.55.162])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94E6810E7C5
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 Jul 2023 06:38:06 +0000 (UTC)
-Received: from mail.208.org (email.208.org [127.0.0.1])
- by mail.208.org (Postfix) with ESMTP id 4R2MHH2thfzBR9sV
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 Jul 2023 14:38:03 +0800 (CST)
-Authentication-Results: mail.208.org (amavisd-new); dkim=pass
- reason="pass (just generated, assumed good)" header.d=208.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=208.org; h=
- content-type:message-id:user-agent:references:in-reply-to
- :subject:to:from:date:mime-version; s=dkim; t=1689316683; x=
- 1691908684; bh=dBV2U+m3cL4V6sxQW7pPcNUrdDg9Y+1xV8p9CwQ1qno=; b=u
- Qb+fUCz+oAZ1SYDTvNn7/jff3FDmdfLZr4AT5rqN8zPWUFVqsZp3QaAlonzNjpMe
- aJZO4SHpjZNp6yvqQPvmW7IzJvaIcOXdTnD5W0acYBI9nZKMBiCxBfTWyy2KSMJG
- ItG+DIz5UCFRNYTCQ+Qz0XBfKOh0FLpH+cnvkxcvGRkP7Bd7hoNb/c8xku/VGxIv
- 6HZSuBvD3vdzy9mZWCW+1VRiplTJUCZ6l3FncjvagU/R6wbhwUH49PD3r3vLOTF4
- r2gHg0I75WqrZwIc1w5y2EfZ4FqDQbP5cSu8FHm+88eOE8Luv2ng5sgGdRkL4uOf
- fsJTukJT6I3UE550tBfUw==
-X-Virus-Scanned: amavisd-new at mail.208.org
-Received: from mail.208.org ([127.0.0.1])
- by mail.208.org (mail.208.org [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id T9JwyjXefD7D for <amd-gfx@lists.freedesktop.org>;
- Fri, 14 Jul 2023 14:38:03 +0800 (CST)
-Received: from localhost (email.208.org [127.0.0.1])
- by mail.208.org (Postfix) with ESMTPSA id 4R2MHH0G9FzBJFS7;
- Fri, 14 Jul 2023 14:38:02 +0800 (CST)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2068.outbound.protection.outlook.com [40.107.243.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE66410E7CD;
+ Fri, 14 Jul 2023 06:59:36 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TBVQBol0ToFKeYUhafewFs5boICJTk/E5dTaWAjJUy3uLP9OvU8njWDj5+6/FrO/OMz3q8qjSTuWLmJrp3WPAPP0IA8QoeD9vSkzTJSJkYL+SL7VeC4yttnZwQRqap02RxManzf7rmHQsGR49ioJgySxdo5exxMm6GqWb7vBlq2mH7Fgj3rRYgSWDm6Tnpf852IIIO66/2ZZ2Hw27O2EKhqga7onQFAwzFgzrlF27MdsoN4//UqCeFc5SofWbAG2LGslx8K14qzShA0ngU8Aw11//VbfS4zQP1cePCSpxT5x9/6RblJ5xHuJ1Eg0AMvxVQcEw5if1b/UeaiyTxu+9A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Rs85LHT16F6fS7V05zPu+DK6W5w0OtmTKxznLgk8u2Y=;
+ b=AwjRdTHifw9xQs6xX9HcZuZ6IB9zuUSGUESdbjUMvvNm4kDGW60VZRrmym+buGMgmOJ/iNU6+hcyYll222ibfUpW7MAdp9hhh/49d/Lh7NxtyHMISutKHTe9EqAqhbjHkeDVc9N8CXmhHzVfz3mwM9v9+ET6aE25EX3H6HuFI1iQ39Ix+6C4eMnqGeBklTvWMC/X/TFBUNN+uCAEY8Z1F6i7PLLwKcIvVmDop4QjMVs0xmRC5ODlD+gZfS6bYxmlGHEP0ttrBmQxhMLS2qYxCTNszp0+CKcaob4J5bi/hAIhQuhpu1bLqdbgc1rGIvrompyIX63+UIcFs8CBrd3lqQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Rs85LHT16F6fS7V05zPu+DK6W5w0OtmTKxznLgk8u2Y=;
+ b=lfYkQ6mNJgNcdT8chXaM9kfoA7bG8B5dmptkiJE1c9LFpcd3bahk/PzriMUT9o0wI0J6XFxRYSsEqwbxWq/KK6PcJs0urx9YxEkZ19XrKVav+nQStqApDV2CytIZX3jDpdpbPUmyfwP6wPAU6mjb4tuxEsOhc9Kki3hvxewppk4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
+ by CH3PR12MB8509.namprd12.prod.outlook.com (2603:10b6:610:157::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.24; Fri, 14 Jul
+ 2023 06:59:34 +0000
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::669f:5dca:d38a:9921]) by BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::669f:5dca:d38a:9921%4]) with mapi id 15.20.6588.027; Fri, 14 Jul 2023
+ 06:59:34 +0000
+Message-ID: <fda9ce15-2b88-f964-af39-9f8384bf79d4@amd.com>
+Date: Fri, 14 Jul 2023 08:59:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2 2/6] drm/amdgpu: Allocate coredump memory in a
+ nonblocking way
+Content-Language: en-US
+To: =?UTF-8?Q?Andr=c3=a9_Almeida?= <andrealmeid@igalia.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20230713213242.680944-1-andrealmeid@igalia.com>
+ <20230713213242.680944-3-andrealmeid@igalia.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20230713213242.680944-3-andrealmeid@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR0P281CA0088.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1e::8) To BN8PR12MB3587.namprd12.prod.outlook.com
+ (2603:10b6:408:43::13)
 MIME-Version: 1.0
-Date: Fri, 14 Jul 2023 14:38:02 +0800
-From: sunran001@208suo.com
-To: airlied@gmail.com, daniel@ffwll.ch
-Subject: [PATCH] drm/amdgpu/discovery: open brace '{' following struct go on
- the same line
-In-Reply-To: <20230714063651.13980-1-xujianghui@cdjrlc.com>
-References: <20230714063651.13980-1-xujianghui@cdjrlc.com>
-User-Agent: Roundcube Webmail
-Message-ID: <ac2d3cb0173cd6f40faf57a6faaa2bb7@208suo.com>
-X-Sender: sunran001@208suo.com
-Content-Type: multipart/alternative;
- boundary="=_1191d5ed1971db54bdee65047febf359"
-X-Mailman-Approved-At: Fri, 14 Jul 2023 07:16:15 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|CH3PR12MB8509:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4cad8da0-0608-43e1-1513-08db8437e10d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 2kg5/HGdZ9obTasiOm8DRKk3hl7M5LtBA7q+N5OBCnYuFanVofPCuJFLLBE0eGJH9bPIesknzkXEqbf+1X1t0AqBG4zQvimBpuJKZaP2TeM2jo+DJ+lgYoltJxNw7WpCLuil6ixh5KLfgUk2wjGhHNVuaGD+QVDlDd++JUpisTmw4qPwQzO92eoWgP8wvYp5pbX9dlUPLUshs8joyHGDRF6XNiSW+xwu3gZk60QxagQHYjy7wjMAiuMPGYGLBA0jUXzkpME/Ddds1lhHYLPU0WE8DobT7CC13UhOQQsyvI3cE7A6Hy1Pytnw4C5OPxSA6bkwKmHl3/TilJRnw5+F3TSchfBEl3XkdyhyrvMEtcQ4nU+QG8VfLdt5ZsHfHRJAevs9qolzrP2H5yRF4j2vr2WWtousjByBsAkwhxGbNGiLk04X2xPX3mwLTlWvOVrSyVcQsBLbTXfcBAivkgBmhGLShjv04qQ7ixldYvGmYtQOpKexO3AAidf71WZYQ+iTHl+xBfQgIfeAJeJecHQjIH8ocBrcjacjahQ6e6EsdvvhxyAlbwg6dkoVxesTlWMW9aZft52Xjtkd9jBUKKkzYZxassnhc+UjKk3Rnp+2x2H/u+0rB4X0EcuzW/3zreiXyxXPB7rBDqSoNoSqgL8SwA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(366004)(346002)(39860400002)(136003)(376002)(396003)(451199021)(7416002)(4326008)(66476007)(66946007)(66556008)(41300700001)(316002)(2906002)(478600001)(8676002)(8936002)(54906003)(5660300002)(31686004)(6666004)(6486002)(6512007)(66574015)(6506007)(186003)(36756003)(83380400001)(2616005)(38100700002)(86362001)(31696002)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RllVL3Q4WHN5VUUvdDJQZXgxNjRFYkZOMDY0bDZOd3JUVkN4em5PbDlFQjlE?=
+ =?utf-8?B?Nnp4dnFMWFBzQnNSQ0hMSGIyRzB1V3FCeWlJdlpBMm94WURRY2Z2bEdOWUls?=
+ =?utf-8?B?V2JrQjRJWHBnZCtmTzhjR2MyeXU2TUJwRTRZS1pOK2lOaTZib2k0bGlZdUhq?=
+ =?utf-8?B?QmI2b0lqMVBXSXJOVHlsREdmcFJTcHFrSC9kNG9mN0hCWWNvbjBidEI0UlF1?=
+ =?utf-8?B?Qms3aWQ3bnNHclJyaElHUmQxcnQxUGNYWFh3Z2lIV25ReUxpRlR0MG0vRjZv?=
+ =?utf-8?B?Nno1V3ZMQlM4S1lDbkVSRitYc2FVeWs5VG5VY1hrQlJkU1NrbUZvU0pvUU9u?=
+ =?utf-8?B?WmhhQlJVSStnS29JUGkrSGNLS3NRWHFDcGt5NTBjYm53eEhtOE5mYzFjTWxl?=
+ =?utf-8?B?T1UyVVI4UVlJRmlwd3FicjJiM0xqZDVUbWliUTlDK0ZwQ3lEYjZhS3NSdTdT?=
+ =?utf-8?B?bHZJYytJM3Y3SVpmZXo2aVRQZFNlTnY0NkJYVVR2aDRCc1diZ2hRc25lSVBz?=
+ =?utf-8?B?MEhsenY1VU5kWGgreDBvNE91ZDArSFM0REhGNVRGR3RqL2k4YjV0MGFRbDBu?=
+ =?utf-8?B?THEybFBDbEVrcG9KQ1VtL2lBSTR5VERPSDRJVm1YcXpnblM2VkVDTDdRUFlX?=
+ =?utf-8?B?dk9FTzFHY0FoUUx0QW9HTDcvRjE0SHRmKzFuQzFHLytHc3RtZlhHbURzNjdu?=
+ =?utf-8?B?RUx3K0dnVE5oMkppSlA2UG5rZWpYU1lKZjhoR043ZStiN3J4enQ3RXYvWnNm?=
+ =?utf-8?B?cnQyR1E1RWNoVitubXBVUy9QZG9uK2JUY25yRjBNaTN4Y2lJRXhlY24vZnhZ?=
+ =?utf-8?B?NS95L0lCS3hmTUlvaDJOSm1lRFdBeUc2N2loTDg5TWpGdDdhRWc2NWRZamxS?=
+ =?utf-8?B?V0tnL2NYV2ZFRE00amNKd2swMVN4cE01R1lOaWIzL3VvRk1TMkNPYVBKSCtk?=
+ =?utf-8?B?YWRJSHFrYzlHMGx2RnFlZUtFNVUrU2lKRlZPU2N0djZEclZCdFBFZTFwWkNj?=
+ =?utf-8?B?NW1oWDNPdTAwTDlEYlFsRlFaeHZSR1RXZDhwaG50Nms4Z0orcVNYdm04UFdN?=
+ =?utf-8?B?NWNtVURsUE40WGRqVG1YdWM5dmU1NzRrTGgvbFhSUHFnZUI0Y0pRR1l2amNI?=
+ =?utf-8?B?cHJQenRVWXFrc2loKy9IQ0QrSFMwMUw1bG1EcXNnMzBSMXY5SlhFS2pRZS81?=
+ =?utf-8?B?SXE3Y2RrSW5MTlJsNDNtNkZJWW4wU2p2QWsyS0dzR2ZWNm9qbjVWS0RBVWhX?=
+ =?utf-8?B?YUNFUytaM2laNkxPM2hja3dSVVplTklUcDJ5OTdDdjZYZTg3V0RmbUlGQ1Zm?=
+ =?utf-8?B?d1kxZTREZDdHYmxmOVlKalFPTTVTaHh4Z2RzSUNsazlLYml2OWNZTG84clhs?=
+ =?utf-8?B?cDVnVW1BTWczUEw0YWNvSSszSEtmeG9HTW1jMUkxS1hjdHJSMEJpRFAvOW5h?=
+ =?utf-8?B?b1BSSEw4eDArdDFyV3dsajNxSEpKQ2V2K2RYVHhtM3g0eHdOTkNLQy8wTmt0?=
+ =?utf-8?B?YzcrMVRxb21ucWNqd3ZIb2lGWElnR3B0MTlBK2k0WmlOWDRTZDA0UmVoNk9G?=
+ =?utf-8?B?VGtvMnUyeHg2T3JIUnU0WU1OOGhlQ2g5OUN6YUVLekdsK1BDZVNCZ1JkU0lk?=
+ =?utf-8?B?MERBRVpnNHlqeWZWbHg2bkhBN1NQNlNFdEtTeTNlM3k1QWNLZVBZVXNUVWNO?=
+ =?utf-8?B?UEgvdHVwbUJIZko5YmxOY3NHa1JwMlY5NC9RVkJIOEhtWHR6N0hYS1JjMG95?=
+ =?utf-8?B?NElVdThkbXhkL20rUitiQ0ZBbndSMS9nNGFGUGs1eUpOZ2RQSlVQVVhZUUJV?=
+ =?utf-8?B?VlJOd3BSZVFwQWVRR3hMWUE3UFBDWEl5eUNXbStaRXVORldzQkN0cmg4Szdq?=
+ =?utf-8?B?M2IxblFMYTdZTDJTdVNYM0RlbzRkYkN3Z0FYeVprZGpKN2FMUHJaNmN4bGxI?=
+ =?utf-8?B?cDFYZnNOWUVLVmZQT3hLVVZES0wwV2hPakZOTWdYelN4azJjejUwa0RCVytM?=
+ =?utf-8?B?Z1orcXFDY0RKOGVuMXF1MUI1UjJ1TldxdCtsZVN6M2NsQTdCRmI5T2RaQWVJ?=
+ =?utf-8?B?SGlrM2hnRDdyR3B4V1RvNk51ZjlxbDZnakFQWmo2NEt0Qm05ZVlXRVV0ZWMw?=
+ =?utf-8?B?VWRRSlkwWGRMdHRJU2VISXVVbTFuNENNaENhS0ZXWDFzNExKa2g2a3RjdURV?=
+ =?utf-8?Q?0TSwQFbhb2VCmAhyCtQGl58snLkk+Mvk9Cxf04U2wx2r?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4cad8da0-0608-43e1-1513-08db8437e10d
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2023 06:59:33.9466 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xTHLRuXErOiiAew72wKqCwFV4Wtv3iYR/MRkZiqdBzRoBs1j78VtlRA8izVOUL4Q
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8509
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,203 +128,42 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Cc: pierre-eric.pelloux-prayer@amd.com,
+ =?UTF-8?B?J01hcmVrIE9sxaHDoWsn?= <maraeo@gmail.com>,
+ =?UTF-8?Q?Timur_Krist=c3=b3f?= <timur.kristof@gmail.com>,
+ michel.daenzer@mailbox.org, Samuel Pitoiset <samuel.pitoiset@gmail.com>,
+ kernel-dev@igalia.com, Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
+ alexander.deucher@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---=_1191d5ed1971db54bdee65047febf359
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+Am 13.07.23 um 23:32 schrieb André Almeida:
+> During a GPU reset, a normal memory reclaim could block to reclaim
+> memory. Giving that coredump is a best effort mechanism, it shouldn't
+> disturb the reset path. Change its memory allocation flag to a
+> nonblocking one.
+>
+> Signed-off-by: André Almeida <andrealmeid@igalia.com>
 
+Reviewed-by: Christian König <christian.koenig@amd.com>
 
-Fix the checkpatch error as open brace '{' following struct should
-go on the same line.
+> ---
+> v2: New patch
+>
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> index e25f085ee886..a824f844a984 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> @@ -5011,7 +5011,7 @@ static void amdgpu_reset_capture_coredumpm(struct amdgpu_device *adev)
+>   	struct drm_device *dev = adev_to_drm(adev);
+>   
+>   	ktime_get_ts64(&adev->reset_time);
+> -	dev_coredumpm(dev->dev, THIS_MODULE, adev, 0, GFP_KERNEL,
+> +	dev_coredumpm(dev->dev, THIS_MODULE, adev, 0, GFP_NOWAIT,
+>   		      amdgpu_devcoredump_read, amdgpu_devcoredump_free);
+>   }
+>   #endif
 
-Signed-off-by: Ran Sun <sunran001@208suo.com>
----
-  drivers/gpu/drm/amd/include/discovery.h | 33 +++++++++----------------
-  1 file changed, 11 insertions(+), 22 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/include/discovery.h 
-b/drivers/gpu/drm/amd/include/discovery.h
-index f43e29722ef7..eed394df36d5 100644
---- a/drivers/gpu/drm/amd/include/discovery.h
-+++ b/drivers/gpu/drm/amd/include/discovery.h
-@@ -32,8 +32,7 @@
-  #define VCN_INFO_TABLE_ID               0x004E4356
-  #define MALL_INFO_TABLE_ID              0x4D414C4C
-
--typedef enum
--{
-+typedef enum {
-      IP_DISCOVERY = 0,
-      GC,
-      HARVEST_INFO,
-@@ -45,16 +44,14 @@ typedef enum
-
-  #pragma pack(1)
-
--typedef struct table_info
--{
-+typedef struct table_info {
-      uint16_t offset;   /* Byte offset */
-      uint16_t checksum; /* Byte sum of the table */
-      uint16_t size;     /* Table size */
-      uint16_t padding;
-  } table_info;
-
--typedef struct binary_header
--{
-+typedef struct binary_header {
-      /* psp structure should go at the top of this structure */
-      uint32_t binary_signature; /* 0x7, 0x14, 0x21, 0x28 */
-      uint16_t version_major;
-@@ -64,15 +61,13 @@ typedef struct binary_header
-      table_info table_list[TOTAL_TABLES];
-  } binary_header;
-
--typedef struct die_info
--{
-+typedef struct die_info {
-      uint16_t die_id;
-      uint16_t die_offset; /* Points to the corresponding die_header 
-structure */
-  } die_info;
-
--typedef struct ip_discovery_header
--{
-+typedef struct ip_discovery_header {
-      uint32_t signature;    /* Table Signature */
-      uint16_t version;      /* Table Version */
-      uint16_t size;         /* Table Size */
-@@ -89,8 +84,7 @@ typedef struct ip_discovery_header
-      };
-  } ip_discovery_header;
-
--typedef struct ip
--{
-+typedef struct ip {
-      uint16_t hw_id;           /* Hardware ID */
-      uint8_t number_instance;  /* instance of the IP */
-      uint8_t num_base_address; /* Number of Base Addresses */
-@@ -107,8 +101,7 @@ typedef struct ip
-      uint32_t base_address[]; /* variable number of Addresses */
-  } ip;
-
--typedef struct ip_v3
--{
-+typedef struct ip_v3 {
-      uint16_t hw_id;                         /* Hardware ID */
-      uint8_t instance_number;                /* Instance number for the 
-IP */
-      uint8_t num_base_address;               /* Number of base 
-addresses*/
-@@ -145,20 +138,16 @@ typedef struct ip_v4 {
-      } __packed;
-  } ip_v4;
-
--typedef struct die_header
--{
-+typedef struct die_header {
-      uint16_t die_id;
-      uint16_t num_ips;
-  } die_header;
-
--typedef struct ip_structure
--{
-+typedef struct ip_structure {
-      ip_discovery_header* header;
--    struct die
--    {
-+    struct die {
-          die_header *die_header;
--        union
--        {
-+        union {
-              ip *ip_list;
-              ip_v3 *ip_v3_list;
-              ip_v4 *ip_v4_list;
---=_1191d5ed1971db54bdee65047febf359
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset=UTF-8
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
-=3DUTF-8" /></head><body style=3D'font-size: 12pt; font-family: Verdana,Gen=
-eva,sans-serif'>
-<div class=3D"pre" style=3D"margin: 0; padding: 0; font-family: monospace">=
-Fix the checkpatch error as open brace '{' following struct should<br />go =
-on the same line.<br /><br />Signed-off-by: Ran Sun &lt;sunran001@208suo.co=
-m&gt;<br />---<br />&nbsp;drivers/gpu/drm/amd/include/discovery.h | 33 ++++=
-+++++----------------<br />&nbsp;1 file changed, 11 insertions(+), 22 delet=
-ions(-)<br /><br />diff --git a/drivers/gpu/drm/amd/include/discovery.h b/d=
-rivers/gpu/drm/amd/include/discovery.h<br />index f43e29722ef7..eed394df36d=
-5 100644<br />--- a/drivers/gpu/drm/amd/include/discovery.h<br />+++ b/driv=
-ers/gpu/drm/amd/include/discovery.h<br />@@ -32,8 +32,7 @@<br />&nbsp;#defi=
-ne VCN_INFO_TABLE_ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x004E4356<br />&nbsp;#define MALL_INFO_TABLE=
-_ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;0x4D414C4C<br />&nbsp;<br />-typedef enum<br />-{<br />+typedef enum=
- {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IP_DISCOVERY =3D 0,<br />&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;GC,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HARVEST_INFO,<br /=
->@@ -45,16 +44,14 @@ typedef enum<br />&nbsp;<br />&nbsp;#pragma pack(1)<br=
- />&nbsp;<br />-typedef struct table_info<br />-{<br />+typedef struct tabl=
-e_info {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uint16_t offset; &nbsp;&nbsp;/*=
- Byte offset */<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uint16_t checksum; /* By=
-te sum of the table */<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uint16_t size; &n=
-bsp;&nbsp;&nbsp;&nbsp;/* Table size */<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;u=
-int16_t padding;<br />&nbsp;} table_info;<br />&nbsp;<br />-typedef struct =
-binary_header<br />-{<br />+typedef struct binary_header {<br />&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;/* psp structure should go at the top of this structure =
-*/<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uint32_t binary_signature; /* 0x7, 0x=
-14, 0x21, 0x28 */<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uint16_t version_major=
-;<br />@@ -64,15 +61,13 @@ typedef struct binary_header<br />&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;table_info table_list[TOTAL_TABLES];<br />&nbsp;} binary_he=
-ader;<br />&nbsp;<br />-typedef struct die_info<br />-{<br />+typedef struc=
-t die_info {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uint16_t die_id;<br />&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;uint16_t die_offset; /* Points to the correspondin=
-g die_header structure */<br />&nbsp;} die_info;<br />&nbsp;<br />&nbsp;<br=
- />-typedef struct ip_discovery_header<br />-{<br />+typedef struct ip_disc=
-overy_header {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uint32_t signature; &nbsp=
-;&nbsp;&nbsp;/* Table Signature */<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uint1=
-6_t version; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* Table Version */<br />&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;uint16_t size; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;/* Table Size */<br />@@ -89,8 +84,7 @@ typedef struct ip_discov=
-ery_header<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br />&nbsp;} ip_discovery_=
-header;<br />&nbsp;<br />-typedef struct ip<br />-{<br />+typedef struct ip=
- {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uint16_t hw_id; &nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* Hardware ID */<br />&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;uint8_t number_instance; &nbsp;/* instance of the IP */<br=
- />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uint8_t num_base_address; /* Number of Bas=
-e Addresses */<br />@@ -107,8 +101,7 @@ typedef struct ip<br />&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;uint32_t base_address[]; /* variable number of Addresses =
-*/<br />&nbsp;} ip;<br />&nbsp;<br />-typedef struct ip_v3<br />-{<br />+ty=
-pedef struct ip_v3 {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uint16_t hw_id; &nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* Hardwa=
-re ID */<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uint8_t instance_number; &nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;/* Instance number for the IP */<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;uint8_t num_base_address; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* Number of base addresses*/<br />@@ =
--145,20 +138,16 @@ typedef struct ip_v4 {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;} __packed;<br />&nbsp;} ip_v4;<br />&nbsp;<br />-typedef struct die_head=
-er<br />-{<br />+typedef struct die_header {<br />&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;uint16_t die_id;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uint16_t num_ips;<=
-br />&nbsp;} die_header;<br />&nbsp;<br />-typedef struct ip_structure<br /=
->-{<br />+typedef struct ip_structure {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-ip_discovery_header* header;<br />- &nbsp;&nbsp;&nbsp;struct die<br />- &nb=
-sp;&nbsp;&nbsp;{<br />+ &nbsp;&nbsp;&nbsp;struct die {<br />&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;die_header *die_header;<br />- &nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;union<br />- &nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;{<br />+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;union {=
-<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;ip *ip_list;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ip_v3 *ip_v3_list;<br />&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ip_v4 *ip_v4_list;=
-</div>
-
-</body></html>
-
---=_1191d5ed1971db54bdee65047febf359--
