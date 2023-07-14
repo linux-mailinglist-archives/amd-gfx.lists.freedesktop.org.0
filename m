@@ -2,34 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F6347532E3
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Jul 2023 09:16:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DA757532DE
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Jul 2023 09:16:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D322A10E7E8;
-	Fri, 14 Jul 2023 07:16:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A34A310E7DD;
+	Fri, 14 Jul 2023 07:16:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 429 seconds by postgrey-1.36 at gabe;
- Fri, 14 Jul 2023 05:40:02 UTC
-Received: from mailgw.gate-on.net (auth.Gate-On.Net [210.197.74.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B64B810E11D
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 Jul 2023 05:40:02 +0000 (UTC)
-Received: from vega.pgw.jp (unknown [49.135.109.134])
- by mailgw.gate-on.net (Postfix) with ESMTP id 492DC80189;
- Fri, 14 Jul 2023 14:34:05 +0900 (JST)
-Received: from localhost (vega.pgw.jp [10.5.0.30])
- by vega.pgw.jp (Postfix) with SMTP
- id CC1D8A53D; Fri, 14 Jul 2023 14:34:04 +0900 (JST)
-From: <kkabe@vega.pgw.jp>
-Content-Type: text/plain; charset=ISO-2022-JP
-To: regressions@lists.linux.dev
-Subject: Re: radeon.ko/i586: BUG: kernel NULL pointer dereference,
- address:00000004
-In-Reply-To: Your message of "Fri, 14 Jul 2023 05:44:07 +0200".
- <55a3bbb1-5b3c-f454-b529-8ee9944cc67c@leemhuis.info>
-X-Mailer: mnews [version 1.22PL5] 2002-11-27(Wed)
-Date: Fri, 14 Jul 2023 14:34:04 +0900
-Message-ID: <230714143404.M0123570@vega.pgw.jp>
+Received: from mail.208.org (unknown [183.242.55.162])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62C8610E11D
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Jul 2023 05:35:37 +0000 (UTC)
+Received: from mail.208.org (email.208.org [127.0.0.1])
+ by mail.208.org (Postfix) with ESMTP id 4R2Kv96JzdzBR9sN
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Jul 2023 13:35:33 +0800 (CST)
+Authentication-Results: mail.208.org (amavisd-new); dkim=pass
+ reason="pass (just generated, assumed good)" header.d=208.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=208.org; h=
+ content-transfer-encoding:content-type:message-id:user-agent
+ :references:in-reply-to:subject:to:from:date:mime-version; s=
+ dkim; t=1689312933; x=1691904934; bh=gK7OprNNceFo1/5i9J6sc3labxZ
+ QSM4pPR64BkZs428=; b=l7xv629ePLJGpQM3RAx01xvNGyOjVn+M9SN8p8cXPBV
+ 2nzy+d40AhZPhM8g4Lg++HheDAKIF+XMBo5DOjjFQS7+QNNoDk9rI7uwUnw3veLE
+ 8ebRbEQYmsuRo5uNjPh5WjX4JUCKpHRgs9nPh2diq/etCS+TfDLijdsV/YH16K2I
+ tyW/cbp6hY6CjThf2sMts6x0YP4gPMAIyfk405Ds5eRDaSLblCU0o26mfDqw3MOK
+ rMrmynSEOyQ6Q4fkzXLePRvQ8rA2fkIuIMU1kPn95s62VTYB2f6CrjzEBVXxy43P
+ F3bAPwZ+NW9ljx1Hv/RDYpWK854X4YwhD6XTVAWrcuQ==
+X-Virus-Scanned: amavisd-new at mail.208.org
+Received: from mail.208.org ([127.0.0.1])
+ by mail.208.org (mail.208.org [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id Wmo6erc4xGnR for <amd-gfx@lists.freedesktop.org>;
+ Fri, 14 Jul 2023 13:35:33 +0800 (CST)
+Received: from localhost (email.208.org [127.0.0.1])
+ by mail.208.org (Postfix) with ESMTPSA id 4R2Kv9304TzBR7bB;
+ Fri, 14 Jul 2023 13:35:33 +0800 (CST)
+MIME-Version: 1.0
+Date: Fri, 14 Jul 2023 13:35:33 +0800
+From: shijie001@208suo.com
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch
+Subject: [PATCH] drm/radeon: ERROR: "(foo*)" should be "(foo *)"
+In-Reply-To: <tencent_16FACBDCDA61595C4219E185613C85C8BF0A@qq.com>
+References: <tencent_16FACBDCDA61595C4219E185613C85C8BF0A@qq.com>
+User-Agent: Roundcube Webmail
+Message-ID: <26d3424f83f1f394614e2a774d1bf1e9@208suo.com>
+X-Sender: shijie001@208suo.com
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Fri, 14 Jul 2023 07:16:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -42,102 +61,30 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dave.hansen@linux.intel.com, Xinhui.Pan@amd.com,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, mingo@redhat.com,
- bp@alien8.de, rostedt@goodmis.org, bagasdotme@gmail.com, hpa@zytor.com,
- alexander.deucher@amd.com, tglx@linutronix.de, kkabe@vega.pgw.jp,
- christian.koenig@amd.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Thanks you all for getting attention to the report: 
+Fix one occurrence of the checkpatch.pl error:
+ERROR: "(foo*)" should be "(foo *)"
 
-regressions@leemhuis.info sed in <55a3bbb1-5b3c-f454-b529-8ee9944cc67c@leemhuis.info>
+Signed-off-by: Jie Shi <shijie001@208suo.com>
+---
+  drivers/gpu/drm/radeon/uvd_v1_0.c | 2 +-
+  1 file changed, 1 insertion(+), 1 deletion(-)
 
->> On 14.07.23 05:12, Steven Rostedt wrote:
->> > On Fri, 14 Jul 2023 09:50:17 +0700
->> > Bagas Sanjaya <bagasdotme@gmail.com> wrote:
->> > 
->> >> I notice a regression report on Bugzilla [1]. Quoting from it:
->> >>
->> >>
->> >> See Bugzilla for the full thread and attached patches that fixes
->> >> this regression.
->> >>
->> >> Later, when bisecting, the reporter got better kernel trace:
->> >>
->> >>> [  469.825305] BUG: kernel NULL pointer dereference, address: 00000004
->> >>> [  469.830502] #PF: supervisor read access in kernel mode
->> >>> [  469.830502] #PF: error_code(0x0000) - not-present page
->> >>> [  469.830502] *pde = 00000000
->> >>> [  469.830502] Oops: 0000 [#1] PREEMPT SMP
->> >>> [  469.830502] CPU: 0 PID: 365 Comm: systemd-udevd Not tainted 5.14.0-221.el9.v1.i586 #1
->> > 
->> > This is a 5.14 kernel right?
->> 
->> And a vendor kernel that from the sound of the version number might be
->> heavily patched. But apparently the reporter later bisected this on a
->> newer kernel (Bagas, would have been good if this had been mentioned in
->> your earlier mail):
->> 
->> https://bugzilla.kernel.org/show_bug.cgi?id=217669#c5
->> ```
->> I succeeded to bisect down the regressing commit found in kernel-5.18.0-rc2:
->> 
->> b39181f7c690 (refs/bisect/bad) ftrace: Add FTRACE_MCOUNT_MAX_OFFSET to
->> avoid adding weak function
->> 
->> This at a glance does not relate to drm/kms code.
->> 
->> The attached patch effectively reverts the commit for 32bit.
->> This fixed the problem on kernel-5.18.0, but not enough for kernel-6.4.3 ```
->> 
->> That being said: That commit is not in 5.18, as Steve noticed:
->> 
->> >> #regzbot introduced: b39181f7c6907d https://bugzilla.kernel.org/show_bug.cgi?id=217669
->> >> #regzbot title: FTRACE_MCOUNT_MAX_OFFSET causes kernel NULL pointer dereference and virtual console (tty1) freeze
->> > That commit was added in 5.19.
->> > 
->> > So I'm confused about why it's mentioned. Was it backported?
->> 
->> Taketo Kabe, could you please help to clean this confusion up? Did you
->> mean 5.19 in https://bugzilla.kernel.org/show_bug.cgi?id=217669#c5 ? And
->> BTW: did you really use a vanilla kernel for your bisection?
+diff --git a/drivers/gpu/drm/radeon/uvd_v1_0.c 
+b/drivers/gpu/drm/radeon/uvd_v1_0.c
+index 58557c2263a7..5684639d20a6 100644
+--- a/drivers/gpu/drm/radeon/uvd_v1_0.c
++++ b/drivers/gpu/drm/radeon/uvd_v1_0.c
+@@ -142,7 +142,7 @@ int uvd_v1_0_resume(struct radeon_device *rdev)
+      addr = (rdev->uvd.gpu_addr >> 32) & 0xFF;
+      WREG32(UVD_LMI_EXT40_ADDR, addr | (0x9 << 16) | (0x1 << 31));
 
+-    WREG32(UVD_FW_START, *((uint32_t*)rdev->uvd.cpu_addr));
++    WREG32(UVD_FW_START, *((uint32_t *)rdev->uvd.cpu_addr));
 
-Reporter Me:
-I bisected using freedesktop.org kernel tree, which git commit ID is
-in sync with kernel.org
-but version number in ./Makefile could be slighty behind. 
-
-Patch in
-https://bugzilla.kernel.org/show_bug.cgi?id=217669#c4
-fixed the problem in freedesktop.org kernel 5.18.0-rc2 .
-This may explain that in kernel.org tree, the said commit is in kernel-5.19.
-
-
->> TWIMC, there is also
->> https://bugzilla.kernel.org/show_bug.cgi?id=217669#c6 :
->> ```
->> Attached patch sort of fixes the problem; it does not panic and
->> KMS console works, but printk is triggered 4 times on radeon.ko load and
->> when VGA connector is plugged in.
->> 
->> I am sort of at loss now; I need advice from people which knows better.
->> 
->>  --- ./drivers/gpu/drm/drm_internal.h.rd	2023-06-25 21:35:27.506967450 +0900
->>  +++ ./drivers/gpu/drm/drm_internal.h.rd	2023-06-25 21:36:34.758055363 +0900
->>  @@ -99,6 +99,10 @@ u64 drm_vblank_count(struct drm_device *
->>   /* drm_vblank_work.c */
->>   static inline void drm_vblank_flush_worker(struct drm_vblank_crtc *vblank)
->>   {
->>  +	if (!vblank->worker) {
->>  +		printk(KERN_WARNING "%s: vblank->worker NULL? returning\n", __func__);
->>  +		return;
->>  +	}
->>   	kthread_flush_worker(vblank->worker);
->>   }
->> ```
->> 
->> Ciao, Thorsten
->> 
+      return 0;
+  }
