@@ -2,61 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79FFA753B82
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Jul 2023 15:08:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C71C9753B7E
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Jul 2023 15:08:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C027610E100;
-	Fri, 14 Jul 2023 13:08:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6632E10E8A3;
+	Fri, 14 Jul 2023 13:08:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com
- [209.85.160.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACB4510E852;
- Fri, 14 Jul 2023 10:04:20 +0000 (UTC)
-Received: by mail-oa1-f48.google.com with SMTP id
- 586e51a60fabf-1b3c503af99so1356077fac.0; 
- Fri, 14 Jul 2023 03:04:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1689329059; x=1691921059;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=cbFWyufa2I/dKrp5bYUBMB1ESShCcC04UZ0ziSB/4oc=;
- b=hKbnxzGdJObd50DkJBBchmjGNTVzmfFnJgu35PLS0Fgu2/dxb9yU+bOGXsh/auqch1
- 9JFvm+rCQLOI3U5sO9kNnPuKskOe37GtrzYZtiKlDdsQygRxryZMPhFCfpGbqWFRqIx/
- h5mVyb/CKEuxnpjCZLOQJrx1bGa2TQgKMcx6vksu/3ipy84vAzYJ1uUnk5BnTo20sbux
- RJRYPNC4Wts1S0M7RwvXlHZts0fTtiehTi5/hEr2kpLBz/y0eY78rNBOYb//beFaQzCm
- IA4Sv9eW6rbPcEhy/IALXbWzGju2dXxS4e/AIVfZM7V+5tKBhSFtqNiEwNtebJAUWpTc
- 3tYA==
-X-Gm-Message-State: ABy/qLZmQR67uHVFa6XLU02S73GxyXF1mK08kBfvsM5/Iqq7EKT+g7Sg
- ATroBAJiwpYHdQ/hkLfzfC+YZyM/EFRFPA==
-X-Google-Smtp-Source: APBJJlHF7Q7bUOWyzUiE+yZ8LEvZy8rXLRCdQUaj/8Xrd69NWvokzje7pPuW8z3iSEarQ+wQPJs+9g==
-X-Received: by 2002:aca:f1d6:0:b0:3a3:6f96:f15f with SMTP id
- p205-20020acaf1d6000000b003a36f96f15fmr3827307oih.15.1689329059192; 
- Fri, 14 Jul 2023 03:04:19 -0700 (PDT)
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com.
- [209.85.210.52]) by smtp.gmail.com with ESMTPSA id
- k2-20020a544702000000b003a422b6ff4csm2840587oik.49.2023.07.14.03.04.18
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 14 Jul 2023 03:04:18 -0700 (PDT)
-Received: by mail-ot1-f52.google.com with SMTP id
- 46e09a7af769-6b9b89627c3so529055a34.1; 
- Fri, 14 Jul 2023 03:04:18 -0700 (PDT)
-X-Received: by 2002:a05:6358:591d:b0:135:43da:b16d with SMTP id
- g29-20020a056358591d00b0013543dab16dmr4868202rwf.11.1689329058168; Fri, 14
- Jul 2023 03:04:18 -0700 (PDT)
+Received: from out-4.mta0.migadu.com (out-4.mta0.migadu.com
+ [IPv6:2001:41d0:1004:224b::4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC87410E85E
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 Jul 2023 10:18:15 +0000 (UTC)
+Message-ID: <809f8391-c9e2-4432-12ec-9921360e3c8e@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1689329891;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=vDi5jHcc6JX2dM3REdw3Ft0fz55Drq20U6og3UsNXvQ=;
+ b=xALtXC8/ROHasKXZMaOLj0zsiUq3d6orGjz1eoTZ1jYoIfLxy+er+4aCKpcbd9XxK/72Fv
+ KRVRN8cp4ei0ETtfaMci8s/7BCxay4Kgtrw1eY/mHz/QrTn8JRVj36+RIQUzGxVU6fdQ+Q
+ u1T/iNhdJHA2X2uvCVp0eGoYlglhYfM=
+Date: Fri, 14 Jul 2023 18:17:59 +0800
 MIME-Version: 1.0
-References: <20230714075155.5686-1-tzimmermann@suse.de>
-In-Reply-To: <20230714075155.5686-1-tzimmermann@suse.de>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 14 Jul 2023 12:04:03 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWoeyJPAgPgFi545SJFcaVCgZi1-zW2N5cBeU9BnHgo1w@mail.gmail.com>
-Message-ID: <CAMuHMdWoeyJPAgPgFi545SJFcaVCgZi1-zW2N5cBeU9BnHgo1w@mail.gmail.com>
-Subject: Re: [PATCH v3 00/18] fbdev: Remove FBINFO_DEFAULT and
- FBINFO_FLAG_DEFAULT flags
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: Re: [v3,18/18] fbdev: Document that framebuffer_alloc() returns
+ zero'ed data
+To: Thomas Zimmermann <tzimmermann@suse.de>, deller@gmx.de, javierm@redhat.com
+References: <20230714075155.5686-19-tzimmermann@suse.de>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Sui JIngfeng <sui.jingfeng@linux.dev>
+In-Reply-To: <20230714075155.5686-19-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 X-Mailman-Approved-At: Fri, 14 Jul 2023 13:08:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,67 +51,46 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: linux-fbdev@vger.kernel.org, kvm@vger.kernel.org,
- linux-hyperv@vger.kernel.org, linux-sh@vger.kernel.org, deller@gmx.de,
+ linux-hyperv@vger.kernel.org, linux-sh@vger.kernel.org,
  linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, javierm@redhat.com,
+ amd-gfx@lists.freedesktop.org, linux-geode@lists.infradead.org,
  dri-devel@lists.freedesktop.org, linux-input@vger.kernel.org,
- linux-nvidia@lists.surfsouth.com, linux-omap@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-geode@lists.infradead.org,
+ Miguel Ojeda <ojeda@kernel.org>, linux-nvidia@lists.surfsouth.com,
+ linux-omap@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
  linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Thomas,
 
-On Fri, Jul 14, 2023 at 9:53=E2=80=AFAM Thomas Zimmermann <tzimmermann@suse=
-.de> wrote:
-> Remove the unused flags FBINFO_DEFAULT and FBINFO_FLAG_DEFAULT from
-> fbdev and drivers, as briefly discussed at [1]. Both flags were maybe
-> useful when fbdev had special handling for driver modules. With
-> commit 376b3ff54c9a ("fbdev: Nuke FBINFO_MODULE"), they are both 0
-> and have no further effect.
->
-> Patches 1 to 7 remove FBINFO_DEFAULT from drivers. Patches 2 to 5
-> split this by the way the fb_info struct is being allocated. All flags
-> are cleared to zero during the allocation.
->
-> Patches 8 to 16 do the same for FBINFO_FLAG_DEFAULT. Patch 8 fixes
-> an actual bug in how arch/sh uses the token for struct fb_videomode,
-> which is unrelated.
->
-> Patch 17 removes both flag constants from <linux/fb.h> and patch 18
-> documents the zero'ed memory returned by framebuffer_alloc().
+On 2023/7/14 15:49, Thomas Zimmermann wrote:
+> Most fbdev drivers depend on framebuffer_alloc() to initialize the
+> allocated memory to 0. Document this guarantee.
 >
 > v3:
->         * sh: include board name in commit message (Adrian)
->         * docs: reword text (Miguel)
+> 	* slightly reword the sentence (Miguel)
+>
+> Suggested-by: Miguel Ojeda <ojeda@kernel.org>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Reviewed-by: Miguel Ojeda <ojeda@kernel.org>
 
-Thanks for the update!
+Reviewed-by: Sui Jingfeng <suijingfeng@loongson.cn>
 
->   fbdev: Remove flag FBINFO_DEFAULT from fbdev drivers
->   fbdev: Remove flag FBINFO_DEFAULT from fbdev drivers
->   fbdev: Remove flag FBINFO_DEFAULT from fbdev drivers
->   fbdev: Remove flag FBINFO_DEFAULT from fbdev drivers
-
-Four patches with the exact same one-line summary. Please make them
-unique.
-
->   fbdev: Remove flag FBINFO_FLAG_DEFAULT from fbdev drivers
->   fbdev: Remove flag FBINFO_FLAG_DEFAULT from fbdev drivers
-
-Two patches with the exact same one-line summary. Please make them
-unique.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> Cc: Helge Deller <deller@gmx.de>
+> ---
+>   drivers/video/fbdev/core/fb_info.c | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/video/fbdev/core/fb_info.c b/drivers/video/fbdev/core/fb_info.c
+> index 8bdbefdd4b70..4847ebe50d7d 100644
+> --- a/drivers/video/fbdev/core/fb_info.c
+> +++ b/drivers/video/fbdev/core/fb_info.c
+> @@ -13,7 +13,8 @@
+>    *
+>    * Creates a new frame buffer info structure. Also reserves @size bytes
+>    * for driver private data (info->par). info->par (if any) will be
+> - * aligned to sizeof(long).
+> + * aligned to sizeof(long). The new instances of struct fb_info and
+> + * the driver private data are both cleared to zero.
+>    *
+>    * Returns the new structure, or NULL if an error occurred.
+>    *
