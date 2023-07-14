@@ -1,40 +1,69 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82794753C69
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Jul 2023 16:01:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82248753E66
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Jul 2023 17:07:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14EB710E88B;
-	Fri, 14 Jul 2023 14:01:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD0EF10E8E3;
+	Fri, 14 Jul 2023 15:07:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C890B10E88B
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 Jul 2023 14:00:25 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD1D110E8A1;
+ Fri, 14 Jul 2023 14:26:46 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 96FE561D21;
- Fri, 14 Jul 2023 14:00:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A055DC433C8;
- Fri, 14 Jul 2023 14:00:21 +0000 (UTC)
-Date: Fri, 14 Jul 2023 10:00:19 -0400
-From: Steven Rostedt <rostedt@goodmis.org>
-To: <kkabe@vega.pgw.jp>
-Subject: Re: radeon.ko/i586: BUG: kernel NULL pointer dereference,
- address:00000004
-Message-ID: <20230714100019.6bf9b1ab@gandalf.local.home>
-In-Reply-To: <230714143404.M0123570@vega.pgw.jp>
-References: <55a3bbb1-5b3c-f454-b529-8ee9944cc67c@leemhuis.info>
- <230714143404.M0123570@vega.pgw.jp>
-X-Mailer: Claws Mail 3.19.1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id AADA51F747;
+ Fri, 14 Jul 2023 14:26:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1689344804; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=rbJwmhXfhN5rIPoLj6fIJpy/+DMnwxG+UHYLi25rZdQ=;
+ b=2eZEKNybuxBZ5dM4elpTXk5fybRAWCqEWxv5TWQSsbZwocHXqr6P/pCn+HDpCp7VOHFySU
+ wrN5RdAayt0lobndDZx78GkWfzBqXslCQdTLHDIT0+rhfSaqa1zkl5RfWg4pf19se7xDGz
+ 2877+IHCgDJe1hKZRpKwl3nJ14+KI4E=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1689344804;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=rbJwmhXfhN5rIPoLj6fIJpy/+DMnwxG+UHYLi25rZdQ=;
+ b=cDg/jNJAsxU+WNbuvHmDt9VhdDeknW42QogvvhHtOg5owP1dFsCJop+teLMjTToesPOSkW
+ QA4DQyFxXD8lQGCg==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 7A75413A15;
+ Fri, 14 Jul 2023 14:26:44 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id 2440HSRbsWRTHQAAMHmgww
+ (envelope-from <vbabka@suse.cz>); Fri, 14 Jul 2023 14:26:44 +0000
+Message-ID: <d11b6c3c-cbf8-a7dc-3cf9-e4e4dcf81fbc@suse.cz>
+Date: Fri, 14 Jul 2023 16:26:44 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Fri, 14 Jul 2023 14:01:42 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 3/5] drm/amdkfd: use vma_is_stack() and vma_is_heap()
+Content-Language: en-US
+To: Felix Kuehling <felix.kuehling@amd.com>,
+ Christoph Hellwig <hch@infradead.org>,
+ Kefeng Wang <wangkefeng.wang@huawei.com>
+References: <20230712143831.120701-1-wangkefeng.wang@huawei.com>
+ <20230712143831.120701-4-wangkefeng.wang@huawei.com>
+ <ZK671bHU1QLYagj8@infradead.org>
+ <83f11260-cd26-5b46-e9d4-1ca97565a1d0@amd.com>
+From: Vlastimil Babka <vbabka@suse.cz>
+In-Reply-To: <83f11260-cd26-5b46-e9d4-1ca97565a1d0@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 14 Jul 2023 15:07:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,48 +75,37 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dave.hansen@linux.intel.com, regressions@lists.linux.dev,
- Xinhui.Pan@amd.com, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, mingo@redhat.com, bp@alien8.de,
- bagasdotme@gmail.com, hpa@zytor.com, alexander.deucher@amd.com,
- tglx@linutronix.de, christian.koenig@amd.com
+Cc: selinux@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-perf-users@vger.kernel.org,
+ linux-mm@kvack.org, amd-gfx@lists.freedesktop.org,
+ linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 14 Jul 2023 14:34:04 +0900
-<kkabe@vega.pgw.jp> wrote:
+On 7/12/23 18:24, Felix Kuehling wrote:
+> Allocations in the heap and stack tend to be small, with several 
+> allocations sharing the same page. Sharing the same page for different 
+> allocations with different access patterns leads to thrashing when we 
+> migrate data back and forth on GPU and CPU access. To avoid this we 
+> disable HMM migrations for head and stack VMAs.
 
-> >> > So I'm confused about why it's mentioned. Was it backported?  
-> >> 
-> >> Taketo Kabe, could you please help to clean this confusion up? Did you
-> >> mean 5.19 in https://bugzilla.kernel.org/show_bug.cgi?id=217669#c5 ? And
-> >> BTW: did you really use a vanilla kernel for your bisection?  
+Wonder how well does it really work in practice? AFAIK "heaps" (malloc())
+today uses various arenas obtained by mmap() and not a single brk() managed
+space anymore? And programs might be multithreaded, thus have multiple
+stacks, while vma_is_stack() will recognize only the initial one...
+
+Vlastimil
+
+> Regards,
+>    Felix
 > 
 > 
-> Reporter Me:
-> I bisected using freedesktop.org kernel tree, which git commit ID is
-> in sync with kernel.org
-> but version number in ./Makefile could be slighty behind. 
+> Am 2023-07-12 um 10:42 schrieb Christoph Hellwig:
+>> On Wed, Jul 12, 2023 at 10:38:29PM +0800, Kefeng Wang wrote:
+>>> Use the helpers to simplify code.
+>> Nothing against your addition of a helper, but a GPU driver really
+>> should have no business even looking at this information..
+>>
+>>
 > 
-> Patch in
-> https://bugzilla.kernel.org/show_bug.cgi?id=217669#c4
-> fixed the problem in freedesktop.org kernel 5.18.0-rc2 .
-> This may explain that in kernel.org tree, the said commit is in kernel-5.19.
 
-Even if the bisect did land on this commit, it doesn't make sense. I would
-think that one of the results of the bisect was incorrect (a pass that
-should have failed?), as that would lead the bisect down to the wrong
-conclusion.
-
-Now if you you remove this commit and everything works fine, and add it
-back again and it fails reliably, then I can't argue it is not the commit.
-
-But the commit in question kicks off a worker thread at boot up to search
-for weak functions that were tagged to be traced by the function tracer and
-sets them to "disabled" to never be traced.
-
-Is the function tracer used at all here? I really do not see how this
-commit affects the code that is crashing. Unless there's something wrong
-with the way the kworker was set up and it corrupted other kworkers :-/
-
--- Steve
