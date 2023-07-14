@@ -1,23 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DDE67532E8
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Jul 2023 09:16:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F6347532E3
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Jul 2023 09:16:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9822410E7F2;
-	Fri, 14 Jul 2023 07:16:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D322A10E7E8;
+	Fri, 14 Jul 2023 07:16:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
+X-Greylist: delayed 429 seconds by postgrey-1.36 at gabe;
+ Fri, 14 Jul 2023 05:40:02 UTC
 Received: from mailgw.gate-on.net (auth.Gate-On.Net [210.197.74.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B971510E12E
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B64B810E11D
  for <amd-gfx@lists.freedesktop.org>; Fri, 14 Jul 2023 05:40:02 +0000 (UTC)
 Received: from vega.pgw.jp (unknown [49.135.109.134])
- by mailgw.gate-on.net (Postfix) with ESMTP id 95F0080165;
- Fri, 14 Jul 2023 14:32:49 +0900 (JST)
+ by mailgw.gate-on.net (Postfix) with ESMTP id 492DC80189;
+ Fri, 14 Jul 2023 14:34:05 +0900 (JST)
 Received: from localhost (vega.pgw.jp [10.5.0.30])
  by vega.pgw.jp (Postfix) with SMTP
- id 8B1E5A53D; Fri, 14 Jul 2023 14:32:46 +0900 (JST)
+ id CC1D8A53D; Fri, 14 Jul 2023 14:34:04 +0900 (JST)
 From: <kkabe@vega.pgw.jp>
 Content-Type: text/plain; charset=ISO-2022-JP
 To: regressions@lists.linux.dev
@@ -26,8 +28,8 @@ Subject: Re: radeon.ko/i586: BUG: kernel NULL pointer dereference,
 In-Reply-To: Your message of "Fri, 14 Jul 2023 05:44:07 +0200".
  <55a3bbb1-5b3c-f454-b529-8ee9944cc67c@leemhuis.info>
 X-Mailer: mnews [version 1.22PL5] 2002-11-27(Wed)
-Date: Fri, 14 Jul 2023 14:32:46 +0900
-Message-ID: <230714143246.M0123552@vega.pgw.jp>
+Date: Fri, 14 Jul 2023 14:34:04 +0900
+Message-ID: <230714143404.M0123570@vega.pgw.jp>
 X-Mailman-Approved-At: Fri, 14 Jul 2023 07:16:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
