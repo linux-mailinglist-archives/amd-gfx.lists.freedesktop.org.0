@@ -2,116 +2,121 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0FE1753D7C
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Jul 2023 16:32:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20F79753E70
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Jul 2023 17:09:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D0CA10E8A8;
-	Fri, 14 Jul 2023 14:32:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C549F10E8A2;
+	Fri, 14 Jul 2023 15:09:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2064.outbound.protection.outlook.com [40.107.93.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD12A10E0D2
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 Jul 2023 14:32:31 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2088.outbound.protection.outlook.com [40.107.244.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F081810E8A2;
+ Fri, 14 Jul 2023 15:09:41 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SDWPrVBsQv11bfSH1y0TpKwKgi/uOTDzl8Bz1bRnGolV5gyagC68gbCjD1PgFT4xNsI9WIJVs+Df/LmDSnO901drajF2XTP+dKIMkrG2J6RjNCfynPYLLToKtUdS5LX4g71P4KR77w7Qe3EdQVJsA77kNAmz5bK+5XNGXjWCPiGBBTiHMBhIDoYRDCE507ExzEqt1osE/AxhNZ/02jdeP+RmItiQCxCmhKHYKn4CI9mEbPqeGQMQM0hggOSDx+Db4a8rej6CeMDnjKSZjVHoaFOZHO9RaDRTJ5qj0MueVA78zEQAYkYL2Wl0OaBUIhn4QMPMlWdQNWsu8O6eCBT8lA==
+ b=NzLu1HMyzN+ZoAlkNMbninzZqYqDvgncbvm7AOcjk9+iXmZ16rJr2ksgwEUPHqmFmzC8QBbkopbepL/6Nd6siJUI4grQXCoGqgh+GgYFLMmQgmA8gDxj/x/Kbou/kp8lcmOkeUXuior/B6Hr7nG2t7J/l++mba3+SBSA3b7LHO/MHTDr0ccYPVTSfsb6a5K8AcudVNL4CdGfj3RrTWkhSMCLu/Fr1Uo68FUpI1BCFnUL5dAxGYKeUc1GI/cqF9rjT/HIttTjCA52bwyMOypRIotgtvLtJRTQ9izF0v1KapW85yprdN1eMIGmFwWgfNuGviQDEX2vhwd1OleGViuaCw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RvQvbm6nFnWeLLf2vx4++ygDLssUhry8Qpe6LuzQWxY=;
- b=BSPuLBQVjO6eD4/m6tZ5movuXTO89LtjAWR7i22OrNmot5UKSXRp6PdTRU05cb+79+EGUs4AxhVPgHm/w2hno77nNUA9l4M0EqG1XSZhDMF+D0kUrNKH1+AJzLNON4G0lGWS7c9LwTqRhTNBb7OlN0k87Df2W67WH3RNWkdIwmcvpmO+4ZjAirZ8lTqsh5tgz69XZZUAqV9fqhYIKhYUaHV2le7DgRFZF4lVNVDlWYRANod859N850m/yQnXFhS7i8XJ7rQKdzoB8EH9xPd+v3YA7fnWhg796YPTGVFBrUv45mZBu9C8Ru9ZpZewLD3eX2UketxTwak3mTvSUA6HSQ==
+ bh=Q3xZF5J6hDeVTz38rQQZg0jtHyI4OckezjK3Y8a6Fdw=;
+ b=Q+75TrHifaQjONKFwU6AKMJGuqS/13rhnOxkWus6ngw90NjIQ11afhj/qiaTkZ5Mdr0wlCoh+E7P+aCVjnvIQ1XGfYYYTzfX4k/sAzSmuWmXmfkzhGLDFn8fZPX0Xkf3DkxjFVWxH3bAXOSaC36CWexl9hv7JKC7xbBbIGXdcbe+bqMfxn/sQ5F8dmXcsM68iR5YkHzGtHyVGhcoZ9bVDc3pEALDJzWh+21hM/9SpaIy440nnUFs+xGh+UoN7OkIMtvJdLIeI6wdTa/nyeO8m2LmAfoW26S7X3huUmU+O9gBYmowdVt6NeOfNh70UjyYO+GI2FFa4c+G1eFBAF7UKw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RvQvbm6nFnWeLLf2vx4++ygDLssUhry8Qpe6LuzQWxY=;
- b=0MyCpAQ8HZw1s1oizmlk4I9Ik4aVDEB40WEGJKYPwd+lQAHiMEEoCwiFOdytELtDgHeQSoGdSp0Kn56Qu6mi7o+qj2z6vq5V+SAb+8M/xxnJf4egwEGntqM2Ys49OD5JC2n3Fh8IXlL2/Tqmv/KRdd7v572xLQ0zrlewbuXHOtM=
-Received: from BL1PR12MB5144.namprd12.prod.outlook.com (2603:10b6:208:316::6)
- by DS0PR12MB7780.namprd12.prod.outlook.com (2603:10b6:8:152::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.27; Fri, 14 Jul
- 2023 14:32:28 +0000
-Received: from BL1PR12MB5144.namprd12.prod.outlook.com
- ([fe80::40f1:a67f:11d7:7395]) by BL1PR12MB5144.namprd12.prod.outlook.com
- ([fe80::40f1:a67f:11d7:7395%5]) with mapi id 15.20.6588.027; Fri, 14 Jul 2023
- 14:32:28 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Li, Candice" <Candice.Li@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amdgpu: Allow the initramfs generator to include
- psp_13_0_6_ta
-Thread-Topic: [PATCH] drm/amdgpu: Allow the initramfs generator to include
- psp_13_0_6_ta
-Thread-Index: AQHZthXZCIWtsEifvUuxMFQ2hON646+5U8db
-Date: Fri, 14 Jul 2023 14:32:28 +0000
-Message-ID: <BL1PR12MB5144C53D92B4BC4354B2A28FF734A@BL1PR12MB5144.namprd12.prod.outlook.com>
-References: <20230714054101.85866-1-candice.li@amd.com>
-In-Reply-To: <20230714054101.85866-1-candice.li@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Enabled=True;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SetDate=2023-07-14T14:32:27.530Z;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Name=Public;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ContentBits=0;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Method=Privileged; 
-authentication-results: dkim=none (message not signed)
+ bh=Q3xZF5J6hDeVTz38rQQZg0jtHyI4OckezjK3Y8a6Fdw=;
+ b=dA5oczX2ivTgUY/jA45ZAEyZfb1wWxnAFkajWCtIaYCxkPOx1De7LNuKCPh1E2180nji0IjWXxi8tcj1penKDdlU0qDCY2rkp34bi/KYG5spqbueMhOiDaNflwnSoBhD7bJ89MPc8ZCgwrnAKbYTpg1q5Re3RWtn1NAP/VUdcx0=
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL1PR12MB5144:EE_|DS0PR12MB7780:EE_
-x-ms-office365-filtering-correlation-id: 501e47c8-cb98-40c9-6c26-08db8477266f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: vdlITcPkBIIiFcLMtuPjB54NkqG0lLDM5sSim8ni2Ztq+lgpnLRZgAy7VRHFjefBtaBNZ3QxiYnwmdaBN9C9YPl7fh0WSFaBFABUfmyyemfXqvW/VBzsu/RYez7w2TNCr1E1fh3/Hl6gRUWL0uIywidk2RDS2HCsleXlYzzmsmWYTTnF8HIvFgSNpZPM0BVFbzccamjgIdKa2+WDJEi1ETONk3A0E56nE9bYrOpWW2/gQj10yJ4PgDVaebUhqF+z0NJzQOZPz2TXgwXN5+0I0kSappk7N8YnTs/rDR5HGJUoj34y0MJyzgqT5ff7ArTYaVrxvQOkZRa7NlcN2ve86DaM+XzJe+r9DF+Re5yNN/RIksblZ30FhBGBZA/5Blq1mevlcE5K3IcrAC4wDe0R7tqvgSFZKXW0Ewtx0/k4y+BHsDVxnFPX6D6qbrqst9EQFEKbemMl4CAxTztZ+PrxVQE9Sf63p7VLgm5jcAZRylsEj+5BHPE4lkZRhop1/KtmWehMlZjQIwp9YrxKOBWgQaUS4I3uZooK1L508N0wOdsn1T40VAbM5F+jdEU4JjybPKRlwV/QHsrM2FiimP9EgYo26WaoE4zAhYIypb44brLKy69bdvu6XkQIG4Uo3cY0
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5144.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(366004)(396003)(346002)(376002)(136003)(39860400002)(451199021)(83380400001)(38100700002)(55016003)(122000001)(33656002)(38070700005)(86362001)(110136005)(478600001)(9686003)(7696005)(71200400001)(8676002)(5660300002)(8936002)(52536014)(41300700001)(316002)(2906002)(76116006)(4326008)(66946007)(66556008)(66476007)(66446008)(64756008)(19627405001)(186003)(26005)(53546011)(6506007);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?JqzNjY1/oOWF6VKA/0TVZ58erGk9NCVX+7pAfL++6OPDGHMK2mQBY4qtCl22?=
- =?us-ascii?Q?c5jTiWbqFTgnL8vvCZ9Z3wup1wY6DSY9cXFhQ9cOCtYvZw06GiV9JJWZ9VHh?=
- =?us-ascii?Q?stDKNx9qdFly7xuX6Ki0vmbVestpqEEAEpA7mkp+uTIGWUuknnywAtpoN5Zz?=
- =?us-ascii?Q?PcOYqc1JzenMRsJ563EipFEo6aprO36eqsFXU2t6t3PU3wgyGgiYN/FBv57O?=
- =?us-ascii?Q?XUTnrcQ6vSM9AmqVvE3rEZU15ShAZinYxtJPI5jjM/vdzTt5RNh0OqceHtEu?=
- =?us-ascii?Q?Oo1aLyAewXteWO6mKTMIZwNnCGbCYKIMq2Pd38ppozQIMM6JercXW2LUFEhK?=
- =?us-ascii?Q?vwxoNLcShJaodumr56Tsdl+OmFsmNGZzhEjmVovunRSrB7tkwzjADwFE0llH?=
- =?us-ascii?Q?2NAvZ5R8srSPDvGyLMqlW/GTKo0wDKKXT0t+IKEv4icHYYQ4D4dHC9XWNpGA?=
- =?us-ascii?Q?MIGNqCmHagrMlyVMfYFk7cmzsoi7zEAJXpfp5yqiqe20phirXSYbhF+JyQwM?=
- =?us-ascii?Q?XAciOp2ARrDT2BDQpC1t4aRDKw7G8skwXlURe5+Tz6e1m3aH8SlJGvbPYzY6?=
- =?us-ascii?Q?g3a7HaUEs7uqlLNZIWI4OiAU3IdeltXQK++K1Rwm+vAnHy+adbpSSf3d2qVt?=
- =?us-ascii?Q?/+ECGTYMwlJP/5EuYRRXrZaYAX0vqpki1Gdr+7XP8OlM5g9etVwj2/uEazOx?=
- =?us-ascii?Q?JLuDkDtvi2Naab2Ml64icuTYeyIIVw3F5rX2E8PM8L3HmrzzMs7PrQnROW2h?=
- =?us-ascii?Q?vFSEOK+VeTIVUBbCM8S4QjdYIAhqe9UJU9zB8aObFbsasbmVqX+yFTs6yj7d?=
- =?us-ascii?Q?V4iR10zne3sWQEJD0R9toi0zcbSuVqKYH4uLBCBoryGxIFPalDALoeE0Wb9a?=
- =?us-ascii?Q?hdsMbWfzjVX+jndu2QR5E1BUJvup6K+jvVCWF9iAmKAzYSeC3Q/m0Kw7wyHj?=
- =?us-ascii?Q?NCslPMF5+9FOm7pYHhoV94JNzfvGMdUiEp/PAZmhi1BNJpbKfkjMFXzcKvp7?=
- =?us-ascii?Q?+Ad8YQS/L9xPv+TbB4J1V9V1EG29+akgFk9+scU/n3zcbR2aWRSbtU4LE16I?=
- =?us-ascii?Q?11IJKnGxlz8y5lk+GIfDPiXJjQKTEVdatW5NTJqatLewNc8pOfYRxVhX70vK?=
- =?us-ascii?Q?H2zwxF0xva+aiqp2Eco1vH+3W5KivXDSzDCcLu9oSnaram+Uy46if0UdFZ9F?=
- =?us-ascii?Q?JfmVGTqOjuCUBP84cTbVI0baIQL7yoOEREz18RKe923mNKQnGX1yec7F6NRa?=
- =?us-ascii?Q?B+kNDQcmgwtCecx/IBvxmm/sLnu2hCv+xoAtwuRuCUtTdHWRonjsA5u/aV7n?=
- =?us-ascii?Q?Uy+j8NlXrIiXtzB0dKIIBnfNT3ByEbmiYMkeXq41RG16B0DIKmYEwtYxH9kH?=
- =?us-ascii?Q?0StuTTjzGWJXvhpWoFn9SLJxarRs3JgPh/9YhPVptI+L5T53PEeFkyhjUZiN?=
- =?us-ascii?Q?AAKy8Qsut7lXe+J0uBQnKfyvjpEiUbYuPphkTjEvQyXKb6dqQdvhRN22egWv?=
- =?us-ascii?Q?/24LLNpsZbcvXSZYrVj/1UAdTS5JXKTFbiiaZDzC+Da0IOK5IZdSVP40xg7y?=
- =?us-ascii?Q?uUteFcKJYXQBRVDwNd0=3D?=
-Content-Type: multipart/alternative;
- boundary="_000_BL1PR12MB5144C53D92B4BC4354B2A28FF734ABL1PR12MB5144namp_"
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
+ by PH7PR12MB6788.namprd12.prod.outlook.com (2603:10b6:510:1ae::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.35; Fri, 14 Jul
+ 2023 15:09:38 +0000
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::2dc3:c1:e72d:55bc]) by BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::2dc3:c1:e72d:55bc%7]) with mapi id 15.20.6588.027; Fri, 14 Jul 2023
+ 15:09:38 +0000
+Message-ID: <f6999021-fba6-c115-2dfc-1898b8355ea5@amd.com>
+Date: Fri, 14 Jul 2023 11:09:35 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 3/5] drm/amdkfd: use vma_is_stack() and vma_is_heap()
+To: Vlastimil Babka <vbabka@suse.cz>, Christoph Hellwig <hch@infradead.org>,
+ Kefeng Wang <wangkefeng.wang@huawei.com>
+References: <20230712143831.120701-1-wangkefeng.wang@huawei.com>
+ <20230712143831.120701-4-wangkefeng.wang@huawei.com>
+ <ZK671bHU1QLYagj8@infradead.org>
+ <83f11260-cd26-5b46-e9d4-1ca97565a1d0@amd.com>
+ <d11b6c3c-cbf8-a7dc-3cf9-e4e4dcf81fbc@suse.cz>
+Content-Language: en-US
+From: Felix Kuehling <felix.kuehling@amd.com>
+In-Reply-To: <d11b6c3c-cbf8-a7dc-3cf9-e4e4dcf81fbc@suse.cz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: YQBPR0101CA0243.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:66::24) To BN9PR12MB5115.namprd12.prod.outlook.com
+ (2603:10b6:408:118::14)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|PH7PR12MB6788:EE_
+X-MS-Office365-Filtering-Correlation-Id: c7bed051-13eb-4d3d-a9fc-08db847c5774
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: PiziPCUe8KlgSkOMx++jubN4GeWP4qc7fXA9KsKv08naxtp17ExuVBcOSpx0hbJdmgSGwUD+p+OOZuh/MAZHvJrs9EdWB8S0ZyS04AvcVyqng6ouo4h8BpJqPtNTauTLuuO4kc5TxmsUOGtXyOmup1C2BP+A4aLNFbARss3KPmhM2C8JEvNoTPS+9KTrqgKP8J4OAW/jI84Xap1sKhuMGfh3DeWfE09hkyoxEwZQc+txcH+IQfHEqyjiqQljSJ0IIBvH0qlLv62Tc/2NAZVlMfgc0LXGDN3SVtCvfh0RpkO6e7mNkhHw82MsuYFoTEnW8dnKhES4eRhGZuqgsEVa8LOkrDdaQvhiTJaXtJpYqvFRJv/ktd3E04tLWiRb32L72/9ukS2M//WNnlewTAgQt7K5evz2Hwk1cHD3y+jazg/s0QJdSxuVq85BDu2MuNBos3IjW48m53qR4n8b/GNYTvuFHPeUyLG8LF1564dgmMETWTKP/CJA8nDai8hwBTjlViBsEpFK1omXxLLowNpCXkdryW3gESj7oqQiPE8DwSKv1lOY0ynWUfu1Po1RpWuIcK8bAfNS+or0cdB6oQoWnUSpWFKF8SS5fPwmTpVtP7cyp0UXXxx/it/i5WgTjesVnVB4FRdQOTfbDB6OfANm3Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(396003)(39860400002)(136003)(366004)(346002)(376002)(451199021)(7416002)(44832011)(4326008)(66946007)(66556008)(66476007)(316002)(2906002)(41300700001)(478600001)(8676002)(110136005)(8936002)(31686004)(5660300002)(6666004)(6486002)(6512007)(53546011)(83380400001)(186003)(36756003)(38100700002)(6506007)(86362001)(2616005)(26005)(31696002)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dXFYMW42V1dZZmpRQS92Tmx3V2pjNWpqTFNKVGpuWVpmWmt6YVVPTHVLUXQx?=
+ =?utf-8?B?bEZ3OUtSaHdBUDZnSUxwZW5HQU9ManFRbk51K2dHRWhqbXFGczMzRUp2VkhF?=
+ =?utf-8?B?WEFNSEtTK1JzdXhkY2N5V0VkdUEvTVpoakdGNEY5VXJ0eDhHQ1ViZlJmTFQv?=
+ =?utf-8?B?aHl3WWpVRWVYK2xBYW5TRVIvMjlpWTJzclprQ0xVNmkxNzRVMzlxNTBZa3lI?=
+ =?utf-8?B?V1lXd2x1VEQ0ZVVZMjZHaUZvSWwvdU5MeWY4bHVjWVNPM3E1emlPbU8rYi9l?=
+ =?utf-8?B?ODNvM2Z5cG84MklaWGdiSVVFSkhaMUNsczN2SWxuK3RvSjFXSjN3Qi9LZVlj?=
+ =?utf-8?B?TlFvcGFVaUR0TlZYNmhxL2psa3hNbWgxbzRJUHdSTzVVRkcvbUh2RUpOc2FI?=
+ =?utf-8?B?a2xFcDBxRTJER3Y4REg3UW9yL3NzVDNZMThjNjVLdEIrOW1lRmZRcUNtL3JG?=
+ =?utf-8?B?ZXVJcklLQWV3UHhXeTdWOUVoRGErZnFlSkdKTCt0ckh6RUFqVFJJVUQrZjVl?=
+ =?utf-8?B?eUpYZVJOckVuVTZ2LzFFMGpCODR4RXdJUEh6SlJackNDV2JtNzlCc016NG1Q?=
+ =?utf-8?B?eGVCU2I1UHM1Ujc1Sk1VNUpMVnBKVEk5bzhLQklCSkljKzgrT3pJSEc0ZTVm?=
+ =?utf-8?B?RmU2RW1YQ0hnT21BMG5VRkl2Rlp3UmUwMGdjT2lDWllYbGNtdHBuaGFhVS9J?=
+ =?utf-8?B?QVRZNEJJVmxlWGZmMXdHU2U4M0U3ZkFMMnQwVFZYeHpiRWsveHlHc3M1bVlX?=
+ =?utf-8?B?S2p5OSswakQ4cmNTVktCZUE5cTd6MENpUm9tL01OdGtSM2dzbmRGbEhVaEdS?=
+ =?utf-8?B?NGsyK0syNTdDNm5RS2lvL1F5aWlTWU5OMXUwRWFVUmlJZ1pYWTZibDJOazdk?=
+ =?utf-8?B?TFhPQXZ4am51Ti9KWHV5eC90T2FGRUNYVklPc2ZBTkQ0NkNPSUZ1Qmg5MW1s?=
+ =?utf-8?B?NkhZaUZPMll6LzZwL09jeHZ5VUFnQnN6dDBmVE1ENzJiN2VrQlBCTVVOL0Er?=
+ =?utf-8?B?b09rYmJpakNwemdXTUY2Y1BNczQ0ajB3T0N4OW5kc051TkFCbm9lajloZGU5?=
+ =?utf-8?B?emxtb2xGRXk0THhzQ2ZyMWRFdXhnMCtlM1RKNWcxTG9QQVZvbDlxWUhraWh5?=
+ =?utf-8?B?YXFWRFNtbVdkOTlCRmZtWDFsbVJMYjl4SkRTVVRVeld1RlhPWk1BdlpIcGNC?=
+ =?utf-8?B?SUs0VGR1Zk5KTzFwMHIwVXdkVVkweDFoaWlRVnh4YUhmanJ5c2l0SzFyNlJn?=
+ =?utf-8?B?Yy9qQlp1S3IxYVI4M1cyYlNZV25oN01IY1JtQW5EN09PcHlDY0lJRW1yT3J5?=
+ =?utf-8?B?MUx2Um90MGJHNzF0a3MyRjNrcnErUFhLYXorNFB1SzVzbEtoS2x1bUt0UTdZ?=
+ =?utf-8?B?SDAwMXJyZlBnTng1Q1dURWFDL3ZwZW5YYWZFa25jU3pSaFU5VFE4ZEtuL2kv?=
+ =?utf-8?B?NHhyN1FKRzcyaDkwNlA0VHJsUy9hdnJ6SXVmT1JsOUkwM2ZLUFJZOFF2dTFr?=
+ =?utf-8?B?bzNJQjR4MlVrVFNuc2tFWFhZelU2RU04NzBWUDhxVkx0Q2RUN2R3czZoV0pp?=
+ =?utf-8?B?R3h5OFhDY0pmME14dEljL1pBMkN2bmF1aVo0NjJ6K3ZHVWJpL0ZoQ1RWdGMz?=
+ =?utf-8?B?aUE4ZjNJaEV0ZlpJOTNwVGF0dERIN1V3anZxM1RUdm0yZWRtSjJWN1F2NDE0?=
+ =?utf-8?B?VDZaeEVBdkx0eVp2c2RXeVc1SEF0R3JIbFRDYkFiV1MwazJlVFk0bnBKSEsw?=
+ =?utf-8?B?dlRicFpleWtCSnpsV1cya292VlAzbjFqNDRSYWMvdFpWbE9jRmV6SEtEeHh3?=
+ =?utf-8?B?MVNXd0VpdTJxbzZvWVA0c1RGYzduejJMRTczTmFLSnR6RDNtRjlxSWNSY0JF?=
+ =?utf-8?B?Z0JXMFExeE95Q0VOdmUrdE9Jd0o2Q2R6ejBmY1cyRFR2U2F0T2xpNUgxQ2Rx?=
+ =?utf-8?B?c2JVSXM4RGxYYU5hc0ppRjdtbjMvQ05qaFJOM2hCR24xekZjUHlVRkxncktz?=
+ =?utf-8?B?OU9uWGdjTWROQnV6ZUVRVGdNMXhKblR2dC9uVzVjT0s3Qy9tYWxVOHVEMWkv?=
+ =?utf-8?B?MHdsV1RsSFdDL3hScDYyYTNZLzVlTEg0VUkxN1I2Q001eHdsbW9UT3E5d1h5?=
+ =?utf-8?Q?GQLTHZGj1V5Bn6VIrEXWzEsls?=
 X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c7bed051-13eb-4d3d-a9fc-08db847c5774
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5144.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 501e47c8-cb98-40c9-6c26-08db8477266f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jul 2023 14:32:28.3420 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: VEE2g0NiHVYqml30dj9kZhCC8VinaNUNpxxBmomQEcyILRcFod14yR6xB31FvNIlUPZYNbwxVav0lnyI0h41qg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7780
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2023 15:09:38.3370 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: so/LpKGYVX4XGsaTwWhNVMtoROZ30VofCZPFY1KqRuuBq93H4/hbCLTbklEbvGGGZFpmwY6afhjcxO1tbIXKbg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6788
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,123 +128,56 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Zhang, Hawking" <Hawking.Zhang@amd.com>
+Cc: selinux@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-perf-users@vger.kernel.org,
+ linux-mm@kvack.org, amd-gfx@lists.freedesktop.org,
+ linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---_000_BL1PR12MB5144C53D92B4BC4354B2A28FF734ABL1PR12MB5144namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Am 2023-07-14 um 10:26 schrieb Vlastimil Babka:
+> On 7/12/23 18:24, Felix Kuehling wrote:
+>> Allocations in the heap and stack tend to be small, with several
+>> allocations sharing the same page. Sharing the same page for different
+>> allocations with different access patterns leads to thrashing when we
+>> migrate data back and forth on GPU and CPU access. To avoid this we
+>> disable HMM migrations for head and stack VMAs.
+> Wonder how well does it really work in practice? AFAIK "heaps" (malloc())
+> today uses various arenas obtained by mmap() and not a single brk() managed
+> space anymore? And programs might be multithreaded, thus have multiple
+> stacks, while vma_is_stack() will recognize only the initial one...
 
-[Public]
+Thanks for these pointers. I have not heard of such problems with mmap 
+arenas and multiple thread stacks in practice. But I'll keep it in mind 
+in case we observe unexpected thrashing in the future. FWIW, we once had 
+the opposite problem of a custom malloc implementation that used sbrk 
+for very large allocations. This disabled migrations of large buffers 
+unexpectedly.
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Candice =
-Li <candice.li@amd.com>
-Sent: Friday, July 14, 2023 1:41 AM
-To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-Cc: Li, Candice <Candice.Li@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com=
+I agree that eventually we'll want a more dynamic way of detecting and 
+suppressing thrashing that's based on observed memory access patterns. 
+Getting this right is probably trickier than it sounds, so I'd prefer to 
+have some more experience with real workloads to use as benchmarks. 
+Compared to other things we're working on, this is fairly low on our 
+priority list at the moment. Using the VMA flags is a simple and 
+effective method for now, at least until we see it failing in real 
+workloads.
+
+Regards,
+   Felix
+
+
 >
-Subject: [PATCH] drm/amdgpu: Allow the initramfs generator to include psp_1=
-3_0_6_ta
-
-Allow the initramfs generator to automatically include psp_13_0_6_ta
-firmware to initramfs.
-
-Signed-off-by: Candice Li <candice.li@amd.com>
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/psp_v13_0.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/psp_v13_0.c
-index f9cb0d2c89d15b..e1a392bcea70d3 100644
---- a/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
-@@ -49,6 +49,7 @@ MODULE_FIRMWARE("amdgpu/psp_13_0_10_ta.bin");
- MODULE_FIRMWARE("amdgpu/psp_13_0_11_toc.bin");
- MODULE_FIRMWARE("amdgpu/psp_13_0_11_ta.bin");
- MODULE_FIRMWARE("amdgpu/psp_13_0_6_sos.bin");
-+MODULE_FIRMWARE("amdgpu/psp_13_0_6_ta.bin");
-
- /* For large FW files the time to complete can be very long */
- #define USBC_PD_POLLING_LIMIT_S 240
---
-2.25.1
-
-
---_000_BL1PR12MB5144C53D92B4BC4354B2A28FF734ABL1PR12MB5144namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> Vlastimil
 >
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p style=3D"font-family:Arial;font-size:10pt;color:#008000;margin:15pt;font=
--style:normal;font-weight:normal;text-decoration:none;" align=3D"Left">
-[Public]<br>
-</p>
-<br>
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-Reviewed-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of Candice Li &lt;candice.li@amd=
-.com&gt;<br>
-<b>Sent:</b> Friday, July 14, 2023 1:41 AM<br>
-<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
-gt;<br>
-<b>Cc:</b> Li, Candice &lt;Candice.Li@amd.com&gt;; Zhang, Hawking &lt;Hawki=
-ng.Zhang@amd.com&gt;<br>
-<b>Subject:</b> [PATCH] drm/amdgpu: Allow the initramfs generator to includ=
-e psp_13_0_6_ta</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">Allow the initramfs generator to automatically inc=
-lude psp_13_0_6_ta<br>
-firmware to initramfs.<br>
-<br>
-Signed-off-by: Candice Li &lt;candice.li@amd.com&gt;<br>
-Reviewed-by: Hawking Zhang &lt;Hawking.Zhang@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/psp_v13_0.c | 1 +<br>
-&nbsp;1 file changed, 1 insertion(+)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/psp_v13_0.c<br>
-index f9cb0d2c89d15b..e1a392bcea70d3 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c<br>
-+++ b/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c<br>
-@@ -49,6 +49,7 @@ MODULE_FIRMWARE(&quot;amdgpu/psp_13_0_10_ta.bin&quot;);<b=
-r>
-&nbsp;MODULE_FIRMWARE(&quot;amdgpu/psp_13_0_11_toc.bin&quot;);<br>
-&nbsp;MODULE_FIRMWARE(&quot;amdgpu/psp_13_0_11_ta.bin&quot;);<br>
-&nbsp;MODULE_FIRMWARE(&quot;amdgpu/psp_13_0_6_sos.bin&quot;);<br>
-+MODULE_FIRMWARE(&quot;amdgpu/psp_13_0_6_ta.bin&quot;);<br>
-&nbsp;<br>
-&nbsp;/* For large FW files the time to complete can be very long */<br>
-&nbsp;#define USBC_PD_POLLING_LIMIT_S 240<br>
--- <br>
-2.25.1<br>
-<br>
-</div>
-</span></font></div>
-</div>
-</body>
-</html>
-
---_000_BL1PR12MB5144C53D92B4BC4354B2A28FF734ABL1PR12MB5144namp_--
+>> Regards,
+>>     Felix
+>>
+>>
+>> Am 2023-07-12 um 10:42 schrieb Christoph Hellwig:
+>>> On Wed, Jul 12, 2023 at 10:38:29PM +0800, Kefeng Wang wrote:
+>>>> Use the helpers to simplify code.
+>>> Nothing against your addition of a helper, but a GPU driver really
+>>> should have no business even looking at this information..
+>>>
+>>>
