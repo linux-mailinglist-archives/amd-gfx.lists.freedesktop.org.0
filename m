@@ -1,120 +1,59 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CDC175330D
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 Jul 2023 09:21:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D116753397
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 Jul 2023 09:52:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8507A10E808;
-	Fri, 14 Jul 2023 07:21:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6F8810E802;
+	Fri, 14 Jul 2023 07:51:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2080.outbound.protection.outlook.com [40.107.92.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C24A010E7F8;
- Fri, 14 Jul 2023 07:21:25 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iTSJ1xqefU13CJuOEQ1Qgc+H9jvw+CWPlPb0HFzVJt2QNDyZCf6U+ybEog6zigjNtjqwsdQ5XW0ESPouZH9aDqFGb6dSlTkqIA68W8UUX0l3yZWLGqacjrNDUDnCy8Ga62wLWnXbbyaBqnIyUWTQvsVHOUcfGpvXlTcCqjVNZf13SWw9hPPHu5klhRQq8rfsMQ7qwiaSxo618AUFD7hL64O6b3sHdzQTLEoKeC/AFzzRf5kK2wsrUq5WJRF3g+Ff8n//3Q2bVV2l4QvNrCdXIktq03SkOK7zZHjO7u0uNafbBSNKr+QxY7rhg+SUw5ytdOWBTbcVJSVfvah0KN10UA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pWKYFT0H8s3jaQ5oCLcDSEZvUEhAGiDCRFphioCjcY4=;
- b=AvbkC1OFdS79vUrJAfEMPozAJGB6+n+8t2vOYSg1ZYeC3qHVa/NwHT9Maq/UvIesP/RqNuAOkbO0Vu/yT0lvm7q35WoytPlidLyu6mE5lLnNoFalw9wCRxRHKLnV9IKdFVObXPcUptdLFfav1BzKUO2wpgD9Kb7bilh1TJA2IUH+uRO2IWpaw0dy3Ga0cujDK0znwUJ06iuRWgmQ8g40UJ2FNSF6Unm1lPaAKtkDCFQZMsAPf1eYNgW5UXF0cphj0B0Yh5LCnRW9aiiK+rAbrxaREMbkcOb+vzfb5E4ukxwUgeWmt9YoJpMuo+aLm2inDsyilb1R6NbE4HwHTZod4Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pWKYFT0H8s3jaQ5oCLcDSEZvUEhAGiDCRFphioCjcY4=;
- b=ZQcn5mYLX1ZAQOpygD1Q0YCXvYqj+Fwv9C9FDRld+dTa41bSjlc2TOw/kqOMe9z1NSZyYvcCu5qXIC8s3t47QeKT13rHnz1RjgFcK2b9O//hUz/7zbHf3muGVWFrVF8JzoKHxJ3fPAWpPIn0Hajz+PXMohJKXqqg9rb4H6MFqLk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by DS0PR12MB9038.namprd12.prod.outlook.com (2603:10b6:8:f2::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.30; Fri, 14 Jul
- 2023 07:21:23 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::669f:5dca:d38a:9921]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::669f:5dca:d38a:9921%4]) with mapi id 15.20.6588.027; Fri, 14 Jul 2023
- 07:21:23 +0000
-Message-ID: <a96b79fb-3ad8-918f-d109-3da2121e4607@amd.com>
-Date: Fri, 14 Jul 2023 09:21:18 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] drm/radeon: ERROR: "(foo*)" should be "(foo *)"
-Content-Language: en-US
-To: shijie001@208suo.com, alexander.deucher@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch
-References: <tencent_16FACBDCDA61595C4219E185613C85C8BF0A@qq.com>
- <26d3424f83f1f394614e2a774d1bf1e9@208suo.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <26d3424f83f1f394614e2a774d1bf1e9@208suo.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR3P281CA0190.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a4::8) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C5AF10E801;
+ Fri, 14 Jul 2023 07:51:58 +0000 (UTC)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 0EE061F8D5;
+ Fri, 14 Jul 2023 07:51:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1689321117; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=HUxd2I1CvpKA4+clhziKfHP/fuVnOLROIjy/7JR+efc=;
+ b=d1pCTqnt4+bbACtUdUQXwvyCo6rRm/tyq1s7729TZGQtBcgqvLcXaKfxPhrtubpnXV0Jab
+ D2nOC2ARWyuiH++ZvdtA8cr/6Nc926wvES2TtK4nJW+jD2d9Jg0d+CGJZTkMDUTa6Qnv1P
+ 5/FFDhaO5ltU0xElyCs8B/uG+y3suOo=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1689321117;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=HUxd2I1CvpKA4+clhziKfHP/fuVnOLROIjy/7JR+efc=;
+ b=UuffdXMhSPcyhA5XIonKDe7ip0VnmwttBNaPU0lptWk6vSmgwoAgRKHCqEtfQG0L/KuVnL
+ yg2bRadbQrN4lxCQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id A9B0F13A15;
+ Fri, 14 Jul 2023 07:51:56 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id X4d2KJz+sGQCQwAAMHmgww
+ (envelope-from <tzimmermann@suse.de>); Fri, 14 Jul 2023 07:51:56 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: deller@gmx.de,
+	javierm@redhat.com
+Subject: [PATCH v3 00/18] fbdev: Remove FBINFO_DEFAULT and FBINFO_FLAG_DEFAULT
+ flags
+Date: Fri, 14 Jul 2023 09:49:26 +0200
+Message-ID: <20230714075155.5686-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|DS0PR12MB9038:EE_
-X-MS-Office365-Filtering-Correlation-Id: b4f3ea81-86bc-445a-2015-08db843aed64
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: BXNzeQwTjnmKUS8Rdi2QBONJck0tmQSmNxQH+gge01e6pI8Vqi5FE62lZSexs/VLmBnXCckTKZzpNUBEuAOoYifsb2sdvoCg7armSpZhM4isYP1U7czFm+bKHCIof7P1S1/9H5AhPjCqhQDABq/SSRSBWSQ1JN0RkQndEfw5VyBaSs+FiZQpS2wbfm39B4y38Rt7wXcTpRhJSMfOCBVkoGSgjUQCdOoDjc4jXfyCyk1cP7/4vpD618fM0EH4BlBv9MuwUxWKMfBuifblA29d/MQs2+6mpek2/gKQI0FLY1Umn2dNnidgQ4z6nGzBBf/qnE3+ve/FDOObfG+hE+MY+Ac/C4oGttk4BJE32ocNLdmzC6nH1ZmapyqEo0s5rHKkpwJ9PcUZ7x5CP5XddGDSDMmHMcOTevgNye+oagZZgDRoEUat8iwCR7ZFnI5mSTTsdFQl3LFtfKhtUWmnkXDR+n6hLAa0J8El/fi1Y+ZFbPHox5cO/FD7R6acZ/LrbT5HgOjA0UGo+lFyWJW/utDXSPGGcsLIJd34oXquuQKE6yvIXdKv6G0JjK0XKH3I7d4dexrBZxGg3Mpsb3FS4jENSRJcMfE3RDe82cLBl+b1ND9FRhitYeOO8AVFXDA5ox1B42Y+robrArMsrJYmAYwMaw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(376002)(136003)(39860400002)(346002)(366004)(451199021)(31686004)(6506007)(4326008)(6666004)(478600001)(31696002)(83380400001)(2616005)(86362001)(36756003)(6512007)(38100700002)(6486002)(186003)(2906002)(8676002)(66946007)(316002)(8936002)(66556008)(41300700001)(66476007)(5660300002)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MTFOUmpaNFlpNUVhemJZcHlKSlVxK09mSmpOcEZIYStYL3dJTmhCL3V4V1Ny?=
- =?utf-8?B?OGRrQ0xFdzA3NUU0ckpobVo2TkhGQzdoOU11dHFab3hzNW5OSWYyRnlSVURX?=
- =?utf-8?B?RUZibXdNOEkvNStiOURQSlcrN2RVM1d6K3pCVCs5QjBGcEVYWXBZSjQxRXRY?=
- =?utf-8?B?ZUtQVktRSktJOFQ2aFYvTlQrVkhxTEpUUVlKSitIam4xMUpRbXhkVTBEZUt1?=
- =?utf-8?B?ZEVJRTF1UHZ3cEtBamFjQkUwcjhrMHYxVmtnd3JtdHRFZy9zRjZ3eTRrUURV?=
- =?utf-8?B?NjUwRXNqaHJJcDM5RjlWRGR1bXAvS2R3KzZlS2lzdmNzY1oxSU5YNkZrYmRm?=
- =?utf-8?B?TzFQbFNYa3NPa0pIK210emFZWkZQa0NPb1NVNlYwYSt4VzhWRi94RTlXUzF2?=
- =?utf-8?B?SkNzeGdBMFFndE4xLzBuS1RiSFQzbVdyR0FYUm1zdFJXemNlMUtiQ1AyMHQr?=
- =?utf-8?B?NWNvWVVYMDBxY21Qa3locWVnWXkvOVBieDVEbXg0dC83UjBiSWI1SDhOa25R?=
- =?utf-8?B?Z0kycmx4TlR1MEJzY291a2tmWFYwUFIxMWdaNDhyRDEvcmlWRWxGQ0N3NUNp?=
- =?utf-8?B?T3ZhUkl6ZjhhanpuM29saXhGUEFhSTExMVhLYlBFbE44NDFmS3JqVFBPeTdH?=
- =?utf-8?B?T2NQS0x5emRDaDFNZXZRNDl1T0RwM2dWR2dXb2VqUmZjTnI4SnlmbEl5emkv?=
- =?utf-8?B?RnpHU1liM3VjMWtYSDIyYnR0RnhQZUcyT0puemZ3YlFOakdjQUNiblNpMnJS?=
- =?utf-8?B?STdFTWk4YTNRRWx5dTNZcFBxajU3R2wzS3lReXhFTUdMS2dacXdHbkdPSWpx?=
- =?utf-8?B?Y3FSbmhRWjYxZWtuNkN2b2lob2ZSWTFkbGRqOXk4Ykp3M1N3OXRiK1J3b0NP?=
- =?utf-8?B?WVBWUkdzWGxOaDNrS1UyWXVNekZjNyt0eHVNdWNnUDMwQXdwRDF6bDgyREox?=
- =?utf-8?B?blJhc3NQTElkUkpPL2tLLzBvTUFZSndTZ1hIT0JiVTRheWlZQy8wemQzemRX?=
- =?utf-8?B?NGVwalEwYzJYYmFxOGJPUEZNc0t6bDUyMVJ1MUVyYjZTQW9DMFhHN2tuZ2JJ?=
- =?utf-8?B?bnAwWEdIUFNwZHcvdHlSMXNYZTF0QkhvaVI2RTVURFpZVWJUMGRkNjlHWEt1?=
- =?utf-8?B?MGJudUx6MCsyVHlzenRwWVg1VVV4VW56ZVViOTV4cm1tejlwNHJRNkhvVEdE?=
- =?utf-8?B?djZYRHZ1RTR4aEdieU42V3d2OGh6YVNiMmxXUzNrTXp3TWJTUjVTOGtPSXgx?=
- =?utf-8?B?TEtXZnNQZW5CTWI0VXNQVWV2K2RFRUhlK2x5dVF4Q2lqN2Jza0dtQmNCVDc4?=
- =?utf-8?B?TXdtZ2FYbEV4RUttczVjbGxhdGFSU0dUQTN0c29XYXFmMEUwRXI1SjJIS0pJ?=
- =?utf-8?B?WFJkL2syc09MSisvYk1uUm8wMkdCSTlmSnpJWVVQSW1IblQ1TU00UTUzOE9R?=
- =?utf-8?B?a0NjVG5GVFdBVmJzSWRsM0d1Mmk1QlpwM0VScHEwclgxanI3eTVjalUvVHo0?=
- =?utf-8?B?cWhIK2h0enNqb0dobS9hYkdqTEQ5dkd3TUFqYXdVSllidmpRUmsvNTRHWHZ3?=
- =?utf-8?B?UmpRQ1lvK3h1ckRobVVDRktDdXR2NVk0RmVEcTBGVFl3eStBdkNYRjVPL2di?=
- =?utf-8?B?cVh5d2JZdEFQWDEyT1c3RVpEdy8xMjRsL1NZUXljcCtpK2RLZGYwd0V3dFJ5?=
- =?utf-8?B?Ni9pci8zS1JINStQMWNxSG9yeWFWTW5UZmZDWkFobWljQW12VnlMaFFnampO?=
- =?utf-8?B?MDZGUkptbS80ZkVyWk9GVkF2NFBndTdaYXdXSnZJY1NkMjk2aEV2SzRYM3pS?=
- =?utf-8?B?RlBkSUJ2ekZtVzYzNDNoT3lkT0xlVm1NMTk1TUMrQUlMR0ttMG5pazc1SzAz?=
- =?utf-8?B?ejdEZDA5MDIzRzk1a1NZQ25RcStCRzBUOW43b0VIMEdZcVVEYjZwZzFhVGUw?=
- =?utf-8?B?VzcrNFlpU0JoblN5L2VWcmFsU0RmS2Rrb2RseHNlWmJZeFY3a04zOFZFT2xB?=
- =?utf-8?B?eE1OK01LbXJTZlFzU3VDMXVzM3dvWTBtNllRMnRkc0t4WklaL1dlUE1IMnAv?=
- =?utf-8?B?eWpqTTBCMlFzbjFUeDF1ZjlNTHJoWGY1cGp2aGN1R204cEpDMlhvQjdPVEpK?=
- =?utf-8?B?VmZmNGFuRDZ4UnBrSWxITEc0V0dwKytSbG1rZFVtZXI5YjhVY1c1bkxuRW9k?=
- =?utf-8?Q?kh+hLXYI8g7BFQccugYQD9X2JOGgNMkdBAb+T5YUem50?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b4f3ea81-86bc-445a-2015-08db843aed64
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2023 07:21:23.0344 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wve3EsJxPY9QhxDRQu8AqIgpLhJ0BJIzQCIvhae3LKpzwnLXsS66u8HfRiIrgOpz
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB9038
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,45 +65,187 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Cc: linux-fbdev@vger.kernel.org, kvm@vger.kernel.org,
+ linux-hyperv@vger.kernel.org, linux-sh@vger.kernel.org,
+ linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-geode@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ linux-input@vger.kernel.org, linux-nvidia@lists.surfsouth.com,
+ linux-omap@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 14.07.23 um 07:35 schrieb shijie001@208suo.com:
-> Fix one occurrence of the checkpatch.pl error:
-> ERROR: "(foo*)" should be "(foo *)"
+Remove the unused flags FBINFO_DEFAULT and FBINFO_FLAG_DEFAULT from
+fbdev and drivers, as briefly discussed at [1]. Both flags were maybe
+useful when fbdev had special handling for driver modules. With
+commit 376b3ff54c9a ("fbdev: Nuke FBINFO_MODULE"), they are both 0
+and have no further effect.
 
-It's nice to see all those little typos fixed, but I'm not sure how 
-feasible it is to send patches for each type individually.
+Patches 1 to 7 remove FBINFO_DEFAULT from drivers. Patches 2 to 5
+split this by the way the fb_info struct is being allocated. All flags
+are cleared to zero during the allocation.
 
-Maybe just merge them together into one patch for the whole radeon code 
-base.
+Patches 8 to 16 do the same for FBINFO_FLAG_DEFAULT. Patch 8 fixes
+an actual bug in how arch/sh uses the token for struct fb_videomode,
+which is unrelated.
 
-Additional to that I'm pretty sure that most of that stuff is already 
-fixed, so what base do you use for this?
+Patch 17 removes both flag constants from <linux/fb.h> and patch 18
+documents the zero'ed memory returned by framebuffer_alloc().
 
-Regards,
-Christian.
+v3:
+	* sh: include board name in commit message (Adrian)
+	* docs: reword text (Miguel)
+v2:
+	* sh: use FB_MODE_IS_UNKNOWN (Adrian)
+	* fix commit messages (Miguel)
+	* document framebuffer_alloc()'s zero'ed memory (Miguel)
 
->
-> Signed-off-by: Jie Shi <shijie001@208suo.com>
-> ---
->  drivers/gpu/drm/radeon/uvd_v1_0.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/radeon/uvd_v1_0.c 
-> b/drivers/gpu/drm/radeon/uvd_v1_0.c
-> index 58557c2263a7..5684639d20a6 100644
-> --- a/drivers/gpu/drm/radeon/uvd_v1_0.c
-> +++ b/drivers/gpu/drm/radeon/uvd_v1_0.c
-> @@ -142,7 +142,7 @@ int uvd_v1_0_resume(struct radeon_device *rdev)
->      addr = (rdev->uvd.gpu_addr >> 32) & 0xFF;
->      WREG32(UVD_LMI_EXT40_ADDR, addr | (0x9 << 16) | (0x1 << 31));
->
-> -    WREG32(UVD_FW_START, *((uint32_t*)rdev->uvd.cpu_addr));
-> +    WREG32(UVD_FW_START, *((uint32_t *)rdev->uvd.cpu_addr));
->
->      return 0;
->  }
+[1] https://lore.kernel.org/dri-devel/877crer8fm.fsf@minerva.mail-host-address-is-not-set/
+
+Thomas Zimmermann (18):
+  drm: Remove flag FBINFO_DEFAULT from fbdev emulation
+  fbdev: Remove flag FBINFO_DEFAULT from fbdev drivers
+  fbdev: Remove flag FBINFO_DEFAULT from fbdev drivers
+  fbdev: Remove flag FBINFO_DEFAULT from fbdev drivers
+  fbdev: Remove flag FBINFO_DEFAULT from fbdev drivers
+  fbdev/fsl-diu-fb: Remove flag FBINFO_DEFAULT
+  vfio-mdev: Remove flag FBINFO_DEFAULT from fbdev sample driver
+  sh: mach-sh7763rdp: Assign FB_MODE_IS_UNKNOWN to struct
+    fb_videomode.flag
+  auxdisplay: Remove flag FBINFO_FLAG_DEFAULT from fbdev drivers
+  hid/picolcd: Remove flag FBINFO_FLAG_DEFAULT from fbdev driver
+  media: Remove flag FBINFO_FLAG_DEFAULT from fbdev drivers
+  staging: Remove flag FBINFO_FLAG_DEFAULT from fbdev drivers
+  fbdev: Remove flag FBINFO_FLAG_DEFAULT from fbdev drivers
+  fbdev: Remove flag FBINFO_FLAG_DEFAULT from fbdev drivers
+  fbdev/atafb: Remove flag FBINFO_FLAG_DEFAULT
+  fbdev/pxafb: Remove flag FBINFO_FLAG_DEFAULT
+  fbdev: Remove FBINFO_DEFAULT and FBINFO_FLAG_DEFAULT
+  fbdev: Document that framebuffer_alloc() returns zero'ed data
+
+ arch/sh/boards/mach-sh7763rdp/setup.c          | 2 +-
+ drivers/auxdisplay/cfag12864bfb.c              | 1 -
+ drivers/auxdisplay/ht16k33.c                   | 1 -
+ drivers/gpu/drm/drm_fbdev_dma.c                | 1 -
+ drivers/gpu/drm/drm_fbdev_generic.c            | 1 -
+ drivers/gpu/drm/gma500/fbdev.c                 | 2 +-
+ drivers/gpu/drm/radeon/radeon_fbdev.c          | 2 +-
+ drivers/hid/hid-picolcd_fb.c                   | 1 -
+ drivers/media/pci/ivtv/ivtvfb.c                | 1 -
+ drivers/media/test-drivers/vivid/vivid-osd.c   | 1 -
+ drivers/staging/fbtft/fbtft-core.c             | 2 +-
+ drivers/staging/sm750fb/sm750.c                | 1 -
+ drivers/video/fbdev/68328fb.c                  | 2 +-
+ drivers/video/fbdev/acornfb.c                  | 2 +-
+ drivers/video/fbdev/amba-clcd.c                | 1 -
+ drivers/video/fbdev/amifb.c                    | 5 ++---
+ drivers/video/fbdev/arcfb.c                    | 1 -
+ drivers/video/fbdev/asiliantfb.c               | 1 -
+ drivers/video/fbdev/atafb.c                    | 1 -
+ drivers/video/fbdev/atmel_lcdfb.c              | 2 +-
+ drivers/video/fbdev/aty/aty128fb.c             | 1 -
+ drivers/video/fbdev/aty/atyfb_base.c           | 3 +--
+ drivers/video/fbdev/aty/radeon_base.c          | 3 +--
+ drivers/video/fbdev/broadsheetfb.c             | 2 +-
+ drivers/video/fbdev/bw2.c                      | 1 -
+ drivers/video/fbdev/carminefb.c                | 1 -
+ drivers/video/fbdev/cg14.c                     | 2 +-
+ drivers/video/fbdev/cg3.c                      | 1 -
+ drivers/video/fbdev/cg6.c                      | 2 +-
+ drivers/video/fbdev/chipsfb.c                  | 1 -
+ drivers/video/fbdev/cirrusfb.c                 | 3 +--
+ drivers/video/fbdev/clps711x-fb.c              | 1 -
+ drivers/video/fbdev/cobalt_lcdfb.c             | 1 -
+ drivers/video/fbdev/controlfb.c                | 2 +-
+ drivers/video/fbdev/core/fb_info.c             | 3 ++-
+ drivers/video/fbdev/cyber2000fb.c              | 2 +-
+ drivers/video/fbdev/da8xx-fb.c                 | 1 -
+ drivers/video/fbdev/efifb.c                    | 1 -
+ drivers/video/fbdev/ep93xx-fb.c                | 1 -
+ drivers/video/fbdev/ffb.c                      | 3 +--
+ drivers/video/fbdev/fm2fb.c                    | 1 -
+ drivers/video/fbdev/fsl-diu-fb.c               | 2 +-
+ drivers/video/fbdev/g364fb.c                   | 2 +-
+ drivers/video/fbdev/gbefb.c                    | 1 -
+ drivers/video/fbdev/geode/gx1fb_core.c         | 1 -
+ drivers/video/fbdev/geode/gxfb_core.c          | 1 -
+ drivers/video/fbdev/geode/lxfb_core.c          | 1 -
+ drivers/video/fbdev/goldfishfb.c               | 1 -
+ drivers/video/fbdev/grvga.c                    | 2 +-
+ drivers/video/fbdev/gxt4500.c                  | 3 +--
+ drivers/video/fbdev/hecubafb.c                 | 2 +-
+ drivers/video/fbdev/hgafb.c                    | 2 +-
+ drivers/video/fbdev/hitfb.c                    | 2 +-
+ drivers/video/fbdev/hpfb.c                     | 1 -
+ drivers/video/fbdev/hyperv_fb.c                | 2 --
+ drivers/video/fbdev/i740fb.c                   | 2 +-
+ drivers/video/fbdev/i810/i810_main.c           | 4 ++--
+ drivers/video/fbdev/imsttfb.c                  | 3 +--
+ drivers/video/fbdev/imxfb.c                    | 3 +--
+ drivers/video/fbdev/intelfb/intelfbdrv.c       | 5 ++---
+ drivers/video/fbdev/kyro/fbdev.c               | 1 -
+ drivers/video/fbdev/leo.c                      | 1 -
+ drivers/video/fbdev/macfb.c                    | 1 -
+ drivers/video/fbdev/matrox/matroxfb_crtc2.c    | 5 ++---
+ drivers/video/fbdev/maxinefb.c                 | 1 -
+ drivers/video/fbdev/mb862xx/mb862xxfbdrv.c     | 2 +-
+ drivers/video/fbdev/metronomefb.c              | 2 +-
+ drivers/video/fbdev/mmp/fb/mmpfb.c             | 2 +-
+ drivers/video/fbdev/mx3fb.c                    | 1 -
+ drivers/video/fbdev/neofb.c                    | 2 +-
+ drivers/video/fbdev/nvidia/nvidia.c            | 4 ++--
+ drivers/video/fbdev/offb.c                     | 2 +-
+ drivers/video/fbdev/omap/omapfb_main.c         | 1 -
+ drivers/video/fbdev/omap2/omapfb/omapfb-main.c | 1 -
+ drivers/video/fbdev/p9100.c                    | 1 -
+ drivers/video/fbdev/platinumfb.c               | 1 -
+ drivers/video/fbdev/pm2fb.c                    | 3 +--
+ drivers/video/fbdev/pm3fb.c                    | 3 +--
+ drivers/video/fbdev/pmag-aa-fb.c               | 1 -
+ drivers/video/fbdev/pmag-ba-fb.c               | 1 -
+ drivers/video/fbdev/pmagb-b-fb.c               | 1 -
+ drivers/video/fbdev/ps3fb.c                    | 2 +-
+ drivers/video/fbdev/pvr2fb.c                   | 2 +-
+ drivers/video/fbdev/pxa168fb.c                 | 2 +-
+ drivers/video/fbdev/pxafb.c                    | 2 --
+ drivers/video/fbdev/q40fb.c                    | 1 -
+ drivers/video/fbdev/riva/fbdev.c               | 3 +--
+ drivers/video/fbdev/s1d13xxxfb.c               | 4 ++--
+ drivers/video/fbdev/s3c-fb.c                   | 1 -
+ drivers/video/fbdev/sa1100fb.c                 | 1 -
+ drivers/video/fbdev/savage/savagefb_driver.c   | 3 +--
+ drivers/video/fbdev/sh_mobile_lcdcfb.c         | 2 --
+ drivers/video/fbdev/simplefb.c                 | 1 -
+ drivers/video/fbdev/sis/sis_main.c             | 5 +----
+ drivers/video/fbdev/skeletonfb.c               | 2 +-
+ drivers/video/fbdev/sm501fb.c                  | 2 +-
+ drivers/video/fbdev/sm712fb.c                  | 1 -
+ drivers/video/fbdev/smscufx.c                  | 2 +-
+ drivers/video/fbdev/sstfb.c                    | 1 -
+ drivers/video/fbdev/sunxvr1000.c               | 1 -
+ drivers/video/fbdev/sunxvr2500.c               | 1 -
+ drivers/video/fbdev/sunxvr500.c                | 1 -
+ drivers/video/fbdev/tcx.c                      | 1 -
+ drivers/video/fbdev/tdfxfb.c                   | 2 +-
+ drivers/video/fbdev/tgafb.c                    | 2 +-
+ drivers/video/fbdev/tridentfb.c                | 2 +-
+ drivers/video/fbdev/udlfb.c                    | 2 +-
+ drivers/video/fbdev/uvesafb.c                  | 3 +--
+ drivers/video/fbdev/valkyriefb.c               | 1 -
+ drivers/video/fbdev/vermilion/vermilion.c      | 2 +-
+ drivers/video/fbdev/vesafb.c                   | 2 +-
+ drivers/video/fbdev/vfb.c                      | 1 -
+ drivers/video/fbdev/vga16fb.c                  | 2 +-
+ drivers/video/fbdev/via/viafbdev.c             | 2 +-
+ drivers/video/fbdev/vt8500lcdfb.c              | 3 +--
+ drivers/video/fbdev/wm8505fb.c                 | 3 +--
+ drivers/video/fbdev/xen-fbfront.c              | 2 +-
+ drivers/video/fbdev/xilinxfb.c                 | 1 -
+ include/linux/fb.h                             | 3 ---
+ samples/vfio-mdev/mdpy-fb.c                    | 1 -
+ 120 files changed, 68 insertions(+), 151 deletions(-)
+
+-- 
+2.41.0
 
