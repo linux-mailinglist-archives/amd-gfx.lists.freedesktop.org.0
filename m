@@ -2,64 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68AF07563A9
-	for <lists+amd-gfx@lfdr.de>; Mon, 17 Jul 2023 15:01:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADAF77563DC
+	for <lists+amd-gfx@lfdr.de>; Mon, 17 Jul 2023 15:10:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67CD210E239;
-	Mon, 17 Jul 2023 13:00:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7B2410E23C;
+	Mon, 17 Jul 2023 13:10:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2768E10E142;
- Mon, 17 Jul 2023 12:06:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689595595; x=1721131595;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0Dt11mJGY3uST81NgKzX3Wy33nGbeSvB9w1sz8eDsQc=;
- b=NyGjNeMoN9UCeieWl7/Zq9io1mwAsVV80l6e9QMhBYs/gN4dQoeHzLgT
- 6ajZfnMcAwbCfMT6YuvOzhu3dXMe5BYDSujHac9dT7ydfFZcvuxQKTbdK
- QJyw+IRv/qIJb/JIMTTjAsaY0LEpg6BOm3ANqbFjwAgzh6/exmkZkAWB7
- xxboahUllpCb1/G7Iw/QRQQ1SbJaeQ+w/2CRRCMM4bd+jMgXPRH9aH6+j
- BR3S7Ty4F8JhYtsilQtCl6ZyRtQIyaX4dawdLXHBzw+wgLsyacpsXa9p8
- 0N2EJKGJBiBFPMjGFdSzUxB1ANfmb1lj2/oeMybk+pxZPiOPMl8PC+WT8 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10773"; a="432081763"
-X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="432081763"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2023 05:06:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10773"; a="752876238"
-X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="752876238"
-Received: from dkravtso-mobl1.ccr.corp.intel.com (HELO
- ijarvine-mobl2.ger.corp.intel.com) ([10.252.45.233])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2023 05:06:28 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Rob Herring <robh@kernel.org>,
- =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
- Emmanuel Grumbach <emmanuel.grumbach@intel.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>,
- Heiner Kallweit <hkallweit1@gmail.com>, Lukas Wunner <lukas@wunner.de>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v5 06/11] drm/radeon: Use RMW accessors for changing LNKCTL
-Date: Mon, 17 Jul 2023 15:04:58 +0300
-Message-Id: <20230717120503.15276-7-ilpo.jarvinen@linux.intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230717120503.15276-1-ilpo.jarvinen@linux.intel.com>
-References: <20230717120503.15276-1-ilpo.jarvinen@linux.intel.com>
+Received: from ms7.webland.ch (ms7.webland.ch [92.43.217.107])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4D0110E082
+ for <amd-gfx@lists.freedesktop.org>; Mon, 17 Jul 2023 13:10:06 +0000 (UTC)
+Received: from [192.168.1.137] ([213.144.156.170])
+ by ms7.webland.ch (12.3.0 build 2 x64) with ASMTP (SSL) id
+ 01202307171510010120; Mon, 17 Jul 2023 15:10:01 +0200
+Message-ID: <647beed4-9d0b-e351-6f66-756f73eb73a5@daenzer.net>
+Date: Mon, 17 Jul 2023 15:09:55 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-CA
+To: Philip Yang <Philip.Yang@amd.com>
+References: <20230510212333.2071373-28-alexander.deucher@amd.com>
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
+Subject: Re: [PATCH 28/29] drm/amdkfd: Refactor migrate init to support
+ partition switch
+In-Reply-To: <20230510212333.2071373-28-alexander.deucher@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 17 Jul 2023 13:00:58 +0000
+X-CTCH: RefID="str=0001.0A782F1E.64B53DAB.001C,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0";
+ Spam="Unknown"; VOD="Unknown"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,139 +42,138 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dean Luick <dean.luick@cornelisnetworks.com>,
- =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- stable@vger.kernel.org, =?UTF-8?q?Jonas=20Dre=C3=9Fler?= <verdre@v0yd.nl>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Don't assume that only the driver would be accessing LNKCTL. ASPM
-policy changes can trigger write to LNKCTL outside of driver's control.
-And in the case of upstream bridge, the driver does not even own the
-device it's changing the registers for.
+On 5/10/23 23:23, Alex Deucher wrote:
+> From: Philip Yang <Philip.Yang@amd.com>
+> 
+> Rename smv_migrate_init to a better name kgd2kfd_init_zone_device
+> because it setup zone devive pgmap for page migration and keep it in
+> kfd_migrate.c to access static functions svm_migrate_pgmap_ops. Call it
+> only once in amdgpu_device_ip_init after adev ip blocks are initialized,
+> but before amdgpu_amdkfd_device_init initialize kfd nodes which enable
+> SVM support based on pgmap.
+> 
+> svm_range_set_max_pages is called by kgd2kfd_device_init everytime after
+> switching compute partition mode.
+> 
+> Signed-off-by: Philip Yang <Philip.Yang@amd.com>
+> Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 
-Use RMW capability accessors which do proper locking to avoid losing
-concurrent updates to the register value.
+I bisected a regression to this commit, which broke HW acceleration on this ThinkPad E595 with Picasso APU.
 
-Fixes: 8a7cd27679d0 ("drm/radeon/cik: add support for pcie gen1/2/3 switching")
-Fixes: b9d305dfb66c ("drm/radeon: implement pcie gen2/3 support for SI")
-Suggested-by: Lukas Wunner <lukas@wunner.de>
-Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-Cc: stable@vger.kernel.org
----
- drivers/gpu/drm/radeon/cik.c | 36 ++++++++++-------------------------
- drivers/gpu/drm/radeon/si.c  | 37 ++++++++++--------------------------
- 2 files changed, 20 insertions(+), 53 deletions(-)
+The IB test fails for the compute rings, see dmesg below.
 
-diff --git a/drivers/gpu/drm/radeon/cik.c b/drivers/gpu/drm/radeon/cik.c
-index 5819737c21c6..a6f3c811ceb8 100644
---- a/drivers/gpu/drm/radeon/cik.c
-+++ b/drivers/gpu/drm/radeon/cik.c
-@@ -9534,17 +9534,8 @@ static void cik_pcie_gen3_enable(struct radeon_device *rdev)
- 			u16 bridge_cfg2, gpu_cfg2;
- 			u32 max_lw, current_lw, tmp;
- 
--			pcie_capability_read_word(root, PCI_EXP_LNKCTL,
--						  &bridge_cfg);
--			pcie_capability_read_word(rdev->pdev, PCI_EXP_LNKCTL,
--						  &gpu_cfg);
--
--			tmp16 = bridge_cfg | PCI_EXP_LNKCTL_HAWD;
--			pcie_capability_write_word(root, PCI_EXP_LNKCTL, tmp16);
--
--			tmp16 = gpu_cfg | PCI_EXP_LNKCTL_HAWD;
--			pcie_capability_write_word(rdev->pdev, PCI_EXP_LNKCTL,
--						   tmp16);
-+			pcie_capability_set_word(root, PCI_EXP_LNKCTL, PCI_EXP_LNKCTL_HAWD);
-+			pcie_capability_set_word(rdev->pdev, PCI_EXP_LNKCTL, PCI_EXP_LNKCTL_HAWD);
- 
- 			tmp = RREG32_PCIE_PORT(PCIE_LC_STATUS1);
- 			max_lw = (tmp & LC_DETECTED_LINK_WIDTH_MASK) >> LC_DETECTED_LINK_WIDTH_SHIFT;
-@@ -9591,21 +9582,14 @@ static void cik_pcie_gen3_enable(struct radeon_device *rdev)
- 				msleep(100);
- 
- 				/* linkctl */
--				pcie_capability_read_word(root, PCI_EXP_LNKCTL,
--							  &tmp16);
--				tmp16 &= ~PCI_EXP_LNKCTL_HAWD;
--				tmp16 |= (bridge_cfg & PCI_EXP_LNKCTL_HAWD);
--				pcie_capability_write_word(root, PCI_EXP_LNKCTL,
--							   tmp16);
--
--				pcie_capability_read_word(rdev->pdev,
--							  PCI_EXP_LNKCTL,
--							  &tmp16);
--				tmp16 &= ~PCI_EXP_LNKCTL_HAWD;
--				tmp16 |= (gpu_cfg & PCI_EXP_LNKCTL_HAWD);
--				pcie_capability_write_word(rdev->pdev,
--							   PCI_EXP_LNKCTL,
--							   tmp16);
-+				pcie_capability_clear_and_set_word(root, PCI_EXP_LNKCTL,
-+								   PCI_EXP_LNKCTL_HAWD,
-+								   bridge_cfg &
-+								   PCI_EXP_LNKCTL_HAWD);
-+				pcie_capability_clear_and_set_word(rdev->pdev, PCI_EXP_LNKCTL,
-+								   PCI_EXP_LNKCTL_HAWD,
-+								   gpu_cfg &
-+								   PCI_EXP_LNKCTL_HAWD);
- 
- 				/* linkctl2 */
- 				pcie_capability_read_word(root, PCI_EXP_LNKCTL2,
-diff --git a/drivers/gpu/drm/radeon/si.c b/drivers/gpu/drm/radeon/si.c
-index 8d5e4b25609d..a91012447b56 100644
---- a/drivers/gpu/drm/radeon/si.c
-+++ b/drivers/gpu/drm/radeon/si.c
-@@ -7131,17 +7131,8 @@ static void si_pcie_gen3_enable(struct radeon_device *rdev)
- 			u16 bridge_cfg2, gpu_cfg2;
- 			u32 max_lw, current_lw, tmp;
- 
--			pcie_capability_read_word(root, PCI_EXP_LNKCTL,
--						  &bridge_cfg);
--			pcie_capability_read_word(rdev->pdev, PCI_EXP_LNKCTL,
--						  &gpu_cfg);
--
--			tmp16 = bridge_cfg | PCI_EXP_LNKCTL_HAWD;
--			pcie_capability_write_word(root, PCI_EXP_LNKCTL, tmp16);
--
--			tmp16 = gpu_cfg | PCI_EXP_LNKCTL_HAWD;
--			pcie_capability_write_word(rdev->pdev, PCI_EXP_LNKCTL,
--						   tmp16);
-+			pcie_capability_set_word(root, PCI_EXP_LNKCTL, PCI_EXP_LNKCTL_HAWD);
-+			pcie_capability_set_word(rdev->pdev, PCI_EXP_LNKCTL, PCI_EXP_LNKCTL_HAWD);
- 
- 			tmp = RREG32_PCIE(PCIE_LC_STATUS1);
- 			max_lw = (tmp & LC_DETECTED_LINK_WIDTH_MASK) >> LC_DETECTED_LINK_WIDTH_SHIFT;
-@@ -7188,22 +7179,14 @@ static void si_pcie_gen3_enable(struct radeon_device *rdev)
- 				msleep(100);
- 
- 				/* linkctl */
--				pcie_capability_read_word(root, PCI_EXP_LNKCTL,
--							  &tmp16);
--				tmp16 &= ~PCI_EXP_LNKCTL_HAWD;
--				tmp16 |= (bridge_cfg & PCI_EXP_LNKCTL_HAWD);
--				pcie_capability_write_word(root,
--							   PCI_EXP_LNKCTL,
--							   tmp16);
--
--				pcie_capability_read_word(rdev->pdev,
--							  PCI_EXP_LNKCTL,
--							  &tmp16);
--				tmp16 &= ~PCI_EXP_LNKCTL_HAWD;
--				tmp16 |= (gpu_cfg & PCI_EXP_LNKCTL_HAWD);
--				pcie_capability_write_word(rdev->pdev,
--							   PCI_EXP_LNKCTL,
--							   tmp16);
-+				pcie_capability_clear_and_set_word(root, PCI_EXP_LNKCTL,
-+								   PCI_EXP_LNKCTL_HAWD,
-+								   bridge_cfg &
-+								   PCI_EXP_LNKCTL_HAWD);
-+				pcie_capability_clear_and_set_word(rdev->pdev, PCI_EXP_LNKCTL,
-+								   PCI_EXP_LNKCTL_HAWD,
-+								   gpu_cfg &
-+								   PCI_EXP_LNKCTL_HAWD);
- 
- 				/* linkctl2 */
- 				pcie_capability_read_word(root, PCI_EXP_LNKCTL2,
+Reverting this commit on top of the DRM changes merged for 6.5 fixes the issue.
+
+
+[drm] amdgpu kernel modesetting enabled.
+amdgpu: Topology: Add APU node [0x0:0x0]
+[drm] initializing kernel modesetting (RAVEN 0x1002:0x15D8 0x17AA:0x5124 0xC1).
+[drm] register mmio base: 0xD0500000
+[drm] register mmio size: 524288
+[drm] MCBP is enabled
+[drm] add ip block number 0 <soc15_common>
+[drm] add ip block number 1 <gmc_v9_0>
+[drm] add ip block number 2 <vega10_ih>
+[drm] add ip block number 3 <psp>
+[drm] add ip block number 4 <powerplay>
+[drm] add ip block number 5 <dm>
+[drm] add ip block number 6 <gfx_v9_0>
+[drm] add ip block number 7 <sdma_v4_0>
+[drm] add ip block number 8 <vcn_v1_0>
+[...]
+[drm] BIOS signature incorrect 0 0
+amdgpu 0000:05:00.0: amdgpu: Fetched VBIOS from ROM BAR
+amdgpu: ATOM BIOS: 113-PICASSO-114
+[drm] VCN decode is enabled in VM mode
+[drm] VCN encode is enabled in VM mode
+[drm] JPEG decode is enabled in VM mode
+Console: switching to colour dummy device 80x25
+amdgpu 0000:05:00.0: vgaarb: deactivate vga console
+amdgpu 0000:05:00.0: amdgpu: Trusted Memory Zone (TMZ) feature enabled
+stackdepot: allocating hash table of 1048576 entries via kvcalloc
+[drm] vm size is 262144 GB, 4 levels, block size is 9-bit, fragment size is 9-bit
+amdgpu 0000:05:00.0: amdgpu: VRAM: 2048M 0x000000F400000000 - 0x000000F47FFFFFFF (2048M used)
+amdgpu 0000:05:00.0: amdgpu: GART: 1024M 0x0000000000000000 - 0x000000003FFFFFFF
+amdgpu 0000:05:00.0: amdgpu: AGP: 267419648M 0x000000F800000000 - 0x0000FFFFFFFFFFFF
+[drm] Detected VRAM RAM=2048M, BAR=2048M
+[drm] RAM width 64bits DDR4
+[drm] amdgpu: 2048M of VRAM memory ready
+[drm] amdgpu: 6926M of GTT memory ready.
+[drm] GART: num cpu pages 262144, num gpu pages 262144
+[drm] PCIE GART of 1024M enabled.
+[drm] PTB located at 0x000000F400A00000
+amdgpu: hwmgr_sw_init smu backed is smu10_smu
+[drm] Found VCN firmware Version ENC: 1.13 DEC: 2 VEP: 0 Revision: 4
+amdgpu 0000:05:00.0: amdgpu: Will use PSP to load VCN firmware
+[drm] reserve 0x400000 from 0xf47fc00000 for PSP TMR
+amdgpu 0000:05:00.0: amdgpu: RAS: optional ras ta ucode is not available
+amdgpu 0000:05:00.0: amdgpu: RAP: optional rap ta ucode is not available
+[...]
+[drm] DM_PPLIB: values for F clock
+[drm] DM_PPLIB:         400000 in kHz, 2749 in mV
+[drm] DM_PPLIB:         933000 in kHz, 3224 in mV
+[drm] DM_PPLIB:         1067000 in kHz, 3924 in mV
+[drm] DM_PPLIB:         1200000 in kHz, 4074 in mV
+[drm] DM_PPLIB: values for DCF clock
+[drm] DM_PPLIB:         300000 in kHz, 2749 in mV
+[drm] DM_PPLIB:         600000 in kHz, 3224 in mV
+[drm] DM_PPLIB:         626000 in kHz, 3924 in mV
+[drm] DM_PPLIB:         654000 in kHz, 4074 in mV
+[drm] Display Core initialized with v3.2.236! DCN 1.0
+[...]
+[drm] DM_MST: Differing MST start on aconnector: 000000008d5d4db0 [id: 94]
+[drm] kiq ring mec 2 pipe 1 q 0
+[drm] VCN decode and encode initialized successfully(under SPG Mode).
+amdgpu: HMM registered 2048MB device memory
+kfd kfd: amdgpu: Allocated 3969056 bytes on gart
+kfd kfd: amdgpu: Total number of KFD nodes to be created: 1
+amdgpu: Topology: Add APU node [0x15d8:0x1002]
+amdgpu 0000:05:00.0: AMD-Vi: Event logged [IO_PAGE_FAULT domain=0x0000 address=0x169801800 flags=0x0070]
+amdgpu 0000:05:00.0: AMD-Vi: Event logged [IO_PAGE_FAULT domain=0x0000 address=0x13957d380 flags=0x0070]
+kfd kfd: amdgpu: added device 1002:15d8
+amdgpu 0000:05:00.0: amdgpu: SE 1, SH per SE 1, CU per SH 11, active_cu_number 10
+amdgpu 0000:05:00.0: amdgpu: ring gfx uses VM inv eng 0 on hub 0
+amdgpu 0000:05:00.0: amdgpu: ring gfx_low uses VM inv eng 1 on hub 0
+amdgpu 0000:05:00.0: amdgpu: ring gfx_high uses VM inv eng 4 on hub 0
+amdgpu 0000:05:00.0: amdgpu: ring comp_1.0.0 uses VM inv eng 5 on hub 0
+amdgpu 0000:05:00.0: amdgpu: ring comp_1.1.0 uses VM inv eng 6 on hub 0
+amdgpu 0000:05:00.0: amdgpu: ring comp_1.2.0 uses VM inv eng 7 on hub 0
+amdgpu 0000:05:00.0: amdgpu: ring comp_1.3.0 uses VM inv eng 8 on hub 0
+amdgpu 0000:05:00.0: amdgpu: ring comp_1.0.1 uses VM inv eng 9 on hub 0
+amdgpu 0000:05:00.0: amdgpu: ring comp_1.1.1 uses VM inv eng 10 on hub 0
+amdgpu 0000:05:00.0: amdgpu: ring comp_1.2.1 uses VM inv eng 11 on hub 0
+amdgpu 0000:05:00.0: amdgpu: ring comp_1.3.1 uses VM inv eng 12 on hub 0
+amdgpu 0000:05:00.0: amdgpu: ring kiq_0.2.1.0 uses VM inv eng 13 on hub 0
+amdgpu 0000:05:00.0: amdgpu: ring sdma0 uses VM inv eng 0 on hub 8
+amdgpu 0000:05:00.0: amdgpu: ring vcn_dec uses VM inv eng 1 on hub 8
+amdgpu 0000:05:00.0: amdgpu: ring vcn_enc0 uses VM inv eng 4 on hub 8
+amdgpu 0000:05:00.0: amdgpu: ring vcn_enc1 uses VM inv eng 5 on hub 8
+amdgpu 0000:05:00.0: amdgpu: ring jpeg_dec uses VM inv eng 6 on hub 8
+[...]
+[drm] Initialized amdgpu 3.54.0 20150101 for 0000:05:00.0 on minor 0
+[...]
+amdgpu 0000:05:00.0: [drm:amdgpu_ib_ring_tests [amdgpu]] *ERROR* IB test failed on comp_1.0.0 (-110).
+amdgpu 0000:05:00.0: [drm:amdgpu_ib_ring_tests [amdgpu]] *ERROR* IB test failed on comp_1.1.0 (-110).
+amdgpu 0000:05:00.0: [drm:amdgpu_ib_ring_tests [amdgpu]] *ERROR* IB test failed on comp_1.2.0 (-110).
+amdgpu 0000:05:00.0: [drm:amdgpu_ib_ring_tests [amdgpu]] *ERROR* IB test failed on comp_1.3.0 (-110).
+amdgpu 0000:05:00.0: [drm:amdgpu_ib_ring_tests [amdgpu]] *ERROR* IB test failed on comp_1.0.1 (-110).
+amdgpu 0000:05:00.0: [drm:amdgpu_ib_ring_tests [amdgpu]] *ERROR* IB test failed on comp_1.1.1 (-110).
+amdgpu 0000:05:00.0: [drm:amdgpu_ib_ring_tests [amdgpu]] *ERROR* IB test failed on comp_1.2.1 (-110).
+amdgpu 0000:05:00.0: [drm:amdgpu_ib_ring_tests [amdgpu]] *ERROR* IB test failed on comp_1.3.1 (-110).
+[drm:process_one_work] *ERROR* ib ring test failed (-110).
+[drm] Downstream port present 1, type 0
+fbcon: amdgpudrmfb (fb0) is primary device
+Console: switching to colour frame buffer device 192x60
+amdgpu 0000:05:00.0: [drm] fb0: amdgpudrmfb frame buffer device
+
+
 -- 
-2.30.2
+Earthling Michel Dänzer            |                  https://redhat.com
+Libre software enthusiast          |         Mesa and Xwayland developer
 
