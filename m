@@ -2,54 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73CF07594D1
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 Jul 2023 14:12:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B62C7594CF
+	for <lists+amd-gfx@lfdr.de>; Wed, 19 Jul 2023 14:12:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B489010E484;
-	Wed, 19 Jul 2023 12:12:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F361E10E482;
+	Wed, 19 Jul 2023 12:12:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 1209 seconds by postgrey-1.36 at gabe;
- Wed, 19 Jul 2023 09:49:45 UTC
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD52E10E44C
- for <amd-gfx@lists.freedesktop.org>; Wed, 19 Jul 2023 09:49:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=7CficctBvH0/f/2WnPWvQCjSoDFtYP+3xEUu6sJSHYU=; b=AwEHjXzgMNux6iIaljsrFXLYj0
- CyuYr3l+n07xWFw7eEzaELQ2hwsHlUN1pdAApoNylg5AxMIA0xPWctyN+gqMMen348MGvM083EcyI
- rjQPk6Ae+qe5s2UighPxHub7n/OOopo8UO5+OMsTG6QOP9JWergddJvNZSHEHAZn6K4y7qXOVNbGd
- ++MoXGpDmYWZp0ky2JPke07ZWlo5rI6Rs+3mb58qVd/iP8k3uSX01ISjnFDn3y3ot6oNhNX8fwa1E
- KNmLhqHETpG5SCQHBwTg1cbsfEPiv7HBxi6M9w2NHOShu29hsbwH9kR4aYlCe/DkNUR+6YNc83Hfu
- wS6xoKcw==;
-Received: from j130084.upc-j.chello.nl ([24.132.130.84]
- helo=noisy.programming.kicks-ass.net)
- by casper.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
- id 1qM3Uj-005uqN-NS; Wed, 19 Jul 2023 09:29:17 +0000
-Received: from hirez.programming.kicks-ass.net
- (hirez.programming.kicks-ass.net [192.168.1.225])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (Client did not present a certificate)
- by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id 32C053008AC;
- Wed, 19 Jul 2023 11:29:15 +0200 (CEST)
-Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
- id 5E5DE2137288F; Wed, 19 Jul 2023 11:29:15 +0200 (CEST)
-Date: Wed, 19 Jul 2023 11:29:15 +0200
-From: Peter Zijlstra <peterz@infradead.org>
-To: Kefeng Wang <wangkefeng.wang@huawei.com>
-Subject: Re: [PATCH v2 4/4] perf/core: use vma_is_initial_stack() and
- vma_is_initial_heap()
-Message-ID: <20230719092915.GA3529602@hirez.programming.kicks-ass.net>
-References: <20230719075127.47736-1-wangkefeng.wang@huawei.com>
- <20230719075127.47736-5-wangkefeng.wang@huawei.com>
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF11910E453;
+ Wed, 19 Jul 2023 10:22:33 +0000 (UTC)
+Received: from dggpemm500001.china.huawei.com (unknown [172.30.72.55])
+ by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4R5X0L6b1JzVjfR;
+ Wed, 19 Jul 2023 18:21:06 +0800 (CST)
+Received: from [10.174.177.243] (10.174.177.243) by
+ dggpemm500001.china.huawei.com (7.185.36.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Wed, 19 Jul 2023 18:22:29 +0800
+Message-ID: <dc8223db-b4ac-7bee-6f89-63475a7dcaf8@huawei.com>
+Date: Wed, 19 Jul 2023 18:22:29 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230719075127.47736-5-wangkefeng.wang@huawei.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v2 3/4] selinux: use vma_is_initial_stack() and
+ vma_is_initial_heap()
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_G=c3=b6ttsche?= <cgzones@googlemail.com>
+References: <20230719075127.47736-1-wangkefeng.wang@huawei.com>
+ <20230719075127.47736-4-wangkefeng.wang@huawei.com>
+ <CAJ2a_DfGvPeDuN38UBXD4f2928n9GZpHFgdiPo9MoSAY7YXeOg@mail.gmail.com>
+From: Kefeng Wang <wangkefeng.wang@huawei.com>
+In-Reply-To: <CAJ2a_DfGvPeDuN38UBXD4f2928n9GZpHFgdiPo9MoSAY7YXeOg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.174.177.243]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ dggpemm500001.china.huawei.com (7.185.36.107)
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Wed, 19 Jul 2023 12:12:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,17 +51,72 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: selinux@vger.kernel.org, linux-kernel@vger.kernel.org,
+Cc: Paul Moore <paul@paul-moore.com>, selinux@vger.kernel.org,
+ Stephen Smalley <stephen.smalley.work@gmail.com>, linux-kernel@vger.kernel.org,
  dri-devel@lists.freedesktop.org, linux-perf-users@vger.kernel.org,
  linux-mm@kvack.org, amd-gfx@lists.freedesktop.org,
- linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
- Arnaldo Carvalho de Melo <acme@kernel.org>
+ linux-fsdevel@vger.kernel.org, Eric Paris <eparis@parisplace.org>,
+ Andrew Morton <akpm@linux-foundation.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 19, 2023 at 03:51:14PM +0800, Kefeng Wang wrote:
-> Use the helpers to simplify code, also kill unneeded goto cpy_name.
 
-Grrr.. why am I only getting 4/4 ?
 
-I'm going to write a bot that auto NAKs all partial series :/
+On 2023/7/19 17:02, Christian Göttsche wrote:
+> On Wed, 19 Jul 2023 at 09:40, Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
+>>
+>> Use the helpers to simplify code.
+>>
+>> Cc: Paul Moore <paul@paul-moore.com>
+>> Cc: Stephen Smalley <stephen.smalley.work@gmail.com>
+>> Cc: Eric Paris <eparis@parisplace.org>
+>> Acked-by: Paul Moore <paul@paul-moore.com>
+>> Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
+>> ---
+>>   security/selinux/hooks.c | 7 ++-----
+>>   1 file changed, 2 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/security/selinux/hooks.c b/security/selinux/hooks.c
+>> index d06e350fedee..ee8575540a8e 100644
+>> --- a/security/selinux/hooks.c
+>> +++ b/security/selinux/hooks.c
+>> @@ -3762,13 +3762,10 @@ static int selinux_file_mprotect(struct vm_area_struct *vma,
+>>          if (default_noexec &&
+>>              (prot & PROT_EXEC) && !(vma->vm_flags & VM_EXEC)) {
+>>                  int rc = 0;
+>> -               if (vma->vm_start >= vma->vm_mm->start_brk &&
+>> -                   vma->vm_end <= vma->vm_mm->brk) {
+>> +               if (vma_is_initial_heap(vma)) {
+> 
+> This seems to change the condition from
+> 
+>      vma->vm_start >= vma->vm_mm->start_brk && vma->vm_end <= vma->vm_mm->brk
+> 
+> to
+> 
+>      vma->vm_start <= vma->vm_mm->brk && vma->vm_end >= vma->vm_mm->start_brk
+> 
+> (or AND arguments swapped)
+> 
+>      vma->vm_end >= vma->vm_mm->start_brk && vma->vm_start <= vma->vm_mm->brk
+> 
+> Is this intended?
+
+The new condition is to check whether there is intersection between
+[startbrk,brk] and [vm_start,vm_end], it contains orignal check, so
+I think it is ok, but for selinux check, I am not sure if there is
+some other problem.
+
+> 
+>>                          rc = avc_has_perm(sid, sid, SECCLASS_PROCESS,
+>>                                            PROCESS__EXECHEAP, NULL);
+>> -               } else if (!vma->vm_file &&
+>> -                          ((vma->vm_start <= vma->vm_mm->start_stack &&
+>> -                            vma->vm_end >= vma->vm_mm->start_stack) ||
+>> +               } else if (!vma->vm_file && (vma_is_initial_stack(vma) ||
+>>                              vma_is_stack_for_current(vma))) {
+>>                          rc = avc_has_perm(sid, sid, SECCLASS_PROCESS,
+>>                                            PROCESS__EXECSTACK, NULL);
+>> --
+>> 2.27.0
+>>
