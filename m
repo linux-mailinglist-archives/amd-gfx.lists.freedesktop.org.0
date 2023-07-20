@@ -2,42 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 270D575ABD7
-	for <lists+amd-gfx@lfdr.de>; Thu, 20 Jul 2023 12:23:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2C1B75ABDC
+	for <lists+amd-gfx@lfdr.de>; Thu, 20 Jul 2023 12:23:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E2C810E594;
-	Thu, 20 Jul 2023 10:23:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2DAC10E59C;
+	Thu, 20 Jul 2023 10:23:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:3::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3456810E04D;
- Thu, 20 Jul 2023 01:26:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Sender:Reply-To:Content-ID:Content-Description;
- bh=jQLdsxFbnAMC4nR/W72mTiYv9HLed0M1Guz4BtHqyEM=; b=SLI38fmp1U2UeQ3ks37hefukSB
- gg7QHAbenf8pqm3Pq2w3zIFRYAlu9DtkcGr9HKuex2rnRwX7Wj2Eettz0nm2rOBfJpVJn/Bm4Q+X1
- znLnBEck3msM/4PTxXGUHD5K7yMSzeLgM3vlFiR3x5xCjPBhUPzX0c/5PGPLBOClUk6nKdZ9+nQz8
- tGtFW85TVvsR70mQR0jvLlYJ5jUX6zVUrvmUQzeKKZTM7k2mKPMCGYoDyPLxaKx8Z2NthqN7+pMWx
- hwxlYczEpmveEE0eBub+er7N71Yac7R5UizmXtIJyeQN3kkJCt8UDh9tC8vvuqZ7c7S4KneGao7m1
- woukI0Mg==;
-Received: from [2601:1c2:980:9ec0::2764]
- by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
- id 1qMIRP-009S7c-2b; Thu, 20 Jul 2023 01:26:51 +0000
-Message-ID: <9d8254b2-2e68-2e4a-055a-5afdb04bd115@infradead.org>
-Date: Wed, 19 Jul 2023 18:26:49 -0700
+Received: from mail.208.org (unknown [183.242.55.162])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6974710E550
+ for <amd-gfx@lists.freedesktop.org>; Thu, 20 Jul 2023 03:32:36 +0000 (UTC)
+Received: from mail.208.org (email.208.org [127.0.0.1])
+ by mail.208.org (Postfix) with ESMTP id 4R5ytR6ZXJzBRDs2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 20 Jul 2023 11:32:31 +0800 (CST)
+Authentication-Results: mail.208.org (amavisd-new); dkim=pass
+ reason="pass (just generated, assumed good)" header.d=208.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=208.org; h=
+ content-transfer-encoding:content-type:message-id:user-agent
+ :references:in-reply-to:subject:to:from:date:mime-version; s=
+ dkim; t=1689823951; x=1692415952; bh=7Vqv8tfjJj3dYvjSYbQJwUzBoso
+ 1s7DkYVwhfz0M8e0=; b=fn35EcSKLXg+nNIpxSp+KmT7Uowb+Kr68kH7cNzooWg
+ ELVkPMw3i0IeNXqdIp0LbAe0eNpxSbfLdIj0I+FCPFfruf5gchaNbEiQI2hiw/hI
+ VCOUehVRspCbmAH2FynAkGK6B7cimHdAG9FcaA/YvQH64vyNZZPgNNmQD5eJpKx+
+ BUGUqD+2WFNJT13n+GHx00au6cVJbqqx2AhFSb35dyaPRRNtBAE4ETKlG8MJgYpI
+ bo+vI/hChoPo+yenBX+t5M1p3Ufv1MUeXfLEqJgq6m1r1qwzslD0dSMAddzszT8b
+ 8Mc+QOZDiRyNouZpA+8QkI5T0pkBvdehJHngE3l0CPQ==
+X-Virus-Scanned: amavisd-new at mail.208.org
+Received: from mail.208.org ([127.0.0.1])
+ by mail.208.org (mail.208.org [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id uWM3M-uBizKH for <amd-gfx@lists.freedesktop.org>;
+ Thu, 20 Jul 2023 11:32:31 +0800 (CST)
+Received: from localhost (email.208.org [127.0.0.1])
+ by mail.208.org (Postfix) with ESMTPSA id 4R5ytR3ywkzBR1P6;
+ Thu, 20 Jul 2023 11:32:31 +0800 (CST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH -next] drm/amdgpu: Fix one kernel-doc comment
-Content-Language: en-US
-To: Yang Li <yang.lee@linux.alibaba.com>, alexander.deucher@amd.com
-References: <20230720010514.54342-1-yang.lee@linux.alibaba.com>
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20230720010514.54342-1-yang.lee@linux.alibaba.com>
-Content-Type: text/plain; charset=UTF-8
+Date: Thu, 20 Jul 2023 11:32:31 +0800
+From: sunran001@208suo.com
+To: airlied@gmail.com, daniel@ffwll.ch
+Subject: [PATCH] vt: remove spaces after '*'
+In-Reply-To: <20230720032846.1980-1-xujianghui@cdjrlc.com>
+References: <20230720032846.1980-1-xujianghui@cdjrlc.com>
+User-Agent: Roundcube Webmail
+Message-ID: <ac611801abfacd368376321f259a577a@208suo.com>
+X-Sender: sunran001@208suo.com
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Thu, 20 Jul 2023 10:23:18 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -51,41 +60,84 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, airlied@gmail.com,
- amd-gfx@lists.freedesktop.org, daniel@ffwll.ch, linux-kernel@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+remove redundant spaces to clear checkpatch errors.
 
+ERROR: "foo * bar" should be "foo *bar"
 
-On 7/19/23 18:05, Yang Li wrote:
-> Use colon to separate parameter name from their specific meaning.
-> silence the warning:
-> 
-> drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c:793: warning: Function parameter or member 'adev' not described in 'amdgpu_vm_pte_update_noretry_flags'
-> 
-> Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
+Signed-off-by: Ran Sun <sunran001@208suo.com>
+---
+  include/linux/kbd_kern.h | 20 ++++++++++----------
+  1 file changed, 10 insertions(+), 10 deletions(-)
 
-Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
-Thanks.
+diff --git a/include/linux/kbd_kern.h b/include/linux/kbd_kern.h
+index c40811d79769..6cb4ab685a84 100644
+--- a/include/linux/kbd_kern.h
++++ b/include/linux/kbd_kern.h
+@@ -69,52 +69,52 @@ extern void (*kbd_ledfunc)(unsigned int led);
+  extern int set_console(int nr);
+  extern void schedule_console_callback(void);
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-> index 83e1923f6775..96d601e209b8 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-> @@ -783,7 +783,7 @@ int amdgpu_vm_pde_update(struct amdgpu_vm_update_params *params,
->  /**
->   * amdgpu_vm_pte_update_noretry_flags - Update PTE no-retry flags
->   *
-> - * @adev - amdgpu_device pointer
-> + * @adev: amdgpu_device pointer
->   * @flags: pointer to PTE flags
->   *
->   * Update PTE no-retry flags when TF is enabled.
+-static inline int vc_kbd_mode(struct kbd_struct * kbd, int flag)
++static inline int vc_kbd_mode(struct kbd_struct *kbd, int flag)
+  {
+  	return ((kbd->modeflags >> flag) & 1);
+  }
 
--- 
-~Randy
+-static inline int vc_kbd_led(struct kbd_struct * kbd, int flag)
++static inline int vc_kbd_led(struct kbd_struct *kbd, int flag)
+  {
+  	return ((kbd->ledflagstate >> flag) & 1);
+  }
+
+-static inline void set_vc_kbd_mode(struct kbd_struct * kbd, int flag)
++static inline void set_vc_kbd_mode(struct kbd_struct *kbd, int flag)
+  {
+  	kbd->modeflags |= 1 << flag;
+  }
+
+-static inline void set_vc_kbd_led(struct kbd_struct * kbd, int flag)
++static inline void set_vc_kbd_led(struct kbd_struct *kbd, int flag)
+  {
+  	kbd->ledflagstate |= 1 << flag;
+  }
+
+-static inline void clr_vc_kbd_mode(struct kbd_struct * kbd, int flag)
++static inline void clr_vc_kbd_mode(struct kbd_struct *kbd, int flag)
+  {
+  	kbd->modeflags &= ~(1 << flag);
+  }
+
+-static inline void clr_vc_kbd_led(struct kbd_struct * kbd, int flag)
++static inline void clr_vc_kbd_led(struct kbd_struct *kbd, int flag)
+  {
+  	kbd->ledflagstate &= ~(1 << flag);
+  }
+
+-static inline void chg_vc_kbd_lock(struct kbd_struct * kbd, int flag)
++static inline void chg_vc_kbd_lock(struct kbd_struct *kbd, int flag)
+  {
+  	kbd->lockstate ^= 1 << flag;
+  }
+
+-static inline void chg_vc_kbd_slock(struct kbd_struct * kbd, int flag)
++static inline void chg_vc_kbd_slock(struct kbd_struct *kbd, int flag)
+  {
+  	kbd->slockstate ^= 1 << flag;
+  }
+
+-static inline void chg_vc_kbd_mode(struct kbd_struct * kbd, int flag)
++static inline void chg_vc_kbd_mode(struct kbd_struct *kbd, int flag)
+  {
+  	kbd->modeflags ^= 1 << flag;
+  }
+
+-static inline void chg_vc_kbd_led(struct kbd_struct * kbd, int flag)
++static inline void chg_vc_kbd_led(struct kbd_struct *kbd, int flag)
+  {
+  	kbd->ledflagstate ^= 1 << flag;
+  }
