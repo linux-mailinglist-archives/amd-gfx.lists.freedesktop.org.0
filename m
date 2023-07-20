@@ -2,46 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED5BE75ABDB
-	for <lists+amd-gfx@lfdr.de>; Thu, 20 Jul 2023 12:23:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 350A575ABD9
+	for <lists+amd-gfx@lfdr.de>; Thu, 20 Jul 2023 12:23:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB8FD10E59B;
-	Thu, 20 Jul 2023 10:23:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 385D310E597;
+	Thu, 20 Jul 2023 10:23:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48C9510E57F;
- Thu, 20 Jul 2023 08:28:24 +0000 (UTC)
-Received: from dggpemm500001.china.huawei.com (unknown [172.30.72.53])
- by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4R65N85vy8ztRZ2;
- Thu, 20 Jul 2023 16:25:12 +0800 (CST)
-Received: from [10.174.177.243] (10.174.177.243) by
- dggpemm500001.china.huawei.com (7.185.36.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 20 Jul 2023 16:28:20 +0800
-Message-ID: <1e839238-c78d-71e0-28ae-7efff0e04953@huawei.com>
-Date: Thu, 20 Jul 2023 16:28:19 +0800
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com
+ [IPv6:2a00:1450:4864:20::336])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36E3510E07F
+ for <amd-gfx@lists.freedesktop.org>; Thu, 20 Jul 2023 08:59:54 +0000 (UTC)
+Received: by mail-wm1-x336.google.com with SMTP id
+ 5b1f17b1804b1-3fb4146e8deso4683685e9.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 20 Jul 2023 01:59:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1689843592; x=1690448392;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=4JZ2SCUbxBizdeZIrNdjtWYCyJiy2KCeoSe2gDEk9EY=;
+ b=Y+JUum3nn5PhhS8K91O9St5QR4Mf6ITdUQCZYwZeOWBIqe3xmQoggf8zLMNHfSO92f
+ UBwAz0qU0bypkJbWxNW+/oKx/JZnr38yimm5+JAqtGk2Okqz2tVTHTE+qdpnfVABFJSI
+ 0OcVD1SQnTrIPo+OmaJVE4cC/O37pXaoCALe6elgt2mN+z57gWGI37kSzacA+ogYgp85
+ U0/N4i96Anpe1chCghtNVSUoDniniyXUvTaijPAeoHrOgIHr9H3XDFOlBrFw2hnuQ27P
+ n7kJ3A1ooeJOhkDeOdJbtxvxxHs1pGi6BOcwq8NX7KpLm899MO4r4gv7VNHMxRHlpIwm
+ qh8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1689843592; x=1690448392;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=4JZ2SCUbxBizdeZIrNdjtWYCyJiy2KCeoSe2gDEk9EY=;
+ b=UkJaIm+qtvumzn+3wkI0u7dy/3iOQtwGBHY0OmNwYi0uSY5BDIgZjKyqTMsTzHH9CS
+ HqlkQTBR9J1K5ajVcpZy/YW2zs8wqhG69U8EvdnXs3eLu/dR3bs0LoMnym+saFD2zZ7w
+ Vlk4dLDJX+hFOWHTQwtsJmpThMA/QNIzyiireE+4eBNemDFwRVDWw1v5o41uiPuE4vpJ
+ VOS5BT1goWApsScGd2OAcVmQ1DhhKOJ6hVE4NyemhwhLPDK80BwoWytU1oAij+/+/Bs+
+ vlU9cgX/ISCQKZjg1gw+ZzglKMl2Gj8QFA7G/k7pmQDC/Ot6HV1b5C18V50BNbb+03fV
+ KDJQ==
+X-Gm-Message-State: ABy/qLaVWHBcY1KdMBYIVP8/QTyIqIy91NA29pWOaF41MckhXhv1/k0U
+ xKr0yaqm6sgoG2YKNRNX7X7EYXiDRcDfkjQczo0=
+X-Google-Smtp-Source: APBJJlFRR8OTJ/9sz9B3iHl7m6BOmnjLLNRbzG4MGZ71JbaAn15xK001iZ8Bh2jD305nyELiaHCO1w==
+X-Received: by 2002:a1c:ed08:0:b0:3fa:97ad:2b9f with SMTP id
+ l8-20020a1ced08000000b003fa97ad2b9fmr6639238wmh.16.1689843592522; 
+ Thu, 20 Jul 2023 01:59:52 -0700 (PDT)
+Received: from localhost ([102.36.222.112]) by smtp.gmail.com with ESMTPSA id
+ a21-20020a05600c225500b003fbb8c7c799sm3436514wmm.30.2023.07.20.01.59.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 20 Jul 2023 01:59:49 -0700 (PDT)
+Date: Thu, 20 Jul 2023 11:59:45 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: rodrigo.siqueira@amd.com
+Subject: [bug report] drm/amd/display: Reduce stack size
+Message-ID: <ade9a6f6-58b2-45f1-9900-8df5a43ab791@moroto.mountain>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v2 3/4] selinux: use vma_is_initial_stack() and
- vma_is_initial_heap()
-Content-Language: en-US
-To: Paul Moore <paul@paul-moore.com>, =?UTF-8?Q?Christian_G=c3=b6ttsche?=
- <cgzones@googlemail.com>
-References: <20230719075127.47736-1-wangkefeng.wang@huawei.com>
- <20230719075127.47736-4-wangkefeng.wang@huawei.com>
- <CAJ2a_DfGvPeDuN38UBXD4f2928n9GZpHFgdiPo9MoSAY7YXeOg@mail.gmail.com>
- <dc8223db-b4ac-7bee-6f89-63475a7dcaf8@huawei.com>
- <CAHC9VhQzJ3J0kEymDUn3i+dnP_34GMNRjaCHXc4oddUCFb0Ygw@mail.gmail.com>
-From: Kefeng Wang <wangkefeng.wang@huawei.com>
-In-Reply-To: <CAHC9VhQzJ3J0kEymDUn3i+dnP_34GMNRjaCHXc4oddUCFb0Ygw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.174.177.243]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- dggpemm500001.china.huawei.com (7.185.36.107)
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-Mailman-Approved-At: Thu, 20 Jul 2023 10:23:18 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -54,66 +68,51 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: selinux@vger.kernel.org, Stephen Smalley <stephen.smalley.work@gmail.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-perf-users@vger.kernel.org, linux-mm@kvack.org,
- amd-gfx@lists.freedesktop.org, linux-fsdevel@vger.kernel.org,
- Eric Paris <eparis@parisplace.org>, Andrew Morton <akpm@linux-foundation.org>
+Cc: amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Hello Rodrigo Siqueira,
 
+The patch 135fd1b35690: "drm/amd/display: Reduce stack size" from Jun
+21, 2023 (linux-next), leads to the following Smatch static checker
+warning:
 
-On 2023/7/19 23:25, Paul Moore wrote:
-> On Wed, Jul 19, 2023 at 6:23 AM Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
->> On 2023/7/19 17:02, Christian Göttsche wrote:
->>> On Wed, 19 Jul 2023 at 09:40, Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
->>>>
->>>> Use the helpers to simplify code.
->>>>
->>>> Cc: Paul Moore <paul@paul-moore.com>
->>>> Cc: Stephen Smalley <stephen.smalley.work@gmail.com>
->>>> Cc: Eric Paris <eparis@parisplace.org>
->>>> Acked-by: Paul Moore <paul@paul-moore.com>
->>>> Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
->>>> ---
->>>>    security/selinux/hooks.c | 7 ++-----
->>>>    1 file changed, 2 insertions(+), 5 deletions(-)
->>>>
->>>> diff --git a/security/selinux/hooks.c b/security/selinux/hooks.c
->>>> index d06e350fedee..ee8575540a8e 100644
->>>> --- a/security/selinux/hooks.c
->>>> +++ b/security/selinux/hooks.c
->>>> @@ -3762,13 +3762,10 @@ static int selinux_file_mprotect(struct vm_area_struct *vma,
->>>>           if (default_noexec &&
->>>>               (prot & PROT_EXEC) && !(vma->vm_flags & VM_EXEC)) {
->>>>                   int rc = 0;
->>>> -               if (vma->vm_start >= vma->vm_mm->start_brk &&
->>>> -                   vma->vm_end <= vma->vm_mm->brk) {
->>>> +               if (vma_is_initial_heap(vma)) {
->>>
->>> This seems to change the condition from
->>>
->>>       vma->vm_start >= vma->vm_mm->start_brk && vma->vm_end <= vma->vm_mm->brk
->>>
->>> to
->>>
->>>       vma->vm_start <= vma->vm_mm->brk && vma->vm_end >= vma->vm_mm->start_brk
->>>
->>> (or AND arguments swapped)
->>>
->>>       vma->vm_end >= vma->vm_mm->start_brk && vma->vm_start <= vma->vm_mm->brk
->>>
->>> Is this intended?
->>
->> The new condition is to check whether there is intersection between
->> [startbrk,brk] and [vm_start,vm_end], it contains orignal check, so
->> I think it is ok, but for selinux check, I am not sure if there is
->> some other problem.
-> 
-> This particular SELinux vma check is see if the vma falls within the
-> heap; can you confirm that this change preserves this?
+	drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:8785 amdgpu_dm_atomic_commit_tail()
+	error: potential null dereference 'dummy_updates'.  (kzalloc returns null)
 
-Yes, within is one case of new vma scope check.
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c
+    8771                 status = dc_stream_get_status(dm_new_crtc_state->stream);
+    8772 
+    8773                 if (WARN_ON(!status))
+    8774                         continue;
+    8775 
+    8776                 WARN_ON(!status->plane_count);
+    8777 
+    8778                 /*
+    8779                  * TODO: DC refuses to perform stream updates without a dc_surface_update.
+    8780                  * Here we create an empty update on each plane.
+    8781                  * To fix this, DC should permit updating only stream properties.
+    8782                  */
+    8783                 dummy_updates = kzalloc(sizeof(struct dc_surface_update) * MAX_SURFACES, GFP_ATOMIC);
 
-> 
+This needs a NULL check.
+
+    8784                 for (j = 0; j < status->plane_count; j++)
+--> 8785                         dummy_updates[j].surface = status->plane_states[0];
+                                 ^^^^^^^^^^^^^^^^
+Kaplooey!
+
+    8786 
+    8787 
+    8788                 mutex_lock(&dm->dc_lock);
+    8789                 dc_update_planes_and_stream(dm->dc,
+    8790                                             dummy_updates,
+    8791                                             status->plane_count,
+    8792                                             dm_new_crtc_state->stream,
+    8793                                             &stream_update);
+    8794                 mutex_unlock(&dm->dc_lock);
+    8795                 kfree(dummy_updates);
+
+regards,
+dan carpenter
