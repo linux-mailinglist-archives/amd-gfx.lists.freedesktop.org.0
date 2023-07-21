@@ -1,50 +1,50 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44B8075C155
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Jul 2023 10:20:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FF7C75C157
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Jul 2023 10:20:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 463E710E62D;
-	Fri, 21 Jul 2023 08:20:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A50810E630;
+	Fri, 21 Jul 2023 08:20:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.208.org (unknown [183.242.55.162])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B53F10E612
- for <amd-gfx@lists.freedesktop.org>; Fri, 21 Jul 2023 03:32:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AADD310E618
+ for <amd-gfx@lists.freedesktop.org>; Fri, 21 Jul 2023 03:53:30 +0000 (UTC)
 Received: from mail.208.org (email.208.org [127.0.0.1])
- by mail.208.org (Postfix) with ESMTP id 4R6ZqW0pwgzBRDtG
- for <amd-gfx@lists.freedesktop.org>; Fri, 21 Jul 2023 11:32:07 +0800 (CST)
+ by mail.208.org (Postfix) with ESMTP id 4R6bJ82nHxzBRDtB
+ for <amd-gfx@lists.freedesktop.org>; Fri, 21 Jul 2023 11:53:28 +0800 (CST)
 Authentication-Results: mail.208.org (amavisd-new); dkim=pass
  reason="pass (just generated, assumed good)" header.d=208.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=208.org; h=
  content-transfer-encoding:content-type:message-id:user-agent
  :references:in-reply-to:subject:to:from:date:mime-version; s=
- dkim; t=1689910326; x=1692502327; bh=DgngVkhS4Y2EpAg4Rz03E9/o90m
- U59SYiP+mSo3EkDk=; b=GoQ72x9nmd2y6OKp4qyJPmwiKCQ0W16YcKBSzA5ERLE
- PCRINd+rr5fLFyUcEp/rQqkbDvHn/LiXGofvX5wH19t0EOmfAqlIzrWbGNF/ZY7l
- CkqKrPu84naamPg8Q+HIL3gjurrZ4PAM/xAps54S0WU4YcquiYpFmurWuuSVdB/+
- 4QAGlqOqlPNsaA2B6t/8PrrRAv46SIT6Ii3S428gX4KKRDeNEYquBzReFZmo9kwB
- Nm2yEIgtMQIYbWGFQ/33ZEkbkZHUOiSUmJ9jGTz2EAwvS5/eH1aaUU2ssPX7hFhR
- FdpLndDyXlu/hQ91Fc1VvMjGA85edG35kZzlesik1gw==
+ dkim; t=1689911608; x=1692503609; bh=EV1nMV2DEsYn3s4L7x/locP5eq+
+ nsZH2TFRR4al9MOI=; b=P3hINwebdkVqLqRSRAURbCkxh+oG5TAgzlmV28pB8vx
+ Ow99HynbMP32Ksri8TbAYYIacXwE2LQSETplBvAF+RdhIkJWxU4p8f7nL2LzLVCE
+ svKWSjCoiQHug48PKTwSMDWTuxahbJhepMh37Dsyerjy+JO9xr8SaHkG1dXHNREv
+ piGZJC9tOSVgszsGgxPII8wgH+vG92C2zRWzmJJ1b09MyokSzMZlBf9C53kucnBf
+ YGmjV6hZ5Vlt1KZOx9GML11NDlb9GyhTwN5XnNscztrFRaNfELkhApXDZ+SWVZob
+ HblGDIV/DgUKVvM5YZJlndmWBHeRiorF7uMOk5wTgBw==
 X-Virus-Scanned: amavisd-new at mail.208.org
 Received: from mail.208.org ([127.0.0.1])
  by mail.208.org (mail.208.org [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id jjI-25dzcQUr for <amd-gfx@lists.freedesktop.org>;
- Fri, 21 Jul 2023 11:32:06 +0800 (CST)
+ with ESMTP id WgJuFsBFPCIn for <amd-gfx@lists.freedesktop.org>;
+ Fri, 21 Jul 2023 11:53:28 +0800 (CST)
 Received: from localhost (email.208.org [127.0.0.1])
- by mail.208.org (Postfix) with ESMTPSA id 4R6ZqV5jSmzBRDrd;
- Fri, 21 Jul 2023 11:32:06 +0800 (CST)
+ by mail.208.org (Postfix) with ESMTPSA id 4R6bJ80fkQzBHXhJ;
+ Fri, 21 Jul 2023 11:53:28 +0800 (CST)
 MIME-Version: 1.0
-Date: Fri, 21 Jul 2023 11:32:06 +0800
+Date: Fri, 21 Jul 2023 11:53:28 +0800
 From: sunran001@208suo.com
-To: alexander.deucher@amd.com, airlied@gmail.com, daniel@ffwll.ch
-Subject: [PATCH] drm/amdgpu: open brace '{' following struct go on the same
+To: alexander.deucher@amd.com
+Subject: [PATCH] drm/amd/pm: open brace '{' following struct go on the same
  line
-In-Reply-To: <20230721033048.4840-1-xujianghui@cdjrlc.com>
-References: <20230721033048.4840-1-xujianghui@cdjrlc.com>
+In-Reply-To: <20230721035225.4986-1-xujianghui@cdjrlc.com>
+References: <20230721035225.4986-1-xujianghui@cdjrlc.com>
 User-Agent: Roundcube Webmail
-Message-ID: <d0906df99cdf6f76220e298bebaa5029@208suo.com>
+Message-ID: <f2e8d7241330934429e19a960a232f9c@208suo.com>
 X-Sender: sunran001@208suo.com
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
@@ -70,21 +70,35 @@ ERROR: open brace '{' following struct go on the same line
 
 Signed-off-by: Ran Sun <sunran001@208suo.com>
 ---
-  drivers/gpu/drm/amd/pm/inc/amdgpu_pm.h | 3 +--
-  1 file changed, 1 insertion(+), 2 deletions(-)
+  drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h | 8 ++++----
+  1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_pm.h 
-b/drivers/gpu/drm/amd/pm/inc/amdgpu_pm.h
-index 52045ad59bed..eec816f0cbf9 100644
---- a/drivers/gpu/drm/amd/pm/inc/amdgpu_pm.h
-+++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_pm.h
-@@ -24,8 +24,7 @@
-  #ifndef __AMDGPU_PM_H__
-  #define __AMDGPU_PM_H__
-
--struct cg_flag_name
--{
-+struct cg_flag_name {
-  	u64 flag;
-  	const char *name;
-  };
+diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h 
+b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
+index ddc488251313..0cf564ea1ed8 100644
+--- a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
++++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
+@@ -429,10 +429,10 @@ int amdgpu_pm_load_smu_firmware(struct 
+amdgpu_device *adev, uint32_t *smu_versio
+  int amdgpu_dpm_handle_passthrough_sbr(struct amdgpu_device *adev, bool 
+enable);
+  int amdgpu_dpm_send_hbm_bad_pages_num(struct amdgpu_device *adev, 
+uint32_t size);
+  int amdgpu_dpm_send_hbm_bad_channel_flag(struct amdgpu_device *adev, 
+uint32_t size);
+-int amdgpu_dpm_get_dpm_freq_range(struct amdgpu_device *adev,enum 
+pp_clock_type type,
+-				  uint32_t *min,uint32_t *max);
+-int amdgpu_dpm_set_soft_freq_range(struct amdgpu_device *adev,enum 
+pp_clock_type type,
+-				   uint32_t min,uint32_t max);
++int amdgpu_dpm_get_dpm_freq_range(struct amdgpu_device *adev, enum 
+pp_clock_type type,
++				  uint32_t *min, uint32_t *max);
++int amdgpu_dpm_set_soft_freq_range(struct amdgpu_device *adev, enum 
+pp_clock_type type,
++				   uint32_t min, uint32_t max);
+  int amdgpu_dpm_write_watermarks_table(struct amdgpu_device *adev);
+  int amdgpu_dpm_wait_for_event(struct amdgpu_device *adev, enum 
+smu_event_type event,
+  		       	      uint64_t event_arg);
