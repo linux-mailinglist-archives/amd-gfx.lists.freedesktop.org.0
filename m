@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26B1975C120
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Jul 2023 10:17:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D2CF75C1D2
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Jul 2023 10:37:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1083510E16D;
-	Fri, 21 Jul 2023 08:17:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6B2B10E637;
+	Fri, 21 Jul 2023 08:37:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2054.outbound.protection.outlook.com [40.107.244.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A05310E16D
- for <amd-gfx@lists.freedesktop.org>; Fri, 21 Jul 2023 08:17:03 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2088.outbound.protection.outlook.com [40.107.220.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DA1010E637
+ for <amd-gfx@lists.freedesktop.org>; Fri, 21 Jul 2023 08:37:19 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CfjXo4Z31//L55QcfXHlEatO2PL9+mk7SfCF+qD8mPLrh4JGjQJFtNNbjbvtZIKIXpcUPlNbV4tjqM6NTPU75C59kbelntD/k+dGlcqrdNUwPGBsb0eGO7T385oLgnzNF02mVraS9RyW4KQvqUn2hD9q0wL/exYQy+EbqHDLoOpIwKapqmRpf3UEIE/lCP5fyU9YKl+NX8WCa7qPLMq3/J55pRRxjvWTV3CbXMLWfJgrWuEQale2MrK1mB/KBR/j21UID7h+hpz2BNlplSceqCkVdVI+ASqPgHvmUU7nT/oPZxw1qUDF1RQ2olYauijjvYEQ/csdRaIaVpcXQHik6A==
+ b=cMhn2nO/KvDzpQrHlaFigVDvLLckZ+HVBtOz4ps882cmH/u6y3uFY6GB9K1hSeydonYqmZD2hJN3sNJMaevDzLai32LlrvwTNN+7n/BydFGVKA8dhly9r1wD8TfVCc9H23V7rPSkhbAEjb7ZnV1CTRN0a/V40f5QjafBJkXSG6GrkbdOz+uih5AsnLGle5cm4UhtejmkgriLt+RzwMOC1M713kaU+6h3xqEfRbUtViXelGwNX2yVsS5K8UWDci3fRudPVxWOWOz3pKKbknydbpYozybRD+ilcK6l+3MgrRRPU9bWX5aZvjZNcs8lv8bIqoJ/uunvePNF92ZMZqaJ0Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cFIBE42Hye7XZzaZMuCwZdK/fXL5legfhj+bGJISlTc=;
- b=JIwkc1vEbHo8CCRRrDpqnRUMDlijR+Y+RpH1T0FryIEbF+EnnmOITsnJSQXrIzBCeKgvdasQDWc+mHXYinDEMEKtvYSTc0ZQzcjovqtFmLN8apfB17b7LofcCQTnqGAHtvJ30K+ChjQNIp0aHdMxbIkbm3PSwFNYiRJE+CyS4tC0BDcbmkdAUY6K4XXQJl4M/nvXmutxyud6FRbkgPniaOF1VjzzU1H3Yyj3YT59GLDiw0tPVPg+j1FVTT7DN7B/aKZmmJ2Zz0C9MQ9eGIMb1c+kd6WSDiME3msGYhiSqS+Hf5/qwwSWCCAC8yDaX9Inj1ke/mXOXMWBebN0BoIKfQ==
+ bh=cr7KnruRt58RUi9MpE1injKVyEWQxIRxUHMqHx06PgQ=;
+ b=QRn4iN/isbV82XJ+wMgeGjx8qun2JlkUphPPpGZuiPLGY+ETjDcIrc69tgenIi6T9qB/+mv2e/u2YcO0opGk1OqBx0htogMIlW8rIDv1mN2a8WuDpqNzx5WNiQPvuapFGhyzcULja8P45B898tjIOU2vIGTDCLfEAn5uBqRpT2tw72mVqVt2wJA6TFmrz3Tr0XJmrEES0Glw8Y6tG9qCRIjXol0jFQ/T39eV4NLSCUR97hci3N82ne0oKyXc/9cZc9IHmTdyzzsitZN3Cr93xEXG3x7I73gIRentlEAgYQ2pW5mS3SGRjjLbHGBEVoR27/TFNejjBZS5XgoNI88P7g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cFIBE42Hye7XZzaZMuCwZdK/fXL5legfhj+bGJISlTc=;
- b=OPvOzvNi+pCSXMFKpIV5VTogKqvTzQ4exZD7Z55uBqcnz8jBSU7NHzYTM5/nHkmcp9LJZ6chb54e5t+dRWcjYdYlKNRhJyVyASm539iQf/kLYKkM+j87OtYxBavRbCJlIKj+NWyx0dV98683u1FCHb1/x90AHRUj3G0bIR1DbY8=
-Received: from BN9PR03CA0792.namprd03.prod.outlook.com (2603:10b6:408:13f::17)
- by CH0PR12MB5330.namprd12.prod.outlook.com (2603:10b6:610:d5::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.25; Fri, 21 Jul
- 2023 08:17:01 +0000
-Received: from BN8NAM11FT060.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:13f:cafe::ad) by BN9PR03CA0792.outlook.office365.com
- (2603:10b6:408:13f::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.28 via Frontend
- Transport; Fri, 21 Jul 2023 08:17:01 +0000
+ bh=cr7KnruRt58RUi9MpE1injKVyEWQxIRxUHMqHx06PgQ=;
+ b=KOe5+5RLvzsi8i8IN7UqPfJtY4wNeOqFx2EGqHLHug+RgQF2D3Zm/E/Nlj0zyHA1V3R3BTmAYtKBH8P9Pi64mVvNQKMQPijzsJWCuhzApr1zxhfayaZ+oRD8/9FQCk5M19Jjt9KHq/rtZtRoBEn7ZOcYiDB/emkKdCGUBJy9u+Q=
+Received: from BYAPR08CA0026.namprd08.prod.outlook.com (2603:10b6:a03:100::39)
+ by BL3PR12MB6522.namprd12.prod.outlook.com (2603:10b6:208:3be::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.28; Fri, 21 Jul
+ 2023 08:37:15 +0000
+Received: from DM6NAM11FT028.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:a03:100:cafe::ad) by BYAPR08CA0026.outlook.office365.com
+ (2603:10b6:a03:100::39) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.20 via Frontend
+ Transport; Fri, 21 Jul 2023 08:37:14 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,49 +45,48 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT060.mail.protection.outlook.com (10.13.177.211) with Microsoft SMTP
+ DM6NAM11FT028.mail.protection.outlook.com (10.13.173.140) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6609.28 via Frontend Transport; Fri, 21 Jul 2023 08:17:01 +0000
+ 15.20.6609.28 via Frontend Transport; Fri, 21 Jul 2023 08:37:14 +0000
 Received: from TRX40-1.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Fri, 21 Jul
- 2023 03:16:59 -0500
+ 2023 03:37:12 -0500
 From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
  Deucher" <alexander.deucher@amd.com>
-Subject: [PATCH] drm/amdgpu: Fix do not add new typedefs in
- amdgpu_fw_attestation.c
-Date: Fri, 21 Jul 2023 13:46:23 +0530
-Message-ID: <20230721081623.1291213-1-srinivasan.shanmugam@amd.com>
+Subject: [PATCH] drm/amdgpu: Fix style issues in amdgpu_gem.c
+Date: Fri, 21 Jul 2023 14:06:52 +0530
+Message-ID: <20230721083652.1427903-1-srinivasan.shanmugam@amd.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
 X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT060:EE_|CH0PR12MB5330:EE_
-X-MS-Office365-Filtering-Correlation-Id: d6bf90f7-916d-4a42-c0e8-08db89c2dc40
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT028:EE_|BL3PR12MB6522:EE_
+X-MS-Office365-Filtering-Correlation-Id: aa2ff125-85f8-4e8e-037e-08db89c5af3e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZGu/Yk+WXt4tu8B5RZdF3G7zOGOvNuyYha9+HnZyZ0rnNVTuvmMSb1OkjDJhEZ02mzbvohqTM4hpNqC7tA86rzDLdL6SKqZbqQUmPsZeCq393hpeLSUKkT2OpcwYjQBVAwkZYThtrU4nIFNWgcO/D7zXf9voLtjoW8R72Bfd0pf3BM2zj8MP6tgf0IIe92RxlRftKLEvrCabP7KNMsP/i/U67g7e7/ePMOLX0MLH42GwxD+5kyjI3ZmJt6bc7or5zlSWXUl/dorCJG+RmqZbTShLE3Y7TNCqKKKVdIAGf9eH44wmBWaEOkOTRHfdHqmEG5ybwgkJJygwh7nfgHnUieHx7QtAOge6GkTPSnytDpaZMbyA7EO9qaVnsA5fw+/quCYO/RZOGw6O49XpYuOXenxLvO8nZI05dB/+9fZufcuv4MUwXKQ8jwtZ5oiKl8fNA/yjObXGIX0EUgoGQgUFdU9CLqdiMY3uouslPOXI0dVOMd58EkL56DzhogobVAD9rU56jYS0rcGlvo8QblxkLq2wJY7stT53t6WQnvsPTO6G1LCxuOSQjE73+RRWVJbiyZqTVjrZS5aMjfEdTsM1BY95OlzGZxzrgzUNxd9y8cFIFtc5+rxhzSVvIf2AgYTRNPE9/4NpGqCguaKRMOo+DIdRyOuW44qjmJl+/YqiIwllxuJaOz+G50SKzFof4mVYnHITxeCaXuR+gUa0/K1HjE2Ccmv/5IL2qFq3z5z8+HDai5yceMatImHl68y6wx2p6hwIjoFvZfFDfAfeRUPX+Q==
+X-Microsoft-Antispam-Message-Info: Afi1Vn4cUQ6YVfwFLq/WlGDtLV3AtksQpHePnhAtl6JjIbNp9kruCyY57F2KjjmJVTb2Ge/hWG5Ek/Z5Vaak7pyVEOCm1c1wvU+ptRsdS9LtXQSomLCaoW9wwqn9XuCR7kKLQHmUA8WOFOdUr6R/Hb35AiLMWvIt8z6uLZ8aiRshpFliwqLa/WUOkSKGIkcMcIc0FDo+LiPu1WPyek5qW+UDcQTvOfiLCM/8hvFgntQeq4lyaMkNNhZYcXXDFZt6jnB/buBG2LNe6lq0lLs8hXJmdQuEKBYNT0i8XlyEUyMfhZ6YnKAYV3mhJimMychC1qKr+n0D82J2CxcmiiidyPLQAJUHXgoPKEqM12hm9DFDkTDwPZs2BtnhBdmt0yUE+w5ENDkN1iqbIYGYZ6ewyjbV/SEo4HGYK0T3RBquMlmpaY+/2OtodshwBSEwAhIBFRZZbf4i6m7voHMdjXltUMAXnqrWwNASDQdEbI5SJsccnKPz/pHgRLz8ENVYT5zkSUCD+cKoPkG2iU0PH4batFV2dQLtJl4Z2QfmF9RgFfxMyzyM5r8+ySltQyccTyBZWyzwUSt2G28s2F95x3guZ0tKh+wZz1dyTEx1yjVnPMSEyjLqFJlo2r+NkgsM3IiS0WfUES5eOaDxO29jyuqoGKeLFhQ/F9Gj7GnoHBozMrA8gDopEupjFvneJFPMFmvjaqu7q1fkn7kUUg4B8wiv9hFt/xZWyAU8PJrCeNJa044sTHNcF1XAThcgDReHyj24qFkFU7OAOVil7ux5PkYDqQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(39860400002)(136003)(376002)(396003)(346002)(82310400008)(451199021)(46966006)(40470700004)(36840700001)(41300700001)(16526019)(1076003)(336012)(186003)(26005)(478600001)(110136005)(316002)(6636002)(4326008)(40480700001)(70206006)(70586007)(8936002)(8676002)(44832011)(5660300002)(54906003)(7696005)(6666004)(2616005)(356005)(47076005)(426003)(66574015)(83380400001)(40460700003)(36860700001)(2906002)(81166007)(82740400003)(86362001)(36756003)(36900700001);
+ SFS:(13230028)(4636009)(346002)(136003)(376002)(39860400002)(396003)(451199021)(82310400008)(40470700004)(36840700001)(46966006)(316002)(40460700003)(70206006)(70586007)(6636002)(4326008)(81166007)(356005)(6666004)(7696005)(40480700001)(86362001)(110136005)(54906003)(44832011)(478600001)(2906002)(82740400003)(36756003)(426003)(2616005)(41300700001)(66574015)(47076005)(5660300002)(8936002)(8676002)(186003)(336012)(1076003)(16526019)(26005)(83380400001)(36860700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2023 08:17:01.4480 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d6bf90f7-916d-4a42-c0e8-08db89c2dc40
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2023 08:37:14.4071 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa2ff125-85f8-4e8e-037e-08db89c5af3e
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT060.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT028.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5330
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6522
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,129 +103,153 @@ Cc: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fixes the following to align to coding style:
+Fixes the following to align to linux coding style:
 
-WARNING: do not add new typedefs
-+typedef struct FW_ATT_DB_HEADER
-
-WARNING: do not add new typedefs
-+typedef struct FW_ATT_RECORD
-
-WARNING: Symbolic permissions 'S_IRUSR' are not preferred. Consider using octal permissions '0400'.
-+                           S_IRUSR,
-
-ERROR: "(foo*)" should be "(foo *)"
-WARNING: please, no space before tabs
+WARNING: braces {} are not necessary for any arm of this statement
+WARNING: Missing a blank line after declarations
+ERROR: space prohibited before that close parenthesis ')'
+WARNING: unnecessary whitespace before a quoted newline
+WARNING: %LX is non-standard C, use %llX
 
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 ---
- .../drm/amd/amdgpu/amdgpu_fw_attestation.c    | 38 +++++++++----------
- 1 file changed, 18 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 38 ++++++++++++-------------
+ 1 file changed, 19 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fw_attestation.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fw_attestation.c
-index 2ca3c329de6d..2d4b67175b55 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fw_attestation.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fw_attestation.c
-@@ -32,17 +32,15 @@
- #include "soc15_common.h"
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+index 4f9de9a0e2ec..1718d7d75eaf 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+@@ -181,11 +181,10 @@ static int amdgpu_gem_object_open(struct drm_gem_object *obj,
+ 		return r;
  
- #define FW_ATTESTATION_DB_COOKIE        0x143b6a37
--#define FW_ATTESTATION_RECORD_VALID  	1
-+#define FW_ATTESTATION_RECORD_VALID	1
- #define FW_ATTESTATION_MAX_SIZE		4096
+ 	bo_va = amdgpu_vm_bo_find(vm, abo);
+-	if (!bo_va) {
++	if (!bo_va)
+ 		bo_va = amdgpu_vm_bo_add(adev, vm, abo);
+-	} else {
++	else
+ 		++bo_va->ref_count;
+-	}
+ 	amdgpu_bo_unreserve(abo);
+ 	return 0;
+ }
+@@ -217,8 +216,8 @@ static void amdgpu_gem_object_close(struct drm_gem_object *obj,
  
--typedef struct FW_ATT_DB_HEADER
--{
-+struct FW_ATT_DB_HEADER {
- 	uint32_t AttDbVersion;           /* version of the fwar feature */
- 	uint32_t AttDbCookie;            /* cookie as an extra check for corrupt data */
--} FW_ATT_DB_HEADER;
-+};
- 
--typedef struct FW_ATT_RECORD
--{
-+struct FW_ATT_RECORD {
- 	uint16_t AttFwIdV1;              /* Legacy FW Type field */
- 	uint16_t AttFwIdV2;              /* V2 FW ID field */
- 	uint32_t AttFWVersion;           /* FW Version */
-@@ -50,7 +48,7 @@ typedef struct FW_ATT_RECORD
- 	uint8_t  AttSource;              /* FW source indicator */
- 	uint8_t  RecordValid;            /* Indicates whether the record is a valid entry */
- 	uint32_t AttFwTaId;              /* Ta ID (only in TA Attestation Table) */
--} FW_ATT_RECORD;
-+};
- 
- static ssize_t amdgpu_fw_attestation_debugfs_read(struct file *f,
- 						  char __user *buf,
-@@ -60,15 +58,15 @@ static ssize_t amdgpu_fw_attestation_debugfs_read(struct file *f,
- 	struct amdgpu_device *adev = (struct amdgpu_device *)file_inode(f)->i_private;
- 	uint64_t records_addr = 0;
- 	uint64_t vram_pos = 0;
--	FW_ATT_DB_HEADER fw_att_hdr = {0};
--	FW_ATT_RECORD fw_att_record = {0};
-+	struct FW_ATT_DB_HEADER fw_att_hdr = {0};
-+	struct FW_ATT_RECORD fw_att_record = {0};
- 
--	if (size < sizeof(FW_ATT_RECORD)) {
-+	if (size < sizeof(struct FW_ATT_RECORD)) {
- 		DRM_WARN("FW attestation input buffer not enough memory");
- 		return -EINVAL;
+ 	r = ttm_eu_reserve_buffers(&ticket, &list, false, &duplicates);
+ 	if (r) {
+-		dev_err(adev->dev, "leaking bo va because "
+-			"we fail to reserve bo (%ld)\n", r);
++		dev_err(adev->dev, "leaking bo va because we fail to reserve bo (%ld)\n",
++			r);
+ 		return;
  	}
+ 	bo_va = amdgpu_vm_bo_find(vm, bo);
+@@ -238,8 +237,8 @@ static void amdgpu_gem_object_close(struct drm_gem_object *obj,
  
--	if ((*pos + sizeof(FW_ATT_DB_HEADER)) >= FW_ATTESTATION_MAX_SIZE) {
-+	if ((*pos + sizeof(struct FW_ATT_DB_HEADER)) >= FW_ATTESTATION_MAX_SIZE) {
- 		DRM_WARN("FW attestation out of bounds");
- 		return 0;
- 	}
-@@ -83,8 +81,8 @@ static ssize_t amdgpu_fw_attestation_debugfs_read(struct file *f,
- 	if (*pos == 0) {
- 		amdgpu_device_vram_access(adev,
- 					  vram_pos,
--					  (uint32_t*)&fw_att_hdr,
--					  sizeof(FW_ATT_DB_HEADER),
-+					  (uint32_t *)&fw_att_hdr,
-+					  sizeof(struct FW_ATT_DB_HEADER),
- 					  false);
- 
- 		if (fw_att_hdr.AttDbCookie != FW_ATTESTATION_DB_COOKIE) {
-@@ -96,20 +94,20 @@ static ssize_t amdgpu_fw_attestation_debugfs_read(struct file *f,
- 	}
- 
- 	amdgpu_device_vram_access(adev,
--				  vram_pos + sizeof(FW_ATT_DB_HEADER) + *pos,
--				  (uint32_t*)&fw_att_record,
--				  sizeof(FW_ATT_RECORD),
-+				  vram_pos + sizeof(struct FW_ATT_DB_HEADER) + *pos,
-+				  (uint32_t *)&fw_att_record,
-+				  sizeof(struct FW_ATT_RECORD),
- 				  false);
- 
- 	if (fw_att_record.RecordValid != FW_ATTESTATION_RECORD_VALID)
- 		return 0;
- 
--	if (copy_to_user(buf, (void*)&fw_att_record, sizeof(FW_ATT_RECORD)))
-+	if (copy_to_user(buf, (void *)&fw_att_record, sizeof(struct FW_ATT_RECORD)))
- 		return -EINVAL;
- 
--	*pos += sizeof(FW_ATT_RECORD);
-+	*pos += sizeof(struct FW_ATT_RECORD);
- 
--	return sizeof(FW_ATT_RECORD);
-+	return sizeof(struct FW_ATT_RECORD);
+ out_unlock:
+ 	if (unlikely(r < 0))
+-		dev_err(adev->dev, "failed to clear page "
+-			"tables on GEM object close (%ld)\n", r);
++		dev_err(adev->dev, "failed to clear page tables on GEM object close (%ld)\n",
++			r);
+ 	ttm_eu_backoff_reservation(&ticket, &list);
  }
  
- static const struct file_operations amdgpu_fw_attestation_debugfs_ops = {
-@@ -136,7 +134,7 @@ void amdgpu_fw_attestation_debugfs_init(struct amdgpu_device *adev)
- 		return;
+@@ -463,9 +462,9 @@ int amdgpu_mode_dumb_mmap(struct drm_file *filp,
+ 	struct amdgpu_bo *robj;
  
- 	debugfs_create_file("amdgpu_fw_attestation",
--			    S_IRUSR,
-+			    0400,
- 			    adev_to_drm(adev)->primary->debugfs_root,
- 			    adev,
- 			    &amdgpu_fw_attestation_debugfs_ops);
+ 	gobj = drm_gem_object_lookup(filp, handle);
+-	if (gobj == NULL) {
++	if (!gobj)
+ 		return -ENOENT;
+-	}
++
+ 	robj = gem_to_amdgpu_bo(gobj);
+ 	if (amdgpu_ttm_tt_get_usermm(robj->tbo.ttm) ||
+ 	    (robj->flags & AMDGPU_GEM_CREATE_NO_CPU_ACCESS)) {
+@@ -482,6 +481,7 @@ int amdgpu_gem_mmap_ioctl(struct drm_device *dev, void *data,
+ {
+ 	union drm_amdgpu_gem_mmap *args = data;
+ 	uint32_t handle = args->in.handle;
++
+ 	memset(args, 0, sizeof(*args));
+ 	return amdgpu_mode_dumb_mmap(filp, dev, handle, &args->out.addr_ptr);
+ }
+@@ -508,7 +508,7 @@ unsigned long amdgpu_gem_timeout(uint64_t timeout_ns)
+ 
+ 	timeout_jiffies = nsecs_to_jiffies(ktime_to_ns(timeout));
+ 	/*  clamp timeout to avoid unsigned-> signed overflow */
+-	if (timeout_jiffies > MAX_SCHEDULE_TIMEOUT )
++	if (timeout_jiffies > MAX_SCHEDULE_TIMEOUT)
+ 		return MAX_SCHEDULE_TIMEOUT - 1;
+ 
+ 	return timeout_jiffies;
+@@ -526,9 +526,9 @@ int amdgpu_gem_wait_idle_ioctl(struct drm_device *dev, void *data,
+ 	long ret;
+ 
+ 	gobj = drm_gem_object_lookup(filp, handle);
+-	if (gobj == NULL) {
++	if (!gobj)
+ 		return -ENOENT;
+-	}
++
+ 	robj = gem_to_amdgpu_bo(gobj);
+ 	ret = dma_resv_wait_timeout(robj->tbo.base.resv, DMA_RESV_USAGE_READ,
+ 				    true, timeout);
+@@ -555,7 +555,7 @@ int amdgpu_gem_metadata_ioctl(struct drm_device *dev, void *data,
+ 	struct amdgpu_bo *robj;
+ 	int r = -1;
+ 
+-	DRM_DEBUG("%d \n", args->handle);
++	DRM_DEBUG("%d\n", args->handle);
+ 	gobj = drm_gem_object_lookup(filp, args->handle);
+ 	if (gobj == NULL)
+ 		return -ENOENT;
+@@ -685,7 +685,7 @@ int amdgpu_gem_va_ioctl(struct drm_device *dev, void *data,
+ 
+ 	if (args->va_address < AMDGPU_VA_RESERVED_SIZE) {
+ 		dev_dbg(dev->dev,
+-			"va_address 0x%LX is in reserved area 0x%LX\n",
++			"va_address 0x%llx is in reserved area 0x%llx\n",
+ 			args->va_address, AMDGPU_VA_RESERVED_SIZE);
+ 		return -EINVAL;
+ 	}
+@@ -693,7 +693,7 @@ int amdgpu_gem_va_ioctl(struct drm_device *dev, void *data,
+ 	if (args->va_address >= AMDGPU_GMC_HOLE_START &&
+ 	    args->va_address < AMDGPU_GMC_HOLE_END) {
+ 		dev_dbg(dev->dev,
+-			"va_address 0x%LX is in VA hole 0x%LX-0x%LX\n",
++			"va_address 0x%llx is in VA hole 0x%llx-0x%llx\n",
+ 			args->va_address, AMDGPU_GMC_HOLE_START,
+ 			AMDGPU_GMC_HOLE_END);
+ 		return -EINVAL;
+@@ -813,9 +813,9 @@ int amdgpu_gem_op_ioctl(struct drm_device *dev, void *data,
+ 	int r;
+ 
+ 	gobj = drm_gem_object_lookup(filp, args->handle);
+-	if (gobj == NULL) {
++	if (!gobj)
+ 		return -ENOENT;
+-	}
++
+ 	robj = gem_to_amdgpu_bo(gobj);
+ 
+ 	r = amdgpu_bo_reserve(robj, false);
+@@ -941,9 +941,9 @@ int amdgpu_mode_dumb_create(struct drm_file *file_priv,
+ 	r = drm_gem_handle_create(file_priv, gobj, &handle);
+ 	/* drop reference from allocate - handle holds it now */
+ 	drm_gem_object_put(gobj);
+-	if (r) {
++	if (r)
+ 		return r;
+-	}
++
+ 	args->handle = handle;
+ 	return 0;
+ }
 -- 
 2.25.1
 
