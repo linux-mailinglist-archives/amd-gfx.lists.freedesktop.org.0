@@ -1,50 +1,49 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1955575C154
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 Jul 2023 10:20:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19A6975C151
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 Jul 2023 10:20:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 241E910E62C;
-	Fri, 21 Jul 2023 08:20:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B2D910E62A;
+	Fri, 21 Jul 2023 08:20:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.208.org (unknown [183.242.55.162])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B97D510E0BE
- for <amd-gfx@lists.freedesktop.org>; Fri, 21 Jul 2023 06:51:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E230410E620
+ for <amd-gfx@lists.freedesktop.org>; Fri, 21 Jul 2023 06:53:04 +0000 (UTC)
 Received: from mail.208.org (email.208.org [127.0.0.1])
- by mail.208.org (Postfix) with ESMTP id 4R6gFG1fmFzBRDtV
- for <amd-gfx@lists.freedesktop.org>; Fri, 21 Jul 2023 14:51:14 +0800 (CST)
+ by mail.208.org (Postfix) with ESMTP id 4R6gHL6KpDzBRDtS
+ for <amd-gfx@lists.freedesktop.org>; Fri, 21 Jul 2023 14:53:02 +0800 (CST)
 Authentication-Results: mail.208.org (amavisd-new); dkim=pass
  reason="pass (just generated, assumed good)" header.d=208.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=208.org; h=
  content-transfer-encoding:content-type:message-id:user-agent
  :references:in-reply-to:subject:to:from:date:mime-version; s=
- dkim; t=1689922274; x=1692514275; bh=qgoRVZJ5UPM8I4JL2ASPKtZbKEH
- PPt1Pqb5QUXsg76g=; b=zUPwB8WllMvdQeGR1ge5ZfgOSAqC8f1hoLyXiBllzhc
- 71RZQjtTGGGB7u5nn2viBD9sBZDnncmTDMaZZGwLwQ6YWBU/OnofVZsGCqC+Nqt9
- kJdv+KSoiuOlt1WqpYJ3ZFlrx6THuGoggvUA54nPCpO71dFiaRyPPF+WCAYN8i7m
- WjfPAP5wA+1jRdF0SXvEX2c/YB2sMvysuZxFWT2ORAZWaWnZ0A2DKjP85mcwWK/5
- 4+oc+/BnZd/edkNozU2yA1uQtO0OqNVBVvtevZ/mbg/fERtbYWbFIs0ML9PASdVu
- RYkwITXKGxg5D1foN58Ip7HKLJezaXVRAFghuqIOujA==
+ dkim; t=1689922382; x=1692514383; bh=bE2eoiKcgHV8FnTvBqMi4GoMdW6
+ Ca5I52TBEIsR7l3M=; b=Bw0EtnLOPRDoAQ2p0VNxqxonBZE4TRQ2vhmAEptd0gz
+ EpPK10M3nXr+j9w9thX/Ng+vxW5gpX7ziXn2f9+ddycgvyreg3JXyhcMkIRgPFAC
+ M44873S2dafeCKqEbN41U+QcM1UfmxzoGTGWaLjlumXFY40kZ5VMuR620Tds0IeX
+ XJDu4Tdu/1/bSfgUlz6eoGdnTin8SCme6AP0nYtK3azllkHZKuDlBNBkjXWsLRJk
+ lwWYQo+oDrnI+KBrE4jqDjmm9jBorxCvNfpRPlnorOxfJf2L3Nb+GkzMqPzFg6g5
+ zg5POFdoju+uZkIhIE1WBA08m3je9DOfqhy1/hvzZPw==
 X-Virus-Scanned: amavisd-new at mail.208.org
 Received: from mail.208.org ([127.0.0.1])
  by mail.208.org (mail.208.org [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id ffH9zTeMogwi for <amd-gfx@lists.freedesktop.org>;
- Fri, 21 Jul 2023 14:51:14 +0800 (CST)
+ with ESMTP id x4wGNeNYuVnT for <amd-gfx@lists.freedesktop.org>;
+ Fri, 21 Jul 2023 14:53:02 +0800 (CST)
 Received: from localhost (email.208.org [127.0.0.1])
- by mail.208.org (Postfix) with ESMTPSA id 4R6gFF5gh4zBRDrN;
- Fri, 21 Jul 2023 14:51:13 +0800 (CST)
+ by mail.208.org (Postfix) with ESMTPSA id 4R6gHL3vjbzBRDrN;
+ Fri, 21 Jul 2023 14:53:02 +0800 (CST)
 MIME-Version: 1.0
-Date: Fri, 21 Jul 2023 06:51:13 +0000
+Date: Fri, 21 Jul 2023 06:53:02 +0000
 From: sunran001@208suo.com
-To: airlied@gmail.com, daniel@ffwll.ch
+To: alexdeucher@gmail.com
 Subject: [PATCH] drm/radeon: ERROR: "foo * bar" should be "foo *bar"
-In-Reply-To: <696ea9a46762e16d993f8fc4bf26fb7f@208suo.com>
+In-Reply-To: <20230721060919.5133-1-xujianghui@cdjrlc.com>
 References: <20230721060919.5133-1-xujianghui@cdjrlc.com>
- <696ea9a46762e16d993f8fc4bf26fb7f@208suo.com>
 User-Agent: Roundcube Webmail
-Message-ID: <d6f31f5ef758427e95a31892ff153f8c@208suo.com>
+Message-ID: <19d2a2414f4c2422a13ee74b502d484d@208suo.com>
 X-Sender: sunran001@208suo.com
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
@@ -61,15 +60,15 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Cc: amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Fix two occurrences of the checkpatch.pl error:
 ERROR: "foo * bar" should be "foo *bar"
 
-Signed-off-by: Ran Sun <sunran001@208suo.com>
+Signed-off-by: Jianghui Xu <xujianghui@cdjrlc.com>
 ---
   drivers/gpu/drm/radeon/atom.c | 4 ++--
   1 file changed, 2 insertions(+), 2 deletions(-)
