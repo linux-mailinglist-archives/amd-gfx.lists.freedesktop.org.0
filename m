@@ -2,33 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0CAA75F772
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jul 2023 14:58:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A82A375F776
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jul 2023 14:58:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C6A110E2F7;
-	Mon, 24 Jul 2023 12:58:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A342510E30A;
+	Mon, 24 Jul 2023 12:58:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mailgw.gate-on.net (auth.Gate-On.Net [210.197.74.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F76D10E0D3
- for <amd-gfx@lists.freedesktop.org>; Sat, 22 Jul 2023 01:57:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC1F610E0D5
+ for <amd-gfx@lists.freedesktop.org>; Sat, 22 Jul 2023 02:30:20 +0000 (UTC)
 Received: from vega.pgw.jp (unknown [49.135.109.134])
- by mailgw.gate-on.net (Postfix) with ESMTP id 3DE47802A7;
- Sat, 22 Jul 2023 10:57:17 +0900 (JST)
+ by mailgw.gate-on.net (Postfix) with ESMTP id 96BCC802A7;
+ Sat, 22 Jul 2023 11:30:18 +0900 (JST)
 Received: from localhost (vega.pgw.jp [10.5.0.30])
  by vega.pgw.jp (Postfix) with SMTP
- id 7059CA53D; Sat, 22 Jul 2023 10:57:14 +0900 (JST)
-From: <kkabe@vega.pgw.jp>
-Content-Type: text/plain; charset=ISO-2022-JP
+ id 265E2A53D; Sat, 22 Jul 2023 11:30:14 +0900 (JST)
+From: <kabe@vega.pgw.jp>
 To: rostedt@goodmis.org
-Subject: Re: radeon.ko/i586: BUG: kernel NULL pointerdereference,
+Subject: Re: radeon.ko/i586: BUG: kernel NULL pointer dereference,
  address:00000004
-In-Reply-To: Your message of "Mon, 17 Jul 2023 11:21:38 -0400".
- <20230717112138.1fd48cca@gandalf.local.home>
+In-Reply-To: Your message of "Fri, 21 Jul 2023 08:39:55 +0900".
+ <230721083955.M0102626@vega.pgw.jp>
 X-Mailer: mnews [version 1.22PL5] 2002-11-27(Wed)
-Date: Sat, 22 Jul 2023 10:57:14 +0900
-Message-ID: <230722105714.M0104460@vega.pgw.jp>
-X-Mailman-Approved-At: Mon, 24 Jul 2023 12:58:34 +0000
+Date: Sat, 22 Jul 2023 11:30:14 +0900
+Message-ID: <230722113014.M0204460@vega.pgw.jp>
+X-Mailman-Approved-At: Mon, 24 Jul 2023 12:58:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,52 +47,52 @@ Cc: dave.hansen@linux.intel.com, regressions@lists.linux.dev,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-rostedt@goodmis.org sed in <20230717112138.1fd48cca@gandalf.local.home>
+rostedt@goodmis.org sed in <20230717113623.41878887@gandalf.local.home>
 
->> On Sat, 15 Jul 2023 11:39:11 +0900
+>> On Fri, 14 Jul 2023 14:34:04 +0900
 >> <kkabe@vega.pgw.jp> wrote:
 >> 
+>> > Patch in
+>> > https://bugzilla.kernel.org/show_bug.cgi?id=217669#c4
+>> > fixed the problem in freedesktop.org kernel 5.18.0-rc2 .
+>> > This may explain that in kernel.org tree, the said commit is in kernel-5.19.
 >> 
->> > Yes, this is puzzling. That's why I need other people's opinion on this.
->> > Does it matter the DUT is a slow machine (Pentium 120MHz)?
->> > 
+>> You mean the patch that adds:
 >> 
->> Hmm, I wonder because the workqueue is running __init functions, could it
->> possibly be that it didn't finish before the end of boot, where it frees
->> all the functions? It shouldn't do that because there's code to make sure
->> it's done before it continues further.
+>> 	#if defined(FTRACE_MCOUNT_MAX_OFFSET) && (FTRACE_MCOUNT_MAX_OFFSET)
 >> 
->> But just in case something isn't working as planned, you could try this
->> patch to see if the bug goes away.
+>> ?
+>> 
+>> Nothing should be setting FTRACE_MCOUNT_MAX_OFFSET to anything but non
+>> zero. But doing a grep, I now see:
+>> 
+>> # define FTRACE_MCOUNT_MAX_OFFSET ENDBR_INSN_SIZE
+>> 
+>> Where it breaks that assumption if ENDBR_INSN_SIZE == 0 :-p
+>>  (and that's my code!)
+>> 
+>> OK, does this fix it? (I haven't tested nor compiled this)
 >> 
 >> -- Steve
 >> 
->> diff --git a/kernel/trace/ftrace.c b/kernel/trace/ftrace.c
->> index 05c0024815bf..af5a40ef3be4 100644
->> --- a/kernel/trace/ftrace.c
->> +++ b/kernel/trace/ftrace.c
->> @@ -3771,13 +3771,13 @@ static int test_for_valid_rec(struct dyn_ftrace *rec)
->>  	return 1;
->>  }
+>> diff --git a/arch/x86/include/asm/ftrace.h b/arch/x86/include/asm/ftrace.h
+>> index 897cf02c20b1..801f4414da3e 100644
+>> --- a/arch/x86/include/asm/ftrace.h
+>> +++ b/arch/x86/include/asm/ftrace.h
+>> @@ -13,7 +13,7 @@
+>>  #ifdef CONFIG_HAVE_FENTRY
+>>  # include <asm/ibt.h>
+>>  /* Add offset for endbr64 if IBT enabled */
+>> -# define FTRACE_MCOUNT_MAX_OFFSET	ENDBR_INSN_SIZE
+>> +# define FTRACE_MCOUNT_MAX_OFFSET	(ENDBR_INSN_SIZE + MCOUNT_INSN_SIZE)
+>>  #endif
 >>  
->> -static struct workqueue_struct *ftrace_check_wq __initdata;
->> -static struct work_struct ftrace_check_work __initdata;
->> +static struct workqueue_struct *ftrace_check_wq;
->> +static struct work_struct ftrace_check_work;
->>  
->>  /*
->>   * Scan all the mcount/fentry entries to make sure they are valid.
->>   */
->> -static __init void ftrace_check_work_func(struct work_struct *work)
->> +static void ftrace_check_work_func(struct work_struct *work)
->>  {
->>  	struct ftrace_page *pg;
->>  	struct dyn_ftrace *rec;
+>>  #ifdef CONFIG_DYNAMIC_FTRACE
 >> 
 
-Just in case I tried this patch too;
-no banana, it panics (vblank->worker == NULL check fires)
+Above patch didn't work, but
+Does it matter that I am compiling with "gcc -fcf-protection=none"
+to not emit endbr32 instructions for i586?
 
 -- 
 kabe
-
