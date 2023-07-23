@@ -2,33 +2,34 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67C3275F796
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jul 2023 14:59:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C6B075F77F
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jul 2023 14:58:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A669A10E315;
-	Mon, 24 Jul 2023 12:59:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAE6910E2F9;
+	Mon, 24 Jul 2023 12:58:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A348E10E1A0
- for <amd-gfx@lists.freedesktop.org>; Sun, 23 Jul 2023 14:27:48 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5196210E032
+ for <amd-gfx@lists.freedesktop.org>; Sun, 23 Jul 2023 14:32:14 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id DD64060DBE;
- Sun, 23 Jul 2023 14:27:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 283B8C433C8;
- Sun, 23 Jul 2023 14:27:44 +0000 (UTC)
-Date: Sun, 23 Jul 2023 10:27:33 -0400
+ by dfw.source.kernel.org (Postfix) with ESMTPS id B90C160DC5;
+ Sun, 23 Jul 2023 14:32:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 934A5C433C8;
+ Sun, 23 Jul 2023 14:32:11 +0000 (UTC)
+Date: Sun, 23 Jul 2023 10:32:10 -0400
 From: Steven Rostedt <rostedt@goodmis.org>
-To: <kabe@vega.pgw.jp>
+To: <kkabe@vega.pgw.jp>
 Subject: Re: radeon.ko/i586: BUG: kernel NULL pointer
  dereference,address:00000004
-Message-ID: <20230723102733.70baeb1a@rorschach.local.home>
-In-Reply-To: <230722113014.M0204460@vega.pgw.jp>
-References: <230721083955.M0102626@vega.pgw.jp>
- <230722113014.M0204460@vega.pgw.jp>
+Message-ID: <20230723103210.4b1b032e@rorschach.local.home>
+In-Reply-To: <230723205506.M0106064@vega.pgw.jp>
+References: <230722113014.M0204460@vega.pgw.jp>
+ <230723205506.M0106064@vega.pgw.jp>
 X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -49,33 +50,52 @@ Cc: dave.hansen@linux.intel.com, regressions@lists.linux.dev,
  Xinhui.Pan@amd.com, linux-kernel@vger.kernel.org,
  amd-gfx@lists.freedesktop.org, mingo@redhat.com, bp@alien8.de,
  bagasdotme@gmail.com, hpa@zytor.com, alexander.deucher@amd.com,
- tglx@linutronix.de, kkabe@vega.pgw.jp, christian.koenig@amd.com
+ tglx@linutronix.de, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 22 Jul 2023 11:30:14 +0900
-<kabe@vega.pgw.jp> wrote:
+On Sun, 23 Jul 2023 20:55:06 +0900
+<kkabe@vega.pgw.jp> wrote:
 
-> >> diff --git a/arch/x86/include/asm/ftrace.h b/arch/x86/include/asm/ftrace.h
-> >> index 897cf02c20b1..801f4414da3e 100644
-> >> --- a/arch/x86/include/asm/ftrace.h
-> >> +++ b/arch/x86/include/asm/ftrace.h
-> >> @@ -13,7 +13,7 @@
-> >>  #ifdef CONFIG_HAVE_FENTRY
-> >>  # include <asm/ibt.h>
-> >>  /* Add offset for endbr64 if IBT enabled */
-> >> -# define FTRACE_MCOUNT_MAX_OFFSET	ENDBR_INSN_SIZE
-> >> +# define FTRACE_MCOUNT_MAX_OFFSET	(ENDBR_INSN_SIZE + MCOUNT_INSN_SIZE)
-> >>  #endif
-> >>  
-> >>  #ifdef CONFIG_DYNAMIC_FTRACE
-> >>   
+> So I tried to trap NULL and return:
 > 
-> Above patch didn't work, but
-> Does it matter that I am compiling with "gcc -fcf-protection=none"
-> to not emit endbr32 instructions for i586?
+> ================ patch-drm_vblank_cancel_pending_works-printk-NULL-ret.patch
+> diff -up ./drivers/gpu/drm/drm_vblank_work.c.pk2 ./drivers/gpu/drm/drm_vblank_work.c
+> --- ./drivers/gpu/drm/drm_vblank_work.c.pk2	2023-06-06 20:50:40.000000000 +0900
+> +++ ./drivers/gpu/drm/drm_vblank_work.c	2023-07-23 14:29:56.383093673 +0900
+> @@ -71,6 +71,10 @@ void drm_vblank_cancel_pending_works(str
+>  {
+>  	struct drm_vblank_work *work, *next;
+>  
+> +	if (!vblank->dev) {
+> +		printk(KERN_WARNING "%s: vblank->dev == NULL? returning\n", __func__);
+> +		return;
+> +	}
+>  	assert_spin_locked(&vblank->dev->event_lock);
+>  
+>  	list_for_each_entry_safe(work, next, &vblank->pending_work, node) {
+> ================
+> 
+> This time, the printk trap does not happen!! and radeon.ko works.
+> (NULL check for vblank->worker is still fireing though)
+> 
+> Now this is puzzling.
+> Is this a timing issue?
 
-This patch is supposed to address the case when ENDBR_INSN_SIZE is
-zero. So I would think that that wouldn't matter.
+It could very well be. And the ftrace patch could possibly not be the
+cause at all. But the thread that is created to do the work is causing
+the race window to be opened up, which is why you see it with the patch
+and don't without it. It may not be the problem, it may just tickle the
+timings enough to trigger the bug, and is causing you to go on a wild
+goose chase in the wrong direction.
 
 -- Steve
+
+
+> Is systemd-udevd doing something not favaorble to kernel?
+> Is drm vblank code running without enough initialization?
+> 
+> Puzzling is, that purely useland activity
+> (logging in on tty1 before radeon.ko load)
+> is affecting kernel panic/no-panic.
+
