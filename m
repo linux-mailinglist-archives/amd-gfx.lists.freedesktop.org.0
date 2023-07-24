@@ -1,49 +1,49 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3F3575F77D
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jul 2023 14:58:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 246C375F77B
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jul 2023 14:58:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B99510E2F5;
-	Mon, 24 Jul 2023 12:58:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E81710E302;
+	Mon, 24 Jul 2023 12:58:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.208.org (unknown [183.242.55.162])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C15B10E12E
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jul 2023 07:21:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3ABEA10E1C1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jul 2023 07:29:38 +0000 (UTC)
 Received: from mail.208.org (email.208.org [127.0.0.1])
- by mail.208.org (Postfix) with ESMTP id 4R8WmG0Bb8zBRx56
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jul 2023 15:21:02 +0800 (CST)
+ by mail.208.org (Postfix) with ESMTP id 4R8Wy81Y4GzBRx59
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jul 2023 15:29:36 +0800 (CST)
 Authentication-Results: mail.208.org (amavisd-new); dkim=pass
  reason="pass (just generated, assumed good)" header.d=208.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=208.org; h=
  content-transfer-encoding:content-type:message-id:user-agent
  :references:in-reply-to:subject:to:from:date:mime-version; s=
- dkim; t=1690183261; x=1692775262; bh=iOwAQCke2lXlWfG2dYn8lmmgNoq
- nQ8mZuEkdcFl+i/I=; b=mUKfuKizY6u6j5OzRWqTLtd/3KubRp9TyDXYRpTx8o1
- XbZQ5bdoguYlN9Fr3ZZlEgVC7F356tVwH0M92Cbla0AUqVxQD4LSTexfSa70qeJW
- +q5RGzqAvNKj32c5xBG3Gsud6FkNRiEfg1JjEReEFKPhrHBg9M/SC4tkBs2vpbAF
- uyQmLlVx6tucjWwAURpudc82/2IfEwbyGmnFkavuToQuyHqsuN6Jg650ausu46uQ
- peuPkyL0zXamXgZohP3XQ8CreJ6V+5T/tpSDP33VJ8HB2USoGU08Rq7HwJcKmiag
- rl4Qv5Hu0MK6LjEQvqBElZ/Jx3CelLnkykFOvdp4Zgg==
+ dkim; t=1690183776; x=1692775777; bh=bZxSJWL9gZxd3WjJGHW8DK8u/U3
+ 6n7xiHmXhkTl1aFY=; b=O8EsWJ9l91SgOoq9KBTYlK1s9g3UoKPqyiKS4HM2Rv4
+ DWofj04WUFpj/76O4E8smi/ou+ZeNeKBv11YWE1cYrQsCdlgcmK/l/Z4cRvCEEVu
+ 8+mh0LopektOMRigWAVKfAqIHRr1levUQmEq8L2pkyK3ERyFke/7/8xu7KF2LlRt
+ jWwBUdMxQZf+irjwBUb7iolLxBeAzcf/EOE/p9rzfiZE/7FSL1rYnng3cvT11OWL
+ vJOXrT+o633EsKNogWm15QNi5S4kt4qK/cV1LYHHipVNnk97pr0rF14AZ88SC4bl
+ PEctlXF4NXrTPuicLRsOiL2Bs1CHOc80t49P/iMzY9g==
 X-Virus-Scanned: amavisd-new at mail.208.org
 Received: from mail.208.org ([127.0.0.1])
  by mail.208.org (mail.208.org [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id gYEWp82HmNuT for <amd-gfx@lists.freedesktop.org>;
- Mon, 24 Jul 2023 15:21:01 +0800 (CST)
+ with ESMTP id Eg9b_iuAVRWx for <amd-gfx@lists.freedesktop.org>;
+ Mon, 24 Jul 2023 15:29:36 +0800 (CST)
 Received: from localhost (email.208.org [127.0.0.1])
- by mail.208.org (Postfix) with ESMTPSA id 4R8WmF55T2zBRx4y;
- Mon, 24 Jul 2023 15:21:01 +0800 (CST)
+ by mail.208.org (Postfix) with ESMTPSA id 4R8Wy76SW0zBRx4g;
+ Mon, 24 Jul 2023 15:29:35 +0800 (CST)
 MIME-Version: 1.0
-Date: Mon, 24 Jul 2023 15:21:01 +0800
+Date: Mon, 24 Jul 2023 15:29:35 +0800
 From: sunran001@208suo.com
 To: alexander.deucher@amd.com
-Subject: [PATCH] drm/amd/pm: Clean up errors in navi10_ppt.c
-In-Reply-To: <20230724071955.8822-1-xujianghui@cdjrlc.com>
-References: <20230724071955.8822-1-xujianghui@cdjrlc.com>
+Subject: [PATCH] drm/amd/pm: Clean up errors in sienna_cichlid_ppt.c
+In-Reply-To: <20230724072835.8913-1-xujianghui@cdjrlc.com>
+References: <20230724072835.8913-1-xujianghui@cdjrlc.com>
 User-Agent: Roundcube Webmail
-Message-ID: <3175b4fe4a9d8e4c29a39e9099c109ed@208suo.com>
+Message-ID: <ea1cf43d5545fa917127694a294a57da@208suo.com>
 X-Sender: sunran001@208suo.com
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
@@ -67,77 +67,55 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Fix the following errors reported by checkpatch:
 
-ERROR: open brace '{' following function definitions go on the next line
-ERROR: space required before the open parenthesis '('
 ERROR: space required after that ',' (ctx:VxV)
+ERROR: space required before the open parenthesis '('
 ERROR: spaces required around that '=' (ctx:VxW)
 
 Signed-off-by: Ran Sun <sunran001@208suo.com>
 ---
-  .../gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c   | 25 ++++++++++---------
-  1 file changed, 13 insertions(+), 12 deletions(-)
+  .../drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c  | 16 ++++++++--------
+  1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c 
-b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-index 95f6d821bacb..e655071516b7 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-@@ -136,7 +136,7 @@ static struct cmn2asic_msg_mapping 
-navi10_message_map[SMU_MSG_MAX_COUNT] = {
-  	MSG_MAP(PowerDownJpeg,			PPSMC_MSG_PowerDownJpeg,		0),
-  	MSG_MAP(BacoAudioD3PME,			PPSMC_MSG_BacoAudioD3PME,		0),
-  	MSG_MAP(ArmD3,				PPSMC_MSG_ArmD3,			0),
--	MSG_MAP(DAL_DISABLE_DUMMY_PSTATE_CHANGE,PPSMC_MSG_DALDisableDummyPstateChange,	0),
-+	MSG_MAP(DAL_DISABLE_DUMMY_PSTATE_CHANGE, 
-PPSMC_MSG_DALDisableDummyPstateChange,	0),
-  
-	MSG_MAP(DAL_ENABLE_DUMMY_PSTATE_CHANGE,	PPSMC_MSG_DALEnableDummyPstateChange,	0),
-  	MSG_MAP(GetVoltageByDpm,		PPSMC_MSG_GetVoltageByDpm,		0),
-  
-	MSG_MAP(GetVoltageByDpmOverdrive,	PPSMC_MSG_GetVoltageByDpmOverdrive,	0),
-@@ -556,7 +556,7 @@ static int navi10_get_legacy_smu_metrics_data(struct 
-smu_context *smu,
-  					      MetricsMember_t member,
-  					      uint32_t *value)
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c 
+b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+index 0cda3b276f61..5c233eda09ee 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+@@ -78,7 +78,7 @@
+  		(*member) = (smu->smu_table.driver_pptable + 
+offsetof(PPTable_beige_goby_t, field));\
+  	else\
+  		(*member) = (smu->smu_table.driver_pptable + offsetof(PPTable_t, 
+field));\
+-} while(0)
++} while (0)
+
+  /* STB FIFO depth is in 64bit units */
+  #define SIENNA_CICHLID_STB_DEPTH_UNIT_BYTES 8
+@@ -590,7 +590,7 @@ static int sienna_cichlid_tables_init(struct 
+smu_context *smu)
+
+  static uint32_t sienna_cichlid_get_throttler_status_locked(struct 
+smu_context *smu)
   {
 -	struct smu_table_context *smu_table= &smu->smu_table;
-+	struct smu_table_context *smu_table = &smu->smu_table;
-  	SmuMetrics_legacy_t *metrics =
-  		(SmuMetrics_legacy_t *)smu_table->metrics_table;
-  	int ret = 0;
-@@ -642,7 +642,7 @@ static int navi10_get_smu_metrics_data(struct 
-smu_context *smu,
-  				       MetricsMember_t member,
-  				       uint32_t *value)
++	struct smu_table_context *smu_tabl = &smu->smu_table;
+  	SmuMetricsExternal_t *metrics_ext =
+  		(SmuMetricsExternal_t *)(smu_table->metrics_table);
+  	uint32_t throttler_status = 0;
+@@ -711,7 +711,7 @@ static int 
+sienna_cichlid_get_smu_metrics_data(struct smu_context *smu,
+  					       MetricsMember_t member,
+  					       uint32_t *value)
   {
 -	struct smu_table_context *smu_table= &smu->smu_table;
 +	struct smu_table_context *smu_table = &smu->smu_table;
   	SmuMetrics_t *metrics =
-  		(SmuMetrics_t *)smu_table->metrics_table;
-  	int ret = 0;
-@@ -731,7 +731,7 @@ static int navi12_get_legacy_smu_metrics_data(struct 
+  		&(((SmuMetricsExternal_t *)(smu_table->metrics_table))->SmuMetrics);
+  	SmuMetrics_V2_t *metrics_v2 =
+@@ -1461,7 +1461,7 @@ static int sienna_cichlid_force_clk_levels(struct 
 smu_context *smu,
-  					      MetricsMember_t member,
-  					      uint32_t *value)
-  {
--	struct smu_table_context *smu_table= &smu->smu_table;
-+	struct smu_table_context *smu_table = &smu->smu_table;
-  	SmuMetrics_NV12_legacy_t *metrics =
-  		(SmuMetrics_NV12_legacy_t *)smu_table->metrics_table;
-  	int ret = 0;
-@@ -817,7 +817,7 @@ static int navi12_get_smu_metrics_data(struct 
-smu_context *smu,
-  				       MetricsMember_t member,
-  				       uint32_t *value)
-  {
--	struct smu_table_context *smu_table= &smu->smu_table;
-+	struct smu_table_context *smu_table = &smu->smu_table;
-  	SmuMetrics_NV12_t *metrics =
-  		(SmuMetrics_NV12_t *)smu_table->metrics_table;
-  	int ret = 0;
-@@ -1686,7 +1686,7 @@ static int navi10_force_clk_levels(struct 
-smu_context *smu,
-  			return 0;
+  			goto forec_level_out;
   		break;
   	case SMU_DCEFCLK:
 -		dev_info(smu->adev->dev,"Setting DCEFCLK min/max dpm level is not 
@@ -145,20 +123,20 @@ supported!\n");
 +		dev_info(smu->adev->dev, "Setting DCEFCLK min/max dpm level is not 
 supported!\n");
   		break;
-
   	default:
-@@ -2182,7 +2182,7 @@ static int navi10_read_sensor(struct smu_context 
-*smu,
-  	struct smu_table_context *table_context = &smu->smu_table;
-  	PPTable_t *pptable = table_context->driver_pptable;
+  		break;
+@@ -1881,7 +1881,7 @@ static int sienna_cichlid_read_sensor(struct 
+smu_context *smu,
+  	uint16_t *temp;
+  	struct amdgpu_device *adev = smu->adev;
 
 -	if(!data || !size)
 +	if (!data || !size)
   		return -EINVAL;
 
   	switch (sensor) {
-@@ -2317,15 +2317,15 @@ static int 
-navi10_display_disable_memory_clock_switch(struct smu_context *smu,
+@@ -2067,15 +2067,15 @@ static int 
+sienna_cichlid_display_disable_memory_clock_switch(struct smu_context
   	uint32_t min_memory_clock = smu->hard_min_uclk_req_from_dal;
   	uint32_t max_memory_clock = max_sustainable_clocks->uclock;
 
@@ -179,26 +157,3 @@ min_memory_clock, 0);
   		smu->disable_uclk_switch = disable_memory_clock_switch;
 
   	return ret;
-@@ -2559,7 +2559,8 @@ static int navi10_set_default_od_settings(struct 
-smu_context *smu)
-  	return 0;
-  }
-
--static int navi10_od_edit_dpm_table(struct smu_context *smu, enum 
-PP_OD_DPM_TABLE_COMMAND type, long input[], uint32_t size) {
-+static int navi10_od_edit_dpm_table(struct smu_context *smu, enum 
-PP_OD_DPM_TABLE_COMMAND type, long input[], uint32_t size)
-+{
-  	int i;
-  	int ret = 0;
-  	struct smu_table_context *table_context = &smu->smu_table;
-@@ -3368,7 +3369,7 @@ static ssize_t navi1x_get_gpu_metrics(struct 
-smu_context *smu,
-  		      ((adev->ip_versions[MP1_HWIP][0] == IP_VERSION(11, 0, 0)) && 
-smu_version > 0x002A3B00))
-  			ret = navi10_get_gpu_metrics(smu, table);
-  		else
--			ret =navi10_get_legacy_gpu_metrics(smu, table);
-+			ret = navi10_get_legacy_gpu_metrics(smu, table);
-  		break;
-  	}
