@@ -2,49 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1ACE75F77C
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jul 2023 14:58:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D627475F773
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jul 2023 14:58:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5E6110E301;
-	Mon, 24 Jul 2023 12:58:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8666910E2F4;
+	Mon, 24 Jul 2023 12:58:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.208.org (unknown [183.242.55.162])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94BB910E285
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jul 2023 08:34:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C4C010E28A
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jul 2023 08:42:10 +0000 (UTC)
 Received: from mail.208.org (email.208.org [127.0.0.1])
- by mail.208.org (Postfix) with ESMTP id 4R8YPH6FnKzBRx5B
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jul 2023 16:34:43 +0800 (CST)
+ by mail.208.org (Postfix) with ESMTP id 4R8YYq50mQzBRx5C
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jul 2023 16:42:07 +0800 (CST)
 Authentication-Results: mail.208.org (amavisd-new); dkim=pass
  reason="pass (just generated, assumed good)" header.d=208.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=208.org; h=
  content-transfer-encoding:content-type:message-id:user-agent
  :references:in-reply-to:subject:to:from:date:mime-version; s=
- dkim; t=1690187683; x=1692779684; bh=xivezc9+8JHiL00mjjAuXmu9/dh
- 6CnD4VSummcQwwCI=; b=oWaxq45Ozhy0XRIkwsph6ljsedBLPbXkY+NRRSkVFKn
- pGajiMAgayA4DV00tcw6V5clYeTsa3Ykd6DTbajnm1UDDxRRABwdk0D2ScUnVas5
- y5iFjuQcf0Xt3SUBardnqmDWZLfgpWg2EGGpmojPmBkeet8l1dJL7aoo6iY2tcr0
- DJsE8ofwcGrSIs+DcrsfSJ40ktsvCR55NPFblEg2PCRvsd8CDzTS6RDWNpwNBxxd
- RYOHO4qykFKSyEc/9Qo/inAvqSUvWBJ4/wuOSsysNznk9wkg/HDp/ZjAX5qugYcp
- SisL4sERndhJxlskaCvk3DCO2mIa6FibhYW+6kx896A==
+ dkim; t=1690188127; x=1692780128; bh=eE7sNKxG4/rjsPDu9gJ/H3YFqzO
+ mN4jtb9Ah4UwXSdc=; b=kxCrOKJ/X6KDq2G5oEObom94SRx7CYjqrqZRkIa/JSN
+ w+gWM1YSu4rSANtBoTB5Hl9EqTUk5OIpxorjDfwo6t6qp9EcW+m8j6Tt+/zRvl1B
+ k+lkwemajkgxmRlEdM6blOU9BNJsoOPPphNAasDoLyQWFfkpYETFmiaShf2TzYWC
+ tEaEOg5skrZsLBL382oYRUlX8nUywcH/go7lkJDlrQ4ncAPLfhUQC62Aweupystc
+ OH+KPGzVGT8FEg+gg7j+cmX7mnZTfATZlHH3tbLXX3ugy1qWlEUev5s1+X2aiQuF
+ saP9nS8DZCwkzazLOJhvaWPLRiHsZDRtIhbRMWmM2BQ==
 X-Virus-Scanned: amavisd-new at mail.208.org
 Received: from mail.208.org ([127.0.0.1])
  by mail.208.org (mail.208.org [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id XMX0xiy0vXoN for <amd-gfx@lists.freedesktop.org>;
- Mon, 24 Jul 2023 16:34:43 +0800 (CST)
+ with ESMTP id HHPI40lIzlRc for <amd-gfx@lists.freedesktop.org>;
+ Mon, 24 Jul 2023 16:42:07 +0800 (CST)
 Received: from localhost (email.208.org [127.0.0.1])
- by mail.208.org (Postfix) with ESMTPSA id 4R8YPH40vFzBR1P0;
- Mon, 24 Jul 2023 16:34:43 +0800 (CST)
+ by mail.208.org (Postfix) with ESMTPSA id 4R8YYq2NgkzB7Bvn;
+ Mon, 24 Jul 2023 16:42:07 +0800 (CST)
 MIME-Version: 1.0
-Date: Mon, 24 Jul 2023 16:34:43 +0800
+Date: Mon, 24 Jul 2023 16:42:07 +0800
 From: sunran001@208suo.com
 To: alexander.deucher@amd.com
-Subject: [PATCH] drm/amd/pm: Clean up errors in
- smu11_driver_if_sienna_cichlid.h
-In-Reply-To: <20230724083344.9285-1-xujianghui@cdjrlc.com>
-References: <20230724083344.9285-1-xujianghui@cdjrlc.com>
+Subject: [PATCH] drm/amd/pm: that open brace { should be on the previous line
+In-Reply-To: <20230724084109.9496-1-xujianghui@cdjrlc.com>
+References: <20230724084109.9496-1-xujianghui@cdjrlc.com>
 User-Agent: Roundcube Webmail
-Message-ID: <8e6eda082855e1b928253669fbb49316@208suo.com>
+Message-ID: <7fde0c4213bf401813918ac05f313fbb@208suo.com>
 X-Sender: sunran001@208suo.com
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
@@ -66,35 +65,47 @@ Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fix the following errors reported by checkpatch:
-
-ERROR: trailing whitespace
+ERROR: that open brace { should be on the previous line
 
 Signed-off-by: Ran Sun <sunran001@208suo.com>
 ---
-  drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_1_pmfw.h | 4 ++--
-  1 file changed, 2 insertions(+), 2 deletions(-)
+  drivers/gpu/drm/amd/pm/swsmu/inc/smu_11_0_cdr_table.h | 6 ++----
+  1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_1_pmfw.h 
-b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_1_pmfw.h
-index c5e26d619bf0..8ec588248aac 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_1_pmfw.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu_v13_0_1_pmfw.h
-@@ -30,7 +30,7 @@
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_11_0_cdr_table.h 
+b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_11_0_cdr_table.h
+index beab6d7b28b7..630132c4a76b 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_11_0_cdr_table.h
++++ b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_11_0_cdr_table.h
+@@ -52,8 +52,7 @@ static unsigned int DbiPrbs7[] =
 
-  #define ENABLE_DEBUG_FEATURES
 
--// Firmware features
-+// Firmware features
-  // Feature Control Defines
-  #define FEATURE_CCLK_DPM_BIT                 0
-  #define FEATURE_FAN_CONTROLLER_BIT           1
-@@ -92,7 +92,7 @@
-  #define FEATURE_ZSTATES_ECO_BIT             57
-  #define FEATURE_CC6_BIT                     58
-  #define FEATURE_DS_UMCCLK_BIT               59
--#define FEATURE_DS_HSPCLK_BIT               60
-+#define FEATURE_DS_HSPCLK_BIT               60
-  #define NUM_FEATURES                        61
+  //4096 bytes, 256 byte aligned
+-static unsigned int NoDbiPrbs7[] =
+-{
++static unsigned int NoDbiPrbs7[] = {
+      0x0f0f0f0f, 0x0f0f0f0f, 0x0f0f0f0f, 0xf0f00f0f, 0x0f0f0f0f, 
+0x0f0f0f0f, 0xf0f0f0f0, 0x0f0f0f0f, 0x0f0f0f0f, 0xf0f00f0f, 0xf0f00f0f, 
+0x0f0f0f0f, 0xf0f0f0f0, 0xf0f0f0f0, 0x0f0f0f0f, 0xf0f00f0f,
+      0x0f0f0f0f, 0xf0f00f0f, 0xf0f0f0f0, 0x0f0f0f0f, 0xf0f0f0f0, 
+0xf0f00f0f, 0xf0f00f0f, 0xf0f00f0f, 0x0f0ff0f0, 0xf0f0f0f0, 0xf0f0f0f0, 
+0x0f0ff0f0, 0x0f0f0f0f, 0x0f0f0f0f, 0xf0f0f0f0, 0xf0f00f0f,
+      0x0f0f0f0f, 0xf0f00f0f, 0x0f0ff0f0, 0x0f0f0f0f, 0xf0f0f0f0, 
+0x0f0ff0f0, 0xf0f00f0f, 0xf0f00f0f, 0xf0f0f0f0, 0x0f0ff0f0, 0xf0f0f0f0, 
+0xf0f00f0f, 0xf0f0f0f0, 0x0f0f0f0f, 0x0f0ff0f0, 0xf0f00f0f,
+@@ -121,8 +120,7 @@ static unsigned int NoDbiPrbs7[] =
+  };
 
-  typedef struct {
+  // 4096 bytes, 256 byte aligned
+-static unsigned int DbiPrbs7[] =
+-{
++static unsigned int DbiPrbs7[] = {
+      0xffffffff, 0xffffffff, 0xffffffff, 0x0000ffff, 0xffffffff, 
+0xffffffff, 0x00000000, 0xffffffff, 0xffffffff, 0x0000ffff, 0x0000ffff, 
+0xffffffff, 0x00000000, 0x00000000, 0xffffffff, 0x0000ffff,
+      0xffffffff, 0x0000ffff, 0x00000000, 0xffffffff, 0x00000000, 
+0x0000ffff, 0x0000ffff, 0x0000ffff, 0xffff0000, 0x00000000, 0x00000000, 
+0xffff0000, 0xffffffff, 0xffffffff, 0x00000000, 0x0000ffff,
+      0xffffffff, 0x0000ffff, 0xffff0000, 0xffffffff, 0x00000000, 
+0xffff0000, 0x0000ffff, 0x0000ffff, 0x00000000, 0xffff0000, 0x00000000, 
+0x0000ffff, 0x00000000, 0xffffffff, 0xffff0000, 0x0000ffff,
