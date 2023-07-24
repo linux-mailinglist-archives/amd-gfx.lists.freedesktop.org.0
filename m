@@ -2,50 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D723975F780
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jul 2023 14:58:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 270E875F790
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jul 2023 14:59:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AA5310E2FC;
-	Mon, 24 Jul 2023 12:58:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5120D10E30E;
+	Mon, 24 Jul 2023 12:59:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.208.org (unknown [183.242.55.162])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3C8B10E28B
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jul 2023 08:44:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB04210E079
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jul 2023 08:54:28 +0000 (UTC)
 Received: from mail.208.org (email.208.org [127.0.0.1])
- by mail.208.org (Postfix) with ESMTP id 4R8Yc24vtbzBRx5C
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jul 2023 16:44:02 +0800 (CST)
+ by mail.208.org (Postfix) with ESMTP id 4R8Yr15zvbzB7Bvn
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jul 2023 16:54:25 +0800 (CST)
 Authentication-Results: mail.208.org (amavisd-new); dkim=pass
  reason="pass (just generated, assumed good)" header.d=208.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=208.org; h=
  content-transfer-encoding:content-type:message-id:user-agent
  :references:in-reply-to:subject:to:from:date:mime-version; s=
- dkim; t=1690188242; x=1692780243; bh=GSjQh+24fDmg268C3FAmWe759o+
- e7JqjQBA0Ouu1xsQ=; b=LOuLu5N3qJAUG+I53obzAL1Noiw+URzi25qlxflJmnM
- xwlZwQp4s13ZM5OGa+A1C5SWe0hG7pqJ9r/3gEgBsvtMkjFJtjiB2e46RoVNChTw
- GyHyria8Xz/yYLYExUiDzvw8TFt2lT9miSDretauoyUdJsV2fcdpaDKQIg1beqhv
- v9CFV8pwzsW2F0d5QCeTiBgtkbtzOz6lyjnh/a4zTu/OM070b8Ok6tLCdf0J9R0W
- WUrojCGYlhSSmPgyXhWWOEIKNg5RZRF4FmFXy7hmFEv2SCiUuIryheAznOE5dCWS
- io2+XHCDyy+vnQG8w4NP+CFx0kSbMBACfxvcW9OGezQ==
+ dkim; t=1690188865; x=1692780866; bh=chwR9bvFIg7iBGHVcSR9ITXkkoJ
+ jDG51eV1JMt2fqig=; b=SFzxcNQJfmH2iWnlPIODSRbG3ucbAh4R+FuRW4eH1H2
+ xCLYm0bqatfPCsRUMZaQraniglwPE3h4b42OhQ/l2fS814Xikw7YYP/6Sg2hYO6H
+ QB+9lAlOfSPvoc5d7PO6GfoM7Pnkyh3SgHiV0ygy12RlobLuE+hbmDVtPhZsxZOD
+ H5o/yH76RDH/rOxrsYh3Y4AUrj2IjKIXgfaHdfy1bn+rXDvheqc5nsMPTD9QTVDQ
+ OkozNrYdTWPp+jo0HUPOBHSu4EM9qEdRNECXA9mzAlJObAOP0fwcyyzd+0/bCDMH
+ wXbk+gcGEwCrMjHjAdCc1RtOPKB5YcQXR1ElCmI/ilA==
 X-Virus-Scanned: amavisd-new at mail.208.org
 Received: from mail.208.org ([127.0.0.1])
  by mail.208.org (mail.208.org [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id 6wqlALlLoYfb for <amd-gfx@lists.freedesktop.org>;
- Mon, 24 Jul 2023 16:44:02 +0800 (CST)
+ with ESMTP id nNDCu7jSuzgR for <amd-gfx@lists.freedesktop.org>;
+ Mon, 24 Jul 2023 16:54:25 +0800 (CST)
 Received: from localhost (email.208.org [127.0.0.1])
- by mail.208.org (Postfix) with ESMTPSA id 4R8Yc23Y15zB7Bvn;
- Mon, 24 Jul 2023 16:44:02 +0800 (CST)
+ by mail.208.org (Postfix) with ESMTPSA id 4R8Yr14866zBKnld;
+ Mon, 24 Jul 2023 16:54:25 +0800 (CST)
 MIME-Version: 1.0
-Date: Mon, 24 Jul 2023 16:44:02 +0800
+Date: Mon, 24 Jul 2023 16:54:25 +0800
 From: sunran001@208suo.com
 To: alexander.deucher@amd.com
-Subject: [PATCH] drm/amd/pm: open brace '{' following function definitions go
- on the next line
-In-Reply-To: <be6d6605aa504964eba3476910f7140a@208suo.com>
-References: <20230724071121.8710-1-xujianghui@cdjrlc.com>
- <be6d6605aa504964eba3476910f7140a@208suo.com>
+Subject: [PATCH] drm/amd/pm: Clean up errors in smu_v11_0_7_pptable.h
+In-Reply-To: <20230724085303.9607-1-xujianghui@cdjrlc.com>
+References: <20230724085303.9607-1-xujianghui@cdjrlc.com>
 User-Agent: Roundcube Webmail
-Message-ID: <a026386d6759911afbb1446a9145bdec@208suo.com>
+Message-ID: <c5575527bac1642f2cf896ae0ee9f582@208suo.com>
 X-Sender: sunran001@208suo.com
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
@@ -67,27 +65,113 @@ Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-ERROR: open brace '{' following function definitions go on the next line
+Fix the following errors reported by checkpatch:
+
+ERROR: trailing whitespace
+ERROR: open brace '{' following struct go on the same line
 
 Signed-off-by: Ran Sun <sunran001@208suo.com>
 ---
-  drivers/gpu/drm/amd/pm/swsmu/smu12/smu_v12_0.c | 3 ++-
-  1 file changed, 2 insertions(+), 1 deletion(-)
+  .../amd/pm/swsmu/inc/smu_v11_0_7_pptable.h    | 41 +++++++++----------
+  1 file changed, 19 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu12/smu_v12_0.c 
-b/drivers/gpu/drm/amd/pm/swsmu/smu12/smu_v12_0.c
-index c788aa7a99a9..5e408a195860 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu12/smu_v12_0.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu12/smu_v12_0.c
-@@ -205,7 +205,8 @@ int smu_v12_0_set_default_dpm_tables(struct 
-smu_context *smu)
-  	return smu_cmn_update_table(smu, SMU_TABLE_DPMCLOCKS, 0, 
-smu_table->clocks_table, false);
-  }
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v11_0_7_pptable.h 
+b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v11_0_7_pptable.h
+index 1cb399dbc7cc..64d60d48846a 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v11_0_7_pptable.h
++++ b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v11_0_7_pptable.h
+@@ -42,23 +42,23 @@
+  #define SMU_11_0_7_PP_POWERSAVINGCLOCK_VERSION            0x01          
+  // Power Saving Clock Table Version 1.00
 
--int smu_v12_0_mode2_reset(struct smu_context *smu){
-+int smu_v12_0_mode2_reset(struct smu_context *smu)
-+{
-  	return smu_cmn_send_smc_msg_with_param(smu, 
-SMU_MSG_GfxDeviceDriverReset, SMU_RESET_MODE_2, NULL);
-  }
+  enum SMU_11_0_7_ODFEATURE_CAP {
+-    SMU_11_0_7_ODCAP_GFXCLK_LIMITS = 0,
+-    SMU_11_0_7_ODCAP_GFXCLK_CURVE,
+-    SMU_11_0_7_ODCAP_UCLK_LIMITS,
+-    SMU_11_0_7_ODCAP_POWER_LIMIT,
+-    SMU_11_0_7_ODCAP_FAN_ACOUSTIC_LIMIT,
+-    SMU_11_0_7_ODCAP_FAN_SPEED_MIN,
+-    SMU_11_0_7_ODCAP_TEMPERATURE_FAN,
+-    SMU_11_0_7_ODCAP_TEMPERATURE_SYSTEM,
+-    SMU_11_0_7_ODCAP_MEMORY_TIMING_TUNE,
+-    SMU_11_0_7_ODCAP_FAN_ZERO_RPM_CONTROL,
+-    SMU_11_0_7_ODCAP_AUTO_UV_ENGINE,
+-    SMU_11_0_7_ODCAP_AUTO_OC_ENGINE,
+-    SMU_11_0_7_ODCAP_AUTO_OC_MEMORY,
++    SMU_11_0_7_ODCAP_GFXCLK_LIMITS = 0,
++    SMU_11_0_7_ODCAP_GFXCLK_CURVE,
++    SMU_11_0_7_ODCAP_UCLK_LIMITS,
++    SMU_11_0_7_ODCAP_POWER_LIMIT,
++    SMU_11_0_7_ODCAP_FAN_ACOUSTIC_LIMIT,
++    SMU_11_0_7_ODCAP_FAN_SPEED_MIN,
++    SMU_11_0_7_ODCAP_TEMPERATURE_FAN,
++    SMU_11_0_7_ODCAP_TEMPERATURE_SYSTEM,
++    SMU_11_0_7_ODCAP_MEMORY_TIMING_TUNE,
++    SMU_11_0_7_ODCAP_FAN_ZERO_RPM_CONTROL,
++    SMU_11_0_7_ODCAP_AUTO_UV_ENGINE,
++    SMU_11_0_7_ODCAP_AUTO_OC_ENGINE,
++    SMU_11_0_7_ODCAP_AUTO_OC_MEMORY,
+      SMU_11_0_7_ODCAP_FAN_CURVE,
+      SMU_11_0_ODCAP_AUTO_FAN_ACOUSTIC_LIMIT,
+-    SMU_11_0_7_ODCAP_POWER_MODE,
+-    SMU_11_0_7_ODCAP_COUNT,
++    SMU_11_0_7_ODCAP_POWER_MODE,
++    SMU_11_0_7_ODCAP_COUNT,
+  };
+
+  enum SMU_11_0_7_ODFEATURE_ID {
+@@ -130,8 +130,7 @@ enum SMU_11_0_7_PWRMODE_SETTING {
+  };
+  #define SMU_11_0_7_MAX_PMSETTING      32        //Maximum Number of 
+PowerMode Settings
+
+-struct smu_11_0_7_overdrive_table
+-{
++struct smu_11_0_7_overdrive_table {
+      uint8_t  revision;                                        
+//Revision = SMU_11_0_7_PP_OVERDRIVE_VERSION
+      uint8_t  reserve[3];                                      //Zero 
+filled field reserved for future use
+      uint32_t feature_count;                                   //Total 
+number of supported features
+@@ -160,8 +159,7 @@ enum SMU_11_0_7_PPCLOCK_ID {
+  };
+  #define SMU_11_0_7_MAX_PPCLOCK      16          //Maximum Number of PP 
+Clocks
+
+-struct smu_11_0_7_power_saving_clock_table
+-{
++struct smu_11_0_7_power_saving_clock_table {
+      uint8_t  revision;                                        
+//Revision = SMU_11_0_7_PP_POWERSAVINGCLOCK_VERSION
+      uint8_t  reserve[3];                                      //Zero 
+filled field reserved for future use
+      uint32_t count;                                           
+//power_saving_clock_count = SMU_11_0_7_PPCLOCK_COUNT
+@@ -169,8 +167,7 @@ struct smu_11_0_7_power_saving_clock_table
+      uint32_t min[SMU_11_0_7_MAX_PPCLOCK];                       
+//PowerSavingClock Mode Clock Minimum array In MHz
+  };
+
+-struct smu_11_0_7_powerplay_table
+-{
++struct smu_11_0_7_powerplay_table {
+        struct atom_common_table_header header;       //For 
+sienna_cichlid, header.format_revision = 15, header.content_revision = 0
+        uint8_t  table_revision;                      //For 
+sienna_cichlid, table_revision = 2
+        uint16_t table_size;                          //Driver portion 
+table size. The offset to smc_pptable including header size
+@@ -178,7 +175,7 @@ struct smu_11_0_7_powerplay_table
+        uint32_t golden_revision;                     //PPGen use only: 
+PP Table Revision on the Golden Data Base
+        uint16_t format_id;                           //PPGen use only: 
+PPTable for different ASICs. For sienna_cichlid this should be 0x80
+        uint32_t platform_caps;                       
+//POWERPLAYABLE::ulPlatformCaps
+-
++
+        uint8_t  thermal_controller_type;             //one of 
+SMU_11_0_7_PP_THERMALCONTROLLER
+
+        uint16_t small_power_limit1;
