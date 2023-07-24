@@ -1,93 +1,61 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADB9F760034
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jul 2023 22:05:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B5D6760111
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jul 2023 23:19:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4841610E10B;
-	Mon, 24 Jul 2023 20:05:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F1B410E35C;
+	Mon, 24 Jul 2023 21:19:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2072.outbound.protection.outlook.com [40.107.223.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A02B610E10B
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jul 2023 20:05:31 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Q6jGIVXPsRb1q2T4hRy2PfVsraL3dplEdP0cyRmIyvPbnTkuHXNDkdzeJwf/powNghXDdeJOhnkfeNAAT0YnIwFBI3rdIijC72EddNuY6mVKrSQ3CRnJ1Mrt2M0EBCViufxmlYPidSuhGrKAdnjIOUP54C4FjyLqpHskFSnFI5OX47iz0IDie+vPeHl8wuvMhORWmtR/9DNrKesc1GdMNQrgMx5uD4Btngg9RfnlFVVwZGd/640o0hm7crZeV9MLMTxnrjosLkQGe6bQosK6Uf7A8RZmTf0op8/8sj8/t5JHk4f/EzFc7epNxBlduzUD9su7GIrCblXqXggP3+45xA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=g5c+z5R78xYQcBC4o6NtHwYWWV/wYA0f3v3JnpYj0ck=;
- b=Utz821c0gobsdSOkVZ/hIVqmctkyNWb0kEzWgdVWJcmaj7AmAbARLZyV1zHMRCVlW48kYlEzsD7v17KHhC9kaeiMDFRcZPzowfjOJw/NUqEFeTR81PxmnWpfHYmpXtNJylKrcUwxfQXATK8rpJAdjb2ZR2tOrcx73HXiklUYjltHr54Y9GKPhDdcq4TkJ6ffBXmslqDwNDGCjk2xLYTYZ+MndV4QQfiQt0Ajut2y05Q2PPJoU1oxeTUtdpTJZGAbItwZ3cPX91Z5vvGHV31R/CL+rk/wE/mjng+qOBGHwTfcrRLEahSVYcTgZCnVIvZ4Ey+bfTx7d/AWe61y8E91Dg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=g5c+z5R78xYQcBC4o6NtHwYWWV/wYA0f3v3JnpYj0ck=;
- b=Jtd2V4oGyTmBRk0dtdWtfRWkhJjVuxLjDqdSh/ecmfy4Pu1rO/LxkGpvUsy64/bNYKpsxMwZVc6wVnulV/yLw+pwFmjw3pvaRac799jWOyWoePbj4OWgTeo+CTdS25ioEw7OtB2ae7Q2I1cdHteeiyHSAHgfYoVtaRm2UEr7Zv4=
-Received: from DS7P222CA0018.NAMP222.PROD.OUTLOOK.COM (2603:10b6:8:2e::33) by
- DM3PR12MB9351.namprd12.prod.outlook.com (2603:10b6:8:1ac::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6609.32; Mon, 24 Jul 2023 20:05:29 +0000
-Received: from DM6NAM11FT046.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:2e:cafe::b5) by DS7P222CA0018.outlook.office365.com
- (2603:10b6:8:2e::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.33 via Frontend
- Transport; Mon, 24 Jul 2023 20:05:29 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT046.mail.protection.outlook.com (10.13.172.121) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6631.22 via Frontend Transport; Mon, 24 Jul 2023 20:05:29 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 24 Jul
- 2023 15:05:28 -0500
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 3/3] drm/amdgpu/discovery: add ih 6.1.0 support
-Date: Mon, 24 Jul 2023 16:05:13 -0400
-Message-ID: <20230724200513.764387-3-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230724200513.764387-1-alexander.deucher@amd.com>
-References: <20230724200513.764387-1-alexander.deucher@amd.com>
+Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com
+ [IPv6:2607:f8b0:4864:20::c2f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36ABE10E35C
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jul 2023 21:19:54 +0000 (UTC)
+Received: by mail-oo1-xc2f.google.com with SMTP id
+ 006d021491bc7-56584266c41so2960588eaf.2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jul 2023 14:19:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1690233593; x=1690838393;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Tf8ifrW/+sZRcE/IDTmWQ/Qg9rHEYTQMcj081sO2BDM=;
+ b=DCms+iChpyWj9h98ktkHOcg3IHCNkxtoBtcVu1c05eaucBSsugNi+uHqgDlxv4MVOn
+ bto/AoTc0/3ksYlPZt6Kn9e291H3XkZywox7CXyuuxbuflYskDiFXLnEpLrwOt2HGhRx
+ 4oBREznHIBPb9wwa9F0W4r1zJFJgeLDWvxNIxr6PmZvl2DWrI/BeZqJDfAlbWtN1TBP6
+ agba3ADtd+5YEGQnmqf7QVX21FoHcf2BFgfdvvH9Sg0o1L4joCGnP3v2KVGfZsyGmRaj
+ pgE9k9uBHEFBC/DjO0/vKWDL7kIWuEus3mPjRksGnMST8MZFdj62EmbyA6pqvWDGb1q/
+ ptHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1690233593; x=1690838393;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=Tf8ifrW/+sZRcE/IDTmWQ/Qg9rHEYTQMcj081sO2BDM=;
+ b=bey+LHg+zAn6g5u44zrSUrr6I3YxIexUwRiy9NttlZB0n0BGm/52kdMldIZhpkNhTv
+ z8XdW2YlDrCqceY1CaE3Fsxz3Nc61ALQQ3ymz594RUc90+5zfunaEEkASYUFuk9X7YqR
+ t7pXodXq1zBc4iaI27NPQLXdRs1x2ktEgwJKx23vy4T6AbpXLQgZjviSPix4xMSbcQ+P
+ GZ5VDt9rkRjW5VBRrysi4iWMY1SupeCRe18y18jbKwZ4oD1W7sVjbUoQAWSScdmSouQq
+ GoeKXpbTOGOCsXEGpENKkTEnXZZZPvgdwErirbHkJTdpiBwyUBsmA3SkGoDUXjG/Z2oM
+ 2F5Q==
+X-Gm-Message-State: ABy/qLb6GxadWlLXOUxQrOjqRSRAdklmRi8SB0Re53yuh7vHXUKt1c0p
+ 9yNHQ1QqCgkYGwaXouKOQjv8y0AqeyhKFCgi7w0=
+X-Google-Smtp-Source: APBJJlHTdrn6Sgl45kvGk4HCuIWTyoPxH8pxYDHfUy2qkg8GQHB79yA7OhusVArmdIJxG6r6aK5LSQ+kvvcg7qdmX7A=
+X-Received: by 2002:a4a:91d0:0:b0:566:fa3f:82af with SMTP id
+ e16-20020a4a91d0000000b00566fa3f82afmr8524257ooh.5.1690233593252; Mon, 24 Jul
+ 2023 14:19:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT046:EE_|DM3PR12MB9351:EE_
-X-MS-Office365-Filtering-Correlation-Id: abf8509f-b523-4d76-49cf-08db8c81545c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ihObGyFzFx8N3L15JT43Fe8NHhsNA+bIubPYwi2dhcrzg+o4NKayPI3AIUpykgoQpcNf7Ikhqum3iKiCSeEXZdrHaA87yjD76Zs7DXF1Y2YaghyLCOxELxl0ZuIsS0pHrM735WHa26t7kTMI4Y2JxlTTcvkzjPWIP7oNGnyDfjggytc69jrZyBv6lYL5ix/DWQ/leUrRf0kWdLfJor7E8SZx3X8ojXYr54em32TDF5Gj7NAhWFrEVy+a+ej1mkwjaMc4HqTN6qf3iLob8ZVsm6f35RC6IukUpyrTgFKRKp0FOf5BegsZiamTolXBsQD1BZl2lzFnaPin0CDlm7tHWqOHRUzBKDY2vbRsrdvcXx+G7QckQuyUREn2Z0+9FcvAxTHQ10TtvqD83a8J1Ldz7xc1IVVV4QsHwM+oNUZF7dJgloyn9LEce+lPtJ53vI+yMHgTjRfnB1kIpcfRpsgV7GAMdFAcloiL5+dGyq53139AZUlBaa/wpH2O9DGZaaTSoMlzgg3vpcoKbJQU1hzCm53Z2/Jw+QA0T0jiWr9sT25+hkjQes6l3m24KBgTw+4ALk+bTiHBwFgNeLLowEx+SF9t6aTkNyTWv8pHpOrjv0VKxkPF4tdtpICk/5ByB71gzOKZC9nBFNz0hr5Rtw6tCPe6I+1uQ/PEP7UVSKHIcmla7O+HV9sH8n6ReJd7426crSboSGXkLDrU/Z/OZ3KISB+Zo7u0JpInR4NJdcBHyWgtmB4IAHIl/7PFdHQngDaL6uHaamL8snUWfWd/TLcM5w==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230028)(4636009)(346002)(136003)(376002)(396003)(39860400002)(451199021)(82310400008)(36840700001)(40470700004)(46966006)(81166007)(40460700003)(356005)(40480700001)(36860700001)(36756003)(426003)(2616005)(47076005)(83380400001)(8676002)(8936002)(16526019)(5660300002)(6916009)(478600001)(54906003)(4326008)(316002)(70206006)(70586007)(41300700001)(336012)(26005)(1076003)(186003)(6666004)(7696005)(2906002)(86362001)(82740400003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jul 2023 20:05:29.6280 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: abf8509f-b523-4d76-49cf-08db8c81545c
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT046.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR12MB9351
+References: <20230723065007.2022758-1-srinivasan.shanmugam@amd.com>
+In-Reply-To: <20230723065007.2022758-1-srinivasan.shanmugam@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 24 Jul 2023 17:19:42 -0400
+Message-ID: <CADnq5_O5YkscgpZVpnw7Z_GnwDY-w2aZgbHk=0rPxU_K65UqWA@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Use seq_puts() instead of seq_printf()
+To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,42 +67,138 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Prike Liang <Prike.Liang@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Prike Liang <Prike.Liang@amd.com>
+On Sun, Jul 23, 2023 at 2:51=E2=80=AFAM Srinivasan Shanmugam
+<srinivasan.shanmugam@amd.com> wrote:
+>
+> For a constant format without additional arguments, use seq_puts()
+> instead of seq_printf(). Also, it fixes the following warning.
+>
+> WARNING: Prefer seq_puts to seq_printf
+>
+> And other style fixes:
+>
+> WARNING: Prefer 'unsigned int' to bare use of 'unsigned'
+> WARNING: Block comments should align the * on each line
+>
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 
-Add to IP discovery table.
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
-Signed-off-by: Prike Liang <Prike.Liang@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-index 59ed6d4ebfed0..9d8d08daca57a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-@@ -65,6 +65,7 @@
- #include "soc21.h"
- #include "navi10_ih.h"
- #include "ih_v6_0.h"
-+#include "ih_v6_1.h"
- #include "gfx_v10_0.h"
- #include "gfx_v11_0.h"
- #include "sdma_v5_0.h"
-@@ -1702,6 +1703,9 @@ static int amdgpu_discovery_set_ih_ip_blocks(struct amdgpu_device *adev)
- 	case IP_VERSION(6, 0, 2):
- 		amdgpu_device_ip_block_add(adev, &ih_v6_0_ip_block);
- 		break;
-+	case IP_VERSION(6, 1, 0):
-+		amdgpu_device_ip_block_add(adev, &ih_v6_1_ip_block);
-+		break;
- 	default:
- 		dev_err(adev->dev,
- 			"Failed to add ih ip block(OSSSYS_HWIP:0x%x)\n",
--- 
-2.41.0
-
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c | 22 +++++++++++-----------
+>  1 file changed, 11 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c b/drivers/gpu/drm/amd=
+/amdgpu/amdgpu_ib.c
+> index e0d3e3aa2e31..0cbaf78e8828 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+> @@ -62,7 +62,7 @@
+>   * Returns 0 on success, error on failure.
+>   */
+>  int amdgpu_ib_get(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+> -                 unsigned size, enum amdgpu_ib_pool_type pool_type,
+> +                 unsigned int size, enum amdgpu_ib_pool_type pool_type,
+>                   struct amdgpu_ib *ib)
+>  {
+>         int r;
+> @@ -123,7 +123,7 @@ void amdgpu_ib_free(struct amdgpu_device *adev, struc=
+t amdgpu_ib *ib,
+>   * a CONST_IB), it will be put on the ring prior to the DE IB.  Prior
+>   * to SI there was just a DE IB.
+>   */
+> -int amdgpu_ib_schedule(struct amdgpu_ring *ring, unsigned num_ibs,
+> +int amdgpu_ib_schedule(struct amdgpu_ring *ring, unsigned int num_ibs,
+>                        struct amdgpu_ib *ibs, struct amdgpu_job *job,
+>                        struct dma_fence **f)
+>  {
+> @@ -131,16 +131,16 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, un=
+signed num_ibs,
+>         struct amdgpu_ib *ib =3D &ibs[0];
+>         struct dma_fence *tmp =3D NULL;
+>         bool need_ctx_switch;
+> -       unsigned patch_offset =3D ~0;
+> +       unsigned int patch_offset =3D ~0;
+>         struct amdgpu_vm *vm;
+>         uint64_t fence_ctx;
+>         uint32_t status =3D 0, alloc_size;
+> -       unsigned fence_flags =3D 0;
+> +       unsigned int fence_flags =3D 0;
+>         bool secure, init_shadow;
+>         u64 shadow_va, csa_va, gds_va;
+>         int vmid =3D AMDGPU_JOB_GET_VMID(job);
+>
+> -       unsigned i;
+> +       unsigned int i;
+>         int r =3D 0;
+>         bool need_pipe_sync =3D false;
+>
+> @@ -282,7 +282,7 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, unsi=
+gned num_ibs,
+>                 amdgpu_ring_emit_gfx_shadow(ring, 0, 0, 0, false, 0);
+>
+>                 if (ring->funcs->init_cond_exec) {
+> -                       unsigned ce_offset =3D ~0;
+> +                       unsigned int ce_offset =3D ~0;
+>
+>                         ce_offset =3D amdgpu_ring_init_cond_exec(ring);
+>                         if (ce_offset !=3D ~0 && ring->funcs->patch_cond_=
+exec)
+> @@ -386,7 +386,7 @@ int amdgpu_ib_ring_tests(struct amdgpu_device *adev)
+>  {
+>         long tmo_gfx, tmo_mm;
+>         int r, ret =3D 0;
+> -       unsigned i;
+> +       unsigned int i;
+>
+>         tmo_mm =3D tmo_gfx =3D AMDGPU_IB_TEST_TIMEOUT;
+>         if (amdgpu_sriov_vf(adev)) {
+> @@ -403,7 +403,7 @@ int amdgpu_ib_ring_tests(struct amdgpu_device *adev)
+>                 /* for CP & SDMA engines since they are scheduled togethe=
+r so
+>                  * need to make the timeout width enough to cover the tim=
+e
+>                  * cost waiting for it coming back under RUNTIME only
+> -               */
+> +                */
+>                 tmo_gfx =3D 8 * AMDGPU_IB_TEST_TIMEOUT;
+>         } else if (adev->gmc.xgmi.hive_id) {
+>                 tmo_gfx =3D AMDGPU_IB_TEST_GFX_XGMI_TIMEOUT;
+> @@ -466,13 +466,13 @@ static int amdgpu_debugfs_sa_info_show(struct seq_f=
+ile *m, void *unused)
+>  {
+>         struct amdgpu_device *adev =3D m->private;
+>
+> -       seq_printf(m, "--------------------- DELAYED --------------------=
+- \n");
+> +       seq_puts(m, "--------------------- DELAYED ---------------------\=
+n");
+>         amdgpu_sa_bo_dump_debug_info(&adev->ib_pools[AMDGPU_IB_POOL_DELAY=
+ED],
+>                                      m);
+> -       seq_printf(m, "-------------------- IMMEDIATE -------------------=
+- \n");
+> +       seq_puts(m, "-------------------- IMMEDIATE --------------------\=
+n");
+>         amdgpu_sa_bo_dump_debug_info(&adev->ib_pools[AMDGPU_IB_POOL_IMMED=
+IATE],
+>                                      m);
+> -       seq_printf(m, "--------------------- DIRECT ---------------------=
+- \n");
+> +       seq_puts(m, "--------------------- DIRECT ----------------------\=
+n");
+>         amdgpu_sa_bo_dump_debug_info(&adev->ib_pools[AMDGPU_IB_POOL_DIREC=
+T], m);
+>
+>         return 0;
+> --
+> 2.25.1
+>
