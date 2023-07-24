@@ -2,54 +2,39 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9C6275F791
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jul 2023 14:59:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 786C275F778
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jul 2023 14:58:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5964C10E30F;
-	Mon, 24 Jul 2023 12:59:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CE7F10E300;
+	Mon, 24 Jul 2023 12:58:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.208.org (unknown [183.242.55.162])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D10910E290
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jul 2023 09:08:22 +0000 (UTC)
-Received: from mail.208.org (email.208.org [127.0.0.1])
- by mail.208.org (Postfix) with ESMTP id 4R8Z842BQyzBRx5T
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jul 2023 17:08:20 +0800 (CST)
-Authentication-Results: mail.208.org (amavisd-new); dkim=pass
- reason="pass (just generated, assumed good)" header.d=208.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=208.org; h=
- content-transfer-encoding:content-type:message-id:user-agent
- :references:in-reply-to:subject:to:from:date:mime-version; s=
- dkim; t=1690189700; x=1692781701; bh=rd5XJCKeCCCstWQq8oezxVrRBtx
- 3Uez3owR/99sLpv4=; b=djs+BG8BS/oEA3gUtU2Vs8S/t+VqReo+b8rt5yBVGHx
- iHxCPZTwbMxtdVlnciZDbAX0WGxJJt9Z3XMNzxub1ropHhojLDs0vLYXY+3Idc8x
- 5ng32fdc0OGgXpcPVQndvxu6QxUnS1prKErEkwX3dzclqctXVIAmOVIeG0ypYi1f
- qag+sA+lq7T8Im1GVwjiKNN7RV5VG4e+TKF9n6Hf/7jCZ5n7HqGekoPNyKrd6rpP
- X3k/AmBehCd9O+yLWNB6Ucalj/GUo3b3GQw8rFsyQi96Gpr6g8TicvPfOlRUkrh6
- OnqZIRy+XJOPjz+bfjVbHSHWuUlJBrRZcL3kRZDO6Hw==
-X-Virus-Scanned: amavisd-new at mail.208.org
-Received: from mail.208.org ([127.0.0.1])
- by mail.208.org (mail.208.org [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id uhiJu-DDNh_1 for <amd-gfx@lists.freedesktop.org>;
- Mon, 24 Jul 2023 17:08:20 +0800 (CST)
-Received: from localhost (email.208.org [127.0.0.1])
- by mail.208.org (Postfix) with ESMTPSA id 4R8Z836nC2zBKnld;
- Mon, 24 Jul 2023 17:08:19 +0800 (CST)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9249F88EBA;
+ Mon, 24 Jul 2023 09:23:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+ s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+ Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+ bh=nHwERRNohuUhZsb3fsbGJZNV/wqpb0sJjOXJGxj/gFU=; b=0eTCGmkFvYRanCjqIruUc+gFHD
+ eb0YjlozDEULA37j7v5qY4zn7oNzSJHyKS6Mu3lubDRF2RaMczkF4f0lJh//Gw6lfNr0hipZSgCGS
+ JIWlEQVkw7RyvqjD3Uxd4RuJG7sAceLde0p86r2jFr/kdLPlkftX1hnSBOxxVBlLMicc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+ (envelope-from <andrew@lunn.ch>)
+ id 1qNrmC-0026m1-D4; Mon, 24 Jul 2023 11:22:48 +0200
+Date: Mon, 24 Jul 2023 11:22:48 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Evan Quan <evan.quan@amd.com>
+Subject: Re: [PATCH V7 4/9] wifi: mac80211: Add support for ACPI WBRF
+Message-ID: <9b1f45f9-02a3-4c03-b9d5-cc3b9ab3a058@lunn.ch>
+References: <20230719090020.2716892-1-evan.quan@amd.com>
+ <20230719090020.2716892-5-evan.quan@amd.com>
 MIME-Version: 1.0
-Date: Mon, 24 Jul 2023 17:08:19 +0800
-From: sunran001@208suo.com
-To: alexander.deucher@amd.com
-Subject: [PATCH] drm/amd/pm: open brace '{' following struct go on the same
- line
-In-Reply-To: <20230724090624.9699-1-xujianghui@cdjrlc.com>
-References: <20230724090624.9699-1-xujianghui@cdjrlc.com>
-User-Agent: Roundcube Webmail
-Message-ID: <5ce64e06635dbf038d73452098fd0163@208suo.com>
-X-Sender: sunran001@208suo.com
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Mon, 24 Jul 2023 12:58:34 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230719090020.2716892-5-evan.quan@amd.com>
+X-Mailman-Approved-At: Mon, 24 Jul 2023 12:58:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,102 +46,58 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Cc: jingyuwang_vip@163.com, bellosilicio@gmail.com, rafael@kernel.org,
+ trix@redhat.com, Lijo.Lazar@amd.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, mdaenzer@redhat.com, Mario.Limonciello@amd.com,
+ airlied@gmail.com, amd-gfx@lists.freedesktop.org, linux-acpi@vger.kernel.org,
+ kuba@kernel.org, pabeni@redhat.com, lenb@kernel.org, andrealmeid@igalia.com,
+ daniel@ffwll.ch, arnd@arndb.de, maarten.lankhorst@linux.intel.com,
+ hdegoede@redhat.com, jsg@jsg.id.au, jim.cromie@gmail.com,
+ netdev@vger.kernel.org, Xinhui.Pan@amd.com, linux-wireless@vger.kernel.org,
+ edumazet@google.com, Christian.Koenig@amd.com, tzimmermann@suse.de,
+ Alexander.Deucher@amd.com, johannes@sipsolutions.net, davem@davemloft.net
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-ERROR: open brace '{' following struct go on the same line
+> @@ -1395,6 +1395,8 @@ int ieee80211_register_hw(struct ieee80211_hw *hw)
+>  	debugfs_hw_add(local);
+>  	rate_control_add_debugfs(local);
+>  
+> +	ieee80211_check_wbrf_support(local);
+> +
+>  	rtnl_lock();
+>  	wiphy_lock(hw->wiphy);
+>  
 
-Signed-off-by: Ran Sun <sunran001@208suo.com>
----
-  .../amd/pm/swsmu/inc/smu_v13_0_7_pptable.h    | 21 +++++++------------
-  1 file changed, 7 insertions(+), 14 deletions(-)
+> +void ieee80211_check_wbrf_support(struct ieee80211_local *local)
+> +{
+> +	struct wiphy *wiphy = local->hw.wiphy;
+> +	struct device *dev;
+> +
+> +	if (!wiphy)
+> +		return;
+> +
+> +	dev = wiphy->dev.parent;
+> +	if (!dev)
+> +		return;
+> +
+> +	local->wbrf_supported = wbrf_supported_producer(dev);
+> +	dev_dbg(dev, "WBRF is %s supported\n",
+> +		local->wbrf_supported ? "" : "not");
+> +}
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v13_0_7_pptable.h 
-b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v13_0_7_pptable.h
-index eadbe0149cae..eb694f9f556d 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v13_0_7_pptable.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/inc/smu_v13_0_7_pptable.h
-@@ -41,8 +41,7 @@
-  #define SMU_13_0_7_PP_OVERDRIVE_VERSION 0x83        // OverDrive 8 
-Table Version 0.2
-  #define SMU_13_0_7_PP_POWERSAVINGCLOCK_VERSION 0x01 // Power Saving 
-Clock Table Version 1.00
+This seems wrong. wbrf_supported_producer() is about "Should this
+device report the frequencies it is using?" The answer to that depends
+on a combination of: Are there consumers registered with the core, and
+is the policy set so WBRF should take actions.
 
--enum SMU_13_0_7_ODFEATURE_CAP
--{
-+enum SMU_13_0_7_ODFEATURE_CAP {
-      SMU_13_0_7_ODCAP_GFXCLK_LIMITS = 0,
-      SMU_13_0_7_ODCAP_UCLK_LIMITS,
-      SMU_13_0_7_ODCAP_POWER_LIMIT,
-@@ -62,8 +61,7 @@ enum SMU_13_0_7_ODFEATURE_CAP
-      SMU_13_0_7_ODCAP_COUNT,
-  };
+The problem here is, you have no idea of the probe order. It could be
+this device probes before others, so wbrf_supported_producer() reports
+false, but a few second later would report true, once other devices
+have probed.
 
--enum SMU_13_0_7_ODFEATURE_ID
--{
-+enum SMU_13_0_7_ODFEATURE_ID {
-      SMU_13_0_7_ODFEATURE_GFXCLK_LIMITS           = 1 << 
-SMU_13_0_7_ODCAP_GFXCLK_LIMITS,           //GFXCLK Limit feature
-      SMU_13_0_7_ODFEATURE_UCLK_LIMITS             = 1 << 
-SMU_13_0_7_ODCAP_UCLK_LIMITS,             //UCLK Limit feature
-      SMU_13_0_7_ODFEATURE_POWER_LIMIT             = 1 << 
-SMU_13_0_7_ODCAP_POWER_LIMIT,             //Power Limit feature
-@@ -85,8 +83,7 @@ enum SMU_13_0_7_ODFEATURE_ID
+It should be an inexpensive call into the core, so can be made every
+time the channel changes. All the core needs to do is check if the
+list of consumers is empty, and if not, check a Boolean policy value.
 
-  #define SMU_13_0_7_MAX_ODFEATURE 32 //Maximum Number of OD Features
-
--enum SMU_13_0_7_ODSETTING_ID
--{
-+enum SMU_13_0_7_ODSETTING_ID {
-      SMU_13_0_7_ODSETTING_GFXCLKFMAX = 0,
-      SMU_13_0_7_ODSETTING_GFXCLKFMIN,
-      SMU_13_0_7_ODSETTING_UCLKFMIN,
-@@ -123,8 +120,7 @@ enum SMU_13_0_7_ODSETTING_ID
-  };
-  #define SMU_13_0_7_MAX_ODSETTING 64 //Maximum Number of ODSettings
-
--enum SMU_13_0_7_PWRMODE_SETTING
--{
-+enum SMU_13_0_7_PWRMODE_SETTING {
-      SMU_13_0_7_PMSETTING_POWER_LIMIT_QUIET = 0,
-      SMU_13_0_7_PMSETTING_POWER_LIMIT_BALANCE,
-      SMU_13_0_7_PMSETTING_POWER_LIMIT_TURBO,
-@@ -144,8 +140,7 @@ enum SMU_13_0_7_PWRMODE_SETTING
-  };
-  #define SMU_13_0_7_MAX_PMSETTING 32 //Maximum Number of PowerMode 
-Settings
-
--struct smu_13_0_7_overdrive_table
--{
-+struct smu_13_0_7_overdrive_table {
-      uint8_t revision;                             //Revision = 
-SMU_13_0_7_PP_OVERDRIVE_VERSION
-      uint8_t reserve[3];                           //Zero filled field 
-reserved for future use
-      uint32_t feature_count;                       //Total number of 
-supported features
-@@ -156,8 +151,7 @@ struct smu_13_0_7_overdrive_table
-      int16_t pm_setting[SMU_13_0_7_MAX_PMSETTING]; //Optimized power 
-mode feature settings
-  };
-
--enum SMU_13_0_7_PPCLOCK_ID
--{
-+enum SMU_13_0_7_PPCLOCK_ID {
-      SMU_13_0_7_PPCLOCK_GFXCLK = 0,
-      SMU_13_0_7_PPCLOCK_SOCCLK,
-      SMU_13_0_7_PPCLOCK_UCLK,
-@@ -175,8 +169,7 @@ enum SMU_13_0_7_PPCLOCK_ID
-  };
-  #define SMU_13_0_7_MAX_PPCLOCK 16 //Maximum Number of PP Clocks
-
--struct smu_13_0_7_powerplay_table
--{
-+struct smu_13_0_7_powerplay_table {
-      struct atom_common_table_header header; //For PLUM_BONITO, 
-header.format_revision = 15, header.content_revision = 0
-      uint8_t table_revision;                 //For PLUM_BONITO, 
-table_revision = 2
-      uint8_t padding;
+     Andrew
