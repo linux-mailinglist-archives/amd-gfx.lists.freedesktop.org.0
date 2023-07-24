@@ -1,40 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 786C275F778
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jul 2023 14:58:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D5B975F78C
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jul 2023 14:59:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CE7F10E300;
-	Mon, 24 Jul 2023 12:58:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6F9F10E306;
+	Mon, 24 Jul 2023 12:59:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9249F88EBA;
- Mon, 24 Jul 2023 09:23:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
- s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
- Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
- Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
- bh=nHwERRNohuUhZsb3fsbGJZNV/wqpb0sJjOXJGxj/gFU=; b=0eTCGmkFvYRanCjqIruUc+gFHD
- eb0YjlozDEULA37j7v5qY4zn7oNzSJHyKS6Mu3lubDRF2RaMczkF4f0lJh//Gw6lfNr0hipZSgCGS
- JIWlEQVkw7RyvqjD3Uxd4RuJG7sAceLde0p86r2jFr/kdLPlkftX1hnSBOxxVBlLMicc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
- (envelope-from <andrew@lunn.ch>)
- id 1qNrmC-0026m1-D4; Mon, 24 Jul 2023 11:22:48 +0200
-Date: Mon, 24 Jul 2023 11:22:48 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Evan Quan <evan.quan@amd.com>
-Subject: Re: [PATCH V7 4/9] wifi: mac80211: Add support for ACPI WBRF
-Message-ID: <9b1f45f9-02a3-4c03-b9d5-cc3b9ab3a058@lunn.ch>
-References: <20230719090020.2716892-1-evan.quan@amd.com>
- <20230719090020.2716892-5-evan.quan@amd.com>
+X-Greylist: delayed 467 seconds by postgrey-1.36 at gabe;
+ Mon, 24 Jul 2023 10:24:48 UTC
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47CB410E2CE;
+ Mon, 24 Jul 2023 10:24:48 +0000 (UTC)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+ id E72C61C0A92; Mon, 24 Jul 2023 12:16:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+ t=1690193818;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=S2+McpDfsYpwZYH+MJBkwRRarEXjcvPMu7pbH7YtmA8=;
+ b=E9S+BZL3KPxBs6CDkplLSGg/QQJ/0h1//H2ReveJgvfYdNehkAIndTpzIrjGpYHr/xNK0r
+ H5eHBqkeiIKqOy5sBmo6vjUMBonlGkJVUnJ3ms7xzlHPjbci2iJC20sSIV3L+ksq5lckHB
+ AfJ9mW8yQLfyYxgEZRF9jQ5+c9RMVL0=
+Date: Mon, 24 Jul 2023 12:16:58 +0200
+From: Pavel Machek <pavel@ucw.cz>
+To: Sasha Levin <sashal@kernel.org>
+Subject: Re: [PATCH AUTOSEL 4.14 1/9] drm/radeon: Fix integer overflow in
+ radeon_cs_parser_init
+Message-ID: <ZL5PmleXslwGqwr1@duo.ucw.cz>
+References: <20230724012450.2320077-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha1;
+ protocol="application/pgp-signature"; boundary="+r/USItxKtE2w0t+"
 Content-Disposition: inline
-In-Reply-To: <20230719090020.2716892-5-evan.quan@amd.com>
-X-Mailman-Approved-At: Mon, 24 Jul 2023 12:58:33 +0000
+In-Reply-To: <20230724012450.2320077-1-sashal@kernel.org>
+X-Mailman-Approved-At: Mon, 24 Jul 2023 12:58:55 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,58 +49,46 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jingyuwang_vip@163.com, bellosilicio@gmail.com, rafael@kernel.org,
- trix@redhat.com, Lijo.Lazar@amd.com, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, mdaenzer@redhat.com, Mario.Limonciello@amd.com,
- airlied@gmail.com, amd-gfx@lists.freedesktop.org, linux-acpi@vger.kernel.org,
- kuba@kernel.org, pabeni@redhat.com, lenb@kernel.org, andrealmeid@igalia.com,
- daniel@ffwll.ch, arnd@arndb.de, maarten.lankhorst@linux.intel.com,
- hdegoede@redhat.com, jsg@jsg.id.au, jim.cromie@gmail.com,
- netdev@vger.kernel.org, Xinhui.Pan@amd.com, linux-wireless@vger.kernel.org,
- edumazet@google.com, Christian.Koenig@amd.com, tzimmermann@suse.de,
- Alexander.Deucher@amd.com, johannes@sipsolutions.net, davem@davemloft.net
+Cc: airlied@linux.ie, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ hackyzh002 <hackyzh002@gmail.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-> @@ -1395,6 +1395,8 @@ int ieee80211_register_hw(struct ieee80211_hw *hw)
->  	debugfs_hw_add(local);
->  	rate_control_add_debugfs(local);
->  
-> +	ieee80211_check_wbrf_support(local);
-> +
->  	rtnl_lock();
->  	wiphy_lock(hw->wiphy);
->  
 
-> +void ieee80211_check_wbrf_support(struct ieee80211_local *local)
-> +{
-> +	struct wiphy *wiphy = local->hw.wiphy;
-> +	struct device *dev;
-> +
-> +	if (!wiphy)
-> +		return;
-> +
-> +	dev = wiphy->dev.parent;
-> +	if (!dev)
-> +		return;
-> +
-> +	local->wbrf_supported = wbrf_supported_producer(dev);
-> +	dev_dbg(dev, "WBRF is %s supported\n",
-> +		local->wbrf_supported ? "" : "not");
-> +}
+--+r/USItxKtE2w0t+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This seems wrong. wbrf_supported_producer() is about "Should this
-device report the frequencies it is using?" The answer to that depends
-on a combination of: Are there consumers registered with the core, and
-is the policy set so WBRF should take actions.
+Hi!
 
-The problem here is, you have no idea of the probe order. It could be
-this device probes before others, so wbrf_supported_producer() reports
-false, but a few second later would report true, once other devices
-have probed.
+> From: hackyzh002 <hackyzh002@gmail.com>
+>=20
+> [ Upstream commit f828b681d0cd566f86351c0b913e6cb6ed8c7b9c ]
+>=20
+> The type of size is unsigned, if size is 0x40000000, there will be an
+> integer overflow, size will be zero after size *=3D sizeof(uint32_t),
+> will cause uninitialized memory to be referenced later
 
-It should be an inexpensive call into the core, so can be made every
-time the channel changes. All the core needs to do is check if the
-list of consumers is empty, and if not, check a Boolean policy value.
+I only got the first patch of the series via lkml, rest seems to have
+been lost somewhere :-(.
 
-     Andrew
+Best regards,
+								Pavel
+--=20
+People of Russia, stop Putin before his war on Ukraine escalates.
+
+--+r/USItxKtE2w0t+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCZL5PmgAKCRAw5/Bqldv6
+8oUOAJ4njNirimaFu4/gfUrc8WlC9GYNkQCfetCwTrc84IdGOfyYeVmrgQY1xI8=
+=Pe6p
+-----END PGP SIGNATURE-----
+
+--+r/USItxKtE2w0t+--
